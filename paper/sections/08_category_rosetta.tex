@@ -1,0 +1,84 @@
+\section{Category-Theoretic Rosetta Mapping}
+\label{sec:category}
+
+The ``Rosetta Stone'' problem asks: can we construct a universal functor
+that maps legal facts from one jurisdiction to equivalent claims in another?
+This section presents both positive (toy) results and negative (real-data)
+findings.
+
+\subsection{Legal Fact and Claim Categories}
+
+\begin{definition}[Fact category $\textbf{FactCat}$]
+For jurisdiction $J \in \{\text{CN}, \text{HK}, \text{US}\}$, the
+\emph{fact category} $\textbf{FactCat}_J$ has:
+\begin{itemize}
+  \item \textbf{Objects}: legal fact atoms $\{f_1, \ldots, f_m\}$ in
+        jurisdiction $J$;
+  \item \textbf{Morphisms}: entailment relations $f_i \to f_j$ when
+        fact $f_i$ logically entails $f_j$ under $J$'s legal rules;
+  \item \textbf{Composition}: transitive closure of entailment.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Claim category $\textbf{ClaimCat}$]
+The \emph{claim category} $\textbf{ClaimCat}_J$ is defined analogously
+for legal claims, with morphisms being logical implication between claims.
+\end{definition}
+
+\begin{definition}[Semantic-preserving functor]
+A functor $F: \textbf{FactCat}_{J_1} \to \textbf{ClaimCat}_{J_2}$
+is \emph{semantic-preserving} if for every morphism $f_i \to f_j$ in
+$\textbf{FactCat}_{J_1}$:
+\begin{equation}
+  F(f_i) \to F(f_j) \in \textbf{ClaimCat}_{J_2}
+  \quad \text{and} \quad
+  \text{legal\_meaning}(F(f_i)) \equiv \text{legal\_meaning}(f_i)
+  \label{eq:semantic-preserving}
+\end{equation}
+\end{definition}
+
+\subsection{Toy Model: No Total Functor}
+
+\begin{theorem}[Toy: 5-pattern no-collision-free assignment]
+\label{thm:rosetta-toy}
+For a constructed toy model with 5 cross-jurisdiction patterns and 3
+jurisdictions, there exists no total semantic-preserving functor.
+\end{theorem}
+
+\begin{proof}
+By exhaustive enumeration. The toy model has $3^5 = 243$ possible
+assignments. For each assignment, the script
+\texttt{category\_theory\_rosetta.py} checks the semantic-preservation
+condition~\eqref{eq:semantic-preserving}. Zero assignments satisfy the
+condition for all 5 patterns simultaneously.
+\end{proof}
+
+\begin{remark}
+This is a \textsc{Toy\_Synthetic\_Proof\_Only} result. The 5 patterns
+are synthetic constructs designed to demonstrate the proof technique,
+not real legal data. The result does not generalize to the full legal
+inventory.
+\end{remark}
+
+\subsection{Real Data: Insufficient for Proof}
+
+\begin{theorem}[Real data: 7 collision witnesses, no universal proof]
+\label{thm:rosetta-real}
+For the real cross-jurisdictional dataset (44 rows: 30 CN-only, 14
+cross-jurisdiction), there are 7 collision/asymmetry witnesses. However,
+the data is \textbf{insufficient} to prove or disprove the existence of
+a total semantic-preserving functor across all legal facts.
+\end{theorem}
+
+\begin{proof}
+The 7 witnesses demonstrate that specific concept pairs (e.g.,
+``consideration'' vs. ``对价'') cannot be mapped without semantic loss.
+However, 44 rows do not cover the full legal inventory ($> 2,000$ facts),
+so the negative result is partial, not universal.
+\end{proof}
+
+\begin{openproblem}
+Does there exist a total semantic-preserving functor
+$F: \textbf{FactCat}_{\text{CN}} \to \textbf{ClaimCat}_{\text{US}}$ for
+the complete legal inventory? The current evidence is insufficient.
+\end{openproblem}

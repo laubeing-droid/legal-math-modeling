@@ -1,0 +1,89 @@
+{
+  "P0-A (real data)": {
+    "returncode": 0,
+    "passed": true,
+    "stdout": "======================================================================\nTheorem A1: Real-data insufficiency witness\n======================================================================\nTotal rows in inventory: 44\n  CN_ONLY: 30\n  Cross-jurisdiction: 14\n    COLLISION: 7\n    ASYMMETRY: 3\n    PARTIAL: 6\n    MAPPED: 1\n\nWitness written to: D:\\Codex\\juris-calculus\\20260611 kimi proof\\strict_math_proof_rework\\p0a_category\\real_data_insufficiency_witness.json\n\n----------------------------------------------------------------------\n[RESULT] DATA_INSUFFICIENT_FOR_PROOF\nReal inventory has source-backed collision annotations, but these are\nempirical legal findings, not formal logical derivations. Cannot prove\nfrom first principles that no total collision-free mapping exists.\n======================================================================\n",
+    "stderr": "",
+    "extracted_status": "DATA_INSUFFICIENT_FOR_PROOF",
+    "guard_ok": true,
+    "final_status": "DATA_INSUFFICIENT_FOR_PROOF"
+  },
+  "P0-A (toy model)": {
+    "returncode": 0,
+    "passed": true,
+    "stdout": "======================================================================\nTheorem A1 (TOY MODEL): Finite no-total-mapping checker\nDATA_ORIGIN: TOY_SYNTHETIC\n======================================================================\nLoaded 5 TOY_SYNTHETIC fact patterns.\nCollision pairs per toy pattern:\n  FP-CNUS-001: [('C1', 'U1')]\n  FP-CNHk-001: [('C2', 'H2')]\n  FP-TRI-001: [('C3', 'U3'), ('U3', 'H3')]\n  FP-COLL-001: [('C4', 'U4')]\n  FP-ASYM-001: [('C5', 'H5')]\n\nExhaustive enumeration: 5 toy patterns, 3 unified IDs\nTotal assignments: 243\n----------------------------------------------------------------------\nAssignments checked: 243\nCollision-free: 0\nMin collisions: 6\n\n[RESULT] TOY_SYNTHETIC_PROOF_ONLY\nAll toy assignments contain collisions.\nWARNING: This is a TOY MODEL. Do not use as real theorem proof.\n======================================================================\n",
+    "stderr": "",
+    "extracted_status": "TOY_SYNTHETIC_PROOF_ONLY",
+    "guard_ok": true,
+    "final_status": "TOY_SYNTHETIC_PROOF_ONLY"
+  },
+  "P0-B1": {
+    "returncode": 0,
+    "passed": true,
+    "stdout": "============================================================\nTheorem B1: Galois connection on CN finite bounded lattice\n============================================================\nZ3 result: unsat\n\n[RESULT] REFUTED_BY_COUNTEREXAMPLE\nNo Galois connection exists between a finite bounded lattice and Real.\nReason: Real has no bottom element, so alpha(bottom) cannot be defined.\nThe witness r = alpha(bottom) - 1 violates the Galois condition.\n============================================================\n",
+    "stderr": "",
+    "extracted_status": "REFUTED_BY_COUNTEREXAMPLE",
+    "guard_ok": true,
+    "final_status": "REFUTED_BY_COUNTEREXAMPLE"
+  },
+  "P0-B2": {
+    "returncode": 0,
+    "passed": true,
+    "stdout": "============================================================\nTheorem B2: Cross-jurisdiction privilege morphism\n============================================================\nZ3 result: unsat\n\n[RESULT] REFUTED_BY_COUNTEREXAMPLE\nNo strictly order-preserving cross-jurisdiction morphism exists.\nReason: CN and US have opposite order directions for\nsemantically equivalent levels, forcing phi(c0) < phi(c1)\nand simultaneously phi(c0) > phi(c1).\n============================================================\n",
+    "stderr": "",
+    "extracted_status": "REFUTED_BY_COUNTEREXAMPLE",
+    "guard_ok": true,
+    "final_status": "REFUTED_BY_COUNTEREXAMPLE"
+  },
+  "P0-C (toy model)": {
+    "returncode": 0,
+    "passed": true,
+    "stdout": "======================================================================\nTheorem C2 (TOY MODEL): Pairwise Lipschitz checker\nDATA_ORIGIN: TOY_SYNTHETIC\n======================================================================\nTOY dataset size: 15 items\nBeta = 0.6\nPricing map: f(T, e) = 0.6*T + 0.4*e\nMetric: d = |T1-T2| + |e1-e2|\n----------------------------------------------------------------------\nTotal pairs: 105\nSkipped (d=0): 0\nSupremum ratio: 0.600000\nMax pair: ('item_11', 14.0, 6) vs ('item_15', 13.0, 6), ratio = 0.600000\nTheoretical bound: 0.600000\n\n[RESULT] TOY_SYNTHETIC_PROOF_ONLY\nAll pairs have ratio < 1 (sup = 0.600000).\nWARNING: This is a TOY MODEL. Do not use as real theorem proof.\n======================================================================\n",
+    "stderr": "",
+    "extracted_status": "TOY_SYNTHETIC_PROOF_ONLY",
+    "guard_ok": true,
+    "final_status": "TOY_SYNTHETIC_PROOF_ONLY"
+  },
+  "P0-D": {
+    "returncode": 0,
+    "passed": true,
+    "stdout": "======================================================================\nTheorem D1: Privilege -> epsilon is not a function\nMethod: Two-Model Witness\n======================================================================\nModel A (CN context) satisfiable: True\n  epsilon_a(5) = 1.0  (weak protection, professional ethics duty)\nModel B (US context) satisfiable: True\n  epsilon_b(5) = 2.5  (strong protection, absolute evidentiary privilege)\n\nWitness written to: D:\\Codex\\juris-calculus\\20260611 kimi proof\\strict_math_proof_rework\\p0d_privilege_epsilon\\two_model_witness.json\n\n[RESULT] REFUTED_BY_COUNTEREXAMPLE\nTwo internally consistent legal policy models exist where the same\nprivilege level maps to different epsilon values:\n  CN model: epsilon(5) = 1.0 (weak, ethics duty)\n  US model: epsilon(5) = 2.5 (strong, absolute privilege)\nTherefore, privilege -> epsilon is NOT a function.\n======================================================================\n",
+    "stderr": "",
+    "extracted_status": "REFUTED_BY_COUNTEREXAMPLE",
+    "guard_ok": true,
+    "final_status": "REFUTED_BY_COUNTEREXAMPLE"
+  },
+  "P1-E1": {
+    "returncode": 0,
+    "passed": true,
+    "stdout": "======================================================================\nTheorem E1: Dung AAF Grounded Extension -- Exhaustive Proof\n======================================================================\nEpistemic status target: PROVED_BY_EXHAUSTIVE_ENUMERATION\nScope: all directed attack graphs for n <= 4 (2^(n^2) graphs)\n======================================================================\n\n======================================================================\nSelf-test: hand-crafted attack graphs\n======================================================================\n  [PASS] 1-arg, no attacks  ->  GE = {a}, steps = 1\n  [PASS] 2-arg, mutual attack  ->  GE = empty set, steps = 0\n  [PASS] 3-arg, chain a->b->c  ->  GE = {a, c}, steps = 2\n  [PASS] 3-arg, a->b, a->c, b<->c  ->  GE = {a}, steps = 1\n  [PASS] 4-arg, chain a->b->c->d  ->  GE = {a, c}, steps = 2\n  All self-tests passed.\n\n======================================================================\nExhaustive verification: all directed attack graphs for n <= 4\n======================================================================\n\n[ n = 1 ]  Enumerating 2 directed attack graphs …\n  Completed in 0.000s\n  Step distribution: {0: 1, 1: 1}\n\n[ n = 2 ]  Enumerating 16 directed attack graphs …\n  Completed in 0.000s\n  Step distribution: {0: 9, 1: 7}\n\n[ n = 3 ]  Enumerating 512 directed attack graphs …\n  Completed in 0.003s\n  Step distribution: {0: 343, 1: 145, 2: 24}\n\n[ n = 4 ]  Enumerating 65,536 directed attack graphs …\n  Completed in 0.783s\n  Step distribution: {0: 50625, 1: 11215, 2: 3696}\n\n======================================================================\nSummary\n======================================================================\nTotal graphs enumerated   : 66,066\nGraphs verified           : 66,066\nMax Kleene steps observed : 2\nErrors                    : 0\n\nConclusion:\n  (a) Grounded extension EXISTS for every graph (empty set is valid).\n  (b) Grounded extension is UNIQUE (least fixpoint of monotone F).\n  (c) Kleene iteration CONVERGES within <= n steps for all n <= 4.\n  -> Theorem E1 VERIFIED for all finite Dung AAF with |Args| <= 4.\n  -> Epistemic status: PROVED_BY_EXHAUSTIVE_ENUMERATION\n\nDetailed summary written to: aaf_grounded_extension_summary.json\n",
+    "stderr": "",
+    "extracted_status": "PROVED_BY_EXHAUSTIVE_ENUMERATION",
+    "guard_ok": true,
+    "final_status": "PROVED_BY_EXHAUSTIVE_ENUMERATION"
+  },
+  "P1-E3": {
+    "returncode": 0,
+    "passed": true,
+    "stdout": "======================================================================\nTheorem E3: Original Evaluator Monotonicity Counterexample\n======================================================================\nEpistemic status target: REFUTED_BY_COUNTEREXAMPLE\n======================================================================\n\nCounterexample constructed successfully.\n\nCounterexample details:\n  Arguments: ['a', 'b']\n  Rebuttal pairs: [('b', 'a'), ('b', 'b')]\n\n  A = ['a']\n  B = ['b', 'a']\n  A subseteq B: True\n\n  F(A) = ['a']\n  F(B) = []\n\n  F(A) subseteq F(B): False\n  Counterexample holds: True\n\n======================================================================\nConclusion\n======================================================================\nOriginal evaluator's rebuttal/confidence-zeroing semantics violate Tarski monotonicity.\nTherefore, the original evaluator cannot directly use Kleene iteration for least fixpoint.\nEpistemic status: REFUTED_BY_COUNTEREXAMPLE\n\nJSON counterexample written to: evaluator_nonmonotone_counterexample.json\n",
+    "stderr": "",
+    "extracted_status": "REFUTED_BY_COUNTEREXAMPLE",
+    "guard_ok": true,
+    "final_status": "REFUTED_BY_COUNTEREXAMPLE"
+  },
+  "P0-A Lean": {
+    "status": "PENDING_TOOLCHAIN",
+    "passed": false,
+    "note": "Run 'lake env lean p0a_category/FiniteRosetta.lean' when Lean 4 available"
+  },
+  "P0-C Lean": {
+    "status": "PENDING_TOOLCHAIN",
+    "passed": false,
+    "note": "Run 'lake env lean p0c_banach/BanachEffectiveNodes.lean' when Lean 4 available"
+  },
+  "P0-D Lean": {
+    "status": "PENDING_TOOLCHAIN",
+    "passed": false,
+    "note": "Run 'lake env lean p0d_privilege_epsilon/FiniteGaloisAdjunction.lean' when Lean 4 available"
+  }
+}

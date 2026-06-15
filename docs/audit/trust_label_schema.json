@@ -1,0 +1,350 @@
+{
+  "$schema": "trust_label_schema_v1",
+  "description": "Schema for theorem/property trust labels assigned to proof artifacts. Each label indicates the level of confidence in a verified property and the conditions under which it holds.",
+  "version": "1.0.0",
+  "generated_date": "2026-06-11",
+  "label_definitions": {
+    "EXHAUSTIVE_FINITE_PROOF": {
+      "description": "Property verified by exhaustive enumeration over all inputs within finite bounds.",
+      "confidence_level": "HIGH",
+      "applicability": "All inputs satisfying the stated size/complexity bounds",
+      "required_fields": {
+        "artifact_path": {
+          "type": "string",
+          "description": "Path to the proof artifact file"
+        },
+        "checker_command": {
+          "type": "string",
+          "description": "Command to re-run the proof verification"
+        },
+        "bounds": {
+          "type": "object",
+          "description": "Finite bounds within which the proof is exhaustive",
+          "properties": {
+            "max_domain_size": "integer: maximum size of the domain",
+            "max_atom_count": "integer: maximum number of atoms/predicates",
+            "max_graph_size": "integer: maximum number of nodes/edges",
+            "max_term_depth": "integer: maximum nesting depth of terms",
+            "enumeration_count": "integer: total number of cases checked"
+          }
+        },
+        "assumptions": {
+          "type": "array",
+          "items": "string",
+          "description": "List of assumptions required for the proof to hold"
+        },
+        "limitations": {
+          "type": "array",
+          "items": "string",
+          "description": "List of limitations: what the proof does NOT cover"
+        },
+        "proof_strategy": {
+          "type": "string",
+          "description": "Description of the proof approach (exhaustive enumeration, brute-force search, etc.)"
+        },
+        "runtime_seconds": {
+          "type": "number",
+          "description": "Wall-clock time for proof execution"
+        }
+      },
+      "example": {
+        "label": "EXHAUSTIVE_FINITE_PROOF",
+        "artifact_path": "galois/finite_galois_adjunction.py",
+        "checker_command": "python3 galois/finite_galois_adjunction.py",
+        "bounds": {
+          "max_domain_size": 4,
+          "max_atom_count": 4,
+          "enumeration_count": 256
+        },
+        "assumptions": [
+          "Finite domain with |D| <= 4",
+          "Finite atom set with |Atom| <= 4",
+          "Standard Galois connection definition"
+        ],
+        "limitations": [
+          "Does not extend to infinite domains",
+          "Does not cover domains with |D| > 4 or |Atom| > 4"
+        ],
+        "proof_strategy": "Exhaustive enumeration of all possible Galois connections within bounds",
+        "runtime_seconds": 12.5
+      }
+    },
+    "SMT_PROVED_FINITE": {
+      "description": "Property verified by SMT solver for a finite (possibly parameterized) scope.",
+      "confidence_level": "HIGH",
+      "applicability": "All inputs within the SMT model's scope",
+      "required_fields": {
+        "artifact_path": {
+          "type": "string",
+          "description": "Path to the SMT2 or Python/Z3 proof artifact"
+        },
+        "checker_command": {
+          "type": "string",
+          "description": "Command to invoke the SMT solver"
+        },
+        "smt_solver": {
+          "type": "string",
+          "description": "Name and version of the SMT solver used"
+        },
+        "model_scope": {
+          "type": "string",
+          "description": "Description of the finite scope modeled in SMT"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": "string",
+          "description": "SMT-specific encoding assumptions"
+        },
+        "limitations": {
+          "type": "array",
+          "items": "string",
+          "description": "Limitations of the SMT encoding"
+        }
+      }
+    },
+    "LEAN_PROVED": {
+      "description": "Property formally proven in the Lean theorem prover with full mathematical rigor.",
+      "confidence_level": "VERY_HIGH",
+      "applicability": "All inputs satisfying the theorem preconditions (potentially infinite)",
+      "required_fields": {
+        "artifact_path": {
+          "type": "string",
+          "description": "Path to the Lean source file"
+        },
+        "checker_command": {
+          "type": "string",
+          "description": "Command to compile/check the Lean proof"
+        },
+        "lean_version": {
+          "type": "string",
+          "description": "Version of Lean used"
+        },
+        "theorem_statement": {
+          "type": "string",
+          "description": "The formal theorem statement proven"
+        },
+        "axioms_used": {
+          "type": "array",
+          "items": "string",
+          "description": "List of axioms/imports the proof depends on"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": "string",
+          "description": "Mathematical assumptions required"
+        },
+        "limitations": {
+          "type": "array",
+          "items": "string",
+          "description": "Any remaining limitations or TODOs"
+        }
+      }
+    },
+    "TLA_PROVED": {
+      "description": "Property verified using the TLA+ model checker (TLC).",
+      "confidence_level": "HIGH",
+      "applicability": "All behaviors within the modeled state space",
+      "required_fields": {
+        "artifact_path": {
+          "type": "string",
+          "description": "Path to the TLA+ spec file"
+        },
+        "checker_command": {
+          "type": "string",
+          "description": "Command to run TLC"
+        },
+        "tla_version": {
+          "type": "string",
+          "description": "Version of TLA+ Toolbox or TLC"
+        },
+        "model_parameters": {
+          "type": "object",
+          "description": "TLC model configuration parameters"
+        },
+        "invariants_checked": {
+          "type": "array",
+          "items": "string",
+          "description": "List of invariants verified by TLC"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": "string",
+          "description": "Modeling assumptions"
+        },
+        "limitations": {
+          "type": "array",
+          "items": "string",
+          "description": "State space limitations"
+        }
+      }
+    },
+    "REFUTED": {
+      "description": "Property has been disproven with a concrete counterexample.",
+      "confidence_level": "VERY_HIGH",
+      "applicability": "The property is false; counterexample demonstrates the failure",
+      "required_fields": {
+        "artifact_path": {
+          "type": "string",
+          "description": "Path to the refutation artifact"
+        },
+        "checker_command": {
+          "type": "string",
+          "description": "Command to reproduce the counterexample"
+        },
+        "counterexample_id": {
+          "type": "string",
+          "description": "Reference to the counterexample registry entry"
+        },
+        "violated_property": {
+          "type": "string",
+          "description": "Formal statement of the property that was violated"
+        },
+        "counterexample_description": {
+          "type": "string",
+          "description": "Human-readable description of the counterexample"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": "string",
+          "description": "Assumptions under which the property was tested"
+        },
+        "limitations": {
+          "type": "array",
+          "items": "string",
+          "description": "Scope of the refutation (may not generalize beyond tested scope)"
+        }
+      }
+    },
+    "PENDING_TOOLCHAIN": {
+      "description": "Proof artifact exists but cannot be checked due to missing toolchain.",
+      "confidence_level": "UNKNOWN",
+      "applicability": "Proof status cannot be determined without the required tool",
+      "required_fields": {
+        "artifact_path": {
+          "type": "string",
+          "description": "Path to the proof artifact"
+        },
+        "checker_command": {
+          "type": "string",
+          "description": "Command that would check the proof if toolchain were available"
+        },
+        "missing_toolchain": {
+          "type": "string",
+          "description": "Name of the required but unavailable tool"
+        },
+        "toolchain_version_required": {
+          "type": "string",
+          "description": "Version of toolchain needed"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": "string",
+          "description": "Assumed properties if the proof were to succeed"
+        },
+        "limitations": {
+          "type": "array",
+          "items": "string",
+          "description": "Unknowns due to pending verification"
+        },
+        "fallback_evidence": {
+          "type": "array",
+          "items": "string",
+          "description": "Alternative evidence for the property (e.g., Python exhaustive proof, manual review)"
+        }
+      }
+    },
+    "PARTIAL_PROOF": {
+      "description": "Property partially proven; some cases verified but not all.",
+      "confidence_level": "MEDIUM",
+      "applicability": "Verified cases only",
+      "required_fields": {
+        "artifact_path": {
+          "type": "string",
+          "description": "Path to the proof artifact"
+        },
+        "checker_command": {
+          "type": "string",
+          "description": "Command to run the partial proof"
+        },
+        "cases_verified": {
+          "type": "integer",
+          "description": "Number of cases verified"
+        },
+        "cases_total": {
+          "type": "integer",
+          "description": "Total number of cases (if known)"
+        },
+        "coverage_description": {
+          "type": "string",
+          "description": "Description of what cases are covered"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": "string",
+          "description": "Assumptions for verified cases"
+        },
+        "limitations": {
+          "type": "array",
+          "items": "string",
+          "description": "Uncovered cases and limitations"
+        }
+      }
+    },
+    "MANUAL_REVIEW": {
+      "description": "Property verified by expert manual review without automated checking.",
+      "confidence_level": "MEDIUM",
+      "applicability": "Depends on reviewer expertise",
+      "required_fields": {
+        "artifact_path": {
+          "type": "string",
+          "description": "Path to the reviewed document"
+        },
+        "reviewer": {
+          "type": "string",
+          "description": "Name or identifier of the reviewer"
+        },
+        "review_date": {
+          "type": "string",
+          "description": "Date of review"
+        },
+        "assumptions": {
+          "type": "array",
+          "items": "string",
+          "description": "Assumptions accepted during review"
+        },
+        "limitations": {
+          "type": "array",
+          "items": "string",
+          "description": "Limitations of manual review"
+        }
+      }
+    }
+  },
+  "status_transitions": {
+    "description": "Valid transitions between trust label statuses",
+    "transitions": [
+      {
+        "from": "PENDING_TOOLCHAIN",
+        "to": ["EXHAUSTIVE_FINITE_PROOF", "SMT_PROVED_FINITE", "LEAN_PROVED", "TLA_PROVED", "REFUTED"],
+        "trigger": "Toolchain becomes available and proof is checked"
+      },
+      {
+        "from": "PARTIAL_PROOF",
+        "to": ["EXHAUSTIVE_FINITE_PROOF", "LEAN_PROVED", "REFUTED"],
+        "trigger": "Remaining cases are proven or a counterexample is found"
+      },
+      {
+        "from": "MANUAL_REVIEW",
+        "to": ["EXHAUSTIVE_FINITE_PROOF", "SMT_PROVED_FINITE", "LEAN_PROVED", "TLA_PROVED", "REFUTED"],
+        "trigger": "Automated proof or refutation is completed"
+      }
+    ]
+  },
+  "severity_levels": {
+    "CRITICAL": "Property failure causes security/privacy breach or data corruption",
+    "HIGH": "Property failure causes significant correctness or reliability issue",
+    "MEDIUM": "Property failure causes moderate deviation from expected behavior",
+    "LOW": "Property failure has minimal impact; documented limitation acceptable",
+    "INFO": "Informational only; no failure but worth documenting"
+  }
+}

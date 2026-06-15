@@ -1,0 +1,16 @@
+{
+  "total_patterns": 18,
+  "dung_modelable": 17,
+  "dung_more_stable": 16,
+  "current_evaluator_more_stable": 1,
+  "equivalent": 1,
+  "dung_fails": 1,
+  "conclusion": "Horn closure + Dung grounded extension is more stable than current rebuttal confidence-zeroing for legal defeasible reasoning in 16 out of 18 patterns, with 1 patterns where Dung cannot fully model the legal nuance (e.g., partial liability reduction, liability transfer).",
+  "shadow_pipeline_recommendation": "Recommend parallel shadow execution: run current evaluator as primary, Dung AAF as shadow. Flag discrepancies where Dung grounded extension differs from confidence-zeroing, especially in nested exception chains (AAF-002, AAF-004) and multi-attacker scenarios (AAF-009). Do NOT replace evaluator; use Dung as structural validation layer.",
+  "limitations": [
+    "Dung binary attack cannot model partial liability reduction (过失相抵, AAF-018)",
+    "Dung cannot model liability transfer without defeat (第三人过错追偿, AAF-015)",
+    "Dung does not capture quantitative differences in rebuttal strength (反驳 vs 推翻, AAF-013)",
+    "All patterns are rule-level abstractions; individual case facts may introduce additional attackers not captured here"
+  ]
+}

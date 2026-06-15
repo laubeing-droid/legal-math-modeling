@@ -1,0 +1,207 @@
+{
+  "run_meta": {
+    "run_started_at": "2026-06-11T14:33:18",
+    "root": "D:\\Codex\\juris-calculus\\20260611kimi",
+    "kimi_data": "D:\\Codex\\juris-calculus\\20260611kimi\\JURIS-CALCULUS 数据收集交付包（kimi）\\data_collection_delivery",
+    "google_synthetic": "D:\\Codex\\juris-calculus\\20260611kimi\\JURIS-CALCULUS 数据收集交付包（谷歌合成数据）",
+    "run_finished_at": "2026-06-11T14:33:18",
+    "overall": "PASS"
+  },
+  "results": [
+    {
+      "check_id": "LV-001",
+      "name": "Source manifest referential integrity",
+      "status": "PASS",
+      "summary": "All collected source references should resolve to SOURCE_MANIFEST.jsonl.",
+      "metrics": {
+        "source_manifest_rows": 700,
+        "unique_source_ids": 700,
+        "verification_status": {
+          "VERIFIED": 659,
+          "REFERENCE_UNVERIFIED": 41
+        },
+        "referenced_source_ids_total_across_files": 644,
+        "files_checked": [
+          "claim_vocabulary_cn.jsonl",
+          "obstruction_registry.jsonl",
+          "aaf_shadow_diff_cases.jsonl",
+          "legal_release_classes_cn.jsonl",
+          "dp_policy_config_candidates.jsonl",
+          "pricing_observations.jsonl",
+          "us_hk_authority_manifest.jsonl",
+          "theorem_dependency_metadata.jsonl"
+        ],
+        "missing_refs_by_file": {}
+      },
+      "failures": [],
+      "warnings": [],
+      "allowed_claim": "Rows with source IDs can be mechanically checked against the manifest; legal authority still depends on verification_status."
+    },
+    {
+      "check_id": "LV-002",
+      "name": "CN claim vocabulary coverage",
+      "status": "PASS",
+      "summary": "CN claim rows should carry legal basis, case basis, expected output, and VERIFIED status.",
+      "metrics": {
+        "rows": 300,
+        "domain_counts": {
+          "contract": 50,
+          "tort": 50,
+          "corporate": 50,
+          "criminal": 50,
+          "administrative": 50,
+          "data_crossborder": 50
+        },
+        "verification_counts": {
+          "VERIFIED": 300
+        },
+        "missing_legal_basis": 0,
+        "missing_case_basis": 0,
+        "missing_expected_engine_output": 0
+      },
+      "failures": [],
+      "warnings": [],
+      "allowed_claim": "CN claim vocabulary is usable as a grounded evaluator fixture set, not as a cross-jurisdiction theorem proof."
+    },
+    {
+      "check_id": "LV-003",
+      "name": "AAF shadow diff executable consistency",
+      "status": "PASS",
+      "summary": "Recompute grounded extensions from aaf_input and compare them with declared aaf_output.",
+      "metrics": {
+        "rows": 100,
+        "diff_status_counts": {
+          "MATCH": 34,
+          "AAF_LIMITATION": 66
+        },
+        "limitation_type_counts": {
+          "binary_attack_ok": 34,
+          "proportional_reduction": 28,
+          "liability_transfer": 19,
+          "burden_shift": 6,
+          "mitigation_only": 13
+        },
+        "grounded_extension_mismatches": 0,
+        "expected_nonbinary_limitations": 64,
+        "missing_attacks": 0,
+        "missing_legal_basis": 0
+      },
+      "failures": [],
+      "warnings": [],
+      "allowed_claim": "The dataset can drive AAF/evaluator shadow tests; AAF_LIMITATION rows should be treated as design signals, not legal errors by themselves."
+    },
+    {
+      "check_id": "LV-004",
+      "name": "Cross-jurisdiction obstruction guard",
+      "status": "PASS",
+      "summary": "Mapping obstructions should be explicit enough to block unsafe CN/US/HK concept merging.",
+      "metrics": {
+        "rows": 40,
+        "severity_counts": {
+          "L3": 16,
+          "L2": 24
+        },
+        "foreign_jurisdiction_counts": {
+          "US-Federal": 20,
+          "HK": 20
+        },
+        "mapping_failure_type_counts": {
+          "no_equivalent": 9,
+          "remedy_asymmetry": 1,
+          "scope_mismatch": 15,
+          "procedure_asymmetry": 6,
+          "concept_collision": 5,
+          "blocking_statute": 4
+        },
+        "missing_engineering_action": 0
+      },
+      "failures": [],
+      "warnings": [],
+      "allowed_claim": "Obstruction rows provide collision/asymmetry witnesses for engineering guards, not a formal proof that no global functor exists."
+    },
+    {
+      "check_id": "LV-005",
+      "name": "Pricing/Banach data insufficiency gate",
+      "status": "PASS_WITH_EXPECTED_DOWNGRADE",
+      "summary": "Pricing data should be accepted as proxy-only and blocked from proving real Banach pricing contraction.",
+      "metrics": {
+        "rows": 225,
+        "data_quality_counts": {
+          "fee_schedule": 225
+        },
+        "billing_type_counts": {
+          "court_award": 225
+        },
+        "paired_groups": 51,
+        "invalid_paired_groups": 0,
+        "real_timesheet_or_invoice_rows": 0
+      },
+      "failures": [],
+      "warnings": [],
+      "allowed_claim": "DATA_INSUFFICIENT_FOR_REAL_BANACH_PRICING; usable for schema, sensitivity, and downgrade tests only."
+    },
+    {
+      "check_id": "LV-006",
+      "name": "DP epsilon legal-determination gate",
+      "status": "PASS",
+      "summary": "Legal release classes must not be promoted into numeric epsilon proofs.",
+      "metrics": {
+        "release_class_rows": 15,
+        "policy_candidate_rows": 20,
+        "epsilon_legally_determined_rows": 0,
+        "policy_rows_missing_warning": 0
+      },
+      "failures": [],
+      "warnings": [],
+      "allowed_claim": "Legal data supports a negative gate: epsilon values are policy parameters, not legal-theorem outputs."
+    },
+    {
+      "check_id": "LV-007",
+      "name": "Theorem trust-label downgrade guard",
+      "status": "PASS",
+      "summary": "Theorem metadata should not promote DATA_INSUFFICIENT/PENDING/LEAN_DRAFT rows into proof labels.",
+      "metrics": {
+        "rows": 20,
+        "runner_status_counts": {
+          "SUPPORTED_CN_ONLY": 1,
+          "DATA_INSUFFICIENT": 6,
+          "REFUTED": 3,
+          "PARTIALLY_SUPPORTED_PATTERN_LEVEL": 3,
+          "REFERENCE_UNVERIFIED": 2,
+          "PROVED": 1,
+          "UNVERIFIED": 1,
+          "LEAN_DRAFT_UNVERIFIED": 1,
+          "PENDING_TOOLCHAIN": 2
+        },
+        "trust_label_counts": {
+          "EMPIRICAL_PATTERN": 6,
+          "UNVERIFIED": 10,
+          "FORMAL_SYMBOLIC": 1,
+          "ARCHITECTURE_ONLY": 2,
+          "SMT_PROVED_FINITE": 1
+        },
+        "forbidden_upgrades": 0
+      },
+      "failures": [],
+      "warnings": [],
+      "allowed_claim": "The theorem metadata is suitable as a downstream AI guardrail table, not as a proof ledger replacement."
+    },
+    {
+      "check_id": "LV-008",
+      "name": "Google synthetic data quarantine",
+      "status": "PASS",
+      "summary": "Synthetic data directory is absent; no synthetic package can be mixed into the real-source manifest.",
+      "metrics": {
+        "google_synthetic_path": "D:\\Codex\\juris-calculus\\20260611kimi\\JURIS-CALCULUS 数据收集交付包（谷歌合成数据）",
+        "google_synthetic_status": "DELETED_OR_ABSENT",
+        "google_files_scanned": 0,
+        "google_source_like_ids_found": 0,
+        "kimi_source_ids": 700,
+        "source_id_collisions": 0
+      },
+      "failures": [],
+      "warnings": [],
+      "allowed_claim": "Google synthetic package is absent; current validation baseline contains no local Google synthetic data dependency."
+    }
+  ]
+}

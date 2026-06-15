@@ -1,0 +1,123 @@
+\section{Legal Ontology: $L_0$/$L_1$/$L_2$ Formalization}
+\label{sec:ontology}
+
+The juris-calculus ontology is structured in three layers of increasing
+specificity, drawing on Searle's theory of institutional
+facts~\cite{searle1995} and Hart's rule of recognition~\cite{hart1961}.
+
+\subsection{$L_0$: Irreducible Primitives}
+
+\begin{definition}[$L_0$ primitive types]
+The ground layer $L_0$ consists of six irreducible types:
+\begin{equation}
+  L_0 = \{
+    \textsc{Agent},\; \textsc{Asset},\; \textsc{Act},\;
+    \textsc{Status},\; \textsc{Power},\; \textsc{Defect}
+  \}
+  \label{eq:L0}
+\end{equation}
+where:
+\begin{itemize}
+  \item \textsc{Agent} $= \{$Seller, Buyer, Shareholder, Director, $\ldots\}$
+  \item \textsc{Asset} $= \{$Goods, Shares, Patent, RealEstate, $\ldots\}$
+  \item \textsc{Act} $= \{$Delivery, Payment, ShareTransfer, $\ldots\}$
+  \item \textsc{Status} $= \{$Established, Valid, Pending, Voidable, Void,
+        Terminated, Breached, Remedied$\}$
+  \item \textsc{Power} $= \{$DispositionPower, Transferability, Alienability$\}$
+  \item \textsc{Defect} $= \{$Fraud, Duress, Mistake, Illegality, Incapacity$\}$
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Contract validity state machine]
+The \textsc{Status} type carries a directed state machine for contract validity:
+\begin{equation}
+  \xymatrix{
+    \text{PENDING} \ar[r]^{\text{ratification}}
+    & \text{VALID} \ar[r]^{\text{Abs. Rebuttal}}
+    & \text{VOID} \\
+    & \text{VALID} \ar[r]^{\text{Cond. Rebuttal}}
+    & \text{VOIDABLE} \ar[u]_{\text{rescission}}
+  }
+\end{equation}
+with additional transitions: $\text{CONDITIONAL} \xrightarrow{\text{fulfilled}}
+\text{VALID}$ and $\text{VALID} \xrightarrow{\text{rescinded}} \text{TERMINATED}$.
+\end{definition}
+
+\subsection{$L_1$: Meta-Ontological Categories}
+
+\begin{definition}[$L_1$ meta-ontology]
+The meta-ontological layer $L_1$ consists of 15 abstract categories that
+inherit from $L_0$ types:
+\begin{equation}
+  L_1 = \left\{
+    \begin{array}{l}
+      \text{Relationship\_Establishment},\;
+      \text{Right\_Claim\_Validity},\;
+      \text{Obligation\_Definition}, \\
+      \text{Obligation\_Breach},\;
+      \text{Remedy\_Availability},\;
+      \text{Asset\_Transfer}, \\
+      \text{Risk\_Allocation},\;
+      \text{Defense\_Exclusion},\;
+      \text{Reliance\_Principle}, \\
+      \text{Legal\_Effectiveness},\;
+      \text{Legal\_Stage},\;
+      \text{Legal\_Stage\_Pipeline}
+    \end{array}
+  \right\}
+\end{equation}
+\end{definition}
+
+\begin{definition}[Legal stage pipeline]
+The \textsc{Legal\_Stage\_Pipeline} defines a strict execution order
+for legal reasoning:
+\begin{equation}
+  \text{Fact\_Finding} \to \text{Contract\_Formation} \to
+  \text{Contract\_Validity} \to \text{Contract\_Interpretation} \to
+  \text{Performance} \to \text{Breach} \to \text{Remedy}
+  \label{eq:pipeline}
+\end{equation}
+Each stage must complete before the next begins. The pipeline is enforced
+by the fixpoint evaluator's domain routing.
+\end{definition}
+
+\subsection{$L_2$: Domain Concepts}
+
+\begin{definition}[$L_2$ atom types]
+Each $L_2$ concept is classified as either:
+\begin{itemize}
+  \item \textbf{Strict\_Atom}: a binary predicate that is either
+        satisfied or not (e.g., \textsc{Delivery}, \textsc{Payment});
+  \item \textbf{Defeasible\_Atom}: a predicate with override priority
+        and jurisdiction-specific weight (e.g., \textsc{Warranty\_Title},
+        \textsc{Exclusion\_Clause}).
+\end{itemize}
+Each defeasible atom carries a \emph{rebuttal criteria} function:
+\begin{equation}
+  \text{rebut}: \text{Defeasible\_Atom} \times \text{Context} \to
+  \{0, 1\} \times \text{OverridePriority}
+\end{equation}
+\end{definition}
+
+\begin{definition}[Cross-jurisdiction mapping]
+For each $L_2$ concept $c$, the mapping function $\mu$ assigns
+jurisdiction-specific atoms:
+\begin{equation}
+  \mu(c) = (\mu_{\text{CN}}(c),\; \mu_{\text{HK}}(c),\; \mu_{\text{US}}(c))
+\end{equation}
+A concept $c$ is \emph{collision-free} if
+$\mu_{\text{CN}}(c) \cap \mu_{\text{HK}}(c) \cap \mu_{\text{US}}(c)
+= \emptyset$ implies no semantic overlap. Otherwise, $c$ triggers a
+\emph{collision witness} in the Tri-Rail Collider.
+\end{definition}
+
+\begin{proposition}[Ontology hierarchy forms a bounded lattice]
+The $L_0 \subset L_1 \subset L_2$ hierarchy, ordered by specificity,
+forms a bounded lattice $(L, \leq, \sqcap, \sqcup)$ with:
+\begin{itemize}
+  \item Bottom: the empty fact set $\bot = \emptyset$;
+  \item Top: the universal concept $\top = L_2$;
+  \item Meet: greatest common ancestor in the type hierarchy;
+  \item Join: least common descendant.
+\end{itemize}
+\end{proposition}

@@ -1,0 +1,81 @@
+\section{Non-Interference: CBL Blocking as Bell--LaPadula}
+\label{sec:noninterference}
+
+Cross-jurisdictional legal reasoning introduces a security-like problem~\cite{deontic}:
+concepts from one jurisdiction (e.g., U.S. ``discovery'') can
+\emph{smuggle} into another's reasoning (e.g., PRC litigation) where
+they have no legal basis. This section formalizes concept smuggling as an
+information-flow non-interference property.
+
+\subsection{Concept Smuggling}
+
+\begin{definition}[Concept smuggling]
+A \emph{concept smuggling event} occurs when a legal concept $c_{J_1}$
+from jurisdiction $J_1$ influences the reasoning output of jurisdiction
+$J_2$ without passing through the alignment gate:
+\begin{equation}
+  \text{smuggle}(c_{J_1}, J_2) \iff
+  c_{J_1} \in \text{inputs}(J_2) \wedge
+  c_{J_1} \notin \text{aligned}(J_1, J_2)
+  \label{eq:smuggle}
+\end{equation}
+\end{definition}
+
+\subsection{Bell--LaPadula Formalization}
+
+\begin{definition}[Legal security lattice]
+Define a security lattice $(L_S, \leq_S)$ where:
+\begin{itemize}
+  \item $L_S = \{J_1, J_2, \ldots, J_n\}$ are jurisdiction labels;
+  \item $c_1 \leq_S c_2$ means jurisdiction $c_1$'s concepts may flow
+        to $c_2$'s reasoning;
+  \item The lattice is partially ordered by legal compatibility.
+\end{itemize}
+\end{definition}
+
+\begin{theorem}[CBL blocking rules implement non-interference]
+\label{thm:cbl-ni}
+The 60 Concept Blocking Layer (CBL) rules implement Bell--LaPadula
+non-interference~\cite{bell1976} for cross-jurisdictional concept flow:
+\begin{enumerate}
+  \item \textbf{Simple Security Property} (no read-up): a reasoning
+        engine at jurisdiction level $J$ cannot read concepts from a
+        higher-security jurisdiction $J'$ where $J <_S J'$;
+  \item \textbf{Star Property} (no write-down): a concept derived at
+        jurisdiction level $J$ cannot be written to a lower-security
+        jurisdiction $J''$ where $J'' <_S J$.
+\end{enumerate}
+Each CBL blocking rule corresponds to one of these two properties,
+preventing concept smuggling~\eqref{eq:smuggle}.
+\end{theorem}
+
+\begin{proof}
+By structural analysis of the 60 CBL blocking rules. Each rule has the
+form:
+\begin{equation}
+  \text{block}(c_{\text{US}}, \text{PRC}) \iff
+  c_{\text{US}} \in \text{HIGH\_RISK} \wedge
+  \neg\,\text{aligned}(c_{\text{US}}, \text{PRC})
+\end{equation}
+which satisfies the Simple Security Property (PRC engine at lower
+security level cannot read unaligned US concepts).
+\end{proof}
+
+\subsection{Supreme People's Court Rules}
+
+\begin{definition}[SPC judicial tendency rules]
+The 23 Supreme People's Court (SPC) rules encode PRC-specific judicial
+tendencies as defense rules:
+\begin{equation}
+  \text{SPC} = \{r_1, \ldots, r_{23}\}, \quad
+  r_i: \text{condition} \to \text{PRC\_specific\_outcome}
+\end{equation}
+These rules cannot be overridden by foreign legal concepts and act as
+mandatory security guards in the PRC reasoning trace.
+\end{definition}
+
+\begin{proposition}[SPC rules are monotone guards]
+Adding SPC rules to the Horn closure does not violate monotonicity
+(Theorem~\ref{thm:horn-mono}) because SPC rules are positive Horn
+clauses with PRC-specific conditions.
+\end{proposition}

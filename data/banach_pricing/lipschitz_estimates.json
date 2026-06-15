@@ -1,0 +1,344 @@
+{
+  "collection_date": "2026-06-10",
+  "methodology": "Lipschitz constant estimated as total_hours / effective_nodes, where effective_nodes proxies case complexity (motions, witnesses, documents, parties). This assumes a linear scaling between complexity and hours.",
+  "global_estimate": {
+    "n_records": 191,
+    "lipschitz_ratio_min": 0.77,
+    "lipschitz_ratio_max": 579.19,
+    "lipschitz_ratio_mean": 14.39,
+    "lipschitz_ratio_median": 4.44,
+    "lipschitz_ratio_stdev": 48.93,
+    "interpretation": "Mean ratio indicates average hours per unit of effective complexity. Higher ratios suggest more hours per unit of case complexity."
+  },
+  "by_location": {
+    "Northern District of Mississippi": {
+      "n": 4,
+      "mean_ratio": 9.66,
+      "median_ratio": 6.5,
+      "min_ratio": 4.17,
+      "max_ratio": 21.48
+    },
+    "Northern District of California": {
+      "n": 5,
+      "mean_ratio": 11.95,
+      "median_ratio": 5.83,
+      "min_ratio": 5.0,
+      "max_ratio": 29.07
+    },
+    "Eastern District of California": {
+      "n": 4,
+      "mean_ratio": 36.26,
+      "median_ratio": 16.67,
+      "min_ratio": 6.67,
+      "max_ratio": 105.05
+    },
+    "District of Columbia": {
+      "n": 5,
+      "mean_ratio": 17.28,
+      "median_ratio": 4.44,
+      "min_ratio": 3.12,
+      "max_ratio": 69.66
+    },
+    "Middle District of Florida": {
+      "n": 3,
+      "mean_ratio": 31.4,
+      "median_ratio": 28.28,
+      "min_ratio": 23.43,
+      "max_ratio": 42.48
+    },
+    "Middle District of Georgia": {
+      "n": 2,
+      "mean_ratio": 53.66,
+      "median_ratio": 53.66,
+      "min_ratio": 18.72,
+      "max_ratio": 88.6
+    },
+    "Central District of California": {
+      "n": 4,
+      "mean_ratio": 14.56,
+      "median_ratio": 15.55,
+      "min_ratio": 5.0,
+      "max_ratio": 22.13
+    },
+    "Southern District of Texas": {
+      "n": 5,
+      "mean_ratio": 130.69,
+      "median_ratio": 12.5,
+      "min_ratio": 5.62,
+      "max_ratio": 579.19
+    },
+    "Southern District of New York": {
+      "n": 6,
+      "mean_ratio": 79.01,
+      "median_ratio": 28.1,
+      "min_ratio": 5.6,
+      "max_ratio": 207.14
+    },
+    "Eastern District of Pennsylvania": {
+      "n": 4,
+      "mean_ratio": 57.46,
+      "median_ratio": 36.25,
+      "min_ratio": 4.0,
+      "max_ratio": 153.33
+    },
+    "Michigan": {
+      "n": 56,
+      "mean_ratio": 3.23,
+      "median_ratio": 3.12,
+      "min_ratio": 2.0,
+      "max_ratio": 5.5
+    },
+    "New York": {
+      "n": 2,
+      "mean_ratio": 4.5,
+      "median_ratio": 4.5,
+      "min_ratio": 4.0,
+      "max_ratio": 5.0
+    },
+    "California": {
+      "n": 3,
+      "mean_ratio": 4.13,
+      "median_ratio": 3.89,
+      "min_ratio": 3.0,
+      "max_ratio": 5.5
+    },
+    "Virginia": {
+      "n": 2,
+      "mean_ratio": 4.6,
+      "median_ratio": 4.6,
+      "min_ratio": 4.06,
+      "max_ratio": 5.14
+    },
+    "Illinois": {
+      "n": 2,
+      "mean_ratio": 4.56,
+      "median_ratio": 4.56,
+      "min_ratio": 4.0,
+      "max_ratio": 5.11
+    },
+    "New Jersey": {
+      "n": 2,
+      "mean_ratio": 5.31,
+      "median_ratio": 5.31,
+      "min_ratio": 5.0,
+      "max_ratio": 5.62
+    },
+    "Texas": {
+      "n": 2,
+      "mean_ratio": 5.15,
+      "median_ratio": 5.15,
+      "min_ratio": 4.8,
+      "max_ratio": 5.5
+    },
+    "Georgia": {
+      "n": 5,
+      "mean_ratio": 4.1,
+      "median_ratio": 4.0,
+      "min_ratio": 3.5,
+      "max_ratio": 5.0
+    },
+    "Florida": {
+      "n": 2,
+      "mean_ratio": 5.25,
+      "median_ratio": 5.25,
+      "min_ratio": 5.0,
+      "max_ratio": 5.5
+    },
+    "Washington": {
+      "n": 2,
+      "mean_ratio": 4.53,
+      "median_ratio": 4.53,
+      "min_ratio": 3.89,
+      "max_ratio": 5.17
+    },
+    "Massachusetts": {
+      "n": 2,
+      "mean_ratio": 4.42,
+      "median_ratio": 4.42,
+      "min_ratio": 3.41,
+      "max_ratio": 5.43
+    },
+    "Pennsylvania": {
+      "n": 2,
+      "mean_ratio": 4.52,
+      "median_ratio": 4.52,
+      "min_ratio": 3.75,
+      "max_ratio": 5.29
+    },
+    "Colorado": {
+      "n": 3,
+      "mean_ratio": 4.02,
+      "median_ratio": 3.5,
+      "min_ratio": 3.12,
+      "max_ratio": 5.44
+    },
+    "Oregon": {
+      "n": 2,
+      "mean_ratio": 4.4,
+      "median_ratio": 4.4,
+      "min_ratio": 3.57,
+      "max_ratio": 5.22
+    },
+    "North Carolina": {
+      "n": 2,
+      "mean_ratio": 4.54,
+      "median_ratio": 4.54,
+      "min_ratio": 3.93,
+      "max_ratio": 5.14
+    },
+    "Ohio": {
+      "n": 2,
+      "mean_ratio": 4.67,
+      "median_ratio": 4.67,
+      "min_ratio": 3.75,
+      "max_ratio": 5.6
+    },
+    "Arizona": {
+      "n": 2,
+      "mean_ratio": 4.35,
+      "median_ratio": 4.35,
+      "min_ratio": 3.33,
+      "max_ratio": 5.38
+    },
+    "Tennessee": {
+      "n": 2,
+      "mean_ratio": 4.18,
+      "median_ratio": 4.18,
+      "min_ratio": 3.11,
+      "max_ratio": 5.25
+    },
+    "Missouri": {
+      "n": 2,
+      "mean_ratio": 4.11,
+      "median_ratio": 4.11,
+      "min_ratio": 3.12,
+      "max_ratio": 5.1
+    },
+    "Wisconsin": {
+      "n": 2,
+      "mean_ratio": 4.17,
+      "median_ratio": 4.17,
+      "min_ratio": 3.14,
+      "max_ratio": 5.2
+    },
+    "Indiana": {
+      "n": 2,
+      "mean_ratio": 4.23,
+      "median_ratio": 4.23,
+      "min_ratio": 3.45,
+      "max_ratio": 5.0
+    },
+    "Alabama": {
+      "n": 2,
+      "mean_ratio": 4.11,
+      "median_ratio": 4.11,
+      "min_ratio": 2.86,
+      "max_ratio": 5.36
+    },
+    "Kentucky": {
+      "n": 2,
+      "mean_ratio": 4.06,
+      "median_ratio": 4.06,
+      "min_ratio": 3.11,
+      "max_ratio": 5.0
+    },
+    "West Virginia": {
+      "n": 2,
+      "mean_ratio": 4.1,
+      "median_ratio": 4.1,
+      "min_ratio": 3.0,
+      "max_ratio": 5.2
+    },
+    "Montana": {
+      "n": 2,
+      "mean_ratio": 4.14,
+      "median_ratio": 4.14,
+      "min_ratio": 3.0,
+      "max_ratio": 5.29
+    },
+    "London (City)": {
+      "n": 5,
+      "mean_ratio": 5.24,
+      "median_ratio": 5.33,
+      "min_ratio": 4.5,
+      "max_ratio": 6.0
+    },
+    "London (Outer)": {
+      "n": 2,
+      "mean_ratio": 5.17,
+      "median_ratio": 5.17,
+      "min_ratio": 5.0,
+      "max_ratio": 5.33
+    },
+    "London (CAT)": {
+      "n": 2,
+      "mean_ratio": 8.81,
+      "median_ratio": 8.81,
+      "min_ratio": 5.62,
+      "max_ratio": 12.0
+    },
+    "England & Wales": {
+      "n": 3,
+      "mean_ratio": 2.0,
+      "median_ratio": 2.0,
+      "min_ratio": 2.0,
+      "max_ratio": 2.0
+    },
+    "Ontario": {
+      "n": 3,
+      "mean_ratio": 3.39,
+      "median_ratio": 3.33,
+      "min_ratio": 3.33,
+      "max_ratio": 3.5
+    },
+    "Eastern District of Texas": {
+      "n": 2,
+      "mean_ratio": 6.21,
+      "median_ratio": 6.21,
+      "min_ratio": 6.0,
+      "max_ratio": 6.43
+    }
+  },
+  "by_stage": {
+    "trial": {
+      "n": 30,
+      "mean_ratio": 35.22,
+      "median_ratio": 4.9,
+      "min_ratio": 2.75,
+      "max_ratio": 579.19
+    },
+    "pre-trial": {
+      "n": 110,
+      "mean_ratio": 10.8,
+      "median_ratio": 5.0,
+      "min_ratio": 0.77,
+      "max_ratio": 207.14
+    },
+    "appeal": {
+      "n": 15,
+      "mean_ratio": 20.75,
+      "median_ratio": 5.0,
+      "min_ratio": 3.0,
+      "max_ratio": 153.33
+    },
+    "investigation": {
+      "n": 32,
+      "mean_ratio": 5.49,
+      "median_ratio": 3.05,
+      "min_ratio": 2.0,
+      "max_ratio": 50.32
+    },
+    "arbitration": {
+      "n": 4,
+      "mean_ratio": 4.17,
+      "median_ratio": 3.94,
+      "min_ratio": 3.45,
+      "max_ratio": 5.33
+    }
+  },
+  "interpretation": {
+    "global_mean": "The mean global Lipschitz ratio indicates how many hours are typically required per unit of case complexity across all jurisdictions and case types.",
+    "location_variance": "Location-grouped ratios reveal jurisdictional efficiency differences (e.g., UK commercial cases vs. US securities class actions).",
+    "stage_variance": "Stage-grouped ratios show that trial and appeal phases typically have higher hours-per-complexity-unit than investigation phases."
+  }
+}

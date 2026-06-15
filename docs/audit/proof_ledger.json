@@ -1,0 +1,41 @@
+{
+  "project": "juris-calculus",
+  "date": "2026-06-11",
+  "version": "audit-fix-2",
+  "auditor": "kimi-multi-agent",
+  "delivery_dir": "D:\\Codex\\juris-calculus\\20260611kimi",
+  "toolchain": {
+    "python": "3.12.12",
+    "z3_binary": "NOT_AVAILABLE (sandbox)",
+    "z3_python": "NOT_AVAILABLE (sandbox) / AVAILABLE (user)",
+    "lean": "NOT_AVAILABLE (sandbox) / 4.30.0 (user, no Mathlib)",
+    "tlc": "NOT_AVAILABLE",
+    "java": "17.0.19"
+  },
+  "run_all_proofs_sandbox": {"proved": 9, "refuted": 3, "failed": 0, "pending_toolchain": 5, "overall": "PASS"},
+  "run_all_proofs_user": {"proved": 10, "refuted": 3, "failed": 0, "pending_toolchain": 4, "overall": "PASS"},
+  "lean_artifacts_status": "LEAN_DRAFT_UNVERIFIED",
+  "lean_notes": "FiniteGaloisAdjunction.lean imports Mathlib (not bundled). BanachEffectiveNodes.lean imports Mathlib and contains sorry at line 155. These are NOT complete proofs.",
+  "theorems": [
+    {"id": "galois_incidence", "status": "EXHAUSTIVE_FINITE_PROOF", "artifact": "galois/finite_galois_adjunction.py", "fixtures": 74954},
+    {"id": "galois_powerset", "status": "EXHAUSTIVE_FINITE_PROOF", "artifact": "galois/finite_galois_adjunction.py", "fixtures": 74954},
+    {"id": "galois_lean", "status": "PENDING_TOOLCHAIN", "artifact": "galois/FiniteGaloisAdjunction.lean", "reason": "LEAN_DRAFT_UNVERIFIED: Mathlib not bundled"},
+    {"id": "bounded_horn", "status": "EXHAUSTIVE_FINITE_PROOF", "artifact": "horn/bounded_horn_correctness.py", "fixtures": 3965},
+    {"id": "horn_termination", "status": "EXHAUSTIVE_FINITE_PROOF", "artifact": "horn/horn_termination_measure.py", "fixtures": 82836},
+    {"id": "horn_z3", "status": "PENDING_TOOLCHAIN", "artifact": "horn/bounded_horn_z3.smt2", "reason": "Z3 binary not installed"},
+    {"id": "fixpoint_bounded", "status": "EXHAUSTIVE_FINITE_PROOF", "artifact": "fixpoint/production_bounded_termination.py"},
+    {"id": "fixpoint_tla", "status": "PENDING_TOOLCHAIN", "artifact": "fixpoint/evaluator_termination_model.tla", "reason": "TLC not installed"},
+    {"id": "dung_grounded", "status": "EXHAUSTIVE_FINITE_PROOF", "artifact": "aaf/dung_grounded_extension.py", "fixtures": 66066},
+    {"id": "stratified_corr", "status": "EXHAUSTIVE_FINITE_PROOF", "artifact": "aaf/stratified_correspondence.py", "fixtures": 14},
+    {"id": "graph_range", "status": "SYMBOLIC_PROVED", "artifact": "graph_similarity/graph_similarity_range.py"},
+    {"id": "graph_z3", "status": "PENDING_TOOLCHAIN (sandbox) / SMT_PROVED (user)", "artifact": "graph_similarity/graph_similarity_range_z3.py", "reason": "z3-solver"},
+    {"id": "graph_metric", "status": "REFUTED", "artifact": "graph_similarity/metric_counterexamples.py", "ces": ["CE-001", "CE-002"]},
+    {"id": "banach", "status": "SYMBOLIC_PROVED", "artifact": "banach/banach_effective_nodes.py"},
+    {"id": "banach_lean", "status": "PENDING_TOOLCHAIN", "artifact": "banach/BanachEffectiveNodes.lean", "reason": "LEAN_DRAFT_UNVERIFIED: Mathlib + sorry"},
+    {"id": "dp_laplace", "status": "PROVED_WITH_DRAFT", "artifact": "dp/laplace_scalar_mechanism.md"},
+    {"id": "dp_ratio", "status": "DOWNGRADED", "artifact": "dp/ratio_preserving_boundary.md"},
+    {"id": "dp_floor", "status": "REFUTED", "artifact": "dp/dp_floor_clipping_analysis.py", "ce": "CE-003"},
+    {"id": "clipped_theilsen", "status": "REFUTED", "artifact": "statistics/clipped_theilsen_refutation.py", "ce": "CE-004"},
+    {"id": "siegel", "status": "EXHAUSTIVE_FINITE_PROOF", "artifact": "statistics/siegel_repeated_median_verifier.py"}
+  ]
+}

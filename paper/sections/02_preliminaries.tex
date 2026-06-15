@@ -1,0 +1,110 @@
+\section{Preliminaries}
+\label{sec:prelim}
+
+This section establishes the formal notation used throughout the paper.
+
+\subsection{Horn Logic}
+
+\begin{definition}[Horn clause~\cite{horn1951}]
+A \emph{Horn clause} is a disjunction of literals with at most one positive
+literal. In its definite form, a Horn clause is written as:
+\begin{equation}
+  h \leftarrow b_1 \wedge b_2 \wedge \cdots \wedge b_n
+  \label{eq:horn}
+\end{equation}
+where $h$ is the \emph{head} (conclusion) and $b_1, \ldots, b_n$ are the
+\emph{body} (premises). A Horn clause with an empty body is a
+\emph{fact}; a Horn clause with an empty head is a \emph{constraint}.
+\end{definition}
+
+\begin{definition}[Horn closure]
+Given a set of facts $\facts$ and a set of Horn clauses $\horn$, the
+\emph{forward closure} $\horn^*(\facts)$ is the least fixpoint of the
+immediate consequence operator $T_\horn$:
+\begin{equation}
+  T_\horn(\facts) = \facts \cup \{ h \mid h \leftarrow b_1 \wedge \cdots
+  \wedge b_n \in \horn,\; b_1, \ldots, b_n \in \facts \}
+\end{equation}
+By the Tarski--Kleene theorem~\cite{tarski1955,kleene1952}, if $\horn$ is
+a finite set of positive Horn clauses over a finite domain, then
+$\horn^*(\facts) = T_\horn^k(\facts)$ for some finite $k$.
+\end{definition}
+
+\subsection{Abstract Argumentation Frameworks}
+
+\begin{definition}[Dung AF~\cite{dung1995}]
+An \emph{abstract argumentation framework} (AF) is a pair
+$\aaf = (\mathcal{A}, \attacks)$ where $\mathcal{A}$ is a set of arguments
+and $\attacks \subseteq \mathcal{A} \times \mathcal{A}$ is a binary attack
+relation. We write $(a, b) \in \attacks$ as $a \attacks b$ to mean
+``$a$ attacks $b$.''
+\end{definition}
+
+\begin{definition}[Grounded extension]
+The \emph{grounded extension} $\geaf(\aaf)$ of an AF $\aaf$ is the least
+fixpoint of the characteristic function:
+\begin{equation}
+  F_\aaf(S) = \{ a \in \mathcal{A} \mid \forall b:\; b \attacks a
+  \Rightarrow \exists c \in S:\; c \attacks b \}
+\end{equation}
+The grounded extension exists and is unique for every finite AF.
+\end{definition}
+
+\subsection{Kripke Semantics}
+
+\begin{definition}[Kripke structure~\cite{kripke1963}]
+A \emph{Kripke structure} is a triple $\kripke = (W, R, V)$ where:
+\begin{itemize}
+  \item $W$ is a non-empty set of \emph{worlds} (states),
+  \item $R \subseteq W \times W$ is an \emph{accessibility relation},
+  \item $V: W \to 2^{AP}$ is a \emph{valuation function} mapping each
+        world to the set of atomic propositions true in that world.
+\end{itemize}
+\end{definition}
+
+\subsection{Category Theory}
+
+\begin{definition}[Category]
+A \emph{category} $\mathcal{C}$ consists of:
+\begin{itemize}
+  \item A class $\text{Ob}(\mathcal{C})$ of \emph{objects};
+  \item For each pair $A, B \in \text{Ob}(\mathcal{C})$, a set
+        $\text{Hom}(A, B)$ of \emph{morphisms};
+  \item A composition operator $\circ$ that is associative and has
+        identity morphisms~\cite{mac1998}.
+\end{itemize}
+\end{definition}
+
+\begin{definition}[Functor]
+A \emph{functor} $F: \mathcal{C} \to \mathcal{D}$ maps objects to objects
+and morphisms to morphisms, preserving identity and composition.
+A \emph{natural transformation} $\eta: F \Rightarrow G$ between functors
+$F, G: \mathcal{C} \to \mathcal{D}$ is a family of morphisms
+$\{\eta_A: F(A) \to G(A)\}_{A \in \text{Ob}(\mathcal{C})}$ such that
+for every $f: A \to B$, the naturality square commutes.
+\end{definition}
+
+\subsection{Banach Fixed Point}
+
+\begin{definition}[Contraction mapping~\cite{banach1922}]
+Let $(M, d)$ be a metric space. A function $T: M \to M$ is a
+\emph{contraction mapping} if there exists $\beta \in [0, 1)$ such that:
+\begin{equation}
+  d(T(x), T(y)) \leq \beta \cdot d(x, y) \quad \forall\, x, y \in M
+  \label{eq:contraction}
+\end{equation}
+By the Banach fixed-point theorem, $T$ has a unique fixed point $x^*$
+such that $T(x^*) = x^*$.
+\end{definition}
+
+\subsection{Differential Privacy}
+
+\begin{definition}[$\varepsilon$-differential privacy~\cite{dwork2006}]
+A randomized mechanism $\mathcal{M}$ satisfies \emph{$\varepsilon$-differential
+privacy} if for all neighboring datasets $D, D'$ and all $S \subseteq
+\text{Range}(\mathcal{M})$:
+\begin{equation}
+  \Pr[\mathcal{M}(D) \in S] \leq e^\varepsilon \cdot \Pr[\mathcal{M}(D') \in S]
+  \label{eq:dp}
+\end{equation}
+\end{definition}

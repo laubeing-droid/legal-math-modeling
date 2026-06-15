@@ -1,0 +1,84 @@
+\section{Introduction}
+\label{sec:intro}
+
+Legal reasoning across jurisdictions presents a unique formal challenge:
+concepts that are well-defined in one legal system (e.g., ``material breach''
+in U.S. contract law) have no direct equivalent in another (e.g., Chinese
+contract law under the Civil Code). Existing computational legal systems
+typically rely on probabilistic retrieval-augmented generation (RAG), which
+lacks formal guarantees about soundness, completeness, or cross-jurisdictional
+consistency.
+
+This paper presents \textbf{juris-calculus}, a symbolic legal reasoning engine
+that operates across three jurisdictions---the People's Republic of China
+(PRC), Hong Kong (HK), and the United States (US)---using deterministic
+fixpoint evaluation rather than probabilistic language models. The core
+contribution is a \emph{mathematical framework} that formalizes:
+
+\begin{enumerate}[label=(\roman*)]
+  \item A \textbf{three-layer legal ontology} ($L_0$/$L_1$/$L_2$) with 6
+        irreducible primitives, 15 meta-ontological categories, and 20+
+        jurisdiction-specific domain concepts (Section~\ref{sec:ontology});
+  \item A \textbf{monotone Horn closure} engine for forward fact expansion
+        over 2,117 PRC rules, with proved correctness under bounded depth
+        $k \leq 3$ (Section~\ref{sec:horn});
+  \item A \textbf{Dung abstract argumentation framework} for rebuttal and
+        exception handling, with exhaustive verification for $n \leq 4$
+        (Section~\ref{sec:aaf});
+  \item \textbf{Kripke temporal models} with LTL embedding for procedural
+        state tracking (Section~\ref{sec:kripke});
+  \item \textbf{Category-theoretic} and \textbf{Banach contraction} models
+        for cross-jurisdictional mapping and pricing, with explicit
+        counterexamples marking their boundaries
+        (Sections~\ref{sec:category}--\ref{sec:banach});
+  \item A 7-level \textbf{evidence-calibrated trust label system} that
+        tracks every mathematical claim through its proof lifecycle
+        (Section~\ref{sec:trust}).
+\end{enumerate}
+
+\subsection{Research Methodology: AI-Assisted Formalization}
+
+This work employs an iterative AI-assisted methodology:
+\begin{enumerate}
+  \item \textbf{Claude} (Anthropic) performed initial mathematical modeling
+        and reverse engineering of the legal reasoning architecture;
+  \item \textbf{Codex}~\cite{codex2026} (OpenAI) conducted formal verification using 7 tool
+        chains: Hypothesis (property-based testing), Z3~\cite{z3} (SMT solving),
+        CrossHair (contract verification), TLA+ (model checking), Alloy
+        (relational analysis), Lean~4~\cite{lean4} (theorem proving), and Dafny
+        (program verification);
+  \item \textbf{Kimi} (Moonshot AI) collected legal validation data and
+        produced a strict mathematical proof rework;
+  \item A second \textbf{Codex} audit downgraded overstated claims and
+        established the final evidence-calibrated baseline.
+\end{enumerate}
+
+Each AI agent contributed a different verification modality. The trust label
+system (Section~\ref{sec:trust}) records which agent produced which evidence,
+preventing any single agent's output from being promoted beyond its verified
+scope.
+
+\subsection{Key Results Summary}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}llr@{}}
+\toprule
+\textbf{Status} & \textbf{Count} & \textbf{Examples} \\
+\midrule
+\textsc{Proved} (exhaustive/SMT/symbolic) & 18
+  & AAF grounded ext., Horn monotonicity, Kripke mutex \\
+\textsc{Refuted} (counterexample) & 10
+  & DP $\varepsilon$, evaluator monotone, graph metric \\
+\textsc{Data insufficient} & 4
+  & Rosetta real, Banach real \\
+\textsc{Toy only} & 2
+  & Rosetta toy, Banach scalar \\
+\textsc{Pending toolchain} & 6
+  & Lean drafts ($\texttt{sorry}$), SMT pending \\
+\bottomrule
+\end{tabular}
+\caption{Summary of all 40 mathematical claims tracked in the
+evidence-calibrated trust label system.}
+\label{tab:summary}
+\end{table}

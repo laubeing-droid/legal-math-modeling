@@ -1,0 +1,172 @@
+{
+  "jurisdiction": "US",
+  "analysis_date": "2026-06-10",
+  "privileges": [
+    {
+      "privilege_id": "US-PRIV-001",
+      "privilege_name": "attorney_client_privilege",
+      "us_legal_basis": "The attorney-client privilege protects confidential communications between a client and an attorney made for the purpose of obtaining legal advice. The privilege belongs to the client and may be asserted by the client, attorney, or successor. It applies to communications with in-house counsel when seeking legal advice. The privilege survives the death of the client.",
+      "us_sources": [
+        "Upjohn v. United States, 449 U.S. 383 (1981)",
+        "Swidler & Berlin v. United States, 524 U.S. 399 (1998)",
+        "Fed. R. Evid. 501-502"
+      ],
+      "us_exceptions": [
+        "crime_fraud_exception",
+        "subject_matter_waiver",
+        "inadvertent_disclosure_without_prompt_rectification",
+        "putting_advice_in_issue"
+      ],
+      "us_holder": "client",
+      "us_scope": "confidential communications for legal advice"
+    },
+    {
+      "privilege_id": "US-PRIV-002",
+      "privilege_name": "work_product_doctrine",
+      "us_legal_basis": "The work product doctrine protects materials prepared by an attorney or agent in anticipation of litigation from discovery. It shelters the attorney's mental impressions, conclusions, opinions, and legal theories. Ordinary work product (fact work product) may be discovered upon a showing of substantial need and inability to obtain the equivalent without undue hardship. Opinion work product receives near-absolute protection.",
+      "us_sources": [
+        "Hickman v. Taylor, 329 U.S. 495 (1947)",
+        "Fed. R. Civ. P. 26(b)(3)",
+        "United States v. Nobles, 422 U.S. 225 (1975)"
+      ],
+      "us_exceptions": [
+        "substantial_need_and_undue_hardship_for_ordinary_work_product",
+        "waiver",
+        "crime_fraud"
+      ],
+      "us_holder": "attorney_or_party",
+      "us_scope": "materials prepared in anticipation of litigation"
+    },
+    {
+      "privilege_id": "US-PRIV-003",
+      "privilege_name": "spousal_communications_privilege",
+      "us_legal_basis": "The spousal communications privilege protects confidential communications made between spouses during the marriage. It is separate from the spousal testimony privilege and survives the death of a spouse or divorce. Both spouses hold the privilege and either may assert it.",
+      "us_sources": [
+        "Trammel v. United States, 445 U.S. 40 (1980)",
+        "Hawkins v. United States, 358 U.S. 74 (1958)",
+        "Fed. R. Evid. 501"
+      ],
+      "us_exceptions": [
+        "crime_against_spouse_or_child",
+        "communication_in_furtherance_of_crime",
+        "waiver_by_disclosure_to_third_party"
+      ],
+      "us_holder": "either_spouse",
+      "us_scope": "confidential communications during marriage"
+    },
+    {
+      "privilege_id": "US-PRIV-004",
+      "privilege_name": "spousal_testimony_privilege",
+      "us_legal_basis": "The spousal testimony privilege allows a spouse to refuse to testify against the other spouse in a criminal case. It applies only during the marriage and is held by the witness-spouse alone; the defendant-spouse cannot compel or prevent testimony. It does not apply in civil cases in federal court.",
+      "us_sources": [
+        "Trammel v. United States, 445 U.S. 40 (1980)",
+        "United States v. Willis, 565 F.3d 962 (5th Cir. 2009)"
+      ],
+      "us_exceptions": [
+        "crime_against_spouse_or_child",
+        "communication_in_furtherance_of_joint_crime"
+      ],
+      "us_holder": "witness_spouse",
+      "us_scope": "testimony against spouse in criminal proceedings"
+    },
+    {
+      "privilege_id": "US-PRIV-005",
+      "privilege_name": "doctor_patient_privilege",
+      "us_legal_basis": "There is no federal doctor-patient privilege under the Federal Rules of Evidence. However, many states recognize a physician-patient privilege protecting confidential communications made for the purpose of diagnosis and treatment. The privilege is typically held by the patient.",
+      "us_sources": [
+        "Jaffee v. Redmond, 518 U.S. 1 (1996) (psychotherapist-patient privilege)",
+        "Fed. R. Evid. 501",
+        "state privilege statutes"
+      ],
+      "us_exceptions": [
+        "patient_litigation_exception",
+        "crime_exception",
+        "public_health_exception"
+      ],
+      "us_holder": "patient",
+      "us_scope": "confidential medical communications (state law)"
+    },
+    {
+      "privilege_id": "US-PRIV-006",
+      "privilege_name": "psychotherapist_patient_privilege",
+      "us_legal_basis": "The psychotherapist-patient privilege protects confidential communications between a patient and a licensed psychotherapist (including psychiatrists, psychologists, and social workers) made in the course of diagnosis or treatment. The Supreme Court recognized this privilege under Rule 501 because it serves the public interest by facilitating treatment.",
+      "us_sources": [
+        "Jaffee v. Redmond, 518 U.S. 1 (1996)",
+        "Fed. R. Evid. 501"
+      ],
+      "us_exceptions": [
+        "patient_litigation_exception",
+        "dangerous_patient_exception",
+        "crime_fraud"
+      ],
+      "us_holder": "patient",
+      "us_scope": "confidential communications with psychotherapist"
+    },
+    {
+      "privilege_id": "US-PRIV-007",
+      "privilege_name": "clergy_pentitent_privilege",
+      "us_legal_basis": "The clergy-penitent privilege protects confidential communications made to a clergy member in their professional capacity as a spiritual advisor. It is recognized in all 50 states and under federal law. The privilege is typically held by the penitent, though some jurisdictions allow the clergy member to assert it.",
+      "us_sources": [
+        "state clergy-penitent privilege statutes",
+        "Fed. R. Evid. 501"
+      ],
+      "us_exceptions": [
+        "child_abuse_reporting_requirements",
+        "future_crime_threats"
+      ],
+      "us_holder": "penitent_or_clergy",
+      "us_scope": "confidential spiritual communications"
+    },
+    {
+      "privilege_id": "US-PRIV-008",
+      "privilege_name": "accountant_client_privilege",
+      "us_legal_basis": "There is no general federal accountant-client privilege. However, 26 U.S.C. § 7525 creates a limited privilege for tax advice between a taxpayer and a federally authorized tax practitioner, but it does not apply to criminal proceedings or written communications in connection with the promotion of tax shelters. State laws may recognize a broader accountant-client privilege.",
+      "us_sources": [
+        "26 U.S.C. § 7525",
+        "Couch v. United States, 409 U.S. 353 (1973)"
+      ],
+      "us_exceptions": [
+        "criminal_proceedings",
+        "tax_shelter_promotion",
+        "work_product_prepared_by_accountant_for_attorney_may_be_protected"
+      ],
+      "us_holder": "client",
+      "us_scope": "federal tax advice (limited)"
+    },
+    {
+      "privilege_id": "US-PRIV-009",
+      "privilege_name": "self_incrimination_privilege",
+      "us_legal_basis": "The Fifth Amendment privilege against self-incrimination protects individuals from being compelled to testify against themselves in any criminal case. It applies to any disclosures that could furnish a link in the chain of evidence needed to prosecute the claimant. It does not apply to corporations or other artificial entities. A valid grant of immunity may compel testimony.",
+      "us_sources": [
+        "U.S. Const. amend. V",
+        "Miranda v. Arizona, 384 U.S. 436 (1966)",
+        "Hoffman v. United States, 341 U.S. 479 (1951)"
+      ],
+      "us_exceptions": [
+        "grant_of_immunity",
+        "required_records_doctrine",
+        "tax_return_information",
+        "corporate_records"
+      ],
+      "us_holder": "natural_person",
+      "us_scope": "compelled testimony that could incriminate"
+    },
+    {
+      "privilege_id": "US-PRIV-010",
+      "privilege_name": "trade_secret_privilege",
+      "us_legal_basis": "Trade secrets are protected from disclosure in discovery through protective orders under FRCP 26(c). Courts may order disclosure only under conditions that protect the secret, such as in camera review, redaction, or designation as attorneys' eyes only. The Defend Trade Secrets Act (DTSA) also provides federal civil remedies for misappropriation and limits disclosure in litigation.",
+      "us_sources": [
+        "Fed. R. Civ. P. 26(c)",
+        "18 U.S.C. § 1836 (Defend Trade Secrets Act)",
+        "Uniform Trade Secrets Act §§ 1-12"
+      ],
+      "us_exceptions": [
+        "public_interest_override",
+        "necessary_for_fair_adjudication",
+        "waiver_by_public_disclosure"
+      ],
+      "us_holder": "trade_secret_owner",
+      "us_scope": "commercially valuable confidential information"
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+\section{Banach Pricing Contraction}
+\label{sec:banach}
+
+The LegalOS pricing model attempts to estimate legal service costs using a
+fixpoint iteration. This section analyzes whether the pricing map satisfies
+the Banach contraction property.
+
+\subsection{Pricing Map Definition}
+
+\begin{definition}[Effective-node pricing map]
+The pricing map $T: M \to M$ on the effective-node space is defined as:
+\begin{equation}
+  T(x) = \beta \cdot C + (1 - \beta) \cdot x
+  \label{eq:pricing-map}
+\end{equation}
+where:
+\begin{itemize}
+  \item $x \in M$ is the current price estimate;
+  \item $C$ is the observed cost (from timesheet data);
+  \item $\beta \in (0, 1)$ is the smoothing parameter.
+\end{itemize}
+\end{definition}
+
+\subsection{Single-Dimensional Contraction}
+
+\begin{theorem}[Scalar contraction for effective nodes]
+\label{thm:banach-scalar}
+For the single-dimensional case $M = \Real$ with $d(x, y) = |x - y|$,
+the pricing map~\eqref{eq:pricing-map} is a $\beta$-contraction:
+\begin{equation}
+  |T(x) - T(y)| = |(1 - \beta)(x - y)| = (1 - \beta)|x - y|
+\end{equation}
+Since $\beta \in (0, 1)$, we have $1 - \beta \in (0, 1)$, confirming
+contraction with constant $1 - \beta < 1$.
+\end{theorem}
+
+\begin{proof}
+By SymPy symbolic computation. The script
+\texttt{banach\_effective\_nodes.py} verifies:
+\begin{enumerate}
+  \item $|T(x) - T(y)| = (1 - \beta)|x - y|$ (symbolic identity);
+  \item The unique fixed point is $x^* = C$ (the observed cost);
+  \item Convergence from any initial $x_0$ requires
+        $O(\log(1/\varepsilon))$ iterations.
+\end{enumerate}
+\end{proof}
+
+\begin{corollary}[Unique pricing fixpoint]
+The pricing map has a unique fixed point $x^* = C$, which is the
+observed cost. Any initial estimate converges to $C$.
+\end{corollary}
+
+\subsection{Full-Dimensional Counterexample}
+
+\begin{counterexample}[Full-dimensional Banach: metric space undefined]
+\label{ce:banach-full}
+The Banach contraction property \textbf{cannot} be claimed for the
+full-dimensional pricing model because:
+\begin{enumerate}
+  \item The pricing space has multiple dimensions (hours, rate, complexity,
+        jurisdiction), but no metric $d$ is defined on this space;
+  \item The variable \texttt{mapping\_status} is a discrete nominal label
+        (e.g., ``approved'', ``pending''), not a point in a metric space;
+  \item The existing 225 pricing observations are all fee-schedule proxies
+        (0 real timesheets, 0 invoices), making the empirical Lipschitz
+        ratio meaningless.
+\end{enumerate}
+\end{counterexample}
+
+\begin{remark}
+The single-dimensional contraction (Theorem~\ref{thm:banach-scalar}) is a
+valid toy model. The full-dimensional claim requires:
+\begin{enumerate}
+  \item A well-defined metric on the multi-dimensional pricing space;
+  \item Real timesheet data (not fee-schedule proxies);
+  \item Empirical verification of the Lipschitz constant.
+\end{enumerate}
+None of these prerequisites are currently satisfied.
+\end{remark}

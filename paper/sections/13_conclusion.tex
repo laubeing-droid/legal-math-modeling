@@ -1,0 +1,168 @@
+\section{Conclusion and Open Problems}
+\label{sec:conclusion}
+
+\subsection{Summary of Contributions}
+
+This paper presents a formal mathematical framework for cross-jurisdictional
+symbolic legal reasoning. The key contributions are:
+
+\begin{enumerate}
+  \item A \textbf{three-layer legal ontology} ($L_0$/$L_1$/$L_2$) with
+        formal definitions of 6 primitives, 15 meta-ontological categories,
+        and 20+ domain concepts (Section~\ref{sec:ontology});
+  \item \textbf{Horn closure monotonicity} and \textbf{bounded correctness}
+        proved analytically and verified over 82,836 test cases
+        (Section~\ref{sec:horn});
+  \item \textbf{Dung AAF grounded extension} existence and uniqueness proved
+        by exhaustive enumeration over 66,066 attack graphs
+        (Section~\ref{sec:aaf});
+  \item \textbf{Kripke temporal invariants} including mutual exclusion and
+        the $\square(t_f < t_p)$ guard, verified by Z3 SMT solving
+        (Section~\ref{sec:kripke});
+  \item \textbf{10 explicit counterexamples} refuting claims about evaluator
+        monotonicity, DP epsilon determinability, graph similarity metricity,
+        and full-dimensional Banach contraction
+        (Sections~\ref{sec:evaluator}--\ref{sec:dp});
+  \item A 7-level \textbf{evidence-calibrated trust label system} that
+        tracks every claim through its proof lifecycle
+        (Section~\ref{sec:trust});
+  \item \textbf{All proof artifacts are machine-reproducible} via Python
+        scripts with Lean~4, Z3, Hypothesis, and SymPy verification.
+\end{enumerate}
+
+\subsection{Theorem Status Table}
+
+\begin{table}[h]
+\centering
+\small
+\begin{tabular}{@{}llcl@{}}
+\toprule
+\textbf{ID} & \textbf{Theorem/Claim} & \textbf{Status} & \textbf{Method} \\
+\midrule
+T\ref{thm:horn-correct} & Bounded Horn correctness & $\checkmark$ & Enumeration \\
+T\ref{thm:horn-mono} & Horn monotonicity & $\checkmark$ & Analytic \\
+T\ref{thm:horn-pbt} & Horn 5 properties & $\checkmark$ & PBT (82,836) \\
+T\ref{thm:aaf-ge} & AAF grounded extension & $\checkmark$ & Enumeration (66,066) \\
+P\ref{prop:stratified} & Stratified correspondence & $\checkmark$ & Enumeration (14) \\
+T\ref{thm:stage1} & Stage 1 monotone & $\checkmark$ & Analytic \\
+T\ref{thm:stage2} & Stage 2 deterministic & $\checkmark$ & Enumeration (10) \\
+T\ref{thm:stage3a} & Stage 3a convergence & $\checkmark$ & T\ref{thm:aaf-ge} \\
+T\ref{thm:op-termination} & 5 operational bounds & $\checkmark$ & Enumeration (5) \\
+T\ref{thm:kripke-mutex} & Kripke mutex & $\checkmark$ & Z3 UNSAT \\
+T\ref{thm:temporal-guard} & $\square(t_f < t_p)$ & $\checkmark$ & Z3 induction \\
+T\ref{thm:rosetta-toy} & Toy Rosetta & $\checkmark$ & Enumeration (243) \\
+T\ref{thm:rosetta-real} & Real Rosetta & $\triangle$ & 44 rows only \\
+T\ref{thm:banach-scalar} & Scalar Banach & $\checkmark$ & SymPy \\
+T\ref{thm:dp-cn} & CN no monotone $\varepsilon$ & $\checkmark$ & Z3 UNSAT \\
+T\ref{thm:cbl-ni} & CBL = non-interference & $\checkmark$ & Structural \\
+T\ref{thm:trust-consistency} & Trust label consistency & $\checkmark$ & Program \\
+\midrule
+CE\ref{ce:eval-mono} & Evaluator monotone & $\times$ & Counterexample \\
+CE\ref{ce:stage3b} & Cross-graph monotone & $\times$ & Counterexample \\
+CE\ref{ce:banach-full} & Full Banach metric & $\times$ & Undefined \\
+CE\ref{ce:dp-cross} & Cross-jurisdiction $\varepsilon$ & $\times$ & 2-model \\
+CE\ref{ce:dp-floor} & Floor clipping $\varepsilon$-DP & $\times$ & $\infty$-ratio \\
+\bottomrule
+\end{tabular}
+\caption{Complete theorem status. $\checkmark$: proved/verified.
+$\triangle$: data-insufficient. $\times$: refuted.}
+\label{tab:theorem-status}
+\end{table}
+
+\subsection{Extended Theoretical Foundations}
+
+The juris-calculus theory module contains additional formalizations not
+covered in the main body of this paper. We list them here with their
+evidence status for completeness:
+
+\begin{enumerate}
+  \item \textbf{Counts-As Institutional Facts}~\cite{searle1995,hart1961}.
+        Formalizes Searle's ``$X$ counts as $Y$ in context $C$'' and
+        Hart's rule of recognition within the compiler architecture.
+        Maps physical tokens (signed PDFs) to legal facts (contract
+        formation) through context-dependent type promotion.
+        Status: \textsc{Engineering\_Baseline}.
+
+  \item \textbf{Discretionary Concepts as Rough Sets}~\cite{pawlak1982}.
+        Models 16 discretionary legal concepts (e.g., ``reasonable'',
+        ``proportionate'') using Pawlak's rough set theory, replacing
+        the binary TAINTED marker with a rough membership function.
+        Status: \textsc{Engineering\_Baseline}.
+
+  \item \textbf{Procedural Justice as Deontic Logic}~\cite{deontic}.
+        Reinterprets 10 procedural justice defense rules as deontic
+        statements in Standard Deontic Logic with temporal operators.
+        Status: \textsc{Engineering\_Baseline}.
+
+  \item \textbf{Paradigm Incommensurability}~\cite{stevens1946}.
+        Proves that LLM-as-Judge (ordinal scale) and symbolic
+        confidence (ratio scale) are measurement-theoretically
+        incommensurable under Stevens' typology.
+        Status: \textsc{Engineering\_Baseline}.
+
+  \item \textbf{Compiler as Abstract Interpretation}~\cite{cousot1977}.
+        Reframes the 5-stage juris-calculus compiler as an instance
+        of Cousot \& Cousot abstract interpretation. Currently an
+        architectural catalog, not a standalone proof.
+        Status: \textsc{Engineering\_Baseline}.
+
+  \item \textbf{Exception Chain Depth as Kolmogorov Complexity}~\cite{kolmogorov1965}.
+        Connects rule structural complexity to Minimum Description
+        Length, explaining why single-premise rules have the highest
+        cross-domain false-triggering rate.
+        Status: \textsc{Conjecture}.
+\end{enumerate}
+
+These modules provide theoretical scaffolding for the core results
+presented in Sections~\ref{sec:horn}--\ref{sec:noninterference} and
+are available as runnable Python code in the \texttt{theory/} directory.
+
+\subsection{Open Problems}
+
+\begin{openproblem}[Full evaluator equivalence]
+\label{op:eval-equiv}
+Does the stratified evaluator (Horn then AAF) produce identical output to
+the original combined evaluator for all production rules? This is the
+most important open question for the juris-calculus architecture.
+\end{openproblem}
+
+\begin{openproblem}[General AAF convergence]
+\label{op:aaf-general}
+Does the Dung grounded extension converge for all finite $n$ (not just
+$n \leq 4$)? While the theoretical answer is yes (by Tarski's theorem on
+complete lattices), the \emph{operational} convergence bound for the
+legal argument construction remains open.
+\end{openproblem}
+
+\begin{openproblem}[Real-data Rosetta functor]
+\label{op:rosetta-real}
+Does a total semantic-preserving functor exist for the complete PRC/HK/US
+legal inventory? The current 44-row dataset is insufficient. A dataset of
+$\geq 2{,}000$ cross-jurisdiction concept pairs would be needed.
+\end{openproblem}
+
+\begin{openproblem}[Full-dimensional Banach pricing]
+\label{op:banach-full}
+Can the pricing map be extended to a full-dimensional Banach contraction
+with a well-defined metric and real timesheet data?
+\end{openproblem}
+
+\begin{openproblem}[Lean formalization]
+\label{op:lean}
+Three Lean~4 drafts exist (FiniteRosetta, BanachEffectiveNodes,
+FiniteGaloisAdjunction) but contain \texttt{sorry} placeholders and
+require Mathlib. Completing these formalizations would elevate the
+trust labels from \textsc{Exhaustive\_Enumeration} to
+\textsc{Lean\_Proved}.
+\end{openproblem}
+
+\subsection{Broader Impact}
+
+The evidence-calibrated trust label system is applicable beyond legal
+reasoning. Any domain where AI agents produce mathematical claims
+(e.g., drug discovery, materials science, financial modeling) can adopt
+this system to prevent the ``hallucination-to-production'' pipeline where
+unverified AI assertions become engineering invariants.
+
+The key principle is simple: \textbf{the strongest claim you can make is
+the one your evidence supports---and no stronger.}

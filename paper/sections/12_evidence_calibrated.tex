@@ -1,0 +1,125 @@
+\section{Evidence-Calibrated Trust Label System}
+\label{sec:trust}
+
+A central contribution of this work is the \emph{evidence-calibrated trust
+label system}, which tracks every mathematical claim through its proof
+lifecycle and prevents unverified assertions from propagating to
+downstream engineering decisions.
+
+\subsection{Evidence Status Lattice}
+
+\begin{definition}[Evidence status]
+Every mathematical claim in juris-calculus is assigned one of seven
+evidence statuses, forming a partial order $(E, \leq_E)$:
+\begin{equation}
+  E = \left\{
+    \begin{array}{l}
+      \textsc{Proved\_By\_Exhaustive\_Enumeration}, \\
+      \textsc{Refuted\_By\_Counterexample}, \\
+      \textsc{Partial\_Proved}, \\
+      \textsc{Data\_Insufficient\_For\_Proof}, \\
+      \textsc{Toy\_Synthetic\_Proof\_Only}, \\
+      \textsc{Pending\_Toolchain}, \\
+      \textsc{Engineering\_Baseline}
+    \end{array}
+  \right\}
+  \label{eq:evidence-status}
+\end{equation}
+with the ordering:
+\begin{equation}
+  \textsc{Proved} >_E \textsc{Refuted} >_E \textsc{Partial}
+  >_E \textsc{Data\_Insufficient} =_E \textsc{Toy}
+  >_E \textsc{Pending} >_E \textsc{Engineering}
+\end{equation}
+\end{definition}
+
+\begin{remark}
+\textsc{Refuted} ranks above \textsc{Partial} because a refutation
+(counterexample) is a \emph{definitive} result, while a partial proof
+leaves the claim's truth value uncertain.
+\end{remark}
+
+\subsection{Claim Registry}
+
+\begin{definition}[Model claim]
+A \emph{model claim} is a tuple:
+\begin{equation}
+  \text{Claim} = (id, \text{title}, \text{status}, \text{allowed},
+  \text{forbidden}, \text{action}, \text{evidence\_paths})
+\end{equation}
+where:
+\begin{itemize}
+  \item \text{allowed}: the strongest assertion permitted by the evidence;
+  \item \text{forbidden}: assertions that must never be made;
+  \item \text{action}: the engineering consequence;
+  \item \text{evidence\_paths}: paths to the proof/refutation artifacts.
+\end{itemize}
+\end{definition}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Claim ID} & \textbf{Status} & \textbf{Title} \\
+\midrule
+A1\_REAL\_ROSETTA & Data Insufficient & Cross-jurisdiction Rosetta \\
+A1\_TOY\_ROSETTA & Toy Only & Toy 5-pattern checker \\
+C\_REAL\_BANACH & Data Insufficient & Real pricing contraction \\
+C\_TOY\_BANACH & Toy Only & Toy scalar contraction \\
+D\_PRIVILEGE\_EPSILON & \textbf{Refuted} & Privilege $\to$ $\varepsilon$ \\
+E\_AAF\_GROUNDED & \textbf{Proved} & Dung AAF grounded ext. \\
+E\_EVALUATOR\_MONOTONE & \textbf{Refuted} & Evaluator monotonicity \\
+\bottomrule
+\end{tabular}
+\caption{Core claim registry. \textbf{Bold} indicates definitive results.}
+\label{tab:claims}
+\end{table}
+
+\subsection{Forbidden Tags}
+
+\begin{definition}[Forbidden acceptance tags]
+The following tags must never appear in any downstream system:
+\begin{equation}
+  \text{Forbidden} = \{
+    \texttt{FINAL\_ALL\_THEOREMS\_PROVED},\;
+    \texttt{REAL\_PRICING\_VALIDATED},\;
+    \texttt{DP\_EPSILON\_LEGALLY\_DETERMINED},\;
+    \texttt{ALL\_SOURCES\_OFFICIALLY\_VERIFIED}
+  \}
+\end{equation}
+These tags would assert claims that have been either refuted or shown to be
+data-insufficient.
+\end{definition}
+
+\begin{theorem}[Trust label consistency]
+\label{thm:trust-consistency}
+The claim registry satisfies internal consistency: for every claim $c$:
+\begin{enumerate}
+  \item $\text{allowed}(c) \cap \text{forbidden}(c) = \emptyset$;
+  \item $\text{status}(c) \in E$;
+  \item $\text{evidence\_paths}(c) \neq \emptyset$;
+  \item $|\{c \mid c.id = c'.id\}| = 1$ for all $c'$ (no duplicate IDs).
+\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+By programmatic validation. The function \texttt{validate\_status\_ledger()}
+in \texttt{model\_status.py} checks all four conditions. The test passes
+for the current claim set.
+\end{proof}
+
+\subsection{Engineering Constraints}
+
+\begin{proposition}[Trust labels as engineering gates]
+The trust label system enforces the following engineering constraints:
+\begin{enumerate}
+  \item A claim with status \textsc{Data\_Insufficient} must be gated by
+        a data-quality check before use in production;
+  \item A claim with status \textsc{Toy\_Synthetic} must carry a
+        \texttt{synthetic\_guard} flag in all outputs;
+  \item A claim with status \textsc{Refuted} must have its
+        \texttt{engineering\_action} executed before the system can proceed;
+  \item A claim with status \textsc{Pending\_Toolchain} must not influence
+        any engineering decision.
+\end{enumerate}
+\end{proposition}

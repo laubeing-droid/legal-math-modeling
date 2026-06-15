@@ -1,0 +1,102 @@
+{
+  "metadata": {
+    "theorem": "B2",
+    "theorem_statement": "There exists a cross-jurisdiction order-preserving map φ: L_CN → L_US → L_HK unifying DP/privilege lattices",
+    "status": "REFUTED_BY_COUNTEREXAMPLE",
+    "refutation_type": "order_preservation_failure",
+    "generated_at": "2026-06-11",
+    "minimality_criterion": "2 lattice elements, 2 jurisdictions, 1 order relation"
+  },
+  "counterexamples": [
+    {
+      "id": "CE-B2-001",
+      "theorem": "B2",
+      "type": "order_preservation_failure",
+      "minimality": "2 lattice elements (attorney-client privilege vs. work-product), 2 jurisdictions (US vs. CN), 1 order relation",
+      "witness": {
+        "description": "US privilege lattice 中 attorney-client privilege 与 work-product doctrine 存在明确的偏序关系：work-product ⊂ attorney-client（work-product 是 attorney-client 的派生保护，范围更窄，保护力度更弱）。但 CN 的 '律师执业保密' 与 '律师工作成果' 之间不存在可比较的偏序关系，因为 CN 的律师保密是职业道德义务，而非证据特权层级结构。",
+        "us_lattice_elements": {
+          "element_a": {
+            "name": "attorney_client_privilege",
+            "scope": "confidential communications for legal advice",
+            "holder": "client",
+            "strength": "absolute_privilege",
+            "exceptions": ["crime_fraud_exception", "subject_matter_waiver", "inadvertent_disclosure"]
+          },
+          "element_b": {
+            "name": "work_product_doctrine",
+            "scope": "materials prepared in anticipation of litigation",
+            "holder": "attorney_or_party",
+            "strength": "qualified_protection",
+            "exceptions": ["substantial_need_and_undue_hardship_for_ordinary_work_product", "waiver", "crime_fraud"]
+          },
+          "order_relation": "work_product ⊂ attorney_client_privilege",
+          "order_basis": "work-product 是 attorney-client privilege 在诉讼准备阶段的延伸保护，但保护力度更弱（ordinary work product 可被 substantial need + undue hardship 推翻，而 attorney-client privilege 仅能被 crime-fraud 等极少数例外推翻）。因此 US  lattice 中 work_product ≤ attorney_client_privilege（保护力度弱于或等于）。"
+        },
+        "cn_lattice_elements": {
+          "element_a": {
+            "name": "律师执业保密义务",
+            "scope": "律师在执业活动中知悉的国家秘密、商业秘密、个人隐私",
+            "holder": "律师（作为义务承担者）",
+            "strength": "professional_ethics_duty",
+            "exceptions": ["委托人准备或正在实施危害国家安全、公共安全以及其他严重危害他人人身财产安全的犯罪事实和信息"]
+          },
+          "element_b": {
+            "name": "律师工作成果",
+            "scope": "律师为提供法律服务而准备的书面材料、法律意见等",
+            "holder": "律师/委托人",
+            "strength": "undefined_in_evidentiary_law",
+            "exceptions": ["法院认为有必要调取的", "涉及国家秘密、公共利益的"]
+          },
+          "order_relation": "UNDEFINED",
+          "order_basis": "CN 法律体系中，'律师执业保密义务' 是《律师法》第38条和《律师执业行为规范》第9条规定的职业道德义务，其性质是**义务**（duty）而非**权利/特权**（privilege）。'律师工作成果' 在 CN 证据法中并无明确的特权保护（不像 US 的 work-product doctrine）。因此两者在 CN 的偏序集中**不可比较**（incomparable）：一个是职业道德义务，另一个是未明确定义法律地位的工作产物。"
+        },
+        "why_no_order_preserving_map": "假设存在保序映射 φ: L_US → L_CN。在 L_US 中，work_product ≤ attorney_client_privilege（保护力度弱于）。保序映射要求：若 x ≤ y 则 φ(x) ≤ φ(y)。\n\n但 φ(work_product) 必须映射到 CN  lattice 中的某个元素。由于 CN  lattice 中 '律师工作成果' 没有明确的特权地位，而 '律师执业保密义务' 是一个职业道德义务（不是特权），φ 无法保持偏序结构：\n\n1. 若 φ(attorney_client_privilege) = 律师执业保密义务，则 φ 将 'client-held evidentiary privilege' 映射为 'lawyer-held ethics duty'，改变了 holder 和性质，破坏了 lattice 的代数结构。\n2. 若 φ(work_product) = 律师工作成果，则由于 CN 中 律师工作成果 与 律师执业保密义务 不可比较，φ(work_product) ≤ φ(attorney_client_privilege) 在 L_CN 中不成立。\n3. 因此 φ 不是保序映射（order-preserving map）。\n\n更根本地，L_US 的对象类型是 'evidentiary_privilege'（client-held rights），L_CN 的对象类型是 'professional_ethics_duty'（lawyer-held obligations）。两个 lattice 的底层集合元素类型不同，不存在集合间的保序映射。"
+      },
+      "violated_axiom": "Order-preservation: x ≤_US y ⟹ φ(x) ≤_CN φ(y)",
+      "specific_violation": "work_product ≤_US attorney_client_privilege 但 φ(work_product) 与 φ(attorney_client_privilege) 在 L_CN 中 incomparable",
+      "implication": "Cross-jurisdiction privilege lattice 无法统一，因为 US 的 privilege 是 client-held rights 构成的 lattice，CN 的 lawyer confidentiality 是 lawyer-held duties 构成的偏序集，两者的代数结构不同（rights lattice vs. duties poset），不存在保序映射。"
+    },
+    {
+      "id": "CE-B2-002",
+      "theorem": "B2",
+      "type": "lattice_type_mismatch",
+      "minimality": "1 lattice element, 3 jurisdictions, type mismatch",
+      "witness": {
+        "description": "同一概念 '律师-客户通信保密' 在三法域中的 lattice 类型完全不同，导致无法定义 lattice 同态。",
+        "us_element": {
+          "name": "attorney-client privilege",
+          "lattice_type": "evidentiary_privilege",
+          "algebraic_structure": "bounded_lattice_with_crime_fraud_exception_as_complement",
+          "top_element": "absolute_privilege",
+          "bottom_element": "waived_privilege",
+          "meet": "intersection_of_scopes",
+          "join": "union_of_scopes"
+        },
+        "cn_element": {
+          "name": "律师执业保密",
+          "lattice_type": "professional_ethics_duty",
+          "algebraic_structure": "preorder_with_statutory_hierarchy",
+          "top_element": "国家秘密",
+          "bottom_element": "一般委托信息",
+          "meet": "stricter_standard_applies",
+          "join": "less_strict_standard_applies"
+        },
+        "hk_element": {
+          "name": "Legal Professional Privilege (LPP)",
+          "lattice_type": "constitutional_right",
+          "algebraic_structure": "bounded_lattice_with_basic_law_art35_as_top",
+          "top_element": "constitutional_entrenchment",
+          "bottom_element": "statutory_abrogation",
+          "meet": "narrower_interpretation",
+          "join": "broader_interpretation"
+        },
+        "why_no_lattice_homomorphism": "Lattice homomorphism 要求：\n(1) φ(x ∧ y) = φ(x) ∧ φ(y)\n(2) φ(x ∨ y) = φ(x) ∨ φ(y)\n(3) φ(⊥) = ⊥, φ(⊤) = ⊤\n\n但三法域的 lattice 运算定义不同：\n- US: meet = intersection of privileged scopes, join = union of privileged scopes\n- CN: meet = stricter standard applies (国家秘密 > 商业秘密 > 个人隐私), join = less strict standard\n- HK: meet = narrower interpretation of Basic Law Art.35, join = broader interpretation\n\n由于底层集合的运算定义不同，φ 无法同时保持 meet 和 join。例如：\nUS 的 attorney-client privilege ∧ work-product = work-product（intersection 为 work-product scope）。\n若映射到 CN，φ(work-product) 无定义（CN 无 work-product doctrine），因此 φ(x ∧ y) 无定义，而 φ(x) ∧ φ(y) 也无定义（因为 φ(x) 和 φ(y) incomparable）。\n\n因此不存在 lattice homomorphism，更不存在 lattice isomorphism。"
+      },
+      "violated_axiom": "Lattice homomorphism: φ(x ∧ y) = φ(x) ∧ φ(y) and φ(x ∨ y) = φ(x) ∨ φ(y)",
+      "specific_violation": "US meet operation (intersection of scopes) has no counterpart in CN lattice (no work-product doctrine, no scope intersection operation)",
+      "implication": "三法域的 privilege/保密结构不是同构的 lattice。US 是 evidence-law privilege lattice，CN 是 ethics-duty hierarchy，HK 是 constitutional-right lattice。三个 algebraic structure 不同，不存在 lattice homomorphism。"
+    }
+  ],
+  "human_readable_explanation": "\n# B2 Cross-Jurisdiction Privilege Lattice 反例说明\n\n## 核心逻辑\n定理 B2 声称存在一个保序映射（order-preserving map）或 lattice homomorphism φ，将 CN、US、HK 三法域的 DP/privilege lattice 统一到一个共同的 lattice。\n\n保序映射的必要条件：\n1. **底层集合可比较**：源 lattice 和目标 lattice 的元素必须属于可比较的类型。\n2. **偏序保持**：x ≤ y ⟹ φ(x) ≤ φ(y)。\n3. **Lattice homomorphism**（若要求更强）：φ(x ∧ y) = φ(x) ∧ φ(y)，φ(x ∨ y) = φ(x) ∨ φ(y)。\n\n## 反例 CE-B2-001（偏序保持失败）\n\n### US Lattice 结构\n在 US 证据法中，attorney-client privilege 和 work-product doctrine 构成一个清晰的层级：\n- work-product ≤ attorney-client privilege\n- 理由：work-product 保护更窄（仅诉讼准备材料），保护力度更弱（ordinary work product 可被 substantial need + undue hardship 推翻）。\n\n### CN Lattice 结构\n在 CN 法律体系中：\n- '律师执业保密义务' 是《律师法》第38条规定的**职业道德义务**（duty）。\n- '律师工作成果' 在 CN 证据法中**没有明确的特权保护**。\n- 两者**不可比较**（incomparable）：一个是义务，另一个是未定义法律地位的工作产物。\n\n### 为什么 φ 不存在\n假设 φ: L_US → L_CN 是保序映射。\n在 L_US 中：work-product ≤ attorney-client。\n保序性要求：φ(work-product) ≤_CN φ(attorney-client)。\n\n但 φ(attorney-client) 必须映射到 CN 的某个元素。无论选择哪个：\n- 若映射到 '律师执业保密义务'，则 φ 将 client-held privilege 映射为 lawyer-held duty，改变了 holder 和性质。\n- 若映射到 '律师工作成果'，则 φ(work-product) 也必须映射到某个元素，但 CN 中无对应 work-product 的概念。\n- 即使强行映射，由于 CN 中两个元素 incomparable，φ(work-product) ≤_CN φ(attorney-client) 不成立。\n\n因此 φ 不是保序映射。\n\n## 反例 CE-B2-002（Lattice 类型不匹配）\n\n更深层的反例：三法域的 '律师-客户通信保密' 属于**不同的 lattice 类型**：\n- **US**: evidentiary_privilege lattice（client-held rights，bounded lattice with meet=intersection, join=union）\n- **CN**: professional_ethics_duty preorder（lawyer-held obligations，hierarchy by strictness）\n- **HK**: constitutional_right lattice（Basic Law Art.35 entrenchment，interpretation-based meet/join）\n\n三个 lattice 的运算定义不同：\n- US: meet = scope intersection, join = scope union\n- CN: meet = stricter standard, join = less strict standard\n- HK: meet = narrower interpretation, join = broader interpretation\n\n由于运算定义不同，不存在 lattice homomorphism。例如 US 的 meet 运算（intersection）在 CN 中无对应运算，因为 CN 没有 'scope' 概念。\n\n## 结论\nB2 被反例推翻。三法域的 privilege/保密结构不是同构的 lattice，甚至不存在保序映射。最多存在**集合层面的部分映射**（partial set mapping），但会破坏 lattice 的代数结构。\n"
+}

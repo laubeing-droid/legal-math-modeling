@@ -1,0 +1,19 @@
+{
+  "data_origin": "REAL_COLLECTED",
+  "scope": "current 44-row inventory",
+  "total_rows": 44,
+  "cn_only": 30,
+  "cross_jurisdiction": 14,
+  "collision_rows": 7,
+  "collision_pattern_ids": [
+    "FP-CNUS-003",
+    "FP-CNUS-004",
+    "FP-CNUS-005",
+    "FP-COLL-001",
+    "FP-COLL-002",
+    "FP-ASYM-001",
+    "FP-ASYM-002"
+  ],
+  "insufficiency_reason": "Collision detection relies on human-annotated mapping_status (COLLISION/ASYMMETRY) from legal corpus analysis. This is an empirical legal finding, not a formal logical derivation. No automated collision detection from claim text alone is implemented.",
+  "implication": "Cannot prove from first principles that no total collision-free mapping exists. The collision annotations are source-backed but not formally derived."
+}

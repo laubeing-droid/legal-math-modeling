@@ -1,0 +1,145 @@
+{
+  "nodes": [
+    {"id": "galois_incidence", "name": "Reverse Index Galois Connection", "type": "abstraction", "file": "galois_reverse_index.py"},
+    {"id": "banach_pricing", "name": "Banach Contraction Pricing", "type": "analysis", "file": "banach_pricing_contraction.py"},
+    {"id": "dp_privilege", "name": "DP epsilon as Legal Privilege", "type": "mapping", "file": "dp_legal_privilege.py"},
+    {"id": "category_rosetta", "name": "Anti-Rosetta Stone Category Theory", "type": "category_theory", "file": "category_theory_rosetta.py"},
+    {"id": "kolmogorov_mdl", "name": "Kolmogorov Complexity / MDL Rules", "type": "conjecture", "file": "kolmogorov_mdl_rules.py"},
+    {"id": "kripke_bimodal", "name": "Kripke Supersedes vs Corrects", "type": "modal_logic", "file": "kripke_supersedes_corrects.py"},
+    {"id": "abstract_interp", "name": "Abstract Interpretation Unified Framework", "type": "unification_claim", "file": "abstract_interpretation_unified.py"},
+    {"id": "temporal_ltl", "name": "Temporal Kripke LTL", "type": "temporal_logic", "file": "temporal_kripke_ltl.py"},
+    {"id": "evidence_axioms", "name": "Evidence Credibility Axioms", "type": "axiomatization", "file": "evidence_credibility_axioms.py"},
+    {"id": "hierarchical_bayes", "name": "Hierarchical Bayesian Alpha", "type": "statistical_model", "file": "hierarchical_bayes_alpha.py"},
+    {"id": "counts_as", "name": "Counts-As Institutional Facts", "type": "institutional_theory", "file": "counts_as_institutional_facts.py"},
+    {"id": "deontic_pj", "name": "Deontic Procedural Justice", "type": "deontic_logic", "file": "deontic_procedural_justice.py"},
+    {"id": "rough_set", "name": "Rough Set Discretionary Concepts", "type": "approximation", "file": "rough_set_discretionary.py"},
+    {"id": "trirail_complexity", "name": "TriRail Joint Satisfiability", "type": "complexity", "file": "trirail_complexity.py"},
+    {"id": "non_interference", "name": "Non-Interference CBL", "type": "security", "file": "non_interference_cbl.py"},
+    {"id": "gradual_verification", "name": "Gradual Verification Soundness", "type": "soundness", "file": "gradual_verification_soundness.py"},
+    {"id": "policy_expr", "name": "Policy Expressiveness", "type": "complexity", "file": "policy_expressiveness.py"},
+    {"id": "paradigm_incomm", "name": "Paradigm Incommensurability", "type": "measurement_theory", "file": "paradigm_incommensurability.py"}
+  ],
+  "edges": [
+    {"from": "abstract_interp", "to": "galois_incidence", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "abstract_interp", "to": "banach_pricing", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "abstract_interp", "to": "dp_privilege", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "abstract_interp", "to": "category_rosetta", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "abstract_interp", "to": "kolmogorov_mdl", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "abstract_interp", "to": "kripke_bimodal", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "abstract_interp", "to": "temporal_ltl", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "abstract_interp", "to": "evidence_axioms", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "abstract_interp", "to": "hierarchical_bayes", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "abstract_interp", "to": "counts_as", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "abstract_interp", "to": "deontic_pj", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "abstract_interp", "to": "rough_set", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "abstract_interp", "to": "trirail_complexity", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "abstract_interp", "to": "non_interference", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "abstract_interp", "to": "gradual_verification", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "abstract_interp", "to": "policy_expr", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "abstract_interp", "to": "paradigm_incomm", "type": "claims_derives_from", "strength": "unidirectional_claim"},
+    {"from": "banach_pricing", "to": "hierarchical_bayes", "type": "shares_domain", "strength": "pricing_alpha_link"},
+    {"from": "kripke_bimodal", "to": "temporal_ltl", "type": "shares_domain", "strength": "kripke_model_shared"},
+    {"from": "kripke_bimodal", "to": "gradual_verification", "type": "shares_domain", "strength": "procedural_world_shared"},
+    {"from": "counts_as", "to": "gradual_verification", "type": "shares_domain", "strength": "semantic_boundary_shared"},
+    {"from": "rough_set", "to": "gradual_verification", "type": "shares_domain", "strength": "boundary_deferral_shared"},
+    {"from": "category_rosetta", "to": "non_interference", "type": "shares_domain", "strength": "cross_jurisdiction_shared"},
+    {"from": "category_rosetta", "to": "paradigm_incomm", "type": "shares_domain", "strength": "incommensurability_shared"},
+    {"from": "trirail_complexity", "to": "non_interference", "type": "shares_domain", "strength": "cbl_track_shared"},
+    {"from": "deontic_pj", "to": "kripke_bimodal", "type": "shares_domain", "strength": "procedural_logic_shared"}
+  ],
+  "cycles": [],
+  "vacuous_theorems": [
+    {
+      "theorem_id": "galois_forward_empty",
+      "file": "galois_reverse_index.py",
+      "description": "Forward direction is vacuously true when alpha(d) is empty or not subset of {a}; empty set is subset of any set, but RHS d in gamma(a) may be false",
+      "severity": "medium"
+    },
+    {
+      "theorem_id": "kripke_box_sup_empty",
+      "file": "kripke_supersedes_corrects.py",
+      "description": "box_sup and box_cor return True when no accessible worlds exist (vacuously true in modal logic)",
+      "severity": "low"
+    },
+    {
+      "theorem_id": "ltl_always_empty",
+      "file": "temporal_kripke_ltl.py",
+      "description": "LTL_always returns True when K.worlds is empty; invariant holds vacuously on empty structure",
+      "severity": "low"
+    },
+    {
+      "theorem_id": "gv_base_case",
+      "file": "gradual_verification_soundness.py",
+      "description": "Induction base case i=0: no claims exist, so reach(c) subset evidence | metadata holds vacuously",
+      "severity": "low"
+    },
+    {
+      "theorem_id": "deontic_condition_false",
+      "file": "deontic_procedural_justice.py",
+      "description": "DeonticRule.evaluate returns True when condition is not met (rule not activated); this is vacuous compliance",
+      "severity": "low"
+    }
+  ],
+  "semantic_penetration_risks": [
+    {
+      "theorem_id": "banach_contraction",
+      "file": "banach_pricing_contraction.py",
+      "risk": "Mathematical contraction proven only for effective_nodes component (f(x)=beta*T+(1-beta)*x), but actual pricing formula includes location_factor, stage_factor, travel_overhead which are frozen per case, not globally contracting. The 'total_hours' output is NOT proven to be a contraction.",
+      "severity": "high"
+    },
+    {
+      "theorem_id": "dp_privilege_lattice",
+      "file": "dp_legal_privilege.py",
+      "risk": "DP epsilon is an engineering parameter from differential privacy; mapping it to legal privilege levels is an analogy, not a theorem. Legal privilege doctrine does not use epsilon, Laplace noise, or sensitivity bounds. The 'lattice' is a total order (chain), not a true lattice with non-trivial join/meet structure.",
+      "severity": "high"
+    },
+    {
+      "theorem_id": "no_natural_transformation",
+      "file": "category_theory_rosetta.py",
+      "risk": "Counterexample depends on manually constructing asymmetric claim mappings. In practice, comparative law and conflict-of-laws doctrines DO provide translation mechanisms between legal systems. The 'no natural transformation' claim conflates structural differences with impossibility of any mapping.",
+      "severity": "medium"
+    },
+    {
+      "theorem_id": "mdl_fp_conjecture",
+      "file": "kolmogorov_mdl_rules.py",
+      "risk": "P(FP) ~ 2^{-MDL(r)} * |wrong_domain_facts| is explicitly labeled a CONJECTURE with no empirical validation. It is not derived from algorithmic information theory. Treating it as a theorem risks false precision in cross-domain evaluation.",
+      "severity": "high"
+    },
+    {
+      "theorem_id": "rough_membership_dominance",
+      "file": "rough_set_discretionary.py",
+      "risk": "Rough membership requires positive/negative training examples and a defined equivalence relation. For most of the 16 discretionary concepts, no training data exists. The engine falls back to arbitrary thresholds (0.8, 0.2, 0.3) and keyword matching, making the 'strictly more informative' claim a modeling aspiration rather than a proven property.",
+      "severity": "medium"
+    },
+    {
+      "theorem_id": "hierarchical_bayes_dominates",
+      "file": "hierarchical_bayes_alpha.py",
+      "risk": "The 'theorem' that hierarchical Bayes dominates Theil-Sen is a modeling claim. With only 10 annotated cases, the hierarchical model is underidentified (30-60 cases needed). The posterior draws are simulated from priors, not actual MCMC inference. The causal interpretation of beta_k is speculative without real data.",
+      "severity": "medium"
+    },
+    {
+      "theorem_id": "cbl_soundness_completeness",
+      "file": "non_interference_cbl.py",
+      "risk": "The security lattice (CN > HK > US) is a product engineering choice, not a legal fact. Real legal systems have information flows between jurisdictions via conflict of laws, treaty obligations, and judicial cooperation. Completeness claim ('every lattice-violating flow has a CBL rule') is unverified for all possible US concepts.",
+      "severity": "medium"
+    },
+    {
+      "theorem_id": "evidence_independence_boundary",
+      "file": "evidence_credibility_axioms.py",
+      "risk": "Theorem 3 claims multiplicative model is 'exact' when dimensions are conditionally independent. This is a modeling assumption about the probability model, not proven within the file. The 'correctness' of multiplicative over additive is a normative judgment, not a mathematical theorem.",
+      "severity": "medium"
+    },
+    {
+      "theorem_id": "policy_p_complete",
+      "file": "policy_expressiveness.py",
+      "risk": "Claim that Policy layer is 'P-complete' is overstated. The demonstration uses a tiny rewrite system (5 rules). P-completeness requires reduction from a known P-complete problem (e.g., Horn-SAT). The file only shows membership in P, not P-completeness.",
+      "severity": "low"
+    },
+    {
+      "theorem_id": "gv_soundness_model_only",
+      "file": "gradual_verification_soundness.py",
+      "risk": "Proof operates on SafeCompiler, a 'static proxy model' that mirrors FixpointEvaluator. The file explicitly admits this is a MODEL-LEVEL proof, not a system-level proof. The actual FixpointEvaluator may not respect provenance at runtime.",
+      "severity": "medium"
+    }
+  ]
+}

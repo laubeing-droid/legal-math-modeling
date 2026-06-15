@@ -1,0 +1,117 @@
+{
+  "CN": {
+    "lattice_type": "legal_release_class",
+    "levels": [
+      {
+        "name": "国家秘密",
+        "legal_basis": [
+          "中华人民共和国保守国家秘密法"
+        ],
+        "dp_epsilon": "NOT_DETERMINED_BY_LAW",
+        "information_types_mapped": []
+      },
+      {
+        "name": "商业秘密",
+        "legal_basis": [
+          "中华人民共和国反不正当竞争法第十条",
+          "中华人民共和国民法典第五百零一条",
+          "中华人民共和国刑法第二百一十九条"
+        ],
+        "dp_epsilon": "NOT_DETERMINED_BY_LAW",
+        "information_types_mapped": [
+          "trade_secret"
+        ]
+      },
+      {
+        "name": "个人隐私/个人信息",
+        "legal_basis": [
+          "中华人民共和国民法典第一千零三十二条至第一千零三十九条",
+          "中华人民共和国个人信息保护法"
+        ],
+        "dp_epsilon": "NOT_DETERMINED_BY_LAW",
+        "information_types_mapped": []
+      },
+      {
+        "name": "律师执业保密",
+        "legal_basis": [
+          "中华人民共和国律师法第三十八条",
+          "中华人民共和国刑事诉讼法第四十八条"
+        ],
+        "dp_epsilon": "NOT_DETERMINED_BY_LAW",
+        "information_types_mapped": [
+          "attorney_client"
+        ]
+      },
+      {
+        "name": "未成年人犯罪记录封存",
+        "legal_basis": [
+          "中华人民共和国预防未成年人犯罪法第五十九条",
+          "关于未成年人犯罪记录封存的实施办法"
+        ],
+        "dp_epsilon": "NOT_DETERMINED_BY_LAW",
+        "information_types_mapped": [
+          "minor_record"
+        ]
+      },
+      {
+        "name": "调解/和解保密",
+        "legal_basis": [
+          "最高人民法院关于适用《中华人民共和国民事诉讼法》的解释第一百四十六条",
+          "中华人民共和国仲裁法第五十二条"
+        ],
+        "dp_epsilon": "NOT_DETERMINED_BY_LAW",
+        "information_types_mapped": [
+          "settlement_negotiation"
+        ]
+      },
+      {
+        "name": "诉讼证据（有限公开）",
+        "legal_basis": [
+          "中华人民共和国民事诉讼法第七十一条",
+          "最高人民法院关于民事诉讼证据的若干规定"
+        ],
+        "dp_epsilon": "NOT_DETERMINED_BY_LAW",
+        "information_types_mapped": [
+          "pre_trial_evidence",
+          "expert_report"
+        ]
+      },
+      {
+        "name": "裁判文书公开（技术处理后）",
+        "legal_basis": [
+          "最高人民法院关于人民法院在互联网公布裁判文书的规定",
+          "中华人民共和国行政诉讼法第六十五条"
+        ],
+        "dp_epsilon": "NOT_DETERMINED_BY_LAW",
+        "information_types_mapped": [
+          "court_filing"
+        ]
+      },
+      {
+        "name": "指导性案例/公报案例",
+        "legal_basis": [
+          "最高人民法院关于案例指导工作的规定",
+          "最高人民法院统一法律适用工作实施办法"
+        ],
+        "dp_epsilon": "NOT_DETERMINED_BY_LAW",
+        "information_types_mapped": [
+          "published_opinion"
+        ]
+      },
+      {
+        "name": "法律法规",
+        "legal_basis": [
+          "中华人民共和国立法法第六十二条、第八十八条"
+        ],
+        "dp_epsilon": "NOT_DETERMINED_BY_LAW",
+        "information_types_mapped": [
+          "statute"
+        ]
+      }
+    ],
+    "unified_lattice_possible": false,
+    "reason": "中国没有统一的 evidence privilege 制度。律师保密义务是职业道德义务和法定保密义务，不是证据法上的 privilege（当事人不能以此拒绝向法院披露）。商业秘密保护属于反不正当竞争法和刑法的侵权/犯罪保护，不是证据特权。未成年人犯罪记录封存是程序性封存制度，不是 privilege。调解保密是程序性不公开规则。各类信息分别受不同部门法调整，不存在一个统一的、可排序的 privilege lattice。"
+  },
+  "US": "DATA_UNAVAILABLE",
+  "HK": "DATA_UNAVAILABLE"
+}

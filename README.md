@@ -1,8 +1,8 @@
 # Legal Math Modeling
 
-> **Clone and read**: `git clone` this repo → open `paper/main.md` on GitHub → KaTeX renders all 70 formal definitions/theorems/counterexamples natively.
+> **Clone and read**: `git clone` this repo → open `paper/main.md` on GitHub → KaTeX renders all 77 formal definitions/theorems/counterexamples natively. For a single consolidated paper, see `paper/icail_full_paper.md`.
 >
-> This repository is the **mathematical companion** to [juris-calculus](https://github.com/laubeing-droid/juris-calculus) — a deterministic symbolic legal reasoning engine operating across PRC, Hong Kong, and US jurisdictions. It contains the formal mathematical framework, 30 runnable proof modules, machine-reproducible verification artifacts, and a 7-level *evidence-calibrated trust label system* that prevents unverified AI-generated claims from propagating to engineering decisions.
+> This repository is the **mathematical companion** to [juris-calculus](https://github.com/laubeing-droid/juris-calculus) — a deterministic symbolic legal reasoning engine operating across PRC, Hong Kong, and US jurisdictions. It contains the formal mathematical framework, 56 runnable theory modules, machine-reproducible verification artifacts, and a 7-level *evidence-calibrated trust label system* that prevents unverified AI-generated claims from propagating to engineering decisions.
 >
 > **Start here**: Run `python -m theory` to see the trust label status of all 7 core mathematical claims. Then read `paper/main.md` for the full formal treatment.
 
@@ -66,7 +66,7 @@ This work represents a **paradigm shift** from "legal chatbot" to "legal compile
 
 **1. Law as a formal system, not a prompt engineering problem.**
 
-For the first time, legal reasoning is formalized as a complete mathematical framework — Horn clauses for forward reasoning, Dung argumentation for adversarial reasoning, Kripke models for temporal reasoning, category theory for cross-jurisdictional mapping — with *machine-reproducible proofs* for each component. This is not a theoretical paper that proposes a framework; it is a *working system* with 30 runnable proof modules and 66,066 enumerated attack graphs.
+For the first time, legal reasoning is formalized as a complete mathematical framework — Horn clauses for forward reasoning, Dung argumentation for adversarial reasoning, Kripke models for temporal reasoning, category theory for cross-jurisdictional mapping — with *machine-reproducible proofs* for each component. This is not a theoretical paper that proposes a framework; it is a *working system* with 56 runnable proof modules and 66,066 enumerated attack graphs.
 
 **2. The evidence-calibrated trust label system: a new standard for AI honesty.**
 
@@ -265,7 +265,7 @@ This work was produced through an iterative multi-AI formalization pipeline — 
 # 4. Repository Structure
 
 ```
-legal-math-modeling/                          290 files, 5.2 MB
+legal-math-modeling/                          322 files, 7.4 MB
 ├── README.md                                 # This file (English)
 ├── README_CN.md                              # Chinese version
 ├── LICENSE                                   # CC BY 4.0
@@ -292,7 +292,7 @@ legal-math-modeling/                          290 files, 5.2 MB
 │       ├── 12_evidence_calibrated.tex
 │       └── 13_conclusion.tex
 │
-├── theory/                                   # 30 Python theory modules
+├── theory/                                   # 56 Python theory modules
 │   ├── model_status.py                       # ★ Trust label system
 │   ├── argumentation_horn_unification.py     # Dung AAF + Horn stratified
 │   ├── category_theory_rosetta.py            # Cross-jurisdiction functor
@@ -303,7 +303,7 @@ legal-math-modeling/                          290 files, 5.2 MB
 │   ├── z3_temporal_induction.py              # Z3 temporal induction
 │   ├── sympy_evidence_proofs.py              # SymPy symbolic proofs
 │   ├── hypothesis_horn_pbt.py                # Hypothesis PBT
-│   └── ... (30 total)
+│   └── ... (56 total)
 │
 ├── proofs/                                   # Machine-run proof artifacts
 │   ├── strict_proof_baseline/                # Canonical strict baseline (8/8 pass)
@@ -324,12 +324,28 @@ legal-math-modeling/                          290 files, 5.2 MB
 │   ├── modeling/                             # 8 modeling documents
 │   ├── audit/                                # Trust label schema, counterexample registry
 │   ├── ontology/core_ontology.yaml           # L0/L1/L2 ontology (1,298 lines)
-│   └── history/development_log_*.md          # 22-day development journal
-│
-└── prompts/                                  # Reproducible AI prompts
-    ├── claude_math_audit_prompt.md
-    └── kimi_playbook.md
+│   └── history/development_log_*.md          # Development journal
 ```
+```
+
+## 4.1 Paper Structure
+
+The repository contains 13 papers covering the full formalization. `main.md` is the core paper (13 chapters); the remaining 12 are standalone deep-dives on specific topics.
+
+| Paper | Content | Key Results |
+|-------|---------|-------------|
+| `main.md` | Core formal paper (Ch1--13): ontology, Horn closure, AAF, Kripke temporal, category-theoretic Rosetta, Banach contraction, DP privilege, CBL non-interference, trust labels | 18 proved claims, 10 counterexamples, 7-level trust label system, k <= 3 safe boundary |
+| `icail_full_paper.md` | Consolidated ICAIL conference submission combining all papers into a single manuscript | Full formalization with unified bibliography; subsumes all other papers |
+| `non_monotonicity.md` | Formal treatment of non-monotonicity in the two-stage evaluator (Horn + AAF) | CE6.2: original evaluator non-monotone; architectural split into monotone Horn stage + non-monotone AAF stage |
+| `dp_impossibility.md` | Differential privacy impossibility results for legal privilege lattices | CE10.3: privilege level does not determine unique epsilon; CE10.4: floor clipping violates epsilon-DP |
+| `graph_similarity_topology.md` | Graph similarity measures and their topological properties for legal citation networks | Counterexamples to reflexivity, identity of indiscernibles, and metric axioms |
+| `multi_ai_formalization.md` | Methodology paper on adversarial multi-AI proof verification (Claude + Codex + Kimi) | Pipeline design, 46/46 verification pass, 4 repair rounds, trust label calibration protocol |
+| `argumentation_frameworks.md` | ASPIC+ framework formalization for structured legal argumentation | Extended argumentation with preferences, defeat relations, and proof standards |
+| `legal_reasoning_paradigms.md` | Survey and formalization of four legal reasoning paradigms | Analogical reasoning, precedent reasoning, statutory interpretation, interest balancing formalized as composable modules |
+| `probabilistic_legal_reasoning.md` | Bayesian approaches to legal evidence evaluation and damages quantification | Bayesian network for evidence aggregation, Theil-Sen robust estimation, probabilistic damages model |
+| `argument_strength.md` | Partial order on argument strength in adversarial legal settings | Argument strength ordering with formal lattice structure; connects to AAF grounded extension |
+| `legal_analogy.md` | Case-based analogical reasoning with formal retrieval | Analogical reasoning engine + case retrieval by factor similarity; Searle-style institutional fact mapping |
+| `ai_liability_infrastructure.md` | Formal framework for AI liability as infrastructure-level risk allocation | Model status tracking, evidence dependency chains, liability allocation across deployer/developer/infrastucture layers |
 
 # 5. Quick Start
 
@@ -359,7 +375,7 @@ python proofs/strict_proof_baseline/run_all_proofs.py
 
 # 6. Extended Theoretical Foundations
 
-The `theory/` directory contains 30 formalization modules beyond the core paper. These provide theoretical scaffolding for the main results:
+The `theory/` directory contains 56 formalization modules beyond the core paper. These provide theoretical scaffolding for the main results:
 
 | Module | Mathematical Framework | Status |
 |--------|----------------------|--------|

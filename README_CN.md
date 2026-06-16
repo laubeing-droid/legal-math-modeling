@@ -1,8 +1,8 @@
 # Legal Math Modeling — 法律数学建模
 
-> **克隆即读**：`git clone` 本仓库 → 在 GitHub 上打开 `paper/main.md` → KaTeX 自动渲染全部 70 个形式化定义/定理/反例。
+> **克隆即读**：`git clone` 本仓库 → 在 GitHub 上打开 `paper/main.md` → KaTeX 自动渲染全部 77 个形式化定义/定理/反例。合并版论文见 `paper/icail_full_paper.md`。
 >
-> 本仓库是 [juris-calculus](https://github.com/laubeing-droid/juris-calculus) 的**数学配套仓库** —— 一个跨中国内地、香港和美国法域的确定性符号法律推理引擎。包含完整的数学框架、30 个可运行证明模块、机器可复现的验证工件，以及一个 7 级*证据校准信任标签系统*，防止未验证的 AI 生成声明传播到工程决策。
+> 本仓库是 [juris-calculus](https://github.com/laubeing-droid/juris-calculus) 的**数学配套仓库** —— 一个跨中国内地、香港和美国法域的确定性符号法律推理引擎。包含完整的数学框架、56 个可运行理论模块、机器可复现的验证工件，以及一个 7 级*证据校准信任标签系统*，防止未验证的 AI 生成声明传播到工程决策。
 >
 > **从这里开始**：运行 `python -m theory` 查看全部 7 个核心数学声明的信任标签状态。然后阅读 `paper/main.md` 获取完整的形式化处理。
 
@@ -66,7 +66,7 @@
 
 **1. 法律是形式系统，不是提示工程问题。**
 
-法律推理首次被形式化为完整的数学框架——Horn 子句用于前向推理，Dung 论证框架用于对抗性推理，Kripke 模型用于时序推理，范畴论用于跨法域映射——每个组件都有*机器可复现的证明*。这不是一篇提出框架的理论论文，而是一个*可运行的系统*，包含 30 个可运行证明模块和 66,066 个穷举枚举的攻击图。
+法律推理首次被形式化为完整的数学框架——Horn 子句用于前向推理，Dung 论证框架用于对抗性推理，Kripke 模型用于时序推理，范畴论用于跨法域映射——每个组件都有*机器可复现的证明*。这不是一篇提出框架的理论论文，而是一个*可运行的系统*，包含 56 个可运行证明模块和 66,066 个穷举枚举的攻击图。
 
 **2. 证据校准信任标签系统：AI 诚实的新标准。**
 
@@ -264,7 +264,7 @@ H.L.A. Hart 的"疑义半影"——法律概念有一个确定性核心，周围
 # 4. 仓库结构
 
 ```
-legal-math-modeling/                          290 个文件，5.2 MB
+legal-math-modeling/                          322 个文件，7.4 MB
 ├── README.md                                 # 英文版
 ├── README_CN.md                              # 本文件（中文版）
 ├── LICENSE                                   # CC BY 4.0
@@ -278,9 +278,9 @@ legal-math-modeling/                          290 个文件，5.2 MB
 │   ├── references.bib                        # 21 条参考文献
 │   └── sections/                             # 13 章
 │
-├── theory/                                   # 30 个 Python 理论模块
+├── theory/                                   # 56 个 Python 理论模块
 │   ├── model_status.py                       # ★ 信任标签系统
-│   └── ... (30 个可运行模块)
+│   └── ... (56 个可运行模块)
 │
 ├── proofs/                                   # 机器运行的证明工件
 │   ├── strict_proof_baseline/                # 规范严格基线（8/8 通过）
@@ -296,9 +296,7 @@ legal-math-modeling/                          290 个文件，5.2 MB
 │   ├── modeling/                             # 8 份建模文档
 │   ├── audit/                                # 信任标签 schema、反例注册表
 │   ├── ontology/core_ontology.yaml           # L0/L1/L2 本体论（1,298 行）
-│   └── history/                              # 22 天开发日志
-│
-└── prompts/                                  # 可复现的 AI 提示词
+│   └── history/                              # 开发日志（5/23-6/17）
 ```
 
 # 5. 快速开始
@@ -329,7 +327,7 @@ python proofs/strict_proof_baseline/run_all_proofs.py
 
 # 6. 扩展理论基础
 
-`theory/` 目录包含超出核心论文的 30 个形式化模块，为主体结果提供理论脚手架：
+`theory/` 目录包含超出核心论文的 56 个形式化模块，为主体结果提供理论脚手架：
 
 | 模块 | 数学框架 | 状态 |
 |------|----------|------|

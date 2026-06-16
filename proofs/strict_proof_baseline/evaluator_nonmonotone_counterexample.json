@@ -9,11 +9,11 @@
   "rebuttal_pairs": [
     [
       "b",
-      "a"
+      "b"
     ],
     [
       "b",
-      "b"
+      "a"
     ]
   ],
   "note": "Self-attack (b,b) is added to ensure F(B) = empty set as required by the scenario.",
@@ -22,8 +22,8 @@
       "a"
     ],
     "B": [
-      "b",
-      "a"
+      "a",
+      "b"
     ]
   },
   "evaluator_operator": "F(S) = { a ∈ S | a 未被 S 中的任何 argument rebuttal 击败 }",

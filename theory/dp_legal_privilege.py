@@ -113,8 +113,10 @@ class LegalPrivacyMapping:
         Larger scale = more noise = more privacy protection.
         """
         lo, hi = self.epsilon_bound(info_type)
-        # Use conservative bound (tighter privacy = smaller epsilon = larger scale)
-        epsilon = lo if lo > 0 else 0.1
+        # ABSOLUTE privilege has epsilon bound (0.0, 0.0) — no disclosure allowed
+        if lo == 0.0 and hi == 0.0:
+            return float('inf')  # Infinite noise = no release
+        epsilon = lo if lo > 0 else hi
         return sensitivity / epsilon
 
 

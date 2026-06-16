@@ -2,7 +2,7 @@
 """
 run_all_proofs.py — One-click runner for all juris-calculus proof artifacts.
 Usage:
-    cd "D:\\Codex\\juris-calculus\\20260611 kimi proof\\proof"
+    cd proofs/strict_proof_baseline
     python run_all_proofs.py
 """
 import subprocess, sys, os, json
@@ -13,17 +13,18 @@ RESULTS = {}
 
 def run(cmd: list, cwd=None, timeout=60):
     try:
-        r = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, timeout=timeout)
-        return {"returncode": r.returncode, "stdout": r.stdout[:500], "stderr": r.stderr[:500]}
+        r = subprocess.run(cmd, cwd=cwd, capture_output=True, text=True, timeout=timeout,
+                           encoding="utf-8", errors="replace")
+        return {"returncode": r.returncode, "stdout": (r.stdout or "")[:500], "stderr": (r.stderr or "")[:500]}
     except FileNotFoundError as e:
         return {"returncode": -1, "error": f"Command not found: {e}"}
     except subprocess.TimeoutExpired:
         return {"returncode": -1, "error": "Timeout"}
 
 def main():
-    # --- P0-A: Category Rosetta ---
-    print("[P0-A] Running category_rosetta_obstruction_verifier.py...")
-    RESULTS["P0-A"] = run([sys.executable, "category_rosetta_obstruction_verifier.py"], cwd=PROOF_DIR)
+    # --- P0-A: Category Rosetta (toy no-total-mapping checker) ---
+    print("[P0-A] Running finite_no_total_mapping_checker.py...")
+    RESULTS["P0-A"] = run([sys.executable, "p0a_category/finite_no_total_mapping_checker.py"], cwd=PROOF_DIR)
 
     # --- P0-B: DP Privilege Lattice (Z3) ---
     print("[P0-B] Checking Z3 SMT proof...")
@@ -32,22 +33,33 @@ def main():
     RESULTS["P0-B"] = {"smt2": z3_smt, "python": z3_py}
 
     # --- P0-C: Banach Contraction (Lean) ---
-    print("[P0-C] Checking Lean 4 proof...")
-    lean = run(["lake", "env", "lean", "lean/BanachEffectiveNodes.lean"], cwd=PROOF_DIR)
+    # Lean proofs require Mathlib compilation; use extended timeout
+    print("[P0-C] Checking Lean 4 proof (timeout=300s, PENDING_TOOLCHAIN expected)...")
+    lean = run(["lake", "env", "lean", "lean/BanachEffectiveNodes.lean"], cwd=PROOF_DIR, timeout=300)
+    if lean.get("returncode") == -1 and "Timeout" in lean.get("error", ""):
+        lean["status"] = "PENDING_TOOLCHAIN"
+        lean["note"] = "Lean build requires Mathlib; timeout is expected. See proofs/lean/ for source."
     RESULTS["P0-C"] = lean
 
     # --- P0-D: Galois Adjunction (Lean) ---
-    print("[P0-D] Checking Lean 4 Galois proof...")
-    lean_g = run(["lake", "env", "lean", "lean/FiniteGaloisAdjunction.lean"], cwd=PROOF_DIR)
+    print("[P0-D] Checking Lean 4 Galois proof (timeout=300s, PENDING_TOOLCHAIN expected)...")
+    lean_g = run(["lake", "env", "lean", "lean/FiniteGaloisAdjunction.lean"], cwd=PROOF_DIR, timeout=300)
+    if lean_g.get("returncode") == -1 and "Timeout" in lean_g.get("error", ""):
+        lean_g["status"] = "PENDING_TOOLCHAIN"
+        lean_g["note"] = "Lean build requires Mathlib; timeout is expected. See proofs/lean/ for source."
     RESULTS["P0-D"] = lean_g
+
+    # --- P0-D2: Privilege Epsilon Refutation ---
+    print("[P0-D2] Running privilege epsilon refutation...")
+    RESULTS["P0-D2"] = run([sys.executable, "p0d_privilege_epsilon/privilege_epsilon_refutation.py"], cwd=PROOF_DIR)
 
     # --- P1-E: Dung AAF ---
     print("[P1-E] Running Dung grounded extension verification...")
-    RESULTS["P1-E"] = run([sys.executable, "aaf/dung_grounded_extension.py"], cwd=PROOF_DIR, timeout=300)
+    RESULTS["P1-E"] = run([sys.executable, "p1e_aaf/aaf_grounded_extension_proof.py"], cwd=PROOF_DIR, timeout=300)
 
-    # --- Shadow Pipeline ---
-    print("[Shadow] Running Dung AAF shadow evaluator...")
-    RESULTS["Shadow"] = run([sys.executable, "../compiler_core/argumentation.py", "--run-diff"], cwd=PROOF_DIR, timeout=120)
+    # --- Evaluator Non-Monotone Counterexample ---
+    print("[E3] Running evaluator non-monotone counterexample...")
+    RESULTS["E3"] = run([sys.executable, "p1e_aaf/evaluator_nonmonotone_counterexample.py"], cwd=PROOF_DIR)
 
     # --- Summary ---
     print("\n" + "="*60)

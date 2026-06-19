@@ -4,7 +4,7 @@
 >
 > 本仓库是 [juris-calculus](https://github.com/laubeing-droid/juris-calculus) 的**数学配套仓库** —— 一个跨中国内地、香港和美国法域的确定性符号法律推理引擎。包含完整的数学框架、59 个可运行理论模块、机器可复现的验证工件，以及一个 7 级*证据校准信任标签系统*，防止未验证的 AI 生成声明传播到工程决策。
 >
-> **当前状态（v5.0，Playbook v5.0）**：20 个核心定理；**7 个 PROVED_BY_ARTIFACT**，2 个 EMPIRICAL_PROXY，1 个 AXIOM_ONLY，0 个 PENDING_TOOLCHAIN，1 个 REFUTED，9 个已排除。Lean `lake build` 2949 jobs，构建文件 0 sorry、0 axiom。42 个对抗测试通过。4/4 Z3 验证通过。
+> **当前状态（v5.0，Playbook v5.0）**：20 个核心定理；**7 个 PROVED_BY_ARTIFACT**，2 个 EMPIRICAL_PROXY，1 个 AXIOM_ONLY，0 个 PENDING_TOOLCHAIN，1 个 REFUTED，9 个已排除。Lean `lake build` 2950 jobs，构建文件 0 sorry、0 axiom。42 个对抗测试通过。4/4 Z3 验证通过。
 >
 > **从这里开始**：运行 `python -m theory` 查看全部核心数学定理的信任标签状态。然后阅读 `paper/explainable_legal_reasoning.md` 获取形式化处理。
 
@@ -258,7 +258,7 @@ H.L.A. Hart 的"疑义半影"——法律概念有一个确定性核心，周围
 | T8.5 | 实数据 Rosetta 函子 | DATA_INSUFFICIENT | 44 行，7 见证；需 ≥2,000 |
 | T9.4 | 实数据 Banach 压缩 | DATA_INSUFFICIENT | 225 代理观测，0 真实工时 |
 
-> **v5.1 更新**：T5（时态 Kripke）和 T15（CBL 非干扰）已升级为 PROVED_BY_ARTIFACT。Lean 构建 2949 jobs，0 sorry。PENDING_TOOLCHAIN 清零。
+> **v5.1 更新**：T5（时态 Kripke）和 T15（CBL 非干扰）已升级为 PROVED_BY_ARTIFACT。Lean 构建 2950 jobs，0 sorry。PENDING_TOOLCHAIN 清零。
 
 # 4. 仓库结构
 

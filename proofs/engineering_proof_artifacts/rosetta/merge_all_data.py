@@ -240,7 +240,9 @@ def merge_t94():
 
 
 def main():
-    os.chdir(r'D:\Claude\数学证明\legal-math-modeling')
+    # Auto-detect project root from script location
+    project_root = Path(__file__).resolve().parent.parent.parent.parent
+    os.chdir(project_root)
 
     print("=" * 60)
     print("T8.5 + T9.4 Data Merge & Dedup")

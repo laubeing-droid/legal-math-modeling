@@ -129,6 +129,45 @@ theorem unattacked_in_ge {af : AAF} {a : Argument}
   exact ⟨ha, hunat⟩
 
 -- ============================================================
+-- LFP Grounded Extension (Dung's standard definition)
+-- ============================================================
+
+-- Dung's characteristic function F_S(X):
+-- a ∈ F_S(X) iff a ∈ Args and every attacker of a is attacked by some member of X.
+-- This is the standard definition that handles cyclic attack graphs.
+def attackers_of (af : AAF) (a : Argument) : Finset Argument :=
+  af.args.filter (fun b => (b, a) ∈ af.attacks)
+
+def defended_by (af : AAF) (X : Finset Argument) (a : Argument) : Prop :=
+  ∀ b ∈ af.args, (b, a) ∈ af.attacks → ∃ c ∈ X, (c, b) ∈ af.attacks
+
+instance (af : AAF) (X : Finset Argument) (a : Argument) :
+    Decidable (defended_by af X a) := by
+  unfold defended_by
+  apply Finset.decidableDforallFinset
+
+def dungs_char_fn (af : AAF) (X : Finset Argument) : Finset Argument :=
+  af.args.filter (fun a => defended_by af X a)
+
+-- Iterate char_fn from ∅ until fixpoint (bounded by |Args|)
+def grounded_extension_lfp (af : AAF) (max_iter : Nat) : Finset Argument :=
+  let rec iterate (X : Finset Argument) (n : Nat) : Finset Argument :=
+    match n with
+    | 0 => X
+    | n' + 1 =>
+      let next := dungs_char_fn af X
+      if next = X then X
+      else iterate next n'
+  iterate ∅ max_iter
+
+-- PROOF OBLIGATION (not yet proved, no sorry):
+-- Unattacked arguments are always in the LFP grounded extension.
+-- Proof sketch: unattacked args have no attackers, so the "every attacker
+-- is defeated" condition is vacuously true on the first iteration of F_S.
+-- This is a standard result in Dung's theory (Dung 1995, Theorem 26).
+-- Status: DEFINITION COMPLETE, PROOF PENDING.
+
+-- ============================================================
 -- Layer 3: Banach Domain (pricing)
 -- ============================================================
 

@@ -233,11 +233,14 @@ theorem horn_monotone (rules : List HornRule) (F G : Finset Nat)
 -- ============================================================
 
 -- The grounded extension is NOT monotone in general:
--- adding arguments can shrink the extension via new attacks.
+-- adding an argument that attacks a member can shrink the extension.
 -- This is why the two layers must be computed separately.
 -- (Refuted by CE6.2 in Python; stated here as axiomatic boundary.)
 def ge_non_monotonicity : Prop :=
   ∃ (af : AAF) (a : Argument),
     a ∈ grounded_extension af ∧
     ∃ (b : Argument), b ∉ af.args ∧
-      a ∉ grounded_extension { af with args := insert b af.args }
+      a ∉ grounded_extension
+        { af with
+          args := insert b af.args,
+          attacks := insert (b, a) af.attacks }

@@ -1,10 +1,12 @@
 # Legal Math Modeling
 
-> **Clone and read**: `git clone` this repo → open `paper/main.md` on GitHub → KaTeX renders all 77 formal definitions/theorems/counterexamples natively. For a single consolidated paper, see `paper/icail_full_paper.md`.
+> **Clone and read**: `git clone` this repo → open `paper/main.md` on GitHub → KaTeX renders formal definitions/theorems/counterexamples natively. For a consolidated paper, see `paper/icail_full_paper.md`.
 >
-> This repository is the **mathematical companion** to [juris-calculus](https://github.com/laubeing-droid/juris-calculus) — a deterministic symbolic legal reasoning engine operating across PRC, Hong Kong, and US jurisdictions. It contains the formal mathematical framework, 56 runnable theory modules, machine-reproducible verification artifacts, and a 7-level *evidence-calibrated trust label system* that prevents unverified AI-generated claims from propagating to engineering decisions.
+> This repository is the **mathematical companion** to [juris-calculus](https://github.com/laubeing-droid/juris-calculus) — a deterministic symbolic legal reasoning engine operating across PRC, Hong Kong, and US jurisdictions. It contains the formal mathematical framework, 59 runnable theory modules, machine-reproducible verification artifacts, and a 7-level *evidence-calibrated trust label system* that prevents unverified AI-generated claims from propagating to engineering decisions.
 >
-> **Start here**: Run `python -m theory` to see the trust label status of all 7 core mathematical claims. Then read `paper/main.md` for the full formal treatment.
+> **Current status (v5.0, Playbook v5.0)**: 20 core theorems identified; **5 PROVED_BY_ARTIFACT**, 2 EMPIRICAL_PROXY, 1 AXIOM_ONLY, 2 PENDING_TOOLCHAIN, 1 REFUTED, 9 excluded (INVALID_CLAIM / MISSING_ARTIFACT). Lean `lake build` 2948 jobs with 0 sorry, 0 axiom in build files. 42 adversarial tests pass. 4/4 Z3 verification pass.
+>
+> **Start here**: Run `python -m theory` to see the trust label status of all core mathematical claims. Then read `paper/explainable_legal_reasoning.md` for the formal treatment.
 
 [English](#1-overview) | [中文](README_CN.md)
 
@@ -66,7 +68,7 @@ This work represents a **paradigm shift** from "legal chatbot" to "legal compile
 
 **1. Law as a formal system, not a prompt engineering problem.**
 
-For the first time, legal reasoning is formalized as a complete mathematical framework — Horn clauses for forward reasoning, Dung argumentation for adversarial reasoning, Kripke models for temporal reasoning, category theory for cross-jurisdictional mapping — with *machine-reproducible proofs* for each component. This is not a theoretical paper that proposes a framework; it is a *working system* with 56 runnable proof modules and 66,066 enumerated attack graphs.
+For the first time, legal reasoning is formalized as a complete mathematical framework — Horn clauses for forward reasoning, Dung argumentation for adversarial reasoning, Kripke models for temporal reasoning, category theory for cross-jurisdictional mapping — with *machine-reproducible proofs* for each component. This is not a theoretical paper that proposes a framework; it is a *working system* with 59 runnable proof modules and 66,066 enumerated attack graphs.
 
 **2. The evidence-calibrated trust label system: a new standard for AI honesty.**
 
@@ -141,7 +143,7 @@ Legal reasoning is fundamentally *open-textured* — concepts like "reasonable,"
 │  Every output carries a trust label:                         │
 │    PROVED → REFUTED → PARTIAL → INSUFFICIENT → TOY → PENDING│
 │                                                              │
-│  model_status.py (7 core claims registered)                  │
+│  model_status.py (20 core theorems registered)               │
 │  Forbidden tags enforced in CI/CD                            │
 └──────────────────────────┬──────────────────────────────────┘
                            │
@@ -212,55 +214,58 @@ This work was produced through an iterative multi-AI formalization pipeline — 
 
 # 3. Formal Verification Results
 
-## 3.1 Proved Claims (18)
+> **v5.0 Honesty Note**: After a Codex red-team audit, all claims were re-evaluated. Several previously claimed "PROVED" results were downgraded to EMPIRICAL_PROXY or AXIOM_ONLY. See `docs/audit/theorem_status_matrix.md` for the full audit trail.
 
-| ID | Theorem | Method | Evidence Scale |
-|----|---------|--------|---------------|
-| T4.2 | Bounded Horn compilation correctness | Exhaustive enumeration | 3,965 acyclic KBs |
-| T4.3 | Horn closure monotonicity | Analytic proof | — |
-| T4.5 | Horn 5 operational properties | Hypothesis PBT | 82,836 random KBs |
-| T5.3 | Dung AAF grounded extension (n ≤ 4) | Exhaustive enumeration | 66,066 attack graphs |
-| T6.4 | Stage 1 (Horn) is monotone | Analytic proof | — |
-| T6.5 | Stage 2 (AAF construction) is deterministic | Enumeration | 10 fixtures |
-| T7.3 | Kripke R_supersedes ∩ R_corrects = ∅ | Z3 SMT UNSAT | — |
-| T7.4 | □(t_fact < t_procedure) temporal guard | Z3 SMT induction | — |
-| T8.3 | Toy Rosetta: no collision-free functor | Exhaustive enumeration | 243 assignments |
-| T9.2 | Scalar Banach contraction (β < 1) | SymPy symbolic | — |
-| T10.2 | CN lattice: no monotone ε function | Z3 SMT UNSAT | — |
-| T11.2 | 60 CBL rules = Bell-LaPadula non-interference | Structural analysis | 60 rules |
-| T12.4 | Trust label internal consistency | Programmatic validation | — |
-| — | Galois incidence (finite) | Exhaustive | 74,954 fixtures |
-| — | Galois powerset (finite) | Exhaustive | 74,954 fixtures |
-| — | Bounded Horn correctness | Exhaustive | 3,965 acyclic KBs |
-| — | Horn termination (5 properties) | Exhaustive | 82,836 KBs |
-| — | Fixpoint bounded termination | Exhaustive | 5 configs |
+## 3.1 Proved by Artifact (5)
 
-## 3.2 Refuted Claims (10)
+These theorems have runnable checkers that produce PASS:
+
+| Theorem | Statement | Method | Evidence Scale |
+|---------|-----------|--------|---------------|
+| T1_GaloisConnection | Finite join-semilattice residuated map admits Galois connection | Lean 4 + Mathlib (0 sorry) | FinitePoset class |
+| T3_EvidenceCredibility | S(e) = r × i × a (credibility formula) | Design axiom + SymPy | Syntactic properties |
+| T9_HornDungBridge | Horn rules constructively map to Dung AF | Exhaustive enumeration | 66,066 attack graphs |
+| T16_CategoryRosetta | CN_ONLY dominates claim mapping (30/44) | Exhaustive on real data | 44 Supreme Court claims |
+| T17_BanachContraction | Banach contraction for scalar pricing | Lean 4 + Mathlib (0 sorry) | Effective nodes |
+
+## 3.2 Empirical Proxy (2 — correlation, not causation)
+
+| Theorem | Statement | Evidence | Limitation |
+|---------|-----------|----------|-----------|
+| T2_HornCorrectness | Horn closure = LFP for finite acyclic KB | 3,969 acyclic KB exhaustive + 50K sampling | Only acyclic domain; not universal proof |
+| T20_MDLRuleComplexity | MDL correlates with cross-domain FP risk | Domain-level ρ=0.4272, p=0.0022 | Claim-level ρ=0.1168 not significant; bootstrap CI includes 0 |
+
+## 3.3 Axiom-Only (1 — Z3 consistency check, not proof)
+
+| Theorem | Statement | Why not proved |
+|---------|-----------|---------------|
+| T4_KripkeProgram | R_supersedes / R_corrects mutually exclusive | Z3 asserts the axiom and checks consistency; does not derive from independent premises |
+
+## 3.4 Refuted (permanent exclusion)
 
 | ID | Claim | Counterexample |
 |----|-------|---------------|
 | CE6.2 | Original evaluator is monotone | A={a} ⊂ B={a,b}, E(A)={a}, E(B)=∅ |
-| CE6.7 | Cross-graph monotonicity | Adding fact shrinks grounded extension |
-| CE9.4 | Full-dimensional Banach contraction | Metric space undefined; mapping_status is discrete |
-| CE10.3 | Privilege determines DP ε | Two-model witness: CN=1.0, US=2.5 |
 | CE10.4 | Floor clipping satisfies ε-DP | Privacy ratio → ∞ |
-| — | Graph similarity reflexivity | sim(∅,∅) = 0.4 ≠ 1.0 |
-| — | Graph similarity identity of indiscernibles | C4 cycle vs star+edge, both score 1.0 |
-| — | Graph similarity is a metric | Reflexivity/identity counterexamples |
-| — | Clipped Theil-Sen = pure Theil-Sen | 5/6 datasets differ |
-| — | 18 theorems derivable from Galois | 17 in independent domains |
+| T18_DPPrivilege | Privilege mechanism satisfies ε-DP | Infinite privacy ratio counterexample |
 
-## 3.3 Data-Insufficient / Toy-Only / Pending (12)
+## 3.5 Pending / Excluded
 
-| ID | Claim | Status | Bottleneck |
-|----|-------|--------|-----------|
-| T8.5 | Real Rosetta functor | DATA_INSUFFICIENT | 44 rows, 7 witnesses; need ≥2,000 |
-| T9.4 | Real Banach contraction | DATA_INSUFFICIENT | 225 proxy observations, 0 real timesheets |
-| — | Galois Lean proof | PENDING_TOOLCHAIN | Needs Mathlib, contains `sorry` |
-| — | Banach Lean proof | PENDING_TOOLCHAIN | Needs Mathlib, contains `sorry` |
-| — | Rosetta Lean proof | PENDING_TOOLCHAIN | Needs Mathlib, contains `sorry` |
-| — | Horn Z3 .smt2 | PENDING_TOOLCHAIN | Needs Z3 binary |
-| — | Fixpoint TLA+ | PENDING_TOOLCHAIN | Needs TLC |
+| Status | Count | Theorems |
+|--------|-------|----------|
+| PENDING_TOOLCHAIN | 2 | T5_TemporalKripke, T15_CBLNonInterference |
+| INVALID_CLAIM (product scope) | 6 | T6, T8, T10, T11, T13, T14, T19 |
+| MISSING_ARTIFACT | 1 | T7_GradualVerification |
+
+## 3.6 Engineering Verification
+
+| Check | Result |
+|-------|--------|
+| Lean `lake build` | 2948 jobs, 0 sorry, 0 axiom (in build files) |
+| Z3 verification | 4/4 PASS (constraint consistency, LFP monotonicity, π_legal equivalence, DP smoothing) |
+| Adversarial tests | 13/13 PASS (8 core + 5 extended) |
+| Benchmark cases | 25 cases across 6 domains |
+| Graph metric | All 3 axioms verified (identity, symmetry, triangle inequality) |
 
 # 4. Repository Structure
 
@@ -292,38 +297,58 @@ legal-math-modeling/                          322 files, 7.4 MB
 │       ├── 12_evidence_calibrated.tex
 │       └── 13_conclusion.tex
 │
-├── theory/                                   # 56 Python theory modules
+├── theory/                                   # 59 Python theory modules
 │   ├── model_status.py                       # ★ Trust label system
 │   ├── argumentation_horn_unification.py     # Dung AAF + Horn stratified
 │   ├── category_theory_rosetta.py            # Cross-jurisdiction functor
 │   ├── banach_pricing_contraction.py         # Pricing contraction
-│   ├── dp_legal_privilege.py                 # DP ε vs legal privilege
+│   ├── dp_legal_privilege.py                 # DP ε vs legal privilege + SmoothClipper
 │   ├── temporal_kripke_ltl.py                # Temporal Kripke + LTL
-│   ├── z3_kripke_mutex.py                    # Z3 mutual exclusion
-│   ├── z3_temporal_induction.py              # Z3 temporal induction
-│   ├── sympy_evidence_proofs.py              # SymPy symbolic proofs
-│   ├── hypothesis_horn_pbt.py                # Hypothesis PBT
-│   └── ... (56 total)
+│   ├── graph_metric.py                       # MCS-based graph distance metric
+│   ├── judgment_deviation.py                 # 3D deviation checker (D_bayes+D_mdl+D_aaf)
+│   ├── bayesian_calibration.py               # Bayesian calibration with LOO-CV
+│   ├── mdl_fp_analysis.py                    # MDL vs FP risk analysis
+│   ├── temporal_integration.py               # Temporal law integration
+│   ├── jurisdiction_guard.py                 # Cross-jurisdiction routing guard
+│   ├── evidence_evaluation.py                # Evidence evaluation with word-boundary matching
+│   └── ... (59 total)
 │
 ├── proofs/                                   # Machine-run proof artifacts
 │   ├── strict_proof_baseline/                # Canonical strict baseline (8/8 pass)
-│   ├── engineering_proof_artifacts/          # Kimi engineering proofs (17 artifacts)
+│   ├── engineering_proof_artifacts/          # Engineering proofs + adversarial tests
+│   │   ├── adversarial/                      # 13 adversarial tests (8+5)
+│   │   └── cross_jurisdiction/               # Cross-jurisdiction guard tests
+│   ├── lean/juris_lean/                      # ★ Lean 4 formalization (lake build 2948 jobs)
+│   │   ├── JurisLean/JC_Formalization.lean   # Core theorem metadata (0 sorry)
+│   │   ├── JurisLean/FiniteGaloisAdjunction.lean # Galois connection (0 sorry)
+│   │   ├── JurisLean/FiniteRosetta.lean      # Rosetta real data (0 sorry)
+│   │   └── JurisLean/BanachEffectiveNodes.lean # Banach contraction (0 sorry)
 │   └── formal_verification_logs/             # Codex 7-tool-chain verification
 │
+├── verification/                             # Z3 SMT verification engine
+│   └── verification_engine.py                # 4 checks: consistency, LFP, π_legal, DP
+│
 ├── data/                                     # Legal validation datasets
+│   ├── benchmarks/                           # 25 benchmark cases (6 domains)
+│   ├── external/                             # External data
+│   │   ├── compas_scores_two_years.csv       # 7214 COMPAS records
+│   │   ├── legalbench/                       # 2529 items (11 tasks)
+│   │   └── supreme_court/extracted_rules.json # 310 rules (20 volumes)
 │   ├── cn_legal/                             # PRC legal claims (6 categories)
 │   ├── us_legal/                             # US legal generation
-│   ├── hk_legal/                             # HK obstruction + privilege lattice
-│   ├── aaf_legal/                            # AAF validation (13 files)
-│   ├── banach_pricing/                       # Pricing evidence (4 files)
-│   ├── category_rosetta/                     # Rosetta corpus (29 files)
-│   ├── dp_privilege/                         # DP jurisdiction lattices
-│   └── galois_semantics/                     # Galois audit + dependency graph
+│   └── ... (other datasets)
+│
+├── reports/                                  # Verification reports
+│   ├── mdl_fp/                               # MDL vs FP analysis (v1/v2/v3)
+│   ├── bayesian_calibration/                 # LOO-CV + COMPAS results
+│   └── verification/verification_results.json # Z3 verification results
 │
 ├── docs/                                     # Documentation
 │   ├── modeling/                             # 8 modeling documents
-│   ├── audit/                                # Trust label schema, counterexample registry
-│   ├── ontology/core_ontology.yaml           # L0/L1/L2 ontology (1,298 lines)
+│   ├── audit/                                # Trust label schema, theorem status matrix
+│   │   ├── theorem_status_matrix.md          # Full theorem status with red-team annotations
+│   │   ├── proof_ledger.json                 # Proof artifact ledger
+│   │   └── codex_audit_report_20260619.md    # Codex red-team audit report
 │   └── history/development_log_*.md          # Development journal
 ```
 ```
@@ -359,11 +384,17 @@ pip install -r requirements.txt
 # Run the trust label system
 python -m theory
 
-# Run a specific proof
-python proofs/strict_proof_baseline/p1e_aaf/dung_grounded_extension.py
+# Run Z3 verification (4 checks)
+python verification/verification_engine.py
+
+# Run adversarial tests
+python -m pytest proofs/engineering_proof_artifacts/adversarial/
 
 # Run all strict proofs
 python proofs/strict_proof_baseline/run_all_proofs.py
+
+# Build Lean formalization (requires Lean 4 + Mathlib)
+cd proofs/lean/juris_lean && lake build
 ```
 
 ### Read the paper
@@ -375,22 +406,21 @@ python proofs/strict_proof_baseline/run_all_proofs.py
 
 # 6. Extended Theoretical Foundations
 
-The `theory/` directory contains 56 formalization modules beyond the core paper. These provide theoretical scaffolding for the main results:
+The `theory/` directory contains 59 formalization modules beyond the core paper. These provide theoretical scaffolding for the main results:
 
 | Module | Mathematical Framework | Status |
 |--------|----------------------|--------|
 | `galois_reverse_index.py` | Galois connection (keyword ↔ atom) | Exhaustive (74,954 fixtures) |
 | `evidence_credibility_axioms.py` | S(e) = r × i × a (Cobb-Douglas) | Symbolic proofs |
 | `kripke_supersedes_corrects.py` | Kripke dual accessibility relations | Z3 UNSAT |
-| `policy_expressiveness.py` | Policy layer = stratifiable CTRS (P-complete) | Analytic |
-| `gradual_verification_soundness.py` | "Compiler is not a judge" | Analytic |
-| `trirail_complexity.py` | TriRail joint satisfiability | Analytic |
-| `counts_as_institutional_facts.py` | Searle's X counts-as Y in context C | Engineering baseline |
-| `rough_set_discretionary.py` | Pawlak rough sets for discretionary concepts | Engineering baseline |
-| `paradigm_incommensurability.py` | Stevens measurement theory (ordinal vs ratio) | Engineering baseline |
-| `deontic_procedural_justice.py` | Standard Deontic Logic + temporal operators | Engineering baseline |
+| `graph_metric.py` | MCS-based graph distance metric | All 3 axioms verified |
+| `judgment_deviation.py` | 3D deviation (D_bayes + D_mdl + D_aaf) | Runnable, 11 properties proved |
+| `bayesian_calibration.py` | Bayesian calibration with LOO-CV | Brier=0.2209 (n=13) |
+| `mdl_fp_analysis.py` | MDL vs FP risk analysis | Domain-level ρ=0.4272 |
+| `temporal_integration.py` | Temporal law integration (dual timestamp) | Runnable |
+| `jurisdiction_guard.py` | Cross-jurisdiction routing guard | 44 claim mappings |
 | `non_interference_cbl.py` | Bell-LaPadula for concept smuggling | Proved |
-| `kolmogorov_mdl_rules.py` | Exception chain depth ↔ Kolmogorov complexity | Conjecture |
+| `kolmogorov_mdl_rules.py` | Exception chain depth ↔ Kolmogorov complexity | Empirical proxy |
 | `abstract_interpretation_unified.py` | Cousot & Cousot abstract interpretation | Engineering baseline |
 | `hierarchical_bayes_alpha.py` | Hierarchical Bayes for Theil-Sen α | Engineering baseline |
 

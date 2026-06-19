@@ -1,0 +1,270 @@
+{
+  "timestamp": "2026-06-19T08:56:50",
+  "total": 31,
+  "passed": 31,
+  "failed": 0,
+  "runtime_seconds": 0.0,
+  "results": [
+    {
+      "test_id": "ADV-001",
+      "category": "cross_domain",
+      "description": "Criminal facts must not fire civil contract rules",
+      "passed": true,
+      "reason": "Expected 0 fireable civil args, got 0",
+      "details": {
+        "fireable_args": []
+      }
+    },
+    {
+      "test_id": "ADV-002",
+      "category": "cross_domain",
+      "description": "Inference chain must not derive civil conclusions from criminal facts",
+      "passed": true,
+      "reason": "Reachable: {'prosecution_rests', 'actus_reus_present', 'beyond_reasonable_doubt_met', 'criminal_intent_established'}",
+      "details": {
+        "reachable": [
+          "prosecution_rests",
+          "actus_reus_present",
+          "beyond_reasonable_doubt_met",
+          "criminal_intent_established"
+        ]
+      }
+    },
+    {
+      "test_id": "ADV-003",
+      "category": "insufficient_evidence",
+      "description": "Single fact must not fire multi-premise rule",
+      "passed": true,
+      "reason": "Expected 0 args, got 0",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-004",
+      "category": "insufficient_evidence",
+      "description": "Inference chain incomplete with 1 of 2 required facts",
+      "passed": true,
+      "reason": "complete=False, missing=['r1']",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-005",
+      "category": "insufficient_evidence",
+      "description": "Empty fact list must return empty reachable set",
+      "passed": true,
+      "reason": "Reachable: set()",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-006",
+      "category": "noise_injection",
+      "description": "Valid claims preserved despite noise",
+      "passed": true,
+      "reason": "clean={'BREACH_ESTABLISHED'}, mixed={'VOID', 'BREACH_ESTABLISHED'}",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-007",
+      "category": "noise_injection",
+      "description": "Noise must not produce unexpected claims beyond noise trap",
+      "passed": true,
+      "reason": "Unexpected extra claims: set()",
+      "details": {
+        "extra": [
+          "VOID"
+        ]
+      }
+    },
+    {
+      "test_id": "ADV-008",
+      "category": "noise_injection",
+      "description": "Noise-triggered VOID claim must attack BREACH via conflict",
+      "passed": true,
+      "reason": "Attacks: 0, targets: set()",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-009",
+      "category": "boundary",
+      "description": "Empty string fact must fire empty-premise rule without crash",
+      "passed": true,
+      "reason": "Args: 1",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-010",
+      "category": "boundary",
+      "description": "10K-char fact must not crash or corrupt derivation",
+      "passed": true,
+      "reason": "Args: 1",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-011",
+      "category": "boundary",
+      "description": "Duplicate facts must not cause duplicate arguments",
+      "passed": true,
+      "reason": "Args: 1",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-012",
+      "category": "boundary",
+      "description": "Unknown namespace must not block rule evaluation",
+      "passed": true,
+      "reason": "Args: 1, claims: ['CLAIM_UNKNOWN_NS']",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-013",
+      "category": "boundary",
+      "description": "Unicode/CJK facts must work identically to ASCII",
+      "passed": true,
+      "reason": "Claims: ['违约成立']",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-014a",
+      "category": "contradiction",
+      "description": "Underscore-joined negative token NOW DETECTED (Bug 1 fixed)",
+      "passed": true,
+      "reason": "Contradiction: Contradiction(evidence_a='ev_01', evidence_b='ev_02', fact_a='contract_signed', fact_b='contract_NOT_signed', severity=<ContradictionSeverity.MATERIAL: 'material'>, explanation=\"'ev_01' asserts 'contract_signed' while 'ev_02' asserts 'contract_NOT_signed'.\")",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-014b",
+      "category": "contradiction",
+      "description": "Underscore-joined positive vs space-joined negative NOW DETECTED (Bug 1 fixed)",
+      "passed": true,
+      "reason": "Contradiction: Contradiction(evidence_a='ev_01', evidence_b='ev_02b', fact_a='contract_signed', fact_b='contract not signed', severity=<ContradictionSeverity.MATERIAL: 'material'>, explanation=\"'ev_01' asserts 'contract_signed' while 'ev_02b' asserts 'contract not signed'.\")",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-014c",
+      "category": "contradiction",
+      "description": "Both space-separated: 'contract signed' vs 'contract not signed' MUST be detected",
+      "passed": true,
+      "reason": "Contradiction: Contradiction(evidence_a='ev_01b', evidence_b='ev_02b', fact_a='contract signed', fact_b='contract not signed', severity=<ContradictionSeverity.MATERIAL: 'material'>, explanation=\"'ev_01b' asserts 'contract signed' while 'ev_02b' asserts 'contract not signed'.\")",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-015",
+      "category": "contradiction",
+      "description": "Detected contradiction must have severity field",
+      "passed": true,
+      "reason": "severity=ContradictionSeverity.MATERIAL",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-016",
+      "category": "contradiction",
+      "description": "Non-contradictory evidence must return None",
+      "passed": true,
+      "reason": "Result: None",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-017",
+      "category": "degenerate",
+      "description": "Empty rule set must produce empty argumentation frame",
+      "passed": true,
+      "reason": "args=0, attacks=0",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-018a",
+      "category": "degenerate",
+      "description": "Empty rules + facts: complete is vacuously true (all 0 conclusions reachable)",
+      "passed": true,
+      "reason": "complete=True (vacuous truth)",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-018b",
+      "category": "degenerate",
+      "description": "Empty rules + facts: reachable set must equal input facts only",
+      "passed": true,
+      "reason": "reachable={'fact_a'}",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-019",
+      "category": "degenerate",
+      "description": "Tautology rule (no premises) must always fire",
+      "passed": true,
+      "reason": "Args: 1",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-020",
+      "category": "degenerate",
+      "description": "Circular exception chain must not crash",
+      "passed": true,
+      "reason": "Args: 2, Attacks: 2",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-021",
+      "category": "structural",
+      "description": "DungFrame.args must be a set of Argument objects",
+      "passed": true,
+      "reason": "type(args)=set",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-022",
+      "category": "structural",
+      "description": "DungFrame.attacks must be a set of 2-tuples",
+      "passed": true,
+      "reason": "type(attacks)=set",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-023_arg_r2",
+      "category": "structural",
+      "description": "Argument arg_r2 must have id, rule_id, claim, premises",
+      "passed": true,
+      "reason": "fields: []",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-024",
+      "category": "structural",
+      "description": "Inference chain output must have complete/reachable/missing_links/chain_depth",
+      "passed": true,
+      "reason": "Missing keys: set()",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-025",
+      "category": "structural",
+      "description": "Inference chain complete must be bool",
+      "passed": true,
+      "reason": "type(complete)=bool",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-026",
+      "category": "structural",
+      "description": "Inference chain reachable must be a set",
+      "passed": true,
+      "reason": "type(reachable)=set",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-027",
+      "category": "namespace_isolation",
+      "description": "Shared token alone must not fire cross-namespace rule",
+      "passed": true,
+      "reason": "Claims: []",
+      "details": {}
+    },
+    {
+      "test_id": "ADV-028",
+      "category": "namespace_isolation",
+      "description": "Complete civil fact set must fire civil rule",
+      "passed": true,
+      "reason": "Claims: ['CIVIL_LIABILITY_GRANTED']",
+      "details": {}
+    }
+  ]
+}

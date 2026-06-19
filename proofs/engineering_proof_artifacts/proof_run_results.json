@@ -1,7 +1,7 @@
 {
-  "start_time": "2026-06-11T13:32:12.265945",
-  "end_time": "2026-06-11T13:34:27.770509",
-  "total_runtime_seconds": 135.5,
+  "start_time": "2026-06-19T02:28:46.140418",
+  "end_time": "2026-06-19T02:31:04.169232",
+  "total_runtime_seconds": 138.03,
   "results": [
     {
       "artifact_id": "ART-001",
@@ -11,12 +11,12 @@
       "trust_label": "EXHAUSTIVE_FINITE_PROOF",
       "checker_command": "python3 galois/finite_galois_adjunction.py",
       "checker_type": "python",
-      "runtime_seconds": 8.85,
+      "runtime_seconds": 9.42,
       "stdout": "======================================================================\nFINITE-DOMAIN GALOIS CONNECTION EXHAUSTIVE VERIFICATION\n======================================================================\nMax |D|    = 4\nMax |Atom| = 4\n\n--- |D|=1, |Atom|=1 (alpha_one count = 2^1 = 2) ---\n  Fixtures checked: 2\n  Status: PASS\n\n--- |D|=1, |Atom|=2 (alpha_one count = 2^2 = 4) ---\n  Fixtures checked: 4\n  Status: PASS\n\n--- |D|=1, |Atom|=3 (alpha_one count = 2^3 = 8) ---\n  Fixtures checked: 8\n  Status: PASS\n\n--- |D|=1, |Atom|=4 (alpha_one count = 2^4 = 16) ---\n  Fixtures checked: 16\n  Status: PASS\n\n--- |D|=2, |Atom|=1 (alpha_one count = 2^2 = 4) ---\n  Fixtures checked: 4\n  Status: PASS\n\n--- |D|=2, |Atom|=2 (alpha_one count = 2^4 = 16) ---\n  Fixtures checked: 16\n  Status: PASS\n\n--- |D|=2, |Atom|=3 (alpha_one count = 2^6 = 64) ---\n  Fixtures checked: 64\n  Status: PASS\n\n--- |D|=2, |Atom|=4 (alpha_one count = 2^8 = 256) ---\n  Fixtures checked: 256\n  Status: PASS\n\n--- |D|=3, |Atom|=1 (alpha_one count = 2^3 = 8) ---\n  Fixtures checked: 8\n  Status: PASS\n\n--- |D|=3, |Atom|=2 (alpha_one count = 2^6 = 64) ---\n  Fixtures checked: 64\n  Status: PASS\n\n--- |D|=3, |Atom|=3 (alpha_one count = 2^9 = 512) ---\n  Fixtures checked: 512\n  Status: PASS\n\n--- |D|=3, |Atom|=4 (alpha_one count = 2^12 = 4096) ---\n  Fixtures checked: 4096\n  Status: PASS\n\n--- |D|=4, |Atom|=1 (alpha_one count = 2^4 = 16) ---\n  Fixtures checked: 16\n  Status: PASS\n\n--- |D|=4, |Atom|=2 (alpha_one count = 2^8 = 256) ---\n  Fixtures checked: 256\n  Status: PASS\n\n--- |D|=4, |Atom|=3 (alpha_one count = 2^12 = 4096) ---\n  Fixtures checked: 4096\n  Status: PASS\n\n--- |D|=4, |Atom|=4 (alpha_one count = 2^16 = 65536) ---\n  Fixtures checked: 65536\n  Status: PASS\n\n======================================================================\nSUMMARY\n======================================================================\n|D| | |Atom| |   Fixtures | Status\n-----------------------------------\n  1 |      1 |          2 |   PASS\n  1 |      2 |          4 |   ",
       "stderr": "",
       "return_code": 0,
       "error_message": "",
-      "timestamp": "2026-06-11T13:32:15.130744"
+      "timestamp": "2026-06-19T02:28:51.479242"
     },
     {
       "artifact_id": "ART-003",
@@ -26,12 +26,12 @@
       "trust_label": "EXHAUSTIVE_FINITE_PROOF",
       "checker_command": "python3 horn/bounded_horn_correctness.py",
       "checker_type": "python",
-      "runtime_seconds": 0.67,
+      "runtime_seconds": 0.69,
       "stdout": "======================================================================\nBOUNDED HORN CORRECTNESS PROOF\n======================================================================\nStatement: For finite strict acyclic Horn KB,\n           operational_forward_chaining(P) = lfp(T_P)\nMax atoms: 4\nSample size for |U|=4: 50,000\n\n--- Atom universe U = [0] (|U|=1) ---\n  Total possible rules (non-tautological): 1\n  Total possible fact sets: 2\n  Total KBs in space: 4\n  Mode: EXHAUSTIVE\n  Acyclic KBs checked: 4\n  Cyclic KBs skipped:  0\n  PASS: 4\n  FAIL: 0\n\n--- Atom universe U = [0, 1] (|U|=2) ---\n  Total possible rules (non-tautological): 4\n  Total possible fact sets: 4\n  Total KBs in space: 64\n  Mode: EXHAUSTIVE\n  Acyclic KBs checked: 48\n  Cyclic KBs skipped:  16\n  PASS: 48\n  FAIL: 0\n\n--- Atom universe U = [0, 1, 2] (|U|=3) ---\n  Total possible rules (non-tautological): 12\n  Total possible fact sets: 8\n  Total KBs in space: 32,768\n  Mode: EXHAUSTIVE\n  Acyclic KBs checked: 3904\n  Cyclic KBs skipped:  28864\n  PASS: 3904\n  FAIL: 0\n\n--- Atom universe U = [0, 1, 2, 3] (|U|=4) ---\n  Total possible rules (non-tautological): 32\n  Total possible fact sets: 16\n  Total KBs in space: 68,719,476,736\n  Mode: RANDOM SAMPLING (50,000 samples)\n  Acyclic KBs checked: 9\n  Cyclic KBs skipped:  49991\n  PASS: 9\n  FAIL: 0\n\n======================================================================\nSUMMARY\n======================================================================\nTotal acyclic KBs checked: 3965\nTotal cyclic KBs skipped:  78871\nTotal PASS: 3965\nTotal FAIL: 0\n\n*** ALL CHECKS PASSED ***\nTheorem confirmed: For finite strict acyclic Horn KB,\n  operational_forward_chaining(P) = lfp(T_P)\n",
       "stderr": "",
       "return_code": 0,
       "error_message": "",
-      "timestamp": "2026-06-11T13:32:23.980182"
+      "timestamp": "2026-06-19T02:29:00.895623"
     },
     {
       "artifact_id": "ART-004",
@@ -41,12 +41,12 @@
       "trust_label": "EXHAUSTIVE_FINITE_PROOF",
       "checker_command": "python3 horn/horn_termination_measure.py",
       "checker_type": "python",
-      "runtime_seconds": 12.48,
+      "runtime_seconds": 13.92,
       "stdout": "======================================================================\nHORN TERMINATION MEASURE PROOF\n======================================================================\nStatement: For finite strict Horn KB over finite universe U,\n           forward chaining terminates in at most |U| steps.\nMax atoms: 4\nSample size for |U|=4: 50,000\n\n--- Atom universe U = [0] (|U|=1) ---\n  Total possible rules: 1\n  Total KBs in space: 4\n  Mode: EXHAUSTIVE\n  Acyclic KBs: 4, Cyclic KBs: 0\n  PASS: 4, FAIL: 0\n  Max observed steps to convergence: 1\n  Step distribution: {0: 3, 1: 1}\n\n--- Atom universe U = [0, 1] (|U|=2) ---\n  Total possible rules: 4\n  Total KBs in space: 64\n  Mode: EXHAUSTIVE\n  Acyclic KBs: 48, Cyclic KBs: 16\n  PASS: 64, FAIL: 0\n  Max observed steps to convergence: 2\n  Step distribution: {0: 28, 1: 32, 2: 4}\n\n--- Atom universe U = [0, 1, 2] (|U|=3) ---\n  Total possible rules: 12\n  Total KBs in space: 32,768\n  Mode: EXHAUSTIVE\n  Acyclic KBs: 3904, Cyclic KBs: 28864\n  PASS: 32768, FAIL: 0\n  Max observed steps to convergence: 3\n  Step distribution: {0: 6144, 1: 20672, 2: 5376, 3: 576}\n\n--- Atom universe U = [0, 1, 2, 3] (|U|=4) ---\n  Total possible rules: 32\n  Total KBs in space: 68,719,476,736\n  Mode: RANDOM SAMPLING (50,000 samples)\n  Acyclic KBs: 9, Cyclic KBs: 49991\n  PASS: 50000, FAIL: 0\n  Max observed steps to convergence: 4\n  Step distribution: {0: 3710, 1: 34723, 2: 10125, 3: 1335, 4: 107}\n\n======================================================================\nSUMMARY\n======================================================================\nTotal KBs checked: 82836\n  Acyclic: 3965\n  Cyclic:  78871\nPASS: 82836\nFAIL: 0\n\n*** ALL CHECKS PASSED ***\n\nTermination properties confirmed:\n  1. T_P is extensive: I ⊆ T_P(I) for all I\n  2. T_P is monotone: I ⊆ J ⇒ T_P(I) ⊆ T_P(J)\n  3. Termination measure μ(I) = |U| - |I| strictly decreases\n  4. Forward chaining terminates in ≤ |U| steps\n  5. Fixpoint is reached in finite time for all finite KBs\n",
       "stderr": "",
       "return_code": 0,
       "error_message": "",
-      "timestamp": "2026-06-11T13:32:24.655126"
+      "timestamp": "2026-06-19T02:29:01.589272"
     },
     {
       "artifact_id": "ART-006",
@@ -56,12 +56,12 @@
       "trust_label": "EXHAUSTIVE_FINITE_PROOF",
       "checker_command": "python3 fixpoint/production_bounded_termination.py",
       "checker_type": "python",
-      "runtime_seconds": 0.1,
-      "stdout": "================================================================================\nFIXPOINT TERMINATION BOUNDARY PROOFS\n================================================================================\n\n================================================================================\nPROPOSITION 1: Pure Horn Termination\n--------------------------------------------------------------------------------\nProposition: Pure Horn Termination\nDescription: Monotonic growth in finite universe → finite step stop\nALL TESTS PASSED: True\n\n  Test: tiny_2facts_chain\n    Universe size: 2\n    Fixpoint: {'B', 'A'}\n    Steps: 3 (max allowed: 3)\n    Monotonicity: True\n    Bound verified: True\n\n  Test: 3facts_chain\n    Universe size: 3\n    Fixpoint: {'C', 'B', 'A'}\n    Steps: 4 (max allowed: 4)\n    Monotonicity: True\n    Bound verified: True\n\n  Test: 4facts_diamond\n    Universe size: 4\n    Fixpoint: {'D', 'B', 'A', 'C'}\n    Steps: 4 (max allowed: 5)\n    Monotonicity: True\n    Bound verified: True\n\n  Test: 2facts_cyclic\n    Universe size: 2\n    Fixpoint: {'B', 'A'}\n    Steps: 3 (max allowed: 3)\n    Monotonicity: True\n    Bound verified: True\n\n  Test: 5facts_merged\n    Universe size: 5\n    Fixpoint: {'D', 'A', 'C', 'E', 'B'}\n    Steps: 4 (max allowed: 6)\n    Monotonicity: True\n    Bound verified: True\n\n================================================================================\nPROPOSITION 2: Production Evaluator Bounded Operational Termination\n--------------------------------------------------------------------------------\nProposition: Production Evaluator Bounded Operational Termination\nDescription: Termination via explicit operational bounds, NOT Tarski theorem\nALL TESTS PASSED: True\n\n  Test: normal_execution\n    terminated: True\n    steps: 6\n    max_iterations: 100\n    bound_respected: True\n    rules_applied_count: 6\n    modification_count: 2\n    max_modifications: 10\n    mod_bound_respected: True\n    status: PASS\n\n  Test: rules_applied_monotonicity\n    history: [1, 2, 3]\n    is_monoton",
+      "runtime_seconds": 0.15,
+      "stdout": "================================================================================\nFIXPOINT TERMINATION BOUNDARY PROOFS\n================================================================================\n\n================================================================================\nPROPOSITION 1: Pure Horn Termination\n--------------------------------------------------------------------------------\nProposition: Pure Horn Termination\nDescription: Monotonic growth in finite universe → finite step stop\nALL TESTS PASSED: True\n\n  Test: tiny_2facts_chain\n    Universe size: 2\n    Fixpoint: {'B', 'A'}\n    Steps: 3 (max allowed: 3)\n    Monotonicity: True\n    Bound verified: True\n\n  Test: 3facts_chain\n    Universe size: 3\n    Fixpoint: {'B', 'C', 'A'}\n    Steps: 4 (max allowed: 4)\n    Monotonicity: True\n    Bound verified: True\n\n  Test: 4facts_diamond\n    Universe size: 4\n    Fixpoint: {'B', 'D', 'C', 'A'}\n    Steps: 4 (max allowed: 5)\n    Monotonicity: True\n    Bound verified: True\n\n  Test: 2facts_cyclic\n    Universe size: 2\n    Fixpoint: {'B', 'A'}\n    Steps: 3 (max allowed: 3)\n    Monotonicity: True\n    Bound verified: True\n\n  Test: 5facts_merged\n    Universe size: 5\n    Fixpoint: {'B', 'C', 'A', 'E', 'D'}\n    Steps: 4 (max allowed: 6)\n    Monotonicity: True\n    Bound verified: True\n\n================================================================================\nPROPOSITION 2: Production Evaluator Bounded Operational Termination\n--------------------------------------------------------------------------------\nProposition: Production Evaluator Bounded Operational Termination\nDescription: Termination via explicit operational bounds, NOT Tarski theorem\nALL TESTS PASSED: True\n\n  Test: normal_execution\n    terminated: True\n    steps: 6\n    max_iterations: 100\n    bound_respected: True\n    rules_applied_count: 6\n    modification_count: 2\n    max_modifications: 10\n    mod_bound_respected: True\n    status: PASS\n\n  Test: rules_applied_monotonicity\n    history: [1, 2, 3]\n    is_monoton",
       "stderr": "",
       "return_code": 0,
       "error_message": "",
-      "timestamp": "2026-06-11T13:32:37.144255"
+      "timestamp": "2026-06-19T02:29:15.505428"
     },
     {
       "artifact_id": "ART-008",
@@ -71,12 +71,12 @@
       "trust_label": "EXHAUSTIVE_FINITE_PROOF",
       "checker_command": "python3 aaf/dung_grounded_extension.py",
       "checker_type": "python",
-      "runtime_seconds": 46.43,
+      "runtime_seconds": 48.78,
       "stdout": "================================================================================\nDUNG AAF GROUNDED EXTENSION - EXHAUSTIVE VERIFICATION\n================================================================================\n\n--------------------------------------------------------------------------------\nSPECIAL CASE ANALYSIS\n--------------------------------------------------------------------------------\n\n  Case: empty_attacks [PASS]\n    AAF: AAF(Ar={a,b,c}, att={})\n    Description: No attacks: every argument defends itself vacuously\n    Grounded: ['a', 'b', 'c']\n    Expected: ['a', 'b', 'c']\n    Steps: 2\n\n  Case: self_attack [PASS]\n    AAF: AAF(Ar={a}, att={a→a})\n    Description: Self-attacking argument cannot be in any extension\n    Grounded: []\n    Expected: []\n    Steps: 1\n\n  Case: simple_attack [PASS]\n    AAF: AAF(Ar={a,b}, att={a→b})\n    Description: Unattacked argument a is grounded; attacked b is out\n    Grounded: ['a']\n    Expected: ['a']\n    Steps: 2\n\n  Case: mutual_attack [PASS]\n    AAF: AAF(Ar={a,b}, att={a→b,b→a})\n    Description: Neither a nor b can be defended (skeptical semantics: both out)\n    Grounded: []\n    Expected: []\n    Steps: 1\n\n  Case: defense_chain [PASS]\n    AAF: AAF(Ar={a,b,c}, att={b→a,c→b})\n    Description: c attacks b (attacker of a), so c defends a; c is unattacked\n    Grounded: ['a', 'c']\n    Expected: ['a', 'c']\n    Steps: 3\n\n  Case: odd_cycle_3 [PASS]\n    AAF: AAF(Ar={a,b,c}, att={a→b,b→c,c→a})\n    Description: 3-cycle: no argument is defended, grounded is empty\n    Grounded: []\n    Expected: []\n    Steps: 1\n\n  Case: even_cycle_4 [PASS]\n    AAF: AAF(Ar={a,b,c,d}, att={a→b,b→c,c→d,d→a})\n    Description: 4-cycle: no argument is defended by any set\n    Grounded: []\n    Expected: []\n    Steps: 1\n\n  Case: complete_graph [PASS]\n    AAF: AAF(Ar={a,b,c}, att={a→b,a→c,b→a,b→c,c→a,c→b})\n    Description: Complete directed graph (no self-loops): nothing is defended\n    Grounded: []\n    Expected: []\n    Steps: 1\n\n  Case: isolated_arguments [PASS]\n   ",
       "stderr": "",
       "return_code": 0,
       "error_message": "",
-      "timestamp": "2026-06-11T13:32:37.245664"
+      "timestamp": "2026-06-19T02:29:15.658470"
     },
     {
       "artifact_id": "ART-009",
@@ -86,12 +86,12 @@
       "trust_label": "EXHAUSTIVE_FINITE_PROOF",
       "checker_command": "python3 aaf/stratified_correspondence.py",
       "checker_type": "python",
-      "runtime_seconds": 0.07,
+      "runtime_seconds": 0.15,
       "stdout": "================================================================================\nSTRATIFIED REBUTTAL/EXCEPTION PIPELINE ↔ AAF CORRESPONDENCE\n================================================================================\n\n--------------------------------------------------------------------------------\nLEGAL FIXTURE TESTS\n--------------------------------------------------------------------------------\n\n  Fixture: simple_rebuttal [PASS]\n    Pipeline accepted: ['rebuttal_1']\n    AAF grounded:      ['rebuttal_1']\n\n  Fixture: rebuttal_with_exception [PASS]\n    Pipeline accepted: ['base_claim', 'except_1']\n    AAF grounded:      ['base_claim', 'except_1']\n\n  Fixture: counter_rebuttal [PASS]\n    Pipeline accepted: ['counter_reb_1', 'rebuttal_1']\n    AAF grounded:      ['counter_reb_1', 'rebuttal_1']\n\n  Fixture: multiple_base [PASS]\n    Pipeline accepted: ['base_1', 'reb_2']\n    AAF grounded:      ['base_1', 'reb_2']\n\n  Fixture: diamond [PASS]\n    Pipeline accepted: ['except_a', 'reb_b']\n    AAF grounded:      ['except_a', 'reb_b']\n\n  Fixture: mutual_attack [PASS]\n    Pipeline accepted: ['reb_vs_a', 'reb_vs_b']\n    AAF grounded:      ['reb_vs_a', 'reb_vs_b']\n\n  Fixture: self_rebuttal [PASS]\n    Pipeline accepted: ['self_reb']\n    AAF grounded:      ['self_reb']\n\n  Fixture: three_level_defense [PASS]\n    Pipeline accepted: ['base', 'deep_exc', 'exc']\n    AAF grounded:      ['base', 'deep_exc', 'exc']\n\n  Total fixtures: 8\n  Matching: 8\n  Non-matching: 0\n\n================================================================================\nEXHAUSTIVE SMALL PIPELINE CHECK\n================================================================================\n  Total pipelines enumerated: 6\n  Matches: 6\n  Mismatches: 0\n\n================================================================================\nCORRECTED CORRESPONDENCE CLAIM\n================================================================================\n\n  Original (overly strong): Pipeline accepted claims == AAF grounded extension\n\n",
       "stderr": "",
       "return_code": 0,
       "error_message": "",
-      "timestamp": "2026-06-11T13:33:23.672851"
+      "timestamp": "2026-06-19T02:30:04.434397"
     },
     {
       "artifact_id": "ART-010",
@@ -101,12 +101,12 @@
       "trust_label": "SYMBOLIC_PROVED",
       "checker_command": "python3 graph_similarity/graph_similarity_range.py",
       "checker_type": "python",
-      "runtime_seconds": 0.91,
+      "runtime_seconds": 1.52,
       "stdout": "\n############################################################\n# GRAPH SIMILARITY SCORE RANGE PROOF\n# score = 0.6*jaccard + 0.4*size_ratio\n#         where size_ratio = 0.5*vertex_ratio + 0.5*edge_ratio\n############################################################\n\n============================================================\nPART 1: SYMBOLIC RANGE PROOF\n============================================================\nScore formula:\n  score = 3/5*jaccard + 1/5*vertex_ratio + 1/5*edge_ratio\n  score = edge_ratio/5 + 3*jaccard/5 + vertex_ratio/5\n\nTotal weight = 1 = 1.0\n\n--- Proof Structure ---\nscore = 0.6*jaccard + 0.2*vertex_ratio + 0.2*edge_ratio\nAll weights (0.6, 0.2, 0.2) are non-negative and sum to 1.0\nTherefore score is a CONVEX COMBINATION of the three ratios.\n\nFor any convex combination with all inputs in [0,1]:\n  - Minimum value = 0 (achieved when all inputs = 0)\n  - Maximum value = 1 (achieved when all inputs = 1)\n\n--- SymPy Verification ---\nscore(0,0,0) = 0 = 0.0\nscore(1,1,1) = 1 = 1.0\n\n--- Partial Derivatives (Monotonicity) ---\n∂score/∂jaccard      = 3/5  (non-negative: True)\n∂score/∂vertex_ratio = 1/5  (non-negative: True)\n∂score/∂edge_ratio   = 1/5  (non-negative: True)\n\n*** SYMBOLIC PROOF CONCLUSION ***\nSince score is monotonically increasing in each variable\n(all partial derivatives ≥ 0), and each variable ∈ [0,1],\nthe range of score is [0, 1].  QED.\n============================================================\n\n============================================================\nPART 2: EXHAUSTIVE ENUMERATION PROOF\n============================================================\nGrid resolution: 21 points per dimension\nTotal combinations: 9261\n\n--- Results ---\nMinimum score: 0.0000000000 at (j,v,e) = (0.0, 0.0, 0.0)\nMaximum score: 1.0000000000 at (j,v,e) = (1.0, 1.0, 1.0)\n\n*** EXHAUSTIVE PROOF CONCLUSION ***\nAll 9261 grid combinations produce score ∈ [0, 1]\nRange [0, 1] VERIFIED.  QED.\n============================================================\n\n==========================",
       "stderr": "",
       "return_code": 0,
       "error_message": "",
-      "timestamp": "2026-06-11T13:33:23.745405"
+      "timestamp": "2026-06-19T02:30:04.587859"
     },
     {
       "artifact_id": "ART-016",
@@ -116,12 +116,12 @@
       "trust_label": "SYMBOLIC_PROVED",
       "checker_command": "python3 banach/banach_effective_nodes.py",
       "checker_type": "python",
-      "runtime_seconds": 0.89,
+      "runtime_seconds": 1.28,
       "stdout": "\n\n######################################################################\n# BANACH CONTRACTION PROOF FOR EFFECTIVE NODES (SINGLE DIMENSION)\n######################################################################\n======================================================================\nSYMBOLIC PROOF: f(x) = βT + (1-β)x is a contraction\n======================================================================\n\n1. f(x) - f(y) = (beta - 1)*(-x + y)\n2. |f(x) - f(y)| = |1-β| * |x - y|\n3. Contraction factor c = |1-β|\n\n4. When 0 < β < 1:\n   0 < 1-β < 1\n   Therefore |1-β| = 1-β ∈ (0, 1)\n   Hence d(f(x), f(y)) = (1-β) * d(x,y) < d(x,y)\n\n5. When β = 1:\n   f(x) = T (constant map)\n   d(f(x), f(y)) = |T - T| = 0\n   Contraction factor c = 0 < 1 (strong contraction)\n\n6. Numerical verification of contraction factor:\n   β range: (0.01, 0.99)\n   c = |1-β| range: (0.0100, 0.9900)\n   All c values < 1: VERIFIED\n\n======================================================================\nFIXED POINT ANALYSIS\n======================================================================\n\n1. Fixed point equation: f(x*) = x*\n   βT + (1-β)x* = x*\n   βT = βx*\n   x* = T\n\n2. SymPy solution: x* = [T]\n\n3. Verification: f(T) = βT + (1-β)T = T\n\n======================================================================\nCONVERGENCE ANALYSIS\n======================================================================\n\n1. Iteration: x_{n+1} = βT + (1-β)x_n\n\n2. Closed form:\n   x_n = T + (1-β)^n (x_0 - T)\n\n3. Distance to fixed point:\n   |x_n - T| = |1-β|^n * |x_0 - T|\n   = (1-β)^n * |x_0 - T|   [for 0 < β < 1]\n\n4. Steps to reach tolerance ε:\n   (1-β)^n * |x_0 - T| < ε\n   n > log(ε / |x_0 - T|) / log(1-β)\n\n5. Numerical example: T=100, β=0.1, x_0=50\n   n= 1: x_n = 55.000000, |x_n - T| = 45.000000\n   n= 5: x_n = 70.475500, |x_n - T| = 29.524500\n   n=10: x_n = 82.566078, |x_n - T| = 17.433922\n   n=20: x_n = 93.921167, |x_n - T| = 6.078833\n   n=50: x_n = 99.742311, |x_n - T| = 0.257689\n\n=====================================================",
       "stderr": "",
       "return_code": 0,
       "error_message": "",
-      "timestamp": "2026-06-11T13:33:24.654365"
+      "timestamp": "2026-06-19T02:30:06.105377"
     },
     {
       "artifact_id": "ART-015",
@@ -131,12 +131,12 @@
       "trust_label": "EXHAUSTIVE_FINITE_PROOF",
       "checker_command": "python3 statistics/siegel_repeated_median_verifier.py",
       "checker_type": "python",
-      "runtime_seconds": 0.19,
+      "runtime_seconds": 0.32,
       "stdout": "======================================================================\nSIEGEL REPEATED MEDIAN VERIFIER\n======================================================================\n\n--- TEST 1: Perfect Line y = 2x + 1 ---\n============================================================\nSIEGEL REPEATED MEDIAN: EXPLICIT TRACE\n============================================================\nData: x = [0, 1, 2, 3, 4]\n      y = [1, 3, 5, 7, 9]\n\n--- i = 0 (x=0, y=1) ---\n  j=1: (y[1]-y[1])/(x[1]-x[0]) = (3.00-1.00)/(1.00-0.00) = 2.0000\n  j=2: (y[2]-y[2])/(x[2]-x[0]) = (5.00-1.00)/(2.00-0.00) = 2.0000\n  j=3: (y[3]-y[3])/(x[3]-x[0]) = (7.00-1.00)/(3.00-0.00) = 2.0000\n  j=4: (y[4]-y[4])/(x[4]-x[0]) = (9.00-1.00)/(4.00-0.00) = 2.0000\n  Slopes: [2.0, 2.0, 2.0, 2.0]\n  s_0 = median(slopes) = 2.0000\n\n--- i = 1 (x=1, y=3) ---\n  j=0: (y[0]-y[0])/(x[0]-x[1]) = (1.00-3.00)/(0.00-1.00) = 2.0000\n  j=2: (y[2]-y[2])/(x[2]-x[1]) = (5.00-3.00)/(2.00-1.00) = 2.0000\n  j=3: (y[3]-y[3])/(x[3]-x[1]) = (7.00-3.00)/(3.00-1.00) = 2.0000\n  j=4: (y[4]-y[4])/(x[4]-x[1]) = (9.00-3.00)/(4.00-1.00) = 2.0000\n  Slopes: [2.0, 2.0, 2.0, 2.0]\n  s_1 = median(slopes) = 2.0000\n\n--- i = 2 (x=2, y=5) ---\n  j=0: (y[0]-y[0])/(x[0]-x[2]) = (1.00-5.00)/(0.00-2.00) = 2.0000\n  j=1: (y[1]-y[1])/(x[1]-x[2]) = (3.00-5.00)/(1.00-2.00) = 2.0000\n  j=3: (y[3]-y[3])/(x[3]-x[2]) = (7.00-5.00)/(3.00-2.00) = 2.0000\n  j=4: (y[4]-y[4])/(x[4]-x[2]) = (9.00-5.00)/(4.00-2.00) = 2.0000\n  Slopes: [2.0, 2.0, 2.0, 2.0]\n  s_2 = median(slopes) = 2.0000\n\n--- i = 3 (x=3, y=7) ---\n  j=0: (y[0]-y[0])/(x[0]-x[3]) = (1.00-7.00)/(0.00-3.00) = 2.0000\n  j=1: (y[1]-y[1])/(x[1]-x[3]) = (3.00-7.00)/(1.00-3.00) = 2.0000\n  j=2: (y[2]-y[2])/(x[2]-x[3]) = (5.00-7.00)/(2.00-3.00) = 2.0000\n  j=4: (y[4]-y[4])/(x[4]-x[3]) = (9.00-7.00)/(4.00-3.00) = 2.0000\n  Slopes: [2.0, 2.0, 2.0, 2.0]\n  s_3 = median(slopes) = 2.0000\n\n--- i = 4 (x=4, y=9) ---\n  j=0: (y[0]-y[0])/(x[0]-x[4]) = (1.00-9.00)/(0.00-4.00) = 2.0000\n  j=1: (y[1]-y[1])/(x[1]-x[4]) = (3.00-9.00)/(1.00-4.00) = 2.0000\n  ",
       "stderr": "",
       "return_code": 0,
       "error_message": "",
-      "timestamp": "2026-06-11T13:33:25.543299"
+      "timestamp": "2026-06-19T02:30:07.386676"
     },
     {
       "artifact_id": "ART-012",
@@ -146,12 +146,12 @@
       "trust_label": "REFUTED",
       "checker_command": "python3 graph_similarity/metric_counterexamples.py",
       "checker_type": "python",
-      "runtime_seconds": 54.96,
+      "runtime_seconds": 54.9,
       "stdout": "############################################################\n# METRIC COUNTEREXAMPLES FOR GRAPH SIMILARITY\n# score = 0.6*jaccard + 0.4*size_ratio\n#\n# CRITICAL: Empty-feature self-similarity = 0.4 (NOT 1.0)\n############################################################\n============================================================\n1. REFLEXIVITY COUNTEREXAMPLE\n============================================================\n\nReflexivity requires: sim(G, G) = 1 for all G\nCounterexample: Graph with ALL-EMPTY features\nEmpty-feature self-similarity = 0.4 (conservative policy)\n\nGraph G = Graph(V=[A,B,C], E=[A-B,B-C])\n\nSelf-similarity computation:\n  feature_jaccard(G, G) = 0.4000\n  vertex_ratio(G, G)    = 1.0000\n  edge_ratio(G, G)      = 1.0000\n  size_ratio(G, G)      = 1.0000\n  ---\n  score(G, G)           = 0.6 × 0.4000 + 0.4 × 1.0000\n                        = 0.2400 + 0.4000\n                        = 0.6400\n\n*** RESULT: score(G, G) = 0.6400 ≠ 1.0 ***\n*** REFLEXIVITY REFUTED ***\n============================================================\n\n============================================================\n1b. SOURCE-CONSISTENT MINIMAL REFLEXIVITY COUNTEREXAMPLE\n============================================================\n\nDirect computation matching source code formula:\n  compute_graph_similarity(1, 0, set(), 1, 0, set()) = 0.4\n  compute_graph_similarity(1, 0, {'x'}, 1, 0, {'x'}) = 1.0\n\nThe score=0.64 example above is an abstract multi-vertex model.\nThis minimal CE directly matches the source implementation.\n\n  sim(1,0,empty, 1,0,empty)  = 0.4\n  sim(1,0,{x}, 1,0,{x})     = 1.0\n\n  *** RESULT: sim(G_empty, G_empty) = 0.4 != 1.0 ***\n  *** But sim(G_featured, G_featured) = 1.0 = 1.0 ***\n  *** Reflexivity FAILS for empty-feature graphs ***\n\n  [PASS] Source-consistent minimal reflexivity CE confirmed.\n============================================================\n\n============================================================\n2. IDENTITY OF INDISCERNIBLES COUNTEREXAMPLE\n=========================",
       "stderr": "",
       "return_code": 0,
       "error_message": "",
-      "timestamp": "2026-06-11T13:33:25.730668"
+      "timestamp": "2026-06-19T02:30:07.704843"
     },
     {
       "artifact_id": "ART-013",
@@ -161,12 +161,12 @@
       "trust_label": "REFUTED",
       "checker_command": "python3 dp/dp_floor_clipping_analysis.py",
       "checker_type": "python",
-      "runtime_seconds": 0.79,
+      "runtime_seconds": 1.13,
       "stdout": "======================================================================\nDP FLOOR CLIPPING ANALYSIS\n======================================================================\n\nMechanism Under Analysis:\n    M(D) = max(0.3 * f(D), f(D) + Lap(Δ/ε))\n\n    where:\n    - f(D): true query value (sensitive, dataset-dependent)\n    - Lap(b): Laplace noise with scale b = Δ/ε\n    - Floor: 0.3 * f(D)  [depends on sensitive data!]\n\nKey Question: Does M satisfy ε-DP?\n\n----------------------------------------------------------------------\n2. SYMBOLIC PRIVACY RATIO ANALYSIS\n----------------------------------------------------------------------\n\nFor neighboring datasets D ~ D', define:\n    - f(D) = query value on D\n    - f(D') = query value on D' (neighboring)\n    - Δ = |f(D) - f(D')| (L1 sensitivity)\n    - b = Δ/ε (noise scale)\n\nThe floor-clipped mechanism:\n    M(D)  = max(0.3 * f(D),  f(D) + noise)\n    M(D') = max(0.3 * f(D'), f(D') + noise')\n\nPDF of M(D):\n    For y > 0.3 * f(D):  PDF = (1/2b) * exp(-|y - f(D)|/b)\n    For y = 0.3 * f(D):  point mass from the floor\n    For y < 0.3 * f(D):  PDF = 0\n\nSupport(M(D))  = [0.3 * f(D), ∞)\nSupport(M(D')) = [0.3 * f(D'), ∞)\n\n----------------------------------------------------------------------\n3. EXPLICIT COUNTEREXAMPLE\n----------------------------------------------------------------------\n\nConsider:\n    Dataset D:   f(D)  = 100\n    Dataset D':  f(D') = 200\n    (so Δ = 100, sensitivity)\n\n    Let ε = 1.0, so b = Δ/ε = 100.\n\nMechanism outputs:\n    M(D)  = max(30,  100 + Lap(100))\n    M(D') = max(60,  200 + Lap(100))\n\nThe supports are:\n    Support(M(D))  = [30, ∞)\n    Support(M(D')) = [60, ∞)\n\nCRITICAL OBSERVATION:\n    The output value y = 45 is in Support(M(D)) but NOT in Support(M(D')).\n\n    If we observe output y = 45, we know with CERTAINTY that the\n    dataset was D (not D'), because M(D') can never output < 60.\n\nThis means:\n    Pr[M(D') ∈ {45}] = 0\n    Pr[M(D)  ∈ {45}] > 0\n\nThe privacy ratio is INFINITE, violating ε-DP for any finite ε.\n\n--------",
       "stderr": "",
       "return_code": 0,
       "error_message": "",
-      "timestamp": "2026-06-11T13:34:20.692036"
+      "timestamp": "2026-06-19T02:31:02.605289"
     },
     {
       "artifact_id": "ART-014",
@@ -176,12 +176,12 @@
       "trust_label": "REFUTED",
       "checker_command": "python3 statistics/clipped_theilsen_refutation.py",
       "checker_type": "python",
-      "runtime_seconds": 0.07,
+      "runtime_seconds": 0.16,
       "stdout": "========================================================================\n  CLIPPED THEIL-SEN ≠ PURE THEIL-SEN: REFUTATION\n========================================================================\n\n────────────────────────────────────────────────────────────────────────\nCOUNTEREXAMPLE 1: Value Clipping Changes Output\n────────────────────────────────────────────────────────────────────────\nx = [1.0, 2.0, 3.0, 4.0, 5.0]\ny = [1.0, 10.0, 30.0, 60.0, 100.0]\nAll slopes: [9.0, 14.5, 19.67, 20.0, 24.75, 25.0, 30.0, 30.0, 35.0, 40.0]\nPure Theil-Sen:        24.8750\nValue clipped to ±10:  10.0000\nDIFFERENCE:            14.8750\n  ★ VALUE-CLIPPED ≠ PURE: REFUTED ★\n\n────────────────────────────────────────────────────────────────────────\nCOUNTEREXAMPLE 2: Slope Clipping Changes Median\n────────────────────────────────────────────────────────────────────────\nx = [0.0, 1.0, 2.0, 3.0, 4.0, 5.0]\ny = [0.0, 0.5, 1.0, 2.0, 50.0, 100.0]\nAll 15 slopes (sorted): [0.5, 0.5, 0.5, 0.67, 0.75, 1.0, 12.5, 16.5, 20.0, 24.5, 24.88, 33.0, 48.0, 49.0, 50.0]\nPure Theil-Sen:         16.5000\nClipped slopes [-2,5]:  5.0000\nDIFFERENCE:             11.5000\n  ★ SLOPE-CLIPPED ≠ PURE: REFUTED ★\n\n────────────────────────────────────────────────────────────────────────\nCOUNTEREXAMPLE 3: Percentile Filtering Changes Median\n────────────────────────────────────────────────────────────────────────\nx = [0.0, 1.0, 2.0, 3.0, 4.0, 5.0, 6.0]\ny = [0.0, 10.0, -8.0, 30.0, -5.0, 50.0, 3.0]\nAll 21 slopes (sorted): [-47.0, -35.0, -18.0, -9.0, -5.0, -4.0, -1.4, -1.25, 0.5, 1.5, 2.75, 4.0, 10.0, 10.0, 10.0, 10.0, 10.0, 10.0, 19.33, 38.0, 55.0]\nPure Theil-Sen:           2.7500\nFiltered (10-90%):        2.7500\nDIFFERENCE:               0.0000\n\n────────────────────────────────────────────────────────────────────────\nCOUNTEREXAMPLE 4: Extreme Outlier with Tight Slope Clip\n────────────────────────────────────────────────────────────────────────\nx = [0.0, 1.0, 2.0, 3.0, 4.0, 5.0]\ny = [0.0, 1.0, 3.0, 6.0, 50.0, 120.0]\nAll 15 slopes (so",
       "stderr": "",
       "return_code": 0,
       "error_message": "",
-      "timestamp": "2026-06-11T13:34:21.480112"
+      "timestamp": "2026-06-19T02:31:03.734135"
     },
     {
       "artifact_id": "ART-011",
@@ -191,12 +191,12 @@
       "trust_label": "SMT_PROVED_FINITE",
       "checker_command": "python3 graph_similarity/graph_similarity_range_z3.py",
       "checker_type": "z3",
-      "runtime_seconds": 0.19,
+      "runtime_seconds": 0.28,
       "stdout": "============================================================\nZ3 RANGE VERIFICATION\n============================================================\n\n--- Checking if score < 0 is possible ---\nResult: UNSAT  -->  score ≥ 0 is PROVEN\n\n--- Checking if score > 1 is possible ---\nResult: UNSAT  -->  score ≤ 1 is PROVEN\n\n============================================================\nCONCLUSION: score ∈ [0, 1]  --  VERIFIED BY Z3\n============================================================\n",
       "stderr": "",
       "return_code": 0,
       "error_message": "",
-      "timestamp": "2026-06-11T13:34:21.552326"
+      "timestamp": "2026-06-19T02:31:03.891840"
     },
     {
       "artifact_id": "ART-005",
@@ -211,7 +211,7 @@
       "stderr": "",
       "return_code": 0,
       "error_message": "Z3 binary not available (Python bindings exist but .smt2 needs z3 executable)",
-      "timestamp": "2026-06-11T13:34:21.739596"
+      "timestamp": "2026-06-19T02:31:04.169232"
     },
     {
       "artifact_id": "ART-002",
@@ -219,14 +219,14 @@
       "path": "galois/FiniteGaloisAdjunction.lean",
       "status": "PENDING_TOOLCHAIN",
       "trust_label": "PENDING_TOOLCHAIN",
-      "checker_command": "lean galois/FiniteGaloisAdjunction.lean",
+      "checker_command": "lean4 galois/FiniteGaloisAdjunction.lean",
       "checker_type": "lean",
-      "runtime_seconds": 3.59,
-      "stdout": "galois/FiniteGaloisAdjunction.lean:16:0: error: unknown module prefix 'Mathlib'\n\nNo directory 'Mathlib' or file 'Mathlib.olean' in the search path entries:\nc:\\Users\\being\\.elan\\toolchains\\leanprover--lean4---v4.30.0\\lib\\lean\n",
-      "stderr": "warning: failed to query latest release, using existing version 'leanprover/lean4:v4.30.0'\n",
-      "return_code": 1,
-      "error_message": "Mathlib dependency not available. Downgraded to PENDING_TOOLCHAIN.",
-      "timestamp": "2026-06-11T13:34:21.739596"
+      "runtime_seconds": 0.0,
+      "stdout": "",
+      "stderr": "",
+      "return_code": 0,
+      "error_message": "Lean not available",
+      "timestamp": "2026-06-19T02:31:04.169232"
     },
     {
       "artifact_id": "ART-017",
@@ -234,14 +234,14 @@
       "path": "banach/BanachEffectiveNodes.lean",
       "status": "PENDING_TOOLCHAIN",
       "trust_label": "PENDING_TOOLCHAIN",
-      "checker_command": "lean banach/BanachEffectiveNodes.lean",
+      "checker_command": "lean4 banach/BanachEffectiveNodes.lean",
       "checker_type": "lean",
-      "runtime_seconds": 2.44,
-      "stdout": "banach/BanachEffectiveNodes.lean:17:0: error: unknown module prefix 'Mathlib'\n\nNo directory 'Mathlib' or file 'Mathlib.olean' in the search path entries:\nc:\\Users\\being\\.elan\\toolchains\\leanprover--lean4---v4.30.0\\lib\\lean\n",
-      "stderr": "warning: failed to query latest release, using existing version 'leanprover/lean4:v4.30.0'\n",
-      "return_code": 1,
-      "error_message": "Mathlib dependency not available. Downgraded to PENDING_TOOLCHAIN.",
-      "timestamp": "2026-06-11T13:34:25.328353"
+      "runtime_seconds": 0.0,
+      "stdout": "",
+      "stderr": "",
+      "return_code": 0,
+      "error_message": "Lean not available",
+      "timestamp": "2026-06-19T02:31:04.169232"
     },
     {
       "artifact_id": "ART-007",
@@ -256,7 +256,7 @@
       "stderr": "",
       "return_code": 0,
       "error_message": "TLA+ (TLC) not available",
-      "timestamp": "2026-06-11T13:34:27.770509"
+      "timestamp": "2026-06-19T02:31:04.169232"
     }
   ],
   "toolchain_status": [
@@ -280,9 +280,9 @@
     },
     {
       "name": "Lean",
-      "available": true,
-      "version": "Lean (version 4.30.0, x86_64-w64-windows-gnu, commit d024af099ca4bf2c86f649261ebf59565dc8c622, Release)",
-      "check_command": "lean --version"
+      "available": false,
+      "version": "NOT INSTALLED",
+      "check_command": "lean4 --version"
     },
     {
       "name": "TLA+ (TLC)",

@@ -1,0 +1,36 @@
+{
+  "analysis": "Bayesian Calibration v2 (Proof Outcomes + Cross-Domain)",
+  "date": "2026-06-19",
+  "proof_calibration": {
+    "n_proved": 10,
+    "n_refuted": 3,
+    "prior": 0.7692307692307693,
+    "posterior": 0.9999974834239331,
+    "ci_95": [
+      0.9999960678554618,
+      0.9999979867381332
+    ],
+    "ci_width": 1.9188826714255924e-06,
+    "r_hat": 1.0000107484563565,
+    "ess": 3333.3333333333335
+  },
+  "checker_likelihood_ratios": {
+    "python": {
+      "lr": 2.5,
+      "n": 12
+    },
+    "z3": {
+      "lr": 2.0,
+      "n": 1
+    }
+  },
+  "cross_domain_negatives": 150,
+  "domains": [
+    "admin",
+    "contract",
+    "corporate",
+    "criminal",
+    "data",
+    "tort"
+  ]
+}

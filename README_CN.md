@@ -1,10 +1,12 @@
 # Legal Math Modeling — 法律数学建模
 
-> **克隆即读**：`git clone` 本仓库 → 在 GitHub 上打开 `paper/main.md` → KaTeX 自动渲染全部 77 个形式化定义/定理/反例。合并版论文见 `paper/icail_full_paper.md`。
+> **克隆即读**：`git clone` 本仓库 → 在 GitHub 上打开 `paper/main.md` → KaTeX 自动渲染形式化定义/定理/反例。合并版论文见 `paper/icail_full_paper.md`。
 >
-> 本仓库是 [juris-calculus](https://github.com/laubeing-droid/juris-calculus) 的**数学配套仓库** —— 一个跨中国内地、香港和美国法域的确定性符号法律推理引擎。包含完整的数学框架、56 个可运行理论模块、机器可复现的验证工件，以及一个 7 级*证据校准信任标签系统*，防止未验证的 AI 生成声明传播到工程决策。
+> 本仓库是 [juris-calculus](https://github.com/laubeing-droid/juris-calculus) 的**数学配套仓库** —— 一个跨中国内地、香港和美国法域的确定性符号法律推理引擎。包含完整的数学框架、59 个可运行理论模块、机器可复现的验证工件，以及一个 7 级*证据校准信任标签系统*，防止未验证的 AI 生成声明传播到工程决策。
 >
-> **从这里开始**：运行 `python -m theory` 查看全部 7 个核心数学声明的信任标签状态。然后阅读 `paper/main.md` 获取完整的形式化处理。
+> **当前状态（v5.0，Playbook v5.0）**：20 个核心定理；**5 个 PROVED_BY_ARTIFACT**，2 个 EMPIRICAL_PROXY，1 个 AXIOM_ONLY，2 个 PENDING_TOOLCHAIN，1 个 REFUTED，9 个已排除。Lean `lake build` 2948 jobs，构建文件 0 sorry、0 axiom。42 个对抗测试通过。4/4 Z3 验证通过。
+>
+> **从这里开始**：运行 `python -m theory` 查看全部核心数学定理的信任标签状态。然后阅读 `paper/explainable_legal_reasoning.md` 获取形式化处理。
 
 [English](README.md) | [中文](#1-概述)
 
@@ -66,7 +68,7 @@
 
 **1. 法律是形式系统，不是提示工程问题。**
 
-法律推理首次被形式化为完整的数学框架——Horn 子句用于前向推理，Dung 论证框架用于对抗性推理，Kripke 模型用于时序推理，范畴论用于跨法域映射——每个组件都有*机器可复现的证明*。这不是一篇提出框架的理论论文，而是一个*可运行的系统*，包含 56 个可运行证明模块和 66,066 个穷举枚举的攻击图。
+法律推理首次被形式化为完整的数学框架——Horn 子句用于前向推理，Dung 论证框架用于对抗性推理，Kripke 模型用于时序推理，范畴论用于跨法域映射——每个组件都有*机器可复现的证明*。这不是一篇提出框架的理论论文，而是一个*可运行的系统*，包含 59 个可运行证明模块和 66,066 个穷举枚举的攻击图。
 
 **2. 证据校准信任标签系统：AI 诚实的新标准。**
 
@@ -278,9 +280,9 @@ legal-math-modeling/                          322 个文件，7.4 MB
 │   ├── references.bib                        # 21 条参考文献
 │   └── sections/                             # 13 章
 │
-├── theory/                                   # 56 个 Python 理论模块
+├── theory/                                   # 59 个 Python 理论模块
 │   ├── model_status.py                       # ★ 信任标签系统
-│   └── ... (56 个可运行模块)
+│   └── ... (59 个可运行模块)
 │
 ├── proofs/                                   # 机器运行的证明工件
 │   ├── strict_proof_baseline/                # 规范严格基线（8/8 通过）
@@ -327,7 +329,7 @@ python proofs/strict_proof_baseline/run_all_proofs.py
 
 # 6. 扩展理论基础
 
-`theory/` 目录包含超出核心论文的 56 个形式化模块，为主体结果提供理论脚手架：
+`theory/` 目录包含超出核心论文的 59 个形式化模块，为主体结果提供理论脚手架：
 
 | 模块 | 数学框架 | 状态 |
 |------|----------|------|

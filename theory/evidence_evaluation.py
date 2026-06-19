@@ -123,15 +123,26 @@ _CONFLICT_PAIRS: List[Tuple[str, str]] = [
 def _contains_word_boundary(text: str, phrase: str) -> bool:
     """Check if phrase appears in text at word/phrase boundaries.
 
-    Uses simple tokenization to avoid substring false positives
-    (e.g., 'signed' should NOT match 'unsigned').
+    Uses tokenization on whitespace and underscores to avoid substring false
+    positives while handling legal identifiers like 'contract_signed',
+    'not_signed' consistently.  Hyphens are preserved as part of compound
+    tokens so that 'non-compliant' does not falsely match 'compliant'.
+
+    'unsigned' is a single token and will NOT match 'signed'.
+    'contract_signed' splits to ['contract', 'signed'] and WILL match 'signed'.
+    'not_signed' splits to ['not', 'signed'] and will match 'not signed'.
+    'non-compliant' stays as one token and will NOT match 'compliant'.
     """
-    # For multi-word phrases, use exact substring match
-    if " " in phrase:
-        return phrase in text
-    # For single words, check word boundaries using split
-    words = text.split()
-    return phrase in words
+    import re
+    # Tokenize on whitespace and underscores (NOT hyphens)
+    tokens = re.split(r'[\s_]+', text.lower())
+    phrase_tokens = re.split(r'[\s_]+', phrase.lower())
+    if len(phrase_tokens) == 1:
+        # Single word: set membership
+        return phrase_tokens[0] in tokens
+    # Multi-word: contiguous sequence check (order-preserving)
+    n = len(phrase_tokens)
+    return any(tokens[i:i + n] == phrase_tokens for i in range(len(tokens) - n + 1))
 
 
 def detect_contradiction(a: EvidenceItem, b: EvidenceItem) -> Optional[Contradiction]:
@@ -470,4 +481,60 @@ def demo_inference_chain() -> None:
 if __name__ == "__main__":
     demo()
     print()
-    demo_inference_chain()
+
+
+# ---------------------------------------------------------------------------
+# Temporal integration (F1)
+# ---------------------------------------------------------------------------
+
+def check_inference_chain_with_temporal(
+    facts: List[str],
+    rules: List[HornRule],
+    fact_date=None,
+    current_date=None,
+) -> Dict:
+    """Horn forward chaining with temporal filtering.
+
+    If fact_date and current_date are provided, filters rules by
+    temporal applicability before inference:
+    - Substantive law: filtered by fact_date (实体从旧)
+    - Procedural law: filtered by current_date (程序从新)
+
+    Falls back to check_inference_chain if dates not provided.
+    """
+    if fact_date is None or current_date is None:
+        return check_inference_chain(facts, rules)
+
+    try:
+        from theory.temporal_integration import TemporalFilter
+        from theory.argumentation_horn_unification import HornRule as AafHornRule
+
+        tf = TemporalFilter()
+        # Convert evidence HornRule to AafHornRule for temporal filter
+        for i, rule in enumerate(rules):
+            aaf_rule = AafHornRule(
+                id=rule.name or f"rule_{i}",
+                premises=rule.premises,
+                head=rule.conclusion,
+                exceptions=[],
+            )
+            tf.add_rule(aaf_rule, effective_date=fact_date)
+
+        # Filter by temporal applicability
+        applicable = tf.filter_rules(current_date)
+        applicable_ids = {r.id for r in applicable}
+
+        # Filter original rules
+        filtered = [
+            r for i, r in enumerate(rules)
+            if (r.name or f"rule_{i}") in applicable_ids
+        ]
+
+        result = check_inference_chain(facts, filtered)
+        result["temporal_filtered"] = True
+        result["original_rule_count"] = len(rules)
+        result["applicable_rule_count"] = len(filtered)
+        return result
+    except ImportError:
+        # temporal_integration not available, fall back
+        return check_inference_chain(facts, rules)

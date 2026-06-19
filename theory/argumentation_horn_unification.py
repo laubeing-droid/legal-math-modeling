@@ -131,8 +131,8 @@ class DungFrame:
         admissible_sets = []
         # For small argument sets, enumerate; for large, use grounded
         if len(self.args) <= 20:
-            for mask in range(1 << len(self.args)):
-                args_list = list(self.args)
+            args_list = list(self.args)
+            for mask in range(1 << len(args_list)):
                 s = {args_list[i] for i in range(len(args_list)) if mask & (1 << i)}
                 if self.is_admissible(s):
                     admissible_sets.append(s)
@@ -188,6 +188,62 @@ class HornToDungBridge:
     def __init__(self, rules: List[HornRule], facts: Set[str]):
         self.rules = {r.id: r for r in rules}
         self.facts = facts
+
+    def construct_deductive_frame(self, max_depth: int = 10) -> DungFrame:
+        """Build AF(KB) with defeat-aware forward chaining.
+
+        Each iteration:
+        1. Builds the argumentation frame from current facts
+        2. Computes grounded extension to identify accepted arguments
+        3. Derives new facts from accepted rules only
+        4. Repeats until no new facts appear or max_depth reached
+
+        This prevents defeated rules from contributing facts to dependent
+        rules, AND correctly handles rules whose premises are only satisfied
+        after accepted rules derive new facts.
+
+        Args:
+            max_depth: Maximum deduction depth (safety valve).
+
+        Returns:
+            DungFrame built on the defeat-aware closure.
+        """
+        import warnings
+
+        original_facts = self.facts
+        defeat_aware_closure = set(original_facts)
+        converged = False
+        for _ in range(max_depth):
+            # Rebuild frame from current closure and recompute accepted rules
+            self.facts = defeat_aware_closure
+            current_frame = self.construct_frame()
+            current_accepted = current_frame.grounded_extension()
+            accepted_rule_ids = {arg.rule_id for arg in current_accepted}
+
+            # Derive facts from accepted rules
+            changed = False
+            for rule in self.rules.values():
+                if rule.id in accepted_rule_ids and rule.head not in defeat_aware_closure:
+                    if all(p in defeat_aware_closure for p in rule.premises):
+                        defeat_aware_closure.add(rule.head)
+                        changed = True
+            if not changed:
+                converged = True
+                break
+
+        if not converged:
+            warnings.warn(
+                f"DeductionDepthExceededWarning: defeat-aware closure did not "
+                f"converge within {max_depth} iterations. Possible cyclic rules.",
+                stacklevel=2,
+            )
+
+        # Build final frame from defeat-aware closure
+        old_facts = self.facts
+        self.facts = defeat_aware_closure
+        filtered_frame = self.construct_frame()
+        self.facts = old_facts
+        return filtered_frame
 
     def construct_frame(self) -> DungFrame:
         """Build AF(KB) = (Args, Att).

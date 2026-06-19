@@ -1,0 +1,146 @@
+{
+  "source": "LegalBench (nguha/legalbench)",
+  "date": "2026-06-19",
+  "total_items": 2529,
+  "total_tasks": 10,
+  "binary_tasks": 4,
+  "task_details": {
+    "abercrombie": {
+      "n": 95,
+      "answer_types": [
+        "text"
+      ],
+      "n_binary": 0,
+      "positive_rate": 0,
+      "fields": [
+        "index",
+        "answer",
+        "text"
+      ]
+    },
+    "consumer_contracts_qa": {
+      "n": 396,
+      "answer_types": [
+        "binary"
+      ],
+      "n_binary": 396,
+      "positive_rate": 0.4494949494949495,
+      "fields": [
+        "index",
+        "contract",
+        "question",
+        "answer"
+      ]
+    },
+    "definition_extraction": {
+      "n": 500,
+      "answer_types": [
+        "text"
+      ],
+      "n_binary": 0,
+      "positive_rate": 0,
+      "fields": [
+        "index",
+        "answer",
+        "text"
+      ]
+    },
+    "diversity_6": {
+      "n": 300,
+      "answer_types": [
+        "binary"
+      ],
+      "n_binary": 300,
+      "positive_rate": 0.53,
+      "fields": [
+        "index",
+        "text",
+        "answer",
+        "parties_are_diverse",
+        "aic_is_met"
+      ]
+    },
+    "function_of_decision_section": {
+      "n": 367,
+      "answer_types": [
+        "text"
+      ],
+      "n_binary": 0,
+      "positive_rate": 0,
+      "fields": [
+        "index",
+        "Citation",
+        "Paragraph",
+        "answer"
+      ]
+    },
+    "hearsay": {
+      "n": 94,
+      "answer_types": [
+        "binary"
+      ],
+      "n_binary": 94,
+      "positive_rate": 0.43617021276595747,
+      "fields": [
+        "index",
+        "answer",
+        "text",
+        "slice"
+      ]
+    },
+    "insurance_policy_interpretation": {
+      "n": 133,
+      "answer_types": [
+        "text"
+      ],
+      "n_binary": 0,
+      "positive_rate": 0,
+      "fields": [
+        "index",
+        "policy",
+        "claim",
+        "answer"
+      ]
+    },
+    "international_citizenship_questions": {
+      "n": 500,
+      "answer_types": [
+        "binary"
+      ],
+      "n_binary": 500,
+      "positive_rate": 0.51,
+      "fields": [
+        "index",
+        "question",
+        "answer"
+      ]
+    },
+    "rule_qa": {
+      "n": 50,
+      "answer_types": [
+        "text"
+      ],
+      "n_binary": 0,
+      "positive_rate": 0,
+      "fields": [
+        "index",
+        "text",
+        "answer",
+        "doctrine"
+      ]
+    },
+    "ucc_v_common_law": {
+      "n": 94,
+      "answer_types": [
+        "text"
+      ],
+      "n_binary": 0,
+      "positive_rate": 0,
+      "fields": [
+        "index",
+        "contract",
+        "answer"
+      ]
+    }
+  }
+}

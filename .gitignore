@@ -51,3 +51,9 @@ paper/*.pdf
 
 # Results (regenerated)
 proofs/*/results/
+
+# Lean build artifacts (7GB+)
+.lake/
+
+# Claude Code project config
+CLAUDE.md

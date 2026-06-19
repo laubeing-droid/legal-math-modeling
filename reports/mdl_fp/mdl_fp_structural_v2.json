@@ -1,0 +1,108 @@
+{
+  "analysis": "MDL vs FP Structural Analysis (v2)",
+  "date": "2026-06-19",
+  "aaf_complexity": {
+    "civil_mitigation": {
+      "rule_count": 5,
+      "depth": 1,
+      "structural_mdl": 5.0
+    },
+    "criminal_but2": {
+      "rule_count": 10,
+      "depth": 2,
+      "structural_mdl": 15.84962500721156
+    },
+    "criminal_but3": {
+      "rule_count": 10,
+      "depth": 3,
+      "structural_mdl": 20.0
+    },
+    "defense_limitation": {
+      "rule_count": 10,
+      "depth": 1,
+      "structural_mdl": 10.0
+    },
+    "force_majeure": {
+      "rule_count": 10,
+      "depth": 1,
+      "structural_mdl": 10.0
+    },
+    "necessity": {
+      "rule_count": 10,
+      "depth": 1,
+      "structural_mdl": 10.0
+    },
+    "rebuttable_presumption": {
+      "rule_count": 10,
+      "depth": 1,
+      "structural_mdl": 10.0
+    },
+    "self_defense": {
+      "rule_count": 10,
+      "depth": 1,
+      "structural_mdl": 10.0
+    },
+    "third_party_fault": {
+      "rule_count": 1,
+      "depth": 1,
+      "structural_mdl": 1.0
+    },
+    "tort_exemption": {
+      "rule_count": 10,
+      "depth": 1,
+      "structural_mdl": 10.0
+    },
+    "victim_fault": {
+      "rule_count": 2,
+      "depth": 1,
+      "structural_mdl": 2.0
+    }
+  },
+  "correlations": {
+    "text_mdl_vs_fp": {
+      "rho": 0.34474982381959124,
+      "p": 0.017305579352552947
+    },
+    "combined_mdl_vs_fp": {
+      "rho": 0.34474982381959124,
+      "p": 0.017305579352552947
+    }
+  },
+  "obstruction_analysis": {
+    "n_with_obstruction": 0,
+    "n_without": 44,
+    "mean_fp_with": NaN,
+    "mean_fp_without": 0.8909090909090907,
+    "lift": NaN
+  },
+  "status_distribution": {
+    "CN_ONLY": {
+      "n": 30,
+      "mean": 1.0
+    },
+    "CN_US_PARTIAL": {
+      "n": 2,
+      "mean": 0.5
+    },
+    "COLLISION": {
+      "n": 4,
+      "mean": 0.9
+    },
+    "ASYMMETRY": {
+      "n": 3,
+      "mean": 0.8000000000000002
+    },
+    "CN_HK_PARTIAL": {
+      "n": 3,
+      "mean": 0.5
+    },
+    "TRI_JURISDICTION_PARTIAL": {
+      "n": 1,
+      "mean": 0.5
+    },
+    "TRI_JURISDICTION_MAPPED": {
+      "n": 1,
+      "mean": 0.2
+    }
+  }
+}

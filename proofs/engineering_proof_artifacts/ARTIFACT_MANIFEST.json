@@ -1,12 +1,12 @@
 {
   "$schema": "artifact_manifest_v1",
   "description": "Complete manifest of all proof artifacts with their current verification status, checker commands, and trust labels.",
-  "generated_date": "2026-06-11",
+  "generated_date": "2026-06-18",
   "total_artifacts": 17,
   "status_summary": {
-    "PROVED": 9,
+    "PROVED": 10,
     "REFUTED": 3,
-    "PENDING_TOOLCHAIN": 5,
+    "PENDING_TOOLCHAIN": 4,
     "FAILED": 0,
     "TOTAL": 17
   },
@@ -262,7 +262,10 @@
       "checker_type": "python",
       "property": "Graph similarity score is in [0, 1]",
       "bounds": {
-        "score_range": [0, 1]
+        "score_range": [
+          0,
+          1
+        ]
       },
       "assumptions": [
         "Standard graph similarity definition",
@@ -280,26 +283,27 @@
       "path": "graph_similarity/graph_similarity_range_z3.py",
       "type": "Python/Z3 proof",
       "domain": "Graph similarity",
-      "status": "PENDING_TOOLCHAIN",
-      "trust_label": "PENDING_TOOLCHAIN",
+      "status": "PROVED",
+      "trust_label": "SMT_PROVED_FINITE",
       "checker_command": "python3 graph_similarity/graph_similarity_range_z3.py",
       "checker_type": "z3",
       "property": "Z3-verified graph similarity range [0, 1]",
-      "missing_toolchain": "Z3 Python bindings",
       "toolchain_version_required": "z3-solver 4.12+ (Python package)",
       "assumptions": [
         "Z3 encoding is assumed correct",
         "Fallback: Python proof ART-010 verifies range property"
       ],
       "limitations": [
-        "Cannot be verified without Z3 Python bindings",
         "Z3 scope may differ from Python proof"
       ],
       "fallback_evidence": [
-        "ART-010: Python graph similarity range proof"
+        "ART-010: Python graph similarity range proof (also PROVED)"
       ],
-      "python_requirements": ["z3-solver"],
-      "notes": "Z3 would provide SMT-backed verification; Python proof serves as interim evidence."
+      "python_requirements": [
+        "z3-solver"
+      ],
+      "verification_method": "Z3 Python bindings (z3-solver package)",
+      "verified_date": "2026-06-18"
     },
     {
       "id": "ART-012",

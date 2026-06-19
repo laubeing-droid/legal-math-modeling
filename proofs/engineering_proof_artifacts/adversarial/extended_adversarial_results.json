@@ -1,0 +1,96 @@
+{
+  "total": 11,
+  "passed": 11,
+  "failed": 0,
+  "runtime_seconds": 0.01,
+  "results": [
+    {
+      "test_id": "EXT-001",
+      "category": "burden",
+      "description": "Initial world has empty burdens",
+      "passed": true,
+      "reason": "burdens=0",
+      "details": {}
+    },
+    {
+      "test_id": "EXT-002",
+      "category": "burden",
+      "description": "Burden inherited on fork",
+      "passed": true,
+      "reason": "w2 burdens: ['claim1']",
+      "details": {}
+    },
+    {
+      "test_id": "EXT-003",
+      "category": "burden",
+      "description": "Inherited burden preserves holder",
+      "passed": true,
+      "reason": "holder=BurdenHolder.PLAINTIFF",
+      "details": {}
+    },
+    {
+      "test_id": "EXT-004",
+      "category": "burden",
+      "description": "Burden reversal changes holder",
+      "passed": true,
+      "reason": "holder=BurdenHolder.DEFENDANT",
+      "details": {}
+    },
+    {
+      "test_id": "EXT-005",
+      "category": "dependency",
+      "description": "Add nodes without crash",
+      "passed": true,
+      "reason": "T1+T2 added",
+      "details": {}
+    },
+    {
+      "test_id": "EXT-006",
+      "category": "dependency",
+      "description": "Propagate status change",
+      "passed": true,
+      "reason": "report keys=['T1', 'T2']",
+      "details": {}
+    },
+    {
+      "test_id": "EXT-007",
+      "category": "temporal",
+      "description": "Add temporal rules without crash",
+      "passed": true,
+      "reason": "2 rules added",
+      "details": {}
+    },
+    {
+      "test_id": "EXT-008",
+      "category": "temporal",
+      "description": "Snapshot returns list",
+      "passed": true,
+      "reason": "n=1",
+      "details": {}
+    },
+    {
+      "test_id": "EXT-009",
+      "category": "deontic",
+      "description": "DeonticOperator has OB/PER/FOR",
+      "passed": true,
+      "reason": "members: ['OB', 'PER', 'FOR', 'OP']",
+      "details": {}
+    },
+    {
+      "test_id": "EXT-010",
+      "category": "deontic",
+      "description": "DeonticRule constructs correctly",
+      "passed": true,
+      "reason": "id=DP-001",
+      "details": {}
+    },
+    {
+      "test_id": "EXT-011",
+      "category": "rough_set",
+      "description": "RoughConcept constructs correctly",
+      "passed": true,
+      "reason": "name=damages_amount, pos=2",
+      "details": {}
+    }
+  ]
+}

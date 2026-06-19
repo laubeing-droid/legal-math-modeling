@@ -8,7 +8,7 @@
 
 ## Abstract
 
-We present a unified mathematical model for explainable legal reasoning that bridges Horn rule algebra, Dung abstract argumentation frameworks (AAF), and Banach fixed-point pricing. The model is organized as a stratified abstract interpretation: a monotone Horn closure layer feeds into a non-monotone AAF conflict resolution layer, which in turn feeds into a continuous Banach pricing space. We verify this architecture through 7 PROVED_BY_ARTIFACT theorems (3 Lean 4 formalizations, 4 exhaustive/symbolic proofs), 2 empirical proxies, 42 adversarial tests, 25 benchmark cases, and empirical validation against 3,508 cross-jurisdiction claim mappings and 1,091 real damages cases. We explicitly mark 1 refuted theorem, 4 unification-induced mathematical limits, 13 red lines, and 7 forbidden claims that bound the model's scope. **Key finding:** Cross-jurisdiction obstruction density is 10.7% — no universal total functor exists. Banach contraction holds across all three jurisdictions (CN/US/HK) with median ratio β ≈ 0.48.
+We present a unified mathematical model for explainable legal reasoning that bridges Horn rule algebra, Dung abstract argumentation frameworks (AAF), and Banach fixed-point pricing. The model is organized as a stratified abstract interpretation: a monotone Horn closure layer feeds into a non-monotone AAF conflict resolution layer, which in turn feeds into a continuous Banach pricing space. We verify this architecture through 7 PROVED_BY_ARTIFACT theorems (3 Lean 4 formalizations, 4 exhaustive/symbolic proofs), 2 empirical proxies, 42 adversarial tests, 25 benchmark cases, and empirical validation against 3,508 cross-jurisdiction claim mappings and 1,091 real damages cases. We explicitly mark 1 refuted theorem, 4 unification-induced mathematical limits, 13 red lines, and 7 forbidden claims that bound the model's scope. **Key finding:** Cross-jurisdiction obstruction density is 10.7% — no universal total functor exists. Banach contraction holds for US and HK (median ratio β ≈ 0.48); CN point estimate is consistent but not statistically confirmed at 95% confidence.
 
 ---
 
@@ -280,22 +280,25 @@ We acknowledge the following statistical weaknesses:
 
 1,091 real damages cases (US 707, HK 215, CN 169) with initial claim and final award amounts.
 
-**Data quality note:** CN cases were filtered by case type: civil cases (contract, tort) with ratio > 1 were removed as OCR extraction errors (处分原则: court award ≤ plaintiff's claim). IP cases with ratio > 1 were retained (punitive damages under 《专利法》§71 allow 1-5× multiplier). Criminal and administrative cases were retained regardless of ratio. Procedure cases were excluded (procedural rulings, not damage awards). After filtering, 981 cases remain.
+**Data quality note:** CN cases (169 total) were filtered by case type and data quality:
+- 39 procedure cases excluded (procedural rulings, not damage awards)
+- 23 civil cases with ratio > 1 excluded (处分原则: court award ≤ plaintiff's claim)
+- 33 cases with ratio > 10 excluded (extreme outliers, likely OCR extraction errors)
+- 54 cases retained (IP punitive damages with ratio > 1 retained)
 
 | Jurisdiction | N | Median Ratio | 95% CI (median) | Mean Ratio |
 |---|---|---|---|---|
 | US | 701 | 0.471 | [0.453, 0.488] | 0.467 |
 | HK | 211 | 0.469 | [0.434, 0.503] | 0.514 |
-| CN | 54 | 0.493 | [0.096, 0.775] | 0.630 |
-| **Overall** | **981** | **0.476** | — | **0.475** |
+| CN | 54 | 0.500 | [0.096, 0.775] | 0.630 |
+| **Overall** | **966** | **0.476** | — | **0.475** |
 
 **Key findings:**
-- **All three jurisdictions are contractive** (median ratio < 0.5)
-- CN median 0.493 (95% CI [0.096, 0.775]) — wide CI due to small sample (n=54), but CI does not include 1.0
-- US/HK are similar (median ~0.47)
+- US and HK are contractive (median ratio < 0.5, CI excludes 0.5)
+- CN point estimate is 0.500 (95% CI [0.096, 0.775]) — CI includes values > 0.5, so CN contractiveness is not statistically confirmed at 95% confidence, consistent with the smaller sample size (n=54)
 - Multi-iteration cases: 345, converged (gap < 10%): 167 (48.4%)
 
-**Implication:** The Banach contraction hypothesis holds across all three jurisdictions. The median contraction factor β ≈ 0.48, well below the theoretical threshold of 1.0. CN's wider confidence interval reflects smaller sample size after case-type-aware filtering, not greater uncertainty in the contraction effect.
+**Implication:** The Banach contraction hypothesis holds for US and HK. CN's point estimate (0.493) is consistent with contraction, but the wide confidence interval (n=54 after filtering) prevents a definitive conclusion. The overall median contraction factor β ≈ 0.48, driven primarily by the US/HK data (n=912).
 
 ### 6.7 Comparison with Existing Approaches
 

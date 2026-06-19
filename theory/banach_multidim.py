@@ -108,7 +108,7 @@ def multi_jurisdiction_contraction(data_path: str) -> dict:
             initial = float(r.get("initial_claim", 0) or 0)
             final = float(r.get("final_award", 0) or 0)
             if initial > 0 and final > 0:
-                ratio = final / initial
+                ratio = final / max(initial, 1)
                 # CN civil: filter ratio > 1 (处分原则)
                 if juris == "CN" and domain in CIVIL_DOMAINS and ratio > 1.0:
                     continue

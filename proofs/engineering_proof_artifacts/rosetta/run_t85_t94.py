@@ -135,8 +135,8 @@ def run_t94():
                     continue
                 parsed.append({
                     "jurisdiction": juris,
-                    "domain": r["domain"],
-                    "damage_type": r["damage_type"],
+                    "domain": domain,
+                    "damage_type": r.get("damage_type", ""),
                     "initial": initial,
                     "final": final,
                     "iterations": iterations,

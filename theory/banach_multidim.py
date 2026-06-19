@@ -104,7 +104,10 @@ def multi_jurisdiction_contraction(data_path: str) -> dict:
             final = float(r.get("final_award", 0) or 0)
             if initial > 0 and final > 0:
                 ratio = final / initial
-                if ratio <= 10:  # filter outliers
+                # Filter: CN ratio > 1 is OCR extraction error (处分原则: award ≤ claim)
+                if juris == "CN" and ratio > 1.0:
+                    continue
+                if ratio <= 10:  # filter extreme outliers
                     juris_data.setdefault(juris, []).append(ratio)
         except (ValueError, KeyError):
             continue

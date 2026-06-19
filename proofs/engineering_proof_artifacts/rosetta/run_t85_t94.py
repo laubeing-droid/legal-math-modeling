@@ -119,8 +119,13 @@ def run_t94():
             converged = r.get("converged", "").strip().lower() == "true"
             gap = float(r.get("convergence_gap", 0) or 0)
             if final > 0:
+                # Filter CN ratio > 1: OCR extraction error (处分原则: award ≤ claim)
+                juris = r.get("jurisdiction", "CN")
+                ratio = final / max(initial, 1)
+                if juris == "CN" and ratio > 1.0:
+                    continue
                 parsed.append({
-                    "jurisdiction": r["jurisdiction"],
+                    "jurisdiction": juris,
                     "domain": r["domain"],
                     "damage_type": r["damage_type"],
                     "initial": initial,

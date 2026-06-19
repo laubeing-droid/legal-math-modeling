@@ -149,17 +149,6 @@ instance (af : AAF) (X : Finset Argument) (a : Argument) :
 def dungs_char_fn (af : AAF) (X : Finset Argument) : Finset Argument :=
   af.args.filter (fun a => defended_by af X a)
 
--- dungs_char_fn is monotone: X ⊆ Y → F(X) ⊆ F(Y)
-lemma dungs_char_fn_mono {af : AAF} {X Y : Finset Argument}
-    (h : X ⊆ Y) : dungs_char_fn af X ⊆ dungs_char_fn af Y := by
-  unfold dungs_char_fn
-  intro a ha
-  simp [Finset.mem_filter] at ha ⊢
-  obtain ⟨ha_args, ha_defended⟩ := ha
-  exact ⟨ha_args, fun b hb hba =>
-    let ⟨c, hcX, hcb⟩ := ha_defended b hb hba
-    ⟨c, h hcX, hcb⟩⟩
-
 -- Iterate char_fn from X for n steps (top-level for induction)
 def lfp_iterate (af : AAF) (X : Finset Argument) (n : Nat) : Finset Argument :=
   match n with

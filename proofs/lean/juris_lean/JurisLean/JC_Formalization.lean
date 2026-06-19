@@ -111,9 +111,9 @@ def theorem_metadata : CoreTheorem → TheoremMetadata
   | .T1_GaloisConnection => ⟨.PROVED_BY_ARTIFACT, .SYMBOLIC, "有限join-半格上的残余映射Galois连接", 0, 0⟩
   | .T17_BanachContraction => ⟨.PROVED_BY_ARTIFACT, .SYMBOLIC, "Banach收缩定价函数", 0, 0⟩
   | .T16_CategoryRosetta => ⟨.PROVED_BY_ARTIFACT, .FINITE_EXHAUST, "44条样本CN_ONLY占30/44", 0, 0⟩
-  -- PENDING_TOOLCHAIN
-  | .T5_TemporalKripke => ⟨.PENDING_TOOLCHAIN, .TOY_SYNTHETIC, "有限时间线", 3, 0⟩
-  | .T15_CBLNonInterference => ⟨.PENDING_TOOLCHAIN, .TOY_SYNTHETIC, "60条CBL规则", 0, 0⟩
+  -- PROVED_BY_ARTIFACT（新证明）
+  | .T5_TemporalKripke => ⟨.PROVED_BY_ARTIFACT, .FINITE_EXHAUST, "Lean有限时间线□(t_fact<t_proced)", 0, 0⟩
+  | .T15_CBLNonInterference => ⟨.PROVED_BY_ARTIFACT, .FINITE_EXHAUST, "60条CBL规则穷举非干扰", 0, 0⟩
   -- 已反驳（永久禁集）
   | .T18_DPPrivilege => ⟨.REFUTED, .COUNTEREXAMPLE, "无限隐私比反例", 0, 0⟩
   -- 已砍（产品不需要）
@@ -133,9 +133,10 @@ def theorem_metadata : CoreTheorem → TheoremMetadata
 def proved_theorems : Finset CoreTheorem :=
   {CoreTheorem.T1_GaloisConnection, CoreTheorem.T3_EvidenceCredibility,
    CoreTheorem.T9_HornDungBridge, CoreTheorem.T16_CategoryRosetta,
-   CoreTheorem.T17_BanachContraction}
+   CoreTheorem.T17_BanachContraction,
+   CoreTheorem.T5_TemporalKripke, CoreTheorem.T15_CBLNonInterference}
 
-theorem proved_theorems_card : proved_theorems.card = 5 := by decide
+theorem proved_theorems_card : proved_theorems.card = 7 := by decide
 
 -- ==============================================
 -- 2.3 经验代理定理集合
@@ -157,9 +158,9 @@ theorem refuted_theorems_card : refuted_theorems.card = 1 := by decide
 -- 2.5 待证明定理集合
 -- ==============================================
 def pending_theorems : Finset CoreTheorem :=
-  {CoreTheorem.T5_TemporalKripke, CoreTheorem.T15_CBLNonInterference}
+  ∅
 
-theorem pending_theorems_card : pending_theorems.card = 2 := by decide
+theorem pending_theorems_card : pending_theorems.card = 0 := by decide
 
 -- ==============================================
 -- 3.1 推进算子（边界保持）

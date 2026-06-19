@@ -4,3 +4,4 @@ import JurisLean.JC_Formalization
 import JurisLean.BanachEffectiveNodes
 import JurisLean.FiniteRosetta
 import JurisLean.FiniteGaloisAdjunction
+import JurisLean.TemporalKripke

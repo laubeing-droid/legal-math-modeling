@@ -4,7 +4,7 @@
 >
 > This repository is the **mathematical companion** to [juris-calculus](https://github.com/laubeing-droid/juris-calculus) — a deterministic symbolic legal reasoning engine operating across PRC, Hong Kong, and US jurisdictions. It contains the formal mathematical framework, 59 runnable theory modules, machine-reproducible verification artifacts, and a 7-level *evidence-calibrated trust label system* that prevents unverified AI-generated claims from propagating to engineering decisions.
 >
-> **Current status (v5.0, Playbook v5.0)**: 20 core theorems identified; **5 PROVED_BY_ARTIFACT**, 2 EMPIRICAL_PROXY, 1 AXIOM_ONLY, 2 PENDING_TOOLCHAIN, 1 REFUTED, 9 excluded (INVALID_CLAIM / MISSING_ARTIFACT). Lean `lake build` 2948 jobs with 0 sorry, 0 axiom in build files. 42 adversarial tests pass. 4/4 Z3 verification pass.
+> **Current status (v5.0, Playbook v5.0)**: 20 core theorems identified; **7 PROVED_BY_ARTIFACT**, 2 EMPIRICAL_PROXY, 1 AXIOM_ONLY, 0 PENDING_TOOLCHAIN, 1 REFUTED, 9 excluded (INVALID_CLAIM / MISSING_ARTIFACT). Lean `lake build` 2949 jobs with 0 sorry, 0 axiom in build files. 42 adversarial tests pass. 4/4 Z3 verification pass.
 >
 > **Start here**: Run `python -m theory` to see the trust label status of all core mathematical claims. Then read `paper/explainable_legal_reasoning.md` for the formal treatment.
 
@@ -216,7 +216,7 @@ This work was produced through an iterative multi-AI formalization pipeline — 
 
 > **v5.0 Honesty Note**: After a Codex red-team audit, all claims were re-evaluated. Several previously claimed "PROVED" results were downgraded to EMPIRICAL_PROXY or AXIOM_ONLY. See `docs/audit/theorem_status_matrix.md` for the full audit trail.
 
-## 3.1 Proved by Artifact (5)
+## 3.1 Proved by Artifact (7)
 
 These theorems have runnable checkers that produce PASS:
 
@@ -227,6 +227,8 @@ These theorems have runnable checkers that produce PASS:
 | T9_HornDungBridge | Horn rules constructively map to Dung AF | Exhaustive enumeration | 66,066 attack graphs |
 | T16_CategoryRosetta | CN_ONLY dominates claim mapping (30/44) | Exhaustive on real data | 44 Supreme Court claims |
 | T17_BanachContraction | Banach contraction for scalar pricing | Lean 4 + Mathlib (0 sorry) | Effective nodes |
+| T5_TemporalKripke | □(t_fact < t_procedural) temporal guard | Lean 4 finite Kripke (0 sorry) | 3-world litigation timeline |
+| T15_CBLNonInterference | 60 CBL rules enforce Bell-LaPadula non-interference | Exhaustive graph reachability | 120 atoms, 60 blocked edges |
 
 ## 3.2 Empirical Proxy (2 — correlation, not causation)
 
@@ -253,7 +255,7 @@ These theorems have runnable checkers that produce PASS:
 
 | Status | Count | Theorems |
 |--------|-------|----------|
-| PENDING_TOOLCHAIN | 2 | T5_TemporalKripke, T15_CBLNonInterference |
+| PENDING_TOOLCHAIN | 0 | *(all cleared)* |
 | INVALID_CLAIM (product scope) | 6 | T6, T8, T10, T11, T13, T14, T19 |
 | MISSING_ARTIFACT | 1 | T7_GradualVerification |
 
@@ -261,7 +263,7 @@ These theorems have runnable checkers that produce PASS:
 
 | Check | Result |
 |-------|--------|
-| Lean `lake build` | 2948 jobs, 0 sorry, 0 axiom (in build files) |
+| Lean `lake build` | 2949 jobs, 0 sorry, 0 axiom (in build files) |
 | Z3 verification | 4/4 PASS (constraint consistency, LFP monotonicity, π_legal equivalence, DP smoothing) |
 | Adversarial tests | 13/13 PASS (8 core + 5 extended) |
 | Benchmark cases | 25 cases across 6 domains |
@@ -318,7 +320,7 @@ legal-math-modeling/                          322 files, 7.4 MB
 │   ├── engineering_proof_artifacts/          # Engineering proofs + adversarial tests
 │   │   ├── adversarial/                      # 13 adversarial tests (8+5)
 │   │   └── cross_jurisdiction/               # Cross-jurisdiction guard tests
-│   ├── lean/juris_lean/                      # ★ Lean 4 formalization (lake build 2948 jobs)
+│   ├── lean/juris_lean/                      # ★ Lean 4 formalization (lake build 2949 jobs)
 │   │   ├── JurisLean/JC_Formalization.lean   # Core theorem metadata (0 sorry)
 │   │   ├── JurisLean/FiniteGaloisAdjunction.lean # Galois connection (0 sorry)
 │   │   ├── JurisLean/FiniteRosetta.lean      # Rosetta real data (0 sorry)

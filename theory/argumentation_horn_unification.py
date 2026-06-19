@@ -78,8 +78,23 @@ class DungFrame:
     args: Set[Argument]
     attacks: Set[Tuple[Argument, Argument]]  # (attacker, target)
 
+    # Adjacency index (built on first use, cached)
+    _attackers_index: Dict[Argument, Set[Argument]] = field(
+        default_factory=dict, init=False, repr=False)
+    _defenders_index: Dict[Argument, Set[Argument]] = field(
+        default_factory=dict, init=False, repr=False)
+
+    def _build_indices(self):
+        """Build adjacency indices for O(1) attacker/defender lookup."""
+        if self._attackers_index:
+            return  # already built
+        for src, tgt in self.attacks:
+            self._attackers_index.setdefault(tgt, set()).add(src)
+            self._defenders_index.setdefault(src, set()).add(tgt)
+
     def attackers_of(self, a: Argument) -> Set[Argument]:
-        return {src for (src, tgt) in self.attacks if tgt == a}
+        self._build_indices()
+        return self._attackers_index.get(a, set())
 
     def defends(self, s: Set[Argument], a: Argument) -> bool:
         """S defends a if S attacks all attackers of a."""
@@ -90,8 +105,10 @@ class DungFrame:
 
     def is_conflict_free(self, s: Set[Argument]) -> bool:
         """S is conflict-free if no two arguments in S attack each other."""
-        for a, b in itertools.product(s, s):
-            if (a, b) in self.attacks:
+        self._build_indices()
+        for a in s:
+            attackers = self._attackers_index.get(a, set())
+            if attackers & s:
                 return False
         return True
 
@@ -102,18 +119,21 @@ class DungFrame:
         )
 
     def f_operator(self, s: Set[Argument]) -> Set[Argument]:
-        """F(S) = {a | S defends a} --- Dung's characteristic function."""
+        """F(S) = {a | S defends a} --- Dung's characteristic function.
+
+        This is the dungs_char_fn from UnifiedModel.lean.
+        """
         return {a for a in self.args if self.defends(s, a)}
 
     def grounded_extension(self) -> Set[Argument]:
         """Compute the grounded extension = lfp(F).
 
-        The grounded extension is the least fixpoint of F.
-        It is unique, always exists, and is computable in polynomial time
-        for finitary frameworks.
+        Iterates F from ∅ until fixpoint.
+        For finite AAF, converges in at most |Args| steps.
+        Uses early termination on fixpoint detection.
         """
         current: Set[Argument] = set()
-        max_iter = 1000
+        max_iter = len(self.args) + 1  # |Args|+1 guarantees convergence
 
         for _ in range(max_iter):
             nxt = self.f_operator(current)

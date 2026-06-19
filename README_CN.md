@@ -251,17 +251,16 @@ H.L.A. Hart 的"疑义半影"——法律概念有一个确定性核心，周围
 | — | 裁剪 Theil-Sen = 纯 Theil-Sen | 5/6 数据集不同 |
 | — | 18 个定理可从 Galois 推出 | 17 个在独立数学领域 |
 
-## 3.3 数据不足 / 仅玩具 / 待验证（12 个）
+## 3.3 待证明 / 数据不足（4 个）
 
 | ID | 声明 | 状态 | 瓶颈 |
 |----|------|------|------|
 | T8.5 | 实数据 Rosetta 函子 | DATA_INSUFFICIENT | 44 行，7 见证；需 ≥2,000 |
 | T9.4 | 实数据 Banach 压缩 | DATA_INSUFFICIENT | 225 代理观测，0 真实工时 |
-| — | Galois Lean 证明 | PENDING_TOOLCHAIN | 需 Mathlib，含 `sorry` |
-| — | Banach Lean 证明 | PENDING_TOOLCHAIN | 需 Mathlib，含 `sorry` |
-| — | Rosetta Lean 证明 | PENDING_TOOLCHAIN | 需 Mathlib，含 `sorry` |
-| — | Horn Z3 .smt2 | PENDING_TOOLCHAIN | 需 Z3 二进制 |
-| — | 不动点 TLA+ | PENDING_TOOLCHAIN | 需 TLC |
+| T5 | 时态 Kripke | PENDING_TOOLCHAIN | 需 Lean/TLA+ 形式化 |
+| T15 | CBL 非干扰 | PENDING_TOOLCHAIN | 需穷举 60 条规则 |
+
+> **v5.0 修正**：Galois、Banach、Rosetta 的 Lean 证明已消除全部 sorry（lake build 2948 jobs），状态升级为 PROVED_BY_ARTIFACT。
 
 # 4. 仓库结构
 

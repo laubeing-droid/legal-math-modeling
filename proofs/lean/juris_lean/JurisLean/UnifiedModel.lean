@@ -149,23 +149,77 @@ instance (af : AAF) (X : Finset Argument) (a : Argument) :
 def dungs_char_fn (af : AAF) (X : Finset Argument) : Finset Argument :=
   af.args.filter (fun a => defended_by af X a)
 
--- Iterate char_fn from ∅ until fixpoint (bounded by |Args|)
-def grounded_extension_lfp (af : AAF) (max_iter : Nat) : Finset Argument :=
-  let rec iterate (X : Finset Argument) (n : Nat) : Finset Argument :=
-    match n with
-    | 0 => X
-    | n' + 1 =>
-      let next := dungs_char_fn af X
-      if next = X then X
-      else iterate next n'
-  iterate ∅ max_iter
+-- dungs_char_fn is monotone: X ⊆ Y → F(X) ⊆ F(Y)
+lemma dungs_char_fn_mono {af : AAF} {X Y : Finset Argument}
+    (h : X ⊆ Y) : dungs_char_fn af X ⊆ dungs_char_fn af Y := by
+  unfold dungs_char_fn
+  intro a ha
+  simp [Finset.mem_filter] at ha ⊢
+  obtain ⟨ha_args, ha_defended⟩ := ha
+  exact ⟨ha_args, fun b hb hba =>
+    let ⟨c, hcX, hcb⟩ := ha_defended b hb hba
+    ⟨c, h hcX, hcb⟩⟩
 
--- PROOF OBLIGATION (not yet proved, no sorry):
--- Unattacked arguments are always in the LFP grounded extension.
--- Proof sketch: unattacked args have no attackers, so the "every attacker
--- is defeated" condition is vacuously true on the first iteration of F_S.
--- This is a standard result in Dung's theory (Dung 1995, Theorem 26).
--- Status: DEFINITION COMPLETE, PROOF PENDING.
+-- Iterate char_fn from X for n steps (top-level for induction)
+def lfp_iterate (af : AAF) (X : Finset Argument) (n : Nat) : Finset Argument :=
+  match n with
+  | 0 => X
+  | n' + 1 =>
+    let next := dungs_char_fn af X
+    if next = X then X
+    else lfp_iterate af next n'
+
+-- LFP grounded extension: iterate from ∅
+def grounded_extension_lfp (af : AAF) (max_iter : Nat) : Finset Argument :=
+  lfp_iterate af ∅ max_iter
+
+-- For unattacked a: defended_by af X a holds for ANY X (vacuously)
+lemma unattacked_defended_any {af : AAF} {a : Argument}
+    (hunat : is_unattacked af a) (X : Finset Argument) :
+    defended_by af X a := by
+  intro b _ hba
+  exact absurd hba (hunat b ‹_›)
+
+-- For unattacked a: a ∈ dungs_char_fn af X for any X ⊇ ∅ (i.e., any X)
+lemma unattacked_in_char_fn {af : AAF} {a : Argument}
+    (ha : a ∈ af.args) (hunat : is_unattacked af a)
+    (X : Finset Argument) :
+    a ∈ dungs_char_fn af X := by
+  unfold dungs_char_fn
+  simp [Finset.mem_filter]
+  exact ⟨ha, unattacked_defended_any hunat X⟩
+
+-- Key lemma: if a ∈ dungs_char_fn af X for ALL X,
+-- then a ∈ lfp_iterate af X n for all n ≥ 1
+lemma mem_lfp_iterate {af : AAF} {a : Argument}
+    (ha_args : a ∈ af.args) (hunat : is_unattacked af a) :
+    ∀ X n, a ∈ lfp_iterate af X (n + 1) := by
+  intro X n
+  induction n generalizing X with
+  | zero =>
+    simp only [lfp_iterate]
+    split
+    · rename_i heq; rw [← heq]; exact unattacked_in_char_fn ha_args hunat X
+    · exact unattacked_in_char_fn ha_args hunat _
+  | succ n ih =>
+    simp only [lfp_iterate]
+    split
+    · rename_i heq; rw [← heq]; exact unattacked_in_char_fn ha_args hunat X
+    · exact ih _
+
+-- THEOREM: Unattacked arguments are in the LFP grounded extension
+theorem unattacked_in_lfp {af : AAF} {a : Argument}
+    (ha : a ∈ af.args) (hunat : is_unattacked af a) :
+    a ∈ grounded_extension_lfp af af.args.card := by
+  unfold grounded_extension_lfp
+  rcases Nat.eq_zero_or_pos af.args.card with h0 | hpos
+  · -- card = 0 → af.args = ∅ → contradiction with a ∈ af.args
+    have hempty : af.args = ∅ := Finset.card_eq_zero.mp h0
+    simp [hempty] at ha
+  · -- card ≥ 1
+    have : af.args.card = (af.args.card - 1) + 1 := by omega
+    rw [this]
+    exact mem_lfp_iterate ha hunat ∅ (af.args.card - 1)
 
 -- ============================================================
 -- Layer 3: Banach Domain (pricing)

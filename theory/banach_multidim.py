@@ -96,16 +96,24 @@ def multi_jurisdiction_contraction(data_path: str) -> dict:
         rows = list(csv.DictReader(f))
 
     # Group by jurisdiction
+    # CN filtering: 处分原则 applies to civil (contract/tort) but NOT to
+    # IP (punitive damages allowed) or criminal/admin (different rules).
+    CIVIL_DOMAINS = {"contract", "tort"}
+    PROCEDURE_DOMAINS = {"procedure"}
     juris_data = {"CN": [], "US": [], "HK": []}
     for r in rows:
         juris = r.get("jurisdiction", "CN")
+        domain = r.get("domain", "")
         try:
             initial = float(r.get("initial_claim", 0) or 0)
             final = float(r.get("final_award", 0) or 0)
             if initial > 0 and final > 0:
                 ratio = final / initial
-                # Filter: CN ratio > 1 is OCR extraction error (处分原则: award ≤ claim)
-                if juris == "CN" and ratio > 1.0:
+                # CN civil: filter ratio > 1 (处分原则)
+                if juris == "CN" and domain in CIVIL_DOMAINS and ratio > 1.0:
+                    continue
+                # CN procedure: exclude
+                if juris == "CN" and domain in PROCEDURE_DOMAINS:
                     continue
                 if ratio <= 10:  # filter extreme outliers
                     juris_data.setdefault(juris, []).append(ratio)

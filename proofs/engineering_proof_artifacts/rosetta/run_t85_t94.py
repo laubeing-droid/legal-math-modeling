@@ -110,6 +110,11 @@ def run_t94():
     print(f"\n  Total rows: {total}")
 
     # Parse amounts
+    # CN filtering: 处分原则 applies to civil (contract/tort) but NOT to
+    # IP (punitive damages allowed) or criminal/admin (different rules).
+    # Procedure cases excluded (procedural rulings, not damage awards).
+    CIVIL_DOMAINS = {"contract", "tort"}
+    PROCEDURE_DOMAINS = {"procedure"}
     parsed = []
     for r in rows:
         try:
@@ -119,10 +124,14 @@ def run_t94():
             converged = r.get("converged", "").strip().lower() == "true"
             gap = float(r.get("convergence_gap", 0) or 0)
             if final > 0:
-                # Filter CN ratio > 1: OCR extraction error (处分原则: award ≤ claim)
                 juris = r.get("jurisdiction", "CN")
+                domain = r.get("domain", "")
                 ratio = final / max(initial, 1)
-                if juris == "CN" and ratio > 1.0:
+                # CN civil: filter ratio > 1 (处分原则: award ≤ claim)
+                if juris == "CN" and domain in CIVIL_DOMAINS and ratio > 1.0:
+                    continue
+                # CN procedure: exclude (not damage awards)
+                if juris == "CN" and domain in PROCEDURE_DOMAINS:
                     continue
                 parsed.append({
                     "jurisdiction": juris,

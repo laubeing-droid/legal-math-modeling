@@ -102,27 +102,10 @@ theorem exists_fixpoint_le_card :
 
 theorem fixed_at_card : iter sys (Finset.card sys.universe) = iter sys (Finset.card sys.universe + 1) := by
   rcases exists_fixpoint_le_card sys with ⟨k, hk, h_eq⟩
-  -- If k = card(universe), we are done. If k < card(universe), then after card(universe) steps,
-  -- the iter is stable (remains at the fixpoint).
-  -- In fact, the fixpoint is reached at some k ≤ card, and stability propagates.
-  -- Use iter_stable: once stable at k, it stays stable forever.
   have h_stable : ∀ m, iter sys (k + m) = iter sys k := iter_stable sys h_eq
-  -- In particular, at m = card(universe) - k + 1 we get stability at card(universe)
-  have h_diff : k ≤ Finset.card sys.universe := hk
-  -- We need: iter at card = iter at card+1
-  -- Using stability: iter(card) = iter(k + (card - k)) = iter(k)
-  -- But we need a clean expression. Since k ≤ card, card = k + (card - k)
-  have h_card_eq : Finset.card sys.universe = k + (Finset.card sys.universe - k) := by omega
-  rw [h_card_eq]
-  rw [Nat.add_comm, iter_succ, ← h_eq, ← h_stable (Finset.card sys.universe - k)]
-  -- Now we have: iter(k + (card - k)) = iter(k + (card - k) + 1) = iter(card + 1)
-  -- Actually iter_stable gives iter(k + m) = iter(k) for any m
-  -- So iter(card) = iter(k + (card-k)) = iter(k)
-  -- And iter(card+1) = iter(k + (card-k+1)) = iter(k) by stability too
-  -- So they are equal
-  rw [show Finset.card sys.universe - k + 1 = (Finset.card sys.universe - k) + 1 by omega]
-  -- Using h_stable we know iter(k + (card-k)) = iter(k) and iter(k + (card-k+1)) = iter(k)
-  -- They are both equal to iter(k). QED
-  sorry
+  have h_card_eq1 : Finset.card sys.universe = k + (Finset.card sys.universe - k) := by omega
+  have h_card_eq2 : Finset.card sys.universe + 1 = k + ((Finset.card sys.universe - k) + 1) := by omega
+  rw [h_card_eq1, h_card_eq2]
+  rw [h_stable (Finset.card sys.universe - k), h_stable ((Finset.card sys.universe - k) + 1)]
 
 end FiniteMonotoneIteration

@@ -39,13 +39,19 @@ def labelling (aaf : DungAAF) : Finset Arg × Finset Arg × Finset Arg :=
   let undec := aaf.args \ (ge ∪ out)
   (ge, out, undec)
 
+
+/-- Iterate F k times from the empty set. -/
+def iterF (aaf : DungAAF) : Nat → Finset Arg
+  | 0 => ∅
+  | n+1 => F aaf (iterF aaf n)
+
 /-! 13 Core Theorems (all proofs pending) -/
 
 theorem F_monotone (aaf : DungAAF) (S T : Finset Arg) (hST : S ⊆ T) : F aaf S ⊆ F aaf T := by
   sorry
 
-theorem iteration_monotone (aaf : DungAAF) (k : Nat) : True := by
-  trivial
+theorem iteration_monotone (aaf : DungAAF) (k : Nat) : iterF aaf k ⊆ iterF aaf (k+1) := by
+  sorry
 
 theorem finite_termination (aaf : DungAAF) : (groundedExtension aaf).2.1 := by
   sorry

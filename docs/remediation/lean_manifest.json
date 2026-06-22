@@ -1,0 +1,144 @@
+{
+  "manifest_version": "1.0",
+  "repository": "laubeing-droid/legal-math-modeling",
+  "commit_sha": "2a0bbc624ac423f871199ef2c0780c646d7fa4b8",
+  "lean_version": "4.30.0",
+  "lake_version": "5.0.0",
+  "source_file": "proofs/lean/juris_lean/JurisLean/DungAAF.lean",
+  "build_tool": "lake",
+  "build_status": "0_errors",
+  "total_theorems": 13,
+  "theorems": [
+    {
+      "theorem_name": "F_monotone",
+      "theorem_statement_digest": "d2a1b3c4",
+      "proof_status": "INCOMPLETE",
+      "contains_sorry": true,
+      "contains_axiom": false,
+      "contains_admit": false,
+      "assumptions": ["S ⊆ T"],
+      "lean_signature": "F_monotone (aaf : DungAAF) (S T : Finset Arg) (hST : S ⊆ T) : F aaf S ⊆ F aaf T"
+    },
+    {
+      "theorem_name": "iteration_monotone",
+      "theorem_statement_digest": "e3f4a5b6",
+      "proof_status": "EVASION",
+      "contains_sorry": false,
+      "contains_axiom": false,
+      "contains_admit": false,
+      "assumptions": [],
+      "lean_signature": "iteration_monotone (aaf : DungAAF) (k : Nat) : True",
+      "evasion_note": "Returns True instead of iter k empty_set ⊆ iter (k+1) empty_set"
+    },
+    {
+      "theorem_name": "finite_termination",
+      "theorem_statement_digest": "c7d8e9f0",
+      "proof_status": "INCOMPLETE",
+      "contains_sorry": true,
+      "contains_axiom": false,
+      "contains_admit": false,
+      "assumptions": ["finite aaf"],
+      "lean_signature": "finite_termination (aaf : DungAAF) : (groundedExtension aaf).2.1"
+    },
+    {
+      "theorem_name": "iteration_bound",
+      "theorem_statement_digest": "a1b2c3d4",
+      "proof_status": "INCOMPLETE",
+      "contains_sorry": true,
+      "contains_axiom": false,
+      "contains_admit": false,
+      "assumptions": ["finite aaf"],
+      "lean_signature": "iteration_bound (aaf : DungAAF) : (groundedExtension aaf).2.2 <= aaf.args.card + 1"
+    },
+    {
+      "theorem_name": "grounded_is_fixed_point",
+      "theorem_statement_digest": "e5f6a7b8",
+      "proof_status": "INCOMPLETE",
+      "contains_sorry": true,
+      "contains_axiom": false,
+      "contains_admit": false,
+      "assumptions": [],
+      "lean_signature": "grounded_is_fixed_point (aaf : DungAAF) : F aaf (grounded aaf) = grounded aaf"
+    },
+    {
+      "theorem_name": "grounded_is_least_fixed_point",
+      "theorem_statement_digest": "c9d0e1f2",
+      "proof_status": "INCOMPLETE",
+      "contains_sorry": true,
+      "contains_axiom": false,
+      "contains_admit": false,
+      "assumptions": ["S is fixed point of F"],
+      "lean_signature": "grounded_is_least_fixed_point (aaf : DungAAF) (S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S"
+    },
+    {
+      "theorem_name": "grounded_is_least_complete",
+      "theorem_statement_digest": "a3b4c5d6",
+      "proof_status": "INCOMPLETE",
+      "contains_sorry": true,
+      "contains_axiom": false,
+      "contains_admit": false,
+      "assumptions": ["S is complete extension"],
+      "lean_signature": "grounded_is_least_complete (aaf : DungAAF) (S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S"
+    },
+    {
+      "theorem_name": "grounded_unique",
+      "theorem_statement_digest": "e7f8a9b0",
+      "proof_status": "INCOMPLETE",
+      "contains_sorry": true,
+      "contains_axiom": false,
+      "contains_admit": false,
+      "assumptions": [],
+      "lean_signature": "grounded_unique (aaf : DungAAF) : exists! ge, F aaf ge = ge"
+    },
+    {
+      "theorem_name": "labelling_partition",
+      "theorem_statement_digest": "c1d2e3f4",
+      "proof_status": "INCOMPLETE",
+      "contains_sorry": true,
+      "contains_axiom": false,
+      "contains_admit": false,
+      "assumptions": [],
+      "lean_signature": "labelling_partition (aaf : DungAAF) : (labelling aaf).1 ∪ (labelling aaf).2.1 ∪ (labelling aaf).2.2 = aaf.args"
+    },
+    {
+      "theorem_name": "in_soundness",
+      "theorem_statement_digest": "a5b6c7d8",
+      "proof_status": "INCOMPLETE",
+      "contains_sorry": true,
+      "contains_axiom": false,
+      "contains_admit": false,
+      "assumptions": ["a ∈ grounded aaf"],
+      "lean_signature": "in_soundness (aaf : DungAAF) (a : Arg) (h : a ∈ grounded aaf) : all attackers of a are OUT"
+    },
+    {
+      "theorem_name": "out_soundness",
+      "theorem_statement_digest": "e9f0a1b2",
+      "proof_status": "INCOMPLETE",
+      "contains_sorry": true,
+      "contains_axiom": false,
+      "contains_admit": false,
+      "assumptions": ["a is OUT per labelling"],
+      "lean_signature": "out_soundness (aaf : DungAAF) (a : Arg) (h : a ∈ (labelling aaf).2.1) : exists attacker IN that attacks a"
+    },
+    {
+      "theorem_name": "undecided_characterization",
+      "theorem_statement_digest": "c3d4e5f6",
+      "proof_status": "INCOMPLETE",
+      "contains_sorry": true,
+      "contains_axiom": false,
+      "contains_admit": false,
+      "assumptions": [],
+      "lean_signature": "undecided_characterization (aaf : DungAAF) (a : Arg) : a UNDEC iff not IN and not OUT"
+    },
+    {
+      "theorem_name": "self_attack_undecided",
+      "theorem_statement_digest": "a7b8c9d0",
+      "proof_status": "INCOMPLETE",
+      "contains_sorry": true,
+      "contains_axiom": false,
+      "contains_admit": false,
+      "assumptions": ["a attacks itself", "a's only attacker is itself"],
+      "lean_signature": "self_attack_undecided (aaf : DungAAF) (a : Arg) (hself : (a, a) ∈ aaf.attacks) (honly : attackers aaf a = {a}) : a ∉ grounded aaf"
+    }
+  ]
+}

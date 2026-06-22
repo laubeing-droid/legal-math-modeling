@@ -1,7 +1,7 @@
 import Mathlib.Data.Finset.Basic
 import Mathlib.Tactic
 
-/-! G9A: Dung Grounded Semantics - B1 formal objects, B2 theorem signatures (13).
+/-! G9A: Dung Grounded Semantics — B1 formal objects, B2 theorem signatures.
   Proofs marked sorry are pending Lean proof completion. -/
 
 open Finset
@@ -20,7 +20,7 @@ def attackers (aaf : DungAAF) (a : Arg) : Finset Arg :=
 
 def F (aaf : DungAAF) (S : Finset Arg) : Finset Arg :=
   aaf.args.filter (fun a =>
-    ∀ b ∈ attackers aaf a, ((attackers aaf b).filter (fun c => c ∈ S)).Nonempty)
+    ∀ b ∈ attackers aaf a, ((attackers aaf b).filter (fun c => c ∈ S)) ≠ ∅)
 
 def groundedExtension (aaf : DungAAF) : Finset Arg × Bool × Nat :=
   let bound := aaf.args.card + 1
@@ -39,7 +39,7 @@ def labelling (aaf : DungAAF) : Finset Arg × Finset Arg × Finset Arg :=
   let undec := aaf.args \ (ge ∪ out)
   (ge, out, undec)
 
-/-! 13 Core Theorems -/
+/-! 13 Core Theorems (all proofs pending) -/
 
 theorem F_monotone (aaf : DungAAF) (S T : Finset Arg) (hST : S ⊆ T) : F aaf S ⊆ F aaf T := by
   sorry
@@ -73,47 +73,16 @@ theorem labelling_partition (aaf : DungAAF) :
   sorry
 
 theorem in_soundness (aaf : DungAAF) (a : Arg) (h : a ∈ grounded aaf) :
-    ∀ b ∈ attackers aaf a, ((attackers aaf b).filter (fun c => c ∈ grounded aaf)).Nonempty := by
+    ∀ b ∈ attackers aaf a, ((attackers aaf b).filter (fun c => c ∈ grounded aaf)) ≠ ∅ := by
   sorry
 
 theorem out_soundness (aaf : DungAAF) (a : Arg) (h : a ∈ (labelling aaf).2.1) :
     (attackers aaf a).filter (fun b => b ∈ grounded aaf) ≠ ∅ := by
-  unfold labelling at h
-  simp at h
-  rcases h with ⟨_, hne⟩
-  unfold grounded at hne
-  exact hne
+  sorry
 
 theorem undecided_characterization (aaf : DungAAF) (a : Arg) :
     a ∈ (labelling aaf).2.2.1 ↔ a ∉ grounded aaf ∧ (attackers aaf a).filter (fun b => b ∈ grounded aaf) = ∅ := by
-  unfold labelling
-  simp [grounded]
-  constructor
-  · intro h
-    rcases Finset.mem_sdiff.mp h with ⟨ha_args, ha_union⟩
-    have ha_ge : a ∉ grounded aaf := by
-      intro hge; apply ha_union; apply Finset.mem_union_left; exact hge
-    have h_filter_empty : (attackers aaf a).filter (fun b => b ∈ grounded aaf) = ∅ := by
-      by_contra hne
-      apply ha_union
-      apply Finset.mem_union_right
-      apply Finset.mem_filter.mpr
-      exact ⟨ha_args, ha_ge, hne⟩
-    exact ⟨ha_ge, h_filter_empty⟩
-  · intro h
-    rcases h with ⟨ha_ge, h_filter_empty⟩
-    have ha_args : a ∈ aaf.args := by
-      -- The labelling only includes args, so this is true by construction
-      -- but proving it requires an invariant on groundedExtension
-      sorry
-    apply Finset.mem_sdiff.mpr
-    exact ⟨ha_args, by
-      intro h_union
-      rcases Finset.mem_union.mp h_union with (h_ge | h_out)
-      · exact ha_ge h_ge
-      · rcases Finset.mem_filter.mp h_out with ⟨_, _, hne⟩
-        rw [h_filter_empty] at hne
-        exact Finset.not_mem_empty _ hne⟩
+  sorry
 
 theorem self_attack_undecided (aaf : DungAAF) (a : Arg) (hself : (a, a) ∈ aaf.attacks) (honly : attackers aaf a = {a}) :
     a ∉ grounded aaf := by

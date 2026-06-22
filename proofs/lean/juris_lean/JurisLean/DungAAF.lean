@@ -48,10 +48,31 @@ def iterF (aaf : DungAAF) : Nat → Finset Arg
 /-! 13 Core Theorems (all proofs pending) -/
 
 theorem F_monotone (aaf : DungAAF) (S T : Finset Arg) (hST : S ⊆ T) : F aaf S ⊆ F aaf T := by
-  sorry
+  intro a ha
+  rw [F, Finset.mem_filter] at ha ⊢
+  rcases ha with ⟨ha_args, ha_cond⟩
+  refine ⟨ha_args, ?_⟩
+  intro b hb
+  have h_prev : ((attackers aaf b).filter (fun c => c ∈ S)) ≠ ∅ := ha_cond b hb
+  have h_sub : ((attackers aaf b).filter (fun c => c ∈ S)) ⊆ ((attackers aaf b).filter (fun c => c ∈ T)) := by
+    intro x hx
+    rcases Finset.mem_filter.mp hx with ⟨hx_att, hx_S⟩
+    apply Finset.mem_filter.mpr
+    exact ⟨hx_att, hST hx_S⟩
+  intro h_empty
+  apply h_prev
+  have h_sub_empty : ((attackers aaf b).filter (fun c => c ∈ S)) ⊆ (∅ : Finset Arg) := by
+    intro x hx
+    have hx_T := h_sub hx
+    rw [h_empty] at hx_T
+    simp at hx_T
+  exact Finset.Subset.antisymm h_sub_empty (Finset.empty_subset _)
 
 theorem iteration_monotone (aaf : DungAAF) (k : Nat) : iterF aaf k ⊆ iterF aaf (k+1) := by
-  sorry
+  induction' k with m ih
+  · simp [iterF]
+  · rw [iterF, iterF]
+    apply F_monotone aaf (iterF aaf m) (iterF aaf (m+1)) ih
 
 theorem finite_termination (aaf : DungAAF) : (groundedExtension aaf).2.1 := by
   sorry

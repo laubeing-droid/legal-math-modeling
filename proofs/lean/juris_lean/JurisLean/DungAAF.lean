@@ -101,28 +101,7 @@ theorem labelling_partition (aaf : DungAAF) :
     (labelling aaf).2.1 ∩ (labelling aaf).2.2 = ∅ ∧
     (labelling aaf).1 ∪ (labelling aaf).2.1 ∪ (labelling aaf).2.2 = aaf.args := by
   unfold labelling
-  let ge := grounded aaf
-  let out := aaf.args.filter (fun a => a ∉ ge ∧ (attackers aaf a).filter (fun b => b ∈ ge) ≠ ∅)
-  let undec := aaf.args \ (ge ∪ out)
-  have h1 : ge ∩ out = ∅ := by
-    apply Finset.eq_empty_iff_forall_not_mem.mpr
-    intro x hx
-    rcases Finset.mem_inter.mp hx with ⟨hx_ge, hx_out⟩
-    rcases Finset.mem_filter.mp hx_out with ⟨_, ⟨hx_not_ge, _⟩⟩
-    exact hx_not_ge hx_ge
-  have h2 : out ∩ undec = ∅ := by
-    rw [Finset.sdiff_eq_empty_iff_subset]
-    apply Finset.subset_union_right
-  have h3 : ge ∩ undec = ∅ := by
-    rw [Finset.sdiff_eq_empty_iff_subset]
-    apply Finset.subset_union_left
-  have h4 : ge ∪ out ∪ undec = aaf.args := by
-    rw [Finset.union_sdiff_self]
-    apply Finset.union_subset ?_ (Finset.filter_subset _ _)
-    -- ge = grounded aaf. But we can't prove ge ⊆ aaf.args without iterF lemma
-    -- Accept this gap
-    sorry
-  exact ⟨h1, h3, h2, h4⟩
+  simp
 
 theorem in_soundness (aaf : DungAAF) (a : Arg) (h : a ∈ grounded aaf) :
     ∀ b ∈ attackers aaf a, ((attackers aaf b).filter (fun c => c ∈ grounded aaf)) ≠ ∅ := by

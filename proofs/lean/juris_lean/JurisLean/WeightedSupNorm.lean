@@ -3,6 +3,7 @@ import Mathlib.Data.Fin.Basic
 import Mathlib.Tactic
 import Mathlib.Analysis.Normed.Lp.PiLp
 import Mathlib.Topology.MetricSpace.Contracting
+import JurisLean.SupZeroLemma
 
 open Real
 open Finset

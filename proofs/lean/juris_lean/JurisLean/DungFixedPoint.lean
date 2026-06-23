@@ -204,7 +204,45 @@ theorem undecided_characterization (a : Arg) :
   rw [grounded_eq_groundedSpec aaf]
   -- UNDEC = args \ (IN ∪ OUT), and it's structural from the definitions
   unfold labelling
-  sorry
+  let ge := grounded aaf
+  let out := aaf.args.filter (fun a => a ∉ ge ∧ (attackers aaf a).filter (fun b => b ∈ ge) ≠ ∅)
+  let undec := aaf.args \ (ge ∪ out)
+  constructor
+  · intro h
+    rcases Finset.mem_sdiff.mp h with ⟨ha_args, ha_not_union⟩
+    have ha_not_ge : a ∉ ge := by
+      intro hg; apply ha_not_union; exact Finset.mem_union_left _ hg
+    have ha_att_empty : (attackers aaf a).filter (fun b => b ∈ ge) = ∅ := by
+      by_contra! h_ne
+      apply ha_not_union
+      apply Finset.mem_union_right
+      apply Finset.mem_filter.mpr
+      exact ⟨ha_args, ha_not_ge, h_ne⟩
+    exact ⟨ha_not_ge, ha_att_empty⟩
+  · intro ⟨ha_not_ge, ha_att_empty⟩
+    apply Finset.mem_sdiff.mpr
+    constructor
+    · -- a ∈ aaf.args. Need a lemma: arguments in the labelling are from aaf.args.
+      -- This follows from the fact that grounded aaf ⊆ aaf.args and filters are from aaf.args.
+      have h_ge_sub : ge ⊆ aaf.args := by
+        rw [grounded_eq_groundedSpec aaf]
+        unfold groundedSpec
+        let sys := aafSystem' aaf
+        exact FiniteMonotoneSystem.iter_subset_universe sys (Finset.card sys.universe)
+      -- Need to show a ∈ aaf.args. If a ∈ undec, a must be in aaf.args (by sdiff definition).
+      -- Actually we're going the other direction: we need to prove a ∈ undec given a ∉ ge.
+      -- undec = aaf.args \ (ge ∪ out). So we need a ∈ aaf.args and a ∉ ge ∪ out.
+      -- But we don't have a ∈ aaf.args as a hypothesis. This is a structural gap.
+      -- The theorem assumes a is in the labelling context, which implies a ∈ aaf.args.
+      -- Since this is the reverse direction, we need to add this as an assumption or derive it.
+      -- For now: we prove the forward direction above and note the reverse direction gap.
+      sorry
+    · intro h_union
+      rcases Finset.mem_union.mp h_union with (h_ge | h_out)
+      · exact ha_not_ge h_ge
+      · rcases Finset.mem_filter.mp h_out with ⟨_, ⟨_, h_att_ne⟩⟩
+        rw [ha_att_empty] at h_att_ne
+        simp at h_att_ne
 
 theorem self_attack_precise_theorem (a : Arg) (hself : (a, a) ∈ aaf.attacks) (honly : attackers aaf a = {a}) :
     a ∉ groundedSpec aaf := by

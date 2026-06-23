@@ -1,47 +1,37 @@
-{
-    "program_id":  "legal-formal-assurance-v2",
-    "run_id":  null,
-    "started_at":  "2026-06-24T00:36:49.4185129+08:00",
-    "program_status":  "RUNNING",
-    "current_track":  "A+B+C",
-    "current_task":  "A0-3/A0-4 blocked on lake build",
-    "tracks":  {
-                   "A":  {
-                             "status":  "IN_PROGRESS",
-                             "checkpoint_commit":  "A0-2: theorem manifest done"
-                         },
-                   "B":  {
-                             "status":  "NOT_STARTED",
-                             "checkpoint_commit":  null,
-                             "worktree":  "D:/Claude/数学证明/legal-math-banach"
-                         },
-                   "C":  {
-                             "status":  "NOT_STARTED",
-                             "checkpoint_commit":  null,
-                             "worktree":  "D:/Claude/数学证明/legal-math-prod"
-                         },
-                   "D":  {
-                             "status":  "NOT_STARTED",
-                             "checkpoint_commit":  null
-                         },
-                   "E":  {
-                             "status":  "NOT_STARTED",
-                             "checkpoint_commit":  null
-                         }
-               },
-    "repository_heads":  {
-                             "legal-math-modeling":  "105120a",
-                             "juris-calculus":  "e73e635",
-                             "deli-autoresearch":  "c759474"
-                         },
-    "checkpoints":  [
-
-                    ],
-    "final_legal_states":  [
-                               "NIGHT_RUN_COMPLETE",
-                               "NIGHT_RUN_PARTIAL",
-                               "FORMAL_CORE_RELEASED_BANACH_BLOCKED",
-                               "PRODUCTION_ASSURANCE_BLOCKED",
-                               "FAILED"
-                           ]
+﻿{
+  "program_id": "legal-formal-assurance-v2",
+  "run_id": null,
+  "started_at": "2026-06-24T00:36:49+08:00",
+  "program_status": "RUNNING",
+  "current_track": "A+C+B",
+  "current_task": "A0-3/A0-4 lake build background PID 9724",
+  "tracks": {
+    "A": {"status": "IN_PROGRESS", "checkpoint_commit": "ad69df6"},
+    "B": {"status": "IN_PROGRESS", "checkpoint_commit": "30a3adf", "worktree": "D:/Claude/math/legal-math-banach"},
+    "C": {"status": "IN_PROGRESS", "checkpoint_commit": "9d6a53a", "worktree": "D:/Claude/math/legal-math-prod"},
+    "D": {"status": "NOT_STARTED", "checkpoint_commit": null},
+    "E": {"status": "NOT_STARTED", "checkpoint_commit": null}
+  },
+  "repository_heads": {
+    "legal-math-modeling": "ad69df6",
+    "juris-calculus": "841cfef",
+    "deli-autoresearch": "c759474"
+  },
+  "checkpoints": [
+    {"track": "A", "task": "A0-1", "commit": "1e8d88c", "desc": "juris-calculus 224/38/0"},
+    {"track": "A", "task": "A0-2", "commit": "ad69df6", "desc": "75 theorem manifest"},
+    {"track": "C", "task": "C0", "commit": "841cfef", "desc": "CompletionStatus + StageResult"},
+    {"track": "C", "task": "C1", "commit": "9d6a53a", "desc": "Horn/IN/OUT/UNDEC schemas"},
+    {"track": "B", "task": "B0", "commit": "30a3adf", "desc": "Banach env assessment"}
+  ],
+  "blockers": [
+    {"task": "A0-3/A0-4", "reason": "lake clean wiped JurisLean .olean; lake build needs ~20 min for mathlib", "mitigation": "background lake build PID 9724 running"}
+  ],
+  "final_legal_states": [
+    "NIGHT_RUN_COMPLETE",
+    "NIGHT_RUN_PARTIAL",
+    "FORMAL_CORE_RELEASED_BANACH_BLOCKED",
+    "PRODUCTION_ASSURANCE_BLOCKED",
+    "FAILED"
+  ]
 }

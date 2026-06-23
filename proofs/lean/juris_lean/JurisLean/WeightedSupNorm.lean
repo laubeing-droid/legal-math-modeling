@@ -80,7 +80,7 @@ theorem weightedSupDist_complete (w : Fin n → ℝ) (hw : PositiveWeights w) :
   constructor
   · exact weightedSupDist_nonneg w hw x y
   · constructor
-    · intro h; sorry -- identity of indiscernibles requires completeness proof (Track B full)
-    · intro h; subst h; simp [weightedSupDist]
+      · intro h_eq
+      exact weightedSupDist_eq_zero_imp hw h_eq  · intro h; subst h; simp [weightedSupDist]
 
 end

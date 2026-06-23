@@ -1,28 +1,47 @@
 {
-  "program_id": "legal-formal-assurance-v2",
-  "run_id": null,
-  "started_at": null,
-  "program_status": "INFRA_READY",
-  "current_track": null,
-  "current_task": null,
-  "tracks": {
-    "A": {"status": "NOT_STARTED", "checkpoint_commit": null},
-    "B": {"status": "NOT_STARTED", "checkpoint_commit": null, "worktree": "D:/Claude/数学证明/legal-math-banach"},
-    "C": {"status": "NOT_STARTED", "checkpoint_commit": null, "worktree": "D:/Claude/数学证明/legal-math-prod"},
-    "D": {"status": "NOT_STARTED", "checkpoint_commit": null},
-    "E": {"status": "NOT_STARTED", "checkpoint_commit": null}
-  },
-  "repository_heads": {
-    "legal-math-modeling": "105120a",
-    "juris-calculus": "e73e635",
-    "deli-autoresearch": "c759474"
-  },
-  "checkpoints": [],
-  "final_legal_states": [
-    "NIGHT_RUN_COMPLETE",
-    "NIGHT_RUN_PARTIAL",
-    "FORMAL_CORE_RELEASED_BANACH_BLOCKED",
-    "PRODUCTION_ASSURANCE_BLOCKED",
-    "FAILED"
-  ]
+    "program_id":  "legal-formal-assurance-v2",
+    "run_id":  null,
+    "started_at":  "2026-06-24T00:36:49.4185129+08:00",
+    "program_status":  "RUNNING",
+    "current_track":  "A+B+C",
+    "current_task":  "A0-3/A0-4 blocked on lake build",
+    "tracks":  {
+                   "A":  {
+                             "status":  "IN_PROGRESS",
+                             "checkpoint_commit":  "A0-2: theorem manifest done"
+                         },
+                   "B":  {
+                             "status":  "NOT_STARTED",
+                             "checkpoint_commit":  null,
+                             "worktree":  "D:/Claude/数学证明/legal-math-banach"
+                         },
+                   "C":  {
+                             "status":  "NOT_STARTED",
+                             "checkpoint_commit":  null,
+                             "worktree":  "D:/Claude/数学证明/legal-math-prod"
+                         },
+                   "D":  {
+                             "status":  "NOT_STARTED",
+                             "checkpoint_commit":  null
+                         },
+                   "E":  {
+                             "status":  "NOT_STARTED",
+                             "checkpoint_commit":  null
+                         }
+               },
+    "repository_heads":  {
+                             "legal-math-modeling":  "105120a",
+                             "juris-calculus":  "e73e635",
+                             "deli-autoresearch":  "c759474"
+                         },
+    "checkpoints":  [
+
+                    ],
+    "final_legal_states":  [
+                               "NIGHT_RUN_COMPLETE",
+                               "NIGHT_RUN_PARTIAL",
+                               "FORMAL_CORE_RELEASED_BANACH_BLOCKED",
+                               "PRODUCTION_ASSURANCE_BLOCKED",
+                               "FAILED"
+                           ]
 }

@@ -1,0 +1,607 @@
+{
+  "total": 75,
+  "core": 43,
+  "supporting": 32,
+  "theorems": [
+    {
+      "file": "BanachEffectiveNodes.lean",
+      "line": 81,
+      "name": "pricingFn_contraction",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "48acf029e00e1130"
+    },
+    {
+      "file": "BanachEffectiveNodes.lean",
+      "line": 107,
+      "name": "pricingFn_fixed_point",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "cba7e794e2b9dd20"
+    },
+    {
+      "file": "BanachEffectiveNodes.lean",
+      "line": 120,
+      "name": "pricingFn_unique_fixed_point",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "b4b2e67004722ede"
+    },
+    {
+      "file": "ContractionCondition.lean",
+      "line": 33,
+      "name": "lipschitz_coupling_implies_weighted_contraction",
+      "category": "core",
+      "definitional": false,
+      "digest": "925a629a0bfd72cf"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 48,
+      "name": "F_subset_args",
+      "category": "core",
+      "definitional": false,
+      "digest": "37ab2001b23700a3"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 59,
+      "name": "F_monotone",
+      "category": "core",
+      "definitional": false,
+      "digest": "2ec8317ec9182fb2"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 63,
+      "name": "iteration_monotone",
+      "category": "core",
+      "definitional": false,
+      "digest": "16a608e7619fb52c"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 75,
+      "name": "finite_termination",
+      "category": "core",
+      "definitional": false,
+      "digest": "96e0eb37ce40e4eb"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 78,
+      "name": "iteration_bound",
+      "category": "core",
+      "definitional": false,
+      "digest": "20f6ada5eb3ae569"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 83,
+      "name": "groundedSpec_is_fixed_point",
+      "category": "core",
+      "definitional": false,
+      "digest": "9fa768c5df56707c"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 94,
+      "name": "grounded_is_fixed_point",
+      "category": "core",
+      "definitional": false,
+      "digest": "4f0d01acaf005fe4"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 98,
+      "name": "groundedSpec_is_least_fixed_point",
+      "category": "core",
+      "definitional": false,
+      "digest": "59fb788e0d7210bc"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 113,
+      "name": "grounded_is_least_fixed_point",
+      "category": "core",
+      "definitional": false,
+      "digest": "a07a1cbc70a47a33"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 117,
+      "name": "grounded_is_least_complete",
+      "category": "core",
+      "definitional": false,
+      "digest": "cc2965a991001b92"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 121,
+      "name": "groundedSpec_unique_least_fixed_point",
+      "category": "core",
+      "definitional": false,
+      "digest": "7aaec80f87fb5ff4"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 131,
+      "name": "labelling_partition",
+      "category": "core",
+      "definitional": false,
+      "digest": "5c0ca22c35231aca"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 185,
+      "name": "in_soundness",
+      "category": "core",
+      "definitional": false,
+      "digest": "907a0dd0a1ad64aa"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 195,
+      "name": "out_soundness",
+      "category": "core",
+      "definitional": false,
+      "digest": "763b1312fae1c13d"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 201,
+      "name": "undecided_characterization",
+      "category": "core",
+      "definitional": false,
+      "digest": "83aed3aea2326992"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 232,
+      "name": "self_attack_precise_theorem",
+      "category": "core",
+      "definitional": false,
+      "digest": "0e99a05a7f589efe"
+    },
+    {
+      "file": "DungFixedPoint.lean",
+      "line": 263,
+      "name": "self_attack_not_in_grounded",
+      "category": "core",
+      "definitional": false,
+      "digest": "268280068613e8df"
+    },
+    {
+      "file": "FiniteGaloisAdjunction.lean",
+      "line": 49,
+      "name": "galois_connection_of_residuated",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "bf9ad3221c1bd1fc"
+    },
+    {
+      "file": "FiniteMonotoneIteration.lean",
+      "line": 30,
+      "name": "iter_succ",
+      "category": "core",
+      "definitional": true,
+      "digest": "415d52c3f1579751"
+    },
+    {
+      "file": "FiniteMonotoneIteration.lean",
+      "line": 32,
+      "name": "iter_subset_universe",
+      "category": "core",
+      "definitional": false,
+      "digest": "d4359b0b97e58eab"
+    },
+    {
+      "file": "FiniteMonotoneIteration.lean",
+      "line": 39,
+      "name": "iter_mono",
+      "category": "core",
+      "definitional": false,
+      "digest": "99d8c2b4c73ef9c5"
+    },
+    {
+      "file": "FiniteMonotoneIteration.lean",
+      "line": 45,
+      "name": "iter_stable",
+      "category": "core",
+      "definitional": false,
+      "digest": "6613310849dd61c0"
+    },
+    {
+      "file": "FiniteMonotoneIteration.lean",
+      "line": 54,
+      "name": "iter_ssubset_of_ne",
+      "category": "core",
+      "definitional": false,
+      "digest": "c58f40224b040bc9"
+    },
+    {
+      "file": "FiniteMonotoneIteration.lean",
+      "line": 63,
+      "name": "iter_card_lt_of_ne",
+      "category": "core",
+      "definitional": false,
+      "digest": "3dd586374fb93cd6"
+    },
+    {
+      "file": "FiniteMonotoneIteration.lean",
+      "line": 67,
+      "name": "iter_card_le_universe",
+      "category": "core",
+      "definitional": false,
+      "digest": "ab9f96a54d7e60da"
+    },
+    {
+      "file": "FiniteMonotoneIteration.lean",
+      "line": 72,
+      "name": "exists_fixpoint_le_card",
+      "category": "core",
+      "definitional": false,
+      "digest": "b38059b13e0fe846"
+    },
+    {
+      "file": "FiniteMonotoneIteration.lean",
+      "line": 95,
+      "name": "fixed_at_card",
+      "category": "core",
+      "definitional": false,
+      "digest": "2369c101cd3ad582"
+    },
+    {
+      "file": "FiniteRosetta.lean",
+      "line": 71,
+      "name": "cnOnly_eq_30",
+      "category": "supporting",
+      "definitional": true,
+      "digest": "8dacd4abf972d211"
+    },
+    {
+      "file": "FiniteRosetta.lean",
+      "line": 74,
+      "name": "collision_eq_4",
+      "category": "supporting",
+      "definitional": true,
+      "digest": "93e46e25d5fe2314"
+    },
+    {
+      "file": "FiniteRosetta.lean",
+      "line": 77,
+      "name": "asymmetry_eq_3",
+      "category": "supporting",
+      "definitional": true,
+      "digest": "5a2e6b2fd2f9ca09"
+    },
+    {
+      "file": "FiniteRosetta.lean",
+      "line": 80,
+      "name": "obstruction_eq_37",
+      "category": "supporting",
+      "definitional": true,
+      "digest": "db8ba5a9c1c8c9f0"
+    },
+    {
+      "file": "FiniteRosetta.lean",
+      "line": 83,
+      "name": "cnOnly_exceeds_half",
+      "category": "supporting",
+      "definitional": true,
+      "digest": "aca9647018676aff"
+    },
+    {
+      "file": "FiniteRosetta.lean",
+      "line": 86,
+      "name": "obstruction_exceeds_half",
+      "category": "supporting",
+      "definitional": true,
+      "digest": "d185722af448e0d3"
+    },
+    {
+      "file": "FiniteRosetta.lean",
+      "line": 91,
+      "name": "no_total_functor",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "729a215c188ffe1c"
+    },
+    {
+      "file": "FiniteRosetta.lean",
+      "line": 98,
+      "name": "obstruction_density_gt_two_thirds",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "ffd21b877765dd18"
+    },
+    {
+      "file": "FiniteRosetta.lean",
+      "line": 103,
+      "name": "pure_obstruction_majority",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "939cc791dd3cae05"
+    },
+    {
+      "file": "HornDefinitions.lean",
+      "line": 41,
+      "name": "TH_monotone",
+      "category": "core",
+      "definitional": false,
+      "digest": "c9364a15abcbeaaf"
+    },
+    {
+      "file": "HornDefinitions.lean",
+      "line": 52,
+      "name": "TH_subset_universe",
+      "category": "core",
+      "definitional": false,
+      "digest": "ea10bc27aa05f5a1"
+    },
+    {
+      "file": "HornFixedPoint.lean",
+      "line": 17,
+      "name": "horn_operator_subset_universe",
+      "category": "core",
+      "definitional": false,
+      "digest": "45522fdfbc400818"
+    },
+    {
+      "file": "HornFixedPoint.lean",
+      "line": 21,
+      "name": "horn_operator_monotone",
+      "category": "core",
+      "definitional": false,
+      "digest": "26a81e2217e7d2ac"
+    },
+    {
+      "file": "HornFixedPoint.lean",
+      "line": 25,
+      "name": "horn_iteration_monotone",
+      "category": "core",
+      "definitional": false,
+      "digest": "e05570ab5c648b36"
+    },
+    {
+      "file": "HornFixedPoint.lean",
+      "line": 31,
+      "name": "horn_finite_termination",
+      "category": "core",
+      "definitional": false,
+      "digest": "8b05f23b90df2623"
+    },
+    {
+      "file": "HornFixedPoint.lean",
+      "line": 37,
+      "name": "horn_iteration_bound",
+      "category": "core",
+      "definitional": false,
+      "digest": "9b15c2524da1c3be"
+    },
+    {
+      "file": "HornFixedPoint.lean",
+      "line": 43,
+      "name": "horn_result_fixed_point",
+      "category": "core",
+      "definitional": false,
+      "digest": "527e4abc530eb343"
+    },
+    {
+      "file": "HornFixedPoint.lean",
+      "line": 54,
+      "name": "horn_result_least_fixed_point",
+      "category": "core",
+      "definitional": false,
+      "digest": "a55f692d3144a637"
+    },
+    {
+      "file": "HornFixedPoint.lean",
+      "line": 70,
+      "name": "horn_soundness",
+      "category": "core",
+      "definitional": false,
+      "digest": "628113f1e1f92b17"
+    },
+    {
+      "file": "HornFixedPoint.lean",
+      "line": 75,
+      "name": "horn_completeness",
+      "category": "core",
+      "definitional": false,
+      "digest": "72265e5a8702c42c"
+    },
+    {
+      "file": "HornFixedPoint.lean",
+      "line": 81,
+      "name": "horn_result_is_minimal_model",
+      "category": "core",
+      "definitional": false,
+      "digest": "79645884f84b3657"
+    },
+    {
+      "file": "JC_Formalization.lean",
+      "line": 139,
+      "name": "proved_theorems_card",
+      "category": "supporting",
+      "definitional": true,
+      "digest": "dc4ef5c68b9c2c98"
+    },
+    {
+      "file": "JC_Formalization.lean",
+      "line": 147,
+      "name": "empirical_proxy_card",
+      "category": "supporting",
+      "definitional": true,
+      "digest": "1f6487fcec873adc"
+    },
+    {
+      "file": "JC_Formalization.lean",
+      "line": 155,
+      "name": "refuted_theorems_card",
+      "category": "supporting",
+      "definitional": true,
+      "digest": "5c659c2879f8f685"
+    },
+    {
+      "file": "JC_Formalization.lean",
+      "line": 163,
+      "name": "pending_theorems_card",
+      "category": "supporting",
+      "definitional": true,
+      "digest": "ac330a493ab1f169"
+    },
+    {
+      "file": "JC_Formalization.lean",
+      "line": 176,
+      "name": "advance_preserves_domain_bound",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "6b2417205b19f1d4"
+    },
+    {
+      "file": "JC_Formalization.lean",
+      "line": 182,
+      "name": "advance_cannot_revive_refuted",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "87015f7a767d8a86"
+    },
+    {
+      "file": "TemporalKripke.lean",
+      "line": 55,
+      "name": "temporal_guard_always",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "e501f0a1b683fb0b"
+    },
+    {
+      "file": "TemporalKripke.lean",
+      "line": 105,
+      "name": "litigation_always_guard",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "e7a60d9a202c010b"
+    },
+    {
+      "file": "UnifiedModel.lean",
+      "line": 78,
+      "name": "horn_step_mono",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "1de0d2280a788e80"
+    },
+    {
+      "file": "UnifiedModel.lean",
+      "line": 124,
+      "name": "unattacked_in_ge",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "bd22a02a07e9d984"
+    },
+    {
+      "file": "UnifiedModel.lean",
+      "line": 200,
+      "name": "unattacked_in_lfp",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "5afd68d74065fc9b"
+    },
+    {
+      "file": "UnifiedModel.lean",
+      "line": 238,
+      "name": "banach_bounded",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "7c6f15376fd4c1d5"
+    },
+    {
+      "file": "UnifiedModel.lean",
+      "line": 271,
+      "name": "soundness_aaf",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "073a3252e893e512"
+    },
+    {
+      "file": "UnifiedModel.lean",
+      "line": 278,
+      "name": "soundness_banach",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "2222ef56e1c1ce93"
+    },
+    {
+      "file": "UnifiedModel.lean",
+      "line": 293,
+      "name": "gc2_completeness",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "ce6de05cf796a767"
+    },
+    {
+      "file": "UnifiedModel.lean",
+      "line": 309,
+      "name": "unified_composition_v2",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "e53a0619d60ab20e"
+    },
+    {
+      "file": "UnifiedModel.lean",
+      "line": 335,
+      "name": "full_chain",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "50d8f54566863cf8"
+    },
+    {
+      "file": "UnifiedModel.lean",
+      "line": 355,
+      "name": "horn_monotone",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "fb21b5f2966d6de0"
+    },
+    {
+      "file": "UnifiedModel.lean",
+      "line": 368,
+      "name": "banach_bound_uniform",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "4b1c7db449487a4f"
+    },
+    {
+      "file": "WeightedSupNorm.lean",
+      "line": 36,
+      "name": "weightedSupDist_nonneg",
+      "category": "core",
+      "definitional": false,
+      "digest": "1ebf6009980e1543"
+    },
+    {
+      "file": "WeightedSupNorm.lean",
+      "line": 45,
+      "name": "weightedSupDist_triangle",
+      "category": "core",
+      "definitional": false,
+      "digest": "4b7cdb1031edeb69"
+    },
+    {
+      "file": "WeightedSupNorm.lean",
+      "line": 63,
+      "name": "weightedSupDist_symm",
+      "category": "core",
+      "definitional": false,
+      "digest": "d559d361ee06ce09"
+    },
+    {
+      "file": "WeightedSupNorm.lean",
+      "line": 77,
+      "name": "weightedSupDist_complete",
+      "category": "core",
+      "definitional": false,
+      "digest": "83860fc046bb34b9"
+    }
+  ]
+}

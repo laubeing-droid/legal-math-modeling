@@ -33,9 +33,9 @@ def F (aaf : DungAAF) (S : Finset Arg) : Finset Arg :=
 
 /-- The AAF system as a FiniteMonotoneSystem for the generic fixpoint kernel. -/
 def aafSystem (aaf : DungAAF) : FiniteMonotoneSystem Arg := {
-  universe := aaf.args
+  univ := aaf.args
   step := F aaf
-  step_subset_universe := by
+  step_subset_univ := by
     intro S
     rw [F]
     exact Finset.filter_subset _ _

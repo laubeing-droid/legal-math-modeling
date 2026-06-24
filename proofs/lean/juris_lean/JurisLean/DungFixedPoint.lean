@@ -18,13 +18,13 @@ section SpecDefinition
 This is the least fixed point of F and the canonical grounded semantics. -/
 def groundedSpec (aaf : DungAAF) : Finset Arg :=
   let sys := aafSystem' aaf
-  FiniteMonotoneSystem.iter sys (Finset.card sys.universe)
+  FiniteMonotoneSystem.iter sys (Finset.card sys.univ)
 
 /-- The AAF system (proved monotone). -/
 def aafSystem' (aaf : DungAAF) : FiniteMonotoneSystem Arg := {
-  universe := aaf.args
+  univ := aaf.args
   step := F aaf
-  step_subset_universe := F_subset_args aaf
+  step_subset_univ := F_subset_args aaf
   step_monotone := by
     intro S T hST
     rw [F, F]
@@ -77,7 +77,7 @@ theorem finite_termination : (groundedExtension aaf).2.1 := by
 
 theorem iteration_bound : (groundedExtension aaf).2.2 ≤ aaf.args.card + 1 := by
   unfold groundedExtension
-  have : Finset.card (aafSystem' aaf).universe ≤ aaf.args.card + 1 := by omega
+  have : Finset.card (aafSystem' aaf).univ ≤ aaf.args.card + 1 := by omega
   exact this
 
 theorem groundedSpec_is_fixed_point : F aaf (groundedSpec aaf) = groundedSpec aaf := by
@@ -85,7 +85,7 @@ theorem groundedSpec_is_fixed_point : F aaf (groundedSpec aaf) = groundedSpec aa
   let sys := aafSystem' aaf
   have h_fixed := FiniteMonotoneSystem.fixed_at_card sys
   -- iter(card) = iter(card+1) = F(iter(card))
-  rw [FiniteMonotoneSystem.iter_succ sys (Finset.card sys.universe)] at h_fixed
+  rw [FiniteMonotoneSystem.iter_succ sys (Finset.card sys.univ)] at h_fixed
   -- Now h_fixed: iter(card) = F(iter(card))
   -- So F(groundedSpec) = F(iter(card)) = iter(card) = groundedSpec
   rw [← h_fixed]
@@ -107,7 +107,7 @@ theorem groundedSpec_is_least_fixed_point (S : Finset Arg) (hS : F aaf S = S) :
       rw [FiniteMonotoneSystem.iter_succ]
       rw [hS]
       apply sys.step_monotone ih
-  exact h_ind (Finset.card sys.universe)
+  exact h_ind (Finset.card sys.univ)
 
 /-- 6a: grounded_is_least_fixed_point (wraps groundedSpec version). -/
 theorem grounded_is_least_fixed_point (S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S := by
@@ -147,7 +147,7 @@ theorem labelling_partition :
   have h_ge_sub : ge ⊆ aaf.args := by
     unfold groundedSpec
     let sys := aafSystem' aaf
-    exact FiniteMonotoneSystem.iter_subset_universe sys (Finset.card sys.universe)
+    exact FiniteMonotoneSystem.iter_subset_univ sys (Finset.card sys.univ)
   have h2 : out ∩ undec = ∅ := by
     -- out ⊆ ge ∪ out, and undec = args \ (ge ∪ out), so disjoint
     -- Use: sdiff_disjoint or: sdiff_eq_empty_iff_subset
@@ -258,7 +258,7 @@ theorem self_attack_precise_theorem (a : Arg) (hself : (a, a) ∈ aaf.attacks) (
         exact h_notin hx_iter
       exact ha_in
   unfold groundedSpec
-  exact h_ind (Finset.card sys.universe)
+  exact h_ind (Finset.card sys.univ)
 
 theorem self_attack_not_in_grounded (a : Arg) (hself : (a, a) ∈ aaf.attacks) (honly : attackers aaf a = {a}) :
     a ∉ grounded aaf := by

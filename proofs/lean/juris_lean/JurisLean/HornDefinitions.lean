@@ -8,7 +8,7 @@ open Finset
 
 The Horn immediate consequence operator T_H takes a set of ground facts
 and Horn rules, and produces all derivable conclusions. It is monotone
-and stays within a finite universe (initial facts ∪ all rule heads).
+and stays within a finite univ (initial facts ∪ all rule heads).
 
 This file defines the operator and instantiates FiniteMonotoneSystem.
 All proofs are in HornFixedPoint.lean.
@@ -20,13 +20,13 @@ structure HornRule (α : Type) where
   conclusion : α
 deriving DecidableEq
 
-/-- A Horn system: initial facts plus rules over a ground atom universe. -/
+/-- A Horn system: initial facts plus rules over a ground atom univ. -/
 structure HornSystem (α : Type) [DecidableEq α] where
-  universe : Finset α
+  univ : Finset α
   initialFacts : Finset α
   rules : Finset (HornRule α)
-  initialFacts_subset_universe : initialFacts ⊆ universe
-  heads_subset_universe : ∀ r ∈ rules, r.conclusion ∈ universe
+  initialFacts_subset_univ : initialFacts ⊆ univ
+  heads_subset_univ : ∀ r ∈ rules, r.conclusion ∈ univ
 
 namespace HornSystem
 
@@ -48,22 +48,22 @@ theorem TH_monotone {S T : Finset α} (hST : S ⊆ T) : TH sys S ⊆ TH sys T :=
   -- Need: r.premises ⊆ T
   exact Finset.Subset.trans hr hST
 
-/-- TH always stays within the universe. -/
-theorem TH_subset_universe (S : Finset α) : TH sys S ⊆ sys.universe := by
+/-- TH always stays within the univ. -/
+theorem TH_subset_univ (S : Finset α) : TH sys S ⊆ sys.univ := by
   unfold TH
   apply Finset.union_subset
-  · exact sys.initialFacts_subset_universe
+  · exact sys.initialFacts_subset_univ
   · -- image of rule conclusions
     apply Finset.image_subset_image
     intro r hr
     rcases Finset.mem_filter.mp hr with ⟨hr_rules, _⟩
-    exact sys.heads_subset_universe r hr_rules
+    exact sys.heads_subset_univ r hr_rules
 
 /-- Instantiate the Horn system as a FiniteMonotoneSystem. -/
 def toFiniteMonotoneSystem : FiniteMonotoneSystem α := {
-  universe := sys.universe
+  univ := sys.univ
   step := TH sys
-  step_subset_universe := TH_subset_universe sys
+  step_subset_univ := TH_subset_univ sys
   step_monotone := TH_monotone sys
 }
 

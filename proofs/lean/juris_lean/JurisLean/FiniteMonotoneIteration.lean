@@ -8,18 +8,18 @@ Shared by AAF and Horn. 0 sorry, 0 axiom, 0 admit.
 -/
 
 /-- A finite monotone system: step function stays in universe and is monotone. -/
-structure FiniteMonotoneSystem (α : Type) [DecidableEq α] where
-  universe : Finset α
-  step : Finset α → Finset α
+structure FiniteMonotoneSystem (A  : Type) [DecidableEq A] where
+  universe : Finset A
+  step : Finset A → Finset A
   step_subset_universe : ∀ S, step S ⊆ universe
   step_monotone : ∀ {S T}, S ⊆ T → step S ⊆ step T
 
 namespace FiniteMonotoneSystem
 
-variable {α : Type} [DecidableEq α] (sys : FiniteMonotoneSystem α)
+variable {A : Type} [DecidableEq A] (sys : FiniteMonotoneSystem A)
 
 /-- Iterate the step function n times from the empty set. -/
-def iter : Nat → Finset α
+def iter : Nat → Finset A
   | 0 => ∅
   | n + 1 => sys.step (iter n)
 

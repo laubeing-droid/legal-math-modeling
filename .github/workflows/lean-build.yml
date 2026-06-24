@@ -1,10 +1,8 @@
-﻿name: Lake Build
+name: Lake Build
 
 on:
   push:
     branches: [master, main]
-    paths: ['proofs/lean/juris_lean/**']
-  pull_request:
     paths: ['proofs/lean/juris_lean/**']
   workflow_dispatch:
 
@@ -18,14 +16,15 @@ jobs:
       - name: Install elan
         run: |
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain leanprover/lean4:v4.30.0
-          echo "$HOME/.elan/bin" >> $GITHUB_PATH
 
       - name: Lake Build
         run: |
+          export PATH="$HOME/.elan/bin:$PATH"
           cd proofs/lean/juris_lean
           lake build
 
       - name: Scan
         run: |
+          export PATH="$HOME/.elan/bin:$PATH"
           cd proofs/lean/juris_lean
           ! grep -rn 'sorry\|admit\|axiom' JurisLean/ --include='*.lean'

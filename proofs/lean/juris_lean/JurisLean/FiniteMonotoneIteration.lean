@@ -92,8 +92,10 @@ theorem exists_fixpoint_le_card :
   rw [h_card_0] at h_final_chain
   have h_final_bound : Finset.card (iter sys (bound + 1)) ≤ bound :=
     iter_card_le_universe sys (bound + 1)
-  have : bound + 1 ≤ bound := le_trans h_final_chain h_final_bound
-  exact Nat.not_succ_le_self bound this
+  have h_contra : 0 + (bound + 1) ≤ bound := le_trans h_final_chain h_final_bound
+  have h_bad : bound + 1 ≤ bound := by
+    simpa [zero_add] using h_contra
+  exact Nat.not_succ_le_self bound h_bad
 
 theorem fixed_at_card : iter sys (Finset.card sys.universe) = iter sys (Finset.card sys.universe + 1) := by
   have h := exists_fixpoint_le_card sys

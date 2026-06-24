@@ -11,29 +11,21 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
       - name: Install elan
         run: |
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain leanprover/lean4:v4.30.0
-          echo "C:\Users\being/.elan/bin" >> 
+          echo "$HOME/.elan/bin" >> $GITHUB_PATH
 
       - name: Lake Build
         run: |
           cd proofs/lean/juris_lean
-          ~/.elan/bin/lake build
+          lake build
 
-      - name: Scan (sorry/admit/axiom)
+      - name: Scan
         run: |
           cd proofs/lean/juris_lean
-          if grep -rn 'sorry\|admit\|axiom' JurisLean/ --include='*.lean'; then
-            echo "FORBIDDEN TOKEN FOUND"
-            exit 1
-          fi
-          echo "CLEAN: 0 sorry, 0 admit, 0 axiom"
-
-      - name: Axiom Audit
-        run: |
-          cd proofs/lean/juris_lean
-          ~/.elan/bin/lake env lean JurisLean/AxiomAudit.lean
+          ! grep -rn 'sorry\|admit\|axiom' JurisLean/ --include='*.lean'

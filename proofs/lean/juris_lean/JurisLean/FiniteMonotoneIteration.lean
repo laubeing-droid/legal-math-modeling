@@ -81,23 +81,28 @@ theorem exists_fixpoint_le_card :
     induction k with
     | zero => rfl
     | succ m ih =>
-      have hm : m ≤ bound := by omega
+      have hm : m ≤ bound := Nat.le_of_succ_le_succ hk
       have h_lt := h_card_lt m hm
-      omega
+      calc
+        Finset.card (iter sys 0) + (m + 1) = (Finset.card (iter sys 0) + m) + 1 := by rw [Nat.add_assoc]
+        _ ≤ Finset.card (iter sys m) + 1 := Nat.succ_le_succ ih
+        _ ≤ Finset.card (iter sys (m + 1)) := Nat.succ_le_of_lt h_lt
   have h_card_0 : Finset.card (iter sys 0) = 0 := by simp [iter]
   have h_final_chain := h_card_chain (bound + 1) (le_refl _)
   rw [h_card_0] at h_final_chain
   have h_final_bound : Finset.card (iter sys (bound + 1)) ≤ bound :=
     iter_card_le_universe sys (bound + 1)
   have : bound + 1 ≤ bound := le_trans h_final_chain h_final_bound
-  omega
+  exact Nat.not_succ_le_self bound this
 
 theorem fixed_at_card : iter sys (Finset.card sys.universe) = iter sys (Finset.card sys.universe + 1) := by
   have h := exists_fixpoint_le_card sys
   rcases h with ⟨k, hk, h_eq⟩
   have h_stable : ∀ m, iter sys (k + m) = iter sys k := iter_stable sys h_eq
-  have h1 : Finset.card sys.universe = k + (Finset.card sys.universe - k) := by omega
-  have h2 : Finset.card sys.universe + 1 = k + ((Finset.card sys.universe - k) + 1) := by omega
+  have h1 : Finset.card sys.universe = k + (Finset.card sys.universe - k) :=
+    (Nat.add_sub_cancel hk).symm
+  have h2 : Finset.card sys.universe + 1 = k + ((Finset.card sys.universe - k) + 1) := by
+    rw [h1, Nat.add_assoc]
   rw [h1, h2]
   rw [h_stable (Finset.card sys.universe - k), h_stable ((Finset.card sys.universe - k) + 1)]
 

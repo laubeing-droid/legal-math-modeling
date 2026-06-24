@@ -1,4 +1,4 @@
-name: Lake Build
+﻿name: Lake Build + Scan
 
 on:
   push:
@@ -19,12 +19,12 @@ jobs:
 
       - name: Lake Build
         run: |
-          export PATH="$HOME/.elan/bin:$PATH"
+          export PATH="C:\Users\being/.elan/bin:"
           cd proofs/lean/juris_lean
           lake build
 
-      - name: Scan
+      - name: Scan (must be 0 sorry/admit/axiom)
         run: |
-          export PATH="$HOME/.elan/bin:$PATH"
+          export PATH="C:\Users\being/.elan/bin:"
           cd proofs/lean/juris_lean
           ! grep -rn 'sorry\|admit\|axiom' JurisLean/ --include='*.lean'

@@ -1,28 +1,27 @@
 ﻿{
   "program_id": "legal-formal-assurance-v2",
-  "program_status": "RUNNING",
-  "current_task": "lake build background -- 1154 olean, JurisLean pending",
+  "program_status": "EXTERNAL_BUILD_GATE",
+  "code_status": "COMPLETE",
+  "python_verification": "COMPLETE",
+  "lean_source_audit": "COMPLETE",
+  "lean_full_build": "WAITING_EXTERNAL_BUILD",
+  "overall_status": "EXTERNAL_BUILD_GATE",
+  "current_task": "Run scripts/request-external-build.ps1 in PowerShell, then scripts/finalize-external-build.py",
   "tracks": {
-    "A": {"status": "IN_PROGRESS", "checkpoint_commit": "4d43e62"},
-    "B": {"status": "IN_PROGRESS", "checkpoint_commit": "30a3adf", "worktree": "D:/Claude/math/legal-math-banach"},
-    "C": {"status": "IN_PROGRESS", "checkpoint_commit": "7a4bbeb", "worktree": "D:/Claude/math/legal-math-prod"},
-    "D": {"status": "NOT_STARTED"},
-    "E": {"status": "NOT_STARTED"}
+    "A": {"status": "CODE_COMPLETE", "build_blocked_pending_external": true, "checkpoint_commit": "ddd3f37"},
+    "B": {"status": "SPEC_COMPLETE", "checkpoint_commit": "30a3adf"},
+    "C": {"status": "CODE_COMPLETE", "checkpoint_commit": "f43e273"},
+    "D": {"status": "SPEC_COMPLETE", "checkpoint_commit": "f43e273"},
+    "E": {"status": "SPEC_COMPLETE", "checkpoint_commit": "f43e273"}
   },
   "repository_heads": {
-    "legal-math-modeling": "4d43e62",
-    "juris-calculus": "841cfef",
+    "legal-math-modeling": "ddd3f37",
+    "juris-calculus": "15d9be6",
     "deli-autoresearch": "c759474"
   },
-  "checkpoints": [
-    {"track":"A","task":"A0-1","commit":"1e8d88c","desc":"juris-calculus 224/38/0"},
-    {"track":"A","task":"A0-2","commit":"ad69df6","desc":"75 theorem manifest"},
-    {"track":"C","task":"C0","commit":"841cfef","desc":"CompletionStatus+StageResult"},
-    {"track":"C","task":"C1","commit":"9d6a53a","desc":"Horn/IN/OUT/UNDEC schemas"},
-    {"track":"C","task":"C2/C3","commit":"7a4bbeb","desc":"Horn-AAF preservation MVM"},
-    {"track":"B","task":"B0","commit":"30a3adf","desc":"Banach env assessment"}
-  ],
-  "blockers": [
-    {"task":"A0-3/A0-4","reason":"lake build needs ~20 min for mathlib; 1154 olean generated, JurisLean pending"}
-  ]
+  "build_gate": {
+    "script": "scripts/request-external-build.ps1",
+    "verify": "scripts/finalize-external-build.py",
+    "result_path": "build-logs/<timestamp>/build-result.json"
+  }
 }

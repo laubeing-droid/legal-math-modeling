@@ -1,9 +1,8 @@
-﻿name: Lake Build + Scan
+name: Lake Build + Scan
 
 on:
   push:
     branches: [master, main]
-    paths: ['proofs/lean/juris_lean/**']
   workflow_dispatch:
 
 jobs:
@@ -28,3 +27,4 @@ jobs:
           export PATH="C:\Users\being/.elan/bin:"
           cd proofs/lean/juris_lean
           ! grep -rn 'sorry\|admit\|axiom' JurisLean/ --include='*.lean'
+

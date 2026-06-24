@@ -16,18 +16,13 @@ jobs:
         run: |
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain leanprover/lean4:v4.30.0
 
-      - name: Verify toolchain
-        run: |
-          export PATH="C:\Users\being/.elan/bin:"
-          which lake && lake --version && lean --version
-
       - name: Lake Build
         run: |
-          export PATH="C:\Users\being/.elan/bin:"
+          export PATH=~/.elan/bin:$PATH
           cd proofs/lean/juris_lean && lake build
 
       - name: Scan
         run: |
-          export PATH="C:\Users\being/.elan/bin:"
+          export PATH=~/.elan/bin:$PATH
           cd proofs/lean/juris_lean
-          ! grep -rn 'sorry\|admit\|axiom' JurisLean/ --include='*.lean'
+          ! grep -rnE '(sorry|admit|axiom)' JurisLean/ --include='*.lean'

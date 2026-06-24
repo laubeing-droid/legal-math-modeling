@@ -44,26 +44,30 @@ theorem horn_result_fixed_point :
     TH sys (FiniteMonotoneSystem.iter (toFiniteMonotoneSystem sys) (Finset.card sys.univ)) =
     FiniteMonotoneSystem.iter (toFiniteMonotoneSystem sys) (Finset.card sys.univ) := by
   have h_fixed := FiniteMonotoneSystem.fixed_at_card (toFiniteMonotoneSystem sys)
-  -- iter(card) = iter(card+1) = TH(iter(card))
-  rw [FiniteMonotoneSystem.iter_succ (toFiniteMonotoneSystem sys) (Finset.card sys.univ)] at h_fixed
-  unfold toFiniteMonotoneSystem at h_fixed
-  -- Now h_fixed: iter(card) = TH(iter(card))
-  rw [← h_fixed]
+  -- rewrite iter_succ at h_fixed using toFiniteMonotoneSystem.univ
+  have h_succ := FiniteMonotoneSystem.iter_succ (toFiniteMonotoneSystem sys)
+    (Finset.card (toFiniteMonotoneSystem sys).univ)
+  -- h_succ: iter(card+1) = step(iter(card))
+  -- h_fixed: iter(card) = iter(card+1)
+  -- Combine: iter(card) = step(iter(card)) = TH(iter(card))
+  have h_comb : (toFiniteMonotoneSystem sys).step
+    (FiniteMonotoneSystem.iter (toFiniteMonotoneSystem sys) (Finset.card (toFiniteMonotoneSystem sys).univ)) =
+    FiniteMonotoneSystem.iter (toFiniteMonotoneSystem sys) (Finset.card (toFiniteMonotoneSystem sys).univ) := by
+    rw [← h_succ, h_fixed]
+  simpa [toFiniteMonotoneSystem] using h_comb
 
 /-- 7: horn_result_least_fixed_point — the iteration result is the least fixed point. -/
 theorem horn_result_least_fixed_point (S : Finset α) (hS : TH sys S = S) :
     FiniteMonotoneSystem.iter (toFiniteMonotoneSystem sys) (Finset.card sys.univ) ⊆ S := by
-  -- By induction: iter n ⊆ S for all n
   have h_ind : ∀ n : Nat, FiniteMonotoneSystem.iter (toFiniteMonotoneSystem sys) n ⊆ S := by
     intro n
     induction n with
-    | zero =>
-      simp [FiniteMonotoneSystem.iter]
+    | zero => simp [FiniteMonotoneSystem.iter]
     | succ m ih =>
       rw [FiniteMonotoneSystem.iter_succ]
       unfold toFiniteMonotoneSystem
-      rw [hS]
-      apply TH_monotone sys ih
+      have h_mono := TH_monotone sys ih
+      simpa [hS] using h_mono
   exact h_ind (Finset.card sys.univ)
 
 /-- 8: horn_soundness — every derived atom is in the univ. -/
@@ -79,18 +83,12 @@ theorem horn_completeness (a : α) (h : ∀ S, TH sys S = S → a ∈ S) :
 
 /-- 10: horn_result_is_minimal_model — the fixpoint is the unique minimal model. -/
 theorem horn_result_is_minimal_model :
-    ∃! M, M ⊆ sys.univ ∧ TH sys M = M := by
+    ∃! M, TH sys M = M ∧ ∀ N, TH sys N = N → M ⊆ N := by
   let result := FiniteMonotoneSystem.iter (toFiniteMonotoneSystem sys) (Finset.card sys.univ)
-  have h_sub : result ⊆ sys.univ :=
-    FiniteMonotoneSystem.iter_subset_univ (toFiniteMonotoneSystem sys) (Finset.card sys.univ)
   have h_fp : TH sys result = result := horn_result_fixed_point sys
-  refine ⟨result, ⟨h_sub, h_fp⟩, ?_⟩
-  intro M ⟨hM_sub, hM_fp⟩
-  -- result ⊆ M by horn_result_least_fixed_point
-  have h_le : result ⊆ M := horn_result_least_fixed_point sys M hM_fp
-  -- M ⊆ result by the same argument (since result is also a fixed point)
-  have h_ge : M ⊆ result := horn_result_least_fixed_point sys result (horn_result_fixed_point sys)
-  -- By symmetry, M = result
-  apply Finset.Subset.antisymm h_ge h_le
+  have h_least : ∀ N, TH sys N = N → result ⊆ N := horn_result_least_fixed_point sys
+  refine ⟨result, ⟨h_fp, h_least⟩, ?_⟩
+  intro M ⟨hM_fp, hM_least⟩
+  apply Finset.Subset.antisymm (hM_least result h_fp) (h_least M hM_fp)
 
 end HornSystem

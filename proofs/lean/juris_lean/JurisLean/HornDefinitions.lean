@@ -39,23 +39,25 @@ def TH : Finset α → Finset α := λ S =>
 
 /-- TH is monotone: if S ⊆ T then TH(S) ⊆ TH(T). -/
 theorem TH_monotone {S T : Finset α} (hST : S ⊆ T) : TH sys S ⊆ TH sys T := by
-  unfold TH
-  apply Finset.union_subset_union (Finset.Subset.refl _)
-  apply Finset.image_subset_image
-  apply Finset.filter_subset_filter
-  intro r hr
-  -- hr: r.premises ⊆ S
-  -- Need: r.premises ⊆ T
-  exact Finset.Subset.trans hr hST
+  intro a ha
+  unfold TH at ha ⊢
+  rcases Finset.mem_union.mp ha with (ha_init | ha_rule)
+  · exact Finset.mem_union.mpr (Or.inl ha_init)
+  · rcases Finset.mem_image.mp ha_rule with ⟨r, hr, rfl⟩
+    apply Finset.mem_union.mpr
+    right
+    apply Finset.mem_image.mpr
+    rcases Finset.mem_filter.mp hr with ⟨hr_rules, hr_prem⟩
+    refine ⟨r, Finset.mem_filter.mpr ?_, rfl⟩
+    exact ⟨hr_rules, Finset.Subset.trans hr_prem hST⟩
 
 /-- TH always stays within the univ. -/
 theorem TH_subset_univ (S : Finset α) : TH sys S ⊆ sys.univ := by
-  unfold TH
-  apply Finset.union_subset
-  · exact sys.initialFacts_subset_univ
-  · -- image of rule conclusions
-    apply Finset.image_subset_image
-    intro r hr
+  intro a ha
+  unfold TH at ha
+  rcases Finset.mem_union.mp ha with (ha_init | ha_rule)
+  · exact sys.initialFacts_subset_univ ha_init
+  · rcases Finset.mem_image.mp ha_rule with ⟨r, hr, rfl⟩
     rcases Finset.mem_filter.mp hr with ⟨hr_rules, _⟩
     exact sys.heads_subset_univ r hr_rules
 

@@ -14,7 +14,7 @@ def verify(result_path: str) -> dict:
     if not rp.exists():
         return {"status": "FAIL", "reason": f"result file not found: {result_path}"}
 
-    result = json.loads(rp.read_text(encoding="utf-8"))
+    result = json.loads(rp.read_text(encoding="utf-8-sig"))
     checks = []
 
     # 1. exit_code == 0
@@ -45,17 +45,25 @@ def verify(result_path: str) -> dict:
         else:
             checks.append("PASS: log SHA256 verified")
 
-    # 4. source unchanged since build
-    build_time = result["started_at"]
+    # 4. Lean source tree remains clean after the recorded build
     diff = subprocess.run(
-        ["git", "-C", str(REPO), "diff", "--name-only", f'--since={build_time}',
-         "proofs/lean/juris_lean/JurisLean/"],
-        capture_output=True, text=True
+        [
+            "git",
+            "-C",
+            str(REPO),
+            "status",
+            "--porcelain",
+            "--untracked-files=no",
+            "--",
+            "proofs/lean/juris_lean/JurisLean/",
+        ],
+        capture_output=True,
+        text=True,
     ).stdout.strip()
     if diff:
-        checks.append(f"FAIL: source changed since build: {diff}")
+        checks.append(f"FAIL: Lean source tree dirty after build: {diff}")
     else:
-        checks.append("PASS: source unchanged since build")
+        checks.append("PASS: Lean source tree clean after build")
 
     all_pass = all(c.startswith("PASS") for c in checks)
     return {

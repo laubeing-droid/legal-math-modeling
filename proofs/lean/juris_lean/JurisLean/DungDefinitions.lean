@@ -48,13 +48,13 @@ def aafSystem (aaf : DungAAF) : FiniteMonotoneSystem Arg := {
     refine ⟨ha_args, ?_⟩
     intro b hb
     have h_prev : ((attackers aaf b).filter (fun c => c ∈ S)) ≠ ∅ := ha_cond b hb
-    intro h_empty
-    apply h_prev
-    apply (Finset.eq_empty_iff_forall_not_mem _).mpr
-    intro x hx
+    have h_nonempty : ((attackers aaf b).filter (fun c => c ∈ S)).Nonempty :=
+      Finset.nonempty_iff_ne_empty.mpr h_prev
+    rcases h_nonempty with ⟨x, hx⟩
     rcases Finset.mem_filter.mp hx with ⟨hx_att, hx_S⟩
     have hx_T : x ∈ ((attackers aaf b).filter (fun c => c ∈ T)) :=
       Finset.mem_filter.mpr ⟨hx_att, hST hx_S⟩
+    intro h_empty
     rw [h_empty] at hx_T
     simp at hx_T
 }

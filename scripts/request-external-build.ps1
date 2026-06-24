@@ -38,7 +38,11 @@ $result = @{
     lake_dir    = $lakeDir
 } | ConvertTo-Json -Depth 2
 
-$result | Set-Content $resultFile -Encoding UTF8
+[System.IO.File]::WriteAllText(
+    $resultFile,
+    $result,
+    [System.Text.UTF8Encoding]::new($false)
+)
 
 Write-Host "Exit: $exitCode  Time: $($result.duration_s)s  Result: $resultFile"
 if ($exitCode -ne 0) { Write-Host "BUILD FAILED. Check log."; exit $exitCode }

@@ -10,7 +10,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
 
@@ -34,22 +34,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-lake-packages-
 
-      - name: Fetch Mathlib cache
-        run: |
-          set -euo pipefail
-          export PATH="$HOME/.elan/bin:$PATH"
-          cd proofs/lean/juris_lean
-          lake exe cache get
-          cached=$(find .lake/packages/mathlib/.lake/build -name "*.olean" 2>/dev/null | wc -l)
-          echo "Cached oleans: $cached"
-          if [ "$cached" -lt 2000 ]; then
-            echo "::warning::Mathlib cache incomplete ($cached oleans). Build may timeout."
-          fi
-
-      - name: Lake Build
+      - name: Lake Clean + Build (full from 0, no Mathlib cache)
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
-          cd proofs/lean/juris_lean && lake build
+          cd proofs/lean/juris_lean && lake clean && lake build
 
       - name: Scan
         run: |

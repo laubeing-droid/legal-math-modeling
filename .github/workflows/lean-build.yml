@@ -1,5 +1,7 @@
 name: Lake Build + Scan
 
+# Trigger: push to master/main or manual workflow_dispatch
+
 on:
   push:
     branches: [master, main]

@@ -18,7 +18,7 @@ Connecting to Mathlib's ContractingWith requires Analysis imports (Track B compl
 0 sorry, 0 True evasion.
 -/
 
-variable {n : Nat}
+variable {n : Nat} [Nonempty (Fin n)]
 
 /-- Lipschitz coupling matrix condition: for all i, sum_j L_ij * w_j <= q * w_i. -/
 def LipschitzCoupling (L : Fin n -> Fin n -> Real) (w : Fin n -> Real) (q : Real) : Prop :=

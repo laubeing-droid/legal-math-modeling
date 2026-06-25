@@ -39,9 +39,3 @@ noncomputable instance : MetricSpace (Fin n -> Real) where
     -- weightedSupDist_complete already proves d(x,y)=0 <-> x=y
     have hsep := weightedSupDist_complete w hw x y
     exact hsep.2.mp h
-
-  edist_dist x y := by
-    -- The default edist is NNReal.mk (weightedSupDist ...) cast to ENNReal
-    -- ENNReal.ofReal gives the same value when the argument is nonnegative
-    have h_nonneg : 0 <= weightedSupDist w x y := weightedSupDist_nonneg w hw x y
-    simp [h_nonneg]

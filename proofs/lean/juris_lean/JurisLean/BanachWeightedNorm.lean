@@ -32,4 +32,4 @@ def WeightedContractionTarget {X : Type} (_T : X → X) (n : ℕ) (_w : Fin n �
 
 /-- Lipschitz matrix condition: L w ≤ q w componentwise. -/
 def LipschitzMatrixCondition {n : ℕ} (L : Fin n → Fin n → ℝ) (w : Fin n → ℝ) (q : ℝ) : Prop :=
-  ∀ i, (∑ j, L i j * w j) ≤ q * w i
+  ∀ i, (Finset.sum Finset.univ (fun j => L i j * w j)) ≤ q * w i

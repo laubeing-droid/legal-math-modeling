@@ -34,7 +34,7 @@ theorem weighted_contraction_implies_contracting_with
     have h_ofReal_ineq : ENNReal.ofReal (weightedSupDist w (T x) (T y)) <= ENNReal.ofReal (q * weightedSupDist w x y) :=
       ENNReal.ofReal_le_ofReal h_ineq_real
     have h_mul : ENNReal.ofReal (q * weightedSupDist w x y) = ENNReal.ofReal q * ENNReal.ofReal (weightedSupDist w x y) := by
-      rw [ENNReal.ofReal_mul hq_nonneg]
+      simp [hq_nonneg]
     have h_coe : ENNReal.ofReal q = (Real.toNNReal q : ENNReal) := by simp [hq_nonneg]
     rw [h_mul, h_coe] at h_ofReal_ineq
     exact h_ofReal_ineq

@@ -31,11 +31,13 @@ theorem weighted_contraction_implies_contracting_with
     exact hq_lt_one
   . intro x y
     have h_ineq_real : weightedSupDist w (T x) (T y) <= q * weightedSupDist w x y := h_contraction x y
-    have h_ofReal_ineq : ENNReal.ofReal (weightedSupDist w (T x) (T y)) <= ENNReal.ofReal (q * weightedSupDist w x y) :=
-      ENNReal.ofReal_le_ofReal h_ineq_real
-    have h_mul : ENNReal.ofReal (q * weightedSupDist w x y) = ENNReal.ofReal q * ENNReal.ofReal (weightedSupDist w x y) := by
-      have hd_nonneg : 0 <= weightedSupDist w x y := weightedSupDist_nonneg w hw_pos x y
-      rw [ENNReal.ofReal_mul hq_nonneg hd_nonneg]
-    have h_coe : ENNReal.ofReal q = (Real.toNNReal q : ENNReal) := by simp [hq_nonneg]
-    rw [h_mul, h_coe] at h_ofReal_ineq
-    exact h_ofReal_ineq
+    have hd_nonneg : 0 <= weightedSupDist w x y := weightedSupDist_nonneg w hw_pos x y
+    calc
+      ENNReal.ofReal (weightedSupDist w (T x) (T y)) <= ENNReal.ofReal (q * weightedSupDist w x y) :=
+        ENNReal.ofReal_le_ofReal h_ineq_real
+      _ = ENNReal.ofReal q * ENNReal.ofReal (weightedSupDist w x y) := by
+        -- Real.toNNReal (a*b) = Real.toNNReal a * Real.toNNReal b when a,b >= 0
+        simpa using congrArg (fun x : NNReal => (x : ENNReal))
+          (Real.toNNReal_mul hq_nonneg hd_nonneg)
+      _ = (Real.toNNReal q : ENNReal) * ENNReal.ofReal (weightedSupDist w x y) := by
+        simp

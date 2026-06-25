@@ -28,14 +28,16 @@ theorem weighted_contraction_implies_contracting_with
       weightedSupDist w (T x) (T y) <= q * weightedSupDist w x y :=
     lipschitz_coupling_implies_weighted_contraction T L w q hw_pos hL_nonneg h_coupling h_lip
   have hKlt1 : (Real.toNNReal q : NNReal) < 1 := by
-    by_cases hq_zero : q = 0
-    . subst hq_zero; simp
-    . have hq_pos : 0 < q := NeZero.pos hq_zero
-      have hq_lt_one_nnreal : q < (1 : Real) := hq_lt_one
-      have htemp := Real.toNNReal_lt_toNNReal_iff.mpr ⟨hq_pos, by norm_num : 0 < (1 : Real), hq_lt_one⟩
-      simpa using htemp
+    have htemp : (Real.toNNReal q : Real) < (1 : Real) := by
+      rw [Real.toNNReal_of_nonneg hq_nonneg]
+      exact hq_lt_one
+    exact_mod_cast htemp
   have hLip : LipschitzWith (Real.toNNReal q) T := by
     intro x y
-    have hcoeff : (Real.toNNReal q : Real) = q := by simp [hq_nonneg]
-    simpa [hcoeff] using h_contraction x y
+    have hineq : weightedSupDist w (T x) (T y) <= q * weightedSupDist w x y := h_contraction x y
+    calc
+      ENNReal.ofReal (weightedSupDist w (T x) (T y)) <= ENNReal.ofReal (q * weightedSupDist w x y) :=
+        ENNReal.ofReal_le_ofReal hineq
+      _ = ENNReal.ofReal q * ENNReal.ofReal (weightedSupDist w x y) := by rw [ENNReal.ofReal_mul hq_nonneg]
+      _ = (Real.toNNReal q : ENNReal) * ENNReal.ofReal (weightedSupDist w x y) := by simp [hq_nonneg]
   exact And.intro hKlt1 hLip

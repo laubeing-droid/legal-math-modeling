@@ -30,8 +30,11 @@ theorem weighted_contraction_implies_contracting_with
     rw [Real.toNNReal_of_nonneg hq_nonneg]
     exact hq_lt_one
   . intro x y
-    calc
-      ENNReal.ofReal (weightedSupDist w (T x) (T y)) <= ENNReal.ofReal (q * weightedSupDist w x y) :=
-        ENNReal.ofReal_le_ofReal (h_contraction x y)
-      _ = ENNReal.ofReal q * ENNReal.ofReal (weightedSupDist w x y) := by rw [ENNReal.ofReal_mul hq_nonneg]
-      _ = (Real.toNNReal q : ENNReal) * ENNReal.ofReal (weightedSupDist w x y) := by simp [hq_nonneg]
+    have h_ineq_real : weightedSupDist w (T x) (T y) <= q * weightedSupDist w x y := h_contraction x y
+    have h_ofReal_ineq : ENNReal.ofReal (weightedSupDist w (T x) (T y)) <= ENNReal.ofReal (q * weightedSupDist w x y) :=
+      ENNReal.ofReal_le_ofReal h_ineq_real
+    have h_mul : ENNReal.ofReal (q * weightedSupDist w x y) = ENNReal.ofReal q * ENNReal.ofReal (weightedSupDist w x y) := by
+      rw [ENNReal.ofReal_mul hq_nonneg]
+    have h_coe : ENNReal.ofReal q = (Real.toNNReal q : ENNReal) := by simp [hq_nonneg]
+    rw [h_mul, h_coe] at h_ofReal_ineq
+    exact h_ofReal_ineq

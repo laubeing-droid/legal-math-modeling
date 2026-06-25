@@ -12,6 +12,7 @@ from dataclasses import dataclass
 from typing import Dict, Iterable, List, Sequence, Set, Tuple
 
 from .canonical_semantics import (
+    CanonicalPriority,
     AttackKind,
     CanonicalArgument,
     CanonicalAttack,
@@ -26,7 +27,7 @@ from .canonical_semantics import (
     RuleKind,
 )
 from .certificate_schema import CertificatePayload, build_certificate_payload
-from .ddl_core import make_contract_breach_bundle
+from .ddl_core import make_contract_breach_bundle, make_license_permission_priority_bundles
 from .horn_aaf_contract import CompilationContractReport, validate_horn_aaf_contract
 
 
@@ -37,6 +38,7 @@ class ReferenceModel:
     facts: Tuple[CanonicalFact, ...]
     norms: Tuple[CanonicalNorm, ...]
     rules: Tuple[CanonicalRule, ...]
+    priorities: Tuple[CanonicalPriority, ...] = ()
 
 
 def fact_keys(facts: Iterable[CanonicalFact]) -> Set[str]:
@@ -89,11 +91,11 @@ def claims_from_norms(norms: Sequence[CanonicalNorm], closure: Set[str]) -> List
     claims: List[CanonicalClaim] = []
     for norm in norms:
         if set(norm.condition_facts).issubset(closure):
-            if norm.modality == Modality.OBLIGATION:
+            if norm.conclusion_fact is not None:
                 claims.append(
                     CanonicalClaim(
-                        claim_id=f"claim::{norm.norm_id}::obligation",
-                        conclusion=f"{norm.norm_id}::active",
+                        claim_id=f"claim::{norm.norm_id}::conclusion",
+                        conclusion=norm.conclusion_fact,
                         basis_rules=(norm.norm_id,),
                     )
                 )
@@ -111,6 +113,7 @@ def claims_from_norms(norms: Sequence[CanonicalNorm], closure: Set[str]) -> List
 def compile_arguments(
     norms: Sequence[CanonicalNorm],
     closure: Set[str],
+    priorities: Sequence[CanonicalPriority] = (),
 ) -> Tuple[List[CanonicalArgument], List[CanonicalAttack], List[CanonicalProofStep]]:
     """Build a tiny AAF for specification-side differential testing."""
 
@@ -144,6 +147,7 @@ def compile_arguments(
         )
 
     argument_by_conclusion = {argument.conclusion: argument for argument in arguments}
+    arguments_by_rule_id = {argument.rule_id: argument for argument in arguments}
     for norm in norms:
         if not norm.violation:
             continue
@@ -192,6 +196,36 @@ def compile_arguments(
                             },
                         )
                     )
+
+    for priority in priorities:
+        winner_argument = arguments_by_rule_id.get(priority.winner)
+        loser_norm = next((norm for norm in norms if norm.norm_id == priority.loser), None)
+        if winner_argument is None or loser_norm is None or loser_norm.violation is None:
+            continue
+        loser_argument = argument_by_conclusion.get(loser_norm.violation.consequence_fact)
+        if loser_argument is None:
+            continue
+        attack = CanonicalAttack(
+            attack_id=f"attack::{winner_argument.argument_id}->{loser_argument.argument_id}::priority",
+            attacker_id=winner_argument.argument_id,
+            target_id=loser_argument.argument_id,
+            kind=AttackKind.PRIORITY_DEFEAT,
+            reason=priority.reason,
+        )
+        attacks.append(attack)
+        steps.append(
+            CanonicalProofStep(
+                step_index=len(steps),
+                phase="aaf",
+                event="attack_constructed",
+                payload={
+                    "attack_id": attack.attack_id,
+                    "attacker_id": attack.attacker_id,
+                    "target_id": attack.target_id,
+                    "kind": attack.kind.value,
+                },
+            )
+        )
 
     return arguments, attacks, steps
 
@@ -254,7 +288,7 @@ def evaluate_contract_breach_reference(model: ReferenceModel) -> CanonicalProofT
     closure, horn_steps = horn_closure(model.rules, initial)
     steps.extend(_reindex_steps(steps, horn_steps))
 
-    arguments, attacks, aaf_steps = compile_arguments(model.norms, closure)
+    arguments, attacks, aaf_steps = compile_arguments(model.norms, closure, model.priorities)
     steps.extend(_reindex_steps(steps, aaf_steps))
 
     accepted_ids, grounded_steps = grounded_extension(arguments, attacks)
@@ -307,7 +341,7 @@ def evaluate_contract_breach_with_contract(
 
     initial = fact_keys(model.facts)
     closure, _ = horn_closure(model.rules, initial)
-    arguments, attacks, _ = compile_arguments(model.norms, closure)
+    arguments, attacks, _ = compile_arguments(model.norms, closure, model.priorities)
     accepted_ids, _ = grounded_extension(arguments, attacks)
     trace = evaluate_contract_breach_reference(model)
     contract_report = validate_horn_aaf_contract(closure, arguments, attacks, accepted_ids)
@@ -351,6 +385,134 @@ def build_contract_breach_demo_model(force_majeure: bool = False) -> ReferenceMo
     )
 
 
+def build_license_permission_demo_model(priority_active: bool = True) -> ReferenceModel:
+    """Construct the second slice for constitutive, permission, and priority defeat."""
+
+    facts = [
+        CanonicalFact("f1", "license_signed"),
+        CanonicalFact("f2", "rights_holder_authorized"),
+        CanonicalFact("f3", "used_work"),
+        CanonicalFact("f4", "use_within_scope"),
+    ]
+    bundles = make_license_permission_priority_bundles()
+    norms = [bundle.norm for bundle in bundles]
+    priorities = tuple(
+        priority
+        for bundle in bundles
+        for priority in bundle.priorities
+    )
+    if not priority_active:
+        priorities = ()
+    rules = [
+        CanonicalRule(
+            rule_id="rule::license_status",
+            kind=RuleKind.HORN,
+            premises=("license_signed", "rights_holder_authorized"),
+            conclusions=("license_status_active",),
+            notes="Constitutive activation of license status.",
+        ),
+        CanonicalRule(
+            rule_id="rule::licensed_use_permission",
+            kind=RuleKind.HORN,
+            premises=("license_status_active", "use_within_scope"),
+            conclusions=("use_permitted",),
+            notes="Permission conclusion derived from an active in-scope license.",
+        ),
+        CanonicalRule(
+            rule_id="rule::used_work",
+            kind=RuleKind.HORN,
+            premises=("used_work",),
+            conclusions=("unauthorized_use_candidate",),
+            notes="Monotone candidate for prohibited use; final defeat remains in AAF.",
+        ),
+    ]
+    return ReferenceModel(
+        facts=tuple(facts),
+        norms=tuple(norms),
+        rules=tuple(rules),
+        priorities=priorities,
+    )
+
+
+def evaluate_license_permission_reference(model: ReferenceModel) -> CanonicalProofTrace:
+    """Evaluate the second slice with priority-based defeat."""
+
+    steps: List[CanonicalProofStep] = []
+    initial = fact_keys(model.facts)
+    steps.append(
+        CanonicalProofStep(
+            step_index=0,
+            phase="input",
+            event="facts_loaded",
+            payload={"facts": sorted(initial)},
+        )
+    )
+
+    closure, horn_steps = horn_closure(model.rules, initial)
+    steps.extend(_reindex_steps(steps, horn_steps))
+
+    arguments, attacks, aaf_steps = compile_arguments(model.norms, closure, model.priorities)
+    steps.extend(_reindex_steps(steps, aaf_steps))
+
+    accepted_ids, grounded_steps = grounded_extension(arguments, attacks)
+    steps.extend(_reindex_steps(steps, grounded_steps))
+
+    permitted_argument_ids = {
+        argument.argument_id for argument in arguments if argument.conclusion == "use_permitted"
+    }
+    prohibited_argument_ids = {
+        argument.argument_id for argument in arguments if argument.conclusion == "unauthorized_use"
+    }
+    priority_present = any(attack.kind == AttackKind.PRIORITY_DEFEAT for attack in attacks)
+
+    if permitted_argument_ids & accepted_ids and prohibited_argument_ids.isdisjoint(accepted_ids):
+        status = DecisionStatus.PROVED
+        fail_reason = None
+    elif prohibited_argument_ids & accepted_ids and not priority_present:
+        status = DecisionStatus.REFUTED
+        fail_reason = None
+    elif permitted_argument_ids.isdisjoint(accepted_ids) and prohibited_argument_ids.isdisjoint(accepted_ids):
+        status = DecisionStatus.UNDECIDED
+        fail_reason = "Neither permission nor prohibition reached an accepted grounded status."
+    else:
+        status = DecisionStatus.TAINTED
+        fail_reason = "The permission/prohibition interaction failed closed."
+
+    steps.append(
+        CanonicalProofStep(
+            step_index=len(steps),
+            phase="output",
+            event="decision_status",
+            payload={
+                "status": status.value,
+                "accepted_argument_ids": sorted(accepted_ids),
+                "closure": sorted(closure),
+            },
+        )
+    )
+    return CanonicalProofTrace(
+        trace_id="trace::license_permission_reference",
+        status=status,
+        steps=tuple(steps),
+        fail_closed_reason=fail_reason,
+    )
+
+
+def evaluate_license_permission_with_contract(
+    model: ReferenceModel,
+) -> tuple[CanonicalProofTrace, CompilationContractReport, CertificatePayload]:
+    """Evaluate the second slice and expose the downstream validation boundary."""
+
+    initial = fact_keys(model.facts)
+    closure, _ = horn_closure(model.rules, initial)
+    arguments, attacks, _ = compile_arguments(model.norms, closure, model.priorities)
+    accepted_ids, _ = grounded_extension(arguments, attacks)
+    trace = evaluate_license_permission_reference(model)
+    contract_report = validate_horn_aaf_contract(closure, arguments, attacks, accepted_ids)
+    certificate = build_certificate_payload(trace)
+    return trace, contract_report, certificate
+
+
 def _reindex_steps(
     existing: Sequence[CanonicalProofStep],
     new_steps: Sequence[CanonicalProofStep],
@@ -377,6 +539,15 @@ if __name__ == "__main__":
             build_contract_breach_demo_model(force_majeure=force_majeure)
         )
         print(f"force_majeure={force_majeure} -> {trace.status.value}")
+        print(f"  contract_satisfied={contract_report.satisfied}")
+        print(f"  certificate_schema={certificate.schema_version}")
+        if trace.fail_closed_reason:
+            print(f"  fail_closed_reason={trace.fail_closed_reason}")
+    for priority_active in (True, False):
+        trace, contract_report, certificate = evaluate_license_permission_with_contract(
+            build_license_permission_demo_model(priority_active=priority_active)
+        )
+        print(f"priority_active={priority_active} -> {trace.status.value}")
         print(f"  contract_satisfied={contract_report.satisfied}")
         print(f"  certificate_schema={certificate.schema_version}")
         if trace.fail_closed_reason:

@@ -77,6 +77,12 @@ def validate_horn_aaf_contract(
     else:
         violations.append("Active exception facts were present but no exception attack was produced.")
 
+    priority_pairs = [
+        attack for attack in attacks if attack.kind == AttackKind.PRIORITY_DEFEAT
+    ]
+    if priority_pairs:
+        checks.append("Priority defeat is represented explicitly in the AAF attack layer.")
+
     if accepted and not accepted.issubset(argument_ids):
         violations.append("Accepted-set ids are not a subset of constructed arguments.")
     else:

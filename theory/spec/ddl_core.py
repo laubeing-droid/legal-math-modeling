@@ -78,7 +78,12 @@ def validate_minimal_ddl_bundle(bundle: DDLNormBundle) -> None:
     if norm.violation is not None and not norm.violation.reparations:
         raise ValueError("Violation consequences must declare at least one reparation structure.")
 
+    if norm.modality in (Modality.PERMISSION, Modality.CONSTITUTIVE) and norm.conclusion_fact is None:
+        raise ValueError("PERMISSION/CONSTITUTIVE norms must declare a positive conclusion_fact.")
+
     for defense in bundle.defenses:
+        if norm.violation is None:
+            raise ValueError("Defense-bearing bundles must define a violation consequence.")
         if defense.defeats_conclusion != norm.violation.consequence_fact:
             raise ValueError(
                 f"Defense {defense.defense_id} defeats {defense.defeats_conclusion}, "
@@ -115,6 +120,7 @@ def make_contract_breach_bundle() -> DDLNormBundle:
         actor="seller",
         action="deliver_goods",
         condition_facts=("contract_exists", "delivery_due"),
+        conclusion_fact="norm::delivery::active",
         exception_facts=("force_majeure",),
         violation=violation,
     )
@@ -130,6 +136,64 @@ def make_contract_breach_bundle() -> DDLNormBundle:
     bundle = DDLNormBundle(norm=norm, defenses=(defense,))
     validate_minimal_ddl_bundle(bundle)
     return bundle
+
+
+def make_license_permission_priority_bundles() -> Tuple[DDLNormBundle, ...]:
+    """Build a second slice covering constitutive, permission, and priority defeat."""
+
+    constitutive_norm = CanonicalNorm(
+        norm_id="norm::license_status",
+        modality=Modality.CONSTITUTIVE,
+        actor="licensor",
+        action="activate_license",
+        condition_facts=("license_signed", "rights_holder_authorized"),
+        conclusion_fact="license_status_active",
+    )
+    permission_norm = CanonicalNorm(
+        norm_id="norm::licensed_use_permission",
+        modality=Modality.PERMISSION,
+        actor="licensee",
+        action="use_work_within_scope",
+        condition_facts=("license_status_active", "use_within_scope"),
+        conclusion_fact="use_permitted",
+    )
+    violation = CanonicalViolation(
+        violation_id="vio::unauthorized_use",
+        norm_id="norm::unauthorized_use_prohibition",
+        trigger_fact="used_work",
+        consequence_fact="unauthorized_use",
+        reparations=(
+            CanonicalReparation(
+                reparation_id="rep::unauthorized_use",
+                mode=ReparationMode.ALTERNATIVE,
+                options=("remedy_stop_use", "remedy_damages"),
+                notes="Minimal alternative remedies for prohibited unlicensed use.",
+            ),
+        ),
+    )
+    prohibition_norm = CanonicalNorm(
+        norm_id="norm::unauthorized_use_prohibition",
+        modality=Modality.PROHIBITION,
+        actor="user",
+        action="use_work_without_authorization",
+        condition_facts=("used_work",),
+        conclusion_fact="norm::unauthorized_use_prohibition::active",
+        violation=violation,
+    )
+    priority = CanonicalPriority(
+        priority_id="priority::license_over_prohibition",
+        winner="norm::licensed_use_permission",
+        loser="norm::unauthorized_use_prohibition",
+        reason="A valid in-scope license defeats the general unauthorized-use prohibition.",
+    )
+    bundles = (
+        DDLNormBundle(norm=constitutive_norm),
+        DDLNormBundle(norm=permission_norm, priorities=(priority,)),
+        DDLNormBundle(norm=prohibition_norm, priorities=(priority,)),
+    )
+    for bundle in bundles:
+        validate_minimal_ddl_bundle(bundle)
+    return bundles
 
 
 def summarize_reparation_modes(bundles: Sequence[DDLNormBundle]) -> Tuple[str, ...]:

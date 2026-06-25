@@ -21,6 +21,7 @@ class CertificatePayload:
     arguments_constructed: Tuple[str, ...]
     attacks_constructed: Tuple[str, ...]
     accepted_argument_ids: Tuple[str, ...]
+    attack_kinds: Tuple[str, ...]
     fail_closed_reason: str | None
 
 
@@ -41,6 +42,7 @@ def build_certificate_payload(trace: CanonicalProofTrace) -> CertificatePayload:
     arguments: List[str] = []
     attacks: List[str] = []
     accepted_ids: List[str] = []
+    attack_kinds: List[str] = []
 
     for step in trace.steps:
         if step.phase == "input" and step.event == "facts_loaded":
@@ -51,6 +53,7 @@ def build_certificate_payload(trace: CanonicalProofTrace) -> CertificatePayload:
             arguments.append(step.payload["argument_id"])
         elif step.phase == "aaf" and step.event == "attack_constructed":
             attacks.append(step.payload["attack_id"])
+            attack_kinds.append(step.payload["kind"])
         elif step.phase == "output" and step.event == "decision_status":
             accepted_ids = list(step.payload.get("accepted_argument_ids", []))
 
@@ -63,6 +66,7 @@ def build_certificate_payload(trace: CanonicalProofTrace) -> CertificatePayload:
         arguments_constructed=tuple(arguments),
         attacks_constructed=tuple(attacks),
         accepted_argument_ids=tuple(accepted_ids),
+        attack_kinds=tuple(attack_kinds),
         fail_closed_reason=trace.fail_closed_reason,
     )
 
@@ -87,6 +91,7 @@ def check_certificate_payload(payload: Mapping[str, Any]) -> CheckerVerdict:
         "arguments_constructed",
         "attacks_constructed",
         "accepted_argument_ids",
+        "attack_kinds",
         "fail_closed_reason",
     )
     for key in required:
@@ -109,6 +114,10 @@ def check_certificate_payload(payload: Mapping[str, Any]) -> CheckerVerdict:
         arguments = set(payload.get("arguments_constructed", ()))
         if not accepted.issubset(arguments):
             errors.append("Accepted argument ids are not bounded by constructed arguments.")
+
+    attack_kinds = set(payload.get("attack_kinds", ()))
+    if "PRIORITY_DEFEAT" in attack_kinds and not payload.get("attacks_constructed"):
+        errors.append("Priority defeat cannot be declared without attack records.")
 
     if not payload.get("horn_rules_fired"):
         warnings.append("No Horn rules were fired in this payload.")

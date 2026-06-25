@@ -32,23 +32,27 @@ Remaining gap:
 
 ### Gate 2: Minimal DDL Core
 
-Status: `PARTIAL`
+Status: `SUBSTANTIAL_PARTIAL`
 
 Evidence:
 
 - [ddl_core.py](D:/Claude/数学证明/legal-math-modeling/theory/spec/ddl_core.py)
   defines modality, defense, burden-of-proof, violation, and reparation
   semantics for the contract-breach slice.
+- [license-permission-priority-slice.md](D:/Claude/数学证明/legal-math-modeling/docs/analysis/license-permission-priority-slice.md)
+  adds constitutive, permission, and priority-defeat semantics as a second
+  specification slice.
 
 Remaining gap:
 
-- only the first contract-breach slice is encoded
-- no second slice yet validates permission, constitutive rules, or priority
-  interaction under a different domain pattern
+- the minimal DDL core now covers two slices, but is not yet demonstrated across
+  a broader domain family
+- no separate burden-conditioned priority fixture exists beyond the current
+  licensed-use slice
 
 ### Gate 3: Horn -> AAF Machine-Testable Contract
 
-Status: `PARTIAL`
+Status: `SUBSTANTIAL_PARTIAL`
 
 Evidence:
 
@@ -56,27 +60,31 @@ Evidence:
   validates traceability, known-node references, exception direction, and
   accepted-set boundedness.
 - [test_spec_transition.py](D:/Claude/数学证明/legal-math-modeling/tests/spec/test_spec_transition.py)
-  exercises the contract against the first slice.
+  exercises the contract against both the contract-breach slice and the
+  license-permission-priority slice.
 
 Remaining gap:
 
-- the contract currently covers the breach/exception slice only
-- no priority-defeat fixture is yet encoded
+- the contract now covers exception defeat and priority defeat
+- it still lacks a broader multi-fixture differential harness and a cross-file
+  round-trip check
 
 ### Gate 4: Reference Interpreter
 
-Status: `PARTIAL`
+Status: `SUBSTANTIAL_PARTIAL`
 
 Evidence:
 
 - [reference_semantics.py](D:/Claude/数学证明/legal-math-modeling/theory/spec/reference_semantics.py)
   provides a transparent Horn -> AAF -> grounded -> decision pipeline with full
-  trace output.
+  trace output for two distinct slices.
 
 Remaining gap:
 
-- the reference interpreter currently covers the contract-breach slice only
-- no cross-slice fixture pack or broader semantic coverage exists yet
+- the reference interpreter now covers contract-breach and licensed-use
+  priority defeat
+- it still lacks a broader fixture pack and any cross-repository differential
+  comparison
 
 ### Gate 5: Certificate / Checker / Differential Boundary
 
@@ -87,7 +95,8 @@ Evidence:
 - [certificate_schema.py](D:/Claude/数学证明/legal-math-modeling/theory/spec/certificate_schema.py)
   defines `spec-cert-v1` payloads and an independent checker.
 - the contract+certificate boundary is exercised in
-  [test_spec_transition.py](D:/Claude/数学证明/legal-math-modeling/tests/spec/test_spec_transition.py).
+  [test_spec_transition.py](D:/Claude/数学证明/legal-math-modeling/tests/spec/test_spec_transition.py)
+  for both slices.
 
 Remaining gap:
 
@@ -100,8 +109,8 @@ Current answer:
 
 ```text
 Not yet ready for a full repository-wide shift.
-Ready for a staged shift once one or two additional slices and a real
-differential harness are added.
+Ready for a staged shift once the cross-repository differential harness is
+added.
 ```
 
 Interpretation:
@@ -109,5 +118,5 @@ Interpretation:
 - it is now reasonable to treat `legal-math-modeling` as a specification
   upstream
 - it is not yet honest to say that the shift gate is fully closed
-- the next highest-value work is to add one more semantic slice and then build
-  the actual shadow comparison boundary
+- the next highest-value work is to build the actual shadow comparison boundary
+  against `juris-calculus`

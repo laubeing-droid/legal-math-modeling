@@ -117,6 +117,7 @@ class CanonicalNorm:
     actor: str
     action: str
     condition_facts: Tuple[str, ...]
+    conclusion_fact: Optional[str] = None
     exception_facts: Tuple[str, ...] = ()
     violation: Optional[CanonicalViolation] = None
 

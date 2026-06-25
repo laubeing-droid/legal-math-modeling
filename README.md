@@ -173,6 +173,7 @@ For current truth, read in this order:
 5. [next-stage-spec-first-roadmap.md](docs/analysis/next-stage-spec-first-roadmap.md)
 6. [contract-breach-vertical-slice.md](docs/analysis/contract-breach-vertical-slice.md)
 7. [jc-transition-gate-status.md](docs/analysis/jc-transition-gate-status.md)
+8. [license-permission-priority-slice.md](docs/analysis/license-permission-priority-slice.md)
 
 The current transition rule is:
 

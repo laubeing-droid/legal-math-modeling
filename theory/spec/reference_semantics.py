@@ -27,7 +27,7 @@ from .canonical_semantics import (
     RuleKind,
 )
 from .certificate_schema import CertificatePayload, build_certificate_payload
-from .ddl_core import make_contract_breach_bundle, make_license_permission_priority_bundles
+from .ddl_core import (make_admin_bundle, make_contract_breach_bundle, make_criminal_bundle, make_license_permission_priority_bundles, make_tort_bundle)
 from .horn_aaf_contract import CompilationContractReport, validate_horn_aaf_contract
 
 
@@ -433,6 +433,59 @@ def build_license_permission_demo_model(priority_active: bool = True) -> Referen
         priorities=priorities,
     )
 
+def build_tort_demo_model(contributory_negligence: bool = False) -> ReferenceModel:
+    """Construct the third slice for tort liability."""
+    facts = [
+        CanonicalFact("f1", "duty_of_care"),
+        CanonicalFact("f2", "breach_of_duty"),
+        CanonicalFact("f3", "causation"),
+        CanonicalFact("f4", "damage"),
+    ]
+    if contributory_negligence:
+        facts.append(CanonicalFact("f5", "contributory_negligence"))
+    bundle = make_tort_bundle()
+    norms = [bundle.norm]
+    rules = [
+        CanonicalRule(rule_id="rule::tort_breach", kind=RuleKind.HORN, premises=("duty_of_care", "breach_of_duty", "causation", "damage"), conclusions=("tort_breach_candidate",), notes="Monotone tort breach candidate."),
+    ]
+    return ReferenceModel(facts=tuple(facts), norms=tuple(norms), rules=tuple(rules))
+
+def build_criminal_demo_model(self_defense: bool = False) -> ReferenceModel:
+    """Construct the fourth slice for criminal liability."""
+    facts = [
+        CanonicalFact("f1", "actus_reus"),
+        CanonicalFact("f2", "mens_rea"),
+        CanonicalFact("f3", "absence_of_defense"),
+    ]
+    if self_defense:
+        facts.append(CanonicalFact("f4", "self_defense"))
+    bundle = make_criminal_bundle()
+    norms = [bundle.norm]
+    rules = [
+        CanonicalRule(rule_id="rule::criminal_breach", kind=RuleKind.HORN, premises=("actus_reus", "mens_rea", "absence_of_defense"), conclusions=("criminal_breach_candidate",), notes="Monotone criminal breach candidate."),
+    ]
+    return ReferenceModel(facts=tuple(facts), norms=tuple(norms), rules=tuple(rules))
+
+def build_admin_demo_model(priority_active: bool = True) -> ReferenceModel:
+    """Construct the fifth slice for administrative illegality with priority override."""
+    facts = [
+        CanonicalFact("f1", "admin_action"),
+        CanonicalFact("f2", "exceeds_authority"),
+        CanonicalFact("f3", "no_legal_basis"),
+    ]
+    if priority_active:
+        facts.append(CanonicalFact("f4", "legal_basis_exists"))
+    bundles = make_admin_bundle()
+    norms = [bundle.norm for bundle in bundles]
+    priorities = tuple(priority for bundle in bundles for priority in bundle.priorities)
+    if not priority_active:
+        priorities = ()
+    rules = [
+        CanonicalRule(rule_id="rule::admin_breach", kind=RuleKind.HORN, premises=("admin_action", "exceeds_authority", "no_legal_basis"), conclusions=("admin_breach_candidate",), notes="Monotone admin breach candidate."),
+        CanonicalRule(rule_id="rule::higher_law_validity", kind=RuleKind.HORN, premises=("legal_basis_exists",), conclusions=("admin_action_valid",), notes="Higher law norm activates when legal basis exists."),
+    ]
+    return ReferenceModel(facts=tuple(facts), norms=tuple(norms), rules=tuple(rules), priorities=priorities)
+
 
 def evaluate_license_permission_reference(model: ReferenceModel) -> CanonicalProofTrace:
     """Evaluate the second slice with priority-based defeat."""
@@ -512,6 +565,115 @@ def evaluate_license_permission_with_contract(
     certificate = build_certificate_payload(trace)
     return trace, contract_report, certificate
 
+
+def evaluate_tort_reference(model: ReferenceModel) -> CanonicalProofTrace:
+    """Evaluate the tort-breach vertical slice end to end."""
+    steps: List[CanonicalProofStep] = []
+    initial = fact_keys(model.facts)
+    steps.append(CanonicalProofStep(step_index=0, phase="input", event="facts_loaded", payload={"facts": sorted(initial)}))
+    closure, horn_steps = horn_closure(model.rules, initial)
+    steps.extend(_reindex_steps(steps, horn_steps))
+    arguments, attacks, aaf_steps = compile_arguments(model.norms, closure, model.priorities)
+    steps.extend(_reindex_steps(steps, aaf_steps))
+    accepted_ids, grounded_steps = grounded_extension(arguments, attacks)
+    steps.extend(_reindex_steps(steps, grounded_steps))
+    tort_argument_ids = {argument.argument_id for argument in arguments if argument.conclusion == "tort_liability"}
+    exception_present = any(attack.kind == AttackKind.EXCEPTION for attack in attacks)
+    if tort_argument_ids & accepted_ids:
+        status, fail_reason = DecisionStatus.PROVED, None
+    elif tort_argument_ids and exception_present:
+        status, fail_reason = DecisionStatus.REFUTED, None
+    elif not tort_argument_ids:
+        status, fail_reason = DecisionStatus.UNDECIDED, "No tort liability argument was constructed."
+    else:
+        status, fail_reason = DecisionStatus.TAINTED, "Tort slice failed closed."
+    steps.append(CanonicalProofStep(step_index=len(steps), phase="output", event="decision_status", payload={"status": status.value, "accepted_argument_ids": sorted(accepted_ids), "closure": sorted(closure)}))
+    return CanonicalProofTrace(trace_id="trace::tort_reference", status=status, steps=tuple(steps), fail_closed_reason=fail_reason)
+
+
+def evaluate_tort_with_contract(model: ReferenceModel) -> tuple[CanonicalProofTrace, CompilationContractReport, CertificatePayload]:
+    """Evaluate the tort slice and expose the downstream validation boundary."""
+    initial = fact_keys(model.facts)
+    closure, _ = horn_closure(model.rules, initial)
+    arguments, attacks, _ = compile_arguments(model.norms, closure, model.priorities)
+    accepted_ids, _ = grounded_extension(arguments, attacks)
+    trace = evaluate_tort_reference(model)
+    contract_report = validate_horn_aaf_contract(closure, arguments, attacks, accepted_ids)
+    certificate = build_certificate_payload(trace)
+    return trace, contract_report, certificate
+
+def evaluate_criminal_reference(model: ReferenceModel) -> CanonicalProofTrace:
+    """Evaluate the criminal-breach vertical slice end to end."""
+    steps: List[CanonicalProofStep] = []
+    initial = fact_keys(model.facts)
+    steps.append(CanonicalProofStep(step_index=0, phase="input", event="facts_loaded", payload={"facts": sorted(initial)}))
+    closure, horn_steps = horn_closure(model.rules, initial)
+    steps.extend(_reindex_steps(steps, horn_steps))
+    arguments, attacks, aaf_steps = compile_arguments(model.norms, closure, model.priorities)
+    steps.extend(_reindex_steps(steps, aaf_steps))
+    accepted_ids, grounded_steps = grounded_extension(arguments, attacks)
+    steps.extend(_reindex_steps(steps, grounded_steps))
+    criminal_argument_ids = {argument.argument_id for argument in arguments if argument.conclusion == "criminal_liability"}
+    exception_present = any(attack.kind == AttackKind.EXCEPTION for attack in attacks)
+    if criminal_argument_ids & accepted_ids:
+        status, fail_reason = DecisionStatus.PROVED, None
+    elif criminal_argument_ids and exception_present:
+        status, fail_reason = DecisionStatus.REFUTED, None
+    elif not criminal_argument_ids:
+        status, fail_reason = DecisionStatus.UNDECIDED, "No criminal liability argument was constructed."
+    else:
+        status, fail_reason = DecisionStatus.TAINTED, "Criminal slice failed closed."
+    steps.append(CanonicalProofStep(step_index=len(steps), phase="output", event="decision_status", payload={"status": status.value, "accepted_argument_ids": sorted(accepted_ids), "closure": sorted(closure)}))
+    return CanonicalProofTrace(trace_id="trace::criminal_reference", status=status, steps=tuple(steps), fail_closed_reason=fail_reason)
+
+
+def evaluate_criminal_with_contract(model: ReferenceModel) -> tuple[CanonicalProofTrace, CompilationContractReport, CertificatePayload]:
+    """Evaluate the criminal slice and expose the downstream validation boundary."""
+    initial = fact_keys(model.facts)
+    closure, _ = horn_closure(model.rules, initial)
+    arguments, attacks, _ = compile_arguments(model.norms, closure, model.priorities)
+    accepted_ids, _ = grounded_extension(arguments, attacks)
+    trace = evaluate_criminal_reference(model)
+    contract_report = validate_horn_aaf_contract(closure, arguments, attacks, accepted_ids)
+    certificate = build_certificate_payload(trace)
+    return trace, contract_report, certificate
+
+def evaluate_admin_reference(model: ReferenceModel) -> CanonicalProofTrace:
+    """Evaluate the admin-breach vertical slice end to end."""
+    steps: List[CanonicalProofStep] = []
+    initial = fact_keys(model.facts)
+    steps.append(CanonicalProofStep(step_index=0, phase="input", event="facts_loaded", payload={"facts": sorted(initial)}))
+    closure, horn_steps = horn_closure(model.rules, initial)
+    steps.extend(_reindex_steps(steps, horn_steps))
+    arguments, attacks, aaf_steps = compile_arguments(model.norms, closure, model.priorities)
+    steps.extend(_reindex_steps(steps, aaf_steps))
+    accepted_ids, grounded_steps = grounded_extension(arguments, attacks)
+    steps.extend(_reindex_steps(steps, grounded_steps))
+    admin_argument_ids = {argument.argument_id for argument in arguments if argument.conclusion == "admin_illegality"}
+    valid_argument_ids = {argument.argument_id for argument in arguments if argument.conclusion == "admin_action_valid"}
+    priority_present = any(attack.kind == AttackKind.PRIORITY_DEFEAT for attack in attacks)
+    if valid_argument_ids & accepted_ids and priority_present:
+        status, fail_reason = DecisionStatus.REFUTED, None
+    elif admin_argument_ids & accepted_ids:
+        status, fail_reason = DecisionStatus.PROVED, None
+    elif not admin_argument_ids:
+        status, fail_reason = DecisionStatus.UNDECIDED, "No admin illegality argument was constructed."
+    else:
+        status, fail_reason = DecisionStatus.TAINTED, "Admin slice failed closed."
+    steps.append(CanonicalProofStep(step_index=len(steps), phase="output", event="decision_status", payload={"status": status.value, "accepted_argument_ids": sorted(accepted_ids), "closure": sorted(closure)}))
+    return CanonicalProofTrace(trace_id="trace::admin_reference", status=status, steps=tuple(steps), fail_closed_reason=fail_reason)
+
+
+def evaluate_admin_with_contract(model: ReferenceModel) -> tuple[CanonicalProofTrace, CompilationContractReport, CertificatePayload]:
+    """Evaluate the admin slice and expose the downstream validation boundary."""
+    initial = fact_keys(model.facts)
+    closure, _ = horn_closure(model.rules, initial)
+    arguments, attacks, _ = compile_arguments(model.norms, closure, model.priorities)
+    accepted_ids, _ = grounded_extension(arguments, attacks)
+    trace = evaluate_admin_reference(model)
+    contract_report = validate_horn_aaf_contract(closure, arguments, attacks, accepted_ids)
+    certificate = build_certificate_payload(trace)
+    return trace, contract_report, certificate
 
 def _reindex_steps(
     existing: Sequence[CanonicalProofStep],

@@ -195,6 +195,132 @@ def make_license_permission_priority_bundles() -> Tuple[DDLNormBundle, ...]:
         validate_minimal_ddl_bundle(bundle)
     return bundles
 
+def make_tort_bundle() -> DDLNormBundle:
+    """Build the third DDL slice for tort liability."""
+    violation = CanonicalViolation(
+        violation_id="vio::tort_liability",
+        norm_id="norm::tort_liability",
+        trigger_fact="tort_breach_candidate",
+        consequence_fact="tort_liability",
+        reparations=(
+            CanonicalReparation(
+                reparation_id="rep::tort",
+                mode=ReparationMode.ORDERED_CHAIN,
+                options=("remedy_compensation", "remedy_restoration"),
+                notes="Compensation first, then restoration if applicable.",
+            ),
+        ),
+    )
+    norm = CanonicalNorm(
+        norm_id="norm::tort_liability",
+        modality=Modality.OBLIGATION,
+        actor="actor",
+        action="refrain_from_tort",
+        condition_facts=("duty_of_care", "breach_of_duty", "causation", "damage"),
+        conclusion_fact="norm::tort::active",
+        violation=violation,
+    )
+    defense = CanonicalDefense(
+        defense_id="defense::contributory_negligence",
+        label="contributory_negligence",
+        exception_kind=ExceptionKind.DEFEATER,
+        trigger_facts=("contributory_negligence",),
+        defeats_conclusion="tort_liability",
+        burden_of_proof=BurdenOfProof.RESPONDENT,
+        notes="Contributory negligence defeats tort liability.",
+    )
+    bundle = DDLNormBundle(norm=norm, defenses=(defense,))
+    validate_minimal_ddl_bundle(bundle)
+    return bundle
+
+
+def make_criminal_bundle() -> DDLNormBundle:
+    """Build the fourth DDL slice for criminal liability."""
+    violation = CanonicalViolation(
+        violation_id="vio::criminal_liability",
+        norm_id="norm::criminal_liability",
+        trigger_fact="criminal_breach_candidate",
+        consequence_fact="criminal_liability",
+        reparations=(
+            CanonicalReparation(
+                reparation_id="rep::criminal",
+                mode=ReparationMode.ORDERED_CHAIN,
+                options=("remedy_penalty",),
+                notes="Penalty determination follows liability.",
+            ),
+        ),
+    )
+    norm = CanonicalNorm(
+        norm_id="norm::criminal_liability",
+        modality=Modality.PROHIBITION,
+        actor="actor",
+        action="commit_offense",
+        condition_facts=("actus_reus", "mens_rea", "absence_of_defense"),
+        conclusion_fact="norm::criminal::active",
+        violation=violation,
+    )
+    defense = CanonicalDefense(
+        defense_id="defense::self_defense",
+        label="self_defense",
+        exception_kind=ExceptionKind.JUSTIFICATION,
+        trigger_facts=("self_defense",),
+        defeats_conclusion="criminal_liability",
+        burden_of_proof=BurdenOfProof.RESPONDENT,
+        notes="Self-defense justifies the act and defeats criminal liability.",
+    )
+    bundle = DDLNormBundle(norm=norm, defenses=(defense,))
+    validate_minimal_ddl_bundle(bundle)
+    return bundle
+
+
+def make_admin_bundle() -> tuple[DDLNormBundle, ...]:
+    """Build the fifth DDL slice for administrative illegality with priority override."""
+    violation = CanonicalViolation(
+        violation_id="vio::admin_illegality",
+        norm_id="norm::admin_illegality",
+        trigger_fact="admin_breach_candidate",
+        consequence_fact="admin_illegality",
+        reparations=(
+            CanonicalReparation(
+                reparation_id="rep::admin",
+                mode=ReparationMode.ORDERED_CHAIN,
+                options=("remedy_revocation", "remedy_compensation"),
+                notes="Revocation of illegal act first, then compensation.",
+            ),
+        ),
+    )
+    admin_norm = CanonicalNorm(
+        norm_id="norm::admin_illegality",
+        modality=Modality.OBLIGATION,
+        actor="administrative_body",
+        action="act_within_authority",
+        condition_facts=("admin_action", "exceeds_authority", "no_legal_basis"),
+        conclusion_fact="norm::admin::active",
+        violation=violation,
+    )
+    priority = CanonicalPriority(
+        priority_id="priority::higher_law_over_admin",
+        winner="norm::higher_law",
+        loser="norm::admin_illegality",
+        reason="A higher law norm defeats an administrative act that lacks legal basis.",
+    )
+    higher_law_norm = CanonicalNorm(
+        norm_id="norm::higher_law",
+        modality=Modality.CONSTITUTIVE,
+        actor="legislature",
+        action="establish_legal_basis",
+        condition_facts=("legal_basis_exists",),
+        conclusion_fact="admin_action_valid",
+    )
+    bundles = (
+        DDLNormBundle(norm=admin_norm, priorities=(priority,)),
+        DDLNormBundle(norm=higher_law_norm, priorities=(priority,)),
+    )
+    for bundle in bundles:
+        validate_minimal_ddl_bundle(bundle)
+    return bundles
+
+
 
 def summarize_reparation_modes(bundles: Sequence[DDLNormBundle]) -> Tuple[str, ...]:
     """Expose the reparation semantics used by the current specification slices."""

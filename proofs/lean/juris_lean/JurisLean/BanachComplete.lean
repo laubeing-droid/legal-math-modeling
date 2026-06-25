@@ -46,5 +46,9 @@ theorem scale_inverse_right (y : Fin n -> Real) : scaleToSup w (scaleFromSup w y
 theorem weighted_eq_scaled_sup (x y : Fin n -> Real) :
     weightedSupDist w x y = PiLp.dist 1 (scaleToSup w x) (scaleToSup w y) := by
   unfold weightedSupDist PiLp.dist
-  -- Both sides compute sup_i |x_i - y_i| / w_i = sup_i |x_i/w_i - y_i/w_i|
-  simp [scaleToSup, div_sub_div_right (ne_of_gt (hw _)), abs_div]
+  -- Both sides compute sup_i |x_i - y_i| / w_i = sup_i |(x_i - y_i) / w_i|
+  -- This requires unfolding PiLp.dist for p=1 on Fin n -> Real,
+  -- which reduces to Finset.sup of pointwise absolute differences.
+  -- The per-element equality follows from |x_i/w_i - y_i/w_i| = |x_i - y_i| / w_i
+  -- (since w_i > 0). Proof deferred to Track B full completion.
+  sorry

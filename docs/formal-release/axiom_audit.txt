@@ -1,6 +1,21 @@
 FiniteMonotoneSystem.exists_fixpoint_le_card
   depends on axioms: [propext, Classical.choice, Quot.sound]
 
+==== Track B: Banach Theorems (UNPROVED) ====
+-- These theorems depend on BanachComplete.weighted_eq_scaled_sup,
+-- whose proof is deferred to Track B full completion.
+
+BanachContraction.weighted_contraction_implies_contracting_with
+  depends on axioms: Verifiability not yet established (Track B)
+
+BanachFixedPoint.weightedFixedPoint_is_fixed
+  depends on axioms: Verifiability not yet established (Track B)
+
+BanachFixedPoint.weightedFixedPoint_unique
+  depends on axioms: Verifiability not yet established (Track B)
+
+BanachFixedPoint.weightedFixedPoint_converges
+  depends on axioms: Verifiability not yet established (Track B)
 FiniteMonotoneSystem.fixed_at_card
   depends on axioms: [propext, Classical.choice, Quot.sound]
 

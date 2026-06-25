@@ -1,4 +1,8 @@
 import Mathlib.Data.Real.Basic
+import Mathlib.Data.Fin.Basic
+import Mathlib.Data.Fintype.Basic
+import Mathlib.Data.Finset.Basic
+import Mathlib.Algebra.BigOperators.Group.Finset.Basic
 
 open Finset
 

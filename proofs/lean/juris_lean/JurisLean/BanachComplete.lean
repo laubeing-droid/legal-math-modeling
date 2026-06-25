@@ -33,10 +33,15 @@ noncomputable instance : MetricSpace (Fin n -> Real) where
     unfold weightedSupDist
     simp [sub_self, abs_zero, zero_div]
   dist_comm x y := weightedSupDist_symm w x y
-  dist_triangle x y z := weightedSupDist_triangle w hw x y z
+  dist_triangle x y z := by
+    apply weightedSupDist_triangle w hw x y z
   eq_of_dist_eq_zero {x y} h := by
     -- weightedSupDist_complete already proves d(x,y)=0 <-> x=y
     have hsep := weightedSupDist_complete w hw x y
     exact hsep.2.mp h
 
-  edist_dist x y := rfl
+  edist_dist x y := by
+    -- The default edist is NNReal.mk (weightedSupDist ...) cast to ENNReal
+    -- ENNReal.ofReal gives the same value when the argument is nonnegative
+    have h_nonneg : 0 <= weightedSupDist w x y := weightedSupDist_nonneg w hw x y
+    simp [h_nonneg]

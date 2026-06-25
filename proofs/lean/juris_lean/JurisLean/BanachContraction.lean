@@ -29,15 +29,14 @@ theorem weighted_contraction_implies_contracting_with
     (h_coupling : LipschitzCoupling L w q)
     (h_lip : CoordinateLipschitz T L) :
     ContractingWith (Real.toNNReal q) T := by
-  rcases hq_range with \u27E8hq_nonneg, hq_lt_one\u27E9
+  rcases hq_range with ⟨hq_nonneg, hq_lt_one⟩
   have h_contraction : forall x y : Fin n -> Real,
       weightedSupDist w (T x) (T y) <= q * weightedSupDist w x y :=
     lipschitz_coupling_implies_weighted_contraction T L w q hw_pos hL_nonneg h_coupling h_lip
   have hK_lt_one : (Real.toNNReal q : NNReal) < 1 := by
-    rw [Real.toNNReal_lt_toNNReal_iff (by linarith) (by norm_num : (0 : Real) <= 1)]
+    rw [Real.toNNReal_lt_toNNReal_iff (by linarith) (show (0 : Real) <= 1 by norm_num)]
     exact hq_lt_one
-  refine And.intro hK_lt_one ?_
-  -- The MetricSpace instance from BanachComplete makes dist = weightedSupDist w
-  -- So LipschitzWith follows directly from h_contraction
-  intro x y
-  simpa using h_contraction x y
+  have hLipschitz : LipschitzWith (Real.toNNReal q) T := by
+    intro x y
+    simpa using h_contraction x y
+  exact And.intro hK_lt_one hLipschitz

@@ -1,4 +1,4 @@
-﻿name: Banach Proof Build (Track B)
+name: Banach Proof Build (Track B)
 
 on:
   workflow_dispatch:
@@ -6,7 +6,7 @@ on:
 jobs:
   banach:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
 

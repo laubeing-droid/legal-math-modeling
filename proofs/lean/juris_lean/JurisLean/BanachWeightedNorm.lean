@@ -25,10 +25,10 @@ Status: UNPROVED — Track B
 -/
 
 /-- Weighted maximum norm contract (unproven, pending Track B). -/
-def WeightedContractionTarget {X : Type} (T : X → X) (n : ℕ) (w : Fin n → ℝ) (q : ℝ) : Prop :=
-  0 < q ∧ q < 1 ∧
-  -- weightedDist w (T x) (T y) ≤ q * weightedDist w x y for all x, y
-  True  -- placeholder: the actual inequality requires norm definition + Analysis imports
+def WeightedContractionTarget {X : Type} (_T : X → X) (n : ℕ) (_w : Fin n → ℝ) (q : ℝ) : Prop :=
+  0 < q ∧ q < 1
+  -- weightedDist w (T x) (T y) <= q * weightedDist w x y for all x, y
+  -- (actual inequality requires norm definition + Analysis imports, Track B)
 
 /-- Lipschitz matrix condition: L w ≤ q w componentwise. -/
 def LipschitzMatrixCondition {n : ℕ} (L : Fin n → Fin n → ℝ) (w : Fin n → ℝ) (q : ℝ) : Prop :=

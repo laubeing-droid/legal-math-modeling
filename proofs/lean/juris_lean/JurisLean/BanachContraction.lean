@@ -28,8 +28,12 @@ theorem weighted_contraction_implies_contracting_with
       weightedSupDist w (T x) (T y) <= q * weightedSupDist w x y :=
     lipschitz_coupling_implies_weighted_contraction T L w q hw_pos hL_nonneg h_coupling h_lip
   have hKlt1 : (Real.toNNReal q : NNReal) < 1 := by
-    rw [Real.toNNReal_lt_toNNReal_iff hq_nonneg (show (0 : Real) <= 1 from by norm_num)]
-    exact hq_lt_one
+    by_cases hq_zero : q = 0
+    . subst hq_zero; simp
+    . have hq_pos : 0 < q := NeZero.pos hq_zero
+      have hq_lt_one_nnreal : q < (1 : Real) := hq_lt_one
+      have htemp := Real.toNNReal_lt_toNNReal_iff.mpr ⟨hq_pos, by norm_num : 0 < (1 : Real), hq_lt_one⟩
+      simpa using htemp
   have hLip : LipschitzWith (Real.toNNReal q) T := by
     intro x y
     have hcoeff : (Real.toNNReal q : Real) = q := by simp [hq_nonneg]

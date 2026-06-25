@@ -12,7 +12,7 @@ Generates a MetricSpace instance using weightedSupDist.
 open Real
 open Finset
 variable {n : Nat} [Nonempty (Fin n)]
-def weightedMetricSpace (w : Fin n -> Real) (hw : PositiveWeights w) : MetricSpace (Fin n -> Real) where
+noncomputable def weightedMetricSpace (w : Fin n -> Real) (hw : PositiveWeights w) : MetricSpace (Fin n -> Real) where
   dist := weightedSupDist w
   edist := fun x y => ENNReal.ofReal (weightedSupDist w x y)
   dist_self x := by

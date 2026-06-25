@@ -9,9 +9,9 @@
 | Item | State |
 | --- | --- |
 | Public branch model | `master` only |
-| Repository head | `2368c33` |
-| Last full clean rebuild evidence | `2368c33` |
-| GitHub Actions clean build | PASS at `2368c33` |
+| Repository head | `1944113` |
+| Last full clean rebuild evidence | `1944113` |
+| GitHub Actions clean build | PASS at `1944113` |
 | Local `lake build` evidence | PASS |
 | Local `lake build +JurisLean.AxiomAudit` evidence | PASS |
 | Lean source guard | PASS |

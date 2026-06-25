@@ -47,7 +47,7 @@ jobs:
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
           cd proofs/lean/juris_lean
-          lake build +JurisLean.BanachWeightedNorm +JurisLean.BanachEffectiveNodes +JurisLean.BanachCertificate
+          lake build +JurisLean.BanachWeightedNorm +JurisLean.BanachEffectiveNodes +JurisLean.BanachCertificate +JurisLean.BanachComplete +JurisLean.BanachContraction +JurisLean.BanachFixedPoint
 
       - name: Scan for sorry/axiom
         run: |

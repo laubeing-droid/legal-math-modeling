@@ -34,7 +34,12 @@ theorem weighted_contraction_implies_contracting_with
     have hineq := h_contraction x y
     have hprod_nonneg : 0 <= q * weightedSupDist w x y := mul_nonneg hq_nonneg hd_nonneg
     have hmul : ENNReal.ofReal (q * weightedSupDist w x y) = ENNReal.ofReal q * ENNReal.ofReal (weightedSupDist w x y) := by
-      simp [hprod_nonneg, hq_nonneg, hd_nonneg]
+      calc
+        ENNReal.ofReal (q * weightedSupDist w x y) = (Real.toNNReal (q * weightedSupDist w x y) : ENNReal) := by
+          simp [hprod_nonneg]
+        _ = ((Real.toNNReal q) * (Real.toNNReal (weightedSupDist w x y)) : ENNReal) := by
+          simp [NNReal.mk_mul_mk hq_nonneg hd_nonneg]
+        _ = ENNReal.ofReal q * ENNReal.ofReal (weightedSupDist w x y) := by simp
     calc
       ENNReal.ofReal (weightedSupDist w (T x) (T y)) <= ENNReal.ofReal (q * weightedSupDist w x y) :=
         ENNReal.ofReal_le_ofReal hineq

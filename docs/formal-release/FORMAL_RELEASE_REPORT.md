@@ -9,9 +9,9 @@
 | Item | State |
 | --- | --- |
 | Public branch model | `master` only |
-| Repository head | `1944113` |
-| Last full clean rebuild evidence | `1944113` |
-| GitHub Actions clean build | PASS at `1944113` |
+| Repository head | `12470ac` |
+| Last full clean rebuild evidence | `12470ac` |
+| GitHub Actions clean build | PASS at `12470ac` |
 | Local `lake build` evidence | PASS |
 | Local `lake build +JurisLean.AxiomAudit` evidence | PASS |
 | Lean source guard | PASS |
@@ -124,6 +124,6 @@ See also:
 
 | Repo | Branch | Head |
 | --- | --- | --- |
-| `legal-math-modeling` | `master` | `cde13f0` |
+| `legal-math-modeling` | `master` | `12470ac` |
 | `juris-calculus` | `main` | `c18b478` |
 | `deli-autoresearch` | `main` | `b35dbb1` |

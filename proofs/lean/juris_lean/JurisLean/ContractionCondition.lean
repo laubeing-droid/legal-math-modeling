@@ -1,4 +1,4 @@
-import Mathlib.Data.Real.Basic
+﻿import Mathlib.Data.Real.Basic
 import Mathlib.Data.Fin.Basic
 import Mathlib.Tactic
 import JurisLean.WeightedSupNorm
@@ -18,58 +18,56 @@ Connecting to Mathlib's ContractingWith requires Analysis imports (Track B compl
 0 sorry, 0 True evasion.
 -/
 
-variable {n : Nat} [Nonempty (Fin n)]
+variable {n : ℕ} [Nonempty (Fin n)]
 
 /-- Lipschitz coupling matrix condition: for all i, sum_j L_ij * w_j <= q * w_i. -/
-def LipschitzCoupling (L : Fin n -> Fin n -> Real) (w : Fin n -> Real) (q : Real) : Prop :=
-  forall i, (Finset.sum Finset.univ (fun j => L i j * w j)) <= q * w i
+def LipschitzCoupling (L : Fin n → Fin n → ℝ) (w : Fin n → ℝ) (q : ℝ) : Prop :=
+  ∀ i, (Finset.sum Finset.univ (fun j => L i j * w j)) ≤ q * w i
 
 /-- Coordinate Lipschitz condition on operator T: |T(x)_i - T(y)_i| <= sum_j L_ij * |x_j - y_j|. -/
-def CoordinateLipschitz (T : (Fin n -> Real) -> (Fin n -> Real)) (L : Fin n -> Fin n -> Real) : Prop :=
-  forall x y i, |T x i - T y i| <= Finset.sum Finset.univ (fun j => L i j * |x j - y j|)
+def CoordinateLipschitz (T : (Fin n → ℝ) → (Fin n → ℝ)) (L : Fin n → Fin n → ℝ) : Prop :=
+  ∀ x y i, |T x i - T y i| ≤ Finset.sum Finset.univ (fun j => L i j * |x j - y j|)
 
 /-- Core algebraic theorem: L w <= q w and coordinate Lipschitz implies
     weightedSupDist(T x, T y) <= q * weightedSupDist(x, y). -/
 theorem lipschitz_coupling_implies_weighted_contraction
-    (T : (Fin n -> Real) -> (Fin n -> Real)) (L : Fin n -> Fin n -> Real)
-    (w : Fin n -> Real) (q : Real)
-    (hw_pos : forall i, 0 < w i)
+    (T : (Fin n → ℝ) → (Fin n → ℝ)) (L : Fin n → Fin n → ℝ)
+    (w : Fin n → ℝ) (q : ℝ)
+    (hw_pos : ∀ i, 0 < w i)
     (h_coupling : LipschitzCoupling L w q)
     (h_lip : CoordinateLipschitz T L)
-    (x y : Fin n -> Real) :
-    weightedSupDist w (T x) (T y) <= q * weightedSupDist w x y := by
+    (x y : Fin n → ℝ) :
+    weightedSupDist w (T x) (T y) ≤ q * weightedSupDist w x y := by
   unfold weightedSupDist
-  -- Goal: sup_i |T(x)_i - T(y)_i| / w_i <= q * sup_j |x_j - y_j| / w_j
-  apply Finset.sup'_le
-  intro i hi
+  refine Finset.sup'_le Finset.univ_nonempty (fun i hi => ?_)
   have h_coord := h_lip x y i
-  -- |T(x)_i - T(y)_i| / w_i <= (sum_j L_ij * |x_j - y_j|) / w_i
+  have h_couple := h_coupling i
+  have hposi : 0 < w i := hw_pos i
   calc
     |T x i - T y i| / w i
-        <= (Finset.sum Finset.univ (fun j => L i j * |x j - y j|)) / w i := by
-      refine (div_le_div_right (by positivity)).mpr h_coord
-    _ = Finset.sum Finset.univ (fun j => L i j * |x j - y j| / w i) := by
-      simp [Finset.sum_div, Finset.mul_div_assoc]
-    _ = Finset.sum Finset.univ (fun j => (L i j * w j / w i) * (|x j - y j| / w j)) := by
-      apply Finset.sum_congr rfl (fun j _ => ?_)
-      field_simp [ne_of_gt (hw_pos i), ne_of_gt (hw_pos j)]
+        ≤ (Finset.sum Finset.univ (fun j => L i j * |x j - y j|)) / w i := by
+      refine (div_le_div_right hposi).mpr h_coord
+    _ = Finset.sum Finset.univ (fun j => (L i j * |x j - y j|) / w i) := by
+      simp [Finset.sum_div]
+    _ ≤ Finset.sum Finset.univ (fun j => (L i j * w j / w i) * (|x j - y j| / w j)) := by
+      refine Finset.sum_le_sum (fun j hj => ?_)
+      have hposj : 0 < w j := hw_pos j
+      field_simp [ne_of_gt hposi, ne_of_gt hposj]
       ring
-    _ <= Finset.sum Finset.univ (fun j => (L i j * w j / w i) * weightedSupDist w x y) := by
-      refine Finset.sum_le_sum (fun j _ => ?_)
+    _ ≤ Finset.sum Finset.univ (fun j => (L i j * w j / w i) * weightedSupDist w x y) := by
+      refine Finset.sum_le_sum (fun j hj => ?_)
       refine mul_le_mul_of_nonneg_left ?_ (by positivity)
-      -- |x_j - y_j| / w_j <= sup_k |x_k - y_k| / w_k = weightedSupDist w x y
-      unfold weightedSupDist
-      apply Finset.le_sup' (f := fun k => |x k - y k| / w k)
-      exact Finset.mem_univ j
-    _ = (Finset.sum Finset.univ (fun j => L i j * w j) / w i) * weightedSupDist w x y := by
-      simp [Finset.sum_div, Finset.mul_div_assoc, div_div]
-      ring
-    _ <= (q * w i / w i) * weightedSupDist w x y := by
-      refine mul_le_mul_of_nonneg_right ?_ (by
+      have h_sup_ge : |x j - y j| / w j ≤ weightedSupDist w x y := by
         unfold weightedSupDist
-        apply Finset.sup'_nonneg
-        intro k
-        positivity)
-      refine (div_le_div_right (by positivity)).mpr (h_coupling i)
+        apply Finset.le_sup' (f := fun k => |x k - y k| / w k)
+        exact Finset.mem_univ j
+      exact h_sup_ge
+    _ = (Finset.sum Finset.univ (fun j => L i j * w j / w i)) * weightedSupDist w x y := by
+      simp [Finset.mul_sum, div_eq_mul_inv, mul_assoc, mul_comm, mul_left_comm]
+    _ = (Finset.sum Finset.univ (fun j => L i j * w j) / w i) * weightedSupDist w x y := by
+      simp [Finset.sum_div, div_div]
+    _ ≤ (q * w i / w i) * weightedSupDist w x y := by
+      refine mul_le_mul_of_nonneg_right ?_ (weightedSupDist_nonneg w hw_pos x y)
+      refine (div_le_div_right hposi).mpr h_couple
     _ = q * weightedSupDist w x y := by
-      field_simp [ne_of_gt (hw_pos i)]
+      field_simp [ne_of_gt hposi]

@@ -7,18 +7,8 @@ import JurisLean.BanachComplete
 import JurisLean.BanachContraction
 
 /-! B3: Banach Fixed Point Application (Track B).
-
-Applies Mathlib''s Banach fixed-point theorem to our weighted contraction.
-Once BanachComplete (metric completeness) and BanachContraction (ContractingWith)
-are proved, this file instantiates:
-
-1. exists_fixedPoint: there exists a unique fixed point
-2. fixedPoint: the unique fixed point
-3. tendsto_iterate_fixedPoint: iteration converges
-4. apriori/aposteriori error bounds
-
-No new proof work - just instantiation of Mathlib theorems.
-
+Instantiates Mathlib''s Banach fixed-point theorems for our weighted contraction.
+No new proofs — just applying existing Mathlib theorems.
 0 sorry, 0 True evasion.
 -/
 
@@ -26,8 +16,7 @@ open Real
 
 variable {n : Nat} [Nonempty (Fin n)]
 
-/-- The unique fixed point of T under the weighted sup metric,
-    assuming the contraction and completeness conditions hold. -/
+/-- The unique fixed point of T under the weighted sup metric. -/
 noncomputable def weightedFixedPoint
     (T : (Fin n -> Real) -> (Fin n -> Real)) (L : Fin n -> Fin n -> Real)
     (w : Fin n -> Real) (q : Real)
@@ -39,7 +28,7 @@ noncomputable def weightedFixedPoint
     Fin n -> Real :=
   fixedPoint T
 
-/-- The fixed point property: T(fixedPoint) = fixedPoint. -/
+/-- T(fixedPoint) = fixedPoint. -/
 theorem weightedFixedPoint_is_fixed
     (T : (Fin n -> Real) -> (Fin n -> Real)) (L : Fin n -> Fin n -> Real)
     (w : Fin n -> Real) (q : Real)
@@ -65,7 +54,7 @@ theorem weightedFixedPoint_unique
     y = weightedFixedPoint T L w q hw_pos hL_nonneg hq_range h_coupling h_lip :=
   fixedPoint_unique _ hy
 
-/-- Iterates of T starting from any initial point converge to the fixed point. -/
+/-- Iterates converge to the fixed point. -/
 theorem weightedFixedPoint_converges
     (T : (Fin n -> Real) -> (Fin n -> Real)) (L : Fin n -> Fin n -> Real)
     (w : Fin n -> Real) (q : Real)

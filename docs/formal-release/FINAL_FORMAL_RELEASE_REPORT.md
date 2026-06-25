@@ -1,34 +1,56 @@
 # 最终形式化发布报告
 
-**状态**: FORMAL_CORE_RELEASED_BANACH_BLOCKED
-**日期**: 2026-06-23
+**状态**: FORMAL_CORE_RELEASED_BANACH_BLOCKED  
+**发布 ID**: formal-core-v1  
+**日期**: 2026-06-25
 
-## 形式化核心（COMPLETE）
+## 形式化核心
 
-| 模块 | 定理数 | sorry | axiom | admit |
-|------|--------|-------|-------|-------|
-| FiniteMonotoneIteration | 12 | 0 | 0 | 0 |
-| DungDefinitions | 2 | 0 | 0 | 0 |
-| DungFixedPoint | 13 | 0 | 0 | 0 |
-| HornDefinitions | 2 | 0 | 0 | 0 |
-| HornFixedPoint | 10 | 0 | 0 | 0 |
-| **合计** | **39** | **0** | **0** | **0** |
+- 仓库级 clean build 已通过
+- `AxiomAudit` 可复现
+- Lean guard scan 通过：`0 sorry / 0 admit / 0 custom axiom / 0 theorem : True`
 
-## Banach 子目标（PARTIAL）
+### 计数口径
 
-| 组件 | 状态 |
-|------|------|
-| 加权 sup 距离定义 | 完成 |
-| 三角不等式 / 非负性 / 对称性 | 已证明 |
-| 完备性 | 未证明（待 Analysis/NormedSpace） |
-| Lw<=qw 推出代数收缩 | 已证明 |
-| Mathlib ContractingWith 连接 | 待 Analysis 导入缓存完成 |
-| 固定点存在/唯一/收敛/误差界 | 待 以上完成后调用 Mathlib API |
+- 形式化核心模块定理：`39`
+- 扩展核心定理：`43`
+- supporting results：`32`
+- manifest 总计：`75`
 
-## 仓库卫生（COMPLETE）
+说明：
+- `39` 用于对外描述有限单调系统、AAF Grounded、Horn 闭包三块核心规格
+- `43` 反映当前 manifest 中被归类为 core 的全部已检查结果
+- `75` 是仓库级 machine-readable theorem manifest 的总条目数
 
-- 旧 DungAAF.lean -> import shim（0 sorry）
-- Banach True evasion 已删除
-- undecided_characterization 已修复
-- .gitattributes LF 强制
-- 全仓库 rg 扫描：新模块 0 sorry 0 True 0 axiom
+## Axiom Audit
+
+以下对象已通过 `#print axioms` 审计：
+
+1. `exists_fixpoint_le_card`
+2. `fixed_at_card`
+3. `grounded_is_least_fixed_point`
+4. `horn_completeness`
+5. `horn_result_is_minimal_model`
+6. `weightedSupDist_complete`
+
+审计结果仅依赖：
+
+- `propext`
+- `Classical.choice`
+- `Quot.sound`
+
+未引入项目自定义 axiom。
+
+## Banach 子目标
+
+Banach 仍是独立 Track B，当前状态为 `UNPROVED_TRACK_B`。
+
+当前可宣称：
+
+- 加权距离相关基础定理已纳入检查清单
+- Banach 需要的 complete-space / `ContractingWith` / fixed-point error bounds 尚未作为 formal-core 发布条件
+
+当前不得宣称：
+
+- Banach 固定点闭环已经完成
+- 完整多维 Banach 收缩已经进入正式发布状态

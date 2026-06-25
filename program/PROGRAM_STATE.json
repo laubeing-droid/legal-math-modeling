@@ -1,27 +1,51 @@
-﻿{
+{
   "program_id": "legal-formal-assurance-v2",
-  "program_status": "EXTERNAL_BUILD_GATE",
+  "program_status": "FORMAL_CORE_RELEASED",
+  "formal_core_modules_status": "COMPLETE",
+  "repository_formal_release_status": "COMPLETE",
+  "banach_status": "UNPROVED_TRACK_B",
   "code_status": "COMPLETE",
   "python_verification": "COMPLETE",
   "lean_source_audit": "COMPLETE",
-  "lean_full_build": "WAITING_EXTERNAL_BUILD",
-  "overall_status": "EXTERNAL_BUILD_GATE",
-  "current_task": "Run scripts/request-external-build.ps1 in PowerShell, then scripts/finalize-external-build.py",
+  "lean_full_build": "COMPLETE",
+  "overall_status": "A2_REFINEMENT_IN_PROGRESS",
+  "current_task": "Implement Lean-to-Python refinement baseline and independent checker gate across juris-calculus and Deli AutoResearch.",
   "tracks": {
-    "A": {"status": "CODE_COMPLETE", "build_blocked_pending_external": true, "checkpoint_commit": "ddd3f37"},
-    "B": {"status": "SPEC_COMPLETE", "checkpoint_commit": "30a3adf"},
-    "C": {"status": "CODE_COMPLETE", "checkpoint_commit": "f43e273"},
-    "D": {"status": "SPEC_COMPLETE", "checkpoint_commit": "f43e273"},
-    "E": {"status": "SPEC_COMPLETE", "checkpoint_commit": "f43e273"}
+    "A": {
+      "status": "COMPLETE",
+      "checkpoint_commit": "4b415b8",
+      "release_id": "formal-core-v1"
+    },
+    "B": {
+      "status": "UNPROVED_TRACK_B",
+      "checkpoint_commit": "30a3adf"
+    },
+    "C": {
+      "status": "IN_PROGRESS",
+      "checkpoint_commit": "f43e273"
+    },
+    "D": {
+      "status": "SPEC_COMPLETE",
+      "checkpoint_commit": "f43e273"
+    },
+    "E": {
+      "status": "SPEC_COMPLETE",
+      "checkpoint_commit": "f43e273"
+    }
   },
   "repository_heads": {
-    "legal-math-modeling": "ddd3f37",
+    "legal-math-modeling": "4b415b8",
     "juris-calculus": "15d9be6",
-    "deli-autoresearch": "c759474"
+    "deli-autoresearch": "e16e95a"
   },
   "build_gate": {
-    "script": "scripts/request-external-build.ps1",
-    "verify": "scripts/finalize-external-build.py",
-    "result_path": "build-logs/<timestamp>/build-result.json"
+    "truth_source": "github_actions",
+    "workflow": "Lake Build + Scan",
+    "run_commit": "4b415b8",
+    "local_verification": [
+      "lake build",
+      "lake build +JurisLean.AxiomAudit",
+      "python scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean"
+    ]
   }
 }

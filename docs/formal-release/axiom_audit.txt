@@ -1,0 +1,12 @@
+FiniteMonotoneSystem.exists_fixpoint_le_card
+  depends on axioms: [propext, Classical.choice, Quot.sound]
+FiniteMonotoneSystem.fixed_at_card
+  depends on axioms: [propext, Classical.choice, Quot.sound]
+DungAAF.grounded_is_least_fixed_point
+  depends on axioms: [propext, Classical.choice, Quot.sound]
+HornSystem.horn_completeness
+  depends on axioms: [propext, Classical.choice, Quot.sound]
+HornSystem.horn_result_is_minimal_model
+  depends on axioms: [propext, Classical.choice, Quot.sound]
+weightedSupDist_complete
+  depends on axioms: [propext, Classical.choice, Quot.sound]

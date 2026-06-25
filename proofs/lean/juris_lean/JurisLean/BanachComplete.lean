@@ -26,7 +26,7 @@ variable {n : Nat} [Nonempty (Fin n)] (w : Fin n -> Real) (hw : PositiveWeights 
     - weightedSupDist_triangle
     - weightedSupDist_symm
     - weightedSupDist_complete (point separation) -/
-instance : MetricSpace (Fin n -> Real) where
+noncomputable instance : MetricSpace (Fin n -> Real) where
   dist := weightedSupDist w
   dist_self x := by
     -- weightedSupDist w x x = 0 (all terms are |x_i - x_i| / w_i = 0)
@@ -39,5 +39,4 @@ instance : MetricSpace (Fin n -> Real) where
     have hsep := weightedSupDist_complete w hw x y
     exact hsep.2.mp h
 
-  edist_dist x y := by
-    simp [weightedSupDist]
+  edist_dist x y := rfl

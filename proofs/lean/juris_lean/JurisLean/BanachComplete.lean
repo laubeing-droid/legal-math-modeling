@@ -28,6 +28,7 @@ variable {n : Nat} [Nonempty (Fin n)] (w : Fin n -> Real) (hw : PositiveWeights 
     - weightedSupDist_complete (point separation) -/
 noncomputable instance : MetricSpace (Fin n -> Real) where
   dist := weightedSupDist w
+  edist := fun x y => ENNReal.ofReal (weightedSupDist w x y)
   dist_self x := by
     -- weightedSupDist w x x = 0 (all terms are |x_i - x_i| / w_i = 0)
     unfold weightedSupDist
@@ -39,3 +40,4 @@ noncomputable instance : MetricSpace (Fin n -> Real) where
     -- weightedSupDist_complete already proves d(x,y)=0 <-> x=y
     have hsep := weightedSupDist_complete w hw x y
     exact hsep.2.mp h
+  edist_dist x y := rfl

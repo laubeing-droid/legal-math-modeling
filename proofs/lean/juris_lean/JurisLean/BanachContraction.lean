@@ -8,35 +8,40 @@ import JurisLean.BanachComplete
 
 /-! B2.5: Banach Contraction Bridge (Track B).
 Uses the MetricSpace instance from BanachComplete to convert the
-algebraic contraction inequality already proved in ContractionCondition
-into Mathlib''s ContractingWith.
+algebraic contraction inequality into Mathlib''s ContractingWith.
 0 sorry, 0 True evasion.
 -/
 
 open Real
-open Finset
 
 variable {n : Nat} [Nonempty (Fin n)]
 
-/-- Given w > 0, L >= 0, q < 1, and the algebraic inequality,
-    T is a q-contraction under the weighted sup metric. -/
 theorem weighted_contraction_implies_contracting_with
     (T : (Fin n -> Real) -> (Fin n -> Real)) (L : Fin n -> Fin n -> Real)
     (w : Fin n -> Real) (q : Real)
     (hw_pos : PositiveWeights w)
     (hL_nonneg : forall i j, 0 <= L i j)
-    (hq_range : 0 <= q /\ q < 1)
+    (hq_nonneg : 0 <= q)
+    (hq_lt_one : q < 1)
     (h_coupling : LipschitzCoupling L w q)
     (h_lip : CoordinateLipschitz T L) :
     ContractingWith (Real.toNNReal q) T := by
-  rcases hq_range with ⟨hq_nonneg, hq_lt_one⟩
   have h_contraction : forall x y : Fin n -> Real,
       weightedSupDist w (T x) (T y) <= q * weightedSupDist w x y :=
     lipschitz_coupling_implies_weighted_contraction T L w q hw_pos hL_nonneg h_coupling h_lip
-  have hK_lt_one : (Real.toNNReal q : NNReal) < 1 := by
-    rw [Real.toNNReal_lt_toNNReal_iff (by linarith) (show (0 : Real) <= 1 by norm_num)]
+  constructor
+  . -- goal: Real.toNNReal q < 1
+    rw [Real.toNNReal_lt_toNNReal_iff hq_nonneg (by norm_num : (0 : Real) <= 1)]
     exact hq_lt_one
-  have hLipschitz : LipschitzWith (Real.toNNReal q) T := by
+  . -- goal: LipschitzWith (Real.toNNReal q) T
     intro x y
-    simpa using h_contraction x y
-  exact And.intro hK_lt_one hLipschitz
+    -- dist = weightedSupDist w, so we can rewrite
+    -- LipschitzWith expects: edist (f x) (f y) <= K * edist x y
+    -- but since edist = ENNReal.ofReal dist (by our MetricSpace instance),
+    -- and dist = weightedSupDist, the inequality reduces to:
+    -- weightedSupDist w (T x) (T y) <= q * weightedSupDist w x y
+    -- which is exactly h_contraction
+    calc
+      weightedSupDist w (T x) (T y) <= q * weightedSupDist w x y := h_contraction x y
+      _ = (Real.toNNReal q : Real) * weightedSupDist w x y := by
+        simp [hq_nonneg]

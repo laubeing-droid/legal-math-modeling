@@ -68,6 +68,11 @@
 
 ## 核心数学结果
 
+这里的计数对应论文中的 40 个数学 claim 跟踪台账，不等于
+`formal-core-v1` 的公开发布边界。对外 Lean 发布口径
+(`39` 个核心定理, `0 sorry`, `0 自定义 axiom`) 见
+[FORMAL_RELEASE_REPORT.md](docs/formal-release/FORMAL_RELEASE_REPORT.md)。
+
 | 状态 | 数量 | 典型例子 |
 |------|------|---------|
 | **已证明** | 18 | AAF grounded extension, Horn 单调性, Kripke 时态守卫 |
@@ -166,6 +171,16 @@ cd proofs/lean/juris_lean && lake build
 2. [FORBIDDEN_CLAIMS.md](docs/formal-release/FORBIDDEN_CLAIMS.md)
 3. [final-report.md](docs/final-closure/final-report.md)
 4. [theorem_status_matrix.md](docs/audit/theorem_status_matrix.md)
+5. [next-stage-spec-first-roadmap.md](docs/analysis/next-stage-spec-first-roadmap.md)
+6. [contract-breach-vertical-slice.md](docs/analysis/contract-breach-vertical-slice.md)
+7. [jc-transition-gate-status.md](docs/analysis/jc-transition-gate-status.md)
+
+当前转向规则:
+
+- 本仓继续承担数学规格与 oracle 真相源
+- 只有在 canonical semantic types、最小 DDL core、Horn -> AAF 编译契约、
+  reference interpreter、differential validation boundary 封板后，主工程
+  重心才应全面转向 `juris-calculus`
 
 ## 三仓关系
 

@@ -67,6 +67,11 @@ It contains:
 
 ## Key Results
 
+These counts track the paper-level 40-claim ledger, not the released
+`formal-core-v1` boundary. For the public Lean release boundary
+(`39` core theorems, `0 sorry`, `0 custom axiom`), see
+[FORMAL_RELEASE_REPORT.md](docs/formal-release/FORMAL_RELEASE_REPORT.md).
+
 | Status | Count | Examples |
 |--------|-------|---------|
 | **Proved** | 18 | AAF grounded extension, Horn monotonicity, Kripke temporal guard |
@@ -165,6 +170,16 @@ For current truth, read in this order:
 2. [FORBIDDEN_CLAIMS.md](docs/formal-release/FORBIDDEN_CLAIMS.md)
 3. [final-report.md](docs/final-closure/final-report.md)
 4. [theorem_status_matrix.md](docs/audit/theorem_status_matrix.md)
+5. [next-stage-spec-first-roadmap.md](docs/analysis/next-stage-spec-first-roadmap.md)
+6. [contract-breach-vertical-slice.md](docs/analysis/contract-breach-vertical-slice.md)
+7. [jc-transition-gate-status.md](docs/analysis/jc-transition-gate-status.md)
+
+The current transition rule is:
+
+- this repository remains the specification and oracle source
+- `juris-calculus` should become the main engineering focus only after the
+  canonical semantic types, minimal DDL core, Horn -> AAF contract, reference
+  interpreter, and differential-validation boundary are closed
 
 ## Cross-Repo Relationship
 

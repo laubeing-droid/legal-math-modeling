@@ -1,4 +1,4 @@
-# Explainable Legal Reasoning: A Unified Mathematical Model with Formal Verification
+# Explainable Legal Reasoning: Toward a Stratified Mathematical Model with Formal Verification
 
 > **Status:** Draft (Playbook v5.0-driven)
 > **Date:** 2026-06-19
@@ -8,7 +8,7 @@
 
 ## Abstract
 
-We present a unified mathematical model for explainable legal reasoning that bridges Horn rule algebra, Dung abstract argumentation frameworks (AAF), and Banach fixed-point pricing. The model is organized as a stratified abstract interpretation: a monotone Horn closure layer feeds into a non-monotone AAF conflict resolution layer, which in turn feeds into a continuous Banach pricing space. We verify this architecture through 7 PROVED_BY_ARTIFACT theorems (3 Lean 4 formalizations, 4 exhaustive/symbolic proofs), 2 empirical proxies, 42 adversarial tests, 25 benchmark cases, and empirical validation against 3,508 cross-jurisdiction claim mappings and 1,091 real damages cases. We explicitly mark 1 refuted theorem, 4 unification-induced mathematical limits, 13 red lines, and 7 forbidden claims that bound the model's scope. **Key finding:** Cross-jurisdiction obstruction density is 10.7% — no universal total functor exists. Banach contraction holds for US and HK (median ratio β ≈ 0.48); CN point estimate is consistent but not statistically confirmed at 95% confidence.
+We present a stratified mathematical model for explainable legal reasoning that relates Horn rule algebra, Dung abstract argumentation frameworks (AAF), and a Banach-style pricing layer. The model is organized as a staged abstract interpretation: a monotone Horn closure layer feeds into a non-monotone AAF conflict resolution layer, which can in turn feed into a continuous pricing space. The released formal core closes the Horn and AAF specification boundary; Banach remains an unreleased side track. We verify the released architecture through Lean 4 formalization of the finite monotone, Dung grounded, and Horn closure cores, together with exhaustive or symbolic checks for additional bounded components, 42 adversarial tests, 25 author-designed benchmark cases, and empirical validation against 3,508 cross-jurisdiction claim mappings and 1,091 real damages cases. We explicitly mark refuted claims, unification-induced mathematical limits, red lines, and forbidden claims that bound the model's scope. **Key finding:** Cross-jurisdiction obstruction density is 10.7% — no universal total functor exists. Empirical contraction-style evidence is strong for US and HK; CN remains statistically inconclusive at the current sample size.
 
 ---
 
@@ -80,7 +80,7 @@ Existing systems either (a) provide formal guarantees on toy models [6, 7] or (b
 
 ## 3. Architecture
 
-### 3.1 Unified Model
+### 3.1 Stratified Model
 
 ```
 M_unified = < K, H, D, B, α₁, γ₁, α₂, γ₂, α₃, γ₃ >
@@ -130,7 +130,7 @@ M_unified = < K, H, D, B, α₁, γ₁, α₂, γ₂, α₃, γ₃ >
 
 ## 4. Mathematical Foundations
 
-### 4.1 Proved Theorems (7 PROVED_BY_ARTIFACT)
+### 4.1 Representative Theorems and Artifacts
 
 | Theorem | Statement | Method | Artifact |
 |---|---|---|---|
@@ -140,7 +140,7 @@ M_unified = < K, H, D, B, α₁, γ₁, α₂, γ₂, α₃, γ₃ >
 | T9 | Horn rules constructively map to Dung AF | 66,066 graph exhaustive | dung_grounded_extension.py |
 | T15 | 60 CBL rules enforce Bell-LaPadula non-interference | Exhaustive reachability (120 atoms, 60 blocked edges) | t15_cbl_non_interference_exhaustive.py |
 | T16 | CN_ONLY dominates claim mapping (30/44) | Exhaustive on real data (44 Supreme Court claims) | FiniteRosetta.lean |
-| T17 | Banach contraction for scalar pricing | **Lean 4 formalization** (0 sorry, effective nodes) | BanachEffectiveNodes.lean |
+| T17 | Banach contraction for scalar pricing | **Lean 4 formalization** on a restricted scalar/effective-node baseline | BanachEffectiveNodes.lean |
 
 **Empirical proxy (2):**
 
@@ -149,9 +149,12 @@ M_unified = < K, H, D, B, α₁, γ₁, α₂, γ₂, α₃, γ₃ >
 | T2 | Horn closure = LFP for finite acyclic KB | 3,969 acyclic KB exhaustive + 50K sampling | Only acyclic domain |
 | T20 | MDL correlates with cross-domain FP risk | Domain-level rho=0.4272, p=0.0022 | Claim-level rho=0.1168 not significant |
 
-**Composition theorem (Lean 6.0):**
+**Historical composition draft (not part of `formal-core-v1`):**
 
-The UnifiedModel.lean formalizes the complete soundness chain:
+`UnifiedModel.lean` records a historical composition attempt and should not be
+read as a released proof of the full unified chain. The public release boundary
+is the finite monotone kernel, grounded fixed-point layer, and finite Horn
+closure layer only.
 
 ```
 unified_composition_v2:
@@ -298,7 +301,7 @@ We acknowledge the following statistical weaknesses:
 - CN point estimate is 0.500 (95% CI [0.096, 0.775]) — CI includes values > 0.5, so CN contractiveness is not statistically confirmed at 95% confidence, consistent with the smaller sample size (n=54)
 - Multi-iteration cases: 345, converged (gap < 10%): 167 (48.4%)
 
-**Implication:** The Banach contraction hypothesis holds for US and HK. CN's point estimate (0.493) is consistent with contraction, but the wide confidence interval (n=54 after filtering) prevents a definitive conclusion. The overall median contraction factor β ≈ 0.48, driven primarily by the US/HK data (n=912).
+**Implication:** The Banach contraction hypothesis has empirical support for US and HK. CN's point estimate (0.493) is consistent with contraction, but the wide confidence interval (n=54 after filtering) prevents a definitive conclusion. This section is empirical evidence only and does not establish a released formal Banach closure.
 
 ### 6.7 Comparison with Existing Approaches
 
@@ -307,7 +310,7 @@ We acknowledge the following statistical weaknesses:
 | Formal verification | Lean 4 + Z3 + exhaustive | XML schema only | Proof theory (no tool) | Stable models | None |
 | Cross-jurisdiction | 3,508 real mappings | Single jurisdiction | Single jurisdiction | Single jurisdiction | None |
 | Conflict resolution | Dung AAF (proved) | Priority rules | Defeat relations | Stable models | Probabilistic |
-| Economic valuation | Banach contraction (proved) | Not addressed | Not addressed | Not addressed | Not addressed |
+| Economic valuation | Banach empirical contraction evidence; formal Banach closure unreleased | Not addressed | Not addressed | Not addressed | Not addressed |
 | Trust labeling | 7-level evidence ladder | None | None | None | None |
 | Empirical validation | 1,091 real damages | None | None | None | Benchmark only |
 | Limitation | k≤3 boundary | No formal guarantees | No tool support | NP-complete | Hallucination-prone |
@@ -348,9 +351,12 @@ Dual-timestamp model: substantive law follows fact date, procedural law follows 
 
 Finite-sample check using 44 claim mappings. Current verdict: DATA_INSUFFICIENT for universal impossibility claim.
 
-### 7.4 Graph Metric
+### 7.4 Graph Similarity Boundary
 
-Maximum Common Subgraph (MCS) distance satisfying all three metric axioms (identity, symmetry, triangle inequality).
+Maximum Common Subgraph (MCS) similarity is tracked as a bounded structural
+score. It should not be described here as satisfying all metric axioms; the
+strong metric reading is outside the accepted release boundary and has known
+counterexample pressure.
 
 ---
 
@@ -391,7 +397,7 @@ Maximum Common Subgraph (MCS) distance satisfying all three metric axioms (ident
 
 1. ~~Lean4 formalization of Galois connections (GC1, GC3)~~ — **DONE**: T1 (GC1) and T17 (GC3) are PROVED_BY_ARTIFACT in Lean 4
 2. Temporal reasoning integration into main pipeline (F1 code complete, not yet wired — causes BENCH-20/21 failures)
-3. ~~Multi-dimensional Banach contraction~~ — **DONE**: Per-jurisdiction beta estimation with bootstrap SE (§6.6)
+3. Multi-dimensional Banach contraction — empirical beta estimation is available (§6.6), but formal closure remains outside `formal-core-v1`
 4. Real judicial data validation (current: Supreme Court rules are real; claim mappings are 6% real + 94% AI-generated; damages data extracted from OCR)
 5. Cross-jurisdiction empirical verification with legally qualified annotators
 6. ~~CBL non-interference exhaustive verification~~ — **DONE**: T15 proved (120 atoms, 60 blocked edges)

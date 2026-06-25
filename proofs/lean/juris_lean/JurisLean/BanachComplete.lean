@@ -31,8 +31,10 @@ noncomputable instance : MetricSpace (Fin n -> Real) where
   dist := weightedSupDist w
   edist := fun x y => ENNReal.ofReal (weightedSupDist w x y)
   dist_self x := by
-    -- weightedSupDist w x x = 0 (all terms are |x_i - x_i| / w_i = 0)
-    unfold weightedSupDist
+    -- weightedSupDist w x x = 0 because |x_i - x_i| = 0 for all i
+    rw [weightedSupDist]
+    apply Finset.sup'_eq_zero
+    intro i hi
     simp [sub_self, abs_zero, zero_div]
   dist_comm x y := weightedSupDist_symm w x y
   dist_triangle x y z := by

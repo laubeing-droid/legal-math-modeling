@@ -1,367 +1,192 @@
-# Legal Math Modeling — 法律数学建模
+# Legal Math Modeling
 
-> **克隆即读**：`git clone` 本仓库 → 在 GitHub 上打开 `paper/main.md` → KaTeX 自动渲染形式化定义/定理/反例。合并版论文见 `paper/icail_full_paper.md`。
->
-> 本仓库是 [juris-calculus](https://github.com/laubeing-droid/juris-calculus) 的**数学配套仓库** —— 一个跨中国内地、香港和美国法域的确定性符号法律推理引擎。包含完整的数学框架、59 个可运行理论模块、机器可复现的验证工件，以及一个 7 级*证据校准信任标签系统*，防止未验证的 AI 生成声明传播到工程决策。
->
-> **当前状态（v5.0，Playbook v5.0）**：20 个核心定理；**7 个 PROVED_BY_ARTIFACT**，2 个 EMPIRICAL_PROXY，1 个 AXIOM_ONLY，0 个 PENDING_TOOLCHAIN，1 个 REFUTED，9 个已排除。Lean `lake build` 2950 jobs，构建文件 0 sorry、0 axiom。42 个对抗测试通过。4/4 Z3 验证通过。
->
-> **从这里开始**：运行 `python -m theory` 查看全部核心数学定理的信任标签状态。然后阅读 `paper/explainable_legal_reasoning.md` 获取形式化处理。
+`juris-calculus` 的数学配套仓库。
 
-[English](README.md) | [中文](#1-概述)
+这个仓库现在不再对外描述成“大量法律 AI 数学实验的合集”，而是明确收口为一个有发布边界的形式化配套仓：
 
----
+- `formal-core-v1` 已完成仓库级发布封板
+- 已发布核心只包括：
+  有限单调迭代内核、Dung grounded 不动点层、有限 Horn 闭包层
+- Banach 不属于已发布核心，当前只保留为归档研究轨道
+- 常量校准、隐私保证、诉讼自动化都不在本仓的已完成声明范围内
 
-# 技术文档
+## 当前状态
 
-> 本文档为 Legal Math Modeling 项目的技术报告，系统记录从问题定义、系统设计、形式化验证结果到开放问题的全过程。
+### 已发布事实
 
-# 1. 概述
+- 公共分支模型：仅保留 `master`
+- 当前仓库头部：`cde13f0`
+- 最近一次 GitHub 全量 clean rebuild 证据提交：`4b415b8`
+- Lean 源码守卫结果：
+  `0 sorry / 0 admit / 0 custom axiom / 0 theorem : True`
+- `AxiomAudit` 已作为 released core 的可复现审计入口保留
 
-现有的计算法律系统依赖概率性检索增强生成（RAG）——它们产出看似合理的法律分析，但对可靠性、完备性或跨法域一致性不提供任何形式化保证。当 AI 系统说"这份合同有效"时，无法验证推理链是逻辑严密的还是仅仅是自信的幻觉。
+### 当前允许的对外口径
 
-本仓库提出了一种根本不同的方法：**法律即数学**。我们将法律推理形式化为 Horn 子句系统、抽象论证框架、Kripke 时态模型和范畴论映射——然后用穷举枚举、SMT 求解器、符号计算和性质测试来*证明*这些形式系统的性质。
+有限单调系统、Dung grounded 不动点层、有限 Horn 闭包层已经具备可复现的 Lean 构建结果和可复现的 axiom audit 结果；仓库级 `formal-core-v1` 发布门已关闭。
 
-关键创新不是单个数学模型，而是**证据校准信任标签系统**——它追踪每个声明从产生到证明的完整生命周期。当一个声明被反例反证时，我们记录反例。当数据不足时，我们如实标注。当证明仅在玩具模型上成立时，我们标记为 `TOY_SYNTHETIC_PROOF_ONLY`，并禁止下游系统将其视为生产环境的真实结论。
+### 当前不允许的口径
 
-> **你能做出的最强声明，就是你的证据支持的声明——不能更强。**
+- 整个 `juris-calculus` Python 实现已经被 Lean 完整证明
+- Banach 固定点闭环已经完成
+- 差分隐私保证已经建立
+- 38 个常量已经完成真实数据校准
+- 诉讼自动化和研究自动化已经在本仓完成
 
-## 1.1 这些模型对法律实务到底意味着什么
+## 仓库职责边界
 
-本仓库的每个数学模型都解决了一个当前 AI 系统无法处理的具体法律问题：
+本仓负责：
 
-**Horn 闭包单调性（已证明）** —— 引擎永远不会"忘记"它已经确立的事实。在合同审查中，一旦系统认定合同成立（要约 + 承诺 + 对价），这个结论不会因为加入更多证据而被撤回。这*不是* LLM 系统的工作方式：概率系统在你换一种方式提问时可能翻转结论。单调性证明保证了法律推理在信息积累下的*稳定性*。
+- 形式规格
+- Lean 证明工件
+- theorem manifest 与 proof ledger
+- 建模论文与审计文档
+- 机器可核验的发布证据
 
-**Dung AAF Grounded Extension（n ≤ 4 已证明）** —— 法律论证是相互攻击的。原告主张违约；被告主张不可抗力；原告反驳不可抗力条款有排除情形。Grounded extension 找出*经受住所有攻击*的论证集合——即无论对方怎么攻都能站住脚的"法律上可辩护的"论证。这是对抗性法律推理的数学骨架：不是"什么是真的"，而是"什么是可辩护的"。
+本仓不负责：
 
-**Kripke 时态不变式 □(t\_fact < t\_proc)（已证明）** —— 法院不能引用尚未确立的事实。这听起来显而易见，但 AI 系统经常违反：它们混淆不同程序阶段的证据，在审前分析中引用判决后的发展，或者将原告主张的事实与法院认定的事实混为一谈。时态守卫使这在形式引擎中*不可能发生*——这是结构性保证，不是指导原则。
+- 生产运行时
+- 多任务研究编排
+- 诉讼批处理执行
 
-**CBL 非干涉（已证明）** —— 美国法律概念如"discovery"（证据开示）和"plea bargaining"（辩诉交易）在中国法中没有对应物。如果这些概念"走私"进中国法律分析，输出在法律上毫无意义。60 条 CBL 阻断规则充当防火墙：任何美国概念都不能在不经过形式化对齐门的情况下影响中国法推理。这不是翻译层——这是用 Bell-LaPadula 信息流理论*证明*的安全性质。
+对应运行仓分别是：
 
-**反例（10 个已反证声明）** —— 本仓库中最有价值的产出是*失败*。当我们证明原始评估器不单调时（反例 6.2：添加事实 `b` 导致系统撤回关于 `a` 的结论），我们没有隐藏这个结果——我们把引擎*拆分*为单调 Horn 阶段和非单调 AAF 阶段。当我们证明法律特免权不能确定唯一的 DP ε 时（反例 10.3：同一特免等级，CN 和 US 的 ε 不同），我们把 ε 重新设计为策略参数。每个反例都让系统变得更诚实、架构更健全。
+- [`juris-calculus`](https://github.com/laubeing-droid/juris-calculus)
+- [`deli-autoresearch`](https://github.com/laubeing-droid/deli-autoresearch)
 
-**信任标签** —— 使用这个系统的律师看到的不只是结论，还有一个置信度标签："这份合同分析基于 66,066 个论证结构的穷举验证"vs."这个定价估计是仅在合成数据上有效的玩具模型"。这把 AI 从一个可能幻觉的预言机变成了一个*告诉你到底该信任它多少的推理助手*。
+当前跨仓对齐头部：
 
-## 1.2 本仓库回答的核心问题
+| 仓库 | 分支 | HEAD |
+| --- | --- | --- |
+| `legal-math-modeling` | `master` | `cde13f0` |
+| `juris-calculus` | `main` | `c18b478` |
+| `deli-autoresearch` | `main` | `b35dbb1` |
 
-> **我们能否构建一个对自己知道什么、不知道什么保持数学诚实的法律 AI 系统？**
+## 已发布形式化核心
 
-答案是肯定的——但前提是我们接受某些声明会被标记为 `DATA_INSUFFICIENT` 或 `REFUTED`，而不是假装一切都是 `PROVED`。证据校准信任标签系统是实现这一点的机制。它把每个数学声明变成一个*可证伪的工程决策*，带有明确的允许声明、禁止声明和工程行动。
+发布核心分成三层：
 
-## 1.3 历史意义
+1. 有限单调迭代通用内核
+2. Dung grounded 不动点层
+3. 有限 Horn 闭包层
 
-### 此前的发展历程
+当前计数口径固定为：
 
-法律 AI 经历了三代发展，每一代都有根本性缺陷：
+- `formal_core_module_theorems = 39`
+- `extended_core_theorems = 43`
+- `supporting_results = 32`
+- `total_kernel_checked_results = 75`
 
-| 代际 | 方法 | 缺陷 |
-|------|------|------|
-| **第一代**（2015–2020） | 基于规则的专家系统 | 脆弱，无形式化保证，无跨法域能力 |
-| **第二代**（2020–2024） | LLM + RAG（ChatGPT、法律聊天机器人） | 概率性，易幻觉，无审计追踪 |
-| **第三代**（2024–2025） | LLM + 结构化提示 + 工具调用 | 输出更好，仍无形式化可靠性保证 |
+机器可读真相源是：
 
-三代系统共享同一个盲区：**无法告诉你该信任它们的输出多少**。第二代系统会自信地说"这份合同有效"，即使推理链中存在逻辑错误。没有机制区分"穷举枚举已证明"和"看似合理但未验证"。
+- [`docs/formal-release/theorem_manifest.json`](docs/formal-release/theorem_manifest.json)
 
-### 本仓库引入的新范式
+## 公理边界
 
-本工作代表了从"法律聊天机器人"到"带形式化验证的法律编译器"的**范式跃迁**：
+当前 release boundary 重点审计对象：
 
-**1. 法律是形式系统，不是提示工程问题。**
+1. `FiniteMonotoneSystem.exists_fixpoint_le_card`
+2. `FiniteMonotoneSystem.fixed_at_card`
+3. `DungAAF.grounded_is_least_fixed_point`
+4. `HornSystem.horn_completeness`
+5. `HornSystem.horn_result_is_minimal_model`
+6. `weightedSupDist_complete`
 
-法律推理首次被形式化为完整的数学框架——Horn 子句用于前向推理，Dung 论证框架用于对抗性推理，Kripke 模型用于时序推理，范畴论用于跨法域映射——每个组件都有*机器可复现的证明*。这不是一篇提出框架的理论论文，而是一个*可运行的系统*，包含 59 个可运行证明模块和 66,066 个穷举枚举的攻击图。
+当前观测到的依赖仅为：
 
-**2. 证据校准信任标签系统：AI 诚实的新标准。**
+- `propext`
+- `Classical.choice`
+- `Quot.sound`
 
-之前的法律 AI 系统做二元声明："系统能做 X"或"系统不能做 X"。本仓库引入 7 级证据阶梯，追踪每个数学声明从猜想到证明（或反证）的完整路径。当一个声明被反例反证时，反例作为*一等工件被保留*，而不是被删除或隐藏。这颠倒了传统的激励结构：系统不是通过隐藏失败来显得有能力，而是*庆祝*反例，因为每个反例都让架构变得更诚实。
+已发布核心边界内没有项目自定义 axiom。
 
-**3. k ≤ 3 边界：对"形式化验证在哪里停止"的原则性回答。**
+## Banach 状态
 
-H.L.A. Hart 的"疑义半影"——法律概念有一个确定性核心，周围环绕着模糊性半影——60 年来一直抵抗形式化。本仓库提出了具体的工程回答：在深度 k ≤ 3 以内形式化（Horn 闭包在此范围内可证明单调），超出的部分标记为 `TAINTED` 需要人工审查。这不是理论妥协；这是*可部署的架构*，在计算可靠性与法律实用性之间取得平衡。
+Banach 不属于 `formal-core-v1`。
 
-**4. 多 AI 对抗性验证：数学研究的新方法论。**
+当前真实状态：
 
-这是第一个通过对抗性多 AI 管线验证的数学框架：Claude 生成证明，Codex 用 7 个工具链审计，Kimi 独立重做证明，第二次 Codex 审计降级过度声明。结果不是"AI 证明了这些定理"，而是"AI 证明了这些定理，*这里是证据链，清楚显示了什么被证明了、什么被反证了、什么仍然不确定*。"
+- Banach 相关工作已归档
+- 公共仓库不再保留活跃 Banach 分支
+- 当前公开状态是 `UNPROVED_TRACK_B`
 
-**5. 反例作为科学贡献。**
+当前明确不应宣称：
 
-传统数学论文庆祝定理，埋葬失败尝试。本仓库颠倒了这个惯例：10 个反例（评估器非单调性、DP ε 不可确定性、图非度量性……）与 18 个正面结果*同等重要*。每个反例都触发了架构重设计，使系统更健壮。反例注册表（`docs/audit/counterexample_registry.json`）是系统从失败中学到了什么的永久、机器可读记录。
+- Banach 已经闭环
+- 加权收缩已在 Lean 中完整证明
+- Banach 已经并入 released formal core
 
-### 为什么这对法律 AI 的未来很重要
+归档 tag：
 
-法律行业正处于拐点。法院开始使用 AI 分析案件。律所部署 AI 审查合同。监管机构在问："我们怎么知道这些系统是可靠的？"
+- `archive/banach-track-b-d23e8f2`
+- `archive/track-c-prod-f43e273`
 
-现有的法律 AI 系统无法回答这个问题。它们可以说"我们的系统在测试集上达到 94% 准确率"——但它们不能说"我们系统的推理在深度 3 以内*可证明单调*"或"这个特定声明在 2026 年 6 月 9 日被*反例反证*"。
+## 仓库结构
 
-本仓库为一种不同的回答提供了词汇和工具：**不是"相信我们"，而是"这里是证据，这里是局限性，这是我们发现错误时的做法"。**
-
-这才是真正的贡献——不是某个定理，而是定理、反例和开放问题共存的*知识诚实体系*。
-
-# 2. 系统设计
-
-## 2.1 核心范式：有界形式验证
-
-法律推理本质上是*开放纹理的*——"合理""公平""比例"等概念无法被完全形式化。因此，我们的目标不是"完全可证明正确的法律编译器"（这不可能实现），而是**有界形式验证系统**：
-
-```
-┌─────────────────────────────────────────────────────────────┐
-│                      用户约束                                │
-│  法域 + 案件类型 + 证据集 + 法律问题                          │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│              第一层：法律本体论 (L0/L1/L2)                     │
-│                                                              │
-│  L0 原语：Agent, Asset, Act, Status, Power, Defect           │
-│  L1 元本体：15 个抽象法律范畴                                 │
-│  L2 领域概念：20+ 个法域特定法律原子                          │
-│                                                              │
-│  core_ontology.yaml（1,298 行）                              │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│         第二层：两阶段推理引擎                                 │
-│                                                              │
-│  ┌──────────────────┐     ┌───────────────────────┐        │
-│  │  阶段 1：Horn     │ ──→ │  阶段 2：Dung AAF     │        │
-│  │  闭包 (k ≤ 3)    │     │  Grounded Extension   │        │
-│  │                    │     │                       │        │
-│  │  2,117 条 PRC 规则│     │  反驳、例外、          │        │
-│  │  前向链推理       │     │  反反驳               │        │
-│  │  单调性 ✓ 已证明  │     │  已验证 n ≤ 4 ✓       │        │
-│  └──────────────────┘     └───────────────────────┘        │
-│                                                              │
-│  若例外链 k ≥ 4：TAINTED 标记（软边界）                      │
-│  若循环依赖：REJECT（硬边界）                                 │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│         第三层：证据校准信任标签                               │
-│                                                              │
-│  每个输出携带信任标签：                                       │
-│    PROVED → REFUTED → PARTIAL → INSUFFICIENT → TOY → PENDING│
-│                                                              │
-│  model_status.py（7 个核心声明注册）                          │
-│  禁止标签在 CI/CD 中强制执行                                  │
-└──────────────────────────┬──────────────────────────────────┘
-                           │
-                           ▼
-┌─────────────────────────────────────────────────────────────┐
-│         第四层：跨法域碰撞检测器                               │
-│                                                              │
-│  Tri-Rail：PRC × HK × US 三轨并行推理                       │
-│  12 类冲突检测                                               │
-│  60 条 CBL 阻断规则（= Bell-LaPadula 非干涉）                │
-│  23 条 SPC 司法倾向性守卫                                     │
-└─────────────────────────────────────────────────────────────┘
+```text
+legal-math-modeling/
+├── README.md
+├── README_CN.md
+├── paper/
+├── theory/
+├── proofs/
+│   ├── engineering_proof_artifacts/
+│   ├── strict_proof_baseline/
+│   └── lean/juris_lean/
+├── verification/
+├── data/
+└── docs/
+    ├── formal-release/
+    ├── final-closure/
+    ├── audit/
+    ├── modeling/
+    └── history/
 ```
 
-## 2.2 与传统法律 AI 的本质区别
+关键目录：
 
-| 维度 | 法律 RAG（多数系统） | Legal Math Modeling |
-|------|---------------------|---------------------|
-| 逻辑 | 概率性（LLM） | 确定性（Horn + 不动点） |
-| 审计 | 黑箱（prompt） | 白箱（DAG 追踪 + 证明工件） |
-| 跨法域 | 无 | Tri-Rail 碰撞器（12 类冲突） |
-| 幻觉风险 | 高 | 低（诚实拒绝 + 信任标签） |
-| 范式 | 聊天机器人 | 符号 AI / 计算法学 |
-| 数学声明 | 未验证 | 7 级证据校准 |
-| 反例 | 不追踪 | 显式注册并保留 |
+- `proofs/lean/juris_lean/`：Lean 形式化工作区
+- `docs/formal-release/`：当前发布边界文件
+- `docs/final-closure/`：结案与收口摘要
+- `docs/audit/`：定理矩阵、proof ledger、反例注册表
+- `docs/history/`：早期阶段与过时声明的归档说明
 
-## 2.3 k ≤ 3 边界
+## 推荐阅读顺序
 
-推理引擎在严格深度约束下运行：
+如果你要判断“这个仓库现在到底完成到了哪一步”，按下面顺序读：
 
-> **k ≤ 3** 是**可证明安全区**：Horn 闭包单调，不动点收敛有保证，所有性质已形式化验证。
->
-> **k ≥ 4** 是**可运行但不可完全验证区**：引擎仍然运行，但每个输出都带有 `TAINTED` 降级标记。
+1. [`docs/formal-release/FORMAL_RELEASE_REPORT.md`](docs/formal-release/FORMAL_RELEASE_REPORT.md)
+2. [`docs/formal-release/FORBIDDEN_CLAIMS.md`](docs/formal-release/FORBIDDEN_CLAIMS.md)
+3. [`docs/final-closure/final-report.md`](docs/final-closure/final-report.md)
+4. [`docs/audit/theorem_status_matrix.md`](docs/audit/theorem_status_matrix.md)
 
-这不是限制——这是*设计选择*。在监管环境下，说"这个法律结构太复杂，不能做确定性评估，需要人工审查"是可辩护的。说"AI 因为在例外链中栈溢出而幻觉了一个无效合同"是不可辩护的。
+`docs/history/` 只作为历史归档使用。某些旧文件会记录早期阶段的计数、目标或口径，不代表当前 release claim。
 
-## 2.4 多 AI 验证管线
-
-本工作通过迭代多 AI 形式化管线完成——每个 AI 贡献不同的验证模态：
-
-```
-┌───────────────┐     ┌───────────────┐     ┌───────────────┐
-│    Claude      │ ──→ │    Codex       │ ──→ │    Kimi        │
-│  (Anthropic)   │     │   (OpenAI)     │     │ (Moonshot AI)  │
-│                │     │                │     │                │
-│ 数学建模       │     │ 7 个工具链     │     │ 法律数据收集   │
-│ 47 个公式      │     │ Hypothesis     │     │ 严格证明重做   │
-│ 23 个算法      │     │ Z3, Lean 4     │     │ 8/8 证明通过   │
-│ 38 个常量      │     │ TLA+, Alloy    │     │                │
-│ 20 个定理骨架  │     │ CrossHair      │     │                │
-│                │     │ Dafny          │     │                │
-└───────┬───────┘     └───────┬───────┘     └───────┬───────┘
-        │                     │                     │
-        └─────────────────────┼─────────────────────┘
-                              │
-                              ▼
-                   ┌───────────────────┐
-                   │   Codex 审计      │
-                   │                   │
-                   │ 发现：7 个 FAIL   │
-                   │ 4 轮修复          │
-                   │ 结果：46/46 ✓     │
-                   │                   │
-                   │ 建立信任标签系统  │
-                   └───────────────────┘
-```
-
-# 3. 形式化验证结果
-
-## 3.1 已证明的声明（18 个）
-
-| ID | 定理 | 方法 | 证据规模 |
-|----|------|------|----------|
-| T4.2 | 有界 Horn 编译正确性 | 穷举枚举 | 3,965 个无环知识库 |
-| T4.3 | Horn 闭包单调性 | 解析证明 | — |
-| T4.5 | Horn 5 个操作性质 | Hypothesis PBT | 82,836 个随机知识库 |
-| T5.3 | Dung AAF grounded extension (n ≤ 4) | 穷举枚举 | 66,066 个攻击图 |
-| T6.4 | 阶段 1（Horn）单调 | 解析证明 | — |
-| T6.5 | 阶段 2（AAF 构造）确定 | 枚举 | 10 个 fixtures |
-| T7.3 | Kripke R_supersedes ∩ R_corrects = ∅ | Z3 SMT UNSAT | — |
-| T7.4 | □(t_fact < t_procedure) 时态守卫 | Z3 SMT 归纳 | — |
-| T8.3 | Toy Rosetta：无碰撞函子 | 穷举枚举 | 243 种赋值 |
-| T9.2 | 标量 Banach 压缩 (β < 1) | SymPy 符号 | — |
-| T10.2 | CN 格：无单调 ε 函数 | Z3 SMT UNSAT | — |
-| T11.2 | 60 条 CBL 规则 = Bell-LaPadula 非干涉 | 结构分析 | 60 条规则 |
-| T12.4 | 信任标签内部一致性 | 程序化验证 | — |
-| — | Galois 关联（有限域） | 穷举 | 74,954 fixtures |
-| — | Galois 幂集（有限域） | 穷举 | 74,954 fixtures |
-| — | 有界 Horn 正确性 | 穷举 | 3,965 无环 KB |
-| — | Horn 终止性（5 性质） | 穷举 | 82,836 KB |
-| — | 不动点有界终止 | 穷举 | 5 配置 |
-
-## 3.2 已反证的声明（10 个）
-
-| ID | 声明 | 反例 |
-|----|------|------|
-| CE6.2 | 原始评估器单调 | A={a} ⊂ B={a,b}, E(A)={a}, E(B)=∅ |
-| CE6.7 | 跨图单调性 | 添加事实反而缩小 grounded extension |
-| CE9.4 | 全维度 Banach 压缩 | 度量空间未定义；mapping_status 是离散标签 |
-| CE10.3 | 特免权确定 DP ε | 两模型见证：CN=1.0, US=2.5 |
-| CE10.4 | 裁剪满足 ε-DP | 隐私比 → ∞ |
-| — | 图相似度自反性 | sim(∅,∅) = 0.4 ≠ 1.0 |
-| — | 图相似度不可辨别同一性 | C4 环 vs 星+边，两者得分均为 1.0 |
-| — | 图相似度是度量 | 自反性/同一性反例 |
-| — | 裁剪 Theil-Sen = 纯 Theil-Sen | 5/6 数据集不同 |
-| — | 18 个定理可从 Galois 推出 | 17 个在独立数学领域 |
-
-## 3.3 待证明 / 数据不足（2 个）
-
-| ID | 声明 | 状态 | 瓶颈 |
-|----|------|------|------|
-| T8.5 | 实数据 Rosetta 函子 | DATA_INSUFFICIENT | 44 行，7 见证；需 ≥2,000 |
-| T9.4 | 实数据 Banach 压缩 | DATA_INSUFFICIENT | 225 代理观测，0 真实工时 |
-
-> **v5.1 更新**：T5（时态 Kripke）和 T15（CBL 非干扰）已升级为 PROVED_BY_ARTIFACT。Lean 构建 2950 jobs，0 sorry。PENDING_TOOLCHAIN 清零。
-
-# 4. 仓库结构
-
-```
-legal-math-modeling/                          322 个文件，7.4 MB
-├── README.md                                 # 英文版
-├── README_CN.md                              # 本文件（中文版）
-├── LICENSE                                   # CC BY 4.0
-├── CITATION.cff                              # 学术引用
-├── .gitignore
-├── requirements.txt
-│
-├── paper/                                    # ★ 正式数学论文
-│   ├── main.md                               # GitHub 原生渲染（KaTeX）
-│   ├── main.tex                              # LaTeX 源码
-│   ├── references.bib                        # 21 条参考文献
-│   └── sections/                             # 13 章
-│
-├── theory/                                   # 59 个 Python 理论模块
-│   ├── model_status.py                       # ★ 信任标签系统
-│   └── ... (59 个可运行模块)
-│
-├── proofs/                                   # 机器运行的证明工件
-│   ├── strict_proof_baseline/                # 规范严格基线（8/8 通过）
-│   ├── engineering_proof_artifacts/          # Kimi 工程证明（17 工件）
-│   └── formal_verification_logs/             # Codex 7 工具链验证
-│
-├── data/                                     # 法律验证数据集
-│   ├── cn_legal/ us_legal/ hk_legal/
-│   ├── aaf_legal/ banach_pricing/
-│   └── category_rosetta/ dp_privilege/ galois_semantics/
-│
-├── docs/                                     # 文档
-│   ├── modeling/                             # 8 份建模文档
-│   ├── audit/                                # 信任标签 schema、反例注册表
-│   ├── ontology/core_ontology.yaml           # L0/L1/L2 本体论（1,298 行）
-│   └── history/                              # 开发日志（5/23-6/17）
-```
-
-# 5. 快速开始
+## 快速开始
 
 ```bash
 git clone https://github.com/laubeing-droid/legal-math-modeling.git
 cd legal-math-modeling
-
-# 安装依赖
 pip install -r requirements.txt
-
-# 运行信任标签系统
-python -m theory
-
-# 运行特定证明
-python proofs/strict_proof_baseline/p1e_aaf/dung_grounded_extension.py
-
-# 运行全部严格证明
-python proofs/strict_proof_baseline/run_all_proofs.py
+python verification/verification_engine.py
+cd proofs/lean/juris_lean && lake build
 ```
 
-### 阅读论文
+如果你只想复核 released formal core：
 
 ```bash
-# GitHub 原生（推荐）：打开 paper/main.md — KaTeX 自动渲染所有公式
-# LaTeX PDF：cd paper && xelatex main.tex && biber main && xelatex main.tex && xelatex main.tex
+cd proofs/lean/juris_lean
+lake build
+lake build +JurisLean.AxiomAudit
 ```
 
-# 6. 扩展理论基础
+## 文档导航
 
-`theory/` 目录包含超出核心论文的 59 个形式化模块，为主体结果提供理论脚手架：
+- `paper/main.md`：主论文
+- `docs/formal-release/`：当前发布边界与允许声明
+- `docs/audit/`：审计链与 theorem ledger
+- `docs/history/`：历史阶段归档
 
-| 模块 | 数学框架 | 状态 |
-|------|----------|------|
-| `galois_reverse_index.py` | Galois 连接（关键词 ↔ 原子） | 穷举（74,954 fixtures） |
-| `evidence_credibility_axioms.py` | S(e) = r × i × a（Cobb-Douglas） | 符号证明 |
-| `kripke_supersedes_corrects.py` | Kripke 双可达关系 | Z3 UNSAT |
-| `policy_expressiveness.py` | 策略层 = 可分层 CTRS（P-完全） | 解析 |
-| `gradual_verification_soundness.py` | "编译器不是法官" | 解析 |
-| `trirail_complexity.py` | TriRail 联合可满足性 | 解析 |
-| `counts_as_institutional_facts.py` | Searle 的 X counts-as Y in context C | 工程基线 |
-| `rough_set_discretionary.py` | Pawlak 粗糙集建模裁量概念 | 工程基线 |
-| `paradigm_incommensurability.py` | Stevens 测量理论（序数 vs 比率） | 工程基线 |
-| `deontic_procedural_justice.py` | 标准道义逻辑 + 时序算子 | 工程基线 |
-| `non_interference_cbl.py` | Bell-LaPadula 法律概念防走私 | 已证明 |
-| `kolmogorov_mdl_rules.py` | 例外链深度 ↔ Kolmogorov 复杂度 | 猜想 |
-| `abstract_interpretation_unified.py` | Cousot & Cousot 抽象解释 | 工程基线 |
-| `hierarchical_bayes_alpha.py` | Theil-Sen α 的层次贝叶斯 | 工程基线 |
+## 许可
 
-所有模块都是可运行的 Python，内嵌断言。直接运行任意模块即可验证其声明。
-
-# 7. 许可
-
-[CC BY 4.0](LICENSE) — 可自由分享和改编本材料用于任何目的，但需注明出处。
-
-# 8. 引用
-
-见 [CITATION.cff](CITATION.cff)。
-
-```bibtex
-@software{legal_math_modeling_2026,
-  title   = {Legal Math Modeling: A Formal Framework for Cross-Jurisdictional
-             Symbolic Legal Reasoning with Evidence-Calibrated Trust Labels},
-  author  = {Laupinco},
-  year    = {2026},
-  url     = {https://github.com/laubeing-droid/legal-math-modeling},
-  license = {CC-BY-4.0}
-}
-```
+[CC BY 4.0](LICENSE)

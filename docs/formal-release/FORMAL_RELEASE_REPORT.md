@@ -1,31 +1,67 @@
 # Formal Core Release Report
 
-## Release ID: formal-core-v1
+## Release ID
 
-## Current State
+`formal-core-v1`
 
-| Gate | Status |
-|------|--------|
-| GitHub Actions clean build | PASS (`4b415b8`, Lake Build + Scan) |
-| Local `lake build` | PASS (`2954 jobs`) |
-| Local `lake build +JurisLean.AxiomAudit` | PASS |
-| Lean source scan | PASS (`0 sorry`, `0 admit`, `0 custom axiom`, `0 theorem : True`) |
-| theorem manifest | PASS (`75` checked results with statement digests) |
-| #print axioms audit | PASS (`propext`, `Classical.choice`, `Quot.sound` only) |
+## Public State
+
+| Item | State |
+| --- | --- |
+| Public branch model | `master` only |
+| Repository head | `cde13f0` |
+| Last full clean rebuild evidence | `4b415b8` |
+| GitHub Actions clean build | PASS at `4b415b8` |
+| Local `lake build` evidence | PASS |
+| Local `lake build +JurisLean.AxiomAudit` evidence | PASS |
+| Lean source guard | PASS |
+
+Lean source guard means:
+
+- `0 sorry`
+- `0 admit`
+- `0 custom axiom`
+- `0 theorem : True`
 
 ## Counting Policy
 
 - `formal_core_module_theorems = 39`
-  FiniteMonotoneIteration + DungFixedPoint + HornDefinitions + HornFixedPoint
 - `extended_core_theorems = 43`
-  Adds the checked weighted-metric and contraction bridge theorems
 - `supporting_results = 32`
 - `total_kernel_checked_results = 75`
 
-The machine-readable source of truth is:
-- [theorem_manifest.json](/abs/path/D:/Claude/数学证明/legal-math-modeling/docs/formal-release/theorem_manifest.json)
+Interpretation:
 
-## Axiom Audit
+- `39` is the public count for the released finite monotone core, Dung grounded
+  fixed-point layer, and finite Horn closure layer.
+- `43` extends that count with additional checked weighted-metric and
+  contraction-bridge results that are tracked in the manifest.
+- `75` is the machine-readable repository-wide checked-result count in the
+  manifest.
+
+Canonical machine-readable source:
+
+- [`theorem_manifest.json`](theorem_manifest.json)
+
+## Release Boundary
+
+Released:
+
+- finite monotone iteration kernel
+- Dung grounded fixed-point layer
+- finite Horn closure layer
+- reproducible `AxiomAudit`
+- repository-level release gate closure for `formal-core-v1`
+
+Not released:
+
+- full Banach fixed-point closure
+- full Lean proof of the `juris-calculus` Python runtime
+- empirical calibration
+- privacy guarantees
+- litigation automation
+
+## Axiom Audit Boundary
 
 Audited theorems:
 
@@ -42,28 +78,52 @@ Observed dependencies:
 - `Classical.choice`
 - `Quot.sound`
 
-No project-defined axioms were introduced.
+No project-defined axioms are part of the released core boundary.
 
-See:
-- [axiom_audit.txt](/abs/path/D:/Claude/数学证明/legal-math-modeling/docs/formal-release/axiom_audit.txt)
+Audit artifact:
 
-## Release Boundary
+- [`axiom_audit.txt`](axiom_audit.txt)
 
-Allowed release claim:
+## Banach Status
 
-- The finite monotone core, Dung grounded fixed-point layer, and finite Horn closure layer have reproducible Lean builds and reproducible axiom audit results.
-- The repository-level formal release gate is closed for `formal-core-v1`.
+Banach is not part of `formal-core-v1`.
 
-Not allowed:
+Current public status:
 
-- Claiming that the whole `juris-calculus` Python implementation is formally proved by Lean
-- Claiming that Banach fixed-point closure is complete
-- Claiming that empirical calibration, privacy guarantees, or litigation automation are complete
+- `UNPROVED_TRACK_B`
 
-## Repository Map
+Historical side-track references are preserved as archive tags:
 
-| Repo | Branch | Commit |
-|------|--------|--------|
-| legal-math-modeling | master | `4b415b8` |
-| juris-calculus | main | `15d9be6` |
-| deli-autoresearch | main | `e16e95a` |
+- `archive/banach-track-b-d23e8f2`
+- `archive/track-c-prod-f43e273`
+
+These tags are archival only. They are not active release branches and they do
+not expand the public release claim.
+
+## Allowed Claims
+
+- The finite monotone iteration kernel, Dung grounded fixed-point layer, and
+  finite Horn closure layer are repository-level released formal artifacts.
+- The core release boundary has reproducible Lean build evidence and reproducible
+  axiom-audit evidence.
+- Banach remains outside the released formal core.
+
+## Forbidden Claims
+
+- “The whole `juris-calculus` Python implementation is formally proved by Lean.”
+- “Banach fixed-point closure is complete.”
+- “Formal-core-v1 includes the Banach track.”
+- “Privacy guarantees have already been established.”
+- “Empirical calibration is complete.”
+
+See also:
+
+- [`FORBIDDEN_CLAIMS.md`](FORBIDDEN_CLAIMS.md)
+
+## Cross-Repo Reference Heads
+
+| Repo | Branch | Head |
+| --- | --- | --- |
+| `legal-math-modeling` | `master` | `cde13f0` |
+| `juris-calculus` | `main` | `c18b478` |
+| `deli-autoresearch` | `main` | `b35dbb1` |

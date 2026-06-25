@@ -34,6 +34,7 @@ theorem lipschitz_coupling_implies_weighted_contraction
     (T : (Fin n → ℝ) → (Fin n → ℝ)) (L : Fin n → Fin n → ℝ)
     (w : Fin n → ℝ) (q : ℝ)
     (hw_pos : ∀ i, 0 < w i)
+    (hL_nonneg : ∀ i j, 0 ≤ L i j)
     (h_coupling : LipschitzCoupling L w q)
     (h_lip : CoordinateLipschitz T L)
     (x y : Fin n → ℝ) :
@@ -47,7 +48,7 @@ theorem lipschitz_coupling_implies_weighted_contraction
   calc
     |T x i - T y i| / w i
         ≤ (Finset.sum Finset.univ (fun j => L i j * |x j - y j|)) / w i := by
-      refine (div_le_div_right hposi).mpr h_coord
+      gcongr
     _ = Finset.sum Finset.univ (fun j => (L i j * |x j - y j|) / w i) := by
       simp [Finset.sum_div]
     _ ≤ Finset.sum Finset.univ (fun j => (L i j * w j / w i) * (|x j - y j| / w j)) := by
@@ -55,9 +56,13 @@ theorem lipschitz_coupling_implies_weighted_contraction
       have hposj : 0 < w j := hw_pos j
       field_simp [ne_of_gt hposi, ne_of_gt hposj]
       ring
+      rfl
     _ ≤ Finset.sum Finset.univ (fun j => (L i j * w j / w i) * weightedSupDist w x y) := by
       refine Finset.sum_le_sum (fun j hj => ?_)
-      refine mul_le_mul_of_nonneg_left ?_ (by positivity)
+      have hL_nonneg_ij : 0 ≤ L i j := hL_nonneg i j
+      have h_nonneg : 0 ≤ L i j * w j / w i := by
+        refine div_nonneg (mul_nonneg hL_nonneg_ij (by linarith [hw_pos j])) (by linarith)
+      refine mul_le_mul_of_nonneg_left ?_ h_nonneg
       have h_sup_ge : |x j - y j| / w j ≤ weightedSupDist w x y := by
         unfold weightedSupDist
         apply Finset.le_sup' (f := fun k => |x k - y k| / w k)
@@ -69,6 +74,6 @@ theorem lipschitz_coupling_implies_weighted_contraction
       simp [Finset.sum_div, div_div]
     _ ≤ (q * w i / w i) * weightedSupDist w x y := by
       refine mul_le_mul_of_nonneg_right ?_ (weightedSupDist_nonneg w hw_pos x y)
-      refine (div_le_div_right hposi).mpr h_couple
+      gcongr
     _ = q * weightedSupDist w x y := by
       field_simp [ne_of_gt hposi]

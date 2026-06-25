@@ -1,5 +1,7 @@
 import Mathlib.Data.Real.Basic
 
+open Finset
+
 /-! Banach Weighted Maximum Norm — Contract Definition (Track B).
 
 This file defines the mathematical contract for the weighted norm contraction

@@ -219,6 +219,7 @@ def make_tort_bundle() -> DDLNormBundle:
         condition_facts=("duty_of_care", "breach_of_duty", "causation", "damage"),
         conclusion_fact="norm::tort::active",
         violation=violation,
+        exception_facts=("contributory_negligence",),
     )
     defense = CanonicalDefense(
         defense_id="defense::contributory_negligence",
@@ -257,6 +258,7 @@ def make_criminal_bundle() -> DDLNormBundle:
         action="commit_offense",
         condition_facts=("actus_reus", "mens_rea", "absence_of_defense"),
         conclusion_fact="norm::criminal::active",
+        exception_facts=("self_defense",),
         violation=violation,
     )
     defense = CanonicalDefense(

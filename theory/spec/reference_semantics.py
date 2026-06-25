@@ -477,7 +477,7 @@ def build_admin_demo_model(priority_active: bool = True) -> ReferenceModel:
         facts.append(CanonicalFact("f4", "legal_basis_exists"))
     bundles = make_admin_bundle()
     norms = [bundle.norm for bundle in bundles]
-    priorities = tuple(priority for bundle in bundles for priority in bundle.priorities)
+    priorities = tuple(dict.fromkeys(priority for bundle in bundles for priority in bundle.priorities))
     if not priority_active:
         priorities = ()
     rules = [

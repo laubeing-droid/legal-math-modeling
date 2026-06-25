@@ -71,7 +71,7 @@ theorem lipschitz_coupling_implies_weighted_contraction
     _ = (Finset.sum Finset.univ (fun j => L i j * w j / w i)) * weightedSupDist w x y := by
       simp [Finset.mul_sum, div_eq_mul_inv, mul_assoc, mul_comm, mul_left_comm]
     _ = (Finset.sum Finset.univ (fun j => L i j * w j) / w i) * weightedSupDist w x y := by
-      simp [Finset.sum_div, div_div]
+      simp [Finset.sum_div]
     _ ≤ (q * w i / w i) * weightedSupDist w x y := by
       refine mul_le_mul_of_nonneg_right ?_ (weightedSupDist_nonneg w hw_pos x y)
       gcongr

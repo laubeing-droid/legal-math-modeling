@@ -21,7 +21,7 @@ theorem weighted_fixed_point_exists
     (h_lip : CoordinateLipschitz T L) :
     exists! x : Fin n -> Real, T x = x := by
   letI : MetricSpace (Fin n -> Real) := weightedMetricSpace w hw_pos
-  have h_contracting : ContractingWith (Real.toNNReal q) T :=
+  haveI : ContractingWith (Real.toNNReal q) T :=
     weighted_contraction_implies_contracting_with T L w q hw_pos hL_nonneg hq_nonneg hq_lt_one h_coupling h_lip
   exact exists_fixedPoint T
 noncomputable def weightedFixedPoint
@@ -47,7 +47,7 @@ theorem weightedFixedPoint_is_fixed
     T (weightedFixedPoint T L w q hw_pos hL_nonneg hq_nonneg hq_lt_one h_coupling h_lip) =
     weightedFixedPoint T L w q hw_pos hL_nonneg hq_nonneg hq_lt_one h_coupling h_lip := by
   letI : MetricSpace (Fin n -> Real) := weightedMetricSpace w hw_pos
-  have h_contracting : ContractingWith (Real.toNNReal q) T :=
+  haveI : ContractingWith (Real.toNNReal q) T :=
     weighted_contraction_implies_contracting_with T L w q hw_pos hL_nonneg hq_nonneg hq_lt_one h_coupling h_lip
   exact fixedPoint_isFixedPt _
 theorem weightedFixedPoint_unique
@@ -62,7 +62,7 @@ theorem weightedFixedPoint_unique
     (y : Fin n -> Real) (hy : T y = y) :
     y = weightedFixedPoint T L w q hw_pos hL_nonneg hq_nonneg hq_lt_one h_coupling h_lip := by
   letI : MetricSpace (Fin n -> Real) := weightedMetricSpace w hw_pos
-  have h_contracting : ContractingWith (Real.toNNReal q) T :=
+  haveI : ContractingWith (Real.toNNReal q) T :=
     weighted_contraction_implies_contracting_with T L w q hw_pos hL_nonneg hq_nonneg hq_lt_one h_coupling h_lip
   exact fixedPoint_unique _ hy
 theorem weightedFixedPoint_converges
@@ -78,6 +78,6 @@ theorem weightedFixedPoint_converges
     Filter.Tendsto (fun k : Nat => Nat.iterate T k x0)
       Filter.atTop (nhds (weightedFixedPoint T L w q hw_pos hL_nonneg hq_nonneg hq_lt_one h_coupling h_lip)) := by
   letI : MetricSpace (Fin n -> Real) := weightedMetricSpace w hw_pos
-  have h_contracting : ContractingWith (Real.toNNReal q) T :=
+  haveI : ContractingWith (Real.toNNReal q) T :=
     weighted_contraction_implies_contracting_with T L w q hw_pos hL_nonneg hq_nonneg hq_lt_one h_coupling h_lip
   exact tendsto_iterate_fixedPoint _ _

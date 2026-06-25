@@ -31,12 +31,16 @@ theorem weighted_contraction_implies_contracting_with
     exact hq_lt_one
   . intro x y
     have hd_nonneg : 0 <= weightedSupDist w x y := weightedSupDist_nonneg w hw_pos x y
-    have hineq := h_contraction x y
+    have hprod_nonneg : 0 <= q * weightedSupDist w x y := mul_nonneg hq_nonneg hd_nonneg
     have hmul : ENNReal.ofReal (q * weightedSupDist w x y) = ENNReal.ofReal q * ENNReal.ofReal (weightedSupDist w x y) := by
-      unfold ENNReal.ofReal
-      simp [hq_nonneg, hd_nonneg, mul_nonneg hq_nonneg hd_nonneg]
+      -- Rewrite each ENNReal.ofReal via its definition (if_pos)
+      rw [ENNReal.ofReal, if_pos hprod_nonneg]
+      rw [ENNReal.ofReal, if_pos hq_nonneg, ENNReal.ofReal, if_pos hd_nonneg]
+      -- Now: ENNReal.ofNNReal ⟨q*d, hprod_nonneg⟩ = ENNReal.ofNNReal ⟨q, hq_nonneg⟩ * ENNReal.ofNNReal ⟨d, hd_nonneg⟩
+      -- ENNReal.ofNNReal = (⋅ : ENNReal), then ENNReal.coe_mul (simp lemma)
+      simp
     calc
       ENNReal.ofReal (weightedSupDist w (T x) (T y)) <= ENNReal.ofReal (q * weightedSupDist w x y) :=
-        ENNReal.ofReal_le_ofReal hineq
+        ENNReal.ofReal_le_ofReal (h_contraction x y)
       _ = ENNReal.ofReal q * ENNReal.ofReal (weightedSupDist w x y) := hmul
-      _ = (Real.toNNReal q : ENNReal) * ENNReal.ofReal (weightedSupDist w x y) := by simp
+      _ = (Real.toNNReal q : ENNReal) * ENNReal.ofReal (weightedSupDist w x y) := by simp [ENNReal.ofReal, hq_nonneg]

@@ -39,7 +39,7 @@ theorem lipschitz_coupling_implies_weighted_contraction
     (x y : Fin n → ℝ) :
     weightedSupDist w (T x) (T y) ≤ q * weightedSupDist w x y := by
   unfold weightedSupDist
-  refine Finset.sup'_le Finset.univ_nonempty (fun i hi => ?_)
+  refine Finset.sup'_le Finset.univ_nonempty (fun i => ?_)
   have h_coord := h_lip x y i
   have h_couple := h_coupling i
   have hposi : 0 < w i := hw_pos i

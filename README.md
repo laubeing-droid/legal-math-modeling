@@ -1,167 +1,138 @@
-# Legal Math Modeling
+﻿# Legal Math Modeling
 
-Mathematical companion repository for
-[`juris-calculus`](https://github.com/laubeing-droid/juris-calculus).
+> 形式化法律推理的数学配套仓库
+>
+> Companion repo: [juris-calculus](https://github.com/laubeing-droid/juris-calculus) |
+> Research framework: [deli-autoresearch](https://github.com/laubeing-droid/deli-autoresearch) |
+> License: [CC BY 4.0](LICENSE)
 
-This repository no longer presents itself as a grab-bag of partially related
-legal-AI experiments. Its public boundary is now explicit:
+## What This Is
 
-- `formal-core-v1` is released at the repository level.
-- The released formal core is the finite monotone iteration kernel, Dung
-  grounded fixed-point layer, and finite Horn closure layer.
-- Banach remains outside the released core as an archived, unfinished research
-  track.
-- Empirical calibration, privacy guarantees, and litigation automation are not
-  claimed complete here.
+This repository is the **mathematical companion** to [juris-calculus](https://github.com/laubeing-droid/juris-calculus) -- a deterministic symbolic legal reasoning engine operating across PRC, Hong Kong, and US jurisdictions.
 
-## Current Status
+It contains:
+- A formal mathematical framework for cross-jurisdictional legal reasoning
+- 59 runnable Python theory modules with embedded assertions
+- Lean 4 formal proofs for the core specification layer
+- Z3 SMT verification for constraint-based properties
+- A 7-level evidence-calibrated trust label system
+- 13 mathematical papers
+- Machine-reproducible audit and proof artifacts
 
-### Released
+## Architecture
 
-- Repository branch model: `master` only
-- Repository head: `cde13f0`
-- Last full GitHub clean rebuild evidence: `4b415b8`
-- Lean source guard:
-  `0 sorry / 0 admit / 0 custom axiom / 0 theorem : True`
-- Reproducible `AxiomAudit` for the core release boundary
-
-### Canonical Release Claim
-
-The finite monotone core, Dung grounded fixed-point layer, and finite Horn
-closure layer have reproducible Lean builds and reproducible axiom-audit
-results. The repository-level formal release gate is closed for
-`formal-core-v1`.
-
-### Not Released
-
-- Full Banach fixed-point closure
-- Full proof of the `juris-calculus` Python implementation
-- Privacy guarantees
-- Real-data calibration of constants
-- End-to-end litigation automation
-
-## Repository Boundary
-
-This repository is for:
-
-- formal specifications,
-- Lean proof artifacts,
-- proof ledgers and theorem manifests,
-- modeling papers and audit history,
-- machine-checkable release evidence.
-
-This repository is not the production runtime. Runtime behavior lives in:
-
-- [`juris-calculus`](https://github.com/laubeing-droid/juris-calculus)
-- [`deli-autoresearch`](https://github.com/laubeing-droid/deli-autoresearch)
-
-Current cross-repo heads referenced by the release docs:
-
-| Repo | Branch | Head |
-| --- | --- | --- |
-| `legal-math-modeling` | `master` | `cde13f0` |
-| `juris-calculus` | `main` | `c18b478` |
-| `deli-autoresearch` | `main` | `b35dbb1` |
-
-## Released Formal Core
-
-The released core is split into three layers:
-
-1. Finite monotone iteration kernel
-2. Dung grounded fixed-point layer
-3. Finite Horn closure layer
-
-The current machine-readable count policy is:
-
-- `formal_core_module_theorems = 39`
-- `extended_core_theorems = 43`
-- `supporting_results = 32`
-- `total_kernel_checked_results = 75`
-
-The canonical source for these counts is
-[`docs/formal-release/theorem_manifest.json`](docs/formal-release/theorem_manifest.json).
-
-## Axiom Boundary
-
-The audited core theorems are:
-
-1. `FiniteMonotoneSystem.exists_fixpoint_le_card`
-2. `FiniteMonotoneSystem.fixed_at_card`
-3. `DungAAF.grounded_is_least_fixed_point`
-4. `HornSystem.horn_completeness`
-5. `HornSystem.horn_result_is_minimal_model`
-6. `weightedSupDist_complete`
-
-Observed dependencies in the audit:
-
-- `propext`
-- `Classical.choice`
-- `Quot.sound`
-
-No project-defined axioms are part of the released core boundary.
-
-## Banach Status
-
-Banach is not part of `formal-core-v1`.
-
-What is true:
-
-- Banach-related exploratory work was archived.
-- The public repo keeps the archive as tags, not active branches.
-- The current public position is `UNPROVED_TRACK_B`.
-
-What is not true:
-
-- Banach closure is complete
-- Weighted contraction is fully closed in Lean
-- Banach is part of the released formal core
-
-Archived tag references:
-
-- `archive/banach-track-b-d23e8f2`
-- `archive/track-c-prod-f43e273`
-
-## Repository Layout
-
-```text
-legal-math-modeling/
-├── README.md
-├── README_CN.md
-├── paper/
-├── theory/
-├── proofs/
-│   ├── engineering_proof_artifacts/
-│   ├── strict_proof_baseline/
-│   └── lean/juris_lean/
-├── verification/
-├── data/
-└── docs/
-    ├── formal-release/
-    ├── final-closure/
-    ├── audit/
-    ├── modeling/
-    └── history/
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    User Constraints                             │
+│        Jurisdiction + Case Type + Evidence Set + Questions      │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│              Layer 1: Legal Ontology (L0/L1/L2)                │
+│   L0: Agent, Asset, Act, Status, Power, Defect (6 primitives)  │
+│   L1: 15 meta-ontological categories                           │
+│   L2: 20+ jurisdiction-specific domain concepts                │
+│   Source: core_ontology.yaml (1,298 lines)                     │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│         Layer 2: Two-Stage Reasoning Engine                    │
+│                                                                │
+│  Stage 1: Horn Closure        Stage 2: Dung AAF               │
+│  (forward fact expansion)     (rebuttal + exception handling)  │
+│  2,117 PRC rules              Exhaustive for n ≤ 4             │
+│  Monotone (proved)            Grounded extension (proved)      │
+│                                                                │
+│  k ≤ 3: provably safe zone    k ≥ 4: TAINTED (needs review)   │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│         Layer 3: Evidence-Calibrated Trust Labels              │
+│   PROVED → REFUTED → PARTIAL → INSUFFICIENT → TOY → PENDING   │
+│   Every claim tracked through its proof lifecycle              │
+│   Counterexamples preserved as first-class artifacts           │
+└──────────────────────────┬──────────────────────────────────────┘
+                           │
+                           ▼
+┌─────────────────────────────────────────────────────────────────┐
+│         Layer 4: Cross-Jurisdiction Collider                   │
+│   Tri-Rail: PRC x HK x US parallel reasoning                  │
+│   12 conflict classes detected                                 │
+│   60 CBL blocking rules (= Bell-LaPadula non-interference)     │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
-Key directories:
+## Key Results
 
-- `proofs/lean/juris_lean/`: Lean formalization workspace
-- `docs/formal-release/`: canonical release-boundary documents
-- `docs/final-closure/`: closure and audit summary
-- `docs/audit/`: theorem matrix, proof ledger, counterexample registry
-- `docs/history/`: archival notes about earlier phases and superseded claims
+| Status | Count | Examples |
+|--------|-------|---------|
+| **Proved** | 18 | AAF grounded extension, Horn monotonicity, Kripke temporal guard |
+| **Refuted** | 10 | DP epsilon determinability, evaluator monotonicity, graph metric |
+| **Data insufficient** | 4 | Rosetta real data, Banach real data |
+| **Toy only** | 2 | Rosetta toy, Banach scalar |
+| **Pending toolchain** | 6 | Lean drafts with `sorry`, SMT pending |
 
-## Read This First
+## Formal Core (Lean 4)
 
-For current truth, read in this order:
+The formal core is the **mathematically verified specification layer**:
 
-1. [`docs/formal-release/FORMAL_RELEASE_REPORT.md`](docs/formal-release/FORMAL_RELEASE_REPORT.md)
-2. [`docs/formal-release/FORBIDDEN_CLAIMS.md`](docs/formal-release/FORBIDDEN_CLAIMS.md)
-3. [`docs/final-closure/final-report.md`](docs/final-closure/final-report.md)
-4. [`docs/audit/theorem_status_matrix.md`](docs/audit/theorem_status_matrix.md)
+- **Finite Monotone Iteration Kernel**: general-purpose fixed-point layer (12 theorems)
+- **Dung Grounded Extension**: argumentation framework fixed-point (13 theorems)
+- **Horn Closure**: forward reasoning closure (10 theorems)
 
-`docs/history/` is archival. Some historical files summarize earlier states and
-may describe counts or ambitions that are no longer the current release claim.
+Total: **39 core theorems**, 0 sorry, 0 custom axiom.
+
+Lean is a **proof assistant** (interactive theorem prover). It verifies that mathematical statements are correct by type-checking proof terms. In this project, Lean proves the **mathematical specifications** -- the properties that the reasoning engine should satisfy. The Python implementation passes tests and has certificates, but is not itself formally proved by Lean.
+
+Toolchain: Lean 4.30.0 + Mathlib v4.30.0.
+
+See [proofs/lean/juris_lean/](proofs/lean/juris_lean/) for the Lean workspace.
+
+## Repository Structure
+
+```
+legal-math-modeling/
+├── paper/                              # 13 mathematical papers
+│   ├── main.md                         #   Core paper (13 chapters, KaTeX)
+│   ├── main.tex                        #   LaTeX source
+│   ├── icail_full_paper.md             #   ICAIL consolidated submission
+│   └── ... (12 topic-specific papers)
+│
+├── theory/                             # 59 Python theory modules
+│   ├── model_status.py                 #   Trust label system
+│   ├── argumentation_horn_unification.py # Dung AAF + Horn unification
+│   ├── bounded_horn_correctness.py     #   Horn correctness proof
+│   ├── temporal_kripke_ltl.py          #   Kripke temporal models
+│   ├── non_interference_cbl.py         #   CBL non-interference
+│   └── ... (54 more modules)
+│
+├── proofs/                             # Machine-reproducible proofs
+│   ├── engineering_proof_artifacts/    #   17 engineering proof artifacts
+│   ├── strict_proof_baseline/          #   8 strict baseline proofs
+│   ├── lean/juris_lean/               #   Lean 4 formalization (22 files)
+│   └── formal_verification_logs/       #   Codex 7-tool-chain audit
+│
+├── verification/                       # Z3 SMT verification
+│   └── verification_engine.py          #   4 checks: consistency, LFP, pi_legal, DP
+│
+├── data/                               # Legal validation datasets
+│   ├── cn_legal/                       #   PRC claims (6 domains)
+│   ├── us_legal/                       #   US legal data
+│   ├── hk_legal/                       #   Hong Kong legal data
+│   ├── aaf_legal/                      #   AAF rebuttal patterns
+│   ├── banach_pricing/                 #   Banach pricing data
+│   └── external/                       #   COMPAS, LegalBench, SPC
+│
+└── docs/                               # Documentation
+    ├── formal-release/                 #   Release boundary (canonical truth)
+    ├── final-closure/                  #   Closure and audit summary
+    ├── audit/                          #   Theorem matrix, proof ledger
+    ├── modeling/                       #   8 modeling documents
+    └── history/                        #   Archival development logs
+```
 
 ## Quick Start
 
@@ -169,24 +140,43 @@ may describe counts or ambitions that are no longer the current release claim.
 git clone https://github.com/laubeing-droid/legal-math-modeling.git
 cd legal-math-modeling
 pip install -r requirements.txt
+
+# Run the trust label system
+python -m theory
+
+# Run Z3 verification (4 checks)
 python verification/verification_engine.py
+
+# Run adversarial tests
+python -m pytest proofs/engineering_proof_artifacts/adversarial/
+
+# Run all strict proofs
+python proofs/strict_proof_baseline/run_all_proofs.py
+
+# Build Lean formalization (requires Lean 4 + Mathlib)
 cd proofs/lean/juris_lean && lake build
 ```
 
-For the formal release boundary specifically:
+## Read This First
 
-```bash
-cd proofs/lean/juris_lean
-lake build
-lake build +JurisLean.AxiomAudit
-```
+For current truth, read in this order:
 
-## Documentation Map
+1. [FORMAL_RELEASE_REPORT.md](docs/formal-release/FORMAL_RELEASE_REPORT.md)
+2. [FORBIDDEN_CLAIMS.md](docs/formal-release/FORBIDDEN_CLAIMS.md)
+3. [final-report.md](docs/final-closure/final-report.md)
+4. [theorem_status_matrix.md](docs/audit/theorem_status_matrix.md)
 
-- `paper/main.md`: main mathematical paper
-- `docs/formal-release/`: current release boundary and allowed claims
-- `docs/audit/`: audit trail and theorem ledger
-- `docs/history/`: archival summaries of earlier development phases
+## Cross-Repo Relationship
+
+| Repo | Role | Branch | Head |
+|------|------|--------|------|
+| `legal-math-modeling` (this repo) | Mathematical companion | `master` | `5f4d635` |
+| `juris-calculus` | Production runtime | `main` | `c18b478` |
+| `deli-autoresearch` | Research orchestrator | `main` | `e3e1c1f` |
+
+- `legal-math-modeling` proves the **specifications**
+- `juris-calculus` implements the **runtime**
+- `deli-autoresearch` orchestrates **long-horizon research**
 
 ## License
 

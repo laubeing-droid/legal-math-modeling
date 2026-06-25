@@ -1,5 +1,14 @@
 # Theorem Status Matrix (Audit Fix 4 — Red-Team Annotated)
 
+> **注意**: 这是 2026-06-19 的历史审计矩阵，保留为审计记录。
+> 当前 formal-core-v1 发布状态见:
+> [docs/formal-release/FORMAL_RELEASE_REPORT.md](../formal-release/FORMAL_RELEASE_REPORT.md)
+> [docs/final-closure/final-report.md](../final-closure/final-report.md)
+>
+> 本矩阵中 T009a 标注的 `has sorry` 和 Banach 相关 PENDING_TOOLCHAIN 项
+> 在 current release 中已明确为不在 formal-core-v1 发布范围内。
+> Banach 模块已从 core 边界明确移除。
+
 **Project:** juris-calculus  
 **Date:** 2026-06-19  
 **run_all_proofs.py (sandbox):** 10 PROVED, 3 REFUTED, 0 FAILED, 4 PENDING

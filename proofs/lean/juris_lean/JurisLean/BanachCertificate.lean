@@ -3,36 +3,37 @@ import JurisLean.ContractionCondition
 
 /-! B3: Banach Fixed Point Certificate.
 
-After B1 (metric completeness) and B2 (contraction condition) are proved,
-this file applies Mathlib's Banach fixed-point theorem to produce:
-1. Unique fixed point existence
-2. Iteration convergence
-3. Error bounds
-4. Verifiable certificate structure
+This file defines the machine-verifiable certificate payload for the Banach
+track. It intentionally stops at the data contract layer.
 
-Status: Certificate structure defined, full proof requires B1+B2 completion.
+The actual fixed-point existence, uniqueness, convergence, and error-bound
+proofs remain deferred until the weighted-space completeness result and the
+contraction bridge are connected to Mathlib's fixed-point API.
+
+Status: certificate schema only; no Banach theorem is claimed here.
 -/
 
 open Real
 
-/-- A Banach certificate: machine-verifiable evidence that T has a unique fixed point
-    and iteration converges within given tolerance. -/
-structure BanachCertificate {n : \u2115} (T : (Fin n \u2192 \u211d) \u2192 (Fin n \u2192 \u211d)) where
-  dimension : \u2115
-  weights : Fin n \u2192 \u211d
-  weightPositivity : PositiveWeights weights
-  q : \u211d
-  qBound : q < 1
-  initialPoint : Fin n \u2192 \u211d
-  tolerance : \u211d
-  iterations : \u2115
-  /-- Actual fixed point (computed or verified) -/
-  fixedPoint : Fin n \u2192 \u211d
-  /-- Error bound certificate: distance from iterated result to true fixed point -/
-  errorBound : \u211d
+variable {n : ℕ} [Nonempty (Fin n)]
 
-/-- Verify that a certificate is complete (all fields present, positivity, q < 1).
-    Full mathematical verification requires B1+B2 theorem proofs. -/
-def verifyCertificate (cert : BanachCertificate T) : Bool :=
-  -- All positivity conditions hold and q < 1
+/-- Certificate payload for a weighted Banach fixed-point instance. -/
+structure BanachCertificate (T : (Fin n → ℝ) → (Fin n → ℝ)) where
+  weights : Fin n → ℝ
+  weightPositivity : PositiveWeights weights
+  q : ℝ
+  qBound : q < 1
+  initialPoint : Fin n → ℝ
+  tolerance : ℝ
+  iterations : ℕ
+  fixedPoint : Fin n → ℝ
+  errorBound : ℝ
+
+/-- Structural checker for certificate payload completeness.
+
+This is intentionally a lightweight schema check. Full mathematical validation
+must be supplied later by the Track B contraction and fixed-point proofs.
+-/
+def verifyCertificate (_T : (Fin n → ℝ) → (Fin n → ℝ))
+    (_cert : BanachCertificate (n := n) _T) : Bool :=
   true

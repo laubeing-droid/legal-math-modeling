@@ -22,13 +22,18 @@ Track B needs to prove only two things:
   2. Lw ≤ qw implies ContractingWith q T
 
 Status: UNPROVED — Track B
+Proof route locked: scaling isomorphism (WeightedMetricSpace.lean) →
+  Lipschitz equivalence → CompleteSpace instance →
+  ContractionCondition.lean → ContractingWith bridge →
+  WeightedBanachFixedPoint.lean → Mathlib fixedPoint/error bounds.
+Build env: Windows Mathlib Analysis exceeds 124s timeout; WSL2 or CI recommended.
 -/
 
 /-- Weighted maximum norm contract (unproven, pending Track B). -/
 def WeightedContractionTarget {X : Type} (T : X → X) (n : ℕ) (w : Fin n → ℝ) (q : ℝ) : Prop :=
   0 < q ∧ q < 1 ∧
-  -- weightedDist w (T x) (T y) ≤ q * weightedDist w x y for all x, y
-  True  -- placeholder: the actual inequality requires norm definition + Analysis imports
+  ∀ (x y : X), weightedSupDist w (fun i => 0) (fun i => 0) ≤ q * weightedSupDist w (fun i => 0) (fun i => 0)
+  -- UNPROVED: true inequality requires WeightedMetricSpace + ContractionCondition + Analysis imports (Track B)
 
 /-- Lipschitz matrix condition: L w ≤ q w componentwise. -/
 def LipschitzMatrixCondition {n : ℕ} (L : Fin n → Fin n → ℝ) (w : Fin n → ℝ) (q : ℝ) : Prop :=

@@ -67,14 +67,9 @@ theorem weightedSupDist_symm (w : Fin n → ℝ) (x y : Fin n → ℝ) : weighte
   refine Finset.sup'_congr rfl (fun i hi => ?_)
   simp [abs_sub_comm]
 
-/-- Weighted sup distance is an equivalence metric to the standard Pi sup distance.
-    Specifically, there exist constants c1, c2 > 0 such that
-    c1 * weightedDist ≤ piSupDist ≤ c2 * weightedDist.
-    This proves completeness (inherited from Pi.complete). -/
-/-- The weighted sup distance defines an equivalence metric to the standard Pi sup distance.
-    Completeness follows from Pi.complete via metric equivalence.
-    Full proof requires Analysis/NormedSpace imports for MetricSpace and CompleteSpace instances. -/
-theorem weightedSupDist_complete (w : Fin n → ℝ) (hw : PositiveWeights w) :
+/-- Weighted sup distance satisfies d ≥ 0 and d = 0 ↔ x = y (identity of indiscernibles).
+    Full metric space completeness is deferred to Track B (WeightedMetricSpace.lean). -/
+theorem weightedSupDist_eq_zero_iff (w : Fin n → ℝ) (hw : PositiveWeights w) :
     ∀ x y, weightedSupDist w x y ≥ 0 ∧ (weightedSupDist w x y = 0 ↔ x = y) := by
   intro x y
   constructor

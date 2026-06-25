@@ -1,5 +1,6 @@
 import Mathlib.Data.Real.Basic
 import Mathlib.Tactic
+import Mathlib.Data.ENNReal.Basic
 import Mathlib.Topology.MetricSpace.Lipschitz
 import Mathlib.Topology.MetricSpace.Contracting
 import JurisLean.WeightedSupNorm
@@ -24,20 +25,25 @@ theorem weighted_contraction_implies_contracting_with
     (h_coupling : LipschitzCoupling L w q)
     (h_lip : CoordinateLipschitz T L) :
     ContractingWith (Real.toNNReal q) T := by
+  letI : MetricSpace (Fin n -> Real) := by
+    -- Use the definition from BanachComplete
+    haveI : PositiveWeights w := hw_pos
+    exact inferInstance
   have h_contraction : forall x y : Fin n -> Real,
       weightedSupDist w (T x) (T y) <= q * weightedSupDist w x y :=
     lipschitz_coupling_implies_weighted_contraction T L w q hw_pos hL_nonneg h_coupling h_lip
-  have hKlt1 : (Real.toNNReal q : NNReal) < 1 := by
-    have htemp : (Real.toNNReal q : Real) < (1 : Real) := by
-      rw [Real.toNNReal_of_nonneg hq_nonneg]
-      exact hq_lt_one
-    exact_mod_cast htemp
-  have hLip : LipschitzWith (Real.toNNReal q) T := by
+  refine \u27E8?_, ?_\u27E9
+  . -- K < 1
+    let K : NNReal := Real.toNNReal q
+    have hK_val : (K : Real) = q := by simp [K, hq_nonneg]
+    have hK_lt : (K : Real) < 1 := by rw [hK_val]; exact hq_lt_one
+    exact_mod_cast hK_lt
+  . -- LipschitzWith K T
+    have hineq : forall x y : Fin n -> Real,
+        weightedSupDist w (T x) (T y) <= q * weightedSupDist w x y := h_contraction
     intro x y
-    have hineq : weightedSupDist w (T x) (T y) <= q * weightedSupDist w x y := h_contraction x y
     calc
       ENNReal.ofReal (weightedSupDist w (T x) (T y)) <= ENNReal.ofReal (q * weightedSupDist w x y) :=
-        ENNReal.ofReal_le_ofReal hineq
+        ENNReal.ofReal_le_ofReal (hineq x y)
       _ = ENNReal.ofReal q * ENNReal.ofReal (weightedSupDist w x y) := by rw [ENNReal.ofReal_mul hq_nonneg]
       _ = (Real.toNNReal q : ENNReal) * ENNReal.ofReal (weightedSupDist w x y) := by simp [hq_nonneg]
-  exact And.intro hKlt1 hLip

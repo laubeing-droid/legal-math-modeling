@@ -1,0 +1,55 @@
+﻿name: Banach Proof Build (Track B)
+
+on:
+  workflow_dispatch:
+
+jobs:
+  banach:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Restore elan cache
+        id: elan-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.elan
+          key: ${{ runner.os }}-elan-lean4-v4.30.0
+
+      - name: Install elan
+        if: steps.elan-cache.outputs.cache-hit != 'true'
+        run: curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain leanprover/lean4:v4.30.0
+
+      - name: Restore Lake packages cache
+        uses: actions/cache@v4
+        with:
+          path: proofs/lean/juris_lean/.lake/packages
+          key: ${{ runner.os }}-lake-packages-${{ hashFiles('proofs/lean/juris_lean/lakefile.lean', 'proofs/lean/juris_lean/lean-toolchain') }}
+          restore-keys: ${{ runner.os }}-lake-packages-
+
+      - name: Restore Lake build cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            proofs/lean/juris_lean/.lake/build
+          key: ${{ runner.os }}-lake-build-${{ hashFiles('proofs/lean/juris_lean/lakefile.lean', 'proofs/lean/juris_lean/lean-toolchain') }}-${{ github.run_id }}
+          restore-keys: |
+            ${{ runner.os }}-lake-build-${{ hashFiles('proofs/lean/juris_lean/lakefile.lean', 'proofs/lean/juris_lean/lean-toolchain') }}-
+
+      - name: Lake build (incremental)
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          cd proofs/lean/juris_lean
+          lake build --rehash
+
+      - name: Build Banach target specifically
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          cd proofs/lean/juris_lean
+          lake build +JurisLean.BanachWeightedNorm +JurisLean.BanachEffectiveNodes +JurisLean.BanachCertificate
+
+      - name: Scan for sorry/axiom
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          python3 scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean

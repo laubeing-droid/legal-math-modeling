@@ -7,8 +7,6 @@ import JurisLean.ContractionCondition
 import JurisLean.BanachComplete
 
 /-! B2.5: Banach Contraction Bridge (Track B).
-Uses the MetricSpace instance from BanachComplete to convert the
-algebraic contraction inequality into Mathlib''s ContractingWith.
 0 sorry, 0 True evasion.
 -/
 
@@ -29,19 +27,11 @@ theorem weighted_contraction_implies_contracting_with
   have h_contraction : forall x y : Fin n -> Real,
       weightedSupDist w (T x) (T y) <= q * weightedSupDist w x y :=
     lipschitz_coupling_implies_weighted_contraction T L w q hw_pos hL_nonneg h_coupling h_lip
-  constructor
-  . -- goal: Real.toNNReal q < 1
-    rw [Real.toNNReal_lt_toNNReal_iff hq_nonneg (by norm_num : (0 : Real) <= 1)]
+  have hKlt1 : (Real.toNNReal q : NNReal) < 1 := by
+    rw [Real.toNNReal_lt_toNNReal_iff hq_nonneg (show (0 : Real) <= 1 from by norm_num)]
     exact hq_lt_one
-  . -- goal: LipschitzWith (Real.toNNReal q) T
+  have hLip : LipschitzWith (Real.toNNReal q) T := by
     intro x y
-    -- dist = weightedSupDist w, so we can rewrite
-    -- LipschitzWith expects: edist (f x) (f y) <= K * edist x y
-    -- but since edist = ENNReal.ofReal dist (by our MetricSpace instance),
-    -- and dist = weightedSupDist, the inequality reduces to:
-    -- weightedSupDist w (T x) (T y) <= q * weightedSupDist w x y
-    -- which is exactly h_contraction
-    calc
-      weightedSupDist w (T x) (T y) <= q * weightedSupDist w x y := h_contraction x y
-      _ = (Real.toNNReal q : Real) * weightedSupDist w x y := by
-        simp [hq_nonneg]
+    have hcoeff : (Real.toNNReal q : Real) = q := by simp [hq_nonneg]
+    simpa [hcoeff] using h_contraction x y
+  exact And.intro hKlt1 hLip

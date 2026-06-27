@@ -12,73 +12,78 @@ consistency.
 This paper presents \textbf{juris-calculus}, a symbolic legal reasoning engine
 that operates across three jurisdictions---the People's Republic of China
 (PRC), Hong Kong (HK), and the United States (US)---using deterministic
-fixpoint evaluation rather than probabilistic language models. The core
-contribution is a \emph{mathematical framework} that formalizes:
+fixpoint evaluation rather than probabilistic language models.
+
+\subsection{Contributions}
+
+Our contributions fall into two categories: results \emph{formally verified}
+in Lean~4~\cite{lean4}, and results established by complementary methods
+(SMT, exhaustive enumeration, property-based testing) whose Lean
+formalization is planned.
 
 \begin{enumerate}[label=(\roman*)]
-  \item A \textbf{three-layer legal ontology} ($L_0$/$L_1$/$L_2$) with 6
-        irreducible primitives, 15 meta-ontological categories, and 20+
-        jurisdiction-specific domain concepts (Section~\ref{sec:ontology});
-  \item A \textbf{monotone Horn closure} engine for forward fact expansion
-        over 2,117 PRC rules, with proved correctness under bounded depth
-        $k \leq 3$ (Section~\ref{sec:horn});
-  \item A \textbf{Dung abstract argumentation framework} for rebuttal and
-        exception handling, with exhaustive verification for $n \leq 4$
-        (Section~\ref{sec:aaf});
-  \item \textbf{Kripke temporal models} with LTL embedding for procedural
-        state tracking (Section~\ref{sec:kripke});
-  \item \textbf{Category-theoretic} and \textbf{Banach contraction} models
-        for cross-jurisdictional mapping and pricing, with explicit
-        counterexamples marking their boundaries
-        (Sections~\ref{sec:category}--\ref{sec:banach});
-  \item A 7-level \textbf{evidence-calibrated trust label system} that
-        tracks every mathematical claim through its proof lifecycle
-        (Section~\ref{sec:trust}).
+  \item \textbf{Finite monotone fixpoint theory}
+        (\texttt{FiniteMonotoneIteration.lean}): We prove that any finite
+        monotone system on a finite type has a fixed point reachable in
+        $\leq |X|$ iterations (\texttt{exists\_fixpoint\_le\_card},
+        \texttt{fixed\_at\_card}).
+
+  \item \textbf{Dung abstract argumentation}
+        (\texttt{DungFixedPoint.lean}): We formalize the grounded extension
+        and prove existence, uniqueness, soundness, and completeness of the
+        grounded labelling---16 theorems including
+        \texttt{groundedSpec\_is\_least\_fixed\_point} and
+        \texttt{self\_attack\_not\_in\_grounded}.
+
+  \item \textbf{Horn logic fixpoints}
+        (\texttt{HornDefinitions.lean}, \texttt{HornFixedPoint.lean}):
+        We prove monotonicity, soundness, completeness, and minimality of
+        the $T_H$ operator---12 theorems including
+        \texttt{horn\_result\_least\_fixed\_point}.
+
+  \item \textbf{Banach contraction (effective nodes)}
+        (\texttt{BanachEffectiveNodes.lean}, \texttt{WeightedSupNorm.lean},
+        \texttt{ContractionCondition.lean}): For a finite pricing function
+        $\text{pricingFn}(x) = \beta T + (1{-}\beta)x$, we prove the
+        weighted sup-norm is a metric, and the map is a contraction with
+        unique fixed point.
+
+  \item \textbf{Unified composition}
+        (\texttt{UnifiedModel.lean}): We prove soundness of the two-stage
+        evaluator (Horn then AAF), a full chain theorem, and a Galois
+        connection completeness result.
+
+  \item \textbf{Obstruction theory}
+        (\texttt{FiniteRosetta.lean}): We prove that no total functor
+        exists for the toy Rosetta model and that the obstruction density
+        exceeds $2/3$.
+
+  \item \textbf{Temporal invariants}
+        (\texttt{TemporalKripke.lean}): We prove the temporal guard
+        $\square(t_f < t_p)$ always holds and that litigation always
+        satisfies the guard.
+
+  \item \textbf{Planned work}: Full-dimensional Banach contraction,
+        real-data Rosetta functor, DP $\varepsilon$ determinability,
+        and general AAF convergence for $n > 4$ remain open or
+        data-insufficient.
 \end{enumerate}
 
-\subsection{Research Methodology: AI-Assisted Formalization}
+\subsection{Research Methodology}
 
-This work employs an iterative AI-assisted methodology:
-\begin{enumerate}
-  \item \textbf{Claude} (Anthropic) performed initial mathematical modeling
-        and reverse engineering of the legal reasoning architecture;
-  \item \textbf{Codex}~\cite{codex2026} (OpenAI) conducted formal verification using 7 tool
-        chains: Hypothesis (property-based testing), Z3~\cite{z3} (SMT solving),
-        CrossHair (contract verification), TLA+ (model checking), Alloy
-        (relational analysis), Lean~4~\cite{lean4} (theorem proving), and Dafny
-        (program verification);
-  \item \textbf{Kimi} (Moonshot AI) collected legal validation data and
-        produced a strict mathematical proof rework;
-  \item A second \textbf{Codex} audit downgraded overstated claims and
-        established the final evidence-calibrated baseline.
-\end{enumerate}
+This work employs an iterative AI-assisted methodology: Claude (Anthropic)
+performed initial modeling; Codex~\cite{codex2026} (OpenAI) conducted
+formal verification using Lean~4, Z3~\cite{z3}, and Hypothesis; a second
+Codex audit downgraded overstated claims. The evidence-calibrated trust
+label system (Section~\ref{sec:trust}) records which tool produced which
+evidence.
 
-Each AI agent contributed a different verification modality. The trust label
-system (Section~\ref{sec:trust}) records which agent produced which evidence,
-preventing any single agent's output from being promoted beyond its verified
-scope.
+\subsection{Paper Structure}
 
-\subsection{Key Results Summary}
-
-\begin{table}[h]
-\centering
-\begin{tabular}{@{}llr@{}}
-\toprule
-\textbf{Status} & \textbf{Count} & \textbf{Examples} \\
-\midrule
-\textsc{Proved} (exhaustive/SMT/symbolic) & 18
-  & AAF grounded ext., Horn monotonicity, Kripke mutex \\
-\textsc{Refuted} (counterexample) & 10
-  & DP $\varepsilon$, evaluator monotone, graph metric \\
-\textsc{Data insufficient} & 4
-  & Rosetta real, Banach real \\
-\textsc{Toy only} & 2
-  & Rosetta toy, Banach scalar \\
-\textsc{Pending toolchain} & 6
-  & Lean drafts ($\texttt{sorry}$), SMT pending \\
-\bottomrule
-\end{tabular}
-\caption{Summary of all 40 mathematical claims tracked in the
-evidence-calibrated trust label system.}
-\label{tab:summary}
-\end{table}
+Sections~\ref{sec:prelim}--\ref{sec:ontology} establish notation and the
+legal ontology. Sections~\ref{sec:horn}--\ref{sec:evaluator} formalize
+the two-stage evaluator. Sections~\ref{sec:kripke}--\ref{sec:banach}
+develop the temporal, categorical, and analytic models.
+Sections~\ref{sec:dp}--\ref{sec:trust} address privacy, non-interference,
+and the trust label system. Section~\ref{sec:conclusion} summarizes
+contributions, open problems, and future directions.

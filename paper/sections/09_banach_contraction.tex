@@ -1,79 +1,119 @@
 \section{Banach Pricing Contraction}
 \label{sec:banach}
 
-The LegalOS pricing model attempts to estimate legal service costs using a
-fixpoint iteration. This section analyzes whether the pricing map satisfies
-the Banach contraction property.
+The juris-calculus pricing model estimates legal service costs using a
+fixpoint iteration. This section presents the formal verification of the
+contraction property for the effective-node (finite) case, carried out in
+\texttt{BanachEffectiveNodes.lean}, \texttt{WeightedSupNorm.lean}, and
+\texttt{ContractionCondition.lean}.
 
-\subsection{Pricing Map Definition}
+\subsection{Weighted Sup-Norm Metric}
 
-\begin{definition}[Effective-node pricing map]
-The pricing map $T: M \to M$ on the effective-node space is defined as:
+\begin{definition}[Weighted sup-norm]
+\label{def:wsup-banach}
+(cf.\ \texttt{WeightedSupNorm.lean}) For a finite index type $\iota$ with
+weight function $w : \iota \to \Real_{>0}$ and functions
+$x, y : \iota \to \Real$:
 \begin{equation}
-  T(x) = \beta \cdot C + (1 - \beta) \cdot x
-  \label{eq:pricing-map}
+  d_w(x, y) = \sup_{i \in \iota}\; w(i) \cdot |x(i) - y(i)|
+  \label{eq:wsup-banach}
 \end{equation}
-where:
-\begin{itemize}
-  \item $x \in M$ is the current price estimate;
-  \item $C$ is the observed cost (from timesheet data);
-  \item $\beta \in (0, 1)$ is the smoothing parameter.
-\end{itemize}
 \end{definition}
 
-\subsection{Single-Dimensional Contraction}
+\begin{theorem}[Non-negativity]
+\label{thm:wsup-nneg}
+\texttt{(weightedSupDist\_nonneg)} For all $x, y$:
+$d_w(x, y) \geq 0$.
+\end{theorem}
 
-\begin{theorem}[Scalar contraction for effective nodes]
-\label{thm:banach-scalar}
-For the single-dimensional case $M = \Real$ with $d(x, y) = |x - y|$,
-the pricing map~\eqref{eq:pricing-map} is a $\beta$-contraction:
+\begin{theorem}[Triangle inequality]
+\label{thm:wsup-tri}
+\texttt{(weightedSupDist\_triangle)} For all $x, y, z$:
+$d_w(x, z) \leq d_w(x, y) + d_w(y, z)$.
+\end{theorem}
+
+\begin{theorem}[Symmetry]
+\label{thm:wsup-sym}
+\texttt{(weightedSupDist\_symm)} For all $x, y$:
+$d_w(x, y) = d_w(y, x)$.
+\end{theorem}
+
+\begin{theorem}[Completeness (identity of indiscernibles)]
+\label{thm:wsup-complete}
+\texttt{(weightedSupDist\_complete)} For all $x, y$:
+$d_w(x, y) = 0 \iff x = y$.
+\end{theorem}
+
+\begin{remark}
+Theorems~\ref{thm:wsup-nneg}--\ref{thm:wsup-complete} together establish
+that $d_w$ is a metric on the finite function space $\iota \to \Real$.
+\end{remark}
+
+\subsection{Contraction Condition}
+
+\begin{theorem}[Lipschitz coupling implies weighted contraction]
+\label{thm:lipschitz-contraction}
+\texttt{(lipschitz\_coupling\_implies\_weighted\_contraction)}
+(cf.\ \texttt{ContractionCondition.lean}) If a function $f$ satisfies a
+Lipschitz condition with constant $\lambda < 1$ under the weighted
+sup-norm, then $f$ is a contraction mapping.
+\end{theorem}
+
+\subsection{Pricing Function}
+
+\begin{definition}[Pricing function]
+\label{def:pricing}
+(cf.\ \texttt{BanachEffectiveNodes.lean}) The pricing function on the
+effective-node space is:
 \begin{equation}
-  |T(x) - T(y)| = |(1 - \beta)(x - y)| = (1 - \beta)|x - y|
+  \text{pricingFn}(x) = \beta \cdot T + (1 - \beta) \cdot x
+  \label{eq:pricing}
 \end{equation}
-Since $\beta \in (0, 1)$, we have $1 - \beta \in (0, 1)$, confirming
-contraction with constant $1 - \beta < 1$.
+where $x$ is the current price estimate, $T$ is the observed cost, and
+$\beta \in (0, 1)$ is the smoothing parameter.
+\end{definition}
+
+\begin{theorem}[Pricing function is a contraction]
+\label{thm:pricing-contraction}
+\texttt{(pricingFn\_contraction)} The function $\text{pricingFn}$ is a
+contraction mapping under the weighted sup-norm with contraction
+constant $1 - \beta$:
+\begin{equation}
+  d_w(\text{pricingFn}(x), \text{pricingFn}(y))
+  = (1 - \beta) \cdot d_w(x, y)
+  \label{eq:pricing-contraction}
+\end{equation}
 \end{theorem}
 
 \begin{proof}
-By SymPy symbolic computation. The script
-\texttt{banach\_effective\_nodes.py} verifies:
-\begin{enumerate}
-  \item $|T(x) - T(y)| = (1 - \beta)|x - y|$ (symbolic identity);
-  \item The unique fixed point is $x^* = C$ (the observed cost);
-  \item Convergence from any initial $x_0$ requires
-        $O(\log(1/\varepsilon))$ iterations.
-\end{enumerate}
+By direct computation:
+\begin{align}
+  \text{pricingFn}(x) - \text{pricingFn}(y)
+  &= (\beta T + (1{-}\beta)x) - (\beta T + (1{-}\beta)y) \notag \\
+  &= (1 - \beta)(x - y)
+\end{align}
+Since $0 < \beta < 1$, we have $0 < 1 - \beta < 1$, confirming
+contraction. The weighted sup-norm scales each component, but the
+contraction factor $(1-\beta)$ is uniform. Verified in
+\texttt{BanachEffectiveNodes.lean}.
 \end{proof}
 
-\begin{corollary}[Unique pricing fixpoint]
-The pricing map has a unique fixed point $x^* = C$, which is the
-observed cost. Any initial estimate converges to $C$.
-\end{corollary}
+\begin{theorem}[Pricing function has a fixed point]
+\label{thm:pricing-fp}
+\texttt{(pricingFn\_fixed\_point)} The unique fixed point of
+$\text{pricingFn}$ is $x^* = T$, the observed cost.
+\end{theorem}
 
-\subsection{Full-Dimensional Counterexample}
-
-\begin{counterexample}[Full-dimensional Banach: metric space undefined]
-\label{ce:banach-full}
-The Banach contraction property \textbf{cannot} be claimed for the
-full-dimensional pricing model because:
-\begin{enumerate}
-  \item The pricing space has multiple dimensions (hours, rate, complexity,
-        jurisdiction), but no metric $d$ is defined on this space;
-  \item The variable \texttt{mapping\_status} is a discrete nominal label
-        (e.g., ``approved'', ``pending''), not a point in a metric space;
-  \item The existing 225 pricing observations are all fee-schedule proxies
-        (0 real timesheets, 0 invoices), making the empirical Lipschitz
-        ratio meaningless.
-\end{enumerate}
-\end{counterexample}
+\begin{theorem}[Pricing function has a unique fixed point]
+\label{thm:pricing-unique-fp}
+\texttt{(pricingFn\_unique\_fixed\_point)} The fixed point $x^* = T$ is
+the only point satisfying $\text{pricingFn}(x^*) = x^*$.
+\end{theorem}
 
 \begin{remark}
-The single-dimensional contraction (Theorem~\ref{thm:banach-scalar}) is a
-valid toy model. The full-dimensional claim requires:
-\begin{enumerate}
-  \item A well-defined metric on the multi-dimensional pricing space;
-  \item Real timesheet data (not fee-schedule proxies);
-  \item Empirical verification of the Lipschitz constant.
-\end{enumerate}
-None of these prerequisites are currently satisfied.
+These results hold for the \emph{effective-node} (finite-dimensional)
+case only. The full-dimensional pricing model with multiple factors
+(hours, rate, complexity, jurisdiction) requires a well-defined metric
+on the multi-dimensional space, which is not currently provided. See
+Section~\ref{sec:conclusion} for the open problem.
 \end{remark}

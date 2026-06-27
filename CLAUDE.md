@@ -1,6 +1,20 @@
-# AGENTS.md -- legal-math-modeling project rules
+# CLAUDE.md -- legal-math-modeling project rules
 
-> Loaded automatically at session start. Every AI agent MUST follow.
+> Loaded automatically at session start. Every Claude Code session MUST follow.
+
+## Goal
+
+Complete formalization of the unified legal mathematical model.
+
+| # | Condition | Verification | Current |
+|---|-----------|-------------|---------|
+| G1 | Lean: 0 sorry, 0 core axiom, 0 admit | `lake build` + AxiomAudit | DONE: 2954 jobs, 0 error, 0 sorry |
+| G2 | Bug fixes pass tests | 42 adversarial tests | DONE |
+| G3 | Feature extensions pass tests | F1/F2/F3/F4 implemented | DONE |
+| G4 | Lean covers all target files | `lake build JurisLean` | DONE |
+| G5 | Z3 verifier UNSAT | `verification_engine.py` | DONE: 4/4 pass |
+| G6 | Deviation checker runnable | `judgment_deviation.py` | DONE |
+| G7 | Verification artifacts ready | 25 benchmarks + 42 tests | DONE |
 
 ## Trust Rules (NON-NEGOTIABLE)
 
@@ -26,8 +40,6 @@
 - Remote: https://github.com/laubeing-droid/legal-math-modeling
 - Primary language: Lean 4.30.0 (Mathlib4 v4.30.0)
 - Secondary: Python 3.12 (refinement bridge, tests)
-- Total verified results: 94 (43 core + 51 supporting)
-- Build: `lake build JurisLean` -> 2954 jobs, 0 error, 0 sorry
 
 ## Lean Proof Rules
 
@@ -46,17 +58,6 @@ The following 25 `.lean` files exist in `proofs/lean/juris_lean/JurisLean/`:
 `AxiomAudit.lean`, `BanachCertificate.lean`, `BanachComplete.lean`, `BanachContraction.lean`, `BanachEffectiveNodes.lean`, `BanachFixedPoint.lean`, `BanachScratch.lean`, `BanachWeightedNorm.lean`, `Basic.lean`, `ContractionCondition.lean`, `DungAAF.lean`, `DungDefinitions.lean`, `DungFixedPoint.lean`, `FiniteGaloisAdjunction.lean`, `FiniteMonotoneIteration.lean`, `FiniteRosetta.lean`, `HornDefinitions.lean`, `HornFixedPoint.lean`, `HornOperationalRefinement.lean`, `JC_Formalization.lean`, `ScratchApi.lean`, `SupZeroLemma.lean`, `TemporalKripke.lean`, `UnifiedModel.lean`, `WeightedSupNorm.lean`
 
 **Ghost files (DO NOT reference as existing):** `LegalSyntax.lean`, `DDLDefinitions.lean`, `CertificateChecker.lean`, `AttackDecision.lean`, `SafetyTheorems.lean`, `argmin_polytime.lean`, `EndToEnd.lean`, `HornCanonical.lean`, `ArgumentCompiler.lean`, `LegalIds.lean`, `LegalModel.lean`, `LegalWellFormed.lean`
-
-## Core Theorem Map
-
-| File | Core Count | Key Theorems |
-|------|-----------|-------------|
-| DungFixedPoint.lean | 17 | `F_monotone`, `grounded_eq_groundedSpec`, `finite_termination`, `iteration_bound`, `groundedSpec_is_fixed_point`, `grounded_is_fixed_point`, `groundedSpec_is_least_fixed_point`, `grounded_is_least_fixed_point`, `grounded_is_least_complete`, `groundedSpec_unique_least_fixed_point`, `labelling_partition`, `in_soundness`, `out_soundness`, `undecided_characterization`, `self_attack_precise_theorem`, `self_attack_not_in_grounded` |
-| HornFixedPoint.lean | 10 | `horn_operator_subset_univ`, `horn_operator_monotone`, `horn_iteration_monotone`, `horn_finite_termination`, `horn_iteration_bound`, `horn_result_fixed_point`, `horn_result_least_fixed_point`, `horn_soundness`, `horn_completeness`, `horn_result_is_minimal_model` |
-| FiniteMonotoneIteration.lean | 9 | `iter_succ`, `iter_subset_univ`, `iter_mono`, `iter_stable`, `iter_ssubset_of_ne`, `iter_card_lt_of_ne`, `iter_card_le_univ`, `exists_fixpoint_le_card`, `fixed_at_card` |
-| WeightedSupNorm.lean | 4 | `weightedSupDist_nonneg`, `weightedSupDist_triangle`, `weightedSupDist_symm`, `weightedSupDist_complete` |
-| HornDefinitions.lean | 2 | `TH_monotone`, `TH_subset_univ` |
-| ContractionCondition.lean | 1 | `lipschitz_coupling_implies_weighted_contraction` |
 
 ## Build Commands
 
@@ -95,6 +96,25 @@ pytest tests/ -q -ra
 - Certificate checker MUST NOT call the main evaluator implementation.
 - `canonical_semantics.py` is the single authoritative source for the 11 canonical types.
 
+## Canonical Types (11)
+
+`LegalFact`, `LegalRule`, `LegalNorm`, `LegalClaim`, `Argument`, `Attack`, `Priority`, `Violation`, `Reparation`, `DecisionStatus`, `ProofTrace`
+
+## DDL Modalities
+
+4 modalities: OBLIGATION, PROHIBITION, PERMISSION, CONSTITUTIVE.
+4 repair modes. 3 exception classes.
+
+## Spec-First Transition Gates
+
+| Gate | Status |
+|------|--------|
+| M1: Canonical Schema | SUBSTANTIAL_PARTIAL |
+| M2: DDL Minimal Core | SUBSTANTIAL_PARTIAL |
+| M3: Horn-to-AAF Contract | SUBSTANTIAL_PARTIAL |
+| M4: Certificate/Checker Boundary | PARTIAL |
+| M5: Unified Stopping Statement | CLOSED |
+
 ## Done Means
 
 A task is complete ONLY when ALL six conditions hold:
@@ -106,6 +126,8 @@ A task is complete ONLY when ALL six conditions hold:
 6. Limitations and forbidden claims recorded
 
 ## Prohibited Claims
+
+The following claims are FORBIDDEN in README, release notes, paper abstracts, repository descriptions, or public statements:
 
 - "The entire juris-calculus has been formally verified correct by Lean"
 - "Python implementation has been fully refinement-proved by Lean"
@@ -121,34 +143,15 @@ A task is complete ONLY when ALL six conditions hold:
 - "Banach complete" (as part of formal-core-v1)
 - "Privacy established"
 
-## Deferred Axioms (SORRY_LEDGER.md)
+## Deferred Axioms
 
-3 non-blocking domain axioms are registered:
+3 non-blocking axioms are registered in [SORRY_LEDGER.md](SORRY_LEDGER.md):
 - `violation_implies_norm_active` (PLANNED, DDLDefinitions.lean)
 - `permission_no_direct_violation` (PLANNED, DDLDefinitions.lean)
 - `constitutive_no_direct_violation` (PLANNED, DDLDefinitions.lean)
 
-These reflect a structural gap (RuleId != NormId). `DDLDefinitions.lean` is PLANNED.
-JC must NOT claim these are Lean-proven.
-
-## Spec-First Transition Gates
-
-| Gate | Status |
-|------|--------|
-| M1: Canonical Schema | SUBSTANTIAL_PARTIAL |
-| M2: DDL Minimal Core | SUBSTANTIAL_PARTIAL |
-| M3: Horn-to-AAF Contract | SUBSTANTIAL_PARTIAL |
-| M4: Certificate/Checker Boundary | PARTIAL |
-| M5: Unified Stopping Statement | CLOSED |
-
-## Canonical Types (11)
-
-`LegalFact`, `LegalRule`, `LegalNorm`, `LegalClaim`, `Argument`, `Attack`, `Priority`, `Violation`, `Reparation`, `DecisionStatus`, `ProofTrace`
-
-## DDL Modalities
-
-4 modalities: OBLIGATION, PROHIBITION, PERMISSION, CONSTITUTIVE.
-4 repair modes. 3 exception classes.
+These reflect a structural gap (RuleId != NormId) and are non-blocking.
+`DDLDefinitions.lean` is PLANNED and does not yet exist in this repo.
 
 ## Repository Layout
 

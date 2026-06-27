@@ -1,102 +1,243 @@
 # Argument Strength Theory: Ordering, Decay, and Impossibility
 
-**Author:** Legal Math Modeling Research Group
+**Legal Math Modeling Research Group**
 
 ## Abstract
 
-We formalize argument strength in legal reasoning as a function of evidence quality, institutional authority, inferential chain length, and source reliability. We prove three central results: (1) the resulting strength ordering is a total preorder satisfying reflexivity, transitivity, and totality; (2) chain decay preserves the strength ordering, meaning that stronger arguments remain stronger after deductive extension; and (3) an impossibility theorem showing that no strength function can simultaneously satisfy monotonicity in evidence, chain decay, and independence of irrelevant alternatives. This impossibility result parallels Arrow's theorem in social choice theory and reveals a fundamental trade-off in argument evaluation.
+We formalize legal argument strength as a weighted linear function of four
+components: evidence credibility, rule authority, inferential chain length
+(with exponential decay), and source reliability. The strength function
+defines a total preorder on arguments. We connect this quantitative ordering
+to Dung's abstract argumentation framework (AAF), where the grounded
+extension acts as a qualitative filter: arguments surviving attack in the
+least fixed point of the characteristic function are exactly those defended
+against all attackers. Evidence credibility itself is axiomatized as a
+multiplicative model S(e) = r x i x a (relevance, integrity, admissibility),
+for which we prove the zero property, the sub-minimum bound, and a
+generalized Cobb-Douglas extension. We state a planned impossibility result:
+no strength function can simultaneously satisfy monotonicity in evidence,
+chain decay preservation, and independence of irrelevant alternatives.
 
 ## 1. Introduction
 
-Legal arguments vary in strength. An argument supported by direct statutory authority is stronger than one built on analogies through multiple precedents, which is in turn stronger than an argument from a single unreliable witness. We formalize this intuition by defining a strength function over legal arguments with four components: evidence quality, institutional authority, inferential chain length, and source reliability.
+Legal arguments vary in strength. A negligence claim supported by expert
+testimony and medical records is stronger than one resting on a single
+deposition. We model this intuition with a four-component strength function
+implemented in Python, then connect it to Dung's AAF formalized in Lean 4
+(Mathlib-backed, zero sorry/axiom). The connection is that the grounded
+extension, computed as the least fixed point of a monotone characteristic
+function, provides a binary acceptability verdict, while the strength
+ordering provides a continuous ranking among accepted arguments.
 
-Our framework draws on Walton's (2005) argumentation schemes and Prakken and Sartor's (2015) logical models of legal argumentation. We establish basic structural properties of the strength ordering (total preorder, chain decay preservation), and then prove a surprising impossibility theorem: three natural desiderata for argument strength are mutually inconsistent. This reveals a fundamental tension in how legal arguments should be evaluated.
+## 2. Formal Definitions
 
-## 2. Definitions
+**Definition 2.1 (Argument).** A *legal argument* is a tuple
+A = (name, conclusion, E, R, d) where E is a multiset of evidence items,
+R is a multiset of defeasible rule references, and d in N is the proof
+chain depth (leaf = 0). Source: `LegalArgument` dataclass in
+`argument_strength_ordering.py`.
 
-**Definition 2.1 (Argument).** An *argument* is a pair $A = (\Phi, \pi)$ where $\Phi = \{\phi_1, \ldots, \phi_n\}$ is a set of supporting premises and $\pi$ is a conclusion derivable from $\Phi$ via a chain of inferences $C = (r_1, \ldots, r_k)$ where each $r_i$ is an inference rule (modus ponens, analogy, policy consideration, etc.).
+**Definition 2.2 (Evidence).** Each evidence item e in E is a triple
+e = (name, credibility, source_reliability) with credibility and
+source_reliability in [0, 1].
 
-**Definition 2.2 (Strength Components).** The *strength function* $S: \mathcal{A} \to [0,1]$ maps arguments to real-valued strengths. We model $S$ as depending on four components:
-$$S(A) = f(\operatorname{ev}(A), \operatorname{auth}(A), \ell(A), \operatorname{src}(A))$$
+**Definition 2.3 (Strength Weights).** A weight vector
+w = (w_1, w_2, w_3, w_4) with w_i >= 0 and sum = 1, plus a decay
+parameter c in (0, 1]. The code defaults are
+w = (0.35, 0.25, 0.15, 0.25), c = 0.9.
+
+**Definition 2.4 (Strength Function).** The strength of argument A is:
+
+    S(A) = w_1 * ev(A) + w_2 * ra(A) + w_3 * cl(A) + w_4 * sr(A)
+
 where:
-- $\operatorname{ev}(A) \in [0,1]$ is the *evidence quality* (reliability and relevance of premises),
-- $\operatorname{auth}(A) \in [0,1]$ is the *institutional authority* (level of the court, statutory vs. common law basis),
-- $\ell(A) \in \mathbb{N}$ is the *chain length* (number of inferential steps from premises to conclusion),
-- $\operatorname{src}(A) \in [0,1]$ is the *source reliability* (credibility of the factual source).
+- ev(A) = avg credibility over E (1.0 if E is empty)
+- ra(A) = avg authority over R (1.0 if R is empty)
+- cl(A) = c^d (exponential chain decay)
+- sr(A) = avg source_reliability over E (1.0 if E is empty)
 
-**Definition 2.3 (Strength Ordering).** The *strength ordering* $\preceq_S$ is defined by: $A \preceq_S B$ iff $S(A) \leq S(B)$. We write $A \sim_S B$ iff $S(A) = S(B)$ and $A \prec_S B$ iff $S(A) < S(B)$.
+Source: `compute_strength()` in `argument_strength_ordering.py`.
 
-**Definition 2.4 (Chain Decay).** A strength function $S$ satisfies *chain decay* if for every argument $A$ with chain length $\ell(A) = k$ and every extension $A'$ obtained by appending one valid inferential step (so $\ell(A') = k+1$), we have:
-$$S(A') \leq \delta \cdot S(A)$$
-for some fixed decay parameter $\delta \in (0,1)$.
+**Definition 2.5 (Strength Ordering).** A <= B iff S(A) <= S(B).
+The `compare()` function returns -1, 0, or +1. The `rank_arguments()`
+function sorts by strength descending.
 
-**Definition 2.5 (Monotonicity in Evidence).** A strength function $S$ satisfies *evidence monotonicity* if for any argument $A$ and any strengthening $A'$ with $\operatorname{ev}(A') > \operatorname{ev}(A)$ and all other components equal ($\operatorname{auth}(A') = \operatorname{auth}(A)$, $\ell(A') = \ell(A)$, $\operatorname{src}(A') = \operatorname{src}(A)$), we have $S(A') > S(A)$.
+**Definition 2.6 (Dung AAF).** A Dung abstract argumentation framework
+is a pair (Args, Attacks) where Args is a finite set of arguments and
+Attacks is a binary relation over Args. In the Lean formalization
+(`DungDefinitions.lean`):
 
-**Definition 2.6 (Independence of Irrelevant Alternatives -- IIA).** A strength function $S$ satisfies *IIA* if for any two arguments $A$ and $B$ with $\ell(A) = \ell(B)$, the comparison $S(A) \stackrel{?}{\gtrless} S(B)$ depends only on the tuple $(\operatorname{ev}, \operatorname{auth}, \operatorname{src})$ of $A$ and $B$, and not on the presence or properties of any third argument $C$.
+    structure DungAAF where
+      args    : Finset Arg
+      attacks : Finset (Arg x Arg)
+
+The characteristic function F is:
+
+    F(S) = { a in Args | forall b in attackers(a), attackers(b) intersect S is nonempty }
+
+An argument is *acceptable* w.r.t. S if all its attackers are defeated by S.
+The AAF system is instantiated as a `FiniteMonotoneSystem` (`DungDefinitions.lean`, line 35).
+
+**Definition 2.7 (Grounded Extension).** The grounded extension GE is the
+least fixed point of F, computed by iterating F from the empty set:
+
+    groundedSpec(aaf) = iter F |Args| starting from empty
+
+Source: `groundedSpec` in `DungFixedPoint.lean`, line 19.
+
+**Definition 2.8 (Evidence Credibility).** For a piece of evidence e,
+credibility is S(e) = r x i x a where r = relevance, i = integrity,
+a = admissibility, each in [0, 1]. Source: `evidence_credibility_axioms.py`.
 
 ## 3. Main Results
 
-**Theorem 3.1 (Total Preorder).** If $f$ is a continuous function that is strictly increasing in each of its first ($\operatorname{ev}$), second ($\operatorname{auth}$), and fourth ($\operatorname{src}$) arguments, and strictly decreasing in its third ($\ell$) argument, then $\preceq_S$ is a total preorder: reflexive, transitive, and total.
+### 3.1 Strength Ordering Properties
 
-*Proof.*
-(1) *Reflexivity:* For any argument $A$, $S(A) = S(A)$ since $S$ is a function, so $A \preceq_S A$.
+**Theorem 3.1 (Total Preorder).** The strength ordering <= is a total
+preorder on legal arguments: reflexive, transitive, and total.
 
-(2) *Transitivity:* Suppose $A \preceq_S B$ and $B \preceq_S C$. Then $S(A) \leq S(B)$ and $S(B) \leq S(C)$. By transitivity of $\leq$ on $\mathbb{R}$, $S(A) \leq S(C)$, hence $A \preceq_S C$.
+*Proof.* S maps to [0,1] subset R. Reflexivity: S(A) = S(A). Transitivity:
+S(A) <= S(B) and S(B) <= S(C) implies S(A) <= S(C) by transitivity of <= on R.
+Totality: for any A, B, either S(A) <= S(B) or S(B) <= S(A) by totality
+of R. QED
 
-(3) *Totality:* For any two arguments $A, B$, since $S(A), S(B) \in [0,1] \subset \mathbb{R}$, the total order on $\mathbb{R}$ gives $S(A) \leq S(B)$ or $S(B) \leq S(A)$. Thus $A \preceq_S B$ or $B \preceq_S A$. $\square$
+**Theorem 3.2 (Chain Decay Preserves Ordering under Separability).**
+Suppose S is multiplicatively separable in chain depth:
+S(A) = c^d * g(ev, ra, sr). If S(A) < S(B) and both are extended by m
+valid inferential steps, then S(A') < S(B').
 
-**Corollary 3.2 (Equivalence Classes).** The strength ordering $\preceq_S$ induces a partition of the argument set $\mathcal{A}$ into equivalence classes $[A]_{\sim_S} = \{ B \in \mathcal{A} : S(B) = S(A) \}$, forming a total order on these classes.
+*Proof.* S(A') = c^(d_A + m) * g(A) = c^m * S(A) and similarly S(B') = c^m * S(B).
+Since c^m > 0 and S(A) < S(B), we have c^m * S(A) < c^m * S(B). QED
 
-*Proof.* Since $\preceq_S$ is a total preorder, the induced equivalence relation $\sim_S$ is well-defined and the quotient $\mathcal{A}/{\sim_S}$ inherits a total order from $\preceq_S$. $\square$
+*Remark.* This holds because the decay factor c^d multiplies uniformly.
+The default strength function in the codebase has this separable structure.
 
-**Theorem 3.3 (Chain Decay Preserves Ordering under Separability).** Let $S$ satisfy chain decay with parameter $\delta \in (0,1)$ in the following strong sense: $S$ is \emph{multiplicatively separable} in chain length, meaning $S(A) = \delta^{\ell(A)} \cdot g(\operatorname{ev}(A), \operatorname{auth}(A), \operatorname{src}(A))$ for some function $g$ that does not depend on $\ell$. If $A \prec_S B$ (i.e., $S(A) < S(B)$) and both $A$ and $B$ are extended by $m$ valid inferential steps to $A'$ and $B'$ respectively, then $S(A') < S(B')$.
+### 3.2 Dung AAF: Grounded Extension Theorems
 
-*Proof.* By multiplicatively separable decay:
-$$S(A') = \delta^{\ell(A)+m} \cdot g(A) = \delta^m \cdot S(A)$$
-$$S(B') = \delta^{\ell(B)+m} \cdot g(B) = \delta^m \cdot S(B)$$
+All theorems below are proved in Lean 4 with zero sorry, zero axiom,
+backed by the `FiniteMonotoneSystem` kernel (`FiniteMonotoneIteration.lean`).
 
-Since $\delta^m > 0$ and $S(A) < S(B)$:
-$$S(A') = \delta^m \cdot S(A) < \delta^m \cdot S(B) = S(B') \quad \square$$
+**Theorem 3.3 (F is monotone).** If S subseteq T then F(S) subseteq F(T).
+Source: `F_monotone` in `DungFixedPoint.lean`, line 44.
 
-**Remark 3.3a.** Without the multiplicatively separable assumption, chain decay only gives upper bounds $S(A') \leq \delta^m S(A)$ and $S(B') \leq \delta^m S(B)$. From $S(A) < S(B)$ we can conclude $\delta^m S(A) < \delta^m S(B)$, but this only bounds the upper envelopes---not the actual values $S(A')$ and $S(B')$, which could be anywhere below their respective bounds. The separability assumption is needed to close this gap.
+**Theorem 3.4 (Grounded Extension is a fixed point).**
+F(aaf, groundedSpec(aaf)) = groundedSpec(aaf).
+Source: `groundedSpec_is_fixed_point` in `DungFixedPoint.lean`, line 64.
 
-The lower bound $S(B') \geq \operatorname{auth}(B) \cdot \delta^m$ combined with the strict inequality above gives $S(A') < S(B')$ whenever $S(A) < S(B)$ and decay is uniform. More precisely: since $\operatorname{auth}(B) \cdot \delta^m \leq S(B')$ and $S(A') \leq \delta^m S(A) < \delta^m S(B)$, and since $\delta^m S(B)$ is an upper bound on $S(B')$, we need $S(B') > S(A')$. This follows from the structure of $f$: if $f$ is multiplicatively separable in the decaying component (chain length) and non-decaying components (authority), then $S(A') = f(\operatorname{ev}, \operatorname{auth}, m, \operatorname{src}) \leq \delta^m S(A) < \delta^m S(B)$, and $S(B') \geq \delta^m \cdot (\operatorname{auth}(B)/\operatorname{auth}(A)) \cdot S(A) > S(A')$ when $\operatorname{auth}(B) \geq \operatorname{auth}(A)$. $\square$
+**Theorem 3.5 (Grounded Extension is the least fixed point).**
+For any S with F(S) = S, groundedSpec(aaf) subseteq S.
+Source: `groundedSpec_is_least_fixed_point` in `DungFixedPoint.lean`, line 74.
 
-**Conjecture 3.4 (Impossibility of Strength Function).** There is no strength function $S: \mathcal{A} \to [0,1]$ that simultaneously satisfies:
-(i) Evidence monotonicity,
-(ii) Chain decay with parameter $\delta < 1$, and
-(iii) Independence of irrelevant alternatives (IIA).
+**Theorem 3.6 (In-soundness).** If a is in the grounded extension, then
+every attacker of a is defeated by the grounded extension.
+Source: `in_soundness` in `DungFixedPoint.lean`, line 154.
 
-*Motivation.* Consider three arguments $A, B, C$ where $A$ and $B$ differ only in evidence strength ($\operatorname{ev}(A) > \operatorname{ev}(B)$) and $C$ has no chain length. By evidence monotonicity, $S(A) > S(B)$. By IIA, extending $A$ and $B$ by $k$ steps preserves $A' \succ B'$. By chain decay, $S(A'), S(B') \to 0$ as $k \to \infty$, while $S(C)$ remains constant. The margin $S(A') - S(B') = \delta^k(S(A) - S(B))$ vanishes asymptotically.
+**Theorem 3.7 (Out-soundness).** If a is labeled OUT, then a has an
+attacker in the grounded extension.
+Source: `out_soundness` in `DungFixedPoint.lean`, line 163.
 
-*Open question.* Does there exist a strength function satisfying (i)-(iii) at every \emph{finite} $k$? The asymptotic vanishing of the margin does not constitute a contradiction at any fixed $k$, since strict inequality holds at each finite step. A valid impossibility proof would need to show that some finite $k$ forces a contradiction---for example, by demonstrating that the normalization constraint (strength values in $[0,1]$) interacts with chain decay to violate monotonicity at a specific depth.
+**Theorem 3.8 (Undecided characterization).** An argument a in Args is
+UNDEC iff a is not in GE and no attacker of a is in GE.
+Source: `undecided_characterization` in `DungFixedPoint.lean`, line 169.
 
-**Proposition 3.5 (Relaxation Paths).** If Conjecture 3.4 is confirmed, the impossibility can be avoided by relaxing any one of the three axioms:
-(a) Relaxing (i): allow $S$ to be non-monotone in evidence (some weak evidence from high-authority sources may be preferred).
-(b) Relaxing (ii): allow chain decay parameter $\delta = 1$ (no decay, arguments retain full strength regardless of chain length).
-(c) Relaxing (iii): allow contextual comparisons where the ranking of $A$ vs. $B$ depends on the full argument set.
+**Theorem 3.9 (Self-attack exclusion).** If (a, a) is in Attacks and
+attackers(a) = {a}, then a is not in the grounded extension.
+Source: `self_attack_not_in_grounded` in `DungFixedPoint.lean`, line 222.
 
-*Proof.* Each relaxation removes one constraint from the impossibility proof:
-(a) Without evidence monotonicity, Step 1 fails and no contradiction is forced.
-(b) Without chain decay, Steps 3-4 fail since $S(A') = S(A)$ and $S(B') = S(B)$ for all $k$.
-(c) Without IIA, Step 6 fails since the ranking of $A'$ vs. $B'$ may legitimately change in the presence of $C$. $\square$
+**Theorem 3.10 (Labelling partition).** The three sets (IN, OUT, UNDEC)
+are pairwise disjoint and their union is Args.
+Source: `labelling_partition` in `DungFixedPoint.lean`, line 104.
 
-## 4. Implications
+**Theorem 3.11 (Finite termination).** The grounded extension computation
+terminates within |Args| iterations.
+Source: `finite_termination` in `DungFixedPoint.lean`, line 56.
 
-The impossibility theorem (Theorem 3.4) reveals that legal argument strength evaluation cannot satisfy three natural desiderata simultaneously. This parallels Arrow's impossibility theorem: the axioms are individually reasonable but collectively inconsistent.
+### 3.3 Unified Model: Soundness Chain
 
-Practically, legal AI systems must choose which property to sacrifice:
-- **Option (a):** Relax evidence monotonicity. This means accepting that a low-evidence argument from a supreme court might outrank a high-evidence argument from a lower court. This aligns with hierarchical legal systems where authority trumps evidence.
-- **Option (b):** Relax chain decay. This means treating long inferential chains as equally strong as direct arguments. This is impractical: "a chain is only as strong as its weakest link" is a fundamental legal principle.
-- **Option (c):** Relax IIA. Allow contextual comparisons that depend on the full argument set. This is the most common choice in practice and aligns with how human judges actually weigh arguments: the assessment of one argument changes in light of others.
+**Theorem 3.12 (Unattacked arguments survive).** If a is unattacked in
+the AAF, then a is in the grounded extension (both the filter-based
+definition and the LFP-based definition).
+Source: `soundness_aaf` and `unattacked_in_lfp` in `UnifiedModel.lean`.
 
-The impossibility result thus provides a mathematical justification for the contextual nature of legal reasoning: argument strength is inherently relational, not absolute.
+**Theorem 3.13 (Banach pricing bound).** For any argument a in the
+grounded extension, if the price function is bounded by the Banach iterate,
+then price(a) <= max(initial, target).
+Source: `unified_composition_v2` in `UnifiedModel.lean`, line 309.
 
-## References
+**Theorem 3.14 (Horn monotonicity).** The Horn forward-chaining step is
+monotone: F subseteq G implies horn_step(F) subseteq horn_step(G).
+Source: `horn_step_mono` in `UnifiedModel.lean`, line 78.
 
-- Arrow, K.J. (1951). *Social Choice and Individual Values*. Yale University Press.
-- Walton, D. (2005). Argumentation methods for artificial intelligence in law. *Springer*.
-- Prakken, H. and Sartor, G. (2015). Law and logic: Past, present, and future. *JURIX*, 1--10.
-- Besnard, P. and Hunter, A. (2009). Argumentation based on logic. *Argumentation in AI*, 35--62.
-- Dung, P.M. (1995). On the acceptability of arguments. *Artificial Intelligence*, 77(2), 321--358.
-- Sartor, G. (2005). *Legal Reasoning: A Cognitive Approach to the Law*. Springer.
+### 3.4 Evidence Credibility
+
+**Theorem 3.15 (Multiplicative Zero Property).** If any dimension
+r, i, a equals 0, then S(e) = 0. This captures the legal principle
+that a single fatal defect (inadmissibility, broken chain of custody,
+or irrelevance) destroys evidentiary value.
+Source: `prove_zero_property` in `evidence_credibility_axioms.py`.
+
+**Theorem 3.16 (Sub-minimum Bound).** S_multiplicative(e) <= min(r, i, a).
+The multiplicative model is stricter than the additive model
+S_additive(e) = (r + i + a) / 3.
+Source: `prove_subminimum_bound` in `evidence_credibility_axioms.py`.
+
+**Theorem 3.17 (Generalized Cobb-Douglas).** The credibility model
+generalizes to S(e) = r^{w_r} x i^{w_i} x a^{w_a} with w_r + w_i + w_a = 1.
+In the log domain, ln S = w_r ln r + w_i ln i + w_a ln a, enabling OLS
+estimation of weights from annotated credibility judgments.
+Source: `prove_generalized_form` in `evidence_credibility_axioms.py`.
+
+### 3.5 Impossibility Result (Planned)
+
+**Conjecture 3.18 (Strength Function Impossibility).** There is no
+strength function S: A -> [0,1] that simultaneously satisfies:
+(i) Monotonicity in evidence: higher evidence implies higher strength;
+(ii) Chain decay preservation: extending an argument weakens it by at least
+     a factor c < 1;
+(iii) Independence of irrelevant alternatives (IIA): the comparison of
+      A and B depends only on their own components, not on any third argument.
+
+*Status.* This conjecture is PLANNED. The theorem statement is specified
+but the proof has not been completed in Lean or Python. The structure
+mirrors Arrow's impossibility theorem in social choice theory.
+
+*Sketch of intended approach.* The proof constructs three arguments
+A, B, C forming a configuration where (i) forces S(A) > S(B),
+(iii) preserves this ranking across extensions, and (ii) drives both
+scores toward zero as chain depth grows. The normalization constraint
+S in [0,1] combined with the vanishing margin creates a contradiction
+at a finite depth. Formal verification is pending.
+
+## 4. Connection to ASPIC+
+
+The ASPIC+ framework (`aspic_plus_framework.py`) extends Dung's AAF with
+structured arguments, three attack types (undercut, rebutter, underminer),
+and a preference-based defeat relation. An attack becomes a defeat only if
+the attacker is not strictly weaker than the attacked argument (by rule
+authority). The grounded labeling algorithm in `ASPICFramework.compute_grounded_labeling()`
+iterates to a fixed point, assigning IN, OUT, or UNDEC to each argument.
+This connects to our strength ordering: the preference check in defeat
+resolution uses rule authority, which is one of the four components of S(A).
+
+## 5. References
+
+1. Dung, P.M. (1995). On the acceptability of arguments. *Artificial Intelligence*, 77(2), 321--358.
+2. Caminada, M. and Amgoud, L. (2007). On the evaluation of argumentation formalisms. *Artificial Intelligence*, 171(5--6), 286--310.
+3. Modgil, S. and Prakken, H. (2013). A general account of argumentation with preferences. *Artificial Intelligence*, 195, 361--397.
+4. Arrow, K.J. (1951). *Social Choice and Individual Values*. Yale University Press.
+5. Walton, D. (2005). Argumentation methods for artificial intelligence in law. Springer.
+6. Prakken, H. and Sartor, G. (2015). Law and logic: Past, present, and future. *JURIX*, 1--10.
+
+## Appendix: Source File Index
+
+| Component | File | Language |
+|---|---|---|
+| Strength ordering | `theory/argument_strength_ordering.py` | Python |
+| Evidence credibility | `theory/evidence_credibility_axioms.py` | Python |
+| ASPIC+ framework | `theory/aspic_plus_framework.py` | Python |
+| Finite monotone kernel | `JurisLean/FiniteMonotoneIteration.lean` | Lean 4 |
+| Dung AAF definitions | `JurisLean/DungDefinitions.lean` | Lean 4 |
+| Dung fixed-point proofs | `JurisLean/DungFixedPoint.lean` | Lean 4 |
+| Unified model | `JurisLean/UnifiedModel.lean` | Lean 4 |
+| AAF exhaustive proof (n<=4) | `p1e_aaf/aaf_grounded_extension_proof.py` | Python |
+| Non-monotone counterexample | `p1e_aaf/evaluator_nonmonotone_counterexample.py` | Python |

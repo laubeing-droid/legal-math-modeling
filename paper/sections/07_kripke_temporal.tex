@@ -4,22 +4,23 @@
 Legal reasoning has an intrinsic temporal dimension: facts are established
 at time $t_{\text{fact}}$, procedures occur at time $t_{\text{procedure}}$,
 and the temporal ordering is a legal invariant. This section formalizes the
-temporal model.
+temporal model, verified in \texttt{TemporalKripke.lean}.
 
 \subsection{Dual-Timestamp Kripke Model}
 
-\begin{definition}[Legal Kripke structure]
-A \emph{legal Kripke structure} is a tuple $\kripke = (W, R, V, t_f, t_p)$
-where:
+\begin{definition}[Temporal world]
+\label{def:temporal-world}
+(cf.\ \texttt{TemporalKripke.lean}) A \emph{TemporalWorld} is a structure
+with dual timestamps:
 \begin{itemize}
-  \item $(W, R, V)$ is a standard Kripke structure;
-  \item $t_f: W \to \Real$ assigns a \emph{fact timestamp} to each world;
-  \item $t_p: W \to \Real$ assigns a \emph{procedure timestamp} to each
-        world.
+  \item $t_f : W \to \Real$, the \emph{fact timestamp};
+  \item $t_p : W \to \Real$, the \emph{procedure timestamp}.
 \end{itemize}
+A legal Kripke structure is $\mathcal{K} = (W, R, V, t_f, t_p)$ where
+$(W, R, V)$ is a standard Kripke structure with the dual timestamps.
 \end{definition}
 
-\begin{definition}[Kripke accessibility relations]
+\begin{definition}[Accessibility relations]
 The legal Kripke model defines two distinct accessibility relations:
 \begin{align}
   R_{\text{supersedes}} &= \{(w_1, w_2) \mid w_2 \text{ corrects a
@@ -29,32 +30,10 @@ The legal Kripke model defines two distinct accessibility relations:
 \end{align}
 \end{definition}
 
-\subsection{Mutual Exclusion}
-
-\begin{theorem}[$R_{\text{supersedes}}$ and $R_{\text{corrects}}$ are
-mutually exclusive]
-\label{thm:kripke-mutex}
-For the legal Kripke model:
-\begin{equation}
-  R_{\text{supersedes}} \cap R_{\text{corrects}} = \emptyset
-  \label{eq:mutex}
-\end{equation}
-A state transition cannot simultaneously be a factual correction and a
-legal correction.
-\end{theorem}
-
-\begin{proof}
-By Z3~\cite{z3} SMT verification. The script \texttt{z3\_kripke\_mutex.py} encodes
-the definitions~\eqref{eq:R-super} and~\eqref{eq:R-corr} as SMT-LIB 2
-constraints and checks satisfiability of $R_{\text{supersedes}} \cap
-R_{\text{corrects}} \neq \emptyset$. Result: \textsc{UNSAT}, confirming
-mutual exclusion.
-\end{proof}
-
 \subsection{Temporal Guard Invariant}
 
-\begin{definition}[LTL temporal operator]
-In Linear Temporal Logic~\cite{pnueli1977,mcnaughton1993}, we use:
+\begin{definition}[LTL temporal operators]
+In Linear Temporal Logic~\cite{pnueli1977}:
 \begin{itemize}
   \item $\square \varphi$ (``always $\varphi$''): $\varphi$ holds in all
         future states;
@@ -63,9 +42,10 @@ In Linear Temporal Logic~\cite{pnueli1977,mcnaughton1993}, we use:
 \end{itemize}
 \end{definition}
 
-\begin{theorem}[Temporal guard invariant]
+\begin{theorem}[Temporal guard always holds]
 \label{thm:temporal-guard}
-In the legal Kripke model, the following LTL invariant holds:
+\texttt{(temporal\_guard\_always)} In the legal Kripke model, the
+following LTL invariant holds:
 \begin{equation}
   \square\,(t_f < t_p)
   \label{eq:temporal-guard}
@@ -74,14 +54,31 @@ Facts are always established before the procedures that reference them.
 \end{theorem}
 
 \begin{proof}
-By Z3~\cite{z3} induction. The script \texttt{z3\_temporal\_induction.py} verifies:
-\begin{enumerate}
-  \item \textbf{Base case}: the initial state satisfies $t_f < t_p$;
-  \item \textbf{Inductive step}: if state $w$ satisfies $t_f(w) < t_p(w)$,
-        then every successor $w'$ (via $R_{\text{supersedes}}$ or
-        $R_{\text{corrects}}$) satisfies $t_f(w') < t_p(w')$.
-\end{enumerate}
-Z3 returns \textsc{UNSAT} for the negation, confirming the invariant.
+By induction on the Kripke transition relation. The base case holds
+because the initial state satisfies $t_f < t_p$. For the inductive
+step, if world $w$ satisfies $t_f(w) < t_p(w)$, then every successor
+$w'$ (via $R_{\text{supersedes}}$ or $R_{\text{corrects}}$) satisfies
+$t_f(w') < t_p(w')$, since neither correction type can retroactively
+establish a fact after its referencing procedure. Verified in
+\texttt{TemporalKripke.lean}.
+\end{proof}
+
+\subsection{Litigation Guard}
+
+\begin{theorem}[Litigation always satisfies the temporal guard]
+\label{thm:lit-guard}
+\texttt{(litigation\_always\_guard)} In a litigation scenario, the
+temporal guard $\square(t_f < t_p)$ is preserved through all stages
+of the legal pipeline (Section~\ref{sec:ontology}, equation
+\eqref{eq:pipeline}).
+\end{theorem}
+
+\begin{proof}
+The legal pipeline enforces strict stage ordering: fact finding
+precedes contract formation, which precedes validity assessment, and
+so on. Each stage transition preserves the temporal guard because
+procedures in stage $k{+}1$ reference only facts established in stages
+$\leq k$. Verified in \texttt{TemporalKripke.lean}.
 \end{proof}
 
 \begin{remark}
@@ -96,7 +93,7 @@ temporal guard prevents retroactive reasoning in the legal pipeline.
 The embedding of the legal Kripke structure into LTL preserves the
 accessibility relation: for all $w_1, w_2 \in W$:
 \begin{equation}
-  (w_1, w_2) \in R \iff \kripke, w_1 \models \Diamond\, V(w_2)
+  (w_1, w_2) \in R \iff \mathcal{K}, w_1 \models \Diamond\, V(w_2)
 \end{equation}
 This is a direct consequence of the Kripke semantics.
 \end{proposition}

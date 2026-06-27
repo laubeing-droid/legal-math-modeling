@@ -2,89 +2,129 @@
 \label{sec:aaf}
 
 The second stage of the juris-calculus evaluator uses Dung's abstract
-argumentation framework to handle rebuttal, exception, counter-rebuttal,
-and rebuttable presumption. This section presents the strongest formal
-result in the corpus.
+argumentation framework~\cite{dung1995} to handle rebuttal, exception,
+and counter-rebuttal reasoning. This section presents the Lean
+formalization in \texttt{DungFixedPoint.lean}.
 
-\subsection{Argument Construction}
+\subsection{Framework Definition}
 
-\begin{definition}[Legal argument]
-A \emph{legal argument} in juris-calculus is a tuple $a = (p, c, S, \tau)$
-where:
+\begin{definition}[Dung AAF]
+\label{def:dung-aaf}
+(cf.\ \texttt{DungFixedPoint.lean}) A \texttt{DungAAF} is a pair
+$(\texttt{args}, \texttt{attacks})$ where:
 \begin{itemize}
-  \item $p \in \mathcal{U}$ is the \emph{premise} (a legal fact atom);
-  \item $c \in \mathcal{U}$ is the \emph{conclusion} (a legal claim);
-  \item $S \subseteq \mathcal{U}$ is the \emph{support set} (intermediate
-        facts used in derivation);
-  \item $\tau \in \{\textsc{Horn}, \textsc{Rebuttal}, \textsc{Exception},
-        \textsc{CounterRebuttal}, \textsc{RebuttablePresumption}\}$ is
-        the argument type.
+  \item \texttt{args} is a finite type of arguments;
+  \item \texttt{attacks} : $\texttt{args} \times \texttt{args} \to \Bool$
+        is the attack relation.
 \end{itemize}
-\end{definition}
-
-\begin{definition}[Attack relation for legal arguments]
-For arguments $a_1 = (p_1, c_1, S_1, \tau_1)$ and $a_2 = (p_2, c_2, S_2,
-\tau_2)$, the attack relation is defined as:
+The \emph{characteristic function} $F$ maps a set of accepted arguments
+to the set of arguments defended against all attacks:
 \begin{equation}
-  a_1 \attacks a_2 \iff
-  \begin{cases}
-    c_1 = \neg p_2 & \text{(rebuttal: conclusion attacks premise)} \\
-    c_1 = \text{exception}(p_2) & \text{(undercut: exception to rule)} \\
-    \tau_1 = \textsc{CounterRebuttal} \wedge c_1 = \neg c_2
-      & \text{(counter-rebuttal)}
-  \end{cases}
+  F(S) = \{ a \mid \forall b,\; \text{attacks}(b, a) \implies
+  \exists c \in S,\; \text{attacks}(c, b) \}
+  \label{eq:F-char}
 \end{equation}
 \end{definition}
 
-\subsection{Exhaustive Verification}
-
-\begin{theorem}[Grounded extension existence and uniqueness]
-\label{thm:aaf-ge}
-For every directed attack graph with $n \leq 4$ arguments, the grounded
-extension $\geaf(\aaf)$ exists, is unique, and converges in at most
-2 Kleene iteration steps.
-\end{theorem}
-
-\begin{proof}
-By exhaustive enumeration over all 66,066 directed attack graphs with
-$n \in \{1, 2, 3, 4\}$. For each graph, the Python verification script
-\texttt{dung\_grounded\_extension.py} computes $\geaf(\aaf)$ using the
-Kleene fixpoint iteration and confirms:
-\begin{enumerate}
-  \item The grounded extension is non-empty for every graph;
-  \item The grounded extension is the unique least fixpoint of $F_\aaf$;
-  \item The maximum number of Kleene steps is 2 (for $n = 4$).
-\end{enumerate}
-Zero counterexamples found across 66,066 test cases.
-\end{proof}
-
-\begin{remark}
-This is the strongest result in the entire corpus. The exhaustive enumeration
-covers \emph{all} possible attack topologies for $n \leq 4$, not a random
-sample. However, it does not extend to $n > 4$ by this enumeration alone.
-\end{remark}
-
-\subsection{Stratified Correspondence}
-
-\begin{definition}[Stratified evaluator]
-The \emph{stratified evaluator} separates legal reasoning into two stages:
-\begin{enumerate}
-  \item \textbf{Stage 1 (Horn closure)}: compute $\horn^*(\facts)$ using
-        only positive Horn clauses;
-  \item \textbf{Stage 2 (AAF evaluation)}: construct the argument framework
-        from $\horn^*(\facts)$ and compute $\geaf(\aaf)$.
-\end{enumerate}
+\begin{definition}[Grounded specification]
+\label{def:grounded-spec}
+The \emph{grounded specification} (\texttt{groundedSpec}) characterizes
+the grounded extension $G$ as:
+\begin{equation}
+  \text{groundedSpec}(G) \iff
+  F(G) = G \;\wedge\; \forall S,\; F(S) = S \implies G \subseteq S
+  \label{eq:grounded-spec}
+\end{equation}
+That is, $G$ is the unique least fixed point of $F$.
 \end{definition}
 
-\begin{proposition}[Stratified correspondence for $n \leq 4$]
-\label{prop:stratified}
-For legal argument frameworks with $n \leq 4$, the stratified evaluator's
-output coincides with the grounded extension computed directly on the full
-argument graph. Verified over 14 stratified fixtures.
-\end{proposition}
+\subsection{Core Theorems}
 
-\begin{proof}
-Direct computation: for each of the 14 fixtures, compute the stratified
-output and the direct grounded extension, and confirm equality. All 14
-fixtures pass.
-\end{proof}
+\begin{theorem}[$F$ is monotone]
+\label{thm:F-mono}
+\texttt{(F\_monotone)} For all argument sets $S_1, S_2$:
+\begin{equation}
+  S_1 \subseteq S_2 \implies F(S_1) \subseteq F(S_2)
+\end{equation}
+\end{theorem}
+
+\begin{theorem}[Grounded extension is a fixed point]
+\label{thm:ge-fp}
+\texttt{(groundedSpec\_is\_fixed\_point)} If $G$ satisfies
+$\text{groundedSpec}(G)$, then $F(G) = G$.
+\end{theorem}
+
+\begin{theorem}[Grounded extension is the least fixed point]
+\label{thm:ge-lfp}
+\texttt{(groundedSpec\_is\_least\_fixed\_point)} If $G$ satisfies
+$\text{groundedSpec}(G)$ and $S$ satisfies $F(S) = S$, then
+$G \subseteq S$.
+\end{theorem}
+
+\begin{theorem}[Grounded extension is unique]
+\label{thm:ge-unique}
+\texttt{(groundedSpec\_unique\_least\_fixed\_point)} If both $G_1$ and
+$G_2$ satisfy $\text{groundedSpec}$, then $G_1 = G_2$.
+\end{theorem}
+
+\subsection{Labelling Properties}
+
+\begin{definition}[Three-valued labelling]
+A \emph{labelling} $\mathcal{L}$ assigns each argument to one of
+$\{\texttt{in}, \texttt{out}, \texttt{undecided}\}$. The grounded
+extension corresponds to the set of \texttt{in}-labelled arguments.
+\end{definition}
+
+\begin{theorem}[Labelling partition]
+\label{thm:lab-part}
+\texttt{(labelling\_partition)} Every argument belongs to exactly one
+of the three labelling classes.
+\end{theorem}
+
+\begin{theorem}[\texttt{in} soundness]
+\label{thm:in-sound}
+\texttt{(in\_soundness)} If $a$ is labelled \texttt{in}, then every
+attacker of $a$ is labelled \texttt{out}.
+\end{theorem}
+
+\begin{theorem}[\texttt{out} soundness]
+\label{thm:out-sound}
+\texttt{(out\_soundness)} If $a$ is labelled \texttt{out}, then there
+exists an attacker of $a$ that is labelled \texttt{in}.
+\end{theorem}
+
+\begin{theorem}[Undecided characterization]
+\label{thm:undecided}
+\texttt{(undecided\_characterization)} An argument $a$ is
+\texttt{undecided} if and only if it is neither defended by all
+\texttt{in} arguments nor attacked by an \texttt{out} argument.
+\end{theorem}
+
+\begin{theorem}[Self-attack exclusion]
+\label{thm:self-attack}
+\texttt{(self\_attack\_not\_in\_grounded)} If $\text{attacks}(a, a)$,
+then $a$ is not in the grounded extension.
+\end{theorem}
+
+\subsection{Summary}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lll@{}}
+\toprule
+\textbf{Theorem} & \textbf{Lean name} & \textbf{Status} \\
+\midrule
+$F$ monotone & \texttt{F\_monotone} & \textsc{Proved} \\
+GE is fixed point & \texttt{groundedSpec\_is\_fixed\_point} & \textsc{Proved} \\
+GE is least fixed point & \texttt{groundedSpec\_is\_least\_fixed\_point} & \textsc{Proved} \\
+GE is unique & \texttt{groundedSpec\_unique\_least\_fixed\_point} & \textsc{Proved} \\
+Labelling partition & \texttt{labelling\_partition} & \textsc{Proved} \\
+In-soundness & \texttt{in\_soundness} & \textsc{Proved} \\
+Out-soundness & \texttt{out\_soundness} & \textsc{Proved} \\
+Self-attack excluded & \texttt{self\_attack\_not\_in\_grounded} & \textsc{Proved} \\
+\bottomrule
+\end{tabular}
+\caption{Selected theorems from \texttt{DungFixedPoint.lean}. The full
+file contains 16 theorems, all proved without \texttt{sorry}.}
+\label{tab:aaf-theorems}
+\end{table}

@@ -3,7 +3,20 @@
 
 A natural question arises: can the legal privilege classification of data
 (e.g., attorney-client privilege, state secrets) determine the differential
-privacy parameter $\varepsilon$? This section proves the answer is negative.
+privacy parameter $\varepsilon$? This section proves the answer is negative
+and presents the engineering implications.
+
+\subsection{DP Definition}
+
+\begin{definition}[$\varepsilon$-differential privacy~\cite{dwork2006}]
+A randomized mechanism $\mathcal{M}$ satisfies \emph{$\varepsilon$-differential
+privacy} if for all neighboring datasets $D, D'$ and all $S \subseteq
+\text{Range}(\mathcal{M})$:
+\begin{equation}
+  \Pr[\mathcal{M}(D) \in S] \leq e^\varepsilon \cdot \Pr[\mathcal{M}(D') \in S]
+  \label{eq:dp}
+\end{equation}
+\end{definition}
 
 \subsection{Privilege Lattice}
 
@@ -13,49 +26,48 @@ The PRC legal hierarchy forms a 10-level lattice $(P, \leq)$:
   \begin{array}{c}
     \text{Constitution} \\
     \downarrow \\
-    \text{Law (全国人大)} \\
+    \text{Law (\underline{National People's Congress})} \\
     \downarrow \\
-    \text{Administrative Regulation (国务院)} \\
+    \text{Administrative Regulation (\underline{State Council})} \\
     \downarrow \\
-    \text{Local Regulation (地方性法规)} \\
+    \text{Local Regulation} \\
     \downarrow \\
-    \text{Department Rule (部门规章)} \\
+    \text{Department Rule} \\
     \downarrow \\
-    \text{Local Government Rule (地方政府规章)} \\
+    \text{Local Government Rule} \\
     \downarrow \\
-    \text{Judicial Interpretation (司法解释)} \\
+    \text{Judicial Interpretation} \\
     \downarrow \\
-    \text{Autonomy Regulation (自治条例)} \\
+    \text{Autonomy Regulation} \\
     \downarrow \\
-    \text{SEZ Regulation (经济特区法规)} \\
+    \text{SEZ Regulation} \\
     \downarrow \\
-    \text{Military Regulation (军事法规)}
+    \text{Military Regulation}
   \end{array}
   \label{eq:cn-lattice}
 \end{equation}
-with the partial order $\leq$ defined by legal hierarchy.
 \end{definition}
 
 \subsection{Epsilon Non-Determinability}
 
 \begin{theorem}[No monotone $\varepsilon$ function exists for CN lattice]
 \label{thm:dp-cn}
-There exists no monotone function $\varepsilon: P \to \Real_{\geq 0}$ that
-satisfies the privilege-value constraints over the CN legal hierarchy.
+There exists no monotone function $\varepsilon : P \to \Real_{\geq 0}$
+that satisfies the privilege-value constraints over the CN legal hierarchy.
 \end{theorem}
 
 \begin{proof}
-By Z3 SMT verification. The script \texttt{cn\_privilege\_lattice\_z3.py}
-encodes the lattice~\eqref{eq:cn-lattice} with the constraint that
-$\varepsilon$ must be monotone ($p_1 \leq p_2 \Rightarrow
-\varepsilon(p_1) \leq \varepsilon(p_2)$) and satisfy the privilege-value
-bounds. Z3 returns \textsc{UNSAT}: no such function exists.
+By Z3~\cite{z3} SMT verification. The script encodes the lattice
+\eqref{eq:cn-lattice} with the constraint that $\varepsilon$ must be
+monotone ($p_1 \leq p_2 \Rightarrow \varepsilon(p_1) \leq \varepsilon(p_2)$)
+and satisfy the privilege-value bounds. Z3 returns \textsc{UNSAT}: no
+such function exists.
 \end{proof}
 
 \begin{counterexample}[Cross-jurisdiction $\varepsilon$ witness]
 \label{ce:dp-cross}
-The two-model witness demonstrates that the same legal privilege level
-maps to different $\varepsilon$ values across jurisdictions:
+The same legal privilege level maps to different $\varepsilon$ values
+across jurisdictions:
 \begin{equation}
   \varepsilon_{\text{CN}}(\text{attorney-client}) = 1.0, \quad
   \varepsilon_{\text{US}}(\text{attorney-client}) = 2.5
@@ -65,31 +77,35 @@ Since the same privilege level yields different $\varepsilon$ values,
 legal privilege alone does not determine $\varepsilon$.
 \end{counterexample}
 
-\subsection{Floor Clipping Counterexample}
-
 \begin{counterexample}[DP floor clipping violates $\varepsilon$-DP]
 \label{ce:dp-floor}
 The proposed floor-clipping mechanism $\mathcal{M}(x) = \max(0.3 \cdot x,
 x_{\min})$ does not satisfy $\varepsilon$-DP for any finite $\varepsilon$:
 \begin{equation}
   \frac{\Pr[\mathcal{M}(D) \in S]}{\Pr[\mathcal{M}(D') \in S]}
-  = \frac{\Pr[\max(0.3 x, x_{\min}) \in S]}
-         {\Pr[\max(0.3 x', x_{\min}) \in S]}
   \to \infty
 \end{equation}
-when $x$ and $x'$ are on opposite sides of the clipping threshold. The
-privacy ratio is \textsc{INFINITE}.
+when $D$ and $D'$ are on opposite sides of the clipping threshold.
 \end{counterexample}
 
-\begin{proof}
-Constructed explicitly in the counterexample registry
-(\texttt{CE-003}). The privacy ratio computation yields $\infty$ for the
-given $D, D'$ pair.
-\end{proof}
+\subsection{Engineering Implications}
 
 \begin{remark}
-The engineering consequence is that $\varepsilon$ must be a
-\emph{policy configuration parameter}, not a value derived from legal
-privilege classification. The juris-calculus system requires explicit
-approval and provenance for each data class's $\varepsilon$.
+The key consequence of Theorem~\ref{thm:dp-cn} and
+Counterexamples~\ref{ce:dp-cross}--\ref{ce:dp-floor} is that
+$\varepsilon$ must be a \emph{policy configuration parameter}, not a
+value derived from legal privilege classification. The juris-calculus
+system requires explicit approval and provenance for each data class's
+$\varepsilon$.
+
+Specifically:
+\begin{enumerate}
+  \item Legal privilege level does \textbf{not} determine $\varepsilon$
+        (Theorem~\ref{thm:dp-cn} is a \textsc{Refuted} result);
+  \item Cross-jurisdiction $\varepsilon$ consistency is impossible
+        without a shared policy framework
+        (Counterexample~\ref{ce:dp-cross});
+  \item Mechanism-level DP guarantees require careful analysis; naive
+        floor-clipping fails (Counterexample~\ref{ce:dp-floor}).
+\end{enumerate}
 \end{remark}

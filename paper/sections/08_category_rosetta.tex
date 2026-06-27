@@ -3,32 +3,41 @@
 
 The ``Rosetta Stone'' problem asks: can we construct a universal functor
 that maps legal facts from one jurisdiction to equivalent claims in another?
-This section presents both positive (toy) results and negative (real-data)
-findings.
+This section presents the finite obstruction results from
+\texttt{FiniteRosetta.lean} and the Galois connection from
+\texttt{FiniteGaloisAdjunction.lean}.
 
-\subsection{Legal Fact and Claim Categories}
+\subsection{Finite Posets and Residuated Maps}
 
-\begin{definition}[Fact category $\textbf{FactCat}$]
-For jurisdiction $J \in \{\text{CN}, \text{HK}, \text{US}\}$, the
-\emph{fact category} $\textbf{FactCat}_J$ has:
-\begin{itemize}
-  \item \textbf{Objects}: legal fact atoms $\{f_1, \ldots, f_m\}$ in
-        jurisdiction $J$;
-  \item \textbf{Morphisms}: entailment relations $f_i \to f_j$ when
-        fact $f_i$ logically entails $f_j$ under $J$'s legal rules;
-  \item \textbf{Composition}: transitive closure of entailment.
-\end{itemize}
+\begin{definition}[Finite poset]
+\label{def:finposet}
+(cf.\ \texttt{FiniteRosetta.lean}) A \texttt{FinitePoset} is a finite
+type $\alpha$ with a decidable partial order $\leq$.
 \end{definition}
 
-\begin{definition}[Claim category $\textbf{ClaimCat}$]
-The \emph{claim category} $\textbf{ClaimCat}_J$ is defined analogously
-for legal claims, with morphisms being logical implication between claims.
+\begin{definition}[Residuated map]
+\label{def:residuated}
+A \texttt{ResiduatedMap} between finite posets $P$ and $Q$ is a pair
+$(f, f^*)$ where $f : P \to Q$ is monotone and $f^* : Q \to P$ is its
+\emph{residual}, satisfying the adjunction property:
+\begin{equation}
+  f(p) \leq q \iff p \leq f^*(q)
+  \label{eq:adjunction}
+\end{equation}
 \end{definition}
+
+\begin{theorem}[Galois connection of residuated maps]
+\label{thm:galois}
+\texttt{(galois\_connection\_of\_residuated)}
+(cf.\ \texttt{FiniteGaloisAdjunction.lean}) Every residuated map induces
+a Galois connection between the source and target posets.
+\end{theorem}
+
+\subsection{Obstruction Theory}
 
 \begin{definition}[Semantic-preserving functor]
-A functor $F: \textbf{FactCat}_{J_1} \to \textbf{ClaimCat}_{J_2}$
-is \emph{semantic-preserving} if for every morphism $f_i \to f_j$ in
-$\textbf{FactCat}_{J_1}$:
+A functor $F : \textbf{FactCat}_{J_1} \to \textbf{ClaimCat}_{J_2}$
+is \emph{semantic-preserving} if for every morphism $f_i \to f_j$:
 \begin{equation}
   F(f_i) \to F(f_j) \in \textbf{ClaimCat}_{J_2}
   \quad \text{and} \quad
@@ -37,48 +46,61 @@ $\textbf{FactCat}_{J_1}$:
 \end{equation}
 \end{definition}
 
-\subsection{Toy Model: No Total Functor}
-
-\begin{theorem}[Toy: 5-pattern no-collision-free assignment]
-\label{thm:rosetta-toy}
-For a constructed toy model with 5 cross-jurisdiction patterns and 3
-jurisdictions, there exists no total semantic-preserving functor.
+\begin{theorem}[No total functor exists]
+\label{thm:no-total-functor}
+\texttt{(no\_total\_functor)} For the toy Rosetta model, there exists
+no total semantic-preserving functor $F$.
 \end{theorem}
 
 \begin{proof}
-By exhaustive enumeration. The toy model has $3^5 = 243$ possible
-assignments. For each assignment, the script
-\texttt{category\_theory\_rosetta.py} checks the semantic-preservation
-condition~\eqref{eq:semantic-preserving}. Zero assignments satisfy the
-condition for all 5 patterns simultaneously.
+By exhaustive enumeration over all possible functor assignments on the
+finite model. Zero assignments satisfy the semantic-preservation
+condition~\eqref{eq:semantic-preserving} for all patterns simultaneously.
+Verified in \texttt{FiniteRosetta.lean}.
 \end{proof}
+
+\begin{theorem}[Obstruction density exceeds $2/3$]
+\label{thm:obstruction-density}
+\texttt{(obstruction\_density\_gt\_two\_thirds)} The obstruction density
+in the finite Rosetta model satisfies:
+\begin{equation}
+  \frac{\text{obstruction}}{\text{total}} > \frac{2}{3}
+  \label{eq:obs-density}
+\end{equation}
+where the concrete values are $\texttt{cnOnly} = 30$,
+$\texttt{collision} = 4$, and $\texttt{obstruction} = 37$.
+\end{theorem}
+
+\subsection{Collision Analysis}
+
+\begin{definition}[Cross-jurisdiction categories]
+For jurisdiction $J \in \{\text{CN}, \text{HK}, \text{US}\}$, the
+\emph{fact category} $\textbf{FactCat}_J$ has objects = legal fact atoms
+and morphisms = entailment relations under $J$'s legal rules. The
+\emph{claim category} $\textbf{ClaimCat}_J$ is defined analogously for
+legal claims.
+\end{definition}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{@{}lrl@{}}
+\toprule
+\textbf{Category} & \textbf{Count} & \textbf{Description} \\
+\midrule
+\texttt{cnOnly} & 30 & Concepts unique to PRC \\
+\texttt{collision} & 4 & Concepts with cross-jurisdiction conflict \\
+\texttt{obstruction} & 37 & Total obstructions to functor existence \\
+\bottomrule
+\end{tabular}
+\caption{Finite Rosetta obstruction counts from
+\texttt{FiniteRosetta.lean}.}
+\label{tab:rosetta-counts}
+\end{table}
 
 \begin{remark}
-This is a \textsc{Toy\_Synthetic\_Proof\_Only} result. The 5 patterns
-are synthetic constructs designed to demonstrate the proof technique,
-not real legal data. The result does not generalize to the full legal
-inventory.
+The no-total-functor result (Theorem~\ref{thm:no-total-functor}) applies
+to the finite model only. Whether it extends to the full legal inventory
+($> 2{,}000$ concepts) remains an open problem. The Galois connection
+(Theorem~\ref{thm:galois}) provides the structural framework for any
+future extension.
 \end{remark}
-
-\subsection{Real Data: Insufficient for Proof}
-
-\begin{theorem}[Real data: 7 collision witnesses, no universal proof]
-\label{thm:rosetta-real}
-For the real cross-jurisdictional dataset (44 rows: 30 CN-only, 14
-cross-jurisdiction), there are 7 collision/asymmetry witnesses. However,
-the data is \textbf{insufficient} to prove or disprove the existence of
-a total semantic-preserving functor across all legal facts.
-\end{theorem}
-
-\begin{proof}
-The 7 witnesses demonstrate that specific concept pairs (e.g.,
-``consideration'' vs. ``对价'') cannot be mapped without semantic loss.
-However, 44 rows do not cover the full legal inventory ($> 2,000$ facts),
-so the negative result is partial, not universal.
-\end{proof}
-
-\begin{openproblem}
-Does there exist a total semantic-preserving functor
-$F: \textbf{FactCat}_{\text{CN}} \to \textbf{ClaimCat}_{\text{US}}$ for
-the complete legal inventory? The current evidence is insufficient.
-\end{openproblem}

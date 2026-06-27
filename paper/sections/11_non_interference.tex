@@ -1,11 +1,11 @@
 \section{Non-Interference: CBL Blocking as Bell--LaPadula}
 \label{sec:noninterference}
 
-Cross-jurisdictional legal reasoning introduces a security-like problem~\cite{deontic}:
-concepts from one jurisdiction (e.g., U.S. ``discovery'') can
-\emph{smuggle} into another's reasoning (e.g., PRC litigation) where
-they have no legal basis. This section formalizes concept smuggling as an
-information-flow non-interference property.
+Cross-jurisdictional legal reasoning introduces a security-like
+problem~\cite{deontic}: concepts from one jurisdiction (e.g., U.S.\
+``discovery'') can \emph{smuggle} into another's reasoning (e.g., PRC
+litigation) where they have no legal basis. This section formalizes
+concept smuggling as an information-flow non-interference property.
 
 \subsection{Concept Smuggling}
 
@@ -33,9 +33,24 @@ Define a security lattice $(L_S, \leq_S)$ where:
 \end{itemize}
 \end{definition}
 
+\begin{definition}[CBL blocking rules]
+The Concept Blocking Layer (CBL) consists of 60 blocking rules of the
+form:
+\begin{equation}
+  \text{block}(c_{\text{US}}, \text{PRC}) \iff
+  c_{\text{US}} \in \text{HIGH\_RISK} \wedge
+  \neg\,\text{aligned}(c_{\text{US}}, \text{PRC})
+  \label{eq:cbl-rule}
+\end{equation}
+Each rule identifies a specific foreign concept as high-risk for a
+specific target jurisdiction.
+\end{definition}
+
+\subsection{Non-Interference Theorem}
+
 \begin{theorem}[CBL blocking rules implement non-interference]
 \label{thm:cbl-ni}
-The 60 Concept Blocking Layer (CBL) rules implement Bell--LaPadula
+The 60 CBL blocking rules implement Bell--LaPadula
 non-interference~\cite{bell1976} for cross-jurisdictional concept flow:
 \begin{enumerate}
   \item \textbf{Simple Security Property} (no read-up): a reasoning
@@ -50,15 +65,12 @@ preventing concept smuggling~\eqref{eq:smuggle}.
 \end{theorem}
 
 \begin{proof}
-By structural analysis of the 60 CBL blocking rules. Each rule has the
-form:
-\begin{equation}
-  \text{block}(c_{\text{US}}, \text{PRC}) \iff
-  c_{\text{US}} \in \text{HIGH\_RISK} \wedge
-  \neg\,\text{aligned}(c_{\text{US}}, \text{PRC})
-\end{equation}
-which satisfies the Simple Security Property (PRC engine at lower
-security level cannot read unaligned US concepts).
+By structural analysis of the 60 CBL blocking rules. Each rule has
+the form~\eqref{eq:cbl-rule}, which satisfies the Simple Security
+Property: the PRC engine (at lower security level) cannot read
+unaligned US concepts. The Star Property follows symmetrically: a
+concept derived at the PRC level cannot leak to a lower-security
+jurisdiction without passing through the alignment gate.
 \end{proof}
 
 \subsection{Supreme People's Court Rules}
@@ -68,7 +80,7 @@ The 23 Supreme People's Court (SPC) rules encode PRC-specific judicial
 tendencies as defense rules:
 \begin{equation}
   \text{SPC} = \{r_1, \ldots, r_{23}\}, \quad
-  r_i: \text{condition} \to \text{PRC\_specific\_outcome}
+  r_i : \text{condition} \to \text{PRC\_specific\_outcome}
 \end{equation}
 These rules cannot be overridden by foreign legal concepts and act as
 mandatory security guards in the PRC reasoning trace.
@@ -79,3 +91,10 @@ Adding SPC rules to the Horn closure does not violate monotonicity
 (Theorem~\ref{thm:horn-mono}) because SPC rules are positive Horn
 clauses with PRC-specific conditions.
 \end{proposition}
+
+\begin{remark}
+The non-interference model is a structural property of the rule set,
+not a runtime enforcement mechanism. It guarantees that the \emph{design}
+of the CBL prevents smuggling; runtime enforcement depends on the
+faithful implementation of the blocking rules in the evaluation engine.
+\end{remark}

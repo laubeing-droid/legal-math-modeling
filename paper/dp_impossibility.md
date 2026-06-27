@@ -1,41 +1,64 @@
 # The Impossibility of Legal Determination of Differential Privacy Epsilon
 
-**Author:** Laupinco — Hokkien Computational Jurisprudence Enthusiast
-
-**Companion code:** [`theory/dp_legal_privilege.py`](../theory/dp_legal_privilege.py) | **Counterexample:** [`proofs/strict_proof_baseline/p0d_privilege_epsilon/`](../proofs/strict_proof_baseline/p0d_privilege_epsilon/)
+**Author:** Laupinco
+**Date:** 2026-06-27
 
 ---
 
 ## Abstract
 
-We prove that legal privilege classification cannot uniquely determine the differential privacy parameter ε across jurisdictions. We construct a two-jurisdiction witness demonstrating that the same legal privilege level (attorney-client privilege) maps to different ε values in the PRC (ε = 1.0) and the US (ε = 2.5). This establishes a *legal privacy impossibility theorem*: no single function from privilege levels to ε values can be valid across multiple legal systems. We further show that floor-clipping privacy mechanisms violate ε-DP for any finite ε. These results have direct implications for privacy engineering in legal AI systems: ε must be a policy configuration parameter with jurisdiction-specific provenance, never an automatic derivation from legal sources.
+We prove that legal privilege classification cannot uniquely determine differential privacy epsilon across jurisdictions. A two-jurisdiction counterexample suffices: attorney-client privilege maps to epsilon = 1.0 under PRC law (Lawyers Law, Art. 38) and epsilon = 2.5 under US law (Upjohn v. United States, 1981). This result is registered in the JC_Formalization.lean theorem registry as T18 (DPPrivilege) with status REFUTED and evidence type COUNTEREXAMPLE. The registry property `refuted_theorems_card = 1` confirms exactly one refuted core theorem, and `advance_cannot_revive_refuted` guarantees that a refuted theorem cannot be promoted to any higher status. We further show that floor-clipping privacy mechanisms (a common engineering pattern) violate epsilon-differential privacy for any finite epsilon. The impossibility result has practical consequences: privacy-preserving legal systems must calibrate epsilon per jurisdiction rather than deriving it from legal categories.
 
-**Keywords:** differential privacy, legal privilege, impossibility theorem, privacy engineering, legal AI
+**Keywords:** differential privacy, legal privilege, impossibility, cross-jurisdiction, formal verification
 
 ---
 
 ## 1. Introduction
 
-Differential privacy (DP) provides formal guarantees against information leakage from statistical databases. The privacy parameter ε controls the trade-off between data utility and privacy: smaller ε means stronger privacy. A natural engineering question arises: *can legal classifications of data sensitivity automatically determine the appropriate ε?*
+### 1.1 Problem
 
-If attorney-client privilege is "more sensitive" than public court filings, should it automatically receive a smaller ε? This paper proves that the answer depends on what "automatically" means:
+Modern privacy-preserving legal systems need a numerical privacy parameter epsilon that governs the noise injected into query results. A natural engineering question arises: can the legal classification of data sensitivity (e.g., attorney-client privilege, medical confidentiality, state secrets) uniquely determine epsilon?
 
-- **Within a single jurisdiction**: a monotone mapping from privilege levels to ε values is *possible* (just assign values to a finite chain). But the assignment requires policy judgment, not legal derivation.
-- **Across jurisdictions**: no single mapping exists. The same privilege level yields different ε values in different legal systems.
+Within a single jurisdiction, the answer is trivially yes: a policy maker can assign epsilon = 1.0 to privileged data and epsilon = 5.0 to non-privileged data. But this assignment is a *policy judgment*, not a *legal derivation*. The law says "this data is privileged"; it does not say "this data requires epsilon = 1.0."
+
+Across jurisdictions, the question becomes sharper and the answer is no. We prove:
+
+**Theorem 1.** There is no cross-jurisdiction epsilon function that is both consistent with each jurisdiction's privilege lattice and yields a unique epsilon for each privilege class.
+
+### 1.2 Connection to Formal Verification
+
+The JC_Formalization.lean registry tracks 20 core theorems. T18 (DPPrivilege) is the only theorem with status REFUTED. The Lean-verified property `refuted_theorems_card = 1` confirms this count, and `advance_cannot_revive_refuted` ensures that once a claim is refuted by counterexample, no amount of additional evidence can promote it. This is the formal mechanism that prevents a refuted claim from being laundered into proved status.
+
+### 1.3 Scope
+
+This paper addresses a narrow but important claim: that legal categories *determine* epsilon. We do not claim that legal categories are *irrelevant* to epsilon selection (they are clearly relevant as policy inputs). We claim only that the mapping is not a function.
 
 ---
 
 ## 2. Definitions
 
-**Definition 1** (Differential privacy). A randomized mechanism $\mathcal{M}$ satisfies *ε-differential privacy* if for all neighboring datasets $D, D'$ and all output sets $S$:
+### 2.1 Differential Privacy
 
-$$\Pr[\mathcal{M}(D) \in S] \leq e^\varepsilon \cdot \Pr[\mathcal{M}(D') \in S]$$
+**Definition 1 (epsilon-DP).** A randomized mechanism M satisfies epsilon-differential privacy if for all datasets D, D' differing in one record, and all subsets S of the output space:
 
-**Definition 2** (Legal privilege lattice). A *legal privilege lattice* $(P, \leq)$ is a partially ordered set where $p_1 \leq p_2$ means privilege level $p_1$ is less protective than $p_2$.
+Pr[M(D) in S] <= exp(epsilon) * Pr[M(D') in S]
 
-**Definition 3** (Monotone ε function). A function $\varepsilon: P \to \mathbb{R}_{\geq 0}$ is *monotone* if $p_1 \leq p_2 \implies \varepsilon(p_1) \geq \varepsilon(p_2)$ (higher privilege → lower ε → stronger privacy).
+The parameter epsilon controls the privacy-utility tradeoff: smaller epsilon means stronger privacy but less utility.
 
-**Definition 4** (Cross-jurisdiction ε function). A *cross-jurisdiction ε function* is a single function $\varepsilon: P \to \mathbb{R}_{\geq 0}$ that is valid for all jurisdictions simultaneously — meaning the same privilege level $p$ maps to the same ε regardless of which jurisdiction's legal system is in effect.
+### 2.2 Legal Privilege Lattice
+
+**Definition 2 (Privilege Lattice).** A privilege lattice for jurisdiction J is a finite partially ordered set (L_J, <=) where elements represent privilege classes and the ordering represents information sensitivity. The bottom element represents the least sensitive class (no privilege) and the top represents the most sensitive.
+
+For PRC: {non-privileged < commercial-secret < personal-privacy < attorney-client < state-secret}.
+For US: {non-privileged < business-confidential < attorney-client < work-product < classified}.
+
+### 2.3 Monotone Epsilon Function
+
+**Definition 3 (Monotone Epsilon).** An epsilon function for jurisdiction J is a mapping e_J : L_J -> R^+ such that for all x <= y in L_J, e_J(x) >= e_J(y) (more privilege implies smaller epsilon, hence stronger privacy).
+
+### 2.4 Cross-Jurisdiction Epsilon Function
+
+**Definition 4 (Cross-Jurisdiction Epsilon).** A cross-jurisdiction epsilon function is a mapping e : L_PRC x L_US -> R^+ that agrees with each jurisdiction's monotone epsilon function when restricted to that jurisdiction's lattice.
 
 ---
 
@@ -43,90 +66,68 @@ $$\Pr[\mathcal{M}(D) \in S] \leq e^\varepsilon \cdot \Pr[\mathcal{M}(D') \in S]$
 
 ### 3.1 Theorem 1: Cross-Jurisdiction Impossibility
 
-**Theorem 1.** *No cross-jurisdiction ε function exists. That is, there is no single function $\varepsilon: P \to \mathbb{R}_{\geq 0}$ that correctly assigns privacy parameters for both the PRC and US legal systems.*
+**Theorem 1.** There exists no cross-jurisdiction epsilon function that is simultaneously monotone on both the PRC and US privilege lattices and yields a unique epsilon for each privilege class.
 
-*Proof.* By construction of a two-jurisdiction witness.
+**Proof (by counterexample).** Consider the privilege class "attorney-client privilege," which exists in both jurisdictions.
 
-Consider the attorney-client privilege level $p_{\text{AC}} \in P$. In both the PRC and US legal systems, this is the highest privilege level:
+Under PRC law (Lawyers Law, Art. 38), attorney-client privilege is narrower: it covers communications between a lawyer and client for the purpose of legal consultation, but does not extend to the work-product doctrine. A reasonable policy calibration yields epsilon_PRC(attorney-client) = 1.0.
 
-| Jurisdiction | Legal Basis | Privilege Level | Required ε | Rationale |
-|-------------|-------------|----------------|-----------|-----------|
-| PRC | 《律师法》第38条 | $p_{\text{AC}}$ (最高) | 1.0 | PRC legal system treats attorney-client confidentiality as absolute but allows judicial override |
-| US | Upjohn v. United States, 449 U.S. 383 (1981) | $p_{\text{AC}}$ (highest) | 2.5 | US legal system applies broader privilege scope with fewer exceptions |
+Under US law (Upjohn v. United States, 1981), attorney-client privilege is broader: it extends to corporate communications with counsel for the purpose of obtaining legal advice, and interacts with the work-product doctrine. A reasonable policy calibration yields epsilon_US(attorney-client) = 2.5.
 
-Suppose for contradiction that a cross-jurisdiction ε function $\varepsilon: P \to \mathbb{R}_{\geq 0}$ exists. Then:
+Now suppose a cross-jurisdiction epsilon function e exists that assigns a unique epsilon to "attorney-client privilege" independent of jurisdiction. Then e("attorney-client") must equal both 1.0 (to be consistent with PRC calibration) and 2.5 (to be consistent with US calibration). Since 1.0 != 2.5, no such function exists. QED.
 
-$$\varepsilon(p_{\text{AC}}) = 1.0 \quad \text{(required by PRC)}$$
-$$\varepsilon(p_{\text{AC}}) = 2.5 \quad \text{(required by US)}$$
+### 3.2 Theorem 2: Floor-Clipping Violation
 
-This is a contradiction: $\varepsilon(p_{\text{AC}})$ cannot equal both 1.0 and 2.5. Therefore, no such function exists. ∎
+**Theorem 2.** A floor-clipping mechanism (which clips query outputs to a domain-specific minimum) violates epsilon-DP for any finite epsilon.
 
-**Verification.** [`proofs/strict_proof_baseline/p0d_privilege_epsilon/two_model_witness.json`](../proofs/strict_proof_baseline/p0d_privilege_epsilon/two_model_witness.json).
+**Proof sketch.** Let D and D' differ in one record such that D contains a privileged entry and D' does not. The clipping mechanism maps certain outputs to the same floor value, making the output distributions on D and D' differ by more than a factor of exp(epsilon) for any finite epsilon, because the floor creates a point mass that is either present or absent depending on the privileged record. QED.
 
-**Remark.** This impossibility is not a failure of the specific ε values chosen. The underlying reason is structural: the PRC and US legal systems define the *scope* of attorney-client privilege differently (PRC: narrower, with explicit judicial override; US: broader, with work-product doctrine extension). Even if both jurisdictions agreed on the same ε value for attorney-client privilege, they would disagree on which *specific communications* fall under that privilege — meaning the effective privacy guarantee differs even with identical ε.
+### 3.3 Practical Consequence
 
-### 3.2 Corollary: Within-Jurisdiction Possibility
-
-**Corollary 1.** *Within a single jurisdiction, a monotone ε function on a finite privilege lattice is always constructible.*
-
-*Proof.* Let $(P, \leq)$ be a finite privilege lattice with $n$ levels. Assign $\varepsilon(p_1) = \varepsilon_{\max}$ to the lowest privilege level and $\varepsilon(p_n) = \varepsilon_{\min}$ to the highest, with intermediate values decreasing monotonically. Such an assignment always exists for any $\varepsilon_{\max} > \varepsilon_{\min} \geq 0$.
-
-However, the *specific values* require policy judgment (how much privacy is "enough" for each level?) — they cannot be derived from the legal classification alone. ∎
-
-### 3.3 Theorem 2: Floor Clipping Violates DP
-
-**Theorem 2.** *The mechanism $\mathcal{M}(x) = \max(0.3x, x_{\min})$ does not satisfy ε-DP for any finite ε.*
-
-*Proof.* Consider neighboring datasets $D$ and $D'$ differing in one record, with values $x_D = x_0$ and $x_{D'} = x_0 + \delta$ near the clipping threshold. The privacy ratio:
-
-$$\frac{\Pr[\mathcal{M}(D) \in S]}{\Pr[\mathcal{M}(D') \in S]} \to \infty$$
-
-as $x_0$ approaches the threshold from different sides. The ratio is unbounded, violating ε-DP for any finite ε. ∎
-
-**Verification.** [`proofs/engineering_proof_artifacts/dp/dp_floor_clipping_analysis.py`](../proofs/engineering_proof_artifacts/dp/dp_floor_clipping_analysis.py).
+The impossibility result implies that privacy-preserving legal systems must:
+1. Calibrate epsilon per jurisdiction, not derive it from privilege categories
+2. Treat epsilon as a policy parameter, not a legal fact
+3. Document the calibration basis for each jurisdiction separately
 
 ---
 
-## 4. Why This Matters for Legal AI
+## 4. Formal Verification Status
 
-The impossibility results have three direct engineering consequences:
+| Component | Status | Evidence |
+|-----------|--------|----------|
+| T18 (DPPrivilege) claim | REFUTED | JC_Formalization.lean, `theorem_metadata .T18_DPPrivilege` |
+| `refuted_theorems_card = 1` | Proved (0 sorry) | JC_Formalization.lean |
+| `advance_cannot_revive_refuted` | Proved (0 sorry) | JC_Formalization.lean |
+| Cross-jurisdiction counterexample | Constructive | PRC epsilon=1.0 vs US epsilon=2.5 |
+| Floor-clipping violation | Proof sketch | Not mechanized in Lean |
 
-### 4.1 ε Is a Policy Parameter, Not a Legal Derivation
+**Trust Labels:**
+- T18 (DPPrivilege): Refuted-by-Counterexample
+- Cross-jurisdiction counterexample: Constructive (not Lean-mechanized)
+- Floor-clipping violation: Proof sketch (pending mechanization)
 
-Each data class requires an explicit, human-approved ε value stored in policy configuration. The system must refuse to run if ε lacks a documented source and approval chain.
-
-### 4.2 Cross-Jurisdiction Privacy Harmonization Requires Explicit Mapping
-
-The same legal concept (attorney-client privilege) requires different privacy parameters in different jurisdictions. A legal AI system operating across jurisdictions must maintain jurisdiction-specific ε configurations, not a single global mapping.
-
-### 4.3 The Trust Label System Tracks ε Provenance
-
-In the juris-calculus evidence-calibrated trust label system, the DP epsilon claim is registered as:
-
-```
-D_PRIVILEGE_EPSILON:
-  status: REFUTED_BY_COUNTEREXAMPLE
-  allowed_claim: "Law can classify release modes; epsilon is a policy 
-                  parameter with audit labels."
-  forbidden_claim: "A legal privilege level determines a unique 
-                     numerical epsilon."
-  engineering_action: "Expose epsilon as policy config; require 
-                       approval and provenance for each data class."
-```
+**What is NOT claimed:**
+- We do not claim that epsilon *cannot* be chosen based on legal categories (it can, as a policy judgment).
+- We do not claim that all cross-jurisdiction mappings are impossible (only the epsilon-function claim is refuted).
+- We do not claim that the counterexample extends to all privacy definitions (it applies to epsilon-DP specifically).
 
 ---
 
 ## 5. Related Work
 
-Dwork (2006) established the ε-DP framework. Legal privilege classification is well-studied in comparative law. The novelty of this work is proving the *impossibility* of connecting these two formalisms through a single cross-jurisdiction function, using a concrete two-jurisdiction witness rather than abstract impossibility arguments.
+**Dwork et al. (2006).** The foundational definition of differential privacy. Our work addresses the question of whether legal categories can parameterize this definition.
 
-The approach follows the tradition of impossibility proofs in computer science (e.g., the CAP theorem, Arrow's impossibility theorem in social choice theory): rather than showing that a particular implementation fails, we show that *no* implementation can succeed under the stated constraints.
+**Nissim et al. (2007).** The sensitivity framework for calibrating noise. Our floor-clipping counterexample shows that certain domain-specific mechanisms violate the standard DP framework.
+
+**Hart (1961).** The concept of legal categories as rules of recognition. Our impossibility result can be interpreted as showing that Hart's rules of recognition do not determine the epsilon parameter of differential privacy.
 
 ---
 
 ## References
 
-1. Dwork, C. (2006). Differential Privacy. *ICALP 2006*, 1–12.
-2. 中华人民共和国律师法 (2017修正), 第38条.
+1. Dwork, C., McSherry, F., Nissim, K., and Smith, A. (2006). Calibrating noise to sensitivity in private data analysis. *TCC 2006*, 265--284.
+2. Nissim, K., Raskhodnikova, S., and Smith, A. (2007). Smooth sensitivity and sampling in private data analysis. *STOC 2007*, 75--84.
 3. Upjohn Co. v. United States, 449 U.S. 383 (1981).
-4. Gilbert, S. & Lynch, N. (2002). Brewer's conjecture and the feasibility of consistent, available, partition-tolerant web services. *SIGACT News*, 33(2).
+4. PRC Lawyers Law (2017 revision), Article 38.
+5. Hart, H.L.A. (1961). *The Concept of Law*. Oxford University Press.
+6. The mathlib Community (2020). The Lean mathematical library. *CPP 2020*, 367--381.

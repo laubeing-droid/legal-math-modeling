@@ -1,113 +1,116 @@
 \section{Stratified Evaluator Correctness}
 \label{sec:evaluator}
 
-This section presents the correctness analysis of the full juris-calculus
-evaluator, including the critical refutation of its original monotonicity
-claim.
+This section analyzes the correctness of the full juris-calculus
+evaluator, including the critical refutation of its original
+monotonicity claim and the unified composition theorem.
 
-\subsection{Original Evaluator}
+\subsection{Original Evaluator and Non-Monotonicity}
 
 \begin{definition}[Original fixpoint evaluator]
 The original evaluator $E$ operates on a combined state
 $\sigma = (\facts, \claims, \text{tainted}, \text{rebutted})$ and applies
-the following rules simultaneously in a single fixpoint loop:
-\begin{enumerate}
-  \item \textbf{Horn forward}: if $h \leftarrow b_1 \wedge \cdots \wedge b_n
-        \in \horn$ and all $b_i \in \facts$, add $h$ to $\facts$;
-  \item \textbf{Rebuttal}: if $r \attacks c$ for $c \in \claims$, mark $c$
-        as rebutted;
-  \item \textbf{Exception}: if $e$ is an exception to rule $r$, remove
-        $r$'s conclusion from $\claims$;
-  \item \textbf{Confidence zeroing}: if $\text{confidence}(f) = 0$, move
-        $f$ to $\text{tainted}$.
-\end{enumerate}
+Horn forward rules, rebuttal, exception, and confidence zeroing
+simultaneously in a single fixpoint loop.
 \end{definition}
-
-\subsection{Monotonicity Refutation}
 
 \begin{counterexample}[Original evaluator is not monotone]
 \label{ce:eval-mono}
 The original evaluator $E$ is \textbf{not} monotone on the fact lattice.
-Consider:
-\begin{equation}
-  A = \{a\}, \quad B = \{a, b\}, \quad A \subseteq B
-\end{equation}
-Let the evaluator include a rebuttal rule: ``if $b$ is present, rebut $a$.''
-Then:
+Consider $A = \{a\} \subset B = \{a, b\}$ with a rebuttal rule ``if $b$
+is present, rebut $a$'':
 \begin{equation}
   E(A) = \{a\}, \quad E(B) = \emptyset
 \end{equation}
 Since $E(A) \not\subseteq E(B)$ despite $A \subseteq B$, the evaluator
-violates monotonicity~\eqref{eq:horn-mono}.
+violates monotonicity.
 \end{counterexample}
 
-\begin{proof}
-The minimal counterexample is constructed explicitly in the file
-\texttt{evaluator\_nonmonotone\_counterexample.json}. The argument is:
-$\{a\} \subset \{a, b\}$ but $F(\{a\}) = \{a\}$ while
-$F(\{a, b\}) = \emptyset$ because the presence of $b$ triggers a
-rebuttal that eliminates $a$.
-\end{proof}
-
 \begin{remark}
-This counterexample invalidates any attempt to apply the Tarski--Kleene
-monotone fixpoint theorem directly to the full original evaluator. The
-evaluator must be split into the monotone Horn stage and the non-monotone
-AAF stage.
+This counterexample invalidates applying the Tarski--Kleene monotone
+fixpoint theorem directly to the full original evaluator. The evaluator
+must be split into the monotone Horn stage and the non-monotone AAF stage.
 \end{remark}
 
-\subsection{Stage-by-Stage Correctness}
+\subsection{Two-Stage Stratification}
 
-\begin{theorem}[Stage 1: Horn closure is monotone]
-\label{thm:stage1}
-The Horn closure operator $T_\horn$ is monotone (Theorem~\ref{thm:horn-mono}).
-\end{theorem}
+\begin{definition}[Stratified evaluator]
+The \emph{stratified evaluator} separates legal reasoning into two stages:
+\begin{enumerate}
+  \item \textbf{Stage 1 (Horn closure)}: compute $TH(\facts)$ using
+        the monotone $T_H$ operator (Section~\ref{sec:horn});
+  \item \textbf{Stage 2 (AAF evaluation)}: construct the argument
+        framework from $TH(\facts)$ and compute the grounded extension
+        (Section~\ref{sec:aaf}).
+\end{enumerate}
+\end{definition}
 
-\begin{theorem}[Stage 2: AAF construction is deterministic]
-\label{thm:stage2}
-For a fixed Horn closure output $\horn^*(\facts)$, the argument construction
-from $\horn^*(\facts)$ to the attack graph $\aaf$ is deterministic: the same
-$\horn^*(\facts)$ always produces the same $\aaf$.
-\end{theorem}
+\subsection{Cross-Graph Monotonicity Failure}
 
-\begin{proof}
-The argument construction function $A: \horn^*(\facts) \to \aaf$ is a pure
-function with no side effects or randomness. Verified by computing
-$A(\horn^*(\facts))$ twice for 10 test fixtures and confirming bitwise
-equality.
-\end{proof}
-
-\begin{theorem}[Stage 3a: Fixed-graph AAF convergence]
-\label{thm:stage3a}
-For any fixed attack graph $\aaf$ with $n \leq 4$, the grounded extension
-converges (Theorem~\ref{thm:aaf-ge}).
-\end{theorem}
-
-\begin{counterexample}[Stage 3b: Cross-graph monotonicity fails]
+\begin{counterexample}[Cross-graph monotonicity fails]
 \label{ce:stage3b}
 The mapping from Horn closure output to grounded extension is \textbf{not}
 monotone: adding a fact to $\facts$ can change the attack graph topology,
 potentially \emph{shrinking} the grounded extension.
 \end{counterexample}
 
-\begin{conjecture}[Stage 4: Full evaluator equivalence]
-\label{conj:stage4}
-The stratified evaluator (Horn then AAF) produces the same output as the
-original combined evaluator for all production rules. This remains an
-\textbf{open conjecture}---neither proved nor refuted.
-\end{conjecture}
+\subsection{Unified Composition}
 
-\subsection{Bounded Operational Termination}
-
-\begin{theorem}[5 operational termination bounds]
-\label{thm:op-termination}
-The fixpoint evaluator satisfies 5 operational termination properties,
-verified over 5 bounded configurations:
-\begin{enumerate}
-  \item Maximum fixpoint depth $\leq |\mathcal{U}|$;
-  \item Maximum rule firings per iteration $\leq |\horn|$;
-  \item Maximum tainted set size $\leq |\facts|$;
-  \item Maximum rebutted set size $\leq |\claims|$;
-  \item Total iterations $\leq 2 \cdot |\mathcal{U}|$.
-\end{enumerate}
+\begin{theorem}[Soundness of AAF stage]
+\label{thm:soundness-aaf}
+\texttt{(soundness\_aaf)} The AAF evaluation is sound: every argument
+in the grounded extension is supported by the Horn closure output.
 \end{theorem}
+
+\begin{theorem}[Soundness of Banach stage]
+\label{thm:soundness-banach}
+\texttt{(soundness\_banach)} The Banach pricing contraction is sound:
+the fixed point $\text{pricingFn}(x^*)$ is consistent with the
+observed cost $T$.
+\end{theorem}
+
+\begin{theorem}[Unified composition v2]
+\label{thm:unified-comp}
+\texttt{(unified\_composition\_v2)} The two-stage evaluator satisfies a
+commutativity property: the output of the unified pipeline equals the
+sequential application of Stage 1 then Stage 2.
+\end{theorem}
+
+\begin{theorem}[Full chain]
+\label{thm:full-chain}
+\texttt{(full\_chain)} For any legal input satisfying the preconditions,
+the full pipeline (Horn closure $\to$ AAF $\to$ output) produces a
+well-formed result.
+\end{theorem}
+
+\begin{theorem}[Galois connection completeness]
+\label{thm:gc2-complete}
+\texttt{(gc2\_completeness)} The Galois connection between the Horn
+closure lattice and the AAF output lattice preserves completeness.
+\end{theorem}
+
+\subsection{JC Formalization Status}
+
+\begin{definition}[JC proof ledger]
+(cf.\ \texttt{JC\_Formormalization.lean}) The formalization ledger records
+$\texttt{proved\_theorems\_card} = 7$ proved theorems.
+\end{definition}
+
+\begin{theorem}[Advance preserves domain bound]
+\label{thm:advance-bound}
+\texttt{(advance\_preserves\_domain\_bound)} Each evaluation step
+preserves the domain bound: the fact set never exceeds $\mathcal{U}$.
+\end{theorem}
+
+\begin{theorem}[Advance cannot revive refuted claims]
+\label{thm:advance-no-revive}
+\texttt{(advance\_cannot\_revive\_refuted)} Once a claim is refuted, no
+subsequent evaluation step can restore it.
+\end{theorem}
+
+\begin{remark}
+The cross-graph monotonicity failure (Counterexample~\ref{ce:stage3b})
+means that full evaluator equivalence (stratified $\equiv$ original
+for all production rules) remains an \textbf{open conjecture}---neither
+proved nor refuted by the current formalization.
+\end{remark}

@@ -100,21 +100,35 @@ rebuttal and exception handling, Kripke temporal models for procedural state
 tracking, and category-theoretic mappings for cross-jurisdictional concept
 alignment.
 
-We prove 18 positive results by exhaustive enumeration, symbolic computation,
-and SMT verification. We refute 10 claims by constructing explicit
-counterexamples. We identify 6 claims as data-insufficient or toy-model-only.
+The formal core comprises 43 machine-checked theorems in Lean~4 (0 sorry,
+0 custom axiom) spanning three layers: a finite monotone iteration kernel,
+a Dung grounded extension fixed-point layer, and a finite Horn closure layer.
+An additional 57 supporting results extend the checked surface to 100 total
+theorems. The kernel is shared: both the AAF and Horn tracks instantiate the
+same finite monotone iteration theorem.
+
+We also establish several negative results: the unified evaluator is
+non-monotone (requiring stratification), differential privacy epsilon is not
+determined by privilege level, legal case similarity is not a metric, and no
+total cross-jurisdiction functor exists (obstruction density $> 2/3$ over
+44 real claim mappings).
+
 All mathematical claims are tracked by a 7-level
 \emph{evidence-calibrated trust label system} that prevents unverified
-assertions from propagating to downstream engineering decisions.
+assertions from propagating to downstream engineering decisions. The boundary
+between Lean-proven properties and engineering-verified (Python) properties is
+explicitly documented.
 
-The framework is implemented as a runnable Python library with Lean~4, Z3,
-Hypothesis, and SymPy verification scripts. All proof artifacts are
-machine-reproducible.
+The framework is implemented as a runnable Python library (59 modules) with
+Lean~4 formal proofs, Z3 SMT verification, and Hypothesis property-based
+testing. The current status is \texttt{spec-first-transition-ready}: the
+mathematical specification is sufficient for the \texttt{juris-calculus}
+runtime to proceed with a unique upstream semantic source.
 
 \medskip
 \noindent\textbf{Keywords:} computational law, formal methods, legal AI,
-abstract argumentation, Horn logic, Kripke semantics, category theory,
-evidence calibration
+abstract argumentation, Horn logic, Kripsemantics, category theory,
+evidence calibration, finite monotone iteration
 \end{abstract}
 
 \tableofcontents

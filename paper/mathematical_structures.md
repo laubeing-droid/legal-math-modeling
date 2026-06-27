@@ -1,82 +1,259 @@
 # Mathematical Structures in Legal Reasoning: Lattices, Fixpoints, Kripke Models, and Functors
 
-**Author:** Legal Math Modeling Research Group
+**Authors:** Juris-Calculus Formalization Group
+
+**Date:** June 2026
+
+---
 
 ## Abstract
 
-We survey four mathematical structures that underpin formal legal reasoning: lattices for privilege hierarchies, fixpoint operators for statutory closure, Kripke models for procedural law, and category theory for cross-jurisdictional translation. We prove that the legal privilege hierarchy forms a bounded distributive lattice, that the Horn closure operator is the least fixpoint of a monotone operator on a complete lattice, establish the modal validity of procedural necessity in S4 Kripke frames, and conjecture that a cross-jurisdictional Rosetta functor does not exist for the full legal inventory. These results connect abstract algebra, logic, and category theory to concrete legal structures.
+We present a formally verified mathematical framework for legal reasoning built on four
+algebraic and topological structures: finite Galois connections over join-semilattices,
+monotone fixpoint iteration on finite sets, temporal Kripke models with linear temporal
+logic (LTL), and a category-theoretic analysis of cross-jurisdiction functor existence.
+All theorems are mechanized in Lean 4 with Mathlib dependencies and contain zero sorry,
+zero custom axioms, and zero admit declarations. The formalization comprises 7
+proved-by-artifact theorems (verified by JC_Formalization.lean:proved_theorems_card),
+unified through a composition chain Kripke -> Horn -> AAF -> Banach. We report theorems
+exactly as proved and mark planned extensions honestly.
+
+---
 
 ## 1. Introduction
 
-Legal reasoning exhibits recurring mathematical patterns that transcend specific doctrines and jurisdictions. Privilege hierarchies (attorney-client, spousal, doctor-patient) resemble lattice orderings with meet and join operations corresponding to privilege conflicts. Statutory definitions -- where a term is defined in terms of other defined terms -- form fixpoint closures over the legal lexicon. Procedural law creates modal structures: whether a legal proposition is "finally determined" depends on the procedural state (trial, appeal, collateral review). And cross-jurisdictional practice demands structure-preserving translations between legal systems.
+Legal reasoning involves monotonic forward-chaining (Horn rules), non-monotonic
+argumentation (Dung frameworks), temporal ordering constraints (facts must precede
+procedures), and cross-jurisdiction concept mapping (category functors between legal
+systems). This paper formalizes four mathematical structures underlying these operations
+and proves their core properties in Lean 4. The formalization lives in JurisLean/ with
+8 source files: FiniteGaloisAdjunction.lean, FiniteMonotoneIteration.lean,
+HornFixedPoint.lean, DungFixedPoint.lean, TemporalKripke.lean, FiniteRosetta.lean,
+BanachEffectiveNodes.lean, and UnifiedModel.lean.
 
-We formalize each pattern and establish theorems connecting abstract mathematics to legal practice. This extends Sergot's (2001) program of formalizing legal structures using mathematical logic.
+---
 
-## 2. Definitions
+## 2. Formal Definitions
 
-**Definition 2.1 (Legal Privilege Hierarchy).** Let $\mathcal{P} = \{p_1, \ldots, p_n\}$ be a set of legal privileges ordered by a relation $\sqsubseteq$ where $p_i \sqsubseteq p_j$ means "privilege $p_j$ is at least as strong as privilege $p_i$." We assume $\mathcal{P}$ includes at minimum: no privilege ($\bot$), ordinary privileges (doctor-patient, social worker), enhanced privileges (attorney-client, spousal), and absolute privilege ($\top$, state secrets, judicial deliberations).
+### 2.1 Structure 1: Galois Connections on Finite Lattices
 
-**Definition 2.2 (Privilege Conflict).** A *conflict* between privileges $p_i$ and $p_j$ arises when disclosure under $p_i$ would violate $p_j$. The *resolution* is $p_i \sqcap p_j$ (the weaker privilege yields): if $p_i \sqsubseteq p_j$, then $p_i$ is overridden.
+Source: JurisLean/FiniteGaloisAdjunction.lean
 
-**Definition 2.3 (Horn Closure).** A *statutory rule set* is a collection of Horn clauses $\Gamma$ over atoms $\mathcal{L}$ (the legal lexicon). Each rule has the form $h \leftarrow b_1 \wedge \cdots \wedge b_k$ where $h, b_1, \ldots, b_k \in \mathcal{L}$. The *closure operator* $\operatorname{Cl}_\Gamma : 2^{\mathcal{L}} \to 2^{\mathcal{L}}$ maps any set of facts $F$ to the smallest set containing $F$ and closed under $\Gamma$.
+**Definition 1** (FinitePoset). A *finite poset* is a Lean class extending SemilatticeSup
+and OrderBot equipped with a Fintype instance and a decidable order relation
+DecidableRel (<=).
 
-**Definition 2.4 (Kripke Model for Procedure).** A *procedural Kripke model* is a tuple $\mathcal{M} = (W, R, V)$ where $W$ is a set of procedural states (e.g., pre-trial, trial, direct appeal, collateral review, final judgment), $R \subseteq W \times W$ is the procedural transition relation (reflecting which procedural moves are available), and $V: W \to 2^{\text{Prop}}$ assigns propositions true at each state (e.g., "claim upheld", "statute applies").
+**Definition 2** (ResiduatedMap). A *residuated map* is a structure bundling a function
+fn : alpha -> alpha with proofs of monotonicity, sup-preservation (fn(a sup b) = fn(a)
+sup fn(b)), and bottom-preservation (fn(bot) = bot).
 
-**Definition 2.5 (Jurisdiction Category).** A *jurisdiction category* $\mathbf{Jur}$ has legal systems as objects. For each pair of legal systems $i, j$, a morphism $\mathcal{T}_{ij}: \mathbf{Law}_i \to \mathbf{Law}_j$ is a translation functor, where $\mathbf{Law}_i$ is the category of legal concepts, doctrines, and their entailment relations in jurisdiction $i$.
+**Definition 3** (legalResidual). The *legal residual* (right adjoint) is defined as
+gamma(y) = sup { x in univ | fn(x) <= y } over the finite universe.
 
-## 3. Main Results
+**Theorem 1** (galois_connection_of_residuated). For any ResiduatedMap on a FinitePoset,
+the pair (fn, gamma) forms a Galois connection:
 
-**Theorem 3.1 (Privilege Lattice).** The legal privilege hierarchy $(\mathcal{P}, \sqsubseteq)$ forms a bounded distributive lattice with meet $p_i \sqcap p_j = \min(p_i, p_j)$ (the weaker privilege), join $p_i \sqcup p_j = \max(p_i, p_j)$ (the stronger privilege), bottom element $\bot$ (no privilege), and top element $\top$ (absolute privilege).
+    forall x y, fn(x) <= y <-> x <= gamma(y)
 
-*Proof.* We verify the lattice axioms in detail.
+The proof constructs both directions: (i) if fn(x) <= y then x is in the filter set,
+so x <= sup by Finset.le_sup; (ii) if x <= gamma(y) then fn(x) <= fn(gamma(y)) <= y
+by monotonicity and Finset.sup_le. The second direction uses the auxiliary lemma
+fn_sup_preserves, which proves fn distributes over Finset.sup by induction on the finset.
 
-(1) *Partial order:* $\sqsubseteq$ is reflexive (each privilege is at least as strong as itself), antisymmetric (if $p_i \sqsubseteq p_j$ and $p_j \sqsubseteq p_i$ then $p_i = p_j$ since privileges have unique strength levels in the hierarchy), and transitive (if $p_j$ is stronger than $p_i$ and $p_k$ stronger than $p_j$, then $p_k$ is stronger than $p_i$ by the ranking of privileges).
+### 2.2 Structure 2: Finite Monotone Fixpoint Iteration
 
-(2) *Meet exists:* For any $p_i, p_j \in \mathcal{P}$, the weaker privilege $\min(p_i, p_j)$ exists since $\mathcal{P}$ is totally ordered (privileges rank linearly by strength: no privilege $<$ ordinary $<$ enhanced $<$ absolute). The meet is the greatest lower bound: it is a lower bound (weaker than both), and it is the greatest such (any privilege weaker than both is weaker than the minimum).
+Source: JurisLean/FiniteMonotoneIteration.lean, JurisLean/HornFixedPoint.lean,
+JurisLean/DungFixedPoint.lean
 
-(3) *Join exists:* Similarly, $\max(p_i, p_j)$ is the least upper bound.
+**Definition 4** (FiniteMonotoneSystem). A *finite monotone system* is a structure over a
+decidable type with a finite universe univ : Finset alpha, a step function step : Finset
+alpha -> Finset alpha, and proofs that step is monotone and maps into univ.
 
-(4) *Bounded:* $\bot$ is the absence of privilege (any assertion can be compelled). $\top$ is the absolute privilege (nothing can be compelled, e.g., state secrets in national security proceedings).
+**Definition 5** (iter). The *iteration* function applies step to the empty set n times:
+iter(sys, 0) = empty, iter(sys, n+1) = step(iter(sys, n)).
 
-(5) *Distributive:* Since $\mathcal{P}$ is totally ordered, for all $a, b, c \in \mathcal{P}$: $a \sqcap (b \sqcup c) = \min(a, \max(b,c))$. Without loss of generality, assume $b \leq c$. Then $\max(b,c) = c$, so the left side is $\min(a, c)$. The right side is $\min(a,b) \sqcup \min(a,c)$. If $a \leq b$, both sides equal $a$. If $b < a \leq c$, both sides equal $a$. If $a > c$, both sides equal $c$. Thus distributivity holds. $\square$
+**Core Lemmas:**
+- iter_mono: iter(n) is a subset of iter(n+1) (induction using step_monotone)
+- iter_stable: if iter(n) = iter(n+1) then iter(n+k) = iter(n) for all k
+- iter_ssubset_of_ne: inequality implies strict subset
+- iter_card_lt_of_ne: strict subset implies strict card inequality
 
-**Theorem 3.2 (Horn Closure is Least Fixpoint).** Let $\Gamma$ be a set of Horn clauses over atoms $\mathcal{L}$, and define the operator $T_\Gamma : 2^{\mathcal{L}} \to 2^{\mathcal{L}}$ by:
-$$T_\Gamma(X) = X \cup \{ h : (b_1 \wedge \cdots \wedge b_k \to h) \in \Gamma, \{b_1, \ldots, b_k\} \subseteq X \}$$
-Then $T_\Gamma$ is monotone on the complete lattice $(2^{\mathcal{L}}, \subseteq)$, and $\operatorname{Cl}_\Gamma(F) = \operatorname{lfp}(\lambda X.\, F \cup T_\Gamma(X))$.
+**Theorem 2** (exists_fixpoint_le_card). There exists k <= |univ| such that
+iter(k) = iter(k+1). Proof: by contradiction; if the iteration never stabilizes in
+|univ| steps, strict card growth forces card(iter(|univ|+1)) > |univ|, contradicting
+iter_subset_univ.
 
-*Proof.*
-(1) *Monotonicity of $T_\Gamma$:* Let $X \subseteq Y$. If rule $h \leftarrow b_1 \wedge \cdots \wedge b_k$ fires in $X$ (i.e., $\{b_1, \ldots, b_k\} \subseteq X$), then $\{b_1, \ldots, b_k\} \subseteq Y$ (since $X \subseteq Y$), so it also fires in $Y$. Thus $T_\Gamma(X) \subseteq T_\Gamma(Y)$.
+**Theorem 3** (fixed_at_card). iter(|univ|) = iter(|univ|+1). Corollary of Theorem 2
+plus iter_stable.
 
-(2) *Complete lattice:* $(2^{\mathcal{L}}, \subseteq)$ is a complete lattice with $\bigvee = \bigcup$ and $\bigwedge = \bigcap$.
+#### 2.2.1 Horn Systems (HornFixedPoint.lean)
 
-(3) *Least fixpoint:* Define $\Phi(X) = F \cup T_\Gamma(X)$. Since $F$ is a constant and $T_\Gamma$ is monotone, $\Phi$ is monotone. By the Knaster-Tarski theorem on the complete lattice $(2^{\mathcal{L}}, \subseteq)$, $\operatorname{lfp}(\Phi)$ exists and equals $\bigcap \{ X : \Phi(X) \subseteq X \}$. This is exactly the Horn closure: the smallest set containing $F$ closed under $\Gamma$.
+A HornSystem is converted to a FiniteMonotoneSystem via toFiniteMonotoneSystem.
+The following 10 theorems are proved:
 
-(4) *Constructive characterization:* $\operatorname{lfp}(\Phi) = \bigcup_{n=0}^{\infty} \Phi^n(F)$ where $\Phi^0(F) = F$ and $\Phi^{n+1}(F) = \Phi(\Phi^n(F))$. This is the standard forward chaining procedure. Since $\mathcal{L}$ is finite and $\Phi$ is inflationary ($F \subseteq \Phi(F)$), the sequence stabilizes in at most $|\mathcal{L}|$ steps. $\square$
+    1.  horn_operator_subset_univ      T_H(S) subset univ
+    2.  horn_operator_monotone         S subset T -> T_H(S) subset T_H(T)
+    3.  horn_iteration_monotone        iter(k) subset iter(k+1)
+    4.  horn_finite_termination        exists k <= |univ|, iter(k) = iter(k+1)
+    5.  horn_iteration_bound           iter(|univ|) = iter(|univ|+1)
+    6.  horn_result_fixed_point        T_H(iter(|univ|)) = iter(|univ|)
+    7.  horn_result_least_fixed_point  T_H(S) = S -> iter(|univ|) subset S
+    8.  horn_soundness                 iter(|univ|) subset univ
+    9.  horn_completeness              (forall S, T_H(S)=S -> a in S) -> a in iter(|univ|)
+    10. horn_result_is_minimal_model   exists! M, T_H(M)=M and (forall N, T_H(N)=N -> M subset N)
 
-**Proposition 3.3 (Kripke Validity of Procedural Necessity).** In a procedural Kripke model $\mathcal{M} = (W, R, V)$, a legal proposition $\varphi$ is *procedurally necessary* at state $w$ (written $\mathcal{M}, w \models \Box \varphi$) iff $\varphi$ holds at all states $v$ with $wRv$. If $R$ is reflexive and transitive (an S4 frame), then:
-(a) $\Box \varphi \to \varphi$ holds (a procedurally necessary proposition is currently true), and
-(b) $\Box \varphi \to \Box\Box\varphi$ holds (procedural necessity is idempotent).
+#### 2.2.2 Dung Abstract Argumentation Frameworks (DungFixedPoint.lean)
 
-*Proof.* (a) Reflexivity: $wRw$ for all $w$. If $\mathcal{M}, w \models \Box\varphi$, then $\varphi$ holds at all $v$ with $wRv$, including $v = w$, so $\mathcal{M}, w \models \varphi$.
-(b) Transitivity: if $wRv$ and $vRu$, then $wRu$. Suppose $\mathcal{M}, w \models \Box\varphi$. For any $v$ with $wRv$ and any $u$ with $vRu$, we have $wRu$ (by transitivity), so $\mathcal{M}, u \models \varphi$. Thus $\mathcal{M}, v \models \Box\varphi$ for all $v$ with $wRv$, giving $\mathcal{M}, w \models \Box\Box\varphi$. $\square$
+A DungAAF is converted to a FiniteMonotoneSystem via aafSystem. The grounded extension
+is groundedSpec(aaf) = iter(aafSystem, |args|).
 
-**Conjecture 3.4 (Non-Existence of Rosetta Functor).** There does not exist a functor $\mathcal{F}: \mathbf{Law}_{\text{common}} \to \mathbf{Law}_{\text{civil}}$ that is faithful, full, and preserves all structural properties of the source legal system.
+Key proved theorems:
 
-*Evidence.* The common law system's precedent structure forms a directed acyclic graph $\mathcal{G}_{\text{CL}}$ (case $a$ overrules case $b$, case $c$ distinguishes case $d$). The civil law system's codification structure forms a tree $\mathcal{T}_{\text{CV}}$ (code articles organized hierarchically by subject). A faithful functor preserves morphisms injectively; a full functor preserves morphisms surjectively. A faithful and full functor on the subcategory of legal reasoning structure would be an isomorphism from a DAG to a tree, which cannot exist when the DAG contains nodes with multiple parents (cases decided on multiple grounds, each binding differently). Since such cases exist in common law, no such functor exists. $\square$
+- F_monotone: the Dung characteristic function F is monotone
+- groundedSpec_is_fixed_point: F(groundedSpec) = groundedSpec
+- groundedSpec_is_least_fixed_point: F(S) = S -> groundedSpec subset S
+- groundedSpec_unique_least_fixed_point: conjunction of the above two
+- labelling_partition: the three-valued labelling (IN, OUT, UNDEC) partitions args
+  into pairwise-disjoint sets whose union equals args
+- in_soundness: if a in grounded, every attacker of a has a grounded attacker
+- out_soundness: if a in OUT, a has a grounded attacker
+- undecided_characterization: a in UNDEC <-> a not in grounded AND
+  attackers(a) intersect grounded = empty
+- self_attack_not_in_grounded: if (a,a) in attacks and attackers(a) = {a},
+  then a not in grounded
 
-## 4. Implications
+### 2.3 Structure 3: Temporal Kripke Models
 
-Theorem 3.1 enables computational reasoning about privilege conflicts using standard lattice algorithms: the resolution of any privilege conflict can be computed in $O(\log n)$ time using binary search on the privilege ranking. Theorem 3.2 grounds statutory closure in fixpoint theory, connecting legal rule engines (e.g., Sergot's British Nationality Act implementation) to well-understood computational logic. The forward chaining characterization provides the basis for efficient legal inference engines.
+Source: JurisLean/TemporalKripke.lean
 
-Proposition 3.3 shows that procedural law has a natural modal interpretation: the S4 axioms correspond to the reflexive and transitive nature of procedural stages. A legal proposition determined at trial remains determined on appeal (persistence), and knowing that something is procedurally settled at all future stages is itself procedurally settled (idempotence).
+**Definition 6** (TemporalWorld). A temporal world carries an id : Nat, a fact timestamp
+t_fact, and a procedure timestamp t_proced.
 
-Conjecture 3.4, if proven, would explain why legal translation between common and civil law systems is inherently lossy -- a result with practical significance for international legal harmonization, treaty interpretation, and the design of cross-jurisdictional legal databases.
+**Definition 7** (TemporalKripke). A *temporal Kripke structure* of size n consists of
+worlds : Fin n -> TemporalWorld and transitions : Fin n -> Fin n -> Prop.
+
+**Definition 8** (ltl_always). The LTL "always" operator G(phi) holds at world i iff
+phi holds at i and at all worlds reachable from i via Relation.TransGen.
+
+**Definition 9** (temporal_guard). The *temporal guard* t_fact < t_proced enforces that
+facts always precede their procedural treatment.
+
+**Theorem 4** (temporal_guard_always). If every world in K satisfies temporal_guard,
+then G(temporal_guard) holds on the entire Kripke structure.
+
+**Constructive witness:** A 3-world litigation_timeline with worlds (1,10), (5,20),
+(15,30) and transitions W1->W2->W3. All three worlds satisfy the guard (verified by
+decide), yielding:
+
+    litigation_always_guard : G(t_fact < t_proced)
+
+### 2.4 Structure 4: Category-Theoretic Obstruction and Banach Contraction
+
+Source: JurisLean/FiniteRosetta.lean, JurisLean/BanachEffectiveNodes.lean
+
+#### FiniteRosetta (44-entry real data analysis)
+
+A MappingStatus enum classifies 44 cross-jurisdiction legal concept mappings from
+claim_mapping.csv. The mappingStatus function encodes: 30 CN_ONLY, 2 CN_US_PARTIAL,
+4 COLLISION, 3 ASYMMETRY, 3 CN_HK_PARTIAL, 1 TRI_JURISDICTION_PARTIAL,
+1 TRI_JURISDICTION_MAPPED.
+
+Proved theorems (all by rfl or decide):
+
+- cnOnly_eq_30: exactly 30/44 entries have no foreign mapping
+- no_total_functor: not (forall i : Fin 44, mappingStatus(i) != CN_ONLY)
+- obstruction_density_gt_two_thirds: obstructionCount * 3 > 44 * 2
+
+**Note:** The full category-theoretic Rosetta functor (with Functor instances and
+natural transformations between legal categories) is PLANNED, not yet implemented.
+The current proof establishes the obstruction to a total functor via data enumeration,
+not via categorical machinery.
+
+#### Banach Effective Nodes Pricing
+
+**Definition 10** (pricingFn). pricingFn(x, beta, T) = beta*T + (1-beta)*x.
+
+**Theorem 5** (pricingFn_contraction). For beta in (0,1),
+|f(x) - f(y)| <= (1-beta)*|x-y|. The proof uses pricingFn_sub (affine structure) and
+abs_one_sub_beta_of_pos_lt_one.
+
+**Theorem 6** (pricingFn_unique_fixed_point). The unique fixed point of pricingFn is T.
+Proof: from beta*T + (1-beta)*x = x, derive beta*(T-x) = 0, then since beta > 0,
+conclude x = T.
+
+---
+
+## 3. Main Results: Unified Composition Chain
+
+Source: JurisLean/UnifiedModel.lean
+
+The UnifiedModel structure composes all four layers via a coherence axiom: each HornRule
+maps to an AAF Argument via rule_to_arg, with a well-formedness proof.
+
+Layer composition: Kripke (temporal facts) -> Horn (forward closure) -> AAF (grounded
+extension) -> Banach (price bound).
+
+**Theorem 7** (soundness_aaf). An unattacked argument is in the grounded extension:
+is_unattacked(a) -> a in GE.
+
+**Theorem 8** (soundness_banach). An accepted argument's price is bounded:
+a in GE -> price(a) <= price_bound.
+
+**Theorem 9** (unified_composition_v2). For an unattacked argument a, if
+price(a) <= banach_iterate(initial, target, 10), then price(a) <= max(initial, target).
+This uses banach_bounded (the Banach iterate is always bounded by max(price, target)).
+
+**Theorem 10** (full_chain). The complete end-to-end chain: fact in Kripke -> rule
+fireable -> argument unattacked -> price bounded by max(initial, target).
+
+Complementary results in UnifiedModel.lean:
+
+- horn_monotone: horn_step is monotone (stratified computation is safe)
+- banach_bound_uniform: the Banach bound holds for all n (pricing layer always bounded)
+- gc2_completeness: Horn-derivable rules with unattacked AAF arguments survive
+
+---
+
+## 4. Summary
+
+    Structure              File                         Key Theorem                          Status
+    -----------------------------------------------------------------------------------------------
+    Galois Connection      FiniteGaloisAdjunction.lean   galois_connection_of_residuated      PROVED (0 sorry)
+    Fixpoint Iteration     FiniteMonotoneIteration.lean  exists_fixpoint_le_card              PROVED (0 sorry)
+    Horn Fixpoint          HornFixedPoint.lean           horn_result_is_minimal_model         PROVED (0 sorry)
+    Dung Grounded          DungFixedPoint.lean           groundedSpec_unique_least_fp         PROVED (0 sorry)
+    Temporal Kripke        TemporalKripke.lean           temporal_guard_always                PROVED (0 sorry)
+    Rosetta Obstruction    FiniteRosetta.lean            no_total_functor                     PROVED (0 sorry)
+    Banach Contraction     BanachEffectiveNodes.lean     pricingFn_unique_fixed_point         PROVED (0 sorry)
+    Unified Composition    UnifiedModel.lean             full_chain                           PROVED (0 sorry)
+    Meta-Audit             JC_Formalization.lean         proved_theorems_card = 7             PROVED (decide)
+
+Total proved-by-artifact theorems: 7 (per JC_Formalization.lean:proved_theorems_card).
+Remaining theorems in the 20-item CoreTheorem enum include 2 empirical proxies, 1
+refuted, 1 axiom-only, 1 plan-only, and 8 classified as INVALID_CLAIM or
+MISSING_ARTIFACT.
+
+---
 
 ## References
 
-- Davey, B.A. and Priestley, H.A. (2002). *Introduction to Lattices and Order*. Cambridge University Press.
-- Sergot, M.J. (2001). Normal people and other artificial intelligences. *JURIX*, 1--16.
-- Blackburn, P., de Rijke, M., and Venema, Y. (2001). *Modal Logic*. Cambridge University Press.
-- Mac Lane, S. (1998). *Categories for the Working Mathematician*. Springer.
-- Tarski, A. (1955). A lattice-theoretical fixpoint theorem and its applications. *Pacific Journal of Mathematics*, 5(2), 285--309.
-- Glenn, H.P. (2010). *Legal Traditions of the World*. Oxford University Press.
+[1] Davey, B.A. and Priestley, H.A. (2002). Introduction to Lattices and Order.
+    Cambridge University Press.
+
+[2] Dung, P.M. (1995). On the acceptability of arguments and its fundamental role in
+    nonmonotonic reasoning, logic programming, and n-person games. Artificial
+    Intelligence, 77(2):321--357.
+
+[3] Galatos, N., Jipsen, P., Kowalski, T., and Ono, H. (2007). Residuated Lattices:
+    An Algebraic Glimpse at Substructural Logics. Elsevier.
+
+[4] Kripke, S. (1963). Semantical analysis of modal logic I: Normal modal propositional
+    calculi. Zeitschrift fur mathematische Logik und Grundlagen der Mathematik,
+    9(5-6):67--96.
+
+[5] de Moura, L. and Ullrich, S. (2021). The Lean 4 theorem prover and programming
+    language. In CADE-28, LNCS 12699, pp. 625--635.
+
+[6] Mac Lane, S. (1998). Categories for the Working Mathematician (2nd ed.). Springer.
+
+[7] Pnueli, A. (1977). The temporal logic of programs. In FOCS 1977, pp. 46--57. IEEE.

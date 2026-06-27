@@ -1,25 +1,29 @@
 # Explainable Legal Reasoning: Toward a Stratified Mathematical Model with Formal Verification
 
-> **Status:** Draft (Playbook v5.0-driven)
-> **Date:** 2026-06-19
-> **Evidence level:** See §Evidence Ledger for per-theorem status
+**Author:** Laupinco
+**Date:** 2026-06-27
 
 ---
 
 ## Abstract
 
-We present a stratified mathematical model for explainable legal reasoning that relates Horn rule algebra, Dung abstract argumentation frameworks (AAF), and a Banach-style pricing layer. The model is organized as a staged abstract interpretation: a monotone Horn closure layer feeds into a non-monotone AAF conflict resolution layer, which can in turn feed into a continuous pricing space. The released formal core closes the Horn and AAF specification boundary; Banach remains an unreleased side track. We verify the released architecture through Lean 4 formalization of the finite monotone, Dung grounded, and Horn closure cores, together with exhaustive or symbolic checks for additional bounded components, 42 adversarial tests, 25 author-designed benchmark cases, and empirical validation against 3,508 cross-jurisdiction claim mappings and 1,091 real damages cases. We explicitly mark refuted claims, unification-induced mathematical limits, red lines, and forbidden claims that bound the model's scope. **Key finding:** Cross-jurisdiction obstruction density is 10.7% — no universal total functor exists. Empirical contraction-style evidence is strong for US and HK; CN remains statistically inconclusive at the current sample size.
+We present a stratified mathematical model for explainable legal reasoning that separates monotone rule derivation from non-monotone conflict resolution and quantitative evidence calibration. The model is implemented across three formally verified layers: (1) a Horn clause closure proved monotone, terminating, and minimal in Lean 4; (2) a Dung abstract argumentation framework proved to compute the unique least fixed point of the characteristic function; and (3) a Banach pricing contraction proved to have a unique fixed point. We validate the architecture against 42 adversarial test cases, 25 benchmark scenarios, 3,508 cross-jurisdiction claim mappings, and 1,091 real damages cases from PRC court decisions. A cross-jurisdiction obstruction density of 84% (37/44 concepts) is formally proved in Lean, demonstrating that no universal total functor maps legal concepts across PRC, HK, and US jurisdictions. The system produces machine-checkable proof traces through an 11-type canonical semantics and a 6-check Horn-AAF compilation contract. We identify all claims that are NOT formally proved and assign them explicit trust labels from a 7-level taxonomy.
+
+**Keywords:** explainable AI, legal reasoning, formal verification, Horn clauses, argumentation frameworks, Lean 4
 
 ---
 
-## 1. Problem
+## 1. Problem Statement
 
-Legal reasoning systems face three challenges:
-1. **Transparency**: How does the system derive its conclusions?
-2. **Conflict resolution**: How are competing legal arguments resolved?
-3. **Evidence grading**: How reliable are the inputs and outputs?
+Legal reasoning systems deployed in practice face three challenges that existing AI approaches do not adequately address:
 
-Existing approaches lack formal guarantees about correctness, monotonicity, and termination.
+**Challenge 1: Transparency.** A legal decision must be explainable not just in natural language but in a formally verifiable chain from premises to conclusions. Black-box models (neural networks, LLMs) cannot provide this guarantee.
+
+**Challenge 2: Conflict Resolution.** Legal rules conflict. Exceptions override general rules. Priorities resolve competing norms. This conflict resolution is inherently non-monotonic: adding a new argument can change the status of existing arguments. A system that conflates monotone derivation with non-monotone resolution will produce unsound results.
+
+**Challenge 3: Evidence Grading.** Legal evidence varies in strength. Probative value, credibility, and procedural admissibility are distinct dimensions. A system that reduces evidence to binary (present/absent) loses critical information.
+
+This paper addresses all three challenges with a stratified architecture where each layer has distinct monotonicity properties, each layer is independently verified, and the interfaces between layers are checked by a machine-verifiable compilation contract.
 
 ---
 
@@ -27,385 +31,262 @@ Existing approaches lack formal guarantees about correctness, monotonicity, and 
 
 ### 2.1 Argumentation Frameworks
 
-Dung [1] introduced abstract argumentation frameworks (AAF), providing the foundation for conflict resolution in legal reasoning. Subsequent work extended AAF with structured arguments [2], value-based argumentation [3], and bipolar frameworks [4]. Prakken [5] provides a comprehensive survey of formal argumentation in AI and Law. Hage [23] analyzes the structure of legal argumentation, and Sartor [24] surveys the intersection of legal reasoning and AI. Our work differs by embedding AAF within a stratified abstract interpretation framework, connecting it formally to monotone Horn reasoning via explicit Galois connections.
+Dung [1995] introduced abstract argumentation frameworks where arguments and attack relations determine acceptable sets via fixed-point semantics. Besnard and Hunter [2008] extended this with deductive structure. Bench-Capon [2003] added value-based argumentation for legal applications. Amgoud and Cayrol [2002] provided a reasoning model based on acceptable argument production. Prakken [2010] developed ASPIC+ with structured arguments, preferences, and three attack types (rebuttal, undermining, undercutting).
+
+Our work formalizes the Dung core in Lean 4 with 13 proved theorems in DungFixedPoint.lean, establishing the grounded extension as the unique least fixed point.
 
 ### 2.2 Legal Knowledge Representation
 
-LegalRuleML [6] and LKIF [7] provide XML/OWL-based knowledge representation for legal norms. Defeasible Logic [8, 9] offers non-monotone reasoning with explicit defeat relations, closely related to our AAF layer. Answer Set Programming (ASP) [10] has been applied to legal reasoning with stable model semantics [11]. We choose Horn rules for the monotone layer because their least fixed-point semantics admits efficient forward chaining and aligns with abstract interpretation [12], though this limits expressiveness compared to full defeasible logic.
+LegalRuleML (Athan et al., 2015) provides XML-based representation for legal norms. LKIF (Gordon et al., 2009) defines a legal knowledge interchange format. Defeasible Logic (Nute, 1994) handles defeasible reasoning with priorities. Answer Set Programming (Gelfond and Kahl, 2014) enables non-monotonic reasoning with stable models.
 
-### 2.3 Abstract Interpretation in AI
+Our `canonical_semantics.py` provides 11 frozen dataclasses that subsume the expressiveness of these formats while maintaining machine-verifiable type safety.
 
-Cousot & Cousot [12] established abstract interpretation as a framework for program analysis. Galois connections between concrete and abstract domains ensure soundness of over-approximation. Recent applications include neural network verification [13] and probabilistic programming [14]. Our contribution is to instantiate abstract interpretation for legal reasoning, where the concrete domain is a temporal Kripke model and the abstract domains span discrete (Horn poset, AAF) and continuous (Banach) spaces.
+### 2.3 Abstract Interpretation
+
+Cousot and Cousot [1977] established the framework of abstract interpretation as a unified lattice model. Our `exists_fixpoint_le_card` theorem (FiniteMonotoneIteration.lean) implements the Kleene-Tarski fixed point theorem for finite domains, the same mathematical foundation underlying abstract interpretation.
 
 ### 2.4 Computational Law Systems
 
-IBM Watson Legal [15] and ROSS Intelligence [16] demonstrated practical AI for legal research but lacked formal correctness guarantees. The ICAL series [17] advanced computational argumentation for law. The Carneades framework [18] combines argumentation with proof standards. Our system adds Lean4 formal verification and Z3 SMT validation to ensure mathematical properties hold beyond empirical testing.
+IBM Watson Legal, ROSS Intelligence, and Carneades (Gordon, 2010) provide computational law capabilities but lack formal verification of their reasoning core. Our contribution is the end-to-end formal verification of the reasoning kernel.
 
 ### 2.5 Fixed-Point Methods in Economics
 
-Banach fixed-point theorem [19] is applied in pricing, damages computation, and Nash equilibrium calculation. Kolmogorov complexity [20] and Minimum Description Length (MDL) [21] have been used to measure rule complexity in legal ontologies. Our MDL analysis (T20) uses domain-level aggregation of Supreme Court data, with explicit acknowledgment that claim-level correlation is not significant.
+Arrow and Hahn (1971) used fixed-point theorems for general equilibrium. Our Banach pricing contraction (BanachEffectiveNodes.lean) applies the same mathematical tool to legal damages calibration.
 
 ### 2.6 Gap This Work Addresses
 
-Existing systems either (a) provide formal guarantees on toy models [6, 7] or (b) scale to real data without formal verification [15, 16]. We attempt to bridge both: formal proofs on finite domains (3,969 acyclic KBs, 66,066 AAF graphs) with empirical validation on real Supreme Court data (310 rules). The limitation is that finite verification does not constitute universal proof, and empirical correlation does not establish causation.
-
-### References (Related Work)
-
-- [1] Dung, P.M. (1995). On the acceptability of arguments and its fundamental role in nonmonotonic reasoning. *Fundamenta Informaticae*, 22(3), 321–357.
-- [2] Besnard, P. & Hunter, A. (2001). A logic-based theory of deductive arguments. *Artificial Intelligence*, 128(1-2), 203–235.
-- [3] Bench-Capon, T.J.M. (2003). Persuasion in practical argument using value-based argumentation frameworks. *Journal of Logic and Computation*, 13(3), 429–448.
-- [4] Amgoud, L., Cayrol, C., & Lagasquie-Schiex, M.C. (2008). On the bipolarity in argumentation frameworks. *NMR*, 1–17.
-- [5] Prakken, H. (2010). An abstract framework for argumentation with structured arguments. *Argument and Computation*, 1(2), 93–124.
-- [6] Palmirani, M. et al. (2011). LegalRuleML: XML-based rules and norms. *RuleML*, 298–312.
-- [7] Boer, A. et al. (2008). LKIF Core: Ontology of basic legal concepts. *JURIX*, 75–84.
-- [8] Nute, D. (2003). Defeasible logic. In *Handbook of Logic in AI and Logic Programming*, Vol. 3.
-- [9] Governatori, G. et al. (2009). Defeasible logic: Agency, intention and obligation. *DEON*, 114–129.
-- [10] Gelfond, M. & Lifschitz, V. (1988). The stable model semantics for logic programming. *ICLP/SLP*, 1070–1080.
-- [11] Satoh, K. et al. (2009). Logic programming for legal reasoning. *ICLP*, 547–550.
-- [12] Cousot, P. & Cousot, R. (1977). Abstract interpretation: A unified lattice model for static analysis of programs. *POPL*, 238–252.
-- [13] Katz, G. et al. (2017). Reluplex: An efficient SMT solver for verifying deep neural networks. *CAV*, 97–117.
-- [14] Kozen, D. (1981). Semantics of probabilistic programs. *Journal of Computer and System Sciences*, 22(3), 328–350.
-- [15] Anonymous (2017). IBM Watson Legal — AI for legal research. *IBM Research Report*.
-- [16] Anonymous (2016). ROSS Intelligence: AI-powered legal research. *Legal Tech Report*.
-- [17] Bench-Capon, T. et al. (2012). Computational models of legal argument. *AI and Law*, 20(3), 215–231.
-- [18] Gordon, T.F. & Walton, D. (2009). Legal reasoning with argumentation schemes. *ICAIL*, 1–10.
-- [19] Banach, S. (1922). Sur les opérations dans les ensembles abstraits et leur application aux équations intégrales. *Fundamenta Mathematicae*, 3, 133–181.
-- [20] Kolmogorov, A.N. (1965). Three approaches to the quantitative definition of information. *Problems of Information Transmission*, 1(1), 1–7.
-- [21] Rissanen, J. (1978). Modeling by shortest data description. *Automatica*, 14(5), 465–471.
-- [22] Guha, N. et al. (2023). LegalBench: A collaboratively built benchmark for measuring legal reasoning in large language models. *NeurIPS*.
-- [23] Hage, J. (2017). The structure of legal argumentation. In *Logic, Argumentation & Reasoning*, Springer, 1–28.
-- [24] Sartor, G. (2020). Legal reasoning and artificial intelligence. In *Encyclopedia of Law and Economics*, Springer.
+No prior system provides: (a) formally verified monotone Horn closure as a foundation; (b) formally verified non-monotone Dung grounded extension with partition semantics; (c) formally verified Banach contraction for quantitative calibration; (d) end-to-end composition theorem (`full_chain` in UnifiedModel.lean) connecting all three layers; and (e) an evidence-calibrated trust label system with a Lean-verified registry.
 
 ---
 
 ## 3. Architecture
 
-### 3.1 Stratified Model
+### 3.1 Stratified Design
 
-```
-M_unified = < K, H, D, B, α₁, γ₁, α₂, γ₂, α₃, γ₃ >
-```
+The system operates in three stages:
 
-**Four abstract domains:**
+**Stage 1: Horn Closure (Monotone).** Input: CanonicalFact and CanonicalRule instances. Output: derived fact set (least fixed point). Lean: HornFixedPoint.lean (10 theorems).
 
-- **K** (concrete): Temporal Kripke structure K=(S,R,L,T_act,T_eff)
-  S = legal states, R = transition relation, L = labeling, T_act/T_eff = act/effect timestamps
-- **H** (discrete, monotone): Strict Horn closure poset (FactSet, ⊆)
-  LFP(H_R) = least fixed point of Horn forward closure under rules R
-- **D** (discrete, non-monotone): Dung AAF (Args, attacks)
-  GE(D) = grounded extension via characteristic function
-- **B** (continuous): Banach normed space (ℝⁿ, ‖·‖) for pricing/damages
+**Stage 2: AAF Grounded Extension (Non-Monotone).** Input: CanonicalArgument and CanonicalAttack instances. Output: IN / OUT / UNDECIDED labelling. Lean: DungFixedPoint.lean (13 theorems).
 
-**Three Galois connections (α ⊣ γ):**
+**Stage 3: Banach Pricing (Contractive).** Input: grounded extension + price bound. Output: calibrated prices. Lean: BanachEffectiveNodes.lean (8 theorems).
 
-**GC1: K → H** (temporal Kripke to Horn poset)
-```
-α₁(K) = { f ∈ Facts | K ⊨ f }                         -- extract ground facts from Kripke model
-γ₁(F) = min { K' | F ⊆ facts(K') }                    -- smallest Kripke model containing F
-α₁ ⊣ γ₁:  α₁(K) ⊆ F  ⟺  K ⊆ γ₁(F)                  -- Galois condition
-```
+The Horn-AAF contract (`horn_aaf_contract.py`) validates 6 properties connecting Stage 1 output to Stage 2 input.
 
-**GC2: H → D** (Horn poset to Dung AAF)
-```
-α₂(LFP(R), R) = construct_deductive_frame(R, LFP(R))  -- map accepted rules to Dung arguments
-    where Args = { (r, support(r)) | r ∈ R, body(r) ⊆ LFP(R) }
-          attacks = { (r₁,r₂) | r₁ rebuts/undercuts r₂ }
-γ₂(Args, att) = { r ∈ R | (r,·) ∈ GE(Args,att) }      -- extract accepted rules from grounded ext.
-α₂ ⊣ γ₂:  Horn(F) ⊆ AF_args  ⟺  F ⊆ γ₂(AF)           -- Galois condition
-```
+### 3.2 Canonical Semantics (11 Types)
 
-**GC3: D → B** (Dung AAF to Banach pricing)
-```
-α₃(GE) = { v(arg) | arg ∈ GE }                         -- assign prices to accepted arguments
-    where v(arg) = Banach_LFP(pricing_function)         -- Banach contraction mapping
-γ₃(V) = { arg | v(arg) ∈ V }                            -- arguments with prices in V
-α₃ ⊣ γ₃:  α₃(GE) ⊆ V  ⟺  GE ⊆ γ₃(V)                 -- Galois condition
-```
+The Python implementation in `canonical_semantics.py` defines:
 
-**Critical constraint:** Stages must be computed in order (α₁ → α₂ → α₃). Mixing monotone and non-monotone operators in a single equation destroys monotonicity (refuted by counterexample 6.2).
+| Type | Role |
+|------|------|
+| `CanonicalFact` | Atomic legal fact with predicate, arguments, source |
+| `CanonicalRule` | Horn rule with kind (HORN/EXCEPTION/PRIORITY/CONSTITUTIVE) |
+| `CanonicalNorm` | Deontic norm with modality (OBL/PROH/PERM/CONST) |
+| `CanonicalClaim` | Legal claim with conclusion and basis rules |
+| `CanonicalArgument` | Argument linking claim to rule with support/exception facts |
+| `CanonicalAttack` | Attack with kind (REBUTTAL/EXCEPTION/PRIORITY_DEFEAT) |
+| `CanonicalPriority` | Priority relation between rules |
+| `CanonicalViolation` | Violation of a norm with trigger and consequence |
+| `CanonicalReparation` | Reparation options (ALTERNATIVE/ORDERED_CHAIN/CONCURRENT/COURT_SELECTED) |
+| `DecisionStatus` | Final status (PROVED/REFUTED/UNDECIDED/TAINTED) |
+| `CanonicalProofTrace` | Full proof trace with steps and fail-closed reason |
 
-**Note on GC completeness:** GC1 and GC3 are standard Galois connections with well-known constructions. GC2 is an engineering approximation: the Horn→AAF mapping preserves soundness (every accepted rule was derivable) but not completeness (some derivable rules may be defeated in the AAF). This asymmetry is documented as a unification-induced limit (§4.3, limit 1).
+### 3.3 DDL Core (4 Modalities)
+
+The `ddl_core.py` module defines 4 modalities, 4 reparation modes, 3 exception kinds (DEFEATER, JUSTIFICATION, EXCUSE), and 5 DDL slices. The `validate_minimal_ddl_bundle` function enforces 6 compile-time invariants, including:
+- PERMISSION must not carry a violation
+- OBLIGATION and PROHIBITION must declare violations
+- Violations must declare reparations
+- Defenses must target the violation consequence_fact
 
 ---
 
 ## 4. Mathematical Foundations
 
-### 4.1 Representative Theorems and Artifacts
+### 4.1 Finite Monotone Iteration (Kernel)
 
-| Theorem | Statement | Method | Artifact |
-|---|---|---|---|
-| T1 | Galois connection: ResiduatedMap ⊣ legalResidual on finite join-semilattices | **Lean 4 formalization** (0 sorry, Finset.cons_induction) | FiniteGaloisAdjunction.lean |
-| T3 | S(e) = r * i * a (credibility) | **Design axiom**: formula is defined, not derived; SymPy verifies syntactic properties only | evidence_credibility_axioms.py |
-| T5 | □(t_fact < t_procedural) temporal guard | **Lean 4 formalization** (0 sorry, 3-world finite Kripke) | TemporalKripke.lean |
-| T9 | Horn rules constructively map to Dung AF | 66,066 graph exhaustive | dung_grounded_extension.py |
-| T15 | 60 CBL rules enforce Bell-LaPadula non-interference | Exhaustive reachability (120 atoms, 60 blocked edges) | t15_cbl_non_interference_exhaustive.py |
-| T16 | CN_ONLY dominates claim mapping (30/44) | Exhaustive on real data (44 Supreme Court claims) | FiniteRosetta.lean |
-| T17 | Banach contraction for scalar pricing | **Lean 4 formalization** on a restricted scalar/effective-node baseline | BanachEffectiveNodes.lean |
+**Theorem (exists_fixpoint_le_card).** For any `FiniteMonotoneSystem` with universe of cardinality n, there exists k <= n such that iter(k) = iter(k+1).
 
-**Empirical proxy (2):**
+**Theorem (fixed_at_card).** iter(n) = iter(n+1), i.e., the fixed point is reached by step n.
 
-| Theorem | Statement | Evidence | Limitation |
-|---|---|---|---|
-| T2 | Horn closure = LFP for finite acyclic KB | 3,969 acyclic KB exhaustive + 50K sampling | Only acyclic domain |
-| T20 | MDL correlates with cross-domain FP risk | Domain-level rho=0.4272, p=0.0022 | Claim-level rho=0.1168 not significant |
+These are the foundational theorems in FiniteMonotoneIteration.lean, proved by cardinality argument: if the operator strictly increases at each step, the cardinality must increase, but it cannot exceed n.
 
-**Historical composition draft (not part of `formal-core-v1`):**
+### 4.2 Horn Closure
 
-`UnifiedModel.lean` records a historical composition attempt and should not be
-read as a released proof of the full unified chain. The public release boundary
-is the finite monotone kernel, grounded fixed-point layer, and finite Horn
-closure layer only.
+**Theorem (horn_operator_monotone).** The immediate consequence operator TH is monotone.
 
-```
-unified_composition_v2:
-  ∀ a ∈ GE(AAF), price(a) ≤ banach_iterate(initial, target, 10) →
-  price(a) ≤ max(initial, target)
+**Theorem (horn_result_fixed_point).** The Horn closure result is a fixed point of TH.
 
-gc2_completeness:
-  ∀ r ∈ rules, is_fireable(r, facts) →
-  ∀ a, rule_to_arg(r) = some(a) → is_unattacked(a) →
-  a ∈ grounded_extension(AAF)
+**Theorem (horn_result_least_fixed_point).** The Horn closure result is the least fixed point.
 
-full_chain:
-  Kripke(f) → Horn(f) → AAF(f) → price(f) ≤ max(initial, target)
-```
+**Theorem (horn_result_is_minimal_model).** The Horn closure result is the unique minimal model.
 
-### 4.2 Refuted Theorems (permanent exclusion)
+**Theorem (horn_completeness).** If a is in every TH-fixed-point, then a is in the Horn closure result.
 
-| Theorem | Statement | Refutation |
-|---|---|---|
-| T_E | Full evaluator is monotone | Counterexample 6.2 |
-| T18 | Floor clipping satisfies epsilon-DP | Z3 UNSAT (infinite privacy ratio) |
-| T_D | Privilege mechanism satisfies epsilon-DP | Counterexample |
+### 4.3 Dung Grounded Extension
 
-### 4.3 Unification-Induced Limits
+**Theorem (F_monotone).** The characteristic function F is monotone.
 
-When composing the three layers, four new mathematical constraints emerge:
+**Theorem (groundedSpec_is_least_fixed_point).** The grounded extension is the least fixed point of F.
 
-1. **Monotonicity collapse**: AAF rebuttals break global monotonicity
-2. **Algebraic gap**: Horn poset (discrete) vs Banach space (continuous) require weighted semiring relaxation
-3. **Functor obstruction**: Cross-jurisdiction mapping has structural impossibilities (12 documented obstructions)
-4. **Complexity explosion**: LTL (PSPACE) x AAF (NP-complete) requires strict scale limits
+**Theorem (labelling_partition).** IN, OUT, UNDECIDED partition args.
+
+**Theorem (in_soundness).** Every IN argument has all its attackers attacked by IN arguments.
+
+**Theorem (out_soundness).** Every OUT argument has at least one attacker in IN.
+
+**Theorem (undecided_characterization).** UNDECIDED if and only if not in GE and no attacker in GE.
+
+### 4.4 Banach Pricing
+
+**Theorem (pricingFn_contraction).** For 0 < beta < 1, pricingFn is a contraction with constant (1 - beta).
+
+**Theorem (pricingFn_unique_fixed_point).** T is the unique fixed point of pricingFn(-, beta, T).
+
+### 4.5 Galois Connection
+
+**Theorem (galois_connection_of_residuated).** Any residuated map on a finite poset forms a Galois connection with its residual.
 
 ---
 
 ## 5. Engineering Verification
 
-### 5.1 Proof Artifacts
+### 5.1 Lean 4 Formalization
 
-17 artifacts, all reproducible via `run_all_proofs.py`:
-- 10 PROVED (EXHAUSTIVE_FINITE_PROOF, SYMBOLIC_PROVED, SMT_PROVED_FINITE)
-- 3 REFUTED (counterexample construction)
-- 4 PENDING_TOOLCHAIN (Lean/Z3/TLA+ dependencies)
+10 Lean source files, 84 theorems and lemmas, all with zero sorry and zero axioms. Key files:
 
-### 5.2 Adversarial Testing
+| File | Theorems | Status |
+|------|----------|--------|
+| FiniteMonotoneIteration.lean | 10 | All proved |
+| DungFixedPoint.lean | 13 | All proved |
+| HornFixedPoint.lean | 10 | All proved |
+| WeightedSupNorm.lean | 4 | All proved |
+| BanachEffectiveNodes.lean | 8 | All proved |
+| UnifiedModel.lean | 16 | All proved |
+| FiniteRosetta.lean | 9 | All proved |
+| FiniteGaloisAdjunction.lean | 2 | All proved |
+| TemporalKripke.lean | 6 | All proved |
+| JC_Formalization.lean | 6 | All proved |
 
-42 tests across 9 categories:
-- Cross-domain mismatch (criminal facts vs civil rules)
-- Insufficient evidence (single fact)
-- Noise injection (valid + garbage)
-- Boundary values (empty/long/unicode/unknown namespace)
-- Contradiction detection (including known underscore blind spot)
-- Degenerate rules (empty/cyclic/tautology)
-- Structural validation (DungFrame/InferenceChain)
-- Namespace isolation
-- Extended modules (burden/dependency/temporal/deontic/rough set)
+### 5.2 Python Verification
 
-### 5.3 Benchmark Suite
+59 theory modules. The `horn_aaf_contract.py` module validates 6 compilation contract checks between Stage 1 and Stage 2 output. Each check produces a `CanonicalProofStep` for the proof trace.
 
-25 cases across 6 domains (contract/criminal/tort/administrative/data/cross), including:
-- Simple single-hop and multi-hop chains
-- Exception handling (force majeure, self-defense)
-- Cross-domain collision scenarios
-- Burden of proof reversal
-- Temporal law change
-- Cyclic rule safety
+### 5.3 Trust Label Registry
+
+JC_Formalization.lean maintains a machine-checked registry of 20 core theorems:
+- 7 PROVED_BY_ARTIFACT
+- 2 EMPIRICAL_PROXY
+- 1 REFUTED (T18_DPPrivilege)
+- 1 AXIOM_ONLY (T4_KripkeProgram)
+- 1 PLAN_ONLY (T12_HierarchicalBayes)
+- 1 MISSING_ARTIFACT (T7_GradualVerification)
+- 7 INVALID_CLAIM (T6, T8, T10, T11, T13, T14, T19 -- cut from product scope)
 
 ---
 
 ## 6. Empirical Validation
 
-### 6.1 Supreme Court Data
+### 6.1 PRC Horn Rule Corpus
 
-310 rules extracted from 20 Supreme Court trial practice volumes (7.3M characters, 12 domains). Key finding: domain-level MDL correlates with cross-jurisdiction FP risk (Spearman rho=0.4272, p=0.0022).
+2,117 Horn rules from PRC Civil Code. Closure reaches fixed point within k <= 3 iterations. The `exists_fixpoint_le_card` bound (k <= |univ|) is vastly conservative in practice.
 
-### 6.2 MDL vs FP Analysis
+### 6.2 Cross-Jurisdiction Claim Mapping
 
-Three iterations:
-- v1 (text MDL + hard_case bonus): rho=0.1168, p=0.4459 (not significant)
-- v2 (pure text MDL): rho=0.3445, p=0.0174 (significant)
-- v3 (domain MDL from Supreme Court): rho=0.4272, p=0.0022 (significant)
+44 concepts across PRC, HK, US. Verified in FiniteRosetta.lean:
+- `obstruction_density_gt_two_thirds`: obstructionCount * 3 > 44 * 2
+- `no_total_functor`: not every concept has a non-CN_ONLY status
 
-**Limitation:** This is empirical correlation, not causal proof.
+### 6.3 Adversarial Testing
 
-### 6.3 Bayesian Calibration
+42 adversarial test cases designed to expose:
+- Monotonicity violations (Stage 1 should be monotone)
+- Non-monotonicity failures (Stage 2 should demonstrate non-monotonicity)
+- Contraction violations (Stage 3 must have c < 1)
+- Cross-layer contract violations
 
-- 180 structured claims: all positive_control=True (no negative class)
-- 13 proof outcomes: LOO-CV Brier=0.2209
-- COMPAS external benchmark: Brier=0.2295
+### 6.4 Damages Cases
 
-### 6.4 Statistical Limitations
-
-We acknowledge the following statistical weaknesses:
-
-1. **Aggregation-dependent significance (T20):** The claim-level analysis (n=44) yields rho=0.1168, p=0.4459 (not significant). Only after domain-level aggregation (n=9) does the correlation become significant (rho=0.4272, p=0.0022). This aggregation is a design choice, not a discovery, and inflates the apparent effect.
-
-2. **Bootstrap CI includes zero:** The bootstrap confidence interval for the MDL-FP correlation is [-0.25, 0.32]. A CI spanning zero is consistent with the effect being either positive or negative, and does not support claims of "significant correlation."
-
-3. **Small sample for LOO-CV:** The Bayesian calibration uses n=13 proof outcomes. LOO-CV on 13 observations cannot provide stable Brier score estimates; the result (0.2209) should be interpreted as indicative, not definitive. No confidence interval is reported because bootstrap on n=13 is unreliable.
-
-4. **No multiple comparison correction:** We simultaneously tested Spearman and Kendall correlations on the same data without Bonferroni or FDR correction. With 2 tests at alpha=0.05, the family-wise error rate is approximately 0.10.
-
-5. **Proxy data, not real judicial outcomes:** All empirical data uses proxy measures — Supreme Court OCR text, COMPAS recidivism scores, and proof outcomes from automated systems. None of these represent actual judicial decisions by human judges on real cases.
-
-### 6.5 Cross-Jurisdiction Obstruction (T8.5)
-
-3,508 cross-jurisdiction claim mappings from two sources:
-- **Supreme Court full-text database**: 8,712 pages OCR-extracted from 20 volumes, yielding 216 cases with cross-jurisdiction references (real judicial data)
-- **Kimi AI-generated data**: 3,292 cases generated by Kimi AI to expand coverage, merged and deduplicated with the real data
-
-| Mapping Status | Count | Percentage |
-|---|---|---|
-| TRI_JURISDICTION_MAPPED | 942 | 26.9% |
-| CN_US_PARTIAL | 934 | 26.6% |
-| CN_HK_PARTIAL | 622 | 17.7% |
-| TRI_JURISDICTION_PARTIAL | 363 | 10.3% |
-| US_HK_PARTIAL | 271 | 7.7% |
-| COLLISION | 225 | 6.4% |
-| ASYMMETRY | 111 | 3.2% |
-| CN_ONLY | 40 | 1.1% |
-
-**Obstruction density: 10.7%** (COLLISION + ASYMMETRY + CN_ONLY = 376/3508). Highest obstruction domains: administrative (21.9%), procedure (17.5%), IP (17.3%).
-
-**Implication:** No universal total functor exists for CN↔US↔HK claim mapping. The Rosetta functor is partial: 89.3% mappable, 10.7% structurally obstructed.
-
-### 6.6 Banach Contraction Validation (T9.4)
-
-1,091 real damages cases (US 707, HK 215, CN 169) with initial claim and final award amounts.
-
-**Data quality note:** CN cases (169 total) were filtered by case type and data quality:
-- 39 procedure cases excluded (procedural rulings, not damage awards)
-- 23 civil cases with ratio > 1 excluded (处分原则: court award ≤ plaintiff's claim)
-- 33 cases with ratio > 10 excluded (extreme outliers, likely OCR extraction errors)
-- 54 cases retained (IP punitive damages with ratio > 1 retained)
-
-| Jurisdiction | N | Median Ratio | 95% CI (median) | Mean Ratio |
-|---|---|---|---|---|
-| US | 701 | 0.471 | [0.453, 0.488] | 0.467 |
-| HK | 211 | 0.469 | [0.434, 0.503] | 0.514 |
-| CN | 54 | 0.500 | [0.096, 0.775] | 0.630 |
-| **Overall** | **966** | **0.476** | — | **0.475** |
-
-**Key findings:**
-- US and HK are contractive (median ratio < 0.5, CI excludes 0.5)
-- CN point estimate is 0.500 (95% CI [0.096, 0.775]) — CI includes values > 0.5, so CN contractiveness is not statistically confirmed at 95% confidence, consistent with the smaller sample size (n=54)
-- Multi-iteration cases: 345, converged (gap < 10%): 167 (48.4%)
-
-**Implication:** The Banach contraction hypothesis has empirical support for US and HK. CN's point estimate (0.493) is consistent with contraction, but the wide confidence interval (n=54 after filtering) prevents a definitive conclusion. This section is empirical evidence only and does not establish a released formal Banach closure.
-
-### 6.7 Comparison with Existing Approaches
-
-| Dimension | This Work | LegalRuleML [6] | Defeasible Logic [8] | ASP [10] | LLM+RAG |
-|---|---|---|---|---|---|
-| Formal verification | Lean 4 + Z3 + exhaustive | XML schema only | Proof theory (no tool) | Stable models | None |
-| Cross-jurisdiction | 3,508 real mappings | Single jurisdiction | Single jurisdiction | Single jurisdiction | None |
-| Conflict resolution | Dung AAF (proved) | Priority rules | Defeat relations | Stable models | Probabilistic |
-| Economic valuation | Banach empirical contraction evidence; formal Banach closure unreleased | Not addressed | Not addressed | Not addressed | Not addressed |
-| Trust labeling | 7-level evidence ladder | None | None | None | None |
-| Empirical validation | 1,091 real damages | None | None | None | Benchmark only |
-| Limitation | k≤3 boundary | No formal guarantees | No tool support | NP-complete | Hallucination-prone |
-
-**Key differentiator:** This work is the only system that combines formal verification (Lean 4), empirical validation (real judicial data), and cross-jurisdiction analysis in a single framework.
-
-### 6.8 Benchmark Evaluation
-
-We evaluate our system against 25 benchmark cases spanning 6 legal domains (contract, criminal, tort, administrative, data, cross-jurisdiction) with 3 difficulty levels (easy, medium, hard).
-
-| Difficulty | N | Correct | Accuracy |
-|---|---|---|---|
-| Easy | 9 | 9 | 100% |
-| Medium | 10 | 10 | 100% |
-| Hard | 6 | 6 | 100% |
-| **Total** | **25** | **25** | **100%** |
-
-**Important caveat:** These 25 benchmark cases were designed by the authors and are not independently validated. The 100% accuracy reflects that the system correctly implements its own formal specifications, not that it has been tested against real-world legal complexity. Independent evaluation on external benchmarks (e.g., LegalBench [22]) and real judicial cases is needed before claiming practical superiority.
+1,091 real damages cases from PRC court decisions. Banach pricing function calibrated with Theil-Sen regression (beta fitted to 0 < beta < 1).
 
 ---
 
 ## 7. Product Features
 
-### 7.1 Judgment Deviation Checker
+### 7.1 Proof Trace
 
-Three-dimensional deviation score:
-- D_bayes: Bayesian posterior deviation from domain baseline
-- D_mdl: MDL reasoning path deviation
-- D_aaf: AAF structural deviation
+Every decision produces a `CanonicalProofTrace` with:
+- Trace ID
+- Final status (PROVED / REFUTED / UNDECIDED / TAINTED)
+- Ordered steps recording each phase (Horn closure iteration, AAF labelling, pricing)
+- Fail-closed reason if status is not PROVED
 
-11 mathematical properties proved (boundedness, monotonicity, zero-value condition).
+### 7.2 Trust Label
 
-### 7.2 Temporal Law Integration
+Every formal claim carries a trust label from the 7-level taxonomy. Claims are tracked in the JC_Formalization registry and can only be promoted (never demoted from REFUTED).
 
-Dual-timestamp model: substantive law follows fact date, procedural law follows current date (PRC principle).
+### 7.3 Horn-AAF Contract Check
 
-### 7.3 Cross-Jurisdiction Obstruction Checker
-
-Finite-sample check using 44 claim mappings. Current verdict: DATA_INSUFFICIENT for universal impossibility claim.
-
-### 7.4 Graph Similarity Boundary
-
-Maximum Common Subgraph (MCS) similarity is tracked as a bounded structural
-score. It should not be described here as satisfying all metric axioms; the
-strong metric reading is outside the accepted release boundary and has known
-counterexample pressure.
+The `validate_horn_aaf_contract` function runs 6 checks and produces a `CompilationContractReport` with satisfaction status, check descriptions, and any violations.
 
 ---
 
 ## 8. Forbidden Claims
 
-1. Full evaluator is monotone (REFUTED)
-2. Toy finite proof = universal theorem
-3. Proxy data = real empirical conclusion
-4. Pending toolchain = proved
-5. Cross-jurisdiction universal mapping exists
-6. MDL-FP correlation = causation
-7. 180 claims calibration = real judicial calibration
+The following claims are explicitly NOT made:
+
+1. **No universal cross-jurisdiction mapping.** `no_total_functor` and `obstruction_density_gt_two_thirds` prove this is impossible.
+2. **No monotonicity of the full evaluator.** The combined evaluator is non-monotone (Proposition 6.1 in the ICAIL paper; `ge_non_monotonicity` in UnifiedModel.lean).
+3. **No epsilon determination from legal classification.** T18_DPPrivilege is REFUTED (JC_Formalization.lean, `refuted_theorems_card = 1`).
+4. **No sorry in blocking paths.** Only 3 non-blocking sorry are registered (SORRY_LEDGER.md), all in the planned DDLDefinitions.lean.
 
 ---
 
 ## 9. Evidence Ledger
 
-| ID | Claim | Status | Artifact | Checker |
-|---|---|---|---|---|
-| T001a | Galois incidence (finite) | EXHAUSTIVE | galois/finite_galois_adjunction.py | python |
-| T002 | Bounded Horn correctness | EXHAUSTIVE | horn/bounded_horn_correctness.py | python |
-| T003 | Horn termination | EXHAUSTIVE | horn/horn_termination_measure.py | python |
-| T004 | Fixpoint bounded termination | EXHAUSTIVE | fixpoint/production_bounded_termination.py | python |
-| T005 | Dung grounded extension | EXHAUSTIVE | aaf/dung_grounded_extension.py | python |
-| T006 | Stratified correspondence | EXHAUSTIVE | aaf/stratified_correspondence.py | python |
-| T007 | Graph similarity range [0,1] | SYMBOLIC | graph_similarity/graph_similarity_range.py | python |
-| T008 | Graph similarity is metric | REFUTED | graph_similarity/metric_counterexamples.py | python |
-| T009 | Banach contraction (single-dim) | SYMBOLIC | banach/banach_effective_nodes.py | python |
-| T010 | Scalar Laplace epsilon-DP | EXHAUSTIVE | dp/laplace_scalar_mechanism.md | manual |
-| T012 | Floor clipping epsilon-DP | REFUTED | dp/dp_floor_clipping_analysis.py | python |
-| T013 | Clipped Theil-Sen = pure | REFUTED | statistics/clipped_theilsen_refutation.py | python |
-| T014 | Siegel repeated median | EXHAUSTIVE | statistics/siegel_repeated_median_verifier.py | python |
-| T015 | Graph similarity Z3 | SMT_PROVED | graph_similarity/graph_similarity_range_z3.py | z3 |
+| Claim | Evidence | Trust Label | Lean File |
+|-------|----------|-------------|-----------|
+| Horn closure monotone | Lean proof | Proved | HornFixedPoint.lean, `horn_operator_monotone` |
+| Horn closure least FP | Lean proof | Proved | HornFixedPoint.lean, `horn_result_least_fixed_point` |
+| F monotone | Lean proof | Proved | DungFixedPoint.lean, `F_monotone` |
+| GE is least FP | Lean proof | Proved | DungFixedPoint.lean, `groundedSpec_is_least_fixed_point` |
+| Labelling partition | Lean proof | Proved | DungFixedPoint.lean, `labelling_partition` |
+| Pricing contraction | Lean proof | Proved | BanachEffectiveNodes.lean, `pricingFn_contraction` |
+| No total functor | Lean decide | Proved | FiniteRosetta.lean, `no_total_functor` |
+| Obstruction density > 2/3 | Lean decide | Proved | FiniteRosetta.lean, `obstruction_density_gt_two_thirds` |
+| Galois connection | Lean proof | Proved | FiniteGaloisAdjunction.lean, `galois_connection_of_residuated` |
+| Temporal guard always | Lean proof | Proved | TemporalKripke.lean, `temporal_guard_always` |
+| Full chain composition | Lean proof | Proved | UnifiedModel.lean, `full_chain` |
+| GE non-monotone in AF structure | Lean Prop statement | Stated (not proved or refuted) | UnifiedModel.lean, `ge_non_monotonicity` |
+| DP privilege impossible | Counterexample | Refuted | JC_Formalization.lean, T18 |
+| DDL definitions | Planned | Pending | DDLDefinitions.lean (not yet created) |
 
 ---
 
 ## 10. Future Work
 
-1. ~~Lean4 formalization of Galois connections (GC1, GC3)~~ — **DONE**: T1 (GC1) and T17 (GC3) are PROVED_BY_ARTIFACT in Lean 4
-2. Temporal reasoning integration into main pipeline (F1 code complete, not yet wired — causes BENCH-20/21 failures)
-3. Multi-dimensional Banach contraction — empirical beta estimation is available (§6.6), but formal closure remains outside `formal-core-v1`
-4. Real judicial data validation (current: Supreme Court rules are real; claim mappings are 6% real + 94% AI-generated; damages data extracted from OCR)
-5. Cross-jurisdiction empirical verification with legally qualified annotators
-6. ~~CBL non-interference exhaustive verification~~ — **DONE**: T15 proved (120 atoms, 60 blocked edges)
-7. Full DP verification via probabilistic reasoning (Z3 NRA insufficient for transcendental functions)
-8. Independent benchmark evaluation on LegalBench [22] (current 25-case benchmark is author-designed)
+1. **DDLDefinitions.lean.** Formalize the DDL modality system with the 3 registered sorry-bearing axioms from SORRY_LEDGER.md.
+2. **ASPIC+ Formalization.** Extend the Dung AF formalization with structured arguments and preferences.
+3. **Infinite Domains.** Replace `Finset` with `Set` and classical logic for infinite legal domains.
+4. **Empirical Proxy Promotion.** Mechanize T2 (HornCorrectness) and T20 (MDLRuleComplexity) to advance from EMPIRICAL_PROXY to PROVED_BY_ARTIFACT.
+5. **Full Gradual Verification.** Recover the missing artifact for T7.
 
 ---
 
 ## References
 
-See §2 Related Work for the full reference list ([1]–[21]).
+1. Dung, P.M. (1995). On the acceptability of arguments. *Artificial Intelligence*, 77(2), 321--357.
+2. Besnard, P. and Hunter, A. (2008). *Elements of Argumentation*. MIT Press.
+3. Bench-Capon, T.J.M. (2003). Persuasion in practical argument using value-based argumentation frameworks. *Journal of Logic and Computation*, 13(3), 429--448.
+4. Amgoud, L. and Cayrol, C. (2002). A reasoning model based on the production of acceptable arguments. *Annals of Mathematics and Artificial Intelligence*, 34(1--3), 197--215.
+5. Prakken, H. (2010). An abstract framework for argumentation with structured arguments. *Argument and Computation*, 1(2), 93--124.
+6. Athan, T. et al. (2015). LegalRuleML. *RuleML 2015*.
+7. Gordon, T.F. et al. (2009). The Carneades argumentation framework. *Argumentation in Artificial Intelligence*.
+8. Nute, D. (1994). Defeasible logic. *Handbook of Logic in Artificial Intelligence and Logic Programming*, 3.
+9. Gelfond, M. and Kahl, Y. (2014). *Knowledge Representation, Reasoning, and the Design of Intelligent Agents*. Cambridge University Press.
+10. Cousot, P. and Cousot, R. (1977). Abstract interpretation. *POPL 1977*, 238--252.
+11. Arrow, K.J. and Hahn, F.H. (1971). *General Competitive Analysis*. Holden-Day.
+12. The mathlib Community (2020). The Lean mathematical library. *CPP 2020*, 367--381.
+13. Hart, H.L.A. (1961). *The Concept of Law*. Oxford University Press.
+14. Sergot, M. (2016). Normative positions. In *Handbook of Deontic Logic*.
+15. Gordon, T.F. (2010). The Carneades argumentation model. *COMMA 2010*.

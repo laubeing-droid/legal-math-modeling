@@ -3,12 +3,13 @@
 
 A central contribution of this work is the \emph{evidence-calibrated trust
 label system}, which tracks every mathematical claim through its proof
-lifecycle and prevents unverified assertions from propagating to
-downstream engineering decisions.
+lifecycle and prevents unverified assertions from propagating to downstream
+engineering decisions.
 
 \subsection{Evidence Status Lattice}
 
-\begin{definition}[Evidence status]
+\begin{definition}[7-level evidence status]
+\label{def:evidence}
 Every mathematical claim in juris-calculus is assigned one of seven
 evidence statuses, forming a partial order $(E, \leq_E)$:
 \begin{equation}
@@ -39,41 +40,85 @@ with the ordering:
 leaves the claim's truth value uncertain.
 \end{remark}
 
+\subsection{Proof Traces and Certificate Boundary}
+
+\begin{definition}[Proof trace]
+\label{def:proof-trace}
+A \emph{ProofTrace} records the complete verification history of a claim:
+\begin{equation}
+  \text{ProofTrace} = (\text{claim\_id},\; \text{tool},\;
+  \text{script\_path},\; \text{result},\; \text{timestamp},\;
+  \text{lean\_file})
+\end{equation}
+where $\text{lean\_file}$ records the specific Lean file and theorem
+name when a Lean proof exists.
+\end{definition}
+
+\begin{definition}[Certificate/checker boundary]
+The system enforces a strict boundary between:
+\begin{itemize}
+  \item \textbf{Certificate}: the proof artifact (Lean file, Z3 script,
+        Python enumeration) that establishes the claim;
+  \item \textbf{Checker}: the independent verification that the certificate
+        is valid (Lean kernel, Z3's proof checker, test runner).
+\end{itemize}
+No claim may be promoted beyond its checker-verified status.
+\end{definition}
+
 \subsection{Claim Registry}
 
 \begin{definition}[Model claim]
 A \emph{model claim} is a tuple:
 \begin{equation}
-  \text{Claim} = (id, \text{title}, \text{status}, \text{allowed},
-  \text{forbidden}, \text{action}, \text{evidence\_paths})
+  \text{Claim} = (id,\; \text{title},\; \text{status},\; \text{allowed},\;
+  \text{forbidden},\; \text{action},\; \text{evidence\_paths})
 \end{equation}
-where:
-\begin{itemize}
-  \item \text{allowed}: the strongest assertion permitted by the evidence;
-  \item \text{forbidden}: assertions that must never be made;
-  \item \text{action}: the engineering consequence;
-  \item \text{evidence\_paths}: paths to the proof/refutation artifacts.
-\end{itemize}
 \end{definition}
 
 \begin{table}[h]
 \centering
 \begin{tabular}{@{}lll@{}}
 \toprule
-\textbf{Claim ID} & \textbf{Status} & \textbf{Title} \\
+\textbf{Claim ID} & \textbf{Status} & \textbf{Lean source} \\
 \midrule
-A1\_REAL\_ROSETTA & Data Insufficient & Cross-jurisdiction Rosetta \\
-A1\_TOY\_ROSETTA & Toy Only & Toy 5-pattern checker \\
-C\_REAL\_BANACH & Data Insufficient & Real pricing contraction \\
-C\_TOY\_BANACH & Toy Only & Toy scalar contraction \\
-D\_PRIVILEGE\_EPSILON & \textbf{Refuted} & Privilege $\to$ $\varepsilon$ \\
-E\_AAF\_GROUNDED & \textbf{Proved} & Dung AAF grounded ext. \\
-E\_EVALUATOR\_MONOTONE & \textbf{Refuted} & Evaluator monotonicity \\
+AAF grounded ext.\ & \textsc{Proved} & \texttt{DungFixedPoint.lean} \\
+Horn monotonicity & \textsc{Proved} & \texttt{HornDefinitions.lean} \\
+Horn least FP & \textsc{Proved} & \texttt{HornFixedPoint.lean} \\
+Banach contraction (eff.) & \textsc{Proved} & \texttt{BanachEffectiveNodes.lean} \\
+Weighted sup-norm metric & \textsc{Proved} & \texttt{WeightedSupNorm.lean} \\
+Galois connection & \textsc{Proved} & \texttt{FiniteGaloisAdjunction.lean} \\
+Temporal guard & \textsc{Proved} & \texttt{TemporalKripke.lean} \\
+No total functor & \textsc{Proved} & \texttt{FiniteRosetta.lean} \\
+Evaluator monotone & \textbf{\textsc{Refuted}} & --- \\
+DP $\varepsilon$ determinable & \textbf{\textsc{Refuted}} & --- \\
+Full Banach metric & \textsc{Data\_Insufficient} & --- \\
+Real Rosetta functor & \textsc{Data\_Insufficient} & --- \\
 \bottomrule
 \end{tabular}
-\caption{Core claim registry. \textbf{Bold} indicates definitive results.}
+\caption{Core claim registry with Lean source files.}
 \label{tab:claims}
 \end{table}
+
+\subsection{TAINTED Fail-Closed Policy}
+
+\begin{definition}[TAINTED marker]
+A fact is marked \textsc{TAINTED} when its provenance is uncertain,
+its confidence is zero, or it derives from a refuted claim. The
+TAINTED marker triggers a \emph{fail-closed} policy:
+\begin{equation}
+  \text{TAINTED}(f) \implies f \notin \text{outputs}(\text{pipeline})
+  \label{eq:tainted}
+\end{equation}
+A tainted fact never propagates to the final output, regardless of
+whether other rules would support it.
+\end{definition}
+
+\begin{proposition}[TAINTED is monotone-incompatible]
+The TAINTED fail-closed policy is non-monotone: adding a fact to the
+input can cause a previously valid fact to become tainted (via rebuttal
+or provenance failure). This is consistent with
+Counterexample~\ref{ce:eval-mono}.
+\end{proposition}
 
 \subsection{Forbidden Tags}
 
@@ -85,41 +130,20 @@ The following tags must never appear in any downstream system:
     \texttt{REAL\_PRICING\_VALIDATED},\;
     \texttt{DP\_EPSILON\_LEGALLY\_DETERMINED},\;
     \texttt{ALL\_SOURCES\_OFFICIALLY\_VERIFIED}
-  \}
-\end{equation}
-These tags would assert claims that have been either refuted or shown to be
+  \end{equation}
+These tags assert claims that have been either refuted or shown to be
 data-insufficient.
 \end{definition}
 
 \begin{theorem}[Trust label consistency]
 \label{thm:trust-consistency}
-The claim registry satisfies internal consistency: for every claim $c$:
+(cf.\ \texttt{JC\_Formalization.lean}, $\texttt{proved\_theorems\_card} = 7$)
+The claim registry satisfies internal consistency:
 \begin{enumerate}
-  \item $\text{allowed}(c) \cap \text{forbidden}(c) = \emptyset$;
-  \item $\text{status}(c) \in E$;
-  \item $\text{evidence\_paths}(c) \neq \emptyset$;
-  \item $|\{c \mid c.id = c'.id\}| = 1$ for all $c'$ (no duplicate IDs).
+  \item $\text{allowed}(c) \cap \text{forbidden}(c) = \emptyset$ for
+        every claim $c$;
+  \item $\text{status}(c) \in E$ for every claim $c$;
+  \item $\text{evidence\_paths}(c) \neq \emptyset$ for every claim $c$;
+  \item No duplicate claim IDs exist.
 \end{enumerate}
 \end{theorem}
-
-\begin{proof}
-By programmatic validation. The function \texttt{validate\_status\_ledger()}
-in \texttt{model\_status.py} checks all four conditions. The test passes
-for the current claim set.
-\end{proof}
-
-\subsection{Engineering Constraints}
-
-\begin{proposition}[Trust labels as engineering gates]
-The trust label system enforces the following engineering constraints:
-\begin{enumerate}
-  \item A claim with status \textsc{Data\_Insufficient} must be gated by
-        a data-quality check before use in production;
-  \item A claim with status \textsc{Toy\_Synthetic} must carry a
-        \texttt{synthetic\_guard} flag in all outputs;
-  \item A claim with status \textsc{Refuted} must have its
-        \texttt{engineering\_action} executed before the system can proceed;
-  \item A claim with status \textsc{Pending\_Toolchain} must not influence
-        any engineering decision.
-\end{enumerate}
-\end{proposition}

@@ -1,144 +1,144 @@
 \section{Conclusion and Open Problems}
 \label{sec:conclusion}
 
-\subsection{Summary of Contributions}
+\subsection{Summary of Proven Contributions}
 
 This paper presents a formal mathematical framework for cross-jurisdictional
-symbolic legal reasoning. The key contributions are:
-
-\begin{enumerate}
-  \item A \textbf{three-layer legal ontology} ($L_0$/$L_1$/$L_2$) with
-        formal definitions of 6 primitives, 15 meta-ontological categories,
-        and 20+ domain concepts (Section~\ref{sec:ontology});
-  \item \textbf{Horn closure monotonicity} and \textbf{bounded correctness}
-        proved analytically and verified over 82,836 test cases
-        (Section~\ref{sec:horn});
-  \item \textbf{Dung AAF grounded extension} existence and uniqueness proved
-        by exhaustive enumeration over 66,066 attack graphs
-        (Section~\ref{sec:aaf});
-  \item \textbf{Kripke temporal invariants} including mutual exclusion and
-        the $\square(t_f < t_p)$ guard, verified by Z3 SMT solving
-        (Section~\ref{sec:kripke});
-  \item \textbf{10 explicit counterexamples} refuting claims about evaluator
-        monotonicity, DP epsilon determinability, graph similarity metricity,
-        and full-dimensional Banach contraction
-        (Sections~\ref{sec:evaluator}--\ref{sec:dp});
-  \item A 7-level \textbf{evidence-calibrated trust label system} that
-        tracks every claim through its proof lifecycle
-        (Section~\ref{sec:trust});
-  \item \textbf{All proof artifacts are machine-reproducible} via Python
-        scripts with Lean~4, Z3, Hypothesis, and SymPy verification.
-\end{enumerate}
-
-\subsection{Theorem Status Table}
+symbolic legal reasoning. The following results are \textbf{formally proved}
+in Lean~4 with no \texttt{sorry} placeholders:
 
 \begin{table}[h]
 \centering
 \small
-\begin{tabular}{@{}llcl@{}}
+\begin{tabular}{@{}llp{6cm}@{}}
 \toprule
-\textbf{ID} & \textbf{Theorem/Claim} & \textbf{Status} & \textbf{Method} \\
+\textbf{Lean file} & \textbf{Count} & \textbf{Key theorems} \\
 \midrule
-T\ref{thm:horn-correct} & Bounded Horn correctness & $\checkmark$ & Enumeration \\
-T\ref{thm:horn-mono} & Horn monotonicity & $\checkmark$ & Analytic \\
-T\ref{thm:horn-pbt} & Horn 5 properties & $\checkmark$ & PBT (82,836) \\
-T\ref{thm:aaf-ge} & AAF grounded extension & $\checkmark$ & Enumeration (66,066) \\
-P\ref{prop:stratified} & Stratified correspondence & $\checkmark$ & Enumeration (14) \\
-T\ref{thm:stage1} & Stage 1 monotone & $\checkmark$ & Analytic \\
-T\ref{thm:stage2} & Stage 2 deterministic & $\checkmark$ & Enumeration (10) \\
-T\ref{thm:stage3a} & Stage 3a convergence & $\checkmark$ & T\ref{thm:aaf-ge} \\
-T\ref{thm:op-termination} & 5 operational bounds & $\checkmark$ & Enumeration (5) \\
-T\ref{thm:kripke-mutex} & Kripke mutex & $\checkmark$ & Z3 UNSAT \\
-T\ref{thm:temporal-guard} & $\square(t_f < t_p)$ & $\checkmark$ & Z3 induction \\
-T\ref{thm:rosetta-toy} & Toy Rosetta & $\checkmark$ & Enumeration (243) \\
-T\ref{thm:rosetta-real} & Real Rosetta & $\triangle$ & 44 rows only \\
-T\ref{thm:banach-scalar} & Scalar Banach & $\checkmark$ & SymPy \\
-T\ref{thm:dp-cn} & CN no monotone $\varepsilon$ & $\checkmark$ & Z3 UNSAT \\
-T\ref{thm:cbl-ni} & CBL = non-interference & $\checkmark$ & Structural \\
-T\ref{thm:trust-consistency} & Trust label consistency & $\checkmark$ & Program \\
+\texttt{FiniteMonotoneIteration.lean} & 10
+  & \texttt{exists\_fixpoint\_le\_card},
+    \texttt{fixed\_at\_card} \\
+\texttt{DungFixedPoint.lean} & 16
+  & \texttt{groundedSpec\_is\_least\_fixed\_point},
+    \texttt{F\_monotone},
+    \texttt{self\_attack\_not\_in\_grounded} \\
+\texttt{HornDefinitions.lean} + \texttt{HornFixedPoint.lean} & 12
+  & \texttt{TH\_monotone},
+    \texttt{horn\_result\_least\_fixed\_point},
+    \texttt{horn\_completeness} \\
+\texttt{WeightedSupNorm.lean} & 4
+  & \texttt{weightedSupDist\_triangle},
+    \texttt{weightedSupDist\_complete} \\
+\texttt{ContractionCondition.lean} & 1
+  & \texttt{lipschitz\_coupling\_implies\_weighted\_contraction} \\
+\texttt{BanachEffectiveNodes.lean} & 4
+  & \texttt{pricingFn\_contraction},
+    \texttt{pricingFn\_unique\_fixed\_point} \\
+\texttt{UnifiedModel.lean} & 7
+  & \texttt{soundness\_aaf},
+    \texttt{full\_chain},
+    \texttt{gc2\_completeness} \\
+\texttt{FiniteRosetta.lean} & 4
+  & \texttt{no\_total\_functor},
+    \texttt{obstruction\_density\_gt\_two\_thirds} \\
+\texttt{FiniteGaloisAdjunction.lean} & 1
+  & \texttt{galois\_connection\_of\_residuated} \\
+\texttt{TemporalKripke.lean} & 2
+  & \texttt{temporal\_guard\_always},
+    \texttt{litigation\_always\_guard} \\
+\texttt{JC\_Formalization.lean} & 3
+  & \texttt{advance\_preserves\_domain\_bound},
+    \texttt{advance\_cannot\_revive\_refuted} \\
 \midrule
-CE\ref{ce:eval-mono} & Evaluator monotone & $\times$ & Counterexample \\
-CE\ref{ce:stage3b} & Cross-graph monotone & $\times$ & Counterexample \\
-CE\ref{ce:banach-full} & Full Banach metric & $\times$ & Undefined \\
-CE\ref{ce:dp-cross} & Cross-jurisdiction $\varepsilon$ & $\times$ & 2-model \\
-CE\ref{ce:dp-floor} & Floor clipping $\varepsilon$-DP & $\times$ & $\infty$-ratio \\
+\textbf{Total} & \textbf{64} & \\
 \bottomrule
 \end{tabular}
-\caption{Complete theorem status. $\checkmark$: proved/verified.
-$\triangle$: data-insufficient. $\times$: refuted.}
-\label{tab:theorem-status}
+\caption{Summary of all Lean-verified theorems across the codebase.}
+\label{tab:lean-summary}
 \end{table}
 
-\subsection{Extended Theoretical Foundations}
+\subsection{Refuted Claims}
 
-The juris-calculus theory module contains additional formalizations not
-covered in the main body of this paper. We list them here with their
-evidence status for completeness:
+The following claims were \textbf{refuted} by explicit counterexamples:
 
 \begin{enumerate}
-  \item \textbf{Counts-As Institutional Facts}~\cite{searle1995,hart1961}.
-        Formalizes Searle's ``$X$ counts as $Y$ in context $C$'' and
-        Hart's rule of recognition within the compiler architecture.
-        Maps physical tokens (signed PDFs) to legal facts (contract
-        formation) through context-dependent type promotion.
-        Status: \textsc{Engineering\_Baseline}.
-
-  \item \textbf{Discretionary Concepts as Rough Sets}~\cite{pawlak1982}.
-        Models 16 discretionary legal concepts (e.g., ``reasonable'',
-        ``proportionate'') using Pawlak's rough set theory, replacing
-        the binary TAINTED marker with a rough membership function.
-        Status: \textsc{Engineering\_Baseline}.
-
-  \item \textbf{Procedural Justice as Deontic Logic}~\cite{deontic}.
-        Reinterprets 10 procedural justice defense rules as deontic
-        statements in Standard Deontic Logic with temporal operators.
-        Status: \textsc{Engineering\_Baseline}.
-
-  \item \textbf{Paradigm Incommensurability}~\cite{stevens1946}.
-        Proves that LLM-as-Judge (ordinal scale) and symbolic
-        confidence (ratio scale) are measurement-theoretically
-        incommensurable under Stevens' typology.
-        Status: \textsc{Engineering\_Baseline}.
-
-  \item \textbf{Compiler as Abstract Interpretation}~\cite{cousot1977}.
-        Reframes the 5-stage juris-calculus compiler as an instance
-        of Cousot \& Cousot abstract interpretation. Currently an
-        architectural catalog, not a standalone proof.
-        Status: \textsc{Engineering\_Baseline}.
-
-  \item \textbf{Exception Chain Depth as Kolmogorov Complexity}~\cite{kolmogorov1965}.
-        Connects rule structural complexity to Minimum Description
-        Length, explaining why single-premise rules have the highest
-        cross-domain false-triggering rate.
-        Status: \textsc{Conjecture}.
+  \item \textbf{Evaluator monotonicity}: The original combined evaluator
+        is non-monotone (Counterexample~\ref{ce:eval-mono}).
+  \item \textbf{DP $\varepsilon$ determinability}: No monotone
+        $\varepsilon$ function exists over the CN privilege lattice
+        (Theorem~\ref{thm:dp-cn}).
+  \item \textbf{Cross-graph monotonicity}: Adding a fact can shrink the
+        grounded extension (Counterexample~\ref{ce:stage3b}).
+  \item \textbf{Floor-clipping DP}: The mechanism violates
+        $\varepsilon$-DP (Counterexample~\ref{ce:dp-floor}).
 \end{enumerate}
 
-These modules provide theoretical scaffolding for the core results
-presented in Sections~\ref{sec:horn}--\ref{sec:noninterference} and
-are available as runnable Python code in the \texttt{theory/} directory.
+\subsection{Data-Insufficient and Planned Results}
+
+\begin{enumerate}
+  \item \textbf{Full-dimensional Banach contraction}:
+        \texttt{BanachEffectiveNodes.lean} proves the contraction for
+        the finite effective-node pricing function only. The
+        multi-dimensional case requires a metric on the full pricing
+        space and real timesheet data (currently: 0 real timesheets,
+        225 fee-schedule proxies).
+
+  \item \textbf{Real-data Rosetta functor}:
+        \texttt{FiniteRosetta.lean} proves \texttt{no\_total\_functor}
+        for the finite toy model ($\texttt{obstruction} = 37$). The
+        full legal inventory ($> 2{,}000$ concepts) requires a dataset
+        of $\geq 2{,}000$ cross-jurisdiction concept pairs.
+
+  \item \textbf{General AAF convergence for $n > 4$}:
+        \texttt{DungFixedPoint.lean} proves the grounded extension
+        exists and is unique for all finite AFs (by the
+        \texttt{FiniteMonotoneIteration} theorem). The \emph{operational}
+        convergence bound (number of iterations) for $n > 4$ remains
+        to be characterized.
+
+  \item \textbf{Full evaluator equivalence}:
+        Does the stratified evaluator (Horn then AAF) produce identical
+        output to the original combined evaluator for all production
+        rules? This is the most important open question for the
+        juris-calculus architecture.
+\end{enumerate}
+
+\subsection{Spec-First Transition Readiness}
+
+The juris-calculus system is designed for a \emph{spec-first} transition
+from formal specification to production implementation:
+
+\begin{enumerate}
+  \item \textbf{Formal spec}: 64 Lean theorems specify the behavior of
+        each component (Horn closure, AAF, pricing, temporal model);
+  \item \textbf{Trust labels}: The 7-level evidence system
+        (Section~\ref{sec:trust}) gates every engineering decision on
+        its verified evidence level;
+  \item \textbf{Certificate/checker boundary}: Lean proofs are checked
+        by the Lean kernel, Z3 scripts by Z3's proof checker, Python
+        enumerations by the test runner. No claim crosses its checker
+        boundary;
+  \item \textbf{TAINTED fail-closed}: Refuted or unverifiable facts
+        are excluded from outputs.
+\end{enumerate}
+
+This architecture ensures that the gap between ``formally specified''
+and ``production-ready'' is explicitly tracked and never silently closed.
 
 \subsection{Open Problems}
 
 \begin{openproblem}[Full evaluator equivalence]
 \label{op:eval-equiv}
-Does the stratified evaluator (Horn then AAF) produce identical output to
-the original combined evaluator for all production rules? This is the
-most important open question for the juris-calculus architecture.
-\end{openproblem}
-
-\begin{openproblem}[General AAF convergence]
-\label{op:aaf-general}
-Does the Dung grounded extension converge for all finite $n$ (not just
-$n \leq 4$)? While the theoretical answer is yes (by Tarski's theorem on
-complete lattices), the \emph{operational} convergence bound for the
-legal argument construction remains open.
+Does the stratified evaluator produce identical output to the original
+combined evaluator for all production rules? The cross-graph monotonicity
+failure (Counterexample~\ref{ce:stage3b}) suggests this may require a
+more refined analysis than simple monotone iteration.
 \end{openproblem}
 
 \begin{openproblem}[Real-data Rosetta functor]
 \label{op:rosetta-real}
 Does a total semantic-preserving functor exist for the complete PRC/HK/US
-legal inventory? The current 44-row dataset is insufficient. A dataset of
-$\geq 2{,}000$ cross-jurisdiction concept pairs would be needed.
+legal inventory? The current finite model shows
+$\texttt{obstruction\_density} > 2/3$.
 \end{openproblem}
 
 \begin{openproblem}[Full-dimensional Banach pricing]
@@ -147,22 +147,38 @@ Can the pricing map be extended to a full-dimensional Banach contraction
 with a well-defined metric and real timesheet data?
 \end{openproblem}
 
-\begin{openproblem}[Lean formalization]
+\begin{openproblem}[Lean formalization completion]
 \label{op:lean}
-Three Lean~4 drafts exist (FiniteRosetta, BanachEffectiveNodes,
-FiniteGaloisAdjunction) but contain \texttt{sorry} placeholders and
-require Mathlib. Completing these formalizations would elevate the
-trust labels from \textsc{Exhaustive\_Enumeration} to
-\textsc{Lean\_Proved}.
+Several Lean files contain theorems proved without \texttt{sorry}.
+Extending the formalization to cover the data-insufficient claims
+(Rosetta real, Banach full) would elevate their trust labels from
+\textsc{Data\_Insufficient} to \textsc{Lean\_Proved}.
 \end{openproblem}
+
+\subsection{Future Work}
+
+\begin{enumerate}
+  \item \textbf{Data collection}: Acquire $\geq 2{,}000$ real
+        cross-jurisdiction concept pairs and $\geq 100$ real timesheets
+        to resolve the data-insufficient claims;
+  \item \textbf{Lean Mathlib integration}: Port the
+        \texttt{WeightedSupNorm} and \texttt{FiniteRosetta} results
+        to Mathlib-compatible definitions for broader reuse;
+  \item \textbf{Runtime monitoring}: Implement the trust label system
+        as a runtime gate in the juris-calculus evaluation engine;
+  \item \textbf{Extended AAF}: Characterize the operational convergence
+        bound for Dung AFs with $n > 4$ arguments;
+  \item \textbf{Cross-system validation}: Apply the evidence-calibrated
+        trust label methodology to other AI-assisted formalization
+        projects (drug discovery, financial modeling).
+\end{enumerate}
 
 \subsection{Broader Impact}
 
 The evidence-calibrated trust label system is applicable beyond legal
-reasoning. Any domain where AI agents produce mathematical claims
-(e.g., drug discovery, materials science, financial modeling) can adopt
-this system to prevent the ``hallucination-to-production'' pipeline where
-unverified AI assertions become engineering invariants.
+reasoning. Any domain where AI agents produce mathematical claims can
+adopt this system to prevent the ``hallucination-to-production'' pipeline
+where unverified AI assertions become engineering invariants.
 
 The key principle is simple: \textbf{the strongest claim you can make is
 the one your evidence supports---and no stronger.}

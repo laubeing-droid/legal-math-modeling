@@ -1,11 +1,14 @@
-# Standard Scalar Laplace Mechanism: Proof of ε-Differential Privacy
+# Standard Scalar Laplace Mechanism: Proof of epsilon-Differential Privacy
 
-## Theorem (Standard Laplace Mechanism)
+> **Nature of artifact:** Mathematical proof written as documentation, verified
+> by reference to Dwork & Roth Theorem 3.6.
 
-Let f: D → R be a scalar-valued query function with L1-sensitivity:
+## Theorem
+
+Let f: D -> R be a scalar-valued query function with L1-sensitivity:
 
 ```
-Δ₁(f) = max_{D~D'} |f(D) - f(D')|
+Delta_1(f) = max_{D ~ D'} |f(D) - f(D')|
 ```
 
 where D ~ D' denotes neighboring datasets (differing in at most one record).
@@ -13,88 +16,90 @@ where D ~ D' denotes neighboring datasets (differing in at most one record).
 The mechanism M defined as:
 
 ```
-M(D) = f(D) + Lap(Δ₁(f)/ε)
+M(D) = f(D) + Lap(Delta_1(f) / epsilon)
 ```
 
-satisfies **ε-differential privacy**, where Lap(b) denotes the Laplace
+satisfies **epsilon-differential privacy**, where Lap(b) denotes the Laplace
 distribution with scale parameter b and PDF:
 
 ```
-Lap(b; x) = (1/2b) · exp(-|x|/b)
+Lap(b; x) = (1 / 2b) * exp(-|x| / b)
 ```
 
 ## Assumptions
 
-1. **Scalar output**: f(D) ∈ R (single real value)
-2. **Finite sensitivity**: Δ₁(f) < ∞
-3. **Neighboring relation**: D and D' differ in exactly one record
+1. **Scalar output:** f(D) in R (single real value)
+2. **Finite sensitivity:** Delta_1(f) < infinity
+3. **Neighboring relation:** D and D' differ in exactly one record
    (replacement or addition/deletion model)
-4. **Privacy parameter**: ε > 0
-5. **Standard Laplace noise**: Independent noise drawn from Lap(Δ/ε)
+4. **Privacy parameter:** epsilon > 0
+5. **Standard Laplace noise:** Independent noise drawn from Lap(Delta / epsilon)
 
 ## Proof
 
-### Step 1: PDF Ratio for Neighboring Datasets
+### Step 1: PDF ratio for neighboring datasets
 
-For any output y ∈ R and neighboring datasets D ~ D':
-
-```
-PDF[M(D) = y]     (1/2b) · exp(-|y - f(D)|/b)
--------------  =  --------------------------------
-PDF[M(D') = y]    (1/2b) · exp(-|y - f(D')|/b)
-
-                = exp((|y - f(D')| - |y - f(D)|) / b)
-```
-
-where b = Δ₁(f)/ε.
-
-### Step 2: Apply the Triangle Inequality
+For any output y in R and neighboring datasets D ~ D':
 
 ```
-|y - f(D')| - |y - f(D)| ≤ |f(D) - f(D')|    (reverse triangle inequality)
+Pr[M(D) = y]     (1/2b) * exp(-|y - f(D)| / b)
+------------  =  --------------------------------  =  exp((|y - f(D')| - |y - f(D)|) / b)
+Pr[M(D') = y]    (1/2b) * exp(-|y - f(D')| / b)
+```
+
+where b = Delta_1(f) / epsilon.
+
+### Step 2: Apply the reverse triangle inequality
+
+```
+|y - f(D')| - |y - f(D)|  <=  |f(D) - f(D')|
 ```
 
 By definition of sensitivity:
 
 ```
-|f(D) - f(D')| ≤ Δ₁(f)
+|f(D) - f(D')|  <=  Delta_1(f)
 ```
 
-### Step 3: Bound the Ratio
+### Step 3: Bound the ratio
 
 ```
-PDF[M(D) = y]
-------------- ≤ exp(Δ₁(f) / b) = exp(Δ₁(f) / (Δ₁(f)/ε)) = exp(ε) = e^ε
-PDF[M(D') = y]
+Pr[M(D) = y]
+------------  <=  exp(Delta_1(f) / b)
+Pr[M(D') = y]
+
+             =  exp(Delta_1(f) / (Delta_1(f) / epsilon))
+
+             =  exp(epsilon)
+
+             =  e^epsilon
 ```
 
-### Step 4: Integrate Over Any Event S
+### Step 4: Integrate over any event S
 
-For any measurable set S ⊆ R:
+For any measurable set S subset R:
 
 ```
-Pr[M(D) ∈ S]   ∫_S PDF[M(D)=y] dy
------------- = --------------------- ≤ max_y PDF[M(D)=y] / PDF[M(D')=y] ≤ e^ε
-Pr[M(D') ∈ S]  ∫_S PDF[M(D')=y] dy
+Pr[M(D) in S]     integral_S Pr[M(D) = y] dy
+--------------  =  -----------------------------  <=  max_y (Pr[M(D)=y] / Pr[M(D')=y])  <=  e^epsilon
+Pr[M(D') in S]    integral_S Pr[M(D') = y] dy
 ```
 
-Therefore: **Pr[M(D) ∈ S] ≤ e^ε · Pr[M(D') ∈ S]** for all measurable S.
+Therefore: **Pr[M(D) in S] <= e^epsilon * Pr[M(D') in S]** for all measurable S. QED.
 
-∎
+## Sensitivity in different models
 
-## Sensitivity in Different Models
+| Model | Neighboring definition | Delta_1 for sum query |
+|-------|------------------------|-----------------------|
+| Add/Delete | D' = D union {x} or D \ {x} | max_x |x| |
+| Replace | D' replaces one element | 2 * max_x |x| |
 
-| Model | Neighboring Definition | Δ₁ for sum query |
-|-------|----------------------|-----------------|
-| Add/Delete | D' = D ∪ {x} or D \\{x} | max_x \|x\| |
-| Replace | D' replaces one element | 2 · max_x \|x\| |
+## Key properties
 
-## Key Properties
-
-1. **Privacy-utility tradeoff**: Smaller ε → larger noise → less accuracy
-2. **Scale calibration**: Noise scale b = Δ/ε is TIGHT (optimal for single query)
-3. **Post-processing immunity**: Any deterministic function g applied to M(D)
-   preserves ε-DP (by post-processing theorem)
+1. **Privacy-utility tradeoff:** Smaller epsilon -> larger noise -> less accuracy
+2. **Scale calibration:** Noise scale b = Delta / epsilon is TIGHT (optimal for single query)
+3. **Post-processing immunity:** Any deterministic function g applied to M(D)
+   preserves epsilon-DP (by post-processing theorem)
 
 ## Reference
 

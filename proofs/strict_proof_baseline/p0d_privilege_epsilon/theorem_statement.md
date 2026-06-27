@@ -1,7 +1,7 @@
 # Theorem D1: Privilege Level Does Not Logically Entail Unique or Bounded DP Epsilon
 
 ## Scope
-- **Inventory**: finite CN only (10 privilege levels from `jurisdiction_lattices.json`).
+- **Inventory**: finite CN only (10 privilege levels).
 - **Jurisdiction**: CN-only.
 - **Dimension**: single-dimension (privilege level → DP epsilon).
 
@@ -135,20 +135,40 @@ This is a **policy choice**, not a mathematical theorem.
 
 ---
 
-## 6. Status and Allowed Final States
+## 6. Refutation Method (Z3 Two-Model Witness)
+
+**Status**: `REFUTED_BY_COUNTEREXAMPLE`
+
+**Method**: Z3 SMT solver constructs two internally consistent policy models:
+
+- **CN model**: `epsilon(5) = 1.0` (satisfiable)
+- **US model**: `epsilon(5) = 2.5` (satisfiable)
+
+Same privilege level, different epsilon values — privilege alone **underdetermines** epsilon.
+
+**Important**: The epsilon values (1.0, 2.5) are **policy model constructions**, not empirical legal facts. The refutation proves that `privilege → epsilon` is **not a pure function**.
+
+**Open question**: `epsilon = f(privilege, jurisdiction, policy)` remains an open policy design question.
+
+---
+
+## 7. Lean Formalization
+
+### FiniteGaloisAdjunction.lean — 2 Supporting Theorems
+
+- **Theorem 1**: If `α: P_CN → ℝ` is undefined on any element (as when `dp_epsilon = "NOT_DETERMINED_BY_LAW"`), the Galois adjunction property is vacuously unsatisfiable for that element.
+- **Theorem 2**: The coproduct lattice `L_⊔` with `L_US = DATA_UNAVAILABLE` and `L_HK = DATA_UNAVAILABLE` cannot support a non-constant jurisdiction-independent morphism — directly implying that `ε: P → ℝ` cannot be derived from the lattice structure alone.
+
+---
+
+## 8. Status and Allowed Final States
 
 - **Status**: `REFUTED_BY_COUNTEREXAMPLE` (two-model witness)
-- **Reason**: Z3 constructs two internally consistent policy models:
-  - CN model: `epsilon(5) = 1.0` (satisfiable)
-  - US model: `epsilon(5) = 2.5` (satisfiable)
-  Same privilege level, different epsilon → privilege alone **underdetermines** epsilon.
-- **Important**: Epsilon values (1.0, 2.5) are **policy model constructions**, not empirical legal facts. The refutation proves `privilege → epsilon` is **not a pure function**.
-- **Open**: `epsilon = f(privilege, jurisdiction, policy)` remains an open policy design question.
 - **Allowed Final States**: `REFUTED_BY_COUNTEREXAMPLE`, `OPEN_CONJECTURE`
 
 ---
 
-## 7. Key Definitions Summary
+## 9. Key Definitions Summary
 
 | Symbol | Type | Definition |
 |--------|------|------------|

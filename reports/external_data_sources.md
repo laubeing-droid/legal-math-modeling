@@ -1,66 +1,66 @@
-# 外部数据源报告（联网收集）
+# External Data Sources Report (Online Collection)
 
-> 日期：2026-06-19
-> 用途：#94 MDL vs FP 实证 + #95 贝叶斯校准
+> **Date:** 2026-06-19
+> **Purpose:** #94 MDL vs FP empirical study + #95 Bayesian calibration
 
 ---
 
-## 已下载并分析
+## Downloaded and Analyzed
 
-### COMPAS 累犯预测数据集
+### COMPAS Recidivism Prediction Dataset
 
-- **来源：** ProPublica / GitHub
-- **URL：** `https://github.com/propublica/compas-analysis`
-- **文件：** `data/external/compas_scores_two_years.csv`
-- **记录数：** 7,214 条
-- **关键字段：** `decile_score`（1-10 风险分）、`two_year_recid`（二元再犯）、`race`、`age_cat`、`sex`
-- **校准结果：**
+- **Source:** ProPublica / GitHub
+- **URL:** `https://github.com/propublica/compas-analysis`
+- **File:** `data/external/compas_scores_two_years.csv`
+- **Records:** 7,214
+- **Key fields:** `decile_score` (1-10 risk score), `two_year_recid` (binary reoffend), `race`, `age_cat`, `sex`
+- **Calibration results:**
   - Brier score: 0.2295
   - ECE (5 bins): 0.0785
-  - COMPAS 对高分（7-10）高估风险（gap -0.11 到 -0.23）
-  - COMPAS 对低分（1-3）低估风险（gap +0.08 到 +0.11）
+  - COMPAS overestimates risk for high scores (7-10) (gap -0.11 to -0.23)
+  - COMPAS underestimates risk for low scores (1-3) (gap +0.08 to +0.11)
 
-### LegalBench 法律推理基准
+### LegalBench Legal Reasoning Benchmark
 
-- **来源：** Stanford HazyResearch / HuggingFace
-- **URL：** `https://huggingface.co/datasets/nguha/legalbench`
-- **文件：** `data/external/legalbench/*.json`（11 个任务）
-- **记录数：** 2,529 条
-- **二元标签任务：** 4 个（consumer_contracts_qa: 396, diversity_6: 300, hearsay: 94, international_citizenship: 500）
+- **Source:** Stanford HazyResearch / HuggingFace
+- **URL:** `https://huggingface.co/datasets/nguha/legalbench`
+- **Files:** `data/external/legalbench/*.json` (11 tasks)
+- **Records:** 2,529
+- **Binary label tasks:** 4 (consumer_contracts_qa: 396, diversity_6: 300, hearsay: 94, international_citizenship: 500)
 
 ---
 
-## 已识别但未下载
+## Identified but Not Downloaded
 
-| 数据集 | 域 | 记录数 | 法域 | 访问 | 用途 |
+| Dataset | Domain | Records | Jurisdiction | Access | Use Case |
 |---|---|---|---|---|---|
-| CAIL2018 | 刑事 | 260K+ | CN | GitHub（需手动下载） | 中国法律罪名预测校准 |
-| JEC-QA | 多域 QA | 26K+ | CN | 学术共享 | 中国法律推理校准 |
-| CaseHOLD | 案例法 | 53K+ | US | HuggingFace | 案例法推理校准 |
-| LexGLUE | 7 任务 | 数万 | EU/US | HuggingFace | 跨法域 NLP 校准 |
-| ECHR/ECtHR | 人权 | 11K+ | EU | HuggingFace | 多标签校准 |
-| ILDC | 法院判决 | 35K+ | India | HuggingFace | 二元判决预测 |
-| SCOTUS Database | 最高法院 | 8K+ | US | 网站直接下载 | 美国最高法院预测 |
-| OpenLaw | 法院案例 | 百万级 | CN | 部分免费 | 中国裁判文书结构化 |
-| Pkulaw | 全法律 | 百万级 | CN | 需订阅 | 最高质量中国法律数据 |
+| CAIL2018 | Criminal | 260K+ | CN | GitHub (manual download required) | Chinese criminal charge prediction calibration |
+| JEC-QA | Multi-domain QA | 26K+ | CN | Academic sharing | Chinese legal reasoning calibration |
+| CaseHOLD | Case law | 53K+ | US | HuggingFace | Case law reasoning calibration |
+| LexGLUE | 7 tasks | Tens of thousands | EU/US | HuggingFace | Cross-jurisdiction NLP calibration |
+| ECHR/ECtHR | Human rights | 11K+ | EU | HuggingFace | Multi-label calibration |
+| ILDC | Court judgments | 35K+ | India | HuggingFace | Binary judgment prediction |
+| SCOTUS Database | Supreme Court | 8K+ | US | Website direct download | US Supreme Court prediction |
+| OpenLaw | Court cases | Millions | CN | Partially free | Chinese court document structuring |
+| Pkulaw | All law | Millions | CN | Subscription required | Highest quality Chinese legal data |
 
 ---
 
-## 关键发现
+## Key Findings
 
-1. **COMPAS 是唯一已下载的包含真实预测概率 + 真实结果的数据集。** 它的校准特征（高分高估、低分低估）为 juris-calculus 的校准提供了 baseline 参考。
+1. **COMPAS is the only downloaded dataset containing real predicted probabilities + real outcomes.** Its calibration characteristics (overestimation at high scores, underestimation at low scores) provide a baseline reference for the juris-calculus calibration.
 
-2. **LegalBench 提供了 4 个二元标签任务**，可用于测试 juris-calculus 推理引擎在不同法律推理类型上的准确率和校准度。
+2. **LegalBench provides 4 binary label tasks** that can be used to test the juris-calculus reasoning engine's accuracy and calibration across different legal reasoning types.
 
-3. **CAIL2018 是最相关的中国法律数据集**（260K+ 刑事案例），但需要通过 GitHub 手动下载（HuggingFace 镜像不可用）。
+3. **CAIL2018 is the most relevant Chinese legal dataset** (260K+ criminal cases), but requires manual GitHub download (HuggingFace mirror unavailable).
 
-4. **跨 CN/US/HK 法域映射数据集不存在。** 这是领域空白，juris-calculus 的 `claim_mapping.csv`（44 条）是目前已知的唯一跨 CN/US/HK 结构化映射数据。
+4. **A cross CN/US/HK jurisdiction mapping dataset does not exist.** This is a domain gap. The juris-calculus `claim_mapping.csv` (44 records) is the only known cross CN/US/HK structured mapping data available.
 
 ---
 
-## 下一步建议
+## Recommendations for Next Steps
 
-1. 用 COMPAS 做校准方法论验证（已有数据）
-2. 用 LegalBench 4 个二元任务做推理引擎基准测试
-3. 手动下载 CAIL2018 做中国法律校准（需 GitHub clone）
-4. 用 juris-calculus 自有数据（180 claims + 17 proof outcomes）做内部校准
+1. Use COMPAS for calibration methodology validation (data already available)
+2. Use LegalBench 4 binary tasks for reasoning engine benchmark testing
+3. Manually download CAIL2018 for Chinese legal calibration (requires GitHub clone)
+4. Use juris-calculus internal data (180 claims + 17 proof outcomes) for internal calibration

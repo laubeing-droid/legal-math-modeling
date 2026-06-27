@@ -1,4 +1,4 @@
-# Theorem B1 and B2: DP Lattice — Galois Connection and No Unified Morphism
+# Theorems B1 and B2: DP Lattice — Galois Connection and No Unified Morphism
 
 ## Scope
 - **B1**: finite CN only; single-dimension (privilege level → DP epsilon).
@@ -41,8 +41,6 @@ with:
 
 Then `L_CN = (P_CN, ≤, ⊤, ⊥)` is a **finite bounded lattice**.
 
-**Data source**: `jurisdiction_lattices.json`, CN section, `"levels"` array.
-
 ---
 
 ## 2. Galois Connection Definition (B1)
@@ -78,6 +76,8 @@ Formally:
 ```
 
 **Reason**: The data records `dp_epsilon = "NOT_DETERMINED_BY_LAW"` for all 10 levels. Therefore no function `α: P_CN → ℝ` is defined by the legal system. Any externally imposed `α` would be an **arbitrary policy choice**, not a mathematical derivation from the lattice structure.
+
+**Status**: `REFUTED_AS_LOGICAL_DERIVATION` — Galois connection requires monotone `α`; `α` is undefined for all 10 levels.
 
 ---
 
@@ -126,9 +126,22 @@ Formally:
 
 **Reason**: Since `L_US` and `L_HK` are `DATA_UNAVAILABLE`, any jurisdiction-independent `φ` would have to be defined solely on `L_CN`. But `L_CN` has no `dp_epsilon` assignments, so `φ` cannot be derived from legal data. Moreover, even if data were available, jurisdiction-independence would require `φ` to equate privilege levels that may have different legal meanings across jurisdictions (e.g., "attorney-client privilege" has different scope in CN, US, and HK).
 
+**Status**: `DATA_INSUFFICIENT_FOR_PROOF` (general) / `REFUTED_AS_LOGICAL_DERIVATION` (for jurisdiction-independent `φ`: cannot be defined when two components are missing).
+
 ---
 
-## 6. Status and Allowed Final States
+## 6. Lean Formalization
+
+### FiniteGaloisAdjunction.lean
+
+Reference `FiniteGaloisAdjunction.lean` for the formal Lean proof that a Galois connection `L_CN ⇄ (ℝ, ≤)` is refuted given `dp_epsilon = "NOT_DETERMINED_BY_LAW"` for all 10 levels. This file provides 2 supporting theorems:
+
+- **Theorem 1**: If `α: P_CN → ℝ` is undefined on any element, the adjunction property `α(a) ≤ b ⟺ a ≤ γ(b)` is vacuously unsatisfiable for that element.
+- **Theorem 2**: The coproduct lattice `L_⊔` with `L_US = DATA_UNAVAILABLE` and `L_HK = DATA_UNAVAILABLE` cannot support a non-constant jurisdiction-independent morphism.
+
+---
+
+## 7. Status and Allowed Final States
 
 ### B1
 - **Status**: `REFUTED_AS_LOGICAL_DERIVATION` (Galois connection requires monotone `α`; `α` is undefined for all 10 levels)
@@ -140,7 +153,7 @@ Formally:
 
 ---
 
-## 7. Key Definitions Summary
+## 8. Key Definitions Summary
 
 | Symbol | Type | Definition |
 |--------|------|------------|

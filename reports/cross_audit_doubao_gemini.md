@@ -1,241 +1,242 @@
-# 交叉审计：豆包 × Gemini × Claude Code × Playbook v3.0
+# Cross-Audit: Doubao x Gemini x Claude Code x Playbook v3.0
 
-> 日期：2026-06-19
-> 目标：逐点交叉比对，给出判断，最终产出统一数学模型的形式化证明系统
+> **Date:** 2026-06-19
+> **Objective:** Point-by-point cross-comparison, with final judgment, producing a unified mathematical model formal proof system
 
 ---
 
-## 一、逐点交叉比对
+## 1. Point-by-Point Cross-Comparison
 
-### 1. 现有极限（5 维度）
+### 1. Existing Limits (5 Dimensions)
 
-| # | 极限点 | 豆包 | Gemini | Playbook v3.0 | 一致性 | 判断 |
+| # | Limit Point | Doubao | Gemini | Playbook v3.0 | Consistency | Judgment |
 |---|---|---|---|---|---|---|
-| 1.1 | 20 定理仅 10 PROVED | ✓ 表格 | ✓ 列举 | ✓ §3.1 | **三方一致** | 准确 |
-| 1.2 | 3 REFUTED 不可挽救 | ✓ 表格 | ✓ "硬极限" | ✓ §3.1 | **三方一致** | 准确，永久禁集 |
-| 1.3 | 4 PENDING 依赖工具链 | ✓ 表格 | ✓ Lean 9 sorry | ✓ §3.4 | **三方一致** | 准确 |
-| 1.4 | 5 UNVERIFIED（豆包说 3，实为 5） | 说"3 个" | 未明确 | §10.1 列出 5 个 | **豆包少数** | 应为 5：T7/T8/T10/T13/T19 |
-| 1.5 | 证明强度分层（穷举/符号/SMT/TOY/DATA_PROXY） | ✓ 5 级 | ✓ 4 级 | ✓ §3 证据等级 | **基本一致** | 豆包多 DATA_PROXY 级，合理 |
-| 1.6 | 14+ 模块无正式证明 | ✓ 表格 | ✓ H4 | ✓ §10.2 | **三方一致** | 准确 |
-| 1.7 | Lean 9 sorry | ✓ 表格 | ✓ "直接关闭项" | ✓ §3.4 | **三方一致** | Banach 2/Rosetta 3/Galois 4 |
-| 1.8 | 形式化仅覆盖纯 Horn | ✓ | ✓ | ✓ | **三方一致** | 核心红线 |
-| 1.9 | 图相似度非度量 | ✓ CE-001/002 | ✓ H2 | ✓ §5 H2 | **三方一致** | 反射性+同一性失败 |
-| 1.10 | DP 无限隐私比 | ✓ CE-003 | ✓ H1 | ✓ §5 H1 | **三方一致** | Z3 UNSAT |
-| 1.11 | Banach 仅单维 | ✓ | ✓ | ✓ | **三方一致** | 多维未证明 |
-| 1.12 | 样本量小（#94 n=44, #95 n=13） | ✓ | ✓ | ✓ | **三方一致** | bootstrap CI 宽 |
-| 1.13 | 相关≠因果 | ✓ | ✓ | ✓ | **三方一致** | 红线 |
-| 1.14 | 跨域映射不可能性 | ✓ 12 obstruction | ✓ | ✓ §4.3 | **三方一致** | CN_ONLY 30/44 |
-| 1.15 | 外部数据法域局限 | ✓ COMPAS/LegalBench | ✓ | ✓ §8 | **三方一致** | US 数据不能推广 CN |
-| 1.16 | compiler_core 缺失 | ✓ bridge 不可用 | ✓ | ✓ §2.1 | **三方一致** | 永久不可用 |
-| 1.17 | temporal 未集成 | ✓ | ✓ H8 | ✓ §7.1 | **三方一致** | governing_law_snapshot 未调用 |
-| 1.18 | 5 模块无对抗测试 | ✓ | ✓ | ✓ §4.6 | **三方一致** | burden/evidence_dependency 等 |
-| 1.19 | 论文声称 vs 实际证据断层 | **未提** | ✓ Theorem 7.4/11.2/Prop 7.6 | ✓ §5 H6 | **Gemini+Playbook** | 豆包遗漏此项 |
-| 1.20 | 180 claims 全 positive_control | ✓ | ✓ | ✓ §4.5 | **三方一致** | 校准退化 |
-| 1.21 | 分词盲区 Bug 1 | ✓ | ✓ | ✓ §6 | **三方一致** | 下划线分词 |
-| 1.22 | 前向推导 Bug 2 | **未提** | ✓ | ✓ §6 | **Gemini+Playbook** | 豆包遗漏此项 |
-| 1.23 | Ontology L2 仅 contract | **未提** | ✓ H7 | ✓ §7.4 | **Gemini+Playbook** | 豆包遗漏此项 |
+| 1.1 | 20 theorems, only 10 PROVED | Yes (table) | Yes (listing) | Yes (Sec 3.1) | **3-party consistent** | Accurate |
+| 1.2 | 3 REFUTED, not salvageable | Yes (table) | Yes ("hard limit") | Yes (Sec 3.1) | **3-party consistent** | Accurate, permanent exclusion set |
+| 1.3 | 4 PENDING, depends on toolchain | Yes (table) | Yes (Lean 9 sorry) | Yes (Sec 3.4) | **3-party consistent** | Accurate |
+| 1.4 | 5 UNVERIFIED (Doubao says 3, actually 5) | Says "3" | Not explicit | Sec 10.1 lists 5 | **Doubao minority** | Should be 5: T7/T8/T10/T13/T19 |
+| 1.5 | Proof strength tiers (exhaust/symbolic/SMT/TOY/DATA_PROXY) | Yes (5 tiers) | Yes (4 tiers) | Yes (Sec 3 evidence levels) | **Substantially consistent** | Doubao adds DATA_PROXY tier, reasonable |
+| 1.6 | 14+ modules without formal proof | Yes (table) | Yes (H4) | Yes (Sec 10.2) | **3-party consistent** | Accurate |
+| 1.7 | Lean 9 sorry | Yes (table) | Yes ("direct closable items") | Yes (Sec 3.4) | **3-party consistent** | Banach 2 / Rosetta 3 / Galois 4 |
+| 1.8 | Formalization covers only pure Horn | Yes | Yes | Yes | **3-party consistent** | Core red line |
+| 1.9 | Graph similarity not a metric | Yes (CE-001/002) | Yes (H2) | Yes (Sec 5 H2) | **3-party consistent** | Reflexivity + identity failure |
+| 1.10 | DP infinite privacy ratio | Yes (CE-003) | Yes (H1) | Yes (Sec 5 H1) | **3-party consistent** | Z3 UNSAT |
+| 1.11 | Banach only single-dimensional | Yes | Yes | Yes | **3-party consistent** | Multi-dimensional not proved |
+| 1.12 | Small sample size (#94 n=44, #95 n=13) | Yes | Yes | Yes | **3-party consistent** | Wide bootstrap CI |
+| 1.13 | Correlation != causation | Yes | Yes | Yes | **3-party consistent** | Red line |
+| 1.14 | Cross-domain mapping impossibility | Yes (12 obstructions) | Yes | Yes (Sec 4.3) | **3-party consistent** | CN_ONLY 30/44 |
+| 1.15 | External data jurisdiction limitation | Yes (COMPAS/LegalBench) | Yes | Yes (Sec 8) | **3-party consistent** | US data cannot generalize to CN |
+| 1.16 | compiler_core missing | Yes (bridge unusable) | Yes | Yes (Sec 2.1) | **3-party consistent** | Permanently unavailable |
+| 1.17 | Temporal not integrated | Yes | Yes (H8) | Yes (Sec 7.1) | **3-party consistent** | governing_law_snapshot not called |
+| 1.18 | 5 modules without adversarial testing | Yes | Yes | Yes (Sec 4.6) | **3-party consistent** | burden/evidence_dependency etc. |
+| 1.19 | Paper claims vs actual evidence gap | **Not mentioned** | Yes (Theorem 7.4/11.2/Prop 7.6) | Yes (Sec 5 H6) | **Gemini+Playbook** | Doubao missed this item |
+| 1.20 | 180 claims all positive_control | Yes | Yes | Yes (Sec 4.5) | **3-party consistent** | Calibration degradation |
+| 1.21 | Tokenization blind spot Bug 1 | Yes | Yes | Yes (Sec 6) | **3-party consistent** | Underscore tokenization |
+| 1.22 | Forward derivation Bug 2 | **Not mentioned** | Yes | Yes (Sec 6) | **Gemini+Playbook** | Doubao missed this item |
+| 1.23 | Ontology L2 only contract | **Not mentioned** | Yes (H7) | Yes (Sec 7.4) | **Gemini+Playbook** | Doubao missed this item |
 
-**小结：** 三方对 23 个极限点中的 18 个完全一致。豆包遗漏 3 个（论文断层、Bug 2、Ontology L2），豆包少数 1 个（UNVERIFIED 应为 5 不是 3）。
+**Summary:** 3 parties fully agree on 18 of 23 limit points. Doubao missed 3 (paper gap, Bug 2, Ontology L2). Doubao minority on 1 (UNVERIFIED should be 5 not 3).
 
 ---
 
-### 2. 统一数学模型
+### 2. Unified Mathematical Model
 
-| 维度 | 豆包 | Gemini | 判断 |
+| Dimension | Doubao | Gemini | Judgment |
 |---|---|---|---|
-| **框架** | M0/M1/M2/M3/C 五层 | 嵌套同心圆（抽象解释） | **Gemini 更精确**：用 Galois connection 定义层间映射 |
-| **底层** | 公理层（3 个已证明公理） | 具体域：时态 Kripke K=(S,R,L) | **Gemini 更深**：时态 Kripke 是法律事实的完整语义域 |
-| **离散域** | T_PROVED 定理集合 | Strict Horn 偏序格 (P(Facts), ⊆) | **Gemini 更精确**：给出了格结构 |
-| **非单调域** | 未明确分离 | Dung AAF 独立层 | **Gemini 更好**：AAF 是非单调的，必须独立于 Horn |
-| **连续域** | 未明确 | Banach 赋范空间 (V, ‖·‖) | **Gemini 更好**：离散→连续的代数断层被显式标记 |
-| **宏观外壳** | C 全局约束 | 范畴论 + 贝叶斯校准 | **Gemini 更完整**：跨法域 + 不确定性测度 |
-| **层间映射** | f: T → 2^M2（集合映射） | (α,γ) Galois connection | **Gemini 更精确**：Galois connection 是抽象解释的标准工具 |
-| **推进算子** | P: T_PENDING → T_PROVED（明确定义） | 未定义 | **豆包更好**：给出了形式化的推进算子 |
-| **符号系统** | T/S/E/L/D/C 6 个符号 | 无独立符号系统 | **豆包更好**：符号化更规范 |
-| **Lean4 代码** | 完整 Lean4 代码（7 部分） | 无代码 | **豆包独有**：给出了可编译的 Lean4 形式化 |
+| **Framework** | M0/M1/M2/M3/C 5 layers | Nested concentric circles (abstract interpretation) | **Gemini more precise**: uses Galois connection for inter-layer mapping |
+| **Base layer** | Axiom layer (3 proved axioms) | Concrete domain: temporal Kripke K=(S,R,L) | **Gemini deeper**: temporal Kripke is complete semantic domain for legal facts |
+| **Discrete domain** | T_PROVED theorem set | Strict Horn partial order lattice (P(Facts), subset) | **Gemini more precise**: gives lattice structure |
+| **Non-monotonic domain** | Not explicitly separated | Dung AAF independent layer | **Gemini better**: AAF is non-monotonic, must be independent from Horn |
+| **Continuous domain** | Not explicit | Banach normed space (V, norm) | **Gemini better**: discrete-to-continuous algebraic gap is explicitly marked |
+| **Macro shell** | C global constraints | Category theory + Bayesian calibration | **Gemini more complete**: cross-jurisdiction + uncertainty measure |
+| **Inter-layer mapping** | f: T -> 2^M2 (set mapping) | (alpha, gamma) Galois connection | **Gemini more precise**: Galois connection is standard tool for abstract interpretation |
+| **Advance operator** | P: T_PENDING -> T_PROVED (explicitly defined) | Not defined | **Doubao better**: gives formalized advance operator |
+| **Symbol system** | T/S/E/L/D/C 6 symbols | No independent symbol system | **Doubao better**: more standardized symbolization |
+| **Lean4 code** | Complete Lean4 code (7 parts) | No code | **Doubao exclusive**: gives compilable Lean4 formalization |
 
-**小结：** Gemini 的数学架构更深（抽象解释框架），豆包的形式化更完整（Lean4 代码 + 推进算子）。两者互补。
+**Summary:** Gemini's mathematical architecture is deeper (abstract interpretation framework). Doubao's formalization is more complete (Lean4 code + advance operator). They are complementary.
 
 ---
 
-### 3. 统一后的新极限
+### 3. New Limits After Unification
 
-| # | 新极限 | 豆包 | Gemini | 判断 |
+| # | New Limit | Doubao | Gemini | Judgment |
 |---|---|---|---|---|
-| 3.1 | **单调性崩溃**（Horn+AAF 组合后） | 未明确 | ✓ "非单调推理的理论红线" | **Gemini 独有且正确**：这是统一模型的核心矛盾 |
-| 3.2 | **离散-连续代数断层** | 未明确 | ✓ "赋权半环/模糊值格" | **Gemini 独有且正确**：Horn 格和 Banach 空间无法无缝缝合 |
-| 3.3 | **函子障碍全局保真度崩溃** | 未明确 | ✓ "不可通约性测度" | **Gemini 独有且正确**：跨法域映射的结构性不可能 |
-| 3.4 | **计算复杂度爆炸** (PSPACE⊗NP) | 未明确 | ✓ "不可判定性红线" | **Gemini 独有且正确**：LTL 模型检验 + AAF 稳定扩展的组合 |
-| 3.5 | 推进后仍存极限（每个方向） | ✓ 详细表格 | ✓ 概述 | **豆包更详细**：每个推进点都有"推进后仍存极限" |
+| 3.1 | **Monotonicity collapse** (after Horn+AAF combination) | Not explicit | Yes ("non-monotonic reasoning theoretical red line") | **Gemini exclusive and correct**: core contradiction of unified model |
+| 3.2 | **Discrete-continuous algebraic gap** | Not explicit | Yes ("weighted semiring/fuzzy value lattice") | **Gemini exclusive and correct**: Horn lattice and Banach space cannot be seamlessly joined |
+| 3.3 | **Functor obstruction global fidelity collapse** | Not explicit | Yes ("incommensurability measure") | **Gemini exclusive and correct**: structural impossibility of cross-jurisdiction mapping |
+| 3.4 | **Complexity explosion** (PSPACE x NP) | Not explicit | Yes ("undecidability red line") | **Gemini exclusive and correct**: LTL model checking + AAF stable extension combination |
+| 3.5 | Limits remaining after advance (per direction) | Yes (detailed table) | Yes (overview) | **Doubao more detailed**: each advance point has "limits remaining after advance" |
 
-**小结：** Gemini 发现了 4 个统一后的新数学极限，这是豆包和 Playbook 都没有的。这是最关键的新发现。
+**Summary:** Gemini discovered 4 new mathematical limits after unification, which neither Doubao nor Playbook had. This is the most critical new finding.
 
 ---
 
-### 4. 从工程验证到形式化证明
+### 4. From Engineering Verification to Formal Proof
 
-| 维度 | 豆包 | Gemini | 判断 |
+| Dimension | Doubao | Gemini | Judgment |
 |---|---|---|---|
-| **4 步路线图** | 无 | ✓ "提炼不变量→隔离纯函数→Lean 形式化→桥接验证" | **Gemini 独有且关键** |
-| **Lean4 形式化代码** | ✓ 完整 7 部分代码 | 无 | **豆包独有** |
-| **约束定理** | ✓ 6 个 constraint theorem | 无 | **豆包独有** |
-| **推进算子边界保持** | ✓ advance_preserves_boundary | 无 | **豆包独有** |
-| **不可证明性证明** | ✓ 3 个 unprovable theorem | 无 | **豆包独有** |
+| **4-step roadmap** | No | Yes ("extract invariants -> isolate pure functions -> Lean formalization -> bridge verification") | **Gemini exclusive and critical** |
+| **Lean4 formalization code** | Yes (complete 7-part code) | No | **Doubao exclusive** |
+| **Constraint theorems** | Yes (6 constraint theorems) | No | **Doubao exclusive** |
+| **Advance operator boundary preservation** | Yes (advance_preserves_boundary) | No | **Doubao exclusive** |
+| **Unprovability proofs** | Yes (3 unprovable theorems) | No | **Doubao exclusive** |
 
-**小结：** Gemini 给出了方法论路线图，豆包给出了具体形式化代码。两者缺一不可。
+**Summary:** Gemini gives a methodology roadmap. Doubao gives concrete formalization code. Both are indispensable.
 
 ---
 
-### 5. 红线
+### 5. Red Lines
 
-| # | 红线 | 豆包 | Gemini | Playbook v3.0 | 一致性 |
+| # | Red Line | Doubao | Gemini | Playbook v3.0 | Consistency |
 |---|---|---|---|---|---|
-| 5.1 | Horn ≠ Full Pipeline | ✓ C 约束 | ✓ "偷换概念" | ✓ §12 | **三方一致** |
-| 5.2 | Toy ≠ Global | ✓ C 约束 | ✓ "加锁隔离" | ✓ §12 | **三方一致** |
-| 5.3 | Correlation ≠ Causation | ✓ C 约束 | ✓ | ✓ §12 | **三方一致** |
-| 5.4 | 不得声称 evaluator 单调 | ✓ | ✓ | ✓ | **三方一致** |
-| 5.5 | 不得声称 DP 满足 ε-DP | ✓ | ✓ | ✓ | **三方一致** |
-| 5.6 | 不得声称跨域通用映射存在 | ✓ | ✓ | ✓ | **三方一致** |
-| 5.7 | **分层计算，拒绝混推** | **未明确** | ✓ "严格单向偏序投影" | **未明确** | **Gemini 独有且关键** |
-| 5.8 | **证据等级严格对齐** | ✓ | ✓ | ✓ | **三方一致** |
+| 5.1 | Horn != Full Pipeline | Yes (C constraint) | Yes ("concept substitution") | Yes (Sec 12) | **3-party consistent** |
+| 5.2 | Toy != Global | Yes (C constraint) | Yes ("locked isolation") | Yes (Sec 12) | **3-party consistent** |
+| 5.3 | Correlation != Causation | Yes (C constraint) | Yes | Yes (Sec 12) | **3-party consistent** |
+| 5.4 | Must not claim evaluator monotonic | Yes | Yes | Yes | **3-party consistent** |
+| 5.5 | Must not claim DP satisfies epsilon-DP | Yes | Yes | Yes | **3-party consistent** |
+| 5.6 | Must not claim cross-domain universal mapping exists | Yes | Yes | Yes | **3-party consistent** |
+| 5.7 | **Layered computation, reject mixed derivation** | **Not explicit** | Yes ("strict unidirectional partial order projection") | **Not explicit** | **Gemini exclusive and critical** |
+| 5.8 | **Evidence level strict alignment** | Yes | Yes | Yes | **3-party consistent** |
 
 ---
 
-### 6. 可推进方向
+### 6. Advanceable Directions
 
-| 方向 | 豆包 | Gemini | Playbook v3.0 | 一致性 |
+| Direction | Doubao | Gemini | Playbook v3.0 | Consistency |
 |---|---|---|---|---|
-| Lean sorry 消除 | ✓ 详细 | ✓ 详细 | ✓ §4.1 | **三方一致** |
-| AAF n→∞ 泛化 | **未提** | ✓ | **未提** | **Gemini 独有** |
-| Banach 多维泛化 | ✓ | ✓ | **未提** | **Gemini+豆包** |
-| Rosetta obstruction 证明 | ✓ | ✓ | ✓ §4.3 | **三方一致** |
-| Theorem 7.4 严格证明 | **未提** | ✓ | ✓ §5 H6 | **Gemini+Playbook** |
-| Theorem 11.2 穷举证明 | **未提** | ✓ | ✓ §5 H6 | **Gemini+Playbook** |
-| Proposition 7.6 补证 | **未提** | ✓ | ✓ §5 H6 | **Gemini+Playbook** |
-| DP 修复（smooth clipping） | ✓ | ✓ | ✓ §5 H1 | **三方一致** |
-| 图相似度度量重构 | ✓ | ✓ | ✓ §5 H2 | **三方一致** |
-| MDL 猜想定理化 | ✓ | ✓ | ✓ §4.4 | **三方一致** |
-| 负样本校准 | ✓ CAIL/JEC-QA | **未提** | ✓ §4.5 | **豆包+Playbook** |
-| Temporal 集成 | ✓ | ✓ H8 | ✓ §7.1 | **三方一致** |
-| 14 模块证据化 | ✓ | ✓ H4 | ✓ §7.3 | **三方一致** |
-| Ontology L2 扩展 | ✓ | ✓ H7 | ✓ §7.4 | **三方一致** |
-| 知识图谱形式化验证 | ✓ | **未提** | **未提** | **豆包独有** |
-| Mutation testing | ✓ | **未提** | ✓ §7.5 | **豆包+Playbook** |
+| Lean sorry elimination | Yes (detailed) | Yes (detailed) | Yes (Sec 4.1) | **3-party consistent** |
+| AAF n->infinity generalization | **Not mentioned** | Yes | **Not mentioned** | **Gemini exclusive** |
+| Banach multi-dimensional generalization | Yes | Yes | **Not mentioned** | **Gemini+Doubao** |
+| Rosetta obstruction proof | Yes | Yes | Yes (Sec 4.3) | **3-party consistent** |
+| Theorem 7.4 rigorous proof | **Not mentioned** | Yes | Yes (Sec 5 H6) | **Gemini+Playbook** |
+| Theorem 11.2 exhaustive proof | **Not mentioned** | Yes | Yes (Sec 5 H6) | **Gemini+Playbook** |
+| Proposition 7.6 supplementary proof | **Not mentioned** | Yes | Yes (Sec 5 H6) | **Gemini+Playbook** |
+| DP fix (smooth clipping) | Yes | Yes | Yes (Sec 5 H1) | **3-party consistent** |
+| Graph similarity metric reconstruction | Yes | Yes | Yes (Sec 5 H2) | **3-party consistent** |
+| MDL conjecture theorization | Yes | Yes | Yes (Sec 4.4) | **3-party consistent** |
+| Negative sample calibration | Yes (CAIL/JEC-QA) | **Not mentioned** | Yes (Sec 4.5) | **Doubao+Playbook** |
+| Temporal integration | Yes | Yes (H8) | Yes (Sec 7.1) | **3-party consistent** |
+| 14 modules evidentialization | Yes | Yes (H4) | Yes (Sec 7.3) | **3-party consistent** |
+| Ontology L2 expansion | Yes | Yes (H7) | Yes (Sec 7.4) | **3-party consistent** |
+| Knowledge graph formal verification | Yes | **Not mentioned** | **Not mentioned** | **Doubao exclusive** |
+| Mutation testing | Yes | **Not mentioned** | Yes (Sec 7.5) | **Doubao+Playbook** |
 
 ---
 
-## 二、三方独有发现汇总
+## 2. Summary of Unique Findings
 
-### 豆包独有（4 项）
-1. **完整 Lean4 形式化代码**（7 部分，含 ProofStatus/TheoremMetadata/ConstraintViolation 类型）
-2. **推进算子 P 的形式化定义 + 边界保持性证明**
-3. **3 个不可证明性定理**（horn_monotone_infinite_unprovable 等）
-4. **知识图谱的形式化验证**（三元组一致性/无矛盾）
+### Doubao Exclusive (4 items)
+1. **Complete Lean4 formalization code** (7 parts, including ProofStatus/TheoremMetadata/ConstraintViolation types)
+2. **Advance operator P formalized definition + boundary preservation proof**
+3. **3 unprovability theorems** (horn_monotone_infinite_unprovable etc.)
+4. **Knowledge graph formal verification** (triple consistency/non-contradiction)
 
-### Gemini 独有（6 项）
-1. **统一抽象解释框架**（嵌套同心圆：Kripke→Horn→AAF→Banach→范畴论→贝叶斯）
-2. **4 个统一后新数学极限**（单调性崩溃/代数断层/函子障碍/复杂度爆炸）
-3. **"分层计算，拒绝混推"红线**（严格单向偏序投影链条）
-4. **从工程验证→形式化证明的 4 步路线图**
-5. **AAF n→∞ 全域泛化方向**
-6. **Theorem 7.4/11.2/Proposition 7.6 的证据断层**（豆包遗漏）
+### Gemini Exclusive (6 items)
+1. **Unified abstract interpretation framework** (nested concentric circles: Kripke -> Horn -> AAF -> Banach -> Category Theory -> Bayesian)
+2. **4 new mathematical limits after unification** (monotonicity collapse / algebraic gap / functor obstruction / complexity explosion)
+3. **"Layered computation, reject mixed derivation" red line** (strict unidirectional partial order projection chain)
+4. **4-step roadmap from engineering verification to formal proof**
+5. **AAF n->infinity full-domain generalization direction**
+6. **Theorem 7.4/11.2/Proposition 7.6 evidence gap** (Doubao missed)
 
-### Playbook v3.0 独有（5 项）
-1. **#94 MDL vs FP 三版演进**（v1→v2→v3, ρ=0.4272, p=0.0022）
-2. **#95 贝叶斯校准 + COMPAS 外部基准**（Brier=0.2209/0.2295）
-3. **最高人民法院 310 条规则数据**（15/20 定理映射）
-4. **31 个对抗性测试 + 2 个已知盲区**
-5. **13 个 benchmark cases + 期望输出**
+### Playbook v3.0 Exclusive (5 items)
+1. **#94 MDL vs FP 3-version evolution** (v1->v2->v3, rho=0.4272, p=0.0022)
+2. **#95 Bayesian calibration + COMPAS external benchmark** (Brier=0.2209/0.2295)
+3. **Supreme People's Court 310-rule dataset** (15/20 theorem mapping)
+4. **31 adversarial tests + 2 known blind spots**
+5. **13 benchmark cases + expected outputs**
 
 ---
 
-## 三、我的判断
+## 3. Judgment
 
-### 3.1 统一数学模型应该是什么
+### 3.1 What the Unified Mathematical Model Should Be
 
-**采用 Gemini 的嵌套同心圆架构 + 豆包的符号系统和形式化代码 + Playbook 的实证数据。**
+**Adopt Gemini's nested concentric circle architecture + Doubao's symbol system and formalization code + Playbook's empirical data.**
 
 ```
-统一模型 = Gemini 架构 + 豆包形式化 + Playbook 实证
+Unified Model = Gemini Architecture + Doubao Formalization + Playbook Empirical
 
-具体域:     Kripke K=(S,R,L)           ← Gemini（时态法律事实）
-    ↓ (α₁,γ₁) Galois connection
-离散域 A:   (P(Facts), ⊆) Horn 偏序格  ← Gemini + T2 PROVED
-    ↓ (α₂,γ₂) Horn-Dung 桥
-离散域 B:   AF=(A,Att) Dung AAF        ← Gemini + T9 PROVED + E_AAF_GROUNDED
-    ↓ 实数测度映射
-连续域 C:   (V,‖·‖) Banach 空间        ← Gemini + T17 PROVED（单维）
-    ↓ 范畴态射
-宏观层:     C_Juris 跨法域范畴           ← T16 PENDING + obstruction
-    ↓ 概率载荷
-校准层:     Hierarchical Bayes           ← T12 PROVED + #95 校准
+Concrete domain:   Kripke K=(S,R,L)           <- Gemini (temporal legal facts)
+    | (alpha1,gamma1) Galois connection
+Discrete domain A: (P(Facts), subset) Horn lattice <- Gemini + T2 PROVED
+    | (alpha2,gamma2) Horn-Dung bridge
+Discrete domain B: AF=(A,Att) Dung AAF        <- Gemini + T9 PROVED + E_AAF_GROUNDED
+    | real-valued measure mapping
+Continuous domain C: (V,norm) Banach space     <- Gemini + T17 PROVED (single-dim)
+    | category morphism
+Macro layer:       C_Juris cross-jurisdiction category <- T16 PENDING + obstruction
+    | probability load
+Calibration layer: Hierarchical Bayes          <- T12 PROVED + #95 calibration
 
-符号系统:   T/S/E/L/D/C                 ← 豆包
-约束层:     12 条红线（机器可检查）        ← 豆包 + Playbook
-推进算子:   P: T_PENDING → T_PROVED      ← 豆包
-实证映射:   g: T×D → [0,1]              ← Playbook（最高法/COMPAS/LegalBench）
+Symbol system:     T/S/E/L/D/C                <- Doubao
+Constraint layer:  12 red lines (machine-checkable) <- Doubao + Playbook
+Advance operator:  P: T_PENDING -> T_PROVED    <- Doubao
+Empirical mapping: g: T x D -> [0,1]          <- Playbook (Supreme Court/COMPAS/LegalBench)
 ```
 
-### 3.2 统一后的 4 个新极限（必须声明）
+### 3.2 Four New Limits After Unification (Must Be Declared)
 
-| # | 极限 | 根因 | 后果 |
+| # | Limit | Root Cause | Consequence |
 |---|---|---|---|
-| **N1** | **单调性崩溃** | AAF 引入非单调反驳 | 全局算子不能用 Tarski 不动点，必须分层不动点 |
-| **N2** | **离散-连续代数断层** | Horn 格 ⊆ 关系 vs Banach 实数度量 | 必须引入赋权半环或模糊值格，损失逻辑确定性 |
-| **N3** | **函子障碍** | CN/HK/US 法律概念异质性 | 全局满射不存在，必须引入不可通约性测度 |
-| **N4** | **复杂度爆炸** | LTL (PSPACE) ⊗ AAF NP-complete | 不加隔离则不可判定，必须严格限制规模 |
+| **N1** | **Monotonicity collapse** | AAF introduces non-monotonic rebuttal | Global operator cannot use Tarski fixed point; must use stratified fixed point |
+| **N2** | **Discrete-continuous algebraic gap** | Horn lattice subset-relation vs Banach real-valued metric | Must introduce weighted semiring or fuzzy value lattice, losing logical determinism |
+| **N3** | **Functor obstruction** | CN/HK/US legal concept heterogeneity | Global surjection does not exist; must introduce incommensurability measure |
+| **N4** | **Complexity explosion** | LTL (PSPACE) x AAF NP-complete | Without isolation, undecidable; must strictly limit scale |
 
-### 3.3 从工程验证到形式化证明的路线
+### 3.3 Roadmap from Engineering Verification to Formal Proof
 
 ```
-Step 1: 提炼数学不变量
-  - 从 20 个定理中提取纯数学性质（单调性/有限终止/对称性/收缩性）
-  - 排除工程实现细节
+Step 1: Extract mathematical invariants
+  - Extract pure mathematical properties (monotonicity/finite termination/symmetry/contraction)
+    from the 20 theorems
+  - Exclude engineering implementation details
 
-Step 2: 隔离纯函数
-  - 将每个定理的核心逻辑封装为无副作用的纯函数
-  - 输入输出类型明确，无外部依赖
+Step 2: Isolate pure functions
+  - Encapsulate each theorem's core logic as side-effect-free pure functions
+  - Explicit input/output types, no external dependencies
 
-Step 3: Lean4 形式化
-  - 对纯函数编写 Lean4 证明
-  - 按 Banach→Rosetta→Galois 顺序消除 sorry
-  - 每消除一个 sorry，运行 lake build 验证
+Step 3: Lean4 formalization
+  - Write Lean4 proofs for pure functions
+  - Eliminate sorry in order: Banach -> Rosetta -> Galois
+  - Run lake build to verify after each sorry elimination
 
-Step 4: 桥接验证
-  - 证明 Lean4 形式化版本 ↔ Python 工程版本 的等价性
-  - 用 property-based testing (Hypothesis) 验证桥接
+Step 4: Bridge verification
+  - Prove equivalence between Lean4 formalized version and Python engineering version
+  - Use property-based testing (Hypothesis) to verify the bridge
 ```
 
-### 3.4 最终红线（合并三方）
+### 3.4 Final Red Lines (Merged from All Three Parties)
 
-1. Horn Closure ≠ Full Pipeline
-2. Toy Finite Proof ≠ Global Domain Theorem
-3. Correlation ≠ Causation
-4. **分层计算，拒绝混推**（Gemini 新增）
-5. 不得声称 evaluator 单调
-6. 不得声称 DP 满足 ε-DP
-7. 不得声称跨域通用映射存在
-8. 不得将 PENDING 声称 PROVED
-9. 不得将 proxy 数据声称真实实证
-10. 不得将相关性声称因果
-11. **推进算子必须保持边界**（豆包新增）
-12. **统一后 4 个新极限必须在论文中声明**（Gemini 新增）
+1. Horn Closure != Full Pipeline
+2. Toy Finite Proof != Global Domain Theorem
+3. Correlation != Causation
+4. **Layered computation, reject mixed derivation** (Gemini addition)
+5. Must not claim evaluator monotonic
+6. Must not claim DP satisfies epsilon-DP
+7. Must not claim cross-domain universal mapping exists
+8. Must not claim PENDING as PROVED
+9. Must not claim proxy data as real empirical
+10. Must not claim correlation as causation
+11. **Advance operator must preserve boundary** (Doubao addition)
+12. **4 new limits after unification must be declared in the paper** (Gemini addition)
 
 ---
 
-## 四、下一步行动
+## 4. Next Steps
 
-### 立即（今天）
-1. 将统一数学模型写入 Playbook v3.0 作为 §15
-2. 将 Gemini 的 4 个新极限写入 §12 红线
-3. 将豆包的 Lean4 形式化代码保存到 `proofs/lean/juris_lean/JC_Formalization.lean`
+### Immediate (Today)
+1. Write unified mathematical model into Playbook v3.0 as Section 15
+2. Write Gemini's 4 new limits into Section 12 red lines
+3. Save Doubao's Lean4 formalization code to `proofs/lean/juris_lean/JC_Formalization.lean`
 
-### 本周
-4. 实现 Gemini 的 4 步路线图中的 Step 1（提炼不变量）
-5. 消除 Banach 2 sorry（最简单）
-6. 补充 Theorem 7.4/11.2 的证据断层
+### This Week
+4. Implement Step 1 of Gemini's 4-step roadmap (extract invariants)
+5. Eliminate Banach 2 sorry (simplest)
+6. Supplement Theorem 7.4/11.2 evidence gap
 
-### 下周
-7. 消除 Rosetta 3 sorry
-8. 集成 temporal reasoning
-9. 写论文骨架
+### Next Week
+7. Eliminate Rosetta 3 sorry
+8. Integrate temporal reasoning
+9. Write paper skeleton

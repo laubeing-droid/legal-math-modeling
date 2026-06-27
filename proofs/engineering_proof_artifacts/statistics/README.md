@@ -1,57 +1,65 @@
-# Statistics Proofs: Theil-Sen and Siegel
+# Statistics: Theil-Sen and Siegel -- Engineering Verification Artifacts
 
-## Status Summary
+> **Nature of artifact:** Python property tests + counterexample construction,
+> NOT a Lean formal proof.
+
+## Summary
 
 | Claim | Status | Evidence |
 |-------|--------|----------|
-| Clipped Theil-Sen = Pure Theil-Sen | **REFUTED** | 4 explicit counterexamples |
-| Siegel implementation matches definition | **VERIFIED** | Property tests + trace |
+| Clipped Theil-Sen == Pure Theil-Sen | **REFUTED** | 4 explicit counterexamples |
+| Siegel Repeated Median matches definition | **VERIFIED** | Property tests + trace |
 
-## Part 1: Clipped Theil-Sen Refutation
+## Part 1: Clipped Theil-Sen refutation
 
-### Claim Refuted
+### Claim refuted
+
 A "clipped" or "filtered" Theil-Sen estimator does NOT equal the pure
 Theil-Sen estimator in general.
 
-### Pure Theil-Sen Definition
+### Pure Theil-Sen definition
+
 ```
-β_TS = median{(y_j - y_i) / (x_j - x_i) : i < j}
+beta_TS = median{ (y_j - y_i) / (x_j - x_i) : i < j }
 ```
 
-### What "Clipped" Means
-- **Slope clipping**: Clamp individual slopes to [L, U] before taking median
-- **Value clipping**: Clamp final median to [L, U]
-- **Percentile filtering**: Exclude top/bottom N% of slopes as "outliers"
+### What "clipped" means
 
-### Key Counterexample
+- **Slope clipping:** Clamp individual slopes to [L, U] before taking median
+- **Value clipping:** Clamp final median to [L, U]
+- **Percentile filtering:** Exclude top/bottom N% of slopes as "outliers"
+
+### Key counterexample
+
 ```python
 x = [0, 1, 2, 3, 4, 5]
 y = [0, 2, 1, 5, 3, 20]
 
-Pure Theil-Sen:     0.8000
-Clipped to [-2, 8]: 0.7500
-DIFFERENCE:         0.0500  (> 0)
+Pure Theil-Sen:       0.8000
+Clipped to [-2, 8]:   0.7500
+Difference:           0.0500  (> 0)
 ```
 
-### Why It Matters
-The Theil-Sen estimator's theoretical 50% breakdown point ONLY holds for
-the **pure** median-of-all-slopes form. Any clipping/filtering:
+### Why it matters
+
+The Theil-Sen estimator's theoretical 50% breakdown point ONLY holds for the
+**pure** median-of-all-slopes form. Any clipping/filtering:
+
 1. Breaks the breakdown point guarantee
 2. Introduces data-dependent bias
 3. Makes the estimator non-equivariant to affine transformations
 
-### File
-- `clipped_theilsen_refutation.py` — Counterexamples + analysis
+## Part 2: Siegel Repeated Median verifier
 
-## Part 2: Siegel Repeated Median Verifier
+### Definition verified
 
-### Definition Verified
 ```
-s_i = median_{j≠i} (y_j - y_i) / (x_j - x_i)    for each i
-s    = median_i s_i                                (final estimator)
+s_i = median_{j != i} (y_j - y_i) / (x_j - x_i)    for each i
+s    = median_i s_i                                   (final estimator)
 ```
 
-### Implementation Properties
+### Properties verified
+
 | Property | Status |
 |----------|--------|
 | No scipy hard dependency | Yes (hand-written median) |
@@ -61,13 +69,9 @@ s    = median_i s_i                                (final estimator)
 | 50% breakdown point | Verified |
 | Step-by-step trace | Available |
 
-### File
-- `siegel_repeated_median_verifier.py` — Hand-written implementation + tests
-
-## Files
+## Artifacts
 
 | File | Description |
 |------|-------------|
-| `clipped_theilsen_refutation.py` | Counterexamples refuting clipped=pure |
-| `siegel_repeated_median_verifier.py` | Siegel implementation + verification |
-| `README.md` | This file |
+| `clipped_theilsen_refutation.py` | Counterexamples refuting clipped == pure Theil-Sen |
+| `siegel_repeated_median_verifier.py` | Siegel implementation + property verification |

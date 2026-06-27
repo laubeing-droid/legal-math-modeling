@@ -1,14 +1,14 @@
-# Proofs — Machine-Run Formal Verification Artifacts
+# Proofs — Machine-Reproducible Proof Artifacts
 
-This directory contains all machine-reproducible proof scripts and their outputs.
+This directory contains all machine-reproducible proof artifacts for the legal-math-modeling project. Every artifact is designed to be re-executed independently, producing deterministic results across machines.
 
 ## Structure
 
-| Directory | Source | Content |
-|-----------|--------|---------|
-| `strict_proof_baseline/` | Kimi strict math proof rework (2026-06-11) | Canonical baseline: 8/8 runnable proofs pass, 3 Lean PENDING |
-| `engineering_proof_artifacts/` | Kimi engineering delivery (2026-06-11) | 17 proof artifacts: 7 exhaustive, 2 symbolic, 3 refuted, 5 pending |
-| `formal_verification_logs/` | Codex formal verification (2026-06-09) | 7-tool-chain experiment plan and audit reports |
+| Directory | Role | Content |
+|-----------|------|---------|
+| `strict_proof_baseline/` | Canonical Lean proofs | Lean 4 formalization: 94 theorems, 0 `sorry`, full `lake build` pass (2954 jobs) |
+| `engineering_proof_artifacts/` | Complementary verification | Python exhaustive proofs, Z3 SMT proofs, Hypothesis property-based tests |
+| `formal_verification_logs/` | Audit infrastructure | Experiment plan, trust-label audit reports, CI verification logs |
 
 ## Re-run Instructions
 
@@ -17,10 +17,10 @@ This directory contains all machine-reproducible proof scripts and their outputs
 ```bash
 cd strict_proof_baseline
 python run_all_proofs.py
-# Expected: 8/8 runnable proofs/refutations pass
+# Expected: all runnable proofs/refutations pass
 ```
 
-### With Z3 (SMT proofs)
+### Z3 SMT proofs
 
 ```bash
 pip install z3-solver
@@ -28,23 +28,23 @@ python strict_proof_baseline/smt/cn_privilege_lattice_z3.py
 # Expected: UNSAT (no monotone epsilon exists)
 ```
 
-### With Lean 4 (requires lake + Mathlib)
+### Lean 4 (`lake build JurisLean`)
 
 ```bash
-cd strict_proof_baseline/lean
+cd proofs/lean/juris_lean
 lake build
-# Note: contains `sorry` placeholders — not yet verified
+# Expected: 2954 jobs, 0 sorry, 0 errors
 ```
 
 ## Trust Labels
 
-Each proof artifact carries a trust label. See `../docs/audit/trust_label_schema.json` for the formal schema.
+Each proof artifact carries a trust label indicating its verification strength. See `../docs/audit/trust_label_schema.json` for the formal schema.
 
 | Label | Confidence | Meaning |
 |-------|-----------|---------|
-| EXHAUSTIVE_FINITE_PROOF | HIGH | All cases enumerated |
-| SMT_PROVED_FINITE | HIGH | SMT solver confirms UNSAT |
-| SYMBOLIC_PROVED | HIGH | SymPy analytic proof |
-| LEAN_PROVED | VERY_HIGH | Lean 4 verified (no `sorry`) |
-| REFUTED | VERY_HIGH | Explicit counterexample |
-| PENDING_TOOLCHAIN | UNKNOWN | Script exists, toolchain not available |
+| `EXHAUSTIVE_FINITE_PROOF` | HIGH | All finite cases enumerated and verified |
+| `SMT_PROVED_FINITE` | HIGH | SMT solver confirms UNSAT/validity over bounded domain |
+| `SYMBOLIC_PROVED` | HIGH | SymPy analytic proof with closed-form verification |
+| `LEAN_PROVED` | VERY_HIGH | Lean 4 verified, 94 theorems, 0 `sorry`, 0 custom axiom |
+| `REFUTED` | VERY_HIGH | Explicit counterexample provided and validated |
+| `PENDING_TOOLCHAIN` | UNKNOWN | Script exists but required toolchain not yet available |

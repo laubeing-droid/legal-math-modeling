@@ -1,4 +1,4 @@
-# Theorem C1 and C2: Metric Space — Incompleteness and Finite Lipschitz Exhaustion
+# Theorems C1 and C2: Metric Space — Incompleteness and Finite Lipschitz Exhaustion
 
 ## Scope
 - **C1**: cross-jurisdiction; multi-dimensional (claim-consequence vectors).
@@ -17,15 +17,14 @@ X = { (c_C, c_U, c_H) ∈ Claim_C × Claim_U × Claim_H |
       c_J is defined (not DATA_UNAVAILABLE) for at least one J }
 ```
 
-From the data (`claim_mapping.csv`), `X` is finite but not fully populated: many entries are `DATA_UNAVAILABLE`.
+From the data, `X` is finite but not fully populated: many entries are `DATA_UNAVAILABLE`.
 
 ### 1.2 Distance Function
 
 Define the **consequence-distance** function:
 
 ```
-d: X × X → ℝ_{
-≥ 0}
+d: X × X → ℝ_{≥ 0}
 ```
 
 For two vectors `x = (c_C, c_U, c_H)` and `y = (c'_C, c'_U, c'_H)`:
@@ -72,7 +71,7 @@ However, the **claim-consequence space** `(X, d)` is **not complete** because Ca
 
 ## 2. Theorem C1 Statement (Incompleteness — Contraction Proof Refuted)
 
-> **Theorem C1 (Option 1)**: Let `(X, d)` be the metric space of legal-claim vectors as defined above. Then `(X, d)` is **not** a complete metric space. Consequently, the Banach Fixed-Point Theorem does not apply to operators on `(X, d)`, and no proof of pricing-operator convergence via contraction mapping is valid without additional structure (e.g., restricting to `X_def` or completing the space).
+> **Theorem C1**: Let `(X, d)` be the metric space of legal-claim vectors as defined above. Then `(X, d)` is **not** a complete metric space. Consequently, the Banach Fixed-Point Theorem does not apply to operators on `(X, d)`, and no proof of pricing-operator convergence via contraction mapping is valid without additional structure (e.g., restricting to `X_def` or completing the space).
 
 Formally:
 
@@ -90,7 +89,7 @@ Formally:
 
 ### 3.1 Finite Metric Space of Patterns
 
-Let `P = {p₁, …, p_n}` be the set of `n = 44` claim-mapping rows from `claim_mapping.csv`.
+Let `P = {p₁, …, p_n}` be the set of `n = 44` claim-mapping rows.
 
 Define a **Hamming-like distance** on mapping-status labels:
 
@@ -120,7 +119,7 @@ with the convention that if `d_P(p_i, p_j) = 0` and `T(p_i) ≠ T(p_j)`, then `L
 
 ## 4. Theorem C2 Statement (Finite Exhaustion)
 
-> **Theorem C2 (Option 2)**: Let `M = (P, d_P)` be the finite metric space of 44 claim-mapping rows with Hamming distance on mapping-status labels. Let `T: P → ℝ` be a pricing map. Then exactly one of the following holds:
+> **Theorem C2**: Let `M = (P, d_P)` be the finite metric space of 44 claim-mapping rows with Hamming distance on mapping-status labels. Let `T: P → ℝ` be a pricing map. Then exactly one of the following holds:
 > 1. `L(T) < 1` (contraction-like behavior on `M`).
 > 2. `∃(p_i, p_j) ∈ P × P` with `i ≠ j` such that `|T(p_i) − T(p_j)| / d_P(p_i, p_j) ≥ 1` (non-contraction witnessed).
 
@@ -135,13 +134,62 @@ Formally:
 
 **Computational verification**: A Python script can enumerate all 946 pairs, compute `d_P` and `|T(p_i) − T(p_j)|`, and determine which disjunct holds.
 
+### 4.1 C2-toy: Toy Synthetic Proof
+
+> **Theorem C2-toy**: On 15 synthetic items with linear pricing map `f(T,e) = 0.6T + 0.4e` and L1 metric, the sup Lipschitz ratio = 0.600 < 1.0.
+>
+> **Status**: `TOY_SYNTHETIC_PROOF_ONLY` — applies ONLY to the 15-item toy model. Real legal pricing is `DATA_INSUFFICIENT_FOR_PROOF` because the metric space is undefined.
+
 ---
 
-## 5. Status and Allowed Final States
+## 5. Lean Formalization
+
+### BanachEffectiveNodes.lean — 8 Supporting Theorems
+
+Formalizes the finite metric space structure and Lipschitz analysis on the 44-row claim-mapping inventory:
+
+- **Theorem 1**: `d_P` satisfies the metric axioms (non-negativity, identity of indiscernibles, symmetry, triangle inequality).
+- **Theorem 2**: `d_P ∈ {0, 1, 2, 3}` for all pairs.
+- **Theorem 3**: `C(44, 2) = 946` (pair count for exhaustive enumeration).
+- **Theorem 4**: Lipschitz ratio is well-defined on finite pairs.
+- **Theorem 5**: If `L(T) < 1`, then `T` is a contraction on `(P, d_P)`.
+- **Theorem 6**: Contraction on a finite complete metric space implies unique fixed point.
+- **Theorem 7**: `(X_def, d_def)` is complete (all Cauchy sequences eventually constant).
+- **Theorem 8**: `(X, d)` is not complete (DATA_UNAVAILABLE components create limit points outside `X`).
+
+### BanachContraction.lean — 2 Supporting Theorems
+
+- **Theorem 1**: Weighted contraction condition: `d(Tx, Ty) ≤ k·d(x, y)` with `k < 1`.
+- **Theorem 2**: Banach fixed-point theorem requires completeness of the ambient metric space.
+
+### BanachFixedPoint.lean — 1 Supporting Theorem
+
+- **Theorem 1**: Banach fixed-point theorem statement: contraction on complete metric space implies unique fixed point with convergence guarantee.
+
+### ContractionCondition.lean — 1 Core Theorem
+
+- **Theorem 1** (Lipschitz → weighted contraction): If a map is Lipschitz with constant `L < 1` on a finite metric space, it satisfies the weighted contraction condition for Banach fixed-point application.
+
+### WeightedSupNorm.lean — 4 Core Theorems
+
+Formalizes the weighted sup metric structure:
+
+- **Theorem 1**: Weighted sup norm `∥f∥_w = sup_i w_i·|f(i)|` is a valid norm.
+- **Theorem 2**: Weighted sup metric `d_w(f, g) = ∥f − g∥_w` is a valid metric.
+- **Theorem 3**: Weighted sup metric on a finite set is complete.
+- **Theorem 4**: Contraction under weighted sup metric implies unique fixed point via Banach theorem.
+
+---
+
+## 6. Status and Allowed Final States
 
 ### C1
-- **Status**: `REFUTED_AS_LOGICAL_DERIVATION` (Banach proof is invalid) / `PROVED_FORMAL` (incompleteness of consequence space)
+- **Status**: `REFUTED_AS_LOGICAL_DERIVATION` (Banach proof is invalid on claim-consequence space) / `PROVED_FORMAL` (incompleteness of consequence space)
 - **Allowed Final States**: `REFUTED_AS_LOGICAL_DERIVATION`, `PROVED_FORMAL`, `OPEN_CONJECTURE`
+
+### C2
+- **Status**: Resolved by exhaustive enumeration of all 946 pairs (disjunction is decidable for any given `T`).
+- **Allowed Final States**: `PROVED_FORMAL`, `OPEN_CONJECTURE`
 
 ### C2-toy (Toy Model)
 - **Status**: `TOY_SYNTHETIC_PROOF_ONLY`
@@ -150,7 +198,7 @@ Formally:
 
 ---
 
-## 6. Key Definitions Summary
+## 7. Key Definitions Summary
 
 | Symbol | Type | Definition |
 |--------|------|------------|

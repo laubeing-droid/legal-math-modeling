@@ -14,13 +14,13 @@ The slice is intentionally narrow and centers on licensed use:
 
 ```text
 license_signed
-→ rights_holder_authorized
-→ license_status_active
-→ use_within_scope
-→ use_permitted
-→ used_work
-→ unauthorized_use
-→ priority defeat by valid license
+-> rights_holder_authorized
+-> license_status_active
+-> use_within_scope
+-> use_permitted
+-> used_work
+-> unauthorized_use
+-> priority defeat by valid license
 ```
 
 ## Why This Slice Exists
@@ -39,6 +39,18 @@ But it did not test whether the reference boundary could distinguish:
 - priority-based defeat rather than exception-based defeat
 
 This slice closes that gap.
+
+## Gate Alignment
+
+This slice contributes primarily to:
+
+| Gate | Contribution |
+|---|---|
+| Gate 1 (Canonical Types) | Exercises CanonicalPriority, canonical permission semantics |
+| Gate 2 (Minimal DDL) | Exercises CONSTITUTIVE, PERMISSION, PRIORITY_DEFEAT |
+| Gate 3 (Horn->AAF Contract) | Exercises priority defeat direction |
+| Gate 4 (Reference Interpreter) | Licensed-use fixture for reference evaluator |
+| Gate 5 (Certificate/Checker) | Second slice exercised in test_spec_transition.py |
 
 ## Canonical Entities Used
 

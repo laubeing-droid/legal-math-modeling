@@ -1,34 +1,34 @@
-﻿# juris-calculus 数学证明逻辑总审计任务
+# juris-calculus Mathematical Proof Logic Audit Prompt
 
-请你审计 juris-calculus 当前数学证明逻辑，重点不是看代码能不能跑，而是判断“哪些数学定理真的被证明了，哪些只是测试、模型草图、经验假设或反例已推翻”。
+Audit the mathematical proof logic of juris-calculus. The focus is not whether the code runs, but whether each mathematical theorem has genuinely been proved, or whether it is merely a test, model sketch, empirical hypothesis, or already-refuted claim.
 
-## 背景
+## Background
 
-项目目录：
+Project directory:
 
 ```text
 D:\Codex\juris-calculus\源码
 ```
 
-实验记录目录：
+Experiment record directory:
 
 ```text
 D:\juris_calculus_verification_runs
 ```
 
-最新实验总报告：
+Latest experiment summary report:
 
 ```text
 D:\juris_calculus_full_verification_run_report.md
 ```
 
-最新 run 目录：
+Latest run directory:
 
 ```text
 D:\juris_calculus_verification_runs\07_report\runs\20260609-214205-full-suite-all-verification
 ```
 
-已完成的验证工具链包括：
+Completed verification toolchain:
 
 - Python / Hypothesis
 - Z3
@@ -38,201 +38,197 @@ D:\juris_calculus_verification_runs\07_report\runs\20260609-214205-full-suite-al
 - Lean
 - Dafny
 
-## 已知实验结果摘要
+## Known Experiment Results Summary
 
-1. Python/Hypothesis 性质测试通过：6 passed。
-2. Z3 证明 graph similarity 抽象范围不越界：
-   - `sim < 0`：unsat
-   - `sim > 1`：unsat
-3. finite Galois sanity check：0 violations。
-4. CrossHair 对 graph similarity contract 返回 `Not confirmed`，不能算证明。
-5. TLA+ oscillation guard skeleton：No error found。
-6. Alloy relation disjoint skeleton：UNSAT。
-7. Lean Galois skeleton：编译通过，但只是 identity skeleton，不是完整 juris-calculus 定理。
-8. Dafny graph range model：1 verified, 0 errors。
-9. 项目 unit tests：32 passed。
-10. 项目 full pytest 因 `configs/en_US/rules.yaml` 缺失而 collection 失败，此问题暂不处理。
+1. Python/Hypothesis property tests passed: 6 passed.
+2. Z3 proved graph similarity abstract range does not exceed bounds:
+   - `sim < 0`: unsat
+   - `sim > 1`: unsat
+3. Finite Galois sanity check: 0 violations.
+4. CrossHair returned `Not confirmed` for graph similarity contract; this is not proof.
+5. TLA+ oscillation guard skeleton: No error found.
+6. Alloy relation disjoint skeleton: UNSAT.
+7. Lean Galois skeleton: compiled successfully, but only an identity skeleton -- not the full juris-calculus theorem.
+8. Dafny graph range model: 1 verified, 0 errors.
+9. Project unit tests: 32 passed.
+10. Project full pytest fails at collection due to missing `configs/en_US/rules.yaml`; this issue is not addressed here.
 
-## 关键反例
+## Key Counterexample
 
-`compute_graph_similarity()` 的严格自反性被反例推翻：
+The strict reflexivity of `compute_graph_similarity()` has been refuted:
 
 ```text
 G = (v=1, e=0, features=empty set)
 sim(G, G) = 0.4
 ```
 
-因此不能全局声称：
+Therefore the global claim `sim(G, G) = 1` cannot stand.
 
-```text
-sim(G, G) = 1
-```
+Focus your analysis: Is this an implementation bug, or a theorem demotion caused by the conservative empty-feature semantic?
 
-请重点分析：这是实现 bug，还是空特征保守语义导致的定理降级？
+## Audit Objective
 
-## 审计目标
+Perform a graded audit of the entire mathematical proof logic.
 
-请你对整个数学证明逻辑做一次分级审计。
+Do not simply say "pass" or "fail." Assign a label to every theorem/proof claim:
 
-请不要只说“通过”或“不通过”，而是给每个定理/证明声称打标签：
-
-| 标签 | 含义 |
+| Label | Definition |
 | --- | --- |
-| `CODE_FACT` | 只是源码事实 |
-| `TESTED_PROPERTY` | 测试通过，但不是证明 |
-| `SMT_PROVED_FINITE` | 有限域或抽象域 SMT 证明 |
-| `MODEL_CHECKED` | TLA+/Alloy 有界模型检查 |
-| `LEAN_PROVED_SKELETON` | Lean 骨架通过，但不是完整证明 |
-| `LEAN_PROVED` | Lean 无 sorry 完整证明 |
-| `EMPIRICAL_HYPOTHESIS` | 经验假设 |
-| `CONJECTURE` | 尚未证明 |
-| `REFUTED` | 已有反例 |
-| `INCONCLUSIVE` | 工具无法确认 |
+| `CODE_FACT` | Source code fact only |
+| `TESTED_PROPERTY` | Test passed, but not proof |
+| `SMT_PROVED_FINITE` | SMT proof in finite or abstract domain |
+| `MODEL_CHECKED` | TLA+/Alloy bounded model check |
+| `LEAN_PROVED_SKELETON` | Lean skeleton compiles, but not a complete proof |
+| `LEAN_PROVED` | Lean proof complete with no sorry |
+| `EMPIRICAL_HYPOTHESIS` | Empirical hypothesis |
+| `CONJECTURE` | Not yet proved |
+| `REFUTED` | Counterexample exists |
+| `INCONCLUSIVE` | Tool cannot confirm |
 
-## 请重点审计以下数学逻辑
+## Audit Sections
 
-### 1. Galois connection
+### 1. Galois Connection
 
-检查：
+Check:
 
-- 当前 finite sanity check 是否足够？
-- Lean identity skeleton 是否过弱？
-- 真正的 alpha/gamma 伴随还缺哪些定义？
-- 是否存在 vacuous truth 掩盖反向证明的问题？
+- Is the current finite sanity check sufficient?
+- Is the Lean identity skeleton too weak?
+- What definitions are still missing for a genuine alpha/gamma adjunction?
+- Is vacuous truth masking a missing reverse proof?
 
-### 2. Fixpoint / 收敛性
+### 2. Fixpoint Convergence
 
-检查：
+Check:
 
-- evaluator 的收敛性是否能直接套 Tarski？
-- `rules_applied`、`max_iterations`、exception recursion、critical halt 是否改变了单调性？
-- TLA+ skeleton 是否只证明了 guard 小模型，而非完整 evaluator？
+- Can Tarski's theorem be directly applied to the evaluator?
+- Do `rules_applied`, `max_iterations`, exception recursion, and critical halt break monotonicity?
+- Does the TLA+ skeleton only prove the guard model, not the full evaluator?
 
-### 3. Graph similarity
+### 3. Graph Similarity
 
-检查：
+Check:
 
-- `[0,1]` 范围是否已被充分证明？
-- 对称性是否只是测试还是可证明？
-- 严格自反性是否应降级？
-- 是否还能称 metric？
-- 当前反例如何影响数学报告？
+- Has the `[0,1]` range been sufficiently proved?
+- Is symmetry merely tested or provable?
+- Should strict reflexivity be demoted?
+- Can it still be called a metric?
+- How does the current counterexample affect the mathematical reports?
 
-### 4. Non-Horn formalizable score
+### 4. Non-Horn Formalizable Score
 
-检查：
+Check:
 
-- sigmoid smoothing 是否改善了硬截断？
-- 目前只是测试通过，还是有数学证明？
-- 权重 `(0.2,0.2,0.4,0.2)` 是否仍是经验参数？
+- Does sigmoid smoothing improve the hard truncation?
+- Is this currently just a passing test, or is there mathematical proof?
+- Are the weights `(0.2, 0.2, 0.4, 0.2)` still empirical parameters?
 
-### 5. DP ratio-preserving mechanism
+### 5. DP Ratio-Preserving Mechanism
 
-检查：
+Check:
 
-- `dp_diagnostics` 只是审计 instrumentation，不等于 DP 证明。
-- 当前机制能否声称 tuple-level differential privacy？
-- adjacency、sensitivity、floor clipping、rounding 是否都需要重述？
+- `dp_diagnostics` is audit instrumentation only; it is not a DP proof.
+- Can the current mechanism claim tuple-level differential privacy?
+- Do adjacency, sensitivity, floor clipping, and rounding all need restatement?
 
-### 6. Constraint / oscillation guard
+### 6. Constraint Guard / Oscillation Guard
 
-检查：
+Check:
 
-- TLA+ skeleton 证明的是什么？
-- 是否足以说明真实 `ConstraintValidator` 一定不会振荡？
-- 还缺哪些状态变量？
+- What does the TLA+ skeleton actually prove?
+- Is it sufficient to guarantee the real `ConstraintValidator` will not oscillate?
+- What state variables are still missing?
 
-### 7. Category / Banach / abstract interpretation 等高阶定理
+### 7. Category / Banach / Abstract Interpretation
 
-检查：
+Check:
 
-- 哪些只是数学比喻？
-- 哪些能进入 Lean？
-- 哪些应该降级为 conjecture？
-- Banach contraction 是否可能被反例推翻？
+- Which claims are merely mathematical metaphors?
+- Which can enter Lean?
+- Which should be demoted to conjecture?
+- Can Banach contraction be refuted by counterexample?
 
 ### 8. Core Inference Safety Boundary
 
-请专门从“法律推理机器会不会乱跑”的角度审计核心推理安全边界。
+Audit the core inference safety boundary from the perspective of "will the legal reasoning machine run away."
 
-重点检查：
+Focus on:
 
-- fixpoint 是否必然终止？
-- rule firing 哪些部分是单调的，哪些不是？
-- exception recursion 是否有 visited/depth 保护？
-- confidence/formalizable_score 是否永远在 `[0,1]`？
-- graph similarity 哪些性质成立，哪些已被反例推翻？
-- DP 机制到底保护 principal、tuple，还是只提供审计 instrumentation？
+- Does the fixpoint always terminate?
+- Which parts of rule firing are monotone and which are not?
+- Does exception recursion have visited/depth protection?
+- Are confidence and formalizable_score always within `[0,1]`?
+- Which graph similarity properties hold and which have been refuted by counterexample?
+- Does the DP mechanism protect principal, tuple, or only provide audit instrumentation?
 
-请输出一张表：
+Output a table:
 
-| 安全边界 | 当前证据 | 风险 | 推荐标签 | 下一步证明方式 |
+| Safety Boundary | Current Evidence | Risk | Recommended Label | Next Proof Method |
 | --- | --- | --- | --- | --- |
 
 ### 9. Practical Legal Application Interface
 
-请从“未来接真实案卷时如何诚实输出”的角度审计实务接口。
+Audit the practical interface from the perspective of "how to honestly output when processing real case files."
 
-重点检查：
+Focus on:
 
-- 哪些规则可以标为已证明？
-- 哪些只是可测试性质？
-- 哪些是经验参数？
-- 哪些需要真实案例校准？
-- 哪些命题已被反例推翻？
-- 系统输出法律结论时应如何附带 trust label？
-- 是否需要 rule maturity 分级？
-- 当前 `US_Adapter.yaml` 是否只能视为术语层，而不是规则层？
+- Which rules can be labeled as proved?
+- Which are merely testable properties?
+- Which are empirical parameters?
+- Which need real-case calibration?
+- Which propositions have been refuted by counterexample?
+- How should trust labels be attached to system legal conclusions?
+- Is a rule maturity classification needed?
+- Should `US_Adapter.yaml` be treated as a terminology layer only, not a rule layer?
 
-请输出一张表：
+Output a table:
 
-| 输出对象 | 当前成熟度 | 推荐 trust label | 是否需要人工复核 | 原因 |
+| Output Object | Current Maturity | Recommended Trust Label | Requires Manual Review | Reason |
 | --- | --- | --- | --- | --- |
 
-## 输出格式
+## Output Format
 
-请按以下格式输出：
+Output in the following structure:
 
 ```markdown
-# juris-calculus 数学证明逻辑审计报告
+# juris-calculus Mathematical Proof Logic Audit Report
 
-## 1. 总体结论
+## 1. Overall Conclusion
 
-## 2. 可信度标签总表
+## 2. Trust Label Summary Table
 
-| 定理/模块 | 当前证据 | 推荐标签 | 是否可称 proof | 原因 |
+| Theorem/Module | Current Evidence | Recommended Label | Can Be Called Proof | Reason |
 | --- | --- | --- | --- | --- |
 
-## 3. 已被证明或部分证明的内容
+## 3. Proved or Partially Proved
 
-## 4. 已被反例推翻的内容
+## 4. Refuted by Counterexample
 
-## 5. 只是测试通过但不能称证明的内容
+## 5. Tests Passed but Not Proof
 
-## 6. 只是 proof skeleton 的内容
+## 6. Proof Skeletons Only
 
-## 7. 仍是 conjecture / empirical hypothesis 的内容
+## 7. Still Conjecture / Empirical Hypothesis
 
-## 8. 对数学模型的修正建议
+## 8. Mathematical Model Correction Suggestions
 
-## 9. 对源码实现的修正建议
+## 9. Source Code Correction Suggestions
 
-## 10. 对未来 Lean/Z3/TLA+ 证明路线的建议
+## 10. Future Lean/Z3/TLA+ Proof Route Suggestions
 
-## 11. 核心推理安全边界审计
+## 11. Core Inference Safety Boundary Audit
 
-## 12. 未来实务应用接口审计
+## 12. Future Practical Application Interface Audit
 
-## 13. 最终评级
+## 13. Final Ratings
 ```
 
-## 审计原则
+## Audit Principles
 
-1. 不要把 print/docstring 当 proof。
-2. 不要把单例测试当 universal theorem。
-3. 不要把 Hypothesis 通过当数学证明。
-4. 不要把 Lean skeleton 当完整 Lean proof。
-5. 不要把 Alloy/TLA+ 有界检查当无限域证明。
-6. 找到反例时，必须明确降级或反驳原命题。
-7. 如果一个命题只有工程直觉，没有 proof artifact，请标记为 `CONJECTURE` 或 `EMPIRICAL_HYPOTHESIS`。
-8. 如果一个结论只在抽象模型成立，请明确写出模型边界。
+1. Do not treat print output or docstrings as proof.
+2. Do not treat single-case tests as universal theorems.
+3. Do not treat Hypothesis passes as mathematical proof.
+4. Do not treat Lean skeletons as complete Lean proofs.
+5. Do not treat bounded Alloy/TLA+ checks as infinite-domain proofs.
+6. When a counterexample is found, the original proposition must be explicitly demoted or refuted.
+7. If a proposition has only engineering intuition and no proof artifact, label it `CONJECTURE` or `EMPIRICAL_HYPOTHESIS`.
+8. If a conclusion holds only within an abstract model, write the model boundary explicitly.

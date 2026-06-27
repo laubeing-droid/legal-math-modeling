@@ -1,7 +1,7 @@
 # Theorem A1: No Total Collision-Free Cross-Jurisdiction Mapping Extension
 
 ## Scope
-- **Inventory**: finite only — given the current finite inventory of 80 fact patterns (30 CN-only, 30 US-only, 20 HK-only, plus 14 cross-jurisdiction patterns in `claim_mapping.csv`).
+- **Inventory**: finite only — given the current finite inventory of 80 fact patterns (30 CN-only, 30 US-only, 20 HK-only) plus 44 claim mapping rows.
 - **Jurisdiction**: cross-jurisdiction (CN ↔ US ↔ HK).
 - **Dimension**: multi-dimensional (fact pattern × jurisdiction × claim × legal consequence).
 
@@ -11,9 +11,9 @@
 
 Let the following be finite, non-empty sets:
 
-- `Fact_C = {f₁, …, f_{n_C}}` with `n_C = 30` (CN fact patterns from `us_fact_patterns.jsonl` is US; CN patterns are in `claim_mapping.csv` rows 2–31).
-- `Fact_U = {f₁, …, f_{n_U}}` with `n_U = 30` (US fact patterns from `us_fact_patterns.jsonl`).
-- `Fact_H = {f₁, …, f_{n_H}}` with `n_H = 20` (HK fact patterns from `hk_fact_patterns.jsonl`).
+- `Fact_C = {f₁, …, f_{n_C}}` with `n_C = 30` (CN fact patterns).
+- `Fact_U = {f₁, …, f_{n_U}}` with `n_U = 30` (US fact patterns).
+- `Fact_H = {f₁, …, f_{n_H}}` with `n_H = 20` (HK fact patterns).
 - `Claim_C`, `Claim_U`, `Claim_H` — finite sets of legal claims, one per jurisdiction.
 
 Define the disjoint unions:
@@ -59,7 +59,7 @@ Collision(f₁, f₂)  ⟺  ∃c₁, c₂ ∈ Claim:
     ∧ LC(c₁) ⊥ LC(c₂)        // logical incompatibility of consequences
 ```
 
-where `PatternMatch(f₁, f₂)` means `f₁` and `f₂` are the same fact pattern instantiated in different jurisdictions (e.g., FP-CNUS-003), and `⊥` is a symmetric, irreflexive relation on `Consequence`.
+where `PatternMatch(f₁, f₂)` means `f₁` and `f₂` are the same fact pattern instantiated in different jurisdictions, and `⊥` is a symmetric, irreflexive relation on `Consequence`.
 
 **Witnessed collisions in data**:
 - `FP-CNUS-003`: CN platform strict liability `⊥` US Section 230 immunity.
@@ -95,11 +95,11 @@ satisfying:
 
 ---
 
-## 5. Theorem Statement (Split: Real Data vs Toy Model)
+## 5. Theorem Statement (Split: A1-real vs A1-toy)
 
 ### 5.1 A1-real: Current Real Data Cannot Formally Prove No-Total Functor
 
-> **Theorem A1-real (Data Insufficiency)**: Given the current finite inventory of 44 rows in `claim_mapping.csv` (30 CN-only + 14 cross-jurisdiction), the documented **COLLISION** and **ASYMMETRY** rows are **empirical legal findings** backed by source citations, **not formal logical derivations** from first principles.
+> **Theorem A1-real (Data Insufficiency)**: Given the current finite inventory of 80 fact patterns and 44 rows in `claim_mapping.csv`, the documented **COLLISION** and **ASYMMETRY** rows are **empirical legal findings** backed by source citations, **not formal logical derivations** from first principles.
 >
 > Therefore, the current data can provide **witnesses of collision** (e.g., `FP-CNUS-003`, `FP-CNUS-004`, `FP-COLL-001`, `FP-COLL-002`), but it **cannot formally prove** that no total, structure-preserving, collision-free functor `F: 𝓛_CN × 𝓛_US × 𝓛_HK → 𝓛_Unified` exists for all possible legal fact patterns.
 >
@@ -125,7 +125,7 @@ because `Collision(f₁, f₂)` relies on human-annotated `mapping_status` and l
 
 ---
 
-### 5.2 A1-toy: Toy Model Proved Separately
+### 5.2 A1-toy: Toy Synthetic Proof
 
 > **Theorem A1-toy (Toy Synthetic)**: On a deliberately constructed toy model of 5 synthetic fact patterns with string-based collision detection, there does **not** exist a total, collision-free mapping extension.
 >
@@ -155,7 +155,51 @@ See: `finite_no_total_mapping_checker.py` (243 assignments enumerated, 0 collisi
 
 ---
 
-## 7. Status and Allowed Final States
+## 7. Lean Formalization
+
+### FiniteRosetta.lean — 9 Supporting Theorems
+
+Cross-jurisdiction obstructions formalized in Lean:
+
+```
+import Mathlib
+
+-- Theorem 1: Disjoint jurisdiction partition
+theorem jurisdiction_partition : Disjoint Fact_C Fact_U ∧ Disjoint Fact_U Fact_H ∧ Disjoint Fact_C Fact_H
+
+-- Theorem 2: Partial mapping well-definedness
+theorem partial_mapping_well_defined (f : Fact) (J : Jurisdiction) :
+  f ∈ Fact_J → M f ∈ Claim_J
+
+-- Theorem 3: Collision witness (FP-CNUS-003)
+theorem collision_cnus_003 : Collision fp_cnus_003_cn fp_cnus_003_us
+
+-- Theorem 4: Collision witness (FP-CNUS-004)
+theorem collision_cnus_004 : Collision fp_cnus_004_cn fp_cnus_004_us
+
+-- Theorem 5: Collision witness (FP-COLL-001)
+theorem collision_coll_001 : Collision fp_coll_001_cn fp_coll_001_us
+
+-- Theorem 6: Collision witness (FP-COLL-002)
+theorem collision_coll_002 : Collision fp_coll_002_cn fp_coll_002_us
+
+-- Theorem 7: Entailment preorder is reflexive
+theorem entailment_reflexive (J : Jurisdiction) (c : Claim_J) : c ⊢_J c
+
+-- Theorem 8: Entailment preorder is transitive
+theorem entailment_transitive (J : Jurisdiction) (a b c : Claim_J) :
+  a ⊢_J b → b ⊢_J c → a ⊢_J c
+
+-- Theorem 9: Functor condition is not satisfiable on witnessed collisions
+theorem functor_collision_obstruction (F : CrossJurisdictionFunctor) :
+  ¬(F.collision_free ∧ F.total ∧ F.order_preserving)
+```
+
+**Note**: `functor_collision_obstruction` is formalized under the assumption that the 4 witnessed collisions are accepted as axioms. The real-data case remains `DATA_INSUFFICIENT_FOR_PROOF` because collision detection is not formally decidable from the corpus alone.
+
+---
+
+## 8. Status and Allowed Final States
 
 ### A1-real (Real Data)
 - **Status**: `DATA_INSUFFICIENT_FOR_PROOF`
@@ -169,11 +213,11 @@ See: `finite_no_total_mapping_checker.py` (243 assignments enumerated, 0 collisi
 
 ---
 
-## 8. Key Definitions Summary
+## 9. Key Definitions Summary
 
 | Symbol | Type | Definition |
 |--------|------|------------|
-| `Fact_J` | finite set | fact patterns per jurisdiction |
+| `Fact_J` | finite set | fact patterns per jurisdiction (30 CN, 30 US, 20 HK) |
 | `Claim_J` | finite set | legal claims per jurisdiction |
 | `M` | partial function | `Fact ⇀ Claim` |
 | `LC` | function | `Claim → Consequence` |

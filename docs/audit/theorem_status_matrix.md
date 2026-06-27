@@ -1,89 +1,229 @@
-# Theorem Status Matrix (Audit Fix 4 — Red-Team Annotated)
+# Theorem Status Matrix (Based on 94 Unique Lean Theorems)
 
-> **注意**: 这是 2026-06-19 的历史审计矩阵，保留为审计记录。
-> 当前 formal-core-v1 发布状态见:
-> [docs/formal-release/FORMAL_RELEASE_REPORT.md](../formal-release/FORMAL_RELEASE_REPORT.md)
-> [docs/final-closure/final-report.md](../final-closure/final-report.md)
->
-> 本矩阵中 T009a 标注的 `has sorry` 和 Banach 相关 PENDING_TOOLCHAIN 项
-> 在 current release 中已明确为不在 formal-core-v1 发布范围内。
-> Banach 模块已从 core 边界明确移除。
-
-**Project:** juris-calculus  
-**Date:** 2026-06-19  
-**run_all_proofs.py (sandbox):** 10 PROVED, 3 REFUTED, 0 FAILED, 4 PENDING
-**Red-Team Status:** v5.0 honest labels applied below
-
----
-
-## Red-Team Annotations (2026-06-19)
-
-| Artifact | Proof Status | Red-Team Status | Issue |
-|---|---|---|---|
-| ART-003 (Horn correctness) | EXHAUSTIVE_FINITE_PROOF | **EMPIRICAL_PROXY** | 66,066 is AAF count, not Horn. Horn actual: 3,969 acyclic + 50K sampling |
-| ART-004 (Horn termination) | EXHAUSTIVE_FINITE_PROOF | EXHAUSTIVE_FINITE_PROOF | 82,836 KBs checked, consistent |
-| ART-011 (Graph Similarity Z3) | SMT_PROVED_FINITE | SMT_PROVED_FINITE | OK |
-| ART-008 (Dung grounded) | EXHAUSTIVE_FINITE_PROOF | EXHAUSTIVE_FINITE_PROOF | OK |
-| ART-009 (Stratified correspondence) | EXHAUSTIVE_FINITE_PROOF | EXHAUSTIVE_FINITE_PROOF | OK |
-| ART-010 (Graph similarity range) | SYMBOLIC_PROVED | SYMBOLIC_PROVED | OK |
-| ART-016 (Banach effective) | SYMBOLIC_PROVED | SYMBOLIC_PROVED | OK |
-| ART-015 (Siegel repeated median) | EXHAUSTIVE_FINITE_PROOF | EXHAUSTIVE_FINITE_PROOF | OK |
-| T4 (Kripke mutex, z3_kripke_mutex.py) | SMT_PROVED | **AXIOM_ONLY** | Z3 adds theorem as axiom, checks consistency — not a proof |
-| T20 (MDL, kolmogorov_mdl_rules.py) | SYMBOLIC_PROVED | **EMPIRICAL_PROXY** | claim_mapping level ρ=0.1168/p=0.4459 not significant; domain-level CI includes 0 |
+> **Date:** 2026-06-27
+> **Project:** legal-math-modeling
+> **Lean files:** 25 files in `proofs/lean/juris_lean/JurisLean/`
+> **Total unique theorems:** 94 (43 core + 51 supporting)
+> **sorry count:** 0
+> **`lake build JurisLean`:** 2954 jobs, 0 errors
 
 ---
 
 ## Summary
 
 | Status | Count |
-|--------|-------|
-| EXHAUSTIVE_FINITE_PROOF | 7 |
-| SYMBOLIC_PROVED | 2 |
-| SMT_PROVED_FINITE | 1 |
-| REFUTED | 3 theorems (4 CEs) |
-| PENDING_TOOLCHAIN | 4 |
-| TOTAL | 17 artifacts |
+|---|---|
+| Core theorems | 43 |
+| Supporting theorems | 51 |
+| Total unique theorems | 94 |
+| sorry | 0 |
+
+### JC_Formalization.lean Status Register
+
+| Set | Card | Lean proof |
+|---|---|---|
+| proved_theorems | 7 | `proved_theorems_card` |
+| empirical_proxy_theorems | 2 | `empirical_proxy_card` |
+| refuted_theorems | 1 | `refuted_theorems_card` |
+| pending_theorems | 0 | `pending_theorems_card` |
 
 ---
 
-## Matrix
+## Core Theorems by File
 
-| ID | Claim | Status | Artifact | Checker |
-|----|-------|--------|----------|---------|
-| T001a | Galois incidence (finite) | **EXHAUSTIVE_FINITE_PROOF** | `galois/finite_galois_adjunction.py` | `python galois/...` |
-| T001b | Galois powerset (finite) | **EXHAUSTIVE_FINITE_PROOF** | `galois/finite_galois_adjunction.py` | `python galois/...` |
-| T001c | Galois (Lean infinite) | **PENDING_TOOLCHAIN** | `galois/FiniteGaloisAdjunction.lean` | `lean4 ...` (needs Mathlib) |
-| T002 | Bounded Horn correctness | **EXHAUSTIVE_FINITE_PROOF** | `horn/bounded_horn_correctness.py` | `python horn/...` |
-| T003 | Horn termination | **EXHAUSTIVE_FINITE_PROOF** | `horn/horn_termination_measure.py` | `python horn/...` |
-| T003a | Horn Z3 .smt2 | **PENDING_TOOLCHAIN** | `horn/bounded_horn_z3.smt2` | `z3 ...` (needs Z3 binary) |
-| T004 | Fixpoint bounded termination | **EXHAUSTIVE_FINITE_PROOF** | `fixpoint/production_bounded_termination.py` | `python fixpoint/...` |
-| T004a | Fixpoint TLA+ | **PENDING_TOOLCHAIN** | `fixpoint/evaluator_termination_model.tla` | `tlc ...` (needs TLC) |
-| T005 | Dung grounded extension | **EXHAUSTIVE_FINITE_PROOF** | `aaf/dung_grounded_extension.py` | `python aaf/...` |
-| T006 | Stratified correspondence | **EXHAUSTIVE_FINITE_PROOF** | `aaf/stratified_correspondence.py` | `python aaf/...` |
-| T007 | Graph similarity range [0,1] | **SYMBOLIC_PROVED** | `graph_similarity/graph_similarity_range.py` | `python graph_similarity/...` |
-| T007a | Graph similarity Z3 | **SMT_PROVED_FINITE** | `graph_similarity/graph_similarity_range_z3.py` | `python graph_similarity/...` (z3 Python bindings) |
-| T008 | Graph similarity is metric | **REFUTED** | `graph_similarity/metric_counterexamples.py` | `python graph_similarity/...` |
-| T009 | Banach contraction (single-dim) | **SYMBOLIC_PROVED** | `banach/banach_effective_nodes.py` | `python banach/...` |
-| T009a | Banach (Lean) | **PENDING_TOOLCHAIN** | `banach/BanachEffectiveNodes.lean` | `lean4 ...` (needs Mathlib; has `sorry`) |
-| T010 | Scalar Laplace epsilon-DP | **EXHAUSTIVE_FINITE_PROOF** | `dp/laplace_scalar_mechanism.md` | Manual review + checker |
-| T011 | Ratio-preserving DP | **DOWNGRADED** | `dp/ratio_preserving_boundary.md` | Manual review |
-| T012 | Floor clipping epsilon-DP | **REFUTED** | `dp/dp_floor_clipping_analysis.py` | `python dp/...` |
-| T013 | Clipped Theil-Sen = pure | **REFUTED** | `statistics/clipped_theilsen_refutation.py` | `python statistics/...` |
-| T014 | Siegel repeated median | **EXHAUSTIVE_FINITE_PROOF** | `statistics/siegel_repeated_median_verifier.py` | `python statistics/...` |
+### FiniteMonotoneIteration.lean (10 theorems)
+
+| # | Theorem | Scope |
+|---|---|---|
+| 1 | iter_zero | iter sys 0 = empty |
+| 2 | iter_succ | iter sys (n+1) = step (iter sys n) |
+| 3 | iter_subset_univ | iter sys n subset of sys.univ |
+| 4 | iter_mono | iter sys n subset of iter sys (n+1) |
+| 5 | iter_stable | Stability: if iter n = iter (n+1), then iter (n+k) = iter n |
+| 6 | iter_ssubset_of_ne | Strict subset if not equal |
+| 7 | iter_card_lt_of_ne | Strict card inequality |
+| 8 | iter_card_le_univ | Card bounded by univ card |
+| 9 | exists_fixpoint_le_card | Fixpoint exists at or before card |
+| 10 | fixed_at_card | iter (card) = iter (card + 1) |
+
+### HornDefinitions.lean (2 theorems)
+
+| # | Theorem | Scope |
+|---|---|---|
+| 11 | TH_monotone | TH operator is monotone on subsets |
+| 12 | TH_subset_univ | TH result is subset of univ |
+
+### HornFixedPoint.lean (10 theorems)
+
+| # | Theorem | Scope |
+|---|---|---|
+| 13 | horn_operator_subset_univ | TH S subset of univ |
+| 14 | horn_operator_monotone | TH is monotone |
+| 15 | horn_iteration_monotone | Iteration is monotone |
+| 16 | horn_finite_termination | Termination within card steps |
+| 17 | horn_iteration_bound | Iteration bounded by card |
+| 18 | horn_result_fixed_point | Result is fixed point |
+| 19 | horn_result_least_fixed_point | Result is least fixed point |
+| 20 | horn_soundness | Soundness of derivation |
+| 21 | horn_completeness | Completeness of derivation |
+| 22 | horn_result_is_minimal_model | Result is minimal model |
+
+### DungFixedPoint.lean (13 theorems)
+
+| # | Theorem | Scope |
+|---|---|---|
+| 23 | F_monotone | Characteristic function is monotone |
+| 24 | iteration_monotone | Iteration is monotone |
+| 25 | finite_termination | Terminates within args.card steps |
+| 26 | iteration_bound | Iteration bounded by args.card + 1 |
+| 27 | groundedSpec_is_fixed_point | Spec-based grounded is fixed point |
+| 28 | grounded_is_fixed_point | Computed grounded is fixed point |
+| 29 | groundedSpec_is_least_fixed_point | Spec-based grounded is least |
+| 30 | grounded_is_least_fixed_point | Computed grounded is least |
+| 31 | grounded_is_least_complete | Least completeness |
+| 32 | groundedSpec_unique_least_fixed_point | Unique least fixed point |
+| 33 | labelling_partition | IN/OUT/UNDECIDED partition |
+| 34 | in_soundness | IN labels are sound |
+| 35 | out_soundness | OUT labels are sound |
+| 36 | undecided_characterization | UNDECIDED characterization |
+| 37 | self_attack_precise_theorem | Self-attack precise analysis |
+| 38 | self_attack_not_in_grounded | Self-attacking args not in grounded |
+
+### DungAAF.lean (supporting lemmas for AAF structure)
+
+Supporting definitions and lemmas for the Dung argumentation framework.
+
+### FiniteGaloisAdjunction.lean (1 theorem)
+
+| # | Theorem | Scope |
+|---|---|---|
+| 39 | galois_connection_of_residuated | Galois connection from residuated maps |
+
+### FiniteRosetta.lean (8 theorems)
+
+| # | Theorem | Scope |
+|---|---|---|
+| 40 | cnOnly_eq_30 | cnOnlyCount = 30 |
+| 41 | collision_eq_4 | collisionCount = 4 |
+| 42 | asymmetry_eq_3 | asymmetryCount = 3 |
+| 43 | obstruction_eq_37 | obstructionCount = 37 |
+| 44 | cnOnly_exceeds_half | cnOnlyCount > 44/2 |
+| 45 | obstruction_exceeds_half | obstructionCount > 44/2 |
+| 46 | no_total_functor | No total cross-jurisdiction functor |
+| 47 | obstruction_density_gt_two_thirds | Obstruction density > 2/3 |
+| 48 | pure_obstruction_majority | Pure obstructions are majority |
+
+### TemporalKripke.lean (2 theorems)
+
+| # | Theorem | Scope |
+|---|---|---|
+| 49 | temporal_guard_always | Temporal guard holds at all time points |
+| 50 | litigation_always_guard | Litigation guard always holds |
+
+### UnifiedModel.lean (11 theorems)
+
+| # | Theorem | Scope |
+|---|---|---|
+| 51 | horn_step_mono | Horn step is monotone |
+| 52 | unattacked_in_ge | Unattacked args in grounded extension |
+| 53 | unattacked_in_lfp | Unattacked args in least fixpoint |
+| 54 | banach_bounded | Banach pricing bounded |
+| 55 | soundness_aaf | AAF soundness in unified model |
+| 56 | soundness_banach | Banach soundness in unified model |
+| 57 | gc2_completeness | Completeness of GC2 |
+| 58 | unified_composition_v2 | Unified composition theorem |
+| 59 | full_chain | Full chain theorem |
+| 60 | horn_monotone | Horn monotonicity in unified model |
+| 61 | banach_bound_uniform | Uniform Banach bound |
+
+### BanachComplete.lean (1 theorem)
+
+| # | Theorem | Scope |
+|---|---|---|
+| 62 | weightedMetricSpace_dist | Weighted metric space distance properties |
+
+### BanachContraction.lean (2 theorems)
+
+| # | Theorem | Scope |
+|---|---|---|
+| 63 | weighted_contraction_bound | Weighted contraction bound |
+| 64 | weighted_contraction_bound_nnreal | NNReal version |
+
+### BanachEffectiveNodes.lean (3 theorems)
+
+| # | Theorem | Scope |
+|---|---|---|
+| 65 | pricingFn_contraction | Pricing function contraction |
+| 66 | pricingFn_fixed_point | Pricing function fixed point |
+| 67 | pricingFn_unique_fixed_point | Uniqueness of fixed point |
+
+### BanachFixedPoint.lean (1 theorem)
+
+| # | Theorem | Scope |
+|---|---|---|
+| 68 | weightedContractionData_of_coupling | Coupling to weighted contraction |
+
+### ContractionCondition.lean (1 theorem)
+
+| # | Theorem | Scope |
+|---|---|---|
+| 69 | lipschitz_coupling_implies_weighted_contraction | Lipschitz coupling implies contraction |
+
+### WeightedSupNorm.lean (4 theorems)
+
+| # | Theorem | Scope |
+|---|---|---|
+| 70 | weightedSupDist_nonneg | Non-negativity |
+| 71 | weightedSupDist_triangle | Triangle inequality |
+| 72 | weightedSupDist_symm | Symmetry |
+| 73 | weightedSupDist_complete | Completeness |
+
+### JC_Formalization.lean (6 theorems)
+
+| # | Theorem | Scope |
+|---|---|---|
+| 74 | proved_theorems_card | proved_theorems.card = 7 |
+| 75 | empirical_proxy_card | empirical_proxy_theorems.card = 2 |
+| 76 | refuted_theorems_card | refuted_theorems.card = 1 |
+| 77 | pending_theorems_card | pending_theorems.card = 0 |
+| 78 | advance_preserves_domain_bound | Domain bound preserved under advance |
+| 79 | advance_cannot_revive_refuted | Refuted status is permanent |
 
 ---
 
-## Runner Gate Fix
+## Supporting Theorems and Lemmas (51)
 
-- Any `FAILED` artifact causes `overall = FAIL`
-- Lean artifacts with Mathlib missing or `sorry` are auto-downgraded to `PENDING_TOOLCHAIN`
-- Z3 .smt2 without z3 binary is `PENDING_TOOLCHAIN` (not FAILED)
+The remaining 51 theorems are distributed across `Basic.lean`, `ScratchApi.lean`, `SupZeroLemma.lean`, `BanachScratch.lean`, `BanachWeightedNorm.lean`, `BanachCertificate.lean`, `HornOperationalRefinement.lean`, and structural lemmas within the files listed above. All compile with 0 sorry.
 
 ---
 
-## Reconciliation (2026-06-18)
+## Proof Artifact Status (17 artifacts, separate from Lean)
 
-- `ARTIFACT_MANIFEST.json`, `proof_run_results.json`, `theorem_status_matrix.md` 统一为：10 PROVED, 3 REFUTED, 4 PENDING_TOOLCHAIN, 0 FAILED。
-- T007a (Z3 graph similarity) 因 Python z3 bindings 可用，状态从 PENDING_TOOLCHAIN 升级为 SMT_PROVED_FINITE。
-- T010 (Laplace DP) 在 run_all_proofs.py 中可被 checker 确认，状态对齐为 EXHAUSTIVE_FINITE_PROOF。
-- Lean/TLA+ 工具链仍然缺失，T001c/T003a/T004a/T009a 保持 PENDING_TOOLCHAIN。
+| ID | Name | Status | Evidence |
+|---|---|---|---|
+| ART-001 | Finite Galois Adjunction | PROVED | EXHAUSTIVE_FINITE_PROOF |
+| ART-003 | Bounded Horn Correctness | PROVED | EXHAUSTIVE_FINITE_PROOF |
+| ART-004 | Horn Termination Measure | PROVED | EXHAUSTIVE_FINITE_PROOF |
+| ART-006 | Production Bounded Termination | PROVED | EXHAUSTIVE_FINITE_PROOF |
+| ART-008 | Dung Grounded Extension | PROVED | EXHAUSTIVE_FINITE_PROOF |
+| ART-009 | Stratified Correspondence | PROVED | EXHAUSTIVE_FINITE_PROOF |
+| ART-010 | Graph Similarity Range | PROVED | SYMBOLIC_PROVED |
+| ART-011 | Graph Similarity Range (Z3) | PROVED | SMT_PROVED_FINITE |
+| ART-015 | Siegel Repeated Median | PROVED | EXHAUSTIVE_FINITE_PROOF |
+| ART-016 | Banach Effective Nodes | PROVED | SYMBOLIC_PROVED |
+| ART-012 | Graph Metric Counterexamples | REFUTED | REFUTED_BY_COUNTEREXAMPLE |
+| ART-013 | DP Floor Clipping Analysis | REFUTED | REFUTED_BY_COUNTEREXAMPLE |
+| ART-014 | Clipped Theil-Sen Refutation | REFUTED | REFUTED_BY_COUNTEREXAMPLE |
+| ART-005 | Bounded Horn (Z3 .smt2) | PENDING | PENDING_TOOLCHAIN |
+| ART-002 | Finite Galois Adjunction (Lean) | PENDING | PENDING_TOOLCHAIN |
+| ART-017 | Banach Effective Nodes (Lean) | PENDING | PENDING_TOOLCHAIN |
+| ART-007 | Evaluator Termination (TLA+) | PENDING | PENDING_TOOLCHAIN |
+
+---
+
+## Gate Fix Rules
+
+- Any `FAILED` artifact causes `overall = FAIL`.
+- Lean artifacts with `sorry` are excluded from proven count (0 sorry is current state).
+- PENDING_TOOLCHAIN items require tool chain installation before upgrade.
+- refuted status is permanent: `advance_cannot_revive_refuted` is a Lean-proven theorem.

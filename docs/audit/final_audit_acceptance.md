@@ -1,72 +1,87 @@
-# 最终审计与接收意见
+# Final Audit and Acceptance Opinion
 
-日期: 2026-06-11
+Date: 2026-06-27
 
-## 1. 数学证明包
+## 1. Mathematical Proof Package
 
-目录:
+### Lean Formalization State
 
-`D:\Codex\juris-calculus\20260611 kimi proof`
+| Item | Value |
+|---|---|
+| Lean version | 4.30.0 |
+| Mathlib version | v4.30.0 (rev c5ea003) |
+| Lean files | 25 |
+| Unique theorems | 94 (43 core + 51 supporting) |
+| sorry count | 0 |
+| `lake build` | 2954 jobs, 0 errors |
+| AxiomAudit | PASS |
 
-历史形式化验证来源:
+### JC_Formalization.lean Status Register
 
-`D:\同步网盘\软件开发\论文\实验数据\5.20260609codex形式化验证`
+| Set | Card | Lean proof |
+|---|---|---|
+| proved_theorems | 7 | `proved_theorems_card : .card = 7 := by decide` |
+| empirical_proxy_theorems | 2 | `empirical_proxy_card : .card = 2 := by decide` |
+| refuted_theorems | 1 | `refuted_theorems_card : .card = 1 := by decide` |
+| pending_theorems | 0 | `pending_theorems_card : .card = 0 := by decide` |
 
-终审结论:
+### Gate Status
 
-`ACCEPTED_AS_STRICT_PROOF_BASELINE_WITH_LIMITATIONS`
+| Gate | Status |
+|---|---|
+| M1 | SUBSTANTIAL_PARTIAL |
+| M2 | SUBSTANTIAL_PARTIAL |
+| M3 | SUBSTANTIAL_PARTIAL |
+| M4 | PARTIAL |
+| M5 | CLOSED |
 
-可使用部分:
+### Final Conclusion
 
-1. 反例已经有效击穿若干原始强命题。
-2. toy finite proof 可以作为 regression artifact。
-3. proof ledger 可作为代码提升时的证据分级基准。
+```
+ACCEPTED_AS_STRICT_PROOF_BASELINE_WITH_LIMITATIONS
+```
 
-不可使用部分:
+**Usable portions:**
 
-1. 不得把 A1-toy 推广为真实跨法域 Rosetta 不可能性证明。
-2. 不得把 C-toy 推广为真实 pricing Banach 收缩证明。
-3. 不得把 P0-D epsilon 构造说成“由法律 privilege 自然推出”。
-4. Lean draft 在 toolchain 未跑通前只能标 `PENDING_TOOLCHAIN`。
+1. The 94 Lean theorems with 0 sorry provide a solid formal core.
+2. The 10 PROVED proof artifacts provide runnable verification.
+3. The 3 REFUTED artifacts provide permanent counterexample guards.
+4. The `JC_Formalization.lean` status register provides machine-checked cardinality proofs.
 
-## 2. 法律数据验证包
+**Non-usable portions:**
 
-目录:
+1. Do not promote `T2_HornCorrectness` (EMPIRICAL_PROXY) to proved status.
+2. Do not promote `T20_MDLRuleComplexity` (EMPIRICAL_PROXY, not significant) to proved status.
+3. Do not promote `T4_KripkeProgram` (AXIOM_ONLY) to proved status.
+4. Lean files with Banach-related theorems remain in Track B; do not claim Banach closure.
 
-`D:\Codex\juris-calculus\20260611kimi`
+## 2. Engineering Proof Artifacts
 
-终审结论:
+### 17 Proof Artifacts Summary
 
-`ACCEPTED_AS_LEGAL_DATA_VALIDATION_BASELINE_WITH_LIMITATIONS`
+| Status | Count |
+|---|---|
+| PROVED | 10 |
+| REFUTED | 3 |
+| PENDING_TOOLCHAIN | 4 |
+| FAILED | 0 |
+| **Total** | **17** |
 
-可使用部分:
+### 31 Adversarial Tests
 
-1. CN/跨法域经验 witness。
-2. AAF shadow diff fixture。
-3. obstruction registry。
-4. pricing observation 经验样本。
-5. source manifest 与 repair ledger。
+All 31 pass. Two (ADV-014a, ADV-014b) are "known blind spot confirmed" passes, not defect fixes.
 
-不可使用部分:
+### 13 Benchmark Cases
 
-1. 41 条 `REFERENCE_UNVERIFIED` 不能作为强证明依据。
-2. 任何合成数据不能进入真实法源结论。
-3. 法律数据只能支持经验验证、反例搜索、工程约束，不直接推出全称数学定理。
+Manifest exists. No runner has executed expected-output validation.
 
-## 3. 对 20260608 数学模型的接收意见
+## 3. Hard Gates for Code Elevation
 
-早期 20260608 文档和 theory 代码已完成证据校准:
+Before entering code elevation, the following must be maintained:
 
-1. 宏大定理叙事已改为证据分级模型。
-2. Rosetta/Galois/Banach/DP privilege 等模块已从“已证明”降级为“架构、toy proof、经验 witness 或反例”。
-3. 下一阶段应进入代码提升，而不是继续堆叠新数学叙事。
-
-## 4. 进入代码提升的硬门槛
-
-进入代码提升前必须坚持:
-
-1. 所有 API 输出都携带 trust label。
-2. synthetic/toy 数据永不升格为真实法源证明。
-3. AAF/Horn 分层 evaluator 优先于单循环非单调 fixpoint。
-4. 反例库进入回归测试。
-5. 数据来源状态进入 schema，而不是只写在报告里。
+1. All API outputs carry trust labels.
+2. Synthetic/toy data never promotes to real legal-source proof.
+3. AAF/Horn layered evaluator takes priority over single-loop non-monotone fixpoint.
+4. Counterexample library enters regression tests.
+5. Data source status enters schema, not just reports.
+6. Lean: 0 sorry across all 25 files is the minimum bar.

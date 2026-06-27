@@ -5,16 +5,16 @@
 This document defines the first narrow semantic slice that should be closed
 before the project fully shifts its main effort to `juris-calculus`.
 
-The target is not "all contract law". The target is one auditable chain:
+The target is not "all contract law." The target is one auditable chain:
 
 ```text
 contract_exists
-→ delivery_obligation
-→ non_delivery
-→ exemption defense
-→ breach finding
-→ remedy selection
-→ decision status and proof trace
+-> delivery_obligation
+-> non_delivery
+-> exemption defense
+-> breach finding
+-> remedy selection
+-> decision status and proof trace
 ```
 
 ## Canonical Entities
@@ -167,6 +167,19 @@ Every evaluation should emit a trace with at least:
 6. grounded accepted set
 7. final decision status
 8. fail-closed cause when applicable
+
+## Gate Alignment
+
+This slice contributes to the five transition gates defined in
+`next-stage-spec-first-roadmap.md`:
+
+| Gate | Contribution |
+|---|---|
+| Gate 1 (Canonical Types) | Exercises LegalFact, LegalRule, LegalNorm, Argument, Attack, Violation, Reparation, DecisionStatus, ProofTrace |
+| Gate 2 (Minimal DDL) | Exercises OBLIGATION, violation consequence, exception, remedy semantics |
+| Gate 3 (Horn->AAF Contract) | Exercises traceability, exception direction, accepted-set boundedness |
+| Gate 4 (Reference Interpreter) | Provides contract-breach fixture for the reference evaluator |
+| Gate 5 (Certificate/Checker) | Exercised in test_spec_transition.py |
 
 ## What Counts As "Closed Enough"
 

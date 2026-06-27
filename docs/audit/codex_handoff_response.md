@@ -1,49 +1,66 @@
-# 08 Codex 交接回应：可进入代码提升
+# Codex Handoff Response: Ready for Code Elevation
 
-日期：2026-06-11
+Date: 2026-06-11
 
-## 1. 回应结论
+## 1. Conclusion
 
-可以进入代码提升阶段。
+Code elevation can proceed.
 
-但进入的不是“所有数学定理已证明”的阶段，而是：
+The current state is not "all mathematical theorems proved." The correct label is:
 
-`EVIDENCE_CALIBRATED_MODELING_READY_FOR_CODE_LIFT`
+```
+EVIDENCE_CALIBRATED_MODELING_READY_FOR_CODE_LIFT
+```
 
-## 2. 已完成工作
+## 2. Verified State
 
-1. theory 关键文件已降级/修正；
-2. 新增统一模型状态账本 `model_status.py`；
-3. 顶层 8 份文档已重写；
-4. 严格数学证明包已封口；
-5. 法律数据验证包已封口；
-6. Google 合成/补强临时数据已删除；
-7. 成果将汇总到 `D:\jcmathmodel`。
+### Lean Formalization
 
-## 3. 当前最可信事实
+| Item | Value |
+|---|---|
+| Lean files | 25 |
+| Unique theorems | 94 (43 core + 51 supporting) |
+| sorry count | 0 |
+| `lake build` | 2954 jobs, 0 errors |
+| JC_Formalization.lean | proved=7, empirical=2, refuted=1, pending=0 |
 
-1. Horn closure 可作为单调 Stage 1。
-2. Dung AAF 可作为确定性 Stage 2。
-3. 原 evaluator 非单调，不能直接套 Tarski。
-4. pricing 真实证明数据不足。
-5. DP epsilon 是 policy config。
-6. 跨法域映射必须 obstruction-first。
+### Gate Status
 
-## 4. 下一步 Codex 任务
+| Gate | Status |
+|---|---|
+| M1 | SUBSTANTIAL_PARTIAL |
+| M2 | SUBSTANTIAL_PARTIAL |
+| M3 | SUBSTANTIAL_PARTIAL |
+| M4 | PARTIAL |
+| M5 | CLOSED |
 
-1. 在源码中实现 trust label；
-2. 改 evaluator 架构；
-3. 加数据验证 CI；
-4. 加 agent payload schema；
-5. 把所有旧 claim 输出接入 `allowed_claim / forbidden_claim`。
+## 3. Current Most Trusted Facts
 
-## 5. 最终交付标签
+1. Horn closure works as a monotone Stage 1.
+2. Dung AAF works as a deterministic Stage 2.
+3. The original evaluator is non-monotone and cannot directly use Tarski.
+4. Pricing real proof data is insufficient.
+5. DP epsilon is a policy config.
+6. Cross-jurisdiction mapping must be obstruction-first.
 
-本阶段成果标签：
+## 4. Next Codex Tasks
 
-`EVIDENCE_CALIBRATED_MATH_MODEL_AND_ENGINEERING_DESIGN_BASELINE`
+1. Implement trust labels in source code.
+2. Restructure evaluator architecture.
+3. Add data validation CI.
+4. Add agent payload schema.
+5. Connect all old claim outputs to `allowed_claim / forbidden_claim`.
 
-禁用标签：
+## 5. Deliverable Label
 
-`FINAL_ALL_THEOREMS_PROVED`
+This stage's deliverable label:
 
+```
+EVIDENCE_CALIBRATED_MATH_MODEL_AND_ENGINEERING_DESIGN_BASELINE
+```
+
+Forbidden label:
+
+```
+FINAL_ALL_THEOREMS_PROVED
+```

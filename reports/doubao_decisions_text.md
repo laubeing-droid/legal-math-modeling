@@ -1,195 +1,89 @@
-JC法律推理统一数学模型形式化证明系统代码梳理与决策 - 豆包
-doubao
-NousSave - AI Chat Exporter
-JC法律推理统一数学模型形式化证明系统代码梳理与决策 - 豆包 (2 消息)
-🔗
-https://www.doubao.com/chat/38431446851357954
-2 总消息数
-~1,569 字数
-🗓️ 此刻 · 2026年6月19日 01:53
-#1
-用户 · #1 · 2026-06-18T17:53:18.426Z
-技术决策征求意见.md
-Markdown
-用户
-doubao
-doubao · #2 · 2026-06-18T17:53:18.426Z
-📊
-表格 ×6
-这份文档围绕 JC 法律推理统一数学模型形式化证明系统 展开，核心是对系统中各类代码文件 / 模块的问题、优化方向和决策点进行梳理，以下按模块类型分类介绍涉及的代码文件 / 核心模块：
-一、核心业务逻辑模块（理论层）
-这类文件是法律推理模型的核心实现，负责证据评估、逻辑推导等核心功能。
-表格
-二、形式化证明相关文件（Lean4）
-这类文件是数学模型形式化证明的载体，目标是消除临时占位的 sorry （未完成证明），完成严格的数学证明。
-表格
-三、验证工具模块
-这类文件负责对模型的逻辑一致性、安全性、等价性进行自动化验证。
-表格
-四、功能扩展模块（产品层）
-这类文件是产品功能扩展的核心，覆盖跨域检查、图相似度、偏离度分析等...
-这份文档围绕
-JC 法律推理统一数学模型形式化证明系统
-展开，核心是对系统中各类代码文件 / 模块的问题、优化方向和决策点进行梳理，以下按模块类型分类介绍涉及的代码文件 / 核心模块：
-一、核心业务逻辑模块（理论层）
-这类文件是法律推理模型的核心实现，负责证据评估、逻辑推导等核心功能。
-表格
-文件名 / 模块路径
-核心功能
-关键问题 / 优化点
-theory/evidence_evaluation.py
-证据评估核心逻辑，包含分词、关键词匹配（如
-_contains_word_boundary
-函数）、矛盾检测（
-detect_contradiction
-）等
-1. 分词逻辑有盲区：仅按空格分词导致
-contract_signed
-中的
-signed
-无法匹配；2. 未集成时态推理（
-temporal_law_engine.py
-的
-governing_law_snapshot
-未被调用）；需决策分词修复方案（原地改 / 新增函数 / 全局预处理）及边界词匹配问题
-theory/argumentation_horn_unification.py
-基于 Horn 规则的法律论证逻辑推导，如构造 Dung 论辩框架（
-construct_frame
-）、前提满足性检查（
-_premises_satisfied
-）
-1. 前向推导缺失：仅检查初始事实，未做迭代推导；2. 需处理循环规则、设置推导深度限制；需决策推导逻辑修改方案（改原函数 / 新增方法 / 分层设计）
-temporal_law_engine.py
-时态法律引擎，提供
-governing_law_snapshot()
-（法律快照），处理不同时间节点的法律适用规则
-函数已实现但未被核心模块调用；需决策时态集成方案（改证据结构 / 独立预处理 / 插入 pipeline 中间层），及日期缺失、新旧法冲突的处理规则
-二、形式化证明相关文件（Lean4）
-这类文件是数学模型形式化证明的载体，目标是消除临时占位的
-sorry
-（未完成证明），完成严格的数学证明。
-表格
-文件名
-核心内容
-关键决策点
-BanachEffectiveNodes.lean
-巴拿赫有效节点相关证明，包含绝对值、收缩性质等引理
-2 个低难度
-sorry
-，优先完成；需调用 Mathlib 现有引理补全
-FiniteGaloisAdjunction.lean
-有限伽罗瓦伴随相关证明，涉及偏序集、剩余定义、伽罗瓦连接等
-4 个高难度
-sorry
-；需决策是否先保留为
-PENDING_PROOF
-，优先完成其他文件
-FiniteRosetta.lean
-有限 Rosetta（多语言 / 多域映射）相关证明，涉及范畴论态射保持
-3 个中难度
-sorry
-；需用 CategoryTheory 补全
-JC_Formalization.lean
-核心形式化证明汇总，包含反例、冲突分析、概率分析等证明项
-需补充 4 个证明项（如
-Counterexample6_2
-、
-InfiniteHornCounterexample
-）；需决策是声明为
-axiom
-还是构造具体证明
-三、验证工具模块
-这类文件负责对模型的逻辑一致性、安全性、等价性进行自动化验证。
-表格
-文件名 / 模块
-核心功能
-关键决策点
-verification_engine.py
-（待新增）
-基于 Z3 定理证明器的验证逻辑
-1. 编码 4 个验证项：π_legal 等价性、LFP 单调性、DP 平滑安全性、约束一致性；2. 需决策字符串编码方式（Z3 字符串理论 /bitvector）、是否用非线性实数算术（NRA）、验证项优先级；3. 需决策文件存放路径（
-theory/
-/
-proofs/
-/ 新目录
-verification/
-）
-四、功能扩展模块（产品层）
-这类文件是产品功能扩展的核心，覆盖跨域检查、图相似度、偏离度分析等。
-表格
-文件名 / 模块
-核心功能
-关键问题 / 决策点
-no_functor_finite_checker.py
-（待新增）
-跨域 obstruction checker（冲突检查器）
-1. 基于 44 条映射数据构造样本；2. 需决策冲突判定标准、输出格式；3. 需决策文件存放路径
-graph_similarity_range.py
-图相似度量化，用于法律关系图的相似性评估
-现有实现不满足反射性 / 同一性；需决策优化方案（图编辑距离 / 最大公共子图 / Weisfeiler-Leman），平衡精度与效率
-judgment_deviation.py
-（待新增）
-偏离度检查器，计算综合偏离度（
-D_total = 0.4×D_bayes + 0.35×D_mdl_norm + 0.25×D_aaf_norm
-）
-需决策权重 / 基准 / 阈值的配置方式，及工具形态（独立 CLI / 集成到 pipeline）
-五、测试 / 基准模块
-这类文件保障系统的稳定性和可验证性。
-表格
-目录 / 模块
-核心功能
-关键决策点
-adversarial/
-（或
-tests/
-，待决策）
-对抗测试，覆盖举证责任、证据依赖、时态引擎等 5 个新增模块
-需决策测试目录、用例生成方式（人工 / Hypothesis 自动）、最低测试标准
-Benchmark 用例文件
-系统基准测试，当前 13 个 case，计划扩展到 20+
-需决策扩展数量、expected 值生成方式、域平衡规则
-六、辅助 / 配置文件
-表格
-文件名 / 路径
-核心作用
-决策点
-requirements.txt
-Python 依赖管理
-需决策是否新增
-scipy
-/
-matplotlib
-/
-networkx
-，及 Python 版本兼容范围
-数据文件（
-counterexample_registry.json
-/
-obstruction_analysis.json
-/
-reports/mdl_fp/
-等）
-存储反例、冲突分析、概率分析等数据
-为形式化证明提供数据来源；需基于这些数据构造证明项 / 测试用例
-核心特征总结
-这些代码文件围绕 “法律推理数学模型的形式化证明 + 工程化落地” 两大目标，覆盖：
-工程层
-：修复核心逻辑 Bug、扩展产品功能、保障代码架构合理性；
-理论层
-：完成 Lean4 形式化证明、Z3 自动化验证、数学度量（图相似度 / 偏离度）的严谨性；
-测试层
-：通过对抗测试、基准测试保障系统稳定性和可验证性。
-所有文件的决策均需平衡 “数学严谨性” 和 “产品落地效率”（如投入产出比排序中，Bug 修复优先级最高，高难度 Lean 证明优先级相对低）。
-▼
-展开
-~2,760 字 · 10 分钟阅读
-📊
-#2
-DOUBAO | 由 NousSave 导出
-•
-2 总消息数
-•
-~1,569 字数
-•
-🔗 来源
-📅 此刻 · 2026年6月19日 01:53
+# Doubao Code Review: JC Formal Proof System Code Analysis and Decisions (Text Extract)
+
+> **Historical record of external AI review.** This is a plain text extraction from the HTML original at `doubao_decisions.md`. For the full formatted version with tables, see `doubao_decisions.md` in the same directory. Doubao's recommendations are external opinions and have not been independently verified against the actual codebase.
+
+> **Source:** [https://www.doubao.com/chat/38431446851357954](https://www.doubao.com/chat/38431446851357954)
+> **Date:** 2026-06-19
+> **Original format:** HTML (NousSave export)
+> **This file format:** Plain text extraction
+
+---
+
+## Section 1: Core Business Logic Module (Theory Layer)
+
+### evidence_evaluation.py
+- Core function: Evidence evaluation logic including tokenization, keyword matching (`_contains_word_boundary`), contradiction detection (`detect_contradiction`)
+- Issues: Tokenization splits only by spaces (Bug 1: `contract_signed` cannot match `signed`); temporal reasoning not integrated (`governing_law_snapshot` not called)
+- Decision needed: Tokenization fix approach and boundary word matching
+
+### argumentation_horn_unification.py
+- Core function: Horn-rule-based legal argumentation, Dung argumentation framework construction (`construct_frame`), premise satisfaction check (`_premises_satisfied`)
+- Issues: Forward derivation missing (Bug 2: only checks initial facts, no iterative derivation); need circular rule handling and derivation depth limits
+- Decision needed: Derivation logic modification approach
+
+### temporal_law_engine.py
+- Core function: Temporal legal engine, `governing_law_snapshot()` for law application at different time points
+- Issues: Function implemented but not called by core modules
+- Decision needed: Temporal integration approach, date missing and old/new law conflict handling
+
+## Section 2: Formal Proof Related Files (Lean4)
+
+### BanachEffectiveNodes.lean
+- Content: Banach effective node proofs, absolute value, contraction properties
+- Decision: 2 low-difficulty `sorry`, prioritize; use Mathlib lemmas to complete
+
+### FiniteGaloisAdjunction.lean
+- Content: Finite Galois adjunction proofs, partial order sets, Galois connections
+- Decision: 4 high-difficulty `sorry`; may first mark as `PENDING_PROOF`
+
+### FiniteRosetta.lean
+- Content: Finite Rosetta proofs, category theory morphism preservation
+- Decision: 3 medium-difficulty `sorry`; use CategoryTheory to complete
+
+### JC_Formalization.lean
+- Content: Core formal proof compilation, counterexamples, conflict analysis, probability analysis
+- Decision: Need to supplement 4 proof items (e.g., `Counterexample6_2`, `InfiniteHornCounterexample`); axiom vs concrete proof
+
+## Section 3: Verification Tools Module
+
+### verification_engine.py (to be added)
+- Core function: Z3 theorem prover-based verification
+- Decision: Encode 4 verification items (pi_legal equivalence, LFP monotonicity, DP smooth safety, constraint consistency); string encoding approach; NRA usage; file location
+
+## Section 4: Feature Extension Module (Product Layer)
+
+### no_functor_finite_checker.py (to be added)
+- Core function: Cross-domain obstruction checker
+- Decision: Conflict determination criteria, output format, file location
+
+### graph_similarity_range.py
+- Core function: Graph similarity quantification
+- Issue: Does not satisfy reflexivity/identity
+- Decision: Optimization approach (graph edit distance / maximum common subgraph / Weisfeiler-Leman)
+
+### judgment_deviation.py (to be added)
+- Core function: Deviation checker (D_total = 0.4 x D_bayes + 0.35 x D_mdl_norm + 0.25 x D_aaf_norm)
+- Decision: Weight/baseline/threshold configuration, tool form (CLI / pipeline)
+
+## Section 5: Testing / Benchmark Module
+
+### adversarial/ (or tests/, pending decision)
+- Adversarial testing for 5 new modules
+- Decision: Test directory, use case generation, minimum standards
+
+### Benchmark case files
+- Currently 13 cases, planned 20+
+- Decision: Expansion quantity, expected value generation, domain balance
+
+## Section 6: Auxiliary / Configuration Files
+
+### requirements.txt
+- Decision: Whether to add scipy/matplotlib/networkx, Python version compatibility
+
+### Data files (counterexample_registry.json, obstruction_analysis.json, reports/mdl_fp/, etc.)
+- Store counterexamples, conflict analysis, probability analysis data
+- Provide data sources for formal proof
+
+## Core Summary
+
+All decisions balance "mathematical rigor" and "product implementation efficiency." Bug fix priority is highest; high-difficulty Lean proof priority is relatively low.

@@ -1,89 +1,170 @@
-# 最终形式化发布报告
+# FINAL_FORMAL_RELEASE_REPORT
 
-## 发布结论
+**Date:** 2026-06-28
+**Release ID:** `formal-core-v1`
+**Status:** `spec-first-transition-ready`
 
-当前应对外表述为：
+---
 
-- `formal_core_modules_status: COMPLETE`
-- `repository_formal_release_status: COMPLETE`
-- `banach_status: UNPROVED_TRACK_B`
-- `empirical_calibration_status: DATA_BLOCKED`
-- `privacy_guarantee_status: NOT_ESTABLISHED`
+## 1. Release Conclusion
 
-这意味着：
+Current approved public status:
 
-1. 形式化核心模块已经完成
-2. 仓库级 formal release gate 已经关闭
-3. Banach 没有被混入 formal core 的完成声明
+| Dimension | Status |
+|-----------|--------|
+| `formal_core_modules_status` | COMPLETE |
+| `repository_formal_release_status` | COMPLETE |
+| `banach_status` | UNPROVED_TRACK_B |
+| `empirical_calibration_status` | DATA_BLOCKED |
+| `privacy_guarantee_status` | NOT_ESTABLISHED |
 
-## 当前真相源
+This means:
 
-| 项目 | 当前值 |
-| --- | --- |
-| 公共分支模型 | `master` only |
-| 仓库 HEAD | `cde13f0` |
-| 最近 clean rebuild 证据提交 | `4b415b8` |
-| Lean guard scan | `0 sorry / 0 admit / 0 custom axiom / 0 theorem : True` |
-| `AxiomAudit` | 可复现 |
+1. The formal core modules (finite monotone iteration, Dung grounded fixed-point,
+   finite Horn closure) are complete and released.
+2. The repository-level formal release gate is closed.
+3. Banach is NOT mixed into the formal core completion claim.
 
-## 计数口径
+---
 
-- `formal_core_module_theorems = 39`
-- `extended_core_theorems = 43`
-- `supporting_results = 32`
-- `total_kernel_checked_results = 75`
+## 2. Current Ground Truth Source
 
-说明：
+| Item | Value |
+|------|-------|
+| Public branch model | `master` only |
+| Repository HEAD | `12470ac` |
+| Last clean rebuild evidence | `12470ac` |
+| GitHub Actions clean build | PASS at `12470ac` |
+| Lean source guard | 0 sorry / 0 admit / 0 custom axiom / 0 `theorem : True` |
+| `AxiomAudit` | Reproducible |
+| `lake build JurisLean` | 2954 jobs, 0 errors |
 
-- `39` 是公开 formal core 口径
-- `75` 是 manifest 层面的全量已检查结果口径
-- 计数真相源是 `docs/formal-release/theorem_manifest.json`
+---
 
-## 已关闭的发布门
+## 3. Counting Policy
 
-以下门已经关闭：
+| Metric | Value | Source |
+|--------|-------|--------|
+| Unique theorem names | 94 | `theorem_manifest.json` |
+| Core theorems | 43 | `theorem_manifest.json` |
+| Supporting theorems | 51 | `theorem_manifest.json` |
+| Total manifest entries | 100 | `theorem_manifest.json` |
+| `formal_core_module_theorems` | 43 | `theorem_manifest.json` |
 
-- 仓库级 clean build 证据门
-- `AxiomAudit` 可复现门
-- Lean 源码守卫门
-- theorem manifest 对齐门
-- formal release 文档口径统一门
+### Core theorem distribution by file:
 
-## 当前不应跨越的边界
+| File | Core theorems |
+|------|--------------|
+| `DungFixedPoint.lean` | 17 |
+| `HornFixedPoint.lean` | 10 |
+| `FiniteMonotoneIteration.lean` | 9 |
+| `WeightedSupNorm.lean` | 4 |
+| `HornDefinitions.lean` | 2 |
+| `ContractionCondition.lean` | 1 |
+| **Total** | **43** |
 
-以下内容仍然不能作为完成声明：
+---
 
-- Banach 完整 fixed-point 闭环
-- 整个 `juris-calculus` Python 实现的 Lean 完整证明
-- 差分隐私正式保证
-- 常量真实数据校准完成
-- 本仓完成诉讼自动化
+## 4. Closed Release Gates
 
-## Banach 的正确位置
+The following gates are closed:
 
-Banach 当前只处于归档研究状态：
+- Repository-level clean build evidence gate
+- `AxiomAudit` reproducibility gate
+- Lean source guard gate (0 sorry / 0 admit / 0 custom axiom)
+- Theorem manifest alignment gate
+- Formal release documentation consistency gate
 
-- 不是 `formal-core-v1` 的组成部分
-- 不再保留活跃发布分支
-- 仅通过 archive tags 保留历史追溯点
+---
 
-归档 tag：
+## 5. Five Spec-First Transition Gates
+
+| Gate | Document | Status |
+|------|----------|--------|
+| M1: Canonical Schema | `docs/spec/canonical_legal_schema.md` | SUBSTANTIAL_PARTIAL |
+| M2: DDL Minimal Core | `docs/spec/ddl_minimal_core.md` | SUBSTANTIAL_PARTIAL |
+| M3: Horn -> AAF Contract | `docs/spec/horn_to_aaf_contract.md` | SUBSTANTIAL_PARTIAL |
+| M4: Certificate/Checker Boundary | `docs/spec/certificate_checker_boundary.md` | PARTIAL |
+| M5: Unified Stopping Statement | `SPEC_FIRST_TRANSITION_READY.md` | CLOSED |
+
+Overall: All five gates are ACCEPTABLE or CLOSED.
+
+---
+
+## 6. Boundary: What Must NOT Be Claimed
+
+The following remain outside the release boundary:
+
+- Banach complete fixed-point closure
+- Full Lean proof of the `juris-calculus` Python runtime
+- Differential privacy guarantees
+- Empirical calibration of constants
+- Litigation automation by this repository
+
+See `FORBIDDEN_CLAIMS.md` for the complete list.
+
+---
+
+## 7. Banach Correct Position
+
+Banach is currently in archived research status only:
+
+- NOT part of `formal-core-v1`
+- No active release branch retained
+- Historical traceability preserved via archive tags only
+
+Archive tags:
 
 - `archive/banach-track-b-d23e8f2`
 - `archive/track-c-prod-f43e273`
 
-## 建议对外句式
+---
 
-推荐：
+## 8. Existing Lean Files (25 Files)
 
-> 本仓库已完成有限单调系统、Dung grounded 不动点层和有限 Horn 闭包层的仓库级形式化发布封板；Banach 仍为独立未完成研究轨道。
+All 25 Lean files that exist in `proofs/lean/juris_lean/JurisLean/`:
 
-不要写：
+| File | Core | Supporting | Category |
+|------|------|-----------|----------|
+| `AxiomAudit.lean` | 0 | 0 | Audit infrastructure |
+| `BanachCertificate.lean` | 0 | 0 | Banach (archived) |
+| `BanachComplete.lean` | 0 | 0 | Banach (archived) |
+| `BanachContraction.lean` | 0 | 2 | Banach (archived) |
+| `BanachEffectiveNodes.lean` | 0 | 8 | Banach (archived) |
+| `BanachFixedPoint.lean` | 0 | 1 | Banach (archived) |
+| `BanachScratch.lean` | 0 | 0 | Banach (archived) |
+| `BanachWeightedNorm.lean` | 0 | 0 | Banach (archived) |
+| `Basic.lean` | 0 | 0 | Shared utilities |
+| `ContractionCondition.lean` | 1 | 0 | Core |
+| `DungAAF.lean` | 0 | 0 | AAF definitions |
+| `DungDefinitions.lean` | 0 | 0 | Dung definitions |
+| `DungFixedPoint.lean` | 17 | 0 | Core |
+| `FiniteGaloisAdjunction.lean` | 0 | 2 | Supporting |
+| `FiniteMonotoneIteration.lean` | 9 | 0 | Core |
+| `FiniteRosetta.lean` | 0 | 9 | Supporting |
+| `HornDefinitions.lean` | 2 | 0 | Core |
+| `HornFixedPoint.lean` | 10 | 0 | Core |
+| `HornOperationalRefinement.lean` | 0 | 0 | Supporting |
+| `JC_Formalization.lean` | 0 | 12 | Supporting |
+| `ScratchApi.lean` | 0 | 0 | Utilities |
+| `SupZeroLemma.lean` | 0 | 1 | Supporting |
+| `TemporalKripke.lean` | 0 | 6 | Supporting |
+| `UnifiedModel.lean` | 0 | 16 | Standalone (NOT canonical) |
+| `WeightedSupNorm.lean` | 4 | 0 | Core |
 
-> 整个法律推理系统已经被完全形式化证明。
+---
 
-## 关联文档
+## 9. Recommended Public Statement
+
+> This repository has completed repository-level formal release closure for
+> the finite monotone iteration kernel, Dung grounded fixed-point layer, and
+> finite Horn closure layer. Banach remains an independent unproved research track.
+
+---
+
+## 10. Related Documents
 
 - [`FORMAL_RELEASE_REPORT.md`](FORMAL_RELEASE_REPORT.md)
 - [`FORBIDDEN_CLAIMS.md`](FORBIDDEN_CLAIMS.md)
-- [`../final-closure/final-report.md`](../final-closure/final-report.md)
+- [`ALLOWED_CLAIMS.md`](ALLOWED_CLAIMS.md)
+- [`SPEC_FIRST_TRANSITION_READY.md`](SPEC_FIRST_TRANSITION_READY.md)

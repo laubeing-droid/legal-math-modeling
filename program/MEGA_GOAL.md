@@ -1,38 +1,81 @@
-读取 program/PLANS.md、PROGRAM_STATE.json 和三个仓库的 AGENTS.md，按照依赖图推进 legal-math-modeling、juris-calculus、Deli AutoResearch 的 Track A-E。
+# MEGA GOAL — legal-math-modeling
 
-本次运行优先级：
-1. Track A 发布真实性：测试口径核查、clean build、AxiomAudit、theorem manifest
-2. Track C0 四阶段 no-uncertainty-upgrade
-3. Track C1 Horn/Grounded 独立证明证书及 sound checker
-4. Track C2/C3 Horn→AAF 参数和攻击保持性 MVM
-5. Track B 独立 worktree：完备加权距离、Lw≤qw→ContractingWith、固定点和误差界
-6. 在 C1/C4 后推进 Track D 的规则影响和增量 Grounded
-7. 仅在前序门禁通过后推进 Track E 最小支撑集/破局集 MVM
+## 项目总目标
 
-执行规则：
-- 先读取真实工作树和现有报告，不重复已完成工作
+构建一套经过形式化验证的法律推理数学模型，实现从法律事实到决策的可审计推理链。
+
+## 当前状态
+
+**FORMAL_CORE_RELEASED**
+
+| 指标 | 数值 |
+|------|------|
+| Lean 唯一定理 | 94（43 core + 51 supporting） |
+| sorry 数量 | 0 |
+| `lake build JurisLean` jobs | 2954 |
+| Lean 源文件 | 25 个 |
+| Python 理论模块 | 59 个 |
+| 规范类型 | 11 个 |
+
+## Track 结构
+
+### Track A: 发布真实性
+
+- A0: test-count and clean-build audit — **完成**
+- A1: formal-core release gate — **完成**
+- A2: executable refinement baseline — 进行中
+
+### Track B: Banach 完备空间（独立 worktree）
+
+- B0: weighted metric completion
+- B1: ContractingWith bridge
+- B2: fixed-point and error bounds
+- B3: BanachCertificate
+
+### Track C: 证书与流水线
+
+- C0: pipeline no-upgrade — 进行中
+- C1: certificate soundness — 进行中
+- C2: argument preservation
+- C3: attack preservation
+- C4: compile certificate integration
+
+### Track D: 增量验证
+
+- D0: provenance graph
+- D1: safe rule-change impact
+- D2: affected-region theorem
+- D3: incremental equals full
+
+### Track E: 最小支撑集
+
+- E0: minimal support
+- E1: minimal rebuttal
+- E2: minimum-cost intervention
+- E3: minimality certificate
+
+## 执行规则
+
 - 每个写 Track 使用独立 worktree
 - 同一文件只允许一个 writer
 - subagent 只承担只读审计、测试、API 搜索和互不冲突任务
-- 每阶段更新 program/PLANS.md 和 PROGRAM_STATE.json
-- 每阶段运行验收测试并创建本地 checkpoint
 - 禁止 sorry/admit/自定义 axiom/True theorem/削弱命题
 - UNKNOWN/TIMEOUT/SKIP fail-closed
 - 证书 checker 不得调用主求值器
 - 增量验证失败必须 fallback 全量重算
 - 不伪造数据、不自动发布、不 force push
 
-失败策略：
+## 失败策略
+
 - 单项阻塞时保存最小复现、proof state 和日志
 - 继续执行不依赖任务
 - 不得以外围功能代偿核心门禁
 - 不得重新修改已封板的有限单调/AAF/Horn theorem，除非出现真实反例或构建失败
 
-最终合法状态：
+## 合法最终状态
+
 - NIGHT_RUN_COMPLETE
 - NIGHT_RUN_PARTIAL
 - FORMAL_CORE_RELEASED_BANACH_BLOCKED
 - PRODUCTION_ASSURANCE_BLOCKED
 - FAILED
-
-最终报告必须列出三仓 commit、测试、Lean theorem 状态、AxiomAudit、Banach 状态、certificate 状态、Horn→AAF 保持性状态、增量状态、最小支撑/破局 MVM、所有剩余阻塞及下一可运行任务。

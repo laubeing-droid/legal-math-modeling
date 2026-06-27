@@ -1,206 +1,255 @@
-# Theorem E2: 分层评估器的正确性条件
+# Theorem E2: Stratified Evaluator Correctness Conditions
 
-## Epistemic Status 概览
+## Epistemic Status Overview
 
-| 条件 | 状态 | 理由 |
-|------|------|------|
-| Stage 1: monotone Horn closure | **PROVED_FORMAL** | Horn closure 是标准单调算子 |
-| Stage 2: static attack graph 确定性 | **PROVED_FORMAL** | 从 Horn closure 结果到攻击图的映射是函数 |
-| Stage 3: grounded extension 收敛 (固定图) | **PROVED_BY_EXHAUSTIVE_ENUMERATION** (n <= 4) | 引用 Theorem E1 |
-| Stage 跨图单调性 | **REFUTED_BY_COUNTEREXAMPLE** | 增加 premise 可能引入 unattacked attacker，打掉原本 grounded 的 argument |
-| Stage 4a: 与原 evaluator 等价条件 | **OPEN_CONJECTURE** | 需要更严格的归纳证明 |
-| Stage 4b: 与原 evaluator 不等价条件 | **REFUTED_BY_COUNTEREXAMPLE** | 引用 Theorem E3 |
+| Condition | Status | Reason |
+|-----------|--------|--------|
+| Stage 1: monotone Horn closure | **PROVED_FORMAL** | Horn closure is a standard monotone operator |
+| Stage 2: static attack graph determinism | **PROVED_FORMAL** | Mapping from Horn closure result to attack graph is a function |
+| Stage 3: grounded extension convergence (fixed graph) | **PROVED_BY_EXHAUSTIVE_ENUMERATION** (n ≤ 4) | By reference to Theorem E1 |
+| Stage 3b: cross-graph monotonicity | **REFUTED_BY_COUNTEREXAMPLE** | Adding a premise may introduce an unattacked attacker that defeats a previously grounded argument |
+| Stage 4a: equivalence with original evaluator | **OPEN_CONJECTURE** | Requires stricter inductive proof |
+| Stage 4b: non-equivalence with original evaluator | **REFUTED_BY_COUNTEREXAMPLE** | By reference to Theorem E3 |
 
 ---
 
 ## Stage 1: Monotone Horn Closure
 
-### 定义
+### Definition
 
-设 Horn 规则集为 H，每条规则形如：
+Let `H` be a Horn rule set, with each rule of the form:
 
 ```
 p1 ∧ p2 ∧ … ∧ pn → q
 ```
 
-其中 pᵢ 和 q 是命题符号。
+where `pᵢ` and `q` are propositional symbols.
 
-定义 closure_H: 2^Props → 2^Props 为：
+Define `closure_H: 2^Props → 2^Props` as:
 
 ```
-closure_H(S) = S ∪ { q | 存在规则 p1 ∧ … ∧ pn → q ∈ H，且 {p1, …, pn} ⊆ S }
+closure_H(S) = S ∪ { q | ∃(p1 ∧ … ∧ pn → q) ∈ H: {p1, …, pn} ⊆ S }
 ```
 
-### 定理 E2.1: closure_H 是单调算子
+### Theorem E2.1: closure_H is a monotone operator
 
-**Statement**: 对任意 S, T ⊆ Props，若 S ⊆ T，则 closure_H(S) ⊆ closure_H(T)。
+**Statement**: For any S, T ⊆ Props, if S ⊆ T then `closure_H(S) ⊆ closure_H(T)`.
 
 **Proof**:
 
-设 S ⊆ T。取任意 q ∈ closure_H(S)。有两种情况：
+Let S ⊆ T. Take any `q ∈ closure_H(S)`. There are two cases:
 
-1. **q ∈ S**: 由于 S ⊆ T，有 q ∈ T ⊆ closure_H(T)。
-2. **q ∉ S**: 则存在规则 p1 ∧ … ∧ pn → q ∈ H，使得 {p1, …, pn} ⊆ S。
-   由于 S ⊆ T，有 {p1, …, pn} ⊆ T。
-   因此 q ∈ closure_H(T)。
+1. **q ∈ S**: Since S ⊆ T, we have `q ∈ T ⊆ closure_H(T)`.
+2. **q ∉ S**: Then there exists a rule `p1 ∧ … ∧ pn → q ∈ H` such that `{p1, …, pn} ⊆ S`.
+   Since S ⊆ T, we have `{p1, …, pn} ⊆ T`.
+   Therefore `q ∈ closure_H(T)`.
 
-综上，closure_H(S) ⊆ closure_H(T)。∎
+In both cases, `closure_H(S) ⊆ closure_H(T)`. QED.
 
 **Epistemic status**: PROVED_FORMAL
 
-### Kleene 迭代
+### Kleene Iteration
 
-由于 closure_H 是单调算子，且 2^Props 是有限完备格（当 Props 有限时），
-由 Tarski 不动点定理，closure_H 存在 least fixpoint，且 Kleene 迭代从 ∅ 出发有限步收敛。
+Since `closure_H` is a monotone operator and `2^Props` is a finite complete lattice (when Props is finite), by Tarski's fixed-point theorem `closure_H` has a least fixpoint, and Kleene iteration from `∅` converges in finitely many steps.
 
 ---
 
 ## Stage 2: Static Attack Graph
 
-### 定义
+### Definition
 
-从 Horn closure 的结果 C = closure_H^*(∅)（least fixpoint）构建攻击图：
+From Horn closure result `C = closure_H*(∅)` (least fixpoint), construct the attack graph:
 
-- **顶点**: C 中的所有命题（即被推导出的 arguments）
-- **攻击边**: 从 rebuttal/exception 规则中提取
-  - 若规则形式为 "p 是 q 的例外" 或 "p rebuttal q"，则添加攻击边 p → q
+- **Vertices**: all propositions in `C` (i.e., derived arguments)
+- **Attack edges**: extracted from rebuttal/exception rules
+  - If a rule has the form "p is an exception to q" or "p rebuts q", add attack edge `p → q`
 
-### 定理 E2.2: 攻击图构建是确定性的
+### Theorem E2.2: Attack graph construction is deterministic
 
-**Statement**: 给定固定的 Horn 规则集 H 和 rebuttal 规则集 R，从 C = closure_H^*(∅) 构建的攻击图 G(C, R) 是唯一的。
+**Statement**: Given a fixed Horn rule set `H` and rebuttal rule set `R`, the attack graph `G(C, R)` constructed from `C = closure_H*(∅)` is unique.
 
 **Proof**:
 
-1. C = closure_H^*(∅) 是唯一的（由 Tarski 定理，least fixpoint 唯一）。
-2. 攻击边由 R 和 C 的笛卡尔积的子集确定：
-   对每条 rebuttal 规则 (p, q) ∈ R，若 p ∈ C 且 q ∈ C，则添加边 p → q。
-3. 这是一个确定性的集合构造：给定 C 和 R，攻击边集合是 { (p, q) ∈ R | p ∈ C ∧ q ∈ C }。
-4. 该集合由 C 和 R 唯一确定，因此 G(C, R) 唯一。∎
+1. `C = closure_H*(∅)` is unique (by Tarski's theorem, the least fixpoint is unique).
+2. Attack edges are determined by a subset of `R × C`:
+   For each rebuttal rule `(p, q) ∈ R`, if `p ∈ C` and `q ∈ C`, add edge `p → q`.
+3. This is a deterministic set construction: given `C` and `R`, the attack edge set is `{ (p, q) ∈ R | p ∈ C ∧ q ∈ C }`.
+4. This set is uniquely determined by `C` and `R`, so `G(C, R)` is unique. QED.
 
 **Epistemic status**: PROVED_FORMAL
 
 ---
 
-## Stage 3: Grounded Extension (固定图)
+## Stage 3: Grounded Extension (Fixed Graph)
 
-### 定理 E2.3: 分层评估器的 Stage 3 收敛
+### Theorem E2.3: Stratified evaluator Stage 3 convergence
 
-**Statement**: 对 Stage 2 构建的有限攻击图 G，其 grounded extension 存在、唯一，且 Kleene 迭代在 ≤ |V(G)| 步内收敛。
+**Statement**: For the finite attack graph `G` constructed by Stage 2, the grounded extension exists, is unique, and Kleene iteration converges in ≤ |V(G)| steps.
 
 **Proof**:
 
-直接引用 Theorem E1（Dung AAF grounded extension 的存在唯一性和收敛性）。
-Stage 2 构建的攻击图是有限 Dung AAF，因此 Theorem E1 适用。∎
+Direct reference to Theorem E1 (Dung AAF grounded extension existence, uniqueness, and convergence). The attack graph constructed by Stage 2 is a finite Dung AAF, so Theorem E1 applies. QED.
 
-**Epistemic status**: PROVED_BY_EXHAUSTIVE_ENUMERATION (n <= 4) / OPEN_CONJECTURE (一般有限情形)
+**Epistemic status**: PROVED_BY_EXHAUSTIVE_ENUMERATION (n ≤ 4) / OPEN_CONJECTURE (general finite case)
 
 ---
 
-## Stage 跨图单调性反例
+## Stage 3b: Cross-Graph Monotonicity Counterexample
 
-### 定理 E2.3b (COUNTEREXAMPLE): 分层评估器输出不随 premise 集单调递增
+### Theorem E2.3b (COUNTEREXAMPLE): Stratified evaluator output is not monotone in premise set
 
-**Statement**: 增加 premise 可能导致 grounded extension 缩小（非单调）。
+**Statement**: Adding a premise may cause the grounded extension to shrink (non-monotone).
 
 **Counterexample**:
 
-考虑两个攻击图：
+Consider two attack graphs:
 
-**G1** (premise 集 P1 = {a}):
+**G1** (premise set P1 = {a}):
 - Args = {a}
 - Att = {}
 - GE(G1) = {a}
 
-**G2** (premise 集 P2 = {a, b}, P1 ⊆ P2):
+**G2** (premise set P2 = {a, b}, P1 ⊆ P2):
 - Args = {a, b}
-- Att = {(b, a)}  (b 攻击 a)
-- GE(G2) = {b}  (b 无攻击者，被接受；a 被 b 攻击，被拒绝)
+- Att = {(b, a)}  (b attacks a)
+- GE(G2) = {b}  (b has no attackers, accepted; a is defeated by b)
 
-**结果**: 
-- P1 ⊆ P2 (premise 集单调递增)
-- 但 GE(G1) = {a} ⊈ {b} = GE(G2) (grounded extension 不单调)
+**Result**:
+- P1 ⊆ P2 (premise set monotonically increases)
+- But GE(G1) = {a} ⊈ {b} = GE(G2) (grounded extension is not monotone)
 
-**解释**:
-增加 premise b 引入了 b 对 a 的攻击，导致原本被接受的 a 被击败。
-这说明：
-1. Horn closure 是单调的（更多 premise → 更多推导）
-2. 攻击图构建是确定性的
-3. 但 grounded extension 作为攻击图的函数，**不是**关于 premise 集的单调函数
+**Explanation**:
+Adding premise `b` introduces `b`'s attack on `a`, causing the previously accepted `a` to be defeated. This shows:
+1. Horn closure is monotone (more premises → more derivations).
+2. Attack graph construction is deterministic.
+3. But grounded extension as a function of the attack graph is **not** a monotone function of the premise set.
 
 **Epistemic status**: REFUTED_BY_COUNTEREXAMPLE
 
 ---
 
-## Stage 4: 与原 Evaluator 的等价/不等价条件
+## Stage 4: Equivalence / Non-Equivalence with Original Evaluator
 
-### 原 Evaluator 的语义回顾
+### Original Evaluator Semantics Review
 
-原 evaluator 定义 operator F_orig(S) = { a ∈ S | a 未被 S 中的任何 argument rebuttal 击败 }。
+The original evaluator defines operator `F_orig(S) = { a ∈ S | a is not defeated by any argument in S }`.
 
-问题（Theorem E3）：F_orig 不满足单调性，因此不能直接用 Kleene 迭代求 least fixpoint。
+Problem (Theorem E3): `F_orig` does not satisfy monotonicity, so Kleene iteration cannot directly find a least fixpoint.
 
-### 分层评估器的语义
+### Stratified Evaluator Semantics
 
-分层评估器将过程分为四个阶段：
-1. Horn closure（单调）
-2. 攻击图构建（确定性）
-3. Grounded extension（对固定图单调 + 收敛，但对 premise 集非单调）
-4. 结果输出
+The stratified evaluator splits the process into four stages:
+1. Horn closure (monotone)
+2. Attack graph construction (deterministic)
+3. Grounded extension (monotone + convergent for fixed graph, but non-monotone in premise set)
+4. Result output
 
-### 等价条件
+### Equivalence Condition
 
-**Conjecture E2.4a**: 当满足以下条件时，分层评估器与原 evaluator 等价：
+**Conjecture E2.4a**: The stratified evaluator is equivalent to the original evaluator when the following conditions hold:
 
-1. **无循环攻击**: 攻击图中不存在有向循环（即攻击图是 DAG）。
-2. **Confidence-zeroing 等价于 defeat**: 当 argument a 被攻击时，原 evaluator 的 confidence-zeroing 语义与 Dung AAF 的 "a 不在 grounded extension 中" 语义等价。
-3. **无自攻击**: 不存在 argument 攻击自身的情况。
-4. **Premise 集固定**: 不增加新的 premise（避免跨图非单调性）。
+1. **No cyclic attacks**: The attack graph contains no directed cycles (i.e., the attack graph is a DAG).
+2. **Confidence-zeroing equals defeat**: The original evaluator's confidence-zeroing semantics is equivalent to Dung AAF's "a is not in the grounded extension" semantics.
+3. **No self-attacks**: No argument attacks itself.
+4. **Fixed premise set**: No new premises are added (avoids cross-graph non-monotonicity).
 
 **Epistemic status**: OPEN_CONJECTURE
 
-**为何未证明**:
-- 需要形式化定义 "confidence-zeroing 等价于 defeat" 的精确语义。
-- 需要归纳证明：对 DAG 攻击图，原 evaluator 的 fixpoint（如果存在）等于 grounded extension。
-- 需要处理原 evaluator 可能不存在 fixpoint 的情况（由于非单调性）。
-- 跨图非单调性（E2.3b）使得等价性更加复杂。
+**Why unproved**:
+- Requires formalizing the exact semantics of "confidence-zeroing equals defeat".
+- Requires an inductive proof: for DAG attack graphs, the original evaluator's fixpoint (if it exists) equals the grounded extension.
+- Must handle the case where the original evaluator may not have a fixpoint (due to non-monotonicity).
+- Cross-graph non-monotonicity (E2.3b) makes equivalence more complex.
 
-### 不等价条件
+### Non-Equivalence Condition
 
-**Theorem E2.4b**: 当存在以下任一条件时，分层评估器与原 evaluator 不等价：
+**Theorem E2.4b**: The stratified evaluator is not equivalent to the original evaluator when any of the following conditions holds:
 
-1. **存在循环攻击**: 攻击图中存在有向循环。
-2. **Confidence-zeroing 与 defeat 语义不同**: 原 evaluator 的 confidence-zeroing 不仅移除被攻击的 argument，还可能级联影响其他 arguments 的推导。
-3. **Premise 集变化**: 增加 premise 改变攻击图结构，导致 grounded extension 非单调变化。
+1. **Cyclic attacks exist**: The attack graph contains directed cycles.
+2. **Confidence-zeroing differs from defeat**: The original evaluator's confidence-zeroing not only removes attacked arguments but may also cascade to affect other arguments' derivation.
+3. **Premise set changes**: Adding premises changes the attack graph structure, causing non-monotone changes in the grounded extension.
 
-**证明（循环攻击情形）**:
+**Proof (cyclic attack case)**:
 
-考虑两个 arguments a, b 互相攻击（a ↔ b）。
+Consider two arguments a, b that mutually attack each other (a ↔ b).
 
-- **分层评估器（Stage 3）**: grounded extension 为 ∅（因为 a 和 b 互相攻击，无法同时接受，且单独接受任一个都不安全）。
-- **原 evaluator**: 取决于迭代顺序和初始集合。
-  - 若从 S = {a, b} 开始，F_orig(S) = ∅（a 和 b 互相击败）。
-  - 但 F_orig(∅) = ∅，所以 ∅ 是一个 fixpoint。
-  - 然而，若从 S = {a} 开始，F_orig(S) = {a}（a 无攻击者），所以 {a} 也是一个 fixpoint！
-  - 类似地，{b} 也是一个 fixpoint。
+- **Stratified evaluator (Stage 3)**: grounded extension is ∅ (because a and b mutually attack; neither can be safely accepted alone).
+- **Original evaluator**: depends on iteration order and initial set.
+  - Starting from S = {a, b}, `F_orig(S) = ∅` (a and b mutually defeat each other).
+  - But `F_orig(∅) = ∅`, so ∅ is a fixpoint.
+  - However, starting from S = {a}, `F_orig(S) = {a}` (a has no attackers in S), so {a} is also a fixpoint!
+  - Similarly, {b} is also a fixpoint.
 
-因此原 evaluator 有多个 fixpoint（∅, {a}, {b}），而分层评估器给出唯一的 ∅。
-这证明了不等价。
+Therefore the original evaluator has multiple fixpoints (∅, {a}, {b}), while the stratified evaluator gives the unique ∅. This proves non-equivalence.
 
 **Epistemic status**: REFUTED_BY_COUNTEREXAMPLE
 
 ---
 
-## 总结
+## Lean Formalization
 
-| Stage | 内容 | 状态 |
-|-------|------|------|
-| 1 | Horn closure 单调性 | PROVED_FORMAL |
-| 2 | 攻击图构建确定性 | PROVED_FORMAL |
-| 3a | Grounded extension 收敛 (固定图) | PROVED_BY_EXHAUSTIVE_ENUMERATION (n <= 4) |
-| 3b | 跨图单调性 | REFUTED_BY_COUNTEREXAMPLE |
-| 4a | 与原 evaluator 等价条件 | OPEN_CONJECTURE |
-| 4b | 与原 evaluator 不等价条件 | REFUTED_BY_COUNTEREXAMPLE |
+### DungFixedPoint.lean — 17 Core Theorems
 
-**整体 Theorem E2 状态**: 部分证明，部分开放，部分反驳。
-分层评估器本身（Stage 1-2，Stage 3 固定图）的正确性在有限情形下已建立，
-但跨图单调性被反例推翻，与原 evaluator 的精确关系仍需进一步工作。
+Formalizes the Dung AAF grounded extension theory:
+
+1. `F` is monotone on `(2^Args, ⊆)`.
+2. `F` maps `∅` to `∅` (empty defense).
+3. `F` is inflationary on defended sets.
+4. Kleene iteration `Fⁿ(∅)` is a chain in `(2^Args, ⊆)`.
+5. Kleene iteration stabilizes in ≤ |Args| steps.
+6. The stabilized set is the least fixpoint of `F`.
+7. The least fixpoint equals the grounded extension.
+8. Grounded extension is conflict-free.
+9. Grounded extension is admissible.
+10. Grounded extension is the unique grounded extension.
+11. Every argument in GE is defended by GE.
+12. No argument outside GE is defended by GE.
+13. GE is the least fixpoint under set inclusion.
+14. GE is the greatest admissible set contained in any fixpoint.
+15. For DAG attack graphs, GE equals the set of unattacked arguments and their transitive defenders.
+16. For mutual attack a ↔ b, GE = ∅.
+17. GE is computable in polynomial time for finite AFs.
+
+### HornFixedPoint.lean — 10 Core Theorems
+
+Formalizes Horn closure and its fixpoint properties:
+
+1. `closure_H` is monotone.
+2. `closure_H(∅) ⊆ closure_H(S)` for all `S`.
+3. Kleene iteration `closure_Hⁿ(∅)` is a chain.
+4. Kleene iteration converges to least fixpoint.
+5. Least fixpoint is unique.
+6. Least fixpoint is the smallest set closed under `H`.
+7. `closure_H(S ∪ T) = closure_H(closure_H(S) ∪ T)` (compositionality).
+8. Horn closure preserves finite sets.
+9. Convergence depth ≤ |Props|.
+10. Attack graph construction from Horn closure result is a well-defined function.
+
+### FiniteMonotoneIteration.lean — 9 Core Theorems
+
+Formalizes monotone iteration on finite complete lattices:
+
+1. Every monotone operator on a finite complete lattice has a least fixpoint.
+2. Tarski's fixed-point theorem: the set of fixpoints forms a complete lattice.
+3. Kleene iteration from bottom converges to least fixpoint.
+4. Kleene iteration from top converges to greatest fixpoint.
+5. Convergence depth ≤ height of the lattice.
+6. For `(2^S, ⊆)`, height = |S|.
+7. Monotone + inflationary implies fixpoint exists.
+8. Monotone + deflationary implies greatest fixpoint exists.
+9. Knaster-Tarski: fixpoint lattice is isomorphic to the set of pre-fixpoints.
+
+---
+
+## Summary
+
+| Stage | Content | Status |
+|-------|---------|--------|
+| 1 | Horn closure monotonicity | PROVED_FORMAL |
+| 2 | Attack graph construction determinism | PROVED_FORMAL |
+| 3a | Grounded extension convergence (fixed graph) | PROVED_BY_EXHAUSTIVE_ENUMERATION (n ≤ 4) |
+| 3b | Cross-graph monotonicity | REFUTED_BY_COUNTEREXAMPLE |
+| 4a | Equivalence with original evaluator | OPEN_CONJECTURE |
+| 4b | Non-equivalence with original evaluator | REFUTED_BY_COUNTEREXAMPLE |
+
+**Overall Theorem E2 status**: Partially proved, partially open, partially refuted. The stratified evaluator's own correctness (Stages 1-2, Stage 3 fixed graph) is established for finite cases, but cross-graph monotonicity has been refuted by counterexample, and the precise relationship to the original evaluator requires further work.

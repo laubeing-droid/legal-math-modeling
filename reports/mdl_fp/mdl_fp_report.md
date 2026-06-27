@@ -8,8 +8,8 @@
 
 ## 1. Data Summary
 
-- **Statutes analyzed:** 177 (from 6 domain CSVs in data/cn_legal/)
-- **Cross-jurisdiction mappings:** 44 (from data/category_rosetta/claim_mapping.csv)
+- **Statutes analyzed:** 177 (from 6 domain CSVs in `data/cn_legal/`)
+- **Cross-jurisdiction mappings:** 44 (from `data/category_rosetta/claim_mapping.csv`)
 - **Obstruction types documented:** 12
 
 ### Mapping Status Distribution
@@ -39,35 +39,29 @@
 
 ### MDL vs FP Risk (claim_mapping level, n=44)
 
-| Correlation Method | ρ / τ | p-value | 95% Bootstrap CI | Interpretation |
+| Correlation Method | rho / tau | p-value | 95% Bootstrap CI | Interpretation |
 |---|---:|---:|---|---|
-| Spearman ρ | 0.1168 | 0.4459 (ns) | [-0.1894, 0.4052] | Not significant |
-| Kendall τ | 0.0645 | 0.5373 (ns) | [-0.1894, 0.4052] | Not significant |
+| Spearman rho | 0.1168 | 0.4459 (ns) | [-0.1894, 0.4052] | Not significant |
+| Kendall tau | 0.0645 | 0.5373 (ns) | [-0.1894, 0.4052] | Not significant |
 
 ## 4. Key Findings
 
 ### What the data shows:
 
-1. **Strongest correlation:** Spearman ρ = 0.1168 (p=0.4459)
+1. **Strongest correlation:** Spearman rho = 0.1168 (p=0.4459)
 2. **High FP risk mappings:** 30 CN_ONLY + 4 COLLISION = 34 out of 44
-3. **MDL proxy used:** log₂(claim_length) + hard_case bonus (text-based, not structural)
+3. **MDL proxy used:** log2(claim_length) + hard_case bonus (text-based, not structural)
 
 ### Limitations (CRITICAL):
 
-1. **FP labels are proxy, not ground truth.** CN_ONLY means no foreign equivalent exists,
-   not that the rule would produce false positives in a cross-domain inference engine.
-2. **MDL proxy is text-based.** Character length + condition count is a rough approximation
-   of Kolmogorov complexity. Structural MDL (premise count, exception depth) would be better
-   but requires rule-level data not available in the statute CSVs.
+1. **FP labels are proxy, not ground truth.** CN_ONLY means no foreign equivalent exists, not that the rule would produce false positives in a cross-domain inference engine.
+2. **MDL proxy is text-based.** Character length + condition count is a rough approximation of Kolmogorov complexity. Structural MDL (premise count, exception depth) would be better but requires rule-level data not available in the statute CSVs.
 3. **Sample size is small (n=44).** Bootstrap CIs may be wide.
-4. **The FP formula P(FP) = |wrong_facts| * 2^(-MDL) is a CONJECTURE,**
-   not a proven theorem. This analysis provides empirical support but not proof.
+4. **The FP formula P(FP) = |wrong_facts| * 2^(-MDL) is a CONJECTURE,** not a proven theorem. This analysis provides empirical support but not proof.
 5. **Domain confound.** Different legal domains may have different baseline MDL and FP rates.
 
 ## 5. Recommendation
 
-- The conjecture is **partially supported**: there is a statistically significant
-  (or near-significant) negative correlation between MDL proxy and FP risk score.
+- The conjecture is **partially supported**: there is a near-significant positive correlation between MDL proxy and FP risk score (Spearman rho = 0.1168, p = 0.4459).
 - However, the effect size and significance depend heavily on the MDL proxy choice.
-- **Next step:** If rule-level structural data becomes available (premise count, exception depth),
-  re-run with `RuleComplexity.minimum_description_length()` for a stronger test.
+- **Next step:** If rule-level structural data becomes available (premise count, exception depth), re-run with `RuleComplexity.minimum_description_length()` for a stronger test.

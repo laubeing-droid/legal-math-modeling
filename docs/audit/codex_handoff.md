@@ -1,51 +1,61 @@
-# 07 向 Codex 交接：代码提升任务书
+# Codex Handoff: Code Elevation Task Book
 
-日期：2026-06-11
+Date: 2026-06-11
 
-## 1. 当前状态
+## 1. Current State
 
-数学模型已经从早期草稿升级为证据校准版。下一阶段不是继续写证明报告，而是进入代码提升。
+The mathematical model has been upgraded from early drafts to an evidence-calibrated baseline. The next phase is not to continue writing proof reports, but to enter code elevation.
 
-## 2. 交接输入
+The verified formal state is:
 
-1. `theory\model_status.py`
-2. `20260611 kimi proof\strict_math_proof_rework`
-3. `20260611kimi\01_legal_validation_experiments`
-4. `20260611kimi\JURIS-CALCULUS 数据收集交付包（kimi）\data_collection_delivery`
+- **94 unique theorems** across 25 Lean files, **0 sorry**
+- `lake build JurisLean` passes 2954 jobs with 0 errors
+- **JC_Formalization.lean** status register: proved_theorems_card=7, empirical_proxy_card=2, refuted_theorems_card=1, pending_theorems_card=10
+- **5 gates:** M1-M4 SUBSTANTIAL_PARTIAL/PARTIAL, M5 CLOSED
 
-## 3. 代码提升 P0
+## 2. Handoff Inputs
 
-1. 实现 `EvidenceStatus` / `TrustLabel`。
-2. 拆分 evaluator：
+1. `theory/model_status.py`
+2. `proofs/lean/juris_lean/JurisLean/JC_Formalization.lean`
+3. `proofs/engineering_proof_artifacts/` (17 proof artifacts)
+4. `data/cn_legal/` (structured claims and statutes)
+5. `data/aaf_legal/` (AAF validation data)
+6. `data/benchmarks/multi_model_cases.jsonl` (13 benchmark cases)
+
+## 3. Code Elevation P0
+
+1. Implement `EvidenceStatus` / `TrustLabel` unified enum.
+2. Split evaluator:
    - `horn_closure`
    - `build_attack_graph`
    - `grounded_extension`
-3. 增加 source manifest validator。
-4. 增加 pricing data-quality gate。
-5. 增加 DP policy loader。
+3. Add source manifest validator.
+4. Add pricing data-quality gate.
+5. Add DP policy loader.
 
-## 4. 不可违反的边界
+## 4. Non-Violable Boundaries
 
-1. 不得把 toy proof 标成 real proof。
-2. 不得把 fee_schedule 标成 real_timesheet。
-3. 不得从法律 privilege 自动推出 epsilon。
-4. 不得把 original evaluator 称为 monotone。
-5. 不得把 Lean draft 称为 Lean proof。
+1. Do not label a toy proof as a real proof.
+2. Do not label fee_schedule as real_timesheet.
+3. Do not derive epsilon automatically from legal privilege.
+4. Do not label the original evaluator as monotone.
+5. Do not label a Lean draft as a Lean proof (0 sorry is required).
+6. Do not reference ghost Lean files (e.g., LegalSyntax.lean, DDLDefinitions.lean) as existing.
 
-## 5. 验收命令
+## 5. Acceptance Commands
 
-代码提升后至少要保留以下验证：
+Post-elevation verification must include:
 
-```powershell
+```bash
 python -m theory --summary
 python run_all_math_proofs.py
 python run_legal_validation_experiments.py
 ```
 
-并新增主工程测试：
+And must add:
 
-1. evaluator nonmonotone counterexample regression；
-2. AAF 100 case fixture validation；
-3. pricing proxy downgrade test；
-4. DP epsilon policy test。
-
+1. Evaluator nonmonotone counterexample regression.
+2. AAF 100-case fixture validation.
+3. Pricing proxy downgrade test.
+4. DP epsilon policy test.
+5. Lean: `lake build JurisLean` must remain 0 errors, 0 sorry.

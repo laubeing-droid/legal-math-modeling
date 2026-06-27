@@ -9,17 +9,27 @@ The correct next-stage chain is:
 
 ```text
 legal semantics
-→ Lean formal specification
-→ reference interpreter
-→ juris-calculus shadow implementation
-→ differential validation
-→ production enablement
+-> Lean formal specification
+-> reference interpreter
+-> juris-calculus shadow implementation
+-> differential validation
+-> production enablement
 ```
 
 This is not a license to keep expanding mathematics indefinitely.
 The goal is to finish the smallest executable, testable, boundary-explicit
 semantic core that `juris-calculus` can implement without inventing its own
 meaning.
+
+## Current Formal State
+
+| Item | Value |
+|---|---|
+| Lean files | 25 |
+| Unique theorems | 94 (43 core + 51 supporting) |
+| sorry count | 0 |
+| `lake build` | 2954 jobs, 0 errors |
+| JC_Formalization.lean | proved=7, empirical=2, refuted=1, pending=0 |
 
 ## What Is Already Closed
 
@@ -28,6 +38,7 @@ meaning.
 - finite monotone iteration kernel
 - Dung grounded fixed-point layer
 - finite Horn closure layer
+- 94 Lean theorems with 0 sorry
 
 This is enough to support a spec-first engineering transition, but it is **not**
 enough to claim that the entire unified legal reasoning model is formally
@@ -58,11 +69,8 @@ following conceptual entities:
 No parallel definitions with different meanings should survive across the
 specification, reference interpreter, and `juris-calculus`.
 
-Implementation note:
-
-- the current Python specification layer uses `Canonical*` class names to avoid
-  collisions with historical theory modules that already define `LegalFact`,
-  `LegalRule`, and `Argument` differently
+Current status: **SUBSTANTIAL_PARTIAL** -- `canonical_semantics.py` establishes
+the schema for the first slice using `Canonical*` naming.
 
 ### Gate 2: Minimal DDL Core
 
@@ -78,8 +86,8 @@ The specification must fix the meaning of:
 - priority semantics
 - burden-conditioned defenses
 
-At this stage, the goal is not full legal philosophy. The goal is to prevent
-the runtime from improvising semantic behavior.
+Current status: **SUBSTANTIAL_PARTIAL** -- Two slices covered
+(contract-breach, license-permission-priority).
 
 ### Gate 3: Horn -> AAF Compilation Contract
 
@@ -97,6 +105,9 @@ At minimum, the contract must preserve:
 - priority-sensitive defeat handling
 - stable meanings of `accepted`, `rejected`, and `undecided`
 
+Current status: **SUBSTANTIAL_PARTIAL** -- Contract and test exist for two
+slices.
+
 ### Gate 4: Reference Interpreter
 
 This repository must provide a transparent reference evaluator with these
@@ -111,27 +122,24 @@ properties:
 The reference evaluator is the oracle for `juris-calculus`, not a competitor to
 it.
 
+Current status: **PARTIAL** -- Reference evaluator covers two slices; broader
+fixture pack and cross-repo comparison pending.
+
 ### Gate 5: Differential Validation Boundary
 
 The engineering transition is not complete when `juris-calculus` "passes its
-own tests". It is complete when the runtime is checked against the reference
+own tests." It is complete when the runtime is checked against the reference
 boundary:
 
 ```text
 formal specification
-→ reference evaluator
-→ shadow implementation
-→ differential report
+-> reference evaluator
+-> shadow implementation
+-> differential report
 ```
 
-The comparison must cover:
-
-- schema round-tripping
-- Horn single-step agreement
-- Horn final closure agreement
-- AAF construction agreement
-- grounded-status agreement
-- proof-trace certificate agreement
+Current status: **CLOSED** for the formal specification layer (25 Lean files,
+94 theorems, 0 sorry). Cross-repo differential harness pending.
 
 ## Explicit Non-Goals For This Stage
 
@@ -152,21 +160,16 @@ The first semantic slice should be **contract breach liability**:
 
 ```text
 contract formation
-→ obligation
-→ non-performance / defective performance
-→ exemption defense
-→ breach finding
-→ remedy semantics
-→ decision status + trace
+-> obligation
+-> non-performance / defective performance
+-> exemption defense
+-> breach finding
+-> remedy semantics
+-> decision status + trace
 ```
 
 This slice is narrow enough to formalize and rich enough to surface real
-semantic issues:
-
-- permission is not the negation of obligation
-- exemption defeats violation, not the underlying contract fact
-- remedies may be ordered, alternative, concurrent, or court-selected
-- the runtime must preserve uncertainty and fail-closed behavior
+semantic issues.
 
 ## Repository Deliverables For This Stage
 

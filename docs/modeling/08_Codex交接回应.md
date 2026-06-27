@@ -1,49 +1,48 @@
-# 08 Codex 交接回应：可进入代码提升
+# 08 Codex 交接回应
 
-日期：2026-06-11
+日期：2026-06-28（原版 2026-06-11）
 
 ## 1. 回应结论
 
-可以进入代码提升阶段。
+可以进入下一阶段。
 
-但进入的不是“所有数学定理已证明”的阶段，而是：
+当前项目状态：`FORMAL_CORE_RELEASED`
 
-`EVIDENCE_CALIBRATED_MODELING_READY_FOR_CODE_LIFT`
+已完成形式化核心发布，94 个定理通过 Lean 验证，0 sorry，2954 构建 jobs。
 
-## 2. 已完成工作
+## 2. 已完成工作确认
 
-1. theory 关键文件已降级/修正；
-2. 新增统一模型状态账本 `model_status.py`；
-3. 顶层 8 份文档已重写；
-4. 严格数学证明包已封口；
-5. 法律数据验证包已封口；
-6. Google 合成/补强临时数据已删除；
-7. 成果将汇总到 `D:\jcmathmodel`。
+| 工作项 | 状态 |
+|--------|------|
+| 94 个 Lean 定理形式化 | 完成（43 core + 51 supporting） |
+| 0 sorry 验证 | 通过 |
+| 2954 jobs 构建 | 通过 |
+| 25 个 Lean 文件存在性 | 确认 |
+| 13 个幽灵文件引用清除 | 完成 |
+| 59 个 Python 模块编译 | 通过 |
+| 11 个规范类型定义 | 完成 |
+| 公理审计可复现 | 确认 |
 
 ## 3. 当前最可信事实
 
-1. Horn closure 可作为单调 Stage 1。
-2. Dung AAF 可作为确定性 Stage 2。
-3. 原 evaluator 非单调，不能直接套 Tarski。
-4. pricing 真实证明数据不足。
-5. DP epsilon 是 policy config。
-6. 跨法域映射必须 obstruction-first。
+1. Horn 闭包的单调不动点已形式化（HornFixedPoint.lean）
+2. Dung grounded extension 存在性已证明（DungFixedPoint.lean）
+3. Banach 压缩映射和不动点已形式化（BanachFixedPoint.lean）
+4. 有限 Galois 伴随已形式化（FiniteGaloisAdjunction.lean）
+5. 时序 Kripke 语义已建立（TemporalKripke.lean）
+6. 统一模型整合了各层（UnifiedModel.lean）
+7. 公理审计保证 0 sorry（AxiomAudit.lean）
 
 ## 4. 下一步 Codex 任务
 
-1. 在源码中实现 trust label；
-2. 改 evaluator 架构；
-3. 加数据验证 CI；
-4. 加 agent payload schema；
-5. 把所有旧 claim 输出接入 `allowed_claim / forbidden_claim`。
+1. Track A2：executable refinement baseline
+2. Track C1：certificate soundness checker
+3. Track C0：no-uncertainty-upgrade gate
+4. Track D1/D3：formalize impact analysis + incremental grounded
+5. Track B0-B3：Banach 完备空间和 ContractingWith bridge（独立 worktree）
 
 ## 5. 最终交付标签
 
-本阶段成果标签：
+本阶段成果标签：`FORMAL_CORE_RELEASED`
 
-`EVIDENCE_CALIBRATED_MATH_MODEL_AND_ENGINEERING_DESIGN_BASELINE`
-
-禁用标签：
-
-`FINAL_ALL_THEOREMS_PROVED`
-
+下一阶段目标：`NIGHT_RUN_COMPLETE` 或 `FORMAL_CORE_RELEASED_BANACH_BLOCKED`

@@ -1,6 +1,8 @@
 name: Banach Proof Build (Track B)
 
 on:
+  push:
+    branches: ["ci/**"]
   workflow_dispatch:
 
 jobs:

@@ -7,7 +7,7 @@
 ; monotonic w.r.t. the statutory partial order, then add an explicit
 ; conflicting value assignment; Z3 should return UNSAT.
 ;
-; Epistemic status: PENDING_TOOLCHAIN (Z3 not available in this environment)
+; Epistemic status: TOOLCHAIN_PENDING (Z3 not available in this environment)
 
 (set-logic QF_LRA)
 (set-option :produce-models true)
@@ -112,7 +112,7 @@
 ; Epistemic metadata (appended as comments for human readers)
 ; ---------------------------------------------------------------------------
 ; __epistemic_status__ = {
-;     "status": "PENDING_TOOLCHAIN",
+;     "status": "TOOLCHAIN_PENDING",
 ;     "artifact": "proof/smt/cn_privilege_lattice.smt2",
 ;     "checker_command": "z3 cn_privilege_lattice.smt2",
 ;     "assumptions": ["Z3 可用", "有限域假设 (QF_LRA)", "偏序关系符合中国立法法层级"],

@@ -557,7 +557,7 @@ $$f(x) \leq y \;\Leftrightarrow\; x \leq g(y)$$
 | `PLAN_ONLY` | 低 | 方案已定义，代码/证明未写 |
 | `INVALID_CLAIM` | 无 | 数学上错误的任务定义 |
 | `MISSING_ARTIFACT` | 无 | 引用的文件不存在 |
-| `PENDING_TOOLCHAIN` | 未知 | 待 Lean/Z3/TLA+ |
+| `TOOLCHAIN_PENDING` | 未知 | 待 Lean/Z3/TLA+ |
 
 ### 12.2 JC 声明注册表
 

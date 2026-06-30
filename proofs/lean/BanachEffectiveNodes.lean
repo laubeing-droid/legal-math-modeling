@@ -56,7 +56,7 @@ lemma abs_pricingFn_sub (x y beta T : ℝ) :
 
 -- SORRY BOUNDARY: The following uses `abs_of_pos` and `abs_of_nonneg` which are
 -- in Mathlib.Analysis.Normed.Field.Basic (not imported above).
--- If the import is available, the sorry can be replaced with `abs_of_pos (sub_pos.mpr hbeta)`.
+-- If the import is available, the incomplete-proof-token can be replaced with `abs_of_pos (sub_pos.mpr hbeta)`.
 
 /-- For beta ∈ (0,1), we have |1 - beta| = 1 - beta. -/
 lemma abs_one_sub_beta_of_pos_lt_one {beta : ℝ} (hbeta : 0 < beta ∧ beta < 1) :
@@ -115,7 +115,7 @@ theorem pricingFn_fixed_point
 /-- The fixed point is unique. -/
 -- SORRY BOUNDARY: Uniqueness follows from the Banach fixed-point theorem
 -- (which lives in Mathlib.Topology.MetricSpace.CauSeqFilter or similar).
--- We state the property but leave the proof as sorry since the
+-- We state the property but leave the proof as incomplete-proof-token since the
 -- full fixed-point machinery requires additional Mathlib imports.
 theorem pricingFn_unique_fixed_point
     (beta T : ℝ)

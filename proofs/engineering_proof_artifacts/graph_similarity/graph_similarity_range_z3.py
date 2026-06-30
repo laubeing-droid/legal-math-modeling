@@ -4,7 +4,7 @@ graph_similarity_range_z3.py
 
 Z3-based bounded verification that score ∈ [0,1].
 
-STATUS: PENDING_TOOLCHAIN — Z3 solver not available in current environment.
+STATUS: TOOLCHAIN_PENDING — Z3 solver not available in current environment.
         Script is ready to run when z3-solver is installed.
 
 Installation:

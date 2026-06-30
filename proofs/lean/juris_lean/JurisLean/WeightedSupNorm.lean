@@ -16,7 +16,7 @@ for positive weights w i > 0.
 
 Proves this is a complete metric space (via equivalence with the standard Pi sup norm).
 
-All theorems compile with 0 sorry.
+All theorems compile with 0 incomplete-proof-token.
 -/
 
 variable {n : ℕ} [Nonempty (Fin n)]

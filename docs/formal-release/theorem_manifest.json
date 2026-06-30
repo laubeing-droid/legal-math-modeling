@@ -1,22 +1,64 @@
 {
-  "release_id": "formal-core-v1",
-  "commit_sha": "f671a6e",
+  "release_id": "formal-core-v1-plus-four-slices",
+  "commit_sha": "LOCAL_PENDING_COMMIT",
   "build_status": "PASS",
-  "formal_core_module_theorems": 43,
-  "extended_core_theorems": 43,
-  "supporting_results": 57,
-  "total_kernel_checked_results": 100,
-  "total": 100,
-  "core": 43,
-  "supporting": 57,
+  "lean_files": 32,
+  "formal_core_module_theorems": 42,
+  "extended_core_theorems": 42,
+  "supporting_results": 84,
+  "total_kernel_checked_results": 126,
+  "total": 126,
+  "core": 42,
+  "supporting": 84,
+  "four_slice_vertical_results": 32,
   "theorems": [
+    {
+      "file": "AttackDecision.lean",
+      "line": 28,
+      "name": "priority_defeat_requires_active",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "72677a7aaebcb64e"
+    },
+    {
+      "file": "AttackDecision.lean",
+      "line": 34,
+      "name": "priority_defeat_requires_evidence",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "c9ec0cdf8faa1376"
+    },
+    {
+      "file": "AttackDecision.lean",
+      "line": 40,
+      "name": "missing_priority_evidence_no_defeat",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "c8d7a376f832a048"
+    },
+    {
+      "file": "AttackDecision.lean",
+      "line": 51,
+      "name": "self_attack_not_priority_defeat",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "41c339fab9d6c1d2"
+    },
+    {
+      "file": "AttackDecision.lean",
+      "line": 62,
+      "name": "priority_cycle_symmetric",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "be3a178e2748a2af"
+    },
     {
       "file": "BanachContraction.lean",
       "line": 21,
       "name": "weighted_contraction_bound",
       "category": "supporting",
       "definitional": false,
-      "digest": "fe5ca3474d7a50ac"
+      "digest": "98ab504592190c7c"
     },
     {
       "file": "BanachContraction.lean",
@@ -24,47 +66,7 @@
       "name": "weighted_contraction_bound_nnreal",
       "category": "supporting",
       "definitional": false,
-      "digest": "d30b246db69fa2eb"
-    },
-    {
-      "file": "BanachEffectiveNodes.lean",
-      "line": 42,
-      "name": "pricingFn_sub",
-      "category": "supporting",
-      "definitional": false,
-      "digest": "755353014f705145"
-    },
-    {
-      "file": "BanachEffectiveNodes.lean",
-      "line": 53,
-      "name": "abs_pricingFn_sub",
-      "category": "supporting",
-      "definitional": false,
-      "digest": "d1c40bbb2f6d2351"
-    },
-    {
-      "file": "BanachEffectiveNodes.lean",
-      "line": 62,
-      "name": "abs_one_sub_beta_of_pos_lt_one",
-      "category": "supporting",
-      "definitional": false,
-      "digest": "fb96c6384190f3b8"
-    },
-    {
-      "file": "BanachEffectiveNodes.lean",
-      "line": 69,
-      "name": "one_sub_beta_lt_one",
-      "category": "supporting",
-      "definitional": false,
-      "digest": "54f1e24f6c05a4de"
-    },
-    {
-      "file": "BanachEffectiveNodes.lean",
-      "line": 73,
-      "name": "one_sub_beta_nonneg",
-      "category": "supporting",
-      "definitional": false,
-      "digest": "9aa2e9f6485fdb5e"
+      "digest": "4677db38e2fd5f57"
     },
     {
       "file": "BanachEffectiveNodes.lean",
@@ -72,7 +74,7 @@
       "name": "pricingFn_contraction",
       "category": "supporting",
       "definitional": false,
-      "digest": "e5b22a7b4ad15e63"
+      "digest": "48acf029e00e1130"
     },
     {
       "file": "BanachEffectiveNodes.lean",
@@ -80,7 +82,7 @@
       "name": "pricingFn_fixed_point",
       "category": "supporting",
       "definitional": false,
-      "digest": "2399dc41fa9b28e6"
+      "digest": "cba7e794e2b9dd20"
     },
     {
       "file": "BanachEffectiveNodes.lean",
@@ -88,7 +90,7 @@
       "name": "pricingFn_unique_fixed_point",
       "category": "supporting",
       "definitional": false,
-      "digest": "e0655662ad99c0b8"
+      "digest": "b4b2e67004722ede"
     },
     {
       "file": "BanachFixedPoint.lean",
@@ -96,7 +98,71 @@
       "name": "weightedContractionData_of_coupling",
       "category": "supporting",
       "definitional": false,
-      "digest": "b8103b8d1b745e60"
+      "digest": "3401b3510f5589b4"
+    },
+    {
+      "file": "CertificateChecker.lean",
+      "line": 34,
+      "name": "malformed_certificate_rejected",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "24e540c263465b71"
+    },
+    {
+      "file": "CertificateChecker.lean",
+      "line": 45,
+      "name": "tainted_certificate_rejected",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "1259314fe5565535"
+    },
+    {
+      "file": "CertificateChecker.lean",
+      "line": 56,
+      "name": "candidate_evidence_not_accepted",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "35bd3f28924b8765"
+    },
+    {
+      "file": "CertificateChecker.lean",
+      "line": 68,
+      "name": "missing_required_facts_rejected",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "d218e92d447760d7"
+    },
+    {
+      "file": "CertificateChecker.lean",
+      "line": 80,
+      "name": "missing_obligations_rejected",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "420f5aeb2333187f"
+    },
+    {
+      "file": "CertificateChecker.lean",
+      "line": 92,
+      "name": "checker_acceptance_requires_obligations",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "1d6b582b93db8054"
+    },
+    {
+      "file": "CertificateChecker.lean",
+      "line": 103,
+      "name": "checker_acceptance_requires_required_facts",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "17c564a626ba81b0"
+    },
+    {
+      "file": "CertificateChecker.lean",
+      "line": 114,
+      "name": "checker_acceptance_requires_non_candidate",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "e9a2d13babf0124b"
     },
     {
       "file": "ContractionCondition.lean",
@@ -104,7 +170,79 @@
       "name": "lipschitz_coupling_implies_weighted_contraction",
       "category": "core",
       "definitional": false,
-      "digest": "9820988557c9be52"
+      "digest": "925a629a0bfd72cf"
+    },
+    {
+      "file": "DDLDefinitions.lean",
+      "line": 71,
+      "name": "violation_implies_norm_active",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "8ccedfc9721f5885"
+    },
+    {
+      "file": "DDLDefinitions.lean",
+      "line": 76,
+      "name": "permission_no_direct_violation",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "08acd0bcfee8cb19"
+    },
+    {
+      "file": "DDLDefinitions.lean",
+      "line": 88,
+      "name": "constitutive_no_direct_violation",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "9c3b8ce776c30808"
+    },
+    {
+      "file": "DDLDefinitions.lean",
+      "line": 100,
+      "name": "permission_does_not_imply_obligation",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "367b90de04ec3276"
+    },
+    {
+      "file": "DDLDefinitions.lean",
+      "line": 109,
+      "name": "contract_breach_direct_violation_shape",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "6b5672141e1d0179"
+    },
+    {
+      "file": "DDLDefinitions.lean",
+      "line": 117,
+      "name": "license_permission_not_direct_violation",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "a63990c9527d497a"
+    },
+    {
+      "file": "DDLDefinitions.lean",
+      "line": 124,
+      "name": "permission_slice_permission_not_obligation",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "fffca24d714d54a8"
+    },
+    {
+      "file": "DDLDefinitions.lean",
+      "line": 129,
+      "name": "priority_ordering_requires_verified_evidence",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "224299b5a64b7be2"
+    },
+    {
+      "file": "DDLDefinitions.lean",
+      "line": 134,
+      "name": "remedial_consequence_same_norm",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "dd1e640ff64d5869"
     },
     {
       "file": "DungFixedPoint.lean",
@@ -112,7 +250,7 @@
       "name": "F_monotone",
       "category": "core",
       "definitional": false,
-      "digest": "a5c78fa684b1a89c"
+      "digest": "2ec8317ec9182fb2"
     },
     {
       "file": "DungFixedPoint.lean",
@@ -120,15 +258,7 @@
       "name": "iteration_monotone",
       "category": "core",
       "definitional": false,
-      "digest": "4c3a05fec9d5160c"
-    },
-    {
-      "file": "DungFixedPoint.lean",
-      "line": 53,
-      "name": "grounded_eq_groundedSpec",
-      "category": "core",
-      "definitional": false,
-      "digest": "304db1390df21733"
+      "digest": "410e95c4933fc5b4"
     },
     {
       "file": "DungFixedPoint.lean",
@@ -136,7 +266,7 @@
       "name": "finite_termination",
       "category": "core",
       "definitional": false,
-      "digest": "91dc932ed2d5ece5"
+      "digest": "266e895920b0606a"
     },
     {
       "file": "DungFixedPoint.lean",
@@ -144,7 +274,7 @@
       "name": "iteration_bound",
       "category": "core",
       "definitional": false,
-      "digest": "f43ae89138e48e42"
+      "digest": "20f6ada5eb3ae569"
     },
     {
       "file": "DungFixedPoint.lean",
@@ -152,7 +282,7 @@
       "name": "groundedSpec_is_fixed_point",
       "category": "core",
       "definitional": false,
-      "digest": "26e8ae6dfe4d79b2"
+      "digest": "9fa768c5df56707c"
     },
     {
       "file": "DungFixedPoint.lean",
@@ -160,7 +290,7 @@
       "name": "grounded_is_fixed_point",
       "category": "core",
       "definitional": false,
-      "digest": "9169fcf12df6053e"
+      "digest": "4f0d01acaf005fe4"
     },
     {
       "file": "DungFixedPoint.lean",
@@ -168,7 +298,7 @@
       "name": "groundedSpec_is_least_fixed_point",
       "category": "core",
       "definitional": false,
-      "digest": "d5a53444317ab503"
+      "digest": "59fb788e0d7210bc"
     },
     {
       "file": "DungFixedPoint.lean",
@@ -176,7 +306,7 @@
       "name": "grounded_is_least_fixed_point",
       "category": "core",
       "definitional": false,
-      "digest": "b8783a07ec7736cd"
+      "digest": "a07a1cbc70a47a33"
     },
     {
       "file": "DungFixedPoint.lean",
@@ -184,7 +314,7 @@
       "name": "grounded_is_least_complete",
       "category": "core",
       "definitional": false,
-      "digest": "983b26e58ce933f5"
+      "digest": "cc2965a991001b92"
     },
     {
       "file": "DungFixedPoint.lean",
@@ -192,7 +322,7 @@
       "name": "groundedSpec_unique_least_fixed_point",
       "category": "core",
       "definitional": false,
-      "digest": "588aca5e8a55ec9e"
+      "digest": "a077d9eb68369fe1"
     },
     {
       "file": "DungFixedPoint.lean",
@@ -200,7 +330,7 @@
       "name": "labelling_partition",
       "category": "core",
       "definitional": false,
-      "digest": "728b771454e4795d"
+      "digest": "5c0ca22c35231aca"
     },
     {
       "file": "DungFixedPoint.lean",
@@ -208,7 +338,7 @@
       "name": "in_soundness",
       "category": "core",
       "definitional": false,
-      "digest": "922635a32937714b"
+      "digest": "907a0dd0a1ad64aa"
     },
     {
       "file": "DungFixedPoint.lean",
@@ -216,7 +346,7 @@
       "name": "out_soundness",
       "category": "core",
       "definitional": false,
-      "digest": "23d8aa5b5fb86c0f"
+      "digest": "763b1312fae1c13d"
     },
     {
       "file": "DungFixedPoint.lean",
@@ -224,7 +354,7 @@
       "name": "undecided_characterization",
       "category": "core",
       "definitional": false,
-      "digest": "f58fe6b6b7096588"
+      "digest": "83aed3aea2326992"
     },
     {
       "file": "DungFixedPoint.lean",
@@ -232,7 +362,7 @@
       "name": "self_attack_precise_theorem",
       "category": "core",
       "definitional": false,
-      "digest": "1b2d9349c22b7d51"
+      "digest": "0e99a05a7f589efe"
     },
     {
       "file": "DungFixedPoint.lean",
@@ -240,15 +370,87 @@
       "name": "self_attack_not_in_grounded",
       "category": "core",
       "definitional": false,
-      "digest": "1860a4f29f1195e4"
+      "digest": "268280068613e8df"
     },
     {
-      "file": "FiniteGaloisAdjunction.lean",
-      "line": 36,
-      "name": "fn_sup_preserves",
+      "file": "EndToEnd.lean",
+      "line": 104,
+      "name": "contract_breach_ready_certificate_accepted",
       "category": "supporting",
       "definitional": false,
-      "digest": "3e78e2c535b25b00"
+      "digest": "b1301b661218e4a4"
+    },
+    {
+      "file": "EndToEnd.lean",
+      "line": 109,
+      "name": "contract_breach_missing_defense_fail_closed",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "6461590b53f9f146"
+    },
+    {
+      "file": "EndToEnd.lean",
+      "line": 117,
+      "name": "license_ready_certificate_accepted",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "c6bee1145667195d"
+    },
+    {
+      "file": "EndToEnd.lean",
+      "line": 122,
+      "name": "license_outside_scope_fail_closed",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "3f34810eecfd03da"
+    },
+    {
+      "file": "EndToEnd.lean",
+      "line": 129,
+      "name": "permission_ready_certificate_accepted",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "ae44813dcc195345"
+    },
+    {
+      "file": "EndToEnd.lean",
+      "line": 134,
+      "name": "permission_conflict_fail_closed",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "876bb37b142b7266"
+    },
+    {
+      "file": "EndToEnd.lean",
+      "line": 141,
+      "name": "priority_ready_certificate_accepted",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "2d484ca66cd85ed7"
+    },
+    {
+      "file": "EndToEnd.lean",
+      "line": 146,
+      "name": "priority_cycle_fail_closed",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "0b9622d6ddc67c8a"
+    },
+    {
+      "file": "EndToEnd.lean",
+      "line": 173,
+      "name": "candidate_certificate_fail_closed",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "1db1d8178537ab79"
+    },
+    {
+      "file": "EndToEnd.lean",
+      "line": 179,
+      "name": "end_to_end_acceptance_requires_payload",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "0a12539645a8a67f"
     },
     {
       "file": "FiniteGaloisAdjunction.lean",
@@ -256,7 +458,7 @@
       "name": "galois_connection_of_residuated",
       "category": "supporting",
       "definitional": false,
-      "digest": "5d8bb617d68dae71"
+      "digest": "bf9ad3221c1bd1fc"
     },
     {
       "file": "FiniteMonotoneIteration.lean",
@@ -264,7 +466,7 @@
       "name": "iter_succ",
       "category": "core",
       "definitional": false,
-      "digest": "9bb2c3cd421f299a"
+      "digest": "415d52c3f1579751"
     },
     {
       "file": "FiniteMonotoneIteration.lean",
@@ -272,7 +474,7 @@
       "name": "iter_subset_univ",
       "category": "core",
       "definitional": false,
-      "digest": "6b41a8aaaed0f407"
+      "digest": "80743a698e9b315f"
     },
     {
       "file": "FiniteMonotoneIteration.lean",
@@ -280,7 +482,7 @@
       "name": "iter_mono",
       "category": "core",
       "definitional": false,
-      "digest": "a05709c8cc436b76"
+      "digest": "99d8c2b4c73ef9c5"
     },
     {
       "file": "FiniteMonotoneIteration.lean",
@@ -288,7 +490,7 @@
       "name": "iter_stable",
       "category": "core",
       "definitional": false,
-      "digest": "1ef17dd6e6d03822"
+      "digest": "6613310849dd61c0"
     },
     {
       "file": "FiniteMonotoneIteration.lean",
@@ -296,7 +498,7 @@
       "name": "iter_ssubset_of_ne",
       "category": "core",
       "definitional": false,
-      "digest": "10d01bfd09391905"
+      "digest": "c58f40224b040bc9"
     },
     {
       "file": "FiniteMonotoneIteration.lean",
@@ -304,7 +506,7 @@
       "name": "iter_card_lt_of_ne",
       "category": "core",
       "definitional": false,
-      "digest": "8e9bdb648f142094"
+      "digest": "3dd586374fb93cd6"
     },
     {
       "file": "FiniteMonotoneIteration.lean",
@@ -312,7 +514,7 @@
       "name": "iter_card_le_univ",
       "category": "core",
       "definitional": false,
-      "digest": "67c0190834deecbf"
+      "digest": "2fe15b74ad7cb749"
     },
     {
       "file": "FiniteMonotoneIteration.lean",
@@ -320,7 +522,7 @@
       "name": "exists_fixpoint_le_card",
       "category": "core",
       "definitional": false,
-      "digest": "956e6a2b3406b329"
+      "digest": "b38059b13e0fe846"
     },
     {
       "file": "FiniteMonotoneIteration.lean",
@@ -328,7 +530,7 @@
       "name": "fixed_at_card",
       "category": "core",
       "definitional": false,
-      "digest": "6c4449ce996ae20f"
+      "digest": "0889b2117bd40a39"
     },
     {
       "file": "FiniteRosetta.lean",
@@ -336,7 +538,7 @@
       "name": "cnOnly_eq_30",
       "category": "supporting",
       "definitional": false,
-      "digest": "d2a9f9bd20172a7a"
+      "digest": "8dacd4abf972d211"
     },
     {
       "file": "FiniteRosetta.lean",
@@ -344,7 +546,7 @@
       "name": "collision_eq_4",
       "category": "supporting",
       "definitional": false,
-      "digest": "e864f80027821fe9"
+      "digest": "93e46e25d5fe2314"
     },
     {
       "file": "FiniteRosetta.lean",
@@ -352,7 +554,7 @@
       "name": "asymmetry_eq_3",
       "category": "supporting",
       "definitional": false,
-      "digest": "f52ad88e81de8249"
+      "digest": "5a2e6b2fd2f9ca09"
     },
     {
       "file": "FiniteRosetta.lean",
@@ -360,7 +562,7 @@
       "name": "obstruction_eq_37",
       "category": "supporting",
       "definitional": false,
-      "digest": "1cc6b9cda820f9de"
+      "digest": "db8ba5a9c1c8c9f0"
     },
     {
       "file": "FiniteRosetta.lean",
@@ -368,7 +570,7 @@
       "name": "cnOnly_exceeds_half",
       "category": "supporting",
       "definitional": false,
-      "digest": "01cc62ea26574cf8"
+      "digest": "aca9647018676aff"
     },
     {
       "file": "FiniteRosetta.lean",
@@ -376,7 +578,7 @@
       "name": "obstruction_exceeds_half",
       "category": "supporting",
       "definitional": false,
-      "digest": "cbca840b5a0c7b46"
+      "digest": "d185722af448e0d3"
     },
     {
       "file": "FiniteRosetta.lean",
@@ -384,7 +586,7 @@
       "name": "no_total_functor",
       "category": "supporting",
       "definitional": false,
-      "digest": "8164178004363be5"
+      "digest": "729a215c188ffe1c"
     },
     {
       "file": "FiniteRosetta.lean",
@@ -392,7 +594,7 @@
       "name": "obstruction_density_gt_two_thirds",
       "category": "supporting",
       "definitional": false,
-      "digest": "2576a7c1e9fac986"
+      "digest": "ffd21b877765dd18"
     },
     {
       "file": "FiniteRosetta.lean",
@@ -400,7 +602,47 @@
       "name": "pure_obstruction_majority",
       "category": "supporting",
       "definitional": false,
-      "digest": "359e9ca6f203fe73"
+      "digest": "939cc791dd3cae05"
+    },
+    {
+      "file": "HornAAFContract.lean",
+      "line": 57,
+      "name": "horn_derivation_to_argument_conclusion",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "2898c2edc002cd0d"
+    },
+    {
+      "file": "HornAAFContract.lean",
+      "line": 62,
+      "name": "horn_derivation_to_argument_supported",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "69bef18e68f3efc3"
+    },
+    {
+      "file": "HornAAFContract.lean",
+      "line": 67,
+      "name": "exception_fact_to_attack_kind",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "973d83ca6681b22c"
+    },
+    {
+      "file": "HornAAFContract.lean",
+      "line": 73,
+      "name": "priority_defeat_to_attack_kind",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "7f2948880b3f3434"
+    },
+    {
+      "file": "HornAAFContract.lean",
+      "line": 77,
+      "name": "no_unsupported_argument_accepted",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "ce3ea2b3698d9882"
     },
     {
       "file": "HornDefinitions.lean",
@@ -408,7 +650,7 @@
       "name": "TH_monotone",
       "category": "core",
       "definitional": false,
-      "digest": "6d1aa7b08faef9e3"
+      "digest": "c9364a15abcbeaaf"
     },
     {
       "file": "HornDefinitions.lean",
@@ -416,7 +658,7 @@
       "name": "TH_subset_univ",
       "category": "core",
       "definitional": false,
-      "digest": "382f388a76c264bb"
+      "digest": "6858c793d1066343"
     },
     {
       "file": "HornFixedPoint.lean",
@@ -424,7 +666,7 @@
       "name": "horn_operator_subset_univ",
       "category": "core",
       "definitional": false,
-      "digest": "6cc17a3b9c2c7db7"
+      "digest": "9f0f95beedfa19b6"
     },
     {
       "file": "HornFixedPoint.lean",
@@ -432,7 +674,7 @@
       "name": "horn_operator_monotone",
       "category": "core",
       "definitional": false,
-      "digest": "e9628268b45aa499"
+      "digest": "26a81e2217e7d2ac"
     },
     {
       "file": "HornFixedPoint.lean",
@@ -440,7 +682,7 @@
       "name": "horn_iteration_monotone",
       "category": "core",
       "definitional": false,
-      "digest": "3775e921c014473a"
+      "digest": "e05570ab5c648b36"
     },
     {
       "file": "HornFixedPoint.lean",
@@ -448,7 +690,7 @@
       "name": "horn_finite_termination",
       "category": "core",
       "definitional": false,
-      "digest": "4d225621d95fb5ca"
+      "digest": "155716bd1a7667cf"
     },
     {
       "file": "HornFixedPoint.lean",
@@ -456,7 +698,7 @@
       "name": "horn_iteration_bound",
       "category": "core",
       "definitional": false,
-      "digest": "f9d59a2b1594493e"
+      "digest": "9b15c2524da1c3be"
     },
     {
       "file": "HornFixedPoint.lean",
@@ -464,7 +706,7 @@
       "name": "horn_result_fixed_point",
       "category": "core",
       "definitional": false,
-      "digest": "932bb469849e4c75"
+      "digest": "527e4abc530eb343"
     },
     {
       "file": "HornFixedPoint.lean",
@@ -472,7 +714,7 @@
       "name": "horn_result_least_fixed_point",
       "category": "core",
       "definitional": false,
-      "digest": "f2ef4d9b1da4885e"
+      "digest": "a55f692d3144a637"
     },
     {
       "file": "HornFixedPoint.lean",
@@ -480,7 +722,7 @@
       "name": "horn_soundness",
       "category": "core",
       "definitional": false,
-      "digest": "9614d5de79a69e9f"
+      "digest": "628113f1e1f92b17"
     },
     {
       "file": "HornFixedPoint.lean",
@@ -488,7 +730,7 @@
       "name": "horn_completeness",
       "category": "core",
       "definitional": false,
-      "digest": "e148525c26260286"
+      "digest": "72265e5a8702c42c"
     },
     {
       "file": "HornFixedPoint.lean",
@@ -496,7 +738,7 @@
       "name": "horn_result_is_minimal_model",
       "category": "core",
       "definitional": false,
-      "digest": "cfc070a51ff8dae0"
+      "digest": "79645884f84b3657"
     },
     {
       "file": "JC_Formalization.lean",
@@ -504,7 +746,7 @@
       "name": "proved_theorems_card",
       "category": "supporting",
       "definitional": false,
-      "digest": "d3e03cca2c09eb68"
+      "digest": "dc4ef5c68b9c2c98"
     },
     {
       "file": "JC_Formalization.lean",
@@ -512,7 +754,7 @@
       "name": "empirical_proxy_card",
       "category": "supporting",
       "definitional": false,
-      "digest": "799cbbfa4cd992ff"
+      "digest": "1f6487fcec873adc"
     },
     {
       "file": "JC_Formalization.lean",
@@ -520,7 +762,7 @@
       "name": "refuted_theorems_card",
       "category": "supporting",
       "definitional": false,
-      "digest": "0b6d8fc90718d489"
+      "digest": "5c659c2879f8f685"
     },
     {
       "file": "JC_Formalization.lean",
@@ -528,7 +770,7 @@
       "name": "pending_theorems_card",
       "category": "supporting",
       "definitional": false,
-      "digest": "3782ed9046266226"
+      "digest": "ac330a493ab1f169"
     },
     {
       "file": "JC_Formalization.lean",
@@ -536,7 +778,7 @@
       "name": "advance_preserves_domain_bound",
       "category": "supporting",
       "definitional": false,
-      "digest": "60d6e2c4dba884f8"
+      "digest": "6b2417205b19f1d4"
     },
     {
       "file": "JC_Formalization.lean",
@@ -544,15 +786,103 @@
       "name": "advance_cannot_revive_refuted",
       "category": "supporting",
       "definitional": false,
-      "digest": "ab0aaf1ac5978277"
+      "digest": "87015f7a767d8a86"
     },
     {
-      "file": "SupZeroLemma.lean",
-      "line": 11,
-      "name": "sup",
+      "file": "LegalSyntax.lean",
+      "line": 212,
+      "name": "fact_serialization_key_stable",
       "category": "supporting",
       "definitional": false,
-      "digest": "195b009e33ccb371"
+      "digest": "951e9d36d83b6d7b"
+    },
+    {
+      "file": "LegalSyntax.lean",
+      "line": 216,
+      "name": "rule_serialization_key_stable",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "04e3627c75cad915"
+    },
+    {
+      "file": "LegalSyntax.lean",
+      "line": 220,
+      "name": "decisionStatus_runtimeKey_injective",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "73ed02c56fea1685"
+    },
+    {
+      "file": "LegalSyntax.lean",
+      "line": 226,
+      "name": "trust_label_cannot_promote_status",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "4af25a3a11d65335"
+    },
+    {
+      "file": "LegalSyntax.lean",
+      "line": 231,
+      "name": "candidate_evidence_not_auditable",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "a3f67d0e4f5e5ea7"
+    },
+    {
+      "file": "SafetyTheorems.lean",
+      "line": 12,
+      "name": "candidate_cannot_enter_verified_fact_gate",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "57b71cbf9b1731d8"
+    },
+    {
+      "file": "SafetyTheorems.lean",
+      "line": 20,
+      "name": "tainted_not_accepted_as_proved",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "7334e48c544b69a5"
+    },
+    {
+      "file": "SafetyTheorems.lean",
+      "line": 31,
+      "name": "accepted_certificate_has_required_payload",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "001b193a5eb5a5fb"
+    },
+    {
+      "file": "SafetyTheorems.lean",
+      "line": 38,
+      "name": "priority_missing_evidence_certificate_not_accepted",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "fedde1024b8de7cc"
+    },
+    {
+      "file": "SafetyTheorems.lean",
+      "line": 51,
+      "name": "priority_cycle_certificate_fail_closed",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "105bcdd94e427e80"
+    },
+    {
+      "file": "SafetyTheorems.lean",
+      "line": 59,
+      "name": "license_outside_scope_not_permitted",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "64032e970d1c570b"
+    },
+    {
+      "file": "SafetyTheorems.lean",
+      "line": 68,
+      "name": "permission_conflict_not_forced_proved",
+      "category": "supporting",
+      "definitional": false,
+      "digest": "a8545c82e368973d"
     },
     {
       "file": "TemporalKripke.lean",
@@ -560,39 +890,7 @@
       "name": "temporal_guard_always",
       "category": "supporting",
       "definitional": false,
-      "digest": "ff535901ae8045b4"
-    },
-    {
-      "file": "TemporalKripke.lean",
-      "line": 87,
-      "name": "w0_guard",
-      "category": "supporting",
-      "definitional": false,
-      "digest": "e61d294fb7903920"
-    },
-    {
-      "file": "TemporalKripke.lean",
-      "line": 90,
-      "name": "w1_guard",
-      "category": "supporting",
-      "definitional": false,
-      "digest": "f604d2d5f11ef5b7"
-    },
-    {
-      "file": "TemporalKripke.lean",
-      "line": 93,
-      "name": "w2_guard",
-      "category": "supporting",
-      "definitional": false,
-      "digest": "54698a4320df71e0"
-    },
-    {
-      "file": "TemporalKripke.lean",
-      "line": 96,
-      "name": "all_worlds_guard",
-      "category": "supporting",
-      "definitional": false,
-      "digest": "40167f34cb12a412"
+      "digest": "e501f0a1b683fb0b"
     },
     {
       "file": "TemporalKripke.lean",
@@ -600,15 +898,7 @@
       "name": "litigation_always_guard",
       "category": "supporting",
       "definitional": false,
-      "digest": "cae5401732682a36"
-    },
-    {
-      "file": "UnifiedModel.lean",
-      "line": 72,
-      "name": "is_fireable_mono",
-      "category": "supporting",
-      "definitional": false,
-      "digest": "bdadab4b2e444abe"
+      "digest": "e7a60d9a202c010b"
     },
     {
       "file": "UnifiedModel.lean",
@@ -616,7 +906,7 @@
       "name": "horn_step_mono",
       "category": "supporting",
       "definitional": false,
-      "digest": "3ab05453104e37a8"
+      "digest": "1de0d2280a788e80"
     },
     {
       "file": "UnifiedModel.lean",
@@ -624,31 +914,7 @@
       "name": "unattacked_in_ge",
       "category": "supporting",
       "definitional": false,
-      "digest": "70f263d038dcb80f"
-    },
-    {
-      "file": "UnifiedModel.lean",
-      "line": 166,
-      "name": "unattacked_defended_any",
-      "category": "supporting",
-      "definitional": false,
-      "digest": "d36c6d108a1af4a0"
-    },
-    {
-      "file": "UnifiedModel.lean",
-      "line": 173,
-      "name": "unattacked_in_char_fn",
-      "category": "supporting",
-      "definitional": false,
-      "digest": "00ecd6fcf3622461"
-    },
-    {
-      "file": "UnifiedModel.lean",
-      "line": 183,
-      "name": "mem_lfp_iterate",
-      "category": "supporting",
-      "definitional": false,
-      "digest": "55f4fa0f4368e125"
+      "digest": "bd22a02a07e9d984"
     },
     {
       "file": "UnifiedModel.lean",
@@ -656,15 +922,7 @@
       "name": "unattacked_in_lfp",
       "category": "supporting",
       "definitional": false,
-      "digest": "d4fff556a413a42b"
-    },
-    {
-      "file": "UnifiedModel.lean",
-      "line": 223,
-      "name": "avg_le_max",
-      "category": "supporting",
-      "definitional": false,
-      "digest": "de33a4b92b2af879"
+      "digest": "5afd68d74065fc9b"
     },
     {
       "file": "UnifiedModel.lean",
@@ -672,7 +930,7 @@
       "name": "banach_bounded",
       "category": "supporting",
       "definitional": false,
-      "digest": "8ce6a2dade6ea13f"
+      "digest": "7c6f15376fd4c1d5"
     },
     {
       "file": "UnifiedModel.lean",
@@ -680,7 +938,7 @@
       "name": "soundness_aaf",
       "category": "supporting",
       "definitional": false,
-      "digest": "b3cb58f4622ec269"
+      "digest": "073a3252e893e512"
     },
     {
       "file": "UnifiedModel.lean",
@@ -688,7 +946,7 @@
       "name": "soundness_banach",
       "category": "supporting",
       "definitional": false,
-      "digest": "d2e0107385a36dac"
+      "digest": "2222ef56e1c1ce93"
     },
     {
       "file": "UnifiedModel.lean",
@@ -696,7 +954,7 @@
       "name": "gc2_completeness",
       "category": "supporting",
       "definitional": false,
-      "digest": "d6642c0da69da1ab"
+      "digest": "ce6de05cf796a767"
     },
     {
       "file": "UnifiedModel.lean",
@@ -704,7 +962,7 @@
       "name": "unified_composition_v2",
       "category": "supporting",
       "definitional": false,
-      "digest": "28b9deb48251e404"
+      "digest": "e53a0619d60ab20e"
     },
     {
       "file": "UnifiedModel.lean",
@@ -712,7 +970,7 @@
       "name": "full_chain",
       "category": "supporting",
       "definitional": false,
-      "digest": "8a5e27cee70430f3"
+      "digest": "50d8f54566863cf8"
     },
     {
       "file": "UnifiedModel.lean",
@@ -720,7 +978,7 @@
       "name": "horn_monotone",
       "category": "supporting",
       "definitional": false,
-      "digest": "26891c5ff2760030"
+      "digest": "fb21b5f2966d6de0"
     },
     {
       "file": "UnifiedModel.lean",
@@ -728,7 +986,7 @@
       "name": "banach_bound_uniform",
       "category": "supporting",
       "definitional": false,
-      "digest": "6039f4bf4303ac42"
+      "digest": "4b1c7db449487a4f"
     },
     {
       "file": "WeightedSupNorm.lean",
@@ -736,7 +994,7 @@
       "name": "weightedSupDist_nonneg",
       "category": "core",
       "definitional": false,
-      "digest": "11c3f23911192e81"
+      "digest": "1ebf6009980e1543"
     },
     {
       "file": "WeightedSupNorm.lean",
@@ -744,7 +1002,7 @@
       "name": "weightedSupDist_triangle",
       "category": "core",
       "definitional": false,
-      "digest": "77246e67a3bf43db"
+      "digest": "4b7cdb1031edeb69"
     },
     {
       "file": "WeightedSupNorm.lean",
@@ -752,7 +1010,7 @@
       "name": "weightedSupDist_symm",
       "category": "core",
       "definitional": false,
-      "digest": "5df4f02fd3462ffe"
+      "digest": "d559d361ee06ce09"
     },
     {
       "file": "WeightedSupNorm.lean",
@@ -760,55 +1018,7 @@
       "name": "weightedSupDist_complete",
       "category": "core",
       "definitional": false,
-      "digest": "87e9e367984c08c6"
-    },
-    {
-      "file": "JC_Formalization.lean",
-      "line": 139,
-      "name": "proved_theorems_card",
-      "category": "supporting",
-      "definitional": true,
-      "digest": "d3e03cca2c09eb68"
-    },
-    {
-      "file": "JC_Formalization.lean",
-      "line": 147,
-      "name": "empirical_proxy_card",
-      "category": "supporting",
-      "definitional": true,
-      "digest": "799cbbfa4cd992ff"
-    },
-    {
-      "file": "JC_Formalization.lean",
-      "line": 155,
-      "name": "refuted_theorems_card",
-      "category": "supporting",
-      "definitional": true,
-      "digest": "0b6d8fc90718d489"
-    },
-    {
-      "file": "JC_Formalization.lean",
-      "line": 163,
-      "name": "pending_theorems_card",
-      "category": "supporting",
-      "definitional": true,
-      "digest": "3782ed9046266226"
-    },
-    {
-      "file": "JC_Formalization.lean",
-      "line": 176,
-      "name": "advance_preserves_domain_bound",
-      "category": "supporting",
-      "definitional": false,
-      "digest": "60d6e2c4dba884f8"
-    },
-    {
-      "file": "JC_Formalization.lean",
-      "line": 182,
-      "name": "advance_cannot_revive_refuted",
-      "category": "supporting",
-      "definitional": false,
-      "digest": "ab0aaf1ac5978277"
+      "digest": "83860fc046bb34b9"
     }
   ]
 }

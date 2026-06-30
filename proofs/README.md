@@ -47,4 +47,4 @@ Each proof artifact carries a trust label indicating its verification strength. 
 | `SYMBOLIC_PROVED` | HIGH | SymPy analytic proof with closed-form verification |
 | `LEAN_PROVED` | VERY_HIGH | Lean 4 verified, 94 theorems, 0 `sorry`, 0 custom axiom |
 | `REFUTED` | VERY_HIGH | Explicit counterexample provided and validated |
-| `PENDING_TOOLCHAIN` | UNKNOWN | Script exists but required toolchain not yet available |
+| `TOOLCHAIN_PENDING` | UNKNOWN | Script exists but required toolchain not yet available |

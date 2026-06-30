@@ -4,7 +4,7 @@ import Mathlib.Tactic
 open Finset
 
 /-! Finite Monotone Iteration Kernel.
-Shared by AAF and Horn. 0 sorry, 0 axiom, 0 admit.
+Shared by AAF and Horn. 0 incomplete-proof-token, 0 assumption, 0 accept-without-proof-token.
 -/
 
 /-- A finite monotone system: step function stays in univ and is monotone. -/

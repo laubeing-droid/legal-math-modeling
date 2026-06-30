@@ -114,7 +114,8 @@ The default strength function in the codebase has this separable structure.
 
 ### 3.2 Dung AAF: Grounded Extension Theorems
 
-All theorems below are proved in Lean 4 with zero sorry, zero axiom,
+All theorems below are proved in Lean 4 with zero sorry and zero
+project-defined axioms,
 backed by the `FiniteMonotoneSystem` kernel (`FiniteMonotoneIteration.lean`).
 
 **Theorem 3.3 (F is monotone).** If S subseteq T then F(S) subseteq F(T).

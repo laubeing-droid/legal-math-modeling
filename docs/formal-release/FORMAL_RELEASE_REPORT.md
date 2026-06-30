@@ -7,16 +7,16 @@
 
 ## 1. Spec-First Transition Status
 
-**Status:** `spec-first-transition-ready`
+**Status:** `spec-first-transition-ready-plus-four-slices`
 
 The five gates required for spec-first transition:
 
 | Gate | Document | Status |
 |------|----------|--------|
-| M1: Canonical Schema | [`docs/spec/canonical_legal_schema.md`](../spec/canonical_legal_schema.md) | SUBSTANTIAL_PARTIAL |
-| M2: DDL Minimal Core | [`docs/spec/ddl_minimal_core.md`](../spec/ddl_minimal_core.md) | SUBSTANTIAL_PARTIAL |
-| M3: Horn -> AAF Contract | [`docs/spec/horn_to_aaf_contract.md`](../spec/horn_to_aaf_contract.md) | SUBSTANTIAL_PARTIAL |
-| M4: Certificate/Checker Boundary | [`docs/spec/certificate_checker_boundary.md`](../spec/certificate_checker_boundary.md) | PARTIAL |
+| M1: Canonical Schema | [`docs/spec/canonical_legal_schema.md`](../spec/canonical_legal_schema.md) | CLOSED_FOR_FOUR_SLICES |
+| M2: DDL Minimal Core | [`docs/spec/ddl_minimal_core.md`](../spec/ddl_minimal_core.md) | CLOSED_FOR_FOUR_SLICES |
+| M3: Horn -> AAF Contract | [`docs/spec/horn_to_aaf_contract.md`](../spec/horn_to_aaf_contract.md) | CLOSED_FOR_FOUR_SLICES |
+| M4: Certificate/Checker Boundary | [`docs/spec/certificate_checker_boundary.md`](../spec/certificate_checker_boundary.md) | CLOSED_FOR_FOUR_SLICES |
 | M5: Unified Stopping Statement | This document + [`SPEC_FIRST_TRANSITION_READY.md`](SPEC_FIRST_TRANSITION_READY.md) | CLOSED |
 
 After this point, main engineering effort shifts to `juris-calculus`.
@@ -29,10 +29,10 @@ New math work in this repo only as "support for JC new capabilities."
 | Item | State |
 |------|-------|
 | Public branch model | `master` only |
-| Last verified source head | `f671a6e` |
-| Last full clean rebuild evidence | `f671a6e` |
-| GitHub Actions clean build | PASS at `f671a6e` |
-| Local `lake build` evidence | PASS (2954 jobs, 0 errors) |
+| Last verified source head | Local pending commit for four-slice closure |
+| Last full clean rebuild evidence | Local `lake build` evidence for four-slice closure |
+| GitHub Actions clean build | Not rerun; local-only Playbook scope |
+| Local `lake build` evidence | PASS (2961 jobs, 0 errors) |
 | Local `lake build +JurisLean.AxiomAudit` evidence | PASS |
 | Lean source guard | PASS |
 
@@ -49,23 +49,26 @@ Lean source guard means:
 
 | Metric | Value |
 |--------|-------|
-| Unique theorem names | 94 |
-| Core theorems | 43 |
-| Supporting unique theorem names | 51 |
-| Supporting manifest records | 57 |
-| Total manifest entries | 100 |
-| `formal_core_module_theorems` | 43 |
+| Lean source files | 32 |
+| Unique theorem names | 126 |
+| Core theorems | 42 |
+| Supporting unique theorem names | 84 |
+| Supporting manifest records | 84 |
+| Total manifest entries | 126 |
+| Four-slice vertical results | 32 |
+| `formal_core_module_theorems` | 42 |
 
 Interpretation:
 
-- `43` core theorems cover: `FiniteMonotoneIteration.lean` (9), `DungFixedPoint.lean` (17),
+- `42` core theorems cover: `FiniteMonotoneIteration.lean` (9), `DungFixedPoint.lean` (16),
   `HornFixedPoint.lean` (10), `WeightedSupNorm.lean` (4), `HornDefinitions.lean` (2),
   `ContractionCondition.lean` (1).
-- `51` supporting theorems span: `UnifiedModel.lean` (16), `JC_Formalization.lean` (12),
-  `FiniteRosetta.lean` (9), `BanachEffectiveNodes.lean` (8), `TemporalKripke.lean` (6),
-  and others.
-- `94` unique theorem names across `100` manifest entries (some theorems appear
-  in multiple records).
+- `84` supporting theorems span: four-slice files (`LegalSyntax.lean`,
+  `DDLDefinitions.lean`, `HornAAFContract.lean`, `CertificateChecker.lean`,
+  `AttackDecision.lean`, `SafetyTheorems.lean`, `EndToEnd.lean`) plus
+  `UnifiedModel.lean`, `JC_Formalization.lean`, `FiniteRosetta.lean`,
+  `BanachEffectiveNodes.lean`, `TemporalKripke.lean`, and others.
+- `126` theorem declarations are tracked in the current manifest.
 
 Canonical machine-readable source:
 
@@ -77,13 +80,13 @@ Canonical machine-readable source:
 
 | File | Core theorems | Key theorems |
 |------|--------------|-------------|
-| `DungFixedPoint.lean` | 17 | `grounded_is_least_fixed_point`, `groundedSpec_unique_least_fixed_point`, `finite_termination`, `in_soundness`, `out_soundness` |
+| `DungFixedPoint.lean` | 16 | `grounded_is_least_fixed_point`, `groundedSpec_unique_least_fixed_point`, `finite_termination`, `in_soundness`, `out_soundness` |
 | `HornFixedPoint.lean` | 10 | `horn_completeness`, `horn_result_is_minimal_model`, `horn_finite_termination`, `horn_soundness` |
 | `FiniteMonotoneIteration.lean` | 9 | `exists_fixpoint_le_card`, `fixed_at_card`, `iter_mono`, `iter_stable` |
 | `WeightedSupNorm.lean` | 4 | `weightedSupDist_complete`, `weightedSupDist_triangle` |
 | `HornDefinitions.lean` | 2 | `TH_monotone`, `TH_subset_univ` |
 | `ContractionCondition.lean` | 1 | `lipschitz_coupling_implies_weighted_contraction` |
-| **Total** | **43** | |
+| **Total** | **42** | |
 
 ---
 
@@ -96,6 +99,12 @@ Canonical machine-readable source:
 - Finite Horn closure layer (`HornFixedPoint.lean` + `HornDefinitions.lean`, 12 core theorems)
 - Weighted sup-norm metric foundation (`WeightedSupNorm.lean`, 4 core theorems)
 - Contraction bridge (`ContractionCondition.lean`, 1 core theorem)
+- Four vertical-slice specification modules for contract breach, license,
+  permission, and priority (`LegalSyntax.lean`, `DDLDefinitions.lean`,
+  `HornAAFContract.lean`, `CertificateChecker.lean`, `AttackDecision.lean`,
+  `SafetyTheorems.lean`, `EndToEnd.lean`)
+- Local four-slice differential evidence:
+  `runtime/legal_math_four_slice_differential.json`
 - Reproducible `AxiomAudit`
 - Repository-level release gate closure for `formal-core-v1`
 
@@ -128,18 +137,18 @@ Audit artifact: [`axiom_audit.txt`](axiom_audit.txt)
 
 ---
 
-## 7. Deferred Domain Axioms
+## 7. Closed Domain-Axiom Targets
 
-Three domain axioms are registered in `SORRY_LEDGER.md` as non-blocking:
+Three former domain-axiom targets are closed in `DDLDefinitions.lean`:
 
 | Axiom | Reason | Blocking? |
 |-------|--------|-----------|
-| `violation_implies_norm_active` | RuleId != NormId structural gap | NO |
-| `permission_no_direct_violation` | PERMISSION has no rule-level violation path | NO |
-| `constitutive_no_direct_violation` | CONSTITUTIVE has no rule-level violation path | NO |
+| `violation_implies_norm_active` | Direct violation requires an active norm in the minimal DDL model | NO |
+| `permission_no_direct_violation` | Permission has no direct violation path in the minimal DDL model | NO |
+| `constitutive_no_direct_violation` | Constitutive status rules have no direct violation path in the minimal DDL model | NO |
 
-These axioms target `DDLDefinitions.lean`, which does not yet exist. They
-are domain axioms, not engineering failures.
+These are now Lean theorems for the four-slice minimal DDL model. They do not
+prove full runtime correctness.
 
 ---
 
@@ -167,6 +176,9 @@ These tags are archival only. They do NOT expand the public release claim.
 - Banach remains outside the released formal core.
 - The weighted sup-norm metric and contraction bridge are released as supporting
   formal artifacts.
+- The four vertical slices are Lean-checked within the formal model, and the
+  Python reference fixtures pass local differential checks against same-name JC
+  shadow fixtures.
 
 See [`ALLOWED_CLAIMS.md`](ALLOWED_CLAIMS.md) for the full list.
 

@@ -68,7 +68,7 @@
 |---|---|
 | PROVED | 10 |
 | REFUTED | 3 |
-| PENDING_TOOLCHAIN | 4 |
+| TOOLCHAIN_PENDING | 4 |
 | FAILED | 0 |
 | **Total** | **17** |
 

@@ -119,7 +119,7 @@ inequality may still fail for larger graphs or different feature configurations.
 | File | Description |
 |------|-------------|
 | `graph_similarity_range.py` | Range proof: SymPy + exhaustive |
-| `graph_similarity_range_z3.py` | Z3 verification script (PENDING_TOOLCHAIN) |
+| `graph_similarity_range_z3.py` | Z3 verification script (TOOLCHAIN_PENDING) |
 | `graph_similarity_range.smt2` | SMT-LIB2 for offline Z3/CVC5 |
 | `metric_counterexamples.py` | All metric counterexamples + triangle search |
 

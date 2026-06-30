@@ -45,4 +45,4 @@ The following Lean files in `proofs/lean/juris_lean/JurisLean/` provide formal p
 - Papers with `--` in the Proof Artifact column have no dedicated machine-run proof directory; their claims are either structural/analytic or verified inline within the theory module itself.
 - Papers with `--` in the Theory Module column are standalone formalization exercises that contribute proof artifacts but do not correspond to a single runnable module.
 - `icail_full_paper.md` is the consolidated conference submission that subsumes all papers above.
-- The Lean formalization adds 94 theorems (43 core + 51 supporting) with 0 sorry across 25 files.
+- The Lean formalization adds 126 theorem declarations (42 core + 84 supporting) with 0 sorry across 32 files.

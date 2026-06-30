@@ -1,7 +1,7 @@
 (*
     Production Evaluator Termination Model
     ======================================
-    STATUS: PENDING_TOOLCHAIN (TLA+ not available in current environment)
+    STATUS: TOOLCHAIN_PENDING (TLA+ not available in current environment)
 
     This module specifies the bounded operational termination proof for the
     production evaluator using TLA+.
@@ -228,7 +228,7 @@ LEMMA TransitionCountBound ==
 (*
     End of module ProductionEvaluatorTermination.
 
-    NOTE: This file is marked PENDING_TOOLCHAIN because TLA+ tools
+    NOTE: This file is marked TOOLCHAIN_PENDING because TLA+ tools
     (TLC model checker, TLAPS proof system) are not available in the
     current execution environment. The Python implementation in
     production_bounded_termination.py serves as the executable

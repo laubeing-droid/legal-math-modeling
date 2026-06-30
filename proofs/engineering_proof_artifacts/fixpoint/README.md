@@ -1,7 +1,7 @@
 # Fixpoint Termination -- Engineering Verification Artifacts
 
 > **Nature of artifact:** Python exhaustive testing, NOT a Lean formal proof.
-> TLA+ specification is present but unverified (PENDING_TOOLCHAIN).
+> TLA+ specification is present but unverified (TOOLCHAIN_PENDING).
 
 ## Proposition 1: Pure Horn Termination
 
@@ -59,7 +59,7 @@ PlusCal-free specification of the evaluator with:
 - Termination theorem statement
 - Auxiliary boundedness lemmas
 
-Marked **PENDING_TOOLCHAIN** -- the TLA+ tools (TLC, TLAPS) are not
+Marked **TOOLCHAIN_PENDING** -- the TLA+ tools (TLC, TLAPS) are not
 available. The Python implementation serves as the executable reference.
 
 ## Artifacts
@@ -67,7 +67,7 @@ available. The Python implementation serves as the executable reference.
 | File | Description |
 |------|-------------|
 | `production_bounded_termination.py` | Python implementation of both propositions with exhaustive tests |
-| `evaluator_termination_model.tla` | TLA+ formal specification (PENDING_TOOLCHAIN) |
+| `evaluator_termination_model.tla` | TLA+ formal specification (TOOLCHAIN_PENDING) |
 
 ## Running
 

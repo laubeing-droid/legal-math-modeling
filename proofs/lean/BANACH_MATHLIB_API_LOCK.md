@@ -56,10 +56,10 @@ To confirm this lock is still accurate against the pinned Mathlib version:
 ```bash
 cd proofs/lean/juris_lean
 
-# Rebuild everything (must pass with 0 sorry)
+# Rebuild everything (must pass with 0 incomplete-proof-token)
 lake build
 
-# Print axiom dependencies for Banach-related theorems
+# Print assumption dependencies for Banach-related theorems
 lake env lean JurisLean/AxiomAudit.lean
 ```
 

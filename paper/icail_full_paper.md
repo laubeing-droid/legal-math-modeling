@@ -8,7 +8,7 @@
 
 ## Abstract
 
-We present *juris-calculus*, a symbolic legal reasoning engine that operates across PRC, Hong Kong, and US jurisdictions. The architecture is stratified into three formally distinct layers: a monotone Horn clause closure (Stage 1), a non-monotone Dung abstract argumentation framework (Stage 2), and a quantitative pricing layer grounded in Banach contraction (Stage 3). Each layer is backed by mechanized theorems in Lean 4 with Mathlib dependencies. Across 10 Lean source files totaling 84 lemmas and theorems, every result has zero `sorry` and zero axioms. A parallel Python codebase of 59 theory modules and 11 canonical semantic types implements the engineering surface. We introduce a 7-level evidence-calibrated trust label system that tracks every formal claim from Conjecture through Proved or Refuted, and we apply it to 20 core theorems tracked in a Lean-verified registry (JC_Formalization.lean): 7 proved by artifact, 2 supported by empirical proxy, 1 refuted by counterexample, 1 axiom-only, and 9 in various pending or invalid states. We validate the system on 2,117 PRC Horn rules extracted from the Civil Code, achieving 100% closure coverage for derivation depth k <= 3. A cross-jurisdiction claim mapping of 44 legal concepts demonstrates that the obstruction density (concepts mappable in only one jurisdiction, or colliding across jurisdictions) exceeds two-thirds, formally proving via `obstruction_density_gt_two_thirds` that no universal total functor exists between PRC, HK, and US legal ontologies.
+We present *juris-calculus*, a symbolic legal reasoning engine that operates across PRC, Hong Kong, and US jurisdictions. The architecture is stratified into formally distinct specification layers: a monotone Horn clause closure, a non-monotone Dung abstract argumentation framework, and supporting quantitative artifacts whose public boundary is explicitly limited. The current formal-release manifest records 126 theorem declarations in the 32-file Lean inventory, with zero `sorry`, zero `admit`, and zero project-defined axioms in the released core; Lean built-in axiom dependencies are disclosed by `AxiomAudit`. The four vertical slices for contract breach, license, permission, and priority are Lean-checked within the formal model. A parallel Python codebase of 73 theory modules and canonical semantic types implements the reference and engineering surface. We introduce a 7-level evidence-calibrated trust label system that tracks every formal claim from Conjecture through Proved or Refuted, and we apply it to 20 core theorem entries with explicit status tracking. We validate the system on PRC Horn-rule corpora and cross-jurisdiction claim mappings while keeping full Python runtime correctness and Banach pricing outside the formal-core-v1 release boundary.
 
 **Keywords:** formal verification, legal reasoning, argumentation frameworks, Horn clauses, Dung semantics, Lean 4, cross-jurisdiction, trust labels
 
@@ -26,7 +26,7 @@ This paper makes six contributions:
 
 1. **Stratified Architecture.** A three-stage evaluator where Stage 1 (Horn closure) is provably monotone, Stage 2 (Dung grounded extension) is provably non-monotone, and Stage 3 (Banach pricing) is provably contractive. Each stage is independently verified.
 
-2. **Mechanized Kernel.** 84 theorems and lemmas across 10 Lean 4 files, all with zero sorry and zero axioms. The key infrastructure theorem `exists_fixpoint_le_card` (FiniteMonotoneIteration.lean) guarantees finite termination for any monotone operator on a finite set.
+2. **Mechanized Kernel.** The formal-release manifest records 126 theorem declarations in the current 32-file Lean inventory, with zero `sorry`, zero `admit`, and zero project-defined axioms in the released core. The key infrastructure theorem `exists_fixpoint_le_card` (FiniteMonotoneIteration.lean) guarantees finite termination for any monotone operator on a finite set, and the new four-slice modules close the contract breach, license, permission, and priority specification boundary.
 
 3. **Non-Monotonicity Result.** The grounded extension of a Dung AF is formally shown to be non-monotone with respect to argument addition: `ge_non_monotonicity` in UnifiedModel.lean states the existence of a scenario where adding an argument removes a previously accepted argument from the grounded extension.
 
@@ -347,7 +347,7 @@ The adversarial pipeline converges when the second Codex audit yields zero FAIL 
 
 ## 14. Conclusion
 
-We have presented a stratified legal reasoning architecture with 84 mechanized theorems in Lean 4, zero sorry, and zero axioms. The key findings are:
+We have presented a stratified legal reasoning architecture whose current formal-release manifest records 126 theorem declarations, with zero `sorry`, zero `admit`, and zero project-defined axioms in the released core. The key findings are:
 
 1. Horn closure is monotone and terminates within |univ| steps (Theorems 4.1--4.6).
 2. Dung grounded extension is the unique least fixed point but is non-monotone in AF structure (Theorems 5.1--5.10, Proposition 6.1).
@@ -357,7 +357,7 @@ We have presented a stratified legal reasoning architecture with 84 mechanized t
 
 ### Open Problems
 
-1. **PENDING_TOOLCHAIN.** Formalize DDLDefinitions.lean with the 3 registered sorry-bearing domain axioms (violation_implies_norm_active, permission_no_direct_violation, constitutive_no_direct_violation).
+1. **Runtime conformance.** The four-slice Lean model is closed, but the full `juris-calculus` runtime still needs cross-repo differential evidence before any end-to-end runtime proof claim.
 2. **Incomplete Artifacts.** T7 (GradualVerification) has MISSING_ARTIFACT status.
 3. **Empirical Proxies.** T2 and T20 need Lean mechanization to advance from EMPIRICAL_PROXY to PROVED_BY_ARTIFACT.
 4. **Full ASPIC+ Formalization.** The Dung AF is formalized; ASPIC+ with preference-based defeat is not.

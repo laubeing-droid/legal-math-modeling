@@ -13,7 +13,7 @@
 
 The research direction of the original Playbook is sound. This audit, building on the Codex 2026-06-18 revision, has produced a substantially complete action list. However, several "completed" claims in the original draft have been downgraded to "verified / partially verified / pending cleanup." After second-pass review the conclusions are:
 
-1. **Core status file statistics are unified across the three principal sources** (`theorem_status_matrix`, `ARTIFACT_MANIFEST`, `proof_run_results`): 10 PROVED / 3 REFUTED / 4 PENDING_TOOLCHAIN / 0 FAILED. However, `docs/audit/proof_ledger.json` retains the older `audit-fix-2` ledger format, so the total audit ledger is not yet fully unified.
+1. **Core status file statistics are unified across the three principal sources** (`theorem_status_matrix`, `ARTIFACT_MANIFEST`, `proof_run_results`): 10 PROVED / 3 REFUTED / 4 TOOLCHAIN_PENDING / 0 FAILED. However, `docs/audit/proof_ledger.json` retains the older `audit-fix-2` ledger format, so the total audit ledger is not yet fully unified.
 2. **17 proof artifacts are re-verified.** `proof_run_results.json` shows 126.03s total runtime, overall PASS.
 3. **31 adversarial test artifacts are verified.** All 31 pass as expected; ADV-014a/ADV-014b are recorded known blind spots, not fixes.
 4. **13 benchmark cases are verified.** They span 5 legal domains; no `multi_model_comparison.py` runner exists yet, so "expected output verified" cannot be claimed.
@@ -28,7 +28,7 @@ The research direction of the original Playbook is sound. This audit, building o
 | Proof artifacts total | 17 |
 | PROVED | 10 |
 | REFUTED | 3 |
-| PENDING_TOOLCHAIN | 4 |
+| TOOLCHAIN_PENDING | 4 |
 | FAILED | 0 |
 | Adversarial tests | 31 (expected pass; 2 known-blind-spot records) |
 | Benchmark cases | 13 (5 legal domains) |
@@ -108,10 +108,10 @@ Running `python proofs/engineering_proof_artifacts/run_all_proofs.py`:
 | ART-012 | Graph Metric Counterexamples | REFUTED | REFUTED_BY_COUNTEREXAMPLE |
 | ART-013 | DP Floor Clipping Analysis | REFUTED | REFUTED_BY_COUNTEREXAMPLE |
 | ART-014 | Clipped Theil-Sen Refutation | REFUTED | REFUTED_BY_COUNTEREXAMPLE |
-| ART-005 | Bounded Horn (Z3 .smt2) | PENDING | PENDING_TOOLCHAIN |
-| ART-002 | Finite Galois Adjunction (Lean) | PENDING | PENDING_TOOLCHAIN |
-| ART-017 | Banach Effective Nodes (Lean) | PENDING | PENDING_TOOLCHAIN |
-| ART-007 | Evaluator Termination (TLA+) | PENDING | PENDING_TOOLCHAIN |
+| ART-005 | Bounded Horn (Z3 .smt2) | PENDING | TOOLCHAIN_PENDING |
+| ART-002 | Finite Galois Adjunction (Lean) | PENDING | TOOLCHAIN_PENDING |
+| ART-017 | Banach Effective Nodes (Lean) | PENDING | TOOLCHAIN_PENDING |
+| ART-007 | Evaluator Termination (TLA+) | PENDING | TOOLCHAIN_PENDING |
 
 ### 1.3 Adversarial Tests
 

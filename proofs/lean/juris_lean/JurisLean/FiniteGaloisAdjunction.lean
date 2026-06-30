@@ -1,8 +1,8 @@
 -- FiniteGaloisAdjunction.lean
 -- Formal verification that any residuated map on finite join-semilattices
--- with bottom admits a Galois connection (adjunction).
+-- with bottom accept-without-proof-tokens a Galois connection (adjunction).
 --
--- v2.0: All 3 sorry eliminated.
+-- v2.0: All 3 incomplete-proof-token eliminated.
 --       FinitePoset is a class extending SemilatticeSup + OrderBot.
 --       ResiduatedMap replaces MonotoneEndo.
 

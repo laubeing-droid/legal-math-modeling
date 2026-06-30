@@ -7,7 +7,7 @@
 
 ## Abstract
 
-We present an adversarial multi-AI formalization methodology for producing trustworthy mathematical models in specialized domains. The methodology employs four stages: (1) GENERATE, where a primary AI produces theorem statements, proofs, and constants; (2) VERIFY, where an independent AI audits every claim across 12 verification categories; (3) INDEPENDENT REWORK, where a third AI produces alternative proofs from scratch; and (4) ADVERSARIAL AUDIT, where a second instance of the verification AI performs a final pass. We apply this methodology to the juris-calculus legal reasoning project, starting from 20 initial core theorem claims. The adversarial pipeline identified 7 fatal errors in the initial claims (including a Banach contraction constant c = 1.0, which is not a contraction). After 4 repair rounds, the pipeline converged to 46/46 PASS with all trust labels assigned. The final verified artifact comprises 84 theorems and lemmas across 10 Lean 4 files (0 sorry, 0 axioms), 7 PROVED_BY_ARTIFACT core theorems in the JC_Formalization.lean registry, and 20 core theorem entries with explicit status tracking. We argue that single-AI formalization is unreliable for specialized mathematical domains and that adversarial cross-checking between different AI agents is essential.
+We present an adversarial multi-AI formalization methodology for producing trustworthy mathematical models in specialized domains. The methodology employs four stages: (1) GENERATE, where a primary AI produces theorem statements, proofs, and constants; (2) VERIFY, where an independent AI audits every claim across 12 verification categories; (3) INDEPENDENT REWORK, where a third AI produces alternative proofs from scratch; and (4) ADVERSARIAL AUDIT, where a second instance of the verification AI performs a final pass. We apply this methodology to the juris-calculus legal reasoning project, starting from 20 initial core theorem claims. The adversarial pipeline identified 7 fatal errors in the initial claims (including a Banach contraction constant c = 1.0, which is not a contraction). After subsequent repair, release-boundary cleanup, and four-slice closure, the current formal-release manifest records 126 theorem declarations in the 32-file Lean inventory, with zero `sorry`, zero `admit`, and zero project-defined axioms in the released core. The trust-label registry still distinguishes proved artifacts from empirical proxies and refuted claims; the former DDL domain-axiom targets are now Lean theorems inside the four-slice minimal model. We argue that single-AI formalization is unreliable for specialized mathematical domains and that adversarial cross-checking between different AI agents is essential.
 
 **Keywords:** formal verification, multi-agent systems, adversarial methodology, mathematical modeling, trust labels
 
@@ -75,7 +75,7 @@ An independent AI audits every claim from Stage 1 across 12 verification categor
 
 A third AI produces alternative proofs for all 20 claims from scratch, without seeing the Stage 1 or Stage 2 outputs. This provides an independent verification modality.
 
-**Result:** 8/8 claims verified pass. 3 Lean drafts marked PENDING_TOOLCHAIN (deferred to the Lean 4 formalization).
+**Result:** 8/8 claims verified pass in that historical stage. Current release text must distinguish the now-proved four-slice DDL targets from broader runtime conformance, which still requires JC-side differential evidence.
 
 ### 2.4 Stage 4: ADVERSARIAL AUDIT (Codex 2nd pass)
 

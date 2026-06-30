@@ -16,7 +16,7 @@ The answer must be evidence-based and tied to the five gates defined in
 | Item | Value |
 |---|---|
 | Lean files | 25 |
-| Unique theorems | 94 (43 core + 51 supporting) |
+| Unique theorem declarations | 126 (42 core + 84 supporting) |
 | sorry count | 0 |
 | `lake build` | 2954 jobs, 0 errors |
 | JC_Formalization.lean proved | 7 |
@@ -99,7 +99,7 @@ Status: **CLOSED**
 
 Evidence:
 
-- 25 Lean files with 94 theorems, 0 sorry, `lake build` 2954 jobs 0 errors.
+- 32 Lean files with 126 theorem declarations, 0 sorry, `lake build` 2961 jobs 0 errors.
 - `theory/spec/certificate_schema.py` defines `spec-cert-v1` payloads and an
   independent checker.
 - `JC_Formalization.lean` provides machine-checked cardinality proofs:

@@ -387,7 +387,7 @@ where $C$ is observed cost and $\beta \in (0, 1)$ is the smoothing parameter.
 | `PARTIAL_PROVED` | Medium |
 | `DATA_INSUFFICIENT_FOR_PROOF` | Low |
 | `TOY_SYNTHETIC_PROOF_ONLY` | Low |
-| `PENDING_TOOLCHAIN` | Unknown |
+| `TOOLCHAIN_PENDING` | Unknown |
 | `ENGINEERING_BASELINE` | N/A |
 
 **Remark 12.2.** `REFUTED` ranks above `PARTIAL` because a refutation is *definitive*, while a partial proof leaves truth value uncertain.
@@ -422,7 +422,7 @@ $$\texttt{FINAL\_ALL\_THEOREMS\_PROVED},\; \texttt{REAL\_PRICING\_VALIDATED},\; 
 1. `DATA_INSUFFICIENT` → gated by data-quality check;
 2. `TOY_SYNTHETIC` → carries `synthetic_guard` flag;
 3. `REFUTED` → engineering action must execute;
-4. `PENDING_TOOLCHAIN` → no engineering influence.
+4. `TOOLCHAIN_PENDING` → no engineering influence.
 
 ---
 

@@ -215,7 +215,7 @@
         }
       }
     },
-    "PENDING_TOOLCHAIN": {
+    "TOOLCHAIN_PENDING": {
       "description": "Proof artifact exists but cannot be checked due to missing toolchain.",
       "confidence_level": "UNKNOWN",
       "applicability": "Proof status cannot be determined without the required tool",
@@ -324,7 +324,7 @@
     "description": "Valid transitions between trust label statuses",
     "transitions": [
       {
-        "from": "PENDING_TOOLCHAIN",
+        "from": "TOOLCHAIN_PENDING",
         "to": ["EXHAUSTIVE_FINITE_PROOF", "SMT_PROVED_FINITE", "LEAN_PROVED", "TLA_PROVED", "REFUTED"],
         "trigger": "Toolchain becomes available and proof is checked"
       },

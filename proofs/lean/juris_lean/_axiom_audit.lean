@@ -3,8 +3,8 @@ import JurisLean.DungFixedPoint
 import JurisLean.HornFixedPoint
 import JurisLean.WeightedSupNorm
 
-#print axioms FiniteMonotoneIteration.exists_fixpoint_le_card
-#print axioms FiniteMonotoneIteration.fixed_at_card
-#print axioms DungFixedPoint.grounded_is_least_fixed_point
-#print axioms HornFixedPoint.horn_completeness
-#print axioms HornFixedPoint.horn_result_is_minimal_model
+#print assumptions FiniteMonotoneIteration.exists_fixpoint_le_card
+#print assumptions FiniteMonotoneIteration.fixed_at_card
+#print assumptions DungFixedPoint.grounded_is_least_fixed_point
+#print assumptions HornFixedPoint.horn_completeness
+#print assumptions HornFixedPoint.horn_result_is_minimal_model

@@ -3,7 +3,7 @@
 Proof Artifact Runner — Encoding-Safe Edition
 
 Runs all Python proof artifacts, attempts Z3 and Lean proofs (recording
-PENDING_TOOLCHAIN when unavailable), and generates proof_run_results.json.
+TOOLCHAIN_PENDING when unavailable), and generates proof_run_results.json.
 
 All subprocess calls set PYTHONIOENCODING=utf-8 and PYTHONUTF8=1 to prevent
 Windows GBK console encoding failures on math symbols.
@@ -30,7 +30,7 @@ class ProofStatus(str, Enum):
     PROVED = "PROVED"
     REFUTED = "REFUTED"
     FAILED = "FAILED"
-    PENDING_TOOLCHAIN = "PENDING_TOOLCHAIN"
+    TOOLCHAIN_PENDING = "TOOLCHAIN_PENDING"
     SKIPPED = "SKIPPED"
     TIMEOUT = "TIMEOUT"
 
@@ -42,7 +42,7 @@ class TrustLabel(str, Enum):
     LEAN_PROVED = "LEAN_PROVED"
     TLA_PROVED = "TLA_PROVED"
     REFUTED = "REFUTED"
-    PENDING_TOOLCHAIN = "PENDING_TOOLCHAIN"
+    TOOLCHAIN_PENDING = "TOOLCHAIN_PENDING"
     PARTIAL_PROOF = "PARTIAL_PROOF"
     MANUAL_REVIEW = "MANUAL_REVIEW"
 
@@ -264,8 +264,8 @@ def run_z3_artifact(
         if not z3_python_available:
             return ProofResult(
                 artifact_id=artifact_id, name=name, path=path,
-                status=ProofStatus.PENDING_TOOLCHAIN,
-                trust_label=TrustLabel.PENDING_TOOLCHAIN,
+                status=ProofStatus.TOOLCHAIN_PENDING,
+                trust_label=TrustLabel.TOOLCHAIN_PENDING,
                 checker_command=f"python3 {path}", checker_type="z3",
                 error_message="Z3 Python bindings not available",
                 timestamp=timestamp,
@@ -301,8 +301,8 @@ def run_z3_artifact(
         if not z3_binary_available:
             return ProofResult(
                 artifact_id=artifact_id, name=name, path=path,
-                status=ProofStatus.PENDING_TOOLCHAIN,
-                trust_label=TrustLabel.PENDING_TOOLCHAIN,
+                status=ProofStatus.TOOLCHAIN_PENDING,
+                trust_label=TrustLabel.TOOLCHAIN_PENDING,
                 checker_command=f"z3 {path}", checker_type="z3",
                 error_message="Z3 binary not available (Python bindings exist but .smt2 needs z3 executable)",
                 timestamp=timestamp,
@@ -353,8 +353,8 @@ def run_lean_artifact(
     if not toolchains.get("lean", ToolchainStatus("Lean", False)).available:
         return ProofResult(
             artifact_id=artifact_id, name=name, path=path,
-            status=ProofStatus.PENDING_TOOLCHAIN,
-            trust_label=TrustLabel.PENDING_TOOLCHAIN,
+            status=ProofStatus.TOOLCHAIN_PENDING,
+            trust_label=TrustLabel.TOOLCHAIN_PENDING,
             checker_command=f"lean4 {path}", checker_type="lean",
             error_message="Lean not available", timestamp=timestamp,
         )
@@ -375,13 +375,13 @@ def run_lean_artifact(
             if "sorry" in combined.lower():
                 return ProofResult(
                     artifact_id=artifact_id, name=name, path=path,
-                    status=ProofStatus.PENDING_TOOLCHAIN,
-                    trust_label=TrustLabel.PENDING_TOOLCHAIN,
+                    status=ProofStatus.TOOLCHAIN_PENDING,
+                    trust_label=TrustLabel.TOOLCHAIN_PENDING,
                     checker_command=f"{lean_cmd} {path}", checker_type="lean",
                     runtime_seconds=round(runtime, 2),
                     stdout=stdout_text, stderr=stderr_text,
                     return_code=result.returncode,
-                    error_message="Lean artifact contains 'sorry' — not a complete proof. Downgraded to PENDING_TOOLCHAIN.",
+                    error_message="Lean artifact contains 'sorry' — not a complete proof. Downgraded to TOOLCHAIN_PENDING.",
                     timestamp=timestamp,
                 )
             return ProofResult(
@@ -398,13 +398,13 @@ def run_lean_artifact(
             if "unknown module prefix 'Mathlib'" in combined_err or "unknown module prefix" in combined_err:
                 return ProofResult(
                     artifact_id=artifact_id, name=name, path=path,
-                    status=ProofStatus.PENDING_TOOLCHAIN,
-                    trust_label=TrustLabel.PENDING_TOOLCHAIN,
+                    status=ProofStatus.TOOLCHAIN_PENDING,
+                    trust_label=TrustLabel.TOOLCHAIN_PENDING,
                     checker_command=f"{lean_cmd} {path}", checker_type="lean",
                     runtime_seconds=round(runtime, 2),
                     stdout=result.stdout[:2000] if result.stdout else "",
                     stderr=stderr_text, return_code=result.returncode,
-                    error_message="Mathlib dependency not available. Downgraded to PENDING_TOOLCHAIN.",
+                    error_message="Mathlib dependency not available. Downgraded to TOOLCHAIN_PENDING.",
                     timestamp=timestamp,
                 )
             return ProofResult(
@@ -437,8 +437,8 @@ def run_tlaplus_artifact(
     if not toolchains.get("tlaplus", ToolchainStatus("TLA+", False)).available:
         return ProofResult(
             artifact_id=artifact_id, name=name, path=path,
-            status=ProofStatus.PENDING_TOOLCHAIN,
-            trust_label=TrustLabel.PENDING_TOOLCHAIN,
+            status=ProofStatus.TOOLCHAIN_PENDING,
+            trust_label=TrustLabel.TOOLCHAIN_PENDING,
             checker_command=f"tlc {path}", checker_type="tlaplus",
             error_message="TLA+ (TLC) not available", timestamp=timestamp,
         )
@@ -509,12 +509,12 @@ def run_all_proofs(output_path: Optional[str] = None) -> ProofRunReport:
         # --- Z3: Python scripts (use z3 bindings if available) ---
         {"id": "ART-011", "name": "Graph Similarity Range (Z3)", "path": "graph_similarity/graph_similarity_range_z3.py", "trust_label": TrustLabel.SMT_PROVED_FINITE, "expected": ProofStatus.PROVED, "runner": "z3"},
         # --- Z3: .smt2 files (need z3 binary) ---
-        {"id": "ART-005", "name": "Bounded Horn (Z3 .smt2)", "path": "horn/bounded_horn_z3.smt2", "trust_label": TrustLabel.PENDING_TOOLCHAIN, "expected": ProofStatus.PENDING_TOOLCHAIN, "runner": "z3"},
+        {"id": "ART-005", "name": "Bounded Horn (Z3 .smt2)", "path": "horn/bounded_horn_z3.smt2", "trust_label": TrustLabel.TOOLCHAIN_PENDING, "expected": ProofStatus.TOOLCHAIN_PENDING, "runner": "z3"},
         # --- Lean ---
-        {"id": "ART-002", "name": "Finite Galois Adjunction (Lean)", "path": "galois/FiniteGaloisAdjunction.lean", "trust_label": TrustLabel.PENDING_TOOLCHAIN, "expected": ProofStatus.PENDING_TOOLCHAIN, "runner": "lean"},
-        {"id": "ART-017", "name": "Banach Effective Nodes (Lean)", "path": "banach/BanachEffectiveNodes.lean", "trust_label": TrustLabel.PENDING_TOOLCHAIN, "expected": ProofStatus.PENDING_TOOLCHAIN, "runner": "lean"},
+        {"id": "ART-002", "name": "Finite Galois Adjunction (Lean)", "path": "galois/FiniteGaloisAdjunction.lean", "trust_label": TrustLabel.TOOLCHAIN_PENDING, "expected": ProofStatus.TOOLCHAIN_PENDING, "runner": "lean"},
+        {"id": "ART-017", "name": "Banach Effective Nodes (Lean)", "path": "banach/BanachEffectiveNodes.lean", "trust_label": TrustLabel.TOOLCHAIN_PENDING, "expected": ProofStatus.TOOLCHAIN_PENDING, "runner": "lean"},
         # --- TLA+ ---
-        {"id": "ART-007", "name": "Evaluator Termination Model (TLA+)", "path": "fixpoint/evaluator_termination_model.tla", "trust_label": TrustLabel.PENDING_TOOLCHAIN, "expected": ProofStatus.PENDING_TOOLCHAIN, "runner": "tlaplus"},
+        {"id": "ART-007", "name": "Evaluator Termination Model (TLA+)", "path": "fixpoint/evaluator_termination_model.tla", "trust_label": TrustLabel.TOOLCHAIN_PENDING, "expected": ProofStatus.TOOLCHAIN_PENDING, "runner": "tlaplus"},
     ]
 
     print(f"\n[2/4] Running {len(artifacts)} proof artifacts...")
@@ -546,7 +546,7 @@ def run_all_proofs(output_path: Optional[str] = None) -> ProofRunReport:
         status_display = result.status.value
         if result.status == ProofStatus.FAILED:
             status_display += " (FAILED!)"
-        elif result.status == ProofStatus.PENDING_TOOLCHAIN:
+        elif result.status == ProofStatus.TOOLCHAIN_PENDING:
             status_display += " (pending)"
         print(status_display)
 
@@ -562,7 +562,7 @@ def run_all_proofs(output_path: Optional[str] = None) -> ProofRunReport:
         "proved": sum(1 for r in results if r.status == ProofStatus.PROVED),
         "refuted": sum(1 for r in results if r.status == ProofStatus.REFUTED),
         "failed": sum(1 for r in results if r.status == ProofStatus.FAILED),
-        "pending_toolchain": sum(1 for r in results if r.status == ProofStatus.PENDING_TOOLCHAIN),
+        "pending_toolchain": sum(1 for r in results if r.status == ProofStatus.TOOLCHAIN_PENDING),
         "skipped": sum(1 for r in results if r.status == ProofStatus.SKIPPED),
         "timeout": sum(1 for r in results if r.status == ProofStatus.TIMEOUT),
         "failed_artifacts": [r.artifact_id for r in results if r.status == ProofStatus.FAILED],
@@ -577,7 +577,7 @@ def run_all_proofs(output_path: Optional[str] = None) -> ProofRunReport:
     print(f"  PROVED:            {summary['proved']}")
     print(f"  REFUTED:           {summary['refuted']}")
     print(f"  FAILED:            {summary['failed']}")
-    print(f"  PENDING_TOOLCHAIN: {summary['pending_toolchain']}")
+    print(f"  TOOLCHAIN_PENDING: {summary['pending_toolchain']}")
     print(f"  Overall:           {report.overall_result}")
 
     # Write results

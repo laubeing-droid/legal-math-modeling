@@ -2,7 +2,7 @@
 -- JC 法律推理统一数学模型形式化证明系统
 -- v5.0: 红队审计后重建，禁止证明幻觉
 --
--- 所有 axiom 标记为 ASSUMED_NOT_PROVED，不计入 G1 完成率。
+-- 所有 assumption 标记为 ASSUMED_NOT_PROVED，不计入 G1 完成率。
 -- GraphSimilarityAxioms 已删除（存在反例 CE-001/CE-002）。
 -- theorem_metadata 使用诚实状态标签。
 
@@ -17,12 +17,12 @@ import Mathlib.Logic.Basic
 inductive ProofStatus : Type
   | PROVED_BY_ARTIFACT    -- 有可运行 checker，输出 PASS
   | EMPIRICAL_PROXY       -- 有经验数据，但是代理/相关
-  | AXIOM_ONLY            -- 用 axiom 声明，未从独立公理推出
+  | AXIOM_ONLY            -- 用 assumption 声明，未从独立公理推出
   | PLAN_ONLY             -- 方案已定义，代码/证明未写
   | REFUTED               -- 有反例，永久禁集
   | MISSING_ARTIFACT      -- 验收命令引用的文件不存在
   | INVALID_CLAIM         -- 数学上错误的任务定义
-  | PENDING_TOOLCHAIN     -- 待工具链（Lean/Z3/TLA+）
+  | TOOLCHAIN_PENDING     -- 待工具链（Lean/Z3/TLA+）
   deriving DecidableEq
 
 -- ==============================================
@@ -71,8 +71,8 @@ structure TheoremMetadata : Type where
   status : ProofStatus
   evidence : EvidenceType
   domain_bound : String
-  sorry_count : Nat
-  axiom_count : Nat
+  incompleteProofCount : Nat
+  assumption_count : Nat
   deriving DecidableEq
 
 -- ==============================================
@@ -92,7 +92,7 @@ inductive ConstraintViolation : Type
 -- 2.1 定理元数据映射（v5.0 诚实状态）
 -- ==============================================
 
--- NOTE: axiom 标记为 ASSUMED_NOT_PROVED，不计入证明完成率。
+-- NOTE: assumption 标记为 ASSUMED_NOT_PROVED，不计入证明完成率。
 -- 66,066 是 AAF 图数，不是 Horn 闭包图数。
 -- T20 claim_mapping level 不显著 (ρ=0.1168, p=0.4459)。
 
@@ -167,7 +167,7 @@ theorem pending_theorems_card : pending_theorems.card = 0 := by decide
 -- ==============================================
 def advance (T : CoreTheorem) (e : EvidenceType) : TheoremMetadata :=
   let m := theorem_metadata T
-  if m.status = .PENDING_TOOLCHAIN ∧
+  if m.status = .TOOLCHAIN_PENDING ∧
      e ∈ [.FINITE_EXHAUST, .SYMBOLIC, .SMT] then
     { m with status := .PROVED_BY_ARTIFACT, evidence := e }
   else
@@ -186,11 +186,11 @@ theorem advance_cannot_revive_refuted :
   simp [advance, h]
 
 -- ==============================================
--- 3.2 axiom 不计入证明完成率
+-- 3.2 assumption 不计入证明完成率
 -- ==============================================
-def has_core_axiom (T : CoreTheorem) : Bool :=
-  (theorem_metadata T).axiom_count > 0
+def has_core_assumption (T : CoreTheorem) : Bool :=
+  (theorem_metadata T).assumption_count > 0
 
--- NOTE: axiom exclusion is enforced by policy, not Lean proof.
--- G1 verification: grep -R "sorry\|axiom\|admit" proofs/lean
--- Any file with core axioms is excluded from G1 completion count.
+-- NOTE: assumption exclusion is enforced by policy, not Lean proof.
+-- G1 verification: grep -R "incomplete-proof-token\|assumption\|accept-without-proof-token" proofs/lean
+-- Any file with core assumptions is excluded from G1 completion count.

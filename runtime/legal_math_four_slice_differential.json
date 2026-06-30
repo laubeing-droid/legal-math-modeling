@@ -1,0 +1,137 @@
+{
+  "report_id": "legal-math-four-slice-runtime-differential",
+  "passed": true,
+  "cases": [
+    {
+      "slice_name": "contract_breach",
+      "case_name": "breach_proved",
+      "reference_status": "PROVED",
+      "jc_shadow_status": "PROVED",
+      "expected_status": "PROVED",
+      "passed": true,
+      "fail_closed": false,
+      "notes": "contract_exists + delivery_due + nonperformance derives breach."
+    },
+    {
+      "slice_name": "contract_breach",
+      "case_name": "defense_present",
+      "reference_status": "REFUTED",
+      "jc_shadow_status": "REFUTED",
+      "expected_status": "REFUTED",
+      "passed": true,
+      "fail_closed": false,
+      "notes": "force_majeure attacks breach; checker must not return PROVED."
+    },
+    {
+      "slice_name": "contract_breach",
+      "case_name": "malformed_certificate",
+      "reference_status": "TAINTED",
+      "jc_shadow_status": "TAINTED",
+      "expected_status": "TAINTED",
+      "passed": true,
+      "fail_closed": true,
+      "notes": "transport/checker malformed input is fail-closed."
+    },
+    {
+      "slice_name": "license",
+      "case_name": "within_scope",
+      "reference_status": "PROVED",
+      "jc_shadow_status": "PROVED",
+      "expected_status": "PROVED",
+      "passed": true,
+      "fail_closed": false,
+      "notes": "valid in-scope license defeats unauthorized-use prohibition."
+    },
+    {
+      "slice_name": "license",
+      "case_name": "outside_scope",
+      "reference_status": "REFUTED",
+      "jc_shadow_status": "REFUTED",
+      "expected_status": "REFUTED",
+      "passed": true,
+      "fail_closed": false,
+      "notes": "outside_scope cannot be misproved as permitted use."
+    },
+    {
+      "slice_name": "license",
+      "case_name": "terminated",
+      "reference_status": "REFUTED",
+      "jc_shadow_status": "REFUTED",
+      "expected_status": "REFUTED",
+      "passed": true,
+      "fail_closed": false,
+      "notes": "terminated license does not activate permission."
+    },
+    {
+      "slice_name": "permission",
+      "case_name": "permission_source_condition_satisfied",
+      "reference_status": "PROVED",
+      "jc_shadow_status": "PROVED",
+      "expected_status": "PROVED",
+      "passed": true,
+      "fail_closed": false,
+      "notes": "permission is accepted only with explicit override priority."
+    },
+    {
+      "slice_name": "permission",
+      "case_name": "condition_missing",
+      "reference_status": "UNDECIDED",
+      "jc_shadow_status": "UNDECIDED",
+      "expected_status": "UNDECIDED",
+      "passed": true,
+      "fail_closed": true,
+      "notes": "condition missing leaves permission undecided, not PROVED."
+    },
+    {
+      "slice_name": "permission",
+      "case_name": "override_conflict",
+      "reference_status": "UNDECIDED",
+      "jc_shadow_status": "UNDECIDED",
+      "expected_status": "UNDECIDED",
+      "passed": true,
+      "fail_closed": true,
+      "notes": "permission/prohibition conflict without priority is fail-closed."
+    },
+    {
+      "slice_name": "priority",
+      "case_name": "priority_wins",
+      "reference_status": "PROVED",
+      "jc_shadow_status": "PROVED",
+      "expected_status": "PROVED",
+      "passed": true,
+      "fail_closed": false,
+      "notes": "verified priority lets rule A defeat rule B."
+    },
+    {
+      "slice_name": "priority",
+      "case_name": "missing_priority",
+      "reference_status": "UNDECIDED",
+      "jc_shadow_status": "UNDECIDED",
+      "expected_status": "UNDECIDED",
+      "passed": true,
+      "fail_closed": true,
+      "notes": "missing priority evidence cannot default to a winner."
+    },
+    {
+      "slice_name": "priority",
+      "case_name": "priority_cycle",
+      "reference_status": "UNDECIDED",
+      "jc_shadow_status": "UNDECIDED",
+      "expected_status": "UNDECIDED",
+      "passed": true,
+      "fail_closed": true,
+      "notes": "priority cycle requires manual/fail-closed review."
+    },
+    {
+      "slice_name": "priority",
+      "case_name": "self_attack",
+      "reference_status": "UNDECIDED",
+      "jc_shadow_status": "UNDECIDED",
+      "expected_status": "UNDECIDED",
+      "passed": true,
+      "fail_closed": true,
+      "notes": "self-attack cannot be tie-broken into PROVED."
+    }
+  ],
+  "blocked": []
+}

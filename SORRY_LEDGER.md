@@ -29,9 +29,19 @@
 | 17 | end_to_end_soundness | 280 |
 | 18 | end_to_end_certificate | 280 |
 
-## Non-Blocking Sorry Entries
+## Open Non-Blocking Sorry Entries
 
 | theorem_name | SPEC | reason | closing_task | status |
 |---|---|---|---|---|
+| _none_ | _n/a_ | No open Lean `sorry` entries. | Keep `scripts/scan_lean_guards.py` and `lake build` green. | CLOSED |
 
-*No entries yet.*
+## Closed Domain-Axiom Targets
+
+| theorem_name | SPEC | closure | status |
+|---|---|---|---|
+| `violation_implies_norm_active` | 220 | Proved in `proofs/lean/juris_lean/JurisLean/DDLDefinitions.lean` for the four-slice minimal DDL model. | CLOSED_LEAN_PROVED |
+| `permission_no_direct_violation` | 220 | Proved in `proofs/lean/juris_lean/JurisLean/DDLDefinitions.lean`; permission norms have no direct violation path in the minimal DDL model. | CLOSED_LEAN_PROVED |
+| `constitutive_no_direct_violation` | 220 | Proved in `proofs/lean/juris_lean/JurisLean/DDLDefinitions.lean`; constitutive rules have no direct violation path in the minimal DDL model. | CLOSED_LEAN_PROVED |
+
+These closures do not prove the full `juris-calculus` runtime. They only close
+the formal four-slice DDL boundary required by the current Playbook.

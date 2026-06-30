@@ -34,18 +34,18 @@ def main():
 
     # --- P0-C: Banach Contraction (Lean) ---
     # Lean proofs require Mathlib compilation; use extended timeout
-    print("[P0-C] Checking Lean 4 proof (timeout=300s, PENDING_TOOLCHAIN expected)...")
+    print("[P0-C] Checking Lean 4 proof (timeout=300s, TOOLCHAIN_PENDING expected)...")
     lean = run(["lake", "env", "lean", "lean/BanachEffectiveNodes.lean"], cwd=PROOF_DIR, timeout=300)
     if lean.get("returncode") == -1 and "Timeout" in lean.get("error", ""):
-        lean["status"] = "PENDING_TOOLCHAIN"
+        lean["status"] = "TOOLCHAIN_PENDING"
         lean["note"] = "Lean build requires Mathlib; timeout is expected. See proofs/lean/ for source."
     RESULTS["P0-C"] = lean
 
     # --- P0-D: Galois Adjunction (Lean) ---
-    print("[P0-D] Checking Lean 4 Galois proof (timeout=300s, PENDING_TOOLCHAIN expected)...")
+    print("[P0-D] Checking Lean 4 Galois proof (timeout=300s, TOOLCHAIN_PENDING expected)...")
     lean_g = run(["lake", "env", "lean", "lean/FiniteGaloisAdjunction.lean"], cwd=PROOF_DIR, timeout=300)
     if lean_g.get("returncode") == -1 and "Timeout" in lean_g.get("error", ""):
-        lean_g["status"] = "PENDING_TOOLCHAIN"
+        lean_g["status"] = "TOOLCHAIN_PENDING"
         lean_g["note"] = "Lean build requires Mathlib; timeout is expected. See proofs/lean/ for source."
     RESULTS["P0-D"] = lean_g
 

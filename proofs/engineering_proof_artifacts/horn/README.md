@@ -46,7 +46,7 @@ small atom universes (<= 4 atoms). For each knowledge base:
 |------|-------------|
 | `bounded_horn_correctness.py` | Exhaustive correctness: operational == denotational for all acyclic Horn KBs |
 | `horn_termination_measure.py` | Termination proof: forward chaining terminates in <= |U| steps |
-| `bounded_horn_z3.smt2` | Z3 SMT-LIB2 encoding (PENDING_TOOLCHAIN) |
+| `bounded_horn_z3.smt2` | Z3 SMT-LIB2 encoding (TOOLCHAIN_PENDING) |
 
 ## Verification results
 

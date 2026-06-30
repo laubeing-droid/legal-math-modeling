@@ -26,7 +26,7 @@ meaning.
 | Item | Value |
 |---|---|
 | Lean files | 25 |
-| Unique theorems | 94 (43 core + 51 supporting) |
+| Unique theorem declarations | 126 (42 core + 84 supporting) |
 | sorry count | 0 |
 | `lake build` | 2954 jobs, 0 errors |
 | JC_Formalization.lean | proved=7, empirical=2, refuted=1, pending=0 |
@@ -38,7 +38,7 @@ meaning.
 - finite monotone iteration kernel
 - Dung grounded fixed-point layer
 - finite Horn closure layer
-- 94 Lean theorems with 0 sorry
+- 126 Lean theorem declarations with 0 sorry
 
 This is enough to support a spec-first engineering transition, but it is **not**
 enough to claim that the entire unified legal reasoning model is formally
@@ -138,8 +138,10 @@ formal specification
 -> differential report
 ```
 
-Current status: **CLOSED** for the formal specification layer (25 Lean files,
-94 theorems, 0 sorry). Cross-repo differential harness pending.
+Current status: **CLOSED_FOR_FOUR_SLICES** for the formal specification layer
+(32 Lean files, 126 theorem declarations, 0 sorry). Legal-math reference/shadow
+differential evidence exists at `runtime/legal_math_four_slice_differential.json`;
+the JC-side runtime harness still must consume the same fixtures.
 
 ## Explicit Non-Goals For This Stage
 

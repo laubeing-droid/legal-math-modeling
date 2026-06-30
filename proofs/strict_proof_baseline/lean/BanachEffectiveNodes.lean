@@ -3,7 +3,7 @@ import Mathlib
 /-
   BanachEffectiveNodes.lean
   P0-C': 证明 f(x) = βT + (1-β)x 是 contraction mapping
-  状态：PENDING_TOOLCHAIN
+  状态：TOOLCHAIN_PENDING
 -/
 
 -- 定义 effective_nodes 空间为 ℝ 上的度量空间
@@ -99,7 +99,7 @@ theorem pricingFunction_has_unique_fixed_point
   exact h_fixed
 
 /- __epistemic_status__
-status: PENDING_TOOLCHAIN
+status: TOOLCHAIN_PENDING
 artifact: proof/lean/BanachEffectiveNodes.lean
 checker_command: lake env lean BanachEffectiveNodes.lean
 assumptions:

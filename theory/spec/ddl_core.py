@@ -195,6 +195,104 @@ def make_license_permission_priority_bundles() -> Tuple[DDLNormBundle, ...]:
         validate_minimal_ddl_bundle(bundle)
     return bundles
 
+
+def make_permission_conflict_bundles() -> Tuple[DDLNormBundle, ...]:
+    """构造独立 permission slice：许可不会自动推出义务，冲突必须经 AAF/priority 处理。"""
+
+    permission_norm = CanonicalNorm(
+        norm_id="norm::permission_source",
+        modality=Modality.PERMISSION,
+        actor="requester",
+        action="perform_conditioned_act",
+        condition_facts=("permission_source", "condition_satisfied"),
+        conclusion_fact="permission_granted",
+    )
+    violation = CanonicalViolation(
+        violation_id="vio::prohibition_candidate",
+        norm_id="norm::general_prohibition",
+        trigger_fact="prohibition_candidate",
+        consequence_fact="not_permitted",
+        reparations=(
+            CanonicalReparation(
+                reparation_id="rep::permission_conflict",
+                mode=ReparationMode.COURT_SELECTED,
+                options=("remedy_block_act", "remedy_manual_review"),
+                notes="Conflict remains unresolved unless explicit override evidence exists.",
+            ),
+        ),
+    )
+    prohibition_norm = CanonicalNorm(
+        norm_id="norm::general_prohibition",
+        modality=Modality.PROHIBITION,
+        actor="requester",
+        action="perform_conditioned_act_without_override",
+        condition_facts=("prohibition_candidate",),
+        conclusion_fact="norm::general_prohibition::active",
+        violation=violation,
+    )
+    priority = CanonicalPriority(
+        priority_id="priority::permission_over_prohibition",
+        winner="norm::permission_source",
+        loser="norm::general_prohibition",
+        reason="Verified override evidence is required before permission defeats prohibition.",
+    )
+    bundles = (
+        DDLNormBundle(norm=permission_norm, priorities=(priority,)),
+        DDLNormBundle(norm=prohibition_norm, priorities=(priority,)),
+    )
+    for bundle in bundles:
+        validate_minimal_ddl_bundle(bundle)
+    return bundles
+
+
+def make_priority_decision_bundles() -> Tuple[DDLNormBundle, ...]:
+    """构造独立 priority slice：priority 证据缺失或循环时不能默认任一方获胜。"""
+
+    rule_a_norm = CanonicalNorm(
+        norm_id="norm::rule_a_supports_claim",
+        modality=Modality.PERMISSION,
+        actor="party_a",
+        action="support_claim",
+        condition_facts=("rule_a_supports_claim",),
+        conclusion_fact="claim_supported_by_rule_a",
+    )
+    violation = CanonicalViolation(
+        violation_id="vio::rule_b_attacks_claim",
+        norm_id="norm::rule_b_attacks_claim",
+        trigger_fact="rule_b_attacks_claim",
+        consequence_fact="claim_attacked_by_rule_b",
+        reparations=(
+            CanonicalReparation(
+                reparation_id="rep::priority_review",
+                mode=ReparationMode.COURT_SELECTED,
+                options=("remedy_manual_priority_review",),
+                notes="Priority disputes without verified ordering remain fail-closed.",
+            ),
+        ),
+    )
+    rule_b_norm = CanonicalNorm(
+        norm_id="norm::rule_b_attacks_claim",
+        modality=Modality.PROHIBITION,
+        actor="party_b",
+        action="attack_claim",
+        condition_facts=("rule_b_attacks_claim",),
+        conclusion_fact="norm::rule_b_attack::active",
+        violation=violation,
+    )
+    priority = CanonicalPriority(
+        priority_id="priority::rule_a_over_rule_b",
+        winner="norm::rule_a_supports_claim",
+        loser="norm::rule_b_attacks_claim",
+        reason="Verified priority evidence lets rule A defeat rule B.",
+    )
+    bundles = (
+        DDLNormBundle(norm=rule_a_norm, priorities=(priority,)),
+        DDLNormBundle(norm=rule_b_norm, priorities=(priority,)),
+    )
+    for bundle in bundles:
+        validate_minimal_ddl_bundle(bundle)
+    return bundles
+
 def make_tort_bundle() -> DDLNormBundle:
     """Build the third DDL slice for tort liability."""
     violation = CanonicalViolation(

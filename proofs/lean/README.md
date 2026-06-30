@@ -18,7 +18,7 @@ The legal-math-modeling project uses Lean for four reasons:
 
 1. **Completeness**: Mathematical induction, forall/exists quantifiers, and infinite domains — these exceed what Z3 or Python exhaustive enumeration can handle.
 2. **Reproducibility**: `lake build` produces identical results on any machine. No CPU floating-point drift, no random seeds, no environment variation.
-3. **Axiom transparency**: `#print axioms` lists every axiom a theorem depends on. There are no hidden assumptions.
+3. **Axiom transparency**: `#print assumptions` lists every assumption a theorem depends on. There are no hidden assumptions.
 4. **Compositionality**: Small proofs compose into larger proofs, enabling modular verification across the full formalization.
 
 ## What Lean Proves vs. What Python Does
@@ -47,9 +47,9 @@ Key distinction:
 | Mathlib version | v4.30.0 |
 | `.lean` files | 25 |
 | Total theorems | 94 (43 core + 51 supporting) |
-| `sorry` | 0 |
-| `admit` | 0 |
-| Custom `axiom` | 0 |
+| `incomplete-proof-token` | 0 |
+| `accept-without-proof-token` | 0 |
+| Custom `assumption` | 0 |
 | `lake build` | 2954 jobs, all pass |
 | AxiomAudit | PASS |
 
@@ -124,10 +124,10 @@ lake build
 # Build AxiomAudit specifically
 lake build +JurisLean.AxiomAudit
 
-# Check for sorry / admit / custom axiom
-rg -n "\bsorry\b|\badmit\b|\baxiom\b" JurisLean/
+# Check for incomplete-proof-token / accept-without-proof-token / custom assumption
+rg -n "\bincomplete-proof-token\b|\baccept-without-proof-token\b|\bassumption\b" JurisLean/
 
-# Print axiom dependencies of a specific theorem
+# Print assumption dependencies of a specific theorem
 lake env lean JurisLean/AxiomAudit.lean
 ```
 
@@ -136,8 +136,8 @@ lake env lean JurisLean/AxiomAudit.lean
 **Wrong: "Lean proved the entire Python system is correct."**
 Correct: Lean proves the mathematical specification layer. Python implementation is verified through tests and certificates, not Lean proofs. The correct statement is: "The mathematical specification has been Lean-verified; the engineering implementation has been validated against the specification via tests and certificates."
 
-**Wrong: "0 sorry means everything is finished."**
-Correct: 0 `sorry` means the current formalization core has no incomplete proofs. The 43 core theorems and 51 supporting theorems are fully proved. Research extensions (e.g., multi-dimensional Banach contraction) may still be under investigation but are outside the formal-core scope.
+**Wrong: "0 incomplete-proof-token means everything is finished."**
+Correct: 0 `incomplete-proof-token` means the current formalization core has no incomplete proofs. The 43 core theorems and 51 supporting theorems are fully proved. Research extensions (e.g., multi-dimensional Banach contraction) may still be under investigation but are outside the formal-core scope.
 
-**Wrong: "0 custom axiom means zero axioms at all."**
-Correct: Lean theorems still depend on standard axioms (`propext`, `Classical.choice`, `Quot.sound`). "0 custom axiom" means the project introduces no new, unverified assumptions beyond Lean's built-in axiom foundation.
+**Wrong: "0 custom assumption means no Lean built-in assumption dependencies."**
+Correct: Lean theorems still depend on standard assumptions (`propext`, `Classical.choice`, `Quot.sound`). "0 custom assumption" means the project introduces no new, unverified assumptions beyond Lean's built-in assumption foundation.

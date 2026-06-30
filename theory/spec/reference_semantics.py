@@ -27,7 +27,15 @@ from .canonical_semantics import (
     RuleKind,
 )
 from .certificate_schema import CertificatePayload, build_certificate_payload
-from .ddl_core import (make_admin_bundle, make_contract_breach_bundle, make_criminal_bundle, make_license_permission_priority_bundles, make_tort_bundle)
+from .ddl_core import (
+    make_admin_bundle,
+    make_contract_breach_bundle,
+    make_criminal_bundle,
+    make_license_permission_priority_bundles,
+    make_permission_conflict_bundles,
+    make_priority_decision_bundles,
+    make_tort_bundle,
+)
 from .horn_aaf_contract import CompilationContractReport, validate_horn_aaf_contract
 
 
@@ -385,15 +393,26 @@ def build_contract_breach_demo_model(force_majeure: bool = False) -> ReferenceMo
     )
 
 
-def build_license_permission_demo_model(priority_active: bool = True) -> ReferenceModel:
-    """Construct the second slice for constitutive, permission, and priority defeat."""
+def build_license_permission_demo_model(
+    priority_active: bool = True,
+    within_scope: bool = True,
+    license_active: bool = True,
+    terminated: bool = False,
+) -> ReferenceModel:
+    """构造 license slice；scope、termination 和 priority 证据显式进入 fixture。"""
 
-    facts = [
-        CanonicalFact("f1", "license_signed"),
-        CanonicalFact("f2", "rights_holder_authorized"),
-        CanonicalFact("f3", "used_work"),
-        CanonicalFact("f4", "use_within_scope"),
-    ]
+    facts = [CanonicalFact("f3", "used_work")]
+    if license_active and not terminated:
+        facts.extend(
+            [
+                CanonicalFact("f1", "license_signed"),
+                CanonicalFact("f2", "rights_holder_authorized"),
+            ]
+        )
+    if within_scope and not terminated:
+        facts.append(CanonicalFact("f4", "use_within_scope"))
+    if terminated:
+        facts.append(CanonicalFact("f5", "license_terminated"))
     bundles = make_license_permission_priority_bundles()
     norms = [bundle.norm for bundle in bundles]
     priorities = tuple(
@@ -561,6 +580,252 @@ def evaluate_license_permission_with_contract(
     arguments, attacks, _ = compile_arguments(model.norms, closure, model.priorities)
     accepted_ids, _ = grounded_extension(arguments, attacks)
     trace = evaluate_license_permission_reference(model)
+    contract_report = validate_horn_aaf_contract(closure, arguments, attacks, accepted_ids)
+    certificate = build_certificate_payload(trace)
+    return trace, contract_report, certificate
+
+
+def build_permission_conflict_demo_model(
+    condition_satisfied: bool = True,
+    prohibition_candidate: bool = True,
+    override_active: bool = True,
+) -> ReferenceModel:
+    """构造独立 permission slice，覆盖 condition missing 与 override conflict。"""
+
+    facts = [CanonicalFact("p1", "permission_source")]
+    if condition_satisfied:
+        facts.append(CanonicalFact("p2", "condition_satisfied"))
+    if prohibition_candidate:
+        facts.append(CanonicalFact("p3", "prohibition_candidate"))
+
+    bundles = make_permission_conflict_bundles()
+    norms = [bundle.norm for bundle in bundles]
+    priorities = tuple(
+        priority for bundle in bundles for priority in bundle.priorities
+    )
+    if not override_active:
+        priorities = ()
+    rules = [
+        CanonicalRule(
+            rule_id="rule::permission_source",
+            kind=RuleKind.HORN,
+            premises=("permission_source", "condition_satisfied"),
+            conclusions=("permission_granted",),
+            notes="Permission conclusion is conditioned and does not create an obligation.",
+        ),
+        CanonicalRule(
+            rule_id="rule::prohibition_candidate",
+            kind=RuleKind.HORN,
+            premises=("prohibition_candidate",),
+            conclusions=("not_permitted_candidate",),
+            notes="Conflict candidate remains unresolved until AAF/priority handling.",
+        ),
+    ]
+    return ReferenceModel(
+        facts=tuple(facts),
+        norms=tuple(norms),
+        rules=tuple(rules),
+        priorities=priorities,
+    )
+
+
+def evaluate_permission_reference(model: ReferenceModel) -> CanonicalProofTrace:
+    """评估 permission slice；冲突或缺条件时 fail-closed 到 REFUTED/UNDECIDED。"""
+
+    steps: List[CanonicalProofStep] = []
+    initial = fact_keys(model.facts)
+    steps.append(
+        CanonicalProofStep(
+            step_index=0,
+            phase="input",
+            event="facts_loaded",
+            payload={"facts": sorted(initial)},
+        )
+    )
+    closure, horn_steps = horn_closure(model.rules, initial)
+    steps.extend(_reindex_steps(steps, horn_steps))
+
+    arguments, attacks, aaf_steps = compile_arguments(model.norms, closure, model.priorities)
+    steps.extend(_reindex_steps(steps, aaf_steps))
+    accepted_ids, grounded_steps = grounded_extension(arguments, attacks)
+    steps.extend(_reindex_steps(steps, grounded_steps))
+
+    permission_ids = {
+        argument.argument_id for argument in arguments if argument.conclusion == "permission_granted"
+    }
+    prohibition_ids = {
+        argument.argument_id for argument in arguments if argument.conclusion == "not_permitted"
+    }
+    priority_present = any(attack.kind == AttackKind.PRIORITY_DEFEAT for attack in attacks)
+
+    if permission_ids & accepted_ids and prohibition_ids.isdisjoint(accepted_ids):
+        status, fail_reason = DecisionStatus.PROVED, None
+    elif permission_ids & accepted_ids and prohibition_ids & accepted_ids and not priority_present:
+        status, fail_reason = DecisionStatus.UNDECIDED, "Permission/prohibition conflict lacks verified override priority."
+    elif prohibition_ids & accepted_ids:
+        status, fail_reason = DecisionStatus.REFUTED, None
+    elif not permission_ids and not prohibition_ids:
+        status, fail_reason = DecisionStatus.UNDECIDED, "No permission or prohibition argument was constructed."
+    else:
+        status, fail_reason = DecisionStatus.TAINTED, "Permission slice failed closed."
+
+    steps.append(
+        CanonicalProofStep(
+            step_index=len(steps),
+            phase="output",
+            event="decision_status",
+            payload={
+                "status": status.value,
+                "accepted_argument_ids": sorted(accepted_ids),
+                "closure": sorted(closure),
+            },
+        )
+    )
+    return CanonicalProofTrace(
+        trace_id="trace::permission_reference",
+        status=status,
+        steps=tuple(steps),
+        fail_closed_reason=fail_reason,
+    )
+
+
+def evaluate_permission_with_contract(
+    model: ReferenceModel,
+) -> tuple[CanonicalProofTrace, CompilationContractReport, CertificatePayload]:
+    """评估 permission slice，并暴露 Horn->AAF/checker 边界。"""
+
+    initial = fact_keys(model.facts)
+    closure, _ = horn_closure(model.rules, initial)
+    arguments, attacks, _ = compile_arguments(model.norms, closure, model.priorities)
+    accepted_ids, _ = grounded_extension(arguments, attacks)
+    trace = evaluate_permission_reference(model)
+    contract_report = validate_horn_aaf_contract(closure, arguments, attacks, accepted_ids)
+    certificate = build_certificate_payload(trace)
+    return trace, contract_report, certificate
+
+
+def build_priority_decision_demo_model(
+    priority_active: bool = True,
+) -> ReferenceModel:
+    """构造独立 priority slice，覆盖 verified priority 与 missing priority。"""
+
+    facts = [
+        CanonicalFact("r1", "rule_a_supports_claim"),
+        CanonicalFact("r2", "rule_b_attacks_claim"),
+    ]
+    bundles = make_priority_decision_bundles()
+    norms = [bundle.norm for bundle in bundles]
+    priorities = tuple(
+        priority for bundle in bundles for priority in bundle.priorities
+    )
+    if not priority_active:
+        priorities = ()
+    rules = [
+        CanonicalRule(
+            rule_id="rule::rule_a_supports_claim",
+            kind=RuleKind.HORN,
+            premises=("rule_a_supports_claim",),
+            conclusions=("claim_supported_by_rule_a",),
+            notes="Rule A supports the target claim.",
+        ),
+        CanonicalRule(
+            rule_id="rule::rule_b_attacks_claim",
+            kind=RuleKind.HORN,
+            premises=("rule_b_attacks_claim",),
+            conclusions=("claim_attacked_by_rule_b",),
+            notes="Rule B attacks the target claim.",
+        ),
+    ]
+    return ReferenceModel(
+        facts=tuple(facts),
+        norms=tuple(norms),
+        rules=tuple(rules),
+        priorities=priorities,
+    )
+
+
+def evaluate_priority_reference(
+    model: ReferenceModel,
+    *,
+    priority_cycle: bool = False,
+    self_attack: bool = False,
+) -> CanonicalProofTrace:
+    """评估 priority slice；cycle/self-attack 不允许任意 tie-break。"""
+
+    steps: List[CanonicalProofStep] = []
+    initial = fact_keys(model.facts)
+    steps.append(
+        CanonicalProofStep(
+            step_index=0,
+            phase="input",
+            event="facts_loaded",
+            payload={"facts": sorted(initial)},
+        )
+    )
+    closure, horn_steps = horn_closure(model.rules, initial)
+    steps.extend(_reindex_steps(steps, horn_steps))
+    arguments, attacks, aaf_steps = compile_arguments(model.norms, closure, model.priorities)
+    steps.extend(_reindex_steps(steps, aaf_steps))
+    accepted_ids, grounded_steps = grounded_extension(arguments, attacks)
+    steps.extend(_reindex_steps(steps, grounded_steps))
+
+    supported_ids = {
+        argument.argument_id for argument in arguments if argument.conclusion == "claim_supported_by_rule_a"
+    }
+    attacked_ids = {
+        argument.argument_id for argument in arguments if argument.conclusion == "claim_attacked_by_rule_b"
+    }
+    priority_present = any(attack.kind == AttackKind.PRIORITY_DEFEAT for attack in attacks)
+
+    if priority_cycle or self_attack:
+        status = DecisionStatus.UNDECIDED
+        fail_reason = "Priority cycle or self-attack requires fail-closed manual review."
+    elif supported_ids & accepted_ids and attacked_ids.isdisjoint(accepted_ids) and priority_present:
+        status, fail_reason = DecisionStatus.PROVED, None
+    elif supported_ids & accepted_ids and attacked_ids & accepted_ids and not priority_present:
+        status, fail_reason = DecisionStatus.UNDECIDED, "Missing priority evidence prevents default victory."
+    elif attacked_ids & accepted_ids:
+        status, fail_reason = DecisionStatus.REFUTED, None
+    else:
+        status, fail_reason = DecisionStatus.TAINTED, "Priority slice failed closed."
+
+    steps.append(
+        CanonicalProofStep(
+            step_index=len(steps),
+            phase="output",
+            event="decision_status",
+            payload={
+                "status": status.value,
+                "accepted_argument_ids": sorted(accepted_ids),
+                "closure": sorted(closure),
+            },
+        )
+    )
+    return CanonicalProofTrace(
+        trace_id="trace::priority_reference",
+        status=status,
+        steps=tuple(steps),
+        fail_closed_reason=fail_reason,
+    )
+
+
+def evaluate_priority_with_contract(
+    model: ReferenceModel,
+    *,
+    priority_cycle: bool = False,
+    self_attack: bool = False,
+) -> tuple[CanonicalProofTrace, CompilationContractReport, CertificatePayload]:
+    """评估 priority slice，并暴露 Horn->AAF/checker 边界。"""
+
+    initial = fact_keys(model.facts)
+    closure, _ = horn_closure(model.rules, initial)
+    arguments, attacks, _ = compile_arguments(model.norms, closure, model.priorities)
+    accepted_ids, _ = grounded_extension(arguments, attacks)
+    trace = evaluate_priority_reference(
+        model,
+        priority_cycle=priority_cycle,
+        self_attack=self_attack,
+    )
     contract_report = validate_horn_aaf_contract(closure, arguments, attacks, accepted_ids)
     certificate = build_certificate_payload(trace)
     return trace, contract_report, certificate

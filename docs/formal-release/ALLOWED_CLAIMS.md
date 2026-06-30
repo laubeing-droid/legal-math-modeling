@@ -63,16 +63,17 @@ in this repo. `lake build JurisLean` passes with 0 errors and 0 sorry.
 
 | Metric | Value | Source |
 |--------|-------|--------|
-| Unique theorem names | 94 | `theorem_manifest.json` |
-| Core theorems | 43 | `theorem_manifest.json` |
-| Supporting unique theorem names | 51 | `theorem_manifest.json` |
-| Supporting manifest records | 57 | `theorem_manifest.json` |
-| Total manifest entries | 100 | `theorem_manifest.json` |
-| `formal_core_module_theorems` | 43 | `theorem_manifest.json` |
+| Lean source files | 32 | `theorem_manifest.json` |
+| Unique theorem names | 126 | `theorem_manifest.json` |
+| Core theorems | 42 | `theorem_manifest.json` |
+| Supporting unique theorem names | 84 | `theorem_manifest.json` |
+| Supporting manifest records | 84 | `theorem_manifest.json` |
+| Total manifest entries | 126 | `theorem_manifest.json` |
+| `formal_core_module_theorems` | 42 | `theorem_manifest.json` |
 
-Note: 94 unique names across 100 manifest entries (some theorems appear in
-multiple manifest records). The `formal_core_module_theorems = 43` count
-covers: `FiniteMonotoneIteration.lean` (9), `DungFixedPoint.lean` (17),
+Note: 126 theorem declarations are tracked in the current manifest. The
+`formal_core_module_theorems = 42` count covers:
+`FiniteMonotoneIteration.lean` (9), `DungFixedPoint.lean` (16),
 `HornFixedPoint.lean` (10), `WeightedSupNorm.lean` (4), `HornDefinitions.lean` (2),
 `ContractionCondition.lean` (1).
 
@@ -80,22 +81,21 @@ covers: `FiniteMonotoneIteration.lean` (9), `DungFixedPoint.lean` (17),
 
 ## 3. Specification Freeze Layer
 
-- 11 canonical types are frozen with unique definitions (`canonical_legal_schema.md`)
-- DDL minimal core is frozen: 4 modalities, 4 reparation modes, 3 exception kinds
-  (`ddl_minimal_core.md`)
-- Horn -> AAF compilation contract is frozen: 6 machine-verifiable checks
+- Canonical Lean/Python types are closed for contract breach, license, permission,
+  and priority (`canonical_legal_schema.md`)
+- DDL minimal core is closed for the same four slices (`ddl_minimal_core.md`)
+- Horn -> AAF compilation contract is closed for the four-slice boundary
   (`horn_to_aaf_contract.md`)
-- Certificate/Checker boundary is frozen: DecisionStatus, TAINTED semantics,
-  checker responsibilities (`certificate_checker_boundary.md`)
-- 5 DDL slices implemented: contract breach, license + priority, tort, criminal, admin
-- 3 deferred domain axioms registered (non-blocking): `violation_implies_norm_active`,
-  `permission_no_direct_violation`, `constitutive_no_direct_violation`
+- Certificate/Checker boundary is closed for malformed, missing, tainted,
+  candidate, and priority-cycle fail-closed cases (`certificate_checker_boundary.md`)
+- Four required DDL slices implemented: contract breach, license, permission, priority
+- 3 former deferred domain targets are now Lean theorems in `DDLDefinitions.lean`
 
 ---
 
 ## 4. Engineering Layer
 
-- `lake build JurisLean` passes with 0 errors and 0 sorry (2954 jobs)
+- `lake build JurisLean` passes with 0 errors and 0 sorry (2961 jobs)
 - `AxiomAudit` is reproducible; only Lean 4 built-in axioms in core boundary
   (`propext`, `Classical.choice`, `Quot.sound`)
 - Lean source guard passes: 0 sorry, 0 admit, 0 custom axiom, 0 `theorem : True`;
@@ -109,10 +109,10 @@ covers: `FiniteMonotoneIteration.lean` (9), `DungFixedPoint.lean` (17),
 
 | Gate | Document | Status |
 |------|----------|--------|
-| M1: Canonical Schema | `docs/spec/canonical_legal_schema.md` | SUBSTANTIAL_PARTIAL |
-| M2: DDL Minimal Core | `docs/spec/ddl_minimal_core.md` | SUBSTANTIAL_PARTIAL |
-| M3: Horn -> AAF Contract | `docs/spec/horn_to_aaf_contract.md` | SUBSTANTIAL_PARTIAL |
-| M4: Certificate/Checker Boundary | `docs/spec/certificate_checker_boundary.md` | PARTIAL |
+| M1: Canonical Schema | `docs/spec/canonical_legal_schema.md` | CLOSED_FOR_FOUR_SLICES |
+| M2: DDL Minimal Core | `docs/spec/ddl_minimal_core.md` | CLOSED_FOR_FOUR_SLICES |
+| M3: Horn -> AAF Contract | `docs/spec/horn_to_aaf_contract.md` | CLOSED_FOR_FOUR_SLICES |
+| M4: Certificate/Checker Boundary | `docs/spec/certificate_checker_boundary.md` | CLOSED_FOR_FOUR_SLICES |
 | M5: Unified Stopping Statement | `docs/formal-release/SPEC_FIRST_TRANSITION_READY.md` | CLOSED |
 
 ---
@@ -121,4 +121,7 @@ covers: `FiniteMonotoneIteration.lean` (9), `DungFixedPoint.lean` (17),
 
 > This repository has completed repository-level formal release closure for the
 > finite monotone iteration kernel, Dung grounded fixed-point layer, and finite
-> Horn closure layer. Banach remains an independent unproved research track.
+> Horn closure layer, plus four Lean vertical slices for contract breach,
+> license, permission, and priority. Banach remains an independent unproved
+> research track. The full `juris-calculus` runtime is not claimed as
+> end-to-end Lean-proven.

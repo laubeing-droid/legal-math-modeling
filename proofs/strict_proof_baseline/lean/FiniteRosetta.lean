@@ -4,7 +4,7 @@ import Mathlib
   FiniteRosetta.lean
   P0-A': 穷举证明不存在 total semantics-preserving functor
   假设：n ≤ 30, m ≤ 50
-  状态：PENDING_TOOLCHAIN
+  状态：TOOLCHAIN_PENDING
 -/
 
 -- 定义有限枚举类型
@@ -135,7 +135,7 @@ lemma check_no_functor_instance
   linarith
 
 /- __epistemic_status__
-status: PENDING_TOOLCHAIN
+status: TOOLCHAIN_PENDING
 artifact: proof/lean/FiniteRosetta.lean
 checker_command: lake env lean FiniteRosetta.lean
 assumptions:

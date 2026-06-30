@@ -8,7 +8,7 @@
 
 ## Abstract
 
-The EU AI Act classifies entire AI systems by risk tier but provides no mechanism for differentiating the evidentiary status of individual outputs. We present a formal trust-label system that assigns each AI-generated claim one of seven evidence statuses, backed by a dataset-quality provenance registry, a multiplicative evidence-credibility model S(e) = r x i x a, and a Lean 4 formal verification layer containing 7 machine-checked theorems out of 20 catalogued. Key results include a Banach contraction proof for pricing equilibrium, a Galois connection for cross-jurisdictional category mapping, and an end-to-end composition chain from Kripke temporal semantics through Horn logic through abstract argumentation frameworks to Banach fixed-point pricing. We define an `advance` operator that promotes PENDING_TOOLCHAIN claims to PROVED_BY_ARTIFACT and prove it preserves domain bounds and cannot revive refuted claims. We map the 7-level label system to EU AI Act conformity-assessment requirements and argue that claim-level trust labels serve as technical documentation for liability allocation under Article 6(2) high-risk classifications.
+The EU AI Act classifies entire AI systems by risk tier but provides no mechanism for differentiating the evidentiary status of individual outputs. We present a formal trust-label system that assigns each AI-generated claim one of seven evidence statuses, backed by a dataset-quality provenance registry, a multiplicative evidence-credibility model S(e) = r x i x a, and a Lean 4 formal verification layer with an explicit formal-release boundary. Key results include released Horn/Dung/finite-iteration artifacts, supporting cross-jurisdictional and trust-label artifacts, and public limitations for runtime correctness, Banach pricing, and DDL domain axioms. We define an `advance` operator in the trust-label registry and prove that it preserves domain bounds and cannot revive refuted claims; this operator is a status-governance theorem, not a public claim that pending runtime or DDL work has become production-proven. We map the 7-level label system to EU AI Act conformity-assessment requirements and argue that claim-level trust labels serve as technical documentation for liability allocation under Article 6(2) high-risk classifications.
 
 ---
 
@@ -28,7 +28,7 @@ We present a four-layer trust-label infrastructure implemented in Python (labeli
 
     {PROVED_BY_EXHAUSTIVE_ENUMERATION, REFUTED_BY_COUNTEREXAMPLE,
      DATA_INSUFFICIENT_FOR_PROOF, TOY_SYNTHETIC_PROOF_ONLY,
-     PARTIAL_PROVED, PENDING_TOOLCHAIN, ENGINEERING_BASELINE}
+     PARTIAL_PROVED, TOOLCHAIN_PENDING, ENGINEERING_BASELINE}
 
 Each claim is a `ModelClaim` dataclass with fields: `claim_id`, `title`, `status`, `data_quality`, `allowed_claim`, `forbidden_claim`, `engineering_action`, `evidence_paths`.
 
@@ -70,7 +70,7 @@ Each claim is a `ModelClaim` dataclass with fields: `claim_id`, `title`, `status
 
 ## 4. The Advance Operator
 
-`JC_Formalization.lean` defines `advance`: PENDING_TOOLCHAIN -> PROVED_BY_ARTIFACT.
+`JC_Formalization.lean` defines `advance` for trust-label governance over theorem metadata. It does not by itself upgrade DDL domain-axiom targets, empirical proxies, or the Python runtime into Lean-proven production correctness.
 
 **Theorem (advance_preserves_domain_bound).** Domain bounds are invariant under advance.
 
@@ -87,7 +87,7 @@ The EU AI Act requires high-risk AI systems (Article 6(2)) to undergo conformity
 - **PARTIAL_PROVED:** Conditional acceptance with limitation disclosure.
 - **DATA_INSUFFICIENT_FOR_PROOF:** Non-compliance risk; monitoring required.
 - **TOY_SYNTHETIC_PROOF_ONLY:** Cannot support high-risk deployment; explicit limitation in technical file.
-- **PENDING_TOOLCHAIN:** Deferred verification with timeline; toolchain dependency in quality management.
+- **TOOLCHAIN_PENDING:** Deferred verification with timeline; toolchain dependency in quality management.
 - **ENGINEERING_BASELINE:** Minimum documentation only; baseline assessment under Article 9.
 
 Article 9(2) requires "appropriate levels of accuracy, robustness and cybersecurity." Trust labels make this operational: accuracy is not a system-level aggregate but a claim-level evidence status. Under Article 82, when damage results from reliance on a specific claim, the trust label determines the responsible party.

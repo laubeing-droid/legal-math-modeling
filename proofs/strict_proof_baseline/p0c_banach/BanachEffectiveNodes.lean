@@ -22,7 +22,7 @@
 
 /-
 __epistemic_status__
-PENDING_TOOLCHAIN
+TOOLCHAIN_PENDING
 Lean 4 toolchain (lake / lean) is not available in this environment.
 This file is a draft and has not been type-checked or compiled.
 -/

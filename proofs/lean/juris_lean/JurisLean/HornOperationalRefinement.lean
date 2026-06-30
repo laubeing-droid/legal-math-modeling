@@ -24,4 +24,4 @@ differential testing (cross-repo integration tests in deli-autoresearch).
 
 -- This module exists to satisfy the S4-C requirement:
 -- "建立 Lean executable oracle 或独立 checker; closure certificate; provenance witness; differential tests"
--- The differential tests are in: D:\Claude\数学证明自动研究\tests\test_cross_repo.py (9 tests, all passing)
+-- The differential tests are in: D:\Codex\数学证明自动研究\tests\test_cross_repo.py

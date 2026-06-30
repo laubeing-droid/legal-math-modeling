@@ -3,7 +3,7 @@ import Mathlib
 /-
   FiniteGaloisAdjunction.lean
   P0-D': 证明有限域 Galois connection
-  状态：PENDING_TOOLCHAIN
+  状态：TOOLCHAIN_PENDING
 -/
 
 -- 定义有限偏序集 P
@@ -157,7 +157,7 @@ section Example
 end Example
 
 /- __epistemic_status__
-status: PENDING_TOOLCHAIN
+status: TOOLCHAIN_PENDING
 artifact: proof/lean/FiniteGaloisAdjunction.lean
 checker_command: lake env lean FiniteGaloisAdjunction.lean
 assumptions:

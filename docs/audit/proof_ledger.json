@@ -43,7 +43,7 @@
     },
     {
       "id": "galois_lean",
-      "status": "PENDING_TOOLCHAIN",
+      "status": "TOOLCHAIN_PENDING",
       "artifact": "galois/FiniteGaloisAdjunction.lean",
       "reason": "LEAN_DRAFT_UNVERIFIED: Mathlib not bundled"
     },
@@ -61,7 +61,7 @@
     },
     {
       "id": "horn_z3",
-      "status": "PENDING_TOOLCHAIN",
+      "status": "TOOLCHAIN_PENDING",
       "artifact": "horn/bounded_horn_z3.smt2",
       "reason": "Z3 binary not installed"
     },
@@ -72,7 +72,7 @@
     },
     {
       "id": "fixpoint_tla",
-      "status": "PENDING_TOOLCHAIN",
+      "status": "TOOLCHAIN_PENDING",
       "artifact": "fixpoint/evaluator_termination_model.tla",
       "reason": "TLC not installed"
     },
@@ -95,7 +95,7 @@
     },
     {
       "id": "graph_z3",
-      "status": "PENDING_TOOLCHAIN (sandbox) / SMT_PROVED (user)",
+      "status": "TOOLCHAIN_PENDING (sandbox) / SMT_PROVED (user)",
       "artifact": "graph_similarity/graph_similarity_range_z3.py",
       "reason": "z3-solver"
     },
@@ -115,7 +115,7 @@
     },
     {
       "id": "banach_lean",
-      "status": "PENDING_TOOLCHAIN",
+      "status": "TOOLCHAIN_PENDING",
       "artifact": "banach/BanachEffectiveNodes.lean",
       "reason": "LEAN_DRAFT_UNVERIFIED: Mathlib + sorry"
     },

@@ -24,7 +24,7 @@
 
 | # | File | Issue | Severity | Fix |
 |---|------|------|--------|------|
-| 1 | `run_all_proofs.py:25-46` | Lean check 60s timeout; proof_run_results.json records Timeout | HIGH | Extend timeout to 300s; mark `PENDING_TOOLCHAIN` + explanation on timeout |
+| 1 | `run_all_proofs.py:25-46` | Lean check 60s timeout; proof_run_results.json records Timeout | HIGH | Extend timeout to 300s; mark `TOOLCHAIN_PENDING` + explanation on timeout |
 | 2 | `evidence_evaluation.py:106-140` | Substring matching causes "signed" to match "unsigned" false positive | MEDIUM | Use word-boundary matching `_contains_word_boundary()`, symmetric conflict pairs |
 
 ---

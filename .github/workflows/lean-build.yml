@@ -4,7 +4,7 @@ name: Lake Build + Scan
 
 on:
   push:
-    branches: [master, main]
+    branches: [master, main, "ci/**"]
   workflow_dispatch:
 
 jobs:

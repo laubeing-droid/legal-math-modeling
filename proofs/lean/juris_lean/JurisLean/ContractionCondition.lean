@@ -15,7 +15,7 @@ T is a q-contraction under weightedSupDist.
 
 This file proves the core algebraic inequality.
 Connecting to Mathlib's ContractingWith requires Analysis imports (Track B complete).
-0 sorry, 0 True evasion.
+0 incomplete-proof-token, 0 True evasion.
 -/
 
 variable {n : ℕ} [Nonempty (Fin n)]

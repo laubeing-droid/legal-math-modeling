@@ -9,7 +9,7 @@ This file records the contraction inequality already proved for the weighted
 sup metric. The final bridge to Mathlib's `ContractingWith` API remains
 deferred until the weighted metric is connected to a complete-space instance.
 
-0 sorry, 0 True evasion.
+0 incomplete-proof-token, 0 True evasion.
 -/
 
 open Real

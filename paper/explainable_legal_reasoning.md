@@ -153,12 +153,15 @@ These are the foundational theorems in FiniteMonotoneIteration.lean, proved by c
 
 ### 5.1 Lean 4 Formalization
 
-10 Lean source files, 84 theorems and lemmas, all with zero sorry and zero axioms. Key files:
+The current release inventory has 32 actual Lean source files. Its formal-release
+manifest records 126 theorem declarations, with zero
+`sorry`, zero `admit`, and zero project-defined axioms in the released core.
+Lean built-in axiom dependencies are disclosed by `AxiomAudit`. Key files:
 
 | File | Theorems | Status |
 |------|----------|--------|
-| FiniteMonotoneIteration.lean | 10 | All proved |
-| DungFixedPoint.lean | 13 | All proved |
+| FiniteMonotoneIteration.lean | 9 | All proved |
+| DungFixedPoint.lean | 16 | All proved |
 | HornFixedPoint.lean | 10 | All proved |
 | WeightedSupNorm.lean | 4 | All proved |
 | BanachEffectiveNodes.lean | 8 | All proved |
@@ -167,6 +170,7 @@ These are the foundational theorems in FiniteMonotoneIteration.lean, proved by c
 | FiniteGaloisAdjunction.lean | 2 | All proved |
 | TemporalKripke.lean | 6 | All proved |
 | JC_Formalization.lean | 6 | All proved |
+| LegalSyntax/DDL/HornAAF/Checker/Safety/EndToEnd | 32 | Four-slice boundary proved |
 
 ### 5.2 Python Verification
 
@@ -238,7 +242,7 @@ The following claims are explicitly NOT made:
 1. **No universal cross-jurisdiction mapping.** `no_total_functor` and `obstruction_density_gt_two_thirds` prove this is impossible.
 2. **No monotonicity of the full evaluator.** The combined evaluator is non-monotone (Proposition 6.1 in the ICAIL paper; `ge_non_monotonicity` in UnifiedModel.lean).
 3. **No epsilon determination from legal classification.** T18_DPPrivilege is REFUTED (JC_Formalization.lean, `refuted_theorems_card = 1`).
-4. **No sorry in blocking paths.** Only 3 non-blocking sorry are registered (SORRY_LEDGER.md), all in the planned DDLDefinitions.lean.
+4. **No sorry in blocking paths.** `SORRY_LEDGER.md` has no open Lean `sorry` entries; three former DDL domain targets are closed in `DDLDefinitions.lean`.
 
 ---
 
@@ -259,13 +263,13 @@ The following claims are explicitly NOT made:
 | Full chain composition | Lean proof | Proved | UnifiedModel.lean, `full_chain` |
 | GE non-monotone in AF structure | Lean Prop statement | Stated (not proved or refuted) | UnifiedModel.lean, `ge_non_monotonicity` |
 | DP privilege impossible | Counterexample | Refuted | JC_Formalization.lean, T18 |
-| DDL definitions | Planned | Pending | DDLDefinitions.lean (not yet created) |
+| DDL definitions | Lean proof | Proved | DDLDefinitions.lean |
 
 ---
 
 ## 10. Future Work
 
-1. **DDLDefinitions.lean.** Formalize the DDL modality system with the 3 registered sorry-bearing axioms from SORRY_LEDGER.md.
+1. **Cross-repo runtime conformance.** Run the JC shadow harness against the four-slice fixtures before making any runtime-level conformance claim.
 2. **ASPIC+ Formalization.** Extend the Dung AF formalization with structured arguments and preferences.
 3. **Infinite Domains.** Replace `Finset` with `Set` and classical logic for infinite legal domains.
 4. **Empirical Proxy Promotion.** Mechanize T2 (HornCorrectness) and T20 (MDLRuleComplexity) to advance from EMPIRICAL_PROXY to PROVED_BY_ARTIFACT.

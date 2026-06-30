@@ -95,7 +95,7 @@
       "status": "DOCUMENTED",
       "property": "Evaluator monotonicity under bounded production",
       "artifact_path": "fixpoint/evaluator_termination_model.tla",
-      "artifact_type": "TLA+ model (PENDING_TOOLCHAIN verification)",
+      "artifact_type": "TLA+ model (TOOLCHAIN_PENDING verification)",
       "checker_command": "tlc fixpoint/evaluator_termination_model.tla (NOT AVAILABLE)",
       "summary": "Documented potential non-monotonicity in production evaluator under resource bounds. Bounded termination verified (5 operational bounds pass), but monotonicity not guaranteed.",
       "details": {

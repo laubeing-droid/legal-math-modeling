@@ -9,7 +9,7 @@ CN legal hierarchy under a conflicting value assignment.  If z3-solver is
 installed, the script builds the identical constraint system as the .smt2
 draft and reports sat/unsat/unknown.
 
-Epistemic status: PENDING_TOOLCHAIN (Z3 may or may not be installed)
+Epistemic status: TOOLCHAIN_PENDING (Z3 may or may not be installed)
 """
 
 from __future__ import annotations
@@ -168,7 +168,7 @@ def main() -> int:
 # 4. Epistemic status metadata
 # ---------------------------------------------------------------------------
 __epistemic_status__ = {
-    "status": "PENDING_TOOLCHAIN",
+    "status": "TOOLCHAIN_PENDING",
     "artifact": "proof/smt/cn_privilege_lattice_z3.py",
     "checker_command": "python cn_privilege_lattice_z3.py",
     "assumptions": [

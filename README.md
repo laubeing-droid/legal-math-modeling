@@ -16,8 +16,8 @@ and US jurisdictions.
 It contains:
 
 - A formal mathematical framework for cross-jurisdictional legal reasoning
-- 59 runnable Python theory modules with embedded assertions
-- Lean 4 formal proofs for the core specification layer (94 verified results: 43 core + 51 supporting)
+- 73 Python theory modules with embedded assertions and spec fixtures
+- Lean 4 formal proofs for the core specification layer and four vertical slices (126 verified results: 42 core + 84 supporting)
 - Z3 SMT verification for constraint-based properties
 - A 7-level evidence-calibrated trust label system
 - 13 mathematical papers
@@ -79,11 +79,11 @@ The formal core is the **mathematically verified specification layer**:
 
 | Metric | Value |
 |--------|-------|
-| `lake build JurisLean` | 2954 jobs, 0 error, 0 sorry |
-| Core theorems | 43 |
-| Supporting results | 51 |
-| Total verified results | 94 |
-| Deferred axioms | 3 (non-blocking, registered in SORRY_LEDGER.md) |
+| `lake build JurisLean` | 2961 jobs, 0 error, 0 sorry |
+| Core theorems | 42 |
+| Supporting results | 84 |
+| Total verified results | 126 |
+| Deferred axioms | 0 open; 3 former DDL targets closed in `DDLDefinitions.lean` |
 | Toolchain | Lean 4.30.0 + Mathlib v4.30.0 |
 
 Canonical machine-readable source: [theorem_manifest.json](docs/formal-release/theorem_manifest.json)
@@ -92,18 +92,18 @@ Canonical machine-readable source: [theorem_manifest.json](docs/formal-release/t
 
 | File | Count | Key Theorems |
 |------|-------|-------------|
-| DungFixedPoint.lean | 17 | `F_monotone`, `grounded_eq_groundedSpec`, `finite_termination`, `grounded_is_least_fixed_point`, `grounded_is_least_complete`, `self_attack_precise_theorem` |
+| DungFixedPoint.lean | 16 | `F_monotone`, `finite_termination`, `grounded_is_least_fixed_point`, `grounded_is_least_complete`, `self_attack_precise_theorem` |
 | HornFixedPoint.lean | 10 | `horn_operator_monotone`, `horn_finite_termination`, `horn_result_fixed_point`, `horn_soundness`, `horn_completeness`, `horn_result_is_minimal_model` |
 | FiniteMonotoneIteration.lean | 9 | `iter_mono`, `iter_stable`, `iter_card_lt_of_ne`, `exists_fixpoint_le_card`, `fixed_at_card` |
 | WeightedSupNorm.lean | 4 | `weightedSupDist_triangle`, `weightedSupDist_symm`, `weightedSupDist_complete` |
 | HornDefinitions.lean | 2 | `TH_monotone`, `TH_subset_univ` |
 | ContractionCondition.lean | 1 | `lipschitz_coupling_implies_weighted_contraction` |
 
-### Lean Source Files (25)
+### Lean Source Files (32)
 
 The Lean workspace contains the following files in `proofs/lean/juris_lean/JurisLean/`:
 
-`AxiomAudit.lean`, `BanachCertificate.lean`, `BanachComplete.lean`, `BanachContraction.lean`, `BanachEffectiveNodes.lean`, `BanachFixedPoint.lean`, `BanachScratch.lean`, `BanachWeightedNorm.lean`, `Basic.lean`, `ContractionCondition.lean`, `DungAAF.lean`, `DungDefinitions.lean`, `DungFixedPoint.lean`, `FiniteGaloisAdjunction.lean`, `FiniteMonotoneIteration.lean`, `FiniteRosetta.lean`, `HornDefinitions.lean`, `HornFixedPoint.lean`, `HornOperationalRefinement.lean`, `JC_Formalization.lean`, `ScratchApi.lean`, `SupZeroLemma.lean`, `TemporalKripke.lean`, `UnifiedModel.lean`, `WeightedSupNorm.lean`
+`AttackDecision.lean`, `AxiomAudit.lean`, `BanachCertificate.lean`, `BanachComplete.lean`, `BanachContraction.lean`, `BanachEffectiveNodes.lean`, `BanachFixedPoint.lean`, `BanachScratch.lean`, `BanachWeightedNorm.lean`, `Basic.lean`, `CertificateChecker.lean`, `ContractionCondition.lean`, `DDLDefinitions.lean`, `DungAAF.lean`, `DungDefinitions.lean`, `DungFixedPoint.lean`, `EndToEnd.lean`, `FiniteGaloisAdjunction.lean`, `FiniteMonotoneIteration.lean`, `FiniteRosetta.lean`, `HornAAFContract.lean`, `HornDefinitions.lean`, `HornFixedPoint.lean`, `HornOperationalRefinement.lean`, `JC_Formalization.lean`, `LegalSyntax.lean`, `SafetyTheorems.lean`, `ScratchApi.lean`, `SupZeroLemma.lean`, `TemporalKripke.lean`, `UnifiedModel.lean`, `WeightedSupNorm.lean`
 
 Lean is a **proof assistant** (interactive theorem prover). It verifies mathematical statements by type-checking proof terms. In this project, Lean proves the **mathematical specifications** -- the properties that the reasoning engine should satisfy. The Python implementation passes tests and has certificates, but is not itself formally proved by Lean.
 
@@ -113,10 +113,10 @@ See [proofs/lean/juris_lean/](proofs/lean/juris_lean/) for the Lean workspace.
 
 | Gate | Status | Document |
 |------|--------|----------|
-| M1: Canonical Schema | SUBSTANTIAL_PARTIAL | [canonical_legal_schema.md](docs/spec/canonical_legal_schema.md) |
-| M2: DDL Minimal Core | SUBSTANTIAL_PARTIAL | [ddl_minimal_core.md](docs/spec/ddl_minimal_core.md) |
-| M3: Horn-to-AAF Contract | SUBSTANTIAL_PARTIAL | [horn_to_aaf_contract.md](docs/spec/horn_to_aaf_contract.md) |
-| M4: Certificate/Checker Boundary | PARTIAL | [certificate_checker_boundary.md](docs/spec/certificate_checker_boundary.md) |
+| M1: Canonical Schema | CLOSED_FOR_FOUR_SLICES | [canonical_legal_schema.md](docs/spec/canonical_legal_schema.md) |
+| M2: DDL Minimal Core | CLOSED_FOR_FOUR_SLICES | [ddl_minimal_core.md](docs/spec/ddl_minimal_core.md) |
+| M3: Horn-to-AAF Contract | CLOSED_FOR_FOUR_SLICES | [horn_to_aaf_contract.md](docs/spec/horn_to_aaf_contract.md) |
+| M4: Certificate/Checker Boundary | CLOSED_FOR_FOUR_SLICES | [certificate_checker_boundary.md](docs/spec/certificate_checker_boundary.md) |
 | M5: Unified Stopping Statement | CLOSED | [FORMAL_RELEASE_REPORT.md](docs/formal-release/FORMAL_RELEASE_REPORT.md) |
 
 ## Canonical Types (11)
@@ -128,7 +128,7 @@ See [proofs/lean/juris_lean/](proofs/lean/juris_lean/) for the Lean workspace.
 4 modalities: OBLIGATION, PROHIBITION, PERMISSION, CONSTITUTIVE.
 4 repair modes. 3 exception classes.
 
-Canonical Python source: `theory/canonical_semantics.py` (type definitions authoritative)
+Canonical sources: `proofs/lean/juris_lean/JurisLean/LegalSyntax.lean` and `theory/spec/canonical_semantics.py`
 
 ## Repository Structure
 
@@ -152,7 +152,7 @@ legal-math-modeling/
 +-- proofs/                             # Machine-reproducible proofs
 |   +-- engineering_proof_artifacts/    #   Engineering proof artifacts
 |   +-- strict_proof_baseline/          #   Strict baseline proofs
-|   +-- lean/juris_lean/JurisLean/     #   Lean 4 formalization (25 files)
+|   +-- lean/juris_lean/JurisLean/     #   Lean 4 formalization (32 files)
 |   +-- formal_verification_logs/       #   Codex 7-tool-chain audit
 |
 +-- verification/                       # Z3 SMT verification
@@ -216,9 +216,10 @@ For current truth, read in this order:
 This repository is the **specification source and formalization boundary**
 for `juris-calculus`. It is NOT the runtime implementation.
 
-**Current status:** `spec-first-transition-ready` -- the five gates
-(canonical schema, DDL minimal core, Horn-to-AAF contract, certificate/checker
-boundary, unified stopping statement) are acceptably closed for transition.
+**Current status:** `spec-first-transition-ready-plus-four-slices` -- the
+canonical schema, DDL minimal core, Horn-to-AAF contract, certificate/checker
+boundary, and four vertical slices are closed for contract breach, license,
+permission, and priority within the formal model.
 
 **After this point:** main engineering effort shifts to `juris-calculus`.
 New math work in this repo only as "support for JC new capabilities" --
@@ -231,9 +232,10 @@ the auditable kernel; commercial layers stop expanding publicly.
 ## Precise Claim Language
 
 **For this repository:**
-> The finite monotone system, Dung grounded fixed-point layer, and finite
-> Horn closure layer have completed repository-level release sealing. Banach
-> remains an independent incomplete research track.
+> The finite monotone system, Dung grounded fixed-point layer, finite Horn
+> closure layer, and four Lean vertical slices for contract breach, license,
+> permission, and priority have completed repository-level specification
+> sealing. Banach remains an independent incomplete research track.
 
 **For the engineering layer:**
 > Lean has proved the mathematical specification boundary. The Python

@@ -1,7 +1,7 @@
 ;; bounded_horn_z3.smt2
 ;; Z3 SMT-LIB2 script for bounded Horn correctness verification
 ;;
-;; STATUS: PENDING_TOOLCHAIN (Z3 binary not available in environment)
+;; STATUS: TOOLCHAIN_PENDING (Z3 binary not available in environment)
 ;;
 ;; This script encodes a bounded Horn correctness check for a small
 ;; KB with 3 atoms {A, B, C} and 2 rules:
@@ -186,4 +186,4 @@
 ;;   2. Z3 should return unsat (contradiction)
 ;;   3. Therefore they are equal
 ;;
-;; STATUS: PENDING_TOOLCHAIN - requires Z3 solver to execute
+;; STATUS: TOOLCHAIN_PENDING - requires Z3 solver to execute

@@ -26,7 +26,7 @@ Equivalently, in odds form (line 17): $O(C \mid e_1, \ldots, e_k) = O(C) \cdot \
 
 **Definition 2.5 (Data Quality Label).** From `data_quality_label.py` (line 39): each dataset is tagged with a `DataQuality` enum value from $\{\text{REAL}, \text{SYNTHETIC}, \text{PROXY}, \text{ANNOTATED}, \text{UNKNOWN}\}$ (defined in `model_status.py`, line 36). Eight datasets are registered, including `cn_legal` (ANNOTATED, n=56), `us_legal` (SYNTHETIC, n=100), and `banach_pricing` (PROXY, n=200).
 
-**Definition 2.6 (Evidence Status).** From `model_status.py` (line 26): the `EvidenceStatus` enum has seven values: `PROVED_BY_EXHAUSTIVE_ENUMERATION`, `REFUTED_BY_COUNTEREXAMPLE`, `DATA_INSUFFICIENT_FOR_PROOF`, `TOY_SYNTHETIC_PROOF_ONLY`, `PARTIAL_PROVED`, `PENDING_TOOLCHAIN`, and `ENGINEERING_BASELINE`.
+**Definition 2.6 (Evidence Status).** From `model_status.py` (line 26): the `EvidenceStatus` enum has seven values: `PROVED_BY_EXHAUSTIVE_ENUMERATION`, `REFUTED_BY_COUNTEREXAMPLE`, `DATA_INSUFFICIENT_FOR_PROOF`, `TOY_SYNTHETIC_PROOF_ONLY`, `PARTIAL_PROVED`, `TOOLCHAIN_PENDING`, and `ENGINEERING_BASELINE`.
 
 **Definition 2.7 (Weighted Sup-Norm Distance).** From `WeightedSupNorm.lean` (line 28):
 $$d_w(x, y) = \sup_{i \in \{1,\ldots,n\}} \frac{|x_i - y_i|}{w_i}$$

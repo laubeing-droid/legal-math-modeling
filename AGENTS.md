@@ -26,8 +26,8 @@
 - Remote: https://github.com/laubeing-droid/legal-math-modeling
 - Primary language: Lean 4.30.0 (Mathlib4 v4.30.0)
 - Secondary: Python 3.12 (refinement bridge, tests)
-- Total verified results: 94 (43 core + 51 supporting)
-- Build: `lake build JurisLean` -> 2954 jobs, 0 error, 0 sorry
+- Total verified results: 126 (42 core + 84 supporting)
+- Build: `lake build JurisLean` -> 2961 jobs, 0 error, 0 sorry
 
 ## Lean Proof Rules
 
@@ -39,19 +39,19 @@
 6. Theorem count is determined by `rg "^theorem " --no-filename --count`, not by any report or memory.
 7. Build artifacts: NEVER commit `.olean`, `.ilean`, `.trace`, `.hash`, or `.lake/` directories.
 
-## Lean Source Files (25 actual)
+## Lean Source Files (32 actual)
 
-The following 25 `.lean` files exist in `proofs/lean/juris_lean/JurisLean/`:
+The following 32 `.lean` files exist in `proofs/lean/juris_lean/JurisLean/`:
 
-`AxiomAudit.lean`, `BanachCertificate.lean`, `BanachComplete.lean`, `BanachContraction.lean`, `BanachEffectiveNodes.lean`, `BanachFixedPoint.lean`, `BanachScratch.lean`, `BanachWeightedNorm.lean`, `Basic.lean`, `ContractionCondition.lean`, `DungAAF.lean`, `DungDefinitions.lean`, `DungFixedPoint.lean`, `FiniteGaloisAdjunction.lean`, `FiniteMonotoneIteration.lean`, `FiniteRosetta.lean`, `HornDefinitions.lean`, `HornFixedPoint.lean`, `HornOperationalRefinement.lean`, `JC_Formalization.lean`, `ScratchApi.lean`, `SupZeroLemma.lean`, `TemporalKripke.lean`, `UnifiedModel.lean`, `WeightedSupNorm.lean`
+`AttackDecision.lean`, `AxiomAudit.lean`, `BanachCertificate.lean`, `BanachComplete.lean`, `BanachContraction.lean`, `BanachEffectiveNodes.lean`, `BanachFixedPoint.lean`, `BanachScratch.lean`, `BanachWeightedNorm.lean`, `Basic.lean`, `CertificateChecker.lean`, `ContractionCondition.lean`, `DDLDefinitions.lean`, `DungAAF.lean`, `DungDefinitions.lean`, `DungFixedPoint.lean`, `EndToEnd.lean`, `FiniteGaloisAdjunction.lean`, `FiniteMonotoneIteration.lean`, `FiniteRosetta.lean`, `HornAAFContract.lean`, `HornDefinitions.lean`, `HornFixedPoint.lean`, `HornOperationalRefinement.lean`, `JC_Formalization.lean`, `LegalSyntax.lean`, `SafetyTheorems.lean`, `ScratchApi.lean`, `SupZeroLemma.lean`, `TemporalKripke.lean`, `UnifiedModel.lean`, `WeightedSupNorm.lean`
 
-**Ghost files (DO NOT reference as existing):** `LegalSyntax.lean`, `DDLDefinitions.lean`, `CertificateChecker.lean`, `AttackDecision.lean`, `SafetyTheorems.lean`, `argmin_polytime.lean`, `EndToEnd.lean`, `HornCanonical.lean`, `ArgumentCompiler.lean`, `LegalIds.lean`, `LegalModel.lean`, `LegalWellFormed.lean`
+**Ghost files (DO NOT reference as existing):** `argmin_polytime.lean`, `HornCanonical.lean`, `ArgumentCompiler.lean`, `LegalIds.lean`, `LegalModel.lean`, `LegalWellFormed.lean`
 
 ## Core Theorem Map
 
 | File | Core Count | Key Theorems |
 |------|-----------|-------------|
-| DungFixedPoint.lean | 17 | `F_monotone`, `grounded_eq_groundedSpec`, `finite_termination`, `iteration_bound`, `groundedSpec_is_fixed_point`, `grounded_is_fixed_point`, `groundedSpec_is_least_fixed_point`, `grounded_is_least_fixed_point`, `grounded_is_least_complete`, `groundedSpec_unique_least_fixed_point`, `labelling_partition`, `in_soundness`, `out_soundness`, `undecided_characterization`, `self_attack_precise_theorem`, `self_attack_not_in_grounded` |
+| DungFixedPoint.lean | 16 | `F_monotone`, `finite_termination`, `iteration_bound`, `groundedSpec_is_fixed_point`, `grounded_is_fixed_point`, `groundedSpec_is_least_fixed_point`, `grounded_is_least_fixed_point`, `grounded_is_least_complete`, `groundedSpec_unique_least_fixed_point`, `labelling_partition`, `in_soundness`, `out_soundness`, `undecided_characterization`, `self_attack_precise_theorem`, `self_attack_not_in_grounded` |
 | HornFixedPoint.lean | 10 | `horn_operator_subset_univ`, `horn_operator_monotone`, `horn_iteration_monotone`, `horn_finite_termination`, `horn_iteration_bound`, `horn_result_fixed_point`, `horn_result_least_fixed_point`, `horn_soundness`, `horn_completeness`, `horn_result_is_minimal_model` |
 | FiniteMonotoneIteration.lean | 9 | `iter_succ`, `iter_subset_univ`, `iter_mono`, `iter_stable`, `iter_ssubset_of_ne`, `iter_card_lt_of_ne`, `iter_card_le_univ`, `exists_fixpoint_le_card`, `fixed_at_card` |
 | WeightedSupNorm.lean | 4 | `weightedSupDist_nonneg`, `weightedSupDist_triangle`, `weightedSupDist_symm`, `weightedSupDist_complete` |
@@ -121,24 +121,24 @@ A task is complete ONLY when ALL six conditions hold:
 - "Banach complete" (as part of formal-core-v1)
 - "Privacy established"
 
-## Deferred Axioms (SORRY_LEDGER.md)
+## Closed DDL Targets (SORRY_LEDGER.md)
 
-3 non-blocking domain axioms are registered:
-- `violation_implies_norm_active` (PLANNED, DDLDefinitions.lean)
-- `permission_no_direct_violation` (PLANNED, DDLDefinitions.lean)
-- `constitutive_no_direct_violation` (PLANNED, DDLDefinitions.lean)
+3 former domain-axiom targets are now Lean theorems in `DDLDefinitions.lean`:
+- `violation_implies_norm_active`
+- `permission_no_direct_violation`
+- `constitutive_no_direct_violation`
 
-These reflect a structural gap (RuleId != NormId). `DDLDefinitions.lean` is PLANNED.
-JC must NOT claim these are Lean-proven.
+JC may cite these exact Lean theorem names as proved inside the four-slice
+minimal DDL model, but must not claim full runtime correctness from them.
 
 ## Spec-First Transition Gates
 
 | Gate | Status |
 |------|--------|
-| M1: Canonical Schema | SUBSTANTIAL_PARTIAL |
-| M2: DDL Minimal Core | SUBSTANTIAL_PARTIAL |
-| M3: Horn-to-AAF Contract | SUBSTANTIAL_PARTIAL |
-| M4: Certificate/Checker Boundary | PARTIAL |
+| M1: Canonical Schema | CLOSED_FOR_FOUR_SLICES |
+| M2: DDL Minimal Core | CLOSED_FOR_FOUR_SLICES |
+| M3: Horn-to-AAF Contract | CLOSED_FOR_FOUR_SLICES |
+| M4: Certificate/Checker Boundary | CLOSED_FOR_FOUR_SLICES |
 | M5: Unified Stopping Statement | CLOSED |
 
 ## Canonical Types (11)
@@ -154,7 +154,7 @@ JC must NOT claim these are Lean-proven.
 
 ```
 legal-math-modeling/
-  proofs/lean/juris_lean/JurisLean/   -- Lean source (25 files, THE truth)
+  proofs/lean/juris_lean/JurisLean/   -- Lean source (32 files, THE truth)
   proofs/engineering_proof_artifacts/  -- Python certs, test vectors
   docs/formal-release/                 -- Release reports, manifests
   docs/remediation/                    -- Audit close-out artifacts

@@ -9,21 +9,28 @@ from theory.spec.ddl_core import (
     list_defense_targets,
     make_contract_breach_bundle,
     make_license_permission_priority_bundles,
+    make_permission_conflict_bundles,
+    make_priority_decision_bundles,
     summarize_reparation_modes,
     validate_minimal_ddl_bundle,
 )
 from theory.spec.horn_aaf_contract import validate_horn_aaf_contract
 from theory.spec.reference_semantics import (
+    build_permission_conflict_demo_model,
     build_license_permission_demo_model,
     build_contract_breach_demo_model,
+    build_priority_decision_demo_model,
     compile_arguments,
     evaluate_contract_breach_reference,
     evaluate_license_permission_reference,
+    evaluate_permission_reference,
+    evaluate_priority_reference,
     fact_keys,
     grounded_extension,
     horn_closure,
 )
 from theory.spec.canonical_semantics import DecisionStatus, ReparationMode
+from theory.spec.runtime_differential import build_report
 
 
 def test_contract_breach_bundle_encodes_minimal_ddl_core():
@@ -103,3 +110,87 @@ def test_license_permission_reference_flips_with_priority_activation():
 
     assert with_priority.status == DecisionStatus.PROVED
     assert without_priority.status == DecisionStatus.REFUTED
+
+
+def test_permission_and_priority_bundles_are_independent_slices():
+    permission_bundles = make_permission_conflict_bundles()
+    priority_bundles = make_priority_decision_bundles()
+
+    for bundle in (*permission_bundles, *priority_bundles):
+        validate_minimal_ddl_bundle(bundle)
+
+    assert tuple(bundle.norm.modality.value for bundle in permission_bundles) == (
+        "PERMISSION",
+        "PROHIBITION",
+    )
+    assert tuple(bundle.norm.modality.value for bundle in priority_bundles) == (
+        "PERMISSION",
+        "PROHIBITION",
+    )
+
+
+def test_license_scope_and_termination_fail_closed():
+    outside_scope = evaluate_license_permission_reference(
+        build_license_permission_demo_model(priority_active=True, within_scope=False)
+    )
+    terminated = evaluate_license_permission_reference(
+        build_license_permission_demo_model(priority_active=True, terminated=True)
+    )
+
+    assert outside_scope.status == DecisionStatus.REFUTED
+    assert terminated.status == DecisionStatus.REFUTED
+
+
+def test_permission_slice_does_not_force_conflict_to_proved():
+    condition_missing = evaluate_permission_reference(
+        build_permission_conflict_demo_model(
+            condition_satisfied=False,
+            prohibition_candidate=False,
+            override_active=True,
+        )
+    )
+    unresolved_conflict = evaluate_permission_reference(
+        build_permission_conflict_demo_model(
+            condition_satisfied=True,
+            prohibition_candidate=True,
+            override_active=False,
+        )
+    )
+
+    assert condition_missing.status == DecisionStatus.UNDECIDED
+    assert unresolved_conflict.status == DecisionStatus.UNDECIDED
+
+
+def test_priority_slice_missing_and_cycle_cases_fail_closed():
+    priority_wins = evaluate_priority_reference(
+        build_priority_decision_demo_model(priority_active=True)
+    )
+    missing_priority = evaluate_priority_reference(
+        build_priority_decision_demo_model(priority_active=False)
+    )
+    priority_cycle = evaluate_priority_reference(
+        build_priority_decision_demo_model(priority_active=True),
+        priority_cycle=True,
+    )
+    self_attack = evaluate_priority_reference(
+        build_priority_decision_demo_model(priority_active=True),
+        self_attack=True,
+    )
+
+    assert priority_wins.status == DecisionStatus.PROVED
+    assert missing_priority.status == DecisionStatus.UNDECIDED
+    assert priority_cycle.status == DecisionStatus.UNDECIDED
+    assert self_attack.status == DecisionStatus.UNDECIDED
+
+
+def test_four_slice_runtime_differential_report_is_green():
+    report = build_report()
+
+    assert report.passed is True
+    assert not report.blocked
+    assert {case.slice_name for case in report.cases} == {
+        "contract_breach",
+        "license",
+        "permission",
+        "priority",
+    }

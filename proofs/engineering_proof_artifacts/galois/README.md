@@ -128,7 +128,7 @@ Lean formalization (separate from these Python artifacts).
 | File | Description |
 |------|-------------|
 | `finite_galois_adjunction.py` | Python exhaustive verification script |
-| `FiniteGaloisAdjunction.lean` | Lean formal specification draft (PENDING_TOOLCHAIN) |
+| `FiniteGaloisAdjunction.lean` | Lean formal specification draft (TOOLCHAIN_PENDING) |
 
 ## Running
 

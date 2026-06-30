@@ -214,10 +214,10 @@ The remaining 51 theorems are distributed across `Basic.lean`, `ScratchApi.lean`
 | ART-012 | Graph Metric Counterexamples | REFUTED | REFUTED_BY_COUNTEREXAMPLE |
 | ART-013 | DP Floor Clipping Analysis | REFUTED | REFUTED_BY_COUNTEREXAMPLE |
 | ART-014 | Clipped Theil-Sen Refutation | REFUTED | REFUTED_BY_COUNTEREXAMPLE |
-| ART-005 | Bounded Horn (Z3 .smt2) | PENDING | PENDING_TOOLCHAIN |
-| ART-002 | Finite Galois Adjunction (Lean) | PENDING | PENDING_TOOLCHAIN |
-| ART-017 | Banach Effective Nodes (Lean) | PENDING | PENDING_TOOLCHAIN |
-| ART-007 | Evaluator Termination (TLA+) | PENDING | PENDING_TOOLCHAIN |
+| ART-005 | Bounded Horn (Z3 .smt2) | PENDING | TOOLCHAIN_PENDING |
+| ART-002 | Finite Galois Adjunction (Lean) | PENDING | TOOLCHAIN_PENDING |
+| ART-017 | Banach Effective Nodes (Lean) | PENDING | TOOLCHAIN_PENDING |
+| ART-007 | Evaluator Termination (TLA+) | PENDING | TOOLCHAIN_PENDING |
 
 ---
 
@@ -225,5 +225,5 @@ The remaining 51 theorems are distributed across `Basic.lean`, `ScratchApi.lean`
 
 - Any `FAILED` artifact causes `overall = FAIL`.
 - Lean artifacts with `sorry` are excluded from proven count (0 sorry is current state).
-- PENDING_TOOLCHAIN items require tool chain installation before upgrade.
+- TOOLCHAIN_PENDING items require tool chain installation before upgrade.
 - refuted status is permanent: `advance_cannot_revive_refuted` is a Lean-proven theorem.

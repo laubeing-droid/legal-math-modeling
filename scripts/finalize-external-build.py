@@ -1,10 +1,10 @@
 """finalize-external-build.py -- Verify external lake build and finalize release."""
 
-import json, sys, hashlib, subprocess
+import json, sys, hashlib, os, subprocess
 from pathlib import Path
 from datetime import datetime
 
-REPO = Path(r"D:\Claude\数学证明\legal-math-modeling")
+REPO = Path(os.environ.get("LEGAL_MATH_MODELING_ROOT", r"D:\Codex\数学证明\legal-math-modeling"))
 
 def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()

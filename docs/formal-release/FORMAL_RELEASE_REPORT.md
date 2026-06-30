@@ -29,9 +29,9 @@ New math work in this repo only as "support for JC new capabilities."
 | Item | State |
 |------|-------|
 | Public branch model | `master` only |
-| Repository head | `12470ac` |
-| Last full clean rebuild evidence | `12470ac` |
-| GitHub Actions clean build | PASS at `12470ac` |
+| Last verified source head | `f671a6e` |
+| Last full clean rebuild evidence | `f671a6e` |
+| GitHub Actions clean build | PASS at `f671a6e` |
 | Local `lake build` evidence | PASS (2954 jobs, 0 errors) |
 | Local `lake build +JurisLean.AxiomAudit` evidence | PASS |
 | Lean source guard | PASS |
@@ -40,7 +40,7 @@ Lean source guard means:
 
 - `0 sorry`
 - `0 admit`
-- `0 custom axiom`
+- `0 custom axiom` (Lean built-in axiom dependencies are disclosed by `AxiomAudit`)
 - `0 theorem : True`
 
 ---
@@ -51,7 +51,8 @@ Lean source guard means:
 |--------|-------|
 | Unique theorem names | 94 |
 | Core theorems | 43 |
-| Supporting theorems | 51 |
+| Supporting unique theorem names | 51 |
+| Supporting manifest records | 57 |
 | Total manifest entries | 100 |
 | `formal_core_module_theorems` | 43 |
 
@@ -187,8 +188,12 @@ See [`FORBIDDEN_CLAIMS.md`](FORBIDDEN_CLAIMS.md) for the full list.
 
 ## 11. Cross-Repo Reference Heads
 
+These heads record the verified inputs for this documentation sync. The
+current git HEAD may advance after the documentation-only commit that contains
+this report.
+
 | Repo | Branch | Head |
 |------|--------|------|
-| `legal-math-modeling` | `master` | `12470ac` |
-| `juris-calculus` | `main` | `c18b478` |
-| `deli-autoresearch` | `main` | `b35dbb1` |
+| `legal-math-modeling` | `master` | `f671a6e` |
+| `juris-calculus` | `main` | `3ff27875` |
+| `deli-autoresearch` | `main` | `4270263` |

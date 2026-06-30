@@ -2,7 +2,7 @@
 # Run in PowerShell to complete the Lean 4 lake build externally.
 # Do NOT run lake clean first. Incremental cache preserved.
 
-$repo = "D:\Claude\数学证明\legal-math-modeling"
+$repo = if ($env:LEGAL_MATH_MODELING_ROOT) { $env:LEGAL_MATH_MODELING_ROOT } else { "D:\Codex\数学证明\legal-math-modeling" }
 $lakeDir = "$repo\proofs\lean\juris_lean"
 $ts = Get-Date -Format "yyyyMMdd-HHmmss"
 $logDir = "$repo\build-logs\$ts"

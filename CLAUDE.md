@@ -169,7 +169,7 @@ legal-math-modeling/
 ## Cross-Repo Rules
 
 - juris-calculus (D:\Codex\juris-calculus) consumes Lean theorems via refinement bridge.
-- deli-autoresearch (D:\Claude\数学证明自动研究) runs autonomous exploration over juris-calculus.
+- deli-autoresearch (D:\Codex\数学证明自动研究) runs autonomous exploration over juris-calculus.
 - Any change to a Lean theorem statement MUST trigger cross-repo verification.
 - Fail-closed: UNKNOWN / TIMEOUT / TRUNCATED results propagate as errors, never as success.
 

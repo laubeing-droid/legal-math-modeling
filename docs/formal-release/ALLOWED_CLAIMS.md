@@ -65,7 +65,8 @@ in this repo. `lake build JurisLean` passes with 0 errors and 0 sorry.
 |--------|-------|--------|
 | Unique theorem names | 94 | `theorem_manifest.json` |
 | Core theorems | 43 | `theorem_manifest.json` |
-| Supporting theorems | 51 | `theorem_manifest.json` |
+| Supporting unique theorem names | 51 | `theorem_manifest.json` |
+| Supporting manifest records | 57 | `theorem_manifest.json` |
 | Total manifest entries | 100 | `theorem_manifest.json` |
 | `formal_core_module_theorems` | 43 | `theorem_manifest.json` |
 
@@ -97,7 +98,8 @@ covers: `FiniteMonotoneIteration.lean` (9), `DungFixedPoint.lean` (17),
 - `lake build JurisLean` passes with 0 errors and 0 sorry (2954 jobs)
 - `AxiomAudit` is reproducible; only Lean 4 built-in axioms in core boundary
   (`propext`, `Classical.choice`, `Quot.sound`)
-- Lean source guard passes: 0 sorry, 0 admit, 0 custom axiom, 0 `theorem : True`
+- Lean source guard passes: 0 sorry, 0 admit, 0 custom axiom, 0 `theorem : True`;
+  Lean built-in axiom dependencies are disclosed by `AxiomAudit`
 - `juris-calculus` grounded engine outputs `derived_bound` / `convergent` / `truncated`
 - Fail-closed behavior on truncation, non-convergence, and protocol incompatibility
 

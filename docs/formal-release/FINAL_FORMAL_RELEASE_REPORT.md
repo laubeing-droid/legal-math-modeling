@@ -32,10 +32,10 @@ This means:
 | Item | Value |
 |------|-------|
 | Public branch model | `master` only |
-| Repository HEAD | `12470ac` |
-| Last clean rebuild evidence | `12470ac` |
-| GitHub Actions clean build | PASS at `12470ac` |
-| Lean source guard | 0 sorry / 0 admit / 0 custom axiom / 0 `theorem : True` |
+| Last verified source head | `f671a6e` |
+| Last clean rebuild evidence | `f671a6e` |
+| GitHub Actions clean build | PASS at `f671a6e` |
+| Lean source guard | 0 sorry / 0 admit / 0 custom axiom / 0 `theorem : True`; Lean built-in axiom dependencies disclosed by `AxiomAudit` |
 | `AxiomAudit` | Reproducible |
 | `lake build JurisLean` | 2954 jobs, 0 errors |
 
@@ -47,7 +47,8 @@ This means:
 |--------|-------|--------|
 | Unique theorem names | 94 | `theorem_manifest.json` |
 | Core theorems | 43 | `theorem_manifest.json` |
-| Supporting theorems | 51 | `theorem_manifest.json` |
+| Supporting unique theorem names | 51 | `theorem_manifest.json` |
+| Supporting manifest records | 57 | `theorem_manifest.json` |
 | Total manifest entries | 100 | `theorem_manifest.json` |
 | `formal_core_module_theorems` | 43 | `theorem_manifest.json` |
 
@@ -71,7 +72,7 @@ The following gates are closed:
 
 - Repository-level clean build evidence gate
 - `AxiomAudit` reproducibility gate
-- Lean source guard gate (0 sorry / 0 admit / 0 custom axiom)
+- Lean source guard gate (0 sorry / 0 admit / 0 custom axiom, with Lean built-in axiom dependencies disclosed by `AxiomAudit`)
 - Theorem manifest alignment gate
 - Formal release documentation consistency gate
 

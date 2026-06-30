@@ -64,8 +64,8 @@ AxiomAudit.lean, BanachCertificate.lean, BanachComplete.lean, BanachContraction.
 
 | Worktree | Track | Owner |
 |----------|-------|-------|
-| D:/Claude/数学证明/legal-math-modeling | A/C/D/E | main |
-| D:/Claude/数学证明/legal-math-banach | B | Banach |
+| D:/Codex/数学证明/legal-math-modeling | A/C/D/E | main |
+| D:/Codex/数学证明/legal-math-banach | B | Banach |
 
 ## Last Verified Commands
 

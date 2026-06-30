@@ -43,7 +43,7 @@ In the papers, theorems are marked with their verification status:
 
 | Mark | Meaning |
 |------|---------|
-| **PROVEN (Lean)** | Machine-checked in Lean 4 (0 sorry, 0 axiom) |
+| **PROVEN (Lean)** | Machine-checked in Lean 4 (0 sorry, 0 custom axiom; Lean built-in axiom dependencies disclosed by AxiomAudit) |
 | **VERIFIED (Python)** | Verified by Python tests/exhaustive enumeration |
 | **PLANNED** | Target formalization exists as a design but Lean file does not yet exist |
 | **REFUTED** | Explicit counterexample constructed |

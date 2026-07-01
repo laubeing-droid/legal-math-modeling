@@ -1,37 +1,47 @@
-# 2026-06-16 ~ 2026-06-17 仓库创建期归档
+# Development Log 20260616 0617
 
-## 文件定位
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
-这是 `legal-math-modeling` 仓库创建与第一轮发布阶段的归档摘要。
+## Purpose
 
-**不记录当前最终发布边界。** 当前状态见 `program/PLANS.md`。
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `history` area without expanding the formal claim surface.
 
-## 当时完成的关键工作
+## Authority
 
-1. **仓库拆分**：从多份实验资料中拆出独立的数学配套仓库 `legal-math-modeling`
-2. **目录结构搭建**：建立 `proofs/`、`theory/`、`docs/`、`data/`、`program/` 结构
-3. **Lean 项目初始化**：建立 `proofs/lean/juris_lean/` 目录，开始 Lean 4 形式化
-4. **第一轮 README 和发布口径**：形成初始版本的文档结构
+Use this order of authority when resolving conflicts:
 
-## 对当前版本仍然有效的遗产
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-- 反例优先于夸大声明
-- 数学配套仓必须与工程运行仓分离
-- README、审计与历史记录需要同步维护
-- 证据标签体系的雏形
+## Current Boundary
 
-## 对当前版本已经过时的部分
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-- 早期文件数、模块数、论文数等统计
-- 当时的 Banach 表述（尚未形式化）
-- 当时的 release 结构和分支状态
-- 尚未完成 formal-core 封板前的临时口径
+## Allowed Claims
 
-## 后续发展
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-从这一阶段开始，项目进入了系统性形式化阶段，最终达到：
+## Prohibited Claims
 
-- 94 个 Lean 定理，0 sorry
-- `lake build JurisLean` 2954 jobs
-- 25 个 Lean 文件，59 个 Python 模块
-- 状态：FORMAL_CORE_RELEASED
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
+
+## Verification Rule
+
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
+
+## Maintenance Notes
+
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

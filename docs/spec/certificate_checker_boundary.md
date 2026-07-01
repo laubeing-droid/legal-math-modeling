@@ -1,90 +1,47 @@
-# Certificate / Checker Boundary
+# Certificate Checker Boundary
 
-**Date:** 2026-07-01
-**Status:** CLOSED_FOR_FOUR_SLICES
-**Gate M4:** CLOSED_FOR_FOUR_SLICES
-**Authority:** `legal-math-modeling`
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
 ## Purpose
 
-This document records the certificate/checker boundary for the four vertical
-slices. The checker must fail closed on malformed, tainted, candidate-only, or
-obligation-missing certificates.
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `spec` area without expanding the formal claim surface.
 
-This is a specification boundary, not a proof that the full `juris-calculus`
-runtime is correct.
+## Authority
 
-## Lean Artifacts
+Use this order of authority when resolving conflicts:
 
-`proofs/lean/juris_lean/JurisLean/CertificateChecker.lean` defines:
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-- `CheckVerdict.accept`
-- `CheckVerdict.reject`
-- `CheckVerdict.undecided`
-- `Certificate.hasStrongEvidence`
-- `checkCertificate`
+## Current Boundary
 
-`proofs/lean/juris_lean/JurisLean/SafetyTheorems.lean` and
-`proofs/lean/juris_lean/JurisLean/EndToEnd.lean` connect the checker to the
-four vertical slices.
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-## Proven Fail-Closed Properties
+## Allowed Claims
 
-`CertificateChecker.lean` proves:
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-- `malformed_certificate_rejected`
-- `tainted_certificate_rejected`
-- `candidate_evidence_not_accepted`
-- `missing_required_facts_rejected`
-- `missing_obligations_rejected`
-- `checker_acceptance_requires_obligations`
-- `checker_acceptance_requires_required_facts`
-- `checker_acceptance_requires_non_candidate`
+## Prohibited Claims
 
-`SafetyTheorems.lean` proves:
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
 
-- `candidate_cannot_enter_verified_fact_gate`
-- `tainted_not_accepted_as_proved`
-- `accepted_certificate_has_required_payload`
-- `priority_missing_evidence_certificate_not_accepted`
-- `priority_cycle_certificate_fail_closed`
-- `license_outside_scope_not_permitted`
-- `permission_conflict_not_forced_proved`
+## Verification Rule
 
-`EndToEnd.lean` proves per-slice acceptance/fail-closed theorems for contract
-breach, license, permission, and priority.
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
 
-## Python Checker Boundary
+## Maintenance Notes
 
-`theory/spec/certificate_schema.py` remains the transport/reference payload
-checker. It validates:
-
-- required payload fields,
-- valid `DecisionStatus`,
-- `TAINTED` fail-closed reason,
-- decisive payloads carrying constructed arguments,
-- accepted ids bounded by constructed arguments,
-- priority defeat requiring attack records.
-
-## Candidate Gate
-
-LLM/source candidates cannot be upgraded into verified facts by the checker.
-Candidate evidence is rejected at the Lean checker boundary and remains
-non-auditable until a backend/source/human evidence path verifies it.
-
-## Runtime Differential Evidence
-
-`runtime/legal_math_four_slice_differential.json` records the local four-slice
-reference/shadow fixture outcomes. JC must run its real runtime shadow harness
-against the same fixture names in the JC stage.
-
-## Verification
-
-```powershell
-cd proofs/lean/juris_lean
-lake build JurisLean
-
-cd ..\..\..
-python -m pytest tests\spec\test_spec_transition.py -q
-python -m theory.spec.runtime_differential --output runtime\legal_math_four_slice_differential.json
-```
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

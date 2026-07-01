@@ -1,35 +1,47 @@
-# 第一轮 200 轮苏格拉底审计归档
+# Socratic 200 Rounds
 
-## 文件定位
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
-这是第一轮大规模苏格拉底式自问自答的历史摘要。
+## Purpose
 
-它的作用是保存当时的问题空间，而不是给出今天的正式发布结论。
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `history` area without expanding the formal claim surface.
 
-## 第一轮真正留下来的结论
+## Authority
 
-1. **法律推理必须分层**：不能被整体当作单一数学对象处理。这一结论最终发展为 Horn + Dung + Banach 的三层架构。
-2. **反例是架构修正的证据**：反例不是失败记录，而是驱动设计改进的关键输入。
-3. **仓库必须边界分离**：研究仓、工程仓、形式化仓必须各自独立。
+Use this order of authority when resolving conflicts:
 
-## 从审计到形式化的路径
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-第一轮审计中暴露的问题最终得到了形式化解决：
+## Current Boundary
 
-| 审计发现 | 形式化成果 |
-|----------|------------|
-| 需要单调推理层 | HornFixedPoint.lean, FiniteMonotoneIteration.lean |
-| 需要论证框架 | DungFixedPoint.lean, DungAAF.lean |
-| 需要压缩映射分析 | BanachFixedPoint.lean, BanachContraction.lean |
-| 需要公理审计 | AxiomAudit.lean |
-| 需要统一模型 | UnifiedModel.lean |
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-## 第一轮没有直接变成当前口径的部分
+## Allowed Claims
 
-- 对某些模块的早期乐观估计
-- 对 Banach 的推进预期（后经形式化确认为框架级成果）
-- 对模块总量、证明总量的阶段性统计（后统一为 94 定理）
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-## 当前使用建议
+## Prohibited Claims
 
-把这份文件视为"早期问题发现记录"，不要把其中任何阶段性统计直接拿来做 release statement。当前定理数据以 94 个（43 core + 51 supporting）、0 sorry 为准。
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
+
+## Verification Rule
+
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
+
+## Maintenance Notes
+
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

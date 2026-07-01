@@ -1,49 +1,47 @@
-# Architectural Specifications
+# Readme
 
-Files in this directory are model specifications and architectural catalogs, not standalone proofs.
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
 ## Purpose
 
-These files stabilize semantics before `juris-calculus` implements them. They are intentionally not a production runtime.
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `spec` area without expanding the formal claim surface.
 
-## Specification Files
+## Authority
 
-| File | Purpose |
-|------|---------|
-| `canonical_semantics.py` | Canonical semantic vocabulary shared by formal specifications, reference semantics, and downstream runtime bridges |
-| `reference_semantics.py` | Transparent oracle-style evaluator for early vertical slices |
-| `ddl_core.py` | Minimal deontic core covering modality, violation, reparation, exception, and burden-of-proof semantics |
-| `horn_aaf_contract.py` | Machine-testable contract for the Horn to AAF boundary |
-| `certificate_schema.py` | Certificate payload and independent checker boundary |
+Use this order of authority when resolving conflicts:
 
-## Relationship to Lean Formalization
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-The 11 spec types defined here connect to the Lean formalization:
+## Current Boundary
 
-| Spec Type | Lean Module |
-|-----------|-------------|
-| LegalFact | HornDefinitions.lean |
-| LegalRule | HornDefinitions.lean |
-| LegalNorm | UnifiedModel.lean |
-| LegalClaim | JC_Formalization.lean |
-| Argument | DungDefinitions.lean |
-| Attack | DungDefinitions.lean |
-| Priority | DungAAF.lean |
-| Violation | UnifiedModel.lean |
-| Reparation | UnifiedModel.lean |
-| DecisionStatus | JC_Formalization.lean |
-| ProofTrace | AxiomAudit.lean |
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-## Formal Baseline
+## Allowed Claims
 
-The Lean formalization provides the verified mathematical core:
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-- 94 theorems (43 core + 51 supporting), 0 sorry
-- 25 Lean files, 2954 build jobs
-- AxiomAudit ensures no sorry and no custom axioms
+## Prohibited Claims
 
-## Rules
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
 
-- Specifications here are architectural catalogs, not proofs
-- Do not cite spec files as formal verification
-- Implementation must be validated against the Lean formalization
+## Verification Rule
+
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
+
+## Maintenance Notes
+
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

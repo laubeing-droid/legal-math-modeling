@@ -1,269 +1,62 @@
 # Legal Math Modeling
 
-> Formal mathematical companion for cross-jurisdictional legal reasoning.
->
-> Companion repo: [juris-calculus](https://github.com/laubeing-droid/juris-calculus) |
-> Research framework: [deli-autoresearch](https://github.com/laubeing-droid/deli-autoresearch) |
-> License: [CC BY 4.0](LICENSE)
+Status: release-bounded public specification repository, rewritten on 2026-07-01.
 
-## What This Is
+## What This Repository Is
 
-This repository is the **mathematical specification companion** to
-[juris-calculus](https://github.com/laubeing-droid/juris-calculus) -- a
-deterministic symbolic legal reasoning engine operating across PRC, Hong Kong,
-and US jurisdictions.
+`legal-math-modeling` is the mathematical companion and specification boundary for selected legal-reasoning structures. It is not a runtime certificate for a complete deployed system.
 
-It contains:
+## Current Public Boundary
 
-- A formal mathematical framework for cross-jurisdictional legal reasoning
-- 73 Python theory modules with embedded assertions and spec fixtures
-- Lean 4 formal proofs for the core specification layer and four vertical slices (126 verified results: 42 core + 84 supporting)
-- Z3 SMT verification for constraint-based properties
-- A 7-level evidence-calibrated trust label system
-- 13 mathematical papers
-- Machine-reproducible audit and proof artifacts
+The public boundary covers:
 
-## Architecture
+- 11 canonical legal types: LegalFact, LegalRule, LegalNorm, LegalClaim, Argument, Attack, Priority, Violation, Reparation, DecisionStatus, ProofTrace.
+- 4 DDL modalities: OBLIGATION, PROHIBITION, PERMISSION, CONSTITUTIVE.
+- 4 slices: contract breach, license, permission, priority.
+- A minimal DDL core, a Horn-to-AAF compiler contract, and a certificate/checker boundary.
+- Lean source inventory under `proofs/lean/juris_lean/JurisLean/`.
 
-```
-+-------------------------------------------------------------------+
-|                      User Constraints                             |
-|      Jurisdiction + Case Type + Evidence Set + Questions          |
-+----------------------------+--------------------------------------+
-                             |
-                             v
-+-------------------------------------------------------------------+
-|          Layer 1: Legal Ontology (L0/L1/L2)                      |
-|  L0: Agent, Asset, Act, Status, Power, Defect (6 primitives)     |
-|  L1: 15 meta-ontological categories                              |
-|  L2: 20+ jurisdiction-specific domain concepts                   |
-|  Source: core_ontology.yaml                                       |
-+----------------------------+--------------------------------------+
-                             |
-                             v
-+-------------------------------------------------------------------+
-|         Layer 2: Two-Stage Reasoning Engine                      |
-|                                                                  |
-|  Stage 1: Horn Closure       Stage 2: Dung AAF                  |
-|  (forward fact expansion)    (rebuttal + exception handling)     |
-|  Monotone (proved)           Grounded extension (proved)         |
-+----------------------------+--------------------------------------+
-                             |
-                             v
-+-------------------------------------------------------------------+
-|         Layer 3: Evidence-Calibrated Trust Labels                |
-|  PROVED > REFUTED > PARTIAL > INSUFFICIENT > TOY > PENDING       |
-|  Every claim tracked through its proof lifecycle                 |
-|  Counterexamples preserved as first-class artifacts              |
-+----------------------------+--------------------------------------+
-                             |
-                             v
-+-------------------------------------------------------------------+
-|         Layer 4: Cross-Jurisdiction Collider                     |
-|  Tri-Rail: PRC x HK x US parallel reasoning                     |
-|  12 conflict classes detected                                    |
-|  60 CBL blocking rules (= Bell-LaPadula non-interference)        |
-+-------------------------------------------------------------------+
+At rewrite time the Lean source tree contains 32 files and 126 theorem declarations. This is a source inventory fact, not a current-head release certificate.
+
+## Evidence Discipline
+
+Formal claims require Lean source plus current build evidence. Engineering claims require tests or certificate-checker evidence. Narrative papers and generated reports are explanatory only. Unknown, skipped, timed-out, unavailable, or stale evidence is fail-closed.
+
+## Read Order
+
+1. `docs/formal-release/FORMAL_RELEASE_REPORT.md`
+2. `docs/formal-release/theorem_manifest.json`
+3. `docs/spec/canonical_legal_schema.md`
+4. `docs/spec/ddl_minimal_core.md`
+5. `docs/spec/horn_to_aaf_contract.md`
+6. `docs/spec/certificate_checker_boundary.md`
+7. `docs/disclosure/PUBLIC_PRIVATE_BOUNDARY.md`
+8. `paper/README.md`
+
+## Repository Layout
+
+```text
+docs/          rewritten public documentation and manifests
+paper/         rewritten papers and LaTeX sources
+proofs/        Lean and engineering proof artifacts
+runtime/       machine runtime fixtures; not prose documentation
+scripts/       helper scripts
+tests/         Python tests
+theory/        Python theory/spec modules
+verification/  verification helpers
+reports/       archived generated analysis reports
 ```
 
-## Formal Core (Lean 4)
+## Public/Private Split
 
-The formal core is the **mathematically verified specification layer**:
+The public repository keeps the auditable specification kernel and public explanatory material. Customer data, commercial rule libraries, lawyer workflows, litigation strategy, and private benchmarks stay out of the public repository by default.
 
-- **Finite Monotone Iteration Kernel** -- general-purpose fixed-point layer
-- **Dung Grounded Extension** -- argumentation framework fixed-point
-- **Horn Closure** -- forward reasoning closure
-- **Weighted Sup-Norm Completeness** -- metric foundation for contraction arguments
-
-### Build Status
-
-| Metric | Value |
-|--------|-------|
-| `lake build JurisLean` | 2961 jobs, 0 error, 0 sorry |
-| Core theorems | 42 |
-| Supporting results | 84 |
-| Total verified results | 126 |
-| Deferred axioms | 0 open; 3 former DDL targets closed in `DDLDefinitions.lean` |
-| Toolchain | Lean 4.30.0 + Mathlib v4.30.0 |
-
-Canonical machine-readable source: [theorem_manifest.json](docs/formal-release/theorem_manifest.json)
-
-### Core Theorem Distribution
-
-| File | Count | Key Theorems |
-|------|-------|-------------|
-| DungFixedPoint.lean | 16 | `F_monotone`, `finite_termination`, `grounded_is_least_fixed_point`, `grounded_is_least_complete`, `self_attack_precise_theorem` |
-| HornFixedPoint.lean | 10 | `horn_operator_monotone`, `horn_finite_termination`, `horn_result_fixed_point`, `horn_soundness`, `horn_completeness`, `horn_result_is_minimal_model` |
-| FiniteMonotoneIteration.lean | 9 | `iter_mono`, `iter_stable`, `iter_card_lt_of_ne`, `exists_fixpoint_le_card`, `fixed_at_card` |
-| WeightedSupNorm.lean | 4 | `weightedSupDist_triangle`, `weightedSupDist_symm`, `weightedSupDist_complete` |
-| HornDefinitions.lean | 2 | `TH_monotone`, `TH_subset_univ` |
-| ContractionCondition.lean | 1 | `lipschitz_coupling_implies_weighted_contraction` |
-
-### Lean Source Files (32)
-
-The Lean workspace contains the following files in `proofs/lean/juris_lean/JurisLean/`:
-
-`AttackDecision.lean`, `AxiomAudit.lean`, `BanachCertificate.lean`, `BanachComplete.lean`, `BanachContraction.lean`, `BanachEffectiveNodes.lean`, `BanachFixedPoint.lean`, `BanachScratch.lean`, `BanachWeightedNorm.lean`, `Basic.lean`, `CertificateChecker.lean`, `ContractionCondition.lean`, `DDLDefinitions.lean`, `DungAAF.lean`, `DungDefinitions.lean`, `DungFixedPoint.lean`, `EndToEnd.lean`, `FiniteGaloisAdjunction.lean`, `FiniteMonotoneIteration.lean`, `FiniteRosetta.lean`, `HornAAFContract.lean`, `HornDefinitions.lean`, `HornFixedPoint.lean`, `HornOperationalRefinement.lean`, `JC_Formalization.lean`, `LegalSyntax.lean`, `SafetyTheorems.lean`, `ScratchApi.lean`, `SupZeroLemma.lean`, `TemporalKripke.lean`, `UnifiedModel.lean`, `WeightedSupNorm.lean`
-
-Lean is a **proof assistant** (interactive theorem prover). It verifies mathematical statements by type-checking proof terms. In this project, Lean proves the **mathematical specifications** -- the properties that the reasoning engine should satisfy. The Python implementation passes tests and has certificates, but is not itself formally proved by Lean.
-
-See [proofs/lean/juris_lean/](proofs/lean/juris_lean/) for the Lean workspace.
-
-## Spec-First Transition Gates
-
-| Gate | Status | Document |
-|------|--------|----------|
-| M1: Canonical Schema | CLOSED_FOR_FOUR_SLICES | [canonical_legal_schema.md](docs/spec/canonical_legal_schema.md) |
-| M2: DDL Minimal Core | CLOSED_FOR_FOUR_SLICES | [ddl_minimal_core.md](docs/spec/ddl_minimal_core.md) |
-| M3: Horn-to-AAF Contract | CLOSED_FOR_FOUR_SLICES | [horn_to_aaf_contract.md](docs/spec/horn_to_aaf_contract.md) |
-| M4: Certificate/Checker Boundary | CLOSED_FOR_FOUR_SLICES | [certificate_checker_boundary.md](docs/spec/certificate_checker_boundary.md) |
-| M5: Unified Stopping Statement | CLOSED | [FORMAL_RELEASE_REPORT.md](docs/formal-release/FORMAL_RELEASE_REPORT.md) |
-
-## Canonical Types (11)
-
-`LegalFact`, `LegalRule`, `LegalNorm`, `LegalClaim`, `Argument`, `Attack`, `Priority`, `Violation`, `Reparation`, `DecisionStatus`, `ProofTrace`
-
-## DDL Modalities
-
-4 modalities: OBLIGATION, PROHIBITION, PERMISSION, CONSTITUTIVE.
-4 repair modes. 3 exception classes.
-
-Canonical sources: `proofs/lean/juris_lean/JurisLean/LegalSyntax.lean` and `theory/spec/canonical_semantics.py`
-
-## Repository Structure
-
-```
-legal-math-modeling/
-+-- paper/                              # 13 mathematical papers
-|   +-- main.md                         #   Core paper (13 chapters, KaTeX)
-|   +-- main.tex                        #   LaTeX source
-|   +-- icail_full_paper.md             #   ICAIL consolidated submission
-|   +-- ... (12 topic-specific papers)
-|
-+-- theory/                             # 59 Python theory modules
-|   +-- canonical_semantics.py          #   Canonical type definitions (authoritative)
-|   +-- model_status.py                 #   Trust label system
-|   +-- argumentation_horn_unification.py # Dung AAF + Horn unification
-|   +-- bounded_horn_correctness.py     #   Horn correctness proof
-|   +-- temporal_kripke_ltl.py          #   Kripke temporal models
-|   +-- non_interference_cbl.py         #   CBL non-interference
-|   +-- ... (53 more modules)
-|
-+-- proofs/                             # Machine-reproducible proofs
-|   +-- engineering_proof_artifacts/    #   Engineering proof artifacts
-|   +-- strict_proof_baseline/          #   Strict baseline proofs
-|   +-- lean/juris_lean/JurisLean/     #   Lean 4 formalization (32 files)
-|   +-- formal_verification_logs/       #   Codex 7-tool-chain audit
-|
-+-- verification/                       # Z3 SMT verification
-|   +-- verification_engine.py          #   Checks: consistency, LFP, pi_legal, DP
-|
-+-- data/                               # Legal validation datasets
-|   +-- cn_legal/                       #   PRC claims (6 domains)
-|   +-- us_legal/                       #   US legal data
-|   +-- hk_legal/                       #   Hong Kong legal data
-|   +-- aaf_legal/                      #   AAF rebuttal patterns
-|   +-- banach_pricing/                 #   Banach pricing data
-|   +-- external/                       #   COMPAS, LegalBench, SPC
-|
-+-- docs/                               # Documentation
-    +-- formal-release/                 #   Release boundary (canonical truth)
-    +-- final-closure/                  #   Closure and audit summary
-    +-- audit/                          #   Theorem matrix, proof ledger
-    +-- modeling/                       #   Modeling documents
-    +-- history/                        #   Archival development logs
-```
-
-## Quick Start
+## Commands
 
 ```bash
-git clone https://github.com/laubeing-droid/legal-math-modeling.git
-cd legal-math-modeling
-pip install -r requirements.txt
-
-# Run the trust label system
-python -m theory
-
-# Run Z3 verification
-python verification/verification_engine.py
-
-# Run adversarial tests
-python -m pytest proofs/engineering_proof_artifacts/adversarial/
-
-# Run all strict proofs
-python proofs/strict_proof_baseline/run_all_proofs.py
-
-# Build Lean formalization (requires Lean 4 + Mathlib)
+python -m pytest -q
+python scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean
 cd proofs/lean/juris_lean && lake build
 ```
 
-## Read This First
-
-For current truth, read in this order:
-
-1. [FORMAL_RELEASE_REPORT.md](docs/formal-release/FORMAL_RELEASE_REPORT.md) -- release boundary and build evidence
-2. [theorem_manifest.json](docs/formal-release/theorem_manifest.json) -- canonical machine-readable theorem list
-3. [canonical_legal_schema.md](docs/spec/canonical_legal_schema.md) -- M1 gate
-4. [ddl_minimal_core.md](docs/spec/ddl_minimal_core.md) -- M2 gate
-5. [horn_to_aaf_contract.md](docs/spec/horn_to_aaf_contract.md) -- M3 gate
-6. [certificate_checker_boundary.md](docs/spec/certificate_checker_boundary.md) -- M4 gate
-7. [FORBIDDEN_CLAIMS.md](docs/formal-release/FORBIDDEN_CLAIMS.md) -- claims that cannot be made
-8. [ALLOWED_CLAIMS.md](docs/formal-release/ALLOWED_CLAIMS.md) -- claims that can be made
-9. [SORRY_LEDGER.md](SORRY_LEDGER.md) -- deferred axiom tracking
-
-## Repository Role
-
-This repository is the **specification source and formalization boundary**
-for `juris-calculus`. It is NOT the runtime implementation.
-
-**Current status:** `spec-first-transition-ready-plus-four-slices` -- the
-canonical schema, DDL minimal core, Horn-to-AAF contract, certificate/checker
-boundary, and four vertical slices are closed for contract breach, license,
-permission, and priority within the formal model.
-
-**After this point:** main engineering effort shifts to `juris-calculus`.
-New math work in this repo only as "support for JC new capabilities" --
-not as independent research expansion.
-
-**Public boundary:** See [PUBLIC_PRIVATE_BOUNDARY.md](docs/disclosure/PUBLIC_PRIVATE_BOUNDARY.md).
-This repo continues public. `juris-calculus` public scope is narrowed to
-the auditable kernel; commercial layers stop expanding publicly.
-
-## Precise Claim Language
-
-**For this repository:**
-> The finite monotone system, Dung grounded fixed-point layer, finite Horn
-> closure layer, and four Lean vertical slices for contract breach, license,
-> permission, and priority have completed repository-level specification
-> sealing. Banach remains an independent incomplete research track.
-
-**For the engineering layer:**
-> Lean has proved the mathematical specification boundary. The Python
-> engineering implementation is validated through tests, certificate checks,
-> and refinement baselines, but has not been formally proved as a whole by
-> this repository.
-
-**For Banach:**
-> Banach-related work is retained as an archived research track and is not
-> part of `formal-core-v1`.
-
-**For UnifiedModel:**
-> `UnifiedModel.lean` is an independent composition proof (Kripke -> Horn ->
-> AAF -> Banach). It is not on the blocking path and does not represent
-> production end-to-end correctness.
-
-## Cross-Repo Relationship
-
-| Repo | Role | Branch |
-|------|------|--------|
-| `legal-math-modeling` (this repo) | Mathematical companion | `master` |
-| `juris-calculus` | Production runtime | `main` |
-| `deli-autoresearch` | Research orchestrator | `main` |
-
-- `legal-math-modeling` proves the **specifications**
-- `juris-calculus` implements the **runtime**
-- `deli-autoresearch` orchestrates **long-horizon research**
-
-## License
-
-[CC BY 4.0](LICENSE)
+Run commands on the relevant commit before making release claims.

@@ -1,61 +1,47 @@
-# Codex Handoff: Code Elevation Task Book
+# Codex Handoff
 
-Date: 2026-06-11
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
-## 1. Current State
+## Purpose
 
-The mathematical model has been upgraded from early drafts to an evidence-calibrated baseline. The next phase is not to continue writing proof reports, but to enter code elevation.
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `audit` area without expanding the formal claim surface.
 
-The verified formal state is:
+## Authority
 
-- **94 unique theorems** across 25 Lean files, **0 sorry**
-- `lake build JurisLean` passes 2954 jobs with 0 errors
-- **JC_Formalization.lean** status register: proved_theorems_card=7, empirical_proxy_card=2, refuted_theorems_card=1, pending_theorems_card=10
-- **5 gates:** M1-M4 SUBSTANTIAL_PARTIAL/PARTIAL, M5 CLOSED
+Use this order of authority when resolving conflicts:
 
-## 2. Handoff Inputs
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-1. `theory/model_status.py`
-2. `proofs/lean/juris_lean/JurisLean/JC_Formalization.lean`
-3. `proofs/engineering_proof_artifacts/` (17 proof artifacts)
-4. `data/cn_legal/` (structured claims and statutes)
-5. `data/aaf_legal/` (AAF validation data)
-6. `data/benchmarks/multi_model_cases.jsonl` (13 benchmark cases)
+## Current Boundary
 
-## 3. Code Elevation P0
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-1. Implement `EvidenceStatus` / `TrustLabel` unified enum.
-2. Split evaluator:
-   - `horn_closure`
-   - `build_attack_graph`
-   - `grounded_extension`
-3. Add source manifest validator.
-4. Add pricing data-quality gate.
-5. Add DP policy loader.
+## Allowed Claims
 
-## 4. Non-Violable Boundaries
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-1. Do not label a toy proof as a real proof.
-2. Do not label fee_schedule as real_timesheet.
-3. Do not derive epsilon automatically from legal privilege.
-4. Do not label the original evaluator as monotone.
-5. Do not label a Lean draft as a Lean proof (0 sorry is required).
-6. Do not reference ghost Lean files (e.g., LegalSyntax.lean, DDLDefinitions.lean) as existing.
+## Prohibited Claims
 
-## 5. Acceptance Commands
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
 
-Post-elevation verification must include:
+## Verification Rule
 
-```bash
-python -m theory --summary
-python run_all_math_proofs.py
-python run_legal_validation_experiments.py
-```
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
 
-And must add:
+## Maintenance Notes
 
-1. Evaluator nonmonotone counterexample regression.
-2. AAF 100-case fixture validation.
-3. Pricing proxy downgrade test.
-4. DP epsilon policy test.
-5. Lean: `lake build JurisLean` must remain 0 errors, 0 sorry.
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

@@ -1,63 +1,47 @@
-# History Archive Guide
+# Readme
 
-`docs/history/` is an archive of the project's development history, not the current release boundary.
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
 ## Purpose
 
-Use this directory for:
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `history` area without expanding the formal claim surface.
 
-- Phase summaries and development logs
-- Earlier modeling assumptions and their evolution
-- Methodology notes on machine provability
-- Historical Socratic audit snapshots
+## Authority
 
-Do not use this directory as the source of current release claims.
+Use this order of authority when resolving conflicts:
 
-## Current Truth Sources
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-For current status, read these instead:
+## Current Boundary
 
-1. `docs/modeling/02_逆向工程审计.md` — Lean audit results
-2. `docs/modeling/06_第四阶段验证_cn.md` — Verification results
-3. `program/PLANS.md` — Current program state
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-## Archive Files
+## Allowed Claims
 
-| File | Content |
-|------|---------|
-| `development_log_20260523_0614.md` | Early-phase modeling and audit archive (May-June 2026) |
-| `development_log_20260616_0617.md` | Repository creation and first-release archive |
-| `llm_machine_provability.md` | Historical methodology note on machine-provability assumptions |
-| `socratic_200_rounds.md` | First 200-round Socratic audit summary archive |
-| `socratic_200_rounds_deep.md` | Second 200-round deep audit summary archive |
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-## Project Timeline
+## Prohibited Claims
 
-| Period | Key Events |
-|--------|------------|
-| 2026-05-23 ~ 2026-06-14 | Initial legal math modeling, first theorem/counterexample structures, early alignment attempts |
-| 2026-06-16 ~ 2026-06-17 | Repository creation from experimental materials, first README and release structure |
-| 2026-06-17+ | Formal core development: 94 theorems, 0 sorry, 25 Lean files, 59 Python modules |
-| 2026-06-28 | Current: FORMAL_CORE_RELEASED status |
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
 
-## Staleness Rule
+## Verification Rule
 
-Historical files may contain:
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
 
-- Older theorem counts (before final audit settled on 94)
-- Earlier Banach assumptions (before formalization)
-- Pre-release branch references
-- Ambitions later downgraded by audit
+## Maintenance Notes
 
-Those statements are preserved as historical context only.
-
-## Current Project Metrics
-
-| Metric | Value |
-|--------|-------|
-| Lean theorems | 94 (43 core + 51 supporting) |
-| sorry | 0 |
-| Build jobs | 2954 |
-| Lean files | 25 |
-| Python modules | 59 |
-| Spec types | 11 |
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

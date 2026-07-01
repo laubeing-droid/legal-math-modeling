@@ -1,106 +1,47 @@
-# Codex Audit Record: 5 Review Rounds + Fixes
+# Codex Review Rounds
 
-> Date: 2026-06-16 to 2026-06-17
->
-> This document records the full 5-round Codex audit process from creation to pre-release of the legal-math-modeling repository.
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
----
+## Purpose
 
-## Round 1: Standard Review
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `audit` area without expanding the formal claim surface.
 
-**Tool:** `/codex:review`
-**Findings:** 1 P2
+## Authority
 
-| # | File | Issue | Severity | Fix |
-|---|------|------|--------|------|
-| 1 | `requirements.txt` | PyYAML undeclared; `k3_empirical_analysis.py` imports yaml | P2 | Add `pyyaml>=6.0` |
+Use this order of authority when resolving conflicts:
 
----
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-## Round 2: Adversarial Review (First)
+## Current Boundary
 
-**Tool:** `/codex:adversarial-review`
-**Findings:** 2
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-| # | File | Issue | Severity | Fix |
-|---|------|------|--------|------|
-| 1 | `run_all_proofs.py:25-46` | Lean check 60s timeout; proof_run_results.json records Timeout | HIGH | Extend timeout to 300s; mark `TOOLCHAIN_PENDING` + explanation on timeout |
-| 2 | `evidence_evaluation.py:106-140` | Substring matching causes "signed" to match "unsigned" false positive | MEDIUM | Use word-boundary matching `_contains_word_boundary()`, symmetric conflict pairs |
+## Allowed Claims
 
----
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-## Round 3: Adversarial Review (Second)
+## Prohibited Claims
 
-**Tool:** `/codex:adversarial-review`
-**Findings:** 1 (false positive)
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
 
-| # | File | Issue | Severity | Conclusion |
-|---|------|------|--------|------|
-| 1 | `theory/temporal_law_engine.py:158-159` | Claimed unterminated string literal | HIGH | **False positive:** Review environment lacked Python. `py_compile` and `ast.parse` both pass |
+## Verification Rule
 
----
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
 
-## Round 4: Adversarial Review (Third)
+## Maintenance Notes
 
-**Tool:** `/codex:adversarial-review`
-**Findings:** 2
-
-| # | File | Issue | Severity | Fix |
-|---|------|------|--------|------|
-| 1 | `evidence_dependency_manager.py:23-24` | `from model_status import EvidenceStatus` package import failure | HIGH | Change to `from .model_status import EvidenceStatus` (with fallback) |
-| 2 | `evidence_dependency_manager.py:51-56` | `add_node` overwrite leaves stale reverse dependency edges | MEDIUM | Clean old `_dependents` set before overwrite |
-
----
-
-## Round 5: Internal Code Review (Claude self-review)
-
-**Tool:** 9-angle internal review (line-by-line / removed-behavior / cross-file / language-pitfall / reuse / simplification / efficiency / altitude)
-**Findings:** 8
-
-### Python Code (6 items)
-
-| # | File | Line | Issue | Severity | Fix |
-|---|------|------|------|--------|------|
-| 1 | `evidence_dependency_manager.py` | 100 | Propagation logic uses `new_status` (root node status) instead of actual dependency status | HIGH | Check `any_dep_refuted` / `all_deps_proved` instead |
-| 2 | `bayesian_legal_reasoning.py` | 112 | `odds_to_probability(-1.0)` division by zero | HIGH | Add `o <= -1.0` guard |
-| 3 | `evidence_evaluation.py` | 362 | `max()` empty sequence (no-premise rule) | MEDIUM | Add `if rule.premises:` branch |
-| 4 | `formal_concept_analysis.py` | 141 | Variable `a` shadows outer scope | MEDIUM | Rename to `attr` |
-| 5 | `data_quality_label.py` | 27 | Duplicate `DataQuality` enum definition | MEDIUM | Import from `model_status.py` |
-| 6 | `bayesian_legal_reasoning.py` | 289 | Zero denominator silently returns 0.0 | LOW | Raise `ValueError` |
-
-### Papers (4 items)
-
-| # | File | Issue | Severity | Fix |
-|---|------|------|--------|------|
-| 7 | `icail_full_paper.md:276` | Grounded extension "non-empty" incorrect | ERROR | Change to "exists (possibly empty)" |
-| 8 | `icail_full_paper.md:403` | LTL embedding Diamond V(w2) imprecise | CRITICAL | Use world atoms $p_j$ instead of valuation $V(w_j)$ |
-| 9 | `icail_full_paper.md:574` | Duplicate reference table | ERROR | Delete second occurrence |
-| 10 | `ai_liability.md:39,45` | Definition 4 contradicts Theorem 3; Theorem 1 circular reasoning | CRITICAL | Unify Definition 4 to use $a^*$; Theorem 1 explicitly state assumptions |
-
----
-
-## Audit Statistics
-
-| Metric | Value |
-|---|---|
-| Review rounds | 5 |
-| Total findings | 14 (12 real + 1 false positive + 1 duplicate) |
-| CRITICAL | 2 (fixed) |
-| HIGH | 4 (fixed) |
-| MEDIUM | 5 (fixed) |
-| ERROR | 2 (fixed) |
-| LOW | 1 (fixed) |
-| False positive | 1 (temporal_law_engine.py syntax check; Codex lacked Python) |
-| Current status | **All fixed, zero remaining** |
-
----
-
-## Post-Fix Verification
-
-| Verification | Result |
-|---|---|
-| `python -m theory` | 7 statements display correctly |
-| 5 fixed modules | All exit code 0 |
-| `grep` hardcoded paths | Zero matches |
-| Paper cross-references | 60 label / 31 ref / 0 orphan |
-| EN/CN README consistency | Statistics consistent |
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

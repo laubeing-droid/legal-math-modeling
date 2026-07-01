@@ -1,40 +1,47 @@
-# 第二轮 200 轮深挖审计归档
+# Socratic 200 Rounds Deep
 
-## 文件定位
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
-这是第二轮深挖式苏格拉底审计的历史摘要。
+## Purpose
 
-与第一轮相比，它更接近"系统到底哪里还不诚实、哪里还没闭环"的清单。
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `history` area without expanding the formal claim surface.
 
-## 第二轮最重要的遗产
+## Authority
 
-1. **数学规格与工程实现之间存在真实鸿沟**：Python 理论模块（59 个）和 Lean 形式化（25 个文件）各有定位，不可混为一谈。
-2. **模块数量不等于系统闭环能力**：最终审计统一为 94 个唯一 Lean 定理，而非按模块数计。
-3. **信任标签比堆 theorem 数量更重要**：11 个规范类型确保了数学模型和工程实现之间的接口一致性。
-4. **Banach、DP、真实数据校准必须拆成独立轨道**：避免单一轨道阻塞整体进度。
+Use this order of authority when resolving conflicts:
 
-## 对当前仓库状态的影响
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-后续 formal-core 封板、Banach 轨道隔离、禁止夸大声明，都是从这轮审计中直接演化出来的：
+## Current Boundary
 
-| 审计驱动 | 当前实现 |
-|----------|----------|
-| 必须清除幽灵文件 | 13 个幽灵文件引用已清除 |
-| 必须验证 sorry | AxiomAudit.lean 保证 0 sorry |
-| 必须分离研究和形式化 | Python 理论模块标记为架构目录，Lean 文件为形式证明 |
-| 必须 obstruction-first | 跨结构映射采用 obstruction-first 路由 |
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-## 当前已闭环的成果
+## Allowed Claims
 
-| 成果 | 状态 |
-|------|------|
-| 94 个 Lean 定理 | 形式化完成，0 sorry |
-| 25 个 Lean 文件 | 全部实际存在 |
-| 2954 构建 jobs | 通过 |
-| 59 个 Python 模块 | 编译通过 |
-| 11 个规范类型 | 已定义 |
-| 幽灵文件清除 | 完成 |
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-## 当前正确读取方式
+## Prohibited Claims
 
-把这份文件当成"为什么后来要做 release boundary 收紧"的解释，而不是"仓库现在已经完成了哪些数学目标"的唯一真相源。当前真相源以 `docs/modeling/02_逆向工程审计.md` 为准。
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
+
+## Verification Rule
+
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
+
+## Maintenance Notes
+
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

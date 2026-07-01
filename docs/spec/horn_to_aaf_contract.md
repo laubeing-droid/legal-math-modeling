@@ -1,100 +1,47 @@
-# Horn -> AAF Contract
+# Horn To Aaf Contract
 
-**Date:** 2026-07-01
-**Status:** CLOSED_FOR_FOUR_SLICES
-**Gate M3:** CLOSED_FOR_FOUR_SLICES
-**Authority:** `legal-math-modeling`
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
 ## Purpose
 
-This document records the contract from Horn derivations to AAF arguments and
-attacks for the four vertical slices: contract breach, license, permission, and
-priority.
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `spec` area without expanding the formal claim surface.
 
-The contract does not claim a full Lean proof of the Python runtime. It states
-the semantic boundary that runtime shadow fixtures must preserve.
+## Authority
 
-## Lean Artifacts
+Use this order of authority when resolving conflicts:
 
-`proofs/lean/juris_lean/JurisLean/HornAAFContract.lean` defines:
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-- `HornDerivation`
-- `compileHornArgument`
-- `compileExceptionAttack`
-- `compilePriorityDefeat`
-- `checkerAcceptsArgument`
+## Current Boundary
 
-It proves:
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-- `horn_derivation_to_argument_conclusion`
-- `horn_derivation_to_argument_supported`
-- `exception_fact_to_attack_kind`
-- `priority_defeat_to_attack_kind`
-- `no_unsupported_argument_accepted`
+## Allowed Claims
 
-`AttackDecision.lean` proves priority-specific safety properties:
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-- `priority_defeat_requires_active`
-- `priority_defeat_requires_evidence`
-- `missing_priority_evidence_no_defeat`
-- `self_attack_not_priority_defeat`
-- `priority_cycle_symmetric`
+## Prohibited Claims
 
-## Existing Core Foundation
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
 
-The general Horn and Dung fixed-point layers remain the core mathematical
-foundation:
+## Verification Rule
 
-| Layer | Lean files |
-|---|---|
-| Horn closure | `HornDefinitions.lean`, `HornFixedPoint.lean` |
-| Dung grounded extension | `DungDefinitions.lean`, `DungFixedPoint.lean` |
-| finite monotone iteration | `FiniteMonotoneIteration.lean` |
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
 
-## Python Contract
+## Maintenance Notes
 
-`theory/spec/horn_aaf_contract.py` checks:
-
-- all arguments trace to closure facts,
-- all attacks refer to known argument ids,
-- exception attacks carry an explicit defeat direction,
-- exception and rebuttal are distinguishable when both appear,
-- priority defeat is explicit in the AAF attack layer,
-- accepted ids are bounded by constructed arguments.
-
-`theory/spec/reference_semantics.py` uses this contract in the four-slice
-reference evaluators.
-
-## Four-Slice Closure
-
-| Slice | Horn -> AAF contract evidence |
-|---|---|
-| contract breach | breach argument exists; force-majeure exception attack can defeat it |
-| license | license permission argument and unauthorized-use argument are separated; priority defeat is explicit |
-| permission | permission does not become obligation; unresolved conflict can remain `UNDECIDED` |
-| priority | missing evidence, cycle, and self-attack do not default to a winner |
-
-## Runtime Differential Evidence
-
-`runtime/legal_math_four_slice_differential.json` records the local reference
-and same-name JC shadow fixture expectations. The JC repo must consume these
-fixture names in its real runtime shadow stage.
-
-## Boundary
-
-- Horn closure does not resolve legal conflict.
-- Exception and priority become AAF attacks, not Horn facts.
-- Unsupported arguments cannot be accepted by the checker.
-- Priority evidence is required before a priority defeat can decide a result.
-- This file does not prove the complete runtime implementation.
-
-## Verification
-
-```powershell
-cd proofs/lean/juris_lean
-lake build JurisLean
-
-cd ..\..\..
-python -m pytest tests\spec\test_spec_transition.py -q
-python -m theory.spec.runtime_differential --output runtime\legal_math_four_slice_differential.json
-```
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

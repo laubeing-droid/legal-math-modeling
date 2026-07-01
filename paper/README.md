@@ -1,73 +1,39 @@
-# Papers
+# Readme: A Release-Bounded Note
 
-This directory contains the mathematical papers of the `legal-math-modeling` project.
+## Abstract
 
-**Last full rewrite:** 2026-06-27 (aligned with `spec-first-transition-ready` status)
+This rewritten paper states a source-bounded view of the `legal-math-modeling` project. The project separates formal specification work from runtime engineering. It uses Lean files, Python regression fixtures, and audit manifests to document a limited proof boundary for selected legal-reasoning structures. The paper does not claim that a production legal AI system, a full juris-calculus runtime, or private legal workflows have been formally proved correct.
 
-**Important:** All papers now reference only Lean theorems that actually exist in the codebase. Work that is PLANNED but not yet formalized is explicitly marked. See `docs/formal-release/FORBIDDEN_CLAIMS.md` for claims that must not appear in these papers.
+## 1. Scope
 
-## Core Paper
+The repository studies a specification layer for legal reasoning. The current public boundary is limited to canonical legal types, a minimal DDL model, a Horn-to-AAF compiler contract, a certificate/checker boundary, and four slices: contract breach, license, permission, and priority.
 
-| File | Language | Description |
-|------|----------|-------------|
-| [main.md](main.md) | English | Full 13-chapter core paper with KaTeX-rendered formulas |
-| [main_cn.md](main_cn.md) | Chinese | Complete Chinese version of the core paper |
-| [main.tex](main.tex) + [sections/](sections/) | LaTeX | LaTeX source for PDF generation (13 section files) |
+## 2. Formal Sources
 
-## Consolidated Submission
+Formal statements must be read from `proofs/lean/juris_lean/JurisLean/`. At rewrite time the tree contains 32 Lean source files and 126 theorem declarations. These counts are source inventory facts, not a release certificate for the current commit.
 
-| File | Description |
-|------|-------------|
-| [icail_full_paper.md](icail_full_paper.md) | ICAIL 2026 consolidated submission (14 chapters) |
+## 3. Method
 
-## Topic Papers
+The method is specification-first:
 
-| File | Topic | Key Contribution |
-|------|-------|-----------------|
-| [explainable_legal_reasoning.md](explainable_legal_reasoning.md) | Explainable legal reasoning | Stratified architecture for explainability through formal methods |
-| [non_monotonicity.md](non_monotonicity.md) | Non-monotonicity | Formal counterexample proving unified evaluator is non-monotone |
-| [dp_impossibility.md](dp_impossibility.md) | DP impossibility | Counterexample: privilege level does not determine unique epsilon |
-| [graph_similarity_topology.md](graph_similarity_topology.md) | Graph similarity | Topological counterexamples: similarity is not a metric |
-| [multi_ai_formalization.md](multi_ai_formalization.md) | Multi-AI methodology | Adversarial multi-AI formal verification methodology |
-| [argumentation_frameworks.md](argumentation_frameworks.md) | Argumentation | Dung AF vs ASPIC+ comparison |
-| [legal_reasoning_paradigms.md](legal_reasoning_paradigms.md) | Reasoning paradigms | Four paradigms formalized as composable modules |
-| [probabilistic_legal_reasoning.md](probabilistic_legal_reasoning.md) | Probabilistic reasoning | Bayesian evidence evaluation under standards of proof |
-| [argument_strength.md](argument_strength.md) | Argument strength | Impossibility theorem for argument strength functions |
-| [legal_analogy.md](legal_analogy.md) | Legal analogy | Case-based reasoning; distinguishing is NP-hard |
-| [mathematical_structures.md](mathematical_structures.md) | Mathematical structures | Lattices, fixpoints, Kripke models, and functors |
-| [ai_liability_infrastructure.md](ai_liability_infrastructure.md) | AI liability | Trust labels as AI liability infrastructure under EU AI Act |
+- define canonical legal objects before runtime use;
+- keep LLM output as candidate material only;
+- require source-bound verification before a fact can be used as verified input;
+- separate mathematical proof, engineering tests, generated reports, and narrative explanation;
+- preserve counterexamples and limitations instead of converting failures into positive claims.
 
-## Formalization Status Legend
+## 4. Topic Contribution
 
-In the papers, theorems are marked with their verification status:
+For this paper topic, the contribution is a bounded framing rather than an unrestricted correctness result. The topic is useful only where its assumptions match the canonical schema and where runtime evidence is separately available.
 
-| Mark | Meaning |
-|------|---------|
-| **PROVEN (Lean)** | Machine-checked in Lean 4 (0 sorry, 0 custom axiom; Lean built-in axiom dependencies disclosed by AxiomAudit) |
-| **VERIFIED (Python)** | Verified by Python tests/exhaustive enumeration |
-| **PLANNED** | Target formalization exists as a design but Lean file does not yet exist |
-| **REFUTED** | Explicit counterexample constructed |
+## 5. Limitations
 
-## Reading Order
+This paper does not establish full runtime correctness, jurisdiction-wide legal coverage, commercial workflow readiness, or private benchmark validity. Banach-related material and generated AI audit reports remain explanatory unless tied to current source and current verification evidence.
 
-For newcomers:
+## 6. Disclosure
 
-1. Start with `main.md` or `main_cn.md` for the complete mathematical framework
-2. Read `non_monotonicity.md` for the key architectural insight (stratification requirement)
-3. Read `mathematical_structures.md` for the survey of underpinning structures
-4. Explore topic papers based on interest
+No customer data, private legal strategy, or private benchmark content is included. Claims in this paper are subordinate to the repository manifests and source files.
 
-## Key Lean Files Referenced
+## References
 
-| Lean File | Content | Status |
-|-----------|---------|--------|
-| `FiniteMonotoneIteration.lean` | Generic finite monotone iteration kernel (9 theorems) | PROVEN |
-| `DungFixedPoint.lean` | Dung grounded extension (17 theorems) | PROVEN |
-| `HornFixedPoint.lean` | Horn closure (10 theorems) | PROVEN |
-| `WeightedSupNorm.lean` | Weighted sup metric (4 theorems) | PROVEN |
-| `BanachEffectiveNodes.lean` | Pricing contraction (8 theorems) | PROVEN |
-| `UnifiedModel.lean` | Unified composition (16 theorems) | PROVEN |
-| `FiniteRosetta.lean` | Cross-jurisdiction obstruction (9 theorems) | PROVEN |
-| `FiniteGaloisAdjunction.lean` | Galois connection (2 theorems) | PROVEN |
-| `TemporalKripke.lean` | Temporal invariants (6 theorems) | PROVEN |
-| `JC_Formalization.lean` | Proof-status registry (12 theorems) | PROVEN |
+See `paper/references.bib` for the local reference set used by the rewritten paper directory.

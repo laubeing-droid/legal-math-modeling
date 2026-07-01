@@ -1,40 +1,47 @@
-# 2026-05-23 ~ 2026-06-14 历史归档
+# Development Log 20260523 0614
 
-## 文件定位
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
-这是早期建模阶段的历史摘要。它记录了项目从初始探索到第一次形式化对齐的过程。
+## Purpose
 
-**不是当前发布状态说明。** 当前状态见 `docs/modeling/02_逆向工程审计.md`。
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `history` area without expanding the formal claim surface.
 
-## 这一阶段做了什么
+## Authority
 
-1. **初始法律数学建模材料整理**：从多份实验资料中提取数学结构，建立初步的分层模型。
-2. **第一轮 theorem/counterexample 结构搭建**：识别出哪些数学性质可以形式化，哪些被反例推翻。
-3. **工程与形式化之间的早期对齐尝试**：探索 Python 理论模块和 Lean 形式化之间的关系。
+Use this order of authority when resolving conflicts:
 
-## 这一阶段的真实价值
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-- 奠定了"证据边界必须显式标注"的工作方法
-- 暴露了 Banach、DP、图相似度、常量校准等高风险口径
-- 为后续 formal-core 收口提供了反例和边界清单
-- 确立了 Horn 闭包和 Dung AAF 的分层架构
+## Current Boundary
 
-## 关键发现
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-1. 法律推理不能被整体当作单一数学对象处理，必须分层
-2. 反例不是失败记录，而是架构修正的证据
-3. 研究仓、工程仓、形式化仓必须边界分离
-4. 数学规格与工程实现之间存在真实鸿沟
+## Allowed Claims
 
-## 当前已形式化的成果
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-从这一阶段的探索最终发展为：
+## Prohibited Claims
 
-- 94 个 Lean 定理（43 core + 51 supporting），0 sorry
-- 25 个 Lean 源文件
-- 59 个 Python 理论模块
-- 11 个规范类型
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
 
-## 使用建议
+## Verification Rule
 
-把这份文件当作"问题从哪里暴露出来"的历史记录，而不是"今天已经完成了什么"的真相源。
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
+
+## Maintenance Notes
+
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

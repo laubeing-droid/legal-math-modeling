@@ -1,43 +1,47 @@
-# LLM 机器可证性历史说明
+# Llm Machine Provability
 
-## 文件定位
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
-这是一份历史方法论说明，讨论"哪些证明更适合转成机器可校验工件"。
+## Purpose
 
-**不是当前 theorem 状态清单。** 当前状态见 `docs/modeling/02_逆向工程审计.md`。
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `history` area without expanding the formal claim surface.
 
-## 仍然成立的核心观点
+## Authority
 
-以下判断今天仍然有效：
+Use this order of authority when resolving conflicts:
 
-1. 计算机可直接复核的证明最适合交给自动化流水线
-2. 需要长链创造性推理的证明最容易出现夸大和漏洞
-3. Lean、SMT、穷举、证书校验的价值在于把"看起来对"变成"可复核"
-4. 有限结构上的穷举验证是最可靠的证明方法之一
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-## 本项目的验证结果
+## Current Boundary
 
-这些方法论原则在本项目中得到了实践验证：
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-| 方法 | 应用 | 结果 |
-|------|------|------|
-| Lean 形式化 | 94 个定理 | 0 sorry，2954 jobs 构建通过 |
-| 公理审计 | AxiomAudit.lean | 可复现的零 sorry 验证 |
-| 有限穷举 | Dung AAF | 有限域上的 grounded extension 存在性 |
-| 单调迭代 | Horn 闭包 | 有限域上的不动点存在性 |
+## Allowed Claims
 
-## 需要修正的早期假设
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-这份早期说明默认了很多"未来会补完"的乐观表述。后续审计收紧了这些口径：
+## Prohibited Claims
 
-- 全维 Banach pricing 需要真实数据，当前仅有形式化框架
-- 跨法域全函子映射需要 obstruction-first 路由
-- 差分隐私 epsilon 是 policy config，不能从法律 privilege 自动推导
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
 
-## 当前正确结论
+## Verification Rule
 
-对本项目最有价值的不是"LLM 能证明多少"，而是：
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
 
-- 哪些内容已经形成可复现的形式化边界（94 定理，0 sorry）
-- 哪些内容仍然只是研究轨道（59 个 Python 模块）
-- 哪些内容必须禁止对外夸大（幽灵文件、未验证数据）
+## Maintenance Notes
+
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

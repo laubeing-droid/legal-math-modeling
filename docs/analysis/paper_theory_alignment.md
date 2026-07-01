@@ -1,48 +1,47 @@
-# Paper-to-Theory Alignment Matrix
+# Paper Theory Alignment
 
-This document maps each paper in the repository to its corresponding theory module(s) and proof artifact(s).
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
-## Alignment Table
+## Purpose
 
-| Paper | Theory Module(s) | Proof Artifact(s) |
-|-------|------------------|-------------------|
-| main.md Ch4 (Horn) | `bounded_horn_correctness.py`, `hypothesis_horn_pbt.py` | `proofs/strict_proof_baseline/p1e_aaf/`, `HornFixedPoint.lean` |
-| main.md Ch5 (AAF) | `argumentation_horn_unification.py` | `proofs/strict_proof_baseline/p1e_aaf/`, `DungFixedPoint.lean` |
-| main.md Ch7 (Kripke) | `temporal_kripke_ltl.py`, `kripke_supersedes_corrects.py` | `proofs/strict_proof_baseline/smt/`, `TemporalKripke.lean` |
-| main.md Ch8 (Rosetta) | `category_theory_rosetta.py` | `proofs/strict_proof_baseline/p0a_category/`, `FiniteRosetta.lean` |
-| main.md Ch9 (Banach) | `banach_pricing_contraction.py` | `proofs/strict_proof_baseline/p0c_banach/`, `BanachEffectiveNodes.lean` |
-| main.md Ch10 (DP) | `dp_legal_privilege.py` | `proofs/strict_proof_baseline/p0d_privilege_epsilon/` |
-| main.md Ch11 (CBL) | `non_interference_cbl.py` | -- |
-| main.md Ch12 (Trust) | `model_status.py`, `data_quality_label.py`, `evidence_dependency_manager.py` | `JC_Formalization.lean` |
-| non_monotonicity.md | `argumentation_horn_unification.py` | `proofs/strict_proof_baseline/p1e_aaf/` |
-| dp_impossibility.md | `dp_legal_privilege.py` | `proofs/strict_proof_baseline/p0d_privilege_epsilon/` |
-| graph_similarity_topology.md | -- | `proofs/engineering_proof_artifacts/graph_similarity/` |
-| multi_ai_formalization.md | -- | `proofs/formal_verification_logs/` |
-| argumentation_frameworks.md | `aspic_plus_framework.py` | `DungAAF.lean` |
-| legal_reasoning_paradigms.md | `analogical_reasoning.py`, `precedent_reasoning.py`, `legal_interpretation.py`, `interest_balancing.py` | -- |
-| probabilistic_legal_reasoning.md | `bayesian_legal_reasoning.py`, `evidence_evaluation.py`, `probabilistic_damages.py` | -- |
-| argument_strength.md | `argument_strength_ordering.py` | -- |
-| legal_analogy.md | `analogical_reasoning.py`, `case_retrieval.py` | -- |
-| ai_liability_infrastructure.md | `model_status.py`, `evidence_dependency_manager.py` | `JC_Formalization.lean` |
-| icail_full_paper.md | (all of the above) | (all of the above) |
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `analysis` area without expanding the formal claim surface.
 
-## Lean Formalization Coverage
+## Authority
 
-The following Lean files in `proofs/lean/juris_lean/JurisLean/` provide formal proofs for the core paper chapters:
+Use this order of authority when resolving conflicts:
 
-| Lean File | Paper Chapter | Theorems |
-|---|---|---|
-| `HornFixedPoint.lean` | Ch4 (Horn) | 10 theorems (monotonicity, termination, soundness, completeness, minimal model) |
-| `DungFixedPoint.lean` | Ch5 (AAF) | 13 theorems (monotonicity, termination, grounded fixed point, labelling, soundness) |
-| `TemporalKripke.lean` | Ch7 (Kripke) | 2 theorems (temporal guard, litigation guard) |
-| `FiniteRosetta.lean` | Ch8 (Rosetta) | 8 theorems (obstruction analysis, no total functor) |
-| `BanachEffectiveNodes.lean` | Ch9 (Banach) | 3 theorems (contraction, fixed point, uniqueness) |
-| `UnifiedModel.lean` | Multiple | 11 theorems (full chain, composition, soundness) |
-| `JC_Formalization.lean` | Ch12 (Trust) | 6 theorems (status register, advance properties) |
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-## Notes
+## Current Boundary
 
-- Papers with `--` in the Proof Artifact column have no dedicated machine-run proof directory; their claims are either structural/analytic or verified inline within the theory module itself.
-- Papers with `--` in the Theory Module column are standalone formalization exercises that contribute proof artifacts but do not correspond to a single runnable module.
-- `icail_full_paper.md` is the consolidated conference submission that subsumes all papers above.
-- The Lean formalization adds 126 theorem declarations (42 core + 84 supporting) with 0 sorry across 32 files.
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
+
+## Allowed Claims
+
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
+
+## Prohibited Claims
+
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
+
+## Verification Rule
+
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
+
+## Maintenance Notes
+
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

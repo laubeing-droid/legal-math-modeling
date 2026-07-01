@@ -1,167 +1,47 @@
 # License Permission Priority Slice
 
-## Scope
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
-This document defines the second semantic slice for the specification-first
-transition gate. Its purpose is to cover the three semantic elements that were
-not exercised by the contract-breach slice:
+## Purpose
 
-- `CONSTITUTIVE`
-- `PERMISSION`
-- `PRIORITY_DEFEAT`
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `analysis` area without expanding the formal claim surface.
 
-The slice is intentionally narrow and centers on licensed use:
+## Authority
 
-```text
-license_signed
--> rights_holder_authorized
--> license_status_active
--> use_within_scope
--> use_permitted
--> used_work
--> unauthorized_use
--> priority defeat by valid license
-```
+Use this order of authority when resolving conflicts:
 
-## Why This Slice Exists
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-The first slice proved that the specification layer could model:
+## Current Boundary
 
-- obligation
-- violation
-- exception defeat
-- remedy structure
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-But it did not test whether the reference boundary could distinguish:
+## Allowed Claims
 
-- constitutive status creation
-- positive permission claims
-- priority-based defeat rather than exception-based defeat
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-This slice closes that gap.
+## Prohibited Claims
 
-## Gate Alignment
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
 
-This slice contributes primarily to:
+## Verification Rule
 
-| Gate | Contribution |
-|---|---|
-| Gate 1 (Canonical Types) | Exercises CanonicalPriority, canonical permission semantics |
-| Gate 2 (Minimal DDL) | Exercises CONSTITUTIVE, PERMISSION, PRIORITY_DEFEAT |
-| Gate 3 (Horn->AAF Contract) | Exercises priority defeat direction |
-| Gate 4 (Reference Interpreter) | Licensed-use fixture for reference evaluator |
-| Gate 5 (Certificate/Checker) | Second slice exercised in test_spec_transition.py |
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
 
-## Canonical Entities Used
+## Maintenance Notes
 
-The slice uses the canonical semantic vocabulary in
-`theory/spec/canonical_semantics.py`.
-
-Required entities:
-
-- `CanonicalFact`
-- `CanonicalNorm`
-- `CanonicalRule`
-- `CanonicalPriority`
-- `CanonicalArgument`
-- `CanonicalAttack`
-- `CanonicalProofTrace`
-
-## Minimal Fact Vocabulary
-
-Suggested fact keys:
-
-- `license_signed`
-- `rights_holder_authorized`
-- `license_status_active`
-- `use_within_scope`
-- `used_work`
-- `use_permitted`
-- `unauthorized_use`
-
-## DDL Semantics
-
-### 1. Constitutive status
-
-```text
-if license_signed and rights_holder_authorized
-then license_status_active
-```
-
-This is a constitutive rule. It creates a legal status rather than a breach
-consequence.
-
-### 2. Permission
-
-```text
-if license_status_active and use_within_scope
-then use_permitted
-```
-
-This is a permission rule. It does not carry a violation consequence.
-
-### 3. General prohibition
-
-```text
-if used_work
-then unauthorized_use
-```
-
-This is a prohibition rule with alternative remedies. It represents the general
-ban on unlicensed use.
-
-### 4. Priority defeat
-
-```text
-licensed_use_permission > unauthorized_use_prohibition
-```
-
-This priority does not erase the prohibition from the semantic model. It causes
-the permission-backed argument to defeat the prohibition-backed violation
-argument when both are present.
-
-## Horn Layer
-
-The Horn layer derives:
-
-- `license_status_active`
-- `use_permitted`
-- `unauthorized_use_candidate`
-
-It does not resolve normative conflict. That remains in the AAF layer.
-
-## AAF Layer
-
-The AAF layer must explicitly encode:
-
-- permission-backed argument
-- prohibition-backed argument
-- priority defeat from the permission-backed argument to the prohibition-backed
-  violation argument
-
-The defeat must be represented as `PRIORITY_DEFEAT`, not collapsed into a
-generic exception.
-
-## Expected Decision Behavior
-
-Two reference fixtures are required:
-
-1. `priority_active=True`
-   expected result: `PROVED`
-   interpretation: the licensed in-scope use defeats the general prohibition
-
-2. `priority_active=False`
-   expected result: `REFUTED`
-   interpretation: without the priority relation, the general prohibition is not
-   defeated
-
-## Contract Points Tested
-
-This slice is specifically used to test:
-
-1. constitutive conclusions can be represented without violation semantics
-2. permission conclusions can be represented without violation semantics
-3. priority defeat is explicit in the attack layer
-4. certificate payloads preserve priority-based attacks
-5. the checker can validate the second slice without relying on contract-breach
-   assumptions
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

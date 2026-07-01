@@ -1,97 +1,47 @@
-# FINAL_FORMAL_RELEASE_REPORT
+# Final Formal Release Report
 
-**Date:** 2026-07-01
-**Release ID:** `formal-core-v1-plus-four-slices`
-**Status:** `spec-first-transition-ready-plus-four-slices`
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
-## Release Conclusion
+## Purpose
 
-Current approved public status:
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `formal-release` area without expanding the formal claim surface.
 
-| Dimension | Status |
-|---|---|
-| `formal_core_modules_status` | COMPLETE |
-| `four_slice_vertical_status` | COMPLETE_IN_FORMAL_MODEL |
-| `repository_formal_release_status` | LOCAL_EVIDENCE_COMPLETE |
-| `banach_status` | UNPROVED_TRACK_B |
-| `privacy_guarantee_status` | NOT_ESTABLISHED |
-| `full_jc_runtime_lean_proof` | NOT_CLAIMED |
+## Authority
 
-## Current Ground Truth Source
+Use this order of authority when resolving conflicts:
 
-| Item | Value |
-|---|---|
-| Branch | `master` |
-| Verification scope | Local-only Playbook scope; no push/tag/release |
-| Lean source guard | 0 sorry / 0 admit / 0 custom axiom / 0 `theorem : True`; Lean built-in axiom dependencies disclosed by `AxiomAudit` |
-| `lake build JurisLean` | 2961 jobs, 0 errors |
-| Four-slice differential evidence | `runtime/legal_math_four_slice_differential.json` |
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-## Counting Policy
+## Current Boundary
 
-| Metric | Value | Source |
-|---|---:|---|
-| Lean source files | 32 | `theorem_manifest.json` |
-| Core theorem declarations | 42 | `theorem_manifest.json` |
-| Supporting theorem declarations | 84 | `theorem_manifest.json` |
-| Total theorem declarations | 126 | `theorem_manifest.json` |
-| Four-slice vertical results | 32 | `theorem_manifest.json` |
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-## Core Theorem Distribution
+## Allowed Claims
 
-| File | Core theorems |
-|---|---:|
-| `DungFixedPoint.lean` | 16 |
-| `HornFixedPoint.lean` | 10 |
-| `FiniteMonotoneIteration.lean` | 9 |
-| `WeightedSupNorm.lean` | 4 |
-| `HornDefinitions.lean` | 2 |
-| `ContractionCondition.lean` | 1 |
-| **Total** | **42** |
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-## Four-Slice Modules
+## Prohibited Claims
 
-| File | Role |
-|---|---|
-| `LegalSyntax.lean` | canonical Lean types, stable serialization, DecisionStatus mapping, trust-label non-promotion |
-| `DDLDefinitions.lean` | obligation/permission/prohibition/constitutive core, direct violation and priority ordering |
-| `HornAAFContract.lean` | Horn derivation to argument, exception attack, priority defeat, unsupported-argument rejection |
-| `AttackDecision.lean` | priority active/evidence/cycle/self-attack properties |
-| `CertificateChecker.lean` | fail-closed certificate checker |
-| `SafetyTheorems.lean` | candidate/tainted/missing-evidence safety layer |
-| `EndToEnd.lean` | contract breach, license, permission, priority slice gates |
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
 
-## Closed Release Gates
+## Verification Rule
 
-- Repository-level local `lake build` evidence gate
-- `AxiomAudit` reproducibility gate
-- Lean source guard gate
-- Theorem manifest alignment gate
-- Formal release documentation consistency gate
-- Four-slice reference/shadow differential fixture gate
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
 
-## Boundary
+## Maintenance Notes
 
-The following remain outside the release boundary:
-
-- Full Lean proof of the `juris-calculus` Python runtime
-- Full ASPIC+ formalization
-- Banach complete fixed-point closure as a runtime claim
-- Differential privacy guarantees
-- Empirical calibration guarantees
-- Litigation automation by this repository
-
-## Recommended Public Statement
-
-> This repository has completed repository-level formal release closure for the
-> finite monotone iteration kernel, Dung grounded fixed-point layer, finite Horn
-> closure layer, and four Lean vertical slices for contract breach, license,
-> permission, and priority. The full `juris-calculus` runtime is not claimed as
-> end-to-end Lean-proven.
-
-## Related Documents
-
-- [`FORMAL_RELEASE_REPORT.md`](FORMAL_RELEASE_REPORT.md)
-- [`FORBIDDEN_CLAIMS.md`](FORBIDDEN_CLAIMS.md)
-- [`ALLOWED_CLAIMS.md`](ALLOWED_CLAIMS.md)
-- [`SPEC_FIRST_TRANSITION_READY.md`](SPEC_FIRST_TRANSITION_READY.md)
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

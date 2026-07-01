@@ -1,100 +1,47 @@
-# Final Closure Report
+# Final Report
 
-## Current Conclusion
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
-This repository should be understood at two levels:
+## Purpose
 
-```
-formal_core_modules_status: COMPLETE
-repository_formal_release_status: COMPLETE
-banach_status: PARTIAL (Track B)
-empirical_calibration_status: DATA_BLOCKED
-privacy_guarantee_status: NOT_ESTABLISHED
-```
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `final-closure` area without expanding the formal claim surface.
 
-## Current Repository State
+## Authority
 
-| Item | Value |
-|---|---|
-| Lean files | 25 |
-| Core theorems | 43 |
-| Supporting theorems | 51 |
-| Total unique theorems | 94 |
-| sorry count | 0 |
-| `lake build` | 2954 jobs, 0 errors |
-| AxiomAudit | PASS |
+Use this order of authority when resolving conflicts:
 
-## Core Count
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-| Category | Count |
-|---|---|
-| Core theorems (in 15 files with theorems) | 43 |
-| Supporting theorems | 51 |
-| Total unique theorems | 94 |
-| JC_Formalization.lean proved | 7 |
-| JC_Formalization.lean empirical_proxy | 2 |
-| JC_Formalization.lean refuted | 1 |
-| Proof artifacts PROVED | 10 |
-| Proof artifacts REFUTED | 3 |
-| Proof artifacts PENDING | 4 |
+## Current Boundary
 
-## What Has Been Completed
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-The formal core includes:
+## Allowed Claims
 
-1. **Finite monotone iteration kernel** (`FiniteMonotoneIteration.lean`: 10 theorems)
-2. **Dung grounded fixed-point layer** (`DungFixedPoint.lean`: 13 theorems)
-3. **Finite Horn closure layer** (`HornFixedPoint.lean`: 10 theorems)
-4. **Finite Galois adjunction** (`FiniteGaloisAdjunction.lean`: 1 theorem)
-5. **Finite Rosetta obstruction** (`FiniteRosetta.lean`: 8 theorems)
-6. **Temporal Kripke guard** (`TemporalKripke.lean`: 2 theorems)
-7. **Unified model chain** (`UnifiedModel.lean`: 11 theorems)
-8. **Banach contraction core** (5 files: 8 theorems)
-9. **Weighted sup-norm metric** (`WeightedSupNorm.lean`: 4 theorems)
-10. **Formal status register** (`JC_Formalization.lean`: 6 theorems)
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-All verified with:
+## Prohibited Claims
 
-- `lake build JurisLean` -- 2954 jobs, 0 errors
-- 0 sorry / 0 admit / 0 project custom axiom / 0 `theorem : True`
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
 
-## What Has Not Been Completed
+## Verification Rule
 
-The following are NOT included in the completed claim:
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
 
-- Banach complete fixed-point closed loop (Track B)
-- Full Python runtime proven by Lean
-- Real-world data calibration
-- Differential privacy formal guarantee
-- Automated litigation execution
+## Maintenance Notes
 
-## Gate Status
-
-| Gate | Name | Status |
-|---|---|---|
-| M1 | Canonical Semantic Types | SUBSTANTIAL_PARTIAL |
-| M2 | Minimal DDL Core | SUBSTANTIAL_PARTIAL |
-| M3 | Horn->AAF Contract | SUBSTANTIAL_PARTIAL |
-| M4 | Reference Interpreter | PARTIAL |
-| M5 | Certificate/Checker | CLOSED |
-
-## Banach Status
-
-Banach current public status: **PARTIAL (Track B)**
-
-The Banach module contains 8 theorems across 5 Lean files (BanachComplete.lean, BanachContraction.lean, BanachEffectiveNodes.lean, BanachFixedPoint.lean, ContractionCondition.lean), all verified with 0 sorry. However, the complete closed-loop proof connecting the Banach contraction to the full production pricing pipeline is not yet formalized.
-
-## Recommended External Statement
-
-Recommended:
-
-> This repository has completed formal verification of the finite monotone
-> iteration kernel, Dung grounded fixed-point layer, finite Horn closure layer,
-> and supporting mathematical structures, with 94 unique theorems across 25
-> Lean files and 0 sorry. Banach contraction is partially formalized as a
-> separate research track.
-
-Forbidden:
-
-> The entire legal reasoning system or all Python engineering implementations
-> have been fully formally proved.
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

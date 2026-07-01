@@ -1,92 +1,47 @@
 # Canonical Legal Schema
 
-**Date:** 2026-07-01
-**Status:** CLOSED_FOR_FOUR_SLICES
-**Gate M1:** CLOSED_FOR_FOUR_SLICES
-**Authority:** `legal-math-modeling`
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
 ## Purpose
 
-This document records the canonical semantic vocabulary shared by the Lean
-four-slice formal model, Python reference semantics, and downstream
-`juris-calculus` shadow fixtures.
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `spec` area without expanding the formal claim surface.
 
-The scope is deliberately narrow: contract breach, license, permission, and
-priority. It is not a full legal ontology and it is not a proof of the complete
-Python runtime.
+## Authority
 
-## Lean Canonical Types
+Use this order of authority when resolving conflicts:
 
-`proofs/lean/juris_lean/JurisLean/LegalSyntax.lean` defines the canonical Lean
-types required by the four-slice Playbook:
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-| Required type | Lean artifact |
-|---|---|
-| `FactId` | `LegalSyntax.lean` |
-| `RuleId` | `LegalSyntax.lean` |
-| `Party` | `LegalSyntax.lean` |
-| `Claim` | `LegalSyntax.lean` |
-| `Evidence` | `LegalSyntax.lean` |
-| `Norm` | `LegalSyntax.lean` |
-| `Obligation` | `LegalSyntax.lean` |
-| `Permission` | `LegalSyntax.lean` |
-| `Prohibition` | `LegalSyntax.lean` |
-| `Defense` | `LegalSyntax.lean` |
-| `Exception` | `LegalSyntax.lean` |
-| `Priority` | `LegalSyntax.lean` |
-| `Argument` | `LegalSyntax.lean` |
-| `Attack` | `LegalSyntax.lean` |
-| `DecisionStatus` | `LegalSyntax.lean` |
-| `Certificate` | `LegalSyntax.lean` |
-| `TrustLabel` | `LegalSyntax.lean` |
+## Current Boundary
 
-## Python Canonical Types
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-The Python reference layer remains in `theory/spec/canonical_semantics.py`:
+## Allowed Claims
 
-| Python type | Purpose |
-|---|---|
-| `CanonicalFact` | Atomic fact with stable `key` projection |
-| `CanonicalRule` | Horn/exception/priority/constitutive rule |
-| `CanonicalNorm` | Deontic norm with modality and violation payload |
-| `CanonicalClaim` | Claim submitted to the argumentation layer |
-| `CanonicalArgument` | Argument produced from rule and support facts |
-| `CanonicalAttack` | Directed rebuttal/exception/priority defeat |
-| `CanonicalPriority` | Priority relation |
-| `CanonicalViolation` | Violation consequence |
-| `CanonicalReparation` | Remedy payload |
-| `DecisionStatus` | `PROVED`, `REFUTED`, `UNDECIDED`, `TAINTED` |
-| `CanonicalProofTrace` | Auditable trace container |
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-## Proven Lean Schema Properties
+## Prohibited Claims
 
-`LegalSyntax.lean` proves:
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
 
-- `fact_serialization_key_stable`
-- `rule_serialization_key_stable`
-- `decisionStatus_runtimeKey_injective`
-- `trust_label_cannot_promote_status`
-- `candidate_evidence_not_auditable`
+## Verification Rule
 
-These theorems close the Playbook requirements for stable serialization keys,
-DecisionStatus/runtime one-to-one mapping, and trust-label non-promotion within
-the four-slice formal model.
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
 
-## Boundary
+## Maintenance Notes
 
-- `UnifiedModel.lean` still contains an independent Nat-based `Argument` for a
-  research composition proof. It is not the canonical production `Argument`.
-- LLM/source candidates remain candidates until a backend, source-span, or
-  human-review evidence path verifies them.
-- Trust labels restrict disclosure or trigger review; they do not promote legal
-  conclusions.
-
-## Verification
-
-```powershell
-cd proofs/lean/juris_lean
-lake build JurisLean
-
-cd ..\..\..
-python -m pytest tests\spec\test_spec_transition.py -q
-```
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

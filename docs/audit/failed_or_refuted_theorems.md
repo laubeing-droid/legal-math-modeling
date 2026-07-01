@@ -1,119 +1,47 @@
-# Failed or Refuted Theorems
+# Failed Or Refuted Theorems
 
-**Date:** 2026-06-27
-**Project:** legal-math-modeling
-**Source of truth:** `proofs/lean/juris_lean/JurisLean/JC_Formalization.lean`
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
----
+## Purpose
 
-## Status Register
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `audit` area without expanding the formal claim surface.
 
-`JC_Formalization.lean` defines a `refuted_theorems` Finset with cardinality 1:
+## Authority
 
-```
-def refuted_theorems : Finset CoreTheorem :=
-  {CoreTheorem.T18_DPPrivilege}
+Use this order of authority when resolving conflicts:
 
-theorem refuted_theorems_card : refuted_theorems.card = 1 := by decide
-```
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-There is exactly **one** refuted theorem in the formal status register.
+## Current Boundary
 
----
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-## T18_DPPrivilege: DP Floor Clipping Does Not Satisfy Epsilon-DP
+## Allowed Claims
 
-**CoreTheorem constructor:** `T18_DPPrivilege`
-**Status:** `REFUTED`
-**Evidence type:** `COUNTEREXAMPLE`
-**Domain bound:** "infinite privacy ratio counterexample"
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-### Original Claim
+## Prohibited Claims
 
-The mechanism `max(0.3 * x0, x0 + Lap(Delta / epsilon))` satisfies epsilon-DP.
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
 
-### Why It Fails
+## Verification Rule
 
-The floor `0.3 * x0` depends on the sensitive raw value `x0`. For two neighboring databases D, D' with `f(D) = 100` and `f(D') = 200`:
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
 
-- Mechanism on D: outputs in [30, +infinity)
-- Mechanism on D': outputs in [60, +infinity)
-- The gap [30, 60) distinguishes D from D' with certainty
-- Privacy ratio = infinity in the gap region
+## Maintenance Notes
 
-### Counterexample
-
-```
-f(D) = 100.0, f(D') = 200.0
-epsilon = 1.0, delta = 0.0
-For output y = 45.0:
-  Pr[M(D)=45] > 0  (since 45 >= 0.3 * 100 = 30)
-  Pr[M(D')=45] = 0  (since 45 < 0.3 * 200 = 60)
-  Ratio = infinity -> violates epsilon-DP for ANY epsilon
-```
-
-### Corrected Statement
-
-The floor-clipping mechanism does NOT satisfy epsilon-DP. Three remedies:
-
-1. **Private floor:** Add Laplace noise to the floor threshold, compose with epsilon_1 + epsilon_2.
-2. **Fixed public floor:** Use a constant c independent of data.
-3. **Approximate DP:** Accept (epsilon, delta) with delta > 0.
-
-### Artifact
-
-`proofs/engineering_proof_artifacts/dp/dp_floor_clipping_analysis.py`
-
-### Engineering Implications
-
-- Replace or compose the floor clipping mechanism.
-- ABSOLUTE privilege level should block release entirely; do not use epsilon=0.1 approximation.
-- Add unit test for DP boundary detection.
-
----
-
-## Additional Engineering-Level Refutations (Proof Artifacts)
-
-The following refutations exist at the engineering proof artifact level but are not separately registered as `CoreTheorem` constructors in `JC_Formalization.lean`. They correspond to `REFUTED` entries in the 17-artifact proof run.
-
-### ART-012: Graph Metric Counterexamples
-
-**Original claim:** Graph similarity is a metric (satisfies reflexivity, symmetry, triangle inequality).
-
-**Why it fails:**
-- Reflexivity FAILS: Under conservative empty-feature policy, self-similarity is 0.4, not 1.0.
-- Identity FAILS: Two non-isomorphic graphs with same |V| and |E| can score 1.0.
-- Symmetry HOLDS by construction.
-- Triangle inequality: NOT PROVEN, NOT REFUTED (search up to 3-vertex graphs found no violation).
-
-**Corrected statement:** Graph similarity is a symmetric score in [0,1]. It is NOT a metric.
-
-**Artifact:** `proofs/engineering_proof_artifacts/graph_similarity/metric_counterexamples.py`
-
-### ART-013: DP Floor Clipping Analysis
-
-(See T18_DPPrivilege above; this is the engineering artifact for the same refutation.)
-
-### ART-014: Clipped Theil-Sen Refutation
-
-**Original claim:** The clipped Theil-Sen estimator retains the 50% breakdown point guarantee of pure Theil-Sen.
-
-**Why it fails:** The current implementation filters slopes (removes outliers) and clamps the output. Both operations change the median slope. For crafted datasets where the true median slope is outside the clip bounds, the clipped output differs from the pure median.
-
-**Corrected statement:** The clipped pairwise median slope estimator is NOT the pure Theil-Sen estimator. It is a bounded-bias variant with no proven breakdown guarantee.
-
-**Artifact:** `proofs/engineering_proof_artifacts/statistics/clipped_theilsen_refutation.py`
-
----
-
-## Summary
-
-| Refuted item | Scope | Source |
-|---|---|---|
-| T18_DPPrivilege | JC_Formalization.lean refuted_theorems | Formal status register |
-| ART-012 Graph Metric | Proof artifact | metric_counterexamples.py |
-| ART-013 DP Floor Clipping | Proof artifact | dp_floor_clipping_analysis.py |
-| ART-014 Clipped Theil-Sen | Proof artifact | clipped_theilsen_refutation.py |
-
-Total refuted in JC_Formalization.lean: **1** (T18_DPPrivilege).
-Total refuted proof artifacts: **3** (ART-012, ART-013, ART-014).
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

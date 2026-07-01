@@ -1,66 +1,47 @@
-# Codex Handoff Response: Ready for Code Elevation
+# Codex Handoff Response
 
-Date: 2026-06-11
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
-## 1. Conclusion
+## Purpose
 
-Code elevation can proceed.
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `audit` area without expanding the formal claim surface.
 
-The current state is not "all mathematical theorems proved." The correct label is:
+## Authority
 
-```
-EVIDENCE_CALIBRATED_MODELING_READY_FOR_CODE_LIFT
-```
+Use this order of authority when resolving conflicts:
 
-## 2. Verified State
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-### Lean Formalization
+## Current Boundary
 
-| Item | Value |
-|---|---|
-| Lean files | 25 |
-| Unique theorems | 94 (43 core + 51 supporting) |
-| sorry count | 0 |
-| `lake build` | 2954 jobs, 0 errors |
-| JC_Formalization.lean | proved=7, empirical=2, refuted=1, pending=0 |
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-### Gate Status
+## Allowed Claims
 
-| Gate | Status |
-|---|---|
-| M1 | SUBSTANTIAL_PARTIAL |
-| M2 | SUBSTANTIAL_PARTIAL |
-| M3 | SUBSTANTIAL_PARTIAL |
-| M4 | PARTIAL |
-| M5 | CLOSED |
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-## 3. Current Most Trusted Facts
+## Prohibited Claims
 
-1. Horn closure works as a monotone Stage 1.
-2. Dung AAF works as a deterministic Stage 2.
-3. The original evaluator is non-monotone and cannot directly use Tarski.
-4. Pricing real proof data is insufficient.
-5. DP epsilon is a policy config.
-6. Cross-jurisdiction mapping must be obstruction-first.
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
 
-## 4. Next Codex Tasks
+## Verification Rule
 
-1. Implement trust labels in source code.
-2. Restructure evaluator architecture.
-3. Add data validation CI.
-4. Add agent payload schema.
-5. Connect all old claim outputs to `allowed_claim / forbidden_claim`.
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
 
-## 5. Deliverable Label
+## Maintenance Notes
 
-This stage's deliverable label:
-
-```
-EVIDENCE_CALIBRATED_MATH_MODEL_AND_ENGINEERING_DESIGN_BASELINE
-```
-
-Forbidden label:
-
-```
-FINAL_ALL_THEOREMS_PROVED
-```
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

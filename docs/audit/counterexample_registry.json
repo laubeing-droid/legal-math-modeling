@@ -1,119 +1,13 @@
 {
-  "$schema": "counterexample_registry_v1",
-  "description": "Registry of all counterexamples discovered during proof checking. Each entry documents a property that was refuted with a concrete counterexample.",
-  "generated_date": "2026-06-11",
-  "counterexamples": [
-    {
-      "id": "CE-001",
-      "name": "Graph Similarity Empty-Feature Reflexivity Failure",
-      "status": "REFUTED",
-      "property": "Reflexivity of graph similarity metric (sim(G, G) = 1.0)",
-      "artifact_path": "graph_similarity/metric_counterexamples.py",
-      "artifact_type": "Python exhaustive counterexample search",
-      "checker_command": "python3 graph_similarity/metric_counterexamples.py",
-      "summary": "Graph similarity score for a graph with empty features is 0.4, not 1.0, violating reflexivity.",
-      "details": {
-        "violated_axiom": "Reflexivity: for all G, sim(G, G) = 1.0",
-        "counterexample": "Graph with empty feature set",
-        "expected": 1.0,
-        "actual": 0.4,
-        "explanation": "When a graph has no features, the feature similarity component defaults to a non-unity value, causing even self-similarity to be less than 1.0."
-      },
-      "impact": "Graph similarity is NOT a metric. Conservative policy for empty-feature graphs must be maintained.",
-      "recommendation": "Document that sim() is a semimetric or similarity coefficient, not a formal metric. Retain conservative empty-feature handling.",
-      "severity": "HIGH",
-      "labels": ["graph_similarity", "metric", "reflexivity"]
-    },
-    {
-      "id": "CE-002",
-      "name": "Graph Similarity Identity Metric Failure (C4 vs Star+Edge)",
-      "status": "REFUTED",
-      "property": "Identity of indiscernibles (sim(G1, G2) = 1.0 implies G1 == G2)",
-      "artifact_path": "graph_similarity/metric_counterexamples.py",
-      "artifact_type": "Python exhaustive counterexample search",
-      "checker_command": "python3 graph_similarity/metric_counterexamples.py",
-      "summary": "Two non-isomorphic graphs (C4 cycle vs star+edge) achieve similarity score 1.0, violating the identity property of a metric.",
-      "details": {
-        "violated_axiom": "Identity: sim(G1, G2) = 1.0 ==> G1 isomorphic to G2",
-        "counterexample_G1": "C4 cycle graph (4-node cycle)",
-        "counterexample_G2": "Star graph with one extra edge (non-isomorphic to C4)",
-        "expected": "score < 1.0 (non-isomorphic graphs)",
-        "actual": 1.0,
-        "explanation": "The graph similarity scoring function produces identical scores for structurally distinct graphs that happen to align on the evaluated feature dimensions."
-      },
-      "impact": "Graph similarity cannot be used as a proper metric in contexts requiring identity of indiscernibles.",
-      "recommendation": "Downgrade sim() from metric to similarity coefficient in all documentation. Add identity checks separately if needed.",
-      "severity": "HIGH",
-      "labels": ["graph_similarity", "metric", "identity"]
-    },
-    {
-      "id": "CE-003",
-      "name": "DP Floor Clipping Privacy Breach",
-      "status": "REFUTED",
-      "property": "Differential privacy guarantee under floor clipping",
-      "artifact_path": "dp/dp_floor_clipping_analysis.py",
-      "artifact_type": "Python counterexample with privacy ratio analysis",
-      "checker_command": "python3 dp/dp_floor_clipping_analysis.py",
-      "summary": "Floor clipping with max(0.3*x0, ...) produces an infinite privacy ratio, completely breaking differential privacy.",
-      "details": {
-        "violated_axiom": "Differential privacy: Pr[M(D1) in S] / Pr[M(D2) in S] <= exp(epsilon)",
-        "counterexample": "Query with floor clipping function max(0.3*x0, ...)",
-        "neighboring_datasets": "D1, D2 differing by one record",
-        "privacy_ratio": "INFINITE",
-        "expected": "privacy_ratio <= exp(epsilon) for some finite epsilon",
-        "explanation": "Floor clipping creates a hard threshold that causes the sensitivity ratio between neighboring datasets to diverge to infinity. When one dataset's value falls below the floor and the other's above, the output distributions become disjoint."
-      },
-      "impact": "Floor clipping mechanism M is NOT differentially private. Must be replaced before any production use.",
-      "recommendation": "Replace floor clipping with either: (1) smooth clipping (e.g., tanh or sigmoid), (2) Laplace/Gaussian mechanism on raw values followed by post-processing, or (3) compose floor with an epsilon-DP release mechanism.",
-      "severity": "CRITICAL",
-      "labels": ["differential_privacy", "floor_clipping", "privacy_breach"]
-    },
-    {
-      "id": "CE-004",
-      "name": "Clipped Theil-Sen Robustness Caveat",
-      "status": "REFUTED",
-      "property": "Clipped Theil-Sen estimator equals pure Theil-Sen estimator",
-      "artifact_path": "statistics/clipped_theilsen_refutation.py",
-      "artifact_type": "Python counterexample search (5/6 cases refuted)",
-      "checker_command": "python3 statistics/clipped_theilsen_refutation.py",
-      "summary": "In 5 out of 6 counterexample cases, clipped Theil-Sen produces different results from the pure (unclipped) Theil-Sen estimator.",
-      "details": {
-        "violated_axiom": "clipped_theilsen(X, Y) == pure_theilsen(X, Y) for all inputs",
-        "counterexamples_found": 5,
-        "counterexamples_total": 6,
-        "failure_rate": "83.3%",
-        "explanation": "Clipping the pairwise slopes before taking the median fundamentally changes the estimator. Outliers that would be naturally handled by the median operation are instead artificially capped, biasing the result."
-      },
-      "impact": "Clipped Theil-Sen is a different estimator from pure Theil-Sen. Naming must reflect this to avoid confusion.",
-      "recommendation": "Rename calibrate_theilsen() to calibrate_clipped_pairwise_median() to accurately reflect the algorithm. Document that clipped and pure variants may differ.",
-      "severity": "MEDIUM",
-      "labels": ["statistics", "theil_sen", "clipping", "robustness"]
-    },
-    {
-      "id": "CE-005",
-      "name": "Evaluator Non-Monotonicity in Fixpoint Production",
-      "status": "DOCUMENTED",
-      "property": "Evaluator monotonicity under bounded production",
-      "artifact_path": "fixpoint/evaluator_termination_model.tla",
-      "artifact_type": "TLA+ model (TOOLCHAIN_PENDING verification)",
-      "checker_command": "tlc fixpoint/evaluator_termination_model.tla (NOT AVAILABLE)",
-      "summary": "Documented potential non-monotonicity in production evaluator under resource bounds. Bounded termination verified (5 operational bounds pass), but monotonicity not guaranteed.",
-      "details": {
-        "verified_property": "Bounded termination: 5 operational bounds hold",
-        "unverified_property": "Monotonicity of evaluation with respect to term ordering",
-        "explanation": "Under production resource constraints, the evaluator may terminate with different results depending on evaluation order. Bounded termination ensures it always terminates, but not necessarily monotonically.",
-        "operational_bounds": [
-          "Bound 1: Maximum evaluation depth",
-          "Bound 2: Maximum term size growth",
-          "Bound 3: Maximum rule applications",
-          "Bound 4: Maximum stack depth",
-          "Bound 5: Maximum memory allocation"
-        ]
-      },
-      "impact": "Production evaluator is safe to deploy (bounded termination verified), but users should not assume monotonicity under resource constraints.",
-      "recommendation": "Document non-monotonicity as known behavior. Shadow mode evaluator available for comparison. Add regression tests for the 5 verified bounds.",
-      "severity": "LOW",
-      "labels": ["fixpoint", "evaluator", "termination", "monotonicity"]
-    }
-  ]
+  "schema_version": "rewrite-2026-07-01",
+  "purpose": "Registry of counterexample classes retained as limitations, not converted into positive claims.",
+  "counterexample_policy": "Preserve machine or source-backed counterexamples; do not erase failed claims.",
+  "classes": [
+    "non_monotonicity",
+    "metric_failure",
+    "privacy_bound_failure",
+    "cross_jurisdiction_obstruction",
+    "runtime_refinement_gap"
+  ],
+  "current_status": "explanatory_registry_only"
 }

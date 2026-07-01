@@ -1,140 +1,15 @@
-% =============================================================================
-% Legal Math Modeling: A Formal Framework for Cross-Jurisdictional
-%                     Symbolic Legal Reasoning
-% =============================================================================
-\documentclass[11pt,a4paper]{article}
-
-% --- Math ---
-\usepackage{amsmath,amssymb,amsthm,mathtools}
-\usepackage{unicode-math}  % XeLaTeX/LuaLaTeX
-
-% --- Language ---
-\usepackage[english]{babel}
-\usepackage{csquotes}
-
-% --- Typography ---
-\usepackage{microtype}
-\usepackage{booktabs}
-\usepackage{enumitem}
-\usepackage{graphicx}
-\usepackage{xcolor}
+\documentclass[11pt]{article}
+\usepackage[margin=1in]{geometry}
 \usepackage{hyperref}
-\hypersetup{colorlinks=true,linkcolor=blue!60!black,citecolor=green!50!black,urlcolor=blue!70!black}
-
-% --- Code listings ---
-\usepackage{listings}
-\lstset{
-  basicstyle=\ttfamily\small,
-  keywordstyle=\color{blue!70!black}\bfseries,
-  commentstyle=\color{gray},
-  stringstyle=\color{red!60!black},
-  breaklines=true,
-  frame=single,
-  numbers=left,
-  numberstyle=\tiny\color{gray}
-}
-
-% --- Bibliography ---
-\usepackage[backend=biber,style=numeric,sorting=nyt]{biblatex}
-\addbibresource{references.bib}
-
-% --- Theorem environments ---
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{conjecture}[theorem]{Conjecture}
-\newtheorem{openproblem}[theorem]{Open Problem}
-
-\theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{counterexample}[theorem]{Counterexample}
-
-\theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{notation}[theorem]{Notation}
-
-% --- Custom commands ---
-\newcommand{\Nat}{\mathbb{N}}
-\newcommand{\Real}{\mathbb{R}}
-\newcommand{\Bool}{\mathbb{B}}
-\newcommand{\Poset}{\mathcal{P}}
-\newcommand{\pow}{\mathcal{P}}  % powerset
-\newcommand{\lfp}{\text{lfp}}  % least fixpoint
-\newcommand{\gfp}{\text{gfp}}  % greatest fixpoint
-\newcommand{\horn}{\mathcal{H}} % Horn clause set
-\newcommand{\facts}{\mathcal{F}}% fact base
-\newcommand{\claims}{\mathcal{C}}% claim set
-\newcommand{\aaf}{\mathcal{A}}  % abstract argumentation framework
-\newcommand{\attacks}{\rightarrow} % attack relation
-\newcommand{\geaf}{\text{GE}}  % grounded extension
-\newcommand{\kripke}{\mathcal{K}} % Kripke structure
-\newcommand{\ltl}{\text{LTL}}  % linear temporal logic
-\newcommand{\cbl}{\text{CBL}}  % concept blocking layer
-\newcommand{\spc}{\text{SPC}}  % supreme people's court rules
-\newcommand{\dpbound}{\varepsilon} % DP epsilon
-
-% --- Document ---
-\title{%
-  \textbf{Legal Math Modeling:} \\[6pt]
-  A Formal Framework for Cross-Jurisdictional \\
-  Symbolic Legal Reasoning with Evidence-Calibrated Trust Labels
-}
-\author{%
-  Laupinco \\
-  \textit{Hokkien Computational Jurisprudence Enthusiast} \\
-  \texttt{laubeing-droid}
-}
-\date{June 2026}
-
+\usepackage{amsmath,amssymb}
+\title{Legal Math Modeling: Release-Bounded Formal Specification}
+\author{Laupinco}
+\date{2026-07-01}
 \begin{document}
 \maketitle
-
 \begin{abstract}
-We present a formal mathematical framework for symbolic legal reasoning across
-multiple jurisdictions (PRC, Hong Kong, United States). The framework consists
-of a three-layer legal ontology ($L_0$/$L_1$/$L_2$), a monotone Horn closure
-engine for forward fact expansion, a Dung abstract argumentation framework for
-rebuttal and exception handling, Kripke temporal models for procedural state
-tracking, and category-theoretic mappings for cross-jurisdictional concept
-alignment.
-
-The formal core comprises 43 machine-checked theorems in Lean~4 (0 sorry,
-0 custom axiom) spanning three layers: a finite monotone iteration kernel,
-a Dung grounded extension fixed-point layer, and a finite Horn closure layer.
-An additional 57 supporting results extend the checked surface to 100 total
-theorems. The kernel is shared: both the AAF and Horn tracks instantiate the
-same finite monotone iteration theorem.
-
-We also establish several negative results: the unified evaluator is
-non-monotone (requiring stratification), differential privacy epsilon is not
-determined by privilege level, legal case similarity is not a metric, and no
-total cross-jurisdiction functor exists (obstruction density $> 2/3$ over
-44 real claim mappings).
-
-All mathematical claims are tracked by a 7-level
-\emph{evidence-calibrated trust label system} that prevents unverified
-assertions from propagating to downstream engineering decisions. The boundary
-between Lean-proven properties and engineering-verified (Python) properties is
-explicitly documented.
-
-The framework is implemented as a runnable Python library (59 modules) with
-Lean~4 formal proofs, Z3 SMT verification, and Hypothesis property-based
-testing. The current status is \texttt{spec-first-transition-ready}: the
-mathematical specification is sufficient for the \texttt{juris-calculus}
-runtime to proceed with a unique upstream semantic source.
-
-\medskip
-\noindent\textbf{Keywords:} computational law, formal methods, legal AI,
-abstract argumentation, Horn logic, Kripsemantics, category theory,
-evidence calibration, finite monotone iteration
+This rewritten manuscript describes a bounded specification repository for legal-reasoning structures. It does not claim full runtime verification. Formal claims must be traced to Lean source and current build evidence.
 \end{abstract}
-
-\tableofcontents
-\newpage
-
-% ===========================================================================
 \input{sections/01_introduction}
 \input{sections/02_preliminaries}
 \input{sections/03_ontology}
@@ -148,7 +23,6 @@ evidence calibration, finite monotone iteration
 \input{sections/11_non_interference}
 \input{sections/12_evidence_calibrated}
 \input{sections/13_conclusion}
-
-\printbibliography
-
+\bibliographystyle{plain}
+\bibliography{references}
 \end{document}

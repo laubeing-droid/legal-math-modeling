@@ -1,129 +1,47 @@
-# C0: Four-Stage No-Uncertainty-Upgrade Specification
+# C0 Four Stage Safety
 
-**Date:** 2026-06-28
-**Status:** FROZEN
-**Authority:** `legal-math-modeling` (this repo)
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
----
+## Purpose
 
-## 1. Purpose
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `formal-release` area without expanding the formal claim surface.
 
-This document specifies the safety invariant that governs the four-stage
-reasoning pipeline: **no stage may produce output more certain than its
-input**. If an upstream stage is incomplete, truncated, or errored, the
-downstream stage MUST NOT produce a definitive result.
+## Authority
 
----
+Use this order of authority when resolving conflicts:
 
-## 2. CompletionStatus Enum
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-```python
-from enum import Enum
+## Current Boundary
 
-class CompletionStatus(Enum):
-    COMPLETE = "complete"
-    TRUNCATED = "truncated"
-    UNKNOWN = "unknown"
-    ERROR = "error"
-    INCOMPATIBLE = "incompatible"
-    VERIFICATION_FAILED = "verification_failed"
-```
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
----
+## Allowed Claims
 
-## 3. StageResult
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-```python
-from dataclasses import dataclass
-from typing import Generic, TypeVar
+## Prohibited Claims
 
-T = TypeVar("T")
-C = TypeVar("C")
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
 
-@dataclass(frozen=True)
-class StageResult(Generic[T, C]):
-    status: CompletionStatus
-    value: T | None
-    certificate: C | None
-    assumptions: tuple[str, ...]
-    limitations: tuple[str, ...]
-    input_digest: str
-    producer_version: str
-```
+## Verification Rule
 
----
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
 
-## 4. Core Property: no_uncertainty_upgrade
+## Maintenance Notes
 
-```
-upstream status != COMPLETE
-  => downstream MUST NOT produce definitive output
-```
-
-This is the central safety invariant. It ensures that uncertainty propagates
-forward through the pipeline and is never silently discarded.
-
----
-
-## 5. Trust Label Mapping
-
-| Condition | Output Trust Label |
-|-----------|-------------------|
-| All stages COMPLETE, all certs valid | ALLOWED / FORBIDDEN / UNDECIDED |
-| Horn TRUNCATED | INCOMPLETE_REASONING |
-| AAF incomplete (missing args/attacks) | INCOMPLETE_ATTACK_GRAPH |
-| Grounded unconverged | COMPUTATION_UNKNOWN |
-| Certificate verification failed | VERIFICATION_FAILED |
-| Source missing | UNGROUNDED_SOURCE |
-| Protocol incompatible | INCOMPATIBLE_RESULT |
-
----
-
-## 6. Prohibited Transitions
-
-The following combinations are explicitly prohibited:
-
-| Upstream Status | Prohibited Downstream Output |
-|----------------|------------------------------|
-| TRUNCATED | ALLOWED |
-| UNKNOWN | HIGH_CONFIDENCE |
-| VERIFICATION_FAILED | Silently ignored |
-| Any non-COMPLETE | Definitive status via numerical score |
-
-**Critical rule:** A numerical confidence score MUST NOT be used to upgrade
-a logical status. If the logic layer says UNDECIDED, no numerical override
-may promote it to ALLOWED.
-
----
-
-## 7. Relationship to Lean Proven Properties
-
-The four-stage pipeline composition itself is NOT Lean-proven. Each individual
-stage has separate Lean proofs or Python verification:
-
-| Stage | Lean-Proven? | Foundation |
-|-------|-------------|------------|
-| Horn Closure | YES | `HornFixedPoint.lean` (10 core theorems), `FiniteMonotoneIteration.lean` (9 core) |
-| AAF Construction | Python-verified | `validate_horn_aaf_contract()` |
-| Grounded Extension | YES | `DungFixedPoint.lean` (17 core theorems) |
-| Certificate/Checker | Python-verified | Checker boundary spec (`certificate_checker_boundary.md`) |
-
-The no-uncertainty-upgrade property is enforced by engineering contract,
-not by a Lean theorem. The pipeline composition is an engineering invariant
-that depends on the correct implementation of each stage's boundary checks.
-
----
-
-## 8. Verification
-
-```bash
-# Verify Python CompletionStatus and StageResult exist
-python -c "
-from theory.spec.canonical_semantics import CompletionStatus, StageResult
-print('CompletionStatus:', [e.name for e in CompletionStatus])
-print('StageResult fields:', list(StageResult.__dataclass_fields__))
-"
-
-# Verify Lean stages build independently
-cd proofs/lean/juris_lean && lake build JurisLean
-```
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

@@ -1,40 +1,47 @@
-# Conjectures
+# Readme
 
-Files in this directory contain mathematical conjectures awaiting empirical validation or formal proof.
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
-## Status
+## Purpose
 
-Conjectures in this directory are **not** part of the 94 formally verified theorems. They represent research directions that may eventually be formalized.
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `conjecture` area without expanding the formal claim surface.
 
-## Current Formal Baseline
+## Authority
 
-The project's verified mathematical core consists of:
+Use this order of authority when resolving conflicts:
 
-- 94 Lean theorems (43 core + 51 supporting), 0 sorry
-- 25 Lean source files
-- `lake build JurisLean` producing 2954 jobs
-- AxiomAudit passing via `lake build +JurisLean.AxiomAudit`
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-## Conjecture Lifecycle
+## Current Boundary
 
-1. **Proposed**: Initial mathematical claim with informal justification
-2. **Explored**: Python module in `theory/` with computational evidence
-3. **Formalized**: Lean proof in `proofs/lean/juris_lean/`
-4. **Verified**: Part of the 94-theorem core with 0 sorry
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-## Key Areas
+## Allowed Claims
 
-| Area | Formalized | Exploring |
-|------|------------|-----------|
-| Horn closure monotonicity | HornFixedPoint.lean | Operational variants |
-| Dung grounded extension | DungFixedPoint.lean | Argument schemes |
-| Banach fixed point | BanachFixedPoint.lean | Complete space bridge |
-| Finite Galois adjunction | FiniteGaloisAdjunction.lean | Infinite extensions |
-| Finite Rosetta | FiniteRosetta.lean | Cross-jurisdiction mapping |
-| Temporal Kripke | TemporalKripke.lean | Modal extensions |
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-## Rules
+## Prohibited Claims
 
-- Conjectures must not be cited as proven theorems
-- Conjectures must be clearly separated from the 94 verified theorems
-- Conjectures promoted to formal proof must be audited via AxiomAudit
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
+
+## Verification Rule
+
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
+
+## Maintenance Notes
+
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

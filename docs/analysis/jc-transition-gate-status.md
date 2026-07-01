@@ -1,141 +1,47 @@
-# JC Transition Gate Status
+# Jc Transition Gate Status
+
+Status: rewritten on 2026-07-01 as a release-bounded repository document.
 
 ## Purpose
 
-This file records the current answer to the question:
+This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `analysis` area without expanding the formal claim surface.
 
-```text
-Can the project fully shift its main effort to juris-calculus now?
-```
+## Authority
 
-The answer must be evidence-based and tied to the five gates defined in
-`next-stage-spec-first-roadmap.md`.
+Use this order of authority when resolving conflicts:
 
-## Current Formal State
+1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
+2. Python tests and certificate fixtures for engineering regression evidence.
+3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
+4. Papers, reports, and history files for explanation only.
 
-| Item | Value |
-|---|---|
-| Lean files | 25 |
-| Unique theorem declarations | 126 (42 core + 84 supporting) |
-| sorry count | 0 |
-| `lake build` | 2954 jobs, 0 errors |
-| JC_Formalization.lean proved | 7 |
-| JC_Formalization.lean refuted | 1 |
-| Proof artifacts | 10 PROVED, 3 REFUTED, 4 PENDING, 0 FAILED |
+## Current Boundary
 
-## Gate Status
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
-### Gate 1: Canonical Semantic Types
+## Allowed Claims
 
-Status: **SUBSTANTIAL_PARTIAL**
+- This repository defines a specification and proof boundary for selected legal-reasoning structures.
+- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
+- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
+- Reports and papers are explanatory artifacts, not proof certificates.
+- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
 
-Evidence:
+## Prohibited Claims
 
-- `theory/spec/canonical_semantics.py` defines canonical fact, rule, norm,
-  claim, argument, attack, priority, violation, reparation, decision-status,
-  and proof-trace structures.
-- `Canonical*` naming avoids collision with older theory modules that already
-  define `LegalFact`, `LegalRule`, and `Argument` differently.
+- Do not claim that the full runtime is formally proved by Lean.
+- Do not turn an LLM candidate into a verified fact without source-bound verification.
+- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
+- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
+- Do not present stale reports as current release evidence.
 
-Remaining gap:
+## Verification Rule
 
-- the schema is established for the first slice, but not yet adopted as the
-  single semantic truth source across all adjacent theory modules.
+A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
 
-### Gate 2: Minimal DDL Core
+## Maintenance Notes
 
-Status: **SUBSTANTIAL_PARTIAL**
-
-Evidence:
-
-- `theory/spec/ddl_core.py` defines modality, defense, burden-of-proof,
-  violation, and reparation semantics for the contract-breach slice.
-- `license-permission-priority-slice.md` adds constitutive, permission, and
-  priority-defeat semantics as a second specification slice.
-
-Remaining gap:
-
-- the minimal DDL core now covers two slices, but is not yet demonstrated
-  across a broader domain family.
-- no separate burden-conditioned priority fixture exists beyond the current
-  licensed-use slice.
-
-### Gate 3: Horn -> AAF Machine-Testable Contract
-
-Status: **SUBSTANTIAL_PARTIAL**
-
-Evidence:
-
-- `theory/spec/horn_aaf_contract.py` validates traceability, known-node
-  references, exception direction, and accepted-set boundedness.
-- `tests/spec/test_spec_transition.py` exercises the contract against both the
-  contract-breach slice and the license-permission-priority slice.
-
-Remaining gap:
-
-- the contract now covers exception defeat and priority defeat.
-- it still lacks a broader multi-fixture differential harness and a cross-file
-  round-trip check.
-
-### Gate 4: Reference Interpreter
-
-Status: **SUBSTANTIAL_PARTIAL**
-
-Evidence:
-
-- `theory/spec/reference_semantics.py` provides a transparent Horn -> AAF ->
-  grounded -> decision pipeline with full trace output for two distinct slices.
-
-Remaining gap:
-
-- the reference interpreter now covers contract-breach and licensed-use
-  priority defeat.
-- it still lacks a broader fixture pack and any cross-repository differential
-  comparison.
-
-### Gate 5: Certificate / Checker / Differential Boundary
-
-Status: **CLOSED**
-
-Evidence:
-
-- 32 Lean files with 126 theorem declarations, 0 sorry, `lake build` 2961 jobs 0 errors.
-- `theory/spec/certificate_schema.py` defines `spec-cert-v1` payloads and an
-  independent checker.
-- `JC_Formalization.lean` provides machine-checked cardinality proofs:
-  proved_theorems_card=7, refuted_theorems_card=1.
-- The contract+certificate boundary is exercised in `test_spec_transition.py`
-  for both slices.
-
-Remaining gap:
-
-- no downstream `juris-calculus` shadow output is being compared yet.
-- no schema round-trip or differential harness exists across repositories.
-
-## Gate Summary Table
-
-| Gate | Name | Status |
-|---|---|---|
-| M1 | Canonical Semantic Types | SUBSTANTIAL_PARTIAL |
-| M2 | Minimal DDL Core | SUBSTANTIAL_PARTIAL |
-| M3 | Horn->AAF Contract | SUBSTANTIAL_PARTIAL |
-| M4 | Reference Interpreter | PARTIAL |
-| M5 | Certificate/Checker | CLOSED |
-
-## Decision
-
-Current answer:
-
-```text
-Not yet ready for a full repository-wide shift.
-Ready for a staged shift once the cross-repository differential harness is
-added.
-```
-
-Interpretation:
-
-- it is now reasonable to treat `legal-math-modeling` as a specification
-  upstream
-- it is not yet honest to say that the shift gate is fully closed
-- the next highest-value work is to build the actual shadow comparison boundary
-  against `juris-calculus`
+- Keep this file source-bounded.
+- Do not import private client data or commercial workflow details.
+- Do not use this file to alter formal semantics.
+- Update this file after source, manifest, or release-gate changes.

@@ -1,6 +1,10 @@
 $ErrorActionPreference = "Continue"
 
-$Root = if ($env:LEGAL_MATH_MODELING_ROOT) { $env:LEGAL_MATH_MODELING_ROOT } else { "D:\Codex\数学证明\legal-math-modeling" }
+$Root = if ($env:LEGAL_MATH_MODELING_ROOT) {
+  (Resolve-Path -LiteralPath $env:LEGAL_MATH_MODELING_ROOT).Path
+} else {
+  (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
+}
 $Program = Join-Path $Root "program"
 $RunId = Get-Date -Format "yyyyMMdd-HHmmss"
 $RunDir = Join-Path $Program "runs\$RunId"

@@ -2,7 +2,7 @@
 
 Date: 2026-06-09
 Run ID: `20260609-214205-full-suite-all-verification`
-Run directory: `D:\juris_calculus_verification_runs\07_report\runs\20260609-214205-full-suite-all-verification`
+Run directory: `<verification-runs-root>\07_report\runs\20260609-214205-full-suite-all-verification`
 Status: Complete experiment suite executed. Contains pass items, refuted items, inconclusive items, and project test fixture blockers.
 
 ## 1. Baseline and Environment
@@ -11,10 +11,10 @@ Latest baseline freeze, source directory snapshot, and dependency check complete
 
 Key artifacts:
 
-- `D:\juris_calculus_verification_runs\00_baseline\source_tree_hashes.json`
-- `D:\juris_calculus_verification_runs\00_baseline\source_snapshot.zip`
-- `D:\juris_calculus_verification_runs\00_baseline\source_snapshot.sha256`
-- `D:\juris_calculus_verification_runs\00_baseline\dependency_status.json`
+- `<verification-runs-root>\00_baseline\source_tree_hashes.json`
+- `<verification-runs-root>\00_baseline\source_snapshot.zip`
+- `<verification-runs-root>\00_baseline\source_snapshot.sha256`
+- `<verification-runs-root>\00_baseline\dependency_status.json`
 
 ## 2. Results Summary
 
@@ -72,11 +72,11 @@ The unit test subset passes: `32 passed in 2.12s`.
 
 Algorithm improvement record directory:
 
-`D:\juris_calculus_verification_runs\07_report\algorithm_improvements`
+`<verification-runs-root>\07_report\algorithm_improvements`
 
 Source code improvement record directory:
 
-`D:\juris_calculus_verification_runs\07_report\source_code_improvements`
+`<verification-runs-root>\07_report\source_code_improvements`
 
 This round did not modify the JC runtime source code. Experiment scripts wrote only into the run directory.
 
@@ -84,7 +84,7 @@ This round did not modify the JC runtime source code. Experiment scripts wrote o
 
 Record integrity validation:
 
-`D:\juris_calculus_verification_runs\07_report\record_validation.json`
+`<verification-runs-root>\07_report\record_validation.json`
 
 Current result is `[]`, indicating no structural record issues were found.
 

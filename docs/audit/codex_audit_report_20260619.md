@@ -3,7 +3,7 @@
 > **Audit date:** 2026-06-19
 > **Scope:** Playbook #91-100 full task set + hidden task discovery + code fix proposals
 > **Basis:** Repository live scan, prior audit artifact review, proof/benchmark/adversarial/Lean artifact spot-check, key source code verification
-> **Working directory:** `D:\Claude\数学证明\legal-math-modeling`
+> **Working directory:** `<legal-math-modeling-root>`
 
 ---
 

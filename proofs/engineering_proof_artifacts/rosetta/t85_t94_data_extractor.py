@@ -6,7 +6,7 @@ T8.5 + T9.4 Data Extractor
 Extracts structured data from Supreme Court full-text case files
 for T8.5 (cross-jurisdiction claim mapping) and T9.4 (damages/pricing).
 
-Source: D:\同步网盘\软件开发\权威裁判规则数据库\output\全文json\
+Source: external full-text JSON directory supplied by LEGAL_MATH_T85_T94_SOURCE_ROOT.
 """
 
 import json
@@ -17,7 +17,7 @@ import sys
 from pathlib import Path
 from typing import List, Dict, Tuple, Optional
 
-BASE_DIR = r"D:\同步网盘\软件开发\权威裁判规则数据库\output\全文json"
+SOURCE_ROOT_ENV = "LEGAL_MATH_T85_T94_SOURCE_ROOT"
 
 # File-to-domain mapping
 FILE_DOMAIN = {
@@ -50,6 +50,17 @@ def load_full_text(filepath: str) -> str:
     with open(filepath, encoding="utf-8") as f:
         data = json.load(f)
     return "\n".join(p.get("text", "") for p in data.get("pages", []))
+
+
+def resolve_source_root() -> Path:
+    """解析外部全文数据根目录；未显式配置时失败关闭，避免公开仓库绑定私有路径。"""
+    configured = os.environ.get(SOURCE_ROOT_ENV)
+    if not configured:
+        raise RuntimeError(f"{SOURCE_ROOT_ENV} is required for full-text extraction")
+    root = Path(configured).expanduser().resolve()
+    if not root.is_dir():
+        raise RuntimeError(f"{SOURCE_ROOT_ENV} does not point to a directory: {root}")
+    return root
 
 
 def extract_case_segments(text: str) -> List[Dict]:
@@ -221,16 +232,21 @@ def main():
 
     all_t85 = []
     all_t94 = []
+    try:
+        base_dir = resolve_source_root()
+    except RuntimeError as exc:
+        print(f"ERROR: {exc}")
+        return 1
 
-    for filename in sorted(os.listdir(BASE_DIR)):
+    for filepath in sorted(base_dir.glob("*.json")):
+        filename = filepath.name
         if not filename.endswith(".json"):
             continue
 
-        filepath = os.path.join(BASE_DIR, filename)
         domain = classify_file(filename)
         print(f"\n  Processing: {filename[:40]}... ({domain})")
 
-        text = load_full_text(filepath)
+        text = load_full_text(str(filepath))
         segments = extract_case_segments(text)
         print(f"    Case segments: {len(segments)}")
 
@@ -295,4 +311,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    result = main()
+    sys.exit(result if isinstance(result, int) else 0)

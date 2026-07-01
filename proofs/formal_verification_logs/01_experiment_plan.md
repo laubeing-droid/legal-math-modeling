@@ -3,9 +3,9 @@
 Date: 2026-06-09
 Status: Experiment design only; no experiments executed yet
 Operator: Codex
-Target project: `D:\Codex\juris-calculus\源码`
-External tool repository: `D:\Codex\Git数学证明外援`
-Suggested output directory: `D:\juris_calculus_verification_runs`
+Target project: `<juris-calculus-src>`
+External tool repository: `<external-proof-tools-root>`
+Suggested output directory: `<verification-runs-root>`
 
 ## 1. Experiment Objectives
 
@@ -24,22 +24,22 @@ Principle: Every theorem must first receive a trust label before entering any pr
 
 | Layer | Tool | Local Directory | Purpose |
 | --- | --- | --- | --- |
-| Property testing | Hypothesis | `D:\Codex\Git数学证明外援\hypothesis` | Generate inputs at scale, discover counterexamples |
-| Symbolic execution | CrossHair | `D:\Codex\Git数学证明外援\CrossHair` | Check function contracts, find counterexamples |
-| SMT solving | Z3 | `D:\Codex\Git数学证明外援\z3` | Prove range, invariant, finite-domain propositions |
-| SMT abstraction | pySMT | `D:\Codex\Git数学证明外援\pysmt` | Unified SMT-LIB generation and export |
-| State machine model | TLA+ / TLC | `D:\Codex\Git数学证明外援\tlaplus` | Evaluator state machine and temporal invariants |
-| Structural counterexample | Alloy | `D:\Codex\Git数学证明外援\alloy` | Relational structures, exclusivity, mapping counterexamples |
-| Proof language | Lean 4 | `D:\Codex\Git数学证明外援\lean4` | Machine-checked mathematical proof |
-| Mathematical library | mathlib4 | `D:\Codex\Git数学证明外援\mathlib4` | Order theory, lattice, category, analysis |
-| Verifiable implementation | Dafny | `D:\Codex\Git数学证明外援\dafny` | Long-term rewrite of core algorithms or proof of loop invariants |
+| Property testing | Hypothesis | `<external-proof-tools-root>\hypothesis` | Generate inputs at scale, discover counterexamples |
+| Symbolic execution | CrossHair | `<external-proof-tools-root>\CrossHair` | Check function contracts, find counterexamples |
+| SMT solving | Z3 | `<external-proof-tools-root>\z3` | Prove range, invariant, finite-domain propositions |
+| SMT abstraction | pySMT | `<external-proof-tools-root>\pysmt` | Unified SMT-LIB generation and export |
+| State machine model | TLA+ / TLC | `<external-proof-tools-root>\tlaplus` | Evaluator state machine and temporal invariants |
+| Structural counterexample | Alloy | `<external-proof-tools-root>\alloy` | Relational structures, exclusivity, mapping counterexamples |
+| Proof language | Lean 4 | `<external-proof-tools-root>\lean4` | Machine-checked mathematical proof |
+| Mathematical library | mathlib4 | `<external-proof-tools-root>\mathlib4` | Order theory, lattice, category, analysis |
+| Verifiable implementation | Dafny | `<external-proof-tools-root>\dafny` | Long-term rewrite of core algorithms or proof of loop invariants |
 
 ## 3. Experiment Directory Structure
 
 Suggested layout:
 
 ```text
-D:\juris_calculus_verification_runs\
+<verification-runs-root>\
   README.md
   manifest.yaml
   00_baseline\
@@ -143,10 +143,10 @@ Purpose: Break down theorems from reports into executable tasks.
 
 Input:
 
-1. `D:\juris_calculus_math_reverse_engineering.md`
-2. `D:\juris_calculus_math_reverse_engineering_audit.md`
-3. `D:\juris_calculus_20_proof_audit_report.md`
-4. `D:\juris_calculus_handoff_codex_response.md`
+1. `<handoff-root>\juris_calculus_math_reverse_engineering.md`
+2. `<handoff-root>\juris_calculus_math_reverse_engineering_audit.md`
+3. `<handoff-root>\juris_calculus_20_proof_audit_report.md`
+4. `<handoff-root>\juris_calculus_handoff_codex_response.md`
 
 Output table fields:
 
@@ -483,9 +483,9 @@ Any of:
 
 ```yaml
 project: juris-calculus
-run_root: D:\juris_calculus_verification_runs
-source_root: D:\Codex\juris-calculus\源码
-external_tools_root: D:\Codex\Git数学证明外援
+run_root: <verification-runs-root>
+source_root: <juris-calculus-src>
+external_tools_root: <external-proof-tools-root>
 created_at: 2026-06-09
 status: planned
 experiments_executed: false
@@ -574,7 +574,7 @@ T02,bounded_horn_correctness.py,k<=3 evaluator equivalence,Hypothesis+Z3,pending
 After each experiment round, produce a report at:
 
 ```text
-D:\juris_calculus_verification_runs\07_report\final_summary.md
+<verification-runs-root>\07_report\final_summary.md
 ```
 
 The report must contain:
@@ -591,7 +591,7 @@ The report must contain:
 
 1. This file is experiment design only; no proof experiments have been executed.
 2. The Python verification chain can start immediately; Lean/TLA+/Alloy/Dafny require runtime dependency confirmation.
-3. The Git state of `D:\Codex\juris-calculus` must be treated carefully: previously observed large numbers of deleted items at root, and `源码/` may be an untracked directory. Directory hashes must be frozen before experiments begin.
+3. The Git state of `<juris-calculus-root>` must be treated carefully: previously observed large numbers of deleted items at root, and `源码/` may be an untracked directory. Directory hashes must be frozen before experiments begin.
 4. Do not write "no counterexample found" from Hypothesis/CrossHair as mathematical proof.
 5. Do not write bounded TLA+/Alloy checks as infinite-domain proofs.
 6. Do not retain `sorry` in Lean and then claim a proof is complete.
@@ -600,7 +600,7 @@ The report must contain:
 
 Please review the following decisions:
 
-1. Whether to adopt `D:\juris_calculus_verification_runs` as the unified experiment output directory.
+1. Whether to adopt `<verification-runs-root>` as the unified experiment output directory.
 2. Whether to agree to run the four P0 items first: graph similarity, formalizable score, constraint guard, Galois connection.
 3. Whether to allow adding Python-side test dependencies: `pytest`, `hypothesis`, `z3-solver`, `crosshair-tool`.
 4. Whether Lean/TLA+/Alloy/Dafny should only produce models and scaffolding, waiting until runtimes are available before execution.

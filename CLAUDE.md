@@ -76,7 +76,7 @@ rg -n "\bsorry\b|\badmit\b|\baxiom\b" proofs/lean/juris_lean/JurisLean/
 lake env lean JurisLean/AxiomAudit.lean
 
 # Cross-repo Python tests (juris-calculus refinement)
-cd D:\Codex\juris-calculus
+cd <juris-calculus-root>
 pytest tests/ -q -ra
 ```
 
@@ -168,8 +168,8 @@ legal-math-modeling/
 
 ## Cross-Repo Rules
 
-- juris-calculus (D:\Codex\juris-calculus) consumes Lean theorems via refinement bridge.
-- deli-autoresearch (D:\Codex\数学证明自动研究) runs autonomous exploration over juris-calculus.
+- juris-calculus (`$JURIS_CALCULUS_ROOT` or `<juris-calculus-root>`) consumes Lean theorems via refinement bridge.
+- deli-autoresearch (`$DELI_AUTORESEARCH_ROOT` or `<deli-autoresearch-root>`) runs autonomous exploration over juris-calculus.
 - Any change to a Lean theorem statement MUST trigger cross-repo verification.
 - Fail-closed: UNKNOWN / TIMEOUT / TRUNCATED results propagate as errors, never as success.
 

@@ -4,7 +4,12 @@ import json, sys, hashlib, os, subprocess
 from pathlib import Path
 from datetime import datetime
 
-REPO = Path(os.environ.get("LEGAL_MATH_MODELING_ROOT", r"D:\Codex\数学证明\legal-math-modeling"))
+def repo_root() -> Path:
+    """解析仓库根目录；优先使用显式环境变量，否则回退到脚本所在仓库。"""
+    configured = os.environ.get("LEGAL_MATH_MODELING_ROOT")
+    return Path(configured).expanduser().resolve() if configured else Path(__file__).resolve().parents[1]
+
+REPO = repo_root()
 
 def sha256_file(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()

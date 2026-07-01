@@ -14,18 +14,28 @@ Source: configs/zh_CN/rules.yaml (juris-calculus)
 """
 from __future__ import annotations
 import json
+import os
 import sys
 from collections import Counter, defaultdict
 from pathlib import Path
 
-# YAML source path
-YAML_PATHS = [
-    Path(r"D:\同步网盘\软件开发\论文\实验数据\4.20260608claude数学模型迭代源码（见theroy和md）\juris-calculus\configs\zh_CN\rules.yaml"),
-    Path("configs/zh_CN/rules.yaml"),  # fallback
-]
+RULES_YAML_ENV = "JURIS_CALCULUS_RULES_YAML"
+
+
+def candidate_yaml_paths() -> list[Path]:
+    """列出可审计的规则文件候选路径；不绑定本机私有目录。"""
+    paths = [Path(sys.argv[1]).expanduser()] if len(sys.argv) > 1 else []
+    configured = os.environ.get(RULES_YAML_ENV)
+    if configured:
+        paths.append(Path(configured).expanduser())
+    paths.extend([
+        Path("configs/zh_CN/rules.yaml"),
+        Path("../juris-calculus/configs/zh_CN/rules.yaml"),
+    ])
+    return paths
 
 def find_yaml():
-    for p in YAML_PATHS:
+    for p in candidate_yaml_paths():
         if p.exists():
             return p
     return None
@@ -187,7 +197,7 @@ def print_report(result: dict):
 def main():
     yaml_path = find_yaml()
     if yaml_path is None:
-        print("ERROR: rules.yaml not found. Provide path as argument.")
+        print(f"ERROR: rules.yaml not found. Provide a path argument or set {RULES_YAML_ENV}.")
         sys.exit(1)
 
     print(f"Loading rules from: {yaml_path}")

@@ -7,25 +7,25 @@ Audit the mathematical proof logic of juris-calculus. The focus is not whether t
 Project directory:
 
 ```text
-D:\Codex\juris-calculus\源码
+<juris-calculus-src>
 ```
 
 Experiment record directory:
 
 ```text
-D:\juris_calculus_verification_runs
+<verification-runs-root>
 ```
 
 Latest experiment summary report:
 
 ```text
-D:\juris_calculus_full_verification_run_report.md
+<handoff-root>\juris_calculus_full_verification_run_report.md
 ```
 
 Latest run directory:
 
 ```text
-D:\juris_calculus_verification_runs\07_report\runs\20260609-214205-full-suite-all-verification
+<verification-runs-root>\07_report\runs\20260609-214205-full-suite-all-verification
 ```
 
 Completed verification toolchain:

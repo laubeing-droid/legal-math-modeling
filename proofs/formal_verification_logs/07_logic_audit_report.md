@@ -2,7 +2,7 @@
 
 Audit date: 2026-06-09
 Audit basis: CLAUDE_MATH_PROOF_LOGIC_AUDIT_PROMPT.md
-Experiment data: D:\juris_calculus_verification_runs
+Experiment data: <verification-runs-root>
 Latest run: 20260609-214205-full-suite-all-verification
 
 ---

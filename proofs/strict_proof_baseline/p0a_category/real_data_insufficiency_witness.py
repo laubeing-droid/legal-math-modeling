@@ -19,16 +19,18 @@ import csv
 import os
 import json
 
+REAL_CSV_ENV = "LEGAL_MATH_REAL_CLAIM_MAPPING_CSV"
+
 def main():
     print("=" * 70)
     print("Theorem A1: Real-data insufficiency witness")
     print("=" * 70)
     
-    # Read real claim_mapping.csv
-    real_csv = r"D:\Codex\juris-calculus\20260611 kimi proof\data\category_rosetta\claim_mapping.csv"
+    # Read real claim_mapping.csv from an explicit external fixture path.
+    real_csv = os.environ.get(REAL_CSV_ENV)
     
-    if not os.path.exists(real_csv):
-        print(f"ERROR: Real data file not found: {real_csv}")
+    if not real_csv or not os.path.exists(real_csv):
+        print(f"ERROR: Real data file not found. Set {REAL_CSV_ENV}.")
         print("[RESULT] DATA_INSUFFICIENT_FOR_PROOF")
         return 1
     

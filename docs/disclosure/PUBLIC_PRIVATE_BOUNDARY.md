@@ -19,6 +19,12 @@ Use this order of authority when resolving conflicts:
 
 The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
+## LSC-Derived Runtime Boundary
+
+The public boundary may describe abstract runtime controls imported into `juris-calculus` from LSC: trust envelopes, downgrade labels, auxiliary/conflict certificate metadata, provenance keys, derived taint, output firewalls, cross-module IO declarations, conflict review packets, and boundary tests.
+
+The private or out-of-scope boundary excludes the LSC legal object library, deadline/fee/interest/jurisdiction/citation tools, AgentSkill, CLI/API surfaces, China-law-specific rules, and substantive P1/P2 legal judgments. Those items are not public proof assets in this repository and must not be converted into Lean, Python spec, or release claims by documentation wording.
+
 ## Allowed Claims
 
 - This repository defines a specification and proof boundary for selected legal-reasoning structures.

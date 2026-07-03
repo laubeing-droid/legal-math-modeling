@@ -19,6 +19,12 @@ Use this order of authority when resolving conflicts:
 
 The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
+## Route-Back Rule For Runtime Metadata
+
+Downstream `juris-calculus` changes may remain in runtime engineering when they only add provenance fields, trust-envelope records, downgrade labels, output firewalls, review packets, IO declarations, or boundary tests and do not alter conclusions or checker acceptance.
+
+Any change that alters `verified_fact`, `DecisionStatus`, Horn closure, attack/exception/priority/permission semantics, certificate checker acceptance, theorem statements, proof assumptions, or formal release claims must return to `legal-math-modeling` before the runtime change is presented as spec-conformant.
+
 ## Allowed Claims
 
 - This repository defines a specification and proof boundary for selected legal-reasoning structures.

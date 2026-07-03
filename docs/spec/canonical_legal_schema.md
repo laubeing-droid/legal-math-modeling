@@ -19,6 +19,10 @@ Use this order of authority when resolving conflicts:
 
 The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
+## Runtime Metadata Is Not A Canonical Type
+
+LSC-derived fact trust envelopes, provenance fields, downgrade labels, derived taint, conflict review packets, and renderer/output firewall fields are runtime metadata. They may annotate or route a runtime `LegalFact` or certificate payload, but they are not a new canonical legal type and do not modify the Lean meaning of `LegalFact`, `DecisionStatus`, or `ProofTrace`.
+
 ## Allowed Claims
 
 - This repository defines a specification and proof boundary for selected legal-reasoning structures.

@@ -34,6 +34,9 @@ The repository is a mathematical companion and specification boundary. It suppor
 - Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
 - Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
 - Do not present stale reports as current release evidence.
+- Do not claim Lean proves LSC business objects, deadline/fee/interest/jurisdiction/citation tools, AgentSkill, CLI/API behavior, China-law-specific rules, or substantive P1/P2 legal judgments.
+- Do not claim a fact trust envelope, downgrade label, provenance field, derived taint marker, renderer firewall, conflict certificate, or review packet proves legal truth or runtime correctness.
+- Do not claim LSC-derived metadata changes `DecisionStatus`, verified-fact gates, Horn closure, attack/exception/priority/permission semantics, certificate checker acceptance, or any formal proof claim.
 
 ## Verification Rule
 

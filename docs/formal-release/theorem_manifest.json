@@ -76,6 +76,28 @@
     "Do not turn an LLM candidate into a verified fact without source-bound verification.",
     "Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.",
     "Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.",
-    "Do not present stale reports as current release evidence."
+    "Do not present stale reports as current release evidence.",
+    "Do not claim LSC-derived runtime metadata proves source truth, legal truth, runtime soundness, or substantive legal outcomes.",
+    "Do not claim fact trust envelopes, downgrade labels, provenance fields, derived taint, renderer firewalls, conflict certificates, or review packets change formal acceptance."
+  ],
+  "runtime_boundary_notes": [
+    "The 2026-07-03 juris-calculus absorption of transferable LSC ideas is recorded as a runtime metadata and disclosure-boundary event.",
+    "Transferable runtime ideas include fact trust envelopes, USER_ASSUMED/DISPUTED/UNKNOWN downgrade handling, HYPOTHETICAL_RESULT/DEGRADED_TO_AUXILIARY/CONFLICT certificate metadata, used_fact_keys, used_rule_ids, source_snapshot_ids, provenance, derived taint, renderer firewalls, cross-module IO declarations, conflict certificates, review packets, and boundary tests.",
+    "These runtime metadata fields are not added to canonical_types, do not extend the public slices, and do not create new theorem declarations."
+  ],
+  "route_back_triggers": [
+    "verified_fact",
+    "DecisionStatus",
+    "Horn closure",
+    "attack/exception/priority/permission semantics",
+    "certificate checker acceptance",
+    "formal proof claim"
+  ],
+  "excluded_lsc_assets": [
+    "LSC legal object library",
+    "Deadline/Fee/Interest/Jurisdiction/Citation business tools",
+    "AgentSkill/CLI/API surfaces",
+    "China-law-specific rules",
+    "P1/P2 substantive legal judgments"
   ]
 }

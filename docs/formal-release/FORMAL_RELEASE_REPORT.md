@@ -19,6 +19,10 @@ Use this order of authority when resolving conflicts:
 
 The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
+## Runtime Absorption Note
+
+`juris-calculus` may absorb LSC-derived runtime metadata for trust envelopes, downgrade protocols, provenance, taint, renderer firewalls, IO declarations, conflict certificates, review packets, and boundary tests. This note records a specification boundary only. It does not expand the Lean proof surface, canonical type list, public slice list, or checker acceptance rules.
+
 ## Allowed Claims
 
 - This repository defines a specification and proof boundary for selected legal-reasoning structures.
@@ -34,6 +38,7 @@ The repository is a mathematical companion and specification boundary. It suppor
 - Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
 - Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
 - Do not present stale reports as current release evidence.
+- Do not treat LSC-derived runtime metadata as a formal proof of source truth, legal truth, runtime soundness, or substantive legal outcome.
 
 ## Verification Rule
 

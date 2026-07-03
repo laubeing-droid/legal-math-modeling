@@ -26,6 +26,8 @@ The repository is a mathematical companion and specification boundary. It suppor
 - Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
 - Reports and papers are explanatory artifacts, not proof certificates.
 - Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
+- `juris-calculus` may consume LSC-derived trust-envelope, provenance, downgrade, review-packet, and renderer-firewall ideas as auditable runtime metadata when they remain subordinate to verified facts, certificate-checker evidence, and current-source verification.
+- Runtime metadata may be used to route, downgrade, disclose, or review outputs; it is not a substitute for proof obligations or source-bound fact verification.
 
 ## Prohibited Claims
 

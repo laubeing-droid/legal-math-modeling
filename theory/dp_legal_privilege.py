@@ -55,7 +55,7 @@ class PrivilegeLevel(Enum):
 
 class InformationType(Enum):
     ATTORNEY_CLIENT = "attorney_client"     # ABSOLUTE
-    TRADE_SECRET = "trade_secret"            # STRICT
+    TRADE_PROTECTED = "protected_trade_info"  # STRICT
     MINOR_RECORD = "minor_record"            # STRICT
     SETTLEMENT_NEGOTIATION = "settlement"    # HIGH
     PRE_TRIAL_EVIDENCE = "pre_trial"         # MODERATE
@@ -86,7 +86,7 @@ class LegalPrivacyMapping:
     # Information type -> privilege level
     info_privilege: Dict[InformationType, PrivilegeLevel] = field(default_factory=lambda: {
         InformationType.ATTORNEY_CLIENT: PrivilegeLevel.ABSOLUTE,
-        InformationType.TRADE_SECRET: PrivilegeLevel.STRICT,
+        InformationType.TRADE_PROTECTED: PrivilegeLevel.STRICT,
         InformationType.MINOR_RECORD: PrivilegeLevel.STRICT,
         InformationType.SETTLEMENT_NEGOTIATION: PrivilegeLevel.HIGH,
         InformationType.PRE_TRIAL_EVIDENCE: PrivilegeLevel.MODERATE,
@@ -213,7 +213,7 @@ def prove_epsilon_calibration():
 
     test_cases = [
         ("Client confession to attorney", InformationType.ATTORNEY_CLIENT, 1.0),
-        ("Trade secret formula", InformationType.TRADE_SECRET, 1.0),
+        ("Protected trade formula", InformationType.TRADE_PROTECTED, 1.0),
         ("Minor defendant school records", InformationType.MINOR_RECORD, 1.0),
         ("Settlement offer amount", InformationType.SETTLEMENT_NEGOTIATION, 1.0),
         ("Expert medical report", InformationType.EXPERT_REPORT, 1.0),

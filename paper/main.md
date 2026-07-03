@@ -30,6 +30,8 @@ For this paper topic, the contribution is a bounded framing rather than an unres
 
 This paper does not establish full runtime correctness, jurisdiction-wide legal coverage, commercial workflow readiness, or private benchmark validity. Banach-related material and generated AI audit reports remain explanatory unless tied to current source and current verification evidence.
 
+The 2026-07-03 JC absorption of transferable LSC ideas is treated as runtime metadata governance. Trust envelopes, downgrade protocols, provenance fields, derived taint, renderer firewalls, IO declarations, conflict certificates, review packets, and boundary tests do not create a new formal theorem family and do not prove LSC business rules.
+
 ## 6. Disclosure
 
 No customer data, private legal strategy, or private benchmark content is included. Claims in this paper are subordinate to the repository manifests and source files.

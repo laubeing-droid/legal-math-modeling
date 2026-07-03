@@ -19,6 +19,12 @@ Use this order of authority when resolving conflicts:
 
 The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
+## Runtime Certificate Metadata
+
+Runtime certificates may carry auxiliary metadata such as used fact keys, used rule ids, source snapshot ids, provenance records, derived taint, downgrade states, conflict certificates, and review packets. Presence of these fields never implies checker acceptance by itself. Missing, unknown, disputed, user-assumed, tainted, hypothetical, degraded, or conflicting metadata must remain fail-closed or auxiliary unless the existing checker boundary and verified source evidence support acceptance.
+
+The checker boundary is unchanged: metadata can explain why a runtime output is downgraded, blocked, or sent to review, but it cannot promote a candidate, hypothetical, disputed, or unverified input into an accepted proved result.
+
 ## Allowed Claims
 
 - This repository defines a specification and proof boundary for selected legal-reasoning structures.

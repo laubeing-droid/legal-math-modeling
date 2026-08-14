@@ -26,8 +26,8 @@
 - Remote: https://github.com/laubeing-droid/legal-math-modeling
 - Primary language: Lean 4.30.0 (Mathlib4 v4.30.0)
 - Secondary: Python 3.12 (refinement bridge, tests)
-- Total verified results: 126 (42 core + 84 supporting)
-- Build: `lake build JurisLean` -> 2961 jobs, 0 error, 0 sorry
+- Total verified results: 141 (42 core + 99 supporting)
+- Strict release build: root module plus all 33 inventoried modules -> 8509 jobs, 0 error, 0 forbidden proof closer
 
 ## Lean Proof Rules
 
@@ -39,11 +39,11 @@
 6. Theorem count is determined by `rg "^theorem " --no-filename --count`, not by any report or memory.
 7. Build artifacts: NEVER commit `.olean`, `.ilean`, `.trace`, `.hash`, or `.lake/` directories.
 
-## Lean Source Files (32 actual)
+## Lean Source Files (33 actual)
 
-The following 32 `.lean` files exist in `proofs/lean/juris_lean/JurisLean/`:
+The following 33 `.lean` files exist in `proofs/lean/juris_lean/JurisLean/`:
 
-`AttackDecision.lean`, `AxiomAudit.lean`, `BanachCertificate.lean`, `BanachComplete.lean`, `BanachContraction.lean`, `BanachEffectiveNodes.lean`, `BanachFixedPoint.lean`, `BanachScratch.lean`, `BanachWeightedNorm.lean`, `Basic.lean`, `CertificateChecker.lean`, `ContractionCondition.lean`, `DDLDefinitions.lean`, `DungAAF.lean`, `DungDefinitions.lean`, `DungFixedPoint.lean`, `EndToEnd.lean`, `FiniteGaloisAdjunction.lean`, `FiniteMonotoneIteration.lean`, `FiniteRosetta.lean`, `HornAAFContract.lean`, `HornDefinitions.lean`, `HornFixedPoint.lean`, `HornOperationalRefinement.lean`, `JC_Formalization.lean`, `LegalSyntax.lean`, `SafetyTheorems.lean`, `ScratchApi.lean`, `SupZeroLemma.lean`, `TemporalKripke.lean`, `UnifiedModel.lean`, `WeightedSupNorm.lean`
+`AttackDecision.lean`, `AxiomAudit.lean`, `BanachCertificate.lean`, `BanachComplete.lean`, `BanachContraction.lean`, `BanachEffectiveNodes.lean`, `BanachFixedPoint.lean`, `BanachScratch.lean`, `BanachWeightedNorm.lean`, `Basic.lean`, `CertificateChecker.lean`, `ContractionCondition.lean`, `DDLDefinitions.lean`, `DungAAF.lean`, `DungDefinitions.lean`, `DungFixedPoint.lean`, `EndToEnd.lean`, `FiniteGaloisAdjunction.lean`, `FiniteMonotoneIteration.lean`, `FiniteRosetta.lean`, `HornAAFContract.lean`, `HornDefinitions.lean`, `HornFixedPoint.lean`, `HornOperationalRefinement.lean`, `JC_Formalization.lean`, `LegalSyntax.lean`, `SafetyTheorems.lean`, `ScratchApi.lean`, `SupZeroLemma.lean`, `TemporalKripke.lean`, `TranslationWitness.lean`, `UnifiedModel.lean`, `WeightedSupNorm.lean`
 
 **Ghost files (DO NOT reference as existing):** `argmin_polytime.lean`, `HornCanonical.lean`, `ArgumentCompiler.lean`, `LegalIds.lean`, `LegalModel.lean`, `LegalWellFormed.lean`
 

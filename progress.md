@@ -61,6 +61,23 @@
   `lake env lean` invocation could not resolve unbuilt project `.olean` dependencies. The preflight
   now uses Lake module targets so dependency order is respected; downstream certificate steps are
   conditional on a certificate actually existing.
+- Fourth through seventh CI preflights isolated and closed the remaining new-module issues: a
+  Boolean branch needed `rfl`, `TranslationWitness.Valid` needed an explicit finite `Decidable`
+  instance, and the end-to-end backend discriminator needed an explicitly grouped closed equality.
+- Eighth CI run `31844431416` completed 2969/2969 for the default root but correctly failed because
+  `AxiomAudit` imported `HornFixedPoint` outside that root graph. This proved the old default build
+  was not full source-inventory coverage.
+- The release generator now derives explicit Lake targets for the root plus all 33 inventoried
+  modules. A regression test locks exact target coverage.
+- Added a recorded post-clean Mathlib cache restore gate. It preserves clean project compilation
+  while avoiding a redundant rebuild of roughly 2960 dependency modules on every CI attempt.
+- Strict builds exposed stale API probes in `ScratchApi.lean` and `BanachScratch.lean`; migrated them
+  to declarations confirmed in pinned Mathlib 4.30.0 source. No protected proof core was changed.
+- CI run `31849874630` passed every step. Its immutable artifact records status
+  `FORMAL_RELEASE_VERIFIED`, subject `890a6493ccdf6d91a8302e7f3ea59dc88cfe8217`, certificate digest
+  `8a67357e0905d712071b45a429b615fb963acb03d8325ef324776b96694ee82b`, source inventory digest
+  `7019af4490a75e758db271879536565c86316e0c0ae7dd4a8c63e4861de93247`, 8509/8509 build jobs, and
+  all eight gates PASS. The downloaded artifact independently reverified with zero errors.
 
 ## Tests and Commands
 
@@ -80,11 +97,14 @@
 | L0 Python syntax and inventory unit test | 1 passed |
 | first AxiomAudit invocation | failed as expected before local library build: unknown `JurisLean` module |
 | first v2 checker run | 5 passed, 9 failed; root cause was tuple transport rather than checker semantics |
-| current Python collection | 37 tests collected |
-| current full Python suite | 37 passed |
+| current Python collection | 39 tests collected |
+| current full Python suite | 39 passed |
 | current generated source inventory | 33 Lean files; 141 theorem declarations; check PASS |
 | current Lean guard scan | PASS |
 | local Lean build | intentionally interrupted; superseded by user-required GitHub Actions run |
+| CI strict Lean build | 8509/8509 jobs; PASS in run `31849874630` |
+| CI axiom audit | PASS; only `propext`, `Classical.choice`, `Quot.sound` reported |
+| CI independent certificate verifier | PASS; zero errors |
 
 ## Files Added
 

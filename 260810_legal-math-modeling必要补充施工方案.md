@@ -1,6 +1,6 @@
 # legal-math-modeling 必要补充施工方案
 
-> 版本：2026-08-10
+> 版本：2026-08-15（原方案 2026-08-10，已补施工状态）
 >
 > 目标仓库：`D:\Codex\1.法律工作区\legal-math-modeling`
 >
@@ -20,9 +20,18 @@ LMM 不需要扩大理论版图。必要施工只有五项：
 
 五项完成即停。不得以“形式化完整”为由扩建通用法律本体、规则库、Agent、RAG、SMT 服务或旧研究支线。
 
-## 1. 当前证据边界
+### 0.1 施工状态（2026-08-15）
 
-本轮只做静态、只读核查，未运行 `lake build`、pytest 或会写缓存的命令。因此以下是源码事实，不是 current-head 构建证明。
+- L0 已完成：CI 生成并独立复核 `FormalReleaseCertificate`；证书绑定明确 commit、tree、工具链、33 个 Lean 源文件、141 个 theorem 声明和八道原始 gate 日志。
+- L1 已完成：v2 checker 从事实、义务、argument、source/rule-pack/trace digest、semantics、checker version 和 producer commit 重算接受条件；v1 只能解析，不能取得 v2 decisive acceptance。
+- L2 已完成：任务有界 `TranslationWitness` 及独立 Python checker 已阻断 omission、spurious edge、priority direction reversal。
+- L3/L4 保持 `DEFERRED`：未发现法源版本/事件更新或金额/比例/利息/solver 的真实消费者触发，不接正式路径。
+- L5 的 LMM 侧 schema、expected-only fixture 和独立 verifier 已完成；外部 `juris-calculus` 正式入口尚不产出 actual `RuntimeRefinementReceipt`，因此跨实现一致性声明继续 fail-closed。
+- 当前总体状态：`PARTIAL / EXTERNAL_RECEIPT_PENDING`。不得把本仓 verifier 或测试注入的 receipt 冒充外部正式运行回执。
+
+## 1. 施工前证据边界
+
+以下为 2026-08-10 方案形成时的只读核查基线，当时未运行 `lake build`、pytest 或会写缓存的命令。表内数量和缺口仅说明施工起点；当前施工结果以第 0.1 节及 CI `FormalReleaseCertificate` 为准。
 
 | 发现 | 证据 | 含义 |
 |---|---|---|
@@ -322,18 +331,18 @@ Gate：omission、spurious edge、direction reversal 三类 mutation 全部被�
 
 ## 13. Definition of Done
 
-- [ ] 存在绑定明确 subject commit 的真实 FormalReleaseCertificate，并可独立重验。
-- [ ] theorem manifest 自动生成，名称、路径、行号、摘要和数量与源码一致。
-- [ ] SORRY ledger 不引用不存在的当前定理。
-- [ ] 公共定理 axiom audit 有原始运行输出。
-- [ ] checker 不接受“空 trace + 自报布尔 true”的 decisive certificate。
-- [ ] Horn -> AAF omission、spurious edge、priority 反向 mutation 均被阻断。
-- [ ] differential 结果来自正式执行回执，不是 LMM 写死的 shadow 状态。
-- [ ] 两端 commit、fixture、source/rule-pack、输出 digest 可追溯。
-- [ ] 时态 unknown/撤回、舍入缺失、溢出/位宽不符 fail-closed。
-- [ ] LMM release certificate 与 runtime refinement receipt 物理、语义分离。
-- [ ] 未经独立授权不改变 11 canonical types、4 modalities、4 slices。
-- [ ] 文档只出现任务有界声明，不出现“运行时已被完整形式验证”等禁称。
+- [x] 存在绑定明确 subject commit 的真实 FormalReleaseCertificate，并可独立重验。
+- [x] theorem manifest 自动生成，名称、路径、行号、摘要和数量与源码一致。
+- [x] SORRY ledger 不引用不存在的当前定理。
+- [x] 公共定理 axiom audit 有原始运行输出。
+- [x] checker 不接受“空 trace + 自报布尔 true”的 decisive certificate。
+- [x] Horn -> AAF omission、spurious edge、priority 反向 mutation 均被阻断。
+- [ ] differential 结果来自正式执行回执，不是 LMM 写死的 shadow 状态：等待外部 producer。
+- [ ] 两端 commit、fixture、source/rule-pack、输出 digest 可追溯：等待 actual receipt。
+- [ ] 时态 unknown/撤回、舍入缺失、溢出/位宽不符 fail-closed：L3/L4 未被真实消费者触发，保持 `DEFERRED`。
+- [x] LMM release certificate 与 runtime refinement receipt 物理、语义分离。
+- [x] 未经独立授权不改变 11 canonical types、4 modalities、4 slices。
+- [x] 文档只出现任务有界声明，不出现“运行时已被完整形式验证”等禁称。
 
 ### [我违规之处]
 

@@ -23,10 +23,10 @@ produce commit- and digest-bound artifacts, and create local checkpoint commits.
 | Phase | Scope | Verification | Status |
 |---|---|---|---|
 | 1 | Baseline, boundaries, current-state inventory, test design | clean/read-only evidence snapshot; consumer-trigger decision | complete |
-| 2 | L-A formal release certificate and ledger/audit repair | generator + clean build + full tests + guard + axiom + independent verifier | in_progress |
-| 3 | L-B checker v2 | Lean build; Python mutation suite; v1 compatibility boundary | implementation_complete_ci_pending |
-| 4 | L-C translation witness and L-D real runtime receipt | independent mutation checks; externally supplied receipt validation | verifier_complete_external_receipt_pending |
-| 5 | Conditional L-E, full review, documentation, memory, commits | complete acceptance order; digest/commit binding; claim audit | pending |
+| 2 | L-A formal release certificate and ledger/audit repair | generator + clean build + full tests + guard + axiom + independent verifier | complete |
+| 3 | L-B checker v2 | Lean build; Python mutation suite; v1 compatibility boundary | complete |
+| 4 | L-C translation witness and L-D real runtime receipt | independent mutation checks; externally supplied receipt validation | translation_complete_external_receipt_pending |
+| 5 | Conditional L-E, full review, documentation, memory, commits | complete acceptance order; digest/commit binding; claim audit | in_progress |
 
 ## Scope Decisions
 
@@ -58,11 +58,16 @@ produce commit- and digest-bound artifacts, and create local checkpoint commits.
 | Second CI run failed `CertificateChecker.lean` after 2965/2969 targets | 1 | Replace heartbeat-heavy simplification with a direct Bool case split; explicitly right-associate content prerequisites so theorem projections match |
 | Independent verifier flagged `UNKNOWN_*` mutation test names as UNKNOWN outcomes | 1 | Match fail-closed markers only as complete tokens and add a regression test distinguishing identifiers from outcome values |
 | Third CI preflight reported unknown `JurisLean` module prefix | 1 | Direct Lean cannot import unbuilt project objects; use `lake build JurisLean.<Module>` targets so Lake builds dependencies first |
+| Fourth through seventh CI preflights exposed proof-body/instance/syntax errors | 4 | Fixed the exact Boolean branch proof, explicit `Decidable` instance, and closed backend discriminator without weakening statements |
+| Eighth CI passed 2969/2969 but AxiomAudit lacked `HornFixedPoint.olean` | 1 | Default root build was not full inventory coverage; derive explicit Lake targets for the root and all 33 inventory modules |
+| Strict inventory build initially failed two stale scratch modules | 2 | Migrated API probes to pinned Mathlib 4.30.0 declarations; no proven core module changed |
+| Clean gate discarded the restored Mathlib cache and caused 50-minute dependency rebuilds | 1 | Added a recorded post-clean `mathlib_cache_restore` gate; clean project compilation now completes in minutes |
 
 ## Current Decision Point
 
-Phase 1 is closed. L3/L4 remain `DEFERRED` because no real consumer trigger exists. L0-L2 and the
-L5 independent receipt verifier are implemented locally; Python collection/full tests, guard scan,
-and generated inventory pass. Lean compilation, axiom audit, release certificate generation, and
-independent certificate verification are now CI-only. L5 remains fail-closed until the external
-runtime supplies an actual receipt through its formal entrypoint.
+Phases 1-3 and the L-C part of phase 4 are closed. L3/L4 remain `DEFERRED` because no real consumer
+trigger exists. GitHub Actions run `31849874630` produced a verified, independently rechecked
+FormalReleaseCertificate for its PR merge commit: 33 Lean files, 141 theorem declarations, 8509/8509
+strict build jobs, eight gates PASS. L5 remains fail-closed until the external runtime supplies an
+actual receipt through its formal entrypoint. Phase 5 is limited to claim/document/memory close-out;
+it cannot mark the overall goal complete while the external receipt is absent.

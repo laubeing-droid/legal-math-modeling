@@ -116,7 +116,16 @@ Do not weaken or rewrite the existing fixed-point core.
 - `RuntimeRefinementReceipt` has a schema and independent LMM verifier. No current external runtime
   entrypoint produces the actual receipt, so no cross-implementation agreement claim is available.
 - Current generated inventory records 33 Lean files and 141 theorem declarations. This remains a
-  source inventory until GitHub Actions produces and independently verifies the current-commit
-  `FormalReleaseCertificate`.
+  source inventory by itself. GitHub Actions separately produced and independently verified a
+  commit-bound `FormalReleaseCertificate` for the successful PR merge subject.
 - User required all remaining Lean work to run in GitHub Actions. Local Lean build/download activity
   is stopped and will not be used as release evidence.
+- The old default `lake build` did not compile every `.lean` file under the authority tree. Strict
+  release verification must build the root plus explicit targets derived from all 33 inventory paths.
+- The strict CI build completed 8509/8509 jobs. AxiomAudit passed and reported only the declared
+  trusted basis: `propext`, `Classical.choice`, and `Quot.sound`.
+- The successful certificate has digest
+  `8a67357e0905d712071b45a429b615fb963acb03d8325ef324776b96694ee82b` and source inventory digest
+  `7019af4490a75e758db271879536565c86316e0c0ae7dd4a8c63e4861de93247`.
+- L5 is still not cross-implementation evidence: the current external formal runtime entrypoint does
+  not produce an actual `RuntimeRefinementReceipt`. The LMM verifier must remain fail-closed.

@@ -104,3 +104,19 @@ Do not weaken or rewrite the existing fixed-point core.
 - The guard searches returned no forbidden proof-closing token or `theorem : True` match; the
   aggregate command exit code was 1 because `rg` uses 1 for no matches and tools were not found.
 - Baseline collection is only 12 tests, all in `tests/spec/test_spec_transition.py`; all 12 pass.
+
+## Current Construction State
+
+- The content-bound Python and Lean v2 contracts are implemented side-by-side with v1. Python
+  mutation tests reject empty traces, coverage omissions, unknown arguments, digest mutations,
+  unknown semantics/checker versions, candidate evidence, duplicate IDs, unstable order, and stale
+  source replay.
+- The exact finite translation witness is implemented in Python and Lean. The Python checker rejects
+  expected-edge omission, spurious edges, and priority direction reversal.
+- `RuntimeRefinementReceipt` has a schema and independent LMM verifier. No current external runtime
+  entrypoint produces the actual receipt, so no cross-implementation agreement claim is available.
+- Current generated inventory records 33 Lean files and 141 theorem declarations. This remains a
+  source inventory until GitHub Actions produces and independently verifies the current-commit
+  `FormalReleaseCertificate`.
+- User required all remaining Lean work to run in GitHub Actions. Local Lean build/download activity
+  is stopped and will not be used as release evidence.

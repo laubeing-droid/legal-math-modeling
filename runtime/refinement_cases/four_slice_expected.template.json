@@ -1,0 +1,25 @@
+{
+  "schema_version": "runtime-refinement-expected-template-v1",
+  "status": "expected_only_not_runtime_receipt",
+  "semantics": {
+    "id": "grounded",
+    "version": "1"
+  },
+  "cases": [
+    { "case_id": "contract::plain", "expected_status": "PROVED" },
+    { "case_id": "contract::force-majeure", "expected_status": "REFUTED" },
+    { "case_id": "license::priority-on", "expected_status": "PROVED" },
+    { "case_id": "license::priority-off", "expected_status": "REFUTED" },
+    { "case_id": "permission::condition-missing", "expected_status": "UNDECIDED" },
+    { "case_id": "permission::conflict", "expected_status": "UNDECIDED" },
+    { "case_id": "priority::active", "expected_status": "PROVED" },
+    { "case_id": "priority::missing", "expected_status": "UNDECIDED" },
+    { "case_id": "priority::cycle", "expected_status": "UNDECIDED" },
+    { "case_id": "priority::self-attack", "expected_status": "UNDECIDED" }
+  ],
+  "limitations": [
+    "This tracked file is an expected-only template.",
+    "A current-head fixture and external actual receipt are generated artifacts.",
+    "No jc_shadow_status or runtime PASS is stored here."
+  ]
+}

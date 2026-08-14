@@ -27,6 +27,25 @@
 - Ran collection to prove the new tests fail for the intended missing implementations.
 - Phase 1 checkpoint commit was initially blocked because this checkout had no Git author identity;
   the latest repository author identity will be reused in repository-local config only.
+- Implemented the L0 schema, source-inventory generator, gate runner, and independent verifier.
+- Replaced the narrative axiom `.txt` with a boundary `.md`, expanded the executable declaration
+  audit, removed nonexistent current theorem entries, and upgraded CI/external-build entrypoints.
+- Installed official Elan 4.2.3 through WinGet and the pinned Lean 4.30.0 toolchain.
+- Materialized every dependency at the exact `lake-manifest.json` revision.
+- Interrupted both local Lean build attempts after the user required CI-only execution; verified no
+  Lean/Lake/Elan/cache process remains.
+- Corrected the process-local GitHub proxy from inactive port `20808` to the project proxy at
+  `10808`; `gh auth status` and `git ls-remote` then succeeded.
+- Created `agent/necessary-supplement-ci` under the `github:yeet` publication workflow.
+- Added the content-bound Lean `CertificateEnvelopeV2`, its authoritative checker and acceptance
+  implications, non-empty v2 end-to-end examples, and legacy non-promotion theorem.
+- Added exact finite Lean/Python Horn-to-AAF translation witnesses and mutation checks for omission,
+  spurious edges, and priority direction reversal.
+- Replaced the same-process shadow differential with an injected actual-receipt verifier and
+  expected-only fixture template; the external receipt producer remains absent and fail-closed.
+- Rebuilt source inventories: 33 Lean files, 141 theorem declarations, inventory digest
+  `727bf897dc06abc40ffe0b40d185ab2e364608a1c4d0b37b48122785a68c4d7e`.
+- Collected 36 Python tests and passed all 36; the Lean guard scan passed.
 
 ## Tests and Commands
 
@@ -43,6 +62,14 @@
 | Hermes venv `python -m pytest --collect-only -q` | 12 tests collected |
 | Hermes venv `python -m pytest -q -ra` | 12 passed in 0.22s |
 | post-test-design collection | expected failure: 4 missing implementation imports; 11 legacy tests collected |
+| L0 Python syntax and inventory unit test | 1 passed |
+| first AxiomAudit invocation | failed as expected before local library build: unknown `JurisLean` module |
+| first v2 checker run | 5 passed, 9 failed; root cause was tuple transport rather than checker semantics |
+| current Python collection | 36 tests collected |
+| current full Python suite | 36 passed in 0.30s |
+| current generated source inventory | 33 Lean files; 141 theorem declarations; check PASS |
+| current Lean guard scan | PASS |
+| local Lean build | intentionally interrupted; superseded by user-required GitHub Actions run |
 
 ## Files Added
 

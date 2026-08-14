@@ -17,7 +17,7 @@ Use this order of authority when resolving conflicts:
 
 ## Current Boundary
 
-The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
+The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, an exact finite Horn-to-AAF translation witness, and a content-bound certificate/checker v2 boundary. The documentation does not assert full runtime correctness.
 
 ## Allowed Claims
 
@@ -26,6 +26,7 @@ The repository is a mathematical companion and specification boundary. It suppor
 - Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
 - Reports and papers are explanatory artifacts, not proof certificates.
 - Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
+- A verified `FormalReleaseCertificate` proves only the named LMM commit and gates; a separately produced and independently checked `RuntimeRefinementReceipt` proves only agreement for its named runtime commit and fixture.
 
 ## Prohibited Claims
 

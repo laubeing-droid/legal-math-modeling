@@ -11,6 +11,7 @@ import JurisLean.LegalSyntax
 import JurisLean.DDLDefinitions
 import JurisLean.CertificateChecker
 import JurisLean.HornAAFContract
+import JurisLean.TranslationWitness
 import JurisLean.AttackDecision
 import JurisLean.SafetyTheorems
 import JurisLean.EndToEnd

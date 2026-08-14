@@ -13,10 +13,10 @@ The public boundary covers:
 - 11 canonical legal types: LegalFact, LegalRule, LegalNorm, LegalClaim, Argument, Attack, Priority, Violation, Reparation, DecisionStatus, ProofTrace.
 - 4 DDL modalities: OBLIGATION, PROHIBITION, PERMISSION, CONSTITUTIVE.
 - 4 slices: contract breach, license, permission, priority.
-- A minimal DDL core, a Horn-to-AAF compiler contract, and a certificate/checker boundary.
+- A minimal DDL core, a task-bounded Horn-to-AAF translation witness, and a content-bound certificate/checker v2 boundary.
 - Lean source inventory under `proofs/lean/juris_lean/JurisLean/`.
 
-At rewrite time the Lean source tree contains 32 files and 126 theorem declarations. This is a source inventory fact, not a current-head release certificate.
+The generated source inventory currently records 33 Lean files and 141 theorem declarations. These counts are source facts, not a current-head release certificate; only a verified CI `FormalReleaseCertificate` can establish the release gate for its named commit.
 
 ## Evidence Discipline
 
@@ -66,3 +66,6 @@ cd proofs/lean/juris_lean && lake build
 ```
 
 Run commands on the relevant commit before making release claims.
+
+External runtime agreement is a separate gate. It requires an independently checked
+`RuntimeRefinementReceipt`; the LMM formal release certificate cannot substitute for it.

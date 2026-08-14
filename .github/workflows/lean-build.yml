@@ -1,18 +1,25 @@
-name: Lake Build + Scan
-
-# Trigger: push to master/main or manual workflow_dispatch
+name: Formal release gates
 
 on:
   push:
     branches: [master, main, "ci/**"]
+  pull_request:
+    branches: [master, main]
   workflow_dispatch:
 
 jobs:
-  build:
+  verify:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Python test runner
+        run: python -m pip install pytest
 
       - name: Restore elan cache
         id: elan-cache
@@ -30,16 +37,24 @@ jobs:
         uses: actions/cache@v4
         with:
           path: proofs/lean/juris_lean/.lake/packages
-          key: ${{ runner.os }}-lake-packages-${{ hashFiles('proofs/lean/juris_lean/lakefile.lean', 'proofs/lean/juris_lean/lean-toolchain') }}
+          key: ${{ runner.os }}-lake-packages-${{ hashFiles('proofs/lean/juris_lean/lakefile.lean', 'proofs/lean/juris_lean/lean-toolchain', 'proofs/lean/juris_lean/lake-manifest.json') }}
           restore-keys: |
             ${{ runner.os }}-lake-packages-
 
-      - name: Lake Clean + Build (full from 0, no Mathlib cache)
+      - name: Generate current-head certificate and raw logs
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
-          cd proofs/lean/juris_lean && lake clean && lake build
+          python scripts/generate_formal_release_certificate.py --check-inventories --run-gates --output-dir build-logs/formal-release
 
-      - name: Scan
+      - name: Independently verify certificate
+        if: always()
         run: |
-          export PATH="$HOME/.elan/bin:$PATH"
-          python3 scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean
+          python scripts/verify_formal_release_certificate.py "build-logs/formal-release/formal-release-certificate-${GITHUB_SHA}.json" --artifact-dir build-logs/formal-release
+
+      - name: Upload immutable formal release evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: formal-release-${{ github.sha }}
+          path: build-logs/formal-release/
+          if-no-files-found: error

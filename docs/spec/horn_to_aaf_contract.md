@@ -1,47 +1,29 @@
-# Horn To Aaf Contract
+# Horn-to-AAF Translation Witness
 
-Status: rewritten on 2026-07-01 as a release-bounded repository document.
+## Contract
 
-## Purpose
+`horn-aaf-translation-witness-v1` binds the input facts, rules, exceptions, and
+priorities to expected and produced arguments/attacks. The independent checker uses
+exact identifier sets and full relation records.
 
-This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `spec` area without expanding the formal claim surface.
+For the fixed input language and `grounded@1` semantics, the checker requires:
 
-## Authority
+- every output argument has an input rule and support facts;
+- every expected argument and edge is present;
+- no unexpected argument or edge is present;
+- every edge has a known rebuttal/exception/priority kind and input witness;
+- every edge endpoint exists;
+- priority defeat preserves winner-to-loser direction;
+- identifiers are unique and a cycle policy is explicit;
+- the input and witness digests match their content.
 
-Use this order of authority when resolving conflicts:
+The required mutation gates are omission, spurious edge, and reversed priority
+direction. Unknown edge kinds, duplicate identifiers, missing cycle policy, missing
+input witnesses, or unknown semantics fail closed.
 
-1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
-2. Python tests and certificate fixtures for engineering regression evidence.
-3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
-4. Papers, reports, and history files for explanation only.
+## Proof boundary
 
-## Current Boundary
-
-The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
-
-## Allowed Claims
-
-- This repository defines a specification and proof boundary for selected legal-reasoning structures.
-- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
-- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
-- Reports and papers are explanatory artifacts, not proof certificates.
-- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
-
-## Prohibited Claims
-
-- Do not claim that the full runtime is formally proved by Lean.
-- Do not turn an LLM candidate into a verified fact without source-bound verification.
-- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
-- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
-- Do not present stale reports as current release evidence.
-
-## Verification Rule
-
-A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
-
-## Maintenance Notes
-
-- Keep this file source-bounded.
-- Do not import private client data or commercial workflow details.
-- Do not use this file to alter formal semantics.
-- Update this file after source, manifest, or release-gate changes.
+Lean proves finite-set consequences of equality between expected and produced
+relations: no omission, no spurious edge, and preserved priority endpoints. Python
+recomputes concrete records and digests. Neither layer establishes translation
+completeness beyond the bound input language, semantics version, and fixtures.

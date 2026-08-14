@@ -1,53 +1,37 @@
 # Certificate Checker Boundary
 
-Status: rewritten on 2026-07-01 as a release-bounded repository document.
+## Version boundary
 
-## Purpose
+`spec-cert-v1` remains parseable for historical consumers. It cannot obtain a v2
+decisive verdict. `spec-cert-v2` is the only content-bound decisive envelope.
 
-This file is a public documentation artifact for the `legal-math-modeling` repository. It records the current specification boundary, audit posture, or historical context for the `spec` area without expanding the formal claim surface.
+The v2 producer supplies content, identifiers, and claimed digests. The independent
+checker recomputes:
 
-## Authority
+- expected facts are a subset of used facts;
+- expected obligations are a subset of discharged obligations;
+- accepted arguments exist in the constructed argument set;
+- argument rules and support facts exist in the bound payload;
+- every source snapshot, rule pack, trace, and full certificate digest matches;
+- identifiers and serialization order are unique and deterministic;
+- semantics and checker versions are known;
+- evidence is verified and not a candidate;
+- the trace is non-empty and indexed consecutively.
 
-Use this order of authority when resolving conflicts:
+Unknown schema/semantics/checker versions, empty traces, stale source snapshots,
+digest mismatches, missing facts or obligations, duplicate identifiers, unstable
+ordering, candidate evidence, and malformed attacks return `UNDECIDED` or `TAINTED`.
+They never produce a decisive acceptance.
 
-1. Lean source under `proofs/lean/juris_lean/JurisLean/` for formal statements.
-2. Python tests and certificate fixtures for engineering regression evidence.
-3. Machine-readable manifests under `docs/formal-release/` and `docs/audit/` for release bookkeeping.
-4. Papers, reports, and history files for explanation only.
+## Lean boundary
 
-## Current Boundary
+Lean models digest obligations as equality between expected and observed digest
+identifiers. Lean theorems establish implications from checker acceptance to those
+content-binding premises. They do not prove SHA-256, Python serialization, a producer,
+an external runtime, source authority, or a substantive legal conclusion.
 
-The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
+## Claim limit
 
-## Runtime Certificate Metadata
-
-Runtime certificates may carry auxiliary metadata such as used fact keys, used rule ids, source snapshot ids, provenance records, derived taint, downgrade states, conflict certificates, and review packets. Presence of these fields never implies checker acceptance by itself. Missing, unknown, disputed, user-assumed, tainted, hypothetical, degraded, or conflicting metadata must remain fail-closed or auxiliary unless the existing checker boundary and verified source evidence support acceptance.
-
-The checker boundary is unchanged: metadata can explain why a runtime output is downgraded, blocked, or sent to review, but it cannot promote a candidate, hypothetical, disputed, or unverified input into an accepted proved result.
-
-## Allowed Claims
-
-- This repository defines a specification and proof boundary for selected legal-reasoning structures.
-- The four current slices are closed only within their canonical schema, DDL core, Horn-to-AAF contract, and certificate-checker boundary.
-- Lean source files are the authority for formal statements; runtime correctness needs separate evidence.
-- Reports and papers are explanatory artifacts, not proof certificates.
-- Unknown, skipped, timed-out, or unavailable verification remains fail-closed.
-
-## Prohibited Claims
-
-- Do not claim that the full runtime is formally proved by Lean.
-- Do not turn an LLM candidate into a verified fact without source-bound verification.
-- Do not treat Python tests, sampled enumeration, or AI audit text as a Lean proof.
-- Do not change DecisionStatus, checker acceptance, verified_fact gates, or attack/exception/priority semantics from documentation.
-- Do not present stale reports as current release evidence.
-
-## Verification Rule
-
-A claim is current only if it can be traced to a source file, a machine-readable manifest, and a local or CI command that ran on the relevant commit. If evidence is missing, stale, skipped, timed out, or unavailable, the status is fail-closed.
-
-## Maintenance Notes
-
-- Keep this file source-bounded.
-- Do not import private client data or commercial workflow details.
-- Do not use this file to alter formal semantics.
-- Update this file after source, manifest, or release-gate changes.
+A verified certificate proves that the named checker accepted the bound payload under
+the named schema and semantics. It does not prove the complete juris-calculus runtime,
+translation completeness outside the declared fixture language, or legal correctness.

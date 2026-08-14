@@ -8,7 +8,7 @@ checker fail-closed theorem。
 
 namespace JurisLean
 
-/-- 中文说明：空 trace 仅用于检查 certificate gate，不代表真实 proof trace。 -/
+/-- Legacy v1 empty trace retained only for read compatibility tests. -/
 def emptyTrace : ProofTrace :=
   {
     facts := ∅,
@@ -34,6 +34,56 @@ def candidateEvidence : Evidence :=
     verified := false,
     trust := TrustLabel.needsReview
   }
+
+/-- Minimal non-empty trace used by the authoritative v2 examples. -/
+def boundTrace : ProofTrace :=
+  {
+    facts := {"fact::verified"},
+    rules := {"rule::applicable"},
+    arguments := {"arg::supported"},
+    attacks := ∅
+  }
+
+/-- A content-bound v2 certificate with independently comparable digest bindings. -/
+def readyCertificateV2 (slice : SliceKind) : CertificateEnvelopeV2 :=
+  {
+    id := "certificate::v2::ready",
+    slice := slice,
+    status := DecisionStatus.proved,
+    evidence := verifiedBackendEvidence,
+    trace := boundTrace,
+    expectedFacts := {"fact::verified"},
+    usedFacts := {"fact::verified"},
+    expectedObligations := {"obligation::closed"},
+    dischargedObligations := {"obligation::closed"},
+    ruleIds := {"rule::applicable"},
+    constructedArguments := {"arg::supported"},
+    acceptedArguments := {"arg::supported"},
+    attackIds := ∅,
+    sourceSnapshots := [{
+      subjectId := "source::snapshot",
+      expectedSha256 := "sha256::source",
+      observedSha256 := "sha256::source"
+    }],
+    rulePackDigest := {
+      subjectId := "rule-pack",
+      expectedSha256 := "sha256::rule-pack",
+      observedSha256 := "sha256::rule-pack"
+    },
+    traceDigest := {
+      subjectId := "trace",
+      expectedSha256 := "sha256::trace",
+      observedSha256 := "sha256::trace"
+    },
+    semanticsId := "grounded",
+    semanticsVersion := "1",
+    producerCommit := "commit::fixture",
+    checkerVersion := "certificate-checker-v2"
+  }
+
+/-- Empty trace mutation used to demonstrate the v2 fail-closed boundary. -/
+def emptyTraceCertificateV2 (slice : SliceKind) : CertificateEnvelopeV2 :=
+  { readyCertificateV2 slice with trace := emptyTrace }
 
 /-- 中文说明：构造一个四个 slice 共用的 ready certificate。 -/
 def readyCertificate (slice : SliceKind) : Certificate :=
@@ -182,5 +232,32 @@ theorem end_to_end_acceptance_requires_payload
     (readyCertificate slice).requiredFactsPresent = true ∧
       (readyCertificate slice).proofObligationsPresent = true :=
   accepted_certificate_has_required_payload (readyCertificate slice) h
+
+/-- Every task-bounded slice has a positive content-bound v2 path. -/
+theorem ready_v2_certificate_accepted (slice : SliceKind) :
+    checkCertificateV2 (readyCertificateV2 slice) = CheckVerdict.accept := by
+  cases slice <;>
+    simp [checkCertificateV2, CertificateEnvelopeV2.contentReady,
+      CertificateEnvelopeV2.requiredFactsCovered,
+      CertificateEnvelopeV2.obligationsCovered,
+      CertificateEnvelopeV2.acceptedArgumentsBound,
+      CertificateEnvelopeV2.sourceSnapshotsBound,
+      CertificateEnvelopeV2.knownSemantics,
+      CertificateEnvelopeV2.knownChecker,
+      ProofTrace.nonempty, DigestBinding.matches, Evidence.isAuditable,
+      readyCertificateV2, boundTrace, verifiedBackendEvidence]
+
+/-- An empty trace is rejected even though all legacy producer booleans could have been true. -/
+theorem empty_trace_v2_fail_closed (slice : SliceKind) :
+    checkCertificateV2 (emptyTraceCertificateV2 slice) = CheckVerdict.reject := by
+  cases slice <;>
+    simp [checkCertificateV2, CertificateEnvelopeV2.contentReady,
+      ProofTrace.nonempty, emptyTraceCertificateV2, readyCertificateV2,
+      emptyTrace]
+
+/-- Legacy accepted examples are not authoritative v2 certificates. -/
+theorem legacy_ready_certificate_not_v2_decisive (slice : SliceKind) :
+    checkLegacyCertificateAsV2 (readyCertificate slice) ≠ CheckVerdict.accept :=
+  legacy_certificate_never_v2_accepted (readyCertificate slice)
 
 end JurisLean

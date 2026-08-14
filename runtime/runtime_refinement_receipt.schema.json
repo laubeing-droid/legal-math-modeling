@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/laubeing-droid/legal-math-modeling/schemas/runtime-refinement-receipt-v1.json",
+  "title": "RuntimeRefinementReceipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "producer",
+    "execution_status",
+    "lmm_commit",
+    "runtime_commit",
+    "fixture_digest",
+    "source_snapshot_digests",
+    "rule_pack_digest",
+    "semantics",
+    "cases",
+    "receipt_digest"
+  ],
+  "properties": {
+    "schema_version": { "const": "runtime-refinement-receipt-v1" },
+    "producer": { "type": "string", "minLength": 1 },
+    "execution_status": { "const": "PASS" },
+    "lmm_commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "runtime_commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "fixture_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "source_snapshot_digests": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+      "uniqueItems": true
+    },
+    "rule_pack_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "semantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "version"],
+      "properties": {
+        "id": { "type": "string" },
+        "version": { "type": "string" }
+      }
+    },
+    "cases": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["case_id", "actual_status", "output_digest"],
+        "properties": {
+          "case_id": { "type": "string", "minLength": 1 },
+          "actual_status": {
+            "enum": ["PROVED", "REFUTED", "UNDECIDED", "TAINTED"]
+          },
+          "output_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+        }
+      }
+    },
+    "receipt_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

@@ -1,53 +1,35 @@
-﻿# request-external-build.ps1
-# Run in PowerShell to complete the Lean 4 lake build externally.
-# Do NOT run lake clean first. Incremental cache preserved.
+$ErrorActionPreference = "Stop"
 
 $repo = if ($env:LEGAL_MATH_MODELING_ROOT) {
     (Resolve-Path -LiteralPath $env:LEGAL_MATH_MODELING_ROOT).Path
 } else {
     (Resolve-Path -LiteralPath (Join-Path $PSScriptRoot "..")).Path
 }
-$lakeDir = "$repo\proofs\lean\juris_lean"
-$ts = Get-Date -Format "yyyyMMdd-HHmmss"
-$logDir = "$repo\build-logs\$ts"
-New-Item -ItemType Directory -Force -Path $logDir | Out-Null
+$python = if ($env:LEGAL_MATH_PYTHON) { $env:LEGAL_MATH_PYTHON } else { "python" }
+$timestamp = Get-Date -Format "yyyyMMdd-HHmmss"
+$outputDirectory = Join-Path $repo "build-logs\$timestamp"
 
-$logFile = "$logDir\lake-build.log"
-$resultFile = "$logDir\build-result.json"
+& $python (Join-Path $repo "scripts\generate_formal_release_certificate.py") `
+    --repo-root $repo `
+    --check-inventories `
+    --run-gates `
+    --output-dir "build-logs\$timestamp"
+$generationExitCode = $LASTEXITCODE
 
-$commit = (git -C $repo rev-parse HEAD)
-
-Write-Host "=== External Lake Build ==="
-Write-Host "Commit: $commit"
-Write-Host "Log:    $logFile"
-Write-Host ""
-
-$started = Get-Date
-Push-Location $lakeDir
-try {
-    lake build 2>&1 | Tee-Object $logFile
-    $exitCode = $LASTEXITCODE
-} finally {
-    Pop-Location
+$commit = (& git -C $repo rev-parse HEAD).Trim()
+$certificate = Join-Path $outputDirectory "formal-release-certificate-$commit.json"
+if (-not (Test-Path -LiteralPath $certificate)) {
+    throw "Certificate was not generated: $certificate"
 }
-$finished = Get-Date
 
-$result = @{
-    exit_code   = $exitCode
-    git_commit  = $commit
-    started_at  = $started.ToString("o")
-    finished_at = $finished.ToString("o")
-    duration_s  = [math]::Round(($finished - $started).TotalSeconds, 1)
-    log_sha256  = (Get-FileHash $logFile -Algorithm SHA256).Hash
-    lake_dir    = $lakeDir
-} | ConvertTo-Json -Depth 2
+& $python (Join-Path $repo "scripts\verify_formal_release_certificate.py") `
+    $certificate `
+    --repo-root $repo `
+    --artifact-dir $outputDirectory
+$verificationExitCode = $LASTEXITCODE
 
-[System.IO.File]::WriteAllText(
-    $resultFile,
-    $result,
-    [System.Text.UTF8Encoding]::new($false)
-)
+if ($generationExitCode -ne 0 -or $verificationExitCode -ne 0) {
+    exit 1
+}
 
-Write-Host "Exit: $exitCode  Time: $($result.duration_s)s  Result: $resultFile"
-if ($exitCode -ne 0) { Write-Host "BUILD FAILED. Check log."; exit $exitCode }
-Write-Host "BUILD OK. Run: python $repo\scripts\finalize-external-build.py $resultFile"
+Write-Output $certificate

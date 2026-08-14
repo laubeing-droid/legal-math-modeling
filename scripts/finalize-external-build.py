@@ -1,87 +1,41 @@
-"""finalize-external-build.py -- Verify external lake build and finalize release."""
+#!/usr/bin/env python3
+"""Compatibility entrypoint for independent formal release verification."""
 
-import json, sys, hashlib, os, subprocess
+from __future__ import annotations
+
+import argparse
+import json
 from pathlib import Path
-from datetime import datetime
+from typing import Sequence
 
-def repo_root() -> Path:
-    """解析仓库根目录；优先使用显式环境变量，否则回退到脚本所在仓库。"""
-    configured = os.environ.get("LEGAL_MATH_MODELING_ROOT")
-    return Path(configured).expanduser().resolve() if configured else Path(__file__).resolve().parents[1]
+from verify_formal_release_certificate import verify_certificate
 
-REPO = repo_root()
 
-def sha256_file(path: Path) -> str:
-    return hashlib.sha256(path.read_bytes()).hexdigest()
+def _parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("certificate")
+    parser.add_argument("--repo-root", default=None)
+    return parser
 
-def verify(result_path: str) -> dict:
-    rp = Path(result_path)
-    if not rp.exists():
-        return {"status": "FAIL", "reason": f"result file not found: {result_path}"}
 
-    result = json.loads(rp.read_text(encoding="utf-8-sig"))
-    checks = []
+def main(argv: Sequence[str] | None = None) -> int:
+    args = _parser().parse_args(argv)
+    certificate_path = Path(args.certificate).resolve()
+    repo_root = (
+        Path(args.repo_root).resolve()
+        if args.repo_root
+        else Path(__file__).resolve().parents[1]
+    )
+    document = json.loads(certificate_path.read_text(encoding="utf-8"))
+    report = verify_certificate(
+        document,
+        repo_root,
+        certificate_path.parent,
+        require_current_head=True,
+    )
+    print(json.dumps(report, ensure_ascii=False, indent=2))
+    return 0 if report["status"] == "PASS" else 1
 
-    # 1. exit_code == 0
-    if result["exit_code"] != 0:
-        checks.append(f"FAIL: exit_code={result['exit_code']}")
-    else:
-        checks.append("PASS: exit_code == 0")
-
-    # 2. git_commit matches HEAD
-    head = subprocess.run(
-        ["git", "-C", str(REPO), "rev-parse", "HEAD"],
-        capture_output=True, text=True
-    ).stdout.strip()
-    if result["git_commit"] != head:
-        checks.append(f"FAIL: commit mismatch (build:{result['git_commit'][:8]} HEAD:{head[:8]})")
-    else:
-        checks.append(f"PASS: commit {head[:8]}")
-
-    # 3. log file exists and SHA matches
-    log_dir = rp.parent
-    log_file = log_dir / "lake-build.log"
-    if not log_file.exists():
-        checks.append("FAIL: lake-build.log not found")
-    else:
-        actual_sha = sha256_file(log_file)
-        if actual_sha != result["log_sha256"]:
-            checks.append("FAIL: log SHA256 mismatch")
-        else:
-            checks.append("PASS: log SHA256 verified")
-
-    # 4. Lean source tree remains clean after the recorded build
-    diff = subprocess.run(
-        [
-            "git",
-            "-C",
-            str(REPO),
-            "status",
-            "--porcelain",
-            "--untracked-files=no",
-            "--",
-            "proofs/lean/juris_lean/JurisLean/",
-        ],
-        capture_output=True,
-        text=True,
-    ).stdout.strip()
-    if diff:
-        checks.append(f"FAIL: Lean source tree dirty after build: {diff}")
-    else:
-        checks.append("PASS: Lean source tree clean after build")
-
-    all_pass = all(c.startswith("PASS") for c in checks)
-    return {
-        "status": "PASS" if all_pass else "FAIL",
-        "checks": checks,
-        "verified_at": datetime.now().isoformat(),
-        "result_file": str(rp),
-    }
 
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("Usage: python finalize-external-build.py <path/to/build-result.json>")
-        sys.exit(1)
-    report = verify(sys.argv[1])
-    print(json.dumps(report, indent=2, ensure_ascii=False))
-    sys.exit(0 if report["status"] == "PASS" else 1)
+    raise SystemExit(main())

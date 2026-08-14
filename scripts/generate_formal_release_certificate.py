@@ -18,6 +18,7 @@ from typing import Any, Iterable, Mapping, Sequence
 
 CERTIFICATE_VERSION = "formal-release-certificate-v1"
 INVENTORY_VERSION = "source-inventory-v2"
+SOURCE_HASH_CONTRACT = "utf-8-lf-v1"
 REQUIRED_GATE_IDS = (
     "pytest_collection",
     "pytest_full",
@@ -55,6 +56,13 @@ def sha256_bytes(content: bytes) -> str:
 
 def sha256_file(path: Path) -> str:
     return sha256_bytes(path.read_bytes())
+
+
+def normalized_text_bytes(path: Path) -> bytes:
+    """Return strict UTF-8 text with platform-independent LF line endings."""
+
+    text = path.read_bytes().decode("utf-8")
+    return text.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")
 
 
 def _repo_root(path: str | Path | None = None) -> Path:
@@ -96,11 +104,12 @@ def collect_source_inventory(repo_root: str | Path) -> dict[str, Any]:
     lean_root = root / "proofs" / "lean" / "juris_lean" / "JurisLean"
     sources: list[dict[str, Any]] = []
     for path in sorted(lean_root.rglob("*.lean"), key=lambda item: item.as_posix()):
+        normalized_content = normalized_text_bytes(path)
         sources.append(
             {
                 "path": _relative(root, path),
-                "sha256": sha256_file(path),
-                "size_bytes": path.stat().st_size,
+                "sha256": sha256_bytes(normalized_content),
+                "size_bytes": len(normalized_content),
                 "theorems": _extract_theorems(path),
             }
         )
@@ -112,6 +121,7 @@ def collect_source_inventory(repo_root: str | Path) -> dict[str, Any]:
     }
     return {
         "manifest_version": INVENTORY_VERSION,
+        "source_hash_contract": SOURCE_HASH_CONTRACT,
         "status": "source_inventory_not_release_certificate",
         "lean_workspace": "proofs/lean/juris_lean/JurisLean",
         "lean_source_file_count": len(sources),
@@ -172,6 +182,7 @@ def _lean_manifest(inventory: Mapping[str, Any]) -> dict[str, Any]:
         "manifest_version": INVENTORY_VERSION,
         "purpose": "Generated Lean source inventory; not a build certificate.",
         "status": inventory["status"],
+        "source_hash_contract": inventory["source_hash_contract"],
         "lean_workspace": "proofs/lean/juris_lean",
         "source_inventory_digest": inventory["source_inventory_digest"],
         "lean_source_file_count": inventory["lean_source_file_count"],
@@ -197,6 +208,7 @@ def _proof_ledger(inventory: Mapping[str, Any]) -> dict[str, Any]:
             "lean_files": inventory["lean_source_file_count"],
             "theorem_declarations": inventory["theorem_declaration_count"],
             "digest": inventory["source_inventory_digest"],
+            "hash_contract": inventory["source_hash_contract"],
         },
         "release_gate": "fail_closed_until_formal_release_certificate_verifies",
         "prohibited_substitutions": [
@@ -291,6 +303,7 @@ def _run_inventory_gate(repo_root: Path, output_dir: Path) -> dict[str, Any]:
     recorded = json.loads(manifest_path.read_text(encoding="utf-8"))
     keys = (
         "status",
+        "source_hash_contract",
         "lean_source_file_count",
         "theorem_declaration_count",
         "source_inventory_digest",
@@ -521,6 +534,7 @@ def check_source_inventories(repo_root: str | Path) -> list[str]:
     )
     keys = (
         "status",
+        "source_hash_contract",
         "lean_source_file_count",
         "theorem_declaration_count",
         "source_inventory_digest",

@@ -54,6 +54,7 @@ produce commit- and digest-bound artifacts, and create local checkpoint commits.
 | Local Lean source build and Mathlib cache download consumed unacceptable machine resources | 2 | User directed an immediate switch to CI; both local processes were interrupted and no Lean process remains |
 | GitHub CLI initially reported invalid auth and a refused proxy | 1 | Override stale process proxy `127.0.0.1:20808` with project proxy `127.0.0.1:10808`; auth and remote access then passed |
 | Guard scanner was first invoked without its required Lean-root argument | 1 | Reran with `proofs/lean/juris_lean/JurisLean`; scan passed |
+| First CI run failed source inventory before Lean | 1 | Root cause was CRLF working-tree bytes versus LF Git blobs; introduced the explicit `utf-8-lf-v1` hash contract and regenerated inventories |
 
 ## Current Decision Point
 

@@ -44,8 +44,12 @@
 - Replaced the same-process shadow differential with an injected actual-receipt verifier and
   expected-only fixture template; the external receipt producer remains absent and fail-closed.
 - Rebuilt source inventories: 33 Lean files, 141 theorem declarations, inventory digest
-  `727bf897dc06abc40ffe0b40d185ab2e364608a1c4d0b37b48122785a68c4d7e`.
+  `111ec6c08e7f17070a7963c6c13392cf5a97af083e177ab1c5d50b616aaf769b`.
 - Collected 36 Python tests and passed all 36; the Lean guard scan passed.
+- First CI run `31838801494` failed before Lean because four pre-existing CRLF working-tree
+  sources produced platform-specific inventory hashes. The generator and independent verifier now
+  share the explicit `utf-8-lf-v1` source hash contract; CI gate execution also always emits a
+  certificate and raw failure logs instead of aborting before artifact generation.
 
 ## Tests and Commands
 

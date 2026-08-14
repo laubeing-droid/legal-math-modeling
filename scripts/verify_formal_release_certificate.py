@@ -13,6 +13,7 @@ from typing import Any, Mapping, Sequence
 
 
 CERTIFICATE_VERSION = "formal-release-certificate-v1"
+SOURCE_HASH_CONTRACT = "utf-8-lf-v1"
 REQUIRED_GATES = {
     "pytest_collection",
     "pytest_full",
@@ -46,6 +47,11 @@ def _sha256(content: bytes) -> str:
     return hashlib.sha256(content).hexdigest()
 
 
+def _normalized_text_bytes(content: bytes) -> bytes:
+    text = content.decode("utf-8")
+    return text.replace("\r\n", "\n").replace("\r", "\n").encode("utf-8")
+
+
 def _git(repo_root: Path, *args: str) -> tuple[int, bytes]:
     completed = subprocess.run(
         ["git", "-C", str(repo_root), *args],
@@ -74,7 +80,8 @@ def _source_inventory_from_commit(repo_root: Path, commit: str) -> dict[str, Any
         content = _blob(repo_root, commit, path)
         if content is None:
             return {}
-        text = content.decode("utf-8")
+        normalized_content = _normalized_text_bytes(content)
+        text = normalized_content.decode("utf-8")
         theorems = [
             {"name": match.group(1), "line": line_number}
             for line_number, line in enumerate(text.splitlines(), start=1)
@@ -83,8 +90,8 @@ def _source_inventory_from_commit(repo_root: Path, commit: str) -> dict[str, Any
         sources.append(
             {
                 "path": path,
-                "sha256": _sha256(content),
-                "size_bytes": len(content),
+                "sha256": _sha256(normalized_content),
+                "size_bytes": len(normalized_content),
                 "theorems": theorems,
             }
         )
@@ -92,6 +99,7 @@ def _source_inventory_from_commit(repo_root: Path, commit: str) -> dict[str, Any
     payload = {"sources": sources, "theorem_declaration_count": theorem_count}
     return {
         "manifest_version": "source-inventory-v2",
+        "source_hash_contract": SOURCE_HASH_CONTRACT,
         "status": "source_inventory_not_release_certificate",
         "lean_workspace": lean_root,
         "lean_source_file_count": len(sources),

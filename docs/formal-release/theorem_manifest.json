@@ -1,10 +1,11 @@
 {
   "manifest_version": "source-inventory-v2",
+  "source_hash_contract": "utf-8-lf-v1",
   "status": "source_inventory_not_release_certificate",
   "lean_workspace": "proofs/lean/juris_lean/JurisLean",
   "lean_source_file_count": 33,
   "theorem_declaration_count": 141,
-  "source_inventory_digest": "727bf897dc06abc40ffe0b40d185ab2e364608a1c4d0b37b48122785a68c4d7e",
+  "source_inventory_digest": "111ec6c08e7f17070a7963c6c13392cf5a97af083e177ab1c5d50b616aaf769b",
   "sources": [
     {
       "path": "proofs/lean/juris_lean/JurisLean/AttackDecision.lean",
@@ -68,8 +69,8 @@
     },
     {
       "path": "proofs/lean/juris_lean/JurisLean/BanachEffectiveNodes.lean",
-      "sha256": "8722cc1aefedf55e8872a451405fdad39759cca6cbd6272879d13dff13b27b6d",
-      "size_bytes": 5186,
+      "sha256": "62c8a1c4bd26cc5dc8cde705b4b7c72d3cc64b25ca8f5fae0eb01b2c922e5317",
+      "size_bytes": 5039,
       "theorems": [
         {
           "name": "pricingFn_contraction",
@@ -235,14 +236,14 @@
     },
     {
       "path": "proofs/lean/juris_lean/JurisLean/DungDefinitions.lean",
-      "sha256": "d945a9064fea4e9d49f9b1740f40a431560157e9bfa845ce1f53793f28137d4f",
-      "size_bytes": 2070,
+      "sha256": "d9a7e17199c3ae84ca229f994bfe80505ec166cfac85e58c46825807f241b165",
+      "size_bytes": 2022,
       "theorems": []
     },
     {
       "path": "proofs/lean/juris_lean/JurisLean/DungFixedPoint.lean",
-      "sha256": "8b4c494d2d4250a6c069546aa1500de2fa5348e958baeacbc473c27135ce17fe",
-      "size_bytes": 10181,
+      "sha256": "4b6189d7e447af19fde248c991c2564d0907bd69da43cb7c7798f6dbcd66cc6f",
+      "size_bytes": 9952,
       "theorems": [
         {
           "name": "F_monotone",
@@ -769,8 +770,8 @@
     },
     {
       "path": "proofs/lean/juris_lean/JurisLean/WeightedSupNorm.lean",
-      "sha256": "f0606d67d36ceb7b7cdcf8e8bd307507fddc6a4beb06c7988ea2f5f678fb9edf",
-      "size_bytes": 4317,
+      "sha256": "d2018181439c16b5bf05cb568f402c8d46dbc3b89702de823a606927064ba05e",
+      "size_bytes": 4216,
       "theorems": [
         {
           "name": "weightedSupDist_nonneg",

@@ -44,7 +44,7 @@ jobs:
       - name: Generate current-head certificate and raw logs
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
-          python scripts/generate_formal_release_certificate.py --check-inventories --run-gates --output-dir build-logs/formal-release
+          python scripts/generate_formal_release_certificate.py --run-gates --output-dir build-logs/formal-release
 
       - name: Independently verify certificate
         if: always()

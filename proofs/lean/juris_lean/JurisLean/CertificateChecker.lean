@@ -93,7 +93,7 @@ theorem checkerV2_acceptance_requires_content
     c.contentReady = true := by
   cases hready : c.contentReady with
   | false => simp [checkCertificateV2, hready] at h
-  | true => exact hready
+  | true => rfl
 
 /-- Acceptance implies a non-empty proof trace. -/
 theorem checkerV2_acceptance_requires_nonempty_trace

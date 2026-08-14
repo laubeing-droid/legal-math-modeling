@@ -409,7 +409,10 @@ def _gate_has_fail_closed_marker(gate: Mapping[str, Any], output_dir: Path) -> b
     content = (output_dir / gate["raw_log"]).read_text(
         encoding="utf-8", errors="replace"
     )
-    return any(marker in content for marker in FAIL_CLOSED_MARKERS)
+    marker_pattern = re.compile(
+        r"\b(?:" + "|".join(re.escape(marker) for marker in FAIL_CLOSED_MARKERS) + r")\b"
+    )
+    return marker_pattern.search(content) is not None
 
 
 def generate_formal_release_certificate(

@@ -180,7 +180,10 @@ def verify_certificate(
         if len(content) != gate.get("raw_log_size_bytes"):
             errors.append(f"RAW_LOG_SIZE_MISMATCH:{gate_id}")
         text = content.decode("utf-8", errors="replace")
-        if any(marker in text for marker in FAIL_CLOSED_MARKERS):
+        marker_pattern = re.compile(
+            r"\b(?:" + "|".join(re.escape(marker) for marker in FAIL_CLOSED_MARKERS) + r")\b"
+        )
+        if marker_pattern.search(text):
             errors.append(f"FAIL_CLOSED_MARKER:{gate_id}")
 
     axiom_log = artifact_dir / "axiom_audit.log"

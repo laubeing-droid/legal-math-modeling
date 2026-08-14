@@ -2,7 +2,10 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from scripts.generate_formal_release_certificate import collect_source_inventory
+from scripts.generate_formal_release_certificate import (
+    _gate_has_fail_closed_marker,
+    collect_source_inventory,
+)
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -30,3 +33,14 @@ def test_generated_inventory_binds_every_lean_source_and_theorem() -> None:
             "proofs/lean/juris_lean/JurisLean/ArgumentCompiler.lean",
         }
     )
+
+
+def test_fail_closed_marker_scan_ignores_mutation_test_identifiers(tmp_path: Path) -> None:
+    log_path = tmp_path / "pytest_collection.log"
+    gate = {"status": "PASS", "raw_log": log_path.name}
+
+    log_path.write_text("mutation[UNKNOWN_ACCEPTED_ARGUMENT]\n", encoding="utf-8")
+    assert not _gate_has_fail_closed_marker(gate, tmp_path)
+
+    log_path.write_text("result: UNKNOWN\n", encoding="utf-8")
+    assert _gate_has_fail_closed_marker(gate, tmp_path)

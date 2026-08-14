@@ -41,6 +41,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-lake-packages-
 
+      - name: Preflight changed Lean modules with Mathlib cache
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          cd proofs/lean/juris_lean
+          lake exe cache get
+          lake env lean JurisLean/CertificateChecker.lean
+          lake env lean JurisLean/TranslationWitness.lean
+          lake env lean JurisLean/EndToEnd.lean
+
       - name: Generate current-head certificate and raw logs
         run: |
           export PATH="$HOME/.elan/bin:$PATH"

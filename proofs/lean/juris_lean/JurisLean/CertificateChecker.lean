@@ -59,16 +59,15 @@ def CertificateEnvelopeV2.knownChecker (c : CertificateEnvelopeV2) : Bool :=
 /-- Every acceptance prerequisite is recomputed from content rather than trusted flags. -/
 def CertificateEnvelopeV2.contentReady (c : CertificateEnvelopeV2) : Bool :=
   c.trace.nonempty &&
-    c.requiredFactsCovered &&
-    c.obligationsCovered &&
-    c.acceptedArgumentsBound &&
-    c.sourceSnapshotsBound &&
-    c.rulePackDigest.matches &&
-    c.traceDigest.matches &&
-    c.knownSemantics &&
-    c.knownChecker &&
-    c.evidence.isAuditable &&
-    c.producerCommit != ""
+    (c.requiredFactsCovered &&
+      (c.obligationsCovered &&
+        (c.acceptedArgumentsBound &&
+          (c.sourceSnapshotsBound &&
+            (c.rulePackDigest.matches &&
+              (c.traceDigest.matches &&
+                (c.knownSemantics &&
+                  (c.knownChecker &&
+                    (c.evidence.isAuditable && c.producerCommit != "")))))))))
 
 /--
 Authoritative v2 checker. A content failure rejects; a well-bound but non-decisive
@@ -92,8 +91,9 @@ theorem checkerV2_acceptance_requires_content
     (c : CertificateEnvelopeV2)
     (h : checkCertificateV2 c = CheckVerdict.accept) :
     c.contentReady = true := by
-  cases hready : c.contentReady <;> cases hstatus : c.status <;>
-    simp [checkCertificateV2, hready, hstatus] at h ⊢
+  cases hready : c.contentReady with
+  | false => simp [checkCertificateV2, hready] at h
+  | true => exact hready
 
 /-- Acceptance implies a non-empty proof trace. -/
 theorem checkerV2_acceptance_requires_nonempty_trace

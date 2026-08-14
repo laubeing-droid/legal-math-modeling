@@ -44,12 +44,19 @@
 - Replaced the same-process shadow differential with an injected actual-receipt verifier and
   expected-only fixture template; the external receipt producer remains absent and fail-closed.
 - Rebuilt source inventories: 33 Lean files, 141 theorem declarations, inventory digest
-  `111ec6c08e7f17070a7963c6c13392cf5a97af083e177ab1c5d50b616aaf769b`.
-- Collected 36 Python tests and passed all 36; the Lean guard scan passed.
+  `b257ad1fd475a75f2eb0b9bfc5c98dbc298f8a33ad395a39a80b6b728a375e3f`.
+- Collected 37 Python tests and passed all 37; the Lean guard scan passed.
 - First CI run `31838801494` failed before Lean because four pre-existing CRLF working-tree
   sources produced platform-specific inventory hashes. The generator and independent verifier now
   share the explicit `utf-8-lf-v1` source hash contract; CI gate execution also always emits a
   certificate and raw failure logs instead of aborting before artifact generation.
+- Second CI run `31838984446` reached 2965/2969 targets and uploaded a complete failed certificate
+  artifact. `CertificateChecker.lean` exposed one heartbeat-heavy proof and two incorrect projections
+  caused by left-associated Boolean conjunctions; axiom audit then failed only because downstream
+  objects were absent. The fixes use a constant-time content-ready case split and explicit
+  right-associated prerequisites. The run also exposed a false-positive fail-closed marker match on
+  mutation-test identifier `UNKNOWN_*`; marker matching now requires token boundaries and has a
+  regression test.
 
 ## Tests and Commands
 
@@ -69,8 +76,8 @@
 | L0 Python syntax and inventory unit test | 1 passed |
 | first AxiomAudit invocation | failed as expected before local library build: unknown `JurisLean` module |
 | first v2 checker run | 5 passed, 9 failed; root cause was tuple transport rather than checker semantics |
-| current Python collection | 36 tests collected |
-| current full Python suite | 36 passed in 0.30s |
+| current Python collection | 37 tests collected |
+| current full Python suite | 37 passed |
 | current generated source inventory | 33 Lean files; 141 theorem declarations; check PASS |
 | current Lean guard scan | PASS |
 | local Lean build | intentionally interrupted; superseded by user-required GitHub Actions run |

@@ -237,7 +237,7 @@ theorem end_to_end_acceptance_requires_payload
 theorem ready_v2_certificate_accepted (slice : SliceKind) :
     checkCertificateV2 (readyCertificateV2 slice) = CheckVerdict.accept := by
   have hBackendNotCandidate :
-      EvidenceKind.formalBackend != EvidenceKind.candidate = true := by
+      (EvidenceKind.formalBackend != EvidenceKind.candidate) = true := by
     decide
   cases slice <;>
     simp [checkCertificateV2, CertificateEnvelopeV2.contentReady,

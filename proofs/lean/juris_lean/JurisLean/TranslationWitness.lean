@@ -40,6 +40,10 @@ def TranslationWitness.Valid (w : TranslationWitness) : Prop :=
     w.semanticsVersion = "1" ∧
     (w.cyclePolicy = "reject" ∨ w.cyclePolicy = "explicit-undecided")
 
+instance (w : TranslationWitness) : Decidable w.Valid := by
+  unfold TranslationWitness.Valid
+  infer_instance
+
 /-- Executable validity check for the finite translation witness. -/
 def checkTranslationWitness (w : TranslationWitness) : Bool :=
   decide w.Valid

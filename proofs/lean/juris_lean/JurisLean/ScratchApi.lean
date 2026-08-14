@@ -58,10 +58,10 @@
  #check Nat.find_min'
  #check Nat.le_induction
 
- -- Monotone / Function.iterate
+ -- Monotone / function iteration
  #check Monotone
- #check Function.iterate
+ #check Function.iterate_succ_apply
 
- -- Card lemmas (alternate names to try)
+ -- Card bound helpers
  #check Finset.card_le_univ
- #check Finset.card_le_card_of_subset
+ #check Finset.card_le_card

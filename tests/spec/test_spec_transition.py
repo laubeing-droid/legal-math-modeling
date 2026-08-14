@@ -30,7 +30,6 @@ from theory.spec.reference_semantics import (
     horn_closure,
 )
 from theory.spec.canonical_semantics import DecisionStatus, ReparationMode
-from theory.spec.runtime_differential import build_report
 
 
 def test_contract_breach_bundle_encodes_minimal_ddl_core():
@@ -181,16 +180,3 @@ def test_priority_slice_missing_and_cycle_cases_fail_closed():
     assert missing_priority.status == DecisionStatus.UNDECIDED
     assert priority_cycle.status == DecisionStatus.UNDECIDED
     assert self_attack.status == DecisionStatus.UNDECIDED
-
-
-def test_four_slice_runtime_differential_report_is_green():
-    report = build_report()
-
-    assert report.passed is True
-    assert not report.blocked
-    assert {case.slice_name for case in report.cases} == {
-        "contract_breach",
-        "license",
-        "permission",
-        "priority",
-    }

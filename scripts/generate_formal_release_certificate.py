@@ -138,6 +138,20 @@ def _module_theorem_counts(inventory: Mapping[str, Any]) -> dict[str, int]:
     }
 
 
+def _lean_build_targets(inventory: Mapping[str, Any]) -> tuple[str, ...]:
+    """Return the root module plus every module bound by the source inventory."""
+
+    source_prefix = "proofs/lean/juris_lean/"
+    modules = [
+        source["path"]
+        .removeprefix(source_prefix)
+        .removesuffix(".lean")
+        .replace("/", ".")
+        for source in inventory["sources"]
+    ]
+    return ("JurisLean", *modules)
+
+
 def _theorem_manifest(inventory: Mapping[str, Any]) -> dict[str, Any]:
     return {
         **inventory,
@@ -427,6 +441,7 @@ def generate_formal_release_certificate(
     out = Path(output_dir).resolve()
     out.mkdir(parents=True, exist_ok=True)
     lean_root = root / "proofs" / "lean" / "juris_lean"
+    inventory = collect_source_inventory(root)
     python = sys.executable
     lake_path = Path(lake_command)
     if lake_path.parent != Path("."):
@@ -453,7 +468,13 @@ def generate_formal_release_certificate(
         ),
         _run_inventory_gate(root, out),
         _run_command_gate("lake_clean", (lake_command, "clean"), lean_root, out, root),
-        _run_command_gate("lake_build", (lake_command, "build"), lean_root, out, root),
+        _run_command_gate(
+            "lake_build",
+            (lake_command, "build", *_lean_build_targets(inventory)),
+            lean_root,
+            out,
+            root,
+        ),
         _run_command_gate(
             "axiom_audit",
             (lake_command, "env", "lean", "JurisLean/AxiomAudit.lean"),
@@ -477,7 +498,6 @@ def generate_formal_release_certificate(
     subject_commit = _git(root, "rev-parse", "HEAD")
     tree_hash = _git(root, "show", "-s", "--format=%T", subject_commit)
     dirty_output = _git(root, "status", "--porcelain", "--untracked-files=normal")
-    inventory = collect_source_inventory(root)
     environment = {
         "os": platform.system(),
         "os_release": platform.release(),

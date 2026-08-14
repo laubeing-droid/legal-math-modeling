@@ -4,6 +4,7 @@ from pathlib import Path
 
 from scripts.generate_formal_release_certificate import (
     _gate_has_fail_closed_marker,
+    _lean_build_targets,
     collect_source_inventory,
 )
 
@@ -44,3 +45,21 @@ def test_fail_closed_marker_scan_ignores_mutation_test_identifiers(tmp_path: Pat
 
     log_path.write_text("result: UNKNOWN\n", encoding="utf-8")
     assert _gate_has_fail_closed_marker(gate, tmp_path)
+
+
+def test_lake_build_targets_cover_every_inventory_module() -> None:
+    inventory = collect_source_inventory(REPO_ROOT)
+    targets = _lean_build_targets(inventory)
+    expected_modules = {
+        source["path"]
+        .removeprefix("proofs/lean/juris_lean/")
+        .removesuffix(".lean")
+        .replace("/", ".")
+        for source in inventory["sources"]
+    }
+
+    assert targets[0] == "JurisLean"
+    assert set(targets[1:]) == expected_modules
+    assert len(targets) == inventory["lean_source_file_count"] + 1
+    assert "JurisLean.HornFixedPoint" in targets
+    assert "JurisLean.AxiomAudit" in targets

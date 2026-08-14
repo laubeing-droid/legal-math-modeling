@@ -5,7 +5,7 @@
   "lean_workspace": "proofs/lean/juris_lean/JurisLean",
   "lean_source_file_count": 33,
   "theorem_declaration_count": 141,
-  "source_inventory_digest": "b257ad1fd475a75f2eb0b9bfc5c98dbc298f8a33ad395a39a80b6b728a375e3f",
+  "source_inventory_digest": "4eb0d21125502a0aab0f63629cc90683b86cc8da60ff02d0e0fdef2860012e9d",
   "sources": [
     {
       "path": "proofs/lean/juris_lean/JurisLean/AttackDecision.lean",
@@ -117,8 +117,8 @@
     },
     {
       "path": "proofs/lean/juris_lean/JurisLean/CertificateChecker.lean",
-      "sha256": "9978bb7987f1b27fe9fc6a79d65ffec06eeeeb13306a9d17164090b4f9c8d1d0",
-      "size_bytes": 10774,
+      "sha256": "7a8d3490683755069fb3e833ebd96ddbbec08736289223ef527b3dcb0ef490f5",
+      "size_bytes": 10765,
       "theorems": [
         {
           "name": "checkerV2_acceptance_requires_content",
@@ -313,8 +313,8 @@
     },
     {
       "path": "proofs/lean/juris_lean/JurisLean/EndToEnd.lean",
-      "sha256": "2bb7c9a20d8d7ef1585cc5c7adf29090fc8b112e8bf615bf17124f294bbce59f",
-      "size_bytes": 9532,
+      "sha256": "eecfc7e5316f1fc1973d78cfa739b0b90610a86805a2819c6fdc6cf91b7d154e",
+      "size_bytes": 9675,
       "theorems": [
         {
           "name": "contract_breach_ready_certificate_accepted",
@@ -362,11 +362,11 @@
         },
         {
           "name": "empty_trace_v2_fail_closed",
-          "line": 251
+          "line": 255
         },
         {
           "name": "legacy_ready_certificate_not_v2_decisive",
-          "line": 259
+          "line": 263
         }
       ]
     },
@@ -688,32 +688,32 @@
     },
     {
       "path": "proofs/lean/juris_lean/JurisLean/TranslationWitness.lean",
-      "sha256": "8d3d998f33d9c15c637358f60b83ed636dbc1d5f2bd89a86cdf691e9a50c6ca7",
-      "size_bytes": 3649,
+      "sha256": "5088db8386f5e7794d1d198fceefdd34f9b9fff98031ce7b90624aa52af73adf",
+      "size_bytes": 3761,
       "theorems": [
         {
           "name": "translation_witness_check_sound",
-          "line": 48
+          "line": 52
         },
         {
           "name": "translation_witness_no_argument_omission",
-          "line": 55
+          "line": 59
         },
         {
           "name": "translation_witness_no_spurious_argument",
-          "line": 65
+          "line": 69
         },
         {
           "name": "translation_witness_no_edge_omission",
-          "line": 75
+          "line": 79
         },
         {
           "name": "translation_witness_no_spurious_edge",
-          "line": 85
+          "line": 89
         },
         {
           "name": "translation_witness_priority_direction_preserved",
-          "line": 95
+          "line": 99
         }
       ]
     },

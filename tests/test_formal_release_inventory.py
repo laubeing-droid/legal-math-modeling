@@ -3,10 +3,12 @@ from __future__ import annotations
 from pathlib import Path
 
 from scripts.generate_formal_release_certificate import (
+    REQUIRED_GATE_IDS,
     _gate_has_fail_closed_marker,
     _lean_build_targets,
     collect_source_inventory,
 )
+from scripts.verify_formal_release_certificate import REQUIRED_GATES
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -63,3 +65,8 @@ def test_lake_build_targets_cover_every_inventory_module() -> None:
     assert len(targets) == inventory["lean_source_file_count"] + 1
     assert "JurisLean.HornFixedPoint" in targets
     assert "JurisLean.AxiomAudit" in targets
+
+
+def test_release_gate_set_records_post_clean_mathlib_cache_restore() -> None:
+    assert "mathlib_cache_restore" in REQUIRED_GATE_IDS
+    assert REQUIRED_GATES == set(REQUIRED_GATE_IDS)

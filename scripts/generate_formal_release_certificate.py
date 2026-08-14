@@ -24,6 +24,7 @@ REQUIRED_GATE_IDS = (
     "pytest_full",
     "source_inventory",
     "lake_clean",
+    "mathlib_cache_restore",
     "lake_build",
     "axiom_audit",
     "lean_guard",
@@ -468,6 +469,13 @@ def generate_formal_release_certificate(
         ),
         _run_inventory_gate(root, out),
         _run_command_gate("lake_clean", (lake_command, "clean"), lean_root, out, root),
+        _run_command_gate(
+            "mathlib_cache_restore",
+            (lake_command, "exe", "cache", "get"),
+            lean_root,
+            out,
+            root,
+        ),
         _run_command_gate(
             "lake_build",
             (lake_command, "build", *_lean_build_targets(inventory)),

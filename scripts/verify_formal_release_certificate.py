@@ -19,6 +19,7 @@ REQUIRED_GATES = {
     "pytest_full",
     "source_inventory",
     "lake_clean",
+    "mathlib_cache_restore",
     "lake_build",
     "axiom_audit",
     "lean_guard",

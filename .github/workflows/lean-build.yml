@@ -46,9 +46,9 @@ jobs:
           export PATH="$HOME/.elan/bin:$PATH"
           cd proofs/lean/juris_lean
           lake exe cache get
-          lake env lean JurisLean/CertificateChecker.lean
-          lake env lean JurisLean/TranslationWitness.lean
-          lake env lean JurisLean/EndToEnd.lean
+          lake build JurisLean.CertificateChecker
+          lake build JurisLean.TranslationWitness
+          lake build JurisLean.EndToEnd
 
       - name: Generate current-head certificate and raw logs
         run: |
@@ -56,12 +56,12 @@ jobs:
           python scripts/generate_formal_release_certificate.py --run-gates --output-dir build-logs/formal-release
 
       - name: Independently verify certificate
-        if: always()
+        if: always() && hashFiles('build-logs/formal-release/formal-release-certificate-*.json') != ''
         run: |
           python scripts/verify_formal_release_certificate.py "build-logs/formal-release/formal-release-certificate-${GITHUB_SHA}.json" --artifact-dir build-logs/formal-release
 
       - name: Upload immutable formal release evidence
-        if: always()
+        if: always() && hashFiles('build-logs/formal-release/formal-release-certificate-*.json') != ''
         uses: actions/upload-artifact@v4
         with:
           name: formal-release-${{ github.sha }}

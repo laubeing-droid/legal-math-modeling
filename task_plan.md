@@ -57,6 +57,7 @@ produce commit- and digest-bound artifacts, and create local checkpoint commits.
 | First CI run failed source inventory before Lean | 1 | Root cause was CRLF working-tree bytes versus LF Git blobs; introduced the explicit `utf-8-lf-v1` hash contract and regenerated inventories |
 | Second CI run failed `CertificateChecker.lean` after 2965/2969 targets | 1 | Replace heartbeat-heavy simplification with a direct Bool case split; explicitly right-associate content prerequisites so theorem projections match |
 | Independent verifier flagged `UNKNOWN_*` mutation test names as UNKNOWN outcomes | 1 | Match fail-closed markers only as complete tokens and add a regression test distinguishing identifiers from outcome values |
+| Third CI preflight reported unknown `JurisLean` module prefix | 1 | Direct Lean cannot import unbuilt project objects; use `lake build JurisLean.<Module>` targets so Lake builds dependencies first |
 
 ## Current Decision Point
 

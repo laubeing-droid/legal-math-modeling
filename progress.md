@@ -57,6 +57,10 @@
   right-associated prerequisites. The run also exposed a false-positive fail-closed marker match on
   mutation-test identifier `UNKNOWN_*`; marker matching now requires token boundaries and has a
   regression test.
+- Third CI run `31843089509` failed in the new fast preflight before checking proofs because direct
+  `lake env lean` invocation could not resolve unbuilt project `.olean` dependencies. The preflight
+  now uses Lake module targets so dependency order is respected; downstream certificate steps are
+  conditional on a certificate actually existing.
 
 ## Tests and Commands
 

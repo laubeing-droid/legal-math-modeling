@@ -236,6 +236,9 @@ theorem end_to_end_acceptance_requires_payload
 /-- Every task-bounded slice has a positive content-bound v2 path. -/
 theorem ready_v2_certificate_accepted (slice : SliceKind) :
     checkCertificateV2 (readyCertificateV2 slice) = CheckVerdict.accept := by
+  have hBackendNotCandidate :
+      EvidenceKind.formalBackend != EvidenceKind.candidate = true := by
+    decide
   cases slice <;>
     simp [checkCertificateV2, CertificateEnvelopeV2.contentReady,
       CertificateEnvelopeV2.requiredFactsCovered,
@@ -245,7 +248,8 @@ theorem ready_v2_certificate_accepted (slice : SliceKind) :
       CertificateEnvelopeV2.knownSemantics,
       CertificateEnvelopeV2.knownChecker,
       ProofTrace.nonempty, DigestBinding.matches, Evidence.isAuditable,
-      readyCertificateV2, boundTrace, verifiedBackendEvidence]
+      readyCertificateV2, boundTrace, verifiedBackendEvidence,
+      hBackendNotCandidate]
 
 /-- An empty trace is rejected even though all legacy producer booleans could have been true. -/
 theorem empty_trace_v2_fail_closed (slice : SliceKind) :

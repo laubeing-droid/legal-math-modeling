@@ -463,6 +463,7 @@ def verify_runtime_refinement_receipt(
         if actual_status in FAIL_CLOSED_EXECUTION_STATUSES or (
             actual_status not in DECISIVE_RUNTIME_STATUSES
             and actual_status != DecisionStatus.UNDECIDED.value
+            and actual_status != DecisionStatus.TAINTED.value
         ):
             errors.append("UNKNOWN_STATUS_MAPPING")
             continue

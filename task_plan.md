@@ -26,7 +26,7 @@ produce commit- and digest-bound artifacts, and create local checkpoint commits.
 | 2 | L-A formal release certificate and ledger/audit repair | generator + clean build + full tests + guard + axiom + independent verifier | complete |
 | 3 | L-B checker v2 | Lean build; Python mutation suite; v1 compatibility boundary | complete |
 | 4 | L-C translation witness and L-D real runtime receipt | independent mutation checks; externally supplied receipt validation | complete_inconclusive |
-| 5 | Conditional L-E, full review, documentation, memory, commits | complete acceptance order; digest/commit binding; claim audit | in_progress |
+| 5 | Conditional L-E, full review, documentation, memory, commits | complete acceptance order; digest/commit binding; claim audit | complete |
 
 ## Scope Decisions
 
@@ -78,10 +78,11 @@ produce commit- and digest-bound artifacts, and create local checkpoint commits.
 
 ## Current Decision Point
 
-Phases 1-4 are closed. L3/L4 remain `DEFERRED` because no real consumer trigger exists. GitHub
-Actions run `31850513493` produced and independently verified the prior final-head
-FormalReleaseCertificate: 33 Lean files, 141 theorem declarations, 8509/8509 strict build jobs, eight
-gates PASS. L5 now has a real JC-produced, content-bound receipt. Independent LMM verification found
-valid provenance but 7/10 alignment, so the closed result is `INCONCLUSIVE / RESULT_MISMATCH` rather
-than cross-runtime agreement. Remaining work is final documentation/claim audit and a fresh CI-only
-Lean acceptance run for the final LMM branch head.
+All phases are closed. L3/L4 remain `DEFERRED` because no real consumer trigger exists. GitHub
+Actions run `31853143615` verified construction commit `939093fa4141afaf03b1c110664ca1e7e649559c`:
+51 Python tests, 33 Lean files, 141 theorem declarations, 8509/8509 strict build jobs, and eight gates
+PASS. Independent certificate revalidation returned zero errors. L5 has a real JC-produced,
+content-bound receipt with valid provenance but 7/10 alignment, so the closed result is
+`INCONCLUSIVE / RESULT_MISMATCH`, not cross-runtime agreement. No unconditional construction work
+remains; pushing the separate JC checkpoint is outside current authorization and not required to
+preserve the local, digest-bound evidence.

@@ -185,3 +185,6 @@ Do not weaken or rewrite the existing fixed-point core.
 - JC audit state cannot live under the LMM repository even in ignored `build-logs`; the first path
   was rejected before bindings were written. The successful run used an external state root under
   `D:\Codex\tmp`, while portable receipt artifacts were copied into tracked remediation evidence.
+- GitHub Actions run `31853143615` verified the construction commit with 51 Python tests and an
+  8509-job strict Lean build. Independent local certificate verification returned `PASS` with zero
+  errors; certificate subject `05d33aff...`, digest `43d6f949...`, inventory digest `7019af44...`.

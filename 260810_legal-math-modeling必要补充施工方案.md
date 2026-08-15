@@ -28,6 +28,7 @@ LMM 不需要扩大理论版图。必要施工只有五项：
 - L3/L4 保持 `DEFERRED`：未发现法源版本/事件更新或金额/比例/利息/solver 的真实消费者触发，不接正式路径。
 - L5 已完成施工：LMM 生成绑定提交的 expected fixture；外部 `juris-calculus` 正式审计链生成 actual `RuntimeRefinementReceipt`；LMM 独立 verifier 复核结构、语义投影和全部 digest。
 - L5 实测结论为 `INCONCLUSIVE / RESULT_MISMATCH`：回执有效，10 案中 7 案一致、3 案不一致。expected 未按 actual 修改，不得声明跨实现一致。
+- 最终施工提交 `939093fa4141afaf03b1c110664ca1e7e649559c` 已由 GitHub Actions run `31853143615` 完成 CI-only Lean 验收；独立复核的证书绑定 PR merge subject `05d33affdb48cb3d1f3a651ff961c6e1ddad9357`，8 道 gate 全部 PASS。
 - 当前总体状态：`CONSTRUCTION_COMPLETE / REFINEMENT_INCONCLUSIVE`。L0-L2 已闭合，L3/L4 因未触发保持 `DEFERRED`，L5 已完成真实执行和失败闭环。
 
 ## 1. 施工前证据边界

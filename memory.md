@@ -24,5 +24,9 @@
   report `INCONCLUSIVE / RESULT_MISMATCH`; never claim cross-runtime agreement from this receipt.
 - Receipt artifacts are tracked under `docs/remediation/runtime-refinement/`. The JC commit remains a
   local checkpoint until the user separately authorizes pushing that repository.
+- CI run `31853143615` verified construction commit `939093fa4141afaf03b1c110664ca1e7e649559c`:
+  51 Python tests, 8509 Lean jobs, 33 Lean sources, 141 theorem declarations, eight gates PASS. The
+  independently rechecked certificate subject is `05d33affdb48cb3d1f3a651ff961c6e1ddad9357` with
+  certificate digest `43d6f949fa3b256bf9f25314ae7b5e9aff7e09890238140dee5066eff1d469ed`.
 - Project network operations require proxy `http://127.0.0.1:10808`; stale process defaults may point
   at inactive port `20808`.

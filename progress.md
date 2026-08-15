@@ -151,6 +151,12 @@
 - LMM independent verification deliberately exited 1 with `INCONCLUSIVE`: receipt valid, 7/10
   aligned, and only `RESULT_MISMATCH`. Expected statuses were not changed. Portable expected,
   bindings, and actual receipt artifacts are now tracked under remediation evidence.
+- Pushed construction commit `939093fa4141afaf03b1c110664ca1e7e649559c`. GitHub Actions run
+  `31853143615` completed in 2m44s with all steps PASS and uploaded artifact ID `9238196778`.
+- Downloaded the artifact and independently reverified it with Python: zero errors; subject merge
+  commit `05d33affdb48cb3d1f3a651ff961c6e1ddad9357`, tree
+  `3e4d8dc5b599f40cea26ae0365dd34210fc5396b`, certificate digest
+  `43d6f949fa3b256bf9f25314ae7b5e9aff7e09890238140dee5066eff1d469ed`.
 
 ## Tests and Commands
 

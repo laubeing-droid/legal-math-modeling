@@ -40,9 +40,15 @@ source-bound legal contracts
 - 静态清点：32 个 `.lean` 文件、126 个 `theorem` 声明
 - 静态禁词扫描：未发现 `sorry`、`admit`、自定义 `axiom` 或 `theorem ... : True`
 
-静态数量和禁词扫描不等于 current-head Lean build、axiom audit 或形式发布证书。本方案编写时没有取得新的 `lake build` 证据。
+静态数量和禁词扫描不等于 current-head Lean build、axiom audit 或形式发布证书。本方案编写时没有取得新的 GitHub Actions `lake build` 证据。
 
-### 1.2 当前红灯
+### 1.2 Lean 执行边界
+
+本项目不在本机安装或执行 Lean、Elan、Lake，不使用本地 `.lake`、本地 Mathlib cache 或本地编译结果作为任何验收证据。全部 Lean 单模块检查、依赖构建、clean build、axiom audit、guard 和形式发布证书统一在 GitHub Actions 执行。
+
+本地只允许源码编辑、静态 inventory、文本 guard 预检、Python 合同测试和 Git 检查；本地静态结果必须标为 provisional，不能写成 Lean PASS。
+
+### 1.3 当前红灯
 
 HEAD `f521b5b` 新增了以下 acceptance tests，但对应实现尚不存在：
 
@@ -53,7 +59,7 @@ HEAD `f521b5b` 新增了以下 acceptance tests，但对应实现尚不存在：
 
 因此当前状态是“测试规格已写、实现未闭合”，不是完成。
 
-### 1.3 可继承资产
+### 1.4 可继承资产
 
 1. `FiniteMonotoneIteration`、`DungFixedPoint`、`HornFixedPoint`、`WeightedSupNorm` 等已证明核心。
 2. 当前 Dung grounded fixed-point、Horn least fixed-point 和有限迭代证明。
@@ -64,7 +70,7 @@ HEAD `f521b5b` 新增了以下 acceptance tests，但对应实现尚不存在：
 
 以上资产只能按其精确证明范围继承，不能外推为整个 JC 已形式验证。
 
-### 1.4 必须替换或升级
+### 1.5 必须替换或升级
 
 1. v1 canonical types 过薄，缺来源、准入、版本、双 IR、精确数值、solver 和 receipt 语义。
 2. `Certificate` 依赖生产者自报布尔值，正例允许 empty trace。
@@ -73,6 +79,7 @@ HEAD `f521b5b` 新增了以下 acceptance tests，但对应实现尚不存在：
 5. runtime differential 旧模型可由同一侧写入两个状态，不是跨实现证据。
 6. release inventory、axiom audit、proof ledger 和 current-head 构建证据未形成一份可独立验证的正式证书。
 7. 旧方案 L3/L4 的 DEFERRED 决定与完整工程目标冲突，由本方案取消。
+8. 当前 `.github/workflows/lean-build.yml` 只有 clean build 和 scan，缺单模块矩阵、axiom audit、Python 全测、mutation/refinement、证书生成、独立 verifier 和可下载证据 artifact。
 
 ## 2. 本仓职责边界
 
@@ -208,20 +215,22 @@ Python 与 Lean 名称、字段语义和枚举由机器可读 manifest 对齐；
 
 ### 动作
 
-1. 冻结 branch、HEAD、tree、dirty、toolchain、Mathlib commit、Python interpreter 和依赖。
+1. 冻结 branch、HEAD、tree、dirty、GitHub workflow digest、Lean toolchain、Mathlib commit、Python interpreter 和依赖。
 2. 重建 Lean source/theorem inventory；静态数量不写成永久产品事实。
-3. 找到或安装项目锁定 Lean toolchain；没有真实 `lake clean && lake build` 就保持 BLOCKED。
+3. 不在本机寻找、安装或执行 Lean/Elan/Lake；扩建 GitHub Actions，并以绑定当前 commit/tree 的 CI `lake clean && lake build` 作为唯一 Lean 构建 authority。
 4. 收口当前红测试：确认失败原因均是缺实现，不是 import path、环境或测试自身错误。
 5. 为 canonical v1、四 slice、proven core、现有 Python reference、旧 runtime differential 建立 authority map。
 6. 将 `260810_legal-math-modeling必要补充施工方案.md` 标为 superseded input；保留历史，不删除证据。
 7. 重写 task_plan/findings/progress 的当前状态，历史日志与当前 authority 分开。
 8. 固定 P01—P09 formal fixture manifest；expected、actual、oracle 和 mutation producer 分离。
+9. 将 `AGENTS.md` 的本地 Lean 命令改成 CI 调用规范：helper lemma 完成后立即触发单模块 CI，阶段边界触发 full clean-build CI。
 
 ### Gate
 
-- Lean/Python/manifest 任一真实基线不明：停止 M1；
+- GitHub CI Lean/Python/manifest 任一真实基线不明：停止 M1；
 - current red/green 状态必须有命令、退出码和 collection manifest；
 - 不允许从 AGENTS、README 或旧报告复制数量宣告构建成功。
+- 本机出现 `.lake`、`.olean`、`.ilean` 或本地 Lean PASS 声明，视为验收污染并阻止发布。
 
 ## 8. M1：ID、digest、well-formedness 与 canonicalization
 
@@ -604,10 +613,44 @@ UNTRUSTED_PROPOSAL
 
 绑定：subject commit/tree/dirty、OS/arch、Lean/Elan/Lake、Mathlib/dependencies、全部正式源 hash、theorem inventory、clean build、guard、axiom audit、Python collection/full tests、mutation/refinement、限制和证书 digest。
 
+### GitHub Actions 是唯一 Lean authority
+
+重构 `.github/workflows/lean-build.yml`：
+
+1. 触发：pull request、`main`/`ci/**` push、`workflow_dispatch`。
+2. `workflow_dispatch` 支持 `mode=changed-module|full-release` 和可选 Lean module 输入。
+3. changed-module job 根据 dependency DAG 生成 matrix，在 GitHub runner 执行目标模块及反向依赖检查。
+4. full-release job 无条件执行 `lake clean && lake build`，不得以 cache 中的 `.olean` 代替 clean build。
+5. 独立 jobs 执行 axiom audit、forbidden-token/True-theorem guard、Python collection/full tests、mutation/property/finite-model、runtime refinement、certificate generation 和 independent verifier。
+6. final gate 使用 `needs` 汇总；任一 job skipped、cancelled、timed out、neutral 或失败均不得生成 release PASS。
+7. workflow 使用 concurrency group，新的同分支 run 可取消旧开发 run，但 full-release attempt 必须保留独立证据。
+8. Lean/Mathlib 由仓内 `lean-toolchain`、`lake-manifest.json` 锁定；action SHA、runner image/container、workflow digest 进入证书。
+9. cache 只优化 toolchain/packages 下载；构建产物不跨 full-release clean-build 复用。
+10. 所有原始日志和结构化收据作为 GitHub Actions artifact 上传并设定 retention；本机只下载核验，不重新编译。
+
+### CI artifact
+
+artifact 最少包含：
+
+- `ci-run-identity.json`
+- `source-theorem-inventory.json`
+- `lake-clean-build.log`
+- `axiom-audit.raw.txt`
+- `lean-guard-report.json`
+- `pytest-collection.txt`
+- `pytest-full.log`
+- `mutation-property-report.json`
+- `runtime-refinement-report.json`
+- `formal-release-certificate.json`
+- `independent-verifier-report.json`
+
+`ci-run-identity.json` 绑定 `GITHUB_RUN_ID`、`GITHUB_RUN_ATTEMPT`、event、ref、subject SHA/tree、workflow path/digest、runner image、action SHAs、toolchain/dependencies、job conclusions 和 artifact digests。
+
 ### 发布流水线
 
 ```text
-generate source inventory
+GitHub Actions checkout exact subject SHA
+  -> generate source inventory
   -> lake clean
   -> lake build
   -> public theorem axiom audit
@@ -629,13 +672,15 @@ generate source inventory
 5. schema/Lean/Python manifest drift gate。
 6. theorem provenance：文件、行号、声明、imports、axioms、source digest、toolchain。
 7. benchmark 分开记录 proof time、compile time、checker time、solver time、memory 和 cache hit；性能失败不靠降低语义完整性解决。
-8. 发布证书由 CI 作为 artifact 生成，避免证书证明包含自身的同一 commit。
+8. 发布证书由 GitHub Actions 作为 artifact 生成，避免证书证明包含自身的同一 commit。
+9. 本地下载 CI artifact 后运行非 Lean 独立 digest/schema verifier；下载核验不能替代 CI job conclusion 核对。
 
 ### Gate
 
-- clean build、全测、guard、axiom、manifest、mutation、refinement、独立 verifier 全通过；
+- 同一 subject SHA/tree 的 GitHub CI clean build、全测、guard、axiom、manifest、mutation、refinement、独立 verifier 全通过；
 - UNKNOWN/TIMEOUT/SKIP/NOT_RUN/BACKEND_UNAVAILABLE/ERROR 任一存在时 release blocked；
 - 不推送、不 tag、不 release，除非用户当轮授权。
+- 没有可下载的完整 CI artifact，或 artifact digest 与 run identity 不一致，release blocked。
 
 ## 18. 文件级施工地图
 
@@ -671,7 +716,10 @@ generate source inventory
 | `docs/formal-release/` | 当前证书 schema、claim boundary、raw evidence pointers |
 | `docs/spec/` | v2、双 IR、多后端、准入、证据域规范 |
 | `tests/spec/` | Python contracts、mutation、property、differential |
-| `.github/workflows/lean-build.yml` | 完整 release gate 和 artifact |
+| `.github/workflows/lean-build.yml` | 唯一 Lean 执行 authority；module matrix、full clean build、完整 release gate 和 artifacts |
+| `scripts/ci/changed_lean_modules.py` | 生成受影响 Lean module/反向依赖 matrix |
+| `scripts/ci/build_run_identity.py` | 生成 GitHub run/job/workflow/subject/artifact 身份 |
+| `AGENTS.md` | 将本地 Lean 命令改为 GitHub CI 触发和 artifact 核验规范 |
 
 ## 19. 测试与证明门
 
@@ -679,28 +727,33 @@ generate source inventory
 
 1. 写精确 statement/definition；
 2. 先建正反 fixture；
-3. helper lemma 后立即单文件编译；
-4. 目标模块 build；
-5. 对应 Python reference/differential；
-6. axiom audit；
-7. 禁止 token scan；
-8. theorem manifest 更新。
+3. helper lemma 后立即提交/推送获授权的 `ci/**` 分支，或对已存在远程 SHA 触发 `workflow_dispatch mode=changed-module`；
+4. GitHub Actions matrix 执行目标模块和受影响反向依赖 build；
+5. 下载并核验 module CI artifact、run identity、subject SHA/tree 和原始日志；
+6. 对应 Python reference/differential；
+7. CI axiom audit；
+8. CI 禁止 token scan；
+9. theorem manifest 更新。
+
+没有当轮 push/dispatch 授权时，只能完成源码和本地静态预检，状态保持 `BLOCKED/CI_NOT_RUN`；不得本机调用 Lean 补证据。
 
 ### 全仓最终顺序
 
-1. Python `--collect-only` manifest；
-2. Python full tests；
-3. property/mutation/metamorphic/finite model；
-4. Lean source/theorem manifest；
-5. `lake clean && lake build`；
-6. `AxiomAudit.lean` 全公共声明；
-7. guard scan；
-8. 多 solver witness tests；
-9. 外部 JC runtime refinement；
-10. FormalReleaseCertificate 生成；
-11. 独立 verifier；
-12. allowed/forbidden claim audit；
-13. Git diff/status 和 artifact 污染检查。
+1. GitHub Actions checkout exact subject SHA；
+2. CI Python `--collect-only` manifest；
+3. CI Python full tests；
+4. CI property/mutation/metamorphic/finite model；
+5. CI Lean source/theorem manifest；
+6. CI `lake clean && lake build`；
+7. CI `AxiomAudit.lean` 全公共声明；
+8. CI guard scan；
+9. CI 多 solver witness tests；
+10. CI 外部 JC runtime refinement；
+11. CI FormalReleaseCertificate 生成；
+12. CI 独立 verifier；
+13. CI allowed/forbidden claim audit；
+14. 下载 artifacts，核验 run identity、SHA/tree、workflow digest 和 artifact digests；
+15. 本地 Git diff/status 和 artifact 污染检查。
 
 固定 regression 只证明 backend health；SMT/Python/finite model 不替代 Lean theorem；Lean theorem 不替代 runtime 或法律审核。
 
@@ -711,7 +764,8 @@ generate source inventory
 - proven core 无反例或 build failure 不重写；通过 embedding/refinement 扩展。
 - theorem 无法证明时标记 `UNPROVED` 并保留反例/阻塞，不用 `sorry`、`admit`、`axiom` 或弱化 statement。
 - solver/checker/refinement 失败时保留完整先进目标，回退的是 release 状态和入口开关，不是架构范围。
-- generated `.olean`、`.ilean`、`.lake`、trace、hash 和机器 cache 不提交。
+- 本机禁止执行 Lean/Elan/Lake；不得创建或使用本地 `.lake`、`.olean`、`.ilean` 和 Mathlib build cache。
+- GitHub CI 生成的 `.olean`、`.ilean`、`.lake`、trace 和机器 cache 不提交；只有规定的日志、manifest、receipt 和 certificate 作为 CI artifact 保存。
 - 任何跨仓工作严格串行，先冻结两端 HEAD/tree，receipt 绑定 exact commits，防止 Git 版本污染漂移。
 - 不推送、不 tag、不发布，除非用户当轮明确授权。
 
@@ -731,7 +785,7 @@ generate source inventory
 - runtime refinement 使用 JC 正式外部回执，所有 mismatch 分类并留永久反例。
 - FormalReleaseCertificate 绑定 current commit/tree/toolchain/source/build/test/axiom/refinement，可独立重验。
 - 32/126 等数量仅由 current inventory 生成，不写成永久事实。
-- 全量 Lean/Python/release Gate 通过，Git clean，无构建污染。
+- 同一 subject SHA/tree 的全量 GitHub CI Lean/Python/release Gate 通过，artifacts 可下载并独立核验，Git clean，无本地 Lean 构建污染。
 - 文档没有“完整 JC 已被 Lean 证明”“checker 等于法律正确”等越界声明。
 
 ## 22. 施工顺序

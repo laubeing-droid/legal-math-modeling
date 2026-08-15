@@ -4,6 +4,8 @@ from copy import deepcopy
 import hashlib
 import json
 from pathlib import Path
+import subprocess
+import sys
 
 import pytest
 
@@ -308,3 +310,23 @@ def test_verifier_cli_payload_distinguishes_invalid_from_divergent() -> None:
 
     assert verification_payload(divergent_report)["status"] == "INCONCLUSIVE"
     assert verification_payload(invalid_report)["status"] == "BLOCKED"
+
+
+@pytest.mark.parametrize(
+    "script_name",
+    (
+        "materialize_runtime_refinement_expected.py",
+        "verify_runtime_refinement_receipt.py",
+    ),
+)
+def test_runtime_refinement_scripts_support_direct_execution(script_name: str) -> None:
+    completed = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / script_name), "--help"],
+        cwd=ROOT.parent,
+        capture_output=True,
+        text=True,
+        check=False,
+    )
+
+    assert completed.returncode == 0, completed.stderr
+    assert "usage:" in completed.stdout

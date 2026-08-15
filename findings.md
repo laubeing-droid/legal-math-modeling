@@ -174,3 +174,6 @@ Do not weaken or rewrite the existing fixed-point core.
   or provenance failure to `BLOCKED`; only full validity plus alignment maps to `PASS`.
 - JC's complete 419-test collection completed as 391 pass and 28 documented heavy-dependency skips;
   the external receipt additions introduced no Python regression or canonical-entrypoint violation.
+- Import-based tests do not prove a repository script can run from an arbitrary working directory.
+  Both refinement CLIs now bootstrap the repository root explicitly, and direct `--help` subprocess
+  tests run from the parent directory to preserve that boundary.

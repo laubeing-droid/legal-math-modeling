@@ -138,6 +138,9 @@
   paths, and `git diff --check` pass without invoking Lean.
 - Revalidated the JC producer with 7/7 focused receipt tests, 31/31 canonical-entrypoint/audit/pack
   tests, the in-process MCP smoke, and the complete suite: 391 passed, 28 dependency-gated skips.
+- The first direct materializer invocation failed before writing evidence because the scripts did not
+  add the repository root to `sys.path`. Module-import tests had not exercised this entrypoint. Added
+  direct-execution regression coverage and the same root bootstrap used by the external runner.
 
 ## Tests and Commands
 

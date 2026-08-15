@@ -8,8 +8,14 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import sys
 import tempfile
 from typing import Any, Mapping, Sequence
+
+
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
 
 from theory.spec.runtime_differential import build_expected_fixture
 
@@ -105,16 +111,15 @@ def _write_json_atomic(path: Path, value: Mapping[str, Any]) -> None:
 
 
 def _parser() -> argparse.ArgumentParser:
-    root = Path(__file__).resolve().parents[1]
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
         "--template",
-        default=root / "runtime" / "refinement_cases" / "four_slice_expected.template.json",
+        default=ROOT / "runtime" / "refinement_cases" / "four_slice_expected.template.json",
     )
     parser.add_argument("--source-digest", action="append", required=True)
     parser.add_argument("--rule-pack-digest", required=True)
     parser.add_argument("--output", required=True)
-    parser.add_argument("--repo-root", default=root)
+    parser.add_argument("--repo-root", default=ROOT)
     return parser
 
 

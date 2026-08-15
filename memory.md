@@ -15,7 +15,14 @@
   mutation-tested. V1 remains parseable but cannot obtain v2 decisive acceptance.
 - L3 temporal applicability and L4 exact numeric integration remain `DEFERRED` because no real
   consumer trigger was found.
-- L5 remains fail-closed. LMM has the receipt schema and independent verifier, but the external
-  `juris-calculus` formal entrypoint does not yet emit an actual `RuntimeRefinementReceipt`.
+- L5 construction is closed with a real external receipt. LMM commit
+  `b9925428ca1c8663c8dbca236c1d5d2f231097af` owns the expected projection; JC local commit
+  `be60fc2f5aebf76c909d8ff81e269c969664435a` verifies/replays canonical audit bundles and emits the
+  actual `runtime-refinement-receipt-v2`.
+- The ten-case synthetic conformance run is structurally valid but not aligned: 7 match and 3 differ
+  (`license::priority-off`, `permission::conflict`, `priority::active`). Preserve expected values and
+  report `INCONCLUSIVE / RESULT_MISMATCH`; never claim cross-runtime agreement from this receipt.
+- Receipt artifacts are tracked under `docs/remediation/runtime-refinement/`. The JC commit remains a
+  local checkpoint until the user separately authorizes pushing that repository.
 - Project network operations require proxy `http://127.0.0.1:10808`; stale process defaults may point
   at inactive port `20808`.

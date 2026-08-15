@@ -141,6 +141,16 @@
 - The first direct materializer invocation failed before writing evidence because the scripts did not
   add the repository root to `sys.path`. Module-import tests had not exercised this entrypoint. Added
   direct-execution regression coverage and the same root bootstrap used by the external runner.
+- Direct-execution regressions now pass 17/17; the updated full LMM Python suite passes 50/50. The
+  follow-up CLI fix is committed at `b9925428ca1c8663c8dbca236c1d5d2f231097af`.
+- Materialized a ten-case expected fixture, then attempted JC audit state under LMM `build-logs`.
+  The isolation gate rejected that repository-contained state path before producing bindings.
+- Reran with audit state outside both repositories. The fixed JC runner completed 10/10 cases; the
+  real `jc refinement receipt` CLI emitted receipt digest
+  `02c590b20c5ba60c077cd12d7d9bdb55e1afebe0ebe9b07cb746c4761bcea397`.
+- LMM independent verification deliberately exited 1 with `INCONCLUSIVE`: receipt valid, 7/10
+  aligned, and only `RESULT_MISMATCH`. Expected statuses were not changed. Portable expected,
+  bindings, and actual receipt artifacts are now tracked under remediation evidence.
 
 ## Tests and Commands
 
@@ -160,8 +170,11 @@
 | L0 Python syntax and inventory unit test | 1 passed |
 | first AxiomAudit invocation | failed as expected before local library build: unknown `JurisLean` module |
 | first v2 checker run | 5 passed, 9 failed; root cause was tuple transport rather than checker semantics |
-| current Python collection | 39 tests collected |
-| current full Python suite | 39 passed |
+| current Python collection | 51 tests collected |
+| current full Python suite | 51 passed |
+| JC external receipt producer target | 7 passed |
+| JC full Python suite | 391 passed, 28 dependency-gated skips |
+| LMM independent runtime receipt verification | `INCONCLUSIVE`; receipt valid; 7/10 aligned; `RESULT_MISMATCH` only |
 | current generated source inventory | 33 Lean files; 141 theorem declarations; check PASS |
 | current Lean guard scan | PASS |
 | local Lean build | intentionally interrupted; superseded by user-required GitHub Actions run |

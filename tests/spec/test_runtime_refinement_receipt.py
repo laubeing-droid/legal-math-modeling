@@ -330,3 +330,32 @@ def test_runtime_refinement_scripts_support_direct_execution(script_name: str) -
 
     assert completed.returncode == 0, completed.stderr
     assert "usage:" in completed.stdout
+
+
+def test_tracked_external_receipt_remains_valid_but_inconclusive() -> None:
+    evidence_root = ROOT / "docs" / "remediation" / "runtime-refinement"
+    expected = json.loads(
+        (evidence_root / "expected-b9925428.json").read_text(encoding="utf-8")
+    )
+    bindings = json.loads(
+        (evidence_root / "run-bindings-be60fc2f.json").read_text(encoding="utf-8")
+    )
+    actual = json.loads(
+        (evidence_root / "runtime-receipt-b9925428-be60fc2f.json").read_text(
+            encoding="utf-8"
+        )
+    )
+
+    report = verify_runtime_refinement_receipt(
+        expected,
+        actual,
+        expected_lmm_commit="b9925428ca1c8663c8dbca236c1d5d2f231097af",
+        expected_runtime_commit="be60fc2f5aebf76c909d8ff81e269c969664435a",
+    )
+
+    assert all(set(case) == {"case_id", "run_id"} for case in bindings["cases"])
+    assert report.receipt_valid is True
+    assert report.aligned is False
+    assert report.passed is False
+    assert report.error_codes == ("RESULT_MISMATCH",)
+    assert len(report.compared_case_ids) == 10

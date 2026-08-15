@@ -1,6 +1,6 @@
 # legal-math-modeling 必要补充施工方案
 
-> 版本：2026-08-15（原方案 2026-08-10，已补施工状态）
+> 版本：2026-08-15（原方案 2026-08-10，已完成必要施工收口）
 >
 > 目标仓库：`D:\Codex\1.法律工作区\legal-math-modeling`
 >
@@ -26,8 +26,9 @@ LMM 不需要扩大理论版图。必要施工只有五项：
 - L1 已完成：v2 checker 从事实、义务、argument、source/rule-pack/trace digest、semantics、checker version 和 producer commit 重算接受条件；v1 只能解析，不能取得 v2 decisive acceptance。
 - L2 已完成：任务有界 `TranslationWitness` 及独立 Python checker 已阻断 omission、spurious edge、priority direction reversal。
 - L3/L4 保持 `DEFERRED`：未发现法源版本/事件更新或金额/比例/利息/solver 的真实消费者触发，不接正式路径。
-- L5 的 LMM 侧 schema、expected-only fixture 和独立 verifier 已完成；外部 `juris-calculus` 正式入口尚不产出 actual `RuntimeRefinementReceipt`，因此跨实现一致性声明继续 fail-closed。
-- 当前总体状态：`PARTIAL / EXTERNAL_RECEIPT_PENDING`。不得把本仓 verifier 或测试注入的 receipt 冒充外部正式运行回执。
+- L5 已完成施工：LMM 生成绑定提交的 expected fixture；外部 `juris-calculus` 正式审计链生成 actual `RuntimeRefinementReceipt`；LMM 独立 verifier 复核结构、语义投影和全部 digest。
+- L5 实测结论为 `INCONCLUSIVE / RESULT_MISMATCH`：回执有效，10 案中 7 案一致、3 案不一致。expected 未按 actual 修改，不得声明跨实现一致。
+- 当前总体状态：`CONSTRUCTION_COMPLETE / REFINEMENT_INCONCLUSIVE`。L0-L2 已闭合，L3/L4 因未触发保持 `DEFERRED`，L5 已完成真实执行和失败闭环。
 
 ## 1. 施工前证据边界
 
@@ -280,14 +281,37 @@ Gate：omission、spurious edge、direction reversal 三类 mutation 全部被�
 ### 9.2 修改范围
 
 - `theory/spec/runtime_differential.py` 不再生成 `jc_shadow_status`。
-- 新增 `runtime_refinement_receipt.schema.json`。
-- `runtime/legal_math_four_slice_differential.json` 降为 historical fixture 或 expected-only。
+- 新增 `runtime/runtime_refinement_receipt.schema.json`。
+- `runtime/refinement_cases/four_slice_expected.template.json` 是当前唯一 expected-only 模板；原计划路径 `runtime/legal_math_four_slice_differential.json` 在施工基线中不存在，未伪造补建。
+- `scripts/materialize_runtime_refinement_expected.py` 只负责把 LMM 模板绑定到干净提交和 source/rule-pack digest。
+- `scripts/verify_runtime_refinement_receipt.py` 独立复核外部回执，不导入 `juris-calculus`。
+- 外部生产器位于 `juris-calculus` 本地检查点 `be60fc2f5aebf76c909d8ff81e269c969664435a`，只消费经校验、可重放的正式 audit bundle，不接受调用者自报 `actual_status`。
 - `HornOperationalRefinement.lean` 写清精确合同，不暗示已存在真实 differential。
 - 测试必须注入实际 receipt；缺 receipt、commit mismatch、digest mismatch、运行失败、状态映射未知全部 fail-closed。
 
 ### 9.3 声明边界
 
 该产物叫 `RuntimeRefinementReceipt`，不得叫 `FormalReleaseCertificate`。允许声明仅为：“指定 LMM/runtime 提交在指定 fixture 上一致”。禁止外推为完整 runtime refinement。
+
+本次十案结果不满足“一致”前提，只允许声明：指定提交和固定 synthetic conformance fixture 已完成真实外部执行；回执结构有效，但存在三项 `RESULT_MISMATCH`。
+
+### 9.4 实际回执证据
+
+- LMM 规格提交：`b9925428ca1c8663c8dbca236c1d5d2f231097af`
+- JC 运行时提交：`be60fc2f5aebf76c909d8ff81e269c969664435a`
+- expected fixture digest：`2d1e5c83c8f2f31d8312b3be3813b5b5dba4a63ace4182938d5e67d774ce16c2`
+- source snapshot digest：`4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24`
+- synthetic rule-pack digest：`3879c3e2c520ecd55f5714d60ae962b60c2cce73767cfae6749512ce4674fe5a`
+- runtime receipt digest：`02c590b20c5ba60c077cd12d7d9bdb55e1afebe0ebe9b07cb746c4761bcea397`
+- 独立验收：`receipt_valid=true`、`aligned=false`、`status=INCONCLUSIVE`、唯一错误码 `RESULT_MISMATCH`
+
+| Case | Expected | Actual |
+|---|---|---|
+| `license::priority-off` | `REFUTED` | `UNDECIDED` |
+| `permission::conflict` | `UNDECIDED` | `PROVED` |
+| `priority::active` | `PROVED` | `UNDECIDED` |
+
+完整 expected、status-free run bindings、actual receipt 和文件 SHA-256 固化于 `docs/remediation/runtime-refinement/`。该夹具明确为 synthetic conformance data，不具法律权威，不证明完整 runtime refinement。JC 检查点尚未远程推送；其仓库规则要求另行取得当前轮次授权。
 
 ## 10. 阶段、依赖与估算
 
@@ -337,9 +361,9 @@ Gate：omission、spurious edge、direction reversal 三类 mutation 全部被�
 - [x] 公共定理 axiom audit 有原始运行输出。
 - [x] checker 不接受“空 trace + 自报布尔 true”的 decisive certificate。
 - [x] Horn -> AAF omission、spurious edge、priority 反向 mutation 均被阻断。
-- [ ] differential 结果来自正式执行回执，不是 LMM 写死的 shadow 状态：等待外部 producer。
-- [ ] 两端 commit、fixture、source/rule-pack、输出 digest 可追溯：等待 actual receipt。
-- [ ] 时态 unknown/撤回、舍入缺失、溢出/位宽不符 fail-closed：L3/L4 未被真实消费者触发，保持 `DEFERRED`。
+- [x] differential 结果来自外部正式审计链生成的 actual receipt，不是 LMM 写死的 shadow 状态。
+- [x] 两端 commit、fixture、source/rule-pack、audit/output/receipt digest 可追溯；实测状态为 `INCONCLUSIVE / RESULT_MISMATCH`。
+- [x] L3/L4 条件门禁已核查：无真实消费者触发，未接正式路径并保持 `DEFERRED`；不虚构未触发合同的通过结果。
 - [x] LMM release certificate 与 runtime refinement receipt 物理、语义分离。
 - [x] 未经独立授权不改变 11 canonical types、4 modalities、4 slices。
 - [x] 文档只出现任务有界声明，不出现“运行时已被完整形式验证”等禁称。

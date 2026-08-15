@@ -25,8 +25,8 @@ produce commit- and digest-bound artifacts, and create local checkpoint commits.
 | 1 | Baseline, boundaries, current-state inventory, test design | clean/read-only evidence snapshot; consumer-trigger decision | complete |
 | 2 | L-A formal release certificate and ledger/audit repair | generator + clean build + full tests + guard + axiom + independent verifier | complete |
 | 3 | L-B checker v2 | Lean build; Python mutation suite; v1 compatibility boundary | complete |
-| 4 | L-C translation witness and L-D real runtime receipt | independent mutation checks; externally supplied receipt validation | runtime_receipt_in_progress |
-| 5 | Conditional L-E, full review, documentation, memory, commits | complete acceptance order; digest/commit binding; claim audit | pending_final_closeout |
+| 4 | L-C translation witness and L-D real runtime receipt | independent mutation checks; externally supplied receipt validation | complete_inconclusive |
+| 5 | Conditional L-E, full review, documentation, memory, commits | complete acceptance order; digest/commit binding; claim audit | in_progress |
 
 ## Scope Decisions
 
@@ -49,7 +49,7 @@ produce commit- and digest-bound artifacts, and create local checkpoint commits.
 | Required project-root `memory` file absent | 1 | Record absence; create/update repository memory only after verified new knowledge exists |
 | `elan`, `lake`, and `lean` not found on current `PATH` | 1 | Locate the pinned toolchain under user/machine paths before treating Lean as unavailable |
 | `python -m pytest` failed: active Python 3.12.10 has no pytest module | 1 | Inspect the working `pytest` shim/interpreter and use one interpreter consistently |
-| Planning-file patch context mismatch | 1 | Read exact file tails and reapplied a narrower patch |
+| Planning-file patch context mismatch | 2 | Read exact file tails and reapplied narrower per-file patches |
 | Phase 1 checkpoint commit failed because Git identity was unset | 1 | Reuse the repository's latest author identity in local-only Git config, restage plan log, and retry |
 | Combined replacement patch targeted the same paths twice | 2 | Split delete/add replacements into separate atomic patches; do not retry the combined form |
 | First `lake env lean JurisLean/AxiomAudit.lean` failed with unknown `JurisLean` module | 1 | Dependencies were fetched but local library objects did not exist; run `lake build` before the audit |
@@ -73,12 +73,15 @@ produce commit- and digest-bound artifacts, and create local checkpoint commits.
 | Fixture manifest digest command had an unterminated quoted Python expression | 1 | Use a PowerShell single-quoted `python -c` program with Python double-quoted literals |
 | First fixed-fixture run lacked strict checker config files | 1 | Added minimal fixture-owned `core_ontology.yaml` and `L0_overrides_hk.yaml`, bound both hashes in the synthetic pack manifest |
 | Ten-case all-aligned assertion failed on 3 canonical JC results | 1 | Preserve LMM expected statuses; freeze actual runtime outputs and require LMM to report a valid receipt with `RESULT_MISMATCH` |
+| Direct LMM materializer failed to import `theory` | 1 | Bootstrap repository root in both scripts and add direct subprocess tests from outside the checkout; direct and tracked-evidence coverage now pass 18/18 |
+| First JC audit output path was inside the LMM Git repository | 1 | Preserve the audit-state isolation gate and rerun against a verified external path under `D:\Codex\tmp` |
 
 ## Current Decision Point
 
-Phases 1-3 and the L-C part of phase 4 are closed. L3/L4 remain `DEFERRED` because no real consumer
-trigger exists. Final-head GitHub Actions run `31850513493` produced and independently verified a
-FormalReleaseCertificate for PR merge subject `dbc44415c2d763f1575c51482ad90eb2a69e1106`:
-33 Lean files, 141 theorem declarations, 8509/8509 strict build jobs, eight gates PASS. The remaining
-work is L5: make the external runtime formal entrypoint produce an actual, content-bound receipt,
-then validate it independently in LMM before the final claim/document/memory close-out.
+Phases 1-4 are closed. L3/L4 remain `DEFERRED` because no real consumer trigger exists. GitHub
+Actions run `31850513493` produced and independently verified the prior final-head
+FormalReleaseCertificate: 33 Lean files, 141 theorem declarations, 8509/8509 strict build jobs, eight
+gates PASS. L5 now has a real JC-produced, content-bound receipt. Independent LMM verification found
+valid provenance but 7/10 alignment, so the closed result is `INCONCLUSIVE / RESULT_MISMATCH` rather
+than cross-runtime agreement. Remaining work is final documentation/claim audit and a fresh CI-only
+Lean acceptance run for the final LMM branch head.

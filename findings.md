@@ -177,3 +177,11 @@ Do not weaken or rewrite the existing fixed-point core.
 - Import-based tests do not prove a repository script can run from an arbitrary working directory.
   Both refinement CLIs now bootstrap the repository root explicitly, and direct `--help` subprocess
   tests run from the parent directory to preserve that boundary.
+- Materialized expected fixture `2d1e5c83...` for LMM commit `b9925428...`; JC commit `be60fc2f...`
+  then executed all ten cases through canonical audit generation, byte verification, and replay.
+- The external receipt digest is `02c590b2...`. Independent LMM verification returned
+  `receipt_valid=true`, `aligned=false`, `INCONCLUSIVE`, and only `RESULT_MISMATCH`; all ten case IDs
+  were compared. This closes construction and preserves the prohibition on an agreement claim.
+- JC audit state cannot live under the LMM repository even in ignored `build-logs`; the first path
+  was rejected before bindings were written. The successful run used an external state root under
+  `D:\Codex\tmp`, while portable receipt artifacts were copied into tracked remediation evidence.

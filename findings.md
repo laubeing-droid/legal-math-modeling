@@ -131,3 +131,21 @@ Do not weaken or rewrite the existing fixed-point core.
 - Authority map recorded in `docs/remediation/authority_map.md`.
 - Old plan `260810...施工方案.md` marked SUPERSEDED INPUT; its stop-early scope
   limits are void per the 2026-08-15 construction plan.
+
+## 2026-08-16 Theory Absorption (M1-M10 close, awaiting CI)
+
+- All M1-M10 source deliverables are authored locally: 40 new Lean modules
+  (72 total), canonical v2 package, source/path/temporal/admission/taint/
+  argumentation/numeric/backend/dual-IR/authority/certificate references,
+  refinement fixtures, and the CI-authority workflow.
+- Full local suite: 130 passed; guard scan clean; both provisional.
+- UNPROVED obligations (kept as Prop targets, never closed by axiom):
+  full-chain translation soundness/completeness beyond the supported
+  fragment, and incremental-vs-clean compilation equivalence
+  (`TranslationRefinement.lean`).
+- Risk note: the 40 new Lean modules were authored without local Lean
+  execution (forbidden). Their proofs follow conservative patterns but the
+  first CI module matrix run is the authoritative compile check; any CI
+  failure must be fixed without weakening theorem statements.
+- New modules are not imported by the root `JurisLean.lean`, so the
+  historical full clean build surface is unchanged until CI evidence exists.

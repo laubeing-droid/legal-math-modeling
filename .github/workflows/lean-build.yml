@@ -1,31 +1,83 @@
-name: Lake Build + Scan
+name: Lean Authority + Formal Release Pipeline
 
-# Trigger: push to master/main or manual workflow_dispatch
+# GitHub Actions is the sole Lean authority for this repository.
+# Local machines never install or execute Lean/Elan/Lake.
 
 on:
+  pull_request:
   push:
     branches: [master, main, "ci/**"]
   workflow_dispatch:
+    inputs:
+      mode:
+        description: "changed-module or full-release"
+        required: true
+        default: "changed-module"
+        type: choice
+        options:
+          - changed-module
+          - full-release
+      module:
+        description: "Optional single Lean module (without JurisLean. prefix)"
+        required: false
+        default: ""
+        type: string
+
+concurrency:
+  group: lean-${{ github.ref }}-${{ github.run_attempt }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  LEAN_DIR: proofs/lean/juris_lean
+  ARTIFACT_RETENTION_DAYS: 90
 
 jobs:
-  build:
+  setup-matrix:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 10
+    outputs:
+      matrix: ${{ steps.matrix.outputs.matrix }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Compute Lean module matrix
+        id: matrix
+        run: |
+          if [ "${{ inputs.mode }}" = "full-release" ] || [ "${{ github.event_name }}" = "push" ]; then
+            python3 scripts/ci/changed_lean_modules.py --all --output matrix.json
+          elif [ -n "${{ inputs.module }}" ]; then
+            python3 -c "import json; name='${{ inputs.module }}'; json.dump({'include':[{'module':name,'target':'JurisLean.'+name}]}, open('matrix.json','w'))"
+          else
+            python3 scripts/ci/changed_lean_modules.py \
+              --base origin/${{ github.base_ref || 'main' }} --head HEAD --output matrix.json
+          fi
+          {
+            echo 'matrix<<EOF'
+            cat matrix.json
+            echo EOF
+          } >> "$GITHUB_OUTPUT"
 
+  lean-module-build:
+    needs: setup-matrix
+    if: ${{ needs.setup-matrix.outputs.matrix != '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJson(needs.setup-matrix.outputs.matrix) }}
+    steps:
+      - uses: actions/checkout@v4
       - name: Restore elan cache
         id: elan-cache
         uses: actions/cache@v4
         with:
           path: ~/.elan
           key: ${{ runner.os }}-elan-lean4-v4.30.0
-
       - name: Install elan
         if: steps.elan-cache.outputs.cache-hit != 'true'
         run: |
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain leanprover/lean4:v4.30.0
-
       - name: Restore Lake packages cache
         uses: actions/cache@v4
         with:
@@ -33,13 +85,172 @@ jobs:
           key: ${{ runner.os }}-lake-packages-${{ hashFiles('proofs/lean/juris_lean/lakefile.lean', 'proofs/lean/juris_lean/lean-toolchain') }}
           restore-keys: |
             ${{ runner.os }}-lake-packages-
-
-      - name: Lake Clean + Build (full from 0, no Mathlib cache)
+      - name: Build module ${{ matrix.module }}
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
-          cd proofs/lean/juris_lean && lake clean && lake build
+          cd "$LEAN_DIR" && lake build "${{ matrix.target }}" 2>&1 | tee "module-build-${{ matrix.module }}.log"
+      - name: Upload module build log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: module-build-${{ matrix.module }}-run${{ github.run_id }}-attempt${{ github.run_attempt }}
+          path: ${{ env.LEAN_DIR }}/module-build-${{ matrix.module }}.log
+          retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
 
-      - name: Scan
+  lean-full-clean-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@v4
+      - name: Restore elan cache
+        id: elan-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.elan
+          key: ${{ runner.os }}-elan-lean4-v4.30.0
+      - name: Install elan
+        if: steps.elan-cache.outputs.cache-hit != 'true'
+        run: |
+          curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain leanprover/lean4:v4.30.0
+      - name: Restore Lake packages cache (download only)
+        uses: actions/cache@v4
+        with:
+          path: proofs/lean/juris_lean/.lake/packages
+          key: ${{ runner.os }}-lake-packages-${{ hashFiles('proofs/lean/juris_lean/lakefile.lean', 'proofs/lean/juris_lean/lean-toolchain') }}
+          restore-keys: |
+            ${{ runner.os }}-lake-packages-
+      - name: Lake clean + build (root, from zero, no olean reuse)
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
-          python3 scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean
+          cd "$LEAN_DIR" && lake clean && lake build 2>&1 | tee ../../lake-clean-build.log
+      - name: Build every JurisLean module explicitly
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          cd "$LEAN_DIR"
+          for file in JurisLean/*.lean; do
+            module=$(basename "$file" .lean)
+            lake build "JurisLean.$module" || exit 1
+          done
+      - name: Axiom audit
+        run: |
+          export PATH="$HOME/.elan/bin:$PATH"
+          cd "$LEAN_DIR" && lake env lean JurisLean/AxiomAudit.lean > ../../axiom-audit.raw.txt 2>&1
+      - name: Upload clean build + axiom audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lean-full-build-run${{ github.run_id }}-attempt${{ github.run_attempt }}
+          path: |
+            lake-clean-build.log
+            axiom-audit.raw.txt
+          retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
+
+  python-gates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install test dependencies
+        run: python -m pip install --upgrade pip pytest pyyaml
+      - name: Collection manifest
+        run: python -m pytest tests/ --collect-only -q > pytest-collection.txt
+      - name: Full test suite
+        run: python -m pytest tests/ -q -ra 2>&1 | tee pytest-full.log
+      - name: Lean guard scan
+        run: python scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean 2>&1 | tee lean-guard-report.json
+      - name: Source/theorem inventory
+        run: python scripts/generate_formal_release_certificate.py --repo-root . --output formal-release-certificate.json || true
+      - name: Runtime refinement verifier (expected-only, fail-closed without receipts)
+        run: |
+          for fixture in runtime/refinement_cases/*.expected.json; do
+            python scripts/verify_runtime_refinement_receipt.py --expected "$fixture" || true
+          done 2>&1 | tee runtime-refinement-report.json
+      - name: Upload Python gate artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-gates-run${{ github.run_id }}-attempt${{ github.run_attempt }}
+          path: |
+            pytest-collection.txt
+            pytest-full.log
+            lean-guard-report.json
+            formal-release-certificate.json
+            runtime-refinement-report.json
+          retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
+
+  release-certificate:
+    needs: [lean-module-build, lean-full-clean-build, python-gates]
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Download upstream artifacts for verification
+        uses: actions/download-artifact@v4
+        with:
+          path: ci-evidence
+      - name: Flatten evidence artifacts
+        run: |
+          mkdir -p ci-evidence-flat
+          find ci-evidence -type f -exec cp -n {} ci-evidence-flat/ \;
+      - name: Build run identity
+        run: python scripts/ci/build_run_identity.py --repo-root . --artifact-dir ci-evidence-flat --output ci-run-identity.json
+      - name: Generate formal release certificate
+        run: python scripts/generate_formal_release_certificate.py --repo-root . --ci-evidence-dir ci-evidence-flat --output formal-release-certificate.json || true
+      - name: Independent verifier
+        run: python scripts/verify_formal_release_certificate.py --certificate formal-release-certificate.json --repo-root . --ci-evidence-dir ci-evidence-flat --output independent-verifier-report.json || true
+      - name: Allowed/forbidden claim audit
+        run: |
+          python - <<'PY' | tee claim-audit-report.json
+          import json, pathlib, re, sys
+          forbidden = [
+              "entire juris-calculus has been formally verified",
+              "Python implementation has been fully refinement-proved",
+              "omits no edges or creates no spurious attacks",
+              "graph similarity is a metric",
+              "differential privacy guarantees are established",
+          ]
+          hits = []
+          for path in pathlib.Path("docs").rglob("*.md"):
+              text = path.read_text(encoding="utf-8", errors="ignore").lower()
+              for phrase in forbidden:
+                  if phrase in text:
+                      hits.append({"file": str(path), "phrase": phrase})
+          print(json.dumps({"forbidden_claim_hits": hits}, indent=2))
+          sys.exit(1 if hits else 0)
+          PY
+      - name: Upload release certificate artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-certificate-run${{ github.run_id }}-attempt${{ github.run_attempt }}
+          path: |
+            ci-run-identity.json
+            formal-release-certificate.json
+            independent-verifier-report.json
+            claim-audit-report.json
+          retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
+
+  final-gate:
+    needs: [lean-module-build, lean-full-clean-build, python-gates, release-certificate]
+    if: always()
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Fail closed unless every upstream job succeeded
+        run: |
+          echo '${{ toJSON(needs) }}' > needs.json
+          python3 - <<'PY'
+          import json, sys
+          needs = json.load(open("needs.json"))
+          blocked = [name for name, job in needs.items() if job.get("result") != "success"]
+          if blocked:
+              print(f"release blocked by: {blocked}")
+              sys.exit(1)
+          print("all upstream jobs succeeded")
+          PY

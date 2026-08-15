@@ -89,3 +89,48 @@ Theory-absorption construction started on branch `codex/lmm-theory-absorption-pl
 | `python -m pytest tests/ -q` (pre-implementation) | 11 passed, 4 collection errors |
 | `python -m pytest tests/ -q` (post-implementation) | 36 passed |
 | `python scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean` | Lean guard scan passed (provisional) |
+
+## 2026-08-16 (construction waves M1-M10)
+
+- M1: FailureStatus, LegalIds, LegalModelV2, LegalWellFormed,
+  CanonicalSerialization (Lean); canonical_v2 package with manifest and
+  v1 migration loss reports (Python).
+- M2: SourceBundleSpec, SourcePathSpec, TemporalApplicability (Lean);
+  source_bundle/source_path/temporal_applicability references with
+  tamper/broken-link/future-information mutations.
+- M3: FactAdmissionSpec, TaintNoninterference, ReceiptAuthority (Lean);
+  fact_admission/receipt_authority references; replay/revocation/laundering
+  fail closed.
+- M4: TypedAttack, DefeasiblePriority, PermissionConflict,
+  ArgumentCompilerSpec, ArgumentSemanticsRegistry (Lean); grounded
+  labelling oracle with cycle/self-attack fixtures.
+- M5: ExactNumericContract, TemporalArithmetic, BackendContract,
+  ASPWitness, SMTWitness, SolverRouting (Lean); exact numeric and backend
+  routing references; UNKNOWN/TIMEOUT never decisive.
+- M6: LegalSpec, LegalIVL, well-formedness, normalize, LegalSpecToIVL,
+  IVLToHorn/AAF/ASP/SMT, TranslationWitness, TranslationRefinement (Lean);
+  dual_ir pipeline producing checker-verified witnesses. Full-chain
+  soundness and incremental-compilation obligations registered UNPROVED.
+- M7: AuthorityLattice, ProposalEnvelopeSpec, HumanResearchReceiptSpec,
+  ProposalNoninterference (Lean); proposal_envelope reference.
+- M8: CertificateV2, CertificateCheckerV2 (Lean); checker acceptance
+  implies recomputed well-formedness; v1 never decisive; boundary doc
+  updated.
+- M9: runtime/refinement_cases fixtures, receipt schema, materialize and
+  independent verifier CLIs; TAINTED accepted as canonical actual status.
+- M10: lean-build.yml reconstructed as the sole Lean authority with module
+  matrix, full clean build, axiom audit, Python gates, certificate
+  generation, independent verifier, claim audit, fail-closed final gate;
+  scripts/ci helpers; CERTIFICATE_SCHEMA_V2 doc; AGENTS.md source list
+  updated to 72 files.
+
+| Command | Result |
+|---|---|
+| `python -m pytest tests/ -q` | 130 passed (provisional local) |
+| `python scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean` | passed (provisional) |
+| `python scripts/ci/changed_lean_modules.py --all` | 72-module matrix emitted |
+| `python scripts/ci/build_run_identity.py` | NOT_CI_LOCAL_PLACEHOLDER, exit 1 (fail-closed) |
+
+Lean build evidence for all 40 wave-added modules remains `CI_NOT_RUN`:
+no Lean/Elan/Lake was executed locally. The next step requires user
+authorization to push a `ci/**` branch or dispatch the workflow.

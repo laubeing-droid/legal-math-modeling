@@ -26,16 +26,16 @@ checkers, external runtime refinement, and a commit-bound formal release certifi
 | Phase | Scope | Verification | Status |
 |---|---|---|---|
 | M0 | Baseline, inventory, red-test triage, authority map, supersession, CI-authority docs | git facts; local collection manifest; guard scan | complete |
-| M1 | IDs, digests, well-formedness, canonicalization (Lean + canonical v2) | round-trip/mutation tests; manifest parity | in_progress |
-| M2 | P02/P06/P08 source bundle, source path, temporal applicability | boundary/version/retraction mutation tests | pending |
-| M3 | P09 three-gate admission, taint noninterference, receipt authority | injection/replay/revocation mutation tests | pending |
-| M4 | P03 typed attacks, exceptions, permissions, priorities, cycles | finite enumeration oracle alignment | pending |
-| M5 | P04 exact numeric, temporal arithmetic, multi-backend/solver contracts | boundary/rounding/timeout mutation tests | pending |
-| M6 | P07 LegalSpec/Legal-IVL dual IR, lowerings, translation refinement | per-hop witness checks; differential tests | pending |
-| M7 | P01/P05 authority lattice, human receipts, proposal noninterference | laundering/injection mutation tests | pending |
-| M8 | CertificateEnvelopeV2 + independent checkers, evidence domains | v2 mutation suite green; Lean checker theorems | pending |
-| M9 | External runtime refinement with three-party separation | receipt binding/mismatch classification | pending |
-| M10 | CI reconstruction, FormalReleaseCertificate, release Gate | CI artifacts bound to subject SHA/tree | pending |
+| M1 | IDs, digests, well-formedness, canonicalization (Lean + canonical v2) | round-trip/mutation tests; manifest parity | local complete, CI_NOT_RUN |
+| M2 | P02/P06/P08 source bundle, source path, temporal applicability | boundary/version/retraction mutation tests | local complete, CI_NOT_RUN |
+| M3 | P09 three-gate admission, taint noninterference, receipt authority | injection/replay/revocation mutation tests | local complete, CI_NOT_RUN |
+| M4 | P03 typed attacks, exceptions, permissions, priorities, cycles | finite enumeration oracle alignment | local complete, CI_NOT_RUN |
+| M5 | P04 exact numeric, temporal arithmetic, multi-backend/solver contracts | boundary/rounding/timeout mutation tests | local complete, CI_NOT_RUN |
+| M6 | P07 LegalSpec/Legal-IVL dual IR, lowerings, translation refinement | per-hop witness checks; differential tests | local complete, CI_NOT_RUN |
+| M7 | P01/P05 authority lattice, human receipts, proposal noninterference | laundering/injection mutation tests | local complete, CI_NOT_RUN |
+| M8 | CertificateEnvelopeV2 + independent checkers, evidence domains | v2 mutation suite green; Lean checker theorems | local complete, CI_NOT_RUN |
+| M9 | External runtime refinement with three-party separation | receipt binding/mismatch classification | local complete, CI_NOT_RUN |
+| M10 | CI reconstruction, FormalReleaseCertificate, release Gate | CI artifacts bound to subject SHA/tree | workflow authored; needs authorized CI run |
 
 ## Scope Decisions
 
@@ -55,7 +55,9 @@ checkers, external runtime refinement, and a commit-bound formal release certifi
 
 ## Current Decision Point
 
-M0 closed locally: baseline facts recorded, red tests closed (36 passed), guard scan
-clean, authority map written, old plan marked superseded. M1 begins with canonical v2
-and the identity/digest Lean modules. Lean build evidence remains `CI_NOT_RUN` until
-the user authorizes a `ci/**` push or `workflow_dispatch`.
+All M0-M10 source deliverables are implemented locally with checkpoint
+commits; the Python suite (130 tests) and guard scan are green as
+provisional evidence. The 40 new Lean modules carry status `CI_NOT_RUN`
+because Lean executes only in GitHub Actions. Closing the Lean Gates
+requires per-round user authorization to push a `ci/**` branch or
+dispatch `workflow_dispatch mode=changed-module|full-release`.

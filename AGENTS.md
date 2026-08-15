@@ -46,13 +46,20 @@
 6. Theorem count is determined by `rg "^theorem " --no-filename --count`, not by any report or memory.
 7. Build artifacts: NEVER commit `.olean`, `.ilean`, `.trace`, `.hash`, or `.lake/` directories.
 
-## Lean Source Files (32 actual)
+## Lean Source Files (72 actual)
 
-The following 32 `.lean` files exist in `proofs/lean/juris_lean/JurisLean/`:
+The following 72 `.lean` files exist in `proofs/lean/juris_lean/JurisLean/`
+(32 historical + 40 added by the 2026-08-15 theory-absorption waves; current
+list is always re-derived from the generated inventory, never copied):
 
-`AttackDecision.lean`, `AxiomAudit.lean`, `BanachCertificate.lean`, `BanachComplete.lean`, `BanachContraction.lean`, `BanachEffectiveNodes.lean`, `BanachFixedPoint.lean`, `BanachScratch.lean`, `BanachWeightedNorm.lean`, `Basic.lean`, `CertificateChecker.lean`, `ContractionCondition.lean`, `DDLDefinitions.lean`, `DungAAF.lean`, `DungDefinitions.lean`, `DungFixedPoint.lean`, `EndToEnd.lean`, `FiniteGaloisAdjunction.lean`, `FiniteMonotoneIteration.lean`, `FiniteRosetta.lean`, `HornAAFContract.lean`, `HornDefinitions.lean`, `HornFixedPoint.lean`, `HornOperationalRefinement.lean`, `JC_Formalization.lean`, `LegalSyntax.lean`, `SafetyTheorems.lean`, `ScratchApi.lean`, `SupZeroLemma.lean`, `TemporalKripke.lean`, `UnifiedModel.lean`, `WeightedSupNorm.lean`
+`ArgumentCompilerSpec.lean`, `ArgumentSemanticsRegistry.lean`, `ASPWitness.lean`, `AttackDecision.lean`, `AuthorityLattice.lean`, `AxiomAudit.lean`, `BackendContract.lean`, `BanachCertificate.lean`, `BanachComplete.lean`, `BanachContraction.lean`, `BanachEffectiveNodes.lean`, `BanachFixedPoint.lean`, `BanachScratch.lean`, `BanachWeightedNorm.lean`, `Basic.lean`, `CanonicalSerialization.lean`, `CertificateChecker.lean`, `CertificateCheckerV2.lean`, `CertificateV2.lean`, `ContractionCondition.lean`, `DDLDefinitions.lean`, `DefeasiblePriority.lean`, `DungAAF.lean`, `DungDefinitions.lean`, `DungFixedPoint.lean`, `EndToEnd.lean`, `ExactNumericContract.lean`, `FactAdmissionSpec.lean`, `FailureStatus.lean`, `FiniteGaloisAdjunction.lean`, `FiniteMonotoneIteration.lean`, `FiniteRosetta.lean`, `HornAAFContract.lean`, `HornDefinitions.lean`, `HornFixedPoint.lean`, `HornOperationalRefinement.lean`, `HumanResearchReceiptSpec.lean`, `IVLToAAF.lean`, `IVLToASP.lean`, `IVLToHorn.lean`, `IVLToSMT.lean`, `JC_Formalization.lean`, `LegalIds.lean`, `LegalIVL.lean`, `LegalIVLWellFormed.lean`, `LegalModelV2.lean`, `LegalSpec.lean`, `LegalSpecNormalize.lean`, `LegalSpecToIVL.lean`, `LegalSpecWellFormed.lean`, `LegalSyntax.lean`, `LegalWellFormed.lean`, `PermissionConflict.lean`, `ProposalEnvelopeSpec.lean`, `ProposalNoninterference.lean`, `ReceiptAuthority.lean`, `SafetyTheorems.lean`, `ScratchApi.lean`, `SMTWitness.lean`, `SolverRouting.lean`, `SourceBundleSpec.lean`, `SourcePathSpec.lean`, `SupZeroLemma.lean`, `TaintNoninterference.lean`, `TemporalApplicability.lean`, `TemporalArithmetic.lean`, `TemporalKripke.lean`, `TranslationRefinement.lean`, `TranslationWitness.lean`, `TypedAttack.lean`, `UnifiedModel.lean`, `WeightedSupNorm.lean`
 
-**Ghost files (DO NOT reference as existing):** `argmin_polytime.lean`, `HornCanonical.lean`, `ArgumentCompiler.lean`, `LegalIds.lean`, `LegalModel.lean`, `LegalWellFormed.lean`
+The 40 wave-added modules are authored but `CI_NOT_RUN`: they join release
+claims only after the GitHub Actions module matrix and full clean build pass
+on the subject commit. They are intentionally not imported by the root
+`JurisLean.lean` until that CI evidence exists.
+
+**Ghost files (DO NOT reference as existing):** `argmin_polytime.lean`, `HornCanonical.lean`, `ArgumentCompiler.lean`, `LegalModel.lean`
 
 ## Core Theorem Map
 

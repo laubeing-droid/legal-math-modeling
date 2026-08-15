@@ -74,18 +74,20 @@ theorem missing_rounding_not_decisive :
 theorem explicit_rounding_decisive (p : RoundingPolicy) :
     decisiveWithRounding (some p) := by
   dsimp [decisiveWithRounding]
-  cases p <;> decide
+  rfl
 
 /-- 中文证明：空 currency 的金额不 well-formed。 -/
 theorem currencyless_amount_not_well_formed (units : Int) :
     ¬ amountWellFormed { minorUnits := units, currency := "" } := by
   dsimp [amountWellFormed]
-  decide
+  intro h
+  exact h rfl
 
 /-- 中文证明：零分母比率不 well-formed。 -/
 theorem zero_denominator_rate_not_well_formed (num : Int) :
     ¬ rateWellFormed { numerator := num, denominator := 0 } := by
   dsimp [rateWellFormed]
-  decide
+  intro h
+  exact h rfl
 
 end JurisLean

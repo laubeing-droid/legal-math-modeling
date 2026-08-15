@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/laubeing-droid/legal-math-modeling/schemas/runtime-refinement-receipt-v1.json",
+  "$id": "https://github.com/laubeing-droid/legal-math-modeling/schemas/runtime-refinement-receipt-v2.json",
   "title": "RuntimeRefinementReceipt",
   "type": "object",
   "additionalProperties": false,
@@ -18,25 +18,25 @@
     "receipt_digest"
   ],
   "properties": {
-    "schema_version": { "const": "runtime-refinement-receipt-v1" },
+    "schema_version": { "const": "runtime-refinement-receipt-v2" },
     "producer": { "type": "string", "minLength": 1 },
     "execution_status": { "const": "PASS" },
-    "lmm_commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
-    "runtime_commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
-    "fixture_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "lmm_commit": { "$ref": "#/$defs/commit" },
+    "runtime_commit": { "$ref": "#/$defs/commit" },
+    "fixture_digest": { "$ref": "#/$defs/digest" },
     "source_snapshot_digests": {
       "type": "array",
-      "items": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+      "items": { "$ref": "#/$defs/digest" },
       "uniqueItems": true
     },
-    "rule_pack_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "rule_pack_digest": { "$ref": "#/$defs/digest" },
     "semantics": {
       "type": "object",
       "additionalProperties": false,
       "required": ["id", "version"],
       "properties": {
-        "id": { "type": "string" },
-        "version": { "type": "string" }
+        "id": { "const": "grounded" },
+        "version": { "const": "1" }
       }
     },
     "cases": {
@@ -44,16 +44,88 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": ["case_id", "actual_status", "output_digest"],
+        "required": [
+          "case_id",
+          "actual_status",
+          "audit_bundle_digest",
+          "semantic_result",
+          "output_digest"
+        ],
         "properties": {
           "case_id": { "type": "string", "minLength": 1 },
-          "actual_status": {
-            "enum": ["PROVED", "REFUTED", "UNDECIDED", "TAINTED"]
-          },
-          "output_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+          "actual_status": { "$ref": "#/$defs/refinementStatus" },
+          "audit_bundle_digest": { "$ref": "#/$defs/digest" },
+          "semantic_result": { "$ref": "#/$defs/semanticResult" },
+          "output_digest": { "$ref": "#/$defs/digest" }
         }
       }
     },
-    "receipt_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+    "receipt_digest": { "$ref": "#/$defs/digest" }
+  },
+  "$defs": {
+    "commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "stringArray": {
+      "type": "array",
+      "items": { "type": "string" },
+      "uniqueItems": true
+    },
+    "refinementStatus": {
+      "enum": ["PROVED", "REFUTED", "UNDECIDED", "TAINTED"]
+    },
+    "semanticResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "run_id",
+        "result_digest",
+        "execution_status",
+        "result_status",
+        "formal_kernel_used",
+        "review_required",
+        "checker_accepted",
+        "certificate_kind",
+        "engine_version",
+        "pack_id",
+        "pack_version",
+        "pack_digest",
+        "claims",
+        "branches",
+        "used_fact_ids",
+        "used_rule_ids",
+        "source_ids",
+        "missing_fact_ids",
+        "missing_fact_review",
+        "taint",
+        "risk_labels",
+        "checker_receipt"
+      ],
+      "properties": {
+        "schema_version": { "type": "string", "minLength": 1 },
+        "run_id": { "type": "string", "minLength": 1 },
+        "result_digest": { "$ref": "#/$defs/digest" },
+        "execution_status": { "type": "string", "minLength": 1 },
+        "result_status": { "type": "string", "minLength": 1 },
+        "formal_kernel_used": { "type": "boolean" },
+        "review_required": { "type": "boolean" },
+        "checker_accepted": { "type": "boolean" },
+        "certificate_kind": { "type": "string", "minLength": 1 },
+        "engine_version": { "type": "string", "minLength": 1 },
+        "pack_id": { "type": "string", "minLength": 1 },
+        "pack_version": { "type": "string", "minLength": 1 },
+        "pack_digest": { "$ref": "#/$defs/digest" },
+        "claims": { "$ref": "#/$defs/stringArray" },
+        "branches": { "type": "array", "items": { "type": "object" } },
+        "used_fact_ids": { "$ref": "#/$defs/stringArray" },
+        "used_rule_ids": { "$ref": "#/$defs/stringArray" },
+        "source_ids": { "$ref": "#/$defs/stringArray" },
+        "missing_fact_ids": { "$ref": "#/$defs/stringArray" },
+        "missing_fact_review": { "type": "array", "items": { "type": "object" } },
+        "taint": { "$ref": "#/$defs/stringArray" },
+        "risk_labels": { "$ref": "#/$defs/stringArray" },
+        "checker_receipt": { "type": "object" }
+      }
+    }
   }
 }

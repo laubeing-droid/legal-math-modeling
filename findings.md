@@ -129,3 +129,48 @@ Do not weaken or rewrite the existing fixed-point core.
   `7019af4490a75e758db271879536565c86316e0c0ae7dd4a8c63e4861de93247`.
 - L5 is still not cross-implementation evidence: the current external formal runtime entrypoint does
   not produce an actual `RuntimeRefinementReceipt`. The LMM verifier must remain fail-closed.
+- The plan makes the producer boundary explicit: LMM owns the content-addressed expected fixture and
+  independent verifier; `juris-calculus` must execute its formal chain and emit the actual receipt.
+  A scheduler or same-process LMM helper cannot satisfy this requirement.
+- Final-head CI run `31850513493` independently verified the LMM release gates. Its evidence closes
+  L0-L2 only; it does not reduce or substitute the remaining L5 external-producer requirement.
+- The current receipt verifier is already content-bound at both envelope and case-output levels. A
+  compliant producer must copy only LMM-owned bindings from the supplied expected fixture, derive
+  actual statuses from JC's formal execution output, bind the exact JC commit, and compute its own
+  canonical output/receipt digests.
+- The plan names a historical differential path that is absent from the current tree. Final evidence
+  must cite the actual expected-only fixture path and must not recreate a stale same-process fixture.
+- The authoritative tracked template is
+  `runtime/refinement_cases/four_slice_expected.template.json`; it declares ten case IDs and statuses
+  but intentionally contains no commits or digests.
+- Receipt v1 currently hashes only `case_id` and the producer-supplied mapped status. That is not
+  enough to establish provenance from a JC run. JC audit bundles already expose independently
+  verifiable `result_digest`, `bundle_digest`, formal/checker flags, pack digest, run ID, claims, and
+  risk/taint state; the receipt contract should bind and validate those fields.
+- A dedicated producer should consume completed JC audit runs only after `verify_audit_bundle`, then
+  derive the LMM status from canonical semantic fields. It must not import the LMM checker, accept a
+  caller-supplied `actual_status`, or use `spec_shadow_harness`.
+- JC's architecture gate permits only `evaluate_case` and `evaluate_to_audit_bundle` as canonical
+  entrypoints and forbids parallel evaluator construction. The receipt producer must verify/replay
+  existing audit bundles or call the canonical audit entrypoint; it cannot create another evaluator.
+- JC's canonical digest algorithm removes non-semantic timestamp/path/digest fields and hashes sorted
+  compact JSON. LMM can implement this small algorithm independently to recheck an embedded
+  `SemanticResult.result_digest` without importing JC.
+- A test-only official pack can pass the real registry, source-anchor, application, independent
+  checker, audit-bundle, and replay gates without becoming a production legal corpus. Its synthetic
+  identity and claim boundary must remain explicit in the receipt evidence.
+- Status projection is now explicitly owned by the expected fixture: each case binds one focus claim
+  and a sorted refuter set. The runtime may report canonical semantic output, but cannot choose the
+  projection that turns that output into PROVED/REFUTED/UNDECIDED/TAINTED.
+- The first real ten-case formal run completed all audit/replay paths and produced 7 aligned and 3
+  divergent statuses. Divergences are `license::priority-off` (expected REFUTED, actual UNDECIDED),
+  `permission::conflict` (expected UNDECIDED, actual PROVED), and `priority::active` (expected PROVED,
+  actual UNDECIDED). Expected values must remain unchanged under the plan's rollback rule.
+- These divergences are not receipt corruption: every case had completed canonical output and a valid
+  independent checker receipt. The correct release state is a structurally valid external receipt
+  plus fail-closed `RESULT_MISMATCH`, not a cross-runtime agreement claim.
+- The LMM materializer can derive HEAD safely by rejecting tracked changes while ignoring unrelated
+  untracked files. The independent verifier maps valid divergence to `INCONCLUSIVE` and structural
+  or provenance failure to `BLOCKED`; only full validity plus alignment maps to `PASS`.
+- JC's complete 419-test collection completed as 391 pass and 28 documented heavy-dependency skips;
+  the external receipt additions introduced no Python regression or canonical-entrypoint violation.

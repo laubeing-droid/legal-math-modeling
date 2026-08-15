@@ -78,6 +78,66 @@
   `8a67357e0905d712071b45a429b615fb963acb03d8325ef324776b96694ee82b`, source inventory digest
   `7019af4490a75e758db271879536565c86316e0c0ae7dd4a8c63e4861de93247`, 8509/8509 build jobs, and
   all eight gates PASS. The downloaded artifact independently reverified with zero errors.
+- Documentation checkpoint `e5ecece` triggered final-head CI run `31850513493`; it passed in 2m37s.
+  The artifact binds PR merge subject `dbc44415c2d763f1575c51482ad90eb2a69e1106`, tree
+  `d09a6aed9a788065d8a7caef7d450b069c7364fa`, certificate digest
+  `2c5eb9d8ce368b16761e9540e49389b76e15fb52fd8e409a1dd948d96f559d1d`, and the unchanged source
+  inventory digest `7019af4490a75e758db271879536565c86316e0c0ae7dd4a8c63e4861de93247`.
+- Downloaded final-head artifact ID `9237400590`; independent local Python verification returned
+  `PASS` with zero errors. The PR remains draft and was not merged, tagged, or released.
+- Goal continuation reopened phase 4 solely for L5. The next acceptance target is a receipt emitted
+  by the current external `juris-calculus` formal entrypoint, not by LMM or the shadow harness.
+- Re-read both repositories' rules and the LMM receipt verifier/schema. The verifier binds LMM and
+  runtime commits, fixture/source/rule-pack digests, semantics, case set/order/status, per-output
+  digests, execution status, and whole-receipt digest.
+- The plan's historical path `runtime/legal_math_four_slice_differential.json` does not exist in the
+  current tree. The authoritative expected-only fixture path must be located and recorded before L5
+  implementation; the missing file is not treated as evidence.
+- Located the expected-only template at
+  `runtime/refinement_cases/four_slice_expected.template.json` with ten deterministic case IDs.
+- Inspected JC's canonical `SemanticResult`, audit-bundle writer/verifier, formal status matrix, and
+  CLI evaluate path. The external receipt can be bound to verified audit `result_digest` and
+  `bundle_digest`; accepting a naked mapped status would preserve the original self-report flaw.
+- Confirmed JC's canonical-entrypoint architecture test forbids a parallel evaluator. The planned
+  producer will consume verified/replayed audit bundles and independently bind their semantic bytes.
+- Ran two narrow JC authority checks: official pack readiness and complete audit-bundle digest
+  verification both passed (`2 passed`).
+- The first receipt-v2 test replacement attempted delete/add in one patch and was rejected without
+  modifying the file. Recovered by splitting replacement into two atomic patches.
+- Receipt-v2 red test ran: 11 tests executed, 6 failed and 5 legacy-compatible mutation checks
+  passed. Failures are the intended missing contract behavior: no `receipt_valid/aligned` fields,
+  no v2 schema boundary, no embedded semantic digest check, and no derived-status enforcement.
+- Implemented the LMM-side v2 expected/receipt contract. It independently recomputes JC's canonical
+  semantic result digest, derives statuses from LMM-owned claim projections, verifies audit/output/
+  envelope digests and source/rule-pack coverage, and separates receipt validity from alignment.
+- Receipt-v2 target now passes all 11 tests, including fresh-digest self-report forgery rejection and
+  a structurally valid but non-aligned result classified only as `RESULT_MISMATCH`.
+- Upgraded the tracked JSON schema to receipt v2 and the ten-case expected-only template to include
+  LMM-owned focus/refuter projections. Schema/template contract tests were red on v1 and now pass;
+  the receipt target is 13/13.
+- Added JC producer red tests for verified+replayed audit derivation, binding failures, audit tamper,
+  commit validation, duplicate runs, and CLI exposure. Collection fails at the intended missing
+  `compiler_core.runtime_refinement` module boundary.
+- Implemented JC's receipt producer and `jc refinement receipt` CLI. It accepts only status-free
+  case-to-run bindings, verifies and semantically replays every audit bundle, derives statuses from
+  LMM-owned projections, rejects tracked dirty runtime code, and writes an atomic receipt.
+- JC receipt-producer unit target now passes 6/6. No new evaluator was added; the implementation
+  calls the existing audit verification/replay path only.
+- Began the fixed ten-case JC synthetic conformance pack under `tests/fixtures/lmm_refinement`.
+  Rules, cases, source snapshot, source manifest, and manifest hashes are explicit; the first digest
+  calculation command failed only from shell quoting and made no file change.
+- The first runner attempt correctly failed because strict checker configuration was absent. Added
+  minimal fixture-owned ontology/override files and rebound manifest hashes; the pack verifies as
+  integrity-valid, reasoning-ready, 15/15 eligible, zero issues.
+- The next ten-case run completed but disproved full alignment: 7 cases match and 3 differ. The
+  expected fixture is unchanged. The test is being corrected to assert actual canonical output and
+  leave the LMM verifier responsible for the `RESULT_MISMATCH` decision.
+- Added LMM-side TDD coverage for the expected-fixture materializer and verifier CLI payload. The
+  initial target failed during collection only because both scripts were intentionally absent.
+- Implemented both LMM scripts. The receipt target passes 15/15; Python compilation, both CLI help
+  paths, and `git diff --check` pass without invoking Lean.
+- Revalidated the JC producer with 7/7 focused receipt tests, 31/31 canonical-entrypoint/audit/pack
+  tests, the in-process MCP smoke, and the complete suite: 391 passed, 28 dependency-gated skips.
 
 ## Tests and Commands
 

@@ -1,25 +1,96 @@
 {
-  "schema_version": "runtime-refinement-expected-template-v1",
+  "schema_version": "runtime-refinement-expected-template-v2",
   "status": "expected_only_not_runtime_receipt",
   "semantics": {
     "id": "grounded",
     "version": "1"
   },
   "cases": [
-    { "case_id": "contract::plain", "expected_status": "PROVED" },
-    { "case_id": "contract::force-majeure", "expected_status": "REFUTED" },
-    { "case_id": "license::priority-on", "expected_status": "PROVED" },
-    { "case_id": "license::priority-off", "expected_status": "REFUTED" },
-    { "case_id": "permission::condition-missing", "expected_status": "UNDECIDED" },
-    { "case_id": "permission::conflict", "expected_status": "UNDECIDED" },
-    { "case_id": "priority::active", "expected_status": "PROVED" },
-    { "case_id": "priority::missing", "expected_status": "UNDECIDED" },
-    { "case_id": "priority::cycle", "expected_status": "UNDECIDED" },
-    { "case_id": "priority::self-attack", "expected_status": "UNDECIDED" }
+    {
+      "case_id": "contract::plain",
+      "expected_status": "PROVED",
+      "projection": {
+        "focus_claim_id": "claim::contract::breach",
+        "refuting_claim_ids": ["claim::contract::force_majeure"]
+      }
+    },
+    {
+      "case_id": "contract::force-majeure",
+      "expected_status": "REFUTED",
+      "projection": {
+        "focus_claim_id": "claim::contract::breach",
+        "refuting_claim_ids": ["claim::contract::force_majeure"]
+      }
+    },
+    {
+      "case_id": "license::priority-on",
+      "expected_status": "PROVED",
+      "projection": {
+        "focus_claim_id": "claim::license::permitted",
+        "refuting_claim_ids": ["claim::license::unauthorized"]
+      }
+    },
+    {
+      "case_id": "license::priority-off",
+      "expected_status": "REFUTED",
+      "projection": {
+        "focus_claim_id": "claim::license::permitted",
+        "refuting_claim_ids": ["claim::license::unauthorized"]
+      }
+    },
+    {
+      "case_id": "permission::condition-missing",
+      "expected_status": "UNDECIDED",
+      "projection": {
+        "focus_claim_id": "claim::permission::active",
+        "refuting_claim_ids": ["claim::permission::prohibited"]
+      }
+    },
+    {
+      "case_id": "permission::conflict",
+      "expected_status": "UNDECIDED",
+      "projection": {
+        "focus_claim_id": "claim::permission::active",
+        "refuting_claim_ids": ["claim::permission::prohibited"]
+      }
+    },
+    {
+      "case_id": "priority::active",
+      "expected_status": "PROVED",
+      "projection": {
+        "focus_claim_id": "claim::priority::preferred",
+        "refuting_claim_ids": ["claim::priority::subordinate"]
+      }
+    },
+    {
+      "case_id": "priority::missing",
+      "expected_status": "UNDECIDED",
+      "projection": {
+        "focus_claim_id": "claim::priority::preferred",
+        "refuting_claim_ids": ["claim::priority::subordinate"]
+      }
+    },
+    {
+      "case_id": "priority::cycle",
+      "expected_status": "UNDECIDED",
+      "projection": {
+        "focus_claim_id": "claim::priority::preferred",
+        "refuting_claim_ids": ["claim::priority::subordinate"]
+      }
+    },
+    {
+      "case_id": "priority::self-attack",
+      "expected_status": "UNDECIDED",
+      "projection": {
+        "focus_claim_id": "claim::priority::self",
+        "refuting_claim_ids": []
+      }
+    }
   ],
   "limitations": [
     "This tracked file is an expected-only template.",
     "A current-head fixture and external actual receipt are generated artifacts.",
-    "No jc_shadow_status or runtime PASS is stored here."
+    "Projection fields are LMM-owned and must not be supplied by the runtime producer.",
+    "No runtime status or runtime PASS is stored here."
   ]
 }

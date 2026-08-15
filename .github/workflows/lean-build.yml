@@ -127,12 +127,17 @@ jobs:
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
           cd "$LEAN_DIR"
+          lake --version || true
+          df -h . || true
           status=0
           for file in JurisLean/*.lean; do
             module=$(basename "$file" .lean)
             if ! lake build "JurisLean.$module" > "../../../module-log-$module.txt" 2>&1; then
               echo "MODULE BUILD FAILED: JurisLean.$module"
               tail -n 60 "../../../module-log-$module.txt"
+              while IFS= read -r line; do
+                echo "::error file=JurisLean/$module.lean::$line"
+              done < <(grep -E "error|Error" "../../../module-log-$module.txt" | head -n 10)
               status=1
             fi
           done

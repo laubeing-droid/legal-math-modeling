@@ -9,10 +9,11 @@ fixture verdict。它不是 JC runtime 本体；JC 阶段必须用这些同名 f
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from dataclasses import asdict, dataclass
 from pathlib import Path
-from typing import Iterable, Tuple
+from typing import Any, Iterable, Mapping, Optional, Tuple
 
 from .canonical_semantics import DecisionStatus
 from .reference_semantics import (
@@ -24,6 +25,16 @@ from .reference_semantics import (
     evaluate_license_permission_reference,
     evaluate_permission_reference,
     evaluate_priority_reference,
+)
+
+RUNTIME_REFINEMENT_SCHEMA = "spec-runtime-refinement-v2"
+
+DECISIVE_RUNTIME_STATUSES = frozenset(
+    {DecisionStatus.PROVED.value, DecisionStatus.REFUTED.value}
+)
+
+FAIL_CLOSED_EXECUTION_STATUSES = frozenset(
+    {"UNKNOWN", "TIMEOUT", "SKIP", "NOT_RUN", "BACKEND_UNAVAILABLE", "ERROR"}
 )
 
 
@@ -288,6 +299,187 @@ def main() -> int:
     write_report(args.output, report)
     print(json.dumps(report_to_dict(report), ensure_ascii=False, indent=2))
     return 0 if report.passed else 1
+
+
+# ---------------------------------------------------------------------------
+# External runtime refinement: expected-only fixtures + independent receipt
+# verification. The actual receipt must come from an external process through
+# the consumer's formal public entry; same-process shadow statuses are not
+# accepted. Missing/binding/execution failures are fail-closed (blocked).
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True)
+class RuntimeRefinementReport:
+    """Independent verdict comparing an external actual receipt to fixtures."""
+
+    passed: bool
+    blocked: bool
+    error_codes: Tuple[str, ...]
+    checks: Tuple[str, ...]
+
+
+def _canonical_digest(payload: Any) -> str:
+    encoded = json.dumps(
+        payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False
+    ).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def build_expected_fixture(
+    *,
+    lmm_commit: str,
+    fixture_cases: Iterable[Mapping[str, Any]],
+    source_snapshot_digests: Iterable[str] = (),
+    rule_pack_digest: Optional[str] = None,
+    semantics_id: str = "grounded",
+    semantics_version: str = "1",
+) -> dict:
+    """Materialize the LMM side: content-addressed expected fixtures only."""
+
+    cases = [
+        {"case_id": case["case_id"], "expected_status": case["expected_status"]}
+        for case in fixture_cases
+    ]
+    body = {
+        "lmm_commit": lmm_commit,
+        "cases": cases,
+        "source_snapshot_digests": sorted(source_snapshot_digests),
+        "rule_pack_digest": rule_pack_digest,
+        "semantics": {"id": semantics_id, "version": semantics_version},
+    }
+    return {
+        "schema_version": RUNTIME_REFINEMENT_SCHEMA,
+        "role": "expected",
+        "fixture_digest": _canonical_digest(body),
+        **body,
+    }
+
+
+def build_runtime_receipt_for_test(
+    expected: Mapping[str, Any],
+    *,
+    runtime_commit: str,
+    actual_cases: Iterable[Mapping[str, Any]],
+    execution_status: str = "SUCCESS",
+    runtime_build_id: str = "build::test",
+) -> dict:
+    """Assemble an actual receipt shaped like an external runtime emission.
+
+    This helper exists only so contract tests can exercise the verifier;
+    production receipts must be produced by the external runtime itself.
+    """
+
+    return {
+        "schema_version": RUNTIME_REFINEMENT_SCHEMA,
+        "role": "actual",
+        "lmm_commit": expected["lmm_commit"],
+        "runtime_commit": runtime_commit,
+        "runtime_build_id": runtime_build_id,
+        "fixture_digest": expected["fixture_digest"],
+        "source_snapshot_digests": list(expected["source_snapshot_digests"]),
+        "rule_pack_digest": expected["rule_pack_digest"],
+        "cases": [
+            {"case_id": case["case_id"], "actual_status": case["actual_status"]}
+            for case in actual_cases
+        ],
+        "execution_status": execution_status,
+    }
+
+
+def verify_runtime_refinement_receipt(
+    expected: Mapping[str, Any],
+    actual: Optional[Mapping[str, Any]],
+    *,
+    expected_lmm_commit: Optional[str] = None,
+    expected_runtime_commit: Optional[str] = None,
+) -> RuntimeRefinementReport:
+    """Compare an externally supplied actual receipt against the fixture."""
+
+    errors: list[str] = []
+    checks: list[str] = []
+    blocked = False
+
+    if actual is None:
+        return RuntimeRefinementReport(
+            passed=False,
+            blocked=True,
+            error_codes=("MISSING_ACTUAL_RECEIPT",),
+            checks=(),
+        )
+
+    if actual.get("schema_version") != RUNTIME_REFINEMENT_SCHEMA:
+        errors.append("UNKNOWN_SCHEMA")
+        blocked = True
+
+    if actual.get("fixture_digest") != expected.get("fixture_digest"):
+        errors.append("FIXTURE_DIGEST_MISMATCH")
+        blocked = True
+
+    lmm_commit = expected.get("lmm_commit")
+    if expected_lmm_commit is not None and lmm_commit != expected_lmm_commit:
+        errors.append("LMM_COMMIT_MISMATCH")
+        blocked = True
+    if actual.get("lmm_commit") != lmm_commit:
+        errors.append("LMM_COMMIT_MISMATCH")
+        blocked = True
+
+    if (
+        expected_runtime_commit is not None
+        and actual.get("runtime_commit") != expected_runtime_commit
+    ):
+        errors.append("RUNTIME_COMMIT_MISMATCH")
+        blocked = True
+
+    if actual.get("source_snapshot_digests") != list(
+        expected.get("source_snapshot_digests", ())
+    ):
+        errors.append("SOURCE_SNAPSHOT_DIGEST_MISMATCH")
+        blocked = True
+    if actual.get("rule_pack_digest") != expected.get("rule_pack_digest"):
+        errors.append("RULE_PACK_DIGEST_MISMATCH")
+        blocked = True
+
+    execution_status = actual.get("execution_status")
+    if execution_status in FAIL_CLOSED_EXECUTION_STATUSES:
+        errors.append("RUNTIME_EXECUTION_FAILED")
+        blocked = True
+    elif execution_status != "SUCCESS":
+        errors.append("RUNTIME_EXECUTION_FAILED")
+        blocked = True
+
+    actual_by_case = {case.get("case_id"): case for case in actual.get("cases", ())}
+    expected_case_ids = {case["case_id"] for case in expected.get("cases", ())}
+    for case_id in actual_by_case:
+        if case_id not in expected_case_ids:
+            errors.append("UNEXPECTED_ACTUAL_CASE")
+    for expected_case in expected.get("cases", ()):
+        case_id = expected_case["case_id"]
+        actual_case = actual_by_case.get(case_id)
+        if actual_case is None:
+            errors.append("MISSING_ACTUAL_CASE")
+            continue
+        actual_status = actual_case.get("actual_status")
+        if actual_status in FAIL_CLOSED_EXECUTION_STATUSES or (
+            actual_status not in DECISIVE_RUNTIME_STATUSES
+            and actual_status != DecisionStatus.UNDECIDED.value
+        ):
+            errors.append("UNKNOWN_STATUS_MAPPING")
+            continue
+        if actual_status != expected_case["expected_status"]:
+            errors.append("STATUS_MISMATCH")
+
+    deduplicated = list(dict.fromkeys(errors))
+    if not deduplicated:
+        checks.append(
+            "External actual receipt matches expected fixtures for the bound commits."
+        )
+    return RuntimeRefinementReport(
+        passed=not deduplicated,
+        blocked=blocked,
+        error_codes=tuple(deduplicated),
+        checks=tuple(checks),
+    )
 
 
 if __name__ == "__main__":

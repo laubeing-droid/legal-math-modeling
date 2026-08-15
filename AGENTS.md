@@ -26,16 +26,23 @@
 - Remote: https://github.com/laubeing-droid/legal-math-modeling
 - Primary language: Lean 4.30.0 (Mathlib4 v4.30.0)
 - Secondary: Python 3.12 (refinement bridge, tests)
-- Total verified results: 126 (42 core + 84 supporting)
-- Build: `lake build JurisLean` -> 2961 jobs, 0 error, 0 sorry
+- Total verified results: historical snapshot 126 (42 core + 84 supporting); current counts ONLY from the generated source inventory, never from this line.
+- Build: historical snapshot `lake build JurisLean` -> 2961 jobs, 0 error, 0 sorry; current build status ONLY from GitHub Actions on the subject commit.
+
+## Lean Execution Boundary
+
+- Lean/Elan/Lake are NEVER installed or executed on the local machine.
+- Local work is limited to: source edits, static inventory, text guard pre-checks, Python contract tests, and Git inspection. Local results are labelled provisional and are never a Lean PASS.
+- GitHub Actions is the sole Lean authority: module matrix checks, `lake clean && lake build`, axiom audit, guards, and certificate generation all run in CI bound to the subject commit/tree.
+- Without per-round push/dispatch authorization, Lean build status stays `CI_NOT_RUN` (fail-closed).
 
 ## Lean Proof Rules
 
 1. NEVER use `sorry`, `admit`, or `axiom` to close a goal.
 2. NEVER define a theorem as `theorem ... : True := by trivial`. If unproven, declare as `def` target or `Prop` statement with `UNPROVED` status.
-3. After writing any helper lemma, immediately compile: `lake build` or `lake env lean <file>`.
-4. Before using an unfamiliar Mathlib API, run `#check` in a scratch file first. Then `rg` the API name in `proofs/lean/juris_lean/.lake/packages/mathlib` to confirm signature.
-5. NEVER weaken a theorem statement to pass `lake build`. If stuck, mark it as a partial target and report the blocker.
+3. After writing any helper lemma, immediately trigger the CI module check: push an authorized `ci/**` branch or dispatch `mode=changed-module` for the existing remote SHA; never compile locally.
+4. Before using an unfamiliar Mathlib API, confirm its signature in the pinned Mathlib source (`lake-manifest.json` commit) by text search; never guess.
+5. NEVER weaken a theorem statement to pass the CI build. If stuck, mark it as a partial target and report the blocker.
 6. Theorem count is determined by `rg "^theorem " --no-filename --count`, not by any report or memory.
 7. Build artifacts: NEVER commit `.olean`, `.ilean`, `.trace`, `.hash`, or `.lake/` directories.
 
@@ -58,21 +65,25 @@ The following 32 `.lean` files exist in `proofs/lean/juris_lean/JurisLean/`:
 | HornDefinitions.lean | 2 | `TH_monotone`, `TH_subset_univ` |
 | ContractionCondition.lean | 1 | `lipschitz_coupling_implies_weighted_contraction` |
 
-## Build Commands
+## Build Commands (CI authority convention)
+
+Lean commands run ONLY inside GitHub Actions (`.github/workflows/lean-build.yml`).
+Locally, agents trigger and verify CI; they never run Lean themselves.
 
 ```bash
-# Full build (core modules, no Analysis)
-cd proofs/lean/juris_lean
-lake build
+# Trigger a module-matrix CI run (requires per-round user authorization):
+git push origin HEAD:ci/<wave>-<date>      # or workflow_dispatch mode=changed-module
 
-# Single module check
-lake env lean JurisLean/FiniteMonotoneIteration.lean
+# Full release evidence (requires per-round user authorization):
+# workflow_dispatch mode=full-release on the subject SHA
 
-# Scan for forbidden tokens
-rg -n "\bsorry\b|\badmit\b|\baxiom\b" proofs/lean/juris_lean/JurisLean/
+# Local provisional pre-checks (NOT Lean evidence):
+python scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean
+python scripts/generate_formal_release_certificate.py --output <path>
+python -m pytest tests/ -q -ra
 
-# Axiom audit
-lake env lean JurisLean/AxiomAudit.lean
+# Verify downloaded CI artifacts (never recompiles Lean):
+python scripts/verify_formal_release_certificate.py --certificate <path> --ci-evidence-dir <dir>
 
 # Cross-repo Python tests (juris-calculus refinement)
 cd <juris-calculus-root>
@@ -81,10 +92,10 @@ pytest tests/ -q -ra
 
 ## Lean Workflow
 
-- After completing any helper lemma, immediately build target file.
-- When unsure about an API, run `#check` first, then search locally.
-- NEVER guess a Mathlib declaration from memory.
-- Final execution order: `lake clean` -> `lake build` -> AxiomAudit -> scan for sorry/admit/axiom/True theorem.
+- After completing any helper lemma, trigger the CI module matrix for that module and its reverse dependencies (with authorization); otherwise keep status `CI_NOT_RUN`.
+- NEVER guess a Mathlib declaration from memory; confirm against the pinned Mathlib commit source text.
+- Final CI execution order: checkout subject SHA -> inventory -> `lake clean && lake build` -> AxiomAudit -> guard scan -> Python full tests -> mutation/refinement -> certificate -> independent verifier.
+- New modules join the root `JurisLean.lean` only after a CI module build passes for them.
 
 ## Python Workflow
 
@@ -93,7 +104,7 @@ pytest tests/ -q -ra
 - NEVER run only a subset and report as full test pass.
 - Cross-repo bridge: validate schema, commit, digest, status.
 - Certificate checker MUST NOT call the main evaluator implementation.
-- `canonical_semantics.py` is the single authoritative source for the 11 canonical types.
+- `canonical_semantics.py` is the v1 compatibility entry for the 11 canonical types; `theory/spec/canonical_v2/` is the decisive v2 universe; v1 never gains v2 decisive status.
 
 ## Done Means
 

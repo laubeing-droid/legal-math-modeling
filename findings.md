@@ -104,3 +104,30 @@ Do not weaken or rewrite the existing fixed-point core.
 - The guard searches returned no forbidden proof-closing token or `theorem : True` match; the
   aggregate command exit code was 1 because `rg` uses 1 for no matches and tools were not found.
 - Baseline collection is only 12 tests, all in `tests/spec/test_spec_transition.py`; all 12 pass.
+
+## 2026-08-16 Theory Absorption (M0 close, red-test close)
+
+- Branch `codex/lmm-theory-absorption-plan` carries three plan commits on top of
+  baseline `f521b5b`; worktree clean at construction start.
+- All four red test modules failed for missing implementations only (no import-path,
+  environment, or test-self errors): v2 certificate API, translation witness module,
+  runtime receipt API, and the release inventory script.
+- After implementation the full local suite is 36 passed; guard scan clean.
+  These remain provisional local results until CI runs on the subject commit.
+- `theory/spec/translation_witness.py` checks edge omission, spurious edges,
+  direction reversal, witness binding, and semantics registry per hop.
+- `certificate_schema.py` v2 checker recomputes content digests, rejects empty trace,
+  candidate evidence, duplicates, unstable sequences, unknown semantics/checker,
+  stale snapshots, and v1 decisive claims; producer booleans are not consulted.
+- `runtime_differential.py` receipt verifier classifies missing receipt, commit/digest
+  mismatch, execution failure, and unknown status mapping as fail-closed; expected
+  fixtures are content-addressed by digest.
+- `scripts/generate_formal_release_certificate.py` derives the Lean inventory from
+  source (path, sha256, theorem name/line) and refuses release without CI evidence.
+- `scripts/verify_formal_release_certificate.py` re-derives inventory independently
+  and matches CI artifact digests; no shared implementation with the generator.
+- Lean build evidence status: `CI_NOT_RUN`. No Lean/Elan/Lake was executed locally.
+  The pre-existing local `.lake` directory stays git-ignored and is not evidence.
+- Authority map recorded in `docs/remediation/authority_map.md`.
+- Old plan `260810...施工方案.md` marked SUPERSEDED INPUT; its stop-early scope
+  limits are void per the 2026-08-15 construction plan.

@@ -1,55 +1,61 @@
-# Task Plan: Complete the 2026-08-10 Necessary Supplement Plan
+# Task Plan: Full Absorption of Frozen Theory (2026-08-15 Construction Plan)
 
 ## Goal
 
-Implement and verify every unconditional construction item in
-`260810_legal-math-modeling必要补充施工方案.md`; close conditional items only when
-their stated consumer prerequisites are evidenced. Preserve fail-closed semantics,
-produce commit- and digest-bound artifacts, and create local checkpoint commits.
+Execute `20260815_legal-math-modeling理论成果全量吸收施工方案.md` wave by wave
+(M0 through M10). Build the complete formal foundation demanded by frozen research
+P01-P09: canonical semantics v2, source/path/temporal contracts, three-gate admission
+with taint noninterference, full DDL/argumentation semantics, exact numeric and
+multi-backend contracts, the LegalSpec -> Legal-IVL dual IR with per-hop translation
+witnesses, authority/proposal noninterference, CertificateEnvelopeV2 with independent
+checkers, external runtime refinement, and a commit-bound formal release certificate.
 
 ## Success Criteria
 
-- Formal release tooling, schema, generated inventory, raw gates, and independent verifier pass.
-- Certificate/checker v2 rejects every required mutation; v1 cannot obtain v2 decisive status.
-- Horn-to-AAF witness rejects omission, spurious-edge, and reversed-priority mutations.
-- Runtime refinement uses an externally supplied actual receipt; no same-process shadow status.
-- Temporal and exact-numeric contracts are implemented only if a current consumer trigger exists;
-  otherwise they remain explicitly `DEFERRED` and are not wired into a formal path.
-- Full Python and Lean acceptance sequence passes from clean state.
-- Claims, ledger, release evidence, repository memory, and local commits match verified facts.
+- Every wave Gate passes or is explicitly recorded as blocked with its blocker.
+- The four pre-existing red test modules close with real implementations.
+- Lean modules are written without `sorry`/`admit`/`axiom`/`True`-theorem evasion;
+  unproven obligations stay declared with `UNPROVED` status.
+- Local Lean execution never happens; GitHub Actions is the only Lean authority.
+  Until CI runs on the subject commit, Lean build status is `CI_NOT_RUN` (fail-closed).
+- Python contract/mutation suites pass locally and are reproduced in CI.
+- No prohibited claim is introduced; evidence domains stay separated.
 
 ## Phases
 
 | Phase | Scope | Verification | Status |
 |---|---|---|---|
-| 1 | Baseline, boundaries, current-state inventory, test design | clean/read-only evidence snapshot; consumer-trigger decision | complete |
-| 2 | L-A formal release certificate and ledger/audit repair | generator + clean build + full tests + guard + axiom + independent verifier | in_progress |
-| 3 | L-B checker v2 | Lean build; Python mutation suite; v1 compatibility boundary | pending |
-| 4 | L-C translation witness and L-D real runtime receipt | independent mutation checks; externally supplied receipt validation | pending |
-| 5 | Conditional L-E, full review, documentation, memory, commits | complete acceptance order; digest/commit binding; claim audit | pending |
+| M0 | Baseline, inventory, red-test triage, authority map, supersession, CI-authority docs | git facts; local collection manifest; guard scan | complete |
+| M1 | IDs, digests, well-formedness, canonicalization (Lean + canonical v2) | round-trip/mutation tests; manifest parity | in_progress |
+| M2 | P02/P06/P08 source bundle, source path, temporal applicability | boundary/version/retraction mutation tests | pending |
+| M3 | P09 three-gate admission, taint noninterference, receipt authority | injection/replay/revocation mutation tests | pending |
+| M4 | P03 typed attacks, exceptions, permissions, priorities, cycles | finite enumeration oracle alignment | pending |
+| M5 | P04 exact numeric, temporal arithmetic, multi-backend/solver contracts | boundary/rounding/timeout mutation tests | pending |
+| M6 | P07 LegalSpec/Legal-IVL dual IR, lowerings, translation refinement | per-hop witness checks; differential tests | pending |
+| M7 | P01/P05 authority lattice, human receipts, proposal noninterference | laundering/injection mutation tests | pending |
+| M8 | CertificateEnvelopeV2 + independent checkers, evidence domains | v2 mutation suite green; Lean checker theorems | pending |
+| M9 | External runtime refinement with three-party separation | receipt binding/mismatch classification | pending |
+| M10 | CI reconstruction, FormalReleaseCertificate, release Gate | CI artifacts bound to subject SHA/tree | pending |
 
 ## Scope Decisions
 
-- Do not modify proven core modules absent a counterexample or build failure.
-- Do not touch lock files or environment files.
-- Do not publish, tag, force-push, or create a remote release.
-- Keep generated build logs out of Git unless the plan explicitly requires a durable source artifact.
-- Treat the supplied construction plan as user-owned input and include it only if the user-authored
-  document is intentionally accepted into the repository during final scope review.
+- Proven core modules stay untouched; extension happens via new modules and embeddings.
+- Lean runs only in GitHub Actions; local static checks are labelled provisional.
+- New Lean modules join the root `JurisLean.lean` only after a CI module build passes;
+  until then they are built through the CI module matrix.
+- No push/tag/release without explicit per-round user authorization.
+- Every phase boundary gets a local checkpoint commit; no hard resets.
+- UNKNOWN/TIMEOUT/SKIP/NOT_RUN/BACKEND_UNAVAILABLE/ERROR all fail-closed.
 
 ## Errors Encountered
 
 | Error | Attempt | Resolution |
 |---|---:|---|
-| Goal creation rejected because this task already had an active goal | 1 | Queried the active goal and continued it; did not retry creation |
-| Required project-root `memory` file absent | 1 | Record absence; create/update repository memory only after verified new knowledge exists |
-| `elan`, `lake`, and `lean` not found on current `PATH` | 1 | Locate the pinned toolchain under user/machine paths before treating Lean as unavailable |
-| `python -m pytest` failed: active Python 3.12.10 has no pytest module | 1 | Inspect the working `pytest` shim/interpreter and use one interpreter consistently |
-| Planning-file patch context mismatch | 1 | Read exact file tails and reapplied a narrower patch |
-| Phase 1 checkpoint commit failed because Git identity was unset | 1 | Reuse the repository's latest author identity in local-only Git config, restage plan log, and retry |
+| Four test modules failed collection due to missing implementations | 1 | Confirmed the failures are missing-implementation, not environment; implemented the modules |
 
 ## Current Decision Point
 
-Phase 1 closed: conditional temporal/numeric consumers were not found; L3/L4 remain `DEFERRED`.
-The authoritative L5 test now requires an injected actual receipt. Phase 2 begins with failing
-inventory tests and the missing Lean toolchain as explicit prerequisites.
+M0 closed locally: baseline facts recorded, red tests closed (36 passed), guard scan
+clean, authority map written, old plan marked superseded. M1 begins with canonical v2
+and the identity/digest Lean modules. Lean build evidence remains `CI_NOT_RUN` until
+the user authorizes a `ci/**` push or `workflow_dispatch`.

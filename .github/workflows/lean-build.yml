@@ -122,19 +122,25 @@ jobs:
       - name: Lake clean + build (root, from zero, no olean reuse)
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
-          cd "$LEAN_DIR" && lake clean && lake build 2>&1 | tee ../../lake-clean-build.log
+          cd "$LEAN_DIR" && lake clean && lake build 2>&1 | tee ../../../lake-clean-build.log
       - name: Build every JurisLean module explicitly
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
           cd "$LEAN_DIR"
+          status=0
           for file in JurisLean/*.lean; do
             module=$(basename "$file" .lean)
-            lake build "JurisLean.$module" || exit 1
+            if ! lake build "JurisLean.$module" > "../../../module-log-$module.txt" 2>&1; then
+              echo "MODULE BUILD FAILED: JurisLean.$module"
+              tail -n 60 "../../../module-log-$module.txt"
+              status=1
+            fi
           done
+          exit $status
       - name: Axiom audit
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
-          cd "$LEAN_DIR" && lake env lean JurisLean/AxiomAudit.lean > ../../axiom-audit.raw.txt 2>&1
+          cd "$LEAN_DIR" && lake env lean JurisLean/AxiomAudit.lean > ../../../axiom-audit.raw.txt 2>&1
       - name: Upload clean build + axiom audit
         if: always()
         uses: actions/upload-artifact@v4
@@ -143,6 +149,7 @@ jobs:
           path: |
             lake-clean-build.log
             axiom-audit.raw.txt
+            module-log-*.txt
           retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
 
   python-gates:

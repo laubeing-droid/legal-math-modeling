@@ -1,6 +1,5 @@
 import Mathlib.Topology.MetricSpace.Contracting
 import Mathlib.Analysis.Normed.Lp.PiLp
-import Mathlib
 
 open Real
 

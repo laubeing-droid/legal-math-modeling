@@ -187,40 +187,6 @@ structure Certificate where
   proofObligationsPresent : Bool
 deriving DecidableEq
 
-/-- A claimed digest paired with the digest independently observed by the checker. -/
-structure DigestBinding where
-  subjectId : String
-  expectedSha256 : String
-  observedSha256 : String
-deriving DecidableEq, Repr
-
-/--
-Content-bound certificate envelope. Unlike the legacy certificate, it contains no
-producer-supplied booleans for well-formedness, fact coverage, or obligation coverage.
--/
-structure CertificateEnvelopeV2 where
-  id : CertificateId
-  slice : SliceKind
-  status : DecisionStatus
-  evidence : Evidence
-  trace : ProofTrace
-  expectedFacts : Finset FactId
-  usedFacts : Finset FactId
-  expectedObligations : Finset String
-  dischargedObligations : Finset String
-  ruleIds : Finset RuleId
-  constructedArguments : Finset ArgumentId
-  acceptedArguments : Finset ArgumentId
-  attackIds : Finset AttackId
-  sourceSnapshots : List DigestBinding
-  rulePackDigest : DigestBinding
-  traceDigest : DigestBinding
-  semanticsId : String
-  semanticsVersion : String
-  producerCommit : String
-  checkerVersion : String
-deriving DecidableEq
-
 /-- 中文说明：FactId 的序列化键就是输入标识，保证键稳定。 -/
 def FactId.serializationKey (id : FactId) : String := id
 
@@ -241,20 +207,6 @@ def TrustLabel.applyToStatus (_label : TrustLabel) (status : DecisionStatus) : D
 /-- 中文说明：candidate 不是可审计证据。 -/
 def Evidence.isAuditable (e : Evidence) : Bool :=
   e.verified && e.kind != EvidenceKind.candidate
-
-/-- A digest binding is usable only when its identifier and digest are non-empty and equal. -/
-def DigestBinding.matches (binding : DigestBinding) : Bool :=
-  binding.subjectId != "" &&
-    binding.expectedSha256 != "" &&
-    binding.expectedSha256 == binding.observedSha256
-
-/-- A decisive v2 certificate must carry at least one trace item. -/
-def ProofTrace.nonempty (trace : ProofTrace) : Bool :=
-  decide (
-    trace.facts.Nonempty ∨
-    trace.rules.Nonempty ∨
-    trace.arguments.Nonempty ∨
-    trace.attacks.Nonempty)
 
 /-- 中文证明：事实标识序列化键稳定。 -/
 theorem fact_serialization_key_stable (id : FactId) :

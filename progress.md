@@ -135,6 +135,31 @@ Lean build evidence for all 40 wave-added modules remains `CI_NOT_RUN`:
 no Lean/Elan/Lake was executed locally. The next step requires user
 authorization to push a `ci/**` branch or dispatch the workflow.
 
+## 2026-08-16 CI Gate Closed (run 31928479252, sha 530da4f)
+
+- `lean-full-clean-build`: **SUCCESS** — `lake clean && lake build`
+  completed 2968 jobs, 0 errors, Mathlib fully compiled from zero.
+- Axiom audit: 6 core theorems (`exists_fixpoint_le_card`, `fixed_at_card`,
+  `grounded_is_least_fixed_point`, `horn_completeness`, `horn_result_is_minimal_model`,
+  `weightedSupDist_complete`) depend only on
+  `[propext, Classical.choice, Quot.sound]` — no custom axioms.
+- Module matrix: 74/75 modules succeeded; only `BanachScratch` still
+  in_progress (Mathlib heavy module, takes 4+ hours in matrix job).
+- `python-gates`: SUCCESS (130 tests, guard scan clean).
+- Root cause of previous `lean-full-clean-build` failure: `AxiomAudit.lean`
+  imports `HornFixedPoint`/`WeightedSupNorm` which aren't in the root's
+  transitive dependencies; fix: `lake build JurisLean.AxiomAudit` before audit.
+- Lean build evidence status: **CI_VERIFIED** (subject SHA 530da4f).
+- Release Gate: blocked on `BanachScratch` module matrix job completion.
+  All other evidence is green.
+
+| Artifact | Status |
+|---|---|
+| `lake-clean-build.log` | Build completed successfully (2968 jobs) |
+| `axiom-audit.raw.txt` | 6 core theorems, standard axioms only |
+| Module matrix (74/75) | 74 success, 1 in_progress (BanachScratch) |
+| `python-gates` | 130 tests passed, guard clean |
+
 ## 2026-08-16 CI debugging
 
 - Pushed to `ci/theory-absorption-20260816` (run #45): all 72 module matrix

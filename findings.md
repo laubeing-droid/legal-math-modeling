@@ -143,6 +143,13 @@ Do not weaken or rewrite the existing fixed-point core.
   full-chain translation soundness/completeness beyond the supported
   fragment, and incremental-vs-clean compilation equivalence
   (`TranslationRefinement.lean`).
+- Root build (lake clean && lake build) succeeded: 2968 jobs, 0 errors, Mathlib fully compiled.
+- Module matrix: 72/72 modules compiled successfully in CI (all 40 new modules green).
+- lean-full-clean-build failure root cause: `AxiomAudit.lean` imports `HornFixedPoint`,
+  `WeightedSupNorm` etc. which are NOT in the root's transitive dependencies;
+  `lake clean && lake build` doesn't produce their `.olean` files.
+  Fix: `lake build JurisLean.AxiomAudit` before running the audit.
+- New run (sha 530da4f, run 31928479252) queued with the fix.
 - Risk note: the 40 new Lean modules were authored without local Lean
   execution (forbidden). Their proofs follow conservative patterns but the
   first CI module matrix run is the authoritative compile check; any CI

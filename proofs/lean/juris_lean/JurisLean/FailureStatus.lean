@@ -58,8 +58,6 @@ def releaseAllowed (statuses : List FailureStatus) : Bool :=
 theorem release_blocked_by_fail_closed (s : FailureStatus) (rest : List FailureStatus)
     (hblocked : s.isFailClosed = true) :
     releaseAllowed (s :: rest) = false := by
-  cases s <;> first
-    | cases hblocked
-    | simp [releaseAllowed, FailureStatus.isDecisivePass]
+  cases s <;> simp_all [FailureStatus.isFailClosed, releaseAllowed, FailureStatus.isDecisivePass]
 
 end JurisLean

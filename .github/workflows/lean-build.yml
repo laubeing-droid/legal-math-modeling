@@ -24,8 +24,8 @@ on:
         type: string
 
 concurrency:
-  group: lean-${{ github.ref }}-${{ github.run_attempt }}
-  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+  group: lean-${{ github.sha }}
+  cancel-in-progress: false
 
 env:
   LEAN_DIR: proofs/lean/juris_lean

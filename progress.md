@@ -134,3 +134,30 @@ Theory-absorption construction started on branch `codex/lmm-theory-absorption-pl
 Lean build evidence for all 40 wave-added modules remains `CI_NOT_RUN`:
 no Lean/Elan/Lake was executed locally. The next step requires user
 authorization to push a `ci/**` branch or dispatch the workflow.
+
+## 2026-08-16 CI debugging
+
+- Pushed to `ci/theory-absorption-20260816` (run #45): all 72 module matrix
+  builds succeeded (including 40 new modules); `lean-full-clean-build` failed
+  at step 7 (module loop) in ~1 second — exact error was gated behind login.
+- Run #46: serial loop variant ran for ~3 hours before failing (line 1526);
+  BanachScratch module timed out at 240 minutes.
+- Runs #47/#48/#49 were stuck in `pending` due to concurrency group deadlock:
+  `lean-${{ github.ref }}-${{ github.run_attempt }}` caused all ci/ branch pushes
+  to share the same group, queueing new runs behind old zombie runs.
+- Fix: removed concurrency group entirely. Pushed to `ci/absorption-v2` (run #50,
+  sha 5ba14bc) — workflow entered `queued` status, ready for runner allocation.
+- Added per-module `::error::` annotations, df diagnostics, and parallelized loop
+  (xargs -P3) to the full-clean-build job for faster diagnosis.
+- Key Lean evidence: all 40 new modules compiled successfully in CI module matrix
+  jobs (runs #45/#46). The root build (lake clean && lake build) also succeeded.
+- Remaining blocker: full-release job's per-module loop (step 7) failure —
+  root cause still under investigation via run #50 annotations.
+
+| Command | Result |
+|---|---|
+| CI module matrix (run #45, 72 modules) | 72/72 success |
+| CI root build (run #45, step 6) | success |
+| CI full-clean-build step 7 (run #45) | failure (~1s, error gated) |
+| CI full-clean-build step 7 (run #46) | failure (~3h, line 1526) |
+| shields badge | `build: failing` (latest completed run) |

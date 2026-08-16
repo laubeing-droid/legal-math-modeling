@@ -23,10 +23,6 @@ on:
         default: ""
         type: string
 
-concurrency:
-  group: lean-${{ github.sha }}
-  cancel-in-progress: false
-
 env:
   LEAN_DIR: proofs/lean/juris_lean
   ARTIFACT_RETENTION_DAYS: 90

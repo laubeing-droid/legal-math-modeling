@@ -1,0 +1,29 @@
+{
+  "schema_version": "spec-runtime-refinement-v2",
+  "role": "expected",
+  "fixture_digest": "d6e6b8bc3b6197d76e81efb9f179cf2b143105fcf196ca2c548ce532dec50b96",
+  "lmm_commit": "0000000000000000000000000000000000000000",
+  "cases": [
+    {
+      "case_id": "admission::three-gates-pass",
+      "expected_status": "PROVED"
+    },
+    {
+      "case_id": "admission::interpretation-gate-fail",
+      "expected_status": "UNDECIDED"
+    },
+    {
+      "case_id": "admission::revoked-attestation",
+      "expected_status": "UNDECIDED"
+    }
+  ],
+  "source_snapshot_digests": [
+    "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+  ],
+  "rule_pack_digest": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+  "semantics": {
+    "id": "grounded",
+    "version": "1"
+  },
+  "subject_commit_binding": "CI_SUBJECT_SHA"
+}

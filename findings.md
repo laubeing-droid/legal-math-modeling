@@ -104,3 +104,55 @@ Do not weaken or rewrite the existing fixed-point core.
 - The guard searches returned no forbidden proof-closing token or `theorem : True` match; the
   aggregate command exit code was 1 because `rg` uses 1 for no matches and tools were not found.
 - Baseline collection is only 12 tests, all in `tests/spec/test_spec_transition.py`; all 12 pass.
+
+## 2026-08-16 Theory Absorption (M0 close, red-test close)
+
+- Branch `codex/lmm-theory-absorption-plan` carries three plan commits on top of
+  baseline `f521b5b`; worktree clean at construction start.
+- All four red test modules failed for missing implementations only (no import-path,
+  environment, or test-self errors): v2 certificate API, translation witness module,
+  runtime receipt API, and the release inventory script.
+- After implementation the full local suite is 36 passed; guard scan clean.
+  These remain provisional local results until CI runs on the subject commit.
+- `theory/spec/translation_witness.py` checks edge omission, spurious edges,
+  direction reversal, witness binding, and semantics registry per hop.
+- `certificate_schema.py` v2 checker recomputes content digests, rejects empty trace,
+  candidate evidence, duplicates, unstable sequences, unknown semantics/checker,
+  stale snapshots, and v1 decisive claims; producer booleans are not consulted.
+- `runtime_differential.py` receipt verifier classifies missing receipt, commit/digest
+  mismatch, execution failure, and unknown status mapping as fail-closed; expected
+  fixtures are content-addressed by digest.
+- `scripts/generate_formal_release_certificate.py` derives the Lean inventory from
+  source (path, sha256, theorem name/line) and refuses release without CI evidence.
+- `scripts/verify_formal_release_certificate.py` re-derives inventory independently
+  and matches CI artifact digests; no shared implementation with the generator.
+- Lean build evidence status: `CI_NOT_RUN`. No Lean/Elan/Lake was executed locally.
+  The pre-existing local `.lake` directory stays git-ignored and is not evidence.
+- Authority map recorded in `docs/remediation/authority_map.md`.
+- Old plan `260810...施工方案.md` marked SUPERSEDED INPUT; its stop-early scope
+  limits are void per the 2026-08-15 construction plan.
+
+## 2026-08-16 Theory Absorption (M1-M10 close, awaiting CI)
+
+- All M1-M10 source deliverables are authored locally: 40 new Lean modules
+  (72 total), canonical v2 package, source/path/temporal/admission/taint/
+  argumentation/numeric/backend/dual-IR/authority/certificate references,
+  refinement fixtures, and the CI-authority workflow.
+- Full local suite: 130 passed; guard scan clean; both provisional.
+- UNPROVED obligations (kept as Prop targets, never closed by axiom):
+  full-chain translation soundness/completeness beyond the supported
+  fragment, and incremental-vs-clean compilation equivalence
+  (`TranslationRefinement.lean`).
+- Root build (lake clean && lake build) succeeded: 2968 jobs, 0 errors, Mathlib fully compiled.
+- Module matrix: 72/72 modules compiled successfully in CI (all 40 new modules green).
+- lean-full-clean-build failure root cause: `AxiomAudit.lean` imports `HornFixedPoint`,
+  `WeightedSupNorm` etc. which are NOT in the root's transitive dependencies;
+  `lake clean && lake build` doesn't produce their `.olean` files.
+  Fix: `lake build JurisLean.AxiomAudit` before running the audit.
+- New run (sha 530da4f, run 31928479252) queued with the fix.
+- Risk note: the 40 new Lean modules were authored without local Lean
+  execution (forbidden). Their proofs follow conservative patterns but the
+  first CI module matrix run is the authoritative compile check; any CI
+  failure must be fixed without weakening theorem statements.
+- New modules are not imported by the root `JurisLean.lean`, so the
+  historical full clean build surface is unchanged until CI evidence exists.

@@ -19,6 +19,33 @@ Use this order of authority when resolving conflicts:
 
 The repository is a mathematical companion and specification boundary. It supports the contract-breach, license, permission, and priority slices through canonical types, a minimal DDL core, a Horn-to-AAF contract, and a certificate/checker boundary. The documentation does not assert full runtime correctness.
 
+## CertificateEnvelopeV2 Boundary (2026-08-16)
+
+`CertificateEnvelopeV2` (Python: `theory/spec/certificate_schema.py`; Lean:
+`CertificateV2.lean` / `CertificateCheckerV2.lean`, status `CI_NOT_RUN` until the
+CI module matrix builds them) binds:
+
+- expected/used facts and expected/discharged proof obligations;
+- rules, arguments, attacks, and the accepted set;
+- source snapshots and rule pack with recomputable content digests;
+- semantics identity/version, a non-empty trace, producer commit, and checker identity.
+
+Producers never submit trusted `wellFormed`, `requiredFactsPresent`, or
+`proofObligationsPresent` booleans: the checker recomputes every predicate
+independently. v1 payloads remain parseable but never gain v2 decisive status.
+Empty trace, unknown semantics/checker, duplicate or unstable id sequences,
+tampered digests, stale source snapshots, and candidate evidence are all rejected
+fail-closed.
+
+## Evidence Domains
+
+Separate evidence domains carry separate subjects, issuers, checkers, and allowed
+claims: LeanProofReceipt, FiniteModelCheckReceipt, SolverWitnessReceipt,
+TranslationReceipt, RuntimeRefinementReceipt, HumanLegalReviewReceipt, and
+FormalReleaseCertificate. A digest proves content binding only. A certificate
+status never exceeds its weakest bound evidence domain, and checker acceptance
+never means legal correctness or full runtime proof.
+
 ## Runtime Certificate Metadata
 
 Runtime certificates may carry auxiliary metadata such as used fact keys, used rule ids, source snapshot ids, provenance records, derived taint, downgrade states, conflict certificates, and review packets. Presence of these fields never implies checker acceptance by itself. Missing, unknown, disputed, user-assumed, tainted, hypothetical, degraded, or conflicting metadata must remain fail-closed or auxiliary unless the existing checker boundary and verified source evidence support acceptance.

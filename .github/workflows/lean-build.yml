@@ -123,7 +123,7 @@ jobs:
       - name: Axiom audit
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
-          cd "$LEAN_DIR" && lake env lean JurisLean/AxiomAudit.lean > ../../../axiom-audit.raw.txt 2>&1
+          cd "$LEAN_DIR" && lake build JurisLean.AxiomAudit && lake env lean JurisLean/AxiomAudit.lean > ../../../axiom-audit.raw.txt 2>&1
       - name: Upload clean build + axiom audit
         if: always()
         uses: actions/upload-artifact@v4

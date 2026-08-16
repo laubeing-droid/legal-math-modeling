@@ -10,7 +10,7 @@ The repository studies a specification layer for legal reasoning. The current pu
 
 ## 2. Formal Sources
 
-Formal statements must be read from `proofs/lean/juris_lean/JurisLean/`. At rewrite time the tree contains 32 Lean source files and 126 theorem declarations. These counts are source inventory facts, not a release certificate for the current commit.
+Formal statements must be read from `proofs/lean/juris_lean/JurisLean/`. Current counts are generated in `docs/formal-release/theorem_manifest.json`; those counts are source inventory facts, not a release certificate for the current commit.
 
 ## 3. Method
 

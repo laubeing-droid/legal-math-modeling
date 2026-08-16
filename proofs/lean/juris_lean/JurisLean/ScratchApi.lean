@@ -32,9 +32,9 @@
 
  -- Finset empty / nonempty
  #check Finset.not_nonempty_iff_eq_empty
- #check Finset.eq_empty_iff_forall_not_mem
+ #check Finset.eq_empty_iff_forall_notMem
  #check Finset.nonempty_of_ne_empty
- #check Finset.ne_empty_of_nonempty
+ #check Finset.Nonempty.ne_empty
 
  -- Finset sdiff / union
  #check Finset.sdiff_eq_empty_iff_subset
@@ -58,10 +58,10 @@
  #check Nat.find_min'
  #check Nat.le_induction
 
- -- Monotone / Function.iterate
+ -- Monotone / function iteration
  #check Monotone
- #check Function.iterate
+ #check Function.iterate_succ_apply
 
- -- Card lemmas (alternate names to try)
+ -- Card bound helpers
  #check Finset.card_le_univ
- #check Finset.card_le_card_of_subset
+ #check Finset.card_le_card

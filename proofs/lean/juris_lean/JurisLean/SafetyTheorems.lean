@@ -73,4 +73,12 @@ theorem permission_conflict_not_forced_proved
     checkCertificate c ≠ CheckVerdict.accept := by
   exact missing_obligations_rejected c hstatus hmissing
 
+/-- V2 acceptance carries both recomputed fact and obligation coverage. -/
+theorem accepted_v2_certificate_has_recomputed_payload
+    (c : CertificateEnvelopeV2)
+    (h : checkCertificateV2 c = CheckVerdict.accept) :
+    c.requiredFactsCovered = true ∧ c.obligationsCovered = true :=
+  ⟨checkerV2_acceptance_requires_fact_coverage c h,
+   checkerV2_acceptance_requires_obligation_coverage c h⟩
+
 end JurisLean

@@ -1,27 +1,16 @@
 import JurisLean.HornDefinitions
 import JurisLean.HornFixedPoint
 
-/-! Horn Operational Refinement (S4-C).
-Connects the Lean Horn specification to the Python evaluator
-(juris-calculus/compiler_core/evaluator.py).
+/-!
+Horn operational refinement boundary.
 
-The Python side was already refactored in R2:
-- evaluate_horn uses derived_bound (not hardcoded max_iterations)
-- IRState has horn_saturated, horn_truncated, horn_derived_bound fields
-- Horn closure certificate is produced
+The Lean Horn specification proves finite fixed-point properties. It does not prove that
+an external Python evaluator implements those properties. A cross-implementation claim
+requires a `RuntimeRefinementReceipt` produced by the external runtime's formal entrypoint
+and independently checked against a content-addressed expected fixture.
 
-This file documents the refinement contract between Lean spec and Python impl.
-It does not contain Lean proofs — the refinement is verified through
-differential testing (cross-repo integration tests in deli-autoresearch).
+Missing receipts, commit or digest mismatches, execution failures, unknown status mappings,
+timeouts, and truncated results are fail-closed. A successful receipt is limited to the
+named LMM commit, runtime commit, fixture, source snapshot, rule pack, and output digest.
+It cannot be generalized into a claim of complete runtime refinement.
 -/
-
--- The refinement contract:
--- 1. Python PureHornEvaluator(input) computes TH_fixpoint(input)
--- 2. The Lean spec computes TH_iter(card, ∅) 
--- 3. Both produce the same result set (verified by differential tests)
--- 4. The Python evaluator signals convergence/truncation via derived_bound
--- 5. The Lean spec guarantees convergence within |universe| steps
-
--- This module exists to satisfy the S4-C requirement:
--- "建立 Lean executable oracle 或独立 checker; closure certificate; provenance witness; differential tests"
--- The differential tests are in the deli-autoresearch checkout at tests/test_cross_repo.py.

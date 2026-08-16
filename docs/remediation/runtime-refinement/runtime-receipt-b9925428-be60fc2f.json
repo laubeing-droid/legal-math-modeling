@@ -1,0 +1,761 @@
+{
+  "schema_version": "runtime-refinement-receipt-v2",
+  "producer": "juris-calculus",
+  "execution_status": "PASS",
+  "lmm_commit": "b9925428ca1c8663c8dbca236c1d5d2f231097af",
+  "runtime_commit": "be60fc2f5aebf76c909d8ff81e269c969664435a",
+  "fixture_digest": "2d1e5c83c8f2f31d8312b3be3813b5b5dba4a63ace4182938d5e67d774ce16c2",
+  "source_snapshot_digests": [
+    "4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+  ],
+  "rule_pack_digest": "3879c3e2c520ecd55f5714d60ae962b60c2cce73767cfae6749512ce4674fe5a",
+  "semantics": {
+    "id": "grounded",
+    "version": "1"
+  },
+  "cases": [
+    {
+      "case_id": "contract::force-majeure",
+      "actual_status": "REFUTED",
+      "audit_bundle_digest": "653b31c20777ef85da80df81f72b8f17a76e81ee96278f7b57083632574fc5b4",
+      "semantic_result": {
+        "schema_version": "3.0",
+        "run_id": "run::e5610fa7112aebb7",
+        "result_digest": "8e49416666e47d59d0f12aa481a50f454c3d64259079961afca130312813af0b",
+        "execution_status": "completed",
+        "result_status": "accepted_formal_result",
+        "formal_kernel_used": true,
+        "review_required": false,
+        "checker_accepted": true,
+        "certificate_kind": "formal",
+        "engine_version": "3.0.2",
+        "pack_id": "lmm-four-slice",
+        "pack_version": "1.0.0",
+        "pack_digest": "3879c3e2c520ecd55f5714d60ae962b60c2cce73767cfae6749512ce4674fe5a",
+        "claims": [
+          "claim::contract::force_majeure"
+        ],
+        "branches": [],
+        "used_fact_ids": [
+          "fact::contract::force_majeure"
+        ],
+        "used_rule_ids": [
+          "rule::contract::force-majeure"
+        ],
+        "source_ids": [
+          "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+        ],
+        "missing_fact_ids": [],
+        "missing_fact_review": [],
+        "taint": [],
+        "risk_labels": [],
+        "checker_receipt": {
+          "aaf_digest": "42666642472da60295459f4ea4ddb38b58c65af344bb914f228e7dadefdd4fe9",
+          "argument_witnesses": [
+            {
+              "argument_id": "argument::56add0f4cde12e8b",
+              "claim_id": "claim::contract::force_majeure",
+              "premise_ids": [
+                "fact::contract::force_majeure"
+              ],
+              "rule_id": "rule::contract::force-majeure",
+              "source_snapshot_id": "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+            }
+          ],
+          "attack_witnesses": [],
+          "claim_projection": {
+            "accepted_argument_ids": [
+              "argument::56add0f4cde12e8b"
+            ],
+            "accepted_claim_ids": [
+              "claim::contract::force_majeure"
+            ]
+          },
+          "receipt_kind": "independent_grounded_checker",
+          "valid": true,
+          "violations": []
+        }
+      },
+      "output_digest": "bdac1a764f6954ddded6a19517017158b82e01da4fc12ac1ce90d7e228f91461"
+    },
+    {
+      "case_id": "contract::plain",
+      "actual_status": "PROVED",
+      "audit_bundle_digest": "bc3a73d627ea74fa75293a96bd1ddb321e76f8d3c24346f731e02564095f216f",
+      "semantic_result": {
+        "schema_version": "3.0",
+        "run_id": "run::2468406f62634802",
+        "result_digest": "7854f633d21af84b39bc8ad5c7f3beee4f2a9ed6df199e3c38a2f7347db88ba1",
+        "execution_status": "completed",
+        "result_status": "accepted_formal_result",
+        "formal_kernel_used": true,
+        "review_required": false,
+        "checker_accepted": true,
+        "certificate_kind": "formal",
+        "engine_version": "3.0.2",
+        "pack_id": "lmm-four-slice",
+        "pack_version": "1.0.0",
+        "pack_digest": "3879c3e2c520ecd55f5714d60ae962b60c2cce73767cfae6749512ce4674fe5a",
+        "claims": [
+          "claim::contract::breach"
+        ],
+        "branches": [],
+        "used_fact_ids": [
+          "fact::contract::plain"
+        ],
+        "used_rule_ids": [
+          "rule::contract::plain"
+        ],
+        "source_ids": [
+          "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+        ],
+        "missing_fact_ids": [],
+        "missing_fact_review": [],
+        "taint": [],
+        "risk_labels": [],
+        "checker_receipt": {
+          "aaf_digest": "e4c444865768f45fa1979c2caf5eeb2dfb058f4306077141592924800a278a3f",
+          "argument_witnesses": [
+            {
+              "argument_id": "argument::2d067516278d4c48",
+              "claim_id": "claim::contract::breach",
+              "premise_ids": [
+                "fact::contract::plain"
+              ],
+              "rule_id": "rule::contract::plain",
+              "source_snapshot_id": "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+            }
+          ],
+          "attack_witnesses": [],
+          "claim_projection": {
+            "accepted_argument_ids": [
+              "argument::2d067516278d4c48"
+            ],
+            "accepted_claim_ids": [
+              "claim::contract::breach"
+            ]
+          },
+          "receipt_kind": "independent_grounded_checker",
+          "valid": true,
+          "violations": []
+        }
+      },
+      "output_digest": "5a271622e3adcf57f303665af3306ced66ae86565cd3132f92b8a2d41d60392b"
+    },
+    {
+      "case_id": "license::priority-off",
+      "actual_status": "UNDECIDED",
+      "audit_bundle_digest": "e48345efc9043c5fa46730c9d5c7c25e52ab57de69136f6754dd686900aec481",
+      "semantic_result": {
+        "schema_version": "3.0",
+        "run_id": "run::71a5b80500e20df5",
+        "result_digest": "10929f4afa5f19e5553fa059f4fd75fd4c8481f5bdf77cc0fca04fa8bb143d20",
+        "execution_status": "completed",
+        "result_status": "review_only_result",
+        "formal_kernel_used": true,
+        "review_required": true,
+        "checker_accepted": false,
+        "certificate_kind": "none",
+        "engine_version": "3.0.2",
+        "pack_id": "lmm-four-slice",
+        "pack_version": "1.0.0",
+        "pack_digest": "3879c3e2c520ecd55f5714d60ae962b60c2cce73767cfae6749512ce4674fe5a",
+        "claims": [],
+        "branches": [],
+        "used_fact_ids": [
+          "fact::license::priority_off"
+        ],
+        "used_rule_ids": [
+          "rule::license::unauthorized-off"
+        ],
+        "source_ids": [
+          "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+        ],
+        "missing_fact_ids": [],
+        "missing_fact_review": [],
+        "taint": [],
+        "risk_labels": [
+          "PROHIBITION_APPLIED"
+        ],
+        "checker_receipt": {
+          "aaf_digest": "8e9268352375436e65d10b492c8c3d156da18d0350d7dc6574607dd1fc68f260",
+          "argument_witnesses": [],
+          "attack_witnesses": [],
+          "claim_projection": {
+            "accepted_argument_ids": [],
+            "accepted_claim_ids": []
+          },
+          "receipt_kind": "independent_grounded_checker",
+          "valid": true,
+          "violations": []
+        }
+      },
+      "output_digest": "1ab78df9b3b10a8d4d8a7c38d7218b3aa12bd81b84a87709588175cf85026d66"
+    },
+    {
+      "case_id": "license::priority-on",
+      "actual_status": "PROVED",
+      "audit_bundle_digest": "b1d41fa0a8e7e64c20872c7630dba1a3af4106c6945e9f65a612664566911ee0",
+      "semantic_result": {
+        "schema_version": "3.0",
+        "run_id": "run::a1358b3a92fd01ea",
+        "result_digest": "1a7594a3f60c32dd3e5493e1c226781c9df9b5c90393cde3b799d43c38e98cb2",
+        "execution_status": "completed",
+        "result_status": "review_only_result",
+        "formal_kernel_used": true,
+        "review_required": true,
+        "checker_accepted": false,
+        "certificate_kind": "none",
+        "engine_version": "3.0.2",
+        "pack_id": "lmm-four-slice",
+        "pack_version": "1.0.0",
+        "pack_digest": "3879c3e2c520ecd55f5714d60ae962b60c2cce73767cfae6749512ce4674fe5a",
+        "claims": [
+          "claim::license::permitted"
+        ],
+        "branches": [],
+        "used_fact_ids": [
+          "fact::license::priority_on"
+        ],
+        "used_rule_ids": [
+          "rule::license::permission-on",
+          "rule::license::unauthorized-on"
+        ],
+        "source_ids": [
+          "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+        ],
+        "missing_fact_ids": [],
+        "missing_fact_review": [],
+        "taint": [],
+        "risk_labels": [
+          "PERMISSION_REQUIRES_REVIEW",
+          "PROHIBITION_APPLIED"
+        ],
+        "checker_receipt": {
+          "aaf_digest": "658aa5cdb7c4303a40eab9018bba9ddb0c3e6778102a51701cead5c78b81c86d",
+          "argument_witnesses": [
+            {
+              "argument_id": "argument::11b6f524f8c46339",
+              "claim_id": "claim::license::permitted",
+              "premise_ids": [
+                "fact::license::priority_on"
+              ],
+              "rule_id": "rule::license::permission-on",
+              "source_snapshot_id": "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+            }
+          ],
+          "attack_witnesses": [],
+          "claim_projection": {
+            "accepted_argument_ids": [
+              "argument::11b6f524f8c46339"
+            ],
+            "accepted_claim_ids": [
+              "claim::license::permitted"
+            ]
+          },
+          "receipt_kind": "independent_grounded_checker",
+          "valid": true,
+          "violations": []
+        }
+      },
+      "output_digest": "28218c16d967313780db842ac3fd0cb3c68acc0611f546d0f96d26b5805ac722"
+    },
+    {
+      "case_id": "permission::condition-missing",
+      "actual_status": "UNDECIDED",
+      "audit_bundle_digest": "7655741d5816ac2dc1abed06d6c11f624f8dce734d1f7a853e2a56e7d3dd1d8d",
+      "semantic_result": {
+        "schema_version": "3.0",
+        "run_id": "run::d58c86ef5a00828d",
+        "result_digest": "eef80044aa5a68bdf5b78e40f6793645cb8116f594cfe01d3d7e68892cff232e",
+        "execution_status": "completed",
+        "result_status": "review_only_result",
+        "formal_kernel_used": false,
+        "review_required": true,
+        "checker_accepted": false,
+        "certificate_kind": "none",
+        "engine_version": "3.0.2",
+        "pack_id": "lmm-four-slice",
+        "pack_version": "1.0.0",
+        "pack_digest": "3879c3e2c520ecd55f5714d60ae962b60c2cce73767cfae6749512ce4674fe5a",
+        "claims": [],
+        "branches": [],
+        "used_fact_ids": [],
+        "used_rule_ids": [],
+        "source_ids": [],
+        "missing_fact_ids": [],
+        "missing_fact_review": [],
+        "taint": [],
+        "risk_labels": [],
+        "checker_receipt": {
+          "aaf_digest": "8e9268352375436e65d10b492c8c3d156da18d0350d7dc6574607dd1fc68f260",
+          "argument_witnesses": [],
+          "attack_witnesses": [],
+          "claim_projection": {
+            "accepted_argument_ids": [],
+            "accepted_claim_ids": []
+          },
+          "receipt_kind": "independent_grounded_checker",
+          "valid": true,
+          "violations": []
+        }
+      },
+      "output_digest": "0ce8594811ede48281781749ebdcb14b11b46180739e0d24fbc6f023b0965ea8"
+    },
+    {
+      "case_id": "permission::conflict",
+      "actual_status": "PROVED",
+      "audit_bundle_digest": "07c6efd93ec2d8670979dda6edbc5dc43e998e126820601c5cfc6caeee44533d",
+      "semantic_result": {
+        "schema_version": "3.0",
+        "run_id": "run::ecfcee8e335eeea0",
+        "result_digest": "2aa82072e900f0c8c55458c285ff29e399420be5c0ae9e60b37b783705e226a8",
+        "execution_status": "completed",
+        "result_status": "review_only_result",
+        "formal_kernel_used": true,
+        "review_required": true,
+        "checker_accepted": false,
+        "certificate_kind": "none",
+        "engine_version": "3.0.2",
+        "pack_id": "lmm-four-slice",
+        "pack_version": "1.0.0",
+        "pack_digest": "3879c3e2c520ecd55f5714d60ae962b60c2cce73767cfae6749512ce4674fe5a",
+        "claims": [
+          "claim::permission::active"
+        ],
+        "branches": [],
+        "used_fact_ids": [
+          "fact::permission::conflict"
+        ],
+        "used_rule_ids": [
+          "rule::permission::conflict-active",
+          "rule::permission::conflict-prohibited"
+        ],
+        "source_ids": [
+          "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+        ],
+        "missing_fact_ids": [],
+        "missing_fact_review": [],
+        "taint": [],
+        "risk_labels": [
+          "PERMISSION_REQUIRES_REVIEW",
+          "PROHIBITION_APPLIED"
+        ],
+        "checker_receipt": {
+          "aaf_digest": "d62735d140044e821f06b33decc0a58372fdf6ef99fff2f54c5f10094906be91",
+          "argument_witnesses": [
+            {
+              "argument_id": "argument::5e66c415041dcbe8",
+              "claim_id": "claim::permission::active",
+              "premise_ids": [
+                "fact::permission::conflict"
+              ],
+              "rule_id": "rule::permission::conflict-active",
+              "source_snapshot_id": "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+            }
+          ],
+          "attack_witnesses": [],
+          "claim_projection": {
+            "accepted_argument_ids": [
+              "argument::5e66c415041dcbe8"
+            ],
+            "accepted_claim_ids": [
+              "claim::permission::active"
+            ]
+          },
+          "receipt_kind": "independent_grounded_checker",
+          "valid": true,
+          "violations": []
+        }
+      },
+      "output_digest": "02d85e7f4a890d3588227edae7713e4bb8686972b4f1c8de294e11b729b50d31"
+    },
+    {
+      "case_id": "priority::active",
+      "actual_status": "UNDECIDED",
+      "audit_bundle_digest": "7173af09dabae06781fbd9e8bc29fae03b42b9a35e7281a85929c437a69d71da",
+      "semantic_result": {
+        "schema_version": "3.0",
+        "run_id": "run::9d837b40d73fea80",
+        "result_digest": "4c4bab6aececd1aedd27eac6d2e13d90fadf5068f4a1e77b345a7108d68a0bb2",
+        "execution_status": "completed",
+        "result_status": "conflict_certificate",
+        "formal_kernel_used": true,
+        "review_required": true,
+        "checker_accepted": true,
+        "certificate_kind": "conflict",
+        "engine_version": "3.0.2",
+        "pack_id": "lmm-four-slice",
+        "pack_version": "1.0.0",
+        "pack_digest": "3879c3e2c520ecd55f5714d60ae962b60c2cce73767cfae6749512ce4674fe5a",
+        "claims": [],
+        "branches": [],
+        "used_fact_ids": [
+          "fact::priority::active"
+        ],
+        "used_rule_ids": [
+          "rule::priority::active-preferred",
+          "rule::priority::active-subordinate"
+        ],
+        "source_ids": [
+          "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+        ],
+        "missing_fact_ids": [],
+        "missing_fact_review": [],
+        "taint": [],
+        "risk_labels": [],
+        "checker_receipt": {
+          "aaf_digest": "c0b9072e230c5ee840e09dc5872ec32ea499c3201366c9dff4e8202815e00ae0",
+          "argument_witnesses": [
+            {
+              "argument_id": "argument::e5d5acc9659c4721",
+              "claim_id": "claim::priority::subordinate",
+              "premise_ids": [
+                "fact::priority::active"
+              ],
+              "rule_id": "rule::priority::active-subordinate",
+              "source_snapshot_id": "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+            },
+            {
+              "argument_id": "argument::f461865645a22a27",
+              "claim_id": "claim::priority::preferred",
+              "premise_ids": [
+                "fact::priority::active"
+              ],
+              "rule_id": "rule::priority::active-preferred",
+              "source_snapshot_id": "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+            }
+          ],
+          "attack_witnesses": [
+            {
+              "origins": [
+                {
+                  "kind": "explicit",
+                  "origin_rule_id": "rule::priority::missing-subordinate"
+                },
+                {
+                  "kind": "priority",
+                  "origin_rule_id": "rule::priority::cycle-subordinate"
+                }
+              ],
+              "source_argument_id": "argument::e5d5acc9659c4721",
+              "source_claim_id": "claim::priority::subordinate",
+              "target_argument_id": "argument::f461865645a22a27",
+              "target_claim_id": "claim::priority::preferred"
+            },
+            {
+              "origins": [
+                {
+                  "kind": "explicit",
+                  "origin_rule_id": "rule::priority::missing-preferred"
+                },
+                {
+                  "kind": "priority",
+                  "origin_rule_id": "rule::priority::active-preferred"
+                },
+                {
+                  "kind": "priority",
+                  "origin_rule_id": "rule::priority::cycle-preferred"
+                }
+              ],
+              "source_argument_id": "argument::f461865645a22a27",
+              "source_claim_id": "claim::priority::preferred",
+              "target_argument_id": "argument::e5d5acc9659c4721",
+              "target_claim_id": "claim::priority::subordinate"
+            }
+          ],
+          "claim_projection": {
+            "accepted_argument_ids": [],
+            "accepted_claim_ids": []
+          },
+          "receipt_kind": "independent_grounded_checker",
+          "valid": true,
+          "violations": []
+        }
+      },
+      "output_digest": "b0b74517b1b822a15083b326e30c282dbba23b78d71f8c92a5ca40833a222a92"
+    },
+    {
+      "case_id": "priority::cycle",
+      "actual_status": "UNDECIDED",
+      "audit_bundle_digest": "a9f52ad193d7b8e360558873bafb9f5b3fbbe7980235dd674e778617244d41ef",
+      "semantic_result": {
+        "schema_version": "3.0",
+        "run_id": "run::347539900c96e155",
+        "result_digest": "b3a18657a804fed4e8a40f0f5a5b790c04a9a0f72b19c1c9ccc538e87f255034",
+        "execution_status": "completed",
+        "result_status": "conflict_certificate",
+        "formal_kernel_used": true,
+        "review_required": true,
+        "checker_accepted": true,
+        "certificate_kind": "conflict",
+        "engine_version": "3.0.2",
+        "pack_id": "lmm-four-slice",
+        "pack_version": "1.0.0",
+        "pack_digest": "3879c3e2c520ecd55f5714d60ae962b60c2cce73767cfae6749512ce4674fe5a",
+        "claims": [],
+        "branches": [],
+        "used_fact_ids": [
+          "fact::priority::cycle"
+        ],
+        "used_rule_ids": [
+          "rule::priority::cycle-preferred",
+          "rule::priority::cycle-subordinate"
+        ],
+        "source_ids": [
+          "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+        ],
+        "missing_fact_ids": [],
+        "missing_fact_review": [],
+        "taint": [],
+        "risk_labels": [],
+        "checker_receipt": {
+          "aaf_digest": "01486a0aedaa936855be68f8e24a636c39abf9ae94e828bc892027707a43ff4e",
+          "argument_witnesses": [
+            {
+              "argument_id": "argument::373d7beebe58227d",
+              "claim_id": "claim::priority::preferred",
+              "premise_ids": [
+                "fact::priority::cycle"
+              ],
+              "rule_id": "rule::priority::cycle-preferred",
+              "source_snapshot_id": "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+            },
+            {
+              "argument_id": "argument::7d2b1d569c3e2188",
+              "claim_id": "claim::priority::subordinate",
+              "premise_ids": [
+                "fact::priority::cycle"
+              ],
+              "rule_id": "rule::priority::cycle-subordinate",
+              "source_snapshot_id": "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+            }
+          ],
+          "attack_witnesses": [
+            {
+              "origins": [
+                {
+                  "kind": "explicit",
+                  "origin_rule_id": "rule::priority::missing-preferred"
+                },
+                {
+                  "kind": "priority",
+                  "origin_rule_id": "rule::priority::active-preferred"
+                },
+                {
+                  "kind": "priority",
+                  "origin_rule_id": "rule::priority::cycle-preferred"
+                }
+              ],
+              "source_argument_id": "argument::373d7beebe58227d",
+              "source_claim_id": "claim::priority::preferred",
+              "target_argument_id": "argument::7d2b1d569c3e2188",
+              "target_claim_id": "claim::priority::subordinate"
+            },
+            {
+              "origins": [
+                {
+                  "kind": "explicit",
+                  "origin_rule_id": "rule::priority::missing-subordinate"
+                },
+                {
+                  "kind": "priority",
+                  "origin_rule_id": "rule::priority::cycle-subordinate"
+                }
+              ],
+              "source_argument_id": "argument::7d2b1d569c3e2188",
+              "source_claim_id": "claim::priority::subordinate",
+              "target_argument_id": "argument::373d7beebe58227d",
+              "target_claim_id": "claim::priority::preferred"
+            }
+          ],
+          "claim_projection": {
+            "accepted_argument_ids": [],
+            "accepted_claim_ids": []
+          },
+          "receipt_kind": "independent_grounded_checker",
+          "valid": true,
+          "violations": []
+        }
+      },
+      "output_digest": "92d08a3b0b420f79fa17573a7eaf28290fab0352cd4edf94011ebc4b55d93de2"
+    },
+    {
+      "case_id": "priority::missing",
+      "actual_status": "UNDECIDED",
+      "audit_bundle_digest": "8c9a50ba99ec4429cdc3c51084735c4bbfc48616d5249967556f8602d40c5092",
+      "semantic_result": {
+        "schema_version": "3.0",
+        "run_id": "run::eaff7b2cbd3ed162",
+        "result_digest": "31f23228a33c7177f434784f4e715948038f8adb9f7dd7f691f54267d74a7b8e",
+        "execution_status": "completed",
+        "result_status": "conflict_certificate",
+        "formal_kernel_used": true,
+        "review_required": true,
+        "checker_accepted": true,
+        "certificate_kind": "conflict",
+        "engine_version": "3.0.2",
+        "pack_id": "lmm-four-slice",
+        "pack_version": "1.0.0",
+        "pack_digest": "3879c3e2c520ecd55f5714d60ae962b60c2cce73767cfae6749512ce4674fe5a",
+        "claims": [],
+        "branches": [],
+        "used_fact_ids": [
+          "fact::priority::missing"
+        ],
+        "used_rule_ids": [
+          "rule::priority::missing-preferred",
+          "rule::priority::missing-subordinate"
+        ],
+        "source_ids": [
+          "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+        ],
+        "missing_fact_ids": [],
+        "missing_fact_review": [],
+        "taint": [],
+        "risk_labels": [],
+        "checker_receipt": {
+          "aaf_digest": "73fb815c7ea363431d40a63cf7477452bf74fa444fa43b8f21384c8f1559e147",
+          "argument_witnesses": [
+            {
+              "argument_id": "argument::70bc55cecb5d0dc2",
+              "claim_id": "claim::priority::subordinate",
+              "premise_ids": [
+                "fact::priority::missing"
+              ],
+              "rule_id": "rule::priority::missing-subordinate",
+              "source_snapshot_id": "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+            },
+            {
+              "argument_id": "argument::ec92cb666ccfb488",
+              "claim_id": "claim::priority::preferred",
+              "premise_ids": [
+                "fact::priority::missing"
+              ],
+              "rule_id": "rule::priority::missing-preferred",
+              "source_snapshot_id": "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+            }
+          ],
+          "attack_witnesses": [
+            {
+              "origins": [
+                {
+                  "kind": "explicit",
+                  "origin_rule_id": "rule::priority::missing-subordinate"
+                },
+                {
+                  "kind": "priority",
+                  "origin_rule_id": "rule::priority::cycle-subordinate"
+                }
+              ],
+              "source_argument_id": "argument::70bc55cecb5d0dc2",
+              "source_claim_id": "claim::priority::subordinate",
+              "target_argument_id": "argument::ec92cb666ccfb488",
+              "target_claim_id": "claim::priority::preferred"
+            },
+            {
+              "origins": [
+                {
+                  "kind": "explicit",
+                  "origin_rule_id": "rule::priority::missing-preferred"
+                },
+                {
+                  "kind": "priority",
+                  "origin_rule_id": "rule::priority::active-preferred"
+                },
+                {
+                  "kind": "priority",
+                  "origin_rule_id": "rule::priority::cycle-preferred"
+                }
+              ],
+              "source_argument_id": "argument::ec92cb666ccfb488",
+              "source_claim_id": "claim::priority::preferred",
+              "target_argument_id": "argument::70bc55cecb5d0dc2",
+              "target_claim_id": "claim::priority::subordinate"
+            }
+          ],
+          "claim_projection": {
+            "accepted_argument_ids": [],
+            "accepted_claim_ids": []
+          },
+          "receipt_kind": "independent_grounded_checker",
+          "valid": true,
+          "violations": []
+        }
+      },
+      "output_digest": "304c45489bc68a8824c91cc4b1e57a28c5c488be144ff27b5435993789c86340"
+    },
+    {
+      "case_id": "priority::self-attack",
+      "actual_status": "UNDECIDED",
+      "audit_bundle_digest": "4ff507b99eb25129f3318efabbb42edec6778f54630f0c70101b181ddcb8b124",
+      "semantic_result": {
+        "schema_version": "3.0",
+        "run_id": "run::f1bfd55a7aee3e50",
+        "result_digest": "4c2a9527b359fd82860f91853517ddecbb932ae80cfcf407d1ba155950def857",
+        "execution_status": "completed",
+        "result_status": "conflict_certificate",
+        "formal_kernel_used": true,
+        "review_required": true,
+        "checker_accepted": true,
+        "certificate_kind": "conflict",
+        "engine_version": "3.0.2",
+        "pack_id": "lmm-four-slice",
+        "pack_version": "1.0.0",
+        "pack_digest": "3879c3e2c520ecd55f5714d60ae962b60c2cce73767cfae6749512ce4674fe5a",
+        "claims": [],
+        "branches": [],
+        "used_fact_ids": [
+          "fact::priority::self"
+        ],
+        "used_rule_ids": [
+          "rule::priority::self"
+        ],
+        "source_ids": [
+          "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+        ],
+        "missing_fact_ids": [],
+        "missing_fact_review": [],
+        "taint": [],
+        "risk_labels": [],
+        "checker_receipt": {
+          "aaf_digest": "f6be417110f205df47653f43d9ac9b00dbf5d22f56bebc46f75deea13f2485de",
+          "argument_witnesses": [
+            {
+              "argument_id": "argument::95db1d6857fedfda",
+              "claim_id": "claim::priority::self",
+              "premise_ids": [
+                "fact::priority::self"
+              ],
+              "rule_id": "rule::priority::self",
+              "source_snapshot_id": "LMM-FIXTURE-SOURCE@4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+            }
+          ],
+          "attack_witnesses": [
+            {
+              "origins": [
+                {
+                  "kind": "explicit",
+                  "origin_rule_id": "rule::priority::self"
+                }
+              ],
+              "source_argument_id": "argument::95db1d6857fedfda",
+              "source_claim_id": "claim::priority::self",
+              "target_argument_id": "argument::95db1d6857fedfda",
+              "target_claim_id": "claim::priority::self"
+            }
+          ],
+          "claim_projection": {
+            "accepted_argument_ids": [],
+            "accepted_claim_ids": []
+          },
+          "receipt_kind": "independent_grounded_checker",
+          "valid": true,
+          "violations": []
+        }
+      },
+      "output_digest": "b78be3f28ba0b1df7b08149d8fb3e3deb23579e2f1249ec2f681eb912fb345b2"
+    }
+  ],
+  "receipt_digest": "02c590b20c5ba60c077cd12d7d9bdb55e1afebe0ebe9b07cb746c4761bcea397"
+}

@@ -1,19 +1,73 @@
+import JurisLean.EndToEnd
 import JurisLean.FiniteMonotoneIteration
 import JurisLean.DungFixedPoint
 import JurisLean.HornFixedPoint
 import JurisLean.WeightedSupNorm
+import JurisLean.TranslationWitness
 
-/-! Axiom audit for formal core release v1. -/
+/-! Public declaration axiom audit for the task-bounded release boundary. -/
 
 open FiniteMonotoneSystem
 #print axioms exists_fixpoint_le_card
 #print axioms fixed_at_card
 
 open DungAAF
+#print axioms F_monotone
+#print axioms finite_termination
+#print axioms iteration_bound
+#print axioms grounded_is_fixed_point
 #print axioms grounded_is_least_fixed_point
+#print axioms grounded_is_least_complete
+#print axioms labelling_partition
+#print axioms in_soundness
+#print axioms out_soundness
+#print axioms undecided_characterization
+#print axioms self_attack_not_in_grounded
 
 open HornSystem
+#print axioms horn_operator_monotone
+#print axioms horn_finite_termination
+#print axioms horn_iteration_bound
+#print axioms horn_result_fixed_point
+#print axioms horn_result_least_fixed_point
+#print axioms horn_soundness
 #print axioms horn_completeness
 #print axioms horn_result_is_minimal_model
 
 #print axioms weightedSupDist_complete
+
+#print axioms JurisLean.violation_implies_norm_active
+#print axioms JurisLean.permission_no_direct_violation
+#print axioms JurisLean.constitutive_no_direct_violation
+#print axioms JurisLean.malformed_certificate_rejected
+#print axioms JurisLean.tainted_certificate_rejected
+#print axioms JurisLean.candidate_evidence_not_accepted
+#print axioms JurisLean.checker_acceptance_requires_obligations
+#print axioms JurisLean.checker_acceptance_requires_required_facts
+#print axioms JurisLean.horn_derivation_to_argument_conclusion
+#print axioms JurisLean.horn_derivation_to_argument_supported
+#print axioms JurisLean.priority_defeat_to_attack_kind
+#print axioms JurisLean.no_unsupported_argument_accepted
+#print axioms JurisLean.candidate_cannot_enter_verified_fact_gate
+#print axioms JurisLean.accepted_certificate_has_required_payload
+#print axioms JurisLean.priority_missing_evidence_certificate_not_accepted
+#print axioms JurisLean.contract_breach_ready_certificate_accepted
+#print axioms JurisLean.license_outside_scope_fail_closed
+#print axioms JurisLean.permission_conflict_fail_closed
+#print axioms JurisLean.priority_cycle_fail_closed
+#print axioms JurisLean.candidate_certificate_fail_closed
+#print axioms JurisLean.end_to_end_acceptance_requires_payload
+#print axioms JurisLean.checkerV2_acceptance_requires_content
+#print axioms JurisLean.checkerV2_acceptance_requires_nonempty_trace
+#print axioms JurisLean.checkerV2_acceptance_requires_fact_coverage
+#print axioms JurisLean.checkerV2_acceptance_requires_obligation_coverage
+#print axioms JurisLean.accepted_v2_certificate_has_recomputed_payload
+#print axioms JurisLean.ready_v2_certificate_accepted
+#print axioms JurisLean.empty_trace_v2_fail_closed
+#print axioms JurisLean.legacy_ready_certificate_not_v2_decisive
+#print axioms JurisLean.translation_witness_check_sound
+#print axioms JurisLean.translation_witness_no_argument_omission
+#print axioms JurisLean.translation_witness_no_spurious_argument
+#print axioms JurisLean.translation_witness_no_edge_omission
+#print axioms JurisLean.translation_witness_no_spurious_edge
+#print axioms JurisLean.translation_witness_priority_direction_preserved

@@ -11,12 +11,12 @@ All #check commands must compile with 0 errors.
 -- ContractingWith API
 #check ContractingWith
 #check LipschitzWith
-#check efixedPoint
-#check efixedPoint_isFixedPt
-#check fixedPoint
-#check fixedPoint_isFixedPt
-#check tendsto_iterate_efixedPoint
-#check apriori_edist_iterate_efixedPoint_le
+#check ContractingWith.efixedPoint
+#check ContractingWith.efixedPoint_isFixedPt
+#check ContractingWith.fixedPoint
+#check ContractingWith.fixedPoint_isFixedPt
+#check ContractingWith.tendsto_iterate_efixedPoint
+#check ContractingWith.apriori_edist_iterate_efixedPoint_le
 
 -- CompleteSpace on Pi types
 #check Pi.complete

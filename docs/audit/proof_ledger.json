@@ -1,20 +1,23 @@
 {
-  "ledger_version": "rewrite-2026-07-01",
+  "ledger_version": "source-inventory-v2",
   "authority_order": [
     "Lean source",
-    "current build evidence",
+    "verified current-head FormalReleaseCertificate",
     "Python regression evidence",
-    "manifests",
-    "narrative docs"
+    "source inventories",
+    "narrative documents"
   ],
   "source_inventory": {
-    "lean_files": 32,
-    "theorem_declarations": 126
+    "lean_files": 33,
+    "theorem_declarations": 141,
+    "digest": "7019af4490a75e758db271879536565c86316e0c0ae7dd4a8c63e4861de93247",
+    "hash_contract": "utf-8-lf-v1"
   },
-  "release_gate": "fail_closed_until_current_head_ci_and_dependency_audit_complete",
+  "release_gate": "fail_closed_until_formal_release_certificate_verifies",
   "prohibited_substitutions": [
     "Python tests for Lean proof",
-    "AI review for proof certificate",
-    "old report for current CI"
+    "runtime receipt for Lean proof",
+    "source inventory for release certificate",
+    "old report for current-head evidence"
   ]
 }

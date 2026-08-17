@@ -17,7 +17,7 @@ The rewrite covered every tracked file under `docs/` and every tracked file unde
 ## Deliberately Not Rewritten As Prose
 
 - `AGENTS.md`: retained as the project rule source.
-- `SORRY_LEDGER.md`: retained as the proof-status ledger.
+- `SORRY_LEDGER.md`: retained as the proof-status ledger (removed from public repo 2026-08-17).
 - `requirements.txt`: dependency contract, not prose documentation.
 - `runtime/*.json`: runtime fixture data.
 - `scripts/`, `tests/`, `verification/`, and Python modules under `theory/`: executable code or tests.

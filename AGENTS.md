@@ -139,7 +139,7 @@ A task is complete ONLY when ALL six conditions hold:
 - "Banach complete" (as part of formal-core-v1)
 - "Privacy established"
 
-## Closed DDL Targets (SORRY_LEDGER.md)
+## Closed DDL Targets
 
 3 former domain-axiom targets are now Lean theorems in `DDLDefinitions.lean`:
 - `violation_implies_norm_active`

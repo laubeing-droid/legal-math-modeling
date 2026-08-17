@@ -46,7 +46,7 @@ has no authority and must be treated as explanatory.
 - Local `.lake` directories, local object files, and local build caches: acceptance
   contamination if produced locally; they exist in this checkout from pre-boundary
   sessions, remain git-ignored, and are never evidence.
-- Superseded plan `260810_legal-math-modeling必要补充施工方案.md`: historical input only.
+- Superseded plan `260810_legal-math-modeling必要补充施工方案.md`: historical input only (removed from repo 2026-08-17; history preserved in git).
 
 ## Fail-Closed Rule
 

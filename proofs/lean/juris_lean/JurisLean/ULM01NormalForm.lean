@@ -1,0 +1,128 @@
+import Mathlib
+import JurisLean.ArgumentSemanticsRegistry
+
+/-!
+# Unified Legal Model — executable normal-form vocabulary
+
+This module reuses the repository's existing argumentation-profile type and fixes
+only the structural vocabulary needed by the sixteen-module package.  Digests and
+serialized strings remain engineering projections; mathematical identity is the
+structure itself.
+-/
+
+namespace JurisLean.ULM
+
+/-- Reuse the existing repository profile registry; do not create a parallel enum. -/
+abbrev SemanticProfile := JurisLean.SemanticsKind
+
+inductive Layer where
+  | input
+  | normative
+  | procedure
+  | empirical
+  | integration
+deriving DecidableEq, Repr
+
+inductive NodeKind where
+  | fact
+  | evidence
+  | rule
+  | position
+  | argument
+  | procedureState
+  | legalStatus
+  | consequence
+  | calculation
+  | empiricalArtifact
+deriving DecidableEq, Repr
+
+inductive EdgeKind where
+  | deterministic
+  | partial
+  | relation
+  | stateTransition
+  | abstraction
+  | probabilityKernel
+  | ranker
+  | exactCalculation
+deriving DecidableEq, Repr
+
+inductive ClaimKind where
+  | typeSafety
+  | soundness
+  | failure
+  | completeness
+  | preserve
+  | reflect
+  | observe
+  | trust
+  | update
+  | identity
+  | branch
+  | authority
+  | dimension
+  | termination
+  | confluence
+deriving DecidableEq, Repr
+
+inductive PositionStage where
+  | candidate
+  | argumentSupported
+  | extensionSupported
+  | adjudicated
+  | committed
+deriving DecidableEq, Repr
+
+structure ContextKey where
+  caseScope : JurisLean.CaseScope
+  runScope : JurisLean.RunScope
+  scenario : String
+  baseVersion : JurisLean.SchemaVersion
+  subjectVersion : JurisLean.SemanticsVersion
+deriving DecidableEq, Repr
+
+/-- The run scope must belong to the same case as the enclosing context. -/
+def ContextKey.WellFormed (k : ContextKey) : Prop :=
+  k.runScope.caseScope = k.caseScope
+
+structure RequestKey where
+  context : ContextKey
+  profile : SemanticProfile
+  query : JurisLean.LegalId .claim
+  mappingVersion : JurisLean.SchemaVersion
+deriving DecidableEq, Repr
+
+/-- A request is well formed exactly when its run scope belongs to its case. -/
+def RequestKey.WellFormed (r : RequestKey) : Prop :=
+  r.context.WellFormed
+
+structure NormalForm where
+  request : RequestKey
+  facts : Finset (JurisLean.LegalId .fact)
+  rules : Finset (JurisLean.LegalId .rule)
+  activeDomains : Finset String
+deriving DecidableEq, Repr
+
+/-- Observation preservation is stated independently of the implementation. -/
+def Preserves {α β γ : Type*}
+    (obsIn : α → γ) (obsOut : β → γ) (f : α → β) : Prop :=
+  ∀ x, obsOut (f x) = obsIn x
+
+@[simp] theorem context_wf_iff (k : ContextKey) :
+    k.WellFormed ↔ k.runScope.caseScope = k.caseScope := Iff.rfl
+
+@[simp] theorem preserves_id {α γ : Type*} (obs : α → γ) :
+    Preserves obs obs id := by
+  intro x
+  rfl
+
+theorem preserves_comp {α β γ δ : Type*}
+    (obsA : α → δ) (obsB : β → δ) (obsC : γ → δ)
+    (f : α → β) (g : β → γ)
+    (hf : Preserves obsA obsB f) (hg : Preserves obsB obsC g) :
+    Preserves obsA obsC (g ∘ f) := by
+  intro x
+  change obsC (g (f x)) = obsA x
+  rw [hg (f x), hf x]
+
+end JurisLean.ULM

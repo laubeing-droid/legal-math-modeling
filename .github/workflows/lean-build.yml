@@ -88,7 +88,9 @@ jobs:
       - name: Cache Lake build directory
         uses: actions/cache@v4
         with:
-          path: proofs/lean/juris_lean/.lake/build
+          path: |
+            proofs/lean/juris_lean/.lake/build
+            proofs/lean/juris_lean/.lake/packages/*/.lake/build
           key: ${{ runner.os }}-lake-build-${{ hashFiles('proofs/lean/juris_lean/lean-toolchain', 'proofs/lean/juris_lean/lake-manifest.json') }}
           restore-keys: |
             ${{ runner.os }}-lake-build-

@@ -47,7 +47,7 @@ jobs:
           if [ "${{ inputs.mode }}" = "full-release" ] || [ "${{ github.event_name }}" = "push" ]; then
             python3 scripts/ci/changed_lean_modules.py --all --output matrix.json
           elif [ -n "${{ inputs.module }}" ]; then
-            python3 -c "import json; name='${{ inputs.module }}'; json.dump({'include':[{'module':name,'target':'JurisLean.'+name}]}, open('matrix.json','w'))"
+            python3 -c "import json; name='${{ inputs.module }}'; open('matrix.json','w').write(json.dumps({'include':[{'module':name,'target':'JurisLean.'+name}]}) + chr(10))"
           else
             python3 scripts/ci/changed_lean_modules.py \
               --base origin/${{ github.base_ref || 'main' }} --head HEAD --output matrix.json

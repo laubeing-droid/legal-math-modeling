@@ -1,4 +1,19 @@
-import Mathlib
+import Mathlib.Data.Fin.Basic
+import Mathlib.Data.Fintype.Basic
+import Mathlib.Data.Fintype.Fin
+import Mathlib.Data.Fintype.BigOperators
+import Mathlib.Data.Finset.Basic
+import Mathlib.Data.Finset.BooleanAlgebra
+import Mathlib.Data.Finset.Card
+import Mathlib.Data.Finset.Filter
+import Mathlib.Data.Finset.Image
+import Mathlib.Data.Finset.Order
+import Mathlib.Data.Finset.Union
+import Mathlib.Data.Rat.Defs
+import Mathlib.Order.Lattice
+import Mathlib.Order.MinMax
+import Mathlib.Algebra.BigOperators.Group.Finset.Basic
+import Mathlib.Tactic.Common
 import JurisLean.ArgumentSemanticsRegistry
 
 /-!

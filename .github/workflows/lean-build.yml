@@ -62,7 +62,7 @@ jobs:
     needs: setup-matrix
     if: ${{ needs.setup-matrix.outputs.matrix != '' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    timeout-minutes: 240
     strategy:
       fail-fast: false
       matrix: ${{ fromJson(needs.setup-matrix.outputs.matrix) }}
@@ -85,6 +85,13 @@ jobs:
           key: ${{ runner.os }}-lake-packages-${{ hashFiles('proofs/lean/juris_lean/lakefile.lean', 'proofs/lean/juris_lean/lean-toolchain') }}
           restore-keys: |
             ${{ runner.os }}-lake-packages-
+      - name: Cache Lake build directory
+        uses: actions/cache@v4
+        with:
+          path: proofs/lean/juris_lean/.lake/build
+          key: ${{ runner.os }}-lake-build-${{ hashFiles('proofs/lean/juris_lean/lean-toolchain', 'proofs/lean/juris_lean/lake-manifest.json') }}
+          restore-keys: |
+            ${{ runner.os }}-lake-build-
       - name: Build module ${{ matrix.module }}
         run: |
           export PATH="$HOME/.elan/bin:$PATH"

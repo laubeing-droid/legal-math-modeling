@@ -69,8 +69,8 @@ theorem intersection_contained_in_both (a b i : DayInterval)
   dsimp [intervalIntersection] at hinter
   split at hinter
   · rename_i _h
-    injection hinter with hf ht
-    rw [← hf, ← ht] at hd
+    injection hinter with hf
+    rw [← hf] at hd
     dsimp [DayInterval.contains] at hd ⊢
     constructor
     · exact ⟨le_trans (le_max_left _ _) hd.1, le_trans hd.2 (min_le_left _ _)⟩

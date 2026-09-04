@@ -71,8 +71,9 @@ theorem all_clean_inputs_clean_output (inputs : List FormalInput)
   | cons y ys ih =>
     intro hall
     dsimp [taintOfInputs]
-    rw [hall y (List.Mem.head y ys)]
-    rw [ih (fun z hz => hall z (List.Mem.tail z y ys hz))]
+    have hy : y ∈ y :: ys := List.mem_cons.mpr (Or.inl rfl)
+    rw [hall y hy]
+    rw [ih (fun z hz => hall z (List.mem_cons.mpr (Or.inr hz)))]
     rfl
 
 /-- 中文证明：多数 Agent 共识不能洗白污点（consensus laundering 无效）。 -/

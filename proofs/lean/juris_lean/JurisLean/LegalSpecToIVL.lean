@@ -94,8 +94,8 @@ theorem certain_spec_lowering_clean (s : LegalSpec)
   split
   · rename_i hexists
     rcases hexists with ⟨r, hmem, hpos⟩
-    have hzero := hall r hmem
-    exact Nat.lt_irrefl 0 (hzero ▸ hpos)
+    rw [hall r hmem] at hpos
+    exact Nat.lt_irrefl 0 hpos
   · rfl
 
 end JurisLean

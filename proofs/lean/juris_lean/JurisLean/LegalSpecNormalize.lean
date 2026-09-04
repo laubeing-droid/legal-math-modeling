@@ -59,6 +59,7 @@ theorem dropped_rule_has_empty_locator (s : LegalSpec) (r : LegalSpecRule)
     have hinf : r ∈ s.rules.filter locatedRule := by
       rw [List.mem_filter]
       exact ⟨hmem, hkeep⟩
+    exfalso
     exact habsent hinf
 
 end JurisLean

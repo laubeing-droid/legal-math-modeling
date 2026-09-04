@@ -63,11 +63,11 @@ theorem effective_at_left_boundary (v : SourceVersionRecord)
   dsimp [effectiveAt]
   constructor
   · exact le_rfl
-  · cases v.effectiveTo with
+  · cases hto : v.effectiveTo with
     | none => trivial
     | some upper =>
       dsimp [SourceVersionRecord.intervalValid] at hv
-      simpa [SourceVersionRecord.intervalValid] using hv
+      simpa [hto] using hv
 
 /-- 中文证明：早于左端点的时点不在生效区间内。 -/
 theorem before_effective_interval_not_effective (v : SourceVersionRecord) (t : Int)

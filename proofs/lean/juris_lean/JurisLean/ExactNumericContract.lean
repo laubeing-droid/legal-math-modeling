@@ -51,8 +51,6 @@ theorem division_by_zero_fail_closed (num : Int) :
 theorem division_by_nonzero_structured (num den : Int) (h : den ≠ 0) :
     divideExact num den = some (num, den) := by
   simp [divideExact]
-  · contradiction
-  · rfl
 
 /-- 中文证明：越界值不在范围内（out-of-range fail-closed 的判定面）。 -/
 theorem out_of_range_not_in_range (v lo hi : Int) (h : hi < v) :

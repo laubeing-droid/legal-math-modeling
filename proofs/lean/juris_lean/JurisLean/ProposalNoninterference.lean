@@ -18,7 +18,6 @@ theorem proposal_is_tainted_input (p : ProposalEnvelope)
     (horigin : p.origin = .llm ∨ p.origin = .agent) :
     (proposalAsInput p).taint = .tainted := by
   dsimp [proposalAsInput]
-  cases horigin <;> rfl
 
 /-- 中文证明：proposal 进入推导阶段后输出仍为 tainted（noninterference
 与 TaintNoninterference.stage_preserves_taint 组合）。 -/

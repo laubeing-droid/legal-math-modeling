@@ -53,7 +53,7 @@ def obligationsForClaim : ClaimKind → List ObligationKind
 
 /-- Required obligations are derived from the frozen baseline plus declared
 claims.  The explicit insertion prevents an empty-obligation escape. -/
-def requiredObligations (e : NFEdge) : Finset ObligationKind :=
+noncomputable def requiredObligations (e : NFEdge) : Finset ObligationKind :=
   insert .typeSafety
     ((baselineClaims e.kind ++ e.claims.toList).flatMap obligationsForClaim).toFinset
 

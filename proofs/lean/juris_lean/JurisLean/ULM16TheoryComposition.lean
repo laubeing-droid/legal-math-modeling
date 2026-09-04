@@ -87,7 +87,7 @@ theorem COMP_C02_observation_preservation
 /-- COMP-C03 instance: a concrete implementation satisfying the refinement
 relation returns the exact child full recomputation. -/
 theorem COMP_C03_add_only_refinement
-    {α : Type*} [DecidableEq α]
+    {α : Type} [DecidableEq α]
     {sys : HornSystem α}
     {implementation : HornAddDelta sys → Finset α}
     (h : IncrementalImplementationCorrect (sys := sys) implementation)
@@ -98,7 +98,7 @@ theorem COMP_C03_add_only_refinement
 /-- The independent child recomputation is a fixed point of the extended Horn
 operator. -/
 theorem COMP_C03_child_reference_fixed
-    {α : Type*} [DecidableEq α]
+    {α : Type} [DecidableEq α]
     (sys : HornSystem α) (delta : HornAddDelta sys) :
     HornSystem.TH (extendHorn sys delta) (childFullRecompute sys delta) =
       childFullRecompute sys delta :=

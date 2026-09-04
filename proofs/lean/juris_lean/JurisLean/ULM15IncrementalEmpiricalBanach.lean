@@ -9,7 +9,7 @@ namespace JurisLean.ULM
 
 section HornAddOnly
 
-variable {α : Type*} [DecidableEq α]
+variable {α : Type} [DecidableEq α]
 
 structure HornAddDelta (sys : HornSystem α) where
   facts : Finset α

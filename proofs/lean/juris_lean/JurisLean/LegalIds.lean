@@ -1,3 +1,4 @@
+import Mathlib.Data.Int.Order.Basic
 import JurisLean.FailureStatus
 
 /-!
@@ -117,7 +118,7 @@ theorem legalId_serialization_faithful {kind : IdKind}
   intro h
   cases a; cases b
   simp [LegalId.serialized] at h
-  exact h.2
+  exact h
 
 /-- 中文证明：不同 kind 的前缀不同，因此不同 kind 的序列化标签永不重合。 -/
 theorem id_prefix_separated (k1 k2 : IdKind)
@@ -149,6 +150,6 @@ theorem interval_valid_antisym_boundary {i : TimeInterval}
     (h : i.valid) (hrev : TimeInterval.valid { fromDay := i.toDay, toDay := i.fromDay }) :
     i.fromDay = i.toDay := by
   dsimp [TimeInterval.valid] at h hrev
-  exact le_antisymm h hrev
+  exact Int.le_antisymm h hrev
 
 end JurisLean

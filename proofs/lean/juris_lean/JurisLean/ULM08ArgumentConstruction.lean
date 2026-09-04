@@ -131,7 +131,8 @@ theorem argument_supported_position_preserves_request
 theorem argument_supported_position_preserves_claim
     (p : ArgumentSupportedPosition) :
     p.argument.claim = p.candidate.claim := by
-  apply JurisLean.LegalId.ext
+  unfold CanonicalArgument.claim
+  congr
   exact p.sameClaim
 
 theorem argument_wf_has_well_founded_support

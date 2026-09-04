@@ -55,7 +55,10 @@ theorem adjoin_adjoin_idempotent (c : CanonicalCollection) (a : String) :
   · rfl
   · rename_i hnot
     exfalso
-    exact hnot (adjoin_contains_element c a)
+    apply hnot
+    by_cases hmem : a ∈ c.entries
+    · simpa [CanonicalCollection.adjoin, hmem]
+    · simp [CanonicalCollection.adjoin, hmem]
 
 /-- 中文证明：已有条目在 adjoin 后仍然保留。 -/
 theorem adjoin_preserves_membership {c : CanonicalCollection} (a x : String)
@@ -81,7 +84,7 @@ theorem serialization_round_trip (tokens : List CanonicalToken) :
   | cons t ts ih =>
     cases t with
     | mk key value =>
-      simp [serializeTokens, parseTokens, ih]
+      simpa [serializeTokens, parseTokens, List.map_map] using ih
 
 /-- 中文证明：round-trip 保持每个 token 的键与值（逐字段忠实）。 -/
 theorem serialization_preserves_fields (t : CanonicalToken) :

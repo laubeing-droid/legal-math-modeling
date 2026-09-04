@@ -57,8 +57,8 @@ theorem intersection_some_is_valid (a b : DayInterval) (i : DayInterval)
   dsimp [intervalIntersection] at hinter
   split at hinter
   · rename_i h
-    injection hinter with hf ht
-    rw [← hf, ← ht]
+    injection hinter with hf
+    rw [← hf]
     exact h
   · contradiction
 

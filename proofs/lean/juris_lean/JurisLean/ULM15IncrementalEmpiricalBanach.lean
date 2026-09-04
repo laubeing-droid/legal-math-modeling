@@ -7,6 +7,9 @@ mathlib Banach fixed-point reuse. -/
 
 namespace JurisLean.ULM
 
+open scoped NNReal
+open scoped Real
+
 section HornAddOnly
 
 variable {α : Type} [DecidableEq α]
@@ -72,13 +75,14 @@ def childFullRecompute (sys : HornSystem α)
 
 /-- An optimised worklist implementation is correct only if it refines the child
 full-recompute specification. -/
-def IncrementalImplementationCorrect
+def IncrementalImplementationCorrect (sys : HornSystem α)
     (implementation : HornAddDelta sys → Finset α) : Prop :=
   ∀ delta, implementation delta = childFullRecompute sys delta
 
 theorem incremental_correct_returns_full_recompute
+    (sys : HornSystem α)
     {implementation : HornAddDelta sys → Finset α}
-    (h : IncrementalImplementationCorrect (sys := sys) implementation)
+    (h : IncrementalImplementationCorrect sys implementation)
     (delta : HornAddDelta sys) :
     implementation delta = childFullRecompute sys delta := h delta
 

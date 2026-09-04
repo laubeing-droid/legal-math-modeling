@@ -90,7 +90,7 @@ theorem COMP_C03_add_only_refinement
     {α : Type} [DecidableEq α]
     {sys : HornSystem α}
     {implementation : HornAddDelta sys → Finset α}
-    (h : IncrementalImplementationCorrect (sys := sys) implementation)
+    (h : IncrementalImplementationCorrect sys implementation)
     (delta : HornAddDelta sys) :
     implementation delta = childFullRecompute sys delta :=
   incremental_correct_returns_full_recompute h delta

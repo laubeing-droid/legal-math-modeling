@@ -55,6 +55,7 @@ theorem generated_candidate_sound
     {sys : TaggedHornSystem} {pool : Finset PositionCandidate}
     {c : PositionCandidate} (h : c ∈ generateCandidates sys pool) :
     CandidateWF sys c := by
+  classical
   exact (Finset.mem_filter.mp h).2
 
 theorem generated_candidate_request_bound

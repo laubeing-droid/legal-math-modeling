@@ -35,7 +35,7 @@ theorem TH_subset_extend (sys : HornSystem α) (delta : HornAddDelta sys)
     (s : Finset α) :
     HornSystem.TH sys s ⊆ HornSystem.TH (extendHorn sys delta) s := by
   intro a ha
-  simp only [HornSystem.TH, Finset.mem_union, Finset.mem_image,
+  simp only [HornSystem.TH, extendHorn, Finset.mem_union, Finset.mem_image,
     Finset.mem_filter] at ha ⊢
   rcases ha with hInit | ⟨r, ⟨hr, hprem⟩, rfl⟩
   · exact Or.inl (Or.inl hInit)

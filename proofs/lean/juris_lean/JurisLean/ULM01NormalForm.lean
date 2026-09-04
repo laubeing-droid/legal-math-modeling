@@ -11,6 +11,8 @@ import Mathlib.Data.Finset.Order
 import Mathlib.Data.Finset.Union
 import Mathlib.Data.Finset.Sort
 import Mathlib.Data.Rat.Defs
+import Mathlib.Data.NNReal.Basic
+import Mathlib.Data.Real.Basic
 import Mathlib.Order.Lattice
 import Mathlib.Order.MinMax
 import Mathlib.Algebra.BigOperators.Group.Finset.Basic

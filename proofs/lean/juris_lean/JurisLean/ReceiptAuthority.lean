@@ -1,5 +1,6 @@
 import JurisLean.LegalIds
 import Mathlib.Tactic
+import Mathlib.Order.MinMax
 
 /-!
 中文说明：M3/M7 receipt authority。权威层级格：
@@ -108,9 +109,7 @@ theorem consensus_does_not_escalate (l : AuthorityLevel) (n : Nat) :
   | zero =>
     simp [consensusRank, List.replicate]
   | succ n ih =>
-    rw [List.replicate_succ]
-    dsimp [consensusRank]
-    rw [Nat.max_eq_left ih]
-    exact le_rfl
+    simp [consensusRank, List.replicate]
+    exact (max_le_iff.mpr ⟨(le_rfl : authorityRank l ≤ authorityRank l), ih⟩)
 
 end JurisLean

@@ -22,6 +22,9 @@ refinement has already been closed. -/
 
 namespace JurisLean.ULM
 
+open scoped NNReal
+open scoped Real
+
 inductive CoreId where
   | core01 | core02 | core03 | core04 | core05
   | core06 | core07 | core08 | core09 | core10
@@ -93,7 +96,7 @@ theorem COMP_C03_add_only_refinement
     (h : IncrementalImplementationCorrect sys implementation)
     (delta : HornAddDelta sys) :
     implementation delta = childFullRecompute sys delta :=
-  incremental_correct_returns_full_recompute h delta
+  incremental_correct_returns_full_recompute sys h delta
 
 /-- The independent child recomputation is a fixed point of the extended Horn
 operator. -/
@@ -128,7 +131,7 @@ theorem CORE_02_admitted_premise_status
 
 /-- CORE-03 instance: support closure is an actual Horn fixed point. -/
 theorem CORE_03_support_fixed (sys : TaggedHornSystem) :
-    HornSystem.TH sys (supportClosure sys) = supportClosure sys :=
+    HornSystem.TH sys.system (supportClosure sys) = supportClosure sys :=
   supportClosure_fixed sys
 
 /-- CORE-04 instance: every generated candidate satisfies the declared support

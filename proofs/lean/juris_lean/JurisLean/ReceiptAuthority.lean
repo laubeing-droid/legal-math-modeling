@@ -106,10 +106,11 @@ theorem consensus_does_not_escalate (l : AuthorityLevel) (n : Nat) :
     consensusRank (List.replicate n l) ≤ authorityRank l := by
   induction n with
   | zero =>
-    dsimp [consensusRank, List.replicate]
-    exact Nat.zero_le (authorityRank l)
-  | succ n ih =>
     simp [consensusRank, List.replicate]
-    omega
+  | succ n ih =>
+    rw [List.replicate_succ]
+    dsimp [consensusRank]
+    rw [Nat.max_eq_left ih]
+    exact le_rfl
 
 end JurisLean

@@ -93,9 +93,8 @@ def groundedExtension (af : DefeatAF) : Finset ArgId :=
 
 theorem groundedExtension_fixed (af : DefeatAF) :
     characteristic af (groundedExtension af) = groundedExtension af := by
-  have hfixed := FiniteMonotoneSystem.fixed_at_card (defeatSystem af)
-  rw [FiniteMonotoneSystem.iter_succ (defeatSystem af) af.args.card] at hfixed
-  simpa [groundedExtension, defeatSystem] using hfixed.symm
+  have hfixed := (FiniteMonotoneSystem.fixed_at_card (defeatSystem af)).symm
+  simpa [groundedExtension, defeatSystem, FiniteMonotoneSystem.iter_succ] using hfixed
 
 theorem groundedExtension_least (af : DefeatAF)
     (s : Finset ArgId) (hs : characteristic af s = s) :

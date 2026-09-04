@@ -33,7 +33,7 @@ inductive EvalResult (af : DefeatAF) where
   | extensions (profile : SemanticProfile) (family : ExtensionFamily)
       (exact : family.carrier = extensionsForProfile profile af)
   | incomplete (profile : SemanticProfile)
-      (partial : IncompleteEvaluation af profile)
+      (partialResult : IncompleteEvaluation af profile)
 
 namespace EvalResult
 

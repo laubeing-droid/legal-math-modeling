@@ -29,14 +29,14 @@ deriving DecidableEq, Repr
 
 inductive Outcome (α : Type*) where
   | complete (value : α)
-  | partial (payload : PartialPayload α)
+  | partialResult (payload : PartialPayload α)
   | failure (failure : FailureCore)
 
 namespace Outcome
 
 protected def map (f : α → β) : Outcome α → Outcome β
   | .complete x => .complete (f x)
-  | .partial p => .partial
+  | .partialResult p => .partialResult
       { value := f p.value
         open := p.open
         open_nonempty := p.open_nonempty }
@@ -46,8 +46,8 @@ protected def map (f : α → β) : Outcome α → Outcome β
     Outcome.map f (.complete x) = .complete (f x) := rfl
 
 @[simp] theorem map_partial (f : α → β) (p : PartialPayload α) :
-    Outcome.map f (.partial p) =
-      .partial
+    Outcome.map f (.partialResult p) =
+      .partialResult
         { value := f p.value
           open := p.open
           open_nonempty := p.open_nonempty } := rfl
@@ -61,7 +61,7 @@ theorem failure_ne_complete (e : FailureCore) (x : α) :
   cases h
 
 theorem partial_ne_complete (p : PartialPayload α) (x : α) :
-    (Outcome.partial p : Outcome α) ≠ Outcome.complete x := by
+    (Outcome.partialResult p : Outcome α) ≠ Outcome.complete x := by
   intro h
   cases h
 

@@ -154,7 +154,7 @@ required. -/
 def adjudicate {af : DefeatAF}
     (input : AdjudicationInput af) : ProcedureAdjudicateResult af.request :=
   match input.evaluation with
-  | .incomplete _ partial => .solverIncomplete partial.open
+  | .incomplete _ partialResult => .solverIncomplete partialResult.open
   | .noExtension _ _ =>
       match input.proceduralOnly, input.authority with
       | some status, _ => .proceduralDisposition status
@@ -174,14 +174,14 @@ def adjudicate {af : DefeatAF}
 
 @[simp] theorem adjudicate_incomplete
     (af : DefeatAF) (profile : SemanticProfile)
-    (partial : IncompleteEvaluation af profile)
+    (partialResult : IncompleteEvaluation af profile)
     (authority : Option (ValidatedAdjudicationAuthority af.request))
     (proceduralOnly : Option (ProceduralStatusFor af.request)) :
     adjudicate
-      { evaluation := EvalResult.incomplete profile partial
+      { evaluation := EvalResult.incomplete profile partialResult
         authority := authority
         proceduralOnly := proceduralOnly } =
-      .solverIncomplete partial.open := rfl
+      .solverIncomplete partialResult.open := rfl
 
 @[simp] theorem noExtension_without_authority_is_pending
     (af : DefeatAF) (profile : SemanticProfile)

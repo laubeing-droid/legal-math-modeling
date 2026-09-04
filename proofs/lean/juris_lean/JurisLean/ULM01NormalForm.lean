@@ -54,7 +54,7 @@ deriving DecidableEq, Repr
 
 inductive EdgeKind where
   | deterministic
-  | partial
+  | partialResult
   | relation
   | stateTransition
   | abstraction

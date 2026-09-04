@@ -41,7 +41,7 @@ structure SemanticCoverage where
 def coverageStatusOf {af : DefeatAF} : EvalResult af → CoverageStatus
   | .noExtension _ _ => .complete
   | .extensions _ _ _ => .complete
-  | .incomplete _ partial => .incomplete partial.open
+  | .incomplete _ partialResult => .incomplete partialResult.open
 
 structure ExecutionReturnCorrectness (af : DefeatAF) where
   result : EvalResult af

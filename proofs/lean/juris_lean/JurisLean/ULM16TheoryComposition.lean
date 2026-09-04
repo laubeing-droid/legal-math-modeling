@@ -258,14 +258,14 @@ theorem CORE_24_sat_sound
 constructor. -/
 theorem CORE_25_incomplete_not_adjudicated
     (af : DefeatAF) (profile : SemanticProfile)
-    (partial : IncompleteEvaluation af profile)
+    (partialResult : IncompleteEvaluation af profile)
     (authority : Option (ValidatedAdjudicationAuthority af.request))
     (proceduralOnly : Option (ProceduralStatusFor af.request)) :
     adjudicate
-      { evaluation := EvalResult.incomplete profile partial
+      { evaluation := EvalResult.incomplete profile partialResult
         authority := authority
         proceduralOnly := proceduralOnly } =
-      .solverIncomplete partial.open :=
-  adjudicate_incomplete af profile partial authority proceduralOnly
+      .solverIncomplete partialResult.open :=
+  adjudicate_incomplete af profile partialResult authority proceduralOnly
 
 end JurisLean.ULM

@@ -31,6 +31,20 @@ def _sha256_of(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _read_json_stream(path: Path) -> List[Dict[str, Any]]:
+    text = path.read_text(encoding="utf-8")
+    decoder = json.JSONDecoder()
+    documents = []
+    offset = 0
+    while offset < len(text):
+        while offset < len(text) and text[offset].isspace():
+            offset += 1
+        if offset < len(text):
+            document, offset = decoder.raw_decode(text, offset)
+            documents.append(document)
+    return documents
+
+
 def verify_certificate(
     certificate_path: Path,
     *,
@@ -119,6 +133,30 @@ def verify_certificate(
                 errors.append("MUTATION_SUBJECT_MISMATCH")
         else:
             errors.append("MISSING_MUTATION_REPORT")
+
+        runtime_path = evidence_dir / "runtime-refinement-report.json"
+        if runtime_path.is_file():
+            try:
+                runtime_reports = _read_json_stream(runtime_path)
+            except (json.JSONDecodeError, TypeError):
+                runtime_reports = []
+                errors.append("INVALID_RUNTIME_REFINEMENT_REPORT")
+            expected_reports = len(
+                list((Path(repo_root) / "runtime/refinement_cases").glob("*.expected.json"))
+            )
+            if len(runtime_reports) != expected_reports:
+                errors.append("RUNTIME_REFINEMENT_REPORT_COUNT_MISMATCH")
+            if any(
+                report.get("passed") is not True
+                or report.get("blocked") is not False
+                or bool(report.get("error_codes"))
+                for report in runtime_reports
+            ):
+                errors.append("RUNTIME_REFINEMENT_NOT_PASS")
+            if not any(code.startswith("RUNTIME_REFINEMENT") for code in errors):
+                checks.append("Runtime refinement reports content-checked independently.")
+        else:
+            errors.append("MISSING_RUNTIME_REFINEMENT_REPORT")
 
     status = certificate.get("status")
     if errors:

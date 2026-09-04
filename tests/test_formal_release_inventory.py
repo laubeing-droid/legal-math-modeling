@@ -67,9 +67,12 @@ def test_release_certificate_binds_ci_subject_without_verifier_self_reference(tm
         "lean-guard-report.json",
         "pytest-collection.txt",
         "pytest-full.log",
-        "runtime-refinement-report.json",
     ):
         (tmp_path / name).write_text("bound evidence\n", encoding="utf-8")
+    passing_runtime = {"passed": True, "blocked": False, "error_codes": [], "checks": []}
+    (tmp_path / "runtime-refinement-report.json").write_text(
+        "\n".join(json.dumps(passing_runtime) for _ in range(3)), encoding="utf-8"
+    )
 
     certificate = assemble_release_certificate(REPO_ROOT, ci_evidence_dir=tmp_path)
     certificate_path = tmp_path / "formal-release-certificate.json"
@@ -82,3 +85,21 @@ def test_release_certificate_binds_ci_subject_without_verifier_self_reference(tm
     assert "missing_ci_evidence" not in certificate
     assert report["verdict"] == "VERIFIED_PENDING_RELEASE_GATE"
     assert report["error_codes"] == []
+
+    blocked_runtime = {
+        "passed": False,
+        "blocked": True,
+        "error_codes": ["MISSING_ACTUAL_RECEIPT"],
+        "checks": [],
+    }
+    (tmp_path / "runtime-refinement-report.json").write_text(
+        "\n".join(json.dumps(blocked_runtime) for _ in range(3)), encoding="utf-8"
+    )
+    certificate = assemble_release_certificate(REPO_ROOT, ci_evidence_dir=tmp_path)
+    certificate_path.write_text(json.dumps(certificate), encoding="utf-8")
+    blocked_report = verify_certificate(
+        certificate_path, repo_root=REPO_ROOT, ci_evidence_dir=tmp_path
+    )
+
+    assert blocked_report["verdict"] == "VERIFICATION_FAILED"
+    assert "RUNTIME_REFINEMENT_NOT_PASS" in blocked_report["error_codes"]

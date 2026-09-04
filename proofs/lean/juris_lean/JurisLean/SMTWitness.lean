@@ -56,6 +56,6 @@ theorem sat_preferred_over_unsat (model : SMTModelWitness)
 theorem smt_unknown_not_decisive :
     outcomeDecisive (smtOutcome (none : Option SMTModelWitness)
       (none : Option SMTProofReceipt)) = false := by
-  dsimp [smtOutcome]
+  simp [smtOutcome, outcomeDecisive]
 
 end JurisLean

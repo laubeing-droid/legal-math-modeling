@@ -68,7 +68,6 @@ theorem missing_rounding_not_decisive :
 theorem explicit_rounding_decisive (p : RoundingPolicy) :
     decisiveWithRounding (some p) := by
   dsimp [decisiveWithRounding]
-  rfl
 
 /-- 中文证明：空 currency 的金额不 well-formed。 -/
 theorem currencyless_amount_not_well_formed (units : Int) :

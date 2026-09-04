@@ -17,7 +17,8 @@ import Mathlib.Tactic.Common
 import JurisLean.ArgumentSemanticsRegistry
 
 /-!
-# Unified Legal Model — executable normal-form vocabulary
+# Unified Legal Model — executable normal-form vocabulary (forcibly retouched for fresh re-elaboration)
+
 
 This module reuses the repository's existing argumentation-profile type and fixes
 only the structural vocabulary needed by the sixteen-module package.  Digests and

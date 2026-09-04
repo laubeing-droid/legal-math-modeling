@@ -84,7 +84,7 @@ theorem uncertain_spec_not_decisive (s : LegalSpec) (r : LegalSpecRule)
   split
   · decide
   · rename_i hno
-    exact hno ⟨r, hmem, huncertain⟩
+    exact False.elim (hno ⟨r, hmem, huncertain⟩)
 
 /-- 中文证明：无不确定字段的 spec lowering 后 failure state 为 none。 -/
 theorem certain_spec_lowering_clean (s : LegalSpec)

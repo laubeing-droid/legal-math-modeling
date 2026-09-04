@@ -58,7 +58,7 @@ theorem stage_preserves_taint (x : FormalInput) (rest : List FormalInput)
     (stageOutput (x :: rest) conclusion).taint = .tainted := by
   dsimp [stageOutput, taintOfInputs]
   rw [ht]
-  exact join_with_tainted_is_tainted (taintOfInputs rest)
+  cases (taintOfInputs rest) <;> rfl
 
 /-- 中文证明：全 clean 输入产生 clean 输出（noninterference 正向）。 -/
 theorem all_clean_inputs_clean_output (inputs : List FormalInput)

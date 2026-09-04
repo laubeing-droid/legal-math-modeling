@@ -30,13 +30,11 @@ def aspOutcome (w : Option ASPWitness) : SolverOutcome :=
 theorem absent_witness_not_unsat :
     aspOutcome (none : Option ASPWitness) ≠ .unsat := by
   dsimp [aspOutcome]
-  decide
 
 /-- 中文证明：无 witness 映射为 unknown（fail-closed）。 -/
 theorem absent_witness_is_unknown :
     aspOutcome (none : Option ASPWitness) = .unknown := by
   dsimp [aspOutcome]
-  decide
 
 /-- 中文证明：存在 witness 时结果为 sat。 -/
 theorem witness_present_is_sat (w : ASPWitness) :

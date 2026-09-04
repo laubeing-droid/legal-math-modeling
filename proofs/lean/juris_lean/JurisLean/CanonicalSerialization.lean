@@ -16,14 +16,14 @@ structure CanonicalCollection where
 
 /-- 中文说明：空 canonical collection。 -/
 def CanonicalCollection.empty : CanonicalCollection :=
-  { entries := [], nodupEntries := List.Nodup.nil }
+  { entries := [], nodupEntries := List.nodup_nil }
 
 /-- 中文说明：幂等并入：元素已存在时集合保持不变。 -/
 def CanonicalCollection.adjoin (c : CanonicalCollection) (a : String) : CanonicalCollection :=
   if h : a ∈ c.entries then
     c
   else
-    { entries := a :: c.entries, nodupEntries := List.Nodup.cons h c.nodupEntries }
+    { entries := a :: c.entries, nodupEntries := List.nodup_cons.mpr ⟨h, c.nodupEntries⟩ }
 
 /-- 中文说明：canonical token：序列化单元是 key-value 对。 -/
 structure CanonicalToken where

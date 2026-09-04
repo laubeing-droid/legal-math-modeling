@@ -109,6 +109,6 @@ theorem consensus_does_not_escalate (l : AuthorityLevel) (n : Nat) :
     exact Nat.zero_le (authorityRank l)
   | succ n ih =>
     dsimp [consensusRank, List.replicate]
-    exact Nat.max_le le_rfl ih
+    exact Nat.max_le.mpr ⟨le_rfl, ih⟩
 
 end JurisLean

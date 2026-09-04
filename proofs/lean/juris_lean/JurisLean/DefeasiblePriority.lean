@@ -67,12 +67,13 @@ theorem missing_priority_no_winner (ps : List PriorityPair)
     (a b : LegalId .rule) (hn1 : (a, b) ∉ ps) (hn2 : (b, a) ∉ ps) :
     resolvePriority ps a b = none := by
   dsimp [resolvePriority]
-  split
-  · contradiction
-  · split
-    · contradiction
-    · split
-      · contradiction
+  by_cases hcyc : (a, b) ∈ ps ∧ (b, a) ∈ ps
+  · rcases hcyc with ⟨h1a, _⟩
+    exact (hn1 h1a).elim
+  · by_cases hf : (a, b) ∈ ps
+    · exact (hn1 hf).elim
+    · by_cases hr : (b, a) ∈ ps
+      · exact (hn2 hr).elim
       · rfl
 
 /-- 中文证明：conditional priority 未激活时不参与决胜（建模为过滤）。 -/

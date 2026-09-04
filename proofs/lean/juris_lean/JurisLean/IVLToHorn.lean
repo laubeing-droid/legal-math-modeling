@@ -39,7 +39,7 @@ theorem horn_lowering_preserves_conclusion (m : LegalIVL) (r : IVLRule)
     (hmem : r ∈ m.rules) :
     ∃ c ∈ (ivlToHorn m).clauses, c.conclusion = r.conclusion ∧ c.ruleId = r.id := by
   dsimp [ivlToHorn]
-  exact ⟨_, List.mem_map_of_mem _ hmem, rfl, rfl⟩
+  exact ⟨_, List.mem_map.mpr ⟨r, hmem, rfl⟩, rfl, rfl⟩
 
 /-- 中文证明：Horn lowering 无输入之外的子句（no-spurious）。 -/
 theorem horn_lowering_no_spurious (m : LegalIVL) (c : HornClause)

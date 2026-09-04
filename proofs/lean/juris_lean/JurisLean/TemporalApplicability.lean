@@ -67,7 +67,7 @@ theorem effective_at_left_boundary (v : SourceVersionRecord)
     | none => trivial
     | some upper =>
       dsimp [SourceVersionRecord.intervalValid] at hv
-      simpa using hv
+      simpa [SourceVersionRecord.intervalValid] using hv
 
 /-- 中文证明：早于左端点的时点不在生效区间内。 -/
 theorem before_effective_interval_not_effective (v : SourceVersionRecord) (t : Int)

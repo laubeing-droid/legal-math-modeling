@@ -99,18 +99,18 @@ def singletonEmptyFamily : ExtensionFamily :=
 structure ScenarioKey where
   request : RequestKey
   assumptions : Finset String
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure SemanticBranchKey where
   scenario : ScenarioKey
   profile : SemanticProfile
   extension : Finset ArgId
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure BranchArtifact where
   branch : SemanticBranchKey
   claims : Finset (JurisLean.LegalId .claim)
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 def ComposableAsOneLegalOutcome (x y : BranchArtifact) : Prop :=
   x.branch = y.branch

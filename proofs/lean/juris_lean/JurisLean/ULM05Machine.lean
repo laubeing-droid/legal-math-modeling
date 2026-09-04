@@ -9,7 +9,7 @@ structure RunConfig where
   active : Finset NFNode
   completedEdges : Finset NFEdge
   phase : Nat
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 inductive SemResult where
   | settled (request : RequestKey) (active : Finset NFNode)

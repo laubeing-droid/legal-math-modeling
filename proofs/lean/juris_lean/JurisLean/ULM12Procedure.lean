@@ -8,7 +8,7 @@ structure ProofStandard where
   standardId : String
   domain : String
   version : JurisLean.SchemaVersion
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 inductive LegalStatusKind where
   | claimSupported
@@ -16,13 +16,13 @@ inductive LegalStatusKind where
   | procedureMoved
   | procedureDismissed
   | undecided
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure LegalStatus where
   kind : LegalStatusKind
   proposition : String
   request : RequestKey
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 def LegalStatus.isProcedural (s : LegalStatus) : Bool :=
   match s.kind with
@@ -35,7 +35,7 @@ structure BurdenRule where
   standard : ProofStandard
   successConsequence : LegalStatus
   failureConsequence : LegalStatus
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 inductive ProcedureStage where
   | initial
@@ -44,13 +44,13 @@ inductive ProcedureStage where
   | heard
   | expired
   | institutionallyDecided
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure ProcedureState where
   request : RequestKey
   stage : ProcedureStage
   normativeMarker : String
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 inductive ProcedureCause where
   | filing
@@ -58,7 +58,7 @@ inductive ProcedureCause where
   | hearing
   | expiry
   | institutionalDecision
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 def ProcedureCause.targetStage : ProcedureCause → ProcedureStage
   | .filing => .filed
@@ -80,13 +80,13 @@ def applyProcedureCause (cause : ProcedureCause)
 inductive ProofFinding where
   | satisfied
   | unmet
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure AdjudicationAuthority where
   rule : BurdenRule
   finding : ProofFinding
   reviewer : String
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 /-- Authority is valid only for the exact request being adjudicated. Burden
 success/failure consequences are entity/non-procedural outputs; procedure-only

@@ -7,14 +7,14 @@ namespace JurisLean.ULM
 structure NotApplicableEvidence where
   obligation : String
   reason : String
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 /-- Coverage is represented by its still-open obligations and its explicit
 not-applicability evidence. Aggregation never discards either carrier. -/
 structure CoverageStatus where
   open : Finset OpenObligation
   notApplicable : Finset NotApplicableEvidence
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 namespace CoverageStatus
 
@@ -52,7 +52,7 @@ structure AuditLifecycleCoverage where
   ledgerComplete : Bool
   occurrenceComplete : Bool
   successorComplete : Bool
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 theorem incomplete_not_complete
     {open : Finset OpenObligation} (h : open.Nonempty) :
@@ -73,7 +73,7 @@ structure TrustVector where
   fact : TrustLevel
   proof : TrustLevel
   authority : TrustLevel
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 def TrustVector.meet (a b : TrustVector) : TrustVector :=
   { source := min a.source b.source
@@ -103,26 +103,26 @@ inductive SpecStatus where
   | proved
   | assumed
   | open
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 inductive ImplementationAssurance where
   | crossCheckOnly
   | tcbSpecified
   | kernelVerified
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 inductive RunCheckStatus where
   | checked
   | unchecked
   | checkFailed
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 /-- Pending and assumed legal-input references are independent carriers. This
 prevents a pending status from silently dropping assumptions already used. -/
 structure LegalInputStatus where
   pendingRefs : Finset String
   assumedRefs : Finset String
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 namespace LegalInputStatus
 
@@ -143,7 +143,7 @@ end LegalInputStatus
 structure AssuranceScope where
   request : RequestKey
   profile : SemanticProfile
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure AssuranceEnvelope where
   spec : SpecStatus
@@ -156,7 +156,7 @@ structure AssuranceEnvelope where
   formalAssumptionRefs : Finset String
   tcbRefs : Finset String
   notices : Finset OpenObligation
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 def combineSpec : SpecStatus → SpecStatus → SpecStatus
   | .open, _ => .open

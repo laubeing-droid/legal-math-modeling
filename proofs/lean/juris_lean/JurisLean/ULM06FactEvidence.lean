@@ -9,19 +9,19 @@ inductive Establishment where
   | established
   | notEstablished
   | undetermined
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 inductive ContestStatus where
   | uncontested
   | contested
   | resolved
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 inductive PremisePermission where
   | strictPremise
   | argumentOnly
   | prohibited
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure FactAssessment where
   fact : JurisLean.LegalId .fact
@@ -29,21 +29,21 @@ structure FactAssessment where
   contest : ContestStatus
   permission : PremisePermission
   request : RequestKey
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure EvidenceToken where
   evidenceId : String
   fact : JurisLean.LegalId .fact
   source : JurisLean.SourceLocator
   request : RequestKey
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure AssumptionWitness where
   assumptionId : String
   fact : JurisLean.LegalId .fact
   request : RequestKey
   scope : String
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 /-- Reuse the repository's formal fact-attestation object for unconditional
 premises; assumptions remain a different constructor. -/
@@ -81,7 +81,7 @@ structure TaggedAtom where
   request : RequestKey
   atom : String
   dependencies : Finset String
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 def tagPremise (p : PremiseToken) : TaggedAtom :=
   { request := p.request

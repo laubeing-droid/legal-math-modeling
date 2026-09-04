@@ -28,11 +28,11 @@ inductive CoreId where
   | core11 | core12 | core13 | core14 | core15
   | core16 | core17 | core18 | core19 | core20
   | core21 | core22 | core23 | core24 | core25
-  deriving DecidableEq, Repr
+  deriving DecidableEq
 
 inductive CompId where
   | c01 | c02 | c03 | c04
-  deriving DecidableEq, Repr
+  deriving DecidableEq
 
 /-- Ownership is an index, not evidence that the whole family has been proved. -/
 def coreOwner : CoreId → String

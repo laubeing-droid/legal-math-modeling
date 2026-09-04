@@ -12,7 +12,7 @@ structure DefeatAF where
   request : RequestKey
   args : Finset ArgId
   defeats : Finset (ArgId × ArgId)
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 /-- Every argument and defeat endpoint belongs to the same request-bound finite
 carrier; every argument also satisfies the independent support-graph contract. -/

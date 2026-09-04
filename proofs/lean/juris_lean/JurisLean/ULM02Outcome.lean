@@ -7,7 +7,7 @@ namespace JurisLean.ULM
 structure OpenObligation where
   code : String
   detail : String
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 /-- A partial result must disclose at least one still-open obligation. -/
 structure PartialPayload (α : Type*) where
@@ -19,13 +19,13 @@ inductive FailureTag where
   | unsupported
   | recoverable
   | hardFail
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure FailureCore where
   tag : FailureTag
   reason : String
   request : RequestKey
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 inductive Outcome (α : Type*) where
   | complete (value : α)

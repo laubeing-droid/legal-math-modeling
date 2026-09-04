@@ -12,14 +12,14 @@ inductive AttackKind where
   | authorityAttack
   | scopeAttack
   | procedureAttack
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure TypedAttackV1 where
   attacker : CanonicalArgument
   target : CanonicalArgument
   kind : AttackKind
   witness : String
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 def AttackWF (a : TypedAttackV1) : Prop :=
   a.witness ≠ "" ∧ a.attacker.request = a.target.request
@@ -88,7 +88,7 @@ structure QueryRefutation where
   request : RequestKey
   refuter : JurisLean.LegalId .claim
   target : JurisLean.LegalId .claim
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 def QueryRefutation.WellFormed (r : QueryRefutation) : Prop :=
   r.refuter ≠ r.target

@@ -20,7 +20,7 @@ inductive ObligationKind where
   | termination
   | confluence
   | observationDeclaration
-  deriving DecidableEq, Repr
+  deriving DecidableEq
 
 /-- Every executable kind has an irreducible baseline; specialised kinds add
 obligations rather than deleting the baseline. -/
@@ -69,13 +69,13 @@ structure ProofSubject where
   edge : NFEdge
   obligation : ObligationKind
   registryVersion : JurisLean.SchemaVersion
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure ProofEvidence where
   subject : ProofSubject
   evidenceKind : ObligationKind
   payload : String
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure VerifierEntry where
   verifierId : String

@@ -7,12 +7,12 @@ namespace JurisLean.ULM
 structure DomainOutcome where
   request : RequestKey
   outcomeId : String
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure DomainBundle where
   branch : SemanticBranchKey
   candidates : Finset DomainOutcome
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 def DomainBundle.WF (bundle : DomainBundle) : Prop :=
   ∀ candidate ∈ bundle.candidates,
@@ -27,7 +27,7 @@ structure CompositionChoice where
   branch : SemanticBranchKey
   policyId : String
   selected : Finset DomainOutcome
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 /-- The actual bundle and actual policy both constrain a valid choice. -/
 structure ChoiceWF
@@ -86,12 +86,12 @@ theorem choice_wf_policy_bound
 structure BranchChoiceKey where
   policyId : String
   selected : Finset DomainOutcome
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure ChildBranchKey where
   parent : SemanticBranchKey
   choice : BranchChoiceKey
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 def choiceKey (choice : CompositionChoice) : BranchChoiceKey :=
   { policyId := choice.policyId, selected := choice.selected }
@@ -109,7 +109,7 @@ inductive DurationUnit where
   | day
   | month
   | year
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 /-- Currency, duration unit, and rate basis are part of the type index. Thus an
 addition cannot even be formed for RMB and USD or for days and months. -/
@@ -118,7 +118,7 @@ inductive Dimension where
   | money (currency : String)
   | duration (unit : DurationUnit)
   | rate (basis : String)
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 inductive ExactExpr : Dimension → Type where
   | lit (d : Dimension) (value : ℚ) : ExactExpr d

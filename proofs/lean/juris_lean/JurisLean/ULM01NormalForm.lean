@@ -38,7 +38,7 @@ inductive Layer where
   | procedure
   | empirical
   | integration
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 inductive NodeKind where
   | fact
@@ -51,7 +51,7 @@ inductive NodeKind where
   | consequence
   | calculation
   | empiricalArtifact
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 inductive EdgeKind where
   | deterministic
@@ -62,7 +62,7 @@ inductive EdgeKind where
   | probabilityKernel
   | ranker
   | exactCalculation
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 inductive ClaimKind where
   | typeSafety
@@ -80,7 +80,7 @@ inductive ClaimKind where
   | dimension
   | termination
   | confluence
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 inductive PositionStage where
   | candidate
@@ -88,7 +88,7 @@ inductive PositionStage where
   | extensionSupported
   | adjudicated
   | committed
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure ContextKey where
   caseScope : JurisLean.CaseScope
@@ -96,7 +96,7 @@ structure ContextKey where
   scenario : String
   baseVersion : JurisLean.SchemaVersion
   subjectVersion : JurisLean.SemanticsVersion
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 /-- The run scope must belong to the same case as the enclosing context. -/
 def ContextKey.WellFormed (k : ContextKey) : Prop :=
@@ -107,7 +107,7 @@ structure RequestKey where
   profile : SemanticProfile
   query : JurisLean.LegalId .claim
   mappingVersion : JurisLean.SchemaVersion
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 /-- A request is well formed exactly when its run scope belongs to its case. -/
 def RequestKey.WellFormed (r : RequestKey) : Prop :=
@@ -118,7 +118,7 @@ structure NormalForm where
   facts : Finset (JurisLean.LegalId .fact)
   rules : Finset (JurisLean.LegalId .rule)
   activeDomains : Finset String
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 /-- Observation preservation is stated independently of the implementation. -/
 def Preserves {α β γ : Type*}

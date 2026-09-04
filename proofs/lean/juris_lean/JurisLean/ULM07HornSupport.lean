@@ -40,7 +40,7 @@ structure PositionCandidate where
   claim : JurisLean.LegalId .claim
   request : RequestKey
   support : Finset TaggedAtom
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 def CandidateWF (sys : TaggedHornSystem) (c : PositionCandidate) : Prop :=
   c.request = sys.request ∧ c.support ⊆ supportClosure sys

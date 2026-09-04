@@ -9,7 +9,7 @@ an implementation-refinement obligation, not silently claimed by this skeleton. 
 structure NFNode where
   kind : NodeKind
   ident : String
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure NFEdge where
   ident : String
@@ -18,13 +18,13 @@ structure NFEdge where
   src : Finset NFNode
   tgt : Finset NFNode
   claims : Finset ClaimKind
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 structure TypedGraph where
   request : RequestKey
   nodes : Finset NFNode
   edges : Finset NFEdge
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 /-- Incidence, request identity, and carrier membership are explicit. -/
 def EdgeWF (g : TypedGraph) (e : NFEdge) : Prop :=
@@ -43,7 +43,7 @@ structure ConnectWitness (left right : NFEdge) where
 structure LocalState where
   request : RequestKey
   active : Finset NFNode
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 /-- An edge is enabled only on its own request and when every source is active. -/
 def Enabled (e : NFEdge) (s : LocalState) : Prop :=

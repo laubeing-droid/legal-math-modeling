@@ -11,7 +11,7 @@ structure SupportHyperedge where
   rule : JurisLean.LegalId .rule
   premises : Finset TaggedAtom
   conclusion : TaggedAtom
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 /-- Mathematical argument identity is the full labelled support hypergraph, not
 an uninterpreted digest, a premise set, or a run-local counter. Finsets already
@@ -21,7 +21,7 @@ structure CanonicalArgument where
   conclusion : TaggedAtom
   basePremises : Finset TaggedAtom
   supportEdges : Finset SupportHyperedge
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 /-- Direct support dependency. `premise` is strictly below `conclusion` in a
 well-founded argument. -/
@@ -71,7 +71,7 @@ structure ArgumentWF (a : CanonicalArgument) : Prop where
 structure ArgumentConstructionResult where
   request : RequestKey
   arguments : Finset CanonicalArgument
-deriving DecidableEq, Repr
+deriving DecidableEq
 
 /-- Relative completeness is equality with the finite frozen expected carrier. -/
 def ArgumentCoverage

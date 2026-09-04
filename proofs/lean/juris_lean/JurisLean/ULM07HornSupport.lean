@@ -45,10 +45,11 @@ deriving DecidableEq
 def CandidateWF (sys : TaggedHornSystem) (c : PositionCandidate) : Prop :=
   c.request = sys.request ∧ c.support ⊆ supportClosure sys
 
-def generateCandidates
+noncomputable def generateCandidates
     (sys : TaggedHornSystem) (pool : Finset PositionCandidate) :
-    Finset PositionCandidate :=
-  pool.filter (CandidateWF sys)
+    Finset PositionCandidate := by
+  classical
+  exact pool.filter (CandidateWF sys)
 
 theorem generated_candidate_sound
     {sys : TaggedHornSystem} {pool : Finset PositionCandidate}

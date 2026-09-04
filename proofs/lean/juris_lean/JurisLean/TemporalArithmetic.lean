@@ -57,8 +57,8 @@ theorem intersection_some_is_valid (a b : DayInterval) (i : DayInterval)
   dsimp [intervalIntersection] at hinter
   split at hinter
   · rename_i h
-    injection hinter with hf ht
-    rw [← hf, ← ht]
+    injection hinter with hf
+    rw [← hf]
     exact h
   · contradiction
 
@@ -69,8 +69,8 @@ theorem intersection_contained_in_both (a b i : DayInterval)
   dsimp [intervalIntersection] at hinter
   split at hinter
   · rename_i _h
-    injection hinter with hf ht
-    rw [← hf, ← ht] at hd
+    injection hinter with hf
+    rw [← hf] at hd
     dsimp [DayInterval.contains] at hd ⊢
     constructor
     · exact ⟨le_trans (le_max_left _ _) hd.1, le_trans hd.2 (min_le_left _ _)⟩
@@ -83,8 +83,8 @@ theorem disjoint_intervals_no_intersection (a b : DayInterval)
   dsimp [intervalIntersection]
   split
   · rename_i h
-    exact not_le_of_gt hsep
-      (le_trans (le_trans (le_max_right _ _) h) (min_le_left _ _))
+    exact False.elim (not_le_of_gt hsep
+      (le_trans (le_trans (le_max_right _ _) h) (min_le_left _ _)))
   · rfl
 
 end JurisLean

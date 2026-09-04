@@ -32,7 +32,7 @@ theorem asp_lowering_covers_rules (m : LegalIVL) (r : IVLRule)
     (hmem : r ∈ m.rules) :
     ASPItem.ruleHead r.conclusion r.premises ∈ (ivlToASP m).items := by
   dsimp [ivlToASP]
-  exact List.mem_append.mpr (Or.inl (List.mem_map_of_mem _ hmem))
+  exact List.mem_append.mpr (Or.inl (List.mem_map.mpr ⟨r, hmem, rfl⟩))
 
 /-- 中文证明：每条 IVL priority 都在 ASP 程序中有对应约束（不遗漏）。 -/
 theorem asp_lowering_covers_priorities (m : LegalIVL) (p : IVLPriority)
@@ -40,7 +40,7 @@ theorem asp_lowering_covers_priorities (m : LegalIVL) (p : IVLPriority)
     ASPItem.priorityConstraint p.higher.payload p.lower.payload ∈
       (ivlToASP m).items := by
   dsimp [ivlToASP]
-  exact List.mem_append.mpr (Or.inr (List.mem_map_of_mem _ hmem))
+  exact List.mem_append.mpr (Or.inr (List.mem_map.mpr ⟨p, hmem, rfl⟩))
 
 /-- 中文证明：ASP 条目数量等于规则数加优先级数（无伪造条目）。 -/
 theorem asp_lowering_size (m : LegalIVL) :

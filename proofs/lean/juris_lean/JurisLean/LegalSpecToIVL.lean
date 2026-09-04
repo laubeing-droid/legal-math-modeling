@@ -58,7 +58,7 @@ theorem lowering_preserves_rule_ids (s : LegalSpec) :
   dsimp [lowerSpec, specRuleIds, lowerRule]
   induction s.rules with
   | nil => rfl
-  | cons r rs ih => simp [List.map, ih]
+  | cons r rs ih => simp [List.map, specRuleIds, lowerRule, ih]
 
 /-- 中文证明：lowering 保持结论（语义字段不丢失）。 -/
 theorem lowering_preserves_conclusions (r : LegalSpecRule) :
@@ -84,7 +84,7 @@ theorem uncertain_spec_not_decisive (s : LegalSpec) (r : LegalSpecRule)
   split
   · decide
   · rename_i hno
-    exact hno ⟨r, hmem, huncertain⟩
+    exact False.elim (hno ⟨r, hmem, huncertain⟩)
 
 /-- 中文证明：无不确定字段的 spec lowering 后 failure state 为 none。 -/
 theorem certain_spec_lowering_clean (s : LegalSpec)
@@ -94,8 +94,8 @@ theorem certain_spec_lowering_clean (s : LegalSpec)
   split
   · rename_i hexists
     rcases hexists with ⟨r, hmem, hpos⟩
-    have hzero := hall r hmem
-    exact Nat.lt_irrefl 0 (hzero ▸ hpos)
+    rw [hall r hmem] at hpos
+    exact False.elim (Nat.lt_irrefl 0 hpos)
   · rfl
 
 end JurisLean

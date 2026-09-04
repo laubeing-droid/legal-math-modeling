@@ -59,6 +59,6 @@ theorem aaf_nodes_from_rules (m : LegalIVL) (n : String)
     ∃ r ∈ m.rules, r.conclusion = n := by
   dsimp [ivlToAAF] at hmem
   rcases List.mem_map.mp hmem with ⟨r, hr, heq⟩
-  exact ⟨r, hr, heq.symm⟩
+  exact ⟨r, hr, heq⟩
 
 end JurisLean

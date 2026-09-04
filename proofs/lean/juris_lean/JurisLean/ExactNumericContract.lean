@@ -45,18 +45,12 @@ def decisiveWithRounding (policy : Option RoundingPolicy) : Prop :=
 /-- 中文证明：除零 fail-closed。 -/
 theorem division_by_zero_fail_closed (num : Int) :
     divideExact num 0 = none := by
-  dsimp [divideExact]
-  split
-  · rfl
-  · contradiction
+  simp [divideExact]
 
 /-- 中文证明：非零除数返回结构化有理对。 -/
 theorem division_by_nonzero_structured (num den : Int) (h : den ≠ 0) :
     divideExact num den = some (num, den) := by
-  dsimp [divideExact]
-  split
-  · contradiction
-  · rfl
+  rw [divideExact, dif_neg h]
 
 /-- 中文证明：越界值不在范围内（out-of-range fail-closed 的判定面）。 -/
 theorem out_of_range_not_in_range (v lo hi : Int) (h : hi < v) :
@@ -74,7 +68,6 @@ theorem missing_rounding_not_decisive :
 theorem explicit_rounding_decisive (p : RoundingPolicy) :
     decisiveWithRounding (some p) := by
   dsimp [decisiveWithRounding]
-  rfl
 
 /-- 中文证明：空 currency 的金额不 well-formed。 -/
 theorem currencyless_amount_not_well_formed (units : Int) :

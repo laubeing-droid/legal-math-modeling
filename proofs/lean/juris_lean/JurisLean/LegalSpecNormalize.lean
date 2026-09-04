@@ -1,3 +1,4 @@
+import Mathlib.Data.List.Basic
 import JurisLean.LegalSpec
 import JurisLean.LegalSpecWellFormed
 
@@ -37,7 +38,7 @@ theorem normalize_idempotent (s : LegalSpec) :
 theorem normalize_no_spurious_rules (s : LegalSpec) (r : LegalSpecRule)
     (hmem : r ∈ s.normalize.rules) : r ∈ s.rules := by
   dsimp [LegalSpec.normalize] at hmem
-  exact List.mem_of_mem_filter _ hmem
+  exact List.mem_of_mem_filter hmem
 
 /-- 中文证明：归一化保持规则级 well-formedness（结论字段不被触碰）。 -/
 theorem normalize_preserves_rule_wf (s : LegalSpec)
@@ -58,6 +59,7 @@ theorem dropped_rule_has_empty_locator (s : LegalSpec) (r : LegalSpecRule)
     have hinf : r ∈ s.rules.filter locatedRule := by
       rw [List.mem_filter]
       exact ⟨hmem, hkeep⟩
+    exfalso
     exact habsent hinf
 
 end JurisLean

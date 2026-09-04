@@ -36,7 +36,6 @@ theorem absent_witness_not_unsat :
 theorem absent_witness_is_unknown :
     aspOutcome (none : Option ASPWitness) = .unknown := by
   dsimp [aspOutcome]
-  decide
 
 /-- 中文证明：存在 witness 时结果为 sat。 -/
 theorem witness_present_is_sat (w : ASPWitness) :

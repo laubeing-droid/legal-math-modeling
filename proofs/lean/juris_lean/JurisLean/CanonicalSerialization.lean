@@ -1,3 +1,4 @@
+import Mathlib.Data.List.Basic
 import JurisLean.LegalIds
 
 /-!
@@ -15,14 +16,14 @@ structure CanonicalCollection where
 
 /-- 中文说明：空 canonical collection。 -/
 def CanonicalCollection.empty : CanonicalCollection :=
-  { entries := [], nodupEntries := List.Nodup.nil }
+  { entries := [], nodupEntries := List.nodup_nil }
 
 /-- 中文说明：幂等并入：元素已存在时集合保持不变。 -/
 def CanonicalCollection.adjoin (c : CanonicalCollection) (a : String) : CanonicalCollection :=
   if h : a ∈ c.entries then
     c
   else
-    { entries := a :: c.entries, nodupEntries := List.Nodup.cons h c.nodupEntries }
+    { entries := a :: c.entries, nodupEntries := List.nodup_cons.mpr ⟨h, c.nodupEntries⟩ }
 
 /-- 中文说明：canonical token：序列化单元是 key-value 对。 -/
 structure CanonicalToken where
@@ -49,15 +50,9 @@ theorem adjoin_idempotent_of_mem {c : CanonicalCollection} {a : String}
 /-- 中文证明：两次 adjoin 同一元素与一次相同（幂等闭合）。 -/
 theorem adjoin_adjoin_idempotent (c : CanonicalCollection) (a : String) :
     (c.adjoin a).adjoin a = c.adjoin a := by
-  dsimp [CanonicalCollection.adjoin]
-  split
-  · rfl
-  · rename_i hnot
-    dsimp [CanonicalCollection.adjoin] at hnot
-    split at hnot
-    · contradiction
-    · exfalso
-      exact hnot (List.mem_cons.mpr (Or.inl rfl))
+  by_cases h : a ∈ c.entries
+  · simp [CanonicalCollection.adjoin, h]
+  · simp [CanonicalCollection.adjoin, h]
 
 /-- 中文证明：已有条目在 adjoin 后仍然保留。 -/
 theorem adjoin_preserves_membership {c : CanonicalCollection} (a x : String)
@@ -81,7 +76,9 @@ theorem serialization_round_trip (tokens : List CanonicalToken) :
   induction tokens with
   | nil => rfl
   | cons t ts ih =>
-    simp [serializeTokens, parseTokens, ih]
+    cases t with
+    | mk key value =>
+      simpa [serializeTokens, parseTokens, List.map_map] using ih
 
 /-- 中文证明：round-trip 保持每个 token 的键与值（逐字段忠实）。 -/
 theorem serialization_preserves_fields (t : CanonicalToken) :

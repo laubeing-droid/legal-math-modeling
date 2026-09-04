@@ -36,22 +36,22 @@ def fact_in_kripke {n : Nat} (K : KripkeStructure n) (f : Nat) : Prop :=
 -- Layer 2a: Horn Domain (forward closure)
 -- ============================================================
 
-structure HornRule where
+structure HornRuleLegacy where
   id : Nat
   premises : Finset Nat
   head : Nat
   deriving DecidableEq
 
-def is_fireable (rule : HornRule) (facts : Finset Nat) : Prop :=
+def is_fireable (rule : HornRuleLegacy) (facts : Finset Nat) : Prop :=
   ∀ p ∈ rule.premises, p ∈ facts
 
-instance (rule : HornRule) (facts : Finset Nat) :
+instance (rule : HornRuleLegacy) (facts : Finset Nat) :
     Decidable (is_fireable rule facts) :=
   Finset.decidableDforallFinset
 
 -- Horn step: add heads of all fireable rules
 -- Redefined to avoid Finset.fold issues
-def horn_step (rules : List HornRule) (facts : Finset Nat) : Finset Nat :=
+def horn_step (rules : List HornRuleLegacy) (facts : Finset Nat) : Finset Nat :=
   match rules with
   | [] => facts
   | r :: rs =>
@@ -60,7 +60,7 @@ def horn_step (rules : List HornRule) (facts : Finset Nat) : Finset Nat :=
     else rest
 
 -- Horn LFP: iterate until fixpoint
-def horn_lfp (rules : List HornRule) (facts : Finset Nat) (max_iter : Nat) : Finset Nat :=
+def horn_lfp (rules : List HornRuleLegacy) (facts : Finset Nat) (max_iter : Nat) : Finset Nat :=
   match max_iter with
   | 0 => facts
   | n + 1 =>
@@ -69,13 +69,13 @@ def horn_lfp (rules : List HornRule) (facts : Finset Nat) (max_iter : Nat) : Fin
     else horn_lfp rules next n
 
 -- is_fireable is monotone in the fact set
-lemma is_fireable_mono {rule : HornRule} {F G : Finset Nat}
+lemma is_fireable_mono {rule : HornRuleLegacy} {F G : Finset Nat}
     (h : F ⊆ G) (hf : is_fireable rule F) : is_fireable rule G := by
   intro p hp
   exact h (hf p hp)
 
 -- horn_step is monotone: F ⊆ G → step(F) ⊆ step(G)
-theorem horn_step_mono {rules : List HornRule} {F G : Finset Nat}
+theorem horn_step_mono {rules : List HornRuleLegacy} {F G : Finset Nat}
     (h : F ⊆ G) : horn_step rules F ⊆ horn_step rules G := by
   induction rules with
   | nil => simp [horn_step]; exact h
@@ -256,7 +256,7 @@ theorem banach_bounded (price target : Nat) (n : Nat) :
 structure UnifiedModel where
   n : Nat
   kripke : KripkeStructure n
-  rules : List HornRule
+  rules : List HornRuleLegacy
   aaf : AAF
   price_bound : Nat
   -- Coherence: each AAF argument corresponds to a Horn rule
@@ -291,7 +291,7 @@ theorem soundness_banach (M : UnifiedModel) (a : Argument)
 -- is in the grounded extension.
 -- This is the completeness direction: derivable rules survive AAF.
 theorem gc2_completeness (M : UnifiedModel)
-    (r : HornRule) (_hr : r ∈ M.rules)
+    (r : HornRuleLegacy) (_hr : r ∈ M.rules)
     (facts : Finset Nat) (_hfire : is_fireable r facts)
     (a : Argument) (_ha_rule : M.rule_to_arg r.id = some a)
     (ha_args : a ∈ M.aaf.args)
@@ -333,7 +333,7 @@ theorem unified_composition_v2 (M : UnifiedModel)
 -- This is the strongest composition theorem we can prove
 -- without assuming hbound.
 theorem full_chain (M : UnifiedModel)
-    (r : HornRule) (_hr : r ∈ M.rules)
+    (r : HornRuleLegacy) (_hr : r ∈ M.rules)
     (facts : Finset Nat) (_hfire : is_fireable r facts)
     (a : Argument) (_ha_rule : M.rule_to_arg r.id = some a)
     (ha_args : a ∈ M.aaf.args)
@@ -352,7 +352,7 @@ theorem full_chain (M : UnifiedModel)
 -- The Horn layer is monotone (adding facts grows the closure)
 -- This guarantees the stratified computation is well-defined:
 -- Horn results feed into AAF without loss of monotonicity.
-theorem horn_monotone (rules : List HornRule) (F G : Finset Nat)
+theorem horn_monotone (rules : List HornRuleLegacy) (F G : Finset Nat)
     (h : F ⊆ G) :
     horn_step rules F ⊆ horn_step rules G :=
   horn_step_mono h

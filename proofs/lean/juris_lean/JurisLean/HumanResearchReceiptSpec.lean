@@ -62,6 +62,7 @@ theorem expired_receipt_invalid {r : HumanResearchReceipt} {nowDay : Int}
 theorem revoked_receipt_invalid {r : HumanResearchReceipt} {nowDay : Int}
     (hrev : r.revoked = true) : ¬ receiptCurrentlyValid r nowDay := by
   intro hv
+  dsimp [receiptCurrentlyValid] at hv
   rw [hrev] at hv
   cases hv.2.2
 

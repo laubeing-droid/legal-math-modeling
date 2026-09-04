@@ -62,7 +62,7 @@ def envelopeWellFormed (e : CertificateEnvelopeV2) : Prop :=
 theorem empty_trace_not_well_formed {e : CertificateEnvelopeV2}
     (htrace : e.traceSteps = 0) : ¬ envelopeWellFormed e := by
   intro hwf
-  dsimp [envelopeTraceNonEmpty] at hwf
+  dsimp [envelopeWellFormed, envelopeTraceNonEmpty] at hwf
   rw [htrace] at hwf
   exact Nat.lt_irrefl 0 hwf.2.2.2
 

@@ -45,16 +45,14 @@ def decisiveWithRounding (policy : Option RoundingPolicy) : Prop :=
 /-- 中文证明：除零 fail-closed。 -/
 theorem division_by_zero_fail_closed (num : Int) :
     divideExact num 0 = none := by
-  dsimp [divideExact]
-  split
+  simp [divideExact]
   · rfl
   · contradiction
 
 /-- 中文证明：非零除数返回结构化有理对。 -/
 theorem division_by_nonzero_structured (num den : Int) (h : den ≠ 0) :
     divideExact num den = some (num, den) := by
-  dsimp [divideExact]
-  split
+  simp [divideExact]
   · contradiction
   · rfl
 

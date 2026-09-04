@@ -58,7 +58,7 @@ theorem lowering_preserves_rule_ids (s : LegalSpec) :
   dsimp [lowerSpec, specRuleIds, lowerRule]
   induction s.rules with
   | nil => rfl
-  | cons r rs ih => simp [List.map, ih]
+  | cons r rs ih => simp [List.map, specRuleIds, lowerRule, ih]
 
 /-- 中文证明：lowering 保持结论（语义字段不丢失）。 -/
 theorem lowering_preserves_conclusions (r : LegalSpecRule) :

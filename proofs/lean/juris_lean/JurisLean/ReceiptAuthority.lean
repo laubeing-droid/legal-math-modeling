@@ -106,6 +106,7 @@ theorem consensus_does_not_escalate (l : AuthorityLevel) (n : Nat) :
   induction n with
   | zero =>
     dsimp [consensusRank, List.replicate]
+    exact Nat.zero_le (authorityRank l)
   | succ n ih =>
     dsimp [consensusRank, List.replicate]
     exact Nat.max_le le_rfl ih

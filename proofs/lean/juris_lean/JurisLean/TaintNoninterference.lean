@@ -50,7 +50,7 @@ theorem tainted_input_taints_collection (x : FormalInput) (xs : List FormalInput
     taintOfInputs (x :: xs) = .tainted := by
   dsimp [taintOfInputs]
   rw [ht]
-  exact join_with_tainted_is_tainted (taintOfInputs xs)
+  cases (taintOfInputs xs) <;> rfl
 
 /-- 中文证明：任一推导阶段保持污点上界：tainted 输入产生 tainted 输出。 -/
 theorem stage_preserves_taint (x : FormalInput) (rest : List FormalInput)

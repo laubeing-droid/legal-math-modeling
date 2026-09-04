@@ -63,7 +63,7 @@ theorem source_guard_not_smt (g : IVLGuard)
     (hkind : g.kind = .source) : lowerGuard g = none := by
   dsimp [lowerGuard]
   split
-  · rw [hkind]; rfl
+  · rw [hkind]
   · rfl
 
 end JurisLean

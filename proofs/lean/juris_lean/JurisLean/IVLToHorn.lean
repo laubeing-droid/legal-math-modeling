@@ -32,7 +32,7 @@ def ivlToHorn (m : LegalIVL) : HornProgram :=
 theorem horn_lowering_preserves_count (m : LegalIVL) :
     (ivlToHorn m).clauses.length = m.rules.length := by
   dsimp [ivlToHorn]
-  rfl
+  simp
 
 /-- 中文证明：Horn lowering 保持每条规则的结论。 -/
 theorem horn_lowering_preserves_conclusion (m : LegalIVL) (r : IVLRule)

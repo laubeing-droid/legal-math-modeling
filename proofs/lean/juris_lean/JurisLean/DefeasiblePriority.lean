@@ -54,11 +54,13 @@ theorem single_direction_priority_wins (ps : List PriorityPair)
     (a b : LegalId .rule) (hab : (a, b) ∈ ps) (hnotrev : (b, a) ∉ ps) :
     resolvePriority ps a b = some a := by
   dsimp [resolvePriority]
-  split
-  · contradiction
-  · split
-    · rfl
-    · contradiction
+  by_cases hfwd : (a, b) ∈ ps
+  · by_cases hcyc2 : (b, a) ∈ ps
+    · exfalso
+      exact hnotrev hcyc2
+    · simp [hfwd, hcyc2]
+  · exfalso
+    exact hfwd hab
 
 /-- 中文证明：无优先级证据时不得默认产生胜者。 -/
 theorem missing_priority_no_winner (ps : List PriorityPair)

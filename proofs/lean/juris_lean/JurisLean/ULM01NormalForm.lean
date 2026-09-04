@@ -9,6 +9,7 @@ import Mathlib.Data.Finset.Filter
 import Mathlib.Data.Finset.Image
 import Mathlib.Data.Finset.Order
 import Mathlib.Data.Finset.Union
+import Mathlib.Data.Finset.Sort
 import Mathlib.Data.Rat.Defs
 import Mathlib.Order.Lattice
 import Mathlib.Order.MinMax

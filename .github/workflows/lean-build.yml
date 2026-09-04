@@ -162,11 +162,11 @@ jobs:
       - name: Collection manifest
         run: python -m pytest tests/ --collect-only -q > pytest-collection.txt
       - name: Full test suite
-        run: python -m pytest tests/ -q -ra 2>&1 | tee pytest-full.log
+        run: set -o pipefail && python -m pytest tests/ -q -ra 2>&1 | tee pytest-full.log
       - name: Lean guard scan
-        run: python scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean 2>&1 | tee lean-guard-report.json
-      - name: Source/theorem inventory
-        run: python scripts/generate_formal_release_certificate.py --repo-root . --output formal-release-certificate.json || true
+        run: set -o pipefail && python scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean 2>&1 | tee lean-guard-report.json
+      - name: Controlled checker-input mutation gate
+        run: python scripts/run_mutation_property_gate.py --repo-root . --output mutation-property-report.json
       - name: Runtime refinement verifier (expected-only, fail-closed without receipts)
         run: |
           for fixture in runtime/refinement_cases/*.expected.json; do
@@ -181,7 +181,7 @@ jobs:
             pytest-collection.txt
             pytest-full.log
             lean-guard-report.json
-            formal-release-certificate.json
+            mutation-property-report.json
             runtime-refinement-report.json
           retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
 
@@ -203,13 +203,15 @@ jobs:
       - name: Flatten evidence artifacts
         run: |
           mkdir -p ci-evidence-flat
-          find ci-evidence -type f -exec cp -n {} ci-evidence-flat/ \;
+          find ci-evidence -type f -exec cp -f {} ci-evidence-flat/ \;
       - name: Build run identity
-        run: python scripts/ci/build_run_identity.py --repo-root . --artifact-dir ci-evidence-flat --output ci-run-identity.json
+        run: |
+          python scripts/ci/build_run_identity.py --repo-root . --artifact-dir ci-evidence-flat --output ci-run-identity.json
+          cp -f ci-run-identity.json ci-evidence-flat/ci-run-identity.json
       - name: Generate formal release certificate
-        run: python scripts/generate_formal_release_certificate.py --repo-root . --ci-evidence-dir ci-evidence-flat --output formal-release-certificate.json || true
+        run: python scripts/generate_formal_release_certificate.py --repo-root . --ci-evidence-dir ci-evidence-flat --output formal-release-certificate.json
       - name: Independent verifier
-        run: python scripts/verify_formal_release_certificate.py --certificate formal-release-certificate.json --repo-root . --ci-evidence-dir ci-evidence-flat --output independent-verifier-report.json || true
+        run: python scripts/verify_formal_release_certificate.py --certificate formal-release-certificate.json --repo-root . --ci-evidence-dir ci-evidence-flat --output independent-verifier-report.json
       - name: Allowed/forbidden claim audit
         run: |
           python - <<'PY' | tee claim-audit-report.json
@@ -248,6 +250,11 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
+      - name: Download release certificate artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: release-certificate-run${{ github.run_id }}-attempt${{ github.run_attempt }}
+          path: release-certificate
       - name: Fail closed unless every upstream job succeeded
         run: |
           echo '${{ toJSON(needs) }}' > needs.json
@@ -258,5 +265,20 @@ jobs:
           if blocked:
               print(f"release blocked by: {blocked}")
               sys.exit(1)
-          print("all upstream jobs succeeded")
+          certificate = json.load(open("release-certificate/formal-release-certificate.json"))
+          verifier = json.load(open("release-certificate/independent-verifier-report.json"))
+          expected = {
+              "certificate_status": "RELEASE_PASS_PENDING_INDEPENDENT_VERIFICATION",
+              "verifier_verdict": "VERIFIED_PENDING_RELEASE_GATE",
+              "subject_sha": "${{ github.sha }}",
+          }
+          actual = {
+              "certificate_status": certificate.get("status"),
+              "verifier_verdict": verifier.get("verdict"),
+              "subject_sha": certificate.get("subject", {}).get("sha"),
+          }
+          if actual != expected or verifier.get("error_codes"):
+              print(json.dumps({"expected": expected, "actual": actual, "errors": verifier.get("error_codes")}, indent=2))
+              sys.exit(1)
+          print(json.dumps(actual, indent=2))
           PY

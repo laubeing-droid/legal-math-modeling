@@ -14,6 +14,7 @@ import argparse
 import hashlib
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 from typing import Any, Dict, List
@@ -77,8 +78,9 @@ def verify_certificate(
         errors.append("THEOREM_COUNT_DRIFT")
 
     if ci_evidence_dir is not None:
+        evidence_dir = Path(ci_evidence_dir)
         for name, claim in certificate.get("ci_evidence", {}).items():
-            artifact = Path(ci_evidence_dir) / name
+            artifact = evidence_dir / name
             if not artifact.is_file():
                 errors.append("MISSING_CI_ARTIFACT")
                 continue
@@ -86,6 +88,37 @@ def verify_certificate(
                 errors.append("CI_ARTIFACT_DIGEST_DRIFT")
         if certificate.get("missing_ci_evidence"):
             errors.append("INCOMPLETE_CI_EVIDENCE")
+
+        identity_path = evidence_dir / "ci-run-identity.json"
+        if identity_path.is_file():
+            identity = json.loads(identity_path.read_text(encoding="utf-8"))
+            subject = certificate.get("subject", {})
+            if identity.get("in_ci") is not True or identity.get("status") != "CI_RUN":
+                errors.append("INVALID_CI_RUN_IDENTITY")
+            if subject != identity.get("subject"):
+                errors.append("SUBJECT_IDENTITY_MISMATCH")
+            current_head = subprocess.run(
+                ["git", "-C", str(repo_root), "rev-parse", "HEAD"],
+                capture_output=True,
+                text=True,
+                check=True,
+            ).stdout.strip()
+            if subject.get("sha") != current_head:
+                errors.append("SUBJECT_SHA_DRIFT")
+        else:
+            errors.append("MISSING_CI_RUN_IDENTITY")
+
+        mutation_path = evidence_dir / "mutation-property-report.json"
+        if mutation_path.is_file():
+            mutation = json.loads(mutation_path.read_text(encoding="utf-8"))
+            if mutation.get("status") != "PASS":
+                errors.append("MUTATION_GATE_NOT_PASS")
+            if mutation.get("in_ci") is not True:
+                errors.append("MUTATION_GATE_NOT_CI")
+            if mutation.get("subject") != {"sha": certificate.get("subject", {}).get("sha")}:
+                errors.append("MUTATION_SUBJECT_MISMATCH")
+        else:
+            errors.append("MISSING_MUTATION_REPORT")
 
     status = certificate.get("status")
     if errors:

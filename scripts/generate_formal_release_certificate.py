@@ -77,6 +77,7 @@ def assemble_release_certificate(
         "schema_version": RELEASE_SCHEMA,
         "status": RELEASE_BLOCKED_STATUS,
         "generated_at": datetime.now(timezone.utc).isoformat(),
+        "subject": {"sha": "", "tree": ""},
         "source_inventory": {
             "lean_source_file_count": inventory["lean_source_file_count"],
             "theorem_declaration_count": inventory["theorem_declaration_count"],
@@ -99,7 +100,6 @@ def assemble_release_certificate(
         "pytest-full.log",
         "mutation-property-report.json",
         "runtime-refinement-report.json",
-        "independent-verifier-report.json",
     )
     if ci_evidence_dir is not None:
         evidence_dir = Path(ci_evidence_dir)
@@ -115,7 +115,26 @@ def assemble_release_certificate(
             else:
                 missing.append(name)
         certificate["ci_evidence"] = evidence
-        if not missing:
+        identity_path = evidence_dir / "ci-run-identity.json"
+        identity = (
+            json.loads(identity_path.read_text(encoding="utf-8"))
+            if identity_path.is_file()
+            else {}
+        )
+        subject = identity.get("subject", {})
+        certificate["subject"] = {
+            "sha": subject.get("sha", ""),
+            "tree": subject.get("tree", ""),
+        }
+        identity_valid = (
+            identity.get("in_ci") is True
+            and identity.get("status") == "CI_RUN"
+            and bool(certificate["subject"]["sha"])
+            and bool(certificate["subject"]["tree"])
+        )
+        if not identity_valid and identity_path.is_file():
+            certificate["invalid_ci_evidence"] = ["ci-run-identity.json"]
+        if not missing and identity_valid:
             certificate["status"] = "RELEASE_PASS_PENDING_INDEPENDENT_VERIFICATION"
         else:
             certificate["missing_ci_evidence"] = missing

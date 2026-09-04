@@ -18,7 +18,7 @@ not release evidence.
 | guard scan | `scripts/scan_lean_guards.py` in CI |
 | axiom audit | `lake env lean JurisLean/AxiomAudit.lean` raw output |
 | Python collection + full tests | pytest manifest + full log |
-| mutation / refinement reports | mutation-property-report.json, runtime-refinement-report.json |
+| mutation / refinement reports | controlled checker-input `mutation-property-report.json`, runtime-refinement-report.json |
 | limitations + certificate digest | embedded in the certificate |
 | run identity | `scripts/ci/build_run_identity.py` (`ci-run-identity.json`) |
 
@@ -30,6 +30,10 @@ independent verifier all green, with downloadable artifacts whose digests
 match the run identity. Any UNKNOWN / TIMEOUT / SKIP / NOT_RUN /
 BACKEND_UNAVAILABLE / ERROR / CI_NOT_RUN blocks release. No push, tag, or
 release happens without per-round user authorization.
+
+The mutation report covers controlled malformed inputs against the certificate,
+receipt, source, temporal, proposal, and translation checkers. It does not claim
+Lean-source or Python-implementation mutation coverage.
 
 ## Claim boundary
 

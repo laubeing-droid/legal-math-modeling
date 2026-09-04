@@ -74,7 +74,7 @@ theorem missing_priority_no_winner (ps : List PriorityPair)
     · exact (hn1 hf).elim
     · by_cases hr : (b, a) ∈ ps
       · exact (hn2 hr).elim
-      · rfl
+      · simp [hf, hr]
 
 /-- 中文证明：conditional priority 未激活时不参与决胜（建模为过滤）。 -/
 def activeConditionalPriorities (cps : List ConditionalPriority) :

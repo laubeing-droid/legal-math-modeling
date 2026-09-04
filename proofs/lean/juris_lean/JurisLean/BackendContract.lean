@@ -57,7 +57,7 @@ theorem nonmonotonic_routes_to_asp (f : ProblemFeatures)
     (h : f.needsNonmonotonic = true) : routeBackend f = .asp := by
   dsimp [routeBackend]
   rw [h]
-  decide
+  simp
 
 /-- 中文证明：算术问题路由到 SMT（不落入 Horn）。 -/
 theorem arithmetic_routes_to_smt (f : ProblemFeatures)
@@ -65,7 +65,7 @@ theorem arithmetic_routes_to_smt (f : ProblemFeatures)
     routeBackend f = .smt := by
   dsimp [routeBackend]
   rw [hnon, h]
-  decide
+  simp
 
 /-- 中文证明：plain Horn 问题路由到 Horn backend。 -/
 theorem plain_horn_routes_to_horn (f : ProblemFeatures)
@@ -74,7 +74,7 @@ theorem plain_horn_routes_to_horn (f : ProblemFeatures)
     routeBackend f = .horn := by
   dsimp [routeBackend]
   rw [hnon, har, hdis, h]
-  decide
+  simp
 
 /-- 中文证明：路由是确定函数：同特征同 backend。 -/
 theorem routing_deterministic (f : ProblemFeatures) :

@@ -50,15 +50,9 @@ theorem adjoin_idempotent_of_mem {c : CanonicalCollection} {a : String}
 /-- 中文证明：两次 adjoin 同一元素与一次相同（幂等闭合）。 -/
 theorem adjoin_adjoin_idempotent (c : CanonicalCollection) (a : String) :
     (c.adjoin a).adjoin a = c.adjoin a := by
-  dsimp [CanonicalCollection.adjoin]
-  split
-  · rfl
-  · rename_i hnot
-    exfalso
-    apply hnot
-    by_cases hmem : a ∈ c.entries
-    · simpa [CanonicalCollection.adjoin, hmem]
-    · simp [CanonicalCollection.adjoin, hmem]
+  by_cases h : a ∈ c.entries
+  · simp [CanonicalCollection.adjoin, h]
+  · simp [CanonicalCollection.adjoin, h]
 
 /-- 中文证明：已有条目在 adjoin 后仍然保留。 -/
 theorem adjoin_preserves_membership {c : CanonicalCollection} (a x : String)

@@ -83,8 +83,8 @@ theorem disjoint_intervals_no_intersection (a b : DayInterval)
   dsimp [intervalIntersection]
   split
   · rename_i h
-    exact not_le_of_gt hsep
-      (le_trans (le_trans (le_max_right _ _) h) (min_le_left _ _))
+    exact False.elim (not_le_of_gt hsep
+      (le_trans (le_trans (le_max_right _ _) h) (min_le_left _ _)))
   · rfl
 
 end JurisLean

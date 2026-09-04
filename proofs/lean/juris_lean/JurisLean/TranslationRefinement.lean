@@ -45,7 +45,7 @@ theorem translation_soundness_fragment (s : LegalSpec) (conclusion : String)
     (hmem : conclusion ∈ s.rules.map (fun r => r.conclusion)) :
     ∃ r ∈ s.rules, r.conclusion = conclusion := by
   rcases List.mem_map.mp hmem with ⟨r, hr, heq⟩
-  exact ⟨r, hr, heq.symm⟩
+  exact ⟨r, hr, heq⟩
 
 /-- 中文证明：no-spurious 义务闭合：归一化产物中的规则都有来源定位。 -/
 theorem no_spurious_after_normalize (s : LegalSpec) (r : LegalSpecRule)

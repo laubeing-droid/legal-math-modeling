@@ -95,7 +95,7 @@ theorem certain_spec_lowering_clean (s : LegalSpec)
   · rename_i hexists
     rcases hexists with ⟨r, hmem, hpos⟩
     rw [hall r hmem] at hpos
-    exact Nat.lt_irrefl 0 hpos
+    exact False.elim (Nat.lt_irrefl 0 hpos)
   · rfl
 
 end JurisLean

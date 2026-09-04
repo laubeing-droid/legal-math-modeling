@@ -57,7 +57,5 @@ theorem smt_unknown_not_decisive :
     outcomeDecisive (smtOutcome (none : Option SMTModelWitness)
       (none : Option SMTProofReceipt)) = false := by
   dsimp [smtOutcome]
-  decide
-  decide
 
 end JurisLean

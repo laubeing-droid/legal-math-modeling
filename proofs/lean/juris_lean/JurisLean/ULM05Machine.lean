@@ -13,7 +13,7 @@ deriving DecidableEq
 
 inductive SemResult where
   | settled (request : RequestKey) (active : Finset NFNode)
-  | incomplete (request : RequestKey) (open : Finset OpenObligation)
+  | incomplete (request : RequestKey) (openObligations : Finset OpenObligation)
   | failed (request : RequestKey) (failure : FailureCore)
 
 inductive Machine where

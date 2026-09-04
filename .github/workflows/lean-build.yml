@@ -97,7 +97,7 @@ jobs:
       - name: Build module ${{ matrix.module }}
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
-          cd "$LEAN_DIR" && lake build "${{ matrix.target }}" 2>&1 | tee "module-build-${{ matrix.module }}.log"
+          cd "$LEAN_DIR" && set -o pipefail && lake build "${{ matrix.target }}" 2>&1 | tee "module-build-${{ matrix.module }}.log"
       - name: Upload module build log
         if: always()
         uses: actions/upload-artifact@v4
@@ -132,7 +132,7 @@ jobs:
       - name: Lake clean + build (root, from zero, no olean reuse)
         run: |
           export PATH="$HOME/.elan/bin:$PATH"
-          cd "$LEAN_DIR" && lake clean && lake build 2>&1 | tee ../../../lake-clean-build.log
+          cd "$LEAN_DIR" && set -o pipefail && lake clean && lake build 2>&1 | tee ../../../lake-clean-build.log
           df -h . || true
       - name: Axiom audit
         run: |

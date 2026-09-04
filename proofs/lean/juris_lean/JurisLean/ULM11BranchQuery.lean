@@ -21,8 +21,8 @@ extension is already sound for the selected profile. It does not claim that all
 extensions were found. -/
 structure IncompleteEvaluation (af : DefeatAF) (profile : SemanticProfile) where
   discovered : Finset (Finset ArgId)
-  open : Finset OpenObligation
-  openNonempty : open.Nonempty
+  openObligations : Finset OpenObligation
+  openNonempty : openObligations.Nonempty
   discoveredSound : ∀ e ∈ discovered, SatisfiesProfile af profile e
 
 /-- Complete constructors carry equality with the selected profile's actual
@@ -139,7 +139,7 @@ inductive QueryGateState
     (query : JurisLean.LegalId .claim) where
   | enterable (witness : QueryEnterabilityWitness request extension query)
   | excluded (witness : QueryExclusionWitness request extension query)
-  | incomplete (open : Finset OpenObligation) (openNonempty : open.Nonempty)
+  | incomplete (openObligations : Finset OpenObligation) (openNonempty : openObligations.Nonempty)
 
 structure QueryEnvironment where
   request : RequestKey
@@ -158,7 +158,7 @@ def GateExcluded (env : QueryEnvironment) (e : Finset ArgId)
 
 def GateIncomplete (env : QueryEnvironment) (e : Finset ArgId)
     (q : JurisLean.LegalId .claim) : Prop :=
-  ∃ open openNonempty, env.gate e q = .incomplete open openNonempty
+  ∃ openObligations openNonempty, env.gate e q = .incomplete openObligations openNonempty
 
 def AcceptedIn (env : QueryEnvironment) (e : Finset ArgId)
     (q : JurisLean.LegalId .claim) : Prop :=

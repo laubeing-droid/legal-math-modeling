@@ -265,7 +265,7 @@ theorem CORE_25_incomplete_not_adjudicated
       { evaluation := EvalResult.incomplete profile partialResult
         authority := authority
         proceduralOnly := proceduralOnly } =
-      .solverIncomplete partialResult.open :=
+      .solverIncomplete partialResult.openObligations :=
   adjudicate_incomplete af profile partialResult authority proceduralOnly
 
 end JurisLean.ULM

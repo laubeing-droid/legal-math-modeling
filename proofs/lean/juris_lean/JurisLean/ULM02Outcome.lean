@@ -12,8 +12,8 @@ deriving DecidableEq
 /-- A partial result must disclose at least one still-open obligation. -/
 structure PartialPayload (α : Type*) where
   value : α
-  open : Finset OpenObligation
-  open_nonempty : open.Nonempty
+  openObligations : Finset OpenObligation
+  open_nonempty : openObligations.Nonempty
 
 inductive FailureTag where
   | unsupported
@@ -38,7 +38,7 @@ protected def map (f : α → β) : Outcome α → Outcome β
   | .complete x => .complete (f x)
   | .partialResult p => .partialResult
       { value := f p.value
-        open := p.open
+        openObligations := p.openObligations
         open_nonempty := p.open_nonempty }
   | .failure e => .failure e
 
@@ -49,7 +49,7 @@ protected def map (f : α → β) : Outcome α → Outcome β
     Outcome.map f (.partialResult p) =
       .partialResult
         { value := f p.value
-          open := p.open
+          openObligations := p.openObligations
           open_nonempty := p.open_nonempty } := rfl
 
 @[simp] theorem map_failure (f : α → β) (e : FailureCore) :

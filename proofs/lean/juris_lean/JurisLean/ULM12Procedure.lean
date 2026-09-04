@@ -117,7 +117,7 @@ inductive ProcedureAdjudicateResult (request : RequestKey) where
   | adjudicatedStatus (statuses : AdjudicatedStatusesFor request)
   | proceduralDisposition (status : ProceduralStatusFor request)
   | pendingLegalJudgment (missing : Finset String)
-  | solverIncomplete (open : Finset OpenObligation)
+  | solverIncomplete (openObligations : Finset OpenObligation)
 
 structure AdjudicationInput (af : DefeatAF) where
   evaluation : EvalResult af
@@ -154,7 +154,7 @@ required. -/
 def adjudicate {af : DefeatAF}
     (input : AdjudicationInput af) : ProcedureAdjudicateResult af.request :=
   match input.evaluation with
-  | .incomplete _ partialResult => .solverIncomplete partialResult.open
+  | .incomplete _ partialResult => .solverIncomplete partialResult.openObligations
   | .noExtension _ _ =>
       match input.proceduralOnly, input.authority with
       | some status, _ => .proceduralDisposition status
@@ -181,7 +181,7 @@ def adjudicate {af : DefeatAF}
       { evaluation := EvalResult.incomplete profile partialResult
         authority := authority
         proceduralOnly := proceduralOnly } =
-      .solverIncomplete partialResult.open := rfl
+      .solverIncomplete partialResult.openObligations := rfl
 
 @[simp] theorem noExtension_without_authority_is_pending
     (af : DefeatAF) (profile : SemanticProfile)

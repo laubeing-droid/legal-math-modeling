@@ -12,23 +12,23 @@ deriving DecidableEq
 /-- Coverage is represented by its still-open obligations and its explicit
 not-applicability evidence. Aggregation never discards either carrier. -/
 structure CoverageStatus where
-  open : Finset OpenObligation
+  openObligations : Finset OpenObligation
   notApplicable : Finset NotApplicableEvidence
 deriving DecidableEq
 
 namespace CoverageStatus
 
 def complete : CoverageStatus :=
-  { open := ∅, notApplicable := ∅ }
+  { openObligations := ∅, notApplicable := ∅ }
 
-def incomplete (open : Finset OpenObligation) : CoverageStatus :=
-  { open := open, notApplicable := ∅ }
+def incomplete (openObligations : Finset OpenObligation) : CoverageStatus :=
+  { openObligations := openObligations, notApplicable := ∅ }
 
 def exempt (evidence : NotApplicableEvidence) : CoverageStatus :=
-  { open := ∅, notApplicable := {evidence} }
+  { openObligations := ∅, notApplicable := {evidence} }
 
 def IsComplete (status : CoverageStatus) : Prop :=
-  status.open = ∅
+  status.openObligations = ∅
 
 end CoverageStatus
 
@@ -41,7 +41,7 @@ structure SemanticCoverage where
 def coverageStatusOf {af : DefeatAF} : EvalResult af → CoverageStatus
   | .noExtension _ _ => .complete
   | .extensions _ _ _ => .complete
-  | .incomplete _ partialResult => .incomplete partialResult.open
+  | .incomplete _ partialResult => .incomplete partialResult.openObligations
 
 structure ExecutionReturnCorrectness (af : DefeatAF) where
   result : EvalResult af
@@ -55,8 +55,8 @@ structure AuditLifecycleCoverage where
 deriving DecidableEq
 
 theorem incomplete_not_complete
-    {open : Finset OpenObligation} (h : open.Nonempty) :
-    ¬ (CoverageStatus.incomplete open).IsComplete := by
+    {openObligations : Finset OpenObligation} (h : openObligations.Nonempty) :
+    ¬ (CoverageStatus.incomplete openObligations).IsComplete := by
   simpa [CoverageStatus.IsComplete, CoverageStatus.incomplete] using
     (Finset.nonempty_iff_ne_empty.mp h)
 
@@ -102,7 +102,7 @@ theorem trust_meet_le_right (a b : TrustVector) :
 inductive SpecStatus where
   | proved
   | assumed
-  | open
+  | openObligations
 deriving DecidableEq
 
 inductive ImplementationAssurance where
@@ -159,8 +159,8 @@ structure AssuranceEnvelope where
 deriving DecidableEq
 
 def combineSpec : SpecStatus → SpecStatus → SpecStatus
-  | .open, _ => .open
-  | _, .open => .open
+  | .openObligations, _ => .openObligations
+  | _, .openObligations => .openObligations
   | .assumed, _ => .assumed
   | _, .assumed => .assumed
   | .proved, .proved => .proved
@@ -181,7 +181,7 @@ def combineRunCheck : RunCheckStatus → RunCheckStatus → RunCheckStatus
   | .checked, .checked => .checked
 
 def combineCoverage (a b : CoverageStatus) : CoverageStatus :=
-  { open := a.open ∪ b.open
+  { openObligations := a.openObligations ∪ b.openObligations
     notApplicable := a.notApplicable ∪ b.notApplicable }
 
 def combineLegalInput (a b : LegalInputStatus) : LegalInputStatus :=
@@ -206,7 +206,7 @@ def combineAssurance (a b : AssuranceEnvelope) : Option AssuranceEnvelope :=
     none
 
 @[simp] theorem combineSpec_open_left (b : SpecStatus) :
-    combineSpec .open b = .open := by
+    combineSpec .openObligations b = .openObligations := by
   cases b <;> rfl
 
 @[simp] theorem combineRunCheck_failed_left (b : RunCheckStatus) :
@@ -214,7 +214,7 @@ def combineAssurance (a b : AssuranceEnvelope) : Option AssuranceEnvelope :=
   cases b <;> rfl
 
 @[simp] theorem combineCoverage_open (a b : CoverageStatus) :
-    (combineCoverage a b).open = a.open ∪ b.open := rfl
+    (combineCoverage a b).openObligations = a.openObligations ∪ b.openObligations := rfl
 
 @[simp] theorem combineCoverage_notApplicable (a b : CoverageStatus) :
     (combineCoverage a b).notApplicable =
@@ -246,8 +246,8 @@ theorem combined_assurance_preserves_scope
 
 theorem combined_open_spec_cannot_be_proved
     {a b c : AssuranceEnvelope}
-    (ha : a.spec = .open)
-    (h : combineAssurance a b = some c) : c.spec = .open := by
+    (ha : a.spec = .openObligations)
+    (h : combineAssurance a b = some c) : c.spec = .openObligations := by
   unfold combineAssurance at h
   split at h
   · cases h
@@ -257,7 +257,7 @@ theorem combined_open_spec_cannot_be_proved
 theorem combined_coverage_retains_left_open
     {a b c : AssuranceEnvelope}
     (h : combineAssurance a b = some c) :
-    a.coverage.open ⊆ c.coverage.open := by
+    a.coverage.openObligations ⊆ c.coverage.openObligations := by
   unfold combineAssurance at h
   split at h
   · cases h

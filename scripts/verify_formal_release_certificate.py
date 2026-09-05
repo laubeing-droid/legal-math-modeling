@@ -153,6 +153,45 @@ def verify_certificate(
                 for report in runtime_reports
             ):
                 errors.append("RUNTIME_REFINEMENT_NOT_PASS")
+            certificate_sha = certificate.get("subject", {}).get("sha")
+            if any(
+                report.get("lmm_commit") != certificate_sha
+                for report in runtime_reports
+            ):
+                errors.append("RUNTIME_REFINEMENT_SUBJECT_MISMATCH")
+            runtime_commits = {
+                report.get("runtime_commit") for report in runtime_reports
+            }
+            if (
+                len(runtime_commits) != 1
+                or not all(
+                    type(commit) is str
+                    and re.fullmatch(r"[0-9a-f]{40}", commit) is not None
+                    for commit in runtime_commits
+                )
+                or any(
+                    type(report.get("runtime_build_id")) is not str
+                    or not report["runtime_build_id"]
+                    for report in runtime_reports
+                )
+            ):
+                errors.append("RUNTIME_REFINEMENT_RUNTIME_IDENTITY_INVALID")
+            receipt_files: set[str] = set()
+            for report in runtime_reports:
+                name = report.get("actual_receipt_file")
+                digest = report.get("actual_receipt_sha256")
+                if (
+                    type(name) is not str
+                    or Path(name).name != name
+                    or name in receipt_files
+                    or type(digest) is not str
+                ):
+                    errors.append("RUNTIME_REFINEMENT_RECEIPT_BINDING_INVALID")
+                    continue
+                receipt_files.add(name)
+                receipt_path = evidence_dir / name
+                if not receipt_path.is_file() or _sha256_of(receipt_path) != digest:
+                    errors.append("RUNTIME_REFINEMENT_RECEIPT_BINDING_INVALID")
             if not any(code.startswith("RUNTIME_REFINEMENT") for code in errors):
                 checks.append("Runtime refinement reports content-checked independently.")
         else:

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from pathlib import Path
+import hashlib
 import json
 import subprocess
 
@@ -69,9 +70,24 @@ def test_release_certificate_binds_ci_subject_without_verifier_self_reference(tm
         "pytest-full.log",
     ):
         (tmp_path / name).write_text("bound evidence\n", encoding="utf-8")
-    passing_runtime = {"passed": True, "blocked": False, "error_codes": [], "checks": []}
+    runtime_reports = []
+    for index in range(3):
+        name = f"runtime-{index}.actual.json"
+        content = f"receipt {index}\n".encode()
+        (tmp_path / name).write_bytes(content)
+        runtime_reports.append({
+            "passed": True,
+            "blocked": False,
+            "error_codes": [],
+            "checks": [],
+            "lmm_commit": head,
+            "runtime_commit": "2" * 40,
+            "runtime_build_id": "test-build",
+            "actual_receipt_file": name,
+            "actual_receipt_sha256": hashlib.sha256(content).hexdigest(),
+        })
     (tmp_path / "runtime-refinement-report.json").write_text(
-        "\n".join(json.dumps(passing_runtime) for _ in range(3)), encoding="utf-8"
+        "\n".join(json.dumps(report) for report in runtime_reports), encoding="utf-8"
     )
 
     certificate = assemble_release_certificate(REPO_ROOT, ci_evidence_dir=tmp_path)
@@ -86,14 +102,17 @@ def test_release_certificate_binds_ci_subject_without_verifier_self_reference(tm
     assert report["verdict"] == "VERIFIED_PENDING_RELEASE_GATE"
     assert report["error_codes"] == []
 
-    blocked_runtime = {
-        "passed": False,
-        "blocked": True,
-        "error_codes": ["MISSING_ACTUAL_RECEIPT"],
-        "checks": [],
-    }
+    blocked_runtime = [
+        {
+            **report,
+            "passed": False,
+            "blocked": True,
+            "error_codes": ["MISSING_ACTUAL_RECEIPT"],
+        }
+        for report in runtime_reports
+    ]
     (tmp_path / "runtime-refinement-report.json").write_text(
-        "\n".join(json.dumps(blocked_runtime) for _ in range(3)), encoding="utf-8"
+        "\n".join(json.dumps(report) for report in blocked_runtime), encoding="utf-8"
     )
     certificate = assemble_release_certificate(REPO_ROOT, ci_evidence_dir=tmp_path)
     certificate_path.write_text(json.dumps(certificate), encoding="utf-8")

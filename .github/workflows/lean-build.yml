@@ -27,6 +27,9 @@ on:
         default: ""
         type: string
 
+permissions:
+  contents: read
+
 env:
   LEAN_DIR: proofs/lean/juris_lean
   ARTIFACT_RETENTION_DAYS: 90
@@ -38,7 +41,7 @@ jobs:
     outputs:
       matrix: ${{ steps.matrix.outputs.matrix }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
           fetch-depth: 0
       - name: Compute Lean module matrix
@@ -67,10 +70,10 @@ jobs:
       fail-fast: false
       matrix: ${{ fromJson(needs.setup-matrix.outputs.matrix) }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
       - name: Restore elan cache
         id: elan-cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: ~/.elan
           key: ${{ runner.os }}-elan-lean4-v4.30.0
@@ -79,14 +82,14 @@ jobs:
         run: |
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain leanprover/lean4:v4.30.0
       - name: Restore Lake packages cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: proofs/lean/juris_lean/.lake/packages
           key: ${{ runner.os }}-lake-packages-${{ hashFiles('proofs/lean/juris_lean/lakefile.lean', 'proofs/lean/juris_lean/lean-toolchain') }}
           restore-keys: |
             ${{ runner.os }}-lake-packages-
       - name: Cache Lake build directory
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: |
             proofs/lean/juris_lean/.lake/build
@@ -100,7 +103,7 @@ jobs:
           cd "$LEAN_DIR" && set -o pipefail && lake build "${{ matrix.target }}" 2>&1 | tee "module-build-${{ matrix.module }}.log"
       - name: Upload module build log
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: module-build-${{ matrix.module }}-run${{ github.run_id }}-attempt${{ github.run_attempt }}
           path: ${{ env.LEAN_DIR }}/module-build-${{ matrix.module }}.log
@@ -111,10 +114,10 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
       - name: Restore elan cache
         id: elan-cache
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: ~/.elan
           key: ${{ runner.os }}-elan-lean4-v4.30.0
@@ -123,7 +126,7 @@ jobs:
         run: |
           curl https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh -sSf | sh -s -- -y --default-toolchain leanprover/lean4:v4.30.0
       - name: Restore Lake packages cache (download only)
-        uses: actions/cache@v4
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: proofs/lean/juris_lean/.lake/packages
           key: ${{ runner.os }}-lake-packages-${{ hashFiles('proofs/lean/juris_lean/lakefile.lean', 'proofs/lean/juris_lean/lean-toolchain') }}
@@ -140,7 +143,7 @@ jobs:
           cd "$LEAN_DIR" && lake build JurisLean.AxiomAudit && lake env lean JurisLean/AxiomAudit.lean > ../../../axiom-audit.raw.txt 2>&1
       - name: Upload clean build + axiom audit
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: lean-full-build-run${{ github.run_id }}-attempt${{ github.run_attempt }}
           path: |
@@ -153,8 +156,8 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: "3.12"
       - name: Install test dependencies
@@ -167,14 +170,9 @@ jobs:
         run: set -o pipefail && python scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean 2>&1 | tee lean-guard-report.json
       - name: Controlled checker-input mutation gate
         run: python scripts/run_mutation_property_gate.py --repo-root . --output mutation-property-report.json
-      - name: Runtime refinement verifier (expected-only, fail-closed without receipts)
-        run: |
-          for fixture in runtime/refinement_cases/*.expected.json; do
-            python scripts/verify_runtime_refinement_receipt.py --expected "$fixture" || true
-          done 2>&1 | tee runtime-refinement-report.json
       - name: Upload Python gate artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: python-gates-run${{ github.run_id }}-attempt${{ github.run_attempt }}
           path: |
@@ -182,22 +180,31 @@ jobs:
             pytest-full.log
             lean-guard-report.json
             mutation-property-report.json
-            runtime-refinement-report.json
           retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
 
+  runtime-refinement:
+    if: ${{ github.event_name != 'workflow_dispatch' || inputs.mode == 'full-release' }}
+    uses: laubeing-droid/juris-calculus/.github/workflows/runtime-refinement.yml@c79e03b8d0cfed85c43cc013bf8a0b50326bc858
+    with:
+      lmm_repository: ${{ github.repository }}
+      lmm_ref: ${{ github.sha }}
+      runtime_ref: c79e03b8d0cfed85c43cc013bf8a0b50326bc858
+    permissions:
+      contents: read
+
   release-certificate:
-    needs: [lean-full-clean-build, python-gates]
+    needs: [lean-full-clean-build, python-gates, runtime-refinement]
     if: >-
-      ${{ (github.event_name != 'workflow_dispatch' || inputs.mode == 'full-release') && needs.lean-full-clean-build.result == 'success' && needs.python-gates.result == 'success' }}
+      ${{ (github.event_name != 'workflow_dispatch' || inputs.mode == 'full-release') && needs.lean-full-clean-build.result == 'success' && needs.python-gates.result == 'success' && needs.runtime-refinement.result == 'success' }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
         with:
           python-version: "3.12"
       - name: Download upstream artifacts for verification
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           path: ci-evidence
       - name: Flatten evidence artifacts
@@ -234,7 +241,7 @@ jobs:
           PY
       - name: Upload release certificate artifacts
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: release-certificate-run${{ github.run_id }}-attempt${{ github.run_attempt }}
           path: |
@@ -245,13 +252,13 @@ jobs:
           retention-days: ${{ env.ARTIFACT_RETENTION_DAYS }}
 
   final-gate:
-    needs: [lean-full-clean-build, python-gates, release-certificate]
+    needs: [lean-full-clean-build, python-gates, runtime-refinement, release-certificate]
     if: ${{ always() && (github.event_name != 'workflow_dispatch' || inputs.mode == 'full-release') }}
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - name: Download release certificate artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: release-certificate-run${{ github.run_id }}-attempt${{ github.run_attempt }}
           path: release-certificate

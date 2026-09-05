@@ -11,6 +11,7 @@ unknown status mappings are fail-closed.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -31,8 +32,10 @@ def main() -> int:
 
     expected = json.loads(args.expected.read_text(encoding="utf-8"))
     actual = None
+    actual_bytes = None
     if args.actual is not None and args.actual.is_file():
-        actual = json.loads(args.actual.read_text(encoding="utf-8"))
+        actual_bytes = args.actual.read_bytes()
+        actual = json.loads(actual_bytes)
 
     report = verify_runtime_refinement_receipt(
         expected,
@@ -45,6 +48,14 @@ def main() -> int:
         "blocked": report.blocked,
         "error_codes": list(report.error_codes),
         "checks": list(report.checks),
+        "lmm_commit": None if actual is None else actual.get("lmm_commit"),
+        "runtime_commit": None if actual is None else actual.get("runtime_commit"),
+        "runtime_build_id": None if actual is None else actual.get("runtime_build_id"),
+        "fixture_digest": expected.get("fixture_digest"),
+        "actual_receipt_file": None if args.actual is None else args.actual.name,
+        "actual_receipt_sha256": (
+            None if actual_bytes is None else hashlib.sha256(actual_bytes).hexdigest()
+        ),
     }
     rendered = json.dumps(payload, ensure_ascii=False, indent=2)
     if args.output is not None:

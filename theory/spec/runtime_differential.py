@@ -370,9 +370,10 @@ def build_runtime_receipt_for_test(
     production receipts must be produced by the external runtime itself.
     """
 
-    return {
+    body = {
         "schema_version": RUNTIME_REFINEMENT_SCHEMA,
         "role": "actual",
+        "producer": "juris-calculus",
         "lmm_commit": expected["lmm_commit"],
         "runtime_commit": runtime_commit,
         "runtime_build_id": runtime_build_id,
@@ -385,6 +386,7 @@ def build_runtime_receipt_for_test(
         ],
         "execution_status": execution_status,
     }
+    return {**body, "receipt_digest": _canonical_digest(body)}
 
 
 def verify_runtime_refinement_receipt(
@@ -408,8 +410,43 @@ def verify_runtime_refinement_receipt(
             checks=(),
         )
 
+    expected_body = {
+        name: expected.get(name)
+        for name in (
+            "lmm_commit",
+            "cases",
+            "source_snapshot_digests",
+            "rule_pack_digest",
+            "semantics",
+        )
+    }
+    if (
+        expected.get("schema_version") != RUNTIME_REFINEMENT_SCHEMA
+        or expected.get("role") != "expected"
+        or expected.get("fixture_digest") != _canonical_digest(expected_body)
+    ):
+        errors.append("INVALID_EXPECTED_FIXTURE")
+        blocked = True
+
     if actual.get("schema_version") != RUNTIME_REFINEMENT_SCHEMA:
         errors.append("UNKNOWN_SCHEMA")
+        blocked = True
+    if actual.get("role") != "actual" or actual.get("producer") != "juris-calculus":
+        errors.append("INVALID_RUNTIME_PRODUCER")
+        blocked = True
+    receipt_body = {key: value for key, value in actual.items() if key != "receipt_digest"}
+    if actual.get("receipt_digest") != _canonical_digest(receipt_body):
+        errors.append("RUNTIME_RECEIPT_DIGEST_MISMATCH")
+        blocked = True
+    runtime_commit = actual.get("runtime_commit")
+    if (
+        type(runtime_commit) is not str
+        or len(runtime_commit) != 40
+        or any(character not in "0123456789abcdef" for character in runtime_commit)
+        or type(actual.get("runtime_build_id")) is not str
+        or not actual["runtime_build_id"]
+    ):
+        errors.append("INVALID_RUNTIME_IDENTITY")
         blocked = True
 
     if actual.get("fixture_digest") != expected.get("fixture_digest"):
@@ -448,7 +485,20 @@ def verify_runtime_refinement_receipt(
         errors.append("RUNTIME_EXECUTION_FAILED")
         blocked = True
 
-    actual_by_case = {case.get("case_id"): case for case in actual.get("cases", ())}
+    actual_cases = actual.get("cases", ())
+    if type(actual_cases) is not list or any(type(case) is not dict for case in actual_cases):
+        errors.append("INVALID_ACTUAL_CASES")
+        actual_cases = []
+    actual_case_ids = [case.get("case_id") for case in actual_cases]
+    if any(type(case_id) is not str or not case_id for case_id in actual_case_ids):
+        errors.append("INVALID_ACTUAL_CASES")
+    elif len(actual_case_ids) != len(set(actual_case_ids)):
+        errors.append("DUPLICATE_ACTUAL_CASE")
+    actual_by_case = {
+        case["case_id"]: case
+        for case in actual_cases
+        if type(case.get("case_id")) is str and case["case_id"]
+    }
     expected_case_ids = {case["case_id"] for case in expected.get("cases", ())}
     for case_id in actual_by_case:
         if case_id not in expected_case_ids:

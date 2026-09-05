@@ -1,0 +1,43 @@
+# Rewritten public ontology boundary - 2026-07-01
+status: public_specification_boundary
+purpose: >
+  Minimal public ontology for the legal-math-modeling specification layer.
+  Private aliases, client workflows, litigation strategy, and commercial rule
+  libraries are outside this file.
+canonical_types:
+  - LegalFact
+  - LegalRule
+  - LegalNorm
+  - LegalClaim
+  - Argument
+  - Attack
+  - Priority
+  - Violation
+  - Reparation
+  - DecisionStatus
+  - ProofTrace
+ddl_modalities:
+  - OBLIGATION
+  - PROHIBITION
+  - PERMISSION
+  - CONSTITUTIVE
+slices:
+  - contract_breach
+  - license
+  - permission
+  - priority
+verification_policy:
+  llm_output: candidate_only
+  verified_fact_gate: source_bound_required
+  missing_evidence: fail_closed
+public_boundary:
+  include:
+    - auditable_kernel_specification
+    - source_bounded_manifests
+    - release_disclosure
+  exclude:
+    - customer_data
+    - commercial_rule_library
+    - lawyer_workflow
+    - litigation_strategy
+    - private_benchmark

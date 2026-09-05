@@ -1,0 +1,85 @@
+\section{Typed Ontology, Evidence, and Execution}
+\label{sec:ontology}
+
+The operational ontology is a request-indexed typed graph. Let (G=(r_G,V_G,E_G)). An edge is well formed only when the graph request is itself well formed, the edge belongs to the graph, its request agrees with the graph, and all endpoints are present:
+\begin{equation}
+\operatorname{EdgeWF}(G,e)\iff
+\operatorname{WF}(G.r)\land e\in E_G\land e.r=G.r
+\land\operatorname{src}(e)\subseteq V_G
+\land\operatorname{tgt}(e)\subseteq V_G.
+\label{eq:edge-wf}
+\end{equation}
+The current formal node exposes an explicit kind tag. ULM03 does not prove a fully dependent payload refinement for every kind; any stronger ontology claim is \conjectured{}.
+
+For state (s), an edge is enabled when its request agrees and its source nodes are active:
+\begin{equation}
+\operatorname{Enabled}(e,s)\iff e.r=s.r\land
+\operatorname{src}(e)\subseteq s.active.
+\label{eq:enabled}
+\end{equation}
+Application is additive:
+\begin{equation}
+\operatorname{applyEdge}(e,s).active=
+s.active\cup\operatorname{tgt}(e).
+\label{eq:apply-edge}
+\end{equation}
+A local transition exists when a well-formed enabled edge produces the target state. Request preservation for this relation is \formalized{}.
+
+Edge kinds and claims determine required obligations. `typeSafety` is mandatory:
+\begin{equation}
+O_{req}(e)=\{\mathsf{typeSafety}\}\cup
+\operatorname{flatMap}\bigl(O,
+\operatorname{baseline}(e.kind)\mathbin{++}e.claims\bigr),
+\quad O_{req}(e)\neq\varnothing.
+\label{eq:required-obligations}
+\end{equation}
+The non-emptiness theorem is \formalized{}. It prevents an edge from bypassing all verification merely because its specialized claim list is empty.
+
+A verifier advertises supported evidence kinds and is parameterized by a semantic guard (g):
+\begin{equation}
+\operatorname{VerifierSound}(g,v)\iff
+\forall ev,\ v(ev)=\true\Rightarrow
+ev.kind\in v.supported\land g(ev.subject).
+\label{eq:verifier-sound}
+\end{equation}
+Satisfaction binds an obligation to evidence of the same subject and kind:
+\begin{equation}
+\operatorname{Sat}(v,s)\iff
+s.o\in O_{req}(s.edge)\land
+\exists ev,\ ev.subject=s\land ev.kind=s.o\land v(ev)=\true.
+\label{eq:sat}
+\end{equation}
+From soundness and satisfaction, (g(s)) follows. This is \formalized{}. It is a contract theorem, not proof that an arbitrary Python or external verifier satisfies the premise.
+
+Finite execution adds a completed-edge set:
+\begin{equation}
+\operatorname{runEnabled}(e,c)\iff e.r=c.r\land
+\operatorname{src}(e)\subseteq c.active\land e\notin c.completed.
+\label{eq:run-enabled}
+\end{equation}
+Application updates $active'=active\cup tgt(e)$, $completed'=completed\cup\{e\}$, and $phase'=phase+1$. The applied edge cannot immediately re-enable, and every finite run preserves request identity. Both are \formalized{}.
+
+Finally, fact evidence retains the distinction between admissions and assumptions. For premise (p),
+\begin{equation}
+dep(p)=
+\begin{cases}
+\varnothing,&p=\mathsf{admitted}(a),\\
+\{w.assumptionId\},&p=\mathsf{assumed}(w).
+\end{cases}
+\label{eq:premise-dependency}
+\end{equation}
+This \formalized{} dependency law prevents an assumed premise from being rendered as dependency-free fact. It does not determine whether an admission or assumption is legally justified.
+
+The ontology therefore distinguishes typing from truth. A node can have the correct kind, request, and endpoints while carrying a false factual assertion. An edge can create exactly the mandated obligations while an external verifier remains unsound. The formal types make those risks visible and route them to the appropriate evidence gates; they do not erase the risks. This distinction is particularly important when language models propose nodes or edges. A syntactically valid proposal enters as candidate material and cannot become verified input until the advertised verifier contract is discharged.
+
+Execution is additive only at the active-node and completed-edge level. The model does not infer that every enabled edge should run, that scheduling is fair, or that a production orchestrator terminates under arbitrary plugins. Those are separate operational properties. The finite-run theorem instead guarantees that whatever finite path is supplied cannot escape its request scope. That smaller theorem is compositional and reusable even when scheduling strategies change.
+
+Provenance dependencies support negative auditing. If a conclusion depends on an assumption identifier, a renderer must retain that identifier or demonstrate an observation-preserving projection that intentionally summarizes it. Removing the identifier would not merely shorten an explanation; it would alter the observation being preserved. This creates a precise interface between proof objects and human-facing reports.
+
+\subsection{Boundary countermodels and validation strategy}
+
+Three small countermodels separate the ontology claims. First, consider an edge whose endpoints are present and whose transformation is otherwise sensible, but whose request differs from the graph request. Endpoint validation alone accepts the shape, while \operatorname{EdgeWF} rejects the composition. The failure shows why request identity is a semantic coordinate rather than decorative metadata. Second, consider an edge with no specialized claims. A checker that translates only those claims produces an empty worklist and may report vacuous success. The mandatory type-safety obligation prevents that path without pretending that type safety is the only required evidence. Third, consider a verifier that returns \true{} for every input. It can satisfy the syntax of a callback but cannot meet \operatorname{VerifierSound} for a nontrivial guard. Verifier success becomes meaningful only after the soundness premise is supplied.
+
+These countermodels suggest a layered test design. Constructor tests should reject request and endpoint mismatch. Obligation tests should check that every edge kind produces the baseline obligation and that specialized claims add, rather than replace, evidence duties. Verifier tests should include a subject mismatch and an unsupported evidence kind. Execution tests should verify additive state change, completion marking, and request preservation along supplied finite paths. None of those executable checks proves the quantified Lean statements, but each can detect divergence between a concrete adapter and the formal interface.
+
+The ontology remains intentionally incomplete in two respects. Node kinds are explicit, yet the payload type is not dependently indexed by every kind; a runtime can therefore still place semantically unsuitable content behind a syntactically correct tag. Scheduling is also left open: a finite run records chosen steps but does not prove fairness or maximal execution. Closing either gap would require new types and theorems, not stronger prose about the current declarations. Until then, payload validity and scheduler behavior belong in the open-obligation record.

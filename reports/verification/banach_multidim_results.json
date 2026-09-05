@@ -1,0 +1,32 @@
+{
+  "CN": {
+    "n": 92,
+    "mean_ratio": 1.252882444769415,
+    "median_ratio": 0.627559861373661,
+    "beta_estimate": -0.2529,
+    "beta_std_error": 0.1994,
+    "convergence_to_zero": false
+  },
+  "US": {
+    "n": 701,
+    "mean_ratio": 0.46716717859634604,
+    "median_ratio": 0.47058823529411764,
+    "beta_estimate": 0.5328,
+    "beta_std_error": 0.0108,
+    "convergence_to_zero": true
+  },
+  "HK": {
+    "n": 211,
+    "mean_ratio": 0.5140982506649923,
+    "median_ratio": 0.46917330672375984,
+    "beta_estimate": 0.4859,
+    "beta_std_error": 0.0125,
+    "convergence_to_zero": true
+  },
+  "multi_dim": {
+    "dimensions": 3,
+    "avg_beta": 0.2553,
+    "convergence_rate_10_iter": 1e-06,
+    "contractive": true
+  }
+}

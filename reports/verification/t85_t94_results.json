@@ -1,0 +1,83 @@
+{
+  "T8.5": {
+    "total": 3508,
+    "obstruction_count": 376,
+    "obstruction_density": 0.1072,
+    "mappable_count": 3132,
+    "collision_count": 225,
+    "status_distribution": {
+      "CN_ONLY": 40,
+      "CN_US_PARTIAL": 934,
+      "COLLISION": 225,
+      "ASYMMETRY": 111,
+      "CN_HK_PARTIAL": 622,
+      "TRI_JURISDICTION_PARTIAL": 363,
+      "TRI_JURISDICTION_MAPPED": 942,
+      "US_HK_PARTIAL": 271
+    },
+    "domain_obstruction": {
+      "contract": {
+        "total": 955,
+        "obstruction": 49
+      },
+      "tort": {
+        "total": 538,
+        "obstruction": 42
+      },
+      "corporate": {
+        "total": 333,
+        "obstruction": 40
+      },
+      "criminal": {
+        "total": 475,
+        "obstruction": 36
+      },
+      "admin": {
+        "total": 233,
+        "obstruction": 51
+      },
+      "labor": {
+        "total": 217,
+        "obstruction": 34
+      },
+      "ip": {
+        "total": 277,
+        "obstruction": 48
+      },
+      "procedure": {
+        "total": 200,
+        "obstruction": 35
+      },
+      "family": {
+        "total": 134,
+        "obstruction": 21
+      },
+      "tax": {
+        "total": 118,
+        "obstruction": 19
+      },
+      "mixed": {
+        "total": 28,
+        "obstruction": 1
+      }
+    },
+    "verdict": "OBSERVED: obstruction density > 10% — no universal total functor"
+  },
+  "T9.4": {
+    "total": 1091,
+    "parsed": 1002,
+    "multi_iteration": 345,
+    "converged": 167,
+    "convergence_rate": 0.4841,
+    "with_initial": 974,
+    "mean_ratio": 0.4865,
+    "median_ratio": 0.476,
+    "jurisdiction_breakdown": {
+      "CN": 80,
+      "US": 707,
+      "HK": 215
+    },
+    "verdict": "OBSERVED: median ratio < 1.0 — empirical contraction signal"
+  },
+  "runtime_seconds": 0.05
+}

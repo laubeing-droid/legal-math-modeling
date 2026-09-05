@@ -1,0 +1,39 @@
+\section{Introduction}
+
+Legal computation is rarely a single inference. A practical pipeline receives a case-scoped request, normalizes data, selects authority, derives support, constructs arguments, resolves attacks, chooses an extension semantics, performs numerical calculations, and asks a human or institutional actor to authorize a result. Local correctness does not imply correctness of this composition. A transformation may silently change case identity; an incomplete solver may be rendered as a negative answer; an argument from one extension may be combined with an incompatible argument from another; or multiple machine agents may repeat the same unsupported claim until it appears authoritative.
+
+This paper studies a narrower and testable problem: which invariants prevent those compositional failures? Its source is a Lean 4 development organized as ULM01--ULM16 \citep{DeMouraUllrich2021,Mathlib2020,LegalMathModeling2026}. The development connects finite Horn closure, structured and abstract argumentation, procedural adjudication, temporal applicability, exact quantities, trust records, authority receipts, and information-flow taint. It does not encode an entire jurisdiction and does not prove that a legal conclusion is substantively correct.
+
+We classify every technical statement by an epistemic label
+\begin{equation}
+\lambda(c)\in\{\formalized,\derived,\conjectured\}.
+\label{eq:claim-label}
+\end{equation}
+A \formalized{} statement has a corresponding Lean definition or theorem. A \derived{} statement follows from assumptions stated here but is not attributed to the proof corpus. A \conjectured{} statement is a proposed mathematical, empirical, or legal extension. These labels are not confidence scores. A theorem about an abstract Boolean defeat policy, for example, does not prove that the policy embodies correct law.
+
+The central research question is whether heterogeneous legal-reasoning components can be joined without strengthening their claims. The architecture answers affirmatively for specified invariants. Request identity is preserved across transitions. Failure cannot be upgraded by payload mapping. Every graph edge creates obligations. Horn support has a finite least closure. Argument extensions retain branch identity. Incomplete computation, absent authority, open obligations, weak trust coordinates, stale sources, and tainted inputs remain visible. The desired release relation is therefore conservative:
+\begin{equation}
+\operatorname{Released}(x)\Longrightarrow
+\operatorname{Bound}(x)\land\operatorname{ObligationsClosed}(x)
+\land\operatorname{EvidenceVerified}(x),
+\label{eq:release-relation}
+\end{equation}
+where each conjunct is independently evidenced rather than inferred from a single green build indicator.
+
+Four contributions follow. First, the paper provides a typed normal form spanning requests, outcomes, graph transitions, and evidence obligations. Second, it separates monotone support construction from non-monotone acceptance, following the distinct traditions of Horn reasoning and abstract argumentation \citep{Horn1951,Tarski1955,Dung1995}. Third, it formalizes conservative composition for branches, trust, temporal scope, and authority. Fourth, it presents an evidence discipline in which theorem audits, mutation fixtures, runtime refinement receipts, subject identity, and independent certificate verification remain separate but composable artifacts.
+
+\subsection{Research design and unit of analysis}
+
+The study uses an artifact-centered method. Its unit of analysis is not a legal outcome but a declared interface between two stages of computation. For each interface, the analysis identifies the carrier type, the observation that must survive transport, the condition under which composition is defined, and the evidence needed to discharge that condition. A request normalizer is examined for identity preservation; a graph edge for endpoint and scope discipline; a solver boundary for explicit partiality; and a release gate for agreement among subject-bound artifacts. This method keeps proof obligations small enough to inspect and prevents a successful downstream test from retrospectively validating an upstream premise.
+
+The analysis proceeds in three passes. The first pass reconstructs definitions and theorem statements from the formal source and assigns the \formalized{} label only at that granularity. The second pass develops mathematical consequences and countermodels, marked \derived{}, to explain why the interfaces matter. The third pass locates executable and institutional assumptions that the proof terms do not discharge. Those assumptions include fidelity of serializers, completeness of fixture families, authenticity of factual inputs, and authority of a legal decision maker. The paper consequently treats a theorem name, an executable receipt, and a legal approval as different evidence objects even when they concern the same pipeline stage.
+
+Counterexamples play a diagnostic role. A scope-mismatched edge, a failure transformed into an apparent payload, an empty obligation set, an incompatible extension pair, or a repeated tainted proposal demonstrates one forbidden transition at a time. These cases are not estimates of field accuracy, and the manuscript reports no benchmark of legal prediction. Their purpose is to test whether the architecture exposes a known defect at the boundary assigned to it. Where a counterexample depends on definitions introduced only in this paper, its conclusion remains \derived{} rather than being attributed to Lean.
+
+This design also explains the manuscript's restrained use of ``end-to-end.'' The formal corpus establishes local invariants and selected composition theorems. The release layer then checks whether the required artifacts for one source subject are present and mutually consistent. The conjunction is an assurance argument, not a single theorem quantifying over every external program, document, and human decision. A different implementation may satisfy the same interfaces, but it must provide its own refinement and release evidence.
+
+The remainder proceeds from primitives to evidence. Section~\ref{sec:preliminaries} introduces identity, outcomes, Horn systems, and argumentation. Section~\ref{sec:ontology} gives the typed graph and provenance layer. Sections~\ref{sec:horn} and~\ref{sec:aaf} treat support and attack semantics. Section~\ref{sec:evaluator} integrates procedure, exact calculation, coverage, and trust. Sections~\ref{sec:temporal}--\ref{sec:noninterference} address time, composition, convergence, privacy, receipts, and taint. Section~\ref{sec:evidence} defines the release evidence boundary. The conclusion states exactly what is and is not proved.
+
+The design also adopts an explicit negative space. There is no theorem that a probability-bearing edge implements Bayesian inference, that a graph score is a metric, that a privilege label fixes a differential-privacy budget, that an explanation is comprehensible, or that a liability element is satisfied. These exclusions prevent a proof about transport and provenance from being advertised as a theorem about a domain semantics that has not been encoded. They also create a research program: each omitted family can be added only after its carrier, assumptions, executable refinement, and legal authorization rule are made explicit.
+
+This discipline matters for reproducibility. Formal artifacts are tied to a source commit and build environment; runtime fixtures are tied to executable versions and input digests; legal judgments are tied to an authorized actor and temporal scope. A later paper or release cannot inherit their force merely by retaining the same project name. Evidence must be regenerated or explicitly shown to remain applicable.

@@ -1,0 +1,85 @@
+\section{Structured Arguments, Defeats, and Branch Queries}
+\label{sec:aaf}
+
+The argument layer turns supported facts into inspectable reasoning structures. For a structured argument (a), direct support is
+\begin{equation}
+p\prec_a q\iff\exists e\in E_a,
+p\in\operatorname{prem}(e)\land\operatorname{concl}(e)=q.
+\label{eq:direct-support}
+\end{equation}
+ULM08 requires this relation to be well founded, keeps all referenced nodes inside the carrier, binds the request, and preserves premise dependencies. These safeguards are \formalized{}. They prohibit cyclic or dangling proof objects within the defined normal form; they do not establish that a generated argument has captured every legally material reason.
+
+Coverage is deliberately relative to a frozen expected carrier:
+\begin{equation}
+\operatorname{ArgumentCoverage}(Expected,Actual)
+\iff Actual=Expected.
+\label{eq:argument-coverage}
+\end{equation}
+The Boolean checker is sound and complete for this equality, and well-formedness transfers when the expected set has already been proved well formed. This is \formalized{}. The expected set is an input to the claim; the theorem is not a general completeness result for argument discovery.
+
+Attacks must carry a nonempty witness and agree on request identity:
+\begin{equation}
+\operatorname{AttackWF}(x)\iff
+x.witness\neq\epsilon\land x.attacker.r=x.target.r.
+\label{eq:attack-wf}
+\end{equation}
+A policy $\pi$ resolves attacks into defeats:
+\begin{equation}
+D_{\pi}=\{(x.attacker,x.target)\mid
+x\in Attacks\land\pi.succeeds(x)=\true\}.
+\label{eq:resolved-defeat}
+\end{equation}
+Every member of $D_{\pi}$ has a same-request, well-formed source attack. This provenance property is \formalized{}. The function $\pi.succeeds$ is uninterpreted beyond its Boolean result. Legal correctness of priorities, burdens, exceptions, or value preferences requires an independently justified policy \citep{PrakkenSartor1997,ModgilPrakken2013,BenchCapon2003}.
+
+The extension semantics are those introduced in Section~\ref{sec:preliminaries}. Conflict-free and admissible sets satisfy
+\begin{align}
+\operatorname{ConflictFree}(S)&\iff S\subseteq A\land
+\forall a,b\in S,\ (a,b)\notin D,\label{eq:conflict-free}\\
+\operatorname{Admissible}(S)&\iff
+\operatorname{ConflictFree}(S)\land\forall a\in S,\operatorname{Defends}(S,a).
+\label{eq:admissible}
+\end{align}
+Complete, preferred, stable, and grounded profiles are \formalized{}, including finite existence of preferred extensions and sound/complete enumeration relative to the defined carrier.
+
+For profile (p), the extension family is explicit:
+\begin{equation}
+Ext_p(AF)=
+\begin{cases}
+\{G\},&p=\mathsf{grounded},\\
+PreferredExt(AF),&p=\mathsf{preferred},\\
+StableExt(AF),&p=\mathsf{stable},\\
+CompleteExt(AF),&p=\mathsf{complete}.
+\end{cases}
+\label{eq:extension-family}
+\end{equation}
+Skeptical and credulous acceptance use different quantifiers:
+\begin{align}
+\operatorname{Common}(q)&\iff
+\forall e\in Ext_p(AF),\operatorname{AcceptedIn}(e,q),
+\label{eq:common}\\
+\operatorname{Possible}(q)&\iff
+\exists e\in Ext_p(AF),\operatorname{AcceptedIn}(e,q).
+\label{eq:possible}
+\end{align}
+Corresponding refuted, possibly refuted, undecided, and inconsistent predicates are also defined. Query results retain branch identity, with
+\begin{equation}
+\operatorname{Composable}(x,y)\iff x.branch=y.branch.
+\label{eq:branch-composable}
+\end{equation}
+All these statements are \formalized{}. Equation~\eqref{eq:branch-composable} prevents a report from selecting mutually favorable fragments from incompatible extensions. The model represents disagreement rather than manufacturing consensus.
+
+Three counterexamples explain the boundary. First, a source-bound attack can still embody an incorrect priority rule; provenance is necessary but not sufficient for legal validity. Second, equality to a frozen expected carrier can pass even when the expected carrier omitted an argument; checker completeness is relative to its oracle. Third, a stable extension may fail to exist while complete or grounded semantics remain defined. A renderer that treats an empty stable-extension list as a negative legal answer would conflate semantic non-existence with claim rejection.
+
+Branch identifiers also support explanation. A skeptical result may cite the intersection of all extensions, while a credulous result must identify at least one witness extension. Counterarguments should remain attached to the branch in which they operate. If two branches use the same textual argument identifier but different defeat relations, request and branch identity prevent their accidental coalescence.
+
+Institutional policy enters at two explicit points: defeat resolution and profile selection. The formal layer can prove that the chosen Boolean policy is applied consistently and that the chosen profile satisfies its mathematical semantics. It cannot decide whether a burden of proof, priority rule, value ordering, or skeptical standard is legally required. Those choices must be supplied by an authorized source and retained in the evidence record.
+
+\subsection{Branch-sensitive countermodels}
+
+Suppose an argumentation framework has two incompatible preferred extensions. One accepts argument $a$ and rejects $b$; the other accepts $b$ and rejects $a$. A report that extracts the favorable conclusion from each extension can present $a$ and $b$ together even though no admissible branch supports that conjunction. This is not a failure of preferred semantics. It is a composition error introduced after evaluation. Recording the branch identifier in each query result makes the error observable, and the composability predicate refuses the join.
+
+A second countermodel concerns quantifiers. If one extension accepts $a$ and another does not, credulous acceptance of $a$ is true while skeptical acceptance is false. Replacing the existential query with a universal one, or presenting either result without its profile, changes the proposition. The renderer must therefore preserve the query mode, semantic profile, and witness branch. Merely displaying the argument text is insufficient because the same text can have different acceptance status under different defeat relations or profiles.
+
+A third countermodel separates provenance from legal validity. An attack can contain a nonempty witness, join arguments from the same request, and pass the formal well-formedness predicate while relying on an incorrect priority supplied by policy. The provenance theorem still holds: the resulting defeat came from a recorded attack and policy result. What fails is the external legal premise. The proper recovery is to replace or reauthorize the policy and reevaluate the branches, not to weaken the theorem that records where the defeat came from.
+
+These examples determine an evaluation protocol. Tests should construct frameworks with multiple extensions, no stable extension, skeptical/credulous divergence, and policy-sensitive defeats. Each result should be serialized with request, profile, branch, and relevant witnesses, then compared with the finite reference semantics. The protocol evaluates executable fidelity to the formal model. It does not measure whether the arguments are persuasive to lawyers, whether the policy represents governing law, or whether the expected argument carrier is complete. Those questions require separate empirical and legal studies.

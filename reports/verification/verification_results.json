@@ -1,0 +1,28 @@
+{
+  "total": 4,
+  "passed": 4,
+  "failed": 0,
+  "runtime_seconds": 0.02,
+  "results": [
+    {
+      "name": "constraint_consistency",
+      "passed": true,
+      "detail": "SAT: all 13 red lines can be simultaneously satisfied"
+    },
+    {
+      "name": "lfp_monotonicity",
+      "passed": true,
+      "detail": "UNSAT: no counterexample found — Horn closure is monotone (n=4)"
+    },
+    {
+      "name": "pi_legal_equivalence",
+      "passed": true,
+      "detail": "PASSED: 12/12 property tests on actual tokenizer"
+    },
+    {
+      "name": "dp_smoothing_safety",
+      "passed": true,
+      "detail": "STRUCTURAL: tanh(x/C) ∈ (-1,1) by construction, clip_C(x) = C*tanh(x/C) ∈ (-C,C). Full DP verification requires probabilistic reasoning (Z3 NRA insufficient)."
+    }
+  ]
+}

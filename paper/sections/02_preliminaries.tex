@@ -1,0 +1,89 @@
+\section{Preliminaries}
+\label{sec:preliminaries}
+
+\subsection{Requests, observations, and outcomes}
+
+A request key (k) contains a declared case scope and a run scope. Its minimal well-formedness condition is
+\begin{equation}
+\operatorname{WF}(k)\iff
+k.\operatorname{runScope.caseScope}=k.\operatorname{caseScope}.
+\label{eq:request-wf}
+\end{equation}
+This \formalized{} equality prevents accidental cross-case substitution after normalization. It does not authenticate a real-world case identifier. For representation change $f:A\to B$, observations $o_A:A\to O$ and $o_B:B\to O$ define
+\begin{equation}
+\operatorname{Preserves}(o_A,o_B,f)
+\iff\forall x,\ o_B(f(x))=o_A(x).
+\label{eq:observation-preservation}
+\end{equation}
+Preservation composes: if $f$ preserves from $A$ to $B$ and $g$ preserves from $B$ to $C$, then $g\circ f$ preserves from $A$ to $C$. This is \formalized{}. The observation function remains a specification choice; omitting a legally material coordinate from $o$ cannot be repaired by the theorem.
+
+Partial information is represented by a three-way sum:
+\begin{equation}
+\operatorname{Outcome}(\alpha)=
+\operatorname{Complete}(\alpha)+
+\operatorname{Partial}(\alpha,O\neq\varnothing)+
+\operatorname{Failure}(e).
+\label{eq:outcome}
+\end{equation}
+The witness $O\neq\varnothing$ ensures that partiality records at least one unresolved obligation. A generic map cannot promote failure:
+\begin{equation}
+\operatorname{map}(f,\operatorname{Failure}(e))=
+\operatorname{Failure}(e).
+\label{eq:map-failure}
+\end{equation}
+Both statements are \formalized{}.
+
+\subsection{Horn support}
+
+A finite Horn system is $H=(F_0,R,U)$, with base facts $F_0\subseteq U$ and rules whose premises and heads lie in $U$. Its immediate consequence operator is
+\begin{equation}
+T_H(S)=F_0\cup
+\{\operatorname{head}(r)\mid r\in R,
+\operatorname{prem}(r)\subseteq S\}.
+\label{eq:horn-operator}
+\end{equation}
+Starting at the empty set gives the ascending chain
+\begin{equation}
+I_0=\varnothing,\qquad I_{n+1}=T_H(I_n),\qquad I_n\subseteq I_{n+1}.
+\label{eq:horn-iteration}
+\end{equation}
+Finiteness yields stabilization by (|U|), and the closure
+\begin{equation}
+C_H=I_{|U|}
+\label{eq:horn-closure}
+\end{equation}
+is a fixed point contained in every fixed point. These are \formalized{} results, consistent with the fixed-point basis of Horn semantics \citep{Horn1951,Tarski1955,CousotCousot1977}.
+
+\subsection{Abstract argumentation}
+
+An abstract argumentation framework is $AF=(A,D)$, with finite arguments $A$ and defeats $D\subseteq A\times A$ \citep{Dung1995}. The characteristic function is
+\begin{equation}
+F_{AF}(S)=\{a\in A\mid
+\forall b\,((b,a)\in D\Rightarrow
+\exists c\in S:(c,b)\in D)\}.
+\label{eq:dung-characteristic}
+\end{equation}
+A set is conflict-free when none of its members defeats another. It is admissible when conflict-free and defending each member, complete when admissible and equal to (F_{AF}(S)), preferred when inclusion-maximal admissible, stable when it attacks every argument outside it, and grounded when it is the least fixed point. For finite (A), the implemented grounded extension is
+\begin{equation}
+G=F_{AF}^{|A|}(\varnothing),\qquad F_{AF}(G)=G.
+\label{eq:grounded}
+\end{equation}
+These profile definitions and their finite results are \formalized{}. Which profile a legal institution should choose is not.
+
+\subsection{Validation product}
+
+The architecture distinguishes validation dimensions rather than collapsing them:
+\begin{equation}
+\mathcal V=
+\mathcal V_{kernel}\times\mathcal V_{build}\times
+\mathcal V_{runtime}\times\mathcal V_{legal}.
+\label{eq:validation-product}
+\end{equation}
+Lean kernel acceptance, reproducible CI, executable refinement, and authorized legal judgment occupy different coordinates. There is no theorem of the form
+$\mathcal V_{kernel}=1\Rightarrow\mathcal V_{legal}=1$. The absence of that implication is a scope rule, not a defect to be hidden.
+
+Each coordinate has a different falsifier. A malformed proof term falsifies kernel acceptance. A missing import or stale generated artifact falsifies reproducible build evidence. A counterexample fixture falsifies a runtime refinement claim. A court, legislature, or authorized legal reviewer may reject a normative premise even when the preceding three coordinates are perfect. Treating these falsifiers separately avoids the category error in which success in one layer immunizes another.
+
+The finite setting is equally important. Powerset enumeration and the $|A|$- or $|U|$-bounded iterations are executable reference semantics because their carriers are finite. They do not establish tractability for every production-sized instance. Complexity, indexing, incremental maintenance, and memory behavior are empirical engineering questions. The reference evaluator supplies an oracle against which optimizations can be tested, while Equation~\eqref{eq:incremental-correct} later states the equality an optimized implementation must meet.
+
+Finally, the notation is intentionally extensional. Sets identify carriers by membership, and functions are judged by observable results. This keeps the mathematical interface small. Provenance, authority, and temporal annotations are nevertheless retained in the data types so that two extensionally equal payloads do not become interchangeable when their legal or evidential contexts differ.

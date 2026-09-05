@@ -1,0 +1,90 @@
+{
+  "metadata": {
+    "theorem": "C3",
+    "theorem_statement": "The claim-mapping operator T is a contraction on a complete metric space (X, d), thus has a unique fixed point by Banach Fixed-Point Theorem",
+    "status": "REFUTED_AS_LOGICAL_DERIVATION",
+    "refutation_type": "metric_space_undefined_and_discrete_not_metric",
+    "generated_at": "2026-06-11",
+    "minimality_criterion": "2 data points, 1 distance function, 1 logical derivation"
+  },
+  "witness_type": "metric_space_undefined | discrete_not_metric | lipschitz_ratio_ge_1",
+  "insufficiency": "The purported 'metric space' (X, d) for claim mappings fails to satisfy the metric space axioms because: (1) the domain X consists of discrete labels (COLLISION, PARTIAL, MAPPED, CN_ONLY, US_ONLY, HK_ONLY) rather than points in a geometric space; (2) no distance function d: X × X → ℝ≥0 is defined in the proof; (3) even if one defines a discrete metric (d=0 if equal, d=1 if different), the resulting space is not used for the contraction argument because the operator T maps labels to labels, not points to points in a metric sense.",
+  "specific_pairs": [
+    {
+      "pair_id": "W-C3-001",
+      "x1": {
+        "pattern_id": "FP-CNUS-003",
+        "fact_pattern": "Platform user generated defamatory content, platform claimed immunity",
+        "cn_claim": "Platform bears strict joint liability (民法典第1194-1197条)",
+        "us_claim": "Platform immune under 47 U.S.C. §230(c)(1)",
+        "mapping_status": "COLLISION"
+      },
+      "x2": {
+        "pattern_id": "FP-TRI-002",
+        "fact_pattern": "Trademark infringement across all three jurisdictions",
+        "cn_claim": "Trademark infringement under 商标法; remedies include injunction and damages",
+        "us_claim": "Trademark infringement under Lanham Act §32(1); remedies include injunction and damages",
+        "hk_claim": "Trademark infringement under Cap. 559; remedies include injunction and damages",
+        "mapping_status": "TRI_JURISDICTION_MAPPED"
+      },
+      "d_X": null,
+      "reason": "Distance not defined. The mapping_status labels 'COLLISION' and 'TRI_JURISDICTION_MAPPED' are discrete categorical labels, not points in a metric space. There is no function d: {COLLISION, TRI_JURISDICTION_MAPPED} → ℝ≥0 satisfying metric axioms (identity of indiscernibles, symmetry, triangle inequality) that is also meaningful for the contraction argument. A discrete metric d=0 if same label, d=1 if different is mathematically valid but renders the space disconnected and the contraction argument vacuous: T would need to map all points within a ball of radius r to a ball of radius < r, but discrete metric balls are either singletons or the whole space."
+    },
+    {
+      "pair_id": "W-C3-002",
+      "x1": {
+        "pattern_id": "FP-CNUS-001",
+        "fact_pattern": "Contract formation by performance without consideration",
+        "cn_claim": "Contract formed by actual performance (民法典第490条); no consideration required",
+        "us_claim": "Forbearance is valid consideration (Hamer v. Sidway); contract requires consideration",
+        "mapping_status": "CN_US_PARTIAL"
+      },
+      "x2": {
+        "pattern_id": "FP-CNUS-003",
+        "fact_pattern": "Platform liability for third-party content",
+        "cn_claim": "Platform strict liability",
+        "us_claim": "Platform absolute immunity",
+        "mapping_status": "COLLISION"
+      },
+      "d_X": null,
+      "reason": "Even if one defines an ad-hoc distance between mapping statuses (e.g., d(COLLISION, PARTIAL) = 1, d(PARTIAL, MAPPED) = 0.5), this distance is not derived from the claim semantics but imposed ex post. The operator T (claim-mapping evaluator) does not operate on this distance; T takes a fact pattern and produces a claim, which is a discrete label, not a point in a metric space. The Banach theorem requires T: X → X where X is a complete metric space and d(T(x), T(y)) ≤ k·d(x,y) with k < 1. But T is not defined as a function on distances; it is a classifier that outputs labels. The Lipschitz condition cannot be verified because T's output depends on legal reasoning, not geometric proximity."
+    },
+    {
+      "pair_id": "W-C3-003",
+      "x1": {
+        "description": "Hypothetical metric space point representing 'strict liability' claim vector",
+        "vector_representation": "[1, 0, 0, 0] (liability=1, immunity=0, privilege=0, duty=0)"
+      },
+      "x2": {
+        "description": "Hypothetical metric space point representing 'absolute immunity' claim vector",
+        "vector_representation": "[0, 1, 0, 0] (liability=0, immunity=1, privilege=0, duty=0)"
+      },
+      "d_X": 1.414,
+      "lipschitz_analysis": {
+        "assumed_distance": "Euclidean distance between [1,0,0,0] and [0,1,0,0] is √2 ≈ 1.414",
+        "operator_T": "T maps fact patterns to claims. For x1 (platform liability fact), T(x1) = 'strict liability' in CN, 'absolute immunity' in US. For x2 (different fact pattern), T(x2) could output the same or different claims.",
+        "lipschitz_ratio": "≥ 1",
+        "reason": "Suppose x1 and x2 are two fact patterns that differ by a single word (e.g., 'platform knew' vs. 'platform did not know'). In CN, this changes liability from strict to fault-based. In US, Section 230 immunity applies regardless of knowledge (with limited exceptions). Therefore d(x1, x2) is small (one word difference), but d(T(x1), T(x2)) is large (strict liability vs. immunity). The ratio d(T(x1), T(x2)) / d(x1, x2) ≥ 1, violating the contraction condition k < 1. In fact, for arbitrarily close fact patterns, T can output diametrically opposite claims, making the Lipschitz ratio unbounded."
+      }
+    }
+  ],
+  "metric_axiom_violations": [
+    {
+      "axiom": "M1: d(x, y) = 0 ⟺ x = y",
+      "violation": "The claim labels 'COLLISION' and 'ASYMMETRY' are different labels but there is no principled way to assign them a non-zero distance that reflects their semantic difference. A discrete metric d=1 for all different pairs satisfies M1-M3 but makes the space totally disconnected, preventing any meaningful contraction."
+    },
+    {
+      "axiom": "M2: d(x, y) = d(y, x)",
+      "violation": "Even if a distance is defined, claim mapping is not symmetric: d_CN→US(CN_claim, US_claim) may not equal d_US→CN(US_claim, CN_claim) because the legal reasoning paths differ. But this is secondary to the main issue."
+    },
+    {
+      "axiom": "M3: d(x, z) ≤ d(x, y) + d(y, z) (triangle inequality)",
+      "violation": "Not applicable because d is not defined."
+    },
+    {
+      "axiom": "Completeness: Every Cauchy sequence converges",
+      "violation": "The space of discrete labels with discrete metric is complete (all Cauchy sequences are eventually constant), but this completeness is vacuous: the only convergent sequences are those that eventually repeat the same label. The claim-mapping process does not generate Cauchy sequences; it generates discrete classifications."
+    }
+  ],
+  "human_readable_explanation": "\n# C3 Banach 收缩映射反例说明\n\n## 核心逻辑\n定理 C3 声称 claim-mapping operator T 是一个完备度量空间 (X, d) 上的收缩映射，因此根据 Banach 不动点定理存在唯一不动点。\n\nBanach 定理的四个前提：\n1. X 是一个集合；\n2. d: X × X → ℝ≥0 是一个度量（满足正定性、对称性、三角不等式）；\n3. (X, d) 是完备的（所有 Cauchy 列收敛）；\n4. T: X → X 是收缩映射：存在 k < 1 使得对所有 x, y ∈ X，d(T(x), T(y)) ≤ k·d(x, y)。\n\n## 反例结构\n\n### 问题 1：X 不是度量空间中的点，而是离散标签\n项目中的 'effective_nodes' 是离散分类标签：\n- COLLISION\n- PARTIAL\n- MAPPED\n- CN_ONLY\n- US_ONLY\n- HK_ONLY\n- ASYMMETRY\n\n这些标签是**名义变量**（nominal variables），不是度量空间中的点。你不能对 'COLLISION' 和 'MAPPED' 计算有意义的距离，就像你不能计算 '红色' 和 '蓝色' 的欧几里得距离一样。\n\n### 问题 2：d 未定义\n证明中从未定义 d: X × X → ℝ≥0。即使强行定义离散度量：\n- d(x, y) = 0 若 x = y\n- d(x, y) = 1 若 x ≠ y\n\n这个度量数学上合法，但使得空间**完全不连通**（totally disconnected）。在此度量下，收缩映射 T 必须满足：\n- d(T(x), T(y)) ≤ k·d(x, y) < 1·d(x, y)\n\n若 x ≠ y，则 d(x, y) = 1，因此 d(T(x), T(y)) < 1。但 d 只能取 0 或 1，所以 d(T(x), T(y)) 必须为 0，即 T(x) = T(y)。\n\n这意味着：**T 必须是常值函数**（所有输入映射到同一输出）。但 claim-mapping operator 显然不是常值函数：不同 fact pattern 产生不同 claims。因此 T 不是收缩映射。\n\n### 问题 3：Lipschitz ratio ≥ 1\n考虑两个事实模式 x1 和 x2，它们仅差一个词：\n- x1: '平台知道用户发布诽谤内容'\n- x2: '平台不知道用户发布诽谤内容'\n\n在 CN 法下，这一差异可能改变责任性质（从严格责任变为过错责任）。\n在 US 法下，Section 230  immunity 基本不变（知识状态在 §230(c)(1) 下不影响免责，仅在 §230(c)(2) 的 good faith 限制中有有限影响）。\n\n因此：\n- d(x1, x2) 很小（一个词差异）\n- d(T(x1), T(x2)) 很大（严格责任 vs.  immunity）\n\nLipschitz ratio = d(T(x1), T(x2)) / d(x1, x2) ≥ 1，违反收缩条件 k < 1。\n\n实际上，对于任意接近的事实模式，T 可以输出完全相反的 claims，使得 Lipschitz ratio **无界**（unbounded）。\n\n## 结论\nC3 被逻辑推导推翻。Claim-mapping operator T 不是度量空间上的收缩映射，因为：\n1. 定义域是离散标签，不是度量空间；\n2. 即使强行定义离散度量，T 不是常值函数，因此不是收缩映射；\n3. 对于语义接近但事实差异小的情况，T 的输出差异可以任意大，Lipschitz ratio ≥ 1。\n\n因此 Banach 不动点定理**不适用**。不存在唯一不动点。\n"
+}

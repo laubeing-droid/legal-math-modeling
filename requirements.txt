@@ -1,0 +1,12 @@
+# Core
+numpy>=1.24.0
+pyyaml>=6.0
+
+# Formal verification
+hypothesis>=6.0.0
+z3-solver>=4.12.0
+sympy>=1.12.0
+
+# Optional external tooling: Lean 4 is provisioned only by GitHub Actions for
+# this repository and must not be installed or executed as a local check.
+# tla+: https://lamport.azurewebsites.net/tla/tools.html

@@ -1,0 +1,10 @@
+import JurisLean.FiniteMonotoneIteration
+import JurisLean.DungFixedPoint
+import JurisLean.HornFixedPoint
+import JurisLean.WeightedSupNorm
+
+#print assumptions FiniteMonotoneIteration.exists_fixpoint_le_card
+#print assumptions FiniteMonotoneIteration.fixed_at_card
+#print assumptions DungFixedPoint.grounded_is_least_fixed_point
+#print assumptions HornFixedPoint.horn_completeness
+#print assumptions HornFixedPoint.horn_result_is_minimal_model

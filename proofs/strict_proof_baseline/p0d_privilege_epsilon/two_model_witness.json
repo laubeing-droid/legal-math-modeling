@@ -1,0 +1,22 @@
+{
+  "data_origin": "NO_DATA_FORMAL",
+  "method": "two_model_witness",
+  "privilege_level": 5,
+  "semantic_concept": "lawyer-client confidentiality",
+  "model_a": {
+    "jurisdiction": "CN",
+    "legal_basis": "律师法第38条 (professional ethics duty, not evidentiary privilege)",
+    "epsilon": 1.0,
+    "protection_strength": "weak",
+    "satisfiable": "True"
+  },
+  "model_b": {
+    "jurisdiction": "US",
+    "legal_basis": "Fed. R. Evid. 501 (absolute evidentiary privilege)",
+    "epsilon": 2.5,
+    "protection_strength": "strong",
+    "satisfiable": "True"
+  },
+  "conclusion": "Same privilege level (5) yields different epsilon (1.0 vs 2.5) in two internally consistent legal policy models. Therefore, privilege level alone does not determine epsilon.",
+  "implication": "epsilon must be a function of (privilege_level, jurisdiction, legal_context), not just privilege_level."
+}

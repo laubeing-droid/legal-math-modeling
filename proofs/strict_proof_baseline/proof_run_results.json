@@ -1,0 +1,41 @@
+{
+  "P0-A": {
+    "returncode": 0,
+    "stdout": "======================================================================\nTheorem A1 (TOY MODEL): Finite no-total-mapping checker\nDATA_ORIGIN: TOY_SYNTHETIC\n======================================================================\nLoaded 5 TOY_SYNTHETIC fact patterns.\nCollision pairs per toy pattern:\n  FP-CNUS-001: [('C1', 'U1')]\n  FP-CNHk-001: [('C2', 'H2')]\n  FP-TRI-001: [('C3', 'U3'), ('U3', 'H3')]\n  FP-COLL-001: [('C4', 'U4')]\n  FP-ASYM-001: [('C5', 'H5')]\n\nExhaustive enumeration: 5 toy patterns, ",
+    "stderr": ""
+  },
+  "P0-B": {
+    "smt2": {
+      "returncode": -1,
+      "error": "Command not found: [WinError 2] 系统找不到指定的文件。"
+    },
+    "python": {
+      "returncode": 0,
+      "stdout": "======================================================================\nCN Privilege Lattice — Z3 Monotonic-Epsilon Proof (P0-B')\n======================================================================\n\nZ3 available : True\nZ3 version   : 4.16.0\nSMT result   : unsat\n\nConclusion: UNSAT — no monotonic epsilon satisfies all constraints.\nThis confirms the draft proof in cn_privilege_lattice.smt2.\n\n======================================================================\n__epistemic_status__\n==============",
+      "stderr": ""
+    }
+  },
+  "P0-C": {
+    "returncode": -1,
+    "error": "Timeout"
+  },
+  "P0-D": {
+    "returncode": -1,
+    "error": "Timeout"
+  },
+  "P0-D2": {
+    "returncode": 0,
+    "stdout": "======================================================================\nTheorem D1: Privilege -> epsilon is not a function\nMethod: Two-Model Witness\n======================================================================\nModel A (CN context) satisfiable: True\n  epsilon_a(5) = 1.0  (weak protection, professional ethics duty)\nModel B (US context) satisfiable: True\n  epsilon_b(5) = 2.5  (strong protection, absolute evidentiary privilege)\n\nWitness written to: proofs/",
+    "stderr": ""
+  },
+  "P1-E": {
+    "returncode": 0,
+    "stdout": "======================================================================\nTheorem E1: Dung AAF Grounded Extension -- Exhaustive Proof\n======================================================================\nEpistemic status target: PROVED_BY_EXHAUSTIVE_ENUMERATION\nScope: all directed attack graphs for n <= 4 (2^(n^2) graphs)\n======================================================================\n\n======================================================================\nSelf-test: hand-crafted attack grap",
+    "stderr": ""
+  },
+  "E3": {
+    "returncode": 0,
+    "stdout": "======================================================================\nTheorem E3: Original Evaluator Monotonicity Counterexample\n======================================================================\nEpistemic status target: REFUTED_BY_COUNTEREXAMPLE\n======================================================================\n\nCounterexample constructed successfully.\n\nCounterexample details:\n  Arguments: ['a', 'b']\n  Rebuttal pairs: [('b', 'b'), ('b', 'a')]\n\n  A = ['a']\n  B = ['a', 'b']\n  A subseteq ",
+    "stderr": ""
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "metadata": {
+    "theorem": "A1",
+    "theorem_statement": "There exists a global natural transformation η: F_CN ⇒ F_US ⇒ F_HK unifying claim functors across CN/US/HK",
+    "status": "REFUTED_BY_COUNTEREXAMPLE",
+    "refutation_type": "collision_witness",
+    "generated_at": "2026-06-11",
+    "minimality_criterion": "1 fact pattern, 2 jurisdictions for binary collision; 1 fact pattern, 3 jurisdictions for ternary collision"
+  },
+  "counterexamples": [
+    {
+      "id": "CE-A1-001",
+      "theorem": "A1",
+      "type": "binary_collision",
+      "minimality": "1 fact pattern, 2 jurisdictions, 1 legal concept",
+      "witness": {
+        "fact_pattern": "电商平台用户生成诽谤性内容，平台主张免责 / Platform user generated defamatory content, platform claimed immunity",
+        "cn_claim": "平台承担严格连带责任（《民法典》第1194-1197条）：网络服务提供者知道或应当知道网络用户侵权未采取必要措施的，与该用户承担连带责任。",
+        "us_claim": "平台完全免责（47 U.S.C. §230(c)(1)）：Interactive computer service provider shall not be treated as publisher or speaker of information provided by another content provider.",
+        "hk_claim": "DATA_UNAVAILABLE",
+        "why_collision": "逻辑冲突：同一事实模式（平台 hosting 第三方内容）在 CN 产生严格连带责任，在 US 产生绝对免责。若存在自然变换 η: F_CN → F_US，则 η 必须将 'strict_joint_liability' 映射为 'absolute_immunity'，但这两个对象在目标范畴中不相等且不存在同构（一个要求承担责任，一个否定责任）。因此 η 无法保持态射的交换性，自然变换条件 η_US ∘ F_CN(f) = F_US(f) ∘ η_CN 在 f = 'platform_hosting' 时失败。"
+      },
+      "implication": "任何试图统一 CN/US 平台责任规则的 functor 都会破坏语义守恒：strict liability 与 absolute immunity 在责任范畴中不是同构对象，不存在保结构的映射。",
+      "source_pattern_id": "FP-CNUS-003",
+      "claim_status": {
+        "cn": "PROVED_FORMAL",
+        "us": "PROVED_FORMAL",
+        "hk": "DATA_INSUFFICIENT_FOR_PROOF"
+      }
+    },
+    {
+      "id": "CE-A1-002",
+      "theorem": "A1",
+      "type": "ternary_collision",
+      "minimality": "1 fact pattern, 3 jurisdictions, 1 legal concept (attorney confidentiality in evidence proceedings)",
+      "witness": {
+        "fact_pattern": "被告人主张供述系刑讯逼供取得，同时主张与律师的通信应保密 / Defendant moved to suppress confession obtained by coercion and claimed privilege over attorney communications",
+        "cn_claim": "法院应召开庭前会议就非法证据排除了解情况听取意见，对不能排除非法取证可能的证据坚决排除。律师通信保密属于律师职业道德义务（《律师法》第38条、《律师执业行为规范》第9条），非证据法上的特权；在刑事证据排除程序中，律师通信可被依法调取。",
+        "us_claim": "供述因违反 Miranda 规则不可采（Fifth Amendment）。Attorney-client privilege 为联邦证据法绝对特权（Fed. R. Evid. 501-502; Upjohn v. United States），政府不得强制披露律师-客户通信，除非 crime-fraud exception 成立。",
+        "hk_claim": "Legal professional privilege (LPP) 保护律师-客户通信免于披露（Cap. 622 s.165; Basic Law Art.35）。LPP 为宪法性权利，受基本法第35条保障，仅在 client waiver 或 crime-fraud exception 下可被推翻。",
+        "why_collision": "三法域对同一事实模式（刑事被告主张律师通信保密）给出三种不可调和的 claim：\n(1) CN: 律师保密是职业道德义务，非证据特权，法院可依法调取；\n(2) US: 证据法绝对特权，client-held，受 Fed. R. Evid. 501 保护；\n(3) HK: 宪法性权利，受 Basic Law Art.35 保障。\n三者在范畴中的类型不同：CN 为 'professional_ethics_duty'，US 为 'evidentiary_privilege'，HK 为 'constitutional_right'。任何全局自然变换 η 必须将三个不同类型的对象映射到同一目标对象，但目标范畴中不存在一个对象同时是 'duty'、'privilege' 和 'constitutional_right'。因此 η 不是 well-defined 的自然变换。"
+      },
+      "implication": "任何试图统一三者的 functor 都会破坏类型守恒：professional_ethics_duty、evidentiary_privilege、constitutional_right 在目标范畴中属于不同的类型/对象类，不存在保类型的映射。全局自然变换要求源范畴与目标范畴的对象类型一致，此处类型冲突不可调和。",
+      "source_pattern_id": "FP-COLL-001",
+      "claim_status": {
+        "cn": "PROVED_FORMAL",
+        "us": "PROVED_FORMAL",
+        "hk": "PROVED_FORMAL"
+      }
+    },
+    {
+      "id": "CE-A1-003",
+      "theorem": "A1",
+      "type": "partial_mapping_failure",
+      "minimality": "1 fact pattern, 2 jurisdictions, 1 legal concept (consideration)",
+      "witness": {
+        "fact_pattern": "甲乙通过电子邮件磋商买卖，乙方发送要约后甲方未回复但已支付部分货款 / An uncle promised nephew $5,000 for forbearance from drinking until 21",
+        "cn_claim": "合同成立，甲方支付货款的行为构成以实际履行方式承诺（《民法典》第490条）。合同成立无需 consideration，赠与合同为诺成合同。",
+        "us_claim": "Forbearance of legal rights is valid consideration; contract enforceable under objective theory（Hamer v. Sidway, 124 N.Y. 538）。普通合同需 consideration 支持，无偿承诺原则上不可执行。",
+        "hk_claim": "DATA_UNAVAILABLE",
+        "why_collision": "部分映射在 offer+acceptance 子域存在，但 consideration 构成 obstruction。CN 合同范畴的对象 morphism 不需要 consideration 作为边；US 合同范畴的 morphism 必须以 consideration 为边。若 functor F: CN_Contract → US_Contract 试图映射合同成立态射，则 F 将 'payment_as_performance'（无 consideration）映射为 'valid_contract'，但 US 范畴中 'valid_contract' 的入边必须包含 consideration，而 F(payment_as_performance) 不包含 consideration。因此 F 不是 functor（不保持态射结构）。"
+      },
+      "implication": "部分子域（要约+承诺）可建立局部自然变换，但 consideration obstruction 导致全局自然变换不存在。局部可映射 ≠ 全局可映射。",
+      "source_pattern_id": "FP-CNUS-001",
+      "claim_status": {
+        "cn": "PROVED_FORMAL",
+        "us": "PROVED_FORMAL",
+        "hk": "DATA_INSUFFICIENT_FOR_PROOF"
+      }
+    }
+  ],
+  "human_readable_explanation": "\n# A1 全局自然变换反例说明\n\n## 核心逻辑\n定理 A1 声称存在一个全局自然变换 η，将 CN、US、HK 三法域的 claim functor 统一到一个共同的 target category。\n\n自然变换的两个必要条件：\n1. **对象映射守恒**：源范畴中的每个对象必须映射到目标范畴中的唯一对象，且类型一致。\n2. **态射交换性**：对于任意态射 f: X → Y，必须满足 η_Y ∘ F(f) = G(f) ∘ η_X。\n\n## 反例 CE-A1-001（最小二元碰撞）\n- **事实模式**：平台 hosting 第三方诽谤内容\n- **CN claim**：平台承担严格连带责任\n- **US claim**：平台完全免责（Section 230）\n\n这两个 claim 在责任范畴中是**互斥的**（mutually exclusive）：\n- 若平台承担严格责任，则不可能同时完全免责；\n- 若平台完全免责，则不可能同时承担严格责任。\n\n因此，任何 functor F: CN → US 若将 'strict_joint_liability' 映射到 US 范畴，其像必须是 US 范畴中的一个对象。但 US 范畴中对应此事实模式的对象是 'absolute_immunity'。这两个对象在责任范畴中不存在同构（isomorphism），因为它们的法律责任值互为否定。\n\n## 反例 CE-A1-002（三元碰撞）\n- **事实模式**：刑事被告主张律师通信保密\n- **CN**：职业道德义务（非证据特权，法院可调取）\n- **US**：证据法绝对特权（client-held，Fed. R. Evid. 501）\n- **HK**：宪法性权利（Basic Law Art.35）\n\n三者在**类型层面**即冲突：professional_ethics_duty ≠ evidentiary_privilege ≠ constitutional_right。自然变换要求对象类型守恒，此处类型不同，故 η 不存在。\n\n## 反例 CE-A1-003（部分映射失败）\nConsideration 是 CN→US 映射的结构性 obstruction。CN 合同成立的态射不需要 consideration 作为入边；US 合同成立的态射必须有 consideration 作为入边。Functor 必须保持态射结构，因此无法将无 consideration 的 CN 合同映射为有 consideration 的 US 合同。\n\n## 结论\nA1 被反例推翻。不存在全局自然变换。最多存在**局部自然变换**（partial natural transformation），其定义域是各法域范畴的真子范畴（如 trademark infringement、contract breach 等无 consideration 的子域）。\n"
+}

@@ -1,0 +1,53 @@
+\section{A Compositional Rosetta Stone}
+\label{sec:rosetta}
+
+The architecture links representations through preservation laws rather than asserting a category-theoretic equivalence. For stages (A,B,C), observation-preserving maps satisfy
+\begin{equation}
+P(f)\land P(g)\Longrightarrow P(g\circ f),
+\label{eq:preservation-composition}
+\end{equation}
+where (P(f)) abbreviates Equation~\eqref{eq:observation-preservation}. This is \formalized{}.
+
+The same-request condition is repeated at every composition boundary. For branch results,
+\begin{equation}
+x\bowtie y\iff x.branch=y.branch.
+\label{eq:branch-join}
+\end{equation}
+For assurance records,
+\begin{equation}
+A\oplus B\text{ is defined only if }scope(A)=scope(B).
+\label{eq:scope-join}
+\end{equation}
+For domain choices,
+\begin{equation}
+id(choice)=\langle request,branch,policyId,selectedSet\rangle.
+\label{eq:choice-identity}
+\end{equation}
+These constraints are \formalized{} in their respective types. Together they provide a typed correspondence among request normalization, support, argumentation, procedure, and assurance.
+
+It is useful to express the intended pipeline as a partial composite
+\begin{equation}
+\mathcal L=
+Release\circ Assure\circ Adjudicate\circ Query\circ
+EvaluateAF\circ CompileArgs\circ CloseHorn\circ Normalize.
+\label{eq:pipeline-composite}
+\end{equation}
+This equation is \derived{} notation. The Lean corpus proves properties of the named stages and selected compositions; it does not define a category, functor, natural transformation, or equivalence covering the full pipeline. Any such categorical account is \conjectured{} until objects, morphisms, identities, composition laws, and preservation theorems are explicitly encoded.
+
+The Rosetta-stone value is practical rather than ornamental. A runtime may use JSON, a theorem may use an inductive type, and a report may use prose. Observation-preservation and shared identity fields state what must survive each representation change. The approach avoids an unjustified claim that syntactically different artifacts are semantically identical in every respect.
+
+There are two distinct composition failures. A structural failure occurs when scopes, branches, or request identifiers differ, so the operation is undefined. An evidential failure occurs when structures align but an observation-preservation or verifier obligation remains open. The first should stop the composition immediately; the second may yield a partial result with explicit obligations. Collapsing both into a generic error would lose useful recovery information.
+
+The partial composite in Equation~\eqref{eq:pipeline-composite} also reveals where alternative implementations can enter. A different Horn engine, argument generator, extension enumerator, or renderer may replace a stage if it proves or tests the same observable contract. Internal algorithms need not be identical. What must remain stable is the request-bound behavior declared at the interface.
+
+This is why the architecture prefers small preservation theorems to one grand equivalence claim. A global equivalence would require a semantics for every representation and every loss of detail. Local observations let the specification name only the information that a transition promises to preserve, while open obligations expose everything not yet justified.
+
+\subsection{Interface-by-interface verification}
+
+Each arrow in Equation~\eqref{eq:pipeline-composite} needs its own witness. Normalization should preserve the selected observation of a request. Horn closure should preserve the request and expose its finite support carrier. Argument compilation should bind premises, dependencies, and conclusions to that carrier. Abstract evaluation should retain the defeat policy and semantic profile. Querying should attach the branch and quantifier mode. Adjudication should distinguish computational incompleteness, procedural disposition, absent authority, and modeled substantive status. Assurance should join only compatible scopes and retain weaker coordinates. Release should verify the subject-bound evidence tuple. No witness at a later arrow discharges a missing witness earlier in the sequence.
+
+This approach permits implementation diversity without semantic free choice. A JSON adapter and a Lean constructor may use different layouts, yet an observation-preservation test can compare their request, scope, and obligation projections. An optimized extension enumerator may use pruning rather than powerset enumeration, yet it must agree with the reference extension family for the tested finite carrier. A report generator may shorten internal identifiers, yet it must retain a reversible link when those identifiers are part of the promised observation. The interface specifies what equivalence means for that transition.
+
+Lossy transformations are not automatically forbidden. They are acceptable when the lost information is outside the declared observation and when the decision to omit it is itself authorized. A public explanation may redact sensitive evidence while retaining a sealed provenance reference. That operation is not equality of complete artifacts; it is preservation of a deliberately narrower observation plus an outstanding access or review obligation. The formal composition theorem can apply only after that observation has been defined.
+
+The partiality of the composite is therefore informative. Scope mismatch should produce no composition. Missing evidence may produce an explicit partial outcome. A runtime exception produces failure. A legally contested policy may leave technically complete results pending judgment. These outcomes have different recovery paths, and the Rosetta stone is successful only if translation preserves those distinctions rather than normalizing all of them to a Boolean error or success flag.

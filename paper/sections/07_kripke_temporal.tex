@@ -1,0 +1,53 @@
+\section{Temporal Applicability}
+\label{sec:temporal}
+
+Legal authority is versioned, and observations must be evaluated relative to an as-of time. Closed intervals intersect according to
+\begin{equation}
+[a,b]\cap[c,d]=
+\begin{cases}
+[\max(a,c),\min(b,d)],&\max(a,c)\le\min(b,d),\\
+\varnothing,&\text{otherwise}.
+\end{cases}
+\label{eq:interval-intersection}
+\end{equation}
+This arithmetic is \formalized{} for the repository's interval type.
+
+For a version (v), applicability at time (t) is
+\begin{equation}
+\operatorname{effectiveAt}(v,t)\iff
+v.from\le t\land(v.to=\bot\lor t\le v.to).
+\label{eq:effective-at}
+\end{equation}
+Observation respects the query cut-off only when
+\begin{equation}
+\operatorname{observationAllowed}(t_{obs},t_{asof})
+\iff t_{obs}\le t_{asof}.
+\label{eq:asof}
+\end{equation}
+Future observations, retracted versions, and superseded sources are rejected. These predicates and rejection properties are \formalized{}.
+
+The Kripke component uses a reachability relation (R^+). An always modality is read as
+\begin{equation}
+K,i\models G\varphi\iff
+\varphi(i)\land\forall j\,(iR^+j\Rightarrow\varphi(j)).
+\label{eq:always}
+\end{equation}
+When every reachable world satisfies the required temporal ordering, the global guard follows. This theorem is \formalized{} and belongs to the modal and temporal tradition \citep{Kripke1963,Pnueli1977,ClarkeEtAl1986}. Its premise already quantifies over the worlds. It is not a transition-invariant theorem that derives future safety from an initial state alone.
+
+The legal interpretation is limited. A timestamp and version interval can prevent use of information outside the declared as-of boundary. They cannot establish publication authenticity, jurisdictional applicability, or correct interpretation. Those properties must be carried as evidence obligations and authority decisions.
+
+Temporal failures should be classified rather than flattened. A future observation violates the query cut-off; an expired version falls outside its validity interval; a retracted source is disabled by status; and a superseded source may remain historically true but no longer govern. Each case demands a different explanation and recovery action. Moving the as-of date, selecting an earlier version, or obtaining a new authority record are not interchangeable operations.
+
+The model also distinguishes event time from processing time. A document retrieved today may describe an event that occurred before the as-of date, but its later publication may make it unavailable to the historical decision-maker. A complete epistemic model would carry both coordinates and a rule for admissible knowledge. The current ULM predicates formalize the stated observation time and version checks; richer epistemic availability remains \conjectured{}.
+
+For reproducibility, a temporal query must bind the authority version, as-of instant, observation cut-off, and timezone or calendar convention. Without those fields, repeating the same textual query can select different legal materials while appearing identical. Request-bound temporal metadata turns that drift into an observable input change.
+
+\subsection{Temporal countermodels and recovery}
+
+Consider first a source that was effective at the event date but retracted before the query date. Interval membership alone may accept it, while the status predicate rejects it. Consider next a later source that accurately summarizes an earlier event but was unavailable at the requested historical cut-off. Event time alone may accept the content, while observation time rejects its use in reconstructing the earlier knowledge state. Finally, consider two formally identical rules issued by different authorities or for different jurisdictions. Matching text and dates do not establish applicability because scope and authority remain independent coordinates.
+
+These countermodels explain why time cannot be reduced to a single timestamp. Version validity, observation availability, event occurrence, and processing time answer different questions. The current formal predicates cover the declared version and observation checks. A claim about what a decision maker actually knew would require a richer epistemic model and evidence about publication, access, and notice. Such a claim is \conjectured{} here and must not be inferred from the always-modality theorem.
+
+Testing should vary one temporal field at a time. Boundary fixtures include an observation exactly at the as-of instant, one just after it, an open-ended version, a closed version at its terminal date, an expired version, a retracted version, and a superseded source retained only for historical explanation. Expected outcomes should record both rejection reason and recovery action. Changing an as-of date is a new query, not a repair of the old one; selecting a different version requires new provenance; restoring a retracted source requires authority evidence rather than clock arithmetic.
+
+The modality has a further proof boundary. Its premise already asserts the guarded property for every reachable world. It does not prove that an arbitrary transition relation preserves the guard, that new worlds cannot be added, or that the initial state alone determines future safety. A production system claiming temporal invariance must separately establish transition preservation and relate its evolving state graph to the modeled reachability relation.

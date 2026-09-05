@@ -1,0 +1,26 @@
+domain,n_total,n_positive,n_hard,prior,posterior,lr_hard,lr_easy,ci_95_lo,ci_95_hi,ci_width
+administrative,30,30,0,1.0000,1.0000,1.0000,31.0000,1.0000,1.0000,0.0000
+contract,30,30,0,1.0000,1.0000,1.0000,31.0000,1.0000,1.0000,0.0000
+corporate,30,30,0,1.0000,1.0000,1.0000,31.0000,1.0000,1.0000,0.0000
+criminal,30,30,0,1.0000,1.0000,1.0000,31.0000,1.0000,1.0000,0.0000
+data_crossborder,30,30,1,1.0000,1.0000,2.0000,30.0000,1.0000,1.0000,0.0000
+tort,30,30,0,1.0000,1.0000,1.0000,31.0000,1.0000,1.0000,0.0000
+
+proof_artifact,artifact_id,status,trust_label,runtime_seconds,checker_type,is_correct
+Finite Galois Adjunction,ART-001,PROVED,EXHAUSTIVE_FINITE_PROOF,8.75,python,True
+Bounded Horn Correctness,ART-003,PROVED,EXHAUSTIVE_FINITE_PROOF,0.63,python,True
+Horn Termination Measure,ART-004,PROVED,EXHAUSTIVE_FINITE_PROOF,11.68,python,True
+Production Bounded Termination,ART-006,PROVED,EXHAUSTIVE_FINITE_PROOF,0.15,python,True
+Dung Grounded Extension,ART-008,PROVED,EXHAUSTIVE_FINITE_PROOF,44.10,python,True
+Stratified Correspondence,ART-009,PROVED,EXHAUSTIVE_FINITE_PROOF,0.17,python,True
+Graph Similarity Range,ART-010,PROVED,SYMBOLIC_PROVED,1.31,python,True
+Banach Effective Nodes,ART-016,PROVED,SYMBOLIC_PROVED,1.16,python,True
+Siegel Repeated Median,ART-015,PROVED,EXHAUSTIVE_FINITE_PROOF,0.32,python,True
+Graph Metric Counterexamples,ART-012,REFUTED,REFUTED,49.96,python,False
+DP Floor Clipping Analysis,ART-013,REFUTED,REFUTED,1.08,python,False
+Clipped Theil-Sen Refutation,ART-014,REFUTED,REFUTED,0.16,python,False
+Graph Similarity Range (Z3),ART-011,PROVED,SMT_PROVED_FINITE,0.21,z3,True
+Bounded Horn (Z3 .smt2),ART-005,PENDING_TOOLCHAIN,PENDING_TOOLCHAIN,0.00,z3,
+Finite Galois Adjunction (Lean),ART-002,PENDING_TOOLCHAIN,PENDING_TOOLCHAIN,0.00,lean,
+Banach Effective Nodes (Lean),ART-017,PENDING_TOOLCHAIN,PENDING_TOOLCHAIN,0.00,lean,
+Evaluator Termination Model (TLA+),ART-007,PENDING_TOOLCHAIN,PENDING_TOOLCHAIN,0.00,tlaplus,

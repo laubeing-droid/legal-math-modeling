@@ -1,0 +1,12 @@
+fact_pattern,jurisdiction,claim_id,claim_text,logical_value
+FP-CNUS-001,CN,C1,DefendantIsLiable,True
+FP-CNUS-001,US,U1,DefendantIsNotLiable,True
+FP-CNHk-001,CN,C2,ContractIsValid,True
+FP-CNHk-001,HK,H2,ContractIsVoid,True
+FP-TRI-001,CN,C3,ConsentRequired,True
+FP-TRI-001,US,U3,ConsentNotRequired,True
+FP-TRI-001,HK,H3,ConsentRequired,True
+FP-COLL-001,CN,C4,PublicDomain,True
+FP-COLL-001,US,U4,NotPublicDomain,True
+FP-ASYM-001,CN,C5,CourtHasJurisdiction,True
+FP-ASYM-001,HK,H5,CourtLacksJurisdiction,True

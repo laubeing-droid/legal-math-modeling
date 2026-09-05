@@ -1,0 +1,90 @@
+[
+  {
+    "sample_id": "AG-001",
+    "description_text": "甲方未按约定交付货物",
+    "alpha_output": ["BreachOfContract", "DelayPerformance"],
+    "gamma_input": "BreachOfContract",
+    "gamma_output": ["甲方未按约定交付货物", "乙方未支付货款", "丙方迟延履行债务"],
+    "mapping_stable": true,
+    "multiple_atoms": true,
+    "multiple_descriptions": true,
+    "legal_domain": "contract"
+  },
+  {
+    "sample_id": "AG-002",
+    "description_text": "侵权",
+    "alpha_output": ["TortLiability", "Negligence", "DutyOfCareBreach"],
+    "gamma_input": "TortLiability",
+    "gamma_output": ["侵权", "行为人因过错侵害他人民事权益", "产品缺陷致人损害"],
+    "mapping_stable": true,
+    "multiple_atoms": true,
+    "multiple_descriptions": true,
+    "legal_domain": "tort"
+  },
+  {
+    "sample_id": "AG-003",
+    "description_text": "故意",
+    "alpha_output": ["IntentionalAct"],
+    "gamma_input": "IntentionalAct",
+    "gamma_output": ["故意", "明知", "蓄意", "恶意串通"],
+    "mapping_stable": true,
+    "multiple_atoms": false,
+    "multiple_descriptions": true,
+    "legal_domain": "criminal"
+  },
+  {
+    "sample_id": "AG-004",
+    "description_text": "过失",
+    "alpha_output": ["Negligence", "DutyOfCareBreach"],
+    "gamma_input": "Negligence",
+    "gamma_output": ["过失", "疏忽大意", "过于自信", "未尽注意义务"],
+    "mapping_stable": true,
+    "multiple_atoms": true,
+    "multiple_descriptions": true,
+    "legal_domain": "tort"
+  },
+  {
+    "sample_id": "AG-005",
+    "description_text": "违约金",
+    "alpha_output": ["LiquidatedDamages", "BreachRemedy"],
+    "gamma_input": "LiquidatedDamages",
+    "gamma_output": ["违约金", "定金罚则", "损害赔偿金"],
+    "mapping_stable": true,
+    "multiple_atoms": true,
+    "multiple_descriptions": true,
+    "legal_domain": "contract"
+  },
+  {
+    "sample_id": "AG-006",
+    "description_text": "不可抗力",
+    "alpha_output": ["ForceMajeure", "ExcuseOfPerformance"],
+    "gamma_input": "ForceMajeure",
+    "gamma_output": ["不可抗力", "自然灾害", "政府行为", "社会异常事件"],
+    "mapping_stable": true,
+    "multiple_atoms": true,
+    "multiple_descriptions": true,
+    "legal_domain": "contract"
+  },
+  {
+    "sample_id": "AG-007",
+    "description_text": "诉讼时效届满",
+    "alpha_output": ["LimitationExpired", "ProceduralBar"],
+    "gamma_input": "LimitationExpired",
+    "gamma_output": ["诉讼时效届满", "除斥期间经过", "权利失效"],
+    "mapping_stable": true,
+    "multiple_atoms": true,
+    "multiple_descriptions": true,
+    "legal_domain": "procedure"
+  },
+  {
+    "sample_id": "AG-008",
+    "description_text": "表见代理",
+    "alpha_output": ["ApparentAuthority", "AgencyByEstoppel"],
+    "gamma_input": "ApparentAuthority",
+    "gamma_output": ["表见代理", "无权代理", "善意相对人有理由相信"],
+    "mapping_stable": true,
+    "multiple_atoms": true,
+    "multiple_descriptions": true,
+    "legal_domain": "contract"
+  }
+]

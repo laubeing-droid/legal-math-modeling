@@ -1,0 +1,57 @@
+{
+  "collection_date": "2026-06-10",
+  "total_records": 191,
+  "by_jurisdiction": {
+    "US-Federal": 56,
+    "US-State": 114,
+    "UK": 17,
+    "Canada": 3,
+    "US-District": 1
+  },
+  "by_stage": {
+    "trial": 30,
+    "pre-trial": 110,
+    "appeal": 15,
+    "investigation": 32,
+    "arbitration": 4
+  },
+  "by_data_source": {
+    "fee_award_decision": 51,
+    "attorney_affidavit": 13,
+    "academic_dataset": 55,
+    "billing_survey": 53,
+    "court_fee_schedule": 19
+  },
+  "effective_nodes_statistics": {
+    "min": 1,
+    "max": 500,
+    "mean": 22.11,
+    "median": 8,
+    "stdev": 49.21
+  },
+  "total_hours_statistics": {
+    "min": 2.0,
+    "max": 289593.35,
+    "mean": 2405.81,
+    "median": 35.0,
+    "stdev": 21456.7
+  },
+  "hourly_rate_statistics": {
+    "min": 75.0,
+    "max": 1800.0,
+    "mean": 299.94,
+    "median": 295.0,
+    "stdev": 227.57
+  },
+  "data_limitations": [
+    "Many records from fee_award_decision and attorney_affidavit sources contain aggregate hour totals rather than full daily timesheet entries. Stage-level breakdowns are often inferred from case descriptions.",
+    "effective_nodes is a proxy for case complexity (motions, witnesses, documents, parties) and is estimated when not explicitly stated in source documents.",
+    "Billing_survey records represent typical case hours estimated from state-average hourly rates, not actual billed timesheets.",
+    "Court_fee_schedule records use guideline rates and representative case complexity assumptions.",
+    "Academic_dataset records (Michigan RAND study) use mean hours from time-study observations, not individual attorney timesheets.",
+    "Some high-value records (e.g., Enron, FTX) have hours estimated from total fees and blended rates because detailed hour breakdowns were not available in search results.",
+    "Hong Kong data could not be retrieved due to search service errors; UK SCCO and CAT data used as Commonwealth proxy.",
+    "No record is a simple fee_schedule_range converted to timesheet. All records include explicit hour estimates with source attribution."
+  ],
+  "verification_notes": "All records include source_url linking to verified court decisions, affidavits, academic reports, or survey publications. Records marked 'true' in verified column have been cross-checked against source documents."
+}

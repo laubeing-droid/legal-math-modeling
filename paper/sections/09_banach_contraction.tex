@@ -1,0 +1,56 @@
+\section{Conditional Convergence and Weighted Distance}
+\label{sec:banach}
+
+An empirical attachment retains normative solutions unchanged while adding observational material. A weighted deviation score is
+\begin{equation}
+D(w,x)=\sum_{i=1}^{n}w_i x_i.
+\label{eq:deviation-score}
+\end{equation}
+Both read-only attachment and the score definition are \formalized{}. The score is not a calibrated probability or legal burden of proof.
+
+For positive weights (w_i), define the weighted sup distance on finite real vectors:
+\begin{equation}
+d_w(x,y)=\max_i\frac{|x_i-y_i|}{w_i},\qquad w_i>0.
+\label{eq:weighted-sup}
+\end{equation}
+Non-negativity, symmetry, the triangle inequality, and point separation are \formalized{}. Despite one historical declaration name, the source does not establish a `CompleteSpace` instance for this distance. Completeness must be provided separately before invoking Banach.
+
+Suppose (T) has coordinatewise Lipschitz bounds
+\begin{equation}
+|T(x)_i-T(y)_i|\le\sum_j L_{ij}|x_j-y_j|
+\label{eq:coordinate-lipschitz}
+\end{equation}
+and the weighted row condition
+\begin{equation}
+\sum_jL_{ij}w_j\le q w_i.
+\label{eq:weighted-row}
+\end{equation}
+Then
+\begin{equation}
+d_w(Tx,Ty)\le qd_w(x,y).
+\label{eq:weighted-contraction}
+\end{equation}
+The implication is \formalized{}. If in addition $0\le q<1$, the space is nonempty and complete, and $T$ is a contraction, Banach's theorem \citep{Banach1922} gives a unique fixed point $x^*$ and
+\begin{equation}
+d(T^n x,x^*)\le\frac{q^n}{1-q}d(x,Tx).
+\label{eq:banach-error}
+\end{equation}
+This general theorem is \formalized{}.
+
+No source theorem shows that the full legal evaluator satisfies these premises. Mapping a legal graph into $\mathbb R^n$, choosing weights, proving completeness, and establishing $q<1$ are additional burdens. Convergence of an iterative score is also not convergence to legal truth. Those applications are \conjectured{}.
+
+The distinction between a metric and a ranking score is decisive. A symmetric nonnegative score may still fail identity of indiscernibles or the triangle inequality. If distinct graphs receive distance zero, a fixed-point argument on the resulting representation may converge only up to an equivalence class. A quotient construction could repair point separation, but then the legal meaning of the quotient must be justified.
+
+Weights are likewise normative or empirical inputs. Positive weights make Equation~\eqref{eq:weighted-sup} well-defined; they do not show that one legal feature deserves twice the influence of another. Sensitivity analysis should therefore vary weights and report whether conclusions are stable. A formal contraction proof under fixed weights cannot replace that model-selection inquiry.
+
+An executable convergence claim needs four independent witnesses: the state-space embedding, metric-space completeness, a verified Lipschitz bound, and correspondence between the implemented iteration and the formal map. Missing any witness leaves the Banach result inapplicable. The release record should state which premise failed instead of reporting merely that convergence was not certified.
+
+\subsection{Counterexamples to premature convergence claims}
+
+Several near misses clarify the premises. If a proposed distance maps two legally distinct graphs to the same feature vector, point separation fails even when symmetry and the triangle inequality hold on vectors. The iteration may converge in feature space while alternating between distinct legal structures hidden by the embedding. If some weight is zero, Equation~\eqref{eq:weighted-sup} is undefined; if a weight is negative, it no longer supports the intended metric. If the weighted row bound holds only on sampled pairs, the observation is evidence for a conjectured Lipschitz property rather than a quantified proof.
+
+The constant matters independently. A map with $q=1$ can be nonexpansive without having a unique fixed point, and a map with a local $q<1$ may leave the region on which the bound was measured. Completeness also cannot be borrowed from an ambient space when the actual state subset is not closed. These mathematical distinctions are familiar, but they are easy to lose when a numerical process appears stable in a finite trace. Empirical stabilization is neither the contraction premise nor the uniqueness conclusion.
+
+A defensible evaluation separates four tasks. First, define an embedding and test whether known legally material distinctions survive it. Second, verify the metric laws for the actual carrier or state the quotient being used. Third, establish the row or Lipschitz bound with a proof or a clearly labeled empirical estimate. Fourth, compare executable iterations with the formal map and report residual error under the same distance. Only after all four tasks succeed may Banach's theorem be applied, and even then the fixed point is a fixed point of the modeled transformation rather than a legally correct outcome.
+
+Failure recovery follows the missing premise. Colliding embeddings require additional features or an explicit quotient. Invalid weights require redefining the distance. An unproved global bound requires a restricted domain or a weaker convergence claim. Runtime disagreement requires refinement work. None of these repairs can be achieved by renaming a similarity score as a metric or by interpreting a stable output as legal truth.

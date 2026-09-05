@@ -1,0 +1,867 @@
+{
+  "manifest_version": "source-inventory-v2",
+  "source_hash_contract": "utf-8-lf-v1",
+  "status": "source_inventory_not_release_certificate",
+  "lean_workspace": "proofs/lean/juris_lean/JurisLean",
+  "lean_source_file_count": 33,
+  "theorem_declaration_count": 141,
+  "source_inventory_digest": "7019af4490a75e758db271879536565c86316e0c0ae7dd4a8c63e4861de93247",
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/AttackDecision.lean",
+      "sha256": "4e8773ad24b9258e42cc63c0ac3719e4ba883633c9e1feab7b8ef7d9bf5da160",
+      "size_bytes": 2559,
+      "theorems": [
+        {
+          "name": "priority_defeat_requires_active",
+          "line": 28
+        },
+        {
+          "name": "priority_defeat_requires_evidence",
+          "line": 34
+        },
+        {
+          "name": "missing_priority_evidence_no_defeat",
+          "line": 40
+        },
+        {
+          "name": "self_attack_not_priority_defeat",
+          "line": 51
+        },
+        {
+          "name": "priority_cycle_symmetric",
+          "line": 62
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+      "sha256": "cd5acb8b51fa36296febe96a2998fbad015073fe709b8309f66784d0f1e8c1de",
+      "size_bytes": 3275,
+      "theorems": []
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/BanachCertificate.lean",
+      "sha256": "4bf478f5243faf9ecef0f1f964a3520c3a4387871a10e1715b8c2ffa18d98e0d",
+      "size_bytes": 1291,
+      "theorems": []
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/BanachComplete.lean",
+      "sha256": "f09456882c07c69dbec1cb8082f101937c547a4cf697685854ac048a257a8cf4",
+      "size_bytes": 1148,
+      "theorems": []
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/BanachContraction.lean",
+      "sha256": "4f4f93d6b48ffcddcb92551ea647e0a7fc0e1705d5cdcaf24a830f2544021129",
+      "size_bytes": 1828,
+      "theorems": [
+        {
+          "name": "weighted_contraction_bound",
+          "line": 21
+        },
+        {
+          "name": "weighted_contraction_bound_nnreal",
+          "line": 34
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/BanachEffectiveNodes.lean",
+      "sha256": "62c8a1c4bd26cc5dc8cde705b4b7c72d3cc64b25ca8f5fae0eb01b2c922e5317",
+      "size_bytes": 5039,
+      "theorems": [
+        {
+          "name": "pricingFn_contraction",
+          "line": 81
+        },
+        {
+          "name": "pricingFn_fixed_point",
+          "line": 107
+        },
+        {
+          "name": "pricingFn_unique_fixed_point",
+          "line": 120
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/BanachFixedPoint.lean",
+      "sha256": "be558332b26bdb8dda6abd182a384c2d5586d7d347cdf3fa9fd2c9f8487ea3bc",
+      "size_bytes": 1699,
+      "theorems": [
+        {
+          "name": "weightedContractionData_of_coupling",
+          "line": 34
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/BanachScratch.lean",
+      "sha256": "302b8c2d07183e0b1ab9fc5c85046e45301c9f6a47c737c410e65d35f40aed83",
+      "size_bytes": 659,
+      "theorems": []
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/BanachWeightedNorm.lean",
+      "sha256": "baa62b7ebc6f9809402daf95922cb3dacc9f29df3d4a43f9d0ae9477c1b20dab",
+      "size_bytes": 1596,
+      "theorems": []
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Basic.lean",
+      "sha256": "709315dc8a73a8465a3701046a7703b782743bc58beca792dd0f2029ee80358f",
+      "size_bytes": 89,
+      "theorems": []
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/CertificateChecker.lean",
+      "sha256": "7a8d3490683755069fb3e833ebd96ddbbec08736289223ef527b3dcb0ef490f5",
+      "size_bytes": 10765,
+      "theorems": [
+        {
+          "name": "checkerV2_acceptance_requires_content",
+          "line": 90
+        },
+        {
+          "name": "checkerV2_acceptance_requires_nonempty_trace",
+          "line": 99
+        },
+        {
+          "name": "checkerV2_acceptance_requires_fact_coverage",
+          "line": 108
+        },
+        {
+          "name": "checkerV2_acceptance_requires_obligation_coverage",
+          "line": 117
+        },
+        {
+          "name": "legacy_certificate_never_v2_accepted",
+          "line": 126
+        },
+        {
+          "name": "malformed_certificate_rejected",
+          "line": 131
+        },
+        {
+          "name": "tainted_certificate_rejected",
+          "line": 142
+        },
+        {
+          "name": "candidate_evidence_not_accepted",
+          "line": 153
+        },
+        {
+          "name": "missing_required_facts_rejected",
+          "line": 165
+        },
+        {
+          "name": "missing_obligations_rejected",
+          "line": 177
+        },
+        {
+          "name": "checker_acceptance_requires_obligations",
+          "line": 189
+        },
+        {
+          "name": "checker_acceptance_requires_required_facts",
+          "line": 200
+        },
+        {
+          "name": "checker_acceptance_requires_non_candidate",
+          "line": 211
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/ContractionCondition.lean",
+      "sha256": "c4c93a93d29dda07c5b661af4ff8599a595c66f28f23c6a49d4bb94ba8db9a19",
+      "size_bytes": 3508,
+      "theorems": [
+        {
+          "name": "lipschitz_coupling_implies_weighted_contraction",
+          "line": 33
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/DDLDefinitions.lean",
+      "sha256": "c5291b2f14b50802cc655b78462aaafb6a2fadf4e6f1fdae772ae4000574a997",
+      "size_bytes": 5112,
+      "theorems": [
+        {
+          "name": "violation_implies_norm_active",
+          "line": 71
+        },
+        {
+          "name": "permission_no_direct_violation",
+          "line": 76
+        },
+        {
+          "name": "constitutive_no_direct_violation",
+          "line": 88
+        },
+        {
+          "name": "permission_does_not_imply_obligation",
+          "line": 100
+        },
+        {
+          "name": "contract_breach_direct_violation_shape",
+          "line": 109
+        },
+        {
+          "name": "license_permission_not_direct_violation",
+          "line": 117
+        },
+        {
+          "name": "permission_slice_permission_not_obligation",
+          "line": 124
+        },
+        {
+          "name": "priority_ordering_requires_verified_evidence",
+          "line": 129
+        },
+        {
+          "name": "remedial_consequence_same_norm",
+          "line": 134
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/DungAAF.lean",
+      "sha256": "061d8465feb7bda05b9caf7239b4424b8c71f144919d1703aca21f81ebfd0cb1",
+      "size_bytes": 307,
+      "theorems": []
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/DungDefinitions.lean",
+      "sha256": "d9a7e17199c3ae84ca229f994bfe80505ec166cfac85e58c46825807f241b165",
+      "size_bytes": 2022,
+      "theorems": []
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/DungFixedPoint.lean",
+      "sha256": "4b6189d7e447af19fde248c991c2564d0907bd69da43cb7c7798f6dbcd66cc6f",
+      "size_bytes": 9952,
+      "theorems": [
+        {
+          "name": "F_monotone",
+          "line": 44
+        },
+        {
+          "name": "iteration_monotone",
+          "line": 48
+        },
+        {
+          "name": "finite_termination",
+          "line": 56
+        },
+        {
+          "name": "iteration_bound",
+          "line": 60
+        },
+        {
+          "name": "groundedSpec_is_fixed_point",
+          "line": 64
+        },
+        {
+          "name": "grounded_is_fixed_point",
+          "line": 70
+        },
+        {
+          "name": "groundedSpec_is_least_fixed_point",
+          "line": 74
+        },
+        {
+          "name": "grounded_is_least_fixed_point",
+          "line": 90
+        },
+        {
+          "name": "grounded_is_least_complete",
+          "line": 94
+        },
+        {
+          "name": "groundedSpec_unique_least_fixed_point",
+          "line": 98
+        },
+        {
+          "name": "labelling_partition",
+          "line": 104
+        },
+        {
+          "name": "in_soundness",
+          "line": 154
+        },
+        {
+          "name": "out_soundness",
+          "line": 163
+        },
+        {
+          "name": "undecided_characterization",
+          "line": 169
+        },
+        {
+          "name": "self_attack_precise_theorem",
+          "line": 199
+        },
+        {
+          "name": "self_attack_not_in_grounded",
+          "line": 222
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/EndToEnd.lean",
+      "sha256": "eecfc7e5316f1fc1973d78cfa739b0b90610a86805a2819c6fdc6cf91b7d154e",
+      "size_bytes": 9675,
+      "theorems": [
+        {
+          "name": "contract_breach_ready_certificate_accepted",
+          "line": 154
+        },
+        {
+          "name": "contract_breach_missing_defense_fail_closed",
+          "line": 159
+        },
+        {
+          "name": "license_ready_certificate_accepted",
+          "line": 167
+        },
+        {
+          "name": "license_outside_scope_fail_closed",
+          "line": 172
+        },
+        {
+          "name": "permission_ready_certificate_accepted",
+          "line": 179
+        },
+        {
+          "name": "permission_conflict_fail_closed",
+          "line": 184
+        },
+        {
+          "name": "priority_ready_certificate_accepted",
+          "line": 191
+        },
+        {
+          "name": "priority_cycle_fail_closed",
+          "line": 196
+        },
+        {
+          "name": "candidate_certificate_fail_closed",
+          "line": 223
+        },
+        {
+          "name": "end_to_end_acceptance_requires_payload",
+          "line": 229
+        },
+        {
+          "name": "ready_v2_certificate_accepted",
+          "line": 237
+        },
+        {
+          "name": "empty_trace_v2_fail_closed",
+          "line": 255
+        },
+        {
+          "name": "legacy_ready_certificate_not_v2_decisive",
+          "line": 263
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/FiniteGaloisAdjunction.lean",
+      "sha256": "9171b103b6b4ca8560cf4f4c6acf1955f77af659e406123996a6bca59fdf95de",
+      "size_bytes": 2584,
+      "theorems": [
+        {
+          "name": "galois_connection_of_residuated",
+          "line": 49
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/FiniteMonotoneIteration.lean",
+      "sha256": "93e89c027ba52f2a4a2012ea78e62fc1fdc31124744179fb418f9940ba9beae1",
+      "size_bytes": 4470,
+      "theorems": [
+        {
+          "name": "iter_succ",
+          "line": 30
+        },
+        {
+          "name": "iter_subset_univ",
+          "line": 32
+        },
+        {
+          "name": "iter_mono",
+          "line": 39
+        },
+        {
+          "name": "iter_stable",
+          "line": 46
+        },
+        {
+          "name": "iter_ssubset_of_ne",
+          "line": 62
+        },
+        {
+          "name": "iter_card_lt_of_ne",
+          "line": 71
+        },
+        {
+          "name": "iter_card_le_univ",
+          "line": 75
+        },
+        {
+          "name": "exists_fixpoint_le_card",
+          "line": 80
+        },
+        {
+          "name": "fixed_at_card",
+          "line": 103
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/FiniteRosetta.lean",
+      "sha256": "fdc46750278d1bee206aba40f16b8ecdeaafe666b5cf90e13c4e7a93163b0cf9",
+      "size_bytes": 4055,
+      "theorems": [
+        {
+          "name": "cnOnly_eq_30",
+          "line": 71
+        },
+        {
+          "name": "collision_eq_4",
+          "line": 74
+        },
+        {
+          "name": "asymmetry_eq_3",
+          "line": 77
+        },
+        {
+          "name": "obstruction_eq_37",
+          "line": 80
+        },
+        {
+          "name": "cnOnly_exceeds_half",
+          "line": 83
+        },
+        {
+          "name": "obstruction_exceeds_half",
+          "line": 86
+        },
+        {
+          "name": "no_total_functor",
+          "line": 91
+        },
+        {
+          "name": "obstruction_density_gt_two_thirds",
+          "line": 98
+        },
+        {
+          "name": "pure_obstruction_majority",
+          "line": 103
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/HornAAFContract.lean",
+      "sha256": "5c474f624ac5b61b0e46a9808a298968ddeca9477280c8833efc9e91caf18afe",
+      "size_bytes": 3069,
+      "theorems": [
+        {
+          "name": "horn_derivation_to_argument_conclusion",
+          "line": 57
+        },
+        {
+          "name": "horn_derivation_to_argument_supported",
+          "line": 62
+        },
+        {
+          "name": "exception_fact_to_attack_kind",
+          "line": 67
+        },
+        {
+          "name": "priority_defeat_to_attack_kind",
+          "line": 73
+        },
+        {
+          "name": "no_unsupported_argument_accepted",
+          "line": 77
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/HornDefinitions.lean",
+      "sha256": "9df4570ef9c1939cb7381140d0448da99f93174119d4d7acf407e2d50a327a21",
+      "size_bytes": 2588,
+      "theorems": [
+        {
+          "name": "TH_monotone",
+          "line": 41
+        },
+        {
+          "name": "TH_subset_univ",
+          "line": 55
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/HornFixedPoint.lean",
+      "sha256": "701bcab8a1d3b6fd2f6d2cc29645f3628b3dac5e5a7f02b8f59f8c07d73a1315",
+      "size_bytes": 4690,
+      "theorems": [
+        {
+          "name": "horn_operator_subset_univ",
+          "line": 17
+        },
+        {
+          "name": "horn_operator_monotone",
+          "line": 21
+        },
+        {
+          "name": "horn_iteration_monotone",
+          "line": 25
+        },
+        {
+          "name": "horn_finite_termination",
+          "line": 31
+        },
+        {
+          "name": "horn_iteration_bound",
+          "line": 37
+        },
+        {
+          "name": "horn_result_fixed_point",
+          "line": 43
+        },
+        {
+          "name": "horn_result_least_fixed_point",
+          "line": 60
+        },
+        {
+          "name": "horn_soundness",
+          "line": 74
+        },
+        {
+          "name": "horn_completeness",
+          "line": 79
+        },
+        {
+          "name": "horn_result_is_minimal_model",
+          "line": 85
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/HornOperationalRefinement.lean",
+      "sha256": "291c2d29beca6406088261f227524d41f98918ccaa3f32f57b0548360e24624a",
+      "size_bytes": 792,
+      "theorems": []
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/JC_Formalization.lean",
+      "sha256": "5776fc36556d596f7c73830b71ee731b1d2d65b0f1490c496278b8306a6cba90",
+      "size_bytes": 8307,
+      "theorems": [
+        {
+          "name": "proved_theorems_card",
+          "line": 139
+        },
+        {
+          "name": "empirical_proxy_card",
+          "line": 147
+        },
+        {
+          "name": "refuted_theorems_card",
+          "line": 155
+        },
+        {
+          "name": "pending_theorems_card",
+          "line": 163
+        },
+        {
+          "name": "advance_preserves_domain_bound",
+          "line": 176
+        },
+        {
+          "name": "advance_cannot_revive_refuted",
+          "line": 182
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/LegalSyntax.lean",
+      "sha256": "3b4afdbbcf123e659065f95827461bd6fe51670321e8efd627ac0ea3fc2f1171",
+      "size_bytes": 8976,
+      "theorems": [
+        {
+          "name": "fact_serialization_key_stable",
+          "line": 260
+        },
+        {
+          "name": "rule_serialization_key_stable",
+          "line": 264
+        },
+        {
+          "name": "decisionStatus_runtimeKey_injective",
+          "line": 268
+        },
+        {
+          "name": "trust_label_cannot_promote_status",
+          "line": 274
+        },
+        {
+          "name": "candidate_evidence_not_auditable",
+          "line": 279
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/SafetyTheorems.lean",
+      "sha256": "021f351366778ec5ba505c38072082790b283c6888c6756fb6940499d8f7d5e2",
+      "size_bytes": 3630,
+      "theorems": [
+        {
+          "name": "candidate_cannot_enter_verified_fact_gate",
+          "line": 12
+        },
+        {
+          "name": "tainted_not_accepted_as_proved",
+          "line": 20
+        },
+        {
+          "name": "accepted_certificate_has_required_payload",
+          "line": 31
+        },
+        {
+          "name": "priority_missing_evidence_certificate_not_accepted",
+          "line": 38
+        },
+        {
+          "name": "priority_cycle_certificate_fail_closed",
+          "line": 51
+        },
+        {
+          "name": "license_outside_scope_not_permitted",
+          "line": 59
+        },
+        {
+          "name": "permission_conflict_not_forced_proved",
+          "line": 68
+        },
+        {
+          "name": "accepted_v2_certificate_has_recomputed_payload",
+          "line": 77
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/ScratchApi.lean",
+      "sha256": "259322671ce2632b68f1c9bc31a6533272b2b95328aa6fb33b7a197e63d0901c",
+      "size_bytes": 1580,
+      "theorems": []
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/SupZeroLemma.lean",
+      "sha256": "0165c40870ef5cde68f51df265f67eb144d9e1c6a564e6fc812fb493bc6f8533",
+      "size_bytes": 633,
+      "theorems": []
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/TemporalKripke.lean",
+      "sha256": "6179c6981a4911670b1899d88891ced1d3466bb379a70ed9e561808905d2f6ae",
+      "size_bytes": 3926,
+      "theorems": [
+        {
+          "name": "temporal_guard_always",
+          "line": 55
+        },
+        {
+          "name": "litigation_always_guard",
+          "line": 105
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/TranslationWitness.lean",
+      "sha256": "5088db8386f5e7794d1d198fceefdd34f9b9fff98031ce7b90624aa52af73adf",
+      "size_bytes": 3761,
+      "theorems": [
+        {
+          "name": "translation_witness_check_sound",
+          "line": 52
+        },
+        {
+          "name": "translation_witness_no_argument_omission",
+          "line": 59
+        },
+        {
+          "name": "translation_witness_no_spurious_argument",
+          "line": 69
+        },
+        {
+          "name": "translation_witness_no_edge_omission",
+          "line": 79
+        },
+        {
+          "name": "translation_witness_no_spurious_edge",
+          "line": 89
+        },
+        {
+          "name": "translation_witness_priority_direction_preserved",
+          "line": 99
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/UnifiedModel.lean",
+      "sha256": "ed848de1df61e92669314a6c2547200a31d912efe76d67f144119eb8e50730b8",
+      "size_bytes": 14751,
+      "theorems": [
+        {
+          "name": "horn_step_mono",
+          "line": 78
+        },
+        {
+          "name": "unattacked_in_ge",
+          "line": 124
+        },
+        {
+          "name": "unattacked_in_lfp",
+          "line": 200
+        },
+        {
+          "name": "banach_bounded",
+          "line": 238
+        },
+        {
+          "name": "soundness_aaf",
+          "line": 271
+        },
+        {
+          "name": "soundness_banach",
+          "line": 278
+        },
+        {
+          "name": "gc2_completeness",
+          "line": 293
+        },
+        {
+          "name": "unified_composition_v2",
+          "line": 309
+        },
+        {
+          "name": "full_chain",
+          "line": 335
+        },
+        {
+          "name": "horn_monotone",
+          "line": 355
+        },
+        {
+          "name": "banach_bound_uniform",
+          "line": 368
+        }
+      ]
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/WeightedSupNorm.lean",
+      "sha256": "d2018181439c16b5bf05cb568f402c8d46dbc3b89702de823a606927064ba05e",
+      "size_bytes": 4216,
+      "theorems": [
+        {
+          "name": "weightedSupDist_nonneg",
+          "line": 36
+        },
+        {
+          "name": "weightedSupDist_triangle",
+          "line": 47
+        },
+        {
+          "name": "weightedSupDist_symm",
+          "line": 69
+        },
+        {
+          "name": "weightedSupDist_complete",
+          "line": 76
+        }
+      ]
+    }
+  ],
+  "release_gate": "fail_closed_until_formal_release_certificate_verifies",
+  "module_theorem_counts": {
+    "AttackDecision.lean": 5,
+    "AxiomAudit.lean": 0,
+    "BanachCertificate.lean": 0,
+    "BanachComplete.lean": 0,
+    "BanachContraction.lean": 2,
+    "BanachEffectiveNodes.lean": 3,
+    "BanachFixedPoint.lean": 1,
+    "BanachScratch.lean": 0,
+    "BanachWeightedNorm.lean": 0,
+    "Basic.lean": 0,
+    "CertificateChecker.lean": 13,
+    "ContractionCondition.lean": 1,
+    "DDLDefinitions.lean": 9,
+    "DungAAF.lean": 0,
+    "DungDefinitions.lean": 0,
+    "DungFixedPoint.lean": 16,
+    "EndToEnd.lean": 13,
+    "FiniteGaloisAdjunction.lean": 1,
+    "FiniteMonotoneIteration.lean": 9,
+    "FiniteRosetta.lean": 9,
+    "HornAAFContract.lean": 5,
+    "HornDefinitions.lean": 2,
+    "HornFixedPoint.lean": 10,
+    "HornOperationalRefinement.lean": 0,
+    "JC_Formalization.lean": 6,
+    "LegalSyntax.lean": 5,
+    "SafetyTheorems.lean": 8,
+    "ScratchApi.lean": 0,
+    "SupZeroLemma.lean": 0,
+    "TemporalKripke.lean": 2,
+    "TranslationWitness.lean": 6,
+    "UnifiedModel.lean": 11,
+    "WeightedSupNorm.lean": 4
+  },
+  "canonical_types": [
+    "LegalFact",
+    "LegalRule",
+    "LegalNorm",
+    "LegalClaim",
+    "Argument",
+    "Attack",
+    "Priority",
+    "Violation",
+    "Reparation",
+    "DecisionStatus",
+    "ProofTrace"
+  ],
+  "ddl_modalities": [
+    "OBLIGATION",
+    "PROHIBITION",
+    "PERMISSION",
+    "CONSTITUTIVE"
+  ],
+  "slices": [
+    "contract breach",
+    "license",
+    "permission",
+    "priority"
+  ],
+  "allowed_claims": [
+    "Lean sources define task-bounded formal statements.",
+    "A verified FormalReleaseCertificate binds one commit, tree, toolchain, source inventory, and gate run.",
+    "Runtime refinement requires a separate RuntimeRefinementReceipt."
+  ],
+  "forbidden_claims": [
+    "Do not claim the full runtime is formally proved by Lean.",
+    "Do not treat source hashes as proof of source authority or legal correctness.",
+    "Do not treat Python tests or runtime receipts as Lean proofs.",
+    "Do not present a source inventory as a release certificate."
+  ]
+}

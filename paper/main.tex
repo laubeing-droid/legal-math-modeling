@@ -1,0 +1,59 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[margin=25mm]{geometry}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\setmainfont{Times New Roman}
+\setCJKmainfont{Microsoft JhengHei}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{booktabs,longtable,array}
+\usepackage{enumitem}
+\usepackage{microtype}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[hidelinks]{hyperref}
+\usepackage{xurl}
+
+\newtheorem{definition}{Definition}[section]
+\newtheorem{proposition}[definition]{Proposition}
+\newtheorem{conjecture}[definition]{Conjecture}
+\newcommand{\formalized}{\textsc{Formalized}}
+\newcommand{\derived}{\textsc{Derived}}
+\newcommand{\conjectured}{\textsc{Conjecture}}
+\newcommand{\powerset}{\mathcal P}
+\newcommand{\true}{\mathsf{true}}
+\newcommand{\false}{\mathsf{false}}
+
+\title{Compositional Assurance for Legal Reasoning:\\
+Request Identity, Horn Closure, Argumentation, Temporal Scope, and Human Authority}
+\author{Laupinco}
+\date{September 2026}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+This paper develops a formula-centered, machine-checked architecture for legal reasoning. Sixteen Unified Legal Model modules formalize request identity, fail-closed outcomes, typed transitions, proof obligations, finite execution, Horn least closure, structured arguments, attacks and Dung semantics, branch-sensitive queries, procedure-aware adjudication, exact dimension-indexed calculation, conservative trust composition, add-only incrementality, conditional fixed-point convergence, temporal applicability, authority receipts, and taint non-interference. Each claim is marked \formalized{}, \derived{}, or \conjectured{}. The proved contribution is a family of local composition constraints: under their stated premises, transformations preserve request identity, branch-sensitive results do not compose across incompatible branches, obligation and trust joins do not hide weaker inputs, temporal guards exclude future evidence, and repeated machine agreement does not create higher authority. A separate release policy requires evidence that these constraints and their executable gates hold for one named source subject. The paper does not claim one global Lean theorem for release, substantive legal correctness, complete runtime refinement, or universal jurisdictional coverage.
+\end{abstract}
+
+\begin{center}\textbf{中文摘要}\end{center}
+
+本文提出一套以公式为中心、由机器核验的法律推理架构。十六个统一法律模型模块形式化请求身份、失败闭合结果、类型化转移、证明义务、有限执行、Horn 最小闭包、结构化论证、攻击与 Dung 语义、分支查询、程序性裁判、维度索引精确计算、保守信任组合、只增量更新、条件式不动点收敛、时间适用性、权限收据与污点不干扰。所有结论分别标记为 \formalized{}、\derived{} 或 \conjectured{}。已证明的贡献是一组局部组合约束：在各自明示前提下，转换保持请求身份，分支结果不能跨不相容分支组合，义务与信任聚合不能隐藏较弱输入，时间门禁排除未来证据，重复机器意见不能产生更高权限。另由独立发布策略要求这些约束及其可执行门禁都绑定同一源码对象。本文不主张存在统一的 Lean 发布定理，也不主张实体法律正确性、完整运行时精化或跨法域普遍覆盖。
+
+\paragraph{Keywords.} computational law; formal methods; Lean 4; argumentation; non-monotonic reasoning; assurance cases.
+
+\input{sections/01_introduction}
+\input{sections/02_preliminaries}
+\input{sections/03_ontology}
+\input{sections/04_horn_closure}
+\input{sections/05_aaf_argumentation}
+\input{sections/06_stratified_evaluator}
+\input{sections/07_kripke_temporal}
+\input{sections/08_category_rosetta}
+\input{sections/09_banach_contraction}
+\input{sections/10_dp_privilege}
+\input{sections/11_non_interference}
+\input{sections/12_evidence_calibrated}
+\input{sections/13_conclusion}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+\end{document}

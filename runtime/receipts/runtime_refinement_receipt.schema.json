@@ -1,0 +1,35 @@
+{
+  "$schema": "spec-runtime-refinement-receipt-schema-v2",
+  "description": "Schema for external runtime refinement receipts. Actual receipts are CI artifacts produced by the external runtime through its formal public entry; they are never committed to this repository.",
+  "required_fields": {
+    "schema_version": "spec-runtime-refinement-v2",
+    "role": "actual",
+    "lmm_commit": "40-hex commit bound to the expected fixture",
+    "runtime_commit": "40-hex commit of the external runtime",
+    "runtime_build_id": "build identity of the external runtime",
+    "fixture_digest": "sha256 over the expected fixture body",
+    "source_snapshot_digests": "sorted list of source snapshot digests",
+    "rule_pack_digest": "sha256 over the rule pack content",
+    "cases": "per-case actual statuses keyed by case_id",
+    "execution_status": "SUCCESS | UNKNOWN | TIMEOUT | SKIP | NOT_RUN | BACKEND_UNAVAILABLE | ERROR"
+  },
+  "fail_closed_rules": [
+    "Missing actual receipt -> MISSING_ACTUAL_RECEIPT (blocked).",
+    "Commit or digest mismatch -> *_MISMATCH (blocked).",
+    "Non-SUCCESS execution status -> RUNTIME_EXECUTION_FAILED (blocked).",
+    "Actual status outside PROVED/REFUTED/UNDECIDED -> UNKNOWN_STATUS_MAPPING."
+  ],
+  "mismatch_classification": [
+    "SPEC_MISMATCH",
+    "IMPLEMENTATION_MISMATCH",
+    "TRANSLATION_MISMATCH",
+    "PROJECTION_MISMATCH",
+    "ORACLE_UNRESOLVED",
+    "ENVIRONMENT_BLOCKED"
+  ],
+  "prohibited": [
+    "Same-process shadow statuses as actual receipts.",
+    "Editing expected fixtures to match actual results.",
+    "Declaring refinement beyond the bound commits and fixtures."
+  ]
+}

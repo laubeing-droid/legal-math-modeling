@@ -1,0 +1,150 @@
+{
+  "jurisdiction": "US",
+  "analysis_date": "2026-06-10",
+  "obstructions": [
+    {
+      "obstruction_id": "US-OBS-001",
+      "obstruction_name": "consideration",
+      "us_legal_basis": "Under the benefit-detriment theory, consideration requires either a benefit to the promisor or a detriment to the promisee. Forbearance from lawful conduct at the promisor's request constitutes valid consideration. However, performance of a pre-existing legal duty owed to the promisor is not consideration unless it differs from the duty in a way reflecting more than a pretense of bargain.",
+      "us_sources": [
+        "Hamer v. Sidway, 124 N.Y. 538 (1891)",
+        "Restatement (Second) of Contracts § 71 (1981)",
+        "Restatement (Second) of Contracts § 73 (1981)"
+      ],
+      "us_obstruction_level": "MODERATE",
+      "us_notes": "Courts do not inquire into adequacy of consideration, but illusory promises, pre-existing duties, and gratuitous promises lack consideration."
+    },
+    {
+      "obstruction_id": "US-OBS-002",
+      "obstruction_name": "specific_performance",
+      "us_legal_basis": "Specific performance is an equitable remedy available when legal remedies (damages) are inadequate. It is routinely granted for breach of land-sale contracts because each parcel of land is unique. It is generally denied for personal service contracts and when the contract terms are indefinite or enforcement would require ongoing judicial supervision.",
+      "us_sources": [
+        "Lucy v. Zehmer, 196 Va. 493 (1954)",
+        "Restatement (Second) of Contracts § 359 (1981)",
+        "Restatement (Second) of Contracts § 360 (1981)"
+      ],
+      "us_obstruction_level": "HIGH",
+      "us_notes": "Equitable defenses (laches, unclean hands) may bar specific performance. Courts retain discretion to deny it."
+    },
+    {
+      "obstruction_id": "US-OBS-003",
+      "obstruction_name": "punitive_damages",
+      "us_legal_basis": "Punitive damages are available in tort cases to punish and deter egregious misconduct, but are subject to constitutional due process limits. The Supreme Court established three guideposts: reprehensibility, ratio to compensatory damages, and comparable civil penalties. Single-digit ratios are generally the constitutional ceiling.",
+      "us_sources": [
+        "BMW of North America, Inc. v. Gore, 517 U.S. 559 (1996)",
+        "State Farm Mut. Auto. Ins. Co. v. Campbell, 538 U.S. 408 (2003)",
+        "Philip Morris USA, Inc. v. Williams, 549 U.S. 346 (2007)"
+      ],
+      "us_obstruction_level": "HIGH",
+      "us_notes": "Many states have statutory caps on punitive damages. The Due Process Clause of the Fourteenth Amendment imposes a federal ceiling."
+    },
+    {
+      "obstruction_id": "US-OBS-004",
+      "obstruction_name": "discovery",
+      "us_legal_basis": "Discovery under FRCP 26 is limited to nonprivileged matters relevant to any party's claim or defense and proportional to the needs of the case. Courts may issue protective orders under FRCP 26(c) to prevent annoyance, embarrassment, oppression, or undue burden. Work product and attorney-client privileged materials are excluded from discovery.",
+      "us_sources": [
+        "Fed. R. Civ. P. 26(b)(1)",
+        "Fed. R. Civ. P. 26(c)",
+        "Hickman v. Taylor, 329 U.S. 495 (1947)"
+      ],
+      "us_obstruction_level": "MODERATE",
+      "us_notes": "Proportionality factors include importance of issues, amount in controversy, parties' resources, and burden vs. benefit."
+    },
+    {
+      "obstruction_id": "US-OBS-005",
+      "obstruction_name": "privilege",
+      "us_legal_basis": "The attorney-client privilege protects confidential communications between client and counsel made for the purpose of obtaining legal advice. The work product doctrine protects materials prepared by an attorney in anticipation of litigation. Both are absolute barriers to discovery, though waiver, crime-fraud exception, and subject-matter waiver may apply.",
+      "us_sources": [
+        "Upjohn v. United States, 449 U.S. 383 (1981)",
+        "Hickman v. Taylor, 329 U.S. 495 (1947)",
+        "Fed. R. Evid. 501-502"
+      ],
+      "us_obstruction_level": "HIGH",
+      "us_notes": "Inadvertent disclosure may not waive privilege if the holder took reasonable steps to prevent and rectify disclosure."
+    },
+    {
+      "obstruction_id": "US-OBS-006",
+      "obstruction_name": "at_will_employment",
+      "us_legal_basis": "At-will employment is the default rule in 49 states (all except Montana), meaning either party may terminate the relationship at any time for any reason or no reason. However, three major common law exceptions limit this: public policy, implied contract, and implied covenant of good faith and fair dealing. Federal and state anti-discrimination statutes provide additional protections.",
+      "us_sources": [
+        "California Labor Code § 2922",
+        "Petermann v. International Brotherhood of Teamsters, 344 P.2d 25 (Cal. Ct. App. 1959)",
+        "Restatement (Third) of Employment Law § 4.01 (2015)"
+      ],
+      "us_obstruction_level": "MODERATE",
+      "us_notes": "Montana requires 'good cause' for discharge. Public policy exception recognized in 43 states; implied contract in 38 states; good faith in 11 states."
+    },
+    {
+      "obstruction_id": "US-OBS-007",
+      "obstruction_name": "data_export",
+      "us_legal_basis": "The U.S. lacks a comprehensive federal data privacy law. The CCPA grants California residents rights to know, delete, and opt out of sale of personal information. Cross-border data transfers are subject to sectoral regulations (HIPAA, GLBA) and contractual safeguards. The CLOUD Act allows U.S. law enforcement to compel disclosure of data stored abroad by U.S. providers.",
+      "us_sources": [
+        "Cal. Civ. Code § 1798.100 et seq. (CCPA)",
+        "18 U.S.C. § 2713 (CLOUD Act)",
+        "EU-U.S. Data Privacy Framework (2023)"
+      ],
+      "us_obstruction_level": "HIGH",
+      "us_notes": "No federal GDPR equivalent. State laws create a patchwork. Schrems II concerns affect EU-U.S. transfers."
+    },
+    {
+      "obstruction_id": "US-OBS-008",
+      "obstruction_name": "blocking_statute",
+      "us_legal_basis": "U.S. courts generally disregard foreign blocking statutes and may order production of documents located abroad. The Supreme Court held that the Hague Evidence Convention is permissive, not mandatory. Courts apply a balancing test considering: importance of information, specificity of request, location, alternative means, competing interests, hardship, and likelihood of compliance.",
+      "us_sources": [
+        "Societe Nationale Industrielle Aerospatiale v. U.S. District Court, 482 U.S. 522 (1987)",
+        "Restatement (Third) of Foreign Relations Law § 442 (1987)",
+        "28 U.S.C. § 1783 (Walsh Act)"
+      ],
+      "us_obstruction_level": "HIGH",
+      "us_notes": "French blocking statute (Law No. 80-538) has been largely ineffective in U.S. courts. U.S. courts may impose sanctions for noncompliance with discovery orders."
+    },
+    {
+      "obstruction_id": "US-OBS-009",
+      "obstruction_name": "sanctions",
+      "us_legal_basis": "FRCP 37 authorizes sanctions for failure to make disclosures, comply with discovery orders, or preserve electronically stored information (ESI). FRCP 37(e) specifically addresses ESI spoliation: if ESI is lost and cannot be restored, courts may order measures to cure prejudice; if the party acted with intent to deprive, courts may give adverse inference instructions, dismiss, or enter default judgment.",
+      "us_sources": [
+        "Fed. R. Civ. P. 37(b)(2)",
+        "Fed. R. Civ. P. 37(e)",
+        "Fed. R. Civ. P. 37(d)"
+      ],
+      "us_obstruction_level": "HIGH",
+      "us_notes": "Severe sanctions (dismissal/default) require willfulness and that lesser sanctions would be inadequate."
+    },
+    {
+      "obstruction_id": "US-OBS-010",
+      "obstruction_name": "platform_liability",
+      "us_legal_basis": "Section 230(c)(1) of the Communications Decency Act provides broad immunity to interactive computer services for content created by third parties. Platforms are not liable as publishers or speakers of user-generated content. Immunity is lost only when the platform materially contributes to the creation or development of unlawful content (co-creation exception). Algorithmic recommendations generally retain immunity.",
+      "us_sources": [
+        "47 U.S.C. § 230(c)(1)",
+        "Zeran v. America Online, Inc., 129 F.3d 327 (4th Cir. 1997)",
+        "Gonzalez v. Google LLC, 598 U.S. ___ (2023)"
+      ],
+      "us_obstruction_level": "MODERATE",
+      "us_notes": "Section 230 does not apply to federal criminal law, intellectual property claims, or communications privacy laws."
+    },
+    {
+      "obstruction_id": "US-OBS-011",
+      "obstruction_name": "collective_liability",
+      "us_legal_basis": "Class actions under FRCP 23 require numerosity, commonality, typicality, and adequacy. Under Rule 23(b)(3), common questions must predominate over individual questions. The Supreme Court has strictly enforced commonality, requiring plaintiffs to show that the class members suffered the same injury through the same conduct. Mere statistical disparities without proof of a uniform policy are insufficient.",
+      "us_sources": [
+        "Wal-Mart Stores, Inc. v. Dukes, 564 U.S. 338 (2011)",
+        "Fed. R. Civ. P. 23(a)",
+        "Fed. R. Civ. P. 23(b)(3)"
+      ],
+      "us_obstruction_level": "HIGH",
+      "us_notes": "Class certification is often the key battleground. Individual issues of damages, causation, or affirmative defenses can defeat predominance."
+    },
+    {
+      "obstruction_id": "US-OBS-012",
+      "obstruction_name": "plea_bargain",
+      "us_legal_basis": "Plea bargaining is a constitutionally legitimate and essential component of the criminal justice system. A guilty plea must be voluntary, knowing, and intelligent. The prosecutor has no constitutional duty to disclose impeachment evidence (Giglio material) before a guilty plea, but must disclose material exculpatory evidence (Brady material). Threats to bring additional charges if the defendant rejects a plea do not violate due process if supported by probable cause.",
+      "us_sources": [
+        "Brady v. United States, 397 U.S. 742 (1970)",
+        "Bordenkircher v. Hayes, 434 U.S. 357 (1978)",
+        "United States v. Ruiz, 536 U.S. 622 (2002)"
+      ],
+      "us_obstruction_level": "MODERATE",
+      "us_notes": "Plea agreements are enforceable as contracts. Breach by the prosecutor may warrant withdrawal of the plea or specific performance of the agreement."
+    }
+  ]
+}

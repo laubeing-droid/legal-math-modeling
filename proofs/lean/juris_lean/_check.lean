@@ -1,0 +1,7 @@
+﻿import JurisLean.FiniteMonotoneIteration
+#check FiniteMonotoneSystem.iter_mono
+#check FiniteMonotoneSystem.iter_subset_univ
+#check FiniteMonotoneSystem.iter_card_lt_of_ne
+#check FiniteMonotoneSystem.iter_card_le_univ
+#check FiniteMonotoneSystem.exists_fixpoint_le_card
+#check FiniteMonotoneSystem.iter_stable

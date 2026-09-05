@@ -1,0 +1,55 @@
+\section{Conclusion and Declarations}
+\label{sec:conclusion}
+
+The architecture establishes a conservative composition discipline for legal reasoning. \formalized{} results preserve request identity across normalized observations and graph transitions; retain failures and nonempty partial obligations; compute a finite least Horn closure; constrain structured arguments and attack provenance; implement finite grounded, complete, preferred, and stable semantics; distinguish skeptical from credulous queries; prohibit cross-branch composition; expose solver incompleteness and absent authority; evaluate dimension-indexed quantities exactly; union open obligations; take coordinatewise weaker trust; preserve closure under add-only updates; guard as-of applicability; bind receipts to task, digest, time, and authority; and propagate taint without majority washing.
+
+The overall conservativity principle can be summarized as
+\begin{equation}
+Assurance(x\otimes y)\preceq Assurance(x)\wedge Assurance(y),
+\label{eq:overall-conservativity}
+\end{equation}
+where $\otimes$ is defined only when request, scope, and branch constraints permit composition. This equation is \derived{} as a cross-layer summary; its component laws are \formalized{}.
+
+Probability, analogy strength, graph similarity, explanation quality, privacy-budget selection, and liability allocation remain \conjectured{} extensions. The formal system can constrain how their evidence is transported and how failures are exposed, but it cannot validate a semantics that has not been supplied.
+
+The result is not a proof of law or a substitute for adjudication. It is a machine-checkable boundary around selected computations. That boundary is useful precisely because it refuses to turn build success into factual truth, formal validity into legal authority, or repeated AI agreement into verification.
+
+\subsection*{Limitations}
+
+ULM16 supplies concrete normal-form composition instances, not closure of every external TheorySpec. The typed graph does not prove a dependent payload refinement for every node kind. Argument coverage is equality to a frozen expected carrier, not universal generator completeness. The exact evaluator proves denotational agreement rather than statutory correctness. Incremental correctness is an extensional contract rather than a proof of a production worklist. Banach convergence is conditional on contraction, completeness, and non-emptiness. Mutation and cross-repository fixtures cover specified cases rather than all behavior.
+
+\subsection*{Funding}
+
+This research received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
+
+\subsection*{Declaration of Interests}
+
+The author declares no known competing financial interests or personal relationships that could have appeared to influence the work.
+
+\subsection*{Data and Code Availability}
+
+No new empirical dataset was created. Formal sources, scripts, manifests, and public documentation are available in the Legal Math Modeling repository \citep{LegalMathModeling2026}. Release claims remain subject- and artifact-bound.
+
+\subsection*{Ethics}
+
+The research involved no human participants, personal data, customer matters, or confidential legal records.
+
+\subsection*{CRediT Author Statement}
+
+Laupinco: Conceptualization, Methodology, Formal analysis, Software, Validation, Investigation, Resources, Data curation, Writing---original draft, Writing---review and editing, Project administration.
+
+\subsection*{AI Disclosure}
+
+AI-assisted tools supported literature-search planning, structural drafting, language revision, and formatting. The author directed the work, checked claims against formal artifacts and cited sources, made all legal and scholarly judgments, and accepts full responsibility for the manuscript.
+
+\subsection*{Research Agenda}
+
+The next formal steps are deliberately modular. A probability extension should define measurable carriers, kernels, calibration claims, and executable refinement. An analogy extension should distinguish matching factors, legally decisive differences, authority, and temporal validity. A graph extension should either prove a genuine metric after a justified embedding or retain its score as ranking-only. A privacy extension should bind adjacency, sensitivity, mechanisms, accounting, and authority. An explanation extension should separate structural traceability from human comprehension and causal faithfulness. A liability extension should encode jurisdiction-specific elements without inferring them from technical failure alone.
+
+Each extension should enter through the same sequence: define the semantics, state negative constraints, prove local invariants, build executable fixtures, generate subject-bound evidence, and obtain authorized legal review. This sequence does not guarantee a correct legal system. It does make unsupported transitions visible and gives reviewers a precise point at which to disagree.
+
+The architecture can therefore grow without broadening existing proofs by rhetoric. New theorem families increase the proved surface only when their declarations elaborate and their release evidence is bound to the same source. New runtime components increase executable assurance only when refinement witnesses cover them. New legal conclusions acquire authority only through the applicable human and institutional process.
+
+Evaluation should mirror this layered structure. Formal evaluation asks whether declarations elaborate without prohibited assumptions and whether composition theorems match their stated interfaces. Engineering evaluation asks whether baseline fixtures pass, designed mutations fail, and optimized implementations agree with reference computations. Human-centered evaluation asks whether reports preserve decisive reasons, counterarguments, uncertainty, and actionable recovery information. Legal evaluation asks whether the governing sources, facts, burdens, and institutional authority are correct for the concrete matter. Reporting one layer cannot substitute for reporting the others.
+
+This account favors bounded results over universal slogans. The system does not establish that mathematics settles law. It shows that mathematics can prevent specified transformations from hiding provenance, incompleteness, disagreement, temporal drift, unit errors, weak trust, or missing authority. Those negative guarantees are meaningful infrastructure for computational law because they constrain how uncertainty and institutional judgment move through software without claiming to eliminate either.

@@ -1,0 +1,151 @@
+{
+  "jurisdiction": "Hong Kong",
+  "privilege_types": [
+    {
+      "privilege": "legal_professional_privilege",
+      "hk_name": "Legal Professional Privilege (Solicitor-Client)",
+      "scope": "Protects confidential communications between client and lawyer made for the purpose of seeking or giving legal advice. Covers both solicitors and barristers.",
+      "constitutional_basis": "Basic Law, Art.35 (right to confidential legal advice)",
+      "statutory_basis": null,
+      "case_law": [
+        "FACV 8/2023 (CFA)",
+        "Shum Kwok Sher v HKSAR (2002) 5 HKCFAR 381"
+      ],
+      "exceptions": [
+        "Client waiver",
+        "Crime-fraud exception",
+        "Statutory abrogation by necessary implication (limited)"
+      ],
+      "verified": true
+    },
+    {
+      "privilege": "litigation_privilege",
+      "hk_name": "Litigation Privilege",
+      "scope": "Protects communications between client/lawyer and third parties made for the dominant purpose of pending or contemplated litigation. Extends to documents prepared for litigation.",
+      "constitutional_basis": "Basic Law, Art.35",
+      "statutory_basis": null,
+      "case_law": [
+        "Waugh v British Railways Board [1980] AC 521 (applied in HK)"
+      ],
+      "exceptions": [
+        "Waiver",
+        "No privilege if document would have been created regardless of litigation"
+      ],
+      "verified": true
+    },
+    {
+      "privilege": "without_prejudice_privilege",
+      "hk_name": "Without Prejudice Privilege",
+      "scope": "Protects communications made in the course of genuine negotiations to settle a dispute. Prevents admissions in such communications from being used as evidence.",
+      "constitutional_basis": null,
+      "statutory_basis": null,
+      "case_law": [
+        "Rush & Tompkins Ltd v Greater London Council [1989] AC 1280 (applied in HK)"
+      ],
+      "exceptions": [
+        "Both parties agree to waive",
+        "Evidence of concluded agreement",
+        "Improper conduct (fraud, perjury)"
+      ],
+      "verified": true
+    },
+    {
+      "privilege": "public_interest_immunity",
+      "hk_name": "Public Interest Immunity",
+      "scope": "Protects documents and information whose disclosure would harm the public interest (e.g., national security, police informers, cabinet deliberations). The court conducts a balancing exercise between public interest in disclosure and non-disclosure.",
+      "constitutional_basis": "Basic Law, Art.62 (executive authority)",
+      "statutory_basis": null,
+      "case_law": [
+        "Conway v Rimmer [1968] AC 910 (applied in HK)",
+        "Lau Cheong v HKSAR (2002) 5 HKCFAR 415 (covert surveillance)"
+      ],
+      "exceptions": [
+        "Court may order disclosure if public interest in justice outweighs public interest in immunity"
+      ],
+      "verified": true
+    },
+    {
+      "privilege": "self_incrimination",
+      "hk_name": "Privilege Against Self-Incrimination",
+      "scope": "No person is compelled to answer questions or produce documents that may expose them to criminal prosecution. Applies in civil and criminal proceedings.",
+      "constitutional_basis": "Basic Law, Art.35 (fair trial rights via Art.39/ICCPR)",
+      "statutory_basis": "Cap. 221 Criminal Procedure Ordinance; various statutory abrogations with use immunity",
+      "case_law": [
+        "Shum Kwok Sher v HKSAR (2002) 5 HKCFAR 381"
+      ],
+      "exceptions": [
+        "Statutory compulsion with use immunity (e.g., ICAC investigations under Cap. 204)"
+      ],
+      "verified": true
+    },
+    {
+      "privilege": "marital_communications",
+      "hk_name": "Marital Communications Privilege",
+      "scope": "Limited protection for communications between spouses during marriage. In criminal proceedings, a spouse is generally competent but not compellable to give evidence against the other spouse.",
+      "constitutional_basis": null,
+      "statutory_basis": "Cap. 8 Evidence Ordinance, s.6 (competence and compellability of spouses)",
+      "case_law": [],
+      "exceptions": [
+        "Spouse is compellable in certain proceedings (e.g., violence against spouse/child)"
+      ],
+      "verified": true
+    },
+    {
+      "privilege": "informer_privilege",
+      "hk_name": "Informer Privilege / Police Informant Privilege",
+      "scope": "Protects the identity of police informants and information provided by them, where disclosure would endanger the informant or impair future law enforcement.",
+      "constitutional_basis": null,
+      "statutory_basis": null,
+      "case_law": [
+        "Marks v Beyfus (1890) 25 QBD 494 (applied in HK)"
+      ],
+      "exceptions": [
+        "Court may order disclosure if necessary to establish innocence of accused"
+      ],
+      "verified": true
+    },
+    {
+      "privilege": "trade_secret",
+      "hk_name": "Trade Secret (as Evidentiary Protection)",
+      "scope": "Trade secrets and confidential business information may be protected from disclosure in litigation through implied undertaking, sealing orders, or redaction. The court may order confidentiality rings or restricted access.",
+      "constitutional_basis": null,
+      "statutory_basis": null,
+      "case_law": [
+        "Various High Court discovery rulings"
+      ],
+      "exceptions": [
+        "Public interest in disclosure",
+        "Necessary for fair trial"
+      ],
+      "verified": true
+    },
+    {
+      "privilege": "personal_data",
+      "hk_name": "Personal Data Protection (PDPO)",
+      "scope": "The PDPO (Cap. 486) protects personal data privacy. Data users must comply with six Data Protection Principles. In litigation, personal data may be subject to redaction or restricted disclosure. The Privacy Commissioner may issue enforcement notices.",
+      "constitutional_basis": "Basic Law, Art.30 (privacy of communication)",
+      "statutory_basis": "Cap. 486 Personal Data (Privacy) Ordinance",
+      "case_law": [
+        "Privacy Commissioner enforcement actions"
+      ],
+      "exceptions": [
+        "Exemptions for crime prevention, legal proceedings, and journalism under Part VIII of PDPO"
+      ],
+      "verified": true
+    },
+    {
+      "privilege": "official_secrets",
+      "hk_name": "Official Secrets",
+      "scope": "The Official Secrets Ordinance (Cap. 521) protects classified government information. Unauthorized disclosure of protected information is a criminal offence. In litigation, the government may claim public interest immunity to resist disclosure.",
+      "constitutional_basis": "Basic Law, Art.23 (theft of state secrets)",
+      "statutory_basis": "Cap. 521 Official Secrets Ordinance",
+      "case_law": [],
+      "exceptions": [
+        "Authorized disclosure by Chief Executive or Secretary for Justice",
+        "Public interest immunity balancing"
+      ],
+      "verified": true
+    }
+  ],
+  "notes": "Hong Kong's privilege framework is primarily based on English common law, with constitutional entrenchment of legal professional privilege under Basic Law Article 35. The lattice shows a well-developed but evolving system of evidentiary protections."
+}

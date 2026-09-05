@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "schema_version": "rewrite-2026-07-01",
+  "labels": {
+    "PROVED_LEAN": "Machine-checked only when tied to Lean source and current build evidence.",
+    "VERIFIED_TEST": "Engineering regression evidence, not a formal proof.",
+    "REFUTED": "Counterexample exists and must be preserved.",
+    "PARTIAL": "Some source-bound evidence exists but release gate is incomplete.",
+    "CANDIDATE": "Proposed by model, human, or script; not reasoning-eligible.",
+    "UNKNOWN": "Fail-closed default."
+  },
+  "reasoning_eligible_default": "PROVED_LEAN or verified source-bound fact only; LLM candidate is excluded.",
+  "fail_closed": [
+    "UNKNOWN",
+    "TIMEOUT",
+    "SKIP",
+    "NOT_RUN",
+    "BACKEND_UNAVAILABLE",
+    "ERROR"
+  ]
+}

@@ -1,0 +1,54 @@
+\section{Differential Privacy and the Privilege Underdetermination Result}
+\label{sec:dp}
+
+Differential privacy is a quantitative property of a randomized mechanism, not a label attached directly to a legal category. For an adjacency relation $\sim$, mechanism $M$ is $(\varepsilon,\delta)$-differentially private when
+\begin{equation}
+\Pr[M(D)\in S]\le e^{\varepsilon}\Pr[M(D')\in S]+\delta
+\label{eq:dp}
+\end{equation}
+for all $D\sim D'$ and measurable $S$ \citep{DworkEtAl2006,DworkRoth2014}. Sensitivity for query $f$ is
+\begin{equation}
+\Delta f=\sup_{D\sim D'}\|f(D)-f(D')\|.
+\label{eq:sensitivity}
+\end{equation}
+The scale of a Laplace mechanism depends on both $\Delta f$ and a chosen $\varepsilon$, not on a privilege classification alone.
+
+Let (P) be a legal privilege label. The rejected shortcut is a universal function
+\begin{equation}
+\varepsilon=\phi(P).
+\label{eq:privilege-epsilon}
+\end{equation}
+The same privilege category can be paired with different adjacency relations, threat models, queries, utility constraints, composition horizons, and institutional risk tolerances. Therefore (P) does not determine a unique privacy budget. The repository records this as a refuted theory claim supported by two-model counterexample evidence; it is not represented as a Lean differential-privacy theorem. We label the underdetermination result \derived{}, not \formalized{}.
+
+For repeated mechanisms, a basic composition bound has the form
+\begin{equation}
+(\varepsilon_1,\delta_1)\oplus(\varepsilon_2,\delta_2)
+=(\varepsilon_1+\varepsilon_2,\delta_1+\delta_2).
+\label{eq:basic-composition}
+\end{equation}
+More refined accounting and smooth sensitivity \citep{NissimEtAl2007} do not change the conceptual point: legal authorization constrains permissible processing, while privacy parameters quantify properties of a specified mechanism. Neither coordinate replaces the other.
+
+The ULM trust vector and authority receipts can carry privacy-related assurance without fabricating a budget. If $\tau_p$ records procedural or privacy review, conservative composition uses
+\begin{equation}
+(\tau\wedge\sigma)_p=\min(\tau_p,\sigma_p).
+\label{eq:privacy-trust-meet}
+\end{equation}
+This is \formalized{} as part of the general trust meet. It is ordinal metadata, not a $\varepsilon$ estimate.
+
+A future extension must define adjacency, mechanism semantics, budget accounting, and authority rules, then prove a connection between executable code and Equation~\eqref{eq:dp}. Until then, any automatic privilege-to-budget mapping is \conjectured{} and must not appear as a formal release claim.
+
+The two-model counterexample is structural. Hold the privilege label fixed while changing either the adjacency relation or the query sensitivity. One admissible institution may choose a narrow neighboring-dataset relation and a moderate utility target; another may choose a broader relation and stricter disclosure risk. Both respect the same legal category yet require different mechanism parameters. Therefore uniqueness cannot follow from the label alone.
+
+Authorization and privacy proof should be represented as a product rather than a scalar. The first component states that an actor may perform a purpose-bound operation; the second states the quantitative guarantee of the mechanism under declared adjacency and composition assumptions. Authorization without a mechanism proof leaves technical privacy open. A mechanism proof without authorization leaves legal permissibility open.
+
+Failure recovery follows the missing component. An undefined adjacency relation requires a data-governance decision; an unbounded sensitivity requires redesign or clipping; exhausted composition budget requires stopping or new authorization; a receipt mismatch requires renewed human review. None of these defects can be repaired by relabeling the data as privileged.
+
+\subsection{Two-model construction and evaluation consequences}
+
+The underdetermination argument can be made without choosing numerical budgets. Fix one privilege label $P$ and construct Model A with record-level adjacency, a bounded count query, a single release, and one stated utility constraint. Construct Model B with user-level adjacency, a vector query of different sensitivity, repeated releases, and a different threat model. Both models classify the underlying material by $P$, yet the feasible mechanism families and accounting obligations differ. If a function $\phi(P)$ returned one uniquely justified budget, it would have to ignore those differences. The contradiction concerns sufficiency of the legal label, not the existence of an institutionally selected budget after the missing parameters are supplied.
+
+A second construction keeps adjacency fixed and changes the authorized purpose. The same mechanism may be permitted for an internal audit but not for public release, or may require different composition horizons. Differential privacy alone does not answer that authorization question. Conversely, authorization to process confidential material does not establish Equation~\eqref{eq:dp}. The two properties can coexist, fail independently, and require different evidence. The appropriate record therefore carries both rather than converting one into the other.
+
+Evaluation should report adjacency, query, sensitivity method, mechanism, $\varepsilon$, $\delta$, composition accountant, number of releases, clipping or truncation rules, utility criterion, and approving authority. Omitting any field limits what can be reproduced. A mechanism test can inspect distributional behavior on selected neighboring datasets, but finite sampling does not prove the universal probability inequality. A formal proof can establish the inequality for a model while leaving the deployed randomness, serialization, or accounting implementation unverified. Runtime refinement and statistical tests remain separate evidence layers.
+
+Recovery must also preserve prior releases. Lowering a future budget does not undo privacy loss already composed, and changing adjacency changes the statement being protected rather than repairing the original statement. If an accountant is wrong, the certificate for affected releases should be blocked or revoked and recomputed from retained events. If authorization expires, technically valid privacy parameters do not extend it. These cases illustrate the paper's broader thesis: assurance coordinates compose conservatively and cannot substitute for one another.

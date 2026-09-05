@@ -1,0 +1,332 @@
+{
+  "total": 25,
+  "passed": 22,
+  "accuracy": 0.88,
+  "results": [
+    {
+      "case_id": "BENCH-01",
+      "domain": "contract",
+      "difficulty": "easy",
+      "expected_accepted": [
+        "BREACH_ESTABLISHED"
+      ],
+      "actual_accepted": [
+        "BREACH_ESTABLISHED",
+        "LIABILITY_GRANTED"
+      ],
+      "correct": true,
+      "confidence": 1.0
+    },
+    {
+      "case_id": "BENCH-02",
+      "domain": "contract",
+      "difficulty": "medium",
+      "expected_accepted": [
+        "FORCE_MAJEURE_DEFENSE"
+      ],
+      "actual_accepted": [
+        "FORCE_MAJEURE_DEFENSE"
+      ],
+      "correct": true,
+      "confidence": 0.5
+    },
+    {
+      "case_id": "BENCH-03",
+      "domain": "criminal",
+      "difficulty": "easy",
+      "expected_accepted": [
+        "CRIME_ESTABLISHED"
+      ],
+      "actual_accepted": [
+        "CRIME_ESTABLISHED"
+      ],
+      "correct": true,
+      "confidence": 0.5
+    },
+    {
+      "case_id": "BENCH-04",
+      "domain": "criminal",
+      "difficulty": "medium",
+      "expected_accepted": [
+        "JUSTIFICATION_DEFENSE"
+      ],
+      "actual_accepted": [
+        "JUSTIFICATION_DEFENSE"
+      ],
+      "correct": true,
+      "confidence": 0.5
+    },
+    {
+      "case_id": "BENCH-05",
+      "domain": "contract",
+      "difficulty": "easy",
+      "expected_accepted": [],
+      "actual_accepted": [],
+      "correct": true,
+      "confidence": 0.0
+    },
+    {
+      "case_id": "BENCH-06",
+      "domain": "cross",
+      "difficulty": "medium",
+      "expected_accepted": [
+        "CRIME_ESTABLISHED"
+      ],
+      "actual_accepted": [
+        "CRIME_ESTABLISHED"
+      ],
+      "correct": true,
+      "confidence": 0.5
+    },
+    {
+      "case_id": "BENCH-07",
+      "domain": "tort",
+      "difficulty": "easy",
+      "expected_accepted": [
+        "TORT_LIABILITY"
+      ],
+      "actual_accepted": [
+        "TORT_LIABILITY"
+      ],
+      "correct": true,
+      "confidence": 0.5
+    },
+    {
+      "case_id": "BENCH-08",
+      "domain": "tort",
+      "difficulty": "medium",
+      "expected_accepted": [
+        "CONTRIBUTORY NEGLIGENCE"
+      ],
+      "actual_accepted": [
+        "CONTRIBUTORY NEGLIGENCE"
+      ],
+      "correct": true,
+      "confidence": 0.5
+    },
+    {
+      "case_id": "BENCH-09",
+      "domain": "contract",
+      "difficulty": "hard",
+      "expected_accepted": [
+        "CLAIM_C"
+      ],
+      "actual_accepted": [
+        "CLAIM_A",
+        "CLAIM_C"
+      ],
+      "correct": true,
+      "confidence": 0.667
+    },
+    {
+      "case_id": "BENCH-10",
+      "domain": "administrative",
+      "difficulty": "medium",
+      "expected_accepted": [
+        "REVOCATION_UPHELD"
+      ],
+      "actual_accepted": [
+        "REVOCATION_UPHELD"
+      ],
+      "correct": true,
+      "confidence": 0.5
+    },
+    {
+      "case_id": "BENCH-11",
+      "domain": "data",
+      "difficulty": "medium",
+      "expected_accepted": [
+        "GDPR_VIOLATION",
+        "PIPL_VIOLATION"
+      ],
+      "actual_accepted": [
+        "GDPR_VIOLATION",
+        "PIPL_VIOLATION"
+      ],
+      "correct": true,
+      "confidence": 1.0
+    },
+    {
+      "case_id": "BENCH-12",
+      "domain": "contract",
+      "difficulty": "easy",
+      "expected_accepted": [],
+      "actual_accepted": [],
+      "correct": true,
+      "confidence": 0.0
+    },
+    {
+      "case_id": "BENCH-13",
+      "domain": "contract",
+      "difficulty": "medium",
+      "expected_accepted": [
+        "BREACH_ESTABLISHED"
+      ],
+      "actual_accepted": [
+        "BREACH_ESTABLISHED",
+        "NOISE_CLAIM"
+      ],
+      "correct": true,
+      "confidence": 1.0
+    },
+    {
+      "case_id": "BENCH-14",
+      "domain": "cross",
+      "difficulty": "hard",
+      "expected_accepted": [
+        "CIVIL_BREACH"
+      ],
+      "actual_accepted": [
+        "CIVIL_BREACH"
+      ],
+      "correct": true,
+      "confidence": 0.5
+    },
+    {
+      "case_id": "BENCH-15",
+      "domain": "cross",
+      "difficulty": "hard",
+      "expected_accepted": [],
+      "actual_accepted": [],
+      "correct": true,
+      "confidence": 0.0
+    },
+    {
+      "case_id": "BENCH-16",
+      "domain": "cross",
+      "difficulty": "hard",
+      "expected_accepted": [
+        "GDPR_VIOLATION",
+        "PIPL_VIOLATION"
+      ],
+      "actual_accepted": [
+        "GDPR_VIOLATION",
+        "PIPL_VIOLATION"
+      ],
+      "correct": true,
+      "confidence": 1.0
+    },
+    {
+      "case_id": "BENCH-17",
+      "domain": "cross",
+      "difficulty": "hard",
+      "expected_accepted": [
+        "CIVIL_FRAUD"
+      ],
+      "actual_accepted": [
+        "CIVIL_FRAUD"
+      ],
+      "correct": true,
+      "confidence": 0.5
+    },
+    {
+      "case_id": "BENCH-18",
+      "domain": "tort",
+      "difficulty": "medium",
+      "expected_accepted": [
+        "PRODUCT_LIABILITY"
+      ],
+      "actual_accepted": [
+        "PRODUCT_LIABILITY"
+      ],
+      "correct": true,
+      "confidence": 0.5
+    },
+    {
+      "case_id": "BENCH-19",
+      "domain": "tort",
+      "difficulty": "medium",
+      "expected_accepted": [
+        "WORK_INJURY_LIABILITY"
+      ],
+      "actual_accepted": [
+        "WORK_INJURY_LIABILITY"
+      ],
+      "correct": true,
+      "confidence": 0.5
+    },
+    {
+      "case_id": "BENCH-20",
+      "domain": "contract",
+      "difficulty": "hard",
+      "expected_accepted": [
+        "NEW_LAW_APPLIES",
+        "OLD_LAW_APPLIES"
+      ],
+      "actual_accepted": [
+        "NEW_LAW_APPLIES"
+      ],
+      "correct": false,
+      "confidence": 0.5
+    },
+    {
+      "case_id": "BENCH-21",
+      "domain": "criminal",
+      "difficulty": "hard",
+      "expected_accepted": [
+        "NEW_LIGHTER_PENALTY",
+        "OLD_PENALTY"
+      ],
+      "actual_accepted": [
+        "NEW_LIGHTER_PENALTY"
+      ],
+      "correct": false,
+      "confidence": 0.5
+    },
+    {
+      "case_id": "BENCH-22",
+      "domain": "cross",
+      "difficulty": "hard",
+      "expected_accepted": [
+        "CIVIL_COMPENSATION",
+        "GUILTY_VERDICT"
+      ],
+      "actual_accepted": [
+        "CIVIL_COMPENSATION",
+        "GUILTY_VERDICT"
+      ],
+      "correct": true,
+      "confidence": 1.0
+    },
+    {
+      "case_id": "BENCH-23",
+      "domain": "cross",
+      "difficulty": "medium",
+      "expected_accepted": [
+        "IP_INFRINGEMENT",
+        "LICENSE_BREACH"
+      ],
+      "actual_accepted": [
+        "IP_INFRINGEMENT",
+        "LICENSE_BREACH"
+      ],
+      "correct": true,
+      "confidence": 1.0
+    },
+    {
+      "case_id": "BENCH-24",
+      "domain": "contract",
+      "difficulty": "hard",
+      "expected_accepted": [
+        "BREACH"
+      ],
+      "actual_accepted": [
+        "BREACH"
+      ],
+      "correct": true,
+      "confidence": 0.333
+    },
+    {
+      "case_id": "BENCH-25",
+      "domain": "contract",
+      "difficulty": "hard",
+      "expected_accepted": [
+        "CONCLUSION_A",
+        "CONCLUSION_B"
+      ],
+      "actual_accepted": [],
+      "correct": false,
+      "confidence": 0.0
+    }
+  ]
+}

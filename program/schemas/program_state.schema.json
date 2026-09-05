@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ProgramState",
+  "type": "object",
+  "required": ["program_id", "program_status", "tracks", "repository_heads"],
+  "properties": {
+    "program_id": {"type": "string"},
+    "run_id": {"type": ["string", "null"]},
+    "started_at": {"type": ["string", "null"]},
+    "program_status": {"enum": ["INFRA_READY", "RUNNING", "COMPLETE", "PARTIAL", "FAILED"]},
+    "current_track": {"type": ["string", "null"]},
+    "current_task": {"type": ["string", "null"]},
+    "tracks": {
+      "type": "object",
+      "patternProperties": {
+        "^[A-E]$": {
+          "type": "object",
+          "required": ["status", "checkpoint_commit"],
+          "properties": {
+            "status": {"enum": ["NOT_STARTED", "IN_PROGRESS", "COMPLETE", "BLOCKED"]},
+            "checkpoint_commit": {"type": ["string", "null"]},
+            "worktree": {"type": "string"}
+          }
+        }
+      }
+    },
+    "repository_heads": {
+      "type": "object",
+      "properties": {
+        "legal-math-modeling": {"type": "string"},
+        "juris-calculus": {"type": "string"},
+        "deli-autoresearch": {"type": "string"}
+      }
+    },
+    "checkpoints": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "track": {"type": "string"},
+          "task": {"type": "string"},
+          "commit": {"type": "string"},
+          "timestamp": {"type": "string"},
+          "verification": {"type": "string"}
+        }
+      }
+    }
+  }
+}

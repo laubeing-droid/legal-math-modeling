@@ -1,0 +1,70 @@
+\section{Authority and Taint Non-Interference}
+\label{sec:noninterference}
+
+Authorization is modeled as a ranked capability rather than a vote count. For level (l) and action kind (k),
+\begin{equation}
+\operatorname{canIssue}(l,k)\iff
+rank(l)\ge rank(required(k)).
+\label{eq:can-issue}
+\end{equation}
+A valid one-level receipt satisfies
+\begin{equation}
+\operatorname{receiptValid}(r)\iff
+rank(r.to)=rank(r.from)+1.
+\label{eq:receipt-valid}
+\end{equation}
+Same-level consensus cannot create a higher rank:
+\begin{equation}
+consensusRank([l]^n)\le rank(l).
+\label{eq:consensus-rank}
+\end{equation}
+These results are \formalized{}. They directly address multi-agent systems: adding agents at the same authority level may diversify proposals but cannot authorize a transition reserved for a human or institution.
+
+A human-research receipt is bound to a task and digest:
+\begin{equation}
+bind(r,t,d)\iff r.task=t\land r.digest=d.
+\label{eq:receipt-bind}
+\end{equation}
+It is temporally valid only when
+\begin{equation}
+valid(r,now)\iff r.issued\le now\le r.expiry\land\neg r.revoked.
+\label{eq:receipt-time}
+\end{equation}
+Cross-task, cross-input, expired, and revoked receipts fail. These are \formalized{} properties. A human-research receipt records an action and, when the relevant predicates hold, proves binding to the stated task and digest together with temporal validity and non-revocation. It does not by itself prove that the reviewer was legally authorized or competent, or that the substantive action was correct.
+
+Information quality uses a two-point taint lattice:
+\begin{equation}
+\mathsf{clean}\sqcup\mathsf{clean}=\mathsf{clean},
+\qquad x\sqcup\mathsf{tainted}=\mathsf{tainted}.
+\label{eq:taint-join}
+\end{equation}
+For the formal stage constructor, a tainted head input propagates through the input fold:
+\begin{equation}
+taint(x)=\mathsf{tainted}
+\Longrightarrow
+taint(stageOutput(x::xs,c))=\mathsf{tainted}.
+\label{eq:taint-propagation}
+\end{equation}
+The join laws, this \operatorname{stageOutput} result, and the majority non-washing results are \formalized{}. An arbitrary external combination function satisfies the same implication only if it refines this taint fold or supplies its own preservation proof. Duplicating an unsupported answer does not produce provenance:
+\begin{equation}
+\bigsqcup_{i=1}^{n}\mathsf{tainted}=\mathsf{tainted}.
+\label{eq:no-taint-washing}
+\end{equation}
+
+Authority and taint are separate coordinates. A high-authority actor can authorize review of tainted material without making the material clean; clean machine evidence can exist without authority to issue a legal result. Conservative assurance carries both dimensions and prevents either from substituting for the other.
+
+Multi-agent orchestration therefore needs independence claims that are stronger than agent count. If agents share a model, prompt, retrieval cache, or contaminated source, their errors may be correlated. The taint join remains conservative without estimating that correlation. A future probabilistic model could quantify dependence, but it must not weaken the deterministic rule that known taint survives aggregation.
+
+Receipt chains also require continuity. A downstream action should identify the immediately preceding authority level, the same task and digest, and a valid time interval. Skipping a level or replaying a receipt from another task fails structurally. This converts an otherwise informal approval history into an inspectable path while leaving the substance of each human decision outside the theorem.
+
+Recovery is explicit. Tainted evidence must be replaced or independently verified; an expired receipt must be reissued; a digest mismatch requires review of the actual new material; and insufficient authority requires escalation to the designated level. Adding more low-authority agents is not a recovery action. These rules preserve the distinction between search capacity, evidence quality, and decisional power.
+
+\subsection{What the non-interference claims exclude}
+
+The authority results constrain rank transitions, not institutional legitimacy. The \operatorname{AuthorityReceipt} structure records a subject, case scope, issuer, and adjacent levels, while its \operatorname{receiptValid} predicate checks the one-rank succession equation. The presence of identity fields in a structure does not mean that this predicate authenticates them. Likewise, the human-research receipt binds task and digest and checks a time window and revocation flag, but external authorization and reviewer competence remain premises for a legal process. A release record should name the predicate actually checked instead of summarizing every field as ``validated.''
+
+The taint theorem is also intensional to the defined fold. It proves that \operatorname{stageOutput} computes the join of its input taints and that a tainted leading input makes the result tainted. List-level repetition and majority examples reuse that operation. The theorem does not quantify over every possible merger, voting scheme, language-model prompt, or database query. A concrete aggregator belongs inside the proved boundary only after its output label is related to \operatorname{taintOfInputs}.
+
+These limits support precise negative tests. A rank-skipping authority receipt should fail succession. A receipt replayed with another task or digest should fail binding. An expired or revoked human receipt should fail current validity. A stage with one tainted input should remain tainted, including when clean inputs or repeated copies are added. An external aggregator that drops labels should fail refinement even if its textual conclusion matches a clean baseline. Passing these fixtures supplies bounded runtime evidence; it does not broaden the quantified Lean theorem.
+
+The model intentionally does not define a procedure by which tainted material becomes clean. Independent verification may create a new clean evidence object, but relabeling the original object would erase provenance. The new object should record the verification method and its relationship to the source. Similarly, higher authority may approve use of uncertain material without changing its epistemic quality. Keeping those operations distinct prevents authorization from laundering evidence and prevents clean evidence from manufacturing legal power.

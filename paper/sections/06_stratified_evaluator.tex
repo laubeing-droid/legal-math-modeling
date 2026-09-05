@@ -1,0 +1,81 @@
+\section{Stratified Evaluation, Exact Calculation, and Conservative Assurance}
+\label{sec:evaluator}
+
+The evaluator does not map every input directly to a binary legal conclusion. It first preserves procedure. Applying a procedural cause changes the stage while leaving the normative marker invariant:
+\begin{equation}
+\operatorname{normativeMarker}(\operatorname{applyProcedureCause}(c,s))
+=\operatorname{normativeMarker}(s).
+\label{eq:procedure-preserves-marker}
+\end{equation}
+This is \formalized{}. It prevents procedural routing from silently rewriting substantive status.
+
+The adjudication result has four constructors:
+\begin{equation}
+\operatorname{Adjudicate}\in
+\{\mathsf{adjudicated},\mathsf{procedural},
+\mathsf{pendingLegalJudgment},\mathsf{solverIncomplete}\}.
+\label{eq:adjudication-four-way}
+\end{equation}
+An incomplete computation maps to `solverIncomplete`; a missing authority maps to `pendingLegalJudgment`; procedural material remains procedural; and substantive success or failure requires request-bound authority. These branch properties are \formalized{}. They refuse the common but invalid inference from “the solver returned no positive result” to “the legal claim fails.”
+
+Domain composition selects nonempty candidate subsets under an explicit policy:
+\begin{equation}
+Choices(B,\pi)=\{S\subseteq B.candidates\mid
+S\neq\varnothing\land\pi(S)=\true\}.
+\label{eq:composition-choices}
+\end{equation}
+Branch, policy identifier, and selected subset are part of the resulting identity. This \formalized{} construction makes the choice auditable but does not prove that $\pi$ is the correct legal policy.
+
+Exact quantities use a dimension index. Their denotation obeys
+\begin{align}
+\llbracket lit(q)\rrbracket&=q,\label{eq:eval-lit}\\
+\llbracket x+y\rrbracket&=\llbracket x\rrbracket+\llbracket y\rrbracket,
+\label{eq:eval-add}\\
+\llbracket x-y\rrbracket&=\llbracket x\rrbracket-\llbracket y\rrbracket,
+\label{eq:eval-sub}\\
+\llbracket qx\rrbracket&=q\llbracket x\rrbracket.
+\label{eq:eval-scale}
+\end{align}
+Type indices reject direct addition across incompatible currencies, periods, or other dimensions. The executable evaluator equals the recursive denotation. This is \formalized{} arithmetic correctness, not proof of the statutory interpretation that selected the expression.
+
+Coverage is complete exactly when no obligations remain:
+\begin{equation}
+\operatorname{Complete}(C)\iff C.openObligations=\varnothing.
+\label{eq:coverage-complete}
+\end{equation}
+Composition cannot erase obligations:
+\begin{equation}
+open(C_1\sqcup C_2)=open(C_1)\cup open(C_2).
+\label{eq:coverage-union}
+\end{equation}
+Both are \formalized{}.
+
+Trust is an ordinal five-vector rather than a calibrated probability:
+\begin{equation}
+\tau=(\tau_{source},\tau_{text},\tau_{fact},\tau_{proof},\tau_{authority})
+\in\{0,1,2\}^{5}.
+\label{eq:trust-vector}
+\end{equation}
+The coordinates record source, text, fact, proof, and authority assurance. Their meet is coordinatewise minimum:
+\begin{equation}
+(\tau\wedge\sigma)_i=\min(\tau_i,\sigma_i),
+\qquad\tau\wedge\sigma\preceq\tau,\sigma.
+\label{eq:trust-meet}
+\end{equation}
+The meet laws are \formalized{}. Assurance records combine only under the same scope, select the weaker implementation and run statuses, and union obligations, legal inputs, trusted-computing-base references, and notices. Aggregation may preserve or reduce assurance; it cannot improve it by discarding the weaker component.
+
+The evaluator is stratified because each stage has a distinct blocking condition. A solver may be complete while authority is missing; an authority may be valid while evidence obligations remain open; an exact arithmetic expression may evaluate while its legal basis is disputed. A single Boolean would erase these combinations. The product record retains them so a downstream user can distinguish technical remediation from legal review.
+
+Exact dimensional types are especially useful for negative guarantees. They reject nonsensical additions before evaluation, but they cannot infer exchange rates, statutory interest periods, rounding regimes, or damages rules. Those values and policies must enter as typed, sourced inputs. Once supplied, denotational equality shows that the evaluator implements the stated expression exactly.
+
+The five trust coordinates should not be averaged. An arithmetic mean would allow high proof assurance to offset absent authority or weak factual and textual support. Coordinatewise meet implements a non-compensation principle: every dimension remains separately visible, and the weakest input bounds the combined result in that dimension. Whether the ordinal values $0,1,2$ should have a different institutional interpretation is a governance choice; their algebraic meet is the proved part.
+
+\subsection{Failure localization as an evaluation method}
+
+The four-way adjudication result supplies a diagnostic protocol. A \mathsf{solverIncomplete} value asks for the listed computational obligations, not a new legal conclusion. A \mathsf{pendingLegalJudgment} value asks for qualified authority or a missing finding, not another solver run. A procedural disposition identifies a routing state whose normative marker has not been rewritten. Only an adjudicated status represents the modeled substantive branch, and even then its validity is conditional on the supplied facts, norms, profile, and authority object. This stratification prevents remediation at one layer from being misreported as resolution at another.
+
+Exact arithmetic has a similar boundary. Dimension indices can reject addition of incompatible quantities and the evaluator can be shown equal to its denotation. Neither result determines the economically or legally correct operands. A statutory-interest calculation, for example, still needs an authorized principal, rate, period, day-count convention, and rounding rule. If one input changes, the request or evidence digest should change as well. The mathematical evaluator can then reproduce the declared expression while the legal provenance of each operand remains separately reviewable.
+
+Trust composition should be tested coordinate by coordinate. A useful negative fixture pairs an assurance record with strong source and proof coordinates but weak fact authority with another record having the inverse pattern. The meet must retain both weaknesses rather than averaging them into a moderate score. Coverage fixtures should likewise show that an obligation appearing in either input remains open after composition. These are executable tests of the record operations; they do not calibrate what levels zero, one, and two mean in a particular institution.
+
+Temporal and procedural properties remain outside the five fields even when a surrounding assurance envelope records them elsewhere. Calling a coordinate ``temporal'' or ``procedural'' would misstate the formal \operatorname{TrustVector} type. A future extension could introduce additional coordinates, but it would need new meet definitions, ordering laws, migration rules, and evidence about how old records map into the expanded carrier. The current result is limited to the five named fields above.

@@ -1,0 +1,43 @@
+{
+  "theorem": "E3",
+  "claim": "原始 evaluator 在同一 fixpoint loop 中执行 rebuttal/confidence-zeroing 满足 Tarski 单调性",
+  "epistemic_status": "REFUTED_BY_COUNTEREXAMPLE",
+  "arguments": [
+    "a",
+    "b"
+  ],
+  "rebuttal_pairs": [
+    [
+      "b",
+      "b"
+    ],
+    [
+      "b",
+      "a"
+    ]
+  ],
+  "note": "Self-attack (b,b) is added to ensure F(B) = empty set as required by the scenario.",
+  "sets": {
+    "A": [
+      "a"
+    ],
+    "B": [
+      "a",
+      "b"
+    ]
+  },
+  "evaluator_operator": "F(S) = { a ∈ S | a 未被 S 中的任何 argument rebuttal 击败 }",
+  "results": {
+    "F(A)": [
+      "a"
+    ],
+    "F(B)": []
+  },
+  "monotonicity_check": {
+    "A_subseteq_B": true,
+    "F_A_subseteq_F_B": false,
+    "counterexample_holds": true
+  },
+  "explanation": "A = {a} ⊆ B = {a, b}，但 F(A) = {a} ⊈ ∅ = F(B)。\n原因：原始 evaluator 的 confidence-zeroing 语义使得当 b 加入 S 后，\nb 对 a 的 rebuttal 导致 a 被移除。这违反了单调性——增加元素反而减少了输出。\n在 Tarski 单调算子理论中，F(A) ⊆ F(B) 必须对 A ⊆ B 成立，此处不成立。",
+  "why_this_matters": "单调性是 Kleene 迭代收敛到 least fixpoint 的前提。\n原始 evaluator 不满足单调性，因此：\n  1. 不能保证 fixpoint 存在\n  2. 即使存在，也不能保证唯一\n  3. Kleene 迭代可能不收敛或收敛到非预期结果\n这正是引入分层评估器（Theorem E2）的动机。"
+}

@@ -1,0 +1,114 @@
+{
+  "metadata": {
+    "theorem": "D4",
+    "theorem_statement": "Privilege level uniquely determines epsilon (disclosure probability / protection strength)",
+    "status": "REFUTED_BY_COUNTEREXAMPLE",
+    "refutation_type": "countermodel",
+    "generated_at": "2026-06-11",
+    "minimality_criterion": "1 concept (attorney-client confidentiality), 2 jurisdictions, 2 different epsilon values"
+  },
+  "countermodel": {
+    "description": "Two scenarios with the same privilege level ('attorney-client communication confidentiality') but different epsilon values (probability of compelled disclosure or legal leakage). The same semantic label maps to different protection strengths in different jurisdictions, proving privilege level does not uniquely determine epsilon.",
+    "scenarios": [
+      {
+        "scenario_id": "SC-D4-001",
+        "jurisdiction": "CN",
+        "privilege_level_label": "律师执业保密义务 (Lawyer Professional Confidentiality Duty)",
+        "fact_pattern": "律师在刑事辩护中知悉委托人涉嫌其他犯罪的信息，侦查机关要求律师提供相关通信记录",
+        "legal_basis": {
+          "statute": "《律师法》第38条",
+          "regulation": "《律师执业行为规范》第9条",
+          "exception": "委托人或者其他人准备或者正在实施的危害国家安全、公共安全以及其他严重危害他人人身、财产安全的犯罪事实和信息除外"
+        },
+        "epsilon_analysis": {
+          "epsilon_definition": "Probability that the communication can be compelled to disclose by court or administrative authority",
+          "epsilon_value": 0.65,
+          "epsilon_basis": "CN 的律师保密是职业道德义务，非证据法特权。在刑事诉讼中，法院可依据《刑事诉讼法》第54条依法调取证据，律师通信记录可被作为证据调取。'危害国家安全、公共安全' 例外条款宽泛，侦查机关有较大裁量权要求披露。因此 compelled disclosure 的概率较高。",
+          "factors_increasing_epsilon": [
+            "律师保密是义务而非权利，holder 是律师而非客户",
+            "刑事诉讼中法院可依职权调取证据",
+            "《刑事诉讼法》第54条：人民法院、人民检察院和公安机关有权向有关单位和个人收集、调取证据",
+            "例外条款涵盖 '危害公共安全' 等模糊概念",
+            "无宪法性特权保护"
+          ],
+          "factors_decreasing_epsilon": [
+            "泄露律师执业秘密可导致律师行政处罚（警告、罚款、停止执业）",
+            "律师协会行业自律保护"
+          ]
+        },
+        "claim_status": "PROVED_FORMAL",
+        "why_same_privilege_level_different_epsilon": "虽然概念上都是 '律师-客户通信保密'，但 CN 的制度设计是**义务导向**（duty-based）：法律要求律师保密，但客户不享有对抗国家强制取证的特权。因此 epsilon（强制披露概率）较高。"
+      },
+      {
+        "scenario_id": "SC-D4-002",
+        "jurisdiction": "US",
+        "privilege_level_label": "Attorney-Client Privilege",
+        "fact_pattern": "Client communicates with attorney about past criminal conduct. Prosecutor subpoenas attorney's notes of the communication.",
+        "legal_basis": {
+          "statute": "Fed. R. Evid. 501, 502",
+          "case_law": "Upjohn v. United States, 449 U.S. 383 (1981)",
+          "exception": "crime-fraud exception (if client seeks attorney's assistance to commit or cover up a crime or fraud)"
+        },
+        "epsilon_analysis": {
+          "epsilon_definition": "Probability that the communication can be compelled to disclose by court or administrative authority",
+          "epsilon_value": 0.05,
+          "epsilon_basis": "US attorney-client privilege 是证据法上的绝对特权（absolute privilege），holder 是 client。除非 crime-fraud exception 成立，否则法院不得强制披露。Upjohn 案确立了 privilege 覆盖与律师的保密通信，包括事实调查阶段的通信。crime-fraud exception 适用范围窄，需证明 client 寻求律师帮助实施犯罪。因此 compelled disclosure 的概率极低。",
+          "factors_increasing_epsilon": [
+            "crime-fraud exception（若客户寻求律师帮助实施犯罪）",
+            "subject-matter waiver（若 client 自愿披露部分通信）",
+            "inadvertent disclosure without prompt rectification"
+          ],
+          "factors_decreasing_epsilon": [
+            "Fed. R. Evid. 502 限制 waiver 的范围",
+            " privilege 属于 client，client 可主动主张",
+            "联邦和州法院普遍严格保护 attorney-client privilege",
+            "Work-product doctrine 提供额外保护层"
+          ]
+        },
+        "claim_status": "PROVED_FORMAL",
+        "why_same_privilege_level_different_epsilon": "US 的 attorney-client privilege 是**权利导向**（right-based）：client 享有对抗国家强制取证的绝对特权。除非极少数例外，epsilon 接近 0。"
+      },
+      {
+        "scenario_id": "SC-D4-003",
+        "jurisdiction": "HK",
+        "privilege_level_label": "Legal Professional Privilege (LPP)",
+        "fact_pattern": "Solicitor-client communication in criminal proceedings. Police seek production of solicitor's file under search warrant.",
+        "legal_basis": {
+          "constitutional": "Basic Law, Art.35 (right to confidential legal advice)",
+          "statute": "Cap. 622 Companies Ordinance, s.165 (for corporate contexts)",
+          "case_law": "FACV 8/2023 (CFA); Shum Kwok Sher v HKSAR (2002) 5 HKCFAR 381",
+          "exception": "Client waiver; crime-fraud exception; statutory abrogation by necessary implication (limited)"
+        },
+        "epsilon_analysis": {
+          "epsilon_definition": "Probability that the communication can be compelled to disclose by court or administrative authority",
+          "epsilon_value": 0.15,
+          "epsilon_basis": "HK 的 LPP 是宪法性权利（Basic Law Art.35），保护力度强于 CN 的职业道德义务但弱于 US 的绝对证据特权。CFA 在 FACV 8/2023 中确认 LPP 是 fundamental right，但 subject to exceptions 和 balancing。在刑事调查中，警方可申请搜查令获取律师文件，但法院会进行 balancing exercise。因此 epsilon 介于 CN 和 US 之间。",
+          "factors_increasing_epsilon": [
+            "Statutory abrogation by necessary implication (limited circumstances)",
+            "Court may conduct balancing exercise in criminal investigations",
+            "Police search warrants can target solicitor's offices (with judicial oversight)"
+          ],
+          "factors_decreasing_epsilon": [
+            "Constitutional entrenchment under Basic Law Art.35",
+            "CFA recognition as fundamental right",
+            "Strong common law tradition protecting LPP",
+            "Crime-fraud exception narrowly applied"
+          ]
+        },
+        "claim_status": "PROVED_FORMAL",
+        "why_same_privilege_level_different_epsilon": "HK 的 LPP 是**宪法权利**（constitutional-right-based），受 Basic Law Art.35 保障，但法院可在特定情况下进行 balancing。epsilon 介于 CN（高）和 US（极低）之间。"
+      }
+    ],
+    "epsilon_comparison": {
+      "same_privilege_level": "Attorney-client communication confidentiality",
+      "different_epsilon_values": {
+        "CN": 0.65,
+        "HK": 0.15,
+        "US": 0.05
+      },
+      "ratio_max_min": 13.0,
+      "why_not_unique": "Epsilon 不是 privilege level 的函数。同一 privilege level ('attorney-client confidentiality') 在三法域中对应不同的 legal architecture：CN 是 ethics duty (high epsilon), HK 是 constitutional right (medium epsilon), US 是 absolute evidentiary privilege (low epsilon)。因此 privilege level 不能唯一确定 epsilon。"
+    }
+  },
+  "human_readable_explanation": "\n# D4 Privilege Level → Epsilon 反模型说明\n\n## 核心逻辑\n定理 D4 声称：给定 privilege level，可以唯一确定 epsilon（披露概率/保护强度）。\n\n形式化表述：存在函数 f: PrivilegeLevel → [0, 1]，使得对每个 privilege level L，epsilon = f(L) 唯一确定。\n\n## 反模型构造\n\n### 场景：律师-客户通信保密\n三个法域对**同一概念**（律师与客户之间的保密通信）提供不同程度的保护：\n\n#### 中国（CN）\n- **制度性质**：职业道德义务（《律师法》第38条）\n- **Holder**：律师（义务承担者），而非客户（权利持有者）\n- **强制披露概率 epsilon ≈ 0.65**\n- **理由**：\n  - 刑事诉讼中法院可依《刑事诉讼法》第54条调取证据\n  - 例外条款宽泛（'危害公共安全'）\n  - 无证据法特权保护\n  - 律师保密是义务，客户不能主动主张对抗国家取证\n\n#### 香港（HK）\n- **制度性质**：宪法性权利（Basic Law 第35条）\n- **Holder**：客户\n- **强制披露概率 epsilon ≈ 0.15**\n- **理由**：\n  - CFA 确认 LPP 是 fundamental right\n  - 但法院可在特定情况下进行 balancing exercise\n  - 警方搜查律师办公室需司法监督\n\n#### 美国（US）\n- **制度性质**：证据法绝对特权（Fed. R. Evid. 501-502）\n- **Holder**：客户\n- **强制披露概率 epsilon ≈ 0.05**\n- **理由**：\n  - Upjohn 案确立绝对保护\n  - 仅 crime-fraud exception 可推翻\n  - 客户可主动主张特权\n  - Work-product doctrine 提供额外保护\n\n### 为什么 privilege level 不蕴含唯一 epsilon\n\n三个场景具有**相同的 privilege level**（律师-客户通信保密），但 epsilon 值分别为 0.65、0.15、0.05，比值高达 13:1。\n\nEpsilon 的差异源于**制度架构**（legal architecture）的不同：\n- CN: duty-based → 高 epsilon（义务可被国家权力覆盖）\n- HK: constitutional-right-based → 中 epsilon（权利受宪法保障但可平衡）\n- US: privilege-right-based → 低 epsilon（绝对特权，极少例外）\n\n因此，epsilon 不是 privilege level 的函数，而是 privilege level **加上** jurisdiction-specific legal architecture 的函数：\n\nε = f(L, J)  where J = jurisdiction architecture\n\n而非\n\nε = f(L)\n\n## 结论\nD4 被反模型推翻。Privilege level 不能唯一确定 epsilon。同一 privilege level 在不同法域中可对应截然不同的保护强度。任何试图用单一 epsilon 函数建模 cross-jurisdiction privilege 的尝试都会失败。\n"
+}

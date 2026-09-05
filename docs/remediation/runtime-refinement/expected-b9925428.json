@@ -1,0 +1,113 @@
+{
+  "schema_version": "runtime-refinement-expected-v2",
+  "lmm_commit": "b9925428ca1c8663c8dbca236c1d5d2f231097af",
+  "source_snapshot_digests": [
+    "4d2cd59d42e6392b78721960beff8d8cdfc5df4939cd98da12ba2a4e215f4d24"
+  ],
+  "rule_pack_digest": "3879c3e2c520ecd55f5714d60ae962b60c2cce73767cfae6749512ce4674fe5a",
+  "semantics": {
+    "id": "grounded",
+    "version": "1"
+  },
+  "cases": [
+    {
+      "case_id": "contract::force-majeure",
+      "expected_status": "REFUTED",
+      "projection": {
+        "focus_claim_id": "claim::contract::breach",
+        "refuting_claim_ids": [
+          "claim::contract::force_majeure"
+        ]
+      }
+    },
+    {
+      "case_id": "contract::plain",
+      "expected_status": "PROVED",
+      "projection": {
+        "focus_claim_id": "claim::contract::breach",
+        "refuting_claim_ids": [
+          "claim::contract::force_majeure"
+        ]
+      }
+    },
+    {
+      "case_id": "license::priority-off",
+      "expected_status": "REFUTED",
+      "projection": {
+        "focus_claim_id": "claim::license::permitted",
+        "refuting_claim_ids": [
+          "claim::license::unauthorized"
+        ]
+      }
+    },
+    {
+      "case_id": "license::priority-on",
+      "expected_status": "PROVED",
+      "projection": {
+        "focus_claim_id": "claim::license::permitted",
+        "refuting_claim_ids": [
+          "claim::license::unauthorized"
+        ]
+      }
+    },
+    {
+      "case_id": "permission::condition-missing",
+      "expected_status": "UNDECIDED",
+      "projection": {
+        "focus_claim_id": "claim::permission::active",
+        "refuting_claim_ids": [
+          "claim::permission::prohibited"
+        ]
+      }
+    },
+    {
+      "case_id": "permission::conflict",
+      "expected_status": "UNDECIDED",
+      "projection": {
+        "focus_claim_id": "claim::permission::active",
+        "refuting_claim_ids": [
+          "claim::permission::prohibited"
+        ]
+      }
+    },
+    {
+      "case_id": "priority::active",
+      "expected_status": "PROVED",
+      "projection": {
+        "focus_claim_id": "claim::priority::preferred",
+        "refuting_claim_ids": [
+          "claim::priority::subordinate"
+        ]
+      }
+    },
+    {
+      "case_id": "priority::cycle",
+      "expected_status": "UNDECIDED",
+      "projection": {
+        "focus_claim_id": "claim::priority::preferred",
+        "refuting_claim_ids": [
+          "claim::priority::subordinate"
+        ]
+      }
+    },
+    {
+      "case_id": "priority::missing",
+      "expected_status": "UNDECIDED",
+      "projection": {
+        "focus_claim_id": "claim::priority::preferred",
+        "refuting_claim_ids": [
+          "claim::priority::subordinate"
+        ]
+      }
+    },
+    {
+      "case_id": "priority::self-attack",
+      "expected_status": "UNDECIDED",
+      "projection": {
+        "focus_claim_id": "claim::priority::self",
+        "refuting_claim_ids": []
+      }
+    }
+  ],
+  "fixture_digest": "2d1e5c83c8f2f31d8312b3be3813b5b5dba4a63ace4182938d5e67d774ce16c2"
+}

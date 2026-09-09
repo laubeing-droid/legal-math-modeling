@@ -44,6 +44,9 @@ theorem weighted_congr (ws : List (ℚ × World)) (f g : World → ℚ)
       rw [h x (by simp)]
       exact congrArg _ (ih fun p hp => h p (by simp [hp]))
 
+/-- The two-branch probability weights of the frozen task. -/
+def twoBranchWeights (p : ℚ) : List (ℚ × World) := [(p, [true]), (1 - p, [false])]
+
 /-- The frozen two-branch weight list evaluates to an explicit pair sum. -/
 theorem weighted_twoBranch (f : World → ℚ) (p : ℚ) :
     weighted (twoBranchWeights p) f = p * f [true] + (1 - p) * f [false] := by
@@ -69,9 +72,6 @@ def cbal (P q : ℚ) (w : World) : ℚ := clipC (cres P q w)
 
 /-- Overpayment residual under one conditional payment. -/
 def cover (P q : ℚ) (w : World) : ℚ := clipU (cres P q w)
-
-/-- The two-branch probability weights of the frozen task. -/
-def twoBranchWeights (p : ℚ) : List (ℚ × World) := [(p, [true]), (1 - p, [false])]
 
 /-- Conservation for the nonnegative decomposition: E[C] − E[U] = P − q·p.
 This uses C and U, never E[R] in place of E[C]. -/

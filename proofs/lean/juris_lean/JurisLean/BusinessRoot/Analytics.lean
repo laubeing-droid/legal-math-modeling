@@ -145,8 +145,8 @@ theorem interval_point_not_in_grid :
   · norm_num at h0
   · rcases List.mem_cons.mp hx with h1 | hx
     · norm_num at h1
-      · rcases List.mem_cons.mp hx with h2 | hx
-        · norm_num at h2
-        · simp at hx
+    · rcases List.mem_cons.mp hx with h2 | hx
+      · norm_num at h2
+      · simp at hx
 
 end JurisLean.BusinessRoot

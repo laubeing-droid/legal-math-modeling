@@ -252,7 +252,11 @@ def main():
     out_dir = Path("reports/verification")
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / "t85_t94_results.json"
-    with open(out_path, "w", encoding="utf-8") as f:
+    _out = Path(out_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(out_path).open( "w", encoding="utf-8") as f:
         json.dump({"T8.5": t85, "T9.4": t94, "runtime_seconds": round(elapsed, 2)},
                   f, indent=2, ensure_ascii=False)
 

@@ -10,6 +10,7 @@ consistent within their respective legal contexts.
 Status target: REFUTED_BY_COUNTEREXAMPLE (non-functionality proved by witness)
 """
 
+from pathlib import Path
 from z3 import Solver, Function, IntSort, RealSort, sat, unsat
 import json
 import os
@@ -76,7 +77,11 @@ def main():
     }
 
     out_path = os.path.join(os.path.dirname(__file__), "two_model_witness.json")
-    with open(out_path, "w", encoding="utf-8") as f:
+    _out = Path(out_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(out_path).open( "w", encoding="utf-8") as f:
         json.dump(witness, f, ensure_ascii=False, indent=2)
     print(f"\nWitness written to: {out_path}")
 

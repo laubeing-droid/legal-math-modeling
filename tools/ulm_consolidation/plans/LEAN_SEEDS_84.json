@@ -1,0 +1,425 @@
+{
+  "scope": "60 retained V2.1 + 24 latest BR drafts. Source names only; no kernel result.",
+  "declarations": [
+    {
+      "name": "JurisLean.ULM.UnifiedV2.unified_partial_report",
+      "source": "UnifiedV2/Composition.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.unified_complete_report",
+      "source": "UnifiedV2/Composition.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.partial_minimum_counterexample",
+      "source": "UnifiedV2/Composition.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.branch_carrier_complete",
+      "source": "UnifiedV2/ConcreteBridge.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.expected_amount_bridge",
+      "source": "UnifiedV2/ConcreteBridge.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.win_split_bridge",
+      "source": "UnifiedV2/ConcreteBridge.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.win_probability_in_unit",
+      "source": "UnifiedV2/ConcreteBridge.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.bargaining_point_ir",
+      "source": "UnifiedV2/ConcreteBridge.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.concrete_complete_bridge",
+      "source": "UnifiedV2/ConcreteBridge.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.mem_sweep_iff",
+      "source": "UnifiedV2/FiniteContract.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.scan_member_sound",
+      "source": "UnifiedV2/FiniteContract.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.full_scan_eq_sweep",
+      "source": "UnifiedV2/FiniteContract.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.scan_partial",
+      "source": "UnifiedV2/FiniteContract.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.scan_complete",
+      "source": "UnifiedV2/FiniteContract.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.composition_associative",
+      "source": "UnifiedV2/FiniteContract.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.composition_partial",
+      "source": "UnifiedV2/FiniteContract.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.composition_complete",
+      "source": "UnifiedV2/FiniteContract.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.projection_partial",
+      "source": "UnifiedV2/FiniteContract.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.joinBound_sound",
+      "source": "UnifiedV2/FiniteContract.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.foreign_request_rejected",
+      "source": "UnifiedV2/FiniteContract.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.prediction_never_strict",
+      "source": "UnifiedV2/LegalInterfaces.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.assumption_never_strict",
+      "source": "UnifiedV2/LegalInterfaces.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.unapproved_never_strict",
+      "source": "UnifiedV2/LegalInterfaces.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.unfinished_burden_is_pending",
+      "source": "UnifiedV2/LegalInterfaces.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.unknown_ready_uses_failure_effect",
+      "source": "UnifiedV2/LegalInterfaces.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.burden_does_not_manufacture_negation",
+      "source": "UnifiedV2/LegalInterfaces.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.normalize_sum",
+      "source": "UnifiedV2/Quantified.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.normalize_nonnegative",
+      "source": "UnifiedV2/Quantified.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.weighted_enclosure",
+      "source": "UnifiedV2/Quantified.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.interval_add_sound",
+      "source": "UnifiedV2/Quantified.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.posterior_contamination_sound",
+      "source": "UnifiedV2/Quantified.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.brier_excess",
+      "source": "UnifiedV2/Quantified.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.brier_minimum",
+      "source": "UnifiedV2/Quantified.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.quadratic_difference",
+      "source": "UnifiedV2/Quantified.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.quadratic_optimal_from_variational_inequality",
+      "source": "UnifiedV2/Quantified.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.affine_difference",
+      "source": "UnifiedV2/Quantified.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.affine_lipschitz",
+      "source": "UnifiedV2/Quantified.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.contraction_parameter",
+      "source": "UnifiedV2/Quantified.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.settlement_ir",
+      "source": "UnifiedV2/Quantified.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV2.incentive_condition",
+      "source": "UnifiedV2/Quantified.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.local_record_not_external",
+      "source": "UnifiedV21/Authority.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.synthetic_record_not_external",
+      "source": "UnifiedV21/Authority.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.institution_projection_preserves_subject",
+      "source": "UnifiedV21/Authority.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.posterior_unit",
+      "source": "UnifiedV21/ConcreteRoot.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.expected_award_from_posterior",
+      "source": "UnifiedV21/ConcreteRoot.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.actual_candidate_representation_exact",
+      "source": "UnifiedV21/ConcreteRoot.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.chooseFirst_member",
+      "source": "UnifiedV21/ConcreteRoot.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.chooseFirst_none",
+      "source": "UnifiedV21/ConcreteRoot.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.selected_point_is_lawful_and_ir",
+      "source": "UnifiedV21/ConcreteRoot.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.no_choice_means_empty_declared_intersection",
+      "source": "UnifiedV21/ConcreteRoot.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.concrete_root_contract",
+      "source": "UnifiedV21/ConcreteRoot.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.context_wire_injective",
+      "source": "UnifiedV21/Context.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.context_model_preserved",
+      "source": "UnifiedV21/Context.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.context_issue_preserved",
+      "source": "UnifiedV21/Context.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.context_join_transitive",
+      "source": "UnifiedV21/Context.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.interval_solver_exact",
+      "source": "UnifiedV21/Representation.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.interval_empty_when_reversed",
+      "source": "UnifiedV21/Representation.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.endpoints_miss_midpoint",
+      "source": "UnifiedV21/Representation.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.scaled_constraint_sound",
+      "source": "UnifiedV21/Representation.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.ULM.UnifiedV21.representations_exact_of_mutual_inclusion",
+      "source": "UnifiedV21/Representation.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.guard_reflection",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.finite_inner_sound",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.finite_exact_of_independent_cover",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.composition_sound",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.concrete_reduction_preserves",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.ledger_complementarity_unique",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.two_scenarios_exact",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.expectation_conservation",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.probability_between_branches",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.acceptable_membership",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.same_case_settlement",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.protected_roundtrip",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.delivered_business_sat",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.frame_for_unaffected_field",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.evidence_refinement_may_shrinks",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.universal_answer_has_world",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.split_residual_identity",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.clipped_balance_nonnegative",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.clipped_agrees_raw_when_no_overpayment",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.clipped_expectation_conservation",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.principal_expectation_nonnegative",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.clipped_threshold_probability_range",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.clipped_same_case_settlement",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    },
+    {
+      "name": "JurisLean.BusinessRelations.overpayment_bridge_counterexample",
+      "source": "BusinessRelations*.lean",
+      "status": "SOURCE_DRAFT_CI_NOT_RUN"
+    }
+  ]
+}

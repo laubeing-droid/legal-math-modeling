@@ -15,6 +15,7 @@ output insufficiency witness.
 Status: DATA_INSUFFICIENT_FOR_PROOF (real data) / TOY_SYNTHETIC_PROOF_ONLY (toy model)
 """
 
+from pathlib import Path
 import csv
 import os
 import json
@@ -71,7 +72,11 @@ def main():
     }
     
     out_path = os.path.join(os.path.dirname(__file__), "real_data_insufficiency_witness.json")
-    with open(out_path, "w", encoding="utf-8") as f:
+    _out = Path(out_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(out_path).open( "w", encoding="utf-8") as f:
         json.dump(witness, f, ensure_ascii=False, indent=2)
     print(f"\nWitness written to: {out_path}")
     

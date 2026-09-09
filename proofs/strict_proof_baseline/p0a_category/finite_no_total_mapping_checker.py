@@ -7,6 +7,7 @@ Scope: 5 hand-crafted synthetic fact patterns with string-based collision detect
 WARNING: This is a TOY MODEL. Results do NOT apply to real juris-calculus inventory.
 """
 
+from pathlib import Path
 import csv
 import os
 import itertools
@@ -38,7 +39,11 @@ def main():
             ["FP-ASYM-001", "CN", "C5", "CourtHasJurisdiction", "True"],
             ["FP-ASYM-001", "HK", "H5", "CourtLacksJurisdiction", "True"],
         ]
-        with open(csv_path, "w", encoding="utf-8", newline="") as f:
+        _out = Path(csv_path).resolve()
+        _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+        if not any(_out.is_relative_to(r) for r in _allowed):
+            raise ValueError("output path escapes project root")
+        with Path(csv_path).open( "w", encoding="utf-8", newline="") as f:
             writer = csv.writer(f)
             writer.writerows(rows)
         print(f"Written: {csv_path}")
@@ -113,7 +118,11 @@ def main():
         "warning": "This proof applies ONLY to the 5 synthetic patterns. It does NOT prove anything about real juris-calculus inventory."
     }
     out_path = os.path.join(out_dir, "toy_proof_result.json")
-    with open(out_path, "w", encoding="utf-8") as f:
+    _out = Path(out_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(out_path).open( "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 
     if collision_free_count == 0:

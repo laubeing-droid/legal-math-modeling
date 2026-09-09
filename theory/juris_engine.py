@@ -147,7 +147,11 @@ def main():
 
     output_json = json.dumps(result, ensure_ascii=False, indent=2)
     if args.output:
-        with open(args.output, "w", encoding="utf-8") as f:
+        _out = Path(args.output).resolve()
+        _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+        if not any(_out.is_relative_to(r) for r in _allowed):
+            raise ValueError("output path escapes project root")
+        with Path(args.output).open( "w", encoding="utf-8") as f:
             f.write(output_json)
         print(f"Result written to {args.output}")
     else:

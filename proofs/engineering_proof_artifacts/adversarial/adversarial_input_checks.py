@@ -17,6 +17,7 @@ Evidence level: EXHAUSTIVE_FINITE_PROOF
 
 from __future__ import annotations
 
+from pathlib import Path
 import json
 import os
 import sys
@@ -723,7 +724,11 @@ def main():
             for r in results
         ],
     }
-    with open(report_path, "w", encoding="utf-8") as f:
+    _out = Path(report_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(report_path).open( "w", encoding="utf-8") as f:
         json.dump(report, f, indent=2, ensure_ascii=False)
     print(f"\nResults written to: {report_path}")
 

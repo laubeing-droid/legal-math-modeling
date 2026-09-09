@@ -1,0 +1,918 @@
+[
+  {
+    "id": "B01",
+    "field": "civil_contract",
+    "issue": "relationship_creation",
+    "bearer": "party_asserting_relationship",
+    "standard": "high_probability",
+    "sources": [
+      "L01:90-91",
+      "L03:509"
+    ],
+    "success": "creation_fact_established",
+    "failure": "creation_fact_not_established",
+    "notes": "特殊规则优先；基本事实非仅合同签字一项。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B02",
+    "field": "civil_contract",
+    "issue": "payment_extinction",
+    "bearer": "party_asserting_payment",
+    "standard": "high_probability",
+    "sources": [
+      "L01:91"
+    ],
+    "success": "recognized_payment_effect",
+    "failure": "payment_defence_not_established",
+    "notes": "仅本项消灭事由；不把未证明付款当历史上绝未付款。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B03",
+    "field": "civil_contract",
+    "issue": "limitation_defence",
+    "bearer": "party_asserting_limitation",
+    "standard": "high_probability",
+    "sources": [
+      "L01:90-91",
+      "L03:192-193"
+    ],
+    "success": "limitation_defence_effect",
+    "failure": "limitation_defence_not_established",
+    "notes": "需适用对象、提出行为、起算与中止中断；法院不得主动适用。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B04",
+    "field": "civil_contract",
+    "issue": "fraud_coercion_collusion",
+    "bearer": "party_asserting_special_fact",
+    "standard": "exclude_reasonable_doubt_civil",
+    "sources": [
+      "L01:109",
+      "L02:86"
+    ],
+    "success": "special_fact_established",
+    "failure": "special_fact_not_established",
+    "notes": "民事特殊证明标准，不是定罪，不设固定数值阈值。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B05",
+    "field": "civil_property",
+    "issue": "property_title_or_interference",
+    "bearer": "party_asserting_relevant_fact",
+    "standard": "high_probability",
+    "sources": [
+      "L01:91",
+      "L03:235-238"
+    ],
+    "success": "property_premise_established",
+    "failure": "property_premise_not_established",
+    "notes": "登记推定、占有与返还要件分开；不是统一举证倒置。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B06",
+    "field": "civil_tort",
+    "issue": "ordinary_tort_element",
+    "bearer": "party_asserting_element",
+    "standard": "high_probability",
+    "sources": [
+      "L01:91",
+      "L03:1165"
+    ],
+    "success": "tort_element_established",
+    "failure": "tort_element_not_established",
+    "notes": "损害、行为、因果、过错各有独立争点。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B07",
+    "field": "civil_medical",
+    "issue": "statutory_fault_presumption_trigger",
+    "bearer": "party_asserting_trigger",
+    "standard": "high_probability",
+    "sources": [
+      "L03:1222",
+      "L01:91"
+    ],
+    "success": "fault_presumption_triggered",
+    "failure": "fault_presumption_not_triggered",
+    "notes": "仅过错推定；不得连带推定全部因果关系与损害额。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B08",
+    "field": "civil_environment",
+    "issue": "causal_absence_or_exemption",
+    "bearer": "actor_under_special_burden",
+    "standard": "source_defined",
+    "sources": [
+      "L03:1230",
+      "L16:1242",
+      "L20:1-13",
+      "L21:environmental_evidence"
+    ],
+    "success": "special_defence_established",
+    "failure": "special_defence_not_established",
+    "notes": "原告基础事实与被告特别证明责任分开；法典及法释〔2026〕15、16号均自2026-08-15施行。按法律事实时间、持续状态及特别衔接规则选择版本，不能仅按裁判日期切换。模板仍非完整法条实现。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B09",
+    "field": "civil_family",
+    "issue": "spousal_debt_beyond_daily_needs",
+    "bearer": "creditor",
+    "standard": "high_probability",
+    "sources": [
+      "L03:1064",
+      "L01:91"
+    ],
+    "success": "special_joint_debt_basis_established",
+    "failure": "special_joint_debt_basis_not_established",
+    "notes": "共同签名/追认、日常生活、超日常用途三条路径不可混同。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B10",
+    "field": "civil_inheritance",
+    "issue": "oral_will_or_gift_fact",
+    "bearer": "party_asserting_fact",
+    "standard": "exclude_reasonable_doubt_civil",
+    "sources": [
+      "L01:109",
+      "L02:86"
+    ],
+    "success": "special_inheritance_fact_established",
+    "failure": "special_inheritance_fact_not_established",
+    "notes": "遗嘱形式、行为能力等仍另行审核。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B11",
+    "field": "civil_labor",
+    "issue": "overtime",
+    "bearer": "worker_subject_to_controlled_record_rule",
+    "standard": "source_defined",
+    "sources": [
+      "L07:42",
+      "L06:6",
+      "L08"
+    ],
+    "success": "overtime_premise_established",
+    "failure": "overtime_premise_not_established",
+    "notes": "掌握证据的初步线索和用人单位控制证据分支分别处理。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B12",
+    "field": "civil_labor",
+    "issue": "employer_dismissal_or_pay_reduction_decision",
+    "bearer": "employer",
+    "standard": "source_defined",
+    "sources": [
+      "L07:44",
+      "L08"
+    ],
+    "success": "employer_decision_basis_established",
+    "failure": "employer_decision_basis_not_established",
+    "notes": "仅适用该条列举事项；不是劳动者所有主张免证。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B13",
+    "field": "civil_labor",
+    "issue": "controlled_evidence_production",
+    "bearer": "employer_controlling_evidence",
+    "standard": "production_obligation",
+    "sources": [
+      "L06:6"
+    ],
+    "success": "production_obligation_performed",
+    "failure": "declared_nonproduction_consequence",
+    "notes": "证据提出责任与最终说服责任分别建模。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B14",
+    "field": "civil_company",
+    "issue": "single_shareholder_asset_separation",
+    "bearer": "single_shareholder",
+    "standard": "source_defined",
+    "sources": [
+      "L10:23",
+      "L11"
+    ],
+    "success": "asset_separation_established",
+    "failure": "declared_joint_liability_branch",
+    "notes": "先确认适用时间、单一股东与相关责任要件，不用旧公司法编号。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B15",
+    "field": "civil_company",
+    "issue": "corporate_claim_basic_fact",
+    "bearer": "party_asserting_fact",
+    "standard": "high_probability",
+    "sources": [
+      "L01:91",
+      "L10",
+      "L11"
+    ],
+    "success": "corporate_fact_established",
+    "failure": "corporate_fact_not_established",
+    "notes": "决议、出资、转股、清算分别注册特别规则；本项只提供共同框架。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B16",
+    "field": "civil_ip",
+    "issue": "new_product_method_nonidentity",
+    "bearer": "manufacturer_if_statutory_trigger_met",
+    "standard": "source_defined",
+    "sources": [
+      "L18:66"
+    ],
+    "success": "different_method_established",
+    "failure": "declared_method_presumption_effect",
+    "notes": "新产品及相同产品等前提必须先核验；不能套到全部专利。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B17",
+    "field": "civil_ip",
+    "issue": "lawful_source_defence",
+    "bearer": "defendant_asserting_lawful_source",
+    "standard": "source_defined",
+    "sources": [
+      "L09:4"
+    ],
+    "success": "lawful_source_basis_established",
+    "failure": "lawful_source_defence_not_established",
+    "notes": "抗辩法律效果按专门法确定；不能自动免除所有责任。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B18",
+    "field": "civil_ip",
+    "issue": "damage_records_in_opponent_control",
+    "bearer": "record_controller_after_trigger",
+    "standard": "production_obligation",
+    "sources": [
+      "L18:71",
+      "L09"
+    ],
+    "success": "records_produced",
+    "failure": "declared_damage_estimation_branch",
+    "notes": "不是直接把原告报价当精确损失。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B19",
+    "field": "civil_finance",
+    "issue": "loan_or_security_creation",
+    "bearer": "party_asserting_creation",
+    "standard": "high_probability",
+    "sources": [
+      "L01:91",
+      "L03"
+    ],
+    "success": "financial_premise_established",
+    "failure": "financial_premise_not_established",
+    "notes": "借贷交付、金融机构适当性、担保类型需独立特别规则，不共享任意统一利率。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B20",
+    "field": "civil_consumer",
+    "issue": "consumer_or_product_premise",
+    "bearer": "issue_specific_bearer",
+    "standard": "source_defined",
+    "sources": [
+      "L01:91",
+      "L03"
+    ],
+    "success": "consumer_premise_established",
+    "failure": "consumer_premise_not_established",
+    "notes": "产品缺陷、经营者特别责任与惩罚性赔偿触发规则须作为独立规则包。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B21",
+    "field": "civil_bankruptcy",
+    "issue": "claimed_debt_or_priority",
+    "bearer": "party_asserting_claim",
+    "standard": "source_defined",
+    "sources": [
+      "L01:91"
+    ],
+    "success": "claim_basis_established",
+    "failure": "claim_basis_not_established",
+    "notes": "破产申报/审查/异议诉讼各阶段不同，特别条文包未准入不得声称全覆盖。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B22",
+    "field": "civil_maritime",
+    "issue": "transport_or_insurance_issue",
+    "bearer": "issue_specific_bearer",
+    "standard": "source_defined",
+    "sources": [
+      "L01:91"
+    ],
+    "success": "maritime_premise_established",
+    "failure": "maritime_premise_not_established",
+    "notes": "海商专门规范、责任限制、时效必须另行冻结；本模板不是专门法规则。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B23",
+    "field": "criminal_public",
+    "issue": "conviction_element",
+    "bearer": "prosecution",
+    "standard": "criminal_evidence_certain_sufficient",
+    "sources": [
+      "L04:51,55,200"
+    ],
+    "success": "conviction_element_established",
+    "failure": "charge_element_unproved",
+    "notes": "实体罪名要件、违法阻却、责任能力分别建模；最终无罪仅在法定程序就绪后。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B24",
+    "field": "criminal_private",
+    "issue": "private_prosecution_charge",
+    "bearer": "private_prosecutor",
+    "standard": "criminal_evidence_certain_sufficient",
+    "sources": [
+      "L04:51,55,200"
+    ],
+    "success": "private_charge_basis_established",
+    "failure": "private_charge_basis_unproved",
+    "notes": "不得把民事高度可能性借给刑事自诉。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B25",
+    "field": "criminal_evidence",
+    "issue": "legality_of_collection",
+    "bearer": "prosecution",
+    "standard": "criminal_exclusion_source_defined",
+    "sources": [
+      "L04:56,59-60"
+    ],
+    "success": "legality_established",
+    "failure": "exclude_relevant_evidence",
+    "notes": "排除特定证据不是直接认定无罪，必须重算剩余证据。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B26",
+    "field": "criminal_sentencing",
+    "issue": "sentencing_fact",
+    "bearer": "issue_specific_bearer",
+    "standard": "criminal_evidence_certain_sufficient",
+    "sources": [
+      "L04:55",
+      "L19"
+    ],
+    "success": "sentencing_fact_established",
+    "failure": "sentencing_fact_unestablished",
+    "notes": "指导意见通知不包含全部数值政策；法定从宽/从重、刑种和地方参数另行准入。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B27",
+    "field": "administrative_litigation",
+    "issue": "legality_of_challenged_act",
+    "bearer": "administrative_defendant",
+    "standard": "source_defined",
+    "sources": [
+      "L05:34-37"
+    ],
+    "success": "challenged_act_basis_established",
+    "failure": "declared_illegality_branch",
+    "notes": "被告责任范围限定行政行为与规范依据，第三人补证等例外单列。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B28",
+    "field": "administrative_litigation",
+    "issue": "prior_application_for_duty",
+    "bearer": "plaintiff_unless_exception",
+    "standard": "source_defined",
+    "sources": [
+      "L05:38"
+    ],
+    "success": "application_premise_established",
+    "failure": "application_premise_unestablished",
+    "notes": "依职权职责与正当理由不能提供等例外不能遗漏。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B29",
+    "field": "administrative_compensation",
+    "issue": "damage",
+    "bearer": "plaintiff_unless_defendant_caused_inability",
+    "standard": "source_defined",
+    "sources": [
+      "L05:38",
+      "L17"
+    ],
+    "success": "damage_basis_established",
+    "failure": "damage_basis_unestablished",
+    "notes": "被告原因导致不能证明的分支与通常规则不同。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B30",
+    "field": "administrative_procedure",
+    "issue": "filing_time_and_notice",
+    "bearer": "issue_specific_bearer",
+    "standard": "source_defined",
+    "sources": [
+      "L14",
+      "L05"
+    ],
+    "success": "filing_condition_established",
+    "failure": "declared_procedural_disposition",
+    "notes": "仅程序效果，不混成实体败诉；2026期限解释必须适用时点核对。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B31",
+    "field": "administrative_reconsideration",
+    "issue": "legality_and_appropriateness",
+    "bearer": "respondent_under_selected_rule",
+    "standard": "source_defined",
+    "sources": [
+      "L12",
+      "L13"
+    ],
+    "success": "reviewed_act_basis_established",
+    "failure": "declared_reconsideration_consequence",
+    "notes": "2026实施条例新基线；合法性和适当性均审核，不能复制行政诉讼判决字样。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B32",
+    "field": "state_compensation",
+    "issue": "custody_death_or_incapacity_causation",
+    "bearer": "compensation_obligor_if_trigger_met",
+    "standard": "source_defined",
+    "sources": [
+      "L17:15,26"
+    ],
+    "success": "absence_of_causal_link_established",
+    "failure": "declared_special_compensation_branch",
+    "notes": "前提与主体必须逐条核对；金额随法定统计基准版本计算。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B33",
+    "field": "commercial_arbitration",
+    "issue": "arbitration_issue",
+    "bearer": "selected_law_and_rules_bearer",
+    "standard": "arbitral_rules_defined",
+    "sources": [
+      "L15",
+      "L03"
+    ],
+    "success": "arbitral_issue_established",
+    "failure": "arbitral_issue_unestablished",
+    "notes": "按2026施行新法与选定仲裁规则；本次施行公告不是证据规则全文。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B34",
+    "field": "civil_procedure",
+    "issue": "preservation_or_recusal_fact",
+    "bearer": "party_asserting_procedural_fact",
+    "standard": "greater_possibility_procedural",
+    "sources": [
+      "L02:86"
+    ],
+    "success": "procedural_fact_established",
+    "failure": "procedural_fact_unestablished",
+    "notes": "与实体高度可能性/刑事排疑不同；不是定量0.5判定器。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B35",
+    "field": "execution",
+    "issue": "execution_objection_fact",
+    "bearer": "issue_specific_bearer",
+    "standard": "source_defined",
+    "sources": [
+      "L01"
+    ],
+    "success": "execution_objection_basis_established",
+    "failure": "execution_objection_basis_unestablished",
+    "notes": "执行异议、复议、异议之诉和再审须不同实体/程序后果，特别法源另行准入。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B36",
+    "field": "public_interest",
+    "issue": "standing_and_public_interest_damage",
+    "bearer": "qualified_claimant_under_selected_rule",
+    "standard": "source_defined",
+    "sources": [
+      "L01",
+      "L16"
+    ],
+    "success": "public_interest_premise_established",
+    "failure": "public_interest_premise_unestablished",
+    "notes": "诉讼资格与损害要件分开，不把一般私益原告模板直接套入。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  },
+  {
+    "id": "B37",
+    "field": "retrial_appeal",
+    "issue": "review_ground",
+    "bearer": "party_asserting_review_ground",
+    "standard": "stage_specific",
+    "sources": [
+      "L01",
+      "L04",
+      "L05"
+    ],
+    "success": "review_ground_established",
+    "failure": "review_ground_unestablished",
+    "notes": "改判/撤销/发回/程序驳回不是统一胜败标签；新证据有时间边界。",
+    "status": "PROPOSED_ISSUE_TEMPLATE_NOT_FULL_FIELD_IMPLEMENTATION",
+    "activation": "conditional_reference_only",
+    "scope": "Only the named issue after policy preconditions and stage are established; all other issues remain distinct.",
+    "required_inputs": [
+      "request_identity",
+      "issue_identity",
+      "selected_policy",
+      "source_version",
+      "reviewed_assessment",
+      "procedural_readiness"
+    ]
+  }
+]

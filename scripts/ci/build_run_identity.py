@@ -30,7 +30,11 @@ def build_identity(repo_root: Path, artifact_dir: Path | None) -> dict:
     subject_sha = os.environ.get("GITHUB_SHA", "UNKNOWN")
     tree = "UNKNOWN"
     if in_ci:
-        tree = os.popen(f"git -C {repo_root} rev-parse HEAD^{{tree}}").read().strip() or "UNKNOWN"
+        import subprocess
+        proc = subprocess.run(
+            ["git", "-C", str(repo_root), "rev-parse", "HEAD^{tree}"],
+            capture_output=True, text=True, check=False)
+        tree = proc.stdout.strip() if proc.returncode == 0 else "UNKNOWN"
 
     toolchain_file = repo_root / "proofs/lean/juris_lean/lean-toolchain"
     manifest_file = repo_root / "proofs/lean/juris_lean/lake-manifest.json"

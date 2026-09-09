@@ -144,7 +144,11 @@ def main():
                 print(f"  [{r['test_id']}] {r['description']}: {r['reason']}")
     print("=" * 60)
     out_path = _PROJECT_ROOT / "proofs" / "engineering_proof_artifacts" / "adversarial" / "extended_adversarial_results.json"
-    with open(out_path, "w", encoding="utf-8") as f:
+    _out = Path(out_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(out_path).open( "w", encoding="utf-8") as f:
         json.dump({"total": len(results), "passed": passed, "failed": failed,
                     "runtime_seconds": round(elapsed, 2), "results": results},
                    f, indent=2, ensure_ascii=False)

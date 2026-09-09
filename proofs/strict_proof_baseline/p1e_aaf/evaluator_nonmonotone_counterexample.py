@@ -14,6 +14,7 @@ Epistemic status: REFUTED_BY_COUNTEREXAMPLE
 - 输出 JSON 格式的反例
 """
 
+from pathlib import Path
 import json
 import sys
 from typing import Set, Dict, Any
@@ -193,7 +194,11 @@ def main() -> int:
 
     # Output JSON
     json_path = "evaluator_nonmonotone_counterexample.json"
-    with open(json_path, "w", encoding="utf-8") as f:
+    _out = Path(json_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(json_path).open( "w", encoding="utf-8") as f:
         json.dump(counterexample, f, indent=2, ensure_ascii=False)
     print(f"\nJSON counterexample written to: {json_path}")
 

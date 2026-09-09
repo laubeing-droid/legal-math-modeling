@@ -1,0 +1,1375 @@
+{
+  "schema": "ulm/final-construction/2.1",
+  "decision": "SPEC_ACCEPT_WITH_REVISION",
+  "start_permission": "START_NOW",
+  "all_original_task_ids_preserved": true,
+  "tasks": [
+    {
+      "id": "T00",
+      "wave": "W0",
+      "title": "冻结主体、纠正Rosetta宣称",
+      "depends_on": [],
+      "proof_targets": [],
+      "paths": [
+        "existing proofs/lean/juris_lean/JurisLean/FiniteRosetta.lean",
+        "delivered tools/unified_math_v2/scripts/patch_rosetta.py"
+      ],
+      "actions": [
+        "记录实际LMM、JC、规则/数据版本，不继承旧commit结果。",
+        "应用补丁改名sample_mapping_not_total，保留原公式；清查Lean审计/论文/文档中的对应引用和残留过度解释。"
+      ],
+      "acceptance": [
+        "原命题保持、无泛函子不可能性宣称、GitHub CI重新通过。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "REFERENCE_PATCH_DELIVERED_NOT_APPLIED_TO_REMOTE",
+      "amendment_ids": [
+        "REV09"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T01",
+      "wave": "W0",
+      "title": "建立独立全局见证和语义",
+      "depends_on": [
+        "T00"
+      ],
+      "proof_targets": [
+        "F01",
+        "C01"
+      ],
+      "paths": [
+        "delivered JurisLean/UnifiedV2/FiniteContract.lean",
+        "planned unified witness definitions integrated with ULM01-16"
+      ],
+      "actions": [
+        "固定Φ与Solutions，不由程序输出定义。",
+        "将确切解、部分解、外包络三种证书使用同一指称保持定义。"
+      ],
+      "acceptance": [
+        "给出具体参数、法律/模型/效用语义和每个接口关系。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV01"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T02",
+      "wave": "W1",
+      "title": "类型索引、序列化和当前主体绑定",
+      "depends_on": [
+        "T01"
+      ],
+      "proof_targets": [
+        "F02"
+      ],
+      "paths": [
+        "existing JC contracts.py and canonical_serialization.py",
+        "delivered unified/contract.py"
+      ],
+      "actions": [
+        "增加争点/模型/目标/语义范围元数据，兼容现有公共入口，Schema由代码生成。",
+        "结构键往返与拒绝跨案/跨版本/跨目标组合。"
+      ],
+      "acceptance": [
+        "数据来回一致；分隔符、摘要错绑、模型版本错绑反例拒绝。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV02"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T03",
+      "wave": "W1",
+      "title": "授权、事实类别、假设与排除传播",
+      "depends_on": [
+        "T02"
+      ],
+      "proof_targets": [
+        "F03",
+        "F04"
+      ],
+      "paths": [
+        "existing JC fact_admission.py",
+        "existing LSC fact registry",
+        "delivered unified/burdens.py; unified/taint.py; LegalInterfaces.lean"
+      ],
+      "actions": [
+        "复用现有信任链和P0/P1。",
+        "提供条件情景入口，不能给假设伪造verified_fact。",
+        "排除证据失效其下游概率特征与金额/策略。",
+        "适配当前JC免密钥本地运行；LocalRecord只表示本地记录。机构权威来自既有宿主已核验来源，不新增签名/激活系统。"
+      ],
+      "acceptance": [
+        "所有构造器准入测试；排除/撤回后的依赖重算；律师分析不冒充法院行为。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV02",
+        "REV05"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T04",
+      "wave": "W1",
+      "title": "Horn编译与真实增量精化",
+      "depends_on": [
+        "T03"
+      ],
+      "proof_targets": [
+        "F05",
+        "F14"
+      ],
+      "paths": [
+        "existing HornFixedPoint.lean",
+        "existing JC incremental.py"
+      ],
+      "actions": [
+        "复用已证明有限闭包。",
+        "证明工作队列不变量和编译映射；非add-only全量回退。"
+      ],
+      "acceptance": [
+        "对当前实现证明所需关系或明确交叉核验级别；不得假设增量正确再宣布已证。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T05",
+      "wave": "W1",
+      "title": "论证树生成、有限深度与完整载体",
+      "depends_on": [
+        "T04"
+      ],
+      "proof_targets": [
+        "F06",
+        "F07",
+        "F08"
+      ],
+      "paths": [
+        "delivered unified/arguments.py",
+        "planned JurisLean/UnifiedV2/ArgumentEnumeration.lean"
+      ],
+      "actions": [
+        "按独立语法定义高度d，证明健全/完备。",
+        "结构ID保留规则、叶、子树和假设；不启用未证循环商化。"
+      ],
+      "acceptance": [
+        "同结论不同支持不合并；无根循环不产出；高度范围可核对。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV06"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T06",
+      "wave": "W1",
+      "title": "攻击/优先政策和扩展成员反射",
+      "depends_on": [
+        "T05"
+      ],
+      "proof_targets": [
+        "F09",
+        "F10"
+      ],
+      "paths": [
+        "existing JC argumentation.py and independent checker",
+        "planned ArgumentDefeatRefinement.lean"
+      ],
+      "actions": [
+        "按子论证编译攻击并证明双向覆盖。",
+        "分别完成grounded/complete/preferred/stable检查器反射。"
+      ],
+      "acceptance": [
+        "方向、子论证攻击、优先政策遗漏、prefix-maximal等反例永久回归。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV03",
+        "REV06"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T07",
+      "wave": "W1",
+      "title": "完整/部分枚举和查询",
+      "depends_on": [
+        "T06"
+      ],
+      "proof_targets": [
+        "F11",
+        "F12",
+        "F13"
+      ],
+      "paths": [
+        "delivered unified/contract.py; FiniteContract.lean",
+        "existing ULM11 and JC query_semantics.py"
+      ],
+      "actions": [
+        "把A/R/U扫描不变量实例化到扩展语义。",
+        "完整性由范围覆盖＋无未决推出；区分NoExtension与空的found。"
+      ],
+      "acceptance": [
+        "两条总契约在声明范围内成立；不完整查询不被展示成全称支持。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV01",
+        "REV03"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T08",
+      "wave": "W2",
+      "title": "精确金额/期限/单位/舍入",
+      "depends_on": [
+        "T03"
+      ],
+      "proof_targets": [
+        "N01",
+        "N02"
+      ],
+      "paths": [
+        "existing ULM13 and LSC objects",
+        "delivered unified/precision.py; reference/core.py"
+      ],
+      "actions": [
+        "按有理数/整数计量，法定口径为显式输入。",
+        "补转换和舍入证明，保持来源及依赖。"
+      ],
+      "acceptance": [
+        "跨币种/跨债务/日月混用拒绝，过付保留，计息区间分段正确。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV08"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T09",
+      "wave": "W2",
+      "title": "合法可行域与离散政策",
+      "depends_on": [
+        "T07",
+        "T08"
+      ],
+      "proof_targets": [
+        "N03",
+        "N04"
+      ],
+      "paths": [
+        "planned JC constraint adapter",
+        "delivered unified/precision.py / optimize_finite"
+      ],
+      "actions": [
+        "区分合法性与客户效用，保留原可行集合。",
+        "通过独立法律清单映射硬约束、例外及待判断事项。"
+      ],
+      "acceptance": [
+        "部分发现跨度不能冒充总区间；不连通可行域不被插值填满。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV01",
+        "REV08"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T10",
+      "wave": "W2",
+      "title": "LP/凸性/MILP证明证书",
+      "depends_on": [
+        "T09"
+      ],
+      "proof_targets": [
+        "N05",
+        "N06",
+        "N07"
+      ],
+      "paths": [
+        "delivered verify_min_lp_optimum and verify_ldl_psd",
+        "planned ConstraintCertificates.lean and production B&B adapter"
+      ],
+      "actions": [
+        "固定max/min不等号约定并证明变换。",
+        "精确PSD/凸语法校验；有界整数穷举参考；B&B节点覆盖和下界证书。"
+      ],
+      "acceptance": [
+        "错误对偶、假PSD、未关闭整数搜索节点不能得到optimal/complete。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV08"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T11",
+      "wave": "W2",
+      "title": "Banach指定子模型落地",
+      "depends_on": [
+        "T10"
+      ],
+      "proof_targets": [
+        "N08",
+        "N09",
+        "N10"
+      ],
+      "paths": [
+        "delivered Quantified.lean partial lemmas",
+        "delivered QuadraticContraction",
+        "planned ProjectionBanach.lean"
+      ],
+      "actions": [
+        "证明实数闭区间投影非扩张与参数k<1。",
+        "实例化存在/唯一/收敛/残差并连到该二次目标最优性。"
+      ],
+      "acceptance": [
+        "不满足算子结构或0<ηa<2时不走Banach；不声称一般法律评价收敛。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV08"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T12",
+      "wave": "W3",
+      "title": "有限BN与精确变量消去",
+      "depends_on": [
+        "T03",
+        "T07"
+      ],
+      "proof_targets": [
+        "P01",
+        "P02",
+        "P03",
+        "P04"
+      ],
+      "paths": [
+        "delivered reference/core.py and unified/model_basis.py",
+        "planned FiniteBNRefinement.lean"
+      ],
+      "actions": [
+        "校验状态/CPT/DAG/证据身份，证明联合归一化与后验。",
+        "证明VE因子不变量；纳入证据排除和同源依赖。"
+      ],
+      "acceptance": [
+        "全枚举与VE对照；零质量不兼容；不重复计入复印证据。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV07"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T13",
+      "wave": "W3",
+      "title": "参数学习、竞争模型和误设",
+      "depends_on": [
+        "T12"
+      ],
+      "proof_targets": [
+        "P05",
+        "P06",
+        "P07",
+        "P08",
+        "P09"
+      ],
+      "paths": [
+        "delivered reference/core.py and unified/win_model.py",
+        "planned PosteriorLearning.lean and ModelEnvelope.lean"
+      ],
+      "actions": [
+        "证明Dirichlet/Beta比值与上升阶乘。",
+        "明示模型先验/似然来源，计算真实数据后验；保留未建模解释和后验污染界。"
+      ],
+      "acceptance": [
+        "改数据改后验；条件化前后ε不可串用；搜索剩余质量有界。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV07"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T14",
+      "wave": "W3",
+      "title": "胜率目标、可信区间和校准算法",
+      "depends_on": [
+        "T13"
+      ],
+      "proof_targets": [
+        "P10",
+        "P11",
+        "P12",
+        "P13"
+      ],
+      "paths": [
+        "delivered win_model.py and win_model_cli.py",
+        "planned WinCalibration.lean"
+      ],
+      "actions": [
+        "声明party/issue/remedy/stage/cutoff/horizon/event，按目标分模型。",
+        "真实训练/独立校准/独立测试，原始可信区间与校准点预测区分。"
+      ],
+      "acceptance": [
+        "重复纠纷与事后特征泄漏拒绝；测试标签不改模型；概率不改变规范结果。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV07"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T15",
+      "wave": "W3",
+      "title": "真实数据的外部验证",
+      "depends_on": [
+        "T14"
+      ],
+      "proof_targets": [
+        "E01"
+      ],
+      "paths": [
+        "private dataset/model cards and private CI, not public fixture files"
+      ],
+      "actions": [
+        "从真实有权使用来源构建预测时点材料和结果标签；记录公布选择与缺失。",
+        "预注册开发范围/阈值和留出测试，报告分层、时间稳定性及适用边界。"
+      ],
+      "acceptance": [
+        "真实数据才可发对应经验标签；未执行不影响参考数学编译，但不可称已校准胜率。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "REAL_DATA_NOT_SUPPLIED_OR_EVALUATED",
+      "amendment_ids": [
+        "REV07"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T16",
+      "wave": "W4",
+      "title": "共同证明责任/推定/程序引擎",
+      "depends_on": [
+        "T03",
+        "T07"
+      ],
+      "proof_targets": [
+        "B01",
+        "B02",
+        "B03"
+      ],
+      "paths": [
+        "delivered unified/burdens.py; LegalInterfaces.lean",
+        "existing ULM12 and JC procedure.py"
+      ],
+      "actions": [
+        "分离production、persuasion、标准、阶段、触发、反驳、后果。",
+        "未知事实与未完成评估分开，条件意见与制度裁判分开。"
+      ],
+      "acceptance": [
+        "跨争点/阶段/标准错绑拒绝；事实未证只产生该规则声明的法律后果。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV05"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T17",
+      "wave": "W4",
+      "title": "民商及专门民事规则族全面展开",
+      "depends_on": [
+        "T16"
+      ],
+      "proof_targets": [
+        "B04"
+      ],
+      "paths": [
+        "delivered B01–B22 templates",
+        "private legal rule packs sourced from LCCC"
+      ],
+      "actions": [
+        "按合同/物权/侵权/婚姻继承/劳动/公司/IP/金融/消费者/破产/海事建立完整争点slot清单。",
+        "每个领域按产生、消灭、抗辩、免证、特殊证明、例外、阶段逐条审核，不能止步37模板。"
+      ],
+      "acceptance": [
+        "对声明领域snapshot中的全部requiredSlots有实现/不适用见证/具名未决，非自定规则数覆盖率。",
+        "法律解释审定不能由相同LLM生成并独自评分，保留人工独立基准。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV05"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T18",
+      "wave": "W4",
+      "title": "刑事全链与量刑规则族",
+      "depends_on": [
+        "T16",
+        "T09"
+      ],
+      "proof_targets": [
+        "B05"
+      ],
+      "paths": [
+        "delivered B23–B26 templates",
+        "private offence/sentencing rule packs"
+      ],
+      "actions": [
+        "公诉/自诉/证据合法性/构成阶层/责任/量刑/特别程序分开。",
+        "接真实法定刑和量刑指导/地方细则全文，不捏造百分比或统一证明阈值。"
+      ],
+      "acceptance": [
+        "排除后重算；软件超时不判无罪；裁量政策、单位、例外可复核。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV05"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T19",
+      "wave": "W4",
+      "title": "行政、复议、赔偿与专门程序",
+      "depends_on": [
+        "T16",
+        "T09"
+      ],
+      "proof_targets": [
+        "B06"
+      ],
+      "paths": [
+        "delivered B27–B37 templates",
+        "private administrative and procedure packs"
+      ],
+      "actions": [
+        "拆行为合法性/履责申请/损害/例外，不能把所有事实都分给被告。",
+        "接2026起诉期限、复议实施条例、仲裁法、国家赔偿及执行/上诉/再审规则。"
+      ],
+      "acceptance": [
+        "实体与程序结果区分；机构、证明标准、时间范围不串用。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV05"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T20",
+      "wave": "W4",
+      "title": "法源变化与语义覆盖全集",
+      "depends_on": [
+        "T17",
+        "T18",
+        "T19",
+        "T04"
+      ],
+      "proof_targets": [
+        "B07"
+      ],
+      "paths": [
+        "existing LCCC formal release/version source",
+        "planned coverage adapter and LawApplicability.lean"
+      ],
+      "actions": [
+        "从外部审定法源/教义清单确定requiredSlots，而非从已有代码定义所需范围。",
+        "自动法源变化定位受影响规则并触发重新解释/验证，保留未依赖变化的结果。",
+        "环境规则族增加L20、L21：按2026-08-15前后法律事实和特别衔接条款选法，复核新证据司法解释；不得只按审判日期一刀切。"
+      ],
+      "acceptance": [
+        "2025–2026法律切换用具体日期/过渡规范；已废止法不当默认；不得宣称全部中国法已形式化。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV05"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T21",
+      "wave": "W5",
+      "title": "补证、和解、履约与有限机制",
+      "depends_on": [
+        "T10",
+        "T13",
+        "T20"
+      ],
+      "proof_targets": [
+        "G01",
+        "G02",
+        "G03",
+        "G04",
+        "G05"
+      ],
+      "paths": [
+        "delivered reference/core.py game functions",
+        "planned FiniteGames.lean"
+      ],
+      "actions": [
+        "效用与合法行动集接同一语境；信息价值有假设、净成本及证据合法性。",
+        "分别核验DSIC/BIC/IR/预算/ε-regret，合法性不被效用覆盖。"
+      ],
+      "acceptance": [
+        "部分偏离枚举不得报全局regret界；司法可判集合与谈判合法集合区分。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV04",
+        "REV08"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T22",
+      "wave": "W5",
+      "title": "跨层组合证明与具体联合实例",
+      "depends_on": [
+        "T11",
+        "T14",
+        "T20",
+        "T21"
+      ],
+      "proof_targets": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05"
+      ],
+      "paths": [
+        "delivered ConcreteBridge.lean; Composition.lean",
+        "delivered unified/pipeline.py"
+      ],
+      "actions": [
+        "实例化每个本次实际算法的关系反射与外包保证，保留共享参数。",
+        "把全领域条件后果接概率/金额/策略；给出同一请求的真实联合见证。"
+      ],
+      "acceptance": [
+        "不仅import所有定理；根证明实际使用各实质接口；存在未决分支不能全局complete。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV01",
+        "REV02",
+        "REV04",
+        "REV06"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T23",
+      "wave": "W5",
+      "title": "JC正式入口与独立checker接入",
+      "depends_on": [
+        "T22",
+        "T02"
+      ],
+      "proof_targets": [
+        "C06"
+      ],
+      "paths": [
+        "existing JC application.py, client.py, cli.py, mcp.py, independent_checker.py, harness_contract.py",
+        "planned generic quantified/constraint plugin ports"
+      ],
+      "actions": [
+        "沿用唯一Application，不把参考demo当第二生产内核。",
+        "实现真实input/trace/spec反射和独立证书checker，三入口同语义。",
+        "私有商业/经验数据只通过既有插件/宿主边界使用，公共内核不内置客户资产。",
+        "目标JC更新为8dac071bda42c4db609738a7505b6893c32afbe1；先跑现有keyless公共入口smoke，再将V2.1能力真正接入ApplicationV4；不得把smoke当新能力精化。"
+      ],
+      "acceptance": [
+        "测试必须实际调用安装后的JC公共入口而不是返回固定fixture；CLI/MCP真实传输及错输入矩阵。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV01",
+        "REV02",
+        "REV03",
+        "REV04",
+        "REV05",
+        "REV06",
+        "REV07"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "T24",
+      "wave": "W5",
+      "title": "统一CI、证书、声明最终对齐",
+      "depends_on": [
+        "T23",
+        "T00"
+      ],
+      "proof_targets": [
+        "C07"
+      ],
+      "paths": [
+        "delivered .github/workflows/unified-math-v2-reference.yml",
+        "existing lean-build.yml final gate"
+      ],
+      "actions": [
+        "先运行参考工作流；各完整证明完成后并回原正式CI，新增目标进root和全部公理审计。",
+        "绑定实际主体/版本/证据；按数学/法律解释/经验三个字段批准相应声明；真实经验声明另依赖T15。",
+        "禁止无检查平铺工件造成同名覆盖，不将skip/timeout当成功。",
+        "数学参考门不等待T15；只有externally_validated_forecast声明必须验证T15/E01。同一subject分别记录各轴结果。"
+      ],
+      "acceptance": [
+        "完整解等式/部分子集/全称外包与当前运行对应；真实经验标签只在T15实测通过时允许。"
+      ],
+      "status": "PENDING_TASK_SPECIFIC_CLOSURE",
+      "remote_status": "NOT_PUSHED_NOT_RUN",
+      "public_private_boundary": "Generic public specs/engines and synthetic tests only; private case data, trained commercial models and practice rule assets remain private.",
+      "conditional_dependencies": {
+        "empirically_validated_win_claim": [
+          "T15"
+        ]
+      },
+      "legacy_status": "PLANNED_IMPLEMENTATION",
+      "amendment_ids": [
+        "REV09"
+      ],
+      "acceptance_axes": {
+        "spec": "ACCEPT_WITH_REVISION",
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc_v21_integration": "NOT_IMPLEMENTED",
+        "law_approval": "NOT_PERFORMED",
+        "empirical": "NOT_PERFORMED"
+      }
+    },
+    {
+      "id": "REV01",
+      "title": "求解对象、符号表示与统一指称",
+      "depends_on": [],
+      "amends_tasks": [
+        "T01",
+        "T07",
+        "T09",
+        "T22",
+        "T23"
+      ],
+      "review_items": [
+        "P0-01"
+      ],
+      "proof_obligations": [
+        "representation_interpretation",
+        "exact_denotation",
+        "inner_outer_denotation",
+        "finite_scan_coverage_instance"
+      ],
+      "regressions_to_add_or_preserve": [
+        "闭区间[0,1]不能用端点枚举获得Exact",
+        "符号区间等价证书可表示无限解集",
+        "离散集外包区间不能升级为Exact"
+      ],
+      "status": "REFERENCE_REVISION_DELIVERED_PROOF_AND_RUNTIME_PENDING",
+      "definition": "FINAL_IMPLEMENTATION_SPEC.md的相应REV章节是当前执行规格",
+      "wave": "W0-W5_TARGETED",
+      "proof_targets": [],
+      "acceptance_axes": {
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc": "NOT_IMPLEMENTED"
+      }
+    },
+    {
+      "id": "REV02",
+      "title": "共同主体、非丢失编码与结果绑定",
+      "depends_on": [
+        "REV01"
+      ],
+      "amends_tasks": [
+        "T02",
+        "T03",
+        "T22",
+        "T23"
+      ],
+      "review_items": [
+        "P0-05",
+        "P1-10",
+        "additional_subject_binding"
+      ],
+      "proof_obligations": [
+        "context_roundtrip",
+        "semantic_identity_preservation",
+        "artifact_join_subject_preserved"
+      ],
+      "regressions_to_add_or_preserve": [
+        "不同model/interpretation/issue不能组合",
+        "分隔符元组不碰撞",
+        "证据版本改变使下游工件失效"
+      ],
+      "status": "REFERENCE_REVISION_DELIVERED_PROOF_AND_RUNTIME_PENDING",
+      "definition": "FINAL_IMPLEMENTATION_SPEC.md的相应REV章节是当前执行规格",
+      "wave": "W0-W5_TARGETED",
+      "proof_targets": [],
+      "acceptance_axes": {
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc": "NOT_IMPLEMENTED"
+      }
+    },
+    {
+      "id": "REV03",
+      "title": "检查器来自可信语义注册而非自报函数",
+      "depends_on": [
+        "REV01",
+        "REV02"
+      ],
+      "amends_tasks": [
+        "T06",
+        "T07",
+        "T23"
+      ],
+      "review_items": [
+        "P1-10",
+        "additional_shared_predicate"
+      ],
+      "proof_obligations": [
+        "registered_member_reflection",
+        "generator_coverage",
+        "actual_checker_sound"
+      ],
+      "regressions_to_add_or_preserve": [
+        "错误求解器通过同错函数但被正确检查器拒绝",
+        "提交者不能任意指定认可自己的回调",
+        "共享已证明原语不被无意义地禁止"
+      ],
+      "status": "REFERENCE_REVISION_DELIVERED_PROOF_AND_RUNTIME_PENDING",
+      "definition": "FINAL_IMPLEMENTATION_SPEC.md的相应REV章节是当前执行规格",
+      "wave": "W0-W5_TARGETED",
+      "proof_targets": [],
+      "acceptance_axes": {
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc": "NOT_IMPLEMENTED"
+      }
+    },
+    {
+      "id": "REV04",
+      "title": "金额/概率/成本/合法策略的实质根桥接",
+      "depends_on": [
+        "REV01",
+        "REV02",
+        "REV03",
+        "REV05",
+        "REV06",
+        "REV07"
+      ],
+      "amends_tasks": [
+        "T21",
+        "T22",
+        "T23"
+      ],
+      "review_items": [
+        "P0-03",
+        "P1-10"
+      ],
+      "proof_obligations": [
+        "expectation_from_bound_branches",
+        "ir_bounds_from_same_inputs",
+        "settlement_selection_member",
+        "concrete_root_refinement"
+      ],
+      "regressions_to_add_or_preserve": [
+        "合法集{0,10}拒绝中点5",
+        "合法集非空但IR交集空不输出选择",
+        "分支多解时禁止无依据next(iter)",
+        "自由lo/hi不作为同案生成边界"
+      ],
+      "status": "REFERENCE_REVISION_DELIVERED_PROOF_AND_RUNTIME_PENDING",
+      "definition": "FINAL_IMPLEMENTATION_SPEC.md的相应REV章节是当前执行规格",
+      "wave": "W0-W5_TARGETED",
+      "proof_targets": [],
+      "acceptance_axes": {
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc": "NOT_IMPLEMENTED"
+      }
+    },
+    {
+      "id": "REV05",
+      "title": "复用既有授权链和全领域责任语义",
+      "depends_on": [
+        "REV02"
+      ],
+      "amends_tasks": [
+        "T03",
+        "T16",
+        "T17",
+        "T18",
+        "T19",
+        "T20",
+        "T23"
+      ],
+      "review_items": [
+        "P0-05",
+        "P1-09"
+      ],
+      "proof_obligations": [
+        "authorized_use_bound_to_issue",
+        "conditional_not_institutional",
+        "ready_and_policy_effect",
+        "source_slot_coverage"
+      ],
+      "regressions_to_add_or_preserve": [
+        "court字符串不能自行生成已核验机构认定",
+        "错争点/阶段/用途回执被拒",
+        "条件分析正常可用",
+        "民刑行结果与程序状态不混用"
+      ],
+      "status": "REFERENCE_REVISION_DELIVERED_PROOF_AND_RUNTIME_PENDING",
+      "definition": "FINAL_IMPLEMENTATION_SPEC.md的相应REV章节是当前执行规格",
+      "wave": "W0-W5_TARGETED",
+      "proof_targets": [],
+      "acceptance_axes": {
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc": "NOT_IMPLEMENTED"
+      }
+    },
+    {
+      "id": "REV06",
+      "title": "新旧论证关系、深度范围与扩展保持",
+      "depends_on": [
+        "REV01",
+        "REV02"
+      ],
+      "amends_tasks": [
+        "T05",
+        "T06",
+        "T22",
+        "T23"
+      ],
+      "review_items": [
+        "P1-02"
+      ],
+      "proof_obligations": [
+        "argument_correspondence",
+        "attack_preservation",
+        "depth_scoped_generation_complete",
+        "extension_transport_under_coverage"
+      ],
+      "regressions_to_add_or_preserve": [
+        "a叶-b-a根不能直接按原子合并",
+        "深层攻击改变浅层接受不得称无界partial sound",
+        "预算不能修改冻结深度后保留complete"
+      ],
+      "status": "REFERENCE_REVISION_DELIVERED_PROOF_AND_RUNTIME_PENDING",
+      "definition": "FINAL_IMPLEMENTATION_SPEC.md的相应REV章节是当前执行规格",
+      "wave": "W0-W5_TARGETED",
+      "proof_targets": [],
+      "acceptance_axes": {
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc": "NOT_IMPLEMENTED"
+      }
+    },
+    {
+      "id": "REV07",
+      "title": "模型数值来源与材料敏感胜率能力",
+      "depends_on": [
+        "REV01",
+        "REV02"
+      ],
+      "amends_tasks": [
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T23"
+      ],
+      "review_items": [
+        "P1-03",
+        "P1-04"
+      ],
+      "proof_obligations": [
+        "parameter_binding_consumed",
+        "evidence_feature_scope",
+        "group_prediction_meaning",
+        "conditional_forecast_join",
+        "validation_claim_guard"
+      ],
+      "regressions_to_add_or_preserve": [
+        "参数说明与实际CPT不符被拒",
+        "保留原cluster和时序检查",
+        "同组基准不假称已充分利用案卷",
+        "同源证据不得重复独立增信",
+        "合成标签不升实证"
+      ],
+      "status": "REFERENCE_REVISION_DELIVERED_PROOF_AND_RUNTIME_PENDING",
+      "definition": "FINAL_IMPLEMENTATION_SPEC.md的相应REV章节是当前执行规格",
+      "wave": "W0-W5_TARGETED",
+      "proof_targets": [],
+      "acceptance_axes": {
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc": "NOT_IMPLEMENTED"
+      }
+    },
+    {
+      "id": "REV08",
+      "title": "保留已有数值防护并闭合实际计算证明",
+      "depends_on": [
+        "REV01",
+        "REV02"
+      ],
+      "amends_tasks": [
+        "T08",
+        "T09",
+        "T10",
+        "T11",
+        "T21"
+      ],
+      "review_items": [
+        "P1-05",
+        "P1-06",
+        "P1-07"
+      ],
+      "proof_obligations": [
+        "interval_inclusion",
+        "optimization_certificate_sound",
+        "operator_matches_eligible_problem",
+        "optional_rounding_error_bound",
+        "strategy_model_binding"
+      ],
+      "regressions_to_add_or_preserve": [
+        "保留分母含0拒绝",
+        "一个最优点不等于所有最优解",
+        "离散域不套连续投影",
+        "仅实际舍入时加入误差证明",
+        "观察概率不当干预效果"
+      ],
+      "status": "REFERENCE_REVISION_DELIVERED_PROOF_AND_RUNTIME_PENDING",
+      "definition": "FINAL_IMPLEMENTATION_SPEC.md的相应REV章节是当前执行规格",
+      "wave": "W0-W5_TARGETED",
+      "proof_targets": [],
+      "acceptance_axes": {
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc": "NOT_IMPLEMENTED"
+      }
+    },
+    {
+      "id": "REV09",
+      "title": "条件证据依赖、CI范围和声明绑定",
+      "depends_on": [
+        "REV01",
+        "REV02"
+      ],
+      "amends_tasks": [
+        "T00",
+        "T24"
+      ],
+      "review_items": [
+        "P0-04",
+        "P1-08",
+        "P2-01",
+        "P2-02",
+        "additional_conditional_dependency"
+      ],
+      "proof_obligations": [
+        "capability_requirement_resolution",
+        "claim_no_unsupported_upgrade",
+        "source_bound_proof_inventory"
+      ],
+      "regressions_to_add_or_preserve": [
+        "保留pipefail与无扩展原测试",
+        "CI3.12独立运行不得继承3.13.5结果",
+        "E01只条件性约束实证标签",
+        "Rosetta保留样本命题删泛函子宣称",
+        "编译环境声明清单与根依赖核对"
+      ],
+      "status": "REFERENCE_REVISION_DELIVERED_PROOF_AND_RUNTIME_PENDING",
+      "definition": "FINAL_IMPLEMENTATION_SPEC.md的相应REV章节是当前执行规格",
+      "wave": "W0-W5_TARGETED",
+      "proof_targets": [],
+      "acceptance_axes": {
+        "reference_python": "SEE_ACTUAL_TEST_REPORT",
+        "lean": "CI_NOT_RUN",
+        "jc": "NOT_IMPLEMENTED"
+      }
+    }
+  ],
+  "retracted_findings": [
+    "P0-02",
+    "P0-04",
+    "P1-04_NO_SPLIT_ASSERTION",
+    "P1-09_NO_START_ASSERTION"
+  ],
+  "not_new_repairs": [
+    "no-extension-vs-empty-extension",
+    "bash-pipefail",
+    "existing-zero-denominator-guards",
+    "existing-time-and-cluster-splits"
+  ],
+  "conditional_final_dependencies": {
+    "empirical_claims": [
+      "T15",
+      "E01"
+    ]
+  }
+}

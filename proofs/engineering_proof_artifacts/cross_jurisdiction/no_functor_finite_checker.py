@@ -129,7 +129,11 @@ def main():
         "verdict": "TOY_SYNTHETIC_ONLY" if collisions else "DATA_INSUFFICIENT",
     }
     out_path = out_dir / "obstruction_witness.json"
-    with open(out_path, "w", encoding="utf-8") as f:
+    _out = Path(out_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(out_path).open( "w", encoding="utf-8") as f:
         json.dump(witness, f, indent=2, ensure_ascii=False)
     print(f"\nWitness: {out_path}")
 

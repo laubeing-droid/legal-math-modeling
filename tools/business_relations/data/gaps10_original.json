@@ -1,0 +1,150 @@
+[
+  {
+    "gap_id": "X01",
+    "capability": "庭前个案胜率的真实校准",
+    "reason": "判决重建/分类分数不能替代带预测时点的前瞻或时间留出数据",
+    "interface_id": "I10",
+    "origin": "工程需求补充；不是原生评测已证明",
+    "proof_family_ids": [
+      "M12",
+      "M16"
+    ],
+    "formalizable_obligation": "定义预测目标、时点、样本机制、学习与校准算法；可证明无泄漏结构及模型内计算",
+    "remaining_external_obligation": "真实校准、有效性和可迁移性需外部样本，概率存在不等于已验证",
+    "status": "未关闭；本轮仅分析与映射"
+  },
+  {
+    "gap_id": "X02",
+    "capability": "概率化司法证明标准",
+    "reason": "没有一个本清单分数能授权把75%/95%固定写成法定事实晋升阈值",
+    "interface_id": "I04",
+    "origin": "工程需求补充；不是原生评测已证明",
+    "proof_family_ids": [
+      "M07",
+      "M12"
+    ],
+    "formalizable_obligation": "证明标准是受版本/争点/阶段约束的规则与认定关系；概率证据为辅助输入",
+    "remaining_external_obligation": "不把75%/95%强写成法定门槛；评估实质需要法院/律师适当判断",
+    "status": "未关闭；本轮仅分析与映射"
+  },
+  {
+    "gap_id": "X03",
+    "capability": "全部合法请求或扩展的数学完整性",
+    "reason": "金标往往单一历史输出、标注池或有限rubric；还需独立语义和覆盖证书",
+    "interface_id": "I03",
+    "origin": "工程需求补充；不是原生评测已证明",
+    "proof_family_ids": [
+      "M08",
+      "M11",
+      "M16"
+    ],
+    "formalizable_obligation": "独立定义候选/符号解集与精确解释，完成覆盖和双向模拟",
+    "remaining_external_obligation": "限定法律片段中的全解≠整个法域所有潜在解释",
+    "status": "未关闭；本轮仅分析与映射"
+  },
+  {
+    "gap_id": "X04",
+    "capability": "证据真实、合法和机构授权",
+    "reason": "文本答案匹配不证明证据真实或审核者真的具有裁判职权",
+    "interface_id": "I01",
+    "origin": "工程需求补充；不是原生评测已证明",
+    "proof_family_ids": [
+      "M01",
+      "M04",
+      "M07",
+      "M14"
+    ],
+    "formalizable_obligation": "机构权限/用途、来源完整性及事实地位可建模并检查",
+    "remaining_external_obligation": "凭证/签名/哈希不能证明其内容现实真实；审查及溯源有外部责任",
+    "status": "未关闭；本轮仅分析与映射"
+  },
+  {
+    "gap_id": "X05",
+    "capability": "开放互联网检索无遗漏",
+    "reason": "固定候选池Recall与全网法源完整不等价",
+    "interface_id": "I02",
+    "origin": "工程需求补充；不是原生评测已证明",
+    "proof_family_ids": [
+      "M02",
+      "M16"
+    ],
+    "formalizable_obligation": "开放检索给返回集、访问范围、失败、未决和新增更新；固定镜像可证明查询完整",
+    "remaining_external_obligation": "无法仅凭Top-k未命中推出全网不存在；全网覆盖不是已取得假设",
+    "status": "未关闭；本轮仅分析与映射"
+  },
+  {
+    "gap_id": "X06",
+    "capability": "策略的真实因果效果与激励相容",
+    "reason": "建议rubric和相关性不提供do效果或全部偏离核验",
+    "interface_id": "I11",
+    "origin": "工程需求补充；不是原生评测已证明",
+    "proof_family_ids": [
+      "M12",
+      "M15"
+    ],
+    "formalizable_obligation": "明确结构因果模型/识别集及全偏离集合，验证模型内界和机制条件",
+    "remaining_external_obligation": "真实行为、效用及因果假设需经验依据，不能由建议rubric获得",
+    "status": "未关闭；本轮仅分析与映射"
+  },
+  {
+    "gap_id": "X07",
+    "capability": "跨法域无损法律迁移",
+    "reason": "英文模板翻译不保留法条地位、程序、证明责任与救济",
+    "interface_id": "I03",
+    "origin": "工程需求补充；不是原生评测已证明",
+    "proof_family_ids": [
+      "M01",
+      "M02",
+      "M03",
+      "M11"
+    ],
+    "formalizable_obligation": "建立法域桥的部分关系及受保护观察，在支持片段证明保持或给反例",
+    "remaining_external_obligation": "缺映射不是不存在映射；罗塞塔样本命题不升级全域不可能性",
+    "status": "未关闭；本轮仅分析与映射"
+  },
+  {
+    "gap_id": "X08",
+    "capability": "工具出域、隐私与抗注入的生产安全",
+    "reason": "公开文件模拟不等于真实卷宗脱敏、权限和恶意文档隔离已验收",
+    "interface_id": "I09",
+    "origin": "工程需求补充；不是原生评测已证明",
+    "proof_family_ids": [
+      "M13",
+      "M14"
+    ],
+    "formalizable_obligation": "非干涉、允许披露、数据用途和工具效果模型；输入材料不授予指令权限",
+    "remaining_external_obligation": "真实运行隔离、侧信道、恶意解析和身份来源需实现安全测试",
+    "status": "未关闭；本轮仅分析与映射"
+  },
+  {
+    "gap_id": "X09",
+    "capability": "所有法律领域的规则覆盖",
+    "reason": "20套整体偏向刑事预测、借贷、侵权和商业交易；行政/复议/执行等深度不均",
+    "interface_id": "I04",
+    "origin": "工程需求补充；不是原生评测已证明",
+    "proof_family_ids": [
+      "M02",
+      "M07",
+      "M08",
+      "M16"
+    ],
+    "formalizable_obligation": "全领域独立需求/法源清单及规则族精化，134之外可扩展并保留未建模项",
+    "remaining_external_obligation": "20套、37模板或48类型都不是全法域覆盖证明",
+    "status": "未关闭；本轮仅分析与映射"
+  },
+  {
+    "gap_id": "X10",
+    "capability": "持续更新下的统计保证",
+    "reason": "单次离线指标不替代漂移监测、序贯置信或模型更新验收",
+    "interface_id": "I10",
+    "origin": "工程需求补充；不是原生评测已证明",
+    "proof_family_ids": [
+      "M12",
+      "M14",
+      "M16"
+    ],
+    "formalizable_obligation": "模型版本、适应性预测与过滤族明定；监测对象用静态或时变适当统计定理",
+    "remaining_external_obligation": "持续校准不能由单次留出保证；模型更新需重新校验适用条件",
+    "status": "未关闭；本轮仅分析与映射"
+  }
+]

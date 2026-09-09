@@ -1,0 +1,3478 @@
+[
+  {
+    "requirement_id": "D001",
+    "group": "01 接案、问题与主体识别",
+    "practice_question": "咨询属于什么法律主题，是否存在多个并列问题？",
+    "input": "用户问题、案情、合同及文书",
+    "output": "主体/案由/争点候选及定位",
+    "benchmark_ids": [
+      "CN01",
+      "CN02",
+      "CN03"
+    ],
+    "source_ids": [
+      "S01",
+      "S03",
+      "S04"
+    ],
+    "source_urls": "https://github.com/open-compass/LawBench/blob/main/README.md\nhttps://arxiv.org/html/2409.20288v1\nhttps://github.com/Dai-shen/LAiW/blob/main/README.md",
+    "owner": "Harness／材料provider",
+    "current_basis": "JC不负责摄取原始卷宗；V2.1有来源/身份设计，未据本20套验证全部解析能力",
+    "guarantee_ids": [
+      "G01"
+    ],
+    "missing_interface": "I01",
+    "acceptance_focus": "漏附件、跨页引用、修订痕迹、同名主体与证据地位必须保留",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D002",
+    "group": "01 接案、问题与主体识别",
+    "practice_question": "材料反映民事还是刑事性质，标签是否足以支持该判断？",
+    "input": "用户问题、案情、合同及文书",
+    "output": "主体/案由/争点候选及定位",
+    "benchmark_ids": [
+      "CN01",
+      "CN02",
+      "CN03"
+    ],
+    "source_ids": [
+      "S01",
+      "S03",
+      "S04"
+    ],
+    "source_urls": "https://github.com/open-compass/LawBench/blob/main/README.md\nhttps://arxiv.org/html/2409.20288v1\nhttps://github.com/Dai-shen/LAiW/blob/main/README.md",
+    "owner": "Harness／材料provider",
+    "current_basis": "JC不负责摄取原始卷宗；V2.1有来源/身份设计，未据本20套验证全部解析能力",
+    "guarantee_ids": [
+      "G01"
+    ],
+    "missing_interface": "I01",
+    "acceptance_focus": "漏附件、跨页引用、修订痕迹、同名主体与证据地位必须保留",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D003",
+    "group": "01 接案、问题与主体识别",
+    "practice_question": "谁是原告、被告、承包人、借款人、保证人或非诉交易主体？",
+    "input": "用户问题、案情、合同及文书",
+    "output": "主体/案由/争点候选及定位",
+    "benchmark_ids": [
+      "CN01",
+      "CN02",
+      "CN03"
+    ],
+    "source_ids": [
+      "S01",
+      "S03",
+      "S04"
+    ],
+    "source_urls": "https://github.com/open-compass/LawBench/blob/main/README.md\nhttps://arxiv.org/html/2409.20288v1\nhttps://github.com/Dai-shen/LAiW/blob/main/README.md",
+    "owner": "Harness／材料provider",
+    "current_basis": "JC不负责摄取原始卷宗；V2.1有来源/身份设计，未据本20套验证全部解析能力",
+    "guarantee_ids": [
+      "G01"
+    ],
+    "missing_interface": "I01",
+    "acceptance_focus": "漏附件、跨页引用、修订痕迹、同名主体与证据地位必须保留",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D004",
+    "group": "01 接案、问题与主体识别",
+    "practice_question": "同一案件中每名被告对应哪些行为、罪名及处分？",
+    "input": "用户问题、案情、合同及文书",
+    "output": "主体/案由/争点候选及定位",
+    "benchmark_ids": [
+      "CN07",
+      "CN10"
+    ],
+    "source_ids": [
+      "S09",
+      "S12"
+    ],
+    "source_urls": "https://github.com/littlebowlnju/CMDL/blob/main/README.md\nhttps://github.com/THUlawtech/LEEC/blob/main/README.md",
+    "owner": "Harness／材料provider",
+    "current_basis": "JC不负责摄取原始卷宗；V2.1有来源/身份设计，未据本20套验证全部解析能力",
+    "guarantee_ids": [
+      "G01"
+    ],
+    "missing_interface": "I01",
+    "acceptance_focus": "漏附件、跨页引用、修订痕迹、同名主体与证据地位必须保留",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D005",
+    "group": "01 接案、问题与主体识别",
+    "practice_question": "公司全称、简称、曾用名与登记代码能否一致解析？",
+    "input": "用户问题、案情、合同及文书",
+    "output": "主体/案由/争点候选及定位",
+    "benchmark_ids": [
+      "CN04"
+    ],
+    "source_ids": [
+      "S06"
+    ],
+    "source_urls": "https://github.com/CSHaitao/LegalAgentBench/blob/main/src/schema.py",
+    "owner": "Harness／材料provider",
+    "current_basis": "JC不负责摄取原始卷宗；V2.1有来源/身份设计，未据本20套验证全部解析能力",
+    "guarantee_ids": [
+      "G01"
+    ],
+    "missing_interface": "I01",
+    "acceptance_focus": "漏附件、跨页引用、修订痕迹、同名主体与证据地位必须保留",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D006",
+    "group": "01 接案、问题与主体识别",
+    "practice_question": "自然人、公司、关联方与代表人是否被混同？",
+    "input": "用户问题、案情、合同及文书",
+    "output": "主体/案由/争点候选及定位",
+    "benchmark_ids": [
+      "CN04",
+      "CN11"
+    ],
+    "source_ids": [
+      "S14",
+      "S06"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/CSHaitao/LegalAgentBench/blob/main/src/schema.py",
+    "owner": "Harness／材料provider",
+    "current_basis": "JC不负责摄取原始卷宗；V2.1有来源/身份设计，未据本20套验证全部解析能力",
+    "guarantee_ids": [
+      "G01"
+    ],
+    "missing_interface": "I01",
+    "acceptance_focus": "漏附件、跨页引用、修订痕迹、同名主体与证据地位必须保留",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D007",
+    "group": "01 接案、问题与主体识别",
+    "practice_question": "法院代字、法院级别与管辖机关信息如何关联？",
+    "input": "用户问题、案情、合同及文书",
+    "output": "主体/案由/争点候选及定位",
+    "benchmark_ids": [
+      "CN04"
+    ],
+    "source_ids": [
+      "S06"
+    ],
+    "source_urls": "https://github.com/CSHaitao/LegalAgentBench/blob/main/src/schema.py",
+    "owner": "Harness／材料provider",
+    "current_basis": "JC不负责摄取原始卷宗；V2.1有来源/身份设计，未据本20套验证全部解析能力",
+    "guarantee_ids": [
+      "G01"
+    ],
+    "missing_interface": "I01",
+    "acceptance_focus": "漏附件、跨页引用、修订痕迹、同名主体与证据地位必须保留",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D008",
+    "group": "01 接案、问题与主体识别",
+    "practice_question": "某项请求针对谁、要求什么救济，而不是只提取关键词？",
+    "input": "用户问题、案情、合同及文书",
+    "output": "主体/案由/争点候选及定位",
+    "benchmark_ids": [
+      "CN14",
+      "CN15"
+    ],
+    "source_ids": [
+      "S17",
+      "S18"
+    ],
+    "source_urls": "https://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/thunlp/LexChain/blob/main/README.md",
+    "owner": "Harness／材料provider",
+    "current_basis": "JC不负责摄取原始卷宗；V2.1有来源/身份设计，未据本20套验证全部解析能力",
+    "guarantee_ids": [
+      "G01"
+    ],
+    "missing_interface": "I01",
+    "acceptance_focus": "漏附件、跨页引用、修订痕迹、同名主体与证据地位必须保留",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D009",
+    "group": "02 法源、解释与类案研究",
+    "practice_question": "指定法律概念和法条内容是什么，能否准确回到原文？",
+    "input": "规范查询、事实情景、法条与候选案例",
+    "output": "来源明确的候选依据/引用/相关性",
+    "benchmark_ids": [
+      "CN01",
+      "CN02",
+      "US03"
+    ],
+    "source_ids": [
+      "S01",
+      "S03",
+      "S26"
+    ],
+    "source_urls": "https://github.com/open-compass/LawBench/blob/main/README.md\nhttps://arxiv.org/html/2409.20288v1\nhttps://hazyresearch.stanford.edu/legalbench/tasks/",
+    "owner": "LCCC／检索provider＋JC准入",
+    "current_basis": "JC已有准入机制；检索召回、全文覆盖和文本解释仍须另验",
+    "guarantee_ids": [
+      "G02",
+      "G03"
+    ],
+    "missing_interface": "I02",
+    "acceptance_focus": "Top-k未命中不能推出法律不存在；金标对应历史版本与当前法重分析分轨",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D010",
+    "group": "02 法源、解释与类案研究",
+    "practice_question": "给定事实或场景涉及哪些法条，而非只给相似词？",
+    "input": "规范查询、事实情景、法条与候选案例",
+    "output": "来源明确的候选依据/引用/相关性",
+    "benchmark_ids": [
+      "CN01",
+      "CN02",
+      "US03"
+    ],
+    "source_ids": [
+      "S01",
+      "S03",
+      "S26"
+    ],
+    "source_urls": "https://github.com/open-compass/LawBench/blob/main/README.md\nhttps://arxiv.org/html/2409.20288v1\nhttps://hazyresearch.stanford.edu/legalbench/tasks/",
+    "owner": "LCCC／检索provider＋JC准入",
+    "current_basis": "JC已有准入机制；检索召回、全文覆盖和文本解释仍须另验",
+    "guarantee_ids": [
+      "G02",
+      "G03"
+    ],
+    "missing_interface": "I02",
+    "acceptance_focus": "Top-k未命中不能推出法律不存在；金标对应历史版本与当前法重分析分轨",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D011",
+    "group": "02 法源、解释与类案研究",
+    "practice_question": "规则是否发生变更，题目考查的是哪个历史版本？",
+    "input": "规范查询、事实情景、法条与候选案例",
+    "output": "来源明确的候选依据/引用/相关性",
+    "benchmark_ids": [
+      "CN02",
+      "US01"
+    ],
+    "source_ids": [
+      "S03",
+      "S20"
+    ],
+    "source_urls": "https://arxiv.org/html/2409.20288v1\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv",
+    "owner": "LCCC／检索provider＋JC准入",
+    "current_basis": "JC已有准入机制；检索召回、全文覆盖和文本解释仍须另验",
+    "guarantee_ids": [
+      "G02",
+      "G03"
+    ],
+    "missing_interface": "I02",
+    "acceptance_focus": "Top-k未命中不能推出法律不存在；金标对应历史版本与当前法重分析分轨",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D012",
+    "group": "02 法源、解释与类案研究",
+    "practice_question": "定义词、上下文与跨条引用怎样改变条款含义？",
+    "input": "规范查询、事实情景、法条与候选案例",
+    "output": "来源明确的候选依据/引用/相关性",
+    "benchmark_ids": [
+      "US03",
+      "US04",
+      "US05"
+    ],
+    "source_ids": [
+      "S27",
+      "S30",
+      "S26"
+    ],
+    "source_urls": "https://github.com/The-Atticus-Project/cuad/blob/main/category_descriptions.csv\nhttps://arxiv.org/html/2301.00876\nhttps://hazyresearch.stanford.edu/legalbench/tasks/",
+    "owner": "LCCC／检索provider＋JC准入",
+    "current_basis": "JC已有准入机制；检索召回、全文覆盖和文本解释仍须另验",
+    "guarantee_ids": [
+      "G02",
+      "G03"
+    ],
+    "missing_interface": "I02",
+    "acceptance_focus": "Top-k未命中不能推出法律不存在；金标对应历史版本与当前法重分析分轨",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D013",
+    "group": "02 法源、解释与类案研究",
+    "practice_question": "哪件类案在定性、量刑或程序问题上相关？",
+    "input": "规范查询、事实情景、法条与候选案例",
+    "output": "来源明确的候选依据/引用/相关性",
+    "benchmark_ids": [
+      "CN08"
+    ],
+    "source_ids": [
+      "S10"
+    ],
+    "source_urls": "https://github.com/THUIR/LeCaRDv2/blob/main/README.md",
+    "owner": "LCCC／检索provider＋JC准入",
+    "current_basis": "JC已有准入机制；检索召回、全文覆盖和文本解释仍须另验",
+    "guarantee_ids": [
+      "G02",
+      "G03"
+    ],
+    "missing_interface": "I02",
+    "acceptance_focus": "Top-k未命中不能推出法律不存在；金标对应历史版本与当前法重分析分轨",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D014",
+    "group": "02 法源、解释与类案研究",
+    "practice_question": "固定候选池重排与全库检索分别找到了什么、漏了什么？",
+    "input": "规范查询、事实情景、法条与候选案例",
+    "output": "来源明确的候选依据/引用/相关性",
+    "benchmark_ids": [
+      "CN08"
+    ],
+    "source_ids": [
+      "S10"
+    ],
+    "source_urls": "https://github.com/THUIR/LeCaRDv2/blob/main/README.md",
+    "owner": "LCCC／检索provider＋JC准入",
+    "current_basis": "JC已有准入机制；检索召回、全文覆盖和文本解释仍须另验",
+    "guarantee_ids": [
+      "G02",
+      "G03"
+    ],
+    "missing_interface": "I02",
+    "acceptance_focus": "Top-k未命中不能推出法律不存在；金标对应历史版本与当前法重分析分轨",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D015",
+    "group": "02 法源、解释与类案研究",
+    "practice_question": "所引案例是否真的支持当前命题，能否准确定位引用？",
+    "input": "规范查询、事实情景、法条与候选案例",
+    "output": "来源明确的候选依据/引用/相关性",
+    "benchmark_ids": [
+      "US01",
+      "US03"
+    ],
+    "source_ids": [
+      "S26",
+      "S19"
+    ],
+    "source_urls": "https://hazyresearch.stanford.edu/legalbench/tasks/\nhttps://github.com/harveyai/biglaw-bench/blob/main/README.md",
+    "owner": "LCCC／检索provider＋JC准入",
+    "current_basis": "JC已有准入机制；检索召回、全文覆盖和文本解释仍须另验",
+    "guarantee_ids": [
+      "G02",
+      "G03"
+    ],
+    "missing_interface": "I02",
+    "acceptance_focus": "Top-k未命中不能推出法律不存在；金标对应历史版本与当前法重分析分轨",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D016",
+    "group": "02 法源、解释与类案研究",
+    "practice_question": "判例被推翻或限制时，原引文还能否支撑结论？",
+    "input": "规范查询、事实情景、法条与候选案例",
+    "output": "来源明确的候选依据/引用/相关性",
+    "benchmark_ids": [
+      "US03"
+    ],
+    "source_ids": [
+      "S26"
+    ],
+    "source_urls": "https://hazyresearch.stanford.edu/legalbench/tasks/",
+    "owner": "LCCC／检索provider＋JC准入",
+    "current_basis": "JC已有准入机制；检索召回、全文覆盖和文本解释仍须另验",
+    "guarantee_ids": [
+      "G02",
+      "G03"
+    ],
+    "missing_interface": "I02",
+    "acceptance_focus": "Top-k未命中不能推出法律不存在；金标对应历史版本与当前法重分析分轨",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D017",
+    "group": "02 法源、解释与类案研究",
+    "practice_question": "应适用普通法还是UCC等特别法律框架？",
+    "input": "规范查询、事实情景、法条与候选案例",
+    "output": "来源明确的候选依据/引用/相关性",
+    "benchmark_ids": [
+      "US03"
+    ],
+    "source_ids": [
+      "S26"
+    ],
+    "source_urls": "https://hazyresearch.stanford.edu/legalbench/tasks/",
+    "owner": "LCCC／检索provider＋JC准入",
+    "current_basis": "JC已有准入机制；检索召回、全文覆盖和文本解释仍须另验",
+    "guarantee_ids": [
+      "G02",
+      "G03"
+    ],
+    "missing_interface": "I02",
+    "acceptance_focus": "Top-k未命中不能推出法律不存在；金标对应历史版本与当前法重分析分轨",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D018",
+    "group": "02 法源、解释与类案研究",
+    "practice_question": "不同法域并购申报规则如何比较并保留法域区别？",
+    "input": "规范查询、事实情景、法条与候选案例",
+    "output": "来源明确的候选依据/引用/相关性",
+    "benchmark_ids": [
+      "US02"
+    ],
+    "source_ids": [
+      "S34"
+    ],
+    "source_urls": "https://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "LCCC／检索provider＋JC准入",
+    "current_basis": "JC已有准入机制；检索召回、全文覆盖和文本解释仍须另验",
+    "guarantee_ids": [
+      "G02",
+      "G03"
+    ],
+    "missing_interface": "I02",
+    "acceptance_focus": "Top-k未命中不能推出法律不存在；金标对应历史版本与当前法重分析分轨",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D019",
+    "group": "03 证据内容、事件与冲突",
+    "practice_question": "文本中发生了哪些法律事件，其触发词和范围在哪里？",
+    "input": "法律文本、邮件、通话/证言、附件",
+    "output": "事件/句级依据/时间线/冲突清单",
+    "benchmark_ids": [
+      "CN09",
+      "CN10",
+      "CN11",
+      "US01"
+    ],
+    "source_ids": [
+      "S11",
+      "S12",
+      "S14",
+      "S20"
+    ],
+    "source_urls": "https://github.com/thunlp/LEVEN/blob/main/README.md\nhttps://github.com/THUlawtech/LEEC/blob/main/README.md\nhttps://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv",
+    "owner": "JC＋Harness",
+    "current_basis": "K：论证语义；E：来源代数、合理性/截断桥接继续施工",
+    "guarantee_ids": [
+      "G01",
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I05",
+    "acceptance_focus": "首个被害人占位不能变真实责任边；跨扩展结论不得拼接",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D020",
+    "group": "03 证据内容、事件与冲突",
+    "practice_question": "事件参与人、对象与案件阶段是否对应正确？",
+    "input": "法律文本、邮件、通话/证言、附件",
+    "output": "事件/句级依据/时间线/冲突清单",
+    "benchmark_ids": [
+      "CN09",
+      "CN10",
+      "CN11",
+      "US01"
+    ],
+    "source_ids": [
+      "S11",
+      "S12",
+      "S14",
+      "S20"
+    ],
+    "source_urls": "https://github.com/thunlp/LEVEN/blob/main/README.md\nhttps://github.com/THUlawtech/LEEC/blob/main/README.md\nhttps://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv",
+    "owner": "JC＋Harness",
+    "current_basis": "K：论证语义；E：来源代数、合理性/截断桥接继续施工",
+    "guarantee_ids": [
+      "G01",
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I05",
+    "acceptance_focus": "首个被害人占位不能变真实责任边；跨扩展结论不得拼接",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D021",
+    "group": "03 证据内容、事件与冲突",
+    "practice_question": "多份材料能否组成有出处的时间线，而非补写不存在的日期？",
+    "input": "法律文本、邮件、通话/证言、附件",
+    "output": "事件/句级依据/时间线/冲突清单",
+    "benchmark_ids": [
+      "CN09",
+      "CN10",
+      "CN11",
+      "US01"
+    ],
+    "source_ids": [
+      "S11",
+      "S12",
+      "S14",
+      "S20"
+    ],
+    "source_urls": "https://github.com/thunlp/LEVEN/blob/main/README.md\nhttps://github.com/THUlawtech/LEEC/blob/main/README.md\nhttps://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv",
+    "owner": "JC＋Harness",
+    "current_basis": "K：论证语义；E：来源代数、合理性/截断桥接继续施工",
+    "guarantee_ids": [
+      "G01",
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I05",
+    "acceptance_focus": "首个被害人占位不能变真实责任边；跨扩展结论不得拼接",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D022",
+    "group": "03 证据内容、事件与冲突",
+    "practice_question": "陈述、邮件和记录之间有哪些实质矛盾或含混？",
+    "input": "法律文本、邮件、通话/证言、附件",
+    "output": "事件/句级依据/时间线/冲突清单",
+    "benchmark_ids": [
+      "CN09",
+      "CN10",
+      "CN11",
+      "US01"
+    ],
+    "source_ids": [
+      "S11",
+      "S12",
+      "S14",
+      "S20"
+    ],
+    "source_urls": "https://github.com/thunlp/LEVEN/blob/main/README.md\nhttps://github.com/THUlawtech/LEEC/blob/main/README.md\nhttps://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv",
+    "owner": "JC＋Harness",
+    "current_basis": "K：论证语义；E：来源代数、合理性/截断桥接继续施工",
+    "guarantee_ids": [
+      "G01",
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I05",
+    "acceptance_focus": "首个被害人占位不能变真实责任边；跨扩展结论不得拼接",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D023",
+    "group": "03 证据内容、事件与冲突",
+    "practice_question": "哪些结论缺少直接材料，哪些只是文书没有记载？",
+    "input": "法律文本、邮件、通话/证言、附件",
+    "output": "事件/句级依据/时间线/冲突清单",
+    "benchmark_ids": [
+      "CN09",
+      "CN10",
+      "CN11",
+      "US01"
+    ],
+    "source_ids": [
+      "S11",
+      "S12",
+      "S14",
+      "S20"
+    ],
+    "source_urls": "https://github.com/thunlp/LEVEN/blob/main/README.md\nhttps://github.com/THUlawtech/LEEC/blob/main/README.md\nhttps://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv",
+    "owner": "JC＋Harness",
+    "current_basis": "K：论证语义；E：来源代数、合理性/截断桥接继续施工",
+    "guarantee_ids": [
+      "G01",
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I05",
+    "acceptance_focus": "首个被害人占位不能变真实责任边；跨扩展结论不得拼接",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D024",
+    "group": "03 证据内容、事件与冲突",
+    "practice_question": "回答是否能定位到支持该答案的原句？",
+    "input": "法律文本、邮件、通话/证言、附件",
+    "output": "事件/句级依据/时间线/冲突清单",
+    "benchmark_ids": [
+      "CN09",
+      "CN10",
+      "CN11",
+      "US01"
+    ],
+    "source_ids": [
+      "S11",
+      "S12",
+      "S14",
+      "S20"
+    ],
+    "source_urls": "https://github.com/thunlp/LEVEN/blob/main/README.md\nhttps://github.com/THUlawtech/LEEC/blob/main/README.md\nhttps://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv",
+    "owner": "JC＋Harness",
+    "current_basis": "K：论证语义；E：来源代数、合理性/截断桥接继续施工",
+    "guarantee_ids": [
+      "G01",
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I05",
+    "acceptance_focus": "首个被害人占位不能变真实责任边；跨扩展结论不得拼接",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D025",
+    "group": "03 证据内容、事件与冲突",
+    "practice_question": "“是”“否”“不知道”是否保持区别？",
+    "input": "法律文本、邮件、通话/证言、附件",
+    "output": "事件/句级依据/时间线/冲突清单",
+    "benchmark_ids": [
+      "CN09",
+      "CN10",
+      "CN11",
+      "US01"
+    ],
+    "source_ids": [
+      "S11",
+      "S12",
+      "S14",
+      "S20"
+    ],
+    "source_urls": "https://github.com/thunlp/LEVEN/blob/main/README.md\nhttps://github.com/THUlawtech/LEEC/blob/main/README.md\nhttps://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv",
+    "owner": "JC＋Harness",
+    "current_basis": "K：论证语义；E：来源代数、合理性/截断桥接继续施工",
+    "guarantee_ids": [
+      "G01",
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I05",
+    "acceptance_focus": "首个被害人占位不能变真实责任边；跨扩展结论不得拼接",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D026",
+    "group": "03 证据内容、事件与冲突",
+    "practice_question": "记录中的主张、证据内容与法院认定是否被区分？",
+    "input": "法律文本、邮件、通话/证言、附件",
+    "output": "事件/句级依据/时间线/冲突清单",
+    "benchmark_ids": [
+      "CN11",
+      "CN13"
+    ],
+    "source_ids": [
+      "S16",
+      "S14"
+    ],
+    "source_urls": "https://github.com/CSHaitao/CaseGen/blob/main/README.md\nhttps://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json",
+    "owner": "JC＋Harness",
+    "current_basis": "K：论证语义；E：来源代数、合理性/截断桥接继续施工",
+    "guarantee_ids": [
+      "G01",
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I05",
+    "acceptance_focus": "首个被害人占位不能变真实责任边；跨扩展结论不得拼接",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D027",
+    "group": "03 证据内容、事件与冲突",
+    "practice_question": "现有文本事实能否支持拟写的审理事实段？",
+    "input": "法律文本、邮件、通话/证言、附件",
+    "output": "事件/句级依据/时间线/冲突清单",
+    "benchmark_ids": [
+      "CN13"
+    ],
+    "source_ids": [
+      "S16"
+    ],
+    "source_urls": "https://github.com/CSHaitao/CaseGen/blob/main/README.md",
+    "owner": "JC＋Harness",
+    "current_basis": "K：论证语义；E：来源代数、合理性/截断桥接继续施工",
+    "guarantee_ids": [
+      "G01",
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I05",
+    "acceptance_focus": "首个被害人占位不能变真实责任边；跨扩展结论不得拼接",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D028",
+    "group": "03 证据内容、事件与冲突",
+    "practice_question": "是否把前科、其他案件与本次被诉事实混在一起？",
+    "input": "法律文本、邮件、通话/证言、附件",
+    "output": "事件/句级依据/时间线/冲突清单",
+    "benchmark_ids": [
+      "CN12"
+    ],
+    "source_ids": [
+      "S15"
+    ],
+    "source_urls": "https://github.com/oneal2000/JuDGE/blob/main/README.md",
+    "owner": "JC＋Harness",
+    "current_basis": "K：论证语义；E：来源代数、合理性/截断桥接继续施工",
+    "guarantee_ids": [
+      "G01",
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I05",
+    "acceptance_focus": "首个被害人占位不能变真实责任边；跨扩展结论不得拼接",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D029",
+    "group": "04 请求权、抗辩及争点处理",
+    "practice_question": "从原告事实可以拟出哪些诉讼请求，主给付与附随费用如何分开？",
+    "input": "原告事实、请求、被告抗辩与材料",
+    "output": "请求集合/抗辩/问题链及依据",
+    "benchmark_ids": [
+      "CN03",
+      "CN11",
+      "CN14",
+      "CN15"
+    ],
+    "source_ids": [
+      "S14",
+      "S17",
+      "S18",
+      "S04"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/thunlp/LexChain/blob/main/README.md\nhttps://github.com/Dai-shen/LAiW/blob/main/README.md",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D030",
+    "group": "04 请求权、抗辩及争点处理",
+    "practice_question": "实际提出的诉请与依法可能获得支持的请求是否区分？",
+    "input": "原告事实、请求、被告抗辩与材料",
+    "output": "请求集合/抗辩/问题链及依据",
+    "benchmark_ids": [
+      "CN03",
+      "CN11",
+      "CN14",
+      "CN15"
+    ],
+    "source_ids": [
+      "S14",
+      "S17",
+      "S18",
+      "S04"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/thunlp/LexChain/blob/main/README.md\nhttps://github.com/Dai-shen/LAiW/blob/main/README.md",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D031",
+    "group": "04 请求权、抗辩及争点处理",
+    "practice_question": "被告称款项属于投资而非借款时，应形成哪个争点？",
+    "input": "原告事实、请求、被告抗辩与材料",
+    "output": "请求集合/抗辩/问题链及依据",
+    "benchmark_ids": [
+      "CN03",
+      "CN11",
+      "CN14",
+      "CN15"
+    ],
+    "source_ids": [
+      "S14",
+      "S17",
+      "S18",
+      "S04"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/thunlp/LexChain/blob/main/README.md\nhttps://github.com/Dai-shen/LAiW/blob/main/README.md",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D032",
+    "group": "04 请求权、抗辩及争点处理",
+    "practice_question": "主张履行、已付款、合同无效和其他法律关系如何分支？",
+    "input": "原告事实、请求、被告抗辩与材料",
+    "output": "请求集合/抗辩/问题链及依据",
+    "benchmark_ids": [
+      "CN03",
+      "CN11",
+      "CN14",
+      "CN15"
+    ],
+    "source_ids": [
+      "S14",
+      "S17",
+      "S18",
+      "S04"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/thunlp/LexChain/blob/main/README.md\nhttps://github.com/Dai-shen/LAiW/blob/main/README.md",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D033",
+    "group": "04 请求权、抗辩及争点处理",
+    "practice_question": "借贷中时效争议是否存在，而不是法院自动消灭债权？",
+    "input": "原告事实、请求、被告抗辩与材料",
+    "output": "请求集合/抗辩/问题链及依据",
+    "benchmark_ids": [
+      "CN03",
+      "CN11",
+      "CN14",
+      "CN15"
+    ],
+    "source_ids": [
+      "S14",
+      "S17",
+      "S18",
+      "S04"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/thunlp/LexChain/blob/main/README.md\nhttps://github.com/Dai-shen/LAiW/blob/main/README.md",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D034",
+    "group": "04 请求权、抗辩及争点处理",
+    "practice_question": "原告、被告各自提出的事实与反驳如何组织为焦点？",
+    "input": "原告事实、请求、被告抗辩与材料",
+    "output": "请求集合/抗辩/问题链及依据",
+    "benchmark_ids": [
+      "CN03",
+      "CN11",
+      "CN14",
+      "CN15"
+    ],
+    "source_ids": [
+      "S14",
+      "S17",
+      "S18",
+      "S04"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/thunlp/LexChain/blob/main/README.md\nhttps://github.com/Dai-shen/LAiW/blob/main/README.md",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D035",
+    "group": "04 请求权、抗辩及争点处理",
+    "practice_question": "答辩是否回应现有请求和证据，而非虚构承认或抗辩？",
+    "input": "原告事实、请求、被告抗辩与材料",
+    "output": "请求集合/抗辩/问题链及依据",
+    "benchmark_ids": [
+      "CN03",
+      "CN11",
+      "CN14",
+      "CN15"
+    ],
+    "source_ids": [
+      "S14",
+      "S17",
+      "S18",
+      "S04"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/thunlp/LexChain/blob/main/README.md\nhttps://github.com/Dai-shen/LAiW/blob/main/README.md",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D036",
+    "group": "04 请求权、抗辩及争点处理",
+    "practice_question": "同一侵权请求的责任、比例、给付方式与结论能否衔接？",
+    "input": "原告事实、请求、被告抗辩与材料",
+    "output": "请求集合/抗辩/问题链及依据",
+    "benchmark_ids": [
+      "CN15"
+    ],
+    "source_ids": [
+      "S18"
+    ],
+    "source_urls": "https://github.com/thunlp/LexChain/blob/main/README.md",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D037",
+    "group": "05 刑事定罪、量刑与多被告",
+    "practice_question": "应匹配哪些罪名标签，是否存在多罪而非单一分类？",
+    "input": "事实叙述、要素与法条资料",
+    "output": "逐主体标签、刑种刑期与理由",
+    "benchmark_ids": [
+      "CN06",
+      "CN07",
+      "CN10",
+      "CN12"
+    ],
+    "source_ids": [
+      "S08",
+      "S09",
+      "S12",
+      "S15"
+    ],
+    "source_urls": "https://github.com/china-ai-law-challenge/CAIL2018/blob/master/README.md\nhttps://github.com/littlebowlnju/CMDL/blob/main/README.md\nhttps://github.com/THUlawtech/LEEC/blob/main/README.md\nhttps://github.com/oneal2000/JuDGE/blob/main/README.md",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D038",
+    "group": "05 刑事定罪、量刑与多被告",
+    "practice_question": "法条类别ID对应哪一个法条，索引是否正确转换？",
+    "input": "事实叙述、要素与法条资料",
+    "output": "逐主体标签、刑种刑期与理由",
+    "benchmark_ids": [
+      "CN06",
+      "CN07",
+      "CN10",
+      "CN12"
+    ],
+    "source_ids": [
+      "S08",
+      "S09",
+      "S12",
+      "S15"
+    ],
+    "source_urls": "https://github.com/china-ai-law-challenge/CAIL2018/blob/master/README.md\nhttps://github.com/littlebowlnju/CMDL/blob/main/README.md\nhttps://github.com/THUlawtech/LEEC/blob/main/README.md\nhttps://github.com/oneal2000/JuDGE/blob/main/README.md",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D039",
+    "group": "05 刑事定罪、量刑与多被告",
+    "practice_question": "有期、无期和死刑是否采用不同类型而非普通数值？",
+    "input": "事实叙述、要素与法条资料",
+    "output": "逐主体标签、刑种刑期与理由",
+    "benchmark_ids": [
+      "CN06",
+      "CN07",
+      "CN10",
+      "CN12"
+    ],
+    "source_ids": [
+      "S08",
+      "S09",
+      "S12",
+      "S15"
+    ],
+    "source_urls": "https://github.com/china-ai-law-challenge/CAIL2018/blob/master/README.md\nhttps://github.com/littlebowlnju/CMDL/blob/main/README.md\nhttps://github.com/THUlawtech/LEEC/blob/main/README.md\nhttps://github.com/oneal2000/JuDGE/blob/main/README.md",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D040",
+    "group": "05 刑事定罪、量刑与多被告",
+    "practice_question": "有无给定法条文本时，刑期预测条件有何不同？",
+    "input": "事实叙述、要素与法条资料",
+    "output": "逐主体标签、刑种刑期与理由",
+    "benchmark_ids": [
+      "CN06",
+      "CN07",
+      "CN10",
+      "CN12"
+    ],
+    "source_ids": [
+      "S08",
+      "S09",
+      "S12",
+      "S15"
+    ],
+    "source_urls": "https://github.com/china-ai-law-challenge/CAIL2018/blob/master/README.md\nhttps://github.com/littlebowlnju/CMDL/blob/main/README.md\nhttps://github.com/THUlawtech/LEEC/blob/main/README.md\nhttps://github.com/oneal2000/JuDGE/blob/main/README.md",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D041",
+    "group": "05 刑事定罪、量刑与多被告",
+    "practice_question": "多被告罪名与刑期是否分别对应正确主体？",
+    "input": "事实叙述、要素与法条资料",
+    "output": "逐主体标签、刑种刑期与理由",
+    "benchmark_ids": [
+      "CN06",
+      "CN07",
+      "CN10",
+      "CN12"
+    ],
+    "source_ids": [
+      "S08",
+      "S09",
+      "S12",
+      "S15"
+    ],
+    "source_urls": "https://github.com/china-ai-law-challenge/CAIL2018/blob/master/README.md\nhttps://github.com/littlebowlnju/CMDL/blob/main/README.md\nhttps://github.com/THUlawtech/LEEC/blob/main/README.md\nhttps://github.com/oneal2000/JuDGE/blob/main/README.md",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D042",
+    "group": "05 刑事定罪、量刑与多被告",
+    "practice_question": "案件级结果是否全部一致，而非平均分掩盖一个被告错配？",
+    "input": "事实叙述、要素与法条资料",
+    "output": "逐主体标签、刑种刑期与理由",
+    "benchmark_ids": [
+      "CN06",
+      "CN07",
+      "CN10",
+      "CN12"
+    ],
+    "source_ids": [
+      "S08",
+      "S09",
+      "S12",
+      "S15"
+    ],
+    "source_urls": "https://github.com/china-ai-law-challenge/CAIL2018/blob/master/README.md\nhttps://github.com/littlebowlnju/CMDL/blob/main/README.md\nhttps://github.com/THUlawtech/LEEC/blob/main/README.md\nhttps://github.com/oneal2000/JuDGE/blob/main/README.md",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D043",
+    "group": "05 刑事定罪、量刑与多被告",
+    "practice_question": "裁判文书中的刑期、罚金与裁判主文是否一致？",
+    "input": "事实叙述、要素与法条资料",
+    "output": "逐主体标签、刑种刑期与理由",
+    "benchmark_ids": [
+      "CN06",
+      "CN07",
+      "CN10",
+      "CN12"
+    ],
+    "source_ids": [
+      "S08",
+      "S09",
+      "S12",
+      "S15"
+    ],
+    "source_urls": "https://github.com/china-ai-law-challenge/CAIL2018/blob/master/README.md\nhttps://github.com/littlebowlnju/CMDL/blob/main/README.md\nhttps://github.com/THUlawtech/LEEC/blob/main/README.md\nhttps://github.com/oneal2000/JuDGE/blob/main/README.md",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D044",
+    "group": "05 刑事定罪、量刑与多被告",
+    "practice_question": "定罪所用法条、理由和结论是否前后一致？",
+    "input": "事实叙述、要素与法条资料",
+    "output": "逐主体标签、刑种刑期与理由",
+    "benchmark_ids": [
+      "CN06",
+      "CN07",
+      "CN10",
+      "CN12"
+    ],
+    "source_ids": [
+      "S08",
+      "S09",
+      "S12",
+      "S15"
+    ],
+    "source_urls": "https://github.com/china-ai-law-challenge/CAIL2018/blob/master/README.md\nhttps://github.com/littlebowlnju/CMDL/blob/main/README.md\nhttps://github.com/THUlawtech/LEEC/blob/main/README.md\nhttps://github.com/oneal2000/JuDGE/blob/main/README.md",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D045",
+    "group": "05 刑事定罪、量刑与多被告",
+    "practice_question": "犯罪金额需要计入哪些项目，能否正确归属后再相加？",
+    "input": "事实叙述、要素与法条资料",
+    "output": "逐主体标签、刑种刑期与理由",
+    "benchmark_ids": [
+      "CN01"
+    ],
+    "source_ids": [
+      "S01"
+    ],
+    "source_urls": "https://github.com/open-compass/LawBench/blob/main/README.md",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D046",
+    "group": "05 刑事定罪、量刑与多被告",
+    "practice_question": "传闻证据规则问题是否满足其具体要件和例外？",
+    "input": "事实叙述、要素与法条资料",
+    "output": "逐主体标签、刑种刑期与理由",
+    "benchmark_ids": [
+      "US03"
+    ],
+    "source_ids": [
+      "S26"
+    ],
+    "source_urls": "https://hazyresearch.stanford.edu/legalbench/tasks/",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D047",
+    "group": "06 借贷、担保与共同债务",
+    "practice_question": "借款是否实际交付，是否已经清偿？",
+    "input": "借条、交易记录、公司及婚姻关系记载",
+    "output": "要素答案、担保/债务关系与金额条件",
+    "benchmark_ids": [
+      "CN11"
+    ],
+    "source_ids": [
+      "S14"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D048",
+    "group": "06 借贷、担保与共同债务",
+    "practice_question": "还款用于本金还是利息，能否识别抵充对象？",
+    "input": "借条、交易记录、公司及婚姻关系记载",
+    "output": "要素答案、担保/债务关系与金额条件",
+    "benchmark_ids": [
+      "CN11"
+    ],
+    "source_ids": [
+      "S14"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D049",
+    "group": "06 借贷、担保与共同债务",
+    "practice_question": "借期利息、逾期利率、违约金各有什么约定？",
+    "input": "借条、交易记录、公司及婚姻关系记载",
+    "output": "要素答案、担保/债务关系与金额条件",
+    "benchmark_ids": [
+      "CN11"
+    ],
+    "source_ids": [
+      "S14"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D050",
+    "group": "06 借贷、担保与共同债务",
+    "practice_question": "是否存在保证或物保，主体、登记、交付是否清楚？",
+    "input": "借条、交易记录、公司及婚姻关系记载",
+    "output": "要素答案、担保/债务关系与金额条件",
+    "benchmark_ids": [
+      "CN11"
+    ],
+    "source_ids": [
+      "S14"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D051",
+    "group": "06 借贷、担保与共同债务",
+    "practice_question": "公司担保是否经过内部决议，是否涉及分支机构或对外担保？",
+    "input": "借条、交易记录、公司及婚姻关系记载",
+    "output": "要素答案、担保/债务关系与金额条件",
+    "benchmark_ids": [
+      "CN11"
+    ],
+    "source_ids": [
+      "S14"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D052",
+    "group": "06 借贷、担保与共同债务",
+    "practice_question": "法定代表人以自己名义签约时责任主体如何标注？",
+    "input": "借条、交易记录、公司及婚姻关系记载",
+    "output": "要素答案、担保/债务关系与金额条件",
+    "benchmark_ids": [
+      "CN11"
+    ],
+    "source_ids": [
+      "S14"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D053",
+    "group": "06 借贷、担保与共同债务",
+    "practice_question": "配偶是否签字、是否共同举债及用于共同生活/经营？",
+    "input": "借条、交易记录、公司及婚姻关系记载",
+    "output": "要素答案、担保/债务关系与金额条件",
+    "benchmark_ids": [
+      "CN11"
+    ],
+    "source_ids": [
+      "S14"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D054",
+    "group": "06 借贷、担保与共同债务",
+    "practice_question": "主张公司人格混同或连带责任时，哪些事实材料支持？",
+    "input": "借条、交易记录、公司及婚姻关系记载",
+    "output": "要素答案、担保/债务关系与金额条件",
+    "benchmark_ids": [
+      "CN11"
+    ],
+    "source_ids": [
+      "S14"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D055",
+    "group": "06 借贷、担保与共同债务",
+    "practice_question": "资金是否来自金融机构贷款，现金出借能力和惯例有无材料？",
+    "input": "借条、交易记录、公司及婚姻关系记载",
+    "output": "要素答案、担保/债务关系与金额条件",
+    "benchmark_ids": [
+      "CN11"
+    ],
+    "source_ids": [
+      "S14"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D056",
+    "group": "06 借贷、担保与共同债务",
+    "practice_question": "律师费、诉讼费等承担约定和请求是否被明确区分？",
+    "input": "借条、交易记录、公司及婚姻关系记载",
+    "output": "要素答案、担保/债务关系与金额条件",
+    "benchmark_ids": [
+      "CN11"
+    ],
+    "source_ids": [
+      "S14"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json",
+    "owner": "Harness＋JC程序层",
+    "current_basis": "R：V2.1共同责任链/全领域任务；本轮无远端闭合证据",
+    "guarantee_ids": [
+      "G03",
+      "G05"
+    ],
+    "missing_interface": "I04",
+    "acceptance_focus": "不知道不自动当不存在；模板字段不自动成为法定裁判",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D057",
+    "group": "07 侵权责任与损害",
+    "practice_question": "发生的纠纷属于哪一种侵权类型？",
+    "input": "侵权事实、请求、损失记录",
+    "output": "责任分析、比例、方式与金额",
+    "benchmark_ids": [
+      "CN15"
+    ],
+    "source_ids": [
+      "S18"
+    ],
+    "source_urls": "https://github.com/thunlp/LexChain/blob/main/README.md",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D058",
+    "group": "07 侵权责任与损害",
+    "practice_question": "不同当事人的行为、损害、因果联系与过错如何组织？",
+    "input": "侵权事实、请求、损失记录",
+    "output": "责任分析、比例、方式与金额",
+    "benchmark_ids": [
+      "CN15"
+    ],
+    "source_ids": [
+      "S18"
+    ],
+    "source_urls": "https://github.com/thunlp/LexChain/blob/main/README.md",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D059",
+    "group": "07 侵权责任与损害",
+    "practice_question": "责任是否成立，与责任比例大小是否分开？",
+    "input": "侵权事实、请求、损失记录",
+    "output": "责任分析、比例、方式与金额",
+    "benchmark_ids": [
+      "CN15"
+    ],
+    "source_ids": [
+      "S18"
+    ],
+    "source_urls": "https://github.com/thunlp/LexChain/blob/main/README.md",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D060",
+    "group": "07 侵权责任与损害",
+    "practice_question": "不同主体以何种责任方式承担，而不是只分百分比？",
+    "input": "侵权事实、请求、损失记录",
+    "output": "责任分析、比例、方式与金额",
+    "benchmark_ids": [
+      "CN15"
+    ],
+    "source_ids": [
+      "S18"
+    ],
+    "source_urls": "https://github.com/thunlp/LexChain/blob/main/README.md",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D061",
+    "group": "07 侵权责任与损害",
+    "practice_question": "总损失由哪些项目构成？",
+    "input": "侵权事实、请求、损失记录",
+    "output": "责任分析、比例、方式与金额",
+    "benchmark_ids": [
+      "CN15"
+    ],
+    "source_ids": [
+      "S18"
+    ],
+    "source_urls": "https://github.com/thunlp/LexChain/blob/main/README.md",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D062",
+    "group": "07 侵权责任与损害",
+    "practice_question": "按责任比例、责任方式计算每方给付是否一致？",
+    "input": "侵权事实、请求、损失记录",
+    "output": "责任分析、比例、方式与金额",
+    "benchmark_ids": [
+      "CN15"
+    ],
+    "source_ids": [
+      "S18"
+    ],
+    "source_urls": "https://github.com/thunlp/LexChain/blob/main/README.md",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D063",
+    "group": "07 侵权责任与损害",
+    "practice_question": "金钱赔偿之外是否还有其他承担责任方式？",
+    "input": "侵权事实、请求、损失记录",
+    "output": "责任分析、比例、方式与金额",
+    "benchmark_ids": [
+      "CN15"
+    ],
+    "source_ids": [
+      "S18"
+    ],
+    "source_urls": "https://github.com/thunlp/LexChain/blob/main/README.md",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D064",
+    "group": "07 侵权责任与损害",
+    "practice_question": "最终裁判总结是否保留责任分析、比例和金额的条件？",
+    "input": "侵权事实、请求、损失记录",
+    "output": "责任分析、比例、方式与金额",
+    "benchmark_ids": [
+      "CN15"
+    ],
+    "source_ids": [
+      "S18"
+    ],
+    "source_urls": "https://github.com/thunlp/LexChain/blob/main/README.md",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D065",
+    "group": "08 合同条款与权利义务审核",
+    "practice_question": "合同主体、签订、生效、到期和续展条件是什么？",
+    "input": "完整协议、附件、定义与修订",
+    "output": "条款字段、引用及条件法律效果",
+    "benchmark_ids": [
+      "US02",
+      "US04",
+      "US05"
+    ],
+    "source_ids": [
+      "S27",
+      "S30",
+      "S25"
+    ],
+    "source_urls": "https://github.com/The-Atticus-Project/cuad/blob/main/category_descriptions.csv\nhttps://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D066",
+    "group": "08 合同条款与权利义务审核",
+    "practice_question": "准据法条款指向哪个法域，不能仅凭当事人所在地推断？",
+    "input": "完整协议、附件、定义与修订",
+    "output": "条款字段、引用及条件法律效果",
+    "benchmark_ids": [
+      "US02",
+      "US04",
+      "US05"
+    ],
+    "source_ids": [
+      "S27",
+      "S30",
+      "S25"
+    ],
+    "source_urls": "https://github.com/The-Atticus-Project/cuad/blob/main/category_descriptions.csv\nhttps://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D067",
+    "group": "08 合同条款与权利义务审核",
+    "practice_question": "最惠待遇、排他、竞业和不招揽义务如何约束各方？",
+    "input": "完整协议、附件、定义与修订",
+    "output": "条款字段、引用及条件法律效果",
+    "benchmark_ids": [
+      "US02",
+      "US04",
+      "US05"
+    ],
+    "source_ids": [
+      "S27",
+      "S30",
+      "S25"
+    ],
+    "source_urls": "https://github.com/The-Atticus-Project/cuad/blob/main/category_descriptions.csv\nhttps://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D068",
+    "group": "08 合同条款与权利义务审核",
+    "practice_question": "限制的例外或保留条款是否改变主条款效果？",
+    "input": "完整协议、附件、定义与修订",
+    "output": "条款字段、引用及条件法律效果",
+    "benchmark_ids": [
+      "US02",
+      "US04",
+      "US05"
+    ],
+    "source_ids": [
+      "S27",
+      "S30",
+      "S25"
+    ],
+    "source_urls": "https://github.com/The-Atticus-Project/cuad/blob/main/category_descriptions.csv\nhttps://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D069",
+    "group": "08 合同条款与权利义务审核",
+    "practice_question": "无因终止、通知期与停止续展之间有何差异？",
+    "input": "完整协议、附件、定义与修订",
+    "output": "条款字段、引用及条件法律效果",
+    "benchmark_ids": [
+      "US02",
+      "US04",
+      "US05"
+    ],
+    "source_ids": [
+      "S27",
+      "S30",
+      "S25"
+    ],
+    "source_urls": "https://github.com/The-Atticus-Project/cuad/blob/main/category_descriptions.csv\nhttps://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D070",
+    "group": "08 合同条款与权利义务审核",
+    "practice_question": "控制权变更与转让是否同义，触发同意、通知还是终止？",
+    "input": "完整协议、附件、定义与修订",
+    "output": "条款字段、引用及条件法律效果",
+    "benchmark_ids": [
+      "US02",
+      "US04",
+      "US05"
+    ],
+    "source_ids": [
+      "S27",
+      "S30",
+      "S25"
+    ],
+    "source_urls": "https://github.com/The-Atticus-Project/cuad/blob/main/category_descriptions.csv\nhttps://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D071",
+    "group": "08 合同条款与权利义务审核",
+    "practice_question": "许可从排他转为非排他时，是否误认整个许可终止？",
+    "input": "完整协议、附件、定义与修订",
+    "output": "条款字段、引用及条件法律效果",
+    "benchmark_ids": [
+      "US02",
+      "US04",
+      "US05"
+    ],
+    "source_ids": [
+      "S27",
+      "S30",
+      "S25"
+    ],
+    "source_urls": "https://github.com/The-Atticus-Project/cuad/blob/main/category_descriptions.csv\nhttps://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D072",
+    "group": "08 合同条款与权利义务审核",
+    "practice_question": "知识产权归属、共有及关联方许可范围是什么？",
+    "input": "完整协议、附件、定义与修订",
+    "output": "条款字段、引用及条件法律效果",
+    "benchmark_ids": [
+      "US02",
+      "US04",
+      "US05"
+    ],
+    "source_ids": [
+      "S27",
+      "S30",
+      "S25"
+    ],
+    "source_urls": "https://github.com/The-Atticus-Project/cuad/blob/main/category_descriptions.csv\nhttps://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D073",
+    "group": "08 合同条款与权利义务审核",
+    "practice_question": "永久、不可撤销、不可转让与用量限制许可是否区分？",
+    "input": "完整协议、附件、定义与修订",
+    "output": "条款字段、引用及条件法律效果",
+    "benchmark_ids": [
+      "US02",
+      "US04",
+      "US05"
+    ],
+    "source_ids": [
+      "S27",
+      "S30",
+      "S25"
+    ],
+    "source_urls": "https://github.com/The-Atticus-Project/cuad/blob/main/category_descriptions.csv\nhttps://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D074",
+    "group": "08 合同条款与权利义务审核",
+    "practice_question": "最低采购、价格限制、收益分成与用量费用是什么？",
+    "input": "完整协议、附件、定义与修订",
+    "output": "条款字段、引用及条件法律效果",
+    "benchmark_ids": [
+      "US02",
+      "US04",
+      "US05"
+    ],
+    "source_ids": [
+      "S27",
+      "S30",
+      "S25"
+    ],
+    "source_urls": "https://github.com/The-Atticus-Project/cuad/blob/main/category_descriptions.csv\nhttps://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D075",
+    "group": "08 合同条款与权利义务审核",
+    "practice_question": "责任上限、无上限例外、约定赔偿和保险怎样衔接？",
+    "input": "完整协议、附件、定义与修订",
+    "output": "条款字段、引用及条件法律效果",
+    "benchmark_ids": [
+      "US02",
+      "US04",
+      "US05"
+    ],
+    "source_ids": [
+      "S27",
+      "S30",
+      "S25"
+    ],
+    "source_urls": "https://github.com/The-Atticus-Project/cuad/blob/main/category_descriptions.csv\nhttps://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D076",
+    "group": "08 合同条款与权利义务审核",
+    "practice_question": "终止后服务、源代码托管、审计权及第三方受益如何存续？",
+    "input": "完整协议、附件、定义与修订",
+    "output": "条款字段、引用及条件法律效果",
+    "benchmark_ids": [
+      "US02",
+      "US04",
+      "US05"
+    ],
+    "source_ids": [
+      "S27",
+      "S30",
+      "S25"
+    ],
+    "source_urls": "https://github.com/The-Atticus-Project/cuad/blob/main/category_descriptions.csv\nhttps://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D077",
+    "group": "09 并购与交割条件",
+    "practice_question": "交割时陈述保证的准确性标准及bring-down时点是什么？",
+    "input": "并购协议、资料室、股权及管理层安排",
+    "output": "交易要点、条件依赖、风险与处理表",
+    "benchmark_ids": [
+      "US02",
+      "US05"
+    ],
+    "source_ids": [
+      "S30",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D078",
+    "group": "09 并购与交割条件",
+    "practice_question": "MAE定义、除外事项与不成比例影响修饰怎样组合？",
+    "input": "并购协议、资料室、股权及管理层安排",
+    "output": "交易要点、条件依赖、风险与处理表",
+    "benchmark_ids": [
+      "US02",
+      "US05"
+    ],
+    "source_ids": [
+      "S30",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D079",
+    "group": "09 并购与交割条件",
+    "practice_question": "知识标准是实际知道、推定知道还是调查后知道？",
+    "input": "并购协议、资料室、股权及管理层安排",
+    "output": "交易要点、条件依赖、风险与处理表",
+    "benchmark_ids": [
+      "US02",
+      "US05"
+    ],
+    "source_ids": [
+      "S30",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D080",
+    "group": "09 并购与交割条件",
+    "practice_question": "no-shop与受托义务例外在何种条件下允许接触其他报价？",
+    "input": "并购协议、资料室、股权及管理层安排",
+    "output": "交易要点、条件依赖、风险与处理表",
+    "benchmark_ids": [
+      "US02",
+      "US05"
+    ],
+    "source_ids": [
+      "S30",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D081",
+    "group": "09 并购与交割条件",
+    "practice_question": "变更推荐、终止权及匹配期分别在何时触发？",
+    "input": "并购协议、资料室、股权及管理层安排",
+    "output": "交易要点、条件依赖、风险与处理表",
+    "benchmark_ids": [
+      "US02",
+      "US05"
+    ],
+    "source_ids": [
+      "S30",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D082",
+    "group": "09 并购与交割条件",
+    "practice_question": "Superior Offer和Intervening Event的定义及时间限制是什么？",
+    "input": "并购协议、资料室、股权及管理层安排",
+    "output": "交易要点、条件依赖、风险与处理表",
+    "benchmark_ids": [
+      "US02",
+      "US05"
+    ],
+    "source_ids": [
+      "S30",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D083",
+    "group": "09 并购与交割条件",
+    "practice_question": "通常经营承诺、买方同意和禁止性中间承诺如何约束行为？",
+    "input": "并购协议、资料室、股权及管理层安排",
+    "output": "交易要点、条件依赖、风险与处理表",
+    "benchmark_ids": [
+      "US02",
+      "US05"
+    ],
+    "source_ids": [
+      "S30",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D084",
+    "group": "09 并购与交割条件",
+    "practice_question": "特定履行等救济的条件是否与交割及终止条款一致？",
+    "input": "并购协议、资料室、股权及管理层安排",
+    "output": "交易要点、条件依赖、风险与处理表",
+    "benchmark_ids": [
+      "US02",
+      "US05"
+    ],
+    "source_ids": [
+      "S30",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D085",
+    "group": "09 并购与交割条件",
+    "practice_question": "期权、RSU、离职员工权益与双重触发补偿如何处理？",
+    "input": "并购协议、资料室、股权及管理层安排",
+    "output": "交易要点、条件依赖、风险与处理表",
+    "benchmark_ids": [
+      "US02",
+      "US05"
+    ],
+    "source_ids": [
+      "S30",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D086",
+    "group": "09 并购与交割条件",
+    "practice_question": "交易结构、披露附表与尽调发现之间是否矛盾？",
+    "input": "并购协议、资料室、股权及管理层安排",
+    "output": "交易要点、条件依赖、风险与处理表",
+    "benchmark_ids": [
+      "US02",
+      "US05"
+    ],
+    "source_ids": [
+      "S30",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://arxiv.org/html/2301.00876\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "JC＋关系抽象层",
+    "current_basis": "E：投影原像、约化积；R：统一身份和符号表示",
+    "guarantee_ids": [
+      "G03",
+      "G04",
+      "G05"
+    ],
+    "missing_interface": "I07",
+    "acceptance_focus": "端点不得各自选互不相容假设；部分扫描区间不是全局外界",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D087",
+    "group": "10 企业调查、诉讼与执行数据",
+    "practice_question": "公司登记状态、注册资本、法定代表人与上市信息是否对应同一主体？",
+    "input": "企业、股权、裁判和执行数据接口",
+    "output": "可回溯查询、筛选、汇总及调查报告",
+    "benchmark_ids": [
+      "CN04"
+    ],
+    "source_ids": [
+      "S05",
+      "S06"
+    ],
+    "source_urls": "https://github.com/CSHaitao/LegalAgentBench/blob/main/README.md\nhttps://github.com/CSHaitao/LegalAgentBench/blob/main/src/schema.py",
+    "owner": "Harness／tool adapters",
+    "current_basis": "R：工作流架构；外部数据/工具可用性与任务覆盖另验",
+    "guarantee_ids": [
+      "G02",
+      "G08"
+    ],
+    "missing_interface": "I09",
+    "acceptance_focus": "服务错误≠无记录；schema字段、主体身份、筛选条件、执行次数可重放",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D088",
+    "group": "10 企业调查、诉讼与执行数据",
+    "practice_question": "子公司、参股比例与投资金额如何穿透关联？",
+    "input": "企业、股权、裁判和执行数据接口",
+    "output": "可回溯查询、筛选、汇总及调查报告",
+    "benchmark_ids": [
+      "CN04"
+    ],
+    "source_ids": [
+      "S05",
+      "S06"
+    ],
+    "source_urls": "https://github.com/CSHaitao/LegalAgentBench/blob/main/README.md\nhttps://github.com/CSHaitao/LegalAgentBench/blob/main/src/schema.py",
+    "owner": "Harness／tool adapters",
+    "current_basis": "R：工作流架构；外部数据/工具可用性与任务覆盖另验",
+    "guarantee_ids": [
+      "G02",
+      "G08"
+    ],
+    "missing_interface": "I09",
+    "acceptance_focus": "服务错误≠无记录；schema字段、主体身份、筛选条件、执行次数可重放",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D089",
+    "group": "10 企业调查、诉讼与执行数据",
+    "practice_question": "企业涉诉案件的原被告、案由、法院、时间和金额分别是什么？",
+    "input": "企业、股权、裁判和执行数据接口",
+    "output": "可回溯查询、筛选、汇总及调查报告",
+    "benchmark_ids": [
+      "CN04"
+    ],
+    "source_ids": [
+      "S05",
+      "S06"
+    ],
+    "source_urls": "https://github.com/CSHaitao/LegalAgentBench/blob/main/README.md\nhttps://github.com/CSHaitao/LegalAgentBench/blob/main/src/schema.py",
+    "owner": "Harness／tool adapters",
+    "current_basis": "R：工作流架构；外部数据/工具可用性与任务覆盖另验",
+    "guarantee_ids": [
+      "G02",
+      "G08"
+    ],
+    "missing_interface": "I09",
+    "acceptance_focus": "服务错误≠无记录；schema字段、主体身份、筛选条件、执行次数可重放",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D090",
+    "group": "10 企业调查、诉讼与执行数据",
+    "practice_question": "公司是否有限高、失信或终本记录，各自是什么意思？",
+    "input": "企业、股权、裁判和执行数据接口",
+    "output": "可回溯查询、筛选、汇总及调查报告",
+    "benchmark_ids": [
+      "CN04"
+    ],
+    "source_ids": [
+      "S05",
+      "S06"
+    ],
+    "source_urls": "https://github.com/CSHaitao/LegalAgentBench/blob/main/README.md\nhttps://github.com/CSHaitao/LegalAgentBench/blob/main/src/schema.py",
+    "owner": "Harness／tool adapters",
+    "current_basis": "R：工作流架构；外部数据/工具可用性与任务覆盖另验",
+    "guarantee_ids": [
+      "G02",
+      "G08"
+    ],
+    "missing_interface": "I09",
+    "acceptance_focus": "服务错误≠无记录；schema字段、主体身份、筛选条件、执行次数可重放",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D091",
+    "group": "10 企业调查、诉讼与执行数据",
+    "practice_question": "未履行金额、执行标的与原涉案金额能否区别汇总？",
+    "input": "企业、股权、裁判和执行数据接口",
+    "output": "可回溯查询、筛选、汇总及调查报告",
+    "benchmark_ids": [
+      "CN04"
+    ],
+    "source_ids": [
+      "S05",
+      "S06"
+    ],
+    "source_urls": "https://github.com/CSHaitao/LegalAgentBench/blob/main/README.md\nhttps://github.com/CSHaitao/LegalAgentBench/blob/main/src/schema.py",
+    "owner": "Harness／tool adapters",
+    "current_basis": "R：工作流架构；外部数据/工具可用性与任务覆盖另验",
+    "guarantee_ids": [
+      "G02",
+      "G08"
+    ],
+    "missing_interface": "I09",
+    "acceptance_focus": "服务错误≠无记录；schema字段、主体身份、筛选条件、执行次数可重放",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D092",
+    "group": "10 企业调查、诉讼与执行数据",
+    "practice_question": "行政处罚的事实、机关、时间和金额能否与企业关联？",
+    "input": "企业、股权、裁判和执行数据接口",
+    "output": "可回溯查询、筛选、汇总及调查报告",
+    "benchmark_ids": [
+      "CN04"
+    ],
+    "source_ids": [
+      "S05",
+      "S06"
+    ],
+    "source_urls": "https://github.com/CSHaitao/LegalAgentBench/blob/main/README.md\nhttps://github.com/CSHaitao/LegalAgentBench/blob/main/src/schema.py",
+    "owner": "Harness／tool adapters",
+    "current_basis": "R：工作流架构；外部数据/工具可用性与任务覆盖另验",
+    "guarantee_ids": [
+      "G02",
+      "G08"
+    ],
+    "missing_interface": "I09",
+    "acceptance_focus": "服务错误≠无记录；schema字段、主体身份、筛选条件、执行次数可重放",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D093",
+    "group": "10 企业调查、诉讼与执行数据",
+    "practice_question": "承办法院、代字、行政区划和联系信息如何多跳查询？",
+    "input": "企业、股权、裁判和执行数据接口",
+    "output": "可回溯查询、筛选、汇总及调查报告",
+    "benchmark_ids": [
+      "CN04"
+    ],
+    "source_ids": [
+      "S05",
+      "S06"
+    ],
+    "source_urls": "https://github.com/CSHaitao/LegalAgentBench/blob/main/README.md\nhttps://github.com/CSHaitao/LegalAgentBench/blob/main/src/schema.py",
+    "owner": "Harness／tool adapters",
+    "current_basis": "R：工作流架构；外部数据/工具可用性与任务覆盖另验",
+    "guarantee_ids": [
+      "G02",
+      "G08"
+    ],
+    "missing_interface": "I09",
+    "acceptance_focus": "服务错误≠无记录；schema字段、主体身份、筛选条件、执行次数可重放",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D094",
+    "group": "10 企业调查、诉讼与执行数据",
+    "practice_question": "律所服务记录与案件代理信息如何查询而不虚构关联？",
+    "input": "企业、股权、裁判和执行数据接口",
+    "output": "可回溯查询、筛选、汇总及调查报告",
+    "benchmark_ids": [
+      "CN04"
+    ],
+    "source_ids": [
+      "S05",
+      "S06"
+    ],
+    "source_urls": "https://github.com/CSHaitao/LegalAgentBench/blob/main/README.md\nhttps://github.com/CSHaitao/LegalAgentBench/blob/main/src/schema.py",
+    "owner": "Harness／tool adapters",
+    "current_basis": "R：工作流架构；外部数据/工具可用性与任务覆盖另验",
+    "guarantee_ids": [
+      "G02",
+      "G08"
+    ],
+    "missing_interface": "I09",
+    "acceptance_focus": "服务错误≠无记录；schema字段、主体身份、筛选条件、执行次数可重放",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D095",
+    "group": "11 金额、时间和经济敞口",
+    "practice_question": "本金、利息、违约金与费用应分别怎样计算？",
+    "input": "来源数值、利率、日期、合同触发条件",
+    "output": "精确值/分段计划/带条件敞口",
+    "benchmark_ids": [
+      "CN11",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S14",
+      "S20",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "LSC／JC数量层",
+    "current_basis": "R：精确表达/区间与计算参考；实务口径逐规则绑定",
+    "guarantee_ids": [
+      "G04"
+    ],
+    "missing_interface": "I06",
+    "acceptance_focus": "金额单位与责任性质、计息分段、日期规则、四舍五入及阈值不混用",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D096",
+    "group": "11 金额、时间和经济敞口",
+    "practice_question": "利率倍数问题对应的基准与适用时点是否明确？",
+    "input": "来源数值、利率、日期、合同触发条件",
+    "output": "精确值/分段计划/带条件敞口",
+    "benchmark_ids": [
+      "CN11",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S14",
+      "S20",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "LSC／JC数量层",
+    "current_basis": "R：精确表达/区间与计算参考；实务口径逐规则绑定",
+    "guarantee_ids": [
+      "G04"
+    ],
+    "missing_interface": "I06",
+    "acceptance_focus": "金额单位与责任性质、计息分段、日期规则、四舍五入及阈值不混用",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D097",
+    "group": "11 金额、时间和经济敞口",
+    "practice_question": "现金加股票对价、换股比例与期权行权价如何换算？",
+    "input": "来源数值、利率、日期、合同触发条件",
+    "output": "精确值/分段计划/带条件敞口",
+    "benchmark_ids": [
+      "CN11",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S14",
+      "S20",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "LSC／JC数量层",
+    "current_basis": "R：精确表达/区间与计算参考；实务口径逐规则绑定",
+    "guarantee_ids": [
+      "G04"
+    ],
+    "missing_interface": "I06",
+    "acceptance_focus": "金额单位与责任性质、计息分段、日期规则、四舍五入及阈值不混用",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D098",
+    "group": "11 金额、时间和经济敞口",
+    "practice_question": "提前清偿本金与make-whole溢价是否分别计算？",
+    "input": "来源数值、利率、日期、合同触发条件",
+    "output": "精确值/分段计划/带条件敞口",
+    "benchmark_ids": [
+      "CN11",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S14",
+      "S20",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "LSC／JC数量层",
+    "current_basis": "R：精确表达/区间与计算参考；实务口径逐规则绑定",
+    "guarantee_ids": [
+      "G04"
+    ],
+    "missing_interface": "I06",
+    "acceptance_focus": "金额单位与责任性质、计息分段、日期规则、四舍五入及阈值不混用",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D099",
+    "group": "11 金额、时间和经济敞口",
+    "practice_question": "30/60/90/120/180天等通知、补正和行使期怎样区分？",
+    "input": "来源数值、利率、日期、合同触发条件",
+    "output": "精确值/分段计划/带条件敞口",
+    "benchmark_ids": [
+      "CN11",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S14",
+      "S20",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "LSC／JC数量层",
+    "current_basis": "R：精确表达/区间与计算参考；实务口径逐规则绑定",
+    "guarantee_ids": [
+      "G04"
+    ],
+    "missing_interface": "I06",
+    "acceptance_focus": "金额单位与责任性质、计息分段、日期规则、四舍五入及阈值不混用",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D100",
+    "group": "11 金额、时间和经济敞口",
+    "practice_question": "相对交割日倒排通知、同意和交付期限是否一致？",
+    "input": "来源数值、利率、日期、合同触发条件",
+    "output": "精确值/分段计划/带条件敞口",
+    "benchmark_ids": [
+      "CN11",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S14",
+      "S20",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "LSC／JC数量层",
+    "current_basis": "R：精确表达/区间与计算参考；实务口径逐规则绑定",
+    "guarantee_ids": [
+      "G04"
+    ],
+    "missing_interface": "I06",
+    "acceptance_focus": "金额单位与责任性质、计息分段、日期规则、四舍五入及阈值不混用",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D101",
+    "group": "11 金额、时间和经济敞口",
+    "practice_question": "债务偿还、收入风险、无偿服务敞口与离职补偿是否错误混加？",
+    "input": "来源数值、利率、日期、合同触发条件",
+    "output": "精确值/分段计划/带条件敞口",
+    "benchmark_ids": [
+      "CN11",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S14",
+      "S20",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "LSC／JC数量层",
+    "current_basis": "R：精确表达/区间与计算参考；实务口径逐规则绑定",
+    "guarantee_ids": [
+      "G04"
+    ],
+    "missing_interface": "I06",
+    "acceptance_focus": "金额单位与责任性质、计息分段、日期规则、四舍五入及阈值不混用",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D102",
+    "group": "11 金额、时间和经济敞口",
+    "practice_question": "终止权行使后服务义务和后续付款是否继续存在？",
+    "input": "来源数值、利率、日期、合同触发条件",
+    "output": "精确值/分段计划/带条件敞口",
+    "benchmark_ids": [
+      "CN11",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S14",
+      "S20",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://github.com/BulouLiu/LeDQA/blob/main/QuestionSchema.json\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "LSC／JC数量层",
+    "current_basis": "R：精确表达/区间与计算参考；实务口径逐规则绑定",
+    "guarantee_ids": [
+      "G04"
+    ],
+    "missing_interface": "I06",
+    "acceptance_focus": "金额单位与责任性质、计息分段、日期规则、四舍五入及阈值不混用",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D103",
+    "group": "11 金额、时间和经济敞口",
+    "practice_question": "目标营运资金与最终营运资金、收益质量核对怎样支撑价格调整？",
+    "input": "来源数值、利率、日期、合同触发条件",
+    "output": "精确值/分段计划/带条件敞口",
+    "benchmark_ids": [
+      "US02"
+    ],
+    "source_ids": [
+      "S34"
+    ],
+    "source_urls": "https://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "LSC／JC数量层",
+    "current_basis": "R：精确表达/区间与计算参考；实务口径逐规则绑定",
+    "guarantee_ids": [
+      "G04"
+    ],
+    "missing_interface": "I06",
+    "acceptance_focus": "金额单位与责任性质、计息分段、日期规则、四舍五入及阈值不混用",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D104",
+    "group": "12 起草、修订与交付",
+    "practice_question": "能否起草回应对方主张的答辩，而不是重复案情？",
+    "input": "已分析案件/合同、模板及修改意见",
+    "output": "可读正文、红线、结构表与实际文件",
+    "benchmark_ids": [
+      "CN13",
+      "CN14",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S16",
+      "S17",
+      "S20",
+      "S34"
+    ],
+    "source_urls": "https://github.com/CSHaitao/CaseGen/blob/main/README.md\nhttps://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "Harness文书链",
+    "current_basis": "当前JC明确不草拟文书；Harness产品链未由本次评测验收",
+    "guarantee_ids": [
+      "G08"
+    ],
+    "missing_interface": "I08",
+    "acceptance_focus": "修改后重抽取核对语义差量、无关条款、定义、交叉引用与金额一致",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D105",
+    "group": "12 起草、修订与交付",
+    "practice_question": "能否写出只依现有材料的事实段、理由段与裁判段？",
+    "input": "已分析案件/合同、模板及修改意见",
+    "output": "可读正文、红线、结构表与实际文件",
+    "benchmark_ids": [
+      "CN13",
+      "CN14",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S16",
+      "S17",
+      "S20",
+      "S34"
+    ],
+    "source_urls": "https://github.com/CSHaitao/CaseGen/blob/main/README.md\nhttps://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "Harness文书链",
+    "current_basis": "当前JC明确不草拟文书；Harness产品链未由本次评测验收",
+    "guarantee_ids": [
+      "G08"
+    ],
+    "missing_interface": "I08",
+    "acceptance_focus": "修改后重抽取核对语义差量、无关条款、定义、交叉引用与金额一致",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D106",
+    "group": "12 起草、修订与交付",
+    "practice_question": "原告诉讼请求列表是否完整保留各项给付与费用？",
+    "input": "已分析案件/合同、模板及修改意见",
+    "output": "可读正文、红线、结构表与实际文件",
+    "benchmark_ids": [
+      "CN13",
+      "CN14",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S16",
+      "S17",
+      "S20",
+      "S34"
+    ],
+    "source_urls": "https://github.com/CSHaitao/CaseGen/blob/main/README.md\nhttps://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "Harness文书链",
+    "current_basis": "当前JC明确不草拟文书；Harness产品链未由本次评测验收",
+    "guarantee_ids": [
+      "G08"
+    ],
+    "missing_interface": "I08",
+    "acceptance_focus": "修改后重抽取核对语义差量、无关条款、定义、交叉引用与金额一致",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D107",
+    "group": "12 起草、修订与交付",
+    "practice_question": "客户提示是否说明裁判或监管变化对业务的影响及不确定处？",
+    "input": "已分析案件/合同、模板及修改意见",
+    "output": "可读正文、红线、结构表与实际文件",
+    "benchmark_ids": [
+      "CN13",
+      "CN14",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S16",
+      "S17",
+      "S20",
+      "S34"
+    ],
+    "source_urls": "https://github.com/CSHaitao/CaseGen/blob/main/README.md\nhttps://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "Harness文书链",
+    "current_basis": "当前JC明确不草拟文书；Harness产品链未由本次评测验收",
+    "guarantee_ids": [
+      "G08"
+    ],
+    "missing_interface": "I08",
+    "acceptance_focus": "修改后重抽取核对语义差量、无关条款、定义、交叉引用与金额一致",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D108",
+    "group": "12 起草、修订与交付",
+    "practice_question": "律师备忘录是否兼顾结论、结构、法律依据和数值例子？",
+    "input": "已分析案件/合同、模板及修改意见",
+    "output": "可读正文、红线、结构表与实际文件",
+    "benchmark_ids": [
+      "CN13",
+      "CN14",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S16",
+      "S17",
+      "S20",
+      "S34"
+    ],
+    "source_urls": "https://github.com/CSHaitao/CaseGen/blob/main/README.md\nhttps://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "Harness文书链",
+    "current_basis": "当前JC明确不草拟文书；Harness产品链未由本次评测验收",
+    "guarantee_ids": [
+      "G08"
+    ],
+    "missing_interface": "I08",
+    "acceptance_focus": "修改后重抽取核对语义差量、无关条款、定义、交叉引用与金额一致",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D109",
+    "group": "12 起草、修订与交付",
+    "practice_question": "董事会决议是否含明确批准事项、理由与利益冲突保障？",
+    "input": "已分析案件/合同、模板及修改意见",
+    "output": "可读正文、红线、结构表与实际文件",
+    "benchmark_ids": [
+      "CN13",
+      "CN14",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S16",
+      "S17",
+      "S20",
+      "S34"
+    ],
+    "source_urls": "https://github.com/CSHaitao/CaseGen/blob/main/README.md\nhttps://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "Harness文书链",
+    "current_basis": "当前JC明确不草拟文书；Harness产品链未由本次评测验收",
+    "guarantee_ids": [
+      "G08"
+    ],
+    "missing_interface": "I08",
+    "acceptance_focus": "修改后重抽取核对语义差量、无关条款、定义、交叉引用与金额一致",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D110",
+    "group": "12 起草、修订与交付",
+    "practice_question": "合同或附属协议草稿是否遵循提供的先例和termsheet？",
+    "input": "已分析案件/合同、模板及修改意见",
+    "output": "可读正文、红线、结构表与实际文件",
+    "benchmark_ids": [
+      "CN13",
+      "CN14",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S16",
+      "S17",
+      "S20",
+      "S34"
+    ],
+    "source_urls": "https://github.com/CSHaitao/CaseGen/blob/main/README.md\nhttps://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "Harness文书链",
+    "current_basis": "当前JC明确不草拟文书；Harness产品链未由本次评测验收",
+    "guarantee_ids": [
+      "G08"
+    ],
+    "missing_interface": "I08",
+    "acceptance_focus": "修改后重抽取核对语义差量、无关条款、定义、交叉引用与金额一致",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D111",
+    "group": "12 起草、修订与交付",
+    "practice_question": "对方红线修改影响哪些权利、义务、风险与其他定义？",
+    "input": "已分析案件/合同、模板及修改意见",
+    "output": "可读正文、红线、结构表与实际文件",
+    "benchmark_ids": [
+      "CN13",
+      "CN14",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S16",
+      "S17",
+      "S20",
+      "S34"
+    ],
+    "source_urls": "https://github.com/CSHaitao/CaseGen/blob/main/README.md\nhttps://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "Harness文书链",
+    "current_basis": "当前JC明确不草拟文书；Harness产品链未由本次评测验收",
+    "guarantee_ids": [
+      "G08"
+    ],
+    "missing_interface": "I08",
+    "acceptance_focus": "修改后重抽取核对语义差量、无关条款、定义、交叉引用与金额一致",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D112",
+    "group": "12 起草、修订与交付",
+    "practice_question": "披露附表、并购协议、融资承诺与最终文档是否一致？",
+    "input": "已分析案件/合同、模板及修改意见",
+    "output": "可读正文、红线、结构表与实际文件",
+    "benchmark_ids": [
+      "CN13",
+      "CN14",
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S16",
+      "S17",
+      "S20",
+      "S34"
+    ],
+    "source_urls": "https://github.com/CSHaitao/CaseGen/blob/main/README.md\nhttps://github.com/JosieZhou00/ClaimGen-CN/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "Harness文书链",
+    "current_basis": "当前JC明确不草拟文书；Harness产品链未由本次评测验收",
+    "guarantee_ids": [
+      "G08"
+    ],
+    "missing_interface": "I08",
+    "acceptance_focus": "修改后重抽取核对语义差量、无关条款、定义、交叉引用与金额一致",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D113",
+    "group": "12 起草、修订与交付",
+    "practice_question": "法律术语翻译、文书错字与语言校对是否保持原意思？",
+    "input": "已分析案件/合同、模板及修改意见",
+    "output": "可读正文、红线、结构表与实际文件",
+    "benchmark_ids": [
+      "CN01",
+      "CN02"
+    ],
+    "source_ids": [
+      "S01",
+      "S03"
+    ],
+    "source_urls": "https://github.com/open-compass/LawBench/blob/main/README.md\nhttps://arxiv.org/html/2409.20288v1",
+    "owner": "Harness文书链",
+    "current_basis": "当前JC明确不草拟文书；Harness产品链未由本次评测验收",
+    "guarantee_ids": [
+      "G08"
+    ],
+    "missing_interface": "I08",
+    "acceptance_focus": "修改后重抽取核对语义差量、无关条款、定义、交叉引用与金额一致",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D114",
+    "group": "12 起草、修订与交付",
+    "practice_question": "摘要是否覆盖材料要点且不生成无依据事实？",
+    "input": "已分析案件/合同、模板及修改意见",
+    "output": "可读正文、红线、结构表与实际文件",
+    "benchmark_ids": [
+      "CN01",
+      "CN02",
+      "CN03"
+    ],
+    "source_ids": [
+      "S01",
+      "S03",
+      "S04"
+    ],
+    "source_urls": "https://github.com/open-compass/LawBench/blob/main/README.md\nhttps://arxiv.org/html/2409.20288v1\nhttps://github.com/Dai-shen/LAiW/blob/main/README.md",
+    "owner": "Harness文书链",
+    "current_basis": "当前JC明确不草拟文书；Harness产品链未由本次评测验收",
+    "guarantee_ids": [
+      "G08"
+    ],
+    "missing_interface": "I08",
+    "acceptance_focus": "修改后重抽取核对语义差量、无关条款、定义、交叉引用与金额一致",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D115",
+    "group": "12 起草、修订与交付",
+    "practice_question": "输出文件名、格式、表格和指定多份交付物是否真实存在且可读取？",
+    "input": "已分析案件/合同、模板及修改意见",
+    "output": "可读正文、红线、结构表与实际文件",
+    "benchmark_ids": [
+      "US02"
+    ],
+    "source_ids": [
+      "S23",
+      "S25"
+    ],
+    "source_urls": "https://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/docs/eval-strategies.md\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json",
+    "owner": "Harness文书链",
+    "current_basis": "当前JC明确不草拟文书；Harness产品链未由本次评测验收",
+    "guarantee_ids": [
+      "G08"
+    ],
+    "missing_interface": "I08",
+    "acceptance_focus": "修改后重抽取核对语义差量、无关条款、定义、交叉引用与金额一致",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D116",
+    "group": "13 办案、交易工作流与策略",
+    "practice_question": "尽调请求清单与资料室目录是否对应，哪些材料仍缺失？",
+    "input": "资料室、任务目标、时间表与工具",
+    "output": "可执行事项表、调查/谈判建议和交付轨迹",
+    "benchmark_ids": [
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S19",
+      "S20",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://github.com/harveyai/biglaw-bench/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "策略模块＋JC规则＋Harness",
+    "current_basis": "R/E：有限决策、合法成员见证；未由rubric证明真实行为效果",
+    "guarantee_ids": [
+      "G07"
+    ],
+    "missing_interface": "I11",
+    "acceptance_focus": "规范允许、商业偏好、观察相关性与因果效果分别绑定",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D117",
+    "group": "13 办案、交易工作流与策略",
+    "practice_question": "交割清单、审批、同意与解除条件是否满足先后依赖？",
+    "input": "资料室、任务目标、时间表与工具",
+    "output": "可执行事项表、调查/谈判建议和交付轨迹",
+    "benchmark_ids": [
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S19",
+      "S20",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://github.com/harveyai/biglaw-bench/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "策略模块＋JC规则＋Harness",
+    "current_basis": "R/E：有限决策、合法成员见证；未由rubric证明真实行为效果",
+    "guarantee_ids": [
+      "G07"
+    ],
+    "missing_interface": "I11",
+    "acceptance_focus": "规范允许、商业偏好、观察相关性与因果效果分别绑定",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D118",
+    "group": "13 办案、交易工作流与策略",
+    "practice_question": "对模糊条款应何时寻求书面确认、同意或豁免？",
+    "input": "资料室、任务目标、时间表与工具",
+    "output": "可执行事项表、调查/谈判建议和交付轨迹",
+    "benchmark_ids": [
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S19",
+      "S20",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://github.com/harveyai/biglaw-bench/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "策略模块＋JC规则＋Harness",
+    "current_basis": "R/E：有限决策、合法成员见证；未由rubric证明真实行为效果",
+    "guarantee_ids": [
+      "G07"
+    ],
+    "missing_interface": "I11",
+    "acceptance_focus": "规范允许、商业偏好、观察相关性与因果效果分别绑定",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D119",
+    "group": "13 办案、交易工作流与策略",
+    "practice_question": "对关键基础设施和收入来源的风险应怎样排序？",
+    "input": "资料室、任务目标、时间表与工具",
+    "output": "可执行事项表、调查/谈判建议和交付轨迹",
+    "benchmark_ids": [
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S19",
+      "S20",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://github.com/harveyai/biglaw-bench/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "策略模块＋JC规则＋Harness",
+    "current_basis": "R/E：有限决策、合法成员见证；未由rubric证明真实行为效果",
+    "guarantee_ids": [
+      "G07"
+    ],
+    "missing_interface": "I11",
+    "acceptance_focus": "规范允许、商业偏好、观察相关性与因果效果分别绑定",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D120",
+    "group": "13 办案、交易工作流与策略",
+    "practice_question": "先例市场条款比较如何支持谈判立场而非成为法律规则？",
+    "input": "资料室、任务目标、时间表与工具",
+    "output": "可执行事项表、调查/谈判建议和交付轨迹",
+    "benchmark_ids": [
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S19",
+      "S20",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://github.com/harveyai/biglaw-bench/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "策略模块＋JC规则＋Harness",
+    "current_basis": "R/E：有限决策、合法成员见证；未由rubric证明真实行为效果",
+    "guarantee_ids": [
+      "G07"
+    ],
+    "missing_interface": "I11",
+    "acceptance_focus": "规范允许、商业偏好、观察相关性与因果效果分别绑定",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D121",
+    "group": "13 办案、交易工作流与策略",
+    "practice_question": "第三方传票应提出何种异议、撤销申请或保护措施？",
+    "input": "资料室、任务目标、时间表与工具",
+    "output": "可执行事项表、调查/谈判建议和交付轨迹",
+    "benchmark_ids": [
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S19",
+      "S20",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://github.com/harveyai/biglaw-bench/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "策略模块＋JC规则＋Harness",
+    "current_basis": "R/E：有限决策、合法成员见证；未由rubric证明真实行为效果",
+    "guarantee_ids": [
+      "G07"
+    ],
+    "missing_interface": "I11",
+    "acceptance_focus": "规范允许、商业偏好、观察相关性与因果效果分别绑定",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D122",
+    "group": "13 办案、交易工作流与策略",
+    "practice_question": "庭审或口头辩论提纲能否回应最佳反方观点与具体事实？",
+    "input": "资料室、任务目标、时间表与工具",
+    "output": "可执行事项表、调查/谈判建议和交付轨迹",
+    "benchmark_ids": [
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S19",
+      "S20",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://github.com/harveyai/biglaw-bench/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "策略模块＋JC规则＋Harness",
+    "current_basis": "R/E：有限决策、合法成员见证；未由rubric证明真实行为效果",
+    "guarantee_ids": [
+      "G07"
+    ],
+    "missing_interface": "I11",
+    "acceptance_focus": "规范允许、商业偏好、观察相关性与因果效果分别绑定",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D123",
+    "group": "13 办案、交易工作流与策略",
+    "practice_question": "多跳法律工具查询是否足以支撑最后报告中的每项陈述？",
+    "input": "资料室、任务目标、时间表与工具",
+    "output": "可执行事项表、调查/谈判建议和交付轨迹",
+    "benchmark_ids": [
+      "US01",
+      "US02"
+    ],
+    "source_ids": [
+      "S19",
+      "S20",
+      "S25",
+      "S34"
+    ],
+    "source_urls": "https://github.com/harveyai/biglaw-bench/blob/main/README.md\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv\nhttps://github.com/harveyai/harvey-labs/blob/dfd17ab1e0e20fd3a53d4b976b31585b1ebf94c2/tasks/corporate-ma/analyze-change-of-control-provisions-across-targets-material-contracts/task.json\nhttps://api.github.com/repos/harveyai/harvey-labs/git/trees/07f3786af20cfb7bcc4546d8da1133bf72ffa1b4",
+    "owner": "策略模块＋JC规则＋Harness",
+    "current_basis": "R/E：有限决策、合法成员见证；未由rubric证明真实行为效果",
+    "guarantee_ids": [
+      "G07"
+    ],
+    "missing_interface": "I11",
+    "acceptance_focus": "规范允许、商业偏好、观察相关性与因果效果分别绑定",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D124",
+    "group": "14 伦理、隐私与表达可靠性",
+    "practice_question": "专业利益冲突是否被识别并在批准中给出保障措施？",
+    "input": "伦理题、披露政策、敏感材料及工作产品",
+    "output": "范围明确的伦理判断与披露/风险说明",
+    "benchmark_ids": [
+      "CN02",
+      "CN05",
+      "US01",
+      "US03"
+    ],
+    "source_ids": [
+      "S03",
+      "S07",
+      "S26",
+      "S20"
+    ],
+    "source_urls": "https://arxiv.org/html/2409.20288v1\nhttps://arxiv.org/html/2512.04578v2\nhttps://hazyresearch.stanford.edu/legalbench/tasks/\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv",
+    "owner": "独立评测harness／CI",
+    "current_basis": "本轮只做需求清单；未跑20套模型评测",
+    "guarantee_ids": [
+      "G01",
+      "G08"
+    ],
+    "missing_interface": "I12",
+    "acceptance_focus": "原生rubric、机器检查、法律审核、统计验证分别记录；不得从all-pass升级形式完备",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D125",
+    "group": "14 伦理、隐私与表达可靠性",
+    "practice_question": "回答是否体现偏见、歧视或不当的法律伦理判断？",
+    "input": "伦理题、披露政策、敏感材料及工作产品",
+    "output": "范围明确的伦理判断与披露/风险说明",
+    "benchmark_ids": [
+      "CN02",
+      "CN05",
+      "US01",
+      "US03"
+    ],
+    "source_ids": [
+      "S03",
+      "S07",
+      "S26",
+      "S20"
+    ],
+    "source_urls": "https://arxiv.org/html/2409.20288v1\nhttps://arxiv.org/html/2512.04578v2\nhttps://hazyresearch.stanford.edu/legalbench/tasks/\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv",
+    "owner": "独立评测harness／CI",
+    "current_basis": "本轮只做需求清单；未跑20套模型评测",
+    "guarantee_ids": [
+      "G01",
+      "G08"
+    ],
+    "missing_interface": "I12",
+    "acceptance_focus": "原生rubric、机器检查、法律审核、统计验证分别记录；不得从all-pass升级形式完备",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D126",
+    "group": "14 伦理、隐私与表达可靠性",
+    "practice_question": "隐私政策如何描述收集、使用、共享、保存与用户权利？",
+    "input": "伦理题、披露政策、敏感材料及工作产品",
+    "output": "范围明确的伦理判断与披露/风险说明",
+    "benchmark_ids": [
+      "CN02",
+      "CN05",
+      "US01",
+      "US03"
+    ],
+    "source_ids": [
+      "S03",
+      "S07",
+      "S26",
+      "S20"
+    ],
+    "source_urls": "https://arxiv.org/html/2409.20288v1\nhttps://arxiv.org/html/2512.04578v2\nhttps://hazyresearch.stanford.edu/legalbench/tasks/\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv",
+    "owner": "独立评测harness／CI",
+    "current_basis": "本轮只做需求清单；未跑20套模型评测",
+    "guarantee_ids": [
+      "G01",
+      "G08"
+    ],
+    "missing_interface": "I12",
+    "acceptance_focus": "原生rubric、机器检查、法律审核、统计验证分别记录；不得从all-pass升级形式完备",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D127",
+    "group": "14 伦理、隐私与表达可靠性",
+    "practice_question": "供应链披露是否包含规定项目，与最佳实践是否区分？",
+    "input": "伦理题、披露政策、敏感材料及工作产品",
+    "output": "范围明确的伦理判断与披露/风险说明",
+    "benchmark_ids": [
+      "CN02",
+      "CN05",
+      "US01",
+      "US03"
+    ],
+    "source_ids": [
+      "S03",
+      "S07",
+      "S26",
+      "S20"
+    ],
+    "source_urls": "https://arxiv.org/html/2409.20288v1\nhttps://arxiv.org/html/2512.04578v2\nhttps://hazyresearch.stanford.edu/legalbench/tasks/\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv",
+    "owner": "独立评测harness／CI",
+    "current_basis": "本轮只做需求清单；未跑20套模型评测",
+    "guarantee_ids": [
+      "G01",
+      "G08"
+    ],
+    "missing_interface": "I12",
+    "acceptance_focus": "原生rubric、机器检查、法律审核、统计验证分别记录；不得从all-pass升级形式完备",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D128",
+    "group": "14 伦理、隐私与表达可靠性",
+    "practice_question": "法律与道德、社会影响问题能否给出符合题目要求的判断？",
+    "input": "伦理题、披露政策、敏感材料及工作产品",
+    "output": "范围明确的伦理判断与披露/风险说明",
+    "benchmark_ids": [
+      "CN02",
+      "CN05",
+      "US01",
+      "US03"
+    ],
+    "source_ids": [
+      "S03",
+      "S07",
+      "S26",
+      "S20"
+    ],
+    "source_urls": "https://arxiv.org/html/2409.20288v1\nhttps://arxiv.org/html/2512.04578v2\nhttps://hazyresearch.stanford.edu/legalbench/tasks/\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv",
+    "owner": "独立评测harness／CI",
+    "current_basis": "本轮只做需求清单；未跑20套模型评测",
+    "guarantee_ids": [
+      "G01",
+      "G08"
+    ],
+    "missing_interface": "I12",
+    "acceptance_focus": "原生rubric、机器检查、法律审核、统计验证分别记录；不得从all-pass升级形式完备",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D129",
+    "group": "14 伦理、隐私与表达可靠性",
+    "practice_question": "引文、事实和数值是否有据，是否有幻觉或相关但误用的信息？",
+    "input": "伦理题、披露政策、敏感材料及工作产品",
+    "output": "范围明确的伦理判断与披露/风险说明",
+    "benchmark_ids": [
+      "CN02",
+      "CN05",
+      "US01",
+      "US03"
+    ],
+    "source_ids": [
+      "S03",
+      "S07",
+      "S26",
+      "S20"
+    ],
+    "source_urls": "https://arxiv.org/html/2409.20288v1\nhttps://arxiv.org/html/2512.04578v2\nhttps://hazyresearch.stanford.edu/legalbench/tasks/\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv",
+    "owner": "独立评测harness／CI",
+    "current_basis": "本轮只做需求清单；未跑20套模型评测",
+    "guarantee_ids": [
+      "G01",
+      "G08"
+    ],
+    "missing_interface": "I12",
+    "acceptance_focus": "原生rubric、机器检查、法律审核、统计验证分别记录；不得从all-pass升级形式完备",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D130",
+    "group": "14 伦理、隐私与表达可靠性",
+    "practice_question": "不同事实、规则、法域及假设的结论是否被不当混成单一确定答案？",
+    "input": "伦理题、披露政策、敏感材料及工作产品",
+    "output": "范围明确的伦理判断与披露/风险说明",
+    "benchmark_ids": [
+      "CN02",
+      "CN05",
+      "US01",
+      "US03"
+    ],
+    "source_ids": [
+      "S03",
+      "S07",
+      "S26",
+      "S20"
+    ],
+    "source_urls": "https://arxiv.org/html/2409.20288v1\nhttps://arxiv.org/html/2512.04578v2\nhttps://hazyresearch.stanford.edu/legalbench/tasks/\nhttps://github.com/harveyai/biglaw-bench/blob/main/blb-core/core-samples.csv",
+    "owner": "独立评测harness／CI",
+    "current_basis": "本轮只做需求清单；未跑20套模型评测",
+    "guarantee_ids": [
+      "G01",
+      "G08"
+    ],
+    "missing_interface": "I12",
+    "acceptance_focus": "原生rubric、机器检查、法律审核、统计验证分别记录；不得从all-pass升级形式完备",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D131",
+    "group": "15 美国法特定问题与法律语言任务",
+    "practice_question": "法条是否明文赋予私人起诉实施权利的途径？",
+    "input": "美国法条、最高法院问题、证券起诉状或判决节选",
+    "output": "任务特定的解释、匹配和抽取",
+    "benchmark_ids": [
+      "US03"
+    ],
+    "source_ids": [
+      "S35"
+    ],
+    "source_urls": "https://hazyresearch.stanford.edu/legalbench/tasks/proa.html",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D132",
+    "group": "15 美国法特定问题与法律语言任务",
+    "practice_question": "最高法院审理问题应对应哪一个核心裁判要旨，而非相近措辞？",
+    "input": "美国法条、最高法院问题、证券起诉状或判决节选",
+    "output": "任务特定的解释、匹配和抽取",
+    "benchmark_ids": [
+      "US03"
+    ],
+    "source_ids": [
+      "S36"
+    ],
+    "source_urls": "https://hazyresearch.stanford.edu/legalbench/tasks/scalr.html",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D133",
+    "group": "15 美国法特定问题与法律语言任务",
+    "practice_question": "证券集体诉讼片段是否载明原告；有多人时是否全部抽取？",
+    "input": "美国法条、最高法院问题、证券起诉状或判决节选",
+    "output": "任务特定的解释、匹配和抽取",
+    "benchmark_ids": [
+      "US03"
+    ],
+    "source_ids": [
+      "S37"
+    ],
+    "source_urls": "https://hazyresearch.stanford.edu/legalbench/tasks/ssla_plaintiff.html",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  },
+  {
+    "requirement_id": "D134",
+    "group": "15 美国法特定问题与法律语言任务",
+    "practice_question": "劳动歧视案因果论证使用统计还是直接证据？这不是估计干预效果。",
+    "input": "美国法条、最高法院问题、证券起诉状或判决节选",
+    "output": "任务特定的解释、匹配和抽取",
+    "benchmark_ids": [
+      "US03"
+    ],
+    "source_ids": [
+      "S38"
+    ],
+    "source_urls": "https://hazyresearch.stanford.edu/legalbench/tasks/legal_reasoning_causality.html",
+    "owner": "Harness解释审核＋JC",
+    "current_basis": "K：JC规则/攻击/优先机制；具体领域语义覆盖不由引擎证明",
+    "guarantee_ids": [
+      "G03"
+    ],
+    "missing_interface": "I03",
+    "acceptance_focus": "许可转非排他、提前到期、终止、同意权不得归成同一效果",
+    "origin": "本报告对公开任务/schema的归纳；不是原评测方新增金标"
+  }
+]

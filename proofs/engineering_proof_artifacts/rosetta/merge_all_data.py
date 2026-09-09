@@ -284,14 +284,22 @@ def main():
     out_dir = Path('data/category_rosetta')
 
     t85_out = out_dir / 'T8.5_merged_clean.csv'
-    with open(t85_out, 'w', encoding='utf-8-sig', newline='') as f:
+    _out = Path(t85_out).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(t85_out).open( 'w', encoding='utf-8-sig', newline='') as f:
         w = csv.DictWriter(f, fieldnames=T85_FIELDS)
         w.writeheader()
         w.writerows(t85_rows)
     print(f"\nT8.5 saved: {t85_out} ({len(t85_rows)} rows)")
 
     t94_out = out_dir / 'T9.4_merged_clean.csv'
-    with open(t94_out, 'w', encoding='utf-8-sig', newline='') as f:
+    _out = Path(t94_out).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(t94_out).open( 'w', encoding='utf-8-sig', newline='') as f:
         w = csv.DictWriter(f, fieldnames=T94_FIELDS)
         w.writeheader()
         w.writerows(t94_rows)

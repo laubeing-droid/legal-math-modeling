@@ -1,0 +1,26 @@
+import JurisLean.BusinessRelationsDelta
+
+#print axioms JurisLean.BusinessRelations.guard_reflection
+#print axioms JurisLean.BusinessRelations.finite_inner_sound
+#print axioms JurisLean.BusinessRelations.finite_exact_of_independent_cover
+#print axioms JurisLean.BusinessRelations.composition_sound
+#print axioms JurisLean.BusinessRelations.concrete_reduction_preserves
+#print axioms JurisLean.BusinessRelations.ledger_complementarity_unique
+#print axioms JurisLean.BusinessRelations.two_scenarios_exact
+#print axioms JurisLean.BusinessRelations.expectation_conservation
+#print axioms JurisLean.BusinessRelations.probability_between_branches
+#print axioms JurisLean.BusinessRelations.acceptable_membership
+#print axioms JurisLean.BusinessRelations.same_case_settlement
+#print axioms JurisLean.BusinessRelations.protected_roundtrip
+#print axioms JurisLean.BusinessRelations.delivered_business_sat
+#print axioms JurisLean.BusinessRelations.frame_for_unaffected_field
+#print axioms JurisLean.BusinessRelations.evidence_refinement_may_shrinks
+#print axioms JurisLean.BusinessRelations.universal_answer_has_world
+#print axioms JurisLean.BusinessRelations.split_residual_identity
+#print axioms JurisLean.BusinessRelations.clipped_balance_nonnegative
+#print axioms JurisLean.BusinessRelations.clipped_agrees_raw_when_no_overpayment
+#print axioms JurisLean.BusinessRelations.clipped_expectation_conservation
+#print axioms JurisLean.BusinessRelations.principal_expectation_nonnegative
+#print axioms JurisLean.BusinessRelations.clipped_threshold_probability_range
+#print axioms JurisLean.BusinessRelations.clipped_same_case_settlement
+#print axioms JurisLean.BusinessRelations.overpayment_bridge_counterexample

@@ -30,7 +30,14 @@ theorem weighted_sub (ws : List (ℚ × World)) (f g : World → ℚ) :
   induction ws with
   | nil => rfl
   | cons x rest ih =>
-      simp only [weighted, List.map_cons, List.sum_cons]
+      have e1 : weighted (x :: rest) f = x.1 * f x.2 + weighted rest f := by
+        simp [weighted]
+      have e2 : weighted (x :: rest) g = x.1 * g x.2 + weighted rest g := by
+        simp [weighted]
+      have e3 : weighted (x :: rest) (fun w => f w - g w)
+          = x.1 * (f x.2 - g x.2) + weighted rest (fun w => f w - g w) := by
+        simp [weighted]
+      rw [e1, e2, e3, add_sub_add_left]
       have h1 : x.1 * f x.2 - x.1 * g x.2 = x.1 * (f x.2 - g x.2) := by ring
       rw [h1, ih]
 
@@ -138,8 +145,8 @@ theorem interval_point_not_in_grid :
   · norm_num at h0
   · rcases List.mem_cons.mp hx with h1 | hx
     · norm_num at h1
-    · rcases List.mem_cons.mp hx with h2 | hx
-      · norm_num at h2
-      · exact List.not_mem_nil _ hx
+      · rcases List.mem_cons.mp hx with h2 | hx
+        · norm_num at h2
+        · simp at hx
 
 end JurisLean.BusinessRoot

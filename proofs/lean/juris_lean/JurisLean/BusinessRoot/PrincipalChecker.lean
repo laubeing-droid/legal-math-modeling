@@ -74,8 +74,8 @@ theorem domain_single_key_members (a : String) :
     DomainOf [a] [(a, Option.none : Option Bool)] Guard.truthy [true] ∧
     DomainOf [a] [(a, Option.none : Option Bool)] Guard.truthy [false] := by
   constructor
-  · simp [DomainOf, factsExtend]
-  · simp [DomainOf, factsExtend]
+  · simp [DomainOf, factsExtend, Guard.denote]
+  · simp [DomainOf, factsExtend, Guard.denote]
 
 /-- Two-sided exactness of the finite enumeration domain for the frozen shape:
 solver enumeration and the independent scenario domain coincide. -/

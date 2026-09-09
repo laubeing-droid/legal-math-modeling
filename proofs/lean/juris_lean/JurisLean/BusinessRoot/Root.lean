@@ -163,16 +163,13 @@ theorem root_worlds_match :
     · exact ⟨rootRowT, by simp [rootRows], by simpa [rootRowT, rootWorldT] using h.symm⟩
     · exact ⟨rootRowF, by simp [rootRows], by simpa [rootRowF, rootWorldF] using h.symm⟩
   · intro a ha b hb hab
-    rcases List.mem_cons.mp ha with ha0 | ha
-    · rcases List.mem_cons.mp hb with hb0 | hb
-      · subst ha0; subst hb0; rfl
-      · subst ha0; subst hb0
-        simp [rootRowT, rootWorldT, rootRowF, rootWorldF] at hab
-    · rcases List.mem_cons.mp hb with hb0 | hb
-      · subst ha0; subst hb0
-        simp [rootRowT, rootWorldT, rootRowF, rootWorldF] at hab
-      · subst ha0; subst hb0; rfl
-    · simp [rootRows] at ha
+    rcases List.mem_cons.mp ha with rfl | ha
+    · rcases List.mem_cons.mp hb with rfl | hb
+      · rfl
+      · simp [rootRowT, rootWorldT, rootRowF, rootWorldF] at hab
+    · rcases List.mem_cons.mp hb with rfl | hb
+      · simp [rootRowT, rootWorldT, rootRowF, rootWorldF] at hab
+      · simp at hb
 
 theorem root_joint_sem :
     JointSem 1000 [rootAtom] rootSpec.payments rootRows := by
@@ -192,7 +189,7 @@ theorem root_joint_sem :
 theorem root_task_sat :
     TaskSat 1000 [rootAtom] rootSpec.payments rootModel rootRows := by
   unfold TaskSat
-  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
   · intro p hp
     have hpm : p = ((2 / 5, [true]) : ℚ × World) ∨ p = ((3 / 5, [false]) : ℚ × World) := by
       simpa [rootModel] using hp
@@ -228,6 +225,7 @@ theorem root_task_sat :
         · have hpm : p = ((3 / 5, [false]) : ℚ × World) := by simpa [rootModel] using hp
           subst hpm; exact ⟨by decide, by decide⟩
       · simp [rootRows] at ho
+  · decide
   · decide
   · decide
   · decide
@@ -277,7 +275,7 @@ theorem business_root_two_files (doc : List DocLine) (js : List JsonRow)
       readBoth rootProtected doc js = some (protectedOf rootSpec rootModel W []) := by
   cases hr : readBoth rootProtected doc js with
   | none =>
-      rw [hr] at h
+      simp only [rootBundleAccepts, hr] at h
       exact Bool.noConfusion h
   | some p =>
       have hpe : p = rootProtected := readBoth_returns_expected doc js p hr

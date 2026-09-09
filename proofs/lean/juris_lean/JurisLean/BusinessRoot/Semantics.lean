@@ -28,6 +28,7 @@ inductive Guard where
   | neg (a : Guard)
   | both (a b : Guard)
   | either (a b : Guard)
+  deriving DecidableEq
 
 /-- A scenario is a total assignment over the declared keys, given positionally. -/
 abbrev World := List Bool

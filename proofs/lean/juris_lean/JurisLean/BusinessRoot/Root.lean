@@ -87,12 +87,10 @@ theorem root_wf :
 theorem root_residual_true :
     residualOf 1000 [rootAtom] rootSpec.payments [true] = 700 := by
   simp [residualOf, recognizedSum, rootSpec, rootAtom, lookupVal]
-  norm_num
 
 theorem root_residual_false :
     residualOf 1000 [rootAtom] rootSpec.payments [false] = 1000 := by
   simp [residualOf, recognizedSum, rootSpec, rootAtom, lookupVal]
-  norm_num
 
 /-- Per-scenario clipped/overpayment values of the frozen task. -/
 theorem root_cbal_true :
@@ -300,10 +298,11 @@ theorem business_root_two_files (doc : List DocLine) (js : List JsonRow)
       have hpe : p = rootProtected := readBoth_returns_expected doc js p hr
       subst hpe
       unfold RootObligations
-      refine ⟨rootRows, ?_, ?_, ?_, hr⟩
+      refine ⟨rootRows, ?_, ?_, ?_, ?_⟩
       · exact root_worlds_match
       · exact root_joint_sem
       · exact root_task_sat
+      · exact hr
 
 /-! ### Non-vacuity: the real artifacts pass, tampered ones do not -/
 

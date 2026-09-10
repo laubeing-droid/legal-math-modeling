@@ -40,6 +40,16 @@ theorem decomposition_unique (balance excess residual : ℚ)
 U = max (−R) 0 follow from the four independent conditions. This is what makes
 the real checker's conservation-plus-complementarity acceptance reflect the
 unique semantic decomposition, instead of merely re-running the solver. -/
+/-- The if-form clip definitions unfold to the max-form used by the
+decomposition lemma (clipC definitionally; clipU by case analysis). -/
+theorem clipC_eq_max (r : ℚ) : clipC r = max r 0 := rfl
+
+theorem clipU_eq_max (r : ℚ) : clipU r = max (-r) 0 := by
+  unfold clipU
+  by_cases h : r < 0
+  · rw [if_pos h, max_eq_left (by linarith : (0:ℚ) ≤ -r)]
+  · rw [if_neg h, max_eq_right (by linarith : (-r:ℚ) ≤ 0)]
+
 theorem clipped_from_conditions (principal : ℚ) (keys : List String)
     (payments : List Payment) (vals : World) (o : Witness)
     (hb : 0 ≤ o.principalBalance) (hu : 0 ≤ o.overpaymentResidual)

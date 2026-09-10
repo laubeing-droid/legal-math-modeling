@@ -45,7 +45,7 @@ inductive DocLine where
   | assumptions (v : String)
   | ctx (v : String)
   | mode (v : String)
-  | scenarioRow (conds : List (String × Bool)) (balance : ℚ) (over : ℚ)
+  | scenarioRow (conds : List (String × Bool)) (bal : ℚ) (ov : ℚ)
   | pendingRow (conds : List (String × Bool))
   | footer
 
@@ -118,7 +118,7 @@ inductive JsonRow where
   | contextRow (version : String)
   | basisRow (sid ver : String)
   | principalField (q : ℚ)
-  | outcomeRow (conds : List (String × Bool)) (balance : ℚ) (over : ℚ)
+  | outcomeRow (conds : List (String × Bool)) (bal : ℚ) (ov : ℚ)
   | weightRow (conds : List (String × Bool)) (p : ℚ)
   | thresholdField (t : ℚ)
   | costsRow (cp cd sp sd : ℚ)

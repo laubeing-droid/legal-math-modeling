@@ -35,7 +35,7 @@ def rootSpec : PrincipalSpec :=
   { keys := [rootAtom]
     principal := 1000
     payments := [{ paymentId := "P1", amount := 300, recognitionAtom := rootAtom }]
-    facts := [(rootAtom, Option.none : Option Bool)]
+    facts := [(rootAtom, Option.none)]
     constraint := Guard.truthy }
 
 def rootWorldT : World := [true]
@@ -85,10 +85,12 @@ theorem root_wf :
 /-! ### Residuals and the witness table -/
 
 theorem root_residual_true :
-    residualOf 1000 [rootAtom] rootSpec.payments [true] = 700 := by decide
+    residualOf 1000 [rootAtom] rootSpec.payments [true] = 700 := by
+  simp [residualOf, recognizedSum, rootSpec, rootAtom]
 
 theorem root_residual_false :
-    residualOf 1000 [rootAtom] rootSpec.payments [false] = 1000 := by decide
+    residualOf 1000 [rootAtom] rootSpec.payments [false] = 1000 := by
+  simp [residualOf, recognizedSum, rootSpec, rootAtom]
 
 /-- Per-scenario clipped/overpayment values of the frozen task. -/
 theorem root_cbal_true :
@@ -172,7 +174,7 @@ def rootJson : JsonArt :=
 /-! ### The three independent obligations, discharged for the frozen I0 -/
 
 theorem root_worlds_match :
-    WorldsMatch [rootAtom] [(rootAtom, Option.none : Option Bool)] Guard.truthy rootRows := by
+    WorldsMatch [rootAtom] [(rootAtom, Option.none)] Guard.truthy rootRows := by
   unfold WorldsMatch
   refine ⟨?_, ?_, ?_⟩
   · intro o ho

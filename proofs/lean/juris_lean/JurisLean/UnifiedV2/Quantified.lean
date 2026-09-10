@@ -81,11 +81,12 @@ theorem affine_difference (a b step x y : ℚ) :
   ring
 
 theorem affine_lipschitz (a b step x y : ℚ) :
-    |affineStep a b step x-affineStep a b step y| = |1-step*a|*|x-y| := by
+    abs (affineStep a b step x-affineStep a b step y)
+      = abs (1-step*a) * abs (x-y) := by
   rw [affine_difference, abs_mul]
 
 theorem contraction_parameter (a step : ℚ) (h : 0 < step*a ∧ step*a < 2) :
-    |1-step*a| < 1 := by
+    abs (1-step*a) < 1 := by
   apply abs_lt.mpr
   constructor <;> linarith [h.1,h.2]
 

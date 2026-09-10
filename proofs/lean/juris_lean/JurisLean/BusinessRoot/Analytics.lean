@@ -132,7 +132,7 @@ theorem overpay_overpay_expectation :
   show (2 / 5) * clipU (cres 100 300 [true]) + (1 - 2 / 5) * clipU (cres 100 300 [false]) = 80
   rw [cres_true_eq, cres_false_eq]
   simp only [cover, clipU]
-  rw [max_eq_left (by norm_num : (0:ℚ) ≤ 200), max_eq_right (by norm_num : (-100:ℚ) ≤ 0)]
+  rw [max_eq_left (by norm_num : (0:ℚ) ≤ -(100 - 300)), max_eq_right (by norm_num : (-100:ℚ) ≤ 0)]
   norm_num
 
 /-- At threshold 0 the clipped-balance event has probability 1 while the
@@ -142,7 +142,7 @@ theorem threshold_zero_distinction :
     eventMass (twoBranchWeights (2 / 5)) (fun w => cres 100 300 w) 0 = 3 / 5 := by
   rw [eventMass_twoBranch, cres_true_eq, cres_false_eq]
   simp only [cbal, clipC]
-  rw [max_eq_right (by norm_num : (-200:ℚ) ≤ 0), max_eq_left (by norm_num : (0:ℚ) ≤ 100)]
+  rw [max_eq_right (by norm_num : (100:ℚ) - 300 ≤ 0), max_eq_left (by norm_num : (0:ℚ) ≤ 100)]
   norm_num
 
 /-- Frozen main sample (P=1000, q=300, p=2/5): the principal expectation is
@@ -153,7 +153,7 @@ theorem main_principal_expectation :
   show (2 / 5) * clipC (cres 1000 300 [true]) + (1 - 2 / 5) * clipC (cres 1000 300 [false]) = 880
   rw [cres_true_eq, cres_false_eq]
   simp only [clipC]
-  rw [max_eq_left (by norm_num : (0:ℚ) ≤ 700), max_eq_left (by norm_num : (0:ℚ) ≤ 1000)]
+  rw [max_eq_left (by norm_num : (0:ℚ) ≤ 1000 - 300), max_eq_left (by norm_num : (0:ℚ) ≤ 1000)]
   norm_num
 
 /-- Frozen main sample: the threshold-800 event probability is 3/5. -/
@@ -164,7 +164,7 @@ theorem main_threshold_event :
       + (if (800:ℚ) ≤ clipC (cres 1000 300 [false]) then 1 - 2 / 5 else 0) = 3 / 5
   rw [cres_true_eq, cres_false_eq]
   simp only [clipC]
-  rw [max_eq_left (by norm_num : (0:ℚ) ≤ 700), max_eq_left (by norm_num : (0:ℚ) ≤ 1000)]
+  rw [max_eq_left (by norm_num : (0:ℚ) ≤ 1000 - 300), max_eq_left (by norm_num : (0:ℚ) ≤ 1000)]
   norm_num
 
 /-- Frozen main sample interval: [790, 930]. -/

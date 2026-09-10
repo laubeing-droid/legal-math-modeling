@@ -55,7 +55,7 @@ theorem clipped_from_conditions (principal : ℚ) (keys : List String)
 `truthy`), an Ω member must be one of the two declared branches. Shape comes
 from the length condition of Ω itself — no solver output is consulted. -/
 theorem domain_single_key_cases (a : String) (vals : World)
-    (h : DomainOf [a] [(a, Option.none : Option Bool)] Guard.truthy vals) :
+    (h : DomainOf [a] [(a, Option.none)] Guard.truthy vals) :
     vals = [true] ∨ vals = [false] := by
   have hlen := h.1
   cases vals with
@@ -71,8 +71,8 @@ theorem domain_single_key_cases (a : String) (vals : World)
 /-- Both declared branches are members of Ω for the frozen shape: the domain is
 nonempty in exactly two scenarios. -/
 theorem domain_single_key_members (a : String) :
-    DomainOf [a] [(a, Option.none : Option Bool)] Guard.truthy [true] ∧
-    DomainOf [a] [(a, Option.none : Option Bool)] Guard.truthy [false] := by
+    DomainOf [a] [(a, Option.none)] Guard.truthy [true] ∧
+    DomainOf [a] [(a, Option.none)] Guard.truthy [false] := by
   constructor
   · simp [DomainOf, factsExtend, Guard.denote]
   · simp [DomainOf, factsExtend, Guard.denote]
@@ -80,7 +80,7 @@ theorem domain_single_key_members (a : String) :
 /-- Two-sided exactness of the finite enumeration domain for the frozen shape:
 solver enumeration and the independent scenario domain coincide. -/
 theorem domain_pair_exact (a : String) (vals : World) :
-    DomainOf [a] [(a, Option.none : Option Bool)] Guard.truthy vals ↔
+    DomainOf [a] [(a, Option.none)] Guard.truthy vals ↔
       vals = [true] ∨ vals = [false] := by
   constructor
   · exact domain_single_key_cases a vals

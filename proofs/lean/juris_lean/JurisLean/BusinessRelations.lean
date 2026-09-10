@@ -36,9 +36,14 @@ theorem guard_reflection (f : Formula α) (v : α → Bool) :
   | top => simp [Formula.eval, Formula.holds]
   | bottom => simp [Formula.eval, Formula.holds]
   | atom x => simp [Formula.eval, Formula.holds]
-  | neg a ih => simp [Formula.eval, Formula.holds, ih]
-  | both a b iha ihb => simp [Formula.eval, Formula.holds, iha, ihb]
-  | either a b iha ihb => simp [Formula.eval, Formula.holds, iha, ihb]
+  | neg a ih =>
+      cases h : a.eval v <;> simp [Formula.eval, Formula.holds, ih, h]
+  | both a b iha ihb =>
+      cases h1 : a.eval v <;> cases h2 : b.eval v <;>
+        simp [Formula.eval, Formula.holds, iha, ihb, h1, h2]
+  | either a b iha ihb =>
+      cases h1 : a.eval v <;> cases h2 : b.eval v <;>
+        simp [Formula.eval, Formula.holds, iha, ihb, h1, h2]
 
 def inner {W : Type} (s : Finset W) (p : W → Prop) [DecidablePred p] : Set W :=
   {w | w ∈ s.filter p}

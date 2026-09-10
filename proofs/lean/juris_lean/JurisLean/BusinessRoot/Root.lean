@@ -87,10 +87,12 @@ theorem root_wf :
 theorem root_residual_true :
     residualOf 1000 [rootAtom] rootSpec.payments [true] = 700 := by
   simp [residualOf, recognizedSum, rootSpec, rootAtom, lookupVal]
+  norm_num
 
 theorem root_residual_false :
     residualOf 1000 [rootAtom] rootSpec.payments [false] = 1000 := by
   simp [residualOf, recognizedSum, rootSpec, rootAtom, lookupVal]
+  norm_num
 
 /-- Per-scenario clipped/overpayment values of the frozen task. -/
 theorem root_cbal_true :
@@ -267,14 +269,14 @@ theorem readBoth_returns_expected (doc : List DocLine) (js : List JsonRow)
     p = rootProtected := by
   unfold readBoth at h
   cases hd : ofLines doc with
-  | none => simp only [hd] at h; exact Option.noConfusion h
+  | none => simp only [hd] at h; contradiction
   | some d =>
       cases hj : ofJson js with
-      | none => simp only [hd, hj] at h; exact Option.noConfusion h
+      | none => simp only [hd, hj] at h; contradiction
       | some j =>
           simp only [hd, hj] at h
           cases hb : readBothCheck rootProtected d j with
-          | false => simp only [hb] at h; exact Option.noConfusion h
+          | false => simp only [hb] at h; contradiction
           | true => simp only [hb] at h; exact (Option.some.inj h).symm
 
 /-- The bundle acceptance predicate of the frozen formula. -/

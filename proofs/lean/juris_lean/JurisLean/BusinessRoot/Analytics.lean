@@ -142,8 +142,10 @@ theorem threshold_zero_distinction :
   constructor
   · rw [eventMass_twoBranch]
     simp [cbal, cres, isRecognized, clipC]
+    norm_num
   · rw [eventMass_twoBranch]
     simp [cres, isRecognized]
+    norm_num
 
 /-- Frozen main sample (P=1000, q=300, p=2/5): the principal expectation is
 880. -/

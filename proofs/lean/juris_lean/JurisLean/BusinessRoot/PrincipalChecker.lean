@@ -44,6 +44,7 @@ unique semantic decomposition, instead of merely re-running the solver. -/
 decomposition lemma (clipC definitionally; clipU by case analysis). -/
 theorem clipC_eq_max (r : ℚ) : clipC r = max r 0 := rfl
 
+/-- The overpayment side: clipU r = max (−r) 0 by case analysis on the sign. -/
 theorem clipU_eq_max (r : ℚ) : clipU r = max (-r) 0 := by
   unfold clipU
   by_cases h : r < 0

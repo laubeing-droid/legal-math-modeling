@@ -188,7 +188,8 @@ structure Protected where
   expectedC : ℚ
   expectedU : ℚ
   eventProbability : ℚ
-  lower upper : ℚ
+  lower : ℚ
+  upper : ℚ
   eligible : List ℚ
   selected : Option ℚ
   notice : String

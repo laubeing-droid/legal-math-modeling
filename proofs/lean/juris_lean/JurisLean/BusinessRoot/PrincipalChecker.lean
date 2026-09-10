@@ -48,8 +48,9 @@ theorem clipped_from_conditions (principal : ℚ) (keys : List String)
       residualOf principal keys payments vals) :
     o.principalBalance = clipC (residualOf principal keys payments vals) ∧
       o.overpaymentResidual = clipU (residualOf principal keys payments vals) := by
-  exact decomposition_unique o.principalBalance o.overpaymentResidual
+  have h := decomposition_unique o.principalBalance o.overpaymentResidual
     (residualOf principal keys payments vals) hb hu hsub hmul
+  rw [h.1, h.2, clipC, clipU]
 
 /-- For the frozen single-atom shape (facts leave the atom open, constraint
 `truthy`), an Ω member must be one of the two declared branches. Shape comes

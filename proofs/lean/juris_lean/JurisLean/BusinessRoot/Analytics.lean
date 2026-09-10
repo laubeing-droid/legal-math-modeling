@@ -141,13 +141,13 @@ theorem threshold_zero_distinction :
     eventMass (twoBranchWeights (2 / 5)) (fun w => cres 100 300 w) 0 = 3 / 5 := by
   constructor
   · rw [eventMass_twoBranch]
-    show (if (0:ℚ) ≤ clipC (cres 100 300 [true]) then 2 / 5 else 0)
-        + (if (0:ℚ) ≤ clipC (cres 100 300 [false]) then 3 / 5 else 0) = 1
+    show (if (0:ℚ) ≤ clipC (cres 100 300 [true]) then (2:ℚ) / 5 else (0:ℚ))
+        + (if (0:ℚ) ≤ clipC (cres 100 300 [false]) then (3:ℚ) / 5 else (0:ℚ)) = 1
     rw [cres_true_eq, cres_false_eq]
     norm_num [clipC]
   · rw [eventMass_twoBranch]
-    show (if (0:ℚ) ≤ cres 100 300 [true] then 2 / 5 else 0)
-        + (if (0:ℚ) ≤ cres 100 300 [false] then 3 / 5 else 0) = 3 / 5
+    show (if (0:ℚ) ≤ cres 100 300 [true] then (2:ℚ) / 5 else (0:ℚ))
+        + (if (0:ℚ) ≤ cres 100 300 [false] then (3:ℚ) / 5 else (0:ℚ)) = 3 / 5
     rw [cres_true_eq, cres_false_eq]
     norm_num
 

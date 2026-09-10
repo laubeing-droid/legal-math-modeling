@@ -32,7 +32,13 @@ def Formula.holds (v : α → Bool) : Formula α → Prop
 
 theorem guard_reflection (f : Formula α) (v : α → Bool) :
     f.eval v = true ↔ f.holds v := by
-  induction f <;> simp_all [Formula.eval, Formula.holds]
+  induction f with
+  | top => simp [Formula.eval, Formula.holds]
+  | bottom => simp [Formula.eval, Formula.holds]
+  | atom x => simp [Formula.eval, Formula.holds]
+  | neg a ih => simp [Formula.eval, Formula.holds, ih]
+  | both a b iha ihb => simp [Formula.eval, Formula.holds, iha, ihb]
+  | either a b iha ihb => simp [Formula.eval, Formula.holds, iha, ihb]
 
 def inner {W : Type} (s : Finset W) (p : W → Prop) [DecidablePred p] : Set W :=
   {w | w ∈ s.filter p}

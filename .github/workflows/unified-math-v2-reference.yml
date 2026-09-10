@@ -70,14 +70,20 @@ jobs:
           curl --proto '=https' --tlsv1.2 -fsSL "https://raw.githubusercontent.com/leanprover/elan/${ELAN_INSTALLER_SHA}/elan-init.sh" -o /tmp/ulm-elan-init.sh
           sh /tmp/ulm-elan-init.sh -y --no-modify-path --default-toolchain leanprover/lean4:v4.30.0
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-      - name: Clean build real modules, inspect compiled environment
+      - name: Restore Lean build cache
+        uses: actions/cache/restore@v4
+        with:
+          path: proofs/lean/juris_lean/.lake
+          key: lean-seeds-${{ runner.os }}-v4.30.0-${{ github.run_id }}
+          restore-keys: |
+            lean-seeds-${{ runner.os }}-v4.30.0-
+      - name: Build real modules (cached mathlib), inspect compiled environment
         run: |
           set -euo pipefail
           mkdir -p work/consolidated-lean
           cd proofs/lean/juris_lean
           elan --version > ../../../work/consolidated-lean/tool-versions.log
           lean --version >> ../../../work/consolidated-lean/tool-versions.log
-          lake clean
           lake build JurisLean.Consolidated.All 2>&1 | tee ../../../work/consolidated-lean/build.log
           lake env lean JurisLean/Consolidated/Audit.lean > ../../../work/consolidated-lean/environment.log 2>&1
           lake build JurisLean.BusinessRoot.All 2>&1 | tee ../../../work/consolidated-lean/business-root-build.log
@@ -88,6 +94,12 @@ jobs:
           python tools/ulm_consolidation/scripts/audit_root_compiled.py --log work/consolidated-lean/root-environment.log --output work/consolidated-lean/root-compiled.json
           python tools/ulm_consolidation/scripts/ci_receipt.py --report work/consolidated-lean/consolidated-lean.json --output work/consolidated-lean/consolidated-lean.json
           python tools/ulm_consolidation/scripts/ci_receipt.py --report work/consolidated-lean/root-compiled.json --output work/consolidated-lean/root-compiled.json
+      - name: Save Lean build cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: proofs/lean/juris_lean/.lake
+          key: lean-seeds-${{ runner.os }}-v4.30.0-${{ github.run_id }}
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
         with:

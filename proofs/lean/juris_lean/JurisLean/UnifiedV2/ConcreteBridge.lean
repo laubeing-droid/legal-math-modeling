@@ -19,7 +19,7 @@ theorem branch_carrier_complete (due paid : ℚ) :
     {w | w ∈ branchCandidates due paid} = branchSolutions due paid := by
   ext w
   rcases w with ⟨b,y⟩
-  cases b <;> simp [branchCandidates, branchSolutions, branchAmount, eq_comm]
+  cases b <;> simp [branchCandidates, branchSolutions, branchAmount]
 
 def expectedBranchAmount (p due paid : ℚ) : ℚ :=
   p * branchAmount due paid true + (1-p)*branchAmount due paid false

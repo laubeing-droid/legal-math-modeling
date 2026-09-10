@@ -86,11 +86,11 @@ theorem root_wf :
 
 theorem root_residual_true :
     residualOf 1000 [rootAtom] rootSpec.payments [true] = 700 := by
-  simp [residualOf, recognizedSum, rootSpec, rootAtom]
+  simp [residualOf, recognizedSum, rootSpec, rootAtom, lookupVal]
 
 theorem root_residual_false :
     residualOf 1000 [rootAtom] rootSpec.payments [false] = 1000 := by
-  simp [residualOf, recognizedSum, rootSpec, rootAtom]
+  simp [residualOf, recognizedSum, rootSpec, rootAtom, lookupVal]
 
 /-- Per-scenario clipped/overpayment values of the frozen task. -/
 theorem root_cbal_true :
@@ -173,43 +173,47 @@ def rootJson : JsonArt :=
 
 /-! ### The three independent obligations, discharged for the frozen I0 -/
 
+/-- Two-element membership decomposition. -/
+theorem mem_two {x : Witness} {p q : Witness} (h : x ∈ [p, q]) : x = p ∨ x = q := by
+  rcases List.mem_cons.mp h with h1 | h2
+  · exact Or.inl h1
+  · rcases List.mem_cons.mp h2 with h3 | h4
+    · exact Or.inr h3
+    · exact absurd h4 (by simp)
+
 theorem root_worlds_match :
     WorldsMatch [rootAtom] [(rootAtom, Option.none)] Guard.truthy rootRows := by
   unfold WorldsMatch
   refine ⟨?_, ?_, ?_⟩
   · intro o ho
-    rcases List.mem_cons.mp ho with h0 | ho
-    · subst h0
-      simp [DomainOf, factsExtend, rootAtom, rootWorldT, Guard.denote]
-    · rcases List.mem_cons.mp ho with h0 | ho
-      · subst h0
-        simp [DomainOf, factsExtend, rootAtom, rootWorldF, Guard.denote]
-      · simp [rootRows] at ho
+    rcases mem_two ho with rfl | rfl
+    · simp [DomainOf, factsExtend, rootAtom, rootWorldT, Guard.denote, rootRowT]
+    · simp [DomainOf, factsExtend, rootAtom, rootWorldF, Guard.denote, rootRowF]
   · intro vals hv
     rcases (domain_pair_exact rootAtom vals).mp hv with h | h
     · exact ⟨rootRowT, by simp [rootRows], by simpa [rootRowT, rootWorldT] using h.symm⟩
     · exact ⟨rootRowF, by simp [rootRows], by simpa [rootRowF, rootWorldF] using h.symm⟩
   · intro a ha b hb hab
-    rcases List.mem_cons.mp ha with rfl | ha
-    · rcases List.mem_cons.mp hb with rfl | hb
+    rcases mem_two ha with rfl | rfl
+    · rcases mem_two hb with rfl | rfl
       · rfl
       · simp [rootRowT, rootWorldT, rootRowF, rootWorldF] at hab
-    · rcases List.mem_cons.mp hb with rfl | hb
+    · rcases mem_two hb with rfl | rfl
       · simp [rootRowT, rootWorldT, rootRowF, rootWorldF] at hab
-      · simp at hb
+      · rfl
 
 theorem root_joint_sem :
     JointSem 1000 [rootAtom] rootSpec.payments rootRows := by
   intro o ho
   rcases List.mem_cons.mp ho with h0 | ho
   · subst h0
-    refine ⟨by decide, by decide, by decide, ?_⟩
     simp only [rootRowT, rootWorldT]
+    refine ⟨by norm_num, by norm_num, by norm_num, ?_⟩
     rw [root_residual_true]
   · rcases List.mem_cons.mp ho with h0 | ho
     · subst h0
-      refine ⟨by decide, by decide, by decide, ?_⟩
       simp only [rootRowF, rootWorldF]
+      refine ⟨by norm_num, by norm_num, by norm_num, ?_⟩
       rw [root_residual_false]
     · simp [rootRows] at ho
 
@@ -218,56 +222,26 @@ theorem root_task_sat :
   unfold TaskSat
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
   · intro p hp
-    have hpm : p = ((2 / 5, [true]) : ℚ × World) ∨ p = ((3 / 5, [false]) : ℚ × World) := by
+    have hpm : p = ((2:ℚ) / 5, [true]) ∨ p = ((3:ℚ) / 5, [false]) := by
       simpa [rootModel] using hp
     rcases hpm with h0 | h0
     · subst h0; norm_num
     · subst h0; norm_num
-  · norm_num [rootModel]
+  · norm_num [rootModel, weighted]
   · intro o ho p hp _
-    rcases List.mem_cons.mp ho with h0 | ho
-    · subst h0
-      rcases List.mem_cons.mp hp with hp0 | hp
-      · subst hp0; exact ⟨by decide, by decide⟩
-      · have hpm : p = ((3 / 5, [false]) : ℚ × World) := by simpa [rootModel] using hp
-        subst hpm; exact ⟨by decide, by decide⟩
-    · rcases List.mem_cons.mp ho with h0 | ho
-      · subst h0
-        rcases List.mem_cons.mp hp with hp0 | hp
-        · subst hp0; exact ⟨by decide, by decide⟩
-        · have hpm : p = ((3 / 5, [false]) : ℚ × World) := by simpa [rootModel] using hp
-          subst hpm; exact ⟨by decide, by decide⟩
-      · simp [rootRows] at ho
+    rcases mem_two ho with rfl | rfl
+    · all_goals rw [root_cbal_true, root_cover_true]
+    · all_goals rw [root_cbal_false, root_cover_false]
   · intro o ho p hp _
-    rcases List.mem_cons.mp ho with h0 | ho
-    · subst h0
-      rcases List.mem_cons.mp hp with hp0 | hp
-      · subst hp0; exact ⟨by decide, by decide⟩
-      · have hpm : p = ((3 / 5, [false]) : ℚ × World) := by simpa [rootModel] using hp
-        subst hpm; exact ⟨by decide, by decide⟩
-    · rcases List.mem_cons.mp ho with h0 | ho
-      · subst h0
-        rcases List.mem_cons.mp hp with hp0 | hp
-        · subst hp0; exact ⟨by decide, by decide⟩
-        · have hpm : p = ((3 / 5, [false]) : ℚ × World) := by simpa [rootModel] using hp
-          subst hpm; exact ⟨by decide, by decide⟩
-      · simp [rootRows] at ho
-  · decide
-  · have hw : rootModel.weights = twoBranchWeights (2 / 5) := rfl
-    rw [hw, weighted_twoBranch, root_cbal_true, root_cbal_false]
-    simp only [rootModel]
-    norm_num
-  · have hw : rootModel.weights = twoBranchWeights (2 / 5) := rfl
-    rw [hw, weighted_twoBranch, root_cover_true, root_cover_false]
-    simp only [rootModel]
-    norm_num
-  · have hw : rootModel.weights = twoBranchWeights (2 / 5) := rfl
-    rw [hw, eventMass_twoBranch, root_cbal_true, root_cbal_false]
-    simp only [rootModel]
-    norm_num
+    rcases mem_two ho with rfl | rfl
+    · all_goals rw [root_cbal_true, root_cover_true]
+    · all_goals rw [root_cbal_false, root_cover_false]
+  · norm_num [rootModel, weighted]
+  · norm_num [rootModel, weighted]
+  · norm_num [rootModel, eventMass, cbal, cres, isRecognized, clipC]
   · norm_num [rootModel]
   · norm_num [rootModel]
-  · simp [rootModel]
+  · simp [rootModel, eligibleIn]
   · right
     exact ⟨850, by simp [rootModel], rfl⟩
 

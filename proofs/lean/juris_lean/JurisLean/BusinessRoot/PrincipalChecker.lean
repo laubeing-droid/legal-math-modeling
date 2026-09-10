@@ -36,10 +36,6 @@ theorem decomposition_unique (balance excess residual : ℚ)
       linarith
     · simp [max_eq_right (by linarith : -residual ≤ (0 : ℚ))]
 
-/-- The clipped identities are consequences, not definitions: C = max R 0 and
-U = max (−R) 0 follow from the four independent conditions. This is what makes
-the real checker's conservation-plus-complementarity acceptance reflect the
-unique semantic decomposition, instead of merely re-running the solver. -/
 /-- The if-form clip definitions unfold to the max-form used by the
 decomposition lemma (clipC definitionally; clipU by case analysis). -/
 theorem clipC_eq_max (r : ℚ) : clipC r = max r 0 := rfl

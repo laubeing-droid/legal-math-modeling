@@ -230,18 +230,18 @@ theorem root_task_sat :
   · norm_num [rootModel, weighted]
   · intro o ho p hp _
     rcases mem_two ho with rfl | rfl
-    · all_goals rw [root_cbal_true, root_cover_true]
-    · all_goals rw [root_cbal_false, root_cover_false]
+    · all_goals rw [root_cbal_true]
+    · all_goals rw [root_cbal_false]
   · intro o ho p hp _
     rcases mem_two ho with rfl | rfl
-    · all_goals rw [root_cbal_true, root_cover_true]
-    · all_goals rw [root_cbal_false, root_cover_false]
+    · all_goals rw [root_cover_true]
+    · all_goals rw [root_cover_false]
   · norm_num [rootModel, weighted]
   · norm_num [rootModel, weighted]
   · norm_num [rootModel, eventMass, cbal, cres, isRecognized, clipC]
   · norm_num [rootModel]
   · norm_num [rootModel]
-  · simp [rootModel, eligibleIn]
+  · simp [rootModel]
   · right
     exact ⟨850, by simp [rootModel], rfl⟩
 
@@ -366,7 +366,23 @@ theorem overpay_sample :
     weighted (twoBranchWeights (2 / 5)) (fun w => cbal 100 300 w) = 60 ∧
     weighted (twoBranchWeights (2 / 5)) (fun w => cover 100 300 w) = 80 ∧
     weighted (twoBranchWeights (2 / 5)) (fun w => cres 100 300 w) = -20 := by
-  refine ⟨?_, ?_, ?_⟩ <;> decide
+  refine ⟨?_, ?_, ?_⟩
+  · rw [weighted_twoBranch]
+    show (2 / 5) * clipC (cres 100 300 [true]) + (1 - 2 / 5) * clipC (cres 100 300 [false]) = 60
+    rw [cres_true_eq, cres_false_eq]
+    simp only [clipC]
+    rw [max_eq_right (by norm_num : (100:ℚ) - 300 ≤ 0), max_eq_left (by norm_num : (0:ℚ) ≤ 100)]
+    norm_num
+  · rw [weighted_twoBranch]
+    show (2 / 5) * clipU (cres 100 300 [true]) + (1 - 2 / 5) * clipU (cres 100 300 [false]) = 80
+    rw [cres_true_eq, cres_false_eq]
+    simp only [cover, clipU]
+    rw [max_eq_left (by norm_num : (0:ℚ) ≤ 200), max_eq_right (by norm_num : (-100:ℚ) ≤ 0)]
+    norm_num
+  · rw [weighted_twoBranch]
+    show (2 / 5) * cres 100 300 [true] + (1 - 2 / 5) * cres 100 300 [false] = -20
+    rw [cres_true_eq, cres_false_eq]
+    norm_num
 
 /-- Main sample: E[C]=880, threshold-800 event 3/5, interval [790, 930],
 eligible grid member 850 only. -/
@@ -375,6 +391,21 @@ theorem main_sample :
     eventMass (twoBranchWeights (2 / 5)) (fun w => cbal 1000 300 w) 800 = 3 / 5 ∧
     ((880 : ℚ) - 100 + 10 = 790 ∧ 880 + 60 - 10 = 930) ∧
     ([600, 850, 1100] : List ℚ).filter (fun x => decide ((790 : ℚ) ≤ x ∧ x ≤ 930)) = [850] := by
-  refine ⟨?_, ?_, ?_, ?_⟩ <;> decide
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · rw [weighted_twoBranch]
+    show (2 / 5) * clipC (cres 1000 300 [true]) + (1 - 2 / 5) * clipC (cres 1000 300 [false]) = 880
+    rw [cres_true_eq, cres_false_eq]
+    simp only [clipC]
+    rw [max_eq_left (by norm_num : (0:ℚ) ≤ 700), max_eq_left (by norm_num : (0:ℚ) ≤ 1000)]
+    norm_num
+  · rw [eventMass_twoBranch]
+    show (if (800:ℚ) ≤ clipC (cres 1000 300 [true]) then 2 / 5 else 0)
+        + (if (800:ℚ) ≤ clipC (cres 1000 300 [false]) then 1 - 2 / 5 else 0) = 3 / 5
+    rw [cres_true_eq, cres_false_eq]
+    simp only [clipC]
+    rw [max_eq_right (by norm_num : (800:ℚ) - 300 ≤ 0), max_eq_left (by norm_num : (0:ℚ) ≤ 1000)]
+    norm_num
+  · norm_num
+  · simp
 
 end JurisLean.BusinessRoot

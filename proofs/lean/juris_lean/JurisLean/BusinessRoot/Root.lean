@@ -33,6 +33,15 @@ namespace JurisLean.BusinessRoot
 
 def rootAtom : String := "payment_recognized"
 
+/-! The frozen probabilities are stored as normalized numerator/denominator
+constructor values, not as division terms: `2 / 5 : ℚ` elaborates to a
+`Rat.div` application which the kernel cannot whnf, so every closed bundle,
+binding or tamper comparison would get stuck under `decide`. In constructor
+form the same closed comparisons decide directly. -/
+abbrev qTwoFifths : ℚ := { num := 2, den := 5 }
+abbrev qThreeFifths : ℚ := { num := 3, den := 5 }
+abbrev qSevenSixteenths : ℚ := { num := 7, den := 16 }
+
 def rootSpec : PrincipalSpec :=
   { keys := [rootAtom]
     principal := 1000
@@ -44,7 +53,7 @@ def rootWorldT : World := [true]
 def rootWorldF : World := [false]
 
 def rootModel : ModelInputs :=
-  { weights := [(2 / 5, rootWorldT), (3 / 5, rootWorldF)]
+  { weights := [(qTwoFifths, rootWorldT), (qThreeFifths, rootWorldF)]
     threshold := 800
     costP := 100
     costD := 60
@@ -53,7 +62,7 @@ def rootModel : ModelInputs :=
     legalOptions := [600, 850, 1100]
     expectedC := 880
     expectedU := 0
-    eventProbability := 3 / 5
+    eventProbability := qThreeFifths
     lower := 790
     upper := 930
     eligible := [850]
@@ -63,7 +72,7 @@ def rootModel : ModelInputs :=
 def rootInput : ExactInput :=
   { principal := 1000
     payment := 300
-    probability := 2 / 5
+    probability := qTwoFifths
     threshold := 800
     costP := 100
     costD := 60
@@ -89,6 +98,7 @@ theorem root_wf :
 theorem root_residual_true :
     residualOf 1000 [rootAtom] rootSpec.payments [true] = 700 := by
   simp [residualOf, recognizedSum, rootSpec, rootAtom, lookupVal]
+  norm_num
 
 theorem root_residual_false :
     residualOf 1000 [rootAtom] rootSpec.payments [false] = 1000 := by
@@ -125,7 +135,8 @@ def rootRowsCond : List (List (String × Bool) × ℚ × ℚ) :=
 
 /-- Expected protected record from independent objects — never from a
 renderer or a submitted certificate. -/
-def rootProtected : Protected := protectedOf 1000 rootRowsCond [] rootModel
+def rootProtected : Protected :=
+  protectedOf [rootAtom] 1000 rootRowsCond [] rootModel
 
 /-! ### Frozen artifacts (as delivered, as structured tokens) -/
 
@@ -157,8 +168,8 @@ def rootJson : JsonArt :=
     principal := 1000
     outT := ([(rootAtom, true)], 700, 0)
     outF := ([(rootAtom, false)], 1000, 0)
-    weightT := ([(rootAtom, true)], 2 / 5)
-    weightF := ([(rootAtom, false)], 3 / 5)
+    weightT := ([(rootAtom, true)], qTwoFifths)
+    weightF := ([(rootAtom, false)], qThreeFifths)
     threshold := 800
     costP := 100
     costD := 60
@@ -167,7 +178,7 @@ def rootJson : JsonArt :=
     options := [600, 850, 1100]
     expC := 880
     expU := 0
-    event := 3 / 5
+    event := qThreeFifths
     lower := 790
     upper := 930
     eligible := [850]
@@ -226,7 +237,7 @@ theorem root_task_sat :
   unfold TaskSat
   refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
   · intro p hp
-    have hpm : p = ((2:ℚ) / 5, [true]) ∨ p = ((3:ℚ) / 5, [false]) := by
+    have hpm : p = (qTwoFifths, rootWorldT) ∨ p = (qThreeFifths, rootWorldF) := by
       simpa [rootModel] using hp
     rcases hpm with h0 | h0
     · subst h0; norm_num
@@ -289,9 +300,9 @@ that exactly covers the independent scenario domain Ω(I0), satisfies the
 independent joint semantics and the independent task satisfaction of the frozen
 Q, and whose protected record is exactly the joint read-back of both files. -/
 theorem business_root_two_files (doc : List DocLine) (js : List JsonRow)
-    (_hwf : root_wf.1 ∧ root_wf.2) (h : rootBundleAccepts doc js = true) :
+    (_hwf : root_wf) (h : rootBundleAccepts doc js = true) :
     ∃ W : List Witness, RootObligations W ∧
-      readBoth rootProtected doc js = some (protectedOf 1000 rootRowsCond [] rootModel) := by
+      readBoth rootProtected doc js = some (protectedOf [rootAtom] 1000 rootRowsCond [] rootModel) := by
   cases hr : readBoth rootProtected doc js with
   | none =>
       simp only [rootBundleAccepts, hr] at h
@@ -348,7 +359,7 @@ def swapJsonWeight : List JsonRow → ℚ → List JsonRow
 text is correct. -/
 theorem tampered_json_rejected :
     readBoth rootProtected (toLines rootDoc)
-        (swapJsonWeight (toJson rootJson) (7 / 16)) = none := by
+        (swapJsonWeight (toJson rootJson) qSevenSixteenths) = none := by
   decide
 
 /-- Mixed snapshots: the text from a P=1200 input and the JSON from the frozen
@@ -373,20 +384,8 @@ theorem wholesale_swap_rejected :
 theorem overpay_sample :
     weighted (twoBranchWeights (2 / 5)) (fun w => cbal 100 300 w) = 60 ∧
     weighted (twoBranchWeights (2 / 5)) (fun w => cover 100 300 w) = 80 ∧
-    weighted (twoBranchWeights (2 / 5)) (fun w => cres 100 300 w) = -20 := by
-  refine ⟨?_, ?_, ?_⟩
-  · rw [weighted_twoBranch]
-    show (2 / 5) * clipC (cres 100 300 [true]) + (1 - 2 / 5) * clipC (cres 100 300 [false]) = 60
-    rw [cres_true_eq, cres_false_eq]
-    norm_num [clipC]
-  · rw [weighted_twoBranch]
-    show (2 / 5) * clipU (cres 100 300 [true]) + (1 - 2 / 5) * clipU (cres 100 300 [false]) = 80
-    rw [cres_true_eq, cres_false_eq]
-    norm_num [cover, clipU]
-  · rw [weighted_twoBranch]
-    show (2 / 5) * cres 100 300 [true] + (1 - 2 / 5) * cres 100 300 [false] = -20
-    rw [cres_true_eq, cres_false_eq]
-    norm_num
+    weighted (twoBranchWeights (2 / 5)) (fun w => cres 100 300 w) = -20 :=
+  ⟨overpay_principal_expectation, overpay_overpay_expectation, overpay_raw_expectation⟩
 
 /-- Main sample: E[C]=880, threshold-800 event 3/5, interval [790, 930],
 eligible grid member 850 only. -/
@@ -394,22 +393,7 @@ theorem main_sample :
     weighted (twoBranchWeights (2 / 5)) (fun w => cbal 1000 300 w) = 880 ∧
     eventMass (twoBranchWeights (2 / 5)) (fun w => cbal 1000 300 w) 800 = 3 / 5 ∧
     ((880 : ℚ) - 100 + 10 = 790 ∧ 880 + 60 - 10 = 930) ∧
-    ([600, 850, 1100] : List ℚ).filter (fun x => decide ((790 : ℚ) ≤ x ∧ x ≤ 930)) = [850] := by
-  refine ⟨?_, ?_, ?_, ?_⟩
-  · rw [weighted_twoBranch]
-    show (2 / 5) * clipC (cres 1000 300 [true]) + (1 - 2 / 5) * clipC (cres 1000 300 [false]) = 880
-    rw [cres_true_eq, cres_false_eq]
-    simp only [clipC]
-    rw [max_eq_left (by norm_num : (0:ℚ) ≤ 700), max_eq_left (by norm_num : (0:ℚ) ≤ 1000)]
-    norm_num
-  · rw [eventMass_twoBranch]
-    show (if (800:ℚ) ≤ clipC (cres 1000 300 [true]) then 2 / 5 else 0)
-        + (if (800:ℚ) ≤ clipC (cres 1000 300 [false]) then 1 - 2 / 5 else 0) = 3 / 5
-    rw [cres_true_eq, cres_false_eq]
-    simp only [clipC]
-    rw [max_eq_right (by norm_num : (800:ℚ) - 300 ≤ 0), max_eq_left (by norm_num : (0:ℚ) ≤ 1000)]
-    norm_num
-  · norm_num
-  · simp
+    ([600, 850, 1100] : List ℚ).filter (fun x => decide ((790 : ℚ) ≤ x ∧ x ≤ 930)) = [850] :=
+  ⟨main_principal_expectation, main_threshold_event, main_interval, main_eligible⟩
 
 end JurisLean.BusinessRoot

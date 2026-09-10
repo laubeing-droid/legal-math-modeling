@@ -182,13 +182,15 @@ def TaskSat (principal : ℚ) (keys : List String) (payments : List Payment)
 
 /-- Abstract protected record of the frozen two-file delivery: requirement
 identity, principal, per-scenario rows (condition map with balance and
-overpayment), pending scenarios, the analytics block and the delivery notice.
-This is the joint read-back target of both actual files. -/
+overpayment), pending scenarios, the exact scenario weights, the analytics
+block and the delivery notice. This is the joint read-back target of both
+actual files. -/
 structure Protected where
   requirement : String
   principal : ℚ
   rows : List (List (String × Bool) × ℚ × ℚ)
   pending : List (List (String × Bool))
+  weights : List (List (String × Bool) × ℚ)
   expectedC : ℚ
   expectedU : ℚ
   eventProbability : ℚ
@@ -200,15 +202,16 @@ structure Protected where
   deriving DecidableEq
 
 /-- The protected record generated from independent objects (principal,
-per-scenario condition rows, pending scenarios, analytics) — not from any
-renderer output. -/
-def protectedOf (principal : ℚ)
+per-scenario condition rows, pending scenarios, the model weights keyed by
+condition map, analytics) — not from any renderer output. -/
+def protectedOf (keys : List String) (principal : ℚ)
     (rows : List (List (String × Bool) × ℚ × ℚ))
     (pending : List (List (String × Bool))) (m : ModelInputs) : Protected :=
   { requirement := requirementQ
     principal := principal
     rows := rows
     pending := pending
+    weights := m.weights.map (fun p => (keys.zip p.2, p.1))
     expectedC := m.expectedC
     expectedU := m.expectedU
     eventProbability := m.eventProbability

@@ -18,8 +18,9 @@ grammar of `calculation.json` as inductive token lists, and proves here that
 * `parse ∘ render = id` for both structured artifacts;
 * `readBoth` accepts only when BOTH files parse to the SAME protected record
   with the requirement identity and the complete mode, so a JSON that is
-  correct while the text is wrong (and vice versa), a same-version model
-  swapped wholesale, or two mixed source snapshots are all rejected.
+  correct while the text is wrong (and vice versa), a tampered scenario
+  weight, a same-version model swapped wholesale, or two mixed source
+  snapshots are all rejected.
 
 No claim is made about arbitrary prose, DOCX display semantics or PDF.
 -/
@@ -186,13 +187,16 @@ theorem duplicate_key_rejected (a : JsonArt) :
 /-! ### Protected records and the joint read-back -/
 
 /-- The text artifact determines its scenario rows; requirement identity,
-principal and the analytics block come from the independent frozen input. -/
+principal, the exact scenario weights and the analytics block come from the
+independent frozen input. -/
 def docToProtected (a : DocArt) (principal ec eu ev lo hi : ℚ)
-    (eligible : List ℚ) (sel : Option ℚ) : Protected :=
+    (eligible : List ℚ) (sel : Option ℚ)
+    (ws : List (List (String × Bool) × ℚ)) : Protected :=
   { requirement := requirementQ
     principal := principal
     rows := [(a.condT, a.balT, a.overT), (a.condF, a.balF, a.overF)]
     pending := []
+    weights := ws
     expectedC := ec
     expectedU := eu
     eventProbability := ev
@@ -203,12 +207,13 @@ def docToProtected (a : DocArt) (principal ec eu ev lo hi : ℚ)
     notice := rootNotice }
 
 /-- The JSON artifact determines its whole protected record, including the
-requirement identity it claims for itself. -/
+requirement identity and the scenario weights it claims for itself. -/
 def jsonToProtected (a : JsonArt) : Protected :=
   { requirement := a.requirement
     principal := a.principal
     rows := [(a.outT.1, a.outT.2.1, a.outT.2.2), (a.outF.1, a.outF.2.1, a.outF.2.2)]
     pending := []
+    weights := [(a.weightT.1, a.weightT.2), (a.weightF.1, a.weightF.2)]
     expectedC := a.expC
     expectedU := a.expU
     eventProbability := a.event
@@ -223,14 +228,15 @@ def readBothCheck (expected : Protected) (d : DocArt) (j : JsonArt) : Bool :=
   decide (d.mode = "EXACT_FINITE_SCENARIOS" ∧
     docToProtected d expected.principal expected.expectedC expected.expectedU
         expected.eventProbability expected.lower expected.upper
-        expected.eligible expected.selected = expected ∧
+        expected.eligible expected.selected expected.weights = expected ∧
     jsonToProtected j = expected)
 
 /-- Joint read-back of the two actual artifacts. Both must parse, the text must
-declare the complete mode, and BOTH protected records must equal the expected
-record computed from the independent frozen input; on success the joint
-protected record is returned. A JSON that is correct while the text is wrong
-(and vice versa), a wholesale model swap, or two mixed snapshots therefore
+declare the complete mode, and BOTH protected records — including the exact
+scenario weights — must equal the expected record computed from the
+independent frozen input; on success the joint protected record is returned.
+A JSON that is correct while the text is wrong (and vice versa), a tampered
+scenario weight, a wholesale model swap, or two mixed snapshots therefore
 cannot pass. -/
 def readBoth (expected : Protected) (doc : List DocLine) (js : List JsonRow) :
     Option Protected :=

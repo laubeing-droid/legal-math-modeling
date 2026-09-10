@@ -89,7 +89,7 @@ theorem chooseFirst_none (lo hi : ℚ) (xs : List ℚ) :
     by_cases hx : lo ≤ x ∧ x ≤ hi
     · simp [chooseFirst, hx]
     · simp only [chooseFirst, if_neg hx, List.forall_mem_cons]
-      exact ⟨fun hc _ => hx, fun ⟨_, hall⟩ hmem => hall hmem⟩
+      exact ⟨fun hc => ⟨hx, ih.mp hc⟩, fun ⟨_, hall⟩ => ih.mpr hall⟩
 
 theorem selected_point_is_lawful_and_ir (d : CaseInput) (x : ℚ)
     (h : chooseSettlement d = some x) : x ∈ lawfulIR d :=

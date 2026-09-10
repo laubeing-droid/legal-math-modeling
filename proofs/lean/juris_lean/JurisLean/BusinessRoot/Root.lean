@@ -42,6 +42,25 @@ abbrev qTwoFifths : ℚ := { num := 2, den := 5 }
 abbrev qThreeFifths : ℚ := { num := 3, den := 5 }
 abbrev qSevenSixteenths : ℚ := { num := 7, den := 16 }
 
+/-! Bridges from the constructor-form values to the division form: `norm_num`
+recognizes rationals only in `n / d` normal form, while the kernel needs the
+constructor form. The bridges are proved via `Rat.num_div_den` at the lemma
+level, so no kernel evaluation of `Rat.div` is ever required. Passing them as
+`norm_num` rewriting arguments lets the analytics goals compute. -/
+theorem qTwoFifths_eq : qTwoFifths = 2 / 5 := by
+  have h : (qTwoFifths.num : ℚ) / (qTwoFifths.den : ℚ) = qTwoFifths :=
+    Rat.num_div_den qTwoFifths
+  rw [show qTwoFifths.num = (2 : ℤ) from rfl, show qTwoFifths.den = (5 : ℕ) from rfl] at h
+  rw [← h]
+  norm_num
+
+theorem qThreeFifths_eq : qThreeFifths = 3 / 5 := by
+  have h : (qThreeFifths.num : ℚ) / (qThreeFifths.den : ℚ) = qThreeFifths :=
+    Rat.num_div_den qThreeFifths
+  rw [show qThreeFifths.num = (3 : ℤ) from rfl, show qThreeFifths.den = (5 : ℕ) from rfl] at h
+  rw [← h]
+  norm_num
+
 def rootSpec : PrincipalSpec :=
   { keys := [rootAtom]
     principal := 1000
@@ -240,9 +259,9 @@ theorem root_task_sat :
     have hpm : p = (qTwoFifths, rootWorldT) ∨ p = (qThreeFifths, rootWorldF) := by
       simpa [rootModel] using hp
     rcases hpm with h0 | h0
-    · subst h0; norm_num [qTwoFifths, qThreeFifths]
-    · subst h0; norm_num [qTwoFifths, qThreeFifths]
-  · norm_num [qTwoFifths, qThreeFifths, rootModel, weighted, twoBranchWeights, cres,
+    · subst h0; norm_num [qTwoFifths_eq, qThreeFifths_eq]
+    · subst h0; norm_num [qTwoFifths_eq, qThreeFifths_eq]
+  · norm_num [qTwoFifths_eq, qThreeFifths_eq, rootModel, weighted, twoBranchWeights, cres,
       isRecognized, clipC, clipU, residualOf, recognizedSum, rootSpec, rootAtom, lookupVal,
       rootWorldT, rootWorldF]
   · intro o ho p hp _
@@ -253,10 +272,10 @@ theorem root_task_sat :
     rcases mem_two ho with rfl | rfl
     · simp only [rootRowT, rootWorldT]; rw [root_cover_true]
     · simp only [rootRowF, rootWorldF]; rw [root_cover_false]
-  · norm_num [qTwoFifths, qThreeFifths, rootModel, weighted, twoBranchWeights, cres,
+  · norm_num [qTwoFifths_eq, qThreeFifths_eq, rootModel, weighted, twoBranchWeights, cres,
       isRecognized, clipC, clipU, residualOf, recognizedSum, rootSpec, rootAtom, lookupVal,
       rootWorldT, rootWorldF]
-  · norm_num [qTwoFifths, qThreeFifths, rootModel, weighted, twoBranchWeights, cres,
+  · norm_num [qTwoFifths_eq, qThreeFifths_eq, rootModel, weighted, twoBranchWeights, cres,
       isRecognized, clipC, clipU, residualOf, recognizedSum, rootSpec, rootAtom, lookupVal,
       rootWorldT, rootWorldF]
   · norm_num [rootModel, eventMass, twoBranchWeights, cbal, cres, isRecognized, clipC,
@@ -318,7 +337,7 @@ theorem business_root_two_files (doc : List DocLine) (js : List JsonRow)
       · exact root_worlds_match
       · exact root_joint_sem
       · exact root_task_sat
-      · exact hr
+      · rfl
 
 /-! ### Non-vacuity: the real artifacts pass, tampered ones do not -/
 

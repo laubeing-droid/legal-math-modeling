@@ -87,10 +87,12 @@ theorem root_wf :
 theorem root_residual_true :
     residualOf 1000 [rootAtom] rootSpec.payments [true] = 700 := by
   simp [residualOf, recognizedSum, rootSpec, rootAtom, lookupVal]
+  norm_num
 
 theorem root_residual_false :
     residualOf 1000 [rootAtom] rootSpec.payments [false] = 1000 := by
   simp [residualOf, recognizedSum, rootSpec, rootAtom, lookupVal]
+  norm_num
 
 /-- Per-scenario clipped/overpayment values of the frozen task. -/
 theorem root_cbal_true :
@@ -372,15 +374,11 @@ theorem overpay_sample :
   · rw [weighted_twoBranch]
     show (2 / 5) * clipC (cres 100 300 [true]) + (1 - 2 / 5) * clipC (cres 100 300 [false]) = 60
     rw [cres_true_eq, cres_false_eq]
-    simp only [clipC]
-    rw [max_eq_right (by norm_num : (100:ℚ) - 300 ≤ 0), max_eq_left (by norm_num : (0:ℚ) ≤ 100)]
-    norm_num
+    norm_num [clipC]
   · rw [weighted_twoBranch]
     show (2 / 5) * clipU (cres 100 300 [true]) + (1 - 2 / 5) * clipU (cres 100 300 [false]) = 80
     rw [cres_true_eq, cres_false_eq]
-    simp only [cover, clipU]
-    rw [max_eq_left (by norm_num : (0:ℚ) ≤ 200), max_eq_right (by norm_num : (-100:ℚ) ≤ 0)]
-    norm_num
+    norm_num [cover, clipU]
   · rw [weighted_twoBranch]
     show (2 / 5) * cres 100 300 [true] + (1 - 2 / 5) * cres 100 300 [false] = -20
     rw [cres_true_eq, cres_false_eq]

@@ -88,7 +88,8 @@ theorem chooseFirst_none (lo hi : ℚ) (xs : List ℚ) :
   | cons x xs ih =>
     by_cases hx : lo ≤ x ∧ x ≤ hi
     · simp [chooseFirst, hx]
-    · simp only [chooseFirst, hx]
+    · simp only [chooseFirst]
+      rw [if_neg hx]
       exact ih
 
 theorem selected_point_is_lawful_and_ir (d : CaseInput) (x : ℚ)

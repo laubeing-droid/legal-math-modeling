@@ -17,11 +17,14 @@ namespace JurisLean.BusinessRoot
 raw residual for every value. -/
 theorem split_identity (r : ℚ) : clipC r - clipU r = r := by
   unfold clipC clipU
-  by_cases h : 0 ≤ r
-  · rw [max_eq_left h, max_eq_right (neg_nonpos.mpr h)]
-    ring
-  · have hr : r ≤ 0 := le_of_lt (lt_of_not_ge h)
-    rw [max_eq_right hr, max_eq_left (neg_nonneg.mpr hr)]
+  by_cases h : r ≤ 0
+  · by_cases h2 : r < 0
+    · simp [h, h2]
+    · have hreq : r = 0 := by linarith
+      simp [hreq, h]
+  · have h3 : ¬ (r ≤ 0) := by linarith
+    have h4 : ¬ (r < 0) := by linarith
+    rw [if_neg h3, if_neg h4]
     ring
 
 /-- Weighted linearity under pointwise subtraction of the per-scenario quantity. -/
@@ -121,9 +124,7 @@ theorem overpay_principal_expectation :
   rw [weighted_twoBranch]
   show (2 / 5) * clipC (cres 100 300 [true]) + (1 - 2 / 5) * clipC (cres 100 300 [false]) = 60
   rw [cres_true_eq, cres_false_eq]
-  simp only [clipC]
-  rw [max_eq_right (by norm_num : (100:ℚ) - 300 ≤ 0), max_eq_left (by norm_num : (0:ℚ) ≤ 100)]
-  norm_num
+  norm_num [clipC]
 
 /-- Frozen overpayment sample: the overpayment expectation is 80. -/
 theorem overpay_overpay_expectation :
@@ -131,9 +132,7 @@ theorem overpay_overpay_expectation :
   rw [weighted_twoBranch]
   show (2 / 5) * clipU (cres 100 300 [true]) + (1 - 2 / 5) * clipU (cres 100 300 [false]) = 80
   rw [cres_true_eq, cres_false_eq]
-  simp only [cover, clipU]
-  rw [max_eq_left (by norm_num : (0:ℚ) ≤ -(100 - 300)), max_eq_right (by norm_num : (-100:ℚ) ≤ 0)]
-  norm_num
+  norm_num [cover, clipU]
 
 /-- At threshold 0 the clipped-balance event has probability 1 while the
 raw-residual event has probability 3/5 — two different events. -/
@@ -141,9 +140,7 @@ theorem threshold_zero_distinction :
     eventMass (twoBranchWeights (2 / 5)) (fun w => cbal 100 300 w) 0 = 1 ∧
     eventMass (twoBranchWeights (2 / 5)) (fun w => cres 100 300 w) 0 = 3 / 5 := by
   rw [eventMass_twoBranch, cres_true_eq, cres_false_eq]
-  simp only [cbal, clipC]
-  rw [max_eq_right (by norm_num : (100:ℚ) - 300 ≤ 0), max_eq_left (by norm_num : (0:ℚ) ≤ 100)]
-  norm_num
+  norm_num [cbal, clipC]
 
 /-- Frozen main sample (P=1000, q=300, p=2/5): the principal expectation is
 880. -/
@@ -152,9 +149,7 @@ theorem main_principal_expectation :
   rw [weighted_twoBranch]
   show (2 / 5) * clipC (cres 1000 300 [true]) + (1 - 2 / 5) * clipC (cres 1000 300 [false]) = 880
   rw [cres_true_eq, cres_false_eq]
-  simp only [clipC]
-  rw [max_eq_left (by norm_num : (0:ℚ) ≤ 1000 - 300), max_eq_left (by norm_num : (0:ℚ) ≤ 1000)]
-  norm_num
+  norm_num [clipC]
 
 /-- Frozen main sample: the threshold-800 event probability is 3/5. -/
 theorem main_threshold_event :
@@ -163,9 +158,7 @@ theorem main_threshold_event :
   show (if (800:ℚ) ≤ clipC (cres 1000 300 [true]) then 2 / 5 else 0)
       + (if (800:ℚ) ≤ clipC (cres 1000 300 [false]) then 1 - 2 / 5 else 0) = 3 / 5
   rw [cres_true_eq, cres_false_eq]
-  simp only [clipC]
-  rw [max_eq_left (by norm_num : (0:ℚ) ≤ 1000 - 300), max_eq_left (by norm_num : (0:ℚ) ≤ 1000)]
-  norm_num
+  norm_num [clipC]
 
 /-- Frozen main sample interval: [790, 930]. -/
 theorem main_interval : (880 : ℚ) - 100 + 10 = 790 ∧ 880 + 60 - 10 = 930 := by

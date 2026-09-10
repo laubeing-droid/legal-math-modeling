@@ -90,6 +90,27 @@ theorem root_residual_true :
 theorem root_residual_false :
     residualOf 1000 [rootAtom] rootSpec.payments [false] = 1000 := by decide
 
+/-- Per-scenario clipped/overpayment values of the frozen task. -/
+theorem root_cbal_true :
+    clipC (residualOf 1000 [rootAtom] rootSpec.payments [true]) = 700 := by
+  rw [root_residual_true]
+  norm_num [clipC]
+
+theorem root_cbal_false :
+    clipC (residualOf 1000 [rootAtom] rootSpec.payments [false]) = 1000 := by
+  rw [root_residual_false]
+  norm_num [clipC]
+
+theorem root_cover_true :
+    clipU (residualOf 1000 [rootAtom] rootSpec.payments [true]) = 0 := by
+  rw [root_residual_true]
+  norm_num [clipU]
+
+theorem root_cover_false :
+    clipU (residualOf 1000 [rootAtom] rootSpec.payments [false]) = 0 := by
+  rw [root_residual_false]
+  norm_num [clipU]
+
 def rootRowT : Witness := ⟨rootWorldT, 700, 0⟩
 def rootRowF : Witness := ⟨rootWorldF, 1000, 0⟩
 def rootRows : List Witness := [rootRowT, rootRowF]

@@ -78,10 +78,10 @@ def residualOf (principal : ℚ) (keys : List String) (payments : List Payment)
   principal - recognizedSum keys payments vals
 
 /-- Nonnegative clipped principal balance C_ξ. -/
-def clipC (r : ℚ) : ℚ := max r 0
+def clipC (r : ℚ) : ℚ := if r ≤ 0 then 0 else r
 
 /-- Nonnegative overpayment residual U_ξ. -/
-def clipU (r : ℚ) : ℚ := max (-r) 0
+def clipU (r : ℚ) : ℚ := if r < 0 then -r else 0
 
 /-- The frozen input I0 = (spec, model binding, Q); the requirement identity is
 part of the object, not an external claim. -/

@@ -63,16 +63,19 @@ theorem exec_compile (keys : List String) (vals : World) (g : Guard) :
   | atom a => intro c s; simp [compile, exec, stackOf, Guard.denote]
   | neg a ih =>
       intro c s
+      simp only [compile]
       rw [List.append_assoc, ih ([.notI] ++ c) s]
       simp [exec, stackOf, Guard.denote]
   | both a b iha ihb =>
       intro c s
+      simp only [compile]
       rw [List.append_assoc, List.append_assoc,
         iha (compile b ++ ([.andI] ++ c)) s,
         ihb ([.andI] ++ c) (stackOf keys vals a s)]
       simp [exec, stackOf, Guard.denote]
   | either a b iha ihb =>
       intro c s
+      simp only [compile]
       rw [List.append_assoc, List.append_assoc,
         iha (compile b ++ ([.orI] ++ c)) s,
         ihb ([.orI] ++ c) (stackOf keys vals a s)]

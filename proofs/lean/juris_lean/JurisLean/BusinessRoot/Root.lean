@@ -231,7 +231,8 @@ theorem root_task_sat :
     rcases hpm with h0 | h0
     · subst h0; norm_num
     · subst h0; norm_num
-  · norm_num [rootModel, weighted]
+  · norm_num [rootModel, weighted, twoBranchWeights, cres, isRecognized, clipC, clipU,
+      residualOf, recognizedSum, rootSpec, rootAtom, lookupVal, rootWorldT, rootWorldF]
   · intro o ho p hp _
     rcases mem_two ho with rfl | rfl
     · simp only [rootRowT, rootWorldT]; rw [root_cbal_true]
@@ -240,12 +241,15 @@ theorem root_task_sat :
     rcases mem_two ho with rfl | rfl
     · simp only [rootRowT, rootWorldT]; rw [root_cover_true]
     · simp only [rootRowF, rootWorldF]; rw [root_cover_false]
-  · norm_num [rootModel, weighted]
-  · norm_num [rootModel, weighted]
-  · norm_num [rootModel, eventMass, cbal, cres, isRecognized, clipC]
+  · norm_num [rootModel, weighted, twoBranchWeights, cres, isRecognized, clipC, clipU,
+      residualOf, recognizedSum, rootSpec, rootAtom, lookupVal, rootWorldT, rootWorldF]
+  · norm_num [rootModel, weighted, twoBranchWeights, cres, isRecognized, clipC, clipU,
+      residualOf, recognizedSum, rootSpec, rootAtom, lookupVal, rootWorldT, rootWorldF]
+  · norm_num [rootModel, eventMass, twoBranchWeights, cbal, cres, isRecognized, clipC,
+      residualOf, recognizedSum, rootSpec, rootAtom, lookupVal, rootWorldT, rootWorldF]
   · norm_num [rootModel]
   · norm_num [rootModel]
-  · simp [rootModel]
+  · decide
   · right
     exact ⟨850, by simp [rootModel], rfl⟩
 

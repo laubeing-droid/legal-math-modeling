@@ -87,12 +87,10 @@ theorem root_wf :
 theorem root_residual_true :
     residualOf 1000 [rootAtom] rootSpec.payments [true] = 700 := by
   simp [residualOf, recognizedSum, rootSpec, rootAtom, lookupVal]
-  norm_num
 
 theorem root_residual_false :
     residualOf 1000 [rootAtom] rootSpec.payments [false] = 1000 := by
   simp [residualOf, recognizedSum, rootSpec, rootAtom, lookupVal]
-  norm_num
 
 /-- Per-scenario clipped/overpayment values of the frozen task. -/
 theorem root_cbal_true :
@@ -234,12 +232,12 @@ theorem root_task_sat :
   · norm_num [rootModel, weighted]
   · intro o ho p hp _
     rcases mem_two ho with rfl | rfl
-    · all_goals rw [root_cbal_true]
-    · all_goals rw [root_cbal_false]
+    · simp only [rootRowT, rootWorldT]; rw [root_cbal_true]
+    · simp only [rootRowF, rootWorldF]; rw [root_cbal_false]
   · intro o ho p hp _
     rcases mem_two ho with rfl | rfl
-    · all_goals rw [root_cover_true]
-    · all_goals rw [root_cover_false]
+    · simp only [rootRowT, rootWorldT]; rw [root_cover_true]
+    · simp only [rootRowF, rootWorldF]; rw [root_cover_false]
   · norm_num [rootModel, weighted]
   · norm_num [rootModel, weighted]
   · norm_num [rootModel, eventMass, cbal, cres, isRecognized, clipC]

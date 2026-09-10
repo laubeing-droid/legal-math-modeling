@@ -25,6 +25,8 @@ evidence; byte-level lexing remains documented TCB). This proves no legal
 statement, no real-case claim and no empirical property.
 -/
 
+set_option maxRecDepth 100000
+
 namespace JurisLean.BusinessRoot
 
 /-! ### The frozen input I0 -/
@@ -87,12 +89,10 @@ theorem root_wf :
 theorem root_residual_true :
     residualOf 1000 [rootAtom] rootSpec.payments [true] = 700 := by
   simp [residualOf, recognizedSum, rootSpec, rootAtom, lookupVal]
-  norm_num
 
 theorem root_residual_false :
     residualOf 1000 [rootAtom] rootSpec.payments [false] = 1000 := by
   simp [residualOf, recognizedSum, rootSpec, rootAtom, lookupVal]
-  norm_num
 
 /-- Per-scenario clipped/overpayment values of the frozen task. -/
 theorem root_cbal_true :

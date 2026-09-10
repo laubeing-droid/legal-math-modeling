@@ -129,12 +129,16 @@ The claimed fields are the submission under test, not their own evidence. -/
 structure ModelInputs where
   weights : List (ℚ × World)
   threshold : ℚ
-  costP costD settleP settleD : ℚ
+  costP : ℚ
+  costD : ℚ
+  settleP : ℚ
+  settleD : ℚ
   legalOptions : List ℚ
   expectedC : ℚ
   expectedU : ℚ
   eventProbability : ℚ
-  lower upper : ℚ
+  lower : ℚ
+  upper : ℚ
   eligible : List ℚ
   selected : Option ℚ
   deriving DecidableEq

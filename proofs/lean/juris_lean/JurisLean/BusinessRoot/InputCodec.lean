@@ -62,7 +62,8 @@ theorem binding_refuses_changed (i : ExactInput) (δ : ℚ) (hne : δ ≠ 0) :
     CheckBinding i {i with principal := i.principal + δ} = false := by
   simp only [CheckBinding, decide_eq_false_iff_not, ne_eq]
   intro heq
-  have hproj : i.principal = i.principal + δ := congrArg _ heq
+  have hproj : i.principal = i.principal + δ :=
+    congrArg ExactInput.principal heq
   exact hne (by linarith)
 
 /-- A changed parameter set is a distinct task object — allowed to exist as a
@@ -71,7 +72,8 @@ previously selected input. -/
 theorem changed_is_different (i : ExactInput) (δ : ℚ) (hne : δ ≠ 0) :
     {i with principal := i.principal + δ} ≠ i := by
   intro heq
-  have hproj : i.principal + δ = i.principal := congrArg _ heq
+  have hproj : i.principal + δ = i.principal :=
+    congrArg ExactInput.principal heq
   exact hne (by linarith)
 
 end JurisLean.BusinessRoot

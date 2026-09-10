@@ -87,10 +87,12 @@ theorem root_wf :
 theorem root_residual_true :
     residualOf 1000 [rootAtom] rootSpec.payments [true] = 700 := by
   simp [residualOf, recognizedSum, rootSpec, rootAtom, lookupVal]
+  norm_num
 
 theorem root_residual_false :
     residualOf 1000 [rootAtom] rootSpec.payments [false] = 1000 := by
   simp [residualOf, recognizedSum, rootSpec, rootAtom, lookupVal]
+  norm_num
 
 /-- Per-scenario clipped/overpayment values of the frozen task. -/
 theorem root_cbal_true :
@@ -210,11 +212,13 @@ theorem root_joint_sem :
     simp only [rootRowT, rootWorldT]
     refine ⟨by norm_num, by norm_num, by norm_num, ?_⟩
     rw [root_residual_true]
+    norm_num
   · rcases List.mem_cons.mp ho with h0 | ho
     · subst h0
       simp only [rootRowF, rootWorldF]
       refine ⟨by norm_num, by norm_num, by norm_num, ?_⟩
       rw [root_residual_false]
+      norm_num
     · simp [rootRows] at ho
 
 theorem root_task_sat :

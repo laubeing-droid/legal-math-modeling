@@ -58,6 +58,7 @@ theorem clipped_from_conditions (principal : ℚ) (keys : List String)
   have h := decomposition_unique o.principalBalance o.overpaymentResidual
     (residualOf principal keys payments vals) hb hu hsub hmul
   rw [h.1, h.2, ← clipC_eq_max, ← clipU_eq_max]
+  exact ⟨rfl, rfl⟩
 
 /-- For the frozen single-atom shape (facts leave the atom open, constraint
 `truthy`), an Ω member must be one of the two declared branches. Shape comes

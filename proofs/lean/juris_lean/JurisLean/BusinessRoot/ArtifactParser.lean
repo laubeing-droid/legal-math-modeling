@@ -97,11 +97,13 @@ theorem doc_roundtrip (a : DocArt) : ofLines (toLines a) = some a := by
 /-- Demoting a scenario row to a pending row is not completeness: the artifact
 becomes unparseable at the frozen shape instead of "complete by default". -/
 theorem demoted_row_not_parseable (a : DocArt) (conds : List (String × Bool)) :
-    ofLines ([.title, .warning rootNotice,
-      .caseId a.caseId, .issue a.issue, .creditor a.creditor, .debtor a.debtor,
-      .debt a.debt, .basis a.basis, .dueDay a.dueDay, .asOfDay a.asOfDay,
-      .assumptions a.assumptions, .ctx a.ctx, .mode "PARTIAL_SCENARIOS",
-      .scenarioRow a.condT a.balT a.overT, .pendingRow conds, .footer]) = none := by
+    ofLines ([DocLine.title, DocLine.warning rootNotice,
+      DocLine.caseId a.caseId, DocLine.issue a.issue, DocLine.creditor a.creditor,
+      DocLine.debtor a.debtor, DocLine.debt a.debt, DocLine.basis a.basis,
+      DocLine.dueDay a.dueDay, DocLine.asOfDay a.asOfDay,
+      DocLine.assumptions a.assumptions, DocLine.ctx a.ctx, DocLine.mode "PARTIAL_SCENARIOS",
+      DocLine.scenarioRow a.condT a.balT a.overT, DocLine.pendingRow conds,
+      DocLine.footer]) = none := by
   rfl
 
 /-! ### Closed typed row grammar of the calculation.json artifact -/

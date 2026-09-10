@@ -96,30 +96,41 @@ This uses C and U, never E[R] in place of E[C]. -/
 theorem CU_expectation_conservation (P q p : ℚ) :
     weighted (twoBranchWeights p) (fun w => cbal P q w) -
       weighted (twoBranchWeights p) (fun w => cover P q w) = P - p * q := by
+  have hT : cbal P q [true] - cover P q [true] = cres P q [true] :=
+    split_identity (cres P q [true])
+  have hF : cbal P q [false] - cover P q [false] = cres P q [false] :=
+    split_identity (cres P q [false])
   rw [weighted_sub, weighted_twoBranch]
-  simp only [cbal, cover, split_identity, cres, isRecognized]
+  simp only [cbal, cover, split_identity]
+  rw [cres_true_eq, cres_false_eq]
   ring
 
 /-- Frozen overpayment sample (P=100, q=300, p=2/5): the raw residual
 expectation is −20. -/
 theorem overpay_raw_expectation :
     weighted (twoBranchWeights (2 / 5)) (fun w => cres 100 300 w) = -20 := by
-  rw [weighted_twoBranch, cres_true_eq, cres_false_eq]
+  rw [weighted_twoBranch]
+  show (2 / 5) * cres 100 300 [true] + (1 - 2 / 5) * cres 100 300 [false] = -20
+  rw [cres_true_eq, cres_false_eq]
   norm_num
 
 /-- Frozen overpayment sample: the nonnegative principal expectation is 60,
 not −20 — the raw expectation is not the principal expectation. -/
 theorem overpay_principal_expectation :
     weighted (twoBranchWeights (2 / 5)) (fun w => cbal 100 300 w) = 60 := by
-  rw [weighted_twoBranch, cres_true_eq, cres_false_eq]
-  simp only [cbal, clipC]
-  rw [max_eq_right (by norm_num : (-200:ℚ) ≤ 0), max_eq_left (by norm_num : (0:ℚ) ≤ 100)]
+  rw [weighted_twoBranch]
+  show (2 / 5) * clipC (cres 100 300 [true]) + (1 - 2 / 5) * clipC (cres 100 300 [false]) = 60
+  rw [cres_true_eq, cres_false_eq]
+  simp only [clipC]
+  rw [max_eq_right (by norm_num : (100:ℚ) - 300 ≤ 0), max_eq_left (by norm_num : (0:ℚ) ≤ 100)]
   norm_num
 
 /-- Frozen overpayment sample: the overpayment expectation is 80. -/
 theorem overpay_overpay_expectation :
     weighted (twoBranchWeights (2 / 5)) (fun w => cover 100 300 w) = 80 := by
-  rw [weighted_twoBranch, cres_true_eq, cres_false_eq]
+  rw [weighted_twoBranch]
+  show (2 / 5) * clipU (cres 100 300 [true]) + (1 - 2 / 5) * clipU (cres 100 300 [false]) = 80
+  rw [cres_true_eq, cres_false_eq]
   simp only [cover, clipU]
   rw [max_eq_left (by norm_num : (0:ℚ) ≤ 200), max_eq_right (by norm_num : (-100:ℚ) ≤ 0)]
   norm_num
@@ -138,16 +149,21 @@ theorem threshold_zero_distinction :
 880. -/
 theorem main_principal_expectation :
     weighted (twoBranchWeights (2 / 5)) (fun w => cbal 1000 300 w) = 880 := by
-  rw [weighted_twoBranch, cres_true_eq, cres_false_eq]
-  simp only [cbal, clipC]
+  rw [weighted_twoBranch]
+  show (2 / 5) * clipC (cres 1000 300 [true]) + (1 - 2 / 5) * clipC (cres 1000 300 [false]) = 880
+  rw [cres_true_eq, cres_false_eq]
+  simp only [clipC]
   rw [max_eq_left (by norm_num : (0:ℚ) ≤ 700), max_eq_left (by norm_num : (0:ℚ) ≤ 1000)]
   norm_num
 
 /-- Frozen main sample: the threshold-800 event probability is 3/5. -/
 theorem main_threshold_event :
     eventMass (twoBranchWeights (2 / 5)) (fun w => cbal 1000 300 w) 800 = 3 / 5 := by
-  rw [eventMass_twoBranch, cres_true_eq, cres_false_eq]
-  simp only [cbal, clipC]
+  rw [eventMass_twoBranch]
+  show (if (800:ℚ) ≤ clipC (cres 1000 300 [true]) then 2 / 5 else 0)
+      + (if (800:ℚ) ≤ clipC (cres 1000 300 [false]) then 1 - 2 / 5 else 0) = 3 / 5
+  rw [cres_true_eq, cres_false_eq]
+  simp only [clipC]
   rw [max_eq_left (by norm_num : (0:ℚ) ≤ 700), max_eq_left (by norm_num : (0:ℚ) ≤ 1000)]
   norm_num
 

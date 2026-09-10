@@ -28,7 +28,7 @@ theorem split_identity (r : ℚ) : clipC r - clipU r = r := by
 theorem weighted_sub (ws : List (ℚ × World)) (f g : World → ℚ) :
     weighted ws f - weighted ws g = weighted ws (fun w => f w - g w) := by
   induction ws with
-  | nil => rfl
+  | nil => simp [weighted]
   | cons x rest ih =>
       have e1 : weighted (x :: rest) f = x.1 * f x.2 + weighted rest f := by
         simp [weighted]
@@ -37,9 +37,12 @@ theorem weighted_sub (ws : List (ℚ × World)) (f g : World → ℚ) :
       have e3 : weighted (x :: rest) (fun w => f w - g w)
           = x.1 * (f x.2 - g x.2) + weighted rest (fun w => f w - g w) := by
         simp [weighted]
-      rw [e1, e2, e3, add_sub_add_left]
+      rw [e1, e2, e3]
       have h1 : x.1 * f x.2 - x.1 * g x.2 = x.1 * (f x.2 - g x.2) := by ring
-      rw [h1, ih]
+      have h2 : (x.1 * f x.2 + weighted rest f) - (x.1 * g x.2 + weighted rest g)
+          = (x.1 * f x.2 - x.1 * g x.2) + (weighted rest f - weighted rest g) := by
+        ring
+      rw [h2, h1, ih]
 
 /-- Weighted value only depends on the per-scenario quantities. -/
 theorem weighted_congr (ws : List (ℚ × World)) (f g : World → ℚ)
@@ -80,6 +83,14 @@ def cbal (P q : ℚ) (w : World) : ℚ := clipC (cres P q w)
 /-- Overpayment residual under one conditional payment. -/
 def cover (P q : ℚ) (w : World) : ℚ := clipU (cres P q w)
 
+/-- Recognition-branch residual values: the recognized branch pays, the
+unrecognized branch pays nothing. -/
+theorem cres_true_eq (P q : ℚ) : cres P q [true] = P - q := by
+  simp [cres, isRecognized]
+
+theorem cres_false_eq (P q : ℚ) : cres P q [false] = P := by
+  simp [cres, isRecognized]
+
 /-- Conservation for the nonnegative decomposition: E[C] − E[U] = P − q·p.
 This uses C and U, never E[R] in place of E[C]. -/
 theorem CU_expectation_conservation (P q p : ℚ) :
@@ -93,36 +104,52 @@ theorem CU_expectation_conservation (P q p : ℚ) :
 expectation is −20. -/
 theorem overpay_raw_expectation :
     weighted (twoBranchWeights (2 / 5)) (fun w => cres 100 300 w) = -20 := by
-  decide
+  rw [weighted_twoBranch, cres_true_eq, cres_false_eq]
+  norm_num
 
 /-- Frozen overpayment sample: the nonnegative principal expectation is 60,
 not −20 — the raw expectation is not the principal expectation. -/
 theorem overpay_principal_expectation :
     weighted (twoBranchWeights (2 / 5)) (fun w => cbal 100 300 w) = 60 := by
-  decide
+  rw [weighted_twoBranch, cres_true_eq, cres_false_eq]
+  simp only [cbal, clipC]
+  rw [max_eq_right (by norm_num : (-200:ℚ) ≤ 0), max_eq_left (by norm_num : (0:ℚ) ≤ 100)]
+  norm_num
 
 /-- Frozen overpayment sample: the overpayment expectation is 80. -/
 theorem overpay_overpay_expectation :
     weighted (twoBranchWeights (2 / 5)) (fun w => cover 100 300 w) = 80 := by
-  decide
+  rw [weighted_twoBranch, cres_true_eq, cres_false_eq]
+  simp only [cover, clipU]
+  rw [max_eq_left (by norm_num : (0:ℚ) ≤ 200), max_eq_right (by norm_num : (-100:ℚ) ≤ 0)]
+  norm_num
 
 /-- At threshold 0 the clipped-balance event has probability 1 while the
 raw-residual event has probability 3/5 — two different events. -/
 theorem threshold_zero_distinction :
     eventMass (twoBranchWeights (2 / 5)) (fun w => cbal 100 300 w) 0 = 1 ∧
     eventMass (twoBranchWeights (2 / 5)) (fun w => cres 100 300 w) 0 = 3 / 5 := by
-  refine ⟨?_, ?_⟩ <;> decide
+  rw [eventMass_twoBranch, cres_true_eq, cres_false_eq]
+  simp only [cbal, clipC]
+  rw [max_eq_right (by norm_num : (-200:ℚ) ≤ 0), max_eq_left (by norm_num : (0:ℚ) ≤ 100)]
+  norm_num
 
 /-- Frozen main sample (P=1000, q=300, p=2/5): the principal expectation is
 880. -/
 theorem main_principal_expectation :
     weighted (twoBranchWeights (2 / 5)) (fun w => cbal 1000 300 w) = 880 := by
-  decide
+  rw [weighted_twoBranch, cres_true_eq, cres_false_eq]
+  simp only [cbal, clipC]
+  rw [max_eq_left (by norm_num : (0:ℚ) ≤ 700), max_eq_left (by norm_num : (0:ℚ) ≤ 1000)]
+  norm_num
 
 /-- Frozen main sample: the threshold-800 event probability is 3/5. -/
 theorem main_threshold_event :
     eventMass (twoBranchWeights (2 / 5)) (fun w => cbal 1000 300 w) 800 = 3 / 5 := by
-  decide
+  rw [eventMass_twoBranch, cres_true_eq, cres_false_eq]
+  simp only [cbal, clipC]
+  rw [max_eq_left (by norm_num : (0:ℚ) ≤ 700), max_eq_left (by norm_num : (0:ℚ) ≤ 1000)]
+  norm_num
 
 /-- Frozen main sample interval: [790, 930]. -/
 theorem main_interval : (880 : ℚ) - 100 + 10 = 790 ∧ 880 + 60 - 10 = 930 := by

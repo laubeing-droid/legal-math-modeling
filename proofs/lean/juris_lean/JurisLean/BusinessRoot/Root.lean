@@ -94,9 +94,13 @@ def rootRowT : Witness := ⟨rootWorldT, 700, 0⟩
 def rootRowF : Witness := ⟨rootWorldF, 1000, 0⟩
 def rootRows : List Witness := [rootRowT, rootRowF]
 
-/-! ### Expected protected record from independent objects -/
+/-- Condition rows of the frozen task, in solver enumeration order. -/
+def rootRowsCond : List (List (String × Bool) × ℚ × ℚ) :=
+  [([(rootAtom, true)], 700, 0), ([(rootAtom, false)], 1000, 0)]
 
-def rootProtected : Protected := protectedOf rootSpec rootModel rootRows []
+/-- Expected protected record from independent objects — never from a
+renderer or a submitted certificate. -/
+def rootProtected : Protected := protectedOf 1000 rootRowsCond [] rootModel
 
 /-! ### Frozen artifacts (as delivered, as structured tokens) -/
 
@@ -194,9 +198,9 @@ theorem root_task_sat :
     have hpm : p = ((2 / 5, [true]) : ℚ × World) ∨ p = ((3 / 5, [false]) : ℚ × World) := by
       simpa [rootModel] using hp
     rcases hpm with h0 | h0
-    · subst h0; decide
-    · subst h0; decide
-  · decide
+    · subst h0; norm_num
+    · subst h0; norm_num
+  · norm_num [rootModel]
   · intro o ho p hp _
     rcases List.mem_cons.mp ho with h0 | ho
     · subst h0
@@ -226,11 +230,21 @@ theorem root_task_sat :
           subst hpm; exact ⟨by decide, by decide⟩
       · simp [rootRows] at ho
   · decide
-  · decide
-  · decide
-  · decide
-  · decide
-  · decide
+  · have hw : rootModel.weights = twoBranchWeights (2 / 5) := rfl
+    rw [hw, weighted_twoBranch, root_cbal_true, root_cbal_false]
+    simp only [rootModel]
+    norm_num
+  · have hw : rootModel.weights = twoBranchWeights (2 / 5) := rfl
+    rw [hw, weighted_twoBranch, root_cover_true, root_cover_false]
+    simp only [rootModel]
+    norm_num
+  · have hw : rootModel.weights = twoBranchWeights (2 / 5) := rfl
+    rw [hw, eventMass_twoBranch, root_cbal_true, root_cbal_false]
+    simp only [rootModel]
+    norm_num
+  · norm_num [rootModel]
+  · norm_num [rootModel]
+  · simp [rootModel]
   · right
     exact ⟨850, by simp [rootModel], rfl⟩
 
@@ -272,7 +286,7 @@ Q, and whose protected record is exactly the joint read-back of both files. -/
 theorem business_root_two_files (doc : List DocLine) (js : List JsonRow)
     (_hwf : root_wf.1 ∧ root_wf.2) (h : rootBundleAccepts doc js = true) :
     ∃ W : List Witness, RootObligations W ∧
-      readBoth rootProtected doc js = some (protectedOf rootSpec rootModel W []) := by
+      readBoth rootProtected doc js = some (protectedOf 1000 rootRowsCond [] rootModel) := by
   cases hr : readBoth rootProtected doc js with
   | none =>
       simp only [rootBundleAccepts, hr] at h

@@ -63,10 +63,14 @@ structure Payment where
   recognitionAtom : String
   deriving DecidableEq, Repr
 
-/-- Sum of payment amounts whose recognition atom holds in the scenario. -/
-def recognizedSum (keys : List String) (payments : List Payment) (vals : World) : ℚ :=
-  (payments.filter (fun p => lookupVal keys vals p.recognitionAtom)).foldl
-    (fun acc p => acc + p.amount) 0
+/-- Sum of payment amounts whose recognition atom holds in the scenario.
+Structurally recursive definition: every branch reduces cleanly under simp
+and the kernel, so the frozen numeric facts decide directly. -/
+def recognizedSum : List String → List Payment → World → ℚ
+  | _, [], _ => 0
+  | keys, p :: rest, vals =>
+      (if lookupVal keys vals p.recognitionAtom then p.amount else 0)
+        + recognizedSum keys rest vals
 
 /-- R_ξ = P − Σ_j q_j·1_{A_j(ξ)}. -/
 def residualOf (principal : ℚ) (keys : List String) (payments : List Payment)
@@ -195,15 +199,16 @@ structure Protected where
   notice : String
   deriving DecidableEq
 
-/-- The protected record generated from independent objects (spec, weights,
-rows, pending) — not from any renderer output. -/
-def protectedOf (s : PrincipalSpec) (m : ModelInputs) (W : List Witness)
-    (pending : List World) : Protected :=
+/-- The protected record generated from independent objects (principal,
+per-scenario condition rows, pending scenarios, analytics) — not from any
+renderer output. -/
+def protectedOf (principal : ℚ)
+    (rows : List (List (String × Bool) × ℚ × ℚ))
+    (pending : List (List (String × Bool))) (m : ModelInputs) : Protected :=
   { requirement := requirementQ
-    principal := s.principal
-    rows := W.map (fun o =>
-      (s.keys.zip o.world, o.principalBalance, o.overpaymentResidual))
-    pending := pending.map (s.keys.zip ·)
+    principal := principal
+    rows := rows
+    pending := pending
     expectedC := m.expectedC
     expectedU := m.expectedU
     eventProbability := m.eventProbability

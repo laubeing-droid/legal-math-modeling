@@ -143,8 +143,9 @@ theorem threshold_zero_distinction :
   · rw [eventMass_twoBranch]
     show (if (0:ℚ) ≤ cbal 100 300 [true] then (2:ℚ) / 5 else (0:ℚ))
         + (if (0:ℚ) ≤ cbal 100 300 [false] then 1 - (2:ℚ) / 5 else (0:ℚ)) = 1
+    simp only [cbal]
     rw [cres_true_eq, cres_false_eq]
-    norm_num [cbal, clipC]
+    norm_num [clipC]
   · rw [eventMass_twoBranch]
     show (if (0:ℚ) ≤ cres 100 300 [true] then (2:ℚ) / 5 else (0:ℚ))
         + (if (0:ℚ) ≤ cres 100 300 [false] then (3:ℚ) / 5 else (0:ℚ)) = 3 / 5

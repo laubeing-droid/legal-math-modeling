@@ -139,8 +139,17 @@ raw-residual event has probability 3/5 — two different events. -/
 theorem threshold_zero_distinction :
     eventMass (twoBranchWeights (2 / 5)) (fun w => cbal 100 300 w) 0 = 1 ∧
     eventMass (twoBranchWeights (2 / 5)) (fun w => cres 100 300 w) 0 = 3 / 5 := by
-  rw [eventMass_twoBranch, cres_true_eq, cres_false_eq]
-  norm_num [cbal, clipC]
+  constructor
+  · rw [eventMass_twoBranch]
+    show (if (0:ℚ) ≤ clipC (cres 100 300 [true]) then 2 / 5 else 0)
+        + (if (0:ℚ) ≤ clipC (cres 100 300 [false]) then 3 / 5 else 0) = 1
+    rw [cres_true_eq, cres_false_eq]
+    norm_num [clipC]
+  · rw [eventMass_twoBranch]
+    show (if (0:ℚ) ≤ cres 100 300 [true] then 2 / 5 else 0)
+        + (if (0:ℚ) ≤ cres 100 300 [false] then 3 / 5 else 0) = 3 / 5
+    rw [cres_true_eq, cres_false_eq]
+    norm_num
 
 /-- Frozen main sample (P=1000, q=300, p=2/5): the principal expectation is
 880. -/

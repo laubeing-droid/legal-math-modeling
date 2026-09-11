@@ -54,11 +54,14 @@ jobs:
           set -euo pipefail
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain leanprover/lean4:v4.30.0
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-      - name: Dependency cache only
+      - name: Compiled dependency cache (fallback: seeds .lake)
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
-          path: proofs/lean/juris_lean/.lake/packages
-          key: ${{ runner.os }}-mathlib-${{ hashFiles('proofs/lean/juris_lean/lean-toolchain', 'proofs/lean/juris_lean/lake-manifest.json') }}
+          path: proofs/lean/juris_lean/.lake
+          key: ${{ runner.os }}-lake-full-v4.30.0-${{ hashFiles('proofs/lean/juris_lean/lean-toolchain', 'proofs/lean/juris_lean/lake-manifest.json') }}
+          restore-keys: |
+            ${{ runner.os }}-lake-full-v4.30.0-
+            lean-seeds-${{ runner.os }}-v4.30.0-
       - name: Compute recursive target plan
         env:
           REQUESTED_MODULE: ${{ inputs.module }}
@@ -125,7 +128,7 @@ jobs:
   lean-full-clean-build:
     if: ${{ github.event_name != 'workflow_dispatch' || inputs.mode == 'full-release' }}
     runs-on: ubuntu-latest
-    timeout-minutes: 240
+    timeout-minutes: 360
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
@@ -137,17 +140,20 @@ jobs:
           python tools/ulm_repair/scripts/ci_driver.py pins
           curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain leanprover/lean4:v4.30.0
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-      - name: Restore dependency source and compiled dependency cache
+      - name: Restore compiled dependency cache (fallback: seeds .lake)
         uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
-          path: proofs/lean/juris_lean/.lake/packages
-          key: ${{ runner.os }}-mathlib-${{ hashFiles('proofs/lean/juris_lean/lean-toolchain', 'proofs/lean/juris_lean/lake-manifest.json') }}
+          path: proofs/lean/juris_lean/.lake
+          key: ${{ runner.os }}-lake-full-v4.30.0-${{ hashFiles('proofs/lean/juris_lean/lean-toolchain', 'proofs/lean/juris_lean/lake-manifest.json') }}
+          restore-keys: |
+            ${{ runner.os }}-lake-full-v4.30.0-
+            lean-seeds-${{ runner.os }}-v4.30.0-
       - name: Build all project Lean modules from a clean project build
         run: |
           set -euo pipefail
           mkdir -p work/seven-lean
           python scripts/ci/changed_lean_modules.py --all --output work/seven-lean/all-module-plan.json
-          (cd "$LEAN_DIR" && lake clean)
+          (cd "$LEAN_DIR" && rm -rf .lake/build)
           python tools/ulm_repair/scripts/ci_driver.py build --plan work/seven-lean/all-module-plan.json 2>&1 | tee lake-clean-build.log
           cp lake-clean-build.log work/seven-lean/build.log
           (cd "$LEAN_DIR" && lake env lean JurisLean/AxiomAudit.lean) > axiom-audit.raw.txt 2>&1

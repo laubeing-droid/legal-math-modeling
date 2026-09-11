@@ -287,7 +287,7 @@ theorem full_projection_accepts_normal :
       (writeDoc expectedDoc) (writeCalculation expectedCalculation) = true := by
   simp only [checkSevenAxisBundle, read_write_doc, read_write_calculation]
   rw [decide_eq_true_eq]
-  exact ⟨rfl, rfl, rfl, rfl⟩
+  trivial
 
 /-- Required top-level regression: changed input cannot inherit the old task. -/
 theorem wrong_selected_input_rejected (x : FullInput) (hne : x ≠ selectedInput)

@@ -75,6 +75,7 @@ jobs:
       - name: Build requested modules only
         run: |
           set -euo pipefail
+          (cd "$LEAN_DIR" && lake exe cache get!) 2>&1 | tee mathlib-cloud-cache.log
           python tools/ulm_repair/scripts/ci_driver.py build --plan module-plan.json 2>&1 | tee changed-module.log
       - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         if: always()
@@ -154,6 +155,8 @@ jobs:
           mkdir -p work/seven-lean
           python scripts/ci/changed_lean_modules.py --all --output work/seven-lean/all-module-plan.json
           (cd "$LEAN_DIR" && rm -rf .lake/build)
+          (cd "$LEAN_DIR" && lake exe cache get!) 2>&1 | tee mathlib-cloud-cache.log
+          cp mathlib-cloud-cache.log work/seven-lean/mathlib-cloud-cache.log
           python tools/ulm_repair/scripts/ci_driver.py build --plan work/seven-lean/all-module-plan.json 2>&1 | tee lake-clean-build.log
           cp lake-clean-build.log work/seven-lean/build.log
           (cd "$LEAN_DIR" && lake env lean JurisLean/AxiomAudit.lean) > axiom-audit.raw.txt 2>&1

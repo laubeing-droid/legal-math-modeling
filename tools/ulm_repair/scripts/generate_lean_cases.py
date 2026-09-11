@@ -20,16 +20,16 @@ def arr(x,emit):return '['+', '.join(emit(v) for v in x)+']'
 def world(x):return arr(x,lambda p:'('+string(p[0])+', '+str(p[1]).lower()+')')
 def rows(x):return arr(x,lambda r:'('+world(r[0])+', '+rat(r[1])+', '+rat(r[2])+')')
 def weights(x):return arr(x,lambda p:'('+world(p[0])+', '+rat(p[1])+')')
-def struct(d,emitters):return '{ '+',\n    '.join(k+' := '+e(v) for k,v,e in emitters(d))+' }'
+def struct(d,emitters):return '{ '+', '.join(k+' := '+e(v) for k,v,e in emitters(d))+' }'
 
 def ctx(x):
-    return '{ '+',\n    '.join(k+' := '+(arr(v,string) if k=='assumptions' else str(v) if k=='max_depth' else string(v)) for k,v in sorted(x.items()))+' }'
+    return '{ '+', '.join(k+' := '+(arr(v,string) if k=='assumptions' else str(v) if k=='max_depth' else string(v)) for k,v in sorted(x.items()))+' }'
 
 def dmeta(m):
     mapping=[('caseId','case',string),('issue','issue',string),('creditor','creditor',string),
       ('debtor','debtor',string),('debtId','debt',string),('sourceIds','source_ids',lambda x:arr(x,string)),
       ('dueDay','due',string),('asOfDay','asof',string),('assumptions','assumptions',lambda x:arr(x,string)),('context','context',ctx)]
-    return '{ '+',\n    '.join(a+' := '+f(m[b]) for a,b,f in mapping)+' }'
+    return '{ '+', '.join(a+' := '+f(m[b]) for a,b,f in mapping)+' }'
 
 def src(v):return '⟨'+', '.join([string(v['source_id']),string(v['version']),str(v['start']),str(v['end']),string(v['quoted'])])+'⟩'
 def rel(v):return '⟨'+', '.join([string(v['relation_id']),string(v['creditor']),string(v['debtor']),string(v['debt_id']),rat(v['principal']),string(v['due_day']),string(v['asof_day'])])+'⟩'
@@ -42,7 +42,7 @@ def jmeta(m):
       'context':ctx(m['context']),'sources':arr(m['basis'],src),'relation':rel(m['relation']),
       'modelVersion':string(d['model_version']),'modelBasis':string(d['basis']),
       'weights':weights(w),'threshold':rat(d['threshold']),'costs':arr(d['costs'],rat),'options':arr(d['legal_options'],rat)}
-    return '{ '+',\n    '.join(k+' := '+v for k,v in parts.items())+' }'
+    return '{ '+', '.join(k+' := '+v for k,v in parts.items())+' }'
 
 def payload(a):
     parts={'requirement':string(a['requirement']),'principal':rat(a['principal']),
@@ -50,7 +50,7 @@ def payload(a):
        **{k:rat(a[k]) for k in ['expectedC','expectedU','eventProbability','lower','upper']},
        'eligible':arr(a['eligible'],rat),'selected':'none' if a['selected'] is None else 'some '+rat(a['selected']),
        'notice':string(a['notice'])}
-    return '{ '+',\n    '.join(k+' := '+v for k,v in parts.items())+' }'
+    return '{ '+', '.join(k+' := '+v for k,v in parts.items())+' }'
 
 def generate():
     s,m=P.main_fixture();r=P.solve(s);a=P.derive_analytics(s,r,m)
@@ -65,11 +65,11 @@ set_option maxRecDepth 100000
 namespace JurisLean.BusinessRoot.SevenAxis.Cases
 open JurisLean.BusinessRoot.SevenAxis
 '''
-    text+='\ndef observedDoc : DocValue :=\n  { metaData := '+dmeta(obs['doc_metadata'])+',\n    mode := "EXACT_FINITE_SCENARIOS", rows := '+rows(obs['doc_rows'])+', pending := [] }\n'
-    text+='\ndef observedCalculation : CalculationValue :=\n  { metaData := '+jmeta(obs['json_metadata'])+',\n    mode := "EXACT_FINITE_SCENARIOS", values := '+payload(obs['json_values'])+' }\n'
+    text+='\ndef observedDoc : DocValue :=\n  { metaData := '+dmeta(obs['doc_metadata'])+'\n    mode := "EXACT_FINITE_SCENARIOS", rows := '+rows(obs['doc_rows'])+', pending := [] }\n'
+    text+='\ndef observedCalculation : CalculationValue :=\n  { metaData := '+jmeta(obs['json_metadata'])+'\n    mode := "EXACT_FINITE_SCENARIOS", values := '+payload(obs['json_values'])+' }\n'
     text+='''
-theorem actual_doc_normalization_matches : observedDoc = expectedDoc := by decide
-theorem actual_json_normalization_matches : observedCalculation = expectedCalculation := by decide
+theorem actual_doc_normalization_matches : observedDoc = expectedDoc := rfl
+theorem actual_json_normalization_matches : observedCalculation = expectedCalculation := rfl
 theorem actual_bytes_typed_observations_accepted :
     checkSevenAxisBundle selectedInput selectedInput
       (writeDoc observedDoc) (writeCalculation observedCalculation) = true := by

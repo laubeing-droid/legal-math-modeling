@@ -8,87 +8,15 @@ namespace JurisLean.BusinessRoot.SevenAxis.Cases
 open JurisLean.BusinessRoot.SevenAxis
 
 def observedDoc : DocValue :=
-  { metaData := { caseId := "DEMO-PRINCIPAL-01",
-    issue := "principal-balance",
-    creditor := "甲公司",
-    debtor := "乙公司",
-    debtId := "DEBT-1",
-    sourceIds := ["SYNTHETIC-BASIS"],
-    dueDay := "2026-08-01",
-    asOfDay := "2026-09-09",
-    assumptions := ["仅付款认定作为分支", "债权成立与到期已作为示例前提", "非真实法律案件"],
-    context := { assumptions := ["仅付款认定作为分支", "债权成立与到期已作为示例前提", "非真实法律案件"],
-    decision_time := "2026-09-09",
-    engine_version := "reference-2.1",
-    event_time := "2026-08-01",
-    evidence_version := "test-evidence-1",
-    interpretation := "explicit-reference",
-    issue := "principal-balance",
-    jurisdiction := "TEST",
-    law_version := "source-snapshot-example",
-    max_depth := 2,
-    model_version := "synthetic-model-1",
-    party := "claimant",
-    procedure := "conditional_analysis",
-    profile := "grounded",
-    request := "DEMO-PRINCIPAL-01",
-    rulepack_version := "test-1",
-    scenario := "finite-conditional-completions",
-    semantic_scope := "height_bounded",
-    stage := "analysis",
-    target := "award_at_least_threshold" } },
+  { metaData := { caseId := "DEMO-PRINCIPAL-01", issue := "principal-balance", creditor := "甲公司", debtor := "乙公司", debtId := "DEBT-1", sourceIds := ["SYNTHETIC-BASIS"], dueDay := "2026-08-01", asOfDay := "2026-09-09", assumptions := ["仅付款认定作为分支", "债权成立与到期已作为示例前提", "非真实法律案件"], context := { assumptions := ["仅付款认定作为分支", "债权成立与到期已作为示例前提", "非真实法律案件"], decision_time := "2026-09-09", engine_version := "reference-2.1", event_time := "2026-08-01", evidence_version := "test-evidence-1", interpretation := "explicit-reference", issue := "principal-balance", jurisdiction := "TEST", law_version := "source-snapshot-example", max_depth := 2, model_version := "synthetic-model-1", party := "claimant", procedure := "conditional_analysis", profile := "grounded", request := "DEMO-PRINCIPAL-01", rulepack_version := "test-1", scenario := "finite-conditional-completions", semantic_scope := "height_bounded", stage := "analysis", target := "award_at_least_threshold" } }
     mode := "EXACT_FINITE_SCENARIOS", rows := [([("payment_recognized", true)], (700 : ℚ), (0 : ℚ)), ([("payment_recognized", false)], (1000 : ℚ), (0 : ℚ))], pending := [] }
 
 def observedCalculation : CalculationValue :=
-  { metaData := { schema := "br/reference-two-file-delivery/1",
-    requirement := "SYNTHETIC_EXACT_PRINCIPAL_ANALYTICS_TWO_FILES/1",
-    scope := "SYNTHETIC_CONDITIONAL_MODEL_NOT_LITIGATION_FORECAST",
-    warning := "本文件只核对已选合成模型的条件本金、概率和行动格；不构成事实认定、机构批准、真实胜率校准或任意法律业务验收。",
-    principalDocument := "conditional_principal.txt",
-    context := { assumptions := ["仅付款认定作为分支", "债权成立与到期已作为示例前提", "非真实法律案件"],
-    decision_time := "2026-09-09",
-    engine_version := "reference-2.1",
-    event_time := "2026-08-01",
-    evidence_version := "test-evidence-1",
-    interpretation := "explicit-reference",
-    issue := "principal-balance",
-    jurisdiction := "TEST",
-    law_version := "source-snapshot-example",
-    max_depth := 2,
-    model_version := "synthetic-model-1",
-    party := "claimant",
-    procedure := "conditional_analysis",
-    profile := "grounded",
-    request := "DEMO-PRINCIPAL-01",
-    rulepack_version := "test-1",
-    scenario := "finite-conditional-completions",
-    semantic_scope := "height_bounded",
-    stage := "analysis",
-    target := "award_at_least_threshold" },
-    sources := [⟨"SYNTHETIC-BASIS", "1", 0, 35, "合成示例：已到期本金1000元；争议清偿300元；只计算条件本金余额。"⟩],
-    relation := ⟨"principal-claim", "甲公司", "乙公司", "DEBT-1", (1000 : ℚ), "2026-08-01", "2026-09-09"⟩,
-    modelVersion := "synthetic-model-1",
-    modelBasis := "SYNTHETIC-SETTLEMENT-GRID/1",
-    weights := [([("payment_recognized", true)], { num := 2, den := 5 }), ([("payment_recognized", false)], { num := 3, den := 5 })],
-    threshold := (800 : ℚ),
-    costs := [(100 : ℚ), (60 : ℚ), (10 : ℚ), (10 : ℚ)],
-    options := [(600 : ℚ), (850 : ℚ), (1100 : ℚ)] },
-    mode := "EXACT_FINITE_SCENARIOS", values := { requirement := "SYNTHETIC_EXACT_PRINCIPAL_ANALYTICS_TWO_FILES/1",
-    principal := (1000 : ℚ),
-    rows := [([("payment_recognized", true)], (700 : ℚ), (0 : ℚ)), ([("payment_recognized", false)], (1000 : ℚ), (0 : ℚ))],
-    pending := [],
-    weights := [([("payment_recognized", true)], { num := 2, den := 5 }), ([("payment_recognized", false)], { num := 3, den := 5 })],
-    expectedC := (880 : ℚ),
-    expectedU := (0 : ℚ),
-    eventProbability := { num := 3, den := 5 },
-    lower := (790 : ℚ),
-    upper := (930 : ℚ),
-    eligible := [(850 : ℚ)],
-    selected := some (850 : ℚ),
-    notice := "SYNTHETIC_CONDITIONAL_MODEL_NOT_LITIGATION_FORECAST" } }
+  { metaData := { schema := "br/reference-two-file-delivery/1", requirement := "SYNTHETIC_EXACT_PRINCIPAL_ANALYTICS_TWO_FILES/1", scope := "SYNTHETIC_CONDITIONAL_MODEL_NOT_LITIGATION_FORECAST", warning := "本文件只核对已选合成模型的条件本金、概率和行动格；不构成事实认定、机构批准、真实胜率校准或任意法律业务验收。", principalDocument := "conditional_principal.txt", context := { assumptions := ["仅付款认定作为分支", "债权成立与到期已作为示例前提", "非真实法律案件"], decision_time := "2026-09-09", engine_version := "reference-2.1", event_time := "2026-08-01", evidence_version := "test-evidence-1", interpretation := "explicit-reference", issue := "principal-balance", jurisdiction := "TEST", law_version := "source-snapshot-example", max_depth := 2, model_version := "synthetic-model-1", party := "claimant", procedure := "conditional_analysis", profile := "grounded", request := "DEMO-PRINCIPAL-01", rulepack_version := "test-1", scenario := "finite-conditional-completions", semantic_scope := "height_bounded", stage := "analysis", target := "award_at_least_threshold" }, sources := [⟨"SYNTHETIC-BASIS", "1", 0, 35, "合成示例：已到期本金1000元；争议清偿300元；只计算条件本金余额。"⟩], relation := ⟨"principal-claim", "甲公司", "乙公司", "DEBT-1", (1000 : ℚ), "2026-08-01", "2026-09-09"⟩, modelVersion := "synthetic-model-1", modelBasis := "SYNTHETIC-SETTLEMENT-GRID/1", weights := [([("payment_recognized", true)], { num := 2, den := 5 }), ([("payment_recognized", false)], { num := 3, den := 5 })], threshold := (800 : ℚ), costs := [(100 : ℚ), (60 : ℚ), (10 : ℚ), (10 : ℚ)], options := [(600 : ℚ), (850 : ℚ), (1100 : ℚ)] }
+    mode := "EXACT_FINITE_SCENARIOS", values := { requirement := "SYNTHETIC_EXACT_PRINCIPAL_ANALYTICS_TWO_FILES/1", principal := (1000 : ℚ), rows := [([("payment_recognized", true)], (700 : ℚ), (0 : ℚ)), ([("payment_recognized", false)], (1000 : ℚ), (0 : ℚ))], pending := [], weights := [([("payment_recognized", true)], { num := 2, den := 5 }), ([("payment_recognized", false)], { num := 3, den := 5 })], expectedC := (880 : ℚ), expectedU := (0 : ℚ), eventProbability := { num := 3, den := 5 }, lower := (790 : ℚ), upper := (930 : ℚ), eligible := [(850 : ℚ)], selected := some (850 : ℚ), notice := "SYNTHETIC_CONDITIONAL_MODEL_NOT_LITIGATION_FORECAST" } }
 
-theorem actual_doc_normalization_matches : observedDoc = expectedDoc := by decide
-theorem actual_json_normalization_matches : observedCalculation = expectedCalculation := by decide
+theorem actual_doc_normalization_matches : observedDoc = expectedDoc := rfl
+theorem actual_json_normalization_matches : observedCalculation = expectedCalculation := rfl
 theorem actual_bytes_typed_observations_accepted :
     checkSevenAxisBundle selectedInput selectedInput
       (writeDoc observedDoc) (writeCalculation observedCalculation) = true := by

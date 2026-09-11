@@ -65,8 +65,8 @@ set_option maxRecDepth 100000
 namespace JurisLean.BusinessRoot.SevenAxis.Cases
 open JurisLean.BusinessRoot.SevenAxis
 '''
-    text+='\ndef observedDoc : DocValue :=\n  { meta := '+dmeta(obs['doc_metadata'])+',\n    mode := "EXACT_FINITE_SCENARIOS", rows := '+rows(obs['doc_rows'])+', pending := [] }\n'
-    text+='\ndef observedCalculation : CalculationValue :=\n  { meta := '+jmeta(obs['json_metadata'])+',\n    mode := "EXACT_FINITE_SCENARIOS", values := '+payload(obs['json_values'])+' }\n'
+    text+='\ndef observedDoc : DocValue :=\n  { metaData := '+dmeta(obs['doc_metadata'])+',\n    mode := "EXACT_FINITE_SCENARIOS", rows := '+rows(obs['doc_rows'])+', pending := [] }\n'
+    text+='\ndef observedCalculation : CalculationValue :=\n  { metaData := '+jmeta(obs['json_metadata'])+',\n    mode := "EXACT_FINITE_SCENARIOS", values := '+payload(obs['json_values'])+' }\n'
     text+='''
 theorem actual_doc_normalization_matches : observedDoc = expectedDoc := by decide
 theorem actual_json_normalization_matches : observedCalculation = expectedCalculation := by decide
@@ -81,7 +81,7 @@ theorem actual_bytes_typed_observations_accepted :
     for name,value in mutations:
         text+=f'''\ntheorem reject_doc_{name} :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc {{ expectedDoc with meta := {{ expectedDoc.meta with {name} := {value} }} }})
+      (writeDoc {{ expectedDoc with metaData := {{ expectedDoc.metaData with {name} := {value} }} }})
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
   intro h
@@ -92,7 +92,7 @@ theorem actual_bytes_typed_observations_accepted :
         value='["OTHER-ASSUMPTION"]' if k=='assumptions' else '999' if k=='max_depth' else '"OTHER-VALUE"'
         text+=f'''\ntheorem reject_context_{k} :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc {{ expectedDoc with meta := {{ expectedDoc.meta with
+      (writeDoc {{ expectedDoc with metaData := {{ expectedDoc.metaData with
         context := {{ selectedContext with {k} := {value} }} }} }})
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected

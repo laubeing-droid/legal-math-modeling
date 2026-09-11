@@ -8,7 +8,7 @@ namespace JurisLean.BusinessRoot.SevenAxis.Cases
 open JurisLean.BusinessRoot.SevenAxis
 
 def observedDoc : DocValue :=
-  { meta := { caseId := "DEMO-PRINCIPAL-01",
+  { metaData := { caseId := "DEMO-PRINCIPAL-01",
     issue := "principal-balance",
     creditor := "甲公司",
     debtor := "乙公司",
@@ -40,7 +40,7 @@ def observedDoc : DocValue :=
     mode := "EXACT_FINITE_SCENARIOS", rows := [([("payment_recognized", true)], (700 : ℚ), (0 : ℚ)), ([("payment_recognized", false)], (1000 : ℚ), (0 : ℚ))], pending := [] }
 
 def observedCalculation : CalculationValue :=
-  { meta := { schema := "br/reference-two-file-delivery/1",
+  { metaData := { schema := "br/reference-two-file-delivery/1",
     requirement := "SYNTHETIC_EXACT_PRINCIPAL_ANALYTICS_TWO_FILES/1",
     scope := "SYNTHETIC_CONDITIONAL_MODEL_NOT_LITIGATION_FORECAST",
     warning := "本文件只核对已选合成模型的条件本金、概率和行动格；不构成事实认定、机构批准、真实胜率校准或任意法律业务验收。",
@@ -97,7 +97,7 @@ theorem actual_bytes_typed_observations_accepted :
 
 theorem reject_doc_caseId :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with caseId := "OTHER-CASE" } })
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with caseId := "OTHER-CASE" } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
   intro h
@@ -106,7 +106,7 @@ theorem reject_doc_caseId :
 
 theorem reject_doc_issue :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with issue := "OTHER-ISSUE" } })
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with issue := "OTHER-ISSUE" } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
   intro h
@@ -115,7 +115,7 @@ theorem reject_doc_issue :
 
 theorem reject_doc_creditor :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with creditor := "其他权利人" } })
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with creditor := "其他权利人" } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
   intro h
@@ -124,7 +124,7 @@ theorem reject_doc_creditor :
 
 theorem reject_doc_debtor :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with debtor := "丙公司" } })
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with debtor := "丙公司" } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
   intro h
@@ -133,7 +133,7 @@ theorem reject_doc_debtor :
 
 theorem reject_doc_debtId :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with debtId := "OTHER-DEBT" } })
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with debtId := "OTHER-DEBT" } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
   intro h
@@ -142,7 +142,7 @@ theorem reject_doc_debtId :
 
 theorem reject_doc_sourceIds :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with sourceIds := ["OTHER-SOURCE"] } })
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with sourceIds := ["OTHER-SOURCE"] } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
   intro h
@@ -151,7 +151,7 @@ theorem reject_doc_sourceIds :
 
 theorem reject_doc_dueDay :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with dueDay := "2099-01-01" } })
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with dueDay := "2099-01-01" } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
   intro h
@@ -160,7 +160,7 @@ theorem reject_doc_dueDay :
 
 theorem reject_doc_asOfDay :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with asOfDay := "2099-01-02" } })
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with asOfDay := "2099-01-02" } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
   intro h
@@ -169,7 +169,7 @@ theorem reject_doc_asOfDay :
 
 theorem reject_doc_assumptions :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with assumptions := ["UNSUPPORTED-ASSUMPTION"] } })
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with assumptions := ["UNSUPPORTED-ASSUMPTION"] } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
   intro h
@@ -178,7 +178,7 @@ theorem reject_doc_assumptions :
 
 theorem reject_context_assumptions :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with assumptions := ["OTHER-ASSUMPTION"] } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -188,7 +188,7 @@ theorem reject_context_assumptions :
 
 theorem reject_context_decision_time :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with decision_time := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -198,7 +198,7 @@ theorem reject_context_decision_time :
 
 theorem reject_context_engine_version :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with engine_version := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -208,7 +208,7 @@ theorem reject_context_engine_version :
 
 theorem reject_context_event_time :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with event_time := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -218,7 +218,7 @@ theorem reject_context_event_time :
 
 theorem reject_context_evidence_version :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with evidence_version := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -228,7 +228,7 @@ theorem reject_context_evidence_version :
 
 theorem reject_context_interpretation :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with interpretation := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -238,7 +238,7 @@ theorem reject_context_interpretation :
 
 theorem reject_context_issue :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with issue := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -248,7 +248,7 @@ theorem reject_context_issue :
 
 theorem reject_context_jurisdiction :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with jurisdiction := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -258,7 +258,7 @@ theorem reject_context_jurisdiction :
 
 theorem reject_context_law_version :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with law_version := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -268,7 +268,7 @@ theorem reject_context_law_version :
 
 theorem reject_context_max_depth :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with max_depth := 999 } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -278,7 +278,7 @@ theorem reject_context_max_depth :
 
 theorem reject_context_model_version :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with model_version := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -288,7 +288,7 @@ theorem reject_context_model_version :
 
 theorem reject_context_party :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with party := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -298,7 +298,7 @@ theorem reject_context_party :
 
 theorem reject_context_procedure :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with procedure := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -308,7 +308,7 @@ theorem reject_context_procedure :
 
 theorem reject_context_profile :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with profile := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -318,7 +318,7 @@ theorem reject_context_profile :
 
 theorem reject_context_request :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with request := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -328,7 +328,7 @@ theorem reject_context_request :
 
 theorem reject_context_rulepack_version :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with rulepack_version := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -338,7 +338,7 @@ theorem reject_context_rulepack_version :
 
 theorem reject_context_scenario :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with scenario := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -348,7 +348,7 @@ theorem reject_context_scenario :
 
 theorem reject_context_semantic_scope :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with semantic_scope := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -358,7 +358,7 @@ theorem reject_context_semantic_scope :
 
 theorem reject_context_stage :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with stage := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
@@ -368,7 +368,7 @@ theorem reject_context_stage :
 
 theorem reject_context_target :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with
         context := { selectedContext with target := "OTHER-VALUE" } } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected

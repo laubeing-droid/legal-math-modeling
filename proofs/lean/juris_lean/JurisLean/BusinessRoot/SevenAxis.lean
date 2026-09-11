@@ -150,14 +150,14 @@ def expectedJsonMeta (i : FullInput) : JsonMeta :=
     options := i.parameters.options }
 
 structure DocValue where
-  meta : DocMeta
+  metaData : DocMeta
   mode : String
   rows : List ScenarioRow
   pending : List (List (String × Bool))
   deriving DecidableEq
 
 structure CalculationValue where
-  meta : JsonMeta
+  metaData : JsonMeta
   mode : String
   values : Protected
   deriving DecidableEq
@@ -190,11 +190,11 @@ def readCalculation : List CalculationRow → Option CalculationValue
   | _ => none
 
 def writeDoc (v : DocValue) : List DocRow :=
-  [.title "# 条件性本金分析", .warning textWarning, .metadata v.meta,
+  [.title "# 条件性本金分析", .warning textWarning, .metadata v.metaData,
    .mode v.mode, .scenarios v.rows, .pending v.pending, .footer textFooter]
 
 def writeCalculation (v : CalculationValue) : List CalculationRow :=
-  [.metadata v.meta, .mode v.mode, .values v.values]
+  [.metadata v.metaData, .mode v.mode, .values v.values]
 
 theorem read_write_doc (v : DocValue) : readDoc (writeDoc v) = some v := by
   cases v
@@ -285,35 +285,45 @@ theorem seven_axis_business_root (hostSelected submitted : FullInput)
 theorem full_projection_accepts_normal :
     checkSevenAxisBundle selectedInput selectedInput
       (writeDoc expectedDoc) (writeCalculation expectedCalculation) = true := by
-  simp [checkSevenAxisBundle, read_write_doc, read_write_calculation]
+  simp only [checkSevenAxisBundle, read_write_doc, read_write_calculation]
+  rw [decide_eq_true_eq]
+  exact ⟨rfl, rfl, rfl, rfl⟩
 
 /-- Required top-level regression: changed input cannot inherit the old task. -/
 theorem wrong_selected_input_rejected (x : FullInput) (hne : x ≠ selectedInput)
     (d : List DocRow) (j : List CalculationRow) :
     checkSevenAxisBundle x x d j = false := by
   unfold checkSevenAxisBundle
-  cases hd : readDoc d <;> cases hj : readCalculation j <;> simp [hne]
+  cases hd : readDoc d with
+  | none => rfl
+  | some dv =>
+    cases hj : readCalculation j with
+    | none => rfl
+    | some jv =>
+      rw [decide_eq_false_iff_not]
+      rintro ⟨h1, -⟩
+      exact hne h1
 
 /-- Any metadata mutation, not merely one hand-picked debtor, is rejected. -/
 theorem changed_doc_metadata_rejected (m : DocMeta)
-    (hne : m ≠ expectedDoc.meta) :
+    (hne : m ≠ expectedDoc.metaData) :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := m })
+      (writeDoc { expectedDoc with metaData := m })
       (writeCalculation expectedCalculation) = false := by
-  have hd : ({ expectedDoc with meta := m } : DocValue) ≠ expectedDoc := by
+  have hd : ({ expectedDoc with metaData := m } : DocValue) ≠ expectedDoc := by
     intro he
-    exact hne (congrArg DocValue.meta he)
+    exact hne (congrArg DocValue.metaData he)
   simp [checkSevenAxisBundle, read_write_doc, read_write_calculation, hd]
 
 theorem changed_json_metadata_rejected (m : JsonMeta)
-    (hne : m ≠ expectedCalculation.meta) :
+    (hne : m ≠ expectedCalculation.metaData) :
     checkSevenAxisBundle selectedInput selectedInput
       (writeDoc expectedDoc)
-      (writeCalculation { expectedCalculation with meta := m }) = false := by
-  have hj : ({ expectedCalculation with meta := m } : CalculationValue) ≠
+      (writeCalculation { expectedCalculation with metaData := m }) = false := by
+  have hj : ({ expectedCalculation with metaData := m } : CalculationValue) ≠
       expectedCalculation := by
     intro he
-    exact hne (congrArg CalculationValue.meta he)
+    exact hne (congrArg CalculationValue.metaData he)
   simp [checkSevenAxisBundle, read_write_doc, read_write_calculation, hj]
 
 /-- Selected input contents, protected metadata, and outputs remain distinct:
@@ -340,7 +350,7 @@ def WeightTableWF (rows : List Witness) (ws : List (ℚ × World)) : Prop :=
 /-- Explicit regressions for the audit's concrete counterexamples. -/
 theorem wrong_debtor_rejected :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with debtor := "丙公司" } })
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with debtor := "丙公司" } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
   intro h
@@ -351,7 +361,7 @@ theorem wrong_threshold_rejected :
     checkSevenAxisBundle selectedInput selectedInput
       (writeDoc expectedDoc)
       (writeCalculation { expectedCalculation with
-        meta := { expectedCalculation.meta with threshold := 9999 } }) = false := by
+        metaData := { expectedCalculation.metaData with threshold := 9999 } }) = false := by
   apply changed_json_metadata_rejected
   intro h
   have hfield := congrArg JsonMeta.threshold h
@@ -361,7 +371,7 @@ theorem wrong_action_grid_rejected :
     checkSevenAxisBundle selectedInput selectedInput
       (writeDoc expectedDoc)
       (writeCalculation { expectedCalculation with
-        meta := { expectedCalculation.meta with options := [860] } }) = false := by
+        metaData := { expectedCalculation.metaData with options := [860] } }) = false := by
   apply changed_json_metadata_rejected
   intro h
   have hfield := congrArg JsonMeta.options h
@@ -369,7 +379,7 @@ theorem wrong_action_grid_rejected :
 
 theorem wrong_case_rejected :
     checkSevenAxisBundle selectedInput selectedInput
-      (writeDoc { expectedDoc with meta := { expectedDoc.meta with caseId := "OTHER-CASE" } })
+      (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with caseId := "OTHER-CASE" } })
       (writeCalculation expectedCalculation) = false := by
   apply changed_doc_metadata_rejected
   intro h

@@ -16,7 +16,7 @@
   属宿主 OS 限制，GitHub ubuntu CI 为该测试的权威运行环境。
 - `validate_plan.py --repo-root .` → PASS（57 任务、134 需求、84 种子、保留源锁全部一致）。
 
-## 波次B：ROOT01–ROOT06（本轮完成，等 GitHub Lean 编译验收）
+## 波次B：ROOT01–ROOT06（本轮完成；CI 绿，证据见文末）
 
 ### 保证级别（按 ROOT_REFINEMENT §4 记录）
 
@@ -24,7 +24,7 @@
 Python↔Lean 对应为交叉测试证据（crossCheckOnly）；字节级 UTF-8/JSON 词法在 Python TCB 侧，
 Lean 侧为闭合类型化行/字段文法。两侧 TCB 边界已写入各 Lean 文件头与 `root_witness.py`。
 
-### ROOT01 独立语义 — DONE（本地），kernel 证据=CI
+### ROOT01 独立语义 — DONE（CI 绿）
 
 - 文件：`proofs/lean/juris_lean/JurisLean/BusinessRoot/Semantics.lean`。
 - 内容：`Guard`/`denote`、`DomainOf`（Ω(I0)=形状∧F 扩张∧Γ 成立，独立于 solver）、
@@ -33,14 +33,14 @@ Lean 侧为闭合类型化行/字段文法。两侧 TCB 边界已写入各 Lean 
 - Python 侧：`tools/business_relations/root/test_root_refinement.py::Root01JointSemanticsTests`
   （逐世界守恒互补、权重恰覆盖）。
 
-### ROOT02 I0 宿主来源与无损编码 — DONE（本地），kernel 证据=CI
+### ROOT02 I0 宿主来源与无损编码 — DONE（CI 绿）
 
 - 文件：`BusinessRoot/InputCodec.lean`（codec_roundtrip、encode_injective、binding_exact、
   binding_refuses_changed、changed_is_different）。
 - Python 侧：`root_witness.py::HostInputStore`（宿主选择时保存快照，生产者只能读取不能选择/替换；
   同版本换参数拒绝 SELECTED_INPUTS_CHANGED；合法新输入开新任务入库）+ 对应测试。
 
-### ROOT03 条件栈/枚举覆盖/checker 反射 — DONE（本地），kernel 证据=CI
+### ROOT03 条件栈/枚举覆盖/checker 反射 — DONE（CI 绿）
 
 - 文件：`BusinessRoot/GuardMachine.lean`（compile/exec；`exec_compile` 归纳证明栈机=denote；
   `machine_reflection`/`machine_boolean`）、`BusinessRoot/PrincipalChecker.lean`
@@ -48,7 +48,7 @@ Lean 侧为闭合类型化行/字段文法。两侧 TCB 边界已写入各 Lean 
 - Python 侧：`root_witness.py::root03_checks`——solver 栈机/checker 位掩码/暴力 product 三套
   独立枚举一致，且每世界 execute==denote。
 
-### ROOT04 C/U 期望、事件概率、合法行动格 — DONE（本地），kernel 证据=CI
+### ROOT04 C/U 期望、事件概率、合法行动格 — DONE（CI 绿）
 
 - 文件：`BusinessRoot/Analytics.lean`（`split_identity`、`weighted_sub/congr`、
   `CU_expectation_conservation`：E[C]−E[U]=P−q·p 用 C/U 而非 E[R]；
@@ -58,17 +58,21 @@ Lean 侧为闭合类型化行/字段文法。两侧 TCB 边界已写入各 Lean 
 - Python 侧：`root_witness.py::root04_checks` + 测试——同一组常数由锁定参考实现复算并逐项比对
   （`CROSS_CHECK_CONSTANTS` 与 Root.lean 的 `overpay_sample`/`main_sample` 一一对应）。
 
-### ROOT05 两文件解析精化 — DONE（本地），kernel 证据=CI
+### ROOT05 两文件解析精化 — DONE（CI 绿）
 
 - 文件：`BusinessRoot/ArtifactParser.lean`（闭合行文法 `DocLine`/`ofLines`、闭合类型化行文法
   `JsonRow`/`ofJson`——无 float/NaN/null 构造器；`doc_roundtrip`/`json_roundtrip`；
   `duplicate_key_rejected`、`demoted_row_not_parseable`；`readBoth`：两文件必须都解析、
-  正文必须 EXACT 模式、两份受保护记录都必须等于独立计算的期望记录）。
+  正文必须 EXACT 模式、两份受保护记录——含精确场景权重（`Protected.weights`，由
+  `protectedOf` 从模型权重按键位 zip 生成）——都必须等于独立计算的期望记录）。
+- CI 收敛期发现并修复一处镜像缺口：早期 `Protected` 不含权重字段，JSON 权重篡改
+  （7/16 对 2/5）会被 `readBoth` 静默接受——`tampered_json_rejected` 当时是假命题。
+  加入 `weights` 字段后 Lean 镜像与 Python 参考（其 bundle 检查本就拒绝权重篡改）一致。
 - Python 侧（真实字节）：`root_witness.py::root05_checks`——写盘→`read_artifacts`→
   `check_business_bundle` 接受并记录 SHA256；五类篡改（JSON 概率错、丢条件、同版本 m 整体替换、
   pending 伪完整、两来源快照混用）全部拒绝。
 
-### ROOT06 根定理实例化 — DONE（本地），kernel 证据=CI
+### ROOT06 根定理实例化 — DONE（CI 绿）
 
 - 文件：`BusinessRoot/Root.lean`：冻结 I0（P=1000、q=300、p=2/5、阈值 800、成本
   (100,60,10,10)、格 {600,850,1100}）；`root_worlds_match`/`root_joint_sem`/`root_task_sat`
@@ -76,6 +80,11 @@ Lean 侧为闭合类型化行/字段文法。两侧 TCB 边界已写入各 Lean 
   WF(I0) ∧ bundle 接受 ⇒ ∃W，Worlds(W)=Ω(I0) ∧ JointSem ∧ TaskSat ∧
   ReadBoth(d1,d2)=Protected_Q(W,m)；非空洞性：`root_bundle_accepts_real`（真实工件通过）
   与全部篡改/替换/混用反例被拒（`decide` 逐一核验）；ROOT02 绑定三定理。
+- 表示约定（CI 收敛期确立，两处均有据）：冻结概率以分子/分母构造器形式存储
+  （`qTwoFifths` 等 abbrev），因为 `2 / 5 : ℚ` 展开为 `Rat.div`、kernel 无法 whnf，闭合
+  bundle/绑定/篡改比较会在 `decide` 下卡死；解析侧经 `Rat.num_div_den` 桥接引理
+  （`qTwoFifths_eq` 等）转回 `n / d` 形式供 `norm_num` 计算（其有理数识别只接受 `n / d`
+  范式）。两侧各取所需，不引入 kernel 之外的可信计算。
 - 审计：`BusinessRoot/RootAudit.lean` 输出 `ROOT_COMPILED_ENV_JSON=`；
   `tools/ulm_consolidation/scripts/audit_root_compiled.py` 校验 24 条必需声明、
   公理 ⊆ {propext, Classical.choice, Quot.sound}。
@@ -91,10 +100,35 @@ Lean 侧为闭合类型化行/字段文法。两侧 TCB 边界已写入各 Lean 
   与内容摘要（`root05_checks`）。生产环境中 JC 唯一 application/public entry 接线、Harness
   MatterStore/CAS 取源，**须在两仓按其各自流程另行施工，本包不假称已完成**。
 
-### ROOT08 GitHub CI 与有限根接受 — 本地提交完成，运行证据见下
+### ROOT08 GitHub CI 与有限根接受 — DONE（CI 绿，已合入 main）
 
-- 分支/PR/运行号：见文末“CI 证据”一节（本地无法产生，须以真实 GitHub run 为准）。
+- 分支/PR/运行号：见文末“CI 证据”一节。
 - 验收分轴保持：Lean 编译=以本次 run 为准；134 业务/法律审核/真实预测=未关闭。
+
+## CI 证据（ROOT08，2026-09-10/11）
+
+- 分支/PR/提交：`codex/ulm-business-root-20260910` → PR #3（MERGED，合并提交 `e1aefad`）；
+  最终 Lean 提交 `88644bc`。
+- 参考工作流 `unified-math-v2-reference.yml` run **34519378180**：existing-jc-transport、
+  lean-seeds（`lake build JurisLean.BusinessRoot.All` + `RootAudit.lean` 产出
+  `ROOT_COMPILED_ENV_JSON=`，`audit_root_compiled.py` → `{"status": "PASS"}`，
+  receipt：theorem_count=383、required_count=24、公理 ⊆ {propext, Classical.choice,
+  Quot.sound}）、python-reference（`run_root.py` PASS）、reference-gate 全部 success。
+- Lean 权威管线 `lean-build.yml` run **34519379252**（attempt 2）：lean-full-clean-build
+  （`lake clean` 后从零全量构建——含 BusinessRoot 全部 9 文件与 BusinessRelations 系——
+  加 Axiom audit）、release-certificate、final-gate、python-gates、
+  lean-module-build(BusinessRelationsAudit/BusinessRelations) 全部 success。
+  lean-module-build(BusinessRelationsDelta) 两次在慢速 runner 上因 240 分钟作业超时被
+  取消/悬置（冷缓存下从零构建 mathlib 超时）；该模块的从零编译证据由同 run 成功的
+  lean-full-clean-build 覆盖，不构成任何 ROOT 义务的失败。
+- 收敛轨迹（保留可查的失败 run）：34512426708（7af4e7e，11 错）、34514241309（9dcc498，
+  11 错）、34516894406（17c1ea3，5 错）、34517689336（ef594d4，5 错）→ 88644bc 全绿。
+  修复内容：冻结概率构造器形式化（kernel 可判定）、`Protected.weights` 补权镜像缺口、
+  WF 绑定器命题化、`cases hr :` 泛化后终义务 `rfl`、`Rat.num_div_den` 桥接引理供
+  `norm_num`、样例定理直接复用 Analytics 已证结论。
+- 本地（Windows，仅 Python）：`pytest tools/business_relations/root/test_root_refinement.py`
+  → 11 passed；`run_root.py --output work/root-local-check.json` → `{"status": "PASS"}`。
+  符号链接拒绝用例在本机因特权缺失（WinError 1314）无法运行，以 GitHub ubuntu CI 为权威。
 
 ## 诚实边界（不得据此夸大）
 

@@ -433,7 +433,11 @@ def generate_csv_report(statutes: List[StatuteRecord],
                         output_path: Path):
     """Generate detailed CSV report."""
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(output_path, 'w', encoding='utf-8', newline='') as f:
+    _out = Path(output_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(output_path).open( 'w', encoding='utf-8', newline='') as f:
         writer = csv.writer(f)
         writer.writerow([
             'source', 'id', 'domain', 'text_length', 'condition_count',
@@ -579,7 +583,11 @@ def generate_markdown_report(
         '',
     ]
 
-    with open(output_path, 'w', encoding='utf-8') as f:
+    _out = Path(output_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(output_path).open( 'w', encoding='utf-8') as f:
         f.write('\n'.join(lines))
     print(f"  Markdown report: {output_path}")
 

@@ -210,7 +210,11 @@ def main():
     # Save JSON
     out_path = Path("docs/analysis/k3_analysis_result.json")
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(out_path, "w", encoding="utf-8") as f:
+    _out = Path(out_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(out_path).open( "w", encoding="utf-8") as f:
         json.dump(result, f, indent=2, ensure_ascii=False)
     print(f"\nJSON saved to: {out_path}")
 

@@ -291,7 +291,11 @@ def main():
     # T8.5 CSV
     t85_path = out_dir / "t85_extracted_mappings.csv"
     if all_t85:
-        with open(t85_path, "w", encoding="utf-8", newline="") as f:
+        _out = Path(t85_path).resolve()
+        _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+        if not any(_out.is_relative_to(r) for r in _allowed):
+            raise ValueError("output path escapes project root")
+        with Path(t85_path).open( "w", encoding="utf-8", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=all_t85[0].keys())
             writer.writeheader()
             writer.writerows(all_t85)
@@ -300,7 +304,11 @@ def main():
     # T9.4 CSV
     t94_path = out_dir / "t94_extracted_damages.csv"
     if all_t94:
-        with open(t94_path, "w", encoding="utf-8", newline="") as f:
+        _out = Path(t94_path).resolve()
+        _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+        if not any(_out.is_relative_to(r) for r in _allowed):
+            raise ValueError("output path escapes project root")
+        with Path(t94_path).open( "w", encoding="utf-8", newline="") as f:
             writer = csv.DictWriter(f, fieldnames=all_t94[0].keys())
             writer.writeheader()
             writer.writerows(all_t94)

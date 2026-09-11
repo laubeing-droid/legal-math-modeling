@@ -78,7 +78,11 @@ def main():
 
     # Save results
     out_path = PROOF_DIR / "proof_run_results.json"
-    with open(out_path, "w", encoding="utf-8") as f:
+    _out = Path(out_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(out_path).open( "w", encoding="utf-8") as f:
         json.dump(RESULTS, f, ensure_ascii=False, indent=2)
     print(f"\nResults saved to: {out_path}")
 

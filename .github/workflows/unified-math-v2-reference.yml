@@ -1,0 +1,180 @@
+name: ULM Consolidated Reference and Retained Proof Seeds
+
+on:
+  pull_request:
+    paths:
+      - 'tools/unified_math_v2/**'
+      - 'tools/business_relations/**'
+      - 'tools/ulm_consolidation/**'
+      - 'proofs/lean/juris_lean/**'
+      - 'docs/unified-v2.1/**'
+      - 'docs/ulm-consolidated/**'
+      - '.github/workflows/unified-math-v2-reference.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ulm-consolidated-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+defaults:
+  run:
+    shell: bash
+
+env:
+  JC_SHA: 8dac071bda42c4db609738a7505b6893c32afbe1
+  ELAN_INSTALLER_SHA: 0e36a07b9bbcc5381fa6250df109f9a4f94d7bac
+
+jobs:
+  python-reference:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Run consolidated reference, actual two-file readback and preservation checks
+        run: |
+          set -euo pipefail
+          python -B tools/ulm_consolidation/scripts/run_all.py --output work/consolidated-python
+          python -B tools/ulm_consolidation/scripts/run_root.py --output work/consolidated-python/root
+          python -B tools/ulm_consolidation/scripts/ci_receipt.py --report work/consolidated-python/consolidated-python.json --output work/consolidated-python/consolidated-python.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: consolidated-python-${{ github.run_id }}-${{ github.run_attempt }}
+          path: work/consolidated-python/
+          if-no-files-found: error
+          retention-days: 90
+
+  lean-seeds:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Verify checked-in toolchain and mathlib manifest
+        run: python tools/unified_math_v2/scripts/verify_pins.py --repo-root .
+      - name: Install pinned-script Elan with frozen Lean toolchain (CI only)
+        run: |
+          set -euo pipefail
+          curl --proto '=https' --tlsv1.2 -fsSL "https://raw.githubusercontent.com/leanprover/elan/${ELAN_INSTALLER_SHA}/elan-init.sh" -o /tmp/ulm-elan-init.sh
+          sh /tmp/ulm-elan-init.sh -y --no-modify-path --default-toolchain leanprover/lean4:v4.30.0
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+      - name: Restore Lean build cache
+        uses: actions/cache/restore@v4
+        with:
+          path: proofs/lean/juris_lean/.lake
+          key: lean-seeds-${{ runner.os }}-v4.30.0-${{ github.run_id }}
+          restore-keys: |
+            lean-seeds-${{ runner.os }}-v4.30.0-
+      - name: Build real modules (cached mathlib), inspect compiled environment
+        run: |
+          set -euo pipefail
+          mkdir -p work/consolidated-lean
+          cd proofs/lean/juris_lean
+          elan --version > ../../../work/consolidated-lean/tool-versions.log
+          lean --version >> ../../../work/consolidated-lean/tool-versions.log
+          lake build JurisLean.Consolidated.All 2>&1 | tee ../../../work/consolidated-lean/build.log
+          lake env lean JurisLean/Consolidated/Audit.lean > ../../../work/consolidated-lean/environment.log 2>&1
+          lake build JurisLean.BusinessRoot.All 2>&1 | tee ../../../work/consolidated-lean/business-root-build.log
+          lake env lean JurisLean/BusinessRoot/RootAudit.lean > ../../../work/consolidated-lean/root-environment.log 2>&1
+          cd ../../..
+          python tools/unified_math_v2/scripts/verify_pins.py --repo-root .
+          python tools/ulm_consolidation/scripts/audit_compiled.py --log work/consolidated-lean/environment.log --expected tools/ulm_consolidation/plans/LEAN_SEEDS_84.json --output work/consolidated-lean/consolidated-lean.json
+          python tools/ulm_consolidation/scripts/audit_root_compiled.py --log work/consolidated-lean/root-environment.log --output work/consolidated-lean/root-compiled.json
+          python tools/ulm_consolidation/scripts/ci_receipt.py --report work/consolidated-lean/consolidated-lean.json --output work/consolidated-lean/consolidated-lean.json
+          python tools/ulm_consolidation/scripts/ci_receipt.py --report work/consolidated-lean/root-compiled.json --output work/consolidated-lean/root-compiled.json
+      - name: Save Lean build cache
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: proofs/lean/juris_lean/.lake
+          key: lean-seeds-${{ runner.os }}-v4.30.0-${{ github.run_id }}
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: consolidated-lean-${{ github.run_id }}-${{ github.run_attempt }}
+          path: work/consolidated-lean/
+          if-no-files-found: error
+          retention-days: 90
+
+  existing-jc-transport:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          repository: laubeing-droid/juris-calculus
+          ref: 8dac071bda42c4db609738a7505b6893c32afbe1
+          path: external/jc
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Install frozen JC runtime and record resolved dependency versions
+        run: |
+          set -euo pipefail
+          mkdir -p work/consolidated-jc
+          python -m pip install ./external/jc
+          python -m pip freeze > work/consolidated-jc/installed-dependencies.txt
+      - name: Call actual local public API with engineering-only material
+        run: |
+          set -euo pipefail
+          python tools/unified_math_v2/scripts/jc_local_smoke.py --jc-root external/jc --expected-jc-sha "$JC_SHA" --output work/consolidated-jc/consolidated-jc.json
+          python tools/ulm_consolidation/scripts/ci_receipt.py --report work/consolidated-jc/consolidated-jc.json --output work/consolidated-jc/consolidated-jc.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: consolidated-jc-${{ github.run_id }}-${{ github.run_attempt }}
+          path: work/consolidated-jc/
+          if-no-files-found: error
+          retention-days: 90
+
+  reference-gate:
+    needs: [python-reference, lean-seeds, existing-jc-transport]
+    if: always()
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+        with:
+          python-version: '3.12'
+      - name: Require all jobs succeeded; skipped/cancelled is not PASS
+        env:
+          NEEDS_JSON: ${{ toJSON(needs) }}
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json, os
+          failures={k:v['result'] for k,v in json.loads(os.environ['NEEDS_JSON']).items() if v['result']!='success'}
+          if failures: raise SystemExit(str(failures))
+          PY
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          pattern: consolidated-*-${{ github.run_id }}-${{ github.run_attempt }}
+          path: work/upstream
+          merge-multiple: false
+      - name: Aggregate exact subjects without flattening or silent overwrite
+        run: python tools/ulm_consolidation/scripts/ci_receipt.py --aggregate work/upstream --output work/consolidated-reference-gate.json
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: consolidated-gate-${{ github.run_id }}-${{ github.run_attempt }}
+          path: work/consolidated-reference-gate.json
+          if-no-files-found: error
+          retention-days: 90

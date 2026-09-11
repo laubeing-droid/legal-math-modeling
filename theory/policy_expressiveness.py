@@ -65,6 +65,54 @@ class Term:
     sort: str = "concept"  # concept | rule | procedure | parameter
 
 
+def _guard_holds(condition: str, current_name: str) -> bool:
+    """Closed-form guard evaluation (no eval()).
+
+    The guard language accepted here is deliberately tiny: membership or
+    equality tests over the current term's name, combined with and/or/not.
+    Guards may only reference the name ``term``; anything else is rejected.
+    """
+    import ast
+
+    def ev(node: ast.AST) -> object:
+        if isinstance(node, ast.Expression):
+            return ev(node.body)
+        if isinstance(node, ast.Constant):
+            return node.value
+        if isinstance(node, ast.Name):
+            if node.id == "term":
+                return current_name
+            raise ValueError("guard references undeclared names")
+        if isinstance(node, (ast.List, ast.Tuple, ast.Set)):
+            return [ev(elt) for elt in node.elts]
+        if isinstance(node, ast.Compare):
+            left = ev(node.left)
+            for op, comp in zip(node.ops, node.comparators):
+                right = ev(comp)
+                if isinstance(op, ast.In):
+                    ok = left in right
+                elif isinstance(op, ast.NotIn):
+                    ok = left not in right
+                elif isinstance(op, ast.Eq):
+                    ok = left == right
+                elif isinstance(op, ast.NotEq):
+                    ok = left != right
+                else:
+                    raise ValueError("unsupported guard operator")
+                if not ok:
+                    return False
+                left = right
+            return True
+        if isinstance(node, ast.BoolOp):
+            values = [ev(v) for v in node.values]
+            return all(values) if isinstance(node.op, ast.And) else any(values)
+        if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.Not):
+            return not ev(node.operand)
+        raise ValueError("unsupported guard syntax")
+
+    return bool(ev(ast.parse(condition, mode="eval")))
+
+
 @dataclass(frozen=True)
 class RewriteRule:
     """A conditional rewrite rule: lhs -> rhs if condition."""
@@ -214,7 +262,7 @@ class PolicyRewriteSystem:
         for stratum in self.stratify():
             for rule in stratum:
                 if rule.lhs.name == current.name:
-                    if rule.condition is None or eval(rule.condition):
+                    if rule.condition is None or _guard_holds(rule.condition, current.name):
                         if rule.op == PolicyOp.DISABLE:
                             return Term(name="BOT", sort="disabled")
                         else:

@@ -1,0 +1,108 @@
+import Mathlib
+import JurisLean.BusinessRoot.Semantics
+
+/-!
+ROOT03 (part 2) — Scenario-domain enumeration coverage and checker reflection.
+
+Three independent pieces:
+1. The conservation-plus-complementarity decomposition accepted by the real
+   checker is unique: C/U values are forced to be exactly the clipped maximum
+   decomposition of the scenario residual (no field-type check can do this).
+2. For the frozen single-atom scenario shape, every Ω member is one of the two
+   declared branches and both branches are Ω members — the enumeration domain
+   is exact in both directions, never reconstructed from a solver result.
+3. Checker reflection: any row satisfying the independent JointSem conditions
+   carries exactly the clipped residual decomposition.
+-/
+
+namespace JurisLean.BusinessRoot
+
+/-- Uniqueness of the nonnegative complementary decomposition of a residual. -/
+theorem decomposition_unique (balance excess residual : ℚ)
+    (hb : 0 ≤ balance) (he : 0 ≤ excess)
+    (hsub : balance - excess = residual) (hmul : balance * excess = 0) :
+    balance = max residual 0 ∧ excess = max (-residual) 0 := by
+  rcases mul_eq_zero.mp hmul with h | h
+  · subst balance
+    have hr : residual ≤ 0 := by linarith
+    constructor
+    · simp [max_eq_right hr]
+    · rw [max_eq_left (by linarith : (0 : ℚ) ≤ -residual)]
+      linarith
+  · subst excess
+    have hr : 0 ≤ residual := by linarith
+    constructor
+    · rw [max_eq_left hr]
+      linarith
+    · simp [max_eq_right (by linarith : -residual ≤ (0 : ℚ))]
+
+/-- The if-form clip definitions unfold to the max-form used by the
+decomposition lemma (clipC definitionally; clipU by case analysis). -/
+theorem clipC_eq_max (r : ℚ) : clipC r = max r 0 := rfl
+
+/-- The overpayment side: clipU r = max (−r) 0 by case analysis on the sign. -/
+theorem clipU_eq_max (r : ℚ) : clipU r = max (-r) 0 := by
+  unfold clipU
+  by_cases h : r < 0
+  · rw [if_pos h, max_eq_left (by linarith : (0:ℚ) ≤ -r)]
+  · rw [if_neg h, max_eq_right (by linarith : (-r:ℚ) ≤ 0)]
+
+theorem clipped_from_conditions (principal : ℚ) (keys : List String)
+    (payments : List Payment) (vals : World) (o : Witness)
+    (hb : 0 ≤ o.principalBalance) (hu : 0 ≤ o.overpaymentResidual)
+    (hmul : o.principalBalance * o.overpaymentResidual = 0)
+    (hsub : o.principalBalance - o.overpaymentResidual =
+      residualOf principal keys payments vals) :
+    o.principalBalance = clipC (residualOf principal keys payments vals) ∧
+      o.overpaymentResidual = clipU (residualOf principal keys payments vals) := by
+  have h := decomposition_unique o.principalBalance o.overpaymentResidual
+    (residualOf principal keys payments vals) hb hu hsub hmul
+  rw [h.1, h.2, ← clipC_eq_max, ← clipU_eq_max]
+  exact ⟨rfl, rfl⟩
+
+/-- For the frozen single-atom shape (facts leave the atom open, constraint
+`truthy`), an Ω member must be one of the two declared branches. Shape comes
+from the length condition of Ω itself — no solver output is consulted. -/
+theorem domain_single_key_cases (a : String) (vals : World)
+    (h : DomainOf [a] [(a, Option.none)] Guard.truthy vals) :
+    vals = [true] ∨ vals = [false] := by
+  have hlen := h.1
+  cases vals with
+  | nil => simp at hlen
+  | cons b rest =>
+      cases rest with
+      | nil =>
+          cases b
+          · exact Or.inr rfl
+          · exact Or.inl rfl
+      | cons => simp at hlen
+
+/-- Both declared branches are members of Ω for the frozen shape: the domain is
+nonempty in exactly two scenarios. -/
+theorem domain_single_key_members (a : String) :
+    DomainOf [a] [(a, Option.none)] Guard.truthy [true] ∧
+    DomainOf [a] [(a, Option.none)] Guard.truthy [false] := by
+  constructor
+  · simp [DomainOf, factsExtend, Guard.denote]
+  · simp [DomainOf, factsExtend, Guard.denote]
+
+/-- Two-sided exactness of the finite enumeration domain for the frozen shape:
+solver enumeration and the independent scenario domain coincide. -/
+theorem domain_pair_exact (a : String) (vals : World) :
+    DomainOf [a] [(a, Option.none)] Guard.truthy vals ↔
+      vals = [true] ∨ vals = [false] := by
+  constructor
+  · exact domain_single_key_cases a vals
+  · intro hor
+    obtain ⟨ht, hf⟩ := domain_single_key_members a
+    rcases hor with h | h
+    · rw [h]; exact ht
+    · rw [h]; exact hf
+
+/-- The distinctness of the two branches is structural, so a two-row table over
+them cannot silently collapse to one row (no world deletion). -/
+theorem branches_distinct : ¬ ([true] : World) = ([false] : World) := by
+  intro h
+  simp at h
+
+end JurisLean.BusinessRoot

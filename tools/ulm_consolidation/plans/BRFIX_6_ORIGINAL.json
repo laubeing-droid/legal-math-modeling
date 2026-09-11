@@ -1,0 +1,38 @@
+[
+  {
+    "id": "BRFIX-01",
+    "title": "可运行双文件业务根",
+    "status": "REFERENCE_IMPLEMENTED_TESTED",
+    "remaining": "根到独立JointSem的Python精化待证"
+  },
+  {
+    "id": "BRFIX-02",
+    "title": "实际JSON回读与内容核验",
+    "status": "REFERENCE_IMPLEMENTED_TESTED",
+    "remaining": "一般DOCX/PDF/自由文本不在范围"
+  },
+  {
+    "id": "BRFIX-03",
+    "title": "已选完整输入绑定",
+    "status": "SYNTHETIC_REFERENCE_IMPLEMENTED_TESTED",
+    "remaining": "宿主输入来源、真实数据和模型采用关系待接"
+  },
+  {
+    "id": "BRFIX-04",
+    "title": "原始残差与clipped余额期望桥接",
+    "status": "8_LEAN_DRAFTS_CI_NOT_RUN",
+    "remaining": "保持原代数定理，证明新对应及应用条件"
+  },
+  {
+    "id": "BRFIX-05",
+    "title": "日志与报告同次生成",
+    "status": "EXECUTED_COHERENT_85_TESTS",
+    "remaining": "不同Python版本必须实际CI重跑"
+  },
+  {
+    "id": "BRFIX-06",
+    "title": "根规格、解析、checker与业务需求精化",
+    "status": "PENDING_FORMAL_INSTANTIATION",
+    "remaining": "不能用check布尔合取替代业务语义"
+  }
+]

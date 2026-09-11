@@ -1,0 +1,267 @@
+[
+  {
+    "id": "EXT01",
+    "title": "复用结果表示/checker，扩展注册语义",
+    "depends_on": [
+      "REV01",
+      "REV03"
+    ],
+    "proof_targets": [
+      "C02",
+      "C03",
+      "C07"
+    ],
+    "actions": [
+      "投影类型、证书、精确/内/外界分型，不重做已完成修订"
+    ],
+    "acceptance": [
+      "产生具体算法、独立语义、证明、反例与实际证据，不只登记字段。"
+    ],
+    "status": "REUSE_NOT_REOPEN",
+    "owner": [
+      "LMM",
+      "JC",
+      "Harness"
+    ],
+    "scope": "扩展同一契约，不另建权威",
+    "source": "已采纳EXT数学复核及用户逐条确认"
+  },
+  {
+    "id": "EXT02",
+    "title": "复用主体键，只补新语义作用域",
+    "depends_on": [
+      "REV02"
+    ],
+    "proof_targets": [
+      "F02",
+      "C01"
+    ],
+    "actions": [
+      "不重开拼接误报；新模型/预测/策略范围需迁移和绑定证明"
+    ],
+    "acceptance": [
+      "产生具体算法、独立语义、证明、反例与实际证据，不只登记字段。"
+    ],
+    "status": "REUSE_NOT_REOPEN",
+    "owner": [
+      "LMM",
+      "JC",
+      "Harness"
+    ],
+    "scope": "扩展同一契约，不另建权威",
+    "source": "已采纳EXT数学复核及用户逐条确认"
+  },
+  {
+    "id": "EXT03",
+    "title": "profile化结构论证合理性与新旧映射",
+    "depends_on": [
+      "T05",
+      "T06",
+      "REV06"
+    ],
+    "proof_targets": [
+      "F06",
+      "F07",
+      "F08",
+      "F09",
+      "F10",
+      "B01"
+    ],
+    "actions": [
+      "按明确严格/可废止规则、子论证、contrary、偏好前提证明；不能静默删扩展改原语义"
+    ],
+    "acceptance": [
+      "产生具体算法、独立语义、证明、反例与实际证据，不只登记字段。"
+    ],
+    "status": "PLANNED_PROOFS_NOT_CLOSED",
+    "owner": [
+      "LMM",
+      "JC",
+      "Harness"
+    ],
+    "scope": "扩展同一契约，不另建权威",
+    "source": "已采纳EXT数学复核及用户逐条确认"
+  },
+  {
+    "id": "EXT04",
+    "title": "投影原像、共同Γ和实际约化/CEGAR",
+    "depends_on": [
+      "EXT01",
+      "EXT02"
+    ],
+    "proof_targets": [
+      "C02",
+      "C03",
+      "N02"
+    ],
+    "actions": [
+      "γΓ=Γ∩⋂π⁻¹γ；保持Γ下双向包含；预算中断保留健全外界；图连通非证明"
+    ],
+    "acceptance": [
+      "产生具体算法、独立语义、证明、反例与实际证据，不只登记字段。"
+    ],
+    "status": "PLANNED_PROOFS_NOT_CLOSED",
+    "owner": [
+      "LMM",
+      "JC",
+      "Harness"
+    ],
+    "scope": "扩展同一契约，不另建权威",
+    "source": "已采纳EXT数学复核及用户逐条确认"
+  },
+  {
+    "id": "EXT05",
+    "title": "来源代数、ATMS及事件概率连接",
+    "depends_on": [
+      "T04",
+      "EXT03",
+      "T12"
+    ],
+    "proof_targets": [
+      "F04",
+      "F14",
+      "P04"
+    ],
+    "actions": [
+      "替代支持/撤回/包含极小/全部极小分开；保留重叠事件关系，3/8不能算7/16"
+    ],
+    "acceptance": [
+      "产生具体算法、独立语义、证明、反例与实际证据，不只登记字段。"
+    ],
+    "status": "PLANNED_PROOFS_NOT_CLOSED",
+    "owner": [
+      "LMM",
+      "JC",
+      "Harness"
+    ],
+    "scope": "扩展同一契约，不另建权威",
+    "source": "已采纳EXT数学复核及用户逐条确认"
+  },
+  {
+    "id": "EXT06",
+    "title": "保形秩、数据用途和统计组合",
+    "depends_on": [
+      "T14",
+      "EXT04"
+    ],
+    "proof_targets": [
+      "P10",
+      "P11",
+      "P12",
+      "P13",
+      "E01"
+    ],
+    "actions": [
+      "边际/条件/筛选后覆盖分开；PAV与保形校准数据不擅自复用；支持时变条件风险扩展"
+    ],
+    "acceptance": [
+      "产生具体算法、独立语义、证明、反例与实际证据，不只登记字段。"
+    ],
+    "status": "PLANNED_PROOFS_NOT_CLOSED",
+    "owner": [
+      "LMM",
+      "JC",
+      "Harness"
+    ],
+    "scope": "扩展同一契约，不另建权威",
+    "source": "已采纳EXT数学复核及用户逐条确认"
+  },
+  {
+    "id": "EXT07",
+    "title": "有限SCM与部分识别优化证书",
+    "depends_on": [
+      "T12",
+      "T13",
+      "T10",
+      "EXT04"
+    ],
+    "proof_targets": [
+      "P07",
+      "P08",
+      "P09",
+      "N05",
+      "N07"
+    ],
+    "actions": [
+      "空/未知可行分开；Exact、tight、attained、集合形状分开；非凸允许可靠外界"
+    ],
+    "acceptance": [
+      "产生具体算法、独立语义、证明、反例与实际证据，不只登记字段。"
+    ],
+    "status": "PLANNED_PROOFS_NOT_CLOSED",
+    "owner": [
+      "LMM",
+      "JC",
+      "Harness"
+    ],
+    "scope": "扩展同一契约，不另建权威",
+    "source": "已采纳EXT数学复核及用户逐条确认"
+  },
+  {
+    "id": "EXT08",
+    "title": "有限时域合法策略及稳健共享参数",
+    "depends_on": [
+      "T21",
+      "EXT04"
+    ],
+    "proof_targets": [
+      "G01",
+      "G02",
+      "G03",
+      "G04",
+      "G05",
+      "C03"
+    ],
+    "actions": [
+      "合法行动/对手/权限/期限，非矩形共享θ不逐步换最坏值；Bellman条件满足可正式保证"
+    ],
+    "acceptance": [
+      "产生具体算法、独立语义、证明、反例与实际证据，不只登记字段。"
+    ],
+    "status": "PLANNED_PROOFS_NOT_CLOSED",
+    "owner": [
+      "LMM",
+      "JC",
+      "Harness"
+    ],
+    "scope": "扩展同一契约，不另建权威",
+    "source": "已采纳EXT数学复核及用户逐条确认"
+  },
+  {
+    "id": "EXT09",
+    "title": "三领域和工作产品真实根组合",
+    "depends_on": [
+      "EXT03",
+      "EXT04",
+      "EXT05",
+      "EXT06",
+      "EXT07",
+      "EXT08",
+      "T22",
+      "ROOT08"
+    ],
+    "proof_targets": [
+      "C01",
+      "C02",
+      "C03",
+      "C04",
+      "C05",
+      "C06",
+      "C07"
+    ],
+    "actions": [
+      "至少民事、刑事、行政或劳动三条＋交易文件压力场景；合取/导入/有限例子不替全域"
+    ],
+    "acceptance": [
+      "产生具体算法、独立语义、证明、反例与实际证据，不只登记字段。"
+    ],
+    "status": "PLANNED_PROOFS_NOT_CLOSED",
+    "owner": [
+      "LMM",
+      "JC",
+      "Harness"
+    ],
+    "scope": "扩展同一契约，不另建权威",
+    "source": "已采纳EXT数学复核及用户逐条确认"
+  }
+]

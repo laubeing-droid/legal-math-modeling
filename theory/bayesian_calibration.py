@@ -393,7 +393,11 @@ def generate_manifest(claims: List[StructuredClaim],
     # Build domain result lookup
     domain_lookup = {r.domain: r for r in results}
 
-    with open(output_path, 'w', encoding='utf-8') as f:
+    _out = Path(output_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(output_path).open( 'w', encoding='utf-8') as f:
         for c in claims:
             dr = domain_lookup.get(c.domain)
             record = {
@@ -419,7 +423,11 @@ def generate_csv_report(results: List[CalibrationResult],
                         output_path: Path):
     """Generate CSV summary."""
     output_path.parent.mkdir(parents=True, exist_ok=True)
-    with open(output_path, 'w', encoding='utf-8', newline='') as f:
+    _out = Path(output_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(output_path).open( 'w', encoding='utf-8', newline='') as f:
         writer = csv.writer(f)
         writer.writerow([
             'domain', 'n_total', 'n_positive', 'n_hard',
@@ -583,7 +591,11 @@ def generate_markdown_report(
         '',
     ]
 
-    with open(output_path, 'w', encoding='utf-8') as f:
+    _out = Path(output_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(output_path).open( 'w', encoding='utf-8') as f:
         f.write('\n'.join(lines))
     print(f"  Markdown report: {output_path}")
 

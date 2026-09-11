@@ -588,7 +588,11 @@ def run_all_proofs(output_path: Optional[str] = None) -> ProofRunReport:
     report.end_time = datetime.now().isoformat()
     report.total_runtime_seconds = round(time.time() - overall_start, 2)
 
-    with open(output_path, "w", encoding="utf-8") as f:
+    _out = Path(output_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(output_path).open( "w", encoding="utf-8") as f:
         json.dump(report.to_dict(), f, indent=2, ensure_ascii=False)
 
     print(f"  Results written to: {output_path}")

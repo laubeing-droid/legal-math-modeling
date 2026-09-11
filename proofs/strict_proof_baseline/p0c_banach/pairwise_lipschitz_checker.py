@@ -7,6 +7,7 @@ Scope: 15 hand-crafted synthetic items with linear pricing map f(T,e)=0.6T+0.4e
 WARNING: This is a TOY MODEL. Results do NOT apply to real legal pricing.
 """
 
+from pathlib import Path
 import math
 import json
 import os
@@ -82,7 +83,11 @@ def main():
         "warning": "This proof applies ONLY to the synthetic toy model. Real legal pricing data is DATA_INSUFFICIENT_FOR_PROOF."
     }
     out_path = os.path.join(os.path.dirname(__file__), "toy_proof_result.json")
-    with open(out_path, "w", encoding="utf-8") as f:
+    _out = Path(out_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(out_path).open( "w", encoding="utf-8") as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
 
     if max_ratio < 1.0:

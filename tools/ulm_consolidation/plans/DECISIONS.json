@@ -1,0 +1,392 @@
+{
+  "schema": "ulm/consolidated-decisions/1",
+  "freeze_date": "2026-09-10",
+  "decision": "SPEC_ACCEPT_WITH_REVISION",
+  "permission": "START_NOW",
+  "decisions": [
+    {
+      "id": "DEC-01",
+      "title": "最终规格与开工",
+      "binding_rule": "SPEC_ACCEPT_WITH_REVISION；立即允许定向施工。修订项是任务及验收条件，不是全部开工前置门槛。",
+      "basis": "用户最后多轮确认",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-02",
+      "title": "全量范围",
+      "binding_rule": "保留V2的57目标、25任务及V2.1的REV01–REV09；保留EXT01–09、20评测、D001–D134、M01–M16、X01–X10和七轴。",
+      "basis": "V2.1原包＋后续用户确认",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-03",
+      "title": "唯一执行来源",
+      "binding_rule": "本包MASTER_CONSTRUCTION与DECISIONS优先；原文和旧ZIP仅作可核对档案，禁止平行执行互相覆盖。",
+      "basis": "本轮固化决定",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-04",
+      "title": "不再泛化重审",
+      "binding_rule": "仅凭新源码、反例、CI或数据证据重新开单；已撤回误报不复活。",
+      "basis": "用户最终裁决",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-05",
+      "title": "唯一内核",
+      "binding_rule": "LMM负责语义和证明，JC为唯一法律运行内核，Harness做材料/任务/交付，LSC复用计算，LCCC维护来源；不另造第二内核。",
+      "basis": "V2.1/HARNESS_INTEGRATION",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-06",
+      "title": "无密钥本地链",
+      "binding_rule": "使用jc-harness-local/1公共接口；不恢复密钥/激活/签章总闸；LOCAL-RECORD不是机构批准。",
+      "basis": "V2.1固定接口",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-07",
+      "title": "只在GitHub运行Lean",
+      "binding_rule": "本地可以Python与静态检查，不启动Lean/Elan/Lake。版本固定v4.30.0与原mathlib SHA，不lake update。",
+      "basis": "V2.1工具约束",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-08",
+      "title": "证据轴分离",
+      "binding_rule": "规格、参考Python、Lean、运行精化、法律审核、经验验证分别关闭；目录、imports、测试数、审查共识不替代证明。",
+      "basis": "全部确认",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-09",
+      "title": "统一正确性",
+      "binding_rule": "独立定义Solutions/TaskSol；Exact相等，Inner子集，Outer超集；必须以实际接受条件为前提。",
+      "basis": "总契约共识",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-10",
+      "title": "符号表示",
+      "binding_rule": "允许有限枚举、区间、多面体及已注册受检证书；无限集合不等于不能精确表示；禁止用户自选语义回调。",
+      "basis": "REV01/EXT01",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-11",
+      "title": "共同见证",
+      "binding_rule": "各模块通过同一主体和真实中间见证连接；各自存在见证的合取不等于存在共同见证。",
+      "basis": "C07/BR总根",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-12",
+      "title": "非空及可实现性",
+      "binding_rule": "处理不相容、空模型族、无解、未找到、超时；不可利用真空全称或永远拒绝获得假完成。",
+      "basis": "业务需求层",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-13",
+      "title": "共同空间",
+      "binding_rule": "局部约束通过π_i的逆像提升；γΓ=Γ∩⋂π_i⁻¹(γ_i)。不向其他维度补默认值。",
+      "basis": "EXT复核",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-14",
+      "title": "固定约束约化",
+      "binding_rule": "ρ收紧抽象表示但保持固定Γ的具体集；新增证据或解释改变Γ是输入更新，不冒称同一语义无损约化。",
+      "basis": "EXT04",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-15",
+      "title": "合理性按语义证明",
+      "binding_rule": "严格闭包、子论证、一致性按profile及充分条件证明，不一律弱化，也不合并相反扩展后误报。",
+      "basis": "EXT03",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-16",
+      "title": "论证身份与截断",
+      "binding_rule": "保留规则/子树/来源；树到良基图须显式映射。深度内完整不自动获得未截断系统健全。",
+      "basis": "REV06/EXT03",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-17",
+      "title": "来源语义分层",
+      "binding_rule": "推导来源、布尔支持、联合概率事件分开；一般来源不统一强制幂等；极小支持不意味独立。",
+      "basis": "EXT05",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-18",
+      "title": "来源与条件状态",
+      "binding_rule": "UNKNOWN/DISPUTED不等于False；USER_ASSUMED只产生条件分析；来源可定位不等于事实或法律解释真实。",
+      "basis": "F03/F04/BR02",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-19",
+      "title": "概率必须建设",
+      "binding_rule": "有限离散BN、真实计数学习、竞争解释、误设与剩余质量保证进入主线；不能删成以后再说。",
+      "basis": "用户固定决定",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-20",
+      "title": "胜率必须建设",
+      "binding_rule": "明确当事方/争点/审级/成功事件/截止时点；区分事实概率、认定概率、结果预测与偏好胜率；真实校准另验。",
+      "basis": "P/E目标",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-21",
+      "title": "反泄漏不重做误报",
+      "binding_rule": "保留已有训练/校准/测试与纠纷cluster检查；新变换仍不得使用未来事实或测试标签。",
+      "basis": "已撤回P1-04",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-22",
+      "title": "保形组合",
+      "binding_rule": "交换性、分数、数据分工和覆盖事件明确；与规范集相交不继承原覆盖，需支撑或额外风险预算。",
+      "basis": "EXT06",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-23",
+      "title": "序贯条件触发",
+      "binding_rule": "允许时变平均条件风险与e-process；离线可排后，反复监测/可选停止承诺时必须补相应保证。",
+      "basis": "EXT复核",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-24",
+      "title": "因果识别范围",
+      "binding_rule": "有限SCM及明确假设内按证据返回Exact/最紧/Outer；观察≠干预，现实因果假设不由计算证明。",
+      "basis": "EXT07",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-25",
+      "title": "紧界可达性集合形状",
+      "binding_rule": "tight、attained和完整识别集合分别标注；[0,1)的sup=1可最紧但不可达。",
+      "basis": "EXT复核",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-26",
+      "title": "非凸能力",
+      "binding_rule": "非凸允许经验证的松弛/分支定界/证书给全局界甚至精确结果，不限为候选内界。",
+      "basis": "EXT07/N07",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-27",
+      "title": "Banach边界",
+      "binding_rule": "仅对确有完备空间、压缩算子及实现对应的子模型签发保证；保留指定二次和适用Bellman目标，不泛推法律评价。",
+      "basis": "T11/EXT08",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-28",
+      "title": "合法可行域先行",
+      "binding_rule": "先固定法律硬约束，再给目标函数；一个最优点不是全部最优集合，部分端点不是全局界。",
+      "basis": "N/G目标",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-29",
+      "title": "策略共享参数",
+      "binding_rule": "有限时域优先；同一未知参数不逐阶段换最坏值；扩大不确定集所得保守界须标明。",
+      "basis": "EXT08",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-30",
+      "title": "和解真实连接",
+      "binding_rule": "双方期望、成本、边界来自同一选定输入；所选点须在合法集合∩双方接受集合，非空不保证中点合法。",
+      "basis": "REV04/BR链",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-31",
+      "title": "律师费支线",
+      "binding_rule": "原工时/律师费实验保留独立成本支线；不改名证据概率引擎。",
+      "basis": "用户澄清",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-32",
+      "title": "全领域需求",
+      "binding_rule": "至少三种不同领域联合链；134需求是公开材料归纳，不等于全部现实法律已穷尽；20套统计保持15CN+5US相关、法域分层。",
+      "basis": "评测/业务分析",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-33",
+      "title": "评测与真源",
+      "binding_rule": "原生分数、独立检查、法律审查、端到端结果分账；Harvey7/8通过不等于8/8覆盖；历史标签不是现行法真源。",
+      "basis": "20套需求报告",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-34",
+      "title": "需求/法律/证明义务分型",
+      "binding_rule": "法律关系、BusinessRequirement/BusinessSat、形式证明义务分开；复用ULM04.Sat原义。",
+      "basis": "业务需求统一分析",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-35",
+      "title": "业务规格充分性",
+      "binding_rule": "证明Imp⊨Spec及Domain∧Spec⊨Requirement；需求覆盖不能从程序已有结果反定义。",
+      "basis": "业务需求统一分析",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-36",
+      "title": "七轴",
+      "binding_rule": "谁对谁、依据、时点、条件、效果、允许结果、实际文件忠实来自同一任务见证；主体可依法变更，需变更见证。",
+      "basis": "BR01–BR07",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-37",
+      "title": "受保护交付",
+      "binding_rule": "回读实际文件，关键主体/金额/条件/分支/出处/完成状态不多说不漏说；闭合文本证明不自动推广自由中文或DOCX。",
+      "basis": "BR07",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-38",
+      "title": "文书修改",
+      "binding_rule": "影响闭包内重查，真正无关区观察保持；定义变更可能改变未改字条款；字符串不变不等于语义不变。",
+      "basis": "M13/业务分析",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-39",
+      "title": "双文件根已存在",
+      "binding_rule": "以最新PATCHED_REFERENCE的check_business_bundle及JSON独立回读为活动参考代码，不再按旧包重复新增。",
+      "basis": "BRFIX01/02",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-40",
+      "title": "原始输入I0",
+      "binding_rule": "I0=(spec,m,Q)由宿主任务确定时保存；比较完整结构，不新增名称式approved_model_id。生成者不得以输出中的expected替换原输入。",
+      "basis": "最终BR复核确认",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-41",
+      "title": "残差余额桥接",
+      "binding_rule": "R=P−q1_A，C=max(R,0)，U=max(−R,0)；E[C]−E[U]=P−qP(A)。E[R]与E[C]及阈值事件不混用。",
+      "basis": "BRFIX04",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-42",
+      "title": "根精化待证",
+      "binding_rule": "真实函数存在≠根定理成立；JointSem/TaskSat/ReadBoth独立定义后证明检查器到其精化。",
+      "basis": "最终用户确认",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-43",
+      "title": "Finset误报撤回",
+      "binding_rule": "filter仅需DecidablePred，原稿已有；不盲加DecidableEq。其他真实错误由GitHub Lean输出定点修。",
+      "basis": "已撤回BR-P1-04",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-44",
+      "title": "空扩展及pipefail不重开",
+      "binding_rule": "保留现有三环/空图、pipefail回归；不按摘录推定新缺陷。",
+      "basis": "已撤回早期P0-02/P0-04",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-45",
+      "title": "测试证据口径",
+      "binding_rule": "原54/55日志差异归档；新日志和报告同次产生；本包新运行与历史作者记录分开，未跑不标通过。",
+      "basis": "BRFIX05",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-46",
+      "title": "近端工作重点",
+      "binding_rule": "当前先实施有限本金端到端根精化，再把实际可复用证明扩展到D需求和全领域；不等待所有实证项目完成才能施工。",
+      "basis": "用户最后确认",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-47",
+      "title": "Rosetta局部修订",
+      "binding_rule": "原no_total_functor只表达冻结样本存在CN_ONLY条目；改名sample_mapping_not_total并缩小文档解释。保留原命题，不冒称所有跨法域函子/保持映射不存在。修订脚本已随V2.1交付；远端应用及重新CI需T00实际完成。",
+      "basis": "V2.1/T00及历次最终裁决",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    },
+    {
+      "id": "DEC-48",
+      "title": "May、共同允许和必然命题不同",
+      "binding_rule": "MayOut为相容模型允许结果的并集；RobustlyAllowed为交集，不是必定发生；MustProp对所有模型和允许结果量化。空模型与无解/未完成分开，模型族收缩性质只在同一规则语义中使用。",
+      "basis": "已确认业务统一分析",
+      "scope": "GLOBAL",
+      "status": "ADOPTED_NOT_AN_IMPLEMENTATION_PROOF"
+    }
+  ]
+}

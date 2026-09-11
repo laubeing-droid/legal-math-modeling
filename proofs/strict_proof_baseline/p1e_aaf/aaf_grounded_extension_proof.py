@@ -19,6 +19,7 @@ Epistemic status: PROVED_BY_EXHAUSTIVE_ENUMERATION (n ≤ 4)
 
 from __future__ import annotations
 
+from pathlib import Path
 import json
 import sys
 import time
@@ -377,7 +378,11 @@ def main() -> int:
 
     # Write JSON summary
     summary_path = "aaf_grounded_extension_summary.json"
-    with open(summary_path, "w", encoding="utf-8") as f:
+    _out = Path(summary_path).resolve()
+    _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)
+    if not any(_out.is_relative_to(r) for r in _allowed):
+        raise ValueError("output path escapes project root")
+    with Path(summary_path).open( "w", encoding="utf-8") as f:
         json.dump(stats, f, indent=2, ensure_ascii=False)
     print(f"\nDetailed summary written to: {summary_path}")
 

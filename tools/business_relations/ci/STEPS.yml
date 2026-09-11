@@ -1,0 +1,22 @@
+# Steps fragment, to be inserted after setup in the EXISTING workflow.
+# Requires files installed according to INTEGRATION.md. Not a standalone workflow.
+- name: Business relation reference tests
+  shell: bash
+  run: |
+    set -euo pipefail
+    python -B tools/business_relations/ci/run_reference.py
+- name: Business relation Lean build and explicit axiom audit
+  shell: bash
+  run: |
+    set -euo pipefail
+    mkdir -p work/business-relations
+    cd proofs/lean/juris_lean
+    test "$(tr -d '\r\n' < lean-toolchain)" = 'leanprover/lean4:v4.30.0'
+    lake build JurisLean.BusinessRelationsDelta 2>&1 | tee ../../../work/business-relations/lean-build.log
+    lake env lean JurisLean/BusinessRelationsAudit.lean > ../../../work/business-relations/axioms.log 2>&1
+    python ../../../tools/business_relations/ci/verify_axioms.py \
+      ../../../tools/business_relations/lean/DECLARATIONS.json \
+      ../../../work/business-relations/axioms.log \
+      > ../../../work/business-relations/axiom-verdict.json
+# The existing compiled-environment audit, independent verifier, exact-commit
+# binding and final gates still follow. This fragment issues no release label.

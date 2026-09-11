@@ -1,0 +1,247 @@
+[
+  {
+    "id": "ROOT01",
+    "title": "独立有限本金业务语义与需求满足",
+    "source": "用户最终共识的显式施工分解；不是新增完成宣称",
+    "depends_on": [],
+    "actions": [
+      "定义Ω(I0)、JointSem、TaskSat_Q、Protected_Q，不引用check布尔值或renderer输出作为定义。"
+    ],
+    "acceptance": [
+      "JointSem中每个情景满足来源/身份/条件及守恒互补；Q固定当前双文件任务，非任意任务万能类型。"
+    ],
+    "proof_targets": [
+      "F01",
+      "C01",
+      "C07"
+    ],
+    "families": [
+      "M04",
+      "M16"
+    ],
+    "status": "PENDING_CONCRETE_IMPLEMENTATION_OR_PROOF",
+    "owner": [
+      "LMM"
+    ],
+    "start_gate": "START_NOW_WITH_DECLARED_INPUT_SCOPE",
+    "closure_scope": "Finite synthetic principal two-artifact business only"
+  },
+  {
+    "id": "ROOT02",
+    "title": "固定原输入与跨语言无损编码",
+    "source": "用户最终共识的显式施工分解；不是新增完成宣称",
+    "depends_on": [
+      "ROOT01"
+    ],
+    "actions": [
+      "从宿主既有MatterStore/CAS任务记录取I0；编码解码与主体迁移一一对应；生产者输出不参与选择expected。"
+    ],
+    "acceptance": [
+      "CheckBinding(I0,I)=true ⇒ I=I0；同版本换参数拒绝；合法新参数开新任务而非全部禁止。"
+    ],
+    "proof_targets": [
+      "F02",
+      "C06"
+    ],
+    "families": [
+      "M01",
+      "M16"
+    ],
+    "status": "PENDING_CONCRETE_IMPLEMENTATION_OR_PROOF",
+    "owner": [
+      "LMM",
+      "JC",
+      "Harness"
+    ],
+    "start_gate": "START_NOW_WITH_DECLARED_INPUT_SCOPE",
+    "closure_scope": "Finite synthetic principal two-artifact business only"
+  },
+  {
+    "id": "ROOT03",
+    "title": "实际条件编译、情景覆盖与本金检查反射",
+    "source": "用户最终共识的显式施工分解；不是新增完成宣称",
+    "depends_on": [
+      "ROOT01",
+      "ROOT02"
+    ],
+    "actions": [
+      "证明后序栈compile/execute等价独立guard语义；笛卡尔积/位掩码与Ω双向覆盖；实际check接受推出逐世界C/U唯一。"
+    ],
+    "acceptance": [
+      "不能只证明递归解释器；覆盖命题不从result反推；超时未决保留。"
+    ],
+    "proof_targets": [
+      "F11",
+      "F12",
+      "N01",
+      "C06"
+    ],
+    "families": [
+      "M05",
+      "M09",
+      "M16"
+    ],
+    "status": "PENDING_CONCRETE_IMPLEMENTATION_OR_PROOF",
+    "owner": [
+      "LMM"
+    ],
+    "start_gate": "START_NOW_WITH_DECLARED_INPUT_SCOPE",
+    "closure_scope": "Finite synthetic principal two-artifact business only"
+  },
+  {
+    "id": "ROOT04",
+    "title": "非负本金/超付/事件概率及策略实例",
+    "source": "用户最终共识的显式施工分解；不是新增完成宣称",
+    "depends_on": [
+      "ROOT03"
+    ],
+    "actions": [
+      "用C而非R计算Analytics；权重来自I0同一Ω；证明E[C]−E[U]守恒、阈值事件及合法候选集与selected对应。"
+    ],
+    "acceptance": [
+      "P=100,q=300,p=2/5得到E[R]=-20,E[C]=60,E[U]=80；阈值0分别3/5和1。"
+    ],
+    "proof_targets": [
+      "P02",
+      "N01",
+      "G03",
+      "C03"
+    ],
+    "families": [
+      "M09",
+      "M12",
+      "M15"
+    ],
+    "status": "PENDING_CONCRETE_IMPLEMENTATION_OR_PROOF",
+    "owner": [
+      "LMM"
+    ],
+    "start_gate": "START_NOW_WITH_DECLARED_INPUT_SCOPE",
+    "closure_scope": "Finite synthetic principal two-artifact business only"
+  },
+  {
+    "id": "ROOT05",
+    "title": "实际两文件解析与精化",
+    "source": "用户最终共识的显式施工分解；不是新增完成宣称",
+    "depends_on": [
+      "ROOT02",
+      "ROOT03",
+      "ROOT04"
+    ],
+    "actions": [
+      "闭合UTF-8文本/严格JSON字节→对象→受保护语义；拒绝额外键、重复键、浮点、NaN、伪null、丢条件；两文件同一主体。"
+    ],
+    "acceptance": [
+      "ReadBoth(d1,d2)=Protected_Q(W,m)；旁路JSON正确不代正文；文件改名/替换/读后变动按快照绑定。"
+    ],
+    "proof_targets": [
+      "C02",
+      "C06",
+      "C07"
+    ],
+    "families": [
+      "M13",
+      "M16"
+    ],
+    "status": "PENDING_CONCRETE_IMPLEMENTATION_OR_PROOF",
+    "owner": [
+      "LMM"
+    ],
+    "start_gate": "START_NOW_WITH_DECLARED_INPUT_SCOPE",
+    "closure_scope": "Finite synthetic principal two-artifact business only"
+  },
+  {
+    "id": "ROOT06",
+    "title": "实例化根定理与具体checker连接",
+    "source": "用户最终共识的显式施工分解；不是新增完成宣称",
+    "depends_on": [
+      "ROOT01",
+      "ROOT02",
+      "ROOT03",
+      "ROOT04",
+      "ROOT05"
+    ],
+    "actions": [
+      "由ROOT01–05的真实算法定理取得一个共同W，不以checks的合取替代JointSem；桥接到ULM04/ULM16既有义务。"
+    ],
+    "acceptance": [
+      "WF(I0)∧CheckBundle=accept ⇒ ∃W,Worlds(W)=Ω(I0)∧JointSem∧TaskSat_Q∧ReadBoth=Protected_Q。"
+    ],
+    "proof_targets": [
+      "C01",
+      "C04",
+      "C06",
+      "C07"
+    ],
+    "families": [
+      "M16"
+    ],
+    "status": "PENDING_CONCRETE_IMPLEMENTATION_OR_PROOF",
+    "owner": [
+      "LMM"
+    ],
+    "start_gate": "START_NOW_WITH_DECLARED_INPUT_SCOPE",
+    "closure_scope": "Finite synthetic principal two-artifact business only"
+  },
+  {
+    "id": "ROOT07",
+    "title": "真实JC/Harness输入与交付接线",
+    "source": "用户最终共识的显式施工分解；不是新增完成宣称",
+    "depends_on": [
+      "ROOT02",
+      "ROOT05",
+      "ROOT06"
+    ],
+    "actions": [
+      "JC唯一公开本地链、宿主保存I0、真实两份字节回读；生产使用唯一ContextKey而非两个可漂移副本。"
+    ],
+    "acceptance": [
+      "真实入口取得同一输入/运行/文件快照；替换整个m和a不能继承旧任务；原宿主已有联调不被称为空白。"
+    ],
+    "proof_targets": [
+      "C06"
+    ],
+    "families": [
+      "M01",
+      "M14",
+      "M16"
+    ],
+    "status": "PENDING_CONCRETE_IMPLEMENTATION_OR_PROOF",
+    "owner": [
+      "LMM",
+      "JC",
+      "Harness"
+    ],
+    "start_gate": "START_NOW_WITH_DECLARED_INPUT_SCOPE",
+    "closure_scope": "Finite synthetic principal two-artifact business only"
+  },
+  {
+    "id": "ROOT08",
+    "title": "同版本CI与有限根接受",
+    "source": "用户最终共识的显式施工分解；不是新增完成宣称",
+    "depends_on": [
+      "ROOT06",
+      "ROOT07"
+    ],
+    "actions": [
+      "固定Lean/mathlib，真实编译24BR草稿与合并模块；校验具体根声明的类型和依赖、运行精化及文件回读证据。"
+    ],
+    "acceptance": [
+      "只关闭有限合成业务根；一般C07、134项法律实例、法律审核和真实胜率保持各自状态。"
+    ],
+    "proof_targets": [
+      "C07"
+    ],
+    "families": [
+      "M16"
+    ],
+    "status": "PENDING_CONCRETE_IMPLEMENTATION_OR_PROOF",
+    "owner": [
+      "LMM",
+      "JC",
+      "Harness"
+    ],
+    "start_gate": "START_NOW_WITH_DECLARED_INPUT_SCOPE",
+    "closure_scope": "Finite synthetic principal two-artifact business only"
+  }
+]

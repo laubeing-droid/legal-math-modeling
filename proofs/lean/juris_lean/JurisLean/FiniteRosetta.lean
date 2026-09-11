@@ -1,33 +1,11 @@
--- FiniteRosetta.lean
--- Real-data cross-jurisdiction obstruction analysis.
---
--- Uses claim_mapping.csv (44 entries) to prove that no total
--- cross-jurisdiction functor exists: 30/44 entries are CN_ONLY
--- (no foreign mapping), exceeding the majority threshold.
---
--- v2.0: Rebuilt with real data from claim_mapping.csv.
---       Toy 5x5 model was INVALID_CLAIM (81/120 satisfied).
---       Real data: 30 CN_ONLY / 4 COLLISION / 3 ASYMMETRY.
-
+-- Frozen-sample classification; not a categorical impossibility theorem.
 import Mathlib.Data.Fintype.Basic
 
 /-!
-# Cross-Jurisdiction Obstruction: Real Data Analysis
-
-## Data Source
-
-`data/category_rosetta/claim_mapping.csv` contains 44 cross-jurisdiction
-legal concept mappings with status:
-- CN_ONLY (30): No US/HK equivalent exists
-- COLLISION (4): Direct cross-jurisdiction conflict
-- ASYMMETRY (3): Asymmetric mapping
-- CN_US_PARTIAL (2), CN_HK_PARTIAL (3): Partial mappings
-- TRI_JURISDICTION_PARTIAL (1), TRI_JURISDICTION_MAPPED (1): Full mappings
-
-## Theorem
-
-In the 44-entry sample, 30 entries (68.2%) have no foreign mapping.
-This exceeds the majority threshold, proving no total functor exists.
+The 44 encoded statuses contain CN_ONLY labels. This is a property of this
+encoding, not proof that a foreign institution or a semantics-preserving map
+does not exist. Source CSV correspondence and legal interpretations are
+separate obligations. No majority threshold is required for the theorem.
 -/
 
 /-- Mapping status from claim_mapping.csv -/
@@ -52,7 +30,7 @@ def mappingStatus (i : Nat) : MappingStatus :=
   else if i < 43 then .TRI_JURISDICTION_PARTIAL -- FP-TRI-001
   else .TRI_JURISDICTION_MAPPED                  -- FP-TRI-002
 
-/-- CN_ONLY count: entries with no foreign mapping -/
+/-- CN_ONLY count: entries labelled CN_ONLY in the encoded sample -/
 def cnOnlyCount : Nat :=
   (List.range 44).filter (fun i => mappingStatus i == .CN_ONLY) |>.length
 
@@ -79,16 +57,15 @@ theorem asymmetry_eq_3 : asymmetryCount = 3 := rfl
 -- Verification: Total obstructions = 37
 theorem obstruction_eq_37 : obstructionCount = 37 := rfl
 
-/-- The majority of entries lack foreign mappings (30 > 44/2 = 22). -/
+/-- The majority of encoded entries carry CN_ONLY (30 > 44/2 = 22). -/
 theorem cnOnly_exceeds_half : cnOnlyCount > 44 / 2 := by decide
 
 /-- The obstruction count exceeds the majority (37 > 44/2 = 22). -/
 theorem obstruction_exceeds_half : obstructionCount > 44 / 2 := by decide
 
-/-- No total functor can exist: more entries lack foreign mappings than have them.
-    A total functor F : CN → (US ∪ HK) must assign a foreign image to every CN claim.
-    But 30/44 entries have DATA_UNAVAILABLE for both US and HK, making this impossible. -/
-theorem no_total_functor :
+/-- At least one entry of the encoded sample has the CN_ONLY label.
+No claim about the existence of general or semantics-preserving functors. -/
+theorem sample_mapping_not_total :
     ¬ (∀ i : Fin 44, mappingStatus i.val ≠ .CN_ONLY) := by
   intro h
   have := h ⟨0, by decide⟩

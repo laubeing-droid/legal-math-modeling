@@ -1,0 +1,270 @@
+{
+  "schema": "ulm/audit-delta/20260911",
+  "baseline_sha": "d89a434e4f3eb8f487492751e3dd91737126e843",
+  "repairs": [
+    {
+      "id": "FIX01",
+      "title": "完整业务观察与字段合同",
+      "amends": [
+        "ROOT01",
+        "ROOT02",
+        "ROOT05",
+        "REV02"
+      ],
+      "proof_targets": [
+        "F01",
+        "F02",
+        "C02"
+      ],
+      "depends_on_repairs": [],
+      "action": "定义FullInput、DocMeta、JsonMeta，复用20字段ContextKey；明确原始输入与文书实际观察的差别。",
+      "acceptance": "每个案件/争点/主体/来源/日期/假设/模型参数都有I0或实际文件的明确去向，不依赖自由ctx字符串。",
+      "status": "DELIVERED_CANDIDATE_NOT_REMOTE_ACCEPTED",
+      "start_rule": "START_NOW_DEPENDENCIES_ARE_CLOSURE_NOT_GLOBAL_START_GATES"
+    },
+    {
+      "id": "FIX02",
+      "title": "宿主完整I0进入同一根",
+      "amends": [
+        "ROOT02",
+        "ROOT06",
+        "ROOT07"
+      ],
+      "proof_targets": [
+        "F02",
+        "C06",
+        "C07"
+      ],
+      "depends_on_repairs": [
+        "FIX01"
+      ],
+      "action": "固定宿主expected；同版本参数替换拒绝；合法新输入走新任务，不设金额或案件总门槛。",
+      "acceptance": "不能由提交者同时改expected；typed full binding在root中实际被使用；生产CAS接线另验。",
+      "status": "DELIVERED_CANDIDATE_NOT_REMOTE_ACCEPTED",
+      "start_rule": "START_NOW_DEPENDENCIES_ARE_CLOSURE_NOT_GLOBAL_START_GATES"
+    },
+    {
+      "id": "FIX03",
+      "title": "七轴Lean候选根与具体数值根组合",
+      "amends": [
+        "ROOT03",
+        "ROOT04",
+        "ROOT05",
+        "ROOT06"
+      ],
+      "proof_targets": [
+        "C01",
+        "C04",
+        "C06",
+        "C07"
+      ],
+      "depends_on_repairs": [
+        "FIX01",
+        "FIX02"
+      ],
+      "action": "保留旧数值根，新增同模块族SevenAxis强根；真实调用root_worlds_match/root_joint_sem/root_task_sat。",
+      "acceptance": "根类型断言、非空洞正常接受、完整字段变体拒绝；旧根只保留数值投影历史作用，不给强声明放行。",
+      "status": "DELIVERED_CANDIDATE_NOT_REMOTE_ACCEPTED",
+      "start_rule": "START_NOW_DEPENDENCIES_ARE_CLOSURE_NOT_GLOBAL_START_GATES"
+    },
+    {
+      "id": "FIX04",
+      "title": "实际双文件全字段与跨语言变体",
+      "amends": [
+        "ROOT05",
+        "BRFIX-02",
+        "BRFIX-05"
+      ],
+      "proof_targets": [
+        "F02",
+        "C02",
+        "C06"
+      ],
+      "depends_on_repairs": [
+        "FIX01"
+      ],
+      "action": "从实际text/JSON回读，独立投影，自动生成类型化fixture并在CI校验再生成无漂移。",
+      "acceptance": "Python每一JSON叶和全部Context字段可变体；Lean泛化metadata拒绝并编译实际fixture；字节TCB与kernel证明分别标明。",
+      "status": "DELIVERED_CANDIDATE_NOT_REMOTE_ACCEPTED",
+      "start_rule": "START_NOW_DEPENDENCIES_ARE_CLOSURE_NOT_GLOBAL_START_GATES"
+    },
+    {
+      "id": "FIX05",
+      "title": "参数化模型的世界与权重完整性",
+      "amends": [
+        "ROOT01",
+        "ROOT03",
+        "ROOT04",
+        "T12",
+        "T22"
+      ],
+      "proof_targets": [
+        "F12",
+        "P01",
+        "P02",
+        "C03"
+      ],
+      "depends_on_repairs": [
+        "FIX01"
+      ],
+      "action": "新增ScenarioTableWF/WeightTableWF；world位置Nodup、支持恰相等、权重非负和为1；未来通用root先实例化这两项。",
+      "acceptance": "重复相同行仍被拒；支持缺失/多余/重复不归零；不把冻结二世界证明冒充通用枚举精化。",
+      "status": "DELIVERED_CANDIDATE_NOT_REMOTE_ACCEPTED",
+      "start_rule": "START_NOW_DEPENDENCIES_ARE_CLOSURE_NOT_GLOBAL_START_GATES"
+    },
+    {
+      "id": "FIX06",
+      "title": "递归模块矩阵与删除反向依赖",
+      "amends": [
+        "ROOT08",
+        "T24",
+        "REV09"
+      ],
+      "proof_targets": [
+        "C06",
+        "C07"
+      ],
+      "depends_on_repairs": [],
+      "action": "rglob保留完整模块名，结合base和head依赖图；删除/改名/同名All不能漏。",
+      "acceptance": "真实临时Git删除测试、嵌套注释、全限定导入、基线不可读显式失败；不因找不到基线输出空成功。",
+      "status": "DELIVERED_CANDIDATE_NOT_REMOTE_ACCEPTED",
+      "start_rule": "START_NOW_DEPENDENCIES_ARE_CLOSURE_NOT_GLOBAL_START_GATES"
+    },
+    {
+      "id": "FIX07",
+      "title": "权威根真实构建与编译环境",
+      "amends": [
+        "ROOT08",
+        "T24"
+      ],
+      "proof_targets": [
+        "C07"
+      ],
+      "depends_on_repairs": [],
+      "action": "默认JurisLean导入新增根与保留聚合；全量目标单job编译，复用依赖缓存但清项目产物；真实RootAudit/SevenAxisAudit。",
+      "acceptance": "默认和all plan覆盖新子目录；编译环境包含具体根和正常/反例声明；根类型断言及公理白名单。",
+      "status": "DELIVERED_CANDIDATE_NOT_REMOTE_ACCEPTED",
+      "start_rule": "START_NOW_DEPENDENCIES_ARE_CLOSURE_NOT_GLOBAL_START_GATES"
+    },
+    {
+      "id": "FIX08",
+      "title": "同次工件与最终发布门",
+      "amends": [
+        "ROOT08",
+        "T24",
+        "REV09"
+      ],
+      "proof_targets": [
+        "F02",
+        "C07"
+      ],
+      "depends_on_repairs": [
+        "FIX03",
+        "FIX04",
+        "FIX06",
+        "FIX07"
+      ],
+      "action": "正式门需要新Python/Lean gate；完整commit/tree/run/attempt/toolchain绑定；旧certificate继续验。",
+      "acceptance": "上游缺失/失败/取消/跳过不得成功；同名异字节工件拒绝覆盖；attempt1不可冒充attempt2重跑。",
+      "status": "DELIVERED_CANDIDATE_NOT_REMOTE_ACCEPTED",
+      "start_rule": "START_NOW_DEPENDENCIES_ARE_CLOSURE_NOT_GLOBAL_START_GATES"
+    },
+    {
+      "id": "FIX09",
+      "title": "应用已裁定Rosetta更名",
+      "amends": [
+        "T00",
+        "REV09"
+      ],
+      "proof_targets": [
+        "F02"
+      ],
+      "depends_on_repairs": [],
+      "action": "保留¬∀i mappingStatus≠CN_ONLY命题；改名sample_mapping_not_total并同步活动引用；不发明范畴论不可能性。",
+      "acceptance": "样本命题与计数不变，旧扩大解释移除；已归档原审查不做全文批量洗稿；重编译待CI。",
+      "status": "DELIVERED_CANDIDATE_NOT_REMOTE_ACCEPTED",
+      "start_rule": "START_NOW_DEPENDENCIES_ARE_CLOSURE_NOT_GLOBAL_START_GATES"
+    },
+    {
+      "id": "FIX10",
+      "title": "修正状态并保留旧证据",
+      "amends": [
+        "ROOT02",
+        "ROOT05",
+        "ROOT06",
+        "ROOT08",
+        "REV09"
+      ],
+      "proof_targets": [
+        "C07"
+      ],
+      "depends_on_repairs": [],
+      "action": "旧参考绿、old clean覆盖不足、当前候选未编译分别入账；不静默覆盖施工者记录。",
+      "acceptance": "原57任务与84种子身份不丢，新的全业务范围状态不提前CLOSED；具体已证数值引理不重开。",
+      "status": "DELIVERED_CANDIDATE_NOT_REMOTE_ACCEPTED",
+      "start_rule": "START_NOW_DEPENDENCIES_ARE_CLOSURE_NOT_GLOBAL_START_GATES"
+    },
+    {
+      "id": "FIX11",
+      "title": "生产第一路继续并行",
+      "amends": [
+        "ROOT07",
+        "T23"
+      ],
+      "proof_targets": [
+        "C06"
+      ],
+      "depends_on_repairs": [
+        "FIX01",
+        "FIX02",
+        "FIX04"
+      ],
+      "action": "在JC唯一入口与Harness现有MatterStore/CAS应用原桥接；保存I0、只求值一次、实际字节verify-only和终局修订检查。",
+      "acceptance": "真实安装/调用轨迹和同一版本集；这里提供接线合同和验收，不冒称已替用户改好两个仓。",
+      "status": "DELIVERED_CANDIDATE_NOT_REMOTE_ACCEPTED",
+      "start_rule": "START_NOW_DEPENDENCIES_ARE_CLOSURE_NOT_GLOBAL_START_GATES"
+    },
+    {
+      "id": "FIX12",
+      "title": "恢复原全量任务推进与三领域实例",
+      "amends": [
+        "T01",
+        "T10",
+        "T11",
+        "T12",
+        "T13",
+        "T14",
+        "T15",
+        "T16",
+        "T17",
+        "T18",
+        "T19",
+        "T20",
+        "T21",
+        "T22",
+        "EXT03",
+        "EXT04",
+        "EXT05",
+        "EXT06",
+        "EXT07",
+        "EXT08",
+        "EXT09"
+      ],
+      "proof_targets": [
+        "F01",
+        "C01",
+        "C02",
+        "C03",
+        "C05",
+        "C06",
+        "C07",
+        "E01"
+      ],
+      "depends_on_repairs": [],
+      "action": "按原57目标及134需求继续实例化；三条民刑行/劳动链共享总契约；法源/经验数据与模型内计算分轴。",
+      "acceptance": "专项定理不是仅文件存在；测试不是法律真源；不存在用有限本金根关闭全领域的快捷状态。",
+      "status": "DELIVERED_CANDIDATE_NOT_REMOTE_ACCEPTED",
+      "start_rule": "START_NOW_DEPENDENCIES_ARE_CLOSURE_NOT_GLOBAL_START_GATES"
+    }
+  ]
+}

@@ -31,3 +31,9 @@ import JurisLean.ULM13DomainCompositionExact
 import JurisLean.ULM14CoverageTrust
 import JurisLean.ULM15IncrementalEmpiricalBanach
 import JurisLean.ULM16TheoryComposition
+
+-- Current authority coverage; imported definitions do not themselves close business tasks.
+import JurisLean.Consolidated.All
+import JurisLean.BusinessRoot.All
+import JurisLean.BusinessRoot.SevenAxis
+import JurisLean.BusinessRoot.SevenAxisCases

@@ -14,12 +14,8 @@ namespace JurisLean.FullMath.Logic
 open JurisLean.FullMath.Logic (Generate Arg Rul ruleApps ruleAppsGo)
 
 /-- Rule applications over an empty previous list are empty. -/
-private theorem ruleAppsGo_nil : ∀ (qs : List (Fin 2)),
-    ruleAppsGo ([] : List (Arg (Fin 2))) qs = [] := by
-  intro qs
-  induction qs with
-  | nil => rfl
-  | cons p ps ih => simp [ruleAppsGo, ih]
+private theorem ruleAppsGo_nil_cons (p : Fin 2) (qs : List (Fin 2)) :
+    ruleAppsGo ([] : List (Arg (Fin 2))) (p :: qs) = [] := rfl
 
 /-- The two-atom cycle rules: `a → b` and `b → a`. -/
 def cyclicRules : List (Rul (Fin 2)) :=
@@ -37,8 +33,10 @@ theorem rootless_cycle_generates_nothing :
         Generate [] cyclicRules d ++
         cyclicRules.flatMap (fun r => (ruleApps r (Generate [] cyclicRules d)).map
           (fun ps => Arg.node r ps)) from rfl, ih]
-    simp only [List.nil_append, ruleApps, ruleAppsGo_nil,
-      List.map_nil, List.flatMap_nil]
+    simp only [List.nil_append, ruleApps]
+    show List.flatMap (fun r => (ruleAppsGo ([] : List (Arg (Fin 2))) r.premises).map
+        (fun ps => Arg.node r ps)) cyclicRules = []
+    simp [cyclicRules, ruleAppsGo]
 
 /-- F08(b): a rooted cycle generates an argument of every depth, with
 alternating conclusions. -/

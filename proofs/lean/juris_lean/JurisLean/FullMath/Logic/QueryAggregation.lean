@@ -20,7 +20,7 @@ variable {A : Type} [DecidableEq A] [Fintype A]
 
 /-- Typed search result: no extensions, an enumerated family, an incomplete
 search, or an empty query. -/
-inductive Result where
+inductive Result (A : Type) where
   /-- The semantics admits no extension at all. -/
   | noExtensions
   /-- A fully enumerated family. -/
@@ -41,7 +41,7 @@ inductive UniversalAnswer where
   | unknown
 
 /-- Aggregation of a universal query over a result. -/
-def evalUniversal (r : Result) : UniversalAnswer :=
+def evalUniversal {A : Type} (r : Result A) : UniversalAnswer :=
   match r with
   | .noExtensions => .vacuousTruth
   | .extensions _ => .allSatisfy

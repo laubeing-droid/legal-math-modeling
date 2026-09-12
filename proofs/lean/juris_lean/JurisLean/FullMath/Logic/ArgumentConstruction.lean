@@ -238,7 +238,7 @@ theorem generate_complete {A : Type} [DecidableEq A] (facts : List A) (rules : L
     cases a with
     | leaf c =>
       simp only [Generate, List.mem_append]
-      exact Or.inl (ih _ hw (Nat.zero_le d))
+      exact Or.inl (ih _ hw (by simp [Arg.height]))
     | node r cs =>
       simp only [WellFormed] at hw
       obtain ⟨halign, hwf⟩ := hw
@@ -256,7 +256,8 @@ theorem generate_complete {A : Type} [DecidableEq A] (facts : List A) (rules : L
       simp only [List.mem_flatMap]
       refine ⟨r, hrules, ?_⟩
       simp only [List.mem_map]
-      exact ⟨cs, ruleApps_complete r (Generate facts rules d) cs halign hprev, rfl⟩
+      refine ⟨cs, ruleApps_complete r (Generate facts rules d) cs halign hprev, ?_⟩
+      rfl
 end Arguments
 
 end JurisLean.FullMath.Logic

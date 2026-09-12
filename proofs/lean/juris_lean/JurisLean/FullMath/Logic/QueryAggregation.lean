@@ -116,8 +116,12 @@ theorem three_ring_no_stable : ∀ E : Finset (Fin 3), ¬ Stable threeRing E := 
       · -- E = ∅: element 0 is outside, but nobody can cover it
         obtain ⟨x, hxE, _⟩ := hcover 0 h0
         have hEempty : E = ∅ :=
-          Finset.eq_empty_of_forall_not_mem
-            (by intro a ha; fin_cases a <;> first | exact h0 ha | exact h1 ha | exact h2 ha)
+          Finset.Subset.antisymm (Finset.empty_subset E) (by
+            intro x hx
+            fin_cases x <;> first
+              | exact absurd hx h0
+              | exact absurd hx h1
+              | exact absurd hx h2)
         rw [hEempty] at hxE
         exact absurd hxE (by simp)
 
@@ -136,6 +140,7 @@ theorem self_attack_grounded_empty : grounded selfAttack = (∅ : Finset (Fin 1)
   have hchar : charF selfAttack (∅ : Finset (Fin 1)) = ∅ := by
     apply Finset.Subset.antisymm _ (Finset.empty_subset _)
     intro a ha
+    fin_cases a
     simp only [charF, Finset.mem_filter] at ha
     obtain ⟨_, haw⟩ := ha
     rw [defendedB_iff] at haw

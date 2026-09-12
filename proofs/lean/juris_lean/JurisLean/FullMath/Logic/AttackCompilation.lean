@@ -16,13 +16,13 @@ section Attack
 variable {A : Type} [DecidableEq A]
 
 /-- Declared clash relation between atoms (e.g. `p` vs `¬p`). -/
-abbrev Contrary := A → A → Bool
+abbrev Contrary (A : Type) := A → A → Bool
 
 /-- What undercuts a rule. -/
-abbrev RuleContra := Rul A → A
+abbrev RuleContra (A : Type) := Rul A → A
 
 /-- Independent defeat specification over direct children. -/
-inductive Defeat (con : Contrary A) (rc : RuleContra A) : Arg A → Arg A → Prop
+inductive Defeat (A : Type) (con : Contrary A) (rc : RuleContra A) : Arg A → Arg A → Prop
   /-- Rebut: the attacker's conclusion clashes with the target's conclusion. -/
   | rebut (a b : Arg A) (h : con (Arg.concl a) (Arg.concl b) = true) :
       Defeat con rc a b

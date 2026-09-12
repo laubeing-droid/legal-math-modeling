@@ -21,27 +21,38 @@ def step (R : Finset (Finset A × A)) (F S : Finset A) : Finset A :=
 /-- T is monotone in the current set. -/
 theorem step_mono (R : Finset (Finset A × A)) (F : Finset A) {S T : Finset A}
     (h : S ⊆ T) : step R F S ⊆ step R F T := by
-  refine Finset.union_subset (Finset.union_subset Finset.Subset.rfl h) ?_
-  refine Finset.image_subset ?_
-  exact Finset.filter_subset_filter (fun r _ hr => h hr)
+  intro a ha
+  simp only [step, Finset.mem_union] at ha ⊢
+  rcases ha with ha | ha | ha
+  · exact Or.inl ha
+  · exact Or.inr (Or.inl (h ha))
+  · exact Or.inr (Or.inr
+      (by
+        simp only [Finset.mem_image] at ha ⊢
+        obtain ⟨r, hr, rfl⟩ := ha
+        simp only [Finset.mem_filter] at hr
+        exact ⟨r, by
+          simp only [Finset.mem_filter, hr.1, and_true]
+          exact h hr.2, rfl⟩))
 
 /-- Iterated closure from the empty set. -/
 def cl (R : Finset (Finset A × A)) (F : Finset A) : ℕ → Finset A :=
   fun n => (step R F)^[n] ∅
 
 theorem cl_zero (R : Finset (Finset A × A)) (F : Finset A) :
-    cl R F 0 = (∅ : Finset A) := rfl
+    cl R F 0 = (∅ : Finset A) := by
+  show (step R F)^[0] (∅ : Finset A) = (∅ : Finset A)
+  rw [Function.iterate_zero_apply]
 
 theorem cl_succ (R : Finset (Finset A × A)) (F : Finset A) (n : ℕ) :
-    cl R F (n+1) = step R F (cl R F n) := rfl
+    cl R F (n+1) = step R F (cl R F n) := by
+  show (step R F)^[n+1] (∅ : Finset A) = step R F ((step R F)^[n] ∅)
+  rw [Function.iterate_succ_apply]
 
 theorem cl_mono_step (R : Finset (Finset A × A)) (F : Finset A) (n : ℕ) :
     cl R F n ⊆ cl R F (n+1) := by
   induction n with
-  | zero =>
-    intro a ha
-    rw [cl_zero] at ha
-    exact absurd ha (Finset.not_mem_empty a)
+  | zero => exact Finset.empty_subset _
   | succ n ih => rw [cl_succ, cl_succ]; exact step_mono R F ih
 
 /-- Iterate monotonicity in the step index. -/
@@ -66,7 +77,7 @@ theorem subset_cl (R : Finset (Finset A × A)) (F : Finset A) {n : ℕ} (hn : 1 
   have h1 : F ⊆ cl R F 1 := by
     intro a ha
     rw [cl_succ, cl_zero, step]
-    exact Finset.mem_union_right _ (Finset.mem_union_right _ ha)
+    exact Finset.mem_union_left _ ha
   exact h1.trans (cl_mono R F n 1 hn)
 
 /-- Strict growth forces the iterate cardinality past the carrier bound. -/
@@ -84,9 +95,11 @@ theorem strict_growth_bound (R : Finset (Finset A × A)) (F : Finset A) (N : ℕ
     have hc1 : (cl R F k).card ≤ (cl R F (k+1)).card := Finset.card_le_card hsub
     have hcardne : (cl R F k).card ≠ (cl R F (k+1)).card := by
       intro heq
-      exact hne (Finset.eq_of_subset_of_card_le hsub (le_of_eq heq))
+      have hcardle : (cl R F k).card ≤ (cl R F (k+1)).card := le_of_eq heq
+      have hEq : cl R F k = cl R F (k+1) := Finset.eq_of_subset_of_card_le hsub hcardle
+      exact hne hEq
     have hcard : (cl R F k).card < (cl R F (k+1)).card := lt_of_le_of_ne hc1 hcardne
-    have hih : k ≤ (cl R F k).card := ih hk
+    have hih : k ≤ (cl R F k).card := ih (by omega)
     omega
 
 /-- F05(a): the iteration stabilizes within `|A|` steps. -/
@@ -97,7 +110,7 @@ theorem cl_stabilizes (R : Finset (Finset A × A)) (F : Finset A) :
   have hbound : (Finset.univ : Finset A).card + 1 ≤
       (Finset.univ : Finset A).card + 1 := Nat.le_refl _
   have hgrow := strict_growth_bound R F (Finset.univ : Finset A).card
-    (fun j hj => hno j hj) ((Finset.univ : Finset A).card + 1) hbound
+    (fun j hj => by rw [cl_succ]; exact (hno j hj).symm) ((Finset.univ : Finset A).card + 1) hbound
   have huniv : (cl R F ((Finset.univ : Finset A).card + 1)).card ≤
       (Finset.univ : Finset A).card :=
     Finset.card_le_card (Finset.subset_univ _)
@@ -112,10 +125,7 @@ theorem cl_least_iterate (R : Finset (Finset A × A)) (F P : Finset A)
     (hP : PreFixed R F P) : ∀ n, cl R F n ⊆ P := by
   intro n
   induction n with
-  | zero =>
-    intro a ha
-    rw [cl_zero] at ha
-    exact absurd ha (Finset.not_mem_empty a)
+  | zero => exact Finset.empty_subset _
   | succ n ih => rw [cl_succ]; exact (step_mono R F ih).trans hP
 
 /-- The least closure: the stabilized iterate. -/
@@ -131,14 +141,13 @@ theorem closure_preFixed (R : Finset (Finset A × A)) (F : Finset A) :
     PreFixed R F (closure R F) := by
   show step R F (closure R F) ⊆ closure R F
   rw [closure_stable]
-  exact Finset.Subset.rfl
 
 theorem closure_subset (R : Finset (Finset A × A)) (F : Finset A) :
     F ⊆ closure R F := by
   intro a ha
   have h1 : a ∈ step R F (closure R F) := by
     rw [step]
-    exact Finset.mem_union_right _ (Finset.mem_union_right _ ha)
+    exact Finset.mem_union_left _ ha
   rwa [closure_stable] at h1
 
 /-- F05(c): leastness — every pre-fixed point contains the closure. -/

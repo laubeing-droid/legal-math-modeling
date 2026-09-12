@@ -45,7 +45,6 @@ theorem child_is_parent_prefixed (R R' : Finset (Finset A × A)) (hR : R ⊆ R')
   refine (step_rules_mono R R' hR F _).trans ?_
   refine (step_facts_mono R' (Finset.subset_union_left _ _)).trans ?_
   rw [closure_stable]
-  exact Finset.Subset.rfl
 
 /-- The parent closure embeds into the child closure. -/
 theorem parent_closure_subset_child (R R' : Finset (Finset A × A)) (hR : R ⊆ R')

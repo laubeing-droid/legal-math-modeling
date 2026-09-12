@@ -33,12 +33,12 @@ def Admission.status : Admission → FactStatus
 
 /-- F03(a): predictions never admit as verified premises. -/
 theorem prediction_not_verified (content : String) :
-    Admission.prediction content |>.status ≠ FactStatus.verified := by
+    (Admission.prediction content).status ≠ FactStatus.verified := by
   simp [Admission.status]
 
 /-- F03(b): hypotheses never admit as verified premises. -/
 theorem hypothesis_not_verified (content : String) :
-    Admission.hypothesis content |>.status ≠ FactStatus.verified := by
+    (Admission.hypothesis content).status ≠ FactStatus.verified := by
   simp [Admission.status]
 
 /-- F03(c): whatever ends up verified must have come through the strict
@@ -56,7 +56,7 @@ theorem verified_requires_source_authority (a : Admission)
 /-- F03(d): institutional inputs are binding-and-use scoped statements, never
 verified facts, whatever the name says. -/
 theorem institution_never_verified (n b u : String) :
-    Admission.institution n b u |>.status = FactStatus.statement := rfl
+    (Admission.institution n b u).status = FactStatus.statement := rfl
 
 /-- Authority is granted only by a token carrying an explicit grant marker;
 plain names never carry it automatically. -/
@@ -65,8 +65,9 @@ def AuthorityGranted (token : String) : Prop := token.endsWith "-granted" = true
 /-- F03(e): a nonempty name alone is not authorization. -/
 theorem nonempty_name_is_not_authority :
     ∃ n : String, n ≠ "" ∧ ¬ AuthorityGranted n := by
-  refine ⟨"court", by simp, ?_⟩
-  intro h
-  exact absurd h (by decide)
+  refine ⟨"court", ?_, ?_⟩
+  · decide
+  · intro h
+    exact absurd h (by decide)
 
 end JurisLean.FullMath.Evidence

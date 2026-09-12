@@ -17,30 +17,30 @@ section Arguments
 variable {A : Type} [DecidableEq A]
 
 /-- A rule with declared premises and head. -/
-structure Rul where
+structure Rul (A : Type) where
   premises : List A
   head : A
 
 /-- Argument syntax: sourced leaves and rule applications. -/
-inductive Arg where
+inductive Arg (A : Type) where
   /-- Sourced fact leaf; the source layer is tracked separately. -/
   | leaf (conc : A)
   /-- Rule application over child arguments. -/
-  | node (r : Rul) (children : List Arg)
+  | node (r : Rul A) (children : List (Arg A))
 
 /-- Conclusion of an argument. -/
-def Arg.concl : Arg → A
+def Arg.concl : Arg A → A
   | .leaf c => c
   | .node r _ => r.head
 
 /-- Structural height. -/
-def Arg.height : Arg → ℕ
+def Arg.height : Arg A → ℕ
   | .leaf _ => 0
   | .node _ cs => (cs.map Arg.height).foldr max 0 + 1
 
 /-- Well-formedness: leaf conclusions are declared facts; node children align
 with the rule premises and are themselves well-formed. -/
-def WellFormed (facts : List A) : Arg → Prop
+def WellFormed (facts : List A) : Arg A → Prop
   | .leaf c => c ∈ facts
   | .node r cs => cs.map Arg.concl = r.premises ∧ ∀ p ∈ cs, WellFormed facts p
 
@@ -74,11 +74,11 @@ def ruleAppsGo (prev : List Arg) : List A → List (List Arg)
       (fun x => (ruleAppsGo prev ps).map (fun xs => x :: xs))
 
 /-- All combinations of children satisfying the premises of `r`. -/
-def ruleApps (r : Rul) (prev : List Arg) : List (List Arg) :=
+def ruleApps (r : Rul A) (prev : List (Arg A)) : List (List (Arg A)) :=
   ruleAppsGo prev r.premises
 
 /-- Generated combinations align with the premises. -/
-theorem ruleApps_align (r : Rul) (prev : List Arg) :
+theorem ruleApps_align (r : Rul A) (prev : List (Arg A)) :
     ∀ ps ∈ ruleApps r prev, ps.map Arg.concl = r.premises := by
   have hgo : ∀ (qs : List A) (xs : List Arg), xs ∈ ruleAppsGo prev qs →
       xs.map Arg.concl = qs := by
@@ -106,7 +106,7 @@ theorem ruleApps_align (r : Rul) (prev : List Arg) :
   exact hgo r.premises xs hx
 
 /-- Elements of generated combinations come from `prev`. -/
-theorem ruleApps_prev (r : Rul) (prev : List Arg) :
+theorem ruleApps_prev (r : Rul A) (prev : List (Arg A)) :
     ∀ ps ∈ ruleApps r prev, ∀ x ∈ ps, x ∈ prev := by
   have hgo : ∀ (qs : List A) (xs : List Arg), xs ∈ ruleAppsGo prev qs →
       ∀ x ∈ xs, x ∈ prev := by
@@ -134,7 +134,7 @@ theorem ruleApps_prev (r : Rul) (prev : List Arg) :
   exact hgo r.premises xs hx x hxmem
 
 /-- Helper for completeness: aligned selections from `prev` are generated. -/
-theorem ruleApps_complete (r : Rul) (prev : List Arg) (ps : List Arg)
+theorem ruleApps_complete (r : Rul A) (prev : List (Arg A)) (ps : List (Arg A))
     (halign : ps.map Arg.concl = r.premises)
     (hprev : ∀ x ∈ ps, x ∈ prev) : ps ∈ ruleApps r prev := by
   have hgo : ∀ (qs : List A) (xs : List Arg), xs.map Arg.concl = qs →
@@ -151,7 +151,7 @@ theorem ruleApps_complete (r : Rul) (prev : List Arg) (ps : List Arg)
       simp [ruleAppsGo]
     | cons p ps' ih =>
       intro xs hmap hmem
-      obtain ⟨x, xs', hxs⟩ : ∃ x xs', xs = x :: xs' := by
+      obtain ⟨x, xs', hxs⟩ : ∃ (x : Arg A) (xs' : List (Arg A)), xs = x :: xs' := by
         cases xs with
         | nil =>
           have : (0 : ℕ) = 1 := by
@@ -176,7 +176,7 @@ theorem ruleApps_complete (r : Rul) (prev : List Arg) (ps : List Arg)
   exact hgo r.premises ps halign hprev
 
 /-- Bounded enumeration. -/
-def Generate (facts : List A) (rules : List Rul) : ℕ → List Arg
+def Generate (facts : List A) (rules : List (Rul A)) : ℕ → List (Arg A)
   | 0 => facts.map Arg.leaf
   | d + 1 =>
     Generate facts rules d ++
@@ -184,7 +184,7 @@ def Generate (facts : List A) (rules : List Rul) : ℕ → List Arg
 
 /-- F06: generation is sound — every generated argument is well-formed with
 height at most the budget. -/
-theorem generate_sound (facts : List A) (rules : List Rul) :
+theorem generate_sound (facts : List A) (rules : List (Rul A)) :
     ∀ d a, a ∈ Generate facts rules d → WellFormed facts a ∧ Arg.height a ≤ d := by
   intro d
   induction d with
@@ -221,7 +221,7 @@ theorem generate_sound (facts : List A) (rules : List Rul) :
       omega
 
 /-- F07: generation is complete within the bound. -/
-theorem generate_complete (facts : List A) (rules : List Rul) :
+theorem generate_complete (facts : List A) (rules : List (Rul A)) :
     ∀ d a, WellFormed facts a → Arg.height a ≤ d → a ∈ Generate facts rules d := by
   intro d
   induction d with

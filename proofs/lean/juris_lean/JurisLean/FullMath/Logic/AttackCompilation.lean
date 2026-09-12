@@ -74,7 +74,6 @@ theorem edgeFuel_iff (con : Contrary A) (rc : RuleContra A) (a : Arg A) :
     intro b hb
     cases b with
     | leaf c =>
-      intro _
       simp only [edgeFuel]
       exact ⟨fun h => Defeat.rebut a (.leaf c) h,
         fun h => by cases h with | rebut _ _ hclash => exact hclash⟩
@@ -87,12 +86,10 @@ theorem edgeFuel_iff (con : Contrary A) (rc : RuleContra A) (a : Arg A) :
     intro b hb
     cases b with
     | leaf c =>
-      intro _
       simp only [edgeFuel]
       exact ⟨fun h => Defeat.rebut a (.leaf c) h,
         fun h => by cases h with | rebut _ _ hclash => exact hclash⟩
     | node r ps =>
-      intro _
       simp only [edgeFuel, Bool.or_eq_true, List.any_eq_true]
       constructor
       · rintro (h1 | ⟨p, hp, h2⟩ | h3 | ⟨p, hp, h4⟩)
@@ -129,7 +126,7 @@ def adjudicate (policy : Arg A → Arg A → Option Bool) (a b : Arg A) :
 /-- Pending edges under an unknown policy. -/
 def pendingEdges (edges : List (Arg A × Arg A)) (policy : Arg A → Arg A → Option Bool) :
     List (Arg A × Arg A) :=
-  edges.filter (fun e => adjudicate policy e.1 e.2 = .undecided)
+  edges.filter (fun e => decide (adjudicate policy e.1 e.2 = .undecided))
 
 /-- F09(b): every pending edge is a real edge — nothing is silently removed. -/
 theorem pending_edges_are_edges (edges : List (Arg A × Arg A))

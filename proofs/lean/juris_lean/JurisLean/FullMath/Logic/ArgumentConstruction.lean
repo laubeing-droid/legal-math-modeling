@@ -243,7 +243,7 @@ theorem generate_complete {A : Type} [DecidableEq A] (facts : List A) (rules : L
       simp only [WellFormed] at hw
       obtain ⟨halign, hwf⟩ := hw
       have hheight : Arg.height (Arg.node r cs) = (cs.map Arg.height).foldr max 0 + 1 := by
-      simp only [Arg.height]
+        simp only [Arg.height]
       have hchild : ∀ p ∈ cs, Arg.height p ≤ d := by
         intro p hp
         have hle : Arg.height p ≤ (cs.map Arg.height).foldr max 0 :=

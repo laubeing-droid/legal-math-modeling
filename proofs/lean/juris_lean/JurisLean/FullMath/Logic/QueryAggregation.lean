@@ -51,7 +51,7 @@ def evalUniversal {A : Type} (r : Result A) : UniversalAnswer :=
 /-- F13(a): the two degenerate cases are typed apart — vacuity is never
 silently merged with an empty enumerated family. -/
 theorem no_extensions_ne_empty_family :
-    evalUniversal (A := A) .noExtensions ≠ evalUniversal (.extensions []) := by
+    evalUniversal (A := A) .noExtensions ≠ evalUniversal (A := A) (.extensions []) := by
   intro h
   exact UniversalAnswer.noConfusion h
 

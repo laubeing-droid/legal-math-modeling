@@ -116,12 +116,12 @@ theorem three_ring_no_stable : ∀ E : Finset (Fin 3), ¬ Stable threeRing E := 
       · -- E = ∅: element 0 is outside, but nobody can cover it
         obtain ⟨x, hxE, _⟩ := hcover 0 h0
         have hEempty : E = ∅ :=
-          Finset.Subset.antisymm (Finset.empty_subset E) (by
+          Finset.Subset.antisymm (by
             intro x hx
             fin_cases x <;> first
-              | exact absurd hx h0
-              | exact absurd hx h1
-              | exact absurd hx h2)
+              | exact h0 hx
+              | exact h1 hx
+              | exact h2 hx) (Finset.empty_subset E)
         rw [hEempty] at hxE
         exact absurd hxE (by simp)
 

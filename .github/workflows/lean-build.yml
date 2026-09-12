@@ -1,187 +1,247 @@
 name: Lean Authority + Formal Release Pipeline
-
-# Single authority: legacy obligations plus the repaired seven-axis root.
-# Reference workflows may remain for fast feedback; they do not release this claim.
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
-
-on:
-  pull_request:
-  push:
-    branches: [main, master, 'ci/**']
-  workflow_dispatch:
-    inputs:
-      mode:
-        description: changed-module or full-release
-        type: choice
-        required: true
-        default: full-release
-        options: [changed-module, full-release]
-      module:
-        description: Optional fully-qualified or JurisLean-relative module
-        type: string
-        default: ''
-
 permissions:
   contents: read
-
 defaults:
   run:
     shell: bash
-
 env:
   LEAN_DIR: proofs/lean/juris_lean
   PYTHONDONTWRITEBYTECODE: '1'
   PYTHONUTF8: '1'
-
 jobs:
   changed-modules:
     if: ${{ github.event_name == 'workflow_dispatch' && inputs.mode == 'changed-module' }}
     runs-on: ubuntu-latest
     timeout-minutes: 240
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
-        with:
-          fetch-depth: 0
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
-        with:
-          python-version: '3.12'
-      - name: Check toolchain pins
-        run: python tools/ulm_repair/scripts/ci_driver.py pins
-      - name: Install fixed Lean toolchain
-        run: |
-          set -euo pipefail
-          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain leanprover/lean4:v4.30.0
-          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-      - name: Compiled dependency cache with seeds fallback
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
-        with:
-          path: proofs/lean/juris_lean/.lake
-          key: ${{ runner.os }}-lake-full-v4.30.0-${{ hashFiles('proofs/lean/juris_lean/lean-toolchain', 'proofs/lean/juris_lean/lake-manifest.json') }}
-          restore-keys: |
-            ${{ runner.os }}-lake-full-v4.30.0-
-            lean-seeds-${{ runner.os }}-v4.30.0-
-      - name: Compute recursive target plan
-        env:
-          REQUESTED_MODULE: ${{ inputs.module }}
-        run: |
-          set -euo pipefail
-          if [ -n "$REQUESTED_MODULE" ]; then
-            python scripts/ci/changed_lean_modules.py --module "$REQUESTED_MODULE" --output module-plan.json
-          else
-            python scripts/ci/changed_lean_modules.py --base HEAD~1 --head HEAD --output module-plan.json
-          fi
-      - name: Build requested modules only
-        run: |
-          set -euo pipefail
-          (cd "$LEAN_DIR" && lake exe cache get!) 2>&1 | tee mathlib-cloud-cache.log
-          python tools/ulm_repair/scripts/ci_driver.py build --plan module-plan.json 2>&1 | tee changed-module.log
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        if: always()
-        with:
-          name: changed-module-only-${{ github.run_id }}-${{ github.run_attempt }}
-          path: |
-            module-plan.json
-            changed-module.log
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      with:
+        fetch-depth: 0
+    - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+      with:
+        python-version: '3.12'
+    - name: Check toolchain pins
+      run: python tools/ulm_repair/scripts/ci_driver.py pins
+    - name: Install fixed Lean toolchain
+      run: 'set -euo pipefail
 
+        curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain
+        leanprover/lean4:v4.30.0
+
+        echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+        '
+    - name: Compiled dependency cache with seeds fallback
+      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+      with:
+        path: proofs/lean/juris_lean/.lake
+        key: ${{ runner.os }}-lake-full-v4.30.0-${{ hashFiles('proofs/lean/juris_lean/lean-toolchain', 'proofs/lean/juris_lean/lake-manifest.json')
+          }}
+        restore-keys: '${{ runner.os }}-lake-full-v4.30.0-
+
+          lean-seeds-${{ runner.os }}-v4.30.0-
+
+          '
+    - name: Compute recursive target plan
+      env:
+        REQUESTED_MODULE: ${{ inputs.module }}
+      run: "set -euo pipefail\nif [ -n \"$REQUESTED_MODULE\" ]; then\n  python scripts/ci/changed_lean_modules.py --module\
+        \ \"$REQUESTED_MODULE\" --output module-plan.json\nelse\n  python scripts/ci/changed_lean_modules.py --base HEAD~1\
+        \ --head HEAD --output module-plan.json\nfi\n"
+    - name: Build requested modules only
+      run: 'set -euo pipefail
+
+        (cd "$LEAN_DIR" && lake exe cache get!) 2>&1 | tee mathlib-cloud-cache.log
+
+        python tools/ulm_repair/scripts/ci_driver.py build --plan module-plan.json 2>&1 | tee changed-module.log
+
+        '
+    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      if: always()
+      with:
+        name: changed-module-only-${{ github.run_id }}-${{ github.run_attempt }}
+        path: 'module-plan.json
+
+          changed-module.log
+
+          '
   python-gates:
     if: ${{ github.event_name != 'workflow_dispatch' || inputs.mode == 'full-release' }}
     runs-on: ubuntu-latest
     timeout-minutes: 60
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
-        with:
-          python-version: '3.12'
-      - name: Install current project test dependencies
-        run: python -m pip install pytest pyyaml
-      - name: Existing gates plus full retained and new root tests
-        run: |
-          set -euo pipefail
-          python -m pytest tests/ --collect-only -q > pytest-collection.txt
-          python -m pytest tests/ -q -ra 2>&1 | tee pytest-full.log
-          python scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean 2>&1 | tee lean-guard-report.json
-          python scripts/run_mutation_property_gate.py --repo-root . --output mutation-property-report.json
-          python tools/ulm_consolidation/scripts/run_all.py --output work/seven-python/retained
-          python tools/ulm_consolidation/scripts/run_root.py --output work/seven-python/root
-          python tools/ulm_repair/scripts/run_checks.py --output work/seven-python/repair
-          python tools/ulm_repair/scripts/generate_lean_cases.py --output proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean --observations work/seven-python/observations.json
-          git diff --exit-code -- proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean
-          python tools/ulm_repair/scripts/ci_driver.py receipt --directory work/seven-python --kind seven-axis-python
-      - name: Upload original gate inputs
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: python-gates-run${{ github.run_id }}-attempt${{ github.run_attempt }}
-          path: |
-            pytest-collection.txt
-            pytest-full.log
-            lean-guard-report.json
-            mutation-property-report.json
-      - name: Upload same-run extended evidence
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: seven-axis-python-${{ github.run_id }}-${{ github.run_attempt }}
-          path: work/seven-python
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+    - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+      with:
+        python-version: '3.12'
+    - name: Install current project test dependencies
+      run: python -m pip install pytest pyyaml
+    - name: Existing gates plus full retained and new root tests
+      run: 'set -euo pipefail
 
+        python -m pytest tests/ --collect-only -q > pytest-collection.txt
+
+        python -m pytest tests/ -q -ra 2>&1 | tee pytest-full.log
+
+        python scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean 2>&1 | tee lean-guard-report.json
+
+        python scripts/run_mutation_property_gate.py --repo-root . --output mutation-property-report.json
+
+        python tools/ulm_consolidation/scripts/run_all.py --output work/seven-python/retained
+
+        python tools/ulm_consolidation/scripts/run_root.py --output work/seven-python/root
+
+        python tools/ulm_repair/scripts/run_checks.py --output work/seven-python/repair
+
+        python tools/ulm_repair/scripts/generate_lean_cases.py --output proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean
+        --observations work/seven-python/observations.json
+
+        git diff --exit-code -- proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean
+
+        python tools/ulm_repair/scripts/ci_driver.py receipt --directory work/seven-python --kind seven-axis-python
+
+        '
+    - name: Upload original gate inputs
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: python-gates-run${{ github.run_id }}-attempt${{ github.run_attempt }}
+        path: 'pytest-collection.txt
+
+          pytest-full.log
+
+          lean-guard-report.json
+
+          mutation-property-report.json
+
+          '
+    - name: Upload same-run extended evidence
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: seven-axis-python-${{ github.run_id }}-${{ github.run_attempt }}
+        path: work/seven-python
+    - name: All mathematics implementation tests
+      run: 'set -euo pipefail
+
+        python tools/full_math/scripts/run_all_registered_tests.py --output work/full-math-python/tests.json
+
+        '
+    - name: Upload full mathematics Python evidence
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: full-math-python-${{ github.run_id }}-${{ github.run_attempt }}
+        path: work/full-math-python
   lean-full-clean-build:
     if: ${{ github.event_name != 'workflow_dispatch' || inputs.mode == 'full-release' }}
     runs-on: ubuntu-latest
     timeout-minutes: 360
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
-        with:
-          python-version: '3.12'
-      - name: Fixed toolchain, no lake update
-        run: |
-          set -euo pipefail
-          python tools/ulm_repair/scripts/ci_driver.py pins
-          curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain leanprover/lean4:v4.30.0
-          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
-      - name: Restore compiled dependency cache with seeds fallback
-        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
-        with:
-          path: proofs/lean/juris_lean/.lake
-          key: ${{ runner.os }}-lake-full-v4.30.0-${{ hashFiles('proofs/lean/juris_lean/lean-toolchain', 'proofs/lean/juris_lean/lake-manifest.json') }}
-          restore-keys: |
-            ${{ runner.os }}-lake-full-v4.30.0-
-            lean-seeds-${{ runner.os }}-v4.30.0-
-      - name: Build all project Lean modules from a clean project build
-        run: |
-          set -euo pipefail
-          mkdir -p work/seven-lean
-          python scripts/ci/changed_lean_modules.py --all --output work/seven-lean/all-module-plan.json
-          (cd "$LEAN_DIR" && rm -rf .lake/build)
-          (cd "$LEAN_DIR" && lake exe cache get!) 2>&1 | tee mathlib-cloud-cache.log
-          cp mathlib-cloud-cache.log work/seven-lean/mathlib-cloud-cache.log
-          python tools/ulm_repair/scripts/ci_driver.py build --plan work/seven-lean/all-module-plan.json 2>&1 | tee lake-clean-build.log
-          cp lake-clean-build.log work/seven-lean/build.log
-          (cd "$LEAN_DIR" && lake env lean JurisLean/AxiomAudit.lean) > axiom-audit.raw.txt 2>&1
-          (cd "$LEAN_DIR" && lake env lean JurisLean/BusinessRoot/RootAudit.lean) > work/seven-lean/legacy-root-environment.log 2>&1
-          (cd "$LEAN_DIR" && lake env lean JurisLean/BusinessRoot/SevenAxisAudit.lean) > work/seven-lean/seven-axis-environment.log 2>&1
-          python tools/ulm_repair/scripts/ci_driver.py audit --log work/seven-lean/seven-axis-environment.log --output work/seven-lean/seven-axis-audit.json
-          python tools/ulm_repair/scripts/ci_driver.py receipt --directory work/seven-lean --kind seven-axis-lean
-      - name: Upload original release-compatible logs
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: lean-full-build-run${{ github.run_id }}-attempt${{ github.run_attempt }}
-          path: |
-            lake-clean-build.log
-            axiom-audit.raw.txt
-      - name: Upload full-root evidence
-        if: always()
-        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        with:
-          name: seven-axis-lean-${{ github.run_id }}-${{ github.run_attempt }}
-          path: work/seven-lean
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+    - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+      with:
+        python-version: '3.12'
+    - name: Fixed toolchain, no lake update
+      run: 'set -euo pipefail
 
+        python tools/ulm_repair/scripts/ci_driver.py pins
+
+        curl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain
+        leanprover/lean4:v4.30.0
+
+        echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+        '
+    - name: Restore compiled dependency cache with seeds fallback
+      uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+      with:
+        path: proofs/lean/juris_lean/.lake
+        key: ${{ runner.os }}-lake-full-v4.30.0-${{ hashFiles('proofs/lean/juris_lean/lean-toolchain', 'proofs/lean/juris_lean/lake-manifest.json')
+          }}
+        restore-keys: '${{ runner.os }}-lake-full-v4.30.0-
+
+          lean-seeds-${{ runner.os }}-v4.30.0-
+
+          '
+    - name: Generate and verify all mathematics type assertions
+      run: 'set -euo pipefail
+
+        python tools/full_math/scripts/generate_audit.py --output proofs/lean/juris_lean/JurisLean/FullMath/CompletionAudit.lean
+
+        git ls-files --error-unmatch proofs/lean/juris_lean/JurisLean/FullMath/CompletionAudit.lean
+
+        git diff --exit-code -- proofs/lean/juris_lean/JurisLean/FullMath/CompletionAudit.lean
+
+        '
+    - name: Build all project Lean modules from a clean project build
+      run: 'set -euo pipefail
+
+        mkdir -p work/seven-lean
+
+        python scripts/ci/changed_lean_modules.py --all --output work/seven-lean/all-module-plan.json
+
+        (cd "$LEAN_DIR" && rm -rf .lake/build)
+
+        (cd "$LEAN_DIR" && lake exe cache get!) 2>&1 | tee mathlib-cloud-cache.log
+
+        cp mathlib-cloud-cache.log work/seven-lean/mathlib-cloud-cache.log
+
+        python tools/ulm_repair/scripts/ci_driver.py build --plan work/seven-lean/all-module-plan.json 2>&1 | tee lake-clean-build.log
+
+        cp lake-clean-build.log work/seven-lean/build.log
+
+        (cd "$LEAN_DIR" && lake env lean JurisLean/AxiomAudit.lean) > axiom-audit.raw.txt 2>&1
+
+        (cd "$LEAN_DIR" && lake env lean JurisLean/BusinessRoot/RootAudit.lean) > work/seven-lean/legacy-root-environment.log
+        2>&1
+
+        (cd "$LEAN_DIR" && lake env lean JurisLean/BusinessRoot/SevenAxisAudit.lean) > work/seven-lean/seven-axis-environment.log
+        2>&1
+
+        python tools/ulm_repair/scripts/ci_driver.py audit --log work/seven-lean/seven-axis-environment.log --output work/seven-lean/seven-axis-audit.json
+
+        python tools/ulm_repair/scripts/ci_driver.py receipt --directory work/seven-lean --kind seven-axis-lean
+
+        '
+    - name: Upload original release-compatible logs
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: lean-full-build-run${{ github.run_id }}-attempt${{ github.run_attempt }}
+        path: 'lake-clean-build.log
+
+          axiom-audit.raw.txt
+
+          '
+    - name: Upload full-root evidence
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: seven-axis-lean-${{ github.run_id }}-${{ github.run_attempt }}
+        path: work/seven-lean
+    - name: Audit whole mathematical plan
+      run: 'set -euo pipefail
+
+        mkdir -p work/full-math-lean
+
+        (cd proofs/lean/juris_lean && lake env lean JurisLean/FullMath/CompletionAudit.lean) > work/full-math-lean/environment.log
+        2>&1
+
+        python tools/full_math/scripts/run.py collect-lean --log work/full-math-lean/environment.log --output work/full-math-lean/compiled.json
+
+        '
+    - name: Upload full mathematics Lean evidence
+      if: always()
+      uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      with:
+        name: full-math-lean-${{ github.run_id }}-${{ github.run_attempt }}
+        path: work/full-math-lean
   runtime-refinement:
     if: ${{ github.event_name != 'workflow_dispatch' || inputs.mode == 'full-release' }}
-    # Existing legacy runtime evidence; NOT evidence for new production BR wiring.
     uses: laubeing-droid/juris-calculus/.github/workflows/runtime-refinement.yml@c79e03b8d0cfed85c43cc013bf8a0b50326bc858
     with:
       lmm_repository: ${{ github.repository }}
@@ -189,116 +249,191 @@ jobs:
       runtime_ref: c79e03b8d0cfed85c43cc013bf8a0b50326bc858
     permissions:
       contents: read
-
   seven-axis-acceptance:
-    needs: [python-gates, lean-full-clean-build]
+    needs:
+    - python-gates
+    - lean-full-clean-build
     if: ${{ always() && (github.event_name != 'workflow_dispatch' || inputs.mode == 'full-release') }}
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
-        with:
-          python-version: '3.12'
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
-        with:
-          name: seven-axis-python-${{ github.run_id }}-${{ github.run_attempt }}
-          path: evidence/python
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
-        with:
-          name: seven-axis-lean-${{ github.run_id }}-${{ github.run_attempt }}
-          path: evidence/lean
-      - name: Actual same-run acceptance
-        env:
-          NEEDS_JSON: ${{ toJSON(needs) }}
-        run: |
-          set -euo pipefail
-          printf '%s' "$NEEDS_JSON" > needs.json
-          python tools/ulm_repair/scripts/ci_driver.py gate --python-dir evidence/python --lean-dir evidence/lean --needs needs.json --output seven-axis-gate.json
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        if: always()
-        with:
-          name: seven-axis-gate-${{ github.run_id }}-${{ github.run_attempt }}
-          path: seven-axis-gate.json
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+    - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+      with:
+        python-version: '3.12'
+    - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+      with:
+        name: seven-axis-python-${{ github.run_id }}-${{ github.run_attempt }}
+        path: evidence/python
+    - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+      with:
+        name: seven-axis-lean-${{ github.run_id }}-${{ github.run_attempt }}
+        path: evidence/lean
+    - name: Actual same-run acceptance
+      env:
+        NEEDS_JSON: ${{ toJSON(needs) }}
+      run: 'set -euo pipefail
 
+        printf ''%s'' "$NEEDS_JSON" > needs.json
+
+        python tools/ulm_repair/scripts/ci_driver.py gate --python-dir evidence/python --lean-dir evidence/lean --needs needs.json
+        --output seven-axis-gate.json
+
+        '
+    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      if: always()
+      with:
+        name: seven-axis-gate-${{ github.run_id }}-${{ github.run_attempt }}
+        path: seven-axis-gate.json
   release-certificate:
-    needs: [lean-full-clean-build, python-gates, runtime-refinement, seven-axis-acceptance]
+    needs:
+    - lean-full-clean-build
+    - python-gates
+    - runtime-refinement
+    - seven-axis-acceptance
+    - mathematics-completion
     if: ${{ success() && (github.event_name != 'workflow_dispatch' || inputs.mode == 'full-release') }}
     runs-on: ubuntu-latest
     timeout-minutes: 30
     steps:
-      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
-      - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
-        with:
-          python-version: '3.12'
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
-        with:
-          name: lean-full-build-run${{ github.run_id }}-attempt${{ github.run_attempt }}
-          path: legacy-evidence/lean
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
-        with:
-          name: python-gates-run${{ github.run_id }}-attempt${{ github.run_attempt }}
-          path: legacy-evidence/python
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
-        with:
-          name: runtime-refinement-run${{ github.run_id }}-attempt${{ github.run_attempt }}
-          path: legacy-evidence/runtime
-      - name: Preserve existing certificate pipeline, no overwrite flatten
-        run: |
-          set -euo pipefail
-          python tools/ulm_repair/scripts/ci_driver.py flatten --source legacy-evidence --target ci-evidence-flat
-          python scripts/ci/build_run_identity.py --repo-root . --artifact-dir ci-evidence-flat --output ci-run-identity.json
-          cp ci-run-identity.json ci-evidence-flat/ci-run-identity.json
-          python scripts/generate_formal_release_certificate.py --repo-root . --ci-evidence-dir ci-evidence-flat --output formal-release-certificate.json
-          python scripts/verify_formal_release_certificate.py --certificate formal-release-certificate.json --repo-root . --ci-evidence-dir ci-evidence-flat --output independent-verifier-report.json
-      - name: Preserve existing bounded-claim scan
-        run: |
-          set -euo pipefail
-          python tools/ulm_repair/scripts/check_claims.py --output claim-audit-report.json
-      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
-        if: always()
-        with:
-          name: release-certificate-run${{ github.run_id }}-attempt${{ github.run_attempt }}
-          path: |
-            ci-run-identity.json
-            formal-release-certificate.json
-            independent-verifier-report.json
-            claim-audit-report.json
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+    - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+      with:
+        python-version: '3.12'
+    - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+      with:
+        name: lean-full-build-run${{ github.run_id }}-attempt${{ github.run_attempt }}
+        path: legacy-evidence/lean
+    - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+      with:
+        name: python-gates-run${{ github.run_id }}-attempt${{ github.run_attempt }}
+        path: legacy-evidence/python
+    - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+      with:
+        name: runtime-refinement-run${{ github.run_id }}-attempt${{ github.run_attempt }}
+        path: legacy-evidence/runtime
+    - name: Preserve existing certificate pipeline, no overwrite flatten
+      run: 'set -euo pipefail
 
+        python tools/ulm_repair/scripts/ci_driver.py flatten --source legacy-evidence --target ci-evidence-flat
+
+        python scripts/ci/build_run_identity.py --repo-root . --artifact-dir ci-evidence-flat --output ci-run-identity.json
+
+        cp ci-run-identity.json ci-evidence-flat/ci-run-identity.json
+
+        python scripts/generate_formal_release_certificate.py --repo-root . --ci-evidence-dir ci-evidence-flat --output formal-release-certificate.json
+
+        python scripts/verify_formal_release_certificate.py --certificate formal-release-certificate.json --repo-root . --ci-evidence-dir
+        ci-evidence-flat --output independent-verifier-report.json
+
+        '
+    - name: Preserve existing bounded-claim scan
+      run: 'set -euo pipefail
+
+        python tools/ulm_repair/scripts/check_claims.py --output claim-audit-report.json
+
+        '
+    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      if: always()
+      with:
+        name: release-certificate-run${{ github.run_id }}-attempt${{ github.run_attempt }}
+        path: 'ci-run-identity.json
+
+          formal-release-certificate.json
+
+          independent-verifier-report.json
+
+          claim-audit-report.json
+
+          '
   final-gate:
-    needs: [lean-full-clean-build, python-gates, runtime-refinement, seven-axis-acceptance, release-certificate]
+    needs:
+    - lean-full-clean-build
+    - python-gates
+    - runtime-refinement
+    - seven-axis-acceptance
+    - release-certificate
+    - mathematics-completion
     if: ${{ always() && (github.event_name != 'workflow_dispatch' || inputs.mode == 'full-release') }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
-        with:
-          name: release-certificate-run${{ github.run_id }}-attempt${{ github.run_attempt }}
-          path: certificate
-      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
-        with:
-          name: seven-axis-gate-${{ github.run_id }}-${{ github.run_attempt }}
-          path: extended
-      - name: Verify both the retained and new scope receipts
-        env:
-          NEEDS_JSON: ${{ toJSON(needs) }}
-        run: |
-          set -euo pipefail
-          python - <<'PY'
-          import json,os
-          from pathlib import Path
-          needs=json.loads(os.environ['NEEDS_JSON'])
-          required={'lean-full-clean-build','python-gates','runtime-refinement','seven-axis-acceptance','release-certificate'}
-          if set(needs)!=required or any(needs[n]['result']!='success' for n in required):
-              raise SystemExit('Missing, skipped, failed or cancelled authority job')
-          c=json.loads(Path('certificate/formal-release-certificate.json').read_text())
-          v=json.loads(Path('certificate/independent-verifier-report.json').read_text())
-          g=json.loads(Path('extended/seven-axis-gate.json').read_text())
-          if c.get('status')!='RELEASE_PASS_PENDING_INDEPENDENT_VERIFICATION' or v.get('verdict')!='VERIFIED_PENDING_RELEASE_GATE' or v.get('error_codes'):
-              raise SystemExit('Retained release evidence failed')
-          if c.get('subject',{}).get('sha')!=os.environ['GITHUB_SHA']:
-              raise SystemExit('Retained subject mismatch')
-          if g.get('status')!='PASS' or any(g.get('subject',{}).get(k)!=os.environ[e] for k,e in [('commit','GITHUB_SHA'),('run_id','GITHUB_RUN_ID'),('run_attempt','GITHUB_RUN_ATTEMPT')]):
-              raise SystemExit('Seven-axis subject mismatch')
-          print('PASS: retained obligations + fixed typed seven-axis root. Not production, legal, or empirical acceptance.')
-          PY
+    - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+      with:
+        name: release-certificate-run${{ github.run_id }}-attempt${{ github.run_attempt }}
+        path: certificate
+    - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+      with:
+        name: seven-axis-gate-${{ github.run_id }}-${{ github.run_attempt }}
+        path: extended
+    - name: Verify both the retained and new scope receipts
+      env:
+        NEEDS_JSON: ${{ toJSON(needs) }}
+      run: "set -euo pipefail\npython - <<'PY'\nimport json,os\nfrom pathlib import Path\nneeds=json.loads(os.environ['NEEDS_JSON'])\n\
+        required={'lean-full-clean-build','python-gates','runtime-refinement','seven-axis-acceptance','release-certificate','mathematics-completion'}\n\
+        if set(needs)!=required or any(needs[n]['result']!='success' for n in required):\n    raise SystemExit('Missing, skipped,\
+        \ failed or cancelled authority job')\nc=json.loads(Path('certificate/formal-release-certificate.json').read_text())\n\
+        v=json.loads(Path('certificate/independent-verifier-report.json').read_text())\ng=json.loads(Path('extended/seven-axis-gate.json').read_text())\n\
+        if c.get('status')!='RELEASE_PASS_PENDING_INDEPENDENT_VERIFICATION' or v.get('verdict')!='VERIFIED_PENDING_RELEASE_GATE'\
+        \ or v.get('error_codes'):\n    raise SystemExit('Retained release evidence failed')\nif c.get('subject',{}).get('sha')!=os.environ['GITHUB_SHA']:\n\
+        \    raise SystemExit('Retained subject mismatch')\nif g.get('status')!='PASS' or any(g.get('subject',{}).get(k)!=os.environ[e]\
+        \ for k,e in [('commit','GITHUB_SHA'),('run_id','GITHUB_RUN_ID'),('run_attempt','GITHUB_RUN_ATTEMPT')]):\n    raise\
+        \ SystemExit('Seven-axis subject mismatch')\nprint('PASS: retained obligations + fixed typed seven-axis root. Not\
+        \ production, legal, or empirical acceptance.')\nPY\n"
+  mathematics-completion:
+    needs:
+    - python-gates
+    - lean-full-clean-build
+    if: ${{ success() && (github.event_name != 'workflow_dispatch' || inputs.mode == 'full-release') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+    - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+    - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+      with:
+        python-version: '3.12'
+    - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+      with:
+        name: full-math-python-${{ github.run_id }}-${{ github.run_attempt }}
+        path: full-math-evidence/python
+    - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+      with:
+        name: full-math-lean-${{ github.run_id }}-${{ github.run_attempt }}
+        path: full-math-evidence/lean
+    - name: Require the whole mathematical plan, not a demo
+      run: 'set -euo pipefail
+
+        python tools/full_math/scripts/run.py finalize --compiled full-math-evidence/lean/compiled.json --tests full-math-evidence/python/tests.json
+        --output MATH_COMPLETION.json
+
+        python tools/full_math/scripts/run.py handover --compiled MATH_COMPLETION.json --output EXPORT_CONTRACT.json
+
+        '
+    - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+      if: always()
+      with:
+        name: full-math-completion-${{ github.run_id }}-${{ github.run_attempt }}
+        path: 'MATH_COMPLETION.json
+
+          EXPORT_CONTRACT.json'
+'on':
+  pull_request: null
+  push:
+    branches:
+    - main
+    - master
+    - ci/**
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: changed-module or full-release
+        type: choice
+        required: true
+        default: full-release
+        options:
+        - changed-module
+        - full-release
+      module:
+        description: Optional fully-qualified or JurisLean-relative module
+        type: string
+        default: ''

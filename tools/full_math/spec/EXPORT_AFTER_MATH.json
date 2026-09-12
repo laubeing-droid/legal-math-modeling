@@ -1,0 +1,22 @@
+{
+  "output": "EXPORT_CONTRACT.json",
+  "required": [
+    "formal_input_types",
+    "canonical_codec_and_proof",
+    "reference_checker_entry",
+    "exact_inner_outer_and_statistical_contracts",
+    "supported_grammar",
+    "scope_assumptions",
+    "certified_names_and_subject",
+    "law_policy_inputs",
+    "model_data_inputs",
+    "counterexamples",
+    "deferred_production_adapters"
+  ],
+  "do_not_run_now": [
+    "modify_jc",
+    "modify_harness",
+    "request_external_approvals",
+    "train_on_private_records_without_inputs"
+  ]
+}

@@ -1,0 +1,373 @@
+[
+  {
+    "id": "CIV_CONTRACT",
+    "title": "合同债权、担保与金融",
+    "required_research": "产生/履行/变更/消灭、独立抗辩、代理、损失范围、时效行使",
+    "source_ids": [
+      "L-CIVIL-CODE",
+      "L-CIVPROC-2022"
+    ],
+    "implemented_atomic_conditional_slices": [
+      "civil-burden-90",
+      "civil-limitation-193"
+    ],
+    "required_slots": [
+      "适用范围",
+      "权利/程序对象",
+      "证据提供责任",
+      "最终说服责任",
+      "本证反证/推定",
+      "证明标准",
+      "例外",
+      "阶段就绪",
+      "法律后果",
+      "版本及过渡",
+      "金额/非金钱结果",
+      "回归反例"
+    ],
+    "rule_pack_status": "FULL_FAMILY_COMPILATION_PENDING",
+    "legal_review_status": "NOT_PERFORMED"
+  },
+  {
+    "id": "PROPERTY",
+    "title": "物权与占有",
+    "required_research": "物权基础、登记/交付、占有、返还及抗辩",
+    "source_ids": [
+      "L-CIVIL-CODE",
+      "L-CIVPROC-2022"
+    ],
+    "implemented_atomic_conditional_slices": [],
+    "required_slots": [
+      "适用范围",
+      "权利/程序对象",
+      "证据提供责任",
+      "最终说服责任",
+      "本证反证/推定",
+      "证明标准",
+      "例外",
+      "阶段就绪",
+      "法律后果",
+      "版本及过渡",
+      "金额/非金钱结果",
+      "回归反例"
+    ],
+    "rule_pack_status": "FULL_FAMILY_COMPILATION_PENDING",
+    "legal_review_status": "NOT_PERFORMED"
+  },
+  {
+    "id": "TORT",
+    "title": "一般侵权与产品/消费",
+    "required_research": "过错、损害、因果关系、无过错及法定倒置的适用条件",
+    "source_ids": [
+      "L-CIVIL-CODE"
+    ],
+    "implemented_atomic_conditional_slices": [],
+    "required_slots": [
+      "适用范围",
+      "权利/程序对象",
+      "证据提供责任",
+      "最终说服责任",
+      "本证反证/推定",
+      "证明标准",
+      "例外",
+      "阶段就绪",
+      "法律后果",
+      "版本及过渡",
+      "金额/非金钱结果",
+      "回归反例"
+    ],
+    "rule_pack_status": "FULL_FAMILY_COMPILATION_PENDING",
+    "legal_review_status": "NOT_PERFORMED"
+  },
+  {
+    "id": "MEDICAL",
+    "title": "医疗损害",
+    "required_research": "诊疗过错、因果、病历控制及特定过错推定，不能把参与度当事实概率",
+    "source_ids": [
+      "L-CIVIL-CODE"
+    ],
+    "implemented_atomic_conditional_slices": [],
+    "required_slots": [
+      "适用范围",
+      "权利/程序对象",
+      "证据提供责任",
+      "最终说服责任",
+      "本证反证/推定",
+      "证明标准",
+      "例外",
+      "阶段就绪",
+      "法律后果",
+      "版本及过渡",
+      "金额/非金钱结果",
+      "回归反例"
+    ],
+    "rule_pack_status": "FULL_FAMILY_COMPILATION_PENDING",
+    "legal_review_status": "NOT_PERFORMED"
+  },
+  {
+    "id": "ENVIRONMENT",
+    "title": "环境与生态",
+    "required_research": "污染生态行为、因果责任、法典时间效力、持续行为与公益程序",
+    "source_ids": [
+      "L-ENV-TIME-2026",
+      "L-CIVIL-CODE"
+    ],
+    "implemented_atomic_conditional_slices": [],
+    "required_slots": [
+      "适用范围",
+      "权利/程序对象",
+      "证据提供责任",
+      "最终说服责任",
+      "本证反证/推定",
+      "证明标准",
+      "例外",
+      "阶段就绪",
+      "法律后果",
+      "版本及过渡",
+      "金额/非金钱结果",
+      "回归反例"
+    ],
+    "rule_pack_status": "FULL_FAMILY_COMPILATION_PENDING",
+    "legal_review_status": "NOT_PERFORMED"
+  },
+  {
+    "id": "FAMILY_SUCCESSION",
+    "title": "婚姻家事与继承",
+    "required_research": "身份事项、自认限制、夫妻债务、遗嘱/赠与特殊证明与有效性",
+    "source_ids": [
+      "L-CIVIL-CODE",
+      "L-CIV-EVIDENCE-2019"
+    ],
+    "implemented_atomic_conditional_slices": [],
+    "required_slots": [
+      "适用范围",
+      "权利/程序对象",
+      "证据提供责任",
+      "最终说服责任",
+      "本证反证/推定",
+      "证明标准",
+      "例外",
+      "阶段就绪",
+      "法律后果",
+      "版本及过渡",
+      "金额/非金钱结果",
+      "回归反例"
+    ],
+    "rule_pack_status": "FULL_FAMILY_COMPILATION_PENDING",
+    "legal_review_status": "NOT_PERFORMED"
+  },
+  {
+    "id": "LABOR",
+    "title": "劳动与人事",
+    "required_research": "关系成立、加班、用工决定、证据控制、解释（二）新规",
+    "source_ids": [
+      "L-LABOR-2007",
+      "L-LABOR-II-2025"
+    ],
+    "implemented_atomic_conditional_slices": [
+      "labor-evidence-6"
+    ],
+    "required_slots": [
+      "适用范围",
+      "权利/程序对象",
+      "证据提供责任",
+      "最终说服责任",
+      "本证反证/推定",
+      "证明标准",
+      "例外",
+      "阶段就绪",
+      "法律后果",
+      "版本及过渡",
+      "金额/非金钱结果",
+      "回归反例"
+    ],
+    "rule_pack_status": "FULL_FAMILY_COMPILATION_PENDING",
+    "legal_review_status": "NOT_PERFORMED"
+  },
+  {
+    "id": "CORPORATE_INSOLVENCY",
+    "title": "公司、股权与破产",
+    "required_research": "独立财产、出资、责任类型、破产专门程序、公司法时间效力",
+    "source_ids": [
+      "L-COMPANY-2023"
+    ],
+    "implemented_atomic_conditional_slices": [],
+    "required_slots": [
+      "适用范围",
+      "权利/程序对象",
+      "证据提供责任",
+      "最终说服责任",
+      "本证反证/推定",
+      "证明标准",
+      "例外",
+      "阶段就绪",
+      "法律后果",
+      "版本及过渡",
+      "金额/非金钱结果",
+      "回归反例"
+    ],
+    "rule_pack_status": "FULL_FAMILY_COMPILATION_PENDING",
+    "legal_review_status": "NOT_PERFORMED"
+  },
+  {
+    "id": "IP",
+    "title": "知识产权",
+    "required_research": "权利/侵权/损失及证据控制、专利特殊责任、惩罚性赔偿新解释",
+    "source_ids": [
+      "L-UPDATE-INDEX"
+    ],
+    "implemented_atomic_conditional_slices": [],
+    "required_slots": [
+      "适用范围",
+      "权利/程序对象",
+      "证据提供责任",
+      "最终说服责任",
+      "本证反证/推定",
+      "证明标准",
+      "例外",
+      "阶段就绪",
+      "法律后果",
+      "版本及过渡",
+      "金额/非金钱结果",
+      "回归反例"
+    ],
+    "rule_pack_status": "FULL_FAMILY_COMPILATION_PENDING",
+    "legal_review_status": "NOT_PERFORMED"
+  },
+  {
+    "id": "CRIMINAL",
+    "title": "刑事公诉、自诉与量刑",
+    "required_research": "要件、违法/责任评价配置、排除非法证据、免证限制、证明不足后果",
+    "source_ids": [
+      "L-CRIMPROC-2018",
+      "L-CRIM-INTERP-2021",
+      "L-PLEA-2026",
+      "L-SENTENCING-2021"
+    ],
+    "implemented_atomic_conditional_slices": [
+      "criminal-200-3",
+      "plea-standard-2026"
+    ],
+    "required_slots": [
+      "适用范围",
+      "权利/程序对象",
+      "证据提供责任",
+      "最终说服责任",
+      "本证反证/推定",
+      "证明标准",
+      "例外",
+      "阶段就绪",
+      "法律后果",
+      "版本及过渡",
+      "金额/非金钱结果",
+      "回归反例"
+    ],
+    "rule_pack_status": "FULL_FAMILY_COMPILATION_PENDING",
+    "legal_review_status": "NOT_PERFORMED"
+  },
+  {
+    "id": "ADMIN",
+    "title": "行政诉讼",
+    "required_research": "行政行为合法性与原告履职申请/损害例外、第三人证据、时限",
+    "source_ids": [
+      "L-ADMIN-2017",
+      "L-ADMIN-TIME-2026"
+    ],
+    "implemented_atomic_conditional_slices": [
+      "administrative-37"
+    ],
+    "required_slots": [
+      "适用范围",
+      "权利/程序对象",
+      "证据提供责任",
+      "最终说服责任",
+      "本证反证/推定",
+      "证明标准",
+      "例外",
+      "阶段就绪",
+      "法律后果",
+      "版本及过渡",
+      "金额/非金钱结果",
+      "回归反例"
+    ],
+    "rule_pack_status": "FULL_FAMILY_COMPILATION_PENDING",
+    "legal_review_status": "NOT_PERFORMED"
+  },
+  {
+    "id": "RECONSIDER_COMPENSATION",
+    "title": "行政复议与国家赔偿",
+    "required_research": "复议对象/程序、被申请人证明、损害及国家赔偿特别规则",
+    "source_ids": [
+      "L-RECONSIDER-2026"
+    ],
+    "implemented_atomic_conditional_slices": [],
+    "required_slots": [
+      "适用范围",
+      "权利/程序对象",
+      "证据提供责任",
+      "最终说服责任",
+      "本证反证/推定",
+      "证明标准",
+      "例外",
+      "阶段就绪",
+      "法律后果",
+      "版本及过渡",
+      "金额/非金钱结果",
+      "回归反例"
+    ],
+    "rule_pack_status": "FULL_FAMILY_COMPILATION_PENDING",
+    "legal_review_status": "NOT_PERFORMED"
+  },
+  {
+    "id": "PROCEDURE_EXECUTION",
+    "title": "执行、保全、回避、上诉与再审",
+    "required_research": "实体/程序状态分开；不同阶段的证明事项、负担和标准",
+    "source_ids": [
+      "L-CIVPROC-2022",
+      "L-CIV-EVIDENCE-2019"
+    ],
+    "implemented_atomic_conditional_slices": [],
+    "required_slots": [
+      "适用范围",
+      "权利/程序对象",
+      "证据提供责任",
+      "最终说服责任",
+      "本证反证/推定",
+      "证明标准",
+      "例外",
+      "阶段就绪",
+      "法律后果",
+      "版本及过渡",
+      "金额/非金钱结果",
+      "回归反例"
+    ],
+    "rule_pack_status": "FULL_FAMILY_COMPILATION_PENDING",
+    "legal_review_status": "NOT_PERFORMED"
+  },
+  {
+    "id": "ARBITRATION_MARITIME_PUBLIC",
+    "title": "仲裁、海事与公益",
+    "required_research": "新版仲裁法、仲裁庭权限、海商时间效力、公益原告/救济",
+    "source_ids": [
+      "L-ARB-2025",
+      "L-UPDATE-INDEX"
+    ],
+    "implemented_atomic_conditional_slices": [],
+    "required_slots": [
+      "适用范围",
+      "权利/程序对象",
+      "证据提供责任",
+      "最终说服责任",
+      "本证反证/推定",
+      "证明标准",
+      "例外",
+      "阶段就绪",
+      "法律后果",
+      "版本及过渡",
+      "金额/非金钱结果",
+      "回归反例"
+    ],
+    "rule_pack_status": "FULL_FAMILY_COMPILATION_PENDING",
+    "legal_review_status": "NOT_PERFORMED"
+  }
+]

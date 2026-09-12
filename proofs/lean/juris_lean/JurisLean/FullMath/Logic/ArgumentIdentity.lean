@@ -5,15 +5,21 @@ F08 — Cycles and identity boundaries (explicit counterexamples, allowed
 frozen scope for this target).
 
 A rootless cycle `a ↔ b` generates nothing at any depth. A rooted cycle
-generates arguments of every height whose conclusions repeat while their
-structural identities differ: atomic closure stability never implies
-argument-tree stability. Graph compression without a proved congruence would
-lose exactly this identity layer.
+generates arguments of every height with alternating conclusions, so atomic
+closure stability never pins down argument identity.
 -/
 
 namespace JurisLean.FullMath.Logic
 
-open JurisLean.FullMath.Logic (Generate Arg Rul)
+open JurisLean.FullMath.Logic (Generate Arg Rul ruleApps ruleAppsGo)
+
+/-- Rule applications over an empty previous list are empty. -/
+private theorem ruleAppsGo_nil : ∀ (qs : List (Fin 2)),
+    ruleAppsGo ([] : List (Arg (Fin 2))) qs = [] := by
+  intro qs
+  induction qs with
+  | nil => rfl
+  | cons p ps ih => simp [ruleAppsGo, ih]
 
 /-- The two-atom cycle rules: `a → b` and `b → a`. -/
 def cyclicRules : List (Rul (Fin 2)) :=
@@ -31,7 +37,8 @@ theorem rootless_cycle_generates_nothing :
         Generate [] cyclicRules d ++
         cyclicRules.flatMap (fun r => (ruleApps r (Generate [] cyclicRules d)).map
           (fun ps => Arg.node r ps)) from rfl, ih]
-    simp [ruleApps, ruleAppsGo]
+    simp only [List.nil_append, ruleApps, ruleAppsGo_nil,
+      List.map_nil, List.flatMap_nil]
 
 /-- F08(b): a rooted cycle generates an argument of every depth, with
 alternating conclusions. -/
@@ -42,17 +49,16 @@ theorem rooted_cycle_alternates :
   intro d
   induction d with
   | zero =>
-    refine ⟨Arg.leaf 0, by simp [Generate], rfl, Or.inl ⟨rfl, by decide⟩⟩
+    refine ⟨Arg.leaf 0, by simp [Generate], by simp [Arg.height],
+      Or.inl ⟨rfl, by decide⟩⟩
   | succ d ih =>
     obtain ⟨a, ha, hheight, hcase⟩ := ih
     rcases hcase with ⟨hc, hpar⟩ | ⟨hc, hpar⟩
-    · -- conclusion 0, apply the rule `0 → 1`
-      have hrule : (⟨[0], 1⟩ : Rul (Fin 2)) ∈ cyclicRules := by simp [cyclicRules]
-      have hmem : a ∈ Generate [0] cyclicRules d := ha
+    · have hrule : (⟨[0], 1⟩ : Rul (Fin 2)) ∈ cyclicRules := by simp [cyclicRules]
       have hfilter : a ∈ (Generate [0] cyclicRules d).filter
-          (fun x => Arg.concl x = 0) := by
-        simp only [List.mem_filter, hc, and_true]
-        exact hmem
+          (fun x => decide (Arg.concl x = 0)) := by
+        simp only [List.mem_filter]
+        exact ⟨ha, by simp [hc]⟩
       have hgo : [a] ∈ ruleAppsGo (Generate [0] cyclicRules d) [0] := by
         simp only [ruleAppsGo, List.mem_flatMap]
         refine ⟨a, hfilter, ?_⟩
@@ -68,18 +74,16 @@ theorem rooted_cycle_alternates :
         simp only [ruleApps, List.mem_map]
         exact ⟨[a], hgo, rfl⟩
       refine ⟨Arg.node (⟨[0], 1⟩ : Rul (Fin 2)) [a], hnode, ?_, Or.inr ⟨rfl, ?_⟩⟩
-      · have h1 : (List.map Arg.height [a]).foldr max 0 = Arg.height a := by simp
-        show (List.map Arg.height [a]).foldr max 0 + 1 = d + 1
+      · simp only [Arg.height]
+        have h1 : (List.map Arg.height [a]).foldr max 0 = Arg.height a := by simp
         rw [h1, hheight]
       · omega
-    · -- conclusion 1, apply the rule `1 → 0`
-      have hrule : (⟨[1], 0⟩ : Rul (Fin 2)) ∈ cyclicRules := by
+    · have hrule : (⟨[1], 0⟩ : Rul (Fin 2)) ∈ cyclicRules := by
         simp [cyclicRules]
-      have hmem : a ∈ Generate [0] cyclicRules d := ha
       have hfilter : a ∈ (Generate [0] cyclicRules d).filter
-          (fun x => Arg.concl x = 1) := by
-        simp only [List.mem_filter, hc, and_true]
-        exact hmem
+          (fun x => decide (Arg.concl x = 1)) := by
+        simp only [List.mem_filter]
+        exact ⟨ha, by simp [hc]⟩
       have hgo : [a] ∈ ruleAppsGo (Generate [0] cyclicRules d) [1] := by
         simp only [ruleAppsGo, List.mem_flatMap]
         refine ⟨a, hfilter, ?_⟩
@@ -95,13 +99,12 @@ theorem rooted_cycle_alternates :
         simp only [ruleApps, List.mem_map]
         exact ⟨[a], hgo, rfl⟩
       refine ⟨Arg.node (⟨[1], 0⟩ : Rul (Fin 2)) [a], hnode, ?_, Or.inl ⟨rfl, ?_⟩⟩
-      · have h1 : (List.map Arg.height [a]).foldr max 0 = Arg.height a := by simp
-        show (List.map Arg.height [a]).foldr max 0 + 1 = d + 1
+      · simp only [Arg.height]
+        have h1 : (List.map Arg.height [a]).foldr max 0 = Arg.height a := by simp
         rw [h1, hheight]
       · omega
 
-/-- F08(c): same conclusion, different structural identity — atomic closure
-stability does not pin down argument identity. -/
+/-- F08(c): same conclusion, different structural identity. -/
 theorem rooted_same_conclusion_different_identity :
     ∃ a b, a ∈ Generate [0] cyclicRules 0 ∧ b ∈ Generate [0] cyclicRules 2 ∧
       Arg.concl a = Arg.concl b ∧ Arg.height a ≠ Arg.height b := by

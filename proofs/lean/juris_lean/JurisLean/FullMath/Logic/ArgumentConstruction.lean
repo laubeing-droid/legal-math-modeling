@@ -241,8 +241,7 @@ theorem generate_complete {A : Type} [DecidableEq A] (facts : List A) (rules : L
       exact Or.inl (ih _ hw (by simp [Arg.height]))
     | node r cs =>
       simp only [WellFormed] at hw
-      obtain ⟨hrules, halign, hwfall⟩ := hw
-      have hwf : ∀ p ∈ cs, WellFormed facts rules p := hwfall.2
+      obtain ⟨hrules, halign, hwf⟩ := hw
       have hheight : Arg.height (Arg.node r cs) = (cs.map Arg.height).foldr max 0 + 1 := by
         simp only [Arg.height]
       have hchild : ∀ p ∈ cs, Arg.height p ≤ d := by

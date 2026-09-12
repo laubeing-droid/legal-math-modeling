@@ -79,9 +79,11 @@ theorem three_ring_no_stable : ∀ E : Finset (Fin 3), ¬ Stable threeRing E := 
   have hatt20 : threeRing.attack 2 0 = true := by decide
   by_cases h0 : (0 : Fin 3) ∈ E
   · by_cases h1 : (1 : Fin 3) ∈ E
-    · exact absurd hatt01 (hcf 0 h0 1 h1)
+    · rw [hcf 0 h0 1 h1] at hatt01
+      exact Bool.noConfusion hatt01
     · by_cases h2 : (2 : Fin 3) ∈ E
-      · exact absurd hatt20 (hcf 2 h2 0 h0)
+      · rw [hcf 2 h2 0 h0] at hatt20
+        exact Bool.noConfusion hatt20
       · -- E = {0}: element 2 is outside and its only attacker is 1 ∉ E
         obtain ⟨x, hxE, hx2⟩ := hcover 2 h2
         have hx1 : x = 1 := by
@@ -92,7 +94,8 @@ theorem three_ring_no_stable : ∀ E : Finset (Fin 3), ¬ Stable threeRing E := 
         exact h1 (hx1 ▸ hxE)
   · by_cases h1 : (1 : Fin 3) ∈ E
     · by_cases h2 : (2 : Fin 3) ∈ E
-      · exact absurd (hcf 1 h1 2 h2 hatt12) (by simp)
+      · rw [hcf 1 h1 2 h2] at hatt12
+        exact Bool.noConfusion hatt12
       · -- E = {1}: element 0 is outside and its only attacker is 2 ∉ E
         obtain ⟨x, hxE, hx0⟩ := hcover 0 h0
         have hx2 : x = 2 := by
@@ -113,8 +116,8 @@ theorem three_ring_no_stable : ∀ E : Finset (Fin 3), ¬ Stable threeRing E := 
       · -- E = ∅: element 0 is outside, but nobody can cover it
         obtain ⟨x, hxE, _⟩ := hcover 0 h0
         have hEempty : E = ∅ :=
-          Finset.eq_empty_iff_forall_not_mem.mpr
-            (by intro a; fin_cases a <;> first | exact h0 | exact h1 | exact h2)
+          Finset.eq_empty_of_forall_not_mem
+            (by intro a ha; fin_cases a <;> first | exact h0 ha | exact h1 ha | exact h2 ha)
         rw [hEempty] at hxE
         exact absurd hxE (by simp)
 
@@ -134,8 +137,9 @@ theorem self_attack_grounded_empty : grounded selfAttack = (∅ : Finset (Fin 1)
     apply Finset.Subset.antisymm _ (Finset.empty_subset _)
     intro a ha
     simp only [charF, Finset.mem_filter] at ha
-    rw [defendedB_iff] at ha
-    obtain ⟨c, hcE, _⟩ := ha 0 (show selfAttack.attack 0 0 = true by decide)
+    obtain ⟨_, haw⟩ := ha
+    rw [defendedB_iff] at haw
+    obtain ⟨c, hcE, _⟩ := haw 0 (show selfAttack.attack 0 0 = true by decide)
     exact absurd hcE (by simp)
   exact hchar
 

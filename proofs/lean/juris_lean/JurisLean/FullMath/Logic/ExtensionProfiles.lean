@@ -214,7 +214,7 @@ theorem grounded_least (af : AF A) (P : Finset A) (hP : charF af P = P) :
 /-- Complete extensions are fixed points of charF. -/
 theorem complete_is_fixpoint (af : AF A) (E : Finset A) (hE : Complete af E) :
     charF af E = E := by
-  obtain ⟨_, hcontains⟩ := hE
+  obtain ⟨⟨_, hdef⟩, hcontains⟩ := hE
   apply Finset.Subset.antisymm
   · intro a ha
     simp only [charF, Finset.mem_filter] at ha
@@ -225,7 +225,7 @@ theorem complete_is_fixpoint (af : AF A) (E : Finset A) (hE : Complete af E) :
     simp only [charF, Finset.mem_filter]
     refine ⟨Finset.mem_univ a, ?_⟩
     rw [defendedB_iff]
-    exact hE.1.2 a ha
+    exact hdef a ha
 
 /-- F10(c): every complete extension contains the grounded extension. -/
 theorem grounded_subset_complete (af : AF A) (E : Finset A) (hE : Complete af E) :
@@ -272,7 +272,6 @@ theorem preferred_exists (af : AF A) : ∃ E, Preferred af E := by
   intro F hF hFadm
   have hcard : E.card < F.card := Finset.card_lt_card hF
   have := hkmax F.card ⟨F, hFadm, rfl⟩
-  rw [hkE] at this
   omega
 
 /-- F10(e): grounded membership reflects defence by the grounded set itself. -/

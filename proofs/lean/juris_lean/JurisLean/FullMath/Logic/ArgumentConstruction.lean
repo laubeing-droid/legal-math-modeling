@@ -188,7 +188,7 @@ theorem generate_sound {A : Type} [DecidableEq A] (facts : List A) (rules : List
     have ha' : a = Arg.leaf c := heq.symm
     subst ha'
     simp only [WellFormed]
-    exact ⟨hc, by simp only [Arg.height]⟩
+    exact ⟨hc, by simp [Arg.height]⟩
   | succ d ih =>
     intro a ha
     simp only [Generate, List.mem_append] at ha
@@ -229,8 +229,7 @@ theorem generate_complete {A : Type} [DecidableEq A] (facts : List A) (rules : L
       exact ⟨c, show c ∈ facts from hw, rfl⟩
     | node r cs =>
       have hheight : Arg.height (Arg.node r cs) = (cs.map Arg.height).foldr max 0 + 1 := by
-      simp only [Arg.height]
-      omega
+        simp only [Arg.height]
   | succ d ih =>
     intro a hw hh
     cases a with

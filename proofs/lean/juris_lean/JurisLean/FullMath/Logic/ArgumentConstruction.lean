@@ -38,11 +38,12 @@ def Arg.height {A : Type} : Arg A → ℕ
   | .leaf _ => 0
   | .node _ cs => (cs.map Arg.height).foldr max 0 + 1
 
-/-- Well-formedness: leaf conclusions are declared facts; node children align
-with the rule premises and are themselves well-formed. -/
-def WellFormed {A : Type} (facts : List A) : Arg A → Prop
+/-- Well-formedness: leaf conclusions are declared facts; nodes use declared
+rules, children align with the rule premises and are themselves well-formed. -/
+def WellFormed {A : Type} (facts : List A) (rules : List (Rul A)) : Arg A → Prop
   | .leaf c => c ∈ facts
-  | .node r cs => cs.map Arg.concl = r.premises ∧ ∀ p ∈ cs, WellFormed facts p
+  | .node r cs => r ∈ rules ∧ cs.map Arg.concl = r.premises ∧
+      ∀ p ∈ cs, WellFormed facts rules p
 
 /-- Max-fold bound helper. -/
 theorem foldr_max_le (l : List ℕ) : ∀ a ∈ l, a ≤ l.foldr max 0 := by
@@ -178,7 +179,7 @@ def Generate {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)) 
 /-- F06: generation is sound — every generated argument is well-formed with
 height at most the budget. -/
 theorem generate_sound {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)) :
-    ∀ d a, a ∈ Generate facts rules d → WellFormed facts a ∧ Arg.height a ≤ d := by
+    ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d := by
   intro d
   induction d with
   | zero =>
@@ -196,7 +197,7 @@ theorem generate_sound {A : Type} [DecidableEq A] (facts : List A) (rules : List
     · have h := ih a ha
       exact ⟨h.1, Nat.le_succ_of_le h.2⟩
     · simp only [List.mem_flatMap] at ha
-      obtain ⟨r, _, hmap⟩ := ha
+      obtain ⟨r, hrules, hmap⟩ := ha
       simp only [List.mem_map] at hmap
       obtain ⟨ps, hps, heq⟩ := hmap
       have ha' : a = Arg.node r ps := heq.symm
@@ -205,7 +206,7 @@ theorem generate_sound {A : Type} [DecidableEq A] (facts : List A) (rules : List
       have hprev : ∀ p ∈ ps, p ∈ Generate facts rules d := fun p hp =>
         ruleApps_prev r _ ps hps p hp
       simp only [WellFormed]
-      refine ⟨⟨halign, fun p hp => (ih p (hprev p hp)).1⟩, ?_⟩
+      refine ⟨⟨hrules, halign, fun p hp => (ih p (hprev p hp)).1⟩, ?_⟩
       have hfold : (ps.map Arg.height).foldr max 0 ≤ d :=
         foldr_max_le_of_forall _ d (by
           intro h hh
@@ -218,15 +219,16 @@ theorem generate_sound {A : Type} [DecidableEq A] (facts : List A) (rules : List
 
 /-- F07: generation is complete within the bound. -/
 theorem generate_complete {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)) :
-    ∀ d a, WellFormed facts a → Arg.height a ≤ d → a ∈ Generate facts rules d := by
+    ∀ d a, WellFormed facts rules a → Arg.height a ≤ d → a ∈ Generate facts rules d := by
   intro d
   induction d with
   | zero =>
     intro a hw hh
     cases a with
     | leaf c =>
+      have hc : c ∈ facts := by simpa only [WellFormed] using hw
       simp only [Generate, List.mem_map]
-      exact ⟨c, show c ∈ facts from hw, rfl⟩
+      exact ⟨c, hc, rfl⟩
     | node r cs =>
       have hheight : Arg.height (Arg.node r cs) = (cs.map Arg.height).foldr max 0 + 1 := by
         simp only [Arg.height]
@@ -236,7 +238,7 @@ theorem generate_complete {A : Type} [DecidableEq A] (facts : List A) (rules : L
     cases a with
     | leaf c =>
       simp only [Generate, List.mem_append]
-      exact Or.inl (ih _ hw hh)
+      exact Or.inl (ih _ hw (Nat.zero_le d))
     | node r cs =>
       simp only [WellFormed] at hw
       obtain ⟨halign, hwf⟩ := hw
@@ -252,7 +254,7 @@ theorem generate_complete {A : Type} [DecidableEq A] (facts : List A) (rules : L
       simp only [Generate, List.mem_append]
       refine Or.inr ?_
       simp only [List.mem_flatMap]
-      refine ⟨r, by simp, ?_⟩
+      refine ⟨r, hrules, ?_⟩
       simp only [List.mem_map]
       exact ⟨cs, ruleApps_complete r (Generate facts rules d) cs halign hprev, rfl⟩
 end Arguments

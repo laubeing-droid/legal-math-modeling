@@ -99,7 +99,7 @@ def observe (k : ObsKind) (w : Witness) : List String :=
 /-- The protected output of a run is exactly the denotation of the declared
 observation kinds; it reads nothing else. -/
 def protectedView (w : Witness) : ObsKind → List String :=
-  observe · w
+  fun k => observe k w
 
 /-- F01(a): membership in `Sol` is by definition Φ, never by a status bit. -/
 theorem sol_membership (I : Env) (w : Witness) : w ∈ Sol I ↔ Phi I w := Iff.rfl
@@ -134,7 +134,7 @@ theorem sol_mono (I I' : Env) (h : EnvExtends I I') : Sol I ⊆ Sol I' := by
   have hF : PhiF I w → PhiF I' w := fun hf p hp => h.2.1 p (hf p hp)
   have hN : PhiN I w → PhiN I' w := fun hn p hp => h.2.2.1 p (hn p hp)
   have hP : PhiP I w → PhiP I' w := fun hp p hp' => h.2.2.2.1 p (hp p hp')
-  have hG : I.gamma w → I'.gamma w := h.2.2.2.2.1
+  have hG : I.gamma w → I'.gamma w := h.2.2.2.2.1 w
   have hQ : PhiQ I w → PhiQ I' w := fun hq c hc => h.2.2.2.2.2.1 (hq c hc)
   have hA : PhiA I w → PhiA I' w := fun ha a ha' => h.2.2.2.2.2.2 (ha a ha')
   exact ⟨hF hw'.1, hN hw'.2.1, hw'.2.2.1, hQ hw'.2.2.2.1, hP hw'.2.2.2.2.1,

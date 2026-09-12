@@ -76,7 +76,7 @@ theorem edgeFuel_iff (con : Contrary A) (rc : RuleContra A) (a : Arg A) :
     | leaf c =>
       simp only [edgeFuel]
       exact ⟨fun h => Defeat.rebut a (.leaf c) h,
-        fun h => by cases h with | rebut _ _ hclash => exact hclash⟩
+        fun h => by cases h with | rebut _ hclash => exact hclash⟩
     | node r ps =>
       intro hb
       have hnode : Arg.height (.node r ps) = (ps.map Arg.height).foldr max 0 + 1 := by
@@ -88,7 +88,7 @@ theorem edgeFuel_iff (con : Contrary A) (rc : RuleContra A) (a : Arg A) :
     | leaf c =>
       simp only [edgeFuel]
       exact ⟨fun h => Defeat.rebut a (.leaf c) h,
-        fun h => by cases h with | rebut _ _ hclash => exact hclash⟩
+        fun h => by cases h with | rebut _ hclash => exact hclash⟩
     | node r ps =>
       simp only [edgeFuel, Bool.or_eq_true, List.any_eq_true]
       constructor

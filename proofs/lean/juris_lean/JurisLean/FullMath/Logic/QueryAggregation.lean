@@ -1,165 +1,147 @@
-import JurisLean.FullMath.Logic.ExtensionProfiles
+import JurisLean.FullMath.Logic.ArgumentConstruction
 
 /-!
-F13 — Empty values and query aggregation safety.
+F09 — Attack/defeat compilation, both directions.
 
-Not-found ≠ no-solution ≠ empty family: the result type separates
-`noExtensions`, an enumerated family and an incomplete search. The three-ring
-frame has no stable extension; the self-attacking singleton has an empty
-grounded extension; the two degenerate cases answer differently. Existential
-answers are witnessed by membership; incomplete searches never yield
-substantive universal answers.
+`Defeat` is an independent four-case specification (rebut, undermine,
+undercut, subargument lifting). `edgeFuel` is the compiled boolean checker
+with explicit fuel; at fuel at least the target's height it reflects the
+specification exactly. Unknown priority policies keep edges undecided —
+they are filtered into a pending set, never silently dropped.
 -/
 
 namespace JurisLean.FullMath.Logic
 
-open JurisLean.FullMath.Logic (AF Stable grounded grounded_least charF defendedB defendedB_iff)
+open JurisLean.FullMath.Logic (Rul Arg)
 
-section Query
-variable {A : Type} [DecidableEq A] [Fintype A]
+section Attack
+variable {A : Type} [DecidableEq A]
 
-/-- Typed search result: no extensions, an enumerated family, an incomplete
-search, or an empty query. -/
-inductive Result (A : Type) where
-  /-- The semantics admits no extension at all. -/
-  | noExtensions
-  /-- A fully enumerated family. -/
-  | extensions (fam : List (Finset A))
-  /-- The search did not finish; nothing may be concluded universally. -/
-  | incomplete
-  /-- The query itself was empty. -/
-  | emptyQuery
+/-- Declared clash relation between atoms (e.g. `p` vs `¬p`). -/
+abbrev Contrary (A : Type) := A → A → Bool
 
-/-- Answer kind for universal queries. -/
-inductive UniversalAnswer where
-  /-- Vacuously true because there is no extension — never auto-asserted as a
-  substantive universal. -/
-  | vacuousTruth
-  /-- All enumerated extensions satisfy the property. -/
-  | allSatisfy
-  /-- Nothing may be concluded. -/
-  | unknown
+/-- What undercuts a rule. -/
+abbrev RuleContra (A : Type) := Rul A → A
 
-/-- Aggregation of a universal query over a result. -/
-def evalUniversal {A : Type} (r : Result A) : UniversalAnswer :=
-  match r with
-  | .noExtensions => .vacuousTruth
-  | .extensions _ => .allSatisfy
-  | .incomplete => .unknown
-  | .emptyQuery => .unknown
+/-- Independent defeat specification over direct children. -/
+inductive Defeat (A : Type) (con : Contrary A) (rc : RuleContra A) :
+    Arg A → Arg A → Prop
+  /-- Rebut: the attacker's conclusion clashes with the target's. -/
+  | rebut (a b : Arg A) (h : con (Arg.concl a) (Arg.concl b) = true) :
+      Defeat A con rc a b
+  /-- Undermine: clash with a direct child's conclusion. -/
+  | undermine (a : Arg A) (r : Rul A) (ps : List (Arg A)) (p : Arg A)
+      (hp : p ∈ ps) (h : con (Arg.concl a) (Arg.concl p) = true) :
+      Defeat A con rc a (.node r ps)
+  /-- Undercut: clash with what licenses the target's rule. -/
+  | undercut (a : Arg A) (r : Rul A) (ps : List (Arg A))
+      (h : con (Arg.concl a) (rc r) = true) :
+      Defeat A con rc a (.node r ps)
+  /-- Subargument lifting: the attacker defeats a direct child. -/
+  | lift (a : Arg A) (r : Rul A) (ps : List (Arg A)) (p : Arg A)
+      (hp : p ∈ ps) (h : Defeat A con rc a p) :
+      Defeat A con rc a (.node r ps)
 
-/-- F13(a): the two degenerate cases are typed apart — vacuity is never
-silently merged with an empty enumerated family. -/
-theorem no_extensions_ne_empty_family :
-    evalUniversal (A := A) .noExtensions ≠ evalUniversal (A := A) (.extensions []) := by
-  intro h
-  exact UniversalAnswer.noConfusion h
+/-- Compiled boolean checker with explicit fuel (structural in the fuel). -/
+def edgeFuel (con : Contrary A) (rc : RuleContra A) (a : Arg A) :
+    Arg A → ℕ → Bool
+  | .leaf c, _ => con (Arg.concl a) c
+  | .node r ps, 0 => con (Arg.concl a) (r.head)
+  | .node r ps, k + 1 =>
+    con (Arg.concl a) (r.head)
+    || ps.any (fun p => con (Arg.concl a) (Arg.concl p))
+    || con (Arg.concl a) (rc r)
+    || ps.any (fun p => edgeFuel con rc a p k)
 
-/-- Existential answers are witnessed by membership. -/
-theorem exists_extension_witnessed (af : AF A) (P : Finset A → Prop)
-    (E : Finset A) (hstab : Stable af E) (hP : P E) :
-    ∃ E', Stable af E' ∧ P E' := ⟨E, hstab, hP⟩
+/-- Height of a node bounds its children. -/
+private theorem child_height_le (r : Rul A) (ps : List (Arg A)) (p : Arg A)
+    (hp : p ∈ ps) (k : ℕ) (hk : Arg.height (.node r ps) ≤ k + 1) :
+    Arg.height p ≤ k := by
+  have hfoldp : Arg.height p ≤ (ps.map Arg.height).foldr max 0 :=
+    foldr_max_le _ (Arg.height p) (List.mem_map_of_mem hp)
+  have hnode : Arg.height (.node r ps) = (ps.map Arg.height).foldr max 0 + 1 := by
+    simp only [Arg.height]
+  omega
 
-/-- F13(b): an incomplete search never yields a substantive universal. -/
-theorem incomplete_not_universal :
-    evalUniversal (A := A) .incomplete = .unknown := rfl
+/-- F09(a): the compiled checker with sufficient fuel reflects the
+independent specification. -/
+theorem edgeFuel_iff (con : Contrary A) (rc : RuleContra A) (a : Arg A) :
+    ∀ (k : ℕ) (b : Arg A), Arg.height b ≤ k →
+      (edgeFuel con rc a b k = true ↔ Defeat A con rc a b) := by
+  intro k
+  induction k with
+  | zero =>
+    intro b hb
+    cases b with
+    | leaf c =>
+      simp only [edgeFuel]
+      exact ⟨fun h => Defeat.rebut a (.leaf c) h,
+        fun h => by cases h with | rebut _ hclash => exact hclash⟩
+    | node r ps =>
+      intro hb
+      have hnode : Arg.height (.node r ps) = (ps.map Arg.height).foldr max 0 + 1 := by
+        simp only [Arg.height]
+      omega
+  | succ k ih =>
+    intro b hb
+    cases b with
+    | leaf c =>
+      simp only [edgeFuel]
+      exact ⟨fun h => Defeat.rebut a (.leaf c) h,
+        fun h => by cases h with | rebut _ hclash => exact hclash⟩
+    | node r ps =>
+      simp only [edgeFuel, Bool.or_eq_true, List.any_eq_true]
+      constructor
+      · rintro (h1 | ⟨p, hp, h2⟩ | h3 | ⟨p, hp, h4⟩)
+        · exact Defeat.rebut a (.node r ps) h1
+        · exact Defeat.undermine a r ps p hp h2
+        · exact Defeat.undercut a r ps h3
+        · exact Defeat.lift a r ps p hp ((ih p (child_height_le r ps p hp k hb)).mp h4)
+      · intro h
+        cases h with
+        | rebut _ _ hclash => exact Or.inl hclash
+        | undermine _ _ _ _ hp hclash =>
+          exact Or.inr (Or.inl (Or.inl ⟨p, hp, hclash⟩))
+        | undercut _ _ _ hclash => exact Or.inr (Or.inl (Or.inr hclash))
+        | lift _ _ _ _ hp hd =>
+          exact Or.inr (Or.inr
+            ⟨p, hp, (ih p (child_height_le r ps p hp k hb)).mpr hd⟩)
 
-/-! The three-ring frame: no stable extension exists. -/
+/-! Priority adjudication: undecided edges are preserved, never dropped. -/
 
-/-- `a` attacks `a+1` cyclically on three nodes. -/
-def threeRing : AF (Fin 3) where
-  attack x y := decide ((x.val + 1) % 3 = y.val)
+/-- Priority adjudication outcomes. -/
+inductive PriorityDecision where
+  | attackerPreferred
+  | targetPreferred
+  | undecided
 
-/-- F13(c): the three-ring has no stable extension (classic odd cycle). -/
-theorem three_ring_no_stable : ∀ E : Finset (Fin 3), ¬ Stable threeRing E := by
-  intro E hstab
-  obtain ⟨hcf, hcover⟩ := hstab
-  have hatt01 : threeRing.attack 0 1 = true := by decide
-  have hatt12 : threeRing.attack 1 2 = true := by decide
-  have hatt20 : threeRing.attack 2 0 = true := by decide
-  by_cases h0 : (0 : Fin 3) ∈ E
-  · by_cases h1 : (1 : Fin 3) ∈ E
-    · rw [hcf 0 h0 1 h1] at hatt01
-      exact Bool.noConfusion hatt01
-    · by_cases h2 : (2 : Fin 3) ∈ E
-      · rw [hcf 2 h2 0 h0] at hatt20
-        exact Bool.noConfusion hatt20
-      · -- E = {0}: element 2 is outside and its only attacker is 1 ∉ E
-        obtain ⟨x, hxE, hx2⟩ := hcover 2 h2
-        have hx1 : x = 1 := by
-          fin_cases x
-          · exact absurd hx2 (by decide)
-          · rfl
-          · exact absurd hx2 (by decide)
-        exact h1 (hx1 ▸ hxE)
-  · by_cases h1 : (1 : Fin 3) ∈ E
-    · by_cases h2 : (2 : Fin 3) ∈ E
-      · rw [hcf 1 h1 2 h2] at hatt12
-        exact Bool.noConfusion hatt12
-      · -- E = {1}: element 0 is outside and its only attacker is 2 ∉ E
-        obtain ⟨x, hxE, hx0⟩ := hcover 0 h0
-        have hx2 : x = 2 := by
-          fin_cases x
-          · exact absurd hx0 (by decide)
-          · exact absurd hx0 (by decide)
-          · rfl
-        exact h2 (hx2 ▸ hxE)
-    · by_cases h2 : (2 : Fin 3) ∈ E
-      · -- E = {2}: element 1 is outside and its only attacker is 0 ∉ E
-        obtain ⟨x, hxE, hx1⟩ := hcover 1 h1
-        have hx0 : x = 0 := by
-          fin_cases x
-          · rfl
-          · exact absurd hx1 (by decide)
-          · exact absurd hx1 (by decide)
-        exact h0 (hx0 ▸ hxE)
-      · -- E = ∅: element 0 is outside, but nobody can cover it
-        obtain ⟨x, hxE, _⟩ := hcover 0 h0
-        have hEempty : E = ∅ :=
-          Finset.Subset.antisymm (by
-            intro x hx
-            fin_cases x <;> first
-              | exact h0 hx
-              | exact h1 hx
-              | exact h2 hx) (Finset.empty_subset E)
-        rw [hEempty] at hxE
-        exact absurd hxE (by simp)
+/-- Adjudicate with a declared policy; anything not known is undecided. -/
+def adjudicate (policy : Arg A → Arg A → Option Bool) (a b : Arg A) :
+    PriorityDecision :=
+  match policy a b with
+  | some true => .attackerPreferred
+  | some false => .targetPreferred
+  | none => .undecided
 
-/-! The self-attacking singleton: the grounded extension is empty. -/
+/-- Pending edges under an unknown policy. -/
+def pendingEdges (edges : List (Arg A × Arg A)) (policy : Arg A → Arg A → Option Bool) :
+    List (Arg A × Arg A) :=
+  edges.filter (fun e => decide (adjudicate policy e.1 e.2 = .undecided))
 
-/-- The self-attacking singleton. -/
-def selfAttack : AF (Fin 1) where
-  attack x y := decide (x.val = 0 ∧ y.val = 0)
+/-- F09(b): every pending edge is a real edge — nothing is silently removed. -/
+theorem pending_edges_are_edges (edges : List (Arg A × Arg A))
+    (policy : Arg A → Arg A → Option Bool) :
+    ∀ e ∈ pendingEdges edges policy, e ∈ edges := by
+  intro e he
+  simp only [pendingEdges, List.mem_filter] at he
+  exact he.1
 
-/-- F13(d): the grounded extension of the self-attacking singleton is empty —
-an empty admissible set that is a different degenerate case from
-`noExtensions`. -/
-theorem self_attack_grounded_empty : grounded selfAttack = (∅ : Finset (Fin 1)) := by
-  apply Finset.Subset.antisymm _ (Finset.empty_subset _)
-  refine grounded_least selfAttack ∅ ?_
-  have hchar : charF selfAttack (∅ : Finset (Fin 1)) = ∅ := by
-    apply Finset.Subset.antisymm _ (Finset.empty_subset _)
-    intro a ha
-    fin_cases a
-    simp only [charF, Finset.mem_filter] at ha
-    obtain ⟨_, haw⟩ := ha
-    rw [defendedB_iff] at haw
-    obtain ⟨c, hcE, _⟩ := haw 0 (show selfAttack.attack 0 0 = true by decide)
-    exact absurd hcE (by simp)
-  exact hchar
+/-- F09(c): the pending set is at most the full edge set (no fabrication). -/
+theorem pending_edges_bound (edges : List (Arg A × Arg A))
+    (policy : Arg A → Arg A → Option Bool) :
+    (pendingEdges edges policy).length ≤ edges.length :=
+  List.length_filter_le edges (fun e => adjudicate policy e.1 e.2 = .undecided)
 
-/-- The empty set is admissible in the self-attacking frame, distinguishing
-`∅` from `noExtensions` under stability too. -/
-theorem self_attack_empty_admissible_not_stable :
-    Admissible selfAttack (∅ : Finset (Fin 1)) ∧ ¬ Stable selfAttack (∅ : Finset (Fin 1)) := by
-  constructor
-  · refine ⟨fun x hx => absurd hx (by simp), ?_⟩
-    intro a ha
-    exact absurd ha (by simp)
-  · intro ⟨_, hcover⟩
-    obtain ⟨x, hxE, _⟩ := hcover 0 (by simp)
-    exact absurd hxE (by simp)
-
-end Query
+end Attack
 
 end JurisLean.FullMath.Logic

@@ -67,18 +67,18 @@ theorem foldr_max_le_of_forall (l : List ℕ) (k : ℕ) (h : ∀ x ∈ l, x ≤ 
 
 /-- Choose, for each premise `p`, a previously generated argument concluding
 `p`. -/
-def ruleAppsGo {A : Type} (prev : List (Arg A)) : List A → List (List (Arg A))
+def ruleAppsGo {A : Type} [DecidableEq A] (prev : List (Arg A)) : List A → List (List (Arg A))
   | [] => [[]]
   | p :: ps =>
     (prev.filter (fun a => decide (Arg.concl a = p))).flatMap
       (fun x => (ruleAppsGo prev ps).map (fun xs => x :: xs))
 
 /-- All combinations of children satisfying the premises of `r`. -/
-def ruleApps {A : Type} (r : Rul A) (prev : List (Arg A)) : List (List (Arg A)) :=
+def ruleApps {A : Type} [DecidableEq A] (r : Rul A) (prev : List (Arg A)) : List (List (Arg A)) :=
   ruleAppsGo prev r.premises
 
 /-- Generated combinations align with the premises. -/
-theorem ruleApps_align {A : Type} (r : Rul A) (prev : List (Arg A)) :
+theorem ruleApps_align {A : Type} [DecidableEq A] (r : Rul A) (prev : List (Arg A)) :
     ∀ ps ∈ ruleApps r prev, ps.map Arg.concl = r.premises := by
   have hgo : ∀ (qs : List A) (xs : List (Arg A)), xs ∈ ruleAppsGo prev qs →
       xs.map Arg.concl = qs := by
@@ -106,7 +106,7 @@ theorem ruleApps_align {A : Type} (r : Rul A) (prev : List (Arg A)) :
   exact hgo r.premises xs hx
 
 /-- Elements of generated combinations come from `prev`. -/
-theorem ruleApps_prev {A : Type} (r : Rul A) (prev : List (Arg A)) :
+theorem ruleApps_prev {A : Type} [DecidableEq A] (r : Rul A) (prev : List (Arg A)) :
     ∀ ps ∈ ruleApps r prev, ∀ x ∈ ps, x ∈ prev := by
   have hgo : ∀ (qs : List A) (xs : List (Arg A)), xs ∈ ruleAppsGo prev qs →
       ∀ x ∈ xs, x ∈ prev := by
@@ -133,7 +133,7 @@ theorem ruleApps_prev {A : Type} (r : Rul A) (prev : List (Arg A)) :
   exact hgo r.premises xs hx x hxmem
 
 /-- Helper for completeness: aligned selections from `prev` are generated. -/
-theorem ruleApps_complete {A : Type} (r : Rul A) (prev : List (Arg A))
+theorem ruleApps_complete {A : Type} [DecidableEq A] (r : Rul A) (prev : List (Arg A))
     (ps : List (Arg A))
     (halign : ps.map Arg.concl = r.premises)
     (hprev : ∀ x ∈ ps, x ∈ prev) : ps ∈ ruleApps r prev := by
@@ -168,7 +168,7 @@ theorem ruleApps_complete {A : Type} (r : Rul A) (prev : List (Arg A))
   exact hgo r.premises ps halign hprev
 
 /-- Bounded enumeration. -/
-def Generate {A : Type} (facts : List A) (rules : List (Rul A)) : ℕ → List (Arg A)
+def Generate {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)) : ℕ → List (Arg A)
   | 0 => facts.map Arg.leaf
   | d + 1 =>
     Generate facts rules d ++
@@ -177,7 +177,7 @@ def Generate {A : Type} (facts : List A) (rules : List (Rul A)) : ℕ → List (
 
 /-- F06: generation is sound — every generated argument is well-formed with
 height at most the budget. -/
-theorem generate_sound {A : Type} (facts : List A) (rules : List (Rul A)) :
+theorem generate_sound {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)) :
     ∀ d a, a ∈ Generate facts rules d → WellFormed facts a ∧ Arg.height a ≤ d := by
   intro d
   induction d with
@@ -185,8 +185,9 @@ theorem generate_sound {A : Type} (facts : List A) (rules : List (Rul A)) :
     intro a ha
     simp only [Generate, List.mem_map] at ha
     obtain ⟨c, hc, heq⟩ := ha
-    have ha' : a = Arg.leaf c := heq
+    have ha' : a = Arg.leaf c := heq.symm
     subst ha'
+    simp only [WellFormed]
     exact ⟨hc, Nat.le_refl _⟩
   | succ d ih =>
     intro a ha
@@ -198,15 +199,13 @@ theorem generate_sound {A : Type} (facts : List A) (rules : List (Rul A)) :
       obtain ⟨r, _, hmap⟩ := ha
       simp only [List.mem_map] at hmap
       obtain ⟨ps, hps, heq⟩ := hmap
-      have ha' : a = Arg.node r ps := heq
+      have ha' : a = Arg.node r ps := heq.symm
       subst ha'
       have halign : ps.map Arg.concl = r.premises := ruleApps_align r _ ps hps
       have hprev : ∀ p ∈ ps, p ∈ Generate facts rules d := fun p hp =>
         ruleApps_prev r _ ps hps p hp
-      have hwf : WellFormed facts (Arg.node r ps) := by
-        show ps.map Arg.concl = r.premises ∧ ∀ p ∈ ps, WellFormed facts p
-        exact ⟨halign, fun p hp => (ih p (hprev p hp)).1⟩
-      refine ⟨hwf, ?_⟩
+      simp only [WellFormed]
+      refine ⟨⟨halign, fun p hp => (ih p (hprev p hp)).1⟩, ?_⟩
       have hfold : (ps.map Arg.height).foldr max 0 ≤ d :=
         foldr_max_le_of_forall _ d (by
           intro h hh
@@ -217,7 +216,7 @@ theorem generate_sound {A : Type} (facts : List A) (rules : List (Rul A)) :
       omega
 
 /-- F07: generation is complete within the bound. -/
-theorem generate_complete {A : Type} (facts : List A) (rules : List (Rul A)) :
+theorem generate_complete {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)) :
     ∀ d a, WellFormed facts a → Arg.height a ≤ d → a ∈ Generate facts rules d := by
   intro d
   induction d with
@@ -237,8 +236,8 @@ theorem generate_complete {A : Type} (facts : List A) (rules : List (Rul A)) :
       simp only [Generate, List.mem_append]
       exact Or.inl (ih _ hw hh)
     | node r cs =>
-      have hw' : cs.map Arg.concl = r.premises ∧ ∀ p ∈ cs, WellFormed facts p := hw
-      obtain ⟨halign, hwf⟩ := hw'
+      simp only [WellFormed] at hw
+      obtain ⟨halign, hwf⟩ := hw
       have hheight : Arg.height (Arg.node r cs) = (cs.map Arg.height).foldr max 0 + 1 := rfl
       have hchild : ∀ p ∈ cs, Arg.height p ≤ d := by
         intro p hp

@@ -91,11 +91,13 @@ theorem edgeFuel_iff (con : Contrary A) (rc : RuleContra A) (a : Arg A) :
     | node r ps =>
       simp only [edgeFuel, Bool.or_eq_true, List.any_eq_true]
       constructor
-      · rintro ((h1 | ⟨p, hp, h2⟩) | h3) | ⟨p, hp, h4⟩
-        · exact Defeat.rebut a (.node r ps) h1
-        · exact Defeat.undermine a r ps p hp h2
-        · exact Defeat.undercut a r ps h3
-        · exact Defeat.lift a r ps p hp ((ih p (child_height_le r ps p hp k hb)).mp h4)
+      · rintro (hleft | hright)
+        · rcases hleft with h1 | ⟨p, hp, h2⟩
+          · exact Defeat.rebut a (.node r ps) h1
+          · exact Defeat.undermine a r ps p hp h2
+        · rcases hright with h3 | ⟨p, hp, h4⟩
+          · exact Defeat.undercut a r ps h3
+          · exact Defeat.lift a r ps p hp ((ih p (child_height_le r ps p hp k hb)).mp h4)
       · intro h
         cases h with
         | rebut _ hclash =>
@@ -114,6 +116,7 @@ inductive PriorityDecision where
   | attackerPreferred
   | targetPreferred
   | undecided
+  deriving DecidableEq
 
 /-- Adjudicate with a declared policy; anything not known is undecided. -/
 def adjudicate (policy : Arg A → Arg A → Option Bool) (a b : Arg A) :

@@ -120,11 +120,12 @@ theorem dung_admissible_step (af : AF A) {E : Finset A} (hE : Admissible af E) :
     have hx' : defends af E x := (defendedB_iff af E x).mp hxw
     have hy' : defends af E y := (defendedB_iff af E y).mp hyw
     cases hxy : af.attack x y with
-    | false => exact hxy
+    | false => rfl
     | true =>
       obtain ⟨c, hcE, hcx⟩ := hy' x hxy
       obtain ⟨d, hdE, hdc⟩ := hx' c hcx
-      exact absurd hdc (hcf d hdE c hcE)
+      rw [hcf d hdE c hcE] at hdc
+      exact Bool.noConfusion hdc
   · intro a ha
     simp only [charF, Finset.mem_filter] at ha
     obtain ⟨_, haw⟩ := ha
@@ -168,9 +169,9 @@ theorem gIter_stabilizes (af : AF A) :
         have hEq : gIter af k = gIter af (k + 1) := by
           apply Finset.eq_of_subset_of_card_le hsub
           exact le_of_eq heq.symm
-        exact hne hEq
+        exact hne ((gIter_succ af k).symm.trans hEq.symm)
       have hcard : (gIter af k).card < (gIter af (k+1)).card := lt_of_le_of_ne hc1 hcardne
-      have hih : k ≤ (gIter af k).card := ih hk
+      have hih : k ≤ (gIter af k).card := ih (by omega)
       omega
   have huniv : (gIter af ((Finset.univ : Finset A).card + 1)).card ≤
       (Finset.univ : Finset A).card :=
@@ -207,7 +208,7 @@ theorem grounded_least (af : AF A) (P : Finset A) (hP : charF af P = P) :
     | zero => exact Finset.empty_subset _
     | succ n ih =>
       rw [gIter_succ]
-      exact (charF_mono af ih).trans (by rw [hP]; exact Finset.Subset.rfl)
+      exact (charF_mono af ih).trans (by rw [hP])
   exact hiter (gIter_stabilizes af).choose
 
 /-- Complete extensions are fixed points of charF. -/
@@ -232,25 +233,28 @@ theorem grounded_subset_complete (af : AF A) (E : Finset A) (hE : Complete af E)
   grounded_least af E (complete_is_fixpoint af E hE)
 
 /-- Bounded nonempty sets of naturals attain a maximum. -/
-private theorem nat_bounded_has_max (S : Set ℕ) (N : ℕ)
-    (hne : S.Nonempty) (hbdd : ∀ n ∈ S, n ≤ N) :
-    ∃ k ∈ S, ∀ m ∈ S, m ≤ k := by
+private theorem nat_bounded_has_max {S : Set ℕ} (hne : S.Nonempty) :
+    ∀ N : ℕ, (∀ n ∈ S, n ≤ N) → ∃ k ∈ S, ∀ m ∈ S, m ≤ k := by
+  intro N
   induction N with
   | zero =>
+    intro hbdd
     obtain ⟨k, hk⟩ := hne
     refine ⟨k, hk, ?_⟩
     intro m hm
-    have : m ≤ 0 := hbdd m hm
-    have : k ≤ 0 := hbdd k hk
+    have h1 : m ≤ 0 := hbdd m hm
     omega
   | succ N ih =>
+    intro hbdd
     by_cases hmax : ∃ m ∈ S, m = N + 1
     · obtain ⟨m, hm, rfl⟩ := hmax
       exact ⟨N + 1, hm, fun n hn => hbdd n hn⟩
-    · refine ih (fun n hn => Nat.le_of_lt_succ ?_)
+    · refine ih ?_
+      intro n hn
+      have hbd := hbdd n hn
       rcases Nat.lt_or_ge n (N + 1) with h | h
-      · exact h
-      · exact absurd ⟨n, hn, Nat.le_antisymm h (hbdd n hn)⟩ hmax
+      · exact Nat.le_of_lt_succ h
+      · exact absurd ⟨n, hn, (Nat.le_antisymm h hbd).symm⟩ hmax
 
 /-- F10(d): preferred extensions exist (finiteness argument). -/
 theorem preferred_exists (af : AF A) : ∃ E, Preferred af E := by

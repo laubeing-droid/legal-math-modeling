@@ -96,7 +96,7 @@ theorem gIter_zero (af : AF A) : gIter af 0 = ∅ := rfl
 
 theorem gIter_succ (af : AF A) (n : ℕ) : gIter af (n+1) = charF af (gIter af n) := by
   show (charF af)^[n+1] (∅ : Finset A) = charF af ((charF af)^[n] ∅)
-  rw [Function.iterate_succ_apply]
+  rw [Function.iterate_succ_apply']
 
 theorem gIter_mono_step (af : AF A) (n : ℕ) : gIter af n ⊆ gIter af (n+1) := by
   induction n with

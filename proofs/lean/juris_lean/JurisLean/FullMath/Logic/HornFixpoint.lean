@@ -21,19 +21,12 @@ def step (R : Finset (Finset A × A)) (F S : Finset A) : Finset A :=
 /-- T is monotone in the current set. -/
 theorem step_mono (R : Finset (Finset A × A)) (F : Finset A) {S T : Finset A}
     (h : S ⊆ T) : step R F S ⊆ step R F T := by
+  unfold step
+  refine Finset.union_subset (Finset.union_subset Finset.Subset.rfl h) ?_
   intro a ha
-  simp only [step, Finset.mem_union] at ha ⊢
-  rcases ha with ha | ha | ha
-  · exact Or.inl ha
-  · exact Or.inr (Or.inl (h ha))
-  · exact Or.inr (Or.inr
-      (by
-        simp only [Finset.mem_image] at ha ⊢
-        obtain ⟨r, hr, rfl⟩ := ha
-        simp only [Finset.mem_filter] at hr
-        exact ⟨r, by
-          simp only [Finset.mem_filter, hr.1, and_true]
-          exact h hr.2, rfl⟩))
+  obtain ⟨r, hr, hsnd⟩ := Finset.mem_image.mp ha
+  obtain ⟨hrR, hrS⟩ := Finset.mem_filter.mp hr
+  exact Finset.mem_image.mpr ⟨r, Finset.mem_filter.mpr ⟨hrR, fun hb => h hb⟩, hsnd⟩
 
 /-- Iterated closure from the empty set. -/
 def cl (R : Finset (Finset A × A)) (F : Finset A) : ℕ → Finset A :=
@@ -47,7 +40,7 @@ theorem cl_zero (R : Finset (Finset A × A)) (F : Finset A) :
 theorem cl_succ (R : Finset (Finset A × A)) (F : Finset A) (n : ℕ) :
     cl R F (n+1) = step R F (cl R F n) := by
   show (step R F)^[n+1] (∅ : Finset A) = step R F ((step R F)^[n] ∅)
-  rw [Function.iterate_succ_apply]
+  rw [Function.iterate_succ_apply']
 
 theorem cl_mono_step (R : Finset (Finset A × A)) (F : Finset A) (n : ℕ) :
     cl R F n ⊆ cl R F (n+1) := by
@@ -77,7 +70,7 @@ theorem subset_cl (R : Finset (Finset A × A)) (F : Finset A) {n : ℕ} (hn : 1 
   have h1 : F ⊆ cl R F 1 := by
     intro a ha
     rw [cl_succ, cl_zero, step]
-    exact Finset.mem_union_left _ ha
+    exact Finset.mem_union_left _ (Finset.mem_union_left _ ha)
   exact h1.trans (cl_mono R F n 1 hn)
 
 /-- Strict growth forces the iterate cardinality past the carrier bound. -/
@@ -95,8 +88,7 @@ theorem strict_growth_bound (R : Finset (Finset A × A)) (F : Finset A) (N : ℕ
     have hc1 : (cl R F k).card ≤ (cl R F (k+1)).card := Finset.card_le_card hsub
     have hcardne : (cl R F k).card ≠ (cl R F (k+1)).card := by
       intro heq
-      have hcardle : (cl R F k).card ≤ (cl R F (k+1)).card := le_of_eq heq
-      have hEq : cl R F k = cl R F (k+1) := Finset.eq_of_subset_of_card_le hsub hcardle
+      have hEq : cl R F k = cl R F (k+1) := Finset.eq_of_subset_of_card_le hsub hc1
       exact hne hEq
     have hcard : (cl R F k).card < (cl R F (k+1)).card := lt_of_le_of_ne hc1 hcardne
     have hih : k ≤ (cl R F k).card := ih (by omega)
@@ -147,7 +139,7 @@ theorem closure_subset (R : Finset (Finset A × A)) (F : Finset A) :
   intro a ha
   have h1 : a ∈ step R F (closure R F) := by
     rw [step]
-    exact Finset.mem_union_left _ ha
+    exact Finset.mem_union_left _ (Finset.mem_union_left _ ha)
   rwa [closure_stable] at h1
 
 /-- F05(c): leastness — every pre-fixed point contains the closure. -/

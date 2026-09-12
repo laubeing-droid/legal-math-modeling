@@ -29,23 +29,23 @@ inductive Arg (A : Type) where
   | node (r : Rul A) (children : List (Arg A))
 
 /-- Conclusion of an argument. -/
-def Arg.concl : Arg A → A
+def Arg.concl {A : Type} : Arg A → A
   | .leaf c => c
   | .node r _ => r.head
 
 /-- Structural height. -/
-def Arg.height : Arg A → ℕ
+def Arg.height {A : Type} : Arg A → ℕ
   | .leaf _ => 0
   | .node _ cs => (cs.map Arg.height).foldr max 0 + 1
 
 /-- Well-formedness: leaf conclusions are declared facts; node children align
 with the rule premises and are themselves well-formed. -/
-def WellFormed (facts : List A) : Arg A → Prop
+def WellFormed {A : Type} (facts : List A) : Arg A → Prop
   | .leaf c => c ∈ facts
   | .node r cs => cs.map Arg.concl = r.premises ∧ ∀ p ∈ cs, WellFormed facts p
 
 /-- Max-fold bound helper. -/
-private theorem foldr_max_le (l : List ℕ) : ∀ a ∈ l, a ≤ l.foldr max 0 := by
+theorem foldr_max_le (l : List ℕ) : ∀ a ∈ l, a ≤ l.foldr max 0 := by
   intro a ha
   induction l with
   | nil => exact absurd ha (by simp)
@@ -55,32 +55,32 @@ private theorem foldr_max_le (l : List ℕ) : ∀ a ∈ l, a ≤ l.foldr max 0 :
     · exact Nat.le_trans (ih ha) (Nat.le_max_right _ _)
 
 /-- Max-fold of a list bounded pointwise. -/
-private theorem foldr_max_le_of_forall (l : List ℕ) (k : ℕ) (h : ∀ x ∈ l, x ≤ k) :
+theorem foldr_max_le_of_forall (l : List ℕ) (k : ℕ) (h : ∀ x ∈ l, x ≤ k) :
     l.foldr max 0 ≤ k := by
   induction l with
   | nil => exact Nat.zero_le _
   | cons x xs ih =>
     show max x (List.foldr max 0 xs) ≤ k
-    exact Nat.max_le (h x (by simp)) (ih (fun y hy => h y (by simp [hy])))
+    exact max_le (h x (by simp)) (ih (fun y hy => h y (by simp [hy])))
 
 /-! Combinatorial rule applications. -/
 
 /-- Choose, for each premise `p`, a previously generated argument concluding
 `p`. -/
-def ruleAppsGo (prev : List Arg) : List A → List (List Arg)
+def ruleAppsGo {A : Type} (prev : List (Arg A)) : List A → List (List (Arg A))
   | [] => [[]]
   | p :: ps =>
-    (prev.filter (fun a => a.concl = p)).flatMap
+    (prev.filter (fun a => Arg.concl a = p)).flatMap
       (fun x => (ruleAppsGo prev ps).map (fun xs => x :: xs))
 
 /-- All combinations of children satisfying the premises of `r`. -/
-def ruleApps (r : Rul A) (prev : List (Arg A)) : List (List (Arg A)) :=
+def ruleApps {A : Type} (r : Rul A) (prev : List (Arg A)) : List (List (Arg A)) :=
   ruleAppsGo prev r.premises
 
 /-- Generated combinations align with the premises. -/
-theorem ruleApps_align (r : Rul A) (prev : List (Arg A)) :
+theorem ruleApps_align {A : Type} (r : Rul A) (prev : List (Arg A)) :
     ∀ ps ∈ ruleApps r prev, ps.map Arg.concl = r.premises := by
-  have hgo : ∀ (qs : List A) (xs : List Arg), xs ∈ ruleAppsGo prev qs →
+  have hgo : ∀ (qs : List A) (xs : List (Arg A)), xs ∈ ruleAppsGo prev qs →
       xs.map Arg.concl = qs := by
     intro qs
     induction qs with
@@ -101,14 +101,14 @@ theorem ruleApps_align (r : Rul A) (prev : List (Arg A)) :
       simp only [List.mem_filter] at hxfilter
       obtain ⟨_, hconcl⟩ := hxfilter
       show (x :: ys).map Arg.concl = p :: ps
-      simp only [List.map_cons, hconcl, ih ys hys]
+      rw [List.map_cons, hconcl, ih ys hys]
   intro xs hx
   exact hgo r.premises xs hx
 
 /-- Elements of generated combinations come from `prev`. -/
-theorem ruleApps_prev (r : Rul A) (prev : List (Arg A)) :
+theorem ruleApps_prev {A : Type} (r : Rul A) (prev : List (Arg A)) :
     ∀ ps ∈ ruleApps r prev, ∀ x ∈ ps, x ∈ prev := by
-  have hgo : ∀ (qs : List A) (xs : List Arg), xs ∈ ruleAppsGo prev qs →
+  have hgo : ∀ (qs : List A) (xs : List (Arg A)), xs ∈ ruleAppsGo prev qs →
       ∀ x ∈ xs, x ∈ prev := by
     intro qs
     induction qs with
@@ -123,48 +123,46 @@ theorem ruleApps_prev (r : Rul A) (prev : List (Arg A)) :
       simp only [ruleAppsGo, List.mem_flatMap] at hx
       obtain ⟨y, hy, hrest⟩ := hx
       simp only [List.mem_map] at hrest
-      obtain ⟨ys, _, heq⟩ := hrest
+      obtain ⟨ys, hys, heq⟩ := hrest
       have hxs : xs = y :: ys := heq
       subst hxs
       simp only [List.mem_filter] at hy
       rcases List.mem_cons.mp hxmem with rfl | hxmem
       · exact hy.1
-      · exact ih ys (by rw [← heq]; exact hrest) x hxmem
+      · exact ih ys hys x hxmem
   intro xs hx x hxmem
   exact hgo r.premises xs hx x hxmem
 
 /-- Helper for completeness: aligned selections from `prev` are generated. -/
-theorem ruleApps_complete (r : Rul A) (prev : List (Arg A)) (ps : List (Arg A))
+theorem ruleApps_complete {A : Type} (r : Rul A) (prev : List (Arg A))
+    (ps : List (Arg A))
     (halign : ps.map Arg.concl = r.premises)
     (hprev : ∀ x ∈ ps, x ∈ prev) : ps ∈ ruleApps r prev := by
-  have hgo : ∀ (qs : List A) (xs : List Arg), xs.map Arg.concl = qs →
+  have hgo : ∀ (qs : List A) (xs : List (Arg A)), xs.map Arg.concl = qs →
       (∀ x ∈ xs, x ∈ prev) → xs ∈ ruleAppsGo prev qs := by
     intro qs
     induction qs with
     | nil =>
       intro xs hmap _
-      have hlen : xs.length = 0 := by
-        rw [← List.length_map Arg.concl xs, hmap]
-        simp
-      have hxs : xs = [] := List.length_eq_zero.mp hlen
-      subst hxs
-      simp [ruleAppsGo]
+      cases xs with
+      | nil => simp [ruleAppsGo]
+      | cons x xs' => simp at hmap
     | cons p ps' ih =>
       intro xs hmap hmem
       obtain ⟨x, xs', hxs⟩ : ∃ (x : Arg A) (xs' : List (Arg A)), xs = x :: xs' := by
         cases xs with
-        | nil =>
-          have : (0 : ℕ) = 1 := by
-            rw [← List.length_map Arg.concl xs, hmap]; simp
-          omega
+        | nil => exact absurd hmap (by simp)
         | cons x xs' => exact ⟨x, xs', rfl⟩
       subst hxs
-      simp only [List.map_cons] at hmap
-      have hx : Arg.concl x = p := congrArg List.head hmap
+      have hmapc : Arg.concl x :: xs'.map Arg.concl = p :: ps' := by
+        simpa using hmap
+      have hx : Arg.concl x = p := by
+        have hhead := congrArg List.head hmapc
+        simpa using hhead
       have hxs' : xs'.map Arg.concl = ps' := by
-        have := congrArg List.tail hmap
-        simpa using this
-      have hxmem : x ∈ prev := hmem x (List.mem_cons_self ..)
+        have htail := congrArg List.tail hmapc
+        simpa using htail
+      have hxmem : x ∈ prev := hmem x (by simp)
       have hxs'mem : ∀ y ∈ xs', y ∈ prev := fun y hy =>
         hmem y (List.mem_cons_of_mem _ hy)
       simp only [ruleApps, ruleAppsGo, List.mem_flatMap]
@@ -176,15 +174,16 @@ theorem ruleApps_complete (r : Rul A) (prev : List (Arg A)) (ps : List (Arg A))
   exact hgo r.premises ps halign hprev
 
 /-- Bounded enumeration. -/
-def Generate (facts : List A) (rules : List (Rul A)) : ℕ → List (Arg A)
+def Generate {A : Type} (facts : List A) (rules : List (Rul A)) : ℕ → List (Arg A)
   | 0 => facts.map Arg.leaf
   | d + 1 =>
     Generate facts rules d ++
-    rules.flatMap (fun r => (ruleApps r (Generate facts rules d)).map (fun ps => Arg.node r ps))
+    rules.flatMap (fun r => (ruleApps r (Generate facts rules d)).map
+      (fun ps => Arg.node r ps))
 
 /-- F06: generation is sound — every generated argument is well-formed with
 height at most the budget. -/
-theorem generate_sound (facts : List A) (rules : List (Rul A)) :
+theorem generate_sound {A : Type} (facts : List A) (rules : List (Rul A)) :
     ∀ d a, a ∈ Generate facts rules d → WellFormed facts a ∧ Arg.height a ≤ d := by
   intro d
   induction d with
@@ -221,7 +220,7 @@ theorem generate_sound (facts : List A) (rules : List (Rul A)) :
       omega
 
 /-- F07: generation is complete within the bound. -/
-theorem generate_complete (facts : List A) (rules : List (Rul A)) :
+theorem generate_complete {A : Type} (facts : List A) (rules : List (Rul A)) :
     ∀ d a, WellFormed facts a → Arg.height a ≤ d → a ∈ Generate facts rules d := by
   intro d
   induction d with

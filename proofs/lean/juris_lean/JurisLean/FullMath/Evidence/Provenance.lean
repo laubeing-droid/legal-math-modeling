@@ -58,16 +58,17 @@ theorem deps_complete (d : Deriv) :
     simp only [Deriv.subtrees, List.mem_cons] at ha
     rcases ha with heq | ha
     · exact absurd heq (by simp)
-    · simpa [Deriv.deps] using ih a ha
+    · show a ∈ Deriv.deps c
+      exact ih a ha
   | step2 r l r' k ihl ihr =>
     intro a ha
     simp only [Deriv.subtrees, List.mem_cons, List.mem_append] at ha
     rcases ha with heq | ha | ha
     · exact absurd heq (by simp)
-    · have := ihl a ha
-      simpa [Deriv.deps] using this
-    · have := ihr a ha
-      simpa [Deriv.deps] using this
+    · show a ∈ l.deps ++ r'.deps
+      exact List.mem_append.mpr (Or.inl (ihl a ha))
+    · show a ∈ l.deps ++ r'.deps
+      exact List.mem_append.mpr (Or.inr (ihr a ha))
 
 /-- A derivation is invalidated by retirement exactly when a recorded
 dependency is retired. -/
@@ -77,10 +78,13 @@ def invalidated (retired : List Assume) (d : Deriv) : Bool :=
 /-- F04(b): derivations with no retired dependency keep their computation. -/
 theorem unaffected_of_no_retired_dep (retired : List Assume) (d : Deriv)
     (h : ∀ a ∈ d.deps, a ∉ retired) : invalidated retired d = false := by
-  by_contra htrue
-  rw [invalidated, List.any_eq_true] at htrue
-  obtain ⟨a, ha, hdec⟩ := htrue
-  exact h a ha (of_decide_eq_true hdec)
+  unfold invalidated
+  cases hbool : (d.deps.any (fun a => decide (a ∈ retired))) with
+  | false => rw [hbool]
+  | true =>
+    rw [List.any_eq_true] at hbool
+    obtain ⟨a, ha, hdec⟩ := hbool
+    exact (h a ha (of_decide_eq_true hdec)).elim
 
 /-- F04(c): a used, retired source does invalidate the derivation. -/
 theorem invalidated_of_retired_used (retired : List Assume) (d : Deriv)

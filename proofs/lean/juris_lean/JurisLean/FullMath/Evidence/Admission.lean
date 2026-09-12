@@ -68,6 +68,7 @@ theorem nonempty_name_is_not_authority :
   refine ⟨"court", ?_, ?_⟩
   · decide
   · intro h
+    unfold AuthorityGranted at h
     exact absurd h (by decide)
 
 end JurisLean.FullMath.Evidence

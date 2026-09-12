@@ -46,7 +46,7 @@ def Preferred (af : AF A) (E : Finset A) : Prop :=
   Admissible af E ∧ ∀ E' : Finset A, E ⊂ E' → ¬ Admissible af E'
 
 /-- Boolean defender check: every attacker is counter-attacked by `E`. -/
-def defendedB (af : AF A) (E : Finset A) (a : A) : Bool :=
+noncomputable def defendedB (af : AF A) (E : Finset A) (a : A) : Bool :=
   (Finset.univ.filter (fun b => af.attack b a)).toList.all
     (fun b => ((Finset.univ.filter (fun c => af.attack c b)).toList.any
       (fun c => decide (c ∈ E))))
@@ -58,25 +58,28 @@ theorem defendedB_iff (af : AF A) (E : Finset A) (a : A) :
   · intro h b hb
     have h1 : b ∈ Finset.univ.filter (fun x => af.attack x a) := by
       simp only [Finset.mem_filter, Finset.mem_univ, hb, and_self]
-    have hall : ∀ x ∈ (Finset.univ.filter (fun x => af.attack x a)).toList,
-        (((Finset.univ.filter (fun c => af.attack c b)).toList.any
-          (fun c => decide (c ∈ E)))) = true := by
-      rw [defendedB] at h
-      simpa using List.all_eq_true.mp h
-    have h2 := hall b (by simp [h1])
+    have hall : ((Finset.univ.filter (fun x => af.attack x a)).toList.all
+        (fun b => ((Finset.univ.filter (fun c => af.attack c b)).toList.any
+          (fun c => decide (c ∈ E))))) = true := h
+    have h2 := (List.all_eq_true.mp hall) b (Finset.mem_toList.mpr h1)
     obtain ⟨c, hc2, hcE⟩ := List.any_eq_true.mp h2
-    simp only [Finset.mem_filter, Finset.mem_toList] at hc2
-    exact ⟨c, of_decide_eq_true hcE, hc2.2⟩
+    have hc2' : c ∈ Finset.univ.filter (fun x => af.attack x c) :=
+      Finset.mem_toList.mp hc2
+    simp only [Finset.mem_filter, Finset.mem_univ] at hc2'
+    exact ⟨c, of_decide_eq_true hcE, hc2'.2⟩
   · intro h
-    rw [defendedB, List.all_eq_true]
+    refine List.all_eq_true.mpr ?_
     intro b hb
-    simp only [List.mem_toList, Finset.mem_filter, Finset.mem_univ] at hb
-    obtain ⟨c, hcE, hcb⟩ := h b hb.2
+    have hb' : b ∈ Finset.univ.filter (fun x => af.attack x a) :=
+      Finset.mem_toList.mp hb
+    simp only [Finset.mem_filter, Finset.mem_univ] at hb'
+    obtain ⟨c, hcE, hcb⟩ := h b hb'.2
     refine List.any_eq_true.mpr ⟨c, ?_, decide_eq_true hcE⟩
-    simp only [List.mem_toList, Finset.mem_filter, Finset.mem_univ, hcb, and_self]
+    exact Finset.mem_toList.mpr (by
+      simp only [Finset.mem_filter, Finset.mem_univ, hcb, and_true])
 
 /-- Characteristic function as a Finset transform. -/
-def charF (af : AF A) (E : Finset A) : Finset A :=
+noncomputable def charF (af : AF A) (E : Finset A) : Finset A :=
   Finset.univ.filter (fun a => defendedB af E a)
 
 /-- charF is monotone. -/
@@ -110,15 +113,16 @@ theorem dung_admissible_step (af : AF A) {E : Finset A} (hE : Admissible af E) :
     Admissible af (charF af E) := by
   obtain ⟨hcf, hdef⟩ := hE
   constructor
-  · intro x hx y hy hxy
+  · intro x hx y hy
     simp only [charF, Finset.mem_filter] at hx hy
     obtain ⟨_, hxw⟩ := hx
     obtain ⟨_, hyw⟩ := hy
     have hx' : defends af E x := (defendedB_iff af E x).mp hxw
     have hy' : defends af E y := (defendedB_iff af E y).mp hyw
+    by_contra hxy
     obtain ⟨c, hcE, hcx⟩ := hy' x hxy
     obtain ⟨d, hdE, hdc⟩ := hx' c hcx
-    exact absurd (hcf d hdE c hcE hdc) (by simp)
+    exact absurd hdc (hcf d hdE c hcE)
   · intro a ha
     simp only [charF, Finset.mem_filter] at ha
     obtain ⟨_, haw⟩ := ha
@@ -127,7 +131,6 @@ theorem dung_admissible_step (af : AF A) {E : Finset A} (hE : Admissible af E) :
       intro c hcE
       simp only [charF, Finset.mem_filter]
       exact ⟨Finset.mem_univ c, (defendedB_iff af E c).mpr (hdef c hcE)⟩
-    refine ⟨Finset.mem_univ a, (defendedB_iff af (charF af E) a).mpr ?_⟩
     intro b hb
     obtain ⟨c, hcE, hcb⟩ := ha' b hb
     exact ⟨c, hsub c hcE, hcb⟩
@@ -160,7 +163,7 @@ theorem gIter_stabilizes (af : AF A) :
       have hc1 : (gIter af k).card ≤ (gIter af (k+1)).card := Finset.card_le_card hsub
       have hcardne : (gIter af k).card ≠ (gIter af (k+1)).card := by
         intro heq
-        exact hne (Finset.eq_of_subset_of_card_le hsub (le_of_eq heq))
+        exact hne (Finset.eq_of_subset_of_card_le hsub (le_of_eq heq.symm))
       have hcard : (gIter af k).card < (gIter af (k+1)).card := lt_of_le_of_ne hc1 hcardne
       have hih : k ≤ (gIter af k).card := ih hk
       omega

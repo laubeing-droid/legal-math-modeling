@@ -78,7 +78,6 @@ theorem edgeFuel_iff (con : Contrary A) (rc : RuleContra A) (a : Arg A) :
       exact ⟨fun h => Defeat.rebut a (.leaf c) h,
         fun h => by cases h with | rebut _ hclash => exact hclash⟩
     | node r ps =>
-      intro hb
       have hnode : Arg.height (.node r ps) = (ps.map Arg.height).foldr max 0 + 1 := by
         simp only [Arg.height]
       omega
@@ -99,10 +98,10 @@ theorem edgeFuel_iff (con : Contrary A) (rc : RuleContra A) (a : Arg A) :
         · exact Defeat.lift a r ps p hp ((ih p (child_height_le r ps p hp k hb)).mp h4)
       · intro h
         cases h with
-        | rebut _ _ hclash => exact Or.inl hclash
-        | undermine _ _ _ _ hp hclash =>
+        | rebut _ hclash => exact Or.inl hclash
+        | undermine _ _ _ hp hclash =>
           exact Or.inr (Or.inl (Or.inl ⟨p, hp, hclash⟩))
-        | undercut _ _ _ hclash => exact Or.inr (Or.inl (Or.inr hclash))
+        | undercut _ _ hclash => exact Or.inr (Or.inl (Or.inr hclash))
         | lift _ _ _ _ hp hd =>
           exact Or.inr (Or.inr
             ⟨p, hp, (ih p (child_height_le r ps p hp k hb)).mpr hd⟩)

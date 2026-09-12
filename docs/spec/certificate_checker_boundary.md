@@ -22,6 +22,6 @@ Runtime metadata can explain why an output is accepted, downgraded, blocked, or 
 
 ## Verified snapshot
 
-The Lean certificate modules, Python checker behavior, controlled mutation cases, certificate generation, independent verification, and final gate were exercised for subject `2a1d33df353a005dffc5d8b95faa591524e2636e` in [run 33946211096](../formal-release/FINAL_FORMAL_RELEASE_REPORT.md). That evidence is commit-bound and does not certify later changes.
+The Lean certificate modules, Python checker behavior, controlled mutation cases, certificate generation, independent verification, and final gate were exercised for subject `013aadbf289b6f331f625b2aeacdba591fae0a0b` in [run 34669383636](../formal-release/SEVEN_AXIS_LANDING_REPORT_20260911.md). That evidence is commit-bound and does not certify later changes.
 
 Checker acceptance never means legal correctness, source completeness, or full runtime proof.

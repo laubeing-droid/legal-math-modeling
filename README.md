@@ -4,20 +4,18 @@
 
 ## Verified snapshot
 
-The latest immutable full-release evidence described by this documentation is GitHub Actions run [33946211096](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/33946211096), attempt 1, for subject commit `2a1d33df353a005dffc5d8b95faa591524e2636e` and tree `c7525f767b43c7e8a663a4a9702f64cdea78b979`.
+The latest immutable full-release evidence described by this documentation is GitHub Actions run [34669383636](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/34669383636), attempt 1, for subject commit `013aadbf289b6f331f625b2aeacdba591fae0a0b` and tree `52add31192dbfd0e3c093bca5c2a6b754528e880`. See the [landing report](docs/formal-release/SEVEN_AXIS_LANDING_REPORT_20260911.md).
 
-That run completed 97 of 97 jobs successfully. Its content-level evidence records:
+That run completed the single-authority release pipeline with all gates green (the dispatch-only `changed-modules` feedback job skips on push by design). Its content-level evidence records:
 
-- 91 Lean source modules and 452 theorem declarations in the certificate inventory;
-- a clean build completing 2,993 jobs;
-- 145 ULM all-theorem axiom checks and 27 ULM core-composition checks, with only `propext`, `Classical.choice`, and `Quot.sound` reported;
-- 131 of 131 Python tests passing;
-- 46 of 46 controlled checker-input mutations killed;
-- 3 of 3 cross-repository runtime-refinement fixtures passing;
-- zero forbidden-claim hits;
-- certificate status `RELEASE_PASS_PENDING_INDEPENDENT_VERIFICATION`, verifier verdict `VERIFIED_PENDING_RELEASE_GATE`, and a successful final gate.
+- 94 Lean source files and 476 theorem declarations in the certificate inventory;
+- a clean build of all 121 project modules, with mathlib v4.30.0 precompiled artifacts from the official cloud cache;
+- the seven-axis audit recording 206 compiled declarations, with a compile-time root-type assertion over 18 required names, and only `propext`, `Classical.choice`, and `Quot.sound` reported across all recorded theorems (no `sorryAx`, no `native_decide`);
+- typed observation fixtures regenerated from actual parsed Python fixture bytes in the same run, diffed clean before compilation;
+- Python gates and three cross-repository runtime-refinement fixtures green in the same run;
+- certificate status `RELEASE_PASS_PENDING_INDEPENDENT_VERIFICATION`, verifier verdict `VERIFIED_PENDING_RELEASE_GATE` with no error codes, and a successful final gate.
 
-Those staged status strings are preserved exactly. The final-gate result closes that run's release pipeline; it does not certify later commits. GitHub artifact retention is finite, so the run URL is evidence location, not a permanent archive.
+This snapshot adds the seven-axis fixed-input business root and its typed observation language to the previously recorded numeric-root evidence; the earlier snapshot (run `33946211096`, recorded in [FINAL_FORMAL_RELEASE_REPORT.md](docs/formal-release/FINAL_FORMAL_RELEASE_REPORT.md)) remains the closed historical record for its own subject. The final-gate result closes that run's release pipeline; it does not certify later commits. GitHub artifact retention is finite, so the run URL is evidence location, not a permanent archive.
 
 ## What is modeled
 
@@ -27,6 +25,7 @@ The repository contains:
 - four deontic modalities: obligation, prohibition, permission, and constitutive;
 - bounded contract-breach, fact-admission, permission, priority, translation, certificate, and runtime-refinement contracts;
 - ULM01–ULM16 Lean theories and explicit axiom-audit entry points;
+- a seven-axis fixed-input business root binding complete typed observations of two actual files to the proved numeric root (`JurisLean.BusinessRoot.SevenAxis`);
 - Python checkers, release-certificate generators, controlled mutation fixtures, and cross-repository receipt verification;
 - a formula-bearing [paper corpus](paper/README.md).
 

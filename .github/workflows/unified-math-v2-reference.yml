@@ -71,7 +71,7 @@ jobs:
           sh /tmp/ulm-elan-init.sh -y --no-modify-path --default-toolchain leanprover/lean4:v4.30.0
           echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
       - name: Restore Lean build cache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: proofs/lean/juris_lean/.lake
           key: lean-seeds-${{ runner.os }}-v4.30.0-${{ github.run_id }}
@@ -96,7 +96,7 @@ jobs:
           python tools/ulm_consolidation/scripts/ci_receipt.py --report work/consolidated-lean/root-compiled.json --output work/consolidated-lean/root-compiled.json
       - name: Save Lean build cache
         if: always()
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: proofs/lean/juris_lean/.lake
           key: lean-seeds-${{ runner.os }}-v4.30.0-${{ github.run_id }}

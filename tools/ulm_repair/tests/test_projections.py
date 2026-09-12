@@ -97,25 +97,25 @@ def other(v):
 _s,_m=P.main_fixture();_r=P.solve(_s);_a=P.derive_analytics(_s,_r,_m)
 _j=P.parse_json(P.render_calculation_json(_s,_r,_m,_a))
 for idx,(path,value) in enumerate(leaves(_j)):
-    def test(self,path=path,value=value):
+    def make_test(self,path=path,value=value):
         obj=P.parse_json(self.raw[P.FILES[1]].decode());replace_at(obj,path,other(value))
         raw=dict(self.raw);raw[P.FILES[1]]=json.dumps(obj,ensure_ascii=False).encode()
         self.assertFalse(self.verdict(raw).accepted,msg=str(path))
-    test.__doc__='Reject JSON leaf mutation at '+str(path)
-    setattr(ProjectionTests,'test_json_leaf_'+str(idx).zfill(3),test)
+    make_test.__doc__='Reject JSON leaf mutation at '+str(path)
+    setattr(ProjectionTests,'test_json_leaf_'+str(idx).zfill(3),make_test)
 
 _context=json.loads(_s.context.canonical_json())
 for key,value in _context.items():
-    def test(self,key=key,value=value):
+    def make_test(self,key=key,value=value):
         lines=self.raw[P.FILES[0]].decode().splitlines()
         c=P.parse_json(lines[11].split('：',1)[1]);c[key]=other(value)
         lines[11]='共同语境：'+json.dumps(c,ensure_ascii=False)
         raw=dict(self.raw);raw[P.FILES[0]]=('\n'.join(lines)+'\n').encode()
         self.assertFalse(self.verdict(raw).accepted)
-    setattr(ProjectionTests,'test_doc_context_'+key,test)
+    setattr(ProjectionTests,'test_doc_context_'+key,make_test)
 
 for line_index in list(range(0,11))+[12]:
-    def test(self,line_index=line_index):
+    def make_test(self,line_index=line_index):
         lines=self.raw[P.FILES[0]].decode().splitlines()
         if line_index in (0,1):lines[line_index]+='修改'
         elif line_index in (8,9):lines[line_index]=lines[line_index].split('：')[0]+'：2099-01-01'
@@ -126,6 +126,6 @@ for line_index in list(range(0,11))+[12]:
             lines[line_index]=label+'：'+json.dumps(value,ensure_ascii=False)
         raw=dict(self.raw);raw[P.FILES[0]]=('\n'.join(lines)+'\n').encode()
         self.assertFalse(self.verdict(raw).accepted)
-    setattr(ProjectionTests,'test_doc_header_'+str(line_index),test)
+    setattr(ProjectionTests,'test_doc_header_'+str(line_index),make_test)
 
 if __name__=='__main__':unittest.main()

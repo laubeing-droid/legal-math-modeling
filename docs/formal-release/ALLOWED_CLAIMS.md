@@ -6,7 +6,7 @@ Claims are allowed only when their named evidence is present, content-valid, and
 |---|---|
 | A named Lean theorem elaborates | Successful CI build of its module at the cited commit |
 | A named theorem uses no custom domain axiom | Its axiom-audit entry reports only accepted Lean foundations or no axioms |
-| ULM01–ULM16 passed the documented release run | Module matrix, clean build, audits, certificate, verifier, and final gate for run 33946211096 |
+| ULM01–ULM16 and the seven-axis root passed the documented release run | Module matrix, clean build, audits, certificate, verifier, and final gate for run 34669383636 |
 | The Python suite passed | Full collection and full execution report for the cited commit |
 | The checker rejected the controlled mutations | Mutation report naming every mutation and recording 0 survivors/errors/skips |
 | Three runtime fixtures refined successfully | Receipts for `contract_breach`, `fact_admission`, and `unknown_timeout`, bound to both repository commits |

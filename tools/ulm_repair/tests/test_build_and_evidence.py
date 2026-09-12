@@ -106,9 +106,9 @@ class EvidenceTests(unittest.TestCase):
         with self.assertRaises(ValueError):E.verify_environment(line+'\n'+line)
 
 for key in E.IDENTITY_FIELDS:
-    def test(self,key=key):
+    def make_test(self,key=key):
         s=dict(self.s);s[key]+='-CHANGED'
         with self.assertRaises(ValueError):E.verify_receipt(self.r,self.receipt,s,'seven-axis')
-    setattr(EvidenceTests,'test_identity_'+key,test)
+    setattr(EvidenceTests,'test_identity_'+key,make_test)
 
 if __name__=='__main__':unittest.main()

@@ -16,4 +16,4 @@
 
 When the deciding artifact is missing, expired without preservation, stale, skipped, timed out, from a different subject, or internally inconsistent, the answer is `UNKNOWN` or BLOCKED. Explanatory documents cannot upgrade it.
 
-The current documented immutable snapshot is [GitHub Actions run 33946211096](../formal-release/FINAL_FORMAL_RELEASE_REPORT.md).
+The current documented immutable snapshot is [GitHub Actions run 34669383636](../formal-release/SEVEN_AXIS_LANDING_REPORT_20260911.md).

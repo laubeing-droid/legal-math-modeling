@@ -17,7 +17,7 @@ Python artifacts may be run locally according to their own README and dependency
 python scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean
 ```
 
-Lean, Elan, and Lake must not be installed or executed locally for this repository. Module elaboration, clean build, and axiom audits run only in GitHub Actions. The latest documented immutable CI result is [run 33946211096](../docs/formal-release/FINAL_FORMAL_RELEASE_REPORT.md).
+Lean, Elan, and Lake must not be installed or executed locally for this repository. Module elaboration, clean build, and axiom audits run only in GitHub Actions. The latest documented immutable CI result is [run 34669383636](../docs/formal-release/SEVEN_AXIS_LANDING_REPORT_20260911.md).
 
 ## Trust rule
 

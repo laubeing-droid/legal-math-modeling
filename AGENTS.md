@@ -27,7 +27,7 @@
 - Primary language: Lean 4.30.0 (Mathlib4 v4.30.0)
 - Secondary: Python 3.12 (refinement bridge, tests)
 - Counts and build status are never copied forward as timeless facts. Use the generated inventory and GitHub Actions artifacts for the exact subject commit.
-- Latest documented immutable snapshot: run `33946211096`, subject `2a1d33df353a005dffc5d8b95faa591524e2636e`; see `docs/formal-release/FINAL_FORMAL_RELEASE_REPORT.md`.
+- Latest documented immutable snapshot: run `34669383636`, subject `013aadbf289b6f331f625b2aeacdba591fae0a0b`; see `docs/formal-release/SEVEN_AXIS_LANDING_REPORT_20260911.md` (prior snapshot run `33946211096` remains recorded in `docs/formal-release/FINAL_FORMAL_RELEASE_REPORT.md`).
 
 ## Lean Execution Boundary
 
@@ -50,7 +50,7 @@
 
 Never maintain a hand-copied file count or exhaustive module list here. Generate the matrix from the checked-out tree with `python scripts/ci/changed_lean_modules.py --all`, then use the full-release certificate's source inventory for release claims.
 
-The latest documented immutable snapshot records 91 Lean source modules and 452 theorem declarations for subject `2a1d33df353a005dffc5d8b95faa591524e2636e`. Later commits do not inherit those counts or that PASS.
+The latest documented immutable snapshot records 94 Lean source files and 476 theorem declarations for subject `013aadbf289b6f331f625b2aeacdba591fae0a0b`. Later commits do not inherit those counts or that PASS.
 
 **Ghost files (DO NOT reference as existing):** `argmin_polytime.lean`, `HornCanonical.lean`, `ArgumentCompiler.lean`, `LegalModel.lean`
 

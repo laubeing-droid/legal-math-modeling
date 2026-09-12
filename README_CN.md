@@ -4,20 +4,18 @@
 
 ## 已验证快照
 
-本文档所指向的最新不可变 full-release 证据是 GitHub Actions [run 33946211096](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/33946211096)，attempt 1；subject commit 为 `2a1d33df353a005dffc5d8b95faa591524e2636e`，tree 为 `c7525f767b43c7e8a663a4a9702f64cdea78b979`。
+本文档所指向的最新不可变 full-release 证据是 GitHub Actions [run 34669383636](https://github.com/laubeing-droid/legal-math-modeling/actions/runs/34669383636)，attempt 1；subject commit 为 `013aadbf289b6f331f625b2aeacdba591fae0a0b`，tree 为 `52add31192dbfd0e3c093bca5c2a6b754528e880`。详见[落地报告](docs/formal-release/SEVEN_AXIS_LANDING_REPORT_20260911.md)。
 
-该 run 的 97 个 job 全部成功，内容级证据记录为：
+该 run 的单一权威发布管线全部门禁通过（仅 `changed-modules` 反馈 job 按设计在 push 时跳过），内容级证据记录为：
 
-- 证书清单含 91 个 Lean 源模块、452 个 theorem 声明；
-- clean build 完成 2,993 个构建任务；
-- ULM 全定理审计 145 项、核心组合审计 27 项，仅报告 `propext`、`Classical.choice`、`Quot.sound`；
-- Python 测试 131/131 通过；
-- 受控 checker 输入变异 46/46 被杀死；
-- 跨仓 runtime-refinement fixtures 3/3 通过；
-- forbidden claim 命中为 0；
-- 证书状态为 `RELEASE_PASS_PENDING_INDEPENDENT_VERIFICATION`，独立验证器 verdict 为 `VERIFIED_PENDING_RELEASE_GATE`，final gate 成功。
+- 证书清单含 94 个 Lean 源文件、476 个 theorem 声明；
+- 全部 121 个项目模块 clean 构建，mathlib v4.30.0 使用官方云缓存预编译产物；
+- seven-axis 审计记录 206 条编译声明，18 个必需名称经编译期根类型断言核验，全部记录定理仅报告 `propext`、`Classical.choice`、`Quot.sound`（无 `sorryAx`、无 `native_decide`）；
+- 类型化观察 fixture 在同次 run 中由实际解析的 Python fixture 字节再生，diff 为空后才编译；
+- Python 门禁与三个跨仓 runtime-refinement fixtures 同次通过；
+- 证书状态为 `RELEASE_PASS_PENDING_INDEPENDENT_VERIFICATION`，独立验证器 verdict 为 `VERIFIED_PENDING_RELEASE_GATE` 且无错误码，final gate 成功。
 
-这里原样保留证书管线的分阶段状态名。final gate 只闭合该 subject 的 release 管线，不自动覆盖后续 commit。GitHub artifact 有保留期限，run 页面是证据定位点，不是永久存档。
+本快照在既有数值根证据之上新增了 seven-axis 固定输入业务根及其类型化观察语言；更早的快照（run `33946211096`，见 [FINAL_FORMAL_RELEASE_REPORT.md](docs/formal-release/FINAL_FORMAL_RELEASE_REPORT.md)）仍作为其自身 subject 的已闭合历史记录保留。final gate 只闭合该 subject 的 release 管线，不自动覆盖后续 commit。GitHub artifact 有保留期限，run 页面是证据定位点，不是永久存档。
 
 ## 模型范围
 
@@ -27,6 +25,7 @@
 - 义务、禁止、许可、构成四种道义模态；
 - 合同违约、事实采纳、许可、优先级、翻译、证书与运行时 refinement 的有界契约；
 - ULM01–ULM16 Lean 理论及显式公理审计入口；
+- 将两份实际文件的完整类型化观察绑定到已证明数值根的 seven-axis 固定输入业务根（`JurisLean.BusinessRoot.SevenAxis`）；
 - Python checker、release 证书生成器、真实受控变异 fixtures 与跨仓 receipt 验证；
 - 含公式的[论文全集](paper/README.md)。
 

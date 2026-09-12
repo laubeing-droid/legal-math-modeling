@@ -30,7 +30,8 @@ No narrative document can upgrade `UNKNOWN`, `SKIP`, `TIMEOUT`, stale evidence, 
 
 | Path | Role | Evidence class |
 |---|---|---|
-| `formal-release/FINAL_FORMAL_RELEASE_REPORT.md` | Exact snapshot for run 33946211096 | Immutable-run report |
+| `formal-release/SEVEN_AXIS_LANDING_REPORT_20260911.md` | Exact snapshot for run 34669383636 (current head) | Immutable-run report |
+| `formal-release/FINAL_FORMAL_RELEASE_REPORT.md` | Exact snapshot for run 33946211096 (prior subject) | Immutable-run report |
 | `formal-release/FORMAL_RELEASE_REPORT.md` | Stable release pipeline and interpretation | Process contract |
 | `formal-release/CERTIFICATE_SCHEMA_V2.md` | Certificate fields and gate rule | Schema contract |
 | `formal-release/axiom_audit.md` | Permitted Lean foundation dependencies | Formal boundary |

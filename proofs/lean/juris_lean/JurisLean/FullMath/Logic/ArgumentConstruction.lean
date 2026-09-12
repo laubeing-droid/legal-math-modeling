@@ -230,6 +230,7 @@ theorem generate_complete {A : Type} [DecidableEq A] (facts : List A) (rules : L
     | node r cs =>
       have hheight : Arg.height (Arg.node r cs) = (cs.map Arg.height).foldr max 0 + 1 := by
         simp only [Arg.height]
+      omega
   | succ d ih =>
     intro a hw hh
     cases a with

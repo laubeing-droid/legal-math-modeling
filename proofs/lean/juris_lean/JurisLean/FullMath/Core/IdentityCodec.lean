@@ -104,6 +104,6 @@ def carries (claims : List InputClaim) (c : InputClaim) (i : CompId) : Prop :=
 /-- F02(e): a carried claim answers only for the identity it declared. -/
 theorem carries_binds_identity (claims : List InputClaim) (c : InputClaim) (i j : CompId)
     (h : carries claims c i) (hcarried : carries claims c j) : i = j :=
-  h.2.trans hcarried.2.symm
+  h.2.symm.trans hcarried.2
 
 end JurisLean.FullMath.Core

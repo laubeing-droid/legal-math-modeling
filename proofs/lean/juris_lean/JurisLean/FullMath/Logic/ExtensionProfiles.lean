@@ -18,7 +18,7 @@ section Extension
 variable {A : Type} [DecidableEq A] [Fintype A]
 
 /-- A finite abstract argumentation frame: a boolean attack relation. -/
-structure AF where
+structure AF (A : Type) where
   attack : A → A → Bool
 
 /-- Conflict-freeness. -/
@@ -241,8 +241,9 @@ private theorem nat_bounded_has_max (S : Set ℕ) (N : ℕ)
 theorem preferred_exists (af : AF A) : ∃ E, Preferred af E := by
   have hempty : Admissible af (∅ : Finset A) :=
     ⟨fun x hx => absurd hx (by simp), fun a ha => absurd ha (by simp)⟩
-  obtain ⟨k, ⟨E, hE, hkE⟩, hkmax⟩ :=
+  obtain ⟨k, hkS, hkmax⟩ :=
     nat_bounded_has_max {n | ∃ F : Finset A, Admissible af F ∧ F.card = n}
+  obtain ⟨E, hE, hkE⟩ := hkS
       (Finset.univ : Finset A).card
       ⟨0, ∅, hempty, rfl⟩
       (by

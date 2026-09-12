@@ -47,7 +47,7 @@ theorem exact_check_reflects (pred : A → Bool) (out : Finset A)
   ext a
   constructor
   · intro ha
-    exact hp a (Finset.mem_coe.mp ha)
+    exact (hp a).mp (Finset.mem_coe.mp ha)
   · intro ha
     exact Finset.mem_coe.mpr ((hp a).mpr ha)
 
@@ -92,8 +92,9 @@ theorem exact_claim_requires_no_undecided (chk : A → Option Bool)
   unfold classify at ha
   cases hchk : chk a with
   | none =>
-    rw [hchk] at ha
-    exact Option.noConfusion ((hagree a).symm.trans hchk)
+    have hAg := hagree a
+    rw [hchk] at hAg
+    exact Option.noConfusion hAg
   | some b =>
     rw [hchk] at ha
     cases b

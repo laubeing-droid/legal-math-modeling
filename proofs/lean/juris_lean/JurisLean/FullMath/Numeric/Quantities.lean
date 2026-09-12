@@ -67,25 +67,25 @@ theorem parts_unique (r c u : ℚ) (hc : 0 ≤ c) (hu : 0 ≤ u) (hcu : c * u = 
 
 /-! Payment allocation. -/
 
-/-- An allocation assigns each payment to obligations with amounts. -/
-def Allocation (Pay Obl : Type) := List (Pay × List (Obl × ℚ))
+/-- Allocation amounts per payment and obligation. -/
+abbrev AllocAmt (Pay Obl : Type) := Pay → Obl → ℚ
 
-/-- Per-payment totals stay within the payment amount and are nonnegative. -/
-def AllocationLegal (amt : Pay → ℚ) (a : Allocation Pay Obl) : Prop :=
-  ∀ p os h ∈ a, h.1 = p →
-    (∀ o v mem ∈ os, mem = (o, v) → 0 ≤ v) ∧ (os.map Prod.snd).sum ≤ amt p
+/-- Legality: nonnegative entries and per-payment totals within the payment
+amount — the same payment identifier cannot be spent twice over its amount. -/
+def AllocLegal {Pay Obl : Type} [Fintype Obl] (amt : Pay → ℚ) (f : AllocAmt Pay Obl) : Prop :=
+  (∀ p o, 0 ≤ f p o) ∧ (∀ p, (∑ o, f p o) ≤ amt p)
 
-/-- N01(e): allocating the same payment twice to obligations would exceed
-the payment amount — double-spend is excluded by legality. -/
-theorem no_double_spend (amt : Pay → ℚ) (a : Allocation Pay Obl)
-    (h : AllocationLegal amt a)
-    (p : Pay) (os1 os2 : List (Obl × ℚ))
-    (h1 : (p, os1) ∈ a) (h2 : (p, os2) ∈ a)
-    (hnz : 0 < (os1.map Prod.snd).sum) (hpos : 0 < (os2.map Prod.snd).sum) :
-    (os1.map Prod.snd).sum + (os2.map Prod.snd).sum ≤ amt p := by
-  obtain ⟨_, hs1⟩ := h p os1 (p, os1) h1 rfl
-  obtain ⟨_, hs2⟩ := h p os2 (p, os2) h2 rfl
-  linarith
+/-- N01(e): every payment's allocation total stays within the payment. -/
+theorem allocation_within_payment {Pay Obl : Type} [Fintype Obl]
+    (amt : Pay → ℚ) (f : AllocAmt Pay Obl) (h : AllocLegal amt f) (p : Pay) :
+    (∑ o, f p o) ≤ amt p := h.2 p
+
+/-- N01(e'): over all payments, total allocation stays within total paid-in
+amounts — the aggregated ledger does not create money. -/
+theorem allocation_total_bound {Pay : Type} [Fintype Pay] {Obl : Type} [Fintype Obl]
+    (amt : Pay → ℚ) (f : AllocAmt Pay Obl) (h : AllocLegal amt f) :
+    (∑ p, ∑ o, f p o) ≤ ∑ p, amt p :=
+  Finset.sum_le_sum (fun p _ => h.2 p)
 
 /-! Joint liability keeps external exposure bounded by the loss. -/
 
@@ -124,7 +124,7 @@ def succDay (y m d : ℕ) : (ℕ × ℕ × ℕ) := (y, m, d + 1)
 /-- N01(g): the ordinal is strictly monotone along same-month succession. -/
 theorem succDay_ordinal_mono (y m d : ℕ) (h : d + 1 ≤ monthLen y m) :
     dayOfYear y m (d + 1) = dayOfYear y m d + 1 := by
-  simp only [dayOfYear]
+  show beforeMonth y m + (d + 1) = beforeMonth y m + d + 1
   omega
 
 /-- Leap-year behaviour on the canonical boundary years is fully

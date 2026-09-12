@@ -32,6 +32,8 @@ def add (i j : Iv) : Iv where
 /-- N02(a): addition is sound. -/
 theorem add_sound (i j : Iv) (x y : ℚ) (hx : mem x i) (hy : mem y j) :
     mem (x + y) (add i j) := by
+  obtain ⟨hx1, hx2⟩ := hx
+  obtain ⟨hy1, hy2⟩ := hy
   constructor <;> linarith
 
 /-- Multiplication: the four-endpoint rule. -/
@@ -57,7 +59,7 @@ theorem fixed_y_bounds (i : Iv) (x y : ℚ) (hx : mem x i) :
     · calc x * y ≤ i.hi * y := mul_le_mul_of_nonneg_right hx.2 hyn
       _ ≤ max (i.lo * y) (i.hi * y) := le_max_right _ _
   · constructor
-    · have key : (-y) * i.hi ≤ (-y) * x := mul_le_mul_of_nonneg_left hx.2 (by linarith)
+    · have key : (-y) * x ≤ (-y) * i.hi := mul_le_mul_of_nonneg_left hx.2 (by linarith)
       ring_nf at key
       calc min (i.lo * y) (i.hi * y) ≤ i.hi * y := min_le_right _ _
       _ ≤ x * y := by linarith
@@ -145,6 +147,7 @@ theorem seen_span_not_global_bound :
     ¬ ∀ d ∈ [0, 20, 30, 100], Iv.mem d ⟨20, 30, by norm_num⟩ := by
   intro h
   have h0 := h 0 (by norm_num)
-  norm_num at h0
+  have h0' : (20 : ℚ) ≤ 0 ∧ (0 : ℚ) ≤ 30 := h0
+  norm_num at h0'
 
 end JurisLean.FullMath.Numeric

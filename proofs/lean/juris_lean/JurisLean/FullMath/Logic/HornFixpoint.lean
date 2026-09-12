@@ -24,14 +24,15 @@ theorem step_mono (R : Finset (Finset A × A)) (F : Finset A) {S T : Finset A}
   intro a ha
   have ha' : a ∈ F ∪ S ∪ (R.filter (fun r => r.1 ⊆ S)).image Prod.snd := ha
   rw [Finset.mem_union, Finset.mem_union] at ha'
-  rcases ha' with ha' | ha' | ha'
-  · exact Finset.mem_union.mpr (Or.inl ha')
-  · exact Finset.mem_union.mpr (Or.inr (Or.inl (h ha')))
-  · obtain ⟨r, hr, hsnd⟩ := Finset.mem_image.mp ha'
+  show a ∈ F ∪ T ∪ (R.filter (fun r => r.1 ⊆ T)).image Prod.snd
+  rw [Finset.mem_union, Finset.mem_union]
+  rcases ha' with (ha1 | ha2) | ha3
+  · exact Or.inl (Or.inl ha1)
+  · exact Or.inl (Or.inr (h ha2))
+  · refine Or.inr ?_
+    obtain ⟨r, hr, hsnd⟩ := Finset.mem_image.mp ha3
     obtain ⟨hrR, hrS⟩ := Finset.mem_filter.mp hr
-    have hmem : a ∈ (R.filter (fun r => r.1 ⊆ T)).image Prod.snd :=
-      Finset.mem_image.mpr ⟨r, Finset.mem_filter.mpr ⟨hrR, fun hb => h hb⟩, hsnd⟩
-    exact Finset.mem_union.mpr (Or.inr (Or.inr hmem))
+    exact Finset.mem_image.mpr ⟨r, Finset.mem_filter.mpr ⟨hrR, fun hb => h hb⟩, hsnd⟩
 
 /-- Iterated closure from the empty set. -/
 def cl (R : Finset (Finset A × A)) (F : Finset A) : ℕ → Finset A :=

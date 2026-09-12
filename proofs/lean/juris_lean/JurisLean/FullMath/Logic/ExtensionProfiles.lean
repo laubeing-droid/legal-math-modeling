@@ -45,11 +45,11 @@ def Stable (af : AF A) (E : Finset A) : Prop :=
 def Preferred (af : AF A) (E : Finset A) : Prop :=
   Admissible af E ∧ ∀ E' : Finset A, E ⊂ E' → ¬ Admissible af E'
 
-/-- Boolean defender check. -/
+/-- Boolean defender check: every attacker is counter-attacked by `E`. -/
 def defendedB (af : AF A) (E : Finset A) (a : A) : Bool :=
-  (Finset.univ.filter (fun b => af.attack b a)).all
-    (fun b => (Finset.univ.filter (fun c => af.attack c b)).any
-      (fun c => decide (c ∈ E)))
+  (Finset.univ.filter (fun b => af.attack b a)).toList.all
+    (fun b => ((Finset.univ.filter (fun c => af.attack c b)).toList.any
+      (fun c => decide (c ∈ E))))
 
 /-- Reflection: the boolean defender check mirrors the definition. -/
 theorem defendedB_iff (af : AF A) (E : Finset A) (a : A) :
@@ -58,20 +58,22 @@ theorem defendedB_iff (af : AF A) (E : Finset A) (a : A) :
   · intro h b hb
     have h1 : b ∈ Finset.univ.filter (fun x => af.attack x a) := by
       simp only [Finset.mem_filter, Finset.mem_univ, hb, and_self]
-    rw [defendedB, Finset.all_eq_true] at h
-    have h2 := h b h1
-    rw [Finset.any_eq_true] at h2
-    obtain ⟨c, hc2, hcE⟩ := h2
-    simp only [Finset.mem_filter, Finset.mem_univ] at hc2
+    have hall : ∀ x ∈ (Finset.univ.filter (fun x => af.attack x a)).toList,
+        (((Finset.univ.filter (fun c => af.attack c b)).toList.any
+          (fun c => decide (c ∈ E)))) = true := by
+      rw [defendedB] at h
+      simpa using List.all_eq_true.mp h
+    have h2 := hall b (by simp [h1])
+    obtain ⟨c, hc2, hcE⟩ := List.any_eq_true.mp h2
+    simp only [Finset.mem_filter, Finset.mem_toList] at hc2
     exact ⟨c, of_decide_eq_true hcE, hc2.2⟩
   · intro h
-    rw [defendedB, Finset.all_eq_true]
+    rw [defendedB, List.all_eq_true]
     intro b hb
-    simp only [Finset.mem_filter, Finset.mem_univ] at hb
+    simp only [List.mem_toList, Finset.mem_filter, Finset.mem_univ] at hb
     obtain ⟨c, hcE, hcb⟩ := h b hb.2
-    rw [Finset.any_eq_true]
-    refine ⟨c, ?_, decide_eq_true hcE⟩
-    simp only [Finset.mem_filter, Finset.mem_univ, hcb, and_self]
+    refine List.any_eq_true.mpr ⟨c, ?_, decide_eq_true hcE⟩
+    simp only [List.mem_toList, Finset.mem_filter, Finset.mem_univ, hcb, and_self]
 
 /-- Characteristic function as a Finset transform. -/
 def charF (af : AF A) (E : Finset A) : Finset A :=
@@ -83,10 +85,10 @@ theorem charF_mono (af : AF A) {E F : Finset A} (h : E ⊆ F) :
   intro a ha
   simp only [charF, Finset.mem_filter] at ha ⊢
   obtain ⟨_, hd⟩ := ha
-  refine ⟨Finset.mem_univ a, ?_⟩
-  rw [defendedB_iff] at hd ⊢
+  have hd' : defends af E a := (defendedB_iff af E a).mp hd
+  refine ⟨Finset.mem_univ a, (defendedB_iff af F a).mpr ?_⟩
   intro b hb
-  obtain ⟨c, hcE, hcb⟩ := hd b hb
+  obtain ⟨c, hcE, hcb⟩ := hd' b hb
   exact ⟨c, h hcE, hcb⟩
 
 /-- Iterates of charF from ∅. -/
@@ -110,19 +112,24 @@ theorem dung_admissible_step (af : AF A) {E : Finset A} (hE : Admissible af E) :
   constructor
   · intro x hx y hy hxy
     simp only [charF, Finset.mem_filter] at hx hy
-    rw [defendedB_iff] at hx hy
-    obtain ⟨c, hcE, hcx⟩ := hy.2 x hxy
-    obtain ⟨d, hdE, hdc⟩ := hx.2 c hcx
+    obtain ⟨_, hxw⟩ := hx
+    obtain ⟨_, hyw⟩ := hy
+    have hx' : defends af E x := (defendedB_iff af E x).mp hxw
+    have hy' : defends af E y := (defendedB_iff af E y).mp hyw
+    obtain ⟨c, hcE, hcx⟩ := hy' x hxy
+    obtain ⟨d, hdE, hdc⟩ := hx' c hcx
     exact absurd (hcf d hdE c hcE hdc) (by simp)
   · intro a ha
     simp only [charF, Finset.mem_filter] at ha
-    rw [defendedB_iff] at ha ⊢
+    obtain ⟨_, haw⟩ := ha
+    have ha' : defends af E a := (defendedB_iff af E a).mp haw
     have hsub : E ⊆ charF af E := by
       intro c hcE
       simp only [charF, Finset.mem_filter]
       exact ⟨Finset.mem_univ c, (defendedB_iff af E c).mpr (hdef c hcE)⟩
+    refine ⟨Finset.mem_univ a, (defendedB_iff af (charF af E) a).mpr ?_⟩
     intro b hb
-    obtain ⟨c, hcE, hcb⟩ := ha b hb
+    obtain ⟨c, hcE, hcb⟩ := ha' b hb
     exact ⟨c, hsub c hcE, hcb⟩
 
 /-- Each grounded iterate is admissible. -/
@@ -130,8 +137,8 @@ theorem gIter_admissible (af : AF A) : ∀ n, Admissible af (gIter af n) := by
   intro n
   induction n with
   | zero =>
-    exact ⟨fun x hx => absurd hx (Finset.not_mem_empty x),
-      fun a ha => absurd ha (Finset.not_mem_empty a)⟩
+    exact ⟨fun x hx => absurd hx (by simp [gIter_zero]),
+      fun a ha => absurd ha (by simp [gIter_zero])⟩
   | succ n ih =>
     rw [gIter_succ]
     exact dung_admissible_step af ih

@@ -94,7 +94,7 @@ theorem exact_claim_requires_no_undecided (chk : A → Option Bool)
   | none =>
     have hAg := hagree a
     rw [hchk] at hAg
-    exact Option.noConfusion hAg
+    exact absurd hAg (by simp)
   | some b =>
     rw [hchk] at ha
     cases b

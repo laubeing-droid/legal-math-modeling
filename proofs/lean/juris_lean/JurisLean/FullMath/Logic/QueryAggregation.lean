@@ -79,9 +79,9 @@ theorem three_ring_no_stable : ∀ E : Finset (Fin 3), ¬ Stable threeRing E := 
   have hatt20 : threeRing.attack 2 0 = true := by decide
   by_cases h0 : (0 : Fin 3) ∈ E
   · by_cases h1 : (1 : Fin 3) ∈ E
-    · exact absurd (hcf 0 h0 1 h1 hatt01) (by simp)
+    · exact absurd hatt01 (hcf 0 h0 1 h1)
     · by_cases h2 : (2 : Fin 3) ∈ E
-      · exact absurd (hcf 2 h2 0 h0 hatt20) (by simp)
+      · exact absurd hatt20 (hcf 2 h2 0 h0)
       · -- E = {0}: element 2 is outside and its only attacker is 1 ∉ E
         obtain ⟨x, hxE, hx2⟩ := hcover 2 h2
         have hx1 : x = 1 := by

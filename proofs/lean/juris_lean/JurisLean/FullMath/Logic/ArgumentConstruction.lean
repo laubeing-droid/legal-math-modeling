@@ -70,7 +70,7 @@ theorem foldr_max_le_of_forall (l : List ℕ) (k : ℕ) (h : ∀ x ∈ l, x ≤ 
 def ruleAppsGo {A : Type} (prev : List (Arg A)) : List A → List (List (Arg A))
   | [] => [[]]
   | p :: ps =>
-    (prev.filter (fun a => Arg.concl a = p)).flatMap
+    (prev.filter (fun a => decide (Arg.concl a = p))).flatMap
       (fun x => (ruleAppsGo prev ps).map (fun xs => x :: xs))
 
 /-- All combinations of children satisfying the premises of `r`. -/
@@ -96,12 +96,12 @@ theorem ruleApps_align {A : Type} (r : Rul A) (prev : List (Arg A)) :
       obtain ⟨x, hxfilter, hrest⟩ := hx
       simp only [List.mem_map] at hrest
       obtain ⟨ys, hys, heq⟩ := hrest
-      have hxs : xs = x :: ys := heq
-      subst hxs
+      subst heq
       simp only [List.mem_filter] at hxfilter
       obtain ⟨_, hconcl⟩ := hxfilter
+      have hxeq : Arg.concl x = p := of_decide_eq_true hconcl
       show (x :: ys).map Arg.concl = p :: ps
-      rw [List.map_cons, hconcl, ih ys hys]
+      rw [List.map_cons, hxeq, ih ys hys]
   intro xs hx
   exact hgo r.premises xs hx
 
@@ -124,8 +124,7 @@ theorem ruleApps_prev {A : Type} (r : Rul A) (prev : List (Arg A)) :
       obtain ⟨y, hy, hrest⟩ := hx
       simp only [List.mem_map] at hrest
       obtain ⟨ys, hys, heq⟩ := hrest
-      have hxs : xs = y :: ys := heq
-      subst hxs
+      subst heq
       simp only [List.mem_filter] at hy
       rcases List.mem_cons.mp hxmem with rfl | hxmem
       · exact hy.1
@@ -156,19 +155,14 @@ theorem ruleApps_complete {A : Type} (r : Rul A) (prev : List (Arg A))
       subst hxs
       have hmapc : Arg.concl x :: xs'.map Arg.concl = p :: ps' := by
         simpa using hmap
-      have hx : Arg.concl x = p := by
-        have hhead := congrArg List.head hmapc
-        simpa using hhead
-      have hxs' : xs'.map Arg.concl = ps' := by
-        have htail := congrArg List.tail hmapc
-        simpa using htail
+      obtain ⟨hx, hxs'⟩ := List.cons.inj hmapc
       have hxmem : x ∈ prev := hmem x (by simp)
       have hxs'mem : ∀ y ∈ xs', y ∈ prev := fun y hy =>
         hmem y (List.mem_cons_of_mem _ hy)
       simp only [ruleApps, ruleAppsGo, List.mem_flatMap]
       refine ⟨x, ?_, ?_⟩
-      · simp only [List.mem_filter, hx, and_true]
-        exact hxmem
+      · simp only [List.mem_filter]
+        exact ⟨hxmem, decide_eq_true hx⟩
       · simp only [List.mem_map]
         exact ⟨xs', ih xs' hxs' hxs'mem, rfl⟩
   exact hgo r.premises ps halign hprev
@@ -209,7 +203,10 @@ theorem generate_sound {A : Type} (facts : List A) (rules : List (Rul A)) :
       have halign : ps.map Arg.concl = r.premises := ruleApps_align r _ ps hps
       have hprev : ∀ p ∈ ps, p ∈ Generate facts rules d := fun p hp =>
         ruleApps_prev r _ ps hps p hp
-      refine ⟨⟨halign, fun p hp => (ih p (hprev p hp)).1⟩, ?_⟩
+      have hwf : WellFormed facts (Arg.node r ps) := by
+        show ps.map Arg.concl = r.premises ∧ ∀ p ∈ ps, WellFormed facts p
+        exact ⟨halign, fun p hp => (ih p (hprev p hp)).1⟩
+      refine ⟨hwf, ?_⟩
       have hfold : (ps.map Arg.height).foldr max 0 ≤ d :=
         foldr_max_le_of_forall _ d (by
           intro h hh
@@ -240,7 +237,8 @@ theorem generate_complete {A : Type} (facts : List A) (rules : List (Rul A)) :
       simp only [Generate, List.mem_append]
       exact Or.inl (ih _ hw hh)
     | node r cs =>
-      obtain ⟨halign, hwf⟩ := hw
+      have hw' : cs.map Arg.concl = r.premises ∧ ∀ p ∈ cs, WellFormed facts p := hw
+      obtain ⟨halign, hwf⟩ := hw'
       have hheight : Arg.height (Arg.node r cs) = (cs.map Arg.height).foldr max 0 + 1 := rfl
       have hchild : ∀ p ∈ cs, Arg.height p ≤ d := by
         intro p hp

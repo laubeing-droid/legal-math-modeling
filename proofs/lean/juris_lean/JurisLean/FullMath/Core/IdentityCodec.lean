@@ -9,21 +9,6 @@ equality; hash values only locate records, they never identify them.
 
 namespace JurisLean.FullMath.Core
 
-/-- Domain coding used by the structured codec. -/
-def Domain.code : Domain → String
-  | .civil => "C"
-  | .criminal => "R"
-  | .administrative => "A"
-
-def codeDomain : String → Option Domain
-  | "C" => some .civil
-  | "R" => some .criminal
-  | "A" => some .administrative
-  | _ => none
-
-theorem codeDomain_code (d : Domain) : codeDomain d.code = some d := by
-  cases d <;> rfl
-
 /-- Structured component identity: scope (domain/issue/stage/version), model,
 scenario and semantic scope. -/
 structure CompId where
@@ -50,7 +35,7 @@ def CompId.decode : List String → Option CompId
 /-- F02(a): the codec is roundtrip-lossless for every supported value. -/
 theorem CompId.decode_encode (c : CompId) : CompId.decode c.encode = some c := by
   rcases c with ⟨d, i, st, v, m, sc, ss⟩
-  cases d <;> rfl
+  cases d <;> simp [CompId.encode, CompId.decode, Domain.code]
 
 /-- F02(b): roundtrip losslessness implies encoding injectivity (`congrArg decode`). -/
 theorem CompId.encode_injective (a b : CompId) (h : a.encode = b.encode) : a = b := by

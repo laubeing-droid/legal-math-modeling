@@ -80,7 +80,7 @@ theorem unaffected_of_no_retired_dep (retired : List Assume) (d : Deriv)
     (h : ∀ a ∈ d.deps, a ∉ retired) : invalidated retired d = false := by
   unfold invalidated
   cases hbool : (d.deps.any (fun a => decide (a ∈ retired))) with
-  | false => rw [hbool]
+  | false => rfl
   | true =>
     rw [List.any_eq_true] at hbool
     obtain ⟨a, ha, hdec⟩ := hbool

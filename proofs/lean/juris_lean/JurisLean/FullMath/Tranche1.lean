@@ -7,3 +7,6 @@ import JurisLean.FullMath.Evidence.Withdrawal
 import JurisLean.FullMath.Logic.ArgumentConstruction
 import JurisLean.FullMath.Logic.ArgumentIdentity
 import JurisLean.FullMath.Logic.AttackCompilation
+import JurisLean.FullMath.Logic.ExtensionProfiles
+import JurisLean.FullMath.Logic.QueryAggregation
+import JurisLean.FullMath.Representation.FiniteCertificates

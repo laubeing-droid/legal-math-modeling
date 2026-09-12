@@ -42,6 +42,21 @@ structure Quantity where
   unit : String
   value : ℚ
 
+/-- Domain coding used by the structured identity codec. -/
+def Domain.code : Domain → String
+  | .civil => "C"
+  | .criminal => "R"
+  | .administrative => "A"
+
+def codeDomain : String → Option Domain
+  | "C" => some .civil
+  | "R" => some .criminal
+  | "A" => some .administrative
+  | _ => none
+
+theorem codeDomain_code (d : Domain) : codeDomain d.code = some d := by
+  cases d <;> rfl
+
 /-- Generic rational helper: nonnegative reciprocal bound. -/
 theorem rat_nonneg_of_both_nonneg {a b : ℚ} (ha : 0 ≤ a) (hb : 0 ≤ b) : 0 ≤ a * b :=
   mul_nonneg ha hb

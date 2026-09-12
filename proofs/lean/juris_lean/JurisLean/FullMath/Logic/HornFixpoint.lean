@@ -21,12 +21,16 @@ def step (R : Finset (Finset A × A)) (F S : Finset A) : Finset A :=
 /-- T is monotone in the current set. -/
 theorem step_mono (R : Finset (Finset A × A)) (F : Finset A) {S T : Finset A}
     (h : S ⊆ T) : step R F S ⊆ step R F T := by
-  unfold step
-  refine Finset.union_subset (Finset.union_subset Finset.Subset.rfl h) ?_
   intro a ha
-  obtain ⟨r, hr, hsnd⟩ := Finset.mem_image.mp ha
-  obtain ⟨hrR, hrS⟩ := Finset.mem_filter.mp hr
-  exact Finset.mem_image.mpr ⟨r, Finset.mem_filter.mpr ⟨hrR, fun hb => h hb⟩, hsnd⟩
+  have ha' : a ∈ F ∪ S ∪ (R.filter (fun r => r.1 ⊆ S)).image Prod.snd := ha
+  rw [Finset.mem_union, Finset.mem_union] at ha'
+  rcases ha' with ha' | ha' | ha'
+  · exact Finset.mem_union.mpr (Or.inl ha')
+  · exact Finset.mem_union.mpr (Or.inr (Or.inl (h ha')))
+  · obtain ⟨r, hr, hsnd⟩ := Finset.mem_image.mp ha'
+    obtain ⟨hrR, hrS⟩ := Finset.mem_filter.mp hr
+    exact Finset.mem_union.mpr (Or.inr (Or.inr
+      (Finset.mem_image.mpr ⟨r, Finset.mem_filter.mpr ⟨hrR, fun hb => h hb⟩, hsnd⟩))))
 
 /-- Iterated closure from the empty set. -/
 def cl (R : Finset (Finset A × A)) (F : Finset A) : ℕ → Finset A :=
@@ -88,7 +92,8 @@ theorem strict_growth_bound (R : Finset (Finset A × A)) (F : Finset A) (N : ℕ
     have hc1 : (cl R F k).card ≤ (cl R F (k+1)).card := Finset.card_le_card hsub
     have hcardne : (cl R F k).card ≠ (cl R F (k+1)).card := by
       intro heq
-      have hEq : cl R F k = cl R F (k+1) := Finset.eq_of_subset_of_card_le hsub hc1
+      have hEq : cl R F k = cl R F (k+1) :=
+        Finset.eq_of_subset_of_card_le hsub (le_of_eq heq.symm)
       exact hne hEq
     have hcard : (cl R F k).card < (cl R F (k+1)).card := lt_of_le_of_ne hc1 hcardne
     have hih : k ≤ (cl R F k).card := ih (by omega)

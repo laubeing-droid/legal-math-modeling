@@ -188,7 +188,7 @@ theorem generate_sound {A : Type} [DecidableEq A] (facts : List A) (rules : List
     have ha' : a = Arg.leaf c := heq.symm
     subst ha'
     simp only [WellFormed]
-    exact ⟨hc, Nat.le_refl _⟩
+    exact ⟨hc, by simp only [Arg.height]⟩
   | succ d ih =>
     intro a ha
     simp only [Generate, List.mem_append] at ha
@@ -212,7 +212,8 @@ theorem generate_sound {A : Type} [DecidableEq A] (facts : List A) (rules : List
           simp only [List.mem_map] at hh
           obtain ⟨p, hp, heq⟩ := hh
           exact heq ▸ (ih p (hprev p hp)).2)
-      have hheight : Arg.height (Arg.node r ps) = (ps.map Arg.height).foldr max 0 + 1 := rfl
+      have hheight : Arg.height (Arg.node r ps) = (ps.map Arg.height).foldr max 0 + 1 := by
+        simp only [Arg.height]
       omega
 
 /-- F07: generation is complete within the bound. -/
@@ -225,9 +226,10 @@ theorem generate_complete {A : Type} [DecidableEq A] (facts : List A) (rules : L
     cases a with
     | leaf c =>
       simp only [Generate, List.mem_map]
-      exact ⟨c, hw, rfl⟩
+      exact ⟨c, show c ∈ facts from hw, rfl⟩
     | node r cs =>
-      have hheight : Arg.height (Arg.node r cs) = (cs.map Arg.height).foldr max 0 + 1 := rfl
+      have hheight : Arg.height (Arg.node r cs) = (cs.map Arg.height).foldr max 0 + 1 := by
+      simp only [Arg.height]
       omega
   | succ d ih =>
     intro a hw hh
@@ -238,7 +240,8 @@ theorem generate_complete {A : Type} [DecidableEq A] (facts : List A) (rules : L
     | node r cs =>
       simp only [WellFormed] at hw
       obtain ⟨halign, hwf⟩ := hw
-      have hheight : Arg.height (Arg.node r cs) = (cs.map Arg.height).foldr max 0 + 1 := rfl
+      have hheight : Arg.height (Arg.node r cs) = (cs.map Arg.height).foldr max 0 + 1 := by
+      simp only [Arg.height]
       have hchild : ∀ p ∈ cs, Arg.height p ≤ d := by
         intro p hp
         have hle : Arg.height p ≤ (cs.map Arg.height).foldr max 0 :=

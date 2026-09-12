@@ -261,13 +261,13 @@ theorem preferred_exists (af : AF A) : ∃ E, Preferred af E := by
   have hempty : Admissible af (∅ : Finset A) :=
     ⟨fun x hx => absurd hx (by simp), fun a ha => absurd ha (by simp)⟩
   obtain ⟨k, hkS, hkmax⟩ :=
-    nat_bounded_has_max {n | ∃ F : Finset A, Admissible af F ∧ F.card = n}
-  obtain ⟨E, hE, hkE⟩ := hkS
-      (Finset.univ : Finset A).card
-      ⟨0, ∅, hempty, rfl⟩
+    nat_bounded_has_max (S := {n | ∃ F : Finset A, Admissible af F ∧ F.card = n})
+      (hne := ⟨0, ∅, hempty, rfl⟩)
+      ((Finset.univ : Finset A).card)
       (by
         rintro n ⟨F, hF, rfl⟩
         exact Finset.card_le_card (Finset.subset_univ F))
+  obtain ⟨E, hE, hkE⟩ := hkS
   refine ⟨E, hE, ?_⟩
   intro F hF hFadm
   have hcard : E.card < F.card := Finset.card_lt_card hF
@@ -278,8 +278,17 @@ theorem preferred_exists (af : AF A) : ∃ E, Preferred af E := by
 /-- F10(e): grounded membership reflects defence by the grounded set itself. -/
 theorem grounded_membership (af : AF A) (a : A) :
     a ∈ grounded af ↔ defends af (grounded af) a := by
-  rw [← grounded_fixpoint af, charF, Finset.mem_filter, defendedB_iff]
-  exact and_iff_right (Finset.mem_univ a)
+  constructor
+  · intro ha
+    have h1 : a ∈ charF af (grounded af) := by rw [grounded_fixpoint af]; exact ha
+    have h2 : a ∈ Finset.univ ∧ defendedB af (grounded af) a = true := by
+      simpa only [charF, Finset.mem_filter] using h1
+    exact (defendedB_iff af (grounded af) a).mp h2.2
+  · intro hd
+    have h1 : a ∈ charF af (grounded af) :=
+      Finset.mem_filter.mpr ⟨Finset.mem_univ a, (defendedB_iff af (grounded af) a).mpr hd⟩
+    rw [grounded_fixpoint af] at h1
+    exact h1
 
 end Extension
 

@@ -63,7 +63,7 @@ theorem defendedB_iff (af : AF A) (E : Finset A) (a : A) :
           (fun c => decide (c ∈ E))))) = true := h
     have h2 := (List.all_eq_true.mp hall) b (Finset.mem_toList.mpr h1)
     obtain ⟨c, hc2, hcE⟩ := List.any_eq_true.mp h2
-    have hc2' : c ∈ Finset.univ.filter (fun x => af.attack x c) :=
+    have hc2' : c ∈ Finset.univ.filter (fun x => af.attack x b) :=
       Finset.mem_toList.mp hc2
     simp only [Finset.mem_filter, Finset.mem_univ] at hc2'
     exact ⟨c, of_decide_eq_true hcE, hc2'.2⟩
@@ -95,7 +95,7 @@ theorem charF_mono (af : AF A) {E F : Finset A} (h : E ⊆ F) :
   exact ⟨c, h hcE, hcb⟩
 
 /-- Iterates of charF from ∅. -/
-def gIter (af : AF A) (n : ℕ) : Finset A := (charF af)^[n] ∅
+noncomputable def gIter (af : AF A) (n : ℕ) : Finset A := (charF af)^[n] ∅
 
 theorem gIter_zero (af : AF A) : gIter af 0 = ∅ := rfl
 
@@ -119,10 +119,12 @@ theorem dung_admissible_step (af : AF A) {E : Finset A} (hE : Admissible af E) :
     obtain ⟨_, hyw⟩ := hy
     have hx' : defends af E x := (defendedB_iff af E x).mp hxw
     have hy' : defends af E y := (defendedB_iff af E y).mp hyw
-    by_contra hxy
-    obtain ⟨c, hcE, hcx⟩ := hy' x hxy
-    obtain ⟨d, hdE, hdc⟩ := hx' c hcx
-    exact absurd hdc (hcf d hdE c hcE)
+    cases hxy : af.attack x y with
+    | false => exact hxy
+    | true =>
+      obtain ⟨c, hcE, hcx⟩ := hy' x hxy
+      obtain ⟨d, hdE, hdc⟩ := hx' c hcx
+      exact absurd hdc (hcf d hdE c hcE)
   · intro a ha
     simp only [charF, Finset.mem_filter] at ha
     obtain ⟨_, haw⟩ := ha
@@ -133,7 +135,7 @@ theorem dung_admissible_step (af : AF A) {E : Finset A} (hE : Admissible af E) :
       exact ⟨Finset.mem_univ c, (defendedB_iff af E c).mpr (hdef c hcE)⟩
     intro b hb
     obtain ⟨c, hcE, hcb⟩ := ha' b hb
-    exact ⟨c, hsub c hcE, hcb⟩
+    exact ⟨c, hsub hcE, hcb⟩
 
 /-- Each grounded iterate is admissible. -/
 theorem gIter_admissible (af : AF A) : ∀ n, Admissible af (gIter af n) := by
@@ -163,7 +165,10 @@ theorem gIter_stabilizes (af : AF A) :
       have hc1 : (gIter af k).card ≤ (gIter af (k+1)).card := Finset.card_le_card hsub
       have hcardne : (gIter af k).card ≠ (gIter af (k+1)).card := by
         intro heq
-        exact hne (Finset.eq_of_subset_of_card_le hsub (le_of_eq heq.symm))
+        have hEq : gIter af k = gIter af (k + 1) := by
+          apply Finset.eq_of_subset_of_card_le hsub
+          exact le_of_eq heq.symm
+        exact hne hEq
       have hcard : (gIter af k).card < (gIter af (k+1)).card := lt_of_le_of_ne hc1 hcardne
       have hih : k ≤ (gIter af k).card := ih hk
       omega

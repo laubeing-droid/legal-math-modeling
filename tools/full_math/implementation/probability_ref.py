@@ -117,20 +117,35 @@ def pav_weights(y: Sequence[Fraction], w: Sequence[Fraction]) -> List[Fraction]:
 
 
 def pav_kkt_certificate(y: Sequence[Fraction], w: Sequence[Fraction]) -> Optional[dict]:
+    """Independent optimality certificate: `x` is nondecreasing, constant on
+    blocks, each block value is the weighted mean (stationarity), the total
+    gradient sums to zero, and the per-block partial sums of the negated
+    gradient are nonnegative (dual feasibility)."""
     x = pav_weights(y, w)
     n = len(y)
+    if any(x[i] > x[i + 1] for i in range(n - 1)):
+        return None
     g = [2 * w[i] * (x[i] - y[i]) for i in range(n)]
-    lam = [Fraction(0)]
-    for i in range(n):
-        lam.append(lam[-1] - g[i])
-    if lam[-1] != 0:
+    if sum(g, Fraction(0)) != 0:
         return None
-    if any(l < 0 for l in lam):
-        return None
-    for i in range(n - 1):
-        if lam[i] * (x[i] - x[i + 1]) != 0:
+    blocks = []
+    i = 0
+    while i < n:
+        j = i
+        while j + 1 < n and x[j] == x[j + 1]:
+            j += 1
+        blocks.append((i, j))
+        i = j + 1
+    for (a, b) in blocks:
+        mean = sum((w[k] * y[k] for k in range(a, b + 1)), Fraction(0)) /             sum((w[k] for k in range(a, b + 1)), Fraction(0))
+        if x[a] != mean:
             return None
-    return {"x": x, "lam": lam, "g": g}
+        partial = Fraction(0)
+        for k in range(a, b):
+            partial -= g[k]
+            if partial < 0:
+                return None
+    return {"x": x, "blocks": blocks, "g": g}
 
 
 def pav_optimal_over(y, w, x, samples: Sequence[Sequence[Fraction]]) -> bool:

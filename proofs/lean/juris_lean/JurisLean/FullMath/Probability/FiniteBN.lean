@@ -66,7 +66,7 @@ theorem joint_normalizes {n : ℕ} (c : Chain n) :
     show Finset.sum Finset.univ (fun _ : State 0 => (1 : ℚ)) = 1
     simp
     decide
-  | cons k rest =>
+  | @cons m k rest =>
     show Finset.sum Finset.univ
         (fun s : State m × Bool => joint (Chain.cons k rest) s) = 1
     rw [Fintype.sum_prod_type]

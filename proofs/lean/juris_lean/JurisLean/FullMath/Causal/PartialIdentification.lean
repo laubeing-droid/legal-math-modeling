@@ -61,8 +61,14 @@ theorem sup_not_attained :
       exact le_of_lt hx.2
     · intro y hy
       rcases le_total 0 y with hy0 | hy0
-      · refine ⟨(1 + y) / 2, ⟨by nlinarith, by nlinarith⟩, by nlinarith⟩
-      · refine ⟨0, by norm_num, by linarith⟩
+      · have h1 : 0 ≤ (1 + y) / 2 := by
+          apply div_nonneg _ (by norm_num)
+          linarith
+        have h2 : (1 + y) / 2 < 1 := by
+          apply div_lt_iff (by norm_num : (0 : ℝ) < 2) |>.mp
+          linarith
+        exact ⟨(1 + y) / 2, ⟨h1, h2⟩, by linarith⟩
+      · exact ⟨0, by norm_num, by linarith⟩
   · intro hmem
     exact absurd hmem.2 (by linarith)
 
@@ -84,6 +90,6 @@ theorem endpoints_attained_distinct :
       rw [← h]
       norm_num
     simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hmem
-    norm_num at hmem
+    rcases hmem with rfl | rfl <;> norm_num
 
 end JurisLean.FullMath.Causal

@@ -30,9 +30,12 @@ theorem dsic_of_label (u : T → T → ℚ) (h : dsicCheck u = true) : dsicProp 
 theorem label_false_on_violation (u : T → T → ℚ) (t t' : T)
     (hviol : u t t < u t t') : dsicCheck u = false := by
   by_contra hc
-  have := dsic_of_label u hc
-  have := this t t'
-  omega
+  cases h : dsicCheck u with
+  | false => rw [h] at hc; simp at hc
+  | true =>
+    have hall := dsic_of_label u h
+    have hge := hall t t'
+    linarith
 
 /-- Individual rationality and budget balance are separate checks. -/
 def irCheck (u0 : T → ℚ) (u : T → T → ℚ) : Bool :=
@@ -49,9 +52,10 @@ theorem full_label_decomposes (u0 : T → ℚ) (u : T → T → ℚ) (payments :
     (revenue : ℚ) (h : fullLabel u0 u payments revenue = true) :
     dsicProp u ∧ (∀ t, u0 t ≤ u t t)
       ∧ revenue = Finset.sum Finset.univ (fun t => payments t) := by
-  simp only [fullLabel, Bool.and_eq_true] at h
-  obtain ⟨hdsic, hir, hbudget⟩ := h
-  refine ⟨dsic_of_label u hdsic, ?_, of_decide_eq_true hbudget⟩
-  exact of_decide_eq_true hir
+  have h1 : dsicCheck u = true ∧ irCheck u0 u = true
+      ∧ budgetCheck payments revenue = true := by
+    simpa [fullLabel, Bool.and_eq_true] using h
+  obtain ⟨hdsic, hir, hbudget⟩ := h1
+  exact ⟨dsic_of_label u hdsic, of_decide_eq_true hir, of_decide_eq_true hbudget⟩
 
 end JurisLean.FullMath.Action

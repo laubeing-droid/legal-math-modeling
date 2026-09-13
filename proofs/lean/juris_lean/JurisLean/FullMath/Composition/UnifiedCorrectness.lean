@@ -33,19 +33,16 @@ theorem partial_requires_subset (computed solutions : Set ℚ)
 theorem envelope_requires_outer (computed solutions : Set ℚ)
     (h : allowedClaim .envelopeMode computed solutions) : solutions ⊆ computed := h
 
-/-- C07(b) adverse: a partial result can never be displayed as complete —
-a strict subset is not an equality. -/
+/-- C07(b) adverse: a strict-subset witness forbids the equality claim —
+a partial result is never displayed as complete. -/
 theorem partial_never_displayed_complete (computed solutions : Set ℚ)
-    (hstrict : ∃ x, x ∈ solutions ∧ ¬ (x ∈ computed)) :
-    ¬ (computed = solutions ∧ computed ⊆ solutions) ∨ True := by
-  by_cases heq : computed = solutions
-  · obtain ⟨x, hx, hxc⟩ := hstrict
-    left
-    refine ⟨heq, ?_⟩
-    intro hsub
-    exact hxc (hsub hx)
-  · right
-    trivial
+    (hstrict : ∃ x, x ∈ solutions ∧ ¬ (x ∈ computed))
+    (hsub : computed ⊆ solutions) :
+    ¬ (computed = solutions) := by
+  intro heq
+  obtain ⟨x, hx, hxc⟩ := hstrict
+  rw [heq] at hx
+  exact hxc (hsub hx)
 
 /-- C07(c): no empirical label without a verification certificate. -/
 def empiricalLabel (verified : Bool) : String → Option String :=

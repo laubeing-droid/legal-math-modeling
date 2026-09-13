@@ -44,7 +44,7 @@ theorem policy_is_the_only_domain_input (pol1 pol2 : String) (i : ℕ)
     (hne : pol1 ≠ pol2) :
     CondRuling.conditional i pol1 ≠ CondRuling.conditional i pol2 := by
   intro h
-  injection h with hpol
+  injection h with _ hpol
   exact hne hpol
 
 end JurisLean.FullMath.Composition

@@ -52,8 +52,10 @@ theorem contaminate_condition_do_not_commute :
   have hval1 : ((1 - 1 / 2) * 1 / 2 + 1 / 2 * 1) = 3 / 4 := by norm_num
   have hval2 : ((1 / 2 * 1 / 10 + 1 / 2 * 1 / 2) /
       (1 / 2 * (1 / 10 + 1 / 10) + 1 / 2 * (1 / 2 + 0))) = 6 / 7 := by norm_num
-  exact absurd (hval1.symm.trans (heq.trans hval2)) (by
+  have h2124 : (3 : ℝ) / 4 = 6 / 7 → ((21 : ℝ) = 24) := by
     intro hh
-    norm_num at hh)
+    field_simp at hh
+    exact hh
+  exact h2124 (hval1.symm.trans (heq.trans hval2))
 
 end JurisLean.FullMath.Probability

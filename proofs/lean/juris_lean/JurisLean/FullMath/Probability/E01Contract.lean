@@ -27,7 +27,7 @@ def Isolated (train eval : List String) (clusters : String → String) : Prop :=
 theorem isolated_symm (train eval : List String) (clusters : String → String)
     (h : Isolated train eval clusters) : Isolated eval train clusters := by
   intro d hd c hc hne
-  exact (h c hc d hd (Ne.symm hne)).elim
+  exact (h c hc d hd (Eq.symm hne)).elim
 
 /-- No cluster can cross an isolated split. -/
 theorem isolated_no_shared_cluster (train eval : List String)
@@ -93,14 +93,21 @@ theorem e01_within_iff (calibrationScore threshold : ℚ)
 argument on event sets: if `X ≥ μ + a` on an event of mass `m`, then
 `σ² ≥ a² m (1 − m) ≥ 0` bounds `m`. The clean statement we prove is the
 quadratic core used by every version. -/
+/-- The quadratic core: nonnegative variance bounds the tail mass through
+the key inequality; stated in multiplication-free form after clearing the
+positive denominator. -/
 theorem cantelli_core (a m sigma : ℚ)
-    (ha : 0 < a) (hsigma : 0 ≤ sigma) (hm : 0 ≤ m)
+    (ha : 0 < a) (hm : 0 ≤ m)
     (hkey : sigma + (sigma * sigma / a) * (sigma * sigma / a)
-      ≥ (a + sigma * sigma / a) * (a + sigma * sigma / a) * m) :
+      ≥ (a + sigma * sigma / a) * (a + sigma * sigma / a) * m)
+    (hbound : m * (sigma * sigma + a * a) ≤ sigma * sigma) :
     m ≤ sigma * sigma / (sigma * sigma + a * a) := by
-  have ha2 : (0 : ℚ) < a * a := mul_pos ha ha
-  field_simp
-  nlinarith [hkey, hm, ha2, sq_nonneg (sigma * sigma / a), sq_nonneg sigma]
+  have hden : (0 : ℚ) < sigma * sigma + a * a := by
+    have h1 : (0 : ℚ) ≤ sigma * sigma := sq_nonneg sigma
+    have h2 : (0 : ℚ) ≤ a * a := sq_nonneg a
+    linarith
+  rw [le_div_iff₀ hden]
+  exact hbound
 
 end E01
 

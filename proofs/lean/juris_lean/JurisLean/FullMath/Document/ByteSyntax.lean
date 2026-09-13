@@ -40,6 +40,14 @@ def parseGo : List Char → List Char → Option (List Char × List Char)
       else if c = quoteByte then some (acc.reverse, rest)
       else parseGo rest (c :: acc)
 
+theorem parseGo_nil : parseGo ([] : List Char) acc = none := rfl
+
+theorem parseGo_cons (c : Char) (rest acc : List Char) :
+    parseGo (c :: rest) acc =
+      (if c = escapeByte then none
+      else if c = quoteByte then some (acc.reverse, rest)
+      else parseGo rest (c :: acc)) := rfl
+
 /-- Parse a quoted segment. -/
 def parseL (cs : List Char) : Option (List Char × List Char) :=
   match cs with
@@ -48,6 +56,8 @@ def parseL (cs : List Char) : Option (List Char × List Char) :=
       if c = escapeByte then none
       else if c = quoteByte then parseGo rest []
       else none
+
+theorem parseL_open : parseL (quoteByte :: rest) = parseGo rest [] := rfl
 
 /-- Plainness: neither delimiter byte occurs. -/
 def Plain (cs : List Char) : Prop :=
@@ -62,23 +72,23 @@ theorem parse_render_roundtrip (cs : List Char) (hplain : Plain cs) :
     induction xs with
     | nil =>
       intro acc _
-      show (if quoteByte = escapeByte then none
-          else if quoteByte = quoteByte then some (acc.reverse, [])
-          else parseGo ([] : List Char) acc) = _
-      rw [if_neg quote_ne_escape, if_pos rfl, List.append_nil]
+      show parseGo ([] ++ [quoteByte]) acc = _
+      rw [parseGo_cons, if_neg quote_ne_escape, if_pos rfl, List.append_nil]
+      rfl
     | cons c xs ih =>
       intro acc h
       obtain ⟨hcq, hcb⟩ := h c (by simp)
-      simp only [parseGo, if_neg hcb, if_neg hcq]
-      rw [ih (c :: acc) (fun x hx => by
-        rcases List.mem_cons.mp hx with rfl | hx
-        · exact ⟨hcq, hcb⟩
-        · exact h x hx)]
+      show parseGo (c :: (xs ++ [quoteByte])) acc = _
+      rw [parseGo_cons, if_neg hcb, if_neg hcq,
+        ih (c :: acc) (fun x hx => by
+          rcases List.mem_cons.mp hx with rfl | hx
+          · exact ⟨hcq, hcb⟩
+          · exact h x hx)]
       simp only [List.reverse_cons, List.singleton_append, List.append_assoc]
       rfl
-  show parseGo (cs ++ [quoteByte]) [] = _
-  rw [hstep cs [] hplain]
-  simp
+  show parseL ([quoteByte] ++ cs ++ [quoteByte]) = _
+  rw [parseL_open, hstep cs [] hplain]
+  rfl
 
 /-! Unique keys. -/
 
@@ -110,11 +120,9 @@ theorem docGet_put (d : Doc) (k : String) (v : String) :
     docGet (docPut d k v) k = some v := by
   simp [docGet, docPut]
 
-theorem docPut_get_head (d : Doc) (k v : String) :
-    docPut ((k, v) :: d) k v = (k, v) :: d := by
-  simp [docPut, eraseKey]
-
-theorem eraseKey_nil (k : String) : eraseKey [] k = [] := rfl
+/-- Lens law (putput): repeated puts to the same key agree with the last put. -/
+theorem docPut_docPut (d : Doc) (k v v' : String) :
+    docPut (docPut d k v) k v' = docPut d k v' := rfl
 
 theorem eraseKey_cons_hit (k v : String) (rest : Doc) (k' : String) (h : k = k') :
     eraseKey ((k, v) :: rest) k' = eraseKey rest k' := by
@@ -134,13 +142,13 @@ theorem eraseKey_idem (d : Doc) (k : String) :
     by_cases hk : k' = k
     · rw [eraseKey_cons_hit _ _ _ _ hk]
       exact ih
-    · rw [eraseKey_cons_miss _ _ _ _ hk]
-      exact ih
+    · rw [eraseKey_cons_miss _ _ _ _ hk, eraseKey_cons_miss _ _ _ _ hk]
+      rw [ih]
 
 /-- Putting then erasing the same key erases the base document. -/
 theorem eraseKey_docPut (d : Doc) (k v : String) :
-    eraseKey (docPut d k v) k = eraseKey d k := by
-  simp only [docPut, eraseKey_cons_hit _ _ _ _ rfl, eraseKey_idem]
+    eraseKey (docPut d k v) k = eraseKey d k :=
+  eraseKey_cons_hit _ _ _ _ rfl
 
 /-- An observer independent of key `k` is unchanged by putting `k`. -/
 theorem observer_outside_closure (obs : Doc → String) (d : Doc) (k v : String)

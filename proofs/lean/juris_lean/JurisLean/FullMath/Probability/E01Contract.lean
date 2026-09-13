@@ -74,7 +74,7 @@ theorem e01_within_iff (calibrationScore threshold : ℚ)
     · intro hne
       exact E01Status.noConfusion hne
     · intro ⟨h2, _⟩
-      exact absurd h2 (by omega)
+      exact absurd h2 (not_not.mpr (by linarith [h1]))
   · rw [if_neg h1]
     by_cases h2 : threshold < calibrationScore
     · rw [if_pos h2]
@@ -82,9 +82,9 @@ theorem e01_within_iff (calibrationScore threshold : ℚ)
       · intro hne
         exact E01Status.noConfusion hne
       · intro ⟨_, h3⟩
-        exact absurd h3 (by omega)
+        exact absurd h3 (not_not.mpr h2)
     · rw [if_neg h2]
-      exact iff_refl
+      exact Iff.rfl
 
 /-! Finite-sample bound (one-sided Cantelli for abstract summaries). -/
 

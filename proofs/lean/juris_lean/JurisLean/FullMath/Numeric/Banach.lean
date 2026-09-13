@@ -33,14 +33,46 @@ theorem clip_mem (l u x : ℝ) (h : l ≤ u) : l ≤ clip l u x ∧ clip l u x �
 theorem clip_nonexpansive (l u x y : ℝ) (h : l ≤ u) :
     |clip l u x - clip l u y| ≤ |x - y| := by
   unfold clip
-  split_ifs <;> rw [abs_le] <;> constructor <;>
-    first
-      | linarith [abs_nonneg (x - y), abs_nonneg (l - y), abs_nonneg (u - x),
-          abs_nonneg (x - u), abs_nonneg (y - x), abs_nonneg (u - y),
-          abs_nonneg (x - l), abs_nonneg (l - x), abs_nonneg (y - u)]
-      | nlinarith [abs_nonneg (x - y), abs_nonneg (l - y), abs_nonneg (u - x),
-          abs_nonneg (x - u), abs_nonneg (y - x), abs_nonneg (u - y),
-          abs_nonneg (x - l), abs_nonneg (l - x), abs_nonneg (y - u)]
+  rcases le_total x l with hxl | hxl
+  · rw [if_pos hxl]
+    rcases le_total y l with hyl | hyl
+    · rw [if_pos hyl, sub_self, abs_zero]
+      exact abs_nonneg (x - y)
+    · rw [if_neg (by linarith : ¬ y < l)]
+      rcases le_total y u with hyu | hyu
+      · rw [if_neg (by linarith : ¬ u < y)]
+        rw [abs_le]
+        constructor <;> nlinarith [abs_nonneg (x - y), hxl, hyl, hyu, h]
+      · rw [if_pos hyu]
+        rw [abs_le]
+        constructor <;> nlinarith [abs_nonneg (x - y), hxl, hyl, hyu, h]
+  · rw [if_neg (by linarith : ¬ x < l)]
+    rcases le_total x u with hxu | hxu
+    · rw [if_neg (by linarith : ¬ u < x)]
+      rcases le_total y l with hyl | hyl
+      · rw [if_pos hyl]
+        rw [abs_le]
+        constructor <;> nlinarith [abs_nonneg (x - y), hxl, hyl, hxu, h]
+      · rw [if_neg (by linarith : ¬ y < l)]
+        rcases le_total y u with hyu | hyu
+        · rw [if_neg (by linarith : ¬ u < y)]
+          rw [abs_le]
+          constructor <;> nlinarith [abs_nonneg (x - y), hxl, hyl, hxu, hyu, h]
+        · rw [if_pos hyu]
+          rw [abs_le]
+          constructor <;> nlinarith [abs_nonneg (x - y), hxl, hyl, hxu, hyu, h]
+    · rw [if_pos hxu]
+      rcases le_total y l with hyl | hyl
+      · rw [if_pos hyl]
+        rw [abs_le]
+        constructor <;> nlinarith [abs_nonneg (x - y), hxl, hyl, hxu, h]
+      · rw [if_neg (by linarith : ¬ y < l)]
+        rcases le_total y u with hyu | hyu
+        · rw [if_neg (by linarith : ¬ u < y)]
+          rw [abs_le]
+          constructor <;> nlinarith [abs_nonneg (x - y), hxl, hyl, hxu, hyu, h]
+        · rw [if_pos hyu, sub_self, abs_zero]
+          exact abs_nonneg (x - y)
 
 /-- The projected gradient map. -/
 def T (l u a b η x : ℝ) : ℝ := clip l u ((1 - η * a) * x - η * b)

@@ -47,12 +47,12 @@ theorem bellman_onesided (legal : S → Finset A) (r : S → A → ℚ)
         = ∑ s', p s a s' * (x s' - y s') := by
       rw [← Finset.sum_sub_distrib]
       exact Finset.sum_congr rfl (fun s' _ => by ring)
-    have habs : ∀ s', p s a s' * (x s' - y s') ≤ p s a s' * M :=
-      fun s' => mul_le_mul_of_nonneg_left (abs_le.mp (hM s')).2 (hpn s a s')
+    have habs : ∀ i ∈ (Finset.univ : Finset S), p s a i * (x i - y i) ≤ p s a i * M :=
+      fun i _ => mul_le_mul_of_nonneg_left (abs_le.mp (hM i)).2 (hpn s a i)
     have hsumle : ∑ s', p s a s' * (x s' - y s') ≤ ∑ s', p s a s' * M :=
       Finset.sum_le_sum habs
     have hMsum : ∑ s', p s a s' * M = M := by
-      rw [Finset.mul_sum, hsum s a, mul_one]
+      rw [Finset.sum_mul, hsum s a, mul_one]
     rw [qval, qval]
     have hβle : β * ((∑ s', p s a s' * x s') - (∑ s', p s a s' * y s'))
         ≤ β * M := mul_le_mul_of_nonneg_left (by
@@ -70,7 +70,7 @@ theorem bellman_onesided (legal : S → Finset A) (r : S → A → ℚ)
       Finset.le_max' _ _ (Finset.mem_image.mpr ⟨a, ha, rfl⟩)
     rw [← hbq]
     linarith
-  exact Finset.max'_le _ _ himg
+  exact Finset.max'_le _ _ _ himg
 
 /-- N09: pointwise contraction of the Bellman operator in the max-gap
 bound, for any normalized nonnegative transition kernel. -/
@@ -116,7 +116,7 @@ theorem vf_attained (legal : S → Finset A) (hne : ∀ s, (legal s).Nonempty)
       (legal s).image (fun a => qval r p β (vf legal hne r p β t) s a) :=
     Finset.max'_mem _ _
   obtain ⟨a, ha, heq⟩ := Finset.mem_image.mp hmem
-  exact ⟨a, ha, heq⟩
+  exact ⟨a, ha, heq.symm⟩
 
 end Bellman
 

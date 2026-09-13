@@ -51,7 +51,7 @@ the same target definition across all parts. -/
 theorem part_target_preserved (data : List Row) (b : Bool) (r : Row)
     (hr : r ∈ partRows b data) : r ∈ legalRows data ∧ targetOf r = r.y := by
   simp only [partRows, List.mem_filter] at hr
-  exact ⟨hr.2.1, rfl⟩
+  exact ⟨hr.1, rfl⟩
 
 /-- P11(d): every legal row lands in its own part. -/
 theorem parts_cover (data : List Row) (r : Row) (hr : r ∈ legalRows data) :

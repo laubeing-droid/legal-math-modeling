@@ -28,12 +28,12 @@ theorem mixture_within_retained (ws ps : Fin m → ℚ) (lo hi : ℚ)
   · have h1 : Finset.sum Finset.univ (fun j : Fin m => ws j * lo)
         ≤ Finset.sum Finset.univ (fun j : Fin m => ws j * ps j) :=
       Finset.sum_le_sum (fun j _ => mul_le_mul_of_nonneg_left (hlo j) (hw j))
-    rw [Finset.sum_mul, hw1, one_mul] at h1
+    rw [← Finset.sum_mul, hw1, one_mul] at h1
     exact h1
   · have h2 : Finset.sum Finset.univ (fun j : Fin m => ws j * ps j)
         ≤ Finset.sum Finset.univ (fun j : Fin m => ws j * hi) :=
       Finset.sum_le_sum (fun j _ => mul_le_mul_of_nonneg_left (hhi j) (hw j))
-    rw [Finset.sum_mul, hw1, one_mul] at h2
+    rw [← Finset.sum_mul, hw1, one_mul] at h2
     exact h2
 
 /-- The evidence marginal under likelihoods `Ls`. -/

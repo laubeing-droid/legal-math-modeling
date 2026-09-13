@@ -27,13 +27,10 @@ theorem upd_swap (w : Fin n → Bool) (i j : Fin n) (hij : i ≠ j) (a b : Bool)
     upd (upd w i a) j b = upd (upd w j b) i a := by
   funext k
   by_cases h1 : k = i
-  · subst h1
-    have hij' : ¬ (i = j) := fun h => hij h
-    simp [upd, hij']
+  · simp [upd, h1, hij]
   · by_cases h2 : k = j
-    · subst h2
-      have hji : ¬ (j = i) := fun h => hij h.symm
-      simp [upd, h1, hji]
+    · have hji : ¬ (j = i) := fun h => hij h.symm
+      simp [upd, h2, hji]
     · simp [upd, h1, h2]
 
 /-- Product of a factor list at an assignment. -/
@@ -42,7 +39,7 @@ def prodAt (fs : List ((Fin n → Bool) → ℚ)) (w : Fin n → Bool) : ℚ :=
 
 theorem prodAt_append (fs gs : List ((Fin n → Bool) → ℚ)) (w : Fin n → Bool) :
     prodAt (fs ++ gs) w = prodAt fs w * prodAt gs w := by
-  simp only [prodAt, List.map_append, List.sum_append]
+  simp [prodAt]
 
 /-- A factor does not mention variable `i`. -/
 def IndepAt (f : (Fin n → Bool) → ℚ) (i : Fin n) : Prop :=

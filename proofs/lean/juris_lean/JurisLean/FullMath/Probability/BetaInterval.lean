@@ -23,27 +23,28 @@ theorem betaCDF_zero (a b : ℕ) (ha : 0 < a) : betaCDF a b 0 = 0 := by
   refine Finset.sum_eq_zero (fun j _ => ?_)
   by_cases hja : a ≤ j.val
   · have hj1 : j.val ≠ 0 := by omega
+    simp only [betaCDF]
     rw [if_pos hja, zero_pow hj1, mul_zero, mul_zero]
-  · rw [if_neg hja]
+  · simp only [betaCDF]
+    rw [if_neg hja]
 
 /-- P10(b): at full mass the exact CDF equals one (for `a, b ≥ 1`): only
 the top binomial term survives. -/
 theorem betaCDF_one (a b : ℕ) (ha : 0 < a) (hb : 0 < b) : betaCDF a b 1 = 1 := by
-  have hN : a + b - 1 = (a + b - 1) := rfl
-  classical
   have hmem : (⟨a + b - 1, by omega⟩ : Fin (a + b)) ∈ Finset.univ := Finset.mem_univ _
-  rw [Finset.sum_eq_single (⟨a + b - 1, by omega⟩ : Fin (a + b))
-    (fun j _ hjne => ?_) hmem]
-  · simp only [betaCDF]
-    rw [if_pos (by omega : a ≤ a + b - 1)]
-    simp [Nat.choose_self]
-    ring
+  refine Finset.sum_eq_single (⟨a + b - 1, by omega⟩ : Fin (a + b)) (fun j _ _ => ?_) hmem ?_
   · by_cases hja : a ≤ j.val
-    · rw [if_pos hja]
-      have hlt : j.val < a + b - 1 := by omega
+    · simp only [betaCDF]
+      rw [if_pos hja]
       have hpos : a + b - 1 - j.val ≠ 0 := by omega
       rw [sub_self, zero_pow hpos, mul_zero, mul_zero]
-    · rw [if_neg hja]
+    · simp only [betaCDF]
+      rw [if_neg hja]
+  · simp only [betaCDF]
+    rw [if_pos (by omega : a ≤ a + b - 1)]
+    have hch : Nat.choose (a + b - 1) (a + b - 1) = 1 := Nat.choose_self _
+    rw [hch]
+    norm_num
 
 /-- Interval mass from the exact CDF. -/
 def betaMass (a b : ℕ) (l u : ℚ) : ℚ := betaCDF a b u - betaCDF a b l

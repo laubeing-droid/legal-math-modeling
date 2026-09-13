@@ -29,7 +29,7 @@ decreasing_by
 /-- P13(a): each pass conserves total weight (and, identically, total
 label mass — the block value stays the weighted mean). -/
 theorem pavPass_weight_sum (l : List Pool) :
-    (pavPass l).map Prod.snd |>.sum = l.map Prod.snd |>.sum := by
+    ((pavPass l).map Prod.snd).sum = (l.map Prod.snd).sum := by
   induction l using pavPass.induct with
   | case1 => rfl
   | case2 b => rfl
@@ -75,7 +75,7 @@ theorem pav_two_point_optimal (w1 w2 y1 y2 : ℚ) (hw1 : 0 < w1) (hw2 : 0 < w2)
               + (c2 - (w1 * y1 + w2 * y2) / (w1 + w2))) := by
     field_simp
     ring
-  rw [hkey]
+  linarith [hkey, h1, h2, h3]
   have hab : (0 : ℚ) ≤ ((w1 * y1 + w2 * y2) / (w1 + w2) - c1
       + (c2 - (w1 * y1 + w2 * y2) / (w1 + w2))) := by
     have hval : ((w1 * y1 + w2 * y2) / (w1 + w2) - c1

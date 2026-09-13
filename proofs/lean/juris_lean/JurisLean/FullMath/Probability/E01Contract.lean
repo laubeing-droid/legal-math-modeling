@@ -95,13 +95,13 @@ theorem e01_within_iff (calibrationScore threshold : ℚ)
 /-- The quadratic core of one-sided Cantelli bounds: nonnegative variance
 bounds the tail mass; stated after clearing the positive denominator. -/
 theorem cantelli_core (a m sigma : ℚ)
-    (ha : 0 < a) (hm : 0 ≤ m)
+    (ha : 0 < a) (hm : 0 ≤ m) (hsigma : 0 ≤ sigma)
     (hkey : sigma + (sigma * sigma / a) * (sigma * sigma / a)
       ≥ (a + sigma * sigma / a) * (a + sigma * sigma / a) * m)
     (hbound : m * (sigma * sigma + a * a) ≤ sigma * sigma) :
     m ≤ sigma * sigma / (sigma * sigma + a * a) := by
   have hden : (0 : ℚ) < sigma * sigma + a * a := by
-    have h1 : (0 : ℚ) ≤ sigma * sigma := sq_nonneg sigma
+    have h1 : (0 : ℚ) ≤ sigma * sigma := mul_nonneg hsigma (le_of_lt hsigma)
     have h2 : (0 : ℚ) < a * a := mul_pos ha ha
     linarith
   rw [le_div_iff₀ hden]

@@ -43,7 +43,11 @@ theorem certificate_implies_mode {W : Type} (sem : W → Set W)
     match m with
     | .exact => sem rep = sol
     | .inner => sem rep ⊆ sol
-    | .outer => sol ⊆ sem rep := h
+    | .outer => sol ⊆ sem rep := by
+  cases m with
+  | exact => exact h
+  | inner => exact h
+  | outer => exact h
 
 /-! Part 2: interval boxes as a continuous representation. -/
 
@@ -84,13 +88,14 @@ theorem unitBox_den (d : ℕ) : boxDen ⟨1, 1, fun _ => le_refl _⟩ =
 /-! EXT04: joint constraint Γ, reduced products and CEGAR splitting. -/
 
 /-- The joint constraint: `w` satisfies Γ and every component observation. -/
-def gammaJoint {J W : Type} (gamma : W → Prop) (proj : (j : J) → W → V j)
+def gammaJoint {J W : Type} {V : J → Type} (gamma : W → Prop)
+    (proj : (j : J) → W → V j)
     (components : (j : J) → Set (V j)) (w : W) : Prop :=
   gamma w ∧ ∀ j, proj j w ∈ components j
 
 /-- Reduction: shrink component `i` to the values realized inside the joint. -/
 def reduced {J : Type} [DecidableEq J] {V : J → Type}
-    (gamma : Set (Fin 1 → ℚ)) (proj : (j : Fin 1) → (Fin 1 → ℚ) → V j)
+    (gamma : (Fin 1 → ℚ) → Prop) (proj : (j : Fin 1) → (Fin 1 → ℚ) → V j)
     (components : (j : Fin 1) → Set (V j)) (i : Fin 1) : Set (V i) :=
   {x | x ∈ components i ∧ ∃ w, gammaJoint gamma proj components w ∧ proj i w = x}
 

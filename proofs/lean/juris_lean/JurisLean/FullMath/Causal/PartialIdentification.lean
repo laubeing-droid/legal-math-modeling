@@ -60,19 +60,19 @@ theorem sup_not_attained :
     · intro x hx
       exact le_of_lt hx.2
     · intro y hy
-      rcases le_total 0 y with hy0 | hy0
+      rcases le_total 0 y with hpos | hneg
       · have h1 : 0 ≤ (1 + y) / 2 :=
-          div_nonneg (by linarith) (by norm_num)
+          div_nonneg (by linarith [hpos]) (by norm_num)
         have h2 : (1 + y) / 2 < 1 := by
-          have : 1 + y < 1 * 2 := by linarith
+          have hlt : 1 + y < 1 * 2 := by linarith
           rw [div_lt_iff₀ (by norm_num : (0 : ℝ) < 2)]
-          linarith
+          linarith [hlt]
         have h3 : y < (1 + y) / 2 := by
           have hlt : y * 2 < 1 + y := by linarith
           rw [lt_div_iff₀ (by norm_num : (0 : ℝ) < 2)]
-          linarith
+          linarith [hlt]
         exact ⟨(1 + y) / 2, ⟨h1, h2⟩, h3⟩
-      · exact ⟨0, by norm_num, by linarith⟩
+      · exact ⟨0, by norm_num, by linarith [hneg]⟩
   · intro hmem
     exact absurd hmem.2 (by linarith)
 
@@ -91,7 +91,7 @@ theorem endpoints_attained_distinct :
       nlinarith [hy]
   · intro h
     have hmem : (1/2 : ℝ) ∈ Set.Icc (0 : ℝ) 1 := by norm_num
-    rw [h] at hmem
+    rw [← h] at hmem
     simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hmem
     rcases hmem with heq | heq
     · norm_num at heq

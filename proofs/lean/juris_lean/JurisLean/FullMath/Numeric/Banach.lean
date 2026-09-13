@@ -110,7 +110,7 @@ theorem T_fixed_lower (l u a b η : ℝ) (hη : 0 < η) (hlu : l ≤ u)
 theorem T_fixed_upper (l u a b η : ℝ) (hη : 0 < η) (hlu : l ≤ u)
     (hneg : a * u + b < 0) : T l u a b η u = u := by
   have hexp : (1 - η * a) * u - η * b = u - η * (a * u + b) := by ring
-  have h1 : η * (a * u + b) < 0 := mul_lt_zero hη hneg
+  have h1 : η * (a * u + b) < 0 := by nlinarith [hη, hneg]
   have hnotlt : ¬ ((1 - η * a) * u - η * b < l) := by
     intro hbad
     rw [hexp] at hbad
@@ -130,7 +130,8 @@ theorem T_fixed_point (l u a b η : ℝ) (ha : 0 < a) (hlu : l ≤ u) (hη : 0 <
   · have hpos : 0 < a * l + b := by
       rw [hnegdiv] at hclt
       have h3 : (-b) / a * a < l * a := mul_lt_mul_of_pos_right hclt ha
-      rw [div_mul_cancel₀ (ne_of_gt ha)] at h3
+      have hc : (-b) / a * a = -b := by field_simp
+      rw [hc] at h3
       linarith
     have hclipl : clip l u (-(b / a)) = l := by
       unfold clip
@@ -140,7 +141,8 @@ theorem T_fixed_point (l u a b η : ℝ) (ha : 0 < a) (hlu : l ≤ u) (hη : 0 <
     · have hneg : a * u + b < 0 := by
         rw [hnegdiv] at hug
         have h3 : u * a < (-b) / a * a := mul_lt_mul_of_pos_right hug ha
-        rw [div_mul_cancel₀ (ne_of_gt ha)] at h3
+        have hc : (-b) / a * a = -b := by field_simp
+        rw [hc] at h3
         linarith
       have hclipu : clip l u (-(b / a)) = u := by
         unfold clip
@@ -154,7 +156,7 @@ theorem T_fixed_point (l u a b η : ℝ) (ha : 0 < a) (hlu : l ≤ u) (hη : 0 <
 /-- N08: with per-step error `≤ ε`, the residual obeys `e_{n+1} ≤ k e_n + ε`
 and stays at `ε/(1−k) + kⁿ e₀` for any `k < 1`. -/
 theorem residual_error_bound (k e0 eps : ℝ) (hk1 : 0 ≤ k) (hk2 : k < 1)
-    (step : ℕ → ℝ) (h0 : step 0 ≤ e0)
+    (heps : 0 ≤ eps) (step : ℕ → ℝ) (h0 : step 0 ≤ e0)
     (hrec : ∀ n, step (n + 1) ≤ k * step n + eps) :
     ∀ n, step n ≤ k ^ n * e0 + eps / (1 - k) := by
   intro n
@@ -164,18 +166,14 @@ theorem residual_error_bound (k e0 eps : ℝ) (hk1 : 0 ≤ k) (hk2 : k < 1)
     linarith
   | succ n ih =>
     have h1 := hrec n
-    have hden : 0 < 1 - k := by linarith
-    have hsplit : k * (k ^ n * e0 + eps / (1 - k)) = k ^ (n + 1) * e0 + k * eps / (1 - k) := by
-      rw [pow_succ]
-      ring
-    have hclose : k * eps / (1 - k) + eps = eps / (1 - k) := by
-      field_simp
-      ring
+    have hmul : k * step n ≤ k * (k ^ n * e0 + eps / (1 - k)) :=
+      mul_le_mul_of_nonneg_left ih hk1
     calc step (n + 1) ≤ k * step n + eps := h1
-      _ ≤ k * (k ^ n * e0 + eps / (1 - k)) + eps := by nlinarith
-      _ = k ^ (n + 1) * e0 + (k * eps / (1 - k) + eps) := hsplit
-      _ = k ^ (n + 1) * e0 + eps / (1 - k) := by rw [hclose]
-      _ ≤ k ^ (n + 1) * e0 + eps / (1 - k) := le_refl _
+      _ ≤ k * (k ^ n * e0 + eps / (1 - k)) + eps := by linarith
+      _ = k ^ (n + 1) * e0 + eps / (1 - k) := by
+          rw [pow_succ]
+          field_simp
+          ring
 
 end Banach
 

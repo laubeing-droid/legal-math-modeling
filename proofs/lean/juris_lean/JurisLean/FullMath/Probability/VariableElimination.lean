@@ -35,7 +35,7 @@ theorem upd_swap (w : Fin n → Bool) (i j : Fin n) (hij : i ≠ j) (a b : Bool)
 
 /-- Product of a factor list at an assignment. -/
 def prodAt (fs : List ((Fin n → Bool) → ℚ)) (w : Fin n → Bool) : ℚ :=
-  (fs.map (fun f => f w)).sum
+  (fs.map (fun f => f w)).prod
 
 theorem prodAt_append (fs gs : List ((Fin n → Bool) → ℚ)) (w : Fin n → Bool) :
     prodAt (fs ++ gs) w = prodAt fs w * prodAt gs w := by
@@ -71,8 +71,8 @@ theorem sum_out_distrib (fs gs : List ((Fin n → Bool) → ℚ)) (i : Fin n)
         refine Finset.sum_congr rfl (fun v _ => ?_)
         rw [hconst v]
     _ = prodAt fs w *
-          Finset.sum Finset.univ (fun v : Bool => prodAt gs (upd w i v)) :=
-        Finset.sum_const_mul
+          Finset.sum Finset.univ (fun v : Bool => prodAt gs (upd w i v)) := by
+        rw [← Finset.mul_sum]
 
 /-- Eliminate a list of variables by successive Boolean sums. -/
 def elimVars : List (Fin n) → List ((Fin n → Bool) → ℚ) → (Fin n → Bool) → ℚ
@@ -91,6 +91,6 @@ theorem elim_swap_adjacent (i j : Fin n) (hij : i ≠ j) (rest : List (Fin n))
       Finset.sum Finset.univ (fun b : Bool => elimVars rest fs (upd (upd w j a) i b)))
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl (fun a _ => Finset.sum_congr rfl (fun b _ => ?_))
-  rw [upd_swap w i j hij a b]
+  rw [upd_swap w i j hij b a]
 
 end JurisLean.FullMath.Probability

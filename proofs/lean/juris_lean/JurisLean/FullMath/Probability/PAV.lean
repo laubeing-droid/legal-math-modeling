@@ -38,12 +38,12 @@ theorem pavGo_weight_sum (fuel : Nat) (l : List Pool) :
     | (s1, w1) :: (s2, w2) :: rest =>
       by_cases hcond : (s1 / w1) > (s2 / w2)
       · show ((pavGo n ((s1 + s2, w1 + w2) :: rest)).map Prod.snd).sum
-            = ((s1, w1) :: (s2, w2) :: rest).map Prod.snd |>.sum
+            = (((s1, w1) :: (s2, w2) :: rest).map Prod.snd).sum
         rw [ih]
         simp only [List.map_cons, List.sum_cons]
         ring
       · show (((s1, w1) :: pavGo n ((s2, w2) :: rest)).map Prod.snd).sum
-            = ((s1, w1) :: (s2, w2) :: rest).map Prod.snd |>.sum
+            = (((s1, w1) :: (s2, w2) :: rest).map Prod.snd).sum
         rw [ih]
         simp only [List.map_cons, List.sum_cons]
         ring

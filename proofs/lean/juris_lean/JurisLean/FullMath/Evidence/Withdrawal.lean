@@ -80,11 +80,10 @@ theorem add_only_reuse (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F Δ : F
           · exact Finset.mem_union.mpr (Or.inr hD)
         exact closure_subset R' (closure R F ∪ Δ) hmem1
       · exact hQ
-    · exact closure_closed_heads R' (closure R F ∪ Δ) (F ∪ Δ)
+    · exact closure_closed_heads R' (closure R F ∪ Δ) (closure R' (closure R F ∪ Δ))
         (closure R' (closure R F ∪ Δ))
         (closure_stable R' (closure R F ∪ Δ))
-        (Finset.union_subset (fun x hx => Finset.mem_union.mpr
-          (Or.inl (closure_subset R F hx))) (fun x hx => Finset.mem_union.mpr (Or.inr hx)))
+        (Finset.Subset.rfl)
         a hhead
   · refine closure_least R' (closure R F ∪ Δ) _ ?_
     show step R' (closure R F ∪ Δ) (closure R' (F ∪ Δ)) ⊆ closure R' (F ∪ Δ)
@@ -98,11 +97,10 @@ theorem add_only_reuse (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F Δ : F
           · exact closure_subset R' (F ∪ Δ) (Finset.mem_union.mpr (Or.inr hD))
         exact hmem1
       · exact hQ
-    · exact closure_closed_heads R' (F ∪ Δ) (closure R F ∪ Δ)
+    · exact closure_closed_heads R' (F ∪ Δ) (closure R' (F ∪ Δ))
         (closure R' (F ∪ Δ))
         (closure_stable R' (F ∪ Δ))
-        (Finset.union_subset (fun x hx => parent_closure_subset_child R R' hR F Δ hx)
-          (fun x hx => closure_subset R' (F ∪ Δ) (Finset.mem_union.mpr (Or.inr hx))))
+        (Finset.Subset.rfl)
         a hhead
 
 /-- Update operations. -/

@@ -19,8 +19,9 @@ def solutionsOf (spec : List ℚ → Bool) : Set (List ℚ) := {w | spec w = tru
 /-- C06(a): checker acceptance implies membership in the independent
 solution set. -/
 theorem checker_correspondence (spec : List ℚ → Bool) (w : List ℚ)
-    (h : checkerAccepts spec w = true) : w ∈ solutionsOf spec :=
-  of_decide_eq_true h
+    (h : checkerAccepts spec w = true) : w ∈ solutionsOf spec := by
+  simp only [checkerAccepts, solutionsOf, Set.mem_setOf_eq]
+  exact h
 
 /-- C06(b): the checker is independent of the solver — its value depends
 only on the spec and the witness, never on any solver-produced artifact. -/
@@ -44,9 +45,7 @@ theorem budget_forward_simulation (budget : ℚ) (w : List ℚ)
 theorem budget_rejection (budget : ℚ) (w : List ℚ)
     (h : ¬ (List.sum w ≤ budget)) : ¬ (w ∈ solutionsOf (budgetSpec budget)) := by
   intro hmem
-  have := hmem
-  simp only [solutionsOf, Set.mem_setOf_eq, budgetSpec] at this
-  rw [decide_eq_true (by omega : List.sum w ≤ budget)] at this
-  omega
+  simp only [solutionsOf, Set.mem_setOf_eq, budgetSpec] at hmem
+  exact h (of_decide_eq_true hmem)
 
 end JurisLean.FullMath.Composition

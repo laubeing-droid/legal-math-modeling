@@ -15,7 +15,8 @@ def ind (b : Bool) : ℚ := if b then 1 else 0
 
 /-- The worst-case indicator over a scenario set: 1 if some admissible
 choice triggers the event. -/
-def maxInd (S : Set Bool) (ev : Bool → Bool) : ℚ :=
+open scoped Classical in
+noncomputable def maxInd (S : Set Bool) (ev : Bool → Bool) : ℚ :=
   if (∃ y, y ∈ S ∧ ev y) then 1 else 0
 
 /-- C03: the scenario bridge — for admissible choices `y₀ ∈ S₀`,
@@ -29,7 +30,8 @@ theorem scenario_bridge (p0 p1 : ℚ) (hp0 : 0 ≤ p0) (hp1 : 0 ≤ p1)
   have h0 : ind (ev y0) ≤ maxInd S0 ev := by
     unfold ind maxInd
     by_cases h : ev y0
-    · rw [if_pos h, if_pos ⟨y0, hy0, h⟩]
+    · have hex : ∃ y, y ∈ S0 ∧ ev y := ⟨y0, hy0, h⟩
+      rw [if_pos h, if_pos hex]
     · rw [if_neg h]
       by_cases hex : ∃ y, y ∈ S0 ∧ ev y
       · rw [if_pos hex]; omega
@@ -37,7 +39,8 @@ theorem scenario_bridge (p0 p1 : ℚ) (hp0 : 0 ≤ p0) (hp1 : 0 ≤ p1)
   have h1 : ind (ev y1) ≤ maxInd S1 ev := by
     unfold ind maxInd
     by_cases h : ev y1
-    · rw [if_pos h, if_pos ⟨y1, hy1, h⟩]
+    · have hex : ∃ y, y ∈ S1 ∧ ev y := ⟨y1, hy1, h⟩
+      rw [if_pos h, if_pos hex]
     · rw [if_neg h]
       by_cases hex : ∃ y, y ∈ S1 ∧ ev y
       · rw [if_pos hex]; omega

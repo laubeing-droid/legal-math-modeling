@@ -10,14 +10,14 @@ complete — and empirical labels require a verification certificate.
 namespace JurisLean.FullMath.Composition
 
 /-- Outcome modes of a run. -/
-inductive Outcome where
+inductive ClaimMode where
   | complete
   | partial
   | envelope
 
 /-- The claim each mode is allowed to make, over a computed set and a
 semantic solution set. -/
-def allowedClaim (o : Outcome) (computed solutions : Set ℚ) : Prop :=
+def allowedClaim (o : ClaimMode) (computed solutions : Set ℚ) : Prop :=
   match o with
   | .complete => computed = solutions
   | .partial => computed ⊆ solutions

@@ -63,6 +63,7 @@ theorem parts_unique (r c u : ℚ) (hc : 0 ≤ c) (hu : 0 ≤ u) (hcu : c * u = 
     have hr : 0 ≤ r := by linarith
     constructor
     · rw [covered, max_eq_left hr]
+      linarith
     · rw [uncovered, max_eq_right (by linarith : -r ≤ 0)]
 
 /-! Payment allocation. -/

@@ -37,7 +37,7 @@ theorem condition_incompatible_iff (p : S → ℚ) (e : S → Bool) :
   unfold condition
   by_cases h : 0 < evMass p e
   · rw [if_pos h]
-    exact fun hne => CondResult.noConfusion hne
+    exact fun hne => absurd hne (by simp)
   · rw [if_neg h]
     exact fun _ => h
 

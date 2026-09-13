@@ -86,7 +86,7 @@ theorem kkt1_sufficient (k : KKT1) :
       have hpos : 0 < k.mu := by
         rcases lt_or_ge 0 k.mu with h | h
         · exact h
-        · exact absurd (le_antisymm k.hmu h) hne
+        · exact absurd (le_antisymm k.hmu h) (fun hz => hne hz.symm)
       have : k.mu * (k.xstar - k.l) ≠ 0 := by
         intro hzero
         have := mul_eq_zero.mp hzero

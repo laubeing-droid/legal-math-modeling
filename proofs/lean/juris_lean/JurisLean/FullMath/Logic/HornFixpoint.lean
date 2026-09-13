@@ -1,7 +1,5 @@
 import JurisLean.FullMath.Core.Foundations
 
-set_option maxHeartbeats 1000000
-
 /-!
 F05 — Least closure of finite positive Horn programs.
 
@@ -18,15 +16,15 @@ variable {A : Type} [DecidableEq A] [Fintype A]
 
 /-- One closure step: facts ∪ current ∪ heads fireable from current. -/
 def step (R : Finset (Finset A × A)) (F S : Finset A) : Finset A :=
-  F ∪ S ∪ (R.filter (fun r => r.1 ⊆ S)).image (fun r => r.2)
+  F ∪ S ∪ (R.filter (fun r => r.1 ⊆ S)).image Prod.snd
 
 /-- T is monotone in the current set. -/
 theorem step_mono (R : Finset (Finset A × A)) (F : Finset A) {S T : Finset A}
     (h : S ⊆ T) : step R F S ⊆ step R F T := by
   intro a ha
-  have ha' : a ∈ F ∪ S ∪ (R.filter (fun r => r.1 ⊆ S)).image (fun r => r.2) := ha
+  have ha' : a ∈ F ∪ S ∪ (R.filter (fun r => r.1 ⊆ S)).image Prod.snd := ha
   rw [Finset.mem_union, Finset.mem_union] at ha'
-  show a ∈ F ∪ T ∪ (R.filter (fun r => r.1 ⊆ T)).image (fun r => r.2)
+  show a ∈ F ∪ T ∪ (R.filter (fun r => r.1 ⊆ T)).image Prod.snd
   rw [Finset.mem_union, Finset.mem_union]
   rcases ha' with (ha1 | ha2) | ha3
   · exact Or.inl (Or.inl ha1)

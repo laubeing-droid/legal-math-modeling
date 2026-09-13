@@ -24,9 +24,9 @@ def step (R : Finset (Finset A × A)) (F S : Finset A) : Finset A :=
 theorem step_mono (R : Finset (Finset A × A)) (F : Finset A) {S T : Finset A}
     (h : S ⊆ T) : step R F S ⊆ step R F T := by
   intro a ha
-  have ha' : a ∈ F ∪ S ∪ (R.filter (fun r => r.1 ⊆ S)).image Prod.snd := ha
+  have ha' : a ∈ F ∪ S ∪ (R.filter (fun r => r.1 ⊆ S)).image (fun r => r.2) := ha
   rw [Finset.mem_union, Finset.mem_union] at ha'
-  show a ∈ F ∪ T ∪ (R.filter (fun r => r.1 ⊆ T)).image Prod.snd
+  show a ∈ F ∪ T ∪ (R.filter (fun r => r.1 ⊆ T)).image (fun r => r.2)
   rw [Finset.mem_union, Finset.mem_union]
   rcases ha' with (ha1 | ha2) | ha3
   · exact Or.inl (Or.inl ha1)

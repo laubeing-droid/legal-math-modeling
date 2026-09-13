@@ -17,17 +17,16 @@ inductive CondRuling where
 /-- The shared domain engine: assumption ids plus a named policy produce
 conditional conclusions only — the policy is the only domain input. -/
 def runChain (policy : String) (ids : List ℕ) : List CondRuling :=
-  ids.map (fun i => CondRuling.conditional i (policy ++ "@" ++ toString i))
+  ids.map (fun i => CondRuling.conditional i policy)
 
 /-- C05(a): every generated ruling is conditional and carries one of the
 declared assumption ids. -/
 theorem chain_carries_ids (policy : String) (ids : List ℕ) :
-    ∀ r ∈ runChain policy ids, ∃ i ∈ ids, r = CondRuling.conditional i
-        (policy ++ "@" ++ toString i) := by
+    ∀ r ∈ runChain policy ids, ∃ i ∈ ids, r = CondRuling.conditional i policy := by
   intro r hr
-  simp only [runChain, List.mem_map] at hr
-  obtain ⟨i, hi, rfl⟩ := hr
-  exact ⟨i, hi, rfl⟩
+  rw [runChain, List.mem_map] at hr
+  obtain ⟨i, hi, hmap⟩ := hr
+  exact ⟨i, hi, hmap.symm⟩
 
 /-- C05(b): the engine never generates court acts — conditional opinions
 never become adjudicated facts. -/
@@ -43,10 +42,9 @@ theorem chain_generates_no_court (policy : String) (ids : List ℕ) (a : ℕ) :
 give different conditional labels for the same assumption id. -/
 theorem policy_is_the_only_domain_input (pol1 pol2 : String) (i : ℕ)
     (hne : pol1 ≠ pol2) :
-    CondRuling.conditional i (pol1 ++ "@" ++ toString i)
-      ≠ CondRuling.conditional i (pol2 ++ "@" ++ toString i) := by
+    CondRuling.conditional i pol1 ≠ CondRuling.conditional i pol2 := by
   intro h
-  simp only [CondRuling.injEq] at h
-  omega
+  injection h with hpol
+  exact hne hpol
 
 end JurisLean.FullMath.Composition

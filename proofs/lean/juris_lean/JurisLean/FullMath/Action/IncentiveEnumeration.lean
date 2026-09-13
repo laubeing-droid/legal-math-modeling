@@ -17,15 +17,14 @@ def dsicProp (u : T → T → ℚ) : Prop := ∀ t t', u t t ≥ u t t'
 
 /-- The label check: enumerate all report combinations. -/
 def dsicCheck (u : T → T → ℚ) : Bool :=
-  Finset.univ.all fun t => Finset.univ.all fun t' => decide (u t t ≥ u t t')
+  decide (∀ t ∈ Finset.univ, ∀ t' ∈ Finset.univ, u t t ≥ u t t')
 
 /-- G04(a): a granted label reflects to the DSIC property everywhere. -/
 theorem dsic_of_label (u : T → T → ℚ) (h : dsicCheck u = true) : dsicProp u := by
+  have hall : ∀ t ∈ Finset.univ, ∀ t' ∈ Finset.univ, u t t ≥ u t t' :=
+    of_decide_eq_true h
   intro t t'
-  have hall := Finset.all_eq_true.mp h
-  have h1 := hall t (Finset.mem_univ t)
-  have h2 := (of_decide_eq_true h1) t' (Finset.mem_univ t')
-  exact of_decide_eq_true h2
+  exact hall t (Finset.mem_univ t) t' (Finset.mem_univ t')
 
 /-- G04(b): one violating report combination falsifies the label. -/
 theorem label_false_on_violation (u : T → T → ℚ) (t t' : T)
@@ -37,7 +36,7 @@ theorem label_false_on_violation (u : T → T → ℚ) (t t' : T)
 
 /-- Individual rationality and budget balance are separate checks. -/
 def irCheck (u0 : T → ℚ) (u : T → T → ℚ) : Bool :=
-  Finset.univ.all fun t => decide (u0 t ≤ u t t)
+  decide (∀ t ∈ Finset.univ, u0 t ≤ u t t)
 
 def budgetCheck (payments : T → ℚ) (revenue : ℚ) : Bool :=
   decide (revenue = Finset.sum Finset.univ (fun t => payments t))
@@ -53,7 +52,6 @@ theorem full_label_decomposes (u0 : T → ℚ) (u : T → T → ℚ) (payments :
   simp only [fullLabel, Bool.and_eq_true] at h
   obtain ⟨hdsic, hir, hbudget⟩ := h
   refine ⟨dsic_of_label u hdsic, ?_, of_decide_eq_true hbudget⟩
-  intro t
-  exact of_decide_eq_true ((of_decide_eq_true hir) t (Finset.mem_univ t))
+  exact of_decide_eq_true hir
 
 end JurisLean.FullMath.Action

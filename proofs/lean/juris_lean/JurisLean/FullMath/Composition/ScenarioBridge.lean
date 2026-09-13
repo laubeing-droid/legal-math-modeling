@@ -11,13 +11,13 @@ rational settlement in the same statement.
 namespace JurisLean.FullMath.Composition
 
 /-- Indicator as an honest rational number. -/
-def ind (b : Bool) : ℚ := if b then 1 else 0
+def ind (b : Bool) : ℚ := if b = true then 1 else 0
 
 /-- The worst-case indicator over a scenario set: 1 if some admissible
 choice triggers the event. -/
 open scoped Classical in
 noncomputable def maxInd (S : Set Bool) (ev : Bool → Bool) : ℚ :=
-  if (∃ y, y ∈ S ∧ ev y) then 1 else 0
+  if (∃ y, y ∈ S ∧ ev y = true) then 1 else 0
 
 /-- C03: the scenario bridge — for admissible choices `y₀ ∈ S₀`,
 `y₁ ∈ S₁`, the realized indicator expectation is bounded by the weighted
@@ -29,21 +29,23 @@ theorem scenario_bridge (p0 p1 : ℚ) (hp0 : 0 ≤ p0) (hp1 : 0 ≤ p1)
       ≤ p0 * maxInd S0 ev + p1 * maxInd S1 ev := by
   have h0 : ind (ev y0) ≤ maxInd S0 ev := by
     unfold ind maxInd
-    by_cases h : ev y0
-    · have hex : ∃ y, y ∈ S0 ∧ ev y := ⟨y0, hy0, h⟩
+    by_cases h : ev y0 = true
+    · have hex : ∃ y, y ∈ S0 ∧ ev y = true := ⟨y0, hy0, h⟩
       rw [if_pos h, if_pos hex]
     · rw [if_neg h]
-      by_cases hex : ∃ y, y ∈ S0 ∧ ev y
-      · rw [if_pos hex]; omega
+      by_cases hex : ∃ y, y ∈ S0 ∧ ev y = true
+      · rw [if_pos hex]
+        norm_num
       · rw [if_neg hex]
   have h1 : ind (ev y1) ≤ maxInd S1 ev := by
     unfold ind maxInd
-    by_cases h : ev y1
-    · have hex : ∃ y, y ∈ S1 ∧ ev y := ⟨y1, hy1, h⟩
+    by_cases h : ev y1 = true
+    · have hex : ∃ y, y ∈ S1 ∧ ev y = true := ⟨y1, hy1, h⟩
       rw [if_pos h, if_pos hex]
     · rw [if_neg h]
-      by_cases hex : ∃ y, y ∈ S1 ∧ ev y
-      · rw [if_pos hex]; omega
+      by_cases hex : ∃ y, y ∈ S1 ∧ ev y = true
+      · rw [if_pos hex]
+        norm_num
       · rw [if_neg hex]
   nlinarith [mul_le_mul_of_nonneg_right h0 hp0, mul_le_mul_of_nonneg_right h1 hp1]
 

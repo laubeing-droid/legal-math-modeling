@@ -16,7 +16,7 @@ namespace JurisLean.FullMath.Numeric
 section Banach
 
 /-- Clipping to a closed interval, branch definition. -/
-def clip (l u x : ℝ) : ℝ := if x < l then l else if u < x then u else x
+noncomputable def clip (l u x : ℝ) : ℝ := if x < l then l else if u < x then u else x
 
 theorem clip_mem (l u x : ℝ) (h : l ≤ u) : l ≤ clip l u x ∧ clip l u x ≤ u := by
   unfold clip
@@ -33,7 +33,7 @@ theorem clip_mem (l u x : ℝ) (h : l ≤ u) : l ≤ clip l u x ∧ clip l u x �
 theorem clip_nonexpansive (l u x y : ℝ) (h : l ≤ u) :
     |clip l u x - clip l u y| ≤ |x - y| := by
   unfold clip
-  split_ifs <;> rw [abs_le_abs_iff] <;> nlinarith
+  split_ifs <;> rw [abs_le] <;> constructor <;> linarith
 
 /-- The projected gradient map. -/
 def T (l u a b η x : ℝ) : ℝ := clip l u ((1 - η * a) * x - η * b)

@@ -94,7 +94,6 @@ theorem beta_ratio (α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) :
       linarith))
   rw [Gamma_add_nat hα w, Gamma_add_nat hβ l, Gamma_add_nat (by linarith) (w + l)]
   field_simp
-  ring
 
 /-- Hierarchical hyper-posterior weights ∝ π_h ∏_g ratio_h(g). -/
 def hyperWeights {H : Type} [Fintype H] [DecidableEq H]

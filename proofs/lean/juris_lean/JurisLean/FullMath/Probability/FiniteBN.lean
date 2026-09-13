@@ -53,7 +53,7 @@ def joint : {n : ℕ} → Chain n → State n → ℚ
 theorem joint_nonneg {n : ℕ} (c : Chain n) (s : State n) : 0 ≤ joint c s := by
   cases c with
   | nil => exact zero_le_one
-  | cons k rest =>
+  | @cons m k rest =>
     obtain ⟨pre, b⟩ := s
     show (0 : ℚ) ≤ joint rest pre * k.cond pre b
     exact mul_nonneg (joint_nonneg rest pre) (k.nonneg pre b)
@@ -65,11 +65,12 @@ theorem joint_normalizes {n : ℕ} (c : Chain n) :
   | nil =>
     show Finset.sum Finset.univ (fun _ : State 0 => (1 : ℚ)) = 1
     simp
+    decide
   | cons k rest =>
     show Finset.sum Finset.univ
-        (fun s : State n × Bool => joint (Chain.cons k rest) s) = 1
+        (fun s : State m × Bool => joint (Chain.cons k rest) s) = 1
     rw [Fintype.sum_prod_type]
-    have hstep : ∀ pre : State n,
+    have hstep : ∀ pre : State m,
         Finset.sum Finset.univ (fun b : Bool => joint (Chain.cons k rest) (pre, b))
           = joint rest pre * 1 := by
       intro pre
@@ -85,8 +86,8 @@ theorem joint_normalizes {n : ℕ} (c : Chain n) :
         norm_num
       rw [hrow]
     rw [Finset.sum_congr rfl (fun pre _ => hstep pre)]
-    have hih : Finset.sum Finset.univ (fun pre : State n => joint rest pre * 1)
-        = Finset.sum Finset.univ (fun pre : State n => joint rest pre) := by
+    have hih : Finset.sum Finset.univ (fun pre : State m => joint rest pre * 1)
+        = Finset.sum Finset.univ (fun pre : State m => joint rest pre) := by
       exact Finset.sum_congr rfl (fun pre _ => mul_one _)
     rw [hih]
     exact joint_normalizes rest

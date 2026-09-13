@@ -12,7 +12,7 @@ subject; the cached parent value is provably not the new closure in general.
 namespace JurisLean.FullMath.Evidence
 
 open JurisLean.FullMath.Logic (step closure PreFixed closure_least closure_subset
-  closure_stable closure_preFixed step_mono)
+  closure_stable closure_preFixed step_mono ssubL ssubR closure_closed_heads)
 
 section Incremental
 variable {A : Type} [DecidableEq A] [Fintype A]
@@ -151,7 +151,7 @@ theorem deletion_invalidates_cache :
     simp [Finset.mem_sdiff]
   have hempty : closure twoRule (({0} : Finset (Fin 2)) \ {0}) = ∅ := by
     rw [hF]
-    refine closure_least _ _ ∅ ?_
+    refine closure_least twoRule (∅ : Finset (Fin 2)) (∅ : Finset (Fin 2)) ?_
     show step twoRule (∅ : Finset (Fin 2)) (∅ : Finset (Fin 2)) ⊆ (∅ : Finset (Fin 2))
     intro (a : Fin 2) ha
     rcases Finset.mem_union.mp ha with h1 | hhead

@@ -64,7 +64,7 @@ theorem joint_normalizes {n : ℕ} (c : Chain n) :
   cases c with
   | nil =>
     show Finset.sum Finset.univ (fun _ : State 0 => (1 : ℚ)) = 1
-    decide
+    simp
   | cons k rest =>
     show Finset.sum Finset.univ
         (fun s : State n × Bool => joint (Chain.cons k rest) s) = 1

@@ -65,7 +65,7 @@ theorem rising_succ (x : ℝ) (n : ℕ) : rising x (n + 1) = rising x n * (x + n
 theorem Gamma_add_nat {x : ℝ} (hx : 0 < x) (n : ℕ) :
     Real.Gamma (x + (n : ℝ)) = rising x n * Real.Gamma x := by
   induction n with
-  | zero => rfl
+  | zero => simp [Nat.cast_zero, add_zero, rising]
   | succ n ih =>
     push_cast
     show Real.Gamma (x + ((n : ℝ) + 1)) = rising x (n + 1) * Real.Gamma x

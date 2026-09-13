@@ -37,13 +37,17 @@ theorem condition_incompatible_iff (p : S → ℚ) (e : S → Bool) :
   unfold condition
   by_cases h : 0 < evMass p e
   · rw [if_pos h]
-    exact fun hne => by cases hne
+    constructor
+    · intro hne
+      cases hne
+    · intro hn
+      exact absurd h hn
   · rw [if_neg h]
     exact ⟨fun _ => h, fun _ => rfl⟩
 
 /-- The posterior function when the mass is positive (definitional view). -/
 def posterior (p : S → ℚ) (e : S → Bool) (hZ : 0 < evMass p e) : S → ℚ :=
-  fun s => if e s then p s / evMass p e else 0
+  fun s => if e s = true then p s / evMass p e else 0
 
 /-- P02(a): with positive mass, the posterior is nonnegative. -/
 theorem posterior_nonneg (p : S → ℚ) (hp : ∀ s, 0 ≤ p s) (e : S → Bool)

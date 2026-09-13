@@ -68,6 +68,7 @@ theorem sup_not_attained :
           rw [div_lt_iff₀ (by norm_num : (0 : ℝ) < 2)]
           linarith
         have h3 : y < (1 + y) / 2 := by
+          have hlt : y * 2 < 1 + y := by linarith
           rw [lt_div_iff₀ (by norm_num : (0 : ℝ) < 2)]
           linarith
         exact ⟨(1 + y) / 2, ⟨h1, h2⟩, h3⟩
@@ -89,9 +90,8 @@ theorem endpoints_attained_distinct :
       refine ⟨1, by norm_num, ?_⟩
       nlinarith [hy]
   · intro h
-    have hmem : (1/2 : ℝ) ∈ ({0, 1} : Set ℝ) := by
-      rw [← h]
-      norm_num
+    have hmem : (1/2 : ℝ) ∈ Set.Icc (0 : ℝ) 1 := by norm_num
+    rw [h] at hmem
     simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hmem
     rcases hmem with heq | heq
     · norm_num at heq

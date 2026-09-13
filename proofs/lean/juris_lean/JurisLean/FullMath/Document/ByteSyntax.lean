@@ -69,11 +69,8 @@ theorem parse_render_roundtrip (cs : List Char) (hplain : Plain cs) :
     | cons c xs ih =>
       intro acc h
       obtain ⟨hcq, hcb⟩ := h c (by simp)
-      show (if c = escapeByte then none
-          else if c = quoteByte then some (acc.reverse, xs)
-          else parseGo (xs ++ [quoteByte]) (c :: acc))
-          = some (acc.reverse ++ c :: xs, [])
-      rw [if_neg hcb, if_neg hcq, ih (c :: acc) (fun x hx => by
+      simp only [parseGo, if_neg hcb, if_neg hcq]
+      rw [ih (c :: acc) (fun x hx => by
         rcases List.mem_cons.mp hx with rfl | hx
         · exact ⟨hcq, hcb⟩
         · exact h x hx)]
@@ -136,10 +133,8 @@ theorem eraseKey_idem (d : Doc) (k : String) :
     obtain ⟨k', v'⟩ := head
     by_cases hk : k' = k
     · rw [eraseKey_cons_hit _ _ _ _ hk]
-      rw [eraseKey_cons_hit _ _ _ _ hk]
       exact ih
     · rw [eraseKey_cons_miss _ _ _ _ hk]
-      rw [eraseKey_cons_miss _ _ _ _ hk]
       exact ih
 
 /-- Putting then erasing the same key erases the base document. -/

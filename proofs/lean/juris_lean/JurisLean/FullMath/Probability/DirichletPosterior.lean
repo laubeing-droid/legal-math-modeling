@@ -84,6 +84,7 @@ theorem beta_ratio (α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) :
     ne_of_gt (Real.Gamma_pos_of_pos (by linarith))
   have hGabwl : Real.Gamma (α + β + (w + l)) ≠ 0 :=
     ne_of_gt (Real.Gamma_pos_of_pos (by linarith))
+  push_cast
   rw [Gamma_add_nat α w, Gamma_add_nat β l, Gamma_add_nat (α + β) (w + l)]
   field_simp
   ring

@@ -4,7 +4,7 @@ import JurisLean.FullMath.Core.Foundations
 P01 — Finite Bayesian networks normalize.
 
 Variables are layered in reverse-topological order; each node conditions on
-the whole prefix of earlier variables (a marginal CPT is the special case
+the whole pre of earlier variables (a marginal CPT is the special case
 that ignores arguments). The joint distribution is the running product of
 row-normalized conditional kernels; nonnegativity and normalization are
 proven by induction on the chain with the plain product-sum exchange.
@@ -33,7 +33,7 @@ instance instStateDecidableEq : ∀ n, DecidableEq (State n)
     inferInstanceAs (DecidableEq (State n × Bool))
 
 /-- One layer: the conditional distribution of the next variable given the
-prefix, with nonnegative row-normalized weights. -/
+pre, with nonnegative row-normalized weights. -/
 structure Kernel (n : ℕ) where
   cond : State n → Bool → ℚ
   nonneg : ∀ s b, 0 ≤ cond s b
@@ -47,16 +47,16 @@ inductive Chain : ℕ → Type where
 /-- The joint distribution of a chain. -/
 def joint : {n : ℕ} → Chain n → State n → ℚ
   | 0, .nil, _ => 1
-  | n + 1, .cons k rest, (prefix, b) => joint rest prefix * k.cond prefix b
+  | n + 1, .cons k rest, (pre, b) => joint rest pre * k.cond pre b
 
 /-- P01(a): the joint distribution is nonnegative everywhere. -/
 theorem joint_nonneg : ∀ {n : ℕ} (c : Chain n) (s : State n), 0 ≤ joint c s
   | 0, _, _ => by
     show (0 : ℚ) ≤ 1
     norm_num
-  | n + 1, .cons k rest, (prefix, b) => by
-    show (0 : ℚ) ≤ joint rest prefix * k.cond prefix b
-    exact mul_nonneg (joint_nonneg rest prefix) (k.nonneg prefix b)
+  | n + 1, .cons k rest, (pre, b) => by
+    show (0 : ℚ) ≤ joint rest pre * k.cond pre b
+    exact mul_nonneg (joint_nonneg rest pre) (k.nonneg pre b)
 
 /-- P01(b): the joint distribution sums to one over the whole space. -/
 theorem joint_normalizes : ∀ {n : ℕ} (c : Chain n), ∑ s, joint c s = 1
@@ -67,16 +67,16 @@ theorem joint_normalizes : ∀ {n : ℕ} (c : Chain n), ∑ s, joint c s = 1
     show ∑ s : State n × Bool, joint (.cons k rest) s = 1
     rw [Fintype.sum_prod_type]
     simp only [joint]
-    have hstep : ∀ prefix : State n,
-        (∑ b : Bool, joint rest prefix * k.cond prefix b)
-          = joint rest prefix * (∑ b : Bool, k.cond prefix b) := by
-      intro prefix
-      exact (Finset.mul_sum (joint rest prefix) (fun b => k.cond prefix b) Finset.univ).symm
-    rw [Finset.sum_congr rfl (fun prefix _ => hstep prefix)]
-    have hrow : ∀ prefix : State n, (∑ b : Bool, k.cond prefix b) = 1 := by
-      intro prefix
-      rw [Finset.sum_univ_bool, k.row prefix]
-    rw [Finset.sum_congr rfl (fun prefix _ => by rw [hrow prefix, mul_one])]
+    have hstep : ∀ pre : State n,
+        (∑ b : Bool, joint rest pre * k.cond pre b)
+          = joint rest pre * (∑ b : Bool, k.cond pre b) := by
+      intro pre
+      exact (Finset.mul_sum (joint rest pre) (fun b => k.cond pre b) Finset.univ).symm
+    rw [Finset.sum_congr rfl (fun pre _ => hstep pre)]
+    have hrow : ∀ pre : State n, (∑ b : Bool, k.cond pre b) = 1 := by
+      intro pre
+      rw [Finset.sum_univ_bool, k.row pre]
+    rw [Finset.sum_congr rfl (fun pre _ => by rw [hrow pre, mul_one])]
     exact joint_normalizes rest
 
 end BN

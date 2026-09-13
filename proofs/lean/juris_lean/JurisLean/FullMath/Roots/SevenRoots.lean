@@ -110,7 +110,7 @@ theorem root_SYMBOLIC_EXACT_both (d : ℕ) :
     · simp only [satCon]
       rw [coord_sum_neg d i x]
       exact neg_nonneg.mpr (h i).2
-    · exact absurd hf (List.not_mem_nil c)
+    · cases hf
   · intro h i
     have m1 : (⟨fun j => if j = i then (1 : ℚ) else 0, 0⟩ : LinCon d) ∈
         zeroBoxPoly d :=
@@ -183,13 +183,20 @@ structure CivilClaim where
   payments : List ℚ
   noOverpay : payments.sum ≤ principal
 
+/-- The civil conservation statement: the covered/uncovered split conserves
+the residual, the residual is nonnegative under the no-overpay ledger, and
+the uncovered part is exactly zero. -/
+def CivilConserved (c : CivilClaim) : Prop :=
+  Numeric.covered (Numeric.residual c.principal c.payments) -
+      Numeric.uncovered (Numeric.residual c.principal c.payments) =
+    Numeric.residual c.principal c.payments ∧
+    (0 : ℚ) ≤ Numeric.residual c.principal c.payments ∧
+    Numeric.uncovered (Numeric.residual c.principal c.payments) = 0
+
 /-- Root CIVIL: a claim whose ledger never overpays carries a residual split
 into covered/uncovered parts that conserve the principal; because the
 residual is nonnegative, the uncovered part is exactly zero. -/
-theorem root_CIVIL (c : CivilClaim) :
-    Numeric.conservation (Numeric.residual c.principal c.payments) ∧
-      (0 : ℚ) ≤ Numeric.residual c.principal c.payments ∧
-      Numeric.uncovered (Numeric.residual c.principal c.payments) = 0 := by
+theorem root_CIVIL (c : CivilClaim) : CivilConserved c := by
   have hr : (0 : ℚ) ≤ Numeric.residual c.principal c.payments := by
     show (0 : ℚ) ≤ c.principal - c.payments.sum
     linarith [c.noOverpay]
@@ -259,10 +266,9 @@ theorem ext09_domainComposition
     (civil : CivilClaim) :
     (∀ p, convicted p → cc.elements p ≠ [] ∧ cc.evidenceLawful p ∧ cc.standardMet p)
       ∧ (enforceable → ac.authorityHeld ∧ ac.dutyImposed ∧ ac.procedureFollowed)
-      ∧ (Numeric.conservation (Numeric.residual civil.principal civil.payments) ∧
-         0 ≤ Numeric.residual civil.principal civil.payments) :=
+      ∧ CivilConserved civil :=
   ⟨root_CRIMINAL cc convicted crule,
    root_ADMINISTRATIVE ac enforceable arule,
-   ⟨(root_CIVIL civil).1, (root_CIVIL civil).2.1⟩⟩
+   root_CIVIL civil⟩
 
 end JurisLean.FullMath.Roots

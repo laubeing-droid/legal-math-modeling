@@ -107,9 +107,12 @@ theorem reduced_preserves_joint_one
       {v : ℚ | gamma (fun _ => v) ∧ v ∈ comp 0} := by
   ext v
   constructor
-  · rintro ⟨hin, w, ⟨hgw, hcomp⟩, heq⟩
-    refine ⟨?_, hin⟩
-    simpa [heq] using hgw
+  · rintro ⟨hin, w, ⟨hgw, _⟩, heq⟩
+    have hw : w = fun _ => v := by
+      funext j
+      fin_cases j
+      exact heq
+    exact ⟨hw ▸ hgw, hin⟩
   · rintro ⟨hgamma, hin⟩
     refine ⟨hin, fun _ => v, ⟨hgamma, ?_⟩, rfl⟩
     intro j
@@ -118,60 +121,49 @@ theorem reduced_preserves_joint_one
 
 /-! CEGAR: splitting keeps the outer bound sound. -/
 
-/-- An interval split at a rational point: two boxes whose union of
-denotations equals the original box's denotation. -/
+/-- An interval split at a rational point: two boxes covering the original
+along the first coordinate. -/
 def splitBox (b : Box (d + 1)) (k : ℚ) (hk : b.lo 0 ≤ k) (hk2 : k ≤ b.hi 0) :
     Box (d + 1) × Box (d + 1) :=
-  (⟨fun i => if i = 0 then b.lo i else b.lo i,
-      fun i => if i = 0 then k else b.hi i,
-      fun i => by
-        by_cases h : i = 0
-        · simp only [h, if_true]; exact hk
-        · simp only [h, if_false]; exact b.ord i⟩,
-   ⟨fun i => if i = 0 then k else b.lo i,
-      fun i => b.hi i,
-      fun i => by
-        by_cases h : i = 0
-        · simp only [h, if_true]; exact le_refl _
-        · simp only [h, if_false]; exact b.ord i⟩)
+  (⟨fun _ => b.lo, fun i => if i = 0 then k else b.hi i, fun i => by
+      by_cases h : i = 0
+      · simp only [h, if_true]; exact hk
+      · simp only [h, if_false]; exact b.ord i⟩,
+   ⟨fun i => if i = 0 then k else b.lo i, fun _ => b.hi, fun i => by
+      by_cases h : i = 0
+      · simp only [h, if_true]; exact le_refl _
+      · simp only [h, if_false]; exact b.ord i⟩)
 
 /-- EXT04(b): splitting a box covers the original denotation exactly —
 outer soundness is preserved at every step. -/
 theorem splitBox_cover (b : Box (d + 1)) (k : ℚ) (hk : b.lo 0 ≤ k) (hk2 : k ≤ b.hi 0) :
     (boxDen (splitBox b k hk hk2).1) ∪ (boxDen (splitBox b k hk hk2).2) = boxDen b := by
   ext x
+  simp only [boxDen, Set.mem_setOf_eq, Set.mem_union]
   constructor
   · rintro (h | h)
     all_goals
       intro i
-      rcases i with ⟨i, hi⟩
-      simp only [splitBox, boxDen, Set.mem_setOf_eq, Set.mem_union_iff] at *
       by_cases h0 : i = 0
       · subst h0
-        rcases h with ⟨h1, h2⟩ | ⟨h1, h2⟩
-        · constructor
-          · exact h1
-          · exact le_trans h2 hk2
+        rcases h ⟨0, Nat.succ_pos 0⟩ with ⟨h1, h2⟩ | ⟨h1, h2⟩
+        · exact ⟨h1, le_trans h2 hk2⟩
         · exact ⟨hk.trans h1, h2⟩
-      · rcases h with ⟨h1, h2⟩ | ⟨h1, h2⟩
-        · exact h1
-        · exact h2
+      · rcases h i with ⟨h1, h2⟩
+        exact ⟨h1, h2⟩
   · intro h
-    simp only [Set.mem_union_iff]
     rcases le_total (x ⟨0, Nat.succ_pos 0⟩) k with hxk | hxk
     · left
       intro i
-      rcases i with ⟨i, hi⟩
       by_cases h0 : i = 0
       · subst h0
-        exact ⟨(h ⟨0, Nat.succ_pos 0⟩).1, hxk⟩
-      · exact h ⟨i, hi⟩
+        exact ⟨h ⟨0, Nat.succ_pos 0⟩ |>.1, hxk⟩
+      · exact h i
     · right
       intro i
-      rcases i with ⟨i, hi⟩
       by_cases h0 : i = 0
       · subst h0
-        exact ⟨hxk, (h ⟨0, Nat.succ_pos 0⟩).2⟩
-      · exact h ⟨i, hi⟩
+        exact ⟨hxk, h ⟨0, Nat.succ_pos 0⟩ |>.2⟩
+      · exact h i
 
 end JurisLean.FullMath.Representation

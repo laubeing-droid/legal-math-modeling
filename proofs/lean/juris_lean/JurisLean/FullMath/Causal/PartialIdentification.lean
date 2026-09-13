@@ -62,8 +62,15 @@ theorem sup_not_attained :
     · intro y hy
       rcases le_total 0 y with hpos | hneg
       · have hpy : (0 : ℝ) < 1 + y := by linarith [hpos]
+        have ht : (0 : ℝ) < (1 + y) / 2 := div_pos hpy two_pos
         have h12 : (1 + y) / 2 * 2 = 1 + y := div_mul_cancel₀ _ two_ne_zero
-        refine ⟨(1 + y) / 2, ⟨?_, ?_⟩, ?_⟩ <;> nlinarith [hpy, h12, hy]
+        refine ⟨(1 + y) / 2, ⟨le_of_lt ht, ?_⟩, ?_⟩
+        · by_contra hge
+          have hbig : 2 ≤ (1 + y) / 2 * 2 := by nlinarith [hge]
+          linarith [h12, hbig]
+        · by_contra hle
+          have hsmall : (1 + y) / 2 * 2 ≤ y * 2 := by nlinarith [hle]
+          linarith [h12]
       · exact ⟨0, by norm_num, by linarith [hneg]⟩
   · intro hmem
     exact absurd hmem.2 (by linarith)

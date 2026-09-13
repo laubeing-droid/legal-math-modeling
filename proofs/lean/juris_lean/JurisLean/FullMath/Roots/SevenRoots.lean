@@ -84,7 +84,7 @@ private theorem coord_sum_neg (d : ℕ) (i : Fin d) (x : Asgn d) :
 
 /-- The polyhedron with two weak inequalities per coordinate singling out
 the origin. -/
-noncomputable private def zeroBoxPoly (d : ℕ) : Poly d :=
+private noncomputable def zeroBoxPoly (d : ℕ) : Poly d :=
   (Finset.univ.toList.flatMap fun i =>
     [⟨fun j => if j = i then (1 : ℚ) else 0, 0⟩,
      ⟨fun j => if j = i then (-1 : ℚ) else 0, 0⟩] : List (LinCon d))
@@ -110,7 +110,7 @@ theorem root_SYMBOLIC_EXACT_both (d : ℕ) :
     · simp only [satCon]
       rw [coord_sum_neg d i x]
       exact neg_nonneg.mpr (h i).2
-    · exact hf.elim
+    · exact absurd hf (List.not_mem_nil c)
   · intro h i
     have m1 : (⟨fun j => if j = i then (1 : ℚ) else 0, 0⟩ : LinCon d) ∈
         zeroBoxPoly d :=
@@ -175,30 +175,27 @@ theorem root_STATISTICAL_COMPOSITION {Ω : Type} (P : Set Ω → ℚ)
 
 /-! Root 4: CIVIL. -/
 
-/-- A civil claim: a request with an admissible source, a defense situation,
-and amounts respecting the no-overpayment ledger constraint. -/
+/-- A civil claim: a request, a principal and scenario payments that
+respect the no-overpayment ledger constraint. -/
 structure CivilClaim where
   request : String
-  sourceAdmissible : Prop
-  defenseRebutted : Prop
   principal : ℚ
   payments : List ℚ
   noOverpay : payments.sum ≤ principal
 
-/-- Root CIVIL: an admissible, unrebutted claim with no overpayment carries
-a residual split into covered/uncovered parts that conserve the principal,
-and because the ledger never overpays, the uncovered part is exactly zero. -/
-theorem root_CIVIL (c : CivilClaim)
-    (_hadm : c.sourceAdmissible) (_hreb : c.defenseRebutted) :
+/-- Root CIVIL: a claim whose ledger never overpays carries a residual split
+into covered/uncovered parts that conserve the principal; because the
+residual is nonnegative, the uncovered part is exactly zero. -/
+theorem root_CIVIL (c : CivilClaim) :
     Numeric.conservation (Numeric.residual c.principal c.payments) ∧
-      0 ≤ Numeric.residual c.principal c.payments ∧
+      (0 : ℚ) ≤ Numeric.residual c.principal c.payments ∧
       Numeric.uncovered (Numeric.residual c.principal c.payments) = 0 := by
   have hr : (0 : ℚ) ≤ Numeric.residual c.principal c.payments := by
     show (0 : ℚ) ≤ c.principal - c.payments.sum
     linarith [c.noOverpay]
   refine ⟨Numeric.conservation _, hr, ?_⟩
   show max (-(c.principal - c.payments.sum)) (0 : ℚ) = 0
-  rw [max_eq_left (by linarith [c.noOverpay])]
+  rw [max_eq_right (by linarith [c.noOverpay])]
 
 /-! Root 5: CRIMINAL. -/
 
@@ -266,7 +263,6 @@ theorem ext09_domainComposition
          0 ≤ Numeric.residual civil.principal civil.payments) :=
   ⟨root_CRIMINAL cc convicted crule,
    root_ADMINISTRATIVE ac enforceable arule,
-   ⟨(root_CIVIL civil civil.sourceAdmissible civil.defenseRebutted).1,
-    (root_CIVIL civil civil.sourceAdmissible civil.defenseRebutted).2.1⟩⟩
+   ⟨(root_CIVIL civil).1, (root_CIVIL civil).2.1⟩⟩
 
 end JurisLean.FullMath.Roots

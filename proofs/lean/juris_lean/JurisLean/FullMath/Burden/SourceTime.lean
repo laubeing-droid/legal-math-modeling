@@ -45,7 +45,7 @@ theorem effective_window_applicable (v : SourceVersion) (t : ℕ)
   · next heff =>
     cases hrep : v.repealed with
     | none => rfl
-    | some r => rw [decide_eq_true (h2 r hrep)]
+    | some r => exact decide_eq_true (h2 r hrep)
   · next heff => exact absurd h1 heff
 
 /-- B07(b): unknown is not inapplicable — with no applicable source and no

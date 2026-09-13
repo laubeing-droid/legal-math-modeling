@@ -19,16 +19,19 @@ variable {k : ℕ}
 
 /-- Posterior weights `(α_i + n_i) / Σ_j (α_j + n_j)`. -/
 def dirWeights (α n : Fin k → ℚ) : Fin k → ℚ :=
-  fun i => (α i + n i) / (∑ j : Fin k, α j + n j)
+  fun i => (α i + n i) / Finset.sum Finset.univ (fun j : Fin k => α j + n j)
 
 theorem dirWeights_nonneg (α n : Fin k → ℚ) (hα : ∀ i, 0 ≤ α i) (hn : ∀ i, 0 ≤ n i)
-    (hpos : 0 < ∑ j : Fin k, α j + n j) (i) : 0 ≤ dirWeights α n i :=
+    (hpos : 0 < Finset.sum Finset.univ (fun j : Fin k => α j + n j)) (i) :
+    0 ≤ dirWeights α n i :=
   div_nonneg (add_nonneg (hα i) (hn i)) (le_of_lt hpos)
 
 /-- P05(a): posterior weights normalize. -/
-theorem dirWeights_normalizes (α n : Fin k → ℚ) (hpos : 0 < ∑ j : Fin k, α j + n j) :
-    ∑ i : Fin k, dirWeights α n i = 1 := by
-  show (∑ i : Fin k, (α i + n i) / (∑ j : Fin k, α j + n j)) = 1
+theorem dirWeights_normalizes (α n : Fin k → ℚ)
+    (hpos : 0 < Finset.sum Finset.univ (fun j : Fin k => α j + n j)) :
+    Finset.sum Finset.univ (fun i : Fin k => dirWeights α n i) = 1 := by
+  show Finset.sum Finset.univ
+      (fun i : Fin k => (α i + n i) / Finset.sum Finset.univ (fun j : Fin k => α j + n j)) = 1
   rw [Finset.sum_div]
   exact div_self (ne_of_gt hpos)
 
@@ -37,10 +40,11 @@ one exponent update (conjugacy closure of α+n). -/
 theorem dirWeights_update_compose (α n m : Fin k → ℚ) :
     dirWeights (fun i => α i + n i) m = dirWeights α (fun i => n i + m i) := by
   funext i
-  show ((α i + n i) + m i) / (∑ j : Fin k, (α j + n j) + m j)
-      = (α i + (n i + m i)) / (∑ j : Fin k, α j + (n j + m j))
+  show ((α i + n i) + m i) / Finset.sum Finset.univ (fun j : Fin k => (α j + n j) + m j)
+      = (α i + (n i + m i)) / Finset.sum Finset.univ (fun j : Fin k => α j + (n j + m j))
   have h1 : ((α i + n i) + m i) = (α i + (n i + m i)) := by ring
-  have h2 : (∑ j : Fin k, (α j + n j) + m j) = (∑ j : Fin k, α j + (n j + m j)) := by
+  have h2 : Finset.sum Finset.univ (fun j : Fin k => (α j + n j) + m j)
+      = Finset.sum Finset.univ (fun j : Fin k => α j + (n j + m j)) := by
     refine Finset.sum_congr rfl ?_
     intro j _
     ring
@@ -86,14 +90,15 @@ theorem beta_ratio (α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) :
 /-- Hierarchical hyper-posterior weights ∝ π_h ∏_g ratio_h(g). -/
 def hyperWeights {H : Type} [Fintype H] [DecidableEq H]
     (π : H → ℚ) (ratio : H → ℚ) : H → ℚ :=
-  fun h => π h * ratio h / (∑ h' : H, π h' * ratio h')
+  fun h => π h * ratio h / Finset.sum Finset.univ (fun h' : H => π h' * ratio h')
 
 /-- P06(b): hierarchical weights normalize when the mixture mass is positive. -/
 theorem hyperWeights_normalizes {H : Type} [Fintype H] [DecidableEq H]
     (π : H → ℚ) (ratio : H → ℚ) (hπ : ∀ h, 0 ≤ π h) (hr : ∀ h, 0 ≤ ratio h)
-    (hpos : 0 < ∑ h' : H, π h' * ratio h') :
-    ∑ h : H, hyperWeights π ratio h = 1 := by
-  show (∑ h : H, (π h * ratio h) / (∑ h' : H, π h' * ratio h')) = 1
+    (hpos : 0 < Finset.sum Finset.univ (fun h' : H => π h' * ratio h')) :
+    Finset.sum Finset.univ (fun h : H => hyperWeights π ratio h) = 1 := by
+  show Finset.sum Finset.univ
+      (fun h : H => (π h * ratio h) / Finset.sum Finset.univ (fun h' : H => π h' * ratio h')) = 1
   rw [Finset.sum_div]
   exact div_self (ne_of_gt hpos)
 

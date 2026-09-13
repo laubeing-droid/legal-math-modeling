@@ -143,7 +143,7 @@ theorem pending_edges_bound (edges : List (Arg A × Arg A))
     (pendingEdges edges policy).length ≤ edges.length := by
   unfold pendingEdges
   exact List.length_filter_le edges
-    (fun e => decide (adjudicate policy e.1 e.2 = .undecided))
+    (fun e : Arg A × Arg A => decide (adjudicate policy e.1 e.2 = .undecided))
 
 end Attack
 

@@ -29,7 +29,7 @@ theorem step_mono (R : Finset (Finset A × A)) (F : Finset A) {S T : Finset A}
   · obtain ⟨_, hmem⟩ := Finset.mem_filter.mp h3
     obtain ⟨r, hrR, hrS, hr2⟩ := hmem
     exact Finset.mem_union.mpr (Or.inr
-      (Finset.mem_filter.mpr ⟨Finset.mem_univ a, ⟨r, hrR, fun hb => h hb, hr2⟩⟩))
+      (Finset.mem_filter.mpr ⟨Finset.mem_univ a, ⟨r, hrR, hrS.trans h, hr2⟩⟩))
 
 /-- Iterated closure from the empty set. -/
 def cl (R : Finset (Finset A × A)) (F : Finset A) : ℕ → Finset A :=

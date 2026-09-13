@@ -65,14 +65,14 @@ theorem parse_render_roundtrip (cs : List Char) (hplain : Plain cs) :
       show (if quoteByte = escapeByte then none
           else if quoteByte = quoteByte then some (acc.reverse, [])
           else parseGo ([] : List Char) acc) = _
-      rw [if_neg quote_ne_escape, if_pos rfl]
-      rfl
+      rw [if_neg quote_ne_escape, if_pos rfl, List.append_nil]
     | cons c xs ih =>
       intro acc h
       obtain ⟨hcq, hcb⟩ := h c (by simp)
       show (if c = escapeByte then none
           else if c = quoteByte then some (acc.reverse, xs)
-          else parseGo (xs ++ [quoteByte]) (c :: acc)) = _
+          else parseGo (xs ++ [quoteByte]) (c :: acc))
+          = some (acc.reverse ++ c :: xs, [])
       rw [if_neg hcb, if_neg hcq, ih (c :: acc) (fun x hx => by
         rcases List.mem_cons.mp hx with rfl | hx
         · exact ⟨hcq, hcb⟩
@@ -135,8 +135,12 @@ theorem eraseKey_idem (d : Doc) (k : String) :
   | cons head rest ih =>
     obtain ⟨k', v'⟩ := head
     by_cases hk : k' = k
-    · rw [eraseKey_cons_hit _ _ _ _ hk, eraseKey_cons_hit _ _ _ _ hk, ih]
-    · rw [eraseKey_cons_miss _ _ _ _ hk, eraseKey_cons_miss _ _ _ _ hk, ih]
+    · rw [eraseKey_cons_hit _ _ _ _ hk]
+      rw [eraseKey_cons_hit _ _ _ _ hk]
+      exact ih
+    · rw [eraseKey_cons_miss _ _ _ _ hk]
+      rw [eraseKey_cons_miss _ _ _ _ hk]
+      exact ih
 
 /-- Putting then erasing the same key erases the base document. -/
 theorem eraseKey_docPut (d : Doc) (k v : String) :

@@ -67,7 +67,10 @@ theorem sup_not_attained :
           have : 1 + y < 1 * 2 := by linarith
           rw [div_lt_iff₀ (by norm_num : (0 : ℝ) < 2)]
           linarith
-        exact ⟨(1 + y) / 2, ⟨h1, h2⟩, by linarith⟩
+        have h3 : y < (1 + y) / 2 := by
+          rw [lt_div_iff₀ (by norm_num : (0 : ℝ) < 2)]
+          linarith
+        exact ⟨(1 + y) / 2, ⟨h1, h2⟩, h3⟩
       · exact ⟨0, by norm_num, by linarith⟩
   · intro hmem
     exact absurd hmem.2 (by linarith)
@@ -91,7 +94,7 @@ theorem endpoints_attained_distinct :
       norm_num
     simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hmem
     rcases hmem with heq | heq
-    · exact absurd heq (by decide)
-    · exact absurd heq (by decide)
+    · norm_num at heq
+    · norm_num at heq
 
 end JurisLean.FullMath.Causal

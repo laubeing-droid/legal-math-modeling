@@ -25,6 +25,11 @@ def pavGo : Nat → List Pool → List Pool
       if (s1 / w1) > (s2 / w2) then pavGo fuel ((s1 + s2, w1 + w2) :: rest)
       else (s1, w1) :: pavGo fuel ((s2, w2) :: rest)
 
+theorem pavGo_succ_cons (n : Nat) (s1 w1 s2 w2 : ℚ) (rest : List Pool) :
+    pavGo (n + 1) ((s1, w1) :: (s2, w2) :: rest)
+      = if (s1 / w1) > (s2 / w2) then pavGo n ((s1 + s2, w1 + w2) :: rest)
+        else (s1, w1) :: pavGo n ((s2, w2) :: rest) := rfl
+
 /-- P13(a): every step conserves total weight — a pool's value is always
 the weighted mean of the points merged into it. -/
 theorem pavGo_weight_sum (fuel : Nat) (l : List Pool) :
@@ -37,14 +42,12 @@ theorem pavGo_weight_sum (fuel : Nat) (l : List Pool) :
     | [b] => rfl
     | (s1, w1) :: (s2, w2) :: rest =>
       by_cases hcond : (s1 / w1) > (s2 / w2)
-      · show ((pavGo n ((s1 + s2, w1 + w2) :: rest)).map Prod.snd).sum
-            = (((s1, w1) :: (s2, w2) :: rest).map Prod.snd).sum
-        rw [ih]
+      rw [pavGo_succ_cons]
+      by_cases hcond : (s1 / w1) > (s2 / w2)
+      · rw [if_pos hcond, ih]
         simp only [List.map_cons, List.sum_cons]
         ring
-      · show (((s1, w1) :: pavGo n ((s2, w2) :: rest)).map Prod.snd).sum
-            = (((s1, w1) :: (s2, w2) :: rest).map Prod.snd).sum
-        rw [ih]
+      · rw [if_neg hcond, ih]
         simp only [List.map_cons, List.sum_cons]
         ring
 

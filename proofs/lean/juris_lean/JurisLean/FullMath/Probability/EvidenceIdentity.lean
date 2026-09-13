@@ -65,7 +65,7 @@ private def exclP (k : ℕ) (o : Obs) : Bool := decide (o.id != k)
 private def exclSeen (k : ℕ) (seen : ℕ → Bool) : ℕ → Bool :=
   fun x => decide (x = k) || seen x
 
-theorem upd_eq_exclSeen (k : ℕ) (seen : ℕ → Bool) (hko : o.id = k) :
+theorem upd_eq_exclSeen (o : Obs) (k : ℕ) (seen : ℕ → Bool) (hko : o.id = k) :
     (fun x => decide (x = o.id) || seen x) = exclSeen k seen := by
   funext x
   simp [exclSeen, hko]
@@ -90,7 +90,7 @@ theorem dedupAux_k_insensitive (k : ℕ) : ∀ (l : List Obs) (seen : ℕ → Bo
         rw [dedupAux_cons_fresh o rest seen hseen]
         have hp : exclP k o = false := by simp [exclP, hko]
         simp only [List.filter, hp, if_false]
-        rw [upd_eq_exclSeen k seen hko]
+        rw [upd_eq_exclSeen o k seen hko]
       · rw [dedupAux_cons_fresh o rest (exclSeen k seen) (by simp [exclSeen, hseen, hko]),
           dedupAux_cons_fresh o rest seen hseen]
         have hp : exclP k o = true := by simp [exclP, hko]

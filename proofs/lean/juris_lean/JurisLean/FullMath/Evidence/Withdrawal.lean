@@ -55,7 +55,7 @@ theorem child_is_parent_prefixed (R R' : Finset (Finset A × A)) (hR : R ⊆ R')
     (F Δ : Finset A) : PreFixed R F (closure R' (F ∪ Δ)) := by
   show step R F (closure R' (F ∪ Δ)) ⊆ closure R' (F ∪ Δ)
   refine (step_rules_mono R R' hR F _).trans ?_
-  refine (step_facts_mono R' (fun x hx => Finset.mem_union.mpr (Or.inl hx))).trans ?_
+  refine (step_facts_mono R' (ssubL F Δ)).trans ?_
   rw [closure_stable]
 
 /-- The parent closure embeds into the child closure. -/

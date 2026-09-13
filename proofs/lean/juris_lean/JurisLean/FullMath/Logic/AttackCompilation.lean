@@ -100,10 +100,10 @@ theorem edgeFuel_iff (con : Contrary A) (rc : RuleContra A) (a : Arg A) :
         cases h with
         | rebut _ hclash =>
           exact Or.inl (show con (Arg.concl a) r.head = true from hclash)
-        | undermine _ _ _ hp hclash =>
+        | undermine _ _ p hp hclash =>
           exact Or.inr (Or.inl ⟨p, hp, hclash⟩)
         | undercut _ _ hclash => exact Or.inr (Or.inr (Or.inl hclash))
-        | lift _ _ _ hp hd =>
+        | lift _ _ p hp hd =>
           exact Or.inr (Or.inr (Or.inr
             ⟨p, hp, (ih p (child_height_le r ps p hp k hb)).mpr hd⟩))
 

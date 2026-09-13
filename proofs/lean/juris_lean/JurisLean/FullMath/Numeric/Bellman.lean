@@ -52,7 +52,7 @@ theorem bellman_onesided (legal : S → Finset A) (r : S → A → ℚ)
     have hsumle : ∑ s', p s a s' * (x s' - y s') ≤ ∑ s', p s a s' * M :=
       Finset.sum_le_sum habs
     have hMsum : ∑ s', p s a s' * M = M := by
-      rw [Finset.sum_mul, hsum s a, mul_one]
+      rw [← Finset.sum_mul, hsum s a, mul_one]
     rw [qval, qval]
     have hβle : β * ((∑ s', p s a s' * x s') - (∑ s', p s a s' * y s'))
         ≤ β * M := mul_le_mul_of_nonneg_left (by

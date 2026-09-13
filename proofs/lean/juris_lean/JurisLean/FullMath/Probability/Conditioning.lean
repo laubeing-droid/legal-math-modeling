@@ -57,7 +57,6 @@ theorem posterior_nonneg (p : S → ℚ) (hp : ∀ s, 0 ≤ p s) (e : S → Bool
   · rw [if_pos he]
     try exact div_nonneg (hp s) (le_of_lt hZ)
   · rw [if_neg he]
-    norm_num
 
 /-- P02(b): with positive mass, the posterior sums to one. -/
 theorem posterior_normalizes (p : S → ℚ) (hp : ∀ s, 0 ≤ p s) (e : S → Bool)

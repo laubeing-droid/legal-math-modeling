@@ -29,50 +29,71 @@ theorem clip_mem (l u x : ℝ) (h : l ≤ u) : l ≤ clip l u x ∧ clip l u x �
     · rw [if_neg hx, if_neg hxu]
       exact ⟨by linarith, by linarith⟩
 
-/-- N07(a): clipping is nonexpansive. -/
 theorem clip_nonexpansive (l u x y : ℝ) (h : l ≤ u) :
     |clip l u x - clip l u y| ≤ |x - y| := by
   unfold clip
+  -- sign fact for |x - y|, established once per branch where needed
   rcases lt_or_ge x l with hxlt | hxge
   · rw [if_pos hxlt]
+    -- clip x = l
     rcases lt_or_ge y l with hylt | hyge
     · rw [if_pos hylt, sub_self, abs_zero]
       exact abs_nonneg (x - y)
     · rw [if_neg (by linarith : ¬ y < l)]
-      rcases lt_or_ge y u with hyu2 | hyge2
+      rcases lt_or_ge u y with hyu | hyle
+      · rw [if_pos hyu]
+        -- |l - u| vs |x - y|, with x < l ≤ u < y
+        have hA : |l - u| = u - l := abs_of_nonneg (by linarith)
+        have hB : |x - y| = y - x := abs_of_nonneg (by linarith)
+        rw [hA, hB]
+        linarith
       · rw [if_neg (by linarith : ¬ u < y)]
-        rw [abs_le]
-        constructor <;> nlinarith [abs_nonneg (x - y), hxlt, hyge, hyge2, h]
-      · rw [if_pos hyu2]
-        rw [abs_le]
-        constructor <;> nlinarith [abs_nonneg (x - y), hxlt, hyge, hyu2, h]
+        -- |l - y| with x < l ≤ y ≤ u
+        have hA : |l - y| = y - l := abs_of_nonneg (by linarith)
+        have hB : |x - y| = y - x := abs_of_nonneg (by linarith)
+        rw [hA, hB]
+        linarith
   · rw [if_neg (by linarith : ¬ x < l)]
-    rcases lt_or_ge u x with hxu2 | hxge2
-    · rw [if_pos hxu2]
+    rcases lt_or_ge u x with hxu | hxe
+    · rw [if_pos hxu]
+      -- clip x = u
       rcases lt_or_ge y l with hylt | hyge
       · rw [if_pos hylt]
-        rw [abs_le]
-        constructor <;> nlinarith [abs_nonneg (x - y), hxge, hylt, hxu2, h]
+        -- |u - l| with y < l ≤ u < x
+        have hA : |u - l| = u - l := abs_of_nonneg (by linarith)
+        have hB : |x - y| = x - y := abs_of_nonneg (by linarith)
+        rw [hA, hB]
+        linarith
       · rw [if_neg (by linarith : ¬ y < l)]
-        rcases lt_or_ge y u with hyu2 | hyge2
-        · rw [if_neg (by linarith : ¬ u < y)]
-          rw [abs_le]
-          constructor <;> nlinarith [abs_nonneg (x - y), hxge, hyge, hxu2, hyge2, h]
-        · rw [if_pos hyu2, sub_self, abs_zero]
+        rcases lt_or_ge u y with hyu | hyle
+        · rw [if_pos hyu, sub_self, abs_zero]
           exact abs_nonneg (x - y)
+        · rw [if_neg (by linarith : ¬ u < y)]
+          -- |u - y| with l ≤ y ≤ u < x
+          have hA : |u - y| = u - y := abs_of_nonneg (by linarith)
+          have hB : |x - y| = x - y := abs_of_nonneg (by linarith)
+          rw [hA, hB]
+          linarith
     · rw [if_neg (by linarith : ¬ u < x)]
+      -- clip x = x
       rcases lt_or_ge y l with hylt | hyge
       · rw [if_pos hylt]
-        rw [abs_le]
-        constructor <;> nlinarith [abs_nonneg (x - y), hxge, hylt, hxge2, h]
+        -- |x - l| with y < l ≤ x ≤ u
+        have hA : |x - l| = x - l := abs_of_nonneg (by linarith)
+        have hB : |x - y| = x - y := abs_of_nonneg (by linarith)
+        rw [hA, hB]
+        linarith
       · rw [if_neg (by linarith : ¬ y < l)]
-        rcases lt_or_ge y u with hyu2 | hyge2
+        rcases lt_or_ge u y with hyu | hyle
+        · rw [if_pos hyu]
+          -- |x - u| with l ≤ x ≤ u < y
+          have hA : |x - u| = u - x := abs_of_nonneg (by linarith)
+          have hB : |x - y| = y - x := abs_of_nonneg (by linarith)
+          rw [hA, hB]
+          linarith
         · rw [if_neg (by linarith : ¬ u < y)]
-          rw [abs_le]
-          constructor <;> nlinarith [abs_nonneg (x - y), hxge, hyge, hxge2, hyge2, h]
-        · rw [if_pos hyu2]
-          rw [abs_le]
-          constructor <;> nlinarith [abs_nonneg (x - y), hxge, hyge, hxge2, hyu2, h]
+          -- both unclipped
+          exact le_refl _
 
 /-- The projected gradient map. -/
 def T (l u a b η x : ℝ) : ℝ := clip l u ((1 - η * a) * x - η * b)

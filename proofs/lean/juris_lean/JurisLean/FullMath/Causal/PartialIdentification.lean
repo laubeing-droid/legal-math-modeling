@@ -58,7 +58,7 @@ theorem sup_not_attained :
   constructor
   · refine csSup_eq_of_forall_le_of_forall_lt_exists_gt ⟨0, by norm_num⟩ ?_ ?_
     · intro x hx
-      exact hx.2
+      exact le_of_lt hx.2
     · intro y hy
       refine ⟨(1 + y) / 2, ⟨by nlinarith, by nlinarith⟩, by nlinarith⟩
   · intro hmem
@@ -78,8 +78,10 @@ theorem endpoints_attained_distinct :
       refine ⟨1, by norm_num, ?_⟩
       nlinarith [hy]
   · intro h
-    have hmem : (1/2 : ℝ) ∈ Set.Icc 0 1 := by norm_num
-    rw [h] at hmem
-    simp at hmem
+    have hmem : (1/2 : ℝ) ∈ ({0, 1} : Set ℝ) := by
+      rw [← h]
+      norm_num
+    simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hmem
+    norm_num at hmem
 
 end JurisLean.FullMath.Causal

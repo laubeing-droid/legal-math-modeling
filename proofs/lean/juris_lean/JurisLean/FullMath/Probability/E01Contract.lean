@@ -21,12 +21,13 @@ section E01
 /-- A data split assigns each case to a cluster; splits are isolated when
 no cluster appears in both training and evaluation parts. -/
 def Isolated (train eval : List String) (clusters : String → String) : Prop :=
-  ∀ c ∈ train, ∀ d ∈ eval, clusters c ≠ clusters d
+  ∀ (c : String), c ∈ train → ∀ (d : String), d ∈ eval → clusters c ≠ clusters d
 
 /-- Isolation is symmetric in observation. -/
 theorem isolated_symm (train eval : List String) (clusters : String → String)
-    (h : Isolated train eval clusters) : Isolated eval train clusters :=
-  fun d _ c _ hne => (h c _ d _ hne.symm).elim
+    (h : Isolated train eval clusters) : Isolated eval train clusters := by
+  intro d hd c hc hne
+  exact (h c hc d hd (Ne.symm hne)).elim
 
 /-- No cluster can cross an isolated split. -/
 theorem isolated_no_shared_cluster (train eval : List String)

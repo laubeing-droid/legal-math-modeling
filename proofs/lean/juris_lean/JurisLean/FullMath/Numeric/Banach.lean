@@ -83,7 +83,7 @@ theorem T_contraction (l u a b η x y : ℝ) (h : l ≤ u) :
   have hsub : ((1 - η * a) * x - η * b) - ((1 - η * a) * y - η * b)
       = (1 - η * a) * (x - y) := by ring
   rw [hsub] at key
-  rw [← abs_mul] at key
+  rw [abs_mul] at key
   exact key
 
 /-- Interior fixed point: `−b/a` inside the interval stays fixed. -/
@@ -110,7 +110,7 @@ theorem T_fixed_lower (l u a b η : ℝ) (hη : 0 < η) (hlu : l ≤ u)
 theorem T_fixed_upper (l u a b η : ℝ) (hη : 0 < η) (hlu : l ≤ u)
     (hneg : a * u + b < 0) : T l u a b η u = u := by
   have hexp : (1 - η * a) * u - η * b = u - η * (a * u + b) := by ring
-  have h1 : η * (a * u + b) < 0 := mul_neg hη hneg
+  have h1 : η * (a * u + b) < 0 := mul_lt_zero hη hneg
   have hnotlt : ¬ ((1 - η * a) * u - η * b < l) := by
     intro hbad
     rw [hexp] at hbad
@@ -125,12 +125,13 @@ theorem T_fixed_upper (l u a b η : ℝ) (hη : 0 < η) (hlu : l ≤ u)
 /-- N07(c): the explicit fixed point of T is `clip_K(−b/a)`. -/
 theorem T_fixed_point (l u a b η : ℝ) (ha : 0 < a) (hlu : l ≤ u) (hη : 0 < η) :
     T l u a b η (clip l u (-(b / a))) = clip l u (-(b / a)) := by
-  have hnegdiv : -(b / a) = (-b) / a := (neg_div b a).symm
+  have hnegdiv : -(b / a) = (-b) / a := by rw [neg_div]
   rcases lt_or_ge (-(b / a)) l with hclt | hge
   · have hpos : 0 < a * l + b := by
       rw [hnegdiv] at hclt
-      have := (div_lt_iff ha).mp hclt
-      linarith [this]
+      have h3 : (-b) / a * a < l * a := mul_lt_mul_of_pos_right hclt ha
+      rw [div_mul_cancel₀ (ne_of_gt ha)] at h3
+      linarith
     have hclipl : clip l u (-(b / a)) = l := by
       unfold clip
       rw [if_pos hclt]
@@ -138,8 +139,9 @@ theorem T_fixed_point (l u a b η : ℝ) (ha : 0 < a) (hlu : l ≤ u) (hη : 0 <
   · rcases lt_or_ge u (-(b / a)) with hug | hle
     · have hneg : a * u + b < 0 := by
         rw [hnegdiv] at hug
-        have := (lt_div_iff ha).mp hug
-        linarith [this]
+        have h3 : u * a < (-b) / a * a := mul_lt_mul_of_pos_right hug ha
+        rw [div_mul_cancel₀ (ne_of_gt ha)] at h3
+        linarith
       have hclipu : clip l u (-(b / a)) = u := by
         unfold clip
         rw [if_neg (by linarith), if_pos hug]
@@ -158,7 +160,7 @@ theorem residual_error_bound (k e0 eps : ℝ) (hk1 : 0 ≤ k) (hk2 : k < 1)
   intro n
   induction n with
   | zero =>
-    rw [pow_zero]
+    rw [pow_zero, one_mul]
     linarith
   | succ n ih =>
     have h1 := hrec n

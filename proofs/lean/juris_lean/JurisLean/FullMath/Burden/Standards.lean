@@ -51,12 +51,11 @@ def gate (std : Standard) (w : Weight) : FactOutcome :=
 /-- B03(a): promotion to established happens exactly at the threshold. -/
 theorem gate_established_iff (std : Standard) (w : Weight) :
     gate std w = FactOutcome.established ↔ std.threshold ≤ w := by
-  rw [gate]
   by_cases h : std.threshold ≤ w
-  · rw [if_pos h]
-    exact fun _ => h
-  · rw [if_neg h]
-    exact fun hne => FactOutcome.noConfusion hne
+  · rw [gate, if_pos h]
+    exact ⟨fun _ => h, fun _ => rfl⟩
+  · rw [gate, if_neg h]
+    exact ⟨fun hne => FactOutcome.noConfusion hne, fun hh => absurd hh h⟩
 
 /-- B03(b): below the threshold the outcome is notReached, a genuinely
 different constructor from unknown and pending. -/

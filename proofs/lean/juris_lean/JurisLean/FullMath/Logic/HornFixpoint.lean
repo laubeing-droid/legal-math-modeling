@@ -1,5 +1,7 @@
 import JurisLean.FullMath.Core.Foundations
 
+set_option maxHeartbeats 1000000
+
 /-!
 F05 — Least closure of finite positive Horn programs.
 
@@ -14,7 +16,6 @@ namespace JurisLean.FullMath.Logic
 section Horn
 variable {A : Type} [DecidableEq A] [Fintype A]
 
-set_option maxHeartbeats 800000 in
 /-- One closure step: facts ∪ current ∪ heads fireable from current. -/
 def step (R : Finset (Finset A × A)) (F S : Finset A) : Finset A :=
   F ∪ S ∪ (R.filter (fun r => r.1 ⊆ S)).image Prod.snd

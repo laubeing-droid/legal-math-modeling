@@ -54,6 +54,11 @@ theorem full_label_decomposes (u0 : T → ℚ) (u : T → T → ℚ) (payments :
       ∧ revenue = Finset.sum Finset.univ (fun t => payments t) := by
   obtain ⟨⟨hdsic, hir⟩, hbudget⟩ := by
     simpa [fullLabel, Bool.and_eq_true] using h
-  exact ⟨dsic_of_label u hdsic, of_decide_eq_true hir, of_decide_eq_true hbudget⟩
+  refine ⟨dsic_of_label u hdsic, ?_, of_decide_eq_true hbudget⟩
+  · intro t
+    have hall := of_decide_eq_true hir
+    first
+    | exact hall t (Finset.mem_univ t)
+    | exact hall t
 
 end JurisLean.FullMath.Action

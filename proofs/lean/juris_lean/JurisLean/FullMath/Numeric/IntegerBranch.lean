@@ -48,15 +48,16 @@ theorem pruning_certificate (obj : ℤ → ℚ) (incumbent : ℤ)
     (nodeBound : Finset ℤ → ℚ)
     (hboundvalid : ∀ N ∈ nodes, ∀ v ∈ N,
       obj incumbent ≤ nodeBound N ∧ nodeBound N ≤ obj v) :
-    ∀ v ∈ [incumbent] ++ nodes.flatten, obj incumbent ≤ obj v := by
+    ∀ v ∈ [incumbent] ++ nodes.flatMap (fun N => N.toList), obj incumbent ≤ obj v := by
   intro v hv
   rw [List.mem_append] at hv
   rcases hv with hv | hv
   · rw [List.mem_singleton] at hv
     subst hv
     exact le_refl _
-  · rw [List.mem_flatten] at hv
+  · rw [List.mem_flatMap] at hv
     obtain ⟨N, hN, hvN⟩ := hv
+    rw [Finset.mem_toList] at hvN
     exact (hboundvalid N hN v hvN).1.trans (hboundvalid N hN v hvN).2
 
 /-- N05(d) adversarial fact: pruning at equal value can discard alternative
@@ -79,6 +80,7 @@ theorem pruning_equal_value_alternatives :
   have h1v : (fun x => x * (x - 3)) 1 = -2 := by norm_num
   show (fun x => x * (x - 3)) 1 ≤ (fun x => x * (x - 3)) x
   rw [h1v]
+  show -2 ≤ x * (x - 3)
   have hx : x * (x - 3) = x * x - 3 * x := by ring
   rw [hx]
   nlinarith [key, hexp]

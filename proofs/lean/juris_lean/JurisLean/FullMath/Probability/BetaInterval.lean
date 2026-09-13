@@ -32,7 +32,7 @@ the top binomial term survives. -/
 theorem betaCDF_one (a b : ℕ) (ha : 0 < a) (hb : 0 < b) : betaCDF a b 1 = 1 := by
   have hmem : (⟨a + b - 1, by omega⟩ : Fin (a + b)) ∈ Finset.univ := Finset.mem_univ _
   refine Finset.sum_eq_single (⟨a + b - 1, by omega⟩ : Fin (a + b))
-    (fun j _ _ => ?_) hmem
+    (fun j _ _ => ?_) (fun _ hout => absurd hout (Finset.mem_univ _))
   · by_cases hja : a ≤ j.val
     · rw [if_pos hja]
       have hpos : a + b - 1 - j.val ≠ 0 := by omega

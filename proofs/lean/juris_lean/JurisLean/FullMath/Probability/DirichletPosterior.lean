@@ -32,7 +32,7 @@ theorem dirWeights_normalizes (α n : Fin k → ℚ)
     Finset.sum Finset.univ (fun i : Fin k => dirWeights α n i) = 1 := by
   show Finset.sum Finset.univ
       (fun i : Fin k => (α i + n i) / Finset.sum Finset.univ (fun j : Fin k => α j + n j)) = 1
-  rw [Finset.sum_div]
+  rw [← Finset.sum_div]
   exact div_self (ne_of_gt hpos)
 
 /-- P05(b): the update rule composes — counts from two batches merge into
@@ -67,8 +67,9 @@ theorem Gamma_add_nat (x : ℝ) (n : ℕ) :
   induction n with
   | zero => simp [rising]
   | succ n ih =>
-    have hstep : x + (n + 1) = (x + n) + 1 := by ring
-    rw [hstep, Real.Gamma_succ, ih, rising_succ]
+    push_cast
+    show Real.Gamma ((x + (n : ℝ)) + 1) = rising x (n + 1) * Real.Gamma x
+    rw [Real.Gamma_succ, ih, rising_succ]
     ring
 
 /-- P06(a): the Beta weight ratio equals the rising-factorial ratio for
@@ -99,7 +100,7 @@ theorem hyperWeights_normalizes {H : Type} [Fintype H] [DecidableEq H]
     Finset.sum Finset.univ (fun h : H => hyperWeights π ratio h) = 1 := by
   show Finset.sum Finset.univ
       (fun h : H => (π h * ratio h) / Finset.sum Finset.univ (fun h' : H => π h' * ratio h')) = 1
-  rw [Finset.sum_div]
+  rw [← Finset.sum_div]
   exact div_self (ne_of_gt hpos)
 
 /-- P06(c): different data move the posterior — a concrete fully-parameterized

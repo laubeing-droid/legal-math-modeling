@@ -32,7 +32,7 @@ theorem unprocessed_mass_bounds (a b u v r : ℚ)
     nlinarith [h1, mul_nonneg hu hb, mul_nonneg hu hr, huv, ha, hb, hu, hv, hr]
   · field_simp
     have h2 : u * b ≤ r * b := mul_le_mul_of_nonneg_right hur hb
-    nlinarith [h2, mul_nonneg hr v, huv, ha, hb, hu, hv, hr]
+    nlinarith [h2, mul_nonneg hr hv, huv, ha, hb, hu, hv, hr]
 
 /-- P10(b): the zero-verified-mass case is degenerate — no positive lower
 bound is possible, stated as a concrete instance with all mass unprocessed. -/

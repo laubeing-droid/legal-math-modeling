@@ -48,7 +48,6 @@ theorem contaminate_condition_do_not_commute :
     ((1 - 1 / 2) * 1 / 2 + 1 / 2 * 1) ≠
       ((1 / 2 * 1 / 10 + 1 / 2 * 1 / 2) /
         (1 / 2 * (1 / 10 + 1 / 10) + 1 / 2 * (1 / 2 + 0))) := by
-  intro h
-  norm_num at h
+  norm_num
 
 end JurisLean.FullMath.Probability

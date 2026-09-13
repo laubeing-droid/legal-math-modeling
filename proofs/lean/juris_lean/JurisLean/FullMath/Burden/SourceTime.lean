@@ -17,33 +17,34 @@ structure SourceVersion where
   repealed : Option ℕ
 
 def appliesAt (v : SourceVersion) (t : ℕ) : Bool :=
-  decide (v.effective ≤ t)
-    && match v.repealed with
-      | none => true
-      | some r => decide (t < r)
+  if v.effective ≤ t then
+    match v.repealed with
+    | none => true
+    | some r => decide (t < r)
+  else false
 
 /-- B07(a): applicability needs the effective time — an event before the
 effective date is not covered, regardless of when we fetched. -/
 theorem not_yet_effective (v : SourceVersion) (t : ℕ)
     (h : t < v.effective) : appliesAt v t = false := by
-  simp only [appliesAt, decide_and]
-  rw [decide_eq_false (by omega)]
-  simp
+  simp only [appliesAt]
+  rw [if_neg (by omega : ¬ (v.effective ≤ t))]
 
 theorem repealed_not_applicable (v : SourceVersion) (r t : ℕ)
     (hrep : v.repealed = some r) (hr : r ≤ t) : appliesAt v t = false := by
-  simp only [appliesAt, hrep, decide_and]
-  rw [decide_eq_false (by omega)]
-  simp
+  simp only [appliesAt, hrep]
+  by_cases heff : v.effective ≤ t
+  · rw [if_pos heff, decide_eq_false (by omega)]
+  · rw [if_neg heff]
 
 theorem effective_window_applicable (v : SourceVersion) (t : ℕ)
     (h1 : v.effective ≤ t) (h2 : ∀ r, v.repealed = some r → t < r) :
     appliesAt v t = true := by
-  simp only [appliesAt, decide_and]
-  rw [decide_eq_true h1]
+  simp only [appliesAt]
+  rw [if_pos h1]
   cases hrep : v.repealed with
-  | none => simp
-  | some r => rw [decide_eq_true (h2 r hrep)]; simp
+  | none => rfl
+  | some r => rw [decide_eq_true (h2 r hrep)]
 
 /-- B07(b): unknown is not inapplicable — with no applicable source and no
 explicit exclusion ground the slot stays pending. -/
@@ -91,8 +92,7 @@ theorem version_change_invalidates (v v' : SourceVersion)
 theorem cache_hit_only_same_version (v v' : SourceVersion)
     (h : cacheHit v v' = true) : v.published = v'.published
       ∧ v.effective = v'.effective ∧ v.repealed = v'.repealed := by
-  simp only [cacheHit, decide_eq_true_eq_eq] at h
-  simp only [cacheKey, Prod.mk.injEq] at h
-  exact h
+  have hkey : cacheKey v = cacheKey v' := of_decide_eq_true h
+  refine ⟨?_, ?_, ?_⟩ <;> simp_all [cacheKey]
 
 end JurisLean.FullMath.Burden

@@ -60,8 +60,8 @@ theorem sup_not_attained :
     · intro x hx
       exact le_of_lt hx.2
     · intro y hy
-      rcases le_total 0 y with hpos | hneg
-      · have hpy : (0 : ℝ) < 1 + y := by linarith [hpos]
+      by_cases h0 : 0 ≤ y
+      · have hpy : (0 : ℝ) < 1 + y := by linarith [h0]
         have ht : (0 : ℝ) < (1 + y) / 2 := div_pos hpy two_pos
         have h12 : (1 + y) / 2 * 2 = 1 + y := div_mul_cancel₀ _ two_ne_zero
         refine ⟨(1 + y) / 2, ⟨le_of_lt ht, ?_⟩, ?_⟩
@@ -71,7 +71,7 @@ theorem sup_not_attained :
         · by_contra hle
           have hsmall : (1 + y) / 2 * 2 ≤ y * 2 := by nlinarith [hle]
           linarith [h12]
-      · exact ⟨0, by norm_num, by linarith [hneg]⟩
+      · exact ⟨0, by norm_num, by linarith⟩
   · intro hmem
     exact absurd hmem.2 (by linarith)
 

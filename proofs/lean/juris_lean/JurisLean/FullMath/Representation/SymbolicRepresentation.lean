@@ -99,12 +99,11 @@ def reduced (gamma : (Fin 1 → ℚ) → Prop) (comp : Fin 1 → Set ℚ) (i : F
   {x | x ∈ comp i ∧ ∃ w, gammaJoint gamma comp w ∧ w i = x}
 
 /-- A one-component specialization of the reduced product keeps the joint
-denotation: what is realized is exactly the intersection with the component
-and the Γ-restriction. -/
+denotation: what is realized is exactly the Γ-restriction intersected with
+the component set. -/
 theorem reduced_preserves_joint_one
     (gamma : (Fin 1 → ℚ) → Prop) (comp : Fin 1 → Set ℚ) :
-    reduced (fun w => gamma w ∧ ∀ j, w j ∈ comp j) comp 0 =
-      {v : ℚ | gamma (fun _ => v) ∧ v ∈ comp 0} := by
+    reduced gamma comp 0 = {v : ℚ | gamma (fun _ => v) ∧ v ∈ comp 0} := by
   ext v
   constructor
   · rintro ⟨hin, w, ⟨hgw, _⟩, heq⟩
@@ -112,12 +111,10 @@ theorem reduced_preserves_joint_one
       funext j
       fin_cases j
       exact heq
-    exact ⟨hw ▸ hgw, hin⟩
+    subst hw
+    exact ⟨hgw, hin⟩
   · rintro ⟨hgamma, hin⟩
-    refine ⟨hin, fun _ => v, ⟨hgamma, ?_⟩, rfl⟩
-    intro j
-    fin_cases j
-    exact hin
+    exact ⟨hin, fun _ => v, ⟨hgamma, fun j => by fin_cases j; exact hin⟩, rfl⟩
 
 /-! CEGAR: splitting keeps the outer bound sound. -/
 
@@ -125,45 +122,64 @@ theorem reduced_preserves_joint_one
 along the first coordinate. -/
 def splitBox (b : Box (d + 1)) (k : ℚ) (hk : b.lo 0 ≤ k) (hk2 : k ≤ b.hi 0) :
     Box (d + 1) × Box (d + 1) :=
-  (⟨fun _ => b.lo, fun i => if i = 0 then k else b.hi i, fun i => by
+  (⟨b.lo, fun i => if i = 0 then k else b.hi i, fun i => by
       by_cases h : i = 0
-      · simp only [h, if_true]; exact hk
-      · simp only [h, if_false]; exact b.ord i⟩,
-   ⟨fun i => if i = 0 then k else b.lo i, fun _ => b.hi, fun i => by
+      · subst h
+        rw [if_pos rfl]
+        exact hk
+      · rw [if_neg h]
+        exact b.ord i⟩,
+   ⟨fun i => if i = 0 then k else b.lo i, b.hi, fun i => by
       by_cases h : i = 0
-      · simp only [h, if_true]; exact le_refl _
-      · simp only [h, if_false]; exact b.ord i⟩)
+      · subst h
+        rw [if_pos rfl]
+        exact hk2
+      · rw [if_neg h]
+        exact b.ord i⟩)
 
 /-- EXT04(b): splitting a box covers the original denotation exactly —
 outer soundness is preserved at every step. -/
 theorem splitBox_cover (b : Box (d + 1)) (k : ℚ) (hk : b.lo 0 ≤ k) (hk2 : k ≤ b.hi 0) :
-    (boxDen (splitBox b k hk hk2).1) ∪ (boxDen (splitBox b k hk hk2).2) = boxDen b := by
+    boxDen (splitBox b k hk hk2).1 ∪ boxDen (splitBox b k hk hk2).2 = boxDen b := by
   ext x
-  simp only [boxDen, Set.mem_setOf_eq, Set.mem_union]
+  simp only [boxDen, splitBox, Set.mem_setOf_eq, Set.mem_union]
   constructor
   · rintro (h | h)
-    all_goals
-      intro i
+    · intro i
+      obtain ⟨h1, h2⟩ := h i
       by_cases h0 : i = 0
       · subst h0
-        rcases h ⟨0, Nat.succ_pos 0⟩ with ⟨h1, h2⟩ | ⟨h1, h2⟩
-        · exact ⟨h1, le_trans h2 hk2⟩
-        · exact ⟨hk.trans h1, h2⟩
-      · rcases h i with ⟨h1, h2⟩
+        rw [if_pos rfl] at h2
+        exact ⟨h1, h2.trans hk2⟩
+      · rw [if_neg h0] at h2
+        exact ⟨h1, h2⟩
+    · intro i
+      obtain ⟨h1, h2⟩ := h i
+      by_cases h0 : i = 0
+      · subst h0
+        rw [if_pos rfl] at h1
+        exact ⟨hk.trans h1, h2⟩
+      · rw [if_neg h0] at h1
         exact ⟨h1, h2⟩
   · intro h
-    rcases le_total (x ⟨0, Nat.succ_pos 0⟩) k with hxk | hxk
+    rcases le_total (x 0) k with hxk | hxk
     · left
       intro i
+      obtain ⟨h1, h2⟩ := h i
       by_cases h0 : i = 0
       · subst h0
-        exact ⟨h ⟨0, Nat.succ_pos 0⟩ |>.1, hxk⟩
-      · exact h i
+        rw [if_pos rfl]
+        exact ⟨h1, hxk⟩
+      · rw [if_neg h0]
+        exact h i
     · right
       intro i
+      obtain ⟨h1, h2⟩ := h i
       by_cases h0 : i = 0
       · subst h0
-        exact ⟨hxk, h ⟨0, Nat.succ_pos 0⟩ |>.2⟩
-      · exact h i
+        rw [if_pos rfl]
+        exact ⟨hxk, h2⟩
+      · rw [if_neg h0]
+        exact h i
 
 end JurisLean.FullMath.Representation

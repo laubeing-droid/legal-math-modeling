@@ -30,7 +30,7 @@ theorem betaCDF_zero (a b : ℕ) (ha : 0 < a) : betaCDF a b 0 = 0 := by
 /-- P10(b): at full mass the exact CDF equals one (for `a, b ≥ 1`): only
 the top binomial term survives. -/
 theorem betaCDF_one (a b : ℕ) (ha : 0 < a) (hb : 0 < b) : betaCDF a b 1 = 1 := by
-  have hside : ∀ j ∈ (Finset.univ : Finset (a + b)),
+  have hside : ∀ j ∈ (Finset.univ : Finset (Fin (a + b))),
       j ≠ (⟨a + b - 1, by omega⟩ : Fin (a + b)) →
       (if (a : ℕ) ≤ j.val then
         ((Nat.choose (a + b - 1) j.val : ℕ) : ℚ) * (1 : ℚ) ^ j.val

@@ -50,7 +50,6 @@ theorem pavGo_weight_sum (fuel : Nat) (l : List Pool) :
         simp only [List.map_cons, List.sum_cons]
         rw [ih ((s2, w2) :: rest)]
         simp only [List.map_cons, List.sum_cons]
-        ring
 
 /-- P13(b): for two points with general positive weights and a violating
 (initially decreasing) pair, the pooled value is the global optimum of the

@@ -132,7 +132,6 @@ theorem exclusion_no_langer (k : ℕ) : ∀ (l : List Obs) (seen : ℕ → Bool)
           simp only [List.filter, hp, if_true]]
         rw [dedupAux_cons_seen o rest seen hseen,
           dedupAux_cons_seen o (rest.filter (exclP k)) seen hseen, ih seen]
-        simp only [List.filter, hp, if_true]
       · rw [show (o :: rest).filter (exclP k) = o :: rest.filter (exclP k) from by
           simp only [List.filter, hp, if_true]]
         rw [dedupAux_cons_fresh o rest seen hseen,

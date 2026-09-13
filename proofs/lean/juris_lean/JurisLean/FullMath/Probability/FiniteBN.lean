@@ -51,9 +51,7 @@ def joint : {n : ℕ} → Chain n → State n → ℚ
 
 /-- P01(a): the joint distribution is nonnegative everywhere. -/
 theorem joint_nonneg : ∀ {n : ℕ} (c : Chain n) (s : State n), 0 ≤ joint c s
-  | 0, _, _ => by
-    show (0 : ℚ) ≤ 1
-    norm_num
+  | 0, _, _ => by simp [joint]
   | n + 1, .cons k rest, (pre, b) => by
     show (0 : ℚ) ≤ joint rest pre * k.cond pre b
     exact mul_nonneg (joint_nonneg rest pre) (k.nonneg pre b)
@@ -61,8 +59,9 @@ theorem joint_nonneg : ∀ {n : ℕ} (c : Chain n) (s : State n), 0 ≤ joint c 
 /-- P01(b): the joint distribution sums to one over the whole space. -/
 theorem joint_normalizes : ∀ {n : ℕ} (c : Chain n), ∑ s, joint c s = 1
   | 0, .nil => by
-    show ∑ s : State 0, (1 : ℚ) = 1
+    show Finset.sum Finset.univ (fun _ : State 0 => (1 : ℚ)) = 1
     simp
+    decide
   | n + 1, .cons k rest => by
     show ∑ s : State n × Bool, joint (.cons k rest) s = 1
     rw [Fintype.sum_prod_type]
@@ -71,7 +70,10 @@ theorem joint_normalizes : ∀ {n : ℕ} (c : Chain n), ∑ s, joint c s = 1
         (∑ b : Bool, joint rest pre * k.cond pre b)
           = joint rest pre * (∑ b : Bool, k.cond pre b) := by
       intro pre
-      exact (Finset.mul_sum (joint rest pre) (fun b => k.cond pre b) Finset.univ).symm
+      have hmul : joint rest pre * Finset.sum Finset.univ (fun b : Bool => k.cond pre b)
+        = Finset.sum Finset.univ (fun b : Bool => joint rest pre * k.cond pre b) :=
+      Finset.mul_sum (joint rest pre) (fun b => k.cond pre b) Finset.univ
+    rw [hmul]
     rw [Finset.sum_congr rfl (fun pre _ => hstep pre)]
     have hrow : ∀ pre : State n, (∑ b : Bool, k.cond pre b) = 1 := by
       intro pre

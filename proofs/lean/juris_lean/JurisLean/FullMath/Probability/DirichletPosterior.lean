@@ -54,12 +54,12 @@ end Dirichlet
 
 section BetaRising
 
-/-- Rising factorial `x · (x+1) ⋯ (x+n−1)` as a finite product. -/
-def rising (x : ℝ) (n : ℕ) : ℝ := ∏ j ∈ Finset.range n, (x + j)
+/-- Rising factorial `x · (x+1) ⋯ (x+n−1)`, defined recursively. -/
+def rising (x : ℝ) : ℕ → ℝ
+  | 0 => 1
+  | n + 1 => rising x n * (x + n)
 
-theorem rising_succ (x : ℝ) (n : ℕ) : rising x (n + 1) = rising x n * (x + n) := by
-  unfold rising
-  rw [Finset.prod_range_succ']
+theorem rising_succ (x : ℝ) (n : ℕ) : rising x (n + 1) = rising x n * (x + n) := rfl
 
 /-- Gamma of `x + n` factors through the rising factorial. -/
 theorem Gamma_add_nat (x : ℝ) (n : ℕ) :
@@ -68,8 +68,9 @@ theorem Gamma_add_nat (x : ℝ) (n : ℕ) :
   | zero => simp [rising]
   | succ n ih =>
     push_cast
-    show Real.Gamma ((x + (n : ℝ)) + 1) = rising x (n + 1) * Real.Gamma x
-    rw [Real.Gamma_succ, ih, rising_succ]
+    show Real.Gamma (x + ((n : ℝ) + 1)) = rising x (n + 1) * Real.Gamma x
+    rw [← add_assoc, Real.Gamma_succ, ih]
+    show (x + (n : ℝ)) * (rising x n * Real.Gamma x) = rising x n * (x + (n : ℝ)) * Real.Gamma x
     ring
 
 /-- P06(a): the Beta weight ratio equals the rising-factorial ratio for
@@ -84,7 +85,7 @@ theorem beta_ratio (α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) :
     ne_of_gt (Real.Gamma_pos_of_pos (by linarith))
   have hGabwl : Real.Gamma (α + β + (w + l)) ≠ 0 :=
     ne_of_gt (Real.Gamma_pos_of_pos (by linarith))
-  push_cast
+  rw [Nat.cast_add]
   rw [Gamma_add_nat α w, Gamma_add_nat β l, Gamma_add_nat (α + β) (w + l)]
   field_simp
   ring

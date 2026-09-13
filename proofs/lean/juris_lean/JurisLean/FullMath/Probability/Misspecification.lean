@@ -53,6 +53,6 @@ theorem contaminate_condition_do_not_commute :
   have h2 : ((1 / 2 * 1 / 10 + 1 / 2 * 1 / 2) /
       (1 / 2 * (1 / 10 + 1 / 10) + 1 / 2 * (1 / 2 + 0))) = 6 / 7 := by norm_num
   rw [h1, h2] at heq
-  norm_num at heq
+  exact absurd heq (by norm_num)
 
 end JurisLean.FullMath.Probability

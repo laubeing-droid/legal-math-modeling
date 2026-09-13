@@ -140,8 +140,10 @@ theorem pending_edges_are_edges (edges : List (Arg A × Arg A))
 /-- F09(c): the pending set is at most the full edge set (no fabrication). -/
 theorem pending_edges_bound (edges : List (Arg A × Arg A))
     (policy : Arg A → Arg A → Option Bool) :
-    (pendingEdges edges policy).length ≤ edges.length :=
-  List.length_filter_le edges (fun e => adjudicate policy e.1 e.2 = .undecided)
+    (pendingEdges edges policy).length ≤ edges.length := by
+  unfold pendingEdges
+  exact List.length_filter_le edges
+    (fun e => decide (adjudicate policy e.1 e.2 = .undecided))
 
 end Attack
 

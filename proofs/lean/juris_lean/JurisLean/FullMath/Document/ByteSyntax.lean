@@ -2,6 +2,8 @@ import JurisLean.FullMath.Core.Foundations
 
 /-!
 M13/D104-D130 (formal part) - Supported byte syntax, lenses and fractions.
+Plain segments exclude both the quote byte and the backslash byte; that
+exclusion is an explicit hypothesis of the roundtrip theorem.
 -/
 
 namespace JurisLean.FullMath.Document
@@ -17,7 +19,7 @@ theorem normalize_reduced (a b : Nat) (hb : 0 < b) :
       rw [Nat.gcd_eq_zero_iff] at h
       omega)
   have hgb : Nat.gcd a b ≤ b := Nat.gcd_le_right a hb
-  refine ⟨Nat.div_pos hgb hg, Nat.coprime_div_gcd_div_gcd (by omega)⟩
+  exact ⟨Nat.div_pos hgb hg, Nat.coprime_div_gcd_div_gcd (by omega)⟩
 
 /-! Restricted segment syntax (list-level). -/
 
@@ -35,10 +37,14 @@ def parseL (cs : List Char) : Option (List Char × List Char) :=
   | [] => none
   | c :: rest => if c = '\\' then none else if c = '"' then parseGo rest [] else none
 
-theorem parse_render_roundtrip (cs : List Char) (hplain : ∀ c ∈ cs, c ≠ '"') :
+/-- Plainness: neither the quote nor the backslash byte occurs. -/
+def Plain (cs : List Char) : Prop :=
+  ∀ c ∈ cs, c ≠ '"' ∧ c ≠ '\\'
+
+theorem parse_render_roundtrip (cs : List Char) (hplain : Plain cs) :
     parseL (renderL cs) = some (cs, []) := by
   have hstep : ∀ (xs : List Char) (acc : List Char),
-      (∀ c ∈ xs, c ≠ '"') →
+      Plain xs →
       parseGo (xs ++ ['"']) acc = some (acc.reverse ++ xs, []) := by
     intro xs
     induction xs with
@@ -47,21 +53,11 @@ theorem parse_render_roundtrip (cs : List Char) (hplain : ∀ c ∈ cs, c ≠ '"
       simp [parseGo]
     | cons c xs ih =>
       intro acc h
-      have hc : c ≠ '"' := h c (by simp)
-      have hc2 : ¬ (c = '\\') := by
-        intro hx
-        exact absurd (hx) (by
-          intro hxe
-          have : c = c := rfl
-          exact absurd rfl (by
-            intro hh
-            exact absurd (hx ▸ (by
-              intro hq
-              exact hq)) (fun hq2 => hc hq2)))
-      rw [parseGo, if_neg hc2, if_neg hc, ← List.cons_append]
+      obtain ⟨hcq, hcb⟩ := h c (by simp)
+      rw [parseGo, if_neg hcb, if_neg hcq, ← List.cons_append]
       rw [ih (c :: acc) (fun x hx => by
         rcases List.mem_cons.mp hx with rfl | hx
-        · exact hc
+        · exact ⟨hcq, hcb⟩
         · exact h x hx)]
       simp only [List.reverse_cons, List.cons_append, List.append_nil]
       rfl
@@ -112,11 +108,10 @@ theorem eraseKey_idem (d : Doc) (k : String) :
     · simp [eraseKey, hk, ih]
     · simp [eraseKey, hk, ih]
 
-/-- An observer independent of key `k` is unchanged by putting `k`:
-independence is stated directly on eraseKey image equality. -/
+/-- An observer independent of key `k` is unchanged by putting `k`. -/
 theorem observer_outside_closure (obs : Doc → String) (d : Doc) (k v : String)
     (hindep : ∀ d₁ d₂, eraseKey d₁ k = eraseKey d₂ k → obs d₁ = obs d₂) :
-    obs (docPut d k v) = obs d := by
-  refine hindep _ _ (eraseKey_idem d k)
+    obs (docPut d k v) = obs d :=
+  hindep _ _ (eraseKey_idem d k)
 
 end JurisLean.FullMath.Document

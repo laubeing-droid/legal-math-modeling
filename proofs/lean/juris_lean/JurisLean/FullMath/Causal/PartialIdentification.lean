@@ -60,7 +60,9 @@ theorem sup_not_attained :
     · intro x hx
       exact le_of_lt hx.2
     · intro y hy
-      refine ⟨(1 + y) / 2, ⟨by nlinarith, by nlinarith⟩, by nlinarith⟩
+      rcases le_total 0 y with hy0 | hy0
+      · refine ⟨(1 + y) / 2, ⟨by nlinarith, by nlinarith⟩, by nlinarith⟩
+      · refine ⟨0, by norm_num, by linarith⟩
   · intro hmem
     exact absurd hmem.2 (by linarith)
 

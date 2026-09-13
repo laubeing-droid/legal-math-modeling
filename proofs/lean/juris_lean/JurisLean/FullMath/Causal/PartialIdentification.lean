@@ -61,17 +61,9 @@ theorem sup_not_attained :
       exact le_of_lt hx.2
     · intro y hy
       rcases le_total 0 y with hpos | hneg
-      · have h1 : 0 ≤ (1 + y) / 2 :=
-          div_nonneg (by linarith [hpos]) (by norm_num)
-        have h2 : (1 + y) / 2 < 1 := by
-          have hlt : 1 + y < 1 * 2 := by linarith
-          rw [div_lt_iff₀ (by norm_num : (0 : ℝ) < 2)]
-          linarith [hlt]
-        have h3 : y < (1 + y) / 2 := by
-          have hlt : y * 2 < 1 + y := by linarith
-          rw [lt_div_iff₀ (by norm_num : (0 : ℝ) < 2)]
-          linarith [hlt]
-        exact ⟨(1 + y) / 2, ⟨h1, h2⟩, h3⟩
+      · have hpy : (0 : ℝ) < 1 + y := by linarith [hpos]
+        have h12 : (1 + y) / 2 * 2 = 1 + y := div_mul_cancel₀ _ two_ne_zero
+        refine ⟨(1 + y) / 2, ⟨?_, ?_⟩, ?_⟩ <;> nlinarith [hpy, h12, hy]
       · exact ⟨0, by norm_num, by linarith [hneg]⟩
   · intro hmem
     exact absurd hmem.2 (by linarith)

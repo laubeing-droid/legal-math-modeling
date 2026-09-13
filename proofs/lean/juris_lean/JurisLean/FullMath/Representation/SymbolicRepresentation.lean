@@ -87,39 +87,34 @@ theorem unitBox_den (d : ℕ) : boxDen ⟨1, 1, fun _ => le_refl _⟩ =
 
 /-! EXT04: joint constraint Γ, reduced products and CEGAR splitting. -/
 
-/-- The joint constraint: `w` satisfies Γ and every component observation. -/
-def gammaJoint {J W : Type} {V : J → Type} (gamma : W → Prop)
-    (proj : (j : J) → W → V j)
-    (components : (j : J) → Set (V j)) (w : W) : Prop :=
-  gamma w ∧ ∀ j, proj j w ∈ components j
+/-- The joint constraint over scalar-coordinate observations: `w` satisfies
+Γ and every coordinate observation lies in its component set. -/
+def gammaJoint (gamma : (Fin 1 → ℚ) → Prop)
+    (comp : Fin 1 → Set ℚ) (w : Fin 1 → ℚ) : Prop :=
+  gamma w ∧ ∀ j, w j ∈ comp j
 
 /-- Reduction: shrink component `i` to the values realized inside the joint. -/
-def reduced
-    (gamma : (Fin 1 → ℚ) → Prop) (comp : (Fin 1 → Set (Fin 1 → ℚ)) )
-    (i : Fin 1) : Set (Fin 1 → ℚ) :=
-  {x | x ∈ comp i ∧ ∃ w, (gamma w ∧ ∀ j, w j ∈ comp j) ∧ w i = x}
-
-section ReducedProduct
+def reduced (gamma : (Fin 1 → ℚ) → Prop) (comp : Fin 1 → Set ℚ) (i : Fin 1) :
+    Set ℚ :=
+  {x | x ∈ comp i ∧ ∃ w, gammaJoint gamma comp w ∧ w i = x}
 
 /-- A one-component specialization of the reduced product keeps the joint
 denotation: what is realized is exactly the intersection with the component
 and the Γ-restriction. -/
 theorem reduced_preserves_joint_one
-    (gamma : (Fin 1 → ℚ) → Prop) (comp : (Fin 1 → Set (Fin 1 → ℚ))) :
+    (gamma : (Fin 1 → ℚ) → Prop) (comp : Fin 1 → Set ℚ) :
     reduced (fun w => gamma w ∧ ∀ j, w j ∈ comp j) comp 0 =
-      {v : Fin 1 → ℚ | gamma v ∧ v 0 ∈ comp 0} := by
+      {v : ℚ | gamma (fun _ => v) ∧ v ∈ comp 0} := by
   ext v
   constructor
   · rintro ⟨hin, w, ⟨hgw, hcomp⟩, heq⟩
-    subst heq
-    exact ⟨hgw, hin⟩
+    refine ⟨?_, hin⟩
+    simpa [heq] using hgw
   · rintro ⟨hgamma, hin⟩
-    refine ⟨hin, v, ⟨hgamma, ?_⟩, rfl⟩
+    refine ⟨hin, fun _ => v, ⟨hgamma, ?_⟩, rfl⟩
     intro j
     fin_cases j
     exact hin
-
-end ReducedProduct
 
 /-! CEGAR: splitting keeps the outer bound sound. -/
 

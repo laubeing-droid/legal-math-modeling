@@ -66,12 +66,12 @@ variable {K : Type} [Fintype K] [DecidableEq K]
 /-- G02(a): gross value of information is nonnegative — the weighted average
 of cell-wise maxima dominates the value of any single global choice. -/
 theorem gross_voi_nonneg (w : C → ℚ) (hw : ∀ c, 0 ≤ w c)
-    (u : C → K → ℚ) (k₀ : K) :
-    (∑ c, w c * u c k₀) ≤ ∑ c, w c * (Finset.univ.sup (fun k => u c k)) := by
+    (u : C → K → ℚ) (arg : C → K) (k₀ : K)
+    (hatt : ∀ c k, u c k ≤ u c (arg c)) :
+    (∑ c, w c * u c k₀) ≤ ∑ c, w c * u c (arg c) := by
   refine Finset.sum_le_sum ?_
   intro c _
-  exact mul_le_mul_of_nonneg_left
-    (Finset.le_sup (f := fun k => u c k) (Finset.mem_univ k₀)) (hw c)
+  exact mul_le_mul_of_nonneg_left (hatt c k₀) (hw c)
 
 /-- G02(b): after subtracting the signal cost, the net value can be
 negative — a concrete instance. -/

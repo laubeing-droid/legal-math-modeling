@@ -27,12 +27,12 @@ theorem unprocessed_mass_bounds (a b u v r : ℚ)
   have hden1 : 0 < a + b + r := by positivity
   have hden2 : 0 < a + b + u + v := by positivity
   constructor
-  · rw [div_le_div_iff hden1 hden2]
+  · field_simp
     have h1 : a * v ≤ a * r := mul_le_mul_of_nonneg_left hvr (le_of_lt ha)
-    nlinarith [h1, mul_nonneg hu hb, mul_nonneg hu hr]
-  · rw [div_le_div_iff hden2 hden1]
+    nlinarith [h1, mul_nonneg hu hb, mul_nonneg hu hr, huv, ha, hb, hu, hv, hr]
+  · field_simp
     have h2 : u * b ≤ r * b := mul_le_mul_of_nonneg_right hur hb
-    nlinarith [h2, mul_nonneg hr v]
+    nlinarith [h2, mul_nonneg hr v, huv, ha, hb, hu, hv, hr]
 
 /-- P10(b): the zero-verified-mass case is degenerate — no positive lower
 bound is possible, stated as a concrete instance with all mass unprocessed. -/
@@ -42,6 +42,6 @@ theorem unprocessed_mass_degenerate (u v : ℚ) (hu : 0 < u) (hv : 0 < v) :
   constructor
   · rw [div_lt_one hden]
     nlinarith
-  · exact div_pos hu hden
+  · exact div_pos (by simpa using hu) hden
 
 end JurisLean.FullMath.Probability

@@ -52,10 +52,11 @@ theorem full_label_decomposes (u0 : T → ℚ) (u : T → T → ℚ) (payments :
     (revenue : ℚ) (h : fullLabel u0 u payments revenue = true) :
     dsicProp u ∧ (∀ t, u0 t ≤ u t t)
       ∧ revenue = Finset.sum Finset.univ (fun t => payments t) := by
-  have h1 : dsicCheck u = true ∧ irCheck u0 u = true
-      ∧ budgetCheck payments revenue = true := by
+  obtain ⟨⟨hdsic, hir⟩, hbudget⟩ := by
     simpa [fullLabel, Bool.and_eq_true] using h
-  obtain ⟨hdsic, hir, hbudget⟩ := h1
-  exact ⟨dsic_of_label u hdsic, of_decide_eq_true hir, of_decide_eq_true hbudget⟩
+  exact ⟨dsic_of_label u hdsic,
+    of_decide_eq_true (show decide (∀ t ∈ Finset.univ, u0 t ≤ u t t) = true from hir),
+    of_decide_eq_true (show decide (revenue = Finset.sum Finset.univ
+      (fun t => payments t)) = true from hbudget)⟩
 
 end JurisLean.FullMath.Action

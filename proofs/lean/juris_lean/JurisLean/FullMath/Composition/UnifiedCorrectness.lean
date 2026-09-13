@@ -41,8 +41,8 @@ theorem partial_never_displayed_complete (computed solutions : Set ℚ)
     ¬ (computed = solutions) := by
   intro heq
   obtain ⟨x, hx, hxc⟩ := hstrict
-  rw [heq] at hx
-  exact hxc (hsub hx)
+  rw [← heq] at hx
+  exact hxc hx
 
 /-- C07(c): no empirical label without a verification certificate. -/
 def empiricalLabel (verified : Bool) : String → Option String :=

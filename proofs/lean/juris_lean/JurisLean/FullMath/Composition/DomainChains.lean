@@ -33,10 +33,10 @@ never become adjudicated facts. -/
 theorem chain_generates_no_court (policy : String) (ids : List ℕ) (a : ℕ) :
     ∀ r ∈ runChain policy ids, r ≠ CondRuling.courtAct a := by
   intro r hr hcontra
-  rw hcontra at hr
-  simp only [runChain, List.mem_map] at hr
+  rw [runChain, List.mem_map] at hr
   obtain ⟨i, _, hmap⟩ := hr
-  cases hmap
+  rw [hcontra] at hmap
+  exact CondRuling.noConfusion hmap
 
 /-- C05(c): two domains run the same engine; different named policies
 give different conditional labels for the same assumption id. -/

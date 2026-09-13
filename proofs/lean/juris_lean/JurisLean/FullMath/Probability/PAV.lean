@@ -31,20 +31,42 @@ label mass — the block value stays the weighted mean). -/
 theorem pavPass_weight_sum (l : List Pool) :
     ((pavPass l).map Prod.snd).sum = (l.map Prod.snd).sum := by
   induction l using pavPass.induct with
-  | case1 => rfl
-  | case2 b => rfl
+  | case1 => simp [pavPass]
+  | case2 b => simp [pavPass]
   | case3 s1 w1 s2 w2 rest ih1 ih2 =>
     by_cases hcond : (s1 / w1) > (s2 / w2)
-    · rw [pavPass, if_pos hcond]
+    · rw [show pavPass ((s1, w1) :: (s2, w2) :: rest)
+          = pavPass ((s1 + s2, w1 + w2) :: rest) from by
+        simp only [pavPass]
+        rw [if_pos hcond]]
+      rw [ih1]
       simp only [List.map_cons, List.sum_cons]
-      have h1 := ih1 rfl
-      simp only [List.map_cons, List.sum_cons] at h1 ⊢
-      linarith
-    · rw [pavPass, if_neg hcond]
+      ring
+    · rw [show pavPass ((s1, w1) :: (s2, w2) :: rest)
+          = (s1, w1) :: pavPass ((s2, w2) :: rest) from by
+        simp only [pavPass]
+        rw [if_neg hcond]]
       simp only [List.map_cons, List.sum_cons]
-      have h2 := ih2 rfl
-      simp only [List.map_cons, List.sum_cons] at h2 ⊢
-      linarith
+      rw [ih2]
+      simp only [List.map_cons, List.sum_cons]
+      ring
+  | case4 s1 w1 s2 w2 rest ih1 ih2 =>
+    by_cases hcond : (s1 / w1) > (s2 / w2)
+    · rw [show pavPass ((s1, w1) :: (s2, w2) :: rest)
+          = pavPass ((s1 + s2, w1 + w2) :: rest) from by
+        simp only [pavPass]
+        rw [if_pos hcond]]
+      rw [ih1]
+      simp only [List.map_cons, List.sum_cons]
+      ring
+    · rw [show pavPass ((s1, w1) :: (s2, w2) :: rest)
+          = (s1, w1) :: pavPass ((s2, w2) :: rest) from by
+        simp only [pavPass]
+        rw [if_neg hcond]]
+      simp only [List.map_cons, List.sum_cons]
+      rw [ih2]
+      simp only [List.map_cons, List.sum_cons]
+      ring
 
 /-- P13(b): for two points with general positive weights and a violating
 (initially decreasing) pair, the pooled value is the global optimum of the
@@ -75,7 +97,6 @@ theorem pav_two_point_optimal (w1 w2 y1 y2 : ℚ) (hw1 : 0 < w1) (hw2 : 0 < w2)
               + (c2 - (w1 * y1 + w2 * y2) / (w1 + w2))) := by
     field_simp
     ring
-  linarith [hkey, h1, h2, h3]
   have hab : (0 : ℚ) ≤ ((w1 * y1 + w2 * y2) / (w1 + w2) - c1
       + (c2 - (w1 * y1 + w2 * y2) / (w1 + w2))) := by
     have hval : ((w1 * y1 + w2 * y2) / (w1 + w2) - c1

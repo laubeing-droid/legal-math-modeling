@@ -19,6 +19,11 @@ structure Obs where
 def dedup : List Obs → List Obs
   | [] => []
   | o :: rest => o :: dedup (rest.filter (fun o' => decide (o'.id != o.id)))
+termination_by l => l.length
+decreasing_by
+  simp_wf
+  have hle := List.length_filter_le (fun o' => decide (o'.id != o.id)) rest
+  omega
 
 /-- The aggregate over deduplicated observations. -/
 def obsTotal (l : List Obs) : ℚ := (dedup l).map Obs.value |>.sum
@@ -29,7 +34,8 @@ theorem dedup_no_double_update (o : Obs) (l : List Obs) :
   simp only [obsTotal, dedup]
   have hfil : (o :: l).filter (fun o' => decide (o'.id != o.id))
       = l.filter (fun o' => decide (o'.id != o.id)) := by
-    simp [List.filter]
+    have hb : decide (o.id != o.id) = false := by simp
+    simp [List.filter, hb]
   rw [hfil]
 
 /-- P04(b): a conflicting value under the same id does not overwrite the
@@ -39,7 +45,8 @@ theorem dedup_conflict_not_overwrite (o1 o2 : Obs) (h : o1.id = o2.id)
   simp only [obsTotal, dedup]
   have hfil : (o2 :: l).filter (fun o' => decide (o'.id != o1.id))
       = l.filter (fun o' => decide (o'.id != o1.id)) := by
-    simp [List.filter, h]
+    have hb : decide (o2.id != o1.id) = false := by simp [h]
+    simp [List.filter, hb]
   rw [hfil]
 
 /-- P04(c): exclusion of observations by an id-determined predicate

@@ -123,6 +123,7 @@ along the first coordinate. -/
 def splitBox (b : Box (d + 1)) (k : ℚ) (hk : b.lo 0 ≤ k) (hk2 : k ≤ b.hi 0) :
     Box (d + 1) × Box (d + 1) :=
   (⟨b.lo, fun i => if i = 0 then k else b.hi i, fun i => by
+      show b.lo i ≤ if i = 0 then k else b.hi i
       by_cases h : i = 0
       · subst h
         rw [if_pos rfl]
@@ -130,6 +131,7 @@ def splitBox (b : Box (d + 1)) (k : ℚ) (hk : b.lo 0 ≤ k) (hk2 : k ≤ b.hi 0
       · rw [if_neg h]
         exact b.ord i⟩,
    ⟨fun i => if i = 0 then k else b.lo i, b.hi, fun i => by
+      show (if i = 0 then k else b.lo i) ≤ b.hi i
       by_cases h : i = 0
       · subst h
         rw [if_pos rfl]

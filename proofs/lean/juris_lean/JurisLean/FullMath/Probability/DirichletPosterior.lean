@@ -19,7 +19,7 @@ variable {k : ℕ}
 
 /-- Posterior weights `(α_i + n_i) / Σ_j (α_j + n_j)`. -/
 def dirWeights (α n : Fin k → ℚ) : Fin k → ℚ :=
-  fun i => (α i + n i) / (∑ j, α j + n j)
+  fun i => (α i + n i) / (∑ j : Fin k, α j + n j)
 
 theorem dirWeights_nonneg (α n : Fin k → ℚ) (hα : ∀ i, 0 ≤ α i) (hn : ∀ i, 0 ≤ n i)
     (hpos : 0 < ∑ j, α j + n j) (i) : 0 ≤ dirWeights α n i :=
@@ -28,7 +28,7 @@ theorem dirWeights_nonneg (α n : Fin k → ℚ) (hα : ∀ i, 0 ≤ α i) (hn :
 /-- P05(a): posterior weights normalize. -/
 theorem dirWeights_normalizes (α n : Fin k → ℚ) (hpos : 0 < ∑ j, α j + n j) :
     ∑ i, dirWeights α n i = 1 := by
-  show (∑ i, (α i + n i) / (∑ j, α j + n j)) = 1
+  show (∑ i : Fin k, (α i + n i) / (∑ j : Fin k, α j + n j)) = 1
   rw [Finset.sum_div]
   exact div_self (ne_of_gt hpos)
 
@@ -86,14 +86,14 @@ theorem beta_ratio (α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) :
 /-- Hierarchical hyper-posterior weights ∝ π_h ∏_g ratio_h(g). -/
 def hyperWeights {H : Type} [Fintype H] [DecidableEq H]
     (π : H → ℚ) (ratio : H → ℚ) : H → ℚ :=
-  fun h => π h * ratio h / (∑ h', π h' * ratio h')
+  fun h => π h * ratio h / (∑ h' : H, π h' * ratio h')
 
 /-- P06(b): hierarchical weights normalize when the mixture mass is positive. -/
 theorem hyperWeights_normalizes {H : Type} [Fintype H] [DecidableEq H]
     (π : H → ℚ) (ratio : H → ℚ) (hπ : ∀ h, 0 ≤ π h) (hr : ∀ h, 0 ≤ ratio h)
     (hpos : 0 < ∑ h', π h' * ratio h') :
     ∑ h, hyperWeights π ratio h = 1 := by
-  show (∑ h, (π h * ratio h) / (∑ h', π h' * ratio h')) = 1
+  show (∑ h : H, (π h * ratio h) / (∑ h' : H, π h' * ratio h')) = 1
   rw [Finset.sum_div]
   exact div_self (ne_of_gt hpos)
 

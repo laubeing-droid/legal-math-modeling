@@ -20,7 +20,9 @@ def expBern (p : ℝ) (f : Bool → ℝ) : ℝ :=
 theorem brier_excess_identity (p q : ℝ) :
     expBern p (fun y => (q - (if y then 1 else 0)) ^ 2) -
     expBern p (fun y => (p - (if y then 1 else 0)) ^ 2) = (q - p) ^ 2 := by
-  simp only [expBern, if_true, if_false, Bool.false_eq_true, Bool.true_eq_true]
+  unfold expBern
+  simp only []
+  simp
   ring
 
 /-- P11(b): equality of expected Brier scores holds iff the forecasts agree. -/
@@ -30,7 +32,7 @@ theorem brier_excess_zero_iff (p q : ℝ) :
   rw [brier_excess_identity]
   constructor
   · intro h
-    exact (pow_eq_zero_iff two_ne_zero).mp h
+    exact sub_eq_zero.mp ((pow_eq_zero_iff two_ne_zero).mp h)
   · intro h
     rw [h, sub_self]
     norm_num

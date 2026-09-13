@@ -29,6 +29,7 @@ theorem contaminate_bound {α : Type} (eps : ℝ) (P Q : α → ℝ) (x : α)
     (he0 : 0 ≤ eps) (he1 : eps ≤ 1) :
     (1 - eps) * P x ≤ contaminate eps P Q x ∧
     contaminate eps P Q x ≤ (1 - eps) * 1 + eps := by
+  unfold contaminate
   constructor <;> nlinarith [he0, he1, hP, hPu, hQ, hQu]
 
 /-- P08(c): contamination and conditioning do not commute — a fully
@@ -47,6 +48,7 @@ theorem contaminate_condition_do_not_commute :
     ((1 - 1 / 2) * 1 / 2 + 1 / 2 * 1) ≠
       ((1 / 2 * 1 / 10 + 1 / 2 * 1 / 2) /
         (1 / 2 * (1 / 10 + 1 / 10) + 1 / 2 * (1 / 2 + 0))) := by
-  norm_num
+  intro h
+  norm_num at h
 
 end JurisLean.FullMath.Probability

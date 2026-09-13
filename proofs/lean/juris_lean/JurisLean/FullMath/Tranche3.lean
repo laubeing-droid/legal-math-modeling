@@ -1,3 +1,5 @@
 import JurisLean.FullMath.Causal.PartialIdentification
 import JurisLean.FullMath.Document.ByteSyntax
 import JurisLean.FullMath.Probability.E01Contract
+import JurisLean.FullMath.Representation.SymbolicRepresentation
+import JurisLean.FullMath.Roots.SevenRoots

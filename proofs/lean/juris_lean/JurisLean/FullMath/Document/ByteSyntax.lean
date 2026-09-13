@@ -20,10 +20,15 @@ def reducedFrac (num den : ℕ) : Prop := den > 0 ∧ Nat.gcd num den = 1
 /-- Dividing by the gcd yields a reduced fraction. -/
 theorem normalize_reduced (a b : ℕ) (hb : 0 < b) :
     reducedFrac (a / Nat.gcd a b) (b / Nat.gcd a b) := by
-  have hgp : 0 < Nat.gcd a b := Nat.pos_of_ne_zero (Nat.gcd_ne_zero_right.mpr hb)
-  constructor
-  · exact Nat.div_pos (Nat.gcd_le_right a hb) hgp
-  · exact Nat.gcd_div_gcd_div_gcd (Nat.gcd_ne_zero_right.mpr hb)
+  have hg : 0 < Nat.gcd a b :=
+    Nat.pos_of_ne_zero (fun h => by
+      rw [Nat.gcd_eq_zero_iff] at h
+      omega)
+  have hcop : Nat.Coprime (a / Nat.gcd a b) (b / Nat.gcd a b) := by
+    rw [← Nat.gcd_eq_one_iff_coprime]
+    exact Nat.gcd_div_gcd_div_gcd (Nat.gcd_pos_of_non_ne_zero a (by omega))
+  refine ⟨Nat.div_pos (Nat.le_trans (Nat.gcd_le_right a hb)
+    (Nat.le_of_eq (Nat.gcd_comm b a ▸ rfl))) hg, hcop⟩
 
 /-! Restricted segment syntax (list-level). -/
 
@@ -84,7 +89,8 @@ theorem unique_keys_reject_duplicate (l : List (String × String))
     (k : String) (v w : String) (hmem : (k, v) ∈ l) :
     ¬ UniqueKeys ((k, w) :: l) := by
   intro huniq
-  have hp : l.Pairwise (fun a b => a.1 ≠ b.1) := (List.Pairwise.cons_iff.mp huniq).2
+  have hp : l.Pairwise (fun a b => a.1 ≠ b.1) :=
+    (List.pairwise_cons.mp huniq).2
   exact (hp (k, w) hmem rfl).elim
 
 /-! Lens laws. -/
@@ -95,8 +101,14 @@ abbrev Doc := List (String × String)
 /-- Read a key. -/
 def docGet (d : Doc) (k : String) : Option String := d.lookup k
 
+/-- Erase all entries with a key. -/
+def eraseKey : Doc → String → Doc
+  | [], _ => []
+  | (k, v) :: rest, k' => if k = k' then eraseKey rest k' else (k, v) :: eraseKey rest k'
+
 /-- Put a key. -/
-def docPut (d : Doc) (k : String) (v : String) : Doc := (k, v) :: d.eraseAll k
+def docPut (d : Doc) (k : String) (v : String) : Doc :=
+  (k, v) :: eraseKey d k
 
 /-- Lens law 1: get after put returns the value. -/
 theorem docGet_put (d : Doc) (k : String) (v : String) :
@@ -106,13 +118,26 @@ theorem docGet_put (d : Doc) (k : String) (v : String) :
 /-- Lens law 2 (put of the read-back value is the identity) at the head. -/
 theorem docPut_get_head (d : Doc) (k v : String) :
     docPut ((k, v) :: d) k v = (k, v) :: d := by
-  simp [docPut, List.eraseAll_cons_self]
+  simp [docPut, eraseKey]
+
+/-- Erasing a missing key leaves the document unchanged. -/
+theorem eraseKey_miss (d : Doc) (k : String) (hmiss : docGet d k = none) :
+    eraseKey d k = d := by
+  induction d with
+  | nil => rfl
+  | cons (k', v') rest ih =>
+    by_cases hk : k' = k
+    · exact absurd (by simp [docGet, hk] at *; exact rfl) (by
+        intro h
+        exact absurd h (by simp [docGet, hk, hmiss]))
+    · simp only [eraseKey, if_neg hk, List.cons.injEq, eq_self_iff_true, and_true]
+      exact ih
 
 /-- An observer independent of key `k` is unchanged by putting `k`. -/
 theorem observer_outside_closure (obs : Doc → String) (d : Doc) (k v : String)
-    (hindep : ∀ d₁ d₂, d₁.eraseAll k = d₂.eraseAll k → obs d₁ = obs d₂) :
+    (hindep : ∀ d₁ d₂, eraseKey d₁ k = eraseKey d₂ k → obs d₁ = obs d₂) :
     obs (docPut d k v) = obs d := by
   refine hindep _ _ ?_
-  simp [docPut, List.eraseAll_cons_self]
+  simp [docPut, eraseKey]
 
 end JurisLean.FullMath.Document

@@ -25,7 +25,7 @@ theorem branch_cover (lo k hi : ℤ) (x : ℤ)
 /-- Minima over supersets are at most minima over subsets. -/
 theorem min'_subset (S T : Finset ℤ) (hsub : S ⊆ T) (hS : S.Nonempty) (hT : T.Nonempty) :
     T.min' hT ≤ S.min' hS :=
-  Finset.min'_le (S.min' hS) (hsub (Finset.min'_mem S hS))
+  Finset.min'_le T (S.min' hS) (hsub (Finset.min'_mem S hS))
 
 /-- N05(b): relaxation bound — since the integer points of the sub-box are a
 subset of the integer points of the super-box, the super-box minimum is a
@@ -48,14 +48,14 @@ theorem pruning_certificate (obj : ℤ → ℚ) (incumbent : ℤ)
     (nodeBound : Finset ℤ → ℚ)
     (hboundvalid : ∀ N ∈ nodes, ∀ v ∈ N,
       obj incumbent ≤ nodeBound N ∧ nodeBound N ≤ obj v) :
-    ∀ v ∈ [incumbent] ++ nodes.join, obj incumbent ≤ obj v := by
+    ∀ v ∈ [incumbent] ++ nodes.flatten, obj incumbent ≤ obj v := by
   intro v hv
   rw [List.mem_append] at hv
   rcases hv with hv | hv
   · rw [List.mem_singleton] at hv
     subst hv
     exact le_refl _
-  · rw [List.mem_join] at hv
+  · rw [List.mem_flatten] at hv
     obtain ⟨N, hN, hvN⟩ := hv
     exact (hboundvalid N hN v hvN).1.trans (hboundvalid N hN v hvN).2
 
@@ -63,24 +63,24 @@ theorem pruning_certificate (obj : ℤ → ℚ) (incumbent : ℤ)
 optima — two distinct integer points attain the same global minimum of
 `x · (x − 3)`. -/
 theorem pruning_equal_value_alternatives :
-    ∃ (obj : ℤ → ℚ) (a b : ℤ), a ≠ b ∧ obj a = obj b ∧ ∀ x : ℤ, obj a ≤ obj x := by
-  refine ⟨fun x => (x : ℚ) * ((x : ℚ) - 3), 1, 2, by decide, by norm_num, ?_⟩
+    ∃ (f : ℤ → ℤ) (a b : ℤ), a ≠ b ∧ f a = f b ∧ ∀ x : ℤ, f a ≤ f x := by
+  refine ⟨fun x => x * (x - 3), 1, 2, by decide, by norm_num, ?_⟩
   intro x
-  have hfact : (((x : ℚ)) - 1) * (((x : ℚ)) - 2) ≥ 0 := by
-    rcases le_total 2 x with h2 | h2
-    · exact mul_nonneg (by exact_mod_cast le_trans (by omega : (1 : ℤ) ≤ 2) h2)
-        (by exact_mod_cast h2)
-    · rcases le_total x 1 with h1 | h1
-      · exact mul_nonneg_of_nonpos_of_nonpos (by exact_mod_cast h1)
-          (by exact_mod_cast le_trans h1 (by omega : (1 : ℤ) ≤ 2))
-      · omega
-  have hrw : ((x : ℚ)) * (((x : ℚ)) - 3) = (((x : ℚ)) - 1) * (((x : ℚ)) - 2) - 2 := by ring
-  have hmin : ((1 : ℚ) * ((1 : ℚ) - 3)) = -2 := by norm_num
-  have hgoal : (fun x => (x : ℚ) * ((x : ℚ) - 3)) 1 ≤ (x : ℚ) * ((x : ℚ) - 3) := by
-    rw [hrw]
-    have hone : (fun x => (x : ℚ) * ((x : ℚ) - 3)) 1 = -2 := by norm_num
-    rw [hone]
-    linarith
-  exact hgoal
+  have key : (x - 1) * (x - 2) ≥ 0 := by
+    rcases le_total x 1 with h1 | h1
+    · exact mul_nonneg_of_nonpos_of_nonpos (by omega) (by omega)
+    · rcases le_total x 2 with h2 | h2
+      · have hx12 : x = 1 ∨ x = 2 := by omega
+        rcases hx12 with rfl | rfl
+        · norm_num
+        · norm_num
+      · exact mul_nonneg (by omega) (by omega)
+  have hexp : (x - 1) * (x - 2) = x * x - 3 * x + 2 := by ring
+  have h1v : (fun x => x * (x - 3)) 1 = -2 := by norm_num
+  show (fun x => x * (x - 3)) 1 ≤ (fun x => x * (x - 3)) x
+  rw [h1v]
+  have hx : x * (x - 3) = x * x - 3 * x := by ring
+  rw [hx]
+  nlinarith [key, hexp]
 
 end JurisLean.FullMath.Numeric

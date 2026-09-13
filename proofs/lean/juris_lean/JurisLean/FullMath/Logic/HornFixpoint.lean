@@ -14,8 +14,8 @@ namespace JurisLean.FullMath.Logic
 section Horn
 variable {A : Type} [DecidableEq A] [Fintype A]
 
-/-- One closure step: facts ∪ current ∪ heads fireable from current. -/
 set_option maxHeartbeats 800000 in
+/-- One closure step: facts ∪ current ∪ heads fireable from current. -/
 def step (R : Finset (Finset A × A)) (F S : Finset A) : Finset A :=
   F ∪ S ∪ (R.filter (fun r => r.1 ⊆ S)).image Prod.snd
 

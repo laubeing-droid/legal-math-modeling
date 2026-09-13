@@ -22,9 +22,10 @@ def step (R : Finset (Finset A × A)) (F S : Finset A) : Finset A :=
 theorem step_mono (R : Finset (Finset A × A)) (F : Finset A) {S T : Finset A}
     (h : S ⊆ T) : step R F S ⊆ step R F T := by
   intro a ha
-  rcases Finset.mem_union.mp (Finset.mem_union.mp ha) with h1 | (h2 | h3)
-  · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr (Or.inl h1)))
-  · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr (Or.inr h2)))
+  rcases Finset.mem_union.mp ha with hFS | h3
+  · rcases Finset.mem_union.mp hFS with h1 | h2
+    · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr (Or.inl h1)))
+    · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr (Or.inr h2)))
   · obtain ⟨_, hmem⟩ := Finset.mem_filter.mp h3
     obtain ⟨r, hrR, hrS, hr2⟩ := hmem
     refine Finset.mem_union.mpr (Or.inr (Or.inr ?_))

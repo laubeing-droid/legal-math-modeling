@@ -72,22 +72,20 @@ theorem kkt1_sufficient (k : KKT1) :
   -- quad1(xstar) + mu(x − xstar) ≤ quad1(x)
   by_cases hcase : k.xstar = k.l
   · -- xstar = l: mu (x − xstar) = mu (x − l) ≥ 0 since x ≥ l
-    subst hcase
+    rw [hcase] at hbase
     have hmu1 : 0 ≤ k.mu * (x - k.l) := mul_nonneg k.hmu (by linarith)
-    have := k.hcompl
-    have hbase' : quad1 k.h k.g k.l + k.mu * (x - k.l) ≤ quad1 k.h k.g x := hbase
     linarith
   · -- xstar > l: complementary slackness forces mu = 0
     have hgt : k.l < k.xstar := by
-      rcases lt_or_eq_of_le k.hlb with hlt | rfl
+      rcases lt_or_eq_of_le k.hlb with hlt | heq
       · exact hlt
-      · exact absurd rfl hcase
+      · exact absurd heq hcase
     have hmu0 : k.mu = 0 := by
       by_contra hne
       have hpos : 0 < k.mu := by
         rcases lt_or_ge 0 k.mu with h | h
         · exact h
-        · exact absurd (le_antisymm k.hmu h) (by linarith)
+        · exact absurd (le_antisymm k.hmu h) hne
       have : k.mu * (k.xstar - k.l) ≠ 0 := by
         intro hzero
         have := mul_eq_zero.mp hzero
@@ -95,9 +93,8 @@ theorem kkt1_sufficient (k : KKT1) :
         · exact hne h
         · linarith
       exact absurd k.hcompl this
-    rw [hmu0]
-    have : (0 : ℚ) * (x - k.xstar) = 0 := by ring
-    rw [this] at hbase
+    rw [hmu0] at hbase
+    simp only [zero_mul, add_zero] at hbase
     linarith [hbase]
 
 end JurisLean.FullMath.Numeric

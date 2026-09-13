@@ -89,45 +89,7 @@ theorem fixed_x_bounds (j : Iv) (a y : ℚ) (hy : mem y j) :
       _ ≤ max (a * j.lo) (a * j.hi) := le_max_left _ _
 
 /-- For fixed second factor `y`, products with `x ∈ i` lie between the two
-endpoint products against `y` (monotonicity up to sign). -/
-theorem fixed_y_bounds (i : Iv) (x y : ℚ) (hx : mem x i) :
-    min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y) := by
-  rcases le_total 0 y with hyn | hyn
-  · constructor
-    · calc min (i.lo * y) (i.hi * y) ≤ i.lo * y := min_le_left _ _
-      _ ≤ x * y := mul_le_mul_of_nonneg_right hx.1 hyn
-    · calc x * y ≤ i.hi * y := mul_le_mul_of_nonneg_right hx.2 hyn
-      _ ≤ max (i.lo * y) (i.hi * y) := le_max_right _ _
-  · constructor
-    · have key : (-y) * x ≤ (-y) * i.hi := mul_le_mul_of_nonneg_left hx.2 (by linarith)
-      ring_nf at key
-      calc min (i.lo * y) (i.hi * y) ≤ i.hi * y := min_le_right _ _
-      _ ≤ x * y := by linarith
-    · have key : (-y) * i.lo ≤ (-y) * x := mul_le_mul_of_nonneg_left hx.1 (by linarith)
-      ring_nf at key
-      calc x * y ≤ i.lo * y := by linarith
-      _ ≤ max (i.lo * y) (i.hi * y) := le_max_left _ _
-
-/-- For fixed first factor `a`, products with `y ∈ j` lie between the two
-endpoint products with `a`. -/
-theorem fixed_x_bounds (j : Iv) (a y : ℚ) (hy : mem y j) :
-    min (a * j.lo) (a * j.hi) ≤ a * y ∧ a * y ≤ max (a * j.lo) (a * j.hi) := by
-  rcases le_total 0 a with han | han
-  · constructor
-    · calc min (a * j.lo) (a * j.hi) ≤ a * j.lo := min_le_left _ _
-      _ ≤ a * y := mul_le_mul_of_nonneg_left hy.1 han
-    · calc a * y ≤ a * j.hi := mul_le_mul_of_nonneg_left hy.2 han
-      _ ≤ max (a * j.lo) (a * j.hi) := le_max_right _ _
-  · constructor
-    · have key : j.hi * (-a) ≤ y * (-a) := mul_le_mul_of_nonneg_right hy.2 (by linarith)
-      ring_nf at key
-      calc min (a * j.lo) (a * j.hi) ≤ a * j.hi := min_le_right _ _
-      _ ≤ a * y := by linarith
-    · have key : j.lo * (-a) ≤ y * (-a) := mul_le_mul_of_nonneg_right hy.1 (by linarith)
-      ring_nf at key
-      calc a * y ≤ a * j.lo := by linarith
-      _ ≤ max (a * j.lo) (a * j.hi) := le_max_left _ _
-
+endpoint products with `y` (monotonicity up to sign). -/
 /-- N02(b): the four-endpoint multiplication contains every product. -/
 theorem mul_sound (i j : Iv) (x y : ℚ) (hx : mem x i) (hy : mem y j) :
     mem (x * y) (mul i j) := by

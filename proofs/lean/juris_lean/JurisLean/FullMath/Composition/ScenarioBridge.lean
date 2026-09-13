@@ -13,9 +13,9 @@ namespace JurisLean.FullMath.Composition
 /-- Indicator as an honest rational number. -/
 def ind (b : Bool) : ℚ := if b = true then 1 else 0
 
+open scoped Classical in
 /-- The worst-case indicator over a scenario set: 1 if some admissible
 choice triggers the event. -/
-open scoped Classical in
 noncomputable def maxInd (S : Set Bool) (ev : Bool → Bool) : ℚ :=
   if (∃ y, y ∈ S ∧ ev y = true) then 1 else 0
 

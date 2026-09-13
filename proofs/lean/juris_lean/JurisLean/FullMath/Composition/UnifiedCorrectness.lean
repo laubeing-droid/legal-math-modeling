@@ -11,27 +11,27 @@ namespace JurisLean.FullMath.Composition
 
 /-- Outcome modes of a run. -/
 inductive ClaimMode where
-  | complete
-  | partial
-  | envelope
+  | completeMode
+  | partialMode
+  | envelopeMode
 
 /-- The claim each mode is allowed to make, over a computed set and a
 semantic solution set. -/
 def allowedClaim (o : ClaimMode) (computed solutions : Set ℚ) : Prop :=
   match o with
-  | .complete => computed = solutions
-  | .partial => computed ⊆ solutions
-  | .envelope => solutions ⊆ computed
+  | .completeMode => computed = solutions
+  | .partialMode => computed ⊆ solutions
+  | .envelopeMode => solutions ⊆ computed
 
 /-- C07(a): each mode's claim is exactly its mode contract. -/
 theorem complete_requires_equality (computed solutions : Set ℚ)
-    (h : allowedClaim .complete computed solutions) : computed = solutions := h
+    (h : allowedClaim .completeMode computed solutions) : computed = solutions := h
 
 theorem partial_requires_subset (computed solutions : Set ℚ)
-    (h : allowedClaim .partial computed solutions) : computed ⊆ solutions := h
+    (h : allowedClaim .partialMode computed solutions) : computed ⊆ solutions := h
 
 theorem envelope_requires_outer (computed solutions : Set ℚ)
-    (h : allowedClaim .envelope computed solutions) : solutions ⊆ computed := h
+    (h : allowedClaim .envelopeMode computed solutions) : solutions ⊆ computed := h
 
 /-- C07(b) adverse: a partial result can never be displayed as complete —
 a strict subset is not an equality. -/

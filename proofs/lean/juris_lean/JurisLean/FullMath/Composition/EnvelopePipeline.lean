@@ -19,8 +19,9 @@ structure OuterStep (S : Type) where
 def runPipeline (steps : List (OuterStep S)) (start : Set S) : Set S :=
   steps.foldl (fun acc st => st.step acc) start
 
-theorem runPipeline_cons (st : OuterStep S) (rest : List OuterStep) (start : Set S) :
-    runPipeline (st :: rest) start = runPipeline rest (st.step start) := rfl
+theorem runPipeline_cons (st : OuterStep S) (rest : List (OuterStep S)) (start : Set S) :
+    runPipeline (st :: rest) start = runPipeline rest (st.step start) := by
+  simp [runPipeline]
 
 theorem runPipeline_nil (start : Set S) : runPipeline [] start = start := rfl
 

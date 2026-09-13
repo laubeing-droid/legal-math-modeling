@@ -47,7 +47,9 @@ theorem pavGo_weight_sum (fuel : Nat) (l : List Pool) :
       · rw [if_pos hcond, ih]
         simp only [List.map_cons, List.sum_cons]
         ring
-      · rw [if_neg hcond, ih]
+      · rw [if_neg hcond]
+        simp only [List.map_cons, List.sum_cons]
+        rw [ih ((s2, w2) :: rest)]
         simp only [List.map_cons, List.sum_cons]
         ring
 

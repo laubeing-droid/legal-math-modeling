@@ -46,7 +46,6 @@ theorem dedup_no_double_update (o : Obs) (l : List Obs) :
   rw [dedupAux_cons_fresh o (o :: l) _ (by simp),
     dedupAux_cons_seen o l _ (by simp),
     dedupAux_cons_fresh o l _ (by simp)]
-  rfl
 
 /-- P04(b): a later conflicting value under the same id changes nothing
 about the accepted set — the id was already bound by first acceptance. -/
@@ -56,7 +55,6 @@ theorem dedup_conflict_not_overwrite (k : ℕ) (v v' : ℚ) (l : List Obs) :
   rw [dedupAux_cons_fresh ⟨k, v'⟩ (⟨k, v⟩ :: l) _ (by simp),
     dedupAux_cons_seen ⟨k, v⟩ l _ (by simp),
     dedupAux_cons_fresh ⟨k, v⟩ l _ (by simp)]
-  rfl
 
 /-- Exclusion predicate on observation ids. -/
 private def exclP (k : ℕ) (o : Obs) : Bool := decide (o.id != k)
@@ -121,12 +119,11 @@ theorem exclusion_no_langer (k : ℕ) : ∀ (l : List Obs) (seen : ℕ → Bool)
       · rw [show (o :: rest).filter (exclP k) = rest.filter (exclP k) from by
           simp only [List.filter, hp, if_false]]
         rw [dedupAux_cons_seen o rest seen hseen, ih seen]
-        rfl
       · rw [show (o :: rest).filter (exclP k) = rest.filter (exclP k) from by
           simp only [List.filter, hp, if_false]]
         rw [dedupAux_cons_fresh o rest seen hseen]
         simp only [List.filter, hp, if_false]
-        rw [upd_eq_exclSeen k seen hko, dedupAux_k_insensitive k rest seen,
+        rw [upd_eq_exclSeen o k seen hko, dedupAux_k_insensitive k rest seen,
           ih seen]
     · have hp : exclP k o = true := by simp [exclP, hko]
       by_cases hseen : seen o.id = true
@@ -135,7 +132,6 @@ theorem exclusion_no_langer (k : ℕ) : ∀ (l : List Obs) (seen : ℕ → Bool)
         rw [dedupAux_cons_seen o rest seen hseen,
           dedupAux_cons_seen o (rest.filter (exclP k)) seen hseen, ih seen]
         simp only [List.filter, hp, if_true]
-        rfl
       · rw [show (o :: rest).filter (exclP k) = o :: rest.filter (exclP k) from by
           simp only [List.filter, hp, if_true]]
         rw [dedupAux_cons_fresh o rest seen hseen,
@@ -143,7 +139,6 @@ theorem exclusion_no_langer (k : ℕ) : ∀ (l : List Obs) (seen : ℕ → Bool)
             (by simp [exclP, hko])]
         rw [ih (fun x => decide (x = o.id) || seen x)]
         simp only [List.filter, hp, if_true, List.map_cons]
-        rfl
 
 /-- Top-level exclusion commutation (empty initial seen set). -/
 theorem exclusion_no_langer_top (k : ℕ) (l : List Obs) :

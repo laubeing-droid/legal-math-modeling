@@ -50,33 +50,45 @@ def joint : {n : ℕ} → Chain n → State n → ℚ
   | n + 1, .cons k rest, (pre, b) => joint rest pre * k.cond pre b
 
 /-- P01(a): the joint distribution is nonnegative everywhere. -/
-theorem joint_nonneg : ∀ {n : ℕ} (c : Chain n) (s : State n), 0 ≤ joint c s
-  | 0, _, _ => by
-    show (0 : ℚ) ≤ joint Chain.nil ()
-    exact zero_le_one
-  | n + 1, .cons k rest, (pre, b) => by
+theorem joint_nonneg {n : ℕ} (c : Chain n) (s : State n) : 0 ≤ joint c s := by
+  cases c with
+  | nil => exact zero_le_one
+  | cons k rest =>
+    obtain ⟨pre, b⟩ := s
     show (0 : ℚ) ≤ joint rest pre * k.cond pre b
     exact mul_nonneg (joint_nonneg rest pre) (k.nonneg pre b)
 
 /-- P01(b): the joint distribution sums to one over the whole space. -/
-theorem joint_normalizes : ∀ {n : ℕ} (c : Chain n), ∑ s, joint c s = 1
-  | 0, .nil => by
+theorem joint_normalizes {n : ℕ} (c : Chain n) :
+    Finset.sum Finset.univ (fun s : State n => joint c s) = 1 := by
+  cases c with
+  | nil =>
     show Finset.sum Finset.univ (fun _ : State 0 => (1 : ℚ)) = 1
-    simp
     decide
-  | n + 1, .cons k rest => by
-    show ∑ s : State n × Bool, joint (.cons k rest) s = 1
+  | cons k rest =>
+    show Finset.sum Finset.univ
+        (fun s : State n × Bool => joint (Chain.cons k rest) s) = 1
     rw [Fintype.sum_prod_type]
-    simp only [joint]
     have hstep : ∀ pre : State n,
-        (∑ b : Bool, joint rest pre * k.cond pre b)
-          = joint rest pre * (∑ b : Bool, k.cond pre b) := by
+        Finset.sum Finset.univ (fun b : Bool => joint (Chain.cons k rest) (pre, b))
+          = joint rest pre * 1 := by
       intro pre
-      rw [Finset.mul_sum]
-    have hrow : ∀ pre : State n, (∑ b : Bool, k.cond pre b) = 1 := by
-      intro pre
-      rw [Finset.sum_univ_bool, k.row pre]
-    rw [Finset.sum_congr rfl (fun pre _ => by rw [hrow pre, mul_one])]
+      have hsplit : Finset.sum Finset.univ (fun b : Bool => joint rest pre * k.cond pre b)
+          = joint rest pre * Finset.sum Finset.univ (fun b : Bool => k.cond pre b) := by
+        rw [Finset.mul_sum]
+      rw [Finset.mul_sum, Finset.sum_congr rfl (fun b _ => rfl)] at hsplit
+      rw [hsplit]
+      show joint rest pre * Finset.sum Finset.univ (fun b : Bool => k.cond pre b) = joint rest pre * 1
+      have hrow : Finset.sum Finset.univ (fun b : Bool => k.cond pre b) = 1 := by
+        show k.cond pre false + (k.cond pre true + 0) = 1
+        rw [k.row pre]
+        norm_num
+      rw [hrow]
+    rw [Finset.sum_congr rfl (fun pre _ => hstep pre)]
+    have hih : Finset.sum Finset.univ (fun pre : State n => joint rest pre * 1)
+        = Finset.sum Finset.univ (fun pre : State n => joint rest pre) := by
+      exact Finset.sum_congr rfl (fun pre _ => mul_one _)
+    rw [hih]
     exact joint_normalizes rest
 
 end BN

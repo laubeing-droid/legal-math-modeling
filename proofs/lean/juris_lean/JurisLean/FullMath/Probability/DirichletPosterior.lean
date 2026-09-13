@@ -61,32 +61,38 @@ def rising (x : ℝ) : ℕ → ℝ
 
 theorem rising_succ (x : ℝ) (n : ℕ) : rising x (n + 1) = rising x n * (x + n) := rfl
 
-/-- Gamma of `x + n` factors through the rising factorial. -/
-theorem Gamma_add_nat (x : ℝ) (n : ℕ) :
-    Real.Gamma (x + n) = rising x n * Real.Gamma x := by
+/-- Gamma of `x + n` factors through the rising factorial, for positive `x`. -/
+theorem Gamma_add_nat {x : ℝ} (hx : 0 < x) (n : ℕ) :
+    Real.Gamma (x + (n : ℝ)) = rising x n * Real.Gamma x := by
   induction n with
-  | zero => simp [rising]
+  | zero => rfl
   | succ n ih =>
     push_cast
     show Real.Gamma (x + ((n : ℝ) + 1)) = rising x (n + 1) * Real.Gamma x
-    rw [← add_assoc, Real.Gamma_succ', ih]
-    show (x + (n : ℝ)) * (rising x n * Real.Gamma x) = rising x n * (x + (n : ℝ)) * Real.Gamma x
+    rw [← add_assoc, Real.Gamma_add_one (by
+      have : (0 : ℝ) ≤ (n : ℝ) := Nat.cast_nonneg _
+      linarith), ih]
+    show (x + (n : ℝ)) * (rising x n * Real.Gamma x)
+        = rising x n * (x + (n : ℝ)) * Real.Gamma x
     ring
 
-/-- P06(a): the Beta weight ratio equals the rising-factorial ratio for
-integer win/loss counts. -/
+/-- P06(a): the Beta weight ratio for integer win/loss counts equals the
+rising-factorial ratio — the exact quantity the reference rational
+algorithm computes. -/
 theorem beta_ratio (α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) :
-    (Real.Gamma (α + w) * Real.Gamma (β + l)) / Real.Gamma (α + β + (w + l)) /
+    (Real.Gamma (α + (w : ℝ)) * Real.Gamma (β + (l : ℝ))) /
+      Real.Gamma (α + β + ((w + l : ℕ) : ℝ)) /
       ((Real.Gamma α * Real.Gamma β) / Real.Gamma (α + β)) =
       (rising α w * rising β l) / rising (α + β) (w + l) := by
-  have hGα : Real.Gamma α ≠ 0 := ne_of_gt (Real.Gamma_pos_of_pos hα)
+  have hGab : Real.Gamma α ≠ 0 := ne_of_gt (Real.Gamma_pos_of_pos hα)
   have hGβ : Real.Gamma β ≠ 0 := ne_of_gt (Real.Gamma_pos_of_pos hβ)
-  have hGab : Real.Gamma (α + β) ≠ 0 :=
+  have hGab' : Real.Gamma (α + β) ≠ 0 :=
     ne_of_gt (Real.Gamma_pos_of_pos (by linarith))
-  have hGabwl : Real.Gamma (α + β + (w + l)) ≠ 0 :=
-    ne_of_gt (Real.Gamma_pos_of_pos (by linarith))
-  rw [← Nat.cast_add]
-  rw [Gamma_add_nat α w, Gamma_add_nat β l, Gamma_add_nat (α + β) (w + l)]
+  have hGabwl : Real.Gamma (α + β + ((w + l : ℕ) : ℝ)) ≠ 0 :=
+    ne_of_gt (Real.Gamma_pos_of_pos (by
+      have : (0 : ℝ) ≤ ((w + l : ℕ) : ℝ) := Nat.cast_nonneg _
+      linarith))
+  rw [Gamma_add_nat hα w, Gamma_add_nat hβ l, Gamma_add_nat (by linarith) (w + l)]
   field_simp
   ring
 

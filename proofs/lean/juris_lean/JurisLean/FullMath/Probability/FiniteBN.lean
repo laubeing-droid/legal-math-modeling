@@ -78,10 +78,13 @@ theorem joint_normalizes {n : ℕ} (c : Chain n) :
           joint (Chain.cons k rest) (pre, b) = joint rest pre * k.cond pre b :=
         fun b => rfl
       have hrow : Finset.sum Finset.univ (fun b : Bool => k.cond pre b) = 1 := by
-        show k.cond pre false + (k.cond pre true + 0) = 1
+        have huniv : (Finset.univ : Finset Bool) = {false, true} := by decide
+        rw [huniv]
+        simp
         rw [k.row pre]
-        norm_num
-      rw [Finset.sum_congr rfl (fun b _ => hjoint b), Finset.mul_sum, hrow]
+      rw [Finset.sum_congr rfl (fun b _ => hjoint b)]
+      rw [Finset.mul_sum]
+      rw [hrow]
     rw [Finset.sum_congr rfl (fun pre _ => hstep pre)]
     have hih : Finset.sum Finset.univ (fun pre : State m => joint rest pre * 1)
         = Finset.sum Finset.univ (fun pre : State m => joint rest pre) := by

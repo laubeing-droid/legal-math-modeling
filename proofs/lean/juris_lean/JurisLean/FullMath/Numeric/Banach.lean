@@ -33,7 +33,14 @@ theorem clip_mem (l u x : ℝ) (h : l ≤ u) : l ≤ clip l u x ∧ clip l u x �
 theorem clip_nonexpansive (l u x y : ℝ) (h : l ≤ u) :
     |clip l u x - clip l u y| ≤ |x - y| := by
   unfold clip
-  split_ifs <;> rw [abs_le] <;> constructor <;> linarith
+  split_ifs <;> rw [abs_le] <;> constructor <;>
+    first
+      | linarith [abs_nonneg (x - y), abs_nonneg (l - y), abs_nonneg (u - x),
+          abs_nonneg (x - u), abs_nonneg (y - x), abs_nonneg (u - y),
+          abs_nonneg (x - l), abs_nonneg (l - x), abs_nonneg (y - u)]
+      | nlinarith [abs_nonneg (x - y), abs_nonneg (l - y), abs_nonneg (u - x),
+          abs_nonneg (x - u), abs_nonneg (y - x), abs_nonneg (u - y),
+          abs_nonneg (x - l), abs_nonneg (l - x), abs_nonneg (y - u)]
 
 /-- The projected gradient map. -/
 def T (l u a b η x : ℝ) : ℝ := clip l u ((1 - η * a) * x - η * b)

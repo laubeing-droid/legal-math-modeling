@@ -29,7 +29,7 @@ inductive Mode where
 /-- The mode-indexed correctness contract: acceptance implies
 equality / subset / superset between the representation denotation and the
 independently given solution set. -/
-def ModeCorrect (W : Type) (sem : W → Set W) (rep : W)
+def ModeCorrect (W R : Type) (sem : R → Set W) (rep : R)
     (sol : Set W) : Mode → Prop
   | .exact => sem rep = sol
   | .inner => sem rep ⊆ sol
@@ -37,9 +37,9 @@ def ModeCorrect (W : Type) (sem : W → Set W) (rep : W)
 
 /-- EXT01(a): a certified exact/inner/outer representation satisfies its
 mode contract. -/
-theorem certificate_implies_mode {W : Type} (sem : W → Set W)
-    (rep : W) (sol : Set W) (m : Mode)
-    (h : ModeCorrect W sem rep sol m) :
+theorem certificate_implies_mode {W R : Type} (sem : R → Set W)
+    (rep : R) (sol : Set W) (m : Mode)
+    (h : ModeCorrect W R sem rep sol m) :
     match m with
     | .exact => sem rep = sol
     | .inner => sem rep ⊆ sol

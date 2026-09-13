@@ -34,7 +34,6 @@ namespace JurisLean.FullMath.Roots
 
 open JurisLean.FullMath.Core (Env Witness Phi Sol)
 open JurisLean.FullMath.Representation
-open JurisLean.FullMath.Logic
 
 /-! Root 1: GENERIC_FINITE. -/
 
@@ -54,53 +53,115 @@ theorem root_GENERIC_FINITE_selfCertified {A : Type} [DecidableEq A] [Fintype A]
 
 /-! Root 2: SYMBOLIC_EXACT. -/
 
-/-- Root SYMBOLIC_EXACT: box representations satisfy the mode contract when
-their checker accepts. -/
+/-- Root SYMBOLIC_EXACT: box representations satisfy the exact-mode
+contract. -/
 theorem root_SYMBOLIC_EXACT_box (d : ℕ) (b : Box d) :
-    ModeCorrect (Asgn d) boxDen b (boxDen b) .exact := rfl
+    ModeCorrect (Asgn d) (Box d) boxDen b (boxDen b) .exact := rfl
 
-/-- Root SYMBOLIC_EXACT: polyhedron representations satisfy the mode
+/-- Root SYMBOLIC_EXACT: polyhedron representations satisfy the exact-mode
 contract; the denotation is exactly the constraint-satisfying set. -/
 theorem root_SYMBOLIC_EXACT_poly (d : ℕ) (P : Poly d) :
-    ModeCorrect (Asgn d) polyDen P (polyDen P) .exact := rfl
+    ModeCorrect (Asgn d) (Poly d) polyDen P (polyDen P) .exact := rfl
 
-/-- SYMBOLIC_EXACT's two representations are genuinely distinct: a unit box
-denotation is not a polyhedron-free claim — a concrete polyhedron
-(restriction to the unit box on every coordinate) has the same denotation
-on that box. -/
+private theorem coord_sum_one (d : ℕ) (i : Fin d) (x : Asgn d) :
+    (∑ j, (if j = i then (1 : ℚ) else 0) * x j) = x i := by
+  refine Eq.trans (Finset.sum_congr rfl fun j _ => ?_) (by simp)
+  by_cases h : j = i <;> simp [h]
+
+private theorem coord_sum_neg (d : ℕ) (i : Fin d) (x : Asgn d) :
+    (∑ j, (if j = i then (-1 : ℚ) else 0) * x j) = -x i := by
+  refine Eq.trans (Finset.sum_congr rfl fun j _ => ?_) (by simp)
+  by_cases h : j = i <;> simp [h]
+
+/-- The polyhedron with two weak inequalities per coordinate singling out
+the origin. -/
+private def zeroBoxPoly (d : ℕ) : Poly d :=
+  (Finset.univ.toList.flatMap fun i =>
+    [⟨fun j => if j = i then (1 : ℚ) else 0, 0⟩,
+     ⟨fun j => if j = i then (-1 : ℚ) else 0, 0⟩] : List (LinCon d))
+
+/-- SYMBOLIC_EXACT's two representations are genuinely distinct encodings of
+one denotation: for every dimension the zero box `{x | ∀ i, x i = 0}` is
+also the denotation of a concrete polyhedron (two weak inequalities per
+coordinate). -/
 theorem root_SYMBOLIC_EXACT_both (d : ℕ) :
-    ∃ (b : Box d) (P : Poly d), (boxDen b = polyDen P) :=
-  ⟨⟨0, 0, fun _ => le_refl _⟩, [], rfl⟩
+    ∃ (b : Box d) (P : Poly d), boxDen b = polyDen P := by
+  refine ⟨⟨fun _ => 0, fun _ => 0, fun _ => le_refl _⟩, zeroBoxPoly d, ?_⟩
+  ext x
+  simp only [boxDen, polyDen, Set.mem_setOf_eq]
+  constructor
+  · intro h c hc
+    rcases List.mem_flatMap.mp hc with ⟨i, hi, hc2⟩
+    rw [Finset.mem_toList] at hi
+    simp only [List.mem_singleton] at hc2
+    rcases hc2 with rfl | rfl
+    · simp only [satCon]
+      rw [coord_sum_one d i x]
+      exact (h i).1
+    · simp only [satCon]
+      rw [coord_sum_neg d i x]
+      exact neg_nonneg.mpr (h i).2
+  · intro h i
+    have m1 : (⟨fun j => if j = i then (1 : ℚ) else 0, 0⟩ : LinCon d) ∈
+        zeroBoxPoly d :=
+      List.mem_flatMap.mpr ⟨i, Finset.mem_toList.mpr (Finset.mem_univ i), by simp⟩
+    have s1 := h _ m1
+    simp only [satCon] at s1
+    rw [coord_sum_one d i x] at s1
+    have m2 : (⟨fun j => if j = i then (-1 : ℚ) else 0, 0⟩ : LinCon d) ∈
+        zeroBoxPoly d :=
+      List.mem_flatMap.mpr ⟨i, Finset.mem_toList.mpr (Finset.mem_univ i), by simp⟩
+    have s2 := h _ m2
+    simp only [satCon] at s2
+    rw [coord_sum_neg d i x] at s2
+    exact ⟨s1, neg_nonneg.mp s2⟩
 
 /-! Root 3: STATISTICAL_COMPOSITION. -/
 
-/-- Failure events with individual budgets compose: the probability that at
-least one fails is at most the sum of budgets. Independence is NOT
-required. -/
-theorem union_bound {Ω : Type} (P : Set Ω → ℚ) (events : List (Set Ω))
-    (budgets : List ℚ)
-    (hP : ∀ s, (0 : ℚ) ≤ P s)
-    (hsub : ∀ s ⊆ ⋃₀ {s | s ∈ events}, P s ≤ 1)
-    (heach : ∀ e ∈ events, P e ≤ budgets.sum)
-    (hmono : ∀ s t, s ⊆ t → P s ≤ P t) :
-    (0 : ℚ) ≤ budgets.sum := le_trans (le_of_lt (by
-      rcases List.exists_mem_of_ne_nil events with ⟨e, he⟩ | hl
-      · exact lt_of_le_of_lt (hP e) (by
-          refine lt_of_le_of_lt (heach e he) ?_
-          rcases budgets with
-          | nil => simp at heach
-          | cons b bs => simp only [List.sum_cons]; omega)
-      · exact absurd hl (by intro h; exact absurd rfl h))) (le_refl _)
+/-- Union bound, composed over a finite list of failure events with paired
+budgets: the union's probability is at most the total budget. Pairwise
+subadditivity is composed by induction; independence is NOT used. -/
+theorem union_bound {Ω : Type} (P : Set Ω → ℚ)
+    (hsub : ∀ e f : Set Ω, P (e ∪ f) ≤ P e + P f) (hempty : P ∅ = 0) :
+    ∀ (events : List (Set Ω)) (budgets : List ℚ), events.length = budgets.length →
+      (∀ i (_hi : i < events.length), P events[i]! ≤ budgets[i]!) →
+      P (events.foldr (· ∪ ·) ∅) ≤ budgets.sum := by
+  intro events
+  induction events with
+  | nil =>
+    intro budgets hlen _
+    cases budgets with
+    | nil => simp [hempty]
+    | cons b bs => simp at hlen
+  | cons e es ih =>
+    intro budgets hlen hch
+    cases budgets with
+    | nil => simp at hlen
+    | cons b bs =>
+      have hl2 : es.length = bs.length := by simp at hlen; exact hlen
+      have h1 : P e ≤ b := hch 0 (by simp only [List.length_cons]; omega)
+      have h2 : P (es.foldr (· ∪ ·) ∅) ≤ bs.sum := by
+        refine ih bs hl2 ?_
+        intro i hi
+        have hlt : i + 1 < (e :: es).length := by
+          simp only [List.length_cons]; omega
+        simpa [List.getElem!_cons_succ] using hch (i + 1) hlt
+      show P (e ∪ es.foldr (· ∪ ·) ∅) ≤ b + bs.sum
+      calc P (e ∪ es.foldr (· ∪ ·) ∅)
+          ≤ P e + P (es.foldr (· ∪ ·) ∅) := hsub e _
+        _ ≤ b + bs.sum := by linarith
 
-/-- Root STATISTICAL_COMPOSITION: with per-module failure budgets δᵢ, the
-joint success probability is at least `1 − Σδᵢ`; no independence. -/
-theorem root_STATISTICAL_COMPOSITION (δ : Fin 3 → ℚ)
-    (hδ : ∀ i, 0 ≤ δ i) :
-    1 - (∑ i, δ i) ≤ 1 - δ 0 ∧ 1 - (∑ i, δ i) ≤ 1 ∧ (0 ≤ ∑ i, δ i) := by
-  refine ⟨?_, ?_, ?_⟩ <;> simp only
-  · linarith [hδ 0]
-  · linarith
-  · exact Finset.sum_nonneg hδ
+/-- Root STATISTICAL_COMPOSITION: with per-module failure budgets paired to
+failure events over one set function, the composed (union) failure
+probability is at most the total budget — no independence required. -/
+theorem root_STATISTICAL_COMPOSITION {Ω : Type} (P : Set Ω → ℚ)
+    (events : List (Set Ω)) (budgets : List ℚ)
+    (hlen : events.length = budgets.length)
+    (hsub : ∀ e f : Set Ω, P (e ∪ f) ≤ P e + P f)
+    (hempty : P ∅ = 0)
+    (hch : ∀ i (_hi : i < events.length), P events[i]! ≤ budgets[i]!) :
+    P (events.foldr (· ∪ ·) ∅) ≤ budgets.sum :=
+  union_bound P hsub hempty events budgets hlen hch
 
 /-! Root 4: CIVIL. -/
 

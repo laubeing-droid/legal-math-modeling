@@ -23,55 +23,63 @@ theorem normalize_reduced (a b : Nat) (hb : 0 < b) :
 
 /-! Restricted segment syntax (list-level). -/
 
-def renderL (cs : List Char) : List Char := ['"'] ++ cs ++ ['"']
-
-/-- Inner scanner: `none` on a stray backslash, closes on the quote byte. -/
-def parseGo (bsc qte : Char) : List Char → List Char → Option (List Char × List Char)
-  | [], _ => none
-  | c :: rest, acc =>
-      if c = bsc then none
-      else if c = qte then some (acc.reverse, rest)
-      else parseGo bsc qte rest (c :: acc)
-
-/-- Parse a quoted segment with explicit delimiter bytes. -/
-def parseL (bsc qte : Char) (cs : List Char) : Option (List Char × List Char) :=
-  match cs with
-  | [] => none
-  | c :: rest => if c = bsc then none else if c = qte then parseGo bsc qte rest [] else none
-
 /-- The canonical delimiters of the supported byte syntax. -/
 def quoteByte : Char := '"'
 def escapeByte : Char := '\\'
+
+theorem quote_ne_escape : quoteByte ≠ escapeByte := by decide
+
+/-- Rendering a plain segment: surrounding quotes. -/
+def renderL (cs : List Char) : List Char := [quoteByte] ++ cs ++ [quoteByte]
+
+/-- Inner scanner: `none` on a stray escape byte, closes on the quote. -/
+def parseGo : List Char → List Char → Option (List Char × List Char)
+  | [], _ => none
+  | c :: rest, acc =>
+      if c = escapeByte then none
+      else if c = quoteByte then some (acc.reverse, rest)
+      else parseGo rest (c :: acc)
+
+/-- Parse a quoted segment. -/
+def parseL (cs : List Char) : Option (List Char × List Char) :=
+  match cs with
+  | [] => none
+  | c :: rest =>
+      if c = escapeByte then none
+      else if c = quoteByte then parseGo rest []
+      else none
 
 /-- Plainness: neither delimiter byte occurs. -/
 def Plain (cs : List Char) : Prop :=
   ∀ c ∈ cs, c ≠ quoteByte ∧ c ≠ escapeByte
 
 theorem parse_render_roundtrip (cs : List Char) (hplain : Plain cs) :
-    parseL escapeByte quoteByte (renderL cs) = some (cs, []) := by
+    parseL (renderL cs) = some (cs, []) := by
   have hstep : ∀ (xs : List Char) (acc : List Char),
       Plain xs →
-      parseGo escapeByte quoteByte (xs ++ [quoteByte]) acc
-        = some (acc.reverse ++ xs, []) := by
+      parseGo (xs ++ [quoteByte]) acc = some (acc.reverse ++ xs, []) := by
     intro xs
     induction xs with
     | nil =>
       intro acc _
-      simp [parseGo]
+      show (if quoteByte = escapeByte then none
+          else if quoteByte = quoteByte then some (acc.reverse, [])
+          else parseGo ([] : List Char) acc) = _
+      rw [if_neg quote_ne_escape, if_pos rfl]
+      rfl
     | cons c xs ih =>
       intro acc h
       obtain ⟨hcq, hcb⟩ := h c (by simp)
       show (if c = escapeByte then none
           else if c = quoteByte then some (acc.reverse, xs)
-          else parseGo escapeByte quoteByte xs (c :: acc)) = _
-      rw [if_neg hcb, if_neg hcq, ← List.cons_append]
-      rw [ih (c :: acc) (fun x hx => by
+          else parseGo (xs ++ [quoteByte]) (c :: acc)) = _
+      rw [if_neg hcb, if_neg hcq, ih (c :: acc) (fun x hx => by
         rcases List.mem_cons.mp hx with rfl | hx
         · exact ⟨hcq, hcb⟩
         · exact h x hx)]
-      simp only [List.reverse_cons, List.cons_append, List.append_nil]
+      simp only [List.reverse_cons, List.singleton_append, List.append_assoc]
       rfl
-  show parseGo escapeByte quoteByte (cs ++ [quoteByte]) [] = _
+  show parseGo (cs ++ [quoteByte]) [] = _
   rw [hstep cs [] hplain]
   simp
 
@@ -109,10 +117,15 @@ theorem docPut_get_head (d : Doc) (k v : String) :
     docPut ((k, v) :: d) k v = (k, v) :: d := by
   simp [docPut, eraseKey]
 
-/-- Erasing the put key from the put document re-erases the base. -/
-theorem eraseKey_docPut (d : Doc) (k v : String) :
-    eraseKey (docPut d k v) k = eraseKey d k := by
-  simp [docPut, eraseKey]
+theorem eraseKey_nil (k : String) : eraseKey [] k = [] := rfl
+
+theorem eraseKey_cons_hit (k v : String) (rest : Doc) (k' : String) (h : k = k') :
+    eraseKey ((k, v) :: rest) k' = eraseKey rest k' := by
+  simp [eraseKey, h]
+
+theorem eraseKey_cons_miss (k v : String) (rest : Doc) (k' : String) (h : ¬ k = k') :
+    eraseKey ((k, v) :: rest) k' = (k, v) :: eraseKey rest k' := by
+  simp [eraseKey, h]
 
 /-- Erasing twice is idempotent. -/
 theorem eraseKey_idem (d : Doc) (k : String) :
@@ -122,8 +135,13 @@ theorem eraseKey_idem (d : Doc) (k : String) :
   | cons head rest ih =>
     obtain ⟨k', v'⟩ := head
     by_cases hk : k' = k
-    · simp [eraseKey, hk, ih]
-    · simp [eraseKey, hk, ih]
+    · rw [eraseKey_cons_hit _ _ _ _ hk, eraseKey_cons_hit _ _ _ _ hk, ih]
+    · rw [eraseKey_cons_miss _ _ _ _ hk, eraseKey_cons_miss _ _ _ _ hk, ih]
+
+/-- Putting then erasing the same key erases the base document. -/
+theorem eraseKey_docPut (d : Doc) (k v : String) :
+    eraseKey (docPut d k v) k = eraseKey d k := by
+  simp only [docPut, eraseKey_cons_hit _ _ _ _ rfl, eraseKey_idem]
 
 /-- An observer independent of key `k` is unchanged by putting `k`. -/
 theorem observer_outside_closure (obs : Doc → String) (d : Doc) (k v : String)

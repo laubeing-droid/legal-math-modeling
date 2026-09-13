@@ -14,6 +14,14 @@ namespace JurisLean.FullMath.Logic
 section Horn
 variable {A : Type} [DecidableEq A] [Fintype A]
 
+/-- Left set embeds into its union (subset form). -/
+theorem ssubL {A : Type} (s t : Finset A) : s ⊆ s ∪ t :=
+  fun _ hx => Finset.mem_union.mpr (Or.inl hx)
+
+/-- Right set embeds into its union (subset form). -/
+theorem ssubR {A : Type} (s t : Finset A) : t ⊆ s ∪ t :=
+  fun _ hx => Finset.mem_union.mpr (Or.inr hx)
+
 /-- One closure step: facts ∪ current ∪ heads fireable from current. -/
 def step (R : Finset (Finset A × A)) (F S : Finset A) : Finset A :=
   F ∪ S ∪ Finset.univ.filter (fun a => ∃ r ∈ R, r.1 ⊆ S ∧ r.2 = a)

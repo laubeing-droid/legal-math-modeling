@@ -3,8 +3,8 @@ import JurisLean.FullMath.Core.Foundations
 /-!
 N03 — Linear programming: weak duality and certificate optimality.
 
-LP form `min cᵀx` over `Ax ≥ b` with free `x`; dual `max bᵀλ` over
-`Aᵀλ = c`, `λ ≥ 0`. Weak duality holds for every dimension; feasible
+LP form `min cᵀx` over `Ax ≥ b` with free `x`; dual `max bᵀfun ` over
+`Aᵀfun  = c`, `fun  ≥ 0`. Weak duality holds for every dimension; feasible
 primal/dual pairs with equal objective values certify global optimality.
 Sign restrictions on `x` would require a matching dual change — the
 statement here is for free `x` only.
@@ -19,34 +19,34 @@ variable {n : ℕ}
 def PrimalFeasible (A : Fin n → Fin n → ℚ) (b : Fin n → ℚ) (x : Fin n → ℚ) : Prop :=
   ∀ i, b i ≤ ∑ j, A i j * x j
 
-/-- Dual feasibility: `Aᵀ λ = c` and `λ ≥ 0`. -/
+/-- Dual feasibility: `Aᵀ fun  = c` and `fun  ≥ 0`. -/
 def DualFeasible (A : Fin n → Fin n → ℚ) (b : Fin n → ℚ) (c : Fin n → ℚ)
-    (λ : Fin n → ℚ) : Prop :=
-  (∀ j, ∑ i, λ i * A i j = c j) ∧ (∀ i, 0 ≤ λ i)
+    (fun  : Fin n → ℚ) : Prop :=
+  (∀ j, ∑ i, fun  i * A i j = c j) ∧ (∀ i, 0 ≤ fun  i)
 
 /-- Objective of the primal. -/
 def primalObj (c : Fin n → ℚ) (x : Fin n → ℚ) : ℚ := ∑ j, c j * x j
 
 /-- Objective of the dual. -/
-def dualObj (b : Fin n → ℚ) (λ : Fin n → ℚ) : ℚ := ∑ i, λ i * b i
+def dualObj (b : Fin n → ℚ) (fun  : Fin n → ℚ) : ℚ := ∑ i, fun  i * b i
 
 /-- N03(a): weak duality — every feasible primal/dual pair satisfies
-`bᵀλ ≤ cᵀx`. -/
+`bᵀfun  ≤ cᵀx`. -/
 theorem weak_duality (A : Fin n → Fin n → ℚ) (b c : Fin n → ℚ)
-    (x λ : Fin n → ℚ)
-    (hP : PrimalFeasible A b x) (hD : DualFeasible A b c λ) :
-    dualObj b λ ≤ primalObj c x := by
-  have hstep1 : ∑ i, λ i * b i ≤ ∑ i, λ i * (∑ j, A i j * x j) := by
+    (x fun  : Fin n → ℚ)
+    (hP : PrimalFeasible A b x) (hD : DualFeasible A b c fun ) :
+    dualObj b fun  ≤ primalObj c x := by
+  have hstep1 : ∑ i, fun  i * b i ≤ ∑ i, fun  i * (∑ j, A i j * x j) := by
     apply Finset.sum_le_sum
     intro i _
     exact mul_le_mul_of_nonneg_left (hP i) (hD.2 i)
-  have hstep2 : ∑ i, λ i * (∑ j, A i j * x j) = ∑ j, c j * x j := by
-    have hexpand : ∑ i, λ i * (∑ j, A i j * x j)
-        = ∑ i, ∑ j, λ i * (A i j * x j) :=
+  have hstep2 : ∑ i, fun  i * (∑ j, A i j * x j) = ∑ j, c j * x j := by
+    have hexpand : ∑ i, fun  i * (∑ j, A i j * x j)
+        = ∑ i, ∑ j, fun  i * (A i j * x j) :=
       Finset.sum_congr rfl (fun i _ => by rw [Finset.mul_sum])
-    have hswap : ∑ i, ∑ j, λ i * (A i j * x j)
-        = ∑ j, ∑ i, λ i * (A i j * x j) := Finset.sum_comm
-    have hcollect : ∑ j, ∑ i, λ i * (A i j * x j) = ∑ j, x j * ∑ i, λ i * A i j := by
+    have hswap : ∑ i, ∑ j, fun  i * (A i j * x j)
+        = ∑ j, ∑ i, fun  i * (A i j * x j) := Finset.sum_comm
+    have hcollect : ∑ j, ∑ i, fun  i * (A i j * x j) = ∑ j, x j * ∑ i, fun  i * A i j := by
       apply Finset.sum_congr rfl
       intro j _
       rw [Finset.mul_sum]
@@ -54,7 +54,7 @@ theorem weak_duality (A : Fin n → Fin n → ℚ) (b c : Fin n → ℚ)
       intro i _
       ring
     rw [hexpand, hswap, hcollect]
-    have hfinal : ∑ j, x j * ∑ i, λ i * A i j = ∑ j, c j * x j := by
+    have hfinal : ∑ j, x j * ∑ i, fun  i * A i j = ∑ j, c j * x j := by
       apply Finset.sum_congr rfl
       intro j _
       rw [hD.1 j]
@@ -65,12 +65,12 @@ theorem weak_duality (A : Fin n → Fin n → ℚ) (b c : Fin n → ℚ)
 /-- N03(b): a feasible pair with equal objectives certifies global optimality
 of the primal point. -/
 theorem equal_objectives_certify (A : Fin n → Fin n → ℚ) (b c : Fin n → ℚ)
-    (x* λ* : Fin n → ℚ)
-    (hP* : PrimalFeasible A b x*) (hD* : DualFeasible A b c λ*)
-    (heq : primalObj c x* = dualObj b λ*) :
+    (x* fun * : Fin n → ℚ)
+    (hP* : PrimalFeasible A b x*) (hD* : DualFeasible A b c fun *)
+    (heq : primalObj c x* = dualObj b fun *) :
     ∀ x, PrimalFeasible A b x → primalObj c x* ≤ primalObj c x := by
   intro x hx
-  have := weak_duality A b c x λ* hx hD*
+  have := weak_duality A b c x fun * hx hD*
   rw [heq] at this
   exact this
 

@@ -163,17 +163,24 @@ theorem residual_error_bound (k e0 eps : ℝ) (hk1 : 0 ≤ k) (hk2 : k < 1)
   induction n with
   | zero =>
     rw [pow_zero, one_mul]
+    have hnn : 0 ≤ eps / (1 - k) :=
+      div_nonneg heps (le_of_lt (by linarith))
     linarith
   | succ n ih =>
     have h1 := hrec n
+    have hden : (1 : ℝ) - k ≠ 0 := by linarith
+    have hnn : 0 ≤ eps / (1 - k) :=
+      div_nonneg heps (le_of_lt (by linarith))
     have hmul : k * step n ≤ k * (k ^ n * e0 + eps / (1 - k)) :=
       mul_le_mul_of_nonneg_left ih hk1
+    have hsplit : k * (k ^ n * e0 + eps / (1 - k)) + eps
+        = k ^ (n + 1) * e0 + eps / (1 - k) := by
+      rw [pow_succ]
+      field_simp
+      ring
     calc step (n + 1) ≤ k * step n + eps := h1
       _ ≤ k * (k ^ n * e0 + eps / (1 - k)) + eps := by linarith
-      _ = k ^ (n + 1) * e0 + eps / (1 - k) := by
-          rw [pow_succ]
-          field_simp
-          ring
+      _ = k ^ (n + 1) * e0 + eps / (1 - k) := hsplit
 
 end Banach
 

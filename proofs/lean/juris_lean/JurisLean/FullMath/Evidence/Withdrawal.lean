@@ -21,18 +21,24 @@ variable {A : Type} [DecidableEq A] [Fintype A]
 theorem step_rules_mono (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A) :
     step R F S ⊆ step R' F S := by
   intro a ha
-  rcases Finset.mem_union.mp (Finset.mem_union.mp ha) with h1 | (h2 | h3)
-  · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr (Or.inl h1)))
-  · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr (Or.inr h2)))
+  rcases Finset.mem_union.mp ha with hFS | h3
+  · rcases Finset.mem_union.mp hFS with h1 | h2
+    · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr (Or.inl h1)))
+    · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr (Or.inr h2)))
   · obtain ⟨_, hmem⟩ := Finset.mem_filter.mp h3
     obtain ⟨r, hrR, hrS, hr2⟩ := hmem
-    refine Finset.mem_union.mpr (Or.inr (Or.inr ?_))
-    exact Finset.mem_filter.mpr ⟨Finset.mem_univ a, ⟨r, hR hrR, hrS, hr2⟩⟩
+    exact Finset.mem_union.mpr (Or.inr
+      (Finset.mem_filter.mpr ⟨Finset.mem_univ a, ⟨r, hR hrR, hrS, hr2⟩⟩))
 
 /-- More facts give bigger steps: the step operator is monotone in `F`. -/
 theorem step_facts_mono (R : Finset (Finset A × A)) {F G S : Finset A} (h : F ⊆ G) :
-    step R F S ⊆ step R G S :=
-  Finset.union_subset (Finset.union_subset h Finset.Subset.rfl) Finset.Subset.rfl
+    step R F S ⊆ step R G S := by
+  intro a ha
+  rcases Finset.mem_union.mp ha with hFS | h3
+  · rcases Finset.mem_union.mp hFS with h1 | h2
+    · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr (Or.inl (h h1))))
+    · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr (Or.inr h2)))
+  · exact Finset.mem_union.mpr (Or.inr h3)
 
 /-- Heads fired from a stable set stay inside it. -/
 theorem heads_subset (R : Finset (Finset A × A)) (F S : Finset A)
@@ -40,10 +46,8 @@ theorem heads_subset (R : Finset (Finset A × A)) (F S : Finset A)
     ∀ a ∈ Finset.univ.filter (fun a => ∃ r ∈ R, r.1 ⊆ S ∧ r.2 = a), a ∈ S := by
   intro a ha
   obtain ⟨_, hmem⟩ := Finset.mem_filter.mp ha
-  have h1 : a ∈ step R F S := by
-    rw [step]
-    exact Finset.mem_union.mpr (Or.inr (Or.inr
-      (Finset.mem_filter.mpr ⟨Finset.mem_univ a, hmem⟩)))
+  have h1 : a ∈ step R F S :=
+    Finset.mem_union.mpr (Or.inr (Finset.mem_filter.mpr ⟨Finset.mem_univ a, hmem⟩))
   rwa [h] at h1
 
 /-- The child system's closure is already pre-fixed for the parent system. -/
@@ -70,7 +74,8 @@ theorem add_only_reuse (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F Δ : F
   refine Finset.union_subset ?_ (Finset.union_subset Finset.Subset.rfl ?_)
   · refine Finset.union_subset ?_ (Finset.subset_union_right _ _)
     exact (parent_closure_subset_child R R' hR F Δ).trans (Finset.subset_union_left _ _)
-  · exact heads_subset R' _ _ (closure_stable R' (closure R F ∪ Δ))
+  · intro a ha
+    exact heads_subset R' _ _ (closure_stable R' (closure R F ∪ Δ)) a ha
 
 /-- Update operations. -/
 inductive UpdateOp (A : Type) where

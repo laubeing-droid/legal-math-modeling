@@ -21,7 +21,7 @@ def terminal (g : Gate) : Bool := g.stageReady && g.assessmentComplete && g.auth
 theorem no_terminal_when_incomplete (g : Gate) (h : terminal g = true) :
     g.stageReady = true ∧ g.assessmentComplete = true ∧ g.authorityValid = true := by
   simp only [terminal, Bool.and_eq_true] at h
-  exact h
+  exact ⟨h.1.1, h.1.2, h.2⟩
 
 def terminalEffect (g : Gate) (r : Ruling) : Option Ruling :=
   if terminal g then some r else none

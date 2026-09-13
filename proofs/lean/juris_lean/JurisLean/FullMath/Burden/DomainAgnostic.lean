@@ -73,8 +73,9 @@ def appliesAtStage (policyStage stage : String) : Bool := decide (policyStage = 
 theorem stage_scoping (policyStage stage stage' : String)
     (h : ¬ (stage = stage')) (happ : appliesAtStage policyStage stage = true) :
     appliesAtStage policyStage stage' = false := by
-  simp only [appliesAtStage] at happ ⊢
-  rw [of_decide_eq_true happ]
-  omega
+  have hpe : policyStage = stage := of_decide_eq_true happ
+  simp only [appliesAtStage]
+  rw [hpe]
+  exact decide_eq_false h
 
 end JurisLean.FullMath.Burden

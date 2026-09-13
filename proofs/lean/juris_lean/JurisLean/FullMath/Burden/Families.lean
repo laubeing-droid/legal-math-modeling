@@ -38,7 +38,7 @@ def civilPolicies : List (String × String) :=
    ("ip.authorship", "preponderance"), ("finance.disclosure", "preponderance")]
 
 theorem civil_allocation_complete : completeAssignment civilSlots civilPolicies := by
-  decide [completeAssignment, noDupKeys, civilSlots, civilPolicies]
+  simp [completeAssignment, noDupKeys, civilSlots, civilPolicies]
 
 /-- B05: the criminal family — conviction elements, sentencing, legality
 review, private prosecution and special procedure each carry their own
@@ -55,7 +55,7 @@ def criminalPolicies : List (String × String) :=
    ("criminal.specialProcedure", "statutoryNullity")]
 
 theorem criminal_allocation_complete : completeAssignment criminalSlots criminalPolicies := by
-  decide [completeAssignment, noDupKeys, criminalSlots, criminalPolicies]
+  simp [completeAssignment, noDupKeys, criminalSlots, criminalPolicies]
 
 /-- B05(b): conviction of person `i` uses person `i`'s elements — the
 slot key is indexed by the person, so completeness gives each person an
@@ -78,7 +78,7 @@ def adminPolicies : List (String × String) :=
    ("admin.arbitration", "arbitrationStandard")]
 
 theorem admin_allocation_complete : completeAssignment adminSlots adminPolicies := by
-  decide [completeAssignment, noDupKeys, adminSlots, adminPolicies]
+  simp [completeAssignment, noDupKeys, adminSlots, adminPolicies]
 
 /-- B04-B06 shared core: a complete assignment gives every slot a policy
 keyed lookup. -/

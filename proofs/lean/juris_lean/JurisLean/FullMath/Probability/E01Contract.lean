@@ -101,7 +101,7 @@ theorem cantelli_core (a m sigma : ℚ)
     (hbound : m * (sigma * sigma + a * a) ≤ sigma * sigma) :
     m ≤ sigma * sigma / (sigma * sigma + a * a) := by
   have hden : (0 : ℚ) < sigma * sigma + a * a := by
-    have h1 : (0 : ℚ) ≤ sigma * sigma := mul_nonneg hsigma (le_of_lt hsigma)
+    have h1 : (0 : ℚ) ≤ sigma * sigma := mul_nonneg hsigma hsigma
     have h2 : (0 : ℚ) < a * a := mul_pos ha ha
     linarith
   rw [le_div_iff₀ hden]

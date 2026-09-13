@@ -94,10 +94,10 @@ def gammaJoint {J W : Type} {V : J → Type} (gamma : W → Prop)
   gamma w ∧ ∀ j, proj j w ∈ components j
 
 /-- Reduction: shrink component `i` to the values realized inside the joint. -/
-def reduced {J : Type} [DecidableEq J] {V : J → Type}
-    (gamma : (Fin 1 → ℚ) → Prop) (proj : (j : Fin 1) → (Fin 1 → ℚ) → V j)
-    (components : (j : Fin 1) → Set (V j)) (i : Fin 1) : Set (V i) :=
-  {x | x ∈ components i ∧ ∃ w, gammaJoint gamma proj components w ∧ proj i w = x}
+def reduced
+    (gamma : (Fin 1 → ℚ) → Prop) (comp : (Fin 1 → Set (Fin 1 → ℚ)) )
+    (i : Fin 1) : Set (Fin 1 → ℚ) :=
+  {x | x ∈ comp i ∧ ∃ w, (gamma w ∧ ∀ j, w j ∈ comp j) ∧ w i = x}
 
 section ReducedProduct
 variable {V0 : Type}

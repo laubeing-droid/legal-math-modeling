@@ -43,23 +43,23 @@ theorem bellman_onesided (legal : S → Finset A) (r : S → A → ℚ)
   have hq : ∀ a ∈ legal s,
       qval r p β x s a ≤ qval r p β y s a + β * M := by
     intro a ha
-    have hgap : ∑ s', p s a s' * x s' - ∑ s', p s a s' * y s'
-        = ∑ s', p s a s' * (x s' - y s') := by
-      rw [← Finset.sum_sub_distrib]
-      exact Finset.sum_congr rfl (fun s' _ => by ring)
     have habs : ∀ i ∈ (Finset.univ : Finset S), p s a i * (x i - y i) ≤ p s a i * M :=
       fun i _ => mul_le_mul_of_nonneg_left (abs_le.mp (hM i)).2 (hpn s a i)
     have hsumle : ∑ s', p s a s' * (x s' - y s') ≤ ∑ s', p s a s' * M :=
       Finset.sum_le_sum habs
     have hMsum : ∑ s', p s a s' * M = M := by
       rw [← Finset.sum_mul, hsum s a, one_mul]
+    have hsplit : ∑ s', p s a s' * (x s' - y s')
+        = (∑ s', p s a s' * x s') - (∑ s', p s a s' * y s') := by
+      rw [← Finset.sum_sub_distrib]
+      exact Finset.sum_congr rfl (fun s' _ => by ring)
+    rw [hMsum] at hsumle
+    rw [hsplit] at hsumle
     rw [qval, qval]
     have hβle : β * ((∑ s', p s a s' * x s') - (∑ s', p s a s' * y s'))
-        ≤ β * M := mul_le_mul_of_nonneg_left (by
-      rw [hgap] at hsumle ⊢
-      rw [hMsum] at hsumle
-      linarith) hβ
-    nlinarith [hβle]
+        ≤ β * M := mul_le_mul_of_nonneg_left hsumle hβ
+    linarith
+
   -- the attained max of the dominated family is dominated
   have himg : ∀ b ∈ (legal s).image (fun a => qval r p β x s a),
       b ≤ bellmanOf legal r p β y s hny + β * M := by

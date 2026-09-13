@@ -43,14 +43,21 @@ theorem clip_nonexpansive (l u x y : ℝ) (h : l ≤ u) :
       rcases lt_or_ge u y with hyu | hyle
       · rw [if_pos hyu]
         -- |l - u| vs |x - y|, with x < l ≤ u < y
-        have hA : |l - u| = u - l := abs_of_nonneg (by linarith)
-        have hB : |x - y| = y - x := abs_of_nonneg (by linarith)
+        have hA : |l - u| = u - l := by
+          rw [abs_of_nonneg (h)]
+        have hB : |x - y| = y - x := by
+          have : (0 : ℝ) ≤ y - x := by linarith
+          rw [abs_of_nonneg this]
         rw [hA, hB]
         linarith
       · rw [if_neg (by linarith : ¬ u < y)]
         -- |l - y| with x < l ≤ y ≤ u
-        have hA : |l - y| = y - l := abs_of_nonneg (by linarith)
-        have hB : |x - y| = y - x := abs_of_nonneg (by linarith)
+        have hA : |l - y| = y - l := by
+          have hnn : (0 : ℝ) ≤ y - l := by linarith
+          rw [abs_of_nonneg hnn]
+        have hB : |x - y| = y - x := by
+          have hnn2 : (0 : ℝ) ≤ y - x := by linarith
+          rw [abs_of_nonneg hnn2]
         rw [hA, hB]
         linarith
   · rw [if_neg (by linarith : ¬ x < l)]
@@ -60,8 +67,12 @@ theorem clip_nonexpansive (l u x y : ℝ) (h : l ≤ u) :
       rcases lt_or_ge y l with hylt | hyge
       · rw [if_pos hylt]
         -- |u - l| with y < l ≤ u < x
-        have hA : |u - l| = u - l := abs_of_nonneg (by linarith)
-        have hB : |x - y| = x - y := abs_of_nonneg (by linarith)
+        have hA : |u - l| = u - l := by
+          have hnn : (0 : ℝ) ≤ u - l := by linarith
+          rw [abs_of_nonneg hnn]
+        have hB : |x - y| = x - y := by
+          have hnn2 : (0 : ℝ) ≤ x - y := by linarith
+          rw [abs_of_nonneg hnn2]
         rw [hA, hB]
         linarith
       · rw [if_neg (by linarith : ¬ y < l)]
@@ -70,8 +81,12 @@ theorem clip_nonexpansive (l u x y : ℝ) (h : l ≤ u) :
           exact abs_nonneg (x - y)
         · rw [if_neg (by linarith : ¬ u < y)]
           -- |u - y| with l ≤ y ≤ u < x
-          have hA : |u - y| = u - y := abs_of_nonneg (by linarith)
-          have hB : |x - y| = x - y := abs_of_nonneg (by linarith)
+          have hA : |u - y| = u - y := by
+          have hnn : (0 : ℝ) ≤ u - y := by linarith
+          rw [abs_of_nonneg hnn]
+          have hB : |x - y| = x - y := by
+          have hnn2 : (0 : ℝ) ≤ x - y := by linarith
+          rw [abs_of_nonneg hnn2]
           rw [hA, hB]
           linarith
     · rw [if_neg (by linarith : ¬ u < x)]
@@ -79,16 +94,24 @@ theorem clip_nonexpansive (l u x y : ℝ) (h : l ≤ u) :
       rcases lt_or_ge y l with hylt | hyge
       · rw [if_pos hylt]
         -- |x - l| with y < l ≤ x ≤ u
-        have hA : |x - l| = x - l := abs_of_nonneg (by linarith)
-        have hB : |x - y| = x - y := abs_of_nonneg (by linarith)
+        have hA : |x - l| = x - l := by
+          have hnn : (0 : ℝ) ≤ x - l := by linarith
+          rw [abs_of_nonneg hnn]
+        have hB : |x - y| = x - y := by
+          have hnn2 : (0 : ℝ) ≤ x - y := by linarith
+          rw [abs_of_nonneg hnn2]
         rw [hA, hB]
         linarith
       · rw [if_neg (by linarith : ¬ y < l)]
         rcases lt_or_ge u y with hyu | hyle
         · rw [if_pos hyu]
           -- |x - u| with l ≤ x ≤ u < y
-          have hA : |x - u| = u - x := abs_of_nonneg (by linarith)
-          have hB : |x - y| = y - x := abs_of_nonneg (by linarith)
+          have hA : |x - u| = u - x := by
+          have hnn : (0 : ℝ) ≤ u - x := by linarith
+          rw [abs_of_nonneg hnn]
+          have hB : |x - y| = y - x := by
+          have hnn2 : (0 : ℝ) ≤ y - x := by linarith
+          rw [abs_of_nonneg hnn2]
           rw [hA, hB]
           linarith
         · rw [if_neg (by linarith : ¬ u < y)]
@@ -96,7 +119,7 @@ theorem clip_nonexpansive (l u x y : ℝ) (h : l ≤ u) :
           exact le_refl _
 
 /-- The projected gradient map. -/
-def T (l u a b η x : ℝ) : ℝ := clip l u ((1 - η * a) * x - η * b)
+noncomputable def T (l u a b η x : ℝ) : ℝ := clip l u ((1 - η * a) * x - η * b)
 
 /-- N07(b): T is Lipschitz with factor `|1 − ηa|`. -/
 theorem T_contraction (l u a b η x y : ℝ) (h : l ≤ u) :

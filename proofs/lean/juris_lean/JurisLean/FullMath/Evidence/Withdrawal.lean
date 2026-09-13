@@ -20,9 +20,14 @@ variable {A : Type} [DecidableEq A] [Fintype A]
 /-- More rules fire more heads: the step operator is monotone in `R`. -/
 theorem step_rules_mono (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A) :
     step R F S ⊆ step R' F S := by
-  refine Finset.union_subset Finset.Subset.rfl (Finset.union_subset Finset.Subset.rfl ?_)
-  refine Finset.image_subset ?_
-  exact Finset.filter_subset_filter (fun r hr _ => hR hr)
+  intro a ha
+  rcases Finset.mem_union.mp (Finset.mem_union.mp ha) with h1 | (h2 | h3)
+  · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr (Or.inl h1)))
+  · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr (Or.inr h2)))
+  · obtain ⟨_, hmem⟩ := Finset.mem_filter.mp h3
+    obtain ⟨r, hrR, hrS, hr2⟩ := hmem
+    refine Finset.mem_union.mpr (Or.inr (Or.inr ?_))
+    exact Finset.mem_filter.mpr ⟨Finset.mem_univ a, ⟨r, hR hrR, hrS, hr2⟩⟩
 
 /-- More facts give bigger steps: the step operator is monotone in `F`. -/
 theorem step_facts_mono (R : Finset (Finset A × A)) {F G S : Finset A} (h : F ⊆ G) :
@@ -32,11 +37,14 @@ theorem step_facts_mono (R : Finset (Finset A × A)) {F G S : Finset A} (h : F �
 /-- Heads fired from a stable set stay inside it. -/
 theorem heads_subset (R : Finset (Finset A × A)) (F S : Finset A)
     (h : step R F S = S) :
-    (R.filter (fun r => r.1 ⊆ S)).image (fun r => r.2) ⊆ S := by
-  have h2 : (R.filter (fun r => r.1 ⊆ S)).image (fun r => r.2) ⊆ step R F S := by
+    ∀ a ∈ Finset.univ.filter (fun a => ∃ r ∈ R, r.1 ⊆ S ∧ r.2 = a), a ∈ S := by
+  intro a ha
+  obtain ⟨_, hmem⟩ := Finset.mem_filter.mp ha
+  have h1 : a ∈ step R F S := by
     rw [step]
-    exact (Finset.subset_union_right _ _).trans (Finset.subset_union_right _ _)
-  rwa [h] at h2
+    exact Finset.mem_union.mpr (Or.inr (Or.inr
+      (Finset.mem_filter.mpr ⟨Finset.mem_univ a, hmem⟩)))
+  rwa [h] at h1
 
 /-- The child system's closure is already pre-fixed for the parent system. -/
 theorem child_is_parent_prefixed (R R' : Finset (Finset A × A)) (hR : R ⊆ R')

@@ -16,23 +16,19 @@ variable {A : Type} [DecidableEq A] [Fintype A]
 
 /-- One closure step: facts ∪ current ∪ heads fireable from current. -/
 def step (R : Finset (Finset A × A)) (F S : Finset A) : Finset A :=
-  F ∪ S ∪ (R.filter (fun r => r.1 ⊆ S)).image Prod.snd
+  F ∪ S ∪ Finset.univ.filter (fun a => ∃ r ∈ R, r.1 ⊆ S ∧ r.2 = a)
 
 /-- T is monotone in the current set. -/
 theorem step_mono (R : Finset (Finset A × A)) (F : Finset A) {S T : Finset A}
     (h : S ⊆ T) : step R F S ⊆ step R F T := by
   intro a ha
-  have ha' : a ∈ F ∪ S ∪ (R.filter (fun r => r.1 ⊆ S)).image Prod.snd := ha
-  rw [Finset.mem_union, Finset.mem_union] at ha'
-  show a ∈ F ∪ T ∪ (R.filter (fun r => r.1 ⊆ T)).image Prod.snd
-  rw [Finset.mem_union, Finset.mem_union]
-  rcases ha' with (ha1 | ha2) | ha3
-  · exact Or.inl (Or.inl ha1)
-  · exact Or.inl (Or.inr (h ha2))
-  · refine Or.inr ?_
-    obtain ⟨r, hr, hsnd⟩ := Finset.mem_image.mp ha3
-    obtain ⟨hrR, hrS⟩ := Finset.mem_filter.mp hr
-    exact Finset.mem_image.mpr ⟨r, Finset.mem_filter.mpr ⟨hrR, fun hb => h hb⟩, hsnd⟩
+  rcases Finset.mem_union.mp (Finset.mem_union.mp ha) with h1 | (h2 | h3)
+  · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr (Or.inl h1)))
+  · exact Finset.mem_union.mpr (Or.inl (Finset.mem_union.mpr (Or.inr h2)))
+  · obtain ⟨_, hmem⟩ := Finset.mem_filter.mp h3
+    obtain ⟨r, hrR, hrS, hr2⟩ := hmem
+    refine Finset.mem_union.mpr (Or.inr (Or.inr ?_))
+    exact Finset.mem_filter.mpr ⟨Finset.mem_univ a, ⟨r, hrR, fun hb => h hb, hr2⟩⟩
 
 /-- Iterated closure from the empty set. -/
 def cl (R : Finset (Finset A × A)) (F : Finset A) : ℕ → Finset A :=

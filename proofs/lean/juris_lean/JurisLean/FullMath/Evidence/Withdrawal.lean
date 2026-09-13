@@ -81,6 +81,7 @@ theorem add_only_reuse (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F Δ : F
         exact closure_subset R' (closure R F ∪ Δ) hmem1
       · exact hQ
     · exact closure_closed_heads R' (closure R F ∪ Δ) (F ∪ Δ)
+        (closure R' (closure R F ∪ Δ))
         (closure_stable R' (closure R F ∪ Δ))
         (Finset.union_subset (fun x hx => Finset.mem_union.mpr
           (Or.inl (closure_subset R F hx))) (fun x hx => Finset.mem_union.mpr (Or.inr hx)))
@@ -98,6 +99,7 @@ theorem add_only_reuse (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F Δ : F
         exact hmem1
       · exact hQ
     · exact closure_closed_heads R' (F ∪ Δ) (closure R F ∪ Δ)
+        (closure R' (F ∪ Δ))
         (closure_stable R' (F ∪ Δ))
         (Finset.union_subset (fun x hx => parent_closure_subset_child R R' hR F Δ hx)
           (fun x hx => closure_subset R' (F ∪ Δ) (Finset.mem_union.mpr (Or.inr hx))))
@@ -151,6 +153,7 @@ theorem deletion_invalidates_cache :
     simp [Finset.mem_sdiff]
   have hempty : closure twoRule (({0} : Finset (Fin 2)) \ {0}) = ∅ := by
     rw [hF]
+    refine Finset.Subset.antisymm ?_ (Finset.empty_subset _)
     refine closure_least twoRule (∅ : Finset (Fin 2)) (∅ : Finset (Fin 2)) ?_
     show step twoRule (∅ : Finset (Fin 2)) (∅ : Finset (Fin 2)) ⊆ (∅ : Finset (Fin 2))
     intro (a : Fin 2) ha

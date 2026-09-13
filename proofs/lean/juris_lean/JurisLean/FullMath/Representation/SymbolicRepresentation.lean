@@ -100,20 +100,24 @@ def reduced
   {x | x ∈ comp i ∧ ∃ w, (gamma w ∧ ∀ j, w j ∈ comp j) ∧ w i = x}
 
 section ReducedProduct
-variable {V0 : Type}
 
 /-- A one-component specialization of the reduced product keeps the joint
-denotation: what is realized is exactly the intersection. -/
+denotation: what is realized is exactly the intersection with the component
+and the Γ-restriction. -/
 theorem reduced_preserves_joint_one
-    (gamma : (Fin 1 → ℚ) → Prop) (comp : Set (Fin 1 → ℚ)) :
-    reduced {w | gamma w ∧ w 0 ∈ comp} (fun _ w => w 0)
-        (fun _ => comp) 0 = {v | gamma (fun _ => v) ∧ v ∈ comp} := by
+    (gamma : (Fin 1 → ℚ) → Prop) (comp : (Fin 1 → Set (Fin 1 → ℚ))) :
+    reduced (fun w => gamma w ∧ ∀ j, w j ∈ comp j) comp 0 =
+      {v : Fin 1 → ℚ | gamma v ∧ v 0 ∈ comp 0} := by
   ext v
   constructor
-  · rintro ⟨hin, w, ⟨hgamma, hcomp⟩, heq⟩
-    exact ⟨heq ▸ hgamma, hin⟩
+  · rintro ⟨hin, w, ⟨hgw, hcomp⟩, heq⟩
+    subst heq
+    exact ⟨hgw, hin⟩
   · rintro ⟨hgamma, hin⟩
-    exact ⟨hin, fun _ => v, ⟨hgamma, hin⟩, rfl⟩
+    refine ⟨hin, v, ⟨hgamma, ?_⟩, rfl⟩
+    intro j
+    fin_cases j
+    exact hin
 
 end ReducedProduct
 

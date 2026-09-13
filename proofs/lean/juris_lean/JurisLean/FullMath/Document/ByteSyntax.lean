@@ -78,9 +78,9 @@ theorem parse_render_roundtrip (cs : List Char) (hplain : Plain cs) :
       intro acc h
       obtain ⟨hcq, hcb⟩ := h c (by simp)
       show parseGo (c :: (xs ++ [quoteByte])) acc = _
-      rw [parseGo_cons, if_neg hcb, if_neg hcq, ih (c :: acc) (fun x hx => h x (List.mem_cons_of_mem _ hx))]
+      rw [parseGo_cons, if_neg hcb, if_neg hcq,
+        ih (c :: acc) (fun x hx => h x (List.mem_cons_of_mem _ hx))]
       simp only [List.reverse_cons, List.singleton_append, List.append_assoc]
-      rfl
   show parseL (quoteByte :: (cs ++ [quoteByte])) = _
   rw [parseL_open, hstep cs [] hplain]
   rfl
@@ -146,7 +146,7 @@ theorem docPut_docPut (d : Doc) (k v v' : String) :
 theorem eraseKey_docPut (d : Doc) (k v : String) :
     eraseKey (docPut d k v) k = eraseKey d k := by
   show eraseKey ((k, v) :: eraseKey d k) k = eraseKey d k
-  rw [eraseKey_cons_hit _ _ _ _ rfl]
+  rw [eraseKey_cons_hit _ _ _ _ rfl, eraseKey_idem]
 
 /-- An observer independent of key `k` is unchanged by putting `k`. -/
 theorem observer_outside_closure (obs : Doc → String) (d : Doc) (k v : String)

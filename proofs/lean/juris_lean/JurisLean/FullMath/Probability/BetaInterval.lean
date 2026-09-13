@@ -37,6 +37,7 @@ theorem betaCDF_one (a b : ℕ) (ha : 0 < a) (hb : 0 < b) : betaCDF a b 1 = 1 :=
           * (1 - 1) ^ (a + b - 1 - j.val)
       else 0) = 0 := by
     intro j _ hjne
+    have hvalne : j.val ≠ a + b - 1 := fun h => hjne (Fin.ext h)
     by_cases hja : a ≤ j.val
     · rw [if_pos hja]
       have hpos : a + b - 1 - j.val ≠ 0 := by omega

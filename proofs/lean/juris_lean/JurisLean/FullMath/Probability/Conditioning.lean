@@ -55,7 +55,7 @@ theorem posterior_nonneg (p : S → ℚ) (hp : ∀ s, 0 ≤ p s) (e : S → Bool
   show 0 ≤ (if e s = true then p s / evMass p e else 0)
   by_cases he : e s = true
   · rw [if_pos he]
-    exact div_nonneg (hp s) (le_of_lt hZ)
+    try exact div_nonneg (hp s) (le_of_lt hZ)
   · rw [if_neg he]
     norm_num
 

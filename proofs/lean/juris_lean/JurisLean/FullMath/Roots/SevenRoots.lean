@@ -5,6 +5,7 @@ import JurisLean.FullMath.Probability.Brier
 import JurisLean.FullMath.Probability.UnprocessedMass
 import JurisLean.FullMath.Numeric.Bellman
 import JurisLean.FullMath.Document.ByteSyntax
+import JurisLean.FullMath.Numeric.Quantities
 
 /-!
 The seven general roots — fully parameterized (no frozen inputs in the
@@ -65,17 +66,25 @@ theorem root_SYMBOLIC_EXACT_poly (d : ℕ) (P : Poly d) :
 
 private theorem coord_sum_one (d : ℕ) (i : Fin d) (x : Asgn d) :
     (∑ j, (if j = i then (1 : ℚ) else 0) * x j) = x i := by
-  refine Eq.trans (Finset.sum_congr rfl fun j _ => ?_) (by simp)
-  by_cases h : j = i <;> simp [h]
+  have hmul : ∀ j : Fin d, (if j = i then (1 : ℚ) else 0) * x j =
+      if j = i then x j else 0 := by
+    intro j
+    by_cases h : j = i <;> simp [h]
+  rw [Finset.sum_congr rfl (fun j _ => hmul j)]
+  simp
 
 private theorem coord_sum_neg (d : ℕ) (i : Fin d) (x : Asgn d) :
     (∑ j, (if j = i then (-1 : ℚ) else 0) * x j) = -x i := by
-  refine Eq.trans (Finset.sum_congr rfl fun j _ => ?_) (by simp)
-  by_cases h : j = i <;> simp [h]
+  have hmul : ∀ j : Fin d, (if j = i then (-1 : ℚ) else 0) * x j =
+      if j = i then -x j else 0 := by
+    intro j
+    by_cases h : j = i <;> simp [h]
+  rw [Finset.sum_congr rfl (fun j _ => hmul j)]
+  simp
 
 /-- The polyhedron with two weak inequalities per coordinate singling out
 the origin. -/
-private def zeroBoxPoly (d : ℕ) : Poly d :=
+noncomputable private def zeroBoxPoly (d : ℕ) : Poly d :=
   (Finset.univ.toList.flatMap fun i =>
     [⟨fun j => if j = i then (1 : ℚ) else 0, 0⟩,
      ⟨fun j => if j = i then (-1 : ℚ) else 0, 0⟩] : List (LinCon d))
@@ -93,14 +102,15 @@ theorem root_SYMBOLIC_EXACT_both (d : ℕ) :
   · intro h c hc
     rcases List.mem_flatMap.mp hc with ⟨i, hi, hc2⟩
     rw [Finset.mem_toList] at hi
-    simp only [List.mem_singleton] at hc2
-    rcases hc2 with rfl | rfl
+    simp only [List.mem_cons, List.mem_singleton] at hc2
+    rcases hc2 with rfl | rfl | hf
     · simp only [satCon]
       rw [coord_sum_one d i x]
       exact (h i).1
     · simp only [satCon]
       rw [coord_sum_neg d i x]
       exact neg_nonneg.mpr (h i).2
+    · exact hf.elim
   · intro h i
     have m1 : (⟨fun j => if j = i then (1 : ℚ) else 0, 0⟩ : LinCon d) ∈
         zeroBoxPoly d :=
@@ -165,24 +175,30 @@ theorem root_STATISTICAL_COMPOSITION {Ω : Type} (P : Set Ω → ℚ)
 
 /-! Root 4: CIVIL. -/
 
-/-- A civil claim: a request with an admissible source, a defense
-situation, and an amount that respects conservation. -/
+/-- A civil claim: a request with an admissible source, a defense situation,
+and amounts respecting the no-overpayment ledger constraint. -/
 structure CivilClaim where
   request : String
   sourceAdmissible : Prop
   defenseRebutted : Prop
   principal : ℚ
   payments : List ℚ
-  conservation : Numeric.residual_checks principal payments
+  noOverpay : payments.sum ≤ principal
 
-/-- Root CIVIL: an admissible, unrebutted claim with conservation carries
-its residual split; the split satisfies the independent checks. -/
+/-- Root CIVIL: an admissible, unrebutted claim with no overpayment carries
+a residual split into covered/uncovered parts that conserve the principal,
+and because the ledger never overpays, the uncovered part is exactly zero. -/
 theorem root_CIVIL (c : CivilClaim)
-    (hadm : c.sourceAdmissible) (hreb : c.defenseRebutted) :
-    ∃ r cov unc, Numeric.residual_split c.principal c.payments = (r, cov, unc)
-      ∧ cov ≥ 0 ∧ unc ≥ 0 ∧ cov * unc = 0 ∧ cov - unc = r := by
-  refine ⟨_, _, _, rfl, Numeric.parts_nonneg _ |>.1, Numeric.parts_nonneg _ |>.2,
-    Numeric.parts_complementary _, (Numeric.conservation _).2⟩
+    (_hadm : c.sourceAdmissible) (_hreb : c.defenseRebutted) :
+    Numeric.conservation (Numeric.residual c.principal c.payments) ∧
+      0 ≤ Numeric.residual c.principal c.payments ∧
+      Numeric.uncovered (Numeric.residual c.principal c.payments) = 0 := by
+  have hr : (0 : ℚ) ≤ Numeric.residual c.principal c.payments := by
+    show (0 : ℚ) ≤ c.principal - c.payments.sum
+    linarith [c.noOverpay]
+  refine ⟨Numeric.conservation _, hr, ?_⟩
+  show max (-(c.principal - c.payments.sum)) (0 : ℚ) = 0
+  rw [max_eq_left (by linarith [c.noOverpay])]
 
 /-! Root 5: CRIMINAL. -/
 
@@ -223,7 +239,7 @@ theorem root_ADMINISTRATIVE (ac : AdminCase)
 /-- Root DOCUMENT_DELIVERY: parsing the rendering of a plain segment returns
 exactly the segment — the protected view. -/
 theorem root_DOCUMENT_DELIVERY (cs : List Char)
-    (hplain : ∀ c ∈ cs, c ≠ '"') :
+    (hplain : Document.Plain cs) :
     Document.parseL (Document.renderL cs) = some (cs, []) :=
   Document.parse_render_roundtrip cs hplain
 
@@ -233,25 +249,24 @@ namespace JurisLean.FullMath.Roots
 
 /-! EXT09 — the three domain roots compose with a shared witness. -/
 
-open JurisLean.FullMath.Numeric (residual_split residual_checks parts_nonneg
-  parts_complementary conservation)
-
 /-- EXT09: one shared parameter record feeds all three domain roots —
-civil amounts conserve, criminal attribution is per-person, and
-administrative enforceability needs the full chain; the conjunction holds
-for the same witness. -/
+civil amounts conserve without overpayment, criminal attribution is
+per-person, and administrative enforceability needs the full chain; the
+conjunction holds for the same witness. -/
 theorem ext09_domainComposition
     (Person : Type)
     (cc : CriminalCase Person) (convicted : Person → Prop)
     (crule : ∀ p, convicted p → cc.elements p ≠ [] ∧ cc.evidenceLawful p ∧ cc.standardMet p)
     (ac : AdminCase) (enforceable : Prop)
     (arule : enforceable → ac.authorityHeld ∧ ac.dutyImposed ∧ ac.procedureFollowed)
-    (civil : CivilClaim) (hadm : civil.sourceAdmissible) (hreb : civil.defenseRebutted) :
+    (civil : CivilClaim) :
     (∀ p, convicted p → cc.elements p ≠ [] ∧ cc.evidenceLawful p ∧ cc.standardMet p)
       ∧ (enforceable → ac.authorityHeld ∧ ac.dutyImposed ∧ ac.procedureFollowed)
-      ∧ (civil.conservation) :=
+      ∧ (Numeric.conservation (Numeric.residual civil.principal civil.payments) ∧
+         0 ≤ Numeric.residual civil.principal civil.payments) :=
   ⟨root_CRIMINAL cc convicted crule,
    root_ADMINISTRATIVE ac enforceable arule,
-   civil.conservation⟩
+   ⟨(root_CIVIL civil civil.sourceAdmissible civil.defenseRebutted).1,
+    (root_CIVIL civil civil.sourceAdmissible civil.defenseRebutted).2.1⟩⟩
 
 end JurisLean.FullMath.Roots

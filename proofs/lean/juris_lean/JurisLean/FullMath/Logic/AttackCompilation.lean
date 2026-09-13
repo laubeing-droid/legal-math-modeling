@@ -89,10 +89,9 @@ theorem edgeFuel_iff (con : Contrary A) (rc : RuleContra A) (a : Arg A) :
       exact ⟨fun h => Defeat.rebut a (.leaf c) h,
         fun h => by cases h with | rebut _ hclash => exact hclash⟩
     | node r ps =>
-      simp only [edgeFuel, Bool.or_eq_true, List.any_eq_true]
+      simp only [edgeFuel, Bool.or_eq_true, List.any_eq_true, or_assoc]
       constructor
-      · simp only [or_assoc]
-        rintro (h1 | ⟨p, hp, h2⟩ | h3 | ⟨p, hp, h4⟩)
+      · rintro (h1 | ⟨p, hp, h2⟩ | h3 | ⟨p, hp, h4⟩)
         · exact Defeat.rebut a (.node r ps) h1
         · exact Defeat.undermine a r ps p hp h2
         · exact Defeat.undercut a r ps h3

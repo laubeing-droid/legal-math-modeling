@@ -45,8 +45,8 @@ Conditioning first then contaminating gives
 `P*(H|E) = 6/7`. The two differ, so a prior-stage ε may never be reused
 across conditioning. -/
 theorem contaminate_condition_do_not_commute :
-    ((1 - 1 / 2) * 1 / 2 + 1 / 2 * 1) ≠
-      ((1 / 2 * 1 / 10 + 1 / 2 * 1 / 2) /
+    (((1 : ℝ) - 1 / 2) * 1 / 2 + 1 / 2 * 1) ≠
+      (((1 : ℝ) / 2 * 1 / 10 + 1 / 2 * 1 / 2) /
         (1 / 2 * (1 / 10 + 1 / 10) + 1 / 2 * (1 / 2 + 0))) := by
   intro heq
   have hval1 : ((1 - 1 / 2) * 1 / 2 + 1 / 2 * 1) = ((3 : ℝ) / 4) := by norm_num
@@ -56,6 +56,9 @@ theorem contaminate_condition_do_not_commute :
     intro hh
     field_simp at hh
     norm_num at hh
-  exact absurd (hval1.symm.trans (heq.trans hval2)) (fun hcon => h2124 hcon rfl)
+  exact absurd (hval1.symm.trans (heq.trans hval2)) (by
+    intro hcon
+    have h42 := h2124 hcon
+    norm_num at h42)
 
 end JurisLean.FullMath.Probability

@@ -18,12 +18,14 @@ theorem branch_cover (lo k hi : ℤ) (x : ℤ)
     (lo ≤ x ∧ x ≤ k) ∨ (k + 1 ≤ x ∧ x ≤ hi) := by
   rcases lt_or_ge x k with h1 | h1
   · exact Or.inl ⟨hx.1, le_of_lt h1⟩
-  · exact Or.inr ⟨by omega, hx.2⟩
+  · rcases lt_or_eq_of_le h1 with h2 | h2
+    · exact Or.inr ⟨by omega, hx.2⟩
+    · exact Or.inl ⟨hx.1, h2 ▸ le_refl k⟩
 
 /-- Minima over supersets are at most minima over subsets. -/
 theorem min'_subset (S T : Finset ℤ) (hsub : S ⊆ T) (hS : S.Nonempty) (hT : T.Nonempty) :
     T.min' hT ≤ S.min' hS :=
-  Finset.min'_le (hsub (Finset.min'_mem S hS))
+  Finset.min'_le (S.min' hS) (hsub (Finset.min'_mem S hS))
 
 /-- N05(b): relaxation bound — since the integer points of the sub-box are a
 subset of the integer points of the super-box, the super-box minimum is a

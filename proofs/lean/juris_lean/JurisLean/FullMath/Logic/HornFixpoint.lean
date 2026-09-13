@@ -15,12 +15,12 @@ section Horn
 variable {A : Type} [DecidableEq A] [Fintype A]
 
 /-- Left set embeds into its union (subset form). -/
-theorem ssubL {A : Type} (s t : Finset A) : s ⊆ s ∪ t := by
+theorem ssubL (s t : Finset A) : s ⊆ s ∪ t := by
   intro (x : A) (hx : x ∈ s)
   exact Finset.mem_union.mpr (Or.inl hx)
 
 /-- Right set embeds into its union (subset form). -/
-theorem ssubR {A : Type} (s t : Finset A) : t ⊆ s ∪ t := by
+theorem ssubR (s t : Finset A) : t ⊆ s ∪ t := by
   intro (x : A) (hx : x ∈ t)
   exact Finset.mem_union.mpr (Or.inr hx)
 

@@ -40,17 +40,13 @@ theorem repealed_not_applicable (v : SourceVersion) (r t : ℕ)
 theorem effective_window_applicable (v : SourceVersion) (t : ℕ)
     (h1 : v.effective ≤ t) (h2 : ∀ r, v.repealed = some r → t < r) :
     appliesAt v t = true := by
-  by_cases heff : v.effective ≤ t
-  · show (if v.effective ≤ t then
-        match v.repealed with
-        | none => true
-        | some r => decide (t < r)
-      else false) = true
-    rw [if_pos heff]
+  simp only [appliesAt]
+  split
+  · next heff =>
     cases hrep : v.repealed with
     | none => rfl
     | some r => rw [decide_eq_true (h2 r hrep)]
-  · simp only [appliesAt, if_neg heff]
+  · next heff => exact absurd h1 heff
 
 /-- B07(b): unknown is not inapplicable — with no applicable source and no
 explicit exclusion ground the slot stays pending. -/

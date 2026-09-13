@@ -55,6 +55,7 @@ theorem dedup_conflict_not_overwrite (k : ℕ) (v v' : ℚ) (l : List Obs) :
   rw [dedupAux_cons_fresh ⟨k, v'⟩ (⟨k, v⟩ :: l) _ (by simp),
     dedupAux_cons_seen ⟨k, v⟩ l _ (by simp),
     dedupAux_cons_fresh ⟨k, v⟩ l _ (by simp)]
+  rfl
 
 /-- Exclusion predicate on observation ids. -/
 private def exclP (k : ℕ) (o : Obs) : Bool := decide (o.id != k)
@@ -135,10 +136,9 @@ theorem exclusion_no_langer (k : ℕ) : ∀ (l : List Obs) (seen : ℕ → Bool)
       · rw [show (o :: rest).filter (exclP k) = o :: rest.filter (exclP k) from by
           simp only [List.filter, hp, if_true]]
         rw [dedupAux_cons_fresh o rest seen hseen,
-          dedupAux_cons_fresh o (rest.filter (exclP k)) seen
-            (by simp [exclP, hko])]
-        rw [ih (fun x => decide (x = o.id) || seen x)]
+          dedupAux_cons_fresh o (rest.filter (exclP k)) seen hseen]
         simp only [List.filter, hp, if_true, List.map_cons]
+        rw [ih (fun x => decide (x = o.id) || seen x)]
 
 /-- Top-level exclusion commutation (empty initial seen set). -/
 theorem exclusion_no_langer_top (k : ℕ) (l : List Obs) :

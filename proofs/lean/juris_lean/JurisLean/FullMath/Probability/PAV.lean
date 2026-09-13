@@ -41,7 +41,6 @@ theorem pavGo_weight_sum (fuel : Nat) (l : List Pool) :
     | [] => rfl
     | [b] => rfl
     | (s1, w1) :: (s2, w2) :: rest =>
-      by_cases hcond : (s1 / w1) > (s2 / w2)
       rw [pavGo_succ_cons]
       by_cases hcond : (s1 / w1) > (s2 / w2)
       · rw [if_pos hcond, ih]

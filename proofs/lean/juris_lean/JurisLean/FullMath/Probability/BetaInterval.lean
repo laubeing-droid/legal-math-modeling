@@ -30,19 +30,29 @@ theorem betaCDF_zero (a b : ℕ) (ha : 0 < a) : betaCDF a b 0 = 0 := by
 /-- P10(b): at full mass the exact CDF equals one (for `a, b ≥ 1`): only
 the top binomial term survives. -/
 theorem betaCDF_one (a b : ℕ) (ha : 0 < a) (hb : 0 < b) : betaCDF a b 1 = 1 := by
-  have hmem : (⟨a + b - 1, by omega⟩ : Fin (a + b)) ∈ Finset.univ := Finset.mem_univ _
-  refine Finset.sum_eq_single (⟨a + b - 1, by omega⟩ : Fin (a + b))
-    (fun (j : Fin (a + b)) _ _ => ?_)
-    (fun hout => (hout (Finset.mem_univ (⟨a + b - 1, by omega⟩ : Fin (a + b)))).elim)
-  · by_cases hja : a ≤ j.val
+  have hside : ∀ j ∈ (Finset.univ : Finset (a + b)),
+      j ≠ (⟨a + b - 1, by omega⟩ : Fin (a + b)) →
+      (if (a : ℕ) ≤ j.val then
+        ((Nat.choose (a + b - 1) j.val : ℕ) : ℚ) * (1 : ℚ) ^ j.val
+          * (1 - 1) ^ (a + b - 1 - j.val)
+      else 0) = 0 := by
+    intro j _ hjne
+    by_cases hja : a ≤ j.val
     · rw [if_pos hja]
       have hpos : a + b - 1 - j.val ≠ 0 := by omega
       rw [sub_self, zero_pow hpos, mul_zero]
     · rw [if_neg hja]
-  · rw [if_pos (by omega : a ≤ a + b - 1)]
-    have hch : Nat.choose (a + b - 1) (a + b - 1) = 1 := Nat.choose_self _
-    rw [hch]
-    norm_num
+  have hout : (⟨a + b - 1, by omega⟩ : Fin (a + b)) ∉ Finset.univ →
+      (if (a : ℕ) ≤ (a + b - 1) then
+        ((Nat.choose (a + b - 1) (a + b - 1) : ℕ) : ℚ) * (1 : ℚ) ^ (a + b - 1)
+          * (1 - 1) ^ (a + b - 1 - (a + b - 1))
+      else 0) = 0 := fun hout => (hout (Finset.mem_univ _)).elim
+  simp only [betaCDF]
+  rw [Finset.sum_eq_single (⟨a + b - 1, by omega⟩ : Fin (a + b)) hside hout]
+  rw [if_pos (by omega : a ≤ a + b - 1)]
+  have hch : Nat.choose (a + b - 1) (a + b - 1) = 1 := Nat.choose_self _
+  rw [hch]
+  norm_num
 
 /-- Interval mass from the exact CDF. -/
 def betaMass (a b : ℕ) (l u : ℚ) : ℚ := betaCDF a b u - betaCDF a b l

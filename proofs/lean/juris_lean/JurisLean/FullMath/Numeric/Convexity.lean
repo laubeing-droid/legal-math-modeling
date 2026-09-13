@@ -85,7 +85,7 @@ theorem kkt1_sufficient (k : KKT1) :
     have hmu0 : k.mu = 0 := by
       by_contra hne
       have hpos : 0 < k.mu := by
-        rcases lt_or_le 0 k.mu with h | h
+        rcases lt_or_ge 0 k.mu with h | h
         · exact h
         · exact absurd (le_antisymm k.hmu h) (by linarith)
       have : k.mu * (k.xstar - k.l) ≠ 0 := by
@@ -95,7 +95,7 @@ theorem kkt1_sufficient (k : KKT1) :
         · exact hne h
         · linarith
       exact absurd k.hcompl this
-    subst hmu0
+    rw [hmu0]
     have : (0 : ℚ) * (x - k.xstar) = 0 := by ring
     rw [this] at hbase
     linarith [hbase]

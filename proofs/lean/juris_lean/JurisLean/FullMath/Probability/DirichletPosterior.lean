@@ -69,7 +69,7 @@ theorem Gamma_add_nat (x : ℝ) (n : ℕ) :
   | succ n ih =>
     push_cast
     show Real.Gamma (x + ((n : ℝ) + 1)) = rising x (n + 1) * Real.Gamma x
-    rw [← add_assoc, Real.Gamma_succ, ih]
+    rw [← add_assoc, Real.Gamma_succ', ih]
     show (x + (n : ℝ)) * (rising x n * Real.Gamma x) = rising x n * (x + (n : ℝ)) * Real.Gamma x
     ring
 
@@ -85,7 +85,7 @@ theorem beta_ratio (α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) :
     ne_of_gt (Real.Gamma_pos_of_pos (by linarith))
   have hGabwl : Real.Gamma (α + β + (w + l)) ≠ 0 :=
     ne_of_gt (Real.Gamma_pos_of_pos (by linarith))
-  rw [Nat.cast_add]
+  rw [← Nat.cast_add]
   rw [Gamma_add_nat α w, Gamma_add_nat β l, Gamma_add_nat (α + β) (w + l)]
   field_simp
   ring

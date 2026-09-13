@@ -49,10 +49,11 @@ theorem contaminate_condition_do_not_commute :
       ((1 / 2 * 1 / 10 + 1 / 2 * 1 / 2) /
         (1 / 2 * (1 / 10 + 1 / 10) + 1 / 2 * (1 / 2 + 0))) := by
   intro heq
-  have h1 : ((1 - 1 / 2) * 1 / 2 + 1 / 2 * 1) = 3 / 4 := by norm_num
-  have h2 : ((1 / 2 * 1 / 10 + 1 / 2 * 1 / 2) /
-      (1 / 2 * (1 / 10 + 1 / 10) + 1 / 2 * (1 / 2 + 0))) = 6 / 7 := by norm_num
-  rw [h1, h2] at heq
-  exact absurd heq (by norm_num)
+  have hz : ((1 - 1 / 2) * 1 / 2 + 1 / 2 * 1)
+      - ((1 / 2 * 1 / 10 + 1 / 2 * 1 / 2) /
+        (1 / 2 * (1 / 10 + 1 / 10) + 1 / 2 * (1 / 2 + 0))) = 0 := by
+    rw [heq]
+    ring
+  norm_num at hz
 
 end JurisLean.FullMath.Probability

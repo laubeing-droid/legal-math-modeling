@@ -51,7 +51,9 @@ def joint : {n : ℕ} → Chain n → State n → ℚ
 
 /-- P01(a): the joint distribution is nonnegative everywhere. -/
 theorem joint_nonneg : ∀ {n : ℕ} (c : Chain n) (s : State n), 0 ≤ joint c s
-  | 0, _, _ => by simp [joint]
+  | 0, _, _ => by
+    show (0 : ℚ) ≤ joint Chain.nil ()
+    exact zero_le_one
   | n + 1, .cons k rest, (pre, b) => by
     show (0 : ℚ) ≤ joint rest pre * k.cond pre b
     exact mul_nonneg (joint_nonneg rest pre) (k.nonneg pre b)
@@ -70,11 +72,7 @@ theorem joint_normalizes : ∀ {n : ℕ} (c : Chain n), ∑ s, joint c s = 1
         (∑ b : Bool, joint rest pre * k.cond pre b)
           = joint rest pre * (∑ b : Bool, k.cond pre b) := by
       intro pre
-      have hmul : joint rest pre * Finset.sum Finset.univ (fun b : Bool => k.cond pre b)
-        = Finset.sum Finset.univ (fun b : Bool => joint rest pre * k.cond pre b) :=
-      Finset.mul_sum (joint rest pre) (fun b => k.cond pre b) Finset.univ
-    rw [hmul]
-    rw [Finset.sum_congr rfl (fun pre _ => hstep pre)]
+      rw [Finset.mul_sum]
     have hrow : ∀ pre : State n, (∑ b : Bool, k.cond pre b) = 1 := by
       intro pre
       rw [Finset.sum_univ_bool, k.row pre]

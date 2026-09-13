@@ -66,16 +66,35 @@ theorem parent_closure_subset_child (R R' : Finset (Finset A × A)) (hR : R ⊆ 
 /-- F14(a): add-only reuse is exact. -/
 theorem add_only_reuse (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F Δ : Finset A) :
     closure R' (F ∪ Δ) = closure R' (closure R F ∪ Δ) := by
-  refine Finset.Subset.antisymm ?_ (closure_least R' (F ∪ Δ) _ (closure_preFixed R' (F ∪ Δ)))
-  refine closure_least R' (closure R F ∪ Δ) _ ?_
-  show step R' (closure R F ∪ Δ) (closure R' (closure R F ∪ Δ)) ⊆
-      closure R' (closure R F ∪ Δ)
-  rw [step]
-  refine Finset.union_subset ?_ (Finset.union_subset Finset.Subset.rfl ?_)
-  · refine Finset.union_subset ?_ (Finset.subset_union_right _ _)
-    exact (parent_closure_subset_child R R' hR F Δ).trans (Finset.subset_union_left _ _)
-  · intro a ha
-    exact heads_subset R' _ _ (closure_stable R' (closure R F ∪ Δ)) a ha
+  apply Finset.Subset.antisymm
+  · -- the child closure of the smaller fact set stays inside the reused closure
+    refine closure_least R' (F ∪ Δ) _ ?_
+    show step R' (F ∪ Δ) (closure R' (closure R F ∪ Δ)) ⊆
+        closure R' (closure R F ∪ Δ)
+    rw [step]
+    refine Finset.union_subset ?_ (Finset.union_subset ?_ ?_)
+    · exact Finset.subset_trans (Finset.subset_union_left _ _)
+        ((Finset.subset_union_left _ _).trans (closure_subset R' (closure R F ∪ Δ)))
+    · exact (closure_subset R' (closure R F ∪ Δ)).trans (Finset.subset_union_right _ _)
+    · intro a ha
+      refine closure_closed_heads R' (closure R F ∪ Δ) (F ∪ Δ)
+        (closure_stable R' (closure R F ∪ Δ))
+        (Finset.union_subset (Finset.subset_trans (Finset.subset_union_right _ _)
+          (closure_subset R F)) (Finset.subset_union_right _ _)) a ha
+  · -- the reused closure stays inside the child closure
+    refine closure_least R' (closure R F ∪ Δ) _ ?_
+    show step R' (closure R F ∪ Δ) (closure R' (F ∪ Δ)) ⊆ closure R' (F ∪ Δ)
+    rw [step]
+    refine Finset.union_subset ?_ (Finset.union_subset Finset.Subset.rfl ?_)
+    · refine Finset.union_subset ?_ (Finset.subset_trans ?_ (closure_subset R' (F ∪ Δ)))
+      · exact (parent_closure_subset_child R R' hR F Δ).trans (Finset.subset_union_left _ _)
+      · exact Finset.subset_union_right _ _
+    · intro a ha
+      refine closure_closed_heads R' (F ∪ Δ) (closure R F ∪ Δ)
+        (closure_stable R' (F ∪ Δ))
+        (Finset.union_subset (parent_closure_subset_child R R' hR F Δ)
+          (Finset.subset_trans (Finset.subset_union_right _ _)
+            (closure_subset R' (F ∪ Δ)))) a ha
 
 /-- Update operations. -/
 inductive UpdateOp (A : Type) where
@@ -87,7 +106,7 @@ inductive UpdateOp (A : Type) where
   | rewriteRules (R₂ : Finset (Finset A × A))
 
 /-- The maintained value: add-only reuses, everything else recomputes. -/
-def incrementalUpdate (R : Finset (Finset A × A)) (F : Finset A) :
+noncomputable def incrementalUpdate (R : Finset (Finset A × A)) (F : Finset A) :
     UpdateOp A → Finset A
   | .addOnly Δ R' => closure R' (closure R F ∪ Δ)
   | .removeFact x => closure R (F \ {x})
@@ -126,8 +145,20 @@ theorem deletion_invalidates_cache :
   have hempty : closure twoRule (({0} : Finset (Fin 2)) \ {0}) = ∅ := by
     rw [hF]
     refine closure_least _ _ ∅ ?_
-    show step twoRule ∅ ∅ ⊆ ∅
-    simp [step, twoRule]
+    show step twoRule (∅ : Finset (Fin 2)) (∅ : Finset (Fin 2)) ⊆ (∅ : Finset (Fin 2))
+    rw [step]
+    refine Finset.union_subset (Finset.union_subset ?_ ?_) ?_
+    · exact Finset.empty_subset _
+    · exact Finset.empty_subset _
+    · intro (a : Fin 2) ha
+      obtain ⟨_, hmem⟩ := Finset.mem_filter.mp ha
+      obtain ⟨r, hrR, hrS, _⟩ := hmem
+      simp only [twoRule, Finset.mem_singleton] at hrR
+      rw [hrR] at hrS
+      have h00 : (0 : Fin 2) ∈ (r : Finset (Fin 2) × Fin 2).1 := by
+        simp
+        trivial
+      exact absurd (hrS h00) (by simp)
   rw [hempty] at heq
   have hmem : (0 : Fin 2) ∈ (∅ : Finset (Fin 2)) := by rw [← heq]; exact h0
   exact absurd hmem (by simp)

@@ -146,6 +146,16 @@ theorem closure_subset (R : Finset (Finset A × A)) (F : Finset A) :
     exact Finset.mem_union_left _ (Finset.mem_union_left _ ha)
   rwa [closure_stable] at h1
 
+/-- A stable set absorbs every head fired by any subset of it. -/
+theorem closure_closed_heads (R : Finset (Finset A × A)) (F S P : Finset A)
+    (hP : step R F P = P) (hS : S ⊆ P) :
+    ∀ a ∈ Finset.univ.filter (fun a => ∃ r ∈ R, r.1 ⊆ S ∧ r.2 = a), a ∈ P := by
+  intro a ha
+  obtain ⟨_, ⟨r, hrR, hrS, hr2⟩⟩ := Finset.mem_filter.mp ha
+  have h1 : a ∈ step R F P := Finset.mem_union.mpr (Or.inr
+    (Finset.mem_filter.mpr ⟨Finset.mem_univ a, ⟨r, hrR, hrS.trans hS, hr2⟩⟩))
+  rwa [hP] at h1
+
 /-- F05(c): leastness — every pre-fixed point contains the closure. -/
 theorem closure_least (R : Finset (Finset A × A)) (F P : Finset A)
     (hP : PreFixed R F P) : closure R F ⊆ P :=

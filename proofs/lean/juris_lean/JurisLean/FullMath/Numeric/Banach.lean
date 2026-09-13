@@ -3,12 +3,11 @@ import JurisLean.FullMath.Core.Foundations
 /-!
 N07/N08 — Projected gradient iteration on a real interval.
 
-For `K = [l, u]` nonempty, `a > 0`, the projected map
-`T(x) = clip_K((1−ηa)x − ηb)` is a `k`-contraction with `k = |1−ηa|` (which
-is `< 1` exactly when `0 < ηa < 2`); one-dimensional clipping is
-nonexpansive; the explicit fixed point is `clip_K(−b/a)`; with per-step
-error `≤ ε` the residual obeys `e_{n+1} ≤ k e_n + ε` and therefore stays at
-`ε/(1−k) + kⁿ e₀`.
+For `K = [l, u]` nonempty, the projected map `T(x) = clip_K((1−ηa)x − ηb)`
+is Lipschitz with factor `|1 − ηa|` (clipping is nonexpansive by an
+explicit nine-case proof); the explicit fixed point is `clip_K(−b/a)`; with
+per-step error `≤ ε` the residual obeys `e_{n+1} ≤ k e_n + ε` and therefore
+stays at `ε/(1−k) + kⁿ e₀`.
 -/
 
 namespace JurisLean.FullMath.Numeric
@@ -29,93 +28,49 @@ theorem clip_mem (l u x : ℝ) (h : l ≤ u) : l ≤ clip l u x ∧ clip l u x �
     · rw [if_neg hx, if_neg hxu]
       exact ⟨by linarith, by linarith⟩
 
+/-- N07(a): clipping is nonexpansive — nine explicit cases. -/
 theorem clip_nonexpansive (l u x y : ℝ) (h : l ≤ u) :
     |clip l u x - clip l u y| ≤ |x - y| := by
+  have hbx := abs_le.mp (le_refl (|x - y|))
   unfold clip
-  -- sign fact for |x - y|, established once per branch where needed
   rcases lt_or_ge x l with hxlt | hxge
   · rw [if_pos hxlt]
-    -- clip x = l
     rcases lt_or_ge y l with hylt | hyge
     · rw [if_pos hylt, sub_self, abs_zero]
       exact abs_nonneg (x - y)
     · rw [if_neg (by linarith : ¬ y < l)]
       rcases lt_or_ge u y with hyu | hyle
       · rw [if_pos hyu]
-        -- |l - u| vs |x - y|, with x < l ≤ u < y
-        have hA : |l - u| = u - l := by
-          rw [abs_of_nonneg (h)]
-        have hB : |x - y| = y - x := by
-          have : (0 : ℝ) ≤ y - x := by linarith
-          rw [abs_of_nonneg this]
-        rw [hA, hB]
-        linarith
+        rw [abs_le]
+        constructor <;> linarith
       · rw [if_neg (by linarith : ¬ u < y)]
-        -- |l - y| with x < l ≤ y ≤ u
-        have hA : |l - y| = y - l := by
-          have hnn : (0 : ℝ) ≤ y - l := by linarith
-          rw [abs_of_nonneg hnn]
-        have hB : |x - y| = y - x := by
-          have hnn2 : (0 : ℝ) ≤ y - x := by linarith
-          rw [abs_of_nonneg hnn2]
-        rw [hA, hB]
-        linarith
+        rw [abs_le]
+        constructor <;> linarith
   · rw [if_neg (by linarith : ¬ x < l)]
     rcases lt_or_ge u x with hxu | hxe
     · rw [if_pos hxu]
-      -- clip x = u
       rcases lt_or_ge y l with hylt | hyge
       · rw [if_pos hylt]
-        -- |u - l| with y < l ≤ u < x
-        have hA : |u - l| = u - l := by
-          have hnn : (0 : ℝ) ≤ u - l := by linarith
-          rw [abs_of_nonneg hnn]
-        have hB : |x - y| = x - y := by
-          have hnn2 : (0 : ℝ) ≤ x - y := by linarith
-          rw [abs_of_nonneg hnn2]
-        rw [hA, hB]
-        linarith
+        rw [abs_le]
+        constructor <;> linarith
       · rw [if_neg (by linarith : ¬ y < l)]
         rcases lt_or_ge u y with hyu | hyle
         · rw [if_pos hyu, sub_self, abs_zero]
           exact abs_nonneg (x - y)
         · rw [if_neg (by linarith : ¬ u < y)]
-          -- |u - y| with l ≤ y ≤ u < x
-          have hA : |u - y| = u - y := by
-          have hnn : (0 : ℝ) ≤ u - y := by linarith
-          rw [abs_of_nonneg hnn]
-          have hB : |x - y| = x - y := by
-          have hnn2 : (0 : ℝ) ≤ x - y := by linarith
-          rw [abs_of_nonneg hnn2]
-          rw [hA, hB]
-          linarith
+          rw [abs_le]
+          constructor <;> linarith
     · rw [if_neg (by linarith : ¬ u < x)]
-      -- clip x = x
       rcases lt_or_ge y l with hylt | hyge
       · rw [if_pos hylt]
-        -- |x - l| with y < l ≤ x ≤ u
-        have hA : |x - l| = x - l := by
-          have hnn : (0 : ℝ) ≤ x - l := by linarith
-          rw [abs_of_nonneg hnn]
-        have hB : |x - y| = x - y := by
-          have hnn2 : (0 : ℝ) ≤ x - y := by linarith
-          rw [abs_of_nonneg hnn2]
-        rw [hA, hB]
-        linarith
+        rw [abs_le]
+        constructor <;> linarith
       · rw [if_neg (by linarith : ¬ y < l)]
         rcases lt_or_ge u y with hyu | hyle
         · rw [if_pos hyu]
-          -- |x - u| with l ≤ x ≤ u < y
-          have hA : |x - u| = u - x := by
-          have hnn : (0 : ℝ) ≤ u - x := by linarith
-          rw [abs_of_nonneg hnn]
-          have hB : |x - y| = y - x := by
-          have hnn2 : (0 : ℝ) ≤ y - x := by linarith
-          rw [abs_of_nonneg hnn2]
-          rw [hA, hB]
-          linarith
+          rw [abs_le]
+          constructor <;> linarith
         · rw [if_neg (by linarith : ¬ u < y)]
-          -- both unclipped
           exact le_refl _
 
 /-- The projected gradient map. -/
@@ -125,10 +80,10 @@ noncomputable def T (l u a b η x : ℝ) : ℝ := clip l u ((1 - η * a) * x - �
 theorem T_contraction (l u a b η x y : ℝ) (h : l ≤ u) :
     |T l u a b η x - T l u a b η y| ≤ |1 - η * a| * |x - y| := by
   have key := clip_nonexpansive l u ((1 - η * a) * x - η * b) ((1 - η * a) * y - η * b) h
-  have hsub : ((1 - η * a) * x - η * b) - ((1 - η * a) * y - η * b) = (1 - η * a) * (x - y) := by
+  have hsub : (1 - η * a) * x - η * b - ((1 - η * a) * y - η * b) = (1 - η * a) * (x - y) := by
     ring
-  rw [hsub] at key
-  simpa [T, abs_mul] using key
+  rw [T, T, hsub] at *
+  exact key
 
 /-- Interior fixed point: `−b/a` inside the interval stays fixed. -/
 theorem T_fixed_interior (l u a b η : ℝ) (ha : 0 < a)
@@ -143,7 +98,7 @@ theorem T_fixed_interior (l u a b η : ℝ) (ha : 0 < a)
   rw [if_neg (by linarith), if_neg (by linarith)]
 
 /-- Lower boundary: when `a·l + b > 0` the point `l` stays fixed. -/
-theorem T_fixed_lower (l u a b η : ℝ) (ha : 0 < a) (hη : 0 < η) (hlu : l ≤ u)
+theorem T_fixed_lower (l u a b η : ℝ) (hη : 0 < η) (hlu : l ≤ u)
     (hpos : 0 < a * l + b) : T l u a b η l = l := by
   have hkey : (1 - η * a) * l - η * b < l := by nlinarith [mul_pos hη hpos]
   show clip l u ((1 - η * a) * l - η * b) = l
@@ -151,44 +106,50 @@ theorem T_fixed_lower (l u a b η : ℝ) (ha : 0 < a) (hη : 0 < η) (hlu : l �
   rw [if_pos hkey]
 
 /-- Upper boundary: when `a·u + b < 0` the point `u` stays fixed. -/
-theorem T_fixed_upper (l u a b η : ℝ) (ha : 0 < a) (hη : 0 < η) (hlu : l ≤ u)
+theorem T_fixed_upper (l u a b η : ℝ) (hη : 0 < η) (hlu : l ≤ u)
     (hneg : a * u + b < 0) : T l u a b η u = u := by
   have hnotlt : ¬ ((1 - η * a) * u - η * b < l) := by
-    nlinarith [mul_pos hη (by linarith : (0 : ℝ) < a * u + b), hlu]
+    intro hbad
+    have h1 : 0 < η * (a * u + b) := by
+      have := mul_pos hη (by linarith : (0 : ℝ) < a * u + b)
+      linarith [this]
+    have h2 : η * (a * u + b) ≤ 0 := by
+      nlinarith [hbad]
+    linarith
   have hkey : u < (1 - η * a) * u - η * b := by nlinarith [mul_neg hη hneg]
   show clip l u ((1 - η * a) * u - η * b) = u
   unfold clip
   rw [if_neg hnotlt, if_pos hkey]
 
 /-- N07(c): the explicit fixed point of T is `clip_K(−b/a)`. -/
-theorem T_fixed_point (l u a b η : ℝ) (hlu : l ≤ u) (ha : 0 < a) (hη : 0 < η) :
+theorem T_fixed_point (l u a b η : ℝ) (ha : 0 < a) (hlu : l ≤ u) (hη : 0 < η) :
     T l u a b η (clip l u (-(b / a))) = clip l u (-(b / a)) := by
   have hnegdiv : -(b / a) = (-b) / a := neg_div b a
-  rcases lt_or_le (-(b / a)) l with hlt | hge
+  rcases lt_or_le (-(b / a)) l with hclt | hge
   · have hpos : 0 < a * l + b := by
-      rw [hnegdiv] at hlt
-      have := (div_lt_iff ha).mp hlt
-      linarith
+      rw [hnegdiv] at hclt
+      have := (div_lt_iff ha).mp hclt
+      linarith [this]
     have hclipl : clip l u (-(b / a)) = l := by
       unfold clip
-      rw [if_pos hlt]
-    rw [hclipl, T_fixed_lower l u a b η ha hη hlu hpos]
+      rw [if_pos hclt]
+    rw [hclipl, T_fixed_lower l u a b η hη hlu hpos]
   · rcases lt_or_le u (-(b / a)) with hug | hle
     · have hneg : a * u + b < 0 := by
         rw [hnegdiv] at hug
         have := (lt_div_iff ha).mp hug
-        linarith
+        linarith [this]
       have hclipu : clip l u (-(b / a)) = u := by
         unfold clip
         rw [if_neg (by linarith), if_pos hug]
-      rw [hclipu, T_fixed_upper l u a b η ha hη hlu hneg]
+      rw [hclipu, T_fixed_upper l u a b η hη hlu hneg]
     · have hclipi : clip l u (-(b / a)) = -(b / a) := by
         unfold clip
         rw [if_neg (by linarith), if_neg (by linarith)]
       rw [hclipi, T_fixed_interior l u a b η ha hge hle]
 
-/-- N08: with per-step error `≤ ε`, the residual obeys
-`e_{n+1} ≤ k e_n + ε` and stays at `ε/(1−k) + kⁿ e₀` for any `k < 1`. -/
+/-- N08: with per-step error `≤ ε`, the residual obeys `e_{n+1} ≤ k e_n + ε`
+and stays at `ε/(1−k) + kⁿ e₀` for any `k < 1`. -/
 theorem residual_error_bound (k e0 eps : ℝ) (hk1 : 0 ≤ k) (hk2 : k < 1)
     (step : ℕ → ℝ) (h0 : step 0 ≤ e0)
     (hrec : ∀ n, step (n + 1) ≤ k * step n + eps) :

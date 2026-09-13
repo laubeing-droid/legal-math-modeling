@@ -22,12 +22,12 @@ def dirWeights (α n : Fin k → ℚ) : Fin k → ℚ :=
   fun i => (α i + n i) / (∑ j : Fin k, α j + n j)
 
 theorem dirWeights_nonneg (α n : Fin k → ℚ) (hα : ∀ i, 0 ≤ α i) (hn : ∀ i, 0 ≤ n i)
-    (hpos : 0 < ∑ j, α j + n j) (i) : 0 ≤ dirWeights α n i :=
+    (hpos : 0 < ∑ j : Fin k, α j + n j) (i) : 0 ≤ dirWeights α n i :=
   div_nonneg (add_nonneg (hα i) (hn i)) (le_of_lt hpos)
 
 /-- P05(a): posterior weights normalize. -/
-theorem dirWeights_normalizes (α n : Fin k → ℚ) (hpos : 0 < ∑ j, α j + n j) :
-    ∑ i, dirWeights α n i = 1 := by
+theorem dirWeights_normalizes (α n : Fin k → ℚ) (hpos : 0 < ∑ j : Fin k, α j + n j) :
+    ∑ i : Fin k, dirWeights α n i = 1 := by
   show (∑ i : Fin k, (α i + n i) / (∑ j : Fin k, α j + n j)) = 1
   rw [Finset.sum_div]
   exact div_self (ne_of_gt hpos)
@@ -37,10 +37,10 @@ one exponent update (conjugacy closure of α+n). -/
 theorem dirWeights_update_compose (α n m : Fin k → ℚ) :
     dirWeights (fun i => α i + n i) m = dirWeights α (fun i => n i + m i) := by
   funext i
-  show ((α i + n i) + m i) / (∑ j, (α j + n j) + m j)
-      = (α i + (n i + m i)) / (∑ j, α j + (n j + m j))
+  show ((α i + n i) + m i) / (∑ j : Fin k, (α j + n j) + m j)
+      = (α i + (n i + m i)) / (∑ j : Fin k, α j + (n j + m j))
   have h1 : ((α i + n i) + m i) = (α i + (n i + m i)) := by ring
-  have h2 : (∑ j, (α j + n j) + m j) = (∑ j, α j + (n j + m j)) := by
+  have h2 : (∑ j : Fin k, (α j + n j) + m j) = (∑ j : Fin k, α j + (n j + m j)) := by
     refine Finset.sum_congr rfl ?_
     intro j _
     ring
@@ -91,8 +91,8 @@ def hyperWeights {H : Type} [Fintype H] [DecidableEq H]
 /-- P06(b): hierarchical weights normalize when the mixture mass is positive. -/
 theorem hyperWeights_normalizes {H : Type} [Fintype H] [DecidableEq H]
     (π : H → ℚ) (ratio : H → ℚ) (hπ : ∀ h, 0 ≤ π h) (hr : ∀ h, 0 ≤ ratio h)
-    (hpos : 0 < ∑ h', π h' * ratio h') :
-    ∑ h, hyperWeights π ratio h = 1 := by
+    (hpos : 0 < ∑ h' : H, π h' * ratio h') :
+    ∑ h : H, hyperWeights π ratio h = 1 := by
   show (∑ h : H, (π h * ratio h) / (∑ h' : H, π h' * ratio h')) = 1
   rw [Finset.sum_div]
   exact div_self (ne_of_gt hpos)
@@ -108,11 +108,13 @@ theorem hyper_data_changes_posterior :
   -- LHS: (1*1)/(1*1+1*2) = 1/3; RHS: (2*3)/(2*3+1*5) = 6/11
   have hL : hyperWeights (fun b => if b then 1 else 1) (fun b => if b then 1 else 2) true
       = 1 / 3 := by
-    simp only [hyperWeights, Finset.sum_univ_bool, if_true, if_false]
+    simp only [hyperWeights]
+    simp
     norm_num
   have hR : hyperWeights (fun b => if b then 2 else 1) (fun b => if b then 3 else 5) true
       = 6 / 11 := by
-    simp only [hyperWeights, Finset.sum_univ_bool, if_true, if_false]
+    simp only [hyperWeights]
+    simp
     norm_num
   rw [hL, hR] at h
   norm_num at h

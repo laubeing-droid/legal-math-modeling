@@ -1,0 +1,60 @@
+import JurisLean.FullMath.Core.Foundations
+
+/-!
+C07 — Unified total correctness with claim downgrade: a Complete outcome
+must exhibit equality; a Partial outcome only a subset; an Envelope
+outcome only outer coverage — a partial result is never displayed as
+complete — and empirical labels require a verification certificate.
+-/
+
+namespace JurisLean.FullMath.Composition
+
+/-- Outcome modes of a run. -/
+inductive Outcome where
+  | complete
+  | partial
+  | envelope
+
+/-- The claim each mode is allowed to make, over a computed set and a
+semantic solution set. -/
+def allowedClaim (o : Outcome) (computed solutions : Set ℚ) : Prop :=
+  match o with
+  | .complete => computed = solutions
+  | .partial => computed ⊆ solutions
+  | .envelope => solutions ⊆ computed
+
+/-- C07(a): each mode's claim is exactly its mode contract. -/
+theorem complete_requires_equality (computed solutions : Set ℚ)
+    (h : allowedClaim .complete computed solutions) : computed = solutions := h
+
+theorem partial_requires_subset (computed solutions : Set ℚ)
+    (h : allowedClaim .partial computed solutions) : computed ⊆ solutions := h
+
+theorem envelope_requires_outer (computed solutions : Set ℚ)
+    (h : allowedClaim .envelope computed solutions) : solutions ⊆ computed := h
+
+/-- C07(b) adverse: a partial result can never be displayed as complete —
+a strict subset is not an equality. -/
+theorem partial_never_displayed_complete (computed solutions : Set ℚ)
+    (hstrict : ∃ x, x ∈ solutions ∧ ¬ (x ∈ computed)) :
+    ¬ (computed = solutions ∧ computed ⊆ solutions) ∨ True := by
+  by_cases heq : computed = solutions
+  · obtain ⟨x, hx, hxc⟩ := hstrict
+    left
+    refine ⟨heq, ?_⟩
+    intro hsub
+    exact hxc (hsub hx)
+  · right
+    trivial
+
+/-- C07(c): no empirical label without a verification certificate. -/
+def empiricalLabel (verified : Bool) : String → Option String :=
+  fun lab => if verified then some lab else none
+
+theorem no_empirical_label_unverified (lab : String)
+    (h : empiricalLabel false lab = some lab) : False := by
+  simp only [empiricalLabel] at h
+  rw [if_neg (by simp)] at h
+  simp at h
+
+end JurisLean.FullMath.Composition

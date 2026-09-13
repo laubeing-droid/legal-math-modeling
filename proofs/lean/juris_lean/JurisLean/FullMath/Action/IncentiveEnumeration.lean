@@ -1,0 +1,59 @@
+import JurisLean.FullMath.Core.Foundations
+
+/-!
+G04 — Finite DSIC over the FULL type-report grid: the mechanism label is
+granted only when the enumerated inequality holds for every report
+combination; individual rationality and budget balance are separate
+checks composed afterwards.
+-/
+
+namespace JurisLean.FullMath.Action
+
+variable {T : Type} [Fintype T] [DecidableEq T]
+
+/-- Utility of a true type `t` under report `t'` (single direct
+mechanism; other agents folded into the outcome map). -/
+def dsicProp (u : T → T → ℚ) : Prop := ∀ t t', u t t ≥ u t t'
+
+/-- The label check: enumerate all report combinations. -/
+def dsicCheck (u : T → T → ℚ) : Bool :=
+  Finset.univ.all fun t => Finset.univ.all fun t' => decide (u t t ≥ u t t')
+
+/-- G04(a): a granted label reflects to the DSIC property everywhere. -/
+theorem dsic_of_label (u : T → T → ℚ) (h : dsicCheck u = true) : dsicProp u := by
+  intro t t'
+  have hall := Finset.all_eq_true.mp h
+  have h1 := hall t (Finset.mem_univ t)
+  have h2 := (of_decide_eq_true h1) t' (Finset.mem_univ t')
+  exact of_decide_eq_true h2
+
+/-- G04(b): one violating report combination falsifies the label. -/
+theorem label_false_on_violation (u : T → T → ℚ) (t t' : T)
+    (hviol : u t t < u t t') : dsicCheck u = false := by
+  by_contra hc
+  have := dsic_of_label u hc
+  have := this t t'
+  omega
+
+/-- Individual rationality and budget balance are separate checks. -/
+def irCheck (u0 : T → ℚ) (u : T → T → ℚ) : Bool :=
+  Finset.univ.all fun t => decide (u0 t ≤ u t t)
+
+def budgetCheck (payments : T → ℚ) (revenue : ℚ) : Bool :=
+  decide (revenue = Finset.sum Finset.univ (fun t => payments t))
+
+/-- The full label is the conjunction of separately checked properties. -/
+def fullLabel (u0 : T → ℚ) (u : T → T → ℚ) (payments : T → ℚ) (revenue : ℚ) : Bool :=
+  dsicCheck u && irCheck u0 u && budgetCheck payments revenue
+
+theorem full_label_decomposes (u0 : T → ℚ) (u : T → T → ℚ) (payments : T → ℚ)
+    (revenue : ℚ) (h : fullLabel u0 u payments revenue = true) :
+    dsicProp u ∧ (∀ t, u0 t ≤ u t t)
+      ∧ revenue = Finset.sum Finset.univ (fun t => payments t) := by
+  simp only [fullLabel, Bool.and_eq_true] at h
+  obtain ⟨hdsic, hir, hbudget⟩ := h
+  refine ⟨dsic_of_label u hdsic, ?_, of_decide_eq_true hbudget⟩
+  intro t
+  exact of_decide_eq_true ((of_decide_eq_true hir) t (Finset.mem_univ t))
+
+end JurisLean.FullMath.Action

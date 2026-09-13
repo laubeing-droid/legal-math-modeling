@@ -88,8 +88,6 @@ theorem fixed_x_bounds (j : Iv) (a y : ℚ) (hy : mem y j) :
     · calc a * y ≤ a * j.lo := by linarith [k1]
       _ ≤ max (a * j.lo) (a * j.hi) := le_max_left _ _
 
-/-- For fixed second factor `y`, products with `x ∈ i` lie between the two
-endpoint products with `y` (monotonicity up to sign). -/
 /-- N02(b): the four-endpoint multiplication contains every product. -/
 theorem mul_sound (i j : Iv) (x y : ℚ) (hx : mem x i) (hy : mem y j) :
     mem (x * y) (mul i j) := by

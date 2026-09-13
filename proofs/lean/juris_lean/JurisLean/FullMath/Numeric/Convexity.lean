@@ -73,13 +73,14 @@ theorem kkt1_sufficient (k : KKT1) :
   by_cases hcase : k.xstar = k.l
   · -- xstar = l: mu (x − xstar) = mu (x − l) ≥ 0 since x ≥ l
     rw [hcase] at hbase
+    rw [hcase]
     have hmu1 : 0 ≤ k.mu * (x - k.l) := mul_nonneg k.hmu (by linarith)
     linarith
   · -- xstar > l: complementary slackness forces mu = 0
     have hgt : k.l < k.xstar := by
       rcases lt_or_eq_of_le k.hlb with hlt | heq
       · exact hlt
-      · exact absurd heq hcase
+      · exact absurd heq.symm hcase
     have hmu0 : k.mu = 0 := by
       by_contra hne
       have hpos : 0 < k.mu := by

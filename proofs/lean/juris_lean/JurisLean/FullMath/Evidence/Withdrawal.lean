@@ -32,8 +32,8 @@ theorem step_facts_mono (R : Finset (Finset A × A)) {F G S : Finset A} (h : F �
 /-- Heads fired from a stable set stay inside it. -/
 theorem heads_subset (R : Finset (Finset A × A)) (F S : Finset A)
     (h : step R F S = S) :
-    (R.filter (fun r => r.1 ⊆ S)).image Prod.snd ⊆ S := by
-  have h2 : (R.filter (fun r => r.1 ⊆ S)).image Prod.snd ⊆ step R F S := by
+    (R.filter (fun r => r.1 ⊆ S)).image (fun r => r.2) ⊆ S := by
+  have h2 : (R.filter (fun r => r.1 ⊆ S)).image (fun r => r.2) ⊆ step R F S := by
     rw [step]
     exact (Finset.subset_union_right _ _).trans (Finset.subset_union_right _ _)
   rwa [h] at h2

@@ -18,7 +18,7 @@ variable {A : Type} [DecidableEq A] [Fintype A]
 
 /-- One closure step: facts ∪ current ∪ heads fireable from current. -/
 def step (R : Finset (Finset A × A)) (F S : Finset A) : Finset A :=
-  F ∪ S ∪ (R.filter (fun r => r.1 ⊆ S)).image Prod.snd
+  F ∪ S ∪ (R.filter (fun r => r.1 ⊆ S)).image (fun r => r.2)
 
 /-- T is monotone in the current set. -/
 theorem step_mono (R : Finset (Finset A × A)) (F : Finset A) {S T : Finset A}

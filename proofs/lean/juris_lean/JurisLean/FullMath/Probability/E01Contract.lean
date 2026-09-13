@@ -74,7 +74,7 @@ theorem e01_within_iff (calibrationScore threshold : ℚ)
     · intro hne
       exact E01Status.noConfusion hne
     · intro ⟨h2, _⟩
-      exact absurd h2 (not_not.mpr (by linarith [h1]))
+      exact absurd h2 (by linarith [h1])
   · rw [if_neg h1]
     by_cases h2 : threshold < calibrationScore
     · rw [if_pos h2]
@@ -82,20 +82,18 @@ theorem e01_within_iff (calibrationScore threshold : ℚ)
       · intro hne
         exact E01Status.noConfusion hne
       · intro ⟨_, h3⟩
-        exact absurd h3 (not_not.mpr h2)
+        exact absurd h3 (by linarith [h2])
     · rw [if_neg h2]
-      exact Iff.rfl
+      constructor
+      · intro _
+        exact ⟨by linarith [h1], by linarith [h2]⟩
+      · intro ⟨_, _⟩
+        rfl
 
 /-! Finite-sample bound (one-sided Cantelli for abstract summaries). -/
 
-/-- Cantelli's inequality: for any centered quantity with variance σ²,
-`P(X − μ ≥ a) ≤ σ² / (σ² + a²)`. Stated as the elementary quadratic
-argument on event sets: if `X ≥ μ + a` on an event of mass `m`, then
-`σ² ≥ a² m (1 − m) ≥ 0` bounds `m`. The clean statement we prove is the
-quadratic core used by every version. -/
-/-- The quadratic core: nonnegative variance bounds the tail mass through
-the key inequality; stated in multiplication-free form after clearing the
-positive denominator. -/
+/-- The quadratic core of one-sided Cantelli bounds: nonnegative variance
+bounds the tail mass; stated after clearing the positive denominator. -/
 theorem cantelli_core (a m sigma : ℚ)
     (ha : 0 < a) (hm : 0 ≤ m)
     (hkey : sigma + (sigma * sigma / a) * (sigma * sigma / a)

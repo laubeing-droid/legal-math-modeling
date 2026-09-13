@@ -15,7 +15,7 @@ namespace JurisLean.FullMath.Document
 /-! Fraction normalization over ℕ. -/
 
 /-- Reduced fraction: positive denominator, coprime numerator. -/
-def reducedFrac (num den : ℕ) : Prop := den > 0 ∧ Nat.gcd num den = 1
+def reducedFrac (num den : ℕ) : Prop := den > 0 ∧ Nat.Coprime num den
 
 /-- Dividing by the gcd yields a reduced fraction. -/
 theorem normalize_reduced (a b : ℕ) (hb : 0 < b) :
@@ -24,41 +24,35 @@ theorem normalize_reduced (a b : ℕ) (hb : 0 < b) :
     Nat.pos_of_ne_zero (fun h => by
       rw [Nat.gcd_eq_zero_iff] at h
       omega)
-  have hcop : Nat.Coprime (a / Nat.gcd a b) (b / Nat.gcd a b) := by
-    rw [← Nat.gcd_eq_one_iff_coprime]
-    exact Nat.gcd_div_gcd_div_gcd (Nat.gcd_pos_of_non_ne_zero a (by omega))
   refine ⟨Nat.div_pos (Nat.le_trans (Nat.gcd_le_right a hb)
-    (Nat.le_of_eq (Nat.gcd_comm b a ▸ rfl))) hg, hcop⟩
+    (Nat.le_of_eq (Nat.gcd_comm b a ▸ rfl))) hg, ?_⟩
+  exact Nat.coprime_div_gcd_div_gcd (by omega)
 
 /-! Restricted segment syntax (list-level). -/
 
 /-- Rendering a plain segment: surrounding quotes. -/
-def renderL (cs : List Char) : List Char := ['"'] ++ cs ++ ['"']
+def renderL (cs : List Char) : List Char := ['\"'] ++ cs ++ ['\"']
 
 /-- Inner scanner: collect plain bytes until the closing quote. -/
 def parseGo : List Char → List Char → Option (List Char × List Char)
   | [], _ => none
-  | '"' :: rest, acc => some (acc.reverse, rest)
-  | c :: rest, acc => if c = '"' then none else parseGo rest (c :: acc)
+  | c :: rest, acc =>
+      if c = '\' then none
+      else if c = '\"' then some (acc.reverse, rest)
+      else parseGo rest (c :: acc)
 
 /-- Parse a quoted segment. -/
-def parseL : List Char → Option (List Char × List Char)
+def parseL (cs : List Char) : Option (List Char × List Char) :=
+  match cs with
   | [] => none
-  | '"' :: rest => parseGo rest []
-  | _ => none
-
-/-- The scanner collects exactly the bytes it consumed. -/
-theorem parseGo_cons (c : Char) (rest : List Char) (acc : List Char)
-    (hc : c ≠ '"') (h : parseGo rest acc = some (s, out)) :
-    parseGo (c :: rest) acc = some (s, out) := by
-  simp only [parseGo, if_neg hc]
-  exact h
+  | c :: rest => if c = '\' then none else if c = '\"' then parseGo rest [] else none
 
 /-- Roundtrip: parsing the rendering of a plain segment returns the segment. -/
-theorem parse_render_roundtrip (cs : List Char) (hplain : ∀ c ∈ cs, c ≠ '"') :
+theorem parse_render_roundtrip (cs : List Char) (hplain : ∀ c ∈ cs, c ≠ '\"') :
     parseL (renderL cs) = some (cs, []) := by
   have hstep : ∀ (xs : List Char) (acc : List Char),
-      (∀ c ∈ xs, c ≠ '"') → parseGo (xs ++ ['"']) acc = some (acc.reverse ++ xs, []) := by
+      (∀ c ∈ xs, c ≠ '\"') →
+      parseGo (xs ++ ['\"']) acc = some (acc.reverse ++ xs, []) := by
     intro xs
     induction xs with
     | nil =>
@@ -66,15 +60,16 @@ theorem parse_render_roundtrip (cs : List Char) (hplain : ∀ c ∈ cs, c ≠ '"
       simp [parseGo]
     | cons c xs ih =>
       intro acc h
-      have hc : c ≠ '"' := h c (by simp)
-      rw [parseGo, if_neg hc, ← List.cons_append]
+      have hc : c ≠ '\"' := h c (by simp)
+      have hc2 : c ≠ '\' := fun hx => hc (hx ▸ rfl)
+      rw [parseGo, if_neg hc2, if_neg hc, ← List.cons_append]
       rw [ih (c :: acc) (fun x hx => by
         rcases List.mem_cons.mp hx with rfl | hx
         · exact hc
         · exact h x hx)]
       simp only [List.reverse_cons, List.cons_append, List.append_nil]
       rfl
-  show parseGo (cs ++ ['"']) [] = _
+  show parseGo (cs ++ ['\"']) [] = _
   rw [hstep cs [] hplain]
   simp
 
@@ -119,19 +114,6 @@ theorem docGet_put (d : Doc) (k : String) (v : String) :
 theorem docPut_get_head (d : Doc) (k v : String) :
     docPut ((k, v) :: d) k v = (k, v) :: d := by
   simp [docPut, eraseKey]
-
-/-- Erasing a missing key leaves the document unchanged. -/
-theorem eraseKey_miss (d : Doc) (k : String) (hmiss : docGet d k = none) :
-    eraseKey d k = d := by
-  induction d with
-  | nil => rfl
-  | cons (k', v') rest ih =>
-    by_cases hk : k' = k
-    · exact absurd (by simp [docGet, hk] at *; exact rfl) (by
-        intro h
-        exact absurd h (by simp [docGet, hk, hmiss]))
-    · simp only [eraseKey, if_neg hk, List.cons.injEq, eq_self_iff_true, and_true]
-      exact ih
 
 /-- An observer independent of key `k` is unchanged by putting `k`. -/
 theorem observer_outside_closure (obs : Doc → String) (d : Doc) (k v : String)

@@ -37,11 +37,9 @@ theorem condition_incompatible_iff (p : S → ℚ) (e : S → Bool) :
   unfold condition
   by_cases h : 0 < evMass p e
   · rw [if_pos h]
-    exact fun hne => absurd hne (by
-      intro hz
-      exact CondResult.noConfusion hz)
+    exact fun hne => by cases hne
   · rw [if_neg h]
-    exact fun _ => h
+    exact ⟨fun _ => h, fun _ => rfl⟩
 
 /-- The posterior function when the mass is positive (definitional view). -/
 def posterior (p : S → ℚ) (e : S → Bool) (hZ : 0 < evMass p e) : S → ℚ :=
@@ -50,8 +48,8 @@ def posterior (p : S → ℚ) (e : S → Bool) (hZ : 0 < evMass p e) : S → ℚ
 /-- P02(a): with positive mass, the posterior is nonnegative. -/
 theorem posterior_nonneg (p : S → ℚ) (hp : ∀ s, 0 ≤ p s) (e : S → Bool)
     (hZ : 0 < evMass p e) (s : S) : 0 ≤ posterior p e hZ s := by
-  show 0 ≤ (if e s then p s / evMass p e else 0)
-  by_cases he : e s
+  show 0 ≤ (if e s = true then p s / evMass p e else 0)
+  by_cases he : e s = true
   · rw [if_pos he]
     exact div_nonneg (hp s) (le_of_lt hZ)
   · rw [if_neg he]
@@ -63,11 +61,11 @@ theorem posterior_normalizes (p : S → ℚ) (hp : ∀ s, 0 ≤ p s) (e : S → 
   show (∑ s, if e s = true then p s / evMass p e else 0) = 1
   have h1 : (∑ s, if e s = true then p s / evMass p e else 0)
       = (∑ s, if e s = true then p s else 0) / evMass p e := by
-    rw [← Finset.sum_div]
-    exact Finset.sum_congr rfl (fun s _ => by
-      by_cases he : e s = true
-      · rw [if_pos he, if_pos he]
-      · rw [if_neg he, if_neg he, zero_div])
+    rw [Finset.sum_div]
+    refine Finset.sum_congr rfl (fun s _ => ?_)
+    by_cases he : e s = true
+    · rw [if_pos he, if_pos he]
+    · rw [if_neg he, if_neg he, zero_div]
   rw [h1]
   rw [show (∑ s, if e s = true then p s else 0) = evMass p e from rfl]
   exact div_self (ne_of_gt hZ)

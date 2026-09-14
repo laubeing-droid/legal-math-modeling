@@ -46,10 +46,8 @@ def section_vars(thm):
     return decls
 
 
-def ident_of(binder):
-    inner = binder.strip('{}[]()')
-    m = re.match(r'([A-Za-z_][A-Za-z0-9_\'!?]*)', inner)
-    return m.group(1) if m else ''
+def idents_of(binder):
+    return re.findall(r"[A-Za-z_][A-Za-z0-9_'!?]*", binder)
 
 
 def form_of(thm):
@@ -58,11 +56,10 @@ def form_of(thm):
     used = []
     body_text = binders + ' ' + stmt
     for d in section_vars(thm):
-        name = ident_of(d)
-        if name and re.search(r'\b' + re.escape(name) + r'\b', body_text):
+        if any(re.search(r'\b' + re.escape(i) + r'\b', body_text) for i in idents_of(d)):
             kind = '{%s}' % d[1:-1] if d.startswith('{') else ('[%s]' % d[1:-1] if d.startswith('[') else '(%s)' % d)
             parts.append(kind)
-            used.append(name)
+            used.append(d)
     if binders:
         parts.append(binders)
     if parts:

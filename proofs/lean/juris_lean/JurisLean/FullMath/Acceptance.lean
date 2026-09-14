@@ -78,7 +78,7 @@ theorem target_E01 : Contracts.target_E01 := JurisLean.FullMath.Probability.e01_
 
 theorem target_N01 : Contracts.target_N01 := JurisLean.FullMath.Numeric.conservation
 
-theorem target_N02 : Contracts.target_N02 := JurisLean.FullMath.Numeric.mul_sound
+theorem target_N02 : Contracts.target_N02 := JurisLean.FullMath.Numeric.Iv.mul_sound
 
 theorem target_N03 : Contracts.target_N03 := JurisLean.FullMath.Numeric.weak_duality
 
@@ -132,7 +132,7 @@ theorem target_C05 : Contracts.target_C05 := JurisLean.FullMath.Composition.chai
 
 theorem target_C06 : Contracts.target_C06 := JurisLean.FullMath.Composition.checker_correspondence
 
-theorem target_C07 : Contracts.target_C07 := ⟨JurisLean.FullMath.Roots.root_GENERIC_FINITE, JurisLean.FullMath.Roots.root_SYMBOLIC_EXACT_box, JurisLean.FullMath.Roots.root_STATISTICAL_COMPOSITION, JurisLean.FullMath.Roots.root_CIVIL, JurisLean.FullMath.Roots.root_CRIMINAL, JurisLean.FullMath.Roots.root_ADMINISTRATIVE, JurisLean.FullMath.Roots.root_DOCUMENT_DELIVERY⟩
+theorem target_C07 : Contracts.target_C07 := ⟨JurisLean.FullMath.Composition.complete_requires_equality, JurisLean.FullMath.Roots.root_GENERIC_FINITE, JurisLean.FullMath.Roots.root_SYMBOLIC_EXACT_box, JurisLean.FullMath.Roots.root_STATISTICAL_COMPOSITION, JurisLean.FullMath.Roots.root_CIVIL, JurisLean.FullMath.Roots.root_CRIMINAL, JurisLean.FullMath.Roots.root_ADMINISTRATIVE, JurisLean.FullMath.Roots.root_DOCUMENT_DELIVERY⟩
 
 theorem target_EXT01 : Contracts.target_EXT01 := JurisLean.FullMath.Representation.certificate_implies_mode
 
@@ -264,21 +264,21 @@ theorem demand_D055 : Contracts.demand_D055 := JurisLean.FullMath.Numeric.parts_
 
 theorem demand_D056 : Contracts.demand_D056 := JurisLean.FullMath.Numeric.parts_nonneg
 
-theorem demand_D057 : Contracts.demand_D057 := JurisLean.FullMath.Numeric.fixed_y_bounds
+theorem demand_D057 : Contracts.demand_D057 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
 
-theorem demand_D058 : Contracts.demand_D058 := JurisLean.FullMath.Numeric.fixed_y_bounds
+theorem demand_D058 : Contracts.demand_D058 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
 
-theorem demand_D059 : Contracts.demand_D059 := JurisLean.FullMath.Numeric.fixed_y_bounds
+theorem demand_D059 : Contracts.demand_D059 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
 
-theorem demand_D060 : Contracts.demand_D060 := JurisLean.FullMath.Numeric.fixed_y_bounds
+theorem demand_D060 : Contracts.demand_D060 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
 
-theorem demand_D061 : Contracts.demand_D061 := JurisLean.FullMath.Numeric.fixed_y_bounds
+theorem demand_D061 : Contracts.demand_D061 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
 
-theorem demand_D062 : Contracts.demand_D062 := JurisLean.FullMath.Numeric.fixed_y_bounds
+theorem demand_D062 : Contracts.demand_D062 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
 
-theorem demand_D063 : Contracts.demand_D063 := JurisLean.FullMath.Numeric.fixed_y_bounds
+theorem demand_D063 : Contracts.demand_D063 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
 
-theorem demand_D064 : Contracts.demand_D064 := JurisLean.FullMath.Numeric.fixed_y_bounds
+theorem demand_D064 : Contracts.demand_D064 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
 
 theorem demand_D065 : Contracts.demand_D065 := JurisLean.FullMath.Document.docPut_docPut
 

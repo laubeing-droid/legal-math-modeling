@@ -105,7 +105,7 @@ def main():
             stmt = '(' + stmt + ') ∧ ' + ' ∧ '.join('(' + form_of(r) + ')' for r in c07_extra)
         contracts.append('def %s : Prop := %s' % (name, stmt))
         contracts.append('')
-        proof = ('⟨' + ', '.join(c07_extra) + '⟩') if name == 'target_C07' else thm
+        proof = ('⟨' + ', '.join([thm] + c07_extra) + '⟩') if name == 'target_C07' else thm
         acceptance.append('theorem %s : Contracts.%s := %s' % (name, name, proof))
         acceptance.append('')
     contracts.append('end JurisLean.FullMath.Contracts')

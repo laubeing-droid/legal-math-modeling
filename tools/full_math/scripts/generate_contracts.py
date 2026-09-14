@@ -58,7 +58,7 @@ def form_of(thm):
         ids = [i for i in idents_of(d) if i not in ('Type', 'DecidableEq', 'Fintype', 'Prop')]
         if not ids or d in seen:
             continue
-        if any(re.search(r'\b' + re.escape(i) + r'\b', binders) for i in ids):
+        if any(re.search(r'[({\[]' + re.escape(i) + r'\s*[:\s]', binders) for i in ids):
             continue
         if any(re.search(r'\b' + re.escape(i) + r'\b', body_text) for i in ids):
             kind = '{%s}' % d[1:-1] if d.startswith('{') else ('[%s]' % d[1:-1] if d.startswith('[') else '(%s)' % d)

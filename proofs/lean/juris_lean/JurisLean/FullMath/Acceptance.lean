@@ -146,7 +146,7 @@ theorem target_C05 : Contracts.target_C05 := JurisLean.FullMath.Composition.chai
 
 theorem target_C06 : Contracts.target_C06 := JurisLean.FullMath.Composition.checker_correspondence
 
-theorem target_C07 : Contracts.target_C07 := ⟨JurisLean.FullMath.Composition.complete_requires_equality, Acceptance.root_GENERIC_FINITE, Acceptance.root_SYMBOLIC_EXACT_box, Acceptance.root_STATISTICAL_COMPOSITION, Acceptance.root_CIVIL, Acceptance.root_CRIMINAL, Acceptance.root_ADMINISTRATIVE, Acceptance.root_DOCUMENT_DELIVERY⟩
+theorem target_C07 : Contracts.target_C07 := ⟨JurisLean.FullMath.Composition.complete_requires_equality, Acceptance.root_GENERIC_FINITE, Acceptance.root_SYMBOLIC_EXACT, Acceptance.root_STATISTICAL_COMPOSITION, Acceptance.root_CIVIL, Acceptance.root_CRIMINAL, Acceptance.root_ADMINISTRATIVE, Acceptance.root_DOCUMENT_DELIVERY⟩
 
 theorem target_EXT01 : Contracts.target_EXT01 := JurisLean.FullMath.Representation.certificate_implies_mode
 

@@ -101,7 +101,7 @@ def main():
     # Roots first so later acceptances (C07, EXT09) can reference them.
     order = [n for n in order if n.startswith('root_')] + \
             [n for n in order if not n.startswith('root_')]
-    c07_extra = ['Acceptance.root_GENERIC_FINITE', 'Acceptance.root_SYMBOLIC_EXACT_box',
+    c07_extra = ['Acceptance.root_GENERIC_FINITE', 'Acceptance.root_SYMBOLIC_EXACT',
                  'Acceptance.root_STATISTICAL_COMPOSITION', 'Acceptance.root_CIVIL',
                  'Acceptance.root_CRIMINAL', 'Acceptance.root_ADMINISTRATIVE',
                  'Acceptance.root_DOCUMENT_DELIVERY']

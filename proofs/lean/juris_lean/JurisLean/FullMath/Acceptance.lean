@@ -3,6 +3,21 @@ import JurisLean.FullMath.Contracts
 /-! Generated acceptances: each is discharged by the mapped module
 theorem (definitional equality on binder annotations). -/
 
+open JurisLean.FullMath.Core
+open JurisLean.FullMath.Logic
+open JurisLean.FullMath.Evidence
+open JurisLean.FullMath.Probability
+open JurisLean.FullMath.Numeric
+open JurisLean.FullMath.Burden
+open JurisLean.FullMath.Action
+open JurisLean.FullMath.Composition
+open JurisLean.FullMath.Representation
+open JurisLean.FullMath.Causal
+open JurisLean.FullMath.Document
+open JurisLean.FullMath.Roots
+open JurisLean.FullMath.Gaps
+open JurisLean.FullMath.Numeric.Iv
+
 namespace JurisLean.FullMath.Acceptance
 
 theorem target_F01 : Contracts.target_F01 := JurisLean.FullMath.Core.phi_iff_components

@@ -22,6 +22,7 @@ open JurisLean.FullMath.Causal
 open JurisLean.FullMath.Document
 open JurisLean.FullMath.Roots
 open JurisLean.FullMath.Gaps
+open JurisLean.FullMath.Numeric.Iv
 
 namespace JurisLean.FullMath.Contracts
 
@@ -201,7 +202,7 @@ def target_EXT02 : Prop := ∀ (claims : List InputClaim) (c : InputClaim) (i j 
 
 def target_EXT03 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A), charF af (grounded af) = grounded af
 
-def target_EXT04 : Prop := ∀ (b : Box (d + 1)) (k : ℚ) (hk : b.lo 0 ≤ k) (hk2 : k ≤ b.hi 0), boxDen (splitBox b k hk hk2).1 ∪ boxDen (splitBox b k hk hk2).2 = boxDen b
+def target_EXT04 : Prop := ∀ {d : ℕ} (b : Box (d + 1)) (k : ℚ) (hk : b.lo 0 ≤ k) (hk2 : k ≤ b.hi 0), boxDen (splitBox b k hk hk2).1 ∪ boxDen (splitBox b k hk hk2).2 = boxDen b
 
 def target_EXT05 : Prop := ∀ (retired : List Assume) (d : Deriv)
     (a : Assume) (ha : a ∈ d.deps) (hr : a ∈ retired), invalidated retired d = true

@@ -10,14 +10,13 @@ statements so its proof dependency closure covers the seven roots.
 import json, re, sys
 from pathlib import Path
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2].parent / 'work' / 'full-math'))
 REPO = Path(__file__).resolve().parents[3]
 FM = REPO / 'proofs/lean/juris_lean/JurisLean/FullMath'
-
 sys.path.insert(0, str(REPO / 'work/full-math'))
 from build_map import sig_of, inv  # noqa: E402
 
 VAR_RE = re.compile(r'^variable (.+)$', re.M)
+BOX_D = re.compile(r'Box \(d \+ 1\)')
 
 
 def split_binders(s):
@@ -53,13 +52,13 @@ def idents_of(binder):
 def form_of(thm):
     binders, stmt = sig_of(thm)
     parts = []
-    used = []
     body_text = binders + ' ' + stmt
     for d in section_vars(thm):
         if any(re.search(r'\b' + re.escape(i) + r'\b', body_text) for i in idents_of(d)):
             kind = '{%s}' % d[1:-1] if d.startswith('{') else ('[%s]' % d[1:-1] if d.startswith('[') else '(%s)' % d)
             parts.append(kind)
-            used.append(d)
+    if BOX_D.search(body_text):
+        parts = ['{d : ℕ}'] + parts
     if binders:
         parts.append(binders)
     if parts:
@@ -78,18 +77,20 @@ def main():
              'open JurisLean.FullMath.Action', 'open JurisLean.FullMath.Composition',
              'open JurisLean.FullMath.Representation', 'open JurisLean.FullMath.Causal',
              'open JurisLean.FullMath.Document', 'open JurisLean.FullMath.Roots',
-             'open JurisLean.FullMath.Gaps', '']
-    contracts = ['import JurisLean.FullMath.Tranche1', 'import JurisLean.FullMath.Tranche2',
-                 'import JurisLean.FullMath.Tranche3', 'import JurisLean.FullMath.Tranche4',
-                 'import JurisLean.FullMath.Tranche5', 'import JurisLean.FullMath.Tranche6',
-                 'import JurisLean.FullMath.Tranche7', '',
-                 '/-! Generated from the module signatures: each contract is the real',
-                 'statement of its mapped theorem. This file contains no proofs. -/',
-                 ''] + opens + ['namespace JurisLean.FullMath.Contracts', '']
-    acceptance = ['import JurisLean.FullMath.Contracts', '',
-                  "/-! Generated acceptances: each is discharged by the mapped module",
-                  'theorem (definitional equality on binder annotations). -/', '',
-                  'namespace JurisLean.FullMath.Acceptance', '']
+             'open JurisLean.FullMath.Gaps', 'open JurisLean.FullMath.Numeric.Iv', '']
+    header = ['import JurisLean.FullMath.Tranche1', 'import JurisLean.FullMath.Tranche2',
+              'import JurisLean.FullMath.Tranche3', 'import JurisLean.FullMath.Tranche4',
+              'import JurisLean.FullMath.Tranche5', 'import JurisLean.FullMath.Tranche6',
+              'import JurisLean.FullMath.Tranche7', '',
+              '/-! Generated from the module signatures: each contract is the real',
+              'statement of its mapped theorem. This file contains no proofs. -/',
+              ''] + opens
+    contracts = list(header) + ['namespace JurisLean.FullMath.Contracts', '']
+    acceptance = (['import JurisLean.FullMath.Contracts', '',
+                   '/-! Generated acceptances: each is discharged by the mapped module',
+                   'theorem (definitional equality on binder annotations). -/',
+                   ''] + opens
+                  + ['namespace JurisLean.FullMath.Acceptance', ''])
     c07_extra = ['JurisLean.FullMath.Roots.root_GENERIC_FINITE',
                  'JurisLean.FullMath.Roots.root_SYMBOLIC_EXACT_box',
                  'JurisLean.FullMath.Roots.root_STATISTICAL_COMPOSITION',
@@ -102,13 +103,10 @@ def main():
         stmt = form_of(thm)
         if name == 'target_C07':
             stmt = '(' + stmt + ') ∧ ' + ' ∧ '.join('(' + form_of(r) + ')' for r in c07_extra)
-        contracts.append(f'def {name} : Prop := {stmt}')
+        contracts.append('def %s : Prop := %s' % (name, stmt))
         contracts.append('')
-        if name == 'target_C07':
-            proof = '⟨' + ', '.join(c07_extra) + '⟩'
-        else:
-            proof = thm
-        acceptance.append(f'theorem {name} : Contracts.{name} := {proof}')
+        proof = ('⟨' + ', '.join(c07_extra) + '⟩') if name == 'target_C07' else thm
+        acceptance.append('theorem %s : Contracts.%s := %s' % (name, name, proof))
         acceptance.append('')
     contracts.append('end JurisLean.FullMath.Contracts')
     acceptance.append('end JurisLean.FullMath.Acceptance')

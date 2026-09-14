@@ -21,7 +21,7 @@ open JurisLean.FullMath.Burden (resolveList conflict_without_rule_is_pending
   unresolved_policy_pending pending_is_not_met version_change_invalidates cacheHit cacheKey
   SourceVersion BurdenSlot BurdenState)
 open JurisLean.FullMath.Representation (enumerateAll enumeration_member)
-open JurisLean.FullMath.Evidence (Admission FactStatus institution_never_verified)
+open JurisLean.FullMath.Evidence (institution_never_verified)
 open JurisLean.FullMath.Causal (ate ate_identification_failure TwoVar)
 open JurisLean.FullMath.Document (Doc docPut observer_outside_closure)
 
@@ -54,7 +54,9 @@ theorem gap_X03 :
 /-- X04: institutional statements are never verified facts — authority is
 modeled and checked, not assumed from the document. -/
 theorem gap_X04 :
-    ∀ n b u : String, (Admission.institution n b u).status = FactStatus.statement :=
+    ∀ n b u : String,
+      (JurisLean.FullMath.Evidence.Admission.institution n b u).status
+        = JurisLean.FullMath.FactStatus.statement :=
   institution_never_verified
 
 /-- X05 — frozen-mirror retrieval: the returned set is exactly the match
@@ -90,7 +92,7 @@ key. -/
 theorem gap_X07 :
     (fun _ : Doc => "constant") (docPut ([] : Doc) "k" "v")
       = (fun _ : Doc => "constant") ([] : Doc) :=
-  observer_outside_closure _ [] "k" "v" (by simp)
+  observer_outside_closure _ [] "k" "v" (by intro d1 d2 _; rfl)
 
 /-- X08: non-interference and no authority from inputs — writes to
 erased keys never leak to independent observers, and institutional
@@ -98,9 +100,10 @@ inputs carry no command authority. -/
 theorem gap_X08 :
     (fun _ : Doc => "constant") (docPut ([] : Doc) "priv" "value")
         = (fun _ : Doc => "constant") ([] : Doc)
-      ∧ (Admission.institution "agency" "database" "query").status
-          = FactStatus.statement :=
-  ⟨observer_outside_closure _ [] "priv" "value" (by simp),
+      ∧ (JurisLean.FullMath.Evidence.Admission.institution
+            "agency" "database" "query").status
+          = JurisLean.FullMath.FactStatus.statement :=
+  ⟨observer_outside_closure _ [] "priv" "value" (by intro d1 d2 _; rfl),
     institution_never_verified "agency" "database" "query"⟩
 
 /-- X09: unmodeled requirements are preserved as pending, never silently

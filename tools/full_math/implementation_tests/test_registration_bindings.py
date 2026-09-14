@@ -71,7 +71,7 @@ def test_scope_integrity():
 
 def test_c07_closure_witness():
     txt = ACCEPT_TXT
-    for root in ['root_GENERIC_FINITE', 'root_SYMBOLIC_EXACT_box', 'root_STATISTICAL_COMPOSITION',
+    for root in ['root_GENERIC_FINITE', 'root_SYMBOLIC_EXACT', 'root_STATISTICAL_COMPOSITION',
                  'root_CIVIL', 'root_CRIMINAL', 'root_ADMINISTRATIVE', 'root_DOCUMENT_DELIVERY']:
         line = re.search(r'^theorem target_C07 :.*$', txt, re.M).group(0)
         assert root in line

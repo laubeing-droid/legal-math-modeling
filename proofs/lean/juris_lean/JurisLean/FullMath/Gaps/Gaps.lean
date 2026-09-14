@@ -47,9 +47,8 @@ theorem gap_X02 :
 interpretation: membership in the enumerated candidate set is exactly
 satisfaction of the predicate. -/
 theorem gap_X03 :
-    ∀ x : Bool, x ∈ enumerateAll (fun _ : Bool => true)
-      ↔ (fun _ : Bool => true) x = true :=
-  fun _ => enumeration_member (fun _ : Bool => true)
+    ∀ x : Bool, x ∈ enumerateAll (fun b : Bool => b) ↔ x = true :=
+  fun _ => enumeration_member (fun b : Bool => b)
 
 /-- X04: institutional statements are never verified facts — authority is
 modeled and checked, not assumed from the document. -/
@@ -92,7 +91,8 @@ key. -/
 theorem gap_X07 :
     (fun _ : Doc => "constant") (docPut ([] : Doc) "k" "v")
       = (fun _ : Doc => "constant") ([] : Doc) :=
-  observer_outside_closure _ [] "k" "v" (by intro d1 d2 _; rfl)
+  observer_outside_closure (fun _ : Doc => "constant") [] "k" "v"
+    (by intro d1 d2 _; rfl)
 
 /-- X08: non-interference and no authority from inputs — writes to
 erased keys never leak to independent observers, and institutional
@@ -103,7 +103,8 @@ theorem gap_X08 :
       ∧ (JurisLean.FullMath.Evidence.Admission.institution
             "agency" "database" "query").status
           = JurisLean.FullMath.FactStatus.statement :=
-  ⟨observer_outside_closure _ [] "priv" "value" (by intro d1 d2 _; rfl),
+  ⟨observer_outside_closure (fun _ : Doc => "constant") [] "priv" "value"
+    (by intro d1 d2 _; rfl),
     institution_never_verified "agency" "database" "query"⟩
 
 /-- X09: unmodeled requirements are preserved as pending, never silently

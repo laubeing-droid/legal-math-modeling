@@ -48,7 +48,7 @@ interpretation: membership in the enumerated candidate set is exactly
 satisfaction of the predicate. -/
 theorem gap_X03 :
     ∀ x : Bool, x ∈ enumerateAll (fun b : Bool => b) ↔ x = true :=
-  fun _ => enumeration_member (fun b : Bool => b)
+  fun x => enumeration_member (fun b : Bool => b) x
 
 /-- X04: institutional statements are never verified facts — authority is
 modeled and checked, not assumed from the document. -/

@@ -34,44 +34,44 @@ def target_F03 : Prop := ∀ (a b : CompId) (h : composable a b = true), a.domai
 
 def target_F04 : Prop := ∀ (d : Deriv), ∀ a, Deriv.origin a ∈ d.subtrees → a ∈ d.deps
 
-def target_F05 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F : Finset A), ∀ n m, m ≤ n → cl R F m ⊆ cl R F n
+def target_F05 : Prop := ∀ (R : Finset (Finset A × A)) (F : Finset A), ∀ n m, m ≤ n → cl R F m ⊆ cl R F n
 
-def target_F06 : Prop := ∀ {A : Type} [DecidableEq A] {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, WellFormed facts rules a → Arg.height a ≤ d → a ∈ Generate facts rules d
+def target_F06 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, WellFormed facts rules a → Arg.height a ≤ d → a ∈ Generate facts rules d
 
 def target_F07 : Prop := ∃ a b, a ∈ Generate [0] cyclicRules 0 ∧ b ∈ Generate [0] cyclicRules 2 ∧ Arg.concl a = Arg.concl b ∧ Arg.height a ≠ Arg.height b
 
-def target_F08 : Prop := ∀ {A : Type} [DecidableEq A] (con : Contrary A) (rc : RuleContra A) (a : Arg A), ∀ (k : ℕ) (b : Arg A), Arg.height b ≤ k → (edgeFuel con rc a b k = true ↔ Defeat A con rc a b)
+def target_F08 : Prop := ∀ (con : Contrary A) (rc : RuleContra A) (a : Arg A), ∀ (k : ℕ) (b : Arg A), Arg.height b ≤ k → (edgeFuel con rc a b k = true ↔ Defeat A con rc a b)
 
-def target_F09 : Prop := ∀ {A : Type} [DecidableEq A] (edges : List (Arg A × Arg A))
+def target_F09 : Prop := ∀ (edges : List (Arg A × Arg A))
     (policy : Arg A → Arg A → Option Bool), (pendingEdges edges policy).length ≤ edges.length
 
-def target_F10 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A) (hP : charF af P = P), grounded af ⊆ P
+def target_F10 : Prop := ∀ (af : AF A) (P : Finset A) (hP : charF af P = P), grounded af ⊆ P
 
 def target_F11 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A], evalUniversal (A := A) .incomplete = .unknown
 
 def target_F12 : Prop := ∀ (a : Admission)
     (h : a.status = FactStatus.verified), ∃ source authority, a = Admission.verifiedPremise source authority
 
-def target_F13 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F Δ : Finset A), closure R' (F ∪ Δ) = closure R' (closure R F ∪ Δ)
+def target_F13 : Prop := ∀ (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F Δ : Finset A), closure R' (F ∪ Δ) = closure R' (closure R F ∪ Δ)
 
-def target_F14 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R')
+def target_F14 : Prop := ∀ (R R' : Finset (Finset A × A)) (hR : R ⊆ R')
     (F Δ : Finset A), incrementalUpdate R F (.addOnly Δ R') = closure R' (F ∪ Δ)
 
 def target_P01 : Prop := ∀ {n : ℕ} (c : Chain n), Finset.sum Finset.univ (fun s : State n => joint c s) = 1
 
-def target_P02 : Prop := ∀ {S : Type} [Fintype S] [DecidableEq S] (p : S → ℚ) (hp : ∀ s, 0 ≤ p s) (e : S → Bool)
+def target_P02 : Prop := ∀ (p : S → ℚ) (hp : ∀ s, 0 ≤ p s) (e : S → Bool)
     (hZ : 0 < evMass p e), ∑ s, posterior p e hZ s = 1
 
-def target_P03 : Prop := ∀ {n : ℕ} (fs gs : List ((Fin n → Bool) → ℚ)) (i : Fin n)
+def target_P03 : Prop := ∀ (fs gs : List ((Fin n → Bool) → ℚ)) (i : Fin n)
     (h : ∀ f ∈ fs, IndepAt f i) (w : Fin n → Bool), Finset.sum Finset.univ (fun _v : Bool => prodAt (fs ++ gs) (upd w i _v)) = prodAt fs w * Finset.sum Finset.univ (fun v : Bool => prodAt gs (upd w i v))
 
 def target_P04 : Prop := ∀ (o : Obs) (l : List Obs), obsTotal (o :: o :: l) = obsTotal (o :: l)
 
-def target_P05 : Prop := ∀ {k : ℕ} (α n m : Fin k → ℚ), dirWeights (fun i => α i + n i) m = dirWeights α (fun i => n i + m i)
+def target_P05 : Prop := ∀ (α n m : Fin k → ℚ), dirWeights (fun i => α i + n i) m = dirWeights α (fun i => n i + m i)
 
 def target_P06 : Prop := ∃ (π : Bool → ℚ) (r1 r2 : ℚ), hyperWeights π (fun b => if b then r1 else r2) true ≠ hyperWeights (fun b => if b then 2 else 1) (fun b => if b then 3 else 5) true
 
-def target_P07 : Prop := ∀ {m : ℕ} (ws ps : Fin m → ℚ) (lo hi : ℚ)
+def target_P07 : Prop := ∀ (ws ps : Fin m → ℚ) (lo hi : ℚ)
     (hw : ∀ j, 0 ≤ ws j)
     (hw1 : Finset.sum Finset.univ (fun j : Fin m => ws j) = 1)
     (hlo : ∀ j, lo ≤ ps j) (hhi : ∀ j, ps j ≤ hi), lo ≤ mix ws ps ∧ mix ws ps ≤ hi
@@ -104,13 +104,13 @@ def target_N01 : Prop := ∀ (r : ℚ), covered r - uncovered r = r
 
 def target_N02 : Prop := ∀ (i j : Iv) (x y : ℚ) (hx : mem x i) (hy : mem y j), mem (x * y) (mul i j)
 
-def target_N03 : Prop := ∀ {n : ℕ} (A : Fin n → Fin n → ℚ) (b c : Fin n → ℚ)
+def target_N03 : Prop := ∀ (A : Fin n → Fin n → ℚ) (b c : Fin n → ℚ)
     (x lam : Fin n → ℚ)
     (hP : PrimalFeasible A b x) (hD : DualFeasible A b c lam), dualObj b lam ≤ primalObj c x
 
 def target_N04 : Prop := ¬ ∀ d ∈ [0, 20, 30, 100], Iv.mem d ⟨20, 30, by norm_num⟩
 
-def target_N05 : Prop := ∀ {n : ℕ} (A : Fin n → Fin n → ℚ) (b c : Fin n → ℚ)
+def target_N05 : Prop := ∀ (A : Fin n → Fin n → ℚ) (b c : Fin n → ℚ)
     (xstar lam : Fin n → ℚ)
     (hPstar : PrimalFeasible A b xstar) (hDstar : DualFeasible A b c lam)
     (heq : primalObj c xstar = dualObj b lam), ∀ x, PrimalFeasible A b x → primalObj c xstar ≤ primalObj c x
@@ -143,28 +143,28 @@ def target_B06 : Prop := completeAssignment adminSlots adminPolicies
 def target_B07 : Prop := ∀ (v v' : SourceVersion)
     (h : cacheKey v ≠ cacheKey v'), cacheHit v v' = false
 
-def target_G01 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (hne : ∀ s, (legal s).Nonempty)
+def target_G01 : Prop := ∀ (legal : S → Finset A) (hne : ∀ s, (legal s).Nonempty)
     (r : S → A → ℚ) (p : S → A → S → ℚ) (β : ℚ) (t : ℕ) (s : S) (a : A)
     (ha : a ∈ legal s), qval r p β (vf legal hne r p β t) s a ≤ vf legal hne r p β (t + 1) s
 
-def target_G02 : Prop := ∀ {C : Type} [Fintype C] [DecidableEq C] {K : Type} [Fintype K] [DecidableEq K] (w : C → ℚ) (hw : ∀ c, 0 ≤ w c)
+def target_G02 : Prop := ∀ (w : C → ℚ) (hw : ∀ c, 0 ≤ w c)
     (u : C → K → ℚ) (arg : C → K) (k₀ : K)
     (hatt : ∀ c k, u c k ≤ u c (arg c)), (∑ c, w c * u c k₀) ≤ ∑ c, w c * u c (arg c)
 
 def target_G03 : Prop := ∀ (legal : Set ℚ) (P D : PartyParams) (s : ℚ)
     (h : s ∈ admissibleSettlements legal P D), s ∈ legal ∧ plaintiffL P ≤ s ∧ s ≤ defendantU D
 
-def target_G04 : Prop := ∀ {T : Type} [Fintype T] [DecidableEq T] (u : T → T → ℚ) (h : dsicCheck u = true), dsicProp u
+def target_G04 : Prop := ∀ (u : T → T → ℚ) (h : dsicCheck u = true), dsicProp u
 
 def target_G05 : Prop := ∀ {Θ : Type} [Nonempty Θ]
     (r₁ r₂ : Θ → ℚ)
     (m₁ : ℚ) (hm₁ : ∀ θ, m₁ ≤ r₁ θ)
     (m₂ : ℚ) (hm₂ : ∀ θ, m₂ ≤ r₂ θ), m₁ + m₂ ≤ r₁ (Classical.arbitrary Θ) + r₂ (Classical.arbitrary Θ)
 
-def target_C01 : Prop := ∀ {X Y Z W : Type} (r : X → Y → Prop) (s : Y → Z → Prop) (t : Z → W → Prop)
+def target_C01 : Prop := ∀ (r : X → Y → Prop) (s : Y → Z → Prop) (t : Z → W → Prop)
     (x : X) (w : W), relComp (relComp r s) t x w ↔ relComp r (relComp s t) x w
 
-def target_C02 : Prop := ∀ {S : Type} (T1 T2 : OuterStep S) (c0 c1 c2 : Set S)
+def target_C02 : Prop := ∀ (T1 T2 : OuterStep S) (c0 c1 c2 : Set S)
     (h1 : T1.step c0 ⊆ c1) (h2 : T2.step c1 ⊆ c2), T2.step (T1.step c0) ⊆ c2
 
 def target_C03 : Prop := ∀ (p0 p1 : ℚ) (hp0 : 0 ≤ p0) (hp1 : 0 ≤ p1)
@@ -200,7 +200,7 @@ def target_EXT01 : Prop := ∀ {W R : Type} (sem : R → Set W)
 def target_EXT02 : Prop := ∀ (claims : List InputClaim) (c : InputClaim) (i j : CompId)
     (h : carries claims c i) (hcarried : carries claims c j), i = j
 
-def target_EXT03 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A), charF af (grounded af) = grounded af
+def target_EXT03 : Prop := ∀ (af : AF A), charF af (grounded af) = grounded af
 
 def target_EXT04 : Prop := ∀ {d : ℕ} (b : Box (d + 1)) (k : ℚ) (hk : b.lo 0 ≤ k) (hk2 : k ≤ b.hi 0), boxDen (splitBox b k hk hk2).1 ∪ boxDen (splitBox b k hk hk2).2 = boxDen b
 
@@ -296,21 +296,21 @@ def demand_D027 : Prop := ∀ (k : ℕ) (v v' : ℚ) (l : List Obs), (dedup (⟨
 
 def demand_D028 : Prop := ∀ (k : ℕ) (v v' : ℚ) (l : List Obs), (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id
 
-def demand_D029 : Prop := ∀ {A : Type} [DecidableEq A] {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
+def demand_D029 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
 
-def demand_D030 : Prop := ∀ {A : Type} [DecidableEq A] {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
+def demand_D030 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
 
-def demand_D031 : Prop := ∀ {A : Type} [DecidableEq A] {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
+def demand_D031 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
 
-def demand_D032 : Prop := ∀ {A : Type} [DecidableEq A] {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
+def demand_D032 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
 
-def demand_D033 : Prop := ∀ {A : Type} [DecidableEq A] {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
+def demand_D033 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
 
-def demand_D034 : Prop := ∀ {A : Type} [DecidableEq A] {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
+def demand_D034 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
 
-def demand_D035 : Prop := ∀ {A : Type} [DecidableEq A] {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
+def demand_D035 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
 
-def demand_D036 : Prop := ∀ {A : Type} [DecidableEq A] {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
+def demand_D036 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
 
 def demand_D037 : Prop := ∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j
 
@@ -392,58 +392,58 @@ def demand_D075 : Prop := ∀ (d : Doc) (k v v' : String), docPut (docPut d k v)
 
 def demand_D076 : Prop := ∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v'
 
-def demand_D077 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+def demand_D077 : Prop := ∀ (R : Finset (Finset A × A)) (F P : Finset A)
     (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
 
-def demand_D078 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+def demand_D078 : Prop := ∀ (R : Finset (Finset A × A)) (F P : Finset A)
     (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
 
-def demand_D079 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+def demand_D079 : Prop := ∀ (R : Finset (Finset A × A)) (F P : Finset A)
     (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
 
-def demand_D080 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+def demand_D080 : Prop := ∀ (R : Finset (Finset A × A)) (F P : Finset A)
     (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
 
-def demand_D081 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+def demand_D081 : Prop := ∀ (R : Finset (Finset A × A)) (F P : Finset A)
     (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
 
-def demand_D082 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+def demand_D082 : Prop := ∀ (R : Finset (Finset A × A)) (F P : Finset A)
     (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
 
-def demand_D083 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+def demand_D083 : Prop := ∀ (R : Finset (Finset A × A)) (F P : Finset A)
     (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
 
-def demand_D084 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+def demand_D084 : Prop := ∀ (R : Finset (Finset A × A)) (F P : Finset A)
     (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
 
-def demand_D085 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+def demand_D085 : Prop := ∀ (R : Finset (Finset A × A)) (F P : Finset A)
     (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
 
-def demand_D086 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+def demand_D086 : Prop := ∀ (R : Finset (Finset A × A)) (F P : Finset A)
     (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
 
-def demand_D087 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
+def demand_D087 : Prop := ∀ (af : AF A) (P : Finset A → Prop)
     (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'
 
-def demand_D088 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
+def demand_D088 : Prop := ∀ (af : AF A) (P : Finset A → Prop)
     (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'
 
-def demand_D089 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
+def demand_D089 : Prop := ∀ (af : AF A) (P : Finset A → Prop)
     (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'
 
-def demand_D090 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
+def demand_D090 : Prop := ∀ (af : AF A) (P : Finset A → Prop)
     (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'
 
-def demand_D091 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
+def demand_D091 : Prop := ∀ (af : AF A) (P : Finset A → Prop)
     (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'
 
-def demand_D092 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
+def demand_D092 : Prop := ∀ (af : AF A) (P : Finset A → Prop)
     (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'
 
-def demand_D093 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
+def demand_D093 : Prop := ∀ (af : AF A) (P : Finset A → Prop)
     (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'
 
-def demand_D094 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
+def demand_D094 : Prop := ∀ (af : AF A) (P : Finset A → Prop)
     (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'
 
 def demand_D095 : Prop := ∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1
@@ -488,7 +488,7 @@ def demand_D114 : Prop := ∀ (cs : List Char) (hplain : Plain cs), parseL (rend
 
 def demand_D115 : Prop := ∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])
 
-def demand_D116 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
+def demand_D116 : Prop := ∀ (legal : S → Finset A) (r : S → A → ℚ)
     (p : S → A → S → ℚ)
     (hpn : ∀ s a s', 0 ≤ p s a s')
     (hsum : ∀ s a, ∑ s', p s a s' = 1)
@@ -496,7 +496,7 @@ def demand_D116 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [Decidabl
     (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
     (hne : (legal s).Nonempty) (hny : (legal s).Nonempty), bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M
 
-def demand_D117 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
+def demand_D117 : Prop := ∀ (legal : S → Finset A) (r : S → A → ℚ)
     (p : S → A → S → ℚ)
     (hpn : ∀ s a s', 0 ≤ p s a s')
     (hsum : ∀ s a, ∑ s', p s a s' = 1)
@@ -504,7 +504,7 @@ def demand_D117 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [Decidabl
     (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
     (hne : (legal s).Nonempty) (hny : (legal s).Nonempty), bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M
 
-def demand_D118 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
+def demand_D118 : Prop := ∀ (legal : S → Finset A) (r : S → A → ℚ)
     (p : S → A → S → ℚ)
     (hpn : ∀ s a s', 0 ≤ p s a s')
     (hsum : ∀ s a, ∑ s', p s a s' = 1)
@@ -512,7 +512,7 @@ def demand_D118 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [Decidabl
     (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
     (hne : (legal s).Nonempty) (hny : (legal s).Nonempty), bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M
 
-def demand_D119 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
+def demand_D119 : Prop := ∀ (legal : S → Finset A) (r : S → A → ℚ)
     (p : S → A → S → ℚ)
     (hpn : ∀ s a s', 0 ≤ p s a s')
     (hsum : ∀ s a, ∑ s', p s a s' = 1)
@@ -520,7 +520,7 @@ def demand_D119 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [Decidabl
     (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
     (hne : (legal s).Nonempty) (hny : (legal s).Nonempty), bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M
 
-def demand_D120 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
+def demand_D120 : Prop := ∀ (legal : S → Finset A) (r : S → A → ℚ)
     (p : S → A → S → ℚ)
     (hpn : ∀ s a s', 0 ≤ p s a s')
     (hsum : ∀ s a, ∑ s', p s a s' = 1)
@@ -528,7 +528,7 @@ def demand_D120 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [Decidabl
     (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
     (hne : (legal s).Nonempty) (hny : (legal s).Nonempty), bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M
 
-def demand_D121 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
+def demand_D121 : Prop := ∀ (legal : S → Finset A) (r : S → A → ℚ)
     (p : S → A → S → ℚ)
     (hpn : ∀ s a s', 0 ≤ p s a s')
     (hsum : ∀ s a, ∑ s', p s a s' = 1)
@@ -536,7 +536,7 @@ def demand_D121 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [Decidabl
     (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
     (hne : (legal s).Nonempty) (hny : (legal s).Nonempty), bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M
 
-def demand_D122 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
+def demand_D122 : Prop := ∀ (legal : S → Finset A) (r : S → A → ℚ)
     (p : S → A → S → ℚ)
     (hpn : ∀ s a s', 0 ≤ p s a s')
     (hsum : ∀ s a, ∑ s', p s a s' = 1)
@@ -544,7 +544,7 @@ def demand_D122 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [Decidabl
     (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
     (hne : (legal s).Nonempty) (hny : (legal s).Nonempty), bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M
 
-def demand_D123 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
+def demand_D123 : Prop := ∀ (legal : S → Finset A) (r : S → A → ℚ)
     (p : S → A → S → ℚ)
     (hpn : ∀ s a s', 0 ≤ p s a s')
     (hsum : ∀ s a, ∑ s', p s a s' = 1)
@@ -552,27 +552,27 @@ def demand_D123 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [Decidabl
     (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
     (hne : (legal s).Nonempty) (hny : (legal s).Nonempty), bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M
 
-def demand_D124 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
+def demand_D124 : Prop := ∀ (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
 
-def demand_D125 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
+def demand_D125 : Prop := ∀ (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
 
-def demand_D126 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
+def demand_D126 : Prop := ∀ (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
 
-def demand_D127 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
+def demand_D127 : Prop := ∀ (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
 
-def demand_D128 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
+def demand_D128 : Prop := ∀ (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
 
-def demand_D129 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
+def demand_D129 : Prop := ∀ (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
 
-def demand_D130 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
+def demand_D130 : Prop := ∀ (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
 
-def demand_D131 : Prop := ∀ {S : Type} [Fintype S] [DecidableEq S] (p : S → ℚ) (e : S → Bool), condition p e = .incompatible ↔ ¬ (0 < evMass p e)
+def demand_D131 : Prop := ∀ (p : S → ℚ) (e : S → Bool), condition p e = .incompatible ↔ ¬ (0 < evMass p e)
 
-def demand_D132 : Prop := ∀ {S : Type} [Fintype S] [DecidableEq S] (p : S → ℚ) (e : S → Bool), condition p e = .incompatible ↔ ¬ (0 < evMass p e)
+def demand_D132 : Prop := ∀ (p : S → ℚ) (e : S → Bool), condition p e = .incompatible ↔ ¬ (0 < evMass p e)
 
-def demand_D133 : Prop := ∀ {S : Type} [Fintype S] [DecidableEq S] (p : S → ℚ) (e : S → Bool), condition p e = .incompatible ↔ ¬ (0 < evMass p e)
+def demand_D133 : Prop := ∀ (p : S → ℚ) (e : S → Bool), condition p e = .incompatible ↔ ¬ (0 < evMass p e)
 
-def demand_D134 : Prop := ∀ {S : Type} [Fintype S] [DecidableEq S] (p : S → ℚ) (e : S → Bool), condition p e = .incompatible ↔ ¬ (0 < evMass p e)
+def demand_D134 : Prop := ∀ (p : S → ℚ) (e : S → Bool), condition p e = .incompatible ↔ ¬ (0 < evMass p e)
 
 def gap_X01 : Prop := (∀ (data : List Row) r, r ∈ legalRows data → r.featT < r.labelT) ∧ (∀ (data : List Row) r1 r2, r1 ∈ legalRows data → r2 ∈ legalRows data → r1.cluster = r2.cluster → tagOf r1 = tagOf r2)
 

@@ -52,11 +52,18 @@ def idents_of(binder):
 def form_of(thm):
     binders, stmt = sig_of(thm)
     parts = []
+    seen = set()
     body_text = binders + ' ' + stmt
     for d in section_vars(thm):
-        if any(re.search(r'\b' + re.escape(i) + r'\b', body_text) for i in idents_of(d)):
+        ids = [i for i in idents_of(d) if i not in ('Type', 'DecidableEq', 'Fintype', 'Prop')]
+        if not ids or d in seen:
+            continue
+        if any(re.search(r'\b' + re.escape(i) + r'\b', binders) for i in ids):
+            continue
+        if any(re.search(r'\b' + re.escape(i) + r'\b', body_text) for i in ids):
             kind = '{%s}' % d[1:-1] if d.startswith('{') else ('[%s]' % d[1:-1] if d.startswith('[') else '(%s)' % d)
             parts.append(kind)
+            seen.add(d)
     if BOX_D.search(body_text):
         parts = ['{d : ℕ}'] + parts
     if binders:

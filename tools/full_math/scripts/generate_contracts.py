@@ -98,21 +98,41 @@ def main():
                    'theorem (definitional equality on binder annotations). -/',
                    ''] + opens
                   + ['namespace JurisLean.FullMath.Acceptance', ''])
-    c07_extra = ['JurisLean.FullMath.Roots.root_GENERIC_FINITE',
+    # Roots first so later acceptances (C07, EXT09) can reference them.
+    order = [n for n in order if n.startswith('root_')] + \
+            [n for n in order if not n.startswith('root_')]
+    c07_extra = ['Acceptance.root_GENERIC_FINITE', 'Acceptance.root_SYMBOLIC_EXACT_box',
+                 'Acceptance.root_STATISTICAL_COMPOSITION', 'Acceptance.root_CIVIL',
+                 'Acceptance.root_CRIMINAL', 'Acceptance.root_ADMINISTRATIVE',
+                 'Acceptance.root_DOCUMENT_DELIVERY']
+    c07_stmts = ['JurisLean.FullMath.Roots.root_GENERIC_FINITE',
                  'JurisLean.FullMath.Roots.root_SYMBOLIC_EXACT_box',
                  'JurisLean.FullMath.Roots.root_STATISTICAL_COMPOSITION',
                  'JurisLean.FullMath.Roots.root_CIVIL',
                  'JurisLean.FullMath.Roots.root_CRIMINAL',
                  'JurisLean.FullMath.Roots.root_ADMINISTRATIVE',
                  'JurisLean.FullMath.Roots.root_DOCUMENT_DELIVERY']
+    ext09_roots = ['Acceptance.root_CIVIL', 'Acceptance.root_CRIMINAL',
+                   'Acceptance.root_ADMINISTRATIVE']
+    ext09_stmts = ['JurisLean.FullMath.Roots.root_CIVIL',
+                   'JurisLean.FullMath.Roots.root_CRIMINAL',
+                   'JurisLean.FullMath.Roots.root_ADMINISTRATIVE']
     for name in order:
         thm = T[name]
         stmt = form_of(thm)
         if name == 'target_C07':
-            stmt = '(' + stmt + ') ∧ ' + ' ∧ '.join('(' + form_of(r) + ')' for r in c07_extra)
+            stmt = '(' + stmt + ') ∧ ' + ' ∧ '.join('(' + form_of(r) + ')' for r in c07_stmts)
+        elif name == 'target_EXT09':
+            stmt = '(' + stmt + ') ∧ ' + ' ∧ '.join(
+                '(' + form_of(r) + ')' for r in ext09_stmts)
         contracts.append('def %s : Prop := %s' % (name, stmt))
         contracts.append('')
-        proof = ('⟨' + ', '.join([thm] + c07_extra) + '⟩') if name == 'target_C07' else thm
+        if name == 'target_C07':
+            proof = '⟨' + ', '.join([thm] + c07_extra) + '⟩'
+        elif name == 'target_EXT09':
+            proof = '⟨' + ', '.join([thm] + ext09_roots) + '⟩'
+        else:
+            proof = thm
         acceptance.append('theorem %s : Contracts.%s := %s' % (name, name, proof))
         acceptance.append('')
     contracts.append('end JurisLean.FullMath.Contracts')

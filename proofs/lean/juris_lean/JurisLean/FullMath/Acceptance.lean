@@ -20,6 +20,20 @@ open JurisLean.FullMath.Numeric.Iv
 
 namespace JurisLean.FullMath.Acceptance
 
+theorem root_GENERIC_FINITE : Contracts.root_GENERIC_FINITE := JurisLean.FullMath.Roots.root_GENERIC_FINITE
+
+theorem root_SYMBOLIC_EXACT : Contracts.root_SYMBOLIC_EXACT := JurisLean.FullMath.Roots.root_SYMBOLIC_EXACT_box
+
+theorem root_STATISTICAL_COMPOSITION : Contracts.root_STATISTICAL_COMPOSITION := JurisLean.FullMath.Roots.root_STATISTICAL_COMPOSITION
+
+theorem root_CIVIL : Contracts.root_CIVIL := JurisLean.FullMath.Roots.root_CIVIL
+
+theorem root_CRIMINAL : Contracts.root_CRIMINAL := JurisLean.FullMath.Roots.root_CRIMINAL
+
+theorem root_ADMINISTRATIVE : Contracts.root_ADMINISTRATIVE := JurisLean.FullMath.Roots.root_ADMINISTRATIVE
+
+theorem root_DOCUMENT_DELIVERY : Contracts.root_DOCUMENT_DELIVERY := JurisLean.FullMath.Roots.root_DOCUMENT_DELIVERY
+
 theorem target_F01 : Contracts.target_F01 := JurisLean.FullMath.Core.phi_iff_components
 
 theorem target_F02 : Contracts.target_F02 := JurisLean.FullMath.Core.migrate_main_key
@@ -132,7 +146,7 @@ theorem target_C05 : Contracts.target_C05 := JurisLean.FullMath.Composition.chai
 
 theorem target_C06 : Contracts.target_C06 := JurisLean.FullMath.Composition.checker_correspondence
 
-theorem target_C07 : Contracts.target_C07 := ⟨JurisLean.FullMath.Composition.complete_requires_equality, JurisLean.FullMath.Roots.root_GENERIC_FINITE, JurisLean.FullMath.Roots.root_SYMBOLIC_EXACT_box, JurisLean.FullMath.Roots.root_STATISTICAL_COMPOSITION, JurisLean.FullMath.Roots.root_CIVIL, JurisLean.FullMath.Roots.root_CRIMINAL, JurisLean.FullMath.Roots.root_ADMINISTRATIVE, JurisLean.FullMath.Roots.root_DOCUMENT_DELIVERY⟩
+theorem target_C07 : Contracts.target_C07 := ⟨JurisLean.FullMath.Composition.complete_requires_equality, Acceptance.root_GENERIC_FINITE, Acceptance.root_SYMBOLIC_EXACT_box, Acceptance.root_STATISTICAL_COMPOSITION, Acceptance.root_CIVIL, Acceptance.root_CRIMINAL, Acceptance.root_ADMINISTRATIVE, Acceptance.root_DOCUMENT_DELIVERY⟩
 
 theorem target_EXT01 : Contracts.target_EXT01 := JurisLean.FullMath.Representation.certificate_implies_mode
 
@@ -150,7 +164,7 @@ theorem target_EXT07 : Contracts.target_EXT07 := JurisLean.FullMath.Causal.sup_n
 
 theorem target_EXT08 : Contracts.target_EXT08 := JurisLean.FullMath.Action.shared_theta_total_identity
 
-theorem target_EXT09 : Contracts.target_EXT09 := JurisLean.FullMath.Roots.ext09_domainComposition
+theorem target_EXT09 : Contracts.target_EXT09 := ⟨JurisLean.FullMath.Roots.ext09_domainComposition, Acceptance.root_CIVIL, Acceptance.root_CRIMINAL, Acceptance.root_ADMINISTRATIVE⟩
 
 theorem demand_D001 : Contracts.demand_D001 := JurisLean.FullMath.Core.locator_not_identity
 
@@ -439,19 +453,5 @@ theorem gap_X08 : Contracts.gap_X08 := JurisLean.FullMath.Gaps.gap_X08
 theorem gap_X09 : Contracts.gap_X09 := JurisLean.FullMath.Gaps.gap_X09
 
 theorem gap_X10 : Contracts.gap_X10 := JurisLean.FullMath.Gaps.gap_X10
-
-theorem root_GENERIC_FINITE : Contracts.root_GENERIC_FINITE := JurisLean.FullMath.Roots.root_GENERIC_FINITE
-
-theorem root_SYMBOLIC_EXACT : Contracts.root_SYMBOLIC_EXACT := JurisLean.FullMath.Roots.root_SYMBOLIC_EXACT_box
-
-theorem root_STATISTICAL_COMPOSITION : Contracts.root_STATISTICAL_COMPOSITION := JurisLean.FullMath.Roots.root_STATISTICAL_COMPOSITION
-
-theorem root_CIVIL : Contracts.root_CIVIL := JurisLean.FullMath.Roots.root_CIVIL
-
-theorem root_CRIMINAL : Contracts.root_CRIMINAL := JurisLean.FullMath.Roots.root_CRIMINAL
-
-theorem root_ADMINISTRATIVE : Contracts.root_ADMINISTRATIVE := JurisLean.FullMath.Roots.root_ADMINISTRATIVE
-
-theorem root_DOCUMENT_DELIVERY : Contracts.root_DOCUMENT_DELIVERY := JurisLean.FullMath.Roots.root_DOCUMENT_DELIVERY
 
 end JurisLean.FullMath.Acceptance

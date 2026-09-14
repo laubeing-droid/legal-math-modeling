@@ -38,7 +38,9 @@ def test_binding_positive(name):
     assert mapped in INV, mapped
     assert re.search(r'^def %s : Prop :=' % re.escape(name), CONTRACTS_TXT, re.M)
     assert re.search(r'^theorem %s : Contracts\.%s :=' % (re.escape(name), re.escape(name)), ACCEPT_TXT, re.M)
-    assert re.search(r':= %s\b' % re.escape(mapped), ACCEPT_TXT, re.M) or name == 'target_C07'
+    line = re.search(r'^theorem %s : Contracts\.%s :=' % (re.escape(name), re.escape(name)),
+                     ACCEPT_TXT, re.M).group(0)
+    assert mapped in line
 
 
 def _required(name):

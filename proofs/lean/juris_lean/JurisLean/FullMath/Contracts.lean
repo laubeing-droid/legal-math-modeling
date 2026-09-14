@@ -26,6 +26,32 @@ open JurisLean.FullMath.Numeric.Iv
 
 namespace JurisLean.FullMath.Contracts
 
+def root_GENERIC_FINITE : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A]
+    (pred : A → Bool) (out : Finset A)
+    (hcert : Representation.checkExact pred out = true), (↑out : Set A) = {x | pred x = true}
+
+def root_SYMBOLIC_EXACT : Prop := ∀ (d : ℕ) (b : Box d), ModeCorrect (Asgn d) (Box d) boxDen b (boxDen b) .exact
+
+def root_STATISTICAL_COMPOSITION : Prop := ∀ {Ω : Type} (P : Set Ω → ℚ)
+    (events : List (Set Ω)) (budgets : List ℚ)
+    (hlen : events.length = budgets.length)
+    (hsub : ∀ e f : Set Ω, P (e ∪ f) ≤ P e + P f)
+    (hempty : P ∅ = 0)
+    (hch : ∀ i (_hi : i < events.length), P events[i]! ≤ budgets[i]!), P (events.foldr (· ∪ ·) ∅) ≤ budgets.sum
+
+def root_CIVIL : Prop := ∀ (c : CivilClaim), CivilConserved c
+
+def root_CRIMINAL : Prop := ∀ {Person : Type} (cc : CriminalCase Person)
+    (convicted : Person → Prop)
+    (hrule : ∀ p, convicted p → cc.elements p ≠ [] ∧ cc.evidenceLawful p ∧ cc.standardMet p), ∀ p, convicted p → cc.elements p ≠ [] ∧ cc.evidenceLawful p ∧ cc.standardMet p
+
+def root_ADMINISTRATIVE : Prop := ∀ (ac : AdminCase)
+    (enforceable : Prop)
+    (hrule : enforceable → ac.authorityHeld ∧ ac.dutyImposed ∧ ac.procedureFollowed), enforceable → ac.authorityHeld ∧ ac.dutyImposed ∧ ac.procedureFollowed
+
+def root_DOCUMENT_DELIVERY : Prop := ∀ (cs : List Char)
+    (hplain : Document.Plain cs), Document.parseL (Document.renderL cs) = some (cs, [])
+
 def target_F01 : Prop := ∀ (I : Env) (w : Witness), Phi I w ↔ (PhiF I w ∧ PhiN I w ∧ PhiB I w ∧ PhiQ I w ∧ PhiP I w ∧ PhiA I w ∧ I.gamma w)
 
 def target_F02 : Prop := ∀ (c : CompId) (s : String), (migrate c s).domain = c.domain ∧ (migrate c s).model = c.model ∧ (migrate c s).scenario = c.scenario ∧ (migrate c s).semScope = s
@@ -213,12 +239,16 @@ def target_EXT07 : Prop := sSup (Set.Ico (0 : ℝ) 1) = 1 ∧ (1 : ℝ) ∉ Set.
 
 def target_EXT08 : Prop := ∀ (θ : Bool), rInd θ + rCon θ = 1
 
-def target_EXT09 : Prop := ∀ (Person : Type)
+def target_EXT09 : Prop := (∀ (Person : Type)
     (cc : CriminalCase Person) (convicted : Person → Prop)
     (crule : ∀ p, convicted p → cc.elements p ≠ [] ∧ cc.evidenceLawful p ∧ cc.standardMet p)
     (ac : AdminCase) (enforceable : Prop)
     (arule : enforceable → ac.authorityHeld ∧ ac.dutyImposed ∧ ac.procedureFollowed)
-    (civil : CivilClaim), (∀ p, convicted p → cc.elements p ≠ [] ∧ cc.evidenceLawful p ∧ cc.standardMet p) ∧ (enforceable → ac.authorityHeld ∧ ac.dutyImposed ∧ ac.procedureFollowed) ∧ CivilConserved civil
+    (civil : CivilClaim), (∀ p, convicted p → cc.elements p ≠ [] ∧ cc.evidenceLawful p ∧ cc.standardMet p) ∧ (enforceable → ac.authorityHeld ∧ ac.dutyImposed ∧ ac.procedureFollowed) ∧ CivilConserved civil) ∧ (∀ (c : CivilClaim), CivilConserved c) ∧ (∀ {Person : Type} (cc : CriminalCase Person)
+    (convicted : Person → Prop)
+    (hrule : ∀ p, convicted p → cc.elements p ≠ [] ∧ cc.evidenceLawful p ∧ cc.standardMet p), ∀ p, convicted p → cc.elements p ≠ [] ∧ cc.evidenceLawful p ∧ cc.standardMet p) ∧ (∀ (ac : AdminCase)
+    (enforceable : Prop)
+    (hrule : enforceable → ac.authorityHeld ∧ ac.dutyImposed ∧ ac.procedureFollowed), enforceable → ac.authorityHeld ∧ ac.dutyImposed ∧ ac.procedureFollowed)
 
 def demand_D001 : Prop := ∃ a b : List String, locator a = locator b ∧ a ≠ b
 
@@ -593,31 +623,5 @@ def gap_X08 : Prop := (fun _ : Doc => "constant") (docPut ([] : Doc) "priv" "val
 def gap_X09 : Prop := (∀ s : BurdenSlot, resolveList [] s = BurdenState.pending) ∧ (∀ (ps : List String) (s : BurdenSlot), resolveList ps s = BurdenState.pending → resolveList ps s ≠ BurdenState.met)
 
 def gap_X10 : Prop := (∀ v v' : SourceVersion, cacheKey v ≠ cacheKey v' → cacheHit v v' = false) ∧ cacheHit (⟨1, 1, some 9⟩ : SourceVersion) (⟨1, 2, none⟩ : SourceVersion) = false
-
-def root_GENERIC_FINITE : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A]
-    (pred : A → Bool) (out : Finset A)
-    (hcert : Representation.checkExact pred out = true), (↑out : Set A) = {x | pred x = true}
-
-def root_SYMBOLIC_EXACT : Prop := ∀ (d : ℕ) (b : Box d), ModeCorrect (Asgn d) (Box d) boxDen b (boxDen b) .exact
-
-def root_STATISTICAL_COMPOSITION : Prop := ∀ {Ω : Type} (P : Set Ω → ℚ)
-    (events : List (Set Ω)) (budgets : List ℚ)
-    (hlen : events.length = budgets.length)
-    (hsub : ∀ e f : Set Ω, P (e ∪ f) ≤ P e + P f)
-    (hempty : P ∅ = 0)
-    (hch : ∀ i (_hi : i < events.length), P events[i]! ≤ budgets[i]!), P (events.foldr (· ∪ ·) ∅) ≤ budgets.sum
-
-def root_CIVIL : Prop := ∀ (c : CivilClaim), CivilConserved c
-
-def root_CRIMINAL : Prop := ∀ {Person : Type} (cc : CriminalCase Person)
-    (convicted : Person → Prop)
-    (hrule : ∀ p, convicted p → cc.elements p ≠ [] ∧ cc.evidenceLawful p ∧ cc.standardMet p), ∀ p, convicted p → cc.elements p ≠ [] ∧ cc.evidenceLawful p ∧ cc.standardMet p
-
-def root_ADMINISTRATIVE : Prop := ∀ (ac : AdminCase)
-    (enforceable : Prop)
-    (hrule : enforceable → ac.authorityHeld ∧ ac.dutyImposed ∧ ac.procedureFollowed), enforceable → ac.authorityHeld ∧ ac.dutyImposed ∧ ac.procedureFollowed
-
-def root_DOCUMENT_DELIVERY : Prop := ∀ (cs : List Char)
-    (hplain : Document.Plain cs), Document.parseL (Document.renderL cs) = some (cs, [])
 
 end JurisLean.FullMath.Contracts

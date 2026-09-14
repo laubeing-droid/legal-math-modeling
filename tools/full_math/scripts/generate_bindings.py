@@ -89,12 +89,12 @@ def main():
             'proof_sources': ['proofs/lean/juris_lean/JurisLean/FullMath/' + INV[mapped].split('FullMath/')[1]],
             'implementation_sources': [impl],
             'test_ids': [
-                'test_registration_bindings.py::test_binding_positive[%s]' % local,
-                'test_registration_bindings.py::test_scope_integrity',
+                'tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[%s]' % local,
+                'tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity',
             ],
             'negative_test_ids': [
-                'test_registration_bindings.py::test_binding_negative[%s]' % local,
-                'test_registration_bindings.py::test_binding_negative_mode[%s]' % local,
+                'tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[%s]' % local,
+                'tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[%s]' % local,
             ],
             'semantic_links': [mapped],
         }

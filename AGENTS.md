@@ -63,7 +63,7 @@ This is a navigation aid, not a complete inventory. Exact statements and current
 | DungFixedPoint.lean | `F_monotone`, `finite_termination`, `groundedSpec_is_fixed_point`, `groundedSpec_is_least_fixed_point` |
 | HornFixedPoint.lean | `horn_operator_monotone`, `horn_finite_termination`, `horn_result_fixed_point`, `horn_result_least_fixed_point` |
 | FiniteMonotoneIteration.lean | `iter_mono`, `iter_stable`, `exists_fixpoint_le_card`, `fixed_at_card` |
-| WeightedSupNorm.lean | `weightedSupDist_nonneg`, `weightedSupDist_triangle`, `weightedSupDist_complete` |
+| WeightedSupNorm.lean | `weightedSupDist_nonneg`, `weightedSupDist_triangle`, `weightedSupDist_separates_points` |
 | DDLDefinitions.lean | `violation_implies_norm_active`, `permission_no_direct_violation`, `constitutive_no_direct_violation` |
 | ULM16TheoryComposition.lean | ULM composition results; inspect source for exact statements |
 

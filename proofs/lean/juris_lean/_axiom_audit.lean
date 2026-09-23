@@ -7,4 +7,4 @@ import JurisLean.WeightedSupNorm
 #print assumptions FiniteMonotoneIteration.fixed_at_card
 #print assumptions DungFixedPoint.grounded_is_least_fixed_point
 #print assumptions HornFixedPoint.horn_completeness
-#print assumptions HornFixedPoint.horn_result_is_minimal_model
+#print assumptions HornFixedPoint.horn_result_unique_least_fixed_point

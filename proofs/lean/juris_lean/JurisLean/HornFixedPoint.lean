@@ -70,8 +70,9 @@ theorem horn_result_least_fixed_point (S : Finset α) (hS : TH sys S = S) :
       simpa [hS] using h_mono
   exact h_ind (Finset.card sys.univ)
 
-/-- 8: horn_soundness — every derived atom is in the univ. -/
-theorem horn_soundness :
+/-- 8: horn_result_subset_univ — the closure at |univ| stays inside the universe.
+This is totality of the carrier, not logical soundness of the rules. -/
+theorem horn_result_subset_univ :
     FiniteMonotoneSystem.iter (toFiniteMonotoneSystem sys) (Finset.card sys.univ) ⊆ sys.univ :=
   FiniteMonotoneSystem.iter_subset_univ (toFiniteMonotoneSystem sys) (Finset.card sys.univ)
 
@@ -81,8 +82,11 @@ theorem horn_completeness (a : α) (h : ∀ S, TH sys S = S → a ∈ S) :
   -- The result is a fixed point (horn_result_fixed_point), so a is in it
   h _ (horn_result_fixed_point sys)
 
-/-- 10: horn_result_is_minimal_model — the fixpoint is the unique minimal model. -/
-theorem horn_result_is_minimal_model :
+/-- 10: horn_result_unique_least_fixed_point — the immediate-consequence operator
+has exactly one least fixed point. This is a fixed-point statement over `TH`; it
+is not a claim about Herbrand minimal models, which would need a separate bridge
+identifying the fixed points of `TH` with the models of the rules. -/
+theorem horn_result_unique_least_fixed_point :
     ∃! M, TH sys M = M ∧ ∀ N, TH sys N = N → M ⊆ N := by
   let result := FiniteMonotoneSystem.iter (toFiniteMonotoneSystem sys) (Finset.card sys.univ)
   have h_fp : TH sys result = result := horn_result_fixed_point sys

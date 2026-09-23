@@ -15,6 +15,6 @@ open DungAAF
 
 open HornSystem
 #print axioms horn_completeness
-#print axioms horn_result_is_minimal_model
+#print axioms horn_result_unique_least_fixed_point
 
-#print axioms weightedSupDist_complete
+#print axioms weightedSupDist_separates_points

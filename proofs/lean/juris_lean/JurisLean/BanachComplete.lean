@@ -21,7 +21,7 @@ variable {n : Nat} [Nonempty (Fin n)]
   dist_comm x y := weightedSupDist_symm w x y
   dist_triangle x y z := weightedSupDist_triangle w hw x y z
   eq_of_dist_eq_zero {x y} h := by
-    have hsep := weightedSupDist_complete w hw x y
+    have hsep := weightedSupDist_separates_points w hw x y
     exact hsep.2.mp h
   edist_dist x y := rfl
 

@@ -72,8 +72,10 @@ theorem weightedSupDist_symm (w : Fin n → ℝ) (x y : Fin n → ℝ) : weighte
   intro i hi
   rw [← abs_neg, neg_sub]
 
-/-- Weighted sup distance is nonnegative and separates points: d(x,y)=0 iff x=y. -/
-theorem weightedSupDist_complete (w : Fin n → ℝ) (hw : PositiveWeights w) :
+/-- Weighted sup distance is nonnegative and separates points: d(x,y)=0 iff x=y.
+This is point separation, not metric-space completeness; `CompleteSpace` for this
+distance is not established here. -/
+theorem weightedSupDist_separates_points (w : Fin n → ℝ) (hw : PositiveWeights w) :
     ∀ x y, weightedSupDist w x y ≥ 0 ∧ (weightedSupDist w x y = 0 ↔ x = y) := by
   intro x y
   constructor

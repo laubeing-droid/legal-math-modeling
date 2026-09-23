@@ -22,7 +22,7 @@
 
 ## 本轮已核工件与读过的源码
 
-- 工件：`theorem_inventory_v3.json`（2026-09-23 重生成，subject 2d06da6；计数 145/111/27/4 与重生成前一致）、`ULMAllTheoremsAxiomAudit.lean`（145 目标）、`ULMCoreCompAxiomAudit.lean`（27 目标）、`paper/references.bib`（草稿所引 8 条逐条查注记）。
+- 工件：`theorem_inventory_v3.json`（2026-09-23 两次重生成，现行 subject 1e0875c；计数 145/111/27/4 始终一致）、`ULMAllTheoremsAxiomAudit.lean`（145 目标）、`ULMCoreCompAxiomAudit.lean`（27 目标）、`paper/references.bib`（草稿所引 8 条逐条查注记）。
 - 源码：FiniteMonotoneIteration、HornDefinitions、HornFixedPoint、ULM01–ULM16 全部 16 个编号模块、ReceiptAuthority、TaintNoninterference、TemporalKripke、DDLDefinitions、ArgumentSemanticsRegistry、BusinessRoot/SevenAxis。
 - 两本书指定部分原文已读：《计算法学方法初阶》第一章开头、《AI背景下类案检索方法新指引》自序（书目在用户私有蒸馏工作区，路径不入库）。
 - wave4 计算法学七册已全文通读并合成维度证据库（十三维框架+行号锚点）。该证据文件含商业出版书籍逐字引文，按 `docs/disclosure/PUBLIC_PRIVATE_BOUNDARY.md`（第三方材料无再分发依据默认不入库）**不进仓库**，存用户同步网盘 `legal-math-evidence/`；论文引用其结论时须回查原书。
@@ -44,3 +44,4 @@
 - **机制（实测钉死，修正早前"blob 为 CRLF"的误判）**：仓库 blob 一直是 LF（`git ls-files --eol` 索引侧全 `i/lf`，`i/crlf` 计数 0）；故障在于 Windows 工作树有 67 个 .lean 为 CRLF 字节，生成器按磁盘字节记 sha256，清单固化了 CRLF 哈希；CI Linux 检出为 LF，字节不同即失配。本地 verify 通过与 CI 失败的矛盾由此解释。
 - 修复动作：按 `.gitattributes`（`*.lean text eol=lf`）把 67 个工作树文件刷为 LF（blob 零变化、Lean 内容零改动），在 subject 2d06da6 重生成 `theorem_inventory_v3.json`（137 行哈希更新；计数 145/111/27/4 与审计目标数全部不变），`--verify` 通过；论文头部与本文档的 subject 绑定同步改为 2d06da6。
 - 教训入规：生成哈希类工件前必须先 `git ls-files --eol` 确认工作树行尾与属性一致，否则工件会把平台脏字节固化。
+- **第一轮修复后复跑仍红（run 35832550717，mismatch 从 137 降到 2）**：`_check.lean`（BOM+单处 CRLF）与 `DungDefinitions.lean`（48 处 CRLF 混合行尾）是 `w/mixed`，第一轮刷新名单只筛了全 CRLF 的 `w/crlf` 而漏掉混合型。第二轮按"非 `w/lf` 即刷"处理（共 2 文件，blob 零变化），在 subject 1e0875c 再次重生成清单；新增强校验：200 文件磁盘哈希 = HEAD blob 哈希 = JSON 记录值三方全等（0 失配），这是 CI Linux 检出的本地等价判据。论文绑定同步推进到 1e0875c。

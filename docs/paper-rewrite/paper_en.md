@@ -4,7 +4,7 @@
 
 **Status**: written section by section; Sections 1–3 complete.
 **Build and axiom-audit status**: CI_NOT_RUN (Lean is never executed locally; continuous integration is the sole authority, and triggering it requires per-round authorization).
-**Count bindings**: the counts 145, 27, and 4 are static text measurements at the source level, bound to the generated artifact `docs/formal-release/theorem_inventory_v3.json` (subject `2d06da6`). No commit after that subject touched the numbered modules, so the counts are unaffected. That artifact declares itself a static inventory, not a release certificate.
+**Count bindings**: the counts 145, 27, and 4 are static text measurements at the source level, bound to the generated artifact `docs/formal-release/theorem_inventory_v3.json` (subject `1e0875c`). No commit after that subject touched the numbered modules, so the counts are unaffected. That artifact declares itself a static inventory, not a release certificate.
 **Sourcing discipline**: no sentence of this manuscript derives from the legacy documents under `paper/`. Every number and strong assertion maps to a counterpart recorded in the claim table at the end of each section.
 
 ---

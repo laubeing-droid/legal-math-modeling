@@ -1,6 +1,6 @@
 # 论文重写施工进度
 
-本轮（2026-09-23，第二批次）：wave4 计算法学七册已由 8 个子代理全文通读（德国书拆两半），维度框架从用户提出的 5 维扩至 13 维，证据合成落点 `docs/paper-rewrite/wave4-evidence.md`（含维度×书证×仓库对应矩阵、六类不可表达性的法学背书表、五类形式化边界、八条结构性结论）。完整逐条引文报告在本轮会话记录中。下一轮：用该证据库重写"法律统一数学模型"方案与 GPT 提示词，并续写论文第 4 节。
+本轮（2026-09-23，第二批次）：wave4 计算法学七册已由 8 个子代理全文通读（德国书拆两半），维度框架从用户提出的 5 维扩至 13 维，证据合成落点为网盘 `legal-math-evidence/wave4-evidence.md`（含维度×书证×仓库对应矩阵、六类不可表达性的法学背书表、五类形式化边界、八条结构性结论；因含商业书逐字引文不入库）。完整逐条引文报告在本轮会话记录中。下一轮：用该证据库重写"法律统一数学模型"方案与 GPT 提示词，并续写论文第 4 节。
 
 本轮（2026-09-23，第一批次）：完成第 1、2、3 节中英双版，落点 `paper_cn.md`、`paper_en.md`（中文在前）；并完成对上一轮产出的翻车审查（见下节）。
 
@@ -22,7 +22,7 @@
 
 ## 本轮已核工件与读过的源码
 
-- 工件：`theorem_inventory_v3.json`（subject 5084f25；HEAD cd5568b 未触及 ULM，计数仍有效）、`ULMAllTheoremsAxiomAudit.lean`（145 目标）、`ULMCoreCompAxiomAudit.lean`（27 目标）、`paper/references.bib`（草稿所引 8 条逐条查注记）。
+- 工件：`theorem_inventory_v3.json`（2026-09-23 重生成，subject 2d06da6；计数 145/111/27/4 与重生成前一致）、`ULMAllTheoremsAxiomAudit.lean`（145 目标）、`ULMCoreCompAxiomAudit.lean`（27 目标）、`paper/references.bib`（草稿所引 8 条逐条查注记）。
 - 源码：FiniteMonotoneIteration、HornDefinitions、HornFixedPoint、ULM01–ULM16 全部 16 个编号模块、ReceiptAuthority、TaintNoninterference、TemporalKripke、DDLDefinitions、ArgumentSemanticsRegistry、BusinessRoot/SevenAxis。
 - 两本书指定部分原文已读：《计算法学方法初阶》第一章开头、《AI背景下类案检索方法新指引》自序（书目在用户私有蒸馏工作区，路径不入库）。
 - wave4 计算法学七册已全文通读并合成维度证据库（十三维框架+行号锚点）。该证据文件含商业出版书籍逐字引文，按 `docs/disclosure/PUBLIC_PRIVATE_BOUNDARY.md`（第三方材料无再分发依据默认不入库）**不进仓库**，存用户同步网盘 `legal-math-evidence/`；论文引用其结论时须回查原书。
@@ -37,3 +37,10 @@
 ## 测试
 
 `python -m pytest tests/test_paper_claims_guard.py tests/test_theorem_inventory.py -q`：13 项通过。全量 pytest 见 HANDOFF"已完成的改动"（144 项）；本轮只新增 docs 下 markdown，未改任何代码与 Lean 文件。
+
+## CI 修复记录（2026-09-23 第三批次，授权执行）
+
+- run 35819869335（subject 2d06da6）结果：`lean-full-clean-build` **SUCCESS**（改名三条定理的 Lean 编译绿证首次取得）；`python-gates` **FAIL**，`test_theorem_inventory` 报 137 个 .lean 文件哈希失配；`seven-axis-acceptance`/`final-gate` 为 artifact 级联失败。上一绿 run 35124268367（subject 5084f25）时清单工件与该测试尚未入库。
+- **机制（实测钉死，修正早前"blob 为 CRLF"的误判）**：仓库 blob 一直是 LF（`git ls-files --eol` 索引侧全 `i/lf`，`i/crlf` 计数 0）；故障在于 Windows 工作树有 67 个 .lean 为 CRLF 字节，生成器按磁盘字节记 sha256，清单固化了 CRLF 哈希；CI Linux 检出为 LF，字节不同即失配。本地 verify 通过与 CI 失败的矛盾由此解释。
+- 修复动作：按 `.gitattributes`（`*.lean text eol=lf`）把 67 个工作树文件刷为 LF（blob 零变化、Lean 内容零改动），在 subject 2d06da6 重生成 `theorem_inventory_v3.json`（137 行哈希更新；计数 145/111/27/4 与审计目标数全部不变），`--verify` 通过；论文头部与本文档的 subject 绑定同步改为 2d06da6。
+- 教训入规：生成哈希类工件前必须先 `git ls-files --eol` 确认工作树行尾与属性一致，否则工件会把平台脏字节固化。

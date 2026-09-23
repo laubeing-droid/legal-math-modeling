@@ -23,7 +23,8 @@ No narrative document can upgrade `UNKNOWN`, `SKIP`, `TIMEOUT`, stale evidence, 
 | Claim reviewer | [allowed claims](formal-release/ALLOWED_CLAIMS.md), [forbidden claims](formal-release/FORBIDDEN_CLAIMS.md) |
 | Model implementer | [canonical schema](spec/canonical_legal_schema.md), [DDL core](spec/ddl_minimal_core.md), [Horn-to-AAF contract](spec/horn_to_aaf_contract.md), [certificate checker](spec/certificate_checker_boundary.md) |
 | Cross-repository integrator | [authority map](remediation/authority_map.md), [runtime refinement evidence](remediation/runtime-refinement/evidence.md) |
-| Research reader | [paper corpus](../paper/README.md) |
+| Research reader | [paper corpus](../paper/README.md), [rewrite handoff](paper-rewrite/HANDOFF.md) |
+| Paper rewrite contributor | [progress ledger](paper-rewrite/PROGRESS.md), [Chinese manuscript](paper-rewrite/paper_cn.md), [English manuscript](paper-rewrite/paper_en.md) |
 | Contributor | [proof artifacts](../proofs/README.md), [Lean boundary](../proofs/lean/README.md), [executable specs](../theory/spec/README.md), [data boundary](../data/README.md), [program plan](../program/PLANS.md) |
 
 ## Current document inventory
@@ -44,6 +45,10 @@ No narrative document can upgrade `UNKNOWN`, `SKIP`, `TIMEOUT`, stale evidence, 
 | `remediation/authority_map.md` | Which artifact decides each question | Governance contract |
 | `remediation/runtime-refinement/evidence.md` | Current three-fixture cross-repo evidence | Engineering evidence |
 | `disclosure/PUBLIC_PRIVATE_BOUNDARY.md` | Repository disclosure boundary | Scope contract |
+| `paper-rewrite/HANDOFF.md` | Rewrite execution package and claim ceiling | Working contract |
+| `paper-rewrite/PROGRESS.md` | Rewrite progress, audit corrections, external evidence pointers | Dynamic ledger |
+| `paper-rewrite/paper_cn.md` | Rewrite manuscript, Chinese (sections 1–3 of 9) | Working manuscript |
+| `paper-rewrite/paper_en.md` | Rewrite manuscript, English (sections 1–3 of 9) | Working manuscript |
 | `audit/documentation_rewrite_20260701.md` | Prior rewrite record | Historical only |
 
 The 2026-07-01 audit record is retained to explain provenance. It does not describe the current document tree and cannot override this index.

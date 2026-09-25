@@ -3,6 +3,9 @@ import JurisLean.DungFixedPoint
 import JurisLean.HornFixedPoint
 import JurisLean.WeightedSupNorm
 import JurisLean.ULMAxiomAudit
+import JurisLean.KernelV3
+import JurisLean.Hohfeld
+import JurisLean.BanachCertificate
 
 /-! Axiom audit for formal core release v1. -/
 
@@ -19,11 +22,6 @@ open HornSystem
 
 #print axioms weightedSupDist_separates_points
 
-import JurisLean.KernelV3
-import JurisLean.Hohfeld
-import JurisLean.BanachCertificate
-
-open JurisLean.KernelV3
 #print axioms JurisLean.KernelV3.mkEval_judgment
 #print axioms JurisLean.KernelV3.mkEval_disposition
 #print axioms JurisLean.KernelV3.judgment_notEstablished_does_not_force_truth_false

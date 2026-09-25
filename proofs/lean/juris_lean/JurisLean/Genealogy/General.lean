@@ -192,7 +192,7 @@ theorem P083_sortEvpi_length
   | cons x xs ih =>
       simp [sortEvpi, P083_insertEvpi_length, ih]
 
-/-- 降序检查谓词（本轮降序正确性仍为见证级，见 witness）。 -/
+/-- 降序检查谓词。 -/
 def sortedDescending :
     List P083EvpiItem → Bool
   | [] => true
@@ -201,7 +201,64 @@ def sortedDescending :
       decide (y.evpi ≤ x.evpi) &&
         sortedDescending (y :: xs)
 
-/-- [P083-WITNESS-RETAINED] 降序见证，不冒充普遍排序正确性定理。 -/
+/-- [P083-GENERAL-C] 插入保持降序（无前置条件的一般式）。 -/
+theorem P083_insertEvpi_preserves_sorted (x : P083EvpiItem) :
+    ∀ ys, sortedDescending ys = true →
+      sortedDescending (insertEvpi x ys) = true := by
+  intro ys
+  induction ys with
+  | nil =>
+      intro _
+      rfl
+  | cons y ys' ih =>
+      intro hsorted
+      simp only [insertEvpi]
+      cases hcond : decide (y.evpi ≤ x.evpi) with
+      | true =>
+          simp only [hcond]
+          simp only [sortedDescending]
+          simp only [Bool.and_eq_true, decide_eq_true_eq] at hsorted ⊢
+          refine ⟨?_, hsorted⟩
+          omega
+      | false =>
+          simp only [hcond]
+          have ihResult := ih hsorted.2
+          -- 展开 ys' 分析插入结果的头
+          cases ys' with
+          | nil =>
+              simp [insertEvpi, sortedDescending]
+              simp only [Bool.and_eq_true, decide_eq_true_eq]
+              omega
+          | cons z zs =>
+              simp only [insertEvpi]
+              cases hz : decide (z.evpi ≤ x.evpi) with
+              | true =>
+                  simp only [hz]
+                  simp only [sortedDescending]
+                  simp only [Bool.and_eq_true, decide_eq_true_eq]
+                  refine ⟨?_, ⟨?_, ?_⟩⟩
+                  · omega
+                  · omega
+                  · exact hsorted.2
+              | false =>
+                  simp only [hz]
+                  simp only [sortedDescending]
+                  simp only [Bool.and_eq_true, decide_eq_true_eq]
+                  refine ⟨?_, ?_⟩
+                  · have hzy : z.evpi ≤ y.evpi := hsorted.1
+                    omega
+                  · exact ihResult
+
+/-- [P083-GENERAL-D] 排序结果恒降序（一般式）。 -/
+theorem P083_sortEvpi_sorted (xs : List P083EvpiItem) :
+    sortedDescending (sortEvpi xs) = true := by
+  induction xs with
+  | nil => rfl
+  | cons x xs ih =>
+      simp only [sortEvpi]
+      exact P083_insertEvpi_preserves_sorted x (sortEvpi xs) ih
+
+/-- [P083-WITNESS-RETAINED] 降序见证。 -/
 theorem P083_sortedDescending_witness :
     sortedDescending
       [
@@ -210,7 +267,6 @@ theorem P083_sortedDescending_witness :
         { id := 3, evpi := 20 }
       ] = true := by
   decide
-
 
 /-! ============================================================
     P084 — 上诉 EV 单调（严格白名单版，无 have）

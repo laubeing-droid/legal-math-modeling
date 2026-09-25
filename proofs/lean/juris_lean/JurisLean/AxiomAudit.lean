@@ -267,3 +267,25 @@ open HornSystem
 #print axioms JurisLean.Genealogy.TSpectrum.T39.variable_elimination_equals_independent_enumeration
 #print axioms JurisLean.Genealogy.TSpectrum.T40.observational_identity
 #print axioms JurisLean.Genealogy.TSpectrum.T40.hidden_change_preserves_observation
+
+/-! T-spectrum batch 3. -/
+#print axioms JurisLean.Genealogy.TSpectrum.T41.valid_split_requires_time_order
+#print axioms JurisLean.Genealogy.TSpectrum.T42.fully_specified_witness
+#print axioms JurisLean.Genealogy.TSpectrum.T43.observed_only_count
+#print axioms JurisLean.Genealogy.TSpectrum.T44.empirical_requires_justification
+#print axioms JurisLean.Genealogy.TSpectrum.T45.calibration_recorded
+#print axioms JurisLean.Genealogy.TSpectrum.T46.proper_posterior_witness
+#print axioms JurisLean.Genealogy.TSpectrum.T47.legal_identity_preserved
+#print axioms JurisLean.Genealogy.TSpectrum.T48.pav_single_fixed
+#print axioms JurisLean.Genealogy.TSpectrum.T49.brier_perfect_prediction
+#print axioms JurisLean.Genealogy.TSpectrum.T50.valid_interval_witness
+#print axioms JurisLean.Genealogy.TSpectrum.T51.direction_explicit
+#print axioms JurisLean.Genealogy.TSpectrum.T52.contaminated_zero_weight
+#print axioms JurisLean.Genealogy.TSpectrum.T53.bound_witness
+#print axioms JurisLean.Genealogy.TSpectrum.T54.logistic_deterministic
+#print axioms JurisLean.Genealogy.TSpectrum.T55.stages_strictly_ordered
+#print axioms JurisLean.Genealogy.TSpectrum.T56.signature_deterministic
+#print axioms JurisLean.Genealogy.TSpectrum.T57.directed_witness
+#print axioms JurisLean.Genealogy.TSpectrum.T58.complete_difference
+#print axioms JurisLean.Genealogy.TSpectrum.T59.horn_form_deterministic
+#print axioms JurisLean.Genealogy.TSpectrum.T60.role_preservation

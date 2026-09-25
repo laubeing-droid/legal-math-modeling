@@ -42,3 +42,4 @@ import JurisLean.Hohfeld
 import JurisLean.Genealogy.All
 import JurisLean.Genealogy.TSpectrum.Batch1
 import JurisLean.Genealogy.TSpectrum.Batch2
+import JurisLean.Genealogy.TSpectrum.Batch3

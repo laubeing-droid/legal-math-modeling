@@ -178,11 +178,9 @@ theorem P083_insertEvpi_length
   | cons y ys ih =>
       cases h : decide (y.evpi ≤ x.evpi) with
       | true =>
-          simp only [insertEvpi, h, List.length_cons]
-          omega
+          simp [insertEvpi, h, List.length_cons]
       | false =>
-          simp only [insertEvpi, h, ih, List.length_cons]
-          omega
+          simp [insertEvpi, h, ih, List.length_cons]
 
 /-- [P083-GENERAL-B] 完整排序保持列表长度不变。 -/
 theorem P083_sortEvpi_length
@@ -291,16 +289,15 @@ def allocate :
         remainder := payment
       }
   | payment, debt :: debts =>
-      if decide (payment ≤ debt) then
+      if h : payment ≤ debt then
         {
           allocated := [payment]
           remainder := 0
         }
       else
-        let tail := allocate (payment - debt) debts
         {
-          allocated := debt :: tail.allocated
-          remainder := tail.remainder
+          allocated := debt :: (allocate (payment - debt) debts).allocated
+          remainder := (allocate (payment - debt) debts).remainder
         }
 
 /-- 本地加法重结合（omega 闭合，不引用 Nat.add_assoc）。 -/

@@ -1194,7 +1194,7 @@ def conditionedWeight
       totalEventMass
         probability
         event
-  else
+  else 0
 
 inductive ConditioningResult where
   | undefinedCondition
@@ -1299,8 +1299,8 @@ def independentEnumeration
     (potential : BoolPotential) : Int :=
   booleanAssignments.foldr
     (fun value accumulated =>
-      potential value +
-        accumulated)
+      potential value + accumulated)
+    0
 
 theorem variable_elimination_equals_independent_enumeration
     (potential : BoolPotential) :

@@ -452,6 +452,31 @@
     "JurisLean.BanachCertificateV3.certificate_has_positive_iterations",
     "JurisLean.BanachCertificateV3.certificate_has_q_lt_one_scaled",
     "JurisLean.BanachCertificateV3.no_certificate_rejected",
+    "JurisLean.Genealogy.Boundary.adverseAuthority_requires_unmet",
+    "JurisLean.Genealogy.Boundary.failure_map_identity",
+    "JurisLean.Genealogy.Boundary.incomplete_adjudication_is_solverIncomplete",
+    "JurisLean.Genealogy.Boundary.noExtensions_family_empty",
+    "JurisLean.Genealogy.Boundary.partialValue_openObligations_nonempty",
+    "JurisLean.Genealogy.General.P042_grade_capped",
+    "JurisLean.Genealogy.General.P042_min3Nat_le_all",
+    "JurisLean.Genealogy.General.P052_subsumeComplete_iff_all",
+    "JurisLean.Genealogy.General.P073_le_maxNat_left",
+    "JurisLean.Genealogy.General.P073_mergedDeclaration_low_le_high",
+    "JurisLean.Genealogy.General.P083_insertEvpi_length",
+    "JurisLean.Genealogy.General.P083_sortEvpi_length",
+    "JurisLean.Genealogy.General.P083_sortedDescending_witness",
+    "JurisLean.Genealogy.General.P084_appealWorthwhile_monotone_strict",
+    "JurisLean.Genealogy.General.P084_appealWorthwhile_of_mul_le",
+    "JurisLean.Genealogy.General.P084_mul_monotone_probability_strict",
+    "JurisLean.Genealogy.General.P097_add_assoc_local",
+    "JurisLean.Genealogy.General.P097_allocate_conservation",
+    "JurisLean.Genealogy.General.P099_progressiveTax3_first_bracket",
+    "JurisLean.Genealogy.General.P099_progressiveTax3_nonnegative",
+    "JurisLean.Genealogy.General.P127_isPrefixChars_append_right",
+    "JurisLean.Genealogy.General.P127_isPrefixChars_refl",
+    "JurisLean.Genealogy.General.P127_isPrefixChars_refl_list",
+    "JurisLean.Genealogy.General.P127_prepend_monotonicity_counterexample",
+    "JurisLean.Genealogy.General.P131_effectLogApply_idempotent",
     "JurisLean.Genealogy.Part0.P002.different_pair_different_concept",
     "JurisLean.Genealogy.Part0.P002.same_pair_same_concept",
     "JurisLean.Genealogy.Part0.P003.canonical_slot_is_single_valued",
@@ -619,8 +644,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "75cedff3a35cf2c89232148ef726fdc0753246cc9d57d64b3957e31a34c1b497",
-   "size_bytes": 12644,
+   "sha256": "57b7806d342be172c3e33117e92f902a62fc8892c7a06a0f45c2d8db412e2a84",
+   "size_bytes": 14491,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -9001,6 +9026,8 @@
   {
    "declarations": [],
    "imports": [
+    "JurisLean.Genealogy.Boundary",
+    "JurisLean.Genealogy.General",
     "JurisLean.Genealogy.Part0",
     "JurisLean.Genealogy.Part1",
     "JurisLean.Genealogy.Part2",
@@ -9012,10 +9039,302 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/All.lean",
    "print_axioms_targets": [],
-   "sha256": "a77091bd358eb8a59c48e5ec95237e53db14690139f1d076e9284f2a739cefbc",
-   "size_bytes": 231,
+   "sha256": "1b3765cc100c8005da5b3abfb1eb0e4b10aa8dfa76b35a3894d9284b77f5a10e",
+   "size_bytes": 302,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
+     "name": "FailureKind"
+    },
+    {
+     "kind": "structure",
+     "name": "FailureCore"
+    },
+    {
+     "kind": "structure",
+     "name": "PartialValue"
+    },
+    {
+     "kind": "def",
+     "name": "PartialValue.openObligations"
+    },
+    {
+     "kind": "def",
+     "name": "PartialValue.map"
+    },
+    {
+     "kind": "theorem",
+     "name": "partialValue_openObligations_nonempty"
+    },
+    {
+     "kind": "inductive",
+     "name": "KernelResult"
+    },
+    {
+     "kind": "def",
+     "name": "mapKernelResult"
+    },
+    {
+     "kind": "theorem",
+     "name": "failure_map_identity"
+    },
+    {
+     "kind": "structure",
+     "name": "ExtensionFamily"
+    },
+    {
+     "kind": "structure",
+     "name": "NoExtensionsCertificate"
+    },
+    {
+     "kind": "structure",
+     "name": "ExactExtensionsCertificate"
+    },
+    {
+     "kind": "structure",
+     "name": "IncompleteEvaluation"
+    },
+    {
+     "kind": "inductive",
+     "name": "EvaluationResult"
+    },
+    {
+     "kind": "theorem",
+     "name": "noExtensions_family_empty"
+    },
+    {
+     "kind": "inductive",
+     "name": "AuthorityFinding"
+    },
+    {
+     "kind": "structure",
+     "name": "AdjudicativeAuthority"
+    },
+    {
+     "kind": "structure",
+     "name": "AdverseAuthority"
+    },
+    {
+     "kind": "inductive",
+     "name": "AdjudicationOutput"
+    },
+    {
+     "kind": "inductive",
+     "name": "SubstantiveDisposition"
+    },
+    {
+     "kind": "def",
+     "name": "substantiveToOutput"
+    },
+    {
+     "kind": "def",
+     "name": "adjudicate"
+    },
+    {
+     "kind": "theorem",
+     "name": "incomplete_adjudication_is_solverIncomplete"
+    },
+    {
+     "kind": "theorem",
+     "name": "adverseAuthority_requires_unmet"
+    }
+   ],
+   "imports": [
+    "JurisLean.Genealogy.General"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Boundary.lean",
+   "print_axioms_targets": [],
+   "sha256": "3d65784b25a1a5a11fbc512af507308eab125b831710f11caf8e467518f851cd",
+   "size_bytes": 7537,
+   "theorem_count": 5,
+   "theorem_count_bol_convention": 5
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "subsumeComplete"
+    },
+    {
+     "kind": "theorem",
+     "name": "P052_subsumeComplete_iff_all"
+    },
+    {
+     "kind": "def",
+     "name": "min3Nat"
+    },
+    {
+     "kind": "theorem",
+     "name": "P042_min3Nat_le_all"
+    },
+    {
+     "kind": "structure",
+     "name": "P042Witness"
+    },
+    {
+     "kind": "def",
+     "name": "grade"
+    },
+    {
+     "kind": "theorem",
+     "name": "P042_grade_capped"
+    },
+    {
+     "kind": "def",
+     "name": "maxNat"
+    },
+    {
+     "kind": "theorem",
+     "name": "P073_le_maxNat_left"
+    },
+    {
+     "kind": "structure",
+     "name": "P073DeclarationInput"
+    },
+    {
+     "kind": "structure",
+     "name": "P073MergedDeclaration"
+    },
+    {
+     "kind": "def",
+     "name": "mergedDeclaration"
+    },
+    {
+     "kind": "theorem",
+     "name": "P073_mergedDeclaration_low_le_high"
+    },
+    {
+     "kind": "structure",
+     "name": "P083EvpiItem"
+    },
+    {
+     "kind": "def",
+     "name": "insertEvpi"
+    },
+    {
+     "kind": "def",
+     "name": "sortEvpi"
+    },
+    {
+     "kind": "theorem",
+     "name": "P083_insertEvpi_length"
+    },
+    {
+     "kind": "theorem",
+     "name": "P083_sortEvpi_length"
+    },
+    {
+     "kind": "def",
+     "name": "sortedDescending"
+    },
+    {
+     "kind": "theorem",
+     "name": "P083_sortedDescending_witness"
+    },
+    {
+     "kind": "def",
+     "name": "appealWorthwhileStrict"
+    },
+    {
+     "kind": "theorem",
+     "name": "P084_mul_monotone_probability_strict"
+    },
+    {
+     "kind": "theorem",
+     "name": "P084_appealWorthwhile_of_mul_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "P084_appealWorthwhile_monotone_strict"
+    },
+    {
+     "kind": "structure",
+     "name": "P097AllocationResult"
+    },
+    {
+     "kind": "def",
+     "name": "totalAllocated"
+    },
+    {
+     "kind": "def",
+     "name": "finalRemainder"
+    },
+    {
+     "kind": "def",
+     "name": "allocate"
+    },
+    {
+     "kind": "theorem",
+     "name": "P097_add_assoc_local"
+    },
+    {
+     "kind": "theorem",
+     "name": "P097_allocate_conservation"
+    },
+    {
+     "kind": "def",
+     "name": "progressiveTax3"
+    },
+    {
+     "kind": "theorem",
+     "name": "P099_progressiveTax3_nonnegative"
+    },
+    {
+     "kind": "theorem",
+     "name": "P099_progressiveTax3_first_bracket"
+    },
+    {
+     "kind": "def",
+     "name": "isPrefixChars"
+    },
+    {
+     "kind": "theorem",
+     "name": "P127_isPrefixChars_refl_list"
+    },
+    {
+     "kind": "theorem",
+     "name": "P127_isPrefixChars_refl"
+    },
+    {
+     "kind": "theorem",
+     "name": "P127_prepend_monotonicity_counterexample"
+    },
+    {
+     "kind": "theorem",
+     "name": "P127_isPrefixChars_append_right"
+    },
+    {
+     "kind": "structure",
+     "name": "P131EffectEntry"
+    },
+    {
+     "kind": "def",
+     "name": "hasCommand"
+    },
+    {
+     "kind": "def",
+     "name": "effectLogApply"
+    },
+    {
+     "kind": "theorem",
+     "name": "P131_effectLogApply_idempotent"
+    }
+   ],
+   "imports": [
+    "JurisLean.Genealogy.Part6"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Genealogy/General.lean",
+   "print_axioms_targets": [],
+   "sha256": "3cc945a2196a0c653490654245480e89e8fb3e12e8ac4a7c33d6e3116b225df5",
+   "size_bytes": 13943,
+   "theorem_count": 20,
+   "theorem_count_bol_convention": 20
   },
   {
    "declarations": [
@@ -15856,13 +16175,13 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1641,
-   "file_count": 210,
+   "counted_declaration_count": 1666,
+   "file_count": 212,
    "lemma_count": 24,
-   "print_axioms_command_count": 434,
-   "print_axioms_distinct_targets": 380,
-   "theorem_count": 1617,
-   "theorem_count_bol_convention": 1581
+   "print_axioms_command_count": 459,
+   "print_axioms_distinct_targets": 405,
+   "theorem_count": 1642,
+   "theorem_count_bol_convention": 1606
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -16003,6 +16322,8 @@
    "proofs/lean/juris_lean/JurisLean/FullMath/Tranche6.lean",
    "proofs/lean/juris_lean/JurisLean/FullMath/Tranche7.lean",
    "proofs/lean/juris_lean/JurisLean/Genealogy/All.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/Boundary.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/General.lean",
    "proofs/lean/juris_lean/JurisLean/Genealogy/Part0.lean",
    "proofs/lean/juris_lean/JurisLean/Genealogy/Part1.lean",
    "proofs/lean/juris_lean/JurisLean/Genealogy/Part2.lean",
@@ -16127,11 +16448,11 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "5656d9378df9afcf0dd7275680cddfe2e0e9d458de1de1ec0b673ebc3cea4588",
+ "source_inventory_digest": "ca2e7813ee6088d83178fdf99c8c2775c1755fe5831764331c5dd6cfe844f398",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "main",
-  "commit": "bbe0dd5fabf6e767fa3b419101297a18396f7008",
-  "tree": "e3e63011826c600f82322e6512a805b71a41d0d8"
+  "commit": "f9957443447d55abc9decb2e4add6abacf566a1f",
+  "tree": "d8d09062bafe534f97d4bdd94b75ab22b289b98f"
  }
 }

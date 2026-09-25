@@ -192,3 +192,30 @@ open HornSystem
 #print axioms JurisLean.Genealogy.Part6.P131.replay_empty_log_idempotent
 #print axioms JurisLean.Genealogy.Part6.P131.existing_command_replay_witness
 #print axioms JurisLean.Genealogy.Part6.P132.listed_action_requires_its_gate
+
+/-! Round 9: general upgrades + boundary theorems. -/
+#print axioms JurisLean.Genealogy.General.P052_subsumeComplete_iff_all
+#print axioms JurisLean.Genealogy.General.P042_min3Nat_le_all
+#print axioms JurisLean.Genealogy.General.P042_grade_capped
+#print axioms JurisLean.Genealogy.General.P073_le_maxNat_left
+#print axioms JurisLean.Genealogy.General.P073_mergedDeclaration_low_le_high
+#print axioms JurisLean.Genealogy.General.P083_insertEvpi_length
+#print axioms JurisLean.Genealogy.General.P083_sortEvpi_length
+#print axioms JurisLean.Genealogy.General.P083_sortedDescending_witness
+#print axioms JurisLean.Genealogy.General.P084_mul_monotone_probability_strict
+#print axioms JurisLean.Genealogy.General.P084_appealWorthwhile_of_mul_le
+#print axioms JurisLean.Genealogy.General.P084_appealWorthwhile_monotone_strict
+#print axioms JurisLean.Genealogy.General.P097_add_assoc_local
+#print axioms JurisLean.Genealogy.General.P097_allocate_conservation
+#print axioms JurisLean.Genealogy.General.P099_progressiveTax3_nonnegative
+#print axioms JurisLean.Genealogy.General.P099_progressiveTax3_first_bracket
+#print axioms JurisLean.Genealogy.General.P127_isPrefixChars_refl_list
+#print axioms JurisLean.Genealogy.General.P127_isPrefixChars_refl
+#print axioms JurisLean.Genealogy.General.P127_prepend_monotonicity_counterexample
+#print axioms JurisLean.Genealogy.General.P127_isPrefixChars_append_right
+#print axioms JurisLean.Genealogy.General.P131_effectLogApply_idempotent
+#print axioms JurisLean.Genealogy.Boundary.partialValue_openObligations_nonempty
+#print axioms JurisLean.Genealogy.Boundary.failure_map_identity
+#print axioms JurisLean.Genealogy.Boundary.noExtensions_family_empty
+#print axioms JurisLean.Genealogy.Boundary.incomplete_adjudication_is_solverIncomplete
+#print axioms JurisLean.Genealogy.Boundary.adverseAuthority_requires_unmet

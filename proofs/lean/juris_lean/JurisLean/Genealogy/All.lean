@@ -5,3 +5,5 @@ import JurisLean.Genealogy.Part3
 import JurisLean.Genealogy.Part4
 import JurisLean.Genealogy.Part5
 import JurisLean.Genealogy.Part6
+import JurisLean.Genealogy.General
+import JurisLean.Genealogy.Boundary

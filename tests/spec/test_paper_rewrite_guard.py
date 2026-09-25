@@ -60,12 +60,13 @@ def test_cn_citation_keys_resolve() -> None:
     assert not unresolved, f"citation keys not in references.bib: {unresolved}"
 
 
-def test_unproved_list_has_six_items() -> None:
+def test_unproved_list_has_five_items_with_compaction_marks() -> None:
     cn = CN.read_text(encoding="utf-8")
-    m = re.search(r"未证事项（按承重排序）\*\*：(.*?)\*\*声明账本", cn, re.DOTALL)
+    m = re.search(r"未证事项（压实后重排.*?）\*\*：(.*?)\*\*声明账本", cn, re.DOTALL)
     assert m is not None
-    items = re.findall(r"^[一二三四五六]、", m.group(1), re.MULTILINE)
-    assert len(items) == 6, items
+    items = re.findall(r"^[一二三四五]、", m.group(1), re.MULTILINE)
+    assert len(items) == 5, items
+    assert "已于九轮问压实" in m.group(1)  # 两条已压实项须带标记
 
 
 def test_each_chapter_opens_with_conclusion() -> None:

@@ -191,10 +191,10 @@ end T54
 
 namespace T55
 inductive PipelineStage where
-  eventDefinition
-  retrievalPopulation
-  betaEstimation
-  comparisonReport
+  | eventDefinition
+  | retrievalPopulation
+  | betaEstimation
+  | comparisonReport
 def stageOrder : PipelineStage → Nat
   | .eventDefinition => 1
   | .retrievalPopulation => 2

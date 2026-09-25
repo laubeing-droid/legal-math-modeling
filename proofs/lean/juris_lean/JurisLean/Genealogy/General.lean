@@ -226,28 +226,21 @@ theorem P083_insertEvpi_preserves_sorted (x : P083EvpiItem) :
           -- 展开 ys' 分析插入结果的头
           cases ys' with
           | nil =>
-              simp [insertEvpi, sortedDescending]
-              simp only [Bool.and_eq_true, decide_eq_true_eq]
+              simp only [insertEvpi, sortedDescending]
+              simp only [Bool.and_true, Bool.and_eq_true, decide_eq_true_eq]
               omega
           | cons z zs =>
               simp only [insertEvpi]
               cases hz : decide (z.evpi ≤ x.evpi) with
               | true =>
-                  simp only [hz]
-                  simp only [sortedDescending]
-                  simp only [Bool.and_eq_true, decide_eq_true_eq]
-                  refine ⟨?_, ⟨?_, ?_⟩⟩
-                  · omega
-                  · omega
-                  · exact hsorted.2
+                  simp only [insertEvpi, hz, sortedDescending]
+                  simp only [Bool.and_eq_true, Bool.and_true, decide_eq_true_eq]
+                  omega
               | false =>
-                  simp only [hz]
-                  simp only [sortedDescending]
+                  simp only [insertEvpi, hz, sortedDescending]
                   simp only [Bool.and_eq_true, decide_eq_true_eq]
-                  refine ⟨?_, ?_⟩
-                  · have hzy : z.evpi ≤ y.evpi := hsorted.1
-                    omega
-                  · exact ihResult
+                  refine ⟨?_, ihResult⟩
+                  exact hsorted.1
 
 /-- [P083-GENERAL-D] 排序结果恒降序（一般式）。 -/
 theorem P083_sortEvpi_sorted (xs : List P083EvpiItem) :

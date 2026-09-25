@@ -221,23 +221,22 @@ theorem P083_insertEvpi_preserves_sorted (x : P083EvpiItem) :
           refine ⟨?_, hsorted⟩
           omega
       | false =>
-          simp only [hcond]
+          simp [hcond]
           have ihResult := ih hsorted.2
-          -- 展开 ys' 分析插入结果的头
           cases ys' with
           | nil =>
-              simp only [insertEvpi, sortedDescending]
-              simp only [Bool.and_true, Bool.and_eq_true, decide_eq_true_eq]
+              simp [insertEvpi, sortedDescending]
+              simp only [Bool.and_eq_true, decide_eq_true_eq]
               omega
           | cons z zs =>
               simp only [insertEvpi]
               cases hz : decide (z.evpi ≤ x.evpi) with
               | true =>
-                  simp only [insertEvpi, hz, sortedDescending]
-                  simp only [Bool.and_eq_true, Bool.and_true, decide_eq_true_eq]
+                  simp [hz, sortedDescending]
+                  simp only [Bool.and_eq_true, decide_eq_true_eq]
                   omega
               | false =>
-                  simp only [insertEvpi, hz, sortedDescending]
+                  simp [hz, sortedDescending]
                   simp only [Bool.and_eq_true, decide_eq_true_eq]
                   refine ⟨?_, ihResult⟩
                   exact hsorted.1

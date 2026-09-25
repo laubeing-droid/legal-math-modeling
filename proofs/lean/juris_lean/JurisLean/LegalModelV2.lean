@@ -27,11 +27,12 @@ def identityV2TypeNames : List String :=
 def sourceV2TypeNames : List String :=
   ["SourceSnapshotRef", "SourceVersionEdge", "SourcePath", "EvidenceRef",
    "InterpretationRef", "FactCandidate", "FactAdmissionAttestation",
-   "ProposalEnvelope", "HumanResearchReceipt"]
+   "ProposalEnvelope", "HumanResearchReceipt", "Jurisdiction"]
 
 /-- 中文说明：v2 规则与推理类型（含 v1 全部 11 类与新增类型）。 -/
 def reasoningV2TypeNames : List String :=
-  v1CanonicalTypeNames ++ ["Permission", "Exception"]
+  v1CanonicalTypeNames ++
+  ["Permission", "Exception", "Relation", "LegalPower", "Event"]
 
 /-- 中文说明：v2 编译与后端类型。 -/
 def compilationV2TypeNames : List String :=
@@ -111,6 +112,68 @@ structure CertificateEnvelopeId where
   semantics : SemanticsVersion
 deriving DecidableEq
 
+/-!
+TY-01..TY-04：对象定义 v3 新增四类型的最小结构（对象定义冻结版 2026-09-25）。
+名称进注册表；Power/Obligation/Occurred 三模态互不推出；H 为事件时间结构
+并进入 ApplicableNorm 签名；Jurisdiction 为法域轴。选择/求值语义是 EV 池
+目标，此处不实现。
+-/
+
+/-- 中文说明：TY-01 法律关系共同约束的类别：同一损失/竞合互斥/共同消减。 -/
+inductive SharedConstraintKind where
+  | sameLoss | competingExclusive | jointReduction
+deriving DecidableEq, Repr
+
+/-- 中文说明：TY-01 共同约束；约束跨关系成立，成员关系显式列出。 -/
+structure SharedConstraint where
+  kind : SharedConstraintKind
+  memberRelations : List String
+deriving DecidableEq, Repr
+
+/-- 中文说明：TY-01 法律关系；关系整体含共同约束（对象定义 v3 第一条）。 -/
+structure Relation where
+  relationId : String
+  parties : List String
+  kind : String
+  sharedConstraints : List SharedConstraint
+deriving DecidableEq, Repr
+
+/-- 中文说明：TY-02 权能记录；Power/Obligation/Occurred 三模态独立承载，
+互不推出（对象定义 v3 第五条）。 -/
+structure LegalPower where
+  powerId : String
+  powerGranted : Bool
+  obligationImposed : Bool
+  occurred : Bool
+deriving DecidableEq, Repr
+
+/-- 中文说明：TY-03 事件；事件历史 H 的成员。 -/
+structure Event where
+  eventId : String
+  atDay : Int
+  eventType : String
+deriving DecidableEq, Repr
+
+/-- 中文说明：TY-03 事件历史时间结构 H；按构造序承载事件。 -/
+structure EventHistory where
+  events : List Event
+deriving DecidableEq, Repr
+
+/-- 中文说明：TY-04 法域轴 J：内地/港/美/其他（其他须携带显式代码）。 -/
+inductive Jurisdiction where
+  | mainland | hongKong | unitedStates | other (code : String)
+deriving DecidableEq, Repr
+
+/-- 中文说明：规范选择签名 A(J,V,q,H,t) 的载体（对象定义 v3 第六条）；
+H 与 t 都是必填，t 不单独决定版本。选择语义是 EV-04 目标。 -/
+structure ApplicableNormQuery where
+  jurisdiction : Jurisdiction
+  normEnv : String
+  question : String
+  history : EventHistory
+  timePoint : TimePoint
+deriving DecidableEq, Repr
+
 /-- 中文证明：v2 注册表完整覆盖四个分层。 -/
 theorem v2_registry_covers_four_layers :
     canonicalV2TypeNames =
@@ -132,12 +195,59 @@ theorem decision_status_in_v2_universe :
     "DecisionStatus" ∈ canonicalV2TypeNames := by
   decide
 
-/-- 中文证明：注册表规模由当前源静态决定，不由报告复制。 -/
-theorem v2_registry_size : canonicalV2TypeNames.length = 48 := by
+/-- 中文证明：注册表规模由当前源静态决定，不由报告复制。
+TY-01..04 增 Relation/LegalPower/Event/Jurisdiction 后为 52。 -/
+theorem v2_registry_size : canonicalV2TypeNames.length = 52 := by
   decide
 
 /-- 中文证明：注册表无重复名称（canonical 宇宙不重复定义类型）。 -/
 theorem v2_registry_nodup : canonicalV2TypeNames.Nodup := by
+  decide
+
+/-- 中文证明：TY-01..04 四个新类型都在 v2 注册表中。 -/
+theorem v3_kernel_types_in_v2_universe :
+    "Relation" ∈ canonicalV2TypeNames ∧ "LegalPower" ∈ canonicalV2TypeNames ∧
+      "Event" ∈ canonicalV2TypeNames ∧ "Jurisdiction" ∈ canonicalV2TypeNames := by
+  decide
+
+/-- 中文证明：Power 不蕴含 Occurred——存在权能成立而事件未发生的记录
+（对象定义 v3 第五条：三模态互不推出，仅为类型层见证，不涉规范内容）。 -/
+theorem legalPower_power_not_implies_occurred :
+    ∃ p : LegalPower, p.powerGranted = true ∧ p.occurred = false := by
+  refine ⟨{ powerId := "synthetic", powerGranted := true,
+            obligationImposed := false, occurred := false }, rfl, rfl⟩
+
+/-- 中文证明：Obligation 不蕴含 Occurred。 -/
+theorem legalPower_obligation_not_implies_occurred :
+    ∃ p : LegalPower, p.obligationImposed = true ∧ p.occurred = false := by
+  refine ⟨{ powerId := "synthetic", powerGranted := false,
+            obligationImposed := true, occurred := false }, rfl, rfl⟩
+
+/-- 中文证明：Power 不蕴含 Obligation。 -/
+theorem legalPower_power_not_implies_obligation :
+    ∃ p : LegalPower, p.powerGranted = true ∧ p.obligationImposed = false := by
+  refine ⟨{ powerId := "synthetic", powerGranted := true,
+            obligationImposed := false, occurred := false }, rfl, rfl⟩
+
+/-- 中文证明：共同约束参与关系同一性——只换约束集得到不同的关系记录。 -/
+theorem relation_shared_constraints_participate (rid : String)
+    (ps : List String) (k : String) (c1 c2 : List SharedConstraint)
+    (hne : c1 ≠ c2) :
+    Relation.mk rid ps k c1 ≠ Relation.mk rid ps k c2 := by
+  intro heq
+  exact hne (congrArg Relation.sharedConstraints heq)
+
+/-- 中文证明：H 参与规范选择签名的同一性——其余参数相同、仅 H 不同的
+两个选择语境不同（H 真正进入签名，而非装饰字段）。 -/
+theorem applicable_norm_history_participates (j : Jurisdiction) (V q : String)
+    (h1 h2 : EventHistory) (t : TimePoint) (hne : h1 ≠ h2) :
+    ApplicableNormQuery.mk j V q h1 t ≠ ApplicableNormQuery.mk j V q h2 t := by
+  intro heq
+  exact hne (congrArg ApplicableNormQuery.history heq)
+
+/-- 中文证明：法域轴的主干路由两两可区分（fail-closed 路由的前提）。 -/
+theorem jurisdiction_mainland_distinct_from_united_states :
+    Jurisdiction.mainland ≠ Jurisdiction.unitedStates := by
   decide
 
 end JurisLean

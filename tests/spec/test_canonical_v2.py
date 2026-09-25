@@ -78,7 +78,7 @@ def test_manifest_covers_four_layers_without_duplicates() -> None:
     names = canonical_v2_type_names()
 
     assert manifest["schema_version"] == "spec-canonical-manifest-v2"
-    assert manifest["type_count"] == 48
+    assert manifest["type_count"] == 52
     assert len(names) == len(set(names))
     assert manifest["invariants"]["no_duplicate_type_names"] is True
     assert manifest["invariants"]["v1_types_preserved_in_reasoning"] is True

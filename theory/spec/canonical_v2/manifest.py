@@ -56,8 +56,10 @@ TYPE_LAYERS: Dict[str, List[str]] = {
         "FactAdmissionAttestation",
         "ProposalEnvelope",
         "HumanResearchReceipt",
+        "Jurisdiction",
     ],
-    "reasoning": list(V1_CANONICAL_TYPES) + ["Permission", "Exception"],
+    "reasoning": list(V1_CANONICAL_TYPES)
+    + ["Permission", "Exception", "Relation", "LegalPower", "Event"],
     "compilation": [
         "LegalSpec",
         "LegalIVL",
@@ -121,6 +123,18 @@ ENUM_REGISTRY: Dict[str, List[str]] = {
         "CLOSED_FORM",
         "ASP",
         "SMT",
+    ],
+    # TY-01/TY-04 shared vocabularies (object definition v3 clauses 1 and 6).
+    "SharedConstraintKind": [
+        "SAME_LOSS",
+        "COMPETING_EXCLUSIVE",
+        "JOINT_REDUCTION",
+    ],
+    "JurisdictionRoute": [
+        "MAINLAND",
+        "HONG_KONG",
+        "UNITED_STATES",
+        "OTHER",
     ],
 }
 

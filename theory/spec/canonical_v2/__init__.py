@@ -9,6 +9,17 @@ aligned with the Lean registry through the machine-readable manifest in
 authority.
 """
 
+from .kernel import (
+    ApplicableNormQuery,
+    Event,
+    EventHistory,
+    Jurisdiction,
+    JurisdictionRoute,
+    LegalPower,
+    Relation,
+    SharedConstraint,
+    SharedConstraintKind,
+)
 from .manifest import (
     ENUM_REGISTRY,
     MANIFEST_SCHEMA,
@@ -35,17 +46,26 @@ from .types import (
 )
 
 __all__ = [
+    "ApplicableNormQuery",
     "AttackKind",
     "AuthorityLevel",
     "BackendKind",
     "DecisionStatus",
     "ENUM_REGISTRY",
+    "Event",
+    "EventHistory",
     "FailureStatus",
     "GateStatus",
     "IdKind",
+    "Jurisdiction",
+    "JurisdictionRoute",
+    "LegalPower",
     "MANIFEST_SCHEMA",
     "Modality",
+    "Relation",
     "RuleKind",
+    "SharedConstraint",
+    "SharedConstraintKind",
     "TYPE_LAYERS",
     "TypedId",
     "V1_CANONICAL_TYPES",

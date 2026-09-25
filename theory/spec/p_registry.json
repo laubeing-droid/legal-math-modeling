@@ -19,7 +19,7 @@
    "id": "P-002",
    "roster": "A14",
    "name": "概念=数据集+演算规则",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -29,6 +29,10 @@
     {
      "file": "tests/spec/test_campaign_batch1.py",
      "symbol": "test_p002_concept_identity_is_pair"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part0.lean",
+     "symbol": "namespace P002"
     }
    ]
   },
@@ -36,7 +40,7 @@
    "id": "P-003",
    "roster": "A18",
    "name": "法律语言",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -46,6 +50,10 @@
     {
      "file": "tests/spec/test_campaign_batch1.py",
      "symbol": "test_p003_translation_preserves_meaning"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part0.lean",
+     "symbol": "namespace P003"
     }
    ]
   },
@@ -126,7 +134,7 @@
    "id": "P-009",
    "roster": "A19",
    "name": "概念变迁·工程核",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -136,6 +144,10 @@
     {
      "file": "tests/spec/test_campaign_batch1.py",
      "symbol": "test_p009_registration_strictly_increases"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part0.lean",
+     "symbol": "namespace P009"
     }
    ]
   },
@@ -143,7 +155,7 @@
    "id": "P-010",
    "roster": "A20",
    "name": "个人信息概念族",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -153,6 +165,10 @@
     {
      "file": "tests/spec/test_campaign_batch1.py",
      "symbol": "test_p010_anonymization_and_triple_consent"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part0.lean",
+     "symbol": "namespace P010"
     }
    ]
   },
@@ -173,7 +189,7 @@
    "id": "P-012",
    "roster": "A55",
    "name": "时效动因",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -183,6 +199,10 @@
     {
      "file": "tests/spec/test_campaign_batch2.py",
      "symbol": "test_p012_limitation_causes"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part0.lean",
+     "symbol": "namespace P012"
     }
    ]
   },
@@ -203,7 +223,7 @@
    "id": "P-014",
    "roster": "A1",
    "name": "法源类型",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -213,6 +233,10 @@
     {
      "file": "tests/spec/test_campaign_batch1.py",
      "symbol": "test_p014_source_typology_grades_admission"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part1.lean",
+     "symbol": "namespace P014"
     }
    ]
   },
@@ -220,7 +244,7 @@
    "id": "P-015",
    "roster": "A2",
    "name": "效力位阶",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -230,6 +254,10 @@
     {
      "file": "tests/spec/test_campaign_batch1.py",
      "symbol": "test_p015_lex_superior_and_posterior"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part1.lean",
+     "symbol": "namespace P015"
     }
    ]
   },
@@ -263,7 +291,7 @@
    "id": "P-018",
    "roster": "A5",
    "name": "规范版本衔接",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -273,6 +301,10 @@
     {
      "file": "tests/spec/test_campaign_batch1.py",
      "symbol": "test_p018_transition_fires_only_on_trigger"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part1.lean",
+     "symbol": "namespace P018"
     }
    ]
   },
@@ -280,7 +312,7 @@
    "id": "P-019",
    "roster": "A6",
    "name": "判例拘束力",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -290,6 +322,10 @@
     {
      "file": "tests/spec/test_campaign_batch1.py",
      "symbol": "test_p019_binding_grades"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part1.lean",
+     "symbol": "namespace P019"
     }
    ]
   },
@@ -297,7 +333,7 @@
    "id": "P-020",
    "roster": "A59",
    "name": "管辖",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -307,6 +343,10 @@
     {
      "file": "tests/spec/test_campaign_batch1.py",
      "symbol": "test_p020_jurisdiction_routing_fail_closed"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part1.lean",
+     "symbol": "namespace P020"
     }
    ]
   },
@@ -314,7 +354,7 @@
    "id": "P-021",
    "roster": "A61",
    "name": "冲突规范与反致",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -324,6 +364,10 @@
     {
      "file": "tests/spec/test_campaign_batch1.py",
      "symbol": "test_p021_renvoi_one_hop_terminates"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part1.lean",
+     "symbol": "namespace P021"
     }
    ]
   },
@@ -331,7 +375,7 @@
    "id": "P-022",
    "roster": "A62",
    "name": "强制性规范与公共秩序",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -341,6 +385,10 @@
     {
      "file": "tests/spec/test_campaign_batch1.py",
      "symbol": "test_p022_scoped_override"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part1.lean",
+     "symbol": "namespace P022"
     }
    ]
   },
@@ -348,7 +396,7 @@
    "id": "P-023",
    "roster": "A63",
    "name": "准据法选择",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -358,6 +406,10 @@
     {
      "file": "tests/spec/test_campaign_batch1.py",
      "symbol": "test_p023_joint_selection_requires_both"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part1.lean",
+     "symbol": "namespace P023"
     }
    ]
   },
@@ -365,7 +417,7 @@
    "id": "P-024",
    "roster": "B24",
    "name": "案由与准据法路由",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -375,6 +427,10 @@
     {
      "file": "tests/spec/test_campaign_batch1.py",
      "symbol": "test_p024_cause_routing_table"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part1.lean",
+     "symbol": "namespace P024"
     }
    ]
   },
@@ -438,7 +494,7 @@
    "id": "P-029",
    "roster": "A26",
    "name": "Binding 二分",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -448,6 +504,10 @@
     {
      "file": "tests/spec/test_campaign_batch2.py",
      "symbol": "test_p029_secondary_attaches_to_violated_primary"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part2.lean",
+     "symbol": "namespace P029"
     }
    ]
   },
@@ -511,7 +571,7 @@
    "id": "P-034",
    "roster": "A32",
    "name": "请求权",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -521,6 +581,10 @@
     {
      "file": "tests/spec/test_campaign_batch2.py",
      "symbol": "test_p034_claim_requires_complete_basis"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part2.lean",
+     "symbol": "namespace P034"
     }
    ]
   },
@@ -528,7 +592,7 @@
    "id": "P-035",
    "roster": "A33",
    "name": "角色与代理",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -538,6 +602,10 @@
     {
      "file": "tests/spec/test_campaign_batch2.py",
      "symbol": "test_p035_agency_trichotomy"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part2.lean",
+     "symbol": "namespace P035"
     }
    ]
   },
@@ -545,7 +613,7 @@
    "id": "P-036",
    "roster": "A34",
    "name": "关系类型谱",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -555,6 +623,10 @@
     {
      "file": "tests/spec/test_campaign_batch1.py",
      "symbol": "test_p036_relation_spectrum_signature"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part0.lean",
+     "symbol": "namespace P036"
     }
    ]
   },
@@ -575,7 +647,7 @@
    "id": "P-038",
    "roster": "A36",
    "name": "竞争法关系",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -585,6 +657,10 @@
     {
      "file": "tests/spec/test_campaign_batch2.py",
      "symbol": "test_p038_competition_requires_all_three"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part2.lean",
+     "symbol": "namespace P038"
     }
    ]
   },
@@ -635,7 +711,7 @@
    "id": "P-042",
    "roster": "A40",
    "name": "证明力·工程核",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -645,6 +721,10 @@
     {
      "file": "tests/spec/test_campaign_batch2.py",
      "symbol": "test_p042_weakest_factor_caps_grade"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part3.lean",
+     "symbol": "namespace P042"
     }
    ]
   },
@@ -708,7 +788,7 @@
    "id": "P-047",
    "roster": "A45",
    "name": "事实因果·工程核",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -718,6 +798,10 @@
     {
      "file": "tests/spec/test_campaign_batch2.py",
      "symbol": "test_p047_butfor_needs_both_directions"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part3.lean",
+     "symbol": "namespace P047"
     }
    ]
   },
@@ -725,7 +809,7 @@
    "id": "P-048",
    "roster": "A46",
    "name": "免责事由",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -735,6 +819,10 @@
     {
      "file": "tests/spec/test_campaign_batch2.py",
      "symbol": "test_p048_exemption_needs_own_elements"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part3.lean",
+     "symbol": "namespace P048"
     }
    ]
   },
@@ -742,7 +830,7 @@
    "id": "P-049",
    "roster": "A47",
    "name": "举证时限与交换",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -752,6 +840,10 @@
     {
      "file": "tests/spec/test_campaign_batch2.py",
      "symbol": "test_p049_late_evidence_needs_good_cause"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part3.lean",
+     "symbol": "namespace P049"
     }
    ]
   },
@@ -759,7 +851,7 @@
    "id": "P-050",
    "roster": "A48",
    "name": "非法证据排除",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -769,6 +861,10 @@
     {
      "file": "tests/spec/test_campaign_batch2.py",
      "symbol": "test_p050_any_listed_illegality_excludes"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part3.lean",
+     "symbol": "namespace P050"
     }
    ]
   },
@@ -776,7 +872,7 @@
    "id": "P-051",
    "roster": "A49",
    "name": "自由心证边界",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -786,6 +882,10 @@
     {
      "file": "tests/spec/test_campaign_batch2.py",
      "symbol": "test_p051_boundary_is_positively_recorded"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part3.lean",
+     "symbol": "namespace P051"
     }
    ]
   },
@@ -793,7 +893,7 @@
    "id": "P-052",
    "roster": "B8",
    "name": "要件-事实-证据三元映射",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -803,6 +903,10 @@
     {
      "file": "tests/spec/test_campaign_batch2.py",
      "symbol": "test_p052_mapping_complete_all_traced"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part3.lean",
+     "symbol": "namespace P052"
     }
    ]
   },
@@ -862,7 +966,7 @@
    "id": "P-057",
    "roster": "B3",
    "name": "类比推理",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -872,6 +976,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p057_analogy_and_distinguishing"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P057"
     }
    ]
   },
@@ -879,7 +987,7 @@
    "id": "P-058",
    "roster": "B5",
    "name": "论证图式",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -889,6 +997,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p058_toulmin_six_slots"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P058"
     }
    ]
   },
@@ -909,7 +1021,7 @@
    "id": "P-060",
    "roster": "A15",
    "name": "解释（五构造子）",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -919,6 +1031,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p060_isolated_branches"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P060"
     }
    ]
   },
@@ -926,7 +1042,7 @@
    "id": "P-061",
    "roster": "A16",
    "name": "解释之争",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -936,6 +1052,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p061_pinned_reading_immune_to_lower_precedence"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P061"
     }
    ]
   },
@@ -943,7 +1063,7 @@
    "id": "P-062",
    "roster": "A17",
    "name": "理解·工程核",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -953,6 +1073,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p062_ambiguity_needs_context"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P062"
     }
    ]
   },
@@ -960,7 +1084,7 @@
    "id": "P-063",
    "roster": "A22",
    "name": "规则与原则二分",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -970,6 +1094,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p063_rule_all_or_nothing_principle_weighed"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P063"
     }
    ]
   },
@@ -977,7 +1105,7 @@
    "id": "P-064",
    "roster": "A27",
    "name": "价值衡量·工程核",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -987,6 +1115,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p064_incomparability_is_legal"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P064"
     }
    ]
   },
@@ -994,7 +1126,7 @@
    "id": "P-065",
    "roster": "A7",
    "name": "司法造法边界·工程核",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1004,6 +1136,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p065_lawmaking_detection"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P065"
     }
    ]
   },
@@ -1011,7 +1147,7 @@
    "id": "P-066",
    "roster": "A9",
    "name": "漏洞续造·工程核",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1021,6 +1157,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p066_gap_signals"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P066"
     }
    ]
   },
@@ -1041,7 +1181,7 @@
    "id": "P-068",
    "roster": "A51",
    "name": "责任形态",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1051,6 +1191,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p068_liability_forms"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P068"
     }
    ]
   },
@@ -1071,7 +1215,7 @@
    "id": "P-070",
    "roster": "A53",
    "name": "损害分类",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1081,6 +1225,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p070_damage_classification"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P070"
     }
    ]
   },
@@ -1114,7 +1262,7 @@
    "id": "P-073",
    "roster": "D3",
    "name": "责任刑与预防刑·工程核",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1124,6 +1272,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p073_dual_tracks_merge_at_declaration"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P073"
     }
    ]
   },
@@ -1131,7 +1283,7 @@
    "id": "P-074",
    "roster": "D4",
    "name": "行为合法性评价",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1141,6 +1293,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p074_legality_grades"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P074"
     }
    ]
   },
@@ -1187,7 +1343,7 @@
    "id": "P-078",
    "roster": "D9",
    "name": "调解方案生成",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1197,6 +1353,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p078_mediation_zone"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P078"
     }
    ]
   },
@@ -1204,7 +1364,7 @@
    "id": "P-079",
    "roster": "D10",
    "name": "和解决策",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1214,6 +1374,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p079_settlement_ev"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P079"
     }
    ]
   },
@@ -1221,7 +1385,7 @@
    "id": "P-080",
    "roster": "D11",
    "name": "认罪认罚从宽",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1231,6 +1395,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p080_plea_stages_in_order"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P080"
     }
    ]
   },
@@ -1238,7 +1406,7 @@
    "id": "P-081",
    "roster": "D12",
    "name": "谈判伦理·工程核",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1248,6 +1416,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p081_any_violation_voids"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P081"
     }
    ]
   },
@@ -1255,7 +1427,7 @@
    "id": "P-082",
    "roster": "D13",
    "name": "起诉策略",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1265,6 +1437,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p082_preservation_needs_ground"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P082"
     }
    ]
   },
@@ -1272,7 +1448,7 @@
    "id": "P-083",
    "roster": "D14",
    "name": "证据策略",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1282,6 +1458,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p083_evpi_ordering"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P083"
     }
    ]
   },
@@ -1289,7 +1469,7 @@
    "id": "P-084",
    "roster": "D15",
    "name": "上诉与再审决策",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1299,6 +1479,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p084_appeal_ev"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P084"
     }
    ]
   },
@@ -1306,7 +1490,7 @@
    "id": "P-085",
    "roster": "D16",
    "name": "定价与报价",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1316,6 +1500,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p085_fee_needs_disclosure"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P085"
     }
    ]
   },
@@ -1323,7 +1511,7 @@
    "id": "P-086",
    "roster": "D17",
    "name": "风险代理",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1333,6 +1521,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p086_contingency_capped"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P086"
     }
    ]
   },
@@ -1340,7 +1532,7 @@
    "id": "P-087",
    "roster": "D18",
    "name": "同案同判义务",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1350,6 +1542,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p087_shall_follow_duty"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P087"
     }
    ]
   },
@@ -1370,7 +1566,7 @@
    "id": "P-089",
    "roster": "D20",
    "name": "类案检索义务",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1380,6 +1576,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p089_retrieval_duty"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+     "symbol": "namespace P089"
     }
    ]
   },
@@ -1439,7 +1639,7 @@
    "id": "P-094",
    "roster": "B14",
    "name": "期限计算",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1449,6 +1649,10 @@
     {
      "file": "tests/spec/test_campaign_batch2.py",
      "symbol": "test_p094_anchor_selection_fail_closed"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part3.lean",
+     "symbol": "namespace P094"
     }
    ]
   },
@@ -1456,7 +1660,7 @@
    "id": "P-095",
    "roster": "B23",
    "name": "期间起算矩阵",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1466,6 +1670,10 @@
     {
      "file": "tests/spec/test_campaign_batch2.py",
      "symbol": "test_p095_matrix_empty_cell_unknown"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part3.lean",
+     "symbol": "namespace P095"
     }
    ]
   },
@@ -1473,7 +1681,7 @@
    "id": "P-096",
    "roster": "B12",
    "name": "利息族",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1483,6 +1691,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p096_segmented_refinement"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part5.lean",
+     "symbol": "namespace P096"
     }
    ]
   },
@@ -1490,7 +1702,7 @@
    "id": "P-097",
    "roster": "B15",
    "name": "清偿与分配",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1500,6 +1712,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p097_allocation_conservation"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part5.lean",
+     "symbol": "namespace P097"
     }
    ]
   },
@@ -1507,7 +1723,7 @@
    "id": "P-098",
    "roster": "B13",
    "name": "违约金酌减",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1517,6 +1733,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p098_penalty_reduction_band"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part5.lean",
+     "symbol": "namespace P098"
     }
    ]
   },
@@ -1524,7 +1744,7 @@
    "id": "P-099",
    "roster": "B16",
    "name": "税费",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1534,6 +1754,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p099_progressive_brackets"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part5.lean",
+     "symbol": "namespace P099"
     }
    ]
   },
@@ -1541,7 +1765,7 @@
    "id": "P-100",
    "roster": "B17",
    "name": "损害赔偿计算",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1551,6 +1775,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p100_formula_registry"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part5.lean",
+     "symbol": "namespace P100"
     }
    ]
   },
@@ -1571,7 +1799,7 @@
    "id": "P-102",
    "roster": "B20",
    "name": "执行计算",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1581,6 +1809,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p102_delay_interest"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part5.lean",
+     "symbol": "namespace P102"
     }
    ]
   },
@@ -1588,7 +1820,7 @@
    "id": "P-103",
    "roster": "B22",
    "name": "智能合约语义",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1598,6 +1830,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p103_consent_locked_transitions"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part5.lean",
+     "symbol": "namespace P103"
     }
    ]
   },
@@ -1618,7 +1854,7 @@
    "id": "P-105",
    "roster": "A58",
    "name": "程序行为与处置",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1628,6 +1864,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p105_disposition_sequences"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+     "symbol": "namespace P105"
     }
    ]
   },
@@ -1635,7 +1875,7 @@
    "id": "P-106",
    "roster": "A60",
    "name": "诉讼类型与标的",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1645,6 +1885,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p106_subject_identity"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+     "symbol": "namespace P106"
     }
    ]
   },
@@ -1652,7 +1896,7 @@
    "id": "P-107",
    "roster": "—",
    "name": "【补户】话术/提示词资产",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1662,6 +1906,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p107_script_masquerade_rejected"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+     "symbol": "namespace P107"
     }
    ]
   },
@@ -1747,7 +1995,7 @@
    "id": "P-114",
    "roster": "B10",
    "name": "逻辑-概率双进路",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1757,6 +2005,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p114_one_way_bridge"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part5.lean",
+     "symbol": "namespace P114"
     }
    ]
   },
@@ -1790,7 +2042,7 @@
    "id": "P-117",
    "roster": "B32",
    "name": "文本相似工具",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1800,6 +2052,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p117_similarity_never_structural"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part5.lean",
+     "symbol": "namespace P117"
     }
    ]
   },
@@ -1846,7 +2102,7 @@
    "id": "P-121",
    "roster": "C4",
    "name": "生成与事实分界",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1856,6 +2112,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p121_proposal_gated"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+     "symbol": "namespace P121"
     }
    ]
   },
@@ -1863,7 +2123,7 @@
    "id": "P-122",
    "roster": "C7",
    "name": "身份与版本纪律",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1873,6 +2133,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p122_version_binding"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+     "symbol": "namespace P122"
     }
    ]
   },
@@ -1893,7 +2157,7 @@
    "id": "P-124",
    "roster": "C12",
    "name": "数据治理",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1903,6 +2167,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p124_disclosure"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+     "symbol": "namespace P124"
     }
    ]
   },
@@ -1910,7 +2178,7 @@
    "id": "P-125",
    "roster": "C1",
    "name": "防幻觉",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1920,6 +2188,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p125_hallucination_blocked"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+     "symbol": "namespace P125"
     }
    ]
   },
@@ -1927,7 +2199,7 @@
    "id": "P-126",
    "roster": "C2",
    "name": "防概念偷渡",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1937,6 +2209,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p126_smuggling_blocked"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+     "symbol": "namespace P126"
     }
    ]
   },
@@ -1944,7 +2220,7 @@
    "id": "P-127",
    "roster": "C3",
    "name": "引文核验",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1954,6 +2230,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p127_citation_verbatim"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+     "symbol": "namespace P127"
     }
    ]
   },
@@ -1961,7 +2241,7 @@
    "id": "P-128",
    "roster": "C14",
    "name": "技术性正当程序",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1971,6 +2251,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p128_due_process_mapping"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+     "symbol": "namespace P128"
     }
    ]
   },
@@ -1978,7 +2262,7 @@
    "id": "P-129",
    "roster": "C8",
    "name": "权限与脱敏",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -1988,6 +2272,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p129_anonymization_boundary"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+     "symbol": "namespace P129"
     }
    ]
   },
@@ -1995,7 +2283,7 @@
    "id": "P-130",
    "roster": "C9",
    "name": "程序状态机",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -2005,6 +2293,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p130_lifecycle_edges"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+     "symbol": "namespace P130"
     }
    ]
   },
@@ -2012,7 +2304,7 @@
    "id": "P-131",
    "roster": "C10",
    "name": "效果日志与幂等",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -2022,6 +2314,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p131_idempotent_effect_log"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+     "symbol": "namespace P131"
     }
    ]
   },
@@ -2029,7 +2325,7 @@
    "id": "P-132",
    "roster": "C11",
    "name": "人机分工",
-   "proof_kind": "CONTRACT",
+   "proof_kind": "LEAN_AND_CONTRACT",
    "tier": "SHIPPED_THIS_CAMPAIGN",
    "anchors": [
     {
@@ -2039,6 +2335,10 @@
     {
      "file": "tests/spec/test_campaign_batch3.py",
      "symbol": "test_p132_human_gates"
+    },
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+     "symbol": "namespace P132"
     }
    ]
   }

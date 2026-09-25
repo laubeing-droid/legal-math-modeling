@@ -39,3 +39,4 @@ import JurisLean.BusinessRoot.SevenAxis
 import JurisLean.BusinessRoot.SevenAxisCases
 import JurisLean.KernelV3
 import JurisLean.Hohfeld
+import JurisLean.Genealogy.All

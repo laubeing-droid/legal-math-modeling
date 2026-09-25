@@ -437,6 +437,7 @@
     "JurisLean.BanachCertificate",
     "JurisLean.DungFixedPoint",
     "JurisLean.FiniteMonotoneIteration",
+    "JurisLean.Genealogy.All",
     "JurisLean.Hohfeld",
     "JurisLean.HornFixedPoint",
     "JurisLean.KernelV3",
@@ -451,6 +452,148 @@
     "JurisLean.BanachCertificateV3.certificate_has_positive_iterations",
     "JurisLean.BanachCertificateV3.certificate_has_q_lt_one_scaled",
     "JurisLean.BanachCertificateV3.no_certificate_rejected",
+    "JurisLean.Genealogy.Part0.P002.different_pair_different_concept",
+    "JurisLean.Genealogy.Part0.P002.same_pair_same_concept",
+    "JurisLean.Genealogy.Part0.P003.canonical_slot_is_single_valued",
+    "JurisLean.Genealogy.Part0.P003.translation_preserves_definition_id",
+    "JurisLean.Genealogy.Part0.P009.nonincreasing_version_is_outside",
+    "JurisLean.Genealogy.Part0.P009.strictly_increasing_version_enters",
+    "JurisLean.Genealogy.Part0.P010.anonymization_exits_personal_set",
+    "JurisLean.Genealogy.Part0.P010.sensitive_triple_consent_positive",
+    "JurisLean.Genealogy.Part0.P012.interruption_restarts",
+    "JurisLean.Genealogy.Part0.P012.second_commencement_is_identity",
+    "JurisLean.Genealogy.Part0.P036.obligational_signature_mismatch",
+    "JurisLean.Genealogy.Part0.P036.real_signature_mismatch",
+    "JurisLean.Genealogy.Part1.P014.source_grade_total",
+    "JurisLean.Genealogy.Part1.P015.lex_superior_left",
+    "JurisLean.Genealogy.Part1.P015.old_special_vs_new_general_unknown",
+    "JurisLean.Genealogy.Part1.P015.same_rank_day_nature_unknown",
+    "JurisLean.Genealogy.Part1.P018.transition_requires_version_and_fact",
+    "JurisLean.Genealogy.Part1.P018.transition_version_mismatch_holds",
+    "JurisLean.Genealogy.Part1.P019.may_reference_nonbinding",
+    "JurisLean.Genealogy.Part1.P019.shall_refer_without_reason_follows",
+    "JurisLean.Genealogy.Part1.P020.no_applicable_rule_returns_none",
+    "JurisLean.Genealogy.Part1.P020.specialized_rule_wins_first",
+    "JurisLean.Genealogy.Part1.P021.renvoi_back_uses_forum_and_terminates",
+    "JurisLean.Genealogy.Part1.P022.named_rule_removed",
+    "JurisLean.Genealogy.Part1.P022.other_rule_preserved",
+    "JurisLean.Genealogy.Part1.P023.missing_jurisdiction_unknown",
+    "JurisLean.Genealogy.Part1.P023.missing_version_unknown",
+    "JurisLean.Genealogy.Part1.P024.cause_route_empty_unknown",
+    "JurisLean.Genealogy.Part1.P024.cause_route_head_hit",
+    "JurisLean.Genealogy.Part2.P029.matching_secondary_attachment",
+    "JurisLean.Genealogy.Part2.P029.secondary_without_primary_violation_is_false",
+    "JurisLean.Genealogy.Part2.P034.claim_available_complete_iff",
+    "JurisLean.Genealogy.Part2.P034.unregistered_basis_unknown",
+    "JurisLean.Genealogy.Part2.P035.agency_attributes_principal",
+    "JurisLean.Genealogy.Part2.P035.impersonation_ratified_principal",
+    "JurisLean.Genealogy.Part2.P035.representation_outside_scope_none",
+    "JurisLean.Genealogy.Part2.P038.all_three_true_establish",
+    "JurisLean.Genealogy.Part2.P038.competition_is_three_way_conjunction",
+    "JurisLean.Genealogy.Part3.P042.equal_factors_fixed",
+    "JurisLean.Genealogy.Part3.P042.weakest_factor_witness",
+    "JurisLean.Genealogy.Part3.P047.one_side_missing_unknown",
+    "JurisLean.Genealogy.Part3.P047.two_sided_but_for_true",
+    "JurisLean.Genealogy.Part3.P048.exemption_complete_witness",
+    "JurisLean.Genealogy.Part3.P048.exemption_requires_own_elements",
+    "JurisLean.Genealogy.Part3.P049.good_cause_extension_admits",
+    "JurisLean.Genealogy.Part3.P049.late_without_good_cause_barred",
+    "JurisLean.Genealogy.Part3.P050.any_listed_illegality_excludes",
+    "JurisLean.Genealogy.Part3.P050.empty_exclusion_list_does_not_exclude",
+    "JurisLean.Genealogy.Part3.P051.boundary_inputs_complete",
+    "JurisLean.Genealogy.Part3.P051.boundary_records_input_only",
+    "JurisLean.Genealogy.Part3.P052.mapping_complete_iff_all_required_traced",
+    "JurisLean.Genealogy.Part3.P052.mapping_complete_witness",
+    "JurisLean.Genealogy.Part3.P094.empty_anchor_rules_unknown",
+    "JurisLean.Genealogy.Part3.P094.first_present_anchor_witness",
+    "JurisLean.Genealogy.Part3.P095.commencement_cell_hit",
+    "JurisLean.Genealogy.Part3.P095.empty_commencement_matrix_unknown",
+    "JurisLean.Genealogy.Part4.P057.analogy_three_conditions",
+    "JurisLean.Genealogy.Part4.P057.distinction_blocks_analogy",
+    "JurisLean.Genealogy.Part4.P058.toulmin_six_slot_witness",
+    "JurisLean.Genealogy.Part4.P060.isolated_branch_preserved",
+    "JurisLean.Genealogy.Part4.P061.pinned_reading_immune_to_low_attack",
+    "JurisLean.Genealogy.Part4.P062.context_resolves",
+    "JurisLean.Genealogy.Part4.P062.two_senses_without_context_ambiguous",
+    "JurisLean.Genealogy.Part4.P063.principle_positive_weight_is_weight_only",
+    "JurisLean.Genealogy.Part4.P063.rule_all_or_nothing_true",
+    "JurisLean.Genealogy.Part4.P064.preorder_with_legal_incomparability",
+    "JurisLean.Genealogy.Part4.P065.lawmaking_requires_three_true",
+    "JurisLean.Genealogy.Part4.P065.missing_gap_signal_blocks",
+    "JurisLean.Genealogy.Part4.P066.gap_detection_preserves_signal_roster",
+    "JurisLean.Genealogy.Part4.P066.gap_signal_detected",
+    "JurisLean.Genealogy.Part4.P068.several_with_share_valid",
+    "JurisLean.Genealogy.Part4.P068.several_without_share_invalid",
+    "JurisLean.Genealogy.Part4.P070.registered_damage_witness",
+    "JurisLean.Genealogy.Part4.P070.unknown_damage_none",
+    "JurisLean.Genealogy.Part4.P073.declaration_band_order_witness",
+    "JurisLean.Genealogy.Part4.P073.declaration_floor_is_max",
+    "JurisLean.Genealogy.Part4.P074.prohibited_is_illegal",
+    "JurisLean.Genealogy.Part4.P074.unknown_unlawfulness_is_violation",
+    "JurisLean.Genealogy.Part4.P078.mediation_disjoint_witness",
+    "JurisLean.Genealogy.Part4.P078.mediation_overlap_witness",
+    "JurisLean.Genealogy.Part4.P079.settlement_ev_accept_witness",
+    "JurisLean.Genealogy.Part4.P079.settlement_ev_reject_witness",
+    "JurisLean.Genealogy.Part4.P080.plea_fixed_prefix_advances",
+    "JurisLean.Genealogy.Part4.P080.plea_skip_fails_closed",
+    "JurisLean.Genealogy.Part4.P081.fraud_voids_tactic",
+    "JurisLean.Genealogy.Part4.P082.preservation_without_ground_infeasible",
+    "JurisLean.Genealogy.Part4.P083.evpi_descending_witness",
+    "JurisLean.Genealogy.Part4.P083.evpi_tie_stability_witness",
+    "JurisLean.Genealogy.Part4.P084.appeal_ev_negative_witness",
+    "JurisLean.Genealogy.Part4.P084.appeal_ev_positive_witness",
+    "JurisLean.Genealogy.Part4.P085.undisclosed_fee_none",
+    "JurisLean.Genealogy.Part4.P086.contingency_fee_below_cap_witness",
+    "JurisLean.Genealogy.Part4.P086.contingency_fee_cap_witness",
+    "JurisLean.Genealogy.Part4.P087.should_follow_iff_reason_absent",
+    "JurisLean.Genealogy.Part4.P089.retrieval_missing_report_noncompliant",
+    "JurisLean.Genealogy.Part4.P089.retrieval_two_true_compliant",
+    "JurisLean.Genealogy.Part5.P096.empty_segments_zero",
+    "JurisLean.Genealogy.Part5.P096.two_segment_refinement",
+    "JurisLean.Genealogy.Part5.P097.allocate_one_overfunded",
+    "JurisLean.Genealogy.Part5.P097.allocate_one_underfunded",
+    "JurisLean.Genealogy.Part5.P097.two_debt_conservation_witness",
+    "JurisLean.Genealogy.Part5.P098.clamp_above_in_band",
+    "JurisLean.Genealogy.Part5.P098.clamp_above_to_high",
+    "JurisLean.Genealogy.Part5.P098.clamp_below_in_band",
+    "JurisLean.Genealogy.Part5.P098.clamp_below_to_low",
+    "JurisLean.Genealogy.Part5.P098.clamp_inside_fixed",
+    "JurisLean.Genealogy.Part5.P098.clamp_inside_idempotent",
+    "JurisLean.Genealogy.Part5.P099.progressive_three_bracket_witness",
+    "JurisLean.Genealogy.Part5.P099.progressive_two_effective_brackets_witness",
+    "JurisLean.Genealogy.Part5.P100.registered_damage_formula_witness",
+    "JurisLean.Genealogy.Part5.P100.unknown_damage_formula_none",
+    "JurisLean.Genealogy.Part5.P102.delay_interest_formula",
+    "JurisLean.Genealogy.Part5.P103.consent_and_legal_edge_moves",
+    "JurisLean.Genealogy.Part5.P103.consent_cannot_create_nonedge",
+    "JurisLean.Genealogy.Part5.P103.no_consent_no_transition",
+    "JurisLean.Genealogy.Part5.P114.deduction_bridges",
+    "JurisLean.Genealogy.Part5.P114.probability_one_not_deduction",
+    "JurisLean.Genealogy.Part5.P117.similarity_stays_candidate",
+    "JurisLean.Genealogy.Part5.P117.structural_equivalence_assertion_invalid",
+    "JurisLean.Genealogy.Part6.P105.disposition_invalid_jump",
+    "JurisLean.Genealogy.Part6.P105.disposition_valid_path",
+    "JurisLean.Genealogy.Part6.P106.different_cause_not_same_subject",
+    "JurisLean.Genealogy.Part6.P106.swapped_parties_same_subject",
+    "JurisLean.Genealogy.Part6.P107.legal_fact_script_rejected",
+    "JurisLean.Genealogy.Part6.P121.failed_gate_keeps_candidate",
+    "JurisLean.Genealogy.Part6.P121.passed_gate_sets_admitted",
+    "JurisLean.Genealogy.Part6.P122.version_triplet_binding_identity",
+    "JurisLean.Genealogy.Part6.P124.disclosed_is_compliant",
+    "JurisLean.Genealogy.Part6.P124.undisclosed_is_noncompliant",
+    "JurisLean.Genealogy.Part6.P125.detected_pattern_blocks",
+    "JurisLean.Genealogy.Part6.P126.foreign_unadapted_blocked",
+    "JurisLean.Genealogy.Part6.P126.home_jurisdiction_not_blocked",
+    "JurisLean.Genealogy.Part6.P127.verbatim_prefix_hit_witness",
+    "JurisLean.Genealogy.Part6.P127.verbatim_prefix_miss_witness",
+    "JurisLean.Genealogy.Part6.P128.all_due_process_elements_present",
+    "JurisLean.Genealogy.Part6.P128.missing_reason_record_fails",
+    "JurisLean.Genealogy.Part6.P129.anonymization_boundary_two_conditions",
+    "JurisLean.Genealogy.Part6.P130.lifecycle_listed_edge_valid",
+    "JurisLean.Genealogy.Part6.P130.lifecycle_unlisted_edge_invalid",
+    "JurisLean.Genealogy.Part6.P131.existing_command_replay_witness",
+    "JurisLean.Genealogy.Part6.P131.replay_empty_log_idempotent",
+    "JurisLean.Genealogy.Part6.P132.listed_action_requires_its_gate",
     "JurisLean.Hohfeld.correlative_involutive",
     "JurisLean.Hohfeld.correlative_ne_self",
     "JurisLean.Hohfeld.opposite_involutive",
@@ -476,8 +619,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "fe26a5d2613ea6bbde60a6c4b02d2bf85a04afaaec5b379ea81d0eadb512906b",
-   "size_bytes": 2133,
+   "sha256": "75cedff3a35cf2c89232148ef726fdc0753246cc9d57d64b3957e31a34c1b497",
+   "size_bytes": 12644,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -8856,6 +8999,1484 @@
    "theorem_count_bol_convention": 0
   },
   {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Genealogy.Part0",
+    "JurisLean.Genealogy.Part1",
+    "JurisLean.Genealogy.Part2",
+    "JurisLean.Genealogy.Part3",
+    "JurisLean.Genealogy.Part4",
+    "JurisLean.Genealogy.Part5",
+    "JurisLean.Genealogy.Part6"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Genealogy/All.lean",
+   "print_axioms_targets": [],
+   "sha256": "a77091bd358eb8a59c48e5ec95237e53db14690139f1d076e9284f2a739cefbc",
+   "size_bytes": 231,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "present"
+    },
+    {
+     "kind": "def",
+     "name": "allStringsIn"
+    },
+    {
+     "kind": "def",
+     "name": "natMax"
+    },
+    {
+     "kind": "def",
+     "name": "natMin"
+    },
+    {
+     "kind": "structure",
+     "name": "DefinitionRecord"
+    },
+    {
+     "kind": "structure",
+     "name": "Concept"
+    },
+    {
+     "kind": "def",
+     "name": "identity"
+    },
+    {
+     "kind": "def",
+     "name": "sameConcept"
+    },
+    {
+     "kind": "theorem",
+     "name": "same_pair_same_concept"
+    },
+    {
+     "kind": "theorem",
+     "name": "different_pair_different_concept"
+    },
+    {
+     "kind": "structure",
+     "name": "CanonicalTermSlot"
+    },
+    {
+     "kind": "structure",
+     "name": "Translation"
+    },
+    {
+     "kind": "def",
+     "name": "translatedDefinitionId"
+    },
+    {
+     "kind": "theorem",
+     "name": "translation_preserves_definition_id"
+    },
+    {
+     "kind": "theorem",
+     "name": "canonical_slot_is_single_valued"
+    },
+    {
+     "kind": "structure",
+     "name": "VersionedConcept"
+    },
+    {
+     "kind": "def",
+     "name": "registerNextVersion"
+    },
+    {
+     "kind": "theorem",
+     "name": "strictly_increasing_version_enters"
+    },
+    {
+     "kind": "theorem",
+     "name": "nonincreasing_version_is_outside"
+    },
+    {
+     "kind": "inductive",
+     "name": "InfoPath"
+    },
+    {
+     "kind": "structure",
+     "name": "PersonalInfo"
+    },
+    {
+     "kind": "def",
+     "name": "isPersonal"
+    },
+    {
+     "kind": "def",
+     "name": "anonymize"
+    },
+    {
+     "kind": "def",
+     "name": "tripleConsentPresent"
+    },
+    {
+     "kind": "def",
+     "name": "sensitiveProcessingAllowed"
+    },
+    {
+     "kind": "theorem",
+     "name": "anonymization_exits_personal_set"
+    },
+    {
+     "kind": "theorem",
+     "name": "sensitive_triple_consent_positive"
+    },
+    {
+     "kind": "inductive",
+     "name": "RelationKind"
+    },
+    {
+     "kind": "inductive",
+     "name": "ClassificationStatus"
+    },
+    {
+     "kind": "def",
+     "name": "classifyRelation"
+    },
+    {
+     "kind": "theorem",
+     "name": "obligational_signature_mismatch"
+    },
+    {
+     "kind": "theorem",
+     "name": "real_signature_mismatch"
+    },
+    {
+     "kind": "inductive",
+     "name": "LimitationCause"
+    },
+    {
+     "kind": "structure",
+     "name": "LimitationClock"
+    },
+    {
+     "kind": "def",
+     "name": "applyLimitationCause"
+    },
+    {
+     "kind": "theorem",
+     "name": "interruption_restarts"
+    },
+    {
+     "kind": "theorem",
+     "name": "second_commencement_is_identity"
+    }
+   ],
+   "imports": [
+    "JurisLean.LegalModelV2"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Part0.lean",
+   "print_axioms_targets": [],
+   "sha256": "031eb9d4c6b77b06419a1e454967fdb2546cd3bec1688de992d9fb366e6f6f7b",
+   "size_bytes": 6882,
+   "theorem_count": 12,
+   "theorem_count_bol_convention": 12
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
+     "name": "SourceKind"
+    },
+    {
+     "kind": "inductive",
+     "name": "AdmissionGrade"
+    },
+    {
+     "kind": "def",
+     "name": "admissionGrade"
+    },
+    {
+     "kind": "theorem",
+     "name": "source_grade_total"
+    },
+    {
+     "kind": "inductive",
+     "name": "HierarchyRank"
+    },
+    {
+     "kind": "def",
+     "name": "rankScore"
+    },
+    {
+     "kind": "structure",
+     "name": "NormProvision"
+    },
+    {
+     "kind": "def",
+     "name": "resolveConflict"
+    },
+    {
+     "kind": "theorem",
+     "name": "lex_superior_left"
+    },
+    {
+     "kind": "theorem",
+     "name": "old_special_vs_new_general_unknown"
+    },
+    {
+     "kind": "theorem",
+     "name": "same_rank_day_nature_unknown"
+    },
+    {
+     "kind": "structure",
+     "name": "TransitionClause"
+    },
+    {
+     "kind": "def",
+     "name": "applyTransition"
+    },
+    {
+     "kind": "theorem",
+     "name": "transition_requires_version_and_fact"
+    },
+    {
+     "kind": "theorem",
+     "name": "transition_version_mismatch_holds"
+    },
+    {
+     "kind": "inductive",
+     "name": "PrecedentBinding"
+    },
+    {
+     "kind": "inductive",
+     "name": "BindingEffect"
+    },
+    {
+     "kind": "def",
+     "name": "bindingEffect"
+    },
+    {
+     "kind": "theorem",
+     "name": "shall_refer_without_reason_follows"
+    },
+    {
+     "kind": "theorem",
+     "name": "may_reference_nonbinding"
+    },
+    {
+     "kind": "structure",
+     "name": "JurisdictionRules"
+    },
+    {
+     "kind": "structure",
+     "name": "ApplicableKinds"
+    },
+    {
+     "kind": "def",
+     "name": "routeJurisdiction"
+    },
+    {
+     "kind": "theorem",
+     "name": "specialized_rule_wins_first"
+    },
+    {
+     "kind": "theorem",
+     "name": "no_applicable_rule_returns_none"
+    },
+    {
+     "kind": "structure",
+     "name": "RenvoiResult"
+    },
+    {
+     "kind": "def",
+     "name": "resolveOneHop"
+    },
+    {
+     "kind": "theorem",
+     "name": "renvoi_back_uses_forum_and_terminates"
+    },
+    {
+     "kind": "def",
+     "name": "retainedAfterOverride"
+    },
+    {
+     "kind": "theorem",
+     "name": "named_rule_removed"
+    },
+    {
+     "kind": "theorem",
+     "name": "other_rule_preserved"
+    },
+    {
+     "kind": "def",
+     "name": "selectApplicableLaw"
+    },
+    {
+     "kind": "theorem",
+     "name": "missing_version_unknown"
+    },
+    {
+     "kind": "theorem",
+     "name": "missing_jurisdiction_unknown"
+    },
+    {
+     "kind": "structure",
+     "name": "CauseRoute"
+    },
+    {
+     "kind": "def",
+     "name": "routeCause"
+    },
+    {
+     "kind": "theorem",
+     "name": "cause_route_head_hit"
+    },
+    {
+     "kind": "theorem",
+     "name": "cause_route_empty_unknown"
+    }
+   ],
+   "imports": [
+    "JurisLean.Genealogy.Part0"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Part1.lean",
+   "print_axioms_targets": [],
+   "sha256": "11a9e7ef87220eede081d89064debcaa234c6220d7aaf408ed4b9566efaf7b05",
+   "size_bytes": 9142,
+   "theorem_count": 17,
+   "theorem_count_bol_convention": 17
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
+     "name": "BindingKind"
+    },
+    {
+     "kind": "structure",
+     "name": "NormBinding"
+    },
+    {
+     "kind": "def",
+     "name": "secondaryAttaches"
+    },
+    {
+     "kind": "theorem",
+     "name": "secondary_without_primary_violation_is_false"
+    },
+    {
+     "kind": "theorem",
+     "name": "matching_secondary_attachment"
+    },
+    {
+     "kind": "structure",
+     "name": "AnspruchBasis"
+    },
+    {
+     "kind": "def",
+     "name": "findBasis"
+    },
+    {
+     "kind": "def",
+     "name": "basisSatisfied"
+    },
+    {
+     "kind": "def",
+     "name": "claimAvailable"
+    },
+    {
+     "kind": "theorem",
+     "name": "claim_available_complete_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "unregistered_basis_unknown"
+    },
+    {
+     "kind": "inductive",
+     "name": "AgencyKind"
+    },
+    {
+     "kind": "inductive",
+     "name": "Attribution"
+    },
+    {
+     "kind": "def",
+     "name": "effectAttribution"
+    },
+    {
+     "kind": "theorem",
+     "name": "agency_attributes_principal"
+    },
+    {
+     "kind": "theorem",
+     "name": "representation_outside_scope_none"
+    },
+    {
+     "kind": "theorem",
+     "name": "impersonation_ratified_principal"
+    },
+    {
+     "kind": "structure",
+     "name": "CompetitionRelation"
+    },
+    {
+     "kind": "def",
+     "name": "established"
+    },
+    {
+     "kind": "theorem",
+     "name": "competition_is_three_way_conjunction"
+    },
+    {
+     "kind": "theorem",
+     "name": "all_three_true_establish"
+    }
+   ],
+   "imports": [
+    "JurisLean.Genealogy.Part1"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Part2.lean",
+   "print_axioms_targets": [],
+   "sha256": "34f5ae38b6caa6c20a24beb2986a4fdb6b6fc2749390b596d9ff403bc3eb5c9e",
+   "size_bytes": 4179,
+   "theorem_count": 9,
+   "theorem_count_bol_convention": 9
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "EvidenceWeight"
+    },
+    {
+     "kind": "def",
+     "name": "grade"
+    },
+    {
+     "kind": "theorem",
+     "name": "equal_factors_fixed"
+    },
+    {
+     "kind": "theorem",
+     "name": "weakest_factor_witness"
+    },
+    {
+     "kind": "structure",
+     "name": "ButForCase"
+    },
+    {
+     "kind": "def",
+     "name": "butForTest"
+    },
+    {
+     "kind": "theorem",
+     "name": "two_sided_but_for_true"
+    },
+    {
+     "kind": "theorem",
+     "name": "one_side_missing_unknown"
+    },
+    {
+     "kind": "structure",
+     "name": "ExemptionGround"
+    },
+    {
+     "kind": "def",
+     "name": "exempts"
+    },
+    {
+     "kind": "theorem",
+     "name": "exemption_requires_own_elements"
+    },
+    {
+     "kind": "theorem",
+     "name": "exemption_complete_witness"
+    },
+    {
+     "kind": "structure",
+     "name": "FilingWindow"
+    },
+    {
+     "kind": "def",
+     "name": "evidenceAdmissible"
+    },
+    {
+     "kind": "theorem",
+     "name": "good_cause_extension_admits"
+    },
+    {
+     "kind": "theorem",
+     "name": "late_without_good_cause_barred"
+    },
+    {
+     "kind": "inductive",
+     "name": "ExclusionKind"
+    },
+    {
+     "kind": "def",
+     "name": "excluded"
+    },
+    {
+     "kind": "theorem",
+     "name": "any_listed_illegality_excludes"
+    },
+    {
+     "kind": "theorem",
+     "name": "empty_exclusion_list_does_not_exclude"
+    },
+    {
+     "kind": "structure",
+     "name": "FreeEvaluationBoundary"
+    },
+    {
+     "kind": "def",
+     "name": "FreeEvaluationBoundary.supplied"
+    },
+    {
+     "kind": "inductive",
+     "name": "BoundaryRecord"
+    },
+    {
+     "kind": "def",
+     "name": "FreeEvaluationBoundary.record"
+    },
+    {
+     "kind": "theorem",
+     "name": "boundary_inputs_complete"
+    },
+    {
+     "kind": "theorem",
+     "name": "boundary_records_input_only"
+    },
+    {
+     "kind": "structure",
+     "name": "ElementTrace"
+    },
+    {
+     "kind": "def",
+     "name": "traceReady"
+    },
+    {
+     "kind": "def",
+     "name": "hasReadyTrace"
+    },
+    {
+     "kind": "def",
+     "name": "mappingComplete"
+    },
+    {
+     "kind": "theorem",
+     "name": "mapping_complete_iff_all_required_traced"
+    },
+    {
+     "kind": "theorem",
+     "name": "mapping_complete_witness"
+    },
+    {
+     "kind": "structure",
+     "name": "AnchorRule"
+    },
+    {
+     "kind": "structure",
+     "name": "TimedEvent"
+    },
+    {
+     "kind": "def",
+     "name": "lookupEvent"
+    },
+    {
+     "kind": "def",
+     "name": "selectAnchor"
+    },
+    {
+     "kind": "theorem",
+     "name": "first_present_anchor_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "empty_anchor_rules_unknown"
+    },
+    {
+     "kind": "structure",
+     "name": "CommencementCell"
+    },
+    {
+     "kind": "def",
+     "name": "lookupCommencement"
+    },
+    {
+     "kind": "theorem",
+     "name": "commencement_cell_hit"
+    },
+    {
+     "kind": "theorem",
+     "name": "empty_commencement_matrix_unknown"
+    }
+   ],
+   "imports": [
+    "JurisLean.Genealogy.Part2",
+    "Mathlib.Data.Finset.Basic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Part3.lean",
+   "print_axioms_targets": [],
+   "sha256": "5eb21c7420c0b2acd0165f2975f073e6385517ce9a894d5b8de8fdd18f2f9903",
+   "size_bytes": 7646,
+   "theorem_count": 18,
+   "theorem_count_bol_convention": 18
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "AnalogyProbe"
+    },
+    {
+     "kind": "def",
+     "name": "analogousApplication"
+    },
+    {
+     "kind": "theorem",
+     "name": "analogy_three_conditions"
+    },
+    {
+     "kind": "theorem",
+     "name": "distinction_blocks_analogy"
+    },
+    {
+     "kind": "structure",
+     "name": "ToulminArgument"
+    },
+    {
+     "kind": "def",
+     "name": "wellFormed"
+    },
+    {
+     "kind": "theorem",
+     "name": "toulmin_six_slot_witness"
+    },
+    {
+     "kind": "inductive",
+     "name": "InterpretationMethod"
+    },
+    {
+     "kind": "inductive",
+     "name": "Interpretation"
+    },
+    {
+     "kind": "structure",
+     "name": "EvaluatedReading"
+    },
+    {
+     "kind": "def",
+     "name": "methodOf"
+    },
+    {
+     "kind": "def",
+     "name": "evaluateIsolated"
+    },
+    {
+     "kind": "theorem",
+     "name": "isolated_branch_preserved"
+    },
+    {
+     "kind": "structure",
+     "name": "ReadingAttack"
+    },
+    {
+     "kind": "def",
+     "name": "attackAdmissible"
+    },
+    {
+     "kind": "theorem",
+     "name": "pinned_reading_immune_to_low_attack"
+    },
+    {
+     "kind": "inductive",
+     "name": "AmbiguityState"
+    },
+    {
+     "kind": "structure",
+     "name": "AmbiguityProbe"
+    },
+    {
+     "kind": "def",
+     "name": "ambiguityState"
+    },
+    {
+     "kind": "theorem",
+     "name": "two_senses_without_context_ambiguous"
+    },
+    {
+     "kind": "theorem",
+     "name": "context_resolves"
+    },
+    {
+     "kind": "inductive",
+     "name": "NormKind"
+    },
+    {
+     "kind": "inductive",
+     "name": "NormContribution"
+    },
+    {
+     "kind": "def",
+     "name": "normContribution"
+    },
+    {
+     "kind": "theorem",
+     "name": "rule_all_or_nothing_true"
+    },
+    {
+     "kind": "theorem",
+     "name": "principle_positive_weight_is_weight_only"
+    },
+    {
+     "kind": "inductive",
+     "name": "ValueNode"
+    },
+    {
+     "kind": "inductive",
+     "name": "ValueRelation"
+    },
+    {
+     "kind": "def",
+     "name": "valueRelation"
+    },
+    {
+     "kind": "theorem",
+     "name": "preorder_with_legal_incomparability"
+    },
+    {
+     "kind": "structure",
+     "name": "LawmakingSignals"
+    },
+    {
+     "kind": "def",
+     "name": "lawmakingFlagged"
+    },
+    {
+     "kind": "theorem",
+     "name": "lawmaking_requires_three_true"
+    },
+    {
+     "kind": "theorem",
+     "name": "missing_gap_signal_blocks"
+    },
+    {
+     "kind": "inductive",
+     "name": "GapSignal"
+    },
+    {
+     "kind": "structure",
+     "name": "GapDetectionOutput"
+    },
+    {
+     "kind": "def",
+     "name": "detectGap"
+    },
+    {
+     "kind": "theorem",
+     "name": "gap_detection_preserves_signal_roster"
+    },
+    {
+     "kind": "theorem",
+     "name": "gap_signal_detected"
+    },
+    {
+     "kind": "inductive",
+     "name": "LiabilityForm"
+    },
+    {
+     "kind": "def",
+     "name": "wellFormed"
+    },
+    {
+     "kind": "theorem",
+     "name": "several_without_share_invalid"
+    },
+    {
+     "kind": "theorem",
+     "name": "several_with_share_valid"
+    },
+    {
+     "kind": "inductive",
+     "name": "DamageMeasure"
+    },
+    {
+     "kind": "inductive",
+     "name": "DamageKind"
+    },
+    {
+     "kind": "def",
+     "name": "classifyDamage"
+    },
+    {
+     "kind": "theorem",
+     "name": "unknown_damage_none"
+    },
+    {
+     "kind": "theorem",
+     "name": "registered_damage_witness"
+    },
+    {
+     "kind": "structure",
+     "name": "DualTrackParams"
+    },
+    {
+     "kind": "structure",
+     "name": "DeclaredBand"
+    },
+    {
+     "kind": "def",
+     "name": "mergedDeclaration"
+    },
+    {
+     "kind": "theorem",
+     "name": "declaration_floor_is_max"
+    },
+    {
+     "kind": "theorem",
+     "name": "declaration_band_order_witness"
+    },
+    {
+     "kind": "inductive",
+     "name": "LegalityVerdict"
+    },
+    {
+     "kind": "def",
+     "name": "assessLegality"
+    },
+    {
+     "kind": "theorem",
+     "name": "prohibited_is_illegal"
+    },
+    {
+     "kind": "theorem",
+     "name": "unknown_unlawfulness_is_violation"
+    },
+    {
+     "kind": "structure",
+     "name": "Band"
+    },
+    {
+     "kind": "def",
+     "name": "mediationIntersection"
+    },
+    {
+     "kind": "theorem",
+     "name": "mediation_overlap_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "mediation_disjoint_witness"
+    },
+    {
+     "kind": "structure",
+     "name": "SettlementDecision"
+    },
+    {
+     "kind": "def",
+     "name": "acceptSettlement"
+    },
+    {
+     "kind": "theorem",
+     "name": "settlement_ev_accept_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "settlement_ev_reject_witness"
+    },
+    {
+     "kind": "inductive",
+     "name": "PleaStage"
+    },
+    {
+     "kind": "def",
+     "name": "nextPleaStage"
+    },
+    {
+     "kind": "theorem",
+     "name": "plea_fixed_prefix_advances"
+    },
+    {
+     "kind": "theorem",
+     "name": "plea_skip_fails_closed"
+    },
+    {
+     "kind": "structure",
+     "name": "EthicsViolations"
+    },
+    {
+     "kind": "def",
+     "name": "tacticPermitted"
+    },
+    {
+     "kind": "theorem",
+     "name": "fraud_voids_tactic"
+    },
+    {
+     "kind": "structure",
+     "name": "SuitStrategy"
+    },
+    {
+     "kind": "def",
+     "name": "feasible"
+    },
+    {
+     "kind": "theorem",
+     "name": "preservation_without_ground_infeasible"
+    },
+    {
+     "kind": "structure",
+     "name": "EvidenceItemEVPI"
+    },
+    {
+     "kind": "def",
+     "name": "insertEvpi"
+    },
+    {
+     "kind": "def",
+     "name": "sortEvpi"
+    },
+    {
+     "kind": "theorem",
+     "name": "evpi_descending_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "evpi_tie_stability_witness"
+    },
+    {
+     "kind": "def",
+     "name": "appealWorthwhile"
+    },
+    {
+     "kind": "theorem",
+     "name": "appeal_ev_positive_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "appeal_ev_negative_witness"
+    },
+    {
+     "kind": "inductive",
+     "name": "FeeMode"
+    },
+    {
+     "kind": "def",
+     "name": "feeQuote"
+    },
+    {
+     "kind": "theorem",
+     "name": "undisclosed_fee_none"
+    },
+    {
+     "kind": "def",
+     "name": "expectedFee"
+    },
+    {
+     "kind": "theorem",
+     "name": "contingency_fee_cap_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "contingency_fee_below_cap_witness"
+    },
+    {
+     "kind": "inductive",
+     "name": "SameCaseEffect"
+    },
+    {
+     "kind": "def",
+     "name": "discharge"
+    },
+    {
+     "kind": "theorem",
+     "name": "should_follow_iff_reason_absent"
+    },
+    {
+     "kind": "structure",
+     "name": "RetrievalDutyRecord"
+    },
+    {
+     "kind": "def",
+     "name": "compliant"
+    },
+    {
+     "kind": "theorem",
+     "name": "retrieval_two_true_compliant"
+    },
+    {
+     "kind": "theorem",
+     "name": "retrieval_missing_report_noncompliant"
+    }
+   ],
+   "imports": [
+    "JurisLean.Genealogy.Part3"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+   "print_axioms_targets": [],
+   "sha256": "d8a419f28d2b25490ebb9dd5e47f334c71c103a3bce0dd320fadbebc47d68460",
+   "size_bytes": 20258,
+   "theorem_count": 40,
+   "theorem_count_bol_convention": 40
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "InterestSegment"
+    },
+    {
+     "kind": "def",
+     "name": "segmentInterest"
+    },
+    {
+     "kind": "def",
+     "name": "segmentedInterest"
+    },
+    {
+     "kind": "theorem",
+     "name": "two_segment_refinement"
+    },
+    {
+     "kind": "theorem",
+     "name": "empty_segments_zero"
+    },
+    {
+     "kind": "structure",
+     "name": "DebtItem"
+    },
+    {
+     "kind": "structure",
+     "name": "AllocationStep"
+    },
+    {
+     "kind": "def",
+     "name": "allocateOne"
+    },
+    {
+     "kind": "theorem",
+     "name": "allocate_one_underfunded"
+    },
+    {
+     "kind": "theorem",
+     "name": "allocate_one_overfunded"
+    },
+    {
+     "kind": "def",
+     "name": "allocateTwo"
+    },
+    {
+     "kind": "theorem",
+     "name": "two_debt_conservation_witness"
+    },
+    {
+     "kind": "def",
+     "name": "clamp"
+    },
+    {
+     "kind": "def",
+     "name": "inBand"
+    },
+    {
+     "kind": "theorem",
+     "name": "clamp_below_to_low"
+    },
+    {
+     "kind": "theorem",
+     "name": "clamp_below_in_band"
+    },
+    {
+     "kind": "theorem",
+     "name": "clamp_above_to_high"
+    },
+    {
+     "kind": "theorem",
+     "name": "clamp_above_in_band"
+    },
+    {
+     "kind": "theorem",
+     "name": "clamp_inside_fixed"
+    },
+    {
+     "kind": "theorem",
+     "name": "clamp_inside_idempotent"
+    },
+    {
+     "kind": "def",
+     "name": "taxSlice"
+    },
+    {
+     "kind": "def",
+     "name": "topSlice"
+    },
+    {
+     "kind": "def",
+     "name": "progressiveTax3"
+    },
+    {
+     "kind": "theorem",
+     "name": "progressive_three_bracket_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "progressive_two_effective_brackets_witness"
+    },
+    {
+     "kind": "inductive",
+     "name": "DamageFormulaId"
+    },
+    {
+     "kind": "def",
+     "name": "formulaFactor"
+    },
+    {
+     "kind": "def",
+     "name": "computeDamageItem"
+    },
+    {
+     "kind": "theorem",
+     "name": "unknown_damage_formula_none"
+    },
+    {
+     "kind": "theorem",
+     "name": "registered_damage_formula_witness"
+    },
+    {
+     "kind": "def",
+     "name": "delayInterest"
+    },
+    {
+     "kind": "theorem",
+     "name": "delay_interest_formula"
+    },
+    {
+     "kind": "inductive",
+     "name": "ContractState"
+    },
+    {
+     "kind": "def",
+     "name": "legalEdge"
+    },
+    {
+     "kind": "def",
+     "name": "transitionContractState"
+    },
+    {
+     "kind": "theorem",
+     "name": "no_consent_no_transition"
+    },
+    {
+     "kind": "theorem",
+     "name": "consent_and_legal_edge_moves"
+    },
+    {
+     "kind": "theorem",
+     "name": "consent_cannot_create_nonedge"
+    },
+    {
+     "kind": "inductive",
+     "name": "BridgeEvidence"
+    },
+    {
+     "kind": "def",
+     "name": "bridgesToDeduction"
+    },
+    {
+     "kind": "theorem",
+     "name": "deduction_bridges"
+    },
+    {
+     "kind": "theorem",
+     "name": "probability_one_not_deduction"
+    },
+    {
+     "kind": "inductive",
+     "name": "SimilarityGrade"
+    },
+    {
+     "kind": "structure",
+     "name": "SimilarityToolOutput"
+    },
+    {
+     "kind": "def",
+     "name": "grade"
+    },
+    {
+     "kind": "theorem",
+     "name": "structural_equivalence_assertion_invalid"
+    },
+    {
+     "kind": "theorem",
+     "name": "similarity_stays_candidate"
+    }
+   ],
+   "imports": [
+    "JurisLean.Genealogy.Part4"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Part5.lean",
+   "print_axioms_targets": [],
+   "sha256": "2f39b0bdf9551c1f681951511af9b64cd2d4c696efb1cf9da88f9ccfed7b7661",
+   "size_bytes": 10138,
+   "theorem_count": 23,
+   "theorem_count_bol_convention": 23
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
+     "name": "ProceduralDisposition"
+    },
+    {
+     "kind": "def",
+     "name": "legalEdge"
+    },
+    {
+     "kind": "def",
+     "name": "sequenceValid"
+    },
+    {
+     "kind": "theorem",
+     "name": "disposition_valid_path"
+    },
+    {
+     "kind": "theorem",
+     "name": "disposition_invalid_jump"
+    },
+    {
+     "kind": "structure",
+     "name": "LitigationSubject"
+    },
+    {
+     "kind": "def",
+     "name": "sameText"
+    },
+    {
+     "kind": "def",
+     "name": "samePartiesUnordered"
+    },
+    {
+     "kind": "def",
+     "name": "sameSubject"
+    },
+    {
+     "kind": "theorem",
+     "name": "swapped_parties_same_subject"
+    },
+    {
+     "kind": "theorem",
+     "name": "different_cause_not_same_subject"
+    },
+    {
+     "kind": "inductive",
+     "name": "AssetVerdict"
+    },
+    {
+     "kind": "structure",
+     "name": "ScriptAsset"
+    },
+    {
+     "kind": "def",
+     "name": "receiptVerdict"
+    },
+    {
+     "kind": "theorem",
+     "name": "legal_fact_script_rejected"
+    },
+    {
+     "kind": "structure",
+     "name": "Proposal"
+    },
+    {
+     "kind": "inductive",
+     "name": "ProposalGrade"
+    },
+    {
+     "kind": "def",
+     "name": "grade"
+    },
+    {
+     "kind": "def",
+     "name": "admitProposal"
+    },
+    {
+     "kind": "theorem",
+     "name": "failed_gate_keeps_candidate"
+    },
+    {
+     "kind": "theorem",
+     "name": "passed_gate_sets_admitted"
+    },
+    {
+     "kind": "structure",
+     "name": "VersionDiscipline"
+    },
+    {
+     "kind": "def",
+     "name": "bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "version_triplet_binding_identity"
+    },
+    {
+     "kind": "structure",
+     "name": "DisclosureRecord"
+    },
+    {
+     "kind": "def",
+     "name": "compliant"
+    },
+    {
+     "kind": "theorem",
+     "name": "disclosed_is_compliant"
+    },
+    {
+     "kind": "theorem",
+     "name": "undisclosed_is_noncompliant"
+    },
+    {
+     "kind": "inductive",
+     "name": "HallucinationPattern"
+    },
+    {
+     "kind": "def",
+     "name": "blockHallucination"
+    },
+    {
+     "kind": "theorem",
+     "name": "detected_pattern_blocks"
+    },
+    {
+     "kind": "structure",
+     "name": "ConceptUse"
+    },
+    {
+     "kind": "def",
+     "name": "smugglingBlocked"
+    },
+    {
+     "kind": "theorem",
+     "name": "foreign_unadapted_blocked"
+    },
+    {
+     "kind": "theorem",
+     "name": "home_jurisdiction_not_blocked"
+    },
+    {
+     "kind": "def",
+     "name": "isPrefixChars"
+    },
+    {
+     "kind": "def",
+     "name": "verbatimPrefix"
+    },
+    {
+     "kind": "theorem",
+     "name": "verbatim_prefix_hit_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "verbatim_prefix_miss_witness"
+    },
+    {
+     "kind": "structure",
+     "name": "DueProcessPresence"
+    },
+    {
+     "kind": "def",
+     "name": "satisfied"
+    },
+    {
+     "kind": "theorem",
+     "name": "all_due_process_elements_present"
+    },
+    {
+     "kind": "theorem",
+     "name": "missing_reason_record_fails"
+    },
+    {
+     "kind": "structure",
+     "name": "AnonymizationBoundary"
+    },
+    {
+     "kind": "def",
+     "name": "withinBoundary"
+    },
+    {
+     "kind": "theorem",
+     "name": "anonymization_boundary_two_conditions"
+    },
+    {
+     "kind": "inductive",
+     "name": "LifecycleState"
+    },
+    {
+     "kind": "def",
+     "name": "lifecycleEdge"
+    },
+    {
+     "kind": "theorem",
+     "name": "lifecycle_listed_edge_valid"
+    },
+    {
+     "kind": "theorem",
+     "name": "lifecycle_unlisted_edge_invalid"
+    },
+    {
+     "kind": "def",
+     "name": "hasCommand"
+    },
+    {
+     "kind": "def",
+     "name": "effectLogApply"
+    },
+    {
+     "kind": "theorem",
+     "name": "replay_empty_log_idempotent"
+    },
+    {
+     "kind": "theorem",
+     "name": "existing_command_replay_witness"
+    },
+    {
+     "kind": "inductive",
+     "name": "HumanGate"
+    },
+    {
+     "kind": "inductive",
+     "name": "GatedAction"
+    },
+    {
+     "kind": "def",
+     "name": "requiredGate"
+    },
+    {
+     "kind": "def",
+     "name": "actionRequiresGate"
+    },
+    {
+     "kind": "theorem",
+     "name": "listed_action_requires_its_gate"
+    }
+   ],
+   "imports": [
+    "JurisLean.Genealogy.Part5"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+   "print_axioms_targets": [],
+   "sha256": "67660c69455cfa64d519395059e0d35f31c4b86bf2e385941fbdd7c1da1f57cf",
+   "size_bytes": 11712,
+   "theorem_count": 23,
+   "theorem_count_bol_convention": 23
+  },
+  {
    "declarations": [
     {
      "kind": "inductive",
@@ -14029,6 +15650,7 @@
     "JurisLean.EndToEnd",
     "JurisLean.FiniteGaloisAdjunction",
     "JurisLean.FiniteRosetta",
+    "JurisLean.Genealogy.All",
     "JurisLean.Hohfeld",
     "JurisLean.HornAAFContract",
     "JurisLean.JC_Formalization",
@@ -14058,8 +15680,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "13f6872dd0035f99f0156f1fd0394a2788e0e90752947727d0899259466e9f7f",
-   "size_bytes": 1409,
+   "sha256": "1147ae574bbb761676f48600efed32ba959793eae66e378d1ae5643b0b4c8c13",
+   "size_bytes": 1440,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -14234,13 +15856,13 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1499,
-   "file_count": 202,
+   "counted_declaration_count": 1641,
+   "file_count": 210,
    "lemma_count": 24,
-   "print_axioms_command_count": 292,
-   "print_axioms_distinct_targets": 238,
-   "theorem_count": 1475,
-   "theorem_count_bol_convention": 1439
+   "print_axioms_command_count": 434,
+   "print_axioms_distinct_targets": 380,
+   "theorem_count": 1617,
+   "theorem_count_bol_convention": 1581
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -14380,6 +16002,14 @@
    "proofs/lean/juris_lean/JurisLean/FullMath/Tranche5.lean",
    "proofs/lean/juris_lean/JurisLean/FullMath/Tranche6.lean",
    "proofs/lean/juris_lean/JurisLean/FullMath/Tranche7.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/All.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/Part0.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/Part1.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/Part2.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/Part3.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/Part5.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
    "proofs/lean/juris_lean/JurisLean/Hohfeld.lean",
    "proofs/lean/juris_lean/JurisLean/HornAAFContract.lean",
    "proofs/lean/juris_lean/JurisLean/HornDefinitions.lean",
@@ -14497,11 +16127,11 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "8b12fc11a148bd8e422e30fbe14bef6fde78a4c38b4f3bfe2f7a96d267b36473",
+ "source_inventory_digest": "9601b211a6c0293a870d79da5390d4d729f93608753e5f604995b00bf5d5b51d",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "main",
-  "commit": "b19c9668d29d0d4c92b28473df02eb83c45429f2",
-  "tree": "426cca4bfc7787fec5b4e5f428dd7afda6109bb2"
+  "commit": "b99b8ff40583a89f016d6924e6c46606d67f7140",
+  "tree": "b23d203c1180b7de049836c2896fd79c11e56857"
  }
 }

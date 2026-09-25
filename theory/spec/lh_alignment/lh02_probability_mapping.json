@@ -1,0 +1,123 @@
+{
+  "schema_version": "lh02-probability-mapping-v1",
+  "note": "Theorem names are copied verbatim from JurisLean/FullMath/Acceptance.lean (target_P01..target_P13 lines); proofs are referenced, never rewritten.",
+  "rows": [
+    {
+      "id": "P01",
+      "theorem": "JurisLean.FullMath.Probability.joint_normalizes",
+      "proof_file": "proofs/lean/juris_lean/JurisLean/FullMath/Probability/FiniteBN.lean",
+      "new_pipeline": [
+        "finite BN normalization grounds the PR cohort-counting layer"
+      ],
+      "rewritten": false
+    },
+    {
+      "id": "P02",
+      "theorem": "JurisLean.FullMath.Probability.posterior_normalizes",
+      "proof_file": "proofs/lean/juris_lean/JurisLean/FullMath/Probability/Conditioning.lean",
+      "new_pipeline": [
+        "posterior normalization grounds evidence-conditioned updates over K candidates"
+      ],
+      "rewritten": false
+    },
+    {
+      "id": "P03",
+      "theorem": "JurisLean.FullMath.Probability.sum_out_distrib",
+      "proof_file": "proofs/lean/juris_lean/JurisLean/FullMath/Probability/VariableElimination.lean",
+      "new_pipeline": [
+        "exact variable elimination grounds signature-bucket marginalization in RT-02"
+      ],
+      "rewritten": false
+    },
+    {
+      "id": "P04",
+      "theorem": "JurisLean.FullMath.Probability.dedup_no_double_update",
+      "proof_file": "proofs/lean/juris_lean/JurisLean/FullMath/Probability/EvidenceIdentity.lean",
+      "new_pipeline": [
+        "evidence identity guards EV-05 K narrowing against double updates"
+      ],
+      "rewritten": false
+    },
+    {
+      "id": "P05",
+      "theorem": "JurisLean.FullMath.Probability.dirWeights_update_compose",
+      "proof_file": "proofs/lean/juris_lean/JurisLean/FullMath/Probability/DirichletPosterior.lean",
+      "new_pipeline": [
+        "Dirichlet update composition grounds cohort-count posterior composition in PR-02"
+      ],
+      "rewritten": false
+    },
+    {
+      "id": "P06",
+      "theorem": "JurisLean.FullMath.Probability.hyper_data_changes_posterior",
+      "proof_file": "proofs/lean/juris_lean/JurisLean/FullMath/Probability/DirichletPosterior.lean",
+      "new_pipeline": [
+        "data changing the posterior grounds the no-free-prior discipline of PR-01"
+      ],
+      "rewritten": false
+    },
+    {
+      "id": "P07",
+      "theorem": "JurisLean.FullMath.Probability.mixture_within_retained",
+      "proof_file": "proofs/lean/juris_lean/JurisLean/FullMath/Probability/ModelAveraging.lean",
+      "new_pipeline": [
+        "mixture bounds ground the win_model finite hyperprior mixture in PR-02"
+      ],
+      "rewritten": false
+    },
+    {
+      "id": "P08",
+      "theorem": "JurisLean.FullMath.Probability.contamination_bounds",
+      "proof_file": "proofs/lean/juris_lean/JurisLean/FullMath/Probability/Misspecification.lean",
+      "new_pipeline": [
+        "contamination bounds ground the outward-interval discipline of PR-02"
+      ],
+      "rewritten": false
+    },
+    {
+      "id": "P09",
+      "theorem": "JurisLean.FullMath.Probability.unprocessed_mass_bounds",
+      "proof_file": "proofs/lean/juris_lean/JurisLean/FullMath/Probability/UnprocessedMass.lean",
+      "new_pipeline": [
+        "unprocessed mass bounds ground UNKNOWN remainder accounting in PR-01/02"
+      ],
+      "rewritten": false
+    },
+    {
+      "id": "P10",
+      "theorem": "JurisLean.FullMath.Probability.beta_mixture_mass",
+      "proof_file": "proofs/lean/juris_lean/JurisLean/FullMath/Probability/BetaInterval.lean",
+      "new_pipeline": [
+        "beta mixture mass grounds latent_rate_interval in PR-02"
+      ],
+      "rewritten": false
+    },
+    {
+      "id": "P11",
+      "theorem": "JurisLean.FullMath.Probability.time_order_enforced",
+      "proof_file": "proofs/lean/juris_lean/JurisLean/FullMath/Probability/SplitNoLeak.lean",
+      "new_pipeline": [
+        "no-leak time order grounds the TemporalProtocol of PR-01"
+      ],
+      "rewritten": false
+    },
+    {
+      "id": "P12",
+      "theorem": "JurisLean.FullMath.Probability.brier_excess_identity",
+      "proof_file": "proofs/lean/juris_lean/JurisLean/FullMath/Probability/Brier.lean",
+      "new_pipeline": [
+        "proper scoring grounds the evaluation discipline of the PR pipeline"
+      ],
+      "rewritten": false
+    },
+    {
+      "id": "P13",
+      "theorem": "JurisLean.FullMath.Probability.pav_two_point_optimal",
+      "proof_file": "proofs/lean/juris_lean/JurisLean/FullMath/Probability/PAV.lean",
+      "new_pipeline": [
+        "isotonic optimality grounds the calibration step feeding PR-02"
+      ],
+      "rewritten": false
+    }
+  ]
+}

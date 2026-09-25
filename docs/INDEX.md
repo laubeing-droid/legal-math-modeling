@@ -57,9 +57,8 @@ The `master-plan/` construction ledger organizes work and freezes design baselin
 | `history/evidence-archive/` | Debate & evidence archive migrated from the retired cloud folder: four-reports, 20-round debates, distillation audits, wave4 book evidence, concept genealogy v1/v2, baseline copies | Historical evidence (sources for master-plan baselines) |
 | `master-plan/00_施工总纲.md` | Construction master plan; frozen baseline = object definition v3 + 7-layer skeleton | Working contract (construction ledger) |
 | `master-plan/01_编号台账.md` | Numbered construction ledger (TY/RC/EV/PR/RT/NN/AC/ON/LH pools) | Working contract (construction ledger) |
-| `master-plan/基线/对象定义v3_冻结版_20260925.md` | Frozen legal-semantic-core object definition (5-round audit, R5 verdict: 收束) | Working contract (baseline) |
-| `master-plan/基线/法律统一概念体系全量方案_v1.md` | Full concept system: 131 concepts, 16 requirement families, 37 defined terms | Working contract (baseline) |
-| `master-plan/基线/法律概念谱系总录_v2.md` | Concept genealogy v2.1 with household rules and audit corrections | Reference (source for ON pool) |
+| `master-plan/基线/法律概念总谱.md` | Concept master genealogy (sole authority): seven-layer framework, P-001..P-132 ordered concepts with formalization targets, rulings record, frozen with change control; absorbs the retired object-definition v3 clauses (§1.2) | Working contract (frozen baseline) |
+| `history/baseline-archive/` | Three retired baseline files (object definition v3 / genealogy v2 / full concept plan v1), superseded 2026-09-25 by the master genealogy | Historical only |
 | `history/documentation_rewrite_20260701.md` | Prior rewrite record | Historical only |
 
 The 2026-07-01 audit record is retained to explain provenance. It does not describe the current document tree and cannot override this index.

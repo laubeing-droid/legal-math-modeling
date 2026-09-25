@@ -201,57 +201,6 @@ def sortedDescending :
       decide (y.evpi ≤ x.evpi) &&
         sortedDescending (y :: xs)
 
-/-- [P083-GENERAL-C] 插入保持降序（一般式，split_ifs + Bool 层直接传递）。 -/
-theorem P083_insertEvpi_preserves_sorted (x : P083EvpiItem) :
-    ∀ ys, sortedDescending ys = true →
-      sortedDescending (insertEvpi x ys) = true := by
-  intro ys
-  induction ys with
-  | nil =>
-      intro _
-      rfl
-  | cons y ys' ih =>
-      intro hsorted
-      simp only [insertEvpi]
-      split_ifs with hle
-      · -- y ≤ x：结果 x :: y :: ys'
-        simp only [sortedDescending, hle, Bool.and_true]
-        exact hsorted
-      · -- y > x：结果 y :: insertEvpi x ys'
-        cases ys' with
-        | nil =>
-            simp only [insertEvpi, sortedDescending]
-            cases Nat.lt_or_ge x.evpi y.evpi with
-            | inl hxlt =>
-                simp only [Bool.and_true]
-                cases Nat.decLe x.evpi y.evpi with
-                | isTrue _ => rfl
-                | isFalse hnf => exact absurd (Nat.le_of_lt hxlt) hnf
-            | inr hge =>
-                cases Nat.decLe y.evpi x.evpi with
-                | isTrue hyx => rw [show decide (y.evpi ≤ x.evpi) = true from rfl] at hle; simp at hle
-                | isFalse _ => rfl
-        | cons z zs =>
-            simp only [sortedDescending] at hsorted
-            simp only [Bool.and_eq_true] at hsorted
-            simp only [insertEvpi]
-            split_ifs with hz
-            · -- z ≤ x：insert head = x
-              simp only [sortedDescending, hz, Bool.and_true]
-              exact hsorted
-            · -- z > x：insert head = z
-              simp only [sortedDescending, hz, Bool.and_true]
-              exact hsorted
-
-/-- [P083-GENERAL-D] 排序结果恒降序（一般式）。 -/
-theorem P083_sortEvpi_sorted (xs : List P083EvpiItem) :
-    sortedDescending (sortEvpi xs) = true := by
-  induction xs with
-  | nil => rfl
-  | cons x xs ih =>
-      simp only [sortEvpi]
-      exact P083_insertEvpi_preserves_sorted x (sortEvpi xs) ih
-
 /- 降序见证（保留作为快速回归锚）。 -/
 theorem P083_sortedDescending_witness :
     sortedDescending

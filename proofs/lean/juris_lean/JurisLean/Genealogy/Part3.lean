@@ -172,7 +172,7 @@ def mappingComplete (required : List String) (traces : List ElementTrace) : Bool
 theorem mapping_complete_iff_all_required_traced
     (required : List String) (traces : List ElementTrace) :
     mappingComplete required traces = true ↔
-      required.all (fun e => hasReadyTrace e traces) = true := rfl
+      required.all (fun e => hasReadyTrace e traces) = true := Iff.rfl
 -- [rfl] 置信：左侧定义体就是右侧“每要件均有 ready trace”的判定。
 
 theorem mapping_complete_witness :

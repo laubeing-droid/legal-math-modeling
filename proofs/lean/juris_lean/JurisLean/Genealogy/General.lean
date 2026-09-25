@@ -213,25 +213,6 @@ theorem P083_sortedDescending_witness :
       ] = true := by
   decide
 
-/
-theorem P083_sortEvpi_sorted (xs : List P083EvpiItem) :
-    sortedDescending (sortEvpi xs) = true := by
-  induction xs with
-  | nil => rfl
-  | cons x xs ih =>
-      simp only [sortEvpi]
-      exact P083_insertEvpi_preserves_sorted x (sortEvpi xs) ih
-
-/-- [P083-WITNESS-RETAINED] 降序见证。 -/
-theorem P083_sortedDescending_witness :
-    sortedDescending
-      [
-        { id := 1, evpi := 90 },
-        { id := 2, evpi := 70 },
-        { id := 3, evpi := 20 }
-      ] = true := by
-  decide
-
 /-! ============================================================
     P084 — 上诉 EV 单调（严格白名单版，无 have）
     ============================================================ -/

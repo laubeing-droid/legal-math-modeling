@@ -7,3 +7,4 @@ import JurisLean.Genealogy.Part5
 import JurisLean.Genealogy.Part6
 import JurisLean.Genealogy.General
 import JurisLean.Genealogy.Boundary
+import JurisLean.Genealogy.TSpectrum.Batch1

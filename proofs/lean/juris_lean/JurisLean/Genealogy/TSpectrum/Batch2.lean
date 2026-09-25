@@ -37,7 +37,7 @@ def sliceInterest
 
 def segmentedInterest :
     List InterestSlice → Int
-  | [] =>
+  | [] => 0
   | slice :: remaining =>
       sliceInterest slice +
         segmentedInterest remaining
@@ -169,7 +169,7 @@ namespace T23
 
 def trancheTotal :
     List Nat → Nat
-  | [] =>
+  | [] => 0
   | amount :: remaining =>
       amount +
         trancheTotal remaining
@@ -1097,11 +1097,11 @@ structure UnifiedProbabilityObject where
   legalIdentity : LegalIdentity
   support : List Nat
   weight :
-    Nat → ℚ
+    Nat → Int
 
 def reweight
     (object : UnifiedProbabilityObject)
-    (newWeight : Nat → ℚ) :
+    (newWeight : Nat → Int) :
     UnifiedProbabilityObject :=
   {
     legalIdentity :=
@@ -1116,7 +1116,7 @@ def reweight
 
 theorem unified_probability_preserves_legal_identity
     (object : UnifiedProbabilityObject)
-    (newWeight : Nat → ℚ) :
+    (newWeight : Nat → Int) :
     (reweight
         object
         newWeight).legalIdentity =
@@ -1159,13 +1159,13 @@ namespace T38
 structure FiniteRationalProbability where
   support : List Nat
   weight :
-    Nat → ℚ
+    Nat → Int
 
 def eventMass
     (probability : FiniteRationalProbability)
     (event : Nat → Bool) :
-    List Nat → ℚ
-  | [] =>
+    List Nat → Int
+  | [] => 0
   | outcome :: remaining =>
       (if event outcome then
           probability.weight outcome
@@ -1179,7 +1179,7 @@ def eventMass
 
 def totalEventMass
     (probability : FiniteRationalProbability)
-    (event : Nat → Bool) : ℚ :=
+    (event : Nat → Bool) : Int :=
   eventMass
     probability
     event
@@ -1188,7 +1188,7 @@ def totalEventMass
 def conditionedWeight
     (probability : FiniteRationalProbability)
     (event : Nat → Bool)
-    (outcome : Nat) : ℚ :=
+    (outcome : Nat) : Int :=
   if event outcome then
     probability.weight outcome /
       totalEventMass
@@ -1199,7 +1199,7 @@ def conditionedWeight
 inductive ConditioningResult where
   | undefinedCondition
   | conditioned
-      (weight : Nat → ℚ)
+      (weight : Nat → Int)
 
 def conditionProbability
     (probability : FiniteRationalProbability)
@@ -1254,7 +1254,7 @@ theorem conditioning_excludes_false_event
 
 本项已经形成：
 1. List 有限 support；
-2. ℚ 精确权重；
+2. Int 精确权重；
 3. event mass；
 4. 条件化；
 5. 零条件质量时明确 undefined；
@@ -1284,10 +1284,10 @@ end T38
 namespace T39
 
 def BoolPotential :=
-  Bool → ℚ
+  Bool → Int
 
 def eliminateBooleanVariable
-    (potential : BoolPotential) : ℚ :=
+    (potential : BoolPotential) : Int :=
   potential false +
     potential true
 
@@ -1296,7 +1296,7 @@ def booleanAssignments :
   [false, true]
 
 def independentEnumeration
-    (potential : BoolPotential) : ℚ :=
+    (potential : BoolPotential) : Int :=
   booleanAssignments.foldr
     (fun value accumulated =>
       potential value +
@@ -1806,7 +1806,7 @@ Option
 List
 List.rec
 List.foldr
-ℚ
+Int
 
 以及基础：
 - 加法；
@@ -1873,7 +1873,7 @@ T21–T40：
 - T35：论文 claim 与 formal claim 带一致见证；
 - T36：完成对象必须携带四项验收见证；
 - T37：概率重加权不改变法律身份；
-- T38：有限 ℚ 条件化 + 零质量 UNKNOWN；
+- T38：有限 Int 条件化 + 零质量 UNKNOWN；
 - T39：Bool 变量消元 = 独立枚举；
 - T40：隐藏状态变化不改变既定 observation。
 

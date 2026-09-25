@@ -640,6 +640,29 @@
     "JurisLean.Genealogy.TSpectrum.T18.period_effect_bound_to_kind",
     "JurisLean.Genealogy.TSpectrum.T19.progressive_and_multiplier_correct",
     "JurisLean.Genealogy.TSpectrum.T20.route_and_exclusion_sound",
+    "JurisLean.Genealogy.TSpectrum.T21.interest_segment_refinement",
+    "JurisLean.Genealogy.TSpectrum.T22.payment_offset_conservation",
+    "JurisLean.Genealogy.TSpectrum.T22.residual_payment_le",
+    "JurisLean.Genealogy.TSpectrum.T23.fixed_scheme_conservation",
+    "JurisLean.Genealogy.TSpectrum.T24.asset_pool_no_duplicate_consumption",
+    "JurisLean.Genealogy.TSpectrum.T25.priority_waterfall_monotone",
+    "JurisLean.Genealogy.TSpectrum.T26.interruption_resume_preserves_checkpoint",
+    "JurisLean.Genealogy.TSpectrum.T27.admitted_rule_has_four_witnesses",
+    "JurisLean.Genealogy.TSpectrum.T28.compile_structure_preserving",
+    "JurisLean.Genealogy.TSpectrum.T29.evaluate_multi_contract",
+    "JurisLean.Genealogy.TSpectrum.T30.version_package_isolation",
+    "JurisLean.Genealogy.TSpectrum.T31.record_override_audit",
+    "JurisLean.Genealogy.TSpectrum.T32.runtime_reference_consistency",
+    "JurisLean.Genealogy.TSpectrum.T33.external_output_does_not_relabel",
+    "JurisLean.Genealogy.TSpectrum.T34.business_does_not_pollute_legal",
+    "JurisLean.Genealogy.TSpectrum.T35.paper_claim_consistency",
+    "JurisLean.Genealogy.TSpectrum.T36.completion_acceptance",
+    "JurisLean.Genealogy.TSpectrum.T37.unified_probability_preserves_legal_identity",
+    "JurisLean.Genealogy.TSpectrum.T38.conditioning_excludes_false_event",
+    "JurisLean.Genealogy.TSpectrum.T38.conditioning_zero_mass_unknown",
+    "JurisLean.Genealogy.TSpectrum.T39.variable_elimination_equals_independent_enumeration",
+    "JurisLean.Genealogy.TSpectrum.T40.hidden_change_preserves_observation",
+    "JurisLean.Genealogy.TSpectrum.T40.observational_identity",
     "JurisLean.Hohfeld.correlative_involutive",
     "JurisLean.Hohfeld.correlative_ne_self",
     "JurisLean.Hohfeld.opposite_involutive",
@@ -665,8 +688,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "33403de24ab6170d5a2d5195905fa44a67059ce3e7dbc115d9e11f6b15efb1de",
-   "size_bytes": 16091,
+   "sha256": "ee10a515ff5fdf4ef43131e4f769b44aeb5ee6db1d607add1c8b6dfe9a8af3da",
+   "size_bytes": 17926,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -9056,13 +9079,14 @@
     "JurisLean.Genealogy.Part4",
     "JurisLean.Genealogy.Part5",
     "JurisLean.Genealogy.Part6",
-    "JurisLean.Genealogy.TSpectrum.Batch1"
+    "JurisLean.Genealogy.TSpectrum.Batch1",
+    "JurisLean.Genealogy.TSpectrum.Batch2"
    ],
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/All.lean",
    "print_axioms_targets": [],
-   "sha256": "07dc97a86dec147a8dfe19fc116b9919f21978e0bb9a002dec074b2fc0e34e62",
-   "size_bytes": 346,
+   "sha256": "5c4ab1855c2b6a47e64c177a1a4b2f88cfaca1f3ab9ea43c4d0b74e875dfb76e",
+   "size_bytes": 390,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -11206,6 +11230,352 @@
    "size_bytes": 36606,
    "theorem_count": 21,
    "theorem_count_bol_convention": 21
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "InterestSlice"
+    },
+    {
+     "kind": "def",
+     "name": "sliceInterest"
+    },
+    {
+     "kind": "def",
+     "name": "segmentedInterest"
+    },
+    {
+     "kind": "theorem",
+     "name": "interest_segment_refinement"
+    },
+    {
+     "kind": "def",
+     "name": "residualPayment"
+    },
+    {
+     "kind": "def",
+     "name": "appliedPayment"
+    },
+    {
+     "kind": "theorem",
+     "name": "residual_payment_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "payment_offset_conservation"
+    },
+    {
+     "kind": "def",
+     "name": "trancheTotal"
+    },
+    {
+     "kind": "structure",
+     "name": "FixedWaterfallPlan"
+    },
+    {
+     "kind": "def",
+     "name": "waterfallTotal"
+    },
+    {
+     "kind": "theorem",
+     "name": "fixed_scheme_conservation"
+    },
+    {
+     "kind": "structure",
+     "name": "AssetPoolLedger"
+    },
+    {
+     "kind": "def",
+     "name": "AssetConsumedBy"
+    },
+    {
+     "kind": "theorem",
+     "name": "asset_pool_no_duplicate_consumption"
+    },
+    {
+     "kind": "structure",
+     "name": "PriorityWaterfall"
+    },
+    {
+     "kind": "theorem",
+     "name": "priority_waterfall_monotone"
+    },
+    {
+     "kind": "structure",
+     "name": "Checkpoint"
+    },
+    {
+     "kind": "structure",
+     "name": "RuntimeState"
+    },
+    {
+     "kind": "def",
+     "name": "interrupt"
+    },
+    {
+     "kind": "def",
+     "name": "resume"
+    },
+    {
+     "kind": "theorem",
+     "name": "interruption_resume_preserves_checkpoint"
+    },
+    {
+     "kind": "structure",
+     "name": "FourGateWitness"
+    },
+    {
+     "kind": "structure",
+     "name": "AdmittedRule"
+    },
+    {
+     "kind": "theorem",
+     "name": "admitted_rule_has_four_witnesses"
+    },
+    {
+     "kind": "inductive",
+     "name": "SourceAst"
+    },
+    {
+     "kind": "inductive",
+     "name": "RuntimeAst"
+    },
+    {
+     "kind": "def",
+     "name": "compileAst"
+    },
+    {
+     "kind": "def",
+     "name": "sourceDenotation"
+    },
+    {
+     "kind": "def",
+     "name": "runtimeDenotation"
+    },
+    {
+     "kind": "theorem",
+     "name": "compile_structure_preserving"
+    },
+    {
+     "kind": "structure",
+     "name": "JurisdictionContract"
+    },
+    {
+     "kind": "structure",
+     "name": "EvaluationResult"
+    },
+    {
+     "kind": "def",
+     "name": "evaluateContract"
+    },
+    {
+     "kind": "def",
+     "name": "evaluateMultiContract"
+    },
+    {
+     "kind": "theorem",
+     "name": "evaluate_multi_contract"
+    },
+    {
+     "kind": "structure",
+     "name": "VersionPackage"
+    },
+    {
+     "kind": "def",
+     "name": "PackageStore"
+    },
+    {
+     "kind": "def",
+     "name": "replaceVersionPackage"
+    },
+    {
+     "kind": "theorem",
+     "name": "version_package_isolation"
+    },
+    {
+     "kind": "structure",
+     "name": "RecordValue"
+    },
+    {
+     "kind": "structure",
+     "name": "AuditEntry"
+    },
+    {
+     "kind": "structure",
+     "name": "OverrideResult"
+    },
+    {
+     "kind": "def",
+     "name": "overrideRecord"
+    },
+    {
+     "kind": "theorem",
+     "name": "record_override_audit"
+    },
+    {
+     "kind": "structure",
+     "name": "ReferenceToken"
+    },
+    {
+     "kind": "structure",
+     "name": "RuntimeReferenceContract"
+    },
+    {
+     "kind": "theorem",
+     "name": "runtime_reference_consistency"
+    },
+    {
+     "kind": "structure",
+     "name": "InternalJudgment"
+    },
+    {
+     "kind": "structure",
+     "name": "ExternalJudgment"
+    },
+    {
+     "kind": "def",
+     "name": "externalize"
+    },
+    {
+     "kind": "theorem",
+     "name": "external_output_does_not_relabel"
+    },
+    {
+     "kind": "structure",
+     "name": "CombinedState"
+    },
+    {
+     "kind": "def",
+     "name": "updateBusinessState"
+    },
+    {
+     "kind": "theorem",
+     "name": "business_does_not_pollute_legal"
+    },
+    {
+     "kind": "structure",
+     "name": "PaperClaimContract"
+    },
+    {
+     "kind": "theorem",
+     "name": "paper_claim_consistency"
+    },
+    {
+     "kind": "structure",
+     "name": "CompletionWitness"
+    },
+    {
+     "kind": "structure",
+     "name": "CompletedArtifact"
+    },
+    {
+     "kind": "theorem",
+     "name": "completion_acceptance"
+    },
+    {
+     "kind": "structure",
+     "name": "LegalIdentity"
+    },
+    {
+     "kind": "structure",
+     "name": "UnifiedProbabilityObject"
+    },
+    {
+     "kind": "def",
+     "name": "reweight"
+    },
+    {
+     "kind": "theorem",
+     "name": "unified_probability_preserves_legal_identity"
+    },
+    {
+     "kind": "structure",
+     "name": "FiniteRationalProbability"
+    },
+    {
+     "kind": "def",
+     "name": "eventMass"
+    },
+    {
+     "kind": "def",
+     "name": "totalEventMass"
+    },
+    {
+     "kind": "def",
+     "name": "conditionedWeight"
+    },
+    {
+     "kind": "inductive",
+     "name": "ConditioningResult"
+    },
+    {
+     "kind": "def",
+     "name": "conditionProbability"
+    },
+    {
+     "kind": "theorem",
+     "name": "conditioning_zero_mass_unknown"
+    },
+    {
+     "kind": "theorem",
+     "name": "conditioning_excludes_false_event"
+    },
+    {
+     "kind": "def",
+     "name": "BoolPotential"
+    },
+    {
+     "kind": "def",
+     "name": "eliminateBooleanVariable"
+    },
+    {
+     "kind": "def",
+     "name": "booleanAssignments"
+    },
+    {
+     "kind": "def",
+     "name": "independentEnumeration"
+    },
+    {
+     "kind": "theorem",
+     "name": "variable_elimination_equals_independent_enumeration"
+    },
+    {
+     "kind": "structure",
+     "name": "ObservableState"
+    },
+    {
+     "kind": "def",
+     "name": "observe"
+    },
+    {
+     "kind": "def",
+     "name": "ObservationallyIdentical"
+    },
+    {
+     "kind": "theorem",
+     "name": "observational_identity"
+    },
+    {
+     "kind": "def",
+     "name": "replaceHiddenState"
+    },
+    {
+     "kind": "theorem",
+     "name": "hidden_change_preserves_observation"
+    }
+   ],
+   "imports": [
+    "JurisLean.Genealogy.TSpectrum.Batch1"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch2.lean",
+   "print_axioms_targets": [],
+   "sha256": "ea9b0bb5c1157bbfec5d3d09104893c250b8259b40949067b33bb0b463187e85",
+   "size_bytes": 37774,
+   "theorem_count": 23,
+   "theorem_count_bol_convention": 23
   },
   {
    "declarations": [
@@ -16383,6 +16753,7 @@
     "JurisLean.FiniteRosetta",
     "JurisLean.Genealogy.All",
     "JurisLean.Genealogy.TSpectrum.Batch1",
+    "JurisLean.Genealogy.TSpectrum.Batch2",
     "JurisLean.Hohfeld",
     "JurisLean.HornAAFContract",
     "JurisLean.JC_Formalization",
@@ -16412,8 +16783,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "2d5dd84777e29b38f75dc2cea0dc7d9f03ed6ae235e8a388400d8d94eb845e6d",
-   "size_bytes": 1484,
+   "sha256": "bdf49ccb2cf84ee322c7d14c81011c70ebec0e335fc304b80981255b9f4aa824",
+   "size_bytes": 1528,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -16588,13 +16959,13 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1687,
-   "file_count": 213,
+   "counted_declaration_count": 1710,
+   "file_count": 214,
    "lemma_count": 24,
-   "print_axioms_command_count": 480,
-   "print_axioms_distinct_targets": 426,
-   "theorem_count": 1663,
-   "theorem_count_bol_convention": 1627
+   "print_axioms_command_count": 503,
+   "print_axioms_distinct_targets": 449,
+   "theorem_count": 1686,
+   "theorem_count_bol_convention": 1650
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -16745,6 +17116,7 @@
    "proofs/lean/juris_lean/JurisLean/Genealogy/Part5.lean",
    "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
    "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch1.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch2.lean",
    "proofs/lean/juris_lean/JurisLean/Hohfeld.lean",
    "proofs/lean/juris_lean/JurisLean/HornAAFContract.lean",
    "proofs/lean/juris_lean/JurisLean/HornDefinitions.lean",
@@ -16862,11 +17234,11 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "8867272f97a308ebaa1da63616b0bd9148a5882ceada18618435d323fe5e9d47",
+ "source_inventory_digest": "7aed67ac600183434a51a5a0c3ec0175c233dd399a335946aa558a4c5ae9ed48",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "main",
-  "commit": "d8abc55f6d94e343a8a41724027e4df3283990bb",
-  "tree": "79685a5b486550a913f2cf28977d5d0897348a8b"
+  "commit": "276cddd7bf538b5e029c89460d69298fd89753b3",
+  "tree": "eeaebcf10c05a2d8d987f11ba2d19234d6b20c88"
  }
 }

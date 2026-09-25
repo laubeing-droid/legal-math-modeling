@@ -217,8 +217,7 @@ theorem P083_insertEvpi_preserves_sorted (x : P083EvpiItem) :
       · -- y ≤ x：insert at front → x :: y :: ys'
         simp only [sortedDescending]
         simp only [Bool.and_eq_true, decide_eq_true_eq] at hsorted ⊢
-        refine ⟨?_, hsorted⟩
-        omega
+        exact ⟨hle, hsorted⟩
       · -- y > x：skip y → y :: insertEvpi x ys'
         cases ys' with
         | nil =>

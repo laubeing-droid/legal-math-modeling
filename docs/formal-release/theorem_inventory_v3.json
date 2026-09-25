@@ -463,9 +463,7 @@
     "JurisLean.Genealogy.General.P073_le_maxNat_left",
     "JurisLean.Genealogy.General.P073_mergedDeclaration_low_le_high",
     "JurisLean.Genealogy.General.P083_insertEvpi_length",
-    "JurisLean.Genealogy.General.P083_insertEvpi_preserves_sorted",
     "JurisLean.Genealogy.General.P083_sortEvpi_length",
-    "JurisLean.Genealogy.General.P083_sortEvpi_sorted",
     "JurisLean.Genealogy.General.P083_sortedDescending_witness",
     "JurisLean.Genealogy.General.P084_appealWorthwhile_monotone_strict",
     "JurisLean.Genealogy.General.P084_appealWorthwhile_of_mul_le",
@@ -777,8 +775,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "2eb5ccf895cb90f80bafc71de946b72a070ac3cd9106887e528f9b4d6656e362",
-   "size_bytes": 24266,
+   "sha256": "edf0f184845e0588210e2b89583a7f53515283e0910900a30a31e2a9d9dd661e",
+   "size_bytes": 24128,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -9371,14 +9369,6 @@
     },
     {
      "kind": "theorem",
-     "name": "P083_insertEvpi_preserves_sorted"
-    },
-    {
-     "kind": "theorem",
-     "name": "P083_sortEvpi_sorted"
-    },
-    {
-     "kind": "theorem",
      "name": "P083_sortedDescending_witness"
     },
     {
@@ -9476,10 +9466,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/General.lean",
    "print_axioms_targets": [],
-   "sha256": "a95dc5567ebe32fdfb71f8fa50c5faf24eb8ca755bfbed98c6458886abccc8b1",
-   "size_bytes": 16011,
-   "theorem_count": 22,
-   "theorem_count_bol_convention": 22
+   "sha256": "4476b0da36e7a87c27d2c4f819cef8113b25b8d81fcf52ea859dc583841eea2d",
+   "size_bytes": 14068,
+   "theorem_count": 20,
+   "theorem_count_bol_convention": 20
   },
   {
    "declarations": [
@@ -17872,13 +17862,13 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1799,
+   "counted_declaration_count": 1797,
    "file_count": 216,
    "lemma_count": 24,
-   "print_axioms_command_count": 592,
-   "print_axioms_distinct_targets": 538,
-   "theorem_count": 1775,
-   "theorem_count_bol_convention": 1739
+   "print_axioms_command_count": 590,
+   "print_axioms_distinct_targets": 536,
+   "theorem_count": 1773,
+   "theorem_count_bol_convention": 1737
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -18149,11 +18139,11 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "267d00f7df72a956f1f278cb62da6dc6d7a3bd60e1b912461f7ff22f82d30357",
+ "source_inventory_digest": "9ed890d7551a88779aceeebcaa0ee2e2da2a12a53bbf812122ebb47bf9ecc96c",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "main",
-  "commit": "5e887b2514a3c766c47c148c16290a3d7e3e35e6",
-  "tree": "978d587337518a2ad0b7feb117febbd5a4159fd2"
+  "commit": "afc4095ea607dc1a31590cec33d3c3c221f5bccc",
+  "tree": "5047935aa8a9002eca160a1b4b592e534e95c144"
  }
 }

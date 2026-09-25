@@ -1,0 +1,2046 @@
+{
+ "schema_version": "p-registry-v1",
+ "note": "Proof-campaign registry: every P-001..P-132 concept of the frozen master genealogy bound to its verification anchor(s). Anchors are verified by tests/spec/test_p_registry.py (file existence + symbol presence). The registry records WHAT proves each concept; claim strength follows the receipt ledger.",
+ "entries": [
+  {
+   "id": "P-001",
+   "roster": "A10",
+   "name": "法律概念定义",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/ULM01NormalForm.lean",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-002",
+   "roster": "A14",
+   "name": "概念=数据集+演算规则",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/concept_meta.py",
+     "symbol": "ConceptAsDataset"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch1.py",
+     "symbol": "test_p002_concept_identity_is_pair"
+    }
+   ]
+  },
+  {
+   "id": "P-003",
+   "roster": "A18",
+   "name": "法律语言",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/concept_meta.py",
+     "symbol": "TermTranslation"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch1.py",
+     "symbol": "test_p003_translation_preserves_meaning"
+    }
+   ]
+  },
+  {
+   "id": "P-004",
+   "roster": "A29",
+   "name": "法律主体",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/LegalIds.lean",
+     "symbol": "LegalId"
+    }
+   ]
+  },
+  {
+   "id": "P-005",
+   "roster": "A30",
+   "name": "Hohfeld 八概念",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/Hohfeld.lean",
+     "symbol": "opposite_involutive"
+    }
+   ]
+  },
+  {
+   "id": "P-006",
+   "roster": "A31",
+   "name": "法律关系状态",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/LegalModelV2.lean",
+     "symbol": "relation_shared_constraints_participate"
+    }
+   ]
+  },
+  {
+   "id": "P-007",
+   "roster": "A12",
+   "name": "不确定法律概念",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/ontology_v3.py",
+     "symbol": "ContextParameter"
+    },
+    {
+     "file": "tests/spec/test_ontology_v3.py",
+     "symbol": "test_context_interval_rejects_reverse_bounds"
+    }
+   ]
+  },
+  {
+   "id": "P-008",
+   "roster": "A13",
+   "name": "概念定性算子",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/ontology_v3.py",
+     "symbol": "characterize"
+    },
+    {
+     "file": "tests/spec/test_ontology_v3.py",
+     "symbol": "test_characterization_requires_context"
+    }
+   ]
+  },
+  {
+   "id": "P-009",
+   "roster": "A19",
+   "name": "概念变迁·工程核",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/concept_meta.py",
+     "symbol": "ConceptVersionEntry"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch1.py",
+     "symbol": "test_p009_registration_strictly_increases"
+    }
+   ]
+  },
+  {
+   "id": "P-010",
+   "roster": "A20",
+   "name": "个人信息概念族",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/concept_meta.py",
+     "symbol": "PersonalInfo"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch1.py",
+     "symbol": "test_p010_anonymization_and_triple_consent"
+    }
+   ]
+  },
+  {
+   "id": "P-011",
+   "roster": "A54",
+   "name": "期间与时效",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/TemporalKripke.lean",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-012",
+   "roster": "A55",
+   "name": "时效动因",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/time_contracts.py",
+     "symbol": "apply_limitation_cause"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch2.py",
+     "symbol": "test_p012_limitation_causes"
+    }
+   ]
+  },
+  {
+   "id": "P-013",
+   "roster": "A56",
+   "name": "期日计算",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/temporal_applicability.py",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-014",
+   "roster": "A1",
+   "name": "法源类型",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/source_contracts.py",
+     "symbol": "classify_source"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch1.py",
+     "symbol": "test_p014_source_typology_grades_admission"
+    }
+   ]
+  },
+  {
+   "id": "P-015",
+   "roster": "A2",
+   "name": "效力位阶",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/source_contracts.py",
+     "symbol": "resolve_conflict"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch1.py",
+     "symbol": "test_p015_lex_superior_and_posterior"
+    }
+   ]
+  },
+  {
+   "id": "P-016",
+   "roster": "A3",
+   "name": "效力与溯源",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/canonical_v2/manifest.py",
+     "symbol": "SourceSnapshotRef"
+    }
+   ]
+  },
+  {
+   "id": "P-017",
+   "roster": "A4",
+   "name": "溯及力",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/TemporalApplicability.lean",
+     "symbol": "superseded"
+    }
+   ]
+  },
+  {
+   "id": "P-018",
+   "roster": "A5",
+   "name": "规范版本衔接",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/source_contracts.py",
+     "symbol": "apply_transition"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch1.py",
+     "symbol": "test_p018_transition_fires_only_on_trigger"
+    }
+   ]
+  },
+  {
+   "id": "P-019",
+   "roster": "A6",
+   "name": "判例拘束力",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/source_contracts.py",
+     "symbol": "binding_effect"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch1.py",
+     "symbol": "test_p019_binding_grades"
+    }
+   ]
+  },
+  {
+   "id": "P-020",
+   "roster": "A59",
+   "name": "管辖",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/source_contracts.py",
+     "symbol": "route_jurisdiction"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch1.py",
+     "symbol": "test_p020_jurisdiction_routing_fail_closed"
+    }
+   ]
+  },
+  {
+   "id": "P-021",
+   "roster": "A61",
+   "name": "冲突规范与反致",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/source_contracts.py",
+     "symbol": "renvoi_resolves"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch1.py",
+     "symbol": "test_p021_renvoi_one_hop_terminates"
+    }
+   ]
+  },
+  {
+   "id": "P-022",
+   "roster": "A62",
+   "name": "强制性规范与公共秩序",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/source_contracts.py",
+     "symbol": "apply_override"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch1.py",
+     "symbol": "test_p022_scoped_override"
+    }
+   ]
+  },
+  {
+   "id": "P-023",
+   "roster": "A63",
+   "name": "准据法选择",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/source_contracts.py",
+     "symbol": "select_applicable_law"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch1.py",
+     "symbol": "test_p023_joint_selection_requires_both"
+    }
+   ]
+  },
+  {
+   "id": "P-024",
+   "roster": "B24",
+   "name": "案由与准据法路由",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/source_contracts.py",
+     "symbol": "route_cause_of_action"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch1.py",
+     "symbol": "test_p024_cause_routing_table"
+    }
+   ]
+  },
+  {
+   "id": "P-025",
+   "roster": "—",
+   "name": "【补户】法域轴落地",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/canonical_v2/kernel.py",
+     "symbol": "Jurisdiction"
+    },
+    {
+     "file": "tests/spec/test_kernel_v3.py",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-026",
+   "roster": "A11",
+   "name": "构成要件",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/ULM01NormalForm.lean",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-027",
+   "roster": "A21",
+   "name": "规范模态",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/DDLDefinitions.lean",
+     "symbol": "violation_implies_norm_active"
+    }
+   ]
+  },
+  {
+   "id": "P-028",
+   "roster": "A23",
+   "name": "规则结构",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/HornDefinitions.lean",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-029",
+   "roster": "A26",
+   "name": "Binding 二分",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/proof_contracts.py",
+     "symbol": "secondary_attaches"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch2.py",
+     "symbol": "test_p029_secondary_attaches_to_violated_primary"
+    }
+   ]
+  },
+  {
+   "id": "P-030",
+   "roster": "A28",
+   "name": "道义悖论处理",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/DDLDefinitions.lean",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-031",
+   "roster": "B1",
+   "name": "法律三段论",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/HornFixedPoint.lean",
+     "symbol": "horn_result_least_fixed_point"
+    }
+   ]
+  },
+  {
+   "id": "P-032",
+   "roster": "B2",
+   "name": "涵摄算子",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/ontology_v3.py",
+     "symbol": "subsume"
+    },
+    {
+     "file": "tests/spec/test_ontology_v3.py",
+     "symbol": "test_subsumption_complete_iff_no_missing_elements"
+    }
+   ]
+  },
+  {
+   "id": "P-033",
+   "roster": "B9",
+   "name": "规范逻辑推理",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/DDLDefinitions.lean",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-034",
+   "roster": "A32",
+   "name": "请求权",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/proof_contracts.py",
+     "symbol": "claim_available"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch2.py",
+     "symbol": "test_p034_claim_requires_complete_basis"
+    }
+   ]
+  },
+  {
+   "id": "P-035",
+   "roster": "A33",
+   "name": "角色与代理",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/proof_contracts.py",
+     "symbol": "effect_attribution"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch2.py",
+     "symbol": "test_p035_agency_trichotomy"
+    }
+   ]
+  },
+  {
+   "id": "P-036",
+   "roster": "A34",
+   "name": "关系类型谱",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/concept_meta.py",
+     "symbol": "RelationKind"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch1.py",
+     "symbol": "test_p036_relation_spectrum_signature"
+    }
+   ]
+  },
+  {
+   "id": "P-037",
+   "roster": "A35",
+   "name": "主体角色方向",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/retrieval_v4.py",
+     "symbol": "roles"
+    }
+   ]
+  },
+  {
+   "id": "P-038",
+   "roster": "A36",
+   "name": "竞争法关系",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/proof_contracts.py",
+     "symbol": "CompetitionRelation"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch2.py",
+     "symbol": "test_p038_competition_requires_all_three"
+    }
+   ]
+  },
+  {
+   "id": "P-039",
+   "roster": "A37",
+   "name": "法律事实类型化",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/ontology_v3.py",
+     "symbol": "TypedLegalFact"
+    },
+    {
+     "file": "tests/spec/test_ontology_v3.py",
+     "symbol": "test_legal_fact_event_and_action_are_distinct"
+    }
+   ]
+  },
+  {
+   "id": "P-040",
+   "roster": "A38",
+   "name": "事实三态",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/KernelV3.lean",
+     "symbol": "judgment_notEstablished_does_not_force_truth_false"
+    }
+   ]
+  },
+  {
+   "id": "P-041",
+   "roster": "A39",
+   "name": "证据能力",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/FactAdmissionSpec.lean",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-042",
+   "roster": "A40",
+   "name": "证明力·工程核",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/proof_contracts.py",
+     "symbol": "EvidenceWeight"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch2.py",
+     "symbol": "test_p042_weakest_factor_caps_grade"
+    }
+   ]
+  },
+  {
+   "id": "P-043",
+   "roster": "A41",
+   "name": "证明标准三级",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/FullMath/Probability/Brier.lean",
+     "symbol": null
+    },
+    {
+     "file": "theory/spec/proof_contracts.py",
+     "symbol": "EvidenceWeight"
+    }
+   ]
+  },
+  {
+   "id": "P-044",
+   "roster": "A42",
+   "name": "证明责任",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/burden_of_proof_tracker.py",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-045",
+   "roster": "A43",
+   "name": "推定与反证",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/ontology_v3.py",
+     "symbol": "apply_rebuttable_presumption"
+    }
+   ]
+  },
+  {
+   "id": "P-046",
+   "roster": "A44",
+   "name": "自认与拟制",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/ontology_v3.py",
+     "symbol": "rewrite_fact"
+    }
+   ]
+  },
+  {
+   "id": "P-047",
+   "roster": "A45",
+   "name": "事实因果·工程核",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/proof_contracts.py",
+     "symbol": "but_for_test"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch2.py",
+     "symbol": "test_p047_butfor_needs_both_directions"
+    }
+   ]
+  },
+  {
+   "id": "P-048",
+   "roster": "A46",
+   "name": "免责事由",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/proof_contracts.py",
+     "symbol": "exempts"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch2.py",
+     "symbol": "test_p048_exemption_needs_own_elements"
+    }
+   ]
+  },
+  {
+   "id": "P-049",
+   "roster": "A47",
+   "name": "举证时限与交换",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/proof_contracts.py",
+     "symbol": "evidence_admissible_on_time"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch2.py",
+     "symbol": "test_p049_late_evidence_needs_good_cause"
+    }
+   ]
+  },
+  {
+   "id": "P-050",
+   "roster": "A48",
+   "name": "非法证据排除",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/proof_contracts.py",
+     "symbol": "excluded"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch2.py",
+     "symbol": "test_p050_any_listed_illegality_excludes"
+    }
+   ]
+  },
+  {
+   "id": "P-051",
+   "roster": "A49",
+   "name": "自由心证边界",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/proof_contracts.py",
+     "symbol": "FreeEvaluationBoundary"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch2.py",
+     "symbol": "test_p051_boundary_is_positively_recorded"
+    }
+   ]
+  },
+  {
+   "id": "P-052",
+   "roster": "B8",
+   "name": "要件-事实-证据三元映射",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/proof_contracts.py",
+     "symbol": "mapping_complete"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch2.py",
+     "symbol": "test_p052_mapping_complete_all_traced"
+    }
+   ]
+  },
+  {
+   "id": "P-053",
+   "roster": "A24",
+   "name": "例外与豁免结构",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/AttackDecision.lean",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-054",
+   "roster": "A25",
+   "name": "规范冲突消解",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/DefeasiblePriority.lean",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-055",
+   "roster": "B4",
+   "name": "可废止论证",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/DungAAF.lean",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-056",
+   "roster": "B6",
+   "name": "对抗性论证结构",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/DungAAF.lean",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-057",
+   "roster": "B3",
+   "name": "类比推理",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/argument_contracts.py",
+     "symbol": "analogous_application"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p057_analogy_and_distinguishing"
+    }
+   ]
+  },
+  {
+   "id": "P-058",
+   "roster": "B5",
+   "name": "论证图式",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/argument_contracts.py",
+     "symbol": "ToulminArgument"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p058_toulmin_six_slots"
+    }
+   ]
+  },
+  {
+   "id": "P-059",
+   "roster": "B7",
+   "name": "请求权基础分析法",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/ontology_v3.py",
+     "symbol": "evaluate_claim_basis_chain"
+    }
+   ]
+  },
+  {
+   "id": "P-060",
+   "roster": "A15",
+   "name": "解释（五构造子）",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/argument_contracts.py",
+     "symbol": "evaluate_isolated"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p060_isolated_branches"
+    }
+   ]
+  },
+  {
+   "id": "P-061",
+   "roster": "A16",
+   "name": "解释之争",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/argument_contracts.py",
+     "symbol": "attack_admissible"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p061_pinned_reading_immune_to_lower_precedence"
+    }
+   ]
+  },
+  {
+   "id": "P-062",
+   "roster": "A17",
+   "name": "理解·工程核",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/argument_contracts.py",
+     "symbol": "ambiguity_state"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p062_ambiguity_needs_context"
+    }
+   ]
+  },
+  {
+   "id": "P-063",
+   "roster": "A22",
+   "name": "规则与原则二分",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/argument_contracts.py",
+     "symbol": "norm_contribution"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p063_rule_all_or_nothing_principle_weighed"
+    }
+   ]
+  },
+  {
+   "id": "P-064",
+   "roster": "A27",
+   "name": "价值衡量·工程核",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/argument_contracts.py",
+     "symbol": "value_relation"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p064_incomparability_is_legal"
+    }
+   ]
+  },
+  {
+   "id": "P-065",
+   "roster": "A7",
+   "name": "司法造法边界·工程核",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/argument_contracts.py",
+     "symbol": "lawmaking_flagged"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p065_lawmaking_detection"
+    }
+   ]
+  },
+  {
+   "id": "P-066",
+   "roster": "A9",
+   "name": "漏洞续造·工程核",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/argument_contracts.py",
+     "symbol": "gap_signalled"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p066_gap_signals"
+    }
+   ]
+  },
+  {
+   "id": "P-067",
+   "roster": "A50",
+   "name": "归责原则",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/ontology_v3.py",
+     "symbol": "AttributionPrinciple"
+    }
+   ]
+  },
+  {
+   "id": "P-068",
+   "roster": "A51",
+   "name": "责任形态",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/argument_contracts.py",
+     "symbol": "LiabilityForm"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p068_liability_forms"
+    }
+   ]
+  },
+  {
+   "id": "P-069",
+   "roster": "A52",
+   "name": "法律后果形态",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/canonical_v2/kernel.py",
+     "symbol": "transfer"
+    }
+   ]
+  },
+  {
+   "id": "P-070",
+   "roster": "A53",
+   "name": "损害分类",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/argument_contracts.py",
+     "symbol": "classify_damage"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p070_damage_classification"
+    }
+   ]
+  },
+  {
+   "id": "P-071",
+   "roster": "D1",
+   "name": "量刑评价",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/action_decision.py",
+     "symbol": "NormativeSentencingResult"
+    }
+   ]
+  },
+  {
+   "id": "P-072",
+   "roster": "D2",
+   "name": "量刑情节量化",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/action_decision.py",
+     "symbol": "run_normative_line"
+    }
+   ]
+  },
+  {
+   "id": "P-073",
+   "roster": "D3",
+   "name": "责任刑与预防刑·工程核",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/negotiation_contracts.py",
+     "symbol": "DualTrackParams"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p073_dual_tracks_merge_at_declaration"
+    }
+   ]
+  },
+  {
+   "id": "P-074",
+   "roster": "D4",
+   "name": "行为合法性评价",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/negotiation_contracts.py",
+     "symbol": "assess_legality"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p074_legality_grades"
+    }
+   ]
+  },
+  {
+   "id": "P-075",
+   "roster": "D5",
+   "name": "BATNA/WATNA/MLATNA",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/action_decision.py",
+     "symbol": "NegotiationPosition"
+    }
+   ]
+  },
+  {
+   "id": "P-076",
+   "roster": "D6",
+   "name": "ZOPA",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/action_decision.py",
+     "symbol": "determine_zopa"
+    }
+   ]
+  },
+  {
+   "id": "P-077",
+   "roster": "D7",
+   "name": "让步阶梯",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/action_decision.py",
+     "symbol": "validate_concession_ladder"
+    }
+   ]
+  },
+  {
+   "id": "P-078",
+   "roster": "D9",
+   "name": "调解方案生成",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/negotiation_contracts.py",
+     "symbol": "MediationInputs"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p078_mediation_zone"
+    }
+   ]
+  },
+  {
+   "id": "P-079",
+   "roster": "D10",
+   "name": "和解决策",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/negotiation_contracts.py",
+     "symbol": "SettlementDecision"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p079_settlement_ev"
+    }
+   ]
+  },
+  {
+   "id": "P-080",
+   "roster": "D11",
+   "name": "认罪认罚从宽",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/negotiation_contracts.py",
+     "symbol": "plea_stage_advance"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p080_plea_stages_in_order"
+    }
+   ]
+  },
+  {
+   "id": "P-081",
+   "roster": "D12",
+   "name": "谈判伦理·工程核",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/negotiation_contracts.py",
+     "symbol": "tactic_permitted"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p081_any_violation_voids"
+    }
+   ]
+  },
+  {
+   "id": "P-082",
+   "roster": "D13",
+   "name": "起诉策略",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/negotiation_contracts.py",
+     "symbol": "SuitStrategy"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p082_preservation_needs_ground"
+    }
+   ]
+  },
+  {
+   "id": "P-083",
+   "roster": "D14",
+   "name": "证据策略",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/negotiation_contracts.py",
+     "symbol": "acquisition_order"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p083_evpi_ordering"
+    }
+   ]
+  },
+  {
+   "id": "P-084",
+   "roster": "D15",
+   "name": "上诉与再审决策",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/negotiation_contracts.py",
+     "symbol": "AppealDecision"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p084_appeal_ev"
+    }
+   ]
+  },
+  {
+   "id": "P-085",
+   "roster": "D16",
+   "name": "定价与报价",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/negotiation_contracts.py",
+     "symbol": "fee_quote"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p085_fee_needs_disclosure"
+    }
+   ]
+  },
+  {
+   "id": "P-086",
+   "roster": "D17",
+   "name": "风险代理",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/negotiation_contracts.py",
+     "symbol": "ContingencyTerms"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p086_contingency_capped"
+    }
+   ]
+  },
+  {
+   "id": "P-087",
+   "roster": "D18",
+   "name": "同案同判义务",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/negotiation_contracts.py",
+     "symbol": "SameCaseObligation"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p087_shall_follow_duty"
+    }
+   ]
+  },
+  {
+   "id": "P-088",
+   "roster": "D19",
+   "name": "偏离说明义务",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/action_decision.py",
+     "symbol": "TendencyPrior"
+    }
+   ]
+  },
+  {
+   "id": "P-089",
+   "roster": "D20",
+   "name": "类案检索义务",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/negotiation_contracts.py",
+     "symbol": "RetrievalDutyRecord"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p089_retrieval_duty"
+    }
+   ]
+  },
+  {
+   "id": "P-090",
+   "roster": "—",
+   "name": "【补户】博弈论显式结构",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/action_decision.py",
+     "symbol": "solve_equilibrium_contract"
+    }
+   ]
+  },
+  {
+   "id": "P-091",
+   "roster": "B11",
+   "name": "金额精确算术",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/ExactNumericContract.lean",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-092",
+   "roster": "B21",
+   "name": "舍入与单位",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/LegalIds.lean",
+     "symbol": "RoundingPolicy"
+    }
+   ]
+  },
+  {
+   "id": "P-093",
+   "roster": "B19",
+   "name": "阶梯与分段",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/ExactNumericContract.lean",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-094",
+   "roster": "B14",
+   "name": "期限计算",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/time_contracts.py",
+     "symbol": "select_anchor"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch2.py",
+     "symbol": "test_p094_anchor_selection_fail_closed"
+    }
+   ]
+  },
+  {
+   "id": "P-095",
+   "roster": "B23",
+   "name": "期间起算矩阵",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/time_contracts.py",
+     "symbol": "lookup_commencement"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch2.py",
+     "symbol": "test_p095_matrix_empty_cell_unknown"
+    }
+   ]
+  },
+  {
+   "id": "P-096",
+   "roster": "B12",
+   "name": "利息族",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/computation_contracts.py",
+     "symbol": "segmented_interest"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p096_segmented_refinement"
+    }
+   ]
+  },
+  {
+   "id": "P-097",
+   "roster": "B15",
+   "name": "清偿与分配",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/computation_contracts.py",
+     "symbol": "allocate_payment"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p097_allocation_conservation"
+    }
+   ]
+  },
+  {
+   "id": "P-098",
+   "roster": "B13",
+   "name": "违约金酌减",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/computation_contracts.py",
+     "symbol": "reduce_penalty"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p098_penalty_reduction_band"
+    }
+   ]
+  },
+  {
+   "id": "P-099",
+   "roster": "B16",
+   "name": "税费",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/computation_contracts.py",
+     "symbol": "progressive_tax"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p099_progressive_brackets"
+    }
+   ]
+  },
+  {
+   "id": "P-100",
+   "roster": "B17",
+   "name": "损害赔偿计算",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/computation_contracts.py",
+     "symbol": "compute_damage_item"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p100_formula_registry"
+    }
+   ]
+  },
+  {
+   "id": "P-101",
+   "roster": "B18",
+   "name": "量刑计算",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/action_decision.py",
+     "symbol": "synthetic_guizhou_23x23"
+    }
+   ]
+  },
+  {
+   "id": "P-102",
+   "roster": "B20",
+   "name": "执行计算",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/computation_contracts.py",
+     "symbol": "delay_interest"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p102_delay_interest"
+    }
+   ]
+  },
+  {
+   "id": "P-103",
+   "roster": "B22",
+   "name": "智能合约语义",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/computation_contracts.py",
+     "symbol": "transition_contract_state"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p103_consent_locked_transitions"
+    }
+   ]
+  },
+  {
+   "id": "P-104",
+   "roster": "A57",
+   "name": "诉讼阶段与审级",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/ULM12Procedure.lean",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-105",
+   "roster": "A58",
+   "name": "程序行为与处置",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/delivery_contracts.py",
+     "symbol": "disposition_sequence_valid"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p105_disposition_sequences"
+    }
+   ]
+  },
+  {
+   "id": "P-106",
+   "roster": "A60",
+   "name": "诉讼类型与标的",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/delivery_contracts.py",
+     "symbol": "LitigationSubject"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p106_subject_identity"
+    }
+   ]
+  },
+  {
+   "id": "P-107",
+   "roster": "—",
+   "name": "【补户】话术/提示词资产",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/delivery_contracts.py",
+     "symbol": "ScriptAsset"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p107_script_masquerade_rejected"
+    }
+   ]
+  },
+  {
+   "id": "P-108",
+   "roster": "B25",
+   "name": "类案检索",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/retrieval_v4.py",
+     "symbol": "accept_vector_candidates"
+    }
+   ]
+  },
+  {
+   "id": "P-109",
+   "roster": "B26",
+   "name": "数学结构对比",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/retrieval_v4.py",
+     "symbol": "exact_structural_compare"
+    }
+   ]
+  },
+  {
+   "id": "P-110",
+   "roster": "B27",
+   "name": "正向/反向案例",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/probability_pipeline.py",
+     "symbol": "ComparisonDirection"
+    }
+   ]
+  },
+  {
+   "id": "P-111",
+   "roster": "B28",
+   "name": "翻转因素",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/probability_pipeline.py",
+     "symbol": "FlipWitness"
+    }
+   ]
+  },
+  {
+   "id": "P-112",
+   "roster": "B31",
+   "name": "胜诉率统计",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/probability_pipeline.py",
+     "symbol": "estimate_retrieved_cohort"
+    }
+   ]
+  },
+  {
+   "id": "P-113",
+   "roster": "B33",
+   "name": "预测事件定义",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/probability_pipeline.py",
+     "symbol": "WinEventDefinition"
+    }
+   ]
+  },
+  {
+   "id": "P-114",
+   "roster": "B10",
+   "name": "逻辑-概率双进路",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/computation_contracts.py",
+     "symbol": "deduction_implies_probability_one"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p114_one_way_bridge"
+    }
+   ]
+  },
+  {
+   "id": "P-115",
+   "roster": "B29",
+   "name": "偏离度",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/action_decision.py",
+     "symbol": "ReferenceFrame"
+    }
+   ]
+  },
+  {
+   "id": "P-116",
+   "roster": "B30",
+   "name": "审判倾向",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/action_decision.py",
+     "symbol": "TendencyKey"
+    }
+   ]
+  },
+  {
+   "id": "P-117",
+   "roster": "B32",
+   "name": "文本相似工具",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/computation_contracts.py",
+     "symbol": "SimilarityToolOutput"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p117_similarity_never_structural"
+    }
+   ]
+  },
+  {
+   "id": "P-118",
+   "roster": "—",
+   "name": "【补户】NN 带证书逼近器",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/approximation_contract.py",
+     "symbol": "admit_approximation"
+    }
+   ]
+  },
+  {
+   "id": "P-119",
+   "roster": "C5",
+   "name": "UNKNOWN 保持",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/KernelV3.lean",
+     "symbol": "NarrowResult"
+    }
+   ]
+  },
+  {
+   "id": "P-120",
+   "roster": "C6",
+   "name": "三层准入闸门",
+   "proof_kind": "LEAN",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "proofs/lean/juris_lean/JurisLean/FactAdmissionSpec.lean",
+     "symbol": null
+    }
+   ]
+  },
+  {
+   "id": "P-121",
+   "roster": "C4",
+   "name": "生成与事实分界",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/delivery_contracts.py",
+     "symbol": "admit_proposal"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p121_proposal_gated"
+    }
+   ]
+  },
+  {
+   "id": "P-122",
+   "roster": "C7",
+   "name": "身份与版本纪律",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/delivery_contracts.py",
+     "symbol": "VersionDiscipline"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p122_version_binding"
+    }
+   ]
+  },
+  {
+   "id": "P-123",
+   "roster": "C13",
+   "name": "审计与验收",
+   "proof_kind": "MIXED",
+   "tier": "PREEXISTING",
+   "anchors": [
+    {
+     "file": "theory/spec/receipt_ledger.py",
+     "symbol": "ReceiptLedger"
+    }
+   ]
+  },
+  {
+   "id": "P-124",
+   "roster": "C12",
+   "name": "数据治理",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/delivery_contracts.py",
+     "symbol": "DisclosureRecord"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p124_disclosure"
+    }
+   ]
+  },
+  {
+   "id": "P-125",
+   "roster": "C1",
+   "name": "防幻觉",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/delivery_contracts.py",
+     "symbol": "block_hallucination"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p125_hallucination_blocked"
+    }
+   ]
+  },
+  {
+   "id": "P-126",
+   "roster": "C2",
+   "name": "防概念偷渡",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/delivery_contracts.py",
+     "symbol": "smuggling_blocked"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p126_smuggling_blocked"
+    }
+   ]
+  },
+  {
+   "id": "P-127",
+   "roster": "C3",
+   "name": "引文核验",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/delivery_contracts.py",
+     "symbol": "CitationCheck"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p127_citation_verbatim"
+    }
+   ]
+  },
+  {
+   "id": "P-128",
+   "roster": "C14",
+   "name": "技术性正当程序",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/delivery_contracts.py",
+     "symbol": "due_process_satisfied"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p128_due_process_mapping"
+    }
+   ]
+  },
+  {
+   "id": "P-129",
+   "roster": "C8",
+   "name": "权限与脱敏",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/delivery_contracts.py",
+     "symbol": "AnonymizationBoundary"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p129_anonymization_boundary"
+    }
+   ]
+  },
+  {
+   "id": "P-130",
+   "roster": "C9",
+   "name": "程序状态机",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/delivery_contracts.py",
+     "symbol": "lifecycle_transition_valid"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p130_lifecycle_edges"
+    }
+   ]
+  },
+  {
+   "id": "P-131",
+   "roster": "C10",
+   "name": "效果日志与幂等",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/delivery_contracts.py",
+     "symbol": "effect_log_apply"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p131_idempotent_effect_log"
+    }
+   ]
+  },
+  {
+   "id": "P-132",
+   "roster": "C11",
+   "name": "人机分工",
+   "proof_kind": "CONTRACT",
+   "tier": "SHIPPED_THIS_CAMPAIGN",
+   "anchors": [
+    {
+     "file": "theory/spec/delivery_contracts.py",
+     "symbol": "HumanGate"
+    },
+    {
+     "file": "tests/spec/test_campaign_batch3.py",
+     "symbol": "test_p132_human_gates"
+    }
+   ]
+  }
+ ]
+}

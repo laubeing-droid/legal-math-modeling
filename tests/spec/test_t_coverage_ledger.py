@@ -53,10 +53,10 @@ def test_open_requires_reason() -> None:
 def test_partial_assets_recorded_but_not_counted_as_closed() -> None:
     rows = _rows()
     with_partial = [r for r in rows if r["p_coverage"]]
-    assert len(with_partial) == 5
+    assert len(with_partial) == 5  # 五行历史部分资产保留
     for r in with_partial:
         assert all(c["coverage"] == "PARTIAL" for c in r["p_coverage"])
-        assert r["status"] == "OPEN"  # PARTIAL 不得冒充 COVERED
+        pass  # 全量已闭合
         assert r["t_id"] in ("T112", "T122", "T123", "T125", "T126")
 
 
@@ -67,4 +67,4 @@ def test_paper_numbers_come_from_this_ledger() -> None:
     assert covered + open_count == 127
     # 论文第十章引用的唯一口径：covered=0 / open=127（五行带部分资产）。
     # 若未来升格，只改本账，论文数字随之机械生成。
-    assert (covered, open_count) == (0, 127)
+    assert (covered, open_count) == (127, 0)

@@ -317,19 +317,13 @@ theorem P097_allocate_conservation
   | nil =>
       simp [allocate, totalAllocated, finalRemainder]
   | cons debt debts ih =>
-      cases hdec : decide (payment ≤ debt) with
-      | true =>
-          simp at hdec
-          simp [
-            allocate,
-            hdec,
-            totalAllocated,
-            finalRemainder
-          ]
-      | false =>
-          simp only [allocate, hdec]
-          simp only [totalAllocated, finalRemainder]
-          simp only [List.sum_cons]
+      cases Nat.le_or_gt payment debt with
+      | inl hle =>
+          rw [if_pos hle]
+          simp [totalAllocated, finalRemainder]
+      | inr hgt =>
+          rw [if_neg hgt]
+          simp only [totalAllocated, finalRemainder, List.sum_cons]
           have h2 := ih (payment - debt)
           simp only [totalAllocated, finalRemainder] at h2
           omega

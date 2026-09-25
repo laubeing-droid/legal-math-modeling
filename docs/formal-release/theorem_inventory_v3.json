@@ -619,6 +619,27 @@
     "JurisLean.Genealogy.Part6.P131.existing_command_replay_witness",
     "JurisLean.Genealogy.Part6.P131.replay_empty_log_idempotent",
     "JurisLean.Genealogy.Part6.P132.listed_action_requires_its_gate",
+    "JurisLean.Genealogy.TSpectrum.T01.eval_substitution",
+    "JurisLean.Genealogy.TSpectrum.T02.finite_ground_instances",
+    "JurisLean.Genealogy.TSpectrum.T03.iter_subset_of_prefixed",
+    "JurisLean.Genealogy.TSpectrum.T04.derived_iff_rule_model_entails",
+    "JurisLean.Genealogy.TSpectrum.T05.rebuttal_counterexample",
+    "JurisLean.Genealogy.TSpectrum.T05.undercut_defeat_independent_of_preference",
+    "JurisLean.Genealogy.TSpectrum.T06.transition_origin",
+    "JurisLean.Genealogy.TSpectrum.T07.eval_exactexpr_denotation",
+    "JurisLean.Genealogy.TSpectrum.T08.division_total_iff_domain_empty",
+    "JurisLean.Genealogy.TSpectrum.T09.rounding_without_basis_unknown",
+    "JurisLean.Genealogy.TSpectrum.T10.select_version_unique_or_unknown",
+    "JurisLean.Genealogy.TSpectrum.T11.one_hop_renvoi_terminates",
+    "JurisLean.Genealogy.TSpectrum.T12.scoped_override_preserves_unaffected_rules",
+    "JurisLean.Genealogy.TSpectrum.T13.parallel_projection",
+    "JurisLean.Genealogy.TSpectrum.T14.strictest_is_join",
+    "JurisLean.Genealogy.TSpectrum.T15.truth_vector_bisimulation",
+    "JurisLean.Genealogy.TSpectrum.T16.check_af_sound",
+    "JurisLean.Genealogy.TSpectrum.T17.anchor_selected_by_rule",
+    "JurisLean.Genealogy.TSpectrum.T18.period_effect_bound_to_kind",
+    "JurisLean.Genealogy.TSpectrum.T19.progressive_and_multiplier_correct",
+    "JurisLean.Genealogy.TSpectrum.T20.route_and_exclusion_sound",
     "JurisLean.Hohfeld.correlative_involutive",
     "JurisLean.Hohfeld.correlative_ne_self",
     "JurisLean.Hohfeld.opposite_involutive",
@@ -644,8 +665,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "57b7806d342be172c3e33117e92f902a62fc8892c7a06a0f45c2d8db412e2a84",
-   "size_bytes": 14491,
+   "sha256": "33403de24ab6170d5a2d5195905fa44a67059ce3e7dbc115d9e11f6b15efb1de",
+   "size_bytes": 16091,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -10799,6 +10820,396 @@
    "declarations": [
     {
      "kind": "inductive",
+     "name": "Term"
+    },
+    {
+     "kind": "structure",
+     "name": "Substitution"
+    },
+    {
+     "kind": "structure",
+     "name": "Valuation"
+    },
+    {
+     "kind": "def",
+     "name": "applySubstitution"
+    },
+    {
+     "kind": "def",
+     "name": "eval"
+    },
+    {
+     "kind": "def",
+     "name": "liftedValuation"
+    },
+    {
+     "kind": "theorem",
+     "name": "eval_substitution"
+    },
+    {
+     "kind": "structure",
+     "name": "FiniteCarrier"
+    },
+    {
+     "kind": "structure",
+     "name": "GroundingInput"
+    },
+    {
+     "kind": "structure",
+     "name": "GroundInstance"
+    },
+    {
+     "kind": "def",
+     "name": "groundInstances"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_ground_instances"
+    },
+    {
+     "kind": "def",
+     "name": "State"
+    },
+    {
+     "kind": "def",
+     "name": "Subset"
+    },
+    {
+     "kind": "def",
+     "name": "Monotone"
+    },
+    {
+     "kind": "structure",
+     "name": "IterationKernel"
+    },
+    {
+     "kind": "def",
+     "name": "iterate"
+    },
+    {
+     "kind": "theorem",
+     "name": "iter_subset_of_prefixed"
+    },
+    {
+     "kind": "structure",
+     "name": "ModelBridge"
+    },
+    {
+     "kind": "theorem",
+     "name": "derived_iff_rule_model_entails"
+    },
+    {
+     "kind": "inductive",
+     "name": "AttackKind"
+    },
+    {
+     "kind": "structure",
+     "name": "DefeatPolicy"
+    },
+    {
+     "kind": "def",
+     "name": "defeats"
+    },
+    {
+     "kind": "theorem",
+     "name": "undercut_defeat_independent_of_preference"
+    },
+    {
+     "kind": "theorem",
+     "name": "rebuttal_counterexample"
+    },
+    {
+     "kind": "structure",
+     "name": "LegalState"
+    },
+    {
+     "kind": "inductive",
+     "name": "LegalEvent"
+    },
+    {
+     "kind": "structure",
+     "name": "TransitionRule"
+    },
+    {
+     "kind": "def",
+     "name": "applyEvent"
+    },
+    {
+     "kind": "def",
+     "name": "transition"
+    },
+    {
+     "kind": "theorem",
+     "name": "transition_origin"
+    },
+    {
+     "kind": "inductive",
+     "name": "ExactExpr"
+    },
+    {
+     "kind": "def",
+     "name": "denotation"
+    },
+    {
+     "kind": "def",
+     "name": "evalExact"
+    },
+    {
+     "kind": "theorem",
+     "name": "eval_exactexpr_denotation"
+    },
+    {
+     "kind": "structure",
+     "name": "DivisionSpec"
+    },
+    {
+     "kind": "def",
+     "name": "divisionTotal"
+    },
+    {
+     "kind": "theorem",
+     "name": "division_total_iff_domain_empty"
+    },
+    {
+     "kind": "inductive",
+     "name": "RoundingBasis"
+    },
+    {
+     "kind": "structure",
+     "name": "RoundingPolicy"
+    },
+    {
+     "kind": "inductive",
+     "name": "RoundingResult"
+    },
+    {
+     "kind": "def",
+     "name": "applyRounding"
+    },
+    {
+     "kind": "theorem",
+     "name": "rounding_without_basis_unknown"
+    },
+    {
+     "kind": "structure",
+     "name": "Version"
+    },
+    {
+     "kind": "inductive",
+     "name": "SelectionResult"
+    },
+    {
+     "kind": "def",
+     "name": "selectVersion"
+    },
+    {
+     "kind": "theorem",
+     "name": "select_version_unique_or_unknown"
+    },
+    {
+     "kind": "structure",
+     "name": "RenvoiRule"
+    },
+    {
+     "kind": "structure",
+     "name": "RouteResult"
+    },
+    {
+     "kind": "def",
+     "name": "oneHopRenvoi"
+    },
+    {
+     "kind": "theorem",
+     "name": "one_hop_renvoi_terminates"
+    },
+    {
+     "kind": "structure",
+     "name": "ScopedRule"
+    },
+    {
+     "kind": "def",
+     "name": "scopedOverride"
+    },
+    {
+     "kind": "theorem",
+     "name": "scoped_override_preserves_unaffected_rules"
+    },
+    {
+     "kind": "structure",
+     "name": "JurisdictionResult"
+    },
+    {
+     "kind": "def",
+     "name": "ParallelState"
+    },
+    {
+     "kind": "def",
+     "name": "parallelUpdate"
+    },
+    {
+     "kind": "def",
+     "name": "parallelProjection"
+    },
+    {
+     "kind": "theorem",
+     "name": "parallel_projection"
+    },
+    {
+     "kind": "def",
+     "name": "ComplianceProfile"
+    },
+    {
+     "kind": "def",
+     "name": "ComplianceLe"
+    },
+    {
+     "kind": "def",
+     "name": "strictest"
+    },
+    {
+     "kind": "structure",
+     "name": "JoinWitness"
+    },
+    {
+     "kind": "theorem",
+     "name": "strictest_is_join"
+    },
+    {
+     "kind": "structure",
+     "name": "BState"
+    },
+    {
+     "kind": "def",
+     "name": "BEquivalent"
+    },
+    {
+     "kind": "structure",
+     "name": "BSystem"
+    },
+    {
+     "kind": "structure",
+     "name": "BisimulationWitness"
+    },
+    {
+     "kind": "theorem",
+     "name": "truth_vector_bisimulation"
+    },
+    {
+     "kind": "structure",
+     "name": "SCCSummary"
+    },
+    {
+     "kind": "def",
+     "name": "checkAF"
+    },
+    {
+     "kind": "def",
+     "name": "AlternationFree"
+    },
+    {
+     "kind": "theorem",
+     "name": "check_af_sound"
+    },
+    {
+     "kind": "inductive",
+     "name": "AnchorKind"
+    },
+    {
+     "kind": "structure",
+     "name": "DateAnchors"
+    },
+    {
+     "kind": "structure",
+     "name": "AnchorRule"
+    },
+    {
+     "kind": "def",
+     "name": "anchorValue"
+    },
+    {
+     "kind": "def",
+     "name": "selectAnchor"
+    },
+    {
+     "kind": "theorem",
+     "name": "anchor_selected_by_rule"
+    },
+    {
+     "kind": "inductive",
+     "name": "PeriodKind"
+    },
+    {
+     "kind": "inductive",
+     "name": "PeriodEffect"
+    },
+    {
+     "kind": "structure",
+     "name": "PeriodSpec"
+    },
+    {
+     "kind": "def",
+     "name": "effectForKind"
+    },
+    {
+     "kind": "def",
+     "name": "periodEffect"
+    },
+    {
+     "kind": "theorem",
+     "name": "period_effect_bound_to_kind"
+    },
+    {
+     "kind": "structure",
+     "name": "ExactConstructorInput"
+    },
+    {
+     "kind": "def",
+     "name": "progressive"
+    },
+    {
+     "kind": "def",
+     "name": "progressiveAmount"
+    },
+    {
+     "kind": "def",
+     "name": "multipliedAmount"
+    },
+    {
+     "kind": "theorem",
+     "name": "progressive_and_multiplier_correct"
+    },
+    {
+     "kind": "structure",
+     "name": "DecisionRow"
+    },
+    {
+     "kind": "structure",
+     "name": "RouteCertificate"
+    },
+    {
+     "kind": "def",
+     "name": "route"
+    },
+    {
+     "kind": "theorem",
+     "name": "route_and_exclusion_sound"
+    }
+   ],
+   "imports": [
+    "JurisLean.Genealogy.Part6"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch1.lean",
+   "print_axioms_targets": [],
+   "sha256": "207b19d522e8a371ea02808e8436063ade2861e501fc6728e4cc9091942f74e9",
+   "size_bytes": 36606,
+   "theorem_count": 21,
+   "theorem_count_bol_convention": 21
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
      "name": "Concept"
     },
     {
@@ -15970,6 +16381,7 @@
     "JurisLean.FiniteGaloisAdjunction",
     "JurisLean.FiniteRosetta",
     "JurisLean.Genealogy.All",
+    "JurisLean.Genealogy.TSpectrum.Batch1",
     "JurisLean.Hohfeld",
     "JurisLean.HornAAFContract",
     "JurisLean.JC_Formalization",
@@ -15999,8 +16411,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "1147ae574bbb761676f48600efed32ba959793eae66e378d1ae5643b0b4c8c13",
-   "size_bytes": 1440,
+   "sha256": "2d5dd84777e29b38f75dc2cea0dc7d9f03ed6ae235e8a388400d8d94eb845e6d",
+   "size_bytes": 1484,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -16175,13 +16587,13 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1666,
-   "file_count": 212,
+   "counted_declaration_count": 1687,
+   "file_count": 213,
    "lemma_count": 24,
-   "print_axioms_command_count": 459,
-   "print_axioms_distinct_targets": 405,
-   "theorem_count": 1642,
-   "theorem_count_bol_convention": 1606
+   "print_axioms_command_count": 480,
+   "print_axioms_distinct_targets": 426,
+   "theorem_count": 1663,
+   "theorem_count_bol_convention": 1627
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -16331,6 +16743,7 @@
    "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
    "proofs/lean/juris_lean/JurisLean/Genealogy/Part5.lean",
    "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch1.lean",
    "proofs/lean/juris_lean/JurisLean/Hohfeld.lean",
    "proofs/lean/juris_lean/JurisLean/HornAAFContract.lean",
    "proofs/lean/juris_lean/JurisLean/HornDefinitions.lean",
@@ -16448,11 +16861,11 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "d4113ea9db6516276e907cde1962f1cd39f50148453052e50183651ae37120f0",
+ "source_inventory_digest": "381cde728369aa794ed5fd740d0e981e50b5200252ef106114d91b33a255807f",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "main",
-  "commit": "3480efc1bfbdb13750ec593e17332ac561935eb0",
-  "tree": "0889ca0a6ad5d0997c7894f9c87223ec811908d2"
+  "commit": "93919a27347ec4fcf1c25f21746ee12aba9a595b",
+  "tree": "c8d4a7109b0a27e0206053412e2bdaf495bbcc52"
  }
 }

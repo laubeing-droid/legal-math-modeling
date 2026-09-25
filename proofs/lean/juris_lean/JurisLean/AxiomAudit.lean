@@ -219,3 +219,26 @@ open HornSystem
 #print axioms JurisLean.Genealogy.Boundary.noExtensions_family_empty
 #print axioms JurisLean.Genealogy.Boundary.incomplete_adjudication_is_solverIncomplete
 #print axioms JurisLean.Genealogy.Boundary.adverseAuthority_requires_unmet
+
+/-! T-spectrum batch 1. -/
+#print axioms JurisLean.Genealogy.TSpectrum.T01.eval_substitution
+#print axioms JurisLean.Genealogy.TSpectrum.T02.finite_ground_instances
+#print axioms JurisLean.Genealogy.TSpectrum.T03.iter_subset_of_prefixed
+#print axioms JurisLean.Genealogy.TSpectrum.T04.derived_iff_rule_model_entails
+#print axioms JurisLean.Genealogy.TSpectrum.T05.undercut_defeat_independent_of_preference
+#print axioms JurisLean.Genealogy.TSpectrum.T05.rebuttal_counterexample
+#print axioms JurisLean.Genealogy.TSpectrum.T06.transition_origin
+#print axioms JurisLean.Genealogy.TSpectrum.T07.eval_exactexpr_denotation
+#print axioms JurisLean.Genealogy.TSpectrum.T08.division_total_iff_domain_empty
+#print axioms JurisLean.Genealogy.TSpectrum.T09.rounding_without_basis_unknown
+#print axioms JurisLean.Genealogy.TSpectrum.T10.select_version_unique_or_unknown
+#print axioms JurisLean.Genealogy.TSpectrum.T11.one_hop_renvoi_terminates
+#print axioms JurisLean.Genealogy.TSpectrum.T12.scoped_override_preserves_unaffected_rules
+#print axioms JurisLean.Genealogy.TSpectrum.T13.parallel_projection
+#print axioms JurisLean.Genealogy.TSpectrum.T14.strictest_is_join
+#print axioms JurisLean.Genealogy.TSpectrum.T15.truth_vector_bisimulation
+#print axioms JurisLean.Genealogy.TSpectrum.T16.check_af_sound
+#print axioms JurisLean.Genealogy.TSpectrum.T17.anchor_selected_by_rule
+#print axioms JurisLean.Genealogy.TSpectrum.T18.period_effect_bound_to_kind
+#print axioms JurisLean.Genealogy.TSpectrum.T19.progressive_and_multiplier_correct
+#print axioms JurisLean.Genealogy.TSpectrum.T20.route_and_exclusion_sound

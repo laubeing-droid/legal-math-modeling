@@ -121,10 +121,9 @@ def applyTransition
 
 theorem transition_requires_version_and_fact
     (clause : TransitionClause) (facts : List String)
-    (hv : clause.fromVersion = clause.fromVersion)
-    (hf : facts.contains clause.triggerFact = true) :
+    (hf : clause.triggerFact ∈ facts) :
     applyTransition clause.fromVersion clause facts = clause.toVersion := by
-  simp [applyTransition, hv, hf]
+  simp [applyTransition, hf]
 -- [定义展开] 置信：版本相等与 contains=true 两个分支条件均显式给定。
 
 theorem transition_version_mismatch_holds

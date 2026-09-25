@@ -30,6 +30,7 @@ namespace T63
 inductive ApplicableLaw where
   | chosen (law : String)
   | unknown
+deriving DecidableEq
 theorem T63_fail_closed : ApplicableLaw.chosen "CN" ≠ ApplicableLaw.unknown := by
   decide
 /- 降级注：结构纪律层。 -/
@@ -43,7 +44,7 @@ structure SelectionBias where
   selectionMechanism : String
   observedSample : String
 def biasRecorded (b : SelectionBias) : Bool :=
-  decide (b.targetPopulation != "" && b.selectionMechanism != "" && b.observedSample != "")
+  decide (b.targetPopulation ≠ "" && b.selectionMechanism ≠ "" && b.observedSample ≠ "")
 theorem T64_bias_explicit : biasRecorded (SelectionBias.mk "all_claims" "retrieved_only" "retrieved") = true := by
   decide
 /- 降级注：结构纪律层。 -/
@@ -79,7 +80,8 @@ namespace T67
 inductive VCBound where
   | finiteVC (dimension : Nat)
   | infiniteVC
-theorem T67_vc_declared : VCBound.finiteVC 10 != VCBound.infiniteVC := by
+deriving DecidableEq
+theorem T67_vc_declared : VCBound.finiteVC 10 ≠ VCBound.infiniteVC := by
   decide
 /- 降级注：结构纪律层。 -/
 end T67
@@ -114,7 +116,8 @@ namespace T70
 inductive ProposalGrade where
   | candidateOnly
   | admitted
-theorem T70_llm_always_candidate : ProposalGrade.candidateOnly != ProposalGrade.admitted := by
+deriving DecidableEq
+theorem T70_llm_always_candidate : ProposalGrade.candidateOnly ≠ ProposalGrade.admitted := by
   decide
 /- 降级注：结构纪律层。 -/
 end T70
@@ -324,7 +327,8 @@ namespace T89
 inductive BeliefObject where
   | dsMass (mass : Int)
   | bayesProb (prob : Int)
-theorem T89_belief_distinguished : BeliefObject.dsMass 5 != BeliefObject.bayesProb 5 := by
+deriving DecidableEq
+theorem T89_belief_distinguished : BeliefObject.dsMass 5 ≠ BeliefObject.bayesProb 5 := by
   decide
 /- 降级注：结构纪律层。 -/
 end T89
@@ -703,7 +707,8 @@ inductive InterpretationConstructor where
   | purposive
   | historical
   | constitutional
-theorem T122_five_constructors : InterpretationConstructor.literal != InterpretationConstructor.purposive := by
+deriving DecidableEq
+theorem T122_five_constructors : InterpretationConstructor.literal ≠ InterpretationConstructor.purposive := by
   decide
 /- 降级注：结构纪律层。 -/
 end T122

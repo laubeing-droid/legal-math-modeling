@@ -50,8 +50,8 @@ The `master-plan/` construction ledger organizes work and freezes design baselin
 | `disclosure/PUBLIC_PRIVATE_BOUNDARY.md` | Repository disclosure boundary | Scope contract |
 | `paper-rewrite/HANDOFF.md` | Rewrite execution package and claim ceiling | Working contract |
 | `paper-rewrite/PROGRESS.md` | Rewrite progress, audit corrections, external evidence pointers | Dynamic ledger |
-| `paper-rewrite/paper_cn.md` | Rewrite manuscript, Chinese (sections 1–3 of 9) | Working manuscript |
-| `paper-rewrite/paper_en.md` | Rewrite manuscript, English (sections 1–3 of 9) | Working manuscript |
+| `paper-rewrite/paper_cn.md` | Rewritten manuscript, Chinese (ten-chapter genealogy structure, attorney-brief style) | Working manuscript |
+| `paper-rewrite/paper_en.md` | Rewritten manuscript, English (structure-isomorphic mirror) | Working manuscript |
 | `ontology/core_ontology.yaml` | Public boundary of the legal core ontology (11 v1 types; input-admission rules) | Model specification |
 | `history/` | Archived superseded docs: v2.1 spec, 20260701 rewrite record, full-math originals | Historical only |
 | `history/evidence-archive/` | Debate & evidence archive migrated from the retired cloud folder: four-reports, 20-round debates, distillation audits, wave4 book evidence, concept genealogy v1/v2, baseline copies | Historical evidence (sources for master-plan baselines) |

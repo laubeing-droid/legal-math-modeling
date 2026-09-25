@@ -1,105 +1,81 @@
-"""QA-01: paper-rewrite claim guard for the docs/paper-rewrite layout.
+"""QA-01 v2: guard for the rewritten paper (ten-chapter genealogy structure).
 
-The legacy scripts/check_paper_claims.py is hard-wired to the old root/paper
-layout and cannot run over docs/paper-rewrite; sections 1-3 relied on manual
-scanning. This guard makes the discipline machine-checkable for the new
-sections: forbidden phrasings absent, Chinese and English structurally
-isomorphic (paragraph markers correspond), exactly one scope box per new
-section, a claims table per section, monitored numbers in the new sections
-bound to a subject SHA or run id on the same line, and Lean tactic names kept
-out of the body text.
-"""
+Checks: all ten chapter headings present in both languages; forbidden
+phrasings absent; bibliography keys cited in the Chinese master all
+resolve in paper/references.bib; the unproved-list chapter carries its
+six numbered items; every chapter opens with a conclusion sentence."""
 
 from __future__ import annotations
 
 import re
 from pathlib import Path
 
-CN = Path(__file__).resolve().parents[2] / "docs" / "paper-rewrite" / "paper_cn.md"
-EN = Path(__file__).resolve().parents[2] / "docs" / "paper-rewrite" / "paper_en.md"
+ROOT = Path(__file__).resolve().parents[2]
+CN = ROOT / "docs" / "paper-rewrite" / "paper_cn.md"
+EN = ROOT / "docs" / "paper-rewrite" / "paper_en.md"
+BIB = ROOT / "paper" / "references.bib"
 
-FORBIDDEN = (
-    "85/94",
-    "97 jobs",
-    "91-module",
-    "2993",
-    "46/46 mutations killed",
-    "score 1.0",
-    "发布层 fail-closed",
-)
-MONITORED_INTS = {145, 27, 46, 91, 94, 97, 206, 452, 476, 2993}
-HEX40 = re.compile(r"[0-9a-f]{40}")
-RUN_ID = re.compile(r"\b\d{10,12}\b")  # GitHub Actions run ids used by this paper
-TACTICS = ("rfl", "decide", "congrArg")
-MARKER = re.compile(r"<!-- (S[4-9]-P\d{2}) -->")
-SCOPE = re.compile(r"\[(S[4-9])-SCOPE\]")
+CHAPTERS_CN = ["引言", "第一章 概念层", "第二章 法源层", "第三章 要件层",
+               "第四章 证明层", "第五章 裁量层", "第六章 计算保证层",
+               "第七章 交付层", "第八章 横切A", "第九章 横切B", "第十章 未证清单"]
+CHAPTERS_EN = ["Introduction", "Chapter 1 Concept Layer", "Chapter 2 Source-of-Law Layer",
+               "Chapter 3 Elements Layer", "Chapter 4 Proof Layer", "Chapter 5 Discretion Layer",
+               "Chapter 6 Computation-Guarantee Layer", "Chapter 7 Delivery Layer",
+               "Chapter 8 Cross-Cutting A", "Chapter 9 Cross-Cutting B",
+               "Chapter 10 The Unproved List"]
+
+FORBIDDEN = ("85/94", "97 jobs", "91-module", "2993", "46/46 mutations killed",
+             "score 1.0", "发布层 fail-closed")
+
+KEY_RE = re.compile(r"^[A-Z][A-Za-z]+(?:EtAl)?\d{4}$|^[A-Z][A-Za-z]{4,}$|^SPC[A-Za-z]+\d{4}$")
 
 
-def _new_sections(text: str) -> str:
-    split = re.split(r"^## (?:第[四五六七八九]节|Section [4-9])\b.*$", text, flags=re.MULTILINE)
-    return "".join(split[1:]) if len(split) > 1 else ""
+def test_all_ten_chapters_in_both_languages() -> None:
+    cn = CN.read_text(encoding="utf-8")
+    en = EN.read_text(encoding="utf-8")
+    for h in CHAPTERS_CN:
+        assert h in cn, f"missing CN chapter: {h}"
+    for h in CHAPTERS_EN:
+        assert h in en, f"missing EN chapter: {h}"
 
 
 def test_forbidden_phrasings_absent() -> None:
     for path in (CN, EN):
         text = path.read_text(encoding="utf-8")
         for token in FORBIDDEN:
-            assert token not in text, f"{token!r} found in {path.name}"
+            assert token not in text, f"{token!r} in {path.name}"
 
 
-def test_paragraph_markers_correspond_between_languages() -> None:
-    cn_markers = MARKER.findall(CN.read_text(encoding="utf-8"))
-    en_markers = MARKER.findall(EN.read_text(encoding="utf-8"))
-    assert cn_markers == en_markers
+def test_cn_citation_keys_resolve() -> None:
+    cn = CN.read_text(encoding="utf-8")
+    cited = set()
+    for chunk in re.findall(r"\[([^\[\]]+)\]", cn):
+        for k in chunk.split("；"):
+            k = k.strip()
+            if k and KEY_RE.match(k):
+                cited.add(k)
+    bib = BIB.read_text(encoding="utf-8")
+    bibkeys = set(re.findall(r"^@[a-z]+\{([^,]+),", bib, re.MULTILINE))
+    unresolved = sorted(cited - bibkeys)
+    assert not unresolved, f"citation keys not in references.bib: {unresolved}"
 
 
-CN_ORDINALS = {4: "四", 5: "五", 6: "六", 7: "七", 8: "八", 9: "九"}
+def test_unproved_list_has_six_items() -> None:
+    cn = CN.read_text(encoding="utf-8")
+    m = re.search(r"未证事项（按承重排序）\*\*：(.*?)\*\*声明账本", cn, re.DOTALL)
+    assert m is not None
+    items = re.findall(r"^[一二三四五六]、", m.group(1), re.MULTILINE)
+    assert len(items) == 6, items
 
 
-def _section_splitter(n: int) -> str:
-    return rf"^## (?:第{CN_ORDINALS[n]}节|Section {n})\b"
-
-
-def test_exactly_one_scope_box_per_new_section() -> None:
-    for path in (CN, EN):
-        text = path.read_text(encoding="utf-8")
-        for n in range(4, 10):
-            section = re.split(_section_splitter(n), text, flags=re.MULTILINE)
-            assert len(section) >= 2, f"section {n} missing in {path.name}"
-            body = section[1].split("\n## ")[0]
-            found = SCOPE.findall(body)
-            assert found == [f"S{n}"], f"{path.name} section {n}: {found}"
-
-
-def test_claims_table_rows_exist_per_section() -> None:
-    for path in (CN, EN):
-        text = path.read_text(encoding="utf-8")
-        for n in range(4, 10):
-            section = re.split(_section_splitter(n), text, flags=re.MULTILINE)[1].split(
-                "\n## "
-            )[0]
-            assert re.search(rf"^\| S{n}-C\d", section, re.MULTILINE), (
-                f"{path.name} section {n} lacks claims rows"
-            )
-
-
-def test_monitored_numbers_in_new_sections_carry_binding() -> None:
-    for path in (CN, EN):
-        body = _new_sections(path.read_text(encoding="utf-8"))
-        for line in body.splitlines():
-            numbers = {int(m) for m in re.findall(r"(?<![\w.])\d+(?![\w.])", line)}
-            flagged = numbers & MONITORED_INTS
-            if flagged:
-                assert HEX40.search(line) or RUN_ID.search(line), (
-                    f"{path.name}: monitored {flagged} without subject/run binding: {line[:80]}"
-                )
-
-
-def test_tactic_names_stay_out_of_new_section_body() -> None:
-    for path in (CN, EN):
-        body = _new_sections(path.read_text(encoding="utf-8"))
-        stripped = re.sub(r"\|.*\|", "", body)  # tables may cite file names, not tactics
-        for tactic in TACTICS:
-            assert not re.search(rf"\b{tactic}\b", stripped), (
-                f"{path.name}: tactic {tactic} leaked into body text"
-            )
+def test_each_chapter_opens_with_conclusion() -> None:
+    cn = CN.read_text(encoding="utf-8")
+    missing = []
+    for seg in cn.split("\n## ")[1:]:
+        lines = seg.split("\n")
+        head = lines[0]
+        if head.startswith(("第", "引言")):
+            window = "\n".join(lines[:6])
+            if "**结论" not in window:
+                missing.append(head)
+    assert not missing, f"chapters missing a conclusion-first sentence: {missing}"

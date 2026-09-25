@@ -45,3 +45,8 @@
 - 修复动作：按 `.gitattributes`（`*.lean text eol=lf`）把 67 个工作树文件刷为 LF（blob 零变化、Lean 内容零改动），在 subject 2d06da6 重生成 `theorem_inventory_v3.json`（137 行哈希更新；计数 145/111/27/4 与审计目标数全部不变），`--verify` 通过；论文头部与本文档的 subject 绑定同步改为 2d06da6。
 - 教训入规：生成哈希类工件前必须先 `git ls-files --eol` 确认工作树行尾与属性一致，否则工件会把平台脏字节固化。
 - **第一轮修复后复跑仍红（run 35832550717，mismatch 从 137 降到 2）**：`_check.lean`（BOM+单处 CRLF）与 `DungDefinitions.lean`（48 处 CRLF 混合行尾）是 `w/mixed`，第一轮刷新名单只筛了全 CRLF 的 `w/crlf` 而漏掉混合型。第二轮按"非 `w/lf` 即刷"处理（共 2 文件，blob 零变化），在 subject 1e0875c 再次重生成清单；新增强校验：200 文件磁盘哈希 = HEAD blob 哈希 = JSON 记录值三方全等（0 失配），这是 CI Linux 检出的本地等价判据。论文绑定同步推进到 1e0875c。
+
+
+## 推倒重写（2026-09-25 深夜，阶段 4）
+
+旧 1–9 节双稿归档 docs/history/paper-v1-{cn,en}.md。新稿十章结构=引言+七层各一章+横切A/B 两章+未证清单与声明账本终章；中文主稿按用户 2026 事务所文稿（代理词/再审申请书）文体写作（结论先行/条文引用/证据精确/判断句收段）；文献引用取 paper/references.bib（46 键）；QA-01 守卫重写为十章版（章节齐/禁词/引文键可解析/未证清单六项/结论先行句）。

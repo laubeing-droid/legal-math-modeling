@@ -1,642 +1,1288 @@
 {
-  "schema_version": "lh01-t-targets-v1",
-  "namespace": "EXTERNAL_T_LEDGER",
-  "note": "T01-T127 original texts live in the external cloud ledger and are explicitly deferred this round. Every row stays EXTERNAL_LEDGER_PENDING with layer null; nothing is inferred from the parallel namespaces (ULM_CONSOLIDATION::Txx, FULL_MATH::F/P/E/Nxx).",
-  "targets": [
-    {
-      "id": "T01",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T02",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T03",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T04",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T05",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T06",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T07",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T08",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T09",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T10",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T11",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T12",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T13",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T14",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T15",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T16",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T17",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T18",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T19",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T20",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T21",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T22",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T23",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T24",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T25",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T26",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T27",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T28",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T29",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T30",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T31",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T32",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T33",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T34",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T35",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T36",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T37",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T38",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T39",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T40",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T41",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T42",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T43",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T44",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T45",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T46",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T47",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T48",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T49",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T50",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T51",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T52",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T53",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T54",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T55",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T56",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T57",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T58",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T59",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T60",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T61",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T62",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T63",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T64",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T65",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T66",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T67",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T68",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T69",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T70",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T71",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T72",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T73",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T74",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T75",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T76",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T77",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T78",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T79",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T80",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T81",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T82",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T83",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T84",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T85",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T86",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T87",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T88",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T89",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T90",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T91",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T92",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T93",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T94",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T95",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T96",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T97",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T98",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T99",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T100",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T101",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T102",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T103",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T104",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T105",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T106",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T107",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T108",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T109",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T110",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T111",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T112",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T113",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T114",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T115",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T116",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T117",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T118",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T119",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T120",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T121",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T122",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T123",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T124",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T125",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T126",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    },
-    {
-      "id": "T127",
-      "layer": null,
-      "status": "EXTERNAL_LEDGER_PENDING"
-    }
-  ]
+ "schema_version": "lh01-t-targets-v2-recovered",
+ "namespace": "EXTERNAL_T_LEDGER::RECOVERED_IN_REPO",
+ "note": "T01-T127 recovered from D:/tmp/gpt-remedy/debate on 2026-09-25 (the cloud evidence folder had already been migrated and cleared; the T spectrum never lived there). Sources copied verbatim under docs/master-plan/基线/T谱/. Layer assignments are a transparent first pass over the rule table and EVERY row stays DRAFT_PENDING_USER_REVIEW until the user confirms. The old T122-T127 dependency positions (L5/L12/...) in the receipt refer to the OLD 23-layer dependency sequence, not the seven-layer skeleton.",
+ "layer_rules": {
+  "R1": "论证/攻击/博弈/调解/解释 → L4",
+  "R2": "法源/版本/法域/准入/检索索引 → L1",
+  "R3": "证明责任/证据/取证/覆盖审计 → L3",
+  "R4": "概率/统计/检索计算/神经/因果（横切A） → (L5)",
+  "R5": "形式内核/编译/等价/泛函 → (L5)",
+  "R6": "确定性数值（金额/期限/利息/顺位） → (L5)",
+  "R7": "工作台/交付/对外表达/验收 → L6",
+  "R8": "本体/语义/概念 → L0",
+  "R9": "要件/因素 → L2"
+ },
+ "targets": [
+  {
+   "id": "T01",
+   "title": "项代数代入解释/有限ground实例",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R5 形式内核/编译",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T02",
+   "title": "项代数代入解释/有限ground实例",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R5 形式内核/编译",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T03",
+   "title": "内核最小性收编/Horn推导对应",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R5 形式内核/编译",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T04",
+   "title": "内核最小性收编/Horn推导对应",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R5 形式内核/编译",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T05",
+   "title": "攻击提升：undercut 击败独立于偏好",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "L4",
+   "layer_rule": "R1 论证/攻击",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T06",
+   "title": "法律地位变动来自事件与规则",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "L0",
+   "layer_rule": "R8 本体语义",
+   "confidence": "medium",
+   "review_pending": true
+  },
+  {
+   "id": "T07",
+   "title": "精确求值/定义域/舍入槽位",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R6 确定性数值",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T08",
+   "title": "精确求值/定义域/舍入槽位",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R6 确定性数值",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T09",
+   "title": "精确求值/定义域/舍入槽位",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R6 确定性数值",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T10",
+   "title": "版本选择/反致停机/范围化覆盖",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "L1",
+   "layer_rule": "R2 法源/版本/法域",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T11",
+   "title": "版本选择/反致停机/范围化覆盖",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "L1",
+   "layer_rule": "R2 法源/版本/法域",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T12",
+   "title": "版本选择/反致停机/范围化覆盖",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "L1",
+   "layer_rule": "R2 法源/版本/法域",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T13",
+   "title": "平行法域隔离/从严交集",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "L1",
+   "layer_rule": "R2 法源/版本/法域",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T14",
+   "title": "平行法域隔离/从严交集",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "L1",
+   "layer_rule": "R2 法源/版本/法域",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T15",
+   "title": "真值向量商/AFMC 检查",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R5 形式内核/编译",
+   "confidence": "medium",
+   "review_pending": true
+  },
+  {
+   "id": "T16",
+   "title": "真值向量商/AFMC 检查",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R5 形式内核/编译",
+   "confidence": "medium",
+   "review_pending": true
+  },
+  {
+   "id": "T17",
+   "title": "日期锚/期间矩阵",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R6 确定性数值",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T18",
+   "title": "日期锚/期间矩阵",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R6 确定性数值",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T19",
+   "title": "阶梯倍数/决策表路由",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R6 确定性数值",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T20",
+   "title": "阶梯倍数/决策表路由",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R6 确定性数值",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T21",
+   "title": "利息分段/抵充守恒",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R6 确定性数值",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T22",
+   "title": "利息分段/抵充守恒",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R6 确定性数值",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T23",
+   "title": "顺位瀑布/资产池不重复消费",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R6 确定性数值",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T24",
+   "title": "顺位瀑布/资产池不重复消费",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R6 确定性数值",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T25",
+   "title": "顺位瀑布/资产池不重复消费",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R6 确定性数值",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T26",
+   "title": "执行中断恢复检查点",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R5 形式内核/编译",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T27",
+   "title": "规则四闸准入",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "L1",
+   "layer_rule": "R2 法源准入",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T28",
+   "title": "编译结构保持",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R5 形式内核/编译",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T29",
+   "title": "多法域求值/版本包隔离",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "L1",
+   "layer_rule": "R2 法源/版本/法域",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T30",
+   "title": "多法域求值/版本包隔离",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "L1",
+   "layer_rule": "R2 法源/版本/法域",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T31",
+   "title": "记录覆盖审计不可绕过",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "L3",
+   "layer_rule": "R3 证明/证据",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T32",
+   "title": "运行时与参考一致",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R5 形式内核/编译",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T33",
+   "title": "对外表达不重贴标签/经营不污染",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T34",
+   "title": "对外表达不重贴标签/经营不污染",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T35",
+   "title": "论文主张一致/完成验收",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T36",
+   "title": "论文主张一致/完成验收",
+   "source": "T谱/T01_T36_第五轮登记表.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T37",
+   "title": "统一概率对象",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T38",
+   "title": "有限有理概率与测度、条件化接桥",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T39",
+   "title": "变量消元实现到独立枚举语义",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T40",
+   "title": "观测同一性",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T41",
+   "title": "真实训练数据、时域与留存撤销合同",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T42",
+   "title": "胜诉率第1段",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T43",
+   "title": "胜诉率第2段",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T44",
+   "title": "先验选择",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T45",
+   "title": "胜诉率第3段",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T46",
+   "title": "后验→结果分布，不把概率当事实认定",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T47",
+   "title": "概率×ExactExpr×IR及合法和解",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T48",
+   "title": "补全PAV",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T49",
+   "title": "Brier及证明标准接口",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T50",
+   "title": "原始潜在率区间",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T51",
+   "title": "胜诉率第4段",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T52",
+   "title": "模型平均、污染与缺失质量的传播",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T53",
+   "title": "win_model真实入口及检查点单链",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T54",
+   "title": "JC逻辑回归",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T55",
+   "title": "四段管线端到端结果合同",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 概率/统计/学习（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T56",
+   "title": "L1结构签名",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L1",
+   "layer_rule": "R2 法源/版本/检索索引",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T57",
+   "title": "L2带标签有向诱导MCS与近似证书",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 检索计算（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T58",
+   "title": "L3因素基、要件与理由差异",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L2",
+   "layer_rule": "R9 要件/因素差异",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T59",
+   "title": "因素基→Horn的具体编译同构",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R5 形式内核/编译",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T60",
+   "title": "因素论证→Dung机器语义保持",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L4",
+   "layer_rule": "R1 论证/博弈/调解",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T61",
+   "title": "效力偏序与检索短路",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L1",
+   "layer_rule": "R2 法源/版本/检索索引",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T62",
+   "title": "加权评分合同",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 检索计算（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T63",
+   "title": "GNN/向量召回接入",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 检索计算（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T64",
+   "title": "检索后的选择偏差与目标总体",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 检索计算（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T65",
+   "title": "索引/版本及增量检索的一致性",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L1",
+   "layer_rule": "R2 法源/版本/检索索引",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T66",
+   "title": "NN总体风险证书",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 神经证书（横切A×军令）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T67",
+   "title": "二元分类VC风险证书",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 神经证书（横切A×军令）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T68",
+   "title": "带证明的数值逼近器",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 神经证书（横切A×军令）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T69",
+   "title": "NN证书与独立验证链",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 神经证书（横切A×军令）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T70",
+   "title": "神经提案通道与法律准入",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 神经证书（横切A×军令）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T71",
+   "title": "Integrated Gradients研究位",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 神经证书（横切A×军令）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T72",
+   "title": "WeightedSupNorm逐点极限补CompleteSpace",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R5 形式内核/泛函分析",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T73",
+   "title": "矩阵Lipschitz→原加权距离收缩",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R5 形式内核/泛函分析",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T74",
+   "title": "Banach解、误差与实际停止判据",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R5 形式内核/泛函分析",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T75",
+   "title": "TrustVector数值权重",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 信任数值（横切B 邻接）",
+   "confidence": "medium",
+   "review_pending": true
+  },
+  {
+   "id": "T76",
+   "title": "有限DTMC与有界PCTL的实际路径概率",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 马氏过程/随机逼近/优化（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T77",
+   "title": "无折扣可达性最小不动点",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 马氏过程/随机逼近/优化（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T78",
+   "title": "折扣Bellman与几何终止PCTL桥",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 马氏过程/随机逼近/优化（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T79",
+   "title": "法律动作集合下的有限MDP",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 马氏过程/随机逼近/优化（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T80",
+   "title": "多目标法律优化与瀑布的LP表示",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 马氏过程/随机逼近/优化（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T81",
+   "title": "调解的纳什讨价还价与合法IR",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L4",
+   "layer_rule": "R1 论证/博弈/调解",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T82",
+   "title": "Dung grounded与有终止策略的论辩博弈",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L4",
+   "layer_rule": "R1 论证/博弈/调解",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T83",
+   "title": "随机逼近",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 马氏过程/随机逼近/优化（横切A）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T84",
+   "title": "S型量刑拟合的可证条件实例",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L4",
+   "layer_rule": "R1 量刑经验线（横切A×L4）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T85",
+   "title": "信息论",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R8 数学基础研究位",
+   "confidence": "low",
+   "review_pending": true
+  },
+  {
+   "id": "T86",
+   "title": "披露/取证的信息价值，区别于法定义务",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L3",
+   "layer_rule": "R3 取证/披露信息价值",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T87",
+   "title": "谱图连续轨",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R5 形式内核/谱方法",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T88",
+   "title": "SCM反事实与but-for实例",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 因果/信念对象（横切A）",
+   "confidence": "medium",
+   "review_pending": true
+  },
+  {
+   "id": "T89",
+   "title": "Dempster–Shafer收编为可区分的信念对象",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R4 因果/信念对象（横切A）",
+   "confidence": "medium",
+   "review_pending": true
+  },
+  {
+   "id": "T90",
+   "title": "和解时机",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L4",
+   "layer_rule": "R1 论证/博弈/调解",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T91",
+   "title": "范畴论只收具体层间映射，不立万能同构",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R5 形式内核/泛函分析",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T92",
+   "title": "工作台效果与原子生命周期",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T93",
+   "title": "线程/对话/计划/流恢复操作语义",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T94",
+   "title": "设置、审批、插件与工具能力语义",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T95",
+   "title": "材料/附件/OCR/工作区文件的结构保全",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T96",
+   "title": "知识库与研究源的可追溯读取",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T97",
+   "title": "模板、起草、审核、导出与正式提交",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T98",
+   "title": "任务调度/中断恢复/定时期限",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T99",
+   "title": "案件/联系人/事实争点图/冲突检查",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T100",
+   "title": "执行/保全/归档/销毁操作链",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T101",
+   "title": "工时/报价/账单/收款经营计算全收编",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T102",
+   "title": "复盘/蒸馏/模型激活与回滚",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T103",
+   "title": "脱敏与法律结构保持",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T104",
+   "title": "界面/报告/图表输出投影",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T105",
+   "title": "123个桥方法逐一精化，不重建注册表",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T106",
+   "title": "36功能/19路由/305控件的行为地图",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T107",
+   "title": "P资产/孤儿代码/1502候选与全功能覆盖",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T108",
+   "title": "历史8+14项逐字核销",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 工作台/交付/核销",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T109",
+   "title": "四层塔的统一操作—概率语义与全链组合",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "(L5)",
+   "layer_rule": "R5 统一语义",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T110",
+   "title": "论文与主张上限v3",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 论文验收/交付",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T111",
+   "title": "全集源码交付与R6重发验收合同",
+   "source": "T谱/R7附件_T37_T111_75项登记.md",
+   "volume": null,
+   "layer": "L6",
+   "layer_rule": "R7 论文验收/交付",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T112",
+   "title": "量刑双线（规范线+经验线）",
+   "source": "T谱/排卷回执_T112_T127.md + T谱/行为主义_GPT短报.md",
+   "volume": "V05",
+   "layer": "L4",
+   "layer_rule": "R1 量刑（横切A×L4）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T113",
+   "title": "动态谈判序贯理性",
+   "source": "T谱/排卷回执_T112_T127.md + T谱/行为主义_GPT短报.md",
+   "volume": "V11",
+   "layer": "L4",
+   "layer_rule": "R1 行为/谈判/博弈（横切A×L4）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T114",
+   "title": "隐藏信息与信念更新",
+   "source": "T谱/排卷回执_T112_T127.md + T谱/行为主义_GPT短报.md",
+   "volume": "V11",
+   "layer": "L4",
+   "layer_rule": "R1 行为/谈判/博弈（横切A×L4）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T115",
+   "title": "重复博弈合作激励",
+   "source": "T谱/排卷回执_T112_T127.md + T谱/行为主义_GPT短报.md",
+   "volume": "V11",
+   "layer": "L4",
+   "layer_rule": "R1 行为/谈判/博弈（横切A×L4）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T116",
+   "title": "多议题和解个体理性",
+   "source": "T谱/排卷回执_T112_T127.md + T谱/行为主义_GPT短报.md",
+   "volume": "V11",
+   "layer": "L4",
+   "layer_rule": "R1 行为/谈判/博弈（横切A×L4）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T117",
+   "title": "稳健行动模型不确定",
+   "source": "T谱/排卷回执_T112_T127.md + T谱/行为主义_GPT短报.md",
+   "volume": "V11",
+   "layer": "L4",
+   "layer_rule": "R1 行为/谈判/博弈（横切A×L4）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T118",
+   "title": "取证停时（成本/信息/期限）",
+   "source": "T谱/排卷回执_T112_T127.md + T谱/行为主义_GPT短报.md",
+   "volume": "V05",
+   "layer": "L4",
+   "layer_rule": "R3 取证",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T119",
+   "title": "行为评价（因果/归责/效用）",
+   "source": "T谱/排卷回执_T112_T127.md + T谱/行为主义_GPT短报.md",
+   "volume": "V05",
+   "layer": "L4",
+   "layer_rule": "R1 行为/谈判/博弈（横切A×L4）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T120",
+   "title": "激励合规最优条件",
+   "source": "T谱/排卷回执_T112_T127.md + T谱/行为主义_GPT短报.md",
+   "volume": "V11",
+   "layer": "L4",
+   "layer_rule": "R1 行为/谈判/博弈（横切A×L4）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T121",
+   "title": "法律状态转移（协议与履行）",
+   "source": "T谱/排卷回执_T112_T127.md + T谱/行为主义_GPT短报.md",
+   "volume": "V11",
+   "layer": "L0",
+   "layer_rule": "R8 本体转移",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T122",
+   "title": "解释构造子（五方法具名）",
+   "source": "T谱/T122_T127_登记回执.md + 仓内 evidence-archive 战报 2026-09-24",
+   "volume": "V02",
+   "layer": "L4",
+   "layer_rule": "R1 解释/偏离（横切A×L4）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T123",
+   "title": "解释攻击关系表",
+   "source": "T谱/T122_T127_登记回执.md + 仓内 evidence-archive 战报 2026-09-24",
+   "volume": "V02",
+   "layer": "L4",
+   "layer_rule": "R1 解释/偏离（横切A×L4）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T124",
+   "title": "解释一致性定理",
+   "source": "T谱/T122_T127_登记回执.md + 仓内 evidence-archive 战报 2026-09-24",
+   "volume": "V02",
+   "layer": "L4",
+   "layer_rule": "R1 解释/偏离（横切A×L4）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T125",
+   "title": "统一偏离度三算子",
+   "source": "T谱/T122_T127_登记回执.md + 仓内 evidence-archive 战报 2026-09-24",
+   "volume": "V03",
+   "layer": "L4",
+   "layer_rule": "R1 解释/偏离（横切A×L4）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T126",
+   "title": "倾向分层合同",
+   "source": "T谱/T122_T127_登记回执.md + 仓内 evidence-archive 战报 2026-09-24",
+   "volume": "V03",
+   "layer": "L4",
+   "layer_rule": "R1 解释/偏离（横切A×L4）",
+   "confidence": "high",
+   "review_pending": true
+  },
+  {
+   "id": "T127",
+   "title": "偏离报告生成合同",
+   "source": "T谱/T122_T127_登记回执.md + 仓内 evidence-archive 战报 2026-09-24",
+   "volume": "V03",
+   "layer": "L6",
+   "layer_rule": "R7 报告交付",
+   "confidence": "high",
+   "review_pending": true
+  }
+ ]
 }

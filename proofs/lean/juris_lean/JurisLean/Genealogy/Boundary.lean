@@ -70,7 +70,7 @@ failure 与 payload 是不同构造子。
 -/
 inductive KernelResult (α : Type) where
   | complete (value : α)
-  | partial (value : PartialValue α)
+  | partialResult (value : PartialValue α)
   | failure (failure : FailureCore)
 
 /-- 只映射正常值；failure 分支完全不碰 FailureCore。 -/
@@ -80,8 +80,8 @@ def mapKernelResult
     KernelResult α → KernelResult β
   | .complete value =>
       .complete (f value)
-  | .partial value =>
-      .partial (value.map f)
+  | .partialResult value =>
+      .partialResult (value.map f)
   | .failure failure =>
       .failure failure
 

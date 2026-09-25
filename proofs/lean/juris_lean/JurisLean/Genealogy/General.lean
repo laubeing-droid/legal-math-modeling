@@ -176,7 +176,13 @@ theorem P083_insertEvpi_length
   | nil =>
       rfl
   | cons y ys ih =>
-      simp [insertEvpi, ih]
+      cases h : decide (y.evpi ≤ x.evpi) with
+      | true =>
+          simp only [insertEvpi, h, List.length_cons]
+          omega
+      | false =>
+          simp only [insertEvpi, h, ih, List.length_cons]
+          omega
 
 /-- [P083-GENERAL-B] 完整排序保持列表长度不变。 -/
 theorem P083_sortEvpi_length
@@ -324,15 +330,11 @@ theorem P097_allocate_conservation
             finalRemainder
           ]
       | false =>
-          simp at hdec
-          simp [
-            allocate,
-            hdec,
-            totalAllocated,
-            finalRemainder,
-            P097_add_assoc_local,
-            ih (payment - debt)
-          ]
+          simp only [allocate, hdec]
+          simp only [totalAllocated, finalRemainder]
+          simp only [List.sum_cons]
+          have h2 := ih (payment - debt)
+          simp only [totalAllocated, finalRemainder] at h2
           omega
 
 

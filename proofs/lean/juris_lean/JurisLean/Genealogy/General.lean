@@ -212,34 +212,32 @@ theorem P083_insertEvpi_preserves_sorted (x : P083EvpiItem) :
       rfl
   | cons y ys' ih =>
       intro hsorted
-      simp only [insertEvpi]
       cases hcond : decide (y.evpi ≤ x.evpi) with
       | true =>
-          simp only [hcond]
-          simp only [sortedDescending]
+          simp only [insertEvpi, hcond, sortedDescending]
           simp only [Bool.and_eq_true, decide_eq_true_eq] at hsorted ⊢
           refine ⟨?_, hsorted⟩
           omega
       | false =>
-          simp [hcond]
-          have ihResult := ih hsorted.2
+          simp only [insertEvpi, hcond]
           cases ys' with
           | nil =>
-              simp [insertEvpi, sortedDescending]
-              simp only [Bool.and_eq_true, decide_eq_true_eq]
+              simp only [insertEvpi, sortedDescending]
+              simp only [Bool.and_eq_true, Bool.and_true, decide_eq_true_eq]
               omega
           | cons z zs =>
+              simp only [sortedDescending] at hsorted
+              simp only [Bool.and_eq_true, decide_eq_true_eq] at hsorted
               simp only [insertEvpi]
               cases hz : decide (z.evpi ≤ x.evpi) with
               | true =>
-                  simp [hz, sortedDescending]
-                  simp only [Bool.and_eq_true, decide_eq_true_eq]
+                  simp only [hz, sortedDescending]
+                  simp only [Bool.and_eq_true, Bool.and_true, decide_eq_true_eq] at *
                   omega
               | false =>
-                  simp [hz, sortedDescending]
-                  simp only [Bool.and_eq_true, decide_eq_true_eq]
-                  refine ⟨?_, ihResult⟩
-                  exact hsorted.1
+                  simp only [hz, sortedDescending]
+                  simp only [Bool.and_eq_true, decide_eq_true_eq] at *
+                  exact ⟨hsorted.1, ih hsorted.2⟩
 
 /-- [P083-GENERAL-D] 排序结果恒降序（一般式）。 -/
 theorem P083_sortEvpi_sorted (xs : List P083EvpiItem) :

@@ -324,14 +324,13 @@ theorem rebuttal_counterexample :
         {
           preference := fun _ _ => true
         }
-        .rebuttal
+        .rebuttal 0 1
       ≠
     defeats
         {
           preference := fun _ _ => false
         }
-        .rebuttal
-        1 := by
+        .rebuttal 0 1 := by
   decide
 
 /-
@@ -1241,7 +1240,7 @@ structure ExactConstructorInput where
   multiplierFactor : Nat
 
 def progressive : List Nat → Nat
-  | [] =>
+  | [] => 0
   | step :: remaining =>
       step + progressive remaining
 

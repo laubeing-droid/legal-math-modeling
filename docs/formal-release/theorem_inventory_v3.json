@@ -9550,6 +9550,38 @@
      "name": "CertificateEnvelopeId"
     },
     {
+     "kind": "inductive",
+     "name": "SharedConstraintKind"
+    },
+    {
+     "kind": "structure",
+     "name": "SharedConstraint"
+    },
+    {
+     "kind": "structure",
+     "name": "Relation"
+    },
+    {
+     "kind": "structure",
+     "name": "LegalPower"
+    },
+    {
+     "kind": "structure",
+     "name": "Event"
+    },
+    {
+     "kind": "structure",
+     "name": "EventHistory"
+    },
+    {
+     "kind": "inductive",
+     "name": "Jurisdiction"
+    },
+    {
+     "kind": "structure",
+     "name": "ApplicableNormQuery"
+    },
+    {
      "kind": "theorem",
      "name": "v2_registry_covers_four_layers"
     },
@@ -9572,6 +9604,34 @@
     {
      "kind": "theorem",
      "name": "v2_registry_nodup"
+    },
+    {
+     "kind": "theorem",
+     "name": "v3_kernel_types_in_v2_universe"
+    },
+    {
+     "kind": "theorem",
+     "name": "legalPower_power_not_implies_occurred"
+    },
+    {
+     "kind": "theorem",
+     "name": "legalPower_obligation_not_implies_occurred"
+    },
+    {
+     "kind": "theorem",
+     "name": "legalPower_power_not_implies_obligation"
+    },
+    {
+     "kind": "theorem",
+     "name": "relation_shared_constraints_participate"
+    },
+    {
+     "kind": "theorem",
+     "name": "applicable_norm_history_participates"
+    },
+    {
+     "kind": "theorem",
+     "name": "jurisdiction_mainland_distinct_from_united_states"
     }
    ],
    "imports": [
@@ -9580,10 +9640,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/LegalModelV2.lean",
    "print_axioms_targets": [],
-   "sha256": "a08b4a6268999dd0fd41e8d841f6349d2af5527b3642284f249dec486b48eb28",
-   "size_bytes": 5104,
-   "theorem_count": 6,
-   "theorem_count_bol_convention": 6
+   "sha256": "602d4edca2006a970741b5900cf2616b83f43efc76f58cdc14795d31faa730e8",
+   "size_bytes": 9940,
+   "theorem_count": 13,
+   "theorem_count_bol_convention": 13
   },
   {
    "declarations": [
@@ -13913,13 +13973,13 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1469,
+   "counted_declaration_count": 1476,
    "file_count": 200,
    "lemma_count": 24,
    "print_axioms_command_count": 269,
    "print_axioms_distinct_targets": 215,
-   "theorem_count": 1445,
-   "theorem_count_bol_convention": 1409
+   "theorem_count": 1452,
+   "theorem_count_bol_convention": 1416
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -14174,11 +14234,11 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "22e976b1cc38aefd5d46e09e75257959c67d63374ca296ee59cd8d864b5f5e25",
+ "source_inventory_digest": "64a33ff869bfc6bbe0882f2122600e9cc1ee6572281ab23cdb4c759584557114",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "main",
-  "commit": "1e0875cb3bc7c4225bd5dcb209e7a779925a1d80",
-  "tree": "c3073862515ea5b22edd0cb081a66a3bddd9177c"
+  "commit": "483646466207c9a81ed8385f0529397f114228f8",
+  "tree": "d24f568604039343aff867d13b844cb3e535abd1"
  }
 }

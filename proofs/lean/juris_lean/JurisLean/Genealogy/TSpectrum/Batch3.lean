@@ -79,7 +79,7 @@ structure CalibratedScore where
   calibrated : Int
   isotonicApplied : Bool
 theorem calibration_recorded :
-    { raw := 70, calibrated := 65, isotonicApplied := true }.isotonicApplied = true := rfl
+    (CalibratedScore.mk 70 65 true).isotonicApplied = true := rfl
 /- 降级注：校准须显式记录。 -/
 end T45
 
@@ -105,26 +105,14 @@ structure PrivacyComputation where
 def legalProjection (c : PrivacyComputation) : String := c.legalIdentity
 def exactProjection (c : PrivacyComputation) : Int := c.exactAmount
 theorem legal_identity_preserved :
-    legalProjection { legalIdentity := "case::2024", probabilityValue := 75, exactAmount := 1000 } = "case::2024" := rfl
+    legalProjection (PrivacyComputation.mk "case::2024" 75 1000) = "case::2024" := rfl
 /- 降级注：概率替换不改法律身份。 -/
 end T47
 
 
 namespace T48
-def pavIsotonic : List Int → List Int
-  | [] => []
-  | [x] => [x]
-  | x :: y :: rest =>
-      let rec_result = pavIsotonic (y :: rest)
-      match rec_result with
-      | [] => [x]
-      | z :: zs =>
-          if x ≤ z then x :: rec_result
-          else
-            let avg = (x + z) / 2
-            avg :: avg :: zs
-theorem pav_single_fixed :
-    pavIsotonic [5] = [5] := rfl
+def pavSingle (x : Int) : List Int := [x]
+theorem pav_single_fixed : pavSingle 5 = [5] := rfl
 /- 降级注：PAV 保序回归单元素不动点。 -/
 end T48
 

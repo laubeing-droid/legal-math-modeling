@@ -242,3 +242,28 @@ open HornSystem
 #print axioms JurisLean.Genealogy.TSpectrum.T18.period_effect_bound_to_kind
 #print axioms JurisLean.Genealogy.TSpectrum.T19.progressive_and_multiplier_correct
 #print axioms JurisLean.Genealogy.TSpectrum.T20.route_and_exclusion_sound
+
+/-! T-spectrum batch 2. -/
+#print axioms JurisLean.Genealogy.TSpectrum.T21.interest_segment_refinement
+#print axioms JurisLean.Genealogy.TSpectrum.T22.residual_payment_le
+#print axioms JurisLean.Genealogy.TSpectrum.T22.payment_offset_conservation
+#print axioms JurisLean.Genealogy.TSpectrum.T23.fixed_scheme_conservation
+#print axioms JurisLean.Genealogy.TSpectrum.T24.asset_pool_no_duplicate_consumption
+#print axioms JurisLean.Genealogy.TSpectrum.T25.priority_waterfall_monotone
+#print axioms JurisLean.Genealogy.TSpectrum.T26.interruption_resume_preserves_checkpoint
+#print axioms JurisLean.Genealogy.TSpectrum.T27.admitted_rule_has_four_witnesses
+#print axioms JurisLean.Genealogy.TSpectrum.T28.compile_structure_preserving
+#print axioms JurisLean.Genealogy.TSpectrum.T29.evaluate_multi_contract
+#print axioms JurisLean.Genealogy.TSpectrum.T30.version_package_isolation
+#print axioms JurisLean.Genealogy.TSpectrum.T31.record_override_audit
+#print axioms JurisLean.Genealogy.TSpectrum.T32.runtime_reference_consistency
+#print axioms JurisLean.Genealogy.TSpectrum.T33.external_output_does_not_relabel
+#print axioms JurisLean.Genealogy.TSpectrum.T34.business_does_not_pollute_legal
+#print axioms JurisLean.Genealogy.TSpectrum.T35.paper_claim_consistency
+#print axioms JurisLean.Genealogy.TSpectrum.T36.completion_acceptance
+#print axioms JurisLean.Genealogy.TSpectrum.T37.unified_probability_preserves_legal_identity
+#print axioms JurisLean.Genealogy.TSpectrum.T38.conditioning_zero_mass_unknown
+#print axioms JurisLean.Genealogy.TSpectrum.T38.conditioning_excludes_false_event
+#print axioms JurisLean.Genealogy.TSpectrum.T39.variable_elimination_equals_independent_enumeration
+#print axioms JurisLean.Genealogy.TSpectrum.T40.observational_identity
+#print axioms JurisLean.Genealogy.TSpectrum.T40.hidden_change_preserves_observation

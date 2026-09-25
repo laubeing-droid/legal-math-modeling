@@ -217,13 +217,17 @@ theorem P083_insertEvpi_preserves_sorted (x : P083EvpiItem) :
       · -- y ≤ x：insert at front → x :: y :: ys'
         simp only [sortedDescending]
         simp only [Bool.and_eq_true, decide_eq_true_eq] at hsorted ⊢
-        exact ⟨hle, hsorted⟩
+        exact ⟨of_decide_eq_true hle, hsorted⟩
       · -- y > x：skip y → y :: insertEvpi x ys'
         cases ys' with
         | nil =>
             simp only [insertEvpi, sortedDescending]
             simp only [Bool.and_eq_true, Bool.and_true, decide_eq_true_eq]
-            omega
+            cases hd : Nat.decLe y.evpi x.evpi with
+            | isTrue hyx => rw [show decide (y.evpi ≤ x.evpi) = true from rfl] at hle; exact absurd hle (by simp)
+            | isFalse hnf =>
+                simp only [Nat.not_le] at hnf
+                omega
         | cons z zs =>
             simp only [sortedDescending] at hsorted
             simp only [Bool.and_eq_true, decide_eq_true_eq] at hsorted
@@ -232,7 +236,7 @@ theorem P083_insertEvpi_preserves_sorted (x : P083EvpiItem) :
             · -- z ≤ x：head of insert = x
               simp only [sortedDescending]
               simp only [Bool.and_eq_true, decide_eq_true_eq] at *
-              omega
+              exact trivial
             · -- z > x：head of insert = z
               simp only [sortedDescending]
               simp only [Bool.and_eq_true, decide_eq_true_eq] at *

@@ -5,7 +5,7 @@ namespace T61
 /- 效力偏序与检索短路 -/
 structure ConflictRule where
   connecting : String
-deref applyConflict : ConflictRule → String
+def applyConflict : ConflictRule → String
   | r => r.connecting
 theorem T61_conflict_deterministic : applyConflict (ConflictRule.mk "forum") = "forum" := by
   rfl
@@ -17,7 +17,7 @@ namespace T62
 /- 加权评分合同 -/
 structure MandatoryRule where
   override : Bool
-deres scopedOverride (mandatory : Bool) (original : String) : String :=
+def scopedOverride (mandatory : Bool) (original : String) : String :=
   if mandatory then "OVERRIDDEN" else original
 theorem T62_mandatory_overrides : scopedOverride true "original" = "OVERRIDDEN" := by
   rfl
@@ -30,8 +30,8 @@ namespace T63
 inductive ApplicableLaw where
   | chosen (law : String)
   | unknown
-theorem T63_fail_closed : (ApplicableLaw.chosen "CN").toString != "" := by
-  rfl
+theorem T63_fail_closed : ApplicableLaw.chosen "CN" ≠ ApplicableLaw.unknown := by
+  decide
 /- 降级注：结构纪律层。 -/
 end T63
 
@@ -42,7 +42,7 @@ structure SelectionBias where
   targetPopulation : String
   selectionMechanism : String
   observedSample : String
-derdef biasRecorded (b : SelectionBias) : Bool :=
+def biasRecorded (b : SelectionBias) : Bool :=
   decide (b.targetPopulation != "" && b.selectionMechanism != "" && b.observedSample != "")
 theorem T64_bias_explicit : biasRecorded (SelectionBias.mk "all_claims" "retrieved_only" "retrieved") = true := by
   decide

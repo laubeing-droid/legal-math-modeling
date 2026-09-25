@@ -289,7 +289,7 @@ def allocate :
         remainder := payment
       }
   | payment, debt :: debts =>
-      if h : payment ≤ debt then
+      if decide (payment ≤ debt) then
         {
           allocated := [payment]
           remainder := 0
@@ -319,14 +319,15 @@ theorem P097_allocate_conservation
   | cons debt debts ih =>
       cases Nat.lt_or_ge debt payment with
       | inl hgt =>
-          rw [if_neg (Nat.not_le.mpr hgt)]
-          simp only [totalAllocated, finalRemainder, List.sum_cons]
+          have hfin : decide (payment ≤ debt) = false := by
+            simp [Nat.not_le.mpr hgt]
+          simp [allocate, hfin, totalAllocated, finalRemainder, List.sum_cons]
           have h2 := ih (payment - debt)
           simp only [totalAllocated, finalRemainder] at h2
           omega
       | inr hle =>
-          rw [if_pos hle]
-          simp [totalAllocated, finalRemainder]
+          have hfin : decide (payment ≤ debt) = true := by simp [hle]
+          simp [allocate, hfin, totalAllocated, finalRemainder]
 
 
 /-! ============================================================

@@ -37,3 +37,5 @@ import JurisLean.Consolidated.All
 import JurisLean.BusinessRoot.All
 import JurisLean.BusinessRoot.SevenAxis
 import JurisLean.BusinessRoot.SevenAxisCases
+import JurisLean.KernelV3
+import JurisLean.Hohfeld

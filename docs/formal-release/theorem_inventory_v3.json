@@ -434,15 +434,41 @@
   {
    "declarations": [],
    "imports": [
+    "JurisLean.BanachCertificate",
     "JurisLean.DungFixedPoint",
     "JurisLean.FiniteMonotoneIteration",
+    "JurisLean.Hohfeld",
     "JurisLean.HornFixedPoint",
+    "JurisLean.KernelV3",
     "JurisLean.ULMAxiomAudit",
     "JurisLean.WeightedSupNorm"
    ],
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
    "print_axioms_targets": [
+    "JurisLean.BanachCertificateV3.certificate_error_within_tolerance",
+    "JurisLean.BanachCertificateV3.certificate_has_nonempty_domain",
+    "JurisLean.BanachCertificateV3.certificate_has_positive_iterations",
+    "JurisLean.BanachCertificateV3.certificate_has_q_lt_one_scaled",
+    "JurisLean.BanachCertificateV3.no_certificate_rejected",
+    "JurisLean.Hohfeld.correlative_involutive",
+    "JurisLean.Hohfeld.correlative_ne_self",
+    "JurisLean.Hohfeld.opposite_involutive",
+    "JurisLean.Hohfeld.opposite_ne_self",
+    "JurisLean.KernelV3.applicableNorm_fails_closed_when_t_precedes_fact",
+    "JurisLean.KernelV3.applicableNorm_t_not_independent",
+    "JurisLean.KernelV3.evalBatch_only_returns_asked_questions",
+    "JurisLean.KernelV3.judgment_notEstablished_does_not_force_truth_false",
+    "JurisLean.KernelV3.mkEval_disposition",
+    "JurisLean.KernelV3.mkEval_judgment",
+    "JurisLean.KernelV3.narrowCandidates_is_subset",
+    "JurisLean.KernelV3.narrowCandidates_preserves_R",
+    "JurisLean.KernelV3.procedural_judgment_does_not_auto_create_substantive",
+    "JurisLean.KernelV3.transfer_confirmatory_identity",
+    "JurisLean.KernelV3.transfer_constitutive_preserves_K",
+    "JurisLean.KernelV3.transfer_constitutive_updates_R",
+    "JurisLean.KernelV3.transfer_performance_identity",
+    "JurisLean.KernelV3.transfer_proceduralBinding_identity",
     "exists_fixpoint_le_card",
     "fixed_at_card",
     "grounded_is_least_fixed_point",
@@ -450,8 +476,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "62f035352fb6e7533eadcec941d4c94c51639f60cb04b0fa3fe4f78fddd1fb0d",
-   "size_bytes": 516,
+   "sha256": "2d5ccd401201e4cc46a816d716e9097713fe14dad42b270460d2ee97367d0d51",
+   "size_bytes": 2158,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -539,6 +565,38 @@
     {
      "kind": "def",
      "name": "verifyCertificate"
+    },
+    {
+     "kind": "structure",
+     "name": "CertifiedApproximation"
+    },
+    {
+     "kind": "inductive",
+     "name": "Admission"
+    },
+    {
+     "kind": "def",
+     "name": "tryAdmit"
+    },
+    {
+     "kind": "theorem",
+     "name": "no_certificate_rejected"
+    },
+    {
+     "kind": "theorem",
+     "name": "certificate_has_q_lt_one_scaled"
+    },
+    {
+     "kind": "theorem",
+     "name": "certificate_error_within_tolerance"
+    },
+    {
+     "kind": "theorem",
+     "name": "certificate_has_nonempty_domain"
+    },
+    {
+     "kind": "theorem",
+     "name": "certificate_has_positive_iterations"
     }
    ],
    "imports": [
@@ -548,10 +606,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/BanachCertificate.lean",
    "print_axioms_targets": [],
-   "sha256": "4bf478f5243faf9ecef0f1f964a3520c3a4387871a10e1715b8c2ffa18d98e0d",
-   "size_bytes": 1291,
-   "theorem_count": 0,
-   "theorem_count_bol_convention": 0
+   "sha256": "94729506db6f801a958111e0e9d7d6c3d46a95189502b7946df96a1258c554d4",
+   "size_bytes": 3939,
+   "theorem_count": 5,
+   "theorem_count_bol_convention": 5
   },
   {
    "declarations": [
@@ -8800,6 +8858,48 @@
   {
    "declarations": [
     {
+     "kind": "inductive",
+     "name": "Concept"
+    },
+    {
+     "kind": "def",
+     "name": "opposite"
+    },
+    {
+     "kind": "def",
+     "name": "correlative"
+    },
+    {
+     "kind": "theorem",
+     "name": "opposite_involutive"
+    },
+    {
+     "kind": "theorem",
+     "name": "correlative_involutive"
+    },
+    {
+     "kind": "theorem",
+     "name": "opposite_ne_self"
+    },
+    {
+     "kind": "theorem",
+     "name": "correlative_ne_self"
+    }
+   ],
+   "imports": [
+    "JurisLean.LegalModelV2"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Hohfeld.lean",
+   "print_axioms_targets": [],
+   "sha256": "d142e0d1eadca91b7cf3d782e2dcfd27a9d18664470dab1c2a98c74e33df6d4c",
+   "size_bytes": 1927,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "HornDerivation"
     },
@@ -9262,6 +9362,165 @@
    "size_bytes": 8307,
    "theorem_count": 6,
    "theorem_count_bol_convention": 6
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
+     "name": "Judgment"
+    },
+    {
+     "kind": "inductive",
+     "name": "QuestionKind"
+    },
+    {
+     "kind": "inductive",
+     "name": "EffectType"
+    },
+    {
+     "kind": "structure",
+     "name": "Question"
+    },
+    {
+     "kind": "structure",
+     "name": "EvalResult"
+    },
+    {
+     "kind": "def",
+     "name": "mkEval"
+    },
+    {
+     "kind": "theorem",
+     "name": "mkEval_judgment"
+    },
+    {
+     "kind": "theorem",
+     "name": "mkEval_disposition"
+    },
+    {
+     "kind": "structure",
+     "name": "TruthJudgment"
+    },
+    {
+     "kind": "theorem",
+     "name": "judgment_notEstablished_does_not_force_truth_false"
+    },
+    {
+     "kind": "structure",
+     "name": "RelationalState"
+    },
+    {
+     "kind": "structure",
+     "name": "KernelState"
+    },
+    {
+     "kind": "inductive",
+     "name": "JudgmentEvent"
+    },
+    {
+     "kind": "def",
+     "name": "eventEffectType"
+    },
+    {
+     "kind": "def",
+     "name": "transfer"
+    },
+    {
+     "kind": "theorem",
+     "name": "transfer_confirmatory_identity"
+    },
+    {
+     "kind": "theorem",
+     "name": "transfer_performance_identity"
+    },
+    {
+     "kind": "theorem",
+     "name": "transfer_proceduralBinding_identity"
+    },
+    {
+     "kind": "theorem",
+     "name": "transfer_constitutive_updates_R"
+    },
+    {
+     "kind": "theorem",
+     "name": "transfer_constitutive_preserves_K"
+    },
+    {
+     "kind": "def",
+     "name": "narrowCandidates"
+    },
+    {
+     "kind": "theorem",
+     "name": "narrowCandidates_preserves_R"
+    },
+    {
+     "kind": "theorem",
+     "name": "narrowCandidates_is_subset"
+    },
+    {
+     "kind": "def",
+     "name": "evalBatch"
+    },
+    {
+     "kind": "theorem",
+     "name": "evalBatch_only_returns_asked_questions"
+    },
+    {
+     "kind": "def",
+     "name": "autoSubstantiveJudgment"
+    },
+    {
+     "kind": "theorem",
+     "name": "procedural_judgment_does_not_auto_create_substantive"
+    },
+    {
+     "kind": "structure",
+     "name": "EventHistory"
+    },
+    {
+     "kind": "def",
+     "name": "applicableNorm"
+    },
+    {
+     "kind": "theorem",
+     "name": "applicableNorm_t_not_independent"
+    },
+    {
+     "kind": "theorem",
+     "name": "applicableNorm_fails_closed_when_t_precedes_fact"
+    },
+    {
+     "kind": "structure",
+     "name": "Exhaustion"
+    },
+    {
+     "kind": "def",
+     "name": "FullyExhausted"
+    },
+    {
+     "kind": "inductive",
+     "name": "NarrowResult"
+    },
+    {
+     "kind": "inductive",
+     "name": "DerivedAnalysisKind"
+    },
+    {
+     "kind": "structure",
+     "name": "DerivedAnalysis"
+    }
+   ],
+   "imports": [
+    "JurisLean.LegalModelV2",
+    "Mathlib.Data.Set.Basic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/KernelV3.lean",
+   "print_axioms_targets": [],
+   "sha256": "eab10f42d45b0e28d28bbcca0fd0d2528919557aaf2e1ab0088b1a2bd27999f6",
+   "size_bytes": 9209,
+   "theorem_count": 14,
+   "theorem_count_bol_convention": 14
   },
   {
    "declarations": [
@@ -13770,8 +14029,10 @@
     "JurisLean.EndToEnd",
     "JurisLean.FiniteGaloisAdjunction",
     "JurisLean.FiniteRosetta",
+    "JurisLean.Hohfeld",
     "JurisLean.HornAAFContract",
     "JurisLean.JC_Formalization",
+    "JurisLean.KernelV3",
     "JurisLean.LegalSyntax",
     "JurisLean.SafetyTheorems",
     "JurisLean.TemporalKripke",
@@ -13797,8 +14058,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "d056c7b746453121fef73c9581b3e7c054e2731a0febb0931adcc978195a8f4c",
-   "size_bytes": 1358,
+   "sha256": "13f6872dd0035f99f0156f1fd0394a2788e0e90752947727d0899259466e9f7f",
+   "size_bytes": 1409,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -13973,13 +14234,13 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1476,
-   "file_count": 200,
+   "counted_declaration_count": 1499,
+   "file_count": 202,
    "lemma_count": 24,
-   "print_axioms_command_count": 269,
-   "print_axioms_distinct_targets": 215,
-   "theorem_count": 1452,
-   "theorem_count_bol_convention": 1416
+   "print_axioms_command_count": 292,
+   "print_axioms_distinct_targets": 238,
+   "theorem_count": 1475,
+   "theorem_count_bol_convention": 1439
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -14119,6 +14380,7 @@
    "proofs/lean/juris_lean/JurisLean/FullMath/Tranche5.lean",
    "proofs/lean/juris_lean/JurisLean/FullMath/Tranche6.lean",
    "proofs/lean/juris_lean/JurisLean/FullMath/Tranche7.lean",
+   "proofs/lean/juris_lean/JurisLean/Hohfeld.lean",
    "proofs/lean/juris_lean/JurisLean/HornAAFContract.lean",
    "proofs/lean/juris_lean/JurisLean/HornDefinitions.lean",
    "proofs/lean/juris_lean/JurisLean/HornFixedPoint.lean",
@@ -14129,6 +14391,7 @@
    "proofs/lean/juris_lean/JurisLean/IVLToHorn.lean",
    "proofs/lean/juris_lean/JurisLean/IVLToSMT.lean",
    "proofs/lean/juris_lean/JurisLean/JC_Formalization.lean",
+   "proofs/lean/juris_lean/JurisLean/KernelV3.lean",
    "proofs/lean/juris_lean/JurisLean/LegalIVL.lean",
    "proofs/lean/juris_lean/JurisLean/LegalIVLWellFormed.lean",
    "proofs/lean/juris_lean/JurisLean/LegalIds.lean",
@@ -14234,11 +14497,11 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "64a33ff869bfc6bbe0882f2122600e9cc1ee6572281ab23cdb4c759584557114",
+ "source_inventory_digest": "76adcf5e0931ec00d2dfaa2dd1c09fb65859a89f4f9c02c442708a6b8024b074",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "main",
-  "commit": "483646466207c9a81ed8385f0529397f114228f8",
-  "tree": "d24f568604039343aff867d13b844cb3e535abd1"
+  "commit": "71c04b06f088e6c4d1cff1478ae299abf396bfce",
+  "tree": "732423475360cba4ad1fc69d4543d7e1e50ee9ff"
  }
 }

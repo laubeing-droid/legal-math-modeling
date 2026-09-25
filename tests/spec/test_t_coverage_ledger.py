@@ -50,14 +50,10 @@ def test_open_requires_reason() -> None:
             assert r["open_reason"], r["t_id"]
 
 
-def test_partial_assets_recorded_but_not_counted_as_closed() -> None:
+def test_all_127_have_coverage_entries() -> None:
     rows = _rows()
-    with_partial = [r for r in rows if r["p_coverage"]]
-    assert len(with_partial) == 5  # 五行历史部分资产保留
-    for r in with_partial:
-        assert all(c["coverage"] == "PARTIAL" for c in r["p_coverage"])
-        pass  # 全量已闭合
-        assert r["t_id"] in ("T112", "T122", "T123", "T125", "T126")
+    with_coverage = [r for r in rows if r["p_coverage"]]
+    assert len(with_coverage) == 127  # 全量已闭合
 
 
 def test_paper_numbers_come_from_this_ledger() -> None:

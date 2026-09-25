@@ -123,3 +123,174 @@ The kernel's boundaries must be stated as well. It treats only expanding operato
 |---|---|
 | The kernel proves the least fixed point | Does not hold. The kernel contains no leastness theorem; leastness is proved once in the Horn instantiation (HornFixedPoint, from line 60) and once in the Dung instantiation (ULM10, from line 99), in the same shape |
 | "Sole kernel" | Holds, by the module import lists: the only general fixed-point theory cited by the numbered modules is this one; the earlier Dung fixed-point file and the contraction-mapping route are outside the trunk's imports |
+
+---
+
+## Section 4 Two instantiations: Horn support closure and Dung semantics
+
+> **[S4-SCOPE] Scope of this section.** This section only shows how the common formal skeleton is instantiated as Horn-rule support closure and as Dung argumentation semantics, and compares the two leastness constructions; structural similarity is not promoted into a claim that the two theories are equivalent. Running examples come from existing definitions in the temporal theory and the minimal obligation theory. Counts follow the conventions fixed in Section 2; this section introduces none.
+
+<!-- S4-P01 -->
+The first instantiation handles Horn rules. The instantiator supplies three pieces of entry data: a finite predicate universe, a rule set whose premises and conclusions are predicates, and the monotonicity promise of the one-step support-closure operator. With these three delivered, a finite monotone system exists; the kernel theorems apply immediately, the iteration stops within the carrier's cardinality, and the stopping point is the support closure of the rule set.
+
+<!-- S4-P02 -->
+Leastness of the support closure is supplied by the instantiation, in the shape of one induction over iteration indices. Take any fixed point of the rule operator and first show that every iterate is contained in it: the base is the empty set, the key step applies the monotonicity promise to the induction hypothesis and closes with the fixed-point equation; instantiating the induction at the carrier's cardinality then yields containment of the iteration result in every fixed point. Only two facts are used, the monotonicity promise and the fixed-point equation, and neither concerns the logical meaning of the rules.
+
+<!-- S4-P03 -->
+The second instantiation handles Dung semantics. The carrier becomes a finite set of argument identifiers and the step operator becomes the characteristic function of the argumentation framework: an argument enters the set at the next step exactly when it is defended by undefeated members of the set. Monotonicity of the characteristic function requires a transfer argument over filters and defense conditions, the longest proof in the trunk; once delivered, the grounded extension is defined as the iteration result of that system.
+
+<!-- S4-P04 -->
+Leastness of the grounded extension is supplied by an induction of the same shape: take any fixed point of the characteristic function, induct over iteration indices, use monotonicity plus the fixed-point equation at each step, and conclude at the cardinality of the argument set. The two leastness constructions are therefore two entries into one skeleton; the skeleton itself carries no semantic commitment to support closure or grounded extensions, and claiming that the two theories are thereby equivalent goes beyond what this section proves.
+
+<!-- S4-P05 -->
+Running examples place these constructions back in a legal context. The pointwise extension of a litigation timeline in the temporal theory, and the rule progression of the direct-violation shape for contract breach in the minimal obligation theory, are both entries of the skeleton on different carriers; the definition that permission-type rules produce no direct violation marks the boundary between rule shapes on the same carrier. These examples are illustrative and verify no real-case reasoning chain.
+
+**Claims table for this section**
+
+| Claim ID | Claim | Supporting object | Status | Boundary |
+|---|---|---|---|---|
+| S4-C01 | Horn support closure stops within the carrier's cardinality and the stop is the closure | Kernel theorems plus Horn instantiation entry data | Proved | Not extrapolated to Dung semantics |
+| S4-C02 | The support closure is contained in every fixed point of the rule operator | HornFixedPoint from line 60, induction over iteration indices | Proved | Uses only the monotonicity promise and the fixed-point equation |
+| S4-C03 | The grounded extension is the iteration result of the characteristic function and is least | ULM10 from line 99, same-shape induction | Proved | Holds for the defeat semantics only |
+| S4-C04 | The two leastness constructions share one shape | Line-by-line reading of both sources | Structural check | No equivalence of the two theories claimed |
+| S4-C05 | Temporal and obligation running examples | Existing definitions in TemporalKripke and DDLDefinitions | Example | Not a general jurisprudential proof |
+
+---
+
+## Section 5 The trunk encoding layer: identity, results, types, and premises
+
+> **[S5-SCOPE] Scope of this section.** This section only organizes the encoding responsibilities of the trunk modules, namely request identity, the result algebra, type relations, obligations, the machine, and premise provenance, and admits the kernel object types added in the present round; it describes how the machine distinguishes objects, not a claim that these encodings exhaust legal meaning.
+
+<!-- S5-P01 -->
+Request identity is carried by two levels of context. The context first fixes five items, case scope, run scope, scenario, base version, and semantics version, with the run scope required to stay inside one case; the request then binds the argumentation semantics, the query identifier, and the mapping version. Each level carries its own well-formedness predicate, and a request that fails it cannot enter later modules. Identity is thus a statically checkable credential, not a runtime label.
+
+<!-- S5-P02 -->
+The outcome of a computation is encoded by a three-way type: a total value, a partial value with obligations, or a failure core. A partial value must carry at least one open obligation; the failure core records the failure kind, reason, and owning request; and the outcome mapping is definitionally the identity on the failure branch. This layer is the carrier of the first inexpressibility of Section 2: code that maps failure into a normal payload cannot be written.
+
+<!-- S5-P03 -->
+Obligations and the machine encode what is owed as a trackable object. The machine's run sequence preserves the request, with every state transition carrying the same request identity, and obligations are listed explicitly in partial values. Premise provenance is delegated to the fact-admission specification: candidates, user assumptions, and disputed facts never gain decisive standing at any entrance, and admission levels rise only through independent, scope-bound external credentials.
+
+<!-- S5-P04 -->
+The present round adds the legal-semantic kernel objects to the type graph. The relation whole carries shared-constraint fields; power, obligation, and occurrence are three independent fields that do not imply one another; events carry time points with the history structure holding the time order; the jurisdiction axis exists on its own. Truth and judgment are layered, with judgment three-valued and disposition an independent field rather than a fourth value. The size and layering of the type graph are pinned by a machine-readable manifest that documents do not duplicate.
+
+**Claims table for this section**
+
+| Claim ID | Claim | Supporting object | Status | Boundary |
+|---|---|---|---|---|
+| S5-C01 | Two-level well-formed request identity, statically checkable | Context and request definitions of the first two modules | Implemented | Encoding layer, not a legal-validity layer |
+| S5-C02 | Partial values carry open obligations; failure returned as is | Constructors and outcome mapping of the second module | Type-inexpressible | — |
+| S5-C03 | Run sequences preserve the request; candidate facts never decisive | Machine-module theorem and fact-admission specification | Proved / contract | No doctrine of burden allocation |
+| S5-C03 | Run sequences preserve the request; candidate facts never decisive | Machine-module theorem and fact-admission specification | Proved / contract | No doctrine of burden allocation |
+| S5-C04 | Kernel object types enter the graph; three modalities mutually non-implying | Type registry manifest and existing witness theorems | Proved | Semantics left to upper layers |
+| S5-C05 | Truth/judgment layering; disposition as a field | Kernel contract tests and the formalization module | Proved (contract-level) | No concrete norm content |
+
+---
+
+## Section 6 Branch queries and procedural adjudication
+
+> **[S6-SCOPE] Scope of this section.** This section discusses only how branch queries, procedural determinations, and proof-carrying constructions constrain result propagation; a determinate procedural result must not be read as assigning the same judgment to a substantive proposition. Sentencing and probability are out of scope here.
+
+<!-- S6-P01 -->
+Branch queries type what is being asked. Queries split into substantive, procedural, and effect kinds; the result of one evaluation is a pair: judgment and disposition. Judgment is three-valued, namely established, not established, and undetermined, while disposition is an independent field of procedural legal effect and may be empty. A determinate judgment on a procedural question does not automatically generate a judgment on the substantive question: the evaluation batch returns exactly the set of asked questions, and no channel writes procedural conclusions into substantive ones in passing.
+
+<!-- S6-P02 -->
+Propagation limits tighten again at the event layer. Adjudication events split four ways by effect: confirmatory, constitutive, performance, and procedural binding. A confirmatory adjudication cannot create a relation at the type level, because the non-constitutive constructors carry no next-state field at all; only constitutive events transfer entity state, and the transfer leaves the evidence set untouched. A losing sample therefore cannot rewrite the normative ontology through a confirmatory event.
+
+<!-- S6-P03 -->
+The evidence-side counterpart is this: evidence updates only narrow the candidate set, narrowing is typed by a subset premise, and the normative state is returned unchanged. Undetermined output has a narrowing gate, and a proof that four families of rules are exhausted must accompany it. Together the three clauses state this section's claim: the procedural layer and the evidence layer each keep their own gate, and neither decides for the other.
+
+**Claims table for this section**
+
+| Claim ID | Claim | Supporting object | Status | Boundary |
+|---|---|---|---|---|
+| S6-C01 | The evaluation batch returns only the asked questions | Kernel contract, on both the test and formalization sides | Proved (contract-level) | No burden-of-proof semantics of judgment |
+| S6-C02 | Non-constitutive events structurally cannot carry a next state | The kernel's event inductive type | Type-inexpressible | — |
+| S6-C03 | Constitutive transfer preserves the evidence set; narrowing preserves the ontology | Transfer and narrowing theorems | Proved | Transfer semantics interpreted by the norm layer |
+| S6-C04 | Undetermined requires a proof of four-family exhaustion | The proof field of the undetermined constructor | Type-inexpressible | Exhaustion criteria supplied by rule packs |
+
+---
+
+## Section 7 Dimensions, trust meets, and assurance envelopes
+
+> **[S7-SCOPE] Scope of this section.** This section examines how dimensional arithmetic, trust meets, and assurance envelopes constrain the admissible use of computational outputs; these mechanisms restrict acceptance without converting empirical estimates into normative truth.
+
+<!-- S7-P01 -->
+Numbers must enter computation with dimensions and exactness. Exact values are carried as integer minor units with an explicit rounding policy, excluding binary floats; the evaluator has a dedicated theorem on consistency over indexed expression families. The point of dimensional arithmetic is not speed but that wrongly combined numbers cannot be assembled in the first place, so amounts and time limits never silently change tracks mid-computation.
+
+<!-- S7-P02 -->
+Trust merges coordinatewise to the minimum inside the trunk: the trust of a merged result never exceeds any input, and open specification slots stay open under aggregation. The permission-rank version lives outside the trunk and says that any number of consensus rounds at one level never produces a level rise. Read together: neither horizontal merging nor vertical repetition lifts the standing of evidence.
+
+<!-- S7-P03 -->
+The assurance envelope governs how certain is certain enough. The contraction-mapping route supplies four forwarded theorems, existence, uniqueness, convergence, and an a-priori error bound, under the premise of a complete nonempty metric space; the certificate envelope and the independent checker require that producers hand over no trusted booleans and that checkers recompute. Certified approximators turn admission itself into proof obligations on top of this: error bound, tolerance, applicability domain, and the scaled contraction ratio all become constructor-time fields, and without a certificate there is no admission.
+
+<!-- S7-P04 -->
+Outputs passing this gate remain reference-grade. The approximator's identity marker has exactly one grade, reference, and interval, identity, and certificate travel with the output, the output failing if any is missing; probability intervals computed on retrieved populations carry identity markers too, with synthetic data permanently hard-marked as unvalidated. The boundary between reference and decisive is thus not a wording convention but a structural consequence of types and certificates.
+
+**Claims table for this section**
+
+| Claim ID | Claim | Supporting object | Status | Boundary |
+|---|---|---|---|---|
+| S7-C01 | Type discipline for exact values and dimensions | Exact-numeric contract and the evaluator-consistency theorem | Proved | No doctrine of currency conversion |
+| S7-C02 | Trust merge never exceeds inputs; consensus lifts no rank | Coordinatewise minimum in the trunk; rank theorem outside | Proved | No unifying bridge between the two versions (Section 8) |
+| S7-C03 | Four error-bound theorems of the contraction route | Forwarded library theorems, complete-nonempty premise | Forwarded | Premise not self-proved in the trunk |
+| S7-C04 | No certificate, no entry; outputs permanently reference-grade | The proof-carrying admission construction | Type-inexpressible | Certificates prove no legal correctness |
+
+---
+
+## Section 8 Independent theories outside the trunk, and gaps
+
+> **[S8-SCOPE] Scope of this section.** This section keeps ununified parallel theories and engineering structures outside the trunk and records, item by item, which bridge to the current kernel is still missing; the existence of an implementation is kept strictly distinct from formal unification.
+
+<!-- S8-P01 -->
+The temporal, permission, and taint theories exist independently, sharing definitions but no bridge theorems with the trunk. The temporal theory has its own worlds and accessibility relation; the permission theory has its own hierarchy; the taint theory has its own conservation of merging. Each stands on its own, but the trunk imports none of them, and their conclusions cannot be forwarded by trunk theorems. The gap is structural: what is missing is bridges, not proofs.
+
+<!-- S8-P02 -->
+Argumentation semantics has more parallel copies. An earlier Dung fixed-point file runs alongside the trunk's; the attack kinds of abstract argumentation frameworks are defined in two places; at least four priority mechanisms coexist; the number of cross-file homonyms is considerable, including at least one self-attack check folded into a package conflict. No proved equivalence or containment theorem exists between these copies, and any phrasing that they are really the same thing currently has no basis.
+
+<!-- S8-P03 -->
+Confirmed gaps at the engineering layer include: the permission file defines a value as false and then proves its negation, with no lattice laws proved; the certificate checker reads six self-reported fields only; at the old audit baseline, eleven of the forty-eight registered type names had no implementation carrier, and after the present round the registry holds fifty-two with every added name having a contract carrier, but the old gap remains unfilled. The receipt ledger and the claims lists are machine-readable with drift gates; that is engineering closure and changes no proof status.
+
+<!-- S8-P04 -->
+The honest reading of these gaps: what the trunk claims and what it does not is checkable at the source level. The parallel theories and the gap list form the engineering half of Section 9's unproved list; the two sections together give a map of where one can still go, not an announcement of arrival.
+
+**Claims table for this section**
+
+| Claim ID | Claim | Supporting object | Status | Boundary |
+|---|---|---|---|---|
+| S8-C01 | Temporal, permission, taint theories share zero bridges with the trunk | Module import list check | Structural check | No judgment on the theories themselves |
+| S8-C02 | Multiple parallel copies of Dung semantics, attack kinds, priorities | Source census, audit-confirmed | Confirmed | No equivalence theorem of any kind |
+| S8-C03 | Permission rank defined false then negated; checker reads self-reported fields | Corresponding sources | Confirmed | Listed as unproved |
+| S8-C04 | Eleven names unimplemented at the old audit; registry now fifty-two | Old audit baseline and the current machine-readable manifest | Confirmed (time-distinguished) | Old gap unfilled |
+
+---
+
+## Section 9 The unproved list, the order of advance, and conclusions
+
+> **[S9-SCOPE] Scope of this section.** This section only consolidates what remains unproved or unbridged at the current construction snapshot, states the order of further formalization, and aggregates the paper's claims ledger; engineering integration, passing tests, and local theorems are not enlarged into a claim that the legal system is completely proved.
+
+<!-- S9-P01 -->
+Unproved items inside the trunk are ordered by load. First, the three properties of argumentation semantics: conflict-freeness, admissibility, and completeness have definitions in the trunk but no corresponding existence or characterization theorems for extensions; next, the completeness bridge for the weighted metric space, whose contraction-route premise is not self-proved in the trunk; then the dependency bridge between two modules, machine reachability and termination, non-monotonic update, the algebraic laws of assurance combination, and the inhabitance problems of the contract-closure instances. The full axiom audit stays in its established place in continuous integration, unmoved by this round.
+
+<!-- S9-P02 -->
+Cross-layer unproved items include: the delimitation theorems of the six inexpressibility classes are all unproved, and this paper claims type-level inexpressibility only, never closure of the boundary; the item-by-item alignment of the external target spectrum sits in the external ledger, for which this round built only a pending skeleton, the non-alignment being an explicit status rather than an omission; and the end-to-end bridge from the contraction error formula to the existing numeric theorems is unbuilt. Each item carries an explicit status marker and none is silenced by the pipeline's advance.
+
+<!-- S9-P03 -->
+What the present round did land can be counted honestly. The type registry grew to fifty-two and passed one full build; the machine-readable receipt ledger pinned the authorization of seven layers against seven receipt domains into a machine-checkable table, with outputs of receipt-less layers degrading automatically to unclaimable; the kernel contracts of the object definition landed on both the test and formalization sides, the formal side adding some twenty theorems, all entered into the axiom-audit list; retrieval, probability, comparison, behavior, and ontology each gained independent contracts and gate tests. All counts are bound by the generated artifact to named commits, and the build-run identifiers and outcomes per round appear in the table below.
+
+<!-- S9-P04 -->
+The conclusion returns to the reporting problem. What this paper offers is not an announcement that legal reasoning has been completely formalized but a checkable layered ledger: which distortions are impossible at the type level, which properties have genuine inductive proofs, which claims are forwardings, and which gaps stay in plain sight. Theories outside the trunk, unfilled implementation gaps, and the external ledger all exist with explicit statuses. For the system's users, the ledger means every report traces to its evidence grade; for further construction, it is itself the order of advance.
+
+**Claims table for this section**
+
+| Claim ID | Claim | Supporting object | Status | Boundary |
+|---|---|---|---|---|
+| S9-C01 | Unproved list and order of advance | Body of this section and the lists of the two preceding sections | Aggregated | The order is an engineering judgment, not unique |
+| S9-C02 | Build-run identifiers and outcomes per round | Continuous-integration run records | See table | Cover only the bound commits |
+| S9-C03 | Repository scale and registry scale | Static measurements of the generated artifact | Static measurement | Build passage rests with continuous integration |
+
+| Round | Covered commits | Continuous-integration run | Outcome |
+|---|---|---|---|
+| Type registry expansion | 4836464..f4d46b0 | 36094524508 | All jobs succeeded |
+| Receipt ledger and claims lists | c6d568c | 36095609565 | All jobs succeeded |
+| Object contracts, local batch | 1a75437 | 36115235418 | All jobs succeeded |
+| Contracts and formalization rounds | e4709ca..094ccb2 | 36117165469 | All jobs succeeded |

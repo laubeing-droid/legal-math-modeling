@@ -8,7 +8,7 @@ The 11 v1 names are:
 
 `LegalFact`, `LegalRule`, `LegalNorm`, `LegalClaim`, `Argument`, `Attack`, `Priority`, `Violation`, `Reparation`, `DecisionStatus`, and `ProofTrace`.
 
-The v2 registry contains 48 distinct types divided into four layers:
+The v2 registry contains 52 distinct types divided into four layers:
 
 - identity: stable identifiers and versioned references;
 - source: source snapshots, provenance, authority, and temporal records;

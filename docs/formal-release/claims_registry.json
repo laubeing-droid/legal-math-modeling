@@ -1,0 +1,91 @@
+{
+  "schema_version": "claims-registry-v1",
+  "source_of_truth": {
+    "allowed": "docs/formal-release/ALLOWED_CLAIMS.md",
+    "forbidden": "docs/formal-release/FORBIDDEN_CLAIMS.md"
+  },
+  "allowed": [
+    {
+      "id": "ALLOWED-01",
+      "claim": "A named Lean theorem elaborates",
+      "minimum_evidence": "Successful CI build of its module at the cited commit"
+    },
+    {
+      "id": "ALLOWED-02",
+      "claim": "A named theorem uses no custom domain axiom",
+      "minimum_evidence": "Its axiom-audit entry reports only accepted Lean foundations or no axioms"
+    },
+    {
+      "id": "ALLOWED-03",
+      "claim": "ULM01–ULM16 and the seven-axis root passed the documented release run",
+      "minimum_evidence": "Module matrix, clean build, audits, certificate, verifier, and final gate for run 34669383636"
+    },
+    {
+      "id": "ALLOWED-04",
+      "claim": "The Python suite passed",
+      "minimum_evidence": "Full collection and full execution report for the cited commit"
+    },
+    {
+      "id": "ALLOWED-05",
+      "claim": "The checker rejected the controlled mutations",
+      "minimum_evidence": "Mutation report naming every mutation and recording 0 survivors/errors/skips"
+    },
+    {
+      "id": "ALLOWED-06",
+      "claim": "Three runtime fixtures refined successfully",
+      "minimum_evidence": "Receipts for `contract_breach`, `fact_admission`, and `unknown_timeout`, bound to both repository commits"
+    },
+    {
+      "id": "ALLOWED-07",
+      "claim": "The v2 registry contains 52 distinct types and preserves v1 names",
+      "minimum_evidence": "`LegalModelV2.lean` and `theory/spec/canonical_v2/manifest.py`"
+    }
+  ],
+  "forbidden": [
+    {
+      "id": "FORBIDDEN-01",
+      "claim": "the entire juris-calculus system is formally verified by Lean;"
+    },
+    {
+      "id": "FORBIDDEN-02",
+      "claim": "Python or a deployed runtime is generally refinement-proved against every Lean model;"
+    },
+    {
+      "id": "FORBIDDEN-03",
+      "claim": "passing three fixtures proves all legal or operational cases;"
+    },
+    {
+      "id": "FORBIDDEN-04",
+      "claim": "a green GitHub workflow is sufficient without reading the evidence contents;"
+    },
+    {
+      "id": "FORBIDDEN-05",
+      "claim": "an axiom audit, theorem count, test, hash, receipt, paper, or report is itself a proof of legal correctness;"
+    },
+    {
+      "id": "FORBIDDEN-06",
+      "claim": "Horn-to-AAF translation is globally complete and creates no spurious attacks beyond the stated bounded contract;"
+    },
+    {
+      "id": "FORBIDDEN-07",
+      "claim": "production proof traces have a universally sound independent checker;"
+    },
+    {
+      "id": "FORBIDDEN-08",
+      "claim": "incremental grounded computation equals full recomputation in all cases;"
+    },
+    {
+      "id": "FORBIDDEN-09",
+      "claim": "Banach, privacy, empirical calibration, OCR correctness, or legal-source completeness is established unless a specifically cited artifact proves that exact proposition;"
+    },
+    {
+      "id": "FORBIDDEN-10",
+      "claim": "the latest documented release run certifies later commits;"
+    },
+    {
+      "id": "FORBIDDEN-11",
+      "claim": "finite-retention CI artifacts are a permanent evidence archive."
+    }
+  ],
+  "fallback_rule": "If required evidence is absent, stale, mismatched, skipped, timed out, or unavailable, the supported status is UNKNOWN or BLOCKED, not PASS."
+}

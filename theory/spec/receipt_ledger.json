@@ -1,0 +1,117 @@
+{
+  "schema_version": "receipt-ledger-v1",
+  "authority_note": "RC-01 machine-readable receipt authorization ledger (ruling #6; Qoder R3 landing: NO_RECEIPT_PENDING lives here, never in the manifest type registry). Layer claimability is fail-closed: a layer supported only by NO_RECEIPT_PENDING cells may issue NOT_ISSUED receipts only, and its outputs are UNCLAIMABLE.",
+  "layers": [
+    {
+      "id": "L0",
+      "title": "concept",
+      "domains": {
+        "LeanProof": "NO_RECEIPT_PENDING",
+        "FiniteModelCheck": "NO_RECEIPT_PENDING",
+        "SolverWitness": "NO_RECEIPT_PENDING",
+        "Translation": "NO_RECEIPT_PENDING",
+        "RuntimeRefinement": "NO_RECEIPT_PENDING",
+        "HumanLegalReview": "NO_RECEIPT_PENDING",
+        "FormalReleaseCertificate": "NO_RECEIPT_PENDING"
+      }
+    },
+    {
+      "id": "L1",
+      "title": "source_of_law",
+      "domains": {
+        "LeanProof": "NO_RECEIPT_PENDING",
+        "FiniteModelCheck": "NO_RECEIPT_PENDING",
+        "SolverWitness": "NO_RECEIPT_PENDING",
+        "Translation": "NO_RECEIPT_PENDING",
+        "RuntimeRefinement": "NO_RECEIPT_PENDING",
+        "HumanLegalReview": "AUTHORIZED",
+        "FormalReleaseCertificate": "NO_RECEIPT_PENDING"
+      }
+    },
+    {
+      "id": "L2",
+      "title": "elements",
+      "domains": {
+        "LeanProof": "NO_RECEIPT_PENDING",
+        "FiniteModelCheck": "NO_RECEIPT_PENDING",
+        "SolverWitness": "NO_RECEIPT_PENDING",
+        "Translation": "NO_RECEIPT_PENDING",
+        "RuntimeRefinement": "NO_RECEIPT_PENDING",
+        "HumanLegalReview": "NO_RECEIPT_PENDING",
+        "FormalReleaseCertificate": "NO_RECEIPT_PENDING"
+      }
+    },
+    {
+      "id": "L3",
+      "title": "proof_burden",
+      "domains": {
+        "LeanProof": "NO_RECEIPT_PENDING",
+        "FiniteModelCheck": "NO_RECEIPT_PENDING",
+        "SolverWitness": "NO_RECEIPT_PENDING",
+        "Translation": "NO_RECEIPT_PENDING",
+        "RuntimeRefinement": "NO_RECEIPT_PENDING",
+        "HumanLegalReview": "NO_RECEIPT_PENDING",
+        "FormalReleaseCertificate": "NO_RECEIPT_PENDING"
+      }
+    },
+    {
+      "id": "L4",
+      "title": "argumentation",
+      "domains": {
+        "LeanProof": "AUTHORIZED",
+        "FiniteModelCheck": "NO_RECEIPT_PENDING",
+        "SolverWitness": "NO_RECEIPT_PENDING",
+        "Translation": "NO_RECEIPT_PENDING",
+        "RuntimeRefinement": "NO_RECEIPT_PENDING",
+        "HumanLegalReview": "NO_RECEIPT_PENDING",
+        "FormalReleaseCertificate": "NO_RECEIPT_PENDING"
+      }
+    },
+    {
+      "id": "L5",
+      "title": "computation_guarantee",
+      "domains": {
+        "LeanProof": "AUTHORIZED",
+        "FiniteModelCheck": "AUTHORIZED",
+        "SolverWitness": "AUTHORIZED",
+        "Translation": "AUTHORIZED",
+        "RuntimeRefinement": "AUTHORIZED",
+        "HumanLegalReview": "NO_RECEIPT_PENDING",
+        "FormalReleaseCertificate": "NO_RECEIPT_PENDING"
+      }
+    },
+    {
+      "id": "L6",
+      "title": "delivery_workbench",
+      "domains": {
+        "LeanProof": "NO_RECEIPT_PENDING",
+        "FiniteModelCheck": "NO_RECEIPT_PENDING",
+        "SolverWitness": "NO_RECEIPT_PENDING",
+        "Translation": "NO_RECEIPT_PENDING",
+        "RuntimeRefinement": "NO_RECEIPT_PENDING",
+        "HumanLegalReview": "NO_RECEIPT_PENDING",
+        "FormalReleaseCertificate": "AUTHORIZED"
+      }
+    }
+  ],
+  "domain_claim_ceiling": {
+    "LeanProof": "CONCLUSIVE",
+    "FiniteModelCheck": "CONCLUSIVE",
+    "SolverWitness": "CONCLUSIVE",
+    "Translation": "REFERENCE",
+    "RuntimeRefinement": "REFERENCE",
+    "HumanLegalReview": "REFERENCE",
+    "FormalReleaseCertificate": "CONCLUSIVE"
+  },
+  "evidence_notes": {
+    "L1|HumanLegalReview": "Source admission lattice plus human research receipt: theory/spec/fact_admission.py, theory/spec/receipt_authority.py, HumanResearchReceipt in the canonical registry.",
+    "L4|LeanProof": "Argumentation semantics core is Lean-proved with CI axiom audit (DungAAF/Horn fixed points, DDL minimal core, bounded Horn-to-AAF contract).",
+    "L5|LeanProof": "Compilation proof obligations discharged by CI Lean build.",
+    "L5|FiniteModelCheck": "Checker/finite model receipts in the canonical compilation layer.",
+    "L5|SolverWitness": "Solver witness receipts in the canonical compilation layer.",
+    "L5|Translation": "Translation witness receipts record field loss; ceiling REFERENCE because a witness records translation, not semantic preservation.",
+    "L5|RuntimeRefinement": "Runtime refinement receipts are fixture-scoped; ceiling REFERENCE per the forbidden-claims list (never 'fully refinement-proved').",
+    "L6|FormalReleaseCertificate": "Formal release pipeline issues the delivery-bound certificate for its exact subject commit."
+  },
+  "initial_state_note": "Initial state is deliberately conservative (fail-closed): 41 of 49 cells are NO_RECEIPT_PENDING. Flipping a cell to AUTHORIZED requires naming the issuing artifact in evidence_notes; the gate tests enforce the downgrade discipline, not the specific choices."
+}

@@ -212,32 +212,40 @@ theorem P083_insertEvpi_preserves_sorted (x : P083EvpiItem) :
       rfl
   | cons y ys' ih =>
       intro hsorted
-      cases hcond : decide (y.evpi ≤ x.evpi) with
-      | true =>
-          simp only [insertEvpi, hcond, sortedDescending]
-          simp only [Bool.and_eq_true, decide_eq_true_eq] at hsorted ⊢
-          refine ⟨?_, hsorted⟩
-          omega
-      | false =>
-          simp only [insertEvpi, hcond]
+      cases Nat.lt_or_ge x.evpi y.evpi with
+      | inl hxlt =>
+          -- x < y : insert skips y, result = y :: insertEvpi x ys'
+          have hskip : insertEvpi x (y :: ys') = y :: insertEvpi x ys' := by
+            show (if decide (y.evpi ≤ x.evpi) then _ else _) = _
+            have : decide (y.evpi ≤ x.evpi) = false := by
+              simp only [decide_eq_false_eq]
+              omega
+            rw [this]
+          rw [hskip]
           cases ys' with
           | nil =>
-              simp only [insertEvpi, sortedDescending]
-              simp only [Bool.and_eq_true, Bool.and_true, decide_eq_true_eq]
+              show sortedDescending (y :: [x]) = true
+              simp only [sortedDescending, insertEvpi]
+              simp only [Bool.and_true, decide_eq_true_eq]
               omega
           | cons z zs =>
               simp only [sortedDescending] at hsorted
               simp only [Bool.and_eq_true, decide_eq_true_eq] at hsorted
-              simp only [insertEvpi]
-              cases hz : decide (z.evpi ≤ x.evpi) with
-              | true =>
-                  simp only [hz, sortedDescending]
-                  simp only [Bool.and_eq_true, Bool.and_true, decide_eq_true_eq] at *
-                  omega
-              | false =>
-                  simp only [hz, sortedDescending]
-                  simp only [Bool.and_eq_true, decide_eq_true_eq] at *
-                  exact ⟨hsorted.1, ih hsorted.2⟩
+              simp only [sortedDescending, insertEvpi]
+              simp only [Bool.and_eq_true, decide_eq_true_eq]
+              exact ⟨hsorted.1, ih hsorted.2⟩
+      | inr hxge =>
+          -- x ≥ y : insert before y, result = x :: y :: ys'
+          have hinsert : insertEvpi x (y :: ys') = x :: y :: ys' := by
+            show (if decide (y.evpi ≤ x.evpi) then _ else _) = _
+            have : decide (y.evpi ≤ x.evpi) = true := by
+              simp only [decide_eq_true_eq]
+              omega
+            rw [this]
+          rw [hinsert]
+          simp only [sortedDescending]
+          simp only [Bool.and_eq_true, decide_eq_true_eq] at hsorted ⊢
+          exact ⟨by omega, hsorted⟩
 
 /-- [P083-GENERAL-D] 排序结果恒降序（一般式）。 -/
 theorem P083_sortEvpi_sorted (xs : List P083EvpiItem) :

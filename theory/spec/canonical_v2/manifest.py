@@ -136,6 +136,17 @@ ENUM_REGISTRY: Dict[str, List[str]] = {
         "UNITED_STATES",
         "OTHER",
     ],
+    # TY-05: the seven receipt domains, copied verbatim from the authoritative
+    # list in theory/spec/receipt_ledger.py (certificate_checker_boundary.md).
+    "ReceiptDomain": [
+        "LeanProof",
+        "FiniteModelCheck",
+        "SolverWitness",
+        "Translation",
+        "RuntimeRefinement",
+        "HumanLegalReview",
+        "FormalReleaseCertificate",
+    ],
 }
 
 

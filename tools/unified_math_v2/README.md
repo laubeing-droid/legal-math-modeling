@@ -1,6 +1,6 @@
 # Unified Legal Math V2.1 reference and construction source
 
-Current authority: `docs/unified-v2.1/FINAL_IMPLEMENTATION_SPEC.md` and `manifests/tasks.json`.
+Current authority: `docs/history/FINAL_IMPLEMENTATION_SPEC.md` and `manifests/tasks.json`.
 Run `python -B tools/unified_math_v2/scripts/run_v21.py --output work/v21-python` from the LMM root.
 
 The `v21/` package is the revised scoped reference surface. `reference/` and `unified/` retain baseline algorithms/regressions, including real Beta-binomial training and calibration. The generic legacy callback checker is NOT the revised trusted acceptance API. The old pipeline remains a legacy demonstration, not the root proof.

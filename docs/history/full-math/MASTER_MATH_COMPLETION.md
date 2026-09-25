@@ -22,7 +22,7 @@
 
 - `docs/MATHEMATICS_SPEC.md`：完整公式、适用前提、证明方法、算法联系与组合路线。
 - `docs/ALL_TARGETS_EXECUTION.md`：57目标逐项行动与代码/Lean落点，不是只有标题。
-- `docs/ALL_EXT_IMPLEMENTATION.md`：九项扩展全部执行。
+- `docs/../history/full-math/ALL_EXT_IMPLEMENTATION.md`：九项扩展全部执行。
 - `docs/ALL_134_MATH_CONTRACTS.md`：134项业务逐项形式性质、输入输出、独立前提、反例及外部义务。
 - `docs/LEGAL_FAMILIES_ALL.md`：14法律族全部政策编译，不允许只复制模板。
 - `plan/REQUIREMENTS.json`：全量不可漏的登记项。

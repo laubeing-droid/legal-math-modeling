@@ -10,9 +10,9 @@
 
 先完整读取：
 
-1. `MASTER_MATH_COMPLETION.md`。
+1. `../history/full-math/MASTER_MATH_COMPLETION.md`。
 2. `docs/MATHEMATICS_SPEC.md`。
-3. `docs/ALL_TARGETS_EXECUTION.md`、`ALL_EXT_IMPLEMENTATION.md`、`ALL_134_MATH_CONTRACTS.md`。
+3. `docs/ALL_TARGETS_EXECUTION.md`、`../history/full-math/ALL_EXT_IMPLEMENTATION.md`、`ALL_134_MATH_CONTRACTS.md`。
 4. `plan/REQUIREMENTS.json`、`DEFERRED_EXTERNAL.json`、`EXECUTION_ORDER.json`。
 
 然后立即施工，不再先写一份类似评审回给用户。

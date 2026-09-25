@@ -208,7 +208,7 @@ def main():
     print_report(result)
 
     # Save JSON
-    out_path = Path("docs/analysis/k3_analysis_result.json")
+    out_path = Path("data/k3_analysis_result.json")
     out_path.parent.mkdir(parents=True, exist_ok=True)
     _out = Path(out_path).resolve()
     _allowed = (Path.cwd().resolve(), Path(__file__).resolve().parent)

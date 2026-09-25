@@ -98,7 +98,7 @@ end T46
 
 
 namespace T47
-struct PrivacyComputation where
+structure PrivacyComputation where
   legalIdentity : String
   probabilityValue : Int
   exactAmount : Int

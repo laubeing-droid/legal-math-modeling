@@ -663,6 +663,26 @@
     "JurisLean.Genealogy.TSpectrum.T39.variable_elimination_equals_independent_enumeration",
     "JurisLean.Genealogy.TSpectrum.T40.hidden_change_preserves_observation",
     "JurisLean.Genealogy.TSpectrum.T40.observational_identity",
+    "JurisLean.Genealogy.TSpectrum.T41.valid_split_requires_time_order",
+    "JurisLean.Genealogy.TSpectrum.T42.fully_specified_witness",
+    "JurisLean.Genealogy.TSpectrum.T43.observed_only_count",
+    "JurisLean.Genealogy.TSpectrum.T44.empirical_requires_justification",
+    "JurisLean.Genealogy.TSpectrum.T45.calibration_recorded",
+    "JurisLean.Genealogy.TSpectrum.T46.proper_posterior_witness",
+    "JurisLean.Genealogy.TSpectrum.T47.legal_identity_preserved",
+    "JurisLean.Genealogy.TSpectrum.T48.pav_single_fixed",
+    "JurisLean.Genealogy.TSpectrum.T49.brier_perfect_prediction",
+    "JurisLean.Genealogy.TSpectrum.T50.valid_interval_witness",
+    "JurisLean.Genealogy.TSpectrum.T51.direction_explicit",
+    "JurisLean.Genealogy.TSpectrum.T52.contaminated_zero_weight",
+    "JurisLean.Genealogy.TSpectrum.T53.bound_witness",
+    "JurisLean.Genealogy.TSpectrum.T54.logistic_deterministic",
+    "JurisLean.Genealogy.TSpectrum.T55.stages_strictly_ordered",
+    "JurisLean.Genealogy.TSpectrum.T56.signature_deterministic",
+    "JurisLean.Genealogy.TSpectrum.T57.directed_witness",
+    "JurisLean.Genealogy.TSpectrum.T58.complete_difference",
+    "JurisLean.Genealogy.TSpectrum.T59.horn_form_deterministic",
+    "JurisLean.Genealogy.TSpectrum.T60.role_preservation",
     "JurisLean.Hohfeld.correlative_involutive",
     "JurisLean.Hohfeld.correlative_ne_self",
     "JurisLean.Hohfeld.opposite_involutive",
@@ -688,8 +708,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "ee10a515ff5fdf4ef43131e4f769b44aeb5ee6db1d607add1c8b6dfe9a8af3da",
-   "size_bytes": 17926,
+   "sha256": "bd39819fc70c7100f3d2292a9500dcf3278c0fea135294a34c1a651fc7b5d875",
+   "size_bytes": 19367,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -9080,13 +9100,14 @@
     "JurisLean.Genealogy.Part5",
     "JurisLean.Genealogy.Part6",
     "JurisLean.Genealogy.TSpectrum.Batch1",
-    "JurisLean.Genealogy.TSpectrum.Batch2"
+    "JurisLean.Genealogy.TSpectrum.Batch2",
+    "JurisLean.Genealogy.TSpectrum.Batch3"
    ],
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/All.lean",
    "print_axioms_targets": [],
-   "sha256": "5c4ab1855c2b6a47e64c177a1a4b2f88cfaca1f3ab9ea43c4d0b74e875dfb76e",
-   "size_bytes": 390,
+   "sha256": "243f700d3ebff81adab632417be8233fdfd39ada584576af0751ae2f2e4feedc",
+   "size_bytes": 434,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -11576,6 +11597,256 @@
    "size_bytes": 37774,
    "theorem_count": 23,
    "theorem_count_bol_convention": 23
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "TrainingRecord"
+    },
+    {
+     "kind": "def",
+     "name": "isValidSplit"
+    },
+    {
+     "kind": "theorem",
+     "name": "valid_split_requires_time_order"
+    },
+    {
+     "kind": "structure",
+     "name": "WinEvent"
+    },
+    {
+     "kind": "def",
+     "name": "isFullySpecified"
+    },
+    {
+     "kind": "theorem",
+     "name": "fully_specified_witness"
+    },
+    {
+     "kind": "structure",
+     "name": "CohortOutcome"
+    },
+    {
+     "kind": "def",
+     "name": "observedSuccesses"
+    },
+    {
+     "kind": "def",
+     "name": "observedTotal"
+    },
+    {
+     "kind": "theorem",
+     "name": "observed_only_count"
+    },
+    {
+     "kind": "inductive",
+     "name": "PriorChoice"
+    },
+    {
+     "kind": "def",
+     "name": "priorRequiresJustification"
+    },
+    {
+     "kind": "theorem",
+     "name": "empirical_requires_justification"
+    },
+    {
+     "kind": "structure",
+     "name": "CalibratedScore"
+    },
+    {
+     "kind": "theorem",
+     "name": "calibration_recorded"
+    },
+    {
+     "kind": "structure",
+     "name": "PosteriorDistribution"
+    },
+    {
+     "kind": "def",
+     "name": "isProperPosterior"
+    },
+    {
+     "kind": "theorem",
+     "name": "proper_posterior_witness"
+    },
+    {
+     "kind": "structure",
+     "name": "PrivacyComputation"
+    },
+    {
+     "kind": "def",
+     "name": "legalProjection"
+    },
+    {
+     "kind": "def",
+     "name": "exactProjection"
+    },
+    {
+     "kind": "theorem",
+     "name": "legal_identity_preserved"
+    },
+    {
+     "kind": "def",
+     "name": "pavIsotonic"
+    },
+    {
+     "kind": "theorem",
+     "name": "pav_single_fixed"
+    },
+    {
+     "kind": "def",
+     "name": "brierScore"
+    },
+    {
+     "kind": "theorem",
+     "name": "brier_perfect_prediction"
+    },
+    {
+     "kind": "structure",
+     "name": "LatentRateInterval"
+    },
+    {
+     "kind": "def",
+     "name": "isValidInterval"
+    },
+    {
+     "kind": "theorem",
+     "name": "valid_interval_witness"
+    },
+    {
+     "kind": "structure",
+     "name": "ComparisonReport"
+    },
+    {
+     "kind": "def",
+     "name": "hasDirection"
+    },
+    {
+     "kind": "theorem",
+     "name": "direction_explicit"
+    },
+    {
+     "kind": "structure",
+     "name": "MixtureComponent"
+    },
+    {
+     "kind": "def",
+     "name": "effectiveWeight"
+    },
+    {
+     "kind": "theorem",
+     "name": "contaminated_zero_weight"
+    },
+    {
+     "kind": "structure",
+     "name": "CheckpointBinding"
+    },
+    {
+     "kind": "def",
+     "name": "isBound"
+    },
+    {
+     "kind": "theorem",
+     "name": "bound_witness"
+    },
+    {
+     "kind": "structure",
+     "name": "LogisticSpec"
+    },
+    {
+     "kind": "def",
+     "name": "deterministic"
+    },
+    {
+     "kind": "theorem",
+     "name": "logistic_deterministic"
+    },
+    {
+     "kind": "inductive",
+     "name": "PipelineStage"
+    },
+    {
+     "kind": "def",
+     "name": "stageOrder"
+    },
+    {
+     "kind": "theorem",
+     "name": "stages_strictly_ordered"
+    },
+    {
+     "kind": "structure",
+     "name": "StructuralSignature"
+    },
+    {
+     "kind": "def",
+     "name": "bucketKey"
+    },
+    {
+     "kind": "theorem",
+     "name": "signature_deterministic"
+    },
+    {
+     "kind": "structure",
+     "name": "LabeledEdge"
+    },
+    {
+     "kind": "def",
+     "name": "isDirected"
+    },
+    {
+     "kind": "theorem",
+     "name": "directed_witness"
+    },
+    {
+     "kind": "structure",
+     "name": "FactorDifference"
+    },
+    {
+     "kind": "def",
+     "name": "isCompleteDifference"
+    },
+    {
+     "kind": "theorem",
+     "name": "complete_difference"
+    },
+    {
+     "kind": "structure",
+     "name": "FactorRule"
+    },
+    {
+     "kind": "def",
+     "name": "toHornForm"
+    },
+    {
+     "kind": "theorem",
+     "name": "horn_form_deterministic"
+    },
+    {
+     "kind": "inductive",
+     "name": "DungRole"
+    },
+    {
+     "kind": "def",
+     "name": "dungRolePreserved"
+    },
+    {
+     "kind": "theorem",
+     "name": "role_preservation"
+    }
+   ],
+   "imports": [
+    "JurisLean.Genealogy.TSpectrum.Batch2"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch3.lean",
+   "print_axioms_targets": [],
+   "sha256": "d2df63ce32071220ef97e1eb93867b5e250d5a2690bf2da109e9fb3902a66774",
+   "size_bytes": 8333,
+   "theorem_count": 20,
+   "theorem_count_bol_convention": 20
   },
   {
    "declarations": [
@@ -16754,6 +17025,7 @@
     "JurisLean.Genealogy.All",
     "JurisLean.Genealogy.TSpectrum.Batch1",
     "JurisLean.Genealogy.TSpectrum.Batch2",
+    "JurisLean.Genealogy.TSpectrum.Batch3",
     "JurisLean.Hohfeld",
     "JurisLean.HornAAFContract",
     "JurisLean.JC_Formalization",
@@ -16783,8 +17055,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "bdf49ccb2cf84ee322c7d14c81011c70ebec0e335fc304b80981255b9f4aa824",
-   "size_bytes": 1528,
+   "sha256": "1feaba4e69fb30c55e381aa5c7a638cd0093c8c99f624ceae617a472c6c38a66",
+   "size_bytes": 1572,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -16959,13 +17231,13 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1710,
-   "file_count": 214,
+   "counted_declaration_count": 1730,
+   "file_count": 215,
    "lemma_count": 24,
-   "print_axioms_command_count": 503,
-   "print_axioms_distinct_targets": 449,
-   "theorem_count": 1686,
-   "theorem_count_bol_convention": 1650
+   "print_axioms_command_count": 523,
+   "print_axioms_distinct_targets": 469,
+   "theorem_count": 1706,
+   "theorem_count_bol_convention": 1670
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -17117,6 +17389,7 @@
    "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
    "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch1.lean",
    "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch2.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch3.lean",
    "proofs/lean/juris_lean/JurisLean/Hohfeld.lean",
    "proofs/lean/juris_lean/JurisLean/HornAAFContract.lean",
    "proofs/lean/juris_lean/JurisLean/HornDefinitions.lean",
@@ -17234,11 +17507,11 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "38603eb4182863be49d9314769fb4ee3d3e077a7324414798ec90146116e8ec4",
+ "source_inventory_digest": "df14d1344a3f4ef82bfc26ba86a8e19ca4cc42b76ebca0dd0e6fd8d00e7c6358",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "main",
-  "commit": "aed6299fae666c27abfcb9071beb0ac1735017bd",
-  "tree": "8908360f1f0b646c23271a893b73ddf292c3f1b6"
+  "commit": "054fdffe2eb0171ea6704ffb65d0e4592aff0c9f",
+  "tree": "544b1107f2d105ae189ad8b4dd7daa3705c94c42"
  }
 }

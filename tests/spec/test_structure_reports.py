@@ -122,3 +122,30 @@ def test_paper_states_the_general_form_count() -> None:
     )
     assert full == 0
     assert f"0/127" in paper or "一般式的闭合数是 0" in paper
+
+
+MANDATE_RATIO_CEILING = 1.0
+GENEALOGY_RATIO_RECORDED = 1.59
+
+
+def test_mandate_line_reuses_the_kernel_measurably() -> None:
+    """Audit judgement 1, expressed as a number that must stay better.
+
+    Genealogy declares ~1.59 carriers per theorem (a model per concept). The
+    mandate line is the kernel-first experiment; if it drifts back towards
+    one-carrier-per-theorem the experiment stopped meaning anything.
+    """
+    m = _kernel()["mandate"]
+    assert m["modules"] >= 10, m
+    assert m["theorem_declarations"] >= 60, m
+    assert m["carriers_per_theorem"] < MANDATE_RATIO_CEILING, m
+    assert m["carriers_per_theorem"] < _kernel()["genealogy"]["carriers_per_theorem"], m
+    assert m["modules_importing_kernel"] >= 3, m
+
+
+def test_genealogy_ratio_is_reported_as_the_gap_it_is() -> None:
+    g = _kernel()["genealogy"]
+    assert g["carriers_per_theorem"] == GENEALOGY_RATIO_RECORDED, (
+        "the recorded non-unity of the old line changed; update the paper's "
+        "unity claim deliberately, not by drift"
+    )

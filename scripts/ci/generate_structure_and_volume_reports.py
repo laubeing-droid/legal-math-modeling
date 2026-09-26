@@ -26,6 +26,7 @@ from collections import Counter, defaultdict
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+LEAN_BASE_PKG = ROOT / "proofs" / "lean" / "juris_lean"
 LEAN_PKG = ROOT / "proofs" / "lean" / "juris_lean" / "JurisLean"
 PLAN = ROOT / "docs" / "master-plan" / "基线" / "T谱" / "R20附件_分卷计划PLAN.md"
 PLAN_V11 = ROOT / "docs" / "master-plan" / "基线" / "T谱" / "排卷回执_T112_T127.md"
@@ -67,6 +68,7 @@ def kernel_report() -> dict:
             genealogy_chain.append((mod, [i for i in imports if i.startswith("JurisLean.Genealogy")]))
 
     shared = {m: len(users) for m, users in importers.items() if len(users) >= 5}
+    mandate = [m for m in decl_count if m.startswith("JurisLean.Mandate.")]
     genealogy = [m for m in decl_count if m.startswith("JurisLean.Genealogy")]
     genealogy_theorems = sum(decl_count[m] for m in genealogy)
     genealogy_carriers = sum(carrier_count[m] for m in genealogy)
@@ -91,6 +93,26 @@ def kernel_report() -> dict:
             "intra_genealogy_import_edges": [
                 {"module": m, "imports_genealogy_modules": sorted(deps)} for m, deps in sorted(genealogy_chain)
             ],
+        },
+        "mandate": {
+            "modules": len(mandate),
+            "theorem_declarations": sum(decl_count[m] for m in mandate),
+            "carriers": sum(carrier_count[m] for m in mandate),
+            "carriers_per_theorem": round(
+                sum(carrier_count[m] for m in mandate) / max(1, sum(decl_count[m] for m in mandate)), 2
+            ),
+            "modules_importing_kernel": sum(
+                1 for m in mandate
+                if "JurisLean.Mandate.Kernel" in IMPORT_RE.findall(
+                    (LEAN_BASE_PKG / (m.replace(".", "/") + ".lean")).read_text(
+                        encoding="utf-8", errors="replace"))
+            ),
+            "note": (
+                "The mandate line is the kernel-first experiment: one shared algebra "
+                "in Mandate/Kernel, consumed by the modules that need rates, selection "
+                "and signatures. It is quoted next to the Genealogy ratio precisely so "
+                "the contrast is measurable rather than rhetorical."
+            ),
         },
         "counts": {
             "theorem_declarations_in_package": sum(decl_count.values()),

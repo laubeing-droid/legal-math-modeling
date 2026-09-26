@@ -64,6 +64,8 @@ PENDING_CI_MODULES: dict[str, str] = {
         "SourceRank",
         "GateTable",
         "SubstrAdmission",
+        "LinearScorer",
+        "Disclosure",
     )
 }
 

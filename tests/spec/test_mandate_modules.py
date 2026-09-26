@@ -71,6 +71,20 @@ MODULES: dict[str, tuple[str, tuple[str, ...], str]] = {
          "isSubstr_self", "substr_strictly_weaker", "prefix_adequate_for_admission"),
         "P-127",
     ),
+    "scorer_not_degenerate": (
+        "Mandate/LinearScorer.lean",
+        ("score_nil_weights", "score_nil_features", "score_cons", "score_not_constant",
+         "not_predicts_of_neg", "score_nonneg_of_allNonNeg", "score_zero_weights",
+         "predicts_scaled_positive"),
+        "T54",
+    ),
+    "disclosure_gate_reads_input": (
+        "Mandate/Disclosure.lean",
+        ("occurs_append", "occurs_head", "occurs_monotone", "covers_nil_recorded",
+         "not_covers_empty_registry", "compliant_true_iff_covers",
+         "compliant_concrete"),
+        "P-125",
+    ),
     "game_tree": (
         "Mandate/GameTree.lean",
         ("value_leaf", "value_nil", "value_cons", "value_ge_head",
@@ -180,6 +194,12 @@ GENERAL_NOT_WITNESS: dict[str, tuple[str, ...]] = {
     "citation_admission_upgrades": ("isPrefix_refl", "isPrefix_false_of_longer",
                                     "isSubstr_of_isPrefix", "isSubstr_self",
                                     "prefix_adequate_for_admission"),
+    "scorer_not_degenerate": ("score_cons", "score_not_constant", "not_predicts_of_neg",
+                              "score_nonneg_of_allNonNeg", "score_zero_weights",
+                              "predicts_scaled_positive"),
+    "disclosure_gate_reads_input": ("occurs_append", "occurs_head", "occurs_monotone",
+                                    "not_covers_empty_registry",
+                                    "compliant_true_iff_covers"),
     "game_tree": ("value_cons", "value_ge_head", "value_ge_of_mem",
                   "value_node_append_le", "value_of_leaves",
                   "value_ignores_payoff_renaming_when_dominated"),
@@ -226,11 +246,16 @@ def test_registry_not_yet_upgraded_with_unverified_anchors() -> None:
     import json
 
     entries = {e["id"]: e for e in json.loads(REGISTRY.read_text(encoding="utf-8"))["entries"]}
+    covered = []
     for item, (rel, _req, concept) in MODULES.items():
+        if concept not in entries:
+            continue  # a T-target-only module has no concept row to corrupt yet
+        covered.append(concept)
         files = {a["file"] for a in entries[concept]["anchors"]}
         assert not any(rel.split("/")[-1] in f for f in files), (
             f"{concept} is anchored to {rel} before CI has built it"
         )
+    assert len(covered) >= 7, covered
 
 
 def test_mandate_modules_reuse_the_kernel_instead_of_restating_it() -> None:
@@ -249,6 +274,19 @@ def test_mandate_modules_reuse_the_kernel_instead_of_restating_it() -> None:
     for decl in SINGLE_DECLARATIONS:
         owners = [f.name for f in files if decl in _strip_comments(f.read_text(encoding="utf-8"))]
         assert owners == ["Kernel.lean"], f"{decl!r} declared in {owners}, not only in the kernel"
+
+
+def test_quarantine_matches_the_module_table_exactly() -> None:
+    """Every mandate module is quarantined, and nothing else is."""
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(
+        "reach", ROOT / "scripts" / "ci" / "check_import_reachability.py")
+    assert spec and spec.loader
+    reach = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(reach)
+    expected = {f"JurisLean.{rel[:-5].replace('/', '.')}" for rel, _r, _c in MODULES.values()}
+    assert set(reach.PENDING_CI_MODULES) == expected
 
 
 def test_kernel_is_still_quarantined() -> None:

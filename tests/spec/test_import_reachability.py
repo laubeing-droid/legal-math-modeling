@@ -81,7 +81,14 @@ def test_allow_list_names_all_exist_and_are_reasoned() -> None:
 
 
 def test_mandate_quarantine_is_exactly_the_pending_wave() -> None:
-    assert len(reach.PENDING_CI_MODULES) == 8
+    """The quarantine covers precisely the Mandate tree, nothing more, nothing less."""
+    on_disk = {
+        f"JurisLean.Mandate.{f.stem}" for f in (PKG / "Mandate").glob("*.lean")
+    }
+    assert set(reach.PENDING_CI_MODULES) == on_disk, (
+        set(reach.PENDING_CI_MODULES) ^ on_disk
+    )
+    assert len(on_disk) >= 10
     root_text = ROOT_MODULE.read_text(encoding="utf-8")
     for name in reach.PENDING_CI_MODULES:
         assert f"import {name}" not in root_text, (

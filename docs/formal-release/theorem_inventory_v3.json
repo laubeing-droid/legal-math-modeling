@@ -431,8 +431,22 @@
    "declarations": [],
    "imports": [
     "JurisLean.BanachCertificate",
+    "JurisLean.BusinessRoot.Analytics",
     "JurisLean.DungFixedPoint",
     "JurisLean.FiniteMonotoneIteration",
+    "JurisLean.FullMath.Probability.BetaInterval",
+    "JurisLean.FullMath.Probability.Brier",
+    "JurisLean.FullMath.Probability.Conditioning",
+    "JurisLean.FullMath.Probability.DirichletPosterior",
+    "JurisLean.FullMath.Probability.E01Contract",
+    "JurisLean.FullMath.Probability.EvidenceIdentity",
+    "JurisLean.FullMath.Probability.FiniteBN",
+    "JurisLean.FullMath.Probability.Misspecification",
+    "JurisLean.FullMath.Probability.ModelAveraging",
+    "JurisLean.FullMath.Probability.PAV",
+    "JurisLean.FullMath.Probability.SplitNoLeak",
+    "JurisLean.FullMath.Probability.UnprocessedMass",
+    "JurisLean.FullMath.Probability.VariableElimination",
     "JurisLean.Genealogy.All",
     "JurisLean.Hohfeld",
     "JurisLean.HornFixedPoint",
@@ -448,6 +462,76 @@
     "JurisLean.BanachCertificateV3.certificate_has_positive_iterations",
     "JurisLean.BanachCertificateV3.certificate_has_q_lt_one_scaled",
     "JurisLean.BanachCertificateV3.no_certificate_rejected",
+    "JurisLean.BusinessRoot.CU_expectation_conservation",
+    "JurisLean.BusinessRoot.cres_false_eq",
+    "JurisLean.BusinessRoot.cres_true_eq",
+    "JurisLean.BusinessRoot.eventMass_twoBranch",
+    "JurisLean.BusinessRoot.interval_point_not_in_grid",
+    "JurisLean.BusinessRoot.main_eligible",
+    "JurisLean.BusinessRoot.main_interval",
+    "JurisLean.BusinessRoot.main_principal_expectation",
+    "JurisLean.BusinessRoot.main_threshold_event",
+    "JurisLean.BusinessRoot.overpay_overpay_expectation",
+    "JurisLean.BusinessRoot.overpay_principal_expectation",
+    "JurisLean.BusinessRoot.overpay_raw_expectation",
+    "JurisLean.BusinessRoot.split_identity",
+    "JurisLean.BusinessRoot.threshold_zero_distinction",
+    "JurisLean.BusinessRoot.weighted_congr",
+    "JurisLean.BusinessRoot.weighted_sub",
+    "JurisLean.BusinessRoot.weighted_twoBranch",
+    "JurisLean.FullMath.Probability.Gamma_add_nat",
+    "JurisLean.FullMath.Probability.betaCDF_one",
+    "JurisLean.FullMath.Probability.betaCDF_zero",
+    "JurisLean.FullMath.Probability.beta_mass_total_one",
+    "JurisLean.FullMath.Probability.beta_mixture_mass",
+    "JurisLean.FullMath.Probability.beta_ratio",
+    "JurisLean.FullMath.Probability.brier_excess_identity",
+    "JurisLean.FullMath.Probability.brier_excess_zero_iff",
+    "JurisLean.FullMath.Probability.cantelli_core",
+    "JurisLean.FullMath.Probability.condition_incompatible_iff",
+    "JurisLean.FullMath.Probability.contaminate_bound",
+    "JurisLean.FullMath.Probability.contaminate_condition_do_not_commute",
+    "JurisLean.FullMath.Probability.contamination_bounds",
+    "JurisLean.FullMath.Probability.dedupAux_cons_fresh",
+    "JurisLean.FullMath.Probability.dedupAux_cons_seen",
+    "JurisLean.FullMath.Probability.dedupAux_k_insensitive",
+    "JurisLean.FullMath.Probability.dedup_conflict_not_overwrite",
+    "JurisLean.FullMath.Probability.dedup_no_double_update",
+    "JurisLean.FullMath.Probability.dirWeights_nonneg",
+    "JurisLean.FullMath.Probability.dirWeights_normalizes",
+    "JurisLean.FullMath.Probability.dirWeights_update_compose",
+    "JurisLean.FullMath.Probability.e01_insufficient_escalates",
+    "JurisLean.FullMath.Probability.e01_within_iff",
+    "JurisLean.FullMath.Probability.elim_swap_adjacent",
+    "JurisLean.FullMath.Probability.exclusion_no_langer",
+    "JurisLean.FullMath.Probability.exclusion_no_langer_top",
+    "JurisLean.FullMath.Probability.hyperWeights_normalizes",
+    "JurisLean.FullMath.Probability.hyper_data_changes_posterior",
+    "JurisLean.FullMath.Probability.illegal_row_in_no_part",
+    "JurisLean.FullMath.Probability.isolated_no_shared_cluster",
+    "JurisLean.FullMath.Probability.isolated_symm",
+    "JurisLean.FullMath.Probability.joint_nonneg",
+    "JurisLean.FullMath.Probability.joint_normalizes",
+    "JurisLean.FullMath.Probability.mixture_update_normalizes",
+    "JurisLean.FullMath.Probability.mixture_update_still_bracketed",
+    "JurisLean.FullMath.Probability.mixture_within_retained",
+    "JurisLean.FullMath.Probability.no_cluster_cross",
+    "JurisLean.FullMath.Probability.part_target_preserved",
+    "JurisLean.FullMath.Probability.parts_cover",
+    "JurisLean.FullMath.Probability.pavGo_succ_cons",
+    "JurisLean.FullMath.Probability.pavGo_weight_sum",
+    "JurisLean.FullMath.Probability.pav_two_point_optimal",
+    "JurisLean.FullMath.Probability.posterior_nonneg",
+    "JurisLean.FullMath.Probability.posterior_normalizes",
+    "JurisLean.FullMath.Probability.prodAt_append",
+    "JurisLean.FullMath.Probability.rising_succ",
+    "JurisLean.FullMath.Probability.sum_out_distrib",
+    "JurisLean.FullMath.Probability.time_order_enforced",
+    "JurisLean.FullMath.Probability.unprocessed_mass_bounds",
+    "JurisLean.FullMath.Probability.unprocessed_mass_degenerate",
+    "JurisLean.FullMath.Probability.upd_eq_exclSeen",
+    "JurisLean.FullMath.Probability.upd_self",
+    "JurisLean.FullMath.Probability.upd_swap",
     "JurisLean.Genealogy.Boundary.adverseAuthority_requires_unmet",
     "JurisLean.Genealogy.Boundary.failure_map_identity",
     "JurisLean.Genealogy.Boundary.incomplete_adjudication_is_solverIncomplete",
@@ -771,8 +855,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "2c4aef1d0be8b102ba1cfbf07ab8c10700f494877da248a650d4ba1734fa85cd",
-   "size_bytes": 24105,
+   "sha256": "872144e1dd18ec80854ee9034112a86b72ff2921c7394cc949dcc39980d73b2f",
+   "size_bytes": 29588,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -17858,8 +17942,8 @@
    "counted_declaration_count": 1795,
    "file_count": 216,
    "lemma_count": 24,
-   "print_axioms_command_count": 590,
-   "print_axioms_distinct_targets": 536,
+   "print_axioms_command_count": 660,
+   "print_axioms_distinct_targets": 606,
    "theorem_count": 1771,
    "theorem_count_bol_convention": 1735
   },
@@ -17867,8 +17951,8 @@
    "counted_declaration_count": 1776,
    "file_count": 201,
    "lemma_count": 17,
-   "print_axioms_command_count": 590,
-   "print_axioms_distinct_targets": 536,
+   "print_axioms_command_count": 660,
+   "print_axioms_distinct_targets": 606,
    "theorem_count": 1759,
    "theorem_count_bol_convention": 1723
   },
@@ -18344,58 +18428,18 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "7b4bd60b6470ce4c6f66ea296e73b6c22c9b3f958eac4fdbf5a4a0dd1369c490",
+ "source_inventory_digest": "56ebe2fbef4240cabf4c33dac9d8e878ed22e37a905acffef308fa85fb9902e4",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "main",
-  "commit": "b57d4aad8a52607cca74365bdf8328a1b493fdac",
-  "tree": "553df475913a9e14c96ca734b7a312e73a6e0507"
+  "commit": "9d57248783b5c760b6ccce22ac1e4e7e096aa93a",
+  "tree": "0c481b1d10054dab62c89e48ef6cf74779c6654c"
  },
  "subject_binding": {
   "binding": "STALE_SUBJECT",
   "files_diverging_from_subject": [
    {
-    "path": "proofs/engineering_proof_artifacts/banach/BanachEffectiveNodes.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/General.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Part1.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Part3.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch1.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch2.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch3.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/strict_proof_baseline/lean/BanachEffectiveNodes.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/strict_proof_baseline/lean/FiniteGaloisAdjunction.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/strict_proof_baseline/lean/FiniteRosetta.lean",
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
     "reason": "bytes differ from subject"
    }
   ],

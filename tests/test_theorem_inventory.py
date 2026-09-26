@@ -209,3 +209,23 @@ def test_generator_can_refuse_a_stale_label(tmp_path):
     else:
         assert proc.returncode == 2
         assert "does not describe" in proc.stderr
+
+def test_probability_mathematics_is_inside_the_audit_surface():
+    """Audit P1-11: CI elaborated the statistics theorems but audited no axiom
+    set for them, so "axiom audit green" excluded the real probability line."""
+    doc = load(INVENTORY)
+    by_path = {f["path"]: f for f in doc["files"]}
+    audit = by_path["proofs/lean/juris_lean/JurisLean/AxiomAudit.lean"]
+    targets = {t.rsplit(".", 1)[-1] for t in audit["print_axioms_targets"]}
+
+    prob = [
+        f for p, f in by_path.items()
+        if "/FullMath/Probability/" in p or p.endswith("BusinessRoot/Analytics.lean")
+    ]
+    declared = {
+        d["name"] for f in prob for d in f["declarations"] if d["kind"] in ("theorem", "lemma")
+    }
+    assert declared, "no probability declarations found to audit"
+    missing = sorted(declared - targets)
+    assert not missing, f"probability theorems outside the audit surface: {missing}"
+    assert len(declared) >= 70

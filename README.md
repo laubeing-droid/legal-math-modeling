@@ -56,6 +56,7 @@ this order, then re-run pytest:
 
 ```bash
 python scripts/ci/generate_t_coverage_ledger.py            # T-spectrum carriers and strength grades
+python scripts/ci/generate_probability_audit_surface.py --write  # axiom-audit surface for the statistics line
 python scripts/ci/generate_structure_and_volume_reports.py  # kernel-reuse + volume accounts
 python scripts/ci/generate_theorem_manifest.py              # scope counts + digests + subject_binding
 python scripts/ci/generate_theorem_manifest.py --require-bound   # only passes on a committed tree

@@ -8,6 +8,21 @@ import JurisLean.KernelV3
 import JurisLean.Hohfeld
 import JurisLean.BanachCertificate
 
+import JurisLean.BusinessRoot.Analytics
+import JurisLean.FullMath.Probability.BetaInterval
+import JurisLean.FullMath.Probability.Brier
+import JurisLean.FullMath.Probability.Conditioning
+import JurisLean.FullMath.Probability.DirichletPosterior
+import JurisLean.FullMath.Probability.E01Contract
+import JurisLean.FullMath.Probability.EvidenceIdentity
+import JurisLean.FullMath.Probability.FiniteBN
+import JurisLean.FullMath.Probability.Misspecification
+import JurisLean.FullMath.Probability.ModelAveraging
+import JurisLean.FullMath.Probability.PAV
+import JurisLean.FullMath.Probability.SplitNoLeak
+import JurisLean.FullMath.Probability.UnprocessedMass
+import JurisLean.FullMath.Probability.VariableElimination
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -360,3 +375,79 @@ open HornSystem
 #print axioms JurisLean.Genealogy.General.P083_insertEvpi_preserves_sortedP
 #print axioms JurisLean.Genealogy.General.P083_sortEvpi_sortedP
 #print axioms JurisLean.Genealogy.General.P083_sortedDesc_witness
+
+/-! Generated probability / expectation audit surface. Regenerate with
+      scripts/ci/generate_probability_audit_surface.py --write
+    These declarations are elaborated by the all-module CI plan but were
+    absent from the release audit surface; the block is generated from the
+    declaration sites, so it cannot name a theorem that does not exist. -/
+#print axioms JurisLean.BusinessRoot.CU_expectation_conservation
+#print axioms JurisLean.BusinessRoot.cres_false_eq
+#print axioms JurisLean.BusinessRoot.cres_true_eq
+#print axioms JurisLean.BusinessRoot.eventMass_twoBranch
+#print axioms JurisLean.BusinessRoot.interval_point_not_in_grid
+#print axioms JurisLean.BusinessRoot.main_eligible
+#print axioms JurisLean.BusinessRoot.main_interval
+#print axioms JurisLean.BusinessRoot.main_principal_expectation
+#print axioms JurisLean.BusinessRoot.main_threshold_event
+#print axioms JurisLean.BusinessRoot.overpay_overpay_expectation
+#print axioms JurisLean.BusinessRoot.overpay_principal_expectation
+#print axioms JurisLean.BusinessRoot.overpay_raw_expectation
+#print axioms JurisLean.BusinessRoot.split_identity
+#print axioms JurisLean.BusinessRoot.threshold_zero_distinction
+#print axioms JurisLean.BusinessRoot.weighted_congr
+#print axioms JurisLean.BusinessRoot.weighted_sub
+#print axioms JurisLean.BusinessRoot.weighted_twoBranch
+#print axioms JurisLean.FullMath.Probability.Gamma_add_nat
+#print axioms JurisLean.FullMath.Probability.betaCDF_one
+#print axioms JurisLean.FullMath.Probability.betaCDF_zero
+#print axioms JurisLean.FullMath.Probability.beta_mass_total_one
+#print axioms JurisLean.FullMath.Probability.beta_mixture_mass
+#print axioms JurisLean.FullMath.Probability.beta_ratio
+#print axioms JurisLean.FullMath.Probability.brier_excess_identity
+#print axioms JurisLean.FullMath.Probability.brier_excess_zero_iff
+#print axioms JurisLean.FullMath.Probability.cantelli_core
+#print axioms JurisLean.FullMath.Probability.condition_incompatible_iff
+#print axioms JurisLean.FullMath.Probability.contaminate_bound
+#print axioms JurisLean.FullMath.Probability.contaminate_condition_do_not_commute
+#print axioms JurisLean.FullMath.Probability.contamination_bounds
+#print axioms JurisLean.FullMath.Probability.dedupAux_cons_fresh
+#print axioms JurisLean.FullMath.Probability.dedupAux_cons_seen
+#print axioms JurisLean.FullMath.Probability.dedupAux_k_insensitive
+#print axioms JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+#print axioms JurisLean.FullMath.Probability.dedup_no_double_update
+#print axioms JurisLean.FullMath.Probability.dirWeights_nonneg
+#print axioms JurisLean.FullMath.Probability.dirWeights_normalizes
+#print axioms JurisLean.FullMath.Probability.dirWeights_update_compose
+#print axioms JurisLean.FullMath.Probability.e01_insufficient_escalates
+#print axioms JurisLean.FullMath.Probability.e01_within_iff
+#print axioms JurisLean.FullMath.Probability.elim_swap_adjacent
+#print axioms JurisLean.FullMath.Probability.exclusion_no_langer
+#print axioms JurisLean.FullMath.Probability.exclusion_no_langer_top
+#print axioms JurisLean.FullMath.Probability.hyperWeights_normalizes
+#print axioms JurisLean.FullMath.Probability.hyper_data_changes_posterior
+#print axioms JurisLean.FullMath.Probability.illegal_row_in_no_part
+#print axioms JurisLean.FullMath.Probability.isolated_no_shared_cluster
+#print axioms JurisLean.FullMath.Probability.isolated_symm
+#print axioms JurisLean.FullMath.Probability.joint_nonneg
+#print axioms JurisLean.FullMath.Probability.joint_normalizes
+#print axioms JurisLean.FullMath.Probability.mixture_update_normalizes
+#print axioms JurisLean.FullMath.Probability.mixture_update_still_bracketed
+#print axioms JurisLean.FullMath.Probability.mixture_within_retained
+#print axioms JurisLean.FullMath.Probability.no_cluster_cross
+#print axioms JurisLean.FullMath.Probability.part_target_preserved
+#print axioms JurisLean.FullMath.Probability.parts_cover
+#print axioms JurisLean.FullMath.Probability.pavGo_succ_cons
+#print axioms JurisLean.FullMath.Probability.pavGo_weight_sum
+#print axioms JurisLean.FullMath.Probability.pav_two_point_optimal
+#print axioms JurisLean.FullMath.Probability.posterior_nonneg
+#print axioms JurisLean.FullMath.Probability.posterior_normalizes
+#print axioms JurisLean.FullMath.Probability.prodAt_append
+#print axioms JurisLean.FullMath.Probability.rising_succ
+#print axioms JurisLean.FullMath.Probability.sum_out_distrib
+#print axioms JurisLean.FullMath.Probability.time_order_enforced
+#print axioms JurisLean.FullMath.Probability.unprocessed_mass_bounds
+#print axioms JurisLean.FullMath.Probability.unprocessed_mass_degenerate
+#print axioms JurisLean.FullMath.Probability.upd_eq_exclSeen
+#print axioms JurisLean.FullMath.Probability.upd_self
+#print axioms JurisLean.FullMath.Probability.upd_swap

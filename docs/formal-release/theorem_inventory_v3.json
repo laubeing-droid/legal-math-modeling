@@ -14594,6 +14594,65 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "lower"
+    },
+    {
+     "kind": "def",
+     "name": "upper"
+    },
+    {
+     "kind": "theorem",
+     "name": "lower_le_upper"
+    },
+    {
+     "kind": "def",
+     "name": "hasPureValue"
+    },
+    {
+     "kind": "theorem",
+     "name": "hasPureValue_true_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "pennies_gap_strict"
+    },
+    {
+     "kind": "theorem",
+     "name": "pennies_no_pure_value"
+    },
+    {
+     "kind": "theorem",
+     "name": "coordination_has_pure_value"
+    },
+    {
+     "kind": "theorem",
+     "name": "lower_monotone_first"
+    },
+    {
+     "kind": "theorem",
+     "name": "upper_monotone_column"
+    },
+    {
+     "kind": "theorem",
+     "name": "gap_bounded_by_spread"
+    }
+   ],
+   "imports": [
+    "JurisLean.Mandate.Kernel",
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/MatrixGame.lean",
+   "print_axioms_targets": [],
+   "sha256": "a5b9c0c0c51d5ca44d5aba7fd1d8bcfbccb1f9f9fc7783e721d3f53bf70a0ac2",
+   "size_bytes": 3948,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "RouteRow"
     },
@@ -18891,22 +18950,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1910,
-   "file_count": 231,
+   "counted_declaration_count": 1918,
+   "file_count": 232,
    "lemma_count": 24,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1886,
-   "theorem_count_bol_convention": 1850
+   "theorem_count": 1894,
+   "theorem_count_bol_convention": 1858
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1891,
-   "file_count": 216,
+   "counted_declaration_count": 1899,
+   "file_count": 217,
    "lemma_count": 17,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1874,
-   "theorem_count_bol_convention": 1838
+   "theorem_count": 1882,
+   "theorem_count_bol_convention": 1846
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -19091,6 +19150,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/GateTable.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/Kernel.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/MatrixGame.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
@@ -19320,6 +19380,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/GateTable.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/Kernel.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/MatrixGame.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
@@ -19410,17 +19471,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "00cd87e8a7223a6800963ff241e2d61ffbe49b233c4ca8a1f95745c51379022a",
+ "source_inventory_digest": "046c5590d8da7ad5b6bed431eda95fc0c02a225bb397eb84582a6a835ed6d88a",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "9354ee48a3df694e60277765b9f86aa9ecc5a391",
-  "tree": "d9e2891dc7e32b88e270414293c646b92d33669d"
+  "commit": "a4009b1f16abfb33b885148bc6998f01164e675f",
+  "tree": "b8af960013c730bf28392b7909eb28d705930a22"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 231,
+  "files_total": 232,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

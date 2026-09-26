@@ -68,31 +68,27 @@ def test_every_anchor_resolves_to_a_real_theorem() -> None:
             )
 
 
-def test_carrier_grade_matches_the_anchored_block() -> None:
-    """A row may not upgrade its own grade away from what the proof does."""
+def test_carrier_grades_match_a_fresh_scan_of_the_sources() -> None:
+    """Re-read the carriers from the Lean source and compare every recorded grade.
+
+    Grades are derived through the generator's own scan (comment-stripped, so
+    prose cannot move a carrier between grades), which makes a hand-edited row
+    detectable without depending on the ledger file's bytes.
+    """
+    scanned = gen.scan_batches()
     for r in _rows():
-        for c in r["p_coverage"]:
-            assert c["proof_grade"] in VALID_GRADES, (r["t_id"], c)
-            assert c["relation"] in VALID_RELATIONS, (r["t_id"], c)
-            if c["relation"] != "EXACT":
-                continue
-            src = _module_path(c["module"])
-            text = src.read_text(encoding="utf-8")
-            block = re.search(
-                r"^namespace " + re.escape(r["t_id"]) + r"\n(.*?)^end " + re.escape(r["t_id"]) + r"$",
-                text,
-                re.M | re.S,
+        info = scanned.get(r["t_id"])
+        assert info, f"{r['t_id']} has no namespace block in the batches"
+        assert r["downgrade_noted"] == info["downgrade_noted"], r["t_id"]
+        assert r["full_statement_missing"] == info["full_statement_missing"], r["t_id"]
+        exact = [c for c in r["p_coverage"] if c["relation"] == "EXACT"]
+        assert [c["theorem"] for c in exact] == [c["theorem"] for c in info["carriers"]], r["t_id"]
+        for recorded, fresh in zip(exact, info["carriers"]):
+            assert recorded["proof_grade"] == fresh["proof_grade"], (
+                f"{r['t_id']}::{recorded['theorem']} recorded "
+                f"{recorded['proof_grade']} but the source says {fresh['proof_grade']}"
             )
-            assert block, f"{r['t_id']} not found in {c['module']}"
-            body = re.search(
-                r"^theorem " + re.escape(c["theorem"]) + r"\b(.*?)(?=^theorem |^end |\Z)",
-                block.group(1),
-                re.M | re.S,
-            )
-            assert body, f"{r['t_id']}: cannot re-read carrier {c['theorem']}"
-            assert gen.grade_theorem(block.group(1)[body.start():]) == c["proof_grade"], (
-                f"{r['t_id']}: recorded grade {c['proof_grade']} disagrees with the source"
-            )
+            assert recorded["module"] == fresh["module"], r["t_id"]
 
 
 def test_no_theorem_serves_two_t_targets() -> None:

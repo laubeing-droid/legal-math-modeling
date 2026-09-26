@@ -18,6 +18,7 @@ conclusion-first opening per chapter.
 
 from __future__ import annotations
 
+import json
 import re
 from pathlib import Path
 
@@ -180,3 +181,90 @@ def test_no_placeholder_closing() -> None:
     for path in _papers():
         text = path.read_text(encoding="utf-8")
         assert "此致\n readers" not in text, f"{path.name} still ends on a placeholder addressee"
+
+
+INVENTORY = ROOT / "docs" / "formal-release" / "theorem_inventory_v3.json"
+
+
+def _counts() -> dict:
+    import json
+
+    doc = json.loads(INVENTORY.read_text(encoding="utf-8"))
+    pkg = doc["scope_summary"]["juris_lean_package"]
+    allc = doc["scope_summary"]["all_tracked_lean"]
+    return {
+        "pkg_theorems": pkg["theorem_count"],
+        "all_theorems": allc["theorem_count"],
+        "pkg_files": pkg["file_count"],
+        "audit_targets": pkg["print_axioms_distinct_targets"],
+        "audit_cmds": pkg["print_axioms_command_count"],
+    }
+
+
+def test_paper_counts_equal_the_artifact() -> None:
+    """The audit's count-drift class, closed structurally.
+
+    A branch that adds modules moves the inventory; if the paper is not
+    regenerated in the same commit, the paper now lies about its own artifact.
+    Every number the papers quote is compared digit-for-digit against
+    theorem_inventory_v3.json, so the two cannot diverge in a commit.
+    """
+    c = _counts()
+    cn = CN.read_text(encoding="utf-8")
+    en = EN.read_text(encoding="utf-8")
+    assert f"`juris_lean_package` {c['pkg_theorems']} 条定理声明" in cn
+    assert f"`all_tracked_lean` {c['all_theorems']} 条" in cn
+    assert f"{c['audit_targets']} 个具名目标" in cn
+    assert f"{c['audit_cmds']} 行" in cn
+    assert f"{c['pkg_theorems']} theorem declarations in scope `juris_lean_package`" in en
+    assert f"{c['all_theorems']} in scope `all_tracked_lean`" in en
+    assert f"{c['audit_targets']} named targets" in en
+    assert f"{c['audit_cmds']} `#print axioms` commands" in en
+
+
+def test_papers_use_plain_digits_not_numeral_phrases() -> None:
+    """Chinese numeral counts cannot be machine-checked, so they are not allowed."""
+    for path in (CN, EN):
+        text = path.read_text(encoding="utf-8")
+        assert "一千七百" not in text, f"{path.name} states a count in numerals"
+        assert not re.search(r"1,\d{3}", text), f"{path.name} uses a thousands comma"
+
+
+LEDGER = ROOT / "theory" / "spec" / "lh_alignment" / "t_p_coverage.jsonl"
+
+
+def _ledger_derived() -> dict:
+    import collections
+
+    rows = [json.loads(l) for l in LEDGER.read_text(encoding="utf-8").splitlines() if l.strip()]
+    exact = [c for r in rows for c in r["p_coverage"] if c["relation"] == "EXACT"]
+    grades = collections.Counter(c["proof_grade"] for c in exact)
+    return {
+        "rows": len(rows),
+        "carriers": len({c["theorem"] for c in exact}),
+        "general": grades["GENERAL"],
+        "projection": grades["DEF_PROJECTION"],
+        "witness": grades["WITNESS"],
+        "full": sum(
+            1
+            for r in rows
+            if all(c["coverage"] == "FULL" for c in r["p_coverage"] if c["relation"] == "EXACT")
+        ),
+    }
+
+
+def test_paper_T_spectrum_numbers_equal_the_ledger() -> None:
+    """Same drift rule for the strength split the papers advertise."""
+    d = _ledger_derived()
+    cn = CN.read_text(encoding="utf-8")
+    assert f"{d['carriers']} 条定理给满 {d['rows']} 个 T 位" in cn
+    assert (
+        f"GENERAL {d['general']} / DEF_PROJECTION {d['projection']} / WITNESS {d['witness']}" in cn
+    )
+    assert f"{d['full']}/{d['rows']}" in cn
+
+
+def test_ledger_gate_and_paper_agree_on_full_count() -> None:
+    d = _ledger_derived()
+    assert d["rows"] == 127
+    assert d["full"] == 0, "a T target reached general form; update the claim deliberately"

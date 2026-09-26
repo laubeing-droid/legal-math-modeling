@@ -20,7 +20,7 @@
 
 一、**一张七层两横切的总谱。**法律概念一百三十二项（P-001 至 P-132），每项一条定义、一个编号、一个形式化证明目标，分入概念层（L0）、法源层（L1）、要件层（L2）、证明层（L3）、裁量层（L4）、计算保证层（（L5））、交付层（L6），另有经验校准（横切A）与回执（横切B）两条贯穿规矩。总谱已冻结，改动须过三关。
 
-二、**一份分作用域、分强度的定理承载账。**一百三十二项概念，五十七项挂既有定理，七十五项本轮新写。计数按清单工件 theorem_inventory_v3.json 的两个作用域分开报：lake build 真正编译的 201 个文件（`juris_lean_package`）共一千七百五十九条定理声明；把包外草稿工件一并数入是 1771 条（`all_tracked_lean`，216 文件），其中四个早先体内带 sorry 的目标已改列 UNPROVED、不再充作定理。强度另立账：132 项概念里 100 项有 Lean 锚、32 项只有 Python 与门测试锚；T 谱 127 个项目标的一般式的闭合数是 0（见第十章）。本提交尚无授权 CI 运行，编译与公理状态记 CI_NOT_RUN；上一提交的全绿不继承。
+二、**一份分作用域、分强度的定理承载账。**一百三十二项概念，五十七项挂既有定理，七十五项本轮新写。计数按清单工件 theorem_inventory_v3.json 的两个作用域分开报：lake build 真正编译的 201 个文件（`juris_lean_package`）共 1882 条定理声明；把包外草稿工件一并数入是 1894 条（`all_tracked_lean`，216 文件），其中四个早先体内带 sorry 的目标已改列 UNPROVED、不再充作定理。强度另立账：132 项概念里 100 项有 Lean 锚、32 项只有 Python 与门测试锚；T 谱 127 个项目标的一般式的闭合数是 0（见第十章）。本提交尚无授权 CI 运行，编译与公理状态记 CI_NOT_RUN；上一提交的全绿不继承。
 
 三、**一套回执纪律。**每层输出必须带"可主张等级"：结论级（有证书）、参考级（仅供参考）、不可主张（没依据）。无回执的层，输出自动降为不可主张——这不是措辞约定，是机读账本与类型系统的结构后果。
 
@@ -141,13 +141,13 @@
 **结论：一台可核验的机器，必须同时交付它办不到什么的清单；不出这份清单的，才叫不可信。**
 
 **未证事项（压实后重排，2026-09-25 深夜九轮问后）**：
-一、T01–T127 目标谱定理级展开——**载体已落地，一般式未闭合**：四批 131 条定理给满 127 个 T 位；覆盖账 theory/spec/lh_alignment/t_p_coverage.jsonl 已改由 scripts/ci/generate_t_coverage_ledger.py 从 Lean 源机械生成，逐条填上锚定定理名与强度档（GENERAL 9 / DEF_PROJECTION 113 / WITNESS 11），并如实记 127 条全部带降级注、40 条明写“完整陈述仍缺”。**达到一般式的 T 目标数：0/127**。上一版覆盖账曾把 127 行全标 FULL 而其中 124 行未填任何定理名，该口径作废；T112（量刑双线）曾误锚在解释构造子定理上，已撤。
+一、T01–T127 目标谱定理级展开——**载体已落地，一般式未闭合**：四批 131 条定理给满 127 个 T 位；覆盖账 theory/spec/lh_alignment/t_p_coverage.jsonl 已改由 scripts/ci/generate_t_coverage_ledger.py 从 Lean 源机械生成，逐条填上锚定定理名与强度档（GENERAL 7 / DEF_PROJECTION 113 / WITNESS 11），并如实记 127 条全部带降级注、40 条明写“完整陈述仍缺”。**达到一般式的 T 目标数：0/127**。上一版覆盖账曾把 127 行全标 FULL 而其中 124 行未填任何定理名，该口径作废；T112（量刑双线）曾误锚在解释构造子定理上，已撤。
 二、~~P-083 排序全局降序正确性~~——**已于本轮压实**：插入排序一般式四定理全链落地（GENERAL-A 单步插入增一/GENERAL-B 长度守恒/GENERAL-C 插入保持降序/GENERAL-D 排序输出恒降序，General.lean，CI 运行 36258901155 于 commit bd364c5 全绿）；此前授权的见证级退半步随之关闭；
 三、军令四件仍未接入形式层：胜诉率三步管线（Python 侧是精确有理 Beta-binomial 尾概率，Lean 无对应定理）、类案数学结构对比（两侧现在都是元组/集合相等，无同构或双射定理）、NN 带证书逼近器（BanachCertificate.lean 第 14 行自陈 certificate schema only，误差界与 q<1 都是构造体字段即前提，不是算出来再证出来的界，且 verifyCertificate 恒真）、博弈论显式结构（Python 侧自陈不是纳什求解器，Lean 侧 T81 只是一条 Int 记录投影，全仓无博弈树）。概率是例外：真数学在 FullMath/Probability（Brier 恒等式、污染界、有限后验归一），〔本轮更新：分支 ci/mandate-wave1 已由 scripts/ci/check_import_reachability.py 把它并入库根（FullMath/All.lean + 根可达性块），CI 认定前该修复仍未生效〕；公理审计面本轮已由脚本从 536 个具名目标扩到 606 个，整条统计线（FullMath/Probability 13 文件与 BusinessRoot/Analytics 共 70 条）才第一次进入审计面，其公理结论仍待一次授权 CI 运行方可主张。另：量刑规则表槽位（DATA_SLOT_READY）结构就绪、真实表属外部数据。**〔本轮更新，分支 ci/mandate-wave1，CI_NOT_RUN〕**四件已在该分支补写 Lean 定理：胜诉率第二步（率在有母体时存在、无母体时不存在、加胜诉不降、加败诉不升，Mandate/CohortRate.lean）；类案结构对比（争点码与要素码完全相同而关联边 3≠1 的具例，签名对其分离且该分离在任意合并与任意换名下保持，Mandate/StructureInvariants.lean）；带证书逼近器（n 步迭代闭式、界由模块算出而非由调用方作为字段带入、准入判据与实跑误差等价，Mandate/DerivedCertificate.lean）；博弈论（有限扩展式博弈树与后向归纳值的最优性，Mandate/GameTree.lean；但仍是单人序贯最大化，纳什均衡存在性未动）。另新增对已发布载体的判定式定理：法源准入三档外延（Mandate/SourceRank.lean，取代一条 f k = f k 的自等）、人闸表单值注入（Mandate/GateTable.lean）、引文包含关系与前缀关系的关系面（Mandate/SubstrAdmission.lean，补上 Python 用子串、Lean 证前缀的双侧缺口）。四件与三件升格均未入根、未入公理审计面、未挂 p_registry 锚点：CI 编过之前不进正文主张。
 四、涵摄完备性、八处降级、六类边界界定定理——**部分已于九轮问压实**：25 条新定理（General.lean+Boundary.lean，CI 验证）；P127 左插命题被最小反例关闭并登记，右扩张修正版已证；第 5/6 类边界经指针压实（consensus_does_not_escalate / repetition_does_not_clean / majority_cannot_clean）；
 五、检索第一层向量引擎——**已于九轮问压实**：确定性 TF-IDF 余弦引擎落仓（vector_engine.py，8 条门测试：归一化不变/自相似/对称/确定性排序/候选级封顶），零依赖纯 Python。
 
-**声明账本**：作用域 `juris_lean_package` 一千七百五十九条定理声明、作用域 `all_tracked_lean` 1771 条，均绑定清单工件 theorem_inventory_v3.json（subject 及其 subject_binding 记在工件里）。公理审计的实际覆盖面是 606 个具名目标（`#print axioms` 共 660 行），不是全部声明；本轮由 scripts/ci/generate_probability_audit_surface.py 把原先进不了审计面的 70 条统计定理生成式纳入；本提交的编译与审计状态记 CI_NOT_RUN。计数成分也要交代：其中 433 条是`theorem 别名 : 契约名 := 证明名` 的一行式契约搬运（计数诚实、但不含数学内容），按语句是否绑定变量统计的见证级闭语句 791 条。本文未主张：整部中国法已完备形式化；神经逼近器输出可当结论；T 谱已闭合。系统使用者看到的每一个结论，都能沿回执追到其证据等级；对后续施工，T 谱覆盖账就是推进顺序本身。
+**声明账本**：作用域 `juris_lean_package` 1882 条定理声明、作用域 `all_tracked_lean` 1894 条，均绑定清单工件 theorem_inventory_v3.json（subject 及其 subject_binding 记在工件里）。公理审计的实际覆盖面是 606 个具名目标（`#print axioms` 共 660 行），不是全部声明；本轮由 scripts/ci/generate_probability_audit_surface.py 把原先进不了审计面的 70 条统计定理生成式纳入；本提交的编译与审计状态记 CI_NOT_RUN。计数成分也要交代：其中 433 条是`theorem 别名 : 契约名 := 证明名` 的一行式契约搬运（计数诚实、但不含数学内容），按语句是否绑定变量统计的见证级闭语句 791 条。本文未主张：整部中国法已完备形式化；神经逼近器输出可当结论；T 谱已闭合。系统使用者看到的每一个结论，都能沿回执追到其证据等级；对后续施工，T 谱覆盖账就是推进顺序本身。
 
 此致
 每一位按行核过的人。

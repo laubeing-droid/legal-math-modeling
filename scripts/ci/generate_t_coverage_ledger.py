@@ -61,6 +61,47 @@ PY_ASSETS: dict[str, list[str]] = {
     "T122": ["theory/legal_interpretation.py"],
 }
 
+def strip_comments(text: str) -> str:
+    """Remove Lean comments before grading a carrier.
+
+    Without this, prose inside a downgrade or strength note ("cases",
+    "constructor", "rw") is read as a tactic and silently moves a carrier
+    between grades — the ledger would then describe the comments, not the proof.
+    """
+    out_lines: list[str] = []
+    depth = 0
+    for line in text.splitlines():
+        res: list[str] = []
+        i = 0
+        in_string = False
+        while i < len(line):
+            ch = line[i]
+            nxt = line[i + 1] if i + 1 < len(line) else ""
+            if depth > 0:
+                if ch == "/" and nxt == "-":
+                    depth += 1
+                    i += 2
+                    continue
+                if ch == "-" and nxt == "/":
+                    depth -= 1
+                    i += 2
+                    continue
+                i += 1
+                continue
+            if not in_string and ch == "-" and nxt == "-":
+                break
+            if not in_string and ch == "/" and nxt == "-":
+                depth += 1
+                i += 2
+                continue
+            if ch == '"':
+                in_string = not in_string
+            res.append(ch)
+            i += 1
+        out_lines.append("".join(res) if depth == 0 else "")
+    return "\n".join(out_lines)
+
+
 NS_BLOCK = re.compile(r"^namespace (T\d+)\n(.*?)^end \1$", re.M | re.S)
 THEOREM_RE = re.compile(r"^theorem ([^\s(:{]+)(.*?)(?=^(?:theorem|namespace|end|def|structure|inductive)\b|\Z)", re.M | re.S)
 DOWNGRADE = "降级注"
@@ -99,11 +140,16 @@ def scan_batches() -> dict[str, dict[str, Any]]:
     found: dict[str, dict[str, Any]] = {}
     for path in sorted(BATCH_DIR.glob("Batch*.lean")):
         batch = path.stem[len("Batch"):]
-        text = path.read_text(encoding="utf-8")
+        text = path.read_text(encoding="utf-8")  # raw: downgrade markers live in comments
         for match in NS_BLOCK.finditer(text):
             tid, block = match.group(1), match.group(2)
             carriers = []
-            for th in THEOREM_RE.finditer(block):
+            # Names and grades come from the comment-stripped block, so prose
+            # mentioning a tactic cannot move a carrier between grades; the
+            # downgrade markers themselves are comments, so they are read from
+            # the raw block.
+            code_block = strip_comments(block)
+            for th in THEOREM_RE.finditer(code_block):
                 carriers.append(
                     {
                         "module": BATCH_MODULE.format(batch),

@@ -114,7 +114,9 @@ Lean 侧为闭合类型化行/字段文法。两侧 TCB 边界已写入各 Lean 
   `ROOT_COMPILED_ENV_JSON=`，`audit_root_compiled.py` → `{"status": "PASS"}`，
   receipt：theorem_count=383、required_count=24、公理 ⊆ {propext, Classical.choice,
   Quot.sound}）、python-reference（`run_root.py` PASS）、reference-gate 全部 success。
-- Lean 权威管线 `lean-build.yml` run **34519379252**（attempt 2）：lean-full-clean-build
+- Lean 权威管线 `lean-build.yml` run **34519379252**（attempt 2；此 run 的 run 级结论为
+  **cancelled**——下方点名的 Delta 作业超时被取消，下列其余作业均 success）：
+  lean-full-clean-build
   （`lake clean` 后从零全量构建——含 BusinessRoot 全部 9 文件与 BusinessRelations 系——
   加 Axiom audit）、release-certificate、final-gate、python-gates、
   lean-module-build(BusinessRelationsAudit/BusinessRelations) 全部 success。

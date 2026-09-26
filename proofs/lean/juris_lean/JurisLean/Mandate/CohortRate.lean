@@ -1,4 +1,5 @@
 import Mathlib
+import JurisLean.Mandate.Kernel
 
 /-!
 # Mandate module A — win-rate step two: the rate computed on the retrieved cohort
@@ -17,19 +18,10 @@ a CI module build (`mode=changed-module`) before any of it may be cited as
 elaborated.
 -/
 
+/-- Reuses `Kernel` for `Rate`, `successes`, `≤ₛ` and the length bound. -/
 namespace JurisLean.Mandate.CohortRate
 
-/-- Successes in a cohort, structural recursion so the equations are ours. -/
-def successes : List Bool → Nat
-  | [] => 0
-  | true :: rest => successes rest + 1
-  | false :: rest => successes rest
-
-/-- A cohort rate: exact counts, denominator forced nonzero by the constructor. -/
-structure Rate where
-  num : Nat
-  den : Nat
-  denPos : 0 < den
+open JurisLean.Mandate.Kernel
 
 /--
 Step two. An empty cohort yields *no* rate: the pipeline may not manufacture a
@@ -45,16 +37,6 @@ def rateOfCohort (obs : List Bool) : Option Rate :=
         denPos := Nat.succ_pos _
       }
 
-/-- Comparison of rates by cross-multiplication; no division is ever formed. -/
-infix:50 " ≤ₛ " => fun x y => x.num * y.den ≤ y.num * x.den
-
-theorem successes_le_length (obs : List Bool) : successes obs ≤ obs.length := by
-  induction obs with
-  | nil => exact Nat.zero_le _
-  | cons x xs ih =>
-      cases x with
-      | true => simp [successes]; omega
-      | false => simp [successes]; omega
 
 /-- Step two is total on a non-empty cohort. -/
 theorem rateOfCohort_defined (obs : List Bool) (h : obs ≠ []) :
@@ -106,8 +88,5 @@ theorem addedFailure_le_rate (r : Rate) :
     { num := r.num, den := r.den + 1, denPos := Nat.succ_pos _ } ≤ₛ r := by
   show r.num * r.den ≤ r.num * (r.den + 1)
   nlinarith
-
-/-- The order is reflexive, so a cohort always compares equal to itself. -/
-theorem rate_le_self (r : Rate) : r ≤ₛ r := Nat.le_refl _
 
 end JurisLean.Mandate.CohortRate

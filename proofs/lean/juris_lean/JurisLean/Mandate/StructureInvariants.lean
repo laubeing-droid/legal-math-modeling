@@ -1,4 +1,5 @@
 import Mathlib
+import JurisLean.Mandate.Kernel
 
 /-!
 # Mandate module B — structural invariants for case comparison
@@ -8,12 +9,15 @@ found none on either side: Python compared tuples of label lists
 (`retrieval_v4.py:110-115`), and the Lean carrier was a self-equality of a hash
 (`Batch3.lean:219 signature_deterministic … = bucketKey … := rfl`).
 
-What this module supplies instead is the property a comparison must have to be
-mathematics at all: an invariant that is **label-independent** (renaming the
-issue and element codes does not touch it), **additive over structural sum**
-(so a merged case has a computable signature), and **discriminating** — there
-are concrete cases whose label sets are identical, i.e. which any recall layer
-scores as the same case, yet which the invariant separates.
+This module is deliberately thin. The case structure, its signature, and the
+relabelling/additivity laws live once in `JurisLean.Mandate.Kernel` and are
+reused here — that reuse is the point. Audit judgement 1 found the old "unified"
+line re-declaring a model per theorem (295 carriers for 300 theorems), so what
+this file proves is meaningful precisely because it is proved about the *shared*
+signature. What is added here is the property that makes the comparison
+mathematical rather than cosmetic: the invariant separates two cases that every
+vocabulary-based retrieval layer must score as identical, and the separation
+survives both merging further material into both sides and renaming every label.
 
 Status: NOT imported by `JurisLean.lean`, NOT in `AxiomAudit.lean`; needs a CI
 module build before it may be cited.
@@ -21,63 +25,12 @@ module build before it may be cited.
 
 namespace JurisLean.Mandate.StructureInvariants
 
-/-- A case as structure, not as text: issue codes, element codes, and the
-requirement-element incidences actually asserted between them. -/
-structure CaseStructure where
-  issues : List Nat
-  elements : List Nat
-  incidences : List (Nat × Nat)
+open JurisLean.Mandate.Kernel
 
-/-- The coarse invariant: how many issues, how many elements, how many edges. -/
-def sig3 (s : CaseStructure) : Nat × Nat × Nat :=
-  (s.issues.length, s.elements.length, s.incidences.length)
-
-/-- Structural sum: disjoint union of two cases' material. -/
-def sum (s t : CaseStructure) : CaseStructure :=
-  { issues := s.issues ++ t.issues
-    elements := s.elements ++ t.elements
-    incidences := s.incidences ++ t.incidences }
-
-/--
-Renaming labels leaves the invariant untouched. This is the difference between a
-structural comparison and a vocabulary comparison: the theorem is about the
-counts surviving an *arbitrary* relabelling function.
--/
-theorem sig3_relabel_fst (s : CaseStructure) (f : Nat → Nat) :
-    (sig3 { s with issues := s.issues.map f }).1 = (sig3 s).1 := by
-  simp [sig3]
-
-theorem sig3_relabel_snd (s : CaseStructure) (f : Nat → Nat) :
-    (sig3 { s with elements := s.elements.map f }).2.1 = (sig3 s).2.1 := by
-  simp [sig3]
-
-theorem sig3_relabel_edges (s : CaseStructure) (f g : Nat → Nat) :
-    (sig3 { s with incidences := s.incidences.map (fun p => (f p.1, g p.2)) }).2.2
-      = (sig3 s).2.2 := by
-  simp [sig3]
-
-/-- The invariant of a merged case is the componentwise sum of the invariants. -/
-theorem sig3_sum (s t : CaseStructure) :
-    sig3 (sum s t) =
-      ((sig3 s).1 + (sig3 t).1, (sig3 s).2.1 + (sig3 t).2.1, (sig3 s).2.2 + (sig3 t).2.2) := by
-  simp [sig3, sum, List.length_append]
-
-/-- Each part survives into the merged signature: a sub-case never contributes
-negative structure. -/
-theorem sig3_fst_le_sum (s t : CaseStructure) : (sig3 s).1 ≤ (sig3 (sum s t)).1 := by
-  simp [sig3, sum]
-  omega
-
-theorem sig3_edges_le_sum (s t : CaseStructure) : (sig3 s).2.2 ≤ (sig3 (sum s t)).2.2 := by
-  simp [sig3, sum]
-  omega
-
-/--
-The discriminating pair. Both cases carry exactly the same issue codes and the
-same element codes — so a retrieval layer that scores label overlap, a vector of
-term frequencies, or a bucket key over these lists sees one and the same case —
-yet one asserts three incidences and the other only one.
--/
+/-- Two cases with exactly the same issue codes and the same element codes — so a
+retrieval layer scoring label overlap, a term-frequency vector, or a bucket key
+over these lists sees one and the same case — yet one asserts three incidences
+and the other only one. -/
 def anchored : CaseStructure :=
   { issues := [1, 2]
     elements := [10, 11]
@@ -92,11 +45,56 @@ def unanchored : CaseStructure :=
 theorem same_labels : anchored.issues = unanchored.issues ∧ anchored.elements = unanchored.elements :=
   ⟨rfl, rfl⟩
 
-/-- Different structure, proved by computation, not asserted. -/
+/-- Different structure, proved by computation rather than asserted. -/
 theorem signatures_differ : sig3 anchored ≠ sig3 unanchored := by
   intro h
   have he : (sig3 anchored).2.2 = (sig3 unanchored).2.2 := congrArg (fun p => p.2.2) h
   simp only [sig3, anchored, unanchored] at he
   exact absurd he (by decide)
+
+/-- The edge count of a merge is the sum of the edge counts. -/
+theorem sum_signature_third (t : CaseStructure) :
+    (sig3 (sum anchored t)).2.2 = 3 + (sig3 t).2.2 := by
+  have h := sig3_sum anchored t
+  simp only [sig3, anchored, List.length_cons, List.length_nil] at h ⊢
+  omega
+
+/--
+The separation is stable under merging arbitrary further material into both
+cases. Without additivity this would be a fact about two literals; with it, the
+signature is a discriminator for the whole comparison layer, which is what the
+"结构比对精确核对" half of P-109 requires.
+-/
+theorem discrimination_survives_sum (t : CaseStructure) :
+    sig3 (sum anchored t) ≠ sig3 (sum unanchored t) := by
+  intro h
+  have h1 := sum_signature_third t
+  have h2 := sig3_sum unanchored t
+  simp only [sig3, anchored, unanchored, sum, List.length_append, List.length_cons,
+    List.length_nil] at h h1 h2
+  omega
+
+/-- Relabelling the incidences of any case leaves its signature untouched, so no
+vocabulary trick can turn `anchored` into `unanchored`. -/
+theorem relabel_cannot_bridge (f g : Nat → Nat) :
+    (sig3 { anchored with
+        incidences := anchored.incidences.map (fun p => (f p.1, g p.2)) }).2.2
+      ≠ (sig3 { unanchored with
+        incidences := unanchored.incidences.map (fun p => (f p.1, g p.2)) }).2.2 := by
+  rw [sig3_relabel_edges, sig3_relabel_edges]
+  simp only [sig3, anchored, unanchored]
+  decide
+
+/-- Merging a case with itself doubles the signature: the invariant behaves like
+a measure, not like a hash. -/
+theorem sig3_double (s : CaseStructure) : (sig3 (sum s s)).1 = 2 * (sig3 s).1 := by
+  have h := sig3_sum s s
+  simp only [sig3] at h ⊢
+  omega
+
+/-- A merge never loses material from either side. -/
+theorem sig3_le_sum_any (s t : CaseStructure) :
+    (sig3 s).1 ≤ (sig3 (sum s t)).1 ∧ (sig3 t).2.2 ≤ (sig3 (sum s t)).2.2 :=
+  ⟨sig3_fst_le_sum s t, sig3_edges_le_sum s t⟩
 
 end JurisLean.Mandate.StructureInvariants

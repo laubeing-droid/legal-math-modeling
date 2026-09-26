@@ -23,32 +23,60 @@ REGISTRY = ROOT / "theory" / "spec" / "p_registry.json"
 LEDGER = ROOT / "docs" / "master-plan" / "03_证明战役台账.md"
 
 # mandate item -> (module, theorems that must exist, concept it serves)
+# mandate item -> (module, theorems that must exist, concept it serves)
 MODULES: dict[str, tuple[str, tuple[str, ...], str]] = {
+    "shared_kernel": (
+        "Mandate/Kernel.lean",
+        ("successes_le_length", "rate_le_self", "le_max_l", "le_max_r", "max_zero",
+         "best_le_best_append", "sig3_relabel_fst", "sig3_relabel_edges", "sig3_sum",
+         "sig3_fst_le_sum"),
+        "P-112",
+    ),
     "win_rate_step_two": (
         "Mandate/CohortRate.lean",
-        ("successes_le_length", "rateOfCohort_defined", "rateOfCohort_none_iff",
-         "rateOfCohort_num_le_den", "rate_le_addedSuccess", "addedFailure_le_rate"),
+        ("rateOfCohort_defined", "rateOfCohort_none_iff", "rateOfCohort_num_le_den",
+         "rate_le_addedSuccess", "addedFailure_le_rate"),
         "P-112",
     ),
     "structural_comparison": (
         "Mandate/StructureInvariants.lean",
-        ("sig3_relabel_fst", "sig3_sum", "same_labels", "signatures_differ",
-         "sig3_edges_le_sum", "sig3_fst_le_sum", "sig3_relabel_edges"),
+        ("same_labels", "signatures_differ", "sum_signature_third",
+         "discrimination_survives_sum", "relabel_cannot_bridge", "sig3_double",
+         "sig3_le_sum_any"),
         "P-109",
     ),
     "computed_certificate": (
         "Mandate/DerivedCertificate.lean",
-        ("approx_closed", "approx_error_eq_computedBound", "approx_damped",
-         "certificate_bound_is_computed", "admits_iff", "not_admits_negative"),
+        ("approx_closed", "pow_damped", "approx_error_eq_computedBound",
+         "approx_damped", "certificate_bound_is_computed", "admits_iff",
+         "not_admits_negative", "approx_zero"),
         "P-118",
     ),
     "game_tree": (
         "Mandate/GameTree.lean",
         ("value_leaf", "value_nil", "value_cons", "value_ge_head",
-         "value_ge_of_mem", "value_node_append_le"),
+         "value_ge_of_mem", "value_node_append_le", "value_of_leaves"),
         "P-090",
     ),
 }
+
+# Modules that must *consume* the kernel instead of restating its carriers.
+KERNEL_CONSUMERS = (
+    "Mandate/CohortRate.lean",
+    "Mandate/StructureInvariants.lean",
+    "Mandate/GameTree.lean",
+)
+
+# Declared exactly once, in the kernel, and nowhere else in Mandate/.
+SINGLE_DECLARATIONS = (
+    "structure Rate where",
+    "structure CaseStructure where",
+    "infix:50",
+    "theorem le_max_l",
+    "theorem successes_le_length",
+    "def sig3 ",
+    "def successes ",
+)
 
 DECL = re.compile(r"^(?:@\[[^\]]*\][ \t]*)*theorem\s+([^\s(:{]+)", re.M)
 FORBIDDEN = re.compile(r"\bsorry\b|\badmit\b|\bnative_decide\b|^\s*axiom\b")
@@ -112,12 +140,14 @@ def test_mandate_modules_use_no_forbidden_constructs() -> None:
 
 
 GENERAL_NOT_WITNESS: dict[str, tuple[str, ...]] = {
-    "win_rate_step_two": ("successes_le_length", "rateOfCohort_defined",
-                          "rateOfCohort_none_iff", "rateOfCohort_num_le_den",
-                          "rate_le_addedSuccess", "addedFailure_le_rate"),
-    "structural_comparison": ("sig3_relabel_fst", "sig3_relabel_snd",
-                              "sig3_relabel_edges", "sig3_sum",
-                              "sig3_fst_le_sum", "sig3_edges_le_sum"),
+    "shared_kernel": ("successes_le_length", "rate_le_self", "le_max_l", "le_max_r",
+                      "max_zero", "best_le_best_append", "sig3_relabel_fst", "sig3_sum"),
+    "win_rate_step_two": ("rateOfCohort_defined", "rateOfCohort_none_iff",
+                          "rateOfCohort_num_le_den", "rate_le_addedSuccess",
+                          "addedFailure_le_rate"),
+    "structural_comparison": ("sum_signature_third", "discrimination_survives_sum",
+                              "relabel_cannot_bridge", "sig3_double",
+                              "sig3_le_sum_any"),
     "computed_certificate": ("approx_closed", "pow_damped",
                              "approx_error_eq_computedBound", "approx_damped",
                              "certificate_bound_is_computed", "admits_iff",
@@ -173,3 +203,26 @@ def test_registry_not_yet_upgraded_with_unverified_anchors() -> None:
         assert not any(rel.split("/")[-1] in f for f in files), (
             f"{concept} is anchored to {rel} before CI has built it"
         )
+
+
+def test_mandate_modules_reuse_the_kernel_instead_of_restating_it() -> None:
+    """Audit judgement 1: the old line declared a fresh model per theorem.
+
+    Each consumer must import and open the kernel, and the shared carriers may be
+    declared in exactly one file, so a later module cannot quietly fork its own
+    `Rate` or `CaseStructure` again.
+    """
+    for rel in KERNEL_CONSUMERS:
+        text = _text(rel)
+        assert "import JurisLean.Mandate.Kernel" in text, f"{rel} does not import the kernel"
+        assert re.search(r"^open JurisLean\.Mandate\.Kernel", text, re.M), f"{rel} does not open it"
+
+    files = sorted((PKG / "Mandate").glob("*.lean"))
+    for decl in SINGLE_DECLARATIONS:
+        owners = [f.name for f in files if decl in _strip_comments(f.read_text(encoding="utf-8"))]
+        assert owners == ["Kernel.lean"], f"{decl!r} declared in {owners}, not only in the kernel"
+
+
+def test_kernel_is_still_quarantined() -> None:
+    text = ROOT_MODULE.read_text(encoding="utf-8")
+    assert "JurisLean.Mandate" not in text, "the kernel reached the release root before CI"

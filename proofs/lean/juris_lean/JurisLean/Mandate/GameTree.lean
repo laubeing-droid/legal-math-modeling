@@ -1,4 +1,5 @@
 import Mathlib
+import JurisLean.Mandate.Kernel
 
 /-!
 # Mandate module D — finite game trees and backward-induction value
@@ -30,18 +31,10 @@ inductive Tree where
   | leaf (payoff : Nat)
   | node (children : List Tree)
 
-/-- `max` facts stated locally so this file depends on no naming luck. -/
-theorem le_max_l (a b : ℕ) : a ≤ max a b := by
-  rw [Nat.max_def]
-  split <;> omega
-
-theorem le_max_r (a b : ℕ) : b ≤ max a b := by
-  rw [Nat.max_def]
-  split <;> omega
-
-theorem max_zero (a : ℕ) : max a 0 = a := by
-  rw [Nat.max_def]
-  split <;> omega
+/-- The `max` selection facts (`le_max_l`, `le_max_r`, `max_zero`) come from
+-- `JurisLean.Mandate.Kernel`, so selection behaviour is proved once for the whole
+-- mandate layer rather than per module. -/
+open JurisLean.Mandate.Kernel
 
 /-- Backward induction over a max-node tree; a node with no options is worth 0. -/
 def value : Tree → Nat

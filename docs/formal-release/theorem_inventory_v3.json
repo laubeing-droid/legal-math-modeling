@@ -14035,19 +14035,7 @@
    "declarations": [
     {
      "kind": "def",
-     "name": "successes"
-    },
-    {
-     "kind": "structure",
-     "name": "Rate"
-    },
-    {
-     "kind": "def",
      "name": "rateOfCohort"
-    },
-    {
-     "kind": "theorem",
-     "name": "successes_le_length"
     },
     {
      "kind": "theorem",
@@ -14068,22 +14056,19 @@
     {
      "kind": "theorem",
      "name": "addedFailure_le_rate"
-    },
-    {
-     "kind": "theorem",
-     "name": "rate_le_self"
     }
    ],
    "imports": [
+    "JurisLean.Mandate.Kernel",
     "Mathlib"
    ],
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/CohortRate.lean",
    "print_axioms_targets": [],
-   "sha256": "bf685914ee24ecc4468eff7cc59f1fd783e4ed9e1a119fb84abbbc37799ab3bb",
-   "size_bytes": 4029,
-   "theorem_count": 7,
-   "theorem_count_bol_convention": 7
+   "sha256": "9f647789918cb4e2c0d04b9fe948b7e9d8506247e6b5e14d6671ba488c85b96a",
+   "size_bytes": 3282,
+   "theorem_count": 5,
+   "theorem_count_bol_convention": 5
   },
   {
    "declarations": [
@@ -14162,18 +14147,6 @@
      "name": "Tree"
     },
     {
-     "kind": "theorem",
-     "name": "le_max_l"
-    },
-    {
-     "kind": "theorem",
-     "name": "le_max_r"
-    },
-    {
-     "kind": "theorem",
-     "name": "max_zero"
-    },
-    {
      "kind": "def",
      "name": "value"
     },
@@ -14215,54 +14188,19 @@
     }
    ],
    "imports": [
+    "JurisLean.Mandate.Kernel",
     "Mathlib"
    ],
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean",
    "print_axioms_targets": [],
-   "sha256": "13e8b9ab8232f15978fca311cbf4b71cb25e859d3dffbfa4c447d7e32f6313db",
-   "size_bytes": 4603,
-   "theorem_count": 12,
-   "theorem_count_bol_convention": 12
+   "sha256": "1d46ffa598abbe4adce44df29042ca6a8dc9d41829b040ae644cca1de47863e4",
+   "size_bytes": 4533,
+   "theorem_count": 9,
+   "theorem_count_bol_convention": 9
   },
   {
    "declarations": [
-    {
-     "kind": "structure",
-     "name": "CaseStructure"
-    },
-    {
-     "kind": "def",
-     "name": "sig3"
-    },
-    {
-     "kind": "def",
-     "name": "sum"
-    },
-    {
-     "kind": "theorem",
-     "name": "sig3_relabel_fst"
-    },
-    {
-     "kind": "theorem",
-     "name": "sig3_relabel_snd"
-    },
-    {
-     "kind": "theorem",
-     "name": "sig3_relabel_edges"
-    },
-    {
-     "kind": "theorem",
-     "name": "sig3_sum"
-    },
-    {
-     "kind": "theorem",
-     "name": "sig3_fst_le_sum"
-    },
-    {
-     "kind": "theorem",
-     "name": "sig3_edges_le_sum"
-    },
     {
      "kind": "def",
      "name": "anchored"
@@ -14278,18 +14216,39 @@
     {
      "kind": "theorem",
      "name": "signatures_differ"
+    },
+    {
+     "kind": "theorem",
+     "name": "sum_signature_third"
+    },
+    {
+     "kind": "theorem",
+     "name": "discrimination_survives_sum"
+    },
+    {
+     "kind": "theorem",
+     "name": "relabel_cannot_bridge"
+    },
+    {
+     "kind": "theorem",
+     "name": "sig3_double"
+    },
+    {
+     "kind": "theorem",
+     "name": "sig3_le_sum_any"
     }
    ],
    "imports": [
+    "JurisLean.Mandate.Kernel",
     "Mathlib"
    ],
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
    "print_axioms_targets": [],
-   "sha256": "2fbfeb5532030a9a871e097a27a31d719c6b8cfe8bef440b1f3c209bf118d408",
-   "size_bytes": 4086,
-   "theorem_count": 8,
-   "theorem_count_bol_convention": 8
+   "sha256": "59fdb9aab1e4171fedb1ad638b266591a66a43ec29e89c3b2e5e1c7e2cafa09e",
+   "size_bytes": 4272,
+   "theorem_count": 7,
+   "theorem_count_bol_convention": 7
   },
   {
    "declarations": [
@@ -18199,22 +18158,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1830,
+   "counted_declaration_count": 1824,
    "file_count": 220,
    "lemma_count": 24,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1806,
-   "theorem_count_bol_convention": 1770
+   "theorem_count": 1800,
+   "theorem_count_bol_convention": 1764
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1811,
+   "counted_declaration_count": 1805,
    "file_count": 205,
    "lemma_count": 17,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1794,
-   "theorem_count_bol_convention": 1758
+   "theorem_count": 1788,
+   "theorem_count_bol_convention": 1752
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -18696,19 +18655,32 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "ed9375500a15b8e1f4e440f85cfcbb160b1d24abd2276475ee86b089a4bf4eb5",
+ "source_inventory_digest": "ee80d44bbcd2c6155b2ee00cef35a9b88e08568f7512c85a0ae4feea1249b4d5",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "3c220de4b1ca55af0769aa3734245f3e72737c92",
-  "tree": "2d188e0d5ffb50713e182e37b34ff14d9cb5450e"
+  "commit": "e7adc94a081d69a8e803216421bd106d38d33d6e",
+  "tree": "423b29dece3b2ca5fd949336bfbe0aa910f4b27a"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Mandate/CohortRate.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 220,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

@@ -14594,6 +14594,92 @@
   {
    "declarations": [
     {
+     "kind": "structure",
+     "name": "RouteRow"
+    },
+    {
+     "kind": "def",
+     "name": "usable"
+    },
+    {
+     "kind": "def",
+     "name": "firstUsable"
+    },
+    {
+     "kind": "def",
+     "name": "anyUsable"
+    },
+    {
+     "kind": "theorem",
+     "name": "firstUsable_nil"
+    },
+    {
+     "kind": "theorem",
+     "name": "firstUsable_cons_usable"
+    },
+    {
+     "kind": "theorem",
+     "name": "firstUsable_cons_notUsable"
+    },
+    {
+     "kind": "theorem",
+     "name": "usable_of_firstUsable_some"
+    },
+    {
+     "kind": "theorem",
+     "name": "anyUsable_append"
+    },
+    {
+     "kind": "theorem",
+     "name": "some_of_anyUsable_true"
+    },
+    {
+     "kind": "def",
+     "name": "excludedRow"
+    },
+    {
+     "kind": "def",
+     "name": "inactiveRow"
+    },
+    {
+     "kind": "def",
+     "name": "usableRowA"
+    },
+    {
+     "kind": "def",
+     "name": "usableRowB"
+    },
+    {
+     "kind": "theorem",
+     "name": "inactive_is_skipped"
+    },
+    {
+     "kind": "theorem",
+     "name": "excluded_is_skipped"
+    },
+    {
+     "kind": "theorem",
+     "name": "usable_is_found"
+    },
+    {
+     "kind": "theorem",
+     "name": "priority_order_decides"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
+   "print_axioms_targets": [],
+   "sha256": "3d40e227518874342592a35898169c602ded251257e9e3e991a3d95c06d554bd",
+   "size_bytes": 5802,
+   "theorem_count": 10,
+   "theorem_count_bol_convention": 10
+  },
+  {
+   "declarations": [
+    {
      "kind": "theorem",
      "name": "grade_binding_iff"
     },
@@ -18743,22 +18829,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1891,
-   "file_count": 229,
+   "counted_declaration_count": 1901,
+   "file_count": 230,
    "lemma_count": 24,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1867,
-   "theorem_count_bol_convention": 1831
+   "theorem_count": 1877,
+   "theorem_count_bol_convention": 1841
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1872,
-   "file_count": 214,
+   "counted_declaration_count": 1882,
+   "file_count": 215,
    "lemma_count": 17,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1855,
-   "theorem_count_bol_convention": 1819
+   "theorem_count": 1865,
+   "theorem_count_bol_convention": 1829
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -18943,6 +19029,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/GateTable.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/Kernel.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SubstrAdmission.lean",
@@ -19170,6 +19257,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/GateTable.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/Kernel.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SubstrAdmission.lean",
@@ -19258,17 +19346,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "3fa422ef345472d514fd5169e2d9ac43545a86d627f6fd2aa2f05867dcfe10b5",
+ "source_inventory_digest": "46a814d17efe5f8cd73f77a0b13d54b3f6fe0184bcafcab7c2b9855b06c12f97",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "f12376fcf43605ada1c386d2a930c63d471ac2a9",
-  "tree": "e07755472bc023b6373dc37d79774b6d66f3da9d"
+  "commit": "104d2943b097b136556c7c918f17552f08b9437c",
+  "tree": "1f77ab9349ad7856ab55f0cbb1dca55c786ff797"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 229,
+  "files_total": 230,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

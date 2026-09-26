@@ -176,12 +176,13 @@ theorem P083_insertEvpi_length
   | nil => rfl
   | cons y ys ih =>
       cases Nat.lt_or_ge x.evpi y.evpi with
-      | inl _ =>
-          rw [insertEvpi, if_pos]
+      | inl hlt =>
+          rw [insertEvpi, if_pos hlt]
           simp only [List.length_cons, ih]
           omega
-      | inr _ =>
-          rw [insertEvpi, if_neg]
+      | inr hge =>
+          have hnot : ¬(x.evpi < y.evpi) := by omega
+          rw [insertEvpi, if_neg hnot]
           simp only [List.length_cons]
           omega
 
@@ -192,7 +193,9 @@ theorem P083_sortEvpi_length
   induction xs with
   | nil => rfl
   | cons x xs ih =>
-      simp only [sortEvpi, P083_insertEvpi_length, ih]
+      have h := P083_insertEvpi_length x xs
+      simp only [sortEvpi]
+      omega
 
 /-- 降序谓词（Prop 版）。 -/
 def sortedDescP : List P083EvpiItem → Prop
@@ -213,7 +216,8 @@ theorem P083_insertEvpi_preserves_sortedP (x : P083EvpiItem) :
       cases Nat.lt_or_ge x.evpi y.evpi with
       | inr hyx =>
           -- y ≤ x：insert 在前
-          rw [insertEvpi, if_neg (by omega : ¬(x.evpi < y.evpi))]
+          have hnot : ¬(x.evpi < y.evpi) := by omega
+          rw [insertEvpi, if_neg hnot]
           simp only [sortedDescP]
           exact ⟨hyx, hsorted⟩
       | inl hxy =>
@@ -228,12 +232,13 @@ theorem P083_insertEvpi_preserves_sortedP (x : P083EvpiItem) :
               cases Nat.lt_or_ge x.evpi z.evpi with
               | inr hxz =>
                   -- z ≤ x：insert head = x
-                  rw [insertEvpi, if_neg (by omega : ¬(x.evpi < z.evpi))]
+                  have hnotz : ¬(x.evpi < z.evpi) := by omega
+                  rw [insertEvpi, if_neg hnotz]
                   simp only [sortedDescP]
                   exact ⟨Nat.le_of_lt hxy, hxz, hsorted⟩
-              | inl _ =>
+              | inl hxz =>
                   -- x < z：insert head = z
-                  rw [insertEvpi, if_pos (Nat.lt_of_lt_of_le hxy (by omega))]
+                  rw [insertEvpi, if_pos hxz]
                   simp only [sortedDescP]
                   exact ⟨hsorted.1, ih hsorted⟩
 

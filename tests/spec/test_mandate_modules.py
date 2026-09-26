@@ -115,6 +115,14 @@ MODULES: dict[str, tuple[str, tuple[str, ...], str]] = {
          "taxOf_prefix_le"),
         "P-093",
     ),
+    "two_player_value_gap": (
+        "Mandate/MatrixGame.lean",
+        ("lower_le_upper", "pennies_gap_strict", "hasPureValue_true_iff",
+         "pennies_no_pure_value",
+         "coordination_has_pure_value", "lower_monotone_first",
+         "upper_monotone_column", "gap_bounded_by_spread"),
+        "P-090",
+    ),
     "game_tree": (
         "Mandate/GameTree.lean",
         ("value_leaf", "value_nil", "value_cons", "value_ge_head",
@@ -129,6 +137,7 @@ KERNEL_CONSUMERS = (
     "Mandate/CohortInterval.lean",
     "Mandate/StructureInvariants.lean",
     "Mandate/GameTree.lean",
+    "Mandate/MatrixGame.lean",
 )
 
 # Declared exactly once, in the kernel, and nowhere else in Mandate/.
@@ -242,6 +251,9 @@ GENERAL_NOT_WITNESS: dict[str, tuple[str, ...]] = {
                              "some_of_anyUsable_true"),
     "tax_slice_composition": ("taxOf_zero_base", "remainingOf_le_start",
                               "taxOf_append", "taxOf_single", "taxOf_prefix_le"),
+    "two_player_value_gap": ("lower_le_upper", "lower_monotone_first",
+                             "upper_monotone_column", "gap_bounded_by_spread",
+                             "hasPureValue_true_iff"),
     "game_tree": ("value_cons", "value_ge_head", "value_ge_of_mem",
                   "value_node_append_le", "value_of_leaves",
                   "value_ignores_payoff_renaming_when_dominated"),

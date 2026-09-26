@@ -14824,6 +14824,68 @@
   {
    "declarations": [
     {
+     "kind": "structure",
+     "name": "Bracket"
+    },
+    {
+     "kind": "def",
+     "name": "taxOf"
+    },
+    {
+     "kind": "def",
+     "name": "remainingOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "taxOf_empty_table"
+    },
+    {
+     "kind": "theorem",
+     "name": "taxOf_single"
+    },
+    {
+     "kind": "theorem",
+     "name": "taxOf_zero_base"
+    },
+    {
+     "kind": "theorem",
+     "name": "remainingOf_le_start"
+    },
+    {
+     "kind": "theorem",
+     "name": "taxOf_append"
+    },
+    {
+     "kind": "theorem",
+     "name": "taxOf_two_brackets"
+    },
+    {
+     "kind": "theorem",
+     "name": "taxOf_capped"
+    },
+    {
+     "kind": "theorem",
+     "name": "remainingOf_exhausted"
+    },
+    {
+     "kind": "theorem",
+     "name": "taxOf_prefix_le"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/TaxSlices.lean",
+   "print_axioms_targets": [],
+   "sha256": "a817cf1ff1691f82d247864e6406236e74882e9ec53cbcfba22b19577551adae",
+   "size_bytes": 4306,
+   "theorem_count": 9,
+   "theorem_count_bol_convention": 9
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "allocate"
     },
@@ -18829,22 +18891,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1901,
-   "file_count": 230,
+   "counted_declaration_count": 1910,
+   "file_count": 231,
    "lemma_count": 24,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1877,
-   "theorem_count_bol_convention": 1841
+   "theorem_count": 1886,
+   "theorem_count_bol_convention": 1850
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1882,
-   "file_count": 215,
+   "counted_declaration_count": 1891,
+   "file_count": 216,
    "lemma_count": 17,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1865,
-   "theorem_count_bol_convention": 1829
+   "theorem_count": 1874,
+   "theorem_count_bol_convention": 1838
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -19033,6 +19095,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SubstrAdmission.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/TaxSlices.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/Waterfall.lean",
    "proofs/lean/juris_lean/JurisLean/PermissionConflict.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalEnvelopeSpec.lean",
@@ -19261,6 +19324,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SubstrAdmission.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/TaxSlices.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/Waterfall.lean",
    "proofs/lean/juris_lean/JurisLean/PermissionConflict.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalEnvelopeSpec.lean",
@@ -19346,17 +19410,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "46a814d17efe5f8cd73f77a0b13d54b3f6fe0184bcafcab7c2b9855b06c12f97",
+ "source_inventory_digest": "00cd87e8a7223a6800963ff241e2d61ffbe49b233c4ca8a1f95745c51379022a",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "104d2943b097b136556c7c918f17552f08b9437c",
-  "tree": "1f77ab9349ad7856ab55f0cbb1dca55c786ff797"
+  "commit": "9354ee48a3df694e60277765b9f86aa9ecc5a391",
+  "tree": "d9e2891dc7e32b88e270414293c646b92d33669d"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 230,
+  "files_total": 231,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

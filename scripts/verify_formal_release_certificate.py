@@ -20,7 +20,10 @@ from pathlib import Path
 from typing import Any, Dict, List
 
 LEAN_SOURCE_DIR = Path("proofs/lean/juris_lean/JurisLean")
-THEOREM_PATTERN = re.compile(r"^theorem\s+([A-Za-z_][A-Za-z0-9_]*)")
+try:
+    from scripts import lean_grammar
+except ImportError:  # executed as `python scripts/<this>.py`
+    import lean_grammar
 
 
 def _sha256_of(path: Path) -> str:
@@ -79,12 +82,10 @@ def verify_certificate(
             continue
         if record.get("sha256") != _sha256_of(lean_file):
             errors.append("SOURCE_DIGEST_DRIFT")
-        text = lean_file.read_text(encoding="utf-8")
-        actual_theorems = [
-            {"name": match.group(1), "line": lineno}
-            for lineno, line in enumerate(text.splitlines(), start=1)
-            if (match := THEOREM_PATTERN.match(line))
-        ]
+        # Same grammar as the generator, deliberately: the verifier re-derives the
+        # inventory from disk, but disagreeing about what a declaration looks like
+        # turns a grammar drift into a release-blocking error.
+        actual_theorems = lean_grammar.theorems(lean_file.read_text(encoding="utf-8"))
         theorem_total += len(actual_theorems)
         if record.get("theorems") != actual_theorems:
             errors.append("THEOREM_INVENTORY_DRIFT")

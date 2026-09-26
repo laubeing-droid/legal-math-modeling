@@ -15,14 +15,15 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
-import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List
 
 LEAN_SOURCE_DIR = Path("proofs/lean/juris_lean/JurisLean")
 
-THEOREM_PATTERN = re.compile(r"^theorem\s+([A-Za-z_][A-Za-z0-9_]*)")
+# Declaration grammar lives in scripts/lean_grammar.py and is shared with the
+# certificate verifier: a naive `^theorem` here once counted 35 fewer declarations
+# than the source inventory saw in the same files.
 
 INVENTORY_STATUS = "source_inventory_not_release_certificate"
 RELEASE_BLOCKED_STATUS = "RELEASE_BLOCKED_NO_CI_EVIDENCE"
@@ -31,6 +32,14 @@ RELEASE_SCHEMA = "spec-formal-release-certificate-v2"
 
 def _sha256_of(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def _import_grammar():
+    try:
+        from scripts import lean_grammar
+    except ImportError:  # executed as `python scripts/<this>.py`
+        import lean_grammar
+    return lean_grammar
 
 
 def collect_source_inventory(repo_root: Path) -> Dict[str, Any]:
@@ -45,12 +54,7 @@ def collect_source_inventory(repo_root: Path) -> Dict[str, Any]:
     lean_dir = root / LEAN_SOURCE_DIR
     sources: List[Dict[str, Any]] = []
     for lean_file in sorted(lean_dir.rglob("*.lean")):
-        theorems: List[Dict[str, Any]] = []
-        text = lean_file.read_text(encoding="utf-8")
-        for lineno, line in enumerate(text.splitlines(), start=1):
-            match = THEOREM_PATTERN.match(line)
-            if match:
-                theorems.append({"name": match.group(1), "line": lineno})
+        theorems = _import_grammar().theorems(lean_file.read_text(encoding="utf-8"))
         sources.append(
             {
                 "path": lean_file.relative_to(root).as_posix(),

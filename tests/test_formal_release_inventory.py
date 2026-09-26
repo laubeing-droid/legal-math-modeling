@@ -39,6 +39,35 @@ def test_generated_inventory_binds_every_lean_source_and_theorem() -> None:
     )
 
 
+def test_certificate_and_inventory_agree_declaration_by_declaration() -> None:
+    """Two release artifacts, one counting rule.
+
+    The certificate used to report 1847 declarations where the inventory reported
+    1882 for the identical file set: it ignored `@[...]`-prefixed theorems, counted
+    keywords inside comments, and truncated dotted names at the dot. Aggregating the
+    same way is not enough, so this compares the per-file name sets.
+    """
+
+    manifest = json.loads(
+        (REPO_ROOT / "docs/formal-release/theorem_inventory_v3.json").read_text(encoding="utf-8")
+    )
+    by_path = {f["path"]: f for f in manifest["files"]}
+    inventory = collect_source_inventory(REPO_ROOT)
+
+    assert inventory["theorem_declaration_count"] == sum(
+        by_path[s["path"]]["theorem_count"] for s in inventory["sources"]
+    )
+    for source in inventory["sources"]:
+        declared = {
+            d["name"] for d in by_path[source["path"]]["declarations"] if d["kind"] == "theorem"
+        }
+        listed = {t["name"] for t in source["theorems"]}
+        assert listed == declared, (
+            f"{source['path']}: certificate misses {sorted(declared - listed)[:3]}, "
+            f"invents {sorted(listed - declared)[:3]}"
+        )
+
+
 def test_certificate_source_scope_reaches_nested_modules() -> None:
     """A non-recursive glob once made this certificate see 96 of 217 package files.
 

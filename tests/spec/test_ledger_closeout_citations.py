@@ -55,7 +55,9 @@ def _missing_paths(table: str) -> list[str]:
     for token in BACKTICK_RE.findall(table):
         if "/" not in token or token.startswith("git ") or "..." in token or "{" in token:
             continue
-        candidate = token.split(" ")[0]
+        # `tests/x.py::test_y` is the most precise citation there is, so support it:
+        # the file part is checked here and the test name by the gate above.
+        candidate = token.split(" ")[0].split("::")[0]
         if candidate.startswith(("docs/", "proofs/", "scripts/", "theory/", "tests/")):
             if not (ROOT / candidate).exists():
                 missing.append(candidate)

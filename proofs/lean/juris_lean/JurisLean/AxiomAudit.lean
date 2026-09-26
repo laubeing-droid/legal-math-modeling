@@ -136,8 +136,6 @@ open HornSystem
 #print axioms JurisLean.Genealogy.Part4.P080.plea_skip_fails_closed
 #print axioms JurisLean.Genealogy.Part4.P081.fraud_voids_tactic
 #print axioms JurisLean.Genealogy.Part4.P082.preservation_without_ground_infeasible
-#print axioms JurisLean.Genealogy.Part4.P083.evpi_descending_witness
-#print axioms JurisLean.Genealogy.Part4.P083.evpi_tie_stability_witness
 #print axioms JurisLean.Genealogy.Part4.P084.appeal_ev_positive_witness
 #print axioms JurisLean.Genealogy.Part4.P084.appeal_ev_negative_witness
 #print axioms JurisLean.Genealogy.Part4.P085.undisclosed_fee_none
@@ -199,9 +197,6 @@ open HornSystem
 #print axioms JurisLean.Genealogy.General.P042_grade_capped
 #print axioms JurisLean.Genealogy.General.P073_le_maxNat_left
 #print axioms JurisLean.Genealogy.General.P073_mergedDeclaration_low_le_high
-#print axioms JurisLean.Genealogy.General.P083_insertEvpi_length
-#print axioms JurisLean.Genealogy.General.P083_sortEvpi_length
-#print axioms JurisLean.Genealogy.General.P083_sortedDescending_witness
 #print axioms JurisLean.Genealogy.General.P084_mul_monotone_probability_strict
 #print axioms JurisLean.Genealogy.General.P084_appealWorthwhile_of_mul_le
 #print axioms JurisLean.Genealogy.General.P084_appealWorthwhile_monotone_strict
@@ -359,9 +354,9 @@ open HornSystem
 #print axioms JurisLean.Genealogy.TSpectrum.T126.T126_tendency_stratified
 #print axioms JurisLean.Genealogy.TSpectrum.T127.T127_report_generated
 
-/-! P083 general descending correctness (split_ifs). -/
-
-/-! P083 general descending correctness (Prop version). -/
+/-! P083 complete (Decidable-match version). -/
+#print axioms JurisLean.Genealogy.General.P083_insertEvpi_length
+#print axioms JurisLean.Genealogy.General.P083_sortEvpi_length
 #print axioms JurisLean.Genealogy.General.P083_insertEvpi_preserves_sortedP
 #print axioms JurisLean.Genealogy.General.P083_sortEvpi_sortedP
-#print axioms JurisLean.Genealogy.General.P083_sortedDesc_iff
+#print axioms JurisLean.Genealogy.General.P083_sortedDesc_witness

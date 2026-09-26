@@ -141,7 +141,7 @@ theorem P073_mergedDeclaration_low_le_high
 
 
 /-! ============================================================
-    P083 — EVPI 插入排序（完整一般化：长度+降序均一般式）
+    P083 — EVPI 插入排序（Prop 级 if，完整一般化）
     ============================================================ -/
 
 structure P083EvpiItem where
@@ -149,15 +149,16 @@ structure P083EvpiItem where
   evpi : Nat
 deriving DecidableEq
 
-/-- EVPI 从高到低插入（直接 match Decidable，无 decide/Bool 阻抗）。 -/
+/-- EVPI 从高到低插入（Prop 级 if-then-else，if_pos/if_neg 直接可用）。 -/
 def insertEvpi
     (x : P083EvpiItem) :
     List P083EvpiItem → List P083EvpiItem
   | [] => [x]
   | y :: ys =>
-      match Nat.decLt x.evpi y.evpi with
-      | isTrue _ => y :: insertEvpi x ys
-      | isFalse _ => x :: y :: ys
+      if x.evpi < y.evpi then
+        y :: insertEvpi x ys
+      else
+        x :: y :: ys
 
 /-- EVPI 插入排序。 -/
 def sortEvpi :
@@ -174,13 +175,13 @@ theorem P083_insertEvpi_length
   induction xs with
   | nil => rfl
   | cons y ys ih =>
-      cases Nat.decLt x.evpi y.evpi with
-      | isTrue _ =>
-          show (y :: insertEvpi x ys).length = (y :: ys).length + 1
+      cases Nat.lt_or_ge x.evpi y.evpi with
+      | inl _ =>
+          rw [insertEvpi, if_pos]
           simp only [List.length_cons, ih]
           omega
-      | isFalse _ =>
-          show (x :: y :: ys).length = (y :: ys).length + 1
+      | inr _ =>
+          rw [insertEvpi, if_neg]
           simp only [List.length_cons]
           omega
 
@@ -193,7 +194,7 @@ theorem P083_sortEvpi_length
   | cons x xs ih =>
       simp only [sortEvpi, P083_insertEvpi_length, ih]
 
-/-- 降序谓词（Prop 版——合取分解直接工作）。 -/
+/-- 降序谓词（Prop 版）。 -/
 def sortedDescP : List P083EvpiItem → Prop
   | [] => True
   | [_] => True
@@ -209,32 +210,30 @@ theorem P083_insertEvpi_preserves_sortedP (x : P083EvpiItem) :
       trivial
   | cons y ys' ih =>
       intro hsorted
-      cases Nat.decLt x.evpi y.evpi with
-      | isFalse _ =>
+      cases Nat.lt_or_ge x.evpi y.evpi with
+      | inr hyx =>
           -- y ≤ x：insert 在前
-          have hle : y.evpi ≤ x.evpi := by omega
-          show sortedDescP (x :: y :: ys')
+          rw [insertEvpi, if_neg (by omega : ¬(x.evpi < y.evpi))]
           simp only [sortedDescP]
-          exact ⟨hle, hsorted⟩
-      | isTrue hxy =>
+          exact ⟨hyx, hsorted⟩
+      | inl hxy =>
           -- x < y：insert 在后
+          rw [insertEvpi, if_pos hxy]
           cases ys' with
           | nil =>
-              show sortedDescP (y :: [x])
-              simp only [sortedDescP]
+              simp only [insertEvpi, sortedDescP]
               exact ⟨Nat.le_of_lt hxy, trivial⟩
           | cons z zs =>
               simp only [sortedDescP] at hsorted
-              cases Nat.decLt x.evpi z.evpi with
-              | isFalse _ =>
+              cases Nat.lt_or_ge x.evpi z.evpi with
+              | inr hxz =>
                   -- z ≤ x：insert head = x
-                  have hzx : z.evpi ≤ x.evpi := by omega
-                  show sortedDescP (y :: x :: z :: zs)
+                  rw [insertEvpi, if_neg (by omega : ¬(x.evpi < z.evpi))]
                   simp only [sortedDescP]
-                  exact ⟨Nat.le_of_lt hxy, hzx, hsorted⟩
-              | isTrue _ =>
+                  exact ⟨Nat.le_of_lt hxy, hxz, hsorted⟩
+              | inl _ =>
                   -- x < z：insert head = z
-                  show sortedDescP (y :: z :: insertEvpi x zs)
+                  rw [insertEvpi, if_pos (Nat.lt_of_lt_of_le hxy (by omega))]
                   simp only [sortedDescP]
                   exact ⟨hsorted.1, ih hsorted⟩
 

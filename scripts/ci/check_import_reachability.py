@@ -67,6 +67,7 @@ PENDING_CI_MODULES: dict[str, str] = {
         "LinearScorer",
         "Disclosure",
         "Waterfall",
+        "CohortInterval",
     )
 }
 

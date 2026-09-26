@@ -92,6 +92,14 @@ MODULES: dict[str, tuple[str, tuple[str, ...], str]] = {
          "allocate_concrete_remainder"),
         "P-097",
     ),
+    "interval_for_step_three": (
+        "Mandate/CohortInterval.lean",
+        ("low_le_high", "low_num_le_den", "high_num_le_den", "low_num_lt_high_num",
+         "low_le_added_success", "high_le_added_success", "low_antitone_in_size",
+         "intervalOf_none_without_cohort", "intervalOf_defined",
+         "interval_of_empty_successes_legal"),
+        "P-112",
+    ),
     "game_tree": (
         "Mandate/GameTree.lean",
         ("value_leaf", "value_nil", "value_cons", "value_ge_head",
@@ -103,6 +111,7 @@ MODULES: dict[str, tuple[str, tuple[str, ...], str]] = {
 # Modules that must *consume* the kernel instead of restating its carriers.
 KERNEL_CONSUMERS = (
     "Mandate/CohortRate.lean",
+    "Mandate/CohortInterval.lean",
     "Mandate/StructureInvariants.lean",
     "Mandate/GameTree.lean",
 )
@@ -207,6 +216,9 @@ GENERAL_NOT_WITNESS: dict[str, tuple[str, ...]] = {
     "disclosure_gate_reads_input": ("occurs_append", "occurs_head", "occurs_monotone",
                                     "not_covers_empty_registry",
                                     "compliant_true_iff_covers"),
+    "interval_for_step_three": ("low_le_high", "low_num_lt_high_num",
+                                "low_le_added_success", "high_le_added_success",
+                                "low_antitone_in_size", "intervalOf_defined"),
     "waterfall_conservation": ("conservation", "paidOut_le_payment",
                                "allocate_not_constant", "allocate_no_debts",
                                "allocate_concrete_overshoot"),

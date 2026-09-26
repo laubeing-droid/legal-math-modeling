@@ -14034,6 +14034,266 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "successes"
+    },
+    {
+     "kind": "structure",
+     "name": "Rate"
+    },
+    {
+     "kind": "def",
+     "name": "rateOfCohort"
+    },
+    {
+     "kind": "theorem",
+     "name": "successes_le_length"
+    },
+    {
+     "kind": "theorem",
+     "name": "rateOfCohort_defined"
+    },
+    {
+     "kind": "theorem",
+     "name": "rateOfCohort_none_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "rateOfCohort_num_le_den"
+    },
+    {
+     "kind": "theorem",
+     "name": "rate_le_addedSuccess"
+    },
+    {
+     "kind": "theorem",
+     "name": "addedFailure_le_rate"
+    },
+    {
+     "kind": "theorem",
+     "name": "rate_le_self"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/CohortRate.lean",
+   "print_axioms_targets": [],
+   "sha256": "bf685914ee24ecc4468eff7cc59f1fd783e4ed9e1a119fb84abbbc37799ab3bb",
+   "size_bytes": 4029,
+   "theorem_count": 7,
+   "theorem_count_bol_convention": 7
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "step"
+    },
+    {
+     "kind": "def",
+     "name": "approx"
+    },
+    {
+     "kind": "theorem",
+     "name": "approx_closed"
+    },
+    {
+     "kind": "def",
+     "name": "computedBound"
+    },
+    {
+     "kind": "theorem",
+     "name": "approx_error_eq_computedBound"
+    },
+    {
+     "kind": "theorem",
+     "name": "pow_damped"
+    },
+    {
+     "kind": "theorem",
+     "name": "approx_damped"
+    },
+    {
+     "kind": "structure",
+     "name": "DerivedCert"
+    },
+    {
+     "kind": "def",
+     "name": "certificate"
+    },
+    {
+     "kind": "theorem",
+     "name": "certificate_bound_is_computed"
+    },
+    {
+     "kind": "def",
+     "name": "admits"
+    },
+    {
+     "kind": "theorem",
+     "name": "admits_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "not_admits_negative"
+    },
+    {
+     "kind": "theorem",
+     "name": "approx_zero"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/DerivedCertificate.lean",
+   "print_axioms_targets": [],
+   "sha256": "359fd753883448b651ff7dbc72e4c198a240654b59ccd3da3d737ca848d88a15",
+   "size_bytes": 5104,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
+     "name": "Tree"
+    },
+    {
+     "kind": "theorem",
+     "name": "le_max_l"
+    },
+    {
+     "kind": "theorem",
+     "name": "le_max_r"
+    },
+    {
+     "kind": "theorem",
+     "name": "max_zero"
+    },
+    {
+     "kind": "def",
+     "name": "value"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_leaf"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_nil"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_cons"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_singleton"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_ge_head"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_ge_of_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_node_append_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_of_leaves"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_ignores_payoff_renaming_when_dominated"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean",
+   "print_axioms_targets": [],
+   "sha256": "13e8b9ab8232f15978fca311cbf4b71cb25e859d3dffbfa4c447d7e32f6313db",
+   "size_bytes": 4603,
+   "theorem_count": 12,
+   "theorem_count_bol_convention": 12
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "CaseStructure"
+    },
+    {
+     "kind": "def",
+     "name": "sig3"
+    },
+    {
+     "kind": "def",
+     "name": "sum"
+    },
+    {
+     "kind": "theorem",
+     "name": "sig3_relabel_fst"
+    },
+    {
+     "kind": "theorem",
+     "name": "sig3_relabel_snd"
+    },
+    {
+     "kind": "theorem",
+     "name": "sig3_relabel_edges"
+    },
+    {
+     "kind": "theorem",
+     "name": "sig3_sum"
+    },
+    {
+     "kind": "theorem",
+     "name": "sig3_fst_le_sum"
+    },
+    {
+     "kind": "theorem",
+     "name": "sig3_edges_le_sum"
+    },
+    {
+     "kind": "def",
+     "name": "anchored"
+    },
+    {
+     "kind": "def",
+     "name": "unanchored"
+    },
+    {
+     "kind": "theorem",
+     "name": "same_labels"
+    },
+    {
+     "kind": "theorem",
+     "name": "signatures_differ"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
+   "print_axioms_targets": [],
+   "sha256": "2fbfeb5532030a9a871e097a27a31d719c6b8cfe8bef440b1f3c209bf118d408",
+   "size_bytes": 4086,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
+  },
+  {
+   "declarations": [
+    {
      "kind": "inductive",
      "name": "NormKindM4"
     },
@@ -17939,22 +18199,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1795,
-   "file_count": 216,
+   "counted_declaration_count": 1830,
+   "file_count": 220,
    "lemma_count": 24,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1771,
-   "theorem_count_bol_convention": 1735
+   "theorem_count": 1806,
+   "theorem_count_bol_convention": 1770
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1776,
-   "file_count": 201,
+   "counted_declaration_count": 1811,
+   "file_count": 205,
    "lemma_count": 17,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1759,
-   "theorem_count_bol_convention": 1723
+   "theorem_count": 1794,
+   "theorem_count_bol_convention": 1758
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -18130,6 +18390,10 @@
    "proofs/lean/juris_lean/JurisLean/LegalSpecWellFormed.lean",
    "proofs/lean/juris_lean/JurisLean/LegalSyntax.lean",
    "proofs/lean/juris_lean/JurisLean/LegalWellFormed.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/CohortRate.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/DerivedCertificate.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
    "proofs/lean/juris_lean/JurisLean/PermissionConflict.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalEnvelopeSpec.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalNoninterference.lean",
@@ -18344,6 +18608,10 @@
    "proofs/lean/juris_lean/JurisLean/LegalSpecWellFormed.lean",
    "proofs/lean/juris_lean/JurisLean/LegalSyntax.lean",
    "proofs/lean/juris_lean/JurisLean/LegalWellFormed.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/CohortRate.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/DerivedCertificate.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
    "proofs/lean/juris_lean/JurisLean/PermissionConflict.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalEnvelopeSpec.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalNoninterference.lean",
@@ -18428,19 +18696,24 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "2cdc40f852ca2afe7bfe37d10e9875833e561902dee068b69c0f66a195ec6f63",
+ "source_inventory_digest": "5e362cd349155e80ec295281dacacf0ca50bbe39df6c0c8bf3ba8769e1459c23",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "main",
-  "commit": "c5c121914efaef3280d3a675f6efad3025ed6387",
-  "tree": "37dbd3c013a45b48de8d96bc5fd42fb1758f155f"
+  "branch": "ci/mandate-wave1",
+  "commit": "f94b7394c5f3334b21187344d20de977c601ce7b",
+  "tree": "c2ce15deb6dc2ae305ba36370b532d67ca269513"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
-  "files_total": 216,
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Mandate/CohortRate.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
+  "files_total": 220,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

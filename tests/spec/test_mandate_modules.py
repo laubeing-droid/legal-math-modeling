@@ -26,14 +26,14 @@ LEDGER = ROOT / "docs" / "master-plan" / "03_证明战役台账.md"
 MODULES: dict[str, tuple[str, tuple[str, ...], str]] = {
     "win_rate_step_two": (
         "Mandate/CohortRate.lean",
-        ("successes_le_length", "rateOfCohort_defined", "rateOfCohort_empty",
+        ("successes_le_length", "rateOfCohort_defined", "rateOfCohort_none_iff",
          "rateOfCohort_num_le_den", "rate_le_addedSuccess", "addedFailure_le_rate"),
         "P-112",
     ),
     "structural_comparison": (
         "Mandate/StructureInvariants.lean",
         ("sig3_relabel_fst", "sig3_sum", "same_labels", "signatures_differ",
-         "sig3_edges_le_sum"),
+         "sig3_edges_le_sum", "sig3_fst_le_sum", "sig3_relabel_edges"),
         "P-109",
     ),
     "computed_certificate": (
@@ -111,16 +111,38 @@ def test_mandate_modules_use_no_forbidden_constructs() -> None:
         assert not hits, f"{item}: {rel} has {hits[:3]}"
 
 
+GENERAL_NOT_WITNESS: dict[str, tuple[str, ...]] = {
+    "win_rate_step_two": ("successes_le_length", "rateOfCohort_defined",
+                          "rateOfCohort_none_iff", "rateOfCohort_num_le_den",
+                          "rate_le_addedSuccess", "addedFailure_le_rate"),
+    "structural_comparison": ("sig3_relabel_fst", "sig3_relabel_snd",
+                              "sig3_relabel_edges", "sig3_sum",
+                              "sig3_fst_le_sum", "sig3_edges_le_sum"),
+    "computed_certificate": ("approx_closed", "pow_damped",
+                             "approx_error_eq_computedBound", "approx_damped",
+                             "certificate_bound_is_computed", "admits_iff",
+                             "not_admits_negative"),
+    "game_tree": ("value_cons", "value_ge_head", "value_ge_of_mem",
+                  "value_node_append_le", "value_of_leaves",
+                  "value_ignores_payoff_renaming_when_dominated"),
+}
+
+
 def test_mandate_modules_prove_general_statements_not_witnesses() -> None:
-    """The disease being replaced was `rfl` over a record field: demand binders."""
-    for item, (rel, required, _concept) in MODULES.items():
+    """The disease being replaced was `rfl` over a record field: demand binders.
+
+    Only the listed theorems are held to this, and each module lists at least
+    five, so a module cannot pass by carrying one quantified lemma plus witnesses.
+    """
+    for item, (rel, _req, _concept) in MODULES.items():
+        names = GENERAL_NOT_WITNESS[item]
+        assert len(names) >= 5, item
         text = _strip_comments(_text(rel))
-        for name in required:
-            m = re.search(r"^theorem\s+" + re.escape(name) + r"\b(.*?)$", text, re.M)
-            assert m, (item, name)
-            stmt = text[m.start():]
-            stmt = stmt.split(":=", 1)[0]
-            assert re.search(r"[({]|∀", stmt), f"{item}::{name} binds no variable"
+        for name in names:
+            m = re.search(r"^theorem\s+" + re.escape(name), text, re.M)
+            assert m, f"{item}: general theorem {name} absent"
+            rest = text[m.start():].split(":=", 1)[0]
+            assert re.search(r"[({]|∀", rest), f"{item}::{name} binds no variable"
 
 
 def test_mandate_modules_are_not_claimed_as_verified() -> None:

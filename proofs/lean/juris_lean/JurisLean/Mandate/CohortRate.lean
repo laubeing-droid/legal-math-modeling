@@ -63,8 +63,22 @@ theorem rateOfCohort_defined (obs : List Bool) (h : obs ≠ []) :
   | nil => exact absurd rfl h
   | cons a as => exact ⟨_, rfl⟩
 
-/-- An empty cohort yields no rate at all. -/
-theorem rateOfCohort_empty : rateOfCohort [] = none := rfl
+/--
+Fail-closed characterisation: step two returns nothing *exactly when* the cohort
+is empty. The one-directional `rateOfCohort [] = none` is not enough — a
+downgraded pipeline that returned a rate for an empty cohort would still satisfy
+it, which is how a synthetic cohort could masquerade as a retrieved one.
+-/
+theorem rateOfCohort_none_iff (obs : List Bool) : rateOfCohort obs = none ↔ obs = [] := by
+  cases obs with
+  | nil => simp [rateOfCohort]
+  | cons a as =>
+      simp only [rateOfCohort]
+      constructor
+      · intro h
+        cases h
+      · intro h
+        cases h
 
 /-- Every rate step two returns lies in the unit interval. -/
 theorem rateOfCohort_num_le_den {obs : List Bool} {r : Rate}

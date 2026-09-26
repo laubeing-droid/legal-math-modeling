@@ -90,6 +90,7 @@ jobs:
         python scripts/ci/generate_t_coverage_ledger.py --check
         python scripts/ci/generate_structure_and_volume_reports.py --check
         python scripts/ci/generate_probability_audit_surface.py --check
+        python scripts/ci/check_import_reachability.py
 
         python scripts/run_mutation_property_gate.py --repo-root . --output mutation-property-report.json
 

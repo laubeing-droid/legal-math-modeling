@@ -37,6 +37,7 @@ import JurisLean.Consolidated.All
 import JurisLean.BusinessRoot.All
 import JurisLean.BusinessRoot.SevenAxis
 import JurisLean.BusinessRoot.SevenAxisCases
+import JurisLean.FullMath.All
 import JurisLean.KernelV3
 import JurisLean.Hohfeld
 import JurisLean.Genealogy.All
@@ -44,3 +45,53 @@ import JurisLean.Genealogy.TSpectrum.Batch1
 import JurisLean.Genealogy.TSpectrum.Batch2
 import JurisLean.Genealogy.TSpectrum.Batch3
 import JurisLean.Genealogy.TSpectrum.Batch4
+
+-- BEGIN GENERATED reachability block (check_import_reachability.py --write)
+-- Whatever is not an explicit standalone driver must be reachable from this file,
+-- otherwise `lake build` skips it while counts and papers still include it.
+import JurisLean.ASPWitness
+import JurisLean.ArgumentCompilerSpec
+import JurisLean.AuthorityLattice
+import JurisLean.BackendContract
+import JurisLean.BanachCertificate
+import JurisLean.BanachComplete
+import JurisLean.BanachContraction
+import JurisLean.BanachFixedPoint
+import JurisLean.BanachScratch
+import JurisLean.BanachWeightedNorm
+import JurisLean.CanonicalSerialization
+import JurisLean.CertificateCheckerV2
+import JurisLean.CertificateV2
+import JurisLean.Consolidated.Audit
+import JurisLean.ContractionCondition
+import JurisLean.DefeasiblePriority
+import JurisLean.ExactNumericContract
+import JurisLean.HornOperationalRefinement
+import JurisLean.HumanResearchReceiptSpec
+import JurisLean.IVLToAAF
+import JurisLean.IVLToASP
+import JurisLean.IVLToHorn
+import JurisLean.IVLToSMT
+import JurisLean.LegalIVLWellFormed
+import JurisLean.LegalSpecNormalize
+import JurisLean.LegalSpecToIVL
+import JurisLean.LegalSpecWellFormed
+import JurisLean.LegalWellFormed
+import JurisLean.PermissionConflict
+import JurisLean.ProposalEnvelopeSpec
+import JurisLean.ProposalNoninterference
+import JurisLean.ReceiptAuthority
+import JurisLean.SMTWitness
+import JurisLean.ScratchApi
+import JurisLean.SolverRouting
+import JurisLean.SourceBundleSpec
+import JurisLean.SourcePathSpec
+import JurisLean.SupZeroLemma
+import JurisLean.TaintNoninterference
+import JurisLean.TemporalApplicability
+import JurisLean.TemporalArithmetic
+import JurisLean.TranslationRefinement
+import JurisLean.TypedAttack
+import JurisLean.UnifiedV21.Audit
+import JurisLean.WeightedSupNorm
+-- END GENERATED reachability block

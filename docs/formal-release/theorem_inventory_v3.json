@@ -4592,6 +4592,82 @@
    "theorem_count_bol_convention": 5
   },
   {
+   "declarations": [],
+   "imports": [
+    "JurisLean.FullMath.Acceptance",
+    "JurisLean.FullMath.Action.IncentiveEnumeration",
+    "JurisLean.FullMath.Action.Mechanisms",
+    "JurisLean.FullMath.Action.RobustDecisions",
+    "JurisLean.FullMath.Action.Settlement",
+    "JurisLean.FullMath.Burden.DomainAgnostic",
+    "JurisLean.FullMath.Burden.Families",
+    "JurisLean.FullMath.Burden.Readiness",
+    "JurisLean.FullMath.Burden.SourceTime",
+    "JurisLean.FullMath.Burden.Standards",
+    "JurisLean.FullMath.Causal.PartialIdentification",
+    "JurisLean.FullMath.CompletionAudit",
+    "JurisLean.FullMath.Composition.CheckerCorrespondence",
+    "JurisLean.FullMath.Composition.DomainChains",
+    "JurisLean.FullMath.Composition.EnvelopePipeline",
+    "JurisLean.FullMath.Composition.RelationalComposition",
+    "JurisLean.FullMath.Composition.ScenarioBridge",
+    "JurisLean.FullMath.Composition.UnifiedCorrectness",
+    "JurisLean.FullMath.Contracts",
+    "JurisLean.FullMath.Core.BusinessSemantics",
+    "JurisLean.FullMath.Core.Foundations",
+    "JurisLean.FullMath.Core.IdentityCodec",
+    "JurisLean.FullMath.Document.ByteSyntax",
+    "JurisLean.FullMath.Evidence.Admission",
+    "JurisLean.FullMath.Evidence.Provenance",
+    "JurisLean.FullMath.Evidence.Withdrawal",
+    "JurisLean.FullMath.Gaps.Gaps",
+    "JurisLean.FullMath.GenericKernels",
+    "JurisLean.FullMath.Logic.ArgumentConstruction",
+    "JurisLean.FullMath.Logic.ArgumentIdentity",
+    "JurisLean.FullMath.Logic.AttackCompilation",
+    "JurisLean.FullMath.Logic.ExtensionProfiles",
+    "JurisLean.FullMath.Logic.HornFixpoint",
+    "JurisLean.FullMath.Logic.QueryAggregation",
+    "JurisLean.FullMath.Numeric.Banach",
+    "JurisLean.FullMath.Numeric.Bellman",
+    "JurisLean.FullMath.Numeric.Convexity",
+    "JurisLean.FullMath.Numeric.IntegerBranch",
+    "JurisLean.FullMath.Numeric.Intervals",
+    "JurisLean.FullMath.Numeric.LinearPrograms",
+    "JurisLean.FullMath.Numeric.Quantities",
+    "JurisLean.FullMath.Probability.BetaInterval",
+    "JurisLean.FullMath.Probability.Brier",
+    "JurisLean.FullMath.Probability.Conditioning",
+    "JurisLean.FullMath.Probability.DirichletPosterior",
+    "JurisLean.FullMath.Probability.E01Contract",
+    "JurisLean.FullMath.Probability.EvidenceIdentity",
+    "JurisLean.FullMath.Probability.FiniteBN",
+    "JurisLean.FullMath.Probability.Misspecification",
+    "JurisLean.FullMath.Probability.ModelAveraging",
+    "JurisLean.FullMath.Probability.PAV",
+    "JurisLean.FullMath.Probability.SplitNoLeak",
+    "JurisLean.FullMath.Probability.UnprocessedMass",
+    "JurisLean.FullMath.Probability.VariableElimination",
+    "JurisLean.FullMath.Representation.FiniteCertificates",
+    "JurisLean.FullMath.Representation.SymbolicRepresentation",
+    "JurisLean.FullMath.Roots.SevenRoots",
+    "JurisLean.FullMath.Tranche1",
+    "JurisLean.FullMath.Tranche2",
+    "JurisLean.FullMath.Tranche3",
+    "JurisLean.FullMath.Tranche4",
+    "JurisLean.FullMath.Tranche5",
+    "JurisLean.FullMath.Tranche6",
+    "JurisLean.FullMath.Tranche7"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/FullMath/All.lean",
+   "print_axioms_targets": [],
+   "sha256": "bb3c97fd62f449a4f56277ae4d9921796267dda4095849fc82fb4403795c6b10",
+   "size_bytes": 3310,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
    "declarations": [
     {
      "kind": "structure",
@@ -18423,7 +18499,7 @@
  "scope_summary": {
   "all_tracked_lean": {
    "counted_declaration_count": 1857,
-   "file_count": 224,
+   "file_count": 225,
    "lemma_count": 24,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
@@ -18432,7 +18508,7 @@
   },
   "juris_lean_package": {
    "counted_declaration_count": 1838,
-   "file_count": 209,
+   "file_count": 210,
    "lemma_count": 17,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
@@ -18518,6 +18594,7 @@
    "proofs/lean/juris_lean/JurisLean/FullMath/Action/Mechanisms.lean",
    "proofs/lean/juris_lean/JurisLean/FullMath/Action/RobustDecisions.lean",
    "proofs/lean/juris_lean/JurisLean/FullMath/Action/Settlement.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/All.lean",
    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/DomainAgnostic.lean",
    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Families.lean",
    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Readiness.lean",
@@ -18740,6 +18817,7 @@
    "proofs/lean/juris_lean/JurisLean/FullMath/Action/Mechanisms.lean",
    "proofs/lean/juris_lean/JurisLean/FullMath/Action/RobustDecisions.lean",
    "proofs/lean/juris_lean/JurisLean/FullMath/Action/Settlement.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/All.lean",
    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/DomainAgnostic.lean",
    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Families.lean",
    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Readiness.lean",
@@ -18927,24 +19005,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "bdd682f1dd0b6fc3ef3a97721dc3865d9499f626301b8f5443f0352f81e440aa",
+ "source_inventory_digest": "547bb0c4cffb635ea3de7aaccd4604c365f200be57d0bfba282ada6849d10b89",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "9e9defcfd5318ddd356ab5410ed10ce9df17a857",
-  "tree": "56bac955f1eebf3b55c106ef5c1a99689d6c32ac"
+  "commit": "264bdde442c2fcdf6c22dfc80d8aa5befb754b03",
+  "tree": "5dc71b5f30760f5cf035699d72a52a2517a811c5"
  },
  "subject_binding": {
-  "binding": "STALE_SUBJECT",
-  "files_diverging_from_subject": [
-   {
-    "path": "proofs/lean/juris_lean/JurisLean.lean",
-    "reason": "bytes differ from subject"
-   }
-  ],
-  "files_total": 224,
+  "binding": "BOUND_TO_SUBJECT",
+  "files_diverging_from_subject": [],
+  "files_total": 225,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": true
+  "worktree_dirty_under_proofs": false
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

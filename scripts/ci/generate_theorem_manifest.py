@@ -90,6 +90,13 @@ def build_scopes(entries: list[dict]) -> dict[str, list[str]]:
     return {
         "ulm_package": ulm,
         "ulm_import_closure": support,
+        # The corpus `lake build` actually elaborates: the JurisLean package.
+        # Reported separately from all_tracked_lean because the latter also
+        # counts standalone draft artifacts that no build ever touches.
+        "juris_lean_package": sorted(
+            e["path"] for e in entries
+            if e["path"].startswith("proofs/lean/juris_lean/JurisLean/")
+        ),
         "all_tracked_lean": sorted(e["path"] for e in entries),
     }
 
@@ -136,26 +143,65 @@ def find_gaps(entries: list[dict]) -> dict:
     }
 
 
+def subject_binding(entries: list[dict], commit: str) -> dict:
+    """Compare the measured bytes against the bytes of the recorded subject.
+
+    The subject used to be stamped from `rev-parse HEAD` while the hashes came
+    from the working tree, so an inventory committed together with its source
+    edit always labelled the *previous* commit. Anything diverging here means
+    the label does not describe the numbers, which is exactly what the paper's
+    evidence discipline cannot tolerate.
+    """
+    diverging = []
+    for e in entries:
+        blob = subprocess.run(
+            ["git", "show", f"{commit}:{e['path']}"],
+            cwd=ROOT, capture_output=True,
+        )
+        if blob.returncode != 0:
+            diverging.append({"path": e["path"], "reason": "absent at subject"})
+        elif hashlib.sha256(blob.stdout).hexdigest() != e["sha256"]:
+            diverging.append({"path": e["path"], "reason": "bytes differ from subject"})
+    porcelain = git("status", "--porcelain", "--", "proofs")
+    return {
+        "rule": "every recorded sha256 must equal git show <subject>:<path>",
+        "worktree_dirty_under_proofs": bool(porcelain.strip()),
+        "files_total": len(entries),
+        "files_diverging_from_subject": diverging,
+        "binding": "BOUND_TO_SUBJECT" if not diverging else "STALE_SUBJECT",
+    }
+
+
 def generate() -> dict:
     entries = [parse(p) for p in tracked_lean()]
     scopes = build_scopes(entries)
+    commit = git("rev-parse", "HEAD")
     return {
         "inventory_version": VERSION,
         "hash_contract": HASH_CONTRACT,
         "status": "static_source_inventory_not_release_certificate",
         "generated_by": "scripts/ci/generate_theorem_manifest.py",
-        "subject": {"commit": git("rev-parse", "HEAD"),
+        "subject": {"commit": commit,
                     "tree": git("rev-parse", "HEAD^{tree}"),
                     "branch": git("rev-parse", "--abbrev-ref", "HEAD")},
+        "subject_binding": subject_binding(entries, commit),
+        "subject_binding_usage": (
+            "binding == BOUND_TO_SUBJECT is required before any count here is quoted "
+            "as a bound claim; STALE_SUBJECT means the label points at a commit whose "
+            "bytes are not the bytes that were counted."
+        ),
         "authority_note": (
             "Counts are static text measurements over git-tracked files at the "
             "recorded subject. They are not Lean elaboration evidence; build and "
             "axiom status is CI_NOT_RUN until an authorised GitHub Actions run "
-            "binds them."
+            "binds them. subject_binding says whether the subject label actually "
+            "describes the measured bytes; a count whose label is stale may not "
+            "be quoted as a bound claim."
         ),
         "scope_definitions": {
             "ulm_package": "Files named ULM*.lean, including audit drivers.",
             "ulm_import_closure": "Files the ULM package reaches through JurisLean imports.",
+            "juris_lean_package": "Files under JurisLean/, i.e. the corpus lake build elaborates.",
             "all_tracked_lean": "Every git-tracked .lean file under proofs/.",
         },
         "scopes": scopes,
@@ -197,12 +243,28 @@ def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--output", default="docs/formal-release/theorem_inventory_v3.json")
     ap.add_argument("--verify", help="re-check a previously written inventory")
+    ap.add_argument(
+        "--require-bound",
+        action="store_true",
+        help="refuse to write unless every recorded sha256 equals the subject blob",
+    )
     args = ap.parse_args()
 
     if args.verify:
         return verify(resolve(args.verify))
 
     doc = generate()
+    binding = doc["subject_binding"]
+    stale = binding["files_diverging_from_subject"]
+    if stale and args.require_bound:
+        print(
+            f"subject {doc['subject']['commit'][:12]} does not describe {len(stale)} "
+            f"measured file(s); commit the source change and regenerate.",
+            file=sys.stderr,
+        )
+        for item in stale[:10]:
+            print(f"  {item['path']}: {item['reason']}", file=sys.stderr)
+        return 2
     doc["source_inventory_digest"] = inventory_digest(doc)
     out = resolve(args.output)
     out.parent.mkdir(parents=True, exist_ok=True)

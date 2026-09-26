@@ -68,6 +68,9 @@ theorem pricingFunction_is_contraction
 
 -- 使用 Mathlib 的 Function.BanachContraction 证明存在唯一不动点
 -- 需要证明 EffectiveNodes 是完备度量空间（ℝ 是完备的）
+-- UNPROVED TARGET: open goal, kept commented out so no `sorry` closes a goal
+-- and nothing here is counted as a proved statement.
+/-
 theorem pricingFunction_has_unique_fixed_point
   (β T : ℝ)
   (hβ : 0 < β ∧ β < 1)
@@ -92,11 +95,11 @@ theorem pricingFunction_has_unique_fixed_point
     simp [f]
     have h := h_lipschitz x y
     simp [dist] at h
-    -- 需要转换 dist 和 edist 的关系
-    sorry
+    -- blocked on: dist ↔ edist conversion for the weighted sup norm
   -- 应用不动点定理
   have h_fixed := Function.BanachContraction.existsUniqueFixedPoint' f h_lip h_complete
   exact h_fixed
+-/
 
 /- __epistemic_status__
 status: TOOLCHAIN_PENDING

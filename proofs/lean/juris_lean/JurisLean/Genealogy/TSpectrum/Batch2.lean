@@ -11,8 +11,10 @@ T21–T40
 - 每项建立最小形式载体；
 - 每项至少一条正面 theorem；
 - 不把结构层 theorem 冒充完整文献级/实体法级证明；
-- 禁止 sorry / admit / axiom / native_decide；
-- tactic 限定在既定白名单。
+- 禁止 sorry / admit / axiom / native_decide：由 CI 的
+  `python scripts/scan_lean_guards.py --all-tracked` 强制执行（注释剥离后扫描）；
+- 本批 tactic 限定在 rfl / decide / cases / simp / induction：写作约定，由
+  scan_lean_guards.py --report 逐文件统计公开，仓库没有门禁 tactic 白名单。
 -/
 
 

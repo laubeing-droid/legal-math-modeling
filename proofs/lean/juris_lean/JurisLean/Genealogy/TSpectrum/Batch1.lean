@@ -11,8 +11,11 @@ T01–T20
 - 每项均有最小形式载体；
 - 每项至少有一条正面 theorem；
 - 本批只闭合“结构纪律层”，不把尚未形式化的强语义假装为已证明；
-- 禁止 sorry / admit / axiom / native_decide；
-- tactic 仅使用白名单中的 rfl / decide / cases / simp / induction；
+- 禁止 sorry / admit / axiom / native_decide：由 CI 的
+  `python scripts/scan_lean_guards.py --all-tracked` 强制执行（注释剥离后扫描，
+  含注释掉的 sorry 不计，未注释的立即 fail-closed）；
+- 本批 tactic 只用 rfl / decide / cases / simp / induction：这是本批自我约束的
+  写作约定，由 scan_lean_guards.py 的 --report 逐文件统计公开，不是门禁白名单；
 - 其余证明尽量直接使用项、字段投影和递归子项。
 -/
 
@@ -1065,6 +1068,8 @@ def AlternationFree
     (summary : SCCSummary) : Prop :=
   checkAF summary = true
 
+-- 强度注：`AlternationFree` 按定义即 `checkAF summary = true`，故本定理是假设回读
+-- （P ⊢ P），不检验 checkAF 对交替链的刻画是否充分；刻画充分性属 T16 未闭合部分。
 theorem check_af_sound
     (summary : SCCSummary)
     (accepted :

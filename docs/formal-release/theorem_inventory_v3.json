@@ -1,5 +1,5 @@
 {
- "authority_note": "Counts are static text measurements over git-tracked files at the recorded subject. They are not Lean elaboration evidence; build and axiom status is CI_NOT_RUN until an authorised GitHub Actions run binds them.",
+ "authority_note": "Counts are static text measurements over git-tracked files at the recorded subject. They are not Lean elaboration evidence; build and axiom status is CI_NOT_RUN until an authorised GitHub Actions run binds them. subject_binding says whether the subject label actually describes the measured bytes; a count whose label is stale may not be quoted as a bound claim.",
  "files": [
   {
    "declarations": [
@@ -42,10 +42,6 @@
     {
      "kind": "theorem",
      "name": "fixed_point"
-    },
-    {
-     "kind": "theorem",
-     "name": "convergence_rate"
     }
    ],
    "imports": [
@@ -54,10 +50,10 @@
    "lemma_count": 0,
    "path": "proofs/engineering_proof_artifacts/banach/BanachEffectiveNodes.lean",
    "print_axioms_targets": [],
-   "sha256": "dbe44cdf3f89811006c099639ebb271971fdaeb653dd6f7121917d6d0bdb9e2f",
-   "size_bytes": 6051,
-   "theorem_count": 9,
-   "theorem_count_bol_convention": 9
+   "sha256": "6a423590bfe53310d820f598916ccf716b4d5d28ec49b3bc42dcac0424932d92",
+   "size_bytes": 6307,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
   },
   {
    "declarations": [],
@@ -9474,8 +9470,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/General.lean",
    "print_axioms_targets": [],
-   "sha256": "9ca46001cae762d3cacf67590ddf43d3c59769f3666b2d9749d0ea5a1046f158",
-   "size_bytes": 16304,
+   "sha256": "f2b78ffc2247bd03648a024568f1e30483acbb0db642fdc94b393b2865fb14a1",
+   "size_bytes": 16457,
    "theorem_count": 22,
    "theorem_count_bol_convention": 22
   },
@@ -9802,8 +9798,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Part1.lean",
    "print_axioms_targets": [],
-   "sha256": "742a7609053971e6cbb5ef0e1003d16af9bb7c6fd39b434ca71497d5def65c23",
-   "size_bytes": 9075,
+   "sha256": "f2c95b318523c5a64719eb5a9f31656fc82c88cedd9de9a1aa888594856c31d3",
+   "size_bytes": 9413,
    "theorem_count": 17,
    "theorem_count_bol_convention": 17
   },
@@ -10083,8 +10079,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Part3.lean",
    "print_axioms_targets": [],
-   "sha256": "a7c54c0da5d7cece11323cb6666318cddc40492eba48ce90b8660ced2e426e36",
-   "size_bytes": 7650,
+   "sha256": "8cfbc96dac6a566bd2c2620a28eed7895a6f68266599be79018a485cdba4c15a",
+   "size_bytes": 8005,
    "theorem_count": 18,
    "theorem_count_bol_convention": 18
   },
@@ -10933,8 +10929,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
    "print_axioms_targets": [],
-   "sha256": "67660c69455cfa64d519395059e0d35f31c4b86bf2e385941fbdd7c1da1f57cf",
-   "size_bytes": 11712,
+   "sha256": "e4291a6ddb16a5f7cff62a173dfb18abf48dc45be39cc5de9d854b29060de7b1",
+   "size_bytes": 12031,
    "theorem_count": 23,
    "theorem_count_bol_convention": 23
   },
@@ -11323,8 +11319,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch1.lean",
    "print_axioms_targets": [],
-   "sha256": "ccec660446d179c6d2b4cd242654d5894f7d4781861f1217396f3a255ba8e276",
-   "size_bytes": 36606,
+   "sha256": "a884461b9d6685596a1213311d34b77b069fefcaf970e89ef77afa2e760273c2",
+   "size_bytes": 37114,
    "theorem_count": 21,
    "theorem_count_bol_convention": 21
   },
@@ -11669,8 +11665,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch2.lean",
    "print_axioms_targets": [],
-   "sha256": "3c55e4457e32c86cc908fd2a2febe2426085d41aca0fd264aa6428ae1d686af9",
-   "size_bytes": 37774,
+   "sha256": "4f6c8727701b39c47964e92c9333fe60eda41e06f573ea67e2e9a0d5525f6f00",
+   "size_bytes": 38024,
    "theorem_count": 23,
    "theorem_count_bol_convention": 23
   },
@@ -11919,8 +11915,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch3.lean",
    "print_axioms_targets": [],
-   "sha256": "13018d52c133f3be2ddd760c628ec2357d747e3e05d962ddeebe5cf3d85848b9",
-   "size_bytes": 7994,
+   "sha256": "3a92d048f753e8ab9985f78e970cd2f42bd9429e32a23b351c8b6e675c72a32b",
+   "size_bytes": 8209,
    "theorem_count": 20,
    "theorem_count_bol_convention": 20
   },
@@ -17721,10 +17717,6 @@
     {
      "kind": "theorem",
      "name": "pricingFunction_is_contraction"
-    },
-    {
-     "kind": "theorem",
-     "name": "pricingFunction_has_unique_fixed_point"
     }
    ],
    "imports": [
@@ -17733,10 +17725,10 @@
    "lemma_count": 1,
    "path": "proofs/strict_proof_baseline/lean/BanachEffectiveNodes.lean",
    "print_axioms_targets": [],
-   "sha256": "3f751b28477459a178cfccd1fab831a7aeaf5455e0a7d4ee7b55c359082a7a6f",
-   "size_bytes": 3801,
-   "theorem_count": 2,
-   "theorem_count_bol_convention": 2
+   "sha256": "cf6ba101d9285bac28ebb7fe67f95d1065d307d3852335dc481e0183cf0df1ea",
+   "size_bytes": 3955,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
   },
   {
    "declarations": [
@@ -17751,10 +17743,6 @@
     {
      "kind": "def",
      "name": "IsGaloisConnection"
-    },
-    {
-     "kind": "theorem",
-     "name": "finite_galois_connection_exists"
     }
    ],
    "imports": [
@@ -17763,10 +17751,10 @@
    "lemma_count": 0,
    "path": "proofs/strict_proof_baseline/lean/FiniteGaloisAdjunction.lean",
    "print_axioms_targets": [],
-   "sha256": "f02c39f43b5539c7e3196134bbb909ae281eadc8bda52f39f78d75aef35642ad",
-   "size_bytes": 5627,
-   "theorem_count": 1,
-   "theorem_count_bol_convention": 1
+   "sha256": "9ec5b732ed06f2b931f28e9bddc4c0e44fe06e3d6f5ccf7dc4ac93342fe39076",
+   "size_bytes": 5837,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
   },
   {
    "declarations": [
@@ -17803,10 +17791,6 @@
      "name": "TotalFunctor"
     },
     {
-     "kind": "theorem",
-     "name": "no_total_semantics_preserving_functor"
-    },
-    {
      "kind": "lemma",
      "name": "check_no_functor_instance"
     }
@@ -17817,10 +17801,10 @@
    "lemma_count": 1,
    "path": "proofs/strict_proof_baseline/lean/FiniteRosetta.lean",
    "print_axioms_targets": [],
-   "sha256": "f0eb4303abb7fb9a98ed794df80d8b98f5c6207c0cbd6f2222512e30b0305f8b",
-   "size_bytes": 5772,
-   "theorem_count": 1,
-   "theorem_count_bol_convention": 1
+   "sha256": "3d475a562e6a5e79f4d18859a92deed41f098a9e768842ad3b3f0ca8d1159672",
+   "size_bytes": 6039,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
   },
   {
    "declarations": [],
@@ -17865,18 +17849,28 @@
  "inventory_version": "source-inventory-v3",
  "scope_definitions": {
   "all_tracked_lean": "Every git-tracked .lean file under proofs/.",
+  "juris_lean_package": "Files under JurisLean/, i.e. the corpus lake build elaborates.",
   "ulm_import_closure": "Files the ULM package reaches through JurisLean imports.",
   "ulm_package": "Files named ULM*.lean, including audit drivers."
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1799,
+   "counted_declaration_count": 1795,
    "file_count": 216,
    "lemma_count": 24,
    "print_axioms_command_count": 590,
    "print_axioms_distinct_targets": 536,
-   "theorem_count": 1775,
-   "theorem_count_bol_convention": 1739
+   "theorem_count": 1771,
+   "theorem_count_bol_convention": 1735
+  },
+  "juris_lean_package": {
+   "counted_declaration_count": 1776,
+   "file_count": 201,
+   "lemma_count": 17,
+   "print_axioms_command_count": 590,
+   "print_axioms_distinct_targets": 536,
+   "theorem_count": 1759,
+   "theorem_count_bol_convention": 1723
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -18116,6 +18110,209 @@
    "proofs/strict_proof_baseline/p0c_banach/BanachEffectiveNodes.lean",
    "proofs/strict_proof_baseline/p0d_privilege_epsilon/FiniteGaloisAdjunction.lean"
   ],
+  "juris_lean_package": [
+   "proofs/lean/juris_lean/JurisLean/ASPWitness.lean",
+   "proofs/lean/juris_lean/JurisLean/ArgumentCompilerSpec.lean",
+   "proofs/lean/juris_lean/JurisLean/ArgumentSemanticsRegistry.lean",
+   "proofs/lean/juris_lean/JurisLean/AttackDecision.lean",
+   "proofs/lean/juris_lean/JurisLean/AuthorityLattice.lean",
+   "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+   "proofs/lean/juris_lean/JurisLean/BackendContract.lean",
+   "proofs/lean/juris_lean/JurisLean/BanachCertificate.lean",
+   "proofs/lean/juris_lean/JurisLean/BanachComplete.lean",
+   "proofs/lean/juris_lean/JurisLean/BanachContraction.lean",
+   "proofs/lean/juris_lean/JurisLean/BanachEffectiveNodes.lean",
+   "proofs/lean/juris_lean/JurisLean/BanachFixedPoint.lean",
+   "proofs/lean/juris_lean/JurisLean/BanachScratch.lean",
+   "proofs/lean/juris_lean/JurisLean/BanachWeightedNorm.lean",
+   "proofs/lean/juris_lean/JurisLean/Basic.lean",
+   "proofs/lean/juris_lean/JurisLean/BusinessRelations.lean",
+   "proofs/lean/juris_lean/JurisLean/BusinessRelationsAudit.lean",
+   "proofs/lean/juris_lean/JurisLean/BusinessRelationsDelta.lean",
+   "proofs/lean/juris_lean/JurisLean/BusinessRoot/All.lean",
+   "proofs/lean/juris_lean/JurisLean/BusinessRoot/Analytics.lean",
+   "proofs/lean/juris_lean/JurisLean/BusinessRoot/ArtifactParser.lean",
+   "proofs/lean/juris_lean/JurisLean/BusinessRoot/GuardMachine.lean",
+   "proofs/lean/juris_lean/JurisLean/BusinessRoot/InputCodec.lean",
+   "proofs/lean/juris_lean/JurisLean/BusinessRoot/PrincipalChecker.lean",
+   "proofs/lean/juris_lean/JurisLean/BusinessRoot/Root.lean",
+   "proofs/lean/juris_lean/JurisLean/BusinessRoot/RootAudit.lean",
+   "proofs/lean/juris_lean/JurisLean/BusinessRoot/Semantics.lean",
+   "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxis.lean",
+   "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisAudit.lean",
+   "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean",
+   "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
+   "proofs/lean/juris_lean/JurisLean/CertificateChecker.lean",
+   "proofs/lean/juris_lean/JurisLean/CertificateCheckerV2.lean",
+   "proofs/lean/juris_lean/JurisLean/CertificateV2.lean",
+   "proofs/lean/juris_lean/JurisLean/Consolidated/All.lean",
+   "proofs/lean/juris_lean/JurisLean/Consolidated/Audit.lean",
+   "proofs/lean/juris_lean/JurisLean/ContractionCondition.lean",
+   "proofs/lean/juris_lean/JurisLean/DDLDefinitions.lean",
+   "proofs/lean/juris_lean/JurisLean/DefeasiblePriority.lean",
+   "proofs/lean/juris_lean/JurisLean/DungAAF.lean",
+   "proofs/lean/juris_lean/JurisLean/DungDefinitions.lean",
+   "proofs/lean/juris_lean/JurisLean/DungFixedPoint.lean",
+   "proofs/lean/juris_lean/JurisLean/EndToEnd.lean",
+   "proofs/lean/juris_lean/JurisLean/ExactNumericContract.lean",
+   "proofs/lean/juris_lean/JurisLean/FactAdmissionSpec.lean",
+   "proofs/lean/juris_lean/JurisLean/FailureStatus.lean",
+   "proofs/lean/juris_lean/JurisLean/FiniteGaloisAdjunction.lean",
+   "proofs/lean/juris_lean/JurisLean/FiniteMonotoneIteration.lean",
+   "proofs/lean/juris_lean/JurisLean/FiniteRosetta.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Action/IncentiveEnumeration.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Action/Mechanisms.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Action/RobustDecisions.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Action/Settlement.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Burden/DomainAgnostic.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Families.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Readiness.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Burden/SourceTime.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Standards.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Causal/PartialIdentification.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/CompletionAudit.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Composition/CheckerCorrespondence.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Composition/DomainChains.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Composition/EnvelopePipeline.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Composition/RelationalComposition.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Composition/ScenarioBridge.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Composition/UnifiedCorrectness.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Core/BusinessSemantics.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Core/Foundations.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Core/IdentityCodec.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Evidence/Admission.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Evidence/Provenance.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Evidence/Withdrawal.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Gaps/Gaps.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/GenericKernels.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Logic/ArgumentConstruction.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Logic/ArgumentIdentity.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Logic/AttackCompilation.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Logic/ExtensionProfiles.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Logic/HornFixpoint.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Logic/QueryAggregation.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Banach.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Bellman.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Convexity.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/IntegerBranch.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Intervals.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/LinearPrograms.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Probability/BetaInterval.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Probability/Brier.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Probability/Conditioning.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Probability/DirichletPosterior.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Probability/E01Contract.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Probability/EvidenceIdentity.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Probability/FiniteBN.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Probability/Misspecification.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Probability/ModelAveraging.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Probability/PAV.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Probability/SplitNoLeak.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Probability/UnprocessedMass.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Probability/VariableElimination.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Representation/FiniteCertificates.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Representation/SymbolicRepresentation.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Roots/SevenRoots.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Tranche1.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Tranche2.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Tranche3.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Tranche4.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Tranche5.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Tranche6.lean",
+   "proofs/lean/juris_lean/JurisLean/FullMath/Tranche7.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/All.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/Boundary.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/General.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/Part0.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/Part1.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/Part2.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/Part3.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/Part4.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/Part5.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch1.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch2.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch3.lean",
+   "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch4.lean",
+   "proofs/lean/juris_lean/JurisLean/Hohfeld.lean",
+   "proofs/lean/juris_lean/JurisLean/HornAAFContract.lean",
+   "proofs/lean/juris_lean/JurisLean/HornDefinitions.lean",
+   "proofs/lean/juris_lean/JurisLean/HornFixedPoint.lean",
+   "proofs/lean/juris_lean/JurisLean/HornOperationalRefinement.lean",
+   "proofs/lean/juris_lean/JurisLean/HumanResearchReceiptSpec.lean",
+   "proofs/lean/juris_lean/JurisLean/IVLToAAF.lean",
+   "proofs/lean/juris_lean/JurisLean/IVLToASP.lean",
+   "proofs/lean/juris_lean/JurisLean/IVLToHorn.lean",
+   "proofs/lean/juris_lean/JurisLean/IVLToSMT.lean",
+   "proofs/lean/juris_lean/JurisLean/JC_Formalization.lean",
+   "proofs/lean/juris_lean/JurisLean/KernelV3.lean",
+   "proofs/lean/juris_lean/JurisLean/LegalIVL.lean",
+   "proofs/lean/juris_lean/JurisLean/LegalIVLWellFormed.lean",
+   "proofs/lean/juris_lean/JurisLean/LegalIds.lean",
+   "proofs/lean/juris_lean/JurisLean/LegalModelV2.lean",
+   "proofs/lean/juris_lean/JurisLean/LegalSpec.lean",
+   "proofs/lean/juris_lean/JurisLean/LegalSpecNormalize.lean",
+   "proofs/lean/juris_lean/JurisLean/LegalSpecToIVL.lean",
+   "proofs/lean/juris_lean/JurisLean/LegalSpecWellFormed.lean",
+   "proofs/lean/juris_lean/JurisLean/LegalSyntax.lean",
+   "proofs/lean/juris_lean/JurisLean/LegalWellFormed.lean",
+   "proofs/lean/juris_lean/JurisLean/PermissionConflict.lean",
+   "proofs/lean/juris_lean/JurisLean/ProposalEnvelopeSpec.lean",
+   "proofs/lean/juris_lean/JurisLean/ProposalNoninterference.lean",
+   "proofs/lean/juris_lean/JurisLean/ReceiptAuthority.lean",
+   "proofs/lean/juris_lean/JurisLean/SMTWitness.lean",
+   "proofs/lean/juris_lean/JurisLean/SafetyTheorems.lean",
+   "proofs/lean/juris_lean/JurisLean/ScratchApi.lean",
+   "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
+   "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
+   "proofs/lean/juris_lean/JurisLean/SourcePathSpec.lean",
+   "proofs/lean/juris_lean/JurisLean/SupZeroLemma.lean",
+   "proofs/lean/juris_lean/JurisLean/TaintNoninterference.lean",
+   "proofs/lean/juris_lean/JurisLean/TemporalApplicability.lean",
+   "proofs/lean/juris_lean/JurisLean/TemporalArithmetic.lean",
+   "proofs/lean/juris_lean/JurisLean/TemporalKripke.lean",
+   "proofs/lean/juris_lean/JurisLean/TranslationRefinement.lean",
+   "proofs/lean/juris_lean/JurisLean/TranslationWitness.lean",
+   "proofs/lean/juris_lean/JurisLean/TypedAttack.lean",
+   "proofs/lean/juris_lean/JurisLean/ULM01NormalForm.lean",
+   "proofs/lean/juris_lean/JurisLean/ULM02Outcome.lean",
+   "proofs/lean/juris_lean/JurisLean/ULM03TypedGraph.lean",
+   "proofs/lean/juris_lean/JurisLean/ULM04Obligations.lean",
+   "proofs/lean/juris_lean/JurisLean/ULM05Machine.lean",
+   "proofs/lean/juris_lean/JurisLean/ULM06FactEvidence.lean",
+   "proofs/lean/juris_lean/JurisLean/ULM07HornSupport.lean",
+   "proofs/lean/juris_lean/JurisLean/ULM08ArgumentConstruction.lean",
+   "proofs/lean/juris_lean/JurisLean/ULM09AttackDefeat.lean",
+   "proofs/lean/juris_lean/JurisLean/ULM10DungProfiles.lean",
+   "proofs/lean/juris_lean/JurisLean/ULM11BranchQuery.lean",
+   "proofs/lean/juris_lean/JurisLean/ULM12Procedure.lean",
+   "proofs/lean/juris_lean/JurisLean/ULM13DomainCompositionExact.lean",
+   "proofs/lean/juris_lean/JurisLean/ULM14CoverageTrust.lean",
+   "proofs/lean/juris_lean/JurisLean/ULM15IncrementalEmpiricalBanach.lean",
+   "proofs/lean/juris_lean/JurisLean/ULM16TheoryComposition.lean",
+   "proofs/lean/juris_lean/JurisLean/ULMAllTheoremsAxiomAudit.lean",
+   "proofs/lean/juris_lean/JurisLean/ULMAxiomAudit.lean",
+   "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean",
+   "proofs/lean/juris_lean/JurisLean/UnifiedModel.lean",
+   "proofs/lean/juris_lean/JurisLean/UnifiedV2/All.lean",
+   "proofs/lean/juris_lean/JurisLean/UnifiedV2/Audit.lean",
+   "proofs/lean/juris_lean/JurisLean/UnifiedV2/Composition.lean",
+   "proofs/lean/juris_lean/JurisLean/UnifiedV2/ConcreteBridge.lean",
+   "proofs/lean/juris_lean/JurisLean/UnifiedV2/FiniteContract.lean",
+   "proofs/lean/juris_lean/JurisLean/UnifiedV2/LegalInterfaces.lean",
+   "proofs/lean/juris_lean/JurisLean/UnifiedV2/Quantified.lean",
+   "proofs/lean/juris_lean/JurisLean/UnifiedV21/All.lean",
+   "proofs/lean/juris_lean/JurisLean/UnifiedV21/Audit.lean",
+   "proofs/lean/juris_lean/JurisLean/UnifiedV21/Authority.lean",
+   "proofs/lean/juris_lean/JurisLean/UnifiedV21/ConcreteRoot.lean",
+   "proofs/lean/juris_lean/JurisLean/UnifiedV21/Context.lean",
+   "proofs/lean/juris_lean/JurisLean/UnifiedV21/Representation.lean",
+   "proofs/lean/juris_lean/JurisLean/WeightedSupNorm.lean"
+  ],
   "ulm_import_closure": [
    "proofs/lean/juris_lean/JurisLean/ArgumentSemanticsRegistry.lean",
    "proofs/lean/juris_lean/JurisLean/FactAdmissionSpec.lean",
@@ -18147,11 +18344,64 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "e8ce807f34608208e4ece4fac9d60d5fec4281bc25d5d232ad5ed749f890e2e5",
+ "source_inventory_digest": "7b4bd60b6470ce4c6f66ea296e73b6c22c9b3f958eac4fdbf5a4a0dd1369c490",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "main",
-  "commit": "14886853f062681e5c4caf869594817ff5c5d371",
-  "tree": "22b453f064e6eef3389b4d958a23d8f288bd9fbd"
- }
+  "commit": "b57d4aad8a52607cca74365bdf8328a1b493fdac",
+  "tree": "553df475913a9e14c96ca734b7a312e73a6e0507"
+ },
+ "subject_binding": {
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/engineering_proof_artifacts/banach/BanachEffectiveNodes.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/General.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Part1.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Part3.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/Part6.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch1.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch2.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch3.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/strict_proof_baseline/lean/BanachEffectiveNodes.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/strict_proof_baseline/lean/FiniteGaloisAdjunction.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/strict_proof_baseline/lean/FiniteRosetta.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
+  "files_total": 216,
+  "rule": "every recorded sha256 must equal git show <subject>:<path>",
+  "worktree_dirty_under_proofs": true
+ },
+ "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

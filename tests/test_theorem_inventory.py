@@ -91,3 +91,121 @@ def test_scope_labels_are_disjoint_and_unioned():
     everything = set(doc["scopes"]["all_tracked_lean"])
     assert not (ulm & support)
     assert (ulm | support) <= everything
+
+
+def test_built_package_scope_is_reported_separately():
+    """A count over all tracked Lean cannot be quoted as what lake build checks."""
+    doc = load(INVENTORY)
+    pkg = set(doc["scopes"]["juris_lean_package"])
+    everything = set(doc["scopes"]["all_tracked_lean"])
+    assert pkg <= everything
+    assert pkg < everything, "standalone draft artifacts must stay visible as a separate residual"
+    assert doc["scope_definitions"]["juris_lean_package"]
+    summary = doc["scope_summary"]
+    assert summary["juris_lean_package"]["file_count"] == len(pkg)
+    assert summary["juris_lean_package"]["theorem_count"] <= summary["all_tracked_lean"]["theorem_count"]
+
+
+def test_subject_binding_declares_whether_the_label_fits():
+    """Qoder audit P2-16: the subject used to lag one commit behind its bytes."""
+    doc = load(INVENTORY)
+    binding = doc["subject_binding"]
+    assert binding["rule"] == "every recorded sha256 must equal git show <subject>:<path>"
+    assert binding["files_total"] == len(doc["files"])
+    assert binding["binding"] in ("BOUND_TO_SUBJECT", "STALE_SUBJECT")
+    diverging = {d["path"] for d in binding["files_diverging_from_subject"]}
+    if binding["binding"] == "BOUND_TO_SUBJECT":
+        assert not diverging
+    # whatever the label says, the diverging paths must be real tracked files
+    assert diverging <= {f["path"] for f in doc["files"]}
+
+
+def test_no_counted_declaration_lives_in_a_sorry_body():
+    """Qoder audit P0-3: the inventory counted theorems whose bodies said sorry."""
+    import hashlib
+    import re
+    import subprocess
+
+    doc = load(INVENTORY)
+    offenders = []
+    for entry in doc["files"]:
+        raw = (ROOT / entry["path"]).read_bytes()
+        assert hashlib.sha256(raw).hexdigest() == entry["sha256"], entry["path"]
+        text = raw.decode("utf-8", errors="replace")
+        depth = 0
+        owner = None
+        for lineno, line in enumerate(text.splitlines(), 1):
+            code, depth = _strip_lean_line(line, depth)
+            head = re.match(r"^(?:@\[[^\]]*\][ \t]*)*(theorem|lemma)\s+(\S+)", code)
+            if head:
+                owner = (head.group(2), lineno)
+            if owner and re.search(r"\bsorry\b|\badmit\b|native_decide", code):
+                offenders.append((entry["path"], owner, lineno))
+    assert not offenders, offenders
+
+
+def _strip_lean_line(line: str, depth: int):
+    out = []
+    i = 0
+    in_string = False
+    while i < len(line):
+        ch = line[i]
+        nxt = line[i + 1] if i + 1 < len(line) else ""
+        if depth > 0:
+            if ch == "/" and nxt == "-":
+                depth += 1
+                i += 2
+                continue
+            if ch == "-" and nxt == "/":
+                depth -= 1
+                i += 2
+                continue
+            i += 1
+            continue
+        if not in_string and ch == "-" and nxt == "-":
+            break
+        if not in_string and ch == "/" and nxt == "-":
+            depth += 1
+            i += 2
+            continue
+        if ch == '"':
+            in_string = not in_string
+        out.append(ch)
+        i += 1
+    return "".join(out), depth
+
+
+def test_guard_scan_covers_every_counted_file():
+    """The scan root must reach everything the count covers (audit P1-8)."""
+    import subprocess
+    import sys
+
+    proc = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "scan_lean_guards.py"), "--all-tracked"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+    )
+    assert proc.returncode == 0, proc.stdout + proc.stderr
+    doc = load(INVENTORY)
+    assert f"{doc['scope_summary']['all_tracked_lean']['file_count']} files" in proc.stdout
+
+
+def test_generator_can_refuse_a_stale_label(tmp_path):
+    import subprocess
+    import sys
+
+    out = tmp_path / "strict.json"
+    proc = subprocess.run(
+        [sys.executable, str(GEN), "--output", str(out), "--require-bound"],
+        cwd=ROOT,
+        capture_output=True,
+        text=True,
+    )
+    doc = load(INVENTORY)
+    bound = not doc["subject_binding"]["files_diverging_from_subject"]
+    if bound:
+        assert proc.returncode == 0, proc.stdout + proc.stderr
+    else:
+        assert proc.returncode == 2
+        assert "does not describe" in proc.stderr

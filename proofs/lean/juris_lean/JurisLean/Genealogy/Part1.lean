@@ -33,6 +33,9 @@ theorem source_grade_total (k : SourceKind) :
     admissionGrade k = admissionGrade k := by
   cases k <;> rfl
 -- [cases+rfl] 置信：七个构造子均由全函数穷尽覆盖。
+-- 强度注：本定理的结论是 `admissionGrade k = admissionGrade k`，对任何函数都成立，
+-- 因此它只登记“准入分级是全函数”，不声称法源位阶构成全序，也不声称分级取值正确。
+-- 位阶的序性质（自反/传递/七类可比性）另属未闭合目标，见 03 台账第四战役。
 
 end P014
 

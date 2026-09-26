@@ -138,6 +138,9 @@ theorem boundary_inputs_complete {α : Type} (inputs : Finset α)
     (b : FreeEvaluationBoundary inputs) :
     b.supplied = inputs := rfl
 -- [rfl] 置信：`supplied` 仅返回依赖参数 `inputs`。
+-- 强度注：这是类型层边界的设计陈述，不是数学定理——`supplied` 丢弃实参直接返回 `inputs`，
+-- 故证明只能是 rfl。真正承载“心证边界”的是 FreeEvaluationBoundary 的输出类型里没有
+-- Judgment/Relation 字段这一事实；升级该边界的主张需另立不可定义性论证，见 03 台账。
 
 theorem boundary_records_input_only {α : Type} {inputs : Finset α}
     (b : FreeEvaluationBoundary inputs) :

@@ -398,7 +398,9 @@ def progressiveTax3
       (cut2 - cut1) * r2 +
       (taxable - cut2) * r3
 
-/-- [P099-GENERAL-A] Nat 编码下三档税额恒非负。 -/
+/-- [P099-GENERAL-A] Nat 编码下三档税额恒非负。
+    强度注：非负性由余域 `Nat` 给出，`omega` 即可闭合，与税档切分无关；
+    有内容的是 GENERAL-B 的切片退化等式。 -/
 theorem P099_progressiveTax3_nonnegative
     (taxable cut1 cut2 r1 r2 r3 : Nat) :
     progressiveTax3 taxable cut1 cut2 r1 r2 r3 ≥ 0 := by

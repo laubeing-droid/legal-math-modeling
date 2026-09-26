@@ -47,8 +47,24 @@ Local checks may run Python and static guards only:
 
 ```bash
 python -m pytest -q -p no:cacheprovider
-python scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean
+python scripts/scan_lean_guards.py --all-tracked --report work/lean-guard-report.json
 ```
+
+Four accounts are **generated**, so a hand-edited claim cannot drift from the
+source it describes. Regenerate them after touching Lean sources or ledgers, in
+this order, then re-run pytest:
+
+```bash
+python scripts/ci/generate_t_coverage_ledger.py            # T-spectrum carriers and strength grades
+python scripts/ci/generate_structure_and_volume_reports.py  # kernel-reuse + volume accounts
+python scripts/ci/generate_theorem_manifest.py              # scope counts + digests + subject_binding
+python scripts/ci/generate_theorem_manifest.py --require-bound   # only passes on a committed tree
+```
+
+`--require-bound` exists because the inventory used to stamp `subject = HEAD`
+while hashing the working tree, so every label lagged one commit behind the
+bytes it claimed. A count whose `subject_binding.binding` is `STALE_SUBJECT`
+must not be quoted as a bound claim.
 
 Lean, Elan, and Lake must not run locally for this repository. GitHub Actions is the sole Lean authority:
 

@@ -1,0 +1,131 @@
+{
+ "authority_note": "Static import-graph measurement over the JurisLean package. It says nothing about correctness; it says how much mathematics is shared.",
+ "counts": {
+  "carriers_in_package": 1687,
+  "theorem_declarations_in_package": 1781
+ },
+ "genealogy": {
+  "carriers_per_theorem": 1.59,
+  "hand_rolled_carriers": 483,
+  "intra_genealogy_import_edges": [
+   {
+    "imports_genealogy_modules": [
+     "JurisLean.Genealogy.Boundary",
+     "JurisLean.Genealogy.General",
+     "JurisLean.Genealogy.Part0",
+     "JurisLean.Genealogy.Part1",
+     "JurisLean.Genealogy.Part2",
+     "JurisLean.Genealogy.Part3",
+     "JurisLean.Genealogy.Part4",
+     "JurisLean.Genealogy.Part5",
+     "JurisLean.Genealogy.Part6",
+     "JurisLean.Genealogy.TSpectrum.Batch1",
+     "JurisLean.Genealogy.TSpectrum.Batch2",
+     "JurisLean.Genealogy.TSpectrum.Batch3",
+     "JurisLean.Genealogy.TSpectrum.Batch4"
+    ],
+    "module": "JurisLean.Genealogy.All"
+   },
+   {
+    "imports_genealogy_modules": [
+     "JurisLean.Genealogy.General"
+    ],
+    "module": "JurisLean.Genealogy.Boundary"
+   },
+   {
+    "imports_genealogy_modules": [
+     "JurisLean.Genealogy.Part6"
+    ],
+    "module": "JurisLean.Genealogy.General"
+   },
+   {
+    "imports_genealogy_modules": [],
+    "module": "JurisLean.Genealogy.Part0"
+   },
+   {
+    "imports_genealogy_modules": [
+     "JurisLean.Genealogy.Part0"
+    ],
+    "module": "JurisLean.Genealogy.Part1"
+   },
+   {
+    "imports_genealogy_modules": [
+     "JurisLean.Genealogy.Part1"
+    ],
+    "module": "JurisLean.Genealogy.Part2"
+   },
+   {
+    "imports_genealogy_modules": [
+     "JurisLean.Genealogy.Part2"
+    ],
+    "module": "JurisLean.Genealogy.Part3"
+   },
+   {
+    "imports_genealogy_modules": [
+     "JurisLean.Genealogy.Part3"
+    ],
+    "module": "JurisLean.Genealogy.Part4"
+   },
+   {
+    "imports_genealogy_modules": [
+     "JurisLean.Genealogy.Part4"
+    ],
+    "module": "JurisLean.Genealogy.Part5"
+   },
+   {
+    "imports_genealogy_modules": [
+     "JurisLean.Genealogy.Part5"
+    ],
+    "module": "JurisLean.Genealogy.Part6"
+   },
+   {
+    "imports_genealogy_modules": [
+     "JurisLean.Genealogy.Part6"
+    ],
+    "module": "JurisLean.Genealogy.TSpectrum.Batch1"
+   },
+   {
+    "imports_genealogy_modules": [
+     "JurisLean.Genealogy.TSpectrum.Batch1"
+    ],
+    "module": "JurisLean.Genealogy.TSpectrum.Batch2"
+   },
+   {
+    "imports_genealogy_modules": [
+     "JurisLean.Genealogy.TSpectrum.Batch2"
+    ],
+    "module": "JurisLean.Genealogy.TSpectrum.Batch3"
+   },
+   {
+    "imports_genealogy_modules": [
+     "JurisLean.Genealogy.TSpectrum.Batch3"
+    ],
+    "module": "JurisLean.Genealogy.TSpectrum.Batch4"
+   }
+  ],
+  "modules": 14,
+  "modules_importing_mathlib": [
+   "JurisLean.Genealogy.Part3"
+  ],
+  "theorem_declarations": 304
+ },
+ "modules_imported_by_5_or_more": {
+  "JurisLean.BusinessRoot.Semantics": 6,
+  "JurisLean.FailureStatus": 5,
+  "JurisLean.FiniteMonotoneIteration": 6,
+  "JurisLean.FullMath.Core.Foundations": 45,
+  "JurisLean.LegalIVL": 8,
+  "JurisLean.LegalIds": 25,
+  "JurisLean.LegalSpec": 5,
+  "JurisLean.WeightedSupNorm": 6,
+  "Lean.Elab.Command": 5,
+  "Lean.Util.CollectAxioms": 5,
+  "Mathlib": 11,
+  "Mathlib.Data.Fin.Basic": 5,
+  "Mathlib.Data.Finset.Basic": 13,
+  "Mathlib.Data.Real.Basic": 10,
+  "Mathlib.Tactic": 13
+ },
+ "package_files": 201,
+ "schema_version": "kernel-reuse-v1"
+}

@@ -142,6 +142,10 @@ theorem fixed_point (β T : ℝ) (hβ : 0 < β) :
 
     The convergence rate is geometric:
     |x_n - T| ≤ (1-β)^n · |x_0 - T| -/
+-- UNPROVED TARGET: the block below is an open goal, not a theorem. It is kept
+-- commented out so no `sorry` closes a goal and nothing here is counted as a
+-- proved statement (see docs/formal-release/FORBIDDEN_CLAIMS.md).
+/-
 theorem convergence_rate (β T x0 : ℝ) (hβ : 0 < β ∧ β < 1) (n : ℕ) :
     let x_n := Nat.iterate (f β T) n x0
     metric_R x_n T ≤ (1 - β)^n * metric_R x0 T := by
@@ -150,7 +154,8 @@ theorem convergence_rate (β T x0 : ℝ) (hβ : 0 < β ∧ β < 1) (n : ℕ) :
   -- Proof sketch by induction:
   -- Base n=0: trivial
   -- Inductive step: uses contraction_main
-  sorry  -- Needs Mathlib iterate lemmas
+  -- blocked on: Mathlib `iterate` contraction lemmas for metric_R
+-/
 
 -- ==========================================================================
 -- 8. LIMITATION STATEMENT

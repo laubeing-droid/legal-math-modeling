@@ -77,6 +77,9 @@ noncomputable def allFunctors (n : ℕ) (hn : n ≤ 30) (m : ℕ) (hm : m ≤ 50
 
 -- 核心定理：不存在 total semantics-preserving functor
 -- 证明思路：穷举所有 |Fact|^|Claim| 种可能的映射，证明无一满足条件
+-- UNPROVED TARGET: open goal, kept commented out so no `sorry` closes a goal
+-- and nothing here is counted as a proved statement.
+/-
 theorem no_total_semantics_preserving_functor
   (n : ℕ) (hn : n ≤ 30)
   (m : ℕ) (hm : m ≤ 50)
@@ -108,7 +111,9 @@ theorem no_total_semantics_preserving_functor
   exfalso
   -- 使用 Finset 穷举所有可能的 sem 和 F 的组合
   -- 证明无一组合能同时满足 total 和 semantics-preserving
-  sorry
+  -- blocked on: exhaustive finite check over 50^30 mappings (no decidability
+  -- bridge from the counting argument to a `decide` term)
+-/
 
 -- 辅助引理：对具体的小规模实例，可直接计算验证
 lemma check_no_functor_instance

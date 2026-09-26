@@ -51,6 +51,9 @@ section MathlibGaloisConnection
 end MathlibGaloisConnection
 
 -- 有限偏序集上的 Galois connection 定理
+-- UNPROVED TARGET: open goal, kept commented out so no `sorry` closes a goal
+-- and nothing here is counted as a proved statement.
+/-
 theorem finite_galois_connection_exists
   {P Q : Type}
   [Fintype P] [PartialOrder P]
@@ -115,7 +118,8 @@ theorem finite_galois_connection_exists
     have h_ub : ∀ (p' : P), p' ∈ { p | f p ≤ q } → p' ≤ g_fun q := h_lub.left
     -- 需要证明 f p ≤ q，即 p ∈ { p | f p ≤ q }
     -- 利用 f 的单调性和 g 的定义
-    sorry
+    -- blocked on: IsLUB membership argument needs f-monotonicity feeding the set
+-/
 
 -- 有限域上的具体 Galois connection 实例
 -- 示例：P = Finset (Fin n), Q = Finset (Fin m)，按包含序

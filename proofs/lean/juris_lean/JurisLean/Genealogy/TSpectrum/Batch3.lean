@@ -184,6 +184,8 @@ structure LogisticSpec where
   coefficients : List Int
   intercept : Int
 def deterministic (s : LogisticSpec) : Bool := true
+-- 强度注：`deterministic` 丢弃 `s` 恒返回 true，本批未实现逻辑回归的推理或可判定性；
+-- `LogisticSpec` 只是占位记录。定理 `logistic_deterministic` 因此只证 `true = true`。
 theorem logistic_deterministic : deterministic { coefficients := [1, 2], intercept := 3 } = true := rfl
 /- 降级注：确定性逻辑回归结构。 -/
 end T54

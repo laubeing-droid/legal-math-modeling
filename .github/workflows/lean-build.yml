@@ -86,7 +86,7 @@ jobs:
 
         python -m pytest tests/ -q -ra 2>&1 | tee pytest-full.log
 
-        python scripts/scan_lean_guards.py proofs/lean/juris_lean/JurisLean 2>&1 | tee lean-guard-report.json
+        python scripts/scan_lean_guards.py --all-tracked --report lean-guard-report.json
 
         python scripts/run_mutation_property_gate.py --repo-root . --output mutation-property-report.json
 

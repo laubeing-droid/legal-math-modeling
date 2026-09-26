@@ -376,6 +376,9 @@ theorem listed_action_requires_its_gate (action : GatedAction) :
     actionRequiresGate action (requiredGate action) = true := by
   cases action <;> decide
 -- [cases+decide] 置信：三个动作逐一化为同构造子相等。
+-- 强度注：`actionRequiresGate a g` 定义为 `decide (requiredGate a = g)`，故本定理化为
+-- `decide (x = x)`，对任意 `requiredGate` 实现都为真。它不证明人闸表的内容正确，
+-- 只证明“动作按表取值”这一形状；表的实质审查属 P-132 的人工闸，不在定理面。
 
 end P132
 

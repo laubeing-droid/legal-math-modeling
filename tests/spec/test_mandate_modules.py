@@ -52,6 +52,25 @@ MODULES: dict[str, tuple[str, tuple[str, ...], str]] = {
          "not_admits_negative", "approx_zero"),
         "P-118",
     ),
+    "source_rank_upgrades": (
+        "Mandate/SourceRank.lean",
+        ("grade_binding_iff", "grade_shallRefer_iff", "grade_referenceOnly_iff",
+         "grade_classes_inhabited", "grade_single_valued", "grade_exhaustive",
+         "soft_law_never_binding"),
+        "P-015",
+    ),
+    "gate_table_upgrades": (
+        "Mandate/GateTable.lean",
+        ("gate_iff_table", "gate_exists_unique", "gates_pairwise_distinct",
+         "gate_ne_true_of_ne", "gate_coverage_total", "gate_table_no_duplicates"),
+        "P-132",
+    ),
+    "citation_admission_upgrades": (
+        "Mandate/SubstrAdmission.lean",
+        ("isPrefix_refl", "isPrefix_false_of_longer", "isSubstr_of_isPrefix",
+         "isSubstr_self", "substr_strictly_weaker", "prefix_adequate_for_admission"),
+        "P-127",
+    ),
     "game_tree": (
         "Mandate/GameTree.lean",
         ("value_leaf", "value_nil", "value_cons", "value_ge_head",
@@ -152,6 +171,15 @@ GENERAL_NOT_WITNESS: dict[str, tuple[str, ...]] = {
                              "approx_error_eq_computedBound", "approx_damped",
                              "certificate_bound_is_computed", "admits_iff",
                              "not_admits_negative"),
+    "source_rank_upgrades": ("grade_binding_iff", "grade_shallRefer_iff",
+                             "grade_referenceOnly_iff", "grade_single_valued",
+                             "grade_exhaustive"),
+    "gate_table_upgrades": ("gate_iff_table", "gate_exists_unique",
+                            "gate_ne_true_of_ne", "gate_coverage_total",
+                            "gate_table_no_duplicates"),
+    "citation_admission_upgrades": ("isPrefix_refl", "isPrefix_false_of_longer",
+                                    "isSubstr_of_isPrefix", "isSubstr_self",
+                                    "prefix_adequate_for_admission"),
     "game_tree": ("value_cons", "value_ge_head", "value_ge_of_mem",
                   "value_node_append_le", "value_of_leaves",
                   "value_ignores_payoff_renaming_when_dominated"),
@@ -226,3 +254,39 @@ def test_mandate_modules_reuse_the_kernel_instead_of_restating_it() -> None:
 def test_kernel_is_still_quarantined() -> None:
     text = ROOT_MODULE.read_text(encoding="utf-8")
     assert "JurisLean.Mandate" not in text, "the kernel reached the release root before CI"
+
+
+# --- containment for the two pathologies the audit could not fix blind ---
+
+BOOL_GUARD_SITES = 7
+
+
+def test_if_decide_impedance_pattern_is_contained() -> None:
+    """Audit P2-18: `if decide (..)` cost 20+ CI rounds on P-083 and 7 sites remain.
+
+    Rewriting them blind is the same trap, so the count is pinned instead: a new
+    `if decide` site fails this gate, and lowering the recorded number is the
+    evidence that a cleanup actually happened.
+    """
+    sites = 0
+    for path in sorted((ROOT / "proofs" / "lean" / "juris_lean" / "JurisLean").rglob("*.lean")):
+        sites += path.read_text(encoding="utf-8").count("if decide")
+    assert sites == BOOL_GUARD_SITES, (
+        f"{sites} `if decide` sites vs {BOOL_GUARD_SITES} recorded; "
+        "if one was converted to a Prop-level `if`, lower the recorded number here"
+    )
+
+
+def test_upgrade_modules_reuse_released_carriers_not_copies() -> None:
+    """The upgrade modules must import the released definitions they talk about.
+
+    `source_grade_total` and `listed_action_requires_its_gate` are about real
+    released carriers (`Part1`/`Part6`); an upgrade that quietly re-declared its
+    own enum would prove nothing about the shipped model.
+    """
+    for rel, dependency in (
+        ("Mandate/SourceRank.lean", "import JurisLean.Genealogy.Part1"),
+        ("Mandate/GateTable.lean", "import JurisLean.Genealogy.Part6"),
+    ):
+        text = _text(rel)
+        assert dependency in text, f"{rel} does not reuse {dependency}"

@@ -89,6 +89,31 @@ def test_certificate_declarations_are_really_in_those_blobs() -> None:
         bad = []
 
 
+def test_landed_bytes_are_still_landed_bytes_in_git() -> None:
+    """Check what the commit stores, not what this working tree happens to show.
+
+    The repository's `* text=auto` rule rewrote every landed file on a fresh
+    checkout, which silently invalidated all 34 digests: the evidence was only
+    byte-exact on the machine that downloaded it. `ci-evidence/** -text` in
+    .gitattributes is what keeps it true, and this is the gate that notices if that
+    line is ever dropped.
+    """
+
+    problems = []
+    for sidecar in sorted((EVIDENCE / "digests.json").parent.glob("*/digests.json")):
+        doc = json.loads(sidecar.read_text(encoding="utf-8"))
+        for f in doc["files"]:
+            rel = f"{EVIDENCE.relative_to(ROOT).as_posix()}/{doc['run_id']}/{f['path']}"
+            proc = subprocess.run(
+                ["git", "show", f"HEAD:{rel}"], cwd=ROOT, capture_output=True
+            )
+            if proc.returncode:
+                problems.append(f"{rel}: not committed at HEAD")
+            elif hashlib.sha256(proc.stdout).hexdigest() != f["sha256"]:
+                problems.append(f"{rel}: committed bytes differ from the digest")
+    assert not problems, f"landed CI evidence is not byte-exact in git: {problems[:3]}"
+
+
 def test_certificate_states_its_own_limits() -> None:
     for cert in certificates():
         joined = " ".join(cert["limitations"]).lower()

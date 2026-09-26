@@ -360,3 +360,8 @@ open HornSystem
 #print axioms JurisLean.Genealogy.TSpectrum.T127.T127_report_generated
 
 /-! P083 general descending correctness (split_ifs). -/
+
+/-! P083 general descending correctness (Prop version). -/
+#print axioms JurisLean.Genealogy.General.P083_insertEvpi_preserves_sortedP
+#print axioms JurisLean.Genealogy.General.P083_sortEvpi_sortedP
+#print axioms JurisLean.Genealogy.General.P083_sortedDesc_iff

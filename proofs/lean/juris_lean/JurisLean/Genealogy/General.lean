@@ -192,7 +192,7 @@ theorem P083_sortEvpi_length
   | cons x xs ih =>
       simp [sortEvpi, P083_insertEvpi_length, ih]
 
-/-- 降序检查谓词。 -/
+/-- 降序检查谓词（Bool 版，保留向后兼容）。 -/
 def sortedDescending :
     List P083EvpiItem → Bool
   | [] => true
@@ -200,6 +200,104 @@ def sortedDescending :
   | x :: y :: xs =>
       decide (y.evpi ≤ x.evpi) &&
         sortedDescending (y :: xs)
+
+/-- 降序谓词（Prop 版——合取分解直接工作，无 Bool/Prop 阻抗）。 -/
+def sortedDescP : List P083EvpiItem → Prop
+  | [] => True
+  | [_] => True
+  | x :: y :: xs => y.evpi ≤ x.evpi ∧ sortedDescP (y :: xs)
+
+/-- [P083-GENERAL-C] 插入保持降序（Prop 版一般式）。 -/
+theorem P083_insertEvpi_preserves_sortedP (x : P083EvpiItem) :
+    ∀ ys, sortedDescP ys → sortedDescP (insertEvpi x ys) := by
+  intro ys
+  induction ys with
+  | nil =>
+      intro _
+      trivial
+  | cons y ys' ih =>
+      intro hsorted
+      cases Nat.lt_or_ge x.evpi y.evpi with
+      | inr hyx =>
+          -- y ≤ x：insert 在前 → x :: y :: ys'
+          have hcond : decide (y.evpi ≤ x.evpi) = true := by
+            cases h : decide (y.evpi ≤ x.evpi) with
+            | true => rfl
+            | false =>
+                cases Nat.decLe y.evpi x.evpi with
+                | isTrue _ => rw [show decide (y.evpi ≤ x.evpi) = true from rfl] at h; simp at h
+                | isFalse hnf => exact absurd hyx hnf
+          simp only [insertEvpi, hcond]
+          simp only [sortedDescP]
+          exact ⟨hyx, hsorted⟩
+      | inl hxy =>
+          -- x < y：insert 在后 → y :: insertEvpi x ys'
+          have hcond : decide (y.evpi ≤ x.evpi) = false := by
+            cases h : decide (y.evpi ≤ x.evpi) with
+            | false => rfl
+            | true =>
+                cases Nat.decLe y.evpi x.evpi with
+                | isTrue hyx => rw [show decide (y.evpi ≤ x.evpi) = true from rfl] at h; simp at h
+                | isFalse hnf =>
+                    have hnx : ¬(y.evpi ≤ x.evpi) := hnf
+                    omega
+          simp only [insertEvpi, hcond]
+          cases ys' with
+          | nil =>
+              simp only [insertEvpi, sortedDescP]
+              exact ⟨Nat.le_of_lt hxy, trivial, trivial⟩
+          | cons z zs =>
+              simp only [sortedDescP] at hsorted
+              simp only [insertEvpi]
+              cases Nat.lt_or_ge x.evpi z.evpi with
+              | inr hxz =>
+                  -- z ≤ x：insert head = x
+                  have hz : decide (z.evpi ≤ x.evpi) = true := by
+                    cases h : decide (z.evpi ≤ x.evpi) with
+                    | true => rfl
+                    | false =>
+                        cases Nat.decLe z.evpi x.evpi with
+                        | isTrue _ => rw [show decide (z.evpi ≤ x.evpi) = true from rfl] at h; simp at h
+                        | isFalse hnf => exact absurd hxz hnf
+                  simp only [hz, sortedDescP]
+                  exact ⟨⟨Nat.le_trans hxz (Nat.le_of_lt hxy), hsorted.1⟩, hsorted⟩
+              | inl hxz =>
+                  -- x < z：insert head = z
+                  have hz : decide (z.evpi ≤ x.evpi) = false := by
+                    cases h : decide (z.evpi ≤ x.evpi) with
+                    | false => rfl
+                    | true =>
+                        cases Nat.decLe z.evpi x.evpi with
+                        | isTrue hzx => rw [show decide (z.evpi ≤ x.evpi) = true from rfl] at h; simp at h
+                        | isFalse hnf =>
+                            have hnx : ¬(z.evpi ≤ x.evpi) := hnf
+                            omega
+                  simp only [hz, sortedDescP]
+                  exact ⟨hsorted.1, ih hsorted⟩
+
+/-- [P083-GENERAL-D] 排序结果恒降序（Prop 版一般式）。 -/
+theorem P083_sortEvpi_sortedP (xs : List P083EvpiItem) :
+    sortedDescP (sortEvpi xs) := by
+  induction xs with
+  | nil => trivial
+  | cons x xs ih =>
+      simp only [sortEvpi]
+      exact P083_insertEvpi_preserves_sortedP x (sortEvpi xs) ih
+
+/-- [P083-GENERAL-E] Bool 与 Prop 版降序等价（桥接定理）。 -/
+theorem P083_sortedDesc_iff :
+    ∀ l, sortedDescending l = true ↔ sortedDescP l := by
+  intro l
+  induction l with
+  | nil => simp [sortedDescending, sortedDescP]
+  | cons x xs ih =>
+      cases xs with
+      | nil => simp [sortedDescending, sortedDescP]
+      | cons y ys =>
+          simp only [sortedDescending, sortedDescP]
+          simp only [Bool.and_eq_true, decide_eq_true_eq]
+          rw [← ih]
+          simp only [sortedDescending]
 
 /- 降序见证（保留作为快速回归锚）。 -/
 theorem P083_sortedDescending_witness :

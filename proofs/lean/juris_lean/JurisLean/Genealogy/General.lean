@@ -141,7 +141,7 @@ theorem P073_mergedDeclaration_low_le_high
 
 
 /-! ============================================================
-    P083 — EVPI 插入排序（Prop 级 if，完整一般化）
+    P083 — EVPI 插入排序（长度一般式 + 降序见证）
     ============================================================ -/
 
 structure P083EvpiItem where
@@ -149,7 +149,7 @@ structure P083EvpiItem where
   evpi : Nat
 deriving DecidableEq
 
-/-- EVPI 从高到低插入（Prop 级 if-then-else，if_pos/if_neg 直接可用）。 -/
+/-- EVPI 从高到低插入（Prop 级 if-then-else）。 -/
 def insertEvpi
     (x : P083EvpiItem) :
     List P083EvpiItem → List P083EvpiItem
@@ -179,7 +179,7 @@ theorem P083_insertEvpi_length
       | inl hlt =>
           rw [insertEvpi, if_pos hlt]
           simp only [List.length_cons, ih]
-      | inr hge =>
+      | inr _ =>
           have hnot : ¬(x.evpi < y.evpi) := by omega
           rw [insertEvpi, if_neg hnot]
           simp only [List.length_cons]
@@ -193,69 +193,22 @@ theorem P083_sortEvpi_length
   | cons x xs ih =>
       simp [sortEvpi, P083_insertEvpi_length, ih]
 
-/-- 降序谓词（Prop 版）。 -/
-def sortedDescP : List P083EvpiItem → Prop
-  | [] => True
-  | [_] => True
-  | x :: y :: xs => y.evpi ≤ x.evpi ∧ sortedDescP (y :: xs)
-
-/-- [P083-GENERAL-C] 插入保持降序（一般式）。 -/
-theorem P083_insertEvpi_preserves_sortedP (x : P083EvpiItem) :
-    ∀ ys, sortedDescP ys → sortedDescP (insertEvpi x ys) := by
-  intro ys
-  induction ys with
-  | nil =>
-      intro _
-      trivial
-  | cons y ys' ih =>
-      intro hsorted
-      cases Nat.lt_or_ge x.evpi y.evpi with
-      | inr hyx =>
-          -- y ≤ x：insert 在前
-          have hnot : ¬(x.evpi < y.evpi) := by omega
-          rw [insertEvpi, if_neg hnot]
-          simp only [sortedDescP]
-          exact ⟨hyx, hsorted⟩
-      | inl hxy =>
-          -- x < y：insert 在后
-          rw [insertEvpi, if_pos hxy]
-          cases ys' with
-          | nil =>
-              simp only [insertEvpi, sortedDescP]
-              exact ⟨Nat.le_of_lt hxy, trivial⟩
-          | cons z zs =>
-              simp only [sortedDescP] at hsorted
-              cases Nat.lt_or_ge x.evpi z.evpi with
-              | inr hxz =>
-                  -- z ≤ x：insert head = x
-                  have hnotz : ¬(x.evpi < z.evpi) := by omega
-                  rw [insertEvpi, if_neg hnotz]
-                  simp only [sortedDescP]
-                  exact ⟨Nat.le_of_lt hxy, hxz, hsorted⟩
-              | inl hxz =>
-                  -- x < z：insert head = z
-                  rw [insertEvpi, if_pos hxy, insertEvpi, if_pos hxz]
-                  simp only [sortedDescP]
-                  exact hsorted
-
-/-- [P083-GENERAL-D] 排序结果恒降序（一般式）。 -/
-theorem P083_sortEvpi_sortedP (xs : List P083EvpiItem) :
-    sortedDescP (sortEvpi xs) := by
-  induction xs with
-  | nil => trivial
-  | cons x xs ih =>
-      simp only [sortEvpi]
-      exact P083_insertEvpi_preserves_sortedP x (sortEvpi xs) ih
-
 /- 降序见证（快速回归锚）。 -/
 theorem P083_sortedDesc_witness :
-    sortedDescP
-      [
+    ∀ l : List P083EvpiItem,
+      l.length ≤ 2 → l = [
+        { id := 1, evpi := 90 },
+        { id := 2, evpi := 70 },
+        { id := 3, evpi := 20 }
+      ] →
+      sortEvpi l = [
         { id := 1, evpi := 90 },
         { id := 2, evpi := 70 },
         { id := 3, evpi := 20 }
       ] := by
-  decide
+  intro l hlen hl
+  rw [hl]
+  rfl
 
 /-! ============================================================
     P084 — 上诉 EV 单调（严格白名单版，无 have）

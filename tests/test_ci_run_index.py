@@ -1,6 +1,6 @@
 """P2-26: CI run ids quoted in the repository must carry in-repo evidence.
 
-Before this gate the markdown named twenty GitHub Actions runs as proof of build
+Before this gate the markdown named a batch of GitHub Actions runs as proof of build
 and axiom-audit status while nothing in the repository said what those runs were,
 so a third party could only check the claim by having `gh` credentials of their
 own. `scripts/ci/build_ci_run_index.py` now snapshots each run's subject commit,
@@ -27,11 +27,12 @@ _spec = importlib.util.spec_from_file_location("build_ci_run_index", TOOL)
 build_ci_run_index = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(build_ci_run_index)
 
-GREEN_TOKENS = ("全绿", "全部通过", "权威验证", "**success**", "all green", "green")
+GREEN_TOKENS = ("全绿", "全部通过", "权威验证", "success", "all green", "green")
 RED_TOKENS = ("fail", "失败", "红", "cancel", "未通过", "error", "错", "超时")
 # A green word only attaches to the run named just before it; a transition arrow,
-# a sentence end, or another commit/run mention starts a new subject.
-SEGMENT_END = re.compile(r"[。；;、]|→|\b\d{11}\b|\b[0-9a-f]{7}\b")
+# a sentence end, or another commit/run mention starts a new subject. The list
+# separator "、" deliberately does NOT: a job enumeration ends in "全部 success".
+SEGMENT_END = re.compile(r"[。；;]|→|\b\d{11}\b|\b[0-9a-f]{7}\b")
 
 
 def _attached_window(line: str, after: int) -> str:
@@ -104,13 +105,17 @@ def _calls_run_green(line: str, run_id: str) -> bool:
 
 
 def test_a_quoted_line_may_not_call_a_non_success_run_green() -> None:
-    """Adjacent praise for a red run is the defect this index exists to catch."""
+    """Adjacent praise for a red run is the defect this index exists to catch.
+
+    The passage, not the single line: the sentence that names a run can end mid
+    thought and call its jobs success on the next line.
+    """
 
     bad = [
-        f"{loc}: {_line(loc).strip()[:120]}"
+        f"{loc}: {_context(loc)[:160]!r}"
         for r in _doc()["runs"] if r["conclusion"] != "success"
         for loc in r["quoted_by"]
-        if _calls_run_green(_line(loc), str(r["run_id"]))
+        if _calls_run_green(_context(loc), str(r["run_id"]))
     ]
     assert not bad, "non-success runs quoted as green:\n" + "\n".join(bad)
 
@@ -120,8 +125,22 @@ def test_green_adjacency_rule_actually_bites() -> None:
 
     assert _calls_run_green("- run 34512426708 全绿，公理零依赖", "34512426708")
     assert _calls_run_green("- run 34512426708 (**success** at bd364c5)", "34512426708")
-    # The sentence this repo actually contains: the green word belongs to a later
-    # commit, not to the run named just before the arrow.
+    # The shape this repository actually contained: the run id named, then the jobs
+    # called success two lines down while the run itself concluded cancelled.
+    assert _calls_run_green(
+        "- Lean 权威管线 run **34519379252**（attempt 2）：lean-full-clean-build\n"
+        "  加 Axiom audit）、release-certificate、final-gate、\n"
+        "  lean-module-build(BusinessRelations) 全部 success。\n",
+        "34519379252",
+    )
+    # The honest rewrite: the run-level conclusion is named in the same clause.
+    assert not _calls_run_green(
+        "- Lean 权威管线 run **34519379252**（attempt 2；此 run 的 run 级结论为\n"
+        "  cancelled——下方点名的 Delta 作业超时被取消）：lean-full-clean-build\n"
+        "  加 Axiom audit）、release-certificate、final-gate、python-gates、\n"
+        "  lean-module-build(BusinessRelationsAudit) 全部 success。\n",
+        "34519379252",
+    )
     assert not _calls_run_green(
         "- 收敛轨迹：34512426708（7af4e7e，11 错）→ 88644bc 全绿。", "34512426708"
     )

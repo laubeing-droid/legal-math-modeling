@@ -197,3 +197,66 @@ def test_papers_point_at_the_crosscut_artifact() -> None:
         assert "crosscut_grades" in (ROOT / rel).read_text(encoding="utf-8"), (
             f"{rel} must cite the cross-cut ledger key"
         )
+
+
+# How each channel is named in running prose, per language.
+CHANNEL_WORDS = {
+    "empirical_output": ("经验输出", "empirical output"),
+    "retrieved_cohort_rate": ("检索母体率", "retrieved cohort rate"),
+    "synthetic_data": ("合成数据", "synthetic data"),
+    "unidentifiable_target": ("不可识别目标", "unidentifiable target"),
+    "receipt_missing": ("无回执", "receipt missing"),
+    "citation_unverified": ("引文未核", "citation unverified"),
+    "hallucination_pattern_detected": ("幻觉模式", "hallucination pattern detected"),
+    "unadapted_jurisdiction": ("未适配法域", "unadapted jurisdiction"),
+    "human_gate_pending": ("人闸未过", "human gate pending"),
+}
+
+SENTENCE_SPLIT = re.compile(r"[。；;.]")
+
+
+def _sentences(rel: str) -> list[str]:
+    text = (ROOT / rel).read_text(encoding="utf-8")
+    return [s for s in SENTENCE_SPLIT.split(text) if s.strip()]
+
+
+def test_paper_grade_for_each_channel_matches_the_ledger_grade() -> None:
+    """The prose must state the same ceiling the artifact records, channel by channel.
+
+    Without this, the ledger could be flipped to CONCLUSIVE on empirical output and
+    every gate would stay green while the papers kept saying reference-grade.
+    """
+
+    ledger = ReceiptLedger.load()
+    graded = {
+        channel: ledger.crosscut_ceiling(axis, channel)
+        for axis in CROSSCUT_AXES
+        for channel in ledger.crosscut_channels(axis)
+    }
+    assert set(graded) == set(CHANNEL_WORDS), "a channel has no prose name registered"
+    sentences = [
+        s
+        for rel in ("docs/paper-rewrite/paper_cn.md", "docs/paper-rewrite/paper_en.md")
+        for s in _sentences(rel)
+    ]
+    for channel, grade in graded.items():
+        words = CHANNEL_WORDS[channel]
+        hits = [s for s in sentences if any(w in s for w in words)]
+        assert hits, f"{channel} is named in the ledger but no paper sentence mentions it"
+        assert any(grade in s for s in hits), (
+            f"{channel} is {grade} in the ledger; no sentence naming it says {grade}"
+        )
+
+
+def test_crosscut_ceilings_are_declared_not_consumed() -> None:
+    """Keep the paper honest about what the cross-cut side actually does.
+
+    `crosscut_ceiling` has no production caller: the weakest-cited-domain cap exists
+    for layers only. The prose has to say so, and the wording is checked here so it
+    cannot quietly become "everything is capped".
+    """
+
+    cn = (ROOT / "docs/paper-rewrite/paper_cn.md").read_text(encoding="utf-8")
+    en = (ROOT / "docs/paper-rewrite/paper_en.md").read_text(encoding="utf-8")
+    assert "还没有消费方" in cn, "the Chinese draft lost the no-consumer caveat"
+    assert "nothing consumes them yet" in en, "the English draft lost the no-consumer caveat"

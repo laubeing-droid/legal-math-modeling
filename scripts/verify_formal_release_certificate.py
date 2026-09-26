@@ -61,7 +61,10 @@ def verify_certificate(
 
     claimed = certificate.get("source_inventory", {})
     lean_dir = Path(repo_root) / LEAN_SOURCE_DIR
-    actual_paths = sorted(lean_dir.glob("*.lean"))
+    # Recursive, exactly as the generator counts: Genealogy/, Mandate/ and FullMath/
+    # are part of the package the certificate speaks about, so a verifier that globs
+    # only the top level reports SOURCE_COUNT_DRIFT against its own generator.
+    actual_paths = sorted(lean_dir.rglob("*.lean"))
     claimed_by_path = {source["path"]: source for source in claimed.get("sources", ())}
 
     if claimed.get("lean_source_file_count") != len(actual_paths):

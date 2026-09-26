@@ -40,4 +40,12 @@ differ: a run can end `cancelled` while every job a document names succeeded,
 and a document may legitimately quote the jobs. Read the per-job list in the
 JSON before repeating any "that run was green" claim.
 
+
+## Artifact bytes landed in this repository
+
+- run 36258901155: 17 files, 90782 bytes, digests in `docs/formal-release/ci-evidence/36258901155/digests.json`
+- run 36259479766: 17 files, 90782 bytes, digests in `docs/formal-release/ci-evidence/36259479766/digests.json`
+
+Land another run's bytes with `--fetch-evidence <run>`; `--check` recomputes every digest in every `digests.json` and fails if a landed set no longer matches, or belongs to a run nothing quotes.
+
 Regenerate: `python scripts/ci/build_ci_run_index.py`. Check without writing: `--check`.

@@ -254,14 +254,21 @@ def _ledger_derived() -> dict:
 
 
 def test_paper_T_spectrum_numbers_equal_the_ledger() -> None:
-    """Same drift rule for the strength split the papers advertise."""
+    """Same drift rule for the strength split, in both language editions.
+
+    The gate used to read only the Chinese draft, which is how the English one kept
+    advertising `GENERAL 9` for a week after the ledger moved to 7.
+    """
     d = _ledger_derived()
+    grades = f"GENERAL {d['general']} / DEF_PROJECTION {d['projection']} / WITNESS {d['witness']}"
     cn = CN.read_text(encoding="utf-8")
+    en = EN.read_text(encoding="utf-8")
     assert f"{d['carriers']} 条定理给满 {d['rows']} 个 T 位" in cn
-    assert (
-        f"GENERAL {d['general']} / DEF_PROJECTION {d['projection']} / WITNESS {d['witness']}" in cn
-    )
+    assert grades in cn, "the Chinese draft's strength split no longer matches the ledger"
+    assert f"{d['rows']} T slots a theorem ({d['carriers']} in total)" in en
+    assert grades in en, "the English draft's strength split no longer matches the ledger"
     assert f"{d['full']}/{d['rows']}" in cn
+    assert f"{d['full']} of {d['rows']} reach general form" in en
 
 
 def test_ledger_gate_and_paper_agree_on_full_count() -> None:
@@ -303,11 +310,16 @@ def _known_symbols() -> set:
 
 
 def _cited_anchors(text: str) -> set:
-    """snake_case identifiers the papers cite inside a parenthetical naming a carrier."""
+    """snake_case identifiers the papers cite inside a parenthetical naming a carrier.
+
+    A chunk qualifies when it names a Lean file, a genealogy namespace, or a P
+    target -- the `P105，valid_path 与 invalid_jump` form cites a theorem without
+    naming any file, and that is exactly the form that carried a false anchor.
+    """
 
     suspects = set()
     for chunk in re.findall(r"[（(][^）)]{0,240}[）)]", text):
-        if ".lean" in chunk or "Genealogy" in chunk or "Part" in chunk:
+        if ".lean" in chunk or "Genealogy" in chunk or "Part" in chunk or re.search(r"P-?\d{3}", chunk):
             suspects |= set(NAME_RE.findall(chunk))
     return suspects
 
@@ -326,7 +338,7 @@ def test_named_theorems_in_the_papers_resolve() -> None:
     offenders = {}
     for path in (CN, EN):
         cited = _cited_anchors(path.read_text(encoding="utf-8"))
-        assert len(cited) >= 5, (
+        assert len(cited) >= 13, (
             f"{path.name}: only {len(cited)} cited anchors scanned; "
             "the extraction has gone blind, which is not a pass"
         )
@@ -339,11 +351,16 @@ def test_named_theorems_in_the_papers_resolve() -> None:
 
 
 def test_name_gate_actually_bites() -> None:
-    """Falsification: feed the scanner an invented anchor and see it surface."""
+    """Falsification: feed the scanner the two false forms and see them surface."""
 
     known = _known_symbols()
     assert "claim_available_complete_iff" in known
-    sample = "见 `P034`（`Hohfeld.lean`，opposite_involutive 与 no_such_theorem_anywhere_xyz）"
-    cited = _cited_anchors(sample)
-    assert cited == {"opposite_involutive", "no_such_theorem_anywhere_xyz"}, cited
-    assert "no_such_theorem_anywhere_xyz" not in known
+    # The file-naming form.
+    file_form = "见 `P034`（`Hohfeld.lean`，opposite_involutive 与 no_such_theorem_anywhere_xyz）"
+    assert _cited_anchors(file_form) == {"opposite_involutive", "no_such_theorem_anywhere_xyz"}
+    # The bare-target form the papers actually used for P105, where no `.lean`
+    # name appears at all: the old scan walked straight past it.
+    bare_form = "合法边表封闭（P105，valid_path 与 invalid_jump）"
+    surfaced = _cited_anchors(bare_form)
+    assert surfaced == {"valid_path", "invalid_jump"}, surfaced
+    assert not surfaced & known, "the false P105 names must not resolve"

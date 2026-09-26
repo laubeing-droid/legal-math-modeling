@@ -106,7 +106,7 @@
 
 四项概念（P-104 至 P-107）。这一层最小，但它是唯一面向用户的层。
 
-**定理与证据锚。**程序处置序：起诉→答辩→质证→驳回/中止/终结，合法边表闭集（P105，valid_path 与 invalid_jump）。诉讼标的同一性：案由同加当事人无序同（P106）。话术资产：含法律事实断言即拒（P107）。
+**定理与证据锚。**程序处置序：起诉→答辩→质证→驳回/中止/终结，合法边表闭集（P105，disposition_valid_path 与 disposition_invalid_jump）。诉讼标的同一性：案由同加当事人无序同（P106）。话术资产：含法律事实断言即拒（P107）。
 
 **边界。**交付层的验证是"不冒充"，不是"正确"——文书法理质量由第四层供给，本层只管出仓纪律。
 
@@ -132,7 +132,7 @@
 
 **定理与证据锚。**UNKNOWN 保持与三层准入闸门（P119/P120，既有定理群）。防幻觉：列名模式即阻断（P125）。防概念偷渡：跨法域未适配即阻断（P126）。引文核验：逐字前缀比对（P127，降级注：前缀而非任意子串，诚实记录）。正当程序三元素映射（P128）。生命周期边表（P130）。幂等效应日志（P131，空日志重放幂等+既有命令不覆盖见证）。人闸表（P132）：列表动作必经其闸。
 
-**边界。**回执证明绑定，不证明真理；四十九格授权表起步时四十一格 NO_RECEIPT_PENDING——保守起步是纪律，不是缺陷。还有一桩范围事实必须讲在前头：裁决 6 定下的授权表只有 L0–L6 七层乘七回执域，两条横切不是层、在表里没有行；它们的通道上限因此记在同一份账本的 `crosscut_grades` 里（横切A：经验输出与检索母体率 REFERENCE，合成数据与不可识别目标 NOT_CLAIMABLE；横切B：无回执、引文未核、幻觉模式、未适配法域、人闸未过一律 UNCLAIMABLE），由 `theory/spec/receipt_ledger.py` 校验并取最弱者封顶，未知轴或未知通道直接抛 LedgerDefect。所以“每层每句输出带可主张等级”这句话现在是两段机器可读事实的合取：七层看 49 格授权表，两条横切看 `crosscut_grades`；两者都由门测试对齐论文用词，改一处不改另一处就红。
+**边界。**回执证明绑定，不证明真理；四十九格授权表起步时四十一格 NO_RECEIPT_PENDING——保守起步是纪律，不是缺陷。还有一桩范围事实必须讲在前头：裁决 6 定下的授权表只有 L0–L6 七层乘七回执域，两条横切不是层、在表里没有行；它们的通道上限因此记在同一份账本的 `crosscut_grades` 里（横切A：经验输出与检索母体率 REFERENCE，合成数据与不可识别目标 NOT_CLAIMABLE；横切B：无回执、引文未核、幻觉模式、未适配法域、人闸未过一律 UNCLAIMABLE），由 `theory/spec/receipt_ledger.py` 逐通道声明并校验上限，未知轴或未知通道直接抛 LedgerDefect；口径必须说全：**“取最弱引用域封顶”只在层侧实现，横切侧目前只有声明与校验，还没有消费方**，门测试因此禁止本段把封顶写给横切。所以“每层每句输出带可主张等级”这句话现在是两段机器可读事实的合取：七层看 49 格授权表，两条横切看 `crosscut_grades`；两者都由门测试对齐论文用词，改一处不改另一处就红。
 
 ---
 
@@ -141,7 +141,7 @@
 **结论：一台可核验的机器，必须同时交付它办不到什么的清单；不出这份清单的，才叫不可信。**
 
 **未证事项（压实后重排，2026-09-25 深夜九轮问后）**：
-一、T01–T127 目标谱定理级展开——**载体已落地，一般式未闭合**：四批 131 条定理给满 127 个 T 位；覆盖账 theory/spec/lh_alignment/t_p_coverage.jsonl 已改由 scripts/ci/generate_t_coverage_ledger.py 从 Lean 源机械生成，逐条填上锚定定理名与强度档（GENERAL 7 / DEF_PROJECTION 113 / WITNESS 11），并如实记 127 条全部带降级注、40 条明写“完整陈述仍缺”。**达到一般式的 T 目标数：0/127**。上一版覆盖账曾把 127 行全标 FULL 而其中 124 行未填任何定理名，该口径作废；T112（量刑双线）曾误锚在解释构造子定理上，已撤。
+一、T01–T127 目标谱定理级展开——**载体已落地，一般式未闭合**：四批 131 条定理给满 127 个 T 位；覆盖账 theory/spec/lh_alignment/t_p_coverage.jsonl 已改由 scripts/ci/generate_t_coverage_ledger.py 从 Lean 源机械生成，逐条填上锚定定理名与强度档（GENERAL 7 / DEF_PROJECTION 113 / WITNESS 11，只数 EXACT 锚），并如实记 127 条全部带降级注、40 条明写“完整陈述仍缺”。**达到一般式的 T 目标数：0/127**。上一版覆盖账曾把 127 行全标 FULL 而其中 124 行未填任何定理名，该口径作废；T112（量刑双线）曾误锚在解释构造子定理上，已撤。
 二、~~P-083 排序全局降序正确性~~——**已于本轮压实**：插入排序一般式四定理全链落地（GENERAL-A 单步插入增一/GENERAL-B 长度守恒/GENERAL-C 插入保持降序/GENERAL-D 排序输出恒降序，General.lean，CI 运行 36258901155 于 commit bd364c5 全绿）；此前授权的见证级退半步随之关闭；
 三、军令四件仍未接入形式层：胜诉率三步管线（Python 侧是精确有理 Beta-binomial 尾概率，Lean 无对应定理）、类案数学结构对比（两侧现在都是元组/集合相等，无同构或双射定理）、NN 带证书逼近器（BanachCertificate.lean 第 14 行自陈 certificate schema only，误差界与 q<1 都是构造体字段即前提，不是算出来再证出来的界，且 verifyCertificate 恒真）、博弈论显式结构（Python 侧自陈不是纳什求解器，Lean 侧 T81 只是一条 Int 记录投影，全仓无博弈树）。概率是例外：真数学在 FullMath/Probability（Brier 恒等式、污染界、有限后验归一），〔本轮更新：分支 ci/mandate-wave1 已由 scripts/ci/check_import_reachability.py 把它并入库根（FullMath/All.lean + 根可达性块），CI 认定前该修复仍未生效〕；公理审计面本轮已由脚本从 536 个具名目标扩到 606 个，整条统计线（FullMath/Probability 13 文件与 BusinessRoot/Analytics 共 70 条）才第一次进入审计面，其公理结论仍待一次授权 CI 运行方可主张。另：量刑规则表槽位（DATA_SLOT_READY）结构就绪、真实表属外部数据。**〔本轮更新，分支 ci/mandate-wave1，CI_NOT_RUN〕**四件已在该分支补写 Lean 定理：胜诉率第二步（率在有母体时存在、无母体时不存在、加胜诉不降、加败诉不升，Mandate/CohortRate.lean）；类案结构对比（争点码与要素码完全相同而关联边 3≠1 的具例，签名对其分离且该分离在任意合并与任意换名下保持，Mandate/StructureInvariants.lean）；带证书逼近器（n 步迭代闭式、界由模块算出而非由调用方作为字段带入、准入判据与实跑误差等价，Mandate/DerivedCertificate.lean）；博弈论（有限扩展式博弈树与后向归纳值的最优性，Mandate/GameTree.lean；但仍是单人序贯最大化，纳什均衡存在性未动）。另新增对已发布载体的判定式定理：法源准入三档外延（Mandate/SourceRank.lean，取代一条 f k = f k 的自等）、人闸表单值注入（Mandate/GateTable.lean）、引文包含关系与前缀关系的关系面（Mandate/SubstrAdmission.lean，补上 Python 用子串、Lean 证前缀的双侧缺口）。四件与三件升格均未入根、未入公理审计面、未挂 p_registry 锚点：CI 编过之前不进正文主张。
 四、涵摄完备性、八处降级、六类边界界定定理——**部分已于九轮问压实**：25 条新定理（General.lean+Boundary.lean，CI 验证）；P127 左插命题被最小反例关闭并登记，右扩张修正版已证；第 5/6 类边界经指针压实（consensus_does_not_escalate / repetition_does_not_clean / majority_cannot_clean）；

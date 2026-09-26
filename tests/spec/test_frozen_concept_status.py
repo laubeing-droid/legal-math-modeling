@@ -90,6 +90,13 @@ def test_register_still_marks_exactly_these_four_as_gaps() -> None:
     assert marked == set(FROZEN_FOUR), f"❓ set moved: {sorted(marked ^ set(FROZEN_FOUR))}"
 
 
+BLANKET_LABELS = (
+    "OPEN_THEOREM",       # the wording the audit struck
+    "定理级收口",          # the Chinese equivalent, equally contradicted by the ❓ tier
+    "定理级已闭合",
+)
+
+
 def test_the_ledger_names_the_carriers_instead_of_a_blanket_status() -> None:
     text = LEDGER.read_text(encoding="utf-8")
     line = next(
@@ -97,12 +104,21 @@ def test_the_ledger_names_the_carriers_instead_of_a_blanket_status() -> None:
     )
     assert line, "the four-concept paragraph disappeared from the ledger"
     block = text[text.index(line): text.index(line) + 1600]
-    assert "OPEN_THEOREM" not in block, (
-        "the blanket wording is back: these four have audited carriers, so the open "
-        "part must be stated per concept"
-    )
+    for label in BLANKET_LABELS:
+        assert label not in block, (
+            f"the blanket {label!r} is back: these four have audited carriers, so the "
+            "open part must be stated per concept"
+        )
     for _pid, (_ns, syms) in FROZEN_FOUR.items():
         assert any(sym in block for sym in syms), f"{_pid} carriers not named in the ledger"
+
+
+def test_no_blanket_label_survives_anywhere_in_the_ledger() -> None:
+    """A gate that only watches one paragraph misses the label's synonyms."""
+
+    text = LEDGER.read_text(encoding="utf-8")
+    found = [label for label in BLANKET_LABELS if label in text]
+    assert not found, f"blanket theorem-status labels reappeared in the ledger: {found}"
 
 
 def test_each_concept_states_what_remains_open_beyond_its_carriers() -> None:

@@ -39,6 +39,29 @@ def test_generated_inventory_binds_every_lean_source_and_theorem() -> None:
     )
 
 
+def test_certificate_source_scope_reaches_nested_modules() -> None:
+    """A non-recursive glob once made this certificate see 96 of 217 package files.
+
+    The certificate's own landed copy at `b57d4aa` still shows that scope, which is
+    why no paper may attribute the package count to CI.
+    """
+
+    listing = subprocess.run(
+        ["git", "-C", str(REPO_ROOT), "ls-files", "--", "proofs/lean/juris_lean/JurisLean"],
+        capture_output=True, text=True, encoding="utf-8", check=True,
+    ).stdout.splitlines()
+    tracked = [p for p in listing if p.endswith(".lean")]
+    inventory = collect_source_inventory(REPO_ROOT)
+    paths = {s["path"] for s in inventory["sources"]}
+
+    assert paths == set(tracked), (
+        f"certificate sees {len(paths)} files, git tracks {len(tracked)}; "
+        "the difference is modules CI never counts"
+    )
+    assert any("/Genealogy/" in p for p in paths)
+    assert any("/Mandate/" in p for p in paths)
+
+
 def test_release_certificate_binds_ci_subject_without_verifier_self_reference(tmp_path) -> None:
     head = subprocess.run(
         ["git", "-C", str(REPO_ROOT), "rev-parse", "HEAD"],

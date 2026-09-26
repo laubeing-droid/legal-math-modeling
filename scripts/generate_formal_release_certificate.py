@@ -34,12 +34,17 @@ def _sha256_of(path: Path) -> str:
 
 
 def collect_source_inventory(repo_root: Path) -> Dict[str, Any]:
-    """Bind every Lean source file and theorem declaration to a digest."""
+    """Bind every Lean source file and theorem declaration to a digest.
+
+    Recursive on purpose: a non-recursive glob here counted 96 top-level files while
+    Genealogy/, Mandate/ and FullMath/ carry hundreds more, so the certificate's
+    "source inventory" silently excluded most of the package it certifies.
+    """
 
     root = Path(repo_root)
     lean_dir = root / LEAN_SOURCE_DIR
     sources: List[Dict[str, Any]] = []
-    for lean_file in sorted(lean_dir.glob("*.lean")):
+    for lean_file in sorted(lean_dir.rglob("*.lean")):
         theorems: List[Dict[str, Any]] = []
         text = lean_file.read_text(encoding="utf-8")
         for lineno, line in enumerate(text.splitlines(), start=1):

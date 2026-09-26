@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build the in-repo index of GitHub Actions runs that the repository quotes.
 
-Why this exists (Qoder audit P2-26): repo markdown names twenty run ids as
+Why this exists (Qoder audit P2-26): repo markdown names a batch of run ids as
 evidence for build, axiom-audit and certificate claims, but nothing in the repo
 recorded what those runs actually were. Verifying a quoted "CI 全绿" therefore
 required an outside `gh` session, which is exactly the "third parties cannot
@@ -21,8 +21,10 @@ what Actions reported for that run, and `--check` re-reads it to catch drift.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 import re
+import shutil
 import subprocess
 import sys
 from pathlib import Path
@@ -43,14 +45,24 @@ AUTHORITY = (
 
 
 def run_ids_in_markdown() -> dict[str, list[str]]:
-    """Every 11-digit run id quoted in tracked markdown, with its locations."""
+    """Every 11-digit run id quoted in tracked markdown, with its locations.
+
+    The generated index and evidence accounts are excluded: they name the ids they
+    are cataloguing, so scanning them would let the index vouch for itself and every
+    non-success run would look "named as red" by its own table row.
+    """
 
     listing = subprocess.run(
         ["git", "ls-files", "-z", "*.md"],
         cwd=ROOT, capture_output=True, text=True, encoding="utf-8", check=True,
     )
+    generated = {MD_OUT.relative_to(ROOT).as_posix()}
+    if EVIDENCE_ROOT.exists():
+        generated |= {p.relative_to(ROOT).as_posix() for p in EVIDENCE_ROOT.rglob("*.md")}
     found: dict[str, list[str]] = {}
     for rel in filter(None, listing.stdout.split("\0")):
+        if rel in generated:
+            continue
         path = ROOT / rel
         try:
             text = path.read_text(encoding="utf-8")
@@ -95,7 +107,111 @@ def describe(rid: str, quoted: list[str]) -> dict:
             for j in jobs
         ],
         "artifacts_total": artifacts.get("total_count"),
+        "evidence": evidence_index(rid),
     }
+
+
+EVIDENCE_ROOT = ROOT / "docs" / "formal-release" / "ci-evidence"
+EVIDENCE_MAX_BYTES = 100_000
+EVIDENCE_ARTIFACTS = (
+    "release-certificate-", "seven-axis-gate-", "full-math-completion-", "runtime-refinement-",
+)
+EVIDENCE_SKIP_SUFFIX = (".log",)
+EVIDENCE_SCHEMA = "ci-run-evidence-v1"
+EVIDENCE_NOTE = (
+    "Bytes downloaded from the GitHub Actions artifact store for this run, digested on "
+    "arrival. Only the report artifacts a claim is actually cited from land here "
+    "(certificate, gate, completion, refinement); build and test logs stay outside. A "
+    "digest proves this repository's copy has not been edited since download -- it does "
+    "not re-derive the result, which would mean re-running Lean."
+)
+
+
+def evidence_dir(rid: str) -> Path:
+    return EVIDENCE_ROOT / rid
+
+
+def _sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def fetch_evidence(rid: str) -> dict:
+    """Download the small decisive artifacts of one run and digest what landed."""
+
+    artifacts = gh_api(f"repos/{REPO}/actions/runs/{rid}/artifacts?per_page=100")["artifacts"]
+    picked = [
+        a for a in artifacts
+        if not a.get("expired")
+        and str(a.get("name", "")).startswith(EVIDENCE_ARTIFACTS)
+        and a.get("size_in_bytes", 1 << 30) <= EVIDENCE_MAX_BYTES
+    ]
+    if not picked:
+        raise RuntimeError(
+            f"run {rid}: no report artifact matched {EVIDENCE_ARTIFACTS} "
+            f"under {EVIDENCE_MAX_BYTES} bytes"
+        )
+    skipped = sorted(
+        str(a.get("name")) for a in artifacts if a not in picked
+    )
+    dest = evidence_dir(rid)
+    if dest.exists():
+        shutil.rmtree(dest)
+    dest.mkdir(parents=True)
+    for a in picked:
+        proc = subprocess.run(
+            ["gh", "run", "download", rid, "-n", a["name"], "-D", str(dest / a["name"])],
+            cwd=ROOT, capture_output=True, text=True, encoding="utf-8",
+        )
+        if proc.returncode != 0:
+            raise RuntimeError(f"gh run download {rid} {a['name']}: {proc.stderr.strip()[:200]}")
+    for p in sorted(dest.rglob("*")):
+        if p.is_file() and p.name.endswith(EVIDENCE_SKIP_SUFFIX):
+            p.unlink()
+    files = [
+        {
+            "path": p.relative_to(dest).as_posix(),
+            "artifact": p.relative_to(dest).parts[0],
+            "sha256": _sha256(p),
+            "bytes": p.stat().st_size,
+        }
+        for p in sorted(dest.rglob("*"))
+        if p.is_file()
+        and p.name != "digests.json"
+        and not p.name.endswith(EVIDENCE_SKIP_SUFFIX)
+    ]
+    doc = {
+        "schema_version": EVIDENCE_SCHEMA,
+        "run_id": int(rid),
+        "authority_note": EVIDENCE_NOTE,
+        "source": f"https://github.com/{REPO}/actions/runs/{rid}",
+        "artifacts_landed": sorted(str(a["name"]) for a in picked),
+        "artifacts_not_landed": skipped,
+        "files": files,
+    }
+    (dest / "digests.json").write_text(
+        json.dumps(doc, ensure_ascii=False, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8", newline="\n",
+    )
+    return doc
+
+
+def verify_evidence(doc: dict) -> list[str]:
+    """Recompute the digests of a landed evidence record; return mismatches."""
+
+    dest = evidence_dir(str(doc["run_id"]))
+    problems = []
+    for f in doc["files"]:
+        path = dest / f["path"]
+        if not path.exists():
+            problems.append(f"missing {f['path']}")
+        elif _sha256(path) != f["sha256"]:
+            problems.append(f"digest mismatch {f['path']}")
+    return problems
+
+
+def evidence_index(rid: str) -> str | None:
+    sidecar = evidence_dir(rid) / "digests.json"
+    return f"docs/formal-release/ci-evidence/{rid}/digests.json" if sidecar.exists() else None
 
 
 def build(ids: dict[str, list[str]]) -> dict:
@@ -145,6 +261,26 @@ def render_markdown(doc: dict) -> str:
         "and a document may legitimately quote the jobs. Read the per-job list in the",
         "JSON before repeating any \"that run was green\" claim.",
         "",
+    ]
+    landed = [r for r in doc["runs"] if r.get("evidence")]
+    if landed:
+        lines += ["", "## Artifact bytes landed in this repository", ""]
+        for r in landed:
+            side = ROOT / r["evidence"]
+            rec = json.loads(side.read_text(encoding="utf-8")) if side.exists() else {"files": []}
+            lines.append(
+                f"- run {r['run_id']}: {len(rec['files'])} files, "
+                f"{sum(f['bytes'] for f in rec['files'])} bytes, digests in "
+                f"`{r['evidence']}`"
+            )
+        lines += [
+            "",
+            "Land another run's bytes with `--fetch-evidence <run>`; `--check` "
+            "recomputes every digest in every `digests.json` and fails if a landed "
+            "set no longer matches, or belongs to a run nothing quotes.",
+            "",
+        ]
+    lines += [
         "Regenerate: `python scripts/ci/build_ci_run_index.py`. "
         "Check without writing: `--check`.",
         "",
@@ -162,7 +298,19 @@ def main() -> int:
         help="refresh only the quoted_by locations from the markdown, reusing the "
              "cached Actions metadata (docs move; runs do not)",
     )
+    ap.add_argument(
+        "--fetch-evidence",
+        metavar="RUN_ID",
+        help="download this run's small artifacts under docs/formal-release/ci-evidence/ and digest them",
+    )
     args = ap.parse_args()
+
+    if args.fetch_evidence:
+        doc = fetch_evidence(args.fetch_evidence)
+        print(f"run {doc['run_id']}: landed {len(doc['files'])} files, "
+              f"{sum(f['bytes'] for f in doc['files'])} bytes under "
+              f"{evidence_dir(args.fetch_evidence).relative_to(ROOT)}")
+        return 0
 
     ids = run_ids_in_markdown()
     index_path = Path(args.index)
@@ -184,6 +332,17 @@ def main() -> int:
             if not (r.get("head_sha") and r.get("jobs") and r.get("conclusion")):
                 print(f"incomplete record for run {r['run_id']}", file=sys.stderr)
                 return 1
+        for sidecar in sorted(EVIDENCE_ROOT.glob("*/digests.json")) if EVIDENCE_ROOT.exists() else []:
+            landed = json.loads(sidecar.read_text(encoding="utf-8"))
+            problems = verify_evidence(landed)
+            if problems:
+                print(f"evidence for run {landed['run_id']} does not match its digests: {problems}",
+                      file=sys.stderr)
+                return 1
+            if str(landed["run_id"]) not in recorded:
+                print(f"evidence landed for run {landed['run_id']}, which markdown no longer quotes",
+                      file=sys.stderr)
+                return 1
         print(f"ci run index ok: {len(recorded)} runs, {sum(len(v) for v in ids.values())} quotes")
         return 0
 
@@ -199,7 +358,10 @@ def main() -> int:
             )
             return 2
         doc = dict(cached)
-        doc["runs"] = [{**known[rid], "quoted_by": sorted(q)} for rid, q in sorted(ids.items())]
+        doc["runs"] = [
+            {**known[rid], "quoted_by": sorted(q), "evidence": evidence_index(rid)}
+            for rid, q in sorted(ids.items())
+        ]
     else:
         doc = build(ids)
     JSON_OUT.parent.mkdir(parents=True, exist_ok=True)

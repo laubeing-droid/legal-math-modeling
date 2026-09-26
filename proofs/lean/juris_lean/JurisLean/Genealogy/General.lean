@@ -175,8 +175,14 @@ theorem P083_insertEvpi_length
   | nil => rfl
   | cons y ys ih =>
       cases Nat.decLt x.evpi y.evpi with
-      | isTrue _ => simp only [insertEvpi, List.length_cons, ih]; omega
-      | isFalse _ => simp only [insertEvpi, List.length_cons]; omega
+      | isTrue _ =>
+          show (y :: insertEvpi x ys).length = (y :: ys).length + 1
+          simp only [List.length_cons, ih]
+          omega
+      | isFalse _ =>
+          show (x :: y :: ys).length = (y :: ys).length + 1
+          simp only [List.length_cons]
+          omega
 
 /-- [P083-GENERAL-B] 完整排序保持列表长度不变。 -/
 theorem P083_sortEvpi_length
@@ -203,30 +209,33 @@ theorem P083_insertEvpi_preserves_sortedP (x : P083EvpiItem) :
       trivial
   | cons y ys' ih =>
       intro hsorted
-      cases hd : Nat.decLt x.evpi y.evpi with
+      cases Nat.decLt x.evpi y.evpi with
       | isFalse _ =>
-          -- ¬(x < y)，即 y ≤ x：insert 在前 → x :: y :: ys'
+          -- y ≤ x：insert 在前
           have hle : y.evpi ≤ x.evpi := by omega
-          simp only [insertEvpi, hd]
+          show sortedDescP (x :: y :: ys')
           simp only [sortedDescP]
           exact ⟨hle, hsorted⟩
       | isTrue hxy =>
-          -- x < y：insert 在后 → y :: insertEvpi x ys'
+          -- x < y：insert 在后
           cases ys' with
           | nil =>
-              simp only [insertEvpi, hd, sortedDescP]
+              show sortedDescP (y :: [x])
+              simp only [sortedDescP]
               exact ⟨Nat.le_of_lt hxy, trivial⟩
           | cons z zs =>
               simp only [sortedDescP] at hsorted
-              cases hd2 : Nat.decLt x.evpi z.evpi with
+              cases Nat.decLt x.evpi z.evpi with
               | isFalse _ =>
                   -- z ≤ x：insert head = x
                   have hzx : z.evpi ≤ x.evpi := by omega
-                  simp only [insertEvpi, hd, hd2, sortedDescP]
+                  show sortedDescP (y :: x :: z :: zs)
+                  simp only [sortedDescP]
                   exact ⟨Nat.le_of_lt hxy, hzx, hsorted⟩
-              | isTrue hxz =>
+              | isTrue _ =>
                   -- x < z：insert head = z
-                  simp only [insertEvpi, hd, hd2, sortedDescP]
+                  show sortedDescP (y :: z :: insertEvpi x zs)
+                  simp only [sortedDescP]
                   exact ⟨hsorted.1, ih hsorted⟩
 
 /-- [P083-GENERAL-D] 排序结果恒降序（一般式）。 -/

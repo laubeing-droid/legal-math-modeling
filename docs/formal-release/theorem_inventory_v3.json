@@ -466,8 +466,7 @@
     "JurisLean.Genealogy.General.P083_insertEvpi_preserves_sortedP",
     "JurisLean.Genealogy.General.P083_sortEvpi_length",
     "JurisLean.Genealogy.General.P083_sortEvpi_sortedP",
-    "JurisLean.Genealogy.General.P083_sortedDesc_iff",
-    "JurisLean.Genealogy.General.P083_sortedDescending_witness",
+    "JurisLean.Genealogy.General.P083_sortedDesc_witness",
     "JurisLean.Genealogy.General.P084_appealWorthwhile_monotone_strict",
     "JurisLean.Genealogy.General.P084_appealWorthwhile_of_mul_le",
     "JurisLean.Genealogy.General.P084_mul_monotone_probability_strict",
@@ -566,8 +565,6 @@
     "JurisLean.Genealogy.Part4.P080.plea_skip_fails_closed",
     "JurisLean.Genealogy.Part4.P081.fraud_voids_tactic",
     "JurisLean.Genealogy.Part4.P082.preservation_without_ground_infeasible",
-    "JurisLean.Genealogy.Part4.P083.evpi_descending_witness",
-    "JurisLean.Genealogy.Part4.P083.evpi_tie_stability_witness",
     "JurisLean.Genealogy.Part4.P084.appeal_ev_negative_witness",
     "JurisLean.Genealogy.Part4.P084.appeal_ev_positive_witness",
     "JurisLean.Genealogy.Part4.P085.undisclosed_fee_none",
@@ -778,8 +775,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "e03fd149e3b782b6e1ec37a1edf28b3d58b029ee43d9f49c4747eed061c3dd56",
-   "size_bytes": 24390,
+   "sha256": "fba6ac93632547fd8ffdb5fdcda8a191f135ddaec992219f2b38b8365576a1c2",
+   "size_bytes": 24113,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -9368,10 +9365,6 @@
     },
     {
      "kind": "def",
-     "name": "sortedDescending"
-    },
-    {
-     "kind": "def",
      "name": "sortedDescP"
     },
     {
@@ -9384,11 +9377,7 @@
     },
     {
      "kind": "theorem",
-     "name": "P083_sortedDesc_iff"
-    },
-    {
-     "kind": "theorem",
-     "name": "P083_sortedDescending_witness"
+     "name": "P083_sortedDesc_witness"
     },
     {
      "kind": "def",
@@ -9485,10 +9474,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/General.lean",
    "print_axioms_targets": [],
-   "sha256": "529bddbefdf9b6b355d39e639a15aaad08bf25e5eb06751c1cec12447f7ede90",
-   "size_bytes": 17057,
-   "theorem_count": 23,
-   "theorem_count_bol_convention": 23
+   "sha256": "af9192b3ff1a71de333859811c49b852767f7c8ea6a43fcdfa94971e92ba217a",
+   "size_bytes": 15849,
+   "theorem_count": 22,
+   "theorem_count_bol_convention": 22
   },
   {
    "declarations": [
@@ -17881,13 +17870,13 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1800,
+   "counted_declaration_count": 1799,
    "file_count": 216,
    "lemma_count": 24,
-   "print_axioms_command_count": 593,
-   "print_axioms_distinct_targets": 539,
-   "theorem_count": 1776,
-   "theorem_count_bol_convention": 1740
+   "print_axioms_command_count": 590,
+   "print_axioms_distinct_targets": 536,
+   "theorem_count": 1775,
+   "theorem_count_bol_convention": 1739
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -18158,11 +18147,11 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "6d4274e273cfba3da131fc14c09bc6cf1f3147c4279e3e95b76b2afeb7454095",
+ "source_inventory_digest": "a1adc61110fb4fe0eda08edfefe54a2bfc2ab74da3f18e27223976be557c080a",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "main",
-  "commit": "6ffb7afae28f96b55c9155f13698cc98ef95affe",
-  "tree": "3af53e1af684daf8163f09a93677c71bb5e56e37"
+  "commit": "aec1a095218462ca0c78850e1ef1adae798d63fe",
+  "tree": "c89688ff621b17fbd1ed1689b34d7d0913dd12b2"
  }
 }

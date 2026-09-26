@@ -1,2 +1,7 @@
 * text=auto
 *.lean text eol=lf
+# Byte-exact CI evidence: the digests in ci-evidence/*/digests.json are computed over
+# the bytes Actions published, so no end-of-line conversion may touch this tree
+# in either direction -- a checkout that rewrites LF to CRLF invalidates them.
+docs/formal-release/ci-evidence/** -text
+docs/formal-release/ci_run_index.json -text

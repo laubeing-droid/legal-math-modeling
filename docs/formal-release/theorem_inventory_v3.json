@@ -14219,6 +14219,64 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "occurs"
+    },
+    {
+     "kind": "def",
+     "name": "allp"
+    },
+    {
+     "kind": "def",
+     "name": "covers"
+    },
+    {
+     "kind": "def",
+     "name": "compliant"
+    },
+    {
+     "kind": "theorem",
+     "name": "occurs_append"
+    },
+    {
+     "kind": "theorem",
+     "name": "occurs_head"
+    },
+    {
+     "kind": "theorem",
+     "name": "occurs_monotone"
+    },
+    {
+     "kind": "theorem",
+     "name": "covers_nil_recorded"
+    },
+    {
+     "kind": "theorem",
+     "name": "not_covers_empty_registry"
+    },
+    {
+     "kind": "theorem",
+     "name": "compliant_true_iff_covers"
+    },
+    {
+     "kind": "theorem",
+     "name": "compliant_concrete"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/Disclosure.lean",
+   "print_axioms_targets": [],
+   "sha256": "be536fe79f2839f4e980669b56a6bfa2ee9a1eb5784feef4851525336e777c25",
+   "size_bytes": 3429,
+   "theorem_count": 7,
+   "theorem_count_bol_convention": 7
+  },
+  {
+   "declarations": [
+    {
      "kind": "inductive",
      "name": "Tree"
     },
@@ -14399,6 +14457,68 @@
    "size_bytes": 4395,
    "theorem_count": 13,
    "theorem_count_bol_convention": 13
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "score"
+    },
+    {
+     "kind": "def",
+     "name": "predicts"
+    },
+    {
+     "kind": "theorem",
+     "name": "score_nil_weights"
+    },
+    {
+     "kind": "theorem",
+     "name": "score_nil_features"
+    },
+    {
+     "kind": "theorem",
+     "name": "score_cons"
+    },
+    {
+     "kind": "theorem",
+     "name": "score_not_constant"
+    },
+    {
+     "kind": "theorem",
+     "name": "predicts_true_of_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "not_predicts_of_neg"
+    },
+    {
+     "kind": "def",
+     "name": "allNonNeg"
+    },
+    {
+     "kind": "theorem",
+     "name": "score_nonneg_of_allNonNeg"
+    },
+    {
+     "kind": "theorem",
+     "name": "score_zero_weights"
+    },
+    {
+     "kind": "theorem",
+     "name": "predicts_scaled_positive"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean",
+   "print_axioms_targets": [],
+   "sha256": "da3c47c0f3847a4030b37dcfd3ebe4b185d364d95a6e48612fdd48b0cf37d15b",
+   "size_bytes": 4075,
+   "theorem_count": 9,
+   "theorem_count_bol_convention": 9
   },
   {
    "declarations": [
@@ -18498,22 +18618,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1857,
-   "file_count": 225,
+   "counted_declaration_count": 1873,
+   "file_count": 227,
    "lemma_count": 24,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1833,
-   "theorem_count_bol_convention": 1797
+   "theorem_count": 1849,
+   "theorem_count_bol_convention": 1813
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1838,
-   "file_count": 210,
+   "counted_declaration_count": 1854,
+   "file_count": 212,
    "lemma_count": 17,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1821,
-   "theorem_count_bol_convention": 1785
+   "theorem_count": 1837,
+   "theorem_count_bol_convention": 1801
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -18692,9 +18812,11 @@
    "proofs/lean/juris_lean/JurisLean/LegalWellFormed.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/CohortRate.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/DerivedCertificate.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/Disclosure.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/GateTable.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/Kernel.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SubstrAdmission.lean",
@@ -18915,9 +19037,11 @@
    "proofs/lean/juris_lean/JurisLean/LegalWellFormed.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/CohortRate.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/DerivedCertificate.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/Disclosure.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/GateTable.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/Kernel.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SubstrAdmission.lean",
@@ -19005,19 +19129,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "7b70a0b993d132edde64b05cef21ca69c1d237eb36be0e16fc4403b1c594dcb7",
+ "source_inventory_digest": "3b91866d11cdcaeac87098292140cd0ede4f399abaaeea5f096d98b4927be645",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "ee5c3c9d15ca1ca295d0bf1a71cd3ee8575d8ef2",
-  "tree": "9e58fff07661c6258ae758a653e4b5ea9ce7adb7"
+  "commit": "a7819fd25cd7bca1404da888eec27cf8428d9826",
+  "tree": "9b997dec6cecedbed68f0130100161ce8ae0c482"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 225,
+  "files_total": 227,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": true
+  "worktree_dirty_under_proofs": false
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

@@ -93,21 +93,39 @@ def test_head_commits_of_quoted_runs_exist_in_this_repository() -> None:
         assert proc.returncode == 0, f"run {r['run_id']} head {r['head_sha']} not in repo"
 
 
+def _calls_run_green(line: str, run_id: str) -> bool:
+    """Does this line attach a green word to this run id?"""
+
+    for m in re.finditer(run_id, line):
+        window = _attached_window(line, m.end()).lower()
+        if any(t in window for t in GREEN_TOKENS):
+            return True
+    return False
+
+
 def test_a_quoted_line_may_not_call_a_non_success_run_green() -> None:
     """Adjacent praise for a red run is the defect this index exists to catch."""
 
-    bad = []
-    for r in _doc()["runs"]:
-        if r["conclusion"] == "success":
-            continue
-        for loc in r["quoted_by"]:
-            line = _line(loc)
-            rid = str(r["run_id"])
-            for m in re.finditer(rid, line):
-                window = _attached_window(line, m.end()).lower()
-                if any(t in window for t in GREEN_TOKENS):
-                    bad.append(f"{loc}: {line.strip()[:120]}")
+    bad = [
+        f"{loc}: {_line(loc).strip()[:120]}"
+        for r in _doc()["runs"] if r["conclusion"] != "success"
+        for loc in r["quoted_by"]
+        if _calls_run_green(_line(loc), str(r["run_id"]))
+    ]
     assert not bad, "non-success runs quoted as green:\n" + "\n".join(bad)
+
+
+def test_green_adjacency_rule_actually_bites() -> None:
+    """The rule must catch a real over-claim and spare the honest phrasing."""
+
+    assert _calls_run_green("- run 34512426708 全绿，公理零依赖", "34512426708")
+    assert _calls_run_green("- run 34512426708 (**success** at bd364c5)", "34512426708")
+    # The sentence this repo actually contains: the green word belongs to a later
+    # commit, not to the run named just before the arrow.
+    assert not _calls_run_green(
+        "- 收敛轨迹：34512426708（7af4e7e，11 错）→ 88644bc 全绿。", "34512426708"
+    )
+    assert not _calls_run_green("- run 34512426708 结论 failure", "34512426708")
 
 
 def test_red_runs_are_also_named_as_red_somewhere() -> None:

@@ -45,11 +45,43 @@ def _defined_test_names() -> set[str]:
     return names
 
 
+def _undefined_gates(table: str, defined: set[str]) -> list[str]:
+    cited = {n for n in TEST_NAME_RE.findall(table) if not n.endswith("_") and "*" not in n}
+    return sorted(cited - defined)
+
+
+def _missing_paths(table: str) -> list[str]:
+    missing = []
+    for token in BACKTICK_RE.findall(table):
+        if "/" not in token or token.startswith("git ") or "..." in token or "{" in token:
+            continue
+        candidate = token.split(" ")[0]
+        if candidate.startswith(("docs/", "proofs/", "scripts/", "theory/", "tests/")):
+            if not (ROOT / candidate).exists():
+                missing.append(candidate)
+    return missing
+
+
 def test_every_gate_named_in_the_table_exists() -> None:
-    defined = _defined_test_names()
-    globbed = {n for n in TEST_NAME_RE.findall(_table()) if not n.endswith("_")}
-    missing = sorted(n for n in globbed if "*" not in n and n not in defined)
+    missing = _undefined_gates(_table(), _defined_test_names())
     assert not missing, f"the ledger cites gates that are not defined: {missing}"
+
+
+def test_gate_citation_rule_rejects_a_fabricated_name() -> None:
+    """Falsification: without this the table could cite anything and stay green."""
+
+    defined = _defined_test_names()
+    assert _undefined_gates("x | `test_a_gate_that_was_never_written` |", defined) == [
+        "test_a_gate_that_was_never_written"
+    ]
+    assert _undefined_gates("x | `test_bucket_headers_match_row_counts` |", defined) == []
+
+
+def test_path_citation_rule_rejects_a_fabricated_file() -> None:
+    assert _missing_paths("`docs/master-plan/03_证明战役台账.md`") == []
+    assert _missing_paths("`docs/master-plan/no_such_ledger.md`") == [
+        "docs/master-plan/no_such_ledger.md"
+    ]
 
 
 def test_wildcard_gate_citations_match_a_real_test() -> None:
@@ -65,12 +97,5 @@ def test_every_test_file_cited_in_the_table_exists() -> None:
 
 
 def test_every_path_cited_in_the_table_exists() -> None:
-    missing = []
-    for token in BACKTICK_RE.findall(_table()):
-        if "/" not in token or token.startswith("git ") or "..." in token or "{" in token:
-            continue
-        candidate = token.split(" ")[0]
-        if candidate.startswith(("docs/", "proofs/", "scripts/", "theory/", "tests/")):
-            if not (ROOT / candidate).exists():
-                missing.append(candidate)
+    missing = _missing_paths(_table())
     assert not missing, f"ledger cites paths that are not in the tree: {missing}"

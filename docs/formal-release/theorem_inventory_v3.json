@@ -14202,6 +14202,45 @@
   {
    "declarations": [
     {
+     "kind": "theorem",
+     "name": "gate_iff_table"
+    },
+    {
+     "kind": "theorem",
+     "name": "gate_exists_unique"
+    },
+    {
+     "kind": "theorem",
+     "name": "gates_pairwise_distinct"
+    },
+    {
+     "kind": "theorem",
+     "name": "gate_ne_true_of_ne"
+    },
+    {
+     "kind": "theorem",
+     "name": "gate_coverage_total"
+    },
+    {
+     "kind": "theorem",
+     "name": "gate_table_no_duplicates"
+    }
+   ],
+   "imports": [
+    "JurisLean.Genealogy.Part6",
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/GateTable.lean",
+   "print_axioms_targets": [],
+   "sha256": "3f8b6567d8461f85b7f93b2a11ac767bec9264f71f0c6dc4c7abcce70ffe76b3",
+   "size_bytes": 2493,
+   "theorem_count": 6,
+   "theorem_count_bol_convention": 6
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "successes"
     },
@@ -14288,6 +14327,49 @@
   {
    "declarations": [
     {
+     "kind": "theorem",
+     "name": "grade_binding_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "grade_shallRefer_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "grade_referenceOnly_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "grade_classes_inhabited"
+    },
+    {
+     "kind": "theorem",
+     "name": "grade_single_valued"
+    },
+    {
+     "kind": "theorem",
+     "name": "grade_exhaustive"
+    },
+    {
+     "kind": "theorem",
+     "name": "soft_law_never_binding"
+    }
+   ],
+   "imports": [
+    "JurisLean.Genealogy.Part1",
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
+   "print_axioms_targets": [],
+   "sha256": "3a5c06c2c7682d6c4a7c9a8eff504b7dba24d4f0df6ca2dcc88958b61ed22a72",
+   "size_bytes": 2801,
+   "theorem_count": 7,
+   "theorem_count_bol_convention": 7
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "anchored"
     },
@@ -14333,6 +14415,56 @@
    "print_axioms_targets": [],
    "sha256": "59fdb9aab1e4171fedb1ad638b266591a66a43ec29e89c3b2e5e1c7e2cafa09e",
    "size_bytes": 4272,
+   "theorem_count": 7,
+   "theorem_count_bol_convention": 7
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "isPrefix"
+    },
+    {
+     "kind": "def",
+     "name": "isSubstr"
+    },
+    {
+     "kind": "theorem",
+     "name": "isPrefix_refl"
+    },
+    {
+     "kind": "theorem",
+     "name": "isPrefix_false_of_longer"
+    },
+    {
+     "kind": "theorem",
+     "name": "isSubstr_nil_pat"
+    },
+    {
+     "kind": "theorem",
+     "name": "isSubstr_of_isPrefix"
+    },
+    {
+     "kind": "theorem",
+     "name": "isSubstr_self"
+    },
+    {
+     "kind": "theorem",
+     "name": "substr_strictly_weaker"
+    },
+    {
+     "kind": "theorem",
+     "name": "prefix_adequate_for_admission"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/SubstrAdmission.lean",
+   "print_axioms_targets": [],
+   "sha256": "9d39fc5a815d7885661dbfff2c95e3605fa42df3c4568b8b0938df6ce8a2a109",
+   "size_bytes": 3501,
    "theorem_count": 7,
    "theorem_count_bol_convention": 7
   },
@@ -18244,22 +18376,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1837,
-   "file_count": 221,
+   "counted_declaration_count": 1857,
+   "file_count": 224,
    "lemma_count": 24,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1813,
-   "theorem_count_bol_convention": 1777
+   "theorem_count": 1833,
+   "theorem_count_bol_convention": 1797
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1818,
-   "file_count": 206,
+   "counted_declaration_count": 1838,
+   "file_count": 209,
    "lemma_count": 17,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1801,
-   "theorem_count_bol_convention": 1765
+   "theorem_count": 1821,
+   "theorem_count_bol_convention": 1785
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -18438,8 +18570,11 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/CohortRate.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/DerivedCertificate.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/GateTable.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/Kernel.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/SubstrAdmission.lean",
    "proofs/lean/juris_lean/JurisLean/PermissionConflict.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalEnvelopeSpec.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalNoninterference.lean",
@@ -18657,8 +18792,11 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/CohortRate.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/DerivedCertificate.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/GateTable.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/Kernel.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/SubstrAdmission.lean",
    "proofs/lean/juris_lean/JurisLean/PermissionConflict.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalEnvelopeSpec.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalNoninterference.lean",
@@ -18743,17 +18881,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "30ee87afae66a3fc1508d68f845141858539bfee33ee58199f12b3f4ab8c39d2",
+ "source_inventory_digest": "8826710ec970ac7487dc4afe03275ba941af035d5c9120588e935c8587ca5589",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "689f66769590104eac418f6db2ff9e01171e48e3",
-  "tree": "71935ca7aabd9c0af5d87e4188f81dc36f72efb9"
+  "commit": "eedb78b4489dc0763f49d760f18455033861d045",
+  "tree": "a0cb6e79c259c57d0bc6e4729345680bf2bef51d"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 221,
+  "files_total": 224,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

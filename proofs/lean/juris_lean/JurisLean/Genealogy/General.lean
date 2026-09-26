@@ -219,59 +219,37 @@ theorem P083_insertEvpi_preserves_sortedP (x : P083EvpiItem) :
       intro hsorted
       cases Nat.lt_or_ge x.evpi y.evpi with
       | inr hyx =>
-          -- y ≤ x：insert 在前 → x :: y :: ys'
-          have hcond : decide (y.evpi ≤ x.evpi) = true := by
-            cases h : decide (y.evpi ≤ x.evpi) with
-            | true => rfl
-            | false =>
-                cases Nat.decLe y.evpi x.evpi with
-                | isTrue _ => rw [show decide (y.evpi ≤ x.evpi) = true from rfl] at h; simp at h
-                | isFalse hnf => exact absurd hyx hnf
-          simp only [insertEvpi, hcond]
+          -- y ≤ x：insert 在前
+          simp only [insertEvpi, of_decide_eq_true hyx]
           simp only [sortedDescP]
           exact ⟨hyx, hsorted⟩
       | inl hxy =>
-          -- x < y：insert 在后 → y :: insertEvpi x ys'
+          -- x < y：insert 在后
+          have hnot : ¬(y.evpi ≤ x.evpi) := by omega
           have hcond : decide (y.evpi ≤ x.evpi) = false := by
-            cases h : decide (y.evpi ≤ x.evpi) with
+            cases hd : decide (y.evpi ≤ x.evpi) with
+            | true => exact absurd (of_decide_eq_true hd) hnot
             | false => rfl
-            | true =>
-                cases Nat.decLe y.evpi x.evpi with
-                | isTrue hyx => rw [show decide (y.evpi ≤ x.evpi) = true from rfl] at h; simp at h
-                | isFalse hnf =>
-                    have hnx : ¬(y.evpi ≤ x.evpi) := hnf
-                    omega
           simp only [insertEvpi, hcond]
           cases ys' with
           | nil =>
               simp only [insertEvpi, sortedDescP]
-              exact ⟨Nat.le_of_lt hxy, trivial, trivial⟩
+              exact ⟨Nat.le_of_lt hxy, trivial⟩
           | cons z zs =>
               simp only [sortedDescP] at hsorted
               simp only [insertEvpi]
               cases Nat.lt_or_ge x.evpi z.evpi with
               | inr hxz =>
                   -- z ≤ x：insert head = x
-                  have hz : decide (z.evpi ≤ x.evpi) = true := by
-                    cases h : decide (z.evpi ≤ x.evpi) with
-                    | true => rfl
-                    | false =>
-                        cases Nat.decLe z.evpi x.evpi with
-                        | isTrue _ => rw [show decide (z.evpi ≤ x.evpi) = true from rfl] at h; simp at h
-                        | isFalse hnf => exact absurd hxz hnf
-                  simp only [hz, sortedDescP]
-                  exact ⟨⟨Nat.le_trans hxz (Nat.le_of_lt hxy), hsorted.1⟩, hsorted⟩
+                  simp only [of_decide_eq_true hxz, sortedDescP]
+                  exact ⟨Nat.le_of_lt hxy, hxz, hsorted⟩
               | inl hxz =>
                   -- x < z：insert head = z
+                  have hnotz : ¬(z.evpi ≤ x.evpi) := by omega
                   have hz : decide (z.evpi ≤ x.evpi) = false := by
-                    cases h : decide (z.evpi ≤ x.evpi) with
+                    cases hd : decide (z.evpi ≤ x.evpi) with
+                    | true => exact absurd (of_decide_eq_true hd) hnotz
                     | false => rfl
-                    | true =>
-                        cases Nat.decLe z.evpi x.evpi with
-                        | isTrue hzx => rw [show decide (z.evpi ≤ x.evpi) = true from rfl] at h; simp at h
-                        | isFalse hnf =>
-                            have hnx : ¬(z.evpi ≤ x.evpi) := hnf
-                            omega
                   simp only [hz, sortedDescP]
                   exact ⟨hsorted.1, ih hsorted⟩
 

@@ -179,12 +179,10 @@ theorem P083_insertEvpi_length
       | inl hlt =>
           rw [insertEvpi, if_pos hlt]
           simp only [List.length_cons, ih]
-          omega
       | inr hge =>
           have hnot : ¬(x.evpi < y.evpi) := by omega
           rw [insertEvpi, if_neg hnot]
           simp only [List.length_cons]
-          omega
 
 /-- [P083-GENERAL-B] 完整排序保持列表长度不变。 -/
 theorem P083_sortEvpi_length
@@ -193,9 +191,7 @@ theorem P083_sortEvpi_length
   induction xs with
   | nil => rfl
   | cons x xs ih =>
-      have h := P083_insertEvpi_length x xs
-      simp only [sortEvpi]
-      omega
+      simp only [sortEvpi, P083_insertEvpi_length, ih]
 
 /-- 降序谓词（Prop 版）。 -/
 def sortedDescP : List P083EvpiItem → Prop
@@ -238,9 +234,11 @@ theorem P083_insertEvpi_preserves_sortedP (x : P083EvpiItem) :
                   exact ⟨Nat.le_of_lt hxy, hxz, hsorted⟩
               | inl hxz =>
                   -- x < z：insert head = z
+                  have ihResult := ih hsorted.2
+                  rw [insertEvpi, if_pos hxz] at ihResult
                   rw [insertEvpi, if_pos hxz]
                   simp only [sortedDescP]
-                  exact ⟨hsorted.1, ih hsorted⟩
+                  exact ⟨hsorted.1, ihResult⟩
 
 /-- [P083-GENERAL-D] 排序结果恒降序（一般式）。 -/
 theorem P083_sortEvpi_sortedP (xs : List P083EvpiItem) :

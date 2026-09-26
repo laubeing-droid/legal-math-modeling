@@ -108,6 +108,13 @@ MODULES: dict[str, tuple[str, tuple[str, ...], str]] = {
          "priority_order_decides"),
         "P-015",
     ),
+    "tax_slice_composition": (
+        "Mandate/TaxSlices.lean",
+        ("taxOf_empty_table", "taxOf_single", "taxOf_zero_base", "remainingOf_le_start",
+         "taxOf_append", "taxOf_two_brackets", "taxOf_capped", "remainingOf_exhausted",
+         "taxOf_prefix_le"),
+        "P-093",
+    ),
     "game_tree": (
         "Mandate/GameTree.lean",
         ("value_leaf", "value_nil", "value_cons", "value_ge_head",
@@ -233,6 +240,8 @@ GENERAL_NOT_WITNESS: dict[str, tuple[str, ...]] = {
     "route_table_searched": ("firstUsable_cons_usable", "firstUsable_cons_notUsable",
                              "usable_of_firstUsable_some", "anyUsable_append",
                              "some_of_anyUsable_true"),
+    "tax_slice_composition": ("taxOf_zero_base", "remainingOf_le_start",
+                              "taxOf_append", "taxOf_single", "taxOf_prefix_le"),
     "game_tree": ("value_cons", "value_ge_head", "value_ge_of_mem",
                   "value_node_append_le", "value_of_leaves",
                   "value_ignores_payoff_renaming_when_dominated"),

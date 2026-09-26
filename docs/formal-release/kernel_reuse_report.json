@@ -1,8 +1,8 @@
 {
  "authority_note": "Static import-graph measurement over the JurisLean package. It says nothing about correctness; it says how much mathematics is shared.",
  "counts": {
-  "carriers_in_package": 1712,
-  "theorem_declarations_in_package": 1859
+  "carriers_in_package": 1714,
+  "theorem_declarations_in_package": 1867
  },
  "genealogy": {
   "carriers_per_theorem": 1.59,
@@ -110,12 +110,12 @@
   "theorem_declarations": 304
  },
  "mandate": {
-  "carriers": 25,
-  "carriers_per_theorem": 0.32,
-  "modules": 10,
+  "carriers": 27,
+  "carriers_per_theorem": 0.31,
+  "modules": 11,
   "modules_importing_kernel": 3,
   "note": "The mandate line is the kernel-first experiment: one shared algebra in Mandate/Kernel, consumed by the modules that need rates, selection and signatures. It is quoted next to the Genealogy ratio precisely so the contrast is measurable rather than rhetorical.",
-  "theorem_declarations": 78
+  "theorem_declarations": 86
  },
  "modules_imported_by_5_or_more": {
   "JurisLean.BusinessRoot.Semantics": 6,
@@ -129,12 +129,12 @@
   "JurisLean.WeightedSupNorm": 6,
   "Lean.Elab.Command": 5,
   "Lean.Util.CollectAxioms": 5,
-  "Mathlib": 21,
+  "Mathlib": 22,
   "Mathlib.Data.Fin.Basic": 5,
   "Mathlib.Data.Finset.Basic": 13,
   "Mathlib.Data.Real.Basic": 10,
   "Mathlib.Tactic": 13
  },
- "package_files": 212,
+ "package_files": 213,
  "schema_version": "kernel-reuse-v1"
 }

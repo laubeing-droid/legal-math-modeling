@@ -85,6 +85,13 @@ MODULES: dict[str, tuple[str, tuple[str, ...], str]] = {
          "compliant_concrete"),
         "P-125",
     ),
+    "waterfall_conservation": (
+        "Mandate/Waterfall.lean",
+        ("paidOut_nil", "allocate_no_debts", "conservation", "paidOut_le_payment",
+         "allocate_not_constant", "allocate_concrete", "allocate_concrete_overshoot",
+         "allocate_concrete_remainder"),
+        "P-097",
+    ),
     "game_tree": (
         "Mandate/GameTree.lean",
         ("value_leaf", "value_nil", "value_cons", "value_ge_head",
@@ -200,6 +207,9 @@ GENERAL_NOT_WITNESS: dict[str, tuple[str, ...]] = {
     "disclosure_gate_reads_input": ("occurs_append", "occurs_head", "occurs_monotone",
                                     "not_covers_empty_registry",
                                     "compliant_true_iff_covers"),
+    "waterfall_conservation": ("conservation", "paidOut_le_payment",
+                               "allocate_not_constant", "allocate_no_debts",
+                               "allocate_concrete_overshoot"),
     "game_tree": ("value_cons", "value_ge_head", "value_ge_of_mem",
                   "value_node_append_le", "value_of_leaves",
                   "value_ignores_payoff_renaming_when_dominated"),

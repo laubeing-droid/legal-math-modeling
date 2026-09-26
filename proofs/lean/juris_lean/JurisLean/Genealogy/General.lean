@@ -235,7 +235,7 @@ theorem P083_insertEvpi_preserves_sortedP (x : P083EvpiItem) :
                   exact ⟨hxle, hxz, hsorted⟩
               | inl hxz =>
                   -- x < z：insert head = z → y :: z :: insertEvpi x zs
-                  have ihResult := ih hsorted
+                  have ihResult := ih hsorted.2
                   have hEq : insertEvpi x (z :: zs) = z :: insertEvpi x zs := by
                     rw [insertEvpi, if_pos hxz]
                   rw [insertEvpi, if_pos hxz]

@@ -235,11 +235,12 @@ theorem P083_insertEvpi_preserves_sortedP (x : P083EvpiItem) :
                   exact ⟨hxle, hxz, hsorted⟩
               | inl hxz =>
                   -- x < z：insert head = z → y :: z :: insertEvpi x zs
-                  have hxle : x.evpi ≤ y.evpi := Nat.le_of_lt hxy
                   have ihResult := ih hsorted
-                  rw [insertEvpi, if_pos hxz] at ihResult
+                  have hEq : insertEvpi x (z :: zs) = z :: insertEvpi x zs := by
+                    rw [insertEvpi, if_pos hxz]
                   rw [insertEvpi, if_pos hxz]
                   simp only [sortedDescP]
+                  rw [← hEq]
                   exact ⟨hsorted.1, ihResult⟩
 
 /-- [P083-GENERAL-D] 排序结果恒降序（一般式）。 -/
@@ -259,7 +260,8 @@ theorem P083_sortedDesc_witness :
         { id := 2, evpi := 70 },
         { id := 3, evpi := 20 }
       ] := by
-  decide
+  simp only [sortedDescP]
+  exact ⟨by omega, by omega, trivial⟩
 
 /-! ============================================================
     P084 — 上诉 EV 单调（严格白名单版，无 have）

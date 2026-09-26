@@ -5,3 +5,16 @@
 # in either direction -- a checkout that rewrites LF to CRLF invalidates them.
 docs/formal-release/ci-evidence/** -text
 docs/formal-release/ci_run_index.json -text
+
+# Generated accounts are written with LF by their generators. End-of-line conversion
+# on checkout makes a documented regeneration look like real drift: running the
+# README sequence dirtied three accounts by line endings alone. Pinned byte-exact.
+docs/formal-release/*.json -text
+docs/formal-release/*.jsonl -text
+theory/spec/*.json -text
+theory/spec/*.jsonl -text
+theory/spec/**/*.json -text
+theory/spec/**/*.jsonl -text
+docs/master-plan/**/*.json -text
+docs/master-plan/**/*.jsonl -text
+docs/paper-rewrite/*.md -text

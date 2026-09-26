@@ -65,6 +65,15 @@ python scripts/ci/build_ci_run_index.py                     # quoted CI run ids 
 python scripts/ci/build_ci_run_index.py --quotes-only       # refresh quote locations only, no network
 ```
 
+Whether that sequence actually reproduces the committed accounts is itself checked,
+in a throwaway clean clone (a fresh checkout is where end-of-line and subject-binding
+differences show up):
+
+```bash
+python scripts/ci/rehearse_regeneration.py            # regeneration must reproduce HEAD
+python scripts/ci/rehearse_regeneration.py --with-tests
+```
+
 `--require-bound` exists because the inventory used to stamp `subject = HEAD`
 while hashing the working tree, so every label lagged one commit behind the
 bytes it claimed. A count whose `subject_binding.binding` is `STALE_SUBJECT`

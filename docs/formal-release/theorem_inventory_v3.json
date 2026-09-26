@@ -14667,6 +14667,60 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "allocate"
+    },
+    {
+     "kind": "def",
+     "name": "paidOut"
+    },
+    {
+     "kind": "theorem",
+     "name": "paidOut_nil"
+    },
+    {
+     "kind": "theorem",
+     "name": "allocate_no_debts"
+    },
+    {
+     "kind": "theorem",
+     "name": "conservation"
+    },
+    {
+     "kind": "theorem",
+     "name": "paidOut_le_payment"
+    },
+    {
+     "kind": "theorem",
+     "name": "allocate_not_constant"
+    },
+    {
+     "kind": "theorem",
+     "name": "allocate_concrete"
+    },
+    {
+     "kind": "theorem",
+     "name": "allocate_concrete_overshoot"
+    },
+    {
+     "kind": "theorem",
+     "name": "allocate_concrete_remainder"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/Waterfall.lean",
+   "print_axioms_targets": [],
+   "sha256": "76d38725ca156c297d8abc03fc6c8b3823fda2fcc8bd976628eda80cc60941f9",
+   "size_bytes": 3479,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
+  },
+  {
+   "declarations": [
+    {
      "kind": "inductive",
      "name": "NormKindM4"
     },
@@ -18618,22 +18672,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1873,
-   "file_count": 227,
+   "counted_declaration_count": 1881,
+   "file_count": 228,
    "lemma_count": 24,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1849,
-   "theorem_count_bol_convention": 1813
+   "theorem_count": 1857,
+   "theorem_count_bol_convention": 1821
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1854,
-   "file_count": 212,
+   "counted_declaration_count": 1862,
+   "file_count": 213,
    "lemma_count": 17,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1837,
-   "theorem_count_bol_convention": 1801
+   "theorem_count": 1845,
+   "theorem_count_bol_convention": 1809
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -18820,6 +18874,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SubstrAdmission.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/Waterfall.lean",
    "proofs/lean/juris_lean/JurisLean/PermissionConflict.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalEnvelopeSpec.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalNoninterference.lean",
@@ -19045,6 +19100,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SubstrAdmission.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/Waterfall.lean",
    "proofs/lean/juris_lean/JurisLean/PermissionConflict.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalEnvelopeSpec.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalNoninterference.lean",
@@ -19129,17 +19185,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "3b91866d11cdcaeac87098292140cd0ede4f399abaaeea5f096d98b4927be645",
+ "source_inventory_digest": "947395db2e111ea718ab89f08437a7f0b43b5700fcbc6a907873e6d952c67e4d",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "a7819fd25cd7bca1404da888eec27cf8428d9826",
-  "tree": "9b997dec6cecedbed68f0130100161ce8ae0c482"
+  "commit": "efb1f3186ecbe27a14c2fdf53de3728b06732d63",
+  "tree": "65db3fcb67107a5bc45fdc015f2a61090c10b0e6"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 227,
+  "files_total": 228,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

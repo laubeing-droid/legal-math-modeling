@@ -3,7 +3,7 @@
 **English mirror** (structure-isomorphic to paper_cn.md; the Chinese master leads)
 
 **Status**: rewritten from scratch on the frozen Concept Master Genealogy (docs/master-plan/基线/法律概念总谱.md); the prior paper (broadcast-distortion / sixteen-module organization) is archived at docs/history/paper-v1-en.md.
-**Evidence discipline**: every count and theorem claim binds to the generated artifact docs/formal-release/theorem_inventory_v3.json (current subject `f995744`) and to named CI runs. No anchor, no claim; a missing anchor is UNKNOWN, never PASS.
+**Evidence discipline**: every count and theorem claim binds to the generated artifact docs/formal-release/theorem_inventory_v3.json (current subject `1488685`) and to named CI runs. No anchor, no claim; a missing anchor is UNKNOWN, never PASS.
 
 ---
 
@@ -16,7 +16,7 @@ Yet the existing work shares one gap: **to what grade a system's conclusion is t
 This paper delivers the machine and its ledger of claims. Three deliverables:
 
 1. **A seven-layer, two-cross-cut genealogy.** One hundred thirty-two legal concepts (P-001 through P-132), each with one definition, one number, one formalization target, filed into Concept (L0), Source of Law (L1), Elements (L2), Proof (L3), Discretion (L4), Computation Guarantee ((L5)), and Delivery (L6), plus two cross-cutting disciplines: Empirical Calibration (A) and Receipts (B). The genealogy is frozen; changes pass a three-gate lock.
-2. **Theorem-level full coverage.** Of the 132 concepts, 57 anchor existing theorems and 75 are newly written this round — contract and Lean on both sides, 1,773 repository theorem declarations (bound to the inventory artifact), all verified by the CI authority, zero sorry.
+2. **Theorem-level full coverage.** Of the 132 concepts, 57 anchor existing theorems and 75 are newly written this round — contract and Lean on both sides, 1,775 repository theorem declarations (bound to the inventory artifact), all verified by the CI authority, zero sorry.
 3. **A receipt discipline.** Every layer's output carries a claimable grade: conclusive (certified), reference (advisory only), unclaimable (no basis). A receipt-less layer's output degrades to unclaimable automatically — a structural consequence of the machine-readable ledger and the type system, not a wording convention.
 
 Chapters follow the layers: each states its conclusion first, then the theorems and evidence anchors, then what the layer cannot do. Skeptics may turn directly to Chapter 10's unproved list — we spare ourselves nothing.
@@ -137,9 +137,9 @@ Fourteen concepts (P-119–P-132). The receipt is the receipt discipline running
 
 **Unproved items (re-ranked after the round-9 compaction)**:
 1. ~~T01–T127 theorem-level rollout~~ — **compacted in round ten**: four batches delivered 131 theorems (Batch1..4, all CI-green), the coverage ledger reports 127/127 COVERED;
-2. P-083 global descending-correctness of the sort: length conservation is generalized, arbitrary-input descending remains witness-level (the authorized half-step is on record);
+2. ~~P-083 global descending-correctness of the sort~~ — **compacted this round**: the full general chain of four insertion-sort theorems now lands (GENERAL-A single insert adds one / GENERAL-B length conservation / GENERAL-C insertion preserves descending / GENERAL-D sort output always descending, General.lean, CI run 36258901155 at commit bd364c5 all green); the previously authorized witness-level half-step is thereby closed;
 3. Sentencing rule-table slot (DATA_SLOT_READY): the structure is jurisdiction-agnostic and ready — any jurisdiction's real rule table plugs in (the synthetic table already proved structural correctness; real data is data, not architecture, and binding to one province would lock the general structure);
 4. Subsumption completeness, the eight degradations, and the six boundary-delimitation theorems — **compacted in round nine**: 25 new theorems (General.lean + Boundary.lean, CI-verified); the P-127 left-prepend claim is closed by a minimal counterexample on record with the corrected right-append theorem proved; boundary classes 5/6 are pointer-compacted (consensus_does_not_escalate / repetition_does_not_clean / majority_cannot_clean);
 5. Retrieval layer-one vector engine — **compacted in round nine**: a deterministic TF-IDF cosine engine now lives in the repo (vector_engine.py, 8 gate tests: normalization invariance, self-similarity, symmetry, deterministic ranking, candidate-grade cap), zero-dependency pure Python.
 
-**Claims ledger**: 1,773 repository theorem declarations, bound to the inventory artifact (subject in the header), axiom audit green (named CI runs). This paper does not claim: the entirety of Chinese law formalized; approximator outputs conclusive; the T spectrum closed. Every conclusion a user sees traces through its receipt to its evidence grade; for further construction, the T-coverage ledger is itself the order of advance.
+**Claims ledger**: 1,775 repository theorem declarations, bound to the inventory artifact (subject in the header), axiom audit green (named CI runs). This paper does not claim: the entirety of Chinese law formalized; approximator outputs conclusive; the T spectrum closed. Every conclusion a user sees traces through its receipt to its evidence grade; for further construction, the T-coverage ledger is itself the order of advance.

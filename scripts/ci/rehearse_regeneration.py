@@ -35,6 +35,7 @@ SEQUENCE = (
     ("python", "scripts/ci/check_import_reachability.py", "--write"),
     ("python", "scripts/ci/generate_structure_and_volume_reports.py"),
     ("python", "scripts/ci/generate_theorem_manifest.py"),
+    ("python", "scripts/ci/generate_trivial_proof_census.py"),
 )
 
 MANIFEST = "docs/formal-release/theorem_inventory_v3.json"
@@ -52,7 +53,7 @@ def _strip_subject(doc: dict) -> dict:
 def porcelain(clone: Path) -> list[str]:
     out = subprocess.run(
         ["git", "status", "--porcelain"], cwd=clone,
-        capture_output=True, text=True, encoding="utf-8", check=True,
+        capture_output=True, text=True, encoding="utf-8", errors="replace", check=True,
     ).stdout
     return [line[3:] for line in out.splitlines() if line.strip()]
 
@@ -68,11 +69,11 @@ def main() -> int:
     try:
         subprocess.run(
             ["git", "clone", "--no-hardlinks", "-q", str(ROOT), str(clone)],
-            check=True, capture_output=True, text=True, encoding="utf-8",
+            check=True, capture_output=True, text=True, encoding="utf-8", errors="replace",
         )
         for step in SEQUENCE:
             proc = subprocess.run(
-                [sys.executable, *step[1:]], cwd=clone, capture_output=True, text=True, encoding="utf-8"
+                [sys.executable, *step[1:]], cwd=clone, capture_output=True, text=True, encoding="utf-8", errors="replace"
             )
             if proc.returncode != 0:
                 print(f"documented step failed: {step}\n{proc.stderr.strip()[:400]}", file=sys.stderr)
@@ -85,8 +86,8 @@ def main() -> int:
         if MANIFEST in dirty:
             before = subprocess.run(
                 ["git", "show", f"HEAD:{MANIFEST}"], cwd=clone,
-                capture_output=True, text=True, encoding="utf-8", check=True,
-            ).stdout
+                capture_output=True, check=True,
+            ).stdout.decode("utf-8")
             after = (clone / MANIFEST).read_text(encoding="utf-8")
             if _strip_subject(json.loads(before)) != _strip_subject(json.loads(after)):
                 manifest_detail.append(
@@ -118,7 +119,7 @@ def main() -> int:
 
         print(
             f"rehearsal clean: {len(SEQUENCE)} documented steps reproduced every committed "
-            f"account in a fresh clone of {subprocess.run(['git','rev-parse','--short','HEAD'], cwd=clone, capture_output=True, text=True).stdout.strip()}"
+            f"account in a fresh clone of {subprocess.run(['git','rev-parse','--short','HEAD'], cwd=clone, capture_output=True, text=True, errors="replace").stdout.strip()}"
         )
         return 0
     finally:

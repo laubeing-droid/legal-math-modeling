@@ -50,7 +50,7 @@ python -m pytest -q -p no:cacheprovider
 python scripts/scan_lean_guards.py --all-tracked --report work/lean-guard-report.json
 ```
 
-Five accounts are **generated**, so a hand-edited claim cannot drift from the
+Six accounts are **generated**, so a hand-edited claim cannot drift from the
 source it describes. Regenerate them after touching Lean sources or ledgers, in
 this order, then re-run pytest:
 
@@ -61,6 +61,7 @@ python scripts/ci/check_import_reachability.py --write     # root reachability b
 python scripts/ci/generate_structure_and_volume_reports.py  # kernel-reuse + volume accounts
 python scripts/ci/generate_theorem_manifest.py              # scope counts + digests + subject_binding
 python scripts/ci/generate_theorem_manifest.py --require-bound   # only passes on a committed tree
+python scripts/ci/generate_trivial_proof_census.py           # how every theorem in the package is closed
 python scripts/ci/build_ci_run_index.py                     # quoted CI run ids -> Actions metadata (needs gh)
 python scripts/ci/build_ci_run_index.py --quotes-only       # refresh quote locations only, no network
 ```

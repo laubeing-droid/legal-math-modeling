@@ -232,7 +232,7 @@ theorem P083_insertEvpi_preserves_sortedP (x : P083EvpiItem) :
                   have hxle : x.evpi ≤ y.evpi := Nat.le_of_lt hxy
                   rw [insertEvpi, if_neg hnotz]
                   simp only [sortedDescP]
-                  exact ⟨hxle, hxz, hsorted⟩
+                  exact ⟨hxle, hxz, hsorted.2⟩
               | inl hxz =>
                   -- x < z：insert head = z → y :: z :: insertEvpi x zs
                   have ihResult := ih hsorted.2

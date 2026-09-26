@@ -268,3 +268,82 @@ def test_ledger_gate_and_paper_agree_on_full_count() -> None:
     d = _ledger_derived()
     assert d["rows"] == 127
     assert d["full"] == 0, "a T target reached general form; update the claim deliberately"
+
+
+INVENTORY_FOR_NAMES = ROOT / "docs" / "formal-release" / "theorem_inventory_v3.json"
+P_REGISTRY = ROOT / "theory" / "spec" / "p_registry.json"
+
+# Identifiers the papers legitimately use that are not theorem names.
+NAME_STOPWORDS = frozenset({
+    "juris_lean_package", "all_tracked_lean", "crosscut_grades", "domain_claim_ceiling",
+    "receipt_ledger", "theorem_inventory", "authority_note", "subject_binding",
+    "bound_to_subject", "ci_not_run", "open_reason", "schema_version", "proof_grade",
+    "carrier_file", "python_assets", "full_statement_missing", "downgrade_noted",
+    "no_receipt_pending", "not_claimable", "crosscut_channels", "crosscut_ceiling",
+    "unclaimable_layers", "effective_claim_level", "issuance_status", "cell_status",
+    "authorized_domains", "claim_ceiling", "ledger_defect",
+})
+NAME_RE = re.compile(r"\b[a-z][a-z0-9]*(?:_[a-z0-9]+){1,}\b")
+
+
+def _known_symbols() -> set:
+    """Every declaration name in the Lean inventory plus every registry anchor."""
+
+    import json
+
+    doc = json.loads(INVENTORY_FOR_NAMES.read_text(encoding="utf-8"))
+    names = {d["name"] for f in doc["files"] for d in f["declarations"]}
+    names |= {f["path"].rsplit("/", 1)[-1][:-5] for f in doc["files"]}
+    reg = json.loads(P_REGISTRY.read_text(encoding="utf-8"))
+    for entry in reg["entries"]:
+        for anchor in entry["anchors"]:
+            if anchor.get("symbol"):
+                names.add(anchor["symbol"])
+    return names
+
+
+def _cited_anchors(text: str) -> set:
+    """snake_case identifiers the papers cite inside a parenthetical naming a carrier."""
+
+    suspects = set()
+    for chunk in re.findall(r"[（(][^）)]{0,240}[）)]", text):
+        if ".lean" in chunk or "Genealogy" in chunk or "Part" in chunk:
+            suspects |= set(NAME_RE.findall(chunk))
+    return suspects
+
+
+def test_named_theorems_in_the_papers_resolve() -> None:
+    """A cited anchor must exist; prose cannot name a theorem the corpus lacks.
+
+    The papers cite carriers inline (`Hohfeld.lean，opposite_involutive`,
+    `P034，claim_available_complete_iff 与 unregistered_basis_unknown`). Before this
+    gate a renamed or invented theorem name passed every check — the softest form
+    of the broadcasting failure this audit was about. The scan depth is asserted as
+    well: a gate that silently stops seeing anchors is greener, not safer.
+    """
+
+    known = _known_symbols()
+    offenders = {}
+    for path in (CN, EN):
+        cited = _cited_anchors(path.read_text(encoding="utf-8"))
+        assert len(cited) >= 5, (
+            f"{path.name}: only {len(cited)} cited anchors scanned; "
+            "the extraction has gone blind, which is not a pass"
+        )
+        unknown = sorted(
+            n for n in cited if n not in known and n not in NAME_STOPWORDS
+        )
+        if unknown:
+            offenders[path.name] = unknown
+    assert not offenders, f"papers cite anchors that do not exist: {offenders}"
+
+
+def test_name_gate_actually_bites() -> None:
+    """Falsification: feed the scanner an invented anchor and see it surface."""
+
+    known = _known_symbols()
+    assert "claim_available_complete_iff" in known
+    sample = "见 `P034`（`Hohfeld.lean`，opposite_involutive 与 no_such_theorem_anywhere_xyz）"
+    cited = _cited_anchors(sample)
+    assert cited == {"opposite_involutive", "no_such_theorem_anywhere_xyz"}, cited
+    assert "no_such_theorem_anywhere_xyz" not in known

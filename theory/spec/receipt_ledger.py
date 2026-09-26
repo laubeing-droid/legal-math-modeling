@@ -13,7 +13,7 @@ outputs are UNCLAIMABLE regardless of what any model or document asserts.
 from __future__ import annotations
 
 import json
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Dict, FrozenSet, List, Tuple
 
@@ -42,6 +42,13 @@ UNCLAIMABLE, REFERENCE, CONCLUSIVE = CLAIM_ORDER
 
 NOT_ISSUED = "NOT_ISSUED"
 
+# The two cross-cut axes of the frozen genealogy. Ruling #6 fixed the
+# 7 x 7 layer/domain grid; these axes are not layers, so their channel
+# ceilings live in `crosscut_grades` and cap any sentence on that axis.
+CROSSCUT_AXES: Tuple[str, ...] = ("crosscutA", "crosscutB")
+NOT_CLAIMABLE = "NOT_CLAIMABLE"
+VALID_CROSSCUT_GRADES = frozenset(CLAIM_ORDER) | {NOT_CLAIMABLE}
+
 
 class LedgerDefect(ValueError):
     """Raised when the ledger file violates its own invariants (fail-closed)."""
@@ -53,11 +60,16 @@ class ReceiptLedger:
 
     cells: Dict[str, Dict[str, str]]
     ceilings: Dict[str, str]
+    crosscuts: Dict[str, Dict[str, str]] = field(default_factory=dict)
 
     @classmethod
     def load(cls) -> "ReceiptLedger":
         raw = json.loads(LEDGER_PATH.read_text(encoding="utf-8"))
-        return cls(cells=cls._validate_layers(raw), ceilings=cls._validate_ceilings(raw))
+        return cls(
+            cells=cls._validate_layers(raw),
+            ceilings=cls._validate_ceilings(raw),
+            crosscuts=cls._validate_crosscuts(raw),
+        )
 
     @staticmethod
     def _validate_layers(raw: dict) -> Dict[str, Dict[str, str]]:
@@ -90,6 +102,50 @@ class ReceiptLedger:
             if ceiling not in CLAIM_ORDER[1:]:
                 raise LedgerDefect(f"invalid ceiling {ceiling!r} for {domain}")
         return dict(ceilings)
+
+    @staticmethod
+    def _validate_crosscuts(raw: dict) -> Dict[str, Dict[str, str]]:
+        """Fail-closed validation of the cross-cut axis ceilings.
+
+        The key may be absent only when nothing on either axis is claimed; once
+        present, every axis in CROSSCUT_AXES must appear with at least one
+        channel, and every value must be a real grade.
+        """
+        blocks = raw.get("crosscut_grades")
+        if blocks is None:
+            return {}
+        if not isinstance(blocks, dict):
+            raise LedgerDefect("crosscut_grades must be an object")
+        for axis in CROSSCUT_AXES:
+            channels = blocks.get(axis)
+            if not isinstance(channels, dict) or not channels:
+                raise LedgerDefect(f"crosscut axis {axis!r} must list at least one channel")
+            for channel, grade in channels.items():
+                if grade not in VALID_CROSSCUT_GRADES:
+                    raise LedgerDefect(
+                        f"unknown crosscut grade {grade!r} at {axis}|{channel}"
+                    )
+        unknown = sorted(set(blocks) - set(CROSSCUT_AXES))
+        if unknown:
+            raise LedgerDefect(f"unknown crosscut axes: {unknown}")
+        return {axis: dict(blocks[axis]) for axis in CROSSCUT_AXES}
+
+    def crosscut_ceiling(self, axis: str, channel: str) -> str:
+        """Weakest grade a sentence on `axis`/`channel` may claim."""
+
+        if axis not in CROSSCUT_AXES:
+            raise LedgerDefect(f"unknown crosscut axis: {axis!r}")
+        channels = self.crosscuts.get(axis)
+        if not channels:
+            raise LedgerDefect(f"crosscut axis {axis!r} declares no channels")
+        if channel not in channels:
+            raise LedgerDefect(f"unknown crosscut channel {channel!r} on {axis}")
+        return channels[channel]
+
+    def crosscut_channels(self, axis: str) -> List[str]:
+        if axis not in CROSSCUT_AXES:
+            raise LedgerDefect(f"unknown crosscut axis: {axis!r}")
+        return sorted((self.crosscuts.get(axis) or {}).keys())
 
     def cell_status(self, layer: str, domain: str) -> str:
         self._require_layer(layer)

@@ -16,6 +16,7 @@ from pathlib import Path
 
 import pytest
 
+from theory.spec.receipt_ledger import CROSSCUT_AXES  # noqa: F401 (re-exported below)
 from theory.spec.receipt_ledger import (
     CELL_PENDING,
     LAYERS,
@@ -118,3 +119,81 @@ def test_tampered_ledger_fails_closed() -> None:
     bad_ceiling = dict(good.ceilings, LeanProof="UNLIMITED")
     with pytest.raises(LedgerDefect):
         ReceiptLedger._validate_ceilings({"domain_claim_ceiling": bad_ceiling})
+
+
+CROSSCUT_EXPECTED = {
+    ("crosscutA", "empirical_output"): "REFERENCE",
+    ("crosscutA", "retrieved_cohort_rate"): "REFERENCE",
+    ("crosscutA", "synthetic_data"): "NOT_CLAIMABLE",
+    ("crosscutA", "unidentifiable_target"): "NOT_CLAIMABLE",
+    ("crosscutB", "receipt_missing"): "UNCLAIMABLE",
+    ("crosscutB", "citation_unverified"): "UNCLAIMABLE",
+    ("crosscutB", "hallucination_pattern_detected"): "UNCLAIMABLE",
+    ("crosscutB", "unadapted_jurisdiction"): "UNCLAIMABLE",
+    ("crosscutB", "human_gate_pending"): "UNCLAIMABLE",
+}
+
+
+def test_crosscut_axes_are_declared_and_graded() -> None:
+    """Audit P2-25: the two cross-cut axes had no rows in the 49-cell grid."""
+
+    ledger = ReceiptLedger.load()
+    assert (ledger.cells and len(ledger.cells)) == 7, "the ruled 7-layer grid changed"
+    for (axis, channel), grade in CROSSCUT_EXPECTED.items():
+        assert ledger.crosscut_ceiling(axis, channel) == grade, (axis, channel)
+
+
+def test_crosscut_validation_is_fail_closed() -> None:
+    import copy
+
+    ledger = ReceiptLedger.load()
+    good = copy.deepcopy(ledger.crosscuts)
+
+    with pytest.raises(LedgerDefect):
+        ReceiptLedger._validate_crosscuts({"crosscut_grades": {"crosscutA": {}}})
+    with pytest.raises(LedgerDefect):
+        ReceiptLedger._validate_crosscuts(
+            {"crosscut_grades": dict(good, crosscutZ={"a": "REFERENCE"})}
+        )
+    bad_grade = copy.deepcopy(good)
+    bad_grade["crosscutB"]["receipt_missing"] = "MAYBE"
+    with pytest.raises(LedgerDefect):
+        ReceiptLedger._validate_crosscuts({"crosscut_grades": bad_grade})
+    # absent key is allowed: nothing claimed on the axes is not a defect
+    assert ReceiptLedger._validate_crosscuts({}) == {}
+
+
+def test_crosscut_unknown_names_raise_instead_of_defaulting() -> None:
+    ledger = ReceiptLedger.load()
+    with pytest.raises(LedgerDefect):
+        ledger.crosscut_ceiling("crosscutQ", "empirical_output")
+    with pytest.raises(LedgerDefect):
+        ledger.crosscut_ceiling("crosscutA", "invented_channel")
+    with pytest.raises(LedgerDefect):
+        ledger.crosscut_channels("nope")
+
+
+def test_every_declared_crosscut_channel_is_claimed_in_the_papers() -> None:
+    """No dead channels: a ceiling nobody cites is decoration, not discipline."""
+
+    ledger = ReceiptLedger.load()
+    texts = " ".join(
+        (ROOT / rel).read_text(encoding="utf-8")
+        for rel in ("docs/paper-rewrite/paper_cn.md", "docs/paper-rewrite/paper_en.md")
+    )
+    for axis in CROSSCUT_AXES:
+        channels = ledger.crosscut_channels(axis)
+        assert channels, axis
+        for channel in channels:
+            assert channel.replace("_", " ") in texts.lower() or channel in texts, (
+                f"{axis}|{channel} is graded in the ledger but never claimed in the papers"
+            )
+
+
+def test_papers_point_at_the_crosscut_artifact() -> None:
+    """The prose claim and the machine-readable ceiling must name each other."""
+
+    for rel in ("docs/paper-rewrite/paper_cn.md", "docs/paper-rewrite/paper_en.md"):
+        assert "crosscut_grades" in (ROOT / rel).read_text(encoding="utf-8"), (
+            f"{rel} must cite the cross-cut ledger key"
+        )

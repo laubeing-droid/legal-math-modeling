@@ -1,6 +1,22 @@
 {
   "schema_version": "receipt-ledger-v1",
   "authority_note": "RC-01 machine-readable receipt authorization ledger (ruling #6; Qoder R3 landing: NO_RECEIPT_PENDING lives here, never in the manifest type registry). Layer claimability is fail-closed: a layer supported only by NO_RECEIPT_PENDING cells may issue NOT_ISSUED receipts only, and its outputs are UNCLAIMABLE.",
+  "crosscut_grades": {
+    "crosscutA": {
+      "empirical_output": "REFERENCE",
+      "retrieved_cohort_rate": "REFERENCE",
+      "synthetic_data": "NOT_CLAIMABLE",
+      "unidentifiable_target": "NOT_CLAIMABLE"
+    },
+    "crosscutB": {
+      "citation_unverified": "UNCLAIMABLE",
+      "hallucination_pattern_detected": "UNCLAIMABLE",
+      "human_gate_pending": "UNCLAIMABLE",
+      "receipt_missing": "UNCLAIMABLE",
+      "unadapted_jurisdiction": "UNCLAIMABLE"
+    }
+  },
+  "crosscut_note": "Ruling #6 fixed the 7 layer x 7 domain authorization grid; the two cross-cut axes are not layers and have no rows there, so their channel ceilings live here. They cap what a sentence on that axis may claim regardless of which layer produced it, which is what the genealogy's 'every layer, every sentence carries a grade' discipline actually needs. Values are constrained to CLAIM_ORDER plus NOT_CLAIMABLE; an unknown axis or channel raises LedgerDefect (fail-closed).",
   "layers": [
     {
       "id": "L0",

@@ -115,7 +115,7 @@ Eleven concepts (P-108–P-118). Two-layer retrieval: vector recall yields candi
 
 **Theorems and anchors.** Recall never impersonates isomorphism (P108/P109). Direction and flip witnesses (P110/P111): reverse without witness carries no attack witness. The win-rate pipeline (P112/P113): five-element event definition with unidentifiable-hard-coded UNKNOWN. The certificate-forced approximator (P118): proof-carrying admission — q below one, error bound within tolerance, nonempty applicable domain, positive iteration count all become constructor-time proof obligations; no certificate, no admission (five theorems, BanachCertificateV3) [Banach1922 for the fixed-point original].
 
-**Boundary.** Empirical output stays reference-grade; a win rate is model-relative posterior mass, never a guarantee of case outcomes; text-similarity tools cap at candidate grade (P117).
+**Boundary.** Empirical output stays reference-grade — the ceiling is read from `crosscut_grades`, not from this sentence; a win rate is model-relative posterior mass, never a guarantee of case outcomes, and an unidentifiable target or synthetic data cannot be cited at all (NOT_CLAIMABLE); text-similarity tools cap at candidate grade (P117).
 
 ---
 
@@ -127,7 +127,7 @@ Fourteen concepts (P-119–P-132). The receipt is the receipt discipline running
 
 **Theorems and anchors.** UNKNOWN preservation and the three-gate admission (P119/P120, existing theorem groups). Anti-hallucination: named patterns block (P125). Anti-smuggling: cross-jurisdiction without adaptation blocks (P126). Citation verification: verbatim prefix comparison (P127, degradation note: prefix, not arbitrary substring, honestly recorded). Due-process mapping of three elements (P128). Lifecycle edge table (P130). Idempotent effect log (P131, empty-log replay idempotence plus the existing-command no-overwrite witness). The human-gate table (P132): listed actions pass exactly their gate.
 
-**Boundary.** Receipts prove binding, not truth; forty-one of the forty-nine authorization cells start NO_RECEIPT_PENDING — conservative start is discipline, not defect.
+**Boundary.** Receipts prove binding, not truth; forty-one of the forty-nine authorization cells start NO_RECEIPT_PENDING — conservative start is discipline, not defect. One scope fact belongs here rather than in a footnote: ruling #6 fixed that grid as seven layers by seven domains, and the two cross-cutting axes are not layers, so they have no rows in it. Their channel ceilings live in the same artifact under `crosscut_grades` — on cross-cut A, empirical output and retrieved cohort rate are REFERENCE while synthetic data and an unidentifiable target are NOT_CLAIMABLE; on cross-cut B, five blocking conditions are UNCLAIMABLE outright: receipt missing, citation unverified, hallucination pattern detected, unadapted jurisdiction, human gate pending — validated by theory/spec/receipt_ledger.py, capped by the weakest cited domain, with an unknown axis or unknown channel raising LedgerDefect. "Every layer, every sentence carries a grade" is therefore the conjunction of two machine-readable facts, not one sentence of prose.
 
 ---
 

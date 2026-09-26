@@ -191,7 +191,7 @@ theorem P083_sortEvpi_length
   induction xs with
   | nil => rfl
   | cons x xs ih =>
-      simp only [sortEvpi, P083_insertEvpi_length, ih]
+      simp [sortEvpi, P083_insertEvpi_length, ih]
 
 /-- 降序谓词（Prop 版）。 -/
 def sortedDescP : List P083EvpiItem → Prop
@@ -234,11 +234,9 @@ theorem P083_insertEvpi_preserves_sortedP (x : P083EvpiItem) :
                   exact ⟨Nat.le_of_lt hxy, hxz, hsorted⟩
               | inl hxz =>
                   -- x < z：insert head = z
-                  have ihResult := ih hsorted.2
-                  rw [insertEvpi, if_pos hxz] at ihResult
-                  rw [insertEvpi, if_pos hxz]
+                  rw [insertEvpi, if_pos hxy, insertEvpi, if_pos hxz]
                   simp only [sortedDescP]
-                  exact ⟨hsorted.1, ihResult⟩
+                  exact hsorted
 
 /-- [P083-GENERAL-D] 排序结果恒降序（一般式）。 -/
 theorem P083_sortEvpi_sortedP (xs : List P083EvpiItem) :
@@ -257,8 +255,7 @@ theorem P083_sortedDesc_witness :
         { id := 2, evpi := 70 },
         { id := 3, evpi := 20 }
       ] := by
-  simp only [sortedDescP]
-  omega
+  decide
 
 /-! ============================================================
     P084 — 上诉 EV 单调（严格白名单版，无 have）

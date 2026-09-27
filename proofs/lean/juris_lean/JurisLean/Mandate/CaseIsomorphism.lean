@@ -46,22 +46,33 @@ def iso (A B : CaseStruct) : Prop :=
 theorem iso_refl (A : CaseStruct) : iso A A :=
   ⟨fun i => i, ⟨⟨fun _ _ h => h, fun y => ⟨y, rfl⟩⟩, fun _ _ => rfl⟩⟩
 
-/-- The inverse of a bijection is a bijection; this is the only place `invFun` is used. -/
-theorem bijective_invFun {α β : Type} {f : α → β} (hf : Function.Bijective f) :
-    Function.Bijective (Function.invFun f) := by
-  refine ⟨fun a b h => ?_, fun x => ⟨f x, ?_⟩⟩
-  · have hright := Function.rightInverse_invFun hf.2
-    rw [← hright a, ← hright b]
+/--
+A bijection has a bijection going back. Deliberately built from the witnesses inside
+`Function.Surjective` rather than from `Function.invFun`: the `invFun` fallback branch
+asks for a `Nonempty α` instance, which a zero-slot structure does not supply, and an
+isomorphism statement may not acquire that hypothesis. CI run 36304261436 reported
+exactly that synthesis failure here.
+-/
+theorem exists_bijective_inverse {α β : Sort _} {f : α → β} (hf : Function.Bijective f) :
+    ∃ g : β → α, Function.Bijective g ∧ ∀ b, f (g b) = b := by
+  refine ⟨fun b => Classical.choose (hf.2 b), ⟨?_, ?_⟩,
+    fun b => Classical.choose_spec (hf.2 b)⟩
+  · intro a b h
+    have ea : f (Classical.choose (hf.2 a)) = a := Classical.choose_spec (hf.2 a)
+    have eb : f (Classical.choose (hf.2 b)) = b := Classical.choose_spec (hf.2 b)
+    rw [← ea, ← eb]
     exact congr_arg f h
-  · exact Function.leftInverse_invFun hf.1 x
+  · intro x
+    exact hf.1 (Classical.choose_spec (hf.2 (f x)))
 
 /-- Isomorphism can be reversed. -/
 theorem iso_symm {A B : CaseStruct} (h : iso A B) : iso B A := by
   obtain ⟨f, hf, hrel⟩ := h
-  refine ⟨Function.invFun f, bijective_invFun hf, ?_⟩
+  obtain ⟨g, hg, gspec⟩ := exists_bijective_inverse hf
+  refine ⟨g, hg, ?_⟩
   intro i j
-  have hrel' := hrel (Function.invFun f i) (Function.invFun f j)
-  rw [Function.rightInverse_invFun hf.2 i, Function.rightInverse_invFun hf.2 j] at hrel'
+  have hrel' := hrel (g i) (g j)
+  rw [gspec i, gspec j] at hrel'
   exact hrel'
 
 /-- Isomorphism composes: matching slots twice is a matching of slots. -/
@@ -98,9 +109,9 @@ bridge lacked — a negative structural comparison, not a tuple inequality.
 -/
 theorem not_iso_looped_edgeless : ¬ iso looped edgeless := by
   intro h
-  have htarget := allSelfRelated_of_iso h (fun _ => rfl)
-  have hfail : (edgeless.related (⟨0, by decide⟩ : Fin 3) (⟨0, by omega⟩)) = false := rfl
-  exact absurd (htarget (⟨0, by decide⟩ : Fin 3)) (by simp [hfail])
+  have htarget : allSelfRelated edgeless := allSelfRelated_of_iso h (fun _ => rfl)
+  have hzero : ¬ (edgeless.related (0 : Fin 3) (0 : Fin 3) = true) := by decide
+  exact hzero (htarget (0 : Fin 3))
 
 /-- Two slots with no relations at all; the slot swap is a bijection between them. -/
 def twoEmpty : CaseStruct := ⟨2, fun _ _ => false⟩
@@ -139,6 +150,6 @@ theorem iso_twoEmpty_swap : iso twoEmpty twoEmpty := by
 
 /-- The swap really moves a slot, so the witness above is not the identity in disguise. -/
 theorem swap2_moves_a_slot :
-    ((⟨1 - (0 : Nat), by omega⟩ : Fin 2) : Fin 2) = 1 := rfl
+    ((⟨1 - (0 : Nat), by decide⟩ : Fin 2) : Fin 2) = 1 := rfl
 
 end JurisLean.Mandate.CaseIsomorphism

@@ -476,7 +476,7 @@ open HornSystem
     absent from the release audit surface; the block is generated from the
     declaration sites, so it cannot name a theorem that does not exist. -/
 #print axioms JurisLean.Mandate.CaseIsomorphism.allSelfRelated_of_iso
-#print axioms JurisLean.Mandate.CaseIsomorphism.bijective_invFun
+#print axioms JurisLean.Mandate.CaseIsomorphism.exists_bijective_inverse
 #print axioms JurisLean.Mandate.CaseIsomorphism.iso_refl
 #print axioms JurisLean.Mandate.CaseIsomorphism.iso_symm
 #print axioms JurisLean.Mandate.CaseIsomorphism.iso_trans

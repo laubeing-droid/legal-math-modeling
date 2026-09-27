@@ -1,0 +1,25 @@
+{
+  "schema_version": "spec-runtime-refinement-v2",
+  "role": "expected",
+  "fixture_digest": "d25b245ef4bb98e48fdd005132c136245fc5c4578553d3b28268c6f5b7d53ac9",
+  "lmm_commit": "71d2177bcb56beb90d5559dde95a42ed304cbd9e",
+  "cases": [
+    {
+      "case_id": "backend::unknown-outcome",
+      "expected_status": "UNDECIDED"
+    },
+    {
+      "case_id": "backend::timeout-outcome",
+      "expected_status": "UNDECIDED"
+    }
+  ],
+  "source_snapshot_digests": [
+    "4b611d39261d797de8e7a03f572c1b34475f8c976445ecc20790ebc04837c860"
+  ],
+  "rule_pack_digest": "0d3fee3d190c29c8c07ccb4c4adb1e71b3a05c6e0708c1d0b8dca7a7a11a9e81",
+  "semantics": {
+    "id": "grounded",
+    "version": "1"
+  },
+  "subject_commit_binding": "71d2177bcb56beb90d5559dde95a42ed304cbd9e"
+}

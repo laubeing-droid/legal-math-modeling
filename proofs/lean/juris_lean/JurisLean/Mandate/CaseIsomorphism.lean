@@ -63,7 +63,7 @@ theorem exists_bijective_inverse {α β : Sort _} {f : α → β} (hf : Function
     rw [← ea, ← eb]
     exact congr_arg f h
   · intro x
-    exact hf.1 (Classical.choose_spec (hf.2 (f x)))
+    exact ⟨f x, hf.1 (Classical.choose_spec (hf.2 (f x)))⟩
 
 /-- Isomorphism can be reversed. -/
 theorem iso_symm {A B : CaseStruct} (h : iso A B) : iso B A := by
@@ -73,7 +73,7 @@ theorem iso_symm {A B : CaseStruct} (h : iso A B) : iso B A := by
   intro i j
   have hrel' := hrel (g i) (g j)
   rw [gspec i, gspec j] at hrel'
-  exact hrel'
+  exact hrel'.symm
 
 /-- Isomorphism composes: matching slots twice is a matching of slots. -/
 theorem iso_trans {A B C : CaseStruct} (hab : iso A B) (hbc : iso B C) : iso A C := by

@@ -145,14 +145,14 @@ def test_the_ci_certified_scope_covers_the_recursive_package_scope() -> None:
     The two certificates from the audited commits list 96 files where their own
     subjects contained 202 -- the generator walked `JurisLean/*.lean`
     non-recursively, and the papers drew scope conclusions from a count that
-    silently meant something narrower. The certificate from run 36293474352 lists
-    all 217 files that subject contains, which is the fix being pinned here.
-
-    Checked per certificate against *its own* subject, so the gate does not go red
-    merely because HEAD has moved past a certified commit.
+    silently meant something narrower. That omission is pinned by run id rather than
+    inferred from "older", because once the fix landed later certificates
+    legitimately list all 217 files. Each certificate is checked against *its own*
+    subject, so the gate does not go red merely because HEAD moved past it.
     """
 
-    newest = max(certificates(), key=lambda c: int(run_id_of(c)))
+    audited_era = {"36258179200", "36259479766"}
+    newest_run = run_id_of(max(certificates(), key=lambda c: int(run_id_of(c))))
     for cert in certificates():
         sources = cert["source_inventory"]["sources"]
         listed = {e["path"] for e in sources}
@@ -165,17 +165,19 @@ def test_the_ci_certified_scope_covers_the_recursive_package_scope() -> None:
         declared = cert["source_inventory"]["theorem_declaration_count"]
         assert declared == counted, f"{cert['_rel']} totals {declared} but lists {counted}"
 
-        newest_run = run_id_of(newest)
         actual = _package_paths_at(cert["subject"]["sha"])
+        assert not (listed - actual), (
+            f"{cert['_rel']} names files its own subject does not contain"
+        )
         missing = sorted(actual - listed)
         if run_id_of(cert) == newest_run:
             assert not missing, (
                 f"the newest certificate still omits {len(missing)} package files, "
                 f"starting {missing[:3]}"
             )
-        else:
+        elif run_id_of(cert) in audited_era:
             assert missing, (
-                f"{cert['_rel']} is historical evidence of the non-recursive walk; if it "
-                "now covers everything, it no longer documents that defect"
+                f"{cert['_rel']} is the evidence for the non-recursive walk; if it now "
+                "lists everything, the audited-era record has been rewritten"
             )
             assert len(listed) < len(actual)

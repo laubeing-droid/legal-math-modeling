@@ -62,8 +62,10 @@ without guessing where it came from.
 | 36336037802 | failure | `be08e5d` | ci/mandate-wave1 | push | 2/8 | 6 | 03_证明战役台账.md |
 | 36338968515 | failure | `2bc8506` | ci/mandate-wave1 | push | 2/8 | 6 | 03_证明战役台账.md |
 | 36341001563 | failure | `ec877d2` | ci/mandate-wave1 | push | 2/8 | 6 | 03_证明战役台账.md |
+| 36343993012 | failure | `982c482` | ci/mandate-wave1 | push | 2/8 | 6 | 03_证明战役台账.md |
+| 36344882459 | success | `1b6a8d6` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md, paper_cn.md, paper_en.md |
 
-Runs not concluding `success`: 25 — 34512426708, 34514241309, 34516894406, 34517689336, 34519379252, 35819869335, 35832550717, 36116094791, 36258179200, 36285858369, 36289822066, 36290409329, 36291053225, 36292599075, 36295032321, 36296061840, 36303397911, 36304261436, 36305404923, 36308381874, 36309484500, 36327456262, 36336037802, 36338968515, 36341001563.
+Runs not concluding `success`: 26 — 34512426708, 34514241309, 34516894406, 34517689336, 34519379252, 35819869335, 35832550717, 36116094791, 36258179200, 36285858369, 36289822066, 36290409329, 36291053225, 36292599075, 36295032321, 36296061840, 36303397911, 36304261436, 36305404923, 36308381874, 36309484500, 36327456262, 36336037802, 36338968515, 36341001563, 36343993012.
 
 `jobs ok/total` is there because a run-level conclusion and a job-level one
 differ: a run can end `cancelled` while every job a document names succeeded,
@@ -85,6 +87,7 @@ JSON before repeating any "that run was green" claim.
 - run 36322009701: 18 files, 296598 bytes, digests in `docs/formal-release/ci-evidence/36322009701/digests.json`
 - run 36329315290: 18 files, 297239 bytes, digests in `docs/formal-release/ci-evidence/36329315290/digests.json`
 - run 36333310003: 18 files, 298223 bytes, digests in `docs/formal-release/ci-evidence/36333310003/digests.json`
+- run 36344882459: 18 files, 300088 bytes, digests in `docs/formal-release/ci-evidence/36344882459/digests.json`
 
 Land another run's bytes with `--fetch-evidence <run>`; `--check` recomputes every digest in every `digests.json` and fails if a landed set no longer matches, or belongs to a run nothing quotes.
 

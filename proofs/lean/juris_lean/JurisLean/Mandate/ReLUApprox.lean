@@ -38,7 +38,11 @@ What is deliberately NOT claimed:
   repeats, but no `Fin n` or `Matrix` machinery is claimed here.
 * Anything about legal outcomes. This is the approximator carrier's arithmetic.
 
-Status: awaiting its first CI elaboration. Nothing here is attested until a round builds it.
+Status: elaborated green in CI run 36344882459 (subject 1b6a8d6a9), whose release
+certificate lists these nine declarations and whose axiom log names 559 targets with no
+`sorryAx`. It is built by the audit surface, not imported by the release root: joining
+the root is a separate step and is booked in `PENDING_CI_MODULES` until then. Later
+commits do not inherit that verdict.
 -/
 
 namespace JurisLean.Mandate.ReLUApprox

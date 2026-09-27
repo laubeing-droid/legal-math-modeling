@@ -74,6 +74,12 @@ jobs:
     timeout-minutes: 60
     steps:
     - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+      with:
+        # Full history: these gates verify that landed CI evidence matches `git show
+        # <subject>:<path>` and that every quoted run's head commit exists here. A
+        # shallow checkout makes both unreadable, which is a real limitation of the
+        # evidence, so the checkout grows rather than the checks shrinking.
+        fetch-depth: 0
     - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
       with:
         python-version: '3.12'

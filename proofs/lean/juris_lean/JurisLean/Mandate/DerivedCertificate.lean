@@ -124,9 +124,9 @@ theorem admits_iff (q x : ℚ) (n : ℕ) (tolerance : ℚ) :
 theorem not_admits_negative (q x : ℚ) (n : ℕ) (hq0 : 0 ≤ q) (hx : 0 ≤ x) (t : ℚ)
     (ht : t < 0) : admits q x n t = false := by
   refine if_neg ?_
-  rw [certificate_bound_is_computed, approx_closed]
   intro hle
-  have h1 : 0 ≤ q ^ n * x := by
+  have h1 : 0 ≤ (certificate q x n).bound := by
+    rw [certificate_bound_is_computed, approx_closed]
     have hp : 0 ≤ q ^ n := by
       induction n with
       | zero => simp [pow_zero]

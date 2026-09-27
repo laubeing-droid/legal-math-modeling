@@ -93,7 +93,7 @@ theorem anyUsable_append :
   | cons r as ih =>
       intro b
       rw [List.cons_append]
-      rw [anyUsable, ih b]
+      simp only [anyUsable, ih b]
       cases h : usable r <;> simp [h]
 
 /-- If anything is usable, something is returned: the search never swallows a hit. -/

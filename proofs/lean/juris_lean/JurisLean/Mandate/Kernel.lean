@@ -34,8 +34,9 @@ structure Rate where
   den : Nat
   denPos : 0 < den
 
-/-- Comparison by cross-multiplication; division is never formed. -/
-/-- Cross-multiplication order, named so the notation below is only a symbol. -/
+/-- Comparison by cross-multiplication, division never formed. Named rather than
+written inline because an `infix` body is quoted: field projections there do not
+elaborate, not even with ascribed binders. -/
 def rateLe (a b : Rate) : Prop := a.num * b.den ≤ b.num * a.den
 
 -- An `infix` body is quoted, so field projections inside it do not elaborate even

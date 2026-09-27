@@ -421,22 +421,30 @@ def test_mandate_layer_is_in_the_release_root() -> None:
 
 # --- containment for the two pathologies the audit could not fix blind ---
 
-BOOL_GUARD_SITES = 7
+BOOL_GUARD_SITES = 0
 
 
 def test_if_decide_impedance_pattern_is_contained() -> None:
-    """Audit P2-18: `if decide (..)` cost 20+ CI rounds on P-083 and 7 sites remain.
+    """Audit P2-18: `if decide (..)` cost 20+ CI rounds on P-083; all seven are gone.
 
-    Rewriting them blind is the same trap, so the count is pinned instead: a new
-    `if decide` site fails this gate, and lowering the recorded number is the
-    evidence that a cleanup actually happened.
+    The count used to be pinned at 7 because rewriting them blind was the same trap
+    that produced the finding. With CI rounds now reliable, the seven sites were
+    converted to a Prop-level `if`, which is also what makes their proofs nicer: a
+    branch hypothesis arrives as `a = b` or `¬ (payment ≤ debt)` instead of a Bool
+    equality about `decide` that has to be transported back.
+
+    The number is pinned at zero, so any reintroduction fails here. Whether the
+    converted proof bodies still close is a compiler question, recorded as such in
+    the ledger rather than assumed from the text scan passing.
     """
-    sites = 0
+    sites: dict[str, int] = {}
     for path in sorted((ROOT / "proofs" / "lean" / "juris_lean" / "JurisLean").rglob("*.lean")):
-        sites += path.read_text(encoding="utf-8").count("if decide")
-    assert sites == BOOL_GUARD_SITES, (
-        f"{sites} `if decide` sites vs {BOOL_GUARD_SITES} recorded; "
-        "if one was converted to a Prop-level `if`, lower the recorded number here"
+        n = path.read_text(encoding="utf-8").count("if decide")
+        if n:
+            sites[path.relative_to(ROOT).as_posix()] = n
+    assert sum(sites.values()) == BOOL_GUARD_SITES, (
+        f"`if decide` sites {sites} vs {BOOL_GUARD_SITES} recorded; convert them to a "
+        "Prop-level `if`, or justify a re-introduction in the ledger before raising this"
     )
 
 

@@ -18,7 +18,7 @@ namespace JurisLean.Genealogy.General
 def subsumeComplete : List String → List String → Bool
   | [], _ => true
   | r :: rs, satisfied =>
-      if decide (r ∈ satisfied) then
+      if r ∈ satisfied then
         subsumeComplete rs satisfied
       else
         false
@@ -32,7 +32,9 @@ theorem P052_subsumeComplete_iff_all
   | nil =>
       rfl
   | cons r rs ih =>
-      simp [subsumeComplete, ih]
+      by_cases hm : r ∈ satisfied
+      · simp [subsumeComplete, hm, ih]
+      · simp [subsumeComplete, hm, ih]
 
 
 /-! ============================================================
@@ -340,7 +342,7 @@ def allocate :
         remainder := payment
       }
   | payment, debt :: debts =>
-      if decide (payment ≤ debt) then
+      if payment ≤ debt then
         {
           allocated := [payment]
           remainder := 0
@@ -368,17 +370,12 @@ theorem P097_allocate_conservation
   | nil =>
       simp [allocate, totalAllocated, finalRemainder]
   | cons debt debts ih =>
-      cases Nat.lt_or_ge debt payment with
-      | inl hgt =>
-          have hfin : decide (payment ≤ debt) = false := by
-            simp [Nat.not_le.mpr hgt]
-          simp [allocate, hfin, totalAllocated, finalRemainder, List.sum_cons]
-          have h2 := ih (payment - debt)
-          simp only [totalAllocated, finalRemainder] at h2
-          omega
-      | inr hle =>
-          have hfin : decide (payment ≤ debt) = true := by simp [hle]
-          simp [allocate, hfin, totalAllocated, finalRemainder]
+      by_cases hle : payment ≤ debt
+      · simp [allocate, hle, totalAllocated, finalRemainder]
+      · simp [allocate, hle, totalAllocated, finalRemainder, List.sum_cons]
+        have h2 := ih (payment - debt)
+        simp only [totalAllocated, finalRemainder] at h2
+        omega
 
 
 /-! ============================================================
@@ -425,7 +422,7 @@ def isPrefixChars :
   | [], _ => true
   | _ :: _, [] => false
   | a :: as, b :: bs =>
-      if decide (a = b) then
+      if a = b then
         isPrefixChars as bs
       else
         false
@@ -466,16 +463,10 @@ theorem P127_isPrefixChars_append_right
       | nil =>
           simp [isPrefixChars] at h
       | cons b bs =>
-          cases hab : decide (a = b) with
-          | false =>
-              simp [isPrefixChars, hab] at h
-          | true =>
-              simp [isPrefixChars, hab] at h
-              simp [
-                isPrefixChars,
-                hab,
-                ih bs h
-              ]
+          by_cases hab : a = b
+          · simp [isPrefixChars, hab] at h
+            simp [isPrefixChars, hab, ih bs h]
+          · simp [isPrefixChars, hab] at h
 
 
 /-! ============================================================
@@ -494,7 +485,7 @@ def hasCommand
     List P131EffectEntry → Bool
   | [] => false
   | x :: xs =>
-      if decide (x.command = c) then
+      if x.command = c then
         true
       else
         hasCommand c xs
@@ -513,7 +504,7 @@ def effectLogApply :
         }
       ]
   | x :: xs, c, e =>
-      if decide (x.command = c) then
+      if x.command = c then
         x :: xs
       else
         x :: effectLogApply xs c e
@@ -529,15 +520,9 @@ theorem P131_effectLogApply_idempotent
   | nil =>
       simp [hasCommand] at h
   | cons x xs ih =>
-      cases hx : decide (x.command = c) with
-      | true =>
-          simp [effectLogApply, hx]
-      | false =>
-          simp [hasCommand, hx] at h
-          simp [
-            effectLogApply,
-            hx,
-            ih h
-          ]
+      by_cases hx : x.command = c
+      · simp [effectLogApply, hx]
+      · simp [hasCommand, hx] at h
+        simp [effectLogApply, hx, ih h]
 
 end JurisLean.Genealogy.General

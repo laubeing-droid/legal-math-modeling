@@ -1207,10 +1207,9 @@ def conditionProbability
     (probability : FiniteRationalProbability)
     (event : Nat → Bool) :
     ConditioningResult :=
-  if decide
-      (totalEventMass
-          probability
-          event = 0)
+  if totalEventMass
+        probability
+        event = 0
   then
     .undefinedCondition
   else
@@ -1778,7 +1777,7 @@ D. 九轮 CI 教训专项检查
 2. 0 × dependent if / dite。
 
 3. T38 使用：
-   `if decide (mass = 0) then ... else ...`
+   `if mass = 0 then ... else ...`
    为纯 ite；
    theorem 通过完整 `simp [conditionProbability, zeroMass]`
    消解，不使用 `if_pos` / `if_neg` / dite 引理。

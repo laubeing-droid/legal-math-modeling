@@ -44,7 +44,7 @@ def iso (A B : CaseStruct) : Prop :=
 
 /-- A structure is isomorphic to itself, via the identity. -/
 theorem iso_refl (A : CaseStruct) : iso A A :=
-  ⟨fun i => i, ⟨fun _ _ h => h, fun y => ⟨y, rfl⟩, fun _ _ => rfl⟩
+  ⟨fun i => i, ⟨⟨fun _ _ h => h, fun y => ⟨y, rfl⟩⟩, fun _ _ => rfl⟩⟩
 
 /-- The inverse of a bijection is a bijection; this is the only place `invFun` is used. -/
 theorem bijective_invFun {α β : Type} {f : α → β} (hf : Function.Bijective f) :
@@ -99,8 +99,8 @@ bridge lacked — a negative structural comparison, not a tuple inequality.
 theorem not_iso_looped_edgeless : ¬ iso looped edgeless := by
   intro h
   have htarget := allSelfRelated_of_iso h (fun _ => rfl)
-  have hfail : (edgeless.related (⟨0, by omega⟩ : Fin 3) (⟨0, by omega⟩)) = false := rfl
-  exact absurd (htarget ⟨0, by omega⟩) (by simp [hfail])
+  have hfail : (edgeless.related (⟨0, by decide⟩ : Fin 3) (⟨0, by omega⟩)) = false := rfl
+  exact absurd (htarget (⟨0, by decide⟩ : Fin 3)) (by simp [hfail])
 
 /-- Two slots with no relations at all; the slot swap is a bijection between them. -/
 def twoEmpty : CaseStruct := ⟨2, fun _ _ => false⟩

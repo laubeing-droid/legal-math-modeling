@@ -85,11 +85,11 @@ theorem value_ge_of_mem : ∀ (t : Tree) (p : Nat), p ∈ leaves t → p ≤ val
       rw [List.mem_singleton] at h
       subst h
       rw [value_leaf]
-      exact Nat.le_refl _
   | node l r ihl ihr =>
       intro p h
-      rw [leaves_node, value_node]
+      rw [leaves_node] at h
       rw [List.mem_append] at h
+      rw [value_node]
       cases h with
       | inl hl => exact Nat.le_trans (ihl p hl) (le_max_l _ _)
       | inr hr => exact Nat.le_trans (ihr p hr) (le_max_r _ _)
@@ -101,15 +101,18 @@ which is what makes the claim worth stating next to `value_ge_of_mem`.
 -/
 theorem value_attains (t : Tree) : ∃ p ∈ leaves t, value t = p := by
   induction t with
-  | leaf p => exact ⟨p, by simp, rfl⟩
+  | leaf p => exact ⟨p, by simp [leaves], rfl⟩
   | node l r ihl ihr =>
       cases Nat.le_total (value l) (value r) with
       | inl hle =>
-          obtain ⟨p, hp, rfl⟩ := ihr
-          exact ⟨p, List.mem_append.mpr (Or.inr hp), max_eq_right hle⟩
+          -- The `rfl` pattern substitutes the witness away, so the remaining
+          -- membership proof reads `value r ∈ leaves r` (CI run 36292599075 reported
+          -- `Unknown identifier` when the branch still named the vanished witness).
+          obtain ⟨_, hq, rfl⟩ := ihr
+          exact ⟨value r, List.mem_append.mpr (Or.inr hq), max_eq_right hle⟩
       | inr hge =>
-          obtain ⟨p, hp, rfl⟩ := ihl
-          exact ⟨p, List.mem_append.mpr (Or.inl hp), max_eq_left hge⟩
+          obtain ⟨_, hl, rfl⟩ := ihl
+          exact ⟨value l, List.mem_append.mpr (Or.inl hl), max_eq_left hge⟩
 
 /--
 The boundary of this module, stated as a theorem so it cannot be oversold: a

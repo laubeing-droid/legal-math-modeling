@@ -1,0 +1,28 @@
+{
+  "schema_version": "spec-runtime-refinement-v2",
+  "role": "actual",
+  "producer": "juris-calculus",
+  "lmm_commit": "4a1d1094891a54d62d44efa082b7fdeb521735bc",
+  "runtime_commit": "c79e03b8d0cfed85c43cc013bf8a0b50326bc858",
+  "runtime_build_id": "github-actions:36333310003:1",
+  "fixture_digest": "e8f58fb24f103a5e5b0f31cef4f8ad12e38aa00bc6fb13ca49d8a21f3730cd23",
+  "runtime_fixture_digest": "700b4e5987cddc91aade990fb3305e4a0c152dfa521303c40f668a99b8cbd760",
+  "source_snapshot_digests": [
+    "4b611d39261d797de8e7a03f572c1b34475f8c976445ecc20790ebc04837c860"
+  ],
+  "rule_pack_digest": "0d3fee3d190c29c8c07ccb4c4adb1e71b3a05c6e0708c1d0b8dca7a7a11a9e81",
+  "cases": [
+    {
+      "case_id": "backend::unknown-outcome",
+      "actual_status": "UNDECIDED",
+      "runtime_evidence_digest": "2f5727bca559955111c73ab4865bc44a86ad20f7625c4ff81ac077fe6eeaddfd"
+    },
+    {
+      "case_id": "backend::timeout-outcome",
+      "actual_status": "UNDECIDED",
+      "runtime_evidence_digest": "264ac2a8280f56f3e20d9d36a786a3c05a814f71fcce768ea45085816cd54cb7"
+    }
+  ],
+  "execution_status": "SUCCESS",
+  "receipt_digest": "65fdd82380b4ae42a8a344dabd5e98a27f2d6b25d9ba84e84a94a66e8fd87439"
+}

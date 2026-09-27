@@ -30,12 +30,15 @@ def score : List Int → List Int → Int
   | w :: ws, x :: xs => w * x + score ws xs
 
 /-- Prediction is the sign of the score; no threshold is hidden in a constant. -/
-def predicts (w x : List Int) : Bool := 0 ≤ score w x
+def predicts (w x : List Int) : Bool := if 0 ≤ score w x then true else false
 
 /-- A missing weight or feature truncates the sum rather than defaulting to true. -/
 theorem score_nil_weights (x : List Int) : score [] x = 0 := rfl
 
-theorem score_nil_features (w : List Int) : score w [] = 0 := rfl
+theorem score_nil_features (w : List Int) : score w [] = 0 := by
+  cases w with
+  | nil => rfl
+  | cons a as => rfl
 
 /-- The score splits over a leading weight/feature pair. -/
 theorem score_cons (w : Int) (ws : List Int) (x : Int) (xs : List Int) :
@@ -52,14 +55,13 @@ theorem score_not_constant :
 
 /-- Everything above a non-negative witness is decided true. -/
 theorem predicts_true_of_nonneg (w x : List Int) (h : 0 ≤ score w x) :
-    predicts w x = true := h
+    predicts w x = true :=
+  if_pos h
 
 /-- A negative score is decided false: the gate can say no. -/
 theorem not_predicts_of_neg (w x : List Int) (h : score w x < 0) :
-    predicts w x = false := by
-  intro contra
-  simp only [predicts] at contra
-  omega
+    predicts w x = false :=
+  if_neg (by omega)
 
 /--
 Weights and features that are all non-negative can never score below zero. This
@@ -98,9 +100,9 @@ theorem score_zero_weights (x : List Int) : score [0, 0] x = 0 := by
 /-- Scaling both sides by a positive constant preserves the decision. -/
 theorem predicts_scaled_positive (w x : List Int) (h : predicts w x = true) :
     predicts (2 :: w) (2 :: x) = true := by
-  simp only [predicts, score_cons] at h ⊢
-  show 0 ≤ 2 * 2 + score w x
-  have h' : (0 : Int) ≤ score w x := h
+  have h0 : (0 : Int) ≤ score w x := by simpa [predicts] using h
+  refine if_pos ?_
+  rw [score_cons]
   omega
 
 end JurisLean.Mandate.LinearScorer

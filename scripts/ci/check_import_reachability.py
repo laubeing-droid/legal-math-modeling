@@ -108,7 +108,11 @@ def fullmath_modules(mods: dict[str, Path]) -> list[str]:
 
 def render_aggregator(mods: dict[str, Path]) -> str:
     leaves = [m for m in fullmath_modules(mods) if m != "JurisLean.FullMath.All"]
-    lines = [
+    # Imports must come first: a module doc comment before them is itself a command,
+    # and the compiler then rejects the `import` lines (CI found exactly that here).
+    lines = [f"import {m}" for m in leaves]
+    lines += [
+        "",
         "/-!",
         "# FullMath aggregator",
         "",
@@ -118,7 +122,6 @@ def render_aggregator(mods: dict[str, Path]) -> str:
         "counts its theorems (audit P1-12).",
         "-/",
     ]
-    lines += [f"import {m}" for m in leaves]
     return "\n".join(lines) + "\n"
 
 

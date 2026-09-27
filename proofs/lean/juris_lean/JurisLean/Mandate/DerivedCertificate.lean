@@ -110,19 +110,21 @@ itself*: `admits = true` exactly when the realised error is within tolerance.
 This is the equivalence the field-projection certificates never state.
 -/
 def admits (q x : ℚ) (n : ℕ) (tolerance : ℚ) : Bool :=
-  (certificate q x n).bound ≤ tolerance
+  ((certificate q x n).bound ≤ tolerance).decide
 
 theorem admits_iff (q x : ℚ) (n : ℕ) (tolerance : ℚ) :
     admits q x n tolerance = true ↔ approx q x n ≤ tolerance := by
-  show (certificate q x n).bound ≤ tolerance ↔ _
-  rw [certificate_bound_is_computed]
+  simp [admits, certificate_bound_is_computed]
 
 /-- No certificate admits a negative tolerance: the gate cannot be opened by fiat. -/
 theorem not_admits_negative (q x : ℚ) (n : ℕ) (hq0 : 0 ≤ q) (hx : 0 ≤ x) (t : ℚ)
     (ht : t < 0) : admits q x n t = false := by
-  show ¬ (certificate q x n).bound ≤ t
-  rw [certificate_bound_is_computed, approx_closed]
+  rw [Bool.eq_false_iff]
   intro h
+  have hle : (certificate q x n).bound ≤ t := by
+    rw [admits_iff q x n t] at h
+    exact h
+  rw [certificate_bound_is_computed, approx_closed] at hle
   have h1 : 0 ≤ q ^ n * x := by
     have hp : 0 ≤ q ^ n := by
       induction n with

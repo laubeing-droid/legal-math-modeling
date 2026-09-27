@@ -35,7 +35,7 @@ structure Rate where
   denPos : 0 < den
 
 /-- Comparison by cross-multiplication; division is never formed. -/
-infix:50 " ≤ₛ " => fun x y => x.num * y.den ≤ y.num * x.den
+infix:50 " ≤ₛ " => fun a b => a.num * b.den ≤ b.num * a.den
 
 theorem rate_le_self (r : Rate) : r ≤ₛ r := Nat.le_refl _
 
@@ -48,8 +48,8 @@ theorem successes_le_length (obs : List Bool) : successes obs ≤ obs.length := 
       | false => simp [successes]; omega
 
 /-- A rate built from a cohort never exceeds its own unit bound. -/
-theorem rate_num_le_den (obs : List Bool) (h : obs ≠ []) :
-    successes obs ≤ obs.length := successes_le_length obs
+theorem rate_num_le_den (obs : List Bool) : successes obs ≤ obs.length :=
+  successes_le_length obs
 
 /-! ## Selection: the `max` facts every best-response layer needs -/
 
@@ -74,7 +74,8 @@ theorem best_le_best_append (f : Nat → Nat) (xs ys : List Nat) :
   | cons x xs ih =>
       show max (f x) (xs.foldr (fun a b => max (f a) b) 0)
            ≤ max (f x) ((xs ++ ys).foldr (fun a b => max (f a) b) 0)
-      exact Nat.max_le_max (Nat.le_refl _) ih
+      rw [Nat.max_def, Nat.max_def]
+      split <;> omega
 
 /-! ## Structure signatures (case comparison layer) -/
 
@@ -114,10 +115,8 @@ theorem sig3_sum (s t : CaseStructure) :
 
 theorem sig3_fst_le_sum (s t : CaseStructure) : (sig3 s).1 ≤ (sig3 (sum s t)).1 := by
   simp [sig3, sum]
-  omega
 
 theorem sig3_edges_le_sum (s t : CaseStructure) : (sig3 s).2.2 ≤ (sig3 (sum s t)).2.2 := by
   simp [sig3, sum]
-  omega
 
 end JurisLean.Mandate.Kernel

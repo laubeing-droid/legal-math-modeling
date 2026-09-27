@@ -54,7 +54,7 @@ theorem taxOf_zero_base : ∀ bs : List Bracket, taxOf 0 bs = 0 := by
       show min 0 b.width * b.rateN + taxOf (0 - min 0 b.width) rest = 0
       have hmin : min 0 b.width = 0 := by omega
       rw [hmin]
-      simp
+      simp [ih]
 
 /-- A table can never leave more base than it was given. -/
 theorem remainingOf_le_start : ∀ bs : List Bracket, ∀ t : Nat, remainingOf t bs ≤ t := by
@@ -74,19 +74,20 @@ second block's tax on the *leftover* base. This is 每档只税自己的切片, 
 the property a wrong recursion (one that forwards the original base) breaks.
 -/
 theorem taxOf_append :
-    ∀ t : Nat, ∀ a b : List Bracket,
+    ∀ a : List Bracket, ∀ t : Nat, ∀ b : List Bracket,
       taxOf t (a ++ b) = taxOf t a + taxOf (remainingOf t a) b := by
-  intro t a
+  intro a
   induction a with
   | nil =>
-      intro b
+      intro t b
       simp [taxOf, remainingOf]
   | cons x as ih =>
-      intro b
+      intro t b
+      have key := ih (t - min t x.width) b
       show min t x.width * x.rateN + taxOf (t - min t x.width) (as ++ b)
            = (min t x.width * x.rateN + taxOf (t - min t x.width) as)
              + taxOf (remainingOf (t - min t x.width) as) b
-      rw [ih b]
+      rw [key]
       omega
 
 /-- Two brackets, one base: the split is visible and computed, not declared. -/

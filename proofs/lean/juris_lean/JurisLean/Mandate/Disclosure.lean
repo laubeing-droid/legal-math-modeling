@@ -68,14 +68,12 @@ theorem covers_nil_recorded (disclosed : List Nat) : covers disclosed [] = true 
 
 /-- An empty registry covers a non-empty record: the gate says no. -/
 theorem not_covers_empty_registry (d : Nat) : covers [] [d] = false := by
-  show allp [occurs d []] = false
-  simp [occurs, allp]
+  simp [covers, occurs, allp]
 
 /-- Compliance reduces to coverage once the flag is set, so the flag alone is
 never sufficient — the property the released `compliant` projection lacked. -/
 theorem compliant_true_iff_covers (disclosed recorded : List Nat) :
     compliant true disclosed recorded = true ↔ covers disclosed recorded = true := by
-  show true && covers disclosed recorded = true ↔ _
   simp [compliant]
 
 /-- A covering registry with the flag set is compliant; a short one is not. -/

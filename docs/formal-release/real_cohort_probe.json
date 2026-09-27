@@ -1,0 +1,186 @@
+{
+ "authority_note": "Aggregates computed from an external corpus at run time. Grade ceiling is REFERENCE per cross-cut A empirical_output; nothing here licenses a claim about win probability in a named jurisdiction, and no case text is stored. The source record's own license field is 'unknown', so a release may cite these numbers only as an instrument check, never as legal evidence.",
+ "cohorts": [
+  {
+   "backend_note": "ValueError: Invalid isoformat string: 'fact-段文本中的既认定情节'",
+   "charge": "诈骗",
+   "frequency": "505/764",
+   "identity": "RETRIEVED_COHORT",
+   "interval_high": null,
+   "interval_low": null,
+   "rows_observed": 1528,
+   "rows_retrieved": 1528,
+   "status": "BACKEND_UNAVAILABLE",
+   "successes": 1010
+  },
+  {
+   "backend_note": "ValueError: Invalid isoformat string: 'fact-段文本中的既认定情节'",
+   "charge": "故意伤害",
+   "frequency": "5/6",
+   "identity": "RETRIEVED_COHORT",
+   "interval_high": null,
+   "interval_low": null,
+   "rows_observed": 1200,
+   "rows_retrieved": 1200,
+   "status": "BACKEND_UNAVAILABLE",
+   "successes": 1000
+  },
+  {
+   "backend_note": "ValueError: Invalid isoformat string: 'fact-段文本中的既认定情节'",
+   "charge": "盗窃",
+   "frequency": "427/513",
+   "identity": "RETRIEVED_COHORT",
+   "interval_high": null,
+   "interval_low": null,
+   "rows_observed": 513,
+   "rows_retrieved": 513,
+   "status": "BACKEND_UNAVAILABLE",
+   "successes": 427
+  },
+  {
+   "backend_note": "ValueError: Invalid isoformat string: 'fact-段文本中的既认定情节'",
+   "charge": "抢劫",
+   "frequency": "8/33",
+   "identity": "RETRIEVED_COHORT",
+   "interval_high": null,
+   "interval_low": null,
+   "rows_observed": 330,
+   "rows_retrieved": 330,
+   "status": "BACKEND_UNAVAILABLE",
+   "successes": 80
+  },
+  {
+   "backend_note": "ValueError: Invalid isoformat string: 'fact-段文本中的既认定情节'",
+   "charge": "[虚开增值税专用发票、用于骗取出口退税、抵扣税款发票]",
+   "frequency": "26/31",
+   "identity": "RETRIEVED_COHORT",
+   "interval_high": null,
+   "interval_low": null,
+   "rows_observed": 155,
+   "rows_retrieved": 155,
+   "status": "BACKEND_UNAVAILABLE",
+   "successes": 130
+  },
+  {
+   "backend_note": "ValueError: Invalid isoformat string: 'fact-段文本中的既认定情节'",
+   "charge": "强奸",
+   "frequency": "2/5",
+   "identity": "RETRIEVED_COHORT",
+   "interval_high": null,
+   "interval_low": null,
+   "rows_observed": 70,
+   "rows_retrieved": 70,
+   "status": "BACKEND_UNAVAILABLE",
+   "successes": 28
+  },
+  {
+   "backend_note": "ValueError: Invalid isoformat string: 'fact-段文本中的既认定情节'",
+   "charge": "危险驾驶",
+   "frequency": "61/62",
+   "identity": "RETRIEVED_COHORT",
+   "interval_high": null,
+   "interval_low": null,
+   "rows_observed": 62,
+   "rows_retrieved": 62,
+   "status": "BACKEND_UNAVAILABLE",
+   "successes": 61
+  },
+  {
+   "backend_note": "ValueError: Invalid isoformat string: 'fact-段文本中的既认定情节'",
+   "charge": "交通肇事",
+   "frequency": "22/37",
+   "identity": "RETRIEVED_COHORT",
+   "interval_high": null,
+   "interval_low": null,
+   "rows_observed": 37,
+   "rows_retrieved": 37,
+   "status": "BACKEND_UNAVAILABLE",
+   "successes": 22
+  },
+  {
+   "backend_note": "ValueError: Invalid isoformat string: 'fact-段文本中的既认定情节'",
+   "charge": "非法[持有、私藏][枪支、弹药]",
+   "frequency": "24/31",
+   "identity": "RETRIEVED_COHORT",
+   "interval_high": null,
+   "interval_low": null,
+   "rows_observed": 31,
+   "rows_retrieved": 31,
+   "status": "BACKEND_UNAVAILABLE",
+   "successes": 24
+  },
+  {
+   "backend_note": "ValueError: Invalid isoformat string: 'fact-段文本中的既认定情节'",
+   "charge": "放火",
+   "frequency": "1/3",
+   "identity": "RETRIEVED_COHORT",
+   "interval_high": null,
+   "interval_low": null,
+   "rows_observed": 18,
+   "rows_retrieved": 18,
+   "status": "BACKEND_UNAVAILABLE",
+   "successes": 6
+  },
+  {
+   "backend_note": "ValueError: Invalid isoformat string: 'fact-段文本中的既认定情节'",
+   "charge": "合同诈骗",
+   "frequency": "1/5",
+   "identity": "RETRIEVED_COHORT",
+   "interval_high": null,
+   "interval_low": null,
+   "rows_observed": 5,
+   "rows_retrieved": 5,
+   "status": "BACKEND_UNAVAILABLE",
+   "successes": 1
+  },
+  {
+   "backend_note": "ValueError: Invalid isoformat string: 'fact-段文本中的既认定情节'",
+   "charge": "故意杀人",
+   "frequency": "0",
+   "identity": "RETRIEVED_COHORT",
+   "interval_high": null,
+   "interval_low": null,
+   "rows_observed": 5,
+   "rows_retrieved": 5,
+   "status": "BACKEND_UNAVAILABLE",
+   "successes": 0
+  }
+ ],
+ "crosscut_grade": "crosscutA/empirical_output=REFERENCE",
+ "forbidden_readings": [
+  "胜诉率",
+  "因果效应",
+  "可发布为法律证据",
+  "跨法域外推",
+  "把 synthetic 通道升格"
+ ],
+ "generated_by": "python theory/spec/real_cohort_probe.py",
+ "grade_ceiling": "REFERENCE",
+ "limitations": [
+  "CAIL2018 carries no per-case date, so win_model's anti-leakage ordering (cutoff / feature_latest / outcome_time) cannot be honestly filled; the interval path therefore stays BACKEND_UNAVAILABLE by design and only the realized frequency is reported.",
+  "source record license is 'unknown', so these aggregates are an instrument check, not publishable legal evidence",
+  "one row group sample of the exercise-contest split, not the full corpus"
+ ],
+ "privacy": "no case text, party names, or court identifiers are written; only charge labels, counts and rates",
+ "schema_version": "real-cohort-probe-v1",
+ "source": {
+  "bytes_transferred": 551875,
+  "dataset": "china-ai-law-challenge/cail2018",
+  "file": "data/exercise_contest_train-00000-of-00001.parquet",
+  "http_etag": "2fc864c8feb3695435195d15f457d6f23d02671040f69f5523efe0ac4b9d53ba",
+  "license_on_record": "unknown (challenge terms: research use; no permissive SPDX on the host card)",
+  "outcome_rule": "imprisonment <= 36 months (轻刑档)",
+  "records_read": 4000,
+  "remote_bytes": 112387981,
+  "retrieved_at": "2026-09-27T01:42:53+00:00",
+  "row_groups_read": 4,
+  "url": "https://huggingface.co/datasets/china-ai-law-challenge/cail2018/resolve/main/data/exercise_contest_train-00000-of-00001.parquet"
+ },
+ "status": "reference_grade_real_corpus_probe_not_causal_claim",
+ "whole_sample": {
+  "charges_seen": 38,
+  "frequency": "703/1000",
+  "rows_observed": 4000,
+  "successes": 2812
+ }
+}

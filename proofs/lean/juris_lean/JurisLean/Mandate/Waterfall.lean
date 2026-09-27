@@ -24,7 +24,7 @@ namespace JurisLean.Mandate.Waterfall
 
 /-- Pay each debt from what remains, in list (priority) order; carry the rest. -/
 def allocate : Nat → List Nat → List Nat × Nat
-  | _, [] => ([], _)
+  | payment, [] => ([], payment)
   | payment, d :: ds =>
       (min payment d :: (allocate (payment - min payment d) ds).1,
        (allocate (payment - min payment d) ds).2)
@@ -33,6 +33,14 @@ def allocate : Nat → List Nat → List Nat × Nat
 def paidOut (allocations : List Nat) : Nat := allocations.foldr (· + ·) 0
 
 theorem paidOut_nil : paidOut [] = 0 := rfl
+
+/-- Unfolding equations, stated where the recursion is visible to `omega`. -/
+theorem allocate_cons (payment d : Nat) (ds : List Nat) :
+    allocate payment (d :: ds)
+      = (min payment d :: (allocate (payment - min payment d) ds).1,
+         (allocate (payment - min payment d) ds).2) := rfl
+
+theorem paidOut_cons (x : Nat) (xs : List Nat) : paidOut (x :: xs) = x + paidOut xs := rfl
 
 /-- With no debts the whole payment is carried, not paid. -/
 theorem allocate_no_debts (payment : Nat) :
@@ -54,7 +62,7 @@ theorem conservation : ∀ ds : List Nat, ∀ payment : Nat,
       intro payment
       have key := ih (payment - min payment d)
       have hmin : min payment d ≤ payment := Nat.min_le_left _ _
-      simp only [allocate, paidOut, List.foldr_cons] at key ⊢
+      rw [allocate_cons, paidOut_cons]
       omega
 
 /-- Corollary: a payout never exceeds the payment it came from. -/

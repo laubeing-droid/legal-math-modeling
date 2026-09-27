@@ -44,9 +44,10 @@ theorem gates_pairwise_distinct :
 /-- A wrong gate is refused, for every combination that is not the tabled one. -/
 theorem gate_ne_true_of_ne (a : GatedAction) (g : HumanGate) (h : g ≠ requiredGate a) :
     actionRequiresGate a g = false := by
-  rw [gate_iff_table]
-  intro h'
-  exact h h'.symm
+  cases a <;> cases g <;>
+    first
+      | decide
+      | exact absurd rfl h
 
 /-- Nothing escapes a gate: every listed action's required gate exists. -/
 theorem gate_coverage_total :
@@ -57,6 +58,9 @@ theorem gate_coverage_total :
 theorem gate_table_no_duplicates :
     Function.Injective (requiredGate : GatedAction → HumanGate) := by
   intro a b hab
-  cases a <;> cases b <;> simp_all
+  cases a <;> cases b <;>
+    first
+      | rfl
+      | exact absurd hab (by simp [requiredGate])
 
 end JurisLean.Mandate.GateTable

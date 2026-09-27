@@ -106,3 +106,27 @@ def test_probability_line_is_now_reachable() -> None:
     assert set(prob) <= reached, sorted(set(prob) - reached)
     assert "JurisLean.BusinessRoot.Analytics" in reached
     assert "JurisLean.BanachCertificate" in reached or not (PKG / "BanachCertificate.lean").exists()
+
+
+def test_generated_files_never_place_an_import_after_a_command() -> None:
+    """The aggregator used to lead with a `/-!` module doc, which is itself a command.
+
+    Lean then rejects every `import` in the file, so the 64-module tree the root was
+    wired to reach silently stopped compiling: a generator that emits a legal-looking
+    header can produce a file the compiler refuses.
+    """
+
+    transparent = ("/-", "/-!", "-/", "--")
+    offenders = []
+    for path in (AGGREGATOR, ROOT_MODULE):
+        seen_command = False
+        for line in path.read_text(encoding="utf-8").splitlines():
+            stripped = line.strip()
+            if not stripped or stripped.startswith(transparent):
+                continue
+            if stripped.startswith("import "):
+                if seen_command:
+                    offenders.append(f"{path.name}: {stripped}")
+            else:
+                seen_command = True
+    assert not offenders, f"imports after a command: {offenders}"

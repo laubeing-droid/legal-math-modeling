@@ -29,7 +29,7 @@ def isPrefix : List Nat → List Nat → Bool
 def isSubstr : List Nat → List Nat → Bool
   | [], _ => true
   | _, [] => false
-  | pat, s @ (_ :: _) => isPrefix pat s || isSubstr pat s.tail
+  | pat, y :: rest => isPrefix pat (y :: rest) || isSubstr pat rest
 
 /-- A list is a prefix of itself. -/
 theorem isPrefix_refl (l : List Nat) : isPrefix l l = true := by
@@ -40,7 +40,7 @@ theorem isPrefix_refl (l : List Nat) : isPrefix l l = true := by
 /-- A pattern longer than its target cannot be a prefix — the detection workhorse. -/
 theorem isPrefix_false_of_longer (pat : List Nat) :
     ∀ src : List Nat, pat.length > src.length → isPrefix pat src = false := by
-  cases pat with
+  induction pat with
   | nil =>
       intro src h
       simp at h
@@ -55,7 +55,8 @@ theorem isPrefix_false_of_longer (pat : List Nat) :
           simp [isPrefix, htail]
 
 /-- The empty citation is contained everywhere; nothing is asserted about it. -/
-theorem isSubstr_nil_pat (src : List Nat) : isSubstr [] src = true := rfl
+theorem isSubstr_nil_pat (src : List Nat) : isSubstr [] src = true := by
+  simp [isSubstr]
 
 /-- Prefix implies containment: the one direction between the two relations. -/
 theorem isSubstr_of_isPrefix (pat src : List Nat) (h : isPrefix pat src = true) :

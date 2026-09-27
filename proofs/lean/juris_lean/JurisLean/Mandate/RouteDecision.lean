@@ -92,11 +92,8 @@ theorem anyUsable_append :
   | nil => intro b; simp [anyUsable]
   | cons r as ih =>
       intro b
-      show usable r || anyUsable (as ++ b) = (usable r || anyUsable as) || anyUsable b
-      rw [ih b]
-      cases h : usable r with
-      | true => simp [h]
-      | false => simp [h, or_false, false_or]
+      simp only [anyUsable, ih b]
+      cases h : usable r <;> simp [h]
 
 /-- If anything is usable, something is returned: the search never swallows a hit. -/
 theorem some_of_anyUsable_true :
@@ -134,10 +131,9 @@ theorem inactive_is_skipped : firstUsable [inactiveRow] = none := by decide
 theorem excluded_is_skipped : firstUsable [excludedRow] = none := by decide
 
 /-- A usable row is found, and its code survives the search unchanged. -/
-theorem usable_is_found :
-    firstUsable [inactiveRow, excludedRow, { condition := true, exclusion := false,
-        routeCode := 11 }] =
-      some { condition := true, exclusion := false, routeCode := 11 } := by
+def probeRow : RouteRow := { condition := true, exclusion := false, routeCode := 11 }
+
+theorem usable_is_found : firstUsable [inactiveRow, excludedRow, probeRow] = some probeRow := by
   decide
 
 /-- The table's ordering, not its content, decides which of two usable rows wins. -/

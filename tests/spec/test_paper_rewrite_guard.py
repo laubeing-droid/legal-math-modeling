@@ -364,3 +364,58 @@ def test_name_gate_actually_bites() -> None:
     surfaced = _cited_anchors(bare_form)
     assert surfaced == {"valid_path", "invalid_jump"}, surfaced
     assert not surfaced & known, "the false P105 names must not resolve"
+
+
+CENSUS = ROOT / "docs" / "formal-release" / "trivial_proof_census.json"
+
+
+def test_paper_closure_census_matches_the_artifact() -> None:
+    """The repo-wide closure split is quoted in both editions, phrase by phrase.
+
+    Bare `str(value) in text` was vacuous here: the papers contain other numbers, so
+    flipping 127 to 128 passed. Each class is therefore checked in the sentence that
+    gives it meaning.
+    """
+
+    import json
+
+    doc = json.loads(CENSUS.read_text(encoding="utf-8"))
+    counts, total = doc["closure_counts"], doc["theorem_declarations"]
+    assert sum(counts.values()) == total, "the census classes do not partition their total"
+
+    cn = CN.read_text(encoding="utf-8")
+    en = EN.read_text(encoding="utf-8")
+    cn_claims = {
+        "TRIVIAL_TERM": f"{counts['TRIVIAL_TERM']} 条由单一反射项闭合",
+        "DECIDE_CLOSED": f"{counts['DECIDE_CLOSED']} 条由纯 decide 闭合",
+        "TACTIC": f"其余 {counts['TACTIC']} 条含 tactic 过程",
+        "total": f"全仓 {total} 条定理声明",
+    }
+    en_claims = {
+        "TRIVIAL_TERM": f"{counts['TRIVIAL_TERM']} close on a single reflexivity term",
+        "DECIDE_CLOSED": f"{counts['DECIDE_CLOSED']} close on `decide` alone",
+        "TACTIC": f"{counts['TACTIC']} carry a tactic proof",
+        "total": f"of the {total} declarations",
+    }
+    for kind, claim in cn_claims.items():
+        assert claim in cn, f"the Chinese draft's {kind} closure claim is not the artifact's"
+    for kind, claim in en_claims.items():
+        assert claim in en, f"the English draft's {kind} closure claim is not the artifact's"
+    for path in (CN, EN):
+        assert "trivial_proof_census.json" in path.read_text(encoding="utf-8"), (
+            f"{path.name} quotes the split without naming the artifact behind it"
+        )
+
+
+def test_paper_scope_file_counts_match_the_artifact() -> None:
+    """Counts of *files* per scope drift as easily as counts of theorems, and were ungated."""
+
+    import json
+
+    doc = json.loads(INVENTORY_FOR_NAMES.read_text(encoding="utf-8"))
+    pkg = len(doc["scopes"]["juris_lean_package"])
+    tracked = len(doc["scopes"]["all_tracked_lean"])
+    cn = CN.read_text(encoding="utf-8")
+    en = EN.read_text(encoding="utf-8")
+    assert f"{pkg} 个文件" in cn and f"{pkg} files" in en
+    assert f"{tracked} 文件" in cn and f"{tracked} files" in en

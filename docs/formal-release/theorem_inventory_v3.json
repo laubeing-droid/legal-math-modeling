@@ -19495,44 +19495,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "8467744bc46c15dd786a400101944b032b32793af32efa4aa643e76d7fb165af",
+ "source_inventory_digest": "b6cf6498482c6794354b178d0d00a05bc0486ee0c7099467f1bffaabe8b813a9",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "90f0c3e9a970d0e1050210509473231f98204a1b",
-  "tree": "9310c49238ccef8acb7c6a3fdc90a2b6593a59ee"
+  "commit": "7445c117b4923b7cc458b834b9c4bd82ef6e8e59",
+  "tree": "2eb8c6a8f317ce216d4f9f7c22ecc46e716dc593"
  },
  "subject_binding": {
-  "binding": "STALE_SUBJECT",
-  "files_diverging_from_subject": [
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Mandate/CohortInterval.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Mandate/CohortRate.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Mandate/DerivedCertificate.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Mandate/MatrixGame.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
-    "reason": "bytes differ from subject"
-   }
-  ],
+  "binding": "BOUND_TO_SUBJECT",
+  "files_diverging_from_subject": [],
   "files_total": 232,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": true
+  "worktree_dirty_under_proofs": false
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

@@ -107,6 +107,7 @@ def test_quarantine_never_shelters_a_promoted_or_missing_module() -> None:
         "Kernel", "CohortRate", "StructureInvariants", "DerivedCertificate", "GameTree",
         "SourceRank", "GateTable", "SubstrAdmission", "LinearScorer", "Disclosure",
         "Waterfall", "CohortInterval", "RouteDecision", "TaxSlices", "MatrixGame",
+        "CaseIsomorphism",
     }
     wave = {f"JurisLean.Mandate.{name}" for name in promoted}
     assert not (wave & pending), (

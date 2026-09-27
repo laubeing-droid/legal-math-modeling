@@ -77,6 +77,7 @@ import JurisLean.LegalSpecNormalize
 import JurisLean.LegalSpecToIVL
 import JurisLean.LegalSpecWellFormed
 import JurisLean.LegalWellFormed
+import JurisLean.Mandate.CaseIsomorphism
 import JurisLean.Mandate.CohortInterval
 import JurisLean.Mandate.CohortRate
 import JurisLean.Mandate.DerivedCertificate

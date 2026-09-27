@@ -43,9 +43,13 @@ without guessing where it came from.
 | 36297146468 | success | `304194c` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md |
 | 36298572193 | success | `0574e2a` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md |
 | 36300912280 | success | `a37236a` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md |
-| 36301449007 | success | `a6fd02c` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md, paper_cn.md, paper_en.md |
+| 36301449007 | success | `a6fd02c` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md |
+| 36303397911 | failure | `9dcd48f` | ci/mandate-wave1 | push | 2/8 | 6 | 03_证明战役台账.md |
+| 36304261436 | failure | `726f782` | ci/mandate-wave1 | push | 2/8 | 6 | 03_证明战役台账.md |
+| 36305404923 | failure | `bdfc7c9` | ci/mandate-wave1 | push | 2/8 | 6 | 03_证明战役台账.md |
+| 36306088064 | success | `d08cea9` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md, paper_cn.md, paper_en.md |
 
-Runs not concluding `success`: 16 — 34512426708, 34514241309, 34516894406, 34517689336, 34519379252, 35819869335, 35832550717, 36116094791, 36258179200, 36285858369, 36289822066, 36290409329, 36291053225, 36292599075, 36295032321, 36296061840.
+Runs not concluding `success`: 19 — 34512426708, 34514241309, 34516894406, 34517689336, 34519379252, 35819869335, 35832550717, 36116094791, 36258179200, 36285858369, 36289822066, 36290409329, 36291053225, 36292599075, 36295032321, 36296061840, 36303397911, 36304261436, 36305404923.
 
 `jobs ok/total` is there because a run-level conclusion and a job-level one
 differ: a run can end `cancelled` while every job a document names succeeded,
@@ -61,6 +65,7 @@ JSON before repeating any "that run was green" claim.
 - run 36297146468: 17 files, 244660 bytes, digests in `docs/formal-release/ci-evidence/36297146468/digests.json`
 - run 36298572193: 18 files, 292890 bytes, digests in `docs/formal-release/ci-evidence/36298572193/digests.json`
 - run 36301449007: 18 files, 292890 bytes, digests in `docs/formal-release/ci-evidence/36301449007/digests.json`
+- run 36306088064: 18 files, 294706 bytes, digests in `docs/formal-release/ci-evidence/36306088064/digests.json`
 
 Land another run's bytes with `--fetch-evidence <run>`; `--check` recomputes every digest in every `digests.json` and fails if a landed set no longer matches, or belongs to a run nothing quotes.
 

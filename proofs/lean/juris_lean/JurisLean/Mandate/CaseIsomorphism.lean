@@ -22,8 +22,9 @@ has the lemmas but this repository has no green precedent for their exact forms,
 guessing them is the failure mode this audit was written to catch. The residual is
 recorded as R-09 in `docs/master-plan/03_证明战役台账.md`.
 
-Status: written on ci/mandate-wave1, quarantined from the release root until its first
-CI module build.
+Status: imported by the release root and named by `AxiomAudit.lean`; built green
+in CI run 36306088064 (subject d08cea9c2), whose audit output names these nine
+theorems. Commits after that subject do not inherit the verdict.
 -/
 
 namespace JurisLean.Mandate.CaseIsomorphism

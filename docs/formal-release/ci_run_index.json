@@ -2161,10 +2161,10 @@
         "docs/master-plan/03_证明战役台账.md:491",
         "docs/master-plan/03_证明战役台账.md:518",
         "docs/master-plan/03_证明战役台账.md:572",
-        "docs/master-plan/03_证明战役台账.md:640",
-        "docs/master-plan/03_证明战役台账.md:642",
-        "docs/master-plan/03_证明战役台账.md:646",
-        "docs/master-plan/03_证明战役台账.md:647",
+        "docs/master-plan/03_证明战役台账.md:661",
+        "docs/master-plan/03_证明战役台账.md:663",
+        "docs/master-plan/03_证明战役台账.md:667",
+        "docs/master-plan/03_证明战役台账.md:668",
         "docs/paper-rewrite/PROGRESS.md:33"
       ],
       "run_id": 36293474352,
@@ -2313,7 +2313,7 @@
         "docs/master-plan/03_证明战役台账.md:555",
         "docs/master-plan/03_证明战役台账.md:569",
         "docs/master-plan/03_证明战役台账.md:571",
-        "docs/master-plan/03_证明战役台账.md:641"
+        "docs/master-plan/03_证明战役台账.md:662"
       ],
       "run_id": 36297146468,
       "started": true,
@@ -2380,8 +2380,8 @@
         "docs/master-plan/03_证明战役台账.md:575",
         "docs/master-plan/03_证明战役台账.md:598",
         "docs/master-plan/03_证明战役台账.md:630",
-        "docs/master-plan/03_证明战役台账.md:641",
-        "docs/master-plan/03_证明战役台账.md:659"
+        "docs/master-plan/03_证明战役台账.md:662",
+        "docs/master-plan/03_证明战役台账.md:680"
       ],
       "run_id": 36298572193,
       "started": true,
@@ -2506,7 +2506,256 @@
       "name": "chore(inventory): rebind after the Prop-level branch conversion",
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:620",
-        "docs/master-plan/03_证明战役台账.md:648",
+        "docs/master-plan/03_证明战役台账.md:669"
+      ],
+      "run_id": 36301449007,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-27T07:02:02Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 6,
+      "conclusion": "failure",
+      "created_at": "2026-09-27T07:32:07Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "9dcd48ff2e2a54a8cb4224cdafb805f8e16ee196",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36303397911",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "docs(paper): carry the isomorphism module's numbers, and stop quoting…",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:637"
+      ],
+      "run_id": 36303397911,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-27T07:39:02Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 6,
+      "conclusion": "failure",
+      "created_at": "2026-09-27T07:48:58Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "726f7823a0ec5ba55e441a1bcc309d563be14356",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36304261436",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(inventory): rebind after the bracket repair",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:639"
+      ],
+      "run_id": 36304261436,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-27T07:56:16Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 6,
+      "conclusion": "failure",
+      "created_at": "2026-09-27T08:11:12Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "bdfc7c94ec9b7a85211c0533ae99f78a86e55fc4",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36305404923",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(census): regenerate after the inverse-lemma rename",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:642"
+      ],
+      "run_id": 36305404923,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-27T08:18:37Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-09-27T08:24:21Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/36306088064/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "d08cea9c26114177085f672a6110262358d2f731",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36306088064",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(inventory): rebind before pushing so python-gates is not red on…",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:645",
+        "docs/master-plan/03_证明战役台账.md:671",
         "docs/paper-rewrite/paper_cn.md:146",
         "docs/paper-rewrite/paper_cn.md:150",
         "docs/paper-rewrite/paper_cn.md:23",
@@ -2514,10 +2763,10 @@
         "docs/paper-rewrite/paper_en.md:145",
         "docs/paper-rewrite/paper_en.md:19"
       ],
-      "run_id": 36301449007,
+      "run_id": 36306088064,
       "started": true,
       "status": "completed",
-      "updated_at": "2026-09-27T07:02:02Z",
+      "updated_at": "2026-09-27T08:32:30Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

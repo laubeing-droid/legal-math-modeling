@@ -47,11 +47,9 @@ theorem occurs_append (d : Nat) : ∀ xs ys : List Nat,
   | nil => intro ys; simp [occurs]
   | cons a as ih =>
       intro ys
-      show decide (a = d) || occurs d (as ++ ys)
-        = (decide (a = d) || occurs d as) || occurs d ys
       by_cases h : a = d
-      · simp [h]
-      · simp [h, ih ys]
+      · simp [occurs, h, ih ys]
+      · simp [occurs, h, ih ys]
 
 /-- A registry mentions its own head. -/
 theorem occurs_head (d : Nat) (l : List Nat) : occurs d (d :: l) = true := by

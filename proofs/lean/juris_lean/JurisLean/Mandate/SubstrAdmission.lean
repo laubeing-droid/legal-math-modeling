@@ -62,7 +62,7 @@ theorem isSubstr_nil_pat (src : List Nat) : isSubstr [] src = true := by
 theorem isSubstr_of_isPrefix (pat src : List Nat) (h : isPrefix pat src = true) :
     isSubstr pat src = true := by
   cases pat with
-  | nil => rfl
+  | nil => simp [isSubstr]
   | cons p ps =>
       cases src with
       | nil => simp [isPrefix] at h

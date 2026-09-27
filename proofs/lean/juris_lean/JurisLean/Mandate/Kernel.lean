@@ -35,7 +35,7 @@ structure Rate where
   denPos : 0 < den
 
 /-- Comparison by cross-multiplication; division is never formed. -/
-infix:50 " ≤ₛ " => fun a b => a.num * b.den ≤ b.num * a.den
+infix:50 " ≤ₛ " => fun (a b : Rate) => a.num * b.den ≤ b.num * a.den
 
 theorem rate_le_self (r : Rate) : r ≤ₛ r := Nat.le_refl _
 
@@ -74,8 +74,7 @@ theorem best_le_best_append (f : Nat → Nat) (xs ys : List Nat) :
   | cons x xs ih =>
       show max (f x) (xs.foldr (fun a b => max (f a) b) 0)
            ≤ max (f x) ((xs ++ ys).foldr (fun a b => max (f a) b) 0)
-      rw [Nat.max_def, Nat.max_def]
-      split <;> omega
+      omega
 
 /-! ## Structure signatures (case comparison layer) -/
 

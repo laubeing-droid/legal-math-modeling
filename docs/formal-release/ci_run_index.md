@@ -57,7 +57,7 @@ JSON before repeating any "that run was green" claim.
 - run 36259479766: 17 files, 90782 bytes, digests in `docs/formal-release/ci-evidence/36259479766/digests.json`
 - run 36293474352: 17 files, 244660 bytes, digests in `docs/formal-release/ci-evidence/36293474352/digests.json`
 - run 36297146468: 17 files, 244660 bytes, digests in `docs/formal-release/ci-evidence/36297146468/digests.json`
-- run 36298572193: 17 files, 244661 bytes, digests in `docs/formal-release/ci-evidence/36298572193/digests.json`
+- run 36298572193: 18 files, 292890 bytes, digests in `docs/formal-release/ci-evidence/36298572193/digests.json`
 
 Land another run's bytes with `--fetch-evidence <run>`; `--check` recomputes every digest in every `digests.json` and fails if a landed set no longer matches, or belongs to a run nothing quotes.
 

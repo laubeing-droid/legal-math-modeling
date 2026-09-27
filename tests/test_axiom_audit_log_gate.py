@@ -159,3 +159,44 @@ def test_every_named_mandate_target_exists_at_its_declaration_site(module):
         if line.startswith("#print axioms") and f"JurisLean.Mandate.{module}." in line
     }
     assert named <= on_site, f"audit names declarations that the source dropped: {named - on_site}"
+
+
+LANDED = ROOT / "docs" / "formal-release" / "ci-evidence"
+
+
+def _landed_audit_logs() -> list[Path]:
+    return sorted(LANDED.glob("*/axiom-audit/axiom-audit.raw.txt"))
+
+
+def test_the_landed_audit_log_is_the_kernels_own_words_and_is_clean() -> None:
+    """The axiom verdict must be re-checkable from bytes in this repository.
+
+    CI runs the audit, parses the output and fails on `sorryAx`; if the log stayed in
+    the artifact store, every "no sorryAx" claim in the papers would rest on a
+    screenshot. So the newest landed log is parsed here: it must name at least as many
+    targets as the audit file holds, must show nothing outside the standard axioms, and
+    must actually contain a line for every qualified name on the audit surface.
+    """
+    logs = _landed_audit_logs()
+    assert logs, (
+        "no landed axiom-audit log: run `python scripts/ci/build_ci_run_index.py "
+        "--fetch-evidence <run>` so the kernel's answer is in-repo evidence"
+    )
+    newest = logs[-1]
+    doc = parse(newest.read_text(encoding="utf-8", errors="replace"))
+    assert doc["targets_with_sorryAx"] == {}, newest
+    assert doc["targets_outside_standard_axioms"] == {}, newest
+
+    audit = ROOT / "proofs" / "lean" / "juris_lean" / "JurisLean" / "AxiomAudit.lean"
+    named = {
+        line.split()[-1]
+        for line in audit.read_text(encoding="utf-8").splitlines()
+        if line.startswith("#print axioms") and "." in line.split()[-1]
+    }
+    audited = set(doc["targets_by_name"]) if "targets_by_name" in doc else None
+    printed = newest.read_text(encoding="utf-8", errors="replace")
+    missing = sorted(n for n in named if f"'{n}'" not in printed)
+    assert not missing, (
+        f"{newest.relative_to(ROOT)} never reports {len(missing)} names the audit file "
+        f"asks about, e.g. {missing[:3]}"
+    )

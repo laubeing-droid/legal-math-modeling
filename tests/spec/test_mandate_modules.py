@@ -400,9 +400,15 @@ def test_quarantine_is_empty_because_the_wave_was_promoted() -> None:
     reach = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(reach)
     expected = {f"JurisLean.{rel[:-5].replace('/', '.')}" for rel, _r, _c in MODULES.values()}
-    assert not (set(reach.PENDING_CI_MODULES) & expected), (
-        f"promoted modules still quarantined: {sorted(reach.PENDING_CI_MODULES)}"
-    )
+    pending = set(reach.PENDING_CI_MODULES)
+    assert not (pending & expected), f"promoted modules still quarantined: {sorted(pending & expected)}"
+    # A vacuous pass would be a quarantine entry that names nothing at all, so demand
+    # the positive fact too: nothing under Mandate/ is unreachable any more.
+    root_text = ROOT_MODULE.read_text(encoding="utf-8")
+    stranded = {m for m in expected if f"import {m}" not in root_text}
+    assert not stranded, f"mandate modules neither quarantined nor in the root: {sorted(stranded)}"
+    for mod, reason in reach.PENDING_CI_MODULES.items():
+        assert str(reason).strip(), f"{mod} is quarantined with an empty reason"
 
 
 def test_mandate_layer_is_in_the_release_root() -> None:

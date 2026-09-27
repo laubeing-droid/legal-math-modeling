@@ -130,6 +130,42 @@ EVIDENCE_NOTE = (
 )
 
 
+AUDIT_LOG_ARTIFACT_PREFIX = "lean-full-build-run"
+AUDIT_LOG_NAME = "axiom-audit.raw.txt"
+
+
+def land_audit_log(rid: str, artifacts: list[dict], dest: Path) -> None:
+    """Land the kernel's axiom-audit output, which is otherwise too big to fetch.
+
+    The build artifact holding `axiom-audit.raw.txt` also holds a multi-megabyte
+    compile log, so it fails the size filter that keeps the evidence directory small.
+    This takes just the audit file: it is the only artefact that says what the theorems
+    rest on, and without it "no sorryAx" is a claim about a log nobody can re-read.
+    """
+    hit = next(
+        (a for a in artifacts
+         if not a.get("expired") and str(a.get("name", "")).startswith(AUDIT_LOG_ARTIFACT_PREFIX)),
+        None,
+    )
+    if hit is None:
+        return
+    staging = dest / "_build-artifact"
+    proc = subprocess.run(
+        ["gh", "run", "download", rid, "-n", hit["name"], "-D", str(staging)],
+        cwd=ROOT, capture_output=True, text=True, encoding="utf-8",
+    )
+    if proc.returncode != 0:
+        raise RuntimeError(f"gh run download {rid} {hit['name']}: {proc.stderr.strip()[:200]}")
+    found = next((f for f in staging.rglob(AUDIT_LOG_NAME)), None)
+    if found is None:
+        shutil.rmtree(staging, ignore_errors=True)
+        return
+    out = dest / "axiom-audit"
+    out.mkdir(exist_ok=True)
+    shutil.copyfile(found, out / AUDIT_LOG_NAME)
+    shutil.rmtree(staging, ignore_errors=True)
+
+
 def evidence_dir(rid: str) -> Path:
     return EVIDENCE_ROOT / rid
 
@@ -167,6 +203,8 @@ def fetch_evidence(rid: str) -> dict:
         )
         if proc.returncode != 0:
             raise RuntimeError(f"gh run download {rid} {a['name']}: {proc.stderr.strip()[:200]}")
+    land_audit_log(rid, artifacts, dest)
+
     for p in sorted(dest.rglob("*")):
         if p.is_file() and p.name.endswith(EVIDENCE_SKIP_SUFFIX):
             p.unlink()

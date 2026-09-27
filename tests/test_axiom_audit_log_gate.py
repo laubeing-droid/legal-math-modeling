@@ -111,9 +111,10 @@ def test_the_mandate_layer_is_now_on_the_audit_surface():
     # 126 at a6fd02c6d, 135 with CaseIsomorphism's nine, 141 with the n-ary surface,
     # 145 with the three-slot computable test, 148 with the enumeration that says those
     # six are all the bijections of three slots, and 153 with the bridge that lets the Bool
-    # test answer the Prop question; each increment was named only after a round built the
-    # declarations it names, so a red round cannot leave the number behind.
-    assert len(mandate) == 153, f"mandate audit surface is {len(mandate)} targets"
+    # test answer the Prop question, and 159 with the six ReLU bounds. Each increment was
+    # named only after a round built the declarations it names, so a red round cannot
+    # leave the number pointing at theorems that failed to elaborate.
+    assert len(mandate) == 159, f"mandate audit surface is {len(mandate)} targets"
     assert "JurisLean.Mandate.GameTree.value_attains" in mandate
     assert "JurisLean.Mandate.MatrixGame.hasPureValue_true_iff" in mandate
 

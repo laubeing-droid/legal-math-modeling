@@ -40,6 +40,7 @@ import JurisLean.Mandate.TaxSlices
 import JurisLean.Mandate.Waterfall
 
 import JurisLean.Mandate.CaseIsomorphism
+import JurisLean.Mandate.ReLUApprox
 
 /-! Axiom audit for formal core release v1. -/
 
@@ -578,6 +579,12 @@ open HornSystem
 #print axioms JurisLean.Mandate.MatrixGame.pennies_gap_strict
 #print axioms JurisLean.Mandate.MatrixGame.pennies_no_pure_value
 #print axioms JurisLean.Mandate.MatrixGame.upper_monotone_column
+#print axioms JurisLean.Mandate.ReLUApprox.abs_relu_sub_relu_le
+#print axioms JurisLean.Mandate.ReLUApprox.h1_le
+#print axioms JurisLean.Mandate.ReLUApprox.h2_le
+#print axioms JurisLean.Mandate.ReLUApprox.lip_pos
+#print axioms JurisLean.Mandate.ReLUApprox.out_le
+#print axioms JurisLean.Mandate.ReLUApprox.out_not_constant
 #print axioms JurisLean.Mandate.RouteDecision.anyUsable_append
 #print axioms JurisLean.Mandate.RouteDecision.excluded_is_skipped
 #print axioms JurisLean.Mandate.RouteDecision.firstUsable_cons_notUsable

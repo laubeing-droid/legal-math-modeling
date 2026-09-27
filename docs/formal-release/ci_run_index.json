@@ -2161,10 +2161,10 @@
         "docs/master-plan/03_证明战役台账.md:491",
         "docs/master-plan/03_证明战役台账.md:518",
         "docs/master-plan/03_证明战役台账.md:572",
-        "docs/master-plan/03_证明战役台账.md:675",
-        "docs/master-plan/03_证明战役台账.md:677",
-        "docs/master-plan/03_证明战役台账.md:681",
-        "docs/master-plan/03_证明战役台账.md:682",
+        "docs/master-plan/03_证明战役台账.md:697",
+        "docs/master-plan/03_证明战役台账.md:699",
+        "docs/master-plan/03_证明战役台账.md:703",
+        "docs/master-plan/03_证明战役台账.md:704",
         "docs/paper-rewrite/PROGRESS.md:33"
       ],
       "run_id": 36293474352,
@@ -2314,7 +2314,7 @@
         "docs/master-plan/03_证明战役台账.md:569",
         "docs/master-plan/03_证明战役台账.md:571",
         "docs/master-plan/03_证明战役台账.md:651",
-        "docs/master-plan/03_证明战役台账.md:676"
+        "docs/master-plan/03_证明战役台账.md:698"
       ],
       "run_id": 36297146468,
       "started": true,
@@ -2382,8 +2382,8 @@
         "docs/master-plan/03_证明战役台账.md:598",
         "docs/master-plan/03_证明战役台账.md:630",
         "docs/master-plan/03_证明战役台账.md:651",
-        "docs/master-plan/03_证明战役台账.md:676",
-        "docs/master-plan/03_证明战役台账.md:694"
+        "docs/master-plan/03_证明战役台账.md:698",
+        "docs/master-plan/03_证明战役台账.md:716"
       ],
       "run_id": 36298572193,
       "started": true,
@@ -2508,7 +2508,7 @@
       "name": "chore(inventory): rebind after the Prop-level branch conversion",
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:620",
-        "docs/master-plan/03_证明战役台账.md:683"
+        "docs/master-plan/03_证明战役台账.md:705"
       ],
       "run_id": 36301449007,
       "started": true,
@@ -2757,7 +2757,7 @@
       "name": "chore(inventory): rebind before pushing so python-gates is not red on…",
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:645",
-        "docs/master-plan/03_证明战役台账.md:685",
+        "docs/master-plan/03_证明战役台账.md:707",
         "docs/paper-rewrite/paper_en.md:19"
       ],
       "run_id": 36306088064,
@@ -2820,13 +2820,7 @@
       "jobs_total": 8,
       "name": "docs(ledger): name each of the four red rounds the isomorphism module…",
       "quoted_by": [
-        "docs/master-plan/03_证明战役台账.md:651",
-        "docs/paper-rewrite/paper_cn.md:146",
-        "docs/paper-rewrite/paper_cn.md:150",
-        "docs/paper-rewrite/paper_cn.md:23",
-        "docs/paper-rewrite/paper_en.md:141",
-        "docs/paper-rewrite/paper_en.md:145",
-        "docs/paper-rewrite/paper_en.md:19"
+        "docs/master-plan/03_证明战役台账.md:651"
       ],
       "run_id": 36307416556,
       "started": true,
@@ -2894,6 +2888,137 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-09-27T09:14:54Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 5,
+      "conclusion": "failure",
+      "created_at": "2026-09-27T09:28:33Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "3261425e71a17991d97c4bd5559aadd41a65c7d7",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36309484500",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "fix(ci): let the stale-label gate report what it sees instead of gues…",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:667"
+      ],
+      "run_id": 36309484500,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-27T09:36:09Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-09-27T09:40:57Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/36310143628/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "738b20c752f0b9549d5c011a361ab14e7e116628",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36310143628",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "ci(index): record the docs-only red round, and rebind after my own pu…",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:680",
+        "docs/master-plan/03_证明战役台账.md:710",
+        "docs/paper-rewrite/paper_cn.md:146",
+        "docs/paper-rewrite/paper_cn.md:150",
+        "docs/paper-rewrite/paper_cn.md:23",
+        "docs/paper-rewrite/paper_en.md:141",
+        "docs/paper-rewrite/paper_en.md:145",
+        "docs/paper-rewrite/paper_en.md:19"
+      ],
+      "run_id": 36310143628,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-27T09:48:31Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

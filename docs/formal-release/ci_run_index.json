@@ -4226,6 +4226,192 @@
       "status": "completed",
       "updated_at": "2026-09-27T22:49:17Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 6,
+      "conclusion": "cancelled",
+      "created_at": "2026-09-27T23:05:46Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "d510b9e21b5da25c98c9856497bcf231a361b6a2",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36357526499",
+      "jobs": [
+        {
+          "conclusion": "cancelled",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "cancelled",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "cancelled",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "docs(ledger): name the cancelled round as what it was, in the words t…",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:922"
+      ],
+      "run_id": 36357526499,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-27T23:11:36Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 4,
+      "conclusion": "cancelled",
+      "created_at": "2026-09-27T23:10:57Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "bf08bda85d02d6af04b0f7e8ea46dceaca5cc010",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36357820618",
+      "jobs": [
+        {
+          "conclusion": "cancelled",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "cancelled",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "cancelled",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "docs(ledger): name the exact Sion carrier so R-03's zero-sum branch h…",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:922"
+      ],
+      "run_id": 36357820618,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-27T23:16:22Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-09-27T23:15:48Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "1baab916934bc41c441e289e5a7130bbc8d4341b",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36358097950",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "index(quotes): refresh locations after recording the Sion carrier",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:922"
+      ],
+      "run_id": 36358097950,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-27T23:24:45Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],
   "schema_version": "ci-run-index-v1",

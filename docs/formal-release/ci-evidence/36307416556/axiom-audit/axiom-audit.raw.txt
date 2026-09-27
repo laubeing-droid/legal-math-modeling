@@ -1,0 +1,540 @@
+'FiniteMonotoneSystem.exists_fixpoint_le_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FiniteMonotoneSystem.fixed_at_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DungAAF.grounded_is_least_fixed_point' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HornSystem.horn_completeness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HornSystem.horn_result_unique_least_fixed_point' depends on axioms: [propext, Classical.choice, Quot.sound]
+'weightedSupDist_separates_points' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.KernelV3.mkEval_judgment' does not depend on any axioms
+'JurisLean.KernelV3.mkEval_disposition' does not depend on any axioms
+'JurisLean.KernelV3.judgment_notEstablished_does_not_force_truth_false' does not depend on any axioms
+'JurisLean.KernelV3.transfer_confirmatory_identity' does not depend on any axioms
+'JurisLean.KernelV3.transfer_performance_identity' does not depend on any axioms
+'JurisLean.KernelV3.transfer_proceduralBinding_identity' does not depend on any axioms
+'JurisLean.KernelV3.transfer_constitutive_updates_R' does not depend on any axioms
+'JurisLean.KernelV3.transfer_constitutive_preserves_K' does not depend on any axioms
+'JurisLean.KernelV3.narrowCandidates_preserves_R' does not depend on any axioms
+'JurisLean.KernelV3.narrowCandidates_is_subset' does not depend on any axioms
+'JurisLean.KernelV3.evalBatch_only_returns_asked_questions' does not depend on any axioms
+'JurisLean.KernelV3.procedural_judgment_does_not_auto_create_substantive' does not depend on any axioms
+'JurisLean.KernelV3.applicableNorm_t_not_independent' does not depend on any axioms
+'JurisLean.KernelV3.applicableNorm_fails_closed_when_t_precedes_fact' does not depend on any axioms
+'JurisLean.Hohfeld.opposite_involutive' does not depend on any axioms
+'JurisLean.Hohfeld.correlative_involutive' does not depend on any axioms
+'JurisLean.Hohfeld.opposite_ne_self' does not depend on any axioms
+'JurisLean.Hohfeld.correlative_ne_self' does not depend on any axioms
+'JurisLean.BanachCertificateV3.no_certificate_rejected' does not depend on any axioms
+'JurisLean.BanachCertificateV3.certificate_has_q_lt_one_scaled' does not depend on any axioms
+'JurisLean.BanachCertificateV3.certificate_error_within_tolerance' does not depend on any axioms
+'JurisLean.BanachCertificateV3.certificate_has_nonempty_domain' does not depend on any axioms
+'JurisLean.BanachCertificateV3.certificate_has_positive_iterations' does not depend on any axioms
+'JurisLean.Genealogy.Part0.P002.same_pair_same_concept' depends on axioms: [propext]
+'JurisLean.Genealogy.Part0.P002.different_pair_different_concept' depends on axioms: [propext]
+'JurisLean.Genealogy.Part0.P003.translation_preserves_definition_id' does not depend on any axioms
+'JurisLean.Genealogy.Part0.P003.canonical_slot_is_single_valued' does not depend on any axioms
+'JurisLean.Genealogy.Part0.P009.strictly_increasing_version_enters' depends on axioms: [propext]
+'JurisLean.Genealogy.Part0.P009.nonincreasing_version_is_outside' depends on axioms: [propext]
+'JurisLean.Genealogy.Part0.P010.anonymization_exits_personal_set' depends on axioms: [propext]
+'JurisLean.Genealogy.Part0.P010.sensitive_triple_consent_positive' does not depend on any axioms
+'JurisLean.Genealogy.Part0.P036.obligational_signature_mismatch' does not depend on any axioms
+'JurisLean.Genealogy.Part0.P036.real_signature_mismatch' does not depend on any axioms
+'JurisLean.Genealogy.Part0.P012.interruption_restarts' does not depend on any axioms
+'JurisLean.Genealogy.Part0.P012.second_commencement_is_identity' does not depend on any axioms
+'JurisLean.Genealogy.Part1.P014.source_grade_total' does not depend on any axioms
+'JurisLean.Genealogy.Part1.P015.lex_superior_left' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P015.old_special_vs_new_general_unknown' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P015.same_rank_day_nature_unknown' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P018.transition_requires_version_and_fact' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P018.transition_version_mismatch_holds' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P019.shall_refer_without_reason_follows' does not depend on any axioms
+'JurisLean.Genealogy.Part1.P019.may_reference_nonbinding' does not depend on any axioms
+'JurisLean.Genealogy.Part1.P020.specialized_rule_wins_first' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P020.no_applicable_rule_returns_none' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P021.renvoi_back_uses_forum_and_terminates' does not depend on any axioms
+'JurisLean.Genealogy.Part1.P022.named_rule_removed' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P022.other_rule_preserved' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P023.missing_version_unknown' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P023.missing_jurisdiction_unknown' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P024.cause_route_head_hit' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P024.cause_route_empty_unknown' does not depend on any axioms
+'JurisLean.Genealogy.Part2.P029.secondary_without_primary_violation_is_false' depends on axioms: [propext]
+'JurisLean.Genealogy.Part2.P029.matching_secondary_attachment' depends on axioms: [propext]
+'JurisLean.Genealogy.Part2.P034.claim_available_complete_iff' depends on axioms: [propext]
+'JurisLean.Genealogy.Part2.P034.unregistered_basis_unknown' does not depend on any axioms
+'JurisLean.Genealogy.Part2.P035.agency_attributes_principal' does not depend on any axioms
+'JurisLean.Genealogy.Part2.P035.representation_outside_scope_none' does not depend on any axioms
+'JurisLean.Genealogy.Part2.P035.impersonation_ratified_principal' does not depend on any axioms
+'JurisLean.Genealogy.Part2.P038.competition_is_three_way_conjunction' does not depend on any axioms
+'JurisLean.Genealogy.Part2.P038.all_three_true_establish' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P042.equal_factors_fixed' depends on axioms: [propext]
+'JurisLean.Genealogy.Part3.P042.weakest_factor_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P047.two_sided_but_for_true' depends on axioms: [propext]
+'JurisLean.Genealogy.Part3.P047.one_side_missing_unknown' depends on axioms: [propext]
+'JurisLean.Genealogy.Part3.P048.exemption_requires_own_elements' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P048.exemption_complete_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P049.good_cause_extension_admits' depends on axioms: [propext]
+'JurisLean.Genealogy.Part3.P049.late_without_good_cause_barred' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P050.any_listed_illegality_excludes' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P050.empty_exclusion_list_does_not_exclude' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P051.boundary_inputs_complete' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.Part3.P051.boundary_records_input_only' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.Part3.P052.mapping_complete_iff_all_required_traced' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P052.mapping_complete_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P094.first_present_anchor_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P094.empty_anchor_rules_unknown' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P095.commencement_cell_hit' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P095.empty_commencement_matrix_unknown' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P057.analogy_three_conditions' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P057.distinction_blocks_analogy' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P058.toulmin_six_slot_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P060.isolated_branch_preserved' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P061.pinned_reading_immune_to_low_attack' depends on axioms: [propext]
+'JurisLean.Genealogy.Part4.P062.two_senses_without_context_ambiguous' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P062.context_resolves' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P063.rule_all_or_nothing_true' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P063.principle_positive_weight_is_weight_only' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P064.preorder_with_legal_incomparability' depends on axioms: [propext]
+'JurisLean.Genealogy.Part4.P065.lawmaking_requires_three_true' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P065.missing_gap_signal_blocks' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P066.gap_detection_preserves_signal_roster' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P066.gap_signal_detected' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P068.several_without_share_invalid' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P068.several_with_share_valid' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P070.unknown_damage_none' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P070.registered_damage_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P073.declaration_floor_is_max' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P073.declaration_band_order_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P074.prohibited_is_illegal' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P074.unknown_unlawfulness_is_violation' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P078.mediation_overlap_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P078.mediation_disjoint_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P079.settlement_ev_accept_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P079.settlement_ev_reject_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P080.plea_fixed_prefix_advances' depends on axioms: [propext]
+'JurisLean.Genealogy.Part4.P080.plea_skip_fails_closed' depends on axioms: [propext]
+'JurisLean.Genealogy.Part4.P081.fraud_voids_tactic' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P082.preservation_without_ground_infeasible' depends on axioms: [propext]
+'JurisLean.Genealogy.Part4.P084.appeal_ev_positive_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P084.appeal_ev_negative_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P085.undisclosed_fee_none' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P086.contingency_fee_cap_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P086.contingency_fee_below_cap_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P087.should_follow_iff_reason_absent' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P089.retrieval_two_true_compliant' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P089.retrieval_missing_report_noncompliant' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P096.two_segment_refinement' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P096.empty_segments_zero' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P097.allocate_one_underfunded' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P097.allocate_one_overfunded' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P097.two_debt_conservation_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P098.clamp_below_to_low' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P098.clamp_below_in_band' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P098.clamp_above_to_high' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P098.clamp_above_in_band' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P098.clamp_inside_fixed' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P098.clamp_inside_idempotent' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P099.progressive_three_bracket_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P099.progressive_two_effective_brackets_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P100.unknown_damage_formula_none' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P100.registered_damage_formula_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P102.delay_interest_formula' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P103.no_consent_no_transition' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P103.consent_and_legal_edge_moves' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P103.consent_cannot_create_nonedge' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P114.deduction_bridges' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P114.probability_one_not_deduction' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P117.structural_equivalence_assertion_invalid' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P117.similarity_stays_candidate' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P105.disposition_valid_path' depends on axioms: [propext]
+'JurisLean.Genealogy.Part6.P105.disposition_invalid_jump' depends on axioms: [propext]
+'JurisLean.Genealogy.Part6.P106.swapped_parties_same_subject' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P106.different_cause_not_same_subject' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P107.legal_fact_script_rejected' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P121.failed_gate_keeps_candidate' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P121.passed_gate_sets_admitted' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P122.version_triplet_binding_identity' depends on axioms: [propext]
+'JurisLean.Genealogy.Part6.P124.disclosed_is_compliant' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P124.undisclosed_is_noncompliant' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P125.detected_pattern_blocks' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P126.foreign_unadapted_blocked' depends on axioms: [propext]
+'JurisLean.Genealogy.Part6.P126.home_jurisdiction_not_blocked' depends on axioms: [propext]
+'JurisLean.Genealogy.Part6.P127.verbatim_prefix_hit_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Genealogy.Part6.P127.verbatim_prefix_miss_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Genealogy.Part6.P128.all_due_process_elements_present' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P128.missing_reason_record_fails' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P129.anonymization_boundary_two_conditions' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P130.lifecycle_listed_edge_valid' depends on axioms: [propext]
+'JurisLean.Genealogy.Part6.P130.lifecycle_unlisted_edge_invalid' depends on axioms: [propext]
+'JurisLean.Genealogy.Part6.P131.replay_empty_log_idempotent' depends on axioms: [propext]
+'JurisLean.Genealogy.Part6.P131.existing_command_replay_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P132.listed_action_requires_its_gate' does not depend on any axioms
+'JurisLean.Genealogy.General.P052_subsumeComplete_iff_all' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P042_min3Nat_le_all' depends on axioms: [propext]
+'JurisLean.Genealogy.General.P042_grade_capped' depends on axioms: [propext]
+'JurisLean.Genealogy.General.P073_le_maxNat_left' depends on axioms: [propext]
+'JurisLean.Genealogy.General.P073_mergedDeclaration_low_le_high' depends on axioms: [propext]
+'JurisLean.Genealogy.General.P084_mul_monotone_probability_strict' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P084_appealWorthwhile_of_mul_le' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P084_appealWorthwhile_monotone_strict' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P097_add_assoc_local' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P097_allocate_conservation' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P099_progressiveTax3_nonnegative' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P099_progressiveTax3_first_bracket' depends on axioms: [propext]
+'JurisLean.Genealogy.General.P127_isPrefixChars_refl_list' depends on axioms: [propext]
+'JurisLean.Genealogy.General.P127_isPrefixChars_refl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Genealogy.General.P127_prepend_monotonicity_counterexample' does not depend on any axioms
+'JurisLean.Genealogy.General.P127_isPrefixChars_append_right' depends on axioms: [propext]
+'JurisLean.Genealogy.General.P131_effectLogApply_idempotent' depends on axioms: [propext]
+'JurisLean.Genealogy.Boundary.partialValue_openObligations_nonempty' depends on axioms: [propext]
+'JurisLean.Genealogy.Boundary.failure_map_identity' does not depend on any axioms
+'JurisLean.Genealogy.Boundary.noExtensions_family_empty' does not depend on any axioms
+'JurisLean.Genealogy.Boundary.incomplete_adjudication_is_solverIncomplete' does not depend on any axioms
+'JurisLean.Genealogy.Boundary.adverseAuthority_requires_unmet' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T01.eval_substitution' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T02.finite_ground_instances' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T03.iter_subset_of_prefixed' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T04.derived_iff_rule_model_entails' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T05.undercut_defeat_independent_of_preference' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T05.rebuttal_counterexample' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T06.transition_origin' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T07.eval_exactexpr_denotation' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T08.division_total_iff_domain_empty' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T09.rounding_without_basis_unknown' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T10.select_version_unique_or_unknown' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.TSpectrum.T11.one_hop_renvoi_terminates' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T12.scoped_override_preserves_unaffected_rules' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T13.parallel_projection' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T14.strictest_is_join' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T15.truth_vector_bisimulation' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T16.check_af_sound' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T17.anchor_selected_by_rule' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T18.period_effect_bound_to_kind' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T19.progressive_and_multiplier_correct' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T20.route_and_exclusion_sound' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T21.interest_segment_refinement' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.TSpectrum.T22.residual_payment_le' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.TSpectrum.T22.payment_offset_conservation' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.TSpectrum.T23.fixed_scheme_conservation' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T24.asset_pool_no_duplicate_consumption' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T25.priority_waterfall_monotone' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T26.interruption_resume_preserves_checkpoint' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T27.admitted_rule_has_four_witnesses' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T28.compile_structure_preserving' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T29.evaluate_multi_contract' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T30.version_package_isolation' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T31.record_override_audit' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T32.runtime_reference_consistency' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T33.external_output_does_not_relabel' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T34.business_does_not_pollute_legal' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T35.paper_claim_consistency' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T36.completion_acceptance' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T37.unified_probability_preserves_legal_identity' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T38.conditioning_zero_mass_unknown' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T38.conditioning_excludes_false_event' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T39.variable_elimination_equals_independent_enumeration' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T40.observational_identity' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T40.hidden_change_preserves_observation' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T41.valid_split_requires_time_order' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T42.fully_specified_witness' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T43.observed_only_count' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T44.empirical_requires_justification' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T45.calibration_recorded' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T46.proper_posterior_witness' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T47.legal_identity_preserved' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T48.pav_single_fixed' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T49.brier_perfect_prediction' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T50.valid_interval_witness' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T51.direction_explicit' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T52.contaminated_zero_weight' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T53.bound_witness' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T54.logistic_deterministic' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T55.stages_strictly_ordered' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T56.signature_deterministic' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T57.directed_witness' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T58.complete_difference' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T59.horn_form_deterministic' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T60.role_preservation' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T61.T61_conflict_deterministic' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T62.T62_mandatory_overrides' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T63.T63_fail_closed' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T64.T64_bias_explicit' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T65.T65_version_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T66.T66_certificate_fields' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T67.T67_vc_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T68.T68_certified_witness' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T69.T69_chain_independent' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T70.T70_llm_always_candidate' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T71.T71_ig_recorded' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T72.T72_completion_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T73.T73_lipschitz_bounded' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T74.T74_stopping_explicit' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T75.T75_trust_numeric' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T76.T76_dtmc_finite' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T77.T77_reach_finite' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T78.T78_bellman_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T79.T79_mdp_finite' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T80.T80_lp_explicit' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T81.T81_nash_feasible' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T82.T82_game_grounded' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T83.T83_stochastic_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T84.T84_fit_dual' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T85.T85_info_computed' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T86.T86_disclosure_separate' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T87.T87_spectral_finite' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T88.T88_scm_witness' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T89.T89_belief_distinguished' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T90.T90_timing_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T91.T91_category_concrete' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T92.T92_lifecycle_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T93.T93_recovery_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T94.T94_gate_explicit' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T95.T95_structure_kept' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T96.T96_trace_kept' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T97.T97_template_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T98.T98_schedule_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T99.T99_graph_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T100.T100_chain_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T101.T101_business_computed' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T102.T102_distillation_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T103.T103_anon_verified' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T104.T104_projection_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T105.T105_bridge_refined' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T106.T106_map_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T107.T107_coverage_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T108.T108_writeoff_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T109.T109_unified_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T110.T110_ceiling_set' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T111.T111_acceptance_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T112.T112_dual_track_separated' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T113.T113_rationality_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T114.T114_hidden_info_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T115.T115_cooperation_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T116.T116_multi_issue_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T117.T117_robustness_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T118.T118_stopping_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T119.T119_evaluation_three_way' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T120.T120_incentive_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T121.T121_transition_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T122.T122_five_constructors' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T123.T123_attack_table_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T124.T124_consistency_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T125.T125_deviation_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T126.T126_tendency_stratified' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T127.T127_report_generated' does not depend on any axioms
+'JurisLean.Genealogy.General.P083_insertEvpi_length' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P083_sortEvpi_length' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P083_insertEvpi_preserves_sortedP' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P083_sortEvpi_sortedP' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P083_sortedDesc_witness' depends on axioms: [propext, Quot.sound]
+'JurisLean.BusinessRoot.CU_expectation_conservation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.cres_false_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.cres_true_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.eventMass_twoBranch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.interval_point_not_in_grid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.main_eligible' depends on axioms: [propext, Quot.sound]
+'JurisLean.BusinessRoot.main_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.main_principal_expectation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.main_threshold_event' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.overpay_overpay_expectation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.overpay_principal_expectation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.overpay_raw_expectation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.split_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.threshold_zero_distinction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.weighted_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.weighted_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.weighted_twoBranch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.Gamma_add_nat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.betaCDF_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.betaCDF_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.beta_mass_total_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.beta_mixture_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.beta_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.brier_excess_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.brier_excess_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.cantelli_core' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.condition_incompatible_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.contaminate_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.contaminate_condition_do_not_commute' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.FullMath.Probability.contamination_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.dedupAux_cons_fresh' depends on axioms: [propext]
+'JurisLean.FullMath.Probability.dedupAux_cons_seen' depends on axioms: [propext]
+'JurisLean.FullMath.Probability.dedupAux_k_insensitive' depends on axioms: [propext, Quot.sound]
+'JurisLean.FullMath.Probability.dedup_conflict_not_overwrite' depends on axioms: [propext]
+'JurisLean.FullMath.Probability.dedup_no_double_update' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.dirWeights_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.dirWeights_normalizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.dirWeights_update_compose' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.e01_insufficient_escalates' does not depend on any axioms
+'JurisLean.FullMath.Probability.e01_within_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.elim_swap_adjacent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.exclusion_no_langer' depends on axioms: [propext, Quot.sound]
+'JurisLean.FullMath.Probability.exclusion_no_langer_top' depends on axioms: [propext, Quot.sound]
+'JurisLean.FullMath.Probability.hyperWeights_normalizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.hyper_data_changes_posterior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.illegal_row_in_no_part' depends on axioms: [propext, Quot.sound]
+'JurisLean.FullMath.Probability.isolated_no_shared_cluster' does not depend on any axioms
+'JurisLean.FullMath.Probability.isolated_symm' does not depend on any axioms
+'JurisLean.FullMath.Probability.joint_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.joint_normalizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.mixture_update_normalizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.mixture_update_still_bracketed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.FullMath.Probability.mixture_within_retained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.no_cluster_cross' does not depend on any axioms
+'JurisLean.FullMath.Probability.part_target_preserved' depends on axioms: [propext]
+'JurisLean.FullMath.Probability.parts_cover' depends on axioms: [propext]
+'JurisLean.FullMath.Probability.pavGo_succ_cons' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.pavGo_weight_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.pav_two_point_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.posterior_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.posterior_normalizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.prodAt_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.rising_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.sum_out_distrib' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.time_order_enforced' depends on axioms: [propext]
+'JurisLean.FullMath.Probability.unprocessed_mass_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.unprocessed_mass_degenerate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.upd_eq_exclSeen' depends on axioms: [propext, Quot.sound]
+'JurisLean.FullMath.Probability.upd_self' depends on axioms: [propext, Quot.sound]
+'JurisLean.FullMath.Probability.upd_swap' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.allSelfRelated_of_iso' does not depend on any axioms
+'JurisLean.Mandate.CaseIsomorphism.exists_bijective_inverse' depends on axioms: [Classical.choice]
+'JurisLean.Mandate.CaseIsomorphism.iso_refl' does not depend on any axioms
+'JurisLean.Mandate.CaseIsomorphism.iso_symm' depends on axioms: [Classical.choice]
+'JurisLean.Mandate.CaseIsomorphism.iso_trans' does not depend on any axioms
+'JurisLean.Mandate.CaseIsomorphism.iso_twoEmpty_swap' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.not_iso_looped_edgeless' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.swap2_bijective' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.swap2_moves_a_slot' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CohortInterval.high_le_added_success' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CohortInterval.high_num_le_den' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CohortInterval.intervalOf_defined' does not depend on any axioms
+'JurisLean.Mandate.CohortInterval.intervalOf_none_without_cohort' does not depend on any axioms
+'JurisLean.Mandate.CohortInterval.interval_of_empty_successes_legal' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CohortInterval.low_antitone_in_size' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CohortInterval.low_le_added_success' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CohortInterval.low_le_high' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CohortInterval.low_num_le_den' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CohortInterval.low_num_lt_high_num' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CohortRate.addedFailure_le_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CohortRate.rateOfCohort_defined' does not depend on any axioms
+'JurisLean.Mandate.CohortRate.rateOfCohort_none_iff' depends on axioms: [propext]
+'JurisLean.Mandate.CohortRate.rateOfCohort_num_le_den' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CohortRate.rate_le_addedSuccess' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.admits_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.approx_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.approx_damped' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.approx_error_eq_computedBound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.approx_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.certificate_bound_is_computed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.not_admits_negative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.pow_damped' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.pow_nonneg_of_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.Disclosure.compliant_concrete' does not depend on any axioms
+'JurisLean.Mandate.Disclosure.compliant_true_iff_covers' depends on axioms: [propext]
+'JurisLean.Mandate.Disclosure.covers_nil_recorded' does not depend on any axioms
+'JurisLean.Mandate.Disclosure.not_covers_empty_registry' depends on axioms: [propext]
+'JurisLean.Mandate.Disclosure.occurs_append' depends on axioms: [propext]
+'JurisLean.Mandate.Disclosure.occurs_head' depends on axioms: [propext]
+'JurisLean.Mandate.Disclosure.occurs_monotone' depends on axioms: [propext]
+'JurisLean.Mandate.GameTree.leaves_leaf' does not depend on any axioms
+'JurisLean.Mandate.GameTree.leaves_node' does not depend on any axioms
+'JurisLean.Mandate.GameTree.value_attains' depends on axioms: [propext]
+'JurisLean.Mandate.GameTree.value_ge_of_mem' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.GameTree.value_ignores_payoff_renaming_when_dominated' depends on axioms: [propext]
+'JurisLean.Mandate.GameTree.value_le_value_left' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.GameTree.value_le_value_right' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.GameTree.value_leaf' does not depend on any axioms
+'JurisLean.Mandate.GameTree.value_node' does not depend on any axioms
+'JurisLean.Mandate.GateTable.gate_coverage_total' does not depend on any axioms
+'JurisLean.Mandate.GateTable.gate_exists_unique' depends on axioms: [propext]
+'JurisLean.Mandate.GateTable.gate_iff_table' does not depend on any axioms
+'JurisLean.Mandate.GateTable.gate_ne_true_of_ne' does not depend on any axioms
+'JurisLean.Mandate.GateTable.gate_table_no_duplicates' depends on axioms: [propext]
+'JurisLean.Mandate.GateTable.gates_pairwise_distinct' does not depend on any axioms
+'JurisLean.Mandate.Kernel.best_le_best_append' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.Kernel.le_max_l' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.Kernel.le_max_r' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.Kernel.max_zero' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.Kernel.rate_le_self' does not depend on any axioms
+'JurisLean.Mandate.Kernel.rate_num_le_den' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.Kernel.sig3_edges_le_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.Kernel.sig3_fst_le_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.Kernel.sig3_relabel_edges' depends on axioms: [propext]
+'JurisLean.Mandate.Kernel.sig3_relabel_fst' depends on axioms: [propext]
+'JurisLean.Mandate.Kernel.sig3_relabel_snd' depends on axioms: [propext]
+'JurisLean.Mandate.Kernel.sig3_sum' depends on axioms: [propext]
+'JurisLean.Mandate.Kernel.successes_le_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.LinearScorer.not_predicts_of_neg' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.LinearScorer.predicts_scaled_positive' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.LinearScorer.predicts_true_of_nonneg' does not depend on any axioms
+'JurisLean.Mandate.LinearScorer.score_cons' does not depend on any axioms
+'JurisLean.Mandate.LinearScorer.score_nil_features' does not depend on any axioms
+'JurisLean.Mandate.LinearScorer.score_nil_weights' does not depend on any axioms
+'JurisLean.Mandate.LinearScorer.score_nonneg_of_allNonNeg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.LinearScorer.score_not_constant' does not depend on any axioms
+'JurisLean.Mandate.LinearScorer.score_zero_weights' depends on axioms: [propext]
+'JurisLean.Mandate.MatrixGame.coordination_has_pure_value' does not depend on any axioms
+'JurisLean.Mandate.MatrixGame.gap_bounded_by_spread' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.MatrixGame.hasPureValue_true_iff' does not depend on any axioms
+'JurisLean.Mandate.MatrixGame.lower_le_upper' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.MatrixGame.lower_monotone_first' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.MatrixGame.pennies_gap_strict' does not depend on any axioms
+'JurisLean.Mandate.MatrixGame.pennies_no_pure_value' does not depend on any axioms
+'JurisLean.Mandate.MatrixGame.upper_monotone_column' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.RouteDecision.anyUsable_append' depends on axioms: [propext]
+'JurisLean.Mandate.RouteDecision.excluded_is_skipped' does not depend on any axioms
+'JurisLean.Mandate.RouteDecision.firstUsable_cons_notUsable' depends on axioms: [propext]
+'JurisLean.Mandate.RouteDecision.firstUsable_cons_usable' depends on axioms: [propext]
+'JurisLean.Mandate.RouteDecision.firstUsable_nil' does not depend on any axioms
+'JurisLean.Mandate.RouteDecision.inactive_is_skipped' does not depend on any axioms
+'JurisLean.Mandate.RouteDecision.priority_order_decides' does not depend on any axioms
+'JurisLean.Mandate.RouteDecision.some_of_anyUsable_true' depends on axioms: [propext]
+'JurisLean.Mandate.RouteDecision.usable_is_found' does not depend on any axioms
+'JurisLean.Mandate.RouteDecision.usable_of_firstUsable_some' does not depend on any axioms
+'JurisLean.Mandate.SourceRank.grade_binding_iff' does not depend on any axioms
+'JurisLean.Mandate.SourceRank.grade_classes_inhabited' does not depend on any axioms
+'JurisLean.Mandate.SourceRank.grade_exhaustive' does not depend on any axioms
+'JurisLean.Mandate.SourceRank.grade_referenceOnly_iff' does not depend on any axioms
+'JurisLean.Mandate.SourceRank.grade_shallRefer_iff' does not depend on any axioms
+'JurisLean.Mandate.SourceRank.grade_single_valued' does not depend on any axioms
+'JurisLean.Mandate.SourceRank.soft_law_never_binding' does not depend on any axioms
+'JurisLean.Mandate.StructureInvariants.discrimination_survives_sum' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.StructureInvariants.relabel_cannot_bridge' depends on axioms: [propext]
+'JurisLean.Mandate.StructureInvariants.same_labels' does not depend on any axioms
+'JurisLean.Mandate.StructureInvariants.sig3_double' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.StructureInvariants.sig3_le_sum_any' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.StructureInvariants.signatures_differ' does not depend on any axioms
+'JurisLean.Mandate.StructureInvariants.sum_signature_third' depends on axioms: [propext]
+'JurisLean.Mandate.SubstrAdmission.isPrefix_false_of_longer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.SubstrAdmission.isPrefix_refl' depends on axioms: [propext]
+'JurisLean.Mandate.SubstrAdmission.isSubstr_nil_pat' depends on axioms: [propext]
+'JurisLean.Mandate.SubstrAdmission.isSubstr_of_isPrefix' depends on axioms: [propext]
+'JurisLean.Mandate.SubstrAdmission.isSubstr_self' depends on axioms: [propext]
+'JurisLean.Mandate.SubstrAdmission.prefix_adequate_for_admission' depends on axioms: [propext]
+'JurisLean.Mandate.SubstrAdmission.substr_strictly_weaker' depends on axioms: [propext]
+'JurisLean.Mandate.TaxSlices.remainingOf_exhausted' does not depend on any axioms
+'JurisLean.Mandate.TaxSlices.remainingOf_le_start' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.TaxSlices.taxOf_append' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.TaxSlices.taxOf_capped' does not depend on any axioms
+'JurisLean.Mandate.TaxSlices.taxOf_empty_table' does not depend on any axioms
+'JurisLean.Mandate.TaxSlices.taxOf_prefix_le' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.TaxSlices.taxOf_single' does not depend on any axioms
+'JurisLean.Mandate.TaxSlices.taxOf_two_brackets' does not depend on any axioms
+'JurisLean.Mandate.TaxSlices.taxOf_zero_base' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.Waterfall.allocate_concrete' does not depend on any axioms
+'JurisLean.Mandate.Waterfall.allocate_concrete_overshoot' does not depend on any axioms
+'JurisLean.Mandate.Waterfall.allocate_concrete_remainder' does not depend on any axioms
+'JurisLean.Mandate.Waterfall.allocate_cons' does not depend on any axioms
+'JurisLean.Mandate.Waterfall.allocate_no_debts' does not depend on any axioms
+'JurisLean.Mandate.Waterfall.allocate_not_constant' does not depend on any axioms
+'JurisLean.Mandate.Waterfall.conservation' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.Waterfall.paidOut_cons' does not depend on any axioms
+'JurisLean.Mandate.Waterfall.paidOut_le_payment' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.Waterfall.paidOut_nil' does not depend on any axioms

@@ -14327,7 +14327,7 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/CaseIsomorphism.lean",
    "print_axioms_targets": [],
-   "sha256": "52ff3f7897c201f061d291369f93494da0794d7f7f4da2b48974e04f6376fdfe",
+   "sha256": "c5fd7023fb5cd492209acc3cfc6ce475a5f2469549cbfe41306444327509e74a",
    "size_bytes": 6792,
    "theorem_count": 9,
    "theorem_count_bol_convention": 9
@@ -19746,19 +19746,24 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "fdbbc87183434dafb225a63d6b5f7dafc3edcb3996cc2f0353aadd244b2eb3fc",
+ "source_inventory_digest": "083ff5712e90b88c51e6fa04fd48e5be1bca4cec37012b9c68fcac9936010467",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "4a73dd4d54603d794af7910e165a1c8a6cc35074",
-  "tree": "20abc96a3d2ae20394887560f0ac1117fce1219a"
+  "commit": "cf3214d627f8bd7f096a71bbf9552b9379981f05",
+  "tree": "4ef208b1bb29675ea76120ff40b8494b2907cab9"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Mandate/CaseIsomorphism.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 233,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

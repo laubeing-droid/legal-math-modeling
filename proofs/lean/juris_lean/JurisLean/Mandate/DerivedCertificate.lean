@@ -129,12 +129,11 @@ theorem not_admits_negative (q x : ℚ) (n : ℕ) (hq0 : 0 ≤ q) (hx : 0 ≤ x)
       have hp : 0 ≤ q ^ n := by
         induction n with
         | zero => simp [pow_zero]
-        | succ k ih => rw [pow_succ]; nlinarith
-      have hbx : 0 ≤ x := hx
+        | succ k ih => rw [pow_succ]; exact mul_nonneg ih hq0
       have hexpr : (certificate q x n).bound = q ^ n * x := by
         rw [certificate_bound_is_computed, approx_closed]
       rw [hexpr]
-      nlinarith
+      exact mul_nonneg hp hx
     linarith
   rw [admits]
   split <;> simp_all

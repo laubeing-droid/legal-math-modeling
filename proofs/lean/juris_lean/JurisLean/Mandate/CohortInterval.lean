@@ -64,7 +64,6 @@ theorem low_num_lt_high_num (c : Cohort) : (low c).num < (high c).num := by
   show c.successes + 1 < c.successes + 2
   omega
 
-/-- Adding one favourable observation moves the lower endpoint up. -/
 /-- One more favourable observation: successes and size both grow, so the cohort
 invariant survives. The earlier statement updated a record field with
 `{ c with successes := … }`, which cannot re-justify the Prop field `succLeSize`,

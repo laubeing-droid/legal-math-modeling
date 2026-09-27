@@ -78,7 +78,21 @@ def test_each_run_record_is_complete() -> None:
     for r in _doc()["runs"]:
         assert re.fullmatch(r"[0-9a-f]{40}", r["head_sha"] or ""), r["run_id"]
         assert r["conclusion"], r["run_id"]
-        assert r["jobs"], f"run {r['run_id']} recorded with no jobs"
+        if not r["jobs"]:
+            # A run can legitimately have no jobs: the workflow file itself failed to
+            # parse, so nothing was ever scheduled (run 36295032321). The index says so
+            # with `started`, and the prose must say so too rather than imply a build
+            # attempt that never happened.
+            assert r.get("started") is False, (
+                f"run {r['run_id']} has no jobs but is not marked as never started: the "
+                "record is incomplete, not a no-start"
+            )
+            passage = " ".join(_context(loc) for loc in r["quoted_by"])
+            assert any(t in passage for t in ("零个作业", "no jobs", "never started",
+                                              "没有日志")), (
+                f"run {r['run_id']} never started; the passage quoting it must say so"
+            )
+            continue
         assert all(j["name"] for j in r["jobs"]), r["run_id"]
         assert isinstance(r["artifacts_total"], int), r["run_id"]
 

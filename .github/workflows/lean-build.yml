@@ -179,7 +179,12 @@ jobs:
 
         '
     - name: Build all project Lean modules from a clean project build
-      run: 'set -euo pipefail
+      # Literal block scalar: a single-quoted `run:` folds its lines into one shell
+      # command, so a `#` comment line would comment out everything after it and a
+      # quoted `grep` pattern would close the scalar. Both were paid for in run
+      # 36295032321, which failed to start at all -- no job, no logs.
+      run: |-
+        set -euo pipefail
 
         mkdir -p work/seven-lean
 
@@ -197,22 +202,19 @@ jobs:
 
         (cd "$LEAN_DIR" && lake env lean JurisLean/AxiomAudit.lean) > axiom-audit.raw.txt 2>&1
 
-        # Read what the kernel said. The count is taken from the audit file itself,
-        # never copied here, so an audit that prints nothing cannot pass.
+        # Read what the kernel said. The target floor is taken from the audit file
+        # itself so an audit that prints nothing cannot pass, and no count is copied.
         AUDIT_TARGETS=$(grep -c '^#print axioms' "$LEAN_DIR/JurisLean/AxiomAudit.lean")
         python scripts/ci/check_axiom_audit_log.py --log axiom-audit.raw.txt --check --min-targets "$AUDIT_TARGETS" --json work/seven-lean/axiom-audit.json
 
-        (cd "$LEAN_DIR" && lake env lean JurisLean/BusinessRoot/RootAudit.lean) > work/seven-lean/legacy-root-environment.log
-        2>&1
+        (cd "$LEAN_DIR" && lake env lean JurisLean/BusinessRoot/RootAudit.lean) > work/seven-lean/legacy-root-environment.log 2>&1
 
-        (cd "$LEAN_DIR" && lake env lean JurisLean/BusinessRoot/SevenAxisAudit.lean) > work/seven-lean/seven-axis-environment.log
-        2>&1
+        (cd "$LEAN_DIR" && lake env lean JurisLean/BusinessRoot/SevenAxisAudit.lean) > work/seven-lean/seven-axis-environment.log 2>&1
 
         python tools/ulm_repair/scripts/ci_driver.py audit --log work/seven-lean/seven-axis-environment.log --output work/seven-lean/seven-axis-audit.json
 
         python tools/ulm_repair/scripts/ci_driver.py receipt --directory work/seven-lean --kind seven-axis-lean
 
-        '
     - name: Upload original release-compatible logs
       if: always()
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

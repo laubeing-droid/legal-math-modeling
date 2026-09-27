@@ -101,6 +101,9 @@ def describe(rid: str, quoted: list[str]) -> dict:
         "updated_at": run.get("updated_at"),
         "html_url": run.get("html_url"),
         "jobs_total": len(jobs),
+        # `jobs == []` means two different things: never scheduled (the workflow file
+        # itself failed) versus scheduled and still running. Say which, from the API.
+        "started": bool(jobs) or run.get("status") != "completed",
         "jobs": [
             {"name": j.get("name"), "status": j.get("status"),
              "conclusion": j.get("conclusion")}
@@ -329,6 +332,15 @@ def main() -> int:
             print(f"index lists runs no markdown quotes any more: {extra}", file=sys.stderr)
             return 1
         for r in committed["runs"]:
+            # A run whose workflow file failed to parse has no jobs at all; that is a
+            # complete record, not a missing one, provided `started` says so and the
+            # job list is empty rather than uncollected.
+            if r.get("started") is False:
+                if r.get("jobs"):
+                    print(f"run {r['run_id']} marked not started but lists jobs",
+                          file=sys.stderr)
+                    return 1
+                continue
             if not (r.get("head_sha") and r.get("jobs") and r.get("conclusion")):
                 print(f"incomplete record for run {r['run_id']}", file=sys.stderr)
                 return 1

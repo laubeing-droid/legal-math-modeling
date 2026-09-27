@@ -18,7 +18,8 @@ a CI module build (`mode=changed-module`) before any of it may be cited as
 elaborated.
 -/
 
-/-- Reuses `Kernel` for `Rate`, `successes`, `≤ₛ` and the length bound. -/
+-- Reuses `Kernel` for `Rate`, `successes`, `≤ₛ` and the length bound. A doc comment
+-- cannot precede `namespace`: it must attach to a declaration.
 namespace JurisLean.Mandate.CohortRate
 
 open JurisLean.Mandate.Kernel
@@ -68,9 +69,11 @@ theorem rateOfCohort_num_le_den {obs : List Bool} {r : Rate}
   cases obs with
   | nil => cases h
   | cons a as =>
-      simp only [rateOfCohort] at h
       have hb : successes (a :: as) ≤ (a :: as).length := successes_le_length _
-      simp only [List.length_cons] at hb
+      have hex : rateOfCohort (a :: as)
+          = some ⟨successes (a :: as), (a :: as).length, Nat.succ_pos _⟩ := rfl
+      rw [← hex] at h
+      cases h
       exact hb
 
 /--

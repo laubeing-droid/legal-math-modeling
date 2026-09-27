@@ -31,9 +31,9 @@ inductive Tree where
   | leaf (payoff : Nat)
   | node (children : List Tree)
 
-/-- The `max` selection facts (`le_max_l`, `le_max_r`, `max_zero`) come from
+-- The `max` selection facts (`le_max_l`, `le_max_r`, `max_zero`) come from
 -- `JurisLean.Mandate.Kernel`, so selection behaviour is proved once for the whole
--- mandate layer rather than per module. -/
+-- mandate layer rather than per module. A doc comment cannot precede `open`.
 open JurisLean.Mandate.Kernel
 
 /-- Backward induction over a max-node tree; a node with no options is worth 0. -/
@@ -53,8 +53,8 @@ theorem value_cons (t : Tree) (ts : List Tree) :
 
 /-- The value of a position is attained by its single option. -/
 theorem value_singleton (t : Tree) : value (Tree.node [t]) = value t := by
-  show max (value t) (value (Tree.node [])) = value t
-  rw [value_nil, max_zero]
+  show max (value t) 0 = value t
+  rw [max_zero]
 
 /-- The chosen value never underestimates any available option. -/
 theorem value_ge_head (t : Tree) (ts : List Tree) : value t ≤ value (Tree.node (t :: ts)) := by
@@ -76,8 +76,9 @@ theorem value_ge_of_mem (ts : List Tree) : ∀ t ∈ ts, value t ≤ value (Tree
       · subst hut
         exact le_max_l _ _
       · rw [List.mem_cons] at ht
-        obtain ⟨_, hmem⟩ := ht
-        exact Nat.le_trans (ih t hmem) (le_max_r _ _)
+        cases ht with
+        | inl heq => exact absurd heq hut
+        | inr hmem => exact Nat.le_trans (ih t hmem) (le_max_r _ _)
 
 /-- Adding an option cannot lower a node's value: more moves, more opportunity. -/
 theorem value_node_append_le (t : Tree) (ts : List Tree) :
@@ -91,8 +92,6 @@ theorem value_of_leaves (ps : List Nat) :
   induction ps with
   | nil => rfl
   | cons p ps ih =>
-      show max p (value (Tree.node (ps.map Tree.leaf)))
-           = max p (ps.foldr (fun q a => max q a) 0)
       rw [ih]
 
 /--
@@ -103,8 +102,8 @@ that follow from one are not present here.
 -/
 theorem value_ignores_payoff_renaming_when_dominated (a b : ℕ) (h : a ≤ b) :
     value (Tree.node [Tree.leaf a, Tree.leaf b]) = value (Tree.node [Tree.leaf b]) := by
-  show max a (max b 0) = b
-  rw [max_zero, Nat.max_def]
+  show max a (max b 0) = max b 0
+  rw [max_zero, max_zero, Nat.max_def]
   split <;> omega
 
 end JurisLean.Mandate.GameTree

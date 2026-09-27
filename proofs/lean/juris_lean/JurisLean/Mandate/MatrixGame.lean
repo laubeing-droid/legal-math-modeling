@@ -46,8 +46,7 @@ def hasPureValue (a b c d : Nat) : Bool := decide (lower a b c d = upper a b c d
 /-- The test is correct, not just executable: it says true exactly when the bounds meet. -/
 theorem hasPureValue_true_iff (a b c d : Nat) :
     hasPureValue a b c d = true ↔ lower a b c d = upper a b c d := by
-  show decide (lower a b c d = upper a b c d) = true ↔ _
-  exact Iff.symm decide_eq_true_eq
+  exact ⟨fun h => of_decide_eq_true h, fun h => decide_eq_true h⟩
 
 /-- Matching pennies: the two bounds differ by one, strictly. -/
 theorem pennies_gap_strict : lower 1 0 0 1 < upper 1 0 0 1 := by decide
@@ -80,8 +79,14 @@ theorem upper_monotone_column (a b c d y : Nat) (h : d ≤ y) :
 theorem gap_bounded_by_spread (a b c d : Nat) :
     upper a b c d - lower a b c d ≤ max (max a b) (max c d) - min (min a b) (min c d) := by
   have h := lower_le_upper a b c d
-  have hlo : min (min a b) (min c d) ≤ lower a b c d := by omega
-  have hhi : upper a b c d ≤ max (max a b) (max c d) := by omega
+  -- The two bounds stay opaque atoms at the end, which is what makes the last step
+  -- linear arithmetic; each is unfolded only inside its own `show`.
+  have hhi : upper a b c d ≤ max (max a b) (max c d) := by
+    show min (max a c) (max b d) ≤ max (max a b) (max c d)
+    omega
+  have hlo : min (min a b) (min c d) ≤ lower a b c d := by
+    show min (min a b) (min c d) ≤ max (min a b) (min c d)
+    omega
   omega
 
 end JurisLean.Mandate.MatrixGame

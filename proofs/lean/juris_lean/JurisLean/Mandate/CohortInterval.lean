@@ -51,10 +51,12 @@ theorem low_le_high (c : Cohort) : low c ≤ₛ high c := by
 /-- Both endpoints are within the unit interval: numerators bound by denominators. -/
 theorem low_num_le_den (c : Cohort) : (low c).num ≤ (low c).den := by
   show c.successes + 1 ≤ c.size + 2
+  have hs := c.succLeSize
   omega
 
 theorem high_num_le_den (c : Cohort) : (high c).num ≤ (high c).den := by
   show c.successes + 2 ≤ c.size + 2
+  have hs := c.succLeSize
   omega
 
 /-- The endpoints are strictly apart: the interval is never a disguised point. -/
@@ -64,13 +66,13 @@ theorem low_num_lt_high_num (c : Cohort) : (low c).num < (high c).num := by
 
 /-- Adding one favourable observation moves the lower endpoint up. -/
 theorem low_le_added_success (c : Cohort) :
-    low c ≤ₛ low { c with successes := c.successes + 1 } := by
+    low c ≤ₛ (low { c with successes := c.successes + 1 }) := by
   show (c.successes + 1) * (c.size + 2) ≤ (c.successes + 1 + 1) * (c.size + 2)
   nlinarith
 
 /-- ... and moves the upper endpoint up as well, so the interval shifts, not splits. -/
 theorem high_le_added_success (c : Cohort) :
-    high c ≤ₛ high { c with successes := c.successes + 1 } := by
+    high c ≤ₛ (high { c with successes := c.successes + 1 }) := by
   show (c.successes + 2) * (c.size + 2) ≤ (c.successes + 2 + 1) * (c.size + 2)
   nlinarith
 
@@ -80,7 +82,7 @@ only sense in which "more similar cases" buys precision here, and it is stated o
 the exact rates rather than on a hand-waved "wider sample is better".
 -/
 theorem low_antitone_in_size (c : Cohort) (extra : Nat) :
-    low { c with size := c.size + extra } ≤ₛ low c := by
+    (low { c with size := c.size + extra }) ≤ₛ low c := by
   show (c.successes + 1) * (c.size + 2)
          ≤ (c.successes + 1) * (c.size + extra + 2)
   nlinarith

@@ -14173,8 +14173,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/CohortInterval.lean",
    "print_axioms_targets": [],
-   "sha256": "6677595a3b020e61b6cd09c4a3abfb6aa12a5bd23474855fbd7895a039093ca8",
-   "size_bytes": 4203,
+   "sha256": "1289d2866ac33bac79715d3a8be7b88f384533cbd3641906ddcaec219deee548",
+   "size_bytes": 4261,
    "theorem_count": 10,
    "theorem_count_bol_convention": 10
   },
@@ -14212,8 +14212,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/CohortRate.lean",
    "print_axioms_targets": [],
-   "sha256": "9f647789918cb4e2c0d04b9fe948b7e9d8506247e6b5e14d6671ba488c85b96a",
-   "size_bytes": 3282,
+   "sha256": "0b208ea25b7ea69f4ac71d5de063fbea5095ef078bfa8e972ddb2f3c313d24c0",
+   "size_bytes": 3441,
    "theorem_count": 5,
    "theorem_count_bol_convention": 5
   },
@@ -14282,8 +14282,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/DerivedCertificate.lean",
    "print_axioms_targets": [],
-   "sha256": "3ec4f077e7de509425030c248d55628355cec17246072586f96dbb6d74c8f34f",
-   "size_bytes": 5161,
+   "sha256": "305ce8ae704b090ad8c6d66084780f5989d4401b7b69fabe593bc41c5ff68f9d",
+   "size_bytes": 5252,
    "theorem_count": 8,
    "theorem_count_bol_convention": 8
   },
@@ -14399,8 +14399,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean",
    "print_axioms_targets": [],
-   "sha256": "1d46ffa598abbe4adce44df29042ca6a8dc9d41829b040ae644cca1de47863e4",
-   "size_bytes": 4533,
+   "sha256": "2b7498dfbeb6b30d02da256da841eb19356f51218296251537a0c3d39b98bd5e",
+   "size_bytes": 4484,
    "theorem_count": 9,
    "theorem_count_bol_convention": 9
   },
@@ -14649,8 +14649,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/MatrixGame.lean",
    "print_axioms_targets": [],
-   "sha256": "a5b9c0c0c51d5ca44d5aba7fd1d8bcfbccb1f9f9fc7783e721d3f53bf70a0ac2",
-   "size_bytes": 3948,
+   "sha256": "facc4303b9f93bab82e30ec5544b0dd7ca76d981ed500705d23e117f12fda44d",
+   "size_bytes": 4207,
    "theorem_count": 8,
    "theorem_count_bol_convention": 8
   },
@@ -14833,8 +14833,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
    "print_axioms_targets": [],
-   "sha256": "59fdb9aab1e4171fedb1ad638b266591a66a43ec29e89c3b2e5e1c7e2cafa09e",
-   "size_bytes": 4272,
+   "sha256": "aebdfa2a3b0bdc6d456dfd4a1d75366174e5018781ee0aa742ae3f8493828650",
+   "size_bytes": 4261,
    "theorem_count": 7,
    "theorem_count_bol_convention": 7
   },
@@ -19487,19 +19487,44 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "e35abd6cad8893a4ad00b3829d76f0721e44c8884df318036580dbb8a1670d23",
+ "source_inventory_digest": "042bc7984054defdb06ffe18f60129cfd6d85635868598b8ebaba6e3f3ece6d3",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "8d1242329b32e6e6e56fd64eca256e3c6ae895c8",
-  "tree": "7c7cd2adc717aa5a3c39631624d6d6014771bbec"
+  "commit": "810eaf3452198ec2a82cd86af3d53af0c3ddf845",
+  "tree": "e8c021d12482129edee80b4f5ddff6237bad7ff1"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Mandate/CohortInterval.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Mandate/CohortRate.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Mandate/DerivedCertificate.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Mandate/MatrixGame.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 232,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

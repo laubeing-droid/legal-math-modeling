@@ -55,8 +55,7 @@ theorem signatures_differ : sig3 anchored ≠ sig3 unanchored := by
 /-- The edge count of a merge is the sum of the edge counts. -/
 theorem sum_signature_third (t : CaseStructure) :
     (sig3 (sum anchored t)).2.2 = 3 + (sig3 t).2.2 := by
-  have h := sig3_sum anchored t
-  simp only [sig3, anchored, List.length_cons, List.length_nil] at h ⊢
+  simp only [sig3, sum, anchored, List.length_append, List.length_cons, List.length_nil]
   omega
 
 /--
@@ -71,7 +70,7 @@ theorem discrimination_survives_sum (t : CaseStructure) :
   have h1 := sum_signature_third t
   have h2 := sig3_sum unanchored t
   simp only [sig3, anchored, unanchored, sum, List.length_append, List.length_cons,
-    List.length_nil] at h h1 h2
+    List.length_nil] at h h1 h2 ⊢
   omega
 
 /-- Relabelling the incidences of any case leaves its signature untouched, so no
@@ -88,13 +87,12 @@ theorem relabel_cannot_bridge (f g : Nat → Nat) :
 /-- Merging a case with itself doubles the signature: the invariant behaves like
 a measure, not like a hash. -/
 theorem sig3_double (s : CaseStructure) : (sig3 (sum s s)).1 = 2 * (sig3 s).1 := by
-  have h := sig3_sum s s
-  simp only [sig3] at h ⊢
+  simp only [sig3, sum, List.length_append]
   omega
 
 /-- A merge never loses material from either side. -/
 theorem sig3_le_sum_any (s t : CaseStructure) :
     (sig3 s).1 ≤ (sig3 (sum s t)).1 ∧ (sig3 t).2.2 ≤ (sig3 (sum s t)).2.2 :=
-  ⟨sig3_fst_le_sum s t, sig3_edges_le_sum s t⟩
+  ⟨sig3_fst_le_sum s t, by simp only [sig3, sum]; omega⟩
 
 end JurisLean.Mandate.StructureInvariants

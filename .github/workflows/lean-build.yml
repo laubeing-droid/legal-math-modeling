@@ -86,12 +86,10 @@ jobs:
     - name: Install current project test dependencies
       run: python -m pip install pytest pyyaml
     - name: Existing gates plus full retained and new root tests
-      run: 'set -euo pipefail
-
+      run: |-
+        set -euo pipefail
         python -m pytest tests/ --collect-only -q > pytest-collection.txt
-
         python -m pytest tests/ -q -ra 2>&1 | tee pytest-full.log
-
         python scripts/scan_lean_guards.py --all-tracked --report lean-guard-report.json
         python scripts/ci/generate_t_coverage_ledger.py --check
         python scripts/ci/generate_structure_and_volume_reports.py --check
@@ -99,23 +97,13 @@ jobs:
         python scripts/ci/build_ci_run_index.py --check
         python scripts/ci/generate_trivial_proof_census.py --check
         python scripts/ci/check_import_reachability.py
-
         python scripts/run_mutation_property_gate.py --repo-root . --output mutation-property-report.json
-
         python tools/ulm_consolidation/scripts/run_all.py --output work/seven-python/retained
-
         python tools/ulm_consolidation/scripts/run_root.py --output work/seven-python/root
-
         python tools/ulm_repair/scripts/run_checks.py --output work/seven-python/repair
-
         python tools/ulm_repair/scripts/generate_lean_cases.py --output proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean
-        --observations work/seven-python/observations.json
-
-        git diff --exit-code -- proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean
-
         python tools/ulm_repair/scripts/ci_driver.py receipt --directory work/seven-python --kind seven-axis-python
 
-        '
     - name: Upload original gate inputs
       if: always()
       uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02

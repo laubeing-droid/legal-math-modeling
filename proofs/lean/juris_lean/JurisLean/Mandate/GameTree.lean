@@ -127,4 +127,43 @@ theorem value_ignores_payoff_renaming_when_dominated (a b : ℕ) (h : a ≤ b) :
   show max a b = max b b
   rw [max_eq_right h, max_eq_right (Nat.le_refl _)]
 
+/--
+An n-ary "choose one of these" position, written with the binary constructor the model
+actually has. The binary change was forced by the compiler, and it gave up the list
+surface; this is that surface back, with the same three facts it used to carry: an empty
+choice is worth 0, a cons is worth its head against the rest, and adding an option cannot
+lower the value. They are theorems about an encoding, not evidence that `Tree` holds
+n-ary nodes, and saying so in the type is why this lives here rather than in a comment.
+-/
+def ofList : List Tree → Tree
+  | [] => Tree.leaf 0
+  | t :: ts => Tree.node t (ofList ts)
+
+/-- A choice with no options is worth 0: no move, no gain, and no invented payoff. -/
+theorem value_ofList_nil : value (ofList []) = 0 := rfl
+
+/-- A choice's value is its first option against the rest of them. -/
+theorem value_ofList_cons (t : Tree) (ts : List Tree) :
+    value (ofList (t :: ts)) = max (value t) (value (ofList ts)) := rfl
+
+/-- The value of a position is attained by its single option. -/
+theorem value_ofList_singleton (t : Tree) : value (ofList [t]) = value t := by
+  rw [value_ofList_cons, value_ofList_nil, max_zero]
+
+/-- Having an option never lowers the value of the position that has it. -/
+theorem value_le_value_ofList_cons (t : Tree) (ts : List Tree) :
+    value t ≤ value (ofList (t :: ts)) := by
+  rw [value_ofList_cons]
+  exact le_max_l _ _
+
+/-- Adding an option cannot lower a position's value: more moves, more opportunity. -/
+theorem value_ofList_append_le (t : Tree) (ts : List Tree) :
+    value (ofList ts) ≤ value (ofList (t :: ts)) := by
+  rw [value_ofList_cons]
+  exact le_max_r _ _
+
+/-- The encoding computes rather than defers: three options are worth their largest payoff. -/
+theorem value_ofList_concrete :
+    value (ofList [Tree.leaf 3, Tree.leaf 5, Tree.leaf 1]) = 5 := by decide
+
 end JurisLean.Mandate.GameTree

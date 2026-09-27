@@ -910,9 +910,15 @@
     "JurisLean.Mandate.GameTree.value_ge_of_mem",
     "JurisLean.Mandate.GameTree.value_ignores_payoff_renaming_when_dominated",
     "JurisLean.Mandate.GameTree.value_le_value_left",
+    "JurisLean.Mandate.GameTree.value_le_value_ofList_cons",
     "JurisLean.Mandate.GameTree.value_le_value_right",
     "JurisLean.Mandate.GameTree.value_leaf",
     "JurisLean.Mandate.GameTree.value_node",
+    "JurisLean.Mandate.GameTree.value_ofList_append_le",
+    "JurisLean.Mandate.GameTree.value_ofList_concrete",
+    "JurisLean.Mandate.GameTree.value_ofList_cons",
+    "JurisLean.Mandate.GameTree.value_ofList_nil",
+    "JurisLean.Mandate.GameTree.value_ofList_singleton",
     "JurisLean.Mandate.GateTable.gate_coverage_total",
     "JurisLean.Mandate.GateTable.gate_exists_unique",
     "JurisLean.Mandate.GateTable.gate_iff_table",
@@ -1006,8 +1012,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "f2f52bbbeeef67605d952f9fe06cfb278c35719965fc51980544ebc34eb9b660",
-   "size_bytes": 39116,
+   "sha256": "c80eafbf5ba2faa12ddc111ac1b4e076b9f2307002f20d17ae8336491403bddc",
+   "size_bytes": 39492,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -14631,6 +14637,34 @@
     {
      "kind": "theorem",
      "name": "value_ignores_payoff_renaming_when_dominated"
+    },
+    {
+     "kind": "def",
+     "name": "ofList"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_ofList_nil"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_ofList_cons"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_ofList_singleton"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_le_value_ofList_cons"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_ofList_append_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_ofList_concrete"
     }
    ],
    "imports": [
@@ -14640,10 +14674,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean",
    "print_axioms_targets": [],
-   "sha256": "b669a7e4c67bb164c130040e66e79d0c0bbb547724cfb1d19b7ee3d4200d5a45",
-   "size_bytes": 5713,
-   "theorem_count": 9,
-   "theorem_count_bol_convention": 9
+   "sha256": "6ad739239db4a46349b8e9e84393c1059bddb4668482eca2b116ccb776cf3f12",
+   "size_bytes": 7568,
+   "theorem_count": 15,
+   "theorem_count_bol_convention": 15
   },
   {
    "declarations": [
@@ -19223,22 +19257,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1930,
+   "counted_declaration_count": 1936,
    "file_count": 233,
    "lemma_count": 24,
-   "print_axioms_command_count": 795,
-   "print_axioms_distinct_targets": 741,
-   "theorem_count": 1906,
-   "theorem_count_bol_convention": 1870
+   "print_axioms_command_count": 801,
+   "print_axioms_distinct_targets": 747,
+   "theorem_count": 1912,
+   "theorem_count_bol_convention": 1876
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1911,
+   "counted_declaration_count": 1917,
    "file_count": 218,
    "lemma_count": 17,
-   "print_axioms_command_count": 795,
-   "print_axioms_distinct_targets": 741,
-   "theorem_count": 1894,
-   "theorem_count_bol_convention": 1858
+   "print_axioms_command_count": 801,
+   "print_axioms_distinct_targets": 747,
+   "theorem_count": 1900,
+   "theorem_count_bol_convention": 1864
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -19746,18 +19780,22 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "083ff5712e90b88c51e6fa04fd48e5be1bca4cec37012b9c68fcac9936010467",
+ "source_inventory_digest": "51490f2847d1150a4f285444a704657b65c552b3d605e54f858bb169d933ee16",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "cf3214d627f8bd7f096a71bbf9552b9379981f05",
-  "tree": "4ef208b1bb29675ea76120ff40b8494b2907cab9"
+  "commit": "4bb4df55be06efb6f6bfaa25a51d8d20244a3a0d",
+  "tree": "b3eccafabc368065668b0b949d1f01b0b9e9f0a2"
  },
  "subject_binding": {
   "binding": "STALE_SUBJECT",
   "files_diverging_from_subject": [
    {
-    "path": "proofs/lean/juris_lean/JurisLean/Mandate/CaseIsomorphism.lean",
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean",
     "reason": "bytes differ from subject"
    }
   ],

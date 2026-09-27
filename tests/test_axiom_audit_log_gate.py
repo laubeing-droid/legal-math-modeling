@@ -12,6 +12,8 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+import json
+import subprocess
 from pathlib import Path
 
 import pytest
@@ -106,10 +108,9 @@ def test_the_mandate_layer_is_now_on_the_audit_surface():
         line.split()[-1] for line in text.splitlines() if line.startswith("#print axioms")
     }
     mandate = {n for n in printed if n.startswith("JurisLean.Mandate.")}
-    # 126 at the certified subject a6fd02c6d, 135 once CaseIsomorphism's nine theorems
-    # joined the surface; the extra names await their first elaboration in CI, which is
-    # what quarantine means for them.
-    assert len(mandate) == 135, f"mandate audit surface is {len(mandate)} targets"
+    # 126 at a6fd02c6d, 135 with CaseIsomorphism's nine, 141 with the six facts of the
+    # n-ary surface `ofList`; each increment was named only after a round built it.
+    assert len(mandate) == 141, f"mandate audit surface is {len(mandate)} targets"
     assert "JurisLean.Mandate.GameTree.value_attains" in mandate
     assert "JurisLean.Mandate.MatrixGame.hasPureValue_true_iff" in mandate
 
@@ -190,27 +191,31 @@ def test_the_landed_audit_log_is_the_kernels_own_words_and_is_clean() -> None:
     assert doc["targets_with_sorryAx"] == {}, newest
     assert doc["targets_outside_standard_axioms"] == {}, newest
 
-    audit = ROOT / "proofs" / "lean" / "juris_lean" / "JurisLean" / "AxiomAudit.lean"
+    # Compare against the audit surface *as of the log's own subject*: the working tree
+    # may already name theorems that this run never saw, and holding an old log to them
+    # would be a false alarm rather than a finding.
+    newest_run = newest.parent.parent.name
+    subject = next(
+        (r["head_sha"] for r in json.loads(
+            (ROOT / "docs" / "formal-release" / "ci_run_index.json").read_text(encoding="utf-8")
+        )["runs"] if str(r["run_id"]) == newest_run),
+        None,
+    )
+    assert subject, f"run {newest_run} is not in the CI run index"
+    proc = subprocess.run(
+        ["git", "show", f"{subject}:proofs/lean/juris_lean/JurisLean/AxiomAudit.lean"],
+        cwd=ROOT, capture_output=True, text=True, encoding="utf-8",
+    )
+    assert proc.returncode == 0, proc.stderr[:200]
     named = {
         line.split()[-1]
-        for line in audit.read_text(encoding="utf-8").splitlines()
+        for line in proc.stdout.splitlines()
         if line.startswith("#print axioms") and "." in line.split()[-1]
     }
+    assert named, "the audit surface at that subject is empty"
     audited = set(doc["targets_by_name"]) if "targets_by_name" in doc else None
     printed = newest.read_text(encoding="utf-8", errors="replace")
-    # A module still on the quarantine list has not been elaborated by CI yet, so its
-    # names are legitimately absent from every log landed to date.
-    import importlib.util
-    spec = importlib.util.spec_from_file_location(
-        "reach", ROOT / "scripts" / "ci" / "check_import_reachability.py")
-    reach = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(reach)
-    pending = set(reach.PENDING_CI_MODULES)
-    def owner(name: str) -> str:
-        return ".".join(name.split(".")[:-1])
-
-    missing = sorted(n for n in named
-                     if owner(n) not in pending and f"'{n}'" not in printed)
+    missing = sorted(n for n in named if f"'{n}'" not in printed)
     assert not missing, (
         f"{newest.relative_to(ROOT)} never reports {len(missing)} names the audit file "
         f"asks about, e.g. {missing[:3]}"

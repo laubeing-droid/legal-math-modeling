@@ -521,9 +521,15 @@ open HornSystem
 #print axioms JurisLean.Mandate.GameTree.value_ge_of_mem
 #print axioms JurisLean.Mandate.GameTree.value_ignores_payoff_renaming_when_dominated
 #print axioms JurisLean.Mandate.GameTree.value_le_value_left
+#print axioms JurisLean.Mandate.GameTree.value_le_value_ofList_cons
 #print axioms JurisLean.Mandate.GameTree.value_le_value_right
 #print axioms JurisLean.Mandate.GameTree.value_leaf
 #print axioms JurisLean.Mandate.GameTree.value_node
+#print axioms JurisLean.Mandate.GameTree.value_ofList_append_le
+#print axioms JurisLean.Mandate.GameTree.value_ofList_concrete
+#print axioms JurisLean.Mandate.GameTree.value_ofList_cons
+#print axioms JurisLean.Mandate.GameTree.value_ofList_nil
+#print axioms JurisLean.Mandate.GameTree.value_ofList_singleton
 #print axioms JurisLean.Mandate.GateTable.gate_coverage_total
 #print axioms JurisLean.Mandate.GateTable.gate_exists_unique
 #print axioms JurisLean.Mandate.GateTable.gate_iff_table

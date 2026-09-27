@@ -2161,10 +2161,10 @@
         "docs/master-plan/03_证明战役台账.md:491",
         "docs/master-plan/03_证明战役台账.md:518",
         "docs/master-plan/03_证明战役台账.md:572",
-        "docs/master-plan/03_证明战役台账.md:814",
-        "docs/master-plan/03_证明战役台账.md:816",
-        "docs/master-plan/03_证明战役台账.md:820",
-        "docs/master-plan/03_证明战役台账.md:821",
+        "docs/master-plan/03_证明战役台账.md:836",
+        "docs/master-plan/03_证明战役台账.md:838",
+        "docs/master-plan/03_证明战役台账.md:842",
+        "docs/master-plan/03_证明战役台账.md:843",
         "docs/paper-rewrite/PROGRESS.md:33"
       ],
       "run_id": 36293474352,
@@ -2314,7 +2314,7 @@
         "docs/master-plan/03_证明战役台账.md:569",
         "docs/master-plan/03_证明战役台账.md:571",
         "docs/master-plan/03_证明战役台账.md:651",
-        "docs/master-plan/03_证明战役台账.md:815"
+        "docs/master-plan/03_证明战役台账.md:837"
       ],
       "run_id": 36297146468,
       "started": true,
@@ -2382,8 +2382,8 @@
         "docs/master-plan/03_证明战役台账.md:598",
         "docs/master-plan/03_证明战役台账.md:630",
         "docs/master-plan/03_证明战役台账.md:651",
-        "docs/master-plan/03_证明战役台账.md:815",
-        "docs/master-plan/03_证明战役台账.md:862"
+        "docs/master-plan/03_证明战役台账.md:837",
+        "docs/master-plan/03_证明战役台账.md:884"
       ],
       "run_id": 36298572193,
       "started": true,
@@ -2508,7 +2508,7 @@
       "name": "chore(inventory): rebind after the Prop-level branch conversion",
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:620",
-        "docs/master-plan/03_证明战役台账.md:822"
+        "docs/master-plan/03_证明战役台账.md:844"
       ],
       "run_id": 36301449007,
       "started": true,
@@ -2757,7 +2757,7 @@
       "name": "chore(inventory): rebind before pushing so python-gates is not red on…",
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:645",
-        "docs/master-plan/03_证明战役台账.md:824",
+        "docs/master-plan/03_证明战役台账.md:846",
         "docs/paper-rewrite/paper_en.md:19"
       ],
       "run_id": 36306088064,
@@ -3007,7 +3007,7 @@
       "name": "ci(index): record the docs-only red round, and rebind after my own pu…",
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:680",
-        "docs/master-plan/03_证明战役台账.md:827"
+        "docs/master-plan/03_证明战役台账.md:849"
       ],
       "run_id": 36310143628,
       "started": true,
@@ -3326,7 +3326,7 @@
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:764",
         "docs/master-plan/03_证明战役台账.md:771",
-        "docs/master-plan/03_证明战役台账.md:824"
+        "docs/master-plan/03_证明战役台账.md:846"
       ],
       "run_id": 36329315290,
       "started": true,
@@ -3452,8 +3452,8 @@
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:786",
         "docs/master-plan/03_证明战役台账.md:795",
-        "docs/master-plan/03_证明战役台账.md:824",
-        "docs/master-plan/03_证明战役台账.md:853",
+        "docs/master-plan/03_证明战役台账.md:846",
+        "docs/master-plan/03_证明战役台账.md:875",
         "docs/paper-rewrite/paper_cn.md:146",
         "docs/paper-rewrite/paper_cn.md:150",
         "docs/paper-rewrite/paper_cn.md:23",
@@ -3465,6 +3465,68 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-09-27T16:36:13Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 6,
+      "conclusion": "failure",
+      "created_at": "2026-09-27T17:11:58Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "be08e5d1427f6f59800932c067d638e3f8361ca5",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36336037802",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "feat(mandate): bound a real two-layer ReLU network by a constant the …",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:806"
+      ],
+      "run_id": 36336037802,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-27T17:20:24Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

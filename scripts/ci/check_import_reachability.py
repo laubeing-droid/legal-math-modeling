@@ -60,16 +60,13 @@ STANDALONE_DRIVERS: dict[str, str] = {
 # 36297146468 rebuilt them together with the corrected axiom-audit surface (126 of
 # their theorems are named there). The mechanism stays because the next wave needs
 # it, not because this one is still pending.
-PENDING_CI_MODULES: dict[str, str] = {
-    # R-07's ReLU carrier, attempt four: the three earlier ones were rejected for
-    # guessed names, a `show` in argument position, and a named-argument capture (runs
-    # 36336037802 / 36338968515 / 36341001563). Never elaborated yet, so it stays out of
-    # the release root and is named on the audit surface, which is how it gets a build.
-    "JurisLean.Mandate.ReLUApprox":
-        "R-07 ReLU stability carrier, awaiting its first CI module build",
-    "JurisLean.Mandate.MixedPennies":
-        "R-03 mixed-strategy equilibrium instance, awaiting its first CI module build",
-}
+# Both mandate arrivals booked here have joined the release root. `Mandate/ReLUApprox.lean`
+# (R-07, a two-layer ReLU network with a computed stability bound) elaborated green in run
+# 36344882459 at subject 1b6a8d6a9; `Mandate/MixedPennies.lean` (R-03, a fully proved
+# mixed-strategy Nash equilibrium for one game) in run 36351623739 at subject 71d2177bc.
+# AGENTS requires a passing CI module build before root entry, and both have one, so they
+# are now imported by the generated block. The mechanism stays because the next wave needs it.
+PENDING_CI_MODULES: dict[str, str] = {}
 
 ALLOWED_UNREACHABLE = {**STANDALONE_DRIVERS, **PENDING_CI_MODULES}
 

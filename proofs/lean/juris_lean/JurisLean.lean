@@ -87,6 +87,8 @@ import JurisLean.Mandate.GateTable
 import JurisLean.Mandate.Kernel
 import JurisLean.Mandate.LinearScorer
 import JurisLean.Mandate.MatrixGame
+import JurisLean.Mandate.MixedPennies
+import JurisLean.Mandate.ReLUApprox
 import JurisLean.Mandate.RouteDecision
 import JurisLean.Mandate.SourceRank
 import JurisLean.Mandate.StructureInvariants

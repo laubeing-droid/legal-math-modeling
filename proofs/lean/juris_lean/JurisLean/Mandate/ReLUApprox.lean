@@ -40,9 +40,9 @@ What is deliberately NOT claimed:
 
 Status: elaborated green in CI run 36344882459 (subject 1b6a8d6a9), whose release
 certificate lists these nine declarations and whose axiom log names 559 targets with no
-`sorryAx`. It is built by the audit surface, not imported by the release root: joining
-the root is a separate step and is booked in `PENDING_CI_MODULES` until then. Later
-commits do not inherit that verdict.
+`sorryAx`. It has since joined the release root -- the CI module build that AGENTS requires
+before root entry was that round, so it is imported by the generated root block. Later
+commits do not inherit the verdict.
 -/
 
 namespace JurisLean.Mandate.ReLUApprox

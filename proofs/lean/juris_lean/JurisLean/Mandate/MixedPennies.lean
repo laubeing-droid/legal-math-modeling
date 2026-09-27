@@ -31,9 +31,9 @@ What is deliberately NOT claimed:
 
 Status: elaborated green in CI run 36351623739 (subject 71d2177bc), whose release
 certificate lists these eleven declarations by name and whose axiom log holds 570 targets
-with no `sorryAx` and only the standard vocabulary. Built through the audit surface, not
-imported by the release root; `PENDING_CI_MODULES` still books it. Later commits do not
-inherit that verdict.
+with no `sorryAx` and only the standard vocabulary. It has since joined the release root: the CI module build AGENTS
+requires before root entry was that round, so the generated root block imports it. Later
+commits do not inherit that verdict.
 -/
 
 namespace JurisLean.Mandate.MixedPennies

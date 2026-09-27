@@ -40,7 +40,7 @@ without guessing where it came from.
 | 36293474352 | success | `40ee2e3` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md, PROGRESS.md |
 | 36295032321 | failure | `07ae89b` | ci/mandate-wave1 | push | 0/0 | 0 | 03_证明战役台账.md |
 | 36296061840 | failure | `d7efe21` | ci/mandate-wave1 | push | 2/8 | 6 | 03_证明战役台账.md |
-| 36297146468 | success | `304194c` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md, paper_cn.md, paper_en.md |
+| 36297146468 | success | `304194c` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md |
 | 36298572193 | success | `0574e2a` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md |
 | 36300912280 | success | `a37236a` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md |
 | 36301449007 | success | `a6fd02c` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md, paper_cn.md, paper_en.md |

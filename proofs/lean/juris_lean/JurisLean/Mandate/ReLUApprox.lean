@@ -18,6 +18,9 @@ This file is written against those three findings:
 * every lemma name here already elaborates green elsewhere in this package --
   `max_eq_left`, `max_eq_right`, `lt_of_not_ge`, `le_of_lt`, `sub_nonpos`, `sub_nonneg`,
   `le_antisymm` -- with tactics `by_cases`, `linarith`, `norm_num`, `simp only`;
+* notation: `-2 * E` parses as `(-2) * E`, which is defequable with
+  `-(2 * E)` but not the shape `relu_between` produces, and unification is not
+  defeq-tolerant (run 36343993012's three errors, all at column 31, said exactly this);
 * no rational is computed by hand: `norm_num` discharges every numeric fact, including
   the two point values;
 * `relu_between` is applied **positionally** with its radius fact hoisted into a named
@@ -97,9 +100,9 @@ theorem relu_between {a b E : ℚ} (hE : 0 ≤ E) (lo : -E ≤ a - b) (hi : a - 
 theorem h1_between {x y : ℚ × ℚ} {E : ℚ} (hE : 0 ≤ E)
     (lo₁ : -E ≤ x.1 - y.1) (hi₁ : x.1 - y.1 ≤ E)
     (lo₂ : -E ≤ x.2 - y.2) (hi₂ : x.2 - y.2 ≤ E) :
-    -2 * E ≤ h1 x - h1 y ∧ h1 x - h1 y ≤ 2 * E := by
+    -(2 * E) ≤ h1 x - h1 y ∧ h1 x - h1 y ≤ 2 * E := by
   have hE2 : 0 ≤ (2 : ℚ) * E := by linarith
-  have arg : -2 * E ≤ (x.1 - x.2 + 1) - (y.1 - y.2 + 1) ∧
+  have arg : -(2 * E) ≤ (x.1 - x.2 + 1) - (y.1 - y.2 + 1) ∧
       (x.1 - x.2 + 1) - (y.1 - y.2 + 1) ≤ 2 * E := by
     constructor <;> linarith
   have key := relu_between hE2 arg.1 arg.2
@@ -110,9 +113,9 @@ theorem h1_between {x y : ℚ × ℚ} {E : ℚ} (hE : 0 ≤ E)
 theorem h2_between {x y : ℚ × ℚ} {E : ℚ} (hE : 0 ≤ E)
     (lo₁ : -E ≤ x.1 - y.1) (hi₁ : x.1 - y.1 ≤ E)
     (lo₂ : -E ≤ x.2 - y.2) (hi₂ : x.2 - y.2 ≤ E) :
-    -4 * E ≤ h2 x - h2 y ∧ h2 x - h2 y ≤ 4 * E := by
+    -(4 * E) ≤ h2 x - h2 y ∧ h2 x - h2 y ≤ 4 * E := by
   have hE4 : 0 ≤ (4 : ℚ) * E := by linarith
-  have arg : -4 * E ≤ (-x.1 + 3 * x.2 + 2) - (-y.1 + 3 * y.2 + 2) ∧
+  have arg : -(4 * E) ≤ (-x.1 + 3 * x.2 + 2) - (-y.1 + 3 * y.2 + 2) ∧
       (-x.1 + 3 * x.2 + 2) - (-y.1 + 3 * y.2 + 2) ≤ 4 * E := by
     constructor <;> linarith
   have key := relu_between hE4 arg.1 arg.2
@@ -128,12 +131,12 @@ in by a caller: `lip` is the row arithmetic above and the hidden units enter onl
 theorem out_stable {x y : ℚ × ℚ} {E : ℚ} (hE : 0 ≤ E)
     (lo₁ : -E ≤ x.1 - y.1) (hi₁ : x.1 - y.1 ≤ E)
     (lo₂ : -E ≤ x.2 - y.2) (hi₂ : x.2 - y.2 ≤ E) :
-    -lip * E ≤ out x - out y ∧ out x - out y ≤ lip * E := by
+    -(lip * E) ≤ out x - out y ∧ out x - out y ≤ lip * E := by
   obtain ⟨hlo₁, hhi₁⟩ := h1_between hE lo₁ hi₁ lo₂ hi₂
   obtain ⟨hlo₂, hhi₂⟩ := h2_between hE lo₁ hi₁ lo₂ hi₂
   rw [lip_eq]
   have hE8 : 0 ≤ (8 : ℚ) * E := by linarith
-  have arg : -8 * E ≤ (2 * h1 x + h2 x) - (2 * h1 y + h2 y) ∧
+  have arg : -(8 * E) ≤ (2 * h1 x + h2 x) - (2 * h1 y + h2 y) ∧
       (2 * h1 x + h2 x) - (2 * h1 y + h2 y) ≤ 8 * E := by
     constructor <;> linarith
   have key := relu_between hE8 arg.1 arg.2

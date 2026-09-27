@@ -94,7 +94,8 @@ theorem h1_between {x y : ℚ × ℚ} {E : ℚ} (hE : 0 ≤ E)
   have arg : -2 * E ≤ (x.1 - x.2 + 1) - (y.1 - y.2 + 1) ∧
       (x.1 - x.2 + 1) - (y.1 - y.2 + 1) ≤ 2 * E := by
     constructor <;> linarith
-  have key := relu_between (by linarith : 0 ≤ (2 : ℚ) * E) arg.1 arg.2
+  have key := relu_between (a := x.1 - x.2 + 1) (b := y.1 - y.2 + 1) (E := 2 * E)
+    (by linarith : 0 ≤ (2 : ℚ) * E) arg.1 arg.2
   simp only [h1] at key ⊢
   exact key
 
@@ -106,7 +107,8 @@ theorem h2_between {x y : ℚ × ℚ} {E : ℚ} (hE : 0 ≤ E)
   have arg : -4 * E ≤ (-x.1 + 3 * x.2 + 2) - (-y.1 + 3 * y.2 + 2) ∧
       (-x.1 + 3 * x.2 + 2) - (-y.1 + 3 * y.2 + 2) ≤ 4 * E := by
     constructor <;> linarith
-  have key := relu_between (by linarith : 0 ≤ (4 : ℚ) * E) arg.1 arg.2
+  have key := relu_between (a := -x.1 + 3 * x.2 + 2) (b := -y.1 + 3 * y.2 + 2) (E := 4 * E)
+    (by linarith : 0 ≤ (4 : ℚ) * E) arg.1 arg.2
   simp only [h2] at key ⊢
   exact key
 
@@ -126,7 +128,8 @@ theorem out_stable {x y : ℚ × ℚ} {E : ℚ} (hE : 0 ≤ E)
   have arg : -8 * E ≤ (2 * h1 x + h2 x) - (2 * h1 y + h2 y) ∧
       (2 * h1 x + h2 x) - (2 * h1 y + h2 y) ≤ 8 * E := by
     constructor <;> linarith
-  have key := relu_between (by linarith : 0 ≤ (8 : ℚ) * E) arg.1 arg.2
+  have key := relu_between (a := 2 * h1 x + h2 x) (b := 2 * h1 y + h2 y) (E := 8 * E)
+    (by linarith : 0 ≤ (8 : ℚ) * E) arg.1 arg.2
   simp only [out] at key ⊢
   exact key
 

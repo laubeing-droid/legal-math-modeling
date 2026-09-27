@@ -461,7 +461,6 @@
     "JurisLean.Mandate.Kernel",
     "JurisLean.Mandate.LinearScorer",
     "JurisLean.Mandate.MatrixGame",
-    "JurisLean.Mandate.ReLUApprox",
     "JurisLean.Mandate.RouteDecision",
     "JurisLean.Mandate.SourceRank",
     "JurisLean.Mandate.StructureInvariants",
@@ -968,12 +967,6 @@
     "JurisLean.Mandate.MatrixGame.pennies_gap_strict",
     "JurisLean.Mandate.MatrixGame.pennies_no_pure_value",
     "JurisLean.Mandate.MatrixGame.upper_monotone_column",
-    "JurisLean.Mandate.ReLUApprox.abs_relu_sub_relu_le",
-    "JurisLean.Mandate.ReLUApprox.h1_le",
-    "JurisLean.Mandate.ReLUApprox.h2_le",
-    "JurisLean.Mandate.ReLUApprox.lip_pos",
-    "JurisLean.Mandate.ReLUApprox.out_le",
-    "JurisLean.Mandate.ReLUApprox.out_not_constant",
     "JurisLean.Mandate.RouteDecision.anyUsable_append",
     "JurisLean.Mandate.RouteDecision.excluded_is_skipped",
     "JurisLean.Mandate.RouteDecision.firstUsable_cons_notUsable",
@@ -1031,8 +1024,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "71abdaf400c4cf491593d3cd912d88cc316447e7151659b2cbc119d37718f367",
-   "size_bytes": 40678,
+   "sha256": "a60b2a6c25cb4566f5b25a7008e593d277ac309514a88b99b2db72c4da124b0c",
+   "size_bytes": 40319,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -15039,68 +15032,6 @@
   {
    "declarations": [
     {
-     "kind": "def",
-     "name": "relu"
-    },
-    {
-     "kind": "theorem",
-     "name": "abs_relu_sub_relu_le"
-    },
-    {
-     "kind": "def",
-     "name": "d"
-    },
-    {
-     "kind": "def",
-     "name": "h1"
-    },
-    {
-     "kind": "def",
-     "name": "h2"
-    },
-    {
-     "kind": "def",
-     "name": "out"
-    },
-    {
-     "kind": "theorem",
-     "name": "h1_le"
-    },
-    {
-     "kind": "theorem",
-     "name": "h2_le"
-    },
-    {
-     "kind": "def",
-     "name": "lip"
-    },
-    {
-     "kind": "theorem",
-     "name": "out_le"
-    },
-    {
-     "kind": "theorem",
-     "name": "lip_pos"
-    },
-    {
-     "kind": "theorem",
-     "name": "out_not_constant"
-    }
-   ],
-   "imports": [
-    "Mathlib"
-   ],
-   "lemma_count": 0,
-   "path": "proofs/lean/juris_lean/JurisLean/Mandate/ReLUApprox.lean",
-   "print_axioms_targets": [],
-   "sha256": "be94a49a25c582cd61529a7772c3823fc4accb0c585eb53144a1eae4e94c4889",
-   "size_bytes": 8424,
-   "theorem_count": 6,
-   "theorem_count_bol_convention": 6
-  },
-  {
-   "declarations": [
-    {
      "kind": "structure",
      "name": "RouteRow"
     },
@@ -19426,22 +19357,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1954,
-   "file_count": 234,
+   "counted_declaration_count": 1948,
+   "file_count": 233,
    "lemma_count": 24,
-   "print_axioms_command_count": 819,
-   "print_axioms_distinct_targets": 765,
-   "theorem_count": 1930,
-   "theorem_count_bol_convention": 1894
+   "print_axioms_command_count": 813,
+   "print_axioms_distinct_targets": 759,
+   "theorem_count": 1924,
+   "theorem_count_bol_convention": 1888
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1935,
-   "file_count": 219,
+   "counted_declaration_count": 1929,
+   "file_count": 218,
    "lemma_count": 17,
-   "print_axioms_command_count": 819,
-   "print_axioms_distinct_targets": 765,
-   "theorem_count": 1918,
-   "theorem_count_bol_convention": 1882
+   "print_axioms_command_count": 813,
+   "print_axioms_distinct_targets": 759,
+   "theorem_count": 1912,
+   "theorem_count_bol_convention": 1876
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -19628,7 +19559,6 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/Kernel.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/MatrixGame.lean",
-   "proofs/lean/juris_lean/JurisLean/Mandate/ReLUApprox.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
@@ -19860,7 +19790,6 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/Kernel.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/MatrixGame.lean",
-   "proofs/lean/juris_lean/JurisLean/Mandate/ReLUApprox.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
@@ -19951,17 +19880,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "3484012258f971a7db06096110d8a1c1a016af720eb68e3a735949f61b129a9e",
+ "source_inventory_digest": "ca67ea24cebe053240c854b46fc48cceff046d44ce23aeffaef9a9ac38f789e7",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "5bfd61d69a43928b04fccb791b8965cece2f2b7a",
-  "tree": "1bdebb7f22f9b1244ae29fec2e37d4059ea64629"
+  "commit": "4592fc68a1a38575ab43461c00b42bce7ed57e91",
+  "tree": "afc3ab8f6e651167c16b4a4c973f1e0d52011aa8"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 234,
+  "files_total": 233,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

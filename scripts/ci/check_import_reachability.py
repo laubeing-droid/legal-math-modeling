@@ -55,16 +55,12 @@ STANDALONE_DRIVERS: dict[str, str] = {
 # forbids a new module reaching the release root before then, so it is listed here
 # with a live reason rather than being left unreachable without record.
 #
-# The previous mandate wave is out of here and the reason is on file:
-# `lean-full-clean-build` built all fifteen in run 36293474352, and run 36297146468
-# rebuilt them with the corrected axiom-audit surface. What is booked now is the next
-# arrival: `Mandate/ReLUApprox.lean` (a two-layer ReLU network with a computed
-# Lipschitz constant, R-07) has never been elaborated by anything, since local Lean is
-# forbidden here. It is named on the audit surface, which is how it gets its first
-# compile, and it stays out of the release root until a round says otherwise.
-PENDING_CI_MODULES: dict[str, str] = {
-    "JurisLean.Mandate.ReLUApprox": "R-07 ReLU carrier, awaiting its first CI module build",
-}
+# The mandate wave is empty as of this commit, and the reason it may now be emptied
+# is on file: `lean-full-clean-build` built all fifteen in run 36293474352, and run
+# 36297146468 rebuilt them together with the corrected axiom-audit surface (126 of
+# their theorems are named there). The mechanism stays because the next wave needs
+# it, not because this one is still pending.
+PENDING_CI_MODULES: dict[str, str] = {}
 
 ALLOWED_UNREACHABLE = {**STANDALONE_DRIVERS, **PENDING_CI_MODULES}
 

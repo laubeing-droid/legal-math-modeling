@@ -85,7 +85,8 @@ def test_quarantine_never_shelters_a_promoted_or_missing_module() -> None:
 
     It used to hold the fifteen mandate modules while none of them had been built;
     run 36297146468 built them and they joined the root, so the list is empty here
-    today. Whatever it holds later, three things must hold with it: every entry is a
+    two more arrivals joined the root the same way after their own rounds built them.
+    Whatever the list holds later, three things must hold with it: every entry is a
     real file, no entry is imported by the release root (that would make the reason
     a lie), and no module that is in the root is still listed.
     """
@@ -108,6 +109,10 @@ def test_quarantine_never_shelters_a_promoted_or_missing_module() -> None:
         "SourceRank", "GateTable", "SubstrAdmission", "LinearScorer", "Disclosure",
         "Waterfall", "CohortInterval", "RouteDecision", "TaxSlices", "MatrixGame",
         "CaseIsomorphism",
+        # Promoted later, each after the CI module build the test's own message demands:
+        # ReLUApprox in run 36344882459 (subject 1b6a8d6a9), MixedPennies in run
+        # 36351623739 (subject 71d2177bc).
+        "ReLUApprox", "MixedPennies",
     }
     wave = {f"JurisLean.Mandate.{name}" for name in promoted}
     assert not (wave & pending), (

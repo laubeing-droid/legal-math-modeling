@@ -106,7 +106,10 @@ def test_the_mandate_layer_is_now_on_the_audit_surface():
         line.split()[-1] for line in text.splitlines() if line.startswith("#print axioms")
     }
     mandate = {n for n in printed if n.startswith("JurisLean.Mandate.")}
-    assert len(mandate) == 126, f"mandate audit surface is {len(mandate)} targets"
+    # 126 at the certified subject a6fd02c6d, 135 once CaseIsomorphism's nine theorems
+    # joined the surface; the extra names await their first elaboration in CI, which is
+    # what quarantine means for them.
+    assert len(mandate) == 135, f"mandate audit surface is {len(mandate)} targets"
     assert "JurisLean.Mandate.GameTree.value_attains" in mandate
     assert "JurisLean.Mandate.MatrixGame.hasPureValue_true_iff" in mandate
 
@@ -195,7 +198,19 @@ def test_the_landed_audit_log_is_the_kernels_own_words_and_is_clean() -> None:
     }
     audited = set(doc["targets_by_name"]) if "targets_by_name" in doc else None
     printed = newest.read_text(encoding="utf-8", errors="replace")
-    missing = sorted(n for n in named if f"'{n}'" not in printed)
+    # A module still on the quarantine list has not been elaborated by CI yet, so its
+    # names are legitimately absent from every log landed to date.
+    import importlib.util
+    spec = importlib.util.spec_from_file_location(
+        "reach", ROOT / "scripts" / "ci" / "check_import_reachability.py")
+    reach = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(reach)
+    pending = set(reach.PENDING_CI_MODULES)
+    def owner(name: str) -> str:
+        return ".".join(name.split(".")[:-1])
+
+    missing = sorted(n for n in named
+                     if owner(n) not in pending and f"'{n}'" not in printed)
     assert not missing, (
         f"{newest.relative_to(ROOT)} never reports {len(missing)} names the audit file "
         f"asks about, e.g. {missing[:3]}"

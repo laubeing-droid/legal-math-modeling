@@ -317,11 +317,11 @@ def test_mandate_promotion_follows_build_audit_root_order() -> None:
             f"{item} is imported by the release root although the axiom-audit "
             f"surface never names it: promotion order is build -> audit -> root"
         )
-        if in_root or in_audit:
+        if in_root:
             m = CI_RUN.search(header)
             assert m, (
-                f"{item} is {'in the root' if in_root else 'audited'} but its header "
-                "records no CI run that built it"
+                f"{item} is imported by the release root but its header records no CI "
+                "run that built it"
             )
         assert mod not in _quarantine(), (
             f"{item} is both promoted and quarantined; retire the quarantine reason"

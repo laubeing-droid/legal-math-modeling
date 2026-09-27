@@ -39,6 +39,8 @@ import JurisLean.Mandate.SubstrAdmission
 import JurisLean.Mandate.TaxSlices
 import JurisLean.Mandate.Waterfall
 
+import JurisLean.Mandate.CaseIsomorphism
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -473,6 +475,15 @@ open HornSystem
     These declarations are elaborated by the all-module CI plan but were
     absent from the release audit surface; the block is generated from the
     declaration sites, so it cannot name a theorem that does not exist. -/
+#print axioms JurisLean.Mandate.CaseIsomorphism.allSelfRelated_of_iso
+#print axioms JurisLean.Mandate.CaseIsomorphism.bijective_invFun
+#print axioms JurisLean.Mandate.CaseIsomorphism.iso_refl
+#print axioms JurisLean.Mandate.CaseIsomorphism.iso_symm
+#print axioms JurisLean.Mandate.CaseIsomorphism.iso_trans
+#print axioms JurisLean.Mandate.CaseIsomorphism.iso_twoEmpty_swap
+#print axioms JurisLean.Mandate.CaseIsomorphism.not_iso_looped_edgeless
+#print axioms JurisLean.Mandate.CaseIsomorphism.swap2_bijective
+#print axioms JurisLean.Mandate.CaseIsomorphism.swap2_moves_a_slot
 #print axioms JurisLean.Mandate.CohortInterval.high_le_added_success
 #print axioms JurisLean.Mandate.CohortInterval.high_num_le_den
 #print axioms JurisLean.Mandate.CohortInterval.intervalOf_defined

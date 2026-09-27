@@ -95,6 +95,7 @@ def test_quarantine_never_shelters_a_promoted_or_missing_module() -> None:
     }
     root_text = ROOT_MODULE.read_text(encoding="utf-8")
     pending = set(reach.PENDING_CI_MODULES)
+    mandate = {f"JurisLean.Mandate.{f.stem}" for f in (PKG / "Mandate").glob("*.lean")}
     assert pending <= on_disk, f"quarantine names modules that do not exist: {pending - on_disk}"
     for name in sorted(pending):
         assert f"import {name}" not in root_text, (
@@ -102,14 +103,25 @@ def test_quarantine_never_shelters_a_promoted_or_missing_module() -> None:
             "only together with a CI-verified module build"
         )
 
-    mandate = {f"JurisLean.Mandate.{f.stem}" for f in (PKG / "Mandate").glob("*.lean")}
-    assert len(mandate) >= 10, "the mandate wave should not have shrunk"
-    assert not (mandate & pending), (
-        f"the wave was built in CI 36297146468 and must not stay quarantined: "
-        f"{sorted(mandate & pending)}"
+    promoted = {
+        "Kernel", "CohortRate", "StructureInvariants", "DerivedCertificate", "GameTree",
+        "SourceRank", "GateTable", "SubstrAdmission", "LinearScorer", "Disclosure",
+        "Waterfall", "CohortInterval", "RouteDecision", "TaxSlices", "MatrixGame",
+    }
+    wave = {f"JurisLean.Mandate.{name}" for name in promoted}
+    assert not (wave & pending), (
+        "these were built in CI 36297146468 and must not stay quarantined: "
+        f"{sorted(wave & pending)}"
     )
-    for name in sorted(mandate):
+    for name in sorted(wave):
         assert f"import {name}" in root_text, f"{name} never joined the release root"
+    # Anything else under Mandate/ is a new arrival: it may be quarantined, but then it
+    # must not be in the root, and its reason must say what has to happen next.
+    for name in sorted(mandate - wave):
+        assert name in pending, (
+            f"{name} is neither promoted nor quarantined: an unrooted module with no "
+            "recorded reason is exactly how a module stops being compiled"
+        )
 
 
 def test_probability_line_is_now_reachable() -> None:

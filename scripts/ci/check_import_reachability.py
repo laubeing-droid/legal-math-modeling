@@ -60,7 +60,11 @@ STANDALONE_DRIVERS: dict[str, str] = {
 # 36297146468 rebuilt them together with the corrected axiom-audit surface (126 of
 # their theorems are named there). The mechanism stays because the next wave needs
 # it, not because this one is still pending.
-PENDING_CI_MODULES: dict[str, str] = {}
+PENDING_CI_MODULES: dict[str, str] = {
+    "JurisLean.Mandate.CaseIsomorphism": "written this session; enters the audit "
+    "surface for its first elaboration and joins the release root only after that "
+    "round reports it built",
+}
 
 ALLOWED_UNREACHABLE = {**STANDALONE_DRIVERS, **PENDING_CI_MODULES}
 

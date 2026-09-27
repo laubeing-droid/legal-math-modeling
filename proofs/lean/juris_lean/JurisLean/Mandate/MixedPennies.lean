@@ -112,13 +112,27 @@ theorem uniform_is_a_mixture : 0 ≤ (1 / 2 : ℚ) ∧ (1 / 2 : ℚ) ≤ 1 := by
 /-! ## And no pure pair is one -/
 
 /--
-Whichever pure pair is proposed, the row player strictly prefers to flip and the column
-player strictly prefers to flip. This is the reason the mixed statement above is not
-dressing on a trivial case: without mixing this game has no equilibrium at all, which is
-the fact `MatrixGame.pennies_no_pure_value` carries at the matrix level.
+Whichever pure pair is proposed, **at least one** player strictly prefers to deviate: when
+the coins agree the row player is content and the column player wants to flip, and when
+they differ it is the reverse. That is the shape of matching pennies, and it is why the
+mixed result above is not dressing on a trivial case.
+
+The stronger-sounding version -- that *both* players want to flip at every pair -- is
+false, and `decide` proved it so in run 36347838507: at `(heads, heads)` the row player
+already collects `+1` and has no profitable deviation. The disjunction below is what
+"no pure pair is a Nash equilibrium" actually means, and the two named facts under it say
+which side moves.
 -/
 theorem no_pure_pair_is_equilibrium :
-    ∀ a b : Bool, (∃ a' : Bool, payoff a' b > payoff a b) ∧
+    ∀ a b : Bool, (∃ a' : Bool, payoff a' b > payoff a b) ∨
       (∃ b' : Bool, payoff a b' < payoff a b) := by decide
+
+/-- When the coins agree, it is the second player who strictly prefers to flip. -/
+theorem agreed_second_moves (a : Bool) : ∃ b' : Bool, payoff a b' < payoff a a :=
+  ⟨not a, by cases a <;> decide⟩
+
+/-- When the coins differ, it is the first player who strictly prefers to flip. -/
+theorem differed_first_moves (b : Bool) : ∃ a' : Bool, payoff a' b > payoff b b :=
+  ⟨not b, by cases b <;> decide⟩
 
 end JurisLean.Mandate.MixedPennies

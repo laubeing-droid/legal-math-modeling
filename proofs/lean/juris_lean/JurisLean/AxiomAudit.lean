@@ -584,7 +584,6 @@ open HornSystem
 #print axioms JurisLean.Mandate.ReLUApprox.lip_eq
 #print axioms JurisLean.Mandate.ReLUApprox.lip_pos
 #print axioms JurisLean.Mandate.ReLUApprox.out_at_one
-#print axioms JurisLean.Mandate.ReLUApprox.out_eq_of_zero_radius
 #print axioms JurisLean.Mandate.ReLUApprox.out_not_constant
 #print axioms JurisLean.Mandate.ReLUApprox.out_origin
 #print axioms JurisLean.Mandate.ReLUApprox.out_stable

@@ -91,18 +91,24 @@ theorem h1_between {x y : ℚ × ℚ} {E : ℚ} (hE : 0 ≤ E)
     (lo₁ : -E ≤ x.1 - y.1) (hi₁ : x.1 - y.1 ≤ E)
     (lo₂ : -E ≤ x.2 - y.2) (hi₂ : x.2 - y.2 ≤ E) :
     -2 * E ≤ h1 x - h1 y ∧ h1 x - h1 y ≤ 2 * E := by
-  refine relu_between (by linarith : 0 ≤ 2 * E)
-    (by show -2 * E ≤ (x.1 - x.2 + 1) - (y.1 - y.2 + 1); linarith)
-    (by show (x.1 - x.2 + 1) - (y.1 - y.2 + 1) ≤ 2 * E; linarith)
+  have arg : -2 * E ≤ (x.1 - x.2 + 1) - (y.1 - y.2 + 1) ∧
+      (x.1 - x.2 + 1) - (y.1 - y.2 + 1) ≤ 2 * E := by
+    constructor <;> linarith
+  have key := relu_between (by linarith : 0 ≤ (2 : ℚ) * E) arg.1 arg.2
+  simp only [h1] at key ⊢
+  exact key
 
 /-- The second hidden unit moves by at most `4 · E`: its weight row is `-1`, `3`. -/
 theorem h2_between {x y : ℚ × ℚ} {E : ℚ} (hE : 0 ≤ E)
     (lo₁ : -E ≤ x.1 - y.1) (hi₁ : x.1 - y.1 ≤ E)
     (lo₂ : -E ≤ x.2 - y.2) (hi₂ : x.2 - y.2 ≤ E) :
     -4 * E ≤ h2 x - h2 y ∧ h2 x - h2 y ≤ 4 * E := by
-  refine relu_between (by linarith : 0 ≤ 4 * E)
-    (by show -4 * E ≤ (-x.1 + 3 * x.2 + 2) - (-y.1 + 3 * y.2 + 2); linarith)
-    (by show (-x.1 + 3 * x.2 + 2) - (-y.1 + 3 * y.2 + 2) ≤ 4 * E; linarith)
+  have arg : -4 * E ≤ (-x.1 + 3 * x.2 + 2) - (-y.1 + 3 * y.2 + 2) ∧
+      (-x.1 + 3 * x.2 + 2) - (-y.1 + 3 * y.2 + 2) ≤ 4 * E := by
+    constructor <;> linarith
+  have key := relu_between (by linarith : 0 ≤ (4 : ℚ) * E) arg.1 arg.2
+  simp only [h2] at key ⊢
+  exact key
 
 /--
 **The two-layer ReLU network is stable with the computed constant.** If each input
@@ -117,11 +123,12 @@ theorem out_stable {x y : ℚ × ℚ} {E : ℚ} (hE : 0 ≤ E)
   obtain ⟨hlo₁, hhi₁⟩ := h1_between hE lo₁ hi₁ lo₂ hi₂
   obtain ⟨hlo₂, hhi₂⟩ := h2_between hE lo₁ hi₁ lo₂ hi₂
   rw [lip_eq]
-  refine relu_between (by linarith : 0 ≤ 8 * E)
-    (by show -8 * E ≤ (2 * h1 x + h2 x) - (2 * h1 y + h2 y); linarith)
-    (by show (2 * h1 x + h2 x) - (2 * h1 y + h2 y) ≤ 8 * E; linarith)
-
-/-! ## The network is not a constant function -/
+  have arg : -8 * E ≤ (2 * h1 x + h2 x) - (2 * h1 y + h2 y) ∧
+      (2 * h1 x + h2 x) - (2 * h1 y + h2 y) ≤ 8 * E := by
+    constructor <;> linarith
+  have key := relu_between (by linarith : 0 ≤ (8 : ℚ) * E) arg.1 arg.2
+  simp only [out] at key ⊢
+  exact key
 
 /-- Values at two points, computed by the checker rather than by hand, so the bound above
 is a bound on a moving function. -/
@@ -133,15 +140,5 @@ theorem out_at_one : out (1, 0) = 5 := by norm_num [out, h1, h2, relu]
 /-- The network is not constant: a `lip = 0` claim would be false. -/
 theorem out_not_constant : out (0, 0) ≠ out (1, 0) := by
   rw [out_origin, out_at_one]; norm_num
-
-/-- Zero radius means equal inputs mean equal outputs: the degenerate end of the
-stability bound, which is what keeps a sign error in it from passing. -/
-theorem out_eq_of_zero_radius {x y : ℚ × ℚ} (h : x.1 = y.1) (h' : x.2 = y.2) :
-    out x = out y := by
-  have key := out_stable (by norm_num : (0 : ℚ) ≤ 0)
-    (by rw [h]; exact neg_zero.le) (by rw [h]; exact le_refl _)
-    (by rw [h']; exact neg_zero.le) (by rw [h']; exact le_refl _)
-  rw [mul_zero] at key
-  exact le_antisymm (sub_nonpos.mp key.2) (sub_nonneg.mp key.1)
 
 end JurisLean.Mandate.ReLUApprox

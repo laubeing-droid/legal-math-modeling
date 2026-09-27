@@ -29,8 +29,11 @@ What is deliberately NOT claimed:
 * Mixed-strategy equilibrium for a *declared* payoff matrix type -- the matrix here is
   this game's, and `u` is computed from it rather than assumed.
 
-Status: awaiting its first CI elaboration. Local Lean is forbidden here, so nothing in
-this file is attested until a round builds it.
+Status: elaborated green in CI run 36351623739 (subject 71d2177bc), whose release
+certificate lists these eleven declarations by name and whose axiom log holds 570 targets
+with no `sorryAx` and only the standard vocabulary. Built through the audit surface, not
+imported by the release root; `PENDING_CI_MODULES` still books it. Later commits do not
+inherit that verdict.
 -/
 
 namespace JurisLean.Mandate.MixedPennies

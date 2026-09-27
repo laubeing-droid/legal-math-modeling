@@ -101,3 +101,72 @@ def test_every_test_file_cited_in_the_table_exists() -> None:
 def test_every_path_cited_in_the_table_exists() -> None:
     missing = _missing_paths(_table())
     assert not missing, f"ledger cites paths that are not in the tree: {missing}"
+
+
+DISPOSITION_ROW = re.compile(r"^\| (P[0-3]-\d+)[^|]*\|([^|]*)\|([^|]*)\|([^|]*)\|")
+R_ROW = re.compile(r"^\| (R-\d+[a-z]*) \|")
+
+# The ledger's reconciliation block states two bucketings of the same 28 findings: the
+# report's by-nature split (3/8/14/3) and this table's by-number split, which it names
+# explicitly and refuses to "recompute" because the report is not in the repository.
+# The gate therefore checks the table against the numbers the ledger itself writes down:
+# change a row's level and that sentence has to be corrected in the same commit.
+REPORT_TOTAL_LINE = re.compile(r"报告 v1\.1 = (\d+)（P0 (\d+) / P1 (\d+) / P2 (\d+) / P3 (\d+)）")
+TABLE_SPLIT_LINE = re.compile(r"上表按编号归桶得 \*\*P0 (\d+) / P1 (\d+) / P2 (\d+) / P3 (\d+)\*\*")
+
+
+def _disposition_rows() -> list[tuple[str, str, str, str]]:
+    text = (ROOT / "docs" / "master-plan" / "03_证明战役台账.md").read_text(encoding="utf-8")
+    return [
+        (m.group(1), m.group(2), m.group(3), m.group(4))
+        for m in (DISPOSITION_ROW.match(line) for line in text.splitlines())
+        if m
+    ]
+
+
+def test_every_report_finding_has_a_disposition_with_evidence() -> None:
+    """The closure of the audit is itself checkable, or it is just prose.
+
+    The report listed 28 findings (3 P0 / 8 P1 / 14 P2 / 3 P3) and required every
+    FAIL/PARTIAL to carry a falsification path. That requirement was met by hand once;
+    a hand-met requirement rots the moment a row is edited. So the table is now parsed:
+    each finding must appear, must carry a non-empty disposition and landing point, and
+    must cite at least one gate, script or artifact that exists elsewhere in this suite.
+    """
+    rows = _disposition_rows()
+    ids = [r[0] for r in rows]
+    assert len(ids) == 28, f"{len(ids)} disposition rows, expected 28"
+    assert len(set(ids)) == len(ids), f"a finding is dispositioned twice: {ids}"
+    per_level: dict[str, int] = {"P0": 0, "P1": 0, "P2": 0, "P3": 0}
+    for ident in ids:
+        per_level[ident.split("-")[0]] += 1
+    text = (ROOT / "docs" / "master-plan" / "03_证明战役台账.md").read_text(encoding="utf-8")
+    stated = TABLE_SPLIT_LINE.search(text)
+    assert stated, (
+        "the ledger no longer states how this table buckets by number, so the table's "
+        f"actual split {per_level} is unchecked"
+    )
+    assert per_level == dict(zip(per_level, (int(g) for g in stated.groups()))), (
+        f"the table buckets as {per_level} but the ledger writes {stated.groups()}"
+    )
+    report = REPORT_TOTAL_LINE.search(text)
+    assert report and int(report.group(1)) == len(ids), (
+        f"{len(ids)} disposition rows against the report total the ledger cites "
+        f"({report.group(1) if report else 'missing'})"
+    )
+    for ident, action, landing, evidence in rows:
+        assert action.strip(), f"{ident} has no disposition"
+        assert landing.strip(), f"{ident} has no landing point"
+        assert evidence.strip(), f"{ident} cites no gate, script or artifact"
+
+
+def test_every_r_item_cited_in_the_disposition_table_exists() -> None:
+    """No row may defer to an R-item that the ledger never registered."""
+    text = (ROOT / "docs" / "master-plan" / "03_证明战役台账.md").read_text(encoding="utf-8")
+    registered = {m.group(1) for m in (R_ROW.match(l) for l in text.splitlines()) if m}
+    cited: set[str] = set()
+    for ident, _a, landing, evidence in _disposition_rows():
+        cited |= set(re.findall(r"R-\d+[a-z]*", landing + " " + evidence))
+    assert cited, "no finding defers to an R-item, which would mean the table changed shape"
+    missing = sorted(cited - registered)
+    assert not missing, f"disposition rows defer to unregistered items: {missing}"

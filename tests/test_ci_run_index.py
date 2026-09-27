@@ -83,15 +83,42 @@ def test_each_run_record_is_complete() -> None:
         assert isinstance(r["artifacts_total"], int), r["run_id"]
 
 
-def test_head_commits_of_quoted_runs_exist_in_this_repository() -> None:
-    """Actions metadata becomes evidence only when it lands on a commit we have."""
+def test_paper_quoted_runs_are_recheckable_here() -> None:
+    """A run the papers lean on must have its subject commit in this repository.
 
+    Older documents quote runs from before the history was consolidated; their commit
+    is no longer an object here, which is a fact about the evidence, not a licence to
+    hide it. Those are allowed only when the index says so explicitly.
+    """
+
+    absent = [r for r in _doc()["runs"] if not r.get("head_commit_present")]
     for r in _doc()["runs"]:
         proc = subprocess.run(
             ["git", "cat-file", "-e", f"{r['head_sha']}^{{commit}}"],
             cwd=ROOT, capture_output=True,
         )
-        assert proc.returncode == 0, f"run {r['run_id']} head {r['head_sha']} not in repo"
+        assert (proc.returncode == 0) == bool(r["head_commit_present"]), (
+            f"run {r['run_id']}: index claims presence {r['head_commit_present']}, git disagrees"
+        )
+    paper_runs = {
+        str(r["run_id"])
+        for r in _doc()["runs"]
+        if any("paper-rewrite" in loc for loc in r["quoted_by"])
+    }
+    unreachable = {str(r["run_id"]) for r in absent}
+    assert not (paper_runs & unreachable), (
+        f"the papers cite runs whose subject commit is gone: {sorted(paper_runs & unreachable)}"
+    )
+
+
+def test_unreachable_run_heads_are_announced_not_silenced() -> None:
+    """If a run head cannot be resolved, the generated table must say 'NO'."""
+
+    md = (ROOT / "docs" / "formal-release" / "ci_run_index.md").read_text(encoding="utf-8")
+    for r in _doc()["runs"]:
+        if not r["head_commit_present"]:
+            assert "in repo = NO" in md, "the index hides unreachable subjects"
+            assert f"| {str(r['head_sha'])[:7]} | NO |" in md, r["run_id"]
 
 
 def _calls_run_green(line: str, run_id: str) -> bool:

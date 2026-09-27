@@ -8,32 +8,33 @@ Run ids below are the ones this repository's markdown quotes. `quoted_by`
 gives file:line, so a claim of the form "CI run N is green" can be opened
 without guessing where it came from.
 
-| run | conclusion | head sha | branch | event | jobs ok/total | artifacts | quoted in |
-|---|---|---|---|---|---|---|---|
-| 33946211096 | success | `2a1d33d` | main | push | 97/97 | 95 | AGENTS.md, FINAL_FORMAL_RELEASE_REPORT.md, FORMAL_RELEASE_REPORT.md, INDEX.md, MEGA_GOAL.md, README.md, README_CN.md, SEVEN_AXIS_LANDING_REPORT_20260911.md, evidence.md, icail_full_paper.md, main.md, main_cn.md |
-| 34512426708 | failure | `7af4e7e` | codex/ulm-business-root-20260910 | pull_request | 2/4 | 3 | ROOT_CONSTRUCTION_RECORD.md |
-| 34514241309 | failure | `9dcc498` | codex/ulm-business-root-20260910 | pull_request | 2/4 | 3 | ROOT_CONSTRUCTION_RECORD.md |
-| 34516894406 | failure | `17c1ea3` | codex/ulm-business-root-20260910 | pull_request | 2/4 | 3 | ROOT_CONSTRUCTION_RECORD.md |
-| 34517689336 | failure | `ef594d4` | codex/ulm-business-root-20260910 | pull_request | 2/4 | 3 | ROOT_CONSTRUCTION_RECORD.md |
-| 34519378180 | success | `88644bc` | codex/ulm-business-root-20260910 | pull_request | 4/4 | 4 | ROOT_CONSTRUCTION_RECORD.md |
-| 34519379252 | cancelled | `88644bc` | codex/ulm-business-root-20260910 | pull_request | 8/9 | 9 | ROOT_CONSTRUCTION_RECORD.md |
-| 34648379461 | success | `013aadb` | ci/ulm-seven-axis-20260911 | push | 6/7 | 7 | SEVEN_AXIS_LANDING_REPORT_20260911.md |
-| 34669383636 | success | `013aadb` | main | push | 6/7 | 7 | AGENTS.md, ALLOWED_CLAIMS.md, INDEX.md, README.md, README_CN.md, SEVEN_AXIS_LANDING_REPORT_20260911.md, authority_map.md, certificate_checker_boundary.md |
-| 35124268367 | success | `5084f25` | main | push | 7/8 | 10 | PROGRESS.md, baseline.md, review-of-gpt-report.md, 法律统一数学模型_四报告与跨仓审查_20260923.md |
-| 35819869335 | failure | `2d06da6` | main | push | 2/8 | 5 | PROGRESS.md, baseline.md, 法律统一数学模型_四报告与跨仓审查_20260923.md |
-| 35832550717 | failure | `1e0875c` | main | push | 2/8 | 5 | PROGRESS.md, baseline.md, review-of-gpt-report.md, 法律统一数学模型_四报告与跨仓审查_20260923.md |
-| 35833467010 | success | `b00d315` | main | push | 7/8 | 10 | baseline.md, findings.md, gpt-prompt.md, 法律统一数学模型_四报告与跨仓审查_20260923.md |
-| 36094524508 | success | `f4d46b0` | main | push | 7/8 | 10 | 01_编号台账.md, paper-v1-cn.md, paper-v1-en.md |
-| 36095609565 | success | `c6d568c` | main | push | 7/8 | 10 | 01_编号台账.md, paper-v1-cn.md, paper-v1-en.md |
-| 36115235418 | success | `1a75437` | main | push | 7/8 | 10 | paper-v1-cn.md, paper-v1-en.md, 七轮问流水线施工报告_20260925.md |
-| 36116094791 | failure | `badd15c` | main | push | 2/8 | 6 | 七轮问流水线施工报告_20260925.md |
-| 36117165469 | success | `094ccb2` | main | push | 7/8 | 10 | 01_编号台账.md, paper-v1-cn.md, paper-v1-en.md, 七轮问流水线施工报告_20260925.md |
-| 36117995884 | success | `69d0daa` | main | push | 7/8 | 10 | 01_编号台账.md, 七轮问流水线施工报告_20260925.md |
-| 36258179200 | failure | `1488685` | main | push | 1/8 | 4 | 03_证明战役台账.md |
-| 36258901155 | success | `bd364c5` | main | push | 7/8 | 10 | paper_cn.md, paper_en.md |
-| 36259479766 | success | `b57d4aa` | main | push | 7/8 | 10 | 03_证明战役台账.md |
+| run | conclusion | head sha | in repo | branch | event | jobs ok/total | artifacts | quoted in |
+|---|---|---|---|---|---|---|---|---|
+| 33946211096 | success | `2a1d33d` | yes | main | push | 97/97 | 95 | AGENTS.md, FINAL_FORMAL_RELEASE_REPORT.md, FORMAL_RELEASE_REPORT.md, INDEX.md, MEGA_GOAL.md, README.md, README_CN.md, SEVEN_AXIS_LANDING_REPORT_20260911.md, evidence.md, icail_full_paper.md, main.md, main_cn.md |
+| 34512426708 | failure | `7af4e7e` | yes | codex/ulm-business-root-20260910 | pull_request | 2/4 | 3 | ROOT_CONSTRUCTION_RECORD.md |
+| 34514241309 | failure | `9dcc498` | yes | codex/ulm-business-root-20260910 | pull_request | 2/4 | 3 | ROOT_CONSTRUCTION_RECORD.md |
+| 34516894406 | failure | `17c1ea3` | yes | codex/ulm-business-root-20260910 | pull_request | 2/4 | 3 | ROOT_CONSTRUCTION_RECORD.md |
+| 34517689336 | failure | `ef594d4` | yes | codex/ulm-business-root-20260910 | pull_request | 2/4 | 3 | ROOT_CONSTRUCTION_RECORD.md |
+| 34519378180 | success | `88644bc` | yes | codex/ulm-business-root-20260910 | pull_request | 4/4 | 4 | ROOT_CONSTRUCTION_RECORD.md |
+| 34519379252 | cancelled | `88644bc` | yes | codex/ulm-business-root-20260910 | pull_request | 8/9 | 9 | ROOT_CONSTRUCTION_RECORD.md |
+| 34648379461 | success | `013aadb` | yes | ci/ulm-seven-axis-20260911 | push | 6/7 | 7 | SEVEN_AXIS_LANDING_REPORT_20260911.md |
+| 34669383636 | success | `013aadb` | yes | main | push | 6/7 | 7 | AGENTS.md, ALLOWED_CLAIMS.md, INDEX.md, README.md, README_CN.md, SEVEN_AXIS_LANDING_REPORT_20260911.md, authority_map.md, certificate_checker_boundary.md |
+| 35124268367 | success | `5084f25` | yes | main | push | 7/8 | 10 | PROGRESS.md, baseline.md, review-of-gpt-report.md, 法律统一数学模型_四报告与跨仓审查_20260923.md |
+| 35819869335 | failure | `2d06da6` | yes | main | push | 2/8 | 5 | PROGRESS.md, baseline.md, 法律统一数学模型_四报告与跨仓审查_20260923.md |
+| 35832550717 | failure | `1e0875c` | yes | main | push | 2/8 | 5 | PROGRESS.md, baseline.md, review-of-gpt-report.md, 法律统一数学模型_四报告与跨仓审查_20260923.md |
+| 35833467010 | success | `b00d315` | yes | main | push | 7/8 | 10 | baseline.md, findings.md, gpt-prompt.md, 法律统一数学模型_四报告与跨仓审查_20260923.md |
+| 36094524508 | success | `f4d46b0` | yes | main | push | 7/8 | 10 | 01_编号台账.md, paper-v1-cn.md, paper-v1-en.md |
+| 36095609565 | success | `c6d568c` | yes | main | push | 7/8 | 10 | 01_编号台账.md, paper-v1-cn.md, paper-v1-en.md |
+| 36115235418 | success | `1a75437` | yes | main | push | 7/8 | 10 | paper-v1-cn.md, paper-v1-en.md, 七轮问流水线施工报告_20260925.md |
+| 36116094791 | failure | `badd15c` | yes | main | push | 2/8 | 6 | 七轮问流水线施工报告_20260925.md |
+| 36117165469 | success | `094ccb2` | yes | main | push | 7/8 | 10 | 01_编号台账.md, paper-v1-cn.md, paper-v1-en.md, 七轮问流水线施工报告_20260925.md |
+| 36117995884 | success | `69d0daa` | yes | main | push | 7/8 | 10 | 01_编号台账.md, 七轮问流水线施工报告_20260925.md |
+| 36258179200 | failure | `1488685` | yes | main | push | 1/8 | 4 | 03_证明战役台账.md |
+| 36258901155 | success | `bd364c5` | yes | main | push | 7/8 | 10 | paper_cn.md, paper_en.md |
+| 36259479766 | success | `b57d4aa` | yes | main | push | 7/8 | 10 | 03_证明战役台账.md |
+| 36285858369 | failure | `a2565b4` | yes | ci/mandate-wave1 | push | 1/8 | 4 | 03_证明战役台账.md |
 
-Runs not concluding `success`: 9 — 34512426708, 34514241309, 34516894406, 34517689336, 34519379252, 35819869335, 35832550717, 36116094791, 36258179200.
+Runs not concluding `success`: 10 — 34512426708, 34514241309, 34516894406, 34517689336, 34519379252, 35819869335, 35832550717, 36116094791, 36258179200, 36285858369.
 
 `jobs ok/total` is there because a run-level conclusion and a job-level one
 differ: a run can end `cancelled` while every job a document names succeeded,

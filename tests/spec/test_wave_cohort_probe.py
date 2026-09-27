@@ -1,9 +1,9 @@
 """Contract tests for the WAVE-ALL-001 cohort probe (R-08).
 
-The corpus is a local delivery, not a repository asset, so the tests that need it
-skip when it is absent. What never skips is the temporal registration: the Beta
-backend rejects a row whose outcome is not strictly after its cutoff, which is the
-exact way this probe was first broken.
+Nothing here reads the delivery: the corpus is a local artifact, and the release
+harness counts a skipped test as not-PASS, so a skip would turn CI red. The
+end-to-end test writes its own two-shard delivery instead, and the artifact test
+reads the report the tool published from the real one.
 """
 
 from __future__ import annotations
@@ -12,8 +12,6 @@ import datetime as dt
 import gzip
 import json
 from pathlib import Path
-
-import pytest
 
 from theory.spec import wave_cohort_probe as probe
 from theory.spec.probability_pipeline import TemporalProtocol
@@ -112,7 +110,6 @@ def test_absent_dataset_exits_nonzero(tmp_path) -> None:
     assert rc == 2
 
 
-SHARDS = Path(probe.DEFAULT_DATASET) / probe.SHARD_DIR
 REPORT = ROOT / "docs" / "formal-release" / "wave_cohort_probe.json"
 
 
@@ -122,7 +119,6 @@ def _report() -> dict:
     return json.loads(REPORT.read_text(encoding="utf-8"))
 
 
-@pytest.mark.skipif(not REPORT.exists(), reason="probe report not generated yet")
 def test_committed_report_is_internally_consistent() -> None:
     """Gate the published artifact itself, not just the code that writes it.
 
@@ -144,7 +140,6 @@ def test_committed_report_is_internally_consistent() -> None:
     assert est["interval_backend"] == "unified.win_model.latent_rate_interval"
 
 
-@pytest.mark.skipif(not REPORT.exists(), reason="probe report not generated yet")
 def test_committed_report_states_its_ceiling_and_every_caveat() -> None:
     report = _report()
     assert report["grade_ceiling"] == "EVIDENCE_WITH_PROVENANCE_CAVEAT"
@@ -158,29 +153,76 @@ def test_committed_report_states_its_ceiling_and_every_caveat() -> None:
     assert report["source"]["manifest_recheck"]["rows_match"] is True
 
 
-@pytest.mark.skipif(not SHARDS.exists(), reason="local WAVE-ALL-001 delivery absent")
-def test_probe_on_real_shards_publishes_a_bracketed_interval(tmp_path) -> None:
+def test_end_to_end_probe_on_a_built_delivery(tmp_path) -> None:
+    """Run the whole tool over a delivery this test writes, so CI never skips it.
+
+    `run_all_registered_tests.py` counts a skipped test as not-PASS, so a test that
+    passes locally by reading the real corpus and skips in CI would turn the release
+    gate red -- fail-closed is the house rule, and it applies to gates about gates.
+    """
     from fractions import Fraction
+
+    root = tmp_path / probe.SHARD_DIR
+    rows = []
+    for month_index, month in enumerate(("2019-01", "2019-02")):
+        shard = []
+        for n in range(30):
+            doc = f"d{month_index}{n}"
+            day = f"{month}-{(n % 27) + 1:02d}"
+            if n == 7:
+                shard += [[doc, "民事案件", "民事二审", "", "驳回上诉"]]      # undated
+            elif n == 11:
+                shard += [[doc, "民事案件", "民事一审", day, "驳回上诉"]]    # wrong stage
+            elif n == 13:
+                shard += [[doc, "刑事案件", "民事二审", day, "改判"]]        # wrong class
+            elif n % 7 == 0:
+                shard += [[doc, "民事案件", "民事二审", day, ""]]             # no outcome
+            elif n % 3 == 0:
+                shard += [[doc, "民事案件", "民事二审", day, "驳回上诉，维持原判"]]
+            else:
+                shard += [[doc, "民事案件", "民事二审", day, "改判"]]
+        write_shard(root / f"{month}.csv.gz", shard)
+        rows.append((month, len(shard)))
+    (root / "MANIFEST.csv").write_text(
+        "month,rows\n" + "\n".join(f"{m},{n}" for m, n in rows) + "\n",
+        encoding="utf-8", newline="",
+    )
 
     out = tmp_path / "probe.json"
     rc = probe.main([
-        "--months", "2019-12", "--cap-per-month", "4000",
+        "--dataset", str(tmp_path), "--months", "2019-01,2019-02",
+        "--cap-per-month", "40", "--manifest-check-month", "2019-01",
         "--output", str(out),
     ])
     assert rc == 0
     report = json.loads(out.read_text(encoding="utf-8"))
     est = report["estimate"]
+    cohort = report["cohort"]
+
+    # Expected values are recomputed from the fixture here, not read back from the tool.
+    dated_cohort = 2 * (30 - 3)                      # undated / wrong stage / wrong class
+    empty_outcome = 2 * len([n for n in range(30)
+                             if n not in (7, 11, 13) and n % 7 == 0])
+    matched = 2 * len([n for n in range(30)
+                       if n not in (7, 11, 13) and n % 7 != 0 and n % 3 == 0])
+    observed = dated_cohort - empty_outcome
+    assert cohort["cohort_matched"] == dated_cohort
+    assert cohort["undated_dropped"] == 2
+    assert cohort["outcome_empty"] == empty_outcome
+    assert est["observed_total"] == observed
+    assert est["successes"] == matched
     assert report["event"]["identification_status"] == "IDENTIFIED"
     assert report["event"]["identity"] == "RETRIEVED_COHORT"
-    assert est["observed_total"] > 0
-    low = Fraction(est["interval_low"])
-    high = Fraction(est["interval_high"])
+
     freq = Fraction(est["frequency_fraction"])
-    assert low <= freq <= high
-    assert 0.0 < float(low) and float(high) < 1.0
-    # Aggregate only: the report must not carry document identifiers or case text.
+    low, high = Fraction(est["interval_low"]), Fraction(est["interval_high"])
+    assert freq == Fraction(matched, observed)
+    assert low <= freq <= high and 0 < float(low) and float(high) < 1.0
+    assert est["interval_backend"] == "unified.win_model.latent_rate_interval"
+
+    # The cap is reported, not silently applied, and no case text leaks into the report.
+    assert cohort["months_truncated_by_cap"] == []  # the cap is above the 30-row shards
+    assert report["source"]["manifest_recheck"]["rows_match"] is True
     text = json.dumps(report, ensure_ascii=False)
-    assert "驳回上诉，维持" not in text
-    assert "no-doc-id::" not in text
-    assert report["source"]["manifest_recheck"]["status"] == "OK"
+    assert "维持原判" not in text and "d0" not in text
     assert report["grade_ceiling"] == "EVIDENCE_WITH_PROVENANCE_CAVEAT"

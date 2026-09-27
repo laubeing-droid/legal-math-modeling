@@ -51,7 +51,10 @@ without guessing where it came from.
 | 36307416556 | success | `cf3214d` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md |
 | 36308381874 | failure | `4bb4df5` | ci/mandate-wave1 | push | 2/8 | 5 | 03_证明战役台账.md |
 | 36309484500 | failure | `3261425` | ci/mandate-wave1 | push | 2/8 | 5 | 03_证明战役台账.md |
-| 36310143628 | success | `738b20c` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md, paper_cn.md, paper_en.md |
+| 36310143628 | success | `738b20c` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md |
+| 36311143836 | success | `967e302` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md |
+| 36320597119 | success | `804b61b` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md |
+| 36322009701 | success | `fc43a92` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md, paper_cn.md, paper_en.md |
 
 Runs not concluding `success`: 21 — 34512426708, 34514241309, 34516894406, 34517689336, 34519379252, 35819869335, 35832550717, 36116094791, 36258179200, 36285858369, 36289822066, 36290409329, 36291053225, 36292599075, 36295032321, 36296061840, 36303397911, 36304261436, 36305404923, 36308381874, 36309484500.
 
@@ -72,6 +75,7 @@ JSON before repeating any "that run was green" claim.
 - run 36306088064: 18 files, 294706 bytes, digests in `docs/formal-release/ci-evidence/36306088064/digests.json`
 - run 36307416556: 18 files, 294706 bytes, digests in `docs/formal-release/ci-evidence/36307416556/digests.json`
 - run 36310143628: 18 files, 295785 bytes, digests in `docs/formal-release/ci-evidence/36310143628/digests.json`
+- run 36322009701: 18 files, 296598 bytes, digests in `docs/formal-release/ci-evidence/36322009701/digests.json`
 
 Land another run's bytes with `--fetch-evidence <run>`; `--check` recomputes every digest in every `digests.json` and fails if a landed set no longer matches, or belongs to a run nothing quotes.
 

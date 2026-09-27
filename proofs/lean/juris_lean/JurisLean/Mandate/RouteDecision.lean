@@ -92,8 +92,8 @@ theorem anyUsable_append :
   | nil => intro b; simp [anyUsable]
   | cons r as ih =>
       intro b
-      rw [show anyUsable ((r :: as) ++ b) = usable r || anyUsable (as ++ b) from rfl]
-      rw [ih b]
+      rw [List.cons_append]
+      rw [anyUsable, ih b]
       cases h : usable r <;> simp [h]
 
 /-- If anything is usable, something is returned: the search never swallows a hit. -/

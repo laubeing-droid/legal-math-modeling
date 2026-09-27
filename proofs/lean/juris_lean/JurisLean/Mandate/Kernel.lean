@@ -35,7 +35,12 @@ structure Rate where
   denPos : 0 < den
 
 /-- Comparison by cross-multiplication; division is never formed. -/
-infix:50 " ≤ₛ " => fun (a b : Rate) => a.num * b.den ≤ b.num * a.den
+/-- Cross-multiplication order, named so the notation below is only a symbol. -/
+def rateLe (a b : Rate) : Prop := a.num * b.den ≤ b.num * a.den
+
+-- An `infix` body is quoted, so field projections inside it do not elaborate even
+-- with ascribed binders; point the notation at a definition instead.
+infix:50 " ≤ₛ " => rateLe
 
 theorem rate_le_self (r : Rate) : r ≤ₛ r := Nat.le_refl _
 

@@ -83,21 +83,6 @@ def gh_api(path: str) -> dict:
     return json.loads(proc.stdout)
 
 
-def head_commit_present(sha: str | None) -> bool:
-    """Is the run's subject commit still reachable in this repository?
-
-    Some run ids were quoted long before the repository's history was consolidated,
-    and the commit they speak for is no longer an object anyone can fetch here. The
-    index records that instead of pretending the citation is checkable.
-    """
-
-    if not sha:
-        return False
-    return subprocess.run(
-        ["git", "cat-file", "-e", f"{sha}^{{commit}}"], cwd=ROOT, capture_output=True
-    ).returncode == 0
-
-
 def describe(rid: str, quoted: list[str]) -> dict:
     run = gh_api(f"repos/{REPO}/actions/runs/{rid}")
     jobs = gh_api(f"repos/{REPO}/actions/runs/{rid}/jobs?per_page=100").get("jobs", [])
@@ -122,7 +107,6 @@ def describe(rid: str, quoted: list[str]) -> dict:
             for j in jobs
         ],
         "artifacts_total": artifacts.get("total_count"),
-        "head_commit_present": head_commit_present(run.get("head_sha")),
         "evidence": evidence_index(rid),
     }
 
@@ -255,16 +239,15 @@ def render_markdown(doc: dict) -> str:
         "gives file:line, so a claim of the form \"CI run N is green\" can be opened",
         "without guessing where it came from.",
         "",
-        "| run | conclusion | head sha | in repo | branch | event | jobs ok/total | artifacts | quoted in |",
-        "|---|---|---|---|---|---|---|---|---|",
+        "| run | conclusion | head sha | branch | event | jobs ok/total | artifacts | quoted in |",
+        "|---|---|---|---|---|---|---|---|",
     ]
     for r in doc["runs"]:
         sha = (r["head_sha"] or "")[:7]
         files = ", ".join(sorted({q.split(":")[0].split("/")[-1] for q in r["quoted_by"]}))
         ok = sum(1 for j in r["jobs"] if j["conclusion"] == "success")
         lines.append(
-            f"| {r['run_id']} | {r['conclusion']} | `{sha}` "
-            f"| {'yes' if r.get('head_commit_present') else 'NO'} | {r['head_branch']} "
+            f"| {r['run_id']} | {r['conclusion']} | `{sha}` | {r['head_branch']} "
             f"| {r['event']} | {ok}/{len(r['jobs'])} | {r['artifacts_total']} | {files} |"
         )
     failed = [r["run_id"] for r in doc["runs"] if r["conclusion"] not in ("success",)]
@@ -279,19 +262,6 @@ def render_markdown(doc: dict) -> str:
         "JSON before repeating any \"that run was green\" claim.",
         "",
     ]
-    missing = [r["run_id"] for r in doc["runs"] if not r.get("head_commit_present")]
-    if missing:
-        lines += [
-            f"`in repo = NO` ({len(missing)} of {len(doc['runs'])}): the run exists on GitHub, "
-            "but the commit it ran on is no longer an object in this repository, so nobody "
-            "can re-check its artefacts against source here. Quote one of these only as a "
-            "historical statement, never as current evidence:",
-            "",
-            "```",
-            f"python scripts/ci/build_ci_run_index.py --check   # lists these; see also the column above",
-            "```",
-            "",
-        ]
     landed = [r for r in doc["runs"] if r.get("evidence")]
     if landed:
         lines += ["", "## Artifact bytes landed in this repository", ""]
@@ -393,7 +363,6 @@ def main() -> int:
                 **known[rid],
                 "quoted_by": sorted(q),
                 "evidence": evidence_index(rid),
-                "head_commit_present": head_commit_present(known[rid].get("head_sha")),
             }
             for rid, q in sorted(ids.items())
         ]

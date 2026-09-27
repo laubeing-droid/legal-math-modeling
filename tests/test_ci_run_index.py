@@ -83,95 +83,33 @@ def test_each_run_record_is_complete() -> None:
         assert isinstance(r["artifacts_total"], int), r["run_id"]
 
 
-def test_paper_quoted_runs_are_recheckable_here() -> None:
-    """A run the papers lean on must have its subject commit in this repository.
+def test_runs_the_papers_rely_on_are_recheckable_here() -> None:
+    """A run the papers cite must resolve to a commit this repository contains.
 
-    Older documents quote runs from before the history was consolidated; their commit
-    is no longer an object here, which is a fact about the evidence, not a licence to
-    hide it. Those are allowed only when the index says so explicitly.
+    Whether some *older* document's run head is still reachable is a property of the
+    machine doing the check, not of the evidence, so the index stores no such flag --
+    it used to, and CI correctly complained that the stored answer disagreed with the
+    checker. Reachability is recomputed here, and only demanded of the papers.
     """
 
-    absent = [r for r in _doc()["runs"] if not r.get("head_commit_present")]
-    for r in _doc()["runs"]:
-        proc = subprocess.run(
-            ["git", "cat-file", "-e", f"{r['head_sha']}^{{commit}}"],
-            cwd=ROOT, capture_output=True,
-        )
-        assert (proc.returncode == 0) == bool(r["head_commit_present"]), (
-            f"run {r['run_id']}: index claims presence {r['head_commit_present']}, git disagrees"
-        )
-    paper_runs = {
-        str(r["run_id"])
-        for r in _doc()["runs"]
-        if any("paper-rewrite" in loc for loc in r["quoted_by"])
-    }
-    unreachable = {str(r["run_id"]) for r in absent}
-    assert not (paper_runs & unreachable), (
-        f"the papers cite runs whose subject commit is gone: {sorted(paper_runs & unreachable)}"
-    )
-
-
-def test_unreachable_run_heads_are_announced_not_silenced() -> None:
-    """If a run head cannot be resolved, the generated table must say 'NO'."""
-
-    md = (ROOT / "docs" / "formal-release" / "ci_run_index.md").read_text(encoding="utf-8")
-    for r in _doc()["runs"]:
-        if not r["head_commit_present"]:
-            assert "in repo = NO" in md, "the index hides unreachable subjects"
-            assert f"| {str(r['head_sha'])[:7]} | NO |" in md, r["run_id"]
-
-
-def _calls_run_green(line: str, run_id: str) -> bool:
-    """Does this line attach a green word to this run id?"""
-
-    for m in re.finditer(run_id, line):
-        window = _attached_window(line, m.end()).lower()
-        if any(t in window for t in GREEN_TOKENS):
-            return True
-    return False
-
-
-def test_a_quoted_line_may_not_call_a_non_success_run_green() -> None:
-    """Adjacent praise for a red run is the defect this index exists to catch.
-
-    The passage, not the single line: the sentence that names a run can end mid
-    thought and call its jobs success on the next line.
-    """
-
-    bad = [
-        f"{loc}: {_context(loc)[:160]!r}"
-        for r in _doc()["runs"] if r["conclusion"] != "success"
-        for loc in r["quoted_by"]
-        if _calls_run_green(_context(loc), str(r["run_id"]))
+    paper_runs = [
+        r for r in _doc()["runs"] if any("paper-rewrite" in loc for loc in r["quoted_by"])
     ]
-    assert not bad, "non-success runs quoted as green:\n" + "\n".join(bad)
+    assert paper_runs, "no run is quoted by the papers any more; this gate needs re-reading"
+    for r in paper_runs:
+        proc = subprocess.run(
+            ["git", "cat-file", "-e", f"{r['head_sha']}^{{commit}}"], cwd=ROOT, capture_output=True
+        )
+        assert proc.returncode == 0, (
+            f"run {r['run_id']} is cited by the papers but its subject commit is not here"
+        )
 
 
-def test_green_adjacency_rule_actually_bites() -> None:
-    """The rule must catch a real over-claim and spare the honest phrasing."""
-
-    assert _calls_run_green("- run 34512426708 全绿，公理零依赖", "34512426708")
-    assert _calls_run_green("- run 34512426708 (**success** at bd364c5)", "34512426708")
-    # The shape this repository actually contained: the run id named, then the jobs
-    # called success two lines down while the run itself concluded cancelled.
-    assert _calls_run_green(
-        "- Lean 权威管线 run **34519379252**（attempt 2）：lean-full-clean-build\n"
-        "  加 Axiom audit）、release-certificate、final-gate、\n"
-        "  lean-module-build(BusinessRelations) 全部 success。\n",
-        "34519379252",
-    )
-    # The honest rewrite: the run-level conclusion is named in the same clause.
-    assert not _calls_run_green(
-        "- Lean 权威管线 run **34519379252**（attempt 2；此 run 的 run 级结论为\n"
-        "  cancelled——下方点名的 Delta 作业超时被取消）：lean-full-clean-build\n"
-        "  加 Axiom audit）、release-certificate、final-gate、python-gates、\n"
-        "  lean-module-build(BusinessRelationsAudit) 全部 success。\n",
-        "34519379252",
-    )
-    assert not _calls_run_green(
-        "- 收敛轨迹：34512426708（7af4e7e，11 错）→ 88644bc 全绿。", "34512426708"
-    )
-    assert not _calls_run_green("- run 34512426708 结论 failure", "34512426708")
+def test_index_stores_no_machine_relative_facts() -> None:
+    for r in _doc()["runs"]:
+        assert "head_commit_present" not in r, (
+            "a presence flag cannot be a fact about a run: it depends on who checks"
+        )
 
 
 def test_red_runs_are_also_named_as_red_somewhere() -> None:

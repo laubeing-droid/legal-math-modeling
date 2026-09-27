@@ -1,0 +1,40 @@
+{
+  "authority_note": "Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.",
+  "cross_family": {},
+  "cross_family_statement_types": 0,
+  "distinct_statement_types": 1897,
+  "duplicated_statement_types": 2,
+  "duplicates": {
+    "enumeration_member (pred : A → Bool) (a : A) : a ∈ enumerateAll pred ↔ pred a = true": [
+      {
+        "carrier": "FullMath/enumeration_member",
+        "line": 34,
+        "path": "FullMath/GenericKernels.lean"
+      },
+      {
+        "carrier": "FullMath/enumeration_member",
+        "line": 38,
+        "path": "FullMath/Representation/FiniteCertificates.lean"
+      }
+    ],
+    "exact_check_reflects (pred : A → Bool) (out : Finset A) (h : checkExact pred out = true) : (↑out : Set A) = solutionSet pred": [
+      {
+        "carrier": "FullMath/exact_check_reflects",
+        "line": 38,
+        "path": "FullMath/GenericKernels.lean"
+      },
+      {
+        "carrier": "FullMath/exact_check_reflects",
+        "line": 43,
+        "path": "FullMath/Representation/FiniteCertificates.lean"
+      }
+    ]
+  },
+  "files_scanned": 218,
+  "generated_by": "python scripts/ci/build_statement_duplication_census.py",
+  "headers_missed_by_scanner": 13,
+  "inventory_package_theorems": 1912,
+  "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
+  "schema_version": "statement-duplication-census-v1",
+  "statements_read": 1899
+}

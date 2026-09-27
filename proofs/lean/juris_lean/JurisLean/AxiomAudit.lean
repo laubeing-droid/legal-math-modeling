@@ -580,7 +580,9 @@ open HornSystem
 #print axioms JurisLean.Mandate.MatrixGame.pennies_gap_strict
 #print axioms JurisLean.Mandate.MatrixGame.pennies_no_pure_value
 #print axioms JurisLean.Mandate.MatrixGame.upper_monotone_column
+#print axioms JurisLean.Mandate.MixedPennies.agreed_second_moves
 #print axioms JurisLean.Mandate.MixedPennies.col_guaranteed
+#print axioms JurisLean.Mandate.MixedPennies.differed_first_moves
 #print axioms JurisLean.Mandate.MixedPennies.four_half
 #print axioms JurisLean.Mandate.MixedPennies.mixedNash_uniform
 #print axioms JurisLean.Mandate.MixedPennies.no_pure_pair_is_equilibrium

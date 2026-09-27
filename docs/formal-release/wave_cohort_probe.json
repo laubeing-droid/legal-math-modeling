@@ -1,0 +1,76 @@
+{
+  "schema_version": "wave-cohort-probe-v1",
+  "generated_by": "python theory/spec/wave_cohort_probe.py --output <path>",
+  "authority_note": "Counts computed by streaming the delivery's own monthly shards on this machine. Aggregate only: no case text, party name, or document identifier is stored. The realized frequency is rational; the interval comes from the repository's existing win_model Beta backend, not from this file.",
+  "source": {
+    "dataset_root": "D:\\Codex\\1.法律工作区\\legal-cn-cases工作区\\legal-cn-cases",
+    "shard_dir": "WAVE-ALL-001",
+    "months_read": [
+      "2019-06",
+      "2019-12"
+    ],
+    "rows_capped_per_month": 30000,
+    "delivery_row_count_claimed": 159507974,
+    "manifest_recheck": {
+      "status": "OK",
+      "month": "1985-01",
+      "manifest_rows": 6,
+      "counted_rows": 6,
+      "rows_match": true,
+      "row_payload_sha256": "fe340149de0ea59589c2e11cac24614bb01dfbf4497f3cb7e32e3eaf1c911599",
+      "checksum_method": "README.md: fields joined with \\x01, header and newlines excluded"
+    }
+  },
+  "event": {
+    "case_class": "民事案件",
+    "trial_prog": "民事二审",
+    "outcome_matcher": "case_result 含 '驳回上诉'",
+    "cutoff": "2020-02-24",
+    "identification_status": "IDENTIFIED",
+    "identity": "RETRIEVED_COHORT"
+  },
+  "cohort": {
+    "rows_seen": 60000,
+    "cohort_matched": 2756,
+    "undated_dropped": 5,
+    "outcome_known": 2303,
+    "outcome_empty": 453,
+    "duplicate_doc_ids_dropped": 0,
+    "synthetic_doc_ids": 0,
+    "judged_outside_shard_month": 2,
+    "months_truncated_by_cap": [
+      "2019-06",
+      "2019-12"
+    ],
+    "per_month": {
+      "2019-06": 30000,
+      "2019-12": 30000
+    },
+    "judge_date_min": "2019-06-01",
+    "judge_date_max": "2020-02-24",
+    "unknown_share": "453/2756"
+  },
+  "estimate": {
+    "successes": 1439,
+    "observed_total": 2303,
+    "frequency_fraction": "1439/2303",
+    "frequency_decimal": 0.624837,
+    "interval_low": "10146599/16777216",
+    "interval_high": "10811301/16777216",
+    "interval_backend": "unified.win_model.latent_rate_interval"
+  },
+  "grade_ceiling": "EVIDENCE_WITH_PROVENANCE_CAVEAT",
+  "limitations": [
+    "Each month was read as a file-order prefix under a row cap; the cap bound 2 of 2 months (['2019-06', '2019-12']). A prefix is not a random sample and no sampling claim is made: this is a declared slice, not the delivery's population.",
+    "`case_result` is free text; the event is a string match on '驳回上诉', so the rate is an affirmation rate under that matcher and not a measurement of party success, counsel performance, or legal error.",
+    "453 of 2756 cohort rows carry an empty `case_result`; those rows are `observed = False` and never imputed, so the interval covers only the self-reported outcome subset.",
+    "Shards are not ordered by `judge_date`: 2 cohort rows carry a judgment date outside their shard's month. They are kept and the cutoff is the observed maximum, so the cohort window is set by the data rather than by the filename.",
+    "The delivery records per-field provenance but states no terms of use for the underlying documents; redistribution is therefore not claimed and the numbers here stay aggregate.",
+    "The interval is model-relative posterior mass from the repository's hyperprior mixture over one exchangeable group, not frequentist coverage and not a prediction interval for the next judgment."
+  ],
+  "forbidden_readings": [
+    "胜诉率的经验校准已完成",
+    "二审维持率等于原审正确率",
+    "该区间的口径适用于全部案件类型"
+  ]
+}

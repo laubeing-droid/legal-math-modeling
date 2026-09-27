@@ -476,15 +476,20 @@ open HornSystem
     absent from the release audit surface; the block is generated from the
     declaration sites, so it cannot name a theorem that does not exist. -/
 #print axioms JurisLean.Mandate.CaseIsomorphism.allSelfRelated_of_iso
+#print axioms JurisLean.Mandate.CaseIsomorphism.bool_beq_true
 #print axioms JurisLean.Mandate.CaseIsomorphism.exists_bijective_inverse
 #print axioms JurisLean.Mandate.CaseIsomorphism.isoRel3_allLoops_noRelation
 #print axioms JurisLean.Mandate.CaseIsomorphism.isoRel3_allLoops_self
+#print axioms JurisLean.Mandate.CaseIsomorphism.isoRel3_iff
 #print axioms JurisLean.Mandate.CaseIsomorphism.iso_refl
 #print axioms JurisLean.Mandate.CaseIsomorphism.iso_symm
 #print axioms JurisLean.Mandate.CaseIsomorphism.iso_trans
 #print axioms JurisLean.Mandate.CaseIsomorphism.iso_twoEmpty_swap
 #print axioms JurisLean.Mandate.CaseIsomorphism.noRelation_ne_allLoops
+#print axioms JurisLean.Mandate.CaseIsomorphism.not_Rel3Iso_allLoops_noRelation
 #print axioms JurisLean.Mandate.CaseIsomorphism.not_iso_looped_edgeless
+#print axioms JurisLean.Mandate.CaseIsomorphism.pairs3_all_mem
+#print axioms JurisLean.Mandate.CaseIsomorphism.preservesR_iff
 #print axioms JurisLean.Mandate.CaseIsomorphism.rel3Iso_allLoops_symm_self
 #print axioms JurisLean.Mandate.CaseIsomorphism.rel3Iso_iff_by_list
 #print axioms JurisLean.Mandate.CaseIsomorphism.rel3Iso_of_preserves

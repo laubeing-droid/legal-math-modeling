@@ -15,16 +15,17 @@ relatedness across, and `allSelfRelated` is a property that any isomorphism must
 preserve — which is what makes "these two are not isomorphic" a theorem rather than an
 impression.
 
-What is deliberately NOT claimed: that a decision procedure exists here, nor that
-agreeing invariants imply isomorphism. The enumeration that used to be refused is now
-attempted: `triedRenames_complete` decides that the six renamings in `triedRenames` are
-all the bijections of three slots, and `rel3Iso_iff_by_list` uses it to show that
-"some listed renaming carries the relation" is neither weaker nor stronger than
-`Rel3Iso`. What is still missing is the last inch: the *executable* test `isoRel3` is a
-`Bool` computation, and turning its `true`/`false` into the Prop-level statement for an
-arbitrary pair of relations needs `R i j == S (e i) (e j)` carried out of `Bool`, which
-this file does not do. The two `decide` facts below are therefore the only points where
-the two forms are shown to answer alike. The residual stays booked as R-09 in
+What is deliberately NOT claimed: that agreeing invariants imply isomorphism, nor that a
+decision procedure exists for an arbitrary number of slots. What is decided here is
+three-slot only: `isoRel3_iff` states that the executable test answers `true` exactly when
+two `Rel3` structures are isomorphic, and that needs both the enumeration
+(`triedRenames_complete`, six values, by `decide`) and one `Bool` bridge
+(`bool_beq_true`, four closed cases). Neither step generalises to `Fin n` by the same
+argument, and no claim is made that it does. The five newest declarations
+(`bool_beq_true`, `pairs3_all_mem`, `preservesR_iff`, `isoRel3_iff`,
+`not_Rel3Iso_allLoops_noRelation`) were written this round and await their CI round: until
+that round is green, read `isoRel3_iff` as a claim in flight rather than an attested
+result. The residual is booked as R-09 in
 `docs/master-plan/03_证明战役台账.md`.
 
 Status: imported by the release root and named by `AxiomAudit.lean`; built green
@@ -200,13 +201,10 @@ def preservesR (R S : Rel3) (e : Equiv.Perm (Fin 3)) : Bool :=
   pairs3.all fun p => R p.1 p.2 == S (e p.1) (e p.2)
 
 /--
-The computable test over the six renamings. Read its status carefully: `true` means one
-of these six carried the relation, which by `rel3Iso_of_preserves` is a certificate of
-isomorphism; `false` means only that none of these six did. The enumeration that would
-turn a `false` into "not isomorphic" is now proved (`triedRenames_complete`), but the gap
-between this `Bool` test and that `Prop`-level statement is the pair check
-`preservesR`, which lives in `Bool` and is not carried out of it here. The `decide` facts
-below show both answers are computed, not asserted.
+The computable test over the six renamings. Its status is fixed by `isoRel3_iff` below:
+`true` exactly when the two relations are isomorphic, which is the enumeration
+`triedRenames_complete` plus the `Bool` bridge `preservesR_iff`. The `decide` facts that
+follow show both answers are computed, not asserted.
 -/
 def isoRel3 (R S : Rel3) : Bool := triedRenames.any fun e => preservesR R S e
 
@@ -259,5 +257,58 @@ theorem rel3Iso_iff_by_list (R S : Rel3) : Rel3Iso R S ↔ Rel3Iso_by_list R S :
 positive side of the same coin, computed rather than assumed. -/
 theorem rel3Iso_allLoops_symm_self : Rel3Iso_by_list allLoops allLoops :=
   ⟨1, by decide, fun _ _ => rfl⟩
+
+/-! ## Carrying the `Bool` pair check into the proposition, which was the last inch -/
+
+/-- For `Bool`, `a == b` is `decide (a = b)`, so the boolean test and the proposition
+agree. Stated and proved by four closed cases rather than through a simp set, so it does
+not depend on which normalisation lemmas the pinned toolchain happens to carry. -/
+theorem bool_beq_true {a b : Bool} : (a == b) = true ↔ a = b := by
+  cases a <;> cases b <;> decide
+
+/-- The literal nine slots pairs are all the pairs of three slots. Decidable because
+`Fin 3 × Fin 3` is a `Fintype` and the list is a literal. -/
+theorem pairs3_all_mem : ∀ p : Fin 3 × Fin 3, p ∈ pairs3 := by decide
+
+/-- The pair-by-pair `Bool` check IS the Prop-level preservation statement: forward, the
+quantifier over `pairs3` supplies any slot pair; backward, membership gives only pairs the
+assumption already covers. -/
+theorem preservesR_iff (R S : Rel3) (e : Equiv.Perm (Fin 3)) :
+    preservesR R S e = true ↔ preservesRel R S e := by
+  rw [preservesRel, preservesR]
+  constructor
+  · intro h i j
+    exact bool_beq_true.mp (List.all_eq_true.mp h ⟨i, j⟩ (pairs3_all_mem ⟨i, j⟩))
+  · intro h
+    rw [List.all_eq_true]
+    intro p _
+    cases p with
+    | mk a b => exact bool_beq_true.mpr (h a b)
+
+/-- **The three-slot test decides isomorphism.** `true` exactly when the two relations
+are isomorphic: soundness is `rel3Iso_of_preserves`, completeness is the exhaustive
+`triedRenames_complete` reaching an arbitrary bijection through `rel3Iso_iff_by_list`,
+and `preservesR_iff` is what lets the `Bool` computation answer the `Prop` question.
+This is the statement R-09 was held open for. -/
+theorem isoRel3_iff (R S : Rel3) : isoRel3 R S = true ↔ Rel3Iso R S := by
+  constructor
+  · intro h
+    rw [isoRel3, List.any_eq_true] at h
+    obtain ⟨e, _, he⟩ := h
+    exact rel3Iso_of_preserves R S e ((preservesR_iff R S e).mp he)
+  · intro h
+    rw [rel3Iso_iff_by_list] at h
+    obtain ⟨e, hem, hpres⟩ := h
+    rw [isoRel3, List.any_eq_true]
+    exact ⟨e, hem, (preservesR_iff R S e).mpr hpres⟩
+
+/-- A computed `false`, read as a theorem: no bijection of three slots carries total
+self-relatedness onto a loopless relation. Before `isoRel3_iff` this pair of statements
+existed only separately — one by `decide` about a `Bool`, one by hand about a `Prop`. -/
+theorem not_Rel3Iso_allLoops_noRelation : ¬ Rel3Iso allLoops noRelation := by
+  intro h
+  have h2 : isoRel3 allLoops noRelation = true := (isoRel3_iff allLoops noRelation).mpr h
+  rw [isoRel3_allLoops_noRelation] at h2
+  exact absurd h2 (by decide)
 
 end JurisLean.Mandate.CaseIsomorphism

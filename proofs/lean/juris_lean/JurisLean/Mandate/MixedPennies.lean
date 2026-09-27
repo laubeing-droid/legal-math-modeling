@@ -120,8 +120,15 @@ mixed result above is not dressing on a trivial case.
 The stronger-sounding version -- that *both* players want to flip at every pair -- is
 false, and `decide` proved it so in run 36347838507: at `(heads, heads)` the row player
 already collects `+1` and has no profitable deviation. The disjunction below is what
-"no pure pair is a Nash equilibrium" actually means, and the two named facts under it say
-which side moves.
+"no pure pair is a Nash equilibrium" actually means.
+
+A second named fact I added beside it -- that when the coins differ the first player can
+gain -- was also wrong, and `decide` rejected it again in run 36349847602: I had written
+the baseline as `payoff b b`, which is the agreeing cell worth `+1`, so no deviation can
+beat it. It is removed rather than patched blind, because a hand-written instance of
+exactly the asymmetry this game turns on is what the second attempt got wrong twice;
+`agreed_second_moves` survives, being the direction whose baseline is genuinely the
+agreeing cell.
 -/
 theorem no_pure_pair_is_equilibrium :
     ∀ a b : Bool, (∃ a' : Bool, payoff a' b > payoff a b) ∨
@@ -130,9 +137,5 @@ theorem no_pure_pair_is_equilibrium :
 /-- When the coins agree, it is the second player who strictly prefers to flip. -/
 theorem agreed_second_moves (a : Bool) : ∃ b' : Bool, payoff a b' < payoff a a :=
   ⟨not a, by cases a <;> decide⟩
-
-/-- When the coins differ, it is the first player who strictly prefers to flip. -/
-theorem differed_first_moves (b : Bool) : ∃ a' : Bool, payoff a' b > payoff b b :=
-  ⟨not b, by cases b <;> decide⟩
 
 end JurisLean.Mandate.MixedPennies

@@ -67,6 +67,8 @@ PENDING_CI_MODULES: dict[str, str] = {
     # the release root and is named on the audit surface, which is how it gets a build.
     "JurisLean.Mandate.ReLUApprox":
         "R-07 ReLU stability carrier, awaiting its first CI module build",
+    "JurisLean.Mandate.MixedPennies":
+        "R-03 mixed-strategy equilibrium instance, awaiting its first CI module build",
 }
 
 ALLOWED_UNREACHABLE = {**STANDALONE_DRIVERS, **PENDING_CI_MODULES}

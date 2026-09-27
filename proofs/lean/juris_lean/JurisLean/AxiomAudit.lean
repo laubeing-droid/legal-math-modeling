@@ -41,6 +41,7 @@ import JurisLean.Mandate.Waterfall
 
 import JurisLean.Mandate.CaseIsomorphism
 import JurisLean.Mandate.ReLUApprox
+import JurisLean.Mandate.MixedPennies
 
 /-! Axiom audit for formal core release v1. -/
 
@@ -579,6 +580,16 @@ open HornSystem
 #print axioms JurisLean.Mandate.MatrixGame.pennies_gap_strict
 #print axioms JurisLean.Mandate.MatrixGame.pennies_no_pure_value
 #print axioms JurisLean.Mandate.MatrixGame.upper_monotone_column
+#print axioms JurisLean.Mandate.MixedPennies.col_guaranteed
+#print axioms JurisLean.Mandate.MixedPennies.four_half
+#print axioms JurisLean.Mandate.MixedPennies.mixedNash_uniform
+#print axioms JurisLean.Mandate.MixedPennies.no_pure_pair_is_equilibrium
+#print axioms JurisLean.Mandate.MixedPennies.payoff_symm
+#print axioms JurisLean.Mandate.MixedPennies.row_held
+#print axioms JurisLean.Mandate.MixedPennies.two_half
+#print axioms JurisLean.Mandate.MixedPennies.u_eq
+#print axioms JurisLean.Mandate.MixedPennies.uniform_is_a_mixture
+#print axioms JurisLean.Mandate.MixedPennies.value_at_uniform
 #print axioms JurisLean.Mandate.ReLUApprox.h1_between
 #print axioms JurisLean.Mandate.ReLUApprox.h2_between
 #print axioms JurisLean.Mandate.ReLUApprox.lip_eq

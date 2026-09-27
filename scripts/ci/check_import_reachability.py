@@ -53,8 +53,12 @@ STANDALONE_DRIVERS: dict[str, str] = {
 
 # Written on branch ci/mandate-wave1: a module may not reach the release root
 # before its own CI module build passes, so it is quarantined here with a reason.
+# The reason is a live claim, not a label: these fifteen were `CI_NOT_RUN` until
+# run 36293474352, where `lean-full-clean-build` built every one of them, and they
+# are named by 127 generated `#print axioms` targets in `AxiomAudit.lean`. What is
+# still outstanding is the root join itself.
 PENDING_CI_MODULES: dict[str, str] = {
-    f"JurisLean.Mandate.{name}": "written on ci/mandate-wave1, CI_NOT_RUN"
+    f"JurisLean.Mandate.{name}": "built green in CI run 36293474352; awaiting root join"
     for name in (
         "Kernel",
         "CohortRate",

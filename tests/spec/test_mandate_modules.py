@@ -6,13 +6,16 @@ game theory existed as Python contracts, registry rows, or `rfl` identities over
 record fields. These four modules answer that with real, quantified theorems.
 
 The gate exists to stop the opposite failure — a new file becoming a new
-over-claim. So it checks both directions: the mathematics is there, and the
-bookkeeping still says it is unverified.
+over-claim. So it checks both directions: the mathematics is there, and every
+promotion (audit surface, release root) is tied to the CI record that earned it.
 """
 
 from __future__ import annotations
 
+import importlib.util
 import re
+import sys
+from functools import lru_cache
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -21,6 +24,22 @@ ROOT_MODULE = PKG.parent / "JurisLean.lean"
 AUDIT = PKG / "AxiomAudit.lean"
 REGISTRY = ROOT / "theory" / "spec" / "p_registry.json"
 LEDGER = ROOT / "docs" / "master-plan" / "03_证明战役台账.md"
+
+
+@lru_cache(maxsize=1)
+def _quarantine() -> dict[str, str]:
+    """The reachability script owns the quarantine list; read it, never copy it."""
+    spec = importlib.util.spec_from_file_location(
+        "_reach", ROOT / "scripts" / "ci" / "check_import_reachability.py"
+    )
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return dict(module.PENDING_CI_MODULES)
+
+
+def _pending_reason(mod: str) -> str:
+    assert mod in _quarantine(), f"{mod} left the quarantine list without a record"
+    return _quarantine()[mod]
 
 # mandate item -> (module, theorems that must exist, concept it serves)
 # mandate item -> (module, theorems that must exist, concept it serves)
@@ -278,14 +297,27 @@ def test_mandate_modules_prove_general_statements_not_witnesses() -> None:
             assert re.search(r"[({]|∀", rest), f"{item}::{name} binds no variable"
 
 
-def test_mandate_modules_are_not_claimed_as_verified() -> None:
-    """They may not enter the root or the audit surface before a CI module build."""
+def test_mandate_modules_reach_the_audit_surface_only_after_a_ci_build() -> None:
+    """Quarantine encodes a precondition, not permanent exile.
+
+    Until run 36293474352 no mandate module had been elaborated by `lake build`, so
+    the audit surface had to stay empty: printing axioms for a theorem nobody
+    compiled would have made "axiom audit green" mean less, not more. That build is
+    now on file, so the invariant is the conditional it was always meant to be --
+    a module may appear in `AxiomAudit.lean` only if the quarantine record names
+    the CI run that built it. The release root is still closed to them.
+    """
     root_text = ROOT_MODULE.read_text(encoding="utf-8")
     audit_text = AUDIT.read_text(encoding="utf-8")
     for item, (rel, _req, _concept) in MODULES.items():
         mod = "JurisLean." + rel[:-5].replace("/", ".")
         assert f"import {mod}" not in root_text, f"{item} reached the release root"
-        assert mod not in audit_text, f"{item} reached the axiom-audit surface"
+        if mod in audit_text:
+            reason = _pending_reason(mod)
+            assert re.search(r"built green in CI run \d{9,}", reason), (
+                f"{item} is on the axiom-audit surface while its quarantine reason "
+                f"records no build: {reason!r}"
+            )
 
 
 def test_ledger_records_the_mandate_wave_as_pending_ci() -> None:

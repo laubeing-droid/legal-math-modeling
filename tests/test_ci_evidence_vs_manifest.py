@@ -30,10 +30,16 @@ def certificates() -> list[dict]:
     out = []
     for path in sorted(glob.glob(str(EVIDENCE / "*" / "*" / "formal-release-certificate.json"))):
         doc = json.loads(Path(path).read_text(encoding="utf-8"))
-        doc["_rel"] = str(Path(path).relative_to(ROOT)).replace("\\", "/")
+        rel = str(Path(path).relative_to(ROOT)).replace("\\", "/")
+        doc["_rel"] = rel
+        doc["_run_id"] = re.search(r"ci-evidence/(\d+)/", rel).group(1)
         out.append(doc)
     assert out, "no release certificate has been landed yet"
     return out
+
+
+def run_id_of(cert: dict) -> str:
+    return cert["_run_id"]
 
 
 def _git_show(subject: str, rel: str) -> bytes | None:
@@ -121,24 +127,55 @@ def test_certificate_states_its_own_limits() -> None:
         assert cert["status"].startswith("RELEASE_"), cert["status"]
 
 
-def test_the_ci_certified_scope_is_smaller_than_the_declared_package_scope() -> None:
-    """The point of landing the certificate: scope honesty, in digits.
+def _package_paths_at(subject: str) -> set[str]:
+    """Every `JurisLean/**/*.lean` path in a commit -- one `ls-tree`, no compiling."""
 
-    The certificate at the audited subject names 96 files / 506 declarations, while
-    the manifest's `juris_lean_package` scope counts hundreds more. If the two ever
-    converge, this assertion is the place that has to be re-read, not a footnote.
+    proc = subprocess.run(
+        ["git", "ls-tree", "-r", "--name-only", subject, "--",
+         "proofs/lean/juris_lean/JurisLean"],
+        cwd=ROOT, capture_output=True, text=True, encoding="utf-8",
+    )
+    assert proc.returncode == 0, proc.stderr[:200]
+    return {line for line in proc.stdout.splitlines() if line.endswith(".lean")}
+
+
+def test_the_ci_certified_scope_covers_the_recursive_package_scope() -> None:
+    """The certificate must name the tree it claims to inventory.
+
+    The two certificates from the audited commits list 96 files where their own
+    subjects contained 202 -- the generator walked `JurisLean/*.lean`
+    non-recursively, and the papers drew scope conclusions from a count that
+    silently meant something narrower. The certificate from run 36293474352 lists
+    all 217 files that subject contains, which is the fix being pinned here.
+
+    Checked per certificate against *its own* subject, so the gate does not go red
+    merely because HEAD has moved past a certified commit.
     """
 
-    inv = json.loads(
-        (ROOT / "docs/formal-release/theorem_inventory_v3.json").read_text(encoding="utf-8")
-    )
-    by_path = {f["path"]: f for f in inv["files"]}
-    package_theorems = sum(
-        by_path[p]["theorem_count"] for p in inv["scopes"]["juris_lean_package"]
-    )
+    newest = max(certificates(), key=lambda c: int(run_id_of(c)))
     for cert in certificates():
-        certified = cert["source_inventory"]["theorem_declaration_count"]
-        assert certified < package_theorems, (
-            f"{cert['_rel']} certifies {certified} of {package_theorems}: "
-            "the scopes now coincide, re-check what each one means before citing either"
+        sources = cert["source_inventory"]["sources"]
+        listed = {e["path"] for e in sources}
+        assert len(listed) == len(sources), f"{cert['_rel']} lists a path twice"
+        assert cert["source_inventory"]["lean_source_file_count"] == len(listed), (
+            f"{cert['_rel']} counts {cert['source_inventory']['lean_source_file_count']} "
+            f"files while enumerating {len(listed)}"
         )
+        counted = sum(len(e["theorems"]) for e in sources)
+        declared = cert["source_inventory"]["theorem_declaration_count"]
+        assert declared == counted, f"{cert['_rel']} totals {declared} but lists {counted}"
+
+        newest_run = run_id_of(newest)
+        actual = _package_paths_at(cert["subject"]["sha"])
+        missing = sorted(actual - listed)
+        if run_id_of(cert) == newest_run:
+            assert not missing, (
+                f"the newest certificate still omits {len(missing)} package files, "
+                f"starting {missing[:3]}"
+            )
+        else:
+            assert missing, (
+                f"{cert['_rel']} is historical evidence of the non-recursive walk; if it "
+                "now covers everything, it no longer documents that defect"
+            )
+            assert len(listed) < len(actual)

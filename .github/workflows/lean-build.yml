@@ -197,6 +197,11 @@ jobs:
 
         (cd "$LEAN_DIR" && lake env lean JurisLean/AxiomAudit.lean) > axiom-audit.raw.txt 2>&1
 
+        # Read what the kernel said. The count is taken from the audit file itself,
+        # never copied here, so an audit that prints nothing cannot pass.
+        AUDIT_TARGETS=$(grep -c '^#print axioms' "$LEAN_DIR/JurisLean/AxiomAudit.lean")
+        python scripts/ci/check_axiom_audit_log.py --log axiom-audit.raw.txt --check --min-targets "$AUDIT_TARGETS" --json work/seven-lean/axiom-audit.json
+
         (cd "$LEAN_DIR" && lake env lean JurisLean/BusinessRoot/RootAudit.lean) > work/seven-lean/legacy-root-environment.log
         2>&1
 

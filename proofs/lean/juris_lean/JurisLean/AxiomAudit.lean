@@ -23,6 +23,22 @@ import JurisLean.FullMath.Probability.SplitNoLeak
 import JurisLean.FullMath.Probability.UnprocessedMass
 import JurisLean.FullMath.Probability.VariableElimination
 
+import JurisLean.Mandate.CohortInterval
+import JurisLean.Mandate.CohortRate
+import JurisLean.Mandate.DerivedCertificate
+import JurisLean.Mandate.Disclosure
+import JurisLean.Mandate.GameTree
+import JurisLean.Mandate.GateTable
+import JurisLean.Mandate.Kernel
+import JurisLean.Mandate.LinearScorer
+import JurisLean.Mandate.MatrixGame
+import JurisLean.Mandate.RouteDecision
+import JurisLean.Mandate.SourceRank
+import JurisLean.Mandate.StructureInvariants
+import JurisLean.Mandate.SubstrAdmission
+import JurisLean.Mandate.TaxSlices
+import JurisLean.Mandate.Waterfall
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -451,3 +467,136 @@ open HornSystem
 #print axioms JurisLean.FullMath.Probability.upd_eq_exclSeen
 #print axioms JurisLean.FullMath.Probability.upd_self
 #print axioms JurisLean.FullMath.Probability.upd_swap
+
+/-! Generated mandate-layer audit surface. Regenerate with
+      scripts/ci/generate_probability_audit_surface.py --write
+    These declarations are elaborated by the all-module CI plan but were
+    absent from the release audit surface; the block is generated from the
+    declaration sites, so it cannot name a theorem that does not exist. -/
+#print axioms JurisLean.Mandate.CohortInterval.high_le_added_success
+#print axioms JurisLean.Mandate.CohortInterval.high_num_le_den
+#print axioms JurisLean.Mandate.CohortInterval.intervalOf_defined
+#print axioms JurisLean.Mandate.CohortInterval.intervalOf_none_without_cohort
+#print axioms JurisLean.Mandate.CohortInterval.interval_of_empty_successes_legal
+#print axioms JurisLean.Mandate.CohortInterval.low_antitone_in_size
+#print axioms JurisLean.Mandate.CohortInterval.low_le_added_success
+#print axioms JurisLean.Mandate.CohortInterval.low_le_high
+#print axioms JurisLean.Mandate.CohortInterval.low_num_le_den
+#print axioms JurisLean.Mandate.CohortInterval.low_num_lt_high_num
+#print axioms JurisLean.Mandate.CohortRate.addedFailure_le_rate
+#print axioms JurisLean.Mandate.CohortRate.rateOfCohort_defined
+#print axioms JurisLean.Mandate.CohortRate.rateOfCohort_none_iff
+#print axioms JurisLean.Mandate.CohortRate.rateOfCohort_num_le_den
+#print axioms JurisLean.Mandate.CohortRate.rate_le_addedSuccess
+#print axioms JurisLean.Mandate.DerivedCertificate.admits_iff
+#print axioms JurisLean.Mandate.DerivedCertificate.approx_closed
+#print axioms JurisLean.Mandate.DerivedCertificate.approx_damped
+#print axioms JurisLean.Mandate.DerivedCertificate.approx_error_eq_computedBound
+#print axioms JurisLean.Mandate.DerivedCertificate.approx_zero
+#print axioms JurisLean.Mandate.DerivedCertificate.certificate_bound_is_computed
+#print axioms JurisLean.Mandate.DerivedCertificate.not_admits_negative
+#print axioms JurisLean.Mandate.DerivedCertificate.pow_damped
+#print axioms JurisLean.Mandate.DerivedCertificate.pow_nonneg_of_nonneg
+#print axioms JurisLean.Mandate.DerivedCertificate.rather
+#print axioms JurisLean.Mandate.Disclosure.compliant_concrete
+#print axioms JurisLean.Mandate.Disclosure.compliant_true_iff_covers
+#print axioms JurisLean.Mandate.Disclosure.covers_nil_recorded
+#print axioms JurisLean.Mandate.Disclosure.not_covers_empty_registry
+#print axioms JurisLean.Mandate.Disclosure.occurs_append
+#print axioms JurisLean.Mandate.Disclosure.occurs_head
+#print axioms JurisLean.Mandate.Disclosure.occurs_monotone
+#print axioms JurisLean.Mandate.GameTree.leaves_leaf
+#print axioms JurisLean.Mandate.GameTree.leaves_node
+#print axioms JurisLean.Mandate.GameTree.value_attains
+#print axioms JurisLean.Mandate.GameTree.value_ge_of_mem
+#print axioms JurisLean.Mandate.GameTree.value_ignores_payoff_renaming_when_dominated
+#print axioms JurisLean.Mandate.GameTree.value_le_value_left
+#print axioms JurisLean.Mandate.GameTree.value_le_value_right
+#print axioms JurisLean.Mandate.GameTree.value_leaf
+#print axioms JurisLean.Mandate.GameTree.value_node
+#print axioms JurisLean.Mandate.GateTable.gate_coverage_total
+#print axioms JurisLean.Mandate.GateTable.gate_exists_unique
+#print axioms JurisLean.Mandate.GateTable.gate_iff_table
+#print axioms JurisLean.Mandate.GateTable.gate_ne_true_of_ne
+#print axioms JurisLean.Mandate.GateTable.gate_table_no_duplicates
+#print axioms JurisLean.Mandate.GateTable.gates_pairwise_distinct
+#print axioms JurisLean.Mandate.Kernel.best_le_best_append
+#print axioms JurisLean.Mandate.Kernel.le_max_l
+#print axioms JurisLean.Mandate.Kernel.le_max_r
+#print axioms JurisLean.Mandate.Kernel.max_zero
+#print axioms JurisLean.Mandate.Kernel.rate_le_self
+#print axioms JurisLean.Mandate.Kernel.rate_num_le_den
+#print axioms JurisLean.Mandate.Kernel.sig3_edges_le_sum
+#print axioms JurisLean.Mandate.Kernel.sig3_fst_le_sum
+#print axioms JurisLean.Mandate.Kernel.sig3_relabel_edges
+#print axioms JurisLean.Mandate.Kernel.sig3_relabel_fst
+#print axioms JurisLean.Mandate.Kernel.sig3_relabel_snd
+#print axioms JurisLean.Mandate.Kernel.sig3_sum
+#print axioms JurisLean.Mandate.Kernel.successes_le_length
+#print axioms JurisLean.Mandate.LinearScorer.not_predicts_of_neg
+#print axioms JurisLean.Mandate.LinearScorer.predicts_scaled_positive
+#print axioms JurisLean.Mandate.LinearScorer.predicts_true_of_nonneg
+#print axioms JurisLean.Mandate.LinearScorer.score_cons
+#print axioms JurisLean.Mandate.LinearScorer.score_nil_features
+#print axioms JurisLean.Mandate.LinearScorer.score_nil_weights
+#print axioms JurisLean.Mandate.LinearScorer.score_nonneg_of_allNonNeg
+#print axioms JurisLean.Mandate.LinearScorer.score_not_constant
+#print axioms JurisLean.Mandate.LinearScorer.score_zero_weights
+#print axioms JurisLean.Mandate.MatrixGame.coordination_has_pure_value
+#print axioms JurisLean.Mandate.MatrixGame.gap_bounded_by_spread
+#print axioms JurisLean.Mandate.MatrixGame.hasPureValue_true_iff
+#print axioms JurisLean.Mandate.MatrixGame.lower_le_upper
+#print axioms JurisLean.Mandate.MatrixGame.lower_monotone_first
+#print axioms JurisLean.Mandate.MatrixGame.pennies_gap_strict
+#print axioms JurisLean.Mandate.MatrixGame.pennies_no_pure_value
+#print axioms JurisLean.Mandate.MatrixGame.upper_monotone_column
+#print axioms JurisLean.Mandate.RouteDecision.anyUsable_append
+#print axioms JurisLean.Mandate.RouteDecision.excluded_is_skipped
+#print axioms JurisLean.Mandate.RouteDecision.firstUsable_cons_notUsable
+#print axioms JurisLean.Mandate.RouteDecision.firstUsable_cons_usable
+#print axioms JurisLean.Mandate.RouteDecision.firstUsable_nil
+#print axioms JurisLean.Mandate.RouteDecision.inactive_is_skipped
+#print axioms JurisLean.Mandate.RouteDecision.priority_order_decides
+#print axioms JurisLean.Mandate.RouteDecision.some_of_anyUsable_true
+#print axioms JurisLean.Mandate.RouteDecision.usable_is_found
+#print axioms JurisLean.Mandate.RouteDecision.usable_of_firstUsable_some
+#print axioms JurisLean.Mandate.SourceRank.grade_binding_iff
+#print axioms JurisLean.Mandate.SourceRank.grade_classes_inhabited
+#print axioms JurisLean.Mandate.SourceRank.grade_exhaustive
+#print axioms JurisLean.Mandate.SourceRank.grade_referenceOnly_iff
+#print axioms JurisLean.Mandate.SourceRank.grade_shallRefer_iff
+#print axioms JurisLean.Mandate.SourceRank.grade_single_valued
+#print axioms JurisLean.Mandate.SourceRank.soft_law_never_binding
+#print axioms JurisLean.Mandate.StructureInvariants.discrimination_survives_sum
+#print axioms JurisLean.Mandate.StructureInvariants.relabel_cannot_bridge
+#print axioms JurisLean.Mandate.StructureInvariants.same_labels
+#print axioms JurisLean.Mandate.StructureInvariants.sig3_double
+#print axioms JurisLean.Mandate.StructureInvariants.sig3_le_sum_any
+#print axioms JurisLean.Mandate.StructureInvariants.signatures_differ
+#print axioms JurisLean.Mandate.StructureInvariants.sum_signature_third
+#print axioms JurisLean.Mandate.SubstrAdmission.isPrefix_false_of_longer
+#print axioms JurisLean.Mandate.SubstrAdmission.isPrefix_refl
+#print axioms JurisLean.Mandate.SubstrAdmission.isSubstr_nil_pat
+#print axioms JurisLean.Mandate.SubstrAdmission.isSubstr_of_isPrefix
+#print axioms JurisLean.Mandate.SubstrAdmission.isSubstr_self
+#print axioms JurisLean.Mandate.SubstrAdmission.prefix_adequate_for_admission
+#print axioms JurisLean.Mandate.SubstrAdmission.substr_strictly_weaker
+#print axioms JurisLean.Mandate.TaxSlices.remainingOf_exhausted
+#print axioms JurisLean.Mandate.TaxSlices.remainingOf_le_start
+#print axioms JurisLean.Mandate.TaxSlices.taxOf_append
+#print axioms JurisLean.Mandate.TaxSlices.taxOf_capped
+#print axioms JurisLean.Mandate.TaxSlices.taxOf_empty_table
+#print axioms JurisLean.Mandate.TaxSlices.taxOf_prefix_le
+#print axioms JurisLean.Mandate.TaxSlices.taxOf_single
+#print axioms JurisLean.Mandate.TaxSlices.taxOf_two_brackets
+#print axioms JurisLean.Mandate.TaxSlices.taxOf_zero_base
+#print axioms JurisLean.Mandate.Waterfall.allocate_concrete
+#print axioms JurisLean.Mandate.Waterfall.allocate_concrete_overshoot
+#print axioms JurisLean.Mandate.Waterfall.allocate_concrete_remainder
+#print axioms JurisLean.Mandate.Waterfall.allocate_cons
+#print axioms JurisLean.Mandate.Waterfall.allocate_no_debts
+#print axioms JurisLean.Mandate.Waterfall.allocate_not_constant
+#print axioms JurisLean.Mandate.Waterfall.conservation
+#print axioms JurisLean.Mandate.Waterfall.paidOut_cons
+#print axioms JurisLean.Mandate.Waterfall.paidOut_le_payment
+#print axioms JurisLean.Mandate.Waterfall.paidOut_nil

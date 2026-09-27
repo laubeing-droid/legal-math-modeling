@@ -16,11 +16,17 @@ preserve — which is what makes "these two are not isomorphic" a theorem rather
 impression.
 
 What is deliberately NOT claimed: that a decision procedure exists here, nor that
-agreeing invariants imply isomorphism. Enumerating the bijections of an n-slot
-structure needs a reindexing or counting lemma over `Fin`; the pinned Mathlib commit
-has the lemmas but this repository has no green precedent for their exact forms, and
-guessing them is the failure mode this audit was written to catch. The residual is
-recorded as R-09 in `docs/master-plan/03_证明战役台账.md`.
+agreeing invariants imply isomorphism. `isoRel3` below is a *candidate* test: a `true`
+answer is a certificate, since `rel3Iso_of_preserves` turns it into a bijection, while a
+`false` answer says only that none of the six renamings carried the relation. Reading
+`false` as "not isomorphic" needs one more fact, that these six are all the bijections of
+three slots. That enumeration is decidable rather than hard: the pinned Mathlib carries
+`Fintype.decidableForallFintype` and `Fintype.decidableEqEquivFintype`
+(`Mathlib/Data/Fintype/Defs.lean`) and `Equiv.ofBijective`
+(`Mathlib/Logic/Equiv/Defs.lean`), which are exactly what a `decide` over
+`Equiv.Perm (Fin 3)` and the reverse direction would consume. They are named here, not
+used: this file has no compiled precedent for that `decide`, so the residual stays booked
+as R-09 in `docs/master-plan/03_证明战役台账.md` and the claim stops short.
 
 Status: imported by the release root and named by `AxiomAudit.lean`; built green
 in CI run 36307416556 (subject cf3214d62), whose audit output names these nine

@@ -969,7 +969,9 @@
     "JurisLean.Mandate.MatrixGame.pennies_gap_strict",
     "JurisLean.Mandate.MatrixGame.pennies_no_pure_value",
     "JurisLean.Mandate.MatrixGame.upper_monotone_column",
+    "JurisLean.Mandate.MixedPennies.agreed_second_moves",
     "JurisLean.Mandate.MixedPennies.col_guaranteed",
+    "JurisLean.Mandate.MixedPennies.differed_first_moves",
     "JurisLean.Mandate.MixedPennies.four_half",
     "JurisLean.Mandate.MixedPennies.mixedNash_uniform",
     "JurisLean.Mandate.MixedPennies.no_pure_pair_is_equilibrium",
@@ -1045,8 +1047,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "893b185c3df44c4904fa5efee7b842277168e8a3c039eea7fb7dba77ef1e7d8c",
-   "size_bytes": 41474,
+   "sha256": "59897e2de60aa826ee6c2719a487914c68e4379f33c3ad58c91854023adff9e0",
+   "size_bytes": 41605,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -15099,6 +15101,14 @@
     {
      "kind": "theorem",
      "name": "no_pure_pair_is_equilibrium"
+    },
+    {
+     "kind": "theorem",
+     "name": "agreed_second_moves"
+    },
+    {
+     "kind": "theorem",
+     "name": "differed_first_moves"
     }
    ],
    "imports": [
@@ -15107,10 +15117,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/MixedPennies.lean",
    "print_axioms_targets": [],
-   "sha256": "b08b0ab2b52d22e9015f1c1c9edd902602844b5bbe2e0f68f87e66f75f1ced72",
-   "size_bytes": 5762,
-   "theorem_count": 10,
-   "theorem_count_bol_convention": 10
+   "sha256": "8820e0f02dac456554331e91e9433336181eff81241ea41b0dee9887acfe08cf",
+   "size_bytes": 6527,
+   "theorem_count": 12,
+   "theorem_count_bol_convention": 12
   },
   {
    "declarations": [
@@ -19510,22 +19520,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1967,
+   "counted_declaration_count": 1969,
    "file_count": 235,
    "lemma_count": 24,
-   "print_axioms_command_count": 832,
-   "print_axioms_distinct_targets": 778,
-   "theorem_count": 1943,
-   "theorem_count_bol_convention": 1907
+   "print_axioms_command_count": 834,
+   "print_axioms_distinct_targets": 780,
+   "theorem_count": 1945,
+   "theorem_count_bol_convention": 1909
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1948,
+   "counted_declaration_count": 1950,
    "file_count": 220,
    "lemma_count": 17,
-   "print_axioms_command_count": 832,
-   "print_axioms_distinct_targets": 778,
-   "theorem_count": 1931,
-   "theorem_count_bol_convention": 1895
+   "print_axioms_command_count": 834,
+   "print_axioms_distinct_targets": 780,
+   "theorem_count": 1933,
+   "theorem_count_bol_convention": 1897
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -20037,19 +20047,24 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "ed9bafbacfb8f24b92f5040ac41f88057f214e21030d621a2dc31aab7db8a1eb",
+ "source_inventory_digest": "8aef8fe40a6d9333e768517d3f1fe9962d6a698ad7ccc126493b47c60b1b5b24",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "80f3df5e29b11ff5ace36daea2354f52fe54830e",
-  "tree": "cc2c20119c6b4ec6f1aefcbd49071b8cf61eb31c"
+  "commit": "799751351ec6aeeb58d0853e87a67fcbcf85e0ab",
+  "tree": "9f30572c58fa95d87a867bcbd9b7f9c5edfbd2d1"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 235,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

@@ -21,8 +21,8 @@ open; this module replaces "no game structure at all" with "game structure
 present, solution concept absent", which is a different and smaller gap.
 
 Status: imported by the release root and named by `AxiomAudit.lean`; built green
-in CI run 36297146468 (subject 304194cc5). Commits after that subject do not
-inherit the verdict.
+in CI run 36298572193 (subject 0574e2ae4), the first round whose root itself
+elaborates this module. Commits after that subject do not inherit the verdict.
 -/
 
 namespace JurisLean.Mandate.GameTree

@@ -33,8 +33,11 @@ without guessing where it came from.
 | 36258901155 | success | `bd364c5` | main | push | 7/8 | 10 | paper_cn.md, paper_en.md |
 | 36259479766 | success | `b57d4aa` | main | push | 7/8 | 10 | 03_证明战役台账.md |
 | 36285858369 | failure | `a2565b4` | ci/mandate-wave1 | push | 1/8 | 4 | 03_证明战役台账.md |
+| 36289822066 | failure | `90f0c3e` | ci/mandate-wave1 | push | 2/8 | 6 | 03_证明战役台账.md |
+| 36290409329 | failure | `6505cc4` | ci/mandate-wave1 | push | 2/8 | 6 | 03_证明战役台账.md |
+| 36291053225 | failure | `05c78a5` | ci/mandate-wave1 | push | 2/8 | 6 | 03_证明战役台账.md |
 
-Runs not concluding `success`: 10 — 34512426708, 34514241309, 34516894406, 34517689336, 34519379252, 35819869335, 35832550717, 36116094791, 36258179200, 36285858369.
+Runs not concluding `success`: 13 — 34512426708, 34514241309, 34516894406, 34517689336, 34519379252, 35819869335, 35832550717, 36116094791, 36258179200, 36285858369, 36289822066, 36290409329, 36291053225.
 
 `jobs ok/total` is there because a run-level conclusion and a job-level one
 differ: a run can end `cancelled` while every job a document names succeeded,

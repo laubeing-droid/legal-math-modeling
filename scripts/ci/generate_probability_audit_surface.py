@@ -9,7 +9,7 @@ the declaration sites together with their namespace nesting, so a renamed
 theorem re-generates instead of rotting into a dangling audit target.
 
 The same omission recurred for the mandate layer: fifteen modules passed their CI
-build (run 36293474352) while not one of their 127 theorems was named by an audit
+build (run 36293474352) while not one of their 126 theorems was named by an audit
 command, so nothing in CI knew what those proofs rest on. Both surfaces are
 generated here for that reason.
 
@@ -23,6 +23,11 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+try:
+    from scripts.lean_grammar import declarations
+except ImportError:  # run as `python scripts/ci/<this>.py`: sys.path[0] is scripts/ci
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from lean_grammar import declarations
 PKG = ROOT / "proofs" / "lean" / "juris_lean" / "JurisLean"
 AUDIT = PKG / "AxiomAudit.lean"
 
@@ -43,22 +48,19 @@ DECL = re.compile(r"^(?:@\[[^\]]*\][ \t]*)*(?:theorem|lemma)\s+([^\s(:{]+)")
 
 
 def names_in(rel: str) -> list[str]:
-    """Fully qualified declaration names in one file, honouring namespace nesting."""
-    ns: list[str] = []
-    out: list[str] = []
-    for line in (PKG / rel).read_text(encoding="utf-8").splitlines():
-        head = re.match(r"^namespace (\S+)", line)
-        if head:
-            ns.append(head.group(1))
-            continue
-        tail = re.match(r"^end (\S+)", line)
-        if tail and ns and tail.group(1) == ns[-1]:
-            ns.pop()
-            continue
-        decl = DECL.match(line)
-        if decl:
-            out.append(".".join(ns + [decl.group(1)]))
-    return out
+    """Fully qualified theorem/lemma names in one file.
+
+    Delegates to `scripts/lean_grammar.py`, which strips comments before matching.
+    An earlier version scanned raw lines here, and a doc comment whose second line
+    happened to begin with the word `lemma` became an audit target: CI run
+    36296061840 then failed on `Unknown constant
+    'JurisLean.Mandate.DerivedCertificate.rather'`, the next word in that sentence.
+    """
+    text = (PKG / rel).read_text(encoding="utf-8")
+    return [
+        d["name"] for d in declarations(text, namespace=True)
+        if d["keyword"] in ("theorem", "lemma")
+    ]
 
 
 def surface_modules(directory: str) -> list[str]:

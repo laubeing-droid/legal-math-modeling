@@ -106,9 +106,42 @@ def test_the_mandate_layer_is_now_on_the_audit_surface():
         line.split()[-1] for line in text.splitlines() if line.startswith("#print axioms")
     }
     mandate = {n for n in printed if n.startswith("JurisLean.Mandate.")}
-    assert len(mandate) == 127, f"mandate audit surface is {len(mandate)} targets"
+    assert len(mandate) == 126, f"mandate audit surface is {len(mandate)} targets"
     assert "JurisLean.Mandate.GameTree.value_attains" in mandate
     assert "JurisLean.Mandate.MatrixGame.hasPureValue_true_iff" in mandate
+
+
+def test_the_surface_names_no_comment_text():
+    """Every target on the surface must be a declaration the source really makes.
+
+    The first version of this surface scanned raw lines, and a doc comment whose
+    continuation began with the word `lemma` produced the target
+    `JurisLean.Mandate.DerivedCertificate.rather`, which CI 36296061840 rejected as
+    an unknown constant.
+    """
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from lean_grammar import declarations
+
+    audit = ROOT / "proofs" / "lean" / "juris_lean" / "JurisLean" / "AxiomAudit.lean"
+    printed = {
+        line.split()[-1]
+        for line in audit.read_text(encoding="utf-8").splitlines()
+        if line.startswith("#print axioms")
+    }
+    real: set[str] = set()
+    for path in audit.parent.rglob("*.lean"):
+        real |= {
+            d["name"]
+            for d in declarations(path.read_text(encoding="utf-8"), namespace=True)
+            if d["keyword"] in ("theorem", "lemma")
+        }
+    # Only qualified names are checkable this way: the hand-written lines predating
+    # the generator name theorems by their short form, which Lean resolves through
+    # the `open` namespaces in scope at that point in the file.
+    qualified = {n for n in printed if "." in n}
+    assert qualified, "every audit target is unqualified, so this check tests nothing"
+    ghosts = sorted(qualified - real)
+    assert not ghosts, f"audit surface names declarations that do not exist: {ghosts[:5]}"
 
 
 @pytest.mark.parametrize("module", ["Kernel", "GameTree", "MatrixGame", "Waterfall"])

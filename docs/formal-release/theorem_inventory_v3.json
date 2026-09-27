@@ -887,7 +887,6 @@
     "JurisLean.Mandate.DerivedCertificate.not_admits_negative",
     "JurisLean.Mandate.DerivedCertificate.pow_damped",
     "JurisLean.Mandate.DerivedCertificate.pow_nonneg_of_nonneg",
-    "JurisLean.Mandate.DerivedCertificate.rather",
     "JurisLean.Mandate.Disclosure.compliant_concrete",
     "JurisLean.Mandate.Disclosure.compliant_true_iff_covers",
     "JurisLean.Mandate.Disclosure.covers_nil_recorded",
@@ -997,8 +996,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "597b99133f7f02763dc066db38914739cb85aabdce68ee52f640e003c800e49c",
-   "size_bytes": 38548,
+   "sha256": "6a681af29245192da52df85817178c2c1b51f9b37126246e8923f0cb01d711d8",
+   "size_bytes": 38490,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -19110,9 +19109,7 @@
   }
  ],
  "gaps": {
-  "audit_targets_with_no_matching_declaration": [
-   "JurisLean.Mandate.DerivedCertificate.rather"
-  ],
+  "audit_targets_with_no_matching_declaration": [],
   "note": "Declaration kinds counted as proved statements are theorem/lemma; `def`, `structure` and `inductive` are carriers, not proofs."
  },
  "generated_by": "scripts/ci/generate_theorem_manifest.py",
@@ -19129,8 +19126,8 @@
    "counted_declaration_count": 1921,
    "file_count": 232,
    "lemma_count": 24,
-   "print_axioms_command_count": 787,
-   "print_axioms_distinct_targets": 733,
+   "print_axioms_command_count": 786,
+   "print_axioms_distinct_targets": 732,
    "theorem_count": 1897,
    "theorem_count_bol_convention": 1861
   },
@@ -19138,8 +19135,8 @@
    "counted_declaration_count": 1902,
    "file_count": 217,
    "lemma_count": 17,
-   "print_axioms_command_count": 787,
-   "print_axioms_distinct_targets": 733,
+   "print_axioms_command_count": 786,
+   "print_axioms_distinct_targets": 732,
    "theorem_count": 1885,
    "theorem_count_bol_convention": 1849
   },
@@ -19647,19 +19644,24 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "8e7d49118b7c0986365a0c36419a263c914f381f8a52403337e1d7cc3bfc2a97",
+ "source_inventory_digest": "3887086b28c52300109d069e5ad0a9a9a2b55b3a112df9e9cc433962bfae9605",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "a1244175eb38ed7e409a27133a8817206e8b80bc",
-  "tree": "5b46854f00c69769ac8e72f9c9730154a61d1d07"
+  "commit": "d7efe216ff0671061625deb2f7d34330fab1a1a8",
+  "tree": "f5caa947fecda0de0e300af35c5b72eb01913c7e"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 232,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

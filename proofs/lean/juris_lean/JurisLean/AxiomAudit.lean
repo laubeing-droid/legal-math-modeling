@@ -497,7 +497,6 @@ open HornSystem
 #print axioms JurisLean.Mandate.DerivedCertificate.not_admits_negative
 #print axioms JurisLean.Mandate.DerivedCertificate.pow_damped
 #print axioms JurisLean.Mandate.DerivedCertificate.pow_nonneg_of_nonneg
-#print axioms JurisLean.Mandate.DerivedCertificate.rather
 #print axioms JurisLean.Mandate.Disclosure.compliant_concrete
 #print axioms JurisLean.Mandate.Disclosure.compliant_true_iff_covers
 #print axioms JurisLean.Mandate.Disclosure.covers_nil_recorded

@@ -51,32 +51,16 @@ STANDALONE_DRIVERS: dict[str, str] = {
     "JurisLean.FullMath.CompletionAudit": "generated completion audit",
 }
 
-# Written on branch ci/mandate-wave1: a module may not reach the release root
-# before its own CI module build passes, so it is quarantined here with a reason.
-# The reason is a live claim, not a label: these fifteen were `CI_NOT_RUN` until
-# run 36293474352, where `lean-full-clean-build` built every one of them, and they
-# are named by 126 generated `#print axioms` targets in `AxiomAudit.lean`. What is
-# still outstanding is the root join itself.
-PENDING_CI_MODULES: dict[str, str] = {
-    f"JurisLean.Mandate.{name}": "built green in CI run 36293474352; awaiting root join"
-    for name in (
-        "Kernel",
-        "CohortRate",
-        "StructureInvariants",
-        "DerivedCertificate",
-        "GameTree",
-        "SourceRank",
-        "GateTable",
-        "SubstrAdmission",
-        "LinearScorer",
-        "Disclosure",
-        "Waterfall",
-        "CohortInterval",
-        "RouteDecision",
-        "TaxSlices",
-        "MatrixGame",
-    )
-}
+# Quarantine for modules whose own CI module build has not passed yet: AGENTS.md
+# forbids a new module reaching the release root before then, so it is listed here
+# with a live reason rather than being left unreachable without record.
+#
+# The mandate wave is empty as of this commit, and the reason it may now be emptied
+# is on file: `lean-full-clean-build` built all fifteen in run 36293474352, and run
+# 36297146468 rebuilt them together with the corrected axiom-audit surface (126 of
+# their theorems are named there). The mechanism stays because the next wave needs
+# it, not because this one is still pending.
+PENDING_CI_MODULES: dict[str, str] = {}
 
 ALLOWED_UNREACHABLE = {**STANDALONE_DRIVERS, **PENDING_CI_MODULES}
 

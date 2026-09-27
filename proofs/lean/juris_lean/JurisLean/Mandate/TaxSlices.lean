@@ -18,7 +18,9 @@ what "每档只税自己的切片" means, and it would be false if the recursion
 original base down instead of the remainder, which is exactly the bug the
 released `P099_progressiveTax3` cannot express.
 
-Status: NOT in `JurisLean.lean`, NOT in `AxiomAudit.lean`; CI_NOT_RUN.
+Status: imported by the release root and named by `AxiomAudit.lean`; built green
+in CI run 36297146468 (subject 304194cc5). Commits after that subject do not
+inherit the verdict.
 -/
 
 namespace JurisLean.Mandate.TaxSlices

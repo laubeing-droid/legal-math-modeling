@@ -19,8 +19,9 @@ mathematical rather than cosmetic: the invariant separates two cases that every
 vocabulary-based retrieval layer must score as identical, and the separation
 survives both merging further material into both sides and renaming every label.
 
-Status: NOT imported by `JurisLean.lean`, NOT in `AxiomAudit.lean`; needs a CI
-module build before it may be cited.
+Status: imported by the release root and named by `AxiomAudit.lean`; built green
+in CI run 36297146468 (subject 304194cc5). Commits after that subject do not
+inherit the verdict.
 -/
 
 namespace JurisLean.Mandate.StructureInvariants

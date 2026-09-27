@@ -23,7 +23,9 @@ rather than inventing an answer. The law "新的一般不覆盖旧的特别" is 
 property of the *table contents*, so a wrong table would produce a wrong result
 instead of a vacuous theorem.
 
-Status: NOT in `JurisLean.lean`, NOT in `AxiomAudit.lean`; CI_NOT_RUN.
+Status: imported by the release root and named by `AxiomAudit.lean`; built green
+in CI run 36297146468 (subject 304194cc5). Commits after that subject do not
+inherit the verdict.
 -/
 
 namespace JurisLean.Mandate.RouteDecision

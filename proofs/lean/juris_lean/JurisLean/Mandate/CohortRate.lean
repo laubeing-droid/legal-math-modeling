@@ -13,9 +13,9 @@ Everything here is exact. A rate is a numerator/denominator pair over `Nat`;
 there is no float and no division, so `≤ₛ` is cross-multiplication and every
 statement stays inside integer arithmetic.
 
-Status: NOT imported by `JurisLean.lean`, NOT in `AxiomAudit.lean`. It must pass
-a CI module build (`mode=changed-module`) before any of it may be cited as
-elaborated.
+Status: imported by the release root and named by `AxiomAudit.lean`; built green
+in CI run 36297146468 (subject 304194cc5). Commits after that subject do not
+inherit the verdict.
 -/
 
 -- Reuses `Kernel` for `Rate`, `successes`, `≤ₛ` and the length bound. A doc comment

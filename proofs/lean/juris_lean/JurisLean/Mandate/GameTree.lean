@@ -20,8 +20,9 @@ establishes existence of one. The mediation-as-Nash-bargaining mandate stays
 open; this module replaces "no game structure at all" with "game structure
 present, solution concept absent", which is a different and smaller gap.
 
-Status: NOT imported by `JurisLean.lean`, NOT in `AxiomAudit.lean`; needs a CI
-module build before it may be cited.
+Status: imported by the release root and named by `AxiomAudit.lean`; built green
+in CI run 36297146468 (subject 304194cc5). Commits after that subject do not
+inherit the verdict.
 -/
 
 namespace JurisLean.Mandate.GameTree

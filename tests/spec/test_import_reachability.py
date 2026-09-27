@@ -80,21 +80,36 @@ def test_allow_list_names_all_exist_and_are_reasoned() -> None:
         assert len(reason) > 8, name
 
 
-def test_mandate_quarantine_is_exactly_the_pending_wave() -> None:
-    """The quarantine covers precisely the Mandate tree, nothing more, nothing less."""
+def test_quarantine_never_shelters_a_promoted_or_missing_module() -> None:
+    """The quarantine is a to-do list, not a hiding place.
+
+    It used to hold the fifteen mandate modules while none of them had been built;
+    run 36297146468 built them and they joined the root, so the list is empty here
+    today. Whatever it holds later, three things must hold with it: every entry is a
+    real file, no entry is imported by the release root (that would make the reason
+    a lie), and no module that is in the root is still listed.
+    """
     on_disk = {
-        f"JurisLean.Mandate.{f.stem}" for f in (PKG / "Mandate").glob("*.lean")
+        f"JurisLean.{p.relative_to(PKG).with_suffix('').as_posix().replace('/', '.')}"
+        for p in PKG.rglob("*.lean")
     }
-    assert set(reach.PENDING_CI_MODULES) == on_disk, (
-        set(reach.PENDING_CI_MODULES) ^ on_disk
-    )
-    assert len(on_disk) >= 10
     root_text = ROOT_MODULE.read_text(encoding="utf-8")
-    for name in reach.PENDING_CI_MODULES:
+    pending = set(reach.PENDING_CI_MODULES)
+    assert pending <= on_disk, f"quarantine names modules that do not exist: {pending - on_disk}"
+    for name in sorted(pending):
         assert f"import {name}" not in root_text, (
             f"{name} entered the release root; remove it from PENDING_CI_MODULES "
             "only together with a CI-verified module build"
         )
+
+    mandate = {f"JurisLean.Mandate.{f.stem}" for f in (PKG / "Mandate").glob("*.lean")}
+    assert len(mandate) >= 10, "the mandate wave should not have shrunk"
+    assert not (mandate & pending), (
+        f"the wave was built in CI 36297146468 and must not stay quarantined: "
+        f"{sorted(mandate & pending)}"
+    )
+    for name in sorted(mandate):
+        assert f"import {name}" in root_text, f"{name} never joined the release root"
 
 
 def test_probability_line_is_now_reachable() -> None:

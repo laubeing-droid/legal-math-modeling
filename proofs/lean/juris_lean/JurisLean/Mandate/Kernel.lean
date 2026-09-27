@@ -15,7 +15,9 @@ once here, and the mandate modules import them instead of restating them. The
 gate in `tests/spec/test_mandate_modules.py` measures the ratio and refuses a
 regression back to one-carrier-per-theorem.
 
-Status: NOT imported by `JurisLean.lean`, NOT in `AxiomAudit.lean`; CI_NOT_RUN.
+Status: imported by the release root and named by `AxiomAudit.lean`; built green
+in CI run 36297146468 (subject 304194cc5). Commits after that subject do not
+inherit the verdict.
 -/
 
 namespace JurisLean.Mandate.Kernel

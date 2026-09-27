@@ -37,10 +37,6 @@ def _quarantine() -> dict[str, str]:
     return dict(module.PENDING_CI_MODULES)
 
 
-def _pending_reason(mod: str) -> str:
-    assert mod in _quarantine(), f"{mod} left the quarantine list without a record"
-    return _quarantine()[mod]
-
 # mandate item -> (module, theorems that must exist, concept it serves)
 # mandate item -> (module, theorems that must exist, concept it serves)
 MODULES: dict[str, tuple[str, tuple[str, ...], str]] = {
@@ -297,27 +293,39 @@ def test_mandate_modules_prove_general_statements_not_witnesses() -> None:
             assert re.search(r"[({]|∀", rest), f"{item}::{name} binds no variable"
 
 
-def test_mandate_modules_reach_the_audit_surface_only_after_a_ci_build() -> None:
-    """Quarantine encodes a precondition, not permanent exile.
+CI_RUN = re.compile(r"built green\n?in CI run (\d{9,}) \(subject ([0-9a-f]{7,40})\)")
 
-    Until run 36293474352 no mandate module had been elaborated by `lake build`, so
-    the audit surface had to stay empty: printing axioms for a theorem nobody
-    compiled would have made "axiom audit green" mean less, not more. That build is
-    now on file, so the invariant is the conditional it was always meant to be --
-    a module may appear in `AxiomAudit.lean` only if the quarantine record names
-    the CI run that built it. The release root is still closed to them.
+
+def test_mandate_promotion_follows_build_audit_root_order() -> None:
+    """A module is promoted in steps, and each step must be justified in the source.
+
+    Before run 36293474352 nothing here had been elaborated by `lake build`, so the
+    audit surface had to stay empty and the release root closed. Both have now
+    happened, so the gate holds the *order* rather than the embargo: the release
+    root may not import a module the audit surface does not name, and neither may
+    the module's own header cite a green CI run it cannot name. A module that wants
+    into the root has to say which round built it.
     """
     root_text = ROOT_MODULE.read_text(encoding="utf-8")
     audit_text = AUDIT.read_text(encoding="utf-8")
     for item, (rel, _req, _concept) in MODULES.items():
         mod = "JurisLean." + rel[:-5].replace("/", ".")
-        assert f"import {mod}" not in root_text, f"{item} reached the release root"
-        if mod in audit_text:
-            reason = _pending_reason(mod)
-            assert re.search(r"built green in CI run \d{9,}", reason), (
-                f"{item} is on the axiom-audit surface while its quarantine reason "
-                f"records no build: {reason!r}"
+        header = (PKG / rel).read_text(encoding="utf-8")
+        in_root = f"import {mod}" in root_text
+        in_audit = mod in audit_text
+        assert not in_root or in_audit, (
+            f"{item} is imported by the release root although the axiom-audit "
+            f"surface never names it: promotion order is build -> audit -> root"
+        )
+        if in_root or in_audit:
+            m = CI_RUN.search(header)
+            assert m, (
+                f"{item} is {'in the root' if in_root else 'audited'} but its header "
+                "records no CI run that built it"
             )
+        assert mod not in _quarantine(), (
+            f"{item} is both promoted and quarantined; retire the quarantine reason"
+        )
 
 
 def test_ledger_records_the_mandate_wave_as_pending_ci() -> None:
@@ -363,8 +371,15 @@ def test_mandate_modules_reuse_the_kernel_instead_of_restating_it() -> None:
         assert owners == ["Kernel.lean"], f"{decl!r} declared in {owners}, not only in the kernel"
 
 
-def test_quarantine_matches_the_module_table_exactly() -> None:
-    """Every mandate module is quarantined, and nothing else is."""
+def test_quarantine_is_empty_because_the_wave_was_promoted() -> None:
+    """The quarantine may not be used to park a module once CI built it.
+
+    This table used to list all fifteen mandate modules, which was correct while no
+    `lake build` had ever elaborated them. Run 36297146468 built them with the
+    corrected audit surface, so they were promoted and the list is empty again --
+    and an entry that outlives its reason is exactly how an unreachable module gets
+    kept out of the build quietly.
+    """
     import importlib.util
 
     spec = importlib.util.spec_from_file_location(
@@ -373,12 +388,17 @@ def test_quarantine_matches_the_module_table_exactly() -> None:
     reach = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(reach)
     expected = {f"JurisLean.{rel[:-5].replace('/', '.')}" for rel, _r, _c in MODULES.values()}
-    assert set(reach.PENDING_CI_MODULES) == expected
+    assert not (set(reach.PENDING_CI_MODULES) & expected), (
+        f"promoted modules still quarantined: {sorted(reach.PENDING_CI_MODULES)}"
+    )
 
 
-def test_kernel_is_still_quarantined() -> None:
+def test_mandate_layer_is_in_the_release_root() -> None:
+    """The join is the point of R-01b: `lake build` must elaborate these forever."""
     text = ROOT_MODULE.read_text(encoding="utf-8")
-    assert "JurisLean.Mandate" not in text, "the kernel reached the release root before CI"
+    for item, (rel, _req, _concept) in MODULES.items():
+        mod = "JurisLean." + rel[:-5].replace("/", ".")
+        assert f"import {mod}" in text, f"{item} never reached the release root"
 
 
 # --- containment for the two pathologies the audit could not fix blind ---

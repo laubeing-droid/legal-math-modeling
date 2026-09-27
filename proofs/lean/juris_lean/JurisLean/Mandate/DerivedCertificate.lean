@@ -21,8 +21,9 @@ approximator only in the sense that the fixed point of `x ↦ q·x` is the targe
 Extending it to the weighted-sup-norm operator family is the next step and needs
 the `WeightedSupNorm` bridge, which is a CI-verified change.
 
-Status: NOT imported by `JurisLean.lean`, NOT in `AxiomAudit.lean`; needs a CI
-module build before it may be cited.
+Status: imported by the release root and named by `AxiomAudit.lean`; built green
+in CI run 36297146468 (subject 304194cc5). Commits after that subject do not
+inherit the verdict.
 -/
 
 namespace JurisLean.Mandate.DerivedCertificate

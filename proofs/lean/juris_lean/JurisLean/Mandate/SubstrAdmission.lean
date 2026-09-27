@@ -14,7 +14,9 @@ holds (prefix ⇒ containment), the direction that provably fails, the length
 obstruction that makes a fabricated citation detectable, and reflexivity of
 containment — which is the property the Python gate relies on and never states.
 
-Status: NOT in `JurisLean.lean`, NOT in `AxiomAudit.lean`; CI_NOT_RUN.
+Status: imported by the release root and named by `AxiomAudit.lean`; built green
+in CI run 36297146468 (subject 304194cc5). Commits after that subject do not
+inherit the verdict.
 -/
 
 namespace JurisLean.Mandate.SubstrAdmission

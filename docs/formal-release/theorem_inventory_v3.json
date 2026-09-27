@@ -461,6 +461,7 @@
     "JurisLean.Mandate.Kernel",
     "JurisLean.Mandate.LinearScorer",
     "JurisLean.Mandate.MatrixGame",
+    "JurisLean.Mandate.ReLUApprox",
     "JurisLean.Mandate.RouteDecision",
     "JurisLean.Mandate.SourceRank",
     "JurisLean.Mandate.StructureInvariants",
@@ -967,6 +968,16 @@
     "JurisLean.Mandate.MatrixGame.pennies_gap_strict",
     "JurisLean.Mandate.MatrixGame.pennies_no_pure_value",
     "JurisLean.Mandate.MatrixGame.upper_monotone_column",
+    "JurisLean.Mandate.ReLUApprox.h1_between",
+    "JurisLean.Mandate.ReLUApprox.h2_between",
+    "JurisLean.Mandate.ReLUApprox.lip_eq",
+    "JurisLean.Mandate.ReLUApprox.lip_pos",
+    "JurisLean.Mandate.ReLUApprox.out_at_one",
+    "JurisLean.Mandate.ReLUApprox.out_eq_of_zero_radius",
+    "JurisLean.Mandate.ReLUApprox.out_not_constant",
+    "JurisLean.Mandate.ReLUApprox.out_origin",
+    "JurisLean.Mandate.ReLUApprox.out_stable",
+    "JurisLean.Mandate.ReLUApprox.relu_between",
     "JurisLean.Mandate.RouteDecision.anyUsable_append",
     "JurisLean.Mandate.RouteDecision.excluded_is_skipped",
     "JurisLean.Mandate.RouteDecision.firstUsable_cons_notUsable",
@@ -1024,8 +1035,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "a60b2a6c25cb4566f5b25a7008e593d277ac309514a88b99b2db72c4da124b0c",
-   "size_bytes": 40319,
+   "sha256": "3762d9df3555ff31052bd11fd3b10d403c148787ca69bdca2daf3b5a67108e2e",
+   "size_bytes": 40907,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -15032,6 +15043,80 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "relu"
+    },
+    {
+     "kind": "def",
+     "name": "h1"
+    },
+    {
+     "kind": "def",
+     "name": "h2"
+    },
+    {
+     "kind": "def",
+     "name": "out"
+    },
+    {
+     "kind": "def",
+     "name": "lip"
+    },
+    {
+     "kind": "theorem",
+     "name": "lip_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "lip_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "relu_between"
+    },
+    {
+     "kind": "theorem",
+     "name": "h1_between"
+    },
+    {
+     "kind": "theorem",
+     "name": "h2_between"
+    },
+    {
+     "kind": "theorem",
+     "name": "out_stable"
+    },
+    {
+     "kind": "theorem",
+     "name": "out_origin"
+    },
+    {
+     "kind": "theorem",
+     "name": "out_at_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "out_not_constant"
+    },
+    {
+     "kind": "theorem",
+     "name": "out_eq_of_zero_radius"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/ReLUApprox.lean",
+   "print_axioms_targets": [],
+   "sha256": "325bf1c3d33d0ea4a80bc926f3b37cc576a48608fe38989e96dfbbf745b51431",
+   "size_bytes": 7199,
+   "theorem_count": 10,
+   "theorem_count_bol_convention": 10
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "RouteRow"
     },
@@ -19357,22 +19442,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1948,
-   "file_count": 233,
+   "counted_declaration_count": 1958,
+   "file_count": 234,
    "lemma_count": 24,
-   "print_axioms_command_count": 813,
-   "print_axioms_distinct_targets": 759,
-   "theorem_count": 1924,
-   "theorem_count_bol_convention": 1888
+   "print_axioms_command_count": 823,
+   "print_axioms_distinct_targets": 769,
+   "theorem_count": 1934,
+   "theorem_count_bol_convention": 1898
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1929,
-   "file_count": 218,
+   "counted_declaration_count": 1939,
+   "file_count": 219,
    "lemma_count": 17,
-   "print_axioms_command_count": 813,
-   "print_axioms_distinct_targets": 759,
-   "theorem_count": 1912,
-   "theorem_count_bol_convention": 1876
+   "print_axioms_command_count": 823,
+   "print_axioms_distinct_targets": 769,
+   "theorem_count": 1922,
+   "theorem_count_bol_convention": 1886
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -19559,6 +19644,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/Kernel.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/MatrixGame.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/ReLUApprox.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
@@ -19790,6 +19876,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/Kernel.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/MatrixGame.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/ReLUApprox.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
@@ -19880,17 +19967,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "ca67ea24cebe053240c854b46fc48cceff046d44ce23aeffaef9a9ac38f789e7",
+ "source_inventory_digest": "00cc8e1172ef7d67aebfdac0d5f1eeee578f548ec0c5532915cc2901a894a5b9",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "4592fc68a1a38575ab43461c00b42bce7ed57e91",
-  "tree": "afc3ab8f6e651167c16b4a4c973f1e0d52011aa8"
+  "commit": "f2497b63752f6c4c13677a0049208e9501e2d050",
+  "tree": "ec93abfe023feb6c8ae211cd2f64f649ab14e1df"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 233,
+  "files_total": 234,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

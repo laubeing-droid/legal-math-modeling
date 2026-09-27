@@ -16,17 +16,16 @@ preserve — which is what makes "these two are not isomorphic" a theorem rather
 impression.
 
 What is deliberately NOT claimed: that a decision procedure exists here, nor that
-agreeing invariants imply isomorphism. `isoRel3` below is a *candidate* test: a `true`
-answer is a certificate, since `rel3Iso_of_preserves` turns it into a bijection, while a
-`false` answer says only that none of the six renamings carried the relation. Reading
-`false` as "not isomorphic" needs one more fact, that these six are all the bijections of
-three slots. That enumeration is decidable rather than hard: the pinned Mathlib carries
-`Fintype.decidableForallFintype` and `Fintype.decidableEqEquivFintype`
-(`Mathlib/Data/Fintype/Defs.lean`) and `Equiv.ofBijective`
-(`Mathlib/Logic/Equiv/Defs.lean`), which are exactly what a `decide` over
-`Equiv.Perm (Fin 3)` and the reverse direction would consume. They are named here, not
-used: this file has no compiled precedent for that `decide`, so the residual stays booked
-as R-09 in `docs/master-plan/03_证明战役台账.md` and the claim stops short.
+agreeing invariants imply isomorphism. The enumeration that used to be refused is now
+attempted: `triedRenames_complete` decides that the six renamings in `triedRenames` are
+all the bijections of three slots, and `rel3Iso_iff_by_list` uses it to show that
+"some listed renaming carries the relation" is neither weaker nor stronger than
+`Rel3Iso`. What is still missing is the last inch: the *executable* test `isoRel3` is a
+`Bool` computation, and turning its `true`/`false` into the Prop-level statement for an
+arbitrary pair of relations needs `R i j == S (e i) (e j)` carried out of `Bool`, which
+this file does not do. The two `decide` facts below are therefore the only points where
+the two forms are shown to answer alike. The residual stays booked as R-09 in
+`docs/master-plan/03_证明战役台账.md`.
 
 Status: imported by the release root and named by `AxiomAudit.lean`; built green
 in CI run 36307416556 (subject cf3214d62), whose audit output names these nine
@@ -203,10 +202,11 @@ def preservesR (R S : Rel3) (e : Equiv.Perm (Fin 3)) : Bool :=
 /--
 The computable test over the six renamings. Read its status carefully: `true` means one
 of these six carried the relation, which by `rel3Iso_of_preserves` is a certificate of
-isomorphism; `false` means only that none of these six did. Turning `false` into
-"not isomorphic" is the enumeration step -- that these are all the bijections of three
-slots -- and that counting lemma is precisely what this file refuses to guess at. The
-`decide` facts below show both answers are computed, not asserted.
+isomorphism; `false` means only that none of these six did. The enumeration that would
+turn a `false` into "not isomorphic" is now proved (`triedRenames_complete`), but the gap
+between this `Bool` test and that `Prop`-level statement is the pair check
+`preservesR`, which lives in `Bool` and is not carried out of it here. The `decide` facts
+below show both answers are computed, not asserted.
 -/
 def isoRel3 (R S : Rel3) : Bool := triedRenames.any fun e => preservesR R S e
 
@@ -221,5 +221,43 @@ theorem noRelation_ne_allLoops : ¬ Rel3Iso noRelation allLoops := by
   intro h
   obtain ⟨f, _hf, hrel⟩ := h
   exact absurd (hrel 0 0) (by simp [noRelation, allLoops])
+
+/-! ## The enumeration step: the six are all the bijections of three slots
+
+The comment at the top of this file refused the counting lemma for years of this
+repository's ledger. It is refused no longer, and the reason it is approachable is
+structural: the enumeration is stated at `Prop` level over `triedRenames`
+(`Rel3Iso_by_list`), so nothing here has to convert a `Bool` equality into a
+proposition — the step that made the earlier attempt unmanageable. -/
+
+/-- Isomorphism witnessed by one of the six renamings. -/
+def Rel3Iso_by_list (R S : Rel3) : Prop :=
+  ∃ e ∈ triedRenames, preservesRel R S e
+
+/--
+Every bijection of three slots is one of the six the test tries. This is computation, not
+an axiom: `Equiv.Perm (Fin 3)` is a `Fintype` and has decidable equality
+(`Fintype.decidableForallFintype` and `Fintype.decidableEqEquivFintype`,
+`Mathlib/Data/Fintype/Defs.lean`), so the quantifier reduces to a check over six values.
+-/
+theorem triedRenames_complete : ∀ e : Equiv.Perm (Fin 3), e ∈ triedRenames := by decide
+
+/--
+The list form is neither weaker nor stronger than the definition: the forward direction is
+the enumeration above applied to `Equiv.ofBijective`, the reverse is
+`rel3Iso_of_preserves`. This is the half of R-09 that was missing — a `false` from the test
+now *means* non-isomorphism, given the six are exhaustive.
+-/
+theorem rel3Iso_iff_by_list (R S : Rel3) : Rel3Iso R S ↔ Rel3Iso_by_list R S := by
+  constructor
+  · rintro ⟨f, hf, hpres⟩
+    exact ⟨Equiv.ofBijective f hf, triedRenames_complete _, hpres⟩
+  · rintro ⟨e, _, hpres⟩
+    exact rel3Iso_of_preserves R S e hpres
+
+/-- A relation on three slots is isomorphic to itself through the exhaustive list: the
+positive side of the same coin, computed rather than assumed. -/
+theorem rel3Iso_allLoops_symm_self : Rel3Iso_by_list allLoops allLoops :=
+  ⟨1, by decide, fun _ _ => rfl⟩
 
 end JurisLean.Mandate.CaseIsomorphism

@@ -485,9 +485,12 @@ open HornSystem
 #print axioms JurisLean.Mandate.CaseIsomorphism.iso_twoEmpty_swap
 #print axioms JurisLean.Mandate.CaseIsomorphism.noRelation_ne_allLoops
 #print axioms JurisLean.Mandate.CaseIsomorphism.not_iso_looped_edgeless
+#print axioms JurisLean.Mandate.CaseIsomorphism.rel3Iso_allLoops_symm_self
+#print axioms JurisLean.Mandate.CaseIsomorphism.rel3Iso_iff_by_list
 #print axioms JurisLean.Mandate.CaseIsomorphism.rel3Iso_of_preserves
 #print axioms JurisLean.Mandate.CaseIsomorphism.swap2_bijective
 #print axioms JurisLean.Mandate.CaseIsomorphism.swap2_moves_a_slot
+#print axioms JurisLean.Mandate.CaseIsomorphism.triedRenames_complete
 #print axioms JurisLean.Mandate.CohortInterval.high_le_added_success
 #print axioms JurisLean.Mandate.CohortInterval.high_num_le_den
 #print axioms JurisLean.Mandate.CohortInterval.intervalOf_defined

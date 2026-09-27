@@ -865,7 +865,7 @@
     "JurisLean.KernelV3.transfer_performance_identity",
     "JurisLean.KernelV3.transfer_proceduralBinding_identity",
     "JurisLean.Mandate.CaseIsomorphism.allSelfRelated_of_iso",
-    "JurisLean.Mandate.CaseIsomorphism.bijective_invFun",
+    "JurisLean.Mandate.CaseIsomorphism.exists_bijective_inverse",
     "JurisLean.Mandate.CaseIsomorphism.iso_refl",
     "JurisLean.Mandate.CaseIsomorphism.iso_symm",
     "JurisLean.Mandate.CaseIsomorphism.iso_trans",
@@ -1006,8 +1006,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "408aa36851029da2a5ff6b53305ac3f961de179834831df6a9ec2e2f1272ac10",
-   "size_bytes": 39108,
+   "sha256": "f2f52bbbeeef67605d952f9fe06cfb278c35719965fc51980544ebc34eb9b660",
+   "size_bytes": 39116,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -14274,7 +14274,7 @@
     },
     {
      "kind": "theorem",
-     "name": "bijective_invFun"
+     "name": "exists_bijective_inverse"
     },
     {
      "kind": "theorem",
@@ -14327,8 +14327,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/CaseIsomorphism.lean",
    "print_axioms_targets": [],
-   "sha256": "20d9468056ec4b550e55dc2cde003c808d017c0c5a17214ecbc4644a18a58922",
-   "size_bytes": 6226,
+   "sha256": "63d19bf90f9554757f95803048eded05e1611b88588aec89d9831494519390ad",
+   "size_bytes": 6655,
    "theorem_count": 9,
    "theorem_count_bol_convention": 9
   },
@@ -19745,12 +19745,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "f1c17f63728c025ffc861d483d03200fa2c6ed1666523756787c26e1b9e91693",
+ "source_inventory_digest": "ba4bcfeba262b906aea042473f2109c0e2c44ae2d6c13e747010c23abf62a57b",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "a57438234d3acf977ffb6c20682a2b9d04111952",
-  "tree": "781535d77e94dbfb4b08fde48894179b10e31549"
+  "commit": "1c595ba6ba44c52a15cd88f7cbad862fb37c9229",
+  "tree": "b9f3a764a2f3ebfc8d3a601f8cf6e623984859c1"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

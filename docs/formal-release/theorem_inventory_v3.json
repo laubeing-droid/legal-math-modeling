@@ -866,11 +866,15 @@
     "JurisLean.KernelV3.transfer_proceduralBinding_identity",
     "JurisLean.Mandate.CaseIsomorphism.allSelfRelated_of_iso",
     "JurisLean.Mandate.CaseIsomorphism.exists_bijective_inverse",
+    "JurisLean.Mandate.CaseIsomorphism.isoRel3_allLoops_noRelation",
+    "JurisLean.Mandate.CaseIsomorphism.isoRel3_allLoops_self",
     "JurisLean.Mandate.CaseIsomorphism.iso_refl",
     "JurisLean.Mandate.CaseIsomorphism.iso_symm",
     "JurisLean.Mandate.CaseIsomorphism.iso_trans",
     "JurisLean.Mandate.CaseIsomorphism.iso_twoEmpty_swap",
+    "JurisLean.Mandate.CaseIsomorphism.noRelation_ne_allLoops",
     "JurisLean.Mandate.CaseIsomorphism.not_iso_looped_edgeless",
+    "JurisLean.Mandate.CaseIsomorphism.rel3Iso_of_preserves",
     "JurisLean.Mandate.CaseIsomorphism.swap2_bijective",
     "JurisLean.Mandate.CaseIsomorphism.swap2_moves_a_slot",
     "JurisLean.Mandate.CohortInterval.high_le_added_success",
@@ -1012,8 +1016,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "c80eafbf5ba2faa12ddc111ac1b4e076b9f2307002f20d17ae8336491403bddc",
-   "size_bytes": 39492,
+   "sha256": "4ed41b9ac301b931f65d6286cc88b45b53599ff1a8c5d4a9dd6785fc32d899a1",
+   "size_bytes": 39778,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -14325,6 +14329,58 @@
     {
      "kind": "theorem",
      "name": "swap2_moves_a_slot"
+    },
+    {
+     "kind": "def",
+     "name": "Rel3"
+    },
+    {
+     "kind": "def",
+     "name": "allLoops"
+    },
+    {
+     "kind": "def",
+     "name": "noRelation"
+    },
+    {
+     "kind": "def",
+     "name": "preservesRel"
+    },
+    {
+     "kind": "def",
+     "name": "Rel3Iso"
+    },
+    {
+     "kind": "theorem",
+     "name": "rel3Iso_of_preserves"
+    },
+    {
+     "kind": "def",
+     "name": "pairs3"
+    },
+    {
+     "kind": "def",
+     "name": "triedRenames"
+    },
+    {
+     "kind": "def",
+     "name": "preservesR"
+    },
+    {
+     "kind": "def",
+     "name": "isoRel3"
+    },
+    {
+     "kind": "theorem",
+     "name": "isoRel3_allLoops_self"
+    },
+    {
+     "kind": "theorem",
+     "name": "isoRel3_allLoops_noRelation"
+    },
+    {
+     "kind": "theorem",
+     "name": "noRelation_ne_allLoops"
     }
    ],
    "imports": [
@@ -14333,10 +14389,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/CaseIsomorphism.lean",
    "print_axioms_targets": [],
-   "sha256": "c5fd7023fb5cd492209acc3cfc6ce475a5f2469549cbfe41306444327509e74a",
-   "size_bytes": 6792,
-   "theorem_count": 9,
-   "theorem_count_bol_convention": 9
+   "sha256": "d8c14296240eaa01fa47f44da0dc1fc0966325368f6c276a28a5c86ef4cf6c25",
+   "size_bytes": 9616,
+   "theorem_count": 13,
+   "theorem_count_bol_convention": 13
   },
   {
    "declarations": [
@@ -19257,22 +19313,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1936,
+   "counted_declaration_count": 1940,
    "file_count": 233,
    "lemma_count": 24,
-   "print_axioms_command_count": 801,
-   "print_axioms_distinct_targets": 747,
-   "theorem_count": 1912,
-   "theorem_count_bol_convention": 1876
+   "print_axioms_command_count": 805,
+   "print_axioms_distinct_targets": 751,
+   "theorem_count": 1916,
+   "theorem_count_bol_convention": 1880
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1917,
+   "counted_declaration_count": 1921,
    "file_count": 218,
    "lemma_count": 17,
-   "print_axioms_command_count": 801,
-   "print_axioms_distinct_targets": 747,
-   "theorem_count": 1900,
-   "theorem_count_bol_convention": 1864
+   "print_axioms_command_count": 805,
+   "print_axioms_distinct_targets": 751,
+   "theorem_count": 1904,
+   "theorem_count_bol_convention": 1868
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -19780,19 +19836,28 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "ee1a8fa48544d68a815db6cea7360eca58dceb9ac9a28ff55b50c91de70d3108",
+ "source_inventory_digest": "201409fa184f2691c4a22159641c5c0856ae6871a511ca78129c78153e8bb38a",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "11b9b7e67ca3e99657f2e3496a23da4ee7d83102",
-  "tree": "0a80fe3c7f26a699845a7e89accc699766f421b0"
+  "commit": "804b61bae33f41ff8d4c4da11eedcee6f976c22d",
+  "tree": "b4d2d846d9743617bad70e94bee2660e0cdf403c"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Mandate/CaseIsomorphism.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 233,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

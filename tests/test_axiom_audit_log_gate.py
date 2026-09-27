@@ -110,7 +110,9 @@ def test_the_mandate_layer_is_now_on_the_audit_surface():
     mandate = {n for n in printed if n.startswith("JurisLean.Mandate.")}
     # 126 at a6fd02c6d, 135 with CaseIsomorphism's nine, 141 with the six facts of the
     # n-ary surface `ofList`; each increment was named only after a round built it.
-    assert len(mandate) == 141, f"mandate audit surface is {len(mandate)} targets"
+    # 126 at a6fd02c6d, 135 with CaseIsomorphism's nine, 141 with the n-ary surface, and
+    # 145 with the three-slot computable test; each increment was named after a round built it.
+    assert len(mandate) == 145, f"mandate audit surface is {len(mandate)} targets"
     assert "JurisLean.Mandate.GameTree.value_attains" in mandate
     assert "JurisLean.Mandate.MatrixGame.hasPureValue_true_iff" in mandate
 

@@ -477,11 +477,15 @@ open HornSystem
     declaration sites, so it cannot name a theorem that does not exist. -/
 #print axioms JurisLean.Mandate.CaseIsomorphism.allSelfRelated_of_iso
 #print axioms JurisLean.Mandate.CaseIsomorphism.exists_bijective_inverse
+#print axioms JurisLean.Mandate.CaseIsomorphism.isoRel3_allLoops_noRelation
+#print axioms JurisLean.Mandate.CaseIsomorphism.isoRel3_allLoops_self
 #print axioms JurisLean.Mandate.CaseIsomorphism.iso_refl
 #print axioms JurisLean.Mandate.CaseIsomorphism.iso_symm
 #print axioms JurisLean.Mandate.CaseIsomorphism.iso_trans
 #print axioms JurisLean.Mandate.CaseIsomorphism.iso_twoEmpty_swap
+#print axioms JurisLean.Mandate.CaseIsomorphism.noRelation_ne_allLoops
 #print axioms JurisLean.Mandate.CaseIsomorphism.not_iso_looped_edgeless
+#print axioms JurisLean.Mandate.CaseIsomorphism.rel3Iso_of_preserves
 #print axioms JurisLean.Mandate.CaseIsomorphism.swap2_bijective
 #print axioms JurisLean.Mandate.CaseIsomorphism.swap2_moves_a_slot
 #print axioms JurisLean.Mandate.CohortInterval.high_le_added_success

@@ -153,4 +153,67 @@ theorem iso_twoEmpty_swap : iso twoEmpty twoEmpty := by
 theorem swap2_moves_a_slot :
     ((⟨1 - (0 : Nat), by decide⟩ : Fin 2) : Fin 2) = 1 := rfl
 
+/-! ## A computable three-slot test, and the boundary of what it proves -/
+
+/-- A relation on three named slots: the shape the 类案对比 mandate item compares. -/
+def Rel3 := Fin 3 → Fin 3 → Bool
+
+/-- All loops on three slots. -/
+def allLoops : Rel3 := fun _ _ => true
+
+/-- The same slots with no relation at all. -/
+def noRelation : Rel3 := fun _ _ => false
+
+/-- A renaming carries one relation onto the other, stated as a Prop. -/
+def preservesRel (R S : Rel3) (e : Equiv.Perm (Fin 3)) : Prop :=
+  ∀ i j, R i j = S (e i) (e j)
+
+/-- Isomorphism of three-slot relations: a bijection of slots carrying relatedness. -/
+def Rel3Iso (R S : Rel3) : Prop :=
+  ∃ f : Fin 3 → Fin 3, Function.Bijective f ∧ ∀ i j, R i j = S (f i) (f j)
+
+/-- An `Equiv` is a bijection, so any renaming that preserves relation witnesses isomorphism. -/
+theorem rel3Iso_of_preserves (R S : Rel3) (e : Equiv.Perm (Fin 3))
+    (h : preservesRel R S e) : Rel3Iso R S :=
+  ⟨e, e.bijective, h⟩
+
+/-- The nine ordered slot pairs, used by the computable test below. -/
+def pairs3 : List (Fin 3 × Fin 3) :=
+  [(0, 0), (0, 1), (0, 2), (1, 0), (1, 1), (1, 2), (2, 0), (2, 1), (2, 2)]
+
+/-- Six renamings of three slots, each an `Equiv`, so bijectivity is never assumed. -/
+def triedRenames : List (Equiv.Perm (Fin 3)) :=
+  [1,
+   Equiv.swap 0 1,
+   Equiv.swap 1 2,
+   Equiv.swap 0 2,
+   (Equiv.swap 0 1).trans (Equiv.swap 1 2),
+   (Equiv.swap 1 2).trans (Equiv.swap 0 1)]
+
+/-- Does this renaming carry one relation onto the other, pair by pair? -/
+def preservesR (R S : Rel3) (e : Equiv.Perm (Fin 3)) : Bool :=
+  pairs3.all fun p => R p.1 p.2 == S (e p.1) (e p.2)
+
+/--
+The computable test over the six renamings. Read its status carefully: `true` means one
+of these six carried the relation, which by `rel3Iso_of_preserves` is a certificate of
+isomorphism; `false` means only that none of these six did. Turning `false` into
+"not isomorphic" is the enumeration step -- that these are all the bijections of three
+slots -- and that counting lemma is precisely what this file refuses to guess at. The
+`decide` facts below show both answers are computed, not asserted.
+-/
+def isoRel3 (R S : Rel3) : Bool := triedRenames.any fun e => preservesR R S e
+
+/-- Computed: a structure is isomorphic to itself by this test. -/
+theorem isoRel3_allLoops_self : isoRel3 allLoops allLoops = true := by decide
+
+/-- Computed: the test finds no renaming among the six that carries loops onto none. -/
+theorem isoRel3_allLoops_noRelation : isoRel3 allLoops noRelation = false := by decide
+
+/-- And the negative is a real one: no bijection at all can carry loops onto a loopless relation. -/
+theorem noRelation_ne_allLoops : ¬ Rel3Iso noRelation allLoops := by
+  intro h
+  obtain ⟨f, _hf, hrel⟩ := h
+  exact absurd (hrel 0 0) (by simp [noRelation, allLoops])
+
 end JurisLean.Mandate.CaseIsomorphism

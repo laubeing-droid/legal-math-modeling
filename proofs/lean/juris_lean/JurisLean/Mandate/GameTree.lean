@@ -38,8 +38,8 @@ open JurisLean.Mandate.Kernel
 
 /-- Backward induction over a max-node tree; a node with no options is worth 0. -/
 def value : Tree → Nat
-  | leaf p => p
-  | node cs => cs.foldr (fun t a => max (value t) a) 0
+  | .leaf p => p
+  | .node cs => cs.foldr (fun t a => max (value t) a) 0
 
 /-- Terminal positions read out their payoff unchanged. -/
 theorem value_leaf (p : Nat) : value (Tree.leaf p) = p := rfl

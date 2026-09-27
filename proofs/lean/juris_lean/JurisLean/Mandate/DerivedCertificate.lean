@@ -126,11 +126,14 @@ theorem not_admits_negative (q x : ℚ) (n : ℕ) (hq0 : 0 ≤ q) (hx : 0 ≤ x)
   have hnot : ¬ ((certificate q x n).bound ≤ t) := by
     intro hle
     have h1 : 0 ≤ (certificate q x n).bound := by
-      rw [certificate_bound_is_computed, approx_closed]
       have hp : 0 ≤ q ^ n := by
         induction n with
         | zero => simp [pow_zero]
         | succ k ih => rw [pow_succ]; nlinarith
+      have hbx : 0 ≤ x := hx
+      have hexpr : (certificate q x n).bound = q ^ n * x := by
+        rw [certificate_bound_is_computed, approx_closed]
+      rw [hexpr]
       nlinarith
     linarith
   rw [admits]

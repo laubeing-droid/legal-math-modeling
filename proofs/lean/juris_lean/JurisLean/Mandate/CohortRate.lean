@@ -72,7 +72,7 @@ theorem rateOfCohort_num_le_den {obs : List Bool} {r : Rate}
       have hb : successes (a :: as) ≤ (a :: as).length := successes_le_length _
       have hex : rateOfCohort (a :: as)
           = some ⟨successes (a :: as), (a :: as).length, Nat.succ_pos _⟩ := rfl
-      rw [← hex] at h
+      rw [hex] at h
       cases h
       exact hb
 

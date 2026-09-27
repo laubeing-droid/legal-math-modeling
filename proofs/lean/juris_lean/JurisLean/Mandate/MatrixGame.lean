@@ -63,10 +63,7 @@ cell in the first row cannot lower what the row player can guarantee.
 theorem lower_monotone_first (a b c d x : Nat) (h : a ≤ x) :
     lower a b c d ≤ lower x b c d := by
   show max (min a b) (min c d) ≤ max (min x b) (min c d)
-  have h1 : min a b ≤ min x b := by omega
-  have h2 : min a b ≤ max (min x b) (min c d) := Nat.le_trans h1 (le_max_l _ _)
-  have h3 : min c d ≤ max (min x b) (min c d) := le_max_r _ _
-  exact Nat.max_le h2 h3
+  omega
 
 /-- Symmetrically, conceding more to the column player cannot lower the bound. -/
 theorem upper_monotone_column (a b c d y : Nat) (h : d ≤ y) :

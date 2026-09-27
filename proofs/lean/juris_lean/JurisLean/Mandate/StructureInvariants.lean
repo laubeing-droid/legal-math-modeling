@@ -56,7 +56,6 @@ theorem signatures_differ : sig3 anchored ≠ sig3 unanchored := by
 theorem sum_signature_third (t : CaseStructure) :
     (sig3 (sum anchored t)).2.2 = 3 + (sig3 t).2.2 := by
   simp only [sig3, sum, anchored, List.length_append, List.length_cons, List.length_nil]
-  omega
 
 /--
 The separation is stable under merging arbitrary further material into both
@@ -67,10 +66,10 @@ signature is a discriminator for the whole comparison layer, which is what the
 theorem discrimination_survives_sum (t : CaseStructure) :
     sig3 (sum anchored t) ≠ sig3 (sum unanchored t) := by
   intro h
-  have h1 := sum_signature_third t
-  have h2 := sig3_sum unanchored t
-  simp only [sig3, anchored, unanchored, sum, List.length_append, List.length_cons,
-    List.length_nil] at h h1 h2 ⊢
+  have h1 := congrArg (fun p => p.2.2) h
+  rw [sig3_sum, sig3_sum] at h1
+  simp only [sig3, anchored, unanchored, List.length_append, List.length_cons,
+    List.length_nil] at h1
   omega
 
 /-- Relabelling the incidences of any case leaves its signature untouched, so no
@@ -93,6 +92,6 @@ theorem sig3_double (s : CaseStructure) : (sig3 (sum s s)).1 = 2 * (sig3 s).1 :=
 /-- A merge never loses material from either side. -/
 theorem sig3_le_sum_any (s t : CaseStructure) :
     (sig3 s).1 ≤ (sig3 (sum s t)).1 ∧ (sig3 t).2.2 ≤ (sig3 (sum s t)).2.2 :=
-  ⟨sig3_fst_le_sum s t, by simp only [sig3, sum]; omega⟩
+  ⟨sig3_fst_le_sum s t, by simp only [sig3, sum, List.length_append]; omega⟩
 
 end JurisLean.Mandate.StructureInvariants

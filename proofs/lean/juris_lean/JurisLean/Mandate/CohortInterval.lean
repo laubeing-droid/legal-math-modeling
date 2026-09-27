@@ -65,15 +65,39 @@ theorem low_num_lt_high_num (c : Cohort) : (low c).num < (high c).num := by
   omega
 
 /-- Adding one favourable observation moves the lower endpoint up. -/
-theorem low_le_added_success (c : Cohort) :
-    low c ≤ₛ (low { c with successes := c.successes + 1 }) := by
-  show (c.successes + 1) * (c.size + 2) ≤ (c.successes + 1 + 1) * (c.size + 2)
+/-- One more favourable observation: successes and size both grow, so the cohort
+invariant survives. The earlier statement updated a record field with
+`{ c with successes := … }`, which cannot re-justify the Prop field `succLeSize`,
+so the comparison was never about a cohort at all. -/
+def addFavourable (c : Cohort) : Cohort :=
+  { successes := c.successes + 1
+    size := c.size + 1
+    sizePos := Nat.succ_pos _
+    succLeSize := by
+      have hs := c.succLeSize
+      omega }
+
+/-- A larger cohort at the same success count, again with the invariant proved. -/
+def growSize (c : Cohort) (extra : Nat) : Cohort :=
+  { successes := c.successes
+    size := c.size + extra
+    sizePos := by
+      have hp := c.sizePos
+      omega
+    succLeSize := by
+      have hs := c.succLeSize
+      omega }
+
+/-- Adding one favourable observation moves the lower endpoint up. -/
+theorem low_le_added_success (c : Cohort) : low c ≤ₛ low (addFavourable c) := by
+  show (c.successes + 1) * (c.size + 3) ≤ (c.successes + 2) * (c.size + 2)
+  have hs := c.succLeSize
   nlinarith
 
 /-- ... and moves the upper endpoint up as well, so the interval shifts, not splits. -/
-theorem high_le_added_success (c : Cohort) :
-    high c ≤ₛ (high { c with successes := c.successes + 1 }) := by
-  show (c.successes + 2) * (c.size + 2) ≤ (c.successes + 2 + 1) * (c.size + 2)
+theorem high_le_added_success (c : Cohort) : high c ≤ₛ high (addFavourable c) := by
+  show (c.successes + 2) * (c.size + 3) ≤ (c.successes + 3) * (c.size + 2)
+  have hs := c.succLeSize
   nlinarith
 
 /--
@@ -82,7 +106,7 @@ only sense in which "more similar cases" buys precision here, and it is stated o
 the exact rates rather than on a hand-waved "wider sample is better".
 -/
 theorem low_antitone_in_size (c : Cohort) (extra : Nat) :
-    (low { c with size := c.size + extra }) ≤ₛ low c := by
+    low (growSize c extra) ≤ₛ low c := by
   show (c.successes + 1) * (c.size + 2)
          ≤ (c.successes + 1) * (c.size + extra + 2)
   nlinarith

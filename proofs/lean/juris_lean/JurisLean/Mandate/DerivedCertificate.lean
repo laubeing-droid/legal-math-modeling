@@ -120,16 +120,26 @@ theorem admits_iff (q x : ℚ) (n : ℕ) (tolerance : ℚ) :
   · simp [hc]
   · simp [hc]
 
+/--
+A non-negative ratio stays non-negative under iteration. This is a top-level
+lemma rather than a `have` inside `not_admits_negative` because the induction has
+to be clean: proved inside that proof, `induction n` reverts the surrounding
+hypothesis `(certificate q x n).bound ≤ t`, which mentions `n`, so the induction
+hypothesis arrives as an implication about a bound rather than as `0 ≤ q ^ k` —
+CI run 36291053225 reported exactly that type mismatch.
+-/
+theorem pow_nonneg_of_nonneg (q : ℚ) (n : ℕ) (hq : 0 ≤ q) : 0 ≤ q ^ n := by
+  induction n with
+  | zero => simp [pow_zero]
+  | succ k ih => rw [pow_succ]; exact mul_nonneg ih hq
+
 /-- No certificate admits a negative tolerance: the gate cannot be opened by fiat. -/
 theorem not_admits_negative (q x : ℚ) (n : ℕ) (hq0 : 0 ≤ q) (hx : 0 ≤ x) (t : ℚ)
     (ht : t < 0) : admits q x n t = false := by
   have hnot : ¬ ((certificate q x n).bound ≤ t) := by
     intro hle
     have h1 : 0 ≤ (certificate q x n).bound := by
-      have hp : 0 ≤ q ^ n := by
-        induction n with
-        | zero => simp [pow_zero]
-        | succ k ih => rw [pow_succ]; exact mul_nonneg ih hq0
+      have hp : 0 ≤ q ^ n := pow_nonneg_of_nonneg q n hq0
       have hexpr : (certificate q x n).bound = q ^ n * x := by
         rw [certificate_bound_is_computed, approx_closed]
       rw [hexpr]

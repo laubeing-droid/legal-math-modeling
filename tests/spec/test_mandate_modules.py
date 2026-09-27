@@ -125,8 +125,9 @@ MODULES: dict[str, tuple[str, tuple[str, ...], str]] = {
     ),
     "game_tree": (
         "Mandate/GameTree.lean",
-        ("value_leaf", "value_nil", "value_cons", "value_ge_head",
-         "value_ge_of_mem", "value_node_append_le", "value_of_leaves"),
+        ("value_leaf", "value_node", "leaves_leaf", "leaves_node",
+         "value_le_value_left", "value_le_value_right", "value_ge_of_mem",
+         "value_attains", "value_ignores_payoff_renaming_when_dominated"),
         "P-090",
     ),
 }
@@ -254,8 +255,8 @@ GENERAL_NOT_WITNESS: dict[str, tuple[str, ...]] = {
     "two_player_value_gap": ("lower_le_upper", "lower_monotone_first",
                              "upper_monotone_column", "gap_bounded_by_spread",
                              "hasPureValue_true_iff"),
-    "game_tree": ("value_cons", "value_ge_head", "value_ge_of_mem",
-                  "value_node_append_le", "value_of_leaves",
+    "game_tree": ("value_node", "leaves_node", "value_le_value_left",
+                  "value_le_value_right", "value_ge_of_mem", "value_attains",
                   "value_ignores_payoff_renaming_when_dominated"),
 }
 

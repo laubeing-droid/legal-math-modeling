@@ -147,7 +147,7 @@
 四、涵摄完备性、八处降级、六类边界界定定理——**部分已于九轮问压实**：25 条新定理（General.lean+Boundary.lean，CI 验证）；P127 左插命题被最小反例关闭并登记，右扩张修正版已证；第 5/6 类边界经指针压实（consensus_does_not_escalate / repetition_does_not_clean / majority_cannot_clean）；
 五、检索第一层向量引擎——**已于九轮问压实**：确定性 TF-IDF 余弦引擎落仓（vector_engine.py，8 条门测试：归一化不变/自相似/对称/确定性排序/候选级封顶），零依赖纯 Python。
 
-**声明账本**：作用域 `juris_lean_package` 1884 条定理声明、作用域 `all_tracked_lean` 1896 条，均绑定清单工件 theorem_inventory_v3.json（subject 及其 subject_binding 记在工件里）。公理审计的实际覆盖面是 606 个具名目标（`#print axioms` 共 660 行），不是全部声明；本轮由 scripts/ci/generate_probability_audit_surface.py 把原先进不了审计面的 70 条统计定理生成式纳入；本提交的编译与审计状态记 CI_NOT_RUN。计数成分也要交代：其中 433 条是`theorem 别名 : 契约名 := 证明名` 的一行式契约搬运（计数诚实、但不含数学内容），按语句是否绑定变量统计的见证级闭语句 791 条。本文未主张：整部中国法已完备形式化；神经逼近器输出可当结论；T 谱已闭合。系统使用者看到的每一个结论，都能沿回执追到其证据等级；对后续施工，T 谱覆盖账就是推进顺序本身。闭合形态另立一账（只说证完用了什么项，不评判命题价值）：全仓 1884 条定理声明里，127 条由单一反射项闭合、45 条由纯 decide 闭合、其余 1712 条含 tactic 过程；逐文件名单在 trivial_proof_census.json，三类相加恰等于总数由门测试核。
+**声明账本**：作用域 `juris_lean_package` 1885 条定理声明、作用域 `all_tracked_lean` 1897 条，均绑定清单工件 theorem_inventory_v3.json（subject 及其 subject_binding 记在工件里）。公理审计的实际覆盖面是 606 个具名目标（`#print axioms` 共 660 行），不是全部声明；本轮由 scripts/ci/generate_probability_audit_surface.py 把原先进不了审计面的 70 条统计定理生成式纳入；本提交的编译与审计状态记 CI_NOT_RUN。计数成分也要交代：其中 433 条是`theorem 别名 : 契约名 := 证明名` 的一行式契约搬运（计数诚实、但不含数学内容），按语句是否绑定变量统计的见证级闭语句 791 条。本文未主张：整部中国法已完备形式化；神经逼近器输出可当结论；T 谱已闭合。系统使用者看到的每一个结论，都能沿回执追到其证据等级；对后续施工，T 谱覆盖账就是推进顺序本身。闭合形态另立一账（只说证完用了什么项，不评判命题价值）：全仓 1885 条定理声明里，128 条由单一反射项闭合、45 条由纯 decide 闭合、其余 1712 条含 tactic 过程；逐文件名单在 trivial_proof_census.json，三类相加恰等于总数由门测试核。
 
 此致
 每一位按行核过的人。

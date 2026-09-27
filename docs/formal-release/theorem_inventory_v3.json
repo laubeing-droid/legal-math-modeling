@@ -14277,6 +14277,10 @@
     },
     {
      "kind": "theorem",
+     "name": "pow_nonneg_of_nonneg"
+    },
+    {
+     "kind": "theorem",
      "name": "not_admits_negative"
     },
     {
@@ -14290,10 +14294,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/DerivedCertificate.lean",
    "print_axioms_targets": [],
-   "sha256": "21b8de0b7884fb66b2a1809faafc91802b4213151e4d847e2f427c9fbfdde44f",
-   "size_bytes": 5361,
-   "theorem_count": 8,
-   "theorem_count_bol_convention": 8
+   "sha256": "f3a2de14d807f9aa414d77e0669c4686133560c367302ed14578dc3073894698",
+   "size_bytes": 5919,
+   "theorem_count": 9,
+   "theorem_count_bol_convention": 9
   },
   {
    "declarations": [
@@ -14364,24 +14368,32 @@
      "name": "value"
     },
     {
+     "kind": "def",
+     "name": "leaves"
+    },
+    {
      "kind": "theorem",
      "name": "value_leaf"
     },
     {
      "kind": "theorem",
-     "name": "value_nil"
+     "name": "value_node"
     },
     {
      "kind": "theorem",
-     "name": "value_cons"
+     "name": "leaves_leaf"
     },
     {
      "kind": "theorem",
-     "name": "value_singleton"
+     "name": "leaves_node"
     },
     {
      "kind": "theorem",
-     "name": "value_ge_head"
+     "name": "value_le_value_left"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_le_value_right"
     },
     {
      "kind": "theorem",
@@ -14389,11 +14401,7 @@
     },
     {
      "kind": "theorem",
-     "name": "value_node_append_le"
-    },
-    {
-     "kind": "theorem",
-     "name": "value_of_leaves"
+     "name": "value_attains"
     },
     {
      "kind": "theorem",
@@ -14407,8 +14415,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean",
    "print_axioms_targets": [],
-   "sha256": "f47c85255c6f043521da7500698c35162b2535f8e8dca70274504a5154f155e4",
-   "size_bytes": 4486,
+   "sha256": "04c5ff5b2e6f6f35f738f06dc39a54a26870df7a57f42f30bb695ee83c9e7598",
+   "size_bytes": 5331,
    "theorem_count": 9,
    "theorem_count_bol_convention": 9
   },
@@ -15947,7 +15955,7 @@
     },
     {
      "kind": "def",
-     "name": "isSelfAttack"
+     "name": "isTypedSelfAttack"
     },
     {
      "kind": "theorem",
@@ -15976,8 +15984,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/TypedAttack.lean",
    "print_axioms_targets": [],
-   "sha256": "25b557b874d8a70dfd0eace5848a3feeaf9b4d7f5c42431b117ebcfb85db62da",
-   "size_bytes": 2284,
+   "sha256": "c2afb5de9c7b48c13226358a1ec0e6b59447b463d6599ae9f958085ab0eb2893",
+   "size_bytes": 2720,
    "theorem_count": 5,
    "theorem_count_bol_convention": 5
   },
@@ -18974,22 +18982,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1920,
+   "counted_declaration_count": 1921,
    "file_count": 232,
    "lemma_count": 24,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1896,
-   "theorem_count_bol_convention": 1860
+   "theorem_count": 1897,
+   "theorem_count_bol_convention": 1861
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1901,
+   "counted_declaration_count": 1902,
    "file_count": 217,
    "lemma_count": 17,
    "print_axioms_command_count": 660,
    "print_axioms_distinct_targets": 606,
-   "theorem_count": 1884,
-   "theorem_count_bol_convention": 1848
+   "theorem_count": 1885,
+   "theorem_count_bol_convention": 1849
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -19495,19 +19503,32 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "e109836a1e72e1b2ef4611b033eeea5b550b87685aa05c139b55182059968ea9",
+ "source_inventory_digest": "00ee8711146f03d07d5952f4ff116745db24ce21905e4905d8afc445f234f3c5",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "de4c9db32d1bbd3404481c036b642f3ab287daef",
-  "tree": "137556e737ee31801137fc8e4d88a2b2b330f0eb"
+  "commit": "05c78a5a31bd4008aec6f7c8d695e92e31416a4b",
+  "tree": "f1b25a47bb8a846b5ba4f040c51593e1c52c3874"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Mandate/DerivedCertificate.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/TypedAttack.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 232,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

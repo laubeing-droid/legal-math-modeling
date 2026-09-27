@@ -11,8 +11,8 @@ The repo had no game tree at all: the audit searched `gameTree|game_tree` across
 
 What this module supplies is the object the mandate names — an explicit
 extensive-form tree with a value defined by backward recursion, and the
-optimality facts that make the recursion worth computing: the value of a node
-dominates every option available at it, and it is attained by one of them.
+optimality facts that make the recursion worth computing: the value of a position
+dominates every payoff reachable from it, and it is itself one of those payoffs.
 
 Read the boundary honestly: a max-node tree is *sequential maximisation under
 perfect information*. It is not a Nash equilibrium claim, and nothing here
@@ -26,84 +26,101 @@ module build before it may be cited.
 
 namespace JurisLean.Mandate.GameTree
 
-/-- A finite position: a terminal payoff, or a choice among positions. -/
+/--
+A finite position: a terminal payoff, or a choice between two positions.
+
+Two options rather than a `List` of them is a deliberate modelling choice, and
+the compiler forced it. The first version had `node (children : List Tree)` and
+`value (.node cs) = cs.foldr (fun t a => max (value t) a) 0`; that recursion sits
+under a lambda, so Lean did not compile it structurally, the constructor
+equations were not definitional, and `value (Tree.leaf p) = p` failed as `rfl`
+(CI runs 36289822066 and 36290409329 both reported it). Binary choice keeps the
+recursion structural; an n-option node is written by nesting.
+-/
 inductive Tree where
   | leaf (payoff : Nat)
-  | node (children : List Tree)
+  | node (left right : Tree)
 
--- The `max` selection facts (`le_max_l`, `le_max_r`, `max_zero`) come from
+-- The `max` selection facts (`le_max_l`, `le_max_r`) come from
 -- `JurisLean.Mandate.Kernel`, so selection behaviour is proved once for the whole
 -- mandate layer rather than per module. A doc comment cannot precede `open`.
 open JurisLean.Mandate.Kernel
 
-/-- Backward induction over a max-node tree; a node with no options is worth 0. -/
+/-- Backward induction: a position is worth the better of its two options. -/
 def value : Tree → Nat
   | .leaf p => p
-  | .node cs => cs.foldr (fun t a => max (value t) a) 0
+  | .node l r => max (value l) (value r)
+
+/-- The payoffs a player can actually reach by playing down the tree. -/
+def leaves : Tree → List Nat
+  | .leaf p => [p]
+  | .node l r => leaves l ++ leaves r
 
 /-- Terminal positions read out their payoff unchanged. -/
 theorem value_leaf (p : Nat) : value (Tree.leaf p) = p := rfl
 
-/-- A dead-end node has value 0: no move, no gain, and no invented payoff. -/
-theorem value_nil : value (Tree.node []) = 0 := rfl
+/-- A choice is worth the better of its options, by definition and not by claim. -/
+theorem value_node (l r : Tree) : value (Tree.node l r) = max (value l) (value r) := rfl
 
-/-- A node's value is the best of its first option against the rest. -/
-theorem value_cons (t : Tree) (ts : List Tree) :
-    value (Tree.node (t :: ts)) = max (value t) (value (Tree.node ts)) := rfl
+theorem leaves_leaf (p : Nat) : leaves (Tree.leaf p) = [p] := rfl
 
-/-- The value of a position is attained by its single option. -/
-theorem value_singleton (t : Tree) : value (Tree.node [t]) = value t := by
-  show max (value t) 0 = value t
-  rw [max_zero]
+theorem leaves_node (l r : Tree) : leaves (Tree.node l r) = leaves l ++ leaves r := rfl
 
-/-- The chosen value never underestimates any available option. -/
-theorem value_ge_head (t : Tree) (ts : List Tree) : value t ≤ value (Tree.node (t :: ts)) := by
-  rw [value_cons]
-  exact le_max_l _ _
+/-- Having an option never lowers the value of the position that has it. -/
+theorem value_le_value_left (l r : Tree) : value l ≤ value (Tree.node l r) := le_max_l _ _
 
-/-- Optimality, full form: whatever option is legal at a node, the node is worth
-at least that option. This is the backward-induction inequality the behaviour
-layer needs before any prediction can be called a best response. -/
-theorem value_ge_of_mem (ts : List Tree) : ∀ t ∈ ts, value t ≤ value (Tree.node ts) := by
-  induction ts with
-  | nil =>
-      intro t ht
-      cases ht
-  | cons u us ih =>
-      intro t ht
-      rw [value_cons]
-      by_cases hut : t = u
-      · subst hut
-        exact le_max_l _ _
-      · rw [List.mem_cons] at ht
-        cases ht with
-        | inl heq => exact absurd heq hut
-        | inr hmem => exact Nat.le_trans (ih t hmem) (le_max_r _ _)
-
-/-- Adding an option cannot lower a node's value: more moves, more opportunity. -/
-theorem value_node_append_le (t : Tree) (ts : List Tree) :
-    value (Tree.node ts) ≤ value (Tree.node (t :: ts)) := by
-  rw [value_cons]
-  exact le_max_r _ _
-
-/-- A tree of depth one collapses to the maximum of its leaves' payoffs. -/
-theorem value_of_leaves (ps : List Nat) :
-    value (Tree.node (ps.map Tree.leaf)) = ps.foldr (fun p a => max p a) 0 := by
-  induction ps with
-  | nil => rfl
-  | cons p ps ih =>
-      rw [ih]
+theorem value_le_value_right (l r : Tree) : value r ≤ value (Tree.node l r) := le_max_r _ _
 
 /--
-The boundary of this module, stated as a theorem so it cannot be oversold: the
-value of a max-node tree says nothing about any opponent, because the structure
-has no opponent. A second player needs a node label, and the existence claims
-that follow from one are not present here.
+Optimality, full form: whatever payoff is reachable from a position, the position
+is worth at least that much. This is the backward-induction inequality the
+behaviour layer needs before any prediction can be called a best response.
+-/
+theorem value_ge_of_mem : ∀ (t : Tree) (p : Nat), p ∈ leaves t → p ≤ value t := by
+  intro t
+  induction t with
+  | leaf q =>
+      intro p h
+      rw [leaves_leaf] at h
+      rw [List.mem_singleton] at h
+      subst h
+      rw [value_leaf]
+      exact Nat.le_refl _
+  | node l r ihl ihr =>
+      intro p h
+      rw [leaves_node, value_node]
+      rw [List.mem_append] at h
+      cases h with
+      | inl hl => exact Nat.le_trans (ihl p hl) (le_max_l _ _)
+      | inr hr => exact Nat.le_trans (ihr p hr) (le_max_r _ _)
+
+/--
+The value is not an invented number: it is one of the payoffs the tree actually
+contains. A recursion that returned a value outside `leaves` would fail here,
+which is what makes the claim worth stating next to `value_ge_of_mem`.
+-/
+theorem value_attains (t : Tree) : ∃ p ∈ leaves t, value t = p := by
+  induction t with
+  | leaf p => exact ⟨p, by simp, rfl⟩
+  | node l r ihl ihr =>
+      cases Nat.le_total (value l) (value r) with
+      | inl hle =>
+          obtain ⟨p, hp, rfl⟩ := ihr
+          exact ⟨p, List.mem_append.mpr (Or.inr hp), max_eq_right hle⟩
+      | inr hge =>
+          obtain ⟨p, hp, rfl⟩ := ihl
+          exact ⟨p, List.mem_append.mpr (Or.inl hp), max_eq_left hge⟩
+
+/--
+The boundary of this module, stated as a theorem so it cannot be oversold: a
+dominated option is discarded, and nothing here speaks about an opponent,
+because the structure has none. A second player needs a node label, and the
+existence claims that follow from one are not present here.
 -/
 theorem value_ignores_payoff_renaming_when_dominated (a b : ℕ) (h : a ≤ b) :
-    value (Tree.node [Tree.leaf a, Tree.leaf b]) = value (Tree.node [Tree.leaf b]) := by
-  show max a (max b 0) = max b 0
-  rw [max_zero, max_zero, Nat.max_def]
-  split <;> omega
+    value (Tree.node (Tree.leaf a) (Tree.leaf b)) =
+      value (Tree.node (Tree.leaf b) (Tree.leaf b)) := by
+  show max a b = max b b
+  rw [max_eq_right h, max_eq_right (Nat.le_refl _)]
 
 end JurisLean.Mandate.GameTree

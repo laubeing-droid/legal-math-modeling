@@ -97,6 +97,7 @@ jobs:
         python scripts/ci/build_ci_run_index.py --check
         python scripts/ci/generate_trivial_proof_census.py --check
         python scripts/ci/check_import_reachability.py
+        python scripts/ci/check_declaration_collisions.py --root JurisLean --check
         python scripts/run_mutation_property_gate.py --repo-root . --output mutation-property-report.json
         python tools/ulm_consolidation/scripts/run_all.py --output work/seven-python/retained
         python tools/ulm_consolidation/scripts/run_root.py --output work/seven-python/root

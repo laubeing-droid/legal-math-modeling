@@ -3,7 +3,7 @@
  "closure_counts": {
   "DECIDE_CLOSED": 45,
   "TACTIC": 1712,
-  "TRIVIAL_TERM": 127
+  "TRIVIAL_TERM": 128
  },
  "generated_by": "python scripts/ci/generate_trivial_proof_census.py",
  "per_file": {
@@ -6162,6 +6162,10 @@
    },
    {
     "closure": "TACTIC",
+    "name": "pow_nonneg_of_nonneg"
+   },
+   {
+    "closure": "TACTIC",
     "name": "not_admits_negative"
    },
    {
@@ -6206,19 +6210,23 @@
    },
    {
     "closure": "TRIVIAL_TERM",
-    "name": "value_nil"
+    "name": "value_node"
    },
    {
     "closure": "TRIVIAL_TERM",
-    "name": "value_cons"
+    "name": "leaves_leaf"
+   },
+   {
+    "closure": "TRIVIAL_TERM",
+    "name": "leaves_node"
    },
    {
     "closure": "TACTIC",
-    "name": "value_singleton"
+    "name": "value_le_value_left"
    },
    {
     "closure": "TACTIC",
-    "name": "value_ge_head"
+    "name": "value_le_value_right"
    },
    {
     "closure": "TACTIC",
@@ -6226,11 +6234,7 @@
    },
    {
     "closure": "TACTIC",
-    "name": "value_node_append_le"
-   },
-   {
-    "closure": "TACTIC",
-    "name": "value_of_leaves"
+    "name": "value_attains"
    },
    {
     "closure": "TACTIC",
@@ -7914,7 +7918,7 @@
  },
  "schema_version": "trivial-proof-census-v1",
  "status": "source_shape_census_not_a_judgement_about_content",
- "theorem_declarations": 1884,
+ "theorem_declarations": 1885,
  "trivial_term_declarations": [
   "proofs/lean/juris_lean/JurisLean/ASPWitness.lean::witness_present_is_sat",
   "proofs/lean/juris_lean/JurisLean/ArgumentSemanticsRegistry.lean::grounded_is_protected_default",
@@ -8011,9 +8015,10 @@
   "proofs/lean/juris_lean/JurisLean/LegalSyntax.lean::trust_label_cannot_promote_status",
   "proofs/lean/juris_lean/JurisLean/Mandate/CohortInterval.lean::intervalOf_none_without_cohort",
   "proofs/lean/juris_lean/JurisLean/Mandate/Disclosure.lean::covers_nil_recorded",
-  "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean::value_cons",
+  "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean::leaves_leaf",
+  "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean::leaves_node",
   "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean::value_leaf",
-  "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean::value_nil",
+  "proofs/lean/juris_lean/JurisLean/Mandate/GameTree.lean::value_node",
   "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean::score_cons",
   "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean::score_nil_weights",
   "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean::firstUsable_nil",

@@ -328,12 +328,24 @@ def test_mandate_promotion_follows_build_audit_root_order() -> None:
         )
 
 
-def test_ledger_records_the_mandate_wave_as_pending_ci() -> None:
+def test_ledger_records_the_mandate_wave_and_its_attestation() -> None:
+    """The wave must be recorded *and* tied to the run that certified it.
+
+    This gate used to demand the label `CI_NOT_RUN`, which was the honest state while
+    nothing had compiled. A label is weaker than a citation, so it now requires the
+    ledger to name the run whose root build and certificate settled the question.
+    """
     text = LEDGER.read_text(encoding="utf-8")
     m = re.search(r"军令件补写", text)
     assert m, "the campaign ledger must record the mandate wave"
     tail = text[m.start():m.start() + 2500]
-    assert "CI_NOT_RUN" in tail, "the mandate wave must be labelled unverified"
+    assert re.search(r"run 36298572193", tail), (
+        "the mandate wave section must cite the CI run that certified it"
+    )
+    whole = text[m.start():]
+    assert "零个作业" in whole or "failure" in whole, (
+        "the ledger must also record the rounds that did not pass, not only the green one"
+    )
 
 
 def test_registry_not_yet_upgraded_with_unverified_anchors() -> None:

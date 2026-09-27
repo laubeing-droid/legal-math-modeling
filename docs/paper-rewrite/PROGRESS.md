@@ -30,7 +30,7 @@
 ## 写作约定（沿用）
 
 - 每节 = 范围框（blockquote）+ 正文 + 节末声明对应表；定理名/文件行号只进表，不进正文；tactic 名全文不出现。
-- 计数口径固定在第 2 节末段：145/111/27/4，绑定清单工件；构建状态一律 CI_NOT_RUN。
+- 计数口径固定在第 2 节末段：145/111/27/4，绑定清单工件；构建状态以清单的 subject 绑定为准——本分支自 run 36293474352 起有授权 CI 认定（逐轮记录在台账），其后的提交不继承该绿。
 - `scripts/check_paper_claims.py` 按旧语料布局写死（要求 paper/main.tex），对 `docs/paper-rewrite/` 不可直接运行；本轮以人工逐项扫描替代（禁印数字、字号、法答网日期、mutation 措辞、机器码，全部零命中）。
 - 第 4 节起可用贯穿实例：`TemporalKripke.lean` 的 litigation_timeline、`DDLDefinitions.lean` 的 contract_breach_direct_violation_shape 与 license_permission_not_direct_violation。
 

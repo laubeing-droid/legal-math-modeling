@@ -865,15 +865,20 @@
     "JurisLean.KernelV3.transfer_performance_identity",
     "JurisLean.KernelV3.transfer_proceduralBinding_identity",
     "JurisLean.Mandate.CaseIsomorphism.allSelfRelated_of_iso",
+    "JurisLean.Mandate.CaseIsomorphism.bool_beq_true",
     "JurisLean.Mandate.CaseIsomorphism.exists_bijective_inverse",
     "JurisLean.Mandate.CaseIsomorphism.isoRel3_allLoops_noRelation",
     "JurisLean.Mandate.CaseIsomorphism.isoRel3_allLoops_self",
+    "JurisLean.Mandate.CaseIsomorphism.isoRel3_iff",
     "JurisLean.Mandate.CaseIsomorphism.iso_refl",
     "JurisLean.Mandate.CaseIsomorphism.iso_symm",
     "JurisLean.Mandate.CaseIsomorphism.iso_trans",
     "JurisLean.Mandate.CaseIsomorphism.iso_twoEmpty_swap",
     "JurisLean.Mandate.CaseIsomorphism.noRelation_ne_allLoops",
+    "JurisLean.Mandate.CaseIsomorphism.not_Rel3Iso_allLoops_noRelation",
     "JurisLean.Mandate.CaseIsomorphism.not_iso_looped_edgeless",
+    "JurisLean.Mandate.CaseIsomorphism.pairs3_all_mem",
+    "JurisLean.Mandate.CaseIsomorphism.preservesR_iff",
     "JurisLean.Mandate.CaseIsomorphism.rel3Iso_allLoops_symm_self",
     "JurisLean.Mandate.CaseIsomorphism.rel3Iso_iff_by_list",
     "JurisLean.Mandate.CaseIsomorphism.rel3Iso_of_preserves",
@@ -1019,8 +1024,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "18965eb1c640ef9f34acbf213eb94d3583fde7f131101c9e0d424576c9e3d7e4",
-   "size_bytes": 39991,
+   "sha256": "a60b2a6c25cb4566f5b25a7008e593d277ac309514a88b99b2db72c4da124b0c",
+   "size_bytes": 40319,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -14400,6 +14405,26 @@
     {
      "kind": "theorem",
      "name": "rel3Iso_allLoops_symm_self"
+    },
+    {
+     "kind": "theorem",
+     "name": "bool_beq_true"
+    },
+    {
+     "kind": "theorem",
+     "name": "pairs3_all_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "preservesR_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "isoRel3_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "not_Rel3Iso_allLoops_noRelation"
     }
    ],
    "imports": [
@@ -14408,10 +14433,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/CaseIsomorphism.lean",
    "print_axioms_targets": [],
-   "sha256": "58c37206b82a617f8a4ffa1c76c9a3303681a253f54b4953b361b678d371b699",
-   "size_bytes": 11998,
-   "theorem_count": 16,
-   "theorem_count_bol_convention": 16
+   "sha256": "de04e77ef14cb5e7ac56f038804eb56864130be2fade747f9753e48509ebedae",
+   "size_bytes": 14347,
+   "theorem_count": 21,
+   "theorem_count_bol_convention": 21
   },
   {
    "declarations": [
@@ -19332,22 +19357,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1943,
+   "counted_declaration_count": 1948,
    "file_count": 233,
    "lemma_count": 24,
-   "print_axioms_command_count": 808,
-   "print_axioms_distinct_targets": 754,
-   "theorem_count": 1919,
-   "theorem_count_bol_convention": 1883
+   "print_axioms_command_count": 813,
+   "print_axioms_distinct_targets": 759,
+   "theorem_count": 1924,
+   "theorem_count_bol_convention": 1888
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1924,
+   "counted_declaration_count": 1929,
    "file_count": 218,
    "lemma_count": 17,
-   "print_axioms_command_count": 808,
-   "print_axioms_distinct_targets": 754,
-   "theorem_count": 1907,
-   "theorem_count_bol_convention": 1871
+   "print_axioms_command_count": 813,
+   "print_axioms_distinct_targets": 759,
+   "theorem_count": 1912,
+   "theorem_count_bol_convention": 1876
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -19855,12 +19880,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "cfe9484ebc9320a429bd9cc872c7661f9ca54f0a84b83d37c37ca06134b18b94",
+ "source_inventory_digest": "ca67ea24cebe053240c854b46fc48cceff046d44ce23aeffaef9a9ac38f789e7",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "8a9581a8788289f55076d21e38f3e387924746a9",
-  "tree": "d3896413889a7b88eda0cf0160863286e8288bb7"
+  "commit": "4592fc68a1a38575ab43461c00b42bce7ed57e91",
+  "tree": "afc3ab8f6e651167c16b4a4c973f1e0d52011aa8"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

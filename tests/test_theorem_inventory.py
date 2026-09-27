@@ -202,13 +202,27 @@ def test_generator_can_refuse_a_stale_label(tmp_path):
         capture_output=True,
         text=True,
     )
-    doc = load(INVENTORY)
-    bound = not doc["subject_binding"]["files_diverging_from_subject"]
-    if bound:
-        assert proc.returncode == 0, proc.stdout + proc.stderr
-    else:
+    # Decide from what the generator says now, not from what the committed file claims.
+    # Branching on the committed copy made the test contradict itself across environments:
+    # CI run 36308381874 saw a clean checkout agree with the label while the committed
+    # inventory still described a dirtier tree, so the assertion failed on a docs-only
+    # commit -- a gate that guesses is a gate that lies.
+    assert proc.returncode in (0, 2), proc.stdout + proc.stderr
+    fresh = json.loads(out.read_text(encoding="utf-8"))
+    diverging = fresh["subject_binding"]["files_diverging_from_subject"]
+    if diverging:
         assert proc.returncode == 2
         assert "does not describe" in proc.stderr
+    else:
+        assert proc.returncode == 0, proc.stdout + proc.stderr
+        # A label that calls itself stale against bytes that are identical is its own
+        # defect: regenerate the account rather than carrying the complaint forward.
+        committed = load(INVENTORY)["subject_binding"]
+        assert not committed["files_diverging_from_subject"], (
+            "the committed inventory reports divergence from its subject while a fresh "
+            "run finds none; regenerate it: "
+            f"{[d['path'] for d in committed['files_diverging_from_subject']][:3]}"
+        )
 
 def test_probability_mathematics_is_inside_the_audit_surface():
     """Audit P1-11: CI elaborated the statistics theorems but audited no axiom

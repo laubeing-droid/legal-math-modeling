@@ -461,6 +461,7 @@
     "JurisLean.Mandate.Kernel",
     "JurisLean.Mandate.LinearScorer",
     "JurisLean.Mandate.MatrixGame",
+    "JurisLean.Mandate.ReLUApprox",
     "JurisLean.Mandate.RouteDecision",
     "JurisLean.Mandate.SourceRank",
     "JurisLean.Mandate.StructureInvariants",
@@ -967,6 +968,15 @@
     "JurisLean.Mandate.MatrixGame.pennies_gap_strict",
     "JurisLean.Mandate.MatrixGame.pennies_no_pure_value",
     "JurisLean.Mandate.MatrixGame.upper_monotone_column",
+    "JurisLean.Mandate.ReLUApprox.h1_between",
+    "JurisLean.Mandate.ReLUApprox.h2_between",
+    "JurisLean.Mandate.ReLUApprox.lip_eq",
+    "JurisLean.Mandate.ReLUApprox.lip_pos",
+    "JurisLean.Mandate.ReLUApprox.out_at_one",
+    "JurisLean.Mandate.ReLUApprox.out_not_constant",
+    "JurisLean.Mandate.ReLUApprox.out_origin",
+    "JurisLean.Mandate.ReLUApprox.out_stable",
+    "JurisLean.Mandate.ReLUApprox.relu_between",
     "JurisLean.Mandate.RouteDecision.anyUsable_append",
     "JurisLean.Mandate.RouteDecision.excluded_is_skipped",
     "JurisLean.Mandate.RouteDecision.firstUsable_cons_notUsable",
@@ -1024,8 +1034,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "a60b2a6c25cb4566f5b25a7008e593d277ac309514a88b99b2db72c4da124b0c",
-   "size_bytes": 40319,
+   "sha256": "75f4b06dfdd180941da39256c84b7934ce6aad1bde863b992483b0928c4ff518",
+   "size_bytes": 40842,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -15032,6 +15042,76 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "relu"
+    },
+    {
+     "kind": "def",
+     "name": "h1"
+    },
+    {
+     "kind": "def",
+     "name": "h2"
+    },
+    {
+     "kind": "def",
+     "name": "out"
+    },
+    {
+     "kind": "def",
+     "name": "lip"
+    },
+    {
+     "kind": "theorem",
+     "name": "lip_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "lip_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "relu_between"
+    },
+    {
+     "kind": "theorem",
+     "name": "h1_between"
+    },
+    {
+     "kind": "theorem",
+     "name": "h2_between"
+    },
+    {
+     "kind": "theorem",
+     "name": "out_stable"
+    },
+    {
+     "kind": "theorem",
+     "name": "out_origin"
+    },
+    {
+     "kind": "theorem",
+     "name": "out_at_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "out_not_constant"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/ReLUApprox.lean",
+   "print_axioms_targets": [],
+   "sha256": "2edf6cadc8fd9c855304dc59b9f6749316d4b6b0ae0d01c5565ff7dad77d3cc7",
+   "size_bytes": 7268,
+   "theorem_count": 9,
+   "theorem_count_bol_convention": 9
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "RouteRow"
     },
@@ -19357,22 +19437,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1948,
-   "file_count": 233,
+   "counted_declaration_count": 1957,
+   "file_count": 234,
    "lemma_count": 24,
-   "print_axioms_command_count": 813,
-   "print_axioms_distinct_targets": 759,
-   "theorem_count": 1924,
-   "theorem_count_bol_convention": 1888
+   "print_axioms_command_count": 822,
+   "print_axioms_distinct_targets": 768,
+   "theorem_count": 1933,
+   "theorem_count_bol_convention": 1897
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1929,
-   "file_count": 218,
+   "counted_declaration_count": 1938,
+   "file_count": 219,
    "lemma_count": 17,
-   "print_axioms_command_count": 813,
-   "print_axioms_distinct_targets": 759,
-   "theorem_count": 1912,
-   "theorem_count_bol_convention": 1876
+   "print_axioms_command_count": 822,
+   "print_axioms_distinct_targets": 768,
+   "theorem_count": 1921,
+   "theorem_count_bol_convention": 1885
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -19559,6 +19639,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/Kernel.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/MatrixGame.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/ReLUApprox.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
@@ -19790,6 +19871,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/Kernel.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/MatrixGame.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/ReLUApprox.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
@@ -19880,19 +19962,28 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "299b183197cf133179ee43917cbaa7dca6e9b5d153bac58a926824fd9467b809",
+ "source_inventory_digest": "1f74699c38783f5587f2a461996848607a20ad34246d3693571330f81c06fc62",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "48e68881662c7d304ff3021fffb9d56ba77c1c87",
-  "tree": "13415cceec9fd95ae396638b6b148e32a72b1dc4"
+  "commit": "a148bea748256c12ab593d83dec253f5c0fec1f8",
+  "tree": "5d3a9cc4cb1c5e6a64f97c8b142956bdf49845ba"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
-  "files_total": 233,
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Mandate/ReLUApprox.lean",
+    "reason": "absent at subject"
+   }
+  ],
+  "files_total": 234,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

@@ -60,7 +60,14 @@ STANDALONE_DRIVERS: dict[str, str] = {
 # 36297146468 rebuilt them together with the corrected axiom-audit surface (126 of
 # their theorems are named there). The mechanism stays because the next wave needs
 # it, not because this one is still pending.
-PENDING_CI_MODULES: dict[str, str] = {}
+PENDING_CI_MODULES: dict[str, str] = {
+    # R-07's ReLU carrier, attempt four: the three earlier ones were rejected for
+    # guessed names, a `show` in argument position, and a named-argument capture (runs
+    # 36336037802 / 36338968515 / 36341001563). Never elaborated yet, so it stays out of
+    # the release root and is named on the audit surface, which is how it gets a build.
+    "JurisLean.Mandate.ReLUApprox":
+        "R-07 ReLU stability carrier, awaiting its first CI module build",
+}
 
 ALLOWED_UNREACHABLE = {**STANDALONE_DRIVERS, **PENDING_CI_MODULES}
 

@@ -113,7 +113,7 @@ def test_the_mandate_layer_is_now_on_the_audit_surface():
     # six are all the bijections of three slots, and 153 with the bridge that lets the Bool
     # test answer the Prop question; each increment was named only after a round built the
     # declarations it names, so a red round cannot leave the number behind.
-    assert len(mandate) == 153, f"mandate audit surface is {len(mandate)} targets"
+    assert len(mandate) == 162, f"mandate audit surface is {len(mandate)} targets"
     assert "JurisLean.Mandate.GameTree.value_attains" in mandate
     assert "JurisLean.Mandate.MatrixGame.hasPureValue_true_iff" in mandate
 

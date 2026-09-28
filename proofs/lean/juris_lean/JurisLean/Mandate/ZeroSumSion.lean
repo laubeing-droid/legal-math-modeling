@@ -24,11 +24,13 @@ prose: `MixedPennies` is one computed game, and a Sion instance would be a state
 about every finite zero-sum game. Neither is read as general Nash existence, which has no
 carrier in this pin at all.
 
-This round lands only the carrier and its three elementary shape facts, all of them
-quoted from source text rather than recalled: the non-negativity-and-total-one set is
-nonempty, compact and convex. The (quasi)convexity of the payoff in the row mixture, the
-(quasi)concavity in the column mixture, the semicontinuity of both slices, and the
-Sion application itself are the next rounds. Nothing here is yet a minimax claim.
+The carrier is attested: the shape facts below -- both strategy sets nonempty, compact and
+convex, and a mixture staying coordinatewise nonnegative -- built green in run 36365128114
+at subject `e9abf6a`. The linearity of the payoff in each mixture, the (quasi)convexity and
+(quasi)concavity that follow from it, the semicontinuity of both slices, and the Sion
+application that consumes all ten hypotheses were written after that attestation and wait
+for a clean build of their own. So no line here is yet a proved minimax claim, and the
+module remains quarantined rather than in the release root.
 -/
 
 namespace JurisLean.Mandate.ZeroSumSion

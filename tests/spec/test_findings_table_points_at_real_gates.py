@@ -16,6 +16,7 @@ quotes the auditor's original wording, including claims this repository later vo
 
 from __future__ import annotations
 
+import hashlib
 import re
 from pathlib import Path
 
@@ -117,3 +118,30 @@ def test_dropping_a_finding_from_the_table_would_be_caught() -> None:
     assert surviving != _reported_ids(), (
         "removing a row left the id set unchanged, so the comparison cannot notice"
     )
+
+
+# The archive README states a byte count and a sha256 for every extracted document, and the
+# id-equality rule above reads those documents. If the files and their stated hashes drift,
+# the equality is checked against text nobody can tie back to the session record, so the
+# provenance claim is verified here rather than trusted.
+ARCHIVE_DIR = ROOT / "docs" / "history" / "evidence-archive" / "20260927_qoder_audit"
+PROVENANCE = re.compile(r"`([A-Za-z0-9_.]+\.md)`.*?(\d+) 字节，sha256 `([0-9a-f]{64})`", re.S)
+
+
+def test_the_archive_provenance_matches_the_bytes_on_disk() -> None:
+    readme = (ARCHIVE_DIR / "README.md").read_text(encoding="utf-8")
+    entries = PROVENANCE.findall(readme)
+    assert len(entries) == len(REPORT_FILES) + 1, (
+        f"the README states provenance for {len(entries)} documents; expected the report, "
+        "its supplement and the task brief"
+    )
+    wrong = []
+    for name, size, digest in entries:
+        path = ARCHIVE_DIR / name
+        assert path.exists(), f"the README describes a missing file: {name}"
+        blob = path.read_bytes()
+        if len(blob) != int(size):
+            wrong.append(f"{name}: README says {size} bytes, file is {len(blob)}")
+        if hashlib.sha256(blob).hexdigest() != digest:
+            wrong.append(f"{name}: recorded sha256 does not match the bytes")
+    assert not wrong, "archive provenance has drifted:\n  " + "\n  ".join(wrong)

@@ -49,6 +49,23 @@ def _unbound_sentences(text: str, green: set[str]) -> list[str]:
     return out
 
 
+def test_the_scan_sees_the_vocabulary_it_claims() -> None:
+    """A pattern matching nothing would pass forever, so each edition must contain triggers."""
+    for path in (CN, EN):
+        text = path.read_text(encoding="utf-8")
+        hits = [w for w in TRIGGERS if w in text]
+        assert hits, f"{path.name} contains no minimax or saddle-point wording at all"
+    green = _green_runs()
+    cited = [
+        sentence
+        for path in (CN, EN)
+        for sentence in SENTENCE.findall(path.read_text(encoding="utf-8"))
+        if any(t in sentence for t in TRIGGERS) and RUN_ID.search(sentence)
+    ]
+    assert green, "no green run is indexed, so a citation could never satisfy the rule"
+    assert all(_unbound_sentences(s, green) == [] for s in cited) or not cited
+
+
 def test_the_two_editions_carry_no_unbound_minimax_claim() -> None:
     green = _green_runs()
     assert green, "the run index lists no green runs, so the check has lost its reference"

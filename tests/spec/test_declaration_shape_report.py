@@ -105,20 +105,22 @@ def test_papers_quote_the_shape_artifact_and_not_a_memory() -> None:
         )
 
 
-def test_the_shape_check_mode_fails_on_a_stale_artifact(tmp_path: Path) -> None:
-    """--check must be able to go red, or the registration in CI is decoration."""
-    text = REPORT.read_text(encoding="utf-8")
-    broken = json.loads(text)
-    broken["scope"]["counts"]["ALIAS_ONE_LINER"] += 1
-    probe = tmp_path / "report.json"
-    probe.write_text(json.dumps(broken), encoding="utf-8")
-    OUT_override = REPORT
-    try:
-        OUT_override.write_text(json.dumps(broken), encoding="utf-8")
-        proc = subprocess.run(
-            [sys.executable, str(SCRIPT), "--check"],
-            capture_output=True, text=True, encoding="utf-8", cwd=ROOT,
-        )
-        assert proc.returncode != 0, "a mutated artifact passed the staleness check"
-    finally:
-        OUT_override.write_text(text, encoding="utf-8")
+def test_the_shape_check_mode_fails_on_a_stale_artifact() -> None:
+    """--check must be able to go red, without touching the tracked artifact to prove it.
+
+    An earlier version wrote a mutated copy over docs/formal-release/... and restored it in
+    a `finally`, so an interrupted run could leave the repository holding a falsified
+    account. The mutation is compared in memory against exactly what `--check` compares.
+    """
+    from generate_declaration_shape_report import OUT, build, render
+
+    fresh = render(build())
+    assert OUT.read_text(encoding="utf-8") == fresh, (
+        "the committed artifact is already stale, so this check cannot demonstrate red-ness"
+    )
+    mutated = json.loads(fresh)
+    mutated["scope"]["counts"]["ALIAS_ONE_LINER"] += 1
+    rebuilt = json.dumps(mutated, ensure_ascii=False, indent=2, sort_keys=True) + chr(10)
+    assert rebuilt != fresh, (
+        "mutating a figure left the rendering unchanged, so the comparison is vacuous"
+    )

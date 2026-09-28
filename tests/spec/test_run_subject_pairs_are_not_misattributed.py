@@ -67,15 +67,31 @@ def test_every_named_pair_matches_the_index_record() -> None:
     assert not wrong, "attestation pairing does not match the recorded subject:\n  " + "\n  ".join(wrong)
 
 
+def _mismatches(pairs: list[tuple[str, str]], by_id: dict[str, str]) -> list[str]:
+    """The comparison, factored out so a deliberately swapped pairing can drive it."""
+    out = []
+    for run, subj in pairs:
+        recorded = by_id.get(run)
+        if recorded is None:
+            out.append(f"run {run} is not in the index")
+        elif not recorded.startswith(subj):
+            out.append(f"run {run} recorded at {recorded[:9]} but prose says {subj}")
+    return out
+
+
 def test_a_mispaired_attestation_would_actually_be_caught() -> None:
-    """Prove the comparison bites: swap two subjects and the rule must fail."""
+    """Prove the rule bites: rotate every subject and the same comparison must report it."""
     by_id = _index()
-    pairs = [(rel, p) for rel in SURFACES for p in _pairs(rel)]
-    assert len({subj for _rel, (_run, subj) in pairs}) >= 2, (
-        "every prose pair names the same subject, so a swap cannot be detected"
+    pairs = [p for rel in SURFACES for p in _pairs(rel)]
+    assert not _mismatches(pairs, by_id), (
+        "the live prose already fails, so the mutation case would prove nothing"
     )
-    run_a, subj_a = next(p for _rel, p in pairs)
-    _run_b, subj_b = next(p for _rel, p in pairs if p[1] != subj_a)
-    assert not by_id[run_a].startswith(subj_b) or by_id[run_a].startswith(subj_a), (
-        "the index does not distinguish subjects, so this gate cannot fail"
+    subjects = sorted({subj for _run, subj in pairs})
+    assert len(subjects) >= 2, "every pair names one subject, so a swap cannot be detected"
+    rotated = [
+        (run, subjects[(subjects.index(subj) + 1) % len(subjects)])
+        for run, subj in pairs
+    ]
+    assert _mismatches(rotated, by_id), (
+        "rotating every subject left the comparison clean, so it cannot notice a swap"
     )

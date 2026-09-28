@@ -422,3 +422,42 @@ def test_paper_scope_file_counts_match_the_artifact() -> None:
     en = EN.read_text(encoding="utf-8")
     assert f"{pkg} 个文件" in cn and f"{pkg} files" in en
     assert f"{tracked} 文件" in cn and f"{tracked} files" in en
+
+
+def test_audit_surface_figures_in_the_prose_equal_the_measured_source() -> None:
+    """The papers quote the audit surface four ways; none of them was bound to anything.
+
+    The count gate binds declaration totals in the 1700-1999 range, so a sentence saying
+    "833 `#print axioms` lines / 779 targets / 570 in the root file / 173 mandate" stayed
+    free to rot while the guarded sentence moved. Each of the four is now recomputed from
+    the source the papers describe and compared phrase by phrase.
+    """
+    import json
+
+    doc = json.loads(INVENTORY.read_text(encoding="utf-8"))
+    pkg = doc["scope_summary"]["juris_lean_package"]
+    audit = ROOT / "proofs" / "lean" / "juris_lean" / "JurisLean" / "AxiomAudit.lean"
+    lines = audit.read_text(encoding="utf-8").splitlines()
+    audit_cmds = sum(1 for l in lines if l.startswith("#print axioms"))
+    audit_mandate = sum(
+        1 for l in lines if l.startswith("#print axioms JurisLean.Mandate.")
+    )
+    cn = CN.read_text(encoding="utf-8")
+    en = EN.read_text(encoding="utf-8")
+
+    cn_claims = {
+        "cmds": f"在源上是 {pkg['print_axioms_command_count']} 行 `#print axioms`",
+        "targets": f"去重后 {pkg['print_axioms_distinct_targets']} 个具名目标",
+        "audit_file": f"独占 {audit_cmds}",
+        "mandate": f"军令层现由 {audit_mandate} 条",
+    }
+    en_claims = {
+        "cmds": f"carries {pkg['print_axioms_command_count']} `#print axioms` commands",
+        "targets": f"{pkg['print_axioms_distinct_targets']} distinct targets",
+        "audit_file": f"AxiomAudit.lean holds {audit_cmds} commands",
+        "mandate": f"the mandate layer {audit_mandate}",
+    }
+    for kind, claim in cn_claims.items():
+        assert claim in cn, f"the Chinese draft's {kind} surface figure is not the source's"
+    for kind, claim in en_claims.items():
+        assert claim in en, f"the English draft's {kind} surface figure is not the source's"

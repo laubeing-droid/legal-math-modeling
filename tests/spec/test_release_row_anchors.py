@@ -79,3 +79,19 @@ def test_a_wrong_anchor_figure_would_actually_go_red() -> None:
     assert str(live) == claimed
     sabotaged = found.group(0).replace(f"（应为 {claimed}）", f"（应为 {live + 7}）")
     assert _stale_anchors(sabotaged), "the anchor rule did not notice a figure I changed by hand"
+
+
+def test_no_row_freezes_what_the_quarantine_currently_holds() -> None:
+    """A row that names the quarantine's contents rots the moment a module is promoted.
+
+    R-07 once asserted the isolation table held one module while it in fact held another,
+    and nothing checked it because the anchor rules cover `应为 N` counts and file existence
+    only. Any row that states the current membership must state it as measured.
+    """
+    text = LEDGER.read_text(encoding="utf-8")
+    rows = [r for r in _rows() if "PENDING_CI_MODULES" in r]
+    frozen = [r.split("|")[1].strip() for r in rows if "现只登记" in r]
+    assert not frozen, (
+        f"rows freeze the quarantine membership as prose ({frozen}); point them at "
+        "`python scripts/ci/check_import_reachability.py` instead"
+    )

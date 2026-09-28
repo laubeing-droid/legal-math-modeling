@@ -76,13 +76,46 @@ def shape_of(block: str) -> list[str]:
     if ALIAS.match(one_line):
         tags.append("ALIAS_ONE_LINER")
     head = _conclusion_head(one_line)
+    conclusion = _conclusion_text(one_line)
     if (
         head is not None
+        and conclusion is not None
         and not any(ch in head for ch in "({[")
-        and not FORALLISH.search(one_line)
+        and not FORALLISH.search(conclusion)
     ):
         tags.append("CLOSED_NO_BINDERS")
     return tags
+
+
+def _conclusion_text(one_line: str):
+    """The stated proposition only, with the proof term excluded.
+
+    An earlier version scanned the whole declaration, so a binder-free conclusion whose proof
+    happened to contain `fun` or `forall` was misclassified, contradicting the rule this file
+    declares in its own docstring.
+    """
+    body = one_line.split(None, 1)[1] if len(one_line.split(None, 1)) > 1 else ""
+    start = _span(body, 0, lambda idx, ch, depth: ch == ":" and depth == 0
+                  and body[idx:idx + 2] != ":=", colon_skipped=True)
+    if start is None:
+        return None
+    rest = body[start:]
+    end = _span(rest, 0, lambda idx, ch, depth: rest[idx:idx + 2] == ":=" and depth == 0)
+    return rest if end is None else rest[:end]
+
+
+def _span(text: str, start: int, hit, colon_skipped: bool = False):
+    """Index just past the first position where `hit` fires at binder depth zero."""
+    depth = 0
+    for idx in range(start, len(text)):
+        ch = text[idx]
+        if ch in "([":
+            depth += 1
+        elif ch in ")]":
+            depth -= 1
+        elif hit(idx, ch, depth):
+            return idx + 1 if colon_skipped else idx
+    return None
 
 
 def _conclusion_head(one_line: str):
@@ -117,9 +150,11 @@ def build() -> dict:
         if file_counts["theorems"]:
             per_file[rel] = file_counts
     census = json.loads(CENSUS.read_text(encoding="utf-8"))
-    if census["theorem_declarations"] != pkg["theorems"]:
+    census_total = census["theorem_declarations"]
+    agree = census_total == pkg["theorems"]
+    if not agree:
         raise SystemExit(
-            f"scope disagreement: census sees {census['theorem_declarations']} theorems, "
+            f"scope disagreement: census sees {census_total} theorems, "
             f"this report sees {pkg['theorems']} -- the two parsers no longer agree"
         )
     return {
@@ -135,9 +170,9 @@ def build() -> dict:
             "theorem_inventory_v3.json, which this report is cross-checked against."
         ),
         "cross_check": {
-            "census_theorem_declarations": census["theorem_declarations"],
+            "census_theorem_declarations": census_total,
             "this_report_package_theorems": pkg["theorems"],
-            "agree": True,
+            "agree": agree,
         },
         "scope": {
             "walked_tree": SCAN_DIR,

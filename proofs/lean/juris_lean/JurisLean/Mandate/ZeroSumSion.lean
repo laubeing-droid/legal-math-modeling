@@ -33,7 +33,11 @@ attested by run 36372895460 at subject `fea48d9`, whose `lean-full-clean-build` 
 all fourteen targets here. `exists_saddlePoint` is therefore a proved statement about every
 finite two-player zero-sum game -- and nothing wider: it says nothing about non-zero-sum or
 multiplayer games, which still have no carrier in this pin. The module joins the release
-root in the commit recording that run, and the root entry is verified by its own build.
+root in `d0b3506`, and that entry is what run 36376522559 at subject `78f627f` built green:
+the instance attestation and the root-entry attestation are therefore two different subjects, and
+neither inherits to a later commit. The value equality `iInf iSup = iSup iInf` is NOT claimed
+here: `Order/SaddlePoint.lean:102 isSaddlePointOn_value` would give it, but it demands
+`CompleteLinearOrder beta`, and this pin has no such instance for the reals.
 -/
 
 namespace JurisLean.Mandate.ZeroSumSion
@@ -187,7 +191,7 @@ theorem usc_payoff_right {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ) (p : 
       exact (continuous_const.mul continuous_const).mul (continuous_apply j)
     exact (hc.upperSemicontinuous).upperSemicontinuousOn _
 
-/-- **Every finite two-player zero-sum game has a value in mixed strategies.** Ten
+/-- **Every finite two-player zero-sum game has a saddle point in mixed strategies.** Ten
 hypotheses, all of them discharged above or from the pinned library: the two strategy sets
 are nonempty, compact and convex, each slice of the payoff is semicontinuous on the set the
 theorem puts the compactness on, and the payoff is quasiconvex in the row mixture and

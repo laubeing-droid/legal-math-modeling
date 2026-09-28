@@ -25,9 +25,11 @@ else's node. General Nash existence stays where the ledger puts it -- no carrier
 pinned Mathlib -- and `FORBIDDEN-12` forbids reading anything here as a general existence
 result.
 
-Status: no CI verdict at the time of writing. The module is booked in `PENDING_CI_MODULES`
-and may not join the release root until `lean-full-clean-build` has built it; nothing in this
-header is an attestation.
+Status: its nine theorems were built green by `lean-full-clean-build` in run 36386527448 at
+subject `7a2a65e`, which is the only build verdict claimed here; this header text was edited
+afterwards, so that subject attests the theorems and not these words. The module then joined
+the release root, and that root entry needs its own green build to be attested: a verdict
+does not travel forward to a later commit, nor backward to an earlier one.
 -/
 
 namespace JurisLean.Mandate.SequentialGames

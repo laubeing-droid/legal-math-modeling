@@ -107,6 +107,7 @@ def test_quarantine_never_shelters_a_promoted_or_missing_module() -> None:
     promoted = {
         "Kernel", "CohortRate", "StructureInvariants", "DerivedCertificate", "GameTree",
         "ZeroSumSion",
+        "SequentialGames",
         "SourceRank", "GateTable", "SubstrAdmission", "LinearScorer", "Disclosure",
         "Waterfall", "CohortInterval", "RouteDecision", "TaxSlices", "MatrixGame",
         "CaseIsomorphism",

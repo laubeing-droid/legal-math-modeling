@@ -67,12 +67,13 @@ STANDALONE_DRIVERS: dict[str, str] = {
 # AGENTS requires a passing CI module build before root entry, and both have one, so they
 # are now imported by the generated block. The mechanism stays because the next wave needs it.
 PENDING_CI_MODULES: dict[str, str] = {
-    # Booked by the AGENTS rule: no module reaches the release root before
-    # `lean-full-clean-build` has built it. `Mandate/SequentialGames.lean` (R-02b, the
-    # multi-player sequential carrier with one-step optimality) is new and has no build of
-    # its own yet, so it stays unreachable on purpose until CI reports.
-    "JurisLean.Mandate.SequentialGames": (
-        "new module of the R-02b sequential arm; awaiting its first CI module build"),
+    # Empty as of this commit, and the reason is on file rather than implied: both mandate
+    # arrivals were built by `lean-full-clean-build` under their own subjects --
+    # `Mandate/ZeroSumSion.lean` at 78f627f and `Mandate/SequentialGames.lean` at 7a2a65e --
+    # so neither may stay unreachable. Re-quarantining a module whose prose changed after its
+    # build is not a thing this model supports (the promotion gate rejects a module that is
+    # both in the root and booked); such a caveat belongs in the module header and the ledger.
+    # The mechanism stays because the next wave needs it.
 }
 
 ALLOWED_UNREACHABLE = {**STANDALONE_DRIVERS, **PENDING_CI_MODULES}

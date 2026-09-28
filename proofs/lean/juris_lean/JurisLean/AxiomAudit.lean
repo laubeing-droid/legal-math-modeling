@@ -43,6 +43,7 @@ import JurisLean.Mandate.CaseIsomorphism
 import JurisLean.Mandate.ReLUApprox
 import JurisLean.Mandate.MixedPennies
 import JurisLean.Mandate.ZeroSumSion
+import JurisLean.Mandate.SequentialGames
 
 /-! Axiom audit for formal core release v1. -/
 
@@ -669,3 +670,12 @@ open HornSystem
 #print axioms JurisLean.Mandate.ZeroSumSion.quasiconcaveOn_payoff_right
 #print axioms JurisLean.Mandate.ZeroSumSion.quasiconvexOn_payoff_left
 #print axioms JurisLean.Mandate.ZeroSumSion.usc_payoff_right
+#print axioms JurisLean.Mandate.SequentialGames.actor_gets_her_best
+#print axioms JurisLean.Mandate.SequentialGames.choose_apply
+#print axioms JurisLean.Mandate.SequentialGames.non_actor_may_be_sacrificed
+#print axioms JurisLean.Mandate.SequentialGames.outcome_terminal
+#print axioms JurisLean.Mandate.SequentialGames.outcome_turn_apply
+#print axioms JurisLean.Mandate.SequentialGames.turn_ge_left
+#print axioms JurisLean.Mandate.SequentialGames.turn_ge_right
+#print axioms JurisLean.Mandate.SequentialGames.turn_monotone
+#print axioms JurisLean.Mandate.SequentialGames.two_player_take_better

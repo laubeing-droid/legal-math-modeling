@@ -66,7 +66,14 @@ STANDALONE_DRIVERS: dict[str, str] = {
 # mixed-strategy Nash equilibrium for one game) in run 36351623739 at subject 71d2177bc.
 # AGENTS requires a passing CI module build before root entry, and both have one, so they
 # are now imported by the generated block. The mechanism stays because the next wave needs it.
-PENDING_CI_MODULES: dict[str, str] = {}
+PENDING_CI_MODULES: dict[str, str] = {
+    # Booked by the AGENTS rule: no module reaches the release root before
+    # `lean-full-clean-build` has built it. `Mandate/SequentialGames.lean` (R-02b, the
+    # multi-player sequential carrier with one-step optimality) is new and has no build of
+    # its own yet, so it stays unreachable on purpose until CI reports.
+    "JurisLean.Mandate.SequentialGames": (
+        "new module of the R-02b sequential arm; awaiting its first CI module build"),
+}
 
 ALLOWED_UNREACHABLE = {**STANDALONE_DRIVERS, **PENDING_CI_MODULES}
 

@@ -42,6 +42,7 @@ import JurisLean.Mandate.Waterfall
 import JurisLean.Mandate.CaseIsomorphism
 import JurisLean.Mandate.ReLUApprox
 import JurisLean.Mandate.MixedPennies
+import JurisLean.Mandate.ZeroSumSion
 
 /-! Axiom audit for formal core release v1. -/
 
@@ -650,3 +651,10 @@ open HornSystem
 #print axioms JurisLean.Mandate.Waterfall.paidOut_cons
 #print axioms JurisLean.Mandate.Waterfall.paidOut_le_payment
 #print axioms JurisLean.Mandate.Waterfall.paidOut_nil
+#print axioms JurisLean.Mandate.ZeroSumSion.combo_nonneg
+#print axioms JurisLean.Mandate.ZeroSumSion.mixLeft_convex
+#print axioms JurisLean.Mandate.ZeroSumSion.mixLeft_isCompact
+#print axioms JurisLean.Mandate.ZeroSumSion.mixLeft_nonempty
+#print axioms JurisLean.Mandate.ZeroSumSion.mixRight_convex
+#print axioms JurisLean.Mandate.ZeroSumSion.mixRight_isCompact
+#print axioms JurisLean.Mandate.ZeroSumSion.mixRight_nonempty

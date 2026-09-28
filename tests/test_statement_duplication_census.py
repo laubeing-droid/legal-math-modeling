@@ -30,8 +30,12 @@ def test_census_records_its_own_coverage_gap() -> None:
     assert doc["inventory_package_theorems"] > 0
     # A scanner that silently reads less than the account it is checking is the failure
     # mode this whole repository was audited for, so the gap is a published number.
+    # Private/protected headers are read for duplication analysis but are outside the
+    # inventory's counting convention (as with `rg "^theorem "`), so the identity
+    # compares public headers only.
+    public = doc["statements_read"] - doc["private_protected_headers_read"]
     assert doc["headers_missed_by_scanner"] >= 0
-    assert doc["statements_read"] + doc["headers_missed_by_scanner"] == \
+    assert public + doc["headers_missed_by_scanner"] == \
         doc["inventory_package_theorems"]
 
 

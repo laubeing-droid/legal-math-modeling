@@ -108,20 +108,30 @@ def split_header(text: str) -> Tuple[str, str]:
     return name, stmt
 
 
-def read_multiline(text: str) -> List[Tuple[str, str, int]]:
+def read_multiline(text: str) -> List[Tuple[str, str, int, bool]]:
     """Headers span lines; take a bounded lookahead per header and let `split_header`
     cut at the first depth-zero `:=`. Stopping at the first `:=` anywhere is wrong --
     a record update `{ ctx with assumptions := [...] }` carries one two levels in, and
-    cutting there makes every such header collapse to the same prefix."""
+    cutting there makes every such header collapse to the same prefix.
+
+    The fourth slot says whether the header carried a `private`/`protected` prefix:
+    the duplication analysis below still reads those statements, but the coverage
+    identity against the theorem inventory must exclude them, because the inventory
+    (like the repository's own `rg "^theorem "` counting convention) does not count
+    private/protected declarations -- the neural backport's nine `private lemma`
+    helpers drove the published blind-spot negative until the two sides agreed on
+    this convention.
+    """
     lines = text.splitlines()
-    out: List[Tuple[str, str, int]] = []
+    out: List[Tuple[str, str, int, bool]] = []
     for n, line in enumerate(lines, 1):
-        if not HEADER.match(line):
+        m = HEADER.match(line)
+        if not m:
             continue
         window = " ".join(lines[n - 1:min(n - 1 + 15, len(lines))])
         name, stmt = split_header(window)
         if name and stmt:
-            out.append((name, stmt, n))
+            out.append((name, stmt, n, line.lstrip().startswith(("private ", "protected "))))
     return out
 
 
@@ -151,6 +161,7 @@ def inventory_count() -> int:
 def scan() -> Dict:
     by_stmt: Dict[str, List[Tuple[str, str, int]]] = defaultdict(list)
     files = sorted(p for p in PKG.rglob("*.lean") if p.name != "JurisLean.lean")
+    private_headers = 0
     for path in files:
         rel = path.relative_to(PKG).as_posix()
         clean: List[str] = []
@@ -158,8 +169,10 @@ def scan() -> Dict:
         for line in path.read_text(encoding="utf-8").splitlines():
             code, depth = lg.strip_comments(line, depth)
             clean.append(code)
-        for name, stmt, line in read_multiline("\n".join(clean)):
+        for name, stmt, line, is_private in read_multiline("\n".join(clean)):
             by_stmt[stmt].append((f"{family(rel)}/{name}", rel, line))
+            if is_private:
+                private_headers += 1
     dupes = {s: sorted(v) for s, v in by_stmt.items() if len(v) > 1}
     cross = {
         s: v for s, v in dupes.items()
@@ -177,7 +190,13 @@ def scan() -> Dict:
         "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
         "files_scanned": len(files),
         "inventory_package_theorems": inventory_count(),
-        "headers_missed_by_scanner": inventory_count() - sum(len(v) for v in by_stmt.values()),
+        "private_protected_headers_read": private_headers,
+        # The inventory (and the repository's `rg "^theorem "` convention) does not
+        # count private/protected declarations; the scanner reads them for the
+        # duplication analysis, so they are excluded from the identity below.
+        "headers_missed_by_scanner": inventory_count() - (
+            sum(len(v) for v in by_stmt.values()) - private_headers
+        ),
         "statements_read": sum(len(v) for v in by_stmt.values()),
         "distinct_statement_types": len(by_stmt),
         "duplicated_statement_types": len(dupes),

@@ -121,8 +121,10 @@
       "upstream_sha256": "6ea0a1864641f6122f81aca2e20cddc7513ba804e9fcee806f67399582cbf4bd"
     },
     {
-      "adaptations": [],
-      "adapted": false,
+      "adaptations": [
+        "SmoothEngine.lean:354 (smooth_engine): added one \\\beta_reduce at h2\\ before the upstream wa [Subalgebra.topologicalClosure_coe, Algebra.coe_top]\\ -- mathlib v4.30.0 leaves congrArgs lambda un-beta-reduced, so the rewrite pattern ↑(Subalgebra.topologicalClosure _) did not match (run 36447860895, subject aea8fb9). No statement or other proof line touched."
+      ],
+      "adapted": true,
       "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.SmoothEngine",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/SmoothEngine.lean",
       "upstream_path": "NeuralNetworkProofs/UniversalApproximation/Leshno/SmoothEngine.lean",

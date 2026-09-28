@@ -1,8 +1,8 @@
 {
  "authority_note": "Static import-graph measurement over the JurisLean package. It says nothing about correctness; it says how much mathematics is shared.",
  "counts": {
-  "carriers_in_package": 1965,
-  "theorem_declarations_in_package": 2687
+  "carriers_in_package": 1977,
+  "theorem_declarations_in_package": 2746
  },
  "genealogy": {
   "carriers_per_theorem": 1.59,
@@ -124,6 +124,9 @@
   "JurisLean.External.GameTheory.Math.Probability": 14,
   "JurisLean.External.GameTheory.Math.ProbabilityMassFunction": 8,
   "JurisLean.External.GameTheory.Theorems.Kuhn.KuhnModel": 5,
+  "JurisLean.External.NeuralNetworkProofs.ForMathlib.IteratedDerivPolynomial": 5,
+  "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.ClassM": 8,
+  "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Family": 6,
   "JurisLean.FailureStatus": 5,
   "JurisLean.FiniteMonotoneIteration": 6,
   "JurisLean.FullMath.Core.Foundations": 46,
@@ -138,10 +141,10 @@
   "Mathlib": 34,
   "Mathlib.Data.Fin.Basic": 5,
   "Mathlib.Data.Finset.Basic": 13,
-  "Mathlib.Data.Real.Basic": 13,
+  "Mathlib.Data.Real.Basic": 14,
   "Mathlib.Probability.ProbabilityMassFunction.Constructions": 5,
-  "Mathlib.Tactic": 14
+  "Mathlib.Tactic": 15
  },
- "package_files": 265,
+ "package_files": 282,
  "schema_version": "kernel-reuse-v1"
 }

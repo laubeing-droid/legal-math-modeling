@@ -472,6 +472,23 @@
     "JurisLean.External.GameTheory.Theorems.Minimax",
     "JurisLean.External.GameTheory.Theorems.NashExistenceMixed",
     "JurisLean.External.GameTheory.Theorems.OneShotDeviation",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionDegreeBound",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionIteratedDeriv",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionPolynomial",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.IteratedDerivPolynomial",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.PolynomialDistribution",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.RidgePowersSpan",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.SmoothCompactAntideriv",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.UniformRiemannConvolution",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.ClassM",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Converse",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Family",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Mollify",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.MollifyDef",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Ridge",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.SmoothEngine",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Theorem",
     "JurisLean.FiniteMonotoneIteration",
     "JurisLean.FullMath.Probability.BetaInterval",
     "JurisLean.FullMath.Probability.Brier",
@@ -519,6 +536,15 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
    "print_axioms_targets": [
+    "ConvolutionDegreeBound.conv_left_comm_mul",
+    "ConvolutionDegreeBound.exists_uniform_degree_bound",
+    "ConvolutionIteratedDeriv.iteratedDeriv_convolution_left",
+    "ConvolutionPolynomial.convolutionExists_left_mul",
+    "ConvolutionPolynomial.convolutionExists_right_mul",
+    "ConvolutionPolynomial.convolution_comm_mul",
+    "ConvolutionPolynomial.monomial_conv_isPoly",
+    "ConvolutionPolynomial.natDegree_poly_conv_eq",
+    "ConvolutionPolynomial.poly_conv_isPoly",
     "EFG.DecisionNodeIn_chance_inv",
     "EFG.DecisionNodeIn_decision_inv",
     "EFG.DecisionNodeIn_terminal_false",
@@ -745,6 +771,10 @@
     "InfoStateCore.identity_current",
     "InfoStateCore.identity_push",
     "InfoStateCore.identity_start",
+    "IteratedDerivPolynomial.exists_antideriv",
+    "IteratedDerivPolynomial.iteratedDeriv_eq_zero_imp_poly",
+    "IteratedDerivPolynomial.iteratedDeriv_eval",
+    "IteratedDerivPolynomial.iteratedDeriv_succ_eq_zero_of_natDegree_le",
     "JurisLean.BanachCertificateV3.certificate_error_within_tolerance",
     "JurisLean.BanachCertificateV3.certificate_has_nonempty_domain",
     "JurisLean.BanachCertificateV3.certificate_has_positive_iterations",
@@ -1720,6 +1750,8 @@
     "ObsModelCore.sum_mul_pmf_ne_top",
     "ObsModelCore.swapBy_weight_eq",
     "ObsModelCore.swapProfileBy_involutive",
+    "PolynomialDistribution.aePolynomial_of_annihilates_moment_vanishing",
+    "RidgePowersSpan.ridgePow_span",
     "Semantics.Transition.exists_reachBy_iff_reaches",
     "Semantics.Transition.exists_reachBy_of_reaches",
     "Semantics.Transition.obs_eq_of_reachBy",
@@ -1733,6 +1765,50 @@
     "Semantics.Transition.reachBy_split",
     "Semantics.Transition.reaches_map_states",
     "Semantics.Transition.reaches_of_reachBy",
+    "SmoothCompactAntideriv.exists_iteratedDeriv_eq_of_moments_zero",
+    "UniformRiemannConvolution.tendstoUniformly_riemannSum_aeContinuous",
+    "UniformRiemannConvolution.tendstoUniformly_riemannSum_continuous",
+    "UniversalApproximation.Leshno.AEPolyOn.add",
+    "UniversalApproximation.Leshno.AEPolyOn.smul",
+    "UniversalApproximation.Leshno.ApproxByGen.add",
+    "UniversalApproximation.Leshno.ApproxByGen.smul",
+    "UniversalApproximation.Leshno.ClassM.aestronglyMeasurable",
+    "UniversalApproximation.Leshno.ClassM.locallyIntegrable",
+    "UniversalApproximation.Leshno.ClassM.of_continuous",
+    "UniversalApproximation.Leshno.Pd_isClosed",
+    "UniversalApproximation.Leshno.T_isClosed",
+    "UniversalApproximation.Leshno.aeEq_poly_of_affine",
+    "UniversalApproximation.Leshno.aePolyOn_genFun",
+    "UniversalApproximation.Leshno.aePolyOn_of_mem_genSpan",
+    "UniversalApproximation.Leshno.aePolyOn_zero",
+    "UniversalApproximation.Leshno.aePolynomial_not_dense",
+    "UniversalApproximation.Leshno.approxByGen_ridge_of_compact_image",
+    "UniversalApproximation.Leshno.approxByGen_zero",
+    "UniversalApproximation.Leshno.contDiff_mollify",
+    "UniversalApproximation.Leshno.continuous_cvec",
+    "UniversalApproximation.Leshno.cvec_apply",
+    "UniversalApproximation.Leshno.cvec_mem_Kset",
+    "UniversalApproximation.Leshno.denselyApproximates_of_forall_T_eq_top",
+    "UniversalApproximation.Leshno.deriv_pow_mem",
+    "UniversalApproximation.Leshno.exists_deriv_ne",
+    "UniversalApproximation.Leshno.exists_nonpoly_mollify",
+    "UniversalApproximation.Leshno.genFun_reparam_mem",
+    "UniversalApproximation.Leshno.isCompact_Kset",
+    "UniversalApproximation.Leshno.isPolynomialFun_of_continuous_of_aePolynomial",
+    "UniversalApproximation.Leshno.leshno_dense",
+    "UniversalApproximation.Leshno.leshno_dense_iff",
+    "UniversalApproximation.Leshno.mem_T_iff_mem_Tplain",
+    "UniversalApproximation.Leshno.mollify_eq_convolution",
+    "UniversalApproximation.Leshno.mollify_ridge_mem_T",
+    "UniversalApproximation.Leshno.monomial_notMem_Pd",
+    "UniversalApproximation.Leshno.quasiMeasurePreserving_affine",
+    "UniversalApproximation.Leshno.restrictLM_apply",
+    "UniversalApproximation.Leshno.restrictLM_mem_Pd",
+    "UniversalApproximation.Leshno.ridge_density",
+    "UniversalApproximation.Leshno.ridge_mem_T",
+    "UniversalApproximation.Leshno.smooth_engine",
+    "UniversalApproximation.Leshno.subset_of_ae_restrict_mem",
+    "UniversalApproximation.Leshno.univariate_density",
     "almost_surjective_of_insert_index",
     "boundary_is_A_or_B",
     "brouwer_fixedPoints_nonempty",
@@ -1822,8 +1898,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "6fbb5c4ef32b36b17c319af1954d41d01e5aea6ef52cdfa3bac34fbd9085188b",
-   "size_bytes": 84989,
+   "sha256": "5fe681fa243c922b47f4bac9c973d317e753ed0d058c56bc87ee4d72bf87a293",
+   "size_bytes": 90153,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -4232,8 +4308,8 @@
    "lemma_count": 5,
    "path": "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/apply_cubical_sperner.lean",
    "print_axioms_targets": [],
-   "sha256": "3a423b62c16900edbd1fce7b485a874b4a50b55eb38e58b3a10150db405bd231",
-   "size_bytes": 9413,
+   "sha256": "e97ef45cae058e143399d1aa9682de92659e213932934cebada11b07cde6e58b",
+   "size_bytes": 9412,
    "theorem_count": 2,
    "theorem_count_bol_convention": 2
   },
@@ -4260,8 +4336,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/brouwer.lean",
    "print_axioms_targets": [],
-   "sha256": "751199525c8efc94fc8e4a22f86924d46e6909082faa39bcf09484e83dc1daf3",
-   "size_bytes": 2692,
+   "sha256": "54837f952426933b7623cdb3d63b52aa659c9e1fb2907200f0767ae118c698ce",
+   "size_bytes": 2691,
    "theorem_count": 3,
    "theorem_count_bol_convention": 3
   },
@@ -4291,8 +4367,8 @@
    "lemma_count": 3,
    "path": "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/convex_homeos.lean",
    "print_axioms_targets": [],
-   "sha256": "7d8425a7200d9b530e8e007f4be7e52ebe6c2fc872c84738c1a2511d70311255",
-   "size_bytes": 5742,
+   "sha256": "542a1b2f5c56f50c7226c76457a79699032889c7c0364df3b62182e53c329b3e",
+   "size_bytes": 5741,
    "theorem_count": 1,
    "theorem_count_bol_convention": 1
   },
@@ -4381,8 +4457,8 @@
    "lemma_count": 15,
    "path": "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/cubical_sperner.lean",
    "print_axioms_targets": [],
-   "sha256": "a00a51dada14b052144d5ea285f0d2257d9b9d6b1f4c01fafdc47002f8cb4e45",
-   "size_bytes": 21735,
+   "sha256": "25e7fbc6c573940810739fd19c56f95a778ce127b06f2b3f14814a4dda372d77",
+   "size_bytes": 21734,
    "theorem_count": 2,
    "theorem_count_bol_convention": 2
   },
@@ -4641,8 +4717,8 @@
    "lemma_count": 46,
    "path": "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/cubical_sperner_prep.lean",
    "print_axioms_targets": [],
-   "sha256": "e692d2817aba80203722f69d52fe5738e84b9935bca61147ad36fc30284421fe",
-   "size_bytes": 48476,
+   "sha256": "ad5c06bc5c343bd5003e70962cec417b3929e8512d6381f8f3b18824221ccf2a",
+   "size_bytes": 48475,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -4687,8 +4763,8 @@
    "lemma_count": 4,
    "path": "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/kakutani.lean",
    "print_axioms_targets": [],
-   "sha256": "cd65dffc5bbbb6fc3a5dbf41fbbabf6511650156c58a7377a96587f07d87b989",
-   "size_bytes": 10830,
+   "sha256": "765f5652e6bf735ceb83dc8af9aa9256b55cdefac8358087d0e02ec5b51d672f",
+   "size_bytes": 10829,
    "theorem_count": 1,
    "theorem_count_bol_convention": 1
   },
@@ -4701,8 +4777,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems.lean",
    "print_axioms_targets": [],
-   "sha256": "81bb50128eecb7dce6a3998c5c0636c2e23b7e364a6952b7777ac604b96308e0",
-   "size_bytes": 1049,
+   "sha256": "294a8a899018aaba3ba8cc96b33935282f61cc8ac4489af4d9033cfa6e4ac958",
+   "size_bytes": 1048,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -4746,8 +4822,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ConstantSum.lean",
    "print_axioms_targets": [],
-   "sha256": "f0392b640f940dafd55f08b824d39d6c42f90bed9f81f4de3f02df6a4ddbb600",
-   "size_bytes": 6270,
+   "sha256": "3f02f948cfcee305b40cc4d895bab2438bfa9e861c13e36bf25a845b79927587",
+   "size_bytes": 6269,
    "theorem_count": 7,
    "theorem_count_bol_convention": 7
   },
@@ -4768,8 +4844,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/Deviation.lean",
    "print_axioms_targets": [],
-   "sha256": "b7e7df6760f1e7660310011308373d6babbae131c466a03841c48e278a381ca1",
-   "size_bytes": 3381,
+   "sha256": "71bfe020d695f252a00bb9f5865371630c67ce8686db737d7b5dbdd85d47e797",
+   "size_bytes": 3380,
    "theorem_count": 2,
    "theorem_count_bol_convention": 0
   },
@@ -4808,8 +4884,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/Minimax.lean",
    "print_axioms_targets": [],
-   "sha256": "c99d0b9c43c1d7cf72d19f111dd24b54f3a878a8cb78ec6053a79f8f9dbf4faf",
-   "size_bytes": 4192,
+   "sha256": "83e454c6ff653e2019ed8d563d62ea6526645793fde4a5e9063832a1f6941dd3",
+   "size_bytes": 4191,
    "theorem_count": 4,
    "theorem_count_bol_convention": 4
   },
@@ -4864,8 +4940,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/MixedExtension.lean",
    "print_axioms_targets": [],
-   "sha256": "152003a04aec5cc2cadca6f5aca1eea2193078d91f78c57043ff6d7019744b07",
-   "size_bytes": 12415,
+   "sha256": "45f51d958f7fb2b7cd321938642fe7982b82e6d8253c414a2b25d4aed3593255",
+   "size_bytes": 12414,
    "theorem_count": 9,
    "theorem_count_bol_convention": 9
   },
@@ -4937,8 +5013,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ProductSimplexBrouwer.lean",
    "print_axioms_targets": [],
-   "sha256": "d23fad9436b17b1b422d4b91b12a29c2c82553175a8bf40ac8b7c2068019f756",
-   "size_bytes": 9057,
+   "sha256": "7d71c142a645a855be39a616a0e1117d80a8ecb79c268146b7902e698195f252",
+   "size_bytes": 9056,
    "theorem_count": 10,
    "theorem_count_bol_convention": 10
   },
@@ -4996,8 +5072,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/SecurityStrategy.lean",
    "print_axioms_targets": [],
-   "sha256": "b9c6ccb2857337799ed1b5abfdb7b99859c48ff90409d9a93dc1d6f28c6348aa",
-   "size_bytes": 9356,
+   "sha256": "35e2d15de26714676b93c8e121e88606eb975737dc76a6253ec6f5faa60d33c5",
+   "size_bytes": 9355,
    "theorem_count": 11,
    "theorem_count_bol_convention": 11
   },
@@ -5144,8 +5220,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/SolutionConcepts.lean",
    "print_axioms_targets": [],
-   "sha256": "e36707ffb9931f2ace9439f8dc31c04d14118c8eb6cbb9cc01643d021d50af69",
-   "size_bytes": 15667,
+   "sha256": "abff4adaf1a4f5f1b4a8b477a60fb329243f45f99c80ff80c252ab4884cb2d20",
+   "size_bytes": 15666,
    "theorem_count": 13,
    "theorem_count_bol_convention": 11
   },
@@ -5174,8 +5250,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ZeroSum.lean",
    "print_axioms_targets": [],
-   "sha256": "f2ed75b171e29ce2ab1eff1159dfbeeb1923c3a0a77066aee2dd889b7ff6b587",
-   "size_bytes": 2961,
+   "sha256": "a528742b18e74daaa3dd59b0318f9c89be809bf36a93bebd2c388e9890a2c94b",
+   "size_bytes": 2960,
    "theorem_count": 4,
    "theorem_count_bol_convention": 4
   },
@@ -5223,8 +5299,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ZeroSumNash.lean",
    "print_axioms_targets": [],
-   "sha256": "e99c759bb6f097f7d38b297d66b79e1183dbf090f95059ac805386212ccb436b",
-   "size_bytes": 5901,
+   "sha256": "7cb59086bc1da793538a842aac5e8784718bd0e37d3ed258ef680bbb8d8c1302",
+   "size_bytes": 5900,
    "theorem_count": 8,
    "theorem_count_bol_convention": 8
   },
@@ -5522,8 +5598,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Core/GameForm.lean",
    "print_axioms_targets": [],
-   "sha256": "b06573983649c00e5caf084ada72cbec707f499f9c0aff5ac8ddb84fe64eb320",
-   "size_bytes": 33017,
+   "sha256": "e51da1c3c3a3bf9982e1d8fd89a9a0078503a017236478e6ed41e8aa722e6e0b",
+   "size_bytes": 33016,
    "theorem_count": 50,
    "theorem_count_bol_convention": 25
   },
@@ -5582,8 +5658,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Core/GameProperties.lean",
    "print_axioms_targets": [],
-   "sha256": "0511b33d330b802e457588427497ecacead00d556b23584210dcf25ba348f559",
-   "size_bytes": 4380,
+   "sha256": "dacef440d08022e0abc85f2fe36c792c0663c0d189c06ad329aab3512130f25d",
+   "size_bytes": 4379,
    "theorem_count": 1,
    "theorem_count_bol_convention": 1
   },
@@ -5621,8 +5697,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Core/KernelGame.lean",
    "print_axioms_targets": [],
-   "sha256": "5a1cc37ea8c7546e0b0bd59cfda0ba806cfaa8b8360ee3536a168e8024c0266a",
-   "size_bytes": 6104,
+   "sha256": "b20d37d033594f4767129d0a4e4cd5a45ce9832c16d2ff1e41d33f91987a5075",
+   "size_bytes": 6103,
    "theorem_count": 5,
    "theorem_count_bol_convention": 1
   },
@@ -5736,8 +5812,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Languages/EFG/Refinements.lean",
    "print_axioms_targets": [],
-   "sha256": "916845cc2bbbb3a906f8c0e428617a69a4396014090a3483e9c38740492c878a",
-   "size_bytes": 19687,
+   "sha256": "b19947c8f0cb71182a0548ffefa7a61ce8d7cd2225032849cfa4104da680a2fe",
+   "size_bytes": 19686,
    "theorem_count": 20,
    "theorem_count_bol_convention": 20
   },
@@ -5931,8 +6007,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Languages/EFG/Syntax.lean",
    "print_axioms_targets": [],
-   "sha256": "64d0a0cff4ee4439fade6d58dfac48c2ffe2e1d1b58d4f5d3464085cd43ae4ad",
-   "size_bytes": 24070,
+   "sha256": "83280bafd7a21768380a147d53878824ebadb7bbf7349ecae35107409979152d",
+   "size_bytes": 24069,
    "theorem_count": 26,
    "theorem_count_bol_convention": 21
   },
@@ -5958,8 +6034,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/Coupling.lean",
    "print_axioms_targets": [],
-   "sha256": "5be3179d9b90808a64f077c58fad12d75f85eb2bbbf1610414395effc537157b",
-   "size_bytes": 8614,
+   "sha256": "8f72db5a4e49d18b70c2c8be0d9898d9681214a7c701b1473ed4262bb74ad235",
+   "size_bytes": 8613,
    "theorem_count": 1,
    "theorem_count_bol_convention": 1
   },
@@ -6037,8 +6113,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/OptimizationLocalGlobal.lean",
    "print_axioms_targets": [],
-   "sha256": "08135adc7b5c893fc66de442a8337bfd9ecf2bcef60668804edfeb8f09c11691",
-   "size_bytes": 6075,
+   "sha256": "3162273f108d3e3058094acb7f22438c0a8b2a6818f32729e671da5738c23270",
+   "size_bytes": 6074,
    "theorem_count": 11,
    "theorem_count_bol_convention": 11
   },
@@ -6133,8 +6209,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/ParameterizedChain.lean",
    "print_axioms_targets": [],
-   "sha256": "98c681eb1d2bcb1d03acec62df1a6257a1c3cf00f02c63bd62befd04df06b9d3",
-   "size_bytes": 22349,
+   "sha256": "a5fc456114ed25f783039670eea77ac936412629f036099a4488ed2a66b132e5",
+   "size_bytes": 22348,
    "theorem_count": 20,
    "theorem_count_bol_convention": 20
   },
@@ -6481,8 +6557,8 @@
    "lemma_count": 44,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/PMFProduct.lean",
    "print_axioms_targets": [],
-   "sha256": "993b21ae3b499fdd269c63819e7a0627a1ebc05f0ed4aadbc64709889309ed1e",
-   "size_bytes": 79066,
+   "sha256": "0b9c8eb38dc109607f049a9878f152bf4d73a1f075861a891421c82e353fbfef",
+   "size_bytes": 79065,
    "theorem_count": 33,
    "theorem_count_bol_convention": 33
   },
@@ -6578,8 +6654,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/Probability.lean",
    "print_axioms_targets": [],
-   "sha256": "d51ab3f24864fcd21208bc63ebf774b34e138e9a561ffadd88ca0283403e906b",
-   "size_bytes": 17722,
+   "sha256": "b9a970a6514eacde490b28d818fddc42121518c97adfa1b950424943bb276d65",
+   "size_bytes": 17721,
    "theorem_count": 20,
    "theorem_count_bol_convention": 11
   },
@@ -6777,8 +6853,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/ProbabilityMassFunction.lean",
    "print_axioms_targets": [],
-   "sha256": "a3d33142168fa4744ed9a7f32f12089b9af144928683b2f7c62a4fd7953d2689",
-   "size_bytes": 27062,
+   "sha256": "4c70f8a6b26106817ed7d0e78ca6af69b6ec2dedc6db1854289fbcc98f664847",
+   "size_bytes": 27061,
    "theorem_count": 45,
    "theorem_count_bol_convention": 42
   },
@@ -6833,8 +6909,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/TraceRun.lean",
    "print_axioms_targets": [],
-   "sha256": "0413f80eb6977ef15b47608d40e2253bc60535ea3a1b607fa8402a09d8323cae",
-   "size_bytes": 10018,
+   "sha256": "40af85db854b52bb0b53b01be13d8b6e74e86d36179999632b4f415cc83245f6",
+   "size_bytes": 10017,
    "theorem_count": 8,
    "theorem_count_bol_convention": 7
   },
@@ -6851,8 +6927,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Semantics/DSMachine.lean",
    "print_axioms_targets": [],
-   "sha256": "71bda6327017c80bb7647e65372c039b41b7c7f303289d3247b1d768ee7ded58",
-   "size_bytes": 1664,
+   "sha256": "adad319c996f890e066ad1c935e1f38527edee100104b8ab5b68c0e4618a3600",
+   "size_bytes": 1663,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -6925,8 +7001,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Semantics/TransitionTrace.lean",
    "print_axioms_targets": [],
-   "sha256": "61bcf44b3f984d99c240a3a33b32b42d8de665896b094d21fd9f7db2e9b6e17f",
-   "size_bytes": 6583,
+   "sha256": "71aee4ba0ccbb81092a8d2d272ad779933253fa08a5942286be58d6eeaaf00dc",
+   "size_bytes": 6582,
    "theorem_count": 13,
    "theorem_count_bol_convention": 11
   },
@@ -6952,8 +7028,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/BehavioralToMixed.lean",
    "print_axioms_targets": [],
-   "sha256": "39b7e16beec1658c2085b46e47433ff1467aaa5c01ec6c044f608d0e4243f27b",
-   "size_bytes": 5204,
+   "sha256": "1a456641699faedbac510e2bbe7dc20fb75793324906214cda93973678bc0f73",
+   "size_bytes": 5203,
    "theorem_count": 3,
    "theorem_count_bol_convention": 3
   },
@@ -7039,8 +7115,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/BehavioralToMixedCore.lean",
    "print_axioms_targets": [],
-   "sha256": "0ee7a014ea08bdbb96e6ad967f26c930d391a7081210af2c7a85eace16313dc6",
-   "size_bytes": 28457,
+   "sha256": "4052fc4d2e6d5df95627136b15bdd0ef006ecb55b8618a2c0919d731e301faa7",
+   "size_bytes": 28456,
    "theorem_count": 16,
    "theorem_count_bol_convention": 16
   },
@@ -7282,8 +7358,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean",
    "print_axioms_targets": [],
-   "sha256": "51c28df98a3692b518a53d268400f90fb99539e8245a02d6815901e6d41be30c",
-   "size_bytes": 99349,
+   "sha256": "845d90d1cb1b41458e2291bf028b0364082254aeb38c36a8c6ac9aa099bc6358",
+   "size_bytes": 99348,
    "theorem_count": 57,
    "theorem_count_bol_convention": 57
   },
@@ -7394,8 +7470,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/KuhnModel.lean",
    "print_axioms_targets": [],
-   "sha256": "b50ea263ef716ad1e713fa2547f07b029f3c221711c4a3377d96e46d5f1d3c9f",
-   "size_bytes": 17886,
+   "sha256": "231604873c09f9e58c14c728f79ecde383aff876e803d0e6551b509f7337a282",
+   "size_bytes": 17885,
    "theorem_count": 10,
    "theorem_count_bol_convention": 6
   },
@@ -7569,8 +7645,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean",
    "print_axioms_targets": [],
-   "sha256": "2abffd8310ae9cc2a5831ca3e3357735b2ff4c743f755729b98eef15ad88d9db",
-   "size_bytes": 58335,
+   "sha256": "78b41cf3f0ef16834a6816979d3e835f8fb8693af53226675ba6cabd6db300d5",
+   "size_bytes": 58334,
    "theorem_count": 31,
    "theorem_count_bol_convention": 31
   },
@@ -7740,8 +7816,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/ObsModel.lean",
    "print_axioms_targets": [],
-   "sha256": "53752b158905cd192c617efff0a3bd71e361b60c01c8453eff27edc4ac9f5602",
-   "size_bytes": 26913,
+   "sha256": "294c94d0d1a091914d2c3b1bec3479c839f809b5bc8aa7c0eeb4355046303977",
+   "size_bytes": 26912,
    "theorem_count": 21,
    "theorem_count_bol_convention": 21
   },
@@ -7771,8 +7847,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn.lean",
    "print_axioms_targets": [],
-   "sha256": "192ec9f379252ea63f345269925cf3118831dd4e6a95cf6c78da00b885289306",
-   "size_bytes": 3625,
+   "sha256": "7b43d2ff93dad94771583e38c2ce3841c6162a75498c1398ca73b8957586927e",
+   "size_bytes": 3624,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -7828,8 +7904,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Minimax.lean",
    "print_axioms_targets": [],
-   "sha256": "5f20389761ce3cc028bf8e5e64769a85fd3b9bab70beb001a5ea27eac4659f02",
-   "size_bytes": 10188,
+   "sha256": "9c097f3a4ee1bd6d14d30a2a0738041a200a3a4b36b7e98b4dedefaabe32f3a1",
+   "size_bytes": 10187,
    "theorem_count": 10,
    "theorem_count_bol_convention": 10
   },
@@ -8005,8 +8081,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/NashExistenceMixed.lean",
    "print_axioms_targets": [],
-   "sha256": "cbba61358465acbea87d95de4f20514ab6916643db84a7f3d2d509efaaea1f3b",
-   "size_bytes": 30897,
+   "sha256": "8c36e247eb037f433c343c99025449f45340aa605c0fb92116d7e00a9b560f9a",
+   "size_bytes": 30896,
    "theorem_count": 35,
    "theorem_count_bol_convention": 34
   },
@@ -8054,10 +8130,586 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/OneShotDeviation.lean",
    "print_axioms_targets": [],
-   "sha256": "fc05c393d9b0312f4acf2fd2e9a4fb2cfb2fd7c76e90c3cb393c2053c91f4376",
-   "size_bytes": 17786,
+   "sha256": "f277968447545bd690ca595df6cb4c1bde610f9986358d813077e1c8bd2033b0",
+   "size_bytes": 17785,
    "theorem_count": 7,
    "theorem_count_bol_convention": 7
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "conv_left_comm_mul"
+    },
+    {
+     "kind": "theorem",
+     "name": "exists_uniform_degree_bound"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionPolynomial",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.IteratedDerivPolynomial",
+    "Mathlib.Analysis.Calculus.BumpFunction.FiniteDimension",
+    "Mathlib.Analysis.Calculus.BumpFunction.Normed"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/ConvolutionDegreeBound.lean",
+   "print_axioms_targets": [],
+   "sha256": "acd7d19ee63316e5d106636e96478ac2433c765c2568781bff87adcda5518042",
+   "size_bytes": 13482,
+   "theorem_count": 2,
+   "theorem_count_bol_convention": 2
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "iteratedDeriv_convolution_left"
+    }
+   ],
+   "imports": [
+    "Mathlib.Analysis.Calculus.ContDiff.Convolution",
+    "Mathlib.Analysis.Calculus.IteratedDeriv.Defs",
+    "Mathlib.MeasureTheory.Measure.Haar.Unique"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/ConvolutionIteratedDeriv.lean",
+   "print_axioms_targets": [],
+   "sha256": "823fcb18bef815d184f3a5a466b8ce8d39fcf0732b27d9056c1e0f9bc417acb9",
+   "size_bytes": 3188,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "convolution_comm_mul"
+    },
+    {
+     "kind": "theorem",
+     "name": "convolutionExists_left_mul"
+    },
+    {
+     "kind": "theorem",
+     "name": "convolutionExists_right_mul"
+    },
+    {
+     "kind": "theorem",
+     "name": "monomial_conv_isPoly"
+    },
+    {
+     "kind": "theorem",
+     "name": "poly_conv_isPoly"
+    },
+    {
+     "kind": "theorem",
+     "name": "natDegree_poly_conv_eq"
+    }
+   ],
+   "imports": [
+    "Mathlib.Algebra.Polynomial.Eval.SMul",
+    "Mathlib.Analysis.Convolution",
+    "Mathlib.MeasureTheory.Measure.Haar.Unique"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/ConvolutionPolynomial.lean",
+   "print_axioms_targets": [],
+   "sha256": "5e4a5b026d0eeb6a49f388e24652e74d01f0b38473258f9e815916f249413e99",
+   "size_bytes": 12311,
+   "theorem_count": 6,
+   "theorem_count_bol_convention": 6
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "exists_antideriv"
+    },
+    {
+     "kind": "theorem",
+     "name": "iteratedDeriv_eq_zero_imp_poly"
+    },
+    {
+     "kind": "theorem",
+     "name": "iteratedDeriv_eval"
+    },
+    {
+     "kind": "theorem",
+     "name": "iteratedDeriv_succ_eq_zero_of_natDegree_le"
+    }
+   ],
+   "imports": [
+    "Mathlib.Analysis.Calculus.ContDiff.Deriv",
+    "Mathlib.Analysis.Calculus.Deriv.Polynomial",
+    "Mathlib.Analysis.Calculus.IteratedDeriv.Defs",
+    "Mathlib.Analysis.Calculus.MeanValue"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/IteratedDerivPolynomial.lean",
+   "print_axioms_targets": [],
+   "sha256": "f1b8b3131baed57abd3fb6a4aae03966380377b0d3ab37de296b207569d35195",
+   "size_bytes": 10774,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "aePolynomial_of_annihilates_moment_vanishing"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.IteratedDerivPolynomial",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.SmoothCompactAntideriv",
+    "Mathlib.Analysis.Distribution.AEEqOfIntegralContDiff",
+    "Mathlib.Topology.Algebra.Polynomial"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/PolynomialDistribution.lean",
+   "print_axioms_targets": [],
+   "sha256": "0cc637fdec40b2eaf264bd26431ee7b0dc3c802f5c4f530f0a9a676f1112e599",
+   "size_bytes": 10388,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "ridgePow_span"
+    }
+   ],
+   "imports": [
+    "Mathlib.Algebra.MvPolynomial.Funext",
+    "Mathlib.Data.Nat.Choose.Multinomial",
+    "Mathlib.Data.Real.Basic",
+    "Mathlib.FieldTheory.Finite.Polynomial",
+    "Mathlib.RingTheory.MvPolynomial.Homogeneous"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/RidgePowersSpan.lean",
+   "print_axioms_targets": [],
+   "sha256": "e5dc0f7ad78638ecf2b7b27c91c4e48f233511887926ef434e0463c17d5c5692",
+   "size_bytes": 13353,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "exists_iteratedDeriv_eq_of_moments_zero"
+    }
+   ],
+   "imports": [
+    "Mathlib.Analysis.Calculus.ContDiff.Deriv",
+    "Mathlib.MeasureTheory.Integral.IntegralEqImproper"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/SmoothCompactAntideriv.lean",
+   "print_axioms_targets": [],
+   "sha256": "7f16e4a9d7038610f55eb0fb67caba0c06b5052711b3d9c0e81001dc01a8350c",
+   "size_bytes": 9712,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "tendstoUniformly_riemannSum_continuous"
+    },
+    {
+     "kind": "theorem",
+     "name": "tendstoUniformly_riemannSum_aeContinuous"
+    }
+   ],
+   "imports": [
+    "Mathlib.MeasureTheory.Measure.Haar.Unique"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/UniformRiemannConvolution.lean",
+   "print_axioms_targets": [],
+   "sha256": "dd9d2a397fcb58e8120a03a2dedf1f6a27ad7bc136cb531f90f1043e0ab7d930",
+   "size_bytes": 41098,
+   "theorem_count": 2,
+   "theorem_count_bol_convention": 2
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "ClassM"
+    },
+    {
+     "kind": "def",
+     "name": "IsAEPolynomial"
+    },
+    {
+     "kind": "def",
+     "name": "IsPolynomialFun"
+    },
+    {
+     "kind": "theorem",
+     "name": "ClassM.of_continuous"
+    },
+    {
+     "kind": "theorem",
+     "name": "isPolynomialFun_of_continuous_of_aePolynomial"
+    }
+   ],
+   "imports": [
+    "Mathlib.MeasureTheory.Measure.Lebesgue.Basic",
+    "Mathlib.Topology.Algebra.Polynomial"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/ClassM.lean",
+   "print_axioms_targets": [],
+   "sha256": "de66f97c5c2cb8df7eadc8e97cde70f83c2f7c02558a5c2afc27061d6a491364",
+   "size_bytes": 3926,
+   "theorem_count": 2,
+   "theorem_count_bol_convention": 2
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "continuous_cvec"
+    },
+    {
+     "kind": "theorem",
+     "name": "cvec_apply"
+    },
+    {
+     "kind": "theorem",
+     "name": "restrictLM_apply"
+    },
+    {
+     "kind": "theorem",
+     "name": "Pd_isClosed"
+    },
+    {
+     "kind": "theorem",
+     "name": "restrictLM_mem_Pd"
+    },
+    {
+     "kind": "theorem",
+     "name": "monomial_notMem_Pd"
+    },
+    {
+     "kind": "theorem",
+     "name": "quasiMeasurePreserving_affine"
+    },
+    {
+     "kind": "theorem",
+     "name": "aeEq_poly_of_affine"
+    },
+    {
+     "kind": "theorem",
+     "name": "isCompact_Kset"
+    },
+    {
+     "kind": "theorem",
+     "name": "cvec_mem_Kset"
+    },
+    {
+     "kind": "def",
+     "name": "AEPolyOn"
+    },
+    {
+     "kind": "theorem",
+     "name": "aePolyOn_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "AEPolyOn.add"
+    },
+    {
+     "kind": "theorem",
+     "name": "AEPolyOn.smul"
+    },
+    {
+     "kind": "theorem",
+     "name": "aePolyOn_genFun"
+    },
+    {
+     "kind": "theorem",
+     "name": "aePolyOn_of_mem_genSpan"
+    },
+    {
+     "kind": "theorem",
+     "name": "subset_of_ae_restrict_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "aePolynomial_not_dense"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.ClassM",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Family",
+    "Mathlib.MeasureTheory.Measure.Lebesgue.Basic",
+    "Mathlib.RingTheory.Polynomial.DegreeLT",
+    "Mathlib.Topology.ContinuousMap.Polynomial"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Converse.lean",
+   "print_axioms_targets": [],
+   "sha256": "d95872b92cb04852271a5b120eab39a803608c367ecf07bf441911c3e5ec01cb",
+   "size_bytes": 14913,
+   "theorem_count": 17,
+   "theorem_count_bol_convention": 15
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "genFun"
+    },
+    {
+     "kind": "def",
+     "name": "genSpan"
+    },
+    {
+     "kind": "def",
+     "name": "ApproxByGen"
+    },
+    {
+     "kind": "theorem",
+     "name": "approxByGen_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "ApproxByGen.add"
+    },
+    {
+     "kind": "theorem",
+     "name": "ApproxByGen.smul"
+    },
+    {
+     "kind": "def",
+     "name": "T"
+    },
+    {
+     "kind": "theorem",
+     "name": "genFun_reparam_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "T_isClosed"
+    },
+    {
+     "kind": "def",
+     "name": "DenselyApproximates"
+    },
+    {
+     "kind": "theorem",
+     "name": "denselyApproximates_of_forall_T_eq_top"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.ClassM",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Family.lean",
+   "print_axioms_targets": [],
+   "sha256": "7777c33de39fd9c20f62ee5082558210d0e62537cf52572d94c8d8ae76747247",
+   "size_bytes": 8352,
+   "theorem_count": 6,
+   "theorem_count_bol_convention": 6
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "ClassM.aestronglyMeasurable"
+    },
+    {
+     "kind": "theorem",
+     "name": "ClassM.locallyIntegrable"
+    },
+    {
+     "kind": "theorem",
+     "name": "contDiff_mollify"
+    },
+    {
+     "kind": "theorem",
+     "name": "exists_nonpoly_mollify"
+    },
+    {
+     "kind": "theorem",
+     "name": "mollify_ridge_mem_T"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionDegreeBound",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionIteratedDeriv",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.IteratedDerivPolynomial",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.PolynomialDistribution",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.SmoothCompactAntideriv",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.UniformRiemannConvolution",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.ClassM",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Family",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.MollifyDef"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Mollify.lean",
+   "print_axioms_targets": [],
+   "sha256": "525f99ce39eb6058b53014717600d9924de69958ceaa9392efd4b83111cb834b",
+   "size_bytes": 16907,
+   "theorem_count": 5,
+   "theorem_count_bol_convention": 5
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "mollify_eq_convolution"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.ClassM",
+    "Mathlib.Analysis.Calculus.ContDiff.FTaylorSeries",
+    "Mathlib.Analysis.Convolution"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/MollifyDef.lean",
+   "print_axioms_targets": [],
+   "sha256": "dd782d62e088961fd3adbaed5593bf85189a5e7100a745b24e165b555c56a093",
+   "size_bytes": 2336,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "UnivariateDense"
+    },
+    {
+     "kind": "theorem",
+     "name": "approxByGen_ridge_of_compact_image"
+    },
+    {
+     "kind": "theorem",
+     "name": "ridge_mem_T"
+    },
+    {
+     "kind": "def",
+     "name": "Tplain"
+    },
+    {
+     "kind": "theorem",
+     "name": "mem_T_iff_mem_Tplain"
+    },
+    {
+     "kind": "theorem",
+     "name": "ridge_density"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.RidgePowersSpan",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Family",
+    "Mathlib.Algebra.MvPolynomial.Basic",
+    "Mathlib.Algebra.MvPolynomial.Degrees",
+    "Mathlib.Analysis.InnerProductSpace.EuclideanDist",
+    "Mathlib.Analysis.InnerProductSpace.PiL2",
+    "Mathlib.LinearAlgebra.Pi",
+    "Mathlib.RingTheory.MvPolynomial.Homogeneous",
+    "Mathlib.Topology.ContinuousMap.StoneWeierstrass"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Ridge.lean",
+   "print_axioms_targets": [],
+   "sha256": "1c6fa3a75d6bab438b9b2deefd6be6b5b916bec82b71f95869e4ea7576cb6ec2",
+   "size_bytes": 12956,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "Sg"
+    },
+    {
+     "kind": "theorem",
+     "name": "deriv_pow_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "exists_deriv_ne"
+    },
+    {
+     "kind": "theorem",
+     "name": "smooth_engine"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.IteratedDerivPolynomial",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.ClassM",
+    "Mathlib.Topology.ContinuousMap.StoneWeierstrass"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/SmoothEngine.lean",
+   "print_axioms_targets": [],
+   "sha256": "f29819634fa9b352189dbec00c83f6df3b9cbe38947d405becc13c3c29b302c6",
+   "size_bytes": 21112,
+   "theorem_count": 3,
+   "theorem_count_bol_convention": 3
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "univariate_density"
+    },
+    {
+     "kind": "theorem",
+     "name": "leshno_dense"
+    },
+    {
+     "kind": "theorem",
+     "name": "leshno_dense_iff"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.ClassM",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Converse",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Family",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Mollify",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Ridge",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.SmoothEngine"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Theorem.lean",
+   "print_axioms_targets": [],
+   "sha256": "bf2af74d6d1d309343f7e59a6a5f6e632e7c7ea32aa147454f1bb6167b56af87",
+   "size_bytes": 6386,
+   "theorem_count": 3,
+   "theorem_count_bol_convention": 3
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.ClassM",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Converse",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Family",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Mollify",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Ridge",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.SmoothEngine",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Theorem"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno.lean",
+   "print_axioms_targets": [],
+   "sha256": "88c020185131ad92f17b6ecd94f9cf2c95bfa943d276bcb131d7538e34f63a29",
+   "size_bytes": 6124,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
   },
   {
    "declarations": [
@@ -24744,22 +25396,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 2699,
-   "file_count": 280,
+   "counted_declaration_count": 2758,
+   "file_count": 297,
    "lemma_count": 141,
-   "print_axioms_command_count": 1565,
-   "print_axioms_distinct_targets": 1511,
-   "theorem_count": 2558,
-   "theorem_count_bol_convention": 2464
+   "print_axioms_command_count": 1624,
+   "print_axioms_distinct_targets": 1570,
+   "theorem_count": 2617,
+   "theorem_count_bol_convention": 2521
   },
   "juris_lean_package": {
-   "counted_declaration_count": 2680,
-   "file_count": 265,
+   "counted_declaration_count": 2739,
+   "file_count": 282,
    "lemma_count": 134,
-   "print_axioms_command_count": 1565,
-   "print_axioms_distinct_targets": 1511,
-   "theorem_count": 2546,
-   "theorem_count_bol_convention": 2452
+   "print_axioms_command_count": 1624,
+   "print_axioms_distinct_targets": 1570,
+   "theorem_count": 2605,
+   "theorem_count_bol_convention": 2509
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -24870,6 +25522,23 @@
    "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Minimax.lean",
    "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/NashExistenceMixed.lean",
    "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/OneShotDeviation.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/ConvolutionDegreeBound.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/ConvolutionIteratedDeriv.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/ConvolutionPolynomial.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/IteratedDerivPolynomial.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/PolynomialDistribution.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/RidgePowersSpan.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/SmoothCompactAntideriv.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/UniformRiemannConvolution.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/ClassM.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Converse.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Family.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Mollify.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/MollifyDef.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Ridge.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/SmoothEngine.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Theorem.lean",
    "proofs/lean/juris_lean/JurisLean/FactAdmissionSpec.lean",
    "proofs/lean/juris_lean/JurisLean/FailureStatus.lean",
    "proofs/lean/juris_lean/JurisLean/FiniteGaloisAdjunction.lean",
@@ -25148,6 +25817,23 @@
    "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Minimax.lean",
    "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/NashExistenceMixed.lean",
    "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/OneShotDeviation.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/ConvolutionDegreeBound.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/ConvolutionIteratedDeriv.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/ConvolutionPolynomial.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/IteratedDerivPolynomial.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/PolynomialDistribution.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/RidgePowersSpan.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/SmoothCompactAntideriv.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/UniformRiemannConvolution.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/ClassM.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Converse.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Family.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Mollify.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/MollifyDef.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Ridge.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/SmoothEngine.lean",
+   "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Theorem.lean",
    "proofs/lean/juris_lean/JurisLean/FactAdmissionSpec.lean",
    "proofs/lean/juris_lean/JurisLean/FailureStatus.lean",
    "proofs/lean/juris_lean/JurisLean/FiniteGaloisAdjunction.lean",
@@ -25361,17 +26047,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "b322b7fc0f7e58a6dbd412d5deef0de70e28cf10d706015a42bacb918291c049",
+ "source_inventory_digest": "83de4168253cccbb7a5993e586412660edda0b3bc81fd0a973f109d268fb3430",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "3ecf0b9f6f83be84f7579d76a93d05557dd4124e",
-  "tree": "94755b5f1e781faff5265937409d25e36aa466ae"
+  "commit": "aea8fb9259816e46d3c29bc8212f9e46b6ddaf67",
+  "tree": "f805616d7bb1f774e1f94b823e0e528cafae2406"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 280,
+  "files_total": 297,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

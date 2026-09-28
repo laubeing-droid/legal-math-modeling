@@ -2,7 +2,7 @@
   "authority_note": "Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.",
   "cross_family": {},
   "cross_family_statement_types": 0,
-  "distinct_statement_types": 2600,
+  "distinct_statement_types": 2740,
   "duplicated_statement_types": 8,
   "duplicates": {
     "append_singleton_inj {α : Type*} {as bs : List α} {a b : α} (h : as ++ [a] = bs ++ [b]) : as = bs ∧ a = b": [
@@ -102,11 +102,12 @@
       }
     ]
   },
-  "files_scanned": 265,
+  "files_scanned": 282,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
-  "headers_missed_by_scanner": 72,
-  "inventory_package_theorems": 2680,
+  "headers_missed_by_scanner": 105,
+  "inventory_package_theorems": 2739,
+  "private_protected_headers_read": 114,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 2608
+  "statements_read": 2748
 }

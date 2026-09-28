@@ -351,6 +351,11 @@ theorem smooth_engine {g : ℝ → ℝ} (hg : ContDiff ℝ ∞ g) (hnp : ¬ IsPo
     have := ContinuousMap.subalgebra_topologicalClosure_eq_top_of_separatesPoints
       (polynomialFunctions I) (polynomialFunctions_separatesPoints I)
     have h2 := congrArg (fun s : Subalgebra ℝ C(↥I, ℝ) => (s : Set C(↥I, ℝ))) this
+    -- BACKPORT ADAPTATION (v4.32.0-rc1 -> v4.30.0): mathlib v4.30 leaves congrArg's
+    -- lambda un-beta-reduced, so the rewrite pattern `↑(Subalgebra.topologicalClosure _)`
+    -- does not match `(fun s => ↑s) _` (run 36447860895). One beta_reduce restores the
+    -- shape the upstream rewrite expects; nothing else in the proof changes.
+    beta_reduce at h2
     rwa [Subalgebra.topologicalClosure_coe, Algebra.coe_top] at h2
   have hsub : (polynomialFunctions I : Set C(↥I, ℝ)) ⊆ (C : Set C(↥I, ℝ)) := by
     rw [polynomialFunctions_coe]

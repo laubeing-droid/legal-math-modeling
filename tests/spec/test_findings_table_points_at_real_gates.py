@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import hashlib
 import re
+import subprocess
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -128,6 +129,22 @@ ARCHIVE_DIR = ROOT / "docs" / "history" / "evidence-archive" / "20260927_qoder_a
 PROVENANCE = re.compile(r"`([A-Za-z0-9_.]+\.md)`.*?(\d+) 字节，sha256 `([0-9a-f]{64})`", re.S)
 
 
+def _committed_blob(path: Path) -> bytes:
+    """The bytes the repository holds, not whatever the checkout's line endings did.
+
+    A first version hashed the working copy, and CI's checkout -- where git has normalized
+    the endings -- produced different bytes, so the provenance note was right about my
+    machine and wrong about the repository. The inventory declares the same rule: hash the
+    raw committed bytes.
+    """
+    proc = subprocess.run(
+        ["git", "show", f"HEAD:{path.relative_to(ROOT).as_posix()}"],
+        cwd=ROOT, capture_output=True,
+    )
+    assert proc.returncode == 0, proc.stderr
+    return proc.stdout
+
+
 def test_the_archive_provenance_matches_the_bytes_on_disk() -> None:
     readme = (ARCHIVE_DIR / "README.md").read_text(encoding="utf-8")
     entries = PROVENANCE.findall(readme)
@@ -139,9 +156,9 @@ def test_the_archive_provenance_matches_the_bytes_on_disk() -> None:
     for name, size, digest in entries:
         path = ARCHIVE_DIR / name
         assert path.exists(), f"the README describes a missing file: {name}"
-        blob = path.read_bytes()
+        blob = _committed_blob(path)
         if len(blob) != int(size):
-            wrong.append(f"{name}: README says {size} bytes, file is {len(blob)}")
+            wrong.append(f"{name}: README says {size} bytes, committed blob is {len(blob)}")
         if hashlib.sha256(blob).hexdigest() != digest:
-            wrong.append(f"{name}: recorded sha256 does not match the bytes")
+            wrong.append(f"{name}: recorded sha256 does not match the committed blob")
     assert not wrong, "archive provenance has drifted:\n  " + "\n  ".join(wrong)

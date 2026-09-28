@@ -2385,7 +2385,7 @@
       "jobs_total": 8,
       "name": "chore(inventory): rebind after the root join",
       "quoted_by": [
-        "docs/master-plan/03_证明战役台账.md:1275",
+        "docs/master-plan/03_证明战役台账.md:1289",
         "docs/master-plan/03_证明战役台账.md:175",
         "docs/master-plan/03_证明战役台账.md:287",
         "docs/master-plan/03_证明战役台账.md:580",
@@ -3462,7 +3462,7 @@
       "jobs_total": 8,
       "name": "docs(evidence): rebind source counts to the bridge attempt and say wh…",
       "quoted_by": [
-        "docs/master-plan/03_证明战役台账.md:1266",
+        "docs/master-plan/03_证明战役台账.md:1280",
         "docs/master-plan/03_证明战役台账.md:791",
         "docs/master-plan/03_证明战役台账.md:800",
         "docs/master-plan/03_证明战役台账.md:962",
@@ -4481,6 +4481,7 @@
       "name": "docs(accounts): rebind the proof accounts to the carrier commit",
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:1052",
+        "docs/master-plan/03_证明战役台账.md:1237",
         "docs/master-plan/03_证明战役台账.md:995"
       ],
       "run_id": 36365128114,
@@ -4794,7 +4795,8 @@
       "name": "docs(index): record the runs and citations the last two ledger rounds…",
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:1211",
-        "docs/master-plan/03_证明战役台账.md:1236",
+        "docs/master-plan/03_证明战役台账.md:1237",
+        "docs/master-plan/03_证明战役台账.md:1250",
         "docs/master-plan/03_证明战役台账.md:954",
         "docs/paper-rewrite/paper_cn.md:146",
         "docs/paper-rewrite/paper_en.md:141"
@@ -4803,6 +4805,68 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-09-28T03:21:42Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 5,
+      "conclusion": "failure",
+      "created_at": "2026-09-28T03:43:24Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "72c15431f613602e3f32b832b830ffbe18e77c6c",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36374824946",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "docs(ledger): book the green round and the wording change it licenses",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:1233"
+      ],
+      "run_id": 36374824946,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-28T03:51:21Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

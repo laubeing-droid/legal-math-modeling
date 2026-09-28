@@ -84,7 +84,7 @@ numbers afterwards. This is the exact content the minimax hypotheses need as (qu
 theorem payoff_comb_left {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ) (q : Fin (n+1) → ℝ)
     (p p' : Fin (m+1) → ℝ) (a b : ℝ) :
     payoff A (a • p + b • p') q = a * payoff A p q + b * payoff A p' q := by
-  simp only [payoff, Pi.add_apply, Pi.smul_apply]
+  simp only [payoff, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
   have h1 : (∑ i : Fin (m+1), ∑ j : Fin (n+1), (a * p i + b * p' i) * A i j * q j)
       = ∑ i : Fin (m+1), ∑ j : Fin (n+1),
         (a * (p i * A i j * q j) + b * (p' i * A i j * q j)) := by
@@ -104,7 +104,7 @@ theorem payoff_comb_left {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ) (q : 
 theorem payoff_comb_right {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ) (p : Fin (m+1) → ℝ)
     (q q' : Fin (n+1) → ℝ) (a b : ℝ) :
     payoff A p (a • q + b • q') = a * payoff A p q + b * payoff A p q' := by
-  simp only [payoff, Pi.add_apply, Pi.smul_apply]
+  simp only [payoff, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
   have h1 : (∑ i : Fin (m+1), ∑ j : Fin (n+1), p i * A i j * (a * q j + b * q' j))
       = ∑ i : Fin (m+1), ∑ j : Fin (n+1),
         (a * (p i * A i j * q j) + b * (p i * A i j * q' j)) := by
@@ -130,9 +130,9 @@ theorem quasiconvexOn_payoff_left {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → �
   refine quasiconvexOn_iff_le_max.mpr ⟨convex_stdSimplex ℝ (Fin (m+1)), ?_⟩
   intro p _ p' _ a b ha hb hab
   have h1 := payoff_comb_left A q p p' a b
+  rw [h1]
   have hX : payoff A p q ≤ max (payoff A p q) (payoff A p' q) := le_max_left _ _
   have hY : payoff A p' q ≤ max (payoff A p q) (payoff A p' q) := le_max_right _ _
-  rw [← h1]
   nlinarith
 
 /-- Held to any row mixture, the payoff is quasiconcave on the column simplex. -/
@@ -142,9 +142,9 @@ theorem quasiconcaveOn_payoff_right {m n : ℕ} (A : Fin (m+1) → Fin (n+1) →
   refine quasiconcaveOn_iff_min_le.mpr ⟨convex_stdSimplex ℝ (Fin (n+1)), ?_⟩
   intro q _ q' _ a b ha hb hab
   have h1 := payoff_comb_right A p q q' a b
+  rw [h1]
   have hX : min (payoff A p q) (payoff A p q') ≤ payoff A p q := min_le_left _ _
   have hY : min (payoff A p q) (payoff A p q') ≤ payoff A p q' := min_le_right _ _
-  rw [← h1]
   nlinarith
 
 /-- Every column slice of the payoff is continuous, hence lower semicontinuous on the row
@@ -152,15 +152,17 @@ simplex. -/
 theorem lsc_payoff_left {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ) (q : Fin (n+1) → ℝ) :
     LowerSemicontinuousOn (fun p : Fin (m+1) → ℝ => payoff A p q)
       (stdSimplex ℝ (Fin (m+1))) :=
-  ((by continuity : Continuous (fun p : Fin (m+1) → ℝ => payoff A p q))
-      .lowerSemicontinuous).lowerSemicontinuousOn _
+  by
+    have hc : Continuous (fun p : Fin (m+1) → ℝ => payoff A p q) := by continuity
+    exact (hc.lowerSemicontinuous).lowerSemicontinuousOn _
 
 /-- Every row slice is continuous, hence upper semicontinuous on the column simplex. -/
 theorem usc_payoff_right {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ) (p : Fin (m+1) → ℝ) :
     UpperSemicontinuousOn (fun q : Fin (n+1) → ℝ => payoff A p q)
       (stdSimplex ℝ (Fin (n+1))) :=
-  ((by continuity : Continuous (fun q : Fin (n+1) → ℝ => payoff A p q))
-      .upperSemicontinuous).upperSemicontinuousOn _
+  by
+    have hc : Continuous (fun q : Fin (n+1) → ℝ => payoff A p q) := by continuity
+    exact (hc.upperSemicontinuous).upperSemicontinuousOn _
 
 /-- **Every finite two-player zero-sum game has a value in mixed strategies.** Ten
 hypotheses, all of them discharged above or from the pinned library: the two strategy sets

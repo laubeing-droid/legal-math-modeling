@@ -96,6 +96,7 @@ jobs:
         python scripts/ci/generate_probability_audit_surface.py --check
         python scripts/ci/build_ci_run_index.py --check
         python scripts/ci/generate_trivial_proof_census.py --check
+        python scripts/ci/generate_declaration_shape_report.py --check
         python scripts/ci/check_import_reachability.py
         python scripts/ci/check_declaration_collisions.py --root JurisLean --check
         python scripts/run_mutation_property_gate.py --repo-root . --output mutation-property-report.json

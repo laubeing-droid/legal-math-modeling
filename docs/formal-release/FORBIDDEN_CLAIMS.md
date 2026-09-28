@@ -13,6 +13,7 @@ The repository does not support the following statements:
 - Banach, privacy, empirical calibration, OCR correctness, or legal-source completeness is established unless a specifically cited artifact proves that exact proposition;
 - the latest documented release run certifies later commits;
 - finite-retention CI artifacts are a permanent evidence archive.
+- a mixed-strategy value for finite zero-sum games, or a saddle-point or minimax theorem imported from a library, establishes Nash equilibrium existence for general, non-zero-sum, or multiplayer games;
 
 If required evidence is absent, stale, mismatched, skipped, timed out, or unavailable, the supported status is `UNKNOWN` or BLOCKED—not PASS.
 

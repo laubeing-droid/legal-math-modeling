@@ -27,7 +27,7 @@ def test_registry_loads_with_unique_ids_and_fallback() -> None:
     doc = load_registry()
 
     assert len(doc["allowed"]) == 7
-    assert len(doc["forbidden"]) == 11
+    assert len(doc["forbidden"]) == 12
     assert "UNKNOWN" in doc["fallback_rule"] and "PASS" in doc["fallback_rule"]
 
 
@@ -66,3 +66,52 @@ def test_python_suite_claim_requires_full_execution_report() -> None:
     # never a subset run (AGENTS: never report a subset as a full pass).
     row = next(r for r in load_registry()["allowed"] if r["claim"] == "The Python suite passed")
     assert "Full collection and full execution report" in row["minimum_evidence"]
+
+
+# FORBIDDEN-12 bans the generalisation this repository is one green build away from being
+# tempted by: a zero-sum minimax instance read as Nash existence for general or multiplayer
+# games. A ban nobody scans is decoration, so the two editions and the campaign ledger are
+# checked against it, and the fixture proves the scan can fire.
+OVERREACH_PATTERNS = [
+    "纳什均衡存在性已证",
+    "纳什均衡已被证明",
+    "任意博弈都有纳什均衡",
+    "所有博弈均存在纳什均衡",
+    "general Nash existence is proved",
+    "Nash equilibrium existence has been proved",
+    "every finite game has a Nash equilibrium",
+]
+
+
+def test_the_editions_never_generalise_the_zero_sum_result() -> None:
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[2]
+    surfaces = {
+        rel: (root / rel).read_text(encoding="utf-8")
+        for rel in (
+            "docs/paper-rewrite/paper_cn.md",
+            "docs/paper-rewrite/paper_en.md",
+            "docs/master-plan/03_证明战役台账.md",
+        )
+    }
+    hits = [
+        (rel, phrase)
+        for rel, text in surfaces.items()
+        for phrase in OVERREACH_PATTERNS
+        if phrase in text
+    ]
+    assert not hits, f"a surface states the banned generalisation: {hits}"
+
+
+def test_the_overreach_scan_is_not_vacuous() -> None:
+    """Prove the scan fires, on a copy that carries the banned sentence."""
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[2]
+    text = (root / "docs/paper-rewrite/paper_en.md").read_text(encoding="utf-8")
+    assert all(phrase not in text for phrase in OVERREACH_PATTERNS)
+    planted = text + " Summary: " + OVERREACH_PATTERNS[-1] + " in this draft."
+    assert any(phrase in planted for phrase in OVERREACH_PATTERNS), (
+        "the scan cannot notice the phrase it is supposed to catch"
+    )

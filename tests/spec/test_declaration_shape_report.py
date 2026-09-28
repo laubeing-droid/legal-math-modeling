@@ -105,22 +105,34 @@ def test_papers_quote_the_shape_artifact_and_not_a_memory() -> None:
         )
 
 
-def test_the_shape_check_mode_fails_on_a_stale_artifact() -> None:
-    """--check must be able to go red, without touching the tracked artifact to prove it.
+def test_the_shape_check_mode_fails_on_a_stale_artifact(tmp_path, monkeypatch) -> None:
+    """Drive the real `--check` entry point over a copy, never the tracked artifact.
 
     An earlier version wrote a mutated copy over docs/formal-release/... and restored it in
-    a `finally`, so an interrupted run could leave the repository holding a falsified
-    account. The mutation is compared in memory against exactly what `--check` compares.
+    a `finally`, so an interrupted run could leave the repository holding a falsified account.
+    The version after that only compared two strings in memory and was named as if it ran the
+    mode -- a green test that never called `--check`. This redirects the module's output path
+    into a tmp file and asks `main(["--check"])` itself for a verdict, both ways.
     """
-    from generate_declaration_shape_report import OUT, build, render
+    import generate_declaration_shape_report as gen
 
-    fresh = render(build())
-    assert OUT.read_text(encoding="utf-8") == fresh, (
-        "the committed artifact is already stale, so this check cannot demonstrate red-ness"
-    )
-    mutated = json.loads(fresh)
-    mutated["scope"]["counts"]["ALIAS_ONE_LINER"] += 1
-    rebuilt = json.dumps(mutated, ensure_ascii=False, indent=2, sort_keys=True) + chr(10)
-    assert rebuilt != fresh, (
-        "mutating a figure left the rendering unchanged, so the comparison is vacuous"
+    fresh = gen.render(gen.build())
+    stale = json.loads(fresh)
+    stale["scope"]["counts"]["ALIAS_ONE_LINER"] += 1
+    stale_text = json.dumps(stale, ensure_ascii=False, indent=2, sort_keys=True) + "\n"
+    assert stale_text != fresh, "the mutation changed nothing, so red-ness would prove nothing"
+
+    tracked = gen.OUT
+    try:
+        gen.OUT = tmp_path / "declaration_shape_report.json"
+        gen.OUT.write_text(stale_text, encoding="utf-8", newline="\n")
+        monkeypatch.setattr(sys, "argv", ["generate_declaration_shape_report.py", "--check"])
+        assert gen.main() != 0, "--check accepted an artifact that disagrees with source"
+
+        gen.OUT.write_text(fresh, encoding="utf-8", newline="\n")
+        assert gen.main() == 0, "--check rejected the artifact the generator just made"
+    finally:
+        gen.OUT = tracked
+    assert tracked.read_text(encoding="utf-8") == fresh, (
+        "the tracked artifact changed while its own checker was being tested"
     )

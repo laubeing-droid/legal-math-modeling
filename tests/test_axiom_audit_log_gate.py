@@ -220,7 +220,6 @@ def test_the_landed_audit_log_is_the_kernels_own_words_and_is_clean() -> None:
         if line.startswith("#print axioms") and "." in line.split()[-1]
     }
     assert named, "the audit surface at that subject is empty"
-    audited = set(doc["targets_by_name"]) if "targets_by_name" in doc else None
     printed = newest.read_text(encoding="utf-8", errors="replace")
     missing = sorted(n for n in named if f"'{n}'" not in printed)
     assert not missing, (

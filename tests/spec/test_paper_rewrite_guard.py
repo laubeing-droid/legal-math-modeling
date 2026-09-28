@@ -63,8 +63,22 @@ CLAIM_SIGNALS: tuple[tuple[str, tuple[str, ...]], ...] = (
 )
 
 # A numeric theorem claim is only allowed with a binding on the same line.
-COUNT_RE = re.compile(r"一千七百\d十[一二三四五六七八九]?|\b1[7-9]\d{2}\b|\b1[0-9]{3} 条定理")
-BINDING_RE = re.compile(r"\b[0-9a-f]{7,40}\b|\b3\d{10}\b|theorem_inventory_v3\.json")
+COUNT_RE = re.compile(
+    r"一千七百\d十[一二三四五六七八九]?|\b1[7-9]\d{2}\b|\b1[0-9]{3} 条定理"
+    # The package grew past 1999 declarations this round, which would have put the prose
+    # figures exactly outside the window this rule reads: a guard that stops seeing the
+    # numbers it polices is worse than no guard, because it reports green. The wider range
+    # is therefore only a count when a unit follows it, which keeps a bare year out.
+    r"|\b[12]\d{3}(?= 条|条| 行| 个具名目标| theorems| theorem declarations| declarations"
+    r"| commands| targets)"
+)
+BINDING_RE = re.compile(
+    r"\b[0-9a-f]{7,40}\b|\b3\d{10}\b"
+    # A figure bound to a generated account is bound: these are the artifacts a reader
+    # recomputes it from, and each one is itself checked against source by its own gate.
+    r"|theorem_inventory_v3\.json|trivial_proof_census\.json"
+    r"|declaration_shape_report\.json|statement_duplication_census\.json"
+)
 # Words that make a bare carrier count read as a proved proposition.
 OVERCLAIM_ON_COUNT = ("无一条 sorry", "zero sorry", "全部经持续集成权威验证")
 
@@ -136,18 +150,51 @@ def test_all_ten_chapters_in_both_languages() -> None:
         assert h in en, f"missing EN chapter: {h}"
 
 
-def test_cn_citation_keys_resolve() -> None:
-    cn = CN.read_text(encoding="utf-8")
-    cited = set()
-    for chunk in re.findall(r"\[([^\[\]]+)\]", cn):
-        for k in chunk.split("；"):
-            k = k.strip()
-            if k and KEY_RE.match(k):
-                cited.add(k)
-    bib = BIB.read_text(encoding="utf-8")
-    bibkeys = set(re.findall(r"^@[a-z]+\{([^,]+),", bib, re.MULTILINE))
-    unresolved = sorted(cited - bibkeys)
-    assert not unresolved, f"citation keys not in references.bib: {unresolved}"
+def _cited_keys(text: str) -> set[str]:
+    """Every bracketed citation a reader would take as a reference, in either bracket style.
+
+    The Chinese edition cites with 〔…〕; the pattern this helper replaces looked only for
+    ASCII `[...]`, found one non-citation chunk, collected zero keys, and so asserted that an
+    empty set was a subset of the bibliography -- green forever. The English edition's 19 keys
+    were checked by nothing at all.
+    """
+    chunks = re.findall(r"\[([^\[\]]+)\]", text) + re.findall(r"〔([^〕]+)〕", text)
+    return {
+        k.strip()
+        for chunk in chunks
+        for k in re.split(r"[;；、]", chunk)
+        if k.strip() and KEY_RE.match(k.strip())
+    }
+
+
+def _bib_keys() -> set[str]:
+    return set(re.findall(r"^@[a-z]+\{([^,]+),", BIB.read_text(encoding="utf-8"), re.MULTILINE))
+
+
+def test_citation_keys_resolve_in_both_editions() -> None:
+    cited_cn = _cited_keys(CN.read_text(encoding="utf-8"))
+    cited_en = _cited_keys(EN.read_text(encoding="utf-8"))
+    assert len(cited_cn) >= 10 and len(cited_en) >= 10, (
+        f"collected {len(cited_cn)} CN / {len(cited_en)} EN citation keys; the bracket form or "
+        "the citation style moved, and a scan that finds nothing cannot fail"
+    )
+    bibkeys = _bib_keys()
+    assert len(bibkeys) >= 30, f"references.bib exposes only {len(bibkeys)} keys"
+    for name, cited in (("CN", cited_cn), ("EN", cited_en)):
+        unresolved = sorted(cited - bibkeys)
+        assert not unresolved, f"{name} cites keys absent from references.bib: {unresolved}"
+
+
+def test_an_unknown_citation_key_would_be_caught() -> None:
+    """Plant a key no bibliography entry carries and the same comparison must report it."""
+    cited = _cited_keys(CN.read_text(encoding="utf-8"))
+    bibkeys = _bib_keys()
+    assert cited <= bibkeys, "the live CN citations already fail, so the plant proves nothing"
+    invented = "ZeckauskasUnpublished1999"
+    assert invented not in bibkeys, "the plant name is somehow real; pick another"
+    assert sorted((cited | {invented}) - bibkeys) == [invented], (
+        "adding an unknown key did not surface it, so the comparison is not reading the set"
+    )
 
 
 def test_unproved_list_has_five_items_with_compaction_marks() -> None:

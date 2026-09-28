@@ -22,8 +22,13 @@ EN = ROOT / "docs" / "paper-rewrite" / "paper_en.md"
 INDEX = ROOT / "docs" / "formal-release" / "ci_run_index.json"
 
 TRIGGERS = ("鞍点", "极小极大", "saddle point", "minimax")
-CAVEATS = ("未", "尚", "不", "无", "待", "路线", "not yet", "no carrier", "pending",
-           "awaiting", "does not", "not established", "no proof")
+# Multi-character phrases only. The first draft of this list allowed "不", "无", "未", "尚",
+# "待" as separate caveats, and since almost any Chinese sentence contains one of them, the
+# exemption swallowed the rule: a bare minimax assertion with no hedge at all could still be
+# waved through by an unrelated "不同" two clauses away.
+CAVEATS = ("尚未", "未经", "未认定", "未被", "未主张", "不主张", "仍不", "没有", "无法",
+           "not yet", "no carrier", "pending", "awaiting", "does not", "not established",
+           "no proof", "not claimed", "no build", "still open")
 RUN_ID = re.compile(r"run (\d{8,})")
 SENTENCE = re.compile(r"[^。；！？\n.!?]+[。；！？\n.!?]?")
 
@@ -63,7 +68,14 @@ def test_the_scan_sees_the_vocabulary_it_claims() -> None:
         if any(t in sentence for t in TRIGGERS) and RUN_ID.search(sentence)
     ]
     assert green, "no green run is indexed, so a citation could never satisfy the rule"
-    assert all(_unbound_sentences(s, green) == [] for s in cited) or not cited
+    assert len(cited) >= 2, (
+        f"only {len(cited)} trigger sentence(s) cite a run, so the citation half of the rule "
+        "is untested; the editions used to carry one per saddle-point claim"
+    )
+    assert all(_unbound_sentences(s, green) == [] for s in cited), (
+        "a citing sentence is itself the offender, so the non-vacuity check below proves "
+        "nothing about the live prose"
+    )
 
 
 def test_the_two_editions_carry_no_unbound_minimax_claim() -> None:

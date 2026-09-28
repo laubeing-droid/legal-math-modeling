@@ -32,6 +32,12 @@ predates this file, so no build of it can vouch for anything written here. Runs 
 and 36394196611 then reported four errors in this module, which is what exposed the invented
 verdict. The recursion is repaired below, the module is booked in `PENDING_CI_MODULES` again,
 and nothing here is an attestation until a run whose own commit contains this source says so.
+
+That repair was then read by a compiler: run 36401817896 at `4866799` prints
+`Built JurisLean.Mandate.SequentialGames`, and all four errors above are gone. That is a fact
+from the kernel's own output, not a verdict. The round ended `failure` because two other
+mandate modules did not build, and a red round publishes no certificate and no acceptance, so
+there is nothing here to promote on. The module therefore stays booked until a green round.
 -/
 
 namespace JurisLean.Mandate.SequentialGames

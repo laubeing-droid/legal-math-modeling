@@ -40,17 +40,20 @@ is therefore written here as an infimum over a nonempty compact set of a bounded
 the upper value a game theory text means. This is a change of notation to keep the content, not a
 weakening of the claim.
 
-**Status.** No CI verdict exists for this file. It has never been elaborated by `lake build`;
-GitHub Actions is the only Lean authority in this repository and no authorized run has included
-it, so its build status is `CI_NOT_RUN` (fail-closed). It is not in the release root
-`JurisLean.lean`, not in the axiom-audit surface, and no ledger, manifest or certificate mentions
-it. Nothing in this file is an attestation, and local text pre-checks are not Lean evidence. What
+**Status.** No verdict is claimed for this file. It was written and booked in
+`PENDING_CI_MODULES` unelaborated, and run 36401817896 then printed
+`Built JurisLean.Mandate.ZeroSumValue` on its first attempt at a compiler. That line is the
+kernel's own output and it is not a verdict: the round ended `failure` on two other mandate
+modules, and a red round publishes no certificate and no acceptance, so this module stays
+booked and out of the release root until a green round. It is named by the generated audit
+surface, which is where that first build happened. Nothing in this file is an attestation, and
+local text pre-checks are not Lean evidence. What
 *is* attested is the carrier consumed here: the four shape facts imported from `ZeroSumSion`
 (`mixRight_nonempty`, `mixLeft_nonempty`, `mixRight_isCompact`, `mixLeft_isCompact`) ran green in
 run 36365128114, whose recorded commit is `e9abf6a`, and `exists_saddlePoint` in run 36372895460
 (recorded commit `fea48d9`). Those two verdicts belong to `ZeroSumSion` and to the versions of it
-those commits carried; no build has read this file, and a verdict does not travel to a file that
-did not exist where it was recorded. `value_eq` is an existence statement
+those commits carried. A verdict does not travel to a file that did not exist where it was
+recorded, which is also why the `Built` line above is tied to this file's own commit. `value_eq` is an existence statement
 about two iterated values of the payoff: it computes no value, it says nothing about pure
 strategies, and it is silent on non-zero-sum and multiplayer games, which still have no carrier in
 this pin.
@@ -270,8 +273,8 @@ with the payoff at a saddle point whose existence came from Sion. It is not a co
 algorithm, and not a value for a particular game — the single computed `ℚ`-valued game in
 `MixedPennies.lean` stays a separate carrier with a separate scope. Nothing here touches Nash
 existence for non-zero-sum or multiplayer games, for which this pin still has no carrier, and no
-claim in this file is an attestation: until an authorized CI run elaborates it, the build status of
-`Mandate/ZeroSumValue.lean` is `CI_NOT_RUN`.
+claim in this file is an attestation: `Mandate/ZeroSumValue.lean` has been elaborated once, inside
+a round that failed for other reasons, and no green round has certified it.
 -/
 
 end JurisLean.Mandate.ZeroSumValue

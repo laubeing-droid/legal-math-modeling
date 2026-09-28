@@ -665,3 +665,7 @@ open HornSystem
 #print axioms JurisLean.Mandate.ZeroSumSion.quasiconcaveOn_payoff_right
 #print axioms JurisLean.Mandate.ZeroSumSion.quasiconvexOn_payoff_left
 #print axioms JurisLean.Mandate.ZeroSumSion.usc_payoff_right
+#print axioms JurisLean.Mandate.ZeroSumSion.bestResponse_left_forall
+#print axioms JurisLean.Mandate.ZeroSumSion.bestResponse_right_forall
+#print axioms JurisLean.Mandate.ZeroSumSion.exists_bestResponse_left
+#print axioms JurisLean.Mandate.ZeroSumSion.exists_bestResponse_right

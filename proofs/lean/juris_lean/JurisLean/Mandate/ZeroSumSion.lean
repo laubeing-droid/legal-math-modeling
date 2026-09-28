@@ -200,4 +200,52 @@ theorem exists_saddlePoint (m n : ℕ) (A : Fin (m+1) → Fin (n+1) → ℝ) :
     (mixLeft_convex n) (mixLeft_nonempty n) (mixLeft_isCompact n)
     (fun _ _ => usc_payoff_right A _) (fun _ _ => quasiconcaveOn_payoff_right A _)
 
+/-! ## A component of Nash existence that does NOT need a fixed point -/
+
+/-- Held to any column mixture, some row mixture is a best response: the row player's payoff
+attains its minimum loss over the compact row simplex. This is one of the two halves of a
+Nash equilibrium, and it needs only compactness plus semicontinuity -- the argument the
+library itself uses inside Sion (`LowerSemicontinuousOn.exists_isMinOn`). -/
+theorem exists_bestResponse_left {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ)
+    (q : Fin (n+1) → ℝ) :
+    ∃ a ∈ stdSimplex ℝ (Fin (m+1)),
+      IsMinOn (fun p => payoff A p q) (stdSimplex ℝ (Fin (m+1))) a :=
+  (lsc_payoff_left A q).exists_isMinOn (mixRight_nonempty m) (mixRight_isCompact m)
+
+/-- The same fact in the quantified form a reader of a game theory text expects. -/
+theorem bestResponse_left_forall {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ)
+    (q : Fin (n+1) → ℝ) :
+    ∃ a ∈ stdSimplex ℝ (Fin (m+1)), ∀ x ∈ stdSimplex ℝ (Fin (m+1)),
+      payoff A a q ≤ payoff A x q := by
+  obtain ⟨a, ha, h⟩ := exists_bestResponse_left A q
+  exact ⟨a, ha, isMinOn_iff.mp h⟩
+
+/-- Dually, held to any row mixture, some column mixture is a best response for the column
+player, who minimises the row player's payoff. -/
+theorem exists_bestResponse_right {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ)
+    (p : Fin (m+1) → ℝ) :
+    ∃ b ∈ stdSimplex ℝ (Fin (n+1)),
+      IsMaxOn (fun q => payoff A p q) (stdSimplex ℝ (Fin (n+1))) b :=
+  (usc_payoff_right A p).exists_isMaxOn (mixLeft_nonempty n) (mixLeft_isCompact n)
+
+/-- The quantified form on the column side. -/
+theorem bestResponse_right_forall {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ)
+    (p : Fin (m+1) → ℝ) :
+    ∃ b ∈ stdSimplex ℝ (Fin (n+1)), ∀ y ∈ stdSimplex ℝ (Fin (n+1)),
+      payoff A p b ≥ payoff A p y := by
+  obtain ⟨b, hb, h⟩ := exists_bestResponse_right A p
+  exact ⟨b, hb, isMaxOn_iff.mp h⟩
+
+/-!
+**What the four facts above do not buy.** A best response exists for each player separately;
+a Nash equilibrium asks for a fixed point of the joint best-response map, and this pin has no
+carrier for that step. Checked against the pinned source rather than recalled: there is no
+Brouwer fixed-point theorem (grep for `Brouwer` hits only Boolean-algebra and order files),
+and the Knaster--Tarski machinery (`Mathlib/Order/FixedPoints.lean:75`, `isFixedPt_lfp`)
+applies to monotone self-maps of a complete lattice, which the probability simplex under the
+pointwise order is not -- the join of two distributions need not be a distribution. So this
+module narrows the gap by one honest step and stops: the repository claims no Nash existence
+beyond the zero-sum saddle point above and the single computed game in `MixedPennies.lean`.
+-/
+
 end JurisLean.Mandate.ZeroSumSion

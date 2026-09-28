@@ -66,14 +66,7 @@ STANDALONE_DRIVERS: dict[str, str] = {
 # mixed-strategy Nash equilibrium for one game) in run 36351623739 at subject 71d2177bc.
 # AGENTS requires a passing CI module build before root entry, and both have one, so they
 # are now imported by the generated block. The mechanism stays because the next wave needs it.
-PENDING_CI_MODULES: dict[str, str] = {
-    # Booked here by AGENTS rule: a module may not reach the release root before
-    # `lean-full-clean-build` has built it. `Mandate/ZeroSumSion.lean` (R-03, the carrier
-    # the zero-sum minimax arm instantiates) is new in this commit and has no build of its
-    # own yet, so it is unreachable on purpose until CI reports on it.
-    "JurisLean.Mandate.ZeroSumSion": (
-        "new module of the R-03 zero-sum arm; awaiting its first CI module build"),
-}
+PENDING_CI_MODULES: dict[str, str] = {}
 
 ALLOWED_UNREACHABLE = {**STANDALONE_DRIVERS, **PENDING_CI_MODULES}
 

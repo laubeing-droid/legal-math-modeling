@@ -28,9 +28,12 @@ The carrier is attested: the shape facts below -- both strategy sets nonempty, c
 convex, and a mixture staying coordinatewise nonnegative -- built green in run 36365128114
 at subject `e9abf6a`. The linearity of the payoff in each mixture, the (quasi)convexity and
 (quasi)concavity that follow from it, the semicontinuity of both slices, and the Sion
-application that consumes all ten hypotheses were written after that attestation and wait
-for a clean build of their own. So no line here is yet a proved minimax claim, and the
-module remains quarantined rather than in the release root.
+application that consumes all ten hypotheses were written after that attestation and are
+attested by run 36372895460 at subject `fea48d9`, whose `lean-full-clean-build` elaborated
+all fourteen targets here. `exists_saddlePoint` is therefore a proved statement about every
+finite two-player zero-sum game -- and nothing wider: it says nothing about non-zero-sum or
+multiplayer games, which still have no carrier in this pin. The module joins the release
+root in the commit recording that run, and the root entry is verified by its own build.
 -/
 
 namespace JurisLean.Mandate.ZeroSumSion

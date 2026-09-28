@@ -208,6 +208,13 @@ def test_generator_can_refuse_a_stale_label(tmp_path):
     # inventory still described a dirtier tree, so the assertion failed on a docs-only
     # commit -- a gate that guesses is a gate that lies.
     assert proc.returncode in (0, 2), proc.stdout + proc.stderr
+    if proc.returncode == 2:
+        # A refusal writes nothing, which earlier read as a bare FileNotFoundError and
+        # sent me hunting for a broken generator three times today. The refusal IS the
+        # behaviour under test, so assert its shape and stop here.
+        assert "does not describe" in proc.stderr, proc.stderr
+        assert not out.exists(), "--require-bound must not emit an unbound artifact"
+        return
     fresh = json.loads(out.read_text(encoding="utf-8"))
     diverging = fresh["subject_binding"]["files_diverging_from_subject"]
     if diverging:

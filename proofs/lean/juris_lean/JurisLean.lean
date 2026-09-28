@@ -95,6 +95,7 @@ import JurisLean.Mandate.StructureInvariants
 import JurisLean.Mandate.SubstrAdmission
 import JurisLean.Mandate.TaxSlices
 import JurisLean.Mandate.Waterfall
+import JurisLean.Mandate.ZeroSumSion
 import JurisLean.PermissionConflict
 import JurisLean.ProposalEnvelopeSpec
 import JurisLean.ProposalNoninterference

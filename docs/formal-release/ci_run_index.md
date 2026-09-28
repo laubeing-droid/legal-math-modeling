@@ -23,15 +23,15 @@ without guessing where it came from.
 | 35819869335 | failure | `2d06da6` | main | push | 2/8 | 5 | PROGRESS.md, baseline.md, 法律统一数学模型_四报告与跨仓审查_20260923.md |
 | 35832550717 | failure | `1e0875c` | main | push | 2/8 | 5 | PROGRESS.md, baseline.md, review-of-gpt-report.md, 法律统一数学模型_四报告与跨仓审查_20260923.md |
 | 35833467010 | success | `b00d315` | main | push | 7/8 | 10 | baseline.md, findings.md, gpt-prompt.md, 法律统一数学模型_四报告与跨仓审查_20260923.md |
-| 36094524508 | success | `f4d46b0` | main | push | 7/8 | 10 | 01_编号台账.md, paper-v1-cn.md, paper-v1-en.md |
-| 36095609565 | success | `c6d568c` | main | push | 7/8 | 10 | 01_编号台账.md, paper-v1-cn.md, paper-v1-en.md |
+| 36094524508 | success | `f4d46b0` | main | push | 7/8 | 10 | 01_编号台账.md, AUDIT_REPORT_V1_20260927.md, paper-v1-cn.md, paper-v1-en.md |
+| 36095609565 | success | `c6d568c` | main | push | 7/8 | 10 | 01_编号台账.md, AUDIT_REPORT_V1_20260927.md, paper-v1-cn.md, paper-v1-en.md |
 | 36115235418 | success | `1a75437` | main | push | 7/8 | 10 | paper-v1-cn.md, paper-v1-en.md, 七轮问流水线施工报告_20260925.md |
 | 36116094791 | failure | `badd15c` | main | push | 2/8 | 6 | 七轮问流水线施工报告_20260925.md |
-| 36117165469 | success | `094ccb2` | main | push | 7/8 | 10 | 01_编号台账.md, paper-v1-cn.md, paper-v1-en.md, 七轮问流水线施工报告_20260925.md |
+| 36117165469 | success | `094ccb2` | main | push | 7/8 | 10 | 01_编号台账.md, AUDIT_REPORT_V1_20260927.md, paper-v1-cn.md, paper-v1-en.md, 七轮问流水线施工报告_20260925.md |
 | 36117995884 | success | `69d0daa` | main | push | 7/8 | 10 | 01_编号台账.md, 七轮问流水线施工报告_20260925.md |
 | 36258179200 | failure | `1488685` | main | push | 1/8 | 4 | 03_证明战役台账.md |
-| 36258901155 | success | `bd364c5` | main | push | 7/8 | 10 | paper_cn.md, paper_en.md |
-| 36259479766 | success | `b57d4aa` | main | push | 7/8 | 10 | 03_证明战役台账.md |
+| 36258901155 | success | `bd364c5` | main | push | 7/8 | 10 | AUDIT_REPORT_V1_20260927.md, AUDIT_REPORT_V1_SUPPLEMENT_1.md, AUDIT_TASK_BRIEF_20260926.md, paper_cn.md, paper_en.md |
+| 36259479766 | success | `b57d4aa` | main | push | 7/8 | 10 | 03_证明战役台账.md, AUDIT_TASK_BRIEF_20260926.md |
 | 36285858369 | failure | `a2565b4` | ci/mandate-wave1 | push | 1/8 | 4 | 03_证明战役台账.md |
 | 36289822066 | failure | `90f0c3e` | ci/mandate-wave1 | push | 2/8 | 6 | 03_证明战役台账.md |
 | 36290409329 | failure | `6505cc4` | ci/mandate-wave1 | push | 2/8 | 6 | 03_证明战役台账.md |
@@ -79,8 +79,9 @@ without guessing where it came from.
 | 36366431370 | failure | `74639ef` | ci/mandate-wave1 | push | 2/8 | 5 | 03_证明战役台账.md |
 | 36368232581 | failure | `83235b7` | ci/mandate-wave1 | push | 1/8 | 4 | 03_证明战役台账.md |
 | 36370196379 | failure | `601fb0c` | ci/mandate-wave1 | push | 1/8 | 4 | 03_证明战役台账.md |
+| 36371673207 | failure | `bc6f289` | ci/mandate-wave1 | push | 2/8 | 6 | 03_证明战役台账.md |
 
-Runs not concluding `success`: 35 — 34512426708, 34514241309, 34516894406, 34517689336, 34519379252, 35819869335, 35832550717, 36116094791, 36258179200, 36285858369, 36289822066, 36290409329, 36291053225, 36292599075, 36295032321, 36296061840, 36303397911, 36304261436, 36305404923, 36308381874, 36309484500, 36327456262, 36336037802, 36338968515, 36341001563, 36343993012, 36347838507, 36349847602, 36350810615, 36355767697, 36357526499, 36357820618, 36366431370, 36368232581, 36370196379.
+Runs not concluding `success`: 36 — 34512426708, 34514241309, 34516894406, 34517689336, 34519379252, 35819869335, 35832550717, 36116094791, 36258179200, 36285858369, 36289822066, 36290409329, 36291053225, 36292599075, 36295032321, 36296061840, 36303397911, 36304261436, 36305404923, 36308381874, 36309484500, 36327456262, 36336037802, 36338968515, 36341001563, 36343993012, 36347838507, 36349847602, 36350810615, 36355767697, 36357526499, 36357820618, 36366431370, 36368232581, 36370196379, 36371673207.
 
 `jobs ok/total` is there because a run-level conclusion and a job-level one
 differ: a run can end `cancelled` while every job a document names succeeded,

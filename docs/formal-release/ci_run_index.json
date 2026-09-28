@@ -1245,6 +1245,7 @@
       "jobs_total": 8,
       "name": "docs: consolidate 15->10 folders, land master-plan baselines",
       "quoted_by": [
+        "docs/history/evidence-archive/20260927_qoder_audit/AUDIT_REPORT_V1_20260927.md:21",
         "docs/history/paper-v1-cn.md:292",
         "docs/history/paper-v1-en.md:293",
         "docs/master-plan/01_编号台账.md:10",
@@ -1313,6 +1314,7 @@
       "jobs_total": 8,
       "name": "rc01-02: machine-readable receipt ledger and claims registry (ruling #6)",
       "quoted_by": [
+        "docs/history/evidence-archive/20260927_qoder_audit/AUDIT_REPORT_V1_20260927.md:21",
         "docs/history/paper-v1-cn.md:293",
         "docs/history/paper-v1-en.md:294",
         "docs/master-plan/01_编号台账.md:111",
@@ -1506,6 +1508,7 @@
       "jobs_total": 8,
       "name": "fix(ci): normalize axiom-audit file to LF and rebind inventory hashes",
       "quoted_by": [
+        "docs/history/evidence-archive/20260927_qoder_audit/AUDIT_REPORT_V1_20260927.md:21",
         "docs/history/paper-v1-cn.md:295",
         "docs/history/paper-v1-en.md:296",
         "docs/master-plan/01_编号台账.md:107",
@@ -1720,6 +1723,11 @@
       "jobs_total": 8,
       "name": "fix(lean): P083 GENERAL-C inr branch hsorted.2 (conjunction projectio…",
       "quoted_by": [
+        "docs/history/evidence-archive/20260927_qoder_audit/AUDIT_REPORT_V1_20260927.md:137",
+        "docs/history/evidence-archive/20260927_qoder_audit/AUDIT_REPORT_V1_20260927.md:21",
+        "docs/history/evidence-archive/20260927_qoder_audit/AUDIT_REPORT_V1_SUPPLEMENT_1.md:24",
+        "docs/history/evidence-archive/20260927_qoder_audit/AUDIT_TASK_BRIEF_20260926.md:119",
+        "docs/history/evidence-archive/20260927_qoder_audit/AUDIT_TASK_BRIEF_20260926.md:3",
         "docs/paper-rewrite/paper_cn.md:145",
         "docs/paper-rewrite/paper_en.md:140"
       ],
@@ -1783,6 +1791,7 @@
       "jobs_total": 8,
       "name": "paper: strike P-083 from unproved list (4-theorem general chain CI-gr…",
       "quoted_by": [
+        "docs/history/evidence-archive/20260927_qoder_audit/AUDIT_TASK_BRIEF_20260926.md:3",
         "docs/master-plan/03_证明战役台账.md:137",
         "docs/master-plan/03_证明战役台账.md:88"
       ],
@@ -2376,7 +2385,7 @@
       "jobs_total": 8,
       "name": "chore(inventory): rebind after the root join",
       "quoted_by": [
-        "docs/master-plan/03_证明战役台账.md:1192",
+        "docs/master-plan/03_证明战役台账.md:1226",
         "docs/master-plan/03_证明战役台账.md:175",
         "docs/master-plan/03_证明战役台账.md:287",
         "docs/master-plan/03_证明战役台账.md:580",
@@ -3453,7 +3462,7 @@
       "jobs_total": 8,
       "name": "docs(evidence): rebind source counts to the bridge attempt and say wh…",
       "quoted_by": [
-        "docs/master-plan/03_证明战役台账.md:1183",
+        "docs/master-plan/03_证明战役台账.md:1217",
         "docs/master-plan/03_证明战役台账.md:791",
         "docs/master-plan/03_证明战役台账.md:800",
         "docs/master-plan/03_证明战役台账.md:962",
@@ -4409,7 +4418,7 @@
       "jobs_total": 8,
       "name": "index(quotes): refresh locations after recording the Sion carrier",
       "quoted_by": [
-        "docs/master-plan/03_证明战役台账.md:1163",
+        "docs/master-plan/03_证明战役台账.md:1197",
         "docs/master-plan/03_证明战役台账.md:927"
       ],
       "run_id": 36358097950,
@@ -4472,7 +4481,7 @@
       "jobs_total": 8,
       "name": "docs(ledger): leave no non-success round unrecorded",
       "quoted_by": [
-        "docs/master-plan/03_证明战役台账.md:1163"
+        "docs/master-plan/03_证明战役台账.md:1197"
       ],
       "run_id": 36359301786,
       "started": true,
@@ -4728,6 +4737,69 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-09-28T02:39:54Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 6,
+      "conclusion": "failure",
+      "created_at": "2026-09-28T02:55:27Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "bc6f28975671a631c76fc6be245ffaace1a0b3cc",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36371673207",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "docs(accounts): rebind after the explicit-proof round",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:1177",
+        "docs/master-plan/03_证明战役台账.md:1179"
+      ],
+      "run_id": 36371673207,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-28T03:02:19Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

@@ -31,20 +31,84 @@ The pennies matrix is the same game whose mixed equilibrium `MixedPennies.lean` 
 `matchingPennies_no_pure_equilibrium` is the general-form counterpart of that module's
 `no_pure_pair_is_equilibrium`: mixing is load-bearing there, and nothing here replaces it.
 
-The carrier facts this rests on were read out of the pinned source, not recalled. Invoked by
-name here: `Fintype.decidableExistsFintype` (`Mathlib/Data/Fintype/Defs.lean:213`), which is
-the body of `decidableNashPure`, and `Fintype.decidableForallFintype` (`:209`), which instance
-resolution reaches for each best-response quantifier. Those two definitions turn a quantifier
-over a `Fintype` into a search over `Finset.univ` and walk it with `Finset.mem_univ` (`:96`),
-so the whole procedure is a finite sweep of `Fin m × Fin n` with `ℚ` comparisons at the leaves.
-`of_decide_eq_true` and `decide_eq_true` are Lean core, and this repository already uses them
-on a `decide`-shaped definition at `MatrixGame.lean:51`. The label lemmas
-`Bool.decide_false` / `Bool.of_decide_false` (`Mathlib/Data/Bool/Basic.lean:87` / `:90`) were
-deliberately NOT used: their implicit `Decidable` instance would have to come out structurally
-equal to the one stored inside `nashPureExists`, and the `iff` plus a `cases` on the `Bool`
-needs no such coincidence. The `decide` style follows this repository's own built modules:
-`MatrixGame.lean:54`, `FullMath/Action/IncentiveEnumeration.lean:20` and `:42` (which decide
-`∀ t ∈ Finset.univ` inequalities between `ℚ` payoffs), and `MixedPennies.lean:138`.
+**Carriers, read out of the pinned source rather than recalled.** Every file:line below was
+opened and checked under `proofs/lean/juris_lean/.lake/packages/mathlib/Mathlib/`.
+
+* `Fintype.decidableExistsFintype` (`Data/Fintype/Defs.lean:213`) and
+  `Fintype.decidableForallFintype` (`:209`) are both registered `instance`s, not merely defs.
+  Each is `decidable_of_iff` over the `Finset` form: `∃ a ∈ Finset.univ, p a` and
+  `∀ a ∈ Finset.univ, p a`, whose decidability is `Finset.decidableDExistsFinset`
+  (`Data/Finset/Defs.lean:361`) and `Finset.decidableDforallFinset` (`:345`), and that pair
+  descends to `Multiset.decidableDforallMultiset` (`Data/Multiset/Defs.lean:309`) over
+  `m.attach`, built from `Multiset.decidableForallMultiset` (`:305`). So every quantifier below
+  becomes a walk of `Finset.univ`, which is the finite sweep the procedure is.
+* The index types carry the `Fintype` instances that walk needs: `Fin.fintype`
+  (`Data/Fintype/Basic.lean:36`) and `instFintypeProd` (`Data/Fintype/Prod.lean:45`).
+* Conjunction decidability is the instance the pinned source itself names as a term,
+  `instDecidableAnd` (used at `Data/Finset/Defs.lean:353`).
+* `ℚ` is Lean core `Rat` (`Data/Rat/Init.lean:21`, `notation "ℚ" => Rat`), so the leaf order
+  instances for `≤` and `<` -- and their reduction to `true`/`false` -- are core's, not
+  Mathlib's, and are therefore cited here by in-repo evidence instead of a file:line: this
+  repository already decides `ℚ` comparisons to completion in modules that built green, at
+  `MatrixGame.lean:54`, `MixedPennies.lean:138` and `:142`, and
+  `FullMath/Action/IncentiveEnumeration.lean:20` and `:42` (the last two decide `≥`/`≤`
+  between `ℚ` payoffs under `∀ t ∈ Finset.univ`). `native_decide` is banned in this repository
+  and is not used.
+* `of_decide_eq_true` and `decide_eq_true` are Lean core; this repository uses exactly that
+  pair, positionally, against a `decide`-shaped definition at `MatrixGame.lean:51`, which is
+  the shape copied here.
+* `Bool.decide_false` / `Bool.of_decide_false` remain deliberately unused, for a reason this
+  round made concrete: both take an implicit `Decidable` that must come out *structurally
+  equal* to the instance baked into `nashPureExists`'s stored value, because `decide p` is
+  `Decidable.decide` applied to that instance and nothing makes two different instances of
+  the same proposition definitionally equal. The label proofs below are therefore anchored at
+  `nashPureBody`, whose instance is fixed and named, and the `iff` plus a `cases` on the
+  `Bool` needs no such coincidence. No decidability here comes from a classical fallback.
+
+**What the ten errors of run `36401817896` were, and what changed.** `lean-full-clean-build`
+printed ten messages in this file, at these positions *in that superseded text*: `123:54`,
+`130:48`, `130:11`, `134:25`, `187:40`, `187:11`, `190:40`, `190:11`, `238:68`, `299:58`. One
+cause explains all of them. Type class resolution
+matches a target against candidate instance *types* without delta-unfolding ordinary `def`s, so
+`decide` was asked for `Decidable (nashPureBody m n G)`, `Decidable (isNashPure coordGame (0, 0)
+∧ ...)`, and `Decidable (¬ ∃ p, isNashPure penniesGame p)` and could not see through
+`nashPureBody` / `isNashPure` / `isBestResponseRow` to the `Fintype` quantifier instances --
+even though the same `Fintype.decidableExistsFintype` term elaborated one line earlier, at the
+`def decidableNashPure` of that text (`:119-120`, no error printed), where its expected type was
+*given* rather than searched for. Hence:
+
+* every proposition this file defines over a finite search now has a `Decidable` instance whose
+  stated target has that proposition's own constant at its head -- `decBestResponseRow`,
+  `decBestResponseCol`, `decIsNashPure`, and `decNashPureBody`, which is a thin wrapper around
+  the untouched `def decidableNashPure` -- so resolution is a direct hit and never needs to
+  unfold; each body is itself elaborated against a declared expected type, which is the path
+  that already worked;
+* the decision stays computable and stays in one place: `decidableNashPure` keeps its `def`, its
+  name, its signature and its body `Fintype.decidableExistsFintype`, and the instance points at
+  it, so every `decide` in this file resolves to the very same term and the equations between
+  them hold by reflexivity. No `Decidable` here is discharged by the classical fallback
+  `Classical.propDecidable` -- that would have made the "decision procedure" claim false, and
+  `decide` would not have reduced on either certificate;
+* the two label lemmas no longer let `of_decide_eq_true` guess its proposition from an equation
+  whose left side names `nashPureExists`. They fix the expected type first (`have
+  hbody : nashPureBody m n G := of_decide_eq_true h`, `show decide (nashPureBody m n G) =
+  true`), which is what removes the `?m.12 is not an inductive datatype` and the untypeable
+  `⟨...⟩` messages -- those were downstream of the unresolved metavariable, not separate bugs;
+  `nashPureExists_swap` no longer touches `decide` at all: it rewrites both sides through the
+  label lemmas and moves a witness across `isNashPure_swap`;
+* `nashPureBody` and `isNashPure` are still two spellings of one proposition, and the label
+  lemmas use that equation directly (`exact hbody` against the existential), so the procedure
+  and the definition cannot drift apart and no bridge lemma is needed.
+
+All 27 theorems keep their names *and* their statements -- the same 27 that `AxiomAudit.lean`
+prints axioms for, in its generated target block -- and nothing was weakened. Both certificates
+are still evaluated by the kernel rather than argued (`coordination_diagonal_is_nash` and
+`matchingPennies_no_pure_equilibrium` are `by decide`, and the labels follow from them). The
+counted shape of this module does not move either: still 27 `theorem`/`lemma` declarations and
+still the same number of `def` carriers, because the four additions above are `instance`
+declarations and `decidableNashPure` remains a `def`. The generated accounts therefore name
+exactly what this file declares; promotion out of quarantine is the only step this repair leaves
+open, and it belongs outside this file.
 
 **The boundary, stated as narrowly as possible.**
 * Pure strategies only. `isNashPure` quantifies over chosen actions, never over mixtures.
@@ -65,15 +129,22 @@ needs no such coincidence. The `decide` style follows this repository's own buil
 * Two players, simultaneous move, no chance nodes; `GameTree.lean` and `SequentialGames.lean`
   cover other shapes and claim no equilibrium existence.
 
-Status: **no CI verdict.** Nothing in this file has been elaborated by Lean: local work is
-text only, and GitHub Actions is the sole Lean authority (`CI_NOT_RUN`, fail-closed). This
-module is not imported by `JurisLean.lean`, is not named by `AxiomAudit.lean`, and is not in
-any release certificate. Registering it -- a quarantined entry in the `PENDING_CI_MODULES`
-table, the audit-surface listing that gives it its first compile, then root entry only after
-that build is green -- is a separate step owned outside this file, and until it happens the
-local reachability gate reports this module as neither promoted nor quarantined. Nothing here
-is an attestation, and no count or build status in this header may be inherited by a later
-commit.
+Status: **no CI verdict for this text.** The repair above has never been elaborated: local work
+is text only, and GitHub Actions is the sole Lean authority (`CI_NOT_RUN`, fail-closed). Run
+`36401817896` is a verdict on the *superseded* text, and that verdict was ten errors; it says
+nothing about this one. The registration facts were read off the tree, not asserted, and are
+quoted by content rather than by line number because the audit listing is generated and its
+line numbers move when other modules are booked: this module is NOT imported by the release root
+`JurisLean.lean`; it IS imported by `JurisLean/AxiomAudit.lean` (`import
+JurisLean.Mandate.PureNash`) and named there by exactly 27 `#print axioms` entries inside that
+file's generated target block -- that listing is where the previous text met its first
+compiler; and it is booked quarantined in the `PENDING_CI_MODULES` table of
+`scripts/ci/check_import_reachability.py` under the key `JurisLean.Mandate.PureNash`, which is
+what keeps the reachability generator from importing it into the root before a green build of
+its own. Because no theorem name or statement changed, that booking needs no regeneration for
+this repair; promotion out of quarantine and root entry stay owned outside this file, and both
+wait on a green run whose subject actually contains this text. Nothing here is an attestation,
+and no count or build status in this header may be inherited by a later commit.
 -/
 
 namespace JurisLean.Mandate.PureNash
@@ -98,10 +169,29 @@ def isBestResponseRow (G : Game m n) (j : Fin n) (i : Fin m) : Prop :=
 def isBestResponseCol (G : Game m n) (i : Fin m) (j : Fin n) : Prop :=
   ∀ j' : Fin n, G.2 i j' ≤ G.2 i j
 
+/-- Best-responding is decidable, and computably so: the search is the `Fintype` sweep
+`Fintype.decidableForallFintype` (`Mathlib/Data/Fintype/Defs.lean:209`) over `Fin m`, whose
+leaves are `ℚ` comparisons. Declared as an `instance` rather than left to resolution because
+type class matching does not unfold `isBestResponseRow` while matching; on the line below the
+proposition is given, not searched for, and that path does unfold. -/
+instance (priority := 100) decBestResponseRow (G : Game m n) (j : Fin n) (i : Fin m) :
+    Decidable (isBestResponseRow G j i) := Fintype.decidableForallFintype
+
+/-- The column version, over `Fin n`. -/
+instance (priority := 100) decBestResponseCol (G : Game m n) (i : Fin m) (j : Fin n) :
+    Decidable (isBestResponseCol G i j) := Fintype.decidableForallFintype
+
 /-- A pure profile is a Nash equilibrium when each player's chosen action is a best response
 to the other's. A profile is a *pair of actions*, not a function. -/
 def isNashPure (G : Game m n) (p : Fin m × Fin n) : Prop :=
   isBestResponseRow G p.2 p.1 ∧ isBestResponseCol G p.1 p.2
+
+/-- A profile's equilibrium status is decidable by deciding its two halves: the body asks for
+`instDecidableAnd` over the two instances just declared, so no resolution here has to see
+through a definition. -/
+instance (priority := 100) decIsNashPure (G : Game m n) (p : Fin m × Fin n) :
+    Decidable (isNashPure G p) :=
+  show Decidable (isBestResponseRow G p.2 p.1 ∧ isBestResponseCol G p.1 p.2) from inferInstance
 
 /-! ## The decision procedure -/
 
@@ -112,26 +202,39 @@ def nashPureBody (m n : ℕ) (G : Game m n) : Prop :=
     (∀ i' : Fin m, G.1 i' p.2 ≤ G.1 p.1 p.2) ∧ (∀ j' : Fin n, G.2 p.1 j' ≤ G.2 p.1 p.2)
 
 /-- `nashPureBody m n G` is decidable, and decidable *computably*: the search runs over the
-`Fintype` `Fin m × Fin n` through `Fintype.decidableExistsFintype`, which walks `Finset.univ`,
-and every leaf is a `ℚ` comparison. Declared with `def` rather than `theorem` because a
-`Decidable` value is data, not a proposition. The proposition it decides is the same statement
-as `∃ p, isNashPure G p`, since `nashPureBody` is that conjunction written out. -/
+`Fintype` `Fin m × Fin n` through `Fintype.decidableExistsFintype`
+(`Mathlib/Data/Fintype/Defs.lean:213`), which walks `Finset.univ`, and every leaf is a `ℚ`
+comparison. Declared with `def` rather than `theorem` because a `Decidable` value is data, not a
+proposition. The proposition it decides is the same statement as `∃ p, isNashPure G p`, since
+`nashPureBody` is that conjunction written out. -/
 def decidableNashPure (m n : ℕ) (G : Game m n) : Decidable (nashPureBody m n G) :=
   Fintype.decidableExistsFintype
+
+/-- The `instance` half of the same value. `decide (nashPureBody m n G)` cannot reach
+`Fintype.decidableExistsFintype` on its own, because type class matching will not delta-unfold
+`nashPureBody` to see the `∃` under the name; pointing an instance at the `def` above gives
+resolution an exact syntactic hit, and leaves the computable content where it was. Nothing here
+is classical: had it been, neither certificate below could have reduced. -/
+instance (priority := 100) decNashPureBody (m n : ℕ) (G : Game m n) :
+    Decidable (nashPureBody m n G) := decidableNashPure m n G
 
 /-- The verdict as a `Bool`: `true` when some profile is a pure Nash equilibrium of `G`. -/
 def nashPureExists (m n : ℕ) (G : Game m n) : Bool := decide (nashPureBody m n G)
 
-/-- A `true` label is sound: it reflects into an equilibrium profile. -/
+/-- A `true` label is sound: it reflects into an equilibrium profile. The proposition
+`of_decide_eq_true` is asked about is fixed by the expected type of the `have`, so the
+`Decidable` it uses is the very one `nashPureExists` stores -- and the converse reads the
+witness back through `decide_eq_true` against a `show`n goal, which likewise leaves no
+metavariable for resolution to guess. -/
 theorem nashPureExists_true_iff (m n : ℕ) (G : Game m n) :
     nashPureExists m n G = true ↔ ∃ p : Fin m × Fin n, isNashPure G p := by
   constructor
   · intro h
-    obtain ⟨p, hrow, hcol⟩ := of_decide_eq_true h
-    exact ⟨p, hrow, hcol⟩
+    have hbody : nashPureBody m n G := of_decide_eq_true h
+    exact hbody
   · intro h
-    obtain ⟨p, hrow, hcol⟩ := h
-    exact decide_eq_true ⟨p, hrow, hcol⟩
+    show decide (nashPureBody m n G) = true
+    exact decide_eq_true h
 
 /-- A `false` label is complete: it means the game provably has no pure equilibrium. The
 procedure cannot shrug -- the only other outcome is not running it. -/
@@ -144,9 +247,9 @@ theorem nashPureExists_false_iff (m n : ℕ) (G : Game m n) :
     rw [htrue] at h
     exact absurd h (by decide)
   · intro hnone
-    cases h : nashPureExists m n G with
-    | true => exact absurd ((nashPureExists_true_iff m n G).mp h) hnone
-    | false => exact rfl
+    cases hb : nashPureExists m n G with
+    | true => exact absurd ((nashPureExists_true_iff m n G).mp hb) hnone
+    | false => simp [hb]
 
 /-! ## Structural facts, not only computations -/
 
@@ -177,18 +280,20 @@ theorem isNashPure_swap_swap (G : Game m n) (p : Fin m × Fin n) :
     isNashPure (swap (swap G)) p ↔ isNashPure G p := Iff.rfl
 
 /-- So the decision procedure agrees with the relabelling: a game and its swapped version get
-the same label. Both directions are the same argument -- carry the witness across
-`isNashPure_swap`, then read the label back through `nashPureExists_true_iff`. No evaluation
-of `nashPureExists` happens here. -/
+the same label. Both sides are read through `nashPureExists_true_iff` first, so the argument
+never asks `decide` to unfold a definition and never evaluates `nashPureExists`; each direction
+then carries one profile across `isNashPure_swap`, and the reverse works because `swap (swap G)`
+is definitionally the original game -- the fact `isNashPure_swap_swap` records. -/
 theorem nashPureExists_swap (m n : ℕ) (G : Game m n) :
     nashPureExists m n G = true ↔ nashPureExists n m (swap G) = true := by
+  rw [nashPureExists_true_iff, nashPureExists_true_iff]
   constructor
   · intro h
-    obtain ⟨p, hp⟩ := of_decide_eq_true h
-    exact (nashPureExists_true_iff n m (swap G)).mpr ⟨(p.2, p.1), isNashPure_swap G p hp⟩
+    obtain ⟨p, hp⟩ := h
+    exact ⟨(p.2, p.1), isNashPure_swap G p hp⟩
   · intro h
-    obtain ⟨p, hp⟩ := of_decide_eq_true h
-    exact (nashPureExists_true_iff m n G).mpr ⟨(p.2, p.1), isNashPure_swap (swap G) p hp⟩
+    obtain ⟨p, hp⟩ := h
+    exact ⟨(p.2, p.1), isNashPure_swap (swap G) p hp⟩
 
 /-- An action is dominant for the row player when it best-responds to *every* column action. -/
 def isDominantRow (G : Game m n) (i : Fin m) : Prop := ∀ j : Fin n, isBestResponseRow G j i
@@ -322,6 +427,14 @@ no `Mathlib/GameTheory`, and Knaster--Tarski (`Mathlib/Order/FixedPoints.lean:75
 complete lattice that a simplex is not. So general mixed Nash existence for a bimatrix game
 stays open here, exactly as `ZeroSumSion.lean` records for the four best-response facts it
 proves: separate best responses exist, a joint fixed point is a different claim.
+
+One further limit is now documented rather than hidden: the four `Decidable` instances above
+make the procedure *executable*, and the two certificates above make it *evaluated* on two
+concrete games, but this module proves no statement of the form "for every `G`,
+`nashPureExists m n G` terminates". Termination is built into the shape of the search -- each
+quantifier is a `Finset.univ` walk over a `Fintype`, so there is no recursion to run forever --
+and that argument is made here in prose about `Fintype.decidableForallFintype` and
+`Fintype.decidableExistsFintype`, not in a theorem.
 -/
 
 end JurisLean.Mandate.PureNash

@@ -17,10 +17,12 @@ The three pieces, and nothing more:
   branch as a function of the sequence of earlier choices, so a player's plan is a function
   of the history rather than a single move.
 * `go` and `play` -- `play g s` runs `g` from the empty history; at a node owned by `i` it
-  asks `(s i h)` for the branch, with `h` the path taken so far. `go` carries that path as the
-  accumulator of the returned function, so the recursion stays structural on the game alone.
+  asks `(s i h)` for the branch, with `h` the path taken so far. `go` takes the game, the
+  elapsed history and the profile as three arguments, splits only on the game, and appends the
+  choice it made to the history before descending. See "Argument shape" below: that shape is
+  what makes the constructor equations reduce.
 * `brute` -- the profile the recursion computes: `atPath g h` finds the node of `g` reached by
-  the path `h`, and `brute g` answers there with the child `outcome` prefers. `deviate g i h b`
+  the path `h`, and `brute g` answers there with the child `outcome` prefers. `deviate g i hpath b`
   is `brute g` with one flip: `i`'s answer at history `h` replaced by `b`, every other answer
   unchanged.
 
@@ -45,6 +47,37 @@ loss, which is what keeps the inequality from being vacuous.
 exactly when `(outcome l) i <= (outcome r) i`. A strategy is consulted at the concatenation of
 the elapsed history and the path inside the current subtree, and `brute` reads only its own
 subtree-relative path -- which is why the induction hypotheses below are stated with a prefix.
+
+## Argument shape, because the compiler asked for it
+
+Both recursions here take their non-decreasing arguments as *arrow domains written into the
+pattern list*, not as binders before the colon. The previous version had
+
+    def go {n : ℕ} (g : Game n) : List Bool → Strats n → Profile n
+      | .terminal u => fun _ _ => u
+
+and run 36401817896 rejected the alternative with `Unknown constant List.terminal`, adding
+" inferred this name from the expected resulting type of `.terminal`: List Bool". A `|`
+alternative fills the argument positions that come *after* the binders written before the
+colon, so `.terminal` was read as a pattern for the history `h : List Bool` and not for the
+game; the identical message appeared at the `atPath` signature. Everything else that round
+reported was downstream of those two broken constants: `go_terminal`,
+`go_turn_apply`, `play_terminal`, `play_turn_follows`, `atPath_nil`, `atPath_cons_terminal`,
+`brute_at_root` and the `go_bound` terminal case all lost their definitional unfolding, and
+the five computed examples lost the kernel reduction `decide` needs.
+
+With the game as the first pattern position and the history and profile as the following
+positions, `Game n` is the only argument split, the recursion is structural on the game, and the
+constructor equations below then hold by `rfl`. A later position may be rewritten while the
+first one descends, and that shape is what three modules already rest on:
+`SequentialGames.outcome` and `GameTree.value` take the recursion target as an arrow domain
+rather than as a binder before the colon, `BusinessRoot.GuardMachine.exec` descends on its first
+position while its second grows by `::`, and `Waterfall.allocate` descends on one position while
+another is rewritten by subtraction. Run 36401817896 printed a `Built` line for each of those
+modules.
+That is the compiler's output about that source and not a verdict -- the round ended `failure`
+and published no certificate -- so none of those lines attests anything here, and still less
+does this file attest itself: its own status is `CI_NOT_RUN`.
 
 ## What is NOT proved, read before citing anything here
 
@@ -71,11 +104,18 @@ subtree-relative path -- which is why the induction hypotheses below are stated 
 * `atPath` answers `none` for a path that leaves the tree, and `brute` answers `false` there;
   those answers are reachable only by a mislabelled history and are given no meaning.
 
-Status: no CI verdict exists for this file at the time of writing. It is not attested by any
-build, and nothing in it is an attestation -- including of the theorems of
-`SequentialGames.lean` it imports. Joining the release root (`JurisLean.lean`) and being named
-by `AxiomAudit.lean` are separate steps that each need their own green CI round; both are owned
-by another process and neither is claimed here.
+Status: `CI_NOT_RUN` for the source below. No CI verdict exists for this file as written here,
+and the only verdict on record is a negative one about the *previous* source: run
+36401817896's `lean-full-clean-build` printed 22 errors in it, `error: Lean exited with code 1`,
+and the module was booked in `PENDING_CI_MODULES` as never elaborated. That round's red is the
+kernel's own output about source this file replaces; it is not evidence about this file, and
+nothing written here is an attestation -- including of the theorems of `SequentialGames.lean`
+it imports, whose repair that round did read as built. Joining the release root
+(`JurisLean.lean`) and being named by `AxiomAudit.lean` are separate steps that each need their
+own green CI round; both are owned by another process and neither is claimed here. The theorem
+surface is deliberately unchanged: all 25 names `AxiomAudit.lean` prints axioms for are still
+declared here with the same statements, so no regeneration of that tracked artifact is forced
+by this repair.
 -/
 
 namespace JurisLean.Mandate.OneShotDeviation
@@ -85,23 +125,23 @@ open JurisLean.Mandate.SequentialGames
 /-! ## History-based strategies -/
 
 /-- A positional strategy for one player: given the sequence of choices already made, name the
-branch to take. `false` is the left child, `true` the right child. -/
-abbrev Strat (n : ℕ) : Type := List Bool → Bool
+branch to take. `false` is the left child, `true` the right child. The player count is carried
+for typing only, hence the underscore. -/
+abbrev Strat (_n : ℕ) : Type := List Bool → Bool
 
 /-- One strategy per acting player. -/
 abbrev Strats (n : ℕ) : Type := Player n → Strat n
 
 /-! ## Playing a tree against a profile -/
 
-/-- The recursion on the game, with the elapsed history as the accumulator of the returned
-function. A node owned by `i` asks `i`'s strategy about the history so far and continues into
-the chosen child with that choice appended, so the history is the path from the root in the
-order the choices were made. Written this way because the recursion must stay structural on the
-game alone. -/
-def go {n : ℕ} (g : Game n) : List Bool → Strats n → Profile n
-  | .terminal u => fun _ _ => u
-  | .turn i l r => fun h s =>
-      if (s i h = true) then go r (h ++ [true]) s else go l (h ++ [false]) s
+/-- The recursion on the game, over the elapsed history and the profile to consult. A node
+owned by `i` asks `i`'s strategy about the history so far and continues into the chosen child
+with that choice appended, so the history is the path from the root in the order the choices
+were made. Only the first position is split, which keeps the recursion structural on the game;
+the reason the arguments are written this way is in the module header. -/
+def go {n : ℕ} : Game n → List Bool → Strats n → Profile n
+  | .terminal u, _, _ => u
+  | .turn i l r, h, s => if s i h = true then go r (h ++ [true]) s else go l (h ++ [false]) s
 
 /-- The result of play: run the game from the empty history. -/
 def play {n : ℕ} (g : Game n) (s : Strats n) : Profile n := go g ([] : List Bool) s
@@ -130,16 +170,15 @@ theorem play_turn_follows {n : ℕ} (i : Player n) (l r : Game n) (s : Strats n)
 /-! ## The strategy profile the recursion computes -/
 
 /-- The node reached by a path, `none` if the path leaves the tree. The head of the list is the
-first choice made, matching the order in which `go` appends. Recursion is on the game, with the
-path as the accumulator of the returned function, so the equations below are definitional. -/
-def atPath {n : ℕ} (g : Game n) : List Bool → Option (Game n)
-  | .terminal u => fun h => match h with
-      | [] => some (Game.terminal u)
-      | _ :: _ => none
-  | .turn i l r => fun h => match h with
-      | [] => some (Game.turn i l r)
-      | false :: rest => atPath l rest
-      | true :: rest => atPath r rest
+first choice made, matching the order in which `go` appends. The game is the first pattern
+position and the only one split, so the recursion is structural on it and the three equations
+below are definitional; the empty path answers at the node it is at, whatever the node's shape. -/
+def atPath {n : ℕ} : Game n → List Bool → Option (Game n)
+  | .terminal u, [] => some (Game.terminal u)
+  | .terminal _, _ :: _ => none
+  | .turn i l r, [] => some (Game.turn i l r)
+  | .turn _ l _, false :: rest => atPath l rest
+  | .turn _ _ r, true :: rest => atPath r rest
 
 /-- The empty path stays put, at either shape of position. -/
 theorem atPath_nil {n : ℕ} (g : Game n) : atPath g ([] : List Bool) = some g := by
@@ -268,7 +307,7 @@ theorem go_bound {n : ℕ} (i : Player n) :
   induction g with
   | terminal u =>
       intro h s _
-      exact Nat.le_refl _
+      exact Nat.le_refl (u i)
   | turn k l r ihl ihr =>
       intro h s hs
       by_cases hk : k = i
@@ -376,7 +415,11 @@ theorem tree_play_brute_second : (play tree (brute tree)) p1 = 3 := by decide
 theorem tree_play_brute_third : (play tree (brute tree)) p2 = 2 := by decide
 
 /-- Player 0 flips her own single decision at the root and drops to 1: the deviation is real,
-the history bookkeeping reaches the node, and the other two players keep playing `brute`. -/
+the history bookkeeping reaches the node, and the other two players keep playing `brute`. The
+five examples above and this one are each closed by `decide` alone, which is only possible once
+`go` and `atPath` reduce at the constructors; that shape is also what the committed closure census
+records for these names, so re-closing one of them with a rewrite would stale an artifact this
+module does not own. -/
 theorem tree_play_deviation_actor :
     (play tree (deviate tree p0 ([] : List Bool) true)) p0 = 1 := by decide
 

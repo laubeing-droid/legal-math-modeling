@@ -25,11 +25,13 @@ else's node. General Nash existence stays where the ledger puts it -- no carrier
 pinned Mathlib -- and `FORBIDDEN-12` forbids reading anything here as a general existence
 result.
 
-Status: its nine theorems were built green by `lean-full-clean-build` in run 36386527448 at
-subject `7a2a65e`, which is the only build verdict claimed here; this header text was edited
-afterwards, so that subject attests the theorems and not these words. The module then joined
-the release root, and that root entry needs its own green build to be attested: a verdict
-does not travel forward to a later commit, nor backward to an earlier one.
+Status: no CI verdict, and a claim to correct. The header used to read "built green by
+`lean-full-clean-build` in run 36386527448", binding that verdict to the commit that run
+recorded, `7a2a65e`. The pairing was real and the attestation was still false: that commit
+predates this file, so no build of it can vouch for anything written here. Runs 36392435547
+and 36394196611 then reported four errors in this module, which is what exposed the invented
+verdict. The recursion is repaired below, the module is booked in `PENDING_CI_MODULES` again,
+and nothing here is an attestation until a run whose own commit contains this source says so.
 -/
 
 namespace JurisLean.Mandate.SequentialGames
@@ -62,10 +64,17 @@ theorem choose_apply {n : ℕ} (i : Player n) (a b : Profile n) :
   · simp only [choose, if_neg h, max_eq_left (Nat.le_of_not_le h)]
 
 /-- Payoffs under the backward recursion: a terminal position pays what it says, an internal
-position is decided by whichever player acts there. -/
-def outcome : {n : ℕ} → Game n → Profile n
-  | _, .terminal u => u
-  | n, .turn i l r => choose i (outcome l) (outcome r)
+position is decided by whichever player acts there.
+
+The `{n : ℕ} : Game n → ...` shape is load-bearing, not a style choice. Written as
+`def outcome : {n : ℕ} → Game n → Profile n` with a `_` pattern for `n`, the match compiled but
+`outcome (Game.terminal u)` did not reduce to `u`: runs 36392435547 and 36394196611 rejected
+both `rfl` and term-mode applications with a type mismatch, while the statements themselves
+elaborated. Making `n` a non-target implicit leaves `Game n` as the only thing matched, and the
+constructor reduction the two lemmas below depend on becomes available again. -/
+def outcome {n : ℕ} : Game n → Profile n
+  | .terminal u => u
+  | .turn i l r => choose i (outcome l) (outcome r)
 
 /-- At a node where `i` acts, the recursion returns exactly the best of the two continuations
 for `i`. -/
@@ -123,10 +132,15 @@ def conflict : Game 3 :=
 
 /-- The acting player gets her best: the recursion returns 9 for player 0. -/
 theorem actor_gets_her_best : (outcome conflict) (0 : Player 3) = 9 := by
+  -- `conflict` is a plain `def`, so `rw` will not see the tree through it; the equation below
+  -- is what `two_player_take_better` gets for free by writing the tree out.
+  have htree : conflict = Game.turn (0 : Player 3)
+      (Game.terminal fun j => if j = 0 then (9 : ℕ) else 0)
+      (Game.terminal fun j => if j = 0 then (1 : ℕ) else 8) := rfl
   have h := outcome_turn_apply (0 : Player 3)
     (Game.terminal fun j => if j = 0 then (9 : ℕ) else 0)
     (Game.terminal fun j => if j = 0 then (1 : ℕ) else 8)
-  rw [h, outcome_terminal, outcome_terminal]
+  rw [htree, h, outcome_terminal, outcome_terminal]
   norm_num
 
 /-- The boundary, stated as a computed fact rather than a disclaimer: player 1 is not the one

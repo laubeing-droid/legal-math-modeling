@@ -90,7 +90,6 @@ import JurisLean.Mandate.MatrixGame
 import JurisLean.Mandate.MixedPennies
 import JurisLean.Mandate.ReLUApprox
 import JurisLean.Mandate.RouteDecision
-import JurisLean.Mandate.SequentialGames
 import JurisLean.Mandate.SourceRank
 import JurisLean.Mandate.StructureInvariants
 import JurisLean.Mandate.SubstrAdmission

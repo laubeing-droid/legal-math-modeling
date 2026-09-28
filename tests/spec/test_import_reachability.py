@@ -107,13 +107,14 @@ def test_quarantine_never_shelters_a_promoted_or_missing_module() -> None:
     promoted = {
         "Kernel", "CohortRate", "StructureInvariants", "DerivedCertificate", "GameTree",
         "ZeroSumSion",
-        "SequentialGames",
         "SourceRank", "GateTable", "SubstrAdmission", "LinearScorer", "Disclosure",
         "Waterfall", "CohortInterval", "RouteDecision", "TaxSlices", "MatrixGame",
         "CaseIsomorphism",
         # Promoted later, each after the CI module build the test's own message demands:
         # ReLUApprox in run 36344882459 (subject 1b6a8d6a9), MixedPennies in run
-        # 36351623739 (subject 71d2177bc).
+        # 36351623739 (subject 71d2177bc). SequentialGames was in this list on the strength
+        # of a run/subject pair whose subject predates the file; it is out again, booked in
+        # the quarantine table, until a build of its own repaired source returns green.
         "ReLUApprox", "MixedPennies",
     }
     wave = {f"JurisLean.Mandate.{name}" for name in promoted}

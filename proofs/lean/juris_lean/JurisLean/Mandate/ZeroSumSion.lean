@@ -29,8 +29,9 @@ convex, and a mixture staying coordinatewise nonnegative -- built green in run 3
 at subject `e9abf6a`. The linearity of the payoff in each mixture, the (quasi)convexity and
 (quasi)concavity that follow from it, the semicontinuity of both slices, and the Sion
 application that consumes all ten hypotheses were written after that attestation and are
-attested by run 36372895460 at subject `fea48d9`, whose `lean-full-clean-build` elaborated
-all fourteen targets here. `exists_saddlePoint` is therefore a proved statement about every
+attested by run 36372895460 at subject `fea48d9`, whose `lean-full-clean-build` elaborated the
+fourteen targets that version of this file had -- a count of that subject, not of the text below,
+which has since grown. `exists_saddlePoint` is therefore a proved statement about every
 finite two-player zero-sum game -- and nothing wider: it says nothing about non-zero-sum or
 multiplayer games, which still have no carrier in this pin. The module joins the release
 root in `d0b3506`, and that entry is what run 36376522559 at subject `78f627f` built green:

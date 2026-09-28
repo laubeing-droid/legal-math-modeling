@@ -46,8 +46,12 @@ SURFACES = (
     # out of the release root until their own green build, and naming them here is
     # what gives that first build an axiom-audit verdict to return -- the same
     # upgrade order the mandate carriers took (build -> audit surface -> root).
-    # These directories are recursive: the port keeps the upstream tree shape.
-    (EXTERNAL_MARKER, ("External/FixedPointTheorems", "External/GameTheory"), ()),
+    # These directories are recursive: the ports keep the upstream tree shape.
+    # The neural-network backport (External/NeuralNetworkProofs/) is the cross-pin
+    # exception -- mathlib drift repairs are expected there, so its files will not
+    # stay byte-faithful -- but the audit order is the same.
+    (EXTERNAL_MARKER, ("External/FixedPointTheorems", "External/GameTheory",
+                       "External/NeuralNetworkProofs"), ()),
 )
 MARKER = PROB_MARKER
 

@@ -148,8 +148,14 @@ def provenance_header(source: str, rel: str) -> str:
         repo, rev, lic = GAMETHEORY_REPO, GAMETHEORY_REV, "MIT"
     else:
         repo, rev, lic = FPT_REPO, FPT_REV, "MIT"
+    # Plain `/-` comment, NOT the `/-!` doc form: a doc comment parses as a
+    # command, and after the first command Lean rejects `import` ("must be used
+    # in the beginning of the file"). Run 36445176605 failed on exactly that,
+    # on all forty files. Comments are lexed away, so imports stay at the
+    # beginning -- this is how mathlib's own copyright headers sit before
+    # imports.
     return "\n".join([
-        "/-!",
+        "/-",
         f"External port ({HEADER_MARKER}).",
         f"Upstream: {repo}",
         f"Revision: {rev}",

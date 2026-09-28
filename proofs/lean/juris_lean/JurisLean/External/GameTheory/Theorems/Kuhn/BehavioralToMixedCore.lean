@@ -1,4 +1,4 @@
-/-!
+/-
 External port (EXTERNAL-PORT-PROVENANCE-V1).
 Upstream: https://github.com/elazarg/GameTheory
 Revision: 107085bc4a0306672f2f35fce1abc1345d7975ed

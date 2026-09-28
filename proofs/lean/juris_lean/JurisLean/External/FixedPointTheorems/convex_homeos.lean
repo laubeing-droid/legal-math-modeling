@@ -1,4 +1,4 @@
-/-!
+/-
 External port (EXTERNAL-PORT-PROVENANCE-V1).
 Upstream: https://github.com/elazarg/fixed-point-theorems-lean4
 Revision: 42d4b401f7b6a6520e3bac3a76b8538d7f47ba3e

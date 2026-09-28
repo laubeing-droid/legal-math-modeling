@@ -89,6 +89,24 @@ import JurisLean.External.GameTheory.Theorems.Minimax
 import JurisLean.External.GameTheory.Theorems.NashExistenceMixed
 import JurisLean.External.GameTheory.Theorems.OneShotDeviation
 
+import JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionDegreeBound
+import JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionIteratedDeriv
+import JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionPolynomial
+import JurisLean.External.NeuralNetworkProofs.ForMathlib.IteratedDerivPolynomial
+import JurisLean.External.NeuralNetworkProofs.ForMathlib.PolynomialDistribution
+import JurisLean.External.NeuralNetworkProofs.ForMathlib.RidgePowersSpan
+import JurisLean.External.NeuralNetworkProofs.ForMathlib.SmoothCompactAntideriv
+import JurisLean.External.NeuralNetworkProofs.ForMathlib.UniformRiemannConvolution
+import JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno
+import JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.ClassM
+import JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Converse
+import JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Family
+import JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Mollify
+import JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.MollifyDef
+import JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Ridge
+import JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.SmoothEngine
+import JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Theorem
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -796,6 +814,15 @@ open HornSystem
     These declarations are elaborated by the all-module CI plan but were
     absent from the release audit surface; the block is generated from the
     declaration sites, so it cannot name a theorem that does not exist. -/
+#print axioms ConvolutionDegreeBound.conv_left_comm_mul
+#print axioms ConvolutionDegreeBound.exists_uniform_degree_bound
+#print axioms ConvolutionIteratedDeriv.iteratedDeriv_convolution_left
+#print axioms ConvolutionPolynomial.convolutionExists_left_mul
+#print axioms ConvolutionPolynomial.convolutionExists_right_mul
+#print axioms ConvolutionPolynomial.convolution_comm_mul
+#print axioms ConvolutionPolynomial.monomial_conv_isPoly
+#print axioms ConvolutionPolynomial.natDegree_poly_conv_eq
+#print axioms ConvolutionPolynomial.poly_conv_isPoly
 #print axioms EFG.DecisionNodeIn_chance_inv
 #print axioms EFG.DecisionNodeIn_decision_inv
 #print axioms EFG.DecisionNodeIn_terminal_false
@@ -1022,6 +1049,10 @@ open HornSystem
 #print axioms InfoStateCore.identity_current
 #print axioms InfoStateCore.identity_push
 #print axioms InfoStateCore.identity_start
+#print axioms IteratedDerivPolynomial.exists_antideriv
+#print axioms IteratedDerivPolynomial.iteratedDeriv_eq_zero_imp_poly
+#print axioms IteratedDerivPolynomial.iteratedDeriv_eval
+#print axioms IteratedDerivPolynomial.iteratedDeriv_succ_eq_zero_of_natDegree_le
 #print axioms Math.Coupling.hasCoupling_proj_iff_map_eq
 #print axioms Math.Optimization.LocalGlobal.all_nonpos_of_weighted_pospart_fixedPoint
 #print axioms Math.Optimization.LocalGlobal.isFixedPoint_of_eq
@@ -1339,6 +1370,8 @@ open HornSystem
 #print axioms ObsModelCore.sum_mul_pmf_ne_top
 #print axioms ObsModelCore.swapBy_weight_eq
 #print axioms ObsModelCore.swapProfileBy_involutive
+#print axioms PolynomialDistribution.aePolynomial_of_annihilates_moment_vanishing
+#print axioms RidgePowersSpan.ridgePow_span
 #print axioms Semantics.Transition.exists_reachBy_iff_reaches
 #print axioms Semantics.Transition.exists_reachBy_of_reaches
 #print axioms Semantics.Transition.obs_eq_of_reachBy
@@ -1352,6 +1385,50 @@ open HornSystem
 #print axioms Semantics.Transition.reachBy_split
 #print axioms Semantics.Transition.reaches_map_states
 #print axioms Semantics.Transition.reaches_of_reachBy
+#print axioms SmoothCompactAntideriv.exists_iteratedDeriv_eq_of_moments_zero
+#print axioms UniformRiemannConvolution.tendstoUniformly_riemannSum_aeContinuous
+#print axioms UniformRiemannConvolution.tendstoUniformly_riemannSum_continuous
+#print axioms UniversalApproximation.Leshno.AEPolyOn.add
+#print axioms UniversalApproximation.Leshno.AEPolyOn.smul
+#print axioms UniversalApproximation.Leshno.ApproxByGen.add
+#print axioms UniversalApproximation.Leshno.ApproxByGen.smul
+#print axioms UniversalApproximation.Leshno.ClassM.aestronglyMeasurable
+#print axioms UniversalApproximation.Leshno.ClassM.locallyIntegrable
+#print axioms UniversalApproximation.Leshno.ClassM.of_continuous
+#print axioms UniversalApproximation.Leshno.Pd_isClosed
+#print axioms UniversalApproximation.Leshno.T_isClosed
+#print axioms UniversalApproximation.Leshno.aeEq_poly_of_affine
+#print axioms UniversalApproximation.Leshno.aePolyOn_genFun
+#print axioms UniversalApproximation.Leshno.aePolyOn_of_mem_genSpan
+#print axioms UniversalApproximation.Leshno.aePolyOn_zero
+#print axioms UniversalApproximation.Leshno.aePolynomial_not_dense
+#print axioms UniversalApproximation.Leshno.approxByGen_ridge_of_compact_image
+#print axioms UniversalApproximation.Leshno.approxByGen_zero
+#print axioms UniversalApproximation.Leshno.contDiff_mollify
+#print axioms UniversalApproximation.Leshno.continuous_cvec
+#print axioms UniversalApproximation.Leshno.cvec_apply
+#print axioms UniversalApproximation.Leshno.cvec_mem_Kset
+#print axioms UniversalApproximation.Leshno.denselyApproximates_of_forall_T_eq_top
+#print axioms UniversalApproximation.Leshno.deriv_pow_mem
+#print axioms UniversalApproximation.Leshno.exists_deriv_ne
+#print axioms UniversalApproximation.Leshno.exists_nonpoly_mollify
+#print axioms UniversalApproximation.Leshno.genFun_reparam_mem
+#print axioms UniversalApproximation.Leshno.isCompact_Kset
+#print axioms UniversalApproximation.Leshno.isPolynomialFun_of_continuous_of_aePolynomial
+#print axioms UniversalApproximation.Leshno.leshno_dense
+#print axioms UniversalApproximation.Leshno.leshno_dense_iff
+#print axioms UniversalApproximation.Leshno.mem_T_iff_mem_Tplain
+#print axioms UniversalApproximation.Leshno.mollify_eq_convolution
+#print axioms UniversalApproximation.Leshno.mollify_ridge_mem_T
+#print axioms UniversalApproximation.Leshno.monomial_notMem_Pd
+#print axioms UniversalApproximation.Leshno.quasiMeasurePreserving_affine
+#print axioms UniversalApproximation.Leshno.restrictLM_apply
+#print axioms UniversalApproximation.Leshno.restrictLM_mem_Pd
+#print axioms UniversalApproximation.Leshno.ridge_density
+#print axioms UniversalApproximation.Leshno.ridge_mem_T
+#print axioms UniversalApproximation.Leshno.smooth_engine
+#print axioms UniversalApproximation.Leshno.subset_of_ae_restrict_mem
+#print axioms UniversalApproximation.Leshno.univariate_density
 #print axioms almost_surjective_of_insert_index
 #print axioms boundary_is_A_or_B
 #print axioms brouwer_fixedPoints_nonempty

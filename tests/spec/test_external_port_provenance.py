@@ -68,9 +68,14 @@ def _strip_header(text: str, marker: str) -> str:
 
 def test_every_external_lean_file_is_listed_and_vice_versa() -> None:
     listed = {rec["repo_path"] for rec in _doc()["files"]}
+    # The neural backport under External/NeuralNetworkProofs/ has its own gate
+    # (test_neural_backport_provenance.py) with a different invariant -- it is a
+    # cross-pin backport whose files may drift -- so it is excluded here rather
+    # than forced into this list's byte-faithfulness regime.
     on_disk = {
         p.relative_to(ROOT).as_posix()
         for p in EXTERNAL.rglob("*.lean")
+        if "External/NeuralNetworkProofs/" not in p.relative_to(ROOT).as_posix()
     }
     assert listed == on_disk, (
         f"provenance record and tree disagree: unlisted={sorted(on_disk - listed)} "

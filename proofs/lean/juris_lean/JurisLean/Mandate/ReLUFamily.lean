@@ -6,8 +6,10 @@ What this module is: it defines the rectified linear unit `relu : ℝ → ℝ` a
 instantiates the backported Leshno carrier
 `JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno`
 (davorrunje/neural-network-proofs @ f909425, cross-pin backport from the
-upstream's mathlib v4.32.0-rc1 to this repository's v4.30.0; first compile
-pending) at that activation. The chain is the owner's directive, instantiate
+upstream's mathlib v4.32.0-rc1 to this repository's v4.30.0; the carrier is
+built and axiom-audited green by run 36456965606, recorded commit c5830ed,
+whose tree holds the carrier files rather than this one) at that
+activation. The chain is the owner's directive, instantiate
 FROM the carrier rather than rebuild: ReLU is continuous, hence in the Leshno
 class `M` by the carrier's `ClassM.of_continuous`; ReLU is not
 almost-everywhere polynomial, via the carrier's own bridge
@@ -18,10 +20,12 @@ continuous function on every compact subset of every ℝⁿ in sup norm.
 
 Literature: Leshno, Lin, Pinkus, Schocken, Neural Networks 6 (1993) 861-867.
 
-Status: no build attestation claimed; booked in PENDING_CI_MODULES
-(scripts/ci/check_import_reachability.py) pending this file's first CI build.
-Lean is never run locally (AGENTS.md), so everything below is provisional until
-that build. Every mathlib name used was verified by text search against the
+Status: this file's theorems are built and axiom-audited green by run
+36468808532 at subject 3f44b8e (the landed audit bytes name all thirteen,
+zero sorryAx, standard axioms only); it stays in PENDING_CI_MODULES --
+release-root entry is a separate round. Later prose edits like this paragraph
+are not part of that verdict. Lean is never run locally (AGENTS.md). Every
+mathlib name used was verified by text search against the
 pinned mathlib v4.30.0 checkout (proofs/lean/juris_lean/.lake/packages/mathlib):
 `max_le_max` (Mathlib/Order/MinMax.lean), `Continuous.max`
 (Mathlib/Topology/Order/OrderClosed.lean), `Polynomial.zero_of_eval_zero` and

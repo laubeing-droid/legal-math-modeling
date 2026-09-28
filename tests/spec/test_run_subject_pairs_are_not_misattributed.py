@@ -105,13 +105,21 @@ def test_a_mispaired_attestation_would_actually_be_caught() -> None:
     )
 
 
-# What a Lean header writes when it binds its own build verdict to a commit:
+# What a Lean header writes when it binds a build verdict to a commit:
 # "at subject `e9abf6a`", "in run ... at subject 1b6a8d6a9".
 HEADER_SUBJECT = re.compile(r"subject\s*[`（(]?\s*([0-9a-f]{7,40})", re.I)
 
 
 def _header_subjects() -> list[tuple[str, str]]:
-    """(module path relative to the repo, cited subject) for every Lean source."""
+    """(module path relative to the repo, cited subject) for every Lean source.
+
+    The rule is deliberately strict about *whose* verdict a header may write this way: the
+    commit must contain the citing file itself. A first draft attributed a citation to whatever
+    other module the sentence named, which quietly re-pointed 15 citations at `AxiomAudit.lean`
+    -- a file that exists in every one of those commits, so the check passed while testing
+    nothing. A header that vouches for something it merely imports says so in other words
+    ("recorded commit ..."), as `ZeroSumValue.lean` does for the carrier it consumes.
+    """
     out = []
     for path in sorted(LEAN_PKG.rglob("*.lean")):
         rel = path.relative_to(ROOT).as_posix()

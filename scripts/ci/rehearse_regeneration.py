@@ -36,6 +36,12 @@ SEQUENCE = (
     ("python", "scripts/ci/generate_structure_and_volume_reports.py"),
     ("python", "scripts/ci/generate_theorem_manifest.py"),
     ("python", "scripts/ci/generate_trivial_proof_census.py"),
+    # Both were missing from the sequence until a round added three mandate modules and the
+    # committed duplication census went stale by 225 - 222 files without anything complaining
+    # about the rehearsal. `build_statement_duplication_census.py` writes only with `--write`,
+    # so an in-place run without the flag silently leaves the account behind the tree.
+    ("python", "scripts/ci/generate_declaration_shape_report.py"),
+    ("python", "scripts/ci/build_statement_duplication_census.py", "--write"),
 )
 
 MANIFEST = "docs/formal-release/theorem_inventory_v3.json"

@@ -47,8 +47,10 @@ it, so its build status is `CI_NOT_RUN` (fail-closed). It is not in the release 
 it. Nothing in this file is an attestation, and local text pre-checks are not Lean evidence. What
 *is* attested is the carrier consumed here: the four shape facts imported from `ZeroSumSion`
 (`mixRight_nonempty`, `mixLeft_nonempty`, `mixRight_isCompact`, `mixLeft_isCompact`) ran green in
-run 36365128114 at subject `e9abf6a`, and `exists_saddlePoint` in run 36372895460 at subject
-`fea48d9`; those subjects are not inherited by this file. `value_eq` is an existence statement
+run 36365128114, whose recorded commit is `e9abf6a`, and `exists_saddlePoint` in run 36372895460
+(recorded commit `fea48d9`). Those two verdicts belong to `ZeroSumSion` and to the versions of it
+those commits carried; no build has read this file, and a verdict does not travel to a file that
+did not exist where it was recorded. `value_eq` is an existence statement
 about two iterated values of the payoff: it computes no value, it says nothing about pure
 strategies, and it is silent on non-zero-sum and multiplayer games, which still have no carrier in
 this pin.

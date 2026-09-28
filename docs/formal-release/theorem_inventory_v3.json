@@ -2679,8 +2679,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean",
    "print_axioms_targets": [],
-   "sha256": "61086d40909f088f913dadb3fa485cf5ca75930c62da4e88dbafcfe0e776a157",
-   "size_bytes": 18249,
+   "sha256": "16c7ef341e6dc894a9148585da425450205f966e49b69614a9367b03cf7d5be1",
+   "size_bytes": 18556,
    "theorem_count": 32,
    "theorem_count_bol_convention": 32
   },
@@ -6104,8 +6104,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/FullMath/CompletionAudit.lean",
    "print_axioms_targets": [],
-   "sha256": "90edf8a27fb145a81a5e565299071427964ad83bf60f99bb2adf9ac5ff5ee420",
-   "size_bytes": 47378,
+   "sha256": "fb8dd29fcd358d1957f019c4f79190135ecd06e9bc3858545bc9d36ec6aeb711",
+   "size_bytes": 47840,
    "theorem_count": 217,
    "theorem_count_bol_convention": 217
   },
@@ -20156,18 +20156,22 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "2b6d8753f587a51c1dbb0d1d9c3b67fc2504f43aad43425f35e6a30ff95c99e7",
+ "source_inventory_digest": "efe01d1b09fe2186fd160a588c01edfbfa099701600e4e1ab6b2568dfe26c938",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "73d2375804004af3d97cdaadff41a6a868981eb0",
-  "tree": "ada382948a4b143a25350dbcde2cdf134592410e"
+  "commit": "08558ccca11e463465832e4bb670dcc3aa6c4dbd",
+  "tree": "481fb04ffa75941074bb23a4ef8a23650b82c35c"
  },
  "subject_binding": {
   "binding": "STALE_SUBJECT",
   "files_diverging_from_subject": [
    {
-    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "path": "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/FullMath/CompletionAudit.lean",
     "reason": "bytes differ from subject"
    }
   ],

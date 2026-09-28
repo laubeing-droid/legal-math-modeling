@@ -103,9 +103,12 @@ theorem relu_not_constant : relu 1 ≠ relu (-1) := by
   exact one_ne_zero
 
 /-- ReLU is continuous: the pointwise `max` of the identity and the zero
-constant. -/
+constant. (First CI round, run 36462222006, rejected the named-argument form
+`continuous_id (α := ℝ)` -- v4.30's signature does not expose that name -- so
+the pinning is done by type ascription instead; statement unchanged.) -/
 theorem continuous_relu : Continuous relu :=
-  (continuous_id (α := ℝ)).max (continuous_const (c := (0 : ℝ)))
+  (continuous_id : Continuous (id : ℝ → ℝ)).max
+    (continuous_const : Continuous (fun _ : ℝ => (0 : ℝ)))
 
 /-- ReLU lies in the Leshno activation class `M`: it is continuous, and
 `ClassM.of_continuous` is the whole argument -- local boundedness and the null

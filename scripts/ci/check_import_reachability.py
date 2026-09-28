@@ -102,6 +102,33 @@ PENDING_CI_MODULES: dict[str, str] = {
     ),
 }
 
+# Same-pin external ports (elazarg/GameTheory @ 107085bc4 and
+# elazarg/fixed-point-theorems-lean4 @ 42d4b401f; both MIT, both pinning this
+# repository's exact mathlib revision). The port changed only import roots and a
+# provenance header -- tests/spec/test_external_port_provenance.py re-derives the
+# upstream bytes from each file and compares sha256. Every module under External/
+# is quarantined until its own green CI build: the reachability generator makes
+# any unbooked source reachable, so without this block the ports would enter the
+# release root before anyone decided to promote them (the round-73 lesson).
+_EXTERNAL_PORT_REASON = (
+    "same-pin external port (JurisLean/External/PROVENANCE.md); awaiting its first "
+    "CI build -- no attestation claimed, release-root entry is a separate round"
+)
+
+
+def _external_port_modules() -> dict[str, str]:
+    external = PKG / "External"
+    if not external.is_dir():
+        return {}
+    return {
+        "JurisLean." + p.relative_to(PKG).as_posix()[:-5].replace("/", "."):
+            _EXTERNAL_PORT_REASON
+        for p in sorted(external.rglob("*.lean"))
+    }
+
+
+PENDING_CI_MODULES.update(_external_port_modules())
+
 ALLOWED_UNREACHABLE = {**STANDALONE_DRIVERS, **PENDING_CI_MODULES}
 
 

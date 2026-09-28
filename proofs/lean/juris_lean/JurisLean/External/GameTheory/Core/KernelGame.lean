@@ -1,0 +1,140 @@
+/-!
+External port (EXTERNAL-PORT-PROVENANCE-V1).
+Upstream: https://github.com/elazarg/GameTheory
+Revision: 107085bc4a0306672f2f35fce1abc1345d7975ed
+Upstream file: GameTheory/Core/KernelGame.lean
+License: MIT (see JurisLean/External/PROVENANCE.md for the notice).
+
+This copy differs from the revision above in exactly two ways: this
+header block, and `import` module paths rewritten to the
+`JurisLean.External.*` roots. Statements and proofs are unchanged;
+tests/spec/test_external_port_provenance.py re-derives the upstream
+bytes from this file and checks the recorded sha256.
+No build attestation is claimed here: the first compile of this port
+is booked in PENDING_CI_MODULES (scripts/ci/check_import_reachability.py)
+and only a green CI run of a commit containing this file can attest it.
+-/
+/-
+Copyright (c) 2025 GameTheory contributors. All rights reserved.
+Released under the MIT license as described in the file LICENSE.
+Authors: GameTheory contributors
+-/
+
+import JurisLean.External.GameTheory.Math.Probability
+import JurisLean.External.GameTheory.Math.PMFProduct
+
+/-!
+# GameTheory.Core.KernelGame
+
+Kernel-based game structure: the semantic core for finite/discrete game models.
+
+Provides:
+- `KernelGame` — a game with player-indexed strategies, stochastic outcome kernel, and utility
+- `eu` — expected utility for a player under a strategy profile
+- `Profile`, `correlatedOutcome` — standard game-theoretic notions
+- `KernelGame.ofEU` — constructs a kernel game from a direct EU function
+-/
+
+namespace GameTheory
+
+open Math.Probability
+
+/-- A payoff vector for `ι` players. -/
+abbrev Payoff (ι : Type) : Type := ι → ℝ
+
+-- ============================================================================
+-- Kernel-based game (strategies + outcome kernel → EU)
+-- ============================================================================
+
+/-- A kernel-based game with explicit outcome type.
+    - `Outcome` is the type of game outcomes (e.g. terminal nodes, action profiles)
+    - `utility` maps outcomes to player payoffs
+    - `outcomeKernel` maps strategy profiles to outcome distributions -/
+structure KernelGame (ι : Type) where
+  Strategy : ι → Type
+  Outcome : Type
+  utility : Outcome → Payoff ι
+  outcomeKernel : Kernel (∀ i, Strategy i) Outcome
+
+namespace KernelGame
+
+variable {ι : Type}
+
+abbrev Profile (G : KernelGame ι) := ∀ i, G.Strategy i
+
+/-- Reindex the player type of a kernel game along an equivalence.
+
+This is presentation bookkeeping: bridges often choose a canonical finite
+player type, such as `Fin (Fintype.card ι)`, while the source game is indexed by
+some equivalent type `ι`. -/
+noncomputable def reindex {ι κ : Type} (e : ι ≃ κ)
+    (G : KernelGame κ) : KernelGame ι where
+  Strategy := fun i => G.Strategy (e i)
+  Outcome := G.Outcome
+  utility := fun ω i => G.utility ω (e i)
+  outcomeKernel := fun σ =>
+    G.outcomeKernel fun k =>
+      cast (congrArg G.Strategy (e.apply_symm_apply k)) (σ (e.symm k))
+
+/-- Expected utility of player `who` under strategy profile `σ`. -/
+noncomputable def eu (G : KernelGame ι) (σ : Profile G) (who : ι) : ℝ :=
+  expect (G.outcomeKernel σ) (fun ω => G.utility ω who)
+
+/-- Outcome distribution under a correlated profile distribution (correlation device). -/
+noncomputable def correlatedOutcome (G : KernelGame ι)
+    (μ : PMF (Profile G)) : PMF G.Outcome :=
+  Kernel.pushforward G.outcomeKernel μ
+
+/-- A point-mass profile distribution induces the same outcome distribution
+    as direct evaluation at that profile. -/
+@[simp] theorem correlatedOutcome_pure (G : KernelGame ι) (σ : Profile G) :
+    G.correlatedOutcome (PMF.pure σ) = G.outcomeKernel σ := by
+  simp [correlatedOutcome]
+
+/-- Joint utility distribution: pushforward of the outcome distribution through `utility`. -/
+noncomputable def udist (G : KernelGame ι) (σ : Profile G) : PMF (Payoff ι) :=
+  (G.outcomeKernel σ).bind (fun ω => PMF.pure (G.utility ω))
+
+/-- Per-player utility distribution: pushforward projected to a single player. -/
+noncomputable def udistPlayer (G : KernelGame ι) (σ : Profile G) (who : ι) : PMF ℝ :=
+  (G.outcomeKernel σ).bind (fun ω => PMF.pure (G.utility ω who))
+
+/-- Player-`who` utility distribution is the pushforward of the joint utility
+    distribution along coordinate projection. -/
+theorem udistPlayer_eq_udist_bind (G : KernelGame ι) (σ : Profile G) (who : ι) :
+    G.udistPlayer σ who =
+      (G.udist σ).bind (fun u : Payoff ι => PMF.pure (u who)) := by
+  simp [udistPlayer, udist, PMF.bind_bind]
+
+/-- `udist` under a deterministic (point-mass) outcome collapses to a point mass. -/
+@[simp] theorem udist_pure (G : KernelGame ι) (σ : Profile G) (ω : G.Outcome)
+    (h : G.outcomeKernel σ = PMF.pure ω) :
+    G.udist σ = PMF.pure (G.utility ω) := by
+  simp [udist, h]
+
+/-- `udistPlayer` under a deterministic outcome collapses to a point mass. -/
+@[simp] theorem udistPlayer_pure (G : KernelGame ι) (σ : Profile G) (ω : G.Outcome)
+    (who : ι) (h : G.outcomeKernel σ = PMF.pure ω) :
+    G.udistPlayer σ who = PMF.pure (G.utility ω who) := by
+  simp [udistPlayer, h]
+
+open Classical in
+/-- The mixed extension of a kernel game. Each player's strategy is lifted from
+    `G.Strategy i` to `PMF (G.Strategy i)` (a mixed strategy). The outcome kernel
+    samples from the independent product distribution over pure strategy profiles,
+    then applies the original outcome kernel. -/
+noncomputable def mixedExtension (G : KernelGame ι) [Fintype ι] : KernelGame ι where
+  Strategy := fun i => PMF (G.Strategy i)
+  Outcome := G.Outcome
+  utility := G.utility
+  outcomeKernel := fun σ => (Math.PMFProduct.pmfPi σ).bind G.outcomeKernel
+
+/-- The Strategy field of `G.mixedExtension` is `fun i => PMF (G.Strategy i)`.
+Marked `@[simp]` so `Function.update` terms reduce uniformly (see `ofEU_Strategy`
+in `SolutionConcepts` for background on why v4.29 needs this). -/
+@[simp] theorem mixedExtension_Strategy (G : KernelGame ι) [Fintype ι] :
+    G.mixedExtension.Strategy = fun i => PMF (G.Strategy i) := rfl
+
+end KernelGame
+
+end GameTheory

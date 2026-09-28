@@ -36,11 +36,18 @@ EXTRA_SOURCES = ("BusinessRoot/Analytics.lean",)
 
 PROB_MARKER = "Generated probability / expectation audit surface"
 MANDATE_MARKER = "Generated mandate-layer audit surface"
+EXTERNAL_MARKER = "Generated external-port audit surface"
 
 # (marker, directories, extra single files) -- each surface is one generated block.
 SURFACES = (
     (PROB_MARKER, ("FullMath/Probability",), ("BusinessRoot/Analytics.lean",)),
     (MANDATE_MARKER, ("Mandate",), ()),
+    # The same-pin external ports (JurisLean/External/PROVENANCE.md) are quarantined
+    # out of the release root until their own green build, and naming them here is
+    # what gives that first build an axiom-audit verdict to return -- the same
+    # upgrade order the mandate carriers took (build -> audit surface -> root).
+    # These directories are recursive: the port keeps the upstream tree shape.
+    (EXTERNAL_MARKER, ("External/FixedPointTheorems", "External/GameTheory"), ()),
 )
 MARKER = PROB_MARKER
 
@@ -64,15 +71,24 @@ def names_in(rel: str) -> list[str]:
 
 
 def surface_modules(directory: str) -> list[str]:
-    return sorted(f.stem for f in (PKG / directory).glob("*.lean"))
+    """Lean files under one surface directory, as package-relative paths.
+
+    Recursive since the external-port surface arrived: the port mirrors the
+    upstream tree (Concepts/, Core/, Theorems/Kuhn/, ...), while the two original
+    surfaces are flat, where rglob degenerates to the old glob.
+    """
+    return sorted(
+        p.relative_to(PKG).as_posix()
+        for p in (PKG / directory).rglob("*.lean")
+    )
 
 
 def collect(marker: str) -> list[str]:
     directory, extras = next((d, x) for m, d, x in SURFACES if m == marker)
     names: list[str] = []
     for dirn in directory:
-        for stem in surface_modules(dirn):
-            names += names_in(f"{dirn}/{stem}.lean")
+        for rel in surface_modules(dirn):
+            names += names_in(rel)
     for rel in extras:
         names += names_in(rel)
     return sorted(set(names))
@@ -106,8 +122,7 @@ def render_block(names: list[str], marker: str) -> list[str]:
 
 
 def required_imports() -> list[str]:
-    mods = [f"{dirn}/{stem}.lean" for _m, dirs, extras in SURFACES for dirn in dirs
-            for stem in surface_modules(dirn)]
+    mods = [rel for _m, dirs, extras in SURFACES for dirn in dirs for rel in surface_modules(dirn)]
     mods += [rel for _m, _dirs, extras in SURFACES for rel in extras]
     return sorted(
         "import JurisLean." + rel[:-5].replace("/", ".")

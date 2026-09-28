@@ -2679,8 +2679,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean",
    "print_axioms_targets": [],
-   "sha256": "16c7ef341e6dc894a9148585da425450205f966e49b69614a9367b03cf7d5be1",
-   "size_bytes": 18556,
+   "sha256": "61086d40909f088f913dadb3fa485cf5ca75930c62da4e88dbafcfe0e776a157",
+   "size_bytes": 18249,
    "theorem_count": 32,
    "theorem_count_bol_convention": 32
   },
@@ -6104,8 +6104,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/FullMath/CompletionAudit.lean",
    "print_axioms_targets": [],
-   "sha256": "fb8dd29fcd358d1957f019c4f79190135ecd06e9bc3858545bc9d36ec6aeb711",
-   "size_bytes": 47840,
+   "sha256": "90edf8a27fb145a81a5e565299071427964ad83bf60f99bb2adf9ac5ff5ee420",
+   "size_bytes": 47378,
    "theorem_count": 217,
    "theorem_count_bol_convention": 217
   },
@@ -20156,28 +20156,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "efe01d1b09fe2186fd160a588c01edfbfa099701600e4e1ab6b2568dfe26c938",
+ "source_inventory_digest": "61fb3ab83923bbba7b2158d0fe274a68960facf35ee3daafeb8b6b352b7f319b",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "08558ccca11e463465832e4bb670dcc3aa6c4dbd",
-  "tree": "481fb04ffa75941074bb23a4ef8a23650b82c35c"
+  "commit": "21ac2ef3fd71279c14929a4b4a7b676e459efc9a",
+  "tree": "9dc4aace62701233d1df830e083d24eea7dcaf5c"
  },
  "subject_binding": {
-  "binding": "STALE_SUBJECT",
-  "files_diverging_from_subject": [
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/FullMath/CompletionAudit.lean",
-    "reason": "bytes differ from subject"
-   }
-  ],
+  "binding": "BOUND_TO_SUBJECT",
+  "files_diverging_from_subject": [],
   "files_total": 236,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": true
+  "worktree_dirty_under_proofs": false
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

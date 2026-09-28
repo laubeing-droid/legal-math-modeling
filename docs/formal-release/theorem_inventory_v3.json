@@ -521,6 +521,7 @@
     "JurisLean.Mandate.OneShotDeviation",
     "JurisLean.Mandate.PureNash",
     "JurisLean.Mandate.ReLUApprox",
+    "JurisLean.Mandate.ReLUFamily",
     "JurisLean.Mandate.RouteDecision",
     "JurisLean.Mandate.SequentialGames",
     "JurisLean.Mandate.SourceRank",
@@ -1341,6 +1342,19 @@
     "JurisLean.Mandate.ReLUApprox.out_origin",
     "JurisLean.Mandate.ReLUApprox.out_stable",
     "JurisLean.Mandate.ReLUApprox.relu_between",
+    "JurisLean.Mandate.ReLUFamily.continuous_relu",
+    "JurisLean.Mandate.ReLUFamily.monotone_relu",
+    "JurisLean.Mandate.ReLUFamily.relu_approx",
+    "JurisLean.Mandate.ReLUFamily.relu_classM",
+    "JurisLean.Mandate.ReLUFamily.relu_dense",
+    "JurisLean.Mandate.ReLUFamily.relu_dense_iff",
+    "JurisLean.Mandate.ReLUFamily.relu_neg_one",
+    "JurisLean.Mandate.ReLUFamily.relu_nonneg",
+    "JurisLean.Mandate.ReLUFamily.relu_not_constant",
+    "JurisLean.Mandate.ReLUFamily.relu_not_isAEPolynomial",
+    "JurisLean.Mandate.ReLUFamily.relu_of_nonneg",
+    "JurisLean.Mandate.ReLUFamily.relu_of_nonpos",
+    "JurisLean.Mandate.ReLUFamily.relu_one",
     "JurisLean.Mandate.RouteDecision.anyUsable_append",
     "JurisLean.Mandate.RouteDecision.excluded_is_skipped",
     "JurisLean.Mandate.RouteDecision.firstUsable_cons_notUsable",
@@ -1898,8 +1912,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "5fe681fa243c922b47f4bac9c973d317e753ed0d058c56bc87ee4d72bf87a293",
-   "size_bytes": 90153,
+   "sha256": "cca5dfb304c390615ef8b9b7f98bc3463ea83d44dccad154f4798a05a16b150e",
+   "size_bytes": 90935,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -20837,6 +20851,82 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "relu"
+    },
+    {
+     "kind": "theorem",
+     "name": "relu_of_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "relu_of_nonpos"
+    },
+    {
+     "kind": "theorem",
+     "name": "relu_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "monotone_relu"
+    },
+    {
+     "kind": "theorem",
+     "name": "relu_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "relu_neg_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "relu_not_constant"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_relu"
+    },
+    {
+     "kind": "theorem",
+     "name": "relu_classM"
+    },
+    {
+     "kind": "theorem",
+     "name": "relu_not_isAEPolynomial"
+    },
+    {
+     "kind": "theorem",
+     "name": "relu_dense"
+    },
+    {
+     "kind": "theorem",
+     "name": "relu_dense_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "relu_approx"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno",
+    "Mathlib.Algebra.GroupWithZero.Defs",
+    "Mathlib.Algebra.Polynomial.Roots",
+    "Mathlib.Order.MinMax",
+    "Mathlib.Order.Monotone.Basic",
+    "Mathlib.Tactic",
+    "Mathlib.Topology.Order.OrderClosed"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/ReLUFamily.lean",
+   "print_axioms_targets": [],
+   "sha256": "82eec8577e9cee77aefd3bcc2a6633c8f6987f5aa676079970528a072ae7017c",
+   "size_bytes": 9049,
+   "theorem_count": 13,
+   "theorem_count_bol_convention": 13
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "RouteRow"
     },
@@ -25396,22 +25486,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 2758,
-   "file_count": 297,
+   "counted_declaration_count": 2771,
+   "file_count": 298,
    "lemma_count": 141,
-   "print_axioms_command_count": 1624,
-   "print_axioms_distinct_targets": 1570,
-   "theorem_count": 2617,
-   "theorem_count_bol_convention": 2521
+   "print_axioms_command_count": 1637,
+   "print_axioms_distinct_targets": 1583,
+   "theorem_count": 2630,
+   "theorem_count_bol_convention": 2534
   },
   "juris_lean_package": {
-   "counted_declaration_count": 2739,
-   "file_count": 282,
+   "counted_declaration_count": 2752,
+   "file_count": 283,
    "lemma_count": 134,
-   "print_axioms_command_count": 1624,
-   "print_axioms_distinct_targets": 1570,
-   "theorem_count": 2605,
-   "theorem_count_bol_convention": 2509
+   "print_axioms_command_count": 1637,
+   "print_axioms_distinct_targets": 1583,
+   "theorem_count": 2618,
+   "theorem_count_bol_convention": 2522
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -25659,6 +25749,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/OneShotDeviation.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/PureNash.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/ReLUApprox.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/ReLUFamily.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SequentialGames.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
@@ -25954,6 +26045,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/OneShotDeviation.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/PureNash.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/ReLUApprox.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/ReLUFamily.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SequentialGames.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
@@ -26047,17 +26139,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "ed53d8e5ca2ce91e7fb14218d21caaea303b658a9a595dc7e2a678926b2d8d53",
+ "source_inventory_digest": "b777e2bc3116b47eaddf94fe996864e6ee136b65f93bc8db956a9421ff73d808",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "c556f04af4f7b1c7b87f7500c55299d76aa42e6a",
-  "tree": "fd0d0d48d41aebc3468c60c3ff085f079cb017b5"
+  "commit": "0d83cd5fb8cba699bf797e22cf33f7f51451a250",
+  "tree": "90cc23c4fb4ff51ecff7400b36389a370c5beac0"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 297,
+  "files_total": 298,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

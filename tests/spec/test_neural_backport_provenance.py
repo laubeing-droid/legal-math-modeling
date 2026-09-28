@@ -148,10 +148,13 @@ def test_recorded_headers_match_the_upstream_clone_when_present() -> None:
     import subprocess
 
     doc = _doc()
+    # Shape-only in the no-clone path: aggregator modules (e.g. Leshno.lean)
+    # legitimately carry zero declarations upstream, so emptiness is not an
+    # error; what must hold is that every recorded line looks like a real
+    # declaration header. The clone path below then compares the whole list
+    # against upstream bytes, which is what actually pins emptiness-or-not.
     for rec in doc["files"]:
-        lines = rec.get("upstream_header_lines")
-        assert lines, f"{rec['repo_path']}: empty recorded headers"
-        for line in lines:
+        for line in rec.get("upstream_header_lines", []):
             assert re.match(r"(private\s+|protected\s+)*(theorem|lemma)\s", line), (
                 f"{rec['repo_path']}: malformed recorded header {line[:60]!r}"
             )

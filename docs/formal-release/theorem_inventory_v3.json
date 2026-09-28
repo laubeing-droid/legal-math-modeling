@@ -462,6 +462,8 @@
     "JurisLean.Mandate.LinearScorer",
     "JurisLean.Mandate.MatrixGame",
     "JurisLean.Mandate.MixedPennies",
+    "JurisLean.Mandate.OneShotDeviation",
+    "JurisLean.Mandate.PureNash",
     "JurisLean.Mandate.ReLUApprox",
     "JurisLean.Mandate.RouteDecision",
     "JurisLean.Mandate.SequentialGames",
@@ -471,6 +473,7 @@
     "JurisLean.Mandate.TaxSlices",
     "JurisLean.Mandate.Waterfall",
     "JurisLean.Mandate.ZeroSumSion",
+    "JurisLean.Mandate.ZeroSumValue",
     "JurisLean.ULMAxiomAudit",
     "JurisLean.WeightedSupNorm"
    ],
@@ -982,6 +985,58 @@
     "JurisLean.Mandate.MixedPennies.u_eq",
     "JurisLean.Mandate.MixedPennies.uniform_is_a_mixture",
     "JurisLean.Mandate.MixedPennies.value_at_uniform",
+    "JurisLean.Mandate.OneShotDeviation.atPath_cons_left",
+    "JurisLean.Mandate.OneShotDeviation.atPath_cons_right",
+    "JurisLean.Mandate.OneShotDeviation.atPath_cons_terminal",
+    "JurisLean.Mandate.OneShotDeviation.atPath_nil",
+    "JurisLean.Mandate.OneShotDeviation.brute_at_root",
+    "JurisLean.Mandate.OneShotDeviation.brute_cons_left",
+    "JurisLean.Mandate.OneShotDeviation.brute_cons_right",
+    "JurisLean.Mandate.OneShotDeviation.deviate_agree_off",
+    "JurisLean.Mandate.OneShotDeviation.go_bound",
+    "JurisLean.Mandate.OneShotDeviation.go_exact",
+    "JurisLean.Mandate.OneShotDeviation.go_terminal",
+    "JurisLean.Mandate.OneShotDeviation.go_turn_apply",
+    "JurisLean.Mandate.OneShotDeviation.one_shot_deviation",
+    "JurisLean.Mandate.OneShotDeviation.one_shot_deviation_le_brute",
+    "JurisLean.Mandate.OneShotDeviation.outcome_eq_of_le",
+    "JurisLean.Mandate.OneShotDeviation.outcome_eq_of_not_le",
+    "JurisLean.Mandate.OneShotDeviation.play_brute",
+    "JurisLean.Mandate.OneShotDeviation.play_terminal",
+    "JurisLean.Mandate.OneShotDeviation.play_turn_follows",
+    "JurisLean.Mandate.OneShotDeviation.tree_brute_root_is_left",
+    "JurisLean.Mandate.OneShotDeviation.tree_deviation_strictly_worse",
+    "JurisLean.Mandate.OneShotDeviation.tree_play_brute_actor",
+    "JurisLean.Mandate.OneShotDeviation.tree_play_brute_second",
+    "JurisLean.Mandate.OneShotDeviation.tree_play_brute_third",
+    "JurisLean.Mandate.OneShotDeviation.tree_play_deviation_actor",
+    "JurisLean.Mandate.PureNash.coordPay_table",
+    "JurisLean.Mandate.PureNash.coordination_diagonal_is_nash",
+    "JurisLean.Mandate.PureNash.coordination_label_true",
+    "JurisLean.Mandate.PureNash.coordination_offdiag_not_nash",
+    "JurisLean.Mandate.PureNash.isNashPure_fst",
+    "JurisLean.Mandate.PureNash.isNashPure_of_bestResponses",
+    "JurisLean.Mandate.PureNash.isNashPure_snd",
+    "JurisLean.Mandate.PureNash.isNashPure_swap",
+    "JurisLean.Mandate.PureNash.isNashPure_swap_swap",
+    "JurisLean.Mandate.PureNash.matchingPennies_no_pure_equilibrium",
+    "JurisLean.Mandate.PureNash.nashPureExists_false_iff",
+    "JurisLean.Mandate.PureNash.nashPureExists_swap",
+    "JurisLean.Mandate.PureNash.nashPureExists_true_iff",
+    "JurisLean.Mandate.PureNash.nashPure_of_dominant",
+    "JurisLean.Mandate.PureNash.not_isNashPure_of_col_deviation",
+    "JurisLean.Mandate.PureNash.not_isNashPure_of_row_deviation",
+    "JurisLean.Mandate.PureNash.penniesRow_table",
+    "JurisLean.Mandate.PureNash.pennies_col_dev_00",
+    "JurisLean.Mandate.PureNash.pennies_col_dev_11",
+    "JurisLean.Mandate.PureNash.pennies_label_false",
+    "JurisLean.Mandate.PureNash.pennies_not_nash_00",
+    "JurisLean.Mandate.PureNash.pennies_not_nash_01",
+    "JurisLean.Mandate.PureNash.pennies_not_nash_10",
+    "JurisLean.Mandate.PureNash.pennies_not_nash_11",
+    "JurisLean.Mandate.PureNash.pennies_row_dev_01",
+    "JurisLean.Mandate.PureNash.pennies_row_dev_10",
+    "JurisLean.Mandate.PureNash.pure_labels_discriminate",
     "JurisLean.Mandate.ReLUApprox.h1_between",
     "JurisLean.Mandate.ReLUApprox.h2_between",
     "JurisLean.Mandate.ReLUApprox.lip_eq",
@@ -1068,6 +1123,21 @@
     "JurisLean.Mandate.ZeroSumSion.quasiconcaveOn_payoff_right",
     "JurisLean.Mandate.ZeroSumSion.quasiconvexOn_payoff_left",
     "JurisLean.Mandate.ZeroSumSion.usc_payoff_right",
+    "JurisLean.Mandate.ZeroSumValue.bddAbove_payoff_left",
+    "JurisLean.Mandate.ZeroSumValue.bddAbove_payoff_right",
+    "JurisLean.Mandate.ZeroSumValue.bddBelow_payoff_left",
+    "JurisLean.Mandate.ZeroSumValue.bddBelow_payoff_right",
+    "JurisLean.Mandate.ZeroSumValue.ciInf_payoff_col_eq",
+    "JurisLean.Mandate.ZeroSumValue.ciSup_payoff_row_eq",
+    "JurisLean.Mandate.ZeroSumValue.continuous_payoff_left",
+    "JurisLean.Mandate.ZeroSumValue.continuous_payoff_right",
+    "JurisLean.Mandate.ZeroSumValue.exists_value",
+    "JurisLean.Mandate.ZeroSumValue.lowerValue_eq_payoff",
+    "JurisLean.Mandate.ZeroSumValue.lowerValue_le_upperValue",
+    "JurisLean.Mandate.ZeroSumValue.upperValue_eq_payoff",
+    "JurisLean.Mandate.ZeroSumValue.upperValue_le_lowerValue",
+    "JurisLean.Mandate.ZeroSumValue.value_eq",
+    "JurisLean.Mandate.ZeroSumValue.weakDuality",
     "exists_fixpoint_le_card",
     "fixed_at_card",
     "grounded_is_least_fixed_point",
@@ -1075,8 +1145,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "677b5544f0a008b710c2aef6465c43710b47bc2363769ac85df992719a17a8d9",
-   "size_bytes": 43361,
+   "sha256": "6cd36d0e045540c27e4e99cfe857307aaf7d4464b6a7597432d7d8e2345316a1",
+   "size_bytes": 47835,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -15150,6 +15220,355 @@
    "declarations": [
     {
      "kind": "def",
+     "name": "go"
+    },
+    {
+     "kind": "def",
+     "name": "play"
+    },
+    {
+     "kind": "theorem",
+     "name": "go_terminal"
+    },
+    {
+     "kind": "theorem",
+     "name": "go_turn_apply"
+    },
+    {
+     "kind": "theorem",
+     "name": "play_terminal"
+    },
+    {
+     "kind": "theorem",
+     "name": "play_turn_follows"
+    },
+    {
+     "kind": "def",
+     "name": "atPath"
+    },
+    {
+     "kind": "theorem",
+     "name": "atPath_nil"
+    },
+    {
+     "kind": "theorem",
+     "name": "atPath_cons_left"
+    },
+    {
+     "kind": "theorem",
+     "name": "atPath_cons_right"
+    },
+    {
+     "kind": "theorem",
+     "name": "atPath_cons_terminal"
+    },
+    {
+     "kind": "def",
+     "name": "brute"
+    },
+    {
+     "kind": "theorem",
+     "name": "brute_at_root"
+    },
+    {
+     "kind": "theorem",
+     "name": "brute_cons_left"
+    },
+    {
+     "kind": "theorem",
+     "name": "brute_cons_right"
+    },
+    {
+     "kind": "def",
+     "name": "deviate"
+    },
+    {
+     "kind": "theorem",
+     "name": "deviate_agree_off"
+    },
+    {
+     "kind": "theorem",
+     "name": "outcome_eq_of_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "outcome_eq_of_not_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "go_exact"
+    },
+    {
+     "kind": "theorem",
+     "name": "play_brute"
+    },
+    {
+     "kind": "theorem",
+     "name": "go_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "one_shot_deviation"
+    },
+    {
+     "kind": "theorem",
+     "name": "one_shot_deviation_le_brute"
+    },
+    {
+     "kind": "def",
+     "name": "p0"
+    },
+    {
+     "kind": "def",
+     "name": "p1"
+    },
+    {
+     "kind": "def",
+     "name": "p2"
+    },
+    {
+     "kind": "def",
+     "name": "leafA"
+    },
+    {
+     "kind": "def",
+     "name": "leafB"
+    },
+    {
+     "kind": "def",
+     "name": "leafC"
+    },
+    {
+     "kind": "def",
+     "name": "leafD"
+    },
+    {
+     "kind": "def",
+     "name": "tree"
+    },
+    {
+     "kind": "theorem",
+     "name": "tree_brute_root_is_left"
+    },
+    {
+     "kind": "theorem",
+     "name": "tree_play_brute_actor"
+    },
+    {
+     "kind": "theorem",
+     "name": "tree_play_brute_second"
+    },
+    {
+     "kind": "theorem",
+     "name": "tree_play_brute_third"
+    },
+    {
+     "kind": "theorem",
+     "name": "tree_play_deviation_actor"
+    },
+    {
+     "kind": "theorem",
+     "name": "tree_deviation_strictly_worse"
+    }
+   ],
+   "imports": [
+    "JurisLean.Mandate.SequentialGames",
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/OneShotDeviation.lean",
+   "print_axioms_targets": [],
+   "sha256": "71d38dc761e849379b45cc929677e468c98ab2caefb0f7de0d2bfc38873a3780",
+   "size_bytes": 21234,
+   "theorem_count": 25,
+   "theorem_count_bol_convention": 25
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "Game"
+    },
+    {
+     "kind": "def",
+     "name": "isBestResponseRow"
+    },
+    {
+     "kind": "def",
+     "name": "isBestResponseCol"
+    },
+    {
+     "kind": "def",
+     "name": "isNashPure"
+    },
+    {
+     "kind": "def",
+     "name": "nashPureBody"
+    },
+    {
+     "kind": "def",
+     "name": "decidableNashPure"
+    },
+    {
+     "kind": "def",
+     "name": "nashPureExists"
+    },
+    {
+     "kind": "theorem",
+     "name": "nashPureExists_true_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "nashPureExists_false_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "isNashPure_fst"
+    },
+    {
+     "kind": "theorem",
+     "name": "isNashPure_snd"
+    },
+    {
+     "kind": "theorem",
+     "name": "isNashPure_of_bestResponses"
+    },
+    {
+     "kind": "def",
+     "name": "swap"
+    },
+    {
+     "kind": "theorem",
+     "name": "isNashPure_swap"
+    },
+    {
+     "kind": "theorem",
+     "name": "isNashPure_swap_swap"
+    },
+    {
+     "kind": "theorem",
+     "name": "nashPureExists_swap"
+    },
+    {
+     "kind": "def",
+     "name": "isDominantRow"
+    },
+    {
+     "kind": "def",
+     "name": "isDominantCol"
+    },
+    {
+     "kind": "theorem",
+     "name": "nashPure_of_dominant"
+    },
+    {
+     "kind": "theorem",
+     "name": "not_isNashPure_of_row_deviation"
+    },
+    {
+     "kind": "theorem",
+     "name": "not_isNashPure_of_col_deviation"
+    },
+    {
+     "kind": "def",
+     "name": "coordPay"
+    },
+    {
+     "kind": "def",
+     "name": "coordGame"
+    },
+    {
+     "kind": "theorem",
+     "name": "coordPay_table"
+    },
+    {
+     "kind": "theorem",
+     "name": "coordination_diagonal_is_nash"
+    },
+    {
+     "kind": "theorem",
+     "name": "coordination_offdiag_not_nash"
+    },
+    {
+     "kind": "theorem",
+     "name": "coordination_label_true"
+    },
+    {
+     "kind": "def",
+     "name": "penniesRow"
+    },
+    {
+     "kind": "def",
+     "name": "penniesCol"
+    },
+    {
+     "kind": "def",
+     "name": "penniesGame"
+    },
+    {
+     "kind": "theorem",
+     "name": "penniesRow_table"
+    },
+    {
+     "kind": "theorem",
+     "name": "pennies_col_dev_00"
+    },
+    {
+     "kind": "theorem",
+     "name": "pennies_col_dev_11"
+    },
+    {
+     "kind": "theorem",
+     "name": "pennies_row_dev_01"
+    },
+    {
+     "kind": "theorem",
+     "name": "pennies_row_dev_10"
+    },
+    {
+     "kind": "theorem",
+     "name": "pennies_not_nash_00"
+    },
+    {
+     "kind": "theorem",
+     "name": "pennies_not_nash_11"
+    },
+    {
+     "kind": "theorem",
+     "name": "pennies_not_nash_01"
+    },
+    {
+     "kind": "theorem",
+     "name": "pennies_not_nash_10"
+    },
+    {
+     "kind": "theorem",
+     "name": "matchingPennies_no_pure_equilibrium"
+    },
+    {
+     "kind": "theorem",
+     "name": "pennies_label_false"
+    },
+    {
+     "kind": "theorem",
+     "name": "pure_labels_discriminate"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/PureNash.lean",
+   "print_axioms_targets": [],
+   "sha256": "d462708aa1a1732b1ebfe7f371a8c9147fbafd44fc12f847fb9d2af8fc500b24",
+   "size_bytes": 18704,
+   "theorem_count": 27,
+   "theorem_count_bol_convention": 27
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
      "name": "relu"
     },
     {
@@ -15367,8 +15786,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/SequentialGames.lean",
    "print_axioms_targets": [],
-   "sha256": "7e6a735bd72de1e361899dc8a4d6db6904f1d9b086b9a9ae06cc04119253ad66",
-   "size_bytes": 7658,
+   "sha256": "ee476d5bc718379cf1fd46923d7c6d84d5dfeaf05abdfdffe0082c1b60728c9d",
+   "size_bytes": 8755,
    "theorem_count": 9,
    "theorem_count_bol_convention": 9
   },
@@ -15725,10 +16144,85 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Mandate/ZeroSumSion.lean",
    "print_axioms_targets": [],
-   "sha256": "bd85a8e807edd6f583a57a763873b50fa5e06232227d6ed7bd2b9e9c48220087",
-   "size_bytes": 14371,
+   "sha256": "33e5dfb0123672e036c9123f88f5fd7c28b7b860e2751ba558216fa1afe4332a",
+   "size_bytes": 14469,
    "theorem_count": 18,
    "theorem_count_bol_convention": 18
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "continuous_payoff_left"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_payoff_right"
+    },
+    {
+     "kind": "theorem",
+     "name": "bddAbove_payoff_right"
+    },
+    {
+     "kind": "theorem",
+     "name": "bddBelow_payoff_right"
+    },
+    {
+     "kind": "theorem",
+     "name": "bddBelow_payoff_left"
+    },
+    {
+     "kind": "theorem",
+     "name": "bddAbove_payoff_left"
+    },
+    {
+     "kind": "theorem",
+     "name": "weakDuality"
+    },
+    {
+     "kind": "theorem",
+     "name": "lowerValue_le_upperValue"
+    },
+    {
+     "kind": "theorem",
+     "name": "ciSup_payoff_row_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "ciInf_payoff_col_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "upperValue_eq_payoff"
+    },
+    {
+     "kind": "theorem",
+     "name": "lowerValue_eq_payoff"
+    },
+    {
+     "kind": "theorem",
+     "name": "upperValue_le_lowerValue"
+    },
+    {
+     "kind": "theorem",
+     "name": "value_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "exists_value"
+    }
+   ],
+   "imports": [
+    "JurisLean.Mandate.ZeroSumSion",
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/ZeroSumValue.lean",
+   "print_axioms_targets": [],
+   "sha256": "2f86f66c7d82def95c150e384eed1a9afb93c4ca449679bb1ee3d7da378d9bc9",
+   "size_bytes": 17094,
+   "theorem_count": 15,
+   "theorem_count_bol_convention": 15
   },
   {
    "declarations": [
@@ -19491,7 +19985,6 @@
     "JurisLean.Mandate.MixedPennies",
     "JurisLean.Mandate.ReLUApprox",
     "JurisLean.Mandate.RouteDecision",
-    "JurisLean.Mandate.SequentialGames",
     "JurisLean.Mandate.SourceRank",
     "JurisLean.Mandate.StructureInvariants",
     "JurisLean.Mandate.SubstrAdmission",
@@ -19539,8 +20032,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "e71ed87de8e754eab1c7954902783b0a5b82bdc460ff3fde22bed96048fdfbca",
-   "size_bytes": 4212,
+   "sha256": "5f96267c5f1115e8ff54cf33996ab2c28c267f6084a8b16e6cba3e1e9959021f",
+   "size_bytes": 4171,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -19704,22 +20197,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1995,
-   "file_count": 237,
+   "counted_declaration_count": 2062,
+   "file_count": 240,
    "lemma_count": 24,
-   "print_axioms_command_count": 860,
-   "print_axioms_distinct_targets": 806,
-   "theorem_count": 1971,
-   "theorem_count_bol_convention": 1935
+   "print_axioms_command_count": 927,
+   "print_axioms_distinct_targets": 873,
+   "theorem_count": 2038,
+   "theorem_count_bol_convention": 2002
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1976,
-   "file_count": 222,
+   "counted_declaration_count": 2043,
+   "file_count": 225,
    "lemma_count": 17,
-   "print_axioms_command_count": 860,
-   "print_axioms_distinct_targets": 806,
-   "theorem_count": 1959,
-   "theorem_count_bol_convention": 1923
+   "print_axioms_command_count": 927,
+   "print_axioms_distinct_targets": 873,
+   "theorem_count": 2026,
+   "theorem_count_bol_convention": 1990
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -19907,6 +20400,8 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/MatrixGame.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/MixedPennies.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/OneShotDeviation.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/PureNash.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/ReLUApprox.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SequentialGames.lean",
@@ -19916,6 +20411,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/TaxSlices.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/Waterfall.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/ZeroSumSion.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/ZeroSumValue.lean",
    "proofs/lean/juris_lean/JurisLean/PermissionConflict.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalEnvelopeSpec.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalNoninterference.lean",
@@ -20142,6 +20638,8 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/LinearScorer.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/MatrixGame.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/MixedPennies.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/OneShotDeviation.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/PureNash.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/ReLUApprox.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SequentialGames.lean",
@@ -20151,6 +20649,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/TaxSlices.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/Waterfall.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/ZeroSumSion.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/ZeroSumValue.lean",
    "proofs/lean/juris_lean/JurisLean/PermissionConflict.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalEnvelopeSpec.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalNoninterference.lean",
@@ -20235,17 +20734,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "8d2a951df3dd25c1fa594353c0393e173a354ffbf0a38b0b21b5a64371cfcdb5",
+ "source_inventory_digest": "109c0f21d53739e56e4bdc7d66f7a33446a50100254936bbe2351fdd5be67c44",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "b55c1de6782034a59328e37f7cb0fa7469a8080e",
-  "tree": "331ea90227e9aa626c064d24358c655936516e07"
+  "commit": "e0493f2e2729418154600730452e28c432fc6fa8",
+  "tree": "1d3c5dbcd095a419f86f5135acb22823a441ff96"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 237,
+  "files_total": 240,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

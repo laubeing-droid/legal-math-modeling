@@ -57,6 +57,16 @@ recorded, which is also why the `Built` line above is tied to this file's own co
 about two iterated values of the payoff: it computes no value, it says nothing about pure
 strategies, and it is silent on non-zero-sum and multiplayer games, which still have no carrier in
 this pin.
+
+Verdict, and its two limits. Run 36409348921 at subject `649d0fd` finished with every job
+green, and its axiom audit -- the kernel's own words, filed in this repository at `docs/formal-release/ci-evidence/36409348921/axiom-audit/axiom-audit.raw.txt` --
+names all 15 of this module's declarations and reports no `sorryAx`. So the
+15 theorems are attested at that subject. What that does not give: (i) it attests those
+declarations, not these sentences, which were written after the build; (ii) it is not a release-root
+entry -- `Mandate/ZeroSumValue.lean` stays in `PENDING_CI_MODULES`, because joining the root changes the
+closure and needs a build of its own, and a verdict is only ever the one belonging to the subject
+that was built.
+
 -/
 
 namespace JurisLean.Mandate.ZeroSumValue

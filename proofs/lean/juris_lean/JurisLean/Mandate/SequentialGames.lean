@@ -38,6 +38,16 @@ That repair was then read by a compiler: run 36401817896 at `4866799` prints
 from the kernel's own output, not a verdict. The round ended `failure` because two other
 mandate modules did not build, and a red round publishes no certificate and no acceptance, so
 there is nothing here to promote on. The module therefore stays booked until a green round.
+
+Verdict, and its two limits. Run 36409348921 at subject `649d0fd` finished with every job
+green, and its axiom audit -- the kernel's own words, filed in this repository at `docs/formal-release/ci-evidence/36409348921/axiom-audit/axiom-audit.raw.txt` --
+names all 9 of this module's declarations and reports no `sorryAx`. So the
+9 theorems are attested at that subject. What that does not give: (i) it attests those
+declarations, not these sentences, which were written after the build; (ii) it is not a release-root
+entry -- `Mandate/SequentialGames.lean` stays in `PENDING_CI_MODULES`, because joining the root changes the
+closure and needs a build of its own, and a verdict is only ever the one belonging to the subject
+that was built.
+
 -/
 
 namespace JurisLean.Mandate.SequentialGames

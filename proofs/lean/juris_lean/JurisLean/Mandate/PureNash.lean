@@ -145,6 +145,16 @@ its own. Because no theorem name or statement changed, that booking needs no reg
 this repair; promotion out of quarantine and root entry stay owned outside this file, and both
 wait on a green run whose subject actually contains this text. Nothing here is an attestation,
 and no count or build status in this header may be inherited by a later commit.
+
+Verdict, and its two limits. Run 36409348921 at subject `649d0fd` finished with every job
+green, and its axiom audit -- the kernel's own words, filed in this repository at `docs/formal-release/ci-evidence/36409348921/axiom-audit/axiom-audit.raw.txt` --
+names all 27 of this module's declarations and reports no `sorryAx`. So the
+27 theorems are attested at that subject. What that does not give: (i) it attests those
+declarations, not these sentences, which were written after the build; (ii) it is not a release-root
+entry -- `Mandate/PureNash.lean` stays in `PENDING_CI_MODULES`, because joining the root changes the
+closure and needs a build of its own, and a verdict is only ever the one belonging to the subject
+that was built.
+
 -/
 
 namespace JurisLean.Mandate.PureNash

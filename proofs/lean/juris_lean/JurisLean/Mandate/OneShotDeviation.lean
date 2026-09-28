@@ -116,6 +116,16 @@ own green CI round; both are owned by another process and neither is claimed her
 surface is deliberately unchanged: all 25 names `AxiomAudit.lean` prints axioms for are still
 declared here with the same statements, so no regeneration of that tracked artifact is forced
 by this repair.
+
+Verdict, and its two limits. Run 36409348921 at subject `649d0fd` finished with every job
+green, and its axiom audit -- the kernel's own words, filed in this repository at `docs/formal-release/ci-evidence/36409348921/axiom-audit/axiom-audit.raw.txt` --
+names all 25 of this module's declarations and reports no `sorryAx`. So the
+25 theorems are attested at that subject. What that does not give: (i) it attests those
+declarations, not these sentences, which were written after the build; (ii) it is not a release-root
+entry -- `Mandate/OneShotDeviation.lean` stays in `PENDING_CI_MODULES`, because joining the root changes the
+closure and needs a build of its own, and a verdict is only ever the one belonging to the subject
+that was built.
+
 -/
 
 namespace JurisLean.Mandate.OneShotDeviation

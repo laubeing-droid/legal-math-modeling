@@ -74,26 +74,31 @@ PENDING_CI_MODULES: dict[str, str] = {
     # reported four errors in it. It may rejoin the root only on a green build whose subject
     # actually contains the repaired source.
     "JurisLean.Mandate.SequentialGames": (
-        "multi-player sequential carrier; false attestation retracted, four build errors "
-        "repaired in place, no green build of its own yet"
+        "multi-player sequential carrier; its nine theorems are built and audited green at "
+        "649d0fd, but the root entry is a separate change needing its own build"
     ),
-    # Three carriers written after the audit's game-theory item stayed open. Each header
-    # declares `CI_NOT_RUN` and each is unverified by construction: this repository never runs
-    # Lean locally, so a first build is exactly what is missing. Booking them here is also what
+    # Three carriers written after the audit's game-theory item stayed open. All four booked
+    # modules are now built and axiom-audited green at subject 649d0fd (run 36409348921, landed
+    # under docs/formal-release/ci-evidence/); what they do not yet have is a root entry, and
+    # AGENTS requires the root closure to be attested by the build that contains it. Booking them
+    # here is also what
     # keeps `--write` from importing them into the release root -- the generator makes any
     # unbooked source reachable, which is how a module could enter the root without anyone
     # deciding to promote it.
     "JurisLean.Mandate.ZeroSumValue": (
         "R-03 value step: the two iterated values of a finite zero-sum payoff coincide over the "
-        "subtype-indexed simplex, which `isSaddlePointOn_value` cannot state for `ℝ`; never elaborated"
+        "subtype-indexed simplex, which `isSaddlePointOn_value` cannot state for `ℝ`; the fifteen "
+        "theorems are built and audited green at 649d0fd, root entry still its own round"
     ),
     "JurisLean.Mandate.PureNash": (
         "R-02b general games: a `Decidable` instance for pure-strategy Nash existence in a "
-        "bimatrix game over `ℚ`, with two computed labels of opposite verdict; never elaborated"
+        "bimatrix game over `ℚ`, with two computed labels of opposite verdict; twenty-seven "
+        "theorems built and audited green at 649d0fd, not yet in the root"
     ),
     "JurisLean.Mandate.OneShotDeviation": (
         "R-02b sequential games: backward induction compared with following a strategy profile, "
-        "and one-step deviation optimality along the induced path; never elaborated"
+        "and one-step deviation optimality along the induced path; twenty-five theorems built and "
+        "audited green at 649d0fd, not yet in the root"
     ),
 }
 

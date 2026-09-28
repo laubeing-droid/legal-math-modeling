@@ -74,3 +74,46 @@ def test_no_live_cell_carries_a_figure_without_a_recompute_route() -> None:
     assert not offenders, (
         f"figure quoted in a mechanism or evidence cell with no way to recompute it: {offenders}"
     )
+
+
+# The archived originals make this decidable: the campaign table claims to disposition the
+# audit's findings, and "all of them" was previously a claim about a document the repository
+# did not hold. Both the report and its supplement are now filed verbatim under
+# docs/history/evidence-archive/, so the set of finding ids is comparable rather than recalled.
+ARCHIVE = ROOT / "docs" / "history" / "evidence-archive" / "20260927_qoder_audit"
+REPORT_FILES = ("AUDIT_REPORT_V1_20260927.md", "AUDIT_REPORT_V1_SUPPLEMENT_1.md")
+FINDING_ID = re.compile(r"\bP[0-3]-\d+\b")
+
+
+def _reported_ids() -> set[str]:
+    text = "".join(
+        (ARCHIVE / name).read_text(encoding="utf-8") for name in REPORT_FILES
+    )
+    return set(FINDING_ID.findall(text))
+
+
+def test_the_archive_the_rule_compares_against_is_on_file() -> None:
+    for name in REPORT_FILES:
+        assert (ARCHIVE / name).exists(), f"the archived audit source {name} is missing"
+    assert (ARCHIVE / "README.md").exists(), (
+        "the archive has no provenance note, so its text cannot be attributed"
+    )
+
+
+def test_the_table_dispositions_exactly_the_findings_the_report_listed() -> None:
+    """Same ids, none invented, none dropped -- the objective is this equality, not a prose claim."""
+    reported = _reported_ids()
+    tabled = {FINDING_ID.search(row).group(0) for row in _rows(LEDGER.read_text(encoding="utf-8"))}
+    assert tabled == reported, (
+        f"rows with no finding behind them: {sorted(tabled - reported)}; "
+        f"findings with no row: {sorted(reported - tabled)}"
+    )
+
+
+def test_dropping_a_finding_from_the_table_would_be_caught() -> None:
+    """Prove the equality is load-bearing on a copy with one row removed."""
+    rows = _rows(LEDGER.read_text(encoding="utf-8"))
+    surviving = {FINDING_ID.search(r).group(0) for r in rows[1:]}
+    assert surviving != _reported_ids(), (
+        "removing a row left the id set unchanged, so the comparison cannot notice"
+    )

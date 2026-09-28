@@ -464,6 +464,7 @@
     "JurisLean.Mandate.MixedPennies",
     "JurisLean.Mandate.ReLUApprox",
     "JurisLean.Mandate.RouteDecision",
+    "JurisLean.Mandate.SequentialGames",
     "JurisLean.Mandate.SourceRank",
     "JurisLean.Mandate.StructureInvariants",
     "JurisLean.Mandate.SubstrAdmission",
@@ -1000,6 +1001,15 @@
     "JurisLean.Mandate.RouteDecision.some_of_anyUsable_true",
     "JurisLean.Mandate.RouteDecision.usable_is_found",
     "JurisLean.Mandate.RouteDecision.usable_of_firstUsable_some",
+    "JurisLean.Mandate.SequentialGames.actor_gets_her_best",
+    "JurisLean.Mandate.SequentialGames.choose_apply",
+    "JurisLean.Mandate.SequentialGames.non_actor_may_be_sacrificed",
+    "JurisLean.Mandate.SequentialGames.outcome_terminal",
+    "JurisLean.Mandate.SequentialGames.outcome_turn_apply",
+    "JurisLean.Mandate.SequentialGames.turn_ge_left",
+    "JurisLean.Mandate.SequentialGames.turn_ge_right",
+    "JurisLean.Mandate.SequentialGames.turn_monotone",
+    "JurisLean.Mandate.SequentialGames.two_player_take_better",
     "JurisLean.Mandate.SourceRank.grade_binding_iff",
     "JurisLean.Mandate.SourceRank.grade_classes_inhabited",
     "JurisLean.Mandate.SourceRank.grade_exhaustive",
@@ -1065,8 +1075,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "5042d61480d4e79192c2cae3e7c776cbf48a4d13e4f5b28c263ce858e0f7b15e",
-   "size_bytes": 42727,
+   "sha256": "677b5544f0a008b710c2aef6465c43710b47bc2363769ac85df992719a17a8d9",
+   "size_bytes": 43361,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -15299,6 +15309,72 @@
   {
    "declarations": [
     {
+     "kind": "inductive",
+     "name": "Game"
+    },
+    {
+     "kind": "def",
+     "name": "choose"
+    },
+    {
+     "kind": "theorem",
+     "name": "choose_apply"
+    },
+    {
+     "kind": "def",
+     "name": "outcome"
+    },
+    {
+     "kind": "theorem",
+     "name": "outcome_turn_apply"
+    },
+    {
+     "kind": "theorem",
+     "name": "outcome_terminal"
+    },
+    {
+     "kind": "theorem",
+     "name": "turn_ge_left"
+    },
+    {
+     "kind": "theorem",
+     "name": "turn_ge_right"
+    },
+    {
+     "kind": "theorem",
+     "name": "turn_monotone"
+    },
+    {
+     "kind": "theorem",
+     "name": "two_player_take_better"
+    },
+    {
+     "kind": "def",
+     "name": "conflict"
+    },
+    {
+     "kind": "theorem",
+     "name": "actor_gets_her_best"
+    },
+    {
+     "kind": "theorem",
+     "name": "non_actor_may_be_sacrificed"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/SequentialGames.lean",
+   "print_axioms_targets": [],
+   "sha256": "af51a92a0c775d309ecff907560a41147e53742bbf4f048e99c8a74a0beb6ebc",
+   "size_bytes": 7426,
+   "theorem_count": 9,
+   "theorem_count_bol_convention": 9
+  },
+  {
+   "declarations": [
+    {
      "kind": "theorem",
      "name": "grade_binding_iff"
     },
@@ -19627,22 +19703,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1986,
-   "file_count": 236,
+   "counted_declaration_count": 1995,
+   "file_count": 237,
    "lemma_count": 24,
-   "print_axioms_command_count": 851,
-   "print_axioms_distinct_targets": 797,
-   "theorem_count": 1962,
-   "theorem_count_bol_convention": 1926
+   "print_axioms_command_count": 860,
+   "print_axioms_distinct_targets": 806,
+   "theorem_count": 1971,
+   "theorem_count_bol_convention": 1935
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1967,
-   "file_count": 221,
+   "counted_declaration_count": 1976,
+   "file_count": 222,
    "lemma_count": 17,
-   "print_axioms_command_count": 851,
-   "print_axioms_distinct_targets": 797,
-   "theorem_count": 1950,
-   "theorem_count_bol_convention": 1914
+   "print_axioms_command_count": 860,
+   "print_axioms_distinct_targets": 806,
+   "theorem_count": 1959,
+   "theorem_count_bol_convention": 1923
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -19832,6 +19908,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/MixedPennies.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/ReLUApprox.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/SequentialGames.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SubstrAdmission.lean",
@@ -20066,6 +20143,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/MixedPennies.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/ReLUApprox.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/RouteDecision.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/SequentialGames.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SourceRank.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/StructureInvariants.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/SubstrAdmission.lean",
@@ -20156,17 +20234,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "61fb3ab83923bbba7b2158d0fe274a68960facf35ee3daafeb8b6b352b7f319b",
+ "source_inventory_digest": "9127d8e6619c90482920015c990dab7ecdbabb7ddd1bfb66c66e7ed636a23b9c",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "21ac2ef3fd71279c14929a4b4a7b676e459efc9a",
-  "tree": "9dc4aace62701233d1df830e083d24eea7dcaf5c"
+  "commit": "8ecbc914e94b68aa83dce668e7cf52bb42b067b0",
+  "tree": "5f50389c59268a5ba34a69c1bda5b3aac122ee59"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 236,
+  "files_total": 237,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

@@ -2385,7 +2385,7 @@
       "jobs_total": 8,
       "name": "chore(inventory): rebind after the root join",
       "quoted_by": [
-        "docs/master-plan/03_证明战役台账.md:1601",
+        "docs/master-plan/03_证明战役台账.md:1691",
         "docs/master-plan/03_证明战役台账.md:175",
         "docs/master-plan/03_证明战役台账.md:285",
         "docs/master-plan/03_证明战役台账.md:578",
@@ -3462,7 +3462,7 @@
       "jobs_total": 8,
       "name": "docs(evidence): rebind source counts to the bridge attempt and say wh…",
       "quoted_by": [
-        "docs/master-plan/03_证明战役台账.md:1592",
+        "docs/master-plan/03_证明战役台账.md:1682",
         "docs/master-plan/03_证明战役台账.md:789",
         "docs/master-plan/03_证明战役台账.md:798",
         "docs/master-plan/03_证明战役台账.md:968",
@@ -4484,8 +4484,7 @@
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:1003",
         "docs/master-plan/03_证明战役台账.md:1060",
-        "docs/master-plan/03_证明战役台账.md:1245",
-        "docs/master-plan/03_证明战役台账.md:1549"
+        "docs/master-plan/03_证明战役台账.md:1245"
       ],
       "run_id": 36365128114,
       "started": true,
@@ -4799,7 +4798,6 @@
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:1219",
         "docs/master-plan/03_证明战役台账.md:1245",
-        "docs/master-plan/03_证明战役台账.md:1549",
         "docs/master-plan/03_证明战役台账.md:952",
         "docs/paper-rewrite/paper_cn.md:146",
         "docs/paper-rewrite/paper_en.md:141"
@@ -4927,8 +4925,7 @@
       "name": "docs(ledger): re-base the report-reconciliation figures on the artifacts",
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:1277",
-        "docs/master-plan/03_证明战役台账.md:1279",
-        "docs/master-plan/03_证明战役台账.md:1550"
+        "docs/master-plan/03_证明战役台账.md:1279"
       ],
       "run_id": 36376522559,
       "started": true,
@@ -4991,8 +4988,7 @@
       "name": "docs(ledger): turn the Nash boundary into a structural argument with …",
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:1277",
-        "docs/master-plan/03_证明战役台账.md:1281",
-        "docs/master-plan/03_证明战役台账.md:1551"
+        "docs/master-plan/03_证明战役台账.md:1281"
       ],
       "run_id": 36377625445,
       "started": true,
@@ -5244,7 +5240,8 @@
         "docs/master-plan/03_证明战役台账.md:1433",
         "docs/master-plan/03_证明战役台账.md:1439",
         "docs/master-plan/03_证明战役台账.md:1463",
-        "docs/master-plan/03_证明战役台账.md:1571"
+        "docs/master-plan/03_证明战役台账.md:1635",
+        "docs/master-plan/03_证明战役台账.md:1661"
       ],
       "run_id": 36386527448,
       "started": true,
@@ -5439,6 +5436,71 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-09-28T08:01:13Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 6,
+      "conclusion": "failure",
+      "created_at": "2026-09-28T09:10:34Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "4866799370de3d0abe5234a9d18ab4ea80764d1f",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36401817896",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "docs(accounts): rebind every count to the tree that now carries the t…",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:1546",
+        "docs/master-plan/03_证明战役台账.md:1548",
+        "docs/paper-rewrite/paper_cn.md:146",
+        "docs/paper-rewrite/paper_en.md:141"
+      ],
+      "run_id": 36401817896,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-28T09:18:24Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

@@ -77,4 +77,102 @@ theorem combo_nonneg {m : ℕ} (p p' : Fin (m+1) → ℝ) (a b : ℝ)
     (hp : ∀ i, 0 ≤ p i) (hp' : ∀ i, 0 ≤ p' i) (ha : 0 ≤ a) (hb : 0 ≤ b) :
     ∀ i, 0 ≤ a * p i + b * p' i := fun i => add_nonneg (mul_nonneg ha (hp i)) (mul_nonneg hb (hp' i))
 
+/-! ## The payoff is linear in each mixture separately -/
+
+/-- Mixing two row mixtures before computing the expected payoff equals mixing the two
+numbers afterwards. This is the exact content the minimax hypotheses need as (quasi)convexity. -/
+theorem payoff_comb_left {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ) (q : Fin (n+1) → ℝ)
+    (p p' : Fin (m+1) → ℝ) (a b : ℝ) :
+    payoff A (a • p + b • p') q = a * payoff A p q + b * payoff A p' q := by
+  simp only [payoff, Pi.add_apply, Pi.smul_apply]
+  have h1 : (∑ i : Fin (m+1), ∑ j : Fin (n+1), (a * p i + b * p' i) * A i j * q j)
+      = ∑ i : Fin (m+1), ∑ j : Fin (n+1),
+        (a * (p i * A i j * q j) + b * (p' i * A i j * q j)) := by
+    apply Finset.sum_congr rfl
+    intro i _
+    apply Finset.sum_congr rfl
+    intro j _
+    ring
+  have h2 : (∑ i : Fin (m+1), ∑ j : Fin (n+1),
+      (a * (p i * A i j * q j) + b * (p' i * A i j * q j)))
+      = a * ∑ i : Fin (m+1), ∑ j : Fin (n+1), p i * A i j * q j
+        + b * ∑ i : Fin (m+1), ∑ j : Fin (n+1), p' i * A i j * q j := by
+    simp_rw [Finset.sum_add_distrib, ← Finset.mul_sum]
+  rw [h1, h2]
+
+/-- The same statement on the other side: the column mixture enters linearly as well. -/
+theorem payoff_comb_right {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ) (p : Fin (m+1) → ℝ)
+    (q q' : Fin (n+1) → ℝ) (a b : ℝ) :
+    payoff A p (a • q + b • q') = a * payoff A p q + b * payoff A p q' := by
+  simp only [payoff, Pi.add_apply, Pi.smul_apply]
+  have h1 : (∑ i : Fin (m+1), ∑ j : Fin (n+1), p i * A i j * (a * q j + b * q' j))
+      = ∑ i : Fin (m+1), ∑ j : Fin (n+1),
+        (a * (p i * A i j * q j) + b * (p i * A i j * q' j)) := by
+    apply Finset.sum_congr rfl
+    intro i _
+    apply Finset.sum_congr rfl
+    intro j _
+    ring
+  have h2 : (∑ i : Fin (m+1), ∑ j : Fin (n+1),
+      (a * (p i * A i j * q j) + b * (p i * A i j * q' j)))
+      = a * ∑ i : Fin (m+1), ∑ j : Fin (n+1), p i * A i j * q j
+        + b * ∑ i : Fin (m+1), ∑ j : Fin (n+1), p i * A i j * q' j := by
+    simp_rw [Finset.sum_add_distrib, ← Finset.mul_sum]
+  rw [h1, h2]
+
+/-! ## The four hypotheses Sion asks for, discharged -/
+
+/-- Held to any column mixture, the row player's payoff is quasiconvex on the row simplex: a
+mixture of two rows is no worse than the worse of them. -/
+theorem quasiconvexOn_payoff_left {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ)
+    (q : Fin (n+1) → ℝ) :
+    QuasiconvexOn ℝ (stdSimplex ℝ (Fin (m+1))) fun p => payoff A p q := by
+  refine quasiconvexOn_iff_le_max.mpr ⟨convex_stdSimplex ℝ (Fin (m+1)), ?_⟩
+  intro p _ p' _ a b ha hb hab
+  have h1 := payoff_comb_left A q p p' a b
+  have hX : payoff A p q ≤ max (payoff A p q) (payoff A p' q) := le_max_left _ _
+  have hY : payoff A p' q ≤ max (payoff A p q) (payoff A p' q) := le_max_right _ _
+  rw [← h1]
+  nlinarith
+
+/-- Held to any row mixture, the payoff is quasiconcave on the column simplex. -/
+theorem quasiconcaveOn_payoff_right {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ)
+    (p : Fin (m+1) → ℝ) :
+    QuasiconcaveOn ℝ (stdSimplex ℝ (Fin (n+1))) fun q => payoff A p q := by
+  refine quasiconcaveOn_iff_min_le.mpr ⟨convex_stdSimplex ℝ (Fin (n+1)), ?_⟩
+  intro q _ q' _ a b ha hb hab
+  have h1 := payoff_comb_right A p q q' a b
+  have hX : min (payoff A p q) (payoff A p q') ≤ payoff A p q := min_le_left _ _
+  have hY : min (payoff A p q) (payoff A p q') ≤ payoff A p q' := min_le_right _ _
+  rw [← h1]
+  nlinarith
+
+/-- Every column slice of the payoff is continuous, hence lower semicontinuous on the row
+simplex. -/
+theorem lsc_payoff_left {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ) (q : Fin (n+1) → ℝ) :
+    LowerSemicontinuousOn (fun p : Fin (m+1) → ℝ => payoff A p q)
+      (stdSimplex ℝ (Fin (m+1))) :=
+  ((by continuity : Continuous (fun p : Fin (m+1) → ℝ => payoff A p q))
+      .lowerSemicontinuous).lowerSemicontinuousOn _
+
+/-- Every row slice is continuous, hence upper semicontinuous on the column simplex. -/
+theorem usc_payoff_right {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ) (p : Fin (m+1) → ℝ) :
+    UpperSemicontinuousOn (fun q : Fin (n+1) → ℝ => payoff A p q)
+      (stdSimplex ℝ (Fin (n+1))) :=
+  ((by continuity : Continuous (fun q : Fin (n+1) → ℝ => payoff A p q))
+      .upperSemicontinuous).upperSemicontinuousOn _
+
+/-- **Every finite two-player zero-sum game has a value in mixed strategies.** Ten
+hypotheses, all of them discharged above or from the pinned library: the two strategy sets
+are nonempty, compact and convex, each slice of the payoff is semicontinuous on the set the
+theorem puts the compactness on, and the payoff is quasiconvex in the row mixture and
+quasiconcave in the column mixture. -/
+theorem exists_saddlePoint (m n : ℕ) (A : Fin (m+1) → Fin (n+1) → ℝ) :
+    ∃ a ∈ stdSimplex ℝ (Fin (m+1)), ∃ b ∈ stdSimplex ℝ (Fin (n+1)),
+      IsSaddlePointOn (stdSimplex ℝ (Fin (m+1))) (stdSimplex ℝ (Fin (n+1))) (payoff A) a b :=
+  Sion.exists_isSaddlePointOn (mixRight_nonempty m) (mixRight_convex m) (mixRight_isCompact m)
+    (fun _ _ => lsc_payoff_left A _) (fun _ _ => quasiconvexOn_payoff_left A _)
+    (mixLeft_convex n) (mixLeft_nonempty n) (mixLeft_isCompact n)
+    (fun _ _ => usc_payoff_right A _) (fun _ _ => quasiconcaveOn_payoff_right A _)
+
 end JurisLean.Mandate.ZeroSumSion

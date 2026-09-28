@@ -658,3 +658,10 @@ open HornSystem
 #print axioms JurisLean.Mandate.ZeroSumSion.mixRight_convex
 #print axioms JurisLean.Mandate.ZeroSumSion.mixRight_isCompact
 #print axioms JurisLean.Mandate.ZeroSumSion.mixRight_nonempty
+#print axioms JurisLean.Mandate.ZeroSumSion.exists_saddlePoint
+#print axioms JurisLean.Mandate.ZeroSumSion.lsc_payoff_left
+#print axioms JurisLean.Mandate.ZeroSumSion.payoff_comb_left
+#print axioms JurisLean.Mandate.ZeroSumSion.payoff_comb_right
+#print axioms JurisLean.Mandate.ZeroSumSion.quasiconcaveOn_payoff_right
+#print axioms JurisLean.Mandate.ZeroSumSion.quasiconvexOn_payoff_left
+#print axioms JurisLean.Mandate.ZeroSumSion.usc_payoff_right

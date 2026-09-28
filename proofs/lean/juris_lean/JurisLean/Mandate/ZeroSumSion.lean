@@ -138,7 +138,7 @@ theorem quasiconvexOn_payoff_left {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → �
   calc a * payoff A p q + b * payoff A p' q
       ≤ a * max (payoff A p q) (payoff A p' q) + b * max (payoff A p q) (payoff A p' q) :=
         add_le_add (mul_le_mul_of_nonneg_left hX ha) (mul_le_mul_of_nonneg_left hY hb)
-    _ = (a + b) * max (payoff A p q) (payoff A p' q) := (mul_add a b _).symm
+    _ = (a + b) * max (payoff A p q) (payoff A p' q) := (add_mul a b _).symm
     _ = max (payoff A p q) (payoff A p' q) := by rw [hab, one_mul]
 
 /-- Held to any row mixture, the payoff is quasiconcave on the column simplex. -/
@@ -153,7 +153,7 @@ theorem quasiconcaveOn_payoff_right {m n : ℕ} (A : Fin (m+1) → Fin (n+1) →
   have hY : min (payoff A p q) (payoff A p q') ≤ payoff A p q' := min_le_right _ _
   have h : (a + b) * min (payoff A p q) (payoff A p q')
       ≤ a * payoff A p q + b * payoff A p q' := by
-    rw [mul_add]
+    rw [add_mul]
     exact add_le_add (mul_le_mul_of_nonneg_left hX ha) (mul_le_mul_of_nonneg_left hY hb)
   rwa [hab, one_mul] at h
 

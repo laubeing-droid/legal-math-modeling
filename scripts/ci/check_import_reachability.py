@@ -77,6 +77,24 @@ PENDING_CI_MODULES: dict[str, str] = {
         "multi-player sequential carrier; false attestation retracted, four build errors "
         "repaired in place, no green build of its own yet"
     ),
+    # Three carriers written after the audit's game-theory item stayed open. Each header
+    # declares `CI_NOT_RUN` and each is unverified by construction: this repository never runs
+    # Lean locally, so a first build is exactly what is missing. Booking them here is also what
+    # keeps `--write` from importing them into the release root -- the generator makes any
+    # unbooked source reachable, which is how a module could enter the root without anyone
+    # deciding to promote it.
+    "JurisLean.Mandate.ZeroSumValue": (
+        "R-03 value step: the two iterated values of a finite zero-sum payoff coincide over the "
+        "subtype-indexed simplex, which `isSaddlePointOn_value` cannot state for `ℝ`; never elaborated"
+    ),
+    "JurisLean.Mandate.PureNash": (
+        "R-02b general games: a `Decidable` instance for pure-strategy Nash existence in a "
+        "bimatrix game over `ℚ`, with two computed labels of opposite verdict; never elaborated"
+    ),
+    "JurisLean.Mandate.OneShotDeviation": (
+        "R-02b sequential games: backward induction compared with following a strategy profile, "
+        "and one-step deviation optimality along the induced path; never elaborated"
+    ),
 }
 
 ALLOWED_UNREACHABLE = {**STANDALONE_DRIVERS, **PENDING_CI_MODULES}

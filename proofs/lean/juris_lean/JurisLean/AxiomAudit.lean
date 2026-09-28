@@ -45,6 +45,10 @@ import JurisLean.Mandate.MixedPennies
 import JurisLean.Mandate.ZeroSumSion
 import JurisLean.Mandate.SequentialGames
 
+import JurisLean.Mandate.OneShotDeviation
+import JurisLean.Mandate.PureNash
+import JurisLean.Mandate.ZeroSumValue
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -593,6 +597,58 @@ open HornSystem
 #print axioms JurisLean.Mandate.MixedPennies.u_eq
 #print axioms JurisLean.Mandate.MixedPennies.uniform_is_a_mixture
 #print axioms JurisLean.Mandate.MixedPennies.value_at_uniform
+#print axioms JurisLean.Mandate.OneShotDeviation.atPath_cons_left
+#print axioms JurisLean.Mandate.OneShotDeviation.atPath_cons_right
+#print axioms JurisLean.Mandate.OneShotDeviation.atPath_cons_terminal
+#print axioms JurisLean.Mandate.OneShotDeviation.atPath_nil
+#print axioms JurisLean.Mandate.OneShotDeviation.brute_at_root
+#print axioms JurisLean.Mandate.OneShotDeviation.brute_cons_left
+#print axioms JurisLean.Mandate.OneShotDeviation.brute_cons_right
+#print axioms JurisLean.Mandate.OneShotDeviation.deviate_agree_off
+#print axioms JurisLean.Mandate.OneShotDeviation.go_bound
+#print axioms JurisLean.Mandate.OneShotDeviation.go_exact
+#print axioms JurisLean.Mandate.OneShotDeviation.go_terminal
+#print axioms JurisLean.Mandate.OneShotDeviation.go_turn_apply
+#print axioms JurisLean.Mandate.OneShotDeviation.one_shot_deviation
+#print axioms JurisLean.Mandate.OneShotDeviation.one_shot_deviation_le_brute
+#print axioms JurisLean.Mandate.OneShotDeviation.outcome_eq_of_le
+#print axioms JurisLean.Mandate.OneShotDeviation.outcome_eq_of_not_le
+#print axioms JurisLean.Mandate.OneShotDeviation.play_brute
+#print axioms JurisLean.Mandate.OneShotDeviation.play_terminal
+#print axioms JurisLean.Mandate.OneShotDeviation.play_turn_follows
+#print axioms JurisLean.Mandate.OneShotDeviation.tree_brute_root_is_left
+#print axioms JurisLean.Mandate.OneShotDeviation.tree_deviation_strictly_worse
+#print axioms JurisLean.Mandate.OneShotDeviation.tree_play_brute_actor
+#print axioms JurisLean.Mandate.OneShotDeviation.tree_play_brute_second
+#print axioms JurisLean.Mandate.OneShotDeviation.tree_play_brute_third
+#print axioms JurisLean.Mandate.OneShotDeviation.tree_play_deviation_actor
+#print axioms JurisLean.Mandate.PureNash.coordPay_table
+#print axioms JurisLean.Mandate.PureNash.coordination_diagonal_is_nash
+#print axioms JurisLean.Mandate.PureNash.coordination_label_true
+#print axioms JurisLean.Mandate.PureNash.coordination_offdiag_not_nash
+#print axioms JurisLean.Mandate.PureNash.isNashPure_fst
+#print axioms JurisLean.Mandate.PureNash.isNashPure_of_bestResponses
+#print axioms JurisLean.Mandate.PureNash.isNashPure_snd
+#print axioms JurisLean.Mandate.PureNash.isNashPure_swap
+#print axioms JurisLean.Mandate.PureNash.isNashPure_swap_swap
+#print axioms JurisLean.Mandate.PureNash.matchingPennies_no_pure_equilibrium
+#print axioms JurisLean.Mandate.PureNash.nashPureExists_false_iff
+#print axioms JurisLean.Mandate.PureNash.nashPureExists_swap
+#print axioms JurisLean.Mandate.PureNash.nashPureExists_true_iff
+#print axioms JurisLean.Mandate.PureNash.nashPure_of_dominant
+#print axioms JurisLean.Mandate.PureNash.not_isNashPure_of_col_deviation
+#print axioms JurisLean.Mandate.PureNash.not_isNashPure_of_row_deviation
+#print axioms JurisLean.Mandate.PureNash.penniesRow_table
+#print axioms JurisLean.Mandate.PureNash.pennies_col_dev_00
+#print axioms JurisLean.Mandate.PureNash.pennies_col_dev_11
+#print axioms JurisLean.Mandate.PureNash.pennies_label_false
+#print axioms JurisLean.Mandate.PureNash.pennies_not_nash_00
+#print axioms JurisLean.Mandate.PureNash.pennies_not_nash_01
+#print axioms JurisLean.Mandate.PureNash.pennies_not_nash_10
+#print axioms JurisLean.Mandate.PureNash.pennies_not_nash_11
+#print axioms JurisLean.Mandate.PureNash.pennies_row_dev_01
+#print axioms JurisLean.Mandate.PureNash.pennies_row_dev_10
+#print axioms JurisLean.Mandate.PureNash.pure_labels_discriminate
 #print axioms JurisLean.Mandate.ReLUApprox.h1_between
 #print axioms JurisLean.Mandate.ReLUApprox.h2_between
 #print axioms JurisLean.Mandate.ReLUApprox.lip_eq
@@ -679,3 +735,18 @@ open HornSystem
 #print axioms JurisLean.Mandate.ZeroSumSion.quasiconcaveOn_payoff_right
 #print axioms JurisLean.Mandate.ZeroSumSion.quasiconvexOn_payoff_left
 #print axioms JurisLean.Mandate.ZeroSumSion.usc_payoff_right
+#print axioms JurisLean.Mandate.ZeroSumValue.bddAbove_payoff_left
+#print axioms JurisLean.Mandate.ZeroSumValue.bddAbove_payoff_right
+#print axioms JurisLean.Mandate.ZeroSumValue.bddBelow_payoff_left
+#print axioms JurisLean.Mandate.ZeroSumValue.bddBelow_payoff_right
+#print axioms JurisLean.Mandate.ZeroSumValue.ciInf_payoff_col_eq
+#print axioms JurisLean.Mandate.ZeroSumValue.ciSup_payoff_row_eq
+#print axioms JurisLean.Mandate.ZeroSumValue.continuous_payoff_left
+#print axioms JurisLean.Mandate.ZeroSumValue.continuous_payoff_right
+#print axioms JurisLean.Mandate.ZeroSumValue.exists_value
+#print axioms JurisLean.Mandate.ZeroSumValue.lowerValue_eq_payoff
+#print axioms JurisLean.Mandate.ZeroSumValue.lowerValue_le_upperValue
+#print axioms JurisLean.Mandate.ZeroSumValue.upperValue_eq_payoff
+#print axioms JurisLean.Mandate.ZeroSumValue.upperValue_le_lowerValue
+#print axioms JurisLean.Mandate.ZeroSumValue.value_eq
+#print axioms JurisLean.Mandate.ZeroSumValue.weakDuality

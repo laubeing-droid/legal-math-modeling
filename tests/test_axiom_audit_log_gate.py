@@ -110,10 +110,14 @@ def test_the_mandate_layer_is_now_on_the_audit_surface():
     mandate = {n for n in printed if n.startswith("JurisLean.Mandate.")}
     # 126 at a6fd02c6d, 135 with CaseIsomorphism's nine, 141 with the n-ary surface,
     # 145 with the three-slot computable test, 148 with the enumeration that says those
-    # six are all the bijections of three slots, and 153 with the bridge that lets the Bool
-    # test answer the Prop question; each increment was named only after a round built the
-    # declarations it names, so a red round cannot leave the number behind.
-    assert len(mandate) == 200, f"mandate audit surface is {len(mandate)} targets"
+    # six are all the bijections of three slots, 153 with the bridge that lets the Bool
+    # test answer the Prop question, 200 after the zero-sum and sequential waves.
+    # Read the last step honestly: this number counts source lines the audit file prints,
+    # and a line named here is not thereby elaborated. The three 267-era arrivals
+    # (ZeroSumValue, PureNash, OneShotDeviation) are in the surface precisely so their
+    # first `lake build` happens, the way CaseIsomorphism's did; they sit in
+    # `PENDING_CI_MODULES` and not in the release root until it returns.
+    assert len(mandate) == 267, f"mandate audit surface is {len(mandate)} targets"
     assert "JurisLean.Mandate.GameTree.value_attains" in mandate
     assert "JurisLean.Mandate.MatrixGame.hasPureValue_true_iff" in mandate
 

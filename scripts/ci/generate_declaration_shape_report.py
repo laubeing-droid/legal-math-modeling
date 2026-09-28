@@ -30,7 +30,6 @@ from __future__ import annotations
 import argparse
 import json
 import re
-import subprocess
 import sys
 from pathlib import Path
 
@@ -117,9 +116,6 @@ def build() -> dict:
                 file_counts[tag] += 1
         if file_counts["theorems"]:
             per_file[rel] = file_counts
-    subject = subprocess.run(
-        ["git", "rev-parse", "HEAD"], capture_output=True, text=True, check=True
-    ).stdout.strip()
     census = json.loads(CENSUS.read_text(encoding="utf-8"))
     if census["theorem_declarations"] != pkg["theorems"]:
         raise SystemExit(
@@ -132,7 +128,12 @@ def build() -> dict:
         "generated_by": "python scripts/ci/generate_declaration_shape_report.py",
         "authority_note": AUTHORITY,
         "rules": RULES,
-        "subject": subject,
+        "subject_binding_source": (
+            "This report is a pure text measurement, so it deliberately records no commit: "
+            "an artifact that names the commit which introduces it can never verify against "
+            "that commit. The subject and per-file hashes that bind it live in "
+            "theorem_inventory_v3.json, which this report is cross-checked against."
+        ),
         "cross_check": {
             "census_theorem_declarations": census["theorem_declarations"],
             "this_report_package_theorems": pkg["theorems"],

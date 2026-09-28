@@ -100,31 +100,56 @@ PENDING_CI_MODULES: dict[str, str] = {
         "and one-step deviation optimality along the induced path; twenty-five theorems built and "
         "audited green at 649d0fd, not yet in the root"
     ),
+    # R-07's family conclusion: the Leshno line instantiated from the carrier at ReLU.
+    # Unlike the four above it has no green build at all yet -- its first `lake build`
+    # is the one that can release it from this table, together with root entry as its
+    # own round.
+    "JurisLean.Mandate.ReLUFamily": (
+        "R-07 ReLU family conclusion: instantiates the backported Leshno carrier "
+        "(leshno_dense_iff) to ReLU; awaiting its first CI build, no attestation"
+    ),
 }
 
 # Same-pin external ports (elazarg/GameTheory @ 107085bc4 and
 # elazarg/fixed-point-theorems-lean4 @ 42d4b401f; both MIT, both pinning this
-# repository's exact mathlib revision). The port changed only import roots and a
-# provenance header -- tests/spec/test_external_port_provenance.py re-derives the
-# upstream bytes from each file and compares sha256. Every module under External/
-# is quarantined until its own green CI build: the reachability generator makes
-# any unbooked source reachable, so without this block the ports would enter the
-# release root before anyone decided to promote them (the round-73 lesson).
+# repository's exact mathlib revision) plus the cross-pin neural backport
+# (davorrunje/neural-network-proofs @ f909425, Apache-2.0). The same-pin port
+# changed only import roots and a provenance header --
+# tests/spec/test_external_port_provenance.py re-derives the upstream bytes
+# from each file and compares sha256; the backport logs its drift repairs
+# (tests/spec/test_neural_backport_provenance.py). Every module under External/
+# is auto-quarantined: the reachability generator makes any unbooked source
+# reachable, so without this block the ports would enter the release root
+# before anyone decided to promote them (the round-73 lesson).
+#
+# All 57 landed modules are built and axiom-audited green by run 36456965606
+# (subject c5830ed, the round-82 full-green attestation). They stay out of the
+# release root until a promotion round decides otherwise: add a module's name
+# to _EXTERNAL_ROOT_PROMOTED when (and only when) a green build of a commit
+# that imports it into the root exists -- that set is the promotion path this
+# table otherwise lacked (blind-audit finding P1-5).
 _EXTERNAL_PORT_REASON = (
-    "same-pin external port (JurisLean/External/PROVENANCE.md); awaiting its first "
-    "CI build -- no attestation claimed, release-root entry is a separate round"
+    "external port (see JurisLean/External/PROVENANCE.md and "
+    "External/NeuralNetworkProofs/PROVENANCE.md); built and axiom-audited green "
+    "at c5830ed (run 36456965606), release-root entry still its own round"
 )
+
+# Modules that have been deliberately imported into the release root with their
+# own green build; empty until the first promotion round.
+_EXTERNAL_ROOT_PROMOTED: set[str] = set()
 
 
 def _external_port_modules() -> dict[str, str]:
     external = PKG / "External"
     if not external.is_dir():
         return {}
-    return {
-        "JurisLean." + p.relative_to(PKG).as_posix()[:-5].replace("/", "."):
-            _EXTERNAL_PORT_REASON
-        for p in sorted(external.rglob("*.lean"))
-    }
+    out = {}
+    for p in sorted(external.rglob("*.lean")):
+        name = "JurisLean." + p.relative_to(PKG).as_posix()[:-5].replace("/", ".")
+        if name in _EXTERNAL_ROOT_PROMOTED:
+            continue
+        out[name] = _EXTERNAL_PORT_REASON
+    return out
 
 
 PENDING_CI_MODULES.update(_external_port_modules())
@@ -247,7 +272,22 @@ def main() -> int:
             print(f"  {name}", file=sys.stderr)
         return 1
 
+    # Quarantine bypass alarm (blind-audit finding P1-5): a module booked in
+    # PENDING_CI_MODULES must not actually be reachable from the release root.
+    # Without this, a hand-added `import JurisLean.External.*` in any
+    # root-reachable file would quietly promote the import while its table
+    # entry still claimed quarantine -- the check only ever failed for
+    # unaccounted-unreachable, never for allowed-but-reached. Standalone
+    # drivers may legitimately be imported by other files, so they are exempt.
     reached = closure("JurisLean", mods)
+    bypassed = sorted(set(PENDING_CI_MODULES) & reached)
+    if bypassed:
+        print("quarantined module(s) reached from the release root "
+              "(promote them properly or remove the import):", file=sys.stderr)
+        for name in bypassed[:40]:
+            print(f"  {name}", file=sys.stderr)
+        return 1
+
     print(f"reachability ok: {len(reached) - 1} of {len(mods) - 1} modules, "
           f"{len(ALLOWED_UNREACHABLE)} allowed standalone/pending drivers")
     return 0

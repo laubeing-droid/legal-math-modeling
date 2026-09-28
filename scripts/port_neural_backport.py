@@ -33,6 +33,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import re
 import subprocess
 import sys
 from pathlib import Path
@@ -167,6 +168,15 @@ def main() -> int:
         records.append({
             "upstream_path": f"NeuralNetworkProofs/{rel}",
             "upstream_sha256": hashlib.sha256(original.encode("utf-8")).hexdigest(),
+            # Pinned so the statement-intactness gate works without the clone:
+            # tests compare the tree's declaration headers against these lines
+            # (blind-audit finding P1-6 -- "statements unchanged" must be a
+            # checked property, not prose).
+            "upstream_header_lines": sorted(
+                " ".join(l.split())
+                for l in original.split("\n")
+                if re.match(r"^\s*(private\s+|protected\s+)*(theorem|lemma)\s", l)
+            ),
             "repo_path": repo_path,
             "module": "JurisLean." + str(dest.relative_to(PKG))[:-5].replace("\\", "."),
             # filled in below from the reconstruction comparison

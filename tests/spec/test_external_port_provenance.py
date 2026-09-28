@@ -147,3 +147,25 @@ def test_recorded_revisions_pin_this_repositorys_mathlib() -> None:
     for source in doc["sources"].values():
         assert source["license"] == "MIT"
         assert len(source["revision"]) == 40 and source["revision"].strip("0123456789abcdef") == ""
+
+
+def test_the_license_notice_the_headers_point_at_actually_exists() -> None:
+    """All forty same-pin headers say 'see JurisLean/External/PROVENANCE.md'.
+
+    Blind-audit finding P1-7: for the first rounds that path did not exist and
+    no MIT license text lived in-tree for either source. The headers, the gate
+    docstring and the quarantine reason all point here, so the file -- with
+    both MIT notices -- is now a checked requirement, mirroring the backport
+    side's LICENSE check.
+    """
+    notice = EXTERNAL / "PROVENANCE.md"
+    assert notice.exists(), "JurisLean/External/PROVENANCE.md is referenced but missing"
+    text = notice.read_text(encoding="utf-8")
+    assert "Copyright (c) 2025 Elazar Gershuni" in text, "GameTheory MIT notice missing"
+    assert "Copyright (c) Harfe" in text, "fixed-point-theorems MIT notice missing"
+    for path in sorted(EXTERNAL.rglob("*.lean")):
+        if "External/NeuralNetworkProofs/" in path.relative_to(ROOT).as_posix():
+            continue
+        assert "PROVENANCE.md" in path.read_text(encoding="utf-8").split("\n-/\n")[0], (
+            f"{path.name}: header no longer points at the license notice"
+        )

@@ -148,8 +148,10 @@ def inventory_count() -> int:
     The comparison basis is theorems **plus** lemmas because the scanner reads both
     keywords. Against theorem-count alone the difference could go negative the
     moment a ported library leans on `lemma` (the external game-theory cone does:
-    134 package lemmas against 13 before it), which would read as a negative blind
-    spot -- a nonsense the first external-port round actually produced.
+    134 package lemmas against 17 before it -- the "13" first written here was the
+    old blind-spot count misread as a lemma count, blind-audit finding P2-1),
+    which would read as a negative blind spot -- a nonsense the first
+    external-port round actually produced.
     """
     if not INVENTORY.exists():
         return -1

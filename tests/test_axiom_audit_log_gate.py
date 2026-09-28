@@ -111,15 +111,16 @@ def test_the_mandate_layer_is_now_on_the_audit_surface():
     # 126 at a6fd02c6d, 135 with CaseIsomorphism's nine, 141 with the n-ary surface,
     # 145 with the three-slot computable test, 148 with the enumeration that says those
     # six are all the bijections of three slots, 153 with the bridge that lets the Bool
-    # test answer the Prop question, 200 after the zero-sum and sequential waves.
+    # test answer the Prop question, 200 after the zero-sum and sequential waves,
+    # 267 with the three 649d0fd-era arrivals, 280 with ReLUFamily's thirteen (the
+    # ReLU instantiation of the backported Leshno carrier; quarantined in
+    # PENDING_CI_MODULES until its own first build, exactly like its predecessors).
     # Read the last step honestly: this number counts source lines the audit file prints,
-    # and a line named here is not thereby elaborated. The three 267-era arrivals
-    # (ZeroSumValue, PureNash, OneShotDeviation) are in the surface precisely so their
-    # first `lake build` happens, the way CaseIsomorphism's did; they sit in
-    # `PENDING_CI_MODULES` and not in the release root until it returns.
-    assert len(mandate) == 267, f"mandate audit surface is {len(mandate)} targets"
+    # and a line named here is not thereby elaborated.
+    assert len(mandate) == 280, f"mandate audit surface is {len(mandate)} targets"
     assert "JurisLean.Mandate.GameTree.value_attains" in mandate
     assert "JurisLean.Mandate.MatrixGame.hasPureValue_true_iff" in mandate
+    assert "JurisLean.Mandate.ReLUFamily.relu_dense" in mandate
 
 
 def test_the_surface_names_no_comment_text():

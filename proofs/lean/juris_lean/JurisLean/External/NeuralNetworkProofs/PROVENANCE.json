@@ -5,6 +5,18 @@
       "adapted": false,
       "module": "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionDegreeBound",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/ConvolutionDegreeBound.lean",
+      "upstream_header_lines": [
+        "private lemma conv_assoc_lhs {σ φ ψ : ℝ → ℝ} (hσ : LocallyIntegrable σ volume)",
+        "private lemma conv_assoc_rhs {σ φ ψ : ℝ → ℝ} (hσ : LocallyIntegrable σ volume)",
+        "private lemma locallyIntegrable_norm {σ : ℝ → ℝ} (hσ : LocallyIntegrable σ volume) :",
+        "private lemma mul_bilin_assoc : ∀ (x y z : ℝ),",
+        "private lemma norm_conv_continuous {σ ψ : ℝ → ℝ} (hσ : LocallyIntegrable σ volume)",
+        "private lemma poly_conv_bridge (p : Polynomial ℝ) (ψ : ℝ → ℝ) :",
+        "private lemma route_A_eq {σ φ ψ₀ : ℝ → ℝ} (hσ : LocallyIntegrable σ volume)",
+        "private lemma route_B_eq {σ φ ψ₀ : ℝ → ℝ} (hσ : LocallyIntegrable σ volume)",
+        "theorem conv_left_comm_mul {σ φ ψ : ℝ → ℝ} (hσ : LocallyIntegrable σ volume)",
+        "theorem exists_uniform_degree_bound {σ : ℝ → ℝ} (hσ : LocallyIntegrable σ volume)"
+      ],
       "upstream_path": "NeuralNetworkProofs/ForMathlib/ConvolutionDegreeBound.lean",
       "upstream_sha256": "617c035f03b6093d28afb658b9ae8b9d85ebc8626908cf176ebc3ccbc1e12253"
     },
@@ -13,6 +25,9 @@
       "adapted": false,
       "module": "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionIteratedDeriv",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/ConvolutionIteratedDeriv.lean",
+      "upstream_header_lines": [
+        "theorem iteratedDeriv_convolution_left {f g : ℝ → ℝ} (n : ℕ)"
+      ],
       "upstream_path": "NeuralNetworkProofs/ForMathlib/ConvolutionIteratedDeriv.lean",
       "upstream_sha256": "f7c8d84f71bb26137893577baf16cb352f34634fec71fd8e8cf84ee7d97c238d"
     },
@@ -21,6 +36,23 @@
       "adapted": false,
       "module": "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionPolynomial",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/ConvolutionPolynomial.lean",
+      "upstream_header_lines": [
+        "private lemma integrable_mul_of_compactSupport {ψ : ℝ → ℝ} (hψ : Continuous ψ)",
+        "private lemma monomialConvCoeff_top {ψ : ℝ → ℝ} (n : ℕ) :",
+        "private lemma monomial_conv_expand (n : ℕ) (x y : ℝ) (ψ : ℝ → ℝ) :",
+        "private lemma monomial_conv_integral_eq (n : ℕ) (x : ℝ) (m : ℕ) (ψ : ℝ → ℝ) :",
+        "private lemma monomial_conv_poly_deg_le (n m : ℕ) (c : ℕ → ℝ)",
+        "private lemma monomial_conv_summand_integrable {ψ : ℝ → ℝ} (hψ : Continuous ψ)",
+        "private lemma poly_conv_off_diag_coeff_zero {p : Polynomial ℝ} (qf : ℕ → Polynomial ℝ)",
+        "private lemma poly_conv_piece_deg_le {p : Polynomial ℝ} (qf : ℕ → Polynomial ℝ)",
+        "private lemma poly_conv_summand_integrable {ψ : ℝ → ℝ} (hψ : Continuous ψ)",
+        "theorem convolutionExists_left_mul {φ σ : ℝ → ℝ} (hφ : Continuous φ)",
+        "theorem convolutionExists_right_mul {σ ψ : ℝ → ℝ} (hσ : LocallyIntegrable σ volume)",
+        "theorem convolution_comm_mul (f g : ℝ → ℝ) :",
+        "theorem monomial_conv_isPoly {ψ : ℝ → ℝ} (hψ : Continuous ψ) (hψc : HasCompactSupport ψ) (n : ℕ) :",
+        "theorem natDegree_poly_conv_eq {ψ : ℝ → ℝ} (hψ : Continuous ψ) (hψc : HasCompactSupport ψ)",
+        "theorem poly_conv_isPoly {ψ : ℝ → ℝ} (hψ : Continuous ψ) (hψc : HasCompactSupport ψ)"
+      ],
       "upstream_path": "NeuralNetworkProofs/ForMathlib/ConvolutionPolynomial.lean",
       "upstream_sha256": "dbd881a6ab45d6498a801e1d3673fbf099e470a24e8d1284d69f42f3cd5f5a4c"
     },
@@ -29,6 +61,23 @@
       "adapted": false,
       "module": "JurisLean.External.NeuralNetworkProofs.ForMathlib.IteratedDerivPolynomial",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/IteratedDerivPolynomial.lean",
+      "upstream_header_lines": [
+        "private lemma antideriv_sum_degree (q : Polynomial ℝ) :",
+        "private lemma antideriv_sum_derivative (q : Polynomial ℝ) :",
+        "private lemma contDiff_deriv_of_succ {f : ℝ → ℝ} {n : ℕ}",
+        "private lemma contDiff_succ_cast {f : ℝ → ℝ} {n : ℕ}",
+        "private lemma degree_add_const_le {Q q : Polynomial ℝ} {n : ℕ} (c : ℝ)",
+        "private lemma degree_add_one_le_of_lt {q : Polynomial ℝ} {n : ℕ}",
+        "private lemma deriv_sub_antideriv_eq_zero {f : ℝ → ℝ} {Q q : Polynomial ℝ}",
+        "private lemma differentiable_of_contDiff_succ {f : ℝ → ℝ} {n : ℕ}",
+        "private lemma hasDerivAt_antideriv (Q q : Polynomial ℝ) (hQ : derivative Q = q) (x : ℝ) :",
+        "private lemma iteratedDeriv_deriv_eq_zero {f : ℝ → ℝ} {n : ℕ}",
+        "private lemma sub_antideriv_const {f : ℝ → ℝ} {Q : Polynomial ℝ}",
+        "theorem exists_antideriv (q : Polynomial ℝ) :",
+        "theorem iteratedDeriv_eq_zero_imp_poly {f : ℝ → ℝ} {n : ℕ}",
+        "theorem iteratedDeriv_eval (n : ℕ) (q : Polynomial ℝ) :",
+        "theorem iteratedDeriv_succ_eq_zero_of_natDegree_le {p : Polynomial ℝ} {d : ℕ}"
+      ],
       "upstream_path": "NeuralNetworkProofs/ForMathlib/IteratedDerivPolynomial.lean",
       "upstream_sha256": "2c0d175bc399d0c1facce77e245ddc425818dcf3d54fdd22e0ebecb5d2469a5b"
     },
@@ -37,6 +86,13 @@
       "adapted": false,
       "module": "JurisLean.External.NeuralNetworkProofs.ForMathlib.PolynomialDistribution",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/PolynomialDistribution.lean",
+      "upstream_header_lines": [
+        "private lemma exists_factor {W : Type*} [AddCommGroup W] [Module ℝ W]",
+        "private lemma integrable_pow_mul {g : ℝ → ℝ} (hg : ContDiff ℝ ∞ g)",
+        "private lemma integral_mul_poly_eq_sum {d : ℕ} (c : Fin (d + 1) → ℝ)",
+        "private lemma linFunctional_pi_eq_sum {n : ℕ} (ℓ : (Fin n → ℝ) →ₗ[ℝ] ℝ)",
+        "theorem aePolynomial_of_annihilates_moment_vanishing {f : ℝ → ℝ} (d : ℕ)"
+      ],
       "upstream_path": "NeuralNetworkProofs/ForMathlib/PolynomialDistribution.lean",
       "upstream_sha256": "0a8c4fd74a92e31b918883cd940ef8b9079e5f2ce935f4ba219b8ed0970abd9d"
     },
@@ -45,6 +101,21 @@
       "adapted": false,
       "module": "JurisLean.External.NeuralNetworkProofs.ForMathlib.RidgePowersSpan",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/RidgePowersSpan.lean",
+      "upstream_header_lines": [
+        "private theorem coeff_ridgePoly (k : ℕ) (a : Fin n → ℝ) (d : Fin n →₀ ℕ) :",
+        "private theorem coeff_ridgePoly_one (k : ℕ) (d : Fin n →₀ ℕ) (hd : d.degree = k) :",
+        "private theorem coeff_scaleHom (a : Fin n → ℝ) (p : MvPolynomial (Fin n) ℝ) (e : Fin n →₀ ℕ) :",
+        "private theorem degree_k_mem_ridgePoly_support (k : ℕ) (d : Fin n →₀ ℕ) (hd : d.degree = k) :",
+        "private theorem dual_ridgePoly_eq_sum (k : ℕ) (f : Module.Dual ℝ (MvPolynomial (Fin n) ℝ))",
+        "private theorem eval_ridgePoly (k : ℕ) (a x : Fin n → ℝ) :",
+        "private theorem eval_witness_poly (k : ℕ) (f : Module.Dual ℝ (MvPolynomial (Fin n) ℝ))",
+        "private theorem linForm_isHomogeneous (a : Fin n → ℝ) : (linForm a).IsHomogeneous 1 := by",
+        "private theorem ridgePoly_isHomogeneous (k : ℕ) (a : Fin n → ℝ) :",
+        "private theorem ridgePoly_span (k : ℕ) :",
+        "private theorem ridgePoly_support_subset (k : ℕ) (a : Fin n → ℝ) :",
+        "private theorem scaleHom_ridgePoly (k : ℕ) (a : Fin n → ℝ) :",
+        "theorem ridgePow_span (k : ℕ) :"
+      ],
       "upstream_path": "NeuralNetworkProofs/ForMathlib/RidgePowersSpan.lean",
       "upstream_sha256": "c2050e0677cc9012ee79783da76a05e14e02d2871e661d9f5cfb4d8ddf9f50c8"
     },
@@ -53,6 +124,16 @@
       "adapted": false,
       "module": "JurisLean.External.NeuralNetworkProofs.ForMathlib.SmoothCompactAntideriv",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/SmoothCompactAntideriv.lean",
+      "upstream_header_lines": [
+        "private lemma contDiff_antideriv {h : ℝ → ℝ} (hh : ContDiff ℝ ∞ h)",
+        "private lemma deriv_antideriv_eq {g : ℝ → ℝ} (hg : Continuous g)",
+        "private lemma hasCompactSupport_antideriv {h : ℝ → ℝ}",
+        "private lemma hasDerivAt_antideriv {h : ℝ → ℝ} (hh : Continuous h)",
+        "private lemma integrableOn_Iic_of_compactSupport {h : ℝ → ℝ} (hh : Continuous h)",
+        "private lemma moment_antideriv {h : ℝ → ℝ} (hh : ContDiff ℝ ∞ h)",
+        "private lemma moments_zero_antideriv {g : ℝ → ℝ} (hg : ContDiff ℝ ∞ g)",
+        "theorem exists_iteratedDeriv_eq_of_moments_zero {g : ℝ → ℝ} (d : ℕ)"
+      ],
       "upstream_path": "NeuralNetworkProofs/ForMathlib/SmoothCompactAntideriv.lean",
       "upstream_sha256": "62e1ba3832308d1bb0d2b2e6e80be767fdf3e339f5e5e49b7afddb4aa39ae15c"
     },
@@ -61,6 +142,27 @@
       "adapted": false,
       "module": "JurisLean.External.NeuralNetworkProofs.ForMathlib.UniformRiemannConvolution",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/ForMathlib/UniformRiemannConvolution.lean",
+      "upstream_header_lines": [
+        "private theorem aestronglyMeasurable_comp_sub {f : ℝ → ℝ}",
+        "private theorem bad_card_measure_bound {M Δ δ₀ val : ℝ} {K : Set ℝ} {s : ℝ}",
+        "private theorem cell_error_split_bound {f φ : ℝ → ℝ} {M Δ δ_f δ_φ δ₀ B C ε s : ℝ} {m i : ℕ}",
+        "private theorem exists_cthickening_measure_lt {K : Set ℝ}",
+        "private theorem exists_uniform_bound {f : ℝ → ℝ}",
+        "private theorem intervalIntegrable_comp_sub {f : ℝ → ℝ} {s : ℝ}",
+        "private theorem mesh_lt {M R : ℝ} (hRpos : 0 < R) {m : ℕ}",
+        "private theorem node_last {M Δ : ℝ} {m : ℕ} (hΔ : Δ = 2 * M / m) (hmpos : (0 : ℝ) < m) :",
+        "private theorem node_lb {Δ : ℝ} (M : ℝ) (hΔpos : 0 < Δ) (i : ℕ) : -M ≤ node M Δ i := by",
+        "private theorem node_le {Δ : ℝ} (M : ℝ) (hΔpos : 0 < Δ) (i : ℕ) :",
+        "private theorem node_mono {Δ : ℝ} (M : ℝ) (hΔpos : 0 < Δ) {i j : ℕ} (hij : i ≤ j) :",
+        "private theorem node_step (M Δ : ℝ) (i : ℕ) : node M Δ (i + 1) - node M Δ i = Δ := by",
+        "private theorem node_ub {M Δ : ℝ} {m : ℕ} (hΔ : Δ = 2 * M / m) (hmpos : (0 : ℝ) < m)",
+        "private theorem node_zero (M Δ : ℝ) : node M Δ 0 = -M := by simp [node]",
+        "private theorem riemannSum_eq_cell_sum (f φ : ℝ → ℝ) {M Δ : ℝ} {m : ℕ}",
+        "private theorem riemann_integral_eq_cell_sum {f φ : ℝ → ℝ} {M Δ : ℝ} {m : ℕ}",
+        "private theorem uniformContinuousOn_off_disc {f : ℝ → ℝ} {A : Set ℝ}",
+        "theorem tendstoUniformly_riemannSum_aeContinuous",
+        "theorem tendstoUniformly_riemannSum_continuous"
+      ],
       "upstream_path": "NeuralNetworkProofs/ForMathlib/UniformRiemannConvolution.lean",
       "upstream_sha256": "82f4d2a5bec993a9a5f63c26a111dc4122cf786c60a5414e50c8825b3bdf1190"
     },
@@ -69,6 +171,7 @@
       "adapted": false,
       "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno.lean",
+      "upstream_header_lines": [],
       "upstream_path": "NeuralNetworkProofs/UniversalApproximation/Leshno.lean",
       "upstream_sha256": "cdf3fe654f7b60f27e2aaebc65678db4490e77184adf0404942318c85dd06617"
     },
@@ -77,6 +180,10 @@
       "adapted": false,
       "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.ClassM",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/ClassM.lean",
+      "upstream_header_lines": [
+        "theorem ClassM.of_continuous {σ : ℝ → ℝ} (hσ : Continuous σ) : ClassM σ where",
+        "theorem isPolynomialFun_of_continuous_of_aePolynomial {σ : ℝ → ℝ}"
+      ],
       "upstream_path": "NeuralNetworkProofs/UniversalApproximation/Leshno/ClassM.lean",
       "upstream_sha256": "36f1ee0db370650c12dfa438c90dcd179fa5a9b6dcd91e3e7229fb79f6402678"
     },
@@ -85,6 +192,25 @@
       "adapted": false,
       "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Converse",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Converse.lean",
+      "upstream_header_lines": [
+        "private theorem degree_comp_le_of_natDegree_le_one (p L : Polynomial ℝ) (hL : L.natDegree ≤ 1) :",
+        "private theorem infDist_monomial_Pd_pos (d : ℕ) :",
+        "theorem AEPolyOn.add {d : ℕ} {h₁ h₂ : ↥Kset → ℝ} (H₁ : AEPolyOn d h₁) (H₂ : AEPolyOn d h₂) :",
+        "theorem AEPolyOn.smul {d : ℕ} (c : ℝ) {h : ↥Kset → ℝ} (H : AEPolyOn d h) :",
+        "theorem Pd_isClosed (d : ℕ) : IsClosed (Pd d : Set C(↥II, ℝ)) :=",
+        "theorem aeEq_poly_of_affine {σ : ℝ → ℝ} {p : Polynomial ℝ} (hp : σ =ᵐ[volume] fun t => p.eval t)",
+        "theorem aePolyOn_genFun {σ : ℝ → ℝ} {p : Polynomial ℝ}",
+        "theorem aePolyOn_of_mem_genSpan {σ : ℝ → ℝ} {p : Polynomial ℝ}",
+        "theorem aePolyOn_zero (d : ℕ) : AEPolyOn d (0 : ↥Kset → ℝ) := by",
+        "theorem aePolynomial_not_dense {σ : ℝ → ℝ} (hp : IsAEPolynomial σ) : ¬ DenselyApproximates σ := by",
+        "theorem continuous_cvec : Continuous cvec := by unfold cvec; fun_prop",
+        "theorem cvec_mem_Kset {t : ℝ} (ht : t ∈ II) : cvec t ∈ Kset := ⟨t, ht, rfl⟩",
+        "theorem isCompact_Kset : IsCompact Kset :=",
+        "theorem monomial_notMem_Pd (d : ℕ) : restrictLM (Polynomial.X ^ (d + 1)) ∉ Pd d := by",
+        "theorem quasiMeasurePreserving_affine {a b : ℝ} (ha : a ≠ 0) :",
+        "theorem restrictLM_mem_Pd {d : ℕ} {q : Polynomial ℝ} (hq : q.degree ≤ d) :",
+        "theorem subset_of_ae_restrict_mem {S : Set ℝ} (hS : IsClosed S)"
+      ],
       "upstream_path": "NeuralNetworkProofs/UniversalApproximation/Leshno/Converse.lean",
       "upstream_sha256": "4a409fd87f865e00192fecee8144268cc80d5d30be0c8de9c13564f0bcd479a1"
     },
@@ -93,6 +219,14 @@
       "adapted": false,
       "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Family",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Family.lean",
+      "upstream_header_lines": [
+        "theorem ApproxByGen.add {σ : ℝ → ℝ} {K : Set E} {h₁ h₂ : ↥K → ℝ}",
+        "theorem ApproxByGen.smul {σ : ℝ → ℝ} {K : Set E} (c : ℝ) {h : ↥K → ℝ}",
+        "theorem T_isClosed (σ : ℝ → ℝ) {K : Set E} (hK : IsCompact K) :",
+        "theorem approxByGen_zero (σ : ℝ → ℝ) (K : Set E) : ApproxByGen σ K (0 : ↥K → ℝ) := by",
+        "theorem denselyApproximates_of_forall_T_eq_top {σ : ℝ → ℝ}",
+        "theorem genFun_reparam_mem (σ : ℝ → ℝ) (K : Set E) (lam : ℝ) (w : E) (b c : ℝ) :"
+      ],
       "upstream_path": "NeuralNetworkProofs/UniversalApproximation/Leshno/Family.lean",
       "upstream_sha256": "ff7c175da46d3d3a5e93574025b2a5e1580889491276130607a5187aa6744ca0"
     },
@@ -101,6 +235,16 @@
       "adapted": false,
       "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Mollify",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Mollify.lean",
+      "upstream_header_lines": [
+        "private theorem mollify_annihilates_of_iteratedDeriv_zero {σ : ℝ → ℝ}",
+        "private theorem mollify_ridge_mem_T_of_uniformRiemann {σ φ : ℝ → ℝ} (M : ℝ)",
+        "private theorem reflect_moments_zero {g : ℝ → ℝ} {d : ℕ}",
+        "theorem ClassM.aestronglyMeasurable {σ : ℝ → ℝ} (hσ : ClassM σ) :",
+        "theorem ClassM.locallyIntegrable {σ : ℝ → ℝ} (hσ : ClassM σ) :",
+        "theorem contDiff_mollify {σ φ : ℝ → ℝ} (hσ : ClassM σ) (hφ : ContDiff ℝ ∞ φ)",
+        "theorem exists_nonpoly_mollify {σ : ℝ → ℝ} (hσ : ClassM σ) (hnp : ¬ IsAEPolynomial σ) :",
+        "theorem mollify_ridge_mem_T {σ φ : ℝ → ℝ} (hσ : ClassM σ) (hφ : ContDiff ℝ ∞ φ)"
+      ],
       "upstream_path": "NeuralNetworkProofs/UniversalApproximation/Leshno/Mollify.lean",
       "upstream_sha256": "61ded14b71ce85eb7d0d096dd254c45b026797e3e597d38ad3815acc7eaa7c95"
     },
@@ -109,6 +253,9 @@
       "adapted": false,
       "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.MollifyDef",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/MollifyDef.lean",
+      "upstream_header_lines": [
+        "theorem mollify_eq_convolution (σ φ : ℝ → ℝ) :"
+      ],
       "upstream_path": "NeuralNetworkProofs/UniversalApproximation/Leshno/MollifyDef.lean",
       "upstream_sha256": "2f17188ad2ba009f1bc3e4c999f3a81a960d2081225fd75e2e9884ef412be915"
     },
@@ -117,16 +264,36 @@
       "adapted": false,
       "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Ridge",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Ridge.lean",
+      "upstream_header_lines": [
+        "private theorem aeval_coordCM_eq_funLeftIncl_evalₗ {K : Set (EuclideanSpace ℝ (Fin n))}",
+        "private theorem aeval_coordCM_mem_T {σ : ℝ → ℝ} (hσu : UnivariateDense σ)",
+        "private theorem funLeftIncl_homogeneous_mem_Tplain {σ : ℝ → ℝ} (hσu : UnivariateDense σ)",
+        "private theorem funLeftIncl_ridgePow_mem_Tplain {σ : ℝ → ℝ} (hσu : UnivariateDense σ)",
+        "private theorem ridgePow_mem_Tplain {σ : ℝ → ℝ} (hσu : UnivariateDense σ)",
+        "theorem approxByGen_ridge_of_compact_image {σ : ℝ → ℝ} (hσu : UnivariateDense σ)",
+        "theorem mem_T_iff_mem_Tplain {σ : ℝ → ℝ} {K : Set (EuclideanSpace ℝ (Fin n))} (h : C(↥K, ℝ)) :",
+        "theorem ridge_density {σ : ℝ → ℝ} (hσu : UnivariateDense σ)",
+        "theorem ridge_mem_T {σ : ℝ → ℝ} (hσu : UnivariateDense σ)"
+      ],
       "upstream_path": "NeuralNetworkProofs/UniversalApproximation/Leshno/Ridge.lean",
       "upstream_sha256": "6ea0a1864641f6122f81aca2e20cddc7513ba804e9fcee806f67399582cbf4bd"
     },
     {
       "adaptations": [
-        "SmoothEngine.lean:354 (smooth_engine): added one \\\beta_reduce at h2\\ before the upstream wa [Subalgebra.topologicalClosure_coe, Algebra.coe_top]\\ -- mathlib v4.30.0 leaves congrArgs lambda un-beta-reduced, so the rewrite pattern ↑(Subalgebra.topologicalClosure _) did not match (run 36447860895, subject aea8fb9). No statement or other proof line touched."
+        "SmoothEngine.lean:354 (smooth_engine): added one beta_reduce at h2 before the upstream rwa [Subalgebra.topologicalClosure_coe, Algebra.coe_top] -- mathlib v4.30.0 leaves congrArg lambda un-beta-reduced, so the rewrite pattern did not match (run 36447860895, subject aea8fb9). Statement and every other proof line untouched."
       ],
       "adapted": true,
       "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.SmoothEngine",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/SmoothEngine.lean",
+      "upstream_header_lines": [
+        "private lemma diff_quot_bound {G : ℝ → ℝ} (hG : Differentiable ℝ G) (u w s ε : ℝ) (hs : s ≠ 0)",
+        "private lemma monomial_mem {g : ℝ → ℝ} (hg : ContDiff ℝ ∞ g) (hnp : ¬ IsPolynomialFun g)",
+        "private lemma seg_in_region (lam b M tv s : ℝ) (hM : |tv| ≤ M) (hs : |s| ≤ 1) :",
+        "private lemma taylor_seg_bound {G : ℝ → ℝ} (hG : Differentiable ℝ G) (u h ε : ℝ)",
+        "theorem deriv_pow_mem {g : ℝ → ℝ} (hg : ContDiff ℝ ∞ g) (I : Set ℝ) (hI : IsCompact I)",
+        "theorem exists_deriv_ne {g : ℝ → ℝ} (hg : ContDiff ℝ ∞ g)",
+        "theorem smooth_engine {g : ℝ → ℝ} (hg : ContDiff ℝ ∞ g) (hnp : ¬ IsPolynomialFun g)"
+      ],
       "upstream_path": "NeuralNetworkProofs/UniversalApproximation/Leshno/SmoothEngine.lean",
       "upstream_sha256": "e101655df567e61b9515353862c15b2f6c1422b5f05065032bd50cd2c5fd8f64"
     },
@@ -135,6 +302,12 @@
       "adapted": false,
       "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Theorem",
       "repo_path": "proofs/lean/juris_lean/JurisLean/External/NeuralNetworkProofs/UniversalApproximation/Leshno/Theorem.lean",
+      "upstream_header_lines": [
+        "private lemma smoothMollify_span_le_T {σ φ : ℝ → ℝ} (hσ : ClassM σ) (hφ : ContDiff ℝ ∞ φ)",
+        "theorem leshno_dense {σ : ℝ → ℝ} (hσ : ClassM σ) (hnp : ¬ IsAEPolynomial σ) :",
+        "theorem leshno_dense_iff {σ : ℝ → ℝ} (hσ : ClassM σ) :",
+        "theorem univariate_density {σ : ℝ → ℝ} (hσ : ClassM σ) (hnp : ¬ IsAEPolynomial σ) :"
+      ],
       "upstream_path": "NeuralNetworkProofs/UniversalApproximation/Leshno/Theorem.lean",
       "upstream_sha256": "7b49b8ccf7558229ea18e7b9a15e8f94e9f40349be5d5356a891ab8b1e09cf13"
     }

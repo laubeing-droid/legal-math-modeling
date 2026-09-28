@@ -107,6 +107,8 @@ import JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Ridg
 import JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.SmoothEngine
 import JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Theorem
 
+import JurisLean.Mandate.ReLUFamily
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -716,6 +718,19 @@ open HornSystem
 #print axioms JurisLean.Mandate.ReLUApprox.out_origin
 #print axioms JurisLean.Mandate.ReLUApprox.out_stable
 #print axioms JurisLean.Mandate.ReLUApprox.relu_between
+#print axioms JurisLean.Mandate.ReLUFamily.continuous_relu
+#print axioms JurisLean.Mandate.ReLUFamily.monotone_relu
+#print axioms JurisLean.Mandate.ReLUFamily.relu_approx
+#print axioms JurisLean.Mandate.ReLUFamily.relu_classM
+#print axioms JurisLean.Mandate.ReLUFamily.relu_dense
+#print axioms JurisLean.Mandate.ReLUFamily.relu_dense_iff
+#print axioms JurisLean.Mandate.ReLUFamily.relu_neg_one
+#print axioms JurisLean.Mandate.ReLUFamily.relu_nonneg
+#print axioms JurisLean.Mandate.ReLUFamily.relu_not_constant
+#print axioms JurisLean.Mandate.ReLUFamily.relu_not_isAEPolynomial
+#print axioms JurisLean.Mandate.ReLUFamily.relu_of_nonneg
+#print axioms JurisLean.Mandate.ReLUFamily.relu_of_nonpos
+#print axioms JurisLean.Mandate.ReLUFamily.relu_one
 #print axioms JurisLean.Mandate.RouteDecision.anyUsable_append
 #print axioms JurisLean.Mandate.RouteDecision.excluded_is_skipped
 #print axioms JurisLean.Mandate.RouteDecision.firstUsable_cons_notUsable

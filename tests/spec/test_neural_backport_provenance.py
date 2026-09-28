@@ -99,6 +99,69 @@ def test_adapted_flag_matches_reconstruction_and_drift_is_logged() -> None:
     assert not unlogged, f"drifted files without a real adaptation log: {unlogged}"
 
 
+def _header_lines(text: str) -> list[str]:
+    """The theorem/lemma declaration header lines, whitespace-collapsed, sorted.
+
+    This is the mechanical form of "statements unchanged" for a backport
+    (blind-audit finding P1-6): an adaptation may repair a proof body, but
+    every declaration header the upstream file wrote must survive verbatim,
+    and none may be added or dropped silently. The adapted-flag regime alone
+    could not see a statement-weakening edit that logged any non-placeholder
+    string; comparing against the RECORDED upstream headers binds it without
+    needing the upstream clone (CI has none).
+    """
+    import re
+
+    return sorted(
+        " ".join(line.split())
+        for line in text.split("\n")
+        if re.match(r"^\s*(private\s+|protected\s+)*(theorem|lemma)\s", line)
+    )
+
+
+def test_adaptations_never_touch_declaration_headers() -> None:
+    doc = _doc()
+    missing = [rec["repo_path"] for rec in doc["files"]
+               if "upstream_header_lines" not in rec]
+    assert not missing, f"records without pinned upstream headers: {missing}"
+    bad = [
+        rec["repo_path"]
+        for rec in doc["files"]
+        if _header_lines(_reconstruct(rec, doc["header_marker"]))
+        != sorted(rec["upstream_header_lines"])
+    ]
+    assert not bad, (
+        f"adaptations changed declaration headers (statements not intact): {bad}"
+    )
+
+
+def test_recorded_headers_match_the_upstream_clone_when_present() -> None:
+    """Where the pinned clone exists, the recorded headers are checked at the source.
+
+    The previous test binds the tree to the record; this one binds the record
+    to upstream bytes, so the pin cannot rot between port and audit.
+    """
+    import subprocess
+
+    clone = ROOT.parent / "external" / "neural-network-proofs"
+    if not clone.exists():
+        pytest.skip("upstream clone not present; record-to-tree binding is the gate")
+    doc = _doc()
+    rev = doc["sources"]["neuralnetworkproofs"]["revision"]
+    bad = []
+    for rec in doc["files"]:
+        proc = subprocess.run(
+            ["git", "show", f"{rev}:{rec['upstream_path']}"],
+            cwd=clone, capture_output=True, text=True, encoding="utf-8",
+        )
+        if proc.returncode != 0:
+            bad.append(f"{rec['repo_path']}: git show failed")
+            continue
+        if _header_lines(_reverse_imports(proc.stdout)) != sorted(rec["upstream_header_lines"]):
+            bad.append(rec["repo_path"])
+    assert not bad, f"recorded headers diverge from the pinned upstream clone: {bad}"
+
+
 def test_unadapted_files_reproduce_upstream_bytes() -> None:
     """While a file is still unadapted it must stay byte-faithful.
 
@@ -167,7 +230,9 @@ def test_backport_files_carry_no_forbidden_tokens(marker: str) -> None:
     Comments are stripped first (mirroring the guard scan's intent) so English
     prose about the tokens cannot false-positive. CI's guard scan and
     elaboration remain the authority; this catches a repair that 'fixes' drift
-    by cheating before it reaches them.
+    by cheating before it reaches them. (`axiom` is checked by the guard scan's
+    line-start rule and mirrored below rather than here, because the bare word
+    appears in legitimate prose.)
     """
     import re
     import sys
@@ -181,3 +246,23 @@ def test_backport_files_carry_no_forbidden_tokens(marker: str) -> None:
             code, depth = strip_comments(line, depth)
             if re.search(rf"\b{marker}\b", code):
                 assert False, f"{path.name}: forbidden token {marker!r} in {code.strip()[:80]}"
+
+
+def test_backport_files_declare_no_axioms() -> None:
+    """Mirror of the guard scan's line-start `axiom` rule (blind-audit P2-5).
+
+    The guard scan enforces this in CI over all tracked Lean; holding it here
+    too means the backport subtree cannot regress even in a local-only run.
+    """
+    import re
+    import sys
+
+    sys.path.insert(0, str(ROOT / "scripts"))
+    from lean_grammar import strip_comments
+
+    for path in sorted(EXTERNAL.rglob("*.lean")):
+        depth = 0
+        for line in path.read_text(encoding="utf-8").splitlines():
+            code, depth = strip_comments(line, depth)
+            if re.match(r"^\s*axiom\b", code):
+                assert False, f"{path.name}: axiom declaration in {code.strip()[:80]}"

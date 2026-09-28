@@ -74,7 +74,6 @@ without guessing where it came from.
 | 36357526499 | cancelled | `d510b9e` | ci/mandate-wave1 | push | 2/8 | 6 | 03_证明战役台账.md |
 | 36357820618 | cancelled | `bf08bda` | ci/mandate-wave1 | push | 1/8 | 4 | 03_证明战役台账.md |
 | 36358097950 | success | `1baab91` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md |
-| 36359301786 | success | `d38f71e` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md |
 | 36365128114 | success | `e9abf6a` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md |
 | 36366431370 | failure | `74639ef` | ci/mandate-wave1 | push | 2/8 | 5 | 03_证明战役台账.md |
 | 36368232581 | failure | `83235b7` | ci/mandate-wave1 | push | 1/8 | 4 | 03_证明战役台账.md |

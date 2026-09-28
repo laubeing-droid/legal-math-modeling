@@ -135,7 +135,11 @@ theorem quasiconvexOn_payoff_left {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → �
   rw [h1]
   have hX : payoff A p q ≤ max (payoff A p q) (payoff A p' q) := le_max_left _ _
   have hY : payoff A p' q ≤ max (payoff A p q) (payoff A p' q) := le_max_right _ _
-  nlinarith
+  calc a * payoff A p q + b * payoff A p' q
+      ≤ a * max (payoff A p q) (payoff A p' q) + b * max (payoff A p q) (payoff A p' q) :=
+        add_le_add (mul_le_mul_of_nonneg_left hX ha) (mul_le_mul_of_nonneg_left hY hb)
+    _ = (a + b) * max (payoff A p q) (payoff A p' q) := (mul_add a b _).symm
+    _ = max (payoff A p q) (payoff A p' q) := by rw [hab, one_mul]
 
 /-- Held to any row mixture, the payoff is quasiconcave on the column simplex. -/
 theorem quasiconcaveOn_payoff_right {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ)
@@ -147,7 +151,11 @@ theorem quasiconcaveOn_payoff_right {m n : ℕ} (A : Fin (m+1) → Fin (n+1) →
   rw [h1]
   have hX : min (payoff A p q) (payoff A p q') ≤ payoff A p q := min_le_left _ _
   have hY : min (payoff A p q) (payoff A p q') ≤ payoff A p q' := min_le_right _ _
-  nlinarith
+  have h : (a + b) * min (payoff A p q) (payoff A p q')
+      ≤ a * payoff A p q + b * payoff A p q' := by
+    rw [mul_add]
+    exact add_le_add (mul_le_mul_of_nonneg_left hX ha) (mul_le_mul_of_nonneg_left hY hb)
+  rwa [hab, one_mul] at h
 
 /-- Every column slice of the payoff is continuous, hence lower semicontinuous on the row
 simplex. -/
@@ -155,7 +163,12 @@ theorem lsc_payoff_left {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ) (q : F
     LowerSemicontinuousOn (fun p : Fin (m+1) → ℝ => payoff A p q)
       (stdSimplex ℝ (Fin (m+1))) :=
   by
-    have hc : Continuous (fun p : Fin (m+1) → ℝ => payoff A p q) := by continuity
+    have hc : Continuous (fun p : Fin (m+1) → ℝ => payoff A p q) := by
+      show Continuous (fun p : Fin (m+1) → ℝ =>
+        ∑ i ∈ Finset.univ, ∑ j ∈ Finset.univ, p i * A i j * q j)
+      refine continuous_finsetSum Finset.univ fun i _ => ?_
+      refine continuous_finsetSum Finset.univ fun j _ => ?_
+      exact ((continuous_apply i).mul continuous_const).mul continuous_const
     exact (hc.lowerSemicontinuous).lowerSemicontinuousOn _
 
 /-- Every row slice is continuous, hence upper semicontinuous on the column simplex. -/
@@ -163,7 +176,12 @@ theorem usc_payoff_right {m n : ℕ} (A : Fin (m+1) → Fin (n+1) → ℝ) (p : 
     UpperSemicontinuousOn (fun q : Fin (n+1) → ℝ => payoff A p q)
       (stdSimplex ℝ (Fin (n+1))) :=
   by
-    have hc : Continuous (fun q : Fin (n+1) → ℝ => payoff A p q) := by continuity
+    have hc : Continuous (fun q : Fin (n+1) → ℝ => payoff A p q) := by
+      show Continuous (fun q : Fin (n+1) → ℝ =>
+        ∑ i ∈ Finset.univ, ∑ j ∈ Finset.univ, p i * A i j * q j)
+      refine continuous_finsetSum Finset.univ fun i _ => ?_
+      refine continuous_finsetSum Finset.univ fun j _ => ?_
+      exact (continuous_const.mul continuous_const).mul (continuous_apply j)
     exact (hc.upperSemicontinuous).upperSemicontinuousOn _
 
 /-- **Every finite two-player zero-sum game has a value in mixed strategies.** Ten

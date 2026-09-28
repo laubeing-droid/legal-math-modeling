@@ -57,6 +57,9 @@ CLAIM_SIGNALS: tuple[tuple[str, tuple[str, ...]], ...] = (
      ("Banach 完备性已闭合", "隐私已确立", "38 个常数已标定")),
     ("later commits certified", ("后续提交自动继承", "继承该 PASS")),
     ("artifacts are a permanent archive", ("CI 工件永久存档", "工件即永久证据")),
+    ("zero-sum read as general Nash existence",
+     ("纳什均衡已被证明", "每个博弈都有纳什均衡", "任意有限博弈都有纳什均衡",
+      "general Nash existence", "every finite game has a Nash equilibrium")),
 )
 
 # A numeric theorem claim is only allowed with a binding on the same line.

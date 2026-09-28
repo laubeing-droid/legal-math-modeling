@@ -2376,7 +2376,7 @@
       "jobs_total": 8,
       "name": "chore(inventory): rebind after the root join",
       "quoted_by": [
-        "docs/master-plan/03_证明战役台账.md:1135",
+        "docs/master-plan/03_证明战役台账.md:1192",
         "docs/master-plan/03_证明战役台账.md:175",
         "docs/master-plan/03_证明战役台账.md:287",
         "docs/master-plan/03_证明战役台账.md:580",
@@ -3453,7 +3453,7 @@
       "jobs_total": 8,
       "name": "docs(evidence): rebind source counts to the bridge attempt and say wh…",
       "quoted_by": [
-        "docs/master-plan/03_证明战役台账.md:1126",
+        "docs/master-plan/03_证明战役台账.md:1183",
         "docs/master-plan/03_证明战役台账.md:791",
         "docs/master-plan/03_证明战役台账.md:800",
         "docs/master-plan/03_证明战役台账.md:962",
@@ -4409,7 +4409,7 @@
       "jobs_total": 8,
       "name": "index(quotes): refresh locations after recording the Sion carrier",
       "quoted_by": [
-        "docs/master-plan/03_证明战役台账.md:1106",
+        "docs/master-plan/03_证明战役台账.md:1163",
         "docs/master-plan/03_证明战役台账.md:927"
       ],
       "run_id": 36358097950,
@@ -4472,7 +4472,7 @@
       "jobs_total": 8,
       "name": "docs(ledger): leave no non-success round unrecorded",
       "quoted_by": [
-        "docs/master-plan/03_证明战役台账.md:1106"
+        "docs/master-plan/03_证明战役台账.md:1163"
       ],
       "run_id": 36359301786,
       "started": true,
@@ -4665,6 +4665,69 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-09-28T02:09:41Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 4,
+      "conclusion": "failure",
+      "created_at": "2026-09-28T02:32:14Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "601fb0c33083bd302c25f86fb2f20a2e5b1e5866",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36370196379",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "fix(ledger): restore the LF worktree the per-file binding compares ag…",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:1120",
+        "docs/master-plan/03_证明战役台账.md:1141"
+      ],
+      "run_id": 36370196379,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-28T02:39:54Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

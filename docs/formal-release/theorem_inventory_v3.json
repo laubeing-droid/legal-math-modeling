@@ -469,6 +469,7 @@
     "JurisLean.Mandate.SubstrAdmission",
     "JurisLean.Mandate.TaxSlices",
     "JurisLean.Mandate.Waterfall",
+    "JurisLean.Mandate.ZeroSumSion",
     "JurisLean.ULMAxiomAudit",
     "JurisLean.WeightedSupNorm"
    ],
@@ -1039,6 +1040,13 @@
     "JurisLean.Mandate.Waterfall.paidOut_cons",
     "JurisLean.Mandate.Waterfall.paidOut_le_payment",
     "JurisLean.Mandate.Waterfall.paidOut_nil",
+    "JurisLean.Mandate.ZeroSumSion.combo_nonneg",
+    "JurisLean.Mandate.ZeroSumSion.mixLeft_convex",
+    "JurisLean.Mandate.ZeroSumSion.mixLeft_isCompact",
+    "JurisLean.Mandate.ZeroSumSion.mixLeft_nonempty",
+    "JurisLean.Mandate.ZeroSumSion.mixRight_convex",
+    "JurisLean.Mandate.ZeroSumSion.mixRight_isCompact",
+    "JurisLean.Mandate.ZeroSumSion.mixRight_nonempty",
     "exists_fixpoint_le_card",
     "fixed_at_card",
     "grounded_is_least_fixed_point",
@@ -1046,8 +1054,8 @@
     "horn_result_unique_least_fixed_point",
     "weightedSupDist_separates_points"
    ],
-   "sha256": "b6f76cc22b2abc084d1a25ada080e77ae6d038a683bacb23523eb993963f8e5a",
-   "size_bytes": 41539,
+   "sha256": "201f7e0898c3d410060a28313886cf895b869695945f465a13eb0e66f99fc08a",
+   "size_bytes": 42000,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -15548,6 +15556,52 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "payoff"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixRight_nonempty"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixLeft_nonempty"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixRight_isCompact"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixLeft_isCompact"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixRight_convex"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixLeft_convex"
+    },
+    {
+     "kind": "theorem",
+     "name": "combo_nonneg"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Mandate/ZeroSumSion.lean",
+   "print_axioms_targets": [],
+   "sha256": "d40d76301ca9121b7fef7347f9125968ef5502babe58ea8be692ab99203286be",
+   "size_bytes": 4081,
+   "theorem_count": 7,
+   "theorem_count_bol_convention": 7
+  },
+  {
+   "declarations": [
+    {
      "kind": "inductive",
      "name": "NormKindM4"
     },
@@ -19517,22 +19571,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 1968,
-   "file_count": 235,
+   "counted_declaration_count": 1975,
+   "file_count": 236,
    "lemma_count": 24,
-   "print_axioms_command_count": 833,
-   "print_axioms_distinct_targets": 779,
-   "theorem_count": 1944,
-   "theorem_count_bol_convention": 1908
+   "print_axioms_command_count": 840,
+   "print_axioms_distinct_targets": 786,
+   "theorem_count": 1951,
+   "theorem_count_bol_convention": 1915
   },
   "juris_lean_package": {
-   "counted_declaration_count": 1949,
-   "file_count": 220,
+   "counted_declaration_count": 1956,
+   "file_count": 221,
    "lemma_count": 17,
-   "print_axioms_command_count": 833,
-   "print_axioms_distinct_targets": 779,
-   "theorem_count": 1932,
-   "theorem_count_bol_convention": 1896
+   "print_axioms_command_count": 840,
+   "print_axioms_distinct_targets": 786,
+   "theorem_count": 1939,
+   "theorem_count_bol_convention": 1903
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -19727,6 +19781,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/SubstrAdmission.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/TaxSlices.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/Waterfall.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/ZeroSumSion.lean",
    "proofs/lean/juris_lean/JurisLean/PermissionConflict.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalEnvelopeSpec.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalNoninterference.lean",
@@ -19960,6 +20015,7 @@
    "proofs/lean/juris_lean/JurisLean/Mandate/SubstrAdmission.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/TaxSlices.lean",
    "proofs/lean/juris_lean/JurisLean/Mandate/Waterfall.lean",
+   "proofs/lean/juris_lean/JurisLean/Mandate/ZeroSumSion.lean",
    "proofs/lean/juris_lean/JurisLean/PermissionConflict.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalEnvelopeSpec.lean",
    "proofs/lean/juris_lean/JurisLean/ProposalNoninterference.lean",
@@ -20044,17 +20100,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "814548f9a3112cd4a6c12f43648d2cf9177f26b4a7b60286ea9f72cbbe6742c3",
+ "source_inventory_digest": "27aef379a434d86c362d994db6d9b33133c214fcb359f2b3b9c934179ae82812",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "ad35a2287144ab1cc4e9b02ed960562f8f35b8ff",
-  "tree": "1c51404afc7a94288f3613d747593701ff5922fb"
+  "commit": "1485c4fc735bdf683eeea7d4cdeebb6462c40372",
+  "tree": "0b987a615dfc4242aaeb025d9614648f7a914f5b"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 235,
+  "files_total": 236,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

@@ -433,6 +433,45 @@
     "JurisLean.BanachCertificate",
     "JurisLean.BusinessRoot.Analytics",
     "JurisLean.DungFixedPoint",
+    "JurisLean.External.FixedPointTheorems.apply_cubical_sperner",
+    "JurisLean.External.FixedPointTheorems.brouwer",
+    "JurisLean.External.FixedPointTheorems.convex_homeos",
+    "JurisLean.External.FixedPointTheorems.cubical_sperner",
+    "JurisLean.External.FixedPointTheorems.cubical_sperner_prep",
+    "JurisLean.External.FixedPointTheorems.kakutani",
+    "JurisLean.External.GameTheory.Concepts.ConstantSum",
+    "JurisLean.External.GameTheory.Concepts.Deviation",
+    "JurisLean.External.GameTheory.Concepts.Minimax",
+    "JurisLean.External.GameTheory.Concepts.MixedExtension",
+    "JurisLean.External.GameTheory.Concepts.ProductSimplexBrouwer",
+    "JurisLean.External.GameTheory.Concepts.SecurityStrategy",
+    "JurisLean.External.GameTheory.Concepts.SolutionConcepts",
+    "JurisLean.External.GameTheory.Concepts.ZeroSum",
+    "JurisLean.External.GameTheory.Concepts.ZeroSumNash",
+    "JurisLean.External.GameTheory.Core.GameForm",
+    "JurisLean.External.GameTheory.Core.GameProperties",
+    "JurisLean.External.GameTheory.Core.KernelGame",
+    "JurisLean.External.GameTheory.Languages.EFG.Refinements",
+    "JurisLean.External.GameTheory.Languages.EFG.Syntax",
+    "JurisLean.External.GameTheory.Math.Coupling",
+    "JurisLean.External.GameTheory.Math.OptimizationLocalGlobal",
+    "JurisLean.External.GameTheory.Math.PMFProduct",
+    "JurisLean.External.GameTheory.Math.ParameterizedChain",
+    "JurisLean.External.GameTheory.Math.Probability",
+    "JurisLean.External.GameTheory.Math.ProbabilityMassFunction",
+    "JurisLean.External.GameTheory.Math.TraceRun",
+    "JurisLean.External.GameTheory.Semantics.DSMachine",
+    "JurisLean.External.GameTheory.Semantics.TransitionTrace",
+    "JurisLean.External.GameTheory.Theorems.Kuhn",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.BehavioralToMixed",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.BehavioralToMixedCore",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.CorrelatedRealization",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.KuhnModel",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.MixedToBehavioralCore",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.ObsModel",
+    "JurisLean.External.GameTheory.Theorems.Minimax",
+    "JurisLean.External.GameTheory.Theorems.NashExistenceMixed",
+    "JurisLean.External.GameTheory.Theorems.OneShotDeviation",
     "JurisLean.FiniteMonotoneIteration",
     "JurisLean.FullMath.Probability.BetaInterval",
     "JurisLean.FullMath.Probability.Brier",
@@ -480,6 +519,232 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
    "print_axioms_targets": [
+    "EFG.DecisionNodeIn_chance_inv",
+    "EFG.DecisionNodeIn_decision_inv",
+    "EFG.DecisionNodeIn_terminal_false",
+    "EFG.IsPerfectInfo_subtree",
+    "EFG.PerfectRecall_single_infoSet",
+    "EFG.PerfectRecall_terminal",
+    "EFG.ReachBy.action",
+    "EFG.ReachBy.chance",
+    "EFG.ReachBy.here",
+    "EFG.ReachBy_append",
+    "EFG.ReachBy_chance_inv'",
+    "EFG.ReachBy_decision_inv",
+    "EFG.ReachBy_split",
+    "EFG.ReachBy_terminal_absurd",
+    "EFG.decisionNodeIn_of_reachBy",
+    "EFG.decisionNodeIn_reachBy",
+    "EFG.entryNash_isNash",
+    "EFG.entryNash_not_spe",
+    "EFG.entrySPE_isNash",
+    "EFG.entrySPE_isSPE",
+    "EFG.entry_nash_eu_p0",
+    "EFG.entry_perfectRecall",
+    "EFG.entry_spe_eu_p0",
+    "EFG.evalDist_chance",
+    "EFG.evalDist_decision",
+    "EFG.evalDist_eq_of_agree",
+    "EFG.evalDist_pureToBehavioral_eq_pure",
+    "EFG.evalDist_terminal",
+    "EFG.evalPure_decision",
+    "EFG.evalPure_terminal",
+    "EFG.hasNoOneShotDeviation_spe",
+    "EFG.hasNoOneShotDeviation_spe_of_bounded",
+    "EFG.isSubgame_root",
+    "EFG.isSubgame_terminal",
+    "EFG.nash_of_noOSD",
+    "EFG.nash_of_noOSD_of_bounded",
+    "EFG.oneShotDeviation_iff_spe",
+    "EFG.oneShotDeviation_iff_spe_of_bounded",
+    "EFG.perfectInfo_implies_perfectRecall",
+    "EFG.perfectInfo_isSubgame_decision",
+    "EFG.perfectInfo_root_not_in_subtree",
+    "EFG.playerHistory_append",
+    "EFG.pureToBehavioral_update",
+    "EFG.reachBy_deterministic",
+    "EFG.spe_hasNoOneShotDeviation",
+    "EFG.spe_implies_isNash",
+    "EFG.spe_implies_nash",
+    "EFG.swap_chance_decision",
+    "EFG.swap_chances",
+    "EFG.swap_decisions",
+    "EFG.terminal_isNashFor_euPref",
+    "EFG.toStrategicKernelGame_outcomeKernel",
+    "EFG.toStrategicKernelGame_udist",
+    "GameTheory.GameForm.IsCorrelatedEqFor.toCoarseCorrelatedEqFor",
+    "GameTheory.GameForm.IsDominantFor.isBestResponseFor",
+    "GameTheory.GameForm.IsDominantFor.mono",
+    "GameTheory.GameForm.IsDominantFor.weaklyDominatesFor",
+    "GameTheory.GameForm.IsNashFor.mono",
+    "GameTheory.GameForm.IsStrictNashFor.isNashFor",
+    "GameTheory.GameForm.ParetoDominatesFor.asymm",
+    "GameTheory.GameForm.ParetoDominatesFor.irrefl",
+    "GameTheory.GameForm.ProtocolMap.comp_assoc",
+    "GameTheory.GameForm.ProtocolMap.comp_id",
+    "GameTheory.GameForm.ProtocolMap.comp_outcomeMap",
+    "GameTheory.GameForm.ProtocolMap.comp_stratMap",
+    "GameTheory.GameForm.ProtocolMap.id_comp",
+    "GameTheory.GameForm.ProtocolMap.id_outcomeMap",
+    "GameTheory.GameForm.ProtocolMap.id_stratMap",
+    "GameTheory.GameForm.StrictlyDominatesFor.toWeaklyDominatesFor",
+    "GameTheory.GameForm.WeaklyDominatesFor.refl",
+    "GameTheory.GameForm.WeaklyDominatesFor.trans",
+    "GameTheory.GameForm.constDeviateDistributionFn_pure",
+    "GameTheory.GameForm.constantDeviationProfileFamily_deviate",
+    "GameTheory.GameForm.correlatedOutcome_constDeviateDistributionFn_pure",
+    "GameTheory.GameForm.correlatedOutcome_pure",
+    "GameTheory.GameForm.deviateDistributionFn_id",
+    "GameTheory.GameForm.deviateOutcome_same",
+    "GameTheory.GameForm.deviateProfile_same",
+    "GameTheory.GameForm.dominant_is_nash_for",
+    "GameTheory.GameForm.isCoarseCorrelatedEqFor_iff",
+    "GameTheory.GameForm.isCorrelatedEqFor_iff",
+    "GameTheory.GameForm.isNashFor_iff",
+    "GameTheory.GameForm.isNashFor_iff_bestResponseFor",
+    "GameTheory.GameForm.map_Outcome",
+    "GameTheory.GameForm.map_Strategy",
+    "GameTheory.GameForm.map_comp",
+    "GameTheory.GameForm.map_id",
+    "GameTheory.GameForm.map_outcomeKernel",
+    "GameTheory.GameForm.noProfitableDeviationFor_iff",
+    "GameTheory.GameForm.noProfitableProfileDeviationFor_iff",
+    "GameTheory.GameForm.product_Outcome",
+    "GameTheory.GameForm.product_map_fst",
+    "GameTheory.GameForm.product_map_snd",
+    "GameTheory.GameForm.recommendationDeviationFamily_deviate",
+    "GameTheory.GameForm.withUtility_Outcome",
+    "GameTheory.GameForm.withUtility_Strategy",
+    "GameTheory.GameForm.withUtility_outcomeKernel",
+    "GameTheory.GameForm.withUtility_toGameForm",
+    "GameTheory.GameForm.withUtility_utility",
+    "GameTheory.KernelGame.Guarantees.mono",
+    "GameTheory.KernelGame.IsBestResponse_iff_IsBestResponseFor_eu",
+    "GameTheory.KernelGame.IsCoarseCorrelatedEq_iff_IsCoarseCorrelatedEqFor_eu",
+    "GameTheory.KernelGame.IsConstantSum.eu_determined",
+    "GameTheory.KernelGame.IsConstantSum.eu_determined_of_bounded",
+    "GameTheory.KernelGame.IsConstantSum.nash_eu_eq",
+    "GameTheory.KernelGame.IsConstantSum.nash_eu_eq_of_bounded",
+    "GameTheory.KernelGame.IsConstantSum.nash_eu_sum",
+    "GameTheory.KernelGame.IsConstantSum.nash_eu_sum_of_bounded",
+    "GameTheory.KernelGame.IsConstantSum.socialWelfare_eq",
+    "GameTheory.KernelGame.IsConstantSum.socialWelfare_eq_of_bounded",
+    "GameTheory.KernelGame.IsCorrelatedEq_iff_IsCorrelatedEqFor_eu",
+    "GameTheory.KernelGame.IsDominant.eu_ge_securityLevel",
+    "GameTheory.KernelGame.IsDominant.eu_ge_securityLevelSup",
+    "GameTheory.KernelGame.IsDominant_iff_IsDominantFor_eu",
+    "GameTheory.KernelGame.IsNash_iff_IsNashFor_eu",
+    "GameTheory.KernelGame.IsStrictDominant_iff_IsStrictDominantFor_eu",
+    "GameTheory.KernelGame.IsStrictNash_iff_IsStrictNashFor_eu",
+    "GameTheory.KernelGame.IsZeroSum.deviation_eu_neg",
+    "GameTheory.KernelGame.IsZeroSum.deviation_eu_neg_of_bounded",
+    "GameTheory.KernelGame.IsZeroSum.eu_neg",
+    "GameTheory.KernelGame.IsZeroSum.eu_neg_of_bounded",
+    "GameTheory.KernelGame.IsZeroSum.eu_nonneg_iff_nonpos",
+    "GameTheory.KernelGame.IsZeroSum.eu_nonneg_iff_nonpos_of_bounded",
+    "GameTheory.KernelGame.IsZeroSum.isConstantSum_zero",
+    "GameTheory.KernelGame.IsZeroSum.nash_eu_eq",
+    "GameTheory.KernelGame.IsZeroSum.nash_eu_eq_of_bounded",
+    "GameTheory.KernelGame.IsZeroSum.nash_eu_sum_zero",
+    "GameTheory.KernelGame.IsZeroSum.nash_eu_sum_zero_of_bounded",
+    "GameTheory.KernelGame.IsZeroSum.nash_interchangeable",
+    "GameTheory.KernelGame.IsZeroSum.nash_interchangeable_of_bounded",
+    "GameTheory.KernelGame.IsZeroSum.nash_p0_optimal",
+    "GameTheory.KernelGame.IsZeroSum.nash_p0_optimal_of_bounded",
+    "GameTheory.KernelGame.IsZeroSum.socialWelfare_eq_zero",
+    "GameTheory.KernelGame.IsZeroSum.socialWelfare_eq_zero_of_bounded",
+    "GameTheory.KernelGame.ParetoDominates_iff_ParetoDominatesFor_eu",
+    "GameTheory.KernelGame.StrictlyDominates_iff_StrictlyDominatesFor_eu",
+    "GameTheory.KernelGame.WeaklyDominates_iff_WeaklyDominatesFor_eu",
+    "GameTheory.KernelGame.continuous_mixedExtension_eu_profileFromMixedSimplex",
+    "GameTheory.KernelGame.continuous_mixedExtension_eu_profileFromMixedSimplex_of_bounded",
+    "GameTheory.KernelGame.continuous_mixedExtension_eu_update_profileFromMixedSimplex",
+    "GameTheory.KernelGame.continuous_mixedExtension_eu_update_profileFromMixedSimplex_of_bounded",
+    "GameTheory.KernelGame.continuous_mixedGainOnMixedSimplex_of_continuous_mixedEu",
+    "GameTheory.KernelGame.continuous_nashMapOnMixedSimplex",
+    "GameTheory.KernelGame.continuous_nashMapOnMixedSimplex_of_bounded",
+    "GameTheory.KernelGame.continuous_nashMapOnMixedSimplex_of_continuous_mixedEu",
+    "GameTheory.KernelGame.continuous_nashMapOnMixedSimplex_of_continuous_mixedEu_deviation",
+    "GameTheory.KernelGame.continuous_nashMapOnMixedSimplex_of_continuous_mixedGainOnMixedSimplex",
+    "GameTheory.KernelGame.continuous_pospart",
+    "GameTheory.KernelGame.correlatedOutcome_pure",
+    "GameTheory.KernelGame.deviationDistribution_apply",
+    "GameTheory.KernelGame.deviationDistribution_id",
+    "GameTheory.KernelGame.dominant_is_nash",
+    "GameTheory.KernelGame.dominant_is_nash_for",
+    "GameTheory.KernelGame.eu_abs_le_of_bounded",
+    "GameTheory.KernelGame.eu_ofEU",
+    "GameTheory.KernelGame.exists_securityStrategy",
+    "GameTheory.KernelGame.gainSumOnMixedSimplex_nonneg",
+    "GameTheory.KernelGame.gainSum_nonneg",
+    "GameTheory.KernelGame.guarantees_iff_worstCaseEUInf_ge",
+    "GameTheory.KernelGame.guarantees_iff_worstCaseEU_ge",
+    "GameTheory.KernelGame.isNash_iff_gains_nonpos",
+    "GameTheory.KernelGame.isNash_iff_gains_nonpos_of_bounded",
+    "GameTheory.KernelGame.isSaddlePoint_iff_isNash",
+    "GameTheory.KernelGame.le_securityLevelSup_of_forall_eu_ge",
+    "GameTheory.KernelGame.le_securityLevel_of_forall_eu_ge",
+    "GameTheory.KernelGame.mixedExtension_Strategy",
+    "GameTheory.KernelGame.mixedExtension_eu",
+    "GameTheory.KernelGame.mixedExtension_eu_of_bounded",
+    "GameTheory.KernelGame.mixedExtension_eu_update",
+    "GameTheory.KernelGame.mixedExtension_eu_update_of_bounded",
+    "GameTheory.KernelGame.mixedExtension_isZeroSum",
+    "GameTheory.KernelGame.mixed_nash_exists",
+    "GameTheory.KernelGame.mixed_nash_exists_of_bounded",
+    "GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_approx",
+    "GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_approxOnly",
+    "GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_approxOnly_of_bounded",
+    "GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_approx_of_bounded",
+    "GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_fixed_point",
+    "GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_fixed_point_of_bounded",
+    "GameTheory.KernelGame.nashMapOnMixedSimplex_apply",
+    "GameTheory.KernelGame.nashMap_fp_identity",
+    "GameTheory.KernelGame.nashMap_nonneg",
+    "GameTheory.KernelGame.nashMap_sum_one",
+    "GameTheory.KernelGame.nashMap_weightFixedPoint_of_mixedSimplexFixedPoint",
+    "GameTheory.KernelGame.nashMap_weightFixedPoint_of_nashMapOnMixedSimplex_approx",
+    "GameTheory.KernelGame.nashMap_weightFixedPoint_of_nashMapOnMixedSimplex_approxOnly",
+    "GameTheory.KernelGame.nash_eu_ge_securityLevel",
+    "GameTheory.KernelGame.nash_eu_ge_securityLevelSup",
+    "GameTheory.KernelGame.nash_fp_is_nash",
+    "GameTheory.KernelGame.nash_fp_is_nash_of_bounded",
+    "GameTheory.KernelGame.nash_p0_cap",
+    "GameTheory.KernelGame.ofEU_Strategy",
+    "GameTheory.KernelGame.pospart_eq_zero_iff",
+    "GameTheory.KernelGame.pospart_mul_self",
+    "GameTheory.KernelGame.pospart_nonneg",
+    "GameTheory.KernelGame.realToPmf_apply",
+    "GameTheory.KernelGame.realToPmf_toReal",
+    "GameTheory.KernelGame.toGameForm_Outcome",
+    "GameTheory.KernelGame.toGameForm_Strategy",
+    "GameTheory.KernelGame.toGameForm_outcomeKernel",
+    "GameTheory.KernelGame.toGameForm_withUtility",
+    "GameTheory.KernelGame.udistPlayer_eq_udist_bind",
+    "GameTheory.KernelGame.udistPlayer_pure",
+    "GameTheory.KernelGame.udist_pure",
+    "GameTheory.KernelGame.von_neumann_minimax",
+    "GameTheory.KernelGame.von_neumann_minimax_of_bounded",
+    "GameTheory.KernelGame.weighted_gain_sum_zero",
+    "GameTheory.KernelGame.weighted_gain_sum_zero_of_bounded",
+    "GameTheory.KernelGame.worstCaseEUInf_guarantees",
+    "GameTheory.KernelGame.worstCaseEUInf_le",
+    "GameTheory.KernelGame.worstCaseEU_guarantees",
+    "GameTheory.KernelGame.worstCaseEU_le",
+    "GameTheory.brouwer_mixedSimplex",
+    "GameTheory.continuous_fromMixedSet",
+    "GameTheory.continuous_toMixedSet",
+    "GameTheory.convex_mixedSimplexAsSet",
+    "GameTheory.exists_fixedPoint_of_approx_on_compact",
+    "GameTheory.exists_fixedPoint_of_approx_on_mixedSimplex",
+    "GameTheory.fromMixedSet_toMixedSet",
+    "GameTheory.isCompact_mixedSimplexAsSet",
+    "GameTheory.nonempty_mixedSimplexAsSet",
+    "GameTheory.toMixedSet_fromMixedSet",
+    "InfoStateCore.identity_Carrier",
+    "InfoStateCore.identity_current",
+    "InfoStateCore.identity_push",
+    "InfoStateCore.identity_start",
     "JurisLean.BanachCertificateV3.certificate_error_within_tolerance",
     "JurisLean.BanachCertificateV3.certificate_has_nonempty_domain",
     "JurisLean.BanachCertificateV3.certificate_has_positive_iterations",
@@ -1138,15 +1403,427 @@
     "JurisLean.Mandate.ZeroSumValue.upperValue_le_lowerValue",
     "JurisLean.Mandate.ZeroSumValue.value_eq",
     "JurisLean.Mandate.ZeroSumValue.weakDuality",
+    "Math.Coupling.hasCoupling_proj_iff_map_eq",
+    "Math.Optimization.LocalGlobal.all_nonpos_of_weighted_pospart_fixedPoint",
+    "Math.Optimization.LocalGlobal.isFixedPoint_of_eq",
+    "Math.Optimization.LocalGlobal.locallyOptimal_add",
+    "Math.Optimization.LocalGlobal.locallyOptimal_of_global_on_set",
+    "Math.Optimization.LocalGlobal.locallyOptimal_of_move_family",
+    "Math.Optimization.LocalGlobal.locallyOptimal_smul_nonneg",
+    "Math.Optimization.LocalGlobal.max_mul_self_eq_sq",
+    "Math.Optimization.LocalGlobal.noImprovement_add",
+    "Math.Optimization.LocalGlobal.noImprovement_at_of_fixed",
+    "Math.Optimization.LocalGlobal.noImprovement_of_move_family",
+    "Math.Optimization.LocalGlobal.noImprovement_smul_nonneg",
+    "Math.PMFProduct.ENNReal_tsum_pi",
+    "Math.PMFProduct.ENNReal_tsum_pi_fin",
+    "Math.PMFProduct.IgnoresP_and",
+    "Math.PMFProduct.IgnoresP_iff",
+    "Math.PMFProduct.IgnoresP_imp",
+    "Math.PMFProduct.IgnoresP_not",
+    "Math.PMFProduct.IgnoresP_of_Ignores",
+    "Math.PMFProduct.IgnoresP_or",
+    "Math.PMFProduct.Ignores_app2",
+    "Math.PMFProduct.Ignores_comp",
+    "Math.PMFProduct.Ignores_const",
+    "Math.PMFProduct.Ignores_coord_eq",
+    "Math.PMFProduct.Ignores_coord_pred",
+    "Math.PMFProduct.Ignores_finset_prod",
+    "Math.PMFProduct.Ignores_fst",
+    "Math.PMFProduct.Ignores_ite",
+    "Math.PMFProduct.Ignores_of_IgnoresP",
+    "Math.PMFProduct.Ignores_of_pointwise",
+    "Math.PMFProduct.Ignores_prod_mk",
+    "Math.PMFProduct.Ignores_snd",
+    "Math.PMFProduct.Ignores₂_of_pointwise",
+    "Math.PMFProduct.foldl_update_family_eq_of_nodup",
+    "Math.PMFProduct.ignores_replaceOn_eq",
+    "Math.PMFProduct.pmfMass_pmfPi_coord",
+    "Math.PMFProduct.pmfMass_pmfPi_forall",
+    "Math.PMFProduct.pmfPiMass_le_one",
+    "Math.PMFProduct.pmfPiMass_ne_top",
+    "Math.PMFProduct.pmfPiMass_true",
+    "Math.PMFProduct.pmfPi_apply",
+    "Math.PMFProduct.pmfPi_apply_update_family",
+    "Math.PMFProduct.pmfPi_bind_comm_fresh",
+    "Math.PMFProduct.pmfPi_bind_comm_fresh_support",
+    "Math.PMFProduct.pmfPi_bind_eq_of_forall_ignores",
+    "Math.PMFProduct.pmfPi_bind_eval",
+    "Math.PMFProduct.pmfPi_bind_factor",
+    "Math.PMFProduct.pmfPi_bind_ignores_coord",
+    "Math.PMFProduct.pmfPi_bind_ignores_coord_finset",
+    "Math.PMFProduct.pmfPi_bind_ignores_coord_list",
+    "Math.PMFProduct.pmfPi_bind_indep",
+    "Math.PMFProduct.pmfPi_bind_pmfPi_of_disjoint_coords",
+    "Math.PMFProduct.pmfPi_bind_update_map",
+    "Math.PMFProduct.pmfPi_bind_update_pure",
+    "Math.PMFProduct.pmfPi_cond_coord",
+    "Math.PMFProduct.pmfPi_cond_coord_other_marginal",
+    "Math.PMFProduct.pmfPi_cond_coord_push_other",
+    "Math.PMFProduct.pmfPi_cond_prob_invariant_of_ignores",
+    "Math.PMFProduct.pmfPi_coord_mass",
+    "Math.PMFProduct.pmfPi_coord_mass_tsum",
+    "Math.PMFProduct.pmfPi_event_ratio_invariant_of_ignores",
+    "Math.PMFProduct.pmfPi_expect_indep",
+    "Math.PMFProduct.pmfPi_map_bind",
+    "Math.PMFProduct.pmfPi_mass_invariant_of_ignores",
+    "Math.PMFProduct.pmfPi_pure",
+    "Math.PMFProduct.pmfPi_push_coord",
+    "Math.PMFProduct.pmfPi_push_coordwise",
+    "Math.PMFProduct.pmfPi_update_bind",
+    "Math.PMFProduct.pmfPi_update_family_mul",
+    "Math.PMFProduct.pmf_bind_disintegrate",
+    "Math.PMFProduct.prod_erase_update_eq",
+    "Math.PMFProduct.prod_factor_erase",
+    "Math.PMFProduct.pushforward_support_fibre",
+    "Math.PMFProduct.replaceOn_apply",
+    "Math.PMFProduct.replaceOn_empty",
+    "Math.PMFProduct.replaceOn_insert",
+    "Math.PMFProduct.replaceOn_univ_diff",
+    "Math.PMFProduct.replaceOn_univ_snd",
+    "Math.PMFProduct.sum_pmfPi_factor",
+    "Math.PMFProduct.sum_univ_eq_sum_univ_of_involutive",
+    "Math.PMFProduct.swapJA_involutive",
+    "Math.PMFProduct.tsum_eq_tsum_of_involutive",
+    "Math.PMFProduct.tsum_pmfPi_factor",
+    "Math.PMFProduct.update_family_other",
+    "Math.PMFProduct.update_family_same",
+    "Math.PMFProduct.update_ne",
+    "Math.PMFProduct.update_self",
+    "Math.PMFProduct.update_update_comm",
+    "Math.PMFProduct.update_update_same",
+    "Math.ParameterizedChain.append_singleton_inj",
+    "Math.ParameterizedChain.condRun_eq_mixedRun",
+    "Math.ParameterizedChain.condStep_step_eq",
+    "Math.ParameterizedChain.condStep_weighted_eq",
+    "Math.ParameterizedChain.exists_realizing_steps",
+    "Math.ParameterizedChain.exists_realizing_steps_outcome",
+    "Math.ParameterizedChain.pureRun_length",
+    "Math.ParameterizedChain.pureRun_step_nonzero",
+    "Math.ParameterizedChain.pureRun_succ_append",
+    "Math.ParameterizedChain.pureRun_succ_nil",
+    "Math.ParameterizedChain.pureRun_take_nonzero",
+    "Math.ParameterizedChain.reweightPMF_apply",
+    "Math.ParameterizedChain.reweightPMF_degenerate",
+    "Math.ParameterizedChain.reweightPMF_eq_of_cross_mul",
+    "Math.ParameterizedChain.reweightPMF_fallback",
+    "Math.ParameterizedChain.reweightPMF_pmfPi",
+    "Math.ParameterizedChain.reweightPMF_pmfPi_push_coord_of_ignores",
+    "Math.ParameterizedChain.reweightPMF_pmfPi_push_coord_of_ignores'",
+    "Math.ParameterizedChain.reweightPMF_scale",
+    "Math.ParameterizedChain.reweightPMF_support_subset",
+    "Math.Probability.Kernel.comp_apply",
+    "Math.Probability.Kernel.comp_assoc",
+    "Math.Probability.Kernel.comp_id_left",
+    "Math.Probability.Kernel.comp_id_right",
+    "Math.Probability.Kernel.pushforward_apply",
+    "Math.Probability.Kernel.pushforward_comp",
+    "Math.Probability.Kernel.pushforward_ofFun",
+    "Math.Probability.exists_abs_bound_of_finite",
+    "Math.Probability.expect_bind",
+    "Math.Probability.expect_bind_of_bounded",
+    "Math.Probability.expect_bind_summable_of_bounded",
+    "Math.Probability.expect_const",
+    "Math.Probability.expect_eq_sum",
+    "Math.Probability.expect_map_fintype_source",
+    "Math.Probability.expect_map_fintype_target",
+    "Math.Probability.expect_pure",
+    "Math.Probability.expect_summable_of_bounded",
+    "Math.Probability.pmf_toReal_sum_one",
+    "Math.Probability.pmf_toReal_summable",
+    "Math.Probability.pmf_toReal_tsum_one",
+    "Math.ProbabilityMassFunction.allEvents_append_singleton",
+    "Math.ProbabilityMassFunction.allEvents_cons",
+    "Math.ProbabilityMassFunction.allEvents_nil",
+    "Math.ProbabilityMassFunction.bind_apply_eq_sum_sum_fiber",
+    "Math.ProbabilityMassFunction.bind_assoc",
+    "Math.ProbabilityMassFunction.bind_congr_of_ne_zero",
+    "Math.ProbabilityMassFunction.bind_congr_on_support",
+    "Math.ProbabilityMassFunction.bind_heq",
+    "Math.ProbabilityMassFunction.bind_pure_eq_pushforward",
+    "Math.ProbabilityMassFunction.bind_pushforward_condOn",
+    "Math.ProbabilityMassFunction.condOn_apply",
+    "Math.ProbabilityMassFunction.eq_zero_of_expect_eq_zero_of_nonpos_of_pos",
+    "Math.ProbabilityMassFunction.eq_zero_of_pushforward_eq_zero",
+    "Math.ProbabilityMassFunction.expect_bind_congr_on_support",
+    "Math.ProbabilityMassFunction.expect_congr_of_ne_zero",
+    "Math.ProbabilityMassFunction.expect_congr_on_support",
+    "Math.ProbabilityMassFunction.expect_mono_of_pointwise",
+    "Math.ProbabilityMassFunction.expect_mono_of_pointwise_bounded",
+    "Math.ProbabilityMassFunction.expect_mono_of_pointwise_summable",
+    "Math.ProbabilityMassFunction.expect_pushforward",
+    "Math.ProbabilityMassFunction.expect_pushforward_of_bounded",
+    "Math.ProbabilityMassFunction.expect_pushforward_of_bounded_on_source",
+    "Math.ProbabilityMassFunction.foldl_bind_append",
+    "Math.ProbabilityMassFunction.foldl_bind_congr",
+    "Math.ProbabilityMassFunction.foldl_bind_eq_bind_foldl_pure",
+    "Math.ProbabilityMassFunction.le_pushforward_apply",
+    "Math.ProbabilityMassFunction.pmfCond_apply",
+    "Math.ProbabilityMassFunction.pmfCond_ne_zero_implies",
+    "Math.ProbabilityMassFunction.pmfMass_and_eq_mul_cond",
+    "Math.ProbabilityMassFunction.pmfMass_and_eq_zero_of_left_zero",
+    "Math.ProbabilityMassFunction.pmfMass_eq_toOuterMeasure",
+    "Math.ProbabilityMassFunction.pmfMass_event_chain",
+    "Math.ProbabilityMassFunction.pmfMass_event_chain_aux",
+    "Math.ProbabilityMassFunction.pmfMass_mono",
+    "Math.ProbabilityMassFunction.pmfMass_ne_top",
+    "Math.ProbabilityMassFunction.pmfMass_pushforward",
+    "Math.ProbabilityMassFunction.pmfMass_true",
+    "Math.ProbabilityMassFunction.pure_heq",
+    "Math.ProbabilityMassFunction.pushforward_apply_eq_pmfMass",
+    "Math.ProbabilityMassFunction.pushforward_bind",
+    "Math.ProbabilityMassFunction.pushforward_comp",
+    "Math.ProbabilityMassFunction.pushforward_id",
+    "Math.ProbabilityMassFunction.pushforward_pure",
+    "Math.ProbabilityMassFunction.pushforward_pushforward",
+    "Math.ProbabilityMassFunction.pushforward_support_fibre",
+    "Math.TraceRun.append_singleton_inj",
+    "Math.TraceRun.traceRun_length",
+    "Math.TraceRun.traceRun_map_of_hom",
+    "Math.TraceRun.traceRun_step_nonzero",
+    "Math.TraceRun.traceRun_succ",
+    "Math.TraceRun.traceRun_succ_append",
+    "Math.TraceRun.traceRun_succ_nil",
+    "Math.TraceRun.traceRun_zero",
+    "ObsModel.PerStepActionRecall.toStepActionDeterminism",
+    "ObsModel.PerStepPlayerRecall.action_eq",
+    "ObsModel.PerStepPlayerRecall.toAction",
+    "ObsModel.PlayerStepRecall.action_eq",
+    "ObsModel.PlayerStepRecall.toReachable",
+    "ObsModel.PlayerStepRecall.toTrace",
+    "ObsModel.ReachablePlayerStepRecall.action_eq",
+    "ObsModel.TracePlayerStepRecall.action_eq",
+    "ObsModel.actionPosteriorLocal_toCore",
+    "ObsModel.action_component_unique_of_pspr",
+    "ObsModel.action_unique_of_psar",
+    "ObsModel.cast_eq_of_subsingleton",
+    "ObsModel.conditioning_preserves_product",
+    "ObsModel.correlated_realization",
+    "ObsModel.currentObs_projectStates",
+    "ObsModel.currentObs_projectStatesFrom",
+    "ObsModel.horizonSeparation_toCore",
+    "ObsModel.jointActionDist_obs_heq",
+    "ObsModel.kuhn_behavioral_to_mixed",
+    "ObsModel.kuhn_mixed_to_behavioral_decomposed",
+    "ObsModel.kuhn_mixed_to_behavioral_pspr",
+    "ObsModel.kuhn_mixed_to_behavioral_semantic",
+    "ObsModel.kuhn_mixed_to_behavioral_trace",
+    "ObsModel.mediator_product_of_product",
+    "ObsModel.mediator_step_eq_condStep",
+    "ObsModel.mixedToMediator_obs_heq",
+    "ObsModel.noNontrivialInfoStateRepeat_toCore",
+    "ObsModel.obsEq_of_projectStates_append",
+    "ObsModel.obsEq_of_projectStates_getLast",
+    "ObsModel.obsLocalFeasibilityFull_of_tracePlayerStepRecall",
+    "ObsModel.obsLocalFeasibilityFull_toCore",
+    "ObsModel.obsLocalFeasibility_of_playerStepRecall",
+    "ObsModel.obsLocalFeasibility_of_pspr",
+    "ObsModel.obsLocalFeasibility_of_reachablePlayerStepRecall",
+    "ObsModel.obsLocalFeasibility_of_tracePlayerStepRecall",
+    "ObsModel.obsLocalFeasibility_toCore",
+    "ObsModel.obs_correlated_realization",
+    "ObsModel.perStepPlayerRecall_iff_forall",
+    "ObsModel.projectStates_eq_length",
+    "ObsModel.projectStates_prefix_of_append",
+    "ObsModel.pureRun_const_of_psar",
+    "ObsModel.pureRun_cross_mul_product",
+    "ObsModel.pureRun_eq_const_mul_indicator",
+    "ObsModel.pureRun_nonzero_iff_action_eq",
+    "ObsModel.pureRun_nonzero_iff_update",
+    "ObsModel.pureRun_nonzero_last_stepReachable",
+    "ObsModel.pureRun_nonzero_to_reachActionTrace",
+    "ObsModel.pureRun_pairwise_cross_of_psar",
+    "ObsModel.pureRun_succ_nonzero_iff",
+    "ObsModel.pureRun_update_obs_local",
+    "ObsModel.pureRun_update_obs_local_of",
+    "ObsModel.pureRun_update_obs_local_player",
+    "ObsModel.pureRun_update_obs_local_pspr",
+    "ObsModel.pureRun_update_obs_local_trace",
+    "ObsModel.pureStep_action_eq_of_psar",
+    "ObsModel.pureStep_component_eq_of_playerRecall",
+    "ObsModel.pureStep_component_eq_of_pspr",
+    "ObsModel.pureStep_component_eq_of_reachablePlayerRecall",
+    "ObsModel.pureStep_component_eq_of_tracePlayerRecall",
+    "ObsModel.pureStep_cross_ratio",
+    "ObsModel.pureStep_eq",
+    "ObsModel.pureStep_eq_of_action_eq",
+    "ObsModel.pureStep_eq_of_nonzero_same",
+    "ObsModel.pureStep_nonzero_iff_action_eq",
+    "ObsModel.pureStep_nonzero_iff_forall_player",
+    "ObsModel.reweightPMF_pureRun_obs_invariant",
+    "ObsModel.reweightPMF_update_obs_local",
+    "ObsModel.reweightPMF_update_obs_local_of",
+    "ObsModel.reweightPMF_update_obs_local_player",
+    "ObsModel.reweightPMF_update_obs_local_pspr",
+    "ObsModel.reweightPMF_update_obs_local_trace",
+    "ObsModel.runDistPure_eq_pureRun",
+    "ObsModel.runDist_eq_of_corrProduct",
+    "ObsModel.runDist_eq_of_stepIndependence",
+    "ObsModel.stateDepth_projectStates",
+    "ObsModel.stateSnapshot_projectStates",
+    "ObsModel.stateSnapshot_projectStatesFrom",
+    "ObsModel.stepDistCorr_eq_stepDist_of_product",
+    "ObsModel.stepReachable_init",
+    "ObsModel.stepReachable_step",
+    "ObsModel.sum_mul_pmf_ne_top",
+    "ObsModelCore.PerStepActionRecall.toStepActionDeterminism",
+    "ObsModelCore.StepActionDeterminism.toMassInvariant",
+    "ObsModelCore.StepActionDeterminism.toSupportFactorization",
+    "ObsModelCore.StepSupportFactorization.toRunSupportFactorization",
+    "ObsModelCore.actionPosteriorLocal_of_obsLocalFeasibility",
+    "ObsModelCore.correlated_realization",
+    "ObsModelCore.currentInfoState_subsingleton_of_repeated_on_reachable_trace",
+    "ObsModelCore.currentObs_projectStates",
+    "ObsModelCore.currentObs_projectStatesFrom",
+    "ObsModelCore.jointActionDist_pureToBehavioral",
+    "ObsModelCore.jointActionDist_pureToBehavioral_m2b",
+    "ObsModelCore.kuhn_behavioral_to_mixed",
+    "ObsModelCore.kuhn_mixed_to_behavioral_of_obsLocal",
+    "ObsModelCore.kuhn_mixed_to_behavioral_of_runSupport",
+    "ObsModelCore.kuhn_mixed_to_behavioral_semantic",
+    "ObsModelCore.lastState_append_singleton",
+    "ObsModelCore.marginal_stepDist",
+    "ObsModelCore.mediator_step_eq_condStep",
+    "ObsModelCore.mixedToBehavioralProfileWithFallback_eq_factorAt",
+    "ObsModelCore.mixedToBehavioralProfileWithFallback_runDist",
+    "ObsModelCore.mixedToMediator_eq_pmfPi_factor",
+    "ObsModelCore.mixedToMediator_eq_pmfPi_factor_of_run",
+    "ObsModelCore.obsLocalFeasibilityFull_of_localSupportSignatureFull",
+    "ObsModelCore.obsLocalFeasibilityFull_toRunSupportFactorization",
+    "ObsModelCore.obsLocalFeasibility_of_localSupportSignature",
+    "ObsModelCore.pureRun_const_of_support",
+    "ObsModelCore.pureRun_cross_mul_product",
+    "ObsModelCore.pureRun_cross_mul_product_of_run",
+    "ObsModelCore.pureRun_nonzero_iff_update",
+    "ObsModelCore.pureRun_succ_nonzero_iff",
+    "ObsModelCore.pureStep_eq",
+    "ObsModelCore.pureStep_eq_of_nonzero_same",
+    "ObsModelCore.pureStep_nonzero_iff_action_eq",
+    "ObsModelCore.pureStep_nonzero_iff_forall_player",
+    "ObsModelCore.reachableInfoStateWithin_mono",
+    "ObsModelCore.reachableInfoStateWithin_projectStates",
+    "ObsModelCore.reweightPMF_update_obs_local_of",
+    "ObsModelCore.runDistPure_congr_of_agree_within",
+    "ObsModelCore.runDistPure_congr_on_trace",
+    "ObsModelCore.runDistPure_eq_pureRun",
+    "ObsModelCore.runDistPure_support_length",
+    "ObsModelCore.runDist_bind_interp",
+    "ObsModelCore.runDist_congr",
+    "ObsModelCore.runDist_eq_of_correlatedStepIndependence",
+    "ObsModelCore.runDist_eq_of_stepIndependence",
+    "ObsModelCore.scalar_indep",
+    "ObsModelCore.stepDistCorr_eq_stepDist_of_product",
+    "ObsModelCore.stepDist_pureToBehavioral",
+    "ObsModelCore.stepDist_pureToBehavioral_congr",
+    "ObsModelCore.stepDist_pureToBehavioral_m2b",
+    "ObsModelCore.stepIndependence_bridge",
+    "ObsModelCore.sum_mul_pmf_ne_top",
+    "ObsModelCore.swapBy_weight_eq",
+    "ObsModelCore.swapProfileBy_involutive",
+    "Semantics.Transition.exists_reachBy_iff_reaches",
+    "Semantics.Transition.exists_reachBy_of_reaches",
+    "Semantics.Transition.obs_eq_of_reachBy",
+    "Semantics.Transition.obs_eq_of_reaches",
+    "Semantics.Transition.reachBy_append",
+    "Semantics.Transition.reachBy_append_singleton",
+    "Semantics.Transition.reachBy_map_labels",
+    "Semantics.Transition.reachBy_map_states",
+    "Semantics.Transition.reachBy_nil",
+    "Semantics.Transition.reachBy_singleton",
+    "Semantics.Transition.reachBy_split",
+    "Semantics.Transition.reaches_map_states",
+    "Semantics.Transition.reaches_of_reachBy",
+    "almost_surjective_of_insert_index",
+    "boundary_is_A_or_B",
+    "brouwer_fixedPoints_nonempty",
+    "brouwer_fixed_point",
+    "brouwer_fixed_point_isFixedPt",
+    "caratheodory_1",
+    "case_ABC_count_disj",
+    "case_AC_ex_unique",
+    "case_A_not_zero",
+    "case_A_parent_count",
+    "case_BC_ex_unique",
+    "case_B_boundary",
+    "case_B_not_last",
+    "case_B_parent_count",
+    "case_C_parent_count",
+    "case_D_iff_not_end_1",
+    "case_D_iff_not_end_2",
+    "case_D_parent_count",
+    "ccc_add",
+    "ccc_fun_case_D_iff",
+    "ccc_fun_is_insert_index",
+    "ccc_fun_strict_mono",
+    "ccc_pos",
+    "char_complete_face",
+    "child_map_applied",
+    "child_map_inj",
+    "child_map_last",
+    "child_map_surj_on",
+    "child_simplex_char",
+    "complete_boundary_face_last",
+    "complete_child_uniq",
+    "complete_simplex_iff",
+    "delete_vertex_ccc_fun_match",
+    "delete_vertex_inj",
+    "delete_vertex_is_face",
+    "delete_vertex_simplex",
+    "dist_discrete_map",
     "exists_fixpoint_le_card",
     "fixed_at_card",
+    "fixed_point_unit_cube",
+    "fixed_point_unit_cube_isFixedPt",
     "grounded_is_least_fixed_point",
+    "handshake_1",
+    "handshake_2",
+    "handshake_3",
+    "homeo_of_finrank_eq",
+    "homeo_unit_ball",
+    "homeo_unit_cube_of_convex_compact",
     "horn_completeness",
     "horn_result_unique_least_fixed_point",
-    "weightedSupDist_separates_points"
+    "incomplete_childs",
+    "induction_start",
+    "insert_index_inj",
+    "insert_index_ne",
+    "insert_index_strict_mono",
+    "insert_vertex",
+    "is_id_of_strict_mono",
+    "is_insert_index_of_strict_mono",
+    "kakutani_fixed_point",
+    "last_eq_first_add_one",
+    "last_of_simplex",
+    "le_add_one_of_simplex",
+    "mem_of_convex_comb",
+    "monotone_1_of_simplex",
+    "monotone_2_of_simplex",
+    "nearby_points",
+    "odd_of_boundary_faces",
+    "one_of_ABCD",
+    "p_ne_zero_of_cube",
+    "parent_count",
+    "parent_injective",
+    "parent_simplex_case_AC",
+    "parent_simplex_case_BC",
+    "parent_simplex_case_D",
+    "reduced_label_props_1",
+    "reduced_label_props_2",
+    "reduced_label_props_3",
+    "rl_inj_of_complete",
+    "same_delete_index_eq_iff",
+    "set_valued_map_approx_fixed_point",
+    "strong_cubical_sperner",
+    "sub_ICC_of_convex_comb",
+    "surround_index",
+    "unique_const_ABC",
+    "unit_cube_homeo_unit_ball",
+    "weaker_cubical_sperner",
+    "weightedSupDist_separates_points",
+    "zero_ne_last"
    ],
-   "sha256": "6cd36d0e045540c27e4e99cfe857307aaf7d4464b6a7597432d7d8e2345316a1",
-   "size_bytes": 47835,
+   "sha256": "6fbb5c4ef32b36b17c319af1954d41d01e5aea6ef52cdfa3bac34fbd9085188b",
+   "size_bytes": 84989,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -3509,6 +4186,3876 @@
    "print_axioms_targets": [],
    "sha256": "7383b6f116a66171b81b3088398c77bfd7a43813ea16c5915b5f81b2b9264dd8",
    "size_bytes": 2929,
+   "theorem_count": 7,
+   "theorem_count_bol_convention": 7
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "unit_cube"
+    },
+    {
+     "kind": "lemma",
+     "name": "reduced_label_props_1"
+    },
+    {
+     "kind": "lemma",
+     "name": "reduced_label_props_2"
+    },
+    {
+     "kind": "lemma",
+     "name": "reduced_label_props_3"
+    },
+    {
+     "kind": "lemma",
+     "name": "dist_discrete_map"
+    },
+    {
+     "kind": "lemma",
+     "name": "nearby_points"
+    },
+    {
+     "kind": "theorem",
+     "name": "fixed_point_unit_cube"
+    },
+    {
+     "kind": "theorem",
+     "name": "fixed_point_unit_cube_isFixedPt"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.FixedPointTheorems.cubical_sperner",
+    "Mathlib.Analysis.Convex.Intrinsic",
+    "Mathlib.Topology.Defs.Basic"
+   ],
+   "lemma_count": 5,
+   "path": "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/apply_cubical_sperner.lean",
+   "print_axioms_targets": [],
+   "sha256": "3a423b62c16900edbd1fce7b485a874b4a50b55eb38e58b3a10150db405bd231",
+   "size_bytes": 9413,
+   "theorem_count": 2,
+   "theorem_count_bol_convention": 2
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "brouwer_fixed_point"
+    },
+    {
+     "kind": "theorem",
+     "name": "brouwer_fixed_point_isFixedPt"
+    },
+    {
+     "kind": "theorem",
+     "name": "brouwer_fixedPoints_nonempty"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.FixedPointTheorems.apply_cubical_sperner",
+    "JurisLean.External.FixedPointTheorems.convex_homeos",
+    "Mathlib.Dynamics.FixedPoints.Basic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/brouwer.lean",
+   "print_axioms_targets": [],
+   "sha256": "751199525c8efc94fc8e4a22f86924d46e6909082faa39bcf09484e83dc1daf3",
+   "size_bytes": 2692,
+   "theorem_count": 3,
+   "theorem_count_bol_convention": 3
+  },
+  {
+   "declarations": [
+    {
+     "kind": "lemma",
+     "name": "homeo_unit_ball"
+    },
+    {
+     "kind": "theorem",
+     "name": "homeo_of_finrank_eq"
+    },
+    {
+     "kind": "lemma",
+     "name": "unit_cube_homeo_unit_ball"
+    },
+    {
+     "kind": "lemma",
+     "name": "homeo_unit_cube_of_convex_compact"
+    }
+   ],
+   "imports": [
+    "Mathlib.Analysis.Convex.GaugeRescale",
+    "Mathlib.Analysis.Convex.Intrinsic"
+   ],
+   "lemma_count": 3,
+   "path": "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/convex_homeos.lean",
+   "print_axioms_targets": [],
+   "sha256": "7d8425a7200d9b530e8e007f4be7e52ebe6c2fc872c84738c1a2511d70311255",
+   "size_bytes": 5742,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
+  },
+  {
+   "declarations": [
+    {
+     "kind": "lemma",
+     "name": "complete_simplex_iff"
+    },
+    {
+     "kind": "lemma",
+     "name": "rl_inj_of_complete"
+    },
+    {
+     "kind": "lemma",
+     "name": "char_complete_face"
+    },
+    {
+     "kind": "lemma",
+     "name": "complete_child_uniq"
+    },
+    {
+     "kind": "lemma",
+     "name": "incomplete_childs"
+    },
+    {
+     "kind": "lemma",
+     "name": "complete_boundary_face_last"
+    },
+    {
+     "kind": "lemma",
+     "name": "handshake_3"
+    },
+    {
+     "kind": "lemma",
+     "name": "handshake_2"
+    },
+    {
+     "kind": "lemma",
+     "name": "handshake_1"
+    },
+    {
+     "kind": "lemma",
+     "name": "odd_of_boundary_faces"
+    },
+    {
+     "kind": "def",
+     "name": "child_map"
+    },
+    {
+     "kind": "lemma",
+     "name": "child_map_last"
+    },
+    {
+     "kind": "lemma",
+     "name": "child_map_applied"
+    },
+    {
+     "kind": "lemma",
+     "name": "child_map_inj"
+    },
+    {
+     "kind": "lemma",
+     "name": "child_map_surj_on"
+    },
+    {
+     "kind": "def",
+     "name": "child_cube"
+    },
+    {
+     "kind": "lemma",
+     "name": "induction_start"
+    },
+    {
+     "kind": "theorem",
+     "name": "strong_cubical_sperner"
+    },
+    {
+     "kind": "theorem",
+     "name": "weaker_cubical_sperner"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.FixedPointTheorems.cubical_sperner_prep"
+   ],
+   "lemma_count": 15,
+   "path": "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/cubical_sperner.lean",
+   "print_axioms_targets": [],
+   "sha256": "a00a51dada14b052144d5ea285f0d2257d9b9d6b1f4c01fafdc47002f8cb4e45",
+   "size_bytes": 21735,
+   "theorem_count": 2,
+   "theorem_count_bol_convention": 2
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "SpernerCube"
+    },
+    {
+     "kind": "def",
+     "name": "G"
+    },
+    {
+     "kind": "def",
+     "name": "simplex"
+    },
+    {
+     "kind": "def",
+     "name": "complete_simplex"
+    },
+    {
+     "kind": "def",
+     "name": "is_face"
+    },
+    {
+     "kind": "def",
+     "name": "is_boundary_face"
+    },
+    {
+     "kind": "def",
+     "name": "complete_boundary_face"
+    },
+    {
+     "kind": "def",
+     "name": "case_A"
+    },
+    {
+     "kind": "def",
+     "name": "case_B"
+    },
+    {
+     "kind": "def",
+     "name": "case_C"
+    },
+    {
+     "kind": "def",
+     "name": "case_D"
+    },
+    {
+     "kind": "lemma",
+     "name": "one_of_ABCD"
+    },
+    {
+     "kind": "lemma",
+     "name": "monotone_1_of_simplex"
+    },
+    {
+     "kind": "lemma",
+     "name": "monotone_2_of_simplex"
+    },
+    {
+     "kind": "lemma",
+     "name": "last_of_simplex"
+    },
+    {
+     "kind": "lemma",
+     "name": "le_add_one_of_simplex"
+    },
+    {
+     "kind": "lemma",
+     "name": "p_ne_zero_of_cube"
+    },
+    {
+     "kind": "def",
+     "name": "insert_index"
+    },
+    {
+     "kind": "def",
+     "name": "delete_vertex"
+    },
+    {
+     "kind": "lemma",
+     "name": "insert_index_ne"
+    },
+    {
+     "kind": "lemma",
+     "name": "almost_surjective_of_insert_index"
+    },
+    {
+     "kind": "lemma",
+     "name": "insert_index_strict_mono"
+    },
+    {
+     "kind": "lemma",
+     "name": "insert_index_inj"
+    },
+    {
+     "kind": "lemma",
+     "name": "delete_vertex_inj"
+    },
+    {
+     "kind": "lemma",
+     "name": "delete_vertex_simplex"
+    },
+    {
+     "kind": "lemma",
+     "name": "delete_vertex_is_face"
+    },
+    {
+     "kind": "lemma",
+     "name": "is_id_of_strict_mono"
+    },
+    {
+     "kind": "lemma",
+     "name": "is_insert_index_of_strict_mono"
+    },
+    {
+     "kind": "lemma",
+     "name": "child_simplex_char"
+    },
+    {
+     "kind": "lemma",
+     "name": "insert_vertex"
+    },
+    {
+     "kind": "lemma",
+     "name": "surround_index"
+    },
+    {
+     "kind": "lemma",
+     "name": "parent_injective"
+    },
+    {
+     "kind": "lemma",
+     "name": "parent_simplex_case_BC"
+    },
+    {
+     "kind": "lemma",
+     "name": "parent_simplex_case_AC"
+    },
+    {
+     "kind": "lemma",
+     "name": "parent_simplex_case_D"
+    },
+    {
+     "kind": "def",
+     "name": "coord_change_count"
+    },
+    {
+     "kind": "lemma",
+     "name": "ccc_add"
+    },
+    {
+     "kind": "lemma",
+     "name": "ccc_pos"
+    },
+    {
+     "kind": "def",
+     "name": "ccc_fun"
+    },
+    {
+     "kind": "lemma",
+     "name": "ccc_fun_strict_mono"
+    },
+    {
+     "kind": "lemma",
+     "name": "ccc_fun_is_insert_index"
+    },
+    {
+     "kind": "lemma",
+     "name": "ccc_fun_case_D_iff"
+    },
+    {
+     "kind": "lemma",
+     "name": "last_eq_first_add_one"
+    },
+    {
+     "kind": "lemma",
+     "name": "delete_vertex_ccc_fun_match"
+    },
+    {
+     "kind": "lemma",
+     "name": "case_D_iff_not_end_1"
+    },
+    {
+     "kind": "lemma",
+     "name": "case_D_iff_not_end_2"
+    },
+    {
+     "kind": "lemma",
+     "name": "same_delete_index_eq_iff"
+    },
+    {
+     "kind": "lemma",
+     "name": "case_D_parent_count"
+    },
+    {
+     "kind": "lemma",
+     "name": "unique_const_ABC"
+    },
+    {
+     "kind": "lemma",
+     "name": "case_AC_ex_unique"
+    },
+    {
+     "kind": "lemma",
+     "name": "case_B_not_last"
+    },
+    {
+     "kind": "lemma",
+     "name": "case_BC_ex_unique"
+    },
+    {
+     "kind": "lemma",
+     "name": "zero_ne_last"
+    },
+    {
+     "kind": "lemma",
+     "name": "case_A_not_zero"
+    },
+    {
+     "kind": "lemma",
+     "name": "case_ABC_count_disj"
+    },
+    {
+     "kind": "lemma",
+     "name": "case_C_parent_count"
+    },
+    {
+     "kind": "lemma",
+     "name": "case_B_parent_count"
+    },
+    {
+     "kind": "lemma",
+     "name": "case_A_parent_count"
+    },
+    {
+     "kind": "lemma",
+     "name": "boundary_is_A_or_B"
+    },
+    {
+     "kind": "lemma",
+     "name": "case_B_boundary"
+    },
+    {
+     "kind": "lemma",
+     "name": "parent_count"
+    }
+   ],
+   "imports": [
+    "Mathlib.Algebra.BigOperators.Ring.Nat",
+    "Mathlib.Combinatorics.Enumerative.DoubleCounting",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 46,
+   "path": "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/cubical_sperner_prep.lean",
+   "print_axioms_targets": [],
+   "sha256": "e692d2817aba80203722f69d52fe5738e84b9935bca61147ad36fc30284421fe",
+   "size_bytes": 48476,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "closedGraph"
+    },
+    {
+     "kind": "def",
+     "name": "convex_comb"
+    },
+    {
+     "kind": "lemma",
+     "name": "mem_of_convex_comb"
+    },
+    {
+     "kind": "lemma",
+     "name": "sub_ICC_of_convex_comb"
+    },
+    {
+     "kind": "lemma",
+     "name": "caratheodory_1"
+    },
+    {
+     "kind": "lemma",
+     "name": "set_valued_map_approx_fixed_point"
+    },
+    {
+     "kind": "theorem",
+     "name": "kakutani_fixed_point"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.FixedPointTheorems.brouwer",
+    "Mathlib.Analysis.Convex.Caratheodory",
+    "Mathlib.Analysis.Convex.PartitionOfUnity",
+    "Mathlib.Analysis.Normed.Affine.Isometry",
+    "Mathlib.Topology.Algebra.Module.FiniteDimension"
+   ],
+   "lemma_count": 4,
+   "path": "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/kakutani.lean",
+   "print_axioms_targets": [],
+   "sha256": "cd65dffc5bbbb6fc3a5dbf41fbbabf6511650156c58a7377a96587f07d87b989",
+   "size_bytes": 10830,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.External.FixedPointTheorems.brouwer",
+    "JurisLean.External.FixedPointTheorems.kakutani"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems.lean",
+   "print_axioms_targets": [],
+   "sha256": "81bb50128eecb7dce6a3998c5c0636c2e23b7e364a6952b7777ac604b96308e0",
+   "size_bytes": 1049,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "IsConstantSum.socialWelfare_eq_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsConstantSum.socialWelfare_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsConstantSum.eu_determined_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsConstantSum.eu_determined"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.isConstantSum_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsConstantSum.nash_eu_eq_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsConstantSum.nash_eu_eq"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Concepts.SolutionConcepts",
+    "JurisLean.External.GameTheory.Core.GameProperties",
+    "JurisLean.External.GameTheory.Math.Probability",
+    "Mathlib.Algebra.BigOperators.Fin"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ConstantSum.lean",
+   "print_axioms_targets": [],
+   "sha256": "f0392b640f940dafd55f08b824d39d6c42f90bed9f81f4de3f02df6a4ddbb600",
+   "size_bytes": 6270,
+   "theorem_count": 7,
+   "theorem_count_bol_convention": 7
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "deviationDistribution_apply"
+    },
+    {
+     "kind": "theorem",
+     "name": "deviationDistribution_id"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Core.KernelGame"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/Deviation.lean",
+   "print_axioms_targets": [],
+   "sha256": "b7e7df6760f1e7660310011308373d6babbae131c466a03841c48e278a381ca1",
+   "size_bytes": 3381,
+   "theorem_count": 2,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "Guarantees"
+    },
+    {
+     "kind": "theorem",
+     "name": "Guarantees.mono"
+    },
+    {
+     "kind": "def",
+     "name": "IsSaddlePoint"
+    },
+    {
+     "kind": "theorem",
+     "name": "isSaddlePoint_iff_isNash"
+    },
+    {
+     "kind": "theorem",
+     "name": "guarantees_iff_worstCaseEUInf_ge"
+    },
+    {
+     "kind": "theorem",
+     "name": "guarantees_iff_worstCaseEU_ge"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Concepts.SecurityStrategy",
+    "JurisLean.External.GameTheory.Concepts.SolutionConcepts",
+    "JurisLean.External.GameTheory.Math.Probability"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/Minimax.lean",
+   "print_axioms_targets": [],
+   "sha256": "c99d0b9c43c1d7cf72d19f111dd24b54f3a878a8cb78ec6053a79f8f9dbf4faf",
+   "size_bytes": 4192,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "mixedExtension_eu_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixedExtension_eu"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixedExtension_eu_update_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixedExtension_eu_update"
+    },
+    {
+     "kind": "theorem",
+     "name": "eu_abs_le_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "weighted_gain_sum_zero_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "isNash_iff_gains_nonpos_of_bounded"
+    },
+    {
+     "kind": "def",
+     "name": "mixedGain"
+    },
+    {
+     "kind": "theorem",
+     "name": "weighted_gain_sum_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "isNash_iff_gains_nonpos"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Concepts.SolutionConcepts",
+    "JurisLean.External.GameTheory.Math.PMFProduct",
+    "JurisLean.External.GameTheory.Math.Probability"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/MixedExtension.lean",
+   "print_axioms_targets": [],
+   "sha256": "152003a04aec5cc2cadca6f5aca1eea2193078d91f78c57043ff6d7019744b07",
+   "size_bytes": 12415,
+   "theorem_count": 9,
+   "theorem_count_bol_convention": 9
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "exists_fixedPoint_of_approx_on_compact"
+    },
+    {
+     "kind": "theorem",
+     "name": "exists_fixedPoint_of_approx_on_mixedSimplex"
+    },
+    {
+     "kind": "def",
+     "name": "mixedSimplexAsSet"
+    },
+    {
+     "kind": "theorem",
+     "name": "convex_mixedSimplexAsSet"
+    },
+    {
+     "kind": "theorem",
+     "name": "isCompact_mixedSimplexAsSet"
+    },
+    {
+     "kind": "theorem",
+     "name": "nonempty_mixedSimplexAsSet"
+    },
+    {
+     "kind": "def",
+     "name": "toMixedSet"
+    },
+    {
+     "kind": "def",
+     "name": "fromMixedSet"
+    },
+    {
+     "kind": "theorem",
+     "name": "fromMixedSet_toMixedSet"
+    },
+    {
+     "kind": "theorem",
+     "name": "toMixedSet_fromMixedSet"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_toMixedSet"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_fromMixedSet"
+    },
+    {
+     "kind": "def",
+     "name": "mixedSimplexHomeomorph"
+    },
+    {
+     "kind": "theorem",
+     "name": "brouwer_mixedSimplex"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.FixedPointTheorems.brouwer",
+    "JurisLean.External.GameTheory.Math.Probability",
+    "Mathlib.Analysis.InnerProductSpace.PiL2",
+    "Mathlib.Topology.Algebra.Module.FiniteDimension"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ProductSimplexBrouwer.lean",
+   "print_axioms_targets": [],
+   "sha256": "d23fad9436b17b1b422d4b91b12a29c2c82553175a8bf40ac8b7c2068019f756",
+   "size_bytes": 9057,
+   "theorem_count": 10,
+   "theorem_count_bol_convention": 10
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "worstCaseEUInf_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "worstCaseEUInf_guarantees"
+    },
+    {
+     "kind": "theorem",
+     "name": "nash_eu_ge_securityLevelSup"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsDominant.eu_ge_securityLevelSup"
+    },
+    {
+     "kind": "theorem",
+     "name": "le_securityLevelSup_of_forall_eu_ge"
+    },
+    {
+     "kind": "theorem",
+     "name": "worstCaseEU_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "worstCaseEU_guarantees"
+    },
+    {
+     "kind": "theorem",
+     "name": "nash_eu_ge_securityLevel"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsDominant.eu_ge_securityLevel"
+    },
+    {
+     "kind": "theorem",
+     "name": "le_securityLevel_of_forall_eu_ge"
+    },
+    {
+     "kind": "theorem",
+     "name": "exists_securityStrategy"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Concepts.SolutionConcepts",
+    "JurisLean.External.GameTheory.Math.Probability"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/SecurityStrategy.lean",
+   "print_axioms_targets": [],
+   "sha256": "b9c6ccb2857337799ed1b5abfdb7b99859c48ff90409d9a93dc1d6f28c6348aa",
+   "size_bytes": 9356,
+   "theorem_count": 11,
+   "theorem_count_bol_convention": 11
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "KernelGame.eu_ofEU"
+    },
+    {
+     "kind": "theorem",
+     "name": "KernelGame.ofEU_Strategy"
+    },
+    {
+     "kind": "def",
+     "name": "KernelGame.IsNash"
+    },
+    {
+     "kind": "def",
+     "name": "KernelGame.IsDominant"
+    },
+    {
+     "kind": "theorem",
+     "name": "KernelGame.dominant_is_nash"
+    },
+    {
+     "kind": "def",
+     "name": "KernelGame.IsNashFor"
+    },
+    {
+     "kind": "def",
+     "name": "KernelGame.IsDominantFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "KernelGame.dominant_is_nash_for"
+    },
+    {
+     "kind": "def",
+     "name": "KernelGame.euPref"
+    },
+    {
+     "kind": "def",
+     "name": "KernelGame.euStrictPref"
+    },
+    {
+     "kind": "theorem",
+     "name": "KernelGame.IsNash_iff_IsNashFor_eu"
+    },
+    {
+     "kind": "theorem",
+     "name": "KernelGame.IsDominant_iff_IsDominantFor_eu"
+    },
+    {
+     "kind": "def",
+     "name": "IsBestResponse"
+    },
+    {
+     "kind": "def",
+     "name": "IsBestResponseFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsBestResponse_iff_IsBestResponseFor_eu"
+    },
+    {
+     "kind": "def",
+     "name": "IsStrictNash"
+    },
+    {
+     "kind": "def",
+     "name": "IsStrictDominant"
+    },
+    {
+     "kind": "def",
+     "name": "IsStrictNashFor"
+    },
+    {
+     "kind": "def",
+     "name": "IsStrictDominantFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsStrictNash_iff_IsStrictNashFor_eu"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsStrictDominant_iff_IsStrictDominantFor_eu"
+    },
+    {
+     "kind": "def",
+     "name": "WeaklyDominates"
+    },
+    {
+     "kind": "def",
+     "name": "StrictlyDominates"
+    },
+    {
+     "kind": "def",
+     "name": "WeaklyDominatesFor"
+    },
+    {
+     "kind": "def",
+     "name": "StrictlyDominatesFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "WeaklyDominates_iff_WeaklyDominatesFor_eu"
+    },
+    {
+     "kind": "theorem",
+     "name": "StrictlyDominates_iff_StrictlyDominatesFor_eu"
+    },
+    {
+     "kind": "def",
+     "name": "IsCorrelatedEq"
+    },
+    {
+     "kind": "def",
+     "name": "IsCoarseCorrelatedEq"
+    },
+    {
+     "kind": "def",
+     "name": "IsCorrelatedEqFor"
+    },
+    {
+     "kind": "def",
+     "name": "IsCoarseCorrelatedEqFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsCorrelatedEq_iff_IsCorrelatedEqFor_eu"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsCoarseCorrelatedEq_iff_IsCoarseCorrelatedEqFor_eu"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Concepts.Deviation",
+    "JurisLean.External.GameTheory.Core.GameForm",
+    "JurisLean.External.GameTheory.Math.Probability"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/SolutionConcepts.lean",
+   "print_axioms_targets": [],
+   "sha256": "e36707ffb9931f2ace9439f8dc31c04d14118c8eb6cbb9cc01643d021d50af69",
+   "size_bytes": 15667,
+   "theorem_count": 13,
+   "theorem_count_bol_convention": 11
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.socialWelfare_eq_zero_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.socialWelfare_eq_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.eu_neg_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.eu_neg"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Concepts.ConstantSum"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ZeroSum.lean",
+   "print_axioms_targets": [],
+   "sha256": "f2ed75b171e29ce2ab1eff1159dfbeeb1923c3a0a77066aee2dd889b7ff6b587",
+   "size_bytes": 2961,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.nash_eu_sum_zero_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.nash_eu_sum_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsConstantSum.nash_eu_sum_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsConstantSum.nash_eu_sum"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.eu_nonneg_iff_nonpos_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.eu_nonneg_iff_nonpos"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.deviation_eu_neg_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.deviation_eu_neg"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Concepts.ConstantSum",
+    "JurisLean.External.GameTheory.Concepts.SolutionConcepts",
+    "JurisLean.External.GameTheory.Concepts.ZeroSum",
+    "JurisLean.External.GameTheory.Math.Probability"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ZeroSumNash.lean",
+   "print_axioms_targets": [],
+   "sha256": "e99c759bb6f097f7d38b297d66b79e1183dbf090f95059ac805386212ccb436b",
+   "size_bytes": 5901,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "GameForm"
+    },
+    {
+     "kind": "theorem",
+     "name": "correlatedOutcome_pure"
+    },
+    {
+     "kind": "theorem",
+     "name": "deviateProfile_same"
+    },
+    {
+     "kind": "theorem",
+     "name": "deviateOutcome_same"
+    },
+    {
+     "kind": "theorem",
+     "name": "constDeviateDistributionFn_pure"
+    },
+    {
+     "kind": "def",
+     "name": "withUtility"
+    },
+    {
+     "kind": "def",
+     "name": "toGameForm"
+    },
+    {
+     "kind": "theorem",
+     "name": "toGameForm_Strategy"
+    },
+    {
+     "kind": "theorem",
+     "name": "toGameForm_Outcome"
+    },
+    {
+     "kind": "theorem",
+     "name": "toGameForm_outcomeKernel"
+    },
+    {
+     "kind": "theorem",
+     "name": "toGameForm_withUtility"
+    },
+    {
+     "kind": "theorem",
+     "name": "withUtility_Strategy"
+    },
+    {
+     "kind": "theorem",
+     "name": "withUtility_Outcome"
+    },
+    {
+     "kind": "theorem",
+     "name": "withUtility_outcomeKernel"
+    },
+    {
+     "kind": "theorem",
+     "name": "withUtility_utility"
+    },
+    {
+     "kind": "theorem",
+     "name": "withUtility_toGameForm"
+    },
+    {
+     "kind": "theorem",
+     "name": "map_Strategy"
+    },
+    {
+     "kind": "theorem",
+     "name": "map_Outcome"
+    },
+    {
+     "kind": "theorem",
+     "name": "map_outcomeKernel"
+    },
+    {
+     "kind": "theorem",
+     "name": "map_id"
+    },
+    {
+     "kind": "theorem",
+     "name": "map_comp"
+    },
+    {
+     "kind": "theorem",
+     "name": "product_Outcome"
+    },
+    {
+     "kind": "theorem",
+     "name": "product_map_fst"
+    },
+    {
+     "kind": "theorem",
+     "name": "product_map_snd"
+    },
+    {
+     "kind": "structure",
+     "name": "ProtocolMap"
+    },
+    {
+     "kind": "def",
+     "name": "id"
+    },
+    {
+     "kind": "def",
+     "name": "comp"
+    },
+    {
+     "kind": "theorem",
+     "name": "id_stratMap"
+    },
+    {
+     "kind": "theorem",
+     "name": "id_outcomeMap"
+    },
+    {
+     "kind": "theorem",
+     "name": "comp_stratMap"
+    },
+    {
+     "kind": "theorem",
+     "name": "comp_outcomeMap"
+    },
+    {
+     "kind": "theorem",
+     "name": "id_comp"
+    },
+    {
+     "kind": "theorem",
+     "name": "comp_id"
+    },
+    {
+     "kind": "theorem",
+     "name": "comp_assoc"
+    },
+    {
+     "kind": "def",
+     "name": "NoProfitableDeviationFor"
+    },
+    {
+     "kind": "def",
+     "name": "NoProfitableProfileDeviationFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "noProfitableDeviationFor_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "noProfitableProfileDeviationFor_iff"
+    },
+    {
+     "kind": "structure",
+     "name": "ProfileDeviationFamily"
+    },
+    {
+     "kind": "def",
+     "name": "IsDeviationEqFamilyFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "recommendationDeviationFamily_deviate"
+    },
+    {
+     "kind": "theorem",
+     "name": "constantDeviationProfileFamily_deviate"
+    },
+    {
+     "kind": "theorem",
+     "name": "correlatedOutcome_constDeviateDistributionFn_pure"
+    },
+    {
+     "kind": "def",
+     "name": "IsNashFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "isNashFor_iff"
+    },
+    {
+     "kind": "def",
+     "name": "IsDominantFor"
+    },
+    {
+     "kind": "def",
+     "name": "IsBestResponseFor"
+    },
+    {
+     "kind": "def",
+     "name": "WeaklyDominatesFor"
+    },
+    {
+     "kind": "def",
+     "name": "StrictlyDominatesFor"
+    },
+    {
+     "kind": "def",
+     "name": "IsStrictNashFor"
+    },
+    {
+     "kind": "def",
+     "name": "IsStrictDominantFor"
+    },
+    {
+     "kind": "def",
+     "name": "ParetoDominatesFor"
+    },
+    {
+     "kind": "def",
+     "name": "IsParetoEfficientFor"
+    },
+    {
+     "kind": "def",
+     "name": "IsCorrelatedEqFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "isCorrelatedEqFor_iff"
+    },
+    {
+     "kind": "def",
+     "name": "IsCoarseCorrelatedEqFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "isCoarseCorrelatedEqFor_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "dominant_is_nash_for"
+    },
+    {
+     "kind": "theorem",
+     "name": "isNashFor_iff_bestResponseFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsDominantFor.isBestResponseFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsNashFor.mono"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsDominantFor.mono"
+    },
+    {
+     "kind": "theorem",
+     "name": "WeaklyDominatesFor.refl"
+    },
+    {
+     "kind": "theorem",
+     "name": "WeaklyDominatesFor.trans"
+    },
+    {
+     "kind": "theorem",
+     "name": "StrictlyDominatesFor.toWeaklyDominatesFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsDominantFor.weaklyDominatesFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsStrictNashFor.isNashFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "ParetoDominatesFor.irrefl"
+    },
+    {
+     "kind": "theorem",
+     "name": "ParetoDominatesFor.asymm"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsCorrelatedEqFor.toCoarseCorrelatedEqFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "deviateDistributionFn_id"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Core.KernelGame",
+    "JurisLean.External.GameTheory.Math.Probability"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Core/GameForm.lean",
+   "print_axioms_targets": [],
+   "sha256": "b06573983649c00e5caf084ada72cbec707f499f9c0aff5ac8ddb84fe64eb320",
+   "size_bytes": 33017,
+   "theorem_count": 50,
+   "theorem_count_bol_convention": 25
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "ParetoDominates"
+    },
+    {
+     "kind": "def",
+     "name": "IsParetoEfficient"
+    },
+    {
+     "kind": "def",
+     "name": "ParetoDominatesFor"
+    },
+    {
+     "kind": "def",
+     "name": "IsParetoEfficientFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "ParetoDominates_iff_ParetoDominatesFor_eu"
+    },
+    {
+     "kind": "def",
+     "name": "IsIndividuallyRational"
+    },
+    {
+     "kind": "def",
+     "name": "IsExactPotential"
+    },
+    {
+     "kind": "def",
+     "name": "IsOrdinalPotential"
+    },
+    {
+     "kind": "def",
+     "name": "IsConstantSum"
+    },
+    {
+     "kind": "def",
+     "name": "IsZeroSum"
+    },
+    {
+     "kind": "def",
+     "name": "IsTeamGame"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Core.GameForm",
+    "JurisLean.External.GameTheory.Math.Probability",
+    "Mathlib.Algebra.BigOperators.Ring.Finset"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Core/GameProperties.lean",
+   "print_axioms_targets": [],
+   "sha256": "0511b33d330b802e457588427497ecacead00d556b23584210dcf25ba348f559",
+   "size_bytes": 4380,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "KernelGame"
+    },
+    {
+     "kind": "theorem",
+     "name": "correlatedOutcome_pure"
+    },
+    {
+     "kind": "theorem",
+     "name": "udistPlayer_eq_udist_bind"
+    },
+    {
+     "kind": "theorem",
+     "name": "udist_pure"
+    },
+    {
+     "kind": "theorem",
+     "name": "udistPlayer_pure"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixedExtension_Strategy"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Math.PMFProduct",
+    "JurisLean.External.GameTheory.Math.Probability"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Core/KernelGame.lean",
+   "print_axioms_targets": [],
+   "sha256": "5a1cc37ea8c7546e0b0bd59cfda0ba806cfaa8b8360ee3536a168e8024c0266a",
+   "size_bytes": 6104,
+   "theorem_count": 5,
+   "theorem_count_bol_convention": 1
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "decisionNodeIn_reachBy"
+    },
+    {
+     "kind": "theorem",
+     "name": "reachBy_deterministic"
+    },
+    {
+     "kind": "def",
+     "name": "IsSubgame"
+    },
+    {
+     "kind": "theorem",
+     "name": "isSubgame_root"
+    },
+    {
+     "kind": "theorem",
+     "name": "isSubgame_terminal"
+    },
+    {
+     "kind": "def",
+     "name": "EFGGame.IsSubgamePerfectEq"
+    },
+    {
+     "kind": "theorem",
+     "name": "spe_implies_nash"
+    },
+    {
+     "kind": "theorem",
+     "name": "spe_implies_isNash"
+    },
+    {
+     "kind": "theorem",
+     "name": "terminal_isNashFor_euPref"
+    },
+    {
+     "kind": "def",
+     "name": "IsPerfectInfo"
+    },
+    {
+     "kind": "theorem",
+     "name": "perfectInfo_implies_perfectRecall"
+    },
+    {
+     "kind": "theorem",
+     "name": "perfectInfo_isSubgame_decision"
+    },
+    {
+     "kind": "theorem",
+     "name": "evalDist_eq_of_agree"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsPerfectInfo_subtree"
+    },
+    {
+     "kind": "theorem",
+     "name": "perfectInfo_root_not_in_subtree"
+    },
+    {
+     "kind": "theorem",
+     "name": "decisionNodeIn_of_reachBy"
+    },
+    {
+     "kind": "def",
+     "name": "entrySPE"
+    },
+    {
+     "kind": "def",
+     "name": "entryNash"
+    },
+    {
+     "kind": "theorem",
+     "name": "entry_spe_eu_p0"
+    },
+    {
+     "kind": "theorem",
+     "name": "entry_nash_eu_p0"
+    },
+    {
+     "kind": "theorem",
+     "name": "entrySPE_isSPE"
+    },
+    {
+     "kind": "theorem",
+     "name": "entryNash_isNash"
+    },
+    {
+     "kind": "theorem",
+     "name": "entryNash_not_spe"
+    },
+    {
+     "kind": "theorem",
+     "name": "entrySPE_isNash"
+    },
+    {
+     "kind": "theorem",
+     "name": "entry_perfectRecall"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Languages.EFG.Syntax",
+    "Mathlib.Tactic.Linarith"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Languages/EFG/Refinements.lean",
+   "print_axioms_targets": [],
+   "sha256": "916845cc2bbbb3a906f8c0e428617a69a4396014090a3483e9c38740492c878a",
+   "size_bytes": 19687,
+   "theorem_count": 20,
+   "theorem_count_bol_convention": 20
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "InfoStructure"
+    },
+    {
+     "kind": "inductive",
+     "name": "GameTree"
+    },
+    {
+     "kind": "structure",
+     "name": "EFGGame"
+    },
+    {
+     "kind": "def",
+     "name": "PureStrategy"
+    },
+    {
+     "kind": "def",
+     "name": "BehavioralStrategy"
+    },
+    {
+     "kind": "theorem",
+     "name": "evalDist_terminal"
+    },
+    {
+     "kind": "theorem",
+     "name": "evalDist_chance"
+    },
+    {
+     "kind": "theorem",
+     "name": "evalDist_decision"
+    },
+    {
+     "kind": "inductive",
+     "name": "IsDeterministic"
+    },
+    {
+     "kind": "def",
+     "name": "GameTree.evalPure"
+    },
+    {
+     "kind": "theorem",
+     "name": "evalPure_terminal"
+    },
+    {
+     "kind": "theorem",
+     "name": "evalPure_decision"
+    },
+    {
+     "kind": "theorem",
+     "name": "evalDist_pureToBehavioral_eq_pure"
+    },
+    {
+     "kind": "inductive",
+     "name": "DecisionNodeIn"
+    },
+    {
+     "kind": "theorem",
+     "name": "DecisionNodeIn_terminal_false"
+    },
+    {
+     "kind": "theorem",
+     "name": "DecisionNodeIn_chance_inv"
+    },
+    {
+     "kind": "theorem",
+     "name": "DecisionNodeIn_decision_inv"
+    },
+    {
+     "kind": "theorem",
+     "name": "swap_decisions"
+    },
+    {
+     "kind": "theorem",
+     "name": "swap_chance_decision"
+    },
+    {
+     "kind": "theorem",
+     "name": "swap_chances"
+    },
+    {
+     "kind": "theorem",
+     "name": "toStrategicKernelGame_outcomeKernel"
+    },
+    {
+     "kind": "theorem",
+     "name": "toStrategicKernelGame_udist"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureToBehavioral_update"
+    },
+    {
+     "kind": "def",
+     "name": "EFGGame.withTree"
+    },
+    {
+     "kind": "def",
+     "name": "EFGGame.IsSubgamePerfectFor"
+    },
+    {
+     "kind": "def",
+     "name": "EFGGame.IsSubgamePerfect"
+    },
+    {
+     "kind": "inductive",
+     "name": "HistoryStep"
+    },
+    {
+     "kind": "structure",
+     "name": "EFGGame.Assessment"
+    },
+    {
+     "kind": "def",
+     "name": "EFGGame.IsSequentialEqFor"
+    },
+    {
+     "kind": "def",
+     "name": "EFGGame.IsPerfectBayesianEqFor"
+    },
+    {
+     "kind": "def",
+     "name": "HistoryStepStep"
+    },
+    {
+     "kind": "theorem",
+     "name": "here"
+    },
+    {
+     "kind": "theorem",
+     "name": "chance"
+    },
+    {
+     "kind": "theorem",
+     "name": "action"
+    },
+    {
+     "kind": "def",
+     "name": "playerHistory"
+    },
+    {
+     "kind": "def",
+     "name": "PerfectRecall"
+    },
+    {
+     "kind": "theorem",
+     "name": "PerfectRecall_terminal"
+    },
+    {
+     "kind": "theorem",
+     "name": "PerfectRecall_single_infoSet"
+    },
+    {
+     "kind": "theorem",
+     "name": "ReachBy_terminal_absurd"
+    },
+    {
+     "kind": "theorem",
+     "name": "ReachBy_decision_inv"
+    },
+    {
+     "kind": "theorem",
+     "name": "ReachBy_chance_inv'"
+    },
+    {
+     "kind": "theorem",
+     "name": "ReachBy_append"
+    },
+    {
+     "kind": "theorem",
+     "name": "ReachBy_split"
+    },
+    {
+     "kind": "theorem",
+     "name": "playerHistory_append"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Concepts.SolutionConcepts",
+    "JurisLean.External.GameTheory.Core.KernelGame",
+    "JurisLean.External.GameTheory.Semantics.TransitionTrace",
+    "Mathlib.Data.NNReal.Basic",
+    "Mathlib.Data.Real.Basic",
+    "Mathlib.Probability.ProbabilityMassFunction.Monad"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Languages/EFG/Syntax.lean",
+   "print_axioms_targets": [],
+   "sha256": "64d0a0cff4ee4439fade6d58dfac48c2ffe2e1d1b58d4f5d3464085cd43ae4ad",
+   "size_bytes": 24070,
+   "theorem_count": 26,
+   "theorem_count_bol_convention": 21
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "HasCoupling"
+    },
+    {
+     "kind": "def",
+     "name": "mono"
+    },
+    {
+     "kind": "theorem",
+     "name": "hasCoupling_proj_iff_map_eq"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Math.ProbabilityMassFunction",
+    "Mathlib.Probability.ProbabilityMassFunction.Constructions"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/Coupling.lean",
+   "print_axioms_targets": [],
+   "sha256": "5be3179d9b90808a64f077c58fad12d75f85eb2bbbf1610414395effc537157b",
+   "size_bytes": 8614,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "IsFixedPoint"
+    },
+    {
+     "kind": "def",
+     "name": "NoImprovement"
+    },
+    {
+     "kind": "def",
+     "name": "LocallyOptimal"
+    },
+    {
+     "kind": "def",
+     "name": "ReachableBy"
+    },
+    {
+     "kind": "theorem",
+     "name": "isFixedPoint_of_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "noImprovement_at_of_fixed"
+    },
+    {
+     "kind": "theorem",
+     "name": "locallyOptimal_of_move_family"
+    },
+    {
+     "kind": "theorem",
+     "name": "locallyOptimal_of_global_on_set"
+    },
+    {
+     "kind": "theorem",
+     "name": "noImprovement_of_move_family"
+    },
+    {
+     "kind": "theorem",
+     "name": "noImprovement_add"
+    },
+    {
+     "kind": "theorem",
+     "name": "locallyOptimal_add"
+    },
+    {
+     "kind": "theorem",
+     "name": "noImprovement_smul_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "locallyOptimal_smul_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "max_mul_self_eq_sq"
+    },
+    {
+     "kind": "theorem",
+     "name": "all_nonpos_of_weighted_pospart_fixedPoint"
+    }
+   ],
+   "imports": [
+    "Mathlib.Algebra.BigOperators.Ring.Finset",
+    "Mathlib.Algebra.Order.BigOperators.Group.Finset",
+    "Mathlib.Data.Real.Basic",
+    "Mathlib.Data.Set.Basic",
+    "Mathlib.Tactic.Linarith",
+    "Mathlib.Tactic.Ring"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/OptimizationLocalGlobal.lean",
+   "print_axioms_targets": [],
+   "sha256": "08135adc7b5c893fc66de442a8337bfd9ecf2bcef60668804edfeb8f09c11691",
+   "size_bytes": 6075,
+   "theorem_count": 11,
+   "theorem_count_bol_convention": 11
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "append_singleton_inj"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_succ_append"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_succ_nil"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_length"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_step_nonzero"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_take_nonzero"
+    },
+    {
+     "kind": "theorem",
+     "name": "reweightPMF_apply"
+    },
+    {
+     "kind": "theorem",
+     "name": "reweightPMF_support_subset"
+    },
+    {
+     "kind": "theorem",
+     "name": "reweightPMF_fallback"
+    },
+    {
+     "kind": "theorem",
+     "name": "reweightPMF_degenerate"
+    },
+    {
+     "kind": "theorem",
+     "name": "reweightPMF_scale"
+    },
+    {
+     "kind": "theorem",
+     "name": "reweightPMF_eq_of_cross_mul"
+    },
+    {
+     "kind": "theorem",
+     "name": "reweightPMF_pmfPi"
+    },
+    {
+     "kind": "theorem",
+     "name": "reweightPMF_pmfPi_push_coord_of_ignores"
+    },
+    {
+     "kind": "theorem",
+     "name": "reweightPMF_pmfPi_push_coord_of_ignores'"
+    },
+    {
+     "kind": "theorem",
+     "name": "condStep_weighted_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "condStep_step_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "condRun_eq_mixedRun"
+    },
+    {
+     "kind": "theorem",
+     "name": "exists_realizing_steps"
+    },
+    {
+     "kind": "theorem",
+     "name": "exists_realizing_steps_outcome"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Math.PMFProduct",
+    "JurisLean.External.GameTheory.Math.ProbabilityMassFunction",
+    "JurisLean.External.GameTheory.Math.TraceRun"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/ParameterizedChain.lean",
+   "print_axioms_targets": [],
+   "sha256": "98c681eb1d2bcb1d03acec62df1a6257a1c3cf00f02c63bd62befd04df06b9d3",
+   "size_bytes": 22349,
+   "theorem_count": 20,
+   "theorem_count_bol_convention": 20
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "ENNReal_tsum_pi_fin"
+    },
+    {
+     "kind": "theorem",
+     "name": "ENNReal_tsum_pi"
+    },
+    {
+     "kind": "lemma",
+     "name": "prod_factor_erase"
+    },
+    {
+     "kind": "lemma",
+     "name": "prod_erase_update_eq"
+    },
+    {
+     "kind": "def",
+     "name": "swapJA"
+    },
+    {
+     "kind": "lemma",
+     "name": "swapJA_involutive"
+    },
+    {
+     "kind": "lemma",
+     "name": "sum_univ_eq_sum_univ_of_involutive"
+    },
+    {
+     "kind": "lemma",
+     "name": "tsum_eq_tsum_of_involutive"
+    },
+    {
+     "kind": "lemma",
+     "name": "pmfPi_apply"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_pure"
+    },
+    {
+     "kind": "def",
+     "name": "coord"
+    },
+    {
+     "kind": "def",
+     "name": "update"
+    },
+    {
+     "kind": "lemma",
+     "name": "update_self"
+    },
+    {
+     "kind": "lemma",
+     "name": "update_ne"
+    },
+    {
+     "kind": "def",
+     "name": "Ignores₂"
+    },
+    {
+     "kind": "lemma",
+     "name": "Ignores_of_pointwise"
+    },
+    {
+     "kind": "lemma",
+     "name": "Ignores₂_of_pointwise"
+    },
+    {
+     "kind": "lemma",
+     "name": "Ignores_coord_eq"
+    },
+    {
+     "kind": "lemma",
+     "name": "Ignores_coord_pred"
+    },
+    {
+     "kind": "def",
+     "name": "IgnoresP"
+    },
+    {
+     "kind": "lemma",
+     "name": "IgnoresP_of_Ignores"
+    },
+    {
+     "kind": "lemma",
+     "name": "Ignores_of_IgnoresP"
+    },
+    {
+     "kind": "lemma",
+     "name": "Ignores_const"
+    },
+    {
+     "kind": "lemma",
+     "name": "Ignores_comp"
+    },
+    {
+     "kind": "lemma",
+     "name": "Ignores_prod_mk"
+    },
+    {
+     "kind": "lemma",
+     "name": "Ignores_fst"
+    },
+    {
+     "kind": "lemma",
+     "name": "Ignores_snd"
+    },
+    {
+     "kind": "lemma",
+     "name": "Ignores_app2"
+    },
+    {
+     "kind": "lemma",
+     "name": "Ignores_ite"
+    },
+    {
+     "kind": "lemma",
+     "name": "IgnoresP_not"
+    },
+    {
+     "kind": "lemma",
+     "name": "IgnoresP_and"
+    },
+    {
+     "kind": "lemma",
+     "name": "IgnoresP_or"
+    },
+    {
+     "kind": "lemma",
+     "name": "IgnoresP_imp"
+    },
+    {
+     "kind": "lemma",
+     "name": "IgnoresP_iff"
+    },
+    {
+     "kind": "lemma",
+     "name": "update_update_same"
+    },
+    {
+     "kind": "lemma",
+     "name": "update_update_comm"
+    },
+    {
+     "kind": "theorem",
+     "name": "tsum_pmfPi_factor"
+    },
+    {
+     "kind": "theorem",
+     "name": "sum_pmfPi_factor"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_bind_factor"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_bind_eval"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_push_coordwise"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_push_coord"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_coord_mass_tsum"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_coord_mass"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfMass_pmfPi_coord"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfMass_pmfPi_forall"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_cond_coord"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_cond_coord_push_other"
+    },
+    {
+     "kind": "lemma",
+     "name": "pushforward_support_fibre"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmf_bind_disintegrate"
+    },
+    {
+     "kind": "lemma",
+     "name": "foldl_update_family_eq_of_nodup"
+    },
+    {
+     "kind": "lemma",
+     "name": "update_family_same"
+    },
+    {
+     "kind": "lemma",
+     "name": "update_family_other"
+    },
+    {
+     "kind": "lemma",
+     "name": "pmfPi_apply_update_family"
+    },
+    {
+     "kind": "lemma",
+     "name": "pmfPi_update_family_mul"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_update_bind"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_bind_ignores_coord"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_bind_ignores_coord_list"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_bind_ignores_coord_finset"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_bind_eq_of_forall_ignores"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_bind_comm_fresh_support"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_bind_comm_fresh"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_bind_update_map"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_bind_update_pure"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_cond_coord_other_marginal"
+    },
+    {
+     "kind": "lemma",
+     "name": "pmfPiMass_le_one"
+    },
+    {
+     "kind": "lemma",
+     "name": "pmfPiMass_ne_top"
+    },
+    {
+     "kind": "lemma",
+     "name": "pmfPiMass_true"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_event_ratio_invariant_of_ignores"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_mass_invariant_of_ignores"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_cond_prob_invariant_of_ignores"
+    },
+    {
+     "kind": "lemma",
+     "name": "replaceOn_apply"
+    },
+    {
+     "kind": "lemma",
+     "name": "replaceOn_empty"
+    },
+    {
+     "kind": "lemma",
+     "name": "replaceOn_insert"
+    },
+    {
+     "kind": "lemma",
+     "name": "ignores_replaceOn_eq"
+    },
+    {
+     "kind": "lemma",
+     "name": "replaceOn_univ_snd"
+    },
+    {
+     "kind": "lemma",
+     "name": "replaceOn_univ_diff"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_bind_indep"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_expect_indep"
+    },
+    {
+     "kind": "lemma",
+     "name": "Ignores_finset_prod"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_bind_pmfPi_of_disjoint_coords"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfPi_map_bind"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Math.ProbabilityMassFunction",
+    "Mathlib.Algebra.BigOperators.Fin",
+    "Mathlib.Algebra.BigOperators.Group.Finset.Basic",
+    "Mathlib.Algebra.BigOperators.Ring.Finset",
+    "Mathlib.Data.Finset.Piecewise",
+    "Mathlib.Data.Fintype.Basic",
+    "Mathlib.Probability.ProbabilityMassFunction.Constructions"
+   ],
+   "lemma_count": 44,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/PMFProduct.lean",
+   "print_axioms_targets": [],
+   "sha256": "993b21ae3b499fdd269c63819e7a0627a1ebc05f0ed4aadbc64709889309ed1e",
+   "size_bytes": 79066,
+   "theorem_count": 33,
+   "theorem_count_bol_convention": 33
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "comp_apply"
+    },
+    {
+     "kind": "theorem",
+     "name": "comp_assoc"
+    },
+    {
+     "kind": "theorem",
+     "name": "comp_id_left"
+    },
+    {
+     "kind": "theorem",
+     "name": "comp_id_right"
+    },
+    {
+     "kind": "theorem",
+     "name": "pushforward_apply"
+    },
+    {
+     "kind": "theorem",
+     "name": "pushforward_ofFun"
+    },
+    {
+     "kind": "theorem",
+     "name": "pushforward_comp"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_eq_sum"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmf_toReal_tsum_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmf_toReal_sum_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "exists_abs_bound_of_finite"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmf_toReal_summable"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_summable_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_pure"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_const"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_bind_summable_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_bind_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_bind"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_map_fintype_source"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_map_fintype_target"
+    }
+   ],
+   "imports": [
+    "Mathlib.Data.NNReal.Basic",
+    "Mathlib.Data.Real.Basic",
+    "Mathlib.Probability.ProbabilityMassFunction.Constructions",
+    "Mathlib.Probability.ProbabilityMassFunction.Monad"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/Probability.lean",
+   "print_axioms_targets": [],
+   "sha256": "d51ab3f24864fcd21208bc63ebf774b34e138e9a561ffadd88ca0283403e906b",
+   "size_bytes": 17722,
+   "theorem_count": 20,
+   "theorem_count_bol_convention": 11
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "pushforward_comp"
+    },
+    {
+     "kind": "theorem",
+     "name": "pushforward_pushforward"
+    },
+    {
+     "kind": "theorem",
+     "name": "pushforward_id"
+    },
+    {
+     "kind": "theorem",
+     "name": "pushforward_pure"
+    },
+    {
+     "kind": "theorem",
+     "name": "bind_pure_eq_pushforward"
+    },
+    {
+     "kind": "theorem",
+     "name": "bind_assoc"
+    },
+    {
+     "kind": "theorem",
+     "name": "pushforward_bind"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfMass_ne_top"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfMass_eq_toOuterMeasure"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfMass_pushforward"
+    },
+    {
+     "kind": "theorem",
+     "name": "pushforward_apply_eq_pmfMass"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfCond_apply"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfCond_ne_zero_implies"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfMass_true"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfMass_mono"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfMass_and_eq_zero_of_left_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfMass_and_eq_mul_cond"
+    },
+    {
+     "kind": "def",
+     "name": "allEvents"
+    },
+    {
+     "kind": "theorem",
+     "name": "allEvents_nil"
+    },
+    {
+     "kind": "theorem",
+     "name": "allEvents_cons"
+    },
+    {
+     "kind": "theorem",
+     "name": "allEvents_append_singleton"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfMass_event_chain_aux"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfMass_event_chain"
+    },
+    {
+     "kind": "theorem",
+     "name": "bind_congr_on_support"
+    },
+    {
+     "kind": "theorem",
+     "name": "bind_congr_of_ne_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_congr_on_support"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_congr_of_ne_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_pushforward"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_pushforward_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_pushforward_of_bounded_on_source"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_bind_congr_on_support"
+    },
+    {
+     "kind": "theorem",
+     "name": "bind_apply_eq_sum_sum_fiber"
+    },
+    {
+     "kind": "theorem",
+     "name": "le_pushforward_apply"
+    },
+    {
+     "kind": "theorem",
+     "name": "eq_zero_of_pushforward_eq_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "pushforward_support_fibre"
+    },
+    {
+     "kind": "theorem",
+     "name": "condOn_apply"
+    },
+    {
+     "kind": "theorem",
+     "name": "bind_pushforward_condOn"
+    },
+    {
+     "kind": "theorem",
+     "name": "foldl_bind_append"
+    },
+    {
+     "kind": "theorem",
+     "name": "foldl_bind_congr"
+    },
+    {
+     "kind": "theorem",
+     "name": "foldl_bind_eq_bind_foldl_pure"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_mono_of_pointwise"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_mono_of_pointwise_summable"
+    },
+    {
+     "kind": "theorem",
+     "name": "expect_mono_of_pointwise_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "eq_zero_of_expect_eq_zero_of_nonpos_of_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "pure_heq"
+    },
+    {
+     "kind": "theorem",
+     "name": "bind_heq"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Math.Probability",
+    "Mathlib.Probability.ProbabilityMassFunction.Constructions"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/ProbabilityMassFunction.lean",
+   "print_axioms_targets": [],
+   "sha256": "a3d33142168fa4744ed9a7f32f12089b9af144928683b2f7c62a4fd7953d2689",
+   "size_bytes": 27062,
+   "theorem_count": 45,
+   "theorem_count_bol_convention": 42
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "traceRun_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceRun_succ"
+    },
+    {
+     "kind": "structure",
+     "name": "TraceKernelBisim"
+    },
+    {
+     "kind": "def",
+     "name": "IsTraceKernelHom"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceRun_map_of_hom"
+    },
+    {
+     "kind": "theorem",
+     "name": "append_singleton_inj"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceRun_succ_append"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceRun_succ_nil"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceRun_length"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceRun_step_nonzero"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Math.Coupling",
+    "JurisLean.External.GameTheory.Math.ProbabilityMassFunction",
+    "Mathlib.Probability.ProbabilityMassFunction.Constructions"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/TraceRun.lean",
+   "print_axioms_targets": [],
+   "sha256": "0413f80eb6977ef15b47608d40e2253bc60535ea3a1b607fa8402a09d8323cae",
+   "size_bytes": 10018,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 7
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "DSMachine"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Math.ProbabilityMassFunction"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Semantics/DSMachine.lean",
+   "print_axioms_targets": [],
+   "sha256": "71bda6327017c80bb7647e65372c039b41b7c7f303289d3247b1d768ee7ded58",
+   "size_bytes": 1664,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
+     "name": "ReachBy"
+    },
+    {
+     "kind": "theorem",
+     "name": "reachBy_nil"
+    },
+    {
+     "kind": "theorem",
+     "name": "reachBy_singleton"
+    },
+    {
+     "kind": "theorem",
+     "name": "reachBy_append"
+    },
+    {
+     "kind": "theorem",
+     "name": "reachBy_split"
+    },
+    {
+     "kind": "theorem",
+     "name": "reachBy_append_singleton"
+    },
+    {
+     "kind": "def",
+     "name": "StepExists"
+    },
+    {
+     "kind": "theorem",
+     "name": "reaches_of_reachBy"
+    },
+    {
+     "kind": "theorem",
+     "name": "exists_reachBy_of_reaches"
+    },
+    {
+     "kind": "theorem",
+     "name": "exists_reachBy_iff_reaches"
+    },
+    {
+     "kind": "theorem",
+     "name": "reachBy_map_labels"
+    },
+    {
+     "kind": "theorem",
+     "name": "reachBy_map_states"
+    },
+    {
+     "kind": "theorem",
+     "name": "obs_eq_of_reachBy"
+    },
+    {
+     "kind": "theorem",
+     "name": "reaches_map_states"
+    },
+    {
+     "kind": "theorem",
+     "name": "obs_eq_of_reaches"
+    }
+   ],
+   "imports": [
+    "Mathlib.Logic.Relation"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Semantics/TransitionTrace.lean",
+   "print_axioms_targets": [],
+   "sha256": "61bcf44b3f984d99c240a3a33b32b42d8de665896b094d21fd9f7db2e9b6e17f",
+   "size_bytes": 6583,
+   "theorem_count": 13,
+   "theorem_count_bol_convention": 11
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "noNontrivialInfoStateRepeat_toCore"
+    },
+    {
+     "kind": "theorem",
+     "name": "horizonSeparation_toCore"
+    },
+    {
+     "kind": "theorem",
+     "name": "kuhn_behavioral_to_mixed"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Theorems.Kuhn.BehavioralToMixedCore",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.ObsModel"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/BehavioralToMixed.lean",
+   "print_axioms_targets": [],
+   "sha256": "39b7e16beec1658c2085b46e47433ff1467aaa5c01ec6c044f608d0e4243f27b",
+   "size_bytes": 5204,
+   "theorem_count": 3,
+   "theorem_count_bol_convention": 3
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "ReachableInfoStateWithin"
+    },
+    {
+     "kind": "def",
+     "name": "HorizonSeparation"
+    },
+    {
+     "kind": "theorem",
+     "name": "reachableInfoStateWithin_mono"
+    },
+    {
+     "kind": "theorem",
+     "name": "reachableInfoStateWithin_projectStates"
+    },
+    {
+     "kind": "theorem",
+     "name": "jointActionDist_pureToBehavioral"
+    },
+    {
+     "kind": "theorem",
+     "name": "stepDist_pureToBehavioral"
+    },
+    {
+     "kind": "theorem",
+     "name": "stepDist_pureToBehavioral_congr"
+    },
+    {
+     "kind": "theorem",
+     "name": "runDistPure_support_length"
+    },
+    {
+     "kind": "theorem",
+     "name": "runDistPure_congr_of_agree_within"
+    },
+    {
+     "kind": "theorem",
+     "name": "runDistPure_congr_on_trace"
+    },
+    {
+     "kind": "theorem",
+     "name": "marginal_stepDist"
+    },
+    {
+     "kind": "theorem",
+     "name": "swapProfileBy_involutive"
+    },
+    {
+     "kind": "theorem",
+     "name": "swapBy_weight_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "scalar_indep"
+    },
+    {
+     "kind": "theorem",
+     "name": "currentInfoState_subsingleton_of_repeated_on_reachable_trace"
+    },
+    {
+     "kind": "theorem",
+     "name": "stepIndependence_bridge"
+    },
+    {
+     "kind": "theorem",
+     "name": "runDist_eq_of_stepIndependence"
+    },
+    {
+     "kind": "theorem",
+     "name": "kuhn_behavioral_to_mixed"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Math.PMFProduct",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.KuhnModel"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/BehavioralToMixedCore.lean",
+   "print_axioms_targets": [],
+   "sha256": "0ee7a014ea08bdbb96e6ad967f26c930d391a7081210af2c7a85eace16313dc6",
+   "size_bytes": 28457,
+   "theorem_count": 16,
+   "theorem_count_bol_convention": 16
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "mediator_step_eq_condStep"
+    },
+    {
+     "kind": "theorem",
+     "name": "correlated_realization"
+    },
+    {
+     "kind": "theorem",
+     "name": "sum_mul_pmf_ne_top"
+    },
+    {
+     "kind": "theorem",
+     "name": "jointActionDist_obs_heq"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureStep_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureStep_eq_of_nonzero_same"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureStep_action_eq_of_psar"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureStep_cross_ratio"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_pairwise_cross_of_psar"
+    },
+    {
+     "kind": "theorem",
+     "name": "reweightPMF_pureRun_obs_invariant"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixedToMediator_obs_heq"
+    },
+    {
+     "kind": "theorem",
+     "name": "obs_correlated_realization"
+    },
+    {
+     "kind": "theorem",
+     "name": "action_unique_of_psar"
+    },
+    {
+     "kind": "theorem",
+     "name": "action_component_unique_of_pspr"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_nonzero_to_reachActionTrace"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_nonzero_last_stepReachable"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_const_of_psar"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureStep_nonzero_iff_action_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_nonzero_iff_action_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureStep_nonzero_iff_forall_player"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_eq_const_mul_indicator"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_succ_nonzero_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureStep_eq_of_action_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_nonzero_iff_update"
+    },
+    {
+     "kind": "theorem",
+     "name": "runDist_eq_of_stepIndependence"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureStep_component_eq_of_pspr"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureStep_component_eq_of_playerRecall"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_cross_mul_product"
+    },
+    {
+     "kind": "theorem",
+     "name": "mediator_product_of_product"
+    },
+    {
+     "kind": "theorem",
+     "name": "conditioning_preserves_product"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_update_obs_local_of"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_update_obs_local"
+    },
+    {
+     "kind": "theorem",
+     "name": "reweightPMF_update_obs_local_of"
+    },
+    {
+     "kind": "theorem",
+     "name": "reweightPMF_update_obs_local"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_update_obs_local_pspr"
+    },
+    {
+     "kind": "theorem",
+     "name": "reweightPMF_update_obs_local_pspr"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_update_obs_local_player"
+    },
+    {
+     "kind": "theorem",
+     "name": "reweightPMF_update_obs_local_player"
+    },
+    {
+     "kind": "theorem",
+     "name": "stepDistCorr_eq_stepDist_of_product"
+    },
+    {
+     "kind": "theorem",
+     "name": "runDist_eq_of_corrProduct"
+    },
+    {
+     "kind": "theorem",
+     "name": "PerStepActionRecall.toStepActionDeterminism"
+    },
+    {
+     "kind": "theorem",
+     "name": "obsLocalFeasibility_of_playerStepRecall"
+    },
+    {
+     "kind": "theorem",
+     "name": "obsLocalFeasibility_of_pspr"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureStep_component_eq_of_reachablePlayerRecall"
+    },
+    {
+     "kind": "theorem",
+     "name": "obsLocalFeasibility_of_reachablePlayerStepRecall"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureStep_component_eq_of_tracePlayerRecall"
+    },
+    {
+     "kind": "theorem",
+     "name": "obsLocalFeasibility_of_tracePlayerStepRecall"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_update_obs_local_trace"
+    },
+    {
+     "kind": "theorem",
+     "name": "reweightPMF_update_obs_local_trace"
+    },
+    {
+     "kind": "theorem",
+     "name": "obsLocalFeasibilityFull_of_tracePlayerStepRecall"
+    },
+    {
+     "kind": "theorem",
+     "name": "obsLocalFeasibility_toCore"
+    },
+    {
+     "kind": "theorem",
+     "name": "obsLocalFeasibilityFull_toCore"
+    },
+    {
+     "kind": "theorem",
+     "name": "actionPosteriorLocal_toCore"
+    },
+    {
+     "kind": "theorem",
+     "name": "kuhn_mixed_to_behavioral_semantic"
+    },
+    {
+     "kind": "theorem",
+     "name": "kuhn_mixed_to_behavioral_trace"
+    },
+    {
+     "kind": "theorem",
+     "name": "kuhn_mixed_to_behavioral_pspr"
+    },
+    {
+     "kind": "theorem",
+     "name": "kuhn_mixed_to_behavioral_decomposed"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Theorems.Kuhn.MixedToBehavioralCore",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.ObsModel"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean",
+   "print_axioms_targets": [],
+   "sha256": "51c28df98a3692b518a53d268400f90fb99539e8245a02d6815901e6d41be30c",
+   "size_bytes": 99349,
+   "theorem_count": 57,
+   "theorem_count_bol_convention": 57
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "InfoStateCore"
+    },
+    {
+     "kind": "def",
+     "name": "InfoStateCore.identity"
+    },
+    {
+     "kind": "theorem",
+     "name": "InfoStateCore.identity_Carrier"
+    },
+    {
+     "kind": "theorem",
+     "name": "InfoStateCore.identity_start"
+    },
+    {
+     "kind": "theorem",
+     "name": "InfoStateCore.identity_push"
+    },
+    {
+     "kind": "theorem",
+     "name": "InfoStateCore.identity_current"
+    },
+    {
+     "kind": "structure",
+     "name": "ObsModelCore"
+    },
+    {
+     "kind": "def",
+     "name": "lastState"
+    },
+    {
+     "kind": "def",
+     "name": "currentObs"
+    },
+    {
+     "kind": "def",
+     "name": "projectStatesFrom"
+    },
+    {
+     "kind": "def",
+     "name": "projectStates"
+    },
+    {
+     "kind": "theorem",
+     "name": "currentObs_projectStatesFrom"
+    },
+    {
+     "kind": "def",
+     "name": "obsEq"
+    },
+    {
+     "kind": "theorem",
+     "name": "currentObs_projectStates"
+    },
+    {
+     "kind": "def",
+     "name": "castProfileAction"
+    },
+    {
+     "kind": "def",
+     "name": "castJointAction"
+    },
+    {
+     "kind": "theorem",
+     "name": "runDistPure_eq_pureRun"
+    },
+    {
+     "kind": "theorem",
+     "name": "runDist_congr"
+    },
+    {
+     "kind": "inductive",
+     "name": "ReachActionTrace"
+    },
+    {
+     "kind": "def",
+     "name": "StepReachable"
+    },
+    {
+     "kind": "def",
+     "name": "PerStepActionRecall"
+    },
+    {
+     "kind": "def",
+     "name": "NoNontrivialInfoStateRepeat"
+    },
+    {
+     "kind": "theorem",
+     "name": "lastState_append_singleton"
+    },
+    {
+     "kind": "theorem",
+     "name": "runDist_bind_interp"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Math.ParameterizedChain",
+    "JurisLean.External.GameTheory.Math.TraceRun",
+    "JurisLean.External.GameTheory.Semantics.DSMachine"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/KuhnModel.lean",
+   "print_axioms_targets": [],
+   "sha256": "b50ea263ef716ad1e713fa2547f07b029f3c221711c4a3377d96e46d5f1d3c9f",
+   "size_bytes": 17886,
+   "theorem_count": 10,
+   "theorem_count_bol_convention": 6
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "sum_mul_pmf_ne_top"
+    },
+    {
+     "kind": "theorem",
+     "name": "correlated_realization"
+    },
+    {
+     "kind": "def",
+     "name": "StepMassInvariant"
+    },
+    {
+     "kind": "def",
+     "name": "StepSupportFactorization"
+    },
+    {
+     "kind": "def",
+     "name": "StepActionDeterminism"
+    },
+    {
+     "kind": "theorem",
+     "name": "PerStepActionRecall.toStepActionDeterminism"
+    },
+    {
+     "kind": "theorem",
+     "name": "jointActionDist_pureToBehavioral_m2b"
+    },
+    {
+     "kind": "theorem",
+     "name": "stepDist_pureToBehavioral_m2b"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureStep_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureStep_eq_of_nonzero_same"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_const_of_support"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureStep_nonzero_iff_action_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureStep_nonzero_iff_forall_player"
+    },
+    {
+     "kind": "theorem",
+     "name": "StepActionDeterminism.toMassInvariant"
+    },
+    {
+     "kind": "theorem",
+     "name": "StepActionDeterminism.toSupportFactorization"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_succ_nonzero_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_nonzero_iff_update"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_cross_mul_product"
+    },
+    {
+     "kind": "def",
+     "name": "RunSupportFactorization"
+    },
+    {
+     "kind": "theorem",
+     "name": "StepSupportFactorization.toRunSupportFactorization"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureRun_cross_mul_product_of_run"
+    },
+    {
+     "kind": "def",
+     "name": "ObsLocalFeasibilityFull"
+    },
+    {
+     "kind": "structure",
+     "name": "LocalSupportSignatureFull"
+    },
+    {
+     "kind": "theorem",
+     "name": "obsLocalFeasibilityFull_of_localSupportSignatureFull"
+    },
+    {
+     "kind": "theorem",
+     "name": "obsLocalFeasibilityFull_toRunSupportFactorization"
+    },
+    {
+     "kind": "def",
+     "name": "ObsLocalFeasibility"
+    },
+    {
+     "kind": "structure",
+     "name": "LocalSupportSignature"
+    },
+    {
+     "kind": "theorem",
+     "name": "obsLocalFeasibility_of_localSupportSignature"
+    },
+    {
+     "kind": "def",
+     "name": "ActionPosteriorLocal"
+    },
+    {
+     "kind": "theorem",
+     "name": "reweightPMF_update_obs_local_of"
+    },
+    {
+     "kind": "theorem",
+     "name": "actionPosteriorLocal_of_obsLocalFeasibility"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixedToMediator_eq_pmfPi_factor"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixedToBehavioralProfileWithFallback_eq_factorAt"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixedToBehavioralProfileWithFallback_runDist"
+    },
+    {
+     "kind": "theorem",
+     "name": "kuhn_mixed_to_behavioral_semantic"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixedToMediator_eq_pmfPi_factor_of_run"
+    },
+    {
+     "kind": "theorem",
+     "name": "kuhn_mixed_to_behavioral_of_runSupport"
+    },
+    {
+     "kind": "theorem",
+     "name": "kuhn_mixed_to_behavioral_of_obsLocal"
+    },
+    {
+     "kind": "theorem",
+     "name": "runDist_eq_of_correlatedStepIndependence"
+    },
+    {
+     "kind": "theorem",
+     "name": "stepDistCorr_eq_stepDist_of_product"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Math.PMFProduct",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.KuhnModel"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean",
+   "print_axioms_targets": [],
+   "sha256": "2abffd8310ae9cc2a5831ca3e3357735b2ff4c743f755729b98eef15ad88d9db",
+   "size_bytes": 58335,
+   "theorem_count": 31,
+   "theorem_count_bol_convention": 31
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "InfoStateSpec"
+    },
+    {
+     "kind": "def",
+     "name": "list"
+    },
+    {
+     "kind": "structure",
+     "name": "ObsModel"
+    },
+    {
+     "kind": "def",
+     "name": "toCore"
+    },
+    {
+     "kind": "def",
+     "name": "stateDepth"
+    },
+    {
+     "kind": "theorem",
+     "name": "stateSnapshot_projectStatesFrom"
+    },
+    {
+     "kind": "theorem",
+     "name": "stateSnapshot_projectStates"
+    },
+    {
+     "kind": "theorem",
+     "name": "stateDepth_projectStates"
+    },
+    {
+     "kind": "theorem",
+     "name": "currentObs_projectStatesFrom"
+    },
+    {
+     "kind": "def",
+     "name": "obsEq"
+    },
+    {
+     "kind": "theorem",
+     "name": "currentObs_projectStates"
+    },
+    {
+     "kind": "theorem",
+     "name": "obsEq_of_projectStates_getLast"
+    },
+    {
+     "kind": "def",
+     "name": "castProfileAction"
+    },
+    {
+     "kind": "theorem",
+     "name": "runDistPure_eq_pureRun"
+    },
+    {
+     "kind": "inductive",
+     "name": "ReachActionTrace"
+    },
+    {
+     "kind": "def",
+     "name": "StepReachable"
+    },
+    {
+     "kind": "def",
+     "name": "PerStepActionRecall"
+    },
+    {
+     "kind": "theorem",
+     "name": "cast_eq_of_subsingleton"
+    },
+    {
+     "kind": "def",
+     "name": "PerStepPlayerRecall"
+    },
+    {
+     "kind": "def",
+     "name": "PlayerStepRecall"
+    },
+    {
+     "kind": "def",
+     "name": "TracePlayerStepRecall"
+    },
+    {
+     "kind": "theorem",
+     "name": "PerStepPlayerRecall.action_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "PlayerStepRecall.action_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "TracePlayerStepRecall.action_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "PerStepPlayerRecall.toAction"
+    },
+    {
+     "kind": "def",
+     "name": "projectActions"
+    },
+    {
+     "kind": "theorem",
+     "name": "projectStates_eq_length"
+    },
+    {
+     "kind": "theorem",
+     "name": "projectStates_prefix_of_append"
+    },
+    {
+     "kind": "theorem",
+     "name": "obsEq_of_projectStates_append"
+    },
+    {
+     "kind": "def",
+     "name": "ObsRecall"
+    },
+    {
+     "kind": "def",
+     "name": "ActionRecall"
+    },
+    {
+     "kind": "def",
+     "name": "PerfectRecall"
+    },
+    {
+     "kind": "theorem",
+     "name": "stepReachable_init"
+    },
+    {
+     "kind": "theorem",
+     "name": "stepReachable_step"
+    },
+    {
+     "kind": "def",
+     "name": "ReachablePlayerStepRecall"
+    },
+    {
+     "kind": "theorem",
+     "name": "ReachablePlayerStepRecall.action_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "perStepPlayerRecall_iff_forall"
+    },
+    {
+     "kind": "theorem",
+     "name": "PlayerStepRecall.toReachable"
+    },
+    {
+     "kind": "theorem",
+     "name": "PlayerStepRecall.toTrace"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Math.PMFProduct",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.KuhnModel"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/ObsModel.lean",
+   "print_axioms_targets": [],
+   "sha256": "53752b158905cd192c617efff0a3bd71e361b60c01c8453eff27edc4ac9f5602",
+   "size_bytes": 26913,
+   "theorem_count": 21,
+   "theorem_count_bol_convention": 21
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "KuhnBehavioralToMixedOutcome"
+    },
+    {
+     "kind": "def",
+     "name": "KuhnMixedToBehavioralViaOutcome"
+    },
+    {
+     "kind": "def",
+     "name": "KuhnCompleteViaOutcome"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Theorems.Kuhn.BehavioralToMixed",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.BehavioralToMixedCore",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.CorrelatedRealization",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.KuhnModel",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.MixedToBehavioralCore",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.ObsModel"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn.lean",
+   "print_axioms_targets": [],
+   "sha256": "192ec9f379252ea63f345269925cf3118831dd4e6a95cf6c78da00b885289306",
+   "size_bytes": 3625,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "mixedExtension_isZeroSum"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.nash_p0_optimal_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.nash_p0_optimal"
+    },
+    {
+     "kind": "theorem",
+     "name": "nash_p0_cap"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.nash_eu_eq_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.nash_eu_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "von_neumann_minimax_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "von_neumann_minimax"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.nash_interchangeable_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "IsZeroSum.nash_interchangeable"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Concepts.Minimax",
+    "JurisLean.External.GameTheory.Concepts.ZeroSumNash",
+    "JurisLean.External.GameTheory.Math.Probability",
+    "JurisLean.External.GameTheory.Theorems.NashExistenceMixed"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Minimax.lean",
+   "print_axioms_targets": [],
+   "sha256": "5f20389761ce3cc028bf8e5e64769a85fd3b9bab70beb001a5ea27eac4659f02",
+   "size_bytes": 10188,
+   "theorem_count": 10,
+   "theorem_count_bol_convention": 10
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "pospart"
+    },
+    {
+     "kind": "theorem",
+     "name": "pospart_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "pospart_eq_zero_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "pospart_mul_self"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_pospart"
+    },
+    {
+     "kind": "def",
+     "name": "gainSum"
+    },
+    {
+     "kind": "theorem",
+     "name": "gainSum_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "nash_fp_is_nash_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "nash_fp_is_nash"
+    },
+    {
+     "kind": "def",
+     "name": "realToPmf"
+    },
+    {
+     "kind": "theorem",
+     "name": "realToPmf_apply"
+    },
+    {
+     "kind": "theorem",
+     "name": "realToPmf_toReal"
+    },
+    {
+     "kind": "def",
+     "name": "profileFromWeights"
+    },
+    {
+     "kind": "def",
+     "name": "nashMap"
+    },
+    {
+     "kind": "theorem",
+     "name": "nashMap_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "nashMap_sum_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "nashMap_fp_identity"
+    },
+    {
+     "kind": "theorem",
+     "name": "gainSumOnMixedSimplex_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "nashMapOnMixedSimplex_apply"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_mixedGainOnMixedSimplex_of_continuous_mixedEu"
+    },
+    {
+     "kind": "theorem",
+     "name": "nashMap_weightFixedPoint_of_mixedSimplexFixedPoint"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_mixedExtension_eu_profileFromMixedSimplex_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_mixedExtension_eu_update_profileFromMixedSimplex_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_mixedExtension_eu_profileFromMixedSimplex"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_mixedExtension_eu_update_profileFromMixedSimplex"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_nashMapOnMixedSimplex_of_continuous_mixedGainOnMixedSimplex"
+    },
+    {
+     "kind": "theorem",
+     "name": "nashMap_weightFixedPoint_of_nashMapOnMixedSimplex_approx"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_nashMapOnMixedSimplex_of_continuous_mixedEu"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_nashMapOnMixedSimplex_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_nashMapOnMixedSimplex"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_nashMapOnMixedSimplex_of_continuous_mixedEu_deviation"
+    },
+    {
+     "kind": "theorem",
+     "name": "nashMap_weightFixedPoint_of_nashMapOnMixedSimplex_approxOnly"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixed_nash_exists_of_nashMapOnMixedSimplex_fixed_point_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixed_nash_exists_of_nashMapOnMixedSimplex_fixed_point"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixed_nash_exists_of_nashMapOnMixedSimplex_approx_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixed_nash_exists_of_nashMapOnMixedSimplex_approx"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixed_nash_exists_of_nashMapOnMixedSimplex_approxOnly_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixed_nash_exists_of_nashMapOnMixedSimplex_approxOnly"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixed_nash_exists_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixed_nash_exists"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Concepts.MixedExtension",
+    "JurisLean.External.GameTheory.Concepts.ProductSimplexBrouwer",
+    "JurisLean.External.GameTheory.Math.OptimizationLocalGlobal",
+    "JurisLean.External.GameTheory.Math.ProbabilityMassFunction"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/NashExistenceMixed.lean",
+   "print_axioms_targets": [],
+   "sha256": "cbba61358465acbea87d95de4f20514ab6916643db84a7f3d2d509efaaea1f3b",
+   "size_bytes": 30897,
+   "theorem_count": 35,
+   "theorem_count_bol_convention": 34
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "HasNoOneShotDeviation"
+    },
+    {
+     "kind": "theorem",
+     "name": "spe_hasNoOneShotDeviation"
+    },
+    {
+     "kind": "theorem",
+     "name": "nash_of_noOSD_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "nash_of_noOSD"
+    },
+    {
+     "kind": "theorem",
+     "name": "hasNoOneShotDeviation_spe_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "hasNoOneShotDeviation_spe"
+    },
+    {
+     "kind": "theorem",
+     "name": "oneShotDeviation_iff_spe_of_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "oneShotDeviation_iff_spe"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.GameTheory.Languages.EFG.Refinements",
+    "JurisLean.External.GameTheory.Math.Probability",
+    "JurisLean.External.GameTheory.Math.ProbabilityMassFunction",
+    "Mathlib.Tactic.Linarith"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/OneShotDeviation.lean",
+   "print_axioms_targets": [],
+   "sha256": "fc05c393d9b0312f4acf2fd2e9a4fb2cfb2fd7c76e90c3cb393c2053c91f4376",
+   "size_bytes": 17786,
    "theorem_count": 7,
    "theorem_count_bol_convention": 7
   },
@@ -20197,22 +24744,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 2062,
-   "file_count": 240,
-   "lemma_count": 24,
-   "print_axioms_command_count": 927,
-   "print_axioms_distinct_targets": 873,
-   "theorem_count": 2038,
-   "theorem_count_bol_convention": 2002
+   "counted_declaration_count": 2699,
+   "file_count": 280,
+   "lemma_count": 141,
+   "print_axioms_command_count": 1565,
+   "print_axioms_distinct_targets": 1511,
+   "theorem_count": 2558,
+   "theorem_count_bol_convention": 2464
   },
   "juris_lean_package": {
-   "counted_declaration_count": 2043,
-   "file_count": 225,
-   "lemma_count": 17,
-   "print_axioms_command_count": 927,
-   "print_axioms_distinct_targets": 873,
-   "theorem_count": 2026,
-   "theorem_count_bol_convention": 1990
+   "counted_declaration_count": 2680,
+   "file_count": 265,
+   "lemma_count": 134,
+   "print_axioms_command_count": 1565,
+   "print_axioms_distinct_targets": 1511,
+   "theorem_count": 2546,
+   "theorem_count_bol_convention": 2452
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -20283,6 +24830,46 @@
    "proofs/lean/juris_lean/JurisLean/DungFixedPoint.lean",
    "proofs/lean/juris_lean/JurisLean/EndToEnd.lean",
    "proofs/lean/juris_lean/JurisLean/ExactNumericContract.lean",
+   "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems.lean",
+   "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/apply_cubical_sperner.lean",
+   "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/brouwer.lean",
+   "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/convex_homeos.lean",
+   "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/cubical_sperner.lean",
+   "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/cubical_sperner_prep.lean",
+   "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/kakutani.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ConstantSum.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/Deviation.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/Minimax.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/MixedExtension.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ProductSimplexBrouwer.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/SecurityStrategy.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/SolutionConcepts.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ZeroSum.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ZeroSumNash.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Core/GameForm.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Core/GameProperties.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Core/KernelGame.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Languages/EFG/Refinements.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Languages/EFG/Syntax.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/Coupling.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/OptimizationLocalGlobal.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/PMFProduct.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/ParameterizedChain.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/Probability.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/ProbabilityMassFunction.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/TraceRun.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Semantics/DSMachine.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Semantics/TransitionTrace.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/BehavioralToMixed.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/BehavioralToMixedCore.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/KuhnModel.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/ObsModel.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Minimax.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/NashExistenceMixed.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/OneShotDeviation.lean",
    "proofs/lean/juris_lean/JurisLean/FactAdmissionSpec.lean",
    "proofs/lean/juris_lean/JurisLean/FailureStatus.lean",
    "proofs/lean/juris_lean/JurisLean/FiniteGaloisAdjunction.lean",
@@ -20521,6 +25108,46 @@
    "proofs/lean/juris_lean/JurisLean/DungFixedPoint.lean",
    "proofs/lean/juris_lean/JurisLean/EndToEnd.lean",
    "proofs/lean/juris_lean/JurisLean/ExactNumericContract.lean",
+   "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems.lean",
+   "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/apply_cubical_sperner.lean",
+   "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/brouwer.lean",
+   "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/convex_homeos.lean",
+   "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/cubical_sperner.lean",
+   "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/cubical_sperner_prep.lean",
+   "proofs/lean/juris_lean/JurisLean/External/FixedPointTheorems/kakutani.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ConstantSum.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/Deviation.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/Minimax.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/MixedExtension.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ProductSimplexBrouwer.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/SecurityStrategy.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/SolutionConcepts.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ZeroSum.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Concepts/ZeroSumNash.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Core/GameForm.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Core/GameProperties.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Core/KernelGame.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Languages/EFG/Refinements.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Languages/EFG/Syntax.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/Coupling.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/OptimizationLocalGlobal.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/PMFProduct.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/ParameterizedChain.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/Probability.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/ProbabilityMassFunction.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/TraceRun.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Semantics/DSMachine.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Semantics/TransitionTrace.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/BehavioralToMixed.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/BehavioralToMixedCore.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/KuhnModel.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Kuhn/ObsModel.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/Minimax.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/NashExistenceMixed.lean",
+   "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/OneShotDeviation.lean",
    "proofs/lean/juris_lean/JurisLean/FactAdmissionSpec.lean",
    "proofs/lean/juris_lean/JurisLean/FailureStatus.lean",
    "proofs/lean/juris_lean/JurisLean/FiniteGaloisAdjunction.lean",
@@ -20734,17 +25361,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "2bdedd59a44534f5776295720c3c890efa209709db4bc123ca49776016f7ecd0",
+ "source_inventory_digest": "b322b7fc0f7e58a6dbd412d5deef0de70e28cf10d706015a42bacb918291c049",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "50ed4a3c2bcefadf4a8e905a687d0dc737ed1748",
-  "tree": "7a8fb28b556c0fefbb9e1206dc37b5527bd0ab9e"
+  "commit": "3ecf0b9f6f83be84f7579d76a93d05557dd4124e",
+  "tree": "94755b5f1e781faff5265937409d25e36aa466ae"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 240,
+  "files_total": 280,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

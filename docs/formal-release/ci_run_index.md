@@ -94,6 +94,7 @@ without guessing where it came from.
 | 36409348921 | success | `649d0fd` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md, paper_cn.md, paper_en.md |
 | 36412541046 | success | `732576b` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md |
 | 36431969776 | failure | `49c9d5b` | ci/mandate-wave1 | push | 2/8 | 5 | 03_证明战役台账.md |
+| 36435108900 | success | `87bf95c` | ci/mandate-wave1 | push | 7/8 | 10 | 03_证明战役台账.md |
 
 Runs not concluding `success`: 43 — 34512426708, 34514241309, 34516894406, 34517689336, 34519379252, 35819869335, 35832550717, 36116094791, 36258179200, 36285858369, 36289822066, 36290409329, 36291053225, 36292599075, 36295032321, 36296061840, 36303397911, 36304261436, 36305404923, 36308381874, 36309484500, 36327456262, 36336037802, 36338968515, 36341001563, 36343993012, 36347838507, 36349847602, 36350810615, 36355767697, 36357526499, 36357820618, 36366431370, 36368232581, 36370196379, 36371673207, 36374824946, 36377625445, 36389750256, 36392435547, 36394196611, 36401817896, 36431969776.
 
@@ -122,6 +123,7 @@ JSON before repeating any "that run was green" claim.
 - run 36354205151: 18 files, 302371 bytes, digests in `docs/formal-release/ci-evidence/36354205151/digests.json`
 - run 36372895460: 18 files, 305370 bytes, digests in `docs/formal-release/ci-evidence/36372895460/digests.json`
 - run 36409348921: 18 files, 321406 bytes, digests in `docs/formal-release/ci-evidence/36409348921/digests.json`
+- run 36435108900: 18 files, 321409 bytes, digests in `docs/formal-release/ci-evidence/36435108900/digests.json`
 
 Land another run's bytes with `--fetch-evidence <run>`; `--check` recomputes every digest in every `digests.json` and fails if a landed set no longer matches, or belongs to a run nothing quotes.
 

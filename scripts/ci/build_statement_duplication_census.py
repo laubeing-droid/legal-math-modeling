@@ -54,6 +54,11 @@ def family(rel: str) -> str:
         return "Mandate"
     if parts[0] == "FullMath":
         return "FullMath"
+    if parts[0] == "External":
+        # The byte-faithful ports carry upstream's own cross-file helper lemmas; a
+        # separate family keeps those from masking a real cross-family match with
+        # this repository's own modules.
+        return "External"
     return "root/other"
 
 
@@ -124,16 +129,23 @@ INVENTORY = ROOT / "docs" / "formal-release" / "theorem_inventory_v3.json"
 
 
 def inventory_count() -> int:
-    """Declared theorem count in the package scope, from the generated account.
+    """Declared theorem *and* lemma count in the package scope, from the generated account.
 
     The census reads fewer headers than that whenever a declaration hides behind an
     attribute line or a `where` clause, so the difference is published instead of
     smoothed over: it is this scanner's own blind spot, measured.
+
+    The comparison basis is theorems **plus** lemmas because the scanner reads both
+    keywords. Against theorem-count alone the difference could go negative the
+    moment a ported library leans on `lemma` (the external game-theory cone does:
+    134 package lemmas against 13 before it), which would read as a negative blind
+    spot -- a nonsense the first external-port round actually produced.
     """
     if not INVENTORY.exists():
         return -1
     doc = json.loads(INVENTORY.read_text(encoding="utf-8"))
-    return doc["scope_summary"]["juris_lean_package"]["theorem_count"]
+    scope = doc["scope_summary"]["juris_lean_package"]
+    return scope["theorem_count"] + scope.get("lemma_count", 0)
 
 
 def scan() -> Dict:

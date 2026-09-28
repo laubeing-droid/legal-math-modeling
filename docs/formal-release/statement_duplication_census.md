@@ -4,10 +4,10 @@
 
 Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.
 
-- files scanned: 225
-- theorem/lemma headers read: 2013
-- distinct statement types: 2011
-- statement types declared more than once: 2
+- files scanned: 265
+- theorem/lemma headers read: 2608
+- distinct statement types: 2600
+- statement types declared more than once: 8
 - of those spanning module families: 0
 
 ## Across module families (0)
@@ -15,7 +15,13 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 None.
 
 
-## Within the package (2)
+## Within the package (8)
 
+- `append_singleton_inj {α : Type*} {as bs : List α} {a b : α} (h : as ++ [a] = bs ++ [b]) : as = bs ∧ a = b` — `External/GameTheory/Math/ParameterizedChain.lean:55` (External/append_singleton_inj), `External/GameTheory/Math/TraceRun.lean:139` (External/append_singleton_inj)
 - `enumeration_member (pred : A → Bool) (a : A) : a ∈ enumerateAll pred ↔ pred a = true` — `FullMath/GenericKernels.lean:34` (FullMath/enumeration_member), `FullMath/Representation/FiniteCertificates.lean:38` (FullMath/enumeration_member)
 - `exact_check_reflects (pred : A → Bool) (out : Finset A) (h : checkExact pred out = true) : (↑out : Set A) = solutionSet pred` — `FullMath/GenericKernels.lean:38` (FullMath/exact_check_reflects), `FullMath/Representation/FiniteCertificates.lean:43` (FullMath/exact_check_reflects)
+- `fwd_subst_heq {α : Type} {P : α → Type} {a b : α} (h : a = b) (x : P a) : HEq x (h ▸ x : P b)` — `External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean:183` (External/fwd_subst_heq), `External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean:52` (External/fwd_subst_heq)
+- `pmf_bind_heq {α β₁ β₂ : Type} (hβ : β₁ = β₂) (p : PMF α) (f₁ : α → PMF β₁) (f₂ : α → PMF β₂) (hf : ∀ a, HEq (f₁ a) (f₂ a)) : HEq (p.bind f₁) (p.bind f₂)` — `External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean:197` (External/pmf_bind_heq), `External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean:58` (External/pmf_bind_heq)
+- `pmf_bind_heq' {α β₁ β₂ : Type} (hβ : β₁ = β₂) (p₁ p₂ : PMF α) (hp : p₁ = p₂) (f₁ : α → PMF β₁) (f₂ : α → PMF β₂) (hf : ∀ a, HEq (f₁ a) (f₂ a)) : HEq (p₁.bind f₁` — `External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean:204` (External/pmf_bind_heq'), `External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean:66` (External/pmf_bind_heq')
+- `runDist_eq_of_stepIndependence (ν : PMF (PureProfile O)) (b : BehavioralProfile O) (hStep : ∀ n, ν.bind (fun π => (O.runDistPure n π).bind (fun ss => pushforwar` — `External/GameTheory/Theorems/Kuhn/BehavioralToMixedCore.lean:599` (External/runDist_eq_of_stepIndependence), `External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean:746` (External/runDist_eq_of_stepIndependence)
+- `sum_mul_pmf_ne_top {α : Type*} [Fintype α] (d : PMF α) (w : α → ENNReal) (hw : ∀ a, w a ≤ 1) : ∑ a, d a * w a ≠ ⊤` — `External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean:107` (External/sum_mul_pmf_ne_top), `External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean:75` (External/sum_mul_pmf_ne_top)

@@ -1,0 +1,33 @@
+{
+  "schema_version": "spec-runtime-refinement-v2",
+  "role": "actual",
+  "producer": "juris-calculus",
+  "lmm_commit": "37e6a1f7acc2f614fa800c2bc881b41e53a794a2",
+  "runtime_commit": "c79e03b8d0cfed85c43cc013bf8a0b50326bc858",
+  "runtime_build_id": "github-actions:36511103988:1",
+  "fixture_digest": "e1168232131cecfc9c268dbaff4f613933934e6dddd0672d2d7564158e0d7225",
+  "runtime_fixture_digest": "217da11d0a48e05044a59ea0849577f407a253ab3e744de97a29d5f806eba42c",
+  "source_snapshot_digests": [
+    "5532d563220e7ddfe5ad8c87525e5ca4a76657bd75f9c35237a5f13e783f9b65"
+  ],
+  "rule_pack_digest": "c8d05de97ff199284171b98f60f7319f241adb30f153236d10db941ddbbadc65",
+  "cases": [
+    {
+      "case_id": "admission::three-gates-pass",
+      "actual_status": "PROVED",
+      "runtime_evidence_digest": "58439e24f64321565988174e3fe8e445d4540352f2dfe329f5efcf3c738fd87a"
+    },
+    {
+      "case_id": "admission::disputed-fact",
+      "actual_status": "UNDECIDED",
+      "runtime_evidence_digest": "a6fc5baa4ba7d8bb4e934a1f2c6f76d2d4262f3bc9f194f6feed0d12a03eeb6d"
+    },
+    {
+      "case_id": "admission::revoked-attestation",
+      "actual_status": "UNDECIDED",
+      "runtime_evidence_digest": "ec76e99dea4cdb58c3c441e2509792646d76c4cfabb03f17656d3e0a18524523"
+    }
+  ],
+  "execution_status": "SUCCESS",
+  "receipt_digest": "1ea9e04bca852f63be2d38182bf5447f0f543ddd829dfe4304f6df3a621710bf"
+}

@@ -6020,6 +6020,7 @@
         "docs/master-plan/03_证明战役台账.md:2007",
         "docs/master-plan/03_证明战役台账.md:2040",
         "docs/master-plan/03_证明战役台账.md:2051",
+        "docs/master-plan/03_证明战役台账.md:2088",
         "docs/paper-rewrite/paper_cn.md:146",
         "docs/paper-rewrite/paper_cn.md:154",
         "docs/paper-rewrite/paper_cn.md:160",
@@ -6289,7 +6290,8 @@
       "jobs_total": 8,
       "name": "docs(ledger): record the mandate wave as unverified work",
       "quoted_by": [
-        "docs/master-plan/03_证明战役台账.md:2044"
+        "docs/master-plan/03_证明战役台账.md:2044",
+        "docs/master-plan/03_证明战役台账.md:2077"
       ],
       "run_id": 36500486589,
       "started": true,
@@ -6357,6 +6359,68 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-09-29T00:25:19Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-09-29T00:53:05Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "86384e4b134d88d3d1d0827c7315de3afaee4f28",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36505244239",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(inventory): rebind after the promotion commit -- the manifest m…",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:2072"
+      ],
+      "run_id": 36505244239,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-29T01:01:43Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

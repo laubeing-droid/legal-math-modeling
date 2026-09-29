@@ -109,7 +109,54 @@ _EXTERNAL_PORT_REASON = (
 
 # Modules that have been deliberately imported into the release root with their
 # own green build; empty until the first promotion round.
-_EXTERNAL_ROOT_PROMOTED: set[str] = set()
+# Batch two of the promotion rounds (ledger round 90): the 40 same-pin external
+# ports (elazarg/GameTheory + elazarg/fixed-point-theorems-lean4) join the root.
+# Their theorems were built and axiom-audited green by run 36456965606 (subject
+# c5830ed, evidence landed under ci-evidence/); the root entry itself is attested
+# by the build this change triggers. The 17 cross-pin neural modules stay out
+# (batch three, together with ReLUFamily).
+_EXTERNAL_ROOT_PROMOTED: set[str] = {
+    "JurisLean.External.FixedPointTheorems",
+    "JurisLean.External.FixedPointTheorems.apply_cubical_sperner",
+    "JurisLean.External.FixedPointTheorems.brouwer",
+    "JurisLean.External.FixedPointTheorems.convex_homeos",
+    "JurisLean.External.FixedPointTheorems.cubical_sperner",
+    "JurisLean.External.FixedPointTheorems.cubical_sperner_prep",
+    "JurisLean.External.FixedPointTheorems.kakutani",
+    "JurisLean.External.GameTheory.Concepts.ConstantSum",
+    "JurisLean.External.GameTheory.Concepts.Deviation",
+    "JurisLean.External.GameTheory.Concepts.Minimax",
+    "JurisLean.External.GameTheory.Concepts.MixedExtension",
+    "JurisLean.External.GameTheory.Concepts.ProductSimplexBrouwer",
+    "JurisLean.External.GameTheory.Concepts.SecurityStrategy",
+    "JurisLean.External.GameTheory.Concepts.SolutionConcepts",
+    "JurisLean.External.GameTheory.Concepts.ZeroSum",
+    "JurisLean.External.GameTheory.Concepts.ZeroSumNash",
+    "JurisLean.External.GameTheory.Core.GameForm",
+    "JurisLean.External.GameTheory.Core.GameProperties",
+    "JurisLean.External.GameTheory.Core.KernelGame",
+    "JurisLean.External.GameTheory.Languages.EFG.Refinements",
+    "JurisLean.External.GameTheory.Languages.EFG.Syntax",
+    "JurisLean.External.GameTheory.Math.Coupling",
+    "JurisLean.External.GameTheory.Math.OptimizationLocalGlobal",
+    "JurisLean.External.GameTheory.Math.PMFProduct",
+    "JurisLean.External.GameTheory.Math.ParameterizedChain",
+    "JurisLean.External.GameTheory.Math.Probability",
+    "JurisLean.External.GameTheory.Math.ProbabilityMassFunction",
+    "JurisLean.External.GameTheory.Math.TraceRun",
+    "JurisLean.External.GameTheory.Semantics.DSMachine",
+    "JurisLean.External.GameTheory.Semantics.TransitionTrace",
+    "JurisLean.External.GameTheory.Theorems.Kuhn",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.BehavioralToMixed",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.BehavioralToMixedCore",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.CorrelatedRealization",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.KuhnModel",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.MixedToBehavioralCore",
+    "JurisLean.External.GameTheory.Theorems.Kuhn.ObsModel",
+    "JurisLean.External.GameTheory.Theorems.Minimax",
+    "JurisLean.External.GameTheory.Theorems.NashExistenceMixed",
+    "JurisLean.External.GameTheory.Theorems.OneShotDeviation",
+}
 
 
 def _external_port_modules() -> dict[str, str]:

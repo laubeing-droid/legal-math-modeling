@@ -210,3 +210,111 @@ def test_check_mode_rejects_a_tampered_markdown_index(tmp_path) -> None:
     proc = check()
     assert proc.returncode == 1, proc.stdout + proc.stderr
     assert "stale markdown index" in proc.stderr, proc.stderr
+
+
+# --- pins for the four review-lane fixes (round 96) -------------------------
+
+
+def test_manifest_closure_resolves_by_full_module_path_not_stem() -> None:
+    """Seven stem collisions exist (OneShotDeviation/Minimax in both Mandate/
+    and External/, BanachEffectiveNodes as a draft too); stem matching counted
+    the wrong copy. The closure must resolve imports by full module name."""
+    spec = importlib.util.spec_from_file_location(
+        "gen_manifest", ROOT / "scripts" / "ci" / "generate_theorem_manifest.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    entries = [
+        # the importer says External.OneShotDeviation, NOT the Mandate twin
+        {"path": "proofs/lean/juris_lean/JurisLean/ULM01Probe.lean",
+         "imports": ["JurisLean.External.GameTheory.Theorems.OneShotDeviation"]},
+        {"path": "proofs/lean/juris_lean/JurisLean/Mandate/OneShotDeviation.lean",
+         "imports": []},
+        {"path": "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/OneShotDeviation.lean",
+         "imports": []},
+        # a draft outside the package must never resolve a JurisLean.* import
+        {"path": "proofs/strict_proof_baseline/p0c_banach/BanachEffectiveNodes.lean",
+         "imports": []},
+        {"path": "proofs/lean/juris_lean/JurisLean/BanachEffectiveNodes.lean",
+         "imports": []},
+        {"path": "proofs/lean/juris_lean/JurisLean/ULM02Probe.lean",
+         "imports": ["JurisLean.BanachEffectiveNodes"]},
+    ]
+    scopes = mod.build_scopes(entries)
+    closure = set(scopes["ulm_import_closure"])
+    ext = "proofs/lean/juris_lean/JurisLean/External/GameTheory/Theorems/OneShotDeviation.lean"
+    mandate = "proofs/lean/juris_lean/JurisLean/Mandate/OneShotDeviation.lean"
+    draft = "proofs/strict_proof_baseline/p0c_banach/BanachEffectiveNodes.lean"
+    inpkg = "proofs/lean/juris_lean/JurisLean/BanachEffectiveNodes.lean"
+    assert ext in closure, "full-path resolution lost the real import target"
+    assert mandate not in closure, "stem collision counted the Mandate twin"
+    assert inpkg in closure and draft not in closure, "draft copy must not resolve a JurisLean import"
+
+
+def test_run_id_regex_accepts_twelve_digits_and_keeps_ten_out() -> None:
+    """A pinned 11-digit pattern made a future 12-digit run id invisible to
+    build and --check alike; a 10-digit floor would eat case numbers and codes
+    (those live at 10 digits, ISBNs and timestamps at 13+)."""
+    spec = importlib.util.spec_from_file_location(
+        "run_index", INDEX_TOOL)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    text = "runs 36524929198 and 100000000000 and codes 2200000101 plus isbn 9780199945474"
+    assert set(mod.RUN_ID_RE.findall(text)) == {"36524929198", "100000000000"}
+
+
+def test_fetch_evidence_keeps_landed_bytes_when_a_download_fails(tmp_path, monkeypatch) -> None:
+    """The old flow deleted the landed directory before downloading: one
+    network hiccup destroyed in-repo evidence with no digests left behind."""
+    spec = importlib.util.spec_from_file_location("run_index", INDEX_TOOL)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    dest = tmp_path / "evidence" / "36524929198"
+    dest.mkdir(parents=True)
+    (dest / "digests.json").write_text('{"files": []}', encoding="utf-8")
+
+    monkeypatch.setattr(mod, "gh_api", lambda *a, **k: {"artifacts": [
+        {"name": "release-certificate-run36524929198-attempt1",
+         "expired": False, "size_in_bytes": 10}]})
+    monkeypatch.setattr(mod, "evidence_dir", lambda rid: dest)
+
+    def boom(*a, **k):
+        class P:
+            returncode = 1
+            stderr = "simulated network failure"
+        return P()
+    monkeypatch.setattr(subprocess, "run", boom)
+
+    try:
+        mod.fetch_evidence("36524929198")
+        raised = False
+    except RuntimeError:
+        raised = True
+    assert raised, "the failing download must raise"
+    assert (dest / "digests.json").exists(), "landed evidence was destroyed by a failed re-fetch"
+    assert not any(p.name.endswith(".landing") for p in dest.parent.iterdir()), "staging left behind"
+
+
+def test_audit_log_conflicting_lines_for_the_same_target_fail_closed(tmp_path) -> None:
+    """A kernel run never prints one target twice with different axiom lists;
+    last-wins parsing let a `[sorryAx]` line hide behind a later clean line."""
+    spec = importlib.util.spec_from_file_location(
+        "audit_log", ROOT / "scripts" / "ci" / "check_axiom_audit_log.py")
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+
+    log = tmp_path / "axiom-audit.raw.txt"
+    log.write_text(
+        "'JurisLean.Mandate.ReLUFamily.relu_dense' depends on axioms: [sorryAx]\n"
+        "'JurisLean.Mandate.ReLUFamily.relu_dense' depends on axioms: [propext, Classical.choice, Quot.sound]\n",
+        encoding="utf-8")
+    doc = mod.parse(log.read_text(encoding="utf-8"))
+    assert doc["conflicting_target_lines"], "conflict went undetected"
+    assert "relu_dense" not in " ".join(doc["targets_with_sorryAx"]) or doc["conflicting_target_lines"]
+
+    proc = subprocess.run(
+        [sys.executable, str(ROOT / "scripts" / "ci" / "check_axiom_audit_log.py"),
+         "--log", str(log), "--check"], capture_output=True, text=True)
+    assert proc.returncode != 0, "--check stayed green on conflicting lines"
+    assert "conflicting" in proc.stderr.lower()

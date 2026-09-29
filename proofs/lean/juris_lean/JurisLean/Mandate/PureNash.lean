@@ -138,22 +138,23 @@ line numbers move when other modules are booked: this module is NOT imported by 
 `JurisLean.lean`; it IS imported by `JurisLean/AxiomAudit.lean` (`import
 JurisLean.Mandate.PureNash`) and named there by exactly 27 `#print axioms` entries inside that
 file's generated target block -- that listing is where the previous text met its first
-compiler; and it is booked quarantined in the `PENDING_CI_MODULES` table of
+compiler; and it was booked quarantined in the `PENDING_CI_MODULES` table of
 `scripts/ci/check_import_reachability.py` under the key `JurisLean.Mandate.PureNash`, which is
-what keeps the reachability generator from importing it into the root before a green build of
-its own. Because no theorem name or statement changed, that booking needs no regeneration for
-this repair; promotion out of quarantine and root entry stay owned outside this file, and both
-wait on a green run whose subject actually contains this text. Nothing here is an attestation,
+what kept the reachability generator from importing it into the root before a green build of
+its own. Because no theorem name or statement changed, that booking needed no regeneration for
+this repair. Promotion and root entry were owned outside this file, and both have since
+happened: the first promotion round (run 36505244239 at subject `86384e4`, all jobs green)
+imported the module into the release root. Nothing here is an attestation,
 and no count or build status in this header may be inherited by a later commit.
 
 Verdict, and its two limits. Run 36409348921 at subject `649d0fd` finished with every job
 green, and its axiom audit -- the kernel's own words, filed in this repository at `docs/formal-release/ci-evidence/36409348921/axiom-audit/axiom-audit.raw.txt` --
 names all 27 of this module's declarations and reports no `sorryAx`. So the
 27 theorems are attested at that subject. What that does not give: (i) it attests those
-declarations, not these sentences, which were written after the build; (ii) it is not a release-root
-entry -- `Mandate/PureNash.lean` stays in `PENDING_CI_MODULES`, because joining the root changes the
-closure and needs a build of its own, and a verdict is only ever the one belonging to the subject
-that was built.
+declarations, not these sentences, which were written after the build; (ii) root entry was,
+at that subject, still open -- `Mandate/PureNash.lean` joined the release root in the
+first promotion round (run 36505244239 at subject `86384e4`, all jobs green). A verdict is
+only ever the one belonging to the subject that was built.
 
 -/
 

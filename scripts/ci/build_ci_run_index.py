@@ -33,7 +33,12 @@ ROOT = Path(__file__).resolve().parents[2]
 JSON_OUT = ROOT / "docs" / "formal-release" / "ci_run_index.json"
 MD_OUT = ROOT / "docs" / "formal-release" / "ci_run_index.md"
 REPO = "laubeing-droid/legal-math-modeling"
-RUN_ID_RE = re.compile(r"\b\d{11}\b")
+# Run ids are currently 11 digits, but the counter keeps growing: pinning the
+# width made a future 12-digit id invisible to both build and --check (\b has
+# no edge inside a digit run). 11-12 is the right window: the corpus's other
+# long numbers live just outside it (case numbers and codes at 10 digits,
+# ISBNs and timestamps at 13+), verified by scan.
+RUN_ID_RE = re.compile(r"\b\d{11,12}\b")
 SCHEMA = "ci-run-index-v1"
 STATUS = "external_actions_metadata_snapshot_not_release_certificate"
 AUTHORITY = (
@@ -192,22 +197,33 @@ def fetch_evidence(rid: str) -> dict:
     skipped = sorted(
         str(a.get("name")) for a in artifacts if a not in picked
     )
+    # Land into a sibling temp directory and swap only after every download
+    # succeeded: deleting the old evidence first (the old behaviour) meant a
+    # transient network failure destroyed landed bytes and left no digests
+    # behind for --check to notice.
     dest = evidence_dir(rid)
-    if dest.exists():
-        shutil.rmtree(dest)
-    dest.mkdir(parents=True)
-    for a in picked:
-        proc = subprocess.run(
-            ["gh", "run", "download", rid, "-n", a["name"], "-D", str(dest / a["name"])],
-            cwd=ROOT, capture_output=True, text=True, encoding="utf-8",
-        )
-        if proc.returncode != 0:
-            raise RuntimeError(f"gh run download {rid} {a['name']}: {proc.stderr.strip()[:200]}")
-    land_audit_log(rid, artifacts, dest)
+    staging = dest.with_name(dest.name + ".landing")
+    if staging.exists():
+        shutil.rmtree(staging)
+    staging.mkdir(parents=True)
+    try:
+        for a in picked:
+            proc = subprocess.run(
+                ["gh", "run", "download", rid, "-n", a["name"], "-D", str(staging / a["name"])],
+                cwd=ROOT, capture_output=True, text=True, encoding="utf-8",
+            )
+            if proc.returncode != 0:
+                raise RuntimeError(f"gh run download {rid} {a['name']}: {proc.stderr.strip()[:200]}")
+        land_audit_log(rid, artifacts, staging)
 
-    for p in sorted(dest.rglob("*")):
-        if p.is_file() and p.name.endswith(EVIDENCE_SKIP_SUFFIX):
-            p.unlink()
+        for p in sorted(staging.rglob("*")):
+            if p.is_file() and p.name.endswith(EVIDENCE_SKIP_SUFFIX):
+                p.unlink()
+        if dest.exists():
+            shutil.rmtree(dest)
+        staging.rename(dest)
+    finally:
+        shutil.rmtree(staging, ignore_errors=True)  # no-op after a clean rename
     files = [
         {
             "path": p.relative_to(dest).as_posix(),

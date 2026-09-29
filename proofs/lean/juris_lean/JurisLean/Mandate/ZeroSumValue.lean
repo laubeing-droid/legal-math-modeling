@@ -62,10 +62,10 @@ Verdict, and its two limits. Run 36409348921 at subject `649d0fd` finished with 
 green, and its axiom audit -- the kernel's own words, filed in this repository at `docs/formal-release/ci-evidence/36409348921/axiom-audit/axiom-audit.raw.txt` --
 names all 15 of this module's declarations and reports no `sorryAx`. So the
 15 theorems are attested at that subject. What that does not give: (i) it attests those
-declarations, not these sentences, which were written after the build; (ii) it is not a release-root
-entry -- `Mandate/ZeroSumValue.lean` stays in `PENDING_CI_MODULES`, because joining the root changes the
-closure and needs a build of its own, and a verdict is only ever the one belonging to the subject
-that was built.
+declarations, not these sentences, which were written after the build; (ii) root entry was,
+at that subject, still open -- `Mandate/ZeroSumValue.lean` joined the release root in the
+first promotion round (run 36505244239 at subject `86384e4`, all jobs green). A verdict is
+only ever the one belonging to the subject that was built.
 
 -/
 

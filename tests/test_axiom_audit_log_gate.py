@@ -194,7 +194,10 @@ def test_the_landed_audit_log_is_the_kernels_own_words_and_is_clean() -> None:
         "no landed axiom-audit log: run `python scripts/ci/build_ci_run_index.py "
         "--fetch-evidence <run>` so the kernel's answer is in-repo evidence"
     )
-    newest = logs[-1]
+    # Numeric order, not lexicographic: once run ids mix 11 and 12 digits,
+    # sorting the path strings puts the shorter ones last. The run id is the
+    # directory two levels above the log file (<run>/axiom-audit/<name>).
+    newest = max(logs, key=lambda p: int(p.parent.parent.name))
     doc = parse(newest.read_text(encoding="utf-8", errors="replace"))
     assert doc["targets_with_sorryAx"] == {}, newest
     assert doc["targets_outside_standard_axioms"] == {}, newest

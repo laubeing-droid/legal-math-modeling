@@ -28,9 +28,15 @@ STANDARD_AXIOMS = {"propext", "Quot.sound", "Classical.choice"}
 
 def parse(text: str) -> dict:
     targets: dict[str, list[str]] = {}
+    seen: dict[str, list[list[str]]] = {}
     for m in TARGET.finditer(text):
         name, axioms = m.group(1), m.group(2).strip()
-        targets[name] = [a.strip() for a in axioms.split(",") if a.strip()] if axioms else []
+        axioms = [a.strip() for a in axioms.split(",") if a.strip()] if axioms else []
+        # A single kernel run never prints one target twice with different
+        # axiom lists, so that means tampering or truncation. Last-wins would
+        # let a `[sorryAx]` line hide behind a later clean line.
+        seen.setdefault(name, []).append(axioms)
+        targets[name] = axioms
     for m in CLEAN.finditer(text):
         targets.setdefault(m.group(1), [])
     vocabulary: dict[str, int] = {}
@@ -39,11 +45,14 @@ def parse(text: str) -> dict:
             vocabulary[axiom] = vocabulary.get(axiom, 0) + 1
     offenders = {n: a for n, a in targets.items() if set(a) - STANDARD_AXIOMS}
     sorry = {n: a for n, a in targets.items() if "sorryAx" in a}
+    conflicts = {n: lists for n, lists in seen.items()
+                 if len({tuple(x) for x in lists}) > 1}
     return {
         "audited_targets": len(targets),
         "axiom_vocabulary": dict(sorted(vocabulary.items())),
         "targets_with_sorryAx": dict(sorted(sorry.items())),
         "targets_outside_standard_axioms": dict(sorted(offenders.items())),
+        "conflicting_target_lines": dict(sorted(conflicts.items())),
     }
 
 
@@ -61,7 +70,8 @@ def main(argv: list[str] | None = None) -> int:
     doc["log"] = str(args.log)
     doc["standard_axioms_allowed"] = sorted(STANDARD_AXIOMS)
     doc["status"] = (
-        "FAIL_SORRYAX" if doc["targets_with_sorryAx"]
+        "FAIL_CONFLICTING_LINES" if doc["conflicting_target_lines"]
+        else "FAIL_SORRYAX" if doc["targets_with_sorryAx"]
         else "FAIL_NONSTANDARD_AXIOM" if doc["targets_outside_standard_axioms"]
         else "PASS"
     )
@@ -74,6 +84,9 @@ def main(argv: list[str] | None = None) -> int:
         return 0
 
     problems = []
+    if doc["conflicting_target_lines"]:
+        problems.append("one kernel run never prints a target twice with different axioms; "
+                        "conflicting lines: " + ", ".join(sorted(doc["conflicting_target_lines"])[:5]))
     if doc["targets_with_sorryAx"]:
         problems.append(f"{len(doc['targets_with_sorryAx'])} audited target(s) close on sorryAx: "
                         + ", ".join(sorted(doc["targets_with_sorryAx"])[:5]))

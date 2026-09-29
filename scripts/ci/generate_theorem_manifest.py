@@ -69,10 +69,22 @@ def parse(path: Path) -> dict:
 
 
 def build_scopes(entries: list[dict]) -> dict[str, list[str]]:
-    by_stem = {e["path"].rsplit("/", 1)[-1][: -len(".lean")]: e for e in entries}
     ulm = sorted(e["path"] for e in entries if e["path"].rsplit("/", 1)[-1].startswith("ULM"))
 
     # Transitive import closure of the ULM package, resolved textually.
+    # Imports resolve by FULL module path, never by file stem: seven stem
+    # collisions exist in the corpus (OneShotDeviation and Minimax live in both
+    # Mandate/ and External/, BanachEffectiveNodes also exists as a draft),
+    # and stem matching silently counted the wrong copy.
+    def module_name(path: str) -> str | None:
+        parts = path.split("/")
+        try:
+            i = parts.index("JurisLean")
+        except ValueError:
+            return None  # draft artifacts outside the package have no module name
+        return ".".join(parts[i:]).removesuffix(".lean")
+
+    by_module = {m: e for e in entries if (m := module_name(e["path"]))}
     by_path = {e["path"]: e for e in entries}
     reached: set[str] = set(ulm)
     queue = list(ulm)
@@ -81,7 +93,7 @@ def build_scopes(entries: list[dict]) -> dict[str, list[str]]:
         for imp in entry["imports"]:
             if not imp.startswith("JurisLean"):
                 continue
-            target = by_stem.get(imp.split(".")[-1])
+            target = by_module.get(imp)
             if target and target["path"] not in reached:
                 reached.add(target["path"])
                 queue.append(target["path"])

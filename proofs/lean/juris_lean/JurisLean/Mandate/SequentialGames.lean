@@ -30,8 +30,8 @@ Status: no CI verdict, and a claim to correct. The header used to read "built gr
 recorded, `7a2a65e`. The pairing was real and the attestation was still false: that commit
 predates this file, so no build of it can vouch for anything written here. Runs 36392435547
 and 36394196611 then reported four errors in this module, which is what exposed the invented
-verdict. The recursion is repaired below, the module is booked in `PENDING_CI_MODULES` again,
-and nothing here is an attestation until a run whose own commit contains this source says so.
+verdict. The recursion is repaired below, the module was booked in `PENDING_CI_MODULES` again,
+and nothing here was an attestation until a run whose own commit contains this source said so.
 
 That repair was then read by a compiler: run 36401817896 at `4866799` prints
 `Built JurisLean.Mandate.SequentialGames`, and all four errors above are gone. That is a fact
@@ -44,9 +44,10 @@ green, and its axiom audit -- the kernel's own words, filed in this repository a
 names all 9 of this module's declarations and reports no `sorryAx`. So the
 9 theorems are attested at that subject. What that does not give: (i) it attests those
 declarations, not these sentences, which were written after the build; (ii) it is not a release-root
-entry -- `Mandate/SequentialGames.lean` stays in `PENDING_CI_MODULES`, because joining the root changes the
-closure and needs a build of its own, and a verdict is only ever the one belonging to the subject
-that was built.
+entry -- `Mandate/SequentialGames.lean` joined the release root in the first
+promotion round (run 36505244239 at subject `86384e4`, all jobs green): the build of its own
+repaired source that the paragraphs above demanded. A verdict is only ever the one belonging
+to the subject that was built.
 
 -/
 

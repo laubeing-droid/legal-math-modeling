@@ -97,14 +97,20 @@ PENDING_CI_MODULES: dict[str, str] = {
 # to _EXTERNAL_ROOT_PROMOTED when (and only when) a green build of a commit
 # that imports it into the root exists -- that set is the promotion path this
 # table otherwise lacked (blind-audit finding P1-5).
+# The reason stamped on a quarantined external module. Deliberately
+# status-free: a future arrival has NOT been built by any past run, so the
+# string must not cite one (the round-96 review caught the old wording, which
+# hard-coded subject c5830ed and was false the moment a new file landed).
 _EXTERNAL_PORT_REASON = (
     "external port (see JurisLean/External/PROVENANCE.md and "
-    "External/NeuralNetworkProofs/PROVENANCE.md); built and axiom-audited green "
-    "at c5830ed (run 36456965606), release-root entry still its own round"
+    "External/NeuralNetworkProofs/PROVENANCE.md); awaiting its own CI build; "
+    "release-root entry only via _EXTERNAL_ROOT_PROMOTED after a green build "
+    "that contains it"
 )
 
-# Modules that have been deliberately imported into the release root with their
-# own green build; empty until the first promotion round.
+# Modules deliberately imported into the release root, each with the green
+# build that contains its entry. Filled by the three promotion rounds (ledger
+# rounds 88/90/92); empty again only by an explicit demotion decision.
 # Batch two of the promotion rounds (ledger round 90): the 40 same-pin external
 # ports (elazarg/GameTheory + elazarg/fixed-point-theorems-lean4) join the root.
 # Their theorems were built and axiom-audited green by run 36456965606 (subject

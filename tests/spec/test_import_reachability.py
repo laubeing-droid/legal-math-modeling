@@ -116,6 +116,12 @@ def test_quarantine_never_shelters_a_promoted_or_missing_module() -> None:
         # of a run/subject pair whose subject predates the file; it is out again, booked in
         # the quarantine table, until a build of its own repaired source returns green.
         "ReLUApprox", "MixedPennies",
+        # First promotion round (ledger round 88): the four game-theory carriers leave the
+        # quarantine table together. Their theorems were built and axiom-audited green at
+        # subject 649d0fd (run 36409348921, audit text landed under ci-evidence/) -- which
+        # for SequentialGames is the "build of its own repaired source" demanded above --
+        # and the root entry is attested by the build this very change triggers.
+        "SequentialGames", "ZeroSumValue", "PureNash", "OneShotDeviation",
     }
     wave = {f"JurisLean.Mandate.{name}" for name in promoted}
     assert not (wave & pending), (

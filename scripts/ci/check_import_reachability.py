@@ -67,46 +67,19 @@ STANDALONE_DRIVERS: dict[str, str] = {
 # AGENTS requires a passing CI module build before root entry, and both have one, so they
 # are now imported by the generated block. The mechanism stays because the next wave needs it.
 PENDING_CI_MODULES: dict[str, str] = {
-    # `Mandate/ZeroSumSion.lean` was built by `lean-full-clean-build` under its own subject
-    # (78f627f) and stays in the root. `Mandate/SequentialGames.lean` is booked here because
-    # the entry it carried in the root was never earned: its header cited run 36386527448 at
-    # subject `7a2a65e`, a commit that predates the file, and runs 36392435547 / 36394196611
-    # reported four errors in it. It may rejoin the root only on a green build whose subject
-    # actually contains the repaired source.
-    "JurisLean.Mandate.SequentialGames": (
-        "multi-player sequential carrier; its nine theorems are built and audited green at "
-        "649d0fd, but the root entry is a separate change needing its own build"
-    ),
-    # Three carriers written after the audit's game-theory item stayed open. All four booked
-    # modules are now built and axiom-audited green at subject 649d0fd (run 36409348921, landed
-    # under docs/formal-release/ci-evidence/); what they do not yet have is a root entry, and
-    # AGENTS requires the root closure to be attested by the build that contains it. Booking them
-    # here is also what
-    # keeps `--write` from importing them into the release root -- the generator makes any
-    # unbooked source reachable, which is how a module could enter the root without anyone
-    # deciding to promote it.
-    "JurisLean.Mandate.ZeroSumValue": (
-        "R-03 value step: the two iterated values of a finite zero-sum payoff coincide over the "
-        "subtype-indexed simplex, which `isSaddlePointOn_value` cannot state for `ℝ`; the fifteen "
-        "theorems are built and audited green at 649d0fd, root entry still its own round"
-    ),
-    "JurisLean.Mandate.PureNash": (
-        "R-02b general games: a `Decidable` instance for pure-strategy Nash existence in a "
-        "bimatrix game over `ℚ`, with two computed labels of opposite verdict; twenty-seven "
-        "theorems built and audited green at 649d0fd, not yet in the root"
-    ),
-    "JurisLean.Mandate.OneShotDeviation": (
-        "R-02b sequential games: backward induction compared with following a strategy profile, "
-        "and one-step deviation optimality along the induced path; twenty-five theorems built and "
-        "audited green at 649d0fd, not yet in the root"
-    ),
+    # The four game-theory carriers (SequentialGames, ZeroSumValue, PureNash,
+    # OneShotDeviation) left this table in the first promotion round: all four were
+    # built and axiom-audited green at subject 649d0fd (run 36409348921, landed under
+    # docs/formal-release/ci-evidence/), and their root entry is attested by the
+    # build that contains it.
+    #
     # R-07's family conclusion: the Leshno line instantiated from the carrier at ReLU.
-    # Unlike the four above it has no green build at all yet -- its first `lake build`
-    # is the one that can release it from this table, together with root entry as its
-    # own round.
+    # Built and axiom-audited green by run 36468808532 (subject 3f44b8e); root entry
+    # is its own round.
     "JurisLean.Mandate.ReLUFamily": (
         "R-07 ReLU family conclusion: instantiates the backported Leshno carrier "
-        "(leshno_dense_iff) to ReLU; awaiting its first CI build, no attestation"
+        "(leshno_dense_iff) to ReLU; built and axiom-audited green by run 36468808532 "
+        "(subject 3f44b8e), release-root entry still its own round"
     ),
 }
 

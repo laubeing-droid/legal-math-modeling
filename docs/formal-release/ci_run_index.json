@@ -2771,8 +2771,7 @@
       "name": "chore(inventory): rebind before pushing so python-gates is not red on…",
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:648",
-        "docs/master-plan/03_证明战役台账.md:968",
-        "docs/paper-rewrite/paper_en.md:19"
+        "docs/master-plan/03_证明战役台账.md:968"
       ],
       "run_id": 36306088064,
       "started": true,
@@ -3213,8 +3212,7 @@
         "docs/master-plan/03_证明战役台账.md:701",
         "docs/master-plan/03_证明战役台账.md:710",
         "docs/paper-rewrite/paper_cn.md:146",
-        "docs/paper-rewrite/paper_en.md:141",
-        "docs/paper-rewrite/paper_en.md:19"
+        "docs/paper-rewrite/paper_en.md:141"
       ],
       "run_id": 36322009701,
       "started": true,
@@ -6415,7 +6413,16 @@
       "jobs_total": 8,
       "name": "chore(inventory): rebind after the promotion commit -- the manifest m…",
       "quoted_by": [
-        "docs/master-plan/03_证明战役台账.md:2072"
+        "docs/master-plan/03_证明战役台账.md:2072",
+        "docs/master-plan/03_证明战役台账.md:2115",
+        "docs/paper-rewrite/paper_cn.md:146",
+        "docs/paper-rewrite/paper_cn.md:154",
+        "docs/paper-rewrite/paper_cn.md:160",
+        "docs/paper-rewrite/paper_cn.md:23",
+        "docs/paper-rewrite/paper_en.md:141",
+        "docs/paper-rewrite/paper_en.md:149",
+        "docs/paper-rewrite/paper_en.md:155",
+        "docs/paper-rewrite/paper_en.md:19"
       ],
       "run_id": 36505244239,
       "started": true,
@@ -6477,12 +6484,88 @@
       "jobs_total": 8,
       "name": "chore(inventory): rebind after the batch-two promotion commit",
       "quoted_by": [
-        "docs/master-plan/03_证明战役台账.md:2092"
+        "docs/master-plan/03_证明战役台账.md:2092",
+        "docs/master-plan/03_证明战役台账.md:2116",
+        "docs/paper-rewrite/paper_cn.md:154",
+        "docs/paper-rewrite/paper_cn.md:160",
+        "docs/paper-rewrite/paper_cn.md:23",
+        "docs/paper-rewrite/paper_en.md:149",
+        "docs/paper-rewrite/paper_en.md:155",
+        "docs/paper-rewrite/paper_en.md:19"
       ],
       "run_id": 36507088206,
       "started": true,
       "status": "completed",
       "updated_at": "2026-09-29T01:25:12Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-09-29T01:45:36Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "a85ba8afb5cedc6e3b5ac23e76b51fa6c6471d15",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36509407756",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(inventory): rebind after the batch-three promotion commit",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:2111",
+        "docs/master-plan/03_证明战役台账.md:2117",
+        "docs/paper-rewrite/paper_cn.md:154",
+        "docs/paper-rewrite/paper_cn.md:160",
+        "docs/paper-rewrite/paper_cn.md:23",
+        "docs/paper-rewrite/paper_en.md:149",
+        "docs/paper-rewrite/paper_en.md:155",
+        "docs/paper-rewrite/paper_en.md:19"
+      ],
+      "run_id": 36509407756,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-29T01:54:12Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

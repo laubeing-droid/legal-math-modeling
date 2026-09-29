@@ -70,17 +70,13 @@ PENDING_CI_MODULES: dict[str, str] = {
     # The four game-theory carriers (SequentialGames, ZeroSumValue, PureNash,
     # OneShotDeviation) left this table in the first promotion round: all four were
     # built and axiom-audited green at subject 649d0fd (run 36409348921, landed under
-    # docs/formal-release/ci-evidence/), and their root entry is attested by the
+    # docs/formal-release/ci-evidence/), and their root entry was then attested by the
     # build that contains it.
     #
-    # R-07's family conclusion: the Leshno line instantiated from the carrier at ReLU.
-    # Built and axiom-audited green by run 36468808532 (subject 3f44b8e); root entry
-    # is its own round.
-    "JurisLean.Mandate.ReLUFamily": (
-        "R-07 ReLU family conclusion: instantiates the backported Leshno carrier "
-        "(leshno_dense_iff) to ReLU; built and axiom-audited green by run 36468808532 "
-        "(subject 3f44b8e), release-root entry still its own round"
-    ),
+    # ReLUFamily left in the third promotion round (ledger round 92): its thirteen
+    # theorems were built and axiom-audited green by run 36468808532 (subject 3f44b8e)
+    # and its root entry is attested by the build that contains it. The table stays
+    # empty and alive: any new module that has not earned a build lands here first.
 }
 
 # Same-pin external ports (elazarg/GameTheory @ 107085bc4 and
@@ -156,6 +152,26 @@ _EXTERNAL_ROOT_PROMOTED: set[str] = {
     "JurisLean.External.GameTheory.Theorems.Minimax",
     "JurisLean.External.GameTheory.Theorems.NashExistenceMixed",
     "JurisLean.External.GameTheory.Theorems.OneShotDeviation",
+    # Batch three (ledger round 92): the 17 cross-pin neural modules join; their
+    # theorem bodies were adjudicated by run 36456965606 and the ReLU instantiation
+    # by run 36468808532; the root entry is attested by the build this change triggers.
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionDegreeBound",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionIteratedDeriv",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionPolynomial",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.IteratedDerivPolynomial",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.PolynomialDistribution",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.RidgePowersSpan",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.SmoothCompactAntideriv",
+    "JurisLean.External.NeuralNetworkProofs.ForMathlib.UniformRiemannConvolution",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.ClassM",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Converse",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Family",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Mollify",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.MollifyDef",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Ridge",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.SmoothEngine",
+    "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Theorem",
 }
 
 

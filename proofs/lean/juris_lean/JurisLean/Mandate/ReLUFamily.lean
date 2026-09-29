@@ -22,9 +22,10 @@ Literature: Leshno, Lin, Pinkus, Schocken, Neural Networks 6 (1993) 861-867.
 
 Status: this file's theorems are built and axiom-audited green by run
 36468808532 at subject 3f44b8e (the landed audit bytes name all thirteen,
-zero sorryAx, standard axioms only); it stays in PENDING_CI_MODULES --
-release-root entry is a separate round. Later prose edits like this paragraph
-are not part of that verdict. Lean is never run locally (AGENTS.md). Every
+zero sorryAx, standard axioms only); the third promotion round moves it into
+the release root, attested by the build that contains this change. Later
+prose edits like this paragraph are not part of that verdict. Lean is never
+run locally (AGENTS.md). Every
 mathlib name used was verified by text search against the
 pinned mathlib v4.30.0 checkout (proofs/lean/juris_lean/.lake/packages/mathlib):
 `max_le_max` (Mathlib/Order/MinMax.lean), `Continuous.max`

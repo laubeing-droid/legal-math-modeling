@@ -122,6 +122,9 @@ def test_quarantine_never_shelters_a_promoted_or_missing_module() -> None:
         # for SequentialGames is the "build of its own repaired source" demanded above --
         # and the root entry is attested by the build this very change triggers.
         "SequentialGames", "ZeroSumValue", "PureNash", "OneShotDeviation",
+        # Third promotion round (ledger round 92): ReLUFamily joins the root; its
+        # theorems were adjudicated by run 36468808532 (subject 3f44b8e).
+        "ReLUFamily",
     }
     wave = {f"JurisLean.Mandate.{name}" for name in promoted}
     assert not (wave & pending), (

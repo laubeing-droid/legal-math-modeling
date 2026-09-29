@@ -393,6 +393,16 @@ def main() -> int:
                 print(f"evidence landed for run {landed['run_id']}, which markdown no longer quotes",
                       file=sys.stderr)
                 return 1
+        # The markdown table is generated from this JSON, and nothing above reads
+        # it: a tampered or stale table passed every check while telling a reader
+        # something else. Rendering the committed JSON is byte-stable, so the
+        # committed pair must match -- but only when checking the committed index,
+        # since --index may point at a scratch copy on purpose.
+        if index_path.resolve() == JSON_OUT.resolve():
+            if not MD_OUT.exists() or MD_OUT.read_text(encoding="utf-8") != render_markdown(committed):
+                print(f"stale markdown index: {MD_OUT.name} does not match the JSON; "
+                      "regenerate with build_ci_run_index.py", file=sys.stderr)
+                return 1
         print(f"ci run index ok: {len(recorded)} runs, {sum(len(v) for v in ids.values())} quotes")
         return 0
 

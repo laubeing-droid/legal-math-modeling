@@ -277,6 +277,17 @@ def main() -> int:
     args = ap.parse_args()
 
     mods = modules()
+    # A promoted name that matches no file on disk is a typo or a stale promotion,
+    # and the damage is silent: the real module falls back into auto-quarantine,
+    # --write drops it from the release root, and every later check stays green.
+    # The quarantine table is already validated this way (stale_allowances); the
+    # promotion table needs the same gate.
+    ghost_promotions = sorted(_EXTERNAL_ROOT_PROMOTED - set(mods))
+    if ghost_promotions:
+        print(f"_EXTERNAL_ROOT_PROMOTED names match no module on disk: {ghost_promotions}",
+              file=sys.stderr)
+        return 1
+
     if args.write:
         AGGREGATOR.write_text(render_aggregator(mods), encoding="utf-8", newline="\n")
         # Recompute coverage from the base root only. Counting the previously

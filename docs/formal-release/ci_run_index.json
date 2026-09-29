@@ -3463,6 +3463,7 @@
       "name": "docs(evidence): rebind source counts to the bridge attempt and say wh…",
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:1736",
+        "docs/master-plan/03_证明战役台账.md:197",
         "docs/master-plan/03_证明战役台账.md:789",
         "docs/master-plan/03_证明战役台账.md:798",
         "docs/master-plan/03_证明战役台账.md:968",
@@ -5560,6 +5561,7 @@
         "docs/master-plan/03_证明战役台账.md:1670",
         "docs/master-plan/03_证明战役台账.md:1687",
         "docs/master-plan/03_证明战役台账.md:1689",
+        "docs/master-plan/03_证明战役台账.md:197",
         "docs/master-plan/03_证明战役台账.md:2064",
         "docs/master-plan/03_证明战役台账.md:2065",
         "docs/master-plan/03_证明战役台账.md:951",
@@ -6019,6 +6021,8 @@
         "docs/master-plan/03_证明战役台账.md:2040",
         "docs/master-plan/03_证明战役台账.md:2051",
         "docs/master-plan/03_证明战役台账.md:2088",
+        "docs/master-plan/03_证明战役台账.md:951",
+        "docs/master-plan/03_证明战役台账.md:952",
         "docs/paper-rewrite/paper_cn.md:146",
         "docs/paper-rewrite/paper_cn.md:154",
         "docs/paper-rewrite/paper_cn.md:160",
@@ -6364,7 +6368,7 @@
       "conclusion": "success",
       "created_at": "2026-09-29T00:53:05Z",
       "event": "push",
-      "evidence": null,
+      "evidence": "docs/formal-release/ci-evidence/36505244239/digests.json",
       "head_branch": "ci/mandate-wave1",
       "head_sha": "86384e4b134d88d3d1d0827c7315de3afaee4f28",
       "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36505244239",
@@ -6413,8 +6417,11 @@
       "jobs_total": 8,
       "name": "chore(inventory): rebind after the promotion commit -- the manifest m…",
       "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:197",
         "docs/master-plan/03_证明战役台账.md:2072",
         "docs/master-plan/03_证明战役台账.md:2115",
+        "docs/master-plan/03_证明战役台账.md:2125",
+        "docs/master-plan/03_证明战役台账.md:951",
         "docs/paper-rewrite/paper_cn.md:146",
         "docs/paper-rewrite/paper_cn.md:154",
         "docs/paper-rewrite/paper_cn.md:160",
@@ -6435,7 +6442,7 @@
       "conclusion": "success",
       "created_at": "2026-09-29T01:16:06Z",
       "event": "push",
-      "evidence": null,
+      "evidence": "docs/formal-release/ci-evidence/36507088206/digests.json",
       "head_branch": "ci/mandate-wave1",
       "head_sha": "adaf87dd33e3a2903901c878913549a2ce877563",
       "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36507088206",
@@ -6486,6 +6493,9 @@
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:2092",
         "docs/master-plan/03_证明战役台账.md:2116",
+        "docs/master-plan/03_证明战役台账.md:2125",
+        "docs/master-plan/03_证明战役台账.md:951",
+        "docs/master-plan/03_证明战役台账.md:952",
         "docs/paper-rewrite/paper_cn.md:154",
         "docs/paper-rewrite/paper_cn.md:160",
         "docs/paper-rewrite/paper_cn.md:23",
@@ -6504,7 +6514,7 @@
       "conclusion": "success",
       "created_at": "2026-09-29T01:45:36Z",
       "event": "push",
-      "evidence": null,
+      "evidence": "docs/formal-release/ci-evidence/36509407756/digests.json",
       "head_branch": "ci/mandate-wave1",
       "head_sha": "a85ba8afb5cedc6e3b5ac23e76b51fa6c6471d15",
       "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36509407756",
@@ -6555,6 +6565,7 @@
       "quoted_by": [
         "docs/master-plan/03_证明战役台账.md:2111",
         "docs/master-plan/03_证明战役台账.md:2117",
+        "docs/master-plan/03_证明战役台账.md:2125",
         "docs/paper-rewrite/paper_cn.md:154",
         "docs/paper-rewrite/paper_cn.md:160",
         "docs/paper-rewrite/paper_cn.md:23",
@@ -6566,6 +6577,68 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-09-29T01:54:12Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-09-29T02:07:18Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/36511103988/digests.json",
+      "head_branch": "main",
+      "head_sha": "37e6a1f7acc2f614fa800c2bc881b41e53a794a2",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36511103988",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(inventory): rebind after the final-state papers commit",
+      "quoted_by": [
+        "docs/master-plan/03_证明战役台账.md:2126"
+      ],
+      "run_id": 36511103988,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-29T02:16:47Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

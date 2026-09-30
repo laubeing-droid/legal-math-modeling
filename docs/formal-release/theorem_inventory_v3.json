@@ -21797,6 +21797,206 @@
   {
    "declarations": [
     {
+     "kind": "inductive",
+     "name": "Stage"
+    },
+    {
+     "kind": "inductive",
+     "name": "Polarity"
+    },
+    {
+     "kind": "inductive",
+     "name": "Status"
+    },
+    {
+     "kind": "structure",
+     "name": "Node"
+    },
+    {
+     "kind": "def",
+     "name": "fires"
+    },
+    {
+     "kind": "theorem",
+     "name": "fires_notYet_obstacle_is_false"
+    },
+    {
+     "kind": "theorem",
+     "name": "fires_extinguished_is_never_true"
+    },
+    {
+     "kind": "inductive",
+     "name": "Step"
+    },
+    {
+     "kind": "inductive",
+     "name": "Walk"
+    },
+    {
+     "kind": "theorem",
+     "name": "walkStep"
+    },
+    {
+     "kind": "inductive",
+     "name": "CitedAt"
+    },
+    {
+     "kind": "def",
+     "name": "CarriesCreationBasis"
+    },
+    {
+     "kind": "theorem",
+     "name": "notYet_ne_established"
+    },
+    {
+     "kind": "theorem",
+     "name": "suspended_ne_established"
+    },
+    {
+     "kind": "theorem",
+     "name": "extinguished_ne_established"
+    },
+    {
+     "kind": "theorem",
+     "name": "unenforceable_ne_established"
+    },
+    {
+     "kind": "theorem",
+     "name": "status_five_labels_pairwise_distinct"
+    },
+    {
+     "kind": "theorem",
+     "name": "extinguished_never_revives"
+    },
+    {
+     "kind": "theorem",
+     "name": "walk_cons_cases"
+    },
+    {
+     "kind": "theorem",
+     "name": "citedAt_head_or_tail"
+    },
+    {
+     "kind": "theorem",
+     "name": "citedAt_singleton_fields"
+    },
+    {
+     "kind": "theorem",
+     "name": "walk_verdict_needs_basis"
+    },
+    {
+     "kind": "theorem",
+     "name": "established_cites_creation_basis"
+    },
+    {
+     "kind": "theorem",
+     "name": "suspended_cites_creation_basis"
+    },
+    {
+     "kind": "theorem",
+     "name": "unenforceable_cites_creation_basis"
+    },
+    {
+     "kind": "theorem",
+     "name": "extinguished_cites_creation_basis"
+    },
+    {
+     "kind": "def",
+     "name": "art577"
+    },
+    {
+     "kind": "def",
+     "name": "art577Unmet"
+    },
+    {
+     "kind": "def",
+     "name": "art192Defense"
+    },
+    {
+     "kind": "def",
+     "name": "art192Consent"
+    },
+    {
+     "kind": "def",
+     "name": "art557Payment"
+    },
+    {
+     "kind": "def",
+     "name": "art580Blocked"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_creation_basis_established"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_established_chain_is_cited"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_unmet_elements_stay_notYet"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_defense_suspends_not_extinguishes"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_defense_defusal_restores"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_restored_claim_still_cited"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_extinction_reaches_past_defense"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_enforceability_blocked"
+    },
+    {
+     "kind": "theorem",
+     "name": "defense_on_unestablished_is_inert"
+    },
+    {
+     "kind": "theorem",
+     "name": "order_matters_same_node_set_different_verdict"
+    },
+    {
+     "kind": "def",
+     "name": "reachableBySomeBasis"
+    },
+    {
+     "kind": "theorem",
+     "name": "reachable_but_not_established"
+    },
+    {
+     "kind": "inductive",
+     "name": "CorpusMember"
+    },
+    {
+     "kind": "theorem",
+     "name": "exhaustive_refutation"
+    },
+    {
+     "kind": "theorem",
+     "name": "closure_premise_is_not_free"
+    }
+   ],
+   "imports": [],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/ClaimBasis.lean",
+   "print_axioms_targets": [],
+   "sha256": "f0a3b20dea99f0dd7168646d8584a6b8900916f0be1a59d3fc688bd1cf266720",
+   "size_bytes": 21785,
+   "theorem_count": 30,
+   "theorem_count_bol_convention": 30
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "SMTModelWitness"
     },
@@ -25548,22 +25748,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 2771,
-   "file_count": 298,
+   "counted_declaration_count": 2801,
+   "file_count": 299,
    "lemma_count": 141,
    "print_axioms_command_count": 1637,
    "print_axioms_distinct_targets": 1583,
-   "theorem_count": 2630,
-   "theorem_count_bol_convention": 2534
+   "theorem_count": 2660,
+   "theorem_count_bol_convention": 2564
   },
   "juris_lean_package": {
-   "counted_declaration_count": 2752,
-   "file_count": 283,
+   "counted_declaration_count": 2782,
+   "file_count": 284,
    "lemma_count": 134,
    "print_axioms_command_count": 1637,
    "print_axioms_distinct_targets": 1583,
-   "theorem_count": 2618,
-   "theorem_count_bol_convention": 2522
+   "theorem_count": 2648,
+   "theorem_count_bol_convention": 2552
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -25828,6 +26028,7 @@
    "proofs/lean/juris_lean/JurisLean/SMTWitness.lean",
    "proofs/lean/juris_lean/JurisLean/SafetyTheorems.lean",
    "proofs/lean/juris_lean/JurisLean/ScratchApi.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/ClaimBasis.lean",
    "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
    "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
    "proofs/lean/juris_lean/JurisLean/SourcePathSpec.lean",
@@ -26124,6 +26325,7 @@
    "proofs/lean/juris_lean/JurisLean/SMTWitness.lean",
    "proofs/lean/juris_lean/JurisLean/SafetyTheorems.lean",
    "proofs/lean/juris_lean/JurisLean/ScratchApi.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/ClaimBasis.lean",
    "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
    "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
    "proofs/lean/juris_lean/JurisLean/SourcePathSpec.lean",
@@ -26201,19 +26403,24 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "d5400f7521172a099916657fe2a10898dacf79c809d97cf6654a153b85a75324",
+ "source_inventory_digest": "331e441a010f648d3370b1b89ad43ecd98010f22b1a42d6031ec310fa905118a",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "352aeaa63759ee1080162eb3777553a365f6c2a7",
-  "tree": "8736b587aba247fe7876ab61252a227de4ba518f"
+  "commit": "be64da98022c0ea2e57914362b44d6ac51fc73a8",
+  "tree": "6e63cd5cd493f34078618503451266b783c300af"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
-  "files_total": 298,
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Seams/ClaimBasis.lean",
+    "reason": "absent at subject"
+   }
+  ],
+  "files_total": 299,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

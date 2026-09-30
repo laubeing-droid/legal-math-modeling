@@ -67,6 +67,9 @@ STANDALONE_DRIVERS: dict[str, str] = {
 # AGENTS requires a passing CI module build before root entry, and both have one, so they
 # are now imported by the generated block. The mechanism stays because the next wave needs it.
 PENDING_CI_MODULES: dict[str, str] = {
+    # Seventh-round seam wave (2026-09-30). Each entry is booked here until its own
+    # CI module build passes; AGENTS forbids root entry before that.
+    "JurisLean.Seams.ClaimBasis": "S1/S2/S5 seam: P-034 claim-basis chain (wave 7, seam 1)",
     # The four game-theory carriers (SequentialGames, ZeroSumValue, PureNash,
     # OneShotDeviation) left this table in the first promotion round: all four were
     # built and axiom-audited green at subject 649d0fd (run 36409348921, landed under

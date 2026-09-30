@@ -167,6 +167,7 @@ import JurisLean.ScratchApi
 import JurisLean.Seams.AdjudicationBridge
 import JurisLean.Seams.BoundaryClosure
 import JurisLean.Seams.ClaimBasis
+import JurisLean.Seams.FullProcess
 import JurisLean.Seams.InstitutionalEffects
 import JurisLean.Seams.PayoffEquilibrium
 import JurisLean.Seams.PrecedentFlow

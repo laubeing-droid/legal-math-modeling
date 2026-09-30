@@ -74,13 +74,13 @@ SURFACES = (
 # module it names, so naming a seam that does not compile (or is not even committed) turns
 # the audit driver itself red and burns a full-release run. Drop an entry as soon as that
 # module has a build verdict of its own.
-SURFACE_HOLDOUTS = {
-    "Seams/FullProcess.lean":
-        "S6 builds RED in the main session's serial clean window (8 error clusters, first "
-        "at :292 type mismatch under the trace induction); a repair lane owns the file. "
-        "It is tracked and committed at c03663cb -- the earlier reason, 'untracked', is "
-        "withdrawn: the file was restored from the committed snapshot after a lane deleted it.",
-}
+SURFACE_HOLDOUTS: dict[str, str] = {}
+# Empty as of 2026-10-01: `Seams/FullProcess.lean` (S6) left after run 36772310980
+# (subject 01ce4fff) built it green in 3.4 s over 2947 jobs, matching the main session's
+# serial-window job count exactly. The mechanism stays -- a red or uncommitted seam must be
+# held out of BOTH channels, names and imports -- because an `import` elaborates the module
+# and turns `AxiomAudit.lean`, and with it the whole full-release round, red for a reason
+# that has nothing to do with axioms.
 MARKER = PROB_MARKER
 
 DECL = re.compile(r"^(?:@\[[^\]]*\][ \t]*)*(?:theorem|lemma)\s+([^\s(:{]+)")

@@ -86,6 +86,17 @@ PENDING_CI_MODULES: dict[str, str] = {
     # main session had compiled, which is why a "local green / CI red" pair needs a
     # byte-identity check before it is called an environment artifact.
     #
+    # Nothing is booked as pending on 2026-10-01: the last red needle, `Seams.FullProcess`
+    # (S6), left this table after run 36772310980 (`mode=changed-module`, subject 01ce4fff)
+    # built it green in 3.4 s over 2947 jobs -- the same job count the main session's serial
+    # window measured, which is the cross-check that the two builds saw the same bytes.
+    #
+    # The table is now empty, and that is exactly the state that must not be read as safety:
+    # `--write` imports every reachable module by construction, so a booked-but-red file
+    # would have been pulled into the release root the moment its name disappeared. What
+    # protects the root is not this table but the ORDER -- a seam enters only after its own
+    # green changed-module run, and the audit-surface holdout keeps its names out until then.
+    #
     # `Seams.Probability` (S3) left this table after its own green run: 36770138720
     # (`mode=changed-module`, subject c03663cb) built it in 5.3 s with the official
     # Mathlib cloud cache, locally 8483 jobs / exit 0 / 21 s. Its repair history is worth
@@ -99,12 +110,11 @@ PENDING_CI_MODULES: dict[str, str] = {
     # from the release root. Emptying this table earlier let the reachability generator import
     # every Seams module including the failing ones -- the gate cannot catch that, because a
     # root import satisfies it by definition.
-    "JurisLean.Seams.FullProcess": (
-        "S6 closure seam: finite trace preservation and the receipt-is-consequence "
-        "result for P-123 (snapshot; no build verdict obtained). The repair lane briefly "
-        "DELETED this file from the working tree; the committed snapshot was restored "
-        "with git checkout, which is why the red state was checkpointed before repair work "
-        "started -- a stalled or destructive lane cannot then lose the theorems."),
+    # Kept in the record: during S6's repair a lane DELETED `Seams/FullProcess.lean` from
+    # the working tree. The committed red-state snapshot was restored with `git checkout --`,
+    # which is why the red state was checkpointed before repair work started -- a stalled or
+    # destructive lane cannot then lose the theorems. The green version grew the file from 79
+    # to 96 theorems with an empty dropped-name list.
     #
     # `Seams.Unified` (T2, the capstone) left this table the same day: run 36770475007
     # (`mode=changed-module`, subject c03663cb) built it green in 3.1 s inside a 8527-job

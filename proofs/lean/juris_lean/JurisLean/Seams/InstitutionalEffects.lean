@@ -81,7 +81,7 @@ import JurisLean.LegalModelV2
 纯追加投影 `formsEver` 上并保留名字 `append_is_ideographic`；π 侧对应的不变性只在"追加段
 完全不提及该关系"的片段成立（`forms_congruent_under_nonmentioning_suffix`）。
 
-合规说明：零 `sorry`、零占位、零新设公理，全部定理在本件内闭合；判定式证明只用于闭式数据
+合规说明：零未完成证明、零占位、零新设公理，全部定理在本件内闭合；判定式证明只用于闭式数据
 见证，未用任何把闭式判定冒充一般定理的写法。档位：定义 [构造性定义]，定理 [本件内完整证明]，
 编译认定待 CI，本地不称 PASS。落点：可行使段的强制实现与救济后果（见
 `JurisLean/Seams/ClaimBasis.lean` 第四节）。
@@ -325,18 +325,20 @@ theorem formsEverFold_of_formsFold {Rel : Type} [DecidableEq Rel]
       rw [formsEverFold_cons]
       by_cases hd : recordMentions r e
       · rw [if_pos hd] at h
-        by_cases hf : recordIsFormation e = true
-        · have he : everStep r e false = true := by
-            unfold everStep
-            rw [recordMentionsB_true r e hd, hf]
-          rw [he]
-          exact formsEverFold_true r rest
-        · rw [hf] at h
-          have he : everStep r e false = false := by
-            unfold everStep
-            rw [recordMentionsB_true r e hd, hf]
-          rw [he]
-          exact ih h
+        cases hf : recordIsFormation e with
+        | true =>
+            have he : everStep r e false = true := by
+              unfold everStep
+              rw [recordMentionsB_true r e hd, hf]
+            rw [he]
+            exact formsEverFold_true r rest
+        | false =>
+            rw [hf] at h
+            have he : everStep r e false = false := by
+              unfold everStep
+              rw [recordMentionsB_true r e hd, hf]
+            rw [he]
+            exact ih h
       · rw [if_neg hd] at h
         have he : everStep r e false = false := by
           unfold everStep
@@ -414,12 +416,14 @@ theorem projection_of_append_matches_step {Rel : Type} [DecidableEq Rel]
     forms (next L (.formative eventId rel)) r ↔ (r = rel ∨ forms L r) := by
   constructor
   · intro h
+    unfold forms at h
     rw [formsB_next_formative] at h
     by_cases hd : r = rel
     · exact Or.inl hd
     · rw [if_neg hd] at h
       exact Or.inr h
   · intro h
+    unfold forms
     rw [formsB_next_formative]
     cases h with
     | inl hd => exact if_pos hd
@@ -434,6 +438,7 @@ theorem projection_of_append_matches_step_terminating {Rel : Type} [DecidableEq 
     (L : Ledger Rel) (eventId : String) (rel : Rel) :
     ¬ forms (next L (.terminating eventId rel)) rel := by
   intro h
+  unfold forms at h
   rw [next_terminating_is_append, projection_append_terminated] at h
   exact Bool.false_ne_true h
 
@@ -454,10 +459,16 @@ theorem effective_next_nonformative_iff {Rel : Type} [DecidableEq Rel]
     (hneTerminating : effectKind ev ≠ EffectKind.terminatingAdjudication) :
     effective (next L ev) r ↔ effective L r := by
   cases ev with
-  | formative _ _ => exact absurd rfl hneFormative
-  | terminating _ _ => exact absurd rfl hneTerminating
-  | performance _ _ _ _ => rw [next_performance_is_identity]; exact Iff.rfl
-  | declaratory _ => rw [next_declaratory_is_identity]; exact Iff.rfl
+  | formative eid' rel' =>
+      have hk : effectKind (SeamEvent.formative eid' rel') = EffectKind.formativeAdjudication := rfl
+      exact absurd hk hneFormative
+  | terminating eid' rel' =>
+      have hk : effectKind (SeamEvent.terminating eid' rel') = EffectKind.terminatingAdjudication := rfl
+      exact absurd hk hneTerminating
+  | performance eid' ob' rel' amt =>
+      rw [next_performance_is_identity]
+  | declaratory eid' =>
+      rw [next_declaratory_is_identity]
 
 /-- 中文说明：见证用关系对象（仅结构见证，不认定任何真实案件的法律关系）。 -/
 def relationDemo : Relation :=
@@ -497,6 +508,11 @@ theorem termination_of_other_leaves_projection {Rel : Type} [DecidableEq Rel]
     (L : Ledger Rel) (eventId : String) {r r' : Rel} (h : r ≠ r') :
     formsB (L ++ [terminatedRecord eventId r']) r = formsB L r := by
   rw [formsB_append_terminated, if_neg h]
+
+/-- 中文说明：上述片段的闭式见证：另一关系的终止记录不抹去本关系的有效性。 -/
+theorem termination_of_other_keeps_projection_witness :
+    forms (ledgerFormedDemo ++ [terminatedRecord "J3" relationOther]) relationDemo := by
+  decide
 
 /-! ## Part ② 非裁判性履行通道 -/
 
@@ -542,6 +558,7 @@ theorem performance_witness_10_3 :
 故超额给付时也不需要任何附加前提（`min a p + (a ∸ p) = a` 对自然数恒成立）。 -/
 theorem applied_plus_outstanding_eq_amount (amount performed : Nat) :
     appliedAmount amount performed + outstandingAfter amount performed = amount := by
+  unfold appliedAmount outstandingAfter
   omega
 
 /-- 中文说明：守恒定理在 `PerformanceStep` 结构上的读数（非空洞：字段确由计算给出）。 -/
@@ -557,6 +574,7 @@ theorem performStep_conservation_witness :
 /-- 中文说明：**超额给付不产生负义务**：给付不小于债额时未偿余额为 0。 -/
 theorem overperformance_leaves_zero (amount performed : Nat) (h : amount ≤ performed) :
     outstandingAfter amount performed = 0 := by
+  unfold outstandingAfter
   omega
 
 /-- 中文说明：超额给付的闭式见证：债 10、给付 12 ⇒ 未偿 0、实付 10（溢出 2 不在本通道抵扣）。 -/
@@ -573,6 +591,7 @@ theorem outstanding_never_negative (amount performed : Nat) :
 theorem applied_bounds (amount performed : Nat) :
     appliedAmount amount performed ≤ amount ∧
       appliedAmount amount performed ≤ performed := by
+  unfold appliedAmount
   omega
 
 /-- 中文说明：**给付不是创设**：给付事件下 π 对每个关系的取值一字不变（关系账本上无新记录）。 -/
@@ -593,20 +612,40 @@ theorem performance_appends_no_record {Rel : Type}
     (next L (.performance eventId obligor rel amount)).length = L.length :=
   congrArg List.length (next_performance_is_identity L eventId obligor rel amount)
 
-/-- 中文说明：给付事件的效果类别是 `performance`，与形成性裁判类别不同（构造子不相交）。 -/
+/-- 中文说明：两类效果类别在 `EffectKind` 上互不相同（闭式判定，与事件载荷无关）。 -/
+theorem effectKind_performance_ne_formative_closed :
+    EffectKind.performance ≠ EffectKind.formativeAdjudication := by
+  decide
+
+/-- 中文说明：给付事件的效果类别就是 `performance`（类别读数）。 -/
+theorem effectKind_performance {Rel : Type}
+    (eventId obligor : String) (rel : Rel) (amount : Nat) :
+    effectKind (SeamEvent.performance eventId obligor rel amount) = EffectKind.performance := rfl
+
+/-- 中文说明：形成性裁判事件的效果类别就是 `formativeAdjudication`。 -/
+theorem effectKind_formative {Rel : Type}
+    (eventId : String) (rel : Rel) :
+    effectKind (SeamEvent.formative eventId rel) = EffectKind.formativeAdjudication := rfl
+
+/-- 中文说明：**给付不是形成性裁判**：给付事件的效果类别不等于形成性裁判类别。 -/
 theorem performance_effectKind_ne_formative {Rel : Type}
     (eventId obligor : String) (rel : Rel) (amount : Nat) :
     effectKind (SeamEvent.performance eventId obligor rel amount) ≠
-      EffectKind.formativeAdjudication := by
-  intro hh
-  exact absurd hh (by decide)
+      EffectKind.formativeAdjudication :=
+  fun hh => effectKind_performance_ne_formative_closed
+    (Eq.trans (Eq.symm (effectKind_performance (Rel := Rel) eventId obligor rel amount)) hh)
+
+/-- 中文说明：形成性裁判类别不等于给付类别（闭式判定）。 -/
+theorem effectKind_formative_ne_performance_closed :
+    EffectKind.formativeAdjudication ≠ EffectKind.performance := by
+  decide
 
 /-- 中文说明：形成性裁判与给付在同一 `EffectKind` 上互斥（两通道不相交的另一向）。 -/
 theorem formative_effectKind_ne_performance {Rel : Type}
     (eventId : String) (rel : Rel) :
-    effectKind (SeamEvent.formative eventId rel) ≠ EffectKind.performance := by
-  intro hh
-  exact absurd hh (by decide)
+    effectKind (SeamEvent.formative eventId rel) ≠ EffectKind.performance :=
+  fun hh => effectKind_formative_ne_performance_closed
+    (Eq.trans (effectKind_formative (Rel := Rel) eventId rel) hh)
 
 /-- 中文说明：履行通道的账本类型：给付记录序列（与关系账本 `Ledger` 是两条平行通道）。 -/
 abbrev PerformLedger := List PerformanceStep
@@ -658,6 +697,7 @@ theorem rank_lt_irreflexive (a : RankedRel) : ¬ rankLt a a := fun h => Nat.lt_i
 /-- 中文说明：位次严格序传递。 -/
 theorem rank_lt_transitive (a b c : RankedRel)
     (h1 : rankLt a b) (h2 : rankLt b c) : rankLt a c := by
+  unfold rankLt at h1 h2 ⊢
   omega
 
 /-- 中文说明：二元择高路由：`b` 位次更高时取 `b`，否则取 `a`。
@@ -715,7 +755,12 @@ theorem foldMax_mem (acc : RankedRel) (rest : List RankedRel) :
       rw [foldMax_cons]
       split
       · exact List.mem_cons_of_mem acc (ih b)
-      · exact List.mem_cons_of_mem acc (ih acc)
+      · have hi := ih acc
+        rw [List.mem_cons] at hi
+        rw [List.mem_cons, List.mem_cons]
+        cases hi with
+        | inl heq => exact Or.inl heq
+        | inr hl => exact Or.inr (Or.inr hl)
 
 /-- 中文说明：表头位次不超过折叠结果。 -/
 theorem acc_le_foldMax (acc : RankedRel) (rest : List RankedRel) :

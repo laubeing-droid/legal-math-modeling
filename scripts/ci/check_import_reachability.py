@@ -69,6 +69,9 @@ STANDALONE_DRIVERS: dict[str, str] = {
 PENDING_CI_MODULES: dict[str, str] = {
     # Seventh-round seam wave (2026-09-30). Each entry is booked here until its own
     # CI module build passes; AGENTS forbids root entry before that.
+    "JurisLean.Seams.Representation": (
+        "S0 seam: representation layer, joint model + P-002 scope "
+        "(wave 7, local build green at 617 jobs)"),
     #
     # `JurisLean.Seams.ClaimBasis` (P-034 claim-basis chain, seam 1) left this table on
     # 2026-10-01: after the name-free Step inversion fixed its local build, run

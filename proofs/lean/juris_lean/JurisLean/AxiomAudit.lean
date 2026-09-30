@@ -109,6 +109,13 @@ import JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Theo
 
 import JurisLean.Mandate.ReLUFamily
 
+-- Boundary-carrier modules whose theorems the six-boundary binding table names but that
+-- no audit file used to read (CI uploaded them without printing their axioms).
+import JurisLean.ReceiptAuthority
+import JurisLean.AuthorityLattice
+import JurisLean.TaintNoninterference
+import JurisLean.Seams.ClaimBasis
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1526,3 +1533,52 @@ open HornSystem
 #print axioms unit_cube_homeo_unit_ball
 #print axioms weaker_cubical_sperner
 #print axioms zero_ne_last
+
+-- Boundary ⑤ outside the trunk: the three named escalation guards. The binding table
+-- cited these sites while no audit file read them, so CI uploaded the modules without
+-- printing their axioms.
+#print axioms JurisLean.consensus_does_not_escalate
+#print axioms JurisLean.no_auto_escalation
+#print axioms JurisLean.escalation_requires_rank_increase
+
+-- Boundary ⑥: all five taint-propagation guards named in the binding table.
+#print axioms JurisLean.join_with_tainted_is_tainted
+#print axioms JurisLean.stage_preserves_taint
+#print axioms JurisLean.majority_cannot_clean
+#print axioms JurisLean.tainted_not_promoted_to_clean
+#print axioms JurisLean.repetition_does_not_clean
+
+-- Seam 1 (P-034 claim-basis chain), built green by CI run 36749410410 at subject 6a30194d
+-- but previously unnamed on this surface, so its axiom dependencies were never read.
+#print axioms JurisLean.Seams.ClaimBasis.carriesBasis_cons
+#print axioms JurisLean.Seams.ClaimBasis.citedAt_head_or_tail
+#print axioms JurisLean.Seams.ClaimBasis.citedAt_singleton_fields
+#print axioms JurisLean.Seams.ClaimBasis.closure_premise_is_not_free
+#print axioms JurisLean.Seams.ClaimBasis.defense_on_unestablished_is_inert
+#print axioms JurisLean.Seams.ClaimBasis.established_cites_creation_basis
+#print axioms JurisLean.Seams.ClaimBasis.exhaustive_refutation
+#print axioms JurisLean.Seams.ClaimBasis.extinguished_cites_creation_basis
+#print axioms JurisLean.Seams.ClaimBasis.extinguished_ne_established
+#print axioms JurisLean.Seams.ClaimBasis.extinguished_never_revives
+#print axioms JurisLean.Seams.ClaimBasis.fires_extinguished_is_never_true
+#print axioms JurisLean.Seams.ClaimBasis.fires_notYet_obstacle_is_false
+#print axioms JurisLean.Seams.ClaimBasis.notYet_ne_established
+#print axioms JurisLean.Seams.ClaimBasis.order_matters_same_node_set_different_verdict
+#print axioms JurisLean.Seams.ClaimBasis.reachable_but_not_established
+#print axioms JurisLean.Seams.ClaimBasis.status_five_labels_pairwise_distinct
+#print axioms JurisLean.Seams.ClaimBasis.step_leaves_notYet_fields
+#print axioms JurisLean.Seams.ClaimBasis.suspended_cites_creation_basis
+#print axioms JurisLean.Seams.ClaimBasis.suspended_ne_established
+#print axioms JurisLean.Seams.ClaimBasis.unenforceable_cites_creation_basis
+#print axioms JurisLean.Seams.ClaimBasis.unenforceable_ne_established
+#print axioms JurisLean.Seams.ClaimBasis.walkStep
+#print axioms JurisLean.Seams.ClaimBasis.walk_cons_cases
+#print axioms JurisLean.Seams.ClaimBasis.walk_verdict_needs_basis
+#print axioms JurisLean.Seams.ClaimBasis.witness_creation_basis_established
+#print axioms JurisLean.Seams.ClaimBasis.witness_defense_defusal_restores
+#print axioms JurisLean.Seams.ClaimBasis.witness_defense_suspends_not_extinguishes
+#print axioms JurisLean.Seams.ClaimBasis.witness_enforceability_blocked
+#print axioms JurisLean.Seams.ClaimBasis.witness_established_chain_is_cited
+#print axioms JurisLean.Seams.ClaimBasis.witness_extinction_reaches_past_defense
+#print axioms JurisLean.Seams.ClaimBasis.witness_restored_claim_still_cited
+#print axioms JurisLean.Seams.ClaimBasis.witness_unmet_elements_stay_notYet

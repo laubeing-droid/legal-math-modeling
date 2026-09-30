@@ -1,6 +1,5 @@
 import JurisLean.KernelV3
 import JurisLean.DungFixedPoint
-import Mathlib.Data.Set.Lattice
 import Mathlib.Tactic
 
 /-!
@@ -195,26 +194,38 @@ theorem rounds_snd_subset_args (pol : TerminalPolicy aaf) :
 
 /-- 中文证明：两层各自单调，并可累加任意多步（用于把两个层号放到同一层比较）。 -/
 theorem rounds_fst_mono (pol : TerminalPolicy aaf) (n : Nat) :
-    (rounds pol n).1 ⊆ (rounds pol (n + 1)).1 :=
-  fun _ ha => (mem_rounds_succ_fst_iff pol n _).mpr (Or.inl ha)
+    (rounds pol n).1 ⊆ (rounds pol (n + 1)).1 := by
+  intro a ha
+  rw [mem_rounds_succ_fst_iff]
+  exact Or.inl ha
 
 theorem rounds_snd_mono (pol : TerminalPolicy aaf) (n : Nat) :
-    (rounds pol n).2 ⊆ (rounds pol (n + 1)).2 :=
-  fun _ ha => (mem_rounds_succ_snd_iff pol n _).mpr (Or.inl ha)
+    (rounds pol n).2 ⊆ (rounds pol (n + 1)).2 := by
+  intro a ha
+  rw [mem_rounds_succ_snd_iff]
+  exact Or.inl ha
 
 theorem rounds_fst_mono_add (pol : TerminalPolicy aaf) :
     ∀ n k : Nat, (rounds pol n).1 ⊆ (rounds pol (n + k)).1 := by
   intro n k
   induction k with
-  | zero => exact fun _ ha => ha
-  | succ k ih => exact fun a ha => rounds_fst_mono pol _ (ih a ha)
+  | zero =>
+      intro a ha
+      exact ha
+  | succ k ih =>
+      intro a ha
+      exact rounds_fst_mono pol (n + k) (ih a ha)
 
 theorem rounds_snd_mono_add (pol : TerminalPolicy aaf) :
     ∀ n k : Nat, (rounds pol n).2 ⊆ (rounds pol (n + k)).2 := by
   intro n k
   induction k with
-  | zero => exact fun _ ha => ha
-  | succ k ih => exact fun a ha => rounds_snd_mono pol _ (ih a ha)
+  | zero =>
+      intro a ha
+      exact ha
+  | succ k ih =>
+      intro a ha
+      exact rounds_snd_mono pol (n + k) (ih a ha)
 
 /-- 中文证明：同层被驳倒的论点必有一个同层被采纳的攻击者（不需要任何片段假设）。 -/
 theorem rounds_snd_attacker (pol : TerminalPolicy aaf) :
@@ -568,7 +579,7 @@ theorem cycle2_policy_invariant (n : Nat) :
       · rw [rounds_zero_fst, cycle2_baseSet]
         exact fun _ hx => hx
       · rw [rounds_zero_snd]
-        exact fun hx => absurd hx (notMemEmptyFinset _)
+        exact notMemEmptyFinset _
   | succ n ih =>
       have hOut : pArg ∉ (rounds cycle2Policy (n + 1)).2 := by
         intro h
@@ -580,7 +591,7 @@ theorem cycle2_policy_invariant (n : Nat) :
           have hbq : b = qArg :=
             Finset.mem_singleton.mp (by rw [← cycle2_attackers_p]; exact hbF)
           have hbp : b = pArg := Finset.mem_singleton.mp (ih.1 hbIn)
-          exact cycle2_p_ne_q (hbq.trans hbp.symm)
+          exact cycle2_p_ne_q (hbp.trans hbq.symm)
       refine ⟨?_, hOut⟩
       intro a ha
       rw [mem_rounds_succ_fst_iff] at ha
@@ -748,8 +759,14 @@ theorem unique_verdict_iff_stable_kernel_singletons {V : Type} (E : EvalDomain V
       rw [hv]
       exact Set.mem_singleton v
     obtain ⟨T, hT, hvT⟩ := hv'
-    refine Set.Subset.antisymm ?_ (fun _ hx => (hcoll T hT) hvT)
-    · exact Set.Subset.trans (stableKernel_subset E S₀ hS₀) (subset_allowedSet E S₀ hS₀)
+    refine Set.Subset.antisymm ?_ ?_
+    · exact Set.Subset.trans
+        (Set.Subset.trans (stableKernel_subset E S₀ hS₀) (subset_allowedSet E S₀ hS₀))
+        (by rw [hv]; exact fun _ hx => hx)
+    · intro x hx
+      rw [Set.mem_singleton_iff] at hx
+      subst hx
+      exact (hcoll T hT) hvT
   · intro hk
     have hsub : allowedSet E ⊆ stableKernel E := by
       intro x hx
@@ -841,7 +858,8 @@ theorem trial_boundary :
     simp only [Set.mem_insert_iff, Set.mem_singleton_iff]
     exact Or.inr (Or.inl rfl), by
     rw [trial_stableKernel]
-    simp only [Set.mem_insert_iff, Set.mem_singleton_iff]⟩
+    simp only [Set.mem_singleton_iff]
+    decide⟩
 
 /-- 中文证明：见证域不满足收缩片段——故 `unique_verdict_iff_stable_kernel_singletons`
 的反向假设不是空转，而是真实的边界条件。 -/

@@ -142,13 +142,14 @@ theorem closure_is_model (sys : HornSystem α) : isModel sys (closureAt sys) := 
     HornSystem.horn_result_fixed_point sys
   refine ⟨?_, ?_⟩
   · intro x hx
-    rw [← hfp]
-    exact Finset.mem_union.mpr (Or.inl hx)
+    have hmem : x ∈ HornSystem.TH sys (closureAt sys) := Finset.mem_union.mpr (Or.inl hx)
+    rw [hfp] at hmem
+    exact hmem
   · intro r hr hprem
-    rw [← hfp]
-    apply Finset.mem_union.mpr
-    right
-    exact Finset.mem_image.mpr ⟨r, Finset.mem_filter.mpr ⟨hr, hprem⟩, rfl⟩
+    have hmem : r.conclusion ∈ HornSystem.TH sys (closureAt sys) :=
+      Finset.mem_union.mpr (Or.inr (Finset.mem_image.mpr ⟨r, Finset.mem_filter.mpr ⟨hr, hprem⟩, rfl⟩))
+    rw [hfp] at hmem
+    exact hmem
 
 /-- 中文说明：**健全性**（闭包只给出被蕴含者）：凡进入迭代闭包的原子，在每个模型里都真。 -/
 theorem closure_only_entailed (sys : HornSystem α) {a : α}
@@ -190,15 +191,22 @@ theorem negLiteralStep_not_mono (a c : α) :
     ¬ ∀ (S T : Finset α), S ⊆ T →
       negLiteralStep (α := α) a c S ⊆ negLiteralStep (α := α) a c T := by
   intro hall
-  have h1 : negLiteralStep (α := α) a c (∅ : Finset α) = ({c} : Finset α) := by
-    simp [negLiteralStep]
-  have h2 : negLiteralStep (α := α) a c ({a} : Finset α) = (∅ : Finset α) := by
-    simp [negLiteralStep]
   have hsub : negLiteralStep (α := α) a c (∅ : Finset α) ⊆
       negLiteralStep (α := α) a c ({a} : Finset α) :=
     hall (∅ : Finset α) ({a} : Finset α) (Finset.empty_subset _)
-  rw [h1, h2] at hsub
-  exact absurd (hsub (Finset.mem_singleton.mpr rfl)) (Finset.not_mem_empty c)
+  have hc : c ∈ negLiteralStep (α := α) a c (∅ : Finset α) := by
+    unfold negLiteralStep
+    by_cases ha : a ∈ (∅ : Finset α)
+    · exact absurd ha (Finset.notMem_empty a)
+    · rw [if_neg ha]
+      exact Finset.mem_singleton_self c
+  have hnc : ¬ c ∈ negLiteralStep (α := α) a c ({a} : Finset α) := by
+    unfold negLiteralStep
+    by_cases ha : a ∈ ({a} : Finset α)
+    · rw [if_pos ha]
+      exact Finset.notMem_empty c
+    · exact absurd (Finset.mem_singleton_self a) ha
+  exact hnc (hsub hc)
 
 /-- 中文说明：**边界见证二**：带否定前件的算子不是任何 `HornSystem` 的 `TH`。依据是仓内
     `HornDefinitions.lean:41` 的 `TH_monotone`：任何 `TH` 都保序，而该算子不保序。
@@ -208,7 +216,9 @@ theorem negLiteralStep_not_TH (a c : α) :
   rintro ⟨sys, hsys⟩
   refine negLiteralStep_not_mono (α := α) a c ?_
   intro S T hST
-  rw [← hsys, ← hsys]
+  have hS : negLiteralStep (α := α) a c S = HornSystem.TH sys S := (congrFun hsys S).symm
+  have hT : negLiteralStep (α := α) a c T = HornSystem.TH sys T := (congrFun hsys T).symm
+  rw [hS, hT]
   exact HornSystem.TH_monotone sys hST
 
 /-- 中文说明：**一般算子的模型**（只用于越界见证）：`facts ⊆ M` 且 `step M ⊆ M`。
@@ -300,7 +310,7 @@ theorem exists_maximal_acyclic {β : Type} [DecidableEq β]
   intro s
   classical
   induction s with
-  | empty => exact fun hs => absurd hs (by simp)
+  | empty => exact fun hs => absurd hs Finset.not_nonempty_empty
   | insert a t hat ih =>
       intro hs
       by_cases ht : t.Nonempty
@@ -317,7 +327,7 @@ theorem exists_maximal_acyclic {β : Type} [DecidableEq β]
       · refine ⟨a, Finset.mem_insert.mpr (Or.inl rfl), fun x hx hx' => ?_⟩
         rcases Finset.mem_insert.mp hx with rfl | hxt
         · exact h_irrefl a hx'
-        · exact absurd ⟨x, hxt⟩ ht
+        · exact ht ⟨x, hxt⟩
 
 /-- 中文说明：P-015 位阶映射（`Genealogy/Part1.lean:53` 的 `rankScore` 把六位阶映到 `6..1`）。
     本件不重定义位阶，只把它当作映射形陈述的实例。 -/
@@ -370,7 +380,7 @@ theorem maximal_right_of_rank_tie (a b : P015.NormProvision)
     (h : ¬ provisionRank b < provisionRank a) :
     b ∈ ({a, b} : Finset P015.NormProvision) ∧
       ∀ x ∈ ({a, b} : Finset P015.NormProvision), ¬ provisionRank b < provisionRank x :=
-  ⟨Finset.mem_insert.mpr (Or.inr (Finset.mem_singleton b)), by
+  ⟨Finset.mem_insert.mpr (Or.inr (Finset.mem_singleton_self b)), by
     intro x hx
     rcases Finset.mem_insert.mp hx with rfl | hx
     · exact h
@@ -404,40 +414,37 @@ theorem resolveConflict_tie_value_in (a b : P015.NormProvision)
       · cases sB <;> cases sA <;> simp
       · cases sA <;> cases sB <;> simp
 
-/-- 中文说明：**判定树选中者确是极大元**：`resolveConflict a b = some k` 时，`k` 是 `{a,b}`
-    中某个极大条款的编号——组内无人凭位阶压过被选中者。
+/-- 中文说明：**判定树选中者确是极大元**：`resolveConflict a b = some k` 时，组内存在极大
+    条款 `m`，使判定结果正是 `m.provisionId`（配合假设 `h` 即得 `k = m.provisionId`，
+    因返回值为 `Option` 单值）。
     片段相对：只对两元素冲突组；`enactedDay` 的新旧与特别法属性只是台账的择一政策，
     本件不把它们升格为序关系，也不声称平位阶有唯一解。 -/
 theorem resolveConflict_some_selects_maximal (a b : P015.NormProvision) (k : String)
     (h : P015.resolveConflict a b = some k) :
     ∃ m ∈ ({a, b} : Finset P015.NormProvision),
-      m.provisionId = k ∧
-        (∀ x ∈ ({a, b} : Finset P015.NormProvision), ¬ provisionRank m < provisionRank x) := by
+      (∀ x ∈ ({a, b} : Finset P015.NormProvision), ¬ provisionRank m < provisionRank x) ∧
+        P015.resolveConflict a b = some m.provisionId := by
   by_cases h1 : provisionRank b < provisionRank a
   · have hv : P015.resolveConflict a b = some a.provisionId :=
       P015.lex_superior_left a b h1
-    rw [hv] at h
     obtain ⟨ham, hmax⟩ := maximal_left_of_rank_tie a b (Nat.lt_asymm h1)
-    exact ⟨a, ham, Option.some.inj h, hmax⟩
+    exact ⟨a, ham, hmax, hv⟩
   · by_cases h2 : provisionRank a < provisionRank b
     · have hv : P015.resolveConflict a b = some b.provisionId :=
         resolveConflict_some_right_of_rank a b h1 h2
-      rw [hv] at h
       obtain ⟨hbm, hmax⟩ := maximal_right_of_rank_tie a b h1
-      exact ⟨b, hbm, Option.some.inj h, hmax⟩
+      exact ⟨b, hbm, hmax, hv⟩
     · have hval : P015.resolveConflict a b ∈
         ({some a.provisionId, some b.provisionId, none} : Finset (Option String)) :=
         resolveConflict_tie_value_in a b h1 h2
       simp only [Finset.mem_insert, Finset.mem_singleton] at hval
       rcases hval with hv | hv | hv
-      · rw [h] at hv
-        obtain ⟨ham, hmax⟩ := maximal_left_of_rank_tie a b h2
-        exact ⟨a, ham, (Option.some.inj hv).symm, hmax⟩
-      · rw [h] at hv
-        obtain ⟨hbm, hmax⟩ := maximal_right_of_rank_tie a b h1
-        exact ⟨b, hbm, (Option.some.inj hv).symm, hmax⟩
-      · rw [h] at hv
-        exact absurd hv (by simp)
+      · obtain ⟨ham, hmax⟩ := maximal_left_of_rank_tie a b h2
+        exact ⟨a, ham, hmax, hv⟩
+      · obtain ⟨hbm, hmax⟩ := maximal_right_of_rank_tie a b h1
+        exact ⟨b, hbm, hmax, hv⟩
+      · rw [hv] at h
+        cases h
 
 /-- 中文说明：`none` 的直接读数：判定树返回 `none` 时双方在位阶上互不压过（首、次分支皆
     未命中）。这是 `none` 的必要条件，不是它的全部含义。 -/

@@ -83,6 +83,10 @@ PENDING_CI_MODULES: dict[str, str] = {
         "S1 seam: Horn closure <-> semantic consequence, and the general "
         "finite acyclic priority maximal element (wave 7, snapshot -- "
         "under construction, no build verdict yet)"),
+    "JurisLean.Seams.PrecedentFlow": (
+        "S7 seam: precedent-driven version update, non-convergence of backflow, "
+        "and the four-place competence gate for P-066 (wave 7, snapshot -- "
+        "under construction, no build verdict yet)"),
     #
     # `JurisLean.Seams.ClaimBasis` (P-034 claim-basis chain, seam 1) left this table on
     # 2026-10-01: after the name-free Step inversion fixed its local build, run

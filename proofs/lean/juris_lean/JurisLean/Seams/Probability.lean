@@ -54,12 +54,15 @@ Dirichlet/Beta 共轭更新（`DirichletPosterior.dirWeights`）、精确 Beta C
 合同的履行情况、当事人的过错程度、履约背景等因素，遵循公平原则和诚信原则进行衡量，并作出裁判。
 约定的违约金超过造成损失的百分之三十的，人民法院一般可以认定为过分高于造成的损失。
 恶意违约的当事人一方请求减少违约金的，人民法院一般不予支持。"同解释第64条第2款：
-违约方主张约定违约金过分高于造成的损失的，应当承担举证责任。
+违约方主张约定违约金过分高于造成的损失的，应当承担举证责任
+（**要旨转述，非逐字核验**：本件只取"主张过分高于者负举证责任"这一意义）。
 本件把这四条做成**有限条件集** `ReductionCondition`，再由条件集合成闸门
 `reductionGate` 与准许关系 `Allow`；30% 门槛取精确有理比较 `(13/10 : ℚ) * 损失 < 约定额`
 （整数等价式 `13 * 损失 < 10 * 约定额`，二者的等价性本件证明）。
-关键立场：65条第2款说的是"可以认定"，所以门槛只是 `Allow` 的**准入条件**，
-不是把结果算出来的规则；65条第1款列举的衡量因素面本件刻意留作自由输入 `factors : F`，
+关键立场：65条第2款说的是"一般**可以**认定"（许可式），所以门槛只是 `Allow` 的**准入条件**，
+不是把结果算出来的规则；同一款的"恶意违约……一般**不予**支持"在本件里按默认情形建成
+硬关闸（`bad_faith_bar`），其"一般"留出的例外面未建模（§四第 7 项）；
+65条第1款列举的衡量因素面本件刻意留作自由输入 `factors : F`，
 不写成定理。据此给出反例对 `clamp_is_not_reduction`：一个满足区间归入（仓库现有 clamp 的形状）
 的金额，在恶意违约数据上仍然违反 `Allow` —— 归入区间不是法律性质。
 
@@ -331,7 +334,7 @@ theorem transport_regime_positivity {S : Type} [Fintype S] [DecidableEq S] (p : 
     先按宽制度 `e` 条件化、再按窄制度 `o` 条件化，等于直接按 `o` 条件化。
     机制是函数、制度是谓词，搬运方程就是这条等式。
     诚实声明（降级）：只证**嵌套**制度（`href`）；非嵌套情形不成立，
-    见 `transport_needs_nested_regimes` 的见证。一般（任意制度对）刻画列为未覆盖片段。 -/
+    见 `transport_boundary_needs_nesting` 给出的逐点失效见证。一般（任意制度对）刻画列为未覆盖片段。 -/
 theorem selection_transport_from_shared_mechanism {S : Type} [Fintype S] [DecidableEq S]
     (p : S → ℚ) (e o : S → Bool) (hE : 0 < evMass p e) (hO : 0 < evMass p o)
     (href : ∀ s, o s = true → e s = true)
@@ -424,7 +427,7 @@ def amountQ (x : Amount) : ℚ := x
 
 /-- 酌减的法定条件集（有限、可判定；条目名逐字对应已核验条文，不增不减）：
     `request_by_party` 与 `discretionary_finding` 出自《民法典》第585条第2款
-    （"可以根据当事人的请求予以适当减少"）与法释〔2023〕13号第65条第2款的"可以认定"；
+    （"可以根据当事人的请求予以适当减少"）与法释〔2023〕13号第65条第2款的"一般可以认定"；
     `thirty_percent_ground` 是第65条第2款的百分之三十门槛；
     `bad_faith_bar` 是第65条第2款"恶意违约……一般不予支持"；
     `burden_of_proof` 是第64条第2款的举证责任；
@@ -452,7 +455,7 @@ structure ReductionData (F : Type) where
   badFaith : Bool
   /-- 第64条第2款：违约方是否完成"过分高于"的举证。 -/
   proved : Bool
-  /-- 第65条第2款："可以认定"的裁定位（许可，不是强制）。 -/
+  /-- 第65条第2款："一般可以认定"的裁定位（许可，不是强制）。 -/
   overFound : Bool
   /-- 第65条第1款的衡量因素面：自由输入。 -/
   factors : F

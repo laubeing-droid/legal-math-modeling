@@ -93,11 +93,18 @@ PENDING_CI_MODULES: dict[str, str] = {
     # definition.
     "JurisLean.Seams.Probability": (
         "S3 seam: five-segment probability derivation and P-098 reduction relation "
-        "(build RED in the main session: :194 rw, :230 stuck instance, :232 linarith; "
-        "under repair)"),
+        "(build RED in the main session: :194 rw, :230 stuck instance, :232 linarith; "        "under repair)"),
     "JurisLean.Seams.FullProcess": (
         "S6 closure seam: finite trace preservation and the receipt-is-consequence "
-        "result for P-123 (snapshot; no build verdict obtained)"),
+        "result for P-123 (snapshot; no build verdict obtained). The repair lane briefly "
+        "DELETED this file from the working tree; the committed snapshot was restored "
+        "with git checkout, which is why the red state was checkpointed before repair work "
+        "started -- a stalled or destructive lane cannot then lose the theorems."),
+    "JurisLean.Seams.Unified": (
+        "T2 capstone: composes the seam theorems into one declared-fragment statement. "
+        "Booked while it is being written; it must not reach the release root before it "
+        "compiles, and its own contract forbids restating a conjunct more weakly than "
+        "the seam theorem it cites"),
     #
     # `JurisLean.Seams.ClaimBasis` (P-034 claim-basis chain, seam 1) left this table on
     # 2026-10-01: after the name-free Step inversion fixed its local build, run

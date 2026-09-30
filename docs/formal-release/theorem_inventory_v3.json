@@ -533,7 +533,19 @@
     "JurisLean.Mandate.ZeroSumSion",
     "JurisLean.Mandate.ZeroSumValue",
     "JurisLean.ReceiptAuthority",
+    "JurisLean.Seams.AdjudicationBridge",
+    "JurisLean.Seams.BoundaryClosure",
     "JurisLean.Seams.ClaimBasis",
+    "JurisLean.Seams.FullProcess",
+    "JurisLean.Seams.InstitutionalEffects",
+    "JurisLean.Seams.PayoffEquilibrium",
+    "JurisLean.Seams.PrecedentFlow",
+    "JurisLean.Seams.Probability",
+    "JurisLean.Seams.Representation",
+    "JurisLean.Seams.SourceNorms",
+    "JurisLean.Seams.Temporal",
+    "JurisLean.Seams.Uncertainty",
+    "JurisLean.Seams.Unified",
     "JurisLean.TaintNoninterference",
     "JurisLean.ULMAxiomAudit",
     "JurisLean.WeightedSupNorm"
@@ -1451,6 +1463,102 @@
     "JurisLean.Mandate.ZeroSumValue.upperValue_le_lowerValue",
     "JurisLean.Mandate.ZeroSumValue.value_eq",
     "JurisLean.Mandate.ZeroSumValue.weakDuality",
+    "JurisLean.Seams.AdjudicationBridge.admissible_trialDomain",
+    "JurisLean.Seams.AdjudicationBridge.argument_undec_not_final_undetermined",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_F_empty",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_admissible",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_attackers_p",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_attackers_q",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_attacks_pair_ne",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_baseConflictFree",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_baseSet",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_finalDefeated_q",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_finalDerivable_p",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_grounded_eq_empty",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_iter_eq_empty",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_not_finalDerivable_q",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_p_ne_q",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_p_not_grounded",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_p_undecided",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_policy_invariant",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_q_not_grounded",
+    "JurisLean.Seams.AdjudicationBridge.cycle2_q_undecided",
+    "JurisLean.Seams.AdjudicationBridge.finalDerivable_within_grounded",
+    "JurisLean.Seams.AdjudicationBridge.final_undetermined_iff_exhausted",
+    "JurisLean.Seams.AdjudicationBridge.grounded_equivalence",
+    "JurisLean.Seams.AdjudicationBridge.grounded_rejection_is_not_legal_refutation",
+    "JurisLean.Seams.AdjudicationBridge.grounded_support_correspondence",
+    "JurisLean.Seams.AdjudicationBridge.mem_allowedSet_iff",
+    "JurisLean.Seams.AdjudicationBridge.mem_attackers",
+    "JurisLean.Seams.AdjudicationBridge.mem_attackers_of_mem",
+    "JurisLean.Seams.AdjudicationBridge.mem_baseSet_iff",
+    "JurisLean.Seams.AdjudicationBridge.mem_rounds_fst_fires",
+    "JurisLean.Seams.AdjudicationBridge.mem_rounds_succ_fst_iff",
+    "JurisLean.Seams.AdjudicationBridge.mem_rounds_succ_snd_iff",
+    "JurisLean.Seams.AdjudicationBridge.mem_stableKernel_iff",
+    "JurisLean.Seams.AdjudicationBridge.notMemEmptyFinset",
+    "JurisLean.Seams.AdjudicationBridge.proof_failure_not_ontic_negation",
+    "JurisLean.Seams.AdjudicationBridge.rounds_fst_mono",
+    "JurisLean.Seams.AdjudicationBridge.rounds_fst_mono_add",
+    "JurisLean.Seams.AdjudicationBridge.rounds_fst_subset_args",
+    "JurisLean.Seams.AdjudicationBridge.rounds_safe",
+    "JurisLean.Seams.AdjudicationBridge.rounds_snd_attacker",
+    "JurisLean.Seams.AdjudicationBridge.rounds_snd_mono",
+    "JurisLean.Seams.AdjudicationBridge.rounds_snd_mono_add",
+    "JurisLean.Seams.AdjudicationBridge.rounds_snd_subset_args",
+    "JurisLean.Seams.AdjudicationBridge.rounds_succ_fst",
+    "JurisLean.Seams.AdjudicationBridge.rounds_succ_snd",
+    "JurisLean.Seams.AdjudicationBridge.rounds_within_grounded",
+    "JurisLean.Seams.AdjudicationBridge.rounds_zero_fst",
+    "JurisLean.Seams.AdjudicationBridge.rounds_zero_snd",
+    "JurisLean.Seams.AdjudicationBridge.stableKernel_subset",
+    "JurisLean.Seams.AdjudicationBridge.stableKernel_subset_allowedSet",
+    "JurisLean.Seams.AdjudicationBridge.stable_kernel_singleton_of_allowed_singleton",
+    "JurisLean.Seams.AdjudicationBridge.subset_allowedSet",
+    "JurisLean.Seams.AdjudicationBridge.trial_admissible_exists",
+    "JurisLean.Seams.AdjudicationBridge.trial_allowedSet",
+    "JurisLean.Seams.AdjudicationBridge.trial_boundary",
+    "JurisLean.Seams.AdjudicationBridge.trial_collapse_fails",
+    "JurisLean.Seams.AdjudicationBridge.trial_stableKernel",
+    "JurisLean.Seams.AdjudicationBridge.two_valued_exclusion",
+    "JurisLean.Seams.AdjudicationBridge.unique_verdict_iff_stable_kernel_singletons",
+    "JurisLean.Seams.BoundaryClosure.AdjudicationRewriter.apply_preserves_evaluation",
+    "JurisLean.Seams.BoundaryClosure.OutcomeMapOp.boundary2_obligations_hand_over",
+    "JurisLean.Seams.BoundaryClosure.OutcomeMapOp.closure_boundary1_no_failure_upgrade",
+    "JurisLean.Seams.BoundaryClosure.OutcomeMapOp.closure_boundary1_not_complete",
+    "JurisLean.Seams.BoundaryClosure.OutcomeMapOp.closure_boundary2_no_partial_laundering",
+    "JurisLean.Seams.BoundaryClosure.OutcomeMapOp.closure_boundary2_partial_preserved",
+    "JurisLean.Seams.BoundaryClosure.adjudicate_of_incomplete_evaluation",
+    "JurisLean.Seams.BoundaryClosure.boundary1_family_excludes_launderer",
+    "JurisLean.Seams.BoundaryClosure.boundary3_attested_carries_proof",
+    "JurisLean.Seams.BoundaryClosure.closure_boundary3_no_unproved_emptiness",
+    "JurisLean.Seams.BoundaryClosure.closure_boundary4_incomplete_not_adverse",
+    "JurisLean.Seams.BoundaryClosure.closure_boundary4_not_pending",
+    "JurisLean.Seams.BoundaryClosure.closure_boundary4_solverIncomplete",
+    "JurisLean.Seams.BoundaryClosure.closure_boundary5_consensus_not_escalating",
+    "JurisLean.Seams.BoundaryClosure.closure_boundary5_trust_not_raised",
+    "JurisLean.Seams.BoundaryClosure.closure_boundary5_trust_proof_le",
+    "JurisLean.Seams.BoundaryClosure.closure_boundary6_taint_never_cleaned",
+    "JurisLean.Seams.BoundaryClosure.consensusRank_le_of_le",
+    "JurisLean.Seams.BoundaryClosure.consensus_cannot_reach_next_rank",
+    "JurisLean.Seams.BoundaryClosure.delimitation_is_not_general",
+    "JurisLean.Seams.BoundaryClosure.exists_tainted_in_inputs",
+    "JurisLean.Seams.BoundaryClosure.joinTaint_assoc",
+    "JurisLean.Seams.BoundaryClosure.joinTaint_clean_left",
+    "JurisLean.Seams.BoundaryClosure.joinTaint_clean_right",
+    "JurisLean.Seams.BoundaryClosure.joinTaint_idem",
+    "JurisLean.Seams.BoundaryClosure.joinTaint_tainted_left",
+    "JurisLean.Seams.BoundaryClosure.poolTaint_eq_taintOfInputs",
+    "JurisLean.Seams.BoundaryClosure.resubmitTimes_carriesTaint",
+    "JurisLean.Seams.BoundaryClosure.resubmit_preserves_total_taint",
+    "JurisLean.Seams.BoundaryClosure.stageOutput_taint",
+    "JurisLean.Seams.BoundaryClosure.taintOfInputs_append",
+    "JurisLean.Seams.BoundaryClosure.taintOfInputs_cons",
+    "JurisLean.Seams.BoundaryClosure.taintOfInputs_nil",
+    "JurisLean.Seams.BoundaryClosure.taintOfInputs_of_carriesTaint",
+    "JurisLean.Seams.BoundaryClosure.taintOfInputs_snoc",
+    "JurisLean.Seams.BoundaryClosure.trustLE_refl",
+    "JurisLean.Seams.BoundaryClosure.trustLE_trans",
     "JurisLean.Seams.ClaimBasis.carriesBasis_cons",
     "JurisLean.Seams.ClaimBasis.citedAt_head_or_tail",
     "JurisLean.Seams.ClaimBasis.citedAt_singleton_fields",
@@ -1483,14 +1591,453 @@
     "JurisLean.Seams.ClaimBasis.witness_extinction_reaches_past_defense",
     "JurisLean.Seams.ClaimBasis.witness_restored_claim_still_cited",
     "JurisLean.Seams.ClaimBasis.witness_unmet_elements_stay_notYet",
-    "JurisLean.consensus_does_not_escalate",
-    "JurisLean.escalation_requires_rank_increase",
-    "JurisLean.join_with_tainted_is_tainted",
-    "JurisLean.majority_cannot_clean",
-    "JurisLean.no_auto_escalation",
-    "JurisLean.repetition_does_not_clean",
-    "JurisLean.stage_preserves_taint",
-    "JurisLean.tainted_not_promoted_to_clean",
+    "JurisLean.Seams.FullProcess.admissibleState_st₀Empty",
+    "JurisLean.Seams.FullProcess.admitted_receipt_has_derivation",
+    "JurisLean.Seams.FullProcess.backflow_admitted_without_derivation",
+    "JurisLean.Seams.FullProcess.backflow_record_in_ledger",
+    "JurisLean.Seams.FullProcess.channelDisjointnessAt_any",
+    "JurisLean.Seams.FullProcess.closure_is_not_uniform_claim",
+    "JurisLean.Seams.FullProcess.conservation_along_trace",
+    "JurisLean.Seams.FullProcess.coreStep_declaratory_id",
+    "JurisLean.Seams.FullProcess.coreStep_ledger_append",
+    "JurisLean.Seams.FullProcess.coreStep_ledger_declaratory",
+    "JurisLean.Seams.FullProcess.coreStep_ledger_formative",
+    "JurisLean.Seams.FullProcess.coreStep_ledger_historyRewrite",
+    "JurisLean.Seams.FullProcess.coreStep_ledger_length_le",
+    "JurisLean.Seams.FullProcess.coreStep_ledger_normBackflow",
+    "JurisLean.Seams.FullProcess.coreStep_ledger_performance",
+    "JurisLean.Seams.FullProcess.coreStep_ledger_terminating",
+    "JurisLean.Seams.FullProcess.coreStep_perf_length_le",
+    "JurisLean.Seams.FullProcess.coreStep_perf_performance",
+    "JurisLean.Seams.FullProcess.coreStep_pile_unchanged",
+    "JurisLean.Seams.FullProcess.coreStep_preserves_admissible",
+    "JurisLean.Seams.FullProcess.declaratory_step_preserves_forms",
+    "JurisLean.Seams.FullProcess.domAllows_full",
+    "JurisLean.Seams.FullProcess.domainMember_dichotomy",
+    "JurisLean.Seams.FullProcess.domainMember_full_of",
+    "JurisLean.Seams.FullProcess.empty_not_forms",
+    "JurisLean.Seams.FullProcess.empty_not_formsEver",
+    "JurisLean.Seams.FullProcess.extConservationAlong",
+    "JurisLean.Seams.FullProcess.extStep_in",
+    "JurisLean.Seams.FullProcess.extStep_out",
+    "JurisLean.Seams.FullProcess.extStep_preserves_admissible",
+    "JurisLean.Seams.FullProcess.finite_trace_invariants_at_take_prefix",
+    "JurisLean.Seams.FullProcess.finite_trace_preserves_legal_invariants",
+    "JurisLean.Seams.FullProcess.forms_at_end_is_bounded_fold",
+    "JurisLean.Seams.FullProcess.historyRewrite_breaks_appendOnly",
+    "JurisLean.Seams.FullProcess.historyRewrite_breaks_ideograph",
+    "JurisLean.Seams.FullProcess.human_reviewed_copy_never_admitted",
+    "JurisLean.Seams.FullProcess.invariants_hold_under_any_out_of_domain",
+    "JurisLean.Seams.FullProcess.length_append_singleton_eq",
+    "JurisLean.Seams.FullProcess.length_take_le",
+    "JurisLean.Seams.FullProcess.level_chain_is_strict",
+    "JurisLean.Seams.FullProcess.mem_traceRecords_has_event",
+    "JurisLean.Seams.FullProcess.nonadjudicative_trace_stabilizes_projection",
+    "JurisLean.Seams.FullProcess.perfCountTrace_le_length",
+    "JurisLean.Seams.FullProcess.perfWritingCount_le_one",
+    "JurisLean.Seams.FullProcess.performStep_conserved_here",
+    "JurisLean.Seams.FullProcess.performStep_values_bounded",
+    "JurisLean.Seams.FullProcess.performTraceDemo_conserves",
+    "JurisLean.Seams.FullProcess.performTraceDemo_inDomain",
+    "JurisLean.Seams.FullProcess.performTraceDemo_shape_undecided",
+    "JurisLean.Seams.FullProcess.performTraceDemo_state",
+    "JurisLean.Seams.FullProcess.performance_step_preserves_forms",
+    "JurisLean.Seams.FullProcess.pi_oscillates_witness",
+    "JurisLean.Seams.FullProcess.pi_stability_fails_outside_domain",
+    "JurisLean.Seams.FullProcess.preservation_is_domain_relative",
+    "JurisLean.Seams.FullProcess.preservation_over_unit_type",
+    "JurisLean.Seams.FullProcess.proposal_issues_neither_certificate_nor_status",
+    "JurisLean.Seams.FullProcess.proposal_shaped_copy_never_admitted",
+    "JurisLean.Seams.FullProcess.rcBackflow_level_ok",
+    "JurisLean.Seams.FullProcess.rcBackflow_record_eq",
+    "JurisLean.Seams.FullProcess.rcFormedSeeded_record_eq",
+    "JurisLean.Seams.FullProcess.rcFormedSeeded_record_is_in_ledger",
+    "JurisLean.Seams.FullProcess.receipt_has_semantic_derivation",
+    "JurisLean.Seams.FullProcess.receipt_ledger_is_fruit_not_warrant",
+    "JurisLean.Seams.FullProcess.repeated_proposal_never_reaches_attestation_rank",
+    "JurisLean.Seams.FullProcess.rewriteTraceDemo_notInDomain",
+    "JurisLean.Seams.FullProcess.runTraceExt_cons",
+    "JurisLean.Seams.FullProcess.runTraceExt_ledger_append",
+    "JurisLean.Seams.FullProcess.runTrace_afterFormedBackflow_ledger",
+    "JurisLean.Seams.FullProcess.runTrace_all_declaratory_is_noop",
+    "JurisLean.Seams.FullProcess.runTrace_append",
+    "JurisLean.Seams.FullProcess.runTrace_backflowDemo_ledger",
+    "JurisLean.Seams.FullProcess.runTrace_cons",
+    "JurisLean.Seams.FullProcess.runTrace_eq_runTraceExt",
+    "JurisLean.Seams.FullProcess.runTrace_formTermForm_ledger",
+    "JurisLean.Seams.FullProcess.runTrace_formTerm_ledger",
+    "JurisLean.Seams.FullProcess.runTrace_formedDemo_ledger",
+    "JurisLean.Seams.FullProcess.runTrace_ledger_eq_append",
+    "JurisLean.Seams.FullProcess.runTrace_ledger_length_eq",
+    "JurisLean.Seams.FullProcess.runTrace_length_bound",
+    "JurisLean.Seams.FullProcess.runTrace_nil",
+    "JurisLean.Seams.FullProcess.runTrace_perf_length_le",
+    "JurisLean.Seams.FullProcess.runTrace_perf_length_le_count",
+    "JurisLean.Seams.FullProcess.runTrace_performDemo_ledger",
+    "JurisLean.Seams.FullProcess.runTrace_performDemo_perf",
+    "JurisLean.Seams.FullProcess.runTrace_pile_unchanged",
+    "JurisLean.Seams.FullProcess.runTrace_rewrite_demo_ledger",
+    "JurisLean.Seams.FullProcess.seeded_formsEver_relationDemo",
+    "JurisLean.Seams.FullProcess.seeded_invariants_hold_under_backflow_semantics",
+    "JurisLean.Seams.FullProcess.seeded_proposal_copy_not_admitted",
+    "JurisLean.Seams.FullProcess.skipping_authority_receipt_not_valid",
+    "JurisLean.Seams.FullProcess.traceBackflowDemo_notInDomain",
+    "JurisLean.Seams.FullProcess.traceRecords_declaratory",
+    "JurisLean.Seams.FullProcess.traceRecords_length_le",
+    "JurisLean.Seams.FullProcess.traceRecords_performance",
+    "JurisLean.Seams.FullProcess.trace_performs_and_keeps_history",
+    "JurisLean.Seams.FullProcess.undecided_shapes_are_not_decided",
+    "JurisLean.Seams.InstitutionalEffects.acc_le_foldMax",
+    "JurisLean.Seams.InstitutionalEffects.append_is_ideographic",
+    "JurisLean.Seams.InstitutionalEffects.applied_bounds",
+    "JurisLean.Seams.InstitutionalEffects.applied_plus_outstanding_eq_amount",
+    "JurisLean.Seams.InstitutionalEffects.effectKind_formative",
+    "JurisLean.Seams.InstitutionalEffects.effectKind_formative_ne_performance_closed",
+    "JurisLean.Seams.InstitutionalEffects.effectKind_performance",
+    "JurisLean.Seams.InstitutionalEffects.effectKind_performance_ne_formative_closed",
+    "JurisLean.Seams.InstitutionalEffects.effective_next_formative_iff",
+    "JurisLean.Seams.InstitutionalEffects.effective_next_nonformative_iff",
+    "JurisLean.Seams.InstitutionalEffects.everStep_true",
+    "JurisLean.Seams.InstitutionalEffects.exists_maximal_in_ranked",
+    "JurisLean.Seams.InstitutionalEffects.foldMax_cons",
+    "JurisLean.Seams.InstitutionalEffects.foldMax_mem",
+    "JurisLean.Seams.InstitutionalEffects.foldMax_nil",
+    "JurisLean.Seams.InstitutionalEffects.foldMax_ub",
+    "JurisLean.Seams.InstitutionalEffects.foldMax_ub_tail",
+    "JurisLean.Seams.InstitutionalEffects.formative_effectKind_ne_performance",
+    "JurisLean.Seams.InstitutionalEffects.formsB_append",
+    "JurisLean.Seams.InstitutionalEffects.formsB_append_formed",
+    "JurisLean.Seams.InstitutionalEffects.formsB_append_record",
+    "JurisLean.Seams.InstitutionalEffects.formsB_append_terminated",
+    "JurisLean.Seams.InstitutionalEffects.formsB_next_formative",
+    "JurisLean.Seams.InstitutionalEffects.formsB_nil",
+    "JurisLean.Seams.InstitutionalEffects.formsEverFold_append",
+    "JurisLean.Seams.InstitutionalEffects.formsEverFold_cons",
+    "JurisLean.Seams.InstitutionalEffects.formsEverFold_nil",
+    "JurisLean.Seams.InstitutionalEffects.formsEverFold_of_formsFold",
+    "JurisLean.Seams.InstitutionalEffects.formsEverFold_true",
+    "JurisLean.Seams.InstitutionalEffects.formsEver_of_forms",
+    "JurisLean.Seams.InstitutionalEffects.formsFold_append",
+    "JurisLean.Seams.InstitutionalEffects.formsFold_cons",
+    "JurisLean.Seams.InstitutionalEffects.formsFold_nil",
+    "JurisLean.Seams.InstitutionalEffects.formsFold_nonmentioning",
+    "JurisLean.Seams.InstitutionalEffects.forms_congruent_under_nonmentioning_suffix",
+    "JurisLean.Seams.InstitutionalEffects.ledgerFormedDemo_forms",
+    "JurisLean.Seams.InstitutionalEffects.ledger_can_express_termination",
+    "JurisLean.Seams.InstitutionalEffects.next_declaratory_is_identity",
+    "JurisLean.Seams.InstitutionalEffects.next_formative_is_append",
+    "JurisLean.Seams.InstitutionalEffects.next_performance_is_identity",
+    "JurisLean.Seams.InstitutionalEffects.next_terminating_is_append",
+    "JurisLean.Seams.InstitutionalEffects.outstanding_never_negative",
+    "JurisLean.Seams.InstitutionalEffects.overperformance_leaves_zero",
+    "JurisLean.Seams.InstitutionalEffects.overperformance_witness_10_12",
+    "JurisLean.Seams.InstitutionalEffects.performLedgerDemo_total",
+    "JurisLean.Seams.InstitutionalEffects.performStep_conservation",
+    "JurisLean.Seams.InstitutionalEffects.performStep_conservation_witness",
+    "JurisLean.Seams.InstitutionalEffects.performance_appends_no_record",
+    "JurisLean.Seams.InstitutionalEffects.performance_channels_are_disjoint",
+    "JurisLean.Seams.InstitutionalEffects.performance_effectKind_ne_formative",
+    "JurisLean.Seams.InstitutionalEffects.performance_not_creation",
+    "JurisLean.Seams.InstitutionalEffects.performance_not_creation_bool",
+    "JurisLean.Seams.InstitutionalEffects.performance_witness_10_3",
+    "JurisLean.Seams.InstitutionalEffects.priorityTableDemo_has_maximal",
+    "JurisLean.Seams.InstitutionalEffects.priorityTableDemo_nonempty",
+    "JurisLean.Seams.InstitutionalEffects.priority_route_keeps_projected",
+    "JurisLean.Seams.InstitutionalEffects.projection_append_form",
+    "JurisLean.Seams.InstitutionalEffects.projection_append_terminated",
+    "JurisLean.Seams.InstitutionalEffects.projection_append_unrelated",
+    "JurisLean.Seams.InstitutionalEffects.projection_of_append_matches_step",
+    "JurisLean.Seams.InstitutionalEffects.projection_of_append_matches_step_terminating",
+    "JurisLean.Seams.InstitutionalEffects.rank_lt_irreflexive",
+    "JurisLean.Seams.InstitutionalEffects.rank_lt_transitive",
+    "JurisLean.Seams.InstitutionalEffects.recordMentionsB_false",
+    "JurisLean.Seams.InstitutionalEffects.recordMentionsB_true",
+    "JurisLean.Seams.InstitutionalEffects.register_p_side",
+    "JurisLean.Seams.InstitutionalEffects.routeTwo_dominates",
+    "JurisLean.Seams.InstitutionalEffects.routeTwo_is_one_of_two",
+    "JurisLean.Seams.InstitutionalEffects.routeTwo_never_invents_survival",
+    "JurisLean.Seams.InstitutionalEffects.routeTwo_witness_3_7",
+    "JurisLean.Seams.InstitutionalEffects.termination_breaks_projection",
+    "JurisLean.Seams.InstitutionalEffects.termination_of_other_keeps_projection_witness",
+    "JurisLean.Seams.InstitutionalEffects.termination_of_other_leaves_projection",
+    "JurisLean.Seams.PayoffEquilibrium.abs_two_close",
+    "JurisLean.Seams.PayoffEquilibrium.approxNash_agrees_with_isNashPure_at_k10",
+    "JurisLean.Seams.PayoffEquilibrium.approxNash_legalPay_k10",
+    "JurisLean.Seams.PayoffEquilibrium.below_threshold_lawful_excluded",
+    "JurisLean.Seams.PayoffEquilibrium.bestStrategy_node_false",
+    "JurisLean.Seams.PayoffEquilibrium.bestStrategy_node_true",
+    "JurisLean.Seams.PayoffEquilibrium.breach_profile_is_equilibrium_low",
+    "JurisLean.Seams.PayoffEquilibrium.committed_bit_is_strictly_below_value",
+    "JurisLean.Seams.PayoffEquilibrium.constStrategy_reads",
+    "JurisLean.Seams.PayoffEquilibrium.dev_gain_two_eta",
+    "JurisLean.Seams.PayoffEquilibrium.eTree_value",
+    "JurisLean.Seams.PayoffEquilibrium.equilibrium_and_lawfulness_are_different_notions",
+    "JurisLean.Seams.PayoffEquilibrium.equilibrium_status_upheld_yet_duty_unperformed",
+    "JurisLean.Seams.PayoffEquilibrium.extPay_nash",
+    "JurisLean.Seams.PayoffEquilibrium.external_equilibrium_reflects_legal",
+    "JurisLean.Seams.PayoffEquilibrium.grids_realise_legalPay",
+    "JurisLean.Seams.PayoffEquilibrium.high_grid_is_approx_at_adequate_sanction",
+    "JurisLean.Seams.PayoffEquilibrium.isApproxNashGame_low_exact",
+    "JurisLean.Seams.PayoffEquilibrium.lawful_iff_sanction_threshold",
+    "JurisLean.Seams.PayoffEquilibrium.lawful_profile_not_equilibrium_low",
+    "JurisLean.Seams.PayoffEquilibrium.legalPay_agrees_with_declaration",
+    "JurisLean.Seams.PayoffEquilibrium.legalPay_grid_k10",
+    "JurisLean.Seams.PayoffEquilibrium.legalPay_sue_perform_respondent",
+    "JurisLean.Seams.PayoffEquilibrium.legalPay_sue_refuse_respondent",
+    "JurisLean.Seams.PayoffEquilibrium.legal_payoff_grid",
+    "JurisLean.Seams.PayoffEquilibrium.legal_payoff_preserved",
+    "JurisLean.Seams.PayoffEquilibrium.legal_payoff_preserved_swapDocket",
+    "JurisLean.Seams.PayoffEquilibrium.legal_payoff_two_eta_transfer",
+    "JurisLean.Seams.PayoffEquilibrium.legal_payoff_two_eta_transfer_reads_as_two",
+    "JurisLean.Seams.PayoffEquilibrium.no_pure_equilibrium_at_adequate_sanction",
+    "JurisLean.Seams.PayoffEquilibrium.payoff_determined_by_status",
+    "JurisLean.Seams.PayoffEquilibrium.play_bestStrategy",
+    "JurisLean.Seams.PayoffEquilibrium.play_le_value",
+    "JurisLean.Seams.PayoffEquilibrium.relabelStatus_preserves_respondent_payoff",
+    "JurisLean.Seams.PayoffEquilibrium.relabelStatus_visible_on_claimant_side",
+    "JurisLean.Seams.PayoffEquilibrium.sanction_pulls_back_lawful",
+    "JurisLean.Seams.PayoffEquilibrium.sanctionedLoss_eq",
+    "JurisLean.Seams.PayoffEquilibrium.strategy_quantifier_outside_value",
+    "JurisLean.Seams.PayoffEquilibrium.swapDocket_involutive",
+    "JurisLean.Seams.PayoffEquilibrium.swapDocket_involutive_fields",
+    "JurisLean.Seams.PayoffEquilibrium.swapDocket_is_not_identity",
+    "JurisLean.Seams.PayoffEquilibrium.two_eta_bound_is_tight",
+    "JurisLean.Seams.PayoffEquilibrium.two_eta_transfer_Game",
+    "JurisLean.Seams.PayoffEquilibrium.withinEtaGame_high_low",
+    "JurisLean.Seams.PayoffEquilibrium.withinEta_legal_external",
+    "JurisLean.Seams.PayoffEquilibrium.withinEta_one_sided",
+    "JurisLean.Seams.PrecedentFlow.applicableAtBool_true_iff",
+    "JurisLean.Seams.PrecedentFlow.applicable_at_swap_after",
+    "JurisLean.Seams.PrecedentFlow.applicable_at_swap_before",
+    "JurisLean.Seams.PrecedentFlow.applicable_count_pending_after",
+    "JurisLean.Seams.PrecedentFlow.applicable_count_pending_before",
+    "JurisLean.Seams.PrecedentFlow.applicable_froms_swap_after",
+    "JurisLean.Seams.PrecedentFlow.applicable_froms_swap_before",
+    "JurisLean.Seams.PrecedentFlow.backflowIter_period_two",
+    "JurisLean.Seams.PrecedentFlow.backflowIter_succ",
+    "JurisLean.Seams.PrecedentFlow.backflowSetStep_not_a_system",
+    "JurisLean.Seams.PrecedentFlow.backflowSetStep_not_mono",
+    "JurisLean.Seams.PrecedentFlow.backflowStep_has_no_fixed_point",
+    "JurisLean.Seams.PrecedentFlow.backflowStep_is_involution",
+    "JurisLean.Seams.PrecedentFlow.backflowStep_ne",
+    "JurisLean.Seams.PrecedentFlow.backflow_entry_is_not_vacuous",
+    "JurisLean.Seams.PrecedentFlow.backflow_has_no_stable_stage",
+    "JurisLean.Seams.PrecedentFlow.backflow_no_fixed_step",
+    "JurisLean.Seams.PrecedentFlow.competence_shape",
+    "JurisLean.Seams.PrecedentFlow.feedback_need_not_converge",
+    "JurisLean.Seams.PrecedentFlow.intervalValid_supersedeRecord",
+    "JurisLean.Seams.PrecedentFlow.late_publication_still_effective_in_interval",
+    "JurisLean.Seams.PrecedentFlow.lower_court_draft_is_not_a_norm_layer_entry",
+    "JurisLean.Seams.PrecedentFlow.lower_court_draft_unauthorized",
+    "JurisLean.Seams.PrecedentFlow.mem_applicableVersions",
+    "JurisLean.Seams.PrecedentFlow.monotoneIter_one_step_stable",
+    "JurisLean.Seams.PrecedentFlow.norm_layer_entry_authorized",
+    "JurisLean.Seams.PrecedentFlow.not_applicable_of_not_effective",
+    "JurisLean.Seams.PrecedentFlow.observation_gate_does_not_determine_effectivity",
+    "JurisLean.Seams.PrecedentFlow.precedent_update_preserves_norm_structure",
+    "JurisLean.Seams.PrecedentFlow.supersedeRecord_drops_hit_active",
+    "JurisLean.Seams.PrecedentFlow.supersedeRecord_keeps_nonActive",
+    "JurisLean.Seams.PrecedentFlow.supersedeRecord_keeps_unhit",
+    "JurisLean.Seams.PrecedentFlow.supersedeRecord_snapshot",
+    "JurisLean.Seams.PrecedentFlow.supersedeRecord_status_dichotomy",
+    "JurisLean.Seams.PrecedentFlow.unauthorized_output_is_not_a_norm",
+    "JurisLean.Seams.PrecedentFlow.unauthorized_production_has_no_update_input",
+    "JurisLean.Seams.PrecedentFlow.updateFires_demo",
+    "JurisLean.Seams.PrecedentFlow.updateFires_silent_demo",
+    "JurisLean.Seams.PrecedentFlow.update_changes_applicable_count",
+    "JurisLean.Seams.PrecedentFlow.update_changes_applicable_roster",
+    "JurisLean.Seams.PrecedentFlow.update_does_not_reach_before_effective_from",
+    "JurisLean.Seams.PrecedentFlow.update_edges_wellFormed",
+    "JurisLean.Seams.PrecedentFlow.update_introduces_applicable_record",
+    "JurisLean.Seams.PrecedentFlow.update_is_noop_when_silent",
+    "JurisLean.Seams.PrecedentFlow.update_is_not_noop",
+    "JurisLean.Seams.PrecedentFlow.update_preserves_intervalValid",
+    "JurisLean.Seams.PrecedentFlow.update_preserves_invalidated_records",
+    "JurisLean.Seams.PrecedentFlow.update_silent_when_may_reference",
+    "JurisLean.Seams.PrecedentFlow.update_touched_record_invalid",
+    "JurisLean.Seams.PrecedentFlow.update_versions_fires",
+    "JurisLean.Seams.PrecedentFlow.update_versions_silent",
+    "JurisLean.Seams.Probability.allow_does_not_determine_amount",
+    "JurisLean.Seams.Probability.allow_of_gate_closed",
+    "JurisLean.Seams.Probability.allow_of_gate_open",
+    "JurisLean.Seams.Probability.allowed_amount_nonneg_of_nonneg_agreed",
+    "JurisLean.Seams.Probability.band_containment_is_not_allow",
+    "JurisLean.Seams.Probability.beta_posterior_from_likelihood",
+    "JurisLean.Seams.Probability.beta_predictive_bracket_survives_update",
+    "JurisLean.Seams.Probability.choose_is_not_determined_by_allow",
+    "JurisLean.Seams.Probability.clampReduction_in_band",
+    "JurisLean.Seams.Probability.clamp_is_not_reduction",
+    "JurisLean.Seams.Probability.denotate_some_none",
+    "JurisLean.Seams.Probability.denotation_blocked_without_policy",
+    "JurisLean.Seams.Probability.denotation_independent_of_policy",
+    "JurisLean.Seams.Probability.evMass_posterior_refined",
+    "JurisLean.Seams.Probability.exact_amount_denotation",
+    "JurisLean.Seams.Probability.exact_amount_denotation_is_currency_blind",
+    "JurisLean.Seams.Probability.finding_does_not_require_the_threshold",
+    "JurisLean.Seams.Probability.finite_distribution_to_pmf_apply",
+    "JurisLean.Seams.Probability.finite_distribution_to_pmf_atom_le_one",
+    "JurisLean.Seams.Probability.finite_distribution_to_pmf_hasSum",
+    "JurisLean.Seams.Probability.finite_distribution_to_pmf_injective",
+    "JurisLean.Seams.Probability.finite_distribution_to_pmf_mem_support",
+    "JurisLean.Seams.Probability.finite_distribution_to_pmf_tsum",
+    "JurisLean.Seams.Probability.lossBasedData_facts",
+    "JurisLean.Seams.Probability.lossBasedData_overThirty",
+    "JurisLean.Seams.Probability.maliciousData_choose",
+    "JurisLean.Seams.Probability.maliciousData_clamp",
+    "JurisLean.Seams.Probability.maliciousData_floor",
+    "JurisLean.Seams.Probability.maliciousData_gate",
+    "JurisLean.Seams.Probability.otherGroundData_not_overThirty",
+    "JurisLean.Seams.Probability.overThirtyTest_true_iff",
+    "JurisLean.Seams.Probability.overThirtyThreshold_iff_excess",
+    "JurisLean.Seams.Probability.overThirtyThreshold_iff_intTest",
+    "JurisLean.Seams.Probability.posterior_readout_normalizes",
+    "JurisLean.Seams.Probability.priorReadout_eq_dirWeights_zero",
+    "JurisLean.Seams.Probability.prior_readout_normalizes",
+    "JurisLean.Seams.Probability.rationalMass_evMass",
+    "JurisLean.Seams.Probability.rationalMass_sum_eq_one",
+    "JurisLean.Seams.Probability.reductionFloor_le_agreed",
+    "JurisLean.Seams.Probability.reduction_admits_declared_conditions",
+    "JurisLean.Seams.Probability.selection_transport_from_shared_mechanism",
+    "JurisLean.Seams.Probability.shape_add_counts_pos",
+    "JurisLean.Seams.Probability.thirty_percent_rational_exact",
+    "JurisLean.Seams.Probability.threshold_does_not_determine_amount",
+    "JurisLean.Seams.Probability.threshold_does_not_force_the_finding",
+    "JurisLean.Seams.Probability.transport_boundary_needs_nesting",
+    "JurisLean.Seams.Probability.transport_regime_positivity",
+    "JurisLean.Seams.Representation.castUp_coverageFails",
+    "JurisLean.Seams.Representation.castUp_retraction_roundTrip",
+    "JurisLean.Seams.Representation.coverage_alone_has_no_inverse_roundtrip",
+    "JurisLean.Seams.Representation.coverage_is_genuinely_extra",
+    "JurisLean.Seams.Representation.dropDown_has_section",
+    "JurisLean.Seams.Representation.dropDown_not_injective",
+    "JurisLean.Seams.Representation.dropDown_surjective",
+    "JurisLean.Seams.Representation.injective_of_roundtrip",
+    "JurisLean.Seams.Representation.iso_of_roundtrip_and_cover",
+    "JurisLean.Seams.Representation.jointDiag_coverage",
+    "JurisLean.Seams.Representation.jointDiag_roundTrip",
+    "JurisLean.Seams.Representation.joint_diagonal_injective",
+    "JurisLean.Seams.Representation.joint_legal_model_exists",
+    "JurisLean.Seams.Representation.joint_legal_model_is_isomorphic_to_domain",
+    "JurisLean.Seams.Representation.joint_model_is_not_collapsed",
+    "JurisLean.Seams.Representation.joint_obs₁_agrees",
+    "JurisLean.Seams.Representation.joint_obs₂_agrees",
+    "JurisLean.Seams.Representation.joint_projections_agree_on_declared",
+    "JurisLean.Seams.Representation.layerRegister_roundTrip",
+    "JurisLean.Seams.Representation.layerStatus_coverage",
+    "JurisLean.Seams.Representation.layerStatus_obs_separates",
+    "JurisLean.Seams.Representation.layerStatus_roundTrip",
+    "JurisLean.Seams.Representation.no_equiv_for_castUp",
+    "JurisLean.Seams.Representation.obsModel_roundTrip",
+    "JurisLean.Seams.Representation.obsModel_unique",
+    "JurisLean.Seams.Representation.observation_agreement_does_not_imply_equality",
+    "JurisLean.Seams.Representation.observations_do_not_separate_until_declared",
+    "JurisLean.Seams.Representation.representation_observations_preserved",
+    "JurisLean.Seams.Representation.representation_scope",
+    "JurisLean.Seams.Representation.separating_fragment_agreement_implies_equality",
+    "JurisLean.Seams.SourceNorms.closure_is_model",
+    "JurisLean.Seams.SourceNorms.closure_only_entailed",
+    "JurisLean.Seams.SourceNorms.entailed_in_closure",
+    "JurisLean.Seams.SourceNorms.entailed_only_in_univ",
+    "JurisLean.Seams.SourceNorms.exists_maximal_acyclic",
+    "JurisLean.Seams.SourceNorms.exists_maximal_by_rank",
+    "JurisLean.Seams.SourceNorms.horn_closure_semantic_iff",
+    "JurisLean.Seams.SourceNorms.isModel_univ",
+    "JurisLean.Seams.SourceNorms.iter_within_model",
+    "JurisLean.Seams.SourceNorms.maximal_left_of_rank_tie",
+    "JurisLean.Seams.SourceNorms.maximal_right_of_rank_tie",
+    "JurisLean.Seams.SourceNorms.negLiteralStep_not_TH",
+    "JurisLean.Seams.SourceNorms.negLiteralStep_not_mono",
+    "JurisLean.Seams.SourceNorms.negated_step_one_step_not_entailed",
+    "JurisLean.Seams.SourceNorms.no_priority_cycle",
+    "JurisLean.Seams.SourceNorms.no_priority_cycle_walk",
+    "JurisLean.Seams.SourceNorms.outranksBy_no_cycle",
+    "JurisLean.Seams.SourceNorms.p015_const_is_maximal",
+    "JurisLean.Seams.SourceNorms.p015_exists_maximal",
+    "JurisLean.Seams.SourceNorms.p015_none_is_not_no_maximal",
+    "JurisLean.Seams.SourceNorms.p015_some_not_unique_maximal",
+    "JurisLean.Seams.SourceNorms.rank_tie_not_none",
+    "JurisLean.Seams.SourceNorms.resolveConflict_agrees_with_maximal_on_demo",
+    "JurisLean.Seams.SourceNorms.resolveConflict_none_is_rank_tie",
+    "JurisLean.Seams.SourceNorms.resolveConflict_none_neither_outranks",
+    "JurisLean.Seams.SourceNorms.resolveConflict_some_right_of_rank",
+    "JurisLean.Seams.SourceNorms.resolveConflict_some_selects_maximal",
+    "JurisLean.Seams.SourceNorms.resolveConflict_tie_value_in",
+    "JurisLean.Seams.SourceNorms.step_within_model",
+    "JurisLean.Seams.Temporal.IntertemporalLawSignature.withRetroFalse_preserves_wellFormed",
+    "JurisLean.Seams.Temporal.addDays_commutes_with_embedding",
+    "JurisLean.Seams.Temporal.aggregate_add_arrival_insensitive",
+    "JurisLean.Seams.Temporal.dayToTimePoint_inj",
+    "JurisLean.Seams.Temporal.dayToTimePoint_toNat_round",
+    "JurisLean.Seams.Temporal.epochDay_dayToTimePoint",
+    "JurisLean.Seams.Temporal.evidenceAdmissible_iff",
+    "JurisLean.Seams.Temporal.foldr_add_arrival_insensitive",
+    "JurisLean.Seams.Temporal.intersection_agrees_with_contains_set",
+    "JurisLean.Seams.Temporal.intersection_some_of_contains_both",
+    "JurisLean.Seams.Temporal.intertemporal_signature_preserves_effective_day",
+    "JurisLean.Seams.Temporal.invalidation_marker_computes_nothing",
+    "JurisLean.Seams.Temporal.late_insert_changes_noncommutative",
+    "JurisLean.Seams.Temporal.late_without_good_cause_barred_general",
+    "JurisLean.Seams.Temporal.legal_time_nonanticipation",
+    "JurisLean.Seams.Temporal.ltl_always_implies_pointwise",
+    "JurisLean.Seams.Temporal.ltl_always_of_pointwise",
+    "JurisLean.Seams.Temporal.ltl_always_transition_independent",
+    "JurisLean.Seams.Temporal.no_unified_time_carrier_yet",
+    "JurisLean.Seams.Temporal.nonanticipation_computed_agrees",
+    "JurisLean.Seams.Temporal.p049_frozen_witness_recovered",
+    "JurisLean.Seams.Temporal.reordering_requires_recomputation",
+    "JurisLean.Seams.Temporal.shiftInterval_valid",
+    "JurisLean.Seams.Temporal.shift_contains_iff",
+    "JurisLean.Seams.Temporal.trunc_asOf_append_future_irrelevant",
+    "JurisLean.Seams.Temporal.trunc_of_all_future",
+    "JurisLean.Seams.Temporal.trunc_sound",
+    "JurisLean.Seams.Temporal.trunc_view_congr",
+    "JurisLean.Seams.Uncertainty.anchor_output_is_inside_band",
+    "JurisLean.Seams.Uncertainty.bridge_fails_without_positivity",
+    "JurisLean.Seams.Uncertainty.bridge_fails_without_support_finiteness",
+    "JurisLean.Seams.Uncertainty.certificate_rejects_vacuous_interval",
+    "JurisLean.Seams.Uncertainty.cleanEvidenceMass_cons_clean",
+    "JurisLean.Seams.Uncertainty.cleanEvidenceMass_cons_tainted",
+    "JurisLean.Seams.Uncertainty.cleanEvidenceMass_eq_on_clean_inputs",
+    "JurisLean.Seams.Uncertainty.cleanEvidenceMass_nil",
+    "JurisLean.Seams.Uncertainty.condition_then_contaminate_is_three_quarters",
+    "JurisLean.Seams.Uncertainty.contamination_and_conditioning_do_not_commute",
+    "JurisLean.Seams.Uncertainty.copying_tainted_input_never_improves_share",
+    "JurisLean.Seams.Uncertainty.declared_radius_certificate_is_admitted",
+    "JurisLean.Seams.Uncertainty.finite_positive_support_truth_bridge",
+    "JurisLean.Seams.Uncertainty.finite_positive_support_truth_mass_iff",
+    "JurisLean.Seams.Uncertainty.massSum_cons",
+    "JurisLean.Seams.Uncertainty.nn_interval_certificate_sound_of_two_inputs_two_hidden_one_output",
+    "JurisLean.Seams.Uncertainty.no_positive_normalisation_on_growing_windows",
+    "JurisLean.Seams.Uncertainty.not_clean_of_tainted",
+    "JurisLean.Seams.Uncertainty.posterior_preserves_positive_truth_mass",
+    "JurisLean.Seams.Uncertainty.probability_one_on_not_established_allows_truth_true",
+    "JurisLean.Seams.Uncertainty.probability_one_on_truth_event_still_allows_not_established",
+    "JurisLean.Seams.Uncertainty.probe_agreement_bounds_no_stability_constant",
+    "JurisLean.Seams.Uncertainty.rational_target_has_no_least_error",
+    "JurisLean.Seams.Uncertainty.sum_bool_eq",
+    "JurisLean.Seams.Uncertainty.taintCleanList_cons_clean",
+    "JurisLean.Seams.Uncertainty.taintCleanList_cons_tainted",
+    "JurisLean.Seams.Uncertainty.tainted_ne_clean",
+    "JurisLean.Seams.Uncertainty.totalEvidenceMass_cons",
+    "JurisLean.Seams.Uncertainty.totalEvidenceMass_nil",
+    "JurisLean.Seams.Uncertainty.uncertainty_allowed_has_two_members",
+    "JurisLean.Seams.Uncertainty.uncertainty_allowed_is_not_a_singleton",
+    "JurisLean.Seams.Uncertainty.uncertainty_allowed_non_singleton_with_singleton_kernel",
+    "JurisLean.Seams.Uncertainty.uncertainty_kernel_is_a_singleton",
+    "JurisLean.Seams.Uncertainty.vacuous_interval_is_not_admitted",
+    "JurisLean.Seams.Uncertainty.window_mass_is_positive",
+    "JurisLean.Seams.Uncertainty.window_mass_stays_below_one",
+    "JurisLean.Seams.Uncertainty.xuWeightOne_apply",
+    "JurisLean.Seams.Uncertainty.xuc_case_clean_list",
+    "JurisLean.Seams.Uncertainty.xuc_case_clean_mass",
+    "JurisLean.Seams.Uncertainty.xuc_case_share",
+    "JurisLean.Seams.Uncertainty.xuc_case_total_mass",
+    "JurisLean.Seams.Uncertainty.xuc_conditioning_denominator_is_clean_mass",
+    "JurisLean.Seams.Uncertainty.xuc_out_at_two_one",
+    "JurisLean.Seams.Uncertainty.zero_radius_band_does_not_cover_other_inputs",
+    "JurisLean.Seams.unified_claim_is_not_general",
+    "JurisLean.Seams.unified_legal_derivation_on_declared_fragment",
+    "JurisLean.Seams.unified_model_is_not_vacuous",
     "Math.Coupling.hasCoupling_proj_iff_map_eq",
     "Math.Optimization.LocalGlobal.all_nonpos_of_weighted_pospart_fixedPoint",
     "Math.Optimization.LocalGlobal.isFixedPoint_of_eq",
@@ -1956,8 +2503,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "89fe1b2f5001a4dc7cb185e9d18d473a58c8dd38a50e160f850968f6c48c56f3",
-   "size_bytes": 94370,
+   "sha256": "77b2079e4c8da17a549465fb095858bb9d48fb3bd14882a26ce4bc99c0410843",
+   "size_bytes": 133754,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -22650,6 +23197,594 @@
    "declarations": [
     {
      "kind": "inductive",
+     "name": "FullEvent"
+    },
+    {
+     "kind": "structure",
+     "name": "Receipt"
+    },
+    {
+     "kind": "structure",
+     "name": "State"
+    },
+    {
+     "kind": "structure",
+     "name": "DeclaredEventDomain"
+    },
+    {
+     "kind": "def",
+     "name": "fullDomain"
+    },
+    {
+     "kind": "def",
+     "name": "nonAdjudicativeDomain"
+    },
+    {
+     "kind": "def",
+     "name": "domAllows"
+    },
+    {
+     "kind": "def",
+     "name": "domainMember"
+    },
+    {
+     "kind": "def",
+     "name": "traceInDomain"
+    },
+    {
+     "kind": "theorem",
+     "name": "domAllows_full"
+    },
+    {
+     "kind": "theorem",
+     "name": "domainMember_full_of"
+    },
+    {
+     "kind": "theorem",
+     "name": "domainMember_dichotomy"
+    },
+    {
+     "kind": "def",
+     "name": "coreStep"
+    },
+    {
+     "kind": "theorem",
+     "name": "coreStep_ledger_formative"
+    },
+    {
+     "kind": "theorem",
+     "name": "coreStep_ledger_terminating"
+    },
+    {
+     "kind": "theorem",
+     "name": "coreStep_ledger_performance"
+    },
+    {
+     "kind": "theorem",
+     "name": "coreStep_ledger_declaratory"
+    },
+    {
+     "kind": "theorem",
+     "name": "coreStep_ledger_normBackflow"
+    },
+    {
+     "kind": "theorem",
+     "name": "coreStep_ledger_historyRewrite"
+    },
+    {
+     "kind": "theorem",
+     "name": "coreStep_pile_unchanged"
+    },
+    {
+     "kind": "theorem",
+     "name": "coreStep_perf_performance"
+    },
+    {
+     "kind": "def",
+     "name": "perfWritingCount"
+    },
+    {
+     "kind": "def",
+     "name": "perfCountTrace"
+    },
+    {
+     "kind": "theorem",
+     "name": "coreStep_declaratory_id"
+    },
+    {
+     "kind": "def",
+     "name": "runTrace"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_nil"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_cons"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_append"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_all_declaratory_is_noop"
+    },
+    {
+     "kind": "def",
+     "name": "recordOfEvent"
+    },
+    {
+     "kind": "def",
+     "name": "appendRecord"
+    },
+    {
+     "kind": "def",
+     "name": "traceRecords"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceRecords_performance"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceRecords_declaratory"
+    },
+    {
+     "kind": "theorem",
+     "name": "length_append_singleton_eq"
+    },
+    {
+     "kind": "def",
+     "name": "conservedStep"
+    },
+    {
+     "kind": "def",
+     "name": "AdmissibleState"
+    },
+    {
+     "kind": "theorem",
+     "name": "performStep_conserved_here"
+    },
+    {
+     "kind": "theorem",
+     "name": "coreStep_preserves_admissible"
+    },
+    {
+     "kind": "theorem",
+     "name": "conservation_along_trace"
+    },
+    {
+     "kind": "def",
+     "name": "appendOnlyOf"
+    },
+    {
+     "kind": "def",
+     "name": "ideographOf"
+    },
+    {
+     "kind": "def",
+     "name": "channelDisjointnessAt"
+    },
+    {
+     "kind": "theorem",
+     "name": "channelDisjointnessAt_any"
+    },
+    {
+     "kind": "def",
+     "name": "invariantsHeld"
+    },
+    {
+     "kind": "theorem",
+     "name": "coreStep_ledger_append"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_ledger_eq_append"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_trace_preserves_legal_invariants"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_trace_invariants_at_take_prefix"
+    },
+    {
+     "kind": "theorem",
+     "name": "performance_step_preserves_forms"
+    },
+    {
+     "kind": "theorem",
+     "name": "declaratory_step_preserves_forms"
+    },
+    {
+     "kind": "theorem",
+     "name": "nonadjudicative_trace_stabilizes_projection"
+    },
+    {
+     "kind": "structure",
+     "name": "OutOfDomainSemantics"
+    },
+    {
+     "kind": "def",
+     "name": "extStep"
+    },
+    {
+     "kind": "theorem",
+     "name": "extStep_in"
+    },
+    {
+     "kind": "theorem",
+     "name": "extStep_out"
+    },
+    {
+     "kind": "def",
+     "name": "runTraceExt"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTraceExt_cons"
+    },
+    {
+     "kind": "theorem",
+     "name": "extStep_preserves_admissible"
+    },
+    {
+     "kind": "theorem",
+     "name": "extConservationAlong"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTraceExt_ledger_append"
+    },
+    {
+     "kind": "theorem",
+     "name": "invariants_hold_under_any_out_of_domain"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_eq_runTraceExt"
+    },
+    {
+     "kind": "def",
+     "name": "outOfDomainTags"
+    },
+    {
+     "kind": "def",
+     "name": "st₀Empty"
+    },
+    {
+     "kind": "def",
+     "name": "st₀Seeded"
+    },
+    {
+     "kind": "def",
+     "name": "performTraceDemo"
+    },
+    {
+     "kind": "def",
+     "name": "formedTraceDemo"
+    },
+    {
+     "kind": "def",
+     "name": "termTraceDemo"
+    },
+    {
+     "kind": "def",
+     "name": "traceBackflowDemo"
+    },
+    {
+     "kind": "def",
+     "name": "rewriteTraceDemo"
+    },
+    {
+     "kind": "def",
+     "name": "backflowAfterFormed"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_performDemo_ledger"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_performDemo_perf"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_formedDemo_ledger"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_formTerm_ledger"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_formTermForm_ledger"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_backflowDemo_ledger"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_afterFormedBackflow_ledger"
+    },
+    {
+     "kind": "theorem",
+     "name": "admissibleState_st₀Empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "performTraceDemo_inDomain"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceBackflowDemo_notInDomain"
+    },
+    {
+     "kind": "theorem",
+     "name": "rewriteTraceDemo_notInDomain"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_rewrite_demo_ledger"
+    },
+    {
+     "kind": "theorem",
+     "name": "historyRewrite_breaks_appendOnly"
+    },
+    {
+     "kind": "theorem",
+     "name": "seeded_formsEver_relationDemo"
+    },
+    {
+     "kind": "theorem",
+     "name": "empty_not_formsEver"
+    },
+    {
+     "kind": "theorem",
+     "name": "historyRewrite_breaks_ideograph"
+    },
+    {
+     "kind": "theorem",
+     "name": "pi_stability_fails_outside_domain"
+    },
+    {
+     "kind": "theorem",
+     "name": "empty_not_forms"
+    },
+    {
+     "kind": "def",
+     "name": "receiptRecord"
+    },
+    {
+     "kind": "def",
+     "name": "Admitted"
+    },
+    {
+     "kind": "def",
+     "name": "HasDerivation"
+    },
+    {
+     "kind": "theorem",
+     "name": "mem_traceRecords_has_event"
+    },
+    {
+     "kind": "theorem",
+     "name": "receipt_has_semantic_derivation"
+    },
+    {
+     "kind": "def",
+     "name": "declaredFragment"
+    },
+    {
+     "kind": "theorem",
+     "name": "admitted_receipt_has_derivation"
+    },
+    {
+     "kind": "def",
+     "name": "rcBackflow"
+    },
+    {
+     "kind": "theorem",
+     "name": "rcBackflow_record_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "backflow_record_in_ledger"
+    },
+    {
+     "kind": "theorem",
+     "name": "rcBackflow_level_ok"
+    },
+    {
+     "kind": "theorem",
+     "name": "backflow_admitted_without_derivation"
+    },
+    {
+     "kind": "def",
+     "name": "rcFormedSeeded"
+    },
+    {
+     "kind": "theorem",
+     "name": "rcFormedSeeded_record_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "rcFormedSeeded_record_is_in_ledger"
+    },
+    {
+     "kind": "theorem",
+     "name": "proposal_shaped_copy_never_admitted"
+    },
+    {
+     "kind": "theorem",
+     "name": "seeded_proposal_copy_not_admitted"
+    },
+    {
+     "kind": "theorem",
+     "name": "human_reviewed_copy_never_admitted"
+    },
+    {
+     "kind": "theorem",
+     "name": "level_chain_is_strict"
+    },
+    {
+     "kind": "theorem",
+     "name": "repeated_proposal_never_reaches_attestation_rank"
+    },
+    {
+     "kind": "theorem",
+     "name": "skipping_authority_receipt_not_valid"
+    },
+    {
+     "kind": "theorem",
+     "name": "proposal_issues_neither_certificate_nor_status"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_pile_unchanged"
+    },
+    {
+     "kind": "theorem",
+     "name": "receipt_ledger_is_fruit_not_warrant"
+    },
+    {
+     "kind": "inductive",
+     "name": "OutcomeShape"
+    },
+    {
+     "kind": "def",
+     "name": "hasFormationRecord"
+    },
+    {
+     "kind": "def",
+     "name": "outcomeShape"
+    },
+    {
+     "kind": "theorem",
+     "name": "undecided_shapes_are_not_decided"
+    },
+    {
+     "kind": "theorem",
+     "name": "performTraceDemo_state"
+    },
+    {
+     "kind": "theorem",
+     "name": "performTraceDemo_shape_undecided"
+    },
+    {
+     "kind": "theorem",
+     "name": "performTraceDemo_conserves"
+    },
+    {
+     "kind": "def",
+     "name": "closure_uniform_claim"
+    },
+    {
+     "kind": "theorem",
+     "name": "closure_is_not_uniform_claim"
+    },
+    {
+     "kind": "def",
+     "name": "st₀Unit"
+    },
+    {
+     "kind": "def",
+     "name": "performTraceUnit"
+    },
+    {
+     "kind": "theorem",
+     "name": "preservation_over_unit_type"
+    },
+    {
+     "kind": "theorem",
+     "name": "pi_oscillates_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "preservation_is_domain_relative"
+    },
+    {
+     "kind": "def",
+     "name": "backflowSemantics"
+    },
+    {
+     "kind": "theorem",
+     "name": "seeded_invariants_hold_under_backflow_semantics"
+    },
+    {
+     "kind": "theorem",
+     "name": "length_take_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "coreStep_ledger_length_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "coreStep_perf_length_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "perfWritingCount_le_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "perfCountTrace_le_length"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceRecords_length_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_perf_length_le_count"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_perf_length_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_ledger_length_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "runTrace_length_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "forms_at_end_is_bounded_fold"
+    },
+    {
+     "kind": "theorem",
+     "name": "performStep_values_bounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "trace_performs_and_keeps_history"
+    }
+   ],
+   "imports": [
+    "JurisLean.ReceiptAuthority",
+    "JurisLean.Seams.InstitutionalEffects",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/FullProcess.lean",
+   "print_axioms_targets": [],
+   "sha256": "0056504c1f168f23e3f5776918e50fea05c789ce80a4c3a7f29934b9a034b95c",
+   "size_bytes": 70129,
+   "theorem_count": 96,
+   "theorem_count_bol_convention": 96
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
      "name": "RecordKind"
     },
     {
@@ -24124,8 +25259,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Probability.lean",
    "print_axioms_targets": [],
-   "sha256": "c1d6eaf0e4a2a49fba90158d0b769d2a36d3516660e8d83063a98ed098a88de6",
-   "size_bytes": 44226,
+   "sha256": "ac01beb5babdf6ba2e036ffe246d08feef0bdf5aa5021b5e1053572c8b2c2c0e",
+   "size_bytes": 47515,
    "theorem_count": 47,
    "theorem_count_bol_convention": 47
   },
@@ -24984,6 +26119,66 @@
    "size_bytes": 43486,
    "theorem_count": 44,
    "theorem_count_bol_convention": 44
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "UnifiedModel"
+    },
+    {
+     "kind": "def",
+     "name": "UnifiedNonDegenerate"
+    },
+    {
+     "kind": "theorem",
+     "name": "unified_model_is_not_vacuous"
+    },
+    {
+     "kind": "def",
+     "name": "UnifiedInterpretationPreserved"
+    },
+    {
+     "kind": "def",
+     "name": "UnifiedChainCorrespondence"
+    },
+    {
+     "kind": "def",
+     "name": "UnifiedFiniteProcessComposition"
+    },
+    {
+     "kind": "def",
+     "name": "UnifiedTimeAndUncertaintyPreserved"
+    },
+    {
+     "kind": "theorem",
+     "name": "unified_legal_derivation_on_declared_fragment"
+    },
+    {
+     "kind": "theorem",
+     "name": "unified_claim_is_not_general"
+    }
+   ],
+   "imports": [
+    "JurisLean.Seams.AdjudicationBridge",
+    "JurisLean.Seams.BoundaryClosure",
+    "JurisLean.Seams.InstitutionalEffects",
+    "JurisLean.Seams.PayoffEquilibrium",
+    "JurisLean.Seams.PrecedentFlow",
+    "JurisLean.Seams.Representation",
+    "JurisLean.Seams.SourceNorms",
+    "JurisLean.Seams.Temporal",
+    "JurisLean.Seams.Uncertainty",
+    "Mathlib.Data.Fintype.Basic",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/Unified.lean",
+   "print_axioms_targets": [],
+   "sha256": "ce4b2b6b10adf30a4a43abdfa7b8d4d2ad8e3a20eae243d2be4c13bb71c60b05",
+   "size_bytes": 17220,
+   "theorem_count": 3,
+   "theorem_count_bol_convention": 3
   },
   {
    "declarations": [
@@ -28540,13 +29735,19 @@
     "JurisLean.SMTWitness",
     "JurisLean.SafetyTheorems",
     "JurisLean.ScratchApi",
+    "JurisLean.Seams.AdjudicationBridge",
+    "JurisLean.Seams.BoundaryClosure",
     "JurisLean.Seams.ClaimBasis",
+    "JurisLean.Seams.FullProcess",
     "JurisLean.Seams.InstitutionalEffects",
     "JurisLean.Seams.PayoffEquilibrium",
     "JurisLean.Seams.PrecedentFlow",
+    "JurisLean.Seams.Probability",
     "JurisLean.Seams.Representation",
     "JurisLean.Seams.SourceNorms",
     "JurisLean.Seams.Temporal",
+    "JurisLean.Seams.Uncertainty",
+    "JurisLean.Seams.Unified",
     "JurisLean.SolverRouting",
     "JurisLean.SourceBundleSpec",
     "JurisLean.SourcePathSpec",
@@ -28581,8 +29782,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "03f89fc611413be355bbb6673f52a93afc16687ab107d628c7977860247c1259",
-   "size_bytes": 8400,
+   "sha256": "2bc891d49e5c49638404301bc823ab6122df8816dd94c90c04aa8c667c74f8a9",
+   "size_bytes": 8617,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -28746,22 +29947,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3247,
-   "file_count": 309,
+   "counted_declaration_count": 3346,
+   "file_count": 311,
    "lemma_count": 141,
-   "print_axioms_command_count": 1677,
-   "print_axioms_distinct_targets": 1623,
-   "theorem_count": 3106,
-   "theorem_count_bol_convention": 3010
+   "print_axioms_command_count": 2212,
+   "print_axioms_distinct_targets": 2158,
+   "theorem_count": 3205,
+   "theorem_count_bol_convention": 3109
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3228,
-   "file_count": 294,
+   "counted_declaration_count": 3327,
+   "file_count": 296,
    "lemma_count": 134,
-   "print_axioms_command_count": 1677,
-   "print_axioms_distinct_targets": 1623,
-   "theorem_count": 3094,
-   "theorem_count_bol_convention": 2998
+   "print_axioms_command_count": 2212,
+   "print_axioms_distinct_targets": 2158,
+   "theorem_count": 3193,
+   "theorem_count_bol_convention": 3097
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -29029,6 +30230,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/AdjudicationBridge.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/BoundaryClosure.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/ClaimBasis.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/FullProcess.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/InstitutionalEffects.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/PayoffEquilibrium.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/PrecedentFlow.lean",
@@ -29037,6 +30239,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/SourceNorms.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Temporal.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Uncertainty.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/Unified.lean",
    "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
    "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
    "proofs/lean/juris_lean/JurisLean/SourcePathSpec.lean",
@@ -29336,6 +30539,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/AdjudicationBridge.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/BoundaryClosure.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/ClaimBasis.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/FullProcess.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/InstitutionalEffects.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/PayoffEquilibrium.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/PrecedentFlow.lean",
@@ -29344,6 +30548,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/SourceNorms.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Temporal.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Uncertainty.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/Unified.lean",
    "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
    "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
    "proofs/lean/juris_lean/JurisLean/SourcePathSpec.lean",
@@ -29421,28 +30626,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "10d267ff8e9309b2b3cf9c902de1348f68b162afd759bb67a3a97aab53fa8ba1",
+ "source_inventory_digest": "7706fcf8736007c1a8b4927447958a6164e65b6553a3c3705cf0440d5b9821f5",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "3b5a3ec79a14eae2202b321895f4bda81d29cbfc",
-  "tree": "5ebac7c2df9105a51ee8f43e30dc1645db029ec9"
+  "commit": "4c878aed4bf65140bd4787a52038eb802b7f99c9",
+  "tree": "b211e1adab245f65eea4d0d5c1b1a7693c0a5c65"
  },
  "subject_binding": {
-  "binding": "STALE_SUBJECT",
-  "files_diverging_from_subject": [
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Seams/BoundaryClosure.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Seams/Probability.lean",
-    "reason": "bytes differ from subject"
-   }
-  ],
-  "files_total": 309,
+  "binding": "BOUND_TO_SUBJECT",
+  "files_diverging_from_subject": [],
+  "files_total": 311,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": true
+  "worktree_dirty_under_proofs": false
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

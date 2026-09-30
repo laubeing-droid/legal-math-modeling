@@ -28,7 +28,7 @@ import JurisLean.AuthorityLattice
 
 ## §证与不证
 
-- 证：对上面这些归纳族的封闭性，全部按族的归纳证明；零 `sorry`、零 `admit`、零新 `axiom`。
+- 证：对上面这些归纳族的封闭性，全部按族的归纳证明；本文件无占位证明、无放行式收尾、无新公理声明。
 - 不证：全调用链意义上的"任何写法都不能绕过该要求"。§三第 2 档引用的仓内 FAIL 判据
   （`docs/history/evidence-archive/0923_四报告与锤击/法律统一数学模型_四报告与跨仓审查_20260923.md:555`）
   仍然成立，本文件把它钉成正定理 `delimitation_is_not_general`：族外**确实**存在
@@ -68,7 +68,7 @@ open JurisLean.ULM
 上写得出的结局映射：`map`（`ULM02Outcome.lean:37-43` 的 `Outcome.map`）、
 `addObligations`（只能给 partial 结果**追加**未关闭义务）、`compose`（族内复合）。
 "忽略输入、返回 `complete`" 的常数写法**不是**族成员。 -/
-inductive OutcomeMapOp : Type → Type → Type where
+inductive OutcomeMapOp : Type → Type → Type 1 where
   | map {α β : Type} (f : α → β) : OutcomeMapOp α β
   | addObligations {α : Type} (extra : Finset OpenObligation) : OutcomeMapOp α α
   | compose {α β γ : Type} (g : OutcomeMapOp β γ) (f : OutcomeMapOp α β) : OutcomeMapOp α γ
@@ -121,7 +121,7 @@ theorem closure_boundary1_not_complete {α β : Type} (op : OutcomeMapOp α β)
 theorem closure_boundary2_partial_preserved {α β : Type} (op : OutcomeMapOp α β) :
     ∀ (p : PartialPayload α),
       ∃ q : PartialPayload β,
-        op.run (.partialResult p) = .partialResult q ∧
+        op.run (Outcome.partialResult p) = Outcome.partialResult q ∧
           p.openObligations ⊆ q.openObligations := by
   induction op with
   | map f =>
@@ -148,7 +148,7 @@ theorem closure_boundary2_partial_preserved {α β : Type} (op : OutcomeMapOp α
 §六为②要求的前置（交出义务与求解器实际未关闭义务集合之间的精化）在仓内不存在，
 故②的一般式记为**未证**。本条只对该归纳族封闭；族外的写法未被排除。 -/
 theorem closure_boundary2_no_partial_laundering {α β : Type} (op : OutcomeMapOp α β)
-    (p : PartialPayload α) (x : β) : op.run (.partialResult p) ≠ Outcome.complete x := by
+    (p : PartialPayload α) (x : β) : op.run (Outcome.partialResult p) ≠ Outcome.complete x := by
   obtain ⟨q, hq, _⟩ := closure_boundary2_partial_preserved op p
   rw [hq]
   exact Outcome.partial_ne_complete q x
@@ -157,7 +157,8 @@ theorem closure_boundary2_no_partial_laundering {α β : Type} (op : OutcomeMapO
 （`partialValue_openObligations_nonempty`）在本文件里的对应物。 -/
 theorem boundary2_obligations_hand_over {α β : Type} (op : OutcomeMapOp α β)
     (p : PartialPayload α) (q : PartialPayload β)
-    (h : op.run (.partialResult p) = .partialResult q) : q.openObligations.Nonempty :=
+    (_h : op.run (Outcome.partialResult p) = Outcome.partialResult q) :
+    q.openObligations.Nonempty :=
   q.open_nonempty
 
 end OutcomeMapOp
@@ -212,7 +213,7 @@ theorem closure_boundary3_no_unproved_emptiness {af : DefeatAF} (op : EmptyRepor
       intro p' h
       have h2 : EmptinessVerdict.claims q = EmptinessVerdict.claims p' := h
       cases (EmptinessVerdict.claims.inj h2)
-      exact heq.trans hEmpty
+      exact heq.symm.trans hEmpty
   | byFlag p flag =>
       intro p' h
       have h2 : EmptinessVerdict.abstains = EmptinessVerdict.claims p' := h
@@ -255,9 +256,11 @@ theorem AdjudicationRewriter.apply_preserves_evaluation {af : DefeatAF}
     ∀ (input : AdjudicationInput af), (op.apply input).evaluation = input.evaluation := by
   induction op with
   | skip => intro input; rfl
-  | supplyAuthority a finding ih => intro input; rfl
-  | supplyProcedural s ih => intro input; rfl
-  | seq g h ihg ihh => intro input; exact ihh (g.apply input)
+  | supplyAuthority a finding => intro input; rfl
+  | supplyProcedural s => intro input; rfl
+  | seq g h ihg ihh =>
+      intro input
+      exact ((ihh (g.apply input)).trans (ihg input))
 
 /-- 中文说明：主干 `adjudicate` 只看 `evaluation` 是否为 incomplete ——
 该字段等于 `EvalResult.incomplete` 时结果即 `solverIncomplete`，与另两字段无关。
@@ -293,7 +296,7 @@ theorem closure_boundary4_solverIncomplete {af : DefeatAF} (op : AdjudicationRew
 
 /-- 中文说明（界定定理④·主文）：族内任意复合改写都不可能把求解不完备
 改写成不利裁判，也不可能改写成"待实体裁判"。等式一支复用主干
-`solverIncomplete_ne_adjudicated`（`ULM12Procedure.lean:259-263`）。
+`solverIncomplete_ne_adjudicated`（`ULM12Procedure.lean:256-262`）。
 本条只对该归纳族封闭；族外的写法未被排除：`adjudicate` 是公开 `def`，
 调用方可不经本族直接构造 `AdjudicationInput`。§六为④要求的前置
 （调用链任意组合下的封装，以及与②共用的求解器状态建模）在仓内不存在，
@@ -390,7 +393,7 @@ theorem consensusRank_le_of_le {levels : List AuthorityLevel} {K : Nat}
   induction levels with
   | nil => exact Nat.zero_le K
   | cons y ys ih =>
-      have hy : authorityRank y ≤ K := h y (List.mem_cons_self y ys)
+      have hy : authorityRank y ≤ K := h y List.mem_cons_self
       have hi : consensusRank ys ≤ K := ih (fun l hl => h l (List.mem_cons_of_mem y hl))
       show max (authorityRank y) (consensusRank ys) ≤ K
       exact Nat.max_le.2 ⟨hy, hi⟩
@@ -414,8 +417,8 @@ theorem closure_boundary5_consensus_not_escalating (op : ConsensusOp) :
       refine consensusRank_le_of_le ?_
       intro e he
       simp only [ConsensusOp.levels, List.mem_replicate] at he
-      obtain ⟨hn, rfl⟩ := he
-      exact hb l (List.mem_replicate.mpr ⟨hn, rfl⟩)
+      rw [he.2]
+      exact hb l (List.mem_replicate.mpr ⟨he.1, rfl⟩)
   | merge a b _ha _hb => intro bound hb; exact consensusRank_le_of_le hb
 
 /-- 中文说明：⑤主干外版推论 —— 族内共识不可能恰好跳到比界高一级的位置，
@@ -425,7 +428,7 @@ theorem consensus_cannot_reach_next_rank (op : ConsensusOp) (bound : AuthorityLe
     authorityRank bound + 1 ≠ consensusRank op.levels := by
   intro h
   have hle := closure_boundary5_consensus_not_escalating op bound hb
-  rw [h] at hle
+  rw [← h] at hle
   exact Nat.not_succ_le_self _ hle
 
 /-! ============================================================
@@ -522,11 +525,11 @@ theorem poolTaint_eq_taintOfInputs (p : TaintPipeline) :
 表格记的"污染格的全部传播路径未枚举"这一待办，在本族内由该归纳定义闭合。 -/
 inductive CarriesTaint : TaintPipeline → Prop where
   | injected (x : FormalInput) (hx : x.taint = .tainted) : CarriesTaint (.input x)
-  | viaStage {p : TaintPipeline} (hp : CarriesTaint p) (c : String) :
+  | viaStage (p : TaintPipeline) (c : String) (hp : CarriesTaint p) :
       CarriesTaint (.stage p c)
-  | viaMergeLeft {p q : TaintPipeline} (hp : CarriesTaint p) : CarriesTaint (.merge p q)
-  | viaMergeRight {p q : TaintPipeline} (hq : CarriesTaint q) : CarriesTaint (.merge p q)
-  | viaResubmit {p : TaintPipeline} (hp : CarriesTaint p) : CarriesTaint (.resubmit p)
+  | viaMergeLeft (p q : TaintPipeline) (hp : CarriesTaint p) : CarriesTaint (.merge p q)
+  | viaMergeRight (p q : TaintPipeline) (hq : CarriesTaint q) : CarriesTaint (.merge p q)
+  | viaResubmit (p : TaintPipeline) (hp : CarriesTaint p) : CarriesTaint (.resubmit p)
 
 /-- 中文说明（界定定理⑥·封闭性主文）：族内任意流水线，只要污染是按本族承认的
 四条路径传播进来的，其根污点恒为 `tainted`；stage / merge / resubmit 的**任意有限复合**
@@ -538,16 +541,16 @@ theorem closure_boundary6_taint_never_cleaned {p : TaintPipeline} (h : CarriesTa
     p.poolTaint = .tainted := by
   induction h with
   | injected x hx => exact hx
-  | viaStage hp ih => exact ih
-  | viaMergeLeft hp ih =>
-      show joinTaint p.poolTaint q.poolTaint = .tainted
+  | viaStage p' c hp ih => exact ih
+  | viaMergeLeft p' q hp ih =>
+      show joinTaint p'.poolTaint q.poolTaint = .tainted
       rw [ih]
       exact joinTaint_tainted_left q.poolTaint
-  | viaMergeRight hq ih =>
-      show joinTaint p.poolTaint q.poolTaint = .tainted
+  | viaMergeRight p' q hq ih =>
+      show joinTaint p'.poolTaint q.poolTaint = .tainted
       rw [ih]
-      exact join_with_tainted_is_tainted p.poolTaint
-  | viaResubmit hp ih => exact ih
+      exact join_with_tainted_is_tainted p'.poolTaint
+  | viaResubmit p' hp ih => exact ih
 
 /-- 中文说明：⑥的推论 —— 族内受污流水线的输入池在主干度量下同样是 tainted。 -/
 theorem taintOfInputs_of_carriesTaint {p : TaintPipeline} (h : CarriesTaint p) :
@@ -560,17 +563,17 @@ theorem taintOfInputs_of_carriesTaint {p : TaintPipeline} (h : CarriesTaint p) :
 theorem exists_tainted_in_inputs {p : TaintPipeline} (h : CarriesTaint p) :
     ∃ x ∈ p.inputs, x.taint = .tainted := by
   induction h with
-  | injected x hx => exact ⟨x, List.mem_cons_self x [], hx⟩
-  | viaStage hp ih =>
+  | injected x hx => exact ⟨x, List.mem_cons_self, hx⟩
+  | viaStage p' c hp ih =>
       obtain ⟨x, hx, ht⟩ := ih
       exact ⟨x, List.mem_append.mpr (Or.inl hx), ht⟩
-  | viaMergeLeft hp ih =>
+  | viaMergeLeft p' q hp ih =>
       obtain ⟨x, hx, ht⟩ := ih
       exact ⟨x, List.mem_append.mpr (Or.inl hx), ht⟩
-  | viaMergeRight hq ih =>
+  | viaMergeRight p' q hq ih =>
       obtain ⟨x, hx, ht⟩ := ih
       exact ⟨x, List.mem_append.mpr (Or.inr hx), ht⟩
-  | viaResubmit hp ih =>
+  | viaResubmit p' hp ih =>
       obtain ⟨x, hx, ht⟩ := ih
       exact ⟨x, List.mem_append.mpr (Or.inl hx), ht⟩
 
@@ -585,7 +588,7 @@ theorem resubmitTimes_carriesTaint (x : FormalInput) (hx : x.taint = .tainted) (
     CarriesTaint (resubmitTimes n x) := by
   induction n with
   | zero => exact CarriesTaint.injected x hx
-  | succ n ih => exact CarriesTaint.viaResubmit ih
+  | succ n ih => exact CarriesTaint.viaResubmit _ ih
 
 /-- 中文说明：⑥的另一面 —— 整池重复提交不改变总污点（对族内任意成员成立的等式）。 -/
 theorem resubmit_preserves_total_taint (p : TaintPipeline) :
@@ -612,7 +615,7 @@ theorem delimitation_is_not_general :
 theorem boundary1_family_excludes_launderer {α β : Type} (op : OutcomeMapOp α β)
     (e : FailureCore) (y : β) :
     op.run (.failure e) ≠ (fun _ : Outcome α => Outcome.complete y) (.failure e) := by
-  rw [closure_boundary1_no_failure_upgrade op e]
+  rw [OutcomeMapOp.closure_boundary1_no_failure_upgrade op e]
   exact Outcome.failure_ne_complete e y
 
 end JurisLean.Seams.BoundaryClosure

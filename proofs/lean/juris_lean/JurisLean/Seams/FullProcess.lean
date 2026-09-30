@@ -52,7 +52,9 @@ import Mathlib.Tactic
 转移；层级门槛五条（逐条引 ReceiptAuthority 原定理名）；域相对性
 （`preservation_is_domain_relative`：去掉域假设后只追加、不遗忘、导出性**确实**失效）；对任意
 只追加域外语义的稳健性；闭环不是全称主张（`closure_is_not_uniform_claim`）；有限性上界
-（`runTrace_length_bound`、`forms_at_end_is_bounded_fold`、`performStep_values_bounded`）。
+（`runTrace_length_bound`、`forms_at_end_is_bounded_fold`、`performStep_values_bounded`；履行通道的
+单步增量按 `perfWritingCount` 逐事件精化——给付计 1、其余计 0，故 `coreStep_perf_length_le`
+比"每步至多加 1"更紧，`perfCountTrace_le_length` 给出轨迹级的给付事件数上界）。
 
 **不证**：见§未覆盖片段。本件不含任何收敛、真实案件、真实法条断言；`pi_oscillates_witness`
 与 `preservation_over_unit_type` 是"不证"的正面见证。
@@ -60,8 +62,9 @@ import Mathlib.Tactic
 # §未覆盖片段（逐条，缺失一律 fail-closed）
 
 1. **S7 规范回流**：哪个回流事件有权改写关系账本/位阶表，本件不判定；`normBackflow` 在
-   `domainMember` 上恒 `false`。其合法性属 S7（`JurisLean.Seams.PrecedentFlow`，本件禁止 import，
-   且该件当前为红：`Unknown constant JurisLean.Genealogy.Part1.P019`）。
+   `domainMember` 上恒 `false`，其语义只作为显式假设记录 `OutOfDomainSemantics` 的参数被使用。
+   该合法性属 S7（`JurisLean.Seams.PrecedentFlow`）；本件**不 import** 该件，因此 S7 的编译状态
+   不由本件认定，交接点仅为上列"恒 false ＋显式假设"两处。
 2. **S2 终局策略**：`OutcomeShape` 只是本件自有的形状记号，与 S2 的 `DecisionStatus` 之间
    **没有**桥接定理；把 `undecidedPerformance` 读成任何法律上的"未决裁判"都超出本件。
 3. **S1／S3／S4／XT**：本件未 import；凡需要其一之处都写成显式假设或列为未面。
@@ -77,7 +80,7 @@ import Mathlib.Tactic
 
 # §档位
 
-定义 [构造性定义]；定理 [本件内完整证明：零 `sorry`、零 `admit`、零新 `axiom`]；
+定义 [构造性定义]；定理 [本件内完整证明：零未完成证明、零占位、零新设公理]；
 域外事件语义 [显式假设记录 `OutOfDomainSemantics`，本件不证明其法律正当性]；
 上列 8 条 [未覆盖片段，状态 UNPROVED 且不属于本件]。
 编译认定待 CI：本地构建只是预备性预检，绝不称 PASS。
@@ -166,7 +169,7 @@ theorem domainMember_full_of {Rel : Type} (dom : DeclaredEventDomain) (ev : Full
   | historyRewrite eid keep => exact absurd h Bool.false_ne_true
 
 /-- 中文说明：布尔判定的二择律（本件用 `Bool.cases`，不用排中律）。 -/
-theorem domainMember_dichotomy (dom : DeclaredEventDomain) {Rel : Type} (ev : FullEvent Rel) :
+theorem domainMember_dichotomy {Rel : Type} (dom : DeclaredEventDomain) (ev : FullEvent Rel) :
     domainMember dom ev = true ∨ domainMember dom ev = false := by
   cases domainMember dom ev
   · exact Or.inr rfl
@@ -178,7 +181,7 @@ theorem domainMember_dichotomy (dom : DeclaredEventDomain) {Rel : Type} (ev : Fu
 S5 的 `performStep`（计算字段由 `min` 与截断减法给出）；回执堆 `pile` 一字不动——这正是
 "果不是因"的机器读法。域外两个构造子的语义在此**显式给出**，以便本件能对它们证伪，
 而不是假装它们不存在。 -/
-def coreStep (st : State Rel) : FullEvent Rel → State Rel
+def coreStep {Rel : Type} (st : State Rel) : FullEvent Rel → State Rel
   | FullEvent.core (SeamEvent.formative eid rel) =>
       { st with ledger := next st.ledger (SeamEvent.formative eid rel) }
   | FullEvent.core (SeamEvent.terminating eid rel) =>
@@ -243,6 +246,16 @@ theorem coreStep_perf_performance {Rel : Type} (st : State Rel)
     (coreStep st (FullEvent.core (SeamEvent.performance eid obligor rel amount))).perf =
       st.perf ++ [performStep st.debt amount] := rfl
 
+/-- 中文说明：会写履行账本的事件计数：给付事件计 1，其余计 0（域外事件一律 0）。 -/
+def perfWritingCount {Rel : Type} : FullEvent Rel → Nat
+  | FullEvent.core (SeamEvent.performance _ _ _ _) => 1
+  | _ => 0
+
+/-- 中文说明：轨迹上给付事件的数量（有限计数，非渐近）。 -/
+def perfCountTrace {Rel : Type} : Trace Rel → Nat
+  | [] => 0
+  | ev :: rest => perfWritingCount ev + perfCountTrace rest
+
 /-- 中文说明：宣告事件是**真恒等**（任何分量都不动）。 -/
 theorem coreStep_declaratory_id {Rel : Type} (st : State Rel) (eid : String) :
     coreStep st (FullEvent.core (SeamEvent.declaratory eid)) = st := rfl
@@ -260,30 +273,34 @@ theorem runTrace_cons {Rel : Type} (st₀ : State Rel) (ev : FullEvent Rel) (res
     runTrace st₀ (ev :: rest) = runTrace (coreStep st₀ ev) rest := rfl
 
 /-- 中文说明：分段执行＝整体执行（列表折叠的代数事实，不是收敛陈述）。 -/
-theorem runTrace_append {Rel : Type} : ∀ (st₀ : State Rel) (a b : Trace Rel),
+theorem runTrace_append {Rel : Type} : ∀ (a : Trace Rel) (st₀ : State Rel) (b : Trace Rel),
     runTrace st₀ (a ++ b) = runTrace (runTrace st₀ a) b := by
-  intro st₀ a
-  induction a generalizing st₀ with
-  | nil => intro st₀ b; rw [List.nil_append]
+  intro a
+  induction a with
+  | nil =>
+      intro st₀ b
+      rfl
   | cons x l ih =>
       intro st₀ b
-      rw [List.cons_append]
       show runTrace (coreStep st₀ x) (l ++ b) = runTrace (runTrace (coreStep st₀ x) l) b
       exact ih (coreStep st₀ x) b
 
 /-- 中文说明：全为宣告事件的轨迹不改变状态（列表层事实，无极限、无收敛）。 -/
-theorem runTrace_all_declaratory_is_noop {Rel : Type} (st₀ : State Rel) :
-    ∀ (tr : Trace Rel), (∀ ev ∈ tr, ∃ eid, ev = FullEvent.core (SeamEvent.declaratory eid)) →
-      runTrace st₀ tr = st₀ := by
+theorem runTrace_all_declaratory_is_noop {Rel : Type} :
+    ∀ (tr : Trace Rel) (st₀ : State Rel),
+      (∀ ev ∈ tr, ∃ eid, ev = FullEvent.core (SeamEvent.declaratory eid)) →
+        runTrace st₀ tr = st₀ := by
   intro tr
   induction tr with
-  | nil => intro h; rfl
+  | nil =>
+      intro st₀ h
+      rfl
   | cons a rest ih =>
-      intro h
+      intro st₀ h
       rw [runTrace_cons]
-      obtain ⟨eid, heid⟩ := h a (List.mem_cons_self _ _)
+      obtain ⟨eid, heid⟩ := h a List.mem_cons_self
       rw [heid, coreStep_declaratory_id]
-      exact ih rest (fun ev hev => h ev (List.mem_cons_of_mem a hev))
+      exact ih st₀ (fun ev hev => h ev ((List.mem_cons).mpr (Or.inr hev)))
 
 /-- 中文说明：事件 `ev` 的语义产物（S5 的 `next` 在该事件上写入的唯一记录）。给付与宣告无产物；
 **域外两个构造子也无产物**——本件拒绝为它们赋导出。 -/
@@ -305,10 +322,20 @@ def traceRecords {Rel : Type} : Trace Rel → Ledger Rel
   | [] => []
   | ev :: rest => appendRecord (recordOfEvent ev) (traceRecords rest)
 
-/-- 中文说明：列表加一个元素的长度等式（本件有限性上界的算术内核）。 -/
+/-- 中文说明：非记录性事件不产出导出记录（三条 `rfl` 级读数）。 -/
+theorem traceRecords_performance {Rel : Type} (eid obligor : String) (rel : Rel) (amount : Nat)
+    (rest : Trace Rel) :
+    traceRecords (FullEvent.core (SeamEvent.performance eid obligor rel amount) :: rest) =
+      traceRecords rest := rfl
+
+/-- 中文说明：宣告事件不产出导出记录。 -/
+theorem traceRecords_declaratory {Rel : Type} (eid : String) (rest : Trace Rel) :
+    traceRecords (FullEvent.core (SeamEvent.declaratory eid) :: rest) = traceRecords rest := rfl
+
+/-- 中文说明：列表追加一个元素的长度等式（有限性上界的算术内核）。 -/
 theorem length_append_singleton_eq {α : Type} (l : List α) (x : α) :
     (l ++ [x]).length = l.length + 1 := by
-  rw [List.length_append]
+  rw [List.length_append, List.length_singleton]
 
 /-! ## Part 3 声明不变式与 (A) 前缀保全 -/
 
@@ -350,11 +377,13 @@ theorem coreStep_preserves_admissible {Rel : Type} (st : State Rel) (ev : FullEv
 
 /-- 中文说明：**不变式①（守恒）**沿有限轨迹在每个前缀成立。 -/
 theorem conservation_along_trace {Rel : Type} :
-    ∀ (st₀ : State Rel) (tr : Trace Rel),
+    ∀ (tr : Trace Rel) (st₀ : State Rel),
       AdmissibleState st₀ → AdmissibleState (runTrace st₀ tr) := by
-  intro st₀ tr
-  induction tr generalizing st₀ with
-  | nil => intro st₀ h₀; exact h₀
+  intro tr
+  induction tr with
+  | nil =>
+      intro st₀ h₀
+      exact h₀
   | cons a rest ih =>
       intro st₀ h₀
       rw [runTrace_cons]
@@ -394,24 +423,29 @@ theorem coreStep_ledger_append {Rel : Type} (st : State Rel) (ev : FullEvent Rel
       | terminating eid rel =>
           exact ⟨[terminatedRecord eid rel], coreStep_ledger_terminating st eid rel⟩
       | performance eid obligor rel amount =>
-          exact ⟨[], coreStep_ledger_performance st eid obligor rel amount⟩
-      | declaratory eid => exact ⟨[], coreStep_ledger_declaratory st eid⟩
+          exact ⟨[], (coreStep_ledger_performance st eid obligor rel amount).trans
+            (List.append_nil st.ledger).symm⟩
+      | declaratory eid =>
+          exact ⟨[], (coreStep_ledger_declaratory st eid).trans (List.append_nil st.ledger).symm⟩
   | normBackflow eid rel => exact absurd h Bool.false_ne_true
   | historyRewrite eid keep => exact absurd h Bool.false_ne_true
 
 /-- 中文说明：域内轨迹的账本**精确等式**：终态账本＝初始账本 ++ 导出记录表。
 域外回流不满足它（回流写记录但无产物），故本引理真正把域假设用上。 -/
 theorem runTrace_ledger_eq_append {Rel : Type} :
-    ∀ (st₀ : State Rel) (tr : Trace Rel), traceInDomain fullDomain tr →
+    ∀ (tr : Trace Rel) (st₀ : State Rel), traceInDomain fullDomain tr →
       (runTrace st₀ tr).ledger = st₀.ledger ++ traceRecords tr := by
-  intro st₀ tr
-  induction tr generalizing st₀ with
-  | nil => intro st₀ hdom; exact (List.append_nil st₀.ledger).symm
+  intro tr
+  induction tr with
+  | nil =>
+      intro st₀ hdom
+      exact (List.append_nil st₀.ledger).symm
   | cons a rest ih =>
       intro st₀ hdom
-      have hrec := ih (coreStep st₀ a) (fun ev hev => hdom ev (List.mem_cons_of_mem a hev))
+      have hrec := ih (coreStep st₀ a)
+        (fun ev hev => hdom ev ((List.mem_cons).mpr (Or.inr hev)))
       rw [runTrace_cons, hrec]
-      have hdomA : domainMember fullDomain a = true := hdom a (List.mem_cons_self _ _)
+      have hdomA : domainMember fullDomain a = true := hdom a List.mem_cons_self
       cases a with
       | core e =>
           cases e with
@@ -421,8 +455,10 @@ theorem runTrace_ledger_eq_append {Rel : Type} :
           | terminating eid rel =>
               rw [coreStep_ledger_terminating]
               exact List.append_assoc st₀.ledger [terminatedRecord eid rel] (traceRecords rest)
-          | performance eid obligor rel amount => rw [coreStep_ledger_performance]
-          | declaratory eid => rw [coreStep_ledger_declaratory]
+          | performance eid obligor rel amount =>
+              rw [coreStep_ledger_performance, traceRecords_performance eid obligor rel amount]
+          | declaratory eid =>
+              rw [coreStep_ledger_declaratory, traceRecords_declaratory eid]
       | normBackflow eid rel => exact absurd hdomA Bool.false_ne_true
       | historyRewrite eid keep => exact absurd hdomA Bool.false_ne_true
 
@@ -437,13 +473,14 @@ theorem finite_trace_preserves_legal_invariants
     ∀ pre : Trace Rel, (∃ post, tr = pre ++ post) →
       invariantsHeld st₀.ledger (runTrace st₀ pre) := by
   intro pre hpre
+  obtain ⟨post, hpost⟩ := hpre
   have hfull : traceInDomain fullDomain pre := by
     intro ev hev
     exact domainMember_full_of dom ev
-      (hdom ev (by rw [← hpre]; rw [List.mem_append]; exact Or.inl hev))
-  have heq := runTrace_ledger_eq_append st₀ pre hfull
+      (hdom ev (by rw [hpost]; rw [List.mem_append]; exact Or.inl hev))
+  have heq := runTrace_ledger_eq_append pre st₀ hfull
   unfold invariantsHeld
-  refine ⟨conservation_along_trace st₀ pre h₀, ⟨traceRecords pre, heq⟩, ?_,
+  refine ⟨conservation_along_trace pre st₀ h₀, ⟨traceRecords pre, heq⟩, ?_,
     channelDisjointnessAt_any _⟩
   intro r hr
   rw [heq]
@@ -466,45 +503,47 @@ theorem performance_step_preserves_forms {Rel : Type} [DecidableEq Rel]
       forms st.ledger r :=
   performance_not_creation st.ledger eid obligor rel amount r
 
-/-- 中文说明：宣告片段的单步 π 不变性（引 S5 `next_declaratory_is_identity`）。 -/
+/-- 中文说明：宣告片段的单步 π 不变性（S5 `next_declaratory_is_identity` 的命题读数）。 -/
 theorem declaratory_step_preserves_forms {Rel : Type} [DecidableEq Rel]
     (st : State Rel) (eid : String) (r : Rel) :
     forms (coreStep st (FullEvent.core (SeamEvent.declaratory eid))).ledger r ↔
-      forms st.ledger r := by
-  show forms (next st.ledger (SeamEvent.declaratory eid)) r ↔ forms st.ledger r
-  rw [next_declaratory_is_identity]
-  exact Iff.rfl
+      forms st.ledger r :=
+  Iff.refl _
 
 /-- 中文说明：**域内稳定定理**：只在 S5 非裁判域（给付＋宣告）上折叠的任意轨迹，π 对每个关系
 取值一字不动。这里的域是 `nonAdjudicativeDomain` 而不是 `fullDomain`——换成更大的域该定理即为假
 （`pi_stability_fails_outside_domain`）；两个裁判类别与两个域外构造子都在定理之外，
 其合法性分别属 S5 的裁判片段、S7 与 S2，本件不代答。 -/
 theorem nonadjudicative_trace_stabilizes_projection {Rel : Type} [DecidableEq Rel]
-    (st₀ : State Rel) (r : Rel) :
-    ∀ (tr : Trace Rel), traceInDomain nonAdjudicativeDomain tr →
-      forms (runTrace st₀ tr).ledger r ↔ forms st₀.ledger r := by
-  intro tr
-  induction tr generalizing st₀ with
-  | nil => intro st₀ hdom; exact Iff.rfl
+    (tr : Trace Rel) (st₀ : State Rel) (r : Rel)
+    (hdom : traceInDomain nonAdjudicativeDomain tr) :
+    forms (runTrace st₀ tr).ledger r ↔ forms st₀.ledger r := by
+  revert st₀ hdom
+  induction tr with
+  | nil =>
+      intro st₀ hdom
+      exact Iff.rfl
   | cons a rest ih =>
       intro st₀ hdom
       rw [runTrace_cons]
-      have hd : domainMember nonAdjudicativeDomain a = true := hdom a (List.mem_cons_self _ _)
+      have hd : domainMember nonAdjudicativeDomain a = true := hdom a List.mem_cons_self
       have hrest : traceInDomain nonAdjudicativeDomain rest :=
-        fun ev hev => hdom ev (List.mem_cons_of_mem a hev)
+        fun ev hev => hdom ev ((List.mem_cons).mpr (Or.inr hev))
       cases a with
       | core e =>
           cases e with
-          | formative eid rel => exact absurd hd (by decide)
-          | terminating eid rel => exact absurd hd (by decide)
+          | formative eid rel => exact absurd hd Bool.false_ne_true
+          | terminating eid rel => exact absurd hd Bool.false_ne_true
           | performance eid obligor rel amount =>
-              exact Iff.trans (ih (coreStep st₀ a) hrest)
+              exact Iff.trans
+                (ih (coreStep st₀ (FullEvent.core (SeamEvent.performance eid obligor rel amount)))
+                  hrest)
                 (performance_step_preserves_forms st₀ eid obligor rel amount r)
           | declaratory eid =>
-              exact Iff.trans (ih (coreStep st₀ a) hrest)
+              exact Iff.trans (ih (coreStep st₀ (FullEvent.core (SeamEvent.declaratory eid))) hrest)
                 (declaratory_step_preserves_forms st₀ eid r)
-      | normBackflow eid rel => exact absurd hd (by decide)
-      | historyRewrite eid keep => exact absurd hd (by decide)
+      | normBackflow eid rel => exact absurd hd Bool.false_ne_true
+      | historyRewrite eid keep => exact absurd hd Bool.false_ne_true
 
 /-- 中文说明：**交接假设**。域外事件的法律语义由别的缝合件交出，本件把它当**参数**使用；
 三个字段就是本件唯一依赖的内容（只追加、不碰履行账本、不碰回执堆）。`step` 的正当性、
@@ -563,11 +602,13 @@ theorem extStep_preserves_admissible {Rel : Type} (br : OutOfDomainSemantics Rel
 
 /-- 中文说明：守恒沿外推轨迹在每个前缀成立（对任意域外语义）。 -/
 theorem extConservationAlong {Rel : Type} (br : OutOfDomainSemantics Rel) :
-    ∀ (st₀ : State Rel) (tr : Trace Rel),
+    ∀ (tr : Trace Rel) (st₀ : State Rel),
       AdmissibleState st₀ → AdmissibleState (runTraceExt br st₀ tr) := by
-  intro st₀ tr
-  induction tr generalizing st₀ with
-  | nil => intro st₀ h₀; exact h₀
+  intro tr
+  induction tr with
+  | nil =>
+      intro st₀ h₀
+      exact h₀
   | cons a rest ih =>
       intro st₀ h₀
       rw [runTraceExt_cons]
@@ -575,10 +616,13 @@ theorem extConservationAlong {Rel : Type} (br : OutOfDomainSemantics Rel) :
 
 /-- 中文说明：只要域外语义**只追加**，账本就仍只是初态账本的后缀扩张（不依赖其法律内容）。 -/
 theorem runTraceExt_ledger_append {Rel : Type} (br : OutOfDomainSemantics Rel) :
-    ∀ (st₀ : State Rel) (tr : Trace Rel), ∃ s, (runTraceExt br st₀ tr).ledger = st₀.ledger ++ s := by
-  intro st₀ tr
-  induction tr generalizing st₀ with
-  | nil => intro st₀; exact ⟨[], (List.append_nil st₀.ledger).symm⟩
+    ∀ (tr : Trace Rel) (st₀ : State Rel),
+      ∃ s, (runTraceExt br st₀ tr).ledger = st₀.ledger ++ s := by
+  intro tr
+  induction tr with
+  | nil =>
+      intro st₀
+      exact ⟨[], (List.append_nil st₀.ledger).symm⟩
   | cons a rest ih =>
       intro st₀
       obtain ⟨s1, hs1⟩ := ih (extStep br st₀ a)
@@ -596,26 +640,28 @@ theorem runTraceExt_ledger_append {Rel : Type} (br : OutOfDomainSemantics Rel) :
 theorem invariants_hold_under_any_out_of_domain {Rel : Type} [DecidableEq Rel]
     (br : OutOfDomainSemantics Rel) (st₀ : State Rel) (tr : Trace Rel)
     (h₀ : AdmissibleState st₀) : invariantsHeld st₀.ledger (runTraceExt br st₀ tr) := by
-  obtain ⟨s, hs⟩ := runTraceExt_ledger_append br st₀ tr
+  obtain ⟨s, hs⟩ := runTraceExt_ledger_append br tr st₀
   unfold invariantsHeld
-  refine ⟨extConservationAlong br st₀ tr h₀, ⟨s, hs⟩, ?_, channelDisjointnessAt_any _⟩
+  refine ⟨extConservationAlong br tr st₀ h₀, ⟨s, hs⟩, ?_, channelDisjointnessAt_any _⟩
   intro r hr
   rw [hs]
   exact append_is_ideographic st₀.ledger s r hr
 
 /-- 中文说明：域内轨迹上外推语义与核心语义**逐字相同**（故 `fullDomain` 是本件的真正落点）。 -/
 theorem runTrace_eq_runTraceExt {Rel : Type} (br : OutOfDomainSemantics Rel) :
-    ∀ (st₀ : State Rel) (tr : Trace Rel), traceInDomain fullDomain tr →
+    ∀ (tr : Trace Rel) (st₀ : State Rel), traceInDomain fullDomain tr →
       runTraceExt br st₀ tr = runTrace st₀ tr := by
-  intro st₀ tr
-  induction tr generalizing st₀ with
-  | nil => intro st₀ hdom; rfl
+  intro tr
+  induction tr with
+  | nil =>
+      intro st₀ hdom
+      rfl
   | cons a rest ih =>
       intro st₀ hdom
-      rw [runTraceExt_cons, runTrace_cons,
-        ih (coreStep st₀ a) (fun ev hev => hdom ev (List.mem_cons_of_mem a hev))]
-      congr
-      exact extStep_in br st₀ a (hdom a (List.mem_cons_self _ _))
+      have he : extStep br st₀ a = coreStep st₀ a :=
+        extStep_in br st₀ a (hdom a List.mem_cons_self)
+      rw [runTraceExt_cons, he, runTrace_cons,
+        ih (coreStep st₀ a) (fun ev hev => hdom ev ((List.mem_cons).mpr (Or.inr hev)))]
 
 /-- 中文说明：本件明确排除的域外构造子清单（交接给 S7 与 S2，不在本件判定范围）。 -/
 def outOfDomainTags : List String := ["normBackflow -> S7", "historyRewrite -> S2"]
@@ -638,6 +684,10 @@ def performTraceDemo : Trace Relation :=
 def formedTraceDemo : Trace Relation :=
   [FullEvent.core (SeamEvent.formative "J1" relationDemo)]
 
+/-- 中文说明：单条终止轨迹。 -/
+def termTraceDemo : Trace Relation :=
+  [FullEvent.core (SeamEvent.terminating "J2" relationDemo)]
+
 /-- 中文说明：域外回流轨迹。 -/
 def traceBackflowDemo : Trace Relation := [FullEvent.normBackflow "B1" relationDemo]
 
@@ -647,26 +697,61 @@ def rewriteTraceDemo : Trace Relation := [FullEvent.historyRewrite "X1" 0]
 /-- 中文说明：成立之后再来一条域外回流。 -/
 def backflowAfterFormed : Trace Relation := formedTraceDemo ++ traceBackflowDemo
 
+/-- 中文说明：给付轨迹的终态关系账本＝原样（引 S5 `next_performance_is_identity` 的读数）。 -/
+theorem runTrace_performDemo_ledger :
+    (runTrace st₀Empty performTraceDemo).ledger = ([] : Ledger Relation) :=
+  coreStep_ledger_performance st₀Empty "P1" "甲" relationDemo 10
+
+/-- 中文说明：给付轨迹的履行账本＝一条全额给付记录（闭式）。 -/
+theorem runTrace_performDemo_perf :
+    (runTrace st₀Empty performTraceDemo).perf = [performStep debtDemo 10] := rfl
+
+/-- 中文说明：成立轨迹的账本＝一条成立记录（闭式）。 -/
+theorem runTrace_formedDemo_ledger :
+    (runTrace st₀Empty formedTraceDemo).ledger = [formedRecord "J1" relationDemo] := rfl
+
+/-- 中文说明：成立→终止轨迹的账本＝两条记录并存（历史未被涂改，终止是数据不是删除）。 -/
+theorem runTrace_formTerm_ledger :
+    (runTrace st₀Empty (formedTraceDemo ++ termTraceDemo)).ledger =
+      [formedRecord "J1" relationDemo, terminatedRecord "J2" relationDemo] := rfl
+
+/-- 中文说明：成立→终止→成立三帧轨迹的账本（π 摆动见证用）。 -/
+theorem runTrace_formTermForm_ledger :
+    (runTrace st₀Empty
+      (formedTraceDemo ++ termTraceDemo ++
+        [FullEvent.core (SeamEvent.formative "J3" relationDemo)])).ledger =
+      [formedRecord "J1" relationDemo, terminatedRecord "J2" relationDemo,
+        formedRecord "J3" relationDemo] := rfl
+
+/-- 中文说明：回流轨迹的账本＝一条**未经授权**的终止记录（`recordOfEvent` 对它取 `none`）。 -/
+theorem runTrace_backflowDemo_ledger :
+    (runTrace st₀Empty traceBackflowDemo).ledger = [terminatedRecord "B1" relationDemo] := rfl
+
+/-- 中文说明：成立＋回流轨迹的账本。 -/
+theorem runTrace_afterFormedBackflow_ledger :
+    (runTrace st₀Empty backflowAfterFormed).ledger =
+      [formedRecord "J1" relationDemo, terminatedRecord "B1" relationDemo] := rfl
+
 /-- 中文说明：`st₀Empty` 是良构起点（履行账本为空）。 -/
 theorem admissibleState_st₀Empty : AdmissibleState st₀Empty :=
-  fun s hs => absurd hs (List.not_mem_nil s)
+  fun _s hs => absurd hs List.not_mem_nil
 
 /-- 中文说明：`performTraceDemo` 落在 `fullDomain` 内。 -/
 theorem performTraceDemo_inDomain : traceInDomain fullDomain performTraceDemo := by
   intro ev hev
-  rw [List.mem_singleton] at hev
-  subst hev
+  have h1 : ev ∈ [FullEvent.core (SeamEvent.performance "P1" "甲" relationDemo 10)] := hev
+  rw [List.mem_singleton] at h1
+  subst h1
   rfl
 
 /-- 中文说明：回流轨迹不在声明域内（回流恒被排除）。 -/
 theorem traceBackflowDemo_notInDomain : ¬ traceInDomain fullDomain traceBackflowDemo :=
   fun h => Bool.false_ne_true (h (FullEvent.normBackflow "B1" relationDemo)
-    (List.mem_cons_self _ _))
+    List.mem_cons_self)
 
 /-- 中文说明：涂改轨迹不在声明域内。 -/
 theorem rewriteTraceDemo_notInDomain : ¬ traceInDomain fullDomain rewriteTraceDemo :=
-  fun h => Bool.false_ne_true (h (FullEvent.historyRewrite "X1" 0)
-    (List.mem_cons_self _ _))
+  fun h => Bool.false_ne_true (h (FullEvent.historyRewrite "X1" 0) List.mem_cons_self)
 
 /-- 中文说明：涂改一步的账本读数：初始唯一的那条记录被删光。 -/
 theorem runTrace_rewrite_demo_ledger :
@@ -678,27 +763,43 @@ theorem historyRewrite_breaks_appendOnly :
   unfold appendOnlyOf
   rintro ⟨s, hs⟩
   rw [runTrace_rewrite_demo_ledger] at hs
+  have hseed : st₀Seeded.ledger = [formedRecord "J1" relationDemo] := rfl
+  rw [hseed] at hs
   have hlen := congrArg List.length hs
-  have h1 : List.length st₀Seeded.ledger = 1 := rfl
-  rw [List.length_nil, List.length_append, h1] at hlen
+  simp only [List.length_nil, List.length_append, List.length_singleton] at hlen
   omega
+
+/-- 中文说明：seeded 起点上 `relationDemo` 曾成立（引 S5 `formsEver_of_forms` 与
+`projection_append_form`，不走 `decide` 黑箱）。 -/
+theorem seeded_formsEver_relationDemo : formsEver st₀Seeded.ledger relationDemo :=
+  formsEver_of_forms st₀Seeded.ledger relationDemo
+    (projection_append_form ([] : Ledger Relation) "J1" relationDemo)
+
+/-- 中文说明：空账本上任何关系都"从未成立"（`formsEverFold` 的零表值）。 -/
+theorem empty_not_formsEver {Rel : Type} [DecidableEq Rel] (r : Rel) :
+    ¬ formsEver ([] : Ledger Rel) r :=
+  fun h => Bool.false_ne_true h
 
 /-- 中文说明：**域假设不是装饰（其二）**：域外涂改使"不遗忘"失效——`formsEver` 从真被改成假。
 这正是 S5 把 `append_is_ideographic` 挂在纯追加投影、而不是挂在 π 上的原因。 -/
 theorem historyRewrite_breaks_ideograph :
-    ¬ ideographOf st₀Seeded.ledger (runTrace st₀Seeded rewriteTraceDemo) := by
-  intro h
-  have h2 : ¬ formsEver ([] : Ledger Relation) relationDemo := by decide
-  have h3 := h relationDemo (by decide : formsEver st₀Seeded.ledger relationDemo)
-  rw [runTrace_rewrite_demo_ledger] at h3
-  exact h2 h3
+    ¬ ideographOf st₀Seeded.ledger (runTrace st₀Seeded rewriteTraceDemo) :=
+  fun h => empty_not_formsEver relationDemo (h relationDemo seeded_formsEver_relationDemo)
 
-/-- 中文说明：**域假设不是装饰（其三）**：域外回流把 π 从真翻成假，
-故 Part 4 的 π 稳定定理只对 `nonAdjudicativeDomain` 成立，不能推广。 -/
+/-- 中文说明：**域假设不是装饰（其三）**：域外回流把 π 从真翻成假，故 Part 4 的 π 稳定定理
+只对 `nonAdjudicativeDomain` 成立，不能推广。两个方向分别引 S5 的 `projection_append_form`
+与 `projection_of_append_matches_step_terminating`。 -/
 theorem pi_stability_fails_outside_domain :
     forms (runTrace st₀Empty formedTraceDemo).ledger relationDemo ∧
       ¬ forms (runTrace st₀Empty backflowAfterFormed).ledger relationDemo :=
-  ⟨by decide, by decide⟩
+  ⟨projection_append_form ([] : Ledger Relation) "J1" relationDemo,
+    projection_of_append_matches_step_terminating
+      ([formedRecord "J1" relationDemo] : Ledger Relation) "B1" relationDemo⟩
+
+/-- 中文说明：空账本上 π 判定未成立（S5 `formsB_nil` 的命题读数）。 -/
+theorem empty_not_forms {Rel : Type} [DecidableEq Rel] (r : Rel) :
+    ¬ forms ([] : Ledger Rel) r :=
+  fun h => Bool.false_ne_true h
 
 /-! ## Part 6 (B) 回执：果不是因 -/
 
@@ -716,7 +817,7 @@ def Admitted {Rel : Type} (st : State Rel) (rc : Receipt Rel) : Prop :=
 def HasDerivation {Rel : Type} (tr : Trace Rel) (rc : Receipt Rel) : Prop :=
   ∃ ev, ev ∈ tr ∧ recordOfEvent ev = some (receiptRecord rc)
 
-/-- 中文说明：账本承认的记录必来自轨迹里的某个事件（导出方向的机器引理）。 -/
+/-- 中文说明：导出记录表里的记录必来自轨迹里的某个事件（导出方向的机器引理）。 -/
 theorem mem_traceRecords_has_event {Rel : Type} :
     ∀ (tr : Trace Rel) (rec : FormationRecord Rel), rec ∈ traceRecords tr →
       ∃ ev, ev ∈ tr ∧ recordOfEvent ev = some rec := by
@@ -724,7 +825,7 @@ theorem mem_traceRecords_has_event {Rel : Type} :
   induction tr with
   | nil =>
       intro rec h
-      exact absurd h (List.not_mem_nil rec)
+      exact absurd h List.not_mem_nil
   | cons a rest ih =>
       intro rec h
       cases a with
@@ -735,37 +836,37 @@ theorem mem_traceRecords_has_event {Rel : Type} :
               rw [List.mem_cons] at h'
               cases h' with
               | inl heq =>
-                  exact ⟨FullEvent.core (SeamEvent.formative eid rel),
-                    List.mem_cons_self _ _, congrArg some heq⟩
+                  exact ⟨FullEvent.core (SeamEvent.formative eid rel), List.mem_cons_self,
+                    congrArg some heq.symm⟩
               | inr hrest =>
                   obtain ⟨ev, hev, heq⟩ := ih rec hrest
-                  exact ⟨ev, List.mem_cons_of_mem a hev, heq⟩
+                  exact ⟨ev, (List.mem_cons).mpr (Or.inr hev), heq⟩
           | terminating eid rel =>
               have h' : rec ∈ terminatedRecord eid rel :: traceRecords rest := h
               rw [List.mem_cons] at h'
               cases h' with
               | inl heq =>
-                  exact ⟨FullEvent.core (SeamEvent.terminating eid rel),
-                    List.mem_cons_self _ _, congrArg some heq⟩
+                  exact ⟨FullEvent.core (SeamEvent.terminating eid rel), List.mem_cons_self,
+                    congrArg some heq.symm⟩
               | inr hrest =>
                   obtain ⟨ev, hev, heq⟩ := ih rec hrest
-                  exact ⟨ev, List.mem_cons_of_mem a hev, heq⟩
+                  exact ⟨ev, (List.mem_cons).mpr (Or.inr hev), heq⟩
           | performance eid obligor rel amount =>
               have h' : rec ∈ traceRecords rest := h
               obtain ⟨ev, hev, heq⟩ := ih rec h'
-              exact ⟨ev, List.mem_cons_of_mem a hev, heq⟩
+              exact ⟨ev, (List.mem_cons).mpr (Or.inr hev), heq⟩
           | declaratory eid =>
               have h' : rec ∈ traceRecords rest := h
               obtain ⟨ev, hev, heq⟩ := ih rec h'
-              exact ⟨ev, List.mem_cons_of_mem a hev, heq⟩
+              exact ⟨ev, (List.mem_cons).mpr (Or.inr hev), heq⟩
       | normBackflow eid rel =>
           have h' : rec ∈ traceRecords rest := h
           obtain ⟨ev, hev, heq⟩ := ih rec h'
-          exact ⟨ev, List.mem_cons_of_mem a hev, heq⟩
+          exact ⟨ev, (List.mem_cons).mpr (Or.inr hev), heq⟩
       | historyRewrite eid keep =>
           have h' : rec ∈ traceRecords rest := h
           obtain ⟨ev, hev, heq⟩ := ih rec h'
-          exact ⟨ev, List.mem_cons_of_mem a hev, heq⟩
+          exact ⟨ev, (List.mem_cons).mpr (Or.inr hev), heq⟩
 
 /-- 中文说明：**(B) 主定理**：空账本起步、只在声明域内折叠的轨迹上，任何被记账准入的回执都带
 语义导出。法律读法：回执是**导出的果**。前提 `st₀.ledger = []` 不是技术装饰——
@@ -775,7 +876,7 @@ theorem receipt_has_semantic_derivation {Rel : Type} [DecidableEq Rel]
     (hempty : st₀.ledger = []) (hdom : traceInDomain fullDomain tr)
     (hadm : Admitted (runTrace st₀ tr) rc) : HasDerivation tr rc := by
   obtain ⟨hmem, _hlvl⟩ := hadm
-  rw [runTrace_ledger_eq_append st₀ tr hdom, hempty, List.nil_append] at hmem
+  rw [runTrace_ledger_eq_append tr st₀ hdom, hempty, List.nil_append] at hmem
   obtain ⟨ev, hev, heq⟩ := mem_traceRecords_has_event tr (receiptRecord rc) hmem
   exact ⟨ev, hev, heq⟩
 
@@ -795,18 +896,19 @@ def rcBackflow : Receipt Relation :=
   { ref := "B1", rel := relationDemo, kind := RecordKind.terminated,
     level := AuthorityLevel.admittedFormalInput }
 
+/-- 中文说明：回流回执的记录就是回流事件写下的那条终止记录。 -/
+theorem rcBackflow_record_eq :
+    receiptRecord rcBackflow = terminatedRecord "B1" relationDemo := rfl
+
 /-- 中文说明：回流记录确实进了终态账本。 -/
 theorem backflow_record_in_ledger :
-    receiptRecord rcBackflow ∈ (runTrace st₀Empty traceBackflowDemo).ledger := by
-  show terminatedRecord "B1" relationDemo ∈
-    (([] : Ledger Relation) ++ [terminatedRecord "B1" relationDemo])
-  rw [List.nil_append]
-  exact List.mem_cons_self _ _
+    receiptRecord rcBackflow ∈ (runTrace st₀Empty traceBackflowDemo).ledger :=
+  List.mem_cons_self
 
-/-- 中文说明：回流回执的层级足够（只看层级格，不看正当性）。 -/
-theorem rcBackflow_level_ok : canIssue rcBackflow.level ArtifactKind.factAttestation := by
-  show canIssue AuthorityLevel.admittedFormalInput ArtifactKind.factAttestation
-  decide
+/-- 中文说明：回流回执的层级足够（只看层级格，不看正当性；`requiredLevel factAttestation`
+就是 `admittedFormalInput`，秩为 3）。 -/
+theorem rcBackflow_level_ok : canIssue rcBackflow.level ArtifactKind.factAttestation :=
+  Nat.le_refl 3
 
 /-- 中文说明：**反向不可得（具体见证）**：域外回流的回执被记账准入，却没有语义导出。
 故"账本承认"与"已经导出"是两件事；把前者当后者用正是 P-123 反对的读法。 -/
@@ -816,8 +918,9 @@ theorem backflow_admitted_without_derivation :
   refine ⟨⟨backflow_record_in_ledger, rcBackflow_level_ok⟩, ?_⟩
   intro h
   obtain ⟨ev, hev, heq⟩ := h
-  rw [List.mem_singleton] at hev
-  rw [← hev] at heq
+  have h1 : ev ∈ [FullEvent.normBackflow "B1" relationDemo] := hev
+  rw [List.mem_singleton] at h1
+  subst h1
   exact absurd heq (by decide)
 
 /-- 中文说明：层级不足的回执形状：proposal 层级自报、且记录**确实**已在账本里。 -/
@@ -831,10 +934,8 @@ theorem rcFormedSeeded_record_eq :
 
 /-- 中文说明：该记录确在账本里。 -/
 theorem rcFormedSeeded_record_is_in_ledger :
-    receiptRecord rcFormedSeeded ∈ st₀Seeded.ledger := by
-  show receiptRecord rcFormedSeeded ∈ formedRecord "J1" relationDemo :: ([] : Ledger Relation)
-  rw [List.mem_cons]
-  exact Or.inl rcFormedSeeded_record_eq
+    receiptRecord rcFormedSeeded ∈ st₀Seeded.ledger :=
+  List.mem_cons_self
 
 /-- 中文说明：proposal 层级的回执形状在任何状态下都不被准入。
 引 ReceiptAuthority 的 `proposal_cannot_issue_attestation`。 -/
@@ -855,8 +956,7 @@ theorem human_reviewed_copy_never_admitted {Rel : Type} (st : State Rel) (rc : R
   intro h
   obtain ⟨_h1, h2⟩ := h
   rw [hlvl] at h2
-  exact human_review_not_formal_input
-    (by simpa [canIssue, requiredLevel, authorityRank] using h2)
+  exact human_review_not_formal_input h2
 
 /-- 中文说明：权威链严格有序（引 `authority_strictly_ordered`）：本件据此说明层级只能由
 外部凭证逐级抬升，不能由簿记抬升。 -/
@@ -892,10 +992,12 @@ theorem proposal_issues_neither_certificate_nor_status :
 
 /-- 中文说明：回执堆沿轨迹是常量。 -/
 theorem runTrace_pile_unchanged {Rel : Type} :
-    ∀ (st₀ : State Rel) (tr : Trace Rel), (runTrace st₀ tr).pile = st₀.pile := by
-  intro st₀ tr
-  induction tr generalizing st₀ with
-  | nil => intro st₀; rfl
+    ∀ (tr : Trace Rel) (st₀ : State Rel), (runTrace st₀ tr).pile = st₀.pile := by
+  intro tr
+  induction tr with
+  | nil =>
+      intro st₀
+      rfl
   | cons a rest ih =>
       intro st₀
       rw [runTrace_cons, ih (coreStep st₀ a), coreStep_pile_unchanged st₀ a]
@@ -905,7 +1007,7 @@ theorem runTrace_pile_unchanged {Rel : Type} :
 theorem receipt_ledger_is_fruit_not_warrant {Rel : Type} (st₀ : State Rel) (tr : Trace Rel) :
     (runTrace st₀ tr).pile = st₀.pile ∧
       ∀ rc : Receipt Rel, rc.level = AuthorityLevel.untrustedProposal → ¬ Admitted st₀ rc :=
-  ⟨runTrace_pile_unchanged st₀ tr,
+  ⟨runTrace_pile_unchanged tr st₀,
     fun rc hlvl => proposal_shaped_copy_never_admitted st₀ rc hlvl⟩
 
 /-! ## Part 7 (D) 闭包限度 -/
@@ -931,33 +1033,41 @@ def outcomeShape {Rel : Type} [DecidableEq Rel] (st : State Rel) : OutcomeShape 
   else if hasFormationRecord st.ledger then OutcomeShape.decidedAdjudicated
     else OutcomeShape.outOfModel
 
-/-- 中文说明：三个非裁判形状都不等于裁判形状。 -/
+/-- 中文说明：三个非裁判形状都不等于裁判形状（构造子互不相交）。 -/
 theorem undecided_shapes_are_not_decided :
     OutcomeShape.undecidedPerformance ≠ OutcomeShape.decidedAdjudicated ∧
       OutcomeShape.undecidedEmpty ≠ OutcomeShape.decidedAdjudicated ∧
-        OutcomeShape.outOfModel ≠ OutcomeShape.decidedAdjudicated :=
-  ⟨by decide, by decide, by decide⟩
+        OutcomeShape.outOfModel ≠ OutcomeShape.decidedAdjudicated := by
+  refine ⟨?_, ?_, ?_⟩
+  · intro hh; cases hh
+  · intro hh; cases hh
+  · intro hh; cases hh
 
-/-- 中文说明：全额履行轨迹的终态形状是 `undecidedPerformance`（闭式计算）。 -/
+/-- 中文说明：给付轨迹终态的闭式读数（四分量全部算出）。 -/
+theorem performTraceDemo_state :
+    runTrace st₀Empty performTraceDemo =
+      @State.mk Relation ([] : Ledger Relation) [performStep debtDemo 10] debtDemo [] := rfl
+
+/-- 中文说明：全额履行轨迹的终态形状是 `undecidedPerformance`：账本空、履行已入账（闭式判定）。 -/
 theorem performTraceDemo_shape_undecided :
     outcomeShape (runTrace st₀Empty performTraceDemo) =
       OutcomeShape.undecidedPerformance := by
+  rw [performTraceDemo_state]
   decide
 
 /-- 中文说明：履行通道确实入了账，并按 S5 的守恒式清偿（债 10、未偿 0）。 -/
 theorem performTraceDemo_conserves :
     (runTrace st₀Empty performTraceDemo).perf ≠ [] ∧
-      ∀ s ∈ (runTrace st₀Empty performTraceDemo).perf, conservedStep s ∧ s.outstanding = 0 := by
-  refine ⟨by decide, ?_⟩
-  intro s hs
-  rw [runTrace_cons, coreStep_perf_performance] at hs
-  rw [List.mem_append] at hs
-  cases hs with
-  | inl hold => exact absurd hold (List.not_mem_nil s)
-  | inr hnew =>
-      rw [List.mem_singleton] at hnew
-      subst hnew
-      exact ⟨performStep_conserved_here debtDemo 10, by decide⟩
+      ∀ s ∈ (runTrace st₀Empty performTraceDemo).perf,
+        conservedStep s ∧ s.outstanding = 0 := by
+  refine ⟨?_, ?_⟩
+  · rw [runTrace_performDemo_perf]
+    exact List.cons_ne_nil _ _
+  · intro s hs
+    rw [runTrace_performDemo_perf] at hs
+    rw [List.mem_singleton] at hs
+    subst hs
+    exact ⟨performStep_conserved_here debtDemo 10, rfl⟩
 
 /-- 中文说明：容易被误读成"闭环已经保证裁判"的**全称主张**。把它写成 Prop，才能证伪它。 -/
 def closure_uniform_claim : Prop :=
@@ -975,7 +1085,7 @@ theorem closure_is_not_uniform_claim : ¬ closure_uniform_claim := by
     (finite_trace_preserves_legal_invariants fullDomain st₀Empty performTraceDemo
       admissibleState_st₀Empty performTraceDemo_inDomain)
   rw [performTraceDemo_shape_undecided] at hspec
-  exact absurd hspec (by decide)
+  exact absurd hspec undecided_shapes_are_not_decided.1
 
 /-- 中文说明：空账本起步的 `Unit` 状态（`Unit` 不含任何法律内容）。 -/
 def st₀Unit : State Unit :=
@@ -991,23 +1101,31 @@ theorem preservation_over_unit_type (pre : Trace Unit)
     (hpre : ∃ post, performTraceUnit = pre ++ post) :
     invariantsHeld ([] : Ledger Unit) (runTrace st₀Unit pre) :=
   finite_trace_preserves_legal_invariants fullDomain st₀Unit performTraceUnit
-    (fun s hs => absurd hs (List.not_mem_nil s))
+    (fun _s hs => absurd hs List.not_mem_nil)
     (fun ev hev => by
-      rw [List.mem_singleton] at hev
-      subst hev
+      have h1 : ev ∈ [FullEvent.core (SeamEvent.performance "P1" "甲" () 10)] := hev
+      rw [List.mem_singleton] at h1
+      subst h1
       rfl) pre hpre
 
-/-- 中文说明：本件不给收敛：形成—终止交替让 π 来回摆动（闭式见证）。
+/-- 中文说明：本件不给收敛：形成—终止—形成三帧让 π 取值来回摆动（闭式读数）。
 任何"循环跑到不动点"的读法都在本件之外。 -/
 theorem pi_oscillates_witness :
     forms (runTrace st₀Empty formedTraceDemo).ledger relationDemo ∧
-      ¬ forms (runTrace st₀Empty
-        (formedTraceDemo ++ [FullEvent.core (SeamEvent.terminating "J2" relationDemo)])).ledger
-          relationDemo ∧
-      forms (runTrace st₀Empty
-        (formedTraceDemo ++ [FullEvent.core (SeamEvent.terminating "J2" relationDemo),
-          FullEvent.core (SeamEvent.formative "J3" relationDemo)])).ledger relationDemo :=
-  ⟨by decide, by decide, by decide⟩
+      ¬ forms (runTrace st₀Empty (formedTraceDemo ++ termTraceDemo)).ledger relationDemo ∧
+        forms (runTrace st₀Empty
+          (formedTraceDemo ++ termTraceDemo ++
+            [FullEvent.core (SeamEvent.formative "J3" relationDemo)])).ledger relationDemo := by
+  refine ⟨?_, ?_, ?_⟩
+  · rw [runTrace_formedDemo_ledger]
+    exact projection_append_form ([] : Ledger Relation) "J1" relationDemo
+  · rw [runTrace_formTerm_ledger]
+    exact projection_of_append_matches_step_terminating
+      ([formedRecord "J1" relationDemo] : Ledger Relation) "J2" relationDemo
+  · rw [runTrace_formTermForm_ledger]
+    exact (projection_of_append_matches_step
+      ([formedRecord "J1" relationDemo, terminatedRecord "J2" relationDemo] : Ledger Relation)
+      "J3" relationDemo relationDemo).mpr (Or.inl rfl)
 
 /-- 中文说明：**域相对性的总结陈述**：把域假设去掉，只追加、不遗忘与导出性都真的失效。 -/
 theorem preservation_is_domain_relative :
@@ -1024,8 +1142,8 @@ theorem preservation_is_domain_relative :
 /-- 中文说明：**域外语义的具体见证**：把回流解释成"追加一条终止记录"。它满足交接假设的三个字段，
 因此簿记不变式全部保住；但它没有语义产物，所以回执导出性失效。 -/
 def backflowSemantics : OutOfDomainSemantics Relation where
-  step st ev := { st with ledger := st.ledger ++ [terminatedRecord "BACKFLOW" relationDemo] }
-  appendsOnly := fun st ev => ⟨[terminatedRecord "BACKFLOW" relationDemo], rfl⟩
+  step st _ := { st with ledger := st.ledger ++ [terminatedRecord "BACKFLOW" relationDemo] }
+  appendsOnly := fun _st _ => ⟨[terminatedRecord "BACKFLOW" relationDemo], rfl⟩
   preservesPerf := fun _ _ => rfl
   preservesPile := fun _ _ => rfl
 
@@ -1039,10 +1157,13 @@ theorem seeded_invariants_hold_under_backflow_semantics :
 /-! ## Part 8 (E) 有限性上界 -/
 
 /-- 中文说明：截断不会把列表变长。 -/
-theorem length_take_le {α : Type} : ∀ (l : List α) (k : Nat), (l.take k).length ≤ l.length := by
+theorem length_take_le {α : Type} :
+    ∀ (l : List α) (k : Nat), (l.take k).length ≤ l.length := by
   intro l
   induction l with
-  | nil => intro k; exact Nat.le_refl _
+  | nil =>
+      intro k
+      cases k <;> exact Nat.le_refl _
   | cons a rest ih =>
       intro k
       cases k with
@@ -1057,32 +1178,55 @@ theorem coreStep_ledger_length_le {Rel : Type} (st : State Rel) (ev : FullEvent 
   cases ev with
   | core e =>
       cases e with
-      | formative eid rel =>
-          rw [coreStep_ledger_formative, length_append_singleton_eq]
-      | terminating eid rel =>
-          rw [coreStep_ledger_terminating, length_append_singleton_eq]
+      | formative eid rel => rw [coreStep_ledger_formative, length_append_singleton_eq]
+      | terminating eid rel => rw [coreStep_ledger_terminating, length_append_singleton_eq]
       | performance eid obligor rel amount => exact Nat.le_succ _
       | declaratory eid => exact Nat.le_succ _
-  | normBackflow eid rel =>
-      rw [coreStep_ledger_normBackflow, length_append_singleton_eq]
+  | normBackflow eid rel => rw [coreStep_ledger_normBackflow, length_append_singleton_eq]
   | historyRewrite eid keep =>
       exact Nat.le_trans (length_take_le st.ledger keep) (Nat.le_succ _)
 
-/-- 中文说明：单步的履行账本长度增量至多 1。 -/
+/-- 中文说明：单步的履行账本长度增量恰为 `perfWritingCount ev`（给付 1、其余 0）。 -/
 theorem coreStep_perf_length_le {Rel : Type} (st : State Rel) (ev : FullEvent Rel) :
-    (coreStep st ev).perf.length ≤ st.perf.length + 1 := by
+    (coreStep st ev).perf.length ≤ st.perf.length + perfWritingCount ev := by
   cases ev with
   | core e =>
       cases e with
       | performance eid obligor rel amount =>
           rw [coreStep_perf_performance, length_append_singleton_eq]
-      | formative eid rel => exact Nat.le_succ _
-      | terminating eid rel => exact Nat.le_succ _
-      | declaratory eid => exact Nat.le_succ _
-  | normBackflow eid rel => exact Nat.le_succ _
-  | historyRewrite eid keep => exact Nat.le_succ _
+          exact Nat.le_refl _
+      | formative eid rel => exact Nat.le_refl _
+      | terminating eid rel => exact Nat.le_refl _
+      | declaratory eid => exact Nat.le_refl _
+  | normBackflow eid rel => exact Nat.le_refl _
+  | historyRewrite eid keep => exact Nat.le_refl _
 
-/-- 中文说明：导出记录表长度不超过轨迹长度。 -/
+/-- 中文说明：每个事件至多写一条履行记录。 -/
+theorem perfWritingCount_le_one {Rel : Type} (ev : FullEvent Rel) :
+    perfWritingCount ev ≤ 1 := by
+  cases ev with
+  | core e =>
+      cases e with
+      | performance eid obligor rel amount => exact Nat.le_refl _
+      | formative eid rel => exact Nat.zero_le _
+      | terminating eid rel => exact Nat.zero_le _
+      | declaratory eid => exact Nat.zero_le _
+  | normBackflow eid rel => exact Nat.zero_le _
+  | historyRewrite eid keep => exact Nat.zero_le _
+
+/-- 中文说明：给付事件数不超过轨迹长度。 -/
+theorem perfCountTrace_le_length {Rel : Type} :
+    ∀ (tr : Trace Rel), perfCountTrace tr ≤ tr.length := by
+  intro tr
+  induction tr with
+  | nil => exact Nat.le_refl _
+  | cons a rest ih =>
+      have h1 := perfWritingCount_le_one a
+      have h2 := ih
+      show perfWritingCount a + perfCountTrace rest ≤ rest.length + 1
+      omega
+
+/-- 中文说明：导出记录表长度不超过轨迹长度（每个事件至多产出一条记录）。 -/
 theorem traceRecords_length_le {Rel : Type} :
     ∀ (tr : Trace Rel), (traceRecords tr).length ≤ tr.length := by
   intro tr
@@ -1097,34 +1241,44 @@ theorem traceRecords_length_le {Rel : Type} :
         | some x => exact Nat.le_refl _
       exact Nat.le_trans h1 (Nat.add_le_add_right ih 1)
 
-/-- 中文说明：履行账本长度沿轨迹的上界＝初长＋步数（每步至多加一条）。 -/
-theorem runTrace_perf_length_le {Rel : Type} :
-    ∀ (st₀ : State Rel) (tr : Trace Rel),
-      (runTrace st₀ tr).perf.length ≤ st₀.perf.length + tr.length := by
-  intro st₀ tr
-  induction tr generalizing st₀ with
-  | nil => intro st₀; exact Nat.le_add_right st₀.perf.length 0
+/-- 中文说明：履行账本长度沿轨迹的上界＝初长＋给付事件数。 -/
+theorem runTrace_perf_length_le_count {Rel : Type} :
+    ∀ (tr : Trace Rel) (st₀ : State Rel),
+      (runTrace st₀ tr).perf.length ≤ st₀.perf.length + perfCountTrace tr := by
+  intro tr
+  induction tr with
+  | nil =>
+      intro st₀
+      exact Nat.le_add_right st₀.perf.length 0
   | cons a rest ih =>
       intro st₀
       have hperf := ih (coreStep st₀ a)
       have hstep := coreStep_perf_length_le st₀ a
-      show (runTrace (coreStep st₀ a) rest).perf.length ≤ st₀.perf.length + (rest.length + 1)
+      show (runTrace (coreStep st₀ a) rest).perf.length ≤
+        st₀.perf.length + (perfWritingCount a + perfCountTrace rest)
       omega
 
-/-- 中文说明：**域内**轨迹的账本长度精确等式（由 `runTrace_ledger_eq_append` 直接得到）。 -/
+/-- 中文说明：履行账本长度沿轨迹的上界＝初长＋步数。 -/
+theorem runTrace_perf_length_le {Rel : Type} :
+    ∀ (tr : Trace Rel) (st₀ : State Rel),
+      (runTrace st₀ tr).perf.length ≤ st₀.perf.length + tr.length := by
+  intro tr st₀
+  exact Nat.le_trans (runTrace_perf_length_le_count tr st₀)
+    (Nat.add_le_add_left (perfCountTrace_le_length tr) st₀.perf.length)
+
+/-- 中文说明：**域内**轨迹账本长度的精确等式。 -/
 theorem runTrace_ledger_length_eq {Rel : Type} (st₀ : State Rel) (tr : Trace Rel)
     (hdom : traceInDomain fullDomain tr) :
     (runTrace st₀ tr).ledger.length = st₀.ledger.length + (traceRecords tr).length := by
-  rw [runTrace_ledger_eq_append st₀ tr hdom, List.length_append]
+  rw [runTrace_ledger_eq_append tr st₀ hdom, List.length_append]
 
 /-- 中文说明：**(E) 有限性主定理**：本件的复合是有限折叠而不是渐近过程——每步至多加一条记录，
-故关系账本与履行账本的长度上界都是 `|tr|`。这里没有收敛、没有极限、没有不动点假设。
-账本一条用的是**域内**上界（域外涂改会缩短账本，仍不超过同一无界）。 -/
+故关系账本与履行账本的长度上界都是 `|tr|`。这里没有收敛、没有极限、没有不动点假设。 -/
 theorem runTrace_length_bound {Rel : Type} (st₀ : State Rel) (tr : Trace Rel)
     (hdom : traceInDomain fullDomain tr) :
     (runTrace st₀ tr).ledger.length ≤ st₀.ledger.length + tr.length ∧
       (runTrace st₀ tr).perf.length ≤ st₀.perf.length + tr.length := by
-  refine ⟨?_, runTrace_perf_length_le st₀ tr⟩
+  refine ⟨?_, runTrace_perf_length_le tr st₀⟩
   rw [runTrace_ledger_length_eq st₀ tr hdom]
   exact Nat.add_le_add_left (traceRecords_length_le tr) st₀.ledger.length
 
@@ -1133,7 +1287,7 @@ theorem runTrace_length_bound {Rel : Type} (st₀ : State Rel) (tr : Trace Rel)
 theorem forms_at_end_is_bounded_fold {Rel : Type} [DecidableEq Rel]
     (st₀ : State Rel) (tr : Trace Rel) (r : Rel) (hdom : traceInDomain fullDomain tr) :
     formsB (runTrace st₀ tr).ledger r = formsFold r (formsB st₀.ledger r) (traceRecords tr) := by
-  rw [runTrace_ledger_eq_append st₀ tr hdom]
+  rw [runTrace_ledger_eq_append tr st₀ hdom]
   exact formsB_append st₀.ledger (traceRecords tr) r
 
 /-- 中文说明：`performStep` 的两个计算值都被债额界住（引 S5 `applied_bounds`）。 -/
@@ -1145,12 +1299,18 @@ theorem performStep_values_bounded (d : Debt) (p : Nat) :
   unfold outstandingAfter
   omega
 
-/-- 中文说明：履行一步的账本读数：给付 10 抵债 10 ⇒ 实付 10、未偿 0，
+/-- 中文说明：履行一步的账本读数：给付 10 抵债 10 ⇒ 实付 10、未偿 0（S5 守恒的闭式读数），
 而关系账本与"曾成立"读数一字不动（S5 双通道读数的轨迹版本）。 -/
 theorem trace_performs_and_keeps_history :
     (runTrace st₀Seeded performTraceDemo).ledger = st₀Seeded.ledger ∧
       (runTrace st₀Seeded performTraceDemo).perf.length = 1 ∧
-        formsEver (runTrace st₀Seeded performTraceDemo).ledger relationDemo :=
-  ⟨by rw [runTrace_cons, coreStep_ledger_performance], by decide, by decide⟩
+        formsEver (runTrace st₀Seeded performTraceDemo).ledger relationDemo ∧
+          (performStep debtDemo 10).applied = 10 ∧
+            (performStep debtDemo 10).outstanding = 0 := by
+  refine ⟨coreStep_ledger_performance st₀Seeded "P1" "甲" relationDemo 10, ?_, ?_, rfl, rfl⟩
+  · show (st₀Seeded.perf ++ [performStep st₀Seeded.debt 10]).length = 1
+    rw [show st₀Seeded.perf = ([] : PerformLedger) from rfl, List.nil_append]
+    exact length_append_singleton_eq ([] : PerformLedger) (performStep debtDemo 10)
+  · exact seeded_formsEver_relationDemo
 
 end JurisLean.Seams.FullProcess

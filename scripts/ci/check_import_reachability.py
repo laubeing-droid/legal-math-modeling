@@ -69,7 +69,14 @@ STANDALONE_DRIVERS: dict[str, str] = {
 PENDING_CI_MODULES: dict[str, str] = {
     # Seventh-round seam wave (2026-09-30). Each entry is booked here until its own
     # CI module build passes; AGENTS forbids root entry before that.
-    "JurisLean.Seams.ClaimBasis": "S1/S2/S5 seam: P-034 claim-basis chain (wave 7, seam 1)",
+    #
+    # `JurisLean.Seams.ClaimBasis` (P-034 claim-basis chain, seam 1) left this table on
+    # 2026-10-01: after the name-free Step inversion fixed its local build, run
+    # 36749410410 (`mode=changed-module`, subject 6a30194d) built it green in 514 ms on
+    # the pinned toolchain with the official Mathlib cloud cache. Its axiom-audit naming
+    # is still outstanding and is tracked as boundary-seam task C2, exactly like the
+    # nine ⑤⑥ theorems that were already in the root without it.
+    #
     # The four game-theory carriers (SequentialGames, ZeroSumValue, PureNash,
     # OneShotDeviation) left this table in the first promotion round: all four were
     # built and axiom-audited green at subject 649d0fd (run 36409348921, landed under

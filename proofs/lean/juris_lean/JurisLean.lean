@@ -164,6 +164,7 @@ import JurisLean.ProposalNoninterference
 import JurisLean.ReceiptAuthority
 import JurisLean.SMTWitness
 import JurisLean.ScratchApi
+import JurisLean.Seams.ClaimBasis
 import JurisLean.SolverRouting
 import JurisLean.SourceBundleSpec
 import JurisLean.SourcePathSpec

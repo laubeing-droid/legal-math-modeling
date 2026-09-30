@@ -86,25 +86,33 @@ PENDING_CI_MODULES: dict[str, str] = {
     # main session had compiled, which is why a "local green / CI red" pair needs a
     # byte-identity check before it is called an environment artifact.
     #
-    # These two MUST stay booked: the main session compiled them red or has no verdict at
-    # all, so they must not be reachable from the release root. Emptying this table
-    # earlier let the reachability generator import every Seams module including the
-    # failing ones -- the gate cannot catch that, because a root import satisfies it by
-    # definition.
-    "JurisLean.Seams.Probability": (
-        "S3 seam: five-segment probability derivation and P-098 reduction relation "
-        "(build RED in the main session: :194 rw, :230 stuck instance, :232 linarith; "        "under repair)"),
+    # `Seams.Probability` (S3) left this table after its own green run: 36770138720
+    # (`mode=changed-module`, subject c03663cb) built it in 5.3 s with the official
+    # Mathlib cloud cache, locally 8483 jobs / exit 0 / 21 s. Its repair history is worth
+    # keeping: three of its errors (:238 stuck `AddLeftMono` instance, :264 `show`
+    # mismatch, :269 mismatched argument) had ONE root cause -- in this pin an unparenthesised
+    # `sum i : Fin 2, s i + t i` elaborates as `(sum i : Fin 2, s i) + t i`, so the body was
+    # mis-parsed, not the proof wrong. Parenthesising the summands fixed all three. That is a
+    # mis-stated proof term repaired, not a theorem contract weakened; 47 theorems, none removed.
+    #
+    # This one MUST stay booked: the main session compiled it red, so it must not be reachable
+    # from the release root. Emptying this table earlier let the reachability generator import
+    # every Seams module including the failing ones -- the gate cannot catch that, because a
+    # root import satisfies it by definition.
     "JurisLean.Seams.FullProcess": (
         "S6 closure seam: finite trace preservation and the receipt-is-consequence "
         "result for P-123 (snapshot; no build verdict obtained). The repair lane briefly "
         "DELETED this file from the working tree; the committed snapshot was restored "
         "with git checkout, which is why the red state was checkpointed before repair work "
         "started -- a stalled or destructive lane cannot then lose the theorems."),
-    "JurisLean.Seams.Unified": (
-        "T2 capstone: composes the seam theorems into one declared-fragment statement. "
-        "Booked while it is being written; it must not reach the release root before it "
-        "compiles, and its own contract forbids restating a conjunct more weakly than "
-        "the seam theorem it cites"),
+    #
+    # `Seams.Unified` (T2, the capstone) left this table the same day: run 36770475007
+    # (`mode=changed-module`, subject c03663cb) built it green in 3.1 s inside a 8527-job
+    # plan, i.e. the whole seam closure it cites compiles on the pinned toolchain. Its three
+    # declarations are named on the seam audit surface, and the local `AxiomAudit.lean` read
+    # gives `unified_legal_derivation_on_declared_fragment` a standard-axiom dependency and
+    # `unified_claim_is_not_general` none at all. The build attests compilation only; the
+    # axiom dimension waits, like every other seam here, for a full-release round.
     #
     # `JurisLean.Seams.ClaimBasis` (P-034 claim-basis chain, seam 1) left this table on
     # 2026-10-01: after the name-free Step inversion fixed its local build, run

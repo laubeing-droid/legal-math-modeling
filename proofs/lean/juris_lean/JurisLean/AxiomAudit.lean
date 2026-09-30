@@ -126,6 +126,9 @@ import JurisLean.Seams.SourceNorms
 import JurisLean.Seams.Temporal
 import JurisLean.Seams.Uncertainty
 
+import JurisLean.Seams.Probability
+import JurisLean.Seams.Unified
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1144,6 +1147,53 @@ open HornSystem
 #print axioms JurisLean.Seams.PrecedentFlow.update_touched_record_invalid
 #print axioms JurisLean.Seams.PrecedentFlow.update_versions_fires
 #print axioms JurisLean.Seams.PrecedentFlow.update_versions_silent
+#print axioms JurisLean.Seams.Probability.allow_does_not_determine_amount
+#print axioms JurisLean.Seams.Probability.allow_of_gate_closed
+#print axioms JurisLean.Seams.Probability.allow_of_gate_open
+#print axioms JurisLean.Seams.Probability.allowed_amount_nonneg_of_nonneg_agreed
+#print axioms JurisLean.Seams.Probability.band_containment_is_not_allow
+#print axioms JurisLean.Seams.Probability.beta_posterior_from_likelihood
+#print axioms JurisLean.Seams.Probability.beta_predictive_bracket_survives_update
+#print axioms JurisLean.Seams.Probability.choose_is_not_determined_by_allow
+#print axioms JurisLean.Seams.Probability.clampReduction_in_band
+#print axioms JurisLean.Seams.Probability.clamp_is_not_reduction
+#print axioms JurisLean.Seams.Probability.denotate_some_none
+#print axioms JurisLean.Seams.Probability.denotation_blocked_without_policy
+#print axioms JurisLean.Seams.Probability.denotation_independent_of_policy
+#print axioms JurisLean.Seams.Probability.evMass_posterior_refined
+#print axioms JurisLean.Seams.Probability.exact_amount_denotation
+#print axioms JurisLean.Seams.Probability.exact_amount_denotation_is_currency_blind
+#print axioms JurisLean.Seams.Probability.finding_does_not_require_the_threshold
+#print axioms JurisLean.Seams.Probability.finite_distribution_to_pmf_apply
+#print axioms JurisLean.Seams.Probability.finite_distribution_to_pmf_atom_le_one
+#print axioms JurisLean.Seams.Probability.finite_distribution_to_pmf_hasSum
+#print axioms JurisLean.Seams.Probability.finite_distribution_to_pmf_injective
+#print axioms JurisLean.Seams.Probability.finite_distribution_to_pmf_mem_support
+#print axioms JurisLean.Seams.Probability.finite_distribution_to_pmf_tsum
+#print axioms JurisLean.Seams.Probability.lossBasedData_facts
+#print axioms JurisLean.Seams.Probability.lossBasedData_overThirty
+#print axioms JurisLean.Seams.Probability.maliciousData_choose
+#print axioms JurisLean.Seams.Probability.maliciousData_clamp
+#print axioms JurisLean.Seams.Probability.maliciousData_floor
+#print axioms JurisLean.Seams.Probability.maliciousData_gate
+#print axioms JurisLean.Seams.Probability.otherGroundData_not_overThirty
+#print axioms JurisLean.Seams.Probability.overThirtyTest_true_iff
+#print axioms JurisLean.Seams.Probability.overThirtyThreshold_iff_excess
+#print axioms JurisLean.Seams.Probability.overThirtyThreshold_iff_intTest
+#print axioms JurisLean.Seams.Probability.posterior_readout_normalizes
+#print axioms JurisLean.Seams.Probability.priorReadout_eq_dirWeights_zero
+#print axioms JurisLean.Seams.Probability.prior_readout_normalizes
+#print axioms JurisLean.Seams.Probability.rationalMass_evMass
+#print axioms JurisLean.Seams.Probability.rationalMass_sum_eq_one
+#print axioms JurisLean.Seams.Probability.reductionFloor_le_agreed
+#print axioms JurisLean.Seams.Probability.reduction_admits_declared_conditions
+#print axioms JurisLean.Seams.Probability.selection_transport_from_shared_mechanism
+#print axioms JurisLean.Seams.Probability.shape_add_counts_pos
+#print axioms JurisLean.Seams.Probability.thirty_percent_rational_exact
+#print axioms JurisLean.Seams.Probability.threshold_does_not_determine_amount
+#print axioms JurisLean.Seams.Probability.threshold_does_not_force_the_finding
+#print axioms JurisLean.Seams.Probability.transport_boundary_needs_nesting
+#print axioms JurisLean.Seams.Probability.transport_regime_positivity
 #print axioms JurisLean.Seams.Representation.castUp_coverageFails
 #print axioms JurisLean.Seams.Representation.castUp_retraction_roundTrip
 #print axioms JurisLean.Seams.Representation.coverage_alone_has_no_inverse_roundtrip
@@ -1275,6 +1325,9 @@ open HornSystem
 #print axioms JurisLean.Seams.Uncertainty.xuc_conditioning_denominator_is_clean_mass
 #print axioms JurisLean.Seams.Uncertainty.xuc_out_at_two_one
 #print axioms JurisLean.Seams.Uncertainty.zero_radius_band_does_not_cover_other_inputs
+#print axioms JurisLean.Seams.unified_claim_is_not_general
+#print axioms JurisLean.Seams.unified_legal_derivation_on_declared_fragment
+#print axioms JurisLean.Seams.unified_model_is_not_vacuous
 
 /-! Generated external-port audit surface. Regenerate with
       scripts/ci/generate_probability_audit_surface.py --write

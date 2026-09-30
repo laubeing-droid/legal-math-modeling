@@ -39,6 +39,13 @@ MANDATE_MARKER = "Generated mandate-layer audit surface"
 EXTERNAL_MARKER = "Generated external-port audit surface"
 SEAMS_MARKER = "Generated seam-wave audit surface"
 
+# A seam file stays out of the audit surface until it has a build verdict of its own, because
+# naming its theorems is what gives a later full-release round something to read; naming them
+# from a red module would make the whole `AxiomAudit.lean` round fail for a reason that has
+# nothing to do with the axioms. `Seams/Probability.lean` left this holdout on 2026-10-01 after
+# run 36770138720 (subject c03663cb) built it green; `Seams/Unified.lean` (T2) left it the same
+# way once its own run returned.
+
 # (marker, directories, extra single files) -- each surface is one generated block.
 SURFACES = (
     (PROB_MARKER, ("FullMath/Probability",), ("BusinessRoot/Analytics.lean",)),
@@ -68,11 +75,11 @@ SURFACES = (
 # the audit driver itself red and burns a full-release run. Drop an entry as soon as that
 # module has a build verdict of its own.
 SURFACE_HOLDOUTS = {
-    "Seams/Probability.lean":
-        "S3 build red in the main session, under repair; its own CI module build pending",
     "Seams/FullProcess.lean":
-        "S6 untracked with no build verdict; importing an untracked file fails on a "
-        "fresh checkout, not only on this machine",
+        "S6 builds RED in the main session's serial clean window (8 error clusters, first "
+        "at :292 type mismatch under the trace induction); a repair lane owns the file. "
+        "It is tracked and committed at c03663cb -- the earlier reason, 'untracked', is "
+        "withdrawn: the file was restored from the committed snapshot after a lane deleted it.",
 }
 MARKER = PROB_MARKER
 
@@ -151,10 +158,25 @@ def render_block(names: list[str], marker: str) -> list[str]:
 def required_imports() -> list[str]:
     mods = [rel for _m, dirs, extras in SURFACES for dirn in dirs for rel in surface_modules(dirn)]
     mods += [rel for _m, _dirs, extras in SURFACES for rel in extras]
+    # Holdouts are filtered here as well as in `collect`. Naming is not the only way the audit
+    # driver can go red on a broken seam: an `import` has to elaborate the module, so importing
+    # a file that does not compile fails `AxiomAudit.lean` itself. The first version of this
+    # table only skipped the names, and the generator kept re-adding `import
+    # JurisLean.Seams.FullProcess` after it was deleted by hand -- which would have burned the
+    # next full-release round on S6's unrelated proof errors.
     return sorted(
         "import JurisLean." + rel[:-5].replace("/", ".")
         for rel in mods
+        if rel not in SURFACE_HOLDOUTS
     )
+
+
+def held_out_imports() -> set[str]:
+    """Import lines that name a held-out module, in package-relative form."""
+    return {
+        "import JurisLean." + rel[:-5].replace("/", ".")
+        for rel in SURFACE_HOLDOUTS
+    }
 
 
 def build(current: str) -> tuple[str, int]:
@@ -170,6 +192,11 @@ def build(current: str) -> tuple[str, int]:
     head = lines[:cut]
     while head and not head[-1].strip():
         head.pop()
+
+    # An import left by an earlier render must not outlive the holdout that removed its
+    # names: prune it here, or re-adding a holdout would still leave the driver red.
+    drop = held_out_imports()
+    head = [line for line in head if line.strip() not in drop]
 
     have = set(head)
     imports = [i for i in required_imports() if i not in have]

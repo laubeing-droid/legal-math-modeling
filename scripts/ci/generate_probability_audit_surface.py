@@ -38,6 +38,7 @@ PROB_MARKER = "Generated probability / expectation audit surface"
 MANDATE_MARKER = "Generated mandate-layer audit surface"
 EXTERNAL_MARKER = "Generated external-port audit surface"
 SEAMS_MARKER = "Generated seam-wave audit surface"
+BOUNDARY_MARKER = "Generated boundary-carrier audit surface"
 
 # A seam file stays out of the audit surface until it has a build verdict of its own, because
 # naming its theorems is what gives a later full-release round something to read; naming them
@@ -58,6 +59,16 @@ SURFACES = (
     # which is the "CI uploads the output but nobody reads it" defect the boundary
     # binding table records for the ⑤⑥ carriers.
     (SEAMS_MARKER, ("Seams",), ()),
+    # The ⑤ out-of-trunk and ⑥ carriers. These eight theorems are the ones
+    # `docs/master-plan/06_六类边界绑定表.md` claims are "具名入 AxiomAudit.lean", and they used
+    # to live there as 40 hand-written lines -- which `build()` silently destroyed: it truncates
+    # everything from the first marker line to EOF so the previous render can be rewritten, and
+    # the hand-written block sat after that marker. They vanished at 52361a7 and every audit
+    # round since (1853, 1949 targets) read the surface WITHOUT them, while the ledger kept
+    # asserting they were named. Naming them from source is the only fix that cannot be lost a
+    # second time: the renderer regenerates this block on every --write.
+    (BOUNDARY_MARKER, (), ("ReceiptAuthority.lean", "AuthorityLattice.lean",
+                           "TaintNoninterference.lean")),
     # The same-pin external ports (JurisLean/External/PROVENANCE.md) are quarantined
     # out of the release root until their own green build, and naming them here is
     # what gives that first build an axiom-audit verdict to return -- the same

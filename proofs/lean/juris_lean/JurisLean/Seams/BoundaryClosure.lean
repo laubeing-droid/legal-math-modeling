@@ -53,7 +53,9 @@ import JurisLean.AuthorityLattice
 ## §档位
 
 按 §三三档：类型层已实现（六条皆有载体）＋界定定理（封闭性）**片段强度已证、一般式未证**
-＋公理审计面（本文件的定理名尚未并入 `AxiomAudit`，属下一针施工；在此之前一律 `CI_NOT_RUN`）。
+＋公理审计面：本文件 37 条定理名由 `AxiomAudit.lean` 的**生成式 seam 面**具名（不是手写行，
+故不会被渲染器截掉）；其公理值的 CI 读数须绑定"含该具名"的那一轮全量线——
+具名不等于已读，已读不等于已证内容对真实法律成立。
 -/
 
 namespace JurisLean.Seams.BoundaryClosure

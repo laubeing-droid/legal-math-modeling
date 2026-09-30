@@ -2038,6 +2038,24 @@
     "JurisLean.Seams.unified_claim_is_not_general",
     "JurisLean.Seams.unified_legal_derivation_on_declared_fragment",
     "JurisLean.Seams.unified_model_is_not_vacuous",
+    "JurisLean.all_clean_inputs_clean_output",
+    "JurisLean.authority_strictly_ordered",
+    "JurisLean.consensus_does_not_escalate",
+    "JurisLean.escalation_requires_rank_increase",
+    "JurisLean.human_review_not_formal_input",
+    "JurisLean.join_clean_clean",
+    "JurisLean.join_with_tainted_is_tainted",
+    "JurisLean.majority_cannot_clean",
+    "JurisLean.no_auto_escalation",
+    "JurisLean.proposal_cannot_issue_attestation",
+    "JurisLean.proposal_cannot_issue_certificate",
+    "JurisLean.proposal_cannot_issue_decision_status",
+    "JurisLean.repetition_does_not_clean",
+    "JurisLean.skipping_receipt_invalid",
+    "JurisLean.stage_preserves_taint",
+    "JurisLean.tainted_input_taints_collection",
+    "JurisLean.tainted_not_promoted_to_clean",
+    "JurisLean.valid_receipt_strict_step",
     "Math.Coupling.hasCoupling_proj_iff_map_eq",
     "Math.Optimization.LocalGlobal.all_nonpos_of_weighted_pospart_fixedPoint",
     "Math.Optimization.LocalGlobal.isFixedPoint_of_eq",
@@ -2503,8 +2521,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "77b2079e4c8da17a549465fb095858bb9d48fb3bd14882a26ce4bc99c0410843",
-   "size_bytes": 133754,
+   "sha256": "819f3a31df64370c7b9581ea08cbc7b6b5f668ffa3eae709e25a4728cadf8166",
+   "size_bytes": 135038,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -22980,8 +22998,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/BoundaryClosure.lean",
    "print_axioms_targets": [],
-   "sha256": "44b5907d0f6450e4c89b287145e0f2df0b8d7c7d7f6499a7ee63088c49ede474",
-   "size_bytes": 34512,
+   "sha256": "1456a0865a02145154fc73a0db09b739138523f2f8fb4f3290e07bb88050604e",
+   "size_bytes": 34689,
    "theorem_count": 37,
    "theorem_count_bol_convention": 37
   },
@@ -29950,8 +29968,8 @@
    "counted_declaration_count": 3346,
    "file_count": 311,
    "lemma_count": 141,
-   "print_axioms_command_count": 2212,
-   "print_axioms_distinct_targets": 2158,
+   "print_axioms_command_count": 2230,
+   "print_axioms_distinct_targets": 2176,
    "theorem_count": 3205,
    "theorem_count_bol_convention": 3109
   },
@@ -29959,8 +29977,8 @@
    "counted_declaration_count": 3327,
    "file_count": 296,
    "lemma_count": 134,
-   "print_axioms_command_count": 2212,
-   "print_axioms_distinct_targets": 2158,
+   "print_axioms_command_count": 2230,
+   "print_axioms_distinct_targets": 2176,
    "theorem_count": 3193,
    "theorem_count_bol_convention": 3097
   },
@@ -30626,19 +30644,28 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "7706fcf8736007c1a8b4927447958a6164e65b6553a3c3705cf0440d5b9821f5",
+ "source_inventory_digest": "b0b210670c3733d48f30ef16553e56ce3827b290d9b5b22342f9590383a736aa",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "4c878aed4bf65140bd4787a52038eb802b7f99c9",
-  "tree": "b211e1adab245f65eea4d0d5c1b1a7693c0a5c65"
+  "commit": "9ab15017ad9f8a7ccb8ae56cd240bead5764bde4",
+  "tree": "de368675f6dcccfcb77b434a5f43bf171a5e0d2a"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Seams/BoundaryClosure.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 311,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

@@ -1427,6 +1427,30 @@ open HornSystem
 #print axioms JurisLean.Seams.unified_legal_derivation_on_declared_fragment
 #print axioms JurisLean.Seams.unified_model_is_not_vacuous
 
+/-! Generated boundary-carrier audit surface. Regenerate with
+      scripts/ci/generate_probability_audit_surface.py --write
+    These declarations are elaborated by the all-module CI plan but were
+    absent from the release audit surface; the block is generated from the
+    declaration sites, so it cannot name a theorem that does not exist. -/
+#print axioms JurisLean.all_clean_inputs_clean_output
+#print axioms JurisLean.authority_strictly_ordered
+#print axioms JurisLean.consensus_does_not_escalate
+#print axioms JurisLean.escalation_requires_rank_increase
+#print axioms JurisLean.human_review_not_formal_input
+#print axioms JurisLean.join_clean_clean
+#print axioms JurisLean.join_with_tainted_is_tainted
+#print axioms JurisLean.majority_cannot_clean
+#print axioms JurisLean.no_auto_escalation
+#print axioms JurisLean.proposal_cannot_issue_attestation
+#print axioms JurisLean.proposal_cannot_issue_certificate
+#print axioms JurisLean.proposal_cannot_issue_decision_status
+#print axioms JurisLean.repetition_does_not_clean
+#print axioms JurisLean.skipping_receipt_invalid
+#print axioms JurisLean.stage_preserves_taint
+#print axioms JurisLean.tainted_input_taints_collection
+#print axioms JurisLean.tainted_not_promoted_to_clean
+#print axioms JurisLean.valid_receipt_strict_step
+
 /-! Generated external-port audit surface. Regenerate with
       scripts/ci/generate_probability_audit_surface.py --write
     These declarations are elaborated by the all-module CI plan but were

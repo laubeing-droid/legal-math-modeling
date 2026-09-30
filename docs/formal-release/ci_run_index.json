@@ -6698,7 +6698,7 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
-        "docs/master-plan/06_六类边界绑定表.md:112",
+        "docs/master-plan/06_六类边界绑定表.md:149",
         "docs/master-plan/07_四问法律代拟卷_20261001.md:15",
         "docs/master-plan/08_档位变更申请表_20261001.md:38",
         "docs/master-plan/09_法律统一数学模型_20261001.md:83",
@@ -6767,7 +6767,7 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
-        "docs/master-plan/06_六类边界绑定表.md:112",
+        "docs/master-plan/06_六类边界绑定表.md:149",
         "docs/master-plan/09_法律统一数学模型_20261001.md:84",
         "docs/master-plan/10_各针交付说明_20261001.md:117",
         "docs/master-plan/10_各针交付说明_20261001.md:145"
@@ -7849,7 +7849,9 @@
       "jobs_total": 8,
       "name": "chore(index): refetch quoted run ids; patch the fourth paper figure t…",
       "quoted_by": [
-        "docs/master-plan/06_六类边界绑定表.md:113",
+        "docs/master-plan/06_六类边界绑定表.md:119",
+        "docs/master-plan/06_六类边界绑定表.md:130",
+        "docs/master-plan/06_六类边界绑定表.md:150",
         "docs/master-plan/06_六类边界绑定表.md:72",
         "docs/master-plan/06_六类边界绑定表.md:75",
         "docs/master-plan/06_六类边界绑定表.md:97",
@@ -7857,6 +7859,7 @@
         "docs/master-plan/08_档位变更申请表_20261001.md:91",
         "docs/master-plan/09_法律统一数学模型_20261001.md:110",
         "docs/master-plan/09_法律统一数学模型_20261001.md:115",
+        "docs/master-plan/10_各针交付说明_20261001.md:430",
         "docs/paper-rewrite/paper_cn.md:23",
         "docs/paper-rewrite/paper_en.md:19"
       ],
@@ -7864,6 +7867,68 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-09-30T20:56:25Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-09-30T21:26:30Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/36779439128/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "9ab15017ad9f8a7ccb8ae56cd240bead5764bde4",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36779439128",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "docs(C3): P-066 carrier status corrected -- S7 is green, promoted and…",
+      "quoted_by": [
+        "docs/master-plan/10_各针交付说明_20261001.md:431"
+      ],
+      "run_id": 36779439128,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-09-30T21:36:55Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

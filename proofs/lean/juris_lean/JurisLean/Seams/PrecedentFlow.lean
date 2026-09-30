@@ -146,9 +146,6 @@ S7（L4 判例流 → L1/L6 规范层回流缝合件）—— 前例驱动的 `V
 
 namespace JurisLean.Seams.PrecedentFlow
 
-open JurisLean.Genealogy.Part1 (P019)
-open JurisLean.Genealogy.Part4 (P066)
-
 section AuthorizationCarrier
 
 /-- 中文说明：**[代拟稿]** 续造主体。枚举是本件的构造，不代表任何机关认定。 -/
@@ -180,15 +177,15 @@ deriving DecidableEq, Repr
     以及"能力 Können ≠ 许可 Dürfen"。构造子只有一条（最高法 × 指导性案例程序 × 全国范围），
     其余四元组因此是空类型——这正是下面类型层拒绝成立的原因。
     缺口种类复用台账 `P066.GapSignal`（`Genealogy/Part4.lean:265`），本件不重定义缺口。 -/
-inductive Competence : Actor → Procedure → P066.GapSignal → Scope → Type where
-  | guidingCaseFill (g : P066.GapSignal) :
+inductive Competence : Actor → Procedure → Genealogy.Part4.P066.GapSignal → Scope → Type where
+  | guidingCaseFill (g : Genealogy.Part4.P066.GapSignal) :
       Competence .supremeCourt .guidingCaseProcedure g .nationwide
 
 /-- 中文说明：**续造产出的四元组声明**加规范编号（(D) 的输入侧，也是 (A) 决策的载荷）。 -/
 structure BackflowProduction where
   actor : Actor
   procedure : Procedure
-  gap : P066.GapSignal
+  gap : Genealogy.Part4.P066.GapSignal
   scope : Scope
   content : LegalId .norm
 
@@ -219,7 +216,7 @@ structure VersionEnv where
     是否触发回流由 `updateFires` 读 `bindingEffect` 决定。 -/
 structure PrecedentDecision where
   production : BackflowProduction
-  binding : P019.PrecedentBinding
+  binding : Genealogy.Part1.P019.PrecedentBinding
   distinguishingReason : Bool
   newSnapshot : LegalId .snapshot
   newRecord : SourceVersionRecord
@@ -237,8 +234,8 @@ structure AuthorizedDecision where
     `mayReference` 或已被区分时为 `false`。判定完全由 P-019 的 `bindingEffect`
     （`Genealogy/Part1.lean:154`）给出，本件不自立效力标准。 -/
 def updateFires (d : PrecedentDecision) : Bool :=
-  match P019.bindingEffect d.binding d.distinguishingReason with
-  | .shouldFollow => true
+  match Genealogy.Part1.P019.bindingEffect d.binding d.distinguishingReason with
+  | Genealogy.Part1.P019.BindingEffect.shouldFollow => true
   | _ => false
 
 /-- 中文说明：快照是否在被取代名单里（按 payload 比较，不引入新的序关系）。 -/
@@ -304,24 +301,6 @@ theorem update_versions_silent (ad : AuthorizedDecision) (E : VersionEnv)
     (hh : updateFires ad.decision ≠ true) : (precedentUpdate ad E).versions = E.versions := by
   rw [update_is_noop_when_silent ad E hh]
 
-/-- 中文说明：取代动作保持区间良态——只改 `status`，而 `intervalValid`
-    （`TemporalApplicability.lean:55`）只看 `effectiveFrom / effectiveTo`。 -/
-theorem intervalValid_supersedeRecord (d : PrecedentDecision) (v : SourceVersionRecord)
-    (hv : SourceVersionRecord.intervalValid v) :
-    SourceVersionRecord.intervalValid (supersedeRecord d v) := by
-  unfold supersedeRecord
-  split
-  · split <;> assumption
-  · assumption
-
-/-- 中文说明：取代动作不改快照。 -/
-theorem supersedeRecord_snapshot (d : PrecedentDecision) (v : SourceVersionRecord) :
-    (supersedeRecord d v).snapshot = v.snapshot := by
-  unfold supersedeRecord
-  split
-  · split <;> rfl
-  · rfl
-
 /-- 中文说明：未命中名单的记录不被改写。 -/
 theorem supersedeRecord_keeps_unhit (d : PrecedentDecision) (v : SourceVersionRecord)
     (hh : hitsSupersession d v ≠ true) : supersedeRecord d v = v := by
@@ -332,11 +311,9 @@ theorem supersedeRecord_keeps_unhit (d : PrecedentDecision) (v : SourceVersionRe
 theorem supersedeRecord_keeps_nonActive (d : PrecedentDecision) (v : SourceVersionRecord)
     (ha : v.status ≠ VersionStatus.active) : supersedeRecord d v = v := by
   unfold supersedeRecord
-  split
-  · split
-    · contradiction
-    · rfl
-  · rfl
+  by_cases hh : hitsSupersession d v = true
+  · rw [if_pos hh, if_neg ha]
+  · rw [if_neg hh]
 
 /-- 中文说明：命中且原本 active 的记录被降为 `superseded`。 -/
 theorem supersedeRecord_drops_hit_active (d : PrecedentDecision) (v : SourceVersionRecord)
@@ -344,6 +321,29 @@ theorem supersedeRecord_drops_hit_active (d : PrecedentDecision) (v : SourceVers
     supersedeRecord d v = { v with status := VersionStatus.superseded } := by
   unfold supersedeRecord
   rw [if_pos hh, if_pos ha]
+
+/-- 中文说明：取代动作保持区间良态——只改 `status`，而 `intervalValid`
+    （`TemporalApplicability.lean:55`）只看 `effectiveFrom / effectiveTo`。 -/
+theorem intervalValid_supersedeRecord (d : PrecedentDecision) (v : SourceVersionRecord)
+    (hv : SourceVersionRecord.intervalValid v) :
+    SourceVersionRecord.intervalValid (supersedeRecord d v) := by
+  by_cases hh : hitsSupersession d v = true
+  · by_cases ha : v.status = VersionStatus.active
+    · rw [supersedeRecord_drops_hit_active d v hh ha]
+      exact hv
+    · rw [supersedeRecord_keeps_nonActive d v ha]
+      exact hv
+  · rw [supersedeRecord_keeps_unhit d v hh]
+    exact hv
+
+/-- 中文说明：取代动作不改快照。 -/
+theorem supersedeRecord_snapshot (d : PrecedentDecision) (v : SourceVersionRecord) :
+    (supersedeRecord d v).snapshot = v.snapshot := by
+  by_cases hh : hitsSupersession d v = true
+  · by_cases ha : v.status = VersionStatus.active
+    · rw [supersedeRecord_drops_hit_active d v hh ha]
+    · rw [supersedeRecord_keeps_nonActive d v ha]
+  · rw [supersedeRecord_keeps_unhit d v hh]
 
 /-- 中文说明：取代动作的两分支穷尽形态：要么原样，要么降为 `superseded`。 -/
 theorem supersedeRecord_status_dichotomy (d : PrecedentDecision) (v : SourceVersionRecord) :
@@ -392,19 +392,22 @@ theorem update_preserves_invalidated_records (E : VersionEnv) (ad : AuthorizedDe
     (h : v.status = VersionStatus.retracted ∨ v.status = VersionStatus.superseded) :
     ∃ w ∈ (precedentUpdate ad E).versions,
       w.snapshot = v.snapshot ∧ ¬ versionApplicableAt w t := by
-  refine ⟨supersedeRecord ad.decision v, ?_, supersedeRecord_snapshot ad.decision v, ?_⟩
-  · by_cases hh : updateFires ad.decision = true
+  by_cases hh : updateFires ad.decision = true
+  · refine ⟨supersedeRecord ad.decision v, ?_, supersedeRecord_snapshot ad.decision v, ?_⟩
     · rw [update_versions_fires ad E hh]
-      exact List.mem_map.mpr ⟨v, hv, rfl⟩
-    · rw [update_versions_silent ad E hh]
-      exact hv
-  · cases supersedeRecord_status_dichotomy ad.decision v with
-    | inl heq =>
-      rw [heq]
-      cases h with
-      | inl hr => exact retracted_source_invalidates v t hr
-      | inr hs => exact superseded_source_invalidates v t hs
-    | inr hst => exact superseded_source_invalidates _ t hst
+      exact List.mem_cons.mpr (Or.inr (List.mem_map.mpr ⟨v, hv, rfl⟩))
+    · cases supersedeRecord_status_dichotomy ad.decision v with
+      | inl heq =>
+        rw [heq]
+        cases h with
+        | inl hr => exact retracted_source_invalidates v t hr
+        | inr hs => exact superseded_source_invalidates v t hs
+      | inr hst => exact superseded_source_invalidates _ t hst
+  · rw [update_versions_silent ad E hh]
+    refine ⟨v, hv, rfl, ?_⟩
+    cases h with
+    | inl hr => exact retracted_source_invalidates v t hr
+    | inr hs => exact superseded_source_invalidates v t hs
 
 /-- 中文说明：被改写记录在更新后确实**不可适用**，状态为 `superseded`
     （旧证书失去效力；失效判定仍复用仓内 `:92`）。 -/
@@ -416,7 +419,7 @@ theorem update_touched_record_invalid (E : VersionEnv) (ad : AuthorizedDecision)
         ¬ versionApplicableAt w t := by
   have hmem : supersedeRecord ad.decision v ∈ (precedentUpdate ad E).versions := by
     rw [update_versions_fires ad E hfire]
-    exact List.mem_map.mpr ⟨v, hv.1, rfl⟩
+    exact List.mem_cons.mpr (Or.inr (List.mem_map.mpr ⟨v, hv.1, rfl⟩))
   have hstat : (supersedeRecord ad.decision v).status = VersionStatus.superseded := by
     rw [supersedeRecord_drops_hit_active ad.decision v hv.2.1 hv.2.2]
   have hsnap : (supersedeRecord ad.decision v).snapshot = v.snapshot := by
@@ -432,7 +435,7 @@ theorem update_introduces_applicable_record (E : VersionEnv) (ad : AuthorizedDec
     ∃ w ∈ (precedentUpdate ad E).versions, versionApplicableAt w t := by
   refine ⟨ad.decision.newRecord, ?_, ht, hwf.newRecordActive⟩
   rw [update_versions_fires ad E hfire]
-  exact List.mem_cons_self _ _
+  exact List.mem_cons_self
 
 /-- 中文说明：**本件主定理（A）**：授权前例驱动的 `V → V'` 保持既有已声明的结构——
     区间良态、supersession 边非自指、失效记录继续失效。
@@ -619,7 +622,10 @@ theorem update_changes_applicable_roster :
     applicableVersions envOld tSwap ≠
       applicableVersions (precedentUpdate demoAuthorized envOld) tSwap := by
   intro h
-  exact update_is_not_noop (congrArg applicableEffectiveFroms h)
+  rw [applicable_at_swap_before, applicable_at_swap_after] at h
+  have h2 : ([0] : List Int) = [50] :=
+    congrArg (fun l : List SourceVersionRecord => l.map SourceVersionRecord.effectiveFrom) h
+  exact absurd h2 (by decide)
 
 /-- 中文说明：**（B）的可数形式**：同一更新使可适用版本数由 1 变 0。 -/
 theorem update_changes_applicable_count :
@@ -671,7 +677,7 @@ theorem backflowIter_period_two :
   | succ k ih =>
       intro b
       have h1 : (k + 1 + 2 : Nat) = (k + 2) + 1 := by omega
-      rw [h1, backflowIter_succ, ih]
+      rw [h1, backflowIter_succ, ih, backflowIter_succ]
 
 /-- 中文说明：取反保持不等（两点空间上显然，写成引理供迭代归纳复用）。 -/
 theorem backflowStep_ne {x y : Bool} (h : x ≠ y) : backflowStep x ≠ backflowStep y := by
@@ -745,7 +751,10 @@ theorem backflowSetStep_not_mono :
   have hsub : backflowSetStep (∅ : Finset Bool) ⊆ backflowSetStep ({true} : Finset Bool) :=
     hall (∅ : Finset Bool) ({true} : Finset Bool) (Finset.empty_subset _)
   rw [h1, h2] at hsub
-  exact Finset.not_mem_empty true (hsub (Finset.mem_singleton.mpr (rfl : (true : Bool) = true)))
+  have hcard : (({true} : Finset Bool)).card ≤ (∅ : Finset Bool).card :=
+    Finset.card_le_card hsub
+  simp only [Finset.card_singleton, Finset.card_empty] at hcard
+  exact absurd hcard (by omega)
 
 /-- 中文说明：**既有迭代机器表达不了反单调回流**（(C) 的对照定理）：不存在以 `backflowSetStep`
     为 `step` 字段的 `FiniteMonotoneSystem Bool`——被违反的正是
@@ -757,7 +766,7 @@ theorem backflowSetStep_not_a_system :
   rintro ⟨sys, hsys⟩
   refine backflowSetStep_not_mono ?_
   intro S T hST
-  rw [← hsys, ← hsys]
+  rw [← hsys]
   exact sys.step_monotone hST
 
 end BackflowNonConvergence
@@ -766,7 +775,7 @@ section CompetenceRejection
 
 /-- 中文说明：见证的形状——任何见证的主体必为最高法、程序必为指导性案例程序、范围必为全国。
     这是构造子集合的**穷尽性读数**，不是法律论证。 -/
-theorem competence_shape {a : Actor} {p : Procedure} {g : P066.GapSignal} {s : Scope}
+theorem competence_shape {a : Actor} {p : Procedure} {g : Genealogy.Part4.P066.GapSignal} {s : Scope}
     (c : Competence a p g s) :
     a = Actor.supremeCourt ∧ p = Procedure.guidingCaseProcedure ∧ s = Scope.nationwide := by
   cases c with
@@ -814,7 +823,7 @@ theorem backflow_entry_is_not_vacuous : Nonempty NormLayerEntry :=
 theorem unauthorized_production_has_no_update_input (pr : BackflowProduction)
     (hpr : ¬ authorized pr) :
     ¬ ∃ (ad : AuthorizedDecision), ad.decision.production = pr := by
-  rintro ⟨ad, had⟩
+  rintro ⟨ad, rfl⟩
   exact hpr ⟨ad.witness⟩
 
 end CompetenceRejection
@@ -835,15 +844,21 @@ theorem observation_gate_does_not_determine_effectivity :
       ¬ observationAllowed v.publicationDay asOfDay ∧ effectiveAt v t := by
   refine ⟨pubLaterV, 60, 50, ?_, ?_⟩
   · exact future_information_blocked 100 50 (by omega)
-  · exact ⟨by omega, trivial⟩
+  · show (0 : Int) ≤ 60 ∧ True
+    exact ⟨by omega, True.intro⟩
 
 /-- 中文说明：**（E）界限二（本载体的已知缺口）**：`versionApplicableAt` 只读生效区间与状态，
     **从不读 `publicationDay`**。于是"前例更晚才存在"（公布日在 `t` 之后）与
     "前例在 `t` 可适用"可以同时成立。这条把缺口钉成定理，**不是**修复它：要堵它需给适用判定
     增加"公布/作出时点"这一参与条件，那是独立目标，也不涉及四种时间表示的统一。 -/
 theorem late_publication_still_effective_in_interval :
-    ∃ (v : SourceVersionRecord) (t : Int), versionApplicableAt v t ∧ t < v.publicationDay :=
-  ⟨pubLaterV, 60, ⟨⟨by omega, trivial⟩, rfl⟩, by omega⟩
+    ∃ (v : SourceVersionRecord) (t : Int), versionApplicableAt v t ∧ t < v.publicationDay := by
+  refine ⟨pubLaterV, 60, ?_, ?_⟩
+  · refine ⟨⟨?_, True.intro⟩, rfl⟩
+    show (0 : Int) ≤ 60
+    omega
+  · show (60 : Int) < 100
+    omega
 
 /-- 中文说明：**（E）界限三**：更新引入的新版本，对早于其生效起点的时点**不适用**
     （复用仓内 `before_effective_interval_not_effective`，`TemporalApplicability.lean:73`）——
@@ -858,7 +873,7 @@ theorem update_does_not_reach_before_effective_from (E : VersionEnv) (ad : Autho
     not_applicable_of_not_effective _ _
       (before_effective_interval_not_effective _ _ ht)⟩
   rw [update_versions_fires ad E hfire]
-  exact List.mem_cons_self _ _
+  exact List.mem_cons_self
 
 end TimeBoundary
 

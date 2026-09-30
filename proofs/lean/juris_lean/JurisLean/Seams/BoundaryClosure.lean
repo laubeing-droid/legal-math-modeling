@@ -49,13 +49,25 @@ import JurisLean.AuthorityLattice
   不是 `ConsensusOp` 的生成方式，其无效性由主干 `no_auto_escalation` 单独陈述。
 - ⑥：`TaintPipeline` 只枚举 input / stage / merge / resubmit 四条传播路径；
   真实多 Agent 运行期的其它传播路径（缓存、重试计数器、外部日志回填）不在族内。
+  本轮补齐反向**之后**仍未覆盖的是另一条主张：池里**每个**元素都由族内路径引入
+  （§六为⑥要求的运行期溯源精化），本文件不声称。`taintOfInputs_eq_tainted_iff` 与
+  `carriesTaint_iff_exists_tainted_in_inputs` 只到"池中存在受污元素"这一层，
+  该层的反向确实不需要溯源精化，但也不因此获得"池与族同源"的更强结论。
 
 ## §档位
 
 按 §三三档：类型层已实现（六条皆有载体）＋界定定理（封闭性）**片段强度已证、一般式未证**
-＋公理审计面：本文件 37 条定理名由 `AxiomAudit.lean` 的**生成式 seam 面**具名（不是手写行，
-故不会被渲染器截掉）；其公理值的 CI 读数须绑定"含该具名"的那一轮全量线——
+＋公理审计面：本文件 43 条定理名中的原 37 条由 `AxiomAudit.lean` 的**生成式 seam 面**具名
+（`:913-949`，不是手写行，故不会被渲染器截掉）；其公理值的 CI 读数须绑定"含该具名"的那一轮全量线——
 具名不等于已读，已读不等于已证内容对真实法律成立。
+本轮新增的 6 条（⑥的反向封闭性与两条充要式）**尚未进入该具名面**：本文件不改审计面，
+故这 6 条的公理读数是 `CI_NOT_RUN`，须由 `AxiomAudit.lean` 一侧另轮收录后方可报，
+在此之前任何"新条已过公理审计"的说法都不成立。
+档位内的实际变化要写实：⑥ 在**片段强度档内**已由单向封闭升为对全体族成员的充要刻画
+（`carriesTaint_iff_taintOfInputs_tainted`），其余五条仍是单向封闭性；
+六条在 §三第 2 档（整条调用链上没有任何写法能绕过该要求）仍**全部未证**，
+`delimitation_is_not_general` 交出的族外洗白函数不因本轮改变，
+⑥ 的充要式也不得读成"六类失真在全部代码中无法表达"。
 -/
 
 namespace JurisLean.Seams.BoundaryClosure
@@ -455,6 +467,18 @@ theorem joinTaint_assoc (a b c : Taint) :
     joinTaint (joinTaint a b) c = joinTaint a (joinTaint b c) := by
   cases a <;> cases b <;> cases c <;> rfl
 
+/-- 中文说明：join 取到 `tainted` 的**拆分方向** —— 主干 `join_with_tainted_is_tainted`
+（`TaintNoninterference.lean:43`）只给了"任一 tainted 即 tainted"；本条补出另一半：
+join 等于 `tainted` 时两侧不可能都是 `clean`。
+四条生成情形（`Taint` 是二构造子格）逐支以 `joinTaint` 的定义等式闭合，**对全体 `Taint` 成立**。 -/
+theorem joinTaint_eq_tainted_iff (a b : Taint) :
+    joinTaint a b = .tainted ↔ a = .tainted ∨ b = .tainted := by
+  cases a <;> cases b
+  · exact ⟨fun h => Or.inl h, fun h => h.elim (fun x => x) (fun x => x)⟩
+  · exact ⟨fun h => Or.inr h, fun _ => rfl⟩
+  · exact ⟨fun h => Or.inl h, fun _ => rfl⟩
+  · exact ⟨fun h => Or.inl h, fun _ => rfl⟩
+
 /-- 中文说明：主干 `taintOfInputs`（`TaintNoninterference.lean:30-32`）的两条计算式。 -/
 theorem taintOfInputs_nil : taintOfInputs ([] : List FormalInput) = .clean := rfl
 
@@ -478,6 +502,42 @@ theorem taintOfInputs_append (xs ys : List FormalInput) :
 theorem taintOfInputs_snoc (xs : List FormalInput) (y : FormalInput) :
     taintOfInputs (xs ++ [y]) = joinTaint (taintOfInputs xs) y.taint := by
   rw [taintOfInputs_append, taintOfInputs_cons, taintOfInputs_nil, joinTaint_clean_right]
+
+/-- 中文说明（⑥·**池成员刻画的一般式**）：主干 `taintOfInputs` 取到 `tainted`
+**当且仅当**列表里确实存在一个 `taint = tainted` 的元素。
+量化域是**全体** `List FormalInput`，不限于 `TaintPipeline` 生成的池；
+证明是列表归纳，`cons` 两支各用上一条 `joinTaint_eq_tainted_iff` 把 join 拆开，
+`nil` 两支复用本文件的 `taintOfInputs_nil` 与核心 `List.not_mem_nil`。
+诚实边界：本条说的是"池中**存在**受污元素"，与"池中每个元素都由族内路径引入"
+（§六为⑥要求的运行期溯源精化）是两件事，本条不给出后者。 -/
+theorem taintOfInputs_eq_tainted_iff (xs : List FormalInput) :
+    taintOfInputs xs = .tainted ↔ ∃ x ∈ xs, x.taint = .tainted := by
+  induction xs with
+  | nil =>
+      refine ⟨fun h => absurd (taintOfInputs_nil.symm.trans h) ?_, fun h => ?_⟩
+      · intro hc
+        cases hc
+      · obtain ⟨x, hx, _⟩ := h
+        exact absurd hx List.not_mem_nil
+  | cons y ys ih =>
+      refine ⟨?_, ?_⟩
+      · intro h
+        have hjoin : joinTaint y.taint (taintOfInputs ys) = .tainted := h
+        cases (joinTaint_eq_tainted_iff y.taint (taintOfInputs ys)).mp hjoin with
+        | inl hy => exact ⟨y, List.mem_cons_self, hy⟩
+        | inr hh =>
+            obtain ⟨x, hx, ht⟩ := ih.mp hh
+            exact ⟨x, List.mem_cons_of_mem y hx, ht⟩
+      · intro h
+        obtain ⟨x, hx, ht⟩ := h
+        show joinTaint y.taint (taintOfInputs ys) = .tainted
+        cases (List.eq_or_mem_of_mem_cons hx) with
+        | inl heq =>
+            rw [heq] at ht
+            exact (joinTaint_eq_tainted_iff y.taint (taintOfInputs ys)).mpr (Or.inl ht)
+        | inr hym =>
+            exact (joinTaint_eq_tainted_iff y.taint (taintOfInputs ys)).mpr
+              (Or.inr (ih.mpr ⟨x, hym, ht⟩))
 
 /-- 中文说明：界定定理⑥的声明操作族 —— §六要求"把 stage 集合形式化为归纳类"，即此族：
 注入一个形式输入、施加一次推导阶段（Horn / AAF / solver 的统一抽象）、
@@ -560,8 +620,12 @@ theorem taintOfInputs_of_carriesTaint {p : TaintPipeline} (h : CarriesTaint p) :
   rw [← poolTaint_eq_taintOfInputs]
   exact closure_boundary6_taint_never_cleaned h
 
-/-- 中文说明：受污源一定出现在输入池里（传播类与池的相容性；反向不收录，
-因为"池中每个元素都由族内路径引入"需要运行期溯源精化）。 -/
+/-- 中文说明：受污源一定出现在输入池里（传播类与池的相容性·正向）。
+本条原先附带的"反向不收录，因为'池中每个元素都由族内路径引入'需要运行期溯源精化"
+这句登记**已被本轮的 `carriesTaint_of_taintOfInputs_tainted` 与
+`taintOfInputs_eq_tainted_iff` 取代**：反向要证的是"池中存在一个受污元素"，
+该前提用不上溯源精化，两支列表归纳即够。
+仍未覆盖的是另一个主张——"池中**每个**元素都由族内路径引入"，本文件不声称（见 §未覆盖片段）。 -/
 theorem exists_tainted_in_inputs {p : TaintPipeline} (h : CarriesTaint p) :
     ∃ x ∈ p.inputs, x.taint = .tainted := by
   induction h with
@@ -578,6 +642,70 @@ theorem exists_tainted_in_inputs {p : TaintPipeline} (h : CarriesTaint p) :
   | viaResubmit p' hp ih =>
       obtain ⟨x, hx, ht⟩ := ih
       exact ⟨x, List.mem_append.mpr (Or.inl hx), ht⟩
+
+/-- 中文说明（界定定理⑥·**反向封闭性**，本文件此前缺的那一半）：
+根污点为 `tainted` 的族成员，其污染必然是沿本族承认的四条路径之一进来的。
+证明是 `TaintPipeline` 上的**结构归纳**（对族成员归纳，而非对 `CarriesTaint` 归纳），
+四条生成方式各一支：`input` 交 `injected`；`stage` 与 `resubmit` 用 `poolTaint` 的
+不动点性（二者定义上就是把根污点原样传递）；`merge` 一支用 `joinTaint_eq_tainted_iff`
+把 `joinTaint = tainted` 拆到左支或右支，再交给对应的归纳假设。
+与 `closure_boundary6_taint_never_cleaned` 合起来即
+`CarriesTaint p ↔ p.poolTaint = .tainted`：本条不是主文的换向复读，
+而是钉住"归纳传播类"与"污点格 join"两个**独立定义**的重合。
+**对全体族成员成立**（`p` 任意，无附加前提）。
+本条只对该归纳族封闭；族外的写法未被排除（见 `delimitation_is_not_general`）。 -/
+theorem carriesTaint_of_poolTaint_tainted (p : TaintPipeline) :
+    p.poolTaint = .tainted → CarriesTaint p := by
+  induction p with
+  | input x =>
+      intro h
+      exact CarriesTaint.injected x h
+  | stage q c ih =>
+      intro h
+      exact CarriesTaint.viaStage q c (ih h)
+  | merge q r ihq ihr =>
+      intro h
+      have hjoin : joinTaint q.poolTaint r.poolTaint = .tainted := h
+      cases (joinTaint_eq_tainted_iff q.poolTaint r.poolTaint).mp hjoin with
+      | inl hq => exact CarriesTaint.viaMergeLeft q r (ihq hq)
+      | inr hr => exact CarriesTaint.viaMergeRight q r (ihr hr)
+  | resubmit q ih =>
+      intro h
+      exact CarriesTaint.viaResubmit q (ih h)
+
+/-- 中文说明（⑥·反向主文，任务要求的缺失半条）：主干度量下的总污点为 `tainted`
+即推出族内受污。证明只走本文件已钉住的桥 `poolTaint_eq_taintOfInputs`
+与上一条结构归纳，**不需要**运行期溯源精化。
+**对全体 `p : TaintPipeline` 成立**，不是某个具体流水线的例子。
+本条只对该归纳族封闭；族外的写法未被排除。 -/
+theorem carriesTaint_of_taintOfInputs_tainted (p : TaintPipeline)
+    (h : taintOfInputs p.inputs = .tainted) : CarriesTaint p :=
+  carriesTaint_of_poolTaint_tainted p ((poolTaint_eq_taintOfInputs p).trans h)
+
+/-- 中文说明（界定定理⑥·**全族刻画**）：受污传播类与主干总污点函数**互为充要**。
+正向是既有主文 `taintOfInputs_of_carriesTaint`，反向是 `carriesTaint_of_taintOfInputs_tainted`；
+本条把两条合一登记，读法是"族内 `CarriesTaint` 恰好等于池上 join 为 tainted"，
+即污染既不会被族内运算洗掉，也不会无来源地出现在池里。
+**对全体 `p : TaintPipeline` 成立**。
+诚实边界：这只是**片段强度**档内的全族刻画，
+不是 §三第 2 档要求的"整条调用链上没有任何写法能绕过⑥"——后者仍**未证**，
+且由 `delimitation_is_not_general` 给出族外洗白函数的存在性；族外路径（缓存、重试计数器、
+外部日志回填）不在 `TaintPipeline` 的四条生成方式内。 -/
+theorem carriesTaint_iff_taintOfInputs_tainted (p : TaintPipeline) :
+    CarriesTaint p ↔ taintOfInputs p.inputs = .tainted :=
+  ⟨taintOfInputs_of_carriesTaint, carriesTaint_of_taintOfInputs_tainted p⟩
+
+/-- 中文说明（⑥·池成员形的**充要式**）：把 `exists_tainted_in_inputs`（正向）
+与其反向合并 —— 受污源存在于池中 ⟺ 该流水线按族内路径受污。
+反向链是 `taintOfInputs_eq_tainted_iff`（对全体列表成立的一般式）
+加上 `carriesTaint_of_taintOfInputs_tainted`。
+**对全体 `p : TaintPipeline` 成立**。
+本条只对该归纳族封闭；族外的写法未被排除，"池中每个元素都由族内引入"亦未被声称。 -/
+theorem carriesTaint_iff_exists_tainted_in_inputs (p : TaintPipeline) :
+    CarriesTaint p ↔ ∃ x ∈ p.inputs, x.taint = .tainted := by
+  refine ⟨exists_tainted_in_inputs, fun h => ?_⟩
+  exact carriesTaint_of_taintOfInputs_tainted p
+    ((taintOfInputs_eq_tainted_iff p.inputs).mpr h)
 
 /-- 中文说明：n 次重复上送同一输入所得的族成员。 -/
 def resubmitTimes : Nat → FormalInput → TaintPipeline

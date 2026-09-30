@@ -919,6 +919,10 @@ open HornSystem
 #print axioms JurisLean.Seams.BoundaryClosure.adjudicate_of_incomplete_evaluation
 #print axioms JurisLean.Seams.BoundaryClosure.boundary1_family_excludes_launderer
 #print axioms JurisLean.Seams.BoundaryClosure.boundary3_attested_carries_proof
+#print axioms JurisLean.Seams.BoundaryClosure.carriesTaint_iff_exists_tainted_in_inputs
+#print axioms JurisLean.Seams.BoundaryClosure.carriesTaint_iff_taintOfInputs_tainted
+#print axioms JurisLean.Seams.BoundaryClosure.carriesTaint_of_poolTaint_tainted
+#print axioms JurisLean.Seams.BoundaryClosure.carriesTaint_of_taintOfInputs_tainted
 #print axioms JurisLean.Seams.BoundaryClosure.closure_boundary3_no_unproved_emptiness
 #print axioms JurisLean.Seams.BoundaryClosure.closure_boundary4_incomplete_not_adverse
 #print axioms JurisLean.Seams.BoundaryClosure.closure_boundary4_not_pending
@@ -934,6 +938,7 @@ open HornSystem
 #print axioms JurisLean.Seams.BoundaryClosure.joinTaint_assoc
 #print axioms JurisLean.Seams.BoundaryClosure.joinTaint_clean_left
 #print axioms JurisLean.Seams.BoundaryClosure.joinTaint_clean_right
+#print axioms JurisLean.Seams.BoundaryClosure.joinTaint_eq_tainted_iff
 #print axioms JurisLean.Seams.BoundaryClosure.joinTaint_idem
 #print axioms JurisLean.Seams.BoundaryClosure.joinTaint_tainted_left
 #print axioms JurisLean.Seams.BoundaryClosure.poolTaint_eq_taintOfInputs
@@ -942,6 +947,7 @@ open HornSystem
 #print axioms JurisLean.Seams.BoundaryClosure.stageOutput_taint
 #print axioms JurisLean.Seams.BoundaryClosure.taintOfInputs_append
 #print axioms JurisLean.Seams.BoundaryClosure.taintOfInputs_cons
+#print axioms JurisLean.Seams.BoundaryClosure.taintOfInputs_eq_tainted_iff
 #print axioms JurisLean.Seams.BoundaryClosure.taintOfInputs_nil
 #print axioms JurisLean.Seams.BoundaryClosure.taintOfInputs_of_carriesTaint
 #print axioms JurisLean.Seams.BoundaryClosure.taintOfInputs_snoc

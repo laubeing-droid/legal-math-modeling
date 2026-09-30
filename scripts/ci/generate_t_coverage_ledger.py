@@ -125,11 +125,55 @@ def proof_of(body: str) -> str:
     return "" if idx < 0 else body[idx + 2:]
 
 
+def has_binders(stmt: str) -> bool:
+    """Does the statement actually quantify over something?
+
+    The previous rule searched the whole proposition for `(`, `{` or `∀`. That mislabels a
+    binder-free literal such as `theorem foo : (0 : Nat) = 0 := rfl` as "quantified", because
+    the parentheses belong to a type ascription INSIDE the conclusion -- 88 of the 127 targets
+    were carried by exactly that kind of literal and graded DEF_PROJECTION, which reads like
+    "a general statement proved definitionally" and is in fact "one fixed example".
+
+    The shape to respect is `theorem NAME <binders> : conclusion`. Binders count only when they
+    appear BEFORE the first top-level colon (brackets nested at depth > 0 are inside a type, so
+    their colons do not end the binder run), or when the conclusion itself begins with `∀`
+    (`theorem foo : ∀ x, P x` is still a general statement). Parameters may wrap across lines,
+    so the scan runs over the whole statement with a depth counter, not line by line -- a
+    first-line-only version silently demoted the six real induction carriers to WITNESS, which
+    is how I caught it here.
+
+    The rule can only move grades DOWN (GENERAL/DEF_PROJECTION -> WITNESS) relative to the old
+    one on literals; narrowing the account is allowed, widening it is not.
+    """
+    body = stmt.split(":=", 1)[0]
+    depth = 0
+    seen_colon = False
+    i = 0
+    while i < len(body):
+        ch = body[i]
+        if ch in "({[":
+            if seen_colon and depth == 0:
+                break
+            depth += 1
+            if depth == 1 and not seen_colon:
+                return True
+        elif ch in ")}]":
+            depth = max(0, depth - 1)
+        elif ch == ":" and depth == 0:
+            seen_colon = True
+            rest = body[i + 1:].lstrip()
+            if rest.startswith("∀") or rest.startswith("forall"):
+                return True
+        elif ch == "∀" and depth == 0 and not seen_colon:
+            return True
+        i += 1
+    return False
+
+
 def grade_theorem(body: str) -> str:
     stmt = statement_of(body)
     tail = proof_of(body)
-    quantified = bool(BINDER.search(stmt.split("\n", 1)[1] if "\n" in stmt else stmt))
-    if not quantified:
+    if not has_binders(stmt):
         return "WITNESS"
     if HEAVY_PROOF.search(tail):
         return "GENERAL"

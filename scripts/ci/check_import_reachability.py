@@ -98,6 +98,18 @@ PENDING_CI_MODULES: dict[str, str] = {
         "XT seam: non-anticipation of a truncated view, interval preservation, "
         "the quantified form of P-049 and late-insertion reordering "
         "(wave 7, local build green; awaiting its own CI module build)"),
+    "JurisLean.Seams.BoundaryClosure": (
+        "C1 task: the six boundary delimitation theorems at declared operation-family "
+        "strength, with the family written as an inductive so the quantifier is bounded "
+        "(wave 7, snapshot -- under construction, no build verdict yet)"),
+    "JurisLean.Seams.Uncertainty": (
+        "XU seam: finite positive support truth bridge, contamination conditioning, "
+        "and the neural interval certificate for P-118 "
+        "(wave 7, snapshot -- under construction, no build verdict yet)"),
+    "JurisLean.Seams.FullProcess": (
+        "S6 closure seam: finite trace preservation over S5's invariants and the "
+        "receipt-is-consequence result for P-123 "
+        "(wave 7, snapshot -- under construction, no build verdict yet)"),
     #
     # `JurisLean.Seams.ClaimBasis` (P-034 claim-basis chain, seam 1) left this table on
     # 2026-10-01: after the name-free Step inversion fixed its local build, run

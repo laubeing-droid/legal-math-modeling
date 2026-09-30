@@ -6,6 +6,8 @@ import JurisLean.HornDefinitions
 import JurisLean.HornFixedPoint
 import JurisLean.Genealogy.Part1
 
+open JurisLean.Genealogy.Part1
+
 /-!
 S1（L1 法源/规范层缝合件）—— Horn 闭包的语义双侧定理与 P-015 位阶极大元。
 
@@ -121,7 +123,7 @@ theorem step_within_model (sys : HornSystem α) (M S : Finset α)
   · exact hM.1 hx0
   · rcases Finset.mem_image.mp hx1 with ⟨r, hr, rfl⟩
     rcases Finset.mem_filter.mp hr with ⟨hrR, hprem⟩
-    exact hM.2 r hrR (hS hprem)
+    exact hM.2 r hrR (Finset.Subset.trans hprem hS)
 
 /-- 中文说明：**健全性的归纳骨架**：任意有限阶段近似 `iter n` 都包含于每个模型。
     迭代器本身取自仓内 `FiniteMonotoneIteration.lean`，本件不重证单调与终止。 -/
@@ -241,7 +243,7 @@ theorem negated_step_one_step_not_entailed :
   · intro hall
     have hmodel : stepModel (negLiteralStep (α := Bool) false true) (∅ : Finset Bool)
         ({false} : Finset Bool) :=
-      ⟨Finset.empty_subset _, by simp [stepModel, negLiteralStep]⟩
+      ⟨Finset.empty_subset _, by simp [negLiteralStep]⟩
     exact absurd (hall _ hmodel) (by simp)
 
 end PurityBoundary
@@ -283,7 +285,7 @@ theorem no_priority_cycle_walk {β : Type} (ρ : β → Nat) {x y : β}
   induction w with
   | base hxy =>
       intro h
-      exact absurd (Nat.lt_trans hxy h) (Nat.lt_irrefl (ρ x))
+      exact absurd (Nat.lt_trans hxy h) (Nat.lt_irrefl _)
   | cons hxy w2 ih =>
       intro h
       exact ih (Nat.lt_trans h hxy)
@@ -309,25 +311,38 @@ theorem exists_maximal_acyclic {β : Type} [DecidableEq β]
     ∀ (s : Finset β), s.Nonempty → ∃ m, m ∈ s ∧ ∀ x, x ∈ s → ¬ r m x := by
   intro s
   classical
-  induction s with
+  induction s using Finset.induction_on with
   | empty => exact fun hs => absurd hs Finset.not_nonempty_empty
-  | insert a t hat ih =>
+  | @insert a t hat ih =>
       intro hs
       by_cases ht : t.Nonempty
       · obtain ⟨m, hm, hmax⟩ := ih ht
         by_cases ham : r m a
-        · refine ⟨a, Finset.mem_insert.mpr (Or.inl rfl), fun x hx hx' => ?_⟩
-          rcases Finset.mem_insert.mp hx with rfl | hxt
-          · exact h_irrefl a hx'
-          · exact hmax x hxt (h_trans hx' ham)
-        · refine ⟨m, Finset.mem_insert.mpr (Or.inr hm), fun x hx hx' => ?_⟩
-          rcases Finset.mem_insert.mp hx with rfl | hxt
-          · exact ham hx'
-          · exact hmax x hxt hx'
-      · refine ⟨a, Finset.mem_insert.mpr (Or.inl rfl), fun x hx hx' => ?_⟩
-        rcases Finset.mem_insert.mp hx with rfl | hxt
-        · exact h_irrefl a hx'
-        · exact ht ⟨x, hxt⟩
+        · -- a 压过 t 的极大元 m：由传递性，a 在 insert a t 中极大。
+          refine ⟨a, Finset.mem_insert_self a t, fun x hx => ?_⟩
+          refine Or.elim (Finset.mem_insert.mp hx) ?_ ?_
+          · intro heq hax
+            rw [heq] at hax
+            exact h_irrefl a hax
+          · intro hmem hax
+            exact hmax x hmem (h_trans ham hax)
+        · -- m 仍不被 a 压过，故 m 在 insert a t 中保持极大。
+          refine ⟨m, Finset.mem_insert.mpr (Or.inr hm), fun x hx => ?_⟩
+          refine Or.elim (Finset.mem_insert.mp hx) ?_ ?_
+          · intro heq hmx
+            rw [heq] at hmx
+            exact ham hmx
+          · intro hmem hmx
+            exact hmax x hmem hmx
+      · -- t 为空：单点集 {a} 由不自反即得极大元。
+        refine ⟨a, Finset.mem_insert_self a t, fun x hx => ?_⟩
+        refine Or.elim (Finset.mem_insert.mp hx) ?_ ?_
+        · intro heq hax
+          rw [heq] at hax
+          exact h_irrefl a hax
+        · intro hmem
+          exfalso
+          exact ht ⟨x, hmem⟩
 
 /-- 中文说明：P-015 位阶映射（`Genealogy/Part1.lean:53` 的 `rankScore` 把六位阶映到 `6..1`）。
     本件不重定义位阶，只把它当作映射形陈述的实例。 -/
@@ -401,18 +416,16 @@ theorem resolveConflict_tie_value_in (a b : P015.NormProvision)
     (h1 : ¬ provisionRank b < provisionRank a) (h2 : ¬ provisionRank a < provisionRank b) :
     P015.resolveConflict a b ∈
       ({some a.provisionId, some b.provisionId, none} : Finset (Option String)) := by
-  cases a with
-  | mk idA rA dA sA =>
-    cases b with
-    | mk idB rB dB sB =>
-      simp only [provisionRank] at h1 h2
-      unfold P015.resolveConflict
-      split_ifs with hc1 hc2 h3 h4
-      · exact absurd hc1 h1
-      · exact absurd hc2 h2
-      · cases sA <;> cases sB <;> simp
-      · cases sB <;> cases sA <;> simp
-      · cases sA <;> cases sB <;> simp
+  simp only [provisionRank] at h1 h2
+  simp only [P015.resolveConflict, if_neg h1, if_neg h2]
+  by_cases h3 : a.enactedDay < b.enactedDay
+  · rw [if_pos h3]
+    cases hsa : a.special <;> cases hsb : b.special <;> simp
+  · by_cases h4 : b.enactedDay < a.enactedDay
+    · rw [if_neg h3, if_pos h4]
+      cases hsb : b.special <;> cases hsa : a.special <;> simp
+    · rw [if_neg h3, if_neg h4]
+      cases hsa : a.special <;> cases hsb : b.special <;> simp
 
 /-- 中文说明：**判定树选中者确是极大元**：`resolveConflict a b = some k` 时，组内存在极大
     条款 `m`，使判定结果正是 `m.provisionId`（配合假设 `h` 即得 `k = m.provisionId`，

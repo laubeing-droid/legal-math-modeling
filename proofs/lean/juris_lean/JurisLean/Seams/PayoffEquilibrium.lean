@@ -182,7 +182,9 @@ theorem legal_payoff_grid :
       legal_payoff Role.claimant LegalStatus.dismissed = -3 ∧
       legal_payoff Role.respondent LegalStatus.dismissed = 0 ∧
       legal_payoff Role.claimant LegalStatus.unenforceable = 0 ∧
-      legal_payoff Role.respondent LegalStatus.unenforceable = 0 := by decide
+      legal_payoff Role.respondent LegalStatus.unenforceable = 0 := by
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  <;> norm_num [legal_payoff, declaredConsequences, consequenceValuation]
 
 /-! ## 二、(B) 载体改名不改变收益 -/
 
@@ -244,14 +246,18 @@ def relabelStatus : LegalStatus → LegalStatus
     声明折价相等（都是 0），故把驳回改名成不可强制实现，被申请人看不出来。 -/
 theorem relabelStatus_preserves_respondent_payoff (s : LegalStatus) :
     legal_payoff Role.respondent (relabelStatus s) = legal_payoff Role.respondent s := by
-  cases s <;> decide
+  cases s <;>
+    norm_num [relabelStatus, legal_payoff, declaredConsequences, consequenceValuation]
 
 /-- 同一改名在申请人一侧**是**看得出来的（驳回 −3，不可强制实现 0）。
     这条见证画出保持定理的边界：不变性来自声明表，不是逻辑真空。 -/
 theorem relabelStatus_visible_on_claimant_side :
     ∃ s : LegalStatus, legal_payoff Role.claimant (relabelStatus s) ≠
       legal_payoff Role.claimant s :=
-  ⟨LegalStatus.dismissed, by decide⟩
+  ⟨LegalStatus.dismissed, by
+    show legal_payoff Role.claimant LegalStatus.unenforceable ≠
+      legal_payoff Role.claimant LegalStatus.dismissed
+    norm_num [legal_payoff, declaredConsequences, consequenceValuation]⟩
 
 /-! ## 三、(C) 2η：外部均衡折回法律收益 -/
 
@@ -382,7 +388,10 @@ theorem legalPay_grid_k10 :
       legalPay 10 ActC.sue ActR.perform Role.respondent = -30 ∧
       legalPay 10 ActC.sue ActR.refuse Role.respondent = -17 ∧
       legalPay 10 ActC.forbear ActR.perform Role.respondent = -30 ∧
-      legalPay 10 ActC.forbear ActR.refuse Role.respondent = 0 := by decide
+      legalPay 10 ActC.forbear ActR.refuse Role.respondent = 0 := by
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  <;> norm_num [legalPay, withSanction, outcomeOf, litigateCost, principalTransferred,
+    legal_payoff, declaredConsequences, consequenceValuation]
 
 /-- 声明侧与博弈侧是同一张表：每个格子的定义式就是"后果折价 − 诉讼成本 ± 实际移转"。 -/
 theorem legalPay_agrees_with_declaration (k : ℚ) (c : ActC) (r : ActR) :
@@ -392,8 +401,11 @@ theorem legalPay_agrees_with_declaration (k : ℚ) (c : ActC) (r : ActR) :
         withSanction k Role.respondent (outcomeOf c r) - principalTransferred r :=
   ⟨rfl, rfl⟩
 
-/-- 无制裁折价的数值读数（= 声明表三项之和 −7）。 -/
-theorem sanctionedLoss_eq : sanctionedLoss = (-7 : ℚ) := by decide
+/-- 无制裁折价的数值读数（= 声明表三项之和 −7）。
+    ℚ 上的加法不走 kernel `decide`（`Rat.add` 的归一化用了良基递归的 `Nat.gcd`），
+    故本件的数值读数一律用 `norm_num`，而只用比较而不带算术的地方才用 `decide`。 -/
+theorem sanctionedLoss_eq : sanctionedLoss = (-7 : ℚ) := by
+  norm_num [sanctionedLoss, legal_payoff, declaredConsequences, consequenceValuation]
 
 /-- 拒不履行的收益 = 无制裁折价 − 制裁额：阈值的来源就在这条读数上。 -/
 theorem legalPay_sue_refuse_respondent (k : ℚ) :
@@ -410,7 +422,7 @@ theorem legalPay_sue_perform_respondent (k : ℚ) :
   show legal_payoff Role.respondent (outcomeOf ActC.sue ActR.perform) -
       principalTransferred ActR.perform = (-30 : ℚ)
   show legal_payoff Role.respondent LegalStatus.dismissed - (30 : ℚ) = (-30 : ℚ)
-  decide
+  norm_num [legal_payoff, declaredConsequences, consequenceValuation]
 
 /-- **(D) 回拉条件**：在"对方起诉"这一条件下，履行属于被申请人的最优反应集。 -/
 def lawfulInBestResponse (k : ℚ) : Prop :=
@@ -476,7 +488,9 @@ def legalColHigh : Fin 2 → Fin 2 → ℚ := fun i j =>
 theorem grids_realise_legalPay (c : ActC) (r : ActR) :
       legalRow (idxC c) (idxR r) = legalPay 10 c r Role.claimant ∧
       legalColLow (idxC c) (idxR r) = legalPay 10 c r Role.respondent := by
-  cases c <;> cases r <;> decide
+  cases c <;> cases r <;>
+    norm_num [legalRow, legalColLow, idxC, idxR, legalPay, withSanction, outcomeOf, litigateCost,
+      principalTransferred, legal_payoff, declaredConsequences, consequenceValuation]
 
 /-- 制裁不足的博弈（k = 10 < 23）。 -/
 def legalGameLow : Game 2 2 := (legalRow, legalColLow)
@@ -525,11 +539,17 @@ def extPay : ActC → ActR → Role → ℚ
   | .forbear, .refuse, .respondent => 0
 
 /-- 两表逐点 1-接近（η = 1 的具例，8 格全核）。 -/
-theorem withinEta_legal_external : WithinEta (legalPay 10) extPay (1 : ℚ) := by decide
+theorem withinEta_legal_external : WithinEta (legalPay 10) extPay (1 : ℚ) := by
+  intro a b r
+  cases a <;> cases b <;> cases r <;>
+    norm_num [legalPay, extPay, withSanction, outcomeOf, litigateCost, principalTransferred,
+      legal_payoff, declaredConsequences, consequenceValuation]
 
 /-- 外部收益下（起诉, 拒不履行）是精确 Nash（ε = 0）。 -/
-theorem extPay_nash : IsApproxNash extPay 0 ActC.sue ActR.refuse :=
-  ⟨fun c => by cases c <;> decide, fun r => by cases r <;> decide⟩
+theorem extPay_nash : IsApproxNash extPay 0 ActC.sue ActR.refuse := by
+  refine ⟨fun c => ?_, fun r => ?_⟩
+  · cases c <;> norm_num [extPay]
+  · cases r <;> norm_num [extPay]
 
 /-- 折回法律收益：同一剖面在法律收益下是 (0 + 2·1)-均衡。 -/
 theorem legal_payoff_two_eta_transfer :
@@ -545,8 +565,14 @@ theorem legal_payoff_two_eta_transfer_reads_as_two :
   exact h
 
 /-- 法律收益自己也在 (sue, refuse) 上达到精确 Nash（k = 10）：与仓内判据同一读数。 -/
-theorem approxNash_legalPay_k10 : IsApproxNash (legalPay 10) 0 ActC.sue ActR.refuse :=
-  ⟨fun c => by cases c <;> decide, fun r => by cases r <;> decide⟩
+theorem approxNash_legalPay_k10 : IsApproxNash (legalPay 10) 0 ActC.sue ActR.refuse := by
+  refine ⟨fun c => ?_, fun r => ?_⟩
+  · cases c <;>
+      norm_num [legalPay, withSanction, outcomeOf, litigateCost, principalTransferred,
+        legal_payoff, declaredConsequences, consequenceValuation]
+  · cases r <;>
+      norm_num [legalPay, withSanction, outcomeOf, litigateCost, principalTransferred,
+        legal_payoff, declaredConsequences, consequenceValuation]
 
 /-- 两套记法不冲突：自造的 `IsApproxNash` 与仓内 `isNashPure` 在 k = 10 网格上指向同一剖面。 -/
 theorem approxNash_agrees_with_isNashPure_at_k10 :
@@ -576,51 +602,63 @@ theorem two_eta_transfer_Game (u v : Game 2 2) (ε η : ℚ) (p : Fin 2 × Fin 2
     linarith [hcol j]
 
 /-- 把制裁从 10 提到 30 是一次逐点 20 的收益扰动（16 格全核：行面完全相同，
-    列面只有一格差 20）。 -/
-theorem withinEtaGame_low_high : WithinEtaGame legalGameLow legalGameHigh (20 : ℚ) := by decide
+    列面只有一格差 20）。方向取"从 30 档位看 10 档位"，与下面的反射方向一致。 -/
+theorem withinEtaGame_high_low : WithinEtaGame legalGameHigh legalGameLow (20 : ℚ) := by
+  refine ⟨fun i j => ?_, fun i j => ?_⟩
+  · fin_cases i <;> fin_cases j <;>
+      norm_num [legalGameLow, legalGameHigh, legalRow, legalColLow, legalColHigh]
+  · fin_cases i <;> fin_cases j <;>
+      norm_num [legalGameLow, legalGameHigh, legalRow, legalColLow, legalColHigh]
 
 /-- k = 10 网格上 (0, 1) 的精确 Nash 读数（Game 载体形）。 -/
-theorem isApproxNashGame_low_exact : IsApproxNashGame legalGameLow 0 (0, 1) := by decide
+theorem isApproxNashGame_low_exact : IsApproxNashGame legalGameLow 0 (0, 1) := by
+  refine ⟨fun i => ?_, fun j => ?_⟩
+  · fin_cases i <;> norm_num [legalGameLow, legalRow, legalColLow]
+  · fin_cases j <;> norm_num [legalGameLow, legalRow, legalColLow]
 
-/-- 反射到 k = 30 档位：0-均衡折过去只剩 (0 + 2·20)-均衡。法律读法：容差不是免费的，
-    换一档制裁就要付两倍档差的确定性损失。 -/
+/-- 反射到 k = 30 档位：在 10 档位上算出的 0-均衡，折到 30 档位只剩 (0 + 2·20)-均衡。
+    法律读法：容差不是免费的，换一档制裁就要付两倍档差的确定性损失。 -/
 theorem high_grid_is_approx_at_adequate_sanction :
     IsApproxNashGame legalGameHigh (0 + 2 * (20 : ℚ)) (0, 1) :=
-  two_eta_transfer_Game legalGameLow legalGameHigh 0 20 (0, 1)
-    withinEtaGame_low_high isApproxNashGame_low_exact
+  two_eta_transfer_Game legalGameHigh legalGameLow 0 20 (0, 1)
+    withinEtaGame_high_low isApproxNashGame_low_exact
 
 /-! ## 七、(E) P-090：策略量词的位置与信息条件 -/
 
-open JurisLean.Mandate.GameTree
+open JurisLean.Mandate
 
 /-- 事前策略：一张以**剩余局面**为自变量的分支函数（`true` 取右支）。自变量是整个子树，
-    正是"完美信息"的形式内容：每个节点知道自己是谁。 -/
-abbrev Strategy : Type := Tree → Bool
+    正是"完美信息"的形式内容：每个节点知道自己是谁。
+    写全名 `GameTree.Tree` 而不是裸 `Tree`：`import Mathlib` 已带进同名的 `_root_.Tree α`
+    （`Mathlib/Data/Tree/Basic.lean:31`），裸名会撞车。 -/
+abbrev Strategy : Type := GameTree.Tree → Bool
 
 /-- 按策略把局面向下打到终局，读出终局收益。 -/
-def play : Tree → Strategy → ℕ
+def play : GameTree.Tree → Strategy → ℕ
   | .leaf n, _ => n
   | .node l r, π => if π (.node l r) = true then play r π else play l π
 
 /-- **量词在 value 之外**：任何策略在任何局面的实现收益都不超过该局面的 value。
     这就是 `GameTree.lean:51 value` 的逐节点 max 所隐藏的东西——它对所有策略取上界。 -/
-theorem play_le_value : ∀ (t : Tree) (π : Strategy), play t π ≤ value t := by
+theorem play_le_value : ∀ (t : GameTree.Tree) (π : Strategy), play t π ≤ GameTree.value t := by
   intro t
   induction t with
   | leaf n => intro π; exact Nat.le_of_eq rfl
   | node l r ihl ihr =>
       intro π
       by_cases hb : π (.node l r) = true
-      · show (if π (.node l r) = true then play r π else play l π) ≤ max (value l) (value r)
+      · show (if π (.node l r) = true then play r π else play l π) ≤
+          max (GameTree.value l) (GameTree.value r)
         rw [if_pos hb]
         exact Nat.le_trans (ihr π) (le_max_right _ _)
-      · show (if π (.node l r) = true then play r π else play l π) ≤ max (value l) (value r)
+      · show (if π (.node l r) = true then play r π else play l π) ≤
+          max (GameTree.value l) (GameTree.value r)
         rw [if_neg hb]
         exact Nat.le_trans (ihl π) (le_max_left _ _)
 
 /-- 逐节点择优的那个比特（平手取右支，与 `SequentialGames.choose` 的约定一致）。 -/
-def bestBit : Tree → Tree → Bool
-  | l, r => if value l ≤ value r then true else false
+def bestBit : GameTree.Tree → GameTree.Tree → Bool
+  | l, r => if GameTree.value l ≤ GameTree.value r then true else false
 
 /-- 完美信息策略：在每个局面比较两支的 value。 -/
 def bestStrategy : Strategy
@@ -628,29 +666,31 @@ def bestStrategy : Strategy
   | .leaf _ => false
 
 /-- 择右支的读数。 -/
-theorem bestStrategy_node_true (l r : Tree) (h : value l ≤ value r) :
-    bestStrategy (Tree.node l r) = true := by
-  show (if value l ≤ value r then true else false) = true
+theorem bestStrategy_node_true (l r : GameTree.Tree) (h : GameTree.value l ≤ GameTree.value r) :
+    bestStrategy (GameTree.Tree.node l r) = true := by
+  show (if GameTree.value l ≤ GameTree.value r then true else false) = true
   exact if_pos h
 
 /-- 不择右支的读数。 -/
-theorem bestStrategy_node_false (l r : Tree) (h : ¬ value l ≤ value r) :
-    ¬ (bestStrategy (Tree.node l r) = true) := by
-  show ¬ ((if value l ≤ value r then true else false) = true)
+theorem bestStrategy_node_false (l r : GameTree.Tree)
+    (h : ¬ GameTree.value l ≤ GameTree.value r) :
+    ¬ (bestStrategy (GameTree.Tree.node l r) = true) := by
+  show ¬ ((if GameTree.value l ≤ GameTree.value r then true else false) = true)
   rw [if_neg h]
   exact Bool.false_ne_true
 
 /-- **∃ 在 value 之内，且 witness 必须以局面为自变量**：一条事前交出的策略在所有局面上
     同时达到 value。它与 `GameTree.lean:103 value_attains` 相配，但把"策略"显式成函数。
     这不是 Nash 也不是子博弈完美均衡定理（echo `GameTree.lean:9-10,17-21`）。 -/
-theorem play_bestStrategy : ∀ (t : Tree), play t bestStrategy = value t := by
+theorem play_bestStrategy :
+    ∀ (t : GameTree.Tree), play t bestStrategy = GameTree.value t := by
   intro t
   induction t with
   | leaf n => exact rfl
   | node l r ihl ihr =>
       show (if bestStrategy (.node l r) = true then play r bestStrategy
-        else play l bestStrategy) = max (value l) (value r)
-      by_cases h : value l ≤ value r
+        else play l bestStrategy) = max (GameTree.value l) (GameTree.value r)
+      by_cases h : GameTree.value l ≤ GameTree.value r
       · rw [if_pos (bestStrategy_node_true l r h), max_eq_right h, ihr]
       · rw [if_neg (bestStrategy_node_false l r h), max_eq_left (Nat.le_of_not_le h), ihl]
 
@@ -658,27 +698,32 @@ theorem play_bestStrategy : ∀ (t : Tree), play t bestStrategy = value t := by
 def constStrategy (b : Bool) : Strategy := fun _ => b
 
 /-- 用于把信息条件算成数字的深度 2 局面。 -/
-def eTree : Tree :=
-  Tree.node (Tree.node (Tree.leaf 1) (Tree.leaf 5)) (Tree.node (Tree.leaf 9) (Tree.leaf 3))
+def eTree : GameTree.Tree :=
+  GameTree.Tree.node (GameTree.Tree.node (GameTree.Tree.leaf 1) (GameTree.Tree.leaf 5))
+    (GameTree.Tree.node (GameTree.Tree.leaf 9) (GameTree.Tree.leaf 3))
 
 /-- 常数策略的两个读数：事前一个比特只能拿到 3 或 1。 -/
 theorem constStrategy_reads :
     play eTree (constStrategy true) = 3 ∧ play eTree (constStrategy false) = 1 := by decide
 
 /-- 该局面的后向归纳值。 -/
-theorem eTree_value : value eTree = 9 := by decide
+theorem eTree_value : GameTree.value eTree = 9 := by decide
 
 /-- **(E) 信息-记忆条件被计算钉住**：把策略限制成事前一个比特，最好也只有 3，
-    严格掉在 value 9 之下。差别不在收益数字，而在策略能否依赖自己所处的局面。 -/
+    严格掉在 value 9 之下。差别不在收益数字，而在策略能否依赖自己所处的局面。
+    这里没有任何 Nash 或子博弈完美断言：`GameTree` 没有第二_player_ 标签，也没有机会节点
+    （echo `GameTree.lean:9-10,119-122`）。 -/
 theorem committed_bit_is_strictly_below_value :
-    max (play eTree (constStrategy true)) (play eTree (constStrategy false)) < value eTree := by
-  rw [constStrategy_reads, eTree_value]
+    max (play eTree (constStrategy true)) (play eTree (constStrategy false)) <
+      GameTree.value eTree := by
+  rw [constStrategy_reads.1, constStrategy_reads.2, eTree_value]
   decide
 
 /-- 量词位置的合式陈述：∀（在所有策略上）在 value 之外，∃（达到 value 的策略）在 value
     之内，而该 witness 是局面依赖的。 -/
 theorem strategy_quantifier_outside_value :
-    (∀ π : Strategy, play eTree π ≤ value eTree) ∧ ∃ π : Strategy, play eTree π = value eTree :=
+    (∀ π : Strategy, play eTree π ≤ GameTree.value eTree) ∧
+      ∃ π : Strategy, play eTree π = GameTree.value eTree :=
   ⟨fun π => play_le_value _ π, ⟨bestStrategy, play_bestStrategy _⟩⟩
 
 /-! ## 八、未覆盖片段（显式声明，状态 UNPROVEN，不作为定理引用） -/

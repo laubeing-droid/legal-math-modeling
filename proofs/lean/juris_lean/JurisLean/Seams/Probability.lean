@@ -391,8 +391,9 @@ end FiveSegments
 
 section PenaltyReduction
 
-/-- 金额：整数最小货币单位（与 `ExactAmountM5.minorUnits` 同域；正式路径禁止二进制浮点）。 -/
-def Amount := ℤ
+/-- 金额：整数最小货币单位（与 `ExactAmountM5.minorUnits` 同域；正式路径禁止二进制浮点）。
+    用 `abbrev` 而非 `def`，好让整数的算术与序实例直接可用（数值仍是 ℤ）。 -/
+abbrev Amount := ℤ
 
 /-- 金额的有理像：比例与门槛比较一律在此进行（`ℚ` 精确，绝无 `Float`）。 -/
 def amountQ (x : Amount) : ℚ := x
@@ -603,33 +604,30 @@ def lossBasedData : ReductionData Unit :=
   { agreed := 200, loss := 100, requested := true, badFaith := false, proved := true,
     overFound := false, factors := () }
 
-/-- 条件数据的具体数值事实（全部闭式可判定，不用浮点）。 -/
+/-- 两份见证数据的具体数值事实（全部闭式可判定，不用浮点）：
+    门槛使 `lossBasedData` 开闸，恶意违约使 `maliciousData` 关闸。 -/
 theorem lossBasedData_facts :
     reductionGate lossBasedData = true ∧ reductionFloor lossBasedData = (100 : Amount) ∧
-      maliciousData.agreed = (200 : Amount) ∧ ¬ overThirtyThreshold maliciousData → False :=
-  fun h => h.2.2.2 (by
-    have : (13 / 10 : ℚ) * (100 : ℚ) < (200 : ℚ) := by norm_num
-    simpa [overThirtyThreshold, amountQ, maliciousData] using this)
+      reductionGate maliciousData = false ∧ choose maliciousData = (200 : Amount) ∧
+      choose lossBasedData = (100 : Amount) := by
+  refine ⟨by decide, by decide, by decide, by decide, by decide⟩
 
 /-- 门槛成立并不自动使法院的认定成立（许可式）：存在门槛成立而认定位为假的数据。
     法律读法：65条第2款是"可以认定"，不是"应当认定"。 -/
 theorem threshold_does_not_force_the_finding :
     ∃ (c : ReductionData Unit), overThirtyThreshold c ∧ c.overFound = false :=
   ⟨lossBasedData, by
-    have : (13 : ℚ) * (100 : ℚ) < (10 : ℚ) * (200 : ℚ) := by norm_num
     rw [overThirtyThreshold_iff_intTest]
-    show (13 : Amount) * lossBasedData.loss < 10 * lossBasedData.agreed
-    simpa [lossBasedData, amountQ] using this, rfl⟩
+    decide, rfl⟩
 
 /-- 认定成立并不必来自门槛（第65条第1款的因素面可另行认定）：
     存在门槛不成立而认定位为真的数据。 -/
 theorem finding_does_not_require_the_threshold :
-    ∃ (c : ReductionData Unit), ¬ overThirtyThreshold c ∧ c.overFound = true :=
-  ⟨{ agreed := 120, loss := 100, requested := true, badFaith := false, proved := true,
-      overFound := true, factors := () }, fun h =>
-    (overThirtyThreshold_iff_intTest (({ agreed := 120, loss := 100, requested := true,
-      badFaith := false, proved := true, overFound := true, factors := () } :
-      ReductionData Unit))) (by decide) h, rfl⟩
+    ∃ (c : ReductionData Unit), ¬ overThirtyThreshold c ∧ c.overFound = true := by
+  refine ⟨{ agreed := 120, loss := 100, requested := true, badFaith := false, proved := true,
+      overFound := true, factors := () }, ?_, rfl⟩
+  rw [overThirtyThreshold_iff_intTest]
+  decide
 
 end PenaltyReduction
 
@@ -645,38 +643,33 @@ theorem allow_does_not_determine_amount :
       x ≠ y ∧ Allow c x ∧ Allow c y := by
   refine ⟨lossBasedData, 100, 200, by decide, ?_, ?_⟩
   · exact allow_of_gate_open lossBasedData 100 (by decide) ⟨by decide, by decide⟩
-  · exact allow_of_gate_open lossBasedData 200 (by decide) ⟨by decide, le_refl _⟩
+  · exact allow_of_gate_open lossBasedData 200 (by decide) ⟨by decide, by decide⟩
 
 /-- 更强形式的同一限制：30% 门槛成立、全部条件齐备，金额仍不唯一决定。 -/
 theorem threshold_does_not_determine_amount :
     ∃ (c : ReductionData Unit), overThirtyThreshold c ∧
-      ∃ x y : Amount, x ≠ y ∧ Allow c x ∧ Allow c y :=
-  ⟨lossBasedData, threshold_does_not_force_the_finding.1,
-    allow_does_not_determine_amount.2.choose,
-    allow_does_not_determine_amount.2.choose_spec.choose,
-    allow_does_not_determine_amount.2.choose_spec.choose_spec⟩
+      ∃ x y : Amount, x ≠ y ∧ Allow c x ∧ Allow c y := by
+  refine ⟨lossBasedData, threshold_does_not_force_the_finding.1, 100, 200, by decide, ?_, ?_⟩
+  · exact allow_of_gate_open lossBasedData 100 (by decide) ⟨by decide, by decide⟩
+  · exact allow_of_gate_open lossBasedData 200 (by decide) ⟨by decide, by decide⟩
 
 /-- 选择函数不被 `Allow` 刻画：存在被准许的额不等于 `choose` 给出的额。
     法律读法：交出任何一个具体酌减额，都不可能是"由关系决定出来的"唯一结果。 -/
 theorem choose_is_not_determined_by_allow :
     ∃ (c : ReductionData Unit) (x : Amount), Allow c x ∧ x ≠ choose c := by
+  have hch : choose lossBasedData = (100 : Amount) := by decide
   refine ⟨lossBasedData, 200, allow_of_gate_open lossBasedData 200 (by decide)
-    ⟨by decide, le_refl _⟩, ?_⟩
-  intro h
-  have hch : choose lossBasedData = (100 : Amount) := by
-    rw [choose, if_pos (show reductionGate lossBasedData = true from by decide)]
-    decide
-  rw [hch] at h
+    ⟨by decide, by decide⟩, ?_⟩
+  rw [hch]
   omega
 
 /-- 准许额在约定额非负时自动非负：下界的构造保证的不是这个性质，而是区间不退化。 -/
 theorem allowed_amount_nonneg_of_nonneg_agreed {F : Type} (c : ReductionData F)
     (h : (0 : Amount) ≤ c.agreed) (hg : reductionGate c = true) (x : Amount)
     (hx : Allow c x) : (0 : Amount) ≤ x := by
-  have hband := hx.1 hg
-  have hfloor : reductionFloor c = (max c.loss 0 : Amount) := by
-    unfold reductionFloor
-    omega
+  obtain ⟨himp, _⟩ := hx
+  have hband := himp hg
+  unfold reductionFloor at hband
   omega
 
 end Limitation

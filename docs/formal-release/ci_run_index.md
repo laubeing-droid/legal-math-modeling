@@ -116,7 +116,7 @@ without guessing where it came from.
 | 36762070911 | failure | `fb3e704` | ci/seam-PrecedentFlow | workflow_dispatch | 0/8 | 1 | 10_各针交付说明_20261001.md |
 | 36762766598 | failure | `d287231` | ci/seam-PayoffEquilibrium | workflow_dispatch | 0/8 | 1 | 10_各针交付说明_20261001.md |
 | 36762782536 | success | `d287231` | ci/seam-Temporal | workflow_dispatch | 1/8 | 1 | 09_法律统一数学模型_20261001.md, 10_各针交付说明_20261001.md |
-| 36763478818 | success | `6577e98` | ci/seam-PrecedentFlow | workflow_dispatch | 1/8 | 1 | 09_法律统一数学模型_20261001.md, 10_各针交付说明_20261001.md |
+| 36763478818 | success | `6577e98` | ci/seam-PrecedentFlow | workflow_dispatch | 1/8 | 1 | 08_档位变更申请表_20261001.md, 09_法律统一数学模型_20261001.md, 10_各针交付说明_20261001.md |
 | 36763753630 | success | `70aa9b6` | ci/seam-SourceNorms | workflow_dispatch | 1/8 | 1 | 09_法律统一数学模型_20261001.md, 10_各针交付说明_20261001.md |
 | 36763899161 | success | `2fdba53` | ci/seam-PayoffEquilibrium | workflow_dispatch | 1/8 | 1 | 09_法律统一数学模型_20261001.md, 10_各针交付说明_20261001.md |
 | 36766617907 | failure | `475675a` | ci/seam-BoundaryClosure | workflow_dispatch | 0/8 | 1 | 10_各针交付说明_20261001.md |

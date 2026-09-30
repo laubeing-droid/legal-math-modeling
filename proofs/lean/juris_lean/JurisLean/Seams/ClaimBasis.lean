@@ -230,6 +230,22 @@ theorem citedAt_singleton_fields (n : Node) (h : CitedAt [n] n) :
   | here nn tt c1 c2 c3 => exact ⟨c1, c2, c3⟩
   | inTail m tt bb hrec => cases hrec
 
+/-- 尾部携带引证的链，前面再加一个节点仍然携带该引证。 -/
+theorem carriesBasis_cons (n : Node) (t : List Node)
+    (h : CarriesCreationBasis t) : CarriesCreationBasis (n :: t) := by
+  cases h with
+  | intro b hb => exact ⟨b, CitedAt.inTail n t b hb⟩
+
+/-- 单步的结构事实：从"尚未成立"出发又离开"尚未成立"的那一步，其节点必是一条命中且
+    条件成就的成立段规范。表上除 `createFire` 外没有从 `notYet` 出发的非惰性构造子。 -/
+theorem step_leaves_notYet_fields {s s' : Status} {n : Node} (h : Step s n s')
+    (hs : s = Status.notYet) (hs' : s' ≠ Status.notYet) :
+    n.stage = Stage.creation ∧ n.polarity = Polarity.fire ∧ n.holds = true := by
+  cases h <;>
+    first
+      | contradiction
+      | exact ⟨by assumption, by assumption, by assumption⟩
+
 /-- **正定理（链上归纳）**：链从零起点（尚未成立）出发，凡终局不是"尚未成立"，
     该链必携带一条成立段命中规范。 -/
 theorem walk_verdict_needs_basis :
@@ -247,19 +263,14 @@ theorem walk_verdict_needs_basis :
       | intro s' hand =>
           cases hand with
           | intro hstep htail =>
-              cases hstep with
-              | createFire cn c1 c2 c3 =>
-                  exact ⟨cn, CitedAt.here cn tail c1 c2 c3⟩
-              | pass ps pn pf =>
-                  cases ih ps t htail hs ht with
-                  | intro b hb => exact ⟨b, CitedAt.inTail pn tail b hb⟩
-              | obstacleFire => cases hs
-              | extinctionFromEstablished => cases hs
-              | enforceabilityBlocked => cases hs
-              | extinctionFromSuspended => cases hs
-              | defenseDefused => cases hs
-              | extinctionFromUnenforceable => cases hs
-              | enforceabilityRestored => cases hs
+              by_cases hcase : s' = Status.notYet
+              · subst hcase
+                have hwalk : Walk s tail t := by
+                  rw [hs]
+                  exact htail
+                exact carriesBasis_cons n tail (ih s t hwalk hs ht)
+              · have hf := step_leaves_notYet_fields hstep hs hcase
+                exact ⟨n, CitedAt.here n tail hf.1 hf.2.1 hf.2.2⟩
 
 /-- 推论一：终局"成立"必有成立段引证。 -/
 theorem established_cites_creation_basis

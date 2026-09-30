@@ -72,6 +72,13 @@ PENDING_CI_MODULES: dict[str, str] = {
     "JurisLean.Seams.Representation": (
         "S0 seam: representation layer, joint model + P-002 scope "
         "(wave 7, local build green at 617 jobs)"),
+    "JurisLean.Seams.AdjudicationBridge": (
+        "S2 seam: adjudication bridge, P-051 free-evaluation boundary "
+        "(wave 7, still under construction -- snapshot, not yet built)"),
+    "JurisLean.Seams.InstitutionalEffects": (
+        "S5 seam: ledger+projection refinement and the non-adjudicative "
+        "performance channel (wave 7, still under construction -- snapshot, "
+        "not yet built)"),
     #
     # `JurisLean.Seams.ClaimBasis` (P-034 claim-basis chain, seam 1) left this table on
     # 2026-10-01: after the name-free Step inversion fixed its local build, run

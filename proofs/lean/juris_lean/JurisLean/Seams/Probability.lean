@@ -28,13 +28,21 @@ S3 —— L4 概率层缝合件：P-114 概率桥、β 后验的五段推导、P
 且搬运可逆；少一条就只能说"两者看起来一样"。
 
 **(2) β 后验的五段推导。** 同一套"胜/负计数 + 形状参数"在本项目里被读成四种量：
-条件化后验（`Conditioning.posterior`）、模型平均权重（`ModelAveraging`）、
+条件化后验（`Conditioning.posterior`）、模型平均权重（`ModelAveraging.hyperWeights`）、
 Dirichlet/Beta 共轭更新（`DirichletPosterior.dirWeights`）、精确 Beta CDF 的区间质量
-（`BetaInterval.betaMass`）。本件声明一个 ℚ 上的生成模型 `BetaGenModel`
+（`BetaInterval.betaMass`）。本件声明**一个** ℚ 上的生成模型 `BetaGenModel`
 （先验形状 `shape`、似然折叠出的计数 `counts`、后验形状 `foldedShape = shape + counts`），
-并证明三段推导：后验形状等于"先验 + 似然计数"（`beta_posterior_from_likelihood`）、
-同一机制在两种选择/观察制度下的读数互相搬运（`selection_transport_from_shared_mechanism`）、
-读出段的精确金额不经任何舍入（`exact_amount_denotation`）。
+在其中四读数的**三个**（`Conditioning`、`DirichletPosterior`、`BetaInterval`）之间交出
+五段推导：
+段一 先验读出归一 `prior_readout_normalizes`；
+段二 后验形状等于"先验 + 似然计数" `beta_posterior_from_likelihood`；
+段三 后验读出归一 `posterior_readout_normalizes`（前提 `shape_add_counts_pos`）；
+段四 同一机制在两种选择/观察制度下的读数互相搬运 `selection_transport_from_shared_mechanism`
+（配 `evMass_posterior_refined`、`transport_regime_positivity` 与边界 `transport_boundary_needs_nesting`）；
+段五 读出段的精确金额不经任何舍入 `exact_amount_denotation`（配概率面
+`beta_predictive_bracket_survives_update`）。
+第四个读数 `ModelAveraging.hyperWeights` **没有**被接进这个模型（本件不 import 它），
+列为未覆盖片段第 3 项；五段全是 ℚ 上的读数/权重恒等式，一段都不是测度论积分。
 法律读法：胜诉率、违约金酌减幅度、模型权重这些"三个数"常常出自同一生成过程的不同制度；
 只有把机制写成函数、把制度写成谓词，才能说清它们凭什么可以互相换算。
 
@@ -69,43 +77,67 @@ Dirichlet/Beta 共轭更新（`DirichletPosterior.dirWeights`）、精确 Beta C
   下界或维持约定额。
 
 ## 三、证与不证
-**证**：桥的构造与四条守恒/回读性质；`beta_posterior_from_likelihood`（以
-`DirichletPosterior.dirWeights_update_compose` 为唯一实质引理，未重证）；
-先验与后验读出各自归一（引用 `dirWeights_normalizes`）；精确 Beta CDF 在更新后仍满括号
-（引用 `BetaInterval.beta_mass_total_one`）；嵌套制度下的证据质量搬运方程与其正性、
-以及两重条件化等于一重条件化；带显式舍入政策时精确金额读数就是其有理像且与政策无关；
-`∀ c, Allow c (choose c)`；钳制的归入性与其不等价于 `Allow` 的反例；
-`Allow` 不唯一决定金额（两个不同的准许额）；30% 门槛既不强制也不排斥认定（双向见证）。
+**证**：桥的构造 `finite_distribution_to_pmf` 与总质量搬运 `rationalMass_sum_eq_one`，
+外加四条守恒/回读性质（原子质量 `…_apply`、`HasSum`/`tsum` 形态 `…_hasSum`、`…_tsum`、
+支撑 `…_mem_support`、单射 `…_injective`、逐原子界 `…_atom_le_one`）与证据质量在桥下保持
+`rationalMass_evMass`；五段推导逐一见 §一(2) 的段号——其中段二以
+`DirichletPosterior.dirWeights_update_compose` 为唯一实质引理（未重证），段三引用
+`dirWeights_normalizes` 并先证更新后总质量仍正 `shape_add_counts_pos`，段四的
+`evMass_posterior_refined` 给搬运方程、`transport_regime_positivity` 给其正性前提，
+段四主定理给"两重条件化等于一重条件化"，边界 `transport_boundary_needs_nesting` 给
+非嵌套时的逐点失效面；段五的五条给出带显式舍入政策时精确金额读数就是其有理像、
+与政策取值无关、政策缺失即 fail-closed、且读数币种盲，概率面
+`beta_predictive_bracket_survives_update` 引用 `BetaInterval.beta_mass_total_one`；
+P-098 侧证 30% 门槛的四种等价形态（`thirty_percent_rational_exact`、
+`overThirtyThreshold_iff_intTest`、`overThirtyThreshold_iff_excess`、
+`overThirtyTest_true_iff`）、下界不退化 `reductionFloor_le_agreed`、
+`∀ c, Allow c (choose c)`（`reduction_admits_declared_conditions`）、钳制的归入性
+`clampReduction_in_band` 与其不等价于 `Allow` 的反例 `clamp_is_not_reduction`、
+归入性不蕴含准许的一般形式 `band_containment_is_not_allow`、三份见证数据的闭式事实
+（`maliciousData_gate/_choose/_clamp/_floor`、`lossBasedData_facts`、`lossBasedData_overThirty`、
+`otherGroundData_not_overThirty`）、门槛既不强制也不排斥认定（双向见证）、
+以及准许额在约定额非负时非负 `allowed_amount_nonneg_of_nonneg_agreed`。
 
 **不证**（全部是刻意的降级，不是疏漏）：
 - 不证 P-114 的**测度侧**：桥只到 `PMF` 对象与原子质量为止。`PMF.cond` / `PMF.toMeasure`
   需要 `MeasurableSpace`、`a.e.` 与 `ENNReal` 上的条件化，本件未接；因此不得声称
-  "条件化在 Mathlib 概率层已被证明"。
+  "条件化在 Mathlib 概率层已被证明"，也不得声称 P-114 已闭环。
 - 不证 `VE(query,e) = Enumerate(query,e)`：`VariableElimination.elim_swap_adjacent` 的免责声明
   （`:7-8`）说明那只是等式背后的代数，本件没有推进这一步。
 - 不把 `E01Contract.cantelli_core`（`:97`，`m`、`sigma` 为未解释 ℚ 常数、带 `hkey` 假设的
   抽象二次核）升级成概率尾界；不碰其 `:11-12`、`:47` 免责声明。
-- `BetaInterval.beta_mixture_mass` 只有两支混合的结论，任意 n 支未证；本件不复证也不推广。
+- `BetaInterval.beta_mixture_mass`（`:71`）只有两支混合的结论，任意 n 支未证；本件不复证也不推广。
+- 不接第四个读数：`ModelAveraging.hyperWeights` 与 `BetaGenModel` 的共轭读数之间没有定理，
+  本件甚至不 import 该模块；"四读数同出一模型"只在**三个**读数上成立。
+- 不作任何校准/得分主张：本件不 import `Brier.lean`，其 `:8-10` 声明"样本得分不证明校准"，
+  本件也没有把任何读数解释成校准度。
 - 不证 n 段以上生成模型的可组合性；`selection_transport_from_shared_mechanism` 只在
-  **制度嵌套**（`o ⊑ e`）时成立，非嵌套情形由 `transport_needs_nested_regimes` 给出
-  证据质量归零的见证（即 `Conditioning` 走 incompatible 分支，绝不通过除以零）。
+  **制度嵌套**（`o ⊑ e`）时成立，非嵌套情形由 `transport_boundary_needs_nesting` 给出
+  逐点失效面（被排除的状态在两侧和项上不相等）。
 - 不把 65条第1款的衡量因素写成定理，不认定任何真实案件的事实与数额，不作任何裁判结论。
 - 不声称 `choose` 是最优、唯一或与任何运行时实现相 refinement。
+- 恶意违约条文的"一般**不予**支持"同为许可式：本件把 `badFaith` 建成硬关闸（只实现默认情形），
+  法院在恶意违约下仍酌减的例外面未建模。
 
 ## 四、未覆盖片段
 1. `FullMath` 有理分布 → `PMF` 之后的**条件化桥**（`pmfCond` / `Measure.cond`）：未接。
+   本件成立的是质量层与 `PMF` 对象层（§三 第一条），不是 P-114 的闭环。
 2. 有理分布 → `Measure`/`ProbabilityTheory`：未接（且 `Mandate/ZeroSumSion.lean:14` 记录
    本 pin 无 `Probability.Simplex`）。
-3. 任意 n 支模型平均与 n 段生成模型的推导闭合：未证。
-4. 非嵌套制度下的搬运：不成立面只给了单点见证，一般刻画未做。
-5. 酌减"适当"幅度的量定规则、衡量因素的加权函数：刻意不建。
-6. 真实数据的校验义务（`E01Contract` 的 `REAL_VALIDATION_REQUIRED`）：外部义务，本件不伪造。
+3. 第四个读数 `ModelAveraging.hyperWeights` 与 `BetaGenModel` 的共轭读数之间：无任何定理，
+   本件不 import 该模块。模型平均权重的归一化只在 `DirichletPosterior` 内自证，未与
+   胜/负计数模型相连。
+4. 任意 n 支模型平均与 n 段生成模型的推导闭合：未证（`Beta_mixture` 面只有两支）。
+5. 非嵌套制度下的搬运：不成立面只给了单点见证，一般刻画未做。
+6. 酌减"适当"幅度的量定规则、衡量因素的加权函数：刻意不建。
+7. 恶意违约"一般不予支持"的例外面（许可式的另一半）：未建模，闸门按默认情形硬关。
+8. 真实数据的校验义务（`E01Contract` 的 `REAL_VALIDATION_REQUIRED`）：外部义务，本件不伪造。
 
 ## 五、档位
 `SEAM_S3_LOCAL_PROVISIONAL`：仅在本地单模块编译通过，CI 未跑（`CI_NOT_RUN`，fail-closed）。
-桥的部分成立（对象级 `PMF` 已建，测度级未建）；推导三段落地的同时明确放弃另外两段；
-P-098 只到"关系 + 反例"，未做任何量刑/酌定结论。禁止把本件读成"P-114 已闭环"
-或"违约金酌减已被形式化决定"。
+桥的部分成立（质量层与对象级 `PMF` 已建，测度级未建）；§一(2) 的五段读数推导全部落地，
+放弃的是测度级条件化桥与第四读数（模型平均）；P-098 只到"关系 + 反例"，
+未做任何量刑/酌定结论。禁止把本件读成"P-114 已闭环"或"违约金酌减已被形式化决定"。
 -/
 
 namespace JurisLean.Seams.Probability
@@ -141,7 +173,7 @@ def finite_distribution_to_pmf (p : α → ℚ) (hp0 : ∀ a, 0 ≤ p a)
 theorem finite_distribution_to_pmf_apply (p : α → ℚ) (hp0 : ∀ a, 0 ≤ p a)
     (hp1 : ∑ a : α, p a = 1) (a : α) :
     finite_distribution_to_pmf p hp0 hp1 a = ENNReal.ofReal (p a) :=
-  PMF.ofFintype_apply _
+  PMF.ofFintype_apply _ a
 
 /-- 桥落进了 `HasSum` 的世界：质量像以 1 为和。这条不是本地重证，而是从 `PMF` 对象取回。 -/
 theorem finite_distribution_to_pmf_hasSum (p : α → ℚ) (hp0 : ∀ a, 0 ≤ p a)
@@ -171,8 +203,9 @@ theorem finite_distribution_to_pmf_injective (p q : α → ℚ) (hp0 : ∀ a, 0 
       rw [h]
     rwa [finite_distribution_to_pmf_apply, finite_distribution_to_pmf_apply] at h'
   funext a
-  exact (ENNReal.ofReal_eq_ofReal_iff (Rat.cast_nonneg.mpr (hp0 a)) (Rat.cast_nonneg.mpr (hq0 a)))
-    .mp (hatoms a)
+  have hiff : ENNReal.ofReal (p a) = ENNReal.ofReal (q a) ↔ (p a : ℝ) = (q a : ℝ) :=
+    ENNReal.ofReal_eq_ofReal_iff (Rat.cast_nonneg.mpr (hp0 a)) (Rat.cast_nonneg.mpr (hq0 a))
+  exact_mod_cast hiff.mp (hatoms a)
 
 /-- 界可回读：PMF 侧 `coe_le_one` 搬回 ℚ 侧，得每个原子的概率不超过 1。
     法律读法：外部载体的性质可以回供给仓内有理算法，不需要重新验证。 -/
@@ -188,22 +221,10 @@ theorem finite_distribution_to_pmf_atom_le_one (p : α → ℚ) (hp0 : ∀ a, 0 
     不接 `PMF.cond` / `Measure.cond`。 -/
 theorem rationalMass_evMass (p : α → ℚ) (hp0 : ∀ a, 0 ≤ p a) (e : α → Bool) :
     ∑ a, (if e a = true then rationalMass p a else 0) = ENNReal.ofReal (evMass p e) := by
-  have hpoint (a : α) : (if e a = true then rationalMass p a else 0)
-      = ENNReal.ofReal (if e a = true then (p a : ℚ) else 0) := by
-    by_cases he : e a = true
-    · rw [if_pos he, if_pos he]
-    · rw [if_neg he, if_neg he, ENNReal.ofReal_zero]
-  calc (∑ a, if e a = true then rationalMass p a else 0)
-      = ∑ a, ENNReal.ofReal (if e a = true then (p a : ℚ) else 0) :=
-        Finset.sum_congr rfl hpoint
-    _ = ENNReal.ofReal (∑ a : α, (if e a = true then p a else 0 : ℚ)) :=
-        (ENNReal.ofReal_sum_of_nonneg (fun a _ => by
-          by_cases he : e a = true
-          · rw [if_pos he]
-            exact_mod_cast hp0 a
-          · rw [if_neg he]
-            exact le_refl _)).symm
-    _ = ENNReal.ofReal (evMass p e) := congrArg ENNReal.ofReal rfl
+  unfold rationalMass evMass
+  rw [← Finset.sum_filter, ← Finset.sum_filter]
+  rw [← ENNReal.ofReal_sum_of_nonneg (fun a _ => by exact_mod_cast hp0 a)]
+  rw [← Rat.cast_sum]
 
 end Bridge
 
@@ -227,8 +248,16 @@ structure BetaGenModel where
 /-- 后验形状：先验形状加似然计数（段 L3→L4 的"参数更新"面）。 -/
 def foldedShape (m : BetaGenModel) : Fin 2 → ℚ := fun i => m.shape i + m.counts i
 
-/-- 先验读出：把形状归一化成权重（引用 `dirWeights`，本件不重定义归一化）。 -/
-def priorReadout (m : BetaGenModel) : Fin 2 → ℚ := dirWeights m.shape 0
+/-- 先验读出：形状的归一化 `α_i / Σ α`。它与 `dirWeights α 0` 表示同一个量
+    （见 `priorReadout_eq_dirWeights_zero`），这里用直接形式是为了避开"加零"的可判定表述。 -/
+def priorReadout (m : BetaGenModel) : Fin 2 → ℚ :=
+  fun i => m.shape i / ∑ j : Fin 2, m.shape j
+
+/-- 先验读出与 `dirWeights shape 0` 相同：本件的共轭推导只用后者。 -/
+theorem priorReadout_eq_dirWeights_zero (m : BetaGenModel) :
+    priorReadout m = dirWeights m.shape (0 : Fin 2 → ℚ) := by
+  funext i
+  simp only [priorReadout, dirWeights, Pi.zero_apply, add_zero]
 
 /-- 后验读出：形状 + 计数后的归一化权重。 -/
 def posteriorReadout (m : BetaGenModel) : Fin 2 → ℚ := dirWeights m.shape m.counts
@@ -236,10 +265,10 @@ def posteriorReadout (m : BetaGenModel) : Fin 2 → ℚ := dirWeights m.shape m.
 /-- 更新后的总质量仍为正：先验总质量为正且计数非负。
     法律读法：观测不会把一个非退化的先验凭空变成零证据质量。 -/
 theorem shape_add_counts_pos (m : BetaGenModel) :
-    0 < ∑ i : Fin 2, m.shape i + m.counts i := by
-  have hle : ∑ i : Fin 2, m.shape i ≤ ∑ i : Fin 2, m.shape i + m.counts i :=
-    Finset.sum_le_sum (fun i _ => le_add_of_nonneg_right (m.hcounts i))
-  linarith
+    0 < ∑ i : Fin 2, (m.shape i + m.counts i) := by
+  have hle : (∑ i : Fin 2, m.shape i) ≤ ∑ i : Fin 2, (m.shape i + m.counts i) :=
+    Finset.sum_le_sum fun i _ => le_add_of_nonneg_right (m.hcounts i)
+  exact lt_of_lt_of_le m.hpos hle
 
 /-- 段 L3→L4（契约要求的 `beta_posterior_from_likelihood`）：
     先把似然计数折进形状再归一化，与直接用计数更新算子归一化，是同一个量。
@@ -249,23 +278,22 @@ theorem shape_add_counts_pos (m : BetaGenModel) :
     后者涉及 `Real.Gamma`，仓内只在 `DirichletPosterior.beta_ratio`（ℝ 侧）证过比值恒等式。 -/
 theorem beta_posterior_from_likelihood (m : BetaGenModel) :
     dirWeights (foldedShape m) (0 : Fin 2 → ℚ) = posteriorReadout m := by
-  have h := dirWeights_update_compose m.shape m.counts (0 : Fin 2 → ℚ)
-  rw [show foldedShape m = (fun i => m.shape i + m.counts i) from rfl] at h
-  rw [show m.counts + (0 : Fin 2 → ℚ) = m.counts from by ext i; simp] at h
-  simpa [posteriorReadout] using h
+  have hnum : ∀ i : Fin 2, m.counts i + (0 : Fin 2 → ℚ) i = m.counts i := fun i => add_zero _
+  have hcomp : dirWeights (fun i => m.shape i + m.counts i) (0 : Fin 2 → ℚ)
+      = dirWeights m.shape (fun i => m.counts i + (0 : Fin 2 → ℚ) i) :=
+    dirWeights_update_compose m.shape m.counts (0 : Fin 2 → ℚ)
+  rw [show foldedShape m = (fun i : Fin 2 => m.shape i + m.counts i) from rfl, hcomp]
+  refine congrArg (dirWeights m.shape) ?_
+  exact funext (fun i => hnum i)
 
-/-- 段 L2：先验读出归一（引用 `dirWeights_normalizes`，不重证）。 -/
-theorem prior_readout_normalizes (m : BetaGenModel) : ∑ i, priorReadout m i = 1 :=
-  dirWeights_normalizes m.shape (0 : Fin 2 → ℚ)
-    (by
-      have hsum : (fun i : Fin 2 => m.shape i + (0 : ℚ)) = m.shape := by ext i; simp
-      rw [hsum]
-      exact m.hpos)
+/-- 段 L2：先验读出归一（由 `dirWeights` 的定义直接算出；分母非零来自先验总质量为正）。 -/
+theorem prior_readout_normalizes (m : BetaGenModel) : ∑ i, priorReadout m i = 1 := by
+  unfold priorReadout
+  rw [← Finset.sum_div, div_self (ne_of_gt m.hpos)]
 
-/-- 段 L4：后验读出归一（同样是引用 `dirWeights_normalizes`）。 -/
-theorem posterior_readout_normalizes (m : BetaGenModel) : ∑ i, posteriorReadout m i = 1 := by
-  show ∑ i, dirWeights m.shape m.counts i = 1
-  exact dirWeights_normalizes m.shape m.counts (shape_add_counts_pos m)
+/-- 段 L4：后验读出归一（引用 `dirWeights_normalizes`，不重证）。 -/
+theorem posterior_readout_normalizes (m : BetaGenModel) : ∑ i, posteriorReadout m i = 1 :=
+  dirWeights_normalizes m.shape m.counts (shape_add_counts_pos m)
 
 /-- 段 L5 的概率面：整数形状参数更新后，精确 Beta CDF 的括号质量仍恰为 1
     （引用 `BetaInterval.beta_mass_total_one`）。
@@ -282,7 +310,7 @@ theorem evMass_posterior_refined {S : Type} [Fintype S] [DecidableEq S] (p : S �
     evMass (posterior p e hE) o = evMass p o / evMass p e := by
   show ∑ s, (if o s = true then posterior p e hE s else 0)
       = (∑ s, if o s = true then p s else 0) / evMass p e
-  rw [← Finset.sum_div]
+  rw [Finset.sum_div]
   refine Finset.sum_congr rfl (fun s _ => ?_)
   by_cases ho : o s = true
   · rw [if_pos ho, if_pos ho]
@@ -324,61 +352,57 @@ theorem selection_transport_from_shared_mechanism {S : Type} [Fintype S] [Decida
     field_simp [hZ, hW]
   · rw [if_neg ho, if_neg ho]
 
-/-- 声明见证用的均匀二值分布（ℚ，两个原子各 `1/2`）。 -/
-def halfP : Bool → ℚ := fun _ => 1 / 2
-
-/-- 制度一：观察到 `true`。 -/
-def regimeTrue : Bool → Bool := fun b => b
-
-/-- 制度二：观察到 `false`（与制度一互不包含）。 -/
-def regimeFalse : Bool → Bool := fun b => !b
-
-/-- 见证的制度事实：两制度各自证据质量正、且互不包含，
-    但二次条件化的证据质量为 0（闭式计算，不用浮点）。
-    法律读法：换了观察口径，"同一批数据"可能在第二个口径下自相矛盾；
-    此时 `Conditioning` 走 incompatible 分支，绝不通过把零总化来除。 -/
-theorem transport_needs_nested_regimes :
-    (∀ b, 0 ≤ halfP b) ∧ 0 < evMass halfP regimeTrue ∧ 0 < evMass halfP regimeFalse ∧
-      (∃ b, regimeFalse b = true ∧ regimeTrue b = false) ∧
-      ∀ hE : 0 < evMass halfP regimeTrue,
-        evMass (posterior halfP regimeTrue hE) regimeFalse = 0 := by
-  refine ⟨fun _ => le_refl _, by decide, by decide, ⟨true, by decide, by decide⟩, ?_⟩
-  intro hE
-  unfold evMass
-  refine Finset.sum_eq_zero (fun b _ => ?_)
-  by_cases hb : b = true
-  · subst hb
-    decide
-  · subst hb
-    decide
+/-- 段 L2↔L4 的适用边界（降级声明，非疏漏）：搬运定理的前提 `href` 不能去掉。
+    只要存在一个被窄制度 `o` 选中、却被宽制度 `e` 排除、且概率为正的状态，
+    该状态在搬运方程两侧的和项就不相等——左端把它归零，右端仍给出正的贡献。
+    法律读法：换了观察口径，"同一批数据"可能在第二个口径下被排除；此时不能继续沿用
+    上一个口径的后验，更不能把被排除的情形当作零证据质量后的残余概率。
+    本件只给出逐点失效面，未给出"何时仍可调运"的完整刻画（列为未覆盖片段）。 -/
+theorem transport_boundary_needs_nesting {S : Type} [Fintype S] [DecidableEq S] (p : S → ℚ)
+    (e o : S → Bool) (hE : 0 < evMass p e) (s : S)
+    (hs_o : o s = true) (hs_e : ¬ (e s = true)) (hs_p : 0 < p s) :
+    (if o s = true then p s / evMass p e else 0) ≠
+      (if o s = true then (if e s = true then p s / evMass p e else 0) else 0) := by
+  rw [if_pos hs_o, if_pos hs_o, if_neg hs_e]
+  exact ne_of_gt (div_pos hs_p hE)
 
 /-- 精确金额的有理像：`Int` 最小货币单位直接置入 ℚ；这是金额进入比例比较的唯一通道，
     中间不含任何舍入步骤。 -/
 def exactAmountQ (a : ExactAmountM5) : ℚ := a.minorUnits
 
-/-- 带政策门的读数：`decisiveWithRounding` 为假时不给出读数（沿用仓内 fail-closed 合同）。 -/
+/-- 带政策门的读数：政策缺失时不给出读数（沿用 `ExactNumericContract` 的 fail-closed 合同：
+    `decisiveWithRounding` 要求 `policy.isSome`；本件用 `match` 而不是 `if`，
+    因为 `decisiveWithRounding` 不是可判定谓词，用 `if` 会引入经典性选择）。 -/
 def denotateWithPolicy (a : ExactAmountM5) (policy : Option RoundingPolicy) : Option ℚ :=
-  if decisiveWithRounding policy then some (exactAmountQ a) else none
+  match policy with
+  | some _ => some (exactAmountQ a)
+  | none => none
+
+/-- 读数存在当且仅当政策在场（形状与 `decisiveWithRounding` 一致）：
+    有政策时读数就是有理像，无政策时读数为 `none`；两条都是定义的展开。 -/
+theorem denotate_some_none (a : ExactAmountM5) (p : RoundingPolicy) :
+    denotateWithPolicy a (some p) = some (exactAmountQ a) ∧
+      denotateWithPolicy a none = none := ⟨rfl, rfl⟩
 
 /-- 段 L5（契约要求的 `exact_amount_denotation`）：显式舍入政策下，精确金额的读数
     就是它的最小货币单位有理像。"无舍入"不是本件的假设而是定义的事实：
     读数函数里根本没有舍入映射，政策只决定 decisive。
     实质引用：`explicit_rounding_decisive`（`ExactNumericContract.lean:68`），不重证。 -/
 theorem exact_amount_denotation (a : ExactAmountM5) (p : RoundingPolicy) :
-    denotateWithPolicy a (some p) = some (exactAmountQ a) :=
-  if_pos (explicit_rounding_decisive p)
+    denotateWithPolicy a (some p) = some (exactAmountQ a) ∧ decisiveWithRounding (some p) :=
+  ⟨rfl, explicit_rounding_decisive p⟩
 
 /-- 读数与政策取值无关：任一显式政策给出同一个 ℚ。
     法律读法：政策选择是程序问题，不许改变数额本身。 -/
 theorem denotation_independent_of_policy (a : ExactAmountM5) (p q : RoundingPolicy) :
-    denotateWithPolicy a (some p) = denotateWithPolicy a (some q) := by
-  rw [exact_amount_denotation a p, exact_amount_denotation a q]
+    denotateWithPolicy a (some p) = denotateWithPolicy a (some q) :=
+  (exact_amount_denotation a p).1.trans ((exact_amount_denotation a q).1.symm)
 
 /-- 政策缺失时读数不存在，并同时挂上仓内既有结论
     `missing_rounding_not_decisive`（`ExactNumericContract.lean:62`；本件只引用，不重证）。 -/
 theorem denotation_blocked_without_policy (a : ExactAmountM5) :
     denotateWithPolicy a none = none ∧ ¬ decisiveWithRounding (none : Option RoundingPolicy) :=
-  ⟨if_neg missing_rounding_not_decisive, missing_rounding_not_decisive⟩
+  ⟨rfl, missing_rounding_not_decisive⟩
 
 /-- 读数是币种盲的：整数位相同而币种不同的两笔金额有相同的有理像、却是不同的金额对象。
     法律读法：数值相等绝不等于同一笔钱；桥只搬数量，不搬币种。 -/
@@ -450,12 +474,11 @@ theorem thirty_percent_rational_exact :
 /-- 门槛的两种形态等价：ℚ 比较与整数比较说的是同一件事（乘正数 10 保序）。 -/
 theorem overThirtyThreshold_iff_intTest {F : Type} (c : ReductionData F) :
     overThirtyThreshold c ↔ (13 : Amount) * c.loss < 10 * c.agreed := by
-  unfold overThirtyThreshold
-  have key : (13 / 10 : ℚ) * amountQ c.loss = (13 * amountQ c.loss) / 10 := by
+  unfold overThirtyThreshold amountQ
+  have key : (13 / 10 : ℚ) * (c.loss : ℚ) = (13 : ℚ) * (c.loss : ℚ) / 10 := by
     field_simp
-  rw [key, div_lt_iff (show (0 : ℚ) < 10 by norm_num),
-    mul_comm (amountQ c.agreed) (10 : ℚ)]
-  norm_cast
+  rw [key, div_lt_iff₀' (show (0 : ℚ) < 10 by norm_num)]
+  constructor <;> intro h <;> exact_mod_cast h
 
 /-- 门槛的"超出部分"读法：门槛成立当且仅当超出损失的部分大于损失的 30%。
     法律读法：条文说的是"超过……百分之三十"，本件把这句话写成可核验的等价式。 -/
@@ -476,10 +499,10 @@ theorem overThirtyTest_true_iff {F : Type} (c : ReductionData F) :
   unfold overThirtyTest
   constructor
   · intro h
-    by_cases hh : 13 * c.loss < 10 * c.agreed
+    by_cases hh : (13 : Amount) * c.loss < 10 * c.agreed
     · exact hh
     · rw [if_neg hh] at h
-      exact absurd h Bool.false_eq_true
+      exact absurd h Bool.false_ne_true
   · intro h
     exact if_pos h
 
@@ -510,7 +533,7 @@ def reductionFloor {F : Type} (c : ReductionData F) : Amount := min c.agreed (ma
 theorem reductionFloor_le_agreed {F : Type} (c : ReductionData F) :
     reductionFloor c ≤ c.agreed := by
   unfold reductionFloor
-  omega
+  exact min_le_left _ _
 
 /-- 允许酌减关系 `Allow`（P-098 的核心：这是一个**关系**，不是钳制函数）：
     (i) 闸门开时下界到约定额之间的额都可准许；
@@ -567,7 +590,7 @@ theorem clampReduction_in_band {F : Type} (c : ReductionData F) (h : (0 : Amount
   split_ifs with h1 h2
   · exact ⟨le_refl _, h⟩
   · exact ⟨h, le_refl _⟩
-  · exact ⟨by omega, by omega⟩
+  · exact ⟨not_lt.mp h1, not_lt.mp h2⟩
 
 /-- 恶意违约的条件数据：请求、举证、认定过分高于皆备，约定额 200、损失 100（门槛成立），
     但当事人恶意违约（第65条第2款）。 -/
@@ -575,59 +598,117 @@ def maliciousData : ReductionData Unit :=
   { agreed := 200, loss := 100, requested := true, badFaith := true, proved := true,
     overFound := true, factors := () }
 
+/-- 恶意违约把闸门关掉：`reductionGate maliciousData = false`（第65条第2款），
+    即使其余三个条件位全为真、30% 门槛也成立。闭式 Bool/ℤ 计算，不用浮点。 -/
+theorem maliciousData_gate : reductionGate maliciousData = false := by
+  simp [reductionGate, conditionHolds, overThirtyTest, maliciousData]
+
+/-- 恶意违约时唯一准许额是维持约定额：`choose` 给出的正是 200。 -/
+theorem maliciousData_choose : choose maliciousData = (200 : Amount) := by
+  have hg : reductionGate maliciousData ≠ true := by simp [maliciousData_gate]
+  rw [choose, if_neg hg]
+  rfl
+
+/-- 恶意违约数据上钳制值 = 100（落在带内，却低于约定额）。 -/
+theorem maliciousData_clamp : clampReduction maliciousData = (100 : Amount) := by
+  simp [clampReduction, clampInt, maliciousData]
+
+/-- 恶意违约数据的下界同样是 100：钳制与下界在此例重合，正是误导之处。 -/
+theorem maliciousData_floor : reductionFloor maliciousData = (100 : Amount) := by
+  simp [reductionFloor, maliciousData]
+
 /-- 契约要求的反例对 `clamp_is_not_reduction`：钳制值满足区间归入（0 ≤ 100 ≤ 200），
     却在同一份条件数据上违反 `Allow`——因为恶意违约使闸门关闭，此时唯一可准许的是
     维持约定额。结论：区间归入**不是**法律上的可酌减性质。 -/
 theorem clamp_is_not_reduction :
     (0 ≤ clampReduction maliciousData ∧ clampReduction maliciousData ≤ maliciousData.agreed) ∧
       ¬ Allow maliciousData (clampReduction maliciousData) := by
-  have hgate : reductionGate maliciousData = false := by decide
-  refine ⟨⟨by decide, by decide⟩, ?_⟩
+  have hb : 0 ≤ clampReduction maliciousData ∧
+      clampReduction maliciousData ≤ maliciousData.agreed := by
+    refine ⟨?_, ?_⟩
+    · rw [maliciousData_clamp]
+      decide
+    · rw [maliciousData_clamp]
+      simp only [maliciousData]
+      decide
+  refine ⟨hb, ?_⟩
   intro hall
   obtain ⟨_, h2⟩ := hall
   cases h2 with
-  | inl hg => exact absurd hg (by simp [hgate])
+  | inl hg => exact absurd hg (by simp [maliciousData_gate])
   | inr he =>
-      have hne : clampReduction maliciousData ≠ maliciousData.agreed := by decide
+      have hne : clampReduction maliciousData ≠ maliciousData.agreed := by
+        rw [maliciousData_clamp]
+        simp only [maliciousData]
+        decide
       exact hne he
 
 /-- 归入性不等于准许的一般形式：存在条件数据与金额，满足下界与上界，却不被 `Allow` 接受。 -/
 theorem band_containment_is_not_allow :
     ∃ (c : ReductionData Unit) (x : Amount),
-      reductionFloor c ≤ x ∧ x ≤ c.agreed ∧ ¬ Allow c x :=
-  ⟨maliciousData, clampReduction maliciousData, by decide, by decide,
-    clamp_is_not_reduction.2⟩
+      reductionFloor c ≤ x ∧ x ≤ c.agreed ∧ ¬ Allow c x := by
+  refine ⟨maliciousData, reductionFloor maliciousData, le_refl _,
+    reductionFloor_le_agreed maliciousData, ?_⟩
+  intro hall
+  obtain ⟨_, h2⟩ := hall
+  cases h2 with
+  | inl hg => exact absurd hg (by simp [maliciousData_gate])
+  | inr he =>
+      rw [maliciousData_floor, maliciousData] at he
+      exact absurd he (by decide)
 
-/-- 门槛齐备但非恶意的条件数据：认定位为假（"可以认定"不是"必须认定"），
-    仅凭 30% 门槛即开闸。 -/
+/-- 门槛齐备但非恶意、法院未另行认定的条件数据：闸门只因 30% 门槛而开
+    （"可以认定"是许可，不是必须）。 -/
 def lossBasedData : ReductionData Unit :=
   { agreed := 200, loss := 100, requested := true, badFaith := false, proved := true,
     overFound := false, factors := () }
 
-/-- 两份见证数据的具体数值事实（全部闭式可判定，不用浮点）：
-    门槛使 `lossBasedData` 开闸，恶意违约使 `maliciousData` 关闸。 -/
+/-- 门槛不成立、但法院依第65条第1款的因素面另行认定过分高于的条件数据
+    （约定额 120、损失 100：`13 * 100 = 1300 ≥ 10 * 120 = 1200`）。 -/
+def otherGroundData : ReductionData Unit :=
+  { agreed := 120, loss := 100, requested := true, badFaith := false, proved := true,
+    overFound := true, factors := () }
+
+/-- 见证数据的数值事实（由 `simp` 在 ℤ/Bool 上闭式算出，不用浮点、不用经典性）：
+    门槛使 `lossBasedData` 开闸，恶意违约使 `maliciousData` 关闸，
+    因素面认定使 `otherGroundData` 开闸。 -/
 theorem lossBasedData_facts :
     reductionGate lossBasedData = true ∧ reductionFloor lossBasedData = (100 : Amount) ∧
       reductionGate maliciousData = false ∧ choose maliciousData = (200 : Amount) ∧
-      choose lossBasedData = (100 : Amount) := by
-  refine ⟨by decide, by decide, by decide, by decide, by decide⟩
+      choose lossBasedData = (100 : Amount) ∧ reductionGate otherGroundData = true := by
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
+  · simp [reductionGate, conditionHolds, overThirtyTest, lossBasedData]
+  · simp [reductionFloor, lossBasedData]
+  · simp [reductionGate, conditionHolds, overThirtyTest, maliciousData]
+  · simp [choose, reductionGate, conditionHolds, overThirtyTest, maliciousData]
+  · simp [choose, reductionFloor, reductionGate, conditionHolds, overThirtyTest, lossBasedData]
+  · simp [reductionGate, conditionHolds, overThirtyTest, otherGroundData]
+
+/-- 门槛在 `lossBasedData` 上成立（ℚ 精确比较：`13/10 * 100 = 130 < 200`）。 -/
+theorem lossBasedData_overThirty : overThirtyThreshold lossBasedData := by
+  rw [overThirtyThreshold_iff_intTest]
+  simp only [lossBasedData]
+  decide
+
+/-- 门槛在 `otherGroundData` 上不成立（`1300 < 1200` 为假）。 -/
+theorem otherGroundData_not_overThirty : ¬ overThirtyThreshold otherGroundData := by
+  rw [overThirtyThreshold_iff_intTest]
+  simp only [otherGroundData]
+  decide
 
 /-- 门槛成立并不自动使法院的认定成立（许可式）：存在门槛成立而认定位为假的数据。
     法律读法：65条第2款是"可以认定"，不是"应当认定"。 -/
 theorem threshold_does_not_force_the_finding :
     ∃ (c : ReductionData Unit), overThirtyThreshold c ∧ c.overFound = false :=
-  ⟨lossBasedData, by
-    rw [overThirtyThreshold_iff_intTest]
-    decide, rfl⟩
+  ⟨lossBasedData, lossBasedData_overThirty, rfl⟩
 
 /-- 认定成立并不必来自门槛（第65条第1款的因素面可另行认定）：
-    存在门槛不成立而认定位为真的数据。 -/
+    存在门槛不成立而认定位为真的数据，而且闸门仍开。 -/
 theorem finding_does_not_require_the_threshold :
-    ∃ (c : ReductionData Unit), ¬ overThirtyThreshold c ∧ c.overFound = true := by
-  refine ⟨{ agreed := 120, loss := 100, requested := true, badFaith := false, proved := true,
-      overFound := true, factors := () }, ?_, rfl⟩
-  rw [overThirtyThreshold_iff_intTest]
-  decide
+    ∃ (c : ReductionData Unit), ¬ overThirtyThreshold c ∧ c.overFound = true ∧
+      reductionGate c = true :=
+  ⟨otherGroundData, otherGroundData_not_overThirty, rfl,
+    by simp [reductionGate, conditionHolds, overThirtyTest, otherGroundData]⟩
 
 end PenaltyReduction
 
@@ -641,27 +722,46 @@ section Limitation
 theorem allow_does_not_determine_amount :
     ∃ (c : ReductionData Unit) (x y : Amount),
       x ≠ y ∧ Allow c x ∧ Allow c y := by
+  have hgate : reductionGate lossBasedData = true :=
+    by simp [reductionGate, conditionHolds, overThirtyTest, lossBasedData]
+  have hfloor : reductionFloor lossBasedData = (100 : Amount) :=
+    by simp [reductionFloor, lossBasedData]
   refine ⟨lossBasedData, 100, 200, by decide, ?_, ?_⟩
-  · exact allow_of_gate_open lossBasedData 100 (by decide) ⟨by decide, by decide⟩
-  · exact allow_of_gate_open lossBasedData 200 (by decide) ⟨by decide, by decide⟩
+  · exact allow_of_gate_open lossBasedData 100 hgate
+      ⟨le_of_eq hfloor, by simp [lossBasedData]⟩
+  · exact allow_of_gate_open lossBasedData 200 hgate
+      ⟨hfloor ▸ (by decide : (100 : Amount) ≤ 200), le_refl _⟩
 
-/-- 更强形式的同一限制：30% 门槛成立、全部条件齐备，金额仍不唯一决定。 -/
+/-- 更强形式的同一限制：30% 门槛成立、全部条件齐备，金额仍不唯一决定
+    （沿用 `allow_does_not_determine_amount` 的同一见证 `lossBasedData`）。 -/
 theorem threshold_does_not_determine_amount :
     ∃ (c : ReductionData Unit), overThirtyThreshold c ∧
       ∃ x y : Amount, x ≠ y ∧ Allow c x ∧ Allow c y := by
-  refine ⟨lossBasedData, threshold_does_not_force_the_finding.1, 100, 200, by decide, ?_, ?_⟩
-  · exact allow_of_gate_open lossBasedData 100 (by decide) ⟨by decide, by decide⟩
-  · exact allow_of_gate_open lossBasedData 200 (by decide) ⟨by decide, by decide⟩
+  have hgate : reductionGate lossBasedData = true :=
+    by simp [reductionGate, conditionHolds, overThirtyTest, lossBasedData]
+  have hfloor : reductionFloor lossBasedData = (100 : Amount) :=
+    by simp [reductionFloor, lossBasedData]
+  refine ⟨lossBasedData, lossBasedData_overThirty, 100, 200, by decide, ?_, ?_⟩
+  · exact allow_of_gate_open lossBasedData 100 hgate
+      ⟨le_of_eq hfloor, by simp [lossBasedData]⟩
+  · exact allow_of_gate_open lossBasedData 200 hgate
+      ⟨hfloor ▸ (by decide : (100 : Amount) ≤ 200), le_refl _⟩
 
 /-- 选择函数不被 `Allow` 刻画：存在被准许的额不等于 `choose` 给出的额。
     法律读法：交出任何一个具体酌减额，都不可能是"由关系决定出来的"唯一结果。 -/
 theorem choose_is_not_determined_by_allow :
     ∃ (c : ReductionData Unit) (x : Amount), Allow c x ∧ x ≠ choose c := by
-  have hch : choose lossBasedData = (100 : Amount) := by decide
-  refine ⟨lossBasedData, 200, allow_of_gate_open lossBasedData 200 (by decide)
-    ⟨by decide, by decide⟩, ?_⟩
+  have hgate : reductionGate lossBasedData = true :=
+    by simp [reductionGate, conditionHolds, overThirtyTest, lossBasedData]
+  have hfloor : reductionFloor lossBasedData = (100 : Amount) :=
+    by simp [reductionFloor, lossBasedData]
+  have hch : choose lossBasedData = (100 : Amount) := by
+    rw [choose, if_pos hgate, hfloor]
+  refine ⟨lossBasedData, 200,
+    allow_of_gate_open lossBasedData 200 hgate ⟨hfloor ▸ (by decide : (100 : Amount) ≤ 200),
+      le_refl _⟩, ?_⟩
   rw [hch]
-  omega
+  decide
 
 /-- 准许额在约定额非负时自动非负：下界的构造保证的不是这个性质，而是区间不退化。 -/
 theorem allowed_amount_nonneg_of_nonneg_agreed {F : Type} (c : ReductionData F)
@@ -669,8 +769,10 @@ theorem allowed_amount_nonneg_of_nonneg_agreed {F : Type} (c : ReductionData F)
     (hx : Allow c x) : (0 : Amount) ≤ x := by
   obtain ⟨himp, _⟩ := hx
   have hband := himp hg
-  unfold reductionFloor at hband
-  omega
+  have h0 : (0 : Amount) ≤ reductionFloor c := by
+    unfold reductionFloor
+    exact le_min h (le_max_right _ _)
+  exact le_trans h0 hband.1
 
 end Limitation
 

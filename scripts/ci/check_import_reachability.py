@@ -69,46 +69,35 @@ STANDALONE_DRIVERS: dict[str, str] = {
 PENDING_CI_MODULES: dict[str, str] = {
     # Seventh-round seam wave (2026-09-30). Each entry is booked here until its own
     # CI module build passes; AGENTS forbids root entry before that.
-    "JurisLean.Seams.Representation": (
-        "S0 seam: representation layer, joint model + P-002 scope "
-        "(wave 7, local build green at 617 jobs)"),
-    "JurisLean.Seams.AdjudicationBridge": (
-        "S2 seam: adjudication bridge, P-051 free-evaluation boundary "
-        "(wave 7, still under construction -- snapshot, not yet built)"),
-    "JurisLean.Seams.InstitutionalEffects": (
-        "S5 seam: ledger+projection refinement and the non-adjudicative "
-        "performance channel (wave 7, CI module build green in run 36756834804 "
-        "at subject f0398f3; awaiting root entry with the batched rebind)"),
-    "JurisLean.Seams.SourceNorms": (
-        "S1 seam: Horn closure <-> semantic consequence, and the general "
-        "finite acyclic priority maximal element (wave 7, snapshot -- "
-        "under construction, no build verdict yet)"),
-    "JurisLean.Seams.PrecedentFlow": (
-        "S7 seam: precedent-driven version update, non-convergence of backflow, "
-        "and the four-place competence gate for P-066 (wave 7, snapshot -- "
-        "under construction, no build verdict yet)"),
-    "JurisLean.Seams.Probability": (
-        "S3 seam: likelihood->posterior segments, the finite-distribution/PMF "
-        "bridge for P-114 and the allowed-reduction relation for P-098 "
-        "(wave 7, snapshot -- under construction, no build verdict yet)"),
-    "JurisLean.Seams.PayoffEquilibrium": (
-        "S4 seam: declared legal->payoff valuation and the 2*eta deviation "
-        "transport (wave 7, snapshot -- under construction, no build verdict yet)"),
-    "JurisLean.Seams.Temporal": (
-        "XT seam: non-anticipation of a truncated view, interval preservation, "
-        "the quantified form of P-049 and late-insertion reordering "
-        "(wave 7, local build green; awaiting its own CI module build)"),
+    #
+    # Promoted to the release root on 2026-10-01 after each earned its own CI module
+    # build: `Seams.Representation` (run 36753964901 @ 78caf9d), `Seams.SourceNorms`
+    # (36763753630), `Seams.InstitutionalEffects` (36756834804 @ f0398f3),
+    # `Seams.PayoffEquilibrium` (36763899161), `Seams.PrecedentFlow` (36763478818),
+    # `Seams.Temporal` (36762782536), and earlier `Seams.ClaimBasis` (36749410410 @
+    # 6a30194d). Those runs attest the BUILD only; the axiom dimension still waits for
+    # a full-release round that elaborates AxiomAudit.lean, so none of these is claimed
+    # as axiom-audited here.
+    #
+    # Still booked because they have no CI module build of their own yet, even though the
+    # main session compiled both locally with no other file open:
     "JurisLean.Seams.BoundaryClosure": (
-        "C1 task: the six boundary delimitation theorems at declared operation-family "
-        "strength, with the family written as an inductive so the quantifier is bounded "
-        "(wave 7, snapshot -- under construction, no build verdict yet)"),
+        "C1 task: six boundary delimitation theorems closed over named inductive "
+        "operation families, with boundary 6 reaching genuine family closure via the "
+        "inductive propagation class CarriesTaint (local build green; CI pending)"),
+    "JurisLean.Seams.Uncertainty": (
+        "XU cross-cut: finite positive support truth bridge in both directions with two "
+        "counterexamples, contamination conditioning declared as a new interface, and the "
+        "neural interval certificate proved on the two-input/two-hidden/one-output "
+        "fragment (local build green; CI pending)"),
     #
     # `JurisLean.Seams.ClaimBasis` (P-034 claim-basis chain, seam 1) left this table on
     # 2026-10-01: after the name-free Step inversion fixed its local build, run
     # 36749410410 (`mode=changed-module`, subject 6a30194d) built it green in 514 ms on
     # the pinned toolchain with the official Mathlib cloud cache. Its axiom-audit naming
     # is still outstanding and is tracked as boundary-seam task C2, exactly like the
-    # nine ⑤⑥ theorems that were already in the root without it.
+    # eight ⑤⑥ theorems that were already in the root without it (three for ⑤, five
+    # for ⑥; both sets were named on the surface later the same day).
     #
     # The four game-theory carriers (SequentialGames, ZeroSumValue, PureNash,
     # OneShotDeviation) left this table in the first promotion round: all four were

@@ -164,7 +164,16 @@ import JurisLean.ProposalNoninterference
 import JurisLean.ReceiptAuthority
 import JurisLean.SMTWitness
 import JurisLean.ScratchApi
+import JurisLean.Seams.AdjudicationBridge
 import JurisLean.Seams.ClaimBasis
+import JurisLean.Seams.FullProcess
+import JurisLean.Seams.InstitutionalEffects
+import JurisLean.Seams.PayoffEquilibrium
+import JurisLean.Seams.PrecedentFlow
+import JurisLean.Seams.Probability
+import JurisLean.Seams.Representation
+import JurisLean.Seams.SourceNorms
+import JurisLean.Seams.Temporal
 import JurisLean.SolverRouting
 import JurisLean.SourceBundleSpec
 import JurisLean.SourcePathSpec

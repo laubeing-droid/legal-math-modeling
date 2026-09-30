@@ -79,24 +79,18 @@ PENDING_CI_MODULES: dict[str, str] = {
     # a full-release round that elaborates AxiomAudit.lean, so none of these is claimed
     # as axiom-audited here.
     #
-    # Still booked because they have no CI module build of their own yet, even though the
-    # main session compiled both locally with no other file open:
-    "JurisLean.Seams.BoundaryClosure": (
-        "C1 task: six boundary delimitation theorems closed over named inductive "
-        "operation families, with boundary 6 reaching genuine family closure via the "
-        "inductive propagation class CarriesTaint (local build green; CI pending)"),
-    "JurisLean.Seams.Uncertainty": (
-        "XU cross-cut: finite positive support truth bridge in both directions with two "
-        "counterexamples, contamination conditioning declared as a new interface, and the "
-        "neural interval certificate proved on the two-input/two-hidden/one-output "
-        "fragment (local build green; CI pending)"),
-    # These three MUST stay booked: the main session compiled each of them red, so they
-    # must not be reachable from the release root. Emptying this table earlier let the
-    # reachability generator import every Seams module, including the failing ones -- the
-    # gate cannot catch that because a root import satisfies it by definition.
-    "JurisLean.Seams.AdjudicationBridge": (
-        "S2 heart seam: adjudication bridge and P-051 boundary (build RED in the main "
-        "session: :90 unexpected token, :149/:188 type mismatch; under repair)"),
+    # `AdjudicationBridge` (S2), `Uncertainty` (XU) and `BoundaryClosure` (C1) joined them
+    # the same day, each after its own green changed-module run: 36766761763,
+    # 36766634075, 36767282537. For C1 the first run was red because the universe-level
+    # repair had not been committed yet -- CI was judging older bytes than the ones the
+    # main session had compiled, which is why a "local green / CI red" pair needs a
+    # byte-identity check before it is called an environment artifact.
+    #
+    # These two MUST stay booked: the main session compiled them red or has no verdict at
+    # all, so they must not be reachable from the release root. Emptying this table
+    # earlier let the reachability generator import every Seams module including the
+    # failing ones -- the gate cannot catch that, because a root import satisfies it by
+    # definition.
     "JurisLean.Seams.Probability": (
         "S3 seam: five-segment probability derivation and P-098 reduction relation "
         "(build RED in the main session: :194 rw, :230 stuck instance, :232 linarith; "

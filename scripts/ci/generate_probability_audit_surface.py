@@ -37,11 +37,20 @@ EXTRA_SOURCES = ("BusinessRoot/Analytics.lean",)
 PROB_MARKER = "Generated probability / expectation audit surface"
 MANDATE_MARKER = "Generated mandate-layer audit surface"
 EXTERNAL_MARKER = "Generated external-port audit surface"
+SEAMS_MARKER = "Generated seam-wave audit surface"
 
 # (marker, directories, extra single files) -- each surface is one generated block.
 SURFACES = (
     (PROB_MARKER, ("FullMath/Probability",), ("BusinessRoot/Analytics.lean",)),
     (MANDATE_MARKER, ("Mandate",), ()),
+    # The seventh-round seam wave (JurisLean/Seams/) reaches the audit surface the same
+    # way the mandate and external carriers did: a module first earns its own CI module
+    # build, then its declarations get named here so a later full-release round reads
+    # their axiom dependencies. Before this entry, a seam could be imported by the
+    # release root while none of its theorems had ever been printed by `#print axioms`,
+    # which is the "CI uploads the output but nobody reads it" defect the boundary
+    # binding table records for the ⑤⑥ carriers.
+    (SEAMS_MARKER, ("Seams",), ()),
     # The same-pin external ports (JurisLean/External/PROVENANCE.md) are quarantined
     # out of the release root until their own green build, and naming them here is
     # what gives that first build an axiom-audit verdict to return -- the same
@@ -53,6 +62,18 @@ SURFACES = (
     (EXTERNAL_MARKER, ("External/FixedPointTheorems", "External/GameTheory",
                        "External/NeuralNetworkProofs"), ()),
 )
+
+# Package-relative file -> why it is held off the surface. AxiomAudit.lean imports every
+# module it names, so naming a seam that does not compile (or is not even committed) turns
+# the audit driver itself red and burns a full-release run. Drop an entry as soon as that
+# module has a build verdict of its own.
+SURFACE_HOLDOUTS = {
+    "Seams/Probability.lean":
+        "S3 build red in the main session, under repair; its own CI module build pending",
+    "Seams/FullProcess.lean":
+        "S6 untracked with no build verdict; importing an untracked file fails on a "
+        "fresh checkout, not only on this machine",
+}
 MARKER = PROB_MARKER
 
 DECL = re.compile(r"^(?:@\[[^\]]*\][ \t]*)*(?:theorem|lemma)\s+([^\s(:{]+)")
@@ -92,6 +113,8 @@ def collect(marker: str) -> list[str]:
     names: list[str] = []
     for dirn in directory:
         for rel in surface_modules(dirn):
+            if rel in SURFACE_HOLDOUTS:
+                continue
             names += names_in(rel)
     for rel in extras:
         names += names_in(rel)

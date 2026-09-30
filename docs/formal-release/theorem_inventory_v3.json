@@ -1531,6 +1531,10 @@
     "JurisLean.Seams.BoundaryClosure.adjudicate_of_incomplete_evaluation",
     "JurisLean.Seams.BoundaryClosure.boundary1_family_excludes_launderer",
     "JurisLean.Seams.BoundaryClosure.boundary3_attested_carries_proof",
+    "JurisLean.Seams.BoundaryClosure.carriesTaint_iff_exists_tainted_in_inputs",
+    "JurisLean.Seams.BoundaryClosure.carriesTaint_iff_taintOfInputs_tainted",
+    "JurisLean.Seams.BoundaryClosure.carriesTaint_of_poolTaint_tainted",
+    "JurisLean.Seams.BoundaryClosure.carriesTaint_of_taintOfInputs_tainted",
     "JurisLean.Seams.BoundaryClosure.closure_boundary3_no_unproved_emptiness",
     "JurisLean.Seams.BoundaryClosure.closure_boundary4_incomplete_not_adverse",
     "JurisLean.Seams.BoundaryClosure.closure_boundary4_not_pending",
@@ -1546,6 +1550,7 @@
     "JurisLean.Seams.BoundaryClosure.joinTaint_assoc",
     "JurisLean.Seams.BoundaryClosure.joinTaint_clean_left",
     "JurisLean.Seams.BoundaryClosure.joinTaint_clean_right",
+    "JurisLean.Seams.BoundaryClosure.joinTaint_eq_tainted_iff",
     "JurisLean.Seams.BoundaryClosure.joinTaint_idem",
     "JurisLean.Seams.BoundaryClosure.joinTaint_tainted_left",
     "JurisLean.Seams.BoundaryClosure.poolTaint_eq_taintOfInputs",
@@ -1554,6 +1559,7 @@
     "JurisLean.Seams.BoundaryClosure.stageOutput_taint",
     "JurisLean.Seams.BoundaryClosure.taintOfInputs_append",
     "JurisLean.Seams.BoundaryClosure.taintOfInputs_cons",
+    "JurisLean.Seams.BoundaryClosure.taintOfInputs_eq_tainted_iff",
     "JurisLean.Seams.BoundaryClosure.taintOfInputs_nil",
     "JurisLean.Seams.BoundaryClosure.taintOfInputs_of_carriesTaint",
     "JurisLean.Seams.BoundaryClosure.taintOfInputs_snoc",
@@ -2521,8 +2527,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "819f3a31df64370c7b9581ea08cbc7b6b5f668ffa3eae709e25a4728cadf8166",
-   "size_bytes": 135038,
+   "sha256": "516fab8a3d0c18ff9d9e6dd65a59b9963886bd911c7234f7e346b63317206753",
+   "size_bytes": 135521,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -22919,6 +22925,10 @@
     },
     {
      "kind": "theorem",
+     "name": "joinTaint_eq_tainted_iff"
+    },
+    {
+     "kind": "theorem",
      "name": "taintOfInputs_nil"
     },
     {
@@ -22936,6 +22946,10 @@
     {
      "kind": "theorem",
      "name": "taintOfInputs_snoc"
+    },
+    {
+     "kind": "theorem",
+     "name": "taintOfInputs_eq_tainted_iff"
     },
     {
      "kind": "inductive",
@@ -22970,6 +22984,22 @@
      "name": "exists_tainted_in_inputs"
     },
     {
+     "kind": "theorem",
+     "name": "carriesTaint_of_poolTaint_tainted"
+    },
+    {
+     "kind": "theorem",
+     "name": "carriesTaint_of_taintOfInputs_tainted"
+    },
+    {
+     "kind": "theorem",
+     "name": "carriesTaint_iff_taintOfInputs_tainted"
+    },
+    {
+     "kind": "theorem",
+     "name": "carriesTaint_iff_exists_tainted_in_inputs"
+    },
+    {
      "kind": "def",
      "name": "resubmitTimes"
     },
@@ -22998,10 +23028,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/BoundaryClosure.lean",
    "print_axioms_targets": [],
-   "sha256": "1456a0865a02145154fc73a0db09b739138523f2f8fb4f3290e07bb88050604e",
-   "size_bytes": 34689,
-   "theorem_count": 37,
-   "theorem_count_bol_convention": 37
+   "sha256": "62b23ddd252e9456e098bca2f1feacb74d8c2b58b6efa45dec85e9cdd92631e9",
+   "size_bytes": 43045,
+   "theorem_count": 43,
+   "theorem_count_bol_convention": 43
   },
   {
    "declarations": [
@@ -29965,22 +29995,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3346,
+   "counted_declaration_count": 3352,
    "file_count": 311,
    "lemma_count": 141,
-   "print_axioms_command_count": 2230,
-   "print_axioms_distinct_targets": 2176,
-   "theorem_count": 3205,
-   "theorem_count_bol_convention": 3109
+   "print_axioms_command_count": 2236,
+   "print_axioms_distinct_targets": 2182,
+   "theorem_count": 3211,
+   "theorem_count_bol_convention": 3115
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3327,
+   "counted_declaration_count": 3333,
    "file_count": 296,
    "lemma_count": 134,
-   "print_axioms_command_count": 2230,
-   "print_axioms_distinct_targets": 2176,
-   "theorem_count": 3193,
-   "theorem_count_bol_convention": 3097
+   "print_axioms_command_count": 2236,
+   "print_axioms_distinct_targets": 2182,
+   "theorem_count": 3199,
+   "theorem_count_bol_convention": 3103
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -30644,12 +30674,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "72ad0761a012418cb8a3593ff5b22bab92cc1ddc047e1dfa80c037f1ecb70481",
+ "source_inventory_digest": "eef8c7552d74eff7e6e8394b676da3d4cfeb78c5516542e3d9a94e6999210ed9",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "c5670e8f1324731eb278197c2de8c2a5b2ac4414",
-  "tree": "f6c36f5c81b021b2cd288a981b233713c6faf2e3"
+  "commit": "b130447de7f3f4b91bb70d075319d6572bdbd571",
+  "tree": "42778c02396f637929b58369439c8d363703cc3b"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

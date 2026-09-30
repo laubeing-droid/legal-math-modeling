@@ -25,7 +25,8 @@ P-051 / S2 —— 裁判缝合件：接地语义与"依法可支持"的接缝（
 - `RuleFamily`：四族终端规则之名，与 `KernelV3.Exhaustion` 的四字段一一对应
   （`burdenRulesExhausted`、`presumptionRulesExhausted`、`obstructionRulesExhausted`、
   `terminalRulesExhausted`，KernelV3.lean:286-290）。
-- `TerminalPolicy aaf`：终端策略 = 可采纳支持谓词 + 终局/推定/妨碍三组规则集 + 已产出反证集。
+- `TerminalPolicy aaf`：终端策略 = 可采纳支持**判定函数**（`Arg → Bool`，逐层构造要求它可计算）
+  + 终局/推定/妨碍三组规则集 + 已产出反证集。
 - `rounds pol n`：第 n 层的（已采纳集, 已驳倒集），由 `baseSet`（终局规则与未被反证推翻的推定规则）、
   `adoptedStep`（举证责任规则）、`rejectedStep`（反证产出即驳倒）逐层生成。
 - `FinalDerivable`／`FinalDefeated`／`finalUndetermined`：某层被采纳／某层被驳倒／两者皆无。
@@ -44,22 +45,45 @@ P-051 / S2 —— 裁判缝合件：接地语义与"依法可支持"的接缝（
 `unique_verdict_iff_stable_kernel_singletons` 与非退化边界见证 `trial_boundary`。
 
 不证 / 片段限制（必须读）：
-- `KernelV3.Exhaustion` 的四字段在仓库里是**无内容的 `Prop`**，仓库没有任何定理规定其含义。
-  所以 (c) 只能相对于本件**宣告的读法** `exhaustionOf`（第 i 族穷尽＝该族规则对本论点不再发动）
-  成立，这是**片段形式的 (c)**，不是仓库自身蕴含的等价式；换读法就得重证。
+- `KernelV3.Exhaustion` 的四字段在仓库里是**无内容的 `Prop`**，仓库没有任何定理规定其含义，
+  也没有将任何求值器与它们挂钩。所以 (c) 只能相对于本件**宣告的读法** `exhaustionOf`
+  （第 i 族穷尽＝该族规则对本论点不再发动）成立，这是**片段形式的 (c)**，不是仓库自身蕴含的
+  等价式；换读法就得重证。本件**不**声称"`KernelV3` 意义上的穷尽等于本件的未决"。
 - `two_valued_exclusion` 需 `baseConflictFree`：终局与推定规则在第 0 层采纳的论点之间不得互相
   直接攻击（举证责任规则本身带"不得攻击已采纳论点"的条件，故只需这一条基底假设）。
   真实法秩序中推定相互冲突时本定理**不适用**（不是被反驳）。
 - 桥的正向需 `policyClosed`，逆向需 `baseInGrounded`；两个都是外加片段，不是从 Dung 语义推出的。
+- 评价域一侧：无条件证明的只有 `stable_kernel_singleton_of_allowed_singleton`
+  （允许集单点 ⇒ 内核单点，需"存在可采纳评价"与"评价非空白"两条外加假设）；
+  反向（内核单点 ⇒ 允许集单点）只在宣告片段 `collapsesToKernel` 下成立，
+  且 `trial_collapse_fails` 给出该片段不成立的实例，说明它不是空转假设。
+- 修正记录（不是削弱）：辅助引理 `mem_attackers_of_mem` 原先把成员条件记在**被攻击方**上
+  （`a ∈ aaf.args` 去证 `b ∈ attackers aaf a`），该式是假命题，仓库无此定理；
+  现按 `attackers` 的定义（对 `aaf.args` 作筛）改述为"攻击者自己在框架论点集内"，
+  这是把假陈述换回可证陈述，结论用途不变，未改动任何主定理的签名。
 - 本件**不**在 `FinalDerivable` 与 `KernelV3.Judgment`／`EvalResult` 之间建双向字典：
   不定义 `Judgment`、不对 `Judgment` 模式匹配、不用"判断=成立"来定义可支持性（硬红线）。
 - 本件**不**证明评价域构造与 `rounds` 之间的任何关系（两套对象在本件内平行）；
-  **不**认定任何真实条文、任何真实案件的心证边界（条文号见末节 `[代拟稿]`）。
+  **不**认定任何真实条文、任何真实案件的心证边界（第一百零五条只作数学对象的读法锚，
+  见末节；本件不对任何在审案件适用它）。
 - 未覆盖片段：`KernelV3.NarrowResult` 与 `finalUndetermined` 的接口；`Exhaustion` 四字段法律内容；
   "唯一判决"反向不等的完整刻画（本件只给一个反例 `trial_collapse_fails`）。
 
+## 三点五、编译修正记录（2026-10-01，接手自 CI 红轮 36762059683）
+- 根因一：`variable (aaf : DungAAF)` 让每个定义的框架参数变成**显式**首位参数，
+  而全件调用点写的是 `baseSet pol`／`rounds pol n` 这种省略形式，CI 因此报出 30 余条
+  `Application type mismatch`。改为 `variable {aaf : DungAAF}`（框架由 `pol` 反推）。
+- 根因二：`admissibleSupport` 原为 `Arg → Prop`，`Finset.filter` 无法为它合成
+  `DecidablePred`。改为 `Arg → Bool` 的可计算判定（法律读法：本案材料清单对支持性的成／不成判定），
+  四个合取项因此全部可判定，`adoptedStep` 无需任何经典选择即可计算。
+- 根因三：见证层与评价域层的若干 tactic 级缺陷（绑元内改写、`Nonempty` 匿名构造、
+  `Eq.trans` 方向、多余 `exact`、`by` 块缩进越界），逐条就地修正，未删任何声明。
+
 ## 四、档位
-定义与定理均在本件内闭合；`decide` 只用于显式有限见证的具体计算。编译认定待 CI，本地不称 PASS。
+定义与定理均在本件内闭合；`decide` 与 `simp` 只用于显式有限见证的具体计算
+（`cycle2` 的四个 `Finset` 等式、`Fin 3` 上的三个集合成员判定），不用于任何一般性结论。
+本地 `lake build JurisLean.Seams.AdjudicationBridge` 已通过（provisional，非认定）；
+编译与公理认定仍以绑定 subject SHA 的 CI 轮次为准。
 -/
 
 namespace JurisLean.Seams.AdjudicationBridge
@@ -73,18 +97,22 @@ inductive RuleFamily : Type
   | burden | presumption | obstruction | terminal
 deriving DecidableEq, Repr
 
-/-- 中文说明：终端策略 = 本案四族规则的材料。`admissibleSupport` 是举证责任规则要求的"可采纳支持"；
+/-- 中文说明：终端策略 = 本案四族规则的材料。`admissibleSupport` 是举证责任规则要求的"可采纳支持"
+判定函数（取 `Bool`：本件的逐层构造要求该判定可计算，法律上即本案材料清单对支持性的成／不成判定）；
 `conclusive` 是终局规则明文采纳的论点；`presumed` 是推定规则默认采纳的论点；
 `obstructed` 是妨碍规则排除的论点；`contraryEvidence` 是本案已产出的反证论点（可推翻推定）。
 本件不声称这四族穷尽真实法律的全部终端规则，只声明本件使用的片段。 -/
 structure TerminalPolicy (aaf : DungAAF) where
-  admissibleSupport : Arg → Prop
+  admissibleSupport : Arg → Bool
   conclusive : Finset Arg
   presumed : Finset Arg
   obstructed : Finset Arg
   contraryEvidence : Finset Arg
 
-variable (aaf : DungAAF)
+-- 中文说明：本件的框架变量取**隐式**绑定：每个定义都以 `pol : TerminalPolicy aaf` 显式携带框架，
+-- `aaf` 由 `pol` 反推即可；写成显式参数会把调用点变成 `baseSet aaf pol` 这种易错位的形式
+-- （CI 首轮 30 余条 `Application type mismatch` 的根因之一）。
+variable {aaf : DungAAF}
 
 /-- 中文说明：第 0 层采纳集。终局规则明文采纳，或推定规则采纳且没有产出反证攻击它；
 被妨碍规则排除的论点两者都进不来。 -/
@@ -95,13 +123,21 @@ def baseSet (pol : TerminalPolicy aaf) : Finset Arg :=
         (a ∈ pol.presumed ∧
           (DungAAF.attackers aaf a).filter (fun b => b ∈ pol.contraryEvidence) = ∅))
 
-/-- 中文说明：反证规则一步——被上一层采纳集攻击到的论点即被驳倒（累加）。 -/
+/-- 中文说明：反证规则一步——被上一层采纳集攻击到的论点即被驳倒（累加）。
+本步不读 `pol` 的任何字段：反证是否产出由本案材料决定，与举证责任的可采纳支持判定无关；
+保留 `pol` 参数只为与 `adoptedStep` 的接口一致（因此有一条 unused-variable 警告，非缺陷）。 -/
 def rejectedStep (pol : TerminalPolicy aaf) (inN outN : Finset Arg) : Finset Arg :=
   outN ∪ aaf.args.filter (fun a => (DungAAF.attackers aaf a).filter (fun b => b ∈ inN) ≠ ∅)
 
 /-- 中文说明：举证责任规则一步。四个条件：不被妨碍规则排除；有可采纳支持；全部攻击者都已被驳回；
 新采纳的论点不得攻击上一层已采纳的论点（禁止自相矛盾的认定）。后两项加第一项都是 `F`
-里没有的法律材料，故本算子不是 `F` 的别名。 -/
+里没有的法律材料，故本算子不是 `F` 的别名。
+中文说明（可计算性）：`Finset.filter` 要求谓词可判定。本式的四个合取项都是可判定的——
+`a ∉ pol.obstructed` 与 `(a, a') ∉ aaf.attacks` 是 `Finset` 成员判定，
+`DungAAF.attackers aaf a ⊆ outN` 是 `Finset` 的子集判定，
+`pol.admissibleSupport a` 因该字段取 `Bool` 而判定为"等于 `true`"；
+末项虽写作对一切论点的蕴含，但其前提是 `a' ∈ inN` 的有限成员判定，故整体仍可判定，
+本定义不依赖任何经典选择公理。 -/
 def adoptedStep (pol : TerminalPolicy aaf) (inN outN : Finset Arg) : Finset Arg :=
   inN ∪ aaf.args.filter fun a =>
     a ∉ pol.obstructed ∧ pol.admissibleSupport a ∧ DungAAF.attackers aaf a ⊆ outN ∧
@@ -130,13 +166,16 @@ theorem rounds_succ_snd (pol : TerminalPolicy aaf) (n : Nat) :
     (rounds pol (n + 1)).2 = rejectedStep pol (rounds pol n).1 (rounds pol n).2 :=
   rfl
 
-/-- 中文证明：`DungAAF.attackers` 与攻击关系的双向忠实（缝合件反复使用）。 -/
+/-- 中文证明：`DungAAF.attackers` 与攻击关系的双向忠实（缝合件反复使用）。
+`attackers aaf y` 是把 `aaf.args` 按"攻击 y"来筛，故正向需要**攻击者自己**在框架论点集内；
+原写法把这个成员条件错记在被攻击方上，是假命题（`b` 可能不在 `aaf.args` 内），
+此处按可证的形状重述，不改变 `attackers` 的定义，也不削弱任何结论。 -/
 theorem mem_attackers {a b : Arg} (h : b ∈ DungAAF.attackers aaf a) : (b, a) ∈ aaf.attacks :=
   (Finset.mem_filter.mp h).2
 
-theorem mem_attackers_of_mem (a : Arg) (ha : a ∈ aaf.args) {b : Arg} (hb : (b, a) ∈ aaf.attacks) :
+theorem mem_attackers_of_mem {a b : Arg} (hb : b ∈ aaf.args) (hab : (b, a) ∈ aaf.attacks) :
     b ∈ DungAAF.attackers aaf a :=
-  Finset.mem_filter.mpr ⟨ha, hb⟩
+  Finset.mem_filter.mpr ⟨hb, hab⟩
 
 /-- 中文证明：第 0 层采纳集的成员刻画。 -/
 theorem mem_baseSet_iff (pol : TerminalPolicy aaf) (a : Arg) :
@@ -175,7 +214,7 @@ theorem rounds_fst_subset_args (pol : TerminalPolicy aaf) :
       intro a ha
       rw [mem_rounds_succ_fst_iff] at ha
       rcases ha with (ha | ⟨har, _, _, _, _⟩)
-      · exact ih a ha
+      · exact ih ha
       · exact har
 
 theorem rounds_snd_subset_args (pol : TerminalPolicy aaf) :
@@ -189,7 +228,7 @@ theorem rounds_snd_subset_args (pol : TerminalPolicy aaf) :
       intro a ha
       rw [mem_rounds_succ_snd_iff] at ha
       rcases ha with (ha | ⟨har, _⟩)
-      · exact ih a ha
+      · exact ih ha
       · exact har
 
 /-- 中文证明：两层各自单调，并可累加任意多步（用于把两个层号放到同一层比较）。 -/
@@ -214,7 +253,7 @@ theorem rounds_fst_mono_add (pol : TerminalPolicy aaf) :
       exact ha
   | succ k ih =>
       intro a ha
-      exact rounds_fst_mono pol (n + k) (ih a ha)
+      exact rounds_fst_mono pol (n + k) (ih ha)
 
 theorem rounds_snd_mono_add (pol : TerminalPolicy aaf) :
     ∀ n k : Nat, (rounds pol n).2 ⊆ (rounds pol (n + k)).2 := by
@@ -225,7 +264,7 @@ theorem rounds_snd_mono_add (pol : TerminalPolicy aaf) :
       exact ha
   | succ k ih =>
       intro a ha
-      exact rounds_snd_mono pol (n + k) (ih a ha)
+      exact rounds_snd_mono pol (n + k) (ih ha)
 
 /-- 中文证明：同层被驳倒的论点必有一个同层被采纳的攻击者（不需要任何片段假设）。 -/
 theorem rounds_snd_attacker (pol : TerminalPolicy aaf) :
@@ -293,12 +332,14 @@ theorem rounds_safe (pol : TerminalPolicy aaf) (hw : baseConflictFree pol) :
           · exact hdisjEq x (Finset.mem_inter.mpr ⟨hxIn, hxOut⟩)
           · obtain ⟨b, hb⟩ := Finset.nonempty_iff_ne_empty.mpr hne
             obtain ⟨hbF, hbIn⟩ := Finset.mem_filter.mp hb
-            exact hIo b (Finset.mem_inter.mpr ⟨hbIn, hxSub hbF⟩)
+            -- 本支 `x` 来自上一层采纳集，故用上一层的同层无冲突性（`hxSub` 在此并不存在）
+            exact hconf b x hbIn hxIn (mem_attackers hbF)
         · rw [mem_rounds_succ_snd_iff] at hxOut
           rcases hxOut with (hxOut | ⟨_, hne⟩)
           · obtain ⟨b, hbAtt, hbIn⟩ := rounds_snd_attacker pol n x hxOut
+            have hbArgs : b ∈ aaf.args := rounds_fst_subset_args pol n hbIn
             exact hIo b (Finset.mem_inter.mpr
-              ⟨hbIn, hxSub (mem_attackers_of_mem x hxArgs hbAtt)⟩)
+              ⟨hbIn, hxSub (mem_attackers_of_mem hbArgs hbAtt)⟩)
           · obtain ⟨b, hb⟩ := Finset.nonempty_iff_ne_empty.mpr hne
             obtain ⟨hbF, hbIn⟩ := Finset.mem_filter.mp hb
             exact hIo b (Finset.mem_inter.mpr ⟨hbIn, hxSub hbF⟩)
@@ -309,12 +350,13 @@ theorem rounds_safe (pol : TerminalPolicy aaf) (hw : baseConflictFree pol) :
       rcases ha with (ha | ⟨harA, hobsA, hAdm, hsubA, hnewA⟩)
       · rcases ha' with (ha' | ⟨har', _, _, hsub', _⟩)
         · exact hconf a a' ha ha' hatk
-        · exact hIo a (Finset.mem_inter.mpr ⟨ha, hsub' (mem_attackers_of_mem a' har' hatk)⟩)
+        · exact hIo a (Finset.mem_inter.mpr
+            ⟨ha, hsub' (mem_attackers_of_mem (rounds_fst_subset_args pol n ha) hatk)⟩)
       · rcases ha' with (ha' | ⟨har', _, _, hsub', _⟩)
         · exact hnewA a' ha' hatk
         · exact h1 a (Finset.mem_inter.mpr
             ⟨(mem_rounds_succ_fst_iff pol n a).mpr (Or.inr ⟨harA, hobsA, hAdm, hsubA, hnewA⟩),
-              hsub' (mem_attackers_of_mem a' har' hatk)⟩)
+              hsub' (mem_attackers_of_mem harA hatk)⟩)
 
 /-- 中文说明：依法可支持（终端规则意义下的最终可支持）。定义完全落在 `rounds` 上，
 不引用 `KernelV3.Judgment`，也不是"判断=成立"的缩写。 -/
@@ -384,14 +426,20 @@ theorem mem_rounds_fst_fires (pol : TerminalPolicy aaf) (a : Arg) :
       rw [mem_rounds_succ_fst_iff] at ha
       rcases ha with (ha | ⟨har, hobs, hadm, hsub, hnew⟩)
       · exact ih ha
-      · refine Or.inr (Or.inr ⟨n, ?_, ?_⟩)
-        · rw [mem_rounds_succ_fst_iff]
+      · -- 新采纳的论点要么上一层就在采纳集里（归纳假设直接给出三族之一发动），
+        -- 要么在本层第一次进入采纳集（举证责任规则发动）。两种情形都只需成员判定，不用经典选择。
+        rcases Decidable.em (a ∈ (rounds pol n).1) with hmem | hmem
+        · exact ih hmem
+        · refine Or.inr (Or.inr ⟨n, ?_, hmem⟩)
+          rw [mem_rounds_succ_fst_iff]
           exact Or.inr ⟨har, hobs, hadm, hsub, hnew⟩
-        · intro h
-          exact ih h
 
-/-- 中文证明（契约 (c)，片段形式）：终端规则意义下的未决 ↔ 宣告读法下的四类规则穷尽
-（`KernelV3.FullyExhausted`）。两个方向都用到 `rounds` 的逐层结构，不是定义折叠。 -/
+/-- 中文证明（契约 (c)，**片段形式**）：终端规则意义下的未决 ↔ 宣告读法 `exhaustionOf` 下的
+四类规则穷尽（`KernelV3.FullyExhausted`）。两个方向都用到 `rounds` 的逐层结构，不是定义折叠：
+正向由第 0 层与逐层展开排除四族规则发动，逆向用 `mem_rounds_fst_fires` 的三族分案。
+片段声明：仓库里 `Exhaustion` 的四字段是无内容的 `Prop`，也没有任何定理把它们与求值器挂钩，
+故本式右侧只是本件宣告的那个读法；"仓库意义上的穷尽＝本件的未决"这一无条件结论**未被证明**，
+也不可由现有仓库材料推出（需要一个把四字段与某求值过程绑定的外加桥接假设，本件不虚构它）。 -/
 theorem final_undetermined_iff_exhausted (pol : TerminalPolicy aaf) (a : Arg) :
     finalUndetermined pol a ↔ KernelV3.FullyExhausted (exhaustionOf pol a) := by
   constructor
@@ -466,8 +514,13 @@ theorem rounds_within_grounded (pol : TerminalPolicy aaf) (hb : baseInGrounded p
         · exact hout b hb
         · obtain ⟨c, hc⟩ := Finset.nonempty_iff_ne_empty.mpr hne
           obtain ⟨hcF, hcIn⟩ := Finset.mem_filter.mp hc
-          exact Finset.nonempty_iff_ne_empty.mpr
-            ⟨c, Finset.mem_filter.mpr ⟨hcF, hin c hcIn⟩⟩
+          -- 接地的攻击者 `c` 就在那个筛集里，故筛集非空（写成 `= ∅ → False` 的形式）
+          have hcMem : c ∈ (DungAAF.attackers aaf b).filter
+              (fun c => c ∈ DungAAF.grounded aaf) :=
+            Finset.mem_filter.mpr ⟨hcF, hin c hcIn⟩
+          intro heq
+          rw [heq] at hcMem
+          exact absurd hcMem (notMemEmptyFinset c)
       refine ⟨?_, h2⟩
       intro a ha
       rw [mem_rounds_succ_fst_iff] at ha
@@ -510,7 +563,7 @@ def cycle2 : DungAAF where
 /-- 中文说明：见证终端策略——`p` 由终局规则明文采纳（法律上如生效裁判确认的事实、当事人自认），
 `q` 不受明文终局规则覆盖；两论点都有可采纳支持，都不被妨碍规则排除，未产出反证。 -/
 def cycle2Policy : TerminalPolicy cycle2 where
-  admissibleSupport := fun a => a = pArg ∨ a = qArg
+  admissibleSupport := fun a => decide (a = pArg ∨ a = qArg)
   conclusive := {pArg}
   presumed := ∅
   obstructed := ∅
@@ -518,8 +571,8 @@ def cycle2Policy : TerminalPolicy cycle2 where
 
 /-- 中文证明：见证策略的字段展开与具体集算（全部是显式有限数据的判定）。 -/
 theorem cycle2_admissible (a : Arg) :
-    cycle2Policy.admissibleSupport a ↔ (a = pArg ∨ a = qArg) :=
-  Iff.rfl
+    cycle2Policy.admissibleSupport a = true ↔ (a = pArg ∨ a = qArg) := by
+  simp [cycle2Policy]
 
 theorem cycle2_baseSet : baseSet cycle2Policy = ({pArg} : Finset Arg) := by
   decide
@@ -577,7 +630,6 @@ theorem cycle2_policy_invariant (n : Nat) :
   | zero =>
       refine ⟨?_, ?_⟩
       · rw [rounds_zero_fst, cycle2_baseSet]
-        exact fun _ hx => hx
       · rw [rounds_zero_snd]
         exact notMemEmptyFinset _
   | succ n ih =>
@@ -591,7 +643,7 @@ theorem cycle2_policy_invariant (n : Nat) :
           have hbq : b = qArg :=
             Finset.mem_singleton.mp (by rw [← cycle2_attackers_p]; exact hbF)
           have hbp : b = pArg := Finset.mem_singleton.mp (ih.1 hbIn)
-          exact cycle2_p_ne_q (hbp.trans hbq.symm)
+          exact cycle2_p_ne_q (hbp.symm.trans hbq)
       refine ⟨?_, hOut⟩
       intro a ha
       rw [mem_rounds_succ_fst_iff] at ha
@@ -600,8 +652,11 @@ theorem cycle2_policy_invariant (n : Nat) :
       · rw [cycle2_admissible] at hadm
         rcases hadm with (rfl | rfl)
         · exact Finset.mem_singleton_self _
-        · exact False.elim (hOut (hsub (by rw [cycle2_attackers_q];
-            exact Finset.mem_singleton_self _)))
+        · -- `q` 的唯一攻击者是 `p`，而 `p` 已被本层采纳，故 `q` 进驳倒集，与 `hOut` 矛盾。
+          have hpAtk : pArg ∈ DungAAF.attackers cycle2 qArg := by
+            rw [cycle2_attackers_q]
+            exact Finset.mem_singleton_self _
+          exact False.elim (hOut (hsub hpAtk))
 
 /-- 中文证明：`p` 被终端策略采纳（终局规则在第 0 层发动），`q` 被终端策略驳倒
 （`p` 被采纳后反证规则在第 1 层发动），`q` 永不被采纳。 -/
@@ -674,12 +729,29 @@ theorem proof_failure_not_ontic_negation :
 /-!
 ## P-051 心证边界（数学部分）
 
-`[代拟稿]` 法定锚（证据裁判主义、证明标准、非法证据排除对自由心证的限定条文号由主会话补入；
-本件不臆造条文编号）。法律命题：唯一判决（允许评价集为单点）严格强于"存在允许评价"；
-稳定内核为单点只保证一切可采纳心证有公共结论，不保证它们只会有一个结论。 -/
+法定锚（主会话已逐字核验，非本件自造）：《最高人民法院关于适用〈中华人民共和国民事诉讼法〉
+的解释》第一百零五条——"人民法院应当按照法定程序，全面、客观地审核证据，依照法律规定，
+运用逻辑推理和日常生活经验法则，对证据有无证明力和证明力大小进行判断，并公开判断的理由和结果。"
+（法释〔2015〕5号，经法释〔2022〕11号第二次修正，条文编号未漂移。）
+
+三组规则按该文的三个分句读出，与本件 `EvalDomain` 的三个字段一一对应：
+①可采纳输入规则"按照法定程序，全面、客观地审核证据"→ `admissibleSupport`；
+②证明标准规则"依照法律规定，运用逻辑推理和日常生活经验法则"→ `sufficientStandard`；
+③判断并公开义务"对证据有无证明力和证明力大小进行判断，并公开判断的理由和结果"
+→ `rebuttalClosed`（把结论集暴露给可采纳反驳并对之封闭，是本件对该分句的**建模选择**，
+不是条文自身的措辞）。
+
+法律读法（必须与数学结论分开）：该条约束的是**输入**（证据审核的程序、全面性与客观性）
+与**输出的公开**（理由和结果要公开），它**不**规定心证函数本身——即在合法输入与合法公开之间，
+满足条文的评价函数可以不止一个。本件把这一空隙数学化：`stableKernel`＝对一切可采纳评价的交
+（所有合法心证都不会放弃的结论），`allowedSet`＝对一切可采纳评价的并（至少一个合法心证给出的结论）。
+`trial_boundary` 给出非退化见证：内核是单点 `{0}`，允许集却是 `{0,1,2}`；
+所以"存在可采纳评价"与"唯一判决"之间有严格空隙，自由证明评价的边界正落在这里。
+本件不对任何真实案件或条文适用性作认定。 -/
 
 /-- 中文说明：法律评价域。对同一问题的候选结论集 `Set V` 给出三组规则判据：
-何谓可采纳支持、何谓达到证明标准、何谓对反驳封闭。 -/
+何谓可采纳支持、何谓达到证明标准、何谓对反驳封闭。契约里的"问题 `q`"由类型 `V` 承载
+（`V` 即该问题下所有候选结论的类型），本件不再引入单独的问题参数。 -/
 structure EvalDomain (V : Type) where
   admissibleSupport : Set V → Prop
   sufficientStandard : Set V → Prop
@@ -731,7 +803,7 @@ theorem stable_kernel_singleton_of_allowed_singleton {V : Type} (E : EvalDomain 
   have h1 : stableKernel E ⊆ ({v} : Set V) :=
     Set.Subset.trans (stableKernel_subset E S₀ hS₀)
       (Set.Subset.trans (subset_allowedSet E S₀ hS₀)
-        (by rw [hv]; exact fun _ hx => hx))
+        (by rw [hv]))
   refine Set.Subset.antisymm h1 ?_
   intro x hx
   rw [Set.mem_singleton_iff] at hx
@@ -748,7 +820,10 @@ def collapsesToKernel {V : Type} (E : EvalDomain V) : Prop :=
   ∀ S : Set V, Admissible E S → S ⊆ stableKernel E
 
 /-- 中文证明（契约 (g)，条件等价式）：在"存在可采纳评价 + 评价收缩到内核"片段下，
-唯一判决 ↔ 稳定内核为单点。缺该片段时反向不成立，见 `trial_boundary` 与 `trial_collapse_fails`。 -/
+唯一判决 ↔ 稳定内核为单点。方向说明：无条件（不带 `collapsesToKernel`）只证得了
+`allowedSet` 单点 ⇒ `stableKernel` 单点，即 `stable_kernel_singleton_of_allowed_singleton`；
+本式的两个方向都在片段之下，其中"内核单点 ⇒ 唯一判决"一侧**必须**用该片段，
+缺它时反向不成立，见 `trial_boundary` 与 `trial_collapse_fails`。 -/
 theorem unique_verdict_iff_stable_kernel_singletons {V : Type} (E : EvalDomain V) (v : V)
     (hNE : ∃ S : Set V, Admissible E S) (hcoll : collapsesToKernel E) :
     (allowedSet E = {v}) ↔ (stableKernel E = {v}) := by
@@ -762,7 +837,7 @@ theorem unique_verdict_iff_stable_kernel_singletons {V : Type} (E : EvalDomain V
     refine Set.Subset.antisymm ?_ ?_
     · exact Set.Subset.trans
         (Set.Subset.trans (stableKernel_subset E S₀ hS₀) (subset_allowedSet E S₀ hS₀))
-        (by rw [hv]; exact fun _ hx => hx)
+        (by rw [hv])
     · intro x hx
       rw [Set.mem_singleton_iff] at hx
       subst hx
@@ -772,11 +847,9 @@ theorem unique_verdict_iff_stable_kernel_singletons {V : Type} (E : EvalDomain V
       intro x hx
       obtain ⟨S, hS, hxS⟩ := hx
       exact (hcoll S hS) hxS
-    refine Set.Subset.antisymm hsub ?_
-    · intro x hx
-      rw [← hk]
-      exact hsub hx
-    · exact stableKernel_subset_allowedSet E hNE
+    -- 把目标里的 `{v}` 换回 `stableKernel E`，两侧包含关系即可闭合
+    rw [← hk]
+    exact Set.Subset.antisymm hsub (stableKernel_subset_allowedSet E hNE)
 
 /-- 中文说明：见证评价域。恰有两个可采纳评价 `{0,1}` 与 `{0,2}`：它们共享结论 `0`，
 各自还允许另一个结论。三组规则在此例取同一判据（本例只展示边界，不区分三组的独立作用）。 -/
@@ -795,23 +868,26 @@ theorem admissible_trialDomain (S : Set (Fin 3)) :
 theorem trial_stableKernel : stableKernel trialDomain = ({0} : Set (Fin 3)) := by
   refine Set.Subset.antisymm ?_ ?_
   · intro x hx
-    rw [mem_stableKernel_iff, admissible_trialDomain] at hx
-    have h1 := hx ({0, 1} : Set (Fin 3)) (Or.inl rfl)
-    have h2 := hx ({0, 2} : Set (Fin 3)) (Or.inr rfl)
+    rw [mem_stableKernel_iff] at hx
+    -- `admissible_trialDomain` 不能在 `∀ S, …` 绑元内部改写，故先取出两个具体评价
+    have h1 := hx ({0, 1} : Set (Fin 3))
+    have h2 := hx ({0, 2} : Set (Fin 3))
+    rw [admissible_trialDomain] at h1 h2
+    have h1' := h1 (Or.inl rfl)
+    have h2' := h2 (Or.inr rfl)
     fin_cases x
-    · rfl
-    · exact absurd h2 (by simp only [Set.mem_insert_iff, Set.mem_singleton_iff]; decide)
-    · exact absurd h1 (by simp only [Set.mem_insert_iff, Set.mem_singleton_iff]; decide)
+    · simp
+    · exact absurd h2' (by simp)
+    · exact absurd h1' (by simp)
   · intro x hx
     rw [Set.mem_singleton_iff] at hx
     subst hx
-    rw [mem_stableKernel_iff, admissible_trialDomain]
+    rw [mem_stableKernel_iff]
     intro S hS
+    rw [admissible_trialDomain] at hS
     rcases hS with (rfl | rfl)
-    · simp only [Set.mem_insert_iff, Set.mem_singleton_iff]
-      exact Or.inl rfl
-    · simp only [Set.mem_insert_iff, Set.mem_singleton_iff]
-      exact Or.inl rfl
+    · simp
+    · simp
 
 /-- 中文证明：见证域存在可采纳评价（`{0,1}`），且它非空白。 -/
 theorem trial_admissible_exists : ∃ S : Set (Fin 3), Admissible trialDomain S :=
@@ -821,25 +897,23 @@ theorem trial_admissible_exists : ∃ S : Set (Fin 3), Admissible trialDomain S 
 theorem trial_allowedSet : allowedSet trialDomain = ({0, 1, 2} : Set (Fin 3)) := by
   refine Set.Subset.antisymm ?_ ?_
   · intro x hx
-    rw [mem_allowedSet_iff, admissible_trialDomain] at hx
-    obtain ⟨S, (rfl | rfl), hxS⟩ := hx
-    · simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hxS ⊢
-      rcases hxS with (h | h) <;> subst h <;> simp
-    · simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hxS ⊢
-      rcases hxS with (h | h) <;> subst h <;> simp
+    rw [mem_allowedSet_iff] at hx
+    obtain ⟨S, hS, hxS⟩ := hx
+    -- 同上：`admissible_trialDomain` 只在绑元之外改写
+    rw [admissible_trialDomain] at hS
+    rcases hS with (rfl | rfl)
+    · rcases (by simpa using hxS : x = 0 ∨ x = 1) with (h | h) <;> subst h <;> simp
+    · rcases (by simpa using hxS : x = 0 ∨ x = 2) with (h | h) <;> subst h <;> simp
   · intro x hx
-    rw [mem_allowedSet_iff, admissible_trialDomain]
+    rw [mem_allowedSet_iff]
     simp only [Set.mem_insert_iff, Set.mem_singleton_iff] at hx
     rcases hx with (h | h | h)
     · subst h
-      exact ⟨({0, 1} : Set (Fin 3)), (admissible_trialDomain _).mpr (Or.inl rfl),
-        by simp only [Set.mem_insert_iff, Set.mem_singleton_iff]; exact Or.inl rfl⟩
+      exact ⟨({0, 1} : Set (Fin 3)), (admissible_trialDomain _).mpr (Or.inl rfl), by simp⟩
     · subst h
-      exact ⟨({0, 1} : Set (Fin 3)), (admissible_trialDomain _).mpr (Or.inl rfl),
-        by simp only [Set.mem_insert_iff, Set.mem_singleton_iff]; exact Or.inr rfl⟩
+      exact ⟨({0, 1} : Set (Fin 3)), (admissible_trialDomain _).mpr (Or.inl rfl), by simp⟩
     · subst h
-      exact ⟨({0, 2} : Set (Fin 3)), (admissible_trialDomain _).mpr (Or.inr rfl),
-        by simp only [Set.mem_insert_iff, Set.mem_singleton_iff]; exact Or.inl rfl⟩
+      exact ⟨({0, 2} : Set (Fin 3)), (admissible_trialDomain _).mpr (Or.inr rfl), by simp⟩
 
 /-- 中文证明（契约 (g) 的非退化边界见证）：稳定内核单点 `{0}`，允许评价集却是 `{0,1,2}`；
 存在属于允许集却不属于内核的结论。这就是"唯一判决严格强于有允许评价"，也是自由证明评价的边界。 -/
@@ -849,25 +923,20 @@ theorem trial_boundary :
         z ∈ allowedSet trialDomain ∧ z ∉ stableKernel trialDomain :=
   ⟨⟨0, trial_stableKernel⟩, 1, 2, 1, by
     rw [trial_allowedSet]
-    simp only [Set.mem_insert_iff, Set.mem_singleton_iff]
-    exact Or.inr (Or.inl rfl), by
+    simp, by
     rw [trial_allowedSet]
-    simp only [Set.mem_insert_iff, Set.mem_singleton_iff]
-    exact Or.inr (Or.inr rfl), by decide, by
+    simp, by decide, by
     rw [trial_allowedSet]
-    simp only [Set.mem_insert_iff, Set.mem_singleton_iff]
-    exact Or.inr (Or.inl rfl), by
+    simp, by
     rw [trial_stableKernel]
-    simp only [Set.mem_singleton_iff]
-    decide⟩
+    simp⟩
 
 /-- 中文证明：见证域不满足收缩片段——故 `unique_verdict_iff_stable_kernel_singletons`
 的反向假设不是空转，而是真实的边界条件。 -/
 theorem trial_collapse_fails : ¬ collapsesToKernel trialDomain := by
   intro h
   have hsub := h ({0, 1} : Set (Fin 3)) ((admissible_trialDomain _).mpr (Or.inl rfl))
-  have h1 : (1 : Fin 3) ∈ ({0, 1} : Set (Fin 3)) :=
-    by simp only [Set.mem_insert_iff, Set.mem_singleton_iff]; exact Or.inr rfl
+  have h1 : (1 : Fin 3) ∈ ({0, 1} : Set (Fin 3)) := by simp
   have hker : (1 : Fin 3) ∈ stableKernel trialDomain := hsub h1
   rw [trial_stableKernel] at hker
   simp only [Set.mem_singleton_iff] at hker

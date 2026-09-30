@@ -90,6 +90,20 @@ PENDING_CI_MODULES: dict[str, str] = {
         "counterexamples, contamination conditioning declared as a new interface, and the "
         "neural interval certificate proved on the two-input/two-hidden/one-output "
         "fragment (local build green; CI pending)"),
+    # These three MUST stay booked: the main session compiled each of them red, so they
+    # must not be reachable from the release root. Emptying this table earlier let the
+    # reachability generator import every Seams module, including the failing ones -- the
+    # gate cannot catch that because a root import satisfies it by definition.
+    "JurisLean.Seams.AdjudicationBridge": (
+        "S2 heart seam: adjudication bridge and P-051 boundary (build RED in the main "
+        "session: :90 unexpected token, :149/:188 type mismatch; under repair)"),
+    "JurisLean.Seams.Probability": (
+        "S3 seam: five-segment probability derivation and P-098 reduction relation "
+        "(build RED in the main session: :194 rw, :230 stuck instance, :232 linarith; "
+        "under repair)"),
+    "JurisLean.Seams.FullProcess": (
+        "S6 closure seam: finite trace preservation and the receipt-is-consequence "
+        "result for P-123 (snapshot; no build verdict obtained)"),
     #
     # `JurisLean.Seams.ClaimBasis` (P-034 claim-basis chain, seam 1) left this table on
     # 2026-10-01: after the name-free Step inversion fixed its local build, run

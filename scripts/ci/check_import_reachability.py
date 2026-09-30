@@ -87,6 +87,17 @@ PENDING_CI_MODULES: dict[str, str] = {
         "S7 seam: precedent-driven version update, non-convergence of backflow, "
         "and the four-place competence gate for P-066 (wave 7, snapshot -- "
         "under construction, no build verdict yet)"),
+    "JurisLean.Seams.Probability": (
+        "S3 seam: likelihood->posterior segments, the finite-distribution/PMF "
+        "bridge for P-114 and the allowed-reduction relation for P-098 "
+        "(wave 7, snapshot -- under construction, no build verdict yet)"),
+    "JurisLean.Seams.PayoffEquilibrium": (
+        "S4 seam: declared legal->payoff valuation and the 2*eta deviation "
+        "transport (wave 7, snapshot -- under construction, no build verdict yet)"),
+    "JurisLean.Seams.Temporal": (
+        "XT seam: non-anticipation of a truncated view, interval preservation, "
+        "the quantified form of P-049 and late-insertion reordering "
+        "(wave 7, local build green; awaiting its own CI module build)"),
     #
     # `JurisLean.Seams.ClaimBasis` (P-034 claim-basis chain, seam 1) left this table on
     # 2026-10-01: after the name-free Step inversion fixed its local build, run

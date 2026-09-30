@@ -77,8 +77,12 @@ PENDING_CI_MODULES: dict[str, str] = {
         "(wave 7, still under construction -- snapshot, not yet built)"),
     "JurisLean.Seams.InstitutionalEffects": (
         "S5 seam: ledger+projection refinement and the non-adjudicative "
-        "performance channel (wave 7, still under construction -- snapshot, "
-        "not yet built)"),
+        "performance channel (wave 7, CI module build green in run 36756834804 "
+        "at subject f0398f3; awaiting root entry with the batched rebind)"),
+    "JurisLean.Seams.SourceNorms": (
+        "S1 seam: Horn closure <-> semantic consequence, and the general "
+        "finite acyclic priority maximal element (wave 7, snapshot -- "
+        "under construction, no build verdict yet)"),
     #
     # `JurisLean.Seams.ClaimBasis` (P-034 claim-basis chain, seam 1) left this table on
     # 2026-10-01: after the name-free Step inversion fixed its local build, run

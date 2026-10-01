@@ -1,0 +1,29 @@
+{
+  "schema_version": "spec-runtime-refinement-v2",
+  "role": "expected",
+  "fixture_digest": "349487b1816ee482099759301029a6209382b3823264d986f1e5cda901c70eb3",
+  "lmm_commit": "1ebb95149edaec3dd8de9cc853ab870c4bab9c41",
+  "cases": [
+    {
+      "case_id": "admission::three-gates-pass",
+      "expected_status": "PROVED"
+    },
+    {
+      "case_id": "admission::disputed-fact",
+      "expected_status": "UNDECIDED"
+    },
+    {
+      "case_id": "admission::revoked-attestation",
+      "expected_status": "UNDECIDED"
+    }
+  ],
+  "source_snapshot_digests": [
+    "5532d563220e7ddfe5ad8c87525e5ca4a76657bd75f9c35237a5f13e783f9b65"
+  ],
+  "rule_pack_digest": "c8d05de97ff199284171b98f60f7319f241adb30f153236d10db941ddbbadc65",
+  "semantics": {
+    "id": "grounded",
+    "version": "1"
+  },
+  "subject_commit_binding": "1ebb95149edaec3dd8de9cc853ab870c4bab9c41"
+}

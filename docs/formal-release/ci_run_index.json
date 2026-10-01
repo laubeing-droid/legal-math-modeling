@@ -7991,7 +7991,7 @@
         "docs/master-plan/06_六类边界绑定表.md:131",
         "docs/master-plan/06_六类边界绑定表.md:132",
         "docs/master-plan/06_六类边界绑定表.md:162",
-        "docs/master-plan/09_法律统一数学模型_20261001.md:227"
+        "docs/master-plan/09_法律统一数学模型_20261001.md:228"
       ],
       "run_id": 36793005916,
       "started": true,
@@ -8447,7 +8447,7 @@
       "jobs_total": 8,
       "name": "feat(seams)+docs: P-066 gains its signal-detection contract; the gree…",
       "quoted_by": [
-        "docs/master-plan/09_法律统一数学模型_20261001.md:148"
+        "docs/master-plan/09_法律统一数学模型_20261001.md:149"
       ],
       "run_id": 36833561884,
       "started": true,
@@ -8510,8 +8510,8 @@
       "name": "fix(index): the run index follows every newly quoted run id -- quotin…",
       "quoted_by": [
         "docs/master-plan/08_档位变更申请表_20261001.md:114",
-        "docs/master-plan/09_法律统一数学模型_20261001.md:193",
-        "docs/master-plan/09_法律统一数学模型_20261001.md:195",
+        "docs/master-plan/09_法律统一数学模型_20261001.md:194",
+        "docs/master-plan/09_法律统一数学模型_20261001.md:196",
         "docs/master-plan/10_各针交付说明_20261001.md:253"
       ],
       "run_id": 36836849193,
@@ -8580,6 +8580,68 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-01T09:05:13Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-01T10:48:47Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "2fa15f687384335d7d6d87d9864fa1575196c8b3",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36851453188",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "docs+evidence: close the three debts ZCode's adversarial audit listed…",
+      "quoted_by": [
+        "docs/master-plan/09_法律统一数学模型_20261001.md:148"
+      ],
+      "run_id": 36851453188,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-01T10:58:33Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

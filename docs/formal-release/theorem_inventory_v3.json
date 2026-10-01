@@ -534,6 +534,7 @@
     "JurisLean.Mandate.ZeroSumValue",
     "JurisLean.ReceiptAuthority",
     "JurisLean.Seams.AdjudicationBridge",
+    "JurisLean.Seams.BoundaryBridge5",
     "JurisLean.Seams.BoundaryClosure",
     "JurisLean.Seams.ClaimBasis",
     "JurisLean.Seams.FullProcess",
@@ -1524,6 +1525,21 @@
     "JurisLean.Seams.AdjudicationBridge.two_valued_exclusion",
     "JurisLean.Seams.AdjudicationBridge.unique_verdict_iff_stable_kernel_singletons",
     "JurisLean.Seams.AdjudicationBridge.unique_verdict_reverse_unconditional_falsum",
+    "JurisLean.Seams.BoundaryBridge5.bb5_consensusRank_eq_foldr_max",
+    "JurisLean.Seams.BoundaryBridge5.bb5_consensusRank_ge_component",
+    "JurisLean.Seams.BoundaryBridge5.bb5_consensusRank_not_meet_reading",
+    "JurisLean.Seams.BoundaryBridge5.bb5_consensusRank_rank_mem_bound",
+    "JurisLean.Seams.BoundaryBridge5.bb5_consensus_rank_not_raised_above_bound",
+    "JurisLean.Seams.BoundaryBridge5.bb5_foldr_bound_closed",
+    "JurisLean.Seams.BoundaryBridge5.bb5_meet_foldr_le_head",
+    "JurisLean.Seams.BoundaryBridge5.bb5_nat_max_bound_closed",
+    "JurisLean.Seams.BoundaryBridge5.bb5_nat_min_aggregate_not_raised_above_bound",
+    "JurisLean.Seams.BoundaryBridge5.bb5_nat_min_le_left",
+    "JurisLean.Seams.BoundaryBridge5.bb5_nat_min_le_right",
+    "JurisLean.Seams.BoundaryBridge5.bb5_registered_obligation_is_open",
+    "JurisLean.Seams.BoundaryBridge5.bb5_trustLE_trans",
+    "JurisLean.Seams.BoundaryBridge5.bb5_trust_aggregate_le_head",
+    "JurisLean.Seams.BoundaryBridge5.bb5_trust_aggregate_not_raised_above_bound",
     "JurisLean.Seams.BoundaryClosure.AdjudicationRewriter.apply_preserves_evaluation",
     "JurisLean.Seams.BoundaryClosure.OutcomeMapOp.boundary2_obligations_hand_over",
     "JurisLean.Seams.BoundaryClosure.OutcomeMapOp.closure_boundary1_no_failure_upgrade",
@@ -2543,8 +2559,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "5cd9afbf7f05bae03d3697d27298ce4001eb6d292fff274ab36c065ad62d1054",
-   "size_bytes": 136850,
+   "sha256": "96a4159ce3b2671a941770dc648cc3d9c4c438840b53f6bb316d8ac99e6a7e5f",
+   "size_bytes": 138032,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -22900,8 +22916,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/BoundaryBridge5.lean",
    "print_axioms_targets": [],
-   "sha256": "94dfa25103312c02f5a400690cc1ce18febe34e83bd20856111edf915f30e34d",
-   "size_bytes": 17992,
+   "sha256": "1624fccb8a6a78ab9fcd5c05001dff9507a4b641b0961f390d4498ad429aa342",
+   "size_bytes": 18278,
    "theorem_count": 15,
    "theorem_count_bol_convention": 15
   },
@@ -30016,6 +30032,7 @@
     "JurisLean.SafetyTheorems",
     "JurisLean.ScratchApi",
     "JurisLean.Seams.AdjudicationBridge",
+    "JurisLean.Seams.BoundaryBridge5",
     "JurisLean.Seams.BoundaryClosure",
     "JurisLean.Seams.ClaimBasis",
     "JurisLean.Seams.FullProcess",
@@ -30062,8 +30079,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "2bc891d49e5c49638404301bc823ab6122df8816dd94c90c04aa8c667c74f8a9",
-   "size_bytes": 8617,
+   "sha256": "2022671b6c5b14595669c3d21914a0852af6e8195ff89b1fa4bc4f52387ea68c",
+   "size_bytes": 8656,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -30230,8 +30247,8 @@
    "counted_declaration_count": 3383,
    "file_count": 312,
    "lemma_count": 141,
-   "print_axioms_command_count": 2252,
-   "print_axioms_distinct_targets": 2198,
+   "print_axioms_command_count": 2267,
+   "print_axioms_distinct_targets": 2213,
    "theorem_count": 3242,
    "theorem_count_bol_convention": 3146
   },
@@ -30239,8 +30256,8 @@
    "counted_declaration_count": 3364,
    "file_count": 297,
    "lemma_count": 134,
-   "print_axioms_command_count": 2252,
-   "print_axioms_distinct_targets": 2198,
+   "print_axioms_command_count": 2267,
+   "print_axioms_distinct_targets": 2213,
    "theorem_count": 3230,
    "theorem_count_bol_convention": 3134
   },
@@ -30908,12 +30925,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "26b37bd0ec4c4111123ba4b7076707dd2fefec6c58d076a561d7681c386db52c",
+ "source_inventory_digest": "13ed36e32882464e2c6fd2a3426b039e6bb0e6092497897e490b01774aa2031f",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "2ab328ae31eb88cdc6954ed5661b1e54621c9711",
-  "tree": "3662bd65a75f398c1ed76a3874b4a37e34c6d9ae"
+  "commit": "a45d09534eb5b4cf6648e0693c92e5185205b53c",
+  "tree": "603d44ecbc9e9b8ff79bd77fc5a415b7a6f1ef0a"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

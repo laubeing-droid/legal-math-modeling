@@ -1516,12 +1516,14 @@
     "JurisLean.Seams.AdjudicationBridge.stable_kernel_singleton_of_allowed_singleton",
     "JurisLean.Seams.AdjudicationBridge.subset_allowedSet",
     "JurisLean.Seams.AdjudicationBridge.trial_admissible_exists",
+    "JurisLean.Seams.AdjudicationBridge.trial_admissible_no_blank",
     "JurisLean.Seams.AdjudicationBridge.trial_allowedSet",
     "JurisLean.Seams.AdjudicationBridge.trial_boundary",
     "JurisLean.Seams.AdjudicationBridge.trial_collapse_fails",
     "JurisLean.Seams.AdjudicationBridge.trial_stableKernel",
     "JurisLean.Seams.AdjudicationBridge.two_valued_exclusion",
     "JurisLean.Seams.AdjudicationBridge.unique_verdict_iff_stable_kernel_singletons",
+    "JurisLean.Seams.AdjudicationBridge.unique_verdict_reverse_unconditional_falsum",
     "JurisLean.Seams.BoundaryClosure.AdjudicationRewriter.apply_preserves_evaluation",
     "JurisLean.Seams.BoundaryClosure.OutcomeMapOp.boundary2_obligations_hand_over",
     "JurisLean.Seams.BoundaryClosure.OutcomeMapOp.closure_boundary1_no_failure_upgrade",
@@ -1529,8 +1531,17 @@
     "JurisLean.Seams.BoundaryClosure.OutcomeMapOp.closure_boundary2_no_partial_laundering",
     "JurisLean.Seams.BoundaryClosure.OutcomeMapOp.closure_boundary2_partial_preserved",
     "JurisLean.Seams.BoundaryClosure.adjudicate_of_incomplete_evaluation",
+    "JurisLean.Seams.BoundaryClosure.alwaysClaimsEmpty_is_a_claimer",
     "JurisLean.Seams.BoundaryClosure.boundary1_family_excludes_launderer",
+    "JurisLean.Seams.BoundaryClosure.boundary3_alwaysClaims_outside_family",
     "JurisLean.Seams.BoundaryClosure.boundary3_attested_carries_proof",
+    "JurisLean.Seams.BoundaryClosure.boundary3_general_form_is_false",
+    "JurisLean.Seams.BoundaryClosure.boundary3_out_of_family_claim_without_proof",
+    "JurisLean.Seams.BoundaryClosure.boundary4_adverseAdjudication_satisfied",
+    "JurisLean.Seams.BoundaryClosure.boundary4_general_form_is_false",
+    "JurisLean.Seams.BoundaryClosure.boundary4_out_of_family_rewriter_reaches_adverse",
+    "JurisLean.Seams.BoundaryClosure.boundary4_rewriter_outside_family",
+    "JurisLean.Seams.BoundaryClosure.boundary4_supplyAuthority_branch_inhabited",
     "JurisLean.Seams.BoundaryClosure.carriesTaint_iff_exists_tainted_in_inputs",
     "JurisLean.Seams.BoundaryClosure.carriesTaint_iff_taintOfInputs_tainted",
     "JurisLean.Seams.BoundaryClosure.carriesTaint_of_poolTaint_tainted",
@@ -1547,6 +1558,7 @@
     "JurisLean.Seams.BoundaryClosure.consensus_cannot_reach_next_rank",
     "JurisLean.Seams.BoundaryClosure.delimitation_is_not_general",
     "JurisLean.Seams.BoundaryClosure.exists_tainted_in_inputs",
+    "JurisLean.Seams.BoundaryClosure.incompleteInputFor_evaluation_is_incomplete",
     "JurisLean.Seams.BoundaryClosure.joinTaint_assoc",
     "JurisLean.Seams.BoundaryClosure.joinTaint_clean_left",
     "JurisLean.Seams.BoundaryClosure.joinTaint_clean_right",
@@ -1556,6 +1568,9 @@
     "JurisLean.Seams.BoundaryClosure.poolTaint_eq_taintOfInputs",
     "JurisLean.Seams.BoundaryClosure.resubmitTimes_carriesTaint",
     "JurisLean.Seams.BoundaryClosure.resubmit_preserves_total_taint",
+    "JurisLean.Seams.BoundaryClosure.sampleAuthority_consequences_request_bound",
+    "JurisLean.Seams.BoundaryClosure.sampleAuthority_finding_is_unmet",
+    "JurisLean.Seams.BoundaryClosure.seamB4Reviewer_isNonempty",
     "JurisLean.Seams.BoundaryClosure.stageOutput_taint",
     "JurisLean.Seams.BoundaryClosure.taintOfInputs_append",
     "JurisLean.Seams.BoundaryClosure.taintOfInputs_cons",
@@ -1565,6 +1580,7 @@
     "JurisLean.Seams.BoundaryClosure.taintOfInputs_snoc",
     "JurisLean.Seams.BoundaryClosure.trustLE_refl",
     "JurisLean.Seams.BoundaryClosure.trustLE_trans",
+    "JurisLean.Seams.BoundaryClosure.validatedAuthority_nonempty",
     "JurisLean.Seams.ClaimBasis.carriesBasis_cons",
     "JurisLean.Seams.ClaimBasis.citedAt_head_or_tail",
     "JurisLean.Seams.ClaimBasis.citedAt_singleton_fields",
@@ -2527,8 +2543,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "516fab8a3d0c18ff9d9e6dd65a59b9963886bd911c7234f7e346b63317206753",
-   "size_bytes": 135521,
+   "sha256": "5cd9afbf7f05bae03d3697d27298ce4001eb6d292fff274ab36c065ad62d1054",
+   "size_bytes": 136850,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -22758,6 +22774,14 @@
     {
      "kind": "theorem",
      "name": "trial_collapse_fails"
+    },
+    {
+     "kind": "theorem",
+     "name": "trial_admissible_no_blank"
+    },
+    {
+     "kind": "theorem",
+     "name": "unique_verdict_reverse_unconditional_falsum"
     }
    ],
    "imports": [
@@ -22768,10 +22792,118 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/AdjudicationBridge.lean",
    "print_axioms_targets": [],
-   "sha256": "fe935f31d2e8416d43f11b0d0e703bcf32fd7f1d8b9437aec11270b578c46133",
-   "size_bytes": 51354,
-   "theorem_count": 59,
-   "theorem_count_bol_convention": 59
+   "sha256": "503b707d69386d723e8d4f66cb3da4b74b9d70f03dd845e2e53934991509c6df",
+   "size_bytes": 56670,
+   "theorem_count": 61,
+   "theorem_count_bol_convention": 61
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "BoundClosedAgg"
+    },
+    {
+     "kind": "structure",
+     "name": "MeetAgg"
+    },
+    {
+     "kind": "theorem",
+     "name": "bb5_foldr_bound_closed"
+    },
+    {
+     "kind": "theorem",
+     "name": "bb5_meet_foldr_le_head"
+    },
+    {
+     "kind": "def",
+     "name": "bb5_meetAggToBoundClosed"
+    },
+    {
+     "kind": "theorem",
+     "name": "bb5_trustLE_trans"
+    },
+    {
+     "kind": "def",
+     "name": "bb5_trustMeetAgg"
+    },
+    {
+     "kind": "theorem",
+     "name": "bb5_trust_aggregate_not_raised_above_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "bb5_trust_aggregate_le_head"
+    },
+    {
+     "kind": "theorem",
+     "name": "bb5_nat_min_le_left"
+    },
+    {
+     "kind": "theorem",
+     "name": "bb5_nat_min_le_right"
+    },
+    {
+     "kind": "theorem",
+     "name": "bb5_nat_max_bound_closed"
+    },
+    {
+     "kind": "def",
+     "name": "bb5_natMinMeetAgg"
+    },
+    {
+     "kind": "def",
+     "name": "bb5_natMaxBoundClosedAgg"
+    },
+    {
+     "kind": "theorem",
+     "name": "bb5_nat_min_aggregate_not_raised_above_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "bb5_consensusRank_eq_foldr_max"
+    },
+    {
+     "kind": "theorem",
+     "name": "bb5_consensusRank_rank_mem_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "bb5_consensus_rank_not_raised_above_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "bb5_consensusRank_ge_component"
+    },
+    {
+     "kind": "theorem",
+     "name": "bb5_consensusRank_not_meet_reading"
+    },
+    {
+     "kind": "def",
+     "name": "bb5_meetFoldLeEachComponentObligation"
+    },
+    {
+     "kind": "def",
+     "name": "bb5_meetFoldObligationStatus"
+    },
+    {
+     "kind": "theorem",
+     "name": "bb5_registered_obligation_is_open"
+    }
+   ],
+   "imports": [
+    "JurisLean.ReceiptAuthority",
+    "JurisLean.ULM14CoverageTrust",
+    "Mathlib.Order.MinMax"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/BoundaryBridge5.lean",
+   "print_axioms_targets": [],
+   "sha256": "94dfa25103312c02f5a400690cc1ce18febe34e83bd20856111edf915f30e34d",
+   "size_bytes": 17992,
+   "theorem_count": 15,
+   "theorem_count_bol_convention": 15
   },
   {
    "declarations": [
@@ -22828,6 +22960,26 @@
      "name": "boundary3_attested_carries_proof"
     },
     {
+     "kind": "def",
+     "name": "alwaysClaimsEmpty"
+    },
+    {
+     "kind": "theorem",
+     "name": "alwaysClaimsEmpty_is_a_claimer"
+    },
+    {
+     "kind": "theorem",
+     "name": "boundary3_out_of_family_claim_without_proof"
+    },
+    {
+     "kind": "theorem",
+     "name": "boundary3_general_form_is_false"
+    },
+    {
+     "kind": "theorem",
+     "name": "boundary3_alwaysClaims_outside_family"
+    },
+    {
      "kind": "inductive",
      "name": "AdjudicationRewriter"
     },
@@ -22858,6 +23010,86 @@
     {
      "kind": "theorem",
      "name": "closure_boundary4_not_pending"
+    },
+    {
+     "kind": "def",
+     "name": "seamB4Obligation"
+    },
+    {
+     "kind": "def",
+     "name": "sampleBurdenRule"
+    },
+    {
+     "kind": "def",
+     "name": "sampleAuthorityCarrier"
+    },
+    {
+     "kind": "theorem",
+     "name": "seamB4Reviewer_isNonempty"
+    },
+    {
+     "kind": "def",
+     "name": "sampleAuthorityValidFor"
+    },
+    {
+     "kind": "def",
+     "name": "sampleAuthority"
+    },
+    {
+     "kind": "theorem",
+     "name": "validatedAuthority_nonempty"
+    },
+    {
+     "kind": "theorem",
+     "name": "sampleAuthority_finding_is_unmet"
+    },
+    {
+     "kind": "theorem",
+     "name": "sampleAuthority_consequences_request_bound"
+    },
+    {
+     "kind": "def",
+     "name": "trivialIncomplete"
+    },
+    {
+     "kind": "def",
+     "name": "incompleteInputFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "incompleteInputFor_evaluation_is_incomplete"
+    },
+    {
+     "kind": "def",
+     "name": "groundedExtensionsFamily"
+    },
+    {
+     "kind": "def",
+     "name": "launderedGroundedEvaluation"
+    },
+    {
+     "kind": "def",
+     "name": "outOfFamilyEvaluationRewriter"
+    },
+    {
+     "kind": "theorem",
+     "name": "boundary4_out_of_family_rewriter_reaches_adverse"
+    },
+    {
+     "kind": "theorem",
+     "name": "boundary4_adverseAdjudication_satisfied"
+    },
+    {
+     "kind": "theorem",
+     "name": "boundary4_rewriter_outside_family"
+    },
+    {
+     "kind": "theorem",
+     "name": "boundary4_general_form_is_false"
+    },
+    {
+     "kind": "theorem",
+     "name": "boundary4_supplyAuthority_branch_inhabited"
     },
     {
      "kind": "theorem",
@@ -23028,10 +23260,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/BoundaryClosure.lean",
    "print_axioms_targets": [],
-   "sha256": "62b23ddd252e9456e098bca2f1feacb74d8c2b58b6efa45dec85e9cdd92631e9",
-   "size_bytes": 43045,
-   "theorem_count": 43,
-   "theorem_count_bol_convention": 43
+   "sha256": "2cb846ed434dcb37d42618ce46a8c35297cd86ab3646a8b0ab14d02feda8d497",
+   "size_bytes": 61870,
+   "theorem_count": 57,
+   "theorem_count_bol_convention": 57
   },
   {
    "declarations": [
@@ -29995,22 +30227,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3352,
-   "file_count": 311,
+   "counted_declaration_count": 3383,
+   "file_count": 312,
    "lemma_count": 141,
-   "print_axioms_command_count": 2236,
-   "print_axioms_distinct_targets": 2182,
-   "theorem_count": 3211,
-   "theorem_count_bol_convention": 3115
+   "print_axioms_command_count": 2252,
+   "print_axioms_distinct_targets": 2198,
+   "theorem_count": 3242,
+   "theorem_count_bol_convention": 3146
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3333,
-   "file_count": 296,
+   "counted_declaration_count": 3364,
+   "file_count": 297,
    "lemma_count": 134,
-   "print_axioms_command_count": 2236,
-   "print_axioms_distinct_targets": 2182,
-   "theorem_count": 3199,
-   "theorem_count_bol_convention": 3103
+   "print_axioms_command_count": 2252,
+   "print_axioms_distinct_targets": 2198,
+   "theorem_count": 3230,
+   "theorem_count_bol_convention": 3134
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -30276,6 +30508,7 @@
    "proofs/lean/juris_lean/JurisLean/SafetyTheorems.lean",
    "proofs/lean/juris_lean/JurisLean/ScratchApi.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/AdjudicationBridge.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/BoundaryBridge5.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/BoundaryClosure.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/ClaimBasis.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/FullProcess.lean",
@@ -30585,6 +30818,7 @@
    "proofs/lean/juris_lean/JurisLean/SafetyTheorems.lean",
    "proofs/lean/juris_lean/JurisLean/ScratchApi.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/AdjudicationBridge.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/BoundaryBridge5.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/BoundaryClosure.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/ClaimBasis.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/FullProcess.lean",
@@ -30674,17 +30908,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "eef8c7552d74eff7e6e8394b676da3d4cfeb78c5516542e3d9a94e6999210ed9",
+ "source_inventory_digest": "26b37bd0ec4c4111123ba4b7076707dd2fefec6c58d076a561d7681c386db52c",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "b130447de7f3f4b91bb70d075319d6572bdbd571",
-  "tree": "42778c02396f637929b58369439c8d363703cc3b"
+  "commit": "2ab328ae31eb88cdc6954ed5661b1e54621c9711",
+  "tree": "3662bd65a75f398c1ed76a3874b4a37e34c6d9ae"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 311,
+  "files_total": 312,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

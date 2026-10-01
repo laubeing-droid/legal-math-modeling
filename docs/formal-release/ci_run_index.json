@@ -7856,7 +7856,7 @@
         "docs/master-plan/06_六类边界绑定表.md:72",
         "docs/master-plan/06_六类边界绑定表.md:75",
         "docs/master-plan/06_六类边界绑定表.md:97",
-        "docs/master-plan/07_四问法律代拟卷_20261001.md:241",
+        "docs/master-plan/07_四问法律代拟卷_20261001.md:248",
         "docs/master-plan/08_档位变更申请表_20261001.md:76",
         "docs/master-plan/08_档位变更申请表_20261001.md:99",
         "docs/master-plan/09_法律统一数学模型_20261001.md:113",
@@ -7991,7 +7991,7 @@
         "docs/master-plan/06_六类边界绑定表.md:131",
         "docs/master-plan/06_六类边界绑定表.md:132",
         "docs/master-plan/06_六类边界绑定表.md:162",
-        "docs/master-plan/09_法律统一数学模型_20261001.md:200"
+        "docs/master-plan/09_法律统一数学模型_20261001.md:227"
       ],
       "run_id": 36793005916,
       "started": true,
@@ -8055,9 +8055,9 @@
       "quoted_by": [
         "docs/master-plan/06_六类边界绑定表.md:167",
         "docs/master-plan/06_六类边界绑定表.md:168",
-        "docs/master-plan/07_四问法律代拟卷_20261001.md:235",
-        "docs/master-plan/07_四问法律代拟卷_20261001.md:236",
-        "docs/master-plan/07_四问法律代拟卷_20261001.md:259",
+        "docs/master-plan/07_四问法律代拟卷_20261001.md:242",
+        "docs/master-plan/07_四问法律代拟卷_20261001.md:243",
+        "docs/master-plan/07_四问法律代拟卷_20261001.md:266",
         "docs/master-plan/08_档位变更申请表_20261001.md:79",
         "docs/master-plan/08_档位变更申请表_20261001.md:82",
         "docs/master-plan/09_法律统一数学模型_20261001.md:119",
@@ -8196,7 +8196,7 @@
       "name": "docs+inventory: rebind after the ⑤ promotion; delivery notes gain nee…",
       "quoted_by": [
         "docs/master-plan/06_六类边界绑定表.md:178",
-        "docs/master-plan/07_四问法律代拟卷_20261001.md:254",
+        "docs/master-plan/07_四问法律代拟卷_20261001.md:261",
         "docs/master-plan/09_法律统一数学模型_20261001.md:123",
         "docs/master-plan/10_各针交付说明_20261001.md:521"
       ],
@@ -8447,7 +8447,7 @@
       "jobs_total": 8,
       "name": "feat(seams)+docs: P-066 gains its signal-detection contract; the gree…",
       "quoted_by": [
-        "docs/master-plan/09_法律统一数学模型_20261001.md:144"
+        "docs/master-plan/09_法律统一数学模型_20261001.md:148"
       ],
       "run_id": 36833561884,
       "started": true,
@@ -8510,12 +8510,76 @@
       "name": "fix(index): the run index follows every newly quoted run id -- quotin…",
       "quoted_by": [
         "docs/master-plan/08_档位变更申请表_20261001.md:114",
+        "docs/master-plan/09_法律统一数学模型_20261001.md:193",
+        "docs/master-plan/09_法律统一数学模型_20261001.md:195",
         "docs/master-plan/10_各针交付说明_20261001.md:253"
       ],
       "run_id": 36836849193,
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-01T08:42:53Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-01T08:55:02Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "ad57a2a5242869ab8f0409391bdb63dd138d9f61",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36839339764",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "evidence: land run 36836849193 at subject 9405a2be -- the 2014-target…",
+      "quoted_by": [
+        "docs/master-plan/09_法律统一数学模型_20261001.md:144"
+      ],
+      "run_id": 36839339764,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-01T09:05:13Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

@@ -165,6 +165,7 @@ import JurisLean.ReceiptAuthority
 import JurisLean.SMTWitness
 import JurisLean.ScratchApi
 import JurisLean.Seams.AdjudicationBridge
+import JurisLean.Seams.BoundaryBridge5
 import JurisLean.Seams.BoundaryClosure
 import JurisLean.Seams.ClaimBasis
 import JurisLean.Seams.FullProcess

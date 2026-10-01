@@ -131,6 +131,8 @@ import JurisLean.Seams.Unified
 
 import JurisLean.Seams.FullProcess
 
+import JurisLean.Seams.BoundaryBridge5
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -912,6 +914,21 @@ open HornSystem
 #print axioms JurisLean.Seams.AdjudicationBridge.two_valued_exclusion
 #print axioms JurisLean.Seams.AdjudicationBridge.unique_verdict_iff_stable_kernel_singletons
 #print axioms JurisLean.Seams.AdjudicationBridge.unique_verdict_reverse_unconditional_falsum
+#print axioms JurisLean.Seams.BoundaryBridge5.bb5_consensusRank_eq_foldr_max
+#print axioms JurisLean.Seams.BoundaryBridge5.bb5_consensusRank_ge_component
+#print axioms JurisLean.Seams.BoundaryBridge5.bb5_consensusRank_not_meet_reading
+#print axioms JurisLean.Seams.BoundaryBridge5.bb5_consensusRank_rank_mem_bound
+#print axioms JurisLean.Seams.BoundaryBridge5.bb5_consensus_rank_not_raised_above_bound
+#print axioms JurisLean.Seams.BoundaryBridge5.bb5_foldr_bound_closed
+#print axioms JurisLean.Seams.BoundaryBridge5.bb5_meet_foldr_le_head
+#print axioms JurisLean.Seams.BoundaryBridge5.bb5_nat_max_bound_closed
+#print axioms JurisLean.Seams.BoundaryBridge5.bb5_nat_min_aggregate_not_raised_above_bound
+#print axioms JurisLean.Seams.BoundaryBridge5.bb5_nat_min_le_left
+#print axioms JurisLean.Seams.BoundaryBridge5.bb5_nat_min_le_right
+#print axioms JurisLean.Seams.BoundaryBridge5.bb5_registered_obligation_is_open
+#print axioms JurisLean.Seams.BoundaryBridge5.bb5_trustLE_trans
+#print axioms JurisLean.Seams.BoundaryBridge5.bb5_trust_aggregate_le_head
+#print axioms JurisLean.Seams.BoundaryBridge5.bb5_trust_aggregate_not_raised_above_bound
 #print axioms JurisLean.Seams.BoundaryClosure.AdjudicationRewriter.apply_preserves_evaluation
 #print axioms JurisLean.Seams.BoundaryClosure.OutcomeMapOp.boundary2_obligations_hand_over
 #print axioms JurisLean.Seams.BoundaryClosure.OutcomeMapOp.closure_boundary1_no_failure_upgrade

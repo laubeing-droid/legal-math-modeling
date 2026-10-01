@@ -66,15 +66,16 @@ STANDALONE_DRIVERS: dict[str, str] = {
 # mixed-strategy Nash equilibrium for one game) in run 36351623739 at subject 71d2177bc.
 # AGENTS requires a passing CI module build before root entry, and both have one, so they
 # are now imported by the generated block. The mechanism stays because the next wave needs it.
+# `Seams/BoundaryBridge5.lean` (the ⑤ bridge needle) was booked here on 2026-10-01 and left
+# the same day, after its own `mode=changed-module` run 36805877201 at subject 1eef93d7 built
+# it green. What the file claims: a common abstraction (bound-closed aggregation) that BOTH
+# ⑤ versions instantiate -- deliberately NOT an equivalence, because the authority-rank
+# version is a MAX fold (`consensusRank = foldr max .. 0`), hence a join, so no
+# order-preserving identification with the trust-vector meet exists; the refutation of the
+# meet-reading is itself a theorem (`bb5_consensusRank_not_meet_reading`). The local green
+# build was recorded as a provisional pre-check and is superseded by that run, for the BUILD
+# dimension only: the axiom dimension waits for a full-release round that names these lines.
 PENDING_CI_MODULES: dict[str, str] = {
-    "JurisLean.Seams.BoundaryBridge5": (
-        "⑤ bridge needle (new file): a common abstraction (bound-closed aggregation) that BOTH "
-        "⑤ versions instantiate -- deliberately NOT an equivalence, because the authority-rank "
-        "version is a MAX fold (`consensusRank = foldr max .. 0`), hence a join, so no "
-        "order-preserving identification with the trust-vector meet exists; the refutation of "
-        "the meet-reading is itself a theorem (`bb5_consensusRank_not_meet_reading`). Booked "
-        "until its own CI module build: the local green build (2964 jobs, exit 0) is a "
-        "provisional pre-check, not a PASS."),
     # Seventh-round seam wave (2026-09-30). Each entry is booked here until its own
     # CI module build passes; AGENTS forbids root entry before that.
     #

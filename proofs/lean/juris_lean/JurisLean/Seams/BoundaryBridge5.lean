@@ -82,9 +82,12 @@ A 版更强（结果 ≤ 每一分量），B 版方向相反（结果 ≥ 每一
 - 载体层：两版载体都在既有主干/主干外文件内；本件零新载体，只新增抽象层与实例化。
 - 界定定理层：**片段强度**。`bb5_foldr_bound_closed` 对 `BoundClosedAgg` 全体输入成立，
   但"全体输入"限于本件定义的这一个类，不等于"全体聚合写法"。
-- 审计面：本件 15 条定理名**尚未**进入 `AxiomAudit.lean` 具名面，也未进 `JurisLean.lean` 发布根
-  与 `Seams/All.lean`（按派工要求刻意不入）。故本件的公理读数是 `CI_NOT_RUN`；
-  GitHub Actions 才是 Lean 权威，本地 `lake build` 只是**临时预检**，不构成 Lean PASS。
+- 审计面：本件 15 条定理名**已**进入 `AxiomAudit.lean` 具名面并已入 `JurisLean.lean` 发布根
+  （入根前提是本件自身的 `mode=changed-module` 构建绿：run `36805877201` @ subject `1eef93d7`；
+  此前它被 `PENDING_CI_MODULES` 与 `SURFACE_HOLDOUTS` 两道隔离同时挡住名字与 import）。
+  **公理维度仍属下一轮全量线**：本地按 CI 同款方式展开审计面 exit 0、2004 条全读、
+  本件 15 条无 `sorryAx`、公理仅 `propext`/`Quot.sound`，但 GitHub Actions 才是 Lean 权威，
+  本地读数只是**临时预检**，不构成 Lean PASS。
 - 禁止读法：不得读成"⑤两版已桥接等价"、"权限秩版是信任向量版的实例"、
   "聚合不抬高保证已对全体代码成立"、或"本件导出了 `closure_boundary5_*` 两条"。
 -/

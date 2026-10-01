@@ -1109,7 +1109,7 @@
     "JurisLean.Genealogy.TSpectrum.T40.observational_identity",
     "JurisLean.Genealogy.TSpectrum.T41.valid_split_requires_time_order",
     "JurisLean.Genealogy.TSpectrum.T42.fully_specified_witness",
-    "JurisLean.Genealogy.TSpectrum.T43.observed_only_count",
+    "JurisLean.Genealogy.TSpectrum.T43.observedSuccesses_le_total",
     "JurisLean.Genealogy.TSpectrum.T44.empirical_requires_justification",
     "JurisLean.Genealogy.TSpectrum.T45.calibration_recorded",
     "JurisLean.Genealogy.TSpectrum.T46.proper_posterior_witness",
@@ -1844,6 +1844,10 @@
     "JurisLean.Seams.PayoffEquilibrium.withinEtaGame_high_low",
     "JurisLean.Seams.PayoffEquilibrium.withinEta_legal_external",
     "JurisLean.Seams.PayoffEquilibrium.withinEta_one_sided",
+    "JurisLean.Seams.PrecedentFlow.SignalDetectionContract.detectGap_detected_iff_nonempty",
+    "JurisLean.Seams.PrecedentFlow.SignalDetectionContract.detected_is_strength_blind",
+    "JurisLean.Seams.PrecedentFlow.SignalDetectionContract.separated_admits_error_free",
+    "JurisLean.Seams.PrecedentFlow.SignalDetectionContract.uninformative_statistic_forces_an_error",
     "JurisLean.Seams.PrecedentFlow.applicableAtBool_true_iff",
     "JurisLean.Seams.PrecedentFlow.applicable_at_swap_after",
     "JurisLean.Seams.PrecedentFlow.applicable_at_swap_before",
@@ -2565,8 +2569,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "3d16e08be6afd3f755478666567ab126b7019fed79df8fd6fbbeafd0123a3c71",
-   "size_bytes": 138576,
+   "sha256": "fdbe1c1cae976a80bbbb7fefe04465dbe13868b7546943bbaa7f1394dedfc38b",
+   "size_bytes": 138982,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -18026,7 +18030,7 @@
     },
     {
      "kind": "theorem",
-     "name": "observed_only_count"
+     "name": "observedSuccesses_le_total"
     },
     {
      "kind": "inductive",
@@ -18231,8 +18235,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch3.lean",
    "print_axioms_targets": [],
-   "sha256": "e15c5142be3db0118bd8c98a319c91f9695079f3b90899304c88887878475764",
-   "size_bytes": 9643,
+   "sha256": "24919401fee68ea4aae116d8592e9ee840c5558c60cfeab185c743cae4063b74",
+   "size_bytes": 10057,
    "theorem_count": 20,
    "theorem_count_bol_convention": 20
   },
@@ -25246,6 +25250,34 @@
     {
      "kind": "theorem",
      "name": "update_does_not_reach_before_effective_from"
+    },
+    {
+     "kind": "structure",
+     "name": "TwoState"
+    },
+    {
+     "kind": "inductive",
+     "name": "DetectionError"
+    },
+    {
+     "kind": "def",
+     "name": "errorsOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "separated_admits_error_free"
+    },
+    {
+     "kind": "theorem",
+     "name": "uninformative_statistic_forces_an_error"
+    },
+    {
+     "kind": "theorem",
+     "name": "detectGap_detected_iff_nonempty"
+    },
+    {
+     "kind": "theorem",
+     "name": "detected_is_strength_blind"
     }
    ],
    "imports": [
@@ -25259,10 +25291,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/PrecedentFlow.lean",
    "print_axioms_targets": [],
-   "sha256": "628da48fd80202da2b9ff020a79a44dd80f83b7a37f99e726326e1b8683184d8",
-   "size_bytes": 50000,
-   "theorem_count": 51,
-   "theorem_count_bol_convention": 51
+   "sha256": "3c744e8d8fa0e1ff91b52166572fb92d5eabbeed6e6f251a182dbcff9943195a",
+   "size_bytes": 53494,
+   "theorem_count": 55,
+   "theorem_count_bol_convention": 55
   },
   {
    "declarations": [
@@ -30294,22 +30326,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3389,
+   "counted_declaration_count": 3393,
    "file_count": 312,
    "lemma_count": 141,
-   "print_axioms_command_count": 2273,
-   "print_axioms_distinct_targets": 2219,
-   "theorem_count": 3248,
-   "theorem_count_bol_convention": 3152
+   "print_axioms_command_count": 2277,
+   "print_axioms_distinct_targets": 2223,
+   "theorem_count": 3252,
+   "theorem_count_bol_convention": 3156
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3370,
+   "counted_declaration_count": 3374,
    "file_count": 297,
    "lemma_count": 134,
-   "print_axioms_command_count": 2273,
-   "print_axioms_distinct_targets": 2219,
-   "theorem_count": 3236,
-   "theorem_count_bol_convention": 3140
+   "print_axioms_command_count": 2277,
+   "print_axioms_distinct_targets": 2223,
+   "theorem_count": 3240,
+   "theorem_count_bol_convention": 3144
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -30975,19 +31007,32 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "22f977e98b6fc12528f8533b81cc9572dfe04fea6180c80316ad70c6661b9db3",
+ "source_inventory_digest": "c21e796120dc6741676080d43e766cb80e845587264511eabc67b2c07b567652",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "1ebb95149edaec3dd8de9cc853ab870c4bab9c41",
-  "tree": "43b4be87895881fc5c7617ae0a15ccb518593c47"
+  "commit": "712eae1217171443ecfa2e817df8278d4676228d",
+  "tree": "ab783e1e59c4d1ea520fa76e962c5c300304cca6"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch3.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Seams/PrecedentFlow.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 312,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

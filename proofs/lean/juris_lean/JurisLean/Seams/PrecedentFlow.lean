@@ -877,4 +877,71 @@ theorem update_does_not_reach_before_effective_from (E : VersionEnv) (ad : Autho
 
 end TimeBoundary
 
+/- 信号检测合同（P-066 的证明目标，[代拟稿]）。主干 `Part4.P066.detectGap` 只回答
+"信号列表是否非空"，不回答**两类错误**的权衡；检测论里的合同恰恰是关于错误的。
+本节补一个最小两态模型：真值（有无值得续造的缺口）与统计量（可观察迹象）分离，
+检测器是从统计量到续造决定的函数。要证的是两条合同边：
+(i) 统计量与真值**完全分离**时存在零错误检测器（正向）；
+(ii) 统计量**不含信息**（恒假）时，任何检测器都躲不开两类错误之一（负向，no-free-lunch）。
+另外把主干 `detectGap` 的口径钉死：`detected` 只依赖非空性，与信号的**强度/种类无关**——
+这是主干的能力边界，不是缺陷登记。 -/
+namespace SignalDetectionContract
+
+/-- 两态世界：真值（有无缺口）与统计量（观察）是两个分量，检测器只许看后者。 -/
+structure TwoState where
+  gapPresent : Bool
+  statistic : Bool
+  deriving DecidableEq
+
+/-- 检测器：由统计量给出"是否续造"。 -/
+abbrev Detector := Bool → Bool
+
+/-- 两类错误：无缺口而续造（falseGap）、有缺口而不续造（missedGap）。 -/
+inductive DetectionError where
+  | falseGap
+  | missedGap
+  deriving DecidableEq
+
+/-- 检测器 `d` 在世界 `m` 上的错误种类（有限、可枚举）。
+    两类错误都按**决定**定义，与统计量无关：
+    无缺口而决定续造 = falseGap；有缺口而决定不续造 = missedGap。 -/
+def errorsOf (d : Detector) (m : TwoState) : List DetectionError :=
+  (if !m.gapPresent && d m.statistic then [DetectionError.falseGap] else []) ++
+    (if m.gapPresent && !d m.statistic then [DetectionError.missedGap] else [])
+
+/-- 合同正向边：统计量与真值完全分离（`statistic = gapPresent`）的世界里，
+恒等检测器两类错误都不犯。 -/
+theorem separated_admits_error_free (m : TwoState) (h : m.statistic = m.gapPresent) :
+    errorsOf (fun b => b) m = [] := by
+  unfold errorsOf
+  rw [h]
+  cases m.gapPresent <;> simp
+
+/-- 合同负向边（no-free-lunch）：统计量恒假的世界里，任何检测器在"有缺口"与"无缺口"
+两个世界之间**必犯其一**。这条否定的是"不看统计量也能零错误续造决定"的读法。 -/
+theorem uninformative_statistic_forces_an_error (d : Detector) :
+    errorsOf d { gapPresent := true, statistic := false } ≠ [] ∨
+      errorsOf d { gapPresent := false, statistic := false } ≠ [] := by
+  unfold errorsOf
+  cases h : d false
+  · left; simp [h]
+  · right; simp [h]
+
+/-- 主干 `detectGap` 的口径：`detected` 只依赖列表非空性。 -/
+theorem detectGap_detected_iff_nonempty (l : List Genealogy.Part4.P066.GapSignal) :
+    (Genealogy.Part4.P066.detectGap l).detected = !l.isEmpty := by
+  cases l with
+  | nil => rfl
+  | cons s rest => simp [Genealogy.Part4.P066.detectGap]
+
+/-- 主干的能力边界：任何非空信号列表——无论一个还是很多、无论种类——`detected` 都为真；
+即主干**不区分信号强度**。这句话是说给档位表听的：P-066 的"合同"在主干里只有非空性那一半。 -/
+theorem detected_is_strength_blind (s : Genealogy.Part4.P066.GapSignal)
+    (l : List Genealogy.Part4.P066.GapSignal) :
+    (Genealogy.Part4.P066.detectGap [s]).detected =
+      (Genealogy.Part4.P066.detectGap (s :: s :: l)).detected := by
+  simp [Genealogy.Part4.P066.detectGap]
+
+end SignalDetectionContract
+
 end JurisLean.Seams.PrecedentFlow

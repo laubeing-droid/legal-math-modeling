@@ -391,7 +391,7 @@ open HornSystem
 /-! T-spectrum batch 3. -/
 #print axioms JurisLean.Genealogy.TSpectrum.T41.valid_split_requires_time_order
 #print axioms JurisLean.Genealogy.TSpectrum.T42.fully_specified_witness
-#print axioms JurisLean.Genealogy.TSpectrum.T43.observed_only_count
+#print axioms JurisLean.Genealogy.TSpectrum.T43.observedSuccesses_le_total
 #print axioms JurisLean.Genealogy.TSpectrum.T44.empirical_requires_justification
 #print axioms JurisLean.Genealogy.TSpectrum.T45.calibration_recorded
 #print axioms JurisLean.Genealogy.TSpectrum.T46.proper_posterior_witness
@@ -1233,6 +1233,10 @@ open HornSystem
 #print axioms JurisLean.Seams.PayoffEquilibrium.withinEtaGame_high_low
 #print axioms JurisLean.Seams.PayoffEquilibrium.withinEta_legal_external
 #print axioms JurisLean.Seams.PayoffEquilibrium.withinEta_one_sided
+#print axioms JurisLean.Seams.PrecedentFlow.SignalDetectionContract.detectGap_detected_iff_nonempty
+#print axioms JurisLean.Seams.PrecedentFlow.SignalDetectionContract.detected_is_strength_blind
+#print axioms JurisLean.Seams.PrecedentFlow.SignalDetectionContract.separated_admits_error_free
+#print axioms JurisLean.Seams.PrecedentFlow.SignalDetectionContract.uninformative_statistic_forces_an_error
 #print axioms JurisLean.Seams.PrecedentFlow.applicableAtBool_true_iff
 #print axioms JurisLean.Seams.PrecedentFlow.applicable_at_swap_after
 #print axioms JurisLean.Seams.PrecedentFlow.applicable_at_swap_before

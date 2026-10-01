@@ -50,12 +50,17 @@ def observedSuccesses : List CohortOutcome → Nat
 def observedTotal : List CohortOutcome → Nat
   | [] => 0
   | o :: rest => (if o.observed then 1 else 0) + observedTotal rest
-theorem observed_only_count :
-    observedTotal
-      [ { caseId := "a", observed := true, success := true },
-        { caseId := "b", observed := false, success := true },
-        { caseId := "c", observed := true, success := false } ] = 2 := by
-  decide
+-- 一般式：任何队列里，"已观察且成功"的行数不超过"已观察"的行数；
+-- 原三行字面读回（2 ≤ 2）只是它的一个取值，不再是本块的载体。
+theorem observedSuccesses_le_total (l : List CohortOutcome) :
+    observedSuccesses l ≤ observedTotal l := by
+  induction l with
+  | nil => simp [observedSuccesses, observedTotal]
+  | cons o rest ih =>
+      have h0 : ∀ b₁ b₂ : Bool, (if b₁ && b₂ then 1 else 0 : Nat) ≤ (if b₁ then 1 else 0) := by
+        intro b₁ b₂; cases b₁ <;> cases b₂ <;> decide
+      simp only [observedSuccesses, observedTotal]
+      exact Nat.add_le_add (h0 o.observed o.success) ih
 /- 降级注：未观察行不计入母体。 -/
 end T43
 

@@ -76,6 +76,9 @@ Dirichlet/Beta 共轭更新（`DirichletPosterior.dirWeights`）、精确 Beta C
   `amountQ`、`exactAmountQ` 是进入 ℚ 比例比较的唯一通道。
 - `ReductionCondition`：六个法定条件名（请求、过分高于、30% 门槛、恶意违约、举证、衡量因素）；
   `ReductionData F` 是条件位 + 两个金额 + 因素面 `F`。
+- `TwoSidedBurden.BurdenRecord F`：`ReductionData F` 再加一个**守约方举证位**（第64条第2款的
+  另一侧）。配套的 `twoSidedGate`/`AllowTwo` 是**对照物**，用来把"本件主契约只登记了单向举证"
+  这件事量化成定理；本件主张的法律关系仍是下面的 `Allow`。
 - `Allow c x := (闸门开 → 下界 ≤ x ≤ 约定额) ∧ (闸门开 ∨ x = 约定额)`；`choose c` 分闸门取
   下界或维持约定额。
 
@@ -778,5 +781,85 @@ theorem allowed_amount_nonneg_of_nonneg_agreed {F : Type} (c : ReductionData F)
   exact le_trans h0 hband.1
 
 end Limitation
+
+/- 第64条第2款的举证责任是**双向**的（代拟稿，法条原文见
+    `docs/master-plan/07_四问法律代拟卷_20261001.md` §四·一，仍挂"非逐字权威核验"旗）：
+    违约方就"约定违约金过分高于损失"举证，守约方就其"约定合理"的主张举证。
+    本件主契约 `ReductionData` 只有违约方那一侧的 `proved` 位，因此这一侧在本仓当前模型里
+    **没有被表达**。本 namespace 不改动任何既有定义与定理，而是把这一缺口做成可点的事实：
+    (i) 附一个只多一个位的结构；(ii) 证既有准许关系对该位**完全盲区**（同一底数据、两个取值
+    的准许集相同）；(iii) 证一个双向闸门**能**区分它，从而"缺口可补、当前未补"是定理而非注释。 -/
+namespace TwoSidedBurden
+
+/-- 主契约加一个守约方举证位。`extends` 使底数据可原样取回，故不触碰任何既有陈述。 -/
+structure BurdenRecord (F : Type) extends ReductionData F where
+  /-- 守约方是否就"约定金额合理"完成举证（第64条第2款的另一侧）。 -/
+  compliantProved : Bool
+
+/-- 把现有准许关系搬到双向记录上：它只看底数据，因此对新增位必然盲区。 -/
+def AllowOf {F : Type} (b : BurdenRecord F) (x : Amount) : Prop :=
+  Allow b.toReductionData x
+
+/-- **盲区定理**：同一底数据下，守约方举证与否**不改变**准许集。
+    这不是"法律如此"，而是"本件当前模型如此"——它把未建模的一侧量化成一个可检验的事实。 -/
+theorem allow_blind_to_compliant_side {F : Type} (d : ReductionData F) (x : Amount) :
+    AllowOf ⟨d, true⟩ x ↔ AllowOf ⟨d, false⟩ x :=
+  ⟨fun h => h, fun h => h⟩
+
+/-- 双向闸门：现有闸门 **且** 守约方已完成其一侧举证。 -/
+def twoSidedGate {F : Type} (b : BurdenRecord F) : Bool :=
+  reductionGate b.toReductionData && b.compliantProved
+
+/-- 双向口径下的准许关系，形状与 `Allow` 一致，只是闸门换成双向闸门。 -/
+def AllowTwo {F : Type} (b : BurdenRecord F) (x : Amount) : Prop :=
+  (twoSidedGate b = true → reductionFloor b.toReductionData ≤ x ∧ x ≤ b.toReductionData.agreed) ∧
+    (twoSidedGate b = true ∨ x = b.toReductionData.agreed)
+
+/-- 底数据取自 `ExactNumericContract` 那一路的小额夹具：约定 300、损失 100（最小货币单位），
+    有请求、非恶意、违约方已举证、门槛成立，闸门因此开。 -/
+def openGateData : ReductionData Unit := {
+  agreed := 300, loss := 100, requested := true, badFaith := false,
+  proved := true, overFound := true, factors := () }
+
+/-- 闸门开是可判定的事实，不是假设（约定 300、损失 100：`13·100 < 10·300`）。 -/
+theorem openGateData_gate : reductionGate openGateData = true := by
+  unfold reductionGate conditionHolds overThirtyTest openGateData
+  decide
+
+/-- 守约方位为假时双向闸门必关，与底数据的闸门开无关。 -/
+theorem twoSidedGate_false_of_no_compliant_proof {F : Type} (d : ReductionData F) :
+    twoSidedGate (⟨d, false⟩ : BurdenRecord F) = false := by
+  simp [twoSidedGate]
+
+/-- **区分定理**：把守约方位关掉，双向闸门即关，于是"取下界"这一额在 `AllowTwo` 下不再被准许，
+    而在现有 `Allow` 下仍被准许。故新增位不是装饰：它改变外延。 -/
+theorem compliant_side_changes_extension :
+    AllowOf (⟨openGateData, false⟩ : BurdenRecord Unit) (reductionFloor openGateData) ∧
+      ¬ AllowTwo (⟨openGateData, false⟩ : BurdenRecord Unit)
+        (reductionFloor openGateData) := by
+  have hclosed := twoSidedGate_false_of_no_compliant_proof openGateData
+  constructor
+  · exact allow_of_gate_open openGateData _ openGateData_gate
+      ⟨le_refl _, reductionFloor_le_agreed openGateData⟩
+  · intro h
+    obtain ⟨_, hor⟩ := h
+    rw [hclosed] at hor
+    exact absurd hor (by decide)
+
+/-- 守约方位单独不足以开门：底数据闸门关（恶意违约）时，双向闸门也关。
+    这一条挡住"把双向举证读成唯一要件"的过度主张。 -/
+theorem compliant_alone_does_not_open_gate {F : Type} (d : ReductionData F) (cp : Bool)
+    (h : reductionGate d = false) : twoSidedGate ⟨d, cp⟩ = false := by
+  simp [twoSidedGate, h]
+
+/-- 法律读法的边界（§五 禁止越界）：本 namespace 只说明**模型对某一侧盲区**，
+    不认定任何真实案件中举证责任分配的效果，也不把 `AllowTwo` 说成现行法的关系——
+    它是把缺口显形用的对照物。法条一侧的核验状态见 07 卷 §四·一。 -/
+theorem twoSided_is_not_the_current_relation_witness :
+    ∃ (b : BurdenRecord Unit) (x : Amount), AllowOf b x ∧ ¬ AllowTwo b x :=
+  ⟨⟨openGateData, false⟩, reductionFloor openGateData,
+    compliant_side_changes_extension.1, compliant_side_changes_extension.2⟩
+
+end TwoSidedBurden
 
 end JurisLean.Seams.Probability

@@ -1284,6 +1284,12 @@ open HornSystem
 #print axioms JurisLean.Seams.PrecedentFlow.update_touched_record_invalid
 #print axioms JurisLean.Seams.PrecedentFlow.update_versions_fires
 #print axioms JurisLean.Seams.PrecedentFlow.update_versions_silent
+#print axioms JurisLean.Seams.Probability.TwoSidedBurden.allow_blind_to_compliant_side
+#print axioms JurisLean.Seams.Probability.TwoSidedBurden.compliant_alone_does_not_open_gate
+#print axioms JurisLean.Seams.Probability.TwoSidedBurden.compliant_side_changes_extension
+#print axioms JurisLean.Seams.Probability.TwoSidedBurden.openGateData_gate
+#print axioms JurisLean.Seams.Probability.TwoSidedBurden.twoSidedGate_false_of_no_compliant_proof
+#print axioms JurisLean.Seams.Probability.TwoSidedBurden.twoSided_is_not_the_current_relation_witness
 #print axioms JurisLean.Seams.Probability.allow_does_not_determine_amount
 #print axioms JurisLean.Seams.Probability.allow_of_gate_closed
 #print axioms JurisLean.Seams.Probability.allow_of_gate_open

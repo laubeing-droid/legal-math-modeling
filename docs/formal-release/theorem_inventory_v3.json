@@ -1116,15 +1116,15 @@
     "JurisLean.Genealogy.TSpectrum.T47.legal_identity_preserved",
     "JurisLean.Genealogy.TSpectrum.T48.pav_single_fixed",
     "JurisLean.Genealogy.TSpectrum.T49.brier_perfect_prediction",
-    "JurisLean.Genealogy.TSpectrum.T50.valid_interval_witness",
+    "JurisLean.Genealogy.TSpectrum.T50.valid_interval_iff",
     "JurisLean.Genealogy.TSpectrum.T51.direction_explicit",
-    "JurisLean.Genealogy.TSpectrum.T52.contaminated_zero_weight",
+    "JurisLean.Genealogy.TSpectrum.T52.effectiveWeight_le_weight",
     "JurisLean.Genealogy.TSpectrum.T53.bound_witness",
     "JurisLean.Genealogy.TSpectrum.T54.logistic_deterministic",
-    "JurisLean.Genealogy.TSpectrum.T55.stages_strictly_ordered",
+    "JurisLean.Genealogy.TSpectrum.T55.stageOrder_trichotomy",
     "JurisLean.Genealogy.TSpectrum.T56.signature_deterministic",
     "JurisLean.Genealogy.TSpectrum.T57.directed_witness",
-    "JurisLean.Genealogy.TSpectrum.T58.complete_difference",
+    "JurisLean.Genealogy.TSpectrum.T58.isCompleteDifference_iff",
     "JurisLean.Genealogy.TSpectrum.T59.horn_form_deterministic",
     "JurisLean.Genealogy.TSpectrum.T60.role_preservation",
     "JurisLean.Genealogy.TSpectrum.T61.T61_conflict_deterministic",
@@ -1895,6 +1895,12 @@
     "JurisLean.Seams.PrecedentFlow.update_touched_record_invalid",
     "JurisLean.Seams.PrecedentFlow.update_versions_fires",
     "JurisLean.Seams.PrecedentFlow.update_versions_silent",
+    "JurisLean.Seams.Probability.TwoSidedBurden.allow_blind_to_compliant_side",
+    "JurisLean.Seams.Probability.TwoSidedBurden.compliant_alone_does_not_open_gate",
+    "JurisLean.Seams.Probability.TwoSidedBurden.compliant_side_changes_extension",
+    "JurisLean.Seams.Probability.TwoSidedBurden.openGateData_gate",
+    "JurisLean.Seams.Probability.TwoSidedBurden.twoSidedGate_false_of_no_compliant_proof",
+    "JurisLean.Seams.Probability.TwoSidedBurden.twoSided_is_not_the_current_relation_witness",
     "JurisLean.Seams.Probability.allow_does_not_determine_amount",
     "JurisLean.Seams.Probability.allow_of_gate_closed",
     "JurisLean.Seams.Probability.allow_of_gate_open",
@@ -2559,8 +2565,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "96a4159ce3b2671a941770dc648cc3d9c4c438840b53f6bb316d8ac99e6a7e5f",
-   "size_bytes": 138032,
+   "sha256": "3d16e08be6afd3f755478666567ab126b7019fed79df8fd6fbbeafd0123a3c71",
+   "size_bytes": 138576,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -18096,7 +18102,7 @@
     },
     {
      "kind": "theorem",
-     "name": "valid_interval_witness"
+     "name": "valid_interval_iff"
     },
     {
      "kind": "structure",
@@ -18120,7 +18126,7 @@
     },
     {
      "kind": "theorem",
-     "name": "contaminated_zero_weight"
+     "name": "effectiveWeight_le_weight"
     },
     {
      "kind": "structure",
@@ -18156,7 +18162,7 @@
     },
     {
      "kind": "theorem",
-     "name": "stages_strictly_ordered"
+     "name": "stageOrder_trichotomy"
     },
     {
      "kind": "structure",
@@ -18192,7 +18198,7 @@
     },
     {
      "kind": "theorem",
-     "name": "complete_difference"
+     "name": "isCompleteDifference_iff"
     },
     {
      "kind": "structure",
@@ -18225,8 +18231,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch3.lean",
    "print_axioms_targets": [],
-   "sha256": "3a92d048f753e8ab9985f78e970cd2f42bd9429e32a23b351c8b6e675c72a32b",
-   "size_bytes": 8209,
+   "sha256": "e15c5142be3db0118bd8c98a319c91f9695079f3b90899304c88887878475764",
+   "size_bytes": 9643,
    "theorem_count": 20,
    "theorem_count_bol_convention": 20
   },
@@ -25539,6 +25545,50 @@
     {
      "kind": "theorem",
      "name": "allowed_amount_nonneg_of_nonneg_agreed"
+    },
+    {
+     "kind": "structure",
+     "name": "BurdenRecord"
+    },
+    {
+     "kind": "def",
+     "name": "AllowOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "allow_blind_to_compliant_side"
+    },
+    {
+     "kind": "def",
+     "name": "twoSidedGate"
+    },
+    {
+     "kind": "def",
+     "name": "AllowTwo"
+    },
+    {
+     "kind": "def",
+     "name": "openGateData"
+    },
+    {
+     "kind": "theorem",
+     "name": "openGateData_gate"
+    },
+    {
+     "kind": "theorem",
+     "name": "twoSidedGate_false_of_no_compliant_proof"
+    },
+    {
+     "kind": "theorem",
+     "name": "compliant_side_changes_extension"
+    },
+    {
+     "kind": "theorem",
+     "name": "compliant_alone_does_not_open_gate"
+    },
+    {
+     "kind": "theorem",
+     "name": "twoSided_is_not_the_current_relation_witness"
     }
    ],
    "imports": [
@@ -25555,10 +25605,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Probability.lean",
    "print_axioms_targets": [],
-   "sha256": "ac01beb5babdf6ba2e036ffe246d08feef0bdf5aa5021b5e1053572c8b2c2c0e",
-   "size_bytes": 47515,
-   "theorem_count": 47,
-   "theorem_count_bol_convention": 47
+   "sha256": "4485a3bb38711c363d8339f3ed681ca27fcdf0f73da7a88371d43fd60e5d4acb",
+   "size_bytes": 52755,
+   "theorem_count": 53,
+   "theorem_count_bol_convention": 53
   },
   {
    "declarations": [
@@ -30244,22 +30294,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3383,
+   "counted_declaration_count": 3389,
    "file_count": 312,
    "lemma_count": 141,
-   "print_axioms_command_count": 2267,
-   "print_axioms_distinct_targets": 2213,
-   "theorem_count": 3242,
-   "theorem_count_bol_convention": 3146
+   "print_axioms_command_count": 2273,
+   "print_axioms_distinct_targets": 2219,
+   "theorem_count": 3248,
+   "theorem_count_bol_convention": 3152
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3364,
+   "counted_declaration_count": 3370,
    "file_count": 297,
    "lemma_count": 134,
-   "print_axioms_command_count": 2267,
-   "print_axioms_distinct_targets": 2213,
-   "theorem_count": 3230,
-   "theorem_count_bol_convention": 3134
+   "print_axioms_command_count": 2273,
+   "print_axioms_distinct_targets": 2219,
+   "theorem_count": 3236,
+   "theorem_count_bol_convention": 3140
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -30925,19 +30975,28 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "13ed36e32882464e2c6fd2a3426b039e6bb0e6092497897e490b01774aa2031f",
+ "source_inventory_digest": "6a91f58c08d69d25862d6dd5776fdf9d1e36b51e648c5e45efbc234e41022a9b",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "a45d09534eb5b4cf6648e0693c92e5185205b53c",
-  "tree": "603d44ecbc9e9b8ff79bd77fc5a415b7a6f1ef0a"
+  "commit": "01e216d53262dd69716e7ba88c1be8bcbf6a151a",
+  "tree": "c6b4069a9a9d55fd1da87b87095de49799f5235c"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch3.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 312,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

@@ -398,15 +398,15 @@ open HornSystem
 #print axioms JurisLean.Genealogy.TSpectrum.T47.legal_identity_preserved
 #print axioms JurisLean.Genealogy.TSpectrum.T48.pav_single_fixed
 #print axioms JurisLean.Genealogy.TSpectrum.T49.brier_perfect_prediction
-#print axioms JurisLean.Genealogy.TSpectrum.T50.valid_interval_witness
+#print axioms JurisLean.Genealogy.TSpectrum.T50.valid_interval_iff
 #print axioms JurisLean.Genealogy.TSpectrum.T51.direction_explicit
-#print axioms JurisLean.Genealogy.TSpectrum.T52.contaminated_zero_weight
+#print axioms JurisLean.Genealogy.TSpectrum.T52.effectiveWeight_le_weight
 #print axioms JurisLean.Genealogy.TSpectrum.T53.bound_witness
 #print axioms JurisLean.Genealogy.TSpectrum.T54.logistic_deterministic
-#print axioms JurisLean.Genealogy.TSpectrum.T55.stages_strictly_ordered
+#print axioms JurisLean.Genealogy.TSpectrum.T55.stageOrder_trichotomy
 #print axioms JurisLean.Genealogy.TSpectrum.T56.signature_deterministic
 #print axioms JurisLean.Genealogy.TSpectrum.T57.directed_witness
-#print axioms JurisLean.Genealogy.TSpectrum.T58.complete_difference
+#print axioms JurisLean.Genealogy.TSpectrum.T58.isCompleteDifference_iff
 #print axioms JurisLean.Genealogy.TSpectrum.T59.horn_form_deterministic
 #print axioms JurisLean.Genealogy.TSpectrum.T60.role_preservation
 

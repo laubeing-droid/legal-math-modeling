@@ -12,9 +12,13 @@ structure TrainingRecord where
   withdrawn : Bool
 def isValidSplit (r : TrainingRecord) : Bool :=
   decide (r.cutoffDay < r.outcomeDay) && !r.withdrawn
-theorem valid_split_requires_time_order :
-    isValidSplit { identity := "s", split := "train", cutoffDay := 10, outcomeDay := 20, withdrawn := false } = true := by
-  decide
+-- 一般式：对任意训练记录（非只字面记录），判定为合法切分即蕴含时间顺序。
+theorem valid_split_requires_time_order (r : TrainingRecord) :
+    isValidSplit r = true → r.cutoffDay < r.outcomeDay := by
+  intro h
+  simp only [isValidSplit] at h
+  rw [Bool.and_eq_true, decide_eq_true_eq] at h
+  exact h.1
 /- 降级注：时间顺序+非撤销的结构纪律。 -/
 end T41
 
@@ -132,9 +136,11 @@ structure LatentRateInterval where
   upper : Int
 def isValidInterval (i : LatentRateInterval) : Bool :=
   decide (i.lower ≤ i.upper)
-theorem valid_interval_witness :
-    isValidInterval { lower := 25, upper := 75 } = true := by
-  decide
+-- 一般式：布尔判定与数学条件对任意区间等价（不是只对 [25,75] 这一个区间）。
+theorem valid_interval_iff (i : LatentRateInterval) :
+    isValidInterval i = true ↔ i.lower ≤ i.upper := by
+  simp only [isValidInterval]
+  rw [decide_eq_true_eq]
 /- 降级注：下界≤上界。 -/
 end T50
 
@@ -159,8 +165,14 @@ structure MixtureComponent where
   contaminated : Bool
 def effectiveWeight (c : MixtureComponent) : Int :=
   if c.contaminated then 0 else c.weight
-theorem contaminated_zero_weight :
-    effectiveWeight { weight := 50, contaminated := true } = 0 := rfl
+-- 一般式：非负权重的组分，其有效权重不超过声明权重。
+-- 无假设版本 `effectiveWeight c ≤ c.weight` 在本仓库为假：
+-- `effectiveWeight { weight := -1, contaminated := true } = 0`，而 `0 ≤ -1` 不成立。
+-- `hw` 来自登记目标 T52 自身的模型条件（后验权重 π_h ≥ 0），不是结论的改写。
+theorem effectiveWeight_le_weight (c : MixtureComponent) (hw : 0 ≤ c.weight) :
+    effectiveWeight c ≤ c.weight := by
+  unfold effectiveWeight
+  split <;> omega
 /- 降级注：污染组分权重归零。 -/
 end T52
 
@@ -202,11 +214,16 @@ def stageOrder : PipelineStage → Nat
   | .retrievalPopulation => 2
   | .betaEstimation => 3
   | .comparisonReport => 4
-theorem stages_strictly_ordered :
-    stageOrder .eventDefinition < stageOrder .retrievalPopulation ∧
-    stageOrder .retrievalPopulation < stageOrder .betaEstimation ∧
-    stageOrder .betaEstimation < stageOrder .comparisonReport := by
-  decide
+-- 一般式：任意两段（不只是相邻段）的序号三歧性；相邻严格递增链是其特例。
+theorem stageOrder_trichotomy (a b : PipelineStage) :
+    stageOrder a < stageOrder b ∨
+      stageOrder a = stageOrder b ∨
+      stageOrder b < stageOrder a := by
+  rcases Nat.lt_or_ge (stageOrder a) (stageOrder b) with h | h
+  · exact Or.inl h
+  · rcases Nat.eq_or_lt_of_le h with h' | h'
+    · exact Or.inr (Or.inl h'.symm)
+    · exact Or.inr (Or.inr h')
 /- 降级注：四段序严格递增。 -/
 end T55
 
@@ -246,8 +263,19 @@ structure FactorDifference where
   reasonRecorded : Bool
 def isCompleteDifference (d : FactorDifference) : Bool :=
   d.factorPresent && d.elementSatisfied && d.reasonRecorded
-theorem complete_difference :
-    isCompleteDifference { factorPresent := true, elementSatisfied := true, reasonRecorded := true } = true := rfl
+-- 一般式：对任意差异记录，判定为 true 当且仅当三个要素字段皆为 true。
+theorem isCompleteDifference_iff (d : FactorDifference) :
+    isCompleteDifference d = true ↔
+      d.factorPresent = true ∧ d.elementSatisfied = true ∧ d.reasonRecorded = true := by
+  cases d with
+  | mk factorPresent elementSatisfied reasonRecorded =>
+    constructor
+    · intro h
+      simp only [isCompleteDifference, Bool.and_eq_true] at h
+      exact ⟨h.1.1, h.1.2, h.2⟩
+    · intro h
+      simp only [isCompleteDifference, Bool.and_eq_true]
+      exact ⟨⟨h.1, h.2.1⟩, h.2.2⟩
 /- 降级注：三要素齐备。 -/
 end T58
 

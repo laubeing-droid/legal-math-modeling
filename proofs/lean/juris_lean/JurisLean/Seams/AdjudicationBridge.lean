@@ -42,7 +42,9 @@ P-051 / S2 —— 裁判缝合件：接地语义与"依法可支持"的接缝（
 ⑤`grounded_support_correspondence`（条件桥，坐实在 `grounded_is_least_fixed_point` 上）与
 `grounded_rejection_is_not_legal_refutation`（接地失败不是法律否定，用 `labelling_partition`）；
 ⑥评价域一侧 `stable_kernel_singleton_of_allowed_singleton`、条件等价式
-`unique_verdict_iff_stable_kernel_singletons` 与非退化边界见证 `trial_boundary`。
+`unique_verdict_iff_stable_kernel_singletons` 与非退化边界见证 `trial_boundary`；
+⑦契约 (g) 反向那一侧的**不可无条件化** `unique_verdict_reverse_unconditional_falsum`：
+把该侧的一般全称命题作为目标予以**否证**，反例是本件自己定义、逐点可查的三元素评价域。
 
 不证 / 片段限制（必须读）：
 - `KernelV3.Exhaustion` 的四字段在仓库里是**无内容的 `Prop`**，仓库没有任何定理规定其含义，
@@ -53,10 +55,16 @@ P-051 / S2 —— 裁判缝合件：接地语义与"依法可支持"的接缝（
   直接攻击（举证责任规则本身带"不得攻击已采纳论点"的条件，故只需这一条基底假设）。
   真实法秩序中推定相互冲突时本定理**不适用**（不是被反驳）。
 - 桥的正向需 `policyClosed`，逆向需 `baseInGrounded`；两个都是外加片段，不是从 Dung 语义推出的。
-- 评价域一侧：无条件证明的只有 `stable_kernel_singleton_of_allowed_singleton`
-  （允许集单点 ⇒ 内核单点，需"存在可采纳评价"与"评价非空白"两条外加假设）；
-  反向（内核单点 ⇒ 允许集单点）只在宣告片段 `collapsesToKernel` 下成立，
-  且 `trial_collapse_fails` 给出该片段不成立的实例，说明它不是空转假设。
+- 评价域一侧（2026-10-01 第三次复核后收紧措辞）：`unique_verdict_iff_stable_kernel_singletons`
+  的**正向**（允许集单点 ⇒ 内核单点）确实可脱离收缩片段无条件证得，即
+  `stable_kernel_singleton_of_allowed_singleton`，它另需"存在可采纳评价"与"评价非空白"两条外加假设。
+  **反向**（内核单点 ⇒ 允许集单点）只在宣告片段 `collapsesToKernel` 下成立，且
+  **该片段已被证明不能由上两条外加假设代掉**：`unique_verdict_reverse_unconditional_falsum` 否证了
+  "对一切评价域、仅带 `hNE` ＋「评价非空白」两条时反向成立"这一全称命题——见证域 `trialDomain`
+  同时满足两条假设（`trial_admissible_exists`、`trial_admissible_no_blank`），内核是单点 `{0}`，
+  允许集却是 `{0,1,2}`。故反向那一侧的**条件化是数学边界而非施工欠账**：
+  `trial_collapse_fails` 与该否证式共同说明 `collapsesToKernel` 不是空转假设。
+  这条结论**不**把等价式升为无条件；它把"缺一侧"从未知改判为**该侧按现有假设集不可证**。
 - 修正记录（不是削弱）：辅助引理 `mem_attackers_of_mem` 原先把成员条件记在**被攻击方**上
   （`a ∈ aaf.args` 去证 `b ∈ attackers aaf a`），该式是假命题，仓库无此定理；
   现按 `attackers` 的定义（对 `aaf.args` 作筛）改述为"攻击者自己在框架论点集内"，
@@ -67,7 +75,10 @@ P-051 / S2 —— 裁判缝合件：接地语义与"依法可支持"的接缝（
   **不**认定任何真实条文、任何真实案件的心证边界（第一百零五条只作数学对象的读法锚，
   见末节；本件不对任何在审案件适用它）。
 - 未覆盖片段：`KernelV3.NarrowResult` 与 `finalUndetermined` 的接口；`Exhaustion` 四字段法律内容；
-  "唯一判决"反向不等的完整刻画（本件只给一个反例 `trial_collapse_fails`）。
+  "唯一判决"反向那一侧的**完整刻画**仍未覆盖——本件已证该侧不可仅靠 `hNE` ＋「评价非空白」成立
+  （一个反例 `trial_collapse_fails` ＋ 一条否证式 `unique_verdict_reverse_unconditional_falsum`），
+  但**没有**给出使反向成立的最小附加条件，也没有刻画何时 `collapsesToKernel` 成立；
+  去掉该片段所需的额外法律判据（对可采纳评价的封闭／比较原则）本件不虚构。
 
 ## 三点五、编译修正记录（2026-10-01，接手自 CI 红轮 36762059683）
 - 根因一：`variable (aaf : DungAAF)` 让每个定义的框架参数变成**显式**首位参数，
@@ -81,7 +92,20 @@ P-051 / S2 —— 裁判缝合件：接地语义与"依法可支持"的接缝（
 
 ## 四、档位
 定义与定理均在本件内闭合；`decide` 与 `simp` 只用于显式有限见证的具体计算
-（`cycle2` 的四个 `Finset` 等式、`Fin 3` 上的三个集合成员判定），不用于任何一般性结论。
+（`cycle2` 的四个 `Finset` 等式、`Fin 3` 上的集合成员判定与 `1 ≠ (0 : Fin 3)`），
+不用于任何一般性结论；`unique_verdict_reverse_unconditional_falsum` 的全称否证只用到
+见证域那三元素结构的成员判定，一般性部分由 `trial_stableKernel`／`trial_allowedSet` 承担。
+本件定理数由 59 增至 61（新增 `trial_admissible_no_blank` 与
+`unique_verdict_reverse_unconditional_falsum`，未删、未改名、未削弱任何既有陈述）。
+新增两定理的本地公理侧读数：`trial_admissible_no_blank` 为 `propext, Quot.sound`，
+`unique_verdict_reverse_unconditional_falsum` 为 `propext, Classical.choice, Quot.sound`——
+后者与既有见证定理 `trial_boundary`、`trial_collapse_fails` 同档，`Classical.choice`
+由既有 `trial_stableKernel` 传入，**不是本件新引**；无非标准公理、无占位证明。
+本件的构造性声明只针对 `adoptedStep` 那条计算（见 §二 与该定义注），不覆盖见证层的 `simp`。
+**档位含义（只此一项，别放大）**：本轮结算的是 P-051 条件②的**判据性质**——
+反向那一侧由"尚未无条件化"改判为"在现有假设集下不可成立，已给反例"。
+这不构成把该等价式升为无条件，也**不**触及其余五类概念的档位；
+`📦 → ✅` 仍按本仓口径由绑定 subject SHA 的 CI 轮次判定，本地一律不作认定。
 本地 `lake build JurisLean.Seams.AdjudicationBridge` 已通过（provisional，非认定）；
 编译与公理认定仍以绑定 subject SHA 的 CI 轮次为准。
 -/
@@ -747,6 +771,9 @@ theorem proof_failure_not_ontic_negation :
 （所有合法心证都不会放弃的结论），`allowedSet`＝对一切可采纳评价的并（至少一个合法心证给出的结论）。
 `trial_boundary` 给出非退化见证：内核是单点 `{0}`，允许集却是 `{0,1,2}`；
 所以"存在可采纳评价"与"唯一判决"之间有严格空隙，自由证明评价的边界正落在这里。
+同一见证在 2026-10-01 进一步被用作**否证材料**：`unique_verdict_reverse_unconditional_falsum`
+以它为反例，证伪了"内核单点 ⇒ 允许集单点"这一侧脱离 `collapsesToKernel` 后的全称命题，
+故该空隙不是本件没填上，而是三组规则判据（可采纳／达标／对反驳封闭）单独填不上它。
 本件不对任何真实案件或条文适用性作认定。 -/
 
 /-- 中文说明：法律评价域。对同一问题的候选结论集 `Set V` 给出三组规则判据：
@@ -823,7 +850,8 @@ def collapsesToKernel {V : Type} (E : EvalDomain V) : Prop :=
 唯一判决 ↔ 稳定内核为单点。方向说明：无条件（不带 `collapsesToKernel`）只证得了
 `allowedSet` 单点 ⇒ `stableKernel` 单点，即 `stable_kernel_singleton_of_allowed_singleton`；
 本式的两个方向都在片段之下，其中"内核单点 ⇒ 唯一判决"一侧**必须**用该片段，
-缺它时反向不成立，见 `trial_boundary` 与 `trial_collapse_fails`。 -/
+缺它时反向不成立，见 `trial_boundary` 与 `trial_collapse_fails`；
+该侧脱离本片段后的一般全称命题已在本件内**证伪**，见 `unique_verdict_reverse_unconditional_falsum`。 -/
 theorem unique_verdict_iff_stable_kernel_singletons {V : Type} (E : EvalDomain V) (v : V)
     (hNE : ∃ S : Set V, Admissible E S) (hcoll : collapsesToKernel E) :
     (allowedSet E = {v}) ↔ (stableKernel E = {v}) := by
@@ -941,5 +969,39 @@ theorem trial_collapse_fails : ¬ collapsesToKernel trialDomain := by
   rw [trial_stableKernel] at hker
   simp only [Set.mem_singleton_iff] at hker
   exact absurd hker (by decide)
+
+/-- 中文证明：见证域没有空白评价——两个可采纳评价 `{0,1}` 与 `{0,2}` 都含成员。
+本式的作用是把下面反例的假设集**压到与正向那条定理完全一样**（`hNE` ＋「评价非空白」），
+使反例不能被解释成"少挂了一条非空白假设"。 -/
+theorem trial_admissible_no_blank (S : Set (Fin 3)) (hS : Admissible trialDomain S) :
+    ∃ x : Fin 3, x ∈ S := by
+  rw [admissible_trialDomain] at hS
+  rcases hS with (rfl | rfl)
+  · exact ⟨0, by simp⟩
+  · exact ⟨0, by simp⟩
+
+/-- 中文证明（契约 (g) 的**反向不可无条件化**，本件对 P-051 条件②的结算）：
+把 `unique_verdict_iff_stable_kernel_singletons` 反向那一侧的 `collapsesToKernel` 去掉后，
+一般命题——"对**一切**评价域，只要有可采纳评价、且每个可采纳评价非空白，
+稳定内核为单点就推出允许评价集为同一单点"——是**假命题**。
+反例即本件的见证域 `trialDomain`：它满足这两条剩余假设（`trial_admissible_exists`、
+`trial_admissible_no_blank`），稳定内核是单点 `{0}`（`trial_stableKernel`），
+允许集却是 `{0,1,2}`（`trial_allowedSet`），故 1 属于允许集却不等 0，矛盾。
+这是一条**否证式**定理：它断言某个全称命题不成立，靠的是本件内显式定义、逐点可查的
+三元素评价结构，不是话语理由。结论：`collapsesToKernel` 不是本件偷懒挂上的懒惰假设，
+而是那一侧的真实数学边界；想去掉它必须另外添加有内容的判据（见头注 §未覆盖片段）。 -/
+theorem unique_verdict_reverse_unconditional_falsum :
+    ¬ ∀ (V : Type) (E : EvalDomain V) (v : V),
+        (∃ S : Set V, Admissible E S) →
+        (∀ S : Set V, Admissible E S → ∃ x : V, x ∈ S) →
+        stableKernel E = {v} → allowedSet E = {v} := by
+  intro h
+  have h' := h (Fin 3) trialDomain 0 trial_admissible_exists trial_admissible_no_blank
+    trial_stableKernel
+  rw [trial_allowedSet] at h'
+  have h1 : (1 : Fin 3) ∈ ({0, 1, 2} : Set (Fin 3)) := by simp
+  rw [h'] at h1
+  simp only [Set.mem_singleton_iff] at h1
+  exact absurd h1 (by decide)
 
 end JurisLean.Seams.AdjudicationBridge

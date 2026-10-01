@@ -67,6 +67,14 @@ STANDALONE_DRIVERS: dict[str, str] = {
 # AGENTS requires a passing CI module build before root entry, and both have one, so they
 # are now imported by the generated block. The mechanism stays because the next wave needs it.
 PENDING_CI_MODULES: dict[str, str] = {
+    "JurisLean.Seams.BoundaryBridge5": (
+        "⑤ bridge needle (new file): a common abstraction (bound-closed aggregation) that BOTH "
+        "⑤ versions instantiate -- deliberately NOT an equivalence, because the authority-rank "
+        "version is a MAX fold (`consensusRank = foldr max .. 0`), hence a join, so no "
+        "order-preserving identification with the trust-vector meet exists; the refutation of "
+        "the meet-reading is itself a theorem (`bb5_consensusRank_not_meet_reading`). Booked "
+        "until its own CI module build: the local green build (2964 jobs, exit 0) is a "
+        "provisional pre-check, not a PASS."),
     # Seventh-round seam wave (2026-09-30). Each entry is booked here until its own
     # CI module build passes; AGENTS forbids root entry before that.
     #

@@ -85,13 +85,19 @@ SURFACES = (
 # module it names, so naming a seam that does not compile (or is not even committed) turns
 # the audit driver itself red and burns a full-release run. Drop an entry as soon as that
 # module has a build verdict of its own.
-SURFACE_HOLDOUTS: dict[str, str] = {}
-# Empty as of 2026-10-01: `Seams/FullProcess.lean` (S6) left after run 36772310980
-# (subject 01ce4fff) built it green in 3.4 s over 2947 jobs, matching the main session's
-# serial-window job count exactly. The mechanism stays -- a red or uncommitted seam must be
-# held out of BOTH channels, names and imports -- because an `import` elaborates the module
-# and turns `AxiomAudit.lean`, and with it the whole full-release round, red for a reason
-# that has nothing to do with axioms.
+SURFACE_HOLDOUTS = {
+    "Seams/BoundaryBridge5.lean":
+        "⑤ bridge needle, newly added and booked in PENDING_CI_MODULES: it has a local green "
+        "build (2964 jobs, exit 0) but no CI module attestation yet. Held out of BOTH channels "
+        "-- names and imports -- until then, because an `import` elaborates the module and would "
+        "make AxiomAudit.lean itself red for a reason unrelated to axioms (see the 52361a7 "
+        "truncation incident, docs/master-plan/06 sec 4.3).",
+}
+# The table is empty again once BoundaryBridge5 earns its own changed-module build. The
+# mechanism stays permanent: a red or unattested seam must be absent from the names AND from
+# the imports, because an `import` has to elaborate the module and turns the audit driver --
+# and with it the whole full-release round -- red for a reason that has nothing to do with
+# axioms.
 MARKER = PROB_MARKER
 
 DECL = re.compile(r"^(?:@\[[^\]]*\][ \t]*)*(?:theorem|lemma)\s+([^\s(:{]+)")

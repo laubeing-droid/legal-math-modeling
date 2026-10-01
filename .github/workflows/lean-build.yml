@@ -91,6 +91,8 @@ jobs:
         python -m pytest tests/ --collect-only -q > pytest-collection.txt
         python -m pytest tests/ -q -ra 2>&1 | tee pytest-full.log
         python scripts/scan_lean_guards.py --all-tracked --report lean-guard-report.json
+        python scripts/ci/check_banned_in_decls.py --all-tracked
+        python scripts/ci/check_doc_anchors.py
         python scripts/ci/generate_t_coverage_ledger.py --check
         python scripts/ci/generate_structure_and_volume_reports.py --check
         python scripts/ci/generate_probability_audit_surface.py --check

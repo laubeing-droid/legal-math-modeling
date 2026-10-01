@@ -35,7 +35,24 @@ import JurisLean.AuthorityLattice
   忽略输入、直接返回 `complete` 的 Lean 函数。
 - 不证：⑤两版之间的桥接（信任向量 meet 与权限秩升级）。§五禁止六类之间的桥接等价主张，
   本文件不定义任何转换函数。
-- 不证：②④与求解器状态之间的精化、③所需的 profile 语义完备定理 —— 前置在仓内不存在。
+- 不证：②与求解器状态之间的精化、②③各自要求的前置在仓内不存在。
+- 已反驳（**不是**"未证"）：③与④的一般式。
+  ③：声称载体 `EmptinessVerdict.claims` 只带一个 `profile`、**不带证明参数**，
+  所以"任何报告器一旦交出声称就必然族空"这一全称式被 `boundary3_general_form_is_false` 反驳；
+  见证报告器是 `alwaysClaimsEmpty`，见证 profile 是 `.grounded` —— 主干
+  `grounded_extension_family_nonempty`（`ULM11BranchQuery.lean:76-79`）对**每个** `af`
+  都证该族非空（`.preferred` 同理，`:81-83`）。
+  ④：把"op 是族成员"换成"f 是任意 Lean 函数"后的全称式被 `boundary4_general_form_is_false` 反驳；
+  见证是 `outOfFamilyEvaluationRewriter`，它换掉 `evaluation` 字段（族内没有这种运算，
+  见 `AdjudicationRewriter.apply_preserves_evaluation`），于是 incomplete 输入经它改写后
+  确实交出不利裁判（`boundary4_out_of_family_rewriter_reaches_adverse`）。
+  两条反驳都**不**动摇各自的族封闭定理：族外性分别由
+  `boundary3_alwaysClaims_outside_family` 与 `boundary4_rewriter_outside_family` 钉住。
+- 已补非空性见证：主干 `ValidatedAdjudicationAuthority` 是子类型，此前在本仓**没有任何具体见证**
+  （该名字的每一处出现都是约束变量位置），于是关于 `AdverseAdjudication` 的每条否定陈述
+  都有**空洞真**的风险。`sampleAuthority` 对**任意** request 交出见证并逐字段核对，
+  `validatedAuthority_nonempty` 与 `boundary4_adverseAdjudication_satisfied`
+  一并说明④的封闭性不是空洞真（(c) 那条退路不成立：权源类型可住）。
 - 局部反例（污染筛选 99.02%、同率不同后验、先付后息、周期二不收敛）一律不作为封闭性证明（§五）。
 
 ## §未覆盖片段
@@ -45,6 +62,14 @@ import JurisLean.AuthorityLattice
   调用方可不经本文件的操作族直接使用它们。
 - ③：主干判据 `evaluateProfile`（`ULM11BranchQuery.lean:49-57`）的可靠性方向
   （`extensionsForProfile` 为空 ⇔ 语义族真的没有扩张）不在族内，需 §六要求的完备定理。
+  本轮把一般式**反驳**掉，既没有证这个方向也没有反驳它 —— 它仍是未证，
+  而且不因为"一般式为假"就自动变成真或假。
+  另外：反例只覆盖 `.grounded`（与 `.preferred`）两支 profile；`.stable`、`.complete`
+  的族非空性在仓内**没有**定理，本文件不据反例外推它们非空。
+- ④：反例只到"存在一个 Lean 改写函数能做到"这一层；主干 `adjudicate` 作为公开 `def`
+  是否被任何调用方以别的方式绕过（§六为④要求的封装前置）仍**未证**，
+  与②共用的求解器状态建模前置也仍不存在。
+  见证 `sampleAuthority` 的两个 `LegalStatus` 载荷是工程标记，不构成任何真实裁判内容（§五）。
 - ⑤：`TrustLE` 与 `authorityRank` 之间无桥接；`AutoEscalationMechanism` 四种自动机制
   不是 `ConsensusOp` 的生成方式，其无效性由主干 `no_auto_escalation` 单独陈述。
 - ⑥：`TaintPipeline` 只枚举 input / stage / merge / resubmit 四条传播路径；
@@ -56,18 +81,24 @@ import JurisLean.AuthorityLattice
 
 ## §档位
 
-按 §三三档：类型层已实现（六条皆有载体）＋界定定理（封闭性）**片段强度已证、一般式未证**
-＋公理审计面：本文件 43 条定理名中的原 37 条由 `AxiomAudit.lean` 的**生成式 seam 面**具名
+按 §三三档：类型层已实现（六条皆有载体）＋界定定理（封闭性）**片段强度已证**；
+一般式分两批记账：**③④的一般式已被反驳**（见证见 §证与不证），
+**①②⑤⑥的一般式仍未证**——既没被证也没被反驳，不得由③④的反证外推，也不得读成"大概是真的"。
+＋公理审计面：本文件定理名中的**最初 37 条**由 `AxiomAudit.lean` 的**生成式 seam 面**具名
 （`:913-949`，不是手写行，故不会被渲染器截掉）；其公理值的 CI 读数须绑定"含该具名"的那一轮全量线——
 具名不等于已读，已读不等于已证内容对真实法律成立。
-本轮新增的 6 条（⑥的反向封闭性与两条充要式）**尚未进入该具名面**：本文件不改审计面，
-故这 6 条的公理读数是 `CI_NOT_RUN`，须由 `AxiomAudit.lean` 一侧另轮收录后方可报，
+总数不写死：以 `grep -c "^theorem " proofs/lean/juris_lean/JurisLean/Seams/BoundaryClosure.lean`
+现场计数为准（本轮写入后读 57），未入该具名面的条数 = 该读数 − 37（读 20）——
+前一轮 6 条（⑥的反向封闭性与两条充要式）＋本轮 14 条（③④一般式的反驳、④的非空性见证及其字段核对）。
+本文件不改审计面，故这 20 条的公理读数是 `CI_NOT_RUN`，须由 `AxiomAudit.lean` 一侧另轮收录后方可报，
 在此之前任何"新条已过公理审计"的说法都不成立。
 档位内的实际变化要写实：⑥ 在**片段强度档内**已由单向封闭升为对全体族成员的充要刻画
 （`carriesTaint_iff_taintOfInputs_tainted`），其余五条仍是单向封闭性；
-六条在 §三第 2 档（整条调用链上没有任何写法能绕过该要求）仍**全部未证**，
+§三第 2 档（整条调用链上没有任何写法能绕过该要求）对①②⑤⑥仍**全部未证**，
+对③④则由"未证"改记为"**为假**"——
 `delimitation_is_not_general` 交出的族外洗白函数不因本轮改变，
-⑥ 的充要式也不得读成"六类失真在全部代码中无法表达"。
+⑥ 的充要式不得读成"六类失真在全部代码中无法表达"，
+③④的反证同样不得读成"①②⑤⑥的一般式也为假"。
 -/
 
 namespace JurisLean.Seams.BoundaryClosure
@@ -213,7 +244,10 @@ def EmptyReportOp.run {af : DefeatAF} : EmptyReportOp af → EmptinessVerdict
 （搬运后的声称仍然成立），不是把证明换个名字复读。
 诚实边界：主干判据 `evaluateProfile`（`ULM11BranchQuery.lean:49-57`）的可靠性方向
 ——"空性判据与语义族构造完全对应"——不在族内，需 §六要求的 profile 语义完备定理；
-该前置在仓内不存在，故③的一般式记为**未证**。本条只对该归纳族封闭；族外的写法未被排除。 -/
+该前置在仓内不存在。至于③的**一般式**（把下条的"op 是族成员"换成"任意 Lean 报告函数"），
+它**不是未证，而是已被反驳**：见 `boundary3_general_form_is_false`，
+见证报告器 `alwaysClaimsEmpty`、见证 profile `.grounded`；本条的族封闭性不受影响，
+族外性由 `boundary3_alwaysClaims_outside_family` 钉住。本条只对该归纳族封闭；族外的写法未被排除。 -/
 theorem closure_boundary3_no_unproved_emptiness {af : DefeatAF} (op : EmptyReportOp af) :
     ∀ (p : SemanticProfile),
       op.run = EmptinessVerdict.claims p → extensionsForProfile p af = ∅ := by
@@ -239,6 +273,56 @@ theorem closure_boundary3_no_unproved_emptiness {af : DefeatAF} (op : EmptyRepor
 theorem boundary3_attested_carries_proof {af : DefeatAF} (p : SemanticProfile)
     (h : extensionsForProfile p af = ∅) :
     (EmptyReportOp.attest p h).run = EmptinessVerdict.claims p := rfl
+
+/-- 中文说明（③·**族外**报告器）：对任意 profile 都交出"该族为空"的声称。
+这个写法在本仓的类型层是**合法**的，原因就在 `EmptinessVerdict.claims` 的构造子签名里
+（本文件第二节开头的 `inductive EmptinessVerdict`）——它只带一个 `profile`，
+**不带证明参数**，所以它不需要任何空性证据就能通过类型检查。
+`closure_boundary3_no_unproved_emptiness` 靠的是族成员自带的前提
+`h : extensionsForProfile p af = ∅`，而不是靠这个类型；
+把"op 是族成员"这一前提拿掉，剩下的就是下面要被反驳的一般式。 -/
+def alwaysClaimsEmpty : SemanticProfile → EmptinessVerdict := fun p => .claims p
+
+/-- 中文说明：反例报告器**确实**对每个 profile 都声称空族（是反例，不是伪例）。 -/
+theorem alwaysClaimsEmpty_is_a_claimer (p : SemanticProfile) :
+    alwaysClaimsEmpty p = EmptinessVerdict.claims p := rfl
+
+/-- 中文说明（③·一般式的**反例**）：存在一个 Lean 报告函数与被声称的 profile，
+声称照常交出，被声称的那个族却**不空**。
+见证 profile 取 `.grounded`：主干 `grounded_extension_family_nonempty`
+（`ULM11BranchQuery.lean:76-79`）对**每一个** `af : DefeatAF` 都证该族非空，
+故本条不是某个特殊 `af` 的例子。 -/
+theorem boundary3_out_of_family_claim_without_proof (af : DefeatAF) :
+    ∃ (report : SemanticProfile → EmptinessVerdict) (p : SemanticProfile),
+      report p = EmptinessVerdict.claims p ∧ extensionsForProfile p af ≠ ∅ :=
+  ⟨alwaysClaimsEmpty, .grounded, rfl,
+    Finset.nonempty_iff_ne_empty.mp (grounded_extension_family_nonempty af)⟩
+
+/-- 中文说明（界定定理③·**一般式为假**，不是"未证"）：把 `closure_boundary3_no_unproved_emptiness`
+的"op 是族成员"这一前提换成"report 是任意 Lean 函数"，得到的全称式**不成立**：
+`alwaysClaimsEmpty` 交出声称（`alwaysClaimsEmpty_is_a_claimer`），
+而它声称的那个族被主干证为非空（`boundary3_out_of_family_claim_without_proof`）。
+诚实边界：本条**不**否定上一条族封闭定理——族外性由
+`boundary3_alwaysClaims_outside_family` 单独钉住；
+主干判据 `evaluateProfile` 的可靠性方向既没被本条证也没被本条反驳，仍是未证（见 §未覆盖片段）。 -/
+theorem boundary3_general_form_is_false (af : DefeatAF) :
+    ¬ (∀ (report : SemanticProfile → EmptinessVerdict) (p : SemanticProfile),
+        report p = EmptinessVerdict.claims p → extensionsForProfile p af = ∅) := by
+  obtain ⟨report, p, hclaim, hnon⟩ := boundary3_out_of_family_claim_without_proof af
+  intro hall
+  exact hnon (hall report p hclaim)
+
+/-- 中文说明（③·反例确实在族外）：族成员是**一个固定的**声称，
+不可能对两个不同 profile 同时交出声称（`EmptinessVerdict.claims` 单射，
+且 `.grounded ≠ .preferred` 是构造子不同）。
+本条把"反例不与 `closure_boundary3_no_unproved_emptiness` 冲突"这一点点名，
+免得读成族封闭性被推翻了。 -/
+theorem boundary3_alwaysClaims_outside_family (af : DefeatAF) :
+    ¬ ∃ (op : EmptyReportOp af), ∀ (p : SemanticProfile), op.run = EmptinessVerdict.claims p := by
+  rintro ⟨op, hop⟩
+  have hEq : EmptinessVerdict.claims .grounded = EmptinessVerdict.claims .preferred :=
+    (hop .grounded).symm.trans (hop .preferred)
+  cases (EmptinessVerdict.claims.inj hEq)
 
 /-! ============================================================
     第三节 ④：裁判输入改写的声明操作族
@@ -313,8 +397,14 @@ theorem closure_boundary4_solverIncomplete {af : DefeatAF} (op : AdjudicationRew
 `solverIncomplete_ne_adjudicated`（`ULM12Procedure.lean:256-262`）。
 本条只对该归纳族封闭；族外的写法未被排除：`adjudicate` 是公开 `def`，
 调用方可不经本族直接构造 `AdjudicationInput`。§六为④要求的前置
-（调用链任意组合下的封装，以及与②共用的求解器状态建模）在仓内不存在，
-故④的一般式记为**未证**。 -/
+（调用链任意组合下的封装，以及与②共用的求解器状态建模）在仓内不存在。
+④的**一般式**（把"op 是族成员"换成"f 是任意 Lean 函数"）**不是未证，而是已被反驳**：
+见 `boundary4_general_form_is_false`，见证 `outOfFamilyEvaluationRewriter` 把 incomplete
+输入改写成 `unmet` 权源下的不利裁判（`boundary4_out_of_family_rewriter_reaches_adverse`），
+族外性由 `boundary4_rewriter_outside_family` 钉住。
+本条**也不是空洞真**：`ValidatedAdjudicationAuthority` 可住（`sampleAuthority`、
+`validatedAuthority_nonempty`），`AdverseAdjudication` 也确实被满足
+（`boundary4_adverseAdjudication_satisfied`）。 -/
 theorem closure_boundary4_incomplete_not_adverse {af : DefeatAF}
     (op : AdjudicationRewriter af) (input : AdjudicationInput af)
     (profile : SemanticProfile) (pr : IncompleteEvaluation af profile)
@@ -334,6 +424,180 @@ theorem closure_boundary4_not_pending {af : DefeatAF} (op : AdjudicationRewriter
   rw [closure_boundary4_solverIncomplete op input profile pr h]
   intro hEq
   cases hEq
+
+/-- 中文说明（④·**非空性见证**的载荷）：本文件反例用的一条未关闭义务；
+`§五` 禁止把本文件的陈述读成真实案件，故 code/detail 都是工程标记而非法律内容。 -/
+def seamB4Obligation : OpenObligation :=
+  { code := "SEAM-B4", detail := "refutation witness only (§五：不指向真实案件或真实法条)" }
+
+/-- 中文说明（④·**非空性见证**的举证规则）：`issue` 取 `request.query`，
+两个后果的 `request` 都逐字是该 request（`ULM12Procedure.lean:96-98` 的前三个字段）。
+后果的 `kind` 取 `.claimSupported` / `.claimNotSupported` —— 二者都不是程序性状态，
+走 `LegalStatus.isProcedural`（`ULM12Procedure.lean:27-31`）的 `_` 支。
+§五 的禁令同样管到这里：proposition 只是工程标记，不指向任何真实案件或真实法条。 -/
+def sampleBurdenRule (request : RequestKey) : BurdenRule where
+  issue := request.query
+  standard :=
+    { standardId := "SEAM-B4", domain := "boundary-refutation", version := { tag := "v1" } }
+  successConsequence :=
+    { kind := LegalStatusKind.claimSupported, proposition := "witness only (§五)",
+      request := request }
+  failureConsequence :=
+    { kind := LegalStatusKind.claimNotSupported, proposition := "witness only (§五)",
+      request := request }
+
+/-- 中文说明（④·见证的载体）：`finding` 直接取 `.unmet`，
+即主干 `ULM12Procedure.lean:173` 走 `failureStatuses` 的那一支，**不需要**事后用
+`withFinding` 改；`reviewer` 非空（`ULM12Procedure.lean:99`）。 -/
+def sampleAuthorityCarrier (request : RequestKey) : AdjudicationAuthority where
+  rule := sampleBurdenRule request
+  finding := ProofFinding.unmet
+  reviewer := "seam-boundary4-witness"
+
+/-- 中文说明：见证的 `reviewer` 字符串非空。单独提成闭语句，是因为 `decide` 不接受
+含自由变量的待判定式（字段类型里的 `request` 就是自由变量）。 -/
+theorem seamB4Reviewer_isNonempty : ("seam-boundary4-witness" : String) ≠ "" := by decide
+
+/-- 中文说明（④·见证的合法性证明）：`AdjudicationAuthority.ValidFor`
+（`ULM12Procedure.lean:94-101`）的六个字段逐条交出不凑数的证明 ——
+五条是构造层面的 `rfl`，`reviewerNonempty` 用上面的闭语句。 -/
+def sampleAuthorityValidFor (request : RequestKey) :
+    (sampleAuthorityCarrier request).ValidFor request where
+  issueMatches := rfl
+  successRequest := rfl
+  failureRequest := rfl
+  reviewerNonempty := seamB4Reviewer_isNonempty
+  successNonprocedural := rfl
+  failureNonprocedural := rfl
+
+/-- 中文说明（④·**非空性见证**）：主干 `ValidatedAdjudicationAuthority` 是子类型
+`{a : AdjudicationAuthority // a.ValidFor request}`（`ULM12Procedure.lean:103-104`），
+而仓内此前**没有任何**该子类型的具体见证（该名字的全部出现处都是约束变量位置）。
+这意味着本文件关于 `AdverseAdjudication` 的每条否定陈述都有**空洞真**的风险。
+本条交出一个见证，构造对**任意** `request` 成立，故不是靠某个 request 的特殊性。 -/
+def sampleAuthority (request : RequestKey) : ValidatedAdjudicationAuthority request :=
+  ⟨sampleAuthorityCarrier request, sampleAuthorityValidFor request⟩
+
+/-- 中文说明（④·权源类型**可住**）：对每个 request，`ValidatedAdjudicationAuthority request`
+都非空。本条就是 ④ 的 (a) 问句的回答：**不是**不可满足，因此 ④ 的封闭性**不是**空洞真。 -/
+theorem validatedAuthority_nonempty (request : RequestKey) :
+    Nonempty (ValidatedAdjudicationAuthority request) := ⟨sampleAuthority request⟩
+
+/-- 中文说明：见证的 `finding` 字段复核（等式由构造直接给出，不是化简出来的）。 -/
+theorem sampleAuthority_finding_is_unmet (request : RequestKey) :
+    (sampleAuthority request).1.finding = ProofFinding.unmet := rfl
+
+/-- 中文说明：见证的两个后果确实绑定该 request —— `AdverseAdjudication`
+定义第二合取支里的 `failureStatuses` 要用到它。 -/
+theorem sampleAuthority_consequences_request_bound (request : RequestKey) :
+    (sampleAuthority request).1.rule.successConsequence.request = request ∧
+      (sampleAuthority request).1.rule.failureConsequence.request = request :=
+  ⟨rfl, rfl⟩
+
+/-- 中文说明（④·反例的**求解状态**）：`IncompleteEvaluation`（`ULM11BranchQuery.lean:22-26`）
+的两个非平凡字段这样满足：`openNonempty` 由上面的单元素义务集合给出；
+`discoveredSound` 取 `discovered = ∅`，由主干 `Finset.forall_mem_empty_iff` 闭合，
+**不需要**任何 `SatisfiesProfile` 证据。该构造对任意 `af`、任意 `profile` 成立。 -/
+def trivialIncomplete (af : DefeatAF) (profile : SemanticProfile) :
+    IncompleteEvaluation af profile :=
+  { discovered := ∅
+    openObligations := {seamB4Obligation}
+    openNonempty := ⟨seamB4Obligation, by simp⟩
+    discoveredSound := (Finset.forall_mem_empty_iff (SatisfiesProfile af profile)).mpr trivial }
+
+/-- 中文说明（④·反例的**输入**）：evaluation 是 incomplete，`authority` 与 `proceduralOnly`
+皆无 —— 正是 `closure_boundary4_incomplete_not_adverse` 的合法前提形状。 -/
+def incompleteInputFor (af : DefeatAF) : AdjudicationInput af :=
+  { evaluation := EvalResult.incomplete .grounded (trivialIncomplete af .grounded)
+    authority := none
+    proceduralOnly := none }
+
+/-- 中文说明：该输入的 `evaluation` 确实是 incomplete —— 这是反例要满足的**前提**，
+不是要证的结论（结论在 `boundary4_out_of_family_rewriter_reaches_adverse`）。 -/
+theorem incompleteInputFor_evaluation_is_incomplete (af : DefeatAF) :
+    (incompleteInputFor af).evaluation =
+      EvalResult.incomplete .grounded (trivialIncomplete af .grounded) := rfl
+
+/-- 中文说明：`.extensions` 一支的载荷。`adjudicate` 在该支只看构造子形状
+（`ULM12Procedure.lean:166-173` 的三个 `_`），故载荷取"grounded 族恰好是单点集"这一
+主干事实（`extensionsForProfile .grounded af = {groundedExtension af}`，定义即等式）。 -/
+def groundedExtensionsFamily (af : DefeatAF) : ExtensionFamily :=
+  { carrier := {groundedExtension af}
+    nonempty := ⟨groundedExtension af, Finset.mem_singleton.mpr rfl⟩ }
+
+/-- 中文说明：把 incomplete 求解结果换成 grounded 的完备求解结果（族外动作）。 -/
+def launderedGroundedEvaluation (af : DefeatAF) : EvalResult af :=
+  EvalResult.extensions .grounded (groundedExtensionsFamily af) rfl
+
+/-- 中文说明（④·**族外**改写函数）：换掉 `evaluation` 字段并补交一个 `unmet` 权源。
+族内**没有**换 `evaluation` 的运算（`AdjudicationRewriter.apply_preserves_evaluation`，
+本文件第三节开头）；在主干里"补交证据后重新求解"是合法路径，本条只是说明：一旦把④写成
+"任何写法都不能把求解不完备变成不利裁判"的全称式，这条合法路径就成了反例。 -/
+def outOfFamilyEvaluationRewriter (af : DefeatAF) :
+    AdjudicationInput af → AdjudicationInput af :=
+  fun input => { input with evaluation := launderedGroundedEvaluation af,
+                             authority := some (sampleAuthority af.request) }
+
+/-- 中文说明（④·**反例主体**）：带着 incomplete 求解结果的输入，经这一个 Lean 改写函数之后，
+`adjudicate` 交出的结果**满足** `AdverseAdjudication`。两支合取都是构造层面的 `rfl`
+（权源的 `finding` 与主干 `.unmet` 分支选出的 `failureStatuses`）。 -/
+theorem boundary4_out_of_family_rewriter_reaches_adverse (af : DefeatAF) :
+    AdverseAdjudication
+      (adjudicate (outOfFamilyEvaluationRewriter af (incompleteInputFor af))) :=
+  ⟨sampleAuthority af.request, rfl, rfl⟩
+
+/-- 中文说明（④·谓词**非空洞**）：`AdverseAdjudication` 不是恒假谓词 ——
+它确实被某个 `adjudicate` 的输出满足。本条与 `validatedAuthority_nonempty` 一起
+把④的全部否定陈述（含 `closure_boundary4_incomplete_not_adverse`）从空洞真里救出来。 -/
+theorem boundary4_adverseAdjudication_satisfied (af : DefeatAF) :
+    ∃ (r : ProcedureAdjudicateResult af.request), AdverseAdjudication r :=
+  ⟨adjudicate (outOfFamilyEvaluationRewriter af (incompleteInputFor af)),
+    boundary4_out_of_family_rewriter_reaches_adverse af⟩
+
+/-- 中文说明（④·反例确实在族外）：族成员的 `apply` 恒保持 `evaluation` 字段，
+本函数对 `incompleteInputFor af` 不保持，故它不是任何族成员的 `apply`。
+本条把"下面的反驳不与 `closure_boundary4_incomplete_not_adverse` 冲突"这一点单独点名。 -/
+theorem boundary4_rewriter_outside_family (af : DefeatAF) :
+    ¬ ∃ (op : AdjudicationRewriter af),
+        ∀ (input : AdjudicationInput af),
+          op.apply input = outOfFamilyEvaluationRewriter af input := by
+  rintro ⟨op, hop⟩
+  have hEval : (op.apply (incompleteInputFor af)).evaluation =
+      (outOfFamilyEvaluationRewriter af (incompleteInputFor af)).evaluation :=
+    congrArg (fun x : AdjudicationInput af => x.evaluation) (hop (incompleteInputFor af))
+  rw [AdjudicationRewriter.apply_preserves_evaluation,
+      incompleteInputFor_evaluation_is_incomplete] at hEval
+  have key : EvalResult.incomplete .grounded (trivialIncomplete af .grounded) =
+      launderedGroundedEvaluation af := hEval
+  cases key
+
+/-- 中文说明（④·**一般式为假**，不是"未证"）：把 `closure_boundary4_incomplete_not_adverse`
+的"op 是族成员"换成"f 是任意 Lean 函数"，该全称式**不成立**：
+`outOfFamilyEvaluationRewriter` 作用在 `incompleteInputFor`（前提是 incomplete，
+见 `incompleteInputFor_evaluation_is_incomplete`）上确实交出不利裁判
+（`boundary4_out_of_family_rewriter_reaches_adverse`）。
+与 (c) 的关系：本条同时说明**不存在**"权源类型不可住因而④封闭性空洞真"这一退路——
+`validatedAuthority_nonempty` 对每个 request 都给出见证。
+诚实边界：本条**不**否定族封闭定理（族外性由 `boundary4_rewriter_outside_family` 钉住）；
+`adjudicate` 作为公开 `def` 的封装问题、以及与②共用的求解器状态精化，仍**未证**（见 §未覆盖片段）。 -/
+theorem boundary4_general_form_is_false (af : DefeatAF) :
+    ¬ (∀ (f : AdjudicationInput af → AdjudicationInput af) (input : AdjudicationInput af),
+        (∃ (profile : SemanticProfile) (pr : IncompleteEvaluation af profile),
+            input.evaluation = EvalResult.incomplete profile pr) →
+          ¬ AdverseAdjudication (adjudicate (f input))) := by
+  intro hall
+  exact (hall (outOfFamilyEvaluationRewriter af) (incompleteInputFor af))
+    (Exists.intro SemanticsKind.grounded
+      (Exists.intro (trivialIncomplete af SemanticsKind.grounded)
+        (incompleteInputFor_evaluation_is_incomplete af)))
+    (boundary4_out_of_family_rewriter_reaches_adverse af)
+
+/-- 中文说明：④·族生成方式 `supplyAuthority` 也不是空支——上面那个见证就能生成它。 -/
+theorem boundary4_supplyAuthority_branch_inhabited (af : DefeatAF) :
+    ∃ (op : AdjudicationRewriter af) (a : ValidatedAdjudicationAuthority af.request),
+      op = AdjudicationRewriter.supplyAuthority a ProofFinding.unmet :=
+  ⟨AdjudicationRewriter.supplyAuthority (sampleAuthority af.request) ProofFinding.unmet,
+    sampleAuthority af.request, rfl⟩
 
 /-! ============================================================
     第四节 ⑤：两套聚合，各自成族（无桥接）

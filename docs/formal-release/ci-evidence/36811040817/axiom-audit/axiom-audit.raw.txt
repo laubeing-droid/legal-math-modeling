@@ -1,0 +1,2313 @@
+'FiniteMonotoneSystem.exists_fixpoint_le_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'FiniteMonotoneSystem.fixed_at_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+'DungAAF.grounded_is_least_fixed_point' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HornSystem.horn_completeness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'HornSystem.horn_result_unique_least_fixed_point' depends on axioms: [propext, Classical.choice, Quot.sound]
+'weightedSupDist_separates_points' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.KernelV3.mkEval_judgment' does not depend on any axioms
+'JurisLean.KernelV3.mkEval_disposition' does not depend on any axioms
+'JurisLean.KernelV3.judgment_notEstablished_does_not_force_truth_false' does not depend on any axioms
+'JurisLean.KernelV3.transfer_confirmatory_identity' does not depend on any axioms
+'JurisLean.KernelV3.transfer_performance_identity' does not depend on any axioms
+'JurisLean.KernelV3.transfer_proceduralBinding_identity' does not depend on any axioms
+'JurisLean.KernelV3.transfer_constitutive_updates_R' does not depend on any axioms
+'JurisLean.KernelV3.transfer_constitutive_preserves_K' does not depend on any axioms
+'JurisLean.KernelV3.narrowCandidates_preserves_R' does not depend on any axioms
+'JurisLean.KernelV3.narrowCandidates_is_subset' does not depend on any axioms
+'JurisLean.KernelV3.evalBatch_only_returns_asked_questions' does not depend on any axioms
+'JurisLean.KernelV3.procedural_judgment_does_not_auto_create_substantive' does not depend on any axioms
+'JurisLean.KernelV3.applicableNorm_t_not_independent' does not depend on any axioms
+'JurisLean.KernelV3.applicableNorm_fails_closed_when_t_precedes_fact' does not depend on any axioms
+'JurisLean.Hohfeld.opposite_involutive' does not depend on any axioms
+'JurisLean.Hohfeld.correlative_involutive' does not depend on any axioms
+'JurisLean.Hohfeld.opposite_ne_self' does not depend on any axioms
+'JurisLean.Hohfeld.correlative_ne_self' does not depend on any axioms
+'JurisLean.BanachCertificateV3.no_certificate_rejected' does not depend on any axioms
+'JurisLean.BanachCertificateV3.certificate_has_q_lt_one_scaled' does not depend on any axioms
+'JurisLean.BanachCertificateV3.certificate_error_within_tolerance' does not depend on any axioms
+'JurisLean.BanachCertificateV3.certificate_has_nonempty_domain' does not depend on any axioms
+'JurisLean.BanachCertificateV3.certificate_has_positive_iterations' does not depend on any axioms
+'JurisLean.Genealogy.Part0.P002.same_pair_same_concept' depends on axioms: [propext]
+'JurisLean.Genealogy.Part0.P002.different_pair_different_concept' depends on axioms: [propext]
+'JurisLean.Genealogy.Part0.P003.translation_preserves_definition_id' does not depend on any axioms
+'JurisLean.Genealogy.Part0.P003.canonical_slot_is_single_valued' does not depend on any axioms
+'JurisLean.Genealogy.Part0.P009.strictly_increasing_version_enters' depends on axioms: [propext]
+'JurisLean.Genealogy.Part0.P009.nonincreasing_version_is_outside' depends on axioms: [propext]
+'JurisLean.Genealogy.Part0.P010.anonymization_exits_personal_set' depends on axioms: [propext]
+'JurisLean.Genealogy.Part0.P010.sensitive_triple_consent_positive' does not depend on any axioms
+'JurisLean.Genealogy.Part0.P036.obligational_signature_mismatch' does not depend on any axioms
+'JurisLean.Genealogy.Part0.P036.real_signature_mismatch' does not depend on any axioms
+'JurisLean.Genealogy.Part0.P012.interruption_restarts' does not depend on any axioms
+'JurisLean.Genealogy.Part0.P012.second_commencement_is_identity' does not depend on any axioms
+'JurisLean.Genealogy.Part1.P014.source_grade_total' does not depend on any axioms
+'JurisLean.Genealogy.Part1.P015.lex_superior_left' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P015.old_special_vs_new_general_unknown' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P015.same_rank_day_nature_unknown' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P018.transition_requires_version_and_fact' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P018.transition_version_mismatch_holds' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P019.shall_refer_without_reason_follows' does not depend on any axioms
+'JurisLean.Genealogy.Part1.P019.may_reference_nonbinding' does not depend on any axioms
+'JurisLean.Genealogy.Part1.P020.specialized_rule_wins_first' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P020.no_applicable_rule_returns_none' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P021.renvoi_back_uses_forum_and_terminates' does not depend on any axioms
+'JurisLean.Genealogy.Part1.P022.named_rule_removed' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P022.other_rule_preserved' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P023.missing_version_unknown' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P023.missing_jurisdiction_unknown' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P024.cause_route_head_hit' depends on axioms: [propext]
+'JurisLean.Genealogy.Part1.P024.cause_route_empty_unknown' does not depend on any axioms
+'JurisLean.Genealogy.Part2.P029.secondary_without_primary_violation_is_false' depends on axioms: [propext]
+'JurisLean.Genealogy.Part2.P029.matching_secondary_attachment' depends on axioms: [propext]
+'JurisLean.Genealogy.Part2.P034.claim_available_complete_iff' depends on axioms: [propext]
+'JurisLean.Genealogy.Part2.P034.unregistered_basis_unknown' does not depend on any axioms
+'JurisLean.Genealogy.Part2.P035.agency_attributes_principal' does not depend on any axioms
+'JurisLean.Genealogy.Part2.P035.representation_outside_scope_none' does not depend on any axioms
+'JurisLean.Genealogy.Part2.P035.impersonation_ratified_principal' does not depend on any axioms
+'JurisLean.Genealogy.Part2.P038.competition_is_three_way_conjunction' does not depend on any axioms
+'JurisLean.Genealogy.Part2.P038.all_three_true_establish' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P042.equal_factors_fixed' depends on axioms: [propext]
+'JurisLean.Genealogy.Part3.P042.weakest_factor_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P047.two_sided_but_for_true' depends on axioms: [propext]
+'JurisLean.Genealogy.Part3.P047.one_side_missing_unknown' depends on axioms: [propext]
+'JurisLean.Genealogy.Part3.P048.exemption_requires_own_elements' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P048.exemption_complete_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P049.good_cause_extension_admits' depends on axioms: [propext]
+'JurisLean.Genealogy.Part3.P049.late_without_good_cause_barred' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P050.any_listed_illegality_excludes' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P050.empty_exclusion_list_does_not_exclude' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P051.boundary_inputs_complete' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.Part3.P051.boundary_records_input_only' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.Part3.P052.mapping_complete_iff_all_required_traced' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P052.mapping_complete_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P094.first_present_anchor_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P094.empty_anchor_rules_unknown' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P095.commencement_cell_hit' does not depend on any axioms
+'JurisLean.Genealogy.Part3.P095.empty_commencement_matrix_unknown' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P057.analogy_three_conditions' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P057.distinction_blocks_analogy' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P058.toulmin_six_slot_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P060.isolated_branch_preserved' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P061.pinned_reading_immune_to_low_attack' depends on axioms: [propext]
+'JurisLean.Genealogy.Part4.P062.two_senses_without_context_ambiguous' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P062.context_resolves' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P063.rule_all_or_nothing_true' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P063.principle_positive_weight_is_weight_only' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P064.preorder_with_legal_incomparability' depends on axioms: [propext]
+'JurisLean.Genealogy.Part4.P065.lawmaking_requires_three_true' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P065.missing_gap_signal_blocks' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P066.gap_detection_preserves_signal_roster' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P066.gap_signal_detected' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P068.several_without_share_invalid' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P068.several_with_share_valid' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P070.unknown_damage_none' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P070.registered_damage_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P073.declaration_floor_is_max' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P073.declaration_band_order_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P074.prohibited_is_illegal' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P074.unknown_unlawfulness_is_violation' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P078.mediation_overlap_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P078.mediation_disjoint_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P079.settlement_ev_accept_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P079.settlement_ev_reject_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P080.plea_fixed_prefix_advances' depends on axioms: [propext]
+'JurisLean.Genealogy.Part4.P080.plea_skip_fails_closed' depends on axioms: [propext]
+'JurisLean.Genealogy.Part4.P081.fraud_voids_tactic' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P082.preservation_without_ground_infeasible' depends on axioms: [propext]
+'JurisLean.Genealogy.Part4.P084.appeal_ev_positive_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P084.appeal_ev_negative_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P085.undisclosed_fee_none' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P086.contingency_fee_cap_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P086.contingency_fee_below_cap_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P087.should_follow_iff_reason_absent' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P089.retrieval_two_true_compliant' does not depend on any axioms
+'JurisLean.Genealogy.Part4.P089.retrieval_missing_report_noncompliant' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P096.two_segment_refinement' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P096.empty_segments_zero' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P097.allocate_one_underfunded' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P097.allocate_one_overfunded' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P097.two_debt_conservation_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P098.clamp_below_to_low' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P098.clamp_below_in_band' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P098.clamp_above_to_high' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P098.clamp_above_in_band' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P098.clamp_inside_fixed' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P098.clamp_inside_idempotent' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P099.progressive_three_bracket_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P099.progressive_two_effective_brackets_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P100.unknown_damage_formula_none' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P100.registered_damage_formula_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P102.delay_interest_formula' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P103.no_consent_no_transition' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P103.consent_and_legal_edge_moves' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P103.consent_cannot_create_nonedge' depends on axioms: [propext]
+'JurisLean.Genealogy.Part5.P114.deduction_bridges' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P114.probability_one_not_deduction' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P117.structural_equivalence_assertion_invalid' does not depend on any axioms
+'JurisLean.Genealogy.Part5.P117.similarity_stays_candidate' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P105.disposition_valid_path' depends on axioms: [propext]
+'JurisLean.Genealogy.Part6.P105.disposition_invalid_jump' depends on axioms: [propext]
+'JurisLean.Genealogy.Part6.P106.swapped_parties_same_subject' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P106.different_cause_not_same_subject' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P107.legal_fact_script_rejected' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P121.failed_gate_keeps_candidate' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P121.passed_gate_sets_admitted' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P122.version_triplet_binding_identity' depends on axioms: [propext]
+'JurisLean.Genealogy.Part6.P124.disclosed_is_compliant' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P124.undisclosed_is_noncompliant' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P125.detected_pattern_blocks' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P126.foreign_unadapted_blocked' depends on axioms: [propext]
+'JurisLean.Genealogy.Part6.P126.home_jurisdiction_not_blocked' depends on axioms: [propext]
+'JurisLean.Genealogy.Part6.P127.verbatim_prefix_hit_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Genealogy.Part6.P127.verbatim_prefix_miss_witness' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Genealogy.Part6.P128.all_due_process_elements_present' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P128.missing_reason_record_fails' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P129.anonymization_boundary_two_conditions' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P130.lifecycle_listed_edge_valid' depends on axioms: [propext]
+'JurisLean.Genealogy.Part6.P130.lifecycle_unlisted_edge_invalid' depends on axioms: [propext]
+'JurisLean.Genealogy.Part6.P131.replay_empty_log_idempotent' depends on axioms: [propext]
+'JurisLean.Genealogy.Part6.P131.existing_command_replay_witness' does not depend on any axioms
+'JurisLean.Genealogy.Part6.P132.listed_action_requires_its_gate' does not depend on any axioms
+'JurisLean.Genealogy.General.P052_subsumeComplete_iff_all' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P042_min3Nat_le_all' depends on axioms: [propext]
+'JurisLean.Genealogy.General.P042_grade_capped' depends on axioms: [propext]
+'JurisLean.Genealogy.General.P073_le_maxNat_left' depends on axioms: [propext]
+'JurisLean.Genealogy.General.P073_mergedDeclaration_low_le_high' depends on axioms: [propext]
+'JurisLean.Genealogy.General.P084_mul_monotone_probability_strict' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P084_appealWorthwhile_of_mul_le' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P084_appealWorthwhile_monotone_strict' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P097_add_assoc_local' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P097_allocate_conservation' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P099_progressiveTax3_nonnegative' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P099_progressiveTax3_first_bracket' depends on axioms: [propext]
+'JurisLean.Genealogy.General.P127_isPrefixChars_refl_list' depends on axioms: [propext]
+'JurisLean.Genealogy.General.P127_isPrefixChars_refl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Genealogy.General.P127_prepend_monotonicity_counterexample' does not depend on any axioms
+'JurisLean.Genealogy.General.P127_isPrefixChars_append_right' depends on axioms: [propext]
+'JurisLean.Genealogy.General.P131_effectLogApply_idempotent' depends on axioms: [propext]
+'JurisLean.Genealogy.Boundary.partialValue_openObligations_nonempty' depends on axioms: [propext]
+'JurisLean.Genealogy.Boundary.failure_map_identity' does not depend on any axioms
+'JurisLean.Genealogy.Boundary.noExtensions_family_empty' does not depend on any axioms
+'JurisLean.Genealogy.Boundary.incomplete_adjudication_is_solverIncomplete' does not depend on any axioms
+'JurisLean.Genealogy.Boundary.adverseAuthority_requires_unmet' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T01.eval_substitution' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T02.finite_ground_instances' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T03.iter_subset_of_prefixed' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T04.derived_iff_rule_model_entails' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T05.undercut_defeat_independent_of_preference' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T05.rebuttal_counterexample' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T06.transition_origin' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T07.eval_exactexpr_denotation' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T08.division_total_iff_domain_empty' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T09.rounding_without_basis_unknown' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T10.select_version_unique_or_unknown' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.TSpectrum.T11.one_hop_renvoi_terminates' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T12.scoped_override_preserves_unaffected_rules' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T13.parallel_projection' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T14.strictest_is_join' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T15.truth_vector_bisimulation' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T16.check_af_sound' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T17.anchor_selected_by_rule' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T18.period_effect_bound_to_kind' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T19.progressive_and_multiplier_correct' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T20.route_and_exclusion_sound' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T21.interest_segment_refinement' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.TSpectrum.T22.residual_payment_le' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.TSpectrum.T22.payment_offset_conservation' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.TSpectrum.T23.fixed_scheme_conservation' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T24.asset_pool_no_duplicate_consumption' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T25.priority_waterfall_monotone' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T26.interruption_resume_preserves_checkpoint' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T27.admitted_rule_has_four_witnesses' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T28.compile_structure_preserving' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T29.evaluate_multi_contract' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T30.version_package_isolation' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T31.record_override_audit' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T32.runtime_reference_consistency' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T33.external_output_does_not_relabel' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T34.business_does_not_pollute_legal' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T35.paper_claim_consistency' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T36.completion_acceptance' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T37.unified_probability_preserves_legal_identity' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T38.conditioning_zero_mass_unknown' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T38.conditioning_excludes_false_event' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T39.variable_elimination_equals_independent_enumeration' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T40.observational_identity' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T40.hidden_change_preserves_observation' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T41.valid_split_requires_time_order' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T42.fully_specified_witness' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T43.observed_only_count' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T44.empirical_requires_justification' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T45.calibration_recorded' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T46.proper_posterior_witness' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T47.legal_identity_preserved' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T48.pav_single_fixed' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T49.brier_perfect_prediction' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T50.valid_interval_witness' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T51.direction_explicit' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T52.contaminated_zero_weight' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T53.bound_witness' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T54.logistic_deterministic' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T55.stages_strictly_ordered' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T56.signature_deterministic' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T57.directed_witness' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T58.complete_difference' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T59.horn_form_deterministic' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T60.role_preservation' depends on axioms: [propext]
+'JurisLean.Genealogy.TSpectrum.T61.T61_conflict_deterministic' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T62.T62_mandatory_overrides' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T63.T63_fail_closed' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T64.T64_bias_explicit' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T65.T65_version_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T66.T66_certificate_fields' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T67.T67_vc_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T68.T68_certified_witness' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T69.T69_chain_independent' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T70.T70_llm_always_candidate' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T71.T71_ig_recorded' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T72.T72_completion_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T73.T73_lipschitz_bounded' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T74.T74_stopping_explicit' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T75.T75_trust_numeric' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T76.T76_dtmc_finite' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T77.T77_reach_finite' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T78.T78_bellman_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T79.T79_mdp_finite' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T80.T80_lp_explicit' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T81.T81_nash_feasible' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T82.T82_game_grounded' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T83.T83_stochastic_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T84.T84_fit_dual' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T85.T85_info_computed' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T86.T86_disclosure_separate' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T87.T87_spectral_finite' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T88.T88_scm_witness' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T89.T89_belief_distinguished' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T90.T90_timing_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T91.T91_category_concrete' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T92.T92_lifecycle_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T93.T93_recovery_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T94.T94_gate_explicit' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T95.T95_structure_kept' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T96.T96_trace_kept' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T97.T97_template_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T98.T98_schedule_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T99.T99_graph_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T100.T100_chain_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T101.T101_business_computed' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T102.T102_distillation_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T103.T103_anon_verified' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T104.T104_projection_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T105.T105_bridge_refined' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T106.T106_map_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T107.T107_coverage_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T108.T108_writeoff_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T109.T109_unified_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T110.T110_ceiling_set' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T111.T111_acceptance_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T112.T112_dual_track_separated' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T113.T113_rationality_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T114.T114_hidden_info_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T115.T115_cooperation_declared' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T116.T116_multi_issue_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T117.T117_robustness_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T118.T118_stopping_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T119.T119_evaluation_three_way' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T120.T120_incentive_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T121.T121_transition_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T122.T122_five_constructors' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T123.T123_attack_table_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T124.T124_consistency_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T125.T125_deviation_tracked' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T126.T126_tendency_stratified' does not depend on any axioms
+'JurisLean.Genealogy.TSpectrum.T127.T127_report_generated' does not depend on any axioms
+'JurisLean.Genealogy.General.P083_insertEvpi_length' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P083_sortEvpi_length' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P083_insertEvpi_preserves_sortedP' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P083_sortEvpi_sortedP' depends on axioms: [propext, Quot.sound]
+'JurisLean.Genealogy.General.P083_sortedDesc_witness' depends on axioms: [propext, Quot.sound]
+'JurisLean.BusinessRoot.CU_expectation_conservation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.cres_false_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.cres_true_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.eventMass_twoBranch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.interval_point_not_in_grid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.main_eligible' depends on axioms: [propext, Quot.sound]
+'JurisLean.BusinessRoot.main_interval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.main_principal_expectation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.main_threshold_event' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.overpay_overpay_expectation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.overpay_principal_expectation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.overpay_raw_expectation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.split_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.threshold_zero_distinction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.weighted_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.weighted_sub' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.BusinessRoot.weighted_twoBranch' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.Gamma_add_nat' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.betaCDF_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.betaCDF_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.beta_mass_total_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.beta_mixture_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.beta_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.brier_excess_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.brier_excess_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.cantelli_core' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.condition_incompatible_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.contaminate_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.contaminate_condition_do_not_commute' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.FullMath.Probability.contamination_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.dedupAux_cons_fresh' depends on axioms: [propext]
+'JurisLean.FullMath.Probability.dedupAux_cons_seen' depends on axioms: [propext]
+'JurisLean.FullMath.Probability.dedupAux_k_insensitive' depends on axioms: [propext, Quot.sound]
+'JurisLean.FullMath.Probability.dedup_conflict_not_overwrite' depends on axioms: [propext]
+'JurisLean.FullMath.Probability.dedup_no_double_update' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.dirWeights_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.dirWeights_normalizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.dirWeights_update_compose' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.e01_insufficient_escalates' does not depend on any axioms
+'JurisLean.FullMath.Probability.e01_within_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.elim_swap_adjacent' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.exclusion_no_langer' depends on axioms: [propext, Quot.sound]
+'JurisLean.FullMath.Probability.exclusion_no_langer_top' depends on axioms: [propext, Quot.sound]
+'JurisLean.FullMath.Probability.hyperWeights_normalizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.hyper_data_changes_posterior' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.illegal_row_in_no_part' depends on axioms: [propext, Quot.sound]
+'JurisLean.FullMath.Probability.isolated_no_shared_cluster' does not depend on any axioms
+'JurisLean.FullMath.Probability.isolated_symm' does not depend on any axioms
+'JurisLean.FullMath.Probability.joint_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.joint_normalizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.mixture_update_normalizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.mixture_update_still_bracketed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.FullMath.Probability.mixture_within_retained' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.no_cluster_cross' does not depend on any axioms
+'JurisLean.FullMath.Probability.part_target_preserved' depends on axioms: [propext]
+'JurisLean.FullMath.Probability.parts_cover' depends on axioms: [propext]
+'JurisLean.FullMath.Probability.pavGo_succ_cons' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.pavGo_weight_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.pav_two_point_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.posterior_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.posterior_normalizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.prodAt_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.rising_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.sum_out_distrib' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.time_order_enforced' depends on axioms: [propext]
+'JurisLean.FullMath.Probability.unprocessed_mass_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.unprocessed_mass_degenerate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.FullMath.Probability.upd_eq_exclSeen' depends on axioms: [propext, Quot.sound]
+'JurisLean.FullMath.Probability.upd_self' depends on axioms: [propext, Quot.sound]
+'JurisLean.FullMath.Probability.upd_swap' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.allSelfRelated_of_iso' does not depend on any axioms
+'JurisLean.Mandate.CaseIsomorphism.bool_beq_true' does not depend on any axioms
+'JurisLean.Mandate.CaseIsomorphism.exists_bijective_inverse' depends on axioms: [Classical.choice]
+'JurisLean.Mandate.CaseIsomorphism.isoRel3_allLoops_noRelation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.isoRel3_allLoops_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.isoRel3_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.iso_refl' does not depend on any axioms
+'JurisLean.Mandate.CaseIsomorphism.iso_symm' depends on axioms: [Classical.choice]
+'JurisLean.Mandate.CaseIsomorphism.iso_trans' does not depend on any axioms
+'JurisLean.Mandate.CaseIsomorphism.iso_twoEmpty_swap' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.noRelation_ne_allLoops' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.not_Rel3Iso_allLoops_noRelation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.not_iso_looped_edgeless' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.pairs3_all_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.preservesR_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.rel3Iso_allLoops_symm_self' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.rel3Iso_iff_by_list' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.rel3Iso_of_preserves' depends on axioms: [Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.swap2_bijective' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.swap2_moves_a_slot' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CaseIsomorphism.triedRenames_complete' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CohortInterval.high_le_added_success' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CohortInterval.high_num_le_den' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CohortInterval.intervalOf_defined' does not depend on any axioms
+'JurisLean.Mandate.CohortInterval.intervalOf_none_without_cohort' does not depend on any axioms
+'JurisLean.Mandate.CohortInterval.interval_of_empty_successes_legal' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CohortInterval.low_antitone_in_size' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CohortInterval.low_le_added_success' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CohortInterval.low_le_high' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CohortInterval.low_num_le_den' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CohortInterval.low_num_lt_high_num' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.CohortRate.addedFailure_le_rate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CohortRate.rateOfCohort_defined' does not depend on any axioms
+'JurisLean.Mandate.CohortRate.rateOfCohort_none_iff' depends on axioms: [propext]
+'JurisLean.Mandate.CohortRate.rateOfCohort_num_le_den' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.CohortRate.rate_le_addedSuccess' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.admits_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.approx_closed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.approx_damped' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.approx_error_eq_computedBound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.approx_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.certificate_bound_is_computed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.not_admits_negative' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.pow_damped' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.DerivedCertificate.pow_nonneg_of_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.Disclosure.compliant_concrete' does not depend on any axioms
+'JurisLean.Mandate.Disclosure.compliant_true_iff_covers' depends on axioms: [propext]
+'JurisLean.Mandate.Disclosure.covers_nil_recorded' does not depend on any axioms
+'JurisLean.Mandate.Disclosure.not_covers_empty_registry' depends on axioms: [propext]
+'JurisLean.Mandate.Disclosure.occurs_append' depends on axioms: [propext]
+'JurisLean.Mandate.Disclosure.occurs_head' depends on axioms: [propext]
+'JurisLean.Mandate.Disclosure.occurs_monotone' depends on axioms: [propext]
+'JurisLean.Mandate.GameTree.leaves_leaf' does not depend on any axioms
+'JurisLean.Mandate.GameTree.leaves_node' does not depend on any axioms
+'JurisLean.Mandate.GameTree.value_attains' depends on axioms: [propext]
+'JurisLean.Mandate.GameTree.value_ge_of_mem' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.GameTree.value_ignores_payoff_renaming_when_dominated' depends on axioms: [propext]
+'JurisLean.Mandate.GameTree.value_le_value_left' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.GameTree.value_le_value_ofList_cons' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.GameTree.value_le_value_right' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.GameTree.value_leaf' does not depend on any axioms
+'JurisLean.Mandate.GameTree.value_node' does not depend on any axioms
+'JurisLean.Mandate.GameTree.value_ofList_append_le' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.GameTree.value_ofList_concrete' does not depend on any axioms
+'JurisLean.Mandate.GameTree.value_ofList_cons' does not depend on any axioms
+'JurisLean.Mandate.GameTree.value_ofList_nil' does not depend on any axioms
+'JurisLean.Mandate.GameTree.value_ofList_singleton' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.GateTable.gate_coverage_total' does not depend on any axioms
+'JurisLean.Mandate.GateTable.gate_exists_unique' depends on axioms: [propext]
+'JurisLean.Mandate.GateTable.gate_iff_table' does not depend on any axioms
+'JurisLean.Mandate.GateTable.gate_ne_true_of_ne' does not depend on any axioms
+'JurisLean.Mandate.GateTable.gate_table_no_duplicates' depends on axioms: [propext]
+'JurisLean.Mandate.GateTable.gates_pairwise_distinct' does not depend on any axioms
+'JurisLean.Mandate.Kernel.best_le_best_append' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.Kernel.le_max_l' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.Kernel.le_max_r' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.Kernel.max_zero' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.Kernel.rate_le_self' does not depend on any axioms
+'JurisLean.Mandate.Kernel.rate_num_le_den' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.Kernel.sig3_edges_le_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.Kernel.sig3_fst_le_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.Kernel.sig3_relabel_edges' depends on axioms: [propext]
+'JurisLean.Mandate.Kernel.sig3_relabel_fst' depends on axioms: [propext]
+'JurisLean.Mandate.Kernel.sig3_relabel_snd' depends on axioms: [propext]
+'JurisLean.Mandate.Kernel.sig3_sum' depends on axioms: [propext]
+'JurisLean.Mandate.Kernel.successes_le_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.LinearScorer.not_predicts_of_neg' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.LinearScorer.predicts_scaled_positive' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.LinearScorer.predicts_true_of_nonneg' does not depend on any axioms
+'JurisLean.Mandate.LinearScorer.score_cons' does not depend on any axioms
+'JurisLean.Mandate.LinearScorer.score_nil_features' does not depend on any axioms
+'JurisLean.Mandate.LinearScorer.score_nil_weights' does not depend on any axioms
+'JurisLean.Mandate.LinearScorer.score_nonneg_of_allNonNeg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.LinearScorer.score_not_constant' does not depend on any axioms
+'JurisLean.Mandate.LinearScorer.score_zero_weights' depends on axioms: [propext]
+'JurisLean.Mandate.MatrixGame.coordination_has_pure_value' does not depend on any axioms
+'JurisLean.Mandate.MatrixGame.gap_bounded_by_spread' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.MatrixGame.hasPureValue_true_iff' does not depend on any axioms
+'JurisLean.Mandate.MatrixGame.lower_le_upper' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.MatrixGame.lower_monotone_first' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.MatrixGame.pennies_gap_strict' does not depend on any axioms
+'JurisLean.Mandate.MatrixGame.pennies_no_pure_value' does not depend on any axioms
+'JurisLean.Mandate.MatrixGame.upper_monotone_column' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.MixedPennies.agreed_second_moves' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.MixedPennies.col_guaranteed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.MixedPennies.four_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.MixedPennies.mixedNash_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.MixedPennies.no_pure_pair_is_equilibrium' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.MixedPennies.payoff_symm' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.MixedPennies.row_held' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.MixedPennies.two_half' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.MixedPennies.u_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.MixedPennies.uniform_is_a_mixture' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.MixedPennies.value_at_uniform' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.OneShotDeviation.atPath_cons_left' does not depend on any axioms
+'JurisLean.Mandate.OneShotDeviation.atPath_cons_right' does not depend on any axioms
+'JurisLean.Mandate.OneShotDeviation.atPath_cons_terminal' does not depend on any axioms
+'JurisLean.Mandate.OneShotDeviation.atPath_nil' does not depend on any axioms
+'JurisLean.Mandate.OneShotDeviation.brute_at_root' depends on axioms: [propext]
+'JurisLean.Mandate.OneShotDeviation.brute_cons_left' depends on axioms: [propext]
+'JurisLean.Mandate.OneShotDeviation.brute_cons_right' depends on axioms: [propext]
+'JurisLean.Mandate.OneShotDeviation.deviate_agree_off' depends on axioms: [propext]
+'JurisLean.Mandate.OneShotDeviation.go_bound' depends on axioms: [propext]
+'JurisLean.Mandate.OneShotDeviation.go_exact' depends on axioms: [propext]
+'JurisLean.Mandate.OneShotDeviation.go_terminal' does not depend on any axioms
+'JurisLean.Mandate.OneShotDeviation.go_turn_apply' does not depend on any axioms
+'JurisLean.Mandate.OneShotDeviation.one_shot_deviation' depends on axioms: [propext]
+'JurisLean.Mandate.OneShotDeviation.one_shot_deviation_le_brute' depends on axioms: [propext]
+'JurisLean.Mandate.OneShotDeviation.outcome_eq_of_le' does not depend on any axioms
+'JurisLean.Mandate.OneShotDeviation.outcome_eq_of_not_le' does not depend on any axioms
+'JurisLean.Mandate.OneShotDeviation.play_brute' depends on axioms: [propext]
+'JurisLean.Mandate.OneShotDeviation.play_terminal' does not depend on any axioms
+'JurisLean.Mandate.OneShotDeviation.play_turn_follows' does not depend on any axioms
+'JurisLean.Mandate.OneShotDeviation.tree_brute_root_is_left' depends on axioms: [propext]
+'JurisLean.Mandate.OneShotDeviation.tree_deviation_strictly_worse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Mandate.OneShotDeviation.tree_play_brute_actor' depends on axioms: [propext]
+'JurisLean.Mandate.OneShotDeviation.tree_play_brute_second' depends on axioms: [propext]
+'JurisLean.Mandate.OneShotDeviation.tree_play_brute_third' depends on axioms: [propext]
+'JurisLean.Mandate.OneShotDeviation.tree_play_deviation_actor' depends on axioms: [propext]
+'JurisLean.Mandate.PureNash.coordPay_table' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.PureNash.coordination_diagonal_is_nash' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.PureNash.coordination_label_true' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.PureNash.coordination_offdiag_not_nash' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.PureNash.isNashPure_fst' does not depend on any axioms
+'JurisLean.Mandate.PureNash.isNashPure_of_bestResponses' does not depend on any axioms
+'JurisLean.Mandate.PureNash.isNashPure_snd' does not depend on any axioms
+'JurisLean.Mandate.PureNash.isNashPure_swap' does not depend on any axioms
+'JurisLean.Mandate.PureNash.isNashPure_swap_swap' does not depend on any axioms
+'JurisLean.Mandate.PureNash.matchingPennies_no_pure_equilibrium' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Mandate.PureNash.nashPureExists_false_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.PureNash.nashPureExists_swap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.PureNash.nashPureExists_true_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.PureNash.nashPure_of_dominant' does not depend on any axioms
+'JurisLean.Mandate.PureNash.not_isNashPure_of_col_deviation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.PureNash.not_isNashPure_of_row_deviation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.PureNash.penniesRow_table' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.PureNash.pennies_col_dev_00' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.PureNash.pennies_col_dev_11' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.PureNash.pennies_label_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.PureNash.pennies_not_nash_00' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.PureNash.pennies_not_nash_01' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.PureNash.pennies_not_nash_10' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.PureNash.pennies_not_nash_11' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.PureNash.pennies_row_dev_01' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.PureNash.pennies_row_dev_10' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.PureNash.pure_labels_discriminate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUApprox.h1_between' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUApprox.h2_between' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUApprox.lip_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUApprox.lip_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUApprox.out_at_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUApprox.out_not_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUApprox.out_origin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUApprox.out_stable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUApprox.relu_between' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUFamily.continuous_relu' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUFamily.monotone_relu' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUFamily.relu_approx' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUFamily.relu_classM' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUFamily.relu_dense' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUFamily.relu_dense_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUFamily.relu_neg_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUFamily.relu_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUFamily.relu_not_constant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUFamily.relu_not_isAEPolynomial' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUFamily.relu_of_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUFamily.relu_of_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ReLUFamily.relu_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.RouteDecision.anyUsable_append' depends on axioms: [propext]
+'JurisLean.Mandate.RouteDecision.excluded_is_skipped' does not depend on any axioms
+'JurisLean.Mandate.RouteDecision.firstUsable_cons_notUsable' depends on axioms: [propext]
+'JurisLean.Mandate.RouteDecision.firstUsable_cons_usable' depends on axioms: [propext]
+'JurisLean.Mandate.RouteDecision.firstUsable_nil' does not depend on any axioms
+'JurisLean.Mandate.RouteDecision.inactive_is_skipped' does not depend on any axioms
+'JurisLean.Mandate.RouteDecision.priority_order_decides' does not depend on any axioms
+'JurisLean.Mandate.RouteDecision.some_of_anyUsable_true' depends on axioms: [propext]
+'JurisLean.Mandate.RouteDecision.usable_is_found' does not depend on any axioms
+'JurisLean.Mandate.RouteDecision.usable_of_firstUsable_some' does not depend on any axioms
+'JurisLean.Mandate.SequentialGames.actor_gets_her_best' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.SequentialGames.choose_apply' depends on axioms: [propext]
+'JurisLean.Mandate.SequentialGames.non_actor_may_be_sacrificed' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.SequentialGames.outcome_terminal' does not depend on any axioms
+'JurisLean.Mandate.SequentialGames.outcome_turn_apply' depends on axioms: [propext]
+'JurisLean.Mandate.SequentialGames.turn_ge_left' depends on axioms: [propext]
+'JurisLean.Mandate.SequentialGames.turn_ge_right' depends on axioms: [propext]
+'JurisLean.Mandate.SequentialGames.turn_monotone' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.SequentialGames.two_player_take_better' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.SourceRank.grade_binding_iff' does not depend on any axioms
+'JurisLean.Mandate.SourceRank.grade_classes_inhabited' does not depend on any axioms
+'JurisLean.Mandate.SourceRank.grade_exhaustive' does not depend on any axioms
+'JurisLean.Mandate.SourceRank.grade_referenceOnly_iff' does not depend on any axioms
+'JurisLean.Mandate.SourceRank.grade_shallRefer_iff' does not depend on any axioms
+'JurisLean.Mandate.SourceRank.grade_single_valued' does not depend on any axioms
+'JurisLean.Mandate.SourceRank.soft_law_never_binding' does not depend on any axioms
+'JurisLean.Mandate.StructureInvariants.discrimination_survives_sum' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.StructureInvariants.relabel_cannot_bridge' depends on axioms: [propext]
+'JurisLean.Mandate.StructureInvariants.same_labels' does not depend on any axioms
+'JurisLean.Mandate.StructureInvariants.sig3_double' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.StructureInvariants.sig3_le_sum_any' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.StructureInvariants.signatures_differ' does not depend on any axioms
+'JurisLean.Mandate.StructureInvariants.sum_signature_third' depends on axioms: [propext]
+'JurisLean.Mandate.SubstrAdmission.isPrefix_false_of_longer' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.SubstrAdmission.isPrefix_refl' depends on axioms: [propext]
+'JurisLean.Mandate.SubstrAdmission.isSubstr_nil_pat' depends on axioms: [propext]
+'JurisLean.Mandate.SubstrAdmission.isSubstr_of_isPrefix' depends on axioms: [propext]
+'JurisLean.Mandate.SubstrAdmission.isSubstr_self' depends on axioms: [propext]
+'JurisLean.Mandate.SubstrAdmission.prefix_adequate_for_admission' depends on axioms: [propext]
+'JurisLean.Mandate.SubstrAdmission.substr_strictly_weaker' depends on axioms: [propext]
+'JurisLean.Mandate.TaxSlices.remainingOf_exhausted' does not depend on any axioms
+'JurisLean.Mandate.TaxSlices.remainingOf_le_start' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.TaxSlices.taxOf_append' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.TaxSlices.taxOf_capped' does not depend on any axioms
+'JurisLean.Mandate.TaxSlices.taxOf_empty_table' does not depend on any axioms
+'JurisLean.Mandate.TaxSlices.taxOf_prefix_le' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.TaxSlices.taxOf_single' does not depend on any axioms
+'JurisLean.Mandate.TaxSlices.taxOf_two_brackets' does not depend on any axioms
+'JurisLean.Mandate.TaxSlices.taxOf_zero_base' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.Waterfall.allocate_concrete' does not depend on any axioms
+'JurisLean.Mandate.Waterfall.allocate_concrete_overshoot' does not depend on any axioms
+'JurisLean.Mandate.Waterfall.allocate_concrete_remainder' does not depend on any axioms
+'JurisLean.Mandate.Waterfall.allocate_cons' does not depend on any axioms
+'JurisLean.Mandate.Waterfall.allocate_no_debts' does not depend on any axioms
+'JurisLean.Mandate.Waterfall.allocate_not_constant' does not depend on any axioms
+'JurisLean.Mandate.Waterfall.conservation' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.Waterfall.paidOut_cons' does not depend on any axioms
+'JurisLean.Mandate.Waterfall.paidOut_le_payment' depends on axioms: [propext, Quot.sound]
+'JurisLean.Mandate.Waterfall.paidOut_nil' does not depend on any axioms
+'JurisLean.Mandate.ZeroSumSion.bestResponse_left_forall' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.bestResponse_right_forall' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.combo_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.exists_bestResponse_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.exists_bestResponse_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.exists_saddlePoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.lsc_payoff_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.mixLeft_convex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.mixLeft_isCompact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.mixLeft_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.mixRight_convex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.mixRight_isCompact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.mixRight_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.payoff_comb_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.payoff_comb_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.quasiconcaveOn_payoff_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.quasiconvexOn_payoff_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumSion.usc_payoff_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumValue.bddAbove_payoff_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumValue.bddAbove_payoff_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumValue.bddBelow_payoff_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumValue.bddBelow_payoff_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumValue.ciInf_payoff_col_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumValue.ciSup_payoff_row_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumValue.continuous_payoff_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumValue.continuous_payoff_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumValue.exists_value' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumValue.lowerValue_eq_payoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumValue.lowerValue_le_upperValue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumValue.upperValue_eq_payoff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumValue.upperValue_le_lowerValue' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumValue.value_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Mandate.ZeroSumValue.weakDuality' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.admissible_trialDomain' depends on axioms: [propext]
+'JurisLean.Seams.AdjudicationBridge.argument_undec_not_final_undetermined' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_F_empty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_admissible' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_attackers_p' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_attackers_q' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_attacks_pair_ne' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_baseConflictFree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_baseSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_finalDefeated_q' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_finalDerivable_p' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_grounded_eq_empty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_iter_eq_empty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_not_finalDerivable_q' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_p_ne_q' does not depend on any axioms
+'JurisLean.Seams.AdjudicationBridge.cycle2_p_not_grounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_p_undecided' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_policy_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_q_not_grounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.cycle2_q_undecided' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.finalDerivable_within_grounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.final_undetermined_iff_exhausted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.grounded_equivalence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.grounded_rejection_is_not_legal_refutation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.grounded_support_correspondence' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.mem_allowedSet_iff' does not depend on any axioms
+'JurisLean.Seams.AdjudicationBridge.mem_attackers' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.mem_attackers_of_mem' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.mem_baseSet_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.mem_rounds_fst_fires' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.mem_rounds_succ_fst_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.mem_rounds_succ_snd_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.mem_stableKernel_iff' does not depend on any axioms
+'JurisLean.Seams.AdjudicationBridge.notMemEmptyFinset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.proof_failure_not_ontic_negation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.rounds_fst_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.rounds_fst_mono_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.rounds_fst_subset_args' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.rounds_safe' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.rounds_snd_attacker' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.rounds_snd_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.rounds_snd_mono_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.rounds_snd_subset_args' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.rounds_succ_fst' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.rounds_succ_snd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.rounds_within_grounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.rounds_zero_fst' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.rounds_zero_snd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.stableKernel_subset' does not depend on any axioms
+'JurisLean.Seams.AdjudicationBridge.stableKernel_subset_allowedSet' does not depend on any axioms
+'JurisLean.Seams.AdjudicationBridge.stable_kernel_singleton_of_allowed_singleton' depends on axioms: [propext,
+ Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.subset_allowedSet' does not depend on any axioms
+'JurisLean.Seams.AdjudicationBridge.trial_admissible_exists' depends on axioms: [propext]
+'JurisLean.Seams.AdjudicationBridge.trial_admissible_no_blank' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.trial_allowedSet' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.trial_boundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.trial_collapse_fails' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.trial_stableKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.two_valued_exclusion' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.unique_verdict_iff_stable_kernel_singletons' depends on axioms: [propext,
+ Quot.sound]
+'JurisLean.Seams.AdjudicationBridge.unique_verdict_reverse_unconditional_falsum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryBridge5.bb5_consensusRank_eq_foldr_max' does not depend on any axioms
+'JurisLean.Seams.BoundaryBridge5.bb5_consensusRank_ge_component' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryBridge5.bb5_consensusRank_not_meet_reading' does not depend on any axioms
+'JurisLean.Seams.BoundaryBridge5.bb5_consensusRank_rank_mem_bound' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.BoundaryBridge5.bb5_consensus_rank_not_raised_above_bound' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.BoundaryBridge5.bb5_foldr_bound_closed' does not depend on any axioms
+'JurisLean.Seams.BoundaryBridge5.bb5_meet_foldr_le_head' does not depend on any axioms
+'JurisLean.Seams.BoundaryBridge5.bb5_nat_max_bound_closed' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryBridge5.bb5_nat_min_aggregate_not_raised_above_bound' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryBridge5.bb5_nat_min_le_left' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryBridge5.bb5_nat_min_le_right' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryBridge5.bb5_registered_obligation_is_open' does not depend on any axioms
+'JurisLean.Seams.BoundaryBridge5.bb5_trustLE_trans' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryBridge5.bb5_trust_aggregate_le_head' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryBridge5.bb5_trust_aggregate_not_raised_above_bound' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.AdjudicationRewriter.apply_preserves_evaluation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.OutcomeMapOp.boundary2_obligations_hand_over' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.OutcomeMapOp.closure_boundary1_no_failure_upgrade' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.OutcomeMapOp.closure_boundary1_not_complete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.OutcomeMapOp.closure_boundary2_no_partial_laundering' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.OutcomeMapOp.closure_boundary2_partial_preserved' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.adjudicate_of_incomplete_evaluation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.alwaysClaimsEmpty_is_a_claimer' does not depend on any axioms
+'JurisLean.Seams.BoundaryClosure.boundary1_family_excludes_launderer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.boundary3_alwaysClaims_outside_family' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.boundary3_attested_carries_proof' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.boundary3_general_form_is_false' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.boundary3_out_of_family_claim_without_proof' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.boundary4_adverseAdjudication_satisfied' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.boundary4_general_form_is_false' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.boundary4_out_of_family_rewriter_reaches_adverse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.boundary4_rewriter_outside_family' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.boundary4_supplyAuthority_branch_inhabited' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.BoundaryClosure.carriesTaint_iff_exists_tainted_in_inputs' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.carriesTaint_iff_taintOfInputs_tainted' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.carriesTaint_of_poolTaint_tainted' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.carriesTaint_of_taintOfInputs_tainted' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.closure_boundary3_no_unproved_emptiness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.closure_boundary4_incomplete_not_adverse' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.closure_boundary4_not_pending' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.closure_boundary4_solverIncomplete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.closure_boundary5_consensus_not_escalating' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.closure_boundary5_trust_not_raised' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.closure_boundary5_trust_proof_le' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.closure_boundary6_taint_never_cleaned' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.consensusRank_le_of_le' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.consensus_cannot_reach_next_rank' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.delimitation_is_not_general' does not depend on any axioms
+'JurisLean.Seams.BoundaryClosure.exists_tainted_in_inputs' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.incompleteInputFor_evaluation_is_incomplete' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.BoundaryClosure.joinTaint_assoc' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.joinTaint_clean_left' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.joinTaint_clean_right' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.joinTaint_eq_tainted_iff' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.joinTaint_idem' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.joinTaint_tainted_left' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.poolTaint_eq_taintOfInputs' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.resubmitTimes_carriesTaint' does not depend on any axioms
+'JurisLean.Seams.BoundaryClosure.resubmit_preserves_total_taint' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.sampleAuthority_consequences_request_bound' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.sampleAuthority_finding_is_unmet' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.seamB4Reviewer_isNonempty' does not depend on any axioms
+'JurisLean.Seams.BoundaryClosure.stageOutput_taint' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.taintOfInputs_append' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.taintOfInputs_cons' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.taintOfInputs_eq_tainted_iff' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.taintOfInputs_nil' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.taintOfInputs_of_carriesTaint' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.taintOfInputs_snoc' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.trustLE_refl' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.trustLE_trans' depends on axioms: [propext]
+'JurisLean.Seams.BoundaryClosure.validatedAuthority_nonempty' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.carriesBasis_cons' does not depend on any axioms
+'JurisLean.Seams.ClaimBasis.citedAt_head_or_tail' does not depend on any axioms
+'JurisLean.Seams.ClaimBasis.citedAt_singleton_fields' does not depend on any axioms
+'JurisLean.Seams.ClaimBasis.closure_premise_is_not_free' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.defense_on_unestablished_is_inert' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.established_cites_creation_basis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.ClaimBasis.exhaustive_refutation' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.extinguished_cites_creation_basis' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.ClaimBasis.extinguished_ne_established' does not depend on any axioms
+'JurisLean.Seams.ClaimBasis.extinguished_never_revives' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.fires_extinguished_is_never_true' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.fires_notYet_obstacle_is_false' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.notYet_ne_established' does not depend on any axioms
+'JurisLean.Seams.ClaimBasis.order_matters_same_node_set_different_verdict' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.reachable_but_not_established' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.status_five_labels_pairwise_distinct' does not depend on any axioms
+'JurisLean.Seams.ClaimBasis.step_leaves_notYet_fields' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.suspended_cites_creation_basis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.ClaimBasis.suspended_ne_established' does not depend on any axioms
+'JurisLean.Seams.ClaimBasis.unenforceable_cites_creation_basis' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.ClaimBasis.unenforceable_ne_established' does not depend on any axioms
+'JurisLean.Seams.ClaimBasis.walkStep' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.walk_cons_cases' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.walk_verdict_needs_basis' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.ClaimBasis.witness_creation_basis_established' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.witness_defense_defusal_restores' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.witness_defense_suspends_not_extinguishes' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.witness_enforceability_blocked' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.witness_established_chain_is_cited' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.ClaimBasis.witness_extinction_reaches_past_defense' depends on axioms: [propext]
+'JurisLean.Seams.ClaimBasis.witness_restored_claim_still_cited' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.ClaimBasis.witness_unmet_elements_stay_notYet' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.admissibleState_st₀Empty' does not depend on any axioms
+'JurisLean.Seams.FullProcess.admitted_receipt_has_derivation' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.backflow_admitted_without_derivation' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.backflow_record_in_ledger' does not depend on any axioms
+'JurisLean.Seams.FullProcess.channelDisjointnessAt_any' does not depend on any axioms
+'JurisLean.Seams.FullProcess.closure_is_not_uniform_claim' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.conservation_along_trace' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.coreStep_declaratory_id' does not depend on any axioms
+'JurisLean.Seams.FullProcess.coreStep_ledger_append' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.coreStep_ledger_declaratory' does not depend on any axioms
+'JurisLean.Seams.FullProcess.coreStep_ledger_formative' does not depend on any axioms
+'JurisLean.Seams.FullProcess.coreStep_ledger_historyRewrite' does not depend on any axioms
+'JurisLean.Seams.FullProcess.coreStep_ledger_length_le' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.coreStep_ledger_normBackflow' does not depend on any axioms
+'JurisLean.Seams.FullProcess.coreStep_ledger_performance' does not depend on any axioms
+'JurisLean.Seams.FullProcess.coreStep_ledger_terminating' does not depend on any axioms
+'JurisLean.Seams.FullProcess.coreStep_perf_length_le' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.coreStep_perf_performance' does not depend on any axioms
+'JurisLean.Seams.FullProcess.coreStep_pile_unchanged' does not depend on any axioms
+'JurisLean.Seams.FullProcess.coreStep_preserves_admissible' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.declaratory_step_preserves_forms' does not depend on any axioms
+'JurisLean.Seams.FullProcess.domAllows_full' does not depend on any axioms
+'JurisLean.Seams.FullProcess.domainMember_dichotomy' does not depend on any axioms
+'JurisLean.Seams.FullProcess.domainMember_full_of' does not depend on any axioms
+'JurisLean.Seams.FullProcess.empty_not_forms' does not depend on any axioms
+'JurisLean.Seams.FullProcess.empty_not_formsEver' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.extConservationAlong' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.extStep_in' does not depend on any axioms
+'JurisLean.Seams.FullProcess.extStep_out' does not depend on any axioms
+'JurisLean.Seams.FullProcess.extStep_preserves_admissible' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.finite_trace_invariants_at_take_prefix' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.finite_trace_preserves_legal_invariants' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.forms_at_end_is_bounded_fold' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.historyRewrite_breaks_appendOnly' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.historyRewrite_breaks_ideograph' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.human_reviewed_copy_never_admitted' does not depend on any axioms
+'JurisLean.Seams.FullProcess.invariants_hold_under_any_out_of_domain' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.length_append_singleton_eq' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.length_take_le' does not depend on any axioms
+'JurisLean.Seams.FullProcess.level_chain_is_strict' does not depend on any axioms
+'JurisLean.Seams.FullProcess.mem_traceRecords_has_event' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.nonadjudicative_trace_stabilizes_projection' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.perfCountTrace_le_length' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.perfWritingCount_le_one' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.performStep_conserved_here' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.performStep_values_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.FullProcess.performTraceDemo_conserves' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.performTraceDemo_inDomain' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.performTraceDemo_shape_undecided' does not depend on any axioms
+'JurisLean.Seams.FullProcess.performTraceDemo_state' does not depend on any axioms
+'JurisLean.Seams.FullProcess.performance_step_preserves_forms' does not depend on any axioms
+'JurisLean.Seams.FullProcess.pi_oscillates_witness' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.pi_stability_fails_outside_domain' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.preservation_is_domain_relative' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.preservation_over_unit_type' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.proposal_issues_neither_certificate_nor_status' does not depend on any axioms
+'JurisLean.Seams.FullProcess.proposal_shaped_copy_never_admitted' does not depend on any axioms
+'JurisLean.Seams.FullProcess.rcBackflow_level_ok' does not depend on any axioms
+'JurisLean.Seams.FullProcess.rcBackflow_record_eq' does not depend on any axioms
+'JurisLean.Seams.FullProcess.rcFormedSeeded_record_eq' does not depend on any axioms
+'JurisLean.Seams.FullProcess.rcFormedSeeded_record_is_in_ledger' does not depend on any axioms
+'JurisLean.Seams.FullProcess.receipt_has_semantic_derivation' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.receipt_ledger_is_fruit_not_warrant' does not depend on any axioms
+'JurisLean.Seams.FullProcess.repeated_proposal_never_reaches_attestation_rank' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.rewriteTraceDemo_notInDomain' does not depend on any axioms
+'JurisLean.Seams.FullProcess.runTraceExt_cons' does not depend on any axioms
+'JurisLean.Seams.FullProcess.runTraceExt_ledger_append' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.runTrace_afterFormedBackflow_ledger' does not depend on any axioms
+'JurisLean.Seams.FullProcess.runTrace_all_declaratory_is_noop' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.runTrace_append' does not depend on any axioms
+'JurisLean.Seams.FullProcess.runTrace_backflowDemo_ledger' does not depend on any axioms
+'JurisLean.Seams.FullProcess.runTrace_cons' does not depend on any axioms
+'JurisLean.Seams.FullProcess.runTrace_eq_runTraceExt' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.runTrace_formTermForm_ledger' does not depend on any axioms
+'JurisLean.Seams.FullProcess.runTrace_formTerm_ledger' does not depend on any axioms
+'JurisLean.Seams.FullProcess.runTrace_formedDemo_ledger' does not depend on any axioms
+'JurisLean.Seams.FullProcess.runTrace_ledger_eq_append' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.runTrace_ledger_length_eq' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.runTrace_length_bound' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.runTrace_nil' does not depend on any axioms
+'JurisLean.Seams.FullProcess.runTrace_perf_length_le' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.runTrace_perf_length_le_count' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.runTrace_performDemo_ledger' does not depend on any axioms
+'JurisLean.Seams.FullProcess.runTrace_performDemo_perf' does not depend on any axioms
+'JurisLean.Seams.FullProcess.runTrace_pile_unchanged' does not depend on any axioms
+'JurisLean.Seams.FullProcess.runTrace_rewrite_demo_ledger' does not depend on any axioms
+'JurisLean.Seams.FullProcess.seeded_formsEver_relationDemo' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.seeded_invariants_hold_under_backflow_semantics' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.FullProcess.seeded_proposal_copy_not_admitted' does not depend on any axioms
+'JurisLean.Seams.FullProcess.skipping_authority_receipt_not_valid' does not depend on any axioms
+'JurisLean.Seams.FullProcess.traceBackflowDemo_notInDomain' does not depend on any axioms
+'JurisLean.Seams.FullProcess.traceRecords_declaratory' does not depend on any axioms
+'JurisLean.Seams.FullProcess.traceRecords_length_le' does not depend on any axioms
+'JurisLean.Seams.FullProcess.traceRecords_performance' does not depend on any axioms
+'JurisLean.Seams.FullProcess.trace_performs_and_keeps_history' depends on axioms: [propext]
+'JurisLean.Seams.FullProcess.undecided_shapes_are_not_decided' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.acc_le_foldMax' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.append_is_ideographic' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.applied_bounds' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.InstitutionalEffects.applied_plus_outstanding_eq_amount' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.InstitutionalEffects.effectKind_formative' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.effectKind_formative_ne_performance_closed' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.effectKind_performance' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.effectKind_performance_ne_formative_closed' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.effective_next_formative_iff' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.effective_next_nonformative_iff' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.everStep_true' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.exists_maximal_in_ranked' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.foldMax_cons' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.foldMax_mem' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.foldMax_nil' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.foldMax_ub' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.foldMax_ub_tail' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.formative_effectKind_ne_performance' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.formsB_append' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.formsB_append_formed' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.formsB_append_record' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.formsB_append_terminated' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.formsB_next_formative' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.formsB_nil' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.formsEverFold_append' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.formsEverFold_cons' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.formsEverFold_nil' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.formsEverFold_of_formsFold' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.formsEverFold_true' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.formsEver_of_forms' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.formsFold_append' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.formsFold_cons' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.formsFold_nil' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.formsFold_nonmentioning' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.forms_congruent_under_nonmentioning_suffix' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.ledgerFormedDemo_forms' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.ledger_can_express_termination' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.next_declaratory_is_identity' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.next_formative_is_append' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.next_performance_is_identity' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.next_terminating_is_append' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.outstanding_never_negative' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.overperformance_leaves_zero' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.InstitutionalEffects.overperformance_witness_10_12' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.performLedgerDemo_total' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.performStep_conservation' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.InstitutionalEffects.performStep_conservation_witness' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.performance_appends_no_record' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.performance_channels_are_disjoint' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.performance_effectKind_ne_formative' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.performance_not_creation' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.performance_not_creation_bool' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.performance_witness_10_3' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.priorityTableDemo_has_maximal' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.priorityTableDemo_nonempty' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.priority_route_keeps_projected' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.projection_append_form' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.projection_append_terminated' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.projection_append_unrelated' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.projection_of_append_matches_step' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.projection_of_append_matches_step_terminating' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.rank_lt_irreflexive' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.rank_lt_transitive' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.InstitutionalEffects.recordMentionsB_false' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.recordMentionsB_true' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.register_p_side' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.routeTwo_dominates' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.routeTwo_is_one_of_two' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.routeTwo_never_invents_survival' depends on axioms: [propext]
+'JurisLean.Seams.InstitutionalEffects.routeTwo_witness_3_7' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.termination_breaks_projection' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.termination_of_other_keeps_projection_witness' does not depend on any axioms
+'JurisLean.Seams.InstitutionalEffects.termination_of_other_leaves_projection' depends on axioms: [propext]
+'JurisLean.Seams.PayoffEquilibrium.abs_two_close' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.approxNash_agrees_with_isNashPure_at_k10' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.approxNash_legalPay_k10' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.below_threshold_lawful_excluded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.bestStrategy_node_false' does not depend on any axioms
+'JurisLean.Seams.PayoffEquilibrium.bestStrategy_node_true' does not depend on any axioms
+'JurisLean.Seams.PayoffEquilibrium.breach_profile_is_equilibrium_low' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.committed_bit_is_strictly_below_value' does not depend on any axioms
+'JurisLean.Seams.PayoffEquilibrium.constStrategy_reads' does not depend on any axioms
+'JurisLean.Seams.PayoffEquilibrium.dev_gain_two_eta' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.eTree_value' does not depend on any axioms
+'JurisLean.Seams.PayoffEquilibrium.equilibrium_and_lawfulness_are_different_notions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.equilibrium_status_upheld_yet_duty_unperformed' depends on axioms: [propext,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.extPay_nash' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.external_equilibrium_reflects_legal' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.grids_realise_legalPay' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.high_grid_is_approx_at_adequate_sanction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.isApproxNashGame_low_exact' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.lawful_iff_sanction_threshold' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.lawful_profile_not_equilibrium_low' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.legalPay_agrees_with_declaration' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.legalPay_grid_k10' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.legalPay_sue_perform_respondent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.legalPay_sue_refuse_respondent' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.legal_payoff_grid' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.legal_payoff_preserved' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.legal_payoff_preserved_swapDocket' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.legal_payoff_two_eta_transfer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.legal_payoff_two_eta_transfer_reads_as_two' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.no_pure_equilibrium_at_adequate_sanction' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.payoff_determined_by_status' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.play_bestStrategy' depends on axioms: [propext]
+'JurisLean.Seams.PayoffEquilibrium.play_le_value' depends on axioms: [propext]
+'JurisLean.Seams.PayoffEquilibrium.relabelStatus_preserves_respondent_payoff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.relabelStatus_visible_on_claimant_side' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.sanction_pulls_back_lawful' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.sanctionedLoss_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.strategy_quantifier_outside_value' depends on axioms: [propext]
+'JurisLean.Seams.PayoffEquilibrium.swapDocket_involutive' does not depend on any axioms
+'JurisLean.Seams.PayoffEquilibrium.swapDocket_involutive_fields' does not depend on any axioms
+'JurisLean.Seams.PayoffEquilibrium.swapDocket_is_not_identity' does not depend on any axioms
+'JurisLean.Seams.PayoffEquilibrium.two_eta_bound_is_tight' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.two_eta_transfer_Game' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.withinEtaGame_high_low' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.withinEta_legal_external' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.PayoffEquilibrium.withinEta_one_sided' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.PrecedentFlow.applicableAtBool_true_iff' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.applicable_at_swap_after' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.applicable_at_swap_before' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.applicable_count_pending_after' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.applicable_count_pending_before' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.applicable_froms_swap_after' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.applicable_froms_swap_before' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.backflowIter_period_two' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.PrecedentFlow.backflowIter_succ' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.backflowSetStep_not_a_system' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.PrecedentFlow.backflowSetStep_not_mono' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.PrecedentFlow.backflowStep_has_no_fixed_point' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.backflowStep_is_involution' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.backflowStep_ne' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.backflow_entry_is_not_vacuous' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.backflow_has_no_stable_stage' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.backflow_no_fixed_step' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.competence_shape' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.feedback_need_not_converge' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.intervalValid_supersedeRecord' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.late_publication_still_effective_in_interval' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.PrecedentFlow.lower_court_draft_is_not_a_norm_layer_entry' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.lower_court_draft_unauthorized' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.mem_applicableVersions' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.monotoneIter_one_step_stable' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.norm_layer_entry_authorized' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.not_applicable_of_not_effective' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.observation_gate_does_not_determine_effectivity' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.PrecedentFlow.precedent_update_preserves_norm_structure' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.PrecedentFlow.supersedeRecord_drops_hit_active' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.supersedeRecord_keeps_nonActive' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.supersedeRecord_keeps_unhit' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.supersedeRecord_snapshot' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.supersedeRecord_status_dichotomy' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.unauthorized_output_is_not_a_norm' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.unauthorized_production_has_no_update_input' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.updateFires_demo' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.updateFires_silent_demo' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.update_changes_applicable_count' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.update_changes_applicable_roster' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.update_does_not_reach_before_effective_from' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.update_edges_wellFormed' does not depend on any axioms
+'JurisLean.Seams.PrecedentFlow.update_introduces_applicable_record' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.update_is_noop_when_silent' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.update_is_not_noop' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.update_preserves_intervalValid' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.PrecedentFlow.update_preserves_invalidated_records' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.PrecedentFlow.update_silent_when_may_reference' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.update_touched_record_invalid' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.PrecedentFlow.update_versions_fires' depends on axioms: [propext]
+'JurisLean.Seams.PrecedentFlow.update_versions_silent' depends on axioms: [propext]
+'JurisLean.Seams.Probability.allow_does_not_determine_amount' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.allow_of_gate_closed' does not depend on any axioms
+'JurisLean.Seams.Probability.allow_of_gate_open' does not depend on any axioms
+'JurisLean.Seams.Probability.allowed_amount_nonneg_of_nonneg_agreed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Probability.band_containment_is_not_allow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.beta_posterior_from_likelihood' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.beta_predictive_bracket_survives_update' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Probability.choose_is_not_determined_by_allow' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Probability.clampReduction_in_band' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.clamp_is_not_reduction' depends on axioms: [propext]
+'JurisLean.Seams.Probability.denotate_some_none' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.Probability.denotation_blocked_without_policy' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.Probability.denotation_independent_of_policy' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.Probability.evMass_posterior_refined' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.exact_amount_denotation' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.Probability.exact_amount_denotation_is_currency_blind' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.Probability.finding_does_not_require_the_threshold' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Probability.finite_distribution_to_pmf_apply' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Probability.finite_distribution_to_pmf_atom_le_one' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Probability.finite_distribution_to_pmf_hasSum' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Probability.finite_distribution_to_pmf_injective' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Probability.finite_distribution_to_pmf_mem_support' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Probability.finite_distribution_to_pmf_tsum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.lossBasedData_facts' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.lossBasedData_overThirty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.maliciousData_choose' depends on axioms: [propext]
+'JurisLean.Seams.Probability.maliciousData_clamp' depends on axioms: [propext]
+'JurisLean.Seams.Probability.maliciousData_floor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.maliciousData_gate' depends on axioms: [propext]
+'JurisLean.Seams.Probability.otherGroundData_not_overThirty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.overThirtyTest_true_iff' does not depend on any axioms
+'JurisLean.Seams.Probability.overThirtyThreshold_iff_excess' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.overThirtyThreshold_iff_intTest' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.posterior_readout_normalizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.priorReadout_eq_dirWeights_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.prior_readout_normalizes' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.rationalMass_evMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.rationalMass_sum_eq_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.reductionFloor_le_agreed' depends on axioms: [propext]
+'JurisLean.Seams.Probability.reduction_admits_declared_conditions' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Probability.selection_transport_from_shared_mechanism' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Probability.shape_add_counts_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.thirty_percent_rational_exact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Probability.threshold_does_not_determine_amount' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Probability.threshold_does_not_force_the_finding' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Probability.transport_boundary_needs_nesting' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Probability.transport_regime_positivity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Representation.castUp_coverageFails' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Representation.castUp_retraction_roundTrip' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Representation.coverage_alone_has_no_inverse_roundtrip' depends on axioms: [propext]
+'JurisLean.Seams.Representation.coverage_is_genuinely_extra' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Representation.dropDown_has_section' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Representation.dropDown_not_injective' depends on axioms: [propext]
+'JurisLean.Seams.Representation.dropDown_surjective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Representation.injective_of_roundtrip' does not depend on any axioms
+'JurisLean.Seams.Representation.iso_of_roundtrip_and_cover' does not depend on any axioms
+'JurisLean.Seams.Representation.jointDiag_coverage' does not depend on any axioms
+'JurisLean.Seams.Representation.jointDiag_roundTrip' does not depend on any axioms
+'JurisLean.Seams.Representation.joint_diagonal_injective' does not depend on any axioms
+'JurisLean.Seams.Representation.joint_legal_model_exists' does not depend on any axioms
+'JurisLean.Seams.Representation.joint_legal_model_is_isomorphic_to_domain' does not depend on any axioms
+'JurisLean.Seams.Representation.joint_model_is_not_collapsed' does not depend on any axioms
+'JurisLean.Seams.Representation.joint_obs₁_agrees' does not depend on any axioms
+'JurisLean.Seams.Representation.joint_obs₂_agrees' does not depend on any axioms
+'JurisLean.Seams.Representation.joint_projections_agree_on_declared' does not depend on any axioms
+'JurisLean.Seams.Representation.layerRegister_roundTrip' does not depend on any axioms
+'JurisLean.Seams.Representation.layerStatus_coverage' does not depend on any axioms
+'JurisLean.Seams.Representation.layerStatus_obs_separates' does not depend on any axioms
+'JurisLean.Seams.Representation.layerStatus_roundTrip' does not depend on any axioms
+'JurisLean.Seams.Representation.no_equiv_for_castUp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Representation.obsModel_roundTrip' does not depend on any axioms
+'JurisLean.Seams.Representation.obsModel_unique' does not depend on any axioms
+'JurisLean.Seams.Representation.observation_agreement_does_not_imply_equality' does not depend on any axioms
+'JurisLean.Seams.Representation.observations_do_not_separate_until_declared' does not depend on any axioms
+'JurisLean.Seams.Representation.representation_observations_preserved' does not depend on any axioms
+'JurisLean.Seams.Representation.representation_scope' does not depend on any axioms
+'JurisLean.Seams.Representation.separating_fragment_agreement_implies_equality' does not depend on any axioms
+'JurisLean.Seams.SourceNorms.closure_is_model' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.SourceNorms.closure_only_entailed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.SourceNorms.entailed_in_closure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.SourceNorms.entailed_only_in_univ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.SourceNorms.exists_maximal_acyclic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.SourceNorms.exists_maximal_by_rank' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.SourceNorms.horn_closure_semantic_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.SourceNorms.isModel_univ' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.SourceNorms.iter_within_model' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.SourceNorms.maximal_left_of_rank_tie' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.SourceNorms.maximal_right_of_rank_tie' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.SourceNorms.negLiteralStep_not_TH' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.SourceNorms.negLiteralStep_not_mono' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.SourceNorms.negated_step_one_step_not_entailed' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.SourceNorms.no_priority_cycle' does not depend on any axioms
+'JurisLean.Seams.SourceNorms.no_priority_cycle_walk' does not depend on any axioms
+'JurisLean.Seams.SourceNorms.outranksBy_no_cycle' does not depend on any axioms
+'JurisLean.Seams.SourceNorms.p015_const_is_maximal' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.SourceNorms.p015_exists_maximal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.SourceNorms.p015_none_is_not_no_maximal' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.SourceNorms.p015_some_not_unique_maximal' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.SourceNorms.rank_tie_not_none' depends on axioms: [propext]
+'JurisLean.Seams.SourceNorms.resolveConflict_agrees_with_maximal_on_demo' depends on axioms: [propext]
+'JurisLean.Seams.SourceNorms.resolveConflict_none_is_rank_tie' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.SourceNorms.resolveConflict_none_neither_outranks' depends on axioms: [propext]
+'JurisLean.Seams.SourceNorms.resolveConflict_some_right_of_rank' depends on axioms: [propext]
+'JurisLean.Seams.SourceNorms.resolveConflict_some_selects_maximal' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.SourceNorms.resolveConflict_tie_value_in' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.SourceNorms.step_within_model' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Temporal.IntertemporalLawSignature.withRetroFalse_preserves_wellFormed' does not depend on any axioms
+'JurisLean.Seams.Temporal.addDays_commutes_with_embedding' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.Temporal.aggregate_add_arrival_insensitive' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.Temporal.dayToTimePoint_inj' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.Temporal.dayToTimePoint_toNat_round' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.Temporal.epochDay_dayToTimePoint' does not depend on any axioms
+'JurisLean.Seams.Temporal.evidenceAdmissible_iff' does not depend on any axioms
+'JurisLean.Seams.Temporal.foldr_add_arrival_insensitive' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.Temporal.intersection_agrees_with_contains_set' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Temporal.intersection_some_of_contains_both' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Temporal.intertemporal_signature_preserves_effective_day' does not depend on any axioms
+'JurisLean.Seams.Temporal.invalidation_marker_computes_nothing' does not depend on any axioms
+'JurisLean.Seams.Temporal.late_insert_changes_noncommutative' does not depend on any axioms
+'JurisLean.Seams.Temporal.late_without_good_cause_barred_general' does not depend on any axioms
+'JurisLean.Seams.Temporal.legal_time_nonanticipation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Temporal.ltl_always_implies_pointwise' does not depend on any axioms
+'JurisLean.Seams.Temporal.ltl_always_of_pointwise' does not depend on any axioms
+'JurisLean.Seams.Temporal.ltl_always_transition_independent' does not depend on any axioms
+'JurisLean.Seams.Temporal.no_unified_time_carrier_yet' does not depend on any axioms
+'JurisLean.Seams.Temporal.nonanticipation_computed_agrees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Temporal.p049_frozen_witness_recovered' does not depend on any axioms
+'JurisLean.Seams.Temporal.reordering_requires_recomputation' does not depend on any axioms
+'JurisLean.Seams.Temporal.shiftInterval_valid' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.Temporal.shift_contains_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Temporal.trunc_asOf_append_future_irrelevant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Temporal.trunc_of_all_future' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Temporal.trunc_sound' depends on axioms: [propext]
+'JurisLean.Seams.Temporal.trunc_view_congr' does not depend on any axioms
+'JurisLean.Seams.Uncertainty.anchor_output_is_inside_band' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Uncertainty.bridge_fails_without_positivity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Uncertainty.bridge_fails_without_support_finiteness' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.certificate_rejects_vacuous_interval' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.cleanEvidenceMass_cons_clean' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Uncertainty.cleanEvidenceMass_cons_tainted' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Uncertainty.cleanEvidenceMass_eq_on_clean_inputs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.cleanEvidenceMass_nil' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Uncertainty.condition_then_contaminate_is_three_quarters' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.contamination_and_conditioning_do_not_commute' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.copying_tainted_input_never_improves_share' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.declared_radius_certificate_is_admitted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.finite_positive_support_truth_bridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.finite_positive_support_truth_mass_iff' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.massSum_cons' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Uncertainty.nn_interval_certificate_sound_of_two_inputs_two_hidden_one_output' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.no_positive_normalisation_on_growing_windows' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.not_clean_of_tainted' does not depend on any axioms
+'JurisLean.Seams.Uncertainty.posterior_preserves_positive_truth_mass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.probability_one_on_not_established_allows_truth_true' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.probability_one_on_truth_event_still_allows_not_established' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.probe_agreement_bounds_no_stability_constant' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.rational_target_has_no_least_error' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.sum_bool_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Uncertainty.taintCleanList_cons_clean' does not depend on any axioms
+'JurisLean.Seams.Uncertainty.taintCleanList_cons_tainted' does not depend on any axioms
+'JurisLean.Seams.Uncertainty.tainted_ne_clean' does not depend on any axioms
+'JurisLean.Seams.Uncertainty.totalEvidenceMass_cons' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Uncertainty.totalEvidenceMass_nil' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Uncertainty.uncertainty_allowed_has_two_members' does not depend on any axioms
+'JurisLean.Seams.Uncertainty.uncertainty_allowed_is_not_a_singleton' does not depend on any axioms
+'JurisLean.Seams.Uncertainty.uncertainty_allowed_non_singleton_with_singleton_kernel' depends on axioms: [propext]
+'JurisLean.Seams.Uncertainty.uncertainty_kernel_is_a_singleton' depends on axioms: [propext]
+'JurisLean.Seams.Uncertainty.vacuous_interval_is_not_admitted' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.window_mass_is_positive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Uncertainty.window_mass_stays_below_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Uncertainty.xuWeightOne_apply' depends on axioms: [propext, Quot.sound]
+'JurisLean.Seams.Uncertainty.xuc_case_clean_list' does not depend on any axioms
+'JurisLean.Seams.Uncertainty.xuc_case_clean_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Uncertainty.xuc_case_share' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Uncertainty.xuc_case_total_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Uncertainty.xuc_conditioning_denominator_is_clean_mass' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.Uncertainty.xuc_out_at_two_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.Seams.Uncertainty.zero_radius_band_does_not_cover_other_inputs' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.unified_claim_is_not_general' does not depend on any axioms
+'JurisLean.Seams.unified_legal_derivation_on_declared_fragment' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'JurisLean.Seams.unified_model_is_not_vacuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'JurisLean.all_clean_inputs_clean_output' depends on axioms: [propext]
+'JurisLean.authority_strictly_ordered' does not depend on any axioms
+'JurisLean.consensus_does_not_escalate' depends on axioms: [propext]
+'JurisLean.escalation_requires_rank_increase' does not depend on any axioms
+'JurisLean.human_review_not_formal_input' does not depend on any axioms
+'JurisLean.join_clean_clean' depends on axioms: [propext]
+'JurisLean.join_with_tainted_is_tainted' depends on axioms: [propext]
+'JurisLean.majority_cannot_clean' depends on axioms: [propext]
+'JurisLean.no_auto_escalation' does not depend on any axioms
+'JurisLean.proposal_cannot_issue_attestation' does not depend on any axioms
+'JurisLean.proposal_cannot_issue_certificate' does not depend on any axioms
+'JurisLean.proposal_cannot_issue_decision_status' does not depend on any axioms
+'JurisLean.repetition_does_not_clean' depends on axioms: [propext]
+'JurisLean.skipping_receipt_invalid' does not depend on any axioms
+'JurisLean.stage_preserves_taint' depends on axioms: [propext]
+'JurisLean.tainted_input_taints_collection' depends on axioms: [propext]
+'JurisLean.tainted_not_promoted_to_clean' depends on axioms: [propext]
+'JurisLean.valid_receipt_strict_step' does not depend on any axioms
+'ConvolutionDegreeBound.conv_left_comm_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ConvolutionDegreeBound.exists_uniform_degree_bound' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ConvolutionIteratedDeriv.iteratedDeriv_convolution_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ConvolutionPolynomial.convolutionExists_left_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ConvolutionPolynomial.convolutionExists_right_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ConvolutionPolynomial.convolution_comm_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ConvolutionPolynomial.monomial_conv_isPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ConvolutionPolynomial.natDegree_poly_conv_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ConvolutionPolynomial.poly_conv_isPoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.DecisionNodeIn_chance_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.DecisionNodeIn_decision_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.DecisionNodeIn_terminal_false' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.IsPerfectInfo_subtree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.PerfectRecall_single_infoSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.PerfectRecall_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.ReachBy.action' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.ReachBy.chance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.ReachBy.here' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.ReachBy_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.ReachBy_chance_inv'' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.ReachBy_decision_inv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.ReachBy_split' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.ReachBy_terminal_absurd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.decisionNodeIn_of_reachBy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.decisionNodeIn_reachBy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.entryNash_isNash' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.entryNash_not_spe' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.entrySPE_isNash' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.entrySPE_isSPE' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.entry_nash_eu_p0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.entry_perfectRecall' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.entry_spe_eu_p0' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.evalDist_chance' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.evalDist_decision' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.evalDist_eq_of_agree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.evalDist_pureToBehavioral_eq_pure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.evalDist_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.evalPure_decision' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.evalPure_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.hasNoOneShotDeviation_spe' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.hasNoOneShotDeviation_spe_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.isSubgame_root' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.isSubgame_terminal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.nash_of_noOSD' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.nash_of_noOSD_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.oneShotDeviation_iff_spe' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.oneShotDeviation_iff_spe_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.perfectInfo_implies_perfectRecall' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.perfectInfo_isSubgame_decision' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.perfectInfo_root_not_in_subtree' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.playerHistory_append' depends on axioms: [propext, Quot.sound]
+'EFG.pureToBehavioral_update' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.reachBy_deterministic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.spe_hasNoOneShotDeviation' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.spe_implies_isNash' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.spe_implies_nash' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.swap_chance_decision' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.swap_chances' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.swap_decisions' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.terminal_isNashFor_euPref' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.toStrategicKernelGame_outcomeKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'EFG.toStrategicKernelGame_udist' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.IsCorrelatedEqFor.toCoarseCorrelatedEqFor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.GameForm.IsDominantFor.isBestResponseFor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.IsDominantFor.mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.IsDominantFor.weaklyDominatesFor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.IsNashFor.mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.IsStrictNashFor.isNashFor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.ParetoDominatesFor.asymm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.ParetoDominatesFor.irrefl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.ProtocolMap.comp_assoc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.ProtocolMap.comp_id' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.ProtocolMap.comp_outcomeMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.ProtocolMap.comp_stratMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.ProtocolMap.id_comp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.ProtocolMap.id_outcomeMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.ProtocolMap.id_stratMap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.StrictlyDominatesFor.toWeaklyDominatesFor' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.GameForm.WeaklyDominatesFor.refl' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.WeaklyDominatesFor.trans' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.constDeviateDistributionFn_pure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.constantDeviationProfileFamily_deviate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.correlatedOutcome_constDeviateDistributionFn_pure' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.GameForm.correlatedOutcome_pure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.deviateDistributionFn_id' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.deviateOutcome_same' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.deviateProfile_same' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.dominant_is_nash_for' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.isCoarseCorrelatedEqFor_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.isCorrelatedEqFor_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.isNashFor_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.isNashFor_iff_bestResponseFor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.map_Outcome' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.map_Strategy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.map_comp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.map_id' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.map_outcomeKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.noProfitableDeviationFor_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.noProfitableProfileDeviationFor_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.product_Outcome' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.product_map_fst' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.product_map_snd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.recommendationDeviationFamily_deviate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.withUtility_Outcome' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.withUtility_Strategy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.withUtility_outcomeKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.withUtility_toGameForm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.GameForm.withUtility_utility' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.Guarantees.mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsBestResponse_iff_IsBestResponseFor_eu' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.IsCoarseCorrelatedEq_iff_IsCoarseCorrelatedEqFor_eu' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.IsConstantSum.eu_determined' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsConstantSum.eu_determined_of_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.IsConstantSum.nash_eu_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsConstantSum.nash_eu_eq_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsConstantSum.nash_eu_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsConstantSum.nash_eu_sum_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsConstantSum.socialWelfare_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsConstantSum.socialWelfare_eq_of_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.IsCorrelatedEq_iff_IsCorrelatedEqFor_eu' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.IsDominant.eu_ge_securityLevel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsDominant.eu_ge_securityLevelSup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsDominant_iff_IsDominantFor_eu' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsNash_iff_IsNashFor_eu' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsStrictDominant_iff_IsStrictDominantFor_eu' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.IsStrictNash_iff_IsStrictNashFor_eu' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.deviation_eu_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.deviation_eu_neg_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.eu_neg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.eu_neg_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.eu_nonneg_iff_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.eu_nonneg_iff_nonpos_of_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.isConstantSum_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.nash_eu_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.nash_eu_eq_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.nash_eu_sum_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.nash_eu_sum_zero_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.nash_interchangeable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.nash_interchangeable_of_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.nash_p0_optimal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.nash_p0_optimal_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.socialWelfare_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.IsZeroSum.socialWelfare_eq_zero_of_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.ParetoDominates_iff_ParetoDominatesFor_eu' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.StrictlyDominates_iff_StrictlyDominatesFor_eu' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.WeaklyDominates_iff_WeaklyDominatesFor_eu' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.continuous_mixedExtension_eu_profileFromMixedSimplex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.continuous_mixedExtension_eu_profileFromMixedSimplex_of_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.continuous_mixedExtension_eu_update_profileFromMixedSimplex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.continuous_mixedExtension_eu_update_profileFromMixedSimplex_of_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.continuous_mixedGainOnMixedSimplex_of_continuous_mixedEu' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.continuous_nashMapOnMixedSimplex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.continuous_nashMapOnMixedSimplex_of_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.continuous_nashMapOnMixedSimplex_of_continuous_mixedEu' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.continuous_nashMapOnMixedSimplex_of_continuous_mixedEu_deviation' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.continuous_nashMapOnMixedSimplex_of_continuous_mixedGainOnMixedSimplex' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.continuous_pospart' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.correlatedOutcome_pure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.deviationDistribution_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.deviationDistribution_id' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.dominant_is_nash' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.dominant_is_nash_for' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.eu_abs_le_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.eu_ofEU' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.exists_securityStrategy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.gainSumOnMixedSimplex_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.gainSum_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.guarantees_iff_worstCaseEUInf_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.guarantees_iff_worstCaseEU_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.isNash_iff_gains_nonpos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.isNash_iff_gains_nonpos_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.isSaddlePoint_iff_isNash' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.le_securityLevelSup_of_forall_eu_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.le_securityLevel_of_forall_eu_ge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.mixedExtension_Strategy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.mixedExtension_eu' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.mixedExtension_eu_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.mixedExtension_eu_update' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.mixedExtension_eu_update_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.mixedExtension_isZeroSum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.mixed_nash_exists' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.mixed_nash_exists_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_approx' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_approxOnly' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_approxOnly_of_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_approx_of_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_fixed_point' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.mixed_nash_exists_of_nashMapOnMixedSimplex_fixed_point_of_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.nashMapOnMixedSimplex_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.nashMap_fp_identity' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.nashMap_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.nashMap_sum_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.nashMap_weightFixedPoint_of_mixedSimplexFixedPoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.nashMap_weightFixedPoint_of_nashMapOnMixedSimplex_approx' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.nashMap_weightFixedPoint_of_nashMapOnMixedSimplex_approxOnly' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'GameTheory.KernelGame.nash_eu_ge_securityLevel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.nash_eu_ge_securityLevelSup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.nash_fp_is_nash' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.nash_fp_is_nash_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.nash_p0_cap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.ofEU_Strategy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.pospart_eq_zero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.pospart_mul_self' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.pospart_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.realToPmf_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.realToPmf_toReal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.toGameForm_Outcome' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.toGameForm_Strategy' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.toGameForm_outcomeKernel' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.toGameForm_withUtility' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.udistPlayer_eq_udist_bind' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.udistPlayer_pure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.udist_pure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.von_neumann_minimax' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.von_neumann_minimax_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.weighted_gain_sum_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.weighted_gain_sum_zero_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.worstCaseEUInf_guarantees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.worstCaseEUInf_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.worstCaseEU_guarantees' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.KernelGame.worstCaseEU_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.brouwer_mixedSimplex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.continuous_fromMixedSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.continuous_toMixedSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.convex_mixedSimplexAsSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.exists_fixedPoint_of_approx_on_compact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.exists_fixedPoint_of_approx_on_mixedSimplex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.fromMixedSet_toMixedSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.isCompact_mixedSimplexAsSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.nonempty_mixedSimplexAsSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'GameTheory.toMixedSet_fromMixedSet' depends on axioms: [propext, Classical.choice, Quot.sound]
+'InfoStateCore.identity_Carrier' does not depend on any axioms
+'InfoStateCore.identity_current' does not depend on any axioms
+'InfoStateCore.identity_push' does not depend on any axioms
+'InfoStateCore.identity_start' does not depend on any axioms
+'IteratedDerivPolynomial.exists_antideriv' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IteratedDerivPolynomial.iteratedDeriv_eq_zero_imp_poly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IteratedDerivPolynomial.iteratedDeriv_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'IteratedDerivPolynomial.iteratedDeriv_succ_eq_zero_of_natDegree_le' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Math.Coupling.hasCoupling_proj_iff_map_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Optimization.LocalGlobal.all_nonpos_of_weighted_pospart_fixedPoint' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Math.Optimization.LocalGlobal.isFixedPoint_of_eq' does not depend on any axioms
+'Math.Optimization.LocalGlobal.locallyOptimal_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Optimization.LocalGlobal.locallyOptimal_of_global_on_set' does not depend on any axioms
+'Math.Optimization.LocalGlobal.locallyOptimal_of_move_family' does not depend on any axioms
+'Math.Optimization.LocalGlobal.locallyOptimal_smul_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Optimization.LocalGlobal.max_mul_self_eq_sq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Optimization.LocalGlobal.noImprovement_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Optimization.LocalGlobal.noImprovement_at_of_fixed' does not depend on any axioms
+'Math.Optimization.LocalGlobal.noImprovement_of_move_family' does not depend on any axioms
+'Math.Optimization.LocalGlobal.noImprovement_smul_nonneg' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.ENNReal_tsum_pi' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.ENNReal_tsum_pi_fin' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.IgnoresP_and' does not depend on any axioms
+'Math.PMFProduct.IgnoresP_iff' depends on axioms: [propext]
+'Math.PMFProduct.IgnoresP_imp' does not depend on any axioms
+'Math.PMFProduct.IgnoresP_not' does not depend on any axioms
+'Math.PMFProduct.IgnoresP_of_Ignores' does not depend on any axioms
+'Math.PMFProduct.IgnoresP_or' does not depend on any axioms
+'Math.PMFProduct.Ignores_app2' does not depend on any axioms
+'Math.PMFProduct.Ignores_comp' does not depend on any axioms
+'Math.PMFProduct.Ignores_const' does not depend on any axioms
+'Math.PMFProduct.Ignores_coord_eq' depends on axioms: [propext]
+'Math.PMFProduct.Ignores_coord_pred' depends on axioms: [propext]
+'Math.PMFProduct.Ignores_finset_prod' depends on axioms: [propext, Quot.sound]
+'Math.PMFProduct.Ignores_fst' does not depend on any axioms
+'Math.PMFProduct.Ignores_ite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.Ignores_of_IgnoresP' depends on axioms: [propext]
+'Math.PMFProduct.Ignores_of_pointwise' depends on axioms: [propext]
+'Math.PMFProduct.Ignores_prod_mk' does not depend on any axioms
+'Math.PMFProduct.Ignores_snd' does not depend on any axioms
+'Math.PMFProduct.Ignores₂_of_pointwise' depends on axioms: [propext]
+'Math.PMFProduct.foldl_update_family_eq_of_nodup' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.ignores_replaceOn_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfMass_pmfPi_coord' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfMass_pmfPi_forall' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPiMass_le_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPiMass_ne_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPiMass_true' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_apply_update_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_bind_comm_fresh' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_bind_comm_fresh_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_bind_eq_of_forall_ignores' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_bind_eval' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_bind_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_bind_ignores_coord' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_bind_ignores_coord_finset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_bind_ignores_coord_list' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_bind_indep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_bind_pmfPi_of_disjoint_coords' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_bind_update_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_bind_update_pure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_cond_coord' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_cond_coord_other_marginal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_cond_coord_push_other' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_cond_prob_invariant_of_ignores' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_coord_mass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_coord_mass_tsum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_event_ratio_invariant_of_ignores' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_expect_indep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_map_bind' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_mass_invariant_of_ignores' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_pure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_push_coord' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_push_coordwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_update_bind' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmfPi_update_family_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pmf_bind_disintegrate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.prod_erase_update_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.prod_factor_erase' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.pushforward_support_fibre' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.replaceOn_apply' depends on axioms: [propext, Quot.sound]
+'Math.PMFProduct.replaceOn_empty' depends on axioms: [propext, Quot.sound]
+'Math.PMFProduct.replaceOn_insert' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.replaceOn_univ_diff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.replaceOn_univ_snd' depends on axioms: [propext, Quot.sound]
+'Math.PMFProduct.sum_pmfPi_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.sum_univ_eq_sum_univ_of_involutive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.swapJA_involutive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.tsum_eq_tsum_of_involutive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.tsum_pmfPi_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.update_family_other' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.update_family_same' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.update_ne' depends on axioms: [propext]
+'Math.PMFProduct.update_self' depends on axioms: [propext]
+'Math.PMFProduct.update_update_comm' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.PMFProduct.update_update_same' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.append_singleton_inj' depends on axioms: [propext]
+'Math.ParameterizedChain.condRun_eq_mixedRun' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.condStep_step_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.condStep_weighted_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.exists_realizing_steps' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.exists_realizing_steps_outcome' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.pureRun_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.pureRun_step_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.pureRun_succ_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.pureRun_succ_nil' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.pureRun_take_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.reweightPMF_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.reweightPMF_degenerate' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.reweightPMF_eq_of_cross_mul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.reweightPMF_fallback' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.reweightPMF_pmfPi' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.reweightPMF_pmfPi_push_coord_of_ignores' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Math.ParameterizedChain.reweightPMF_pmfPi_push_coord_of_ignores'' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Math.ParameterizedChain.reweightPMF_scale' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ParameterizedChain.reweightPMF_support_subset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.Kernel.comp_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.Kernel.comp_assoc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.Kernel.comp_id_left' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.Kernel.comp_id_right' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.Kernel.pushforward_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.Kernel.pushforward_comp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.Kernel.pushforward_ofFun' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.exists_abs_bound_of_finite' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.expect_bind' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.expect_bind_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.expect_bind_summable_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.expect_const' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.expect_eq_sum' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.expect_map_fintype_source' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.expect_map_fintype_target' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.expect_pure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.expect_summable_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.pmf_toReal_sum_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.pmf_toReal_summable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.Probability.pmf_toReal_tsum_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.allEvents_append_singleton' depends on axioms: [propext, Quot.sound]
+'Math.ProbabilityMassFunction.allEvents_cons' depends on axioms: [propext, Quot.sound]
+'Math.ProbabilityMassFunction.allEvents_nil' depends on axioms: [propext, Quot.sound]
+'Math.ProbabilityMassFunction.bind_apply_eq_sum_sum_fiber' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.bind_assoc' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.bind_congr_of_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.bind_congr_on_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.bind_heq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.bind_pure_eq_pushforward' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.bind_pushforward_condOn' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.condOn_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.eq_zero_of_expect_eq_zero_of_nonpos_of_pos' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Math.ProbabilityMassFunction.eq_zero_of_pushforward_eq_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.expect_bind_congr_on_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.expect_congr_of_ne_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.expect_congr_on_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.expect_mono_of_pointwise' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.expect_mono_of_pointwise_bounded' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Math.ProbabilityMassFunction.expect_mono_of_pointwise_summable' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Math.ProbabilityMassFunction.expect_pushforward' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.expect_pushforward_of_bounded' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.expect_pushforward_of_bounded_on_source' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Math.ProbabilityMassFunction.foldl_bind_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.foldl_bind_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.foldl_bind_eq_bind_foldl_pure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.le_pushforward_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pmfCond_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pmfCond_ne_zero_implies' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pmfMass_and_eq_mul_cond' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pmfMass_and_eq_zero_of_left_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'Math.ProbabilityMassFunction.pmfMass_eq_toOuterMeasure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pmfMass_event_chain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pmfMass_event_chain_aux' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pmfMass_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pmfMass_ne_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pmfMass_pushforward' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pmfMass_true' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pure_heq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pushforward_apply_eq_pmfMass' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pushforward_bind' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pushforward_comp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pushforward_id' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pushforward_pure' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pushforward_pushforward' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.ProbabilityMassFunction.pushforward_support_fibre' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.TraceRun.append_singleton_inj' depends on axioms: [propext]
+'Math.TraceRun.traceRun_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.TraceRun.traceRun_map_of_hom' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.TraceRun.traceRun_step_nonzero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.TraceRun.traceRun_succ' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.TraceRun.traceRun_succ_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.TraceRun.traceRun_succ_nil' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Math.TraceRun.traceRun_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.PerStepActionRecall.toStepActionDeterminism' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.PerStepPlayerRecall.action_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.PerStepPlayerRecall.toAction' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.PlayerStepRecall.action_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.PlayerStepRecall.toReachable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.PlayerStepRecall.toTrace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.ReachablePlayerStepRecall.action_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.TracePlayerStepRecall.action_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.actionPosteriorLocal_toCore' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.action_component_unique_of_pspr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.action_unique_of_psar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.cast_eq_of_subsingleton' does not depend on any axioms
+'ObsModel.conditioning_preserves_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.correlated_realization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.currentObs_projectStates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.currentObs_projectStatesFrom' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.horizonSeparation_toCore' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.jointActionDist_obs_heq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.kuhn_behavioral_to_mixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.kuhn_mixed_to_behavioral_decomposed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.kuhn_mixed_to_behavioral_pspr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.kuhn_mixed_to_behavioral_semantic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.kuhn_mixed_to_behavioral_trace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.mediator_product_of_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.mediator_step_eq_condStep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.mixedToMediator_obs_heq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.noNontrivialInfoStateRepeat_toCore' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.obsEq_of_projectStates_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.obsEq_of_projectStates_getLast' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.obsLocalFeasibilityFull_of_tracePlayerStepRecall' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.obsLocalFeasibilityFull_toCore' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.obsLocalFeasibility_of_playerStepRecall' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.obsLocalFeasibility_of_pspr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.obsLocalFeasibility_of_reachablePlayerStepRecall' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.obsLocalFeasibility_of_tracePlayerStepRecall' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.obsLocalFeasibility_toCore' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.obs_correlated_realization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.perStepPlayerRecall_iff_forall' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.projectStates_eq_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.projectStates_prefix_of_append' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureRun_const_of_psar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureRun_cross_mul_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureRun_eq_const_mul_indicator' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureRun_nonzero_iff_action_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureRun_nonzero_iff_update' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureRun_nonzero_last_stepReachable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureRun_nonzero_to_reachActionTrace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureRun_pairwise_cross_of_psar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureRun_succ_nonzero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureRun_update_obs_local' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureRun_update_obs_local_of' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureRun_update_obs_local_player' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureRun_update_obs_local_pspr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureRun_update_obs_local_trace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureStep_action_eq_of_psar' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureStep_component_eq_of_playerRecall' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureStep_component_eq_of_pspr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureStep_component_eq_of_reachablePlayerRecall' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureStep_component_eq_of_tracePlayerRecall' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureStep_cross_ratio' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureStep_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureStep_eq_of_action_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureStep_eq_of_nonzero_same' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureStep_nonzero_iff_action_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.pureStep_nonzero_iff_forall_player' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.reweightPMF_pureRun_obs_invariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.reweightPMF_update_obs_local' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.reweightPMF_update_obs_local_of' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.reweightPMF_update_obs_local_player' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.reweightPMF_update_obs_local_pspr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.reweightPMF_update_obs_local_trace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.runDistPure_eq_pureRun' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.runDist_eq_of_corrProduct' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.runDist_eq_of_stepIndependence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.stateDepth_projectStates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.stateSnapshot_projectStates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.stateSnapshot_projectStatesFrom' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.stepDistCorr_eq_stepDist_of_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.stepReachable_init' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.stepReachable_step' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModel.sum_mul_pmf_ne_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.PerStepActionRecall.toStepActionDeterminism' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.StepActionDeterminism.toMassInvariant' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.StepActionDeterminism.toSupportFactorization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.StepSupportFactorization.toRunSupportFactorization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ObsModelCore.actionPosteriorLocal_of_obsLocalFeasibility' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.correlated_realization' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.currentInfoState_subsingleton_of_repeated_on_reachable_trace' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ObsModelCore.currentObs_projectStates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.currentObs_projectStatesFrom' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.jointActionDist_pureToBehavioral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.jointActionDist_pureToBehavioral_m2b' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.kuhn_behavioral_to_mixed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.kuhn_mixed_to_behavioral_of_obsLocal' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.kuhn_mixed_to_behavioral_of_runSupport' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.kuhn_mixed_to_behavioral_semantic' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.lastState_append_singleton' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.marginal_stepDist' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.mediator_step_eq_condStep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.mixedToBehavioralProfileWithFallback_eq_factorAt' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ObsModelCore.mixedToBehavioralProfileWithFallback_runDist' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.mixedToMediator_eq_pmfPi_factor' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.mixedToMediator_eq_pmfPi_factor_of_run' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.obsLocalFeasibilityFull_of_localSupportSignatureFull' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ObsModelCore.obsLocalFeasibilityFull_toRunSupportFactorization' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'ObsModelCore.obsLocalFeasibility_of_localSupportSignature' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.pureRun_const_of_support' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.pureRun_cross_mul_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.pureRun_cross_mul_product_of_run' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.pureRun_nonzero_iff_update' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.pureRun_succ_nonzero_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.pureStep_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.pureStep_eq_of_nonzero_same' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.pureStep_nonzero_iff_action_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.pureStep_nonzero_iff_forall_player' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.reachableInfoStateWithin_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.reachableInfoStateWithin_projectStates' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.reweightPMF_update_obs_local_of' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.runDistPure_congr_of_agree_within' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.runDistPure_congr_on_trace' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.runDistPure_eq_pureRun' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.runDistPure_support_length' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.runDist_bind_interp' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.runDist_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.runDist_eq_of_correlatedStepIndependence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.runDist_eq_of_stepIndependence' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.scalar_indep' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.stepDistCorr_eq_stepDist_of_product' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.stepDist_pureToBehavioral' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.stepDist_pureToBehavioral_congr' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.stepDist_pureToBehavioral_m2b' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.stepIndependence_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.sum_mul_pmf_ne_top' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.swapBy_weight_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ObsModelCore.swapProfileBy_involutive' depends on axioms: [propext, Classical.choice, Quot.sound]
+'PolynomialDistribution.aePolynomial_of_annihilates_moment_vanishing' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'RidgePowersSpan.ridgePow_span' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Semantics.Transition.exists_reachBy_iff_reaches' does not depend on any axioms
+'Semantics.Transition.exists_reachBy_of_reaches' does not depend on any axioms
+'Semantics.Transition.obs_eq_of_reachBy' does not depend on any axioms
+'Semantics.Transition.obs_eq_of_reaches' does not depend on any axioms
+'Semantics.Transition.reachBy_append' does not depend on any axioms
+'Semantics.Transition.reachBy_append_singleton' does not depend on any axioms
+'Semantics.Transition.reachBy_map_labels' depends on axioms: [propext]
+'Semantics.Transition.reachBy_map_states' does not depend on any axioms
+'Semantics.Transition.reachBy_nil' does not depend on any axioms
+'Semantics.Transition.reachBy_singleton' does not depend on any axioms
+'Semantics.Transition.reachBy_split' does not depend on any axioms
+'Semantics.Transition.reaches_map_states' does not depend on any axioms
+'Semantics.Transition.reaches_of_reachBy' does not depend on any axioms
+'SmoothCompactAntideriv.exists_iteratedDeriv_eq_of_moments_zero' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UniformRiemannConvolution.tendstoUniformly_riemannSum_aeContinuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UniformRiemannConvolution.tendstoUniformly_riemannSum_continuous' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UniversalApproximation.Leshno.AEPolyOn.add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.AEPolyOn.smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.ApproxByGen.add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.ApproxByGen.smul' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.ClassM.aestronglyMeasurable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.ClassM.locallyIntegrable' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.ClassM.of_continuous' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.Pd_isClosed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.T_isClosed' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.aeEq_poly_of_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.aePolyOn_genFun' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.aePolyOn_of_mem_genSpan' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.aePolyOn_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.aePolynomial_not_dense' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.approxByGen_ridge_of_compact_image' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UniversalApproximation.Leshno.approxByGen_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.contDiff_mollify' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.continuous_cvec' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.cvec_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.cvec_mem_Kset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.denselyApproximates_of_forall_T_eq_top' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UniversalApproximation.Leshno.deriv_pow_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.exists_deriv_ne' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.exists_nonpoly_mollify' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.genFun_reparam_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.isCompact_Kset' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.isPolynomialFun_of_continuous_of_aePolynomial' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+'UniversalApproximation.Leshno.leshno_dense' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.leshno_dense_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.mem_T_iff_mem_Tplain' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.mollify_eq_convolution' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.mollify_ridge_mem_T' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.monomial_notMem_Pd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.quasiMeasurePreserving_affine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.restrictLM_apply' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.restrictLM_mem_Pd' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.ridge_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.ridge_mem_T' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.smooth_engine' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.subset_of_ae_restrict_mem' depends on axioms: [propext, Classical.choice, Quot.sound]
+'UniversalApproximation.Leshno.univariate_density' depends on axioms: [propext, Classical.choice, Quot.sound]
+'almost_surjective_of_insert_index' depends on axioms: [propext, Classical.choice, Quot.sound]
+'boundary_is_A_or_B' depends on axioms: [propext, Classical.choice, Quot.sound]
+'brouwer_fixedPoints_nonempty' depends on axioms: [propext, Classical.choice, Quot.sound]
+'brouwer_fixed_point' depends on axioms: [propext, Classical.choice, Quot.sound]
+'brouwer_fixed_point_isFixedPt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'caratheodory_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'case_ABC_count_disj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'case_AC_ex_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'case_A_not_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'case_A_parent_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'case_BC_ex_unique' depends on axioms: [propext, Classical.choice, Quot.sound]
+'case_B_boundary' depends on axioms: [propext, Classical.choice, Quot.sound]
+'case_B_not_last' depends on axioms: [propext, Classical.choice, Quot.sound]
+'case_B_parent_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'case_C_parent_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'case_D_iff_not_end_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'case_D_iff_not_end_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'case_D_parent_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ccc_add' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ccc_fun_case_D_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ccc_fun_is_insert_index' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ccc_fun_strict_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'ccc_pos' depends on axioms: [propext, Classical.choice, Quot.sound]
+'char_complete_face' depends on axioms: [propext, Classical.choice, Quot.sound]
+'child_map_applied' depends on axioms: [propext, Quot.sound]
+'child_map_inj' depends on axioms: [propext, Quot.sound]
+'child_map_last' depends on axioms: [propext]
+'child_map_surj_on' depends on axioms: [propext, Quot.sound]
+'child_simplex_char' depends on axioms: [propext, Classical.choice, Quot.sound]
+'complete_boundary_face_last' depends on axioms: [propext, Classical.choice, Quot.sound]
+'complete_child_uniq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'complete_simplex_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'delete_vertex_ccc_fun_match' depends on axioms: [propext, Classical.choice, Quot.sound]
+'delete_vertex_inj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'delete_vertex_is_face' depends on axioms: [propext, Classical.choice, Quot.sound]
+'delete_vertex_simplex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'dist_discrete_map' depends on axioms: [propext, Classical.choice, Quot.sound]
+'fixed_point_unit_cube' depends on axioms: [propext, Classical.choice, Quot.sound]
+'fixed_point_unit_cube_isFixedPt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'handshake_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'handshake_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'handshake_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'homeo_of_finrank_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'homeo_unit_ball' depends on axioms: [propext, Classical.choice, Quot.sound]
+'homeo_unit_cube_of_convex_compact' depends on axioms: [propext, Classical.choice, Quot.sound]
+'incomplete_childs' depends on axioms: [propext, Classical.choice, Quot.sound]
+'induction_start' depends on axioms: [propext, Classical.choice, Quot.sound]
+'insert_index_inj' depends on axioms: [propext, Classical.choice, Quot.sound]
+'insert_index_ne' depends on axioms: [propext, Classical.choice, Quot.sound]
+'insert_index_strict_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'insert_vertex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'is_id_of_strict_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'is_insert_index_of_strict_mono' depends on axioms: [propext, Classical.choice, Quot.sound]
+'kakutani_fixed_point' depends on axioms: [propext, Classical.choice, Quot.sound]
+'last_eq_first_add_one' depends on axioms: [propext, Classical.choice, Quot.sound]
+'last_of_simplex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'le_add_one_of_simplex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'mem_of_convex_comb' depends on axioms: [propext, Classical.choice, Quot.sound]
+'monotone_1_of_simplex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'monotone_2_of_simplex' depends on axioms: [propext, Classical.choice, Quot.sound]
+'nearby_points' depends on axioms: [propext, Classical.choice, Quot.sound]
+'odd_of_boundary_faces' depends on axioms: [propext, Classical.choice, Quot.sound]
+'one_of_ABCD' depends on axioms: [propext, Classical.choice, Quot.sound]
+'p_ne_zero_of_cube' depends on axioms: [propext]
+'parent_count' depends on axioms: [propext, Classical.choice, Quot.sound]
+'parent_injective' depends on axioms: [propext, Classical.choice, Quot.sound]
+'parent_simplex_case_AC' depends on axioms: [propext, Classical.choice, Quot.sound]
+'parent_simplex_case_BC' depends on axioms: [propext, Classical.choice, Quot.sound]
+'parent_simplex_case_D' depends on axioms: [propext, Classical.choice, Quot.sound]
+'reduced_label_props_1' depends on axioms: [propext, Classical.choice, Quot.sound]
+'reduced_label_props_2' depends on axioms: [propext, Classical.choice, Quot.sound]
+'reduced_label_props_3' depends on axioms: [propext, Classical.choice, Quot.sound]
+'rl_inj_of_complete' depends on axioms: [propext, Classical.choice, Quot.sound]
+'same_delete_index_eq_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'set_valued_map_approx_fixed_point' depends on axioms: [propext, Classical.choice, Quot.sound]
+'strong_cubical_sperner' depends on axioms: [propext, Classical.choice, Quot.sound]
+'sub_ICC_of_convex_comb' depends on axioms: [propext, Classical.choice, Quot.sound]
+'surround_index' depends on axioms: [propext, Classical.choice, Quot.sound]
+'unique_const_ABC' depends on axioms: [propext, Classical.choice, Quot.sound]
+'unit_cube_homeo_unit_ball' depends on axioms: [propext, Classical.choice, Quot.sound]
+'weaker_cubical_sperner' depends on axioms: [propext, Classical.choice, Quot.sound]
+'zero_ne_last' depends on axioms: [propext, Quot.sound]

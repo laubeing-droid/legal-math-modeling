@@ -184,6 +184,20 @@ def volume_rows() -> list[dict]:
             for t in targets
             if all(c["coverage"] == "FULL" for c in ledger[t]["p_coverage"] if c["relation"] == "EXACT")
         )
+        # `general_form_closed` cannot move on its own: the ledger grades a target FULL only
+        # when every EXACT anchor is GENERAL *and* the source block carries no 降级注, and
+        # every block currently carries one. So the count of targets that already have a
+        # general proof is published separately, otherwise a real GENERAL carrier reads as 0
+        # and the number describes the bookkeeping rather than the mathematics.
+        general_carriers = sum(
+            1
+            for t in targets
+            if any(
+                c["proof_grade"] == "GENERAL"
+                for c in ledger[t]["p_coverage"]
+                if c["relation"] == "EXACT"
+            )
+        )
         rows.append(
             {
                 "schema_version": "volume-account-v1",
@@ -196,10 +210,18 @@ def volume_rows() -> list[dict]:
                 "carriers_present": len(targets),
                 "carrier_grades": dict(grades),
                 "general_form_closed": closed,
+                "general_form_carriers": general_carriers,
                 "completion": "EMPTY" if not targets else ("CLOSED" if closed == len(targets) else "CARRIED_ONLY"),
                 "status_note": (
-                    "CARRIED_ONLY means every T slot has an anchored theorem, but none "
-                    "reaches the general form the volume's stated target demands."
+                    "Two different questions, two columns. general_form_carriers counts T "
+                    "slots with at least one EXACT anchor whose proved statement binds "
+                    "variables and closes on a HEAVY_PROOF tactic -- a general proof exists. "
+                    "general_form_closed counts slots whose ledger coverage is FULL, which "
+                    "additionally requires every EXACT anchor to be GENERAL and the source "
+                    "block to carry no 降级注; while a block still records 完整陈述仍缺 the "
+                    "slot is not closed no matter how strong its carrier is. CARRIED_ONLY "
+                    "means every T slot has an anchored theorem. Neither column says the "
+                    "declared target is met, and no general proof may be read as a closure."
                 ),
             }
         )
@@ -220,7 +242,24 @@ def volume_rows() -> list[dict]:
                     if c["relation"] == "EXACT"
                 )
             ),
-            "general_form_closed": 0,
+            "general_form_closed": sum(
+                1
+                for t in unfiled
+                if all(
+                    c["coverage"] == "FULL"
+                    for c in ledger[t]["p_coverage"]
+                    if c["relation"] == "EXACT"
+                )
+            ),
+            "general_form_carriers": sum(
+                1
+                for t in unfiled
+                if any(
+                    c["proof_grade"] == "GENERAL"
+                    for c in ledger[t]["p_coverage"]
+                    if c["relation"] == "EXACT"
+                )
+            ),
             "completion": "EMPTY" if not unfiled else "UNFILED",
             "status_note": (
                 "must be zero for the plan to be whole; the 16 T112-T127 targets are "

@@ -7990,7 +7990,7 @@
         "docs/master-plan/06_六类边界绑定表.md:131",
         "docs/master-plan/06_六类边界绑定表.md:132",
         "docs/master-plan/06_六类边界绑定表.md:162",
-        "docs/master-plan/09_法律统一数学模型_20261001.md:175"
+        "docs/master-plan/09_法律统一数学模型_20261001.md:179"
       ],
       "run_id": 36793005916,
       "started": true,
@@ -8056,6 +8056,7 @@
         "docs/master-plan/06_六类边界绑定表.md:168",
         "docs/master-plan/07_四问法律代拟卷_20261001.md:235",
         "docs/master-plan/07_四问法律代拟卷_20261001.md:236",
+        "docs/master-plan/07_四问法律代拟卷_20261001.md:259",
         "docs/master-plan/08_档位变更申请表_20261001.md:79",
         "docs/master-plan/08_档位变更申请表_20261001.md:82",
         "docs/master-plan/09_法律统一数学模型_20261001.md:119",
@@ -8127,6 +8128,7 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
+        "docs/master-plan/06_六类边界绑定表.md:177",
         "docs/master-plan/10_各针交付说明_20261001.md:495",
         "docs/paper-rewrite/paper_cn.md:160",
         "docs/paper-rewrite/paper_en.md:155",
@@ -8136,6 +8138,71 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-01T02:29:37Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-01T03:33:16Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/36811040817/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "b54ed6f8d360506d9dcb5dff797ffc277538255f",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/36811040817",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "docs+inventory: rebind after the ⑤ promotion; delivery notes gain nee…",
+      "quoted_by": [
+        "docs/master-plan/06_六类边界绑定表.md:178",
+        "docs/master-plan/07_四问法律代拟卷_20261001.md:254",
+        "docs/master-plan/09_法律统一数学模型_20261001.md:123",
+        "docs/master-plan/10_各针交付说明_20261001.md:495"
+      ],
+      "run_id": 36811040817,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-01T03:43:37Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

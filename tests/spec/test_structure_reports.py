@@ -97,6 +97,63 @@ def test_no_volume_may_claim_closure_while_targets_are_projections() -> None:
     assert not any(r["completion"] == "CLOSED" for r in rows)
 
 
+def test_general_carrier_column_is_recomputed_not_copied() -> None:
+    """The account must show that "has a general proof" and "block is discharged" differ.
+
+    `general_form_closed` reads 0 for every volume because FULL coverage additionally
+    requires the source block to carry no 降级注, so a genuine GENERAL carrier is invisible
+    in that column. The second column exists to make the carriers visible, and it is only
+    worth having if it is recomputed from the ledger rather than pasted in.
+    """
+
+    rows = _volume_rows()
+    ledger = _ledger_rows()
+
+    assert all("general_form_carriers" in row for row in rows), (
+        "the volume account lost the second column; the split must not be folded back"
+    )
+    for row in rows:
+        assert row["general_form_carriers"] <= row["carriers_present"], row["volume"]
+        assert row["general_form_carriers"] >= row["general_form_closed"], row["volume"]
+
+    from_ledger = sum(
+        1
+        for r in ledger
+        if any(
+            c["proof_grade"] == "GENERAL"
+            for c in r["p_coverage"]
+            if c["relation"] == "EXACT"
+        )
+    )
+    in_account = sum(r["general_form_carriers"] for r in rows)
+    assert in_account == from_ledger, (
+        f"account says {in_account} general carriers, the ledger says {from_ledger}"
+    )
+    assert in_account > sum(r["general_form_closed"] for r in rows), (
+        "the two columns read identically: either every block lost its 降级注 or the "
+        "second column has stopped measuring anything"
+    )
+    assert any("general_form_carriers" in r["status_note"] for r in rows), (
+        "the account must explain what each column means, not just print two numbers"
+    )
+
+
+def test_papers_quote_the_second_column_too() -> None:
+    """`0/127` alone reads as "no general proof exists", which is not what the ledger says.
+
+    The draft must carry the carrier count next to the closure count so the two questions
+    stay separate, and the number it carries has to be the one the account recomputes.
+    """
+
+    carriers = sum(row["general_form_carriers"] for row in _volume_rows())
+    paper = PAPER_CN.read_text(encoding="utf-8")
+    assert f"general_form_carriers = {carriers}" in paper, (
+        f"the Chinese draft does not quote the carrier column ({carriers}) the account prints"
+    )
+    assert f"{carriers} 个 T 位已带至少一条" in paper
+    assert "0/127" in paper, "the closure column must still be stated, not hidden by the new one"
+
+
 def test_unfiled_targets_stay_visible() -> None:
     unfiled = next(r for r in _volume_rows() if r["volume"] == "UNFILED")
     assert unfiled["t_targets"] == RECORDED_UNFILED_TARGETS

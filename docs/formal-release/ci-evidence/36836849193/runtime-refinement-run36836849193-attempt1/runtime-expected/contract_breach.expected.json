@@ -1,0 +1,29 @@
+{
+  "schema_version": "spec-runtime-refinement-v2",
+  "role": "expected",
+  "fixture_digest": "d6e66a0fcaaec746c74c0f57913278a1a6e2516e264f6a3c9d8121c0a142b0b7",
+  "lmm_commit": "9405a2beca401c8ec04c33ce0f3aef6e664f417a",
+  "cases": [
+    {
+      "case_id": "contract::plain",
+      "expected_status": "PROVED"
+    },
+    {
+      "case_id": "contract::force-majeure",
+      "expected_status": "REFUTED"
+    },
+    {
+      "case_id": "contract::malformed-certificate",
+      "expected_status": "TAINTED"
+    }
+  ],
+  "source_snapshot_digests": [
+    "089756e3b086e9a48d04641fb5d2609bb1dffa15fdbe232c37531c5f0abb2f5b"
+  ],
+  "rule_pack_digest": "2530cd3fbd03ad13a7127798507234da60c9f41263cbf9291fb370f0cac6c73c",
+  "semantics": {
+    "id": "grounded",
+    "version": "1"
+  },
+  "subject_commit_binding": "9405a2beca401c8ec04c33ce0f3aef6e664f417a"
+}

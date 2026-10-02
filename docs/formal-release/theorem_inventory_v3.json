@@ -536,17 +536,24 @@
     "JurisLean.Seams.AdjudicationBridge",
     "JurisLean.Seams.BoundaryBridge5",
     "JurisLean.Seams.BoundaryClosure",
+    "JurisLean.Seams.BurdenStatutes",
     "JurisLean.Seams.ClaimBasis",
     "JurisLean.Seams.FullProcess",
     "JurisLean.Seams.InstitutionalEffects",
+    "JurisLean.Seams.LegacyConeBridge",
     "JurisLean.Seams.PayoffEquilibrium",
     "JurisLean.Seams.PrecedentFlow",
     "JurisLean.Seams.Probability",
+    "JurisLean.Seams.ReductionConditions2",
     "JurisLean.Seams.Representation",
+    "JurisLean.Seams.SanctionInterest",
     "JurisLean.Seams.SourceNorms",
+    "JurisLean.Seams.StatuteChain",
     "JurisLean.Seams.Temporal",
+    "JurisLean.Seams.Transitions",
     "JurisLean.Seams.Uncertainty",
     "JurisLean.Seams.Unified",
+    "JurisLean.Seams.UnifiedInstance",
     "JurisLean.TaintNoninterference",
     "JurisLean.ULMAxiomAudit",
     "JurisLean.WeightedSupNorm"
@@ -1597,6 +1604,72 @@
     "JurisLean.Seams.BoundaryClosure.trustLE_refl",
     "JurisLean.Seams.BoundaryClosure.trustLE_trans",
     "JurisLean.Seams.BoundaryClosure.validatedAuthority_nonempty",
+    "JurisLean.Seams.BurdenStatutes.admissible_disjointVerdict",
+    "JurisLean.Seams.BurdenStatutes.admissible_fullInterDomain",
+    "JurisLean.Seams.BurdenStatutes.art108_and_art109_standards_differ",
+    "JurisLean.Seams.BurdenStatutes.art108_art109_phrases_are_distinct",
+    "JurisLean.Seams.BurdenStatutes.art108_finding_does_not_determine_ontic",
+    "JurisLean.Seams.BurdenStatutes.art108_high_probability_yields_existence",
+    "JurisLean.Seams.BurdenStatutes.art108_no_gap_nofinding",
+    "JurisLean.Seams.BurdenStatutes.art108_phrase_is_high_probability_not_paraphrase",
+    "JurisLean.Seams.BurdenStatutes.art108_unclarity_yields_nonexistence",
+    "JurisLean.Seams.BurdenStatutes.art109_all_five_use_the_stricter_tier",
+    "JurisLean.Seams.BurdenStatutes.art109_five_matters_are_enumerated",
+    "JurisLean.Seams.BurdenStatutes.art109_tier_is_not_the_108_tier",
+    "JurisLean.Seams.BurdenStatutes.art90_adverse_when_burdened_party_has_gap",
+    "JurisLean.Seams.BurdenStatutes.art90_not_adverse_for_the_other_party",
+    "JurisLean.Seams.BurdenStatutes.art91_burden_follows_assertion",
+    "JurisLean.Seams.BurdenStatutes.art91_clause_partition",
+    "JurisLean.Seams.BurdenStatutes.art91_two_clauses_exhaust_the_four_poles",
+    "JurisLean.Seams.BurdenStatutes.art92_admission_is_exact_conjunction",
+    "JurisLean.Seams.BurdenStatutes.art92_confirmation_does_not_determine_ontic",
+    "JurisLean.Seams.BurdenStatutes.art92_confirmation_gate_follows_consistency",
+    "JurisLean.Seams.BurdenStatutes.art92_waiver_covers_only_ordinary_class",
+    "JurisLean.Seams.BurdenStatutes.art93_item_one_is_in_neither_tier",
+    "JurisLean.Seams.BurdenStatutes.art93_overturn_entry_matches_seam",
+    "JurisLean.Seams.BurdenStatutes.art93_overturn_is_at_least_as_strong_as_rebut",
+    "JurisLean.Seams.BurdenStatutes.art93_overturn_tier_covers_items_five_to_seven",
+    "JurisLean.Seams.BurdenStatutes.art93_rebuttal_and_overturn_tiers_are_not_merged",
+    "JurisLean.Seams.BurdenStatutes.art93_rebuttal_tier_covers_items_two_to_four",
+    "JurisLean.Seams.BurdenStatutes.art93_seven_items_are_enumerated",
+    "JurisLean.Seams.BurdenStatutes.art93_tiers_are_disjoint",
+    "JurisLean.Seams.BurdenStatutes.disjointVerdict_fails_fullInterClosed",
+    "JurisLean.Seams.BurdenStatutes.disjointVerdict_fails_part_three",
+    "JurisLean.Seams.BurdenStatutes.disjointVerdict_holds_part_one",
+    "JurisLean.Seams.BurdenStatutes.disjointVerdict_holds_part_two",
+    "JurisLean.Seams.BurdenStatutes.disjointVerdict_is_not_lawful",
+    "JurisLean.Seams.BurdenStatutes.disjointVerdict_kernel_is_empty",
+    "JurisLean.Seams.BurdenStatutes.exceptional_matters_are_five",
+    "JurisLean.Seams.BurdenStatutes.exempt_items_are_seven",
+    "JurisLean.Seams.BurdenStatutes.fullInterClosed_implies_weak",
+    "JurisLean.Seams.BurdenStatutes.fullInterDomain_is_lawful",
+    "JurisLean.Seams.BurdenStatutes.fullInter_collapse_fails",
+    "JurisLean.Seams.BurdenStatutes.fullInter_holds_fullInterClosed",
+    "JurisLean.Seams.BurdenStatutes.fullInter_holds_part_one",
+    "JurisLean.Seams.BurdenStatutes.fullInter_holds_part_three",
+    "JurisLean.Seams.BurdenStatutes.fullInter_holds_part_two",
+    "JurisLean.Seams.BurdenStatutes.fullInter_kernel_is_singleton",
+    "JurisLean.Seams.BurdenStatutes.lawful_does_not_imply_collapse",
+    "JurisLean.Seams.BurdenStatutes.lawful_of_allowedSet_singleton",
+    "JurisLean.Seams.BurdenStatutes.lawful_part_one",
+    "JurisLean.Seams.BurdenStatutes.lawful_part_three",
+    "JurisLean.Seams.BurdenStatutes.lawful_part_two",
+    "JurisLean.Seams.BurdenStatutes.proof_standard_names_are_exactly_two",
+    "JurisLean.Seams.BurdenStatutes.standard109_named_at_implies_collapse",
+    "JurisLean.Seams.BurdenStatutes.standard_tier_gap_witness",
+    "JurisLean.Seams.BurdenStatutes.standard_tier_is_a_hierarchy",
+    "JurisLean.Seams.BurdenStatutes.standard_tier_two_way_decision",
+    "JurisLean.Seams.BurdenStatutes.standard_tiers_cannot_be_merged",
+    "JurisLean.Seams.BurdenStatutes.trialDomain_attaches_the_108_standard",
+    "JurisLean.Seams.BurdenStatutes.trialDomain_fails_part_two",
+    "JurisLean.Seams.BurdenStatutes.trialDomain_fails_the_109_standard",
+    "JurisLean.Seams.BurdenStatutes.trialDomain_holds_part_one",
+    "JurisLean.Seams.BurdenStatutes.trialDomain_holds_part_three",
+    "JurisLean.Seams.BurdenStatutes.trialDomain_is_not_lawful",
+    "JurisLean.Seams.BurdenStatutes.vacuousDomain_fails_part_one",
+    "JurisLean.Seams.BurdenStatutes.vacuousDomain_holds_part_three",
+    "JurisLean.Seams.BurdenStatutes.vacuousDomain_holds_part_two",
+    "JurisLean.Seams.BurdenStatutes.vacuousDomain_is_not_lawful",
     "JurisLean.Seams.ClaimBasis.carriesBasis_cons",
     "JurisLean.Seams.ClaimBasis.citedAt_head_or_tail",
     "JurisLean.Seams.ClaimBasis.citedAt_singleton_fields",
@@ -1798,6 +1871,32 @@
     "JurisLean.Seams.InstitutionalEffects.termination_breaks_projection",
     "JurisLean.Seams.InstitutionalEffects.termination_of_other_keeps_projection_witness",
     "JurisLean.Seams.InstitutionalEffects.termination_of_other_leaves_projection",
+    "JurisLean.Seams.LegacyConeBridge.compose_dedup_with_next_hop",
+    "JurisLean.Seams.LegacyConeBridge.compose_two_hops_galois",
+    "JurisLean.Seams.LegacyConeBridge.derivable_is_legacy_node",
+    "JurisLean.Seams.LegacyConeBridge.gc_image_preimage",
+    "JurisLean.Seams.LegacyConeBridge.hop1_hop2_clauses_compose_eq",
+    "JurisLean.Seams.LegacyConeBridge.hop1_hop3_edges_vanish",
+    "JurisLean.Seams.LegacyConeBridge.hop1_hop3_image_compose",
+    "JurisLean.Seams.LegacyConeBridge.hop1_hop3_nodeMap_compose",
+    "JurisLean.Seams.LegacyConeBridge.hop1_hop3_nodes_compose_eq",
+    "JurisLean.Seams.LegacyConeBridge.hop1_not_injective_general_form_is_false",
+    "JurisLean.Seams.LegacyConeBridge.hop1_produces_no_attack_material",
+    "JurisLean.Seams.LegacyConeBridge.hop2_drops_decisive_gate",
+    "JurisLean.Seams.LegacyConeBridge.hop2_hop4_compose_conclusion_rule_eq",
+    "JurisLean.Seams.LegacyConeBridge.hop3_drops_attack_kind",
+    "JurisLean.Seams.LegacyConeBridge.hop3_injective_general_form_is_false",
+    "JurisLean.Seams.LegacyConeBridge.hop3_off_diagram_edge_general_form_is_false",
+    "JurisLean.Seams.LegacyConeBridge.legacy_cone_bridge_boundary_is_recorded",
+    "JurisLean.Seams.LegacyConeBridge.legacy_cone_bridge_closed_carrier_args",
+    "JurisLean.Seams.LegacyConeBridge.legacy_cone_bridge_closed_hop12",
+    "JurisLean.Seams.LegacyConeBridge.legacy_cone_bridge_closed_hop12_conclusions",
+    "JurisLean.Seams.LegacyConeBridge.legacy_cone_bridge_closed_hop13_edges",
+    "JurisLean.Seams.LegacyConeBridge.legacy_cone_bridge_closed_hop13_nodes",
+    "JurisLean.Seams.LegacyConeBridge.legacy_cone_bridge_closed_hop3_filter",
+    "JurisLean.Seams.LegacyConeBridge.mem_conclusion_of_mem_rules",
+    "JurisLean.Seams.LegacyConeBridge.offDiagramAttack_mem",
+    "JurisLean.Seams.LegacyConeBridge.offDiagramAttack_witnessed",
     "JurisLean.Seams.PayoffEquilibrium.abs_two_close",
     "JurisLean.Seams.PayoffEquilibrium.approxNash_agrees_with_isNashPure_at_k10",
     "JurisLean.Seams.PayoffEquilibrium.approxNash_legalPay_k10",
@@ -1952,6 +2051,41 @@
     "JurisLean.Seams.Probability.threshold_does_not_force_the_finding",
     "JurisLean.Seams.Probability.transport_boundary_needs_nesting",
     "JurisLean.Seams.Probability.transport_regime_positivity",
+    "JurisLean.Seams.ReductionConditions2.all_new_bits_open_still_cannot_pass_malicious_base",
+    "JurisLean.Seams.ReductionConditions2.allowC_admits_recordChoose",
+    "JurisLean.Seams.ReductionConditions2.allowC_blind_to_noAdjustmentClause",
+    "JurisLean.Seams.ReductionConditions2.allowC_iff_decidable",
+    "JurisLean.Seams.ReductionConditions2.allowC_of_gate_closed",
+    "JurisLean.Seams.ReductionConditions2.allowC_of_gate_open_band",
+    "JurisLean.Seams.ReductionConditions2.allow_blind_to_foreseeable_cap",
+    "JurisLean.Seams.ReductionConditions2.allow_blind_to_malicious_register",
+    "JurisLean.Seams.ReductionConditions2.allow_blind_to_programme_bits",
+    "JurisLean.Seams.ReductionConditions2.clarification_changes_extension",
+    "JurisLean.Seams.ReductionConditions2.compliant_proof_alone_does_not_open_gate",
+    "JurisLean.Seams.ReductionConditions2.floor_capRecord_openBaseB_100",
+    "JurisLean.Seams.ReductionConditions2.floor_capRecord_openBaseB_300",
+    "JurisLean.Seams.ReductionConditions2.floor_malRecord_openBaseB_off",
+    "JurisLean.Seams.ReductionConditions2.floor_programmeRecord_openBaseA",
+    "JurisLean.Seams.ReductionConditions2.foreseeable_cap_changes_extension",
+    "JurisLean.Seams.ReductionConditions2.gate_malRecord_on",
+    "JurisLean.Seams.ReductionConditions2.gate_programmeRecord_on",
+    "JurisLean.Seams.ReductionConditions2.like_standard_off_closes_gate",
+    "JurisLean.Seams.ReductionConditions2.malicious_register_changes_extension",
+    "JurisLean.Seams.ReductionConditions2.new_bits_never_open_base_closed_gate",
+    "JurisLean.Seams.ReductionConditions2.not_Allow_of_gate_open_and_lt_floor",
+    "JurisLean.Seams.ReductionConditions2.not_allowC_of_gate_closed",
+    "JurisLean.Seams.ReductionConditions2.oldFloor_openBaseA",
+    "JurisLean.Seams.ReductionConditions2.oldFloor_openBaseB",
+    "JurisLean.Seams.ReductionConditions2.one_sided_burden_is_not_enough",
+    "JurisLean.Seams.ReductionConditions2.openBaseA_oldGate",
+    "JurisLean.Seams.ReductionConditions2.openBaseB_oldGate",
+    "JurisLean.Seams.ReductionConditions2.recordFloor_le_agreed",
+    "JurisLean.Seams.ReductionConditions2.recordFloor_le_reductionFloor",
+    "JurisLean.Seams.ReductionConditions2.recordGate_blind_to_noAdjustmentClause",
+    "JurisLean.Seams.ReductionConditions2.recordGate_false_of_no_programme_entry",
+    "JurisLean.Seams.ReductionConditions2.recordGate_neutral_of_oldGate_true",
+    "JurisLean.Seams.ReductionConditions2.recordGate_true_implies_oldGate_true",
+    "JurisLean.Seams.ReductionConditions2.reductionGate_reads_only_base",
     "JurisLean.Seams.Representation.castUp_coverageFails",
     "JurisLean.Seams.Representation.castUp_retraction_roundTrip",
     "JurisLean.Seams.Representation.coverage_alone_has_no_inverse_roundtrip",
@@ -1982,6 +2116,46 @@
     "JurisLean.Seams.Representation.representation_observations_preserved",
     "JurisLean.Seams.Representation.representation_scope",
     "JurisLean.Seams.Representation.separating_fragment_agreement_implies_equality",
+    "JurisLean.Seams.SanctionInterest.art264_amount_is_not_a_fixed_sum",
+    "JurisLean.Seams.SanctionInterest.art264_obligationShape_holds",
+    "JurisLean.Seams.SanctionInterest.doubleInterestOfAmount_apply",
+    "JurisLean.Seams.SanctionInterest.doubleInterestOfAmount_case_10w_100d",
+    "JurisLean.Seams.SanctionInterest.doubleInterestOfAmount_negative_is_negative",
+    "JurisLean.Seams.SanctionInterest.doubleInterestOfAmount_negative_not_zero",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_Iv_bounds",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_add_days",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_case_100w_365d",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_case_10w_100d",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_case_10w_5714d",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_case_10w_5715d",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_case_1w_1d",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_cleared",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_ge_principal",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_injective_days",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_monotone_days",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_monotone_principal",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_mul_days",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_nonneg",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_partial_payment_gap",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_scale_principal",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_strict_mono_days",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_sub_principal",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_succ_days",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_zero_days",
+    "JurisLean.Seams.SanctionInterest.doubleInterest_zero_principal",
+    "JurisLean.Seams.SanctionInterest.sanctionDailyRate_cross_multiplication",
+    "JurisLean.Seams.SanctionInterest.sanctionDailyRate_eq_seven_over_fourthousand",
+    "JurisLean.Seams.SanctionInterest.sanctionDailyRate_eq_wanfen_yi_dian_qi_wu",
+    "JurisLean.Seams.SanctionInterest.sanctionDailyRate_lt_one",
+    "JurisLean.Seams.SanctionInterest.sanctionDailyRate_matches_unique",
+    "JurisLean.Seams.SanctionInterest.sanctionDailyRate_pos",
+    "JurisLean.Seams.SanctionInterest.sanctionDailyRate_times_40000_eq_7",
+    "JurisLean.Seams.SanctionInterest.sanction_amount_is_rule_blind",
+    "JurisLean.Seams.SanctionInterest.sanction_days_5714_5715_int_window",
+    "JurisLean.Seams.SanctionInterest.sanction_period_days_obligation_failure_changes_amount",
+    "JurisLean.Seams.SanctionInterest.sanction_period_rule_gap_changes_amount",
+    "JurisLean.Seams.SanctionInterest.sanction_single_basis_overstates",
+    "JurisLean.Seams.SanctionInterest.sanction_threshold_concrete",
     "JurisLean.Seams.SourceNorms.closure_is_model",
     "JurisLean.Seams.SourceNorms.closure_only_entailed",
     "JurisLean.Seams.SourceNorms.entailed_in_closure",
@@ -2011,6 +2185,46 @@
     "JurisLean.Seams.SourceNorms.resolveConflict_some_selects_maximal",
     "JurisLean.Seams.SourceNorms.resolveConflict_tie_value_in",
     "JurisLean.Seams.SourceNorms.step_within_model",
+    "JurisLean.Seams.StatuteChain.chain_L1_closure_hop",
+    "JurisLean.Seams.StatuteChain.chain_L1_derived_support_true",
+    "JurisLean.Seams.StatuteChain.chain_L2_finalDerivable",
+    "JurisLean.Seams.StatuteChain.chain_L2_hop",
+    "JurisLean.Seams.StatuteChain.chain_L2_not_defeated",
+    "JurisLean.Seams.StatuteChain.chain_aaf_args_eq",
+    "JurisLean.Seams.StatuteChain.chain_aaf_eq",
+    "JurisLean.Seams.StatuteChain.chain_admissible_iff",
+    "JurisLean.Seams.StatuteChain.chain_amount_declared_choice_admitted",
+    "JurisLean.Seams.StatuteChain.chain_amount_faces_meet_only_numerically",
+    "JurisLean.Seams.StatuteChain.chain_amount_hop",
+    "JurisLean.Seams.StatuteChain.chain_art108_finding_fires",
+    "JurisLean.Seams.StatuteChain.chain_art90_gate_has_no_input",
+    "JurisLean.Seams.StatuteChain.chain_art91_allocation_hop",
+    "JurisLean.Seams.StatuteChain.chain_art91_clause_is_decidable",
+    "JurisLean.Seams.StatuteChain.chain_atom_eq",
+    "JurisLean.Seams.StatuteChain.chain_atom_is_the_clause_two_slot",
+    "JurisLean.Seams.StatuteChain.chain_collapse_from_the_109_tier",
+    "JurisLean.Seams.StatuteChain.chain_disputed_eq",
+    "JurisLean.Seams.StatuteChain.chain_evalDom_eq",
+    "JurisLean.Seams.StatuteChain.chain_naming_hop_does_not_close",
+    "JurisLean.Seams.StatuteChain.chain_norms_eq",
+    "JurisLean.Seams.StatuteChain.chain_phrases_are_distinct",
+    "JurisLean.Seams.StatuteChain.chain_pol_eq",
+    "JurisLean.Seams.StatuteChain.chain_pol_support_is_constant",
+    "JurisLean.Seams.StatuteChain.chain_seam_args_eq_instance_args",
+    "JurisLean.Seams.StatuteChain.chain_seam_label2_eq",
+    "JurisLean.Seams.StatuteChain.chain_seam_label_eq",
+    "JurisLean.Seams.StatuteChain.chain_stableKernel_eq",
+    "JurisLean.Seams.StatuteChain.chain_subject_divergence",
+    "JurisLean.Seams.StatuteChain.chain_tier_attaches_108",
+    "JurisLean.Seams.StatuteChain.chain_tier_attaches_109",
+    "JurisLean.Seams.StatuteChain.chain_tier_gates_are_distinct_on_the_carrier",
+    "JurisLean.Seams.StatuteChain.chain_tier_hop",
+    "JurisLean.Seams.StatuteChain.chain_tier_material_is_a_strict_hierarchy",
+    "JurisLean.Seams.StatuteChain.chain_tier_part_one",
+    "JurisLean.Seams.StatuteChain.chain_tier_part_two",
+    "JurisLean.Seams.StatuteChain.chain_zero_in_kernel",
+    "JurisLean.Seams.StatuteChain.statuteChain_on_instanceM",
+    "JurisLean.Seams.StatuteChain.statuteChain_reaches_the_one_closed_instance",
     "JurisLean.Seams.Temporal.IntertemporalLawSignature.withRetroFalse_preserves_wellFormed",
     "JurisLean.Seams.Temporal.addDays_commutes_with_embedding",
     "JurisLean.Seams.Temporal.aggregate_add_arrival_insensitive",
@@ -2039,6 +2253,36 @@
     "JurisLean.Seams.Temporal.trunc_of_all_future",
     "JurisLean.Seams.Temporal.trunc_sound",
     "JurisLean.Seams.Temporal.trunc_view_congr",
+    "JurisLean.Seams.Transitions.F_args_eq_args_of_attacks_empty",
+    "JurisLean.Seams.Transitions.aafNoExceptions_attacks_eq_empty",
+    "JurisLean.Seams.Transitions.args_are_named_closure",
+    "JurisLean.Seams.Transitions.attack_no_adjustment_to_reduction",
+    "JurisLean.Seams.Transitions.attack_reduction_to_no_adjustment",
+    "JurisLean.Seams.Transitions.attackers_eq_empty_of_attacks_empty",
+    "JurisLean.Seams.Transitions.attacks_only_between_derived",
+    "JurisLean.Seams.Transitions.baseSet_policyOf_eq_args",
+    "JurisLean.Seams.Transitions.conflict_arg_has_attacker",
+    "JurisLean.Seams.Transitions.conflict_args_eq_or",
+    "JurisLean.Seams.Transitions.conflict_baseSet_empty",
+    "JurisLean.Seams.Transitions.conflict_never_adopted_obligation",
+    "JurisLean.Seams.Transitions.conflict_not_final_derivable_obligation",
+    "JurisLean.Seams.Transitions.conflict_rounds_empty",
+    "JurisLean.Seams.Transitions.encode_ne",
+    "JurisLean.Seams.Transitions.exceptionEdges_noExc_eq_empty",
+    "JurisLean.Seams.Transitions.horn_derived_is_admissible",
+    "JurisLean.Seams.Transitions.naRule_mem_rules",
+    "JurisLean.Seams.Transitions.named_closure_within_args",
+    "JurisLean.Seams.Transitions.noPremiseRule_in_closure",
+    "JurisLean.Seams.Transitions.no_adjustment_derived",
+    "JurisLean.Seams.Transitions.no_adjustment_in_args",
+    "JurisLean.Seams.Transitions.not_admissible_not_in_closure",
+    "JurisLean.Seams.Transitions.policyClosed_obligation_for",
+    "JurisLean.Seams.Transitions.rcRule_mem_rules",
+    "JurisLean.Seams.Transitions.reduction_claim_derived_obligation",
+    "JurisLean.Seams.Transitions.reduction_claim_support_is_true",
+    "JurisLean.Seams.Transitions.reduction_in_args",
+    "JurisLean.Seams.Transitions.rejectedStep_empty_empty",
+    "JurisLean.Seams.Transitions.transitions_boundary_is_recorded",
     "JurisLean.Seams.Uncertainty.anchor_output_is_inside_band",
     "JurisLean.Seams.Uncertainty.bridge_fails_without_positivity",
     "JurisLean.Seams.Uncertainty.bridge_fails_without_support_finiteness",
@@ -2083,6 +2327,59 @@
     "JurisLean.Seams.Uncertainty.xuc_conditioning_denominator_is_clean_mass",
     "JurisLean.Seams.Uncertainty.xuc_out_at_two_one",
     "JurisLean.Seams.Uncertainty.zero_radius_band_does_not_cover_other_inputs",
+    "JurisLean.Seams.UnifiedInstance.F_eq_args_of_attacks_empty",
+    "JurisLean.Seams.UnifiedInstance.aafM_args_has_two_distinct",
+    "JurisLean.Seams.UnifiedInstance.aafM_attacks_eq_empty",
+    "JurisLean.Seams.UnifiedInstance.atomM_entailed",
+    "JurisLean.Seams.UnifiedInstance.attackers_eq_empty_of_attacks_empty",
+    "JurisLean.Seams.UnifiedInstance.baseConflictFree_polM",
+    "JurisLean.Seams.UnifiedInstance.baseInGrounded_polM",
+    "JurisLean.Seams.UnifiedInstance.baseSet_polM_eq_args",
+    "JurisLean.Seams.UnifiedInstance.claimReduction_ne_noAdjustment",
+    "JurisLean.Seams.UnifiedInstance.disputedM_is_grounded",
+    "JurisLean.Seams.UnifiedInstance.grounded_eq_args_of_attacks_empty",
+    "JurisLean.Seams.UnifiedInstance.instanceM_admissibleNonempty",
+    "JurisLean.Seams.UnifiedInstance.instanceM_baseInGrounded",
+    "JurisLean.Seams.UnifiedInstance.instanceM_collapse",
+    "JurisLean.Seams.UnifiedInstance.instanceM_nondegenerate",
+    "JurisLean.Seams.UnifiedInstance.instanceM_policyClosed",
+    "JurisLean.Seams.UnifiedInstance.instanceM_satisfies_declared_fragment",
+    "JurisLean.Seams.UnifiedInstance.iter_pos_eq_args",
+    "JurisLean.Seams.UnifiedInstance.mem_envOld",
+    "JurisLean.Seams.UnifiedInstance.normsM_model_class_nonempty",
+    "JurisLean.Seams.UnifiedInstance.observation_not_determined_by_the_model",
+    "JurisLean.Seams.UnifiedInstance.one_in_closureM",
+    "JurisLean.Seams.UnifiedInstance.one_notin_singleton",
+    "JurisLean.Seams.UnifiedInstance.policyClosed_polM_zero",
+    "JurisLean.Seams.UnifiedInstance.ruleM_mem_rules",
+    "JurisLean.Seams.UnifiedInstance.set01_ne_set0",
+    "JurisLean.Seams.UnifiedInstance.set01_ne_set02",
+    "JurisLean.Seams.UnifiedInstance.set02_ne_set0",
+    "JurisLean.Seams.UnifiedInstance.statusObsM_faithful",
+    "JurisLean.Seams.UnifiedInstance.statusObsM_value_suspended",
+    "JurisLean.Seams.UnifiedInstance.statusObsM_value_unenforceable",
+    "JurisLean.Seams.UnifiedInstance.statusObsRegister_value_any",
+    "JurisLean.Seams.UnifiedInstance.trialDomain_not_admissible_at_singleton",
+    "JurisLean.Seams.UnifiedInstance.two_notin_singleton",
+    "JurisLean.Seams.UnifiedInstance.unified_model_has_closed_inhabitant",
+    "JurisLean.Seams.UnifiedInstance.verdictDomain_admissible",
+    "JurisLean.Seams.UnifiedInstance.verdictDomain_admissibleNonempty",
+    "JurisLean.Seams.UnifiedInstance.verdictDomain_admissible_unique",
+    "JurisLean.Seams.UnifiedInstance.verdictDomain_allowedSet",
+    "JurisLean.Seams.UnifiedInstance.verdictDomain_collapse",
+    "JurisLean.Seams.UnifiedInstance.verdictDomain_collapse_and_nonempty",
+    "JurisLean.Seams.UnifiedInstance.verdictDomain_kernel_is_singleton",
+    "JurisLean.Seams.UnifiedInstance.verdictDomain_ne_trialDomain",
+    "JurisLean.Seams.UnifiedInstance.verdictDomain_rebuttal_not_decisive",
+    "JurisLean.Seams.UnifiedInstance.verdictDomain_stableKernel",
+    "JurisLean.Seams.UnifiedInstance.verdictDomain_standard_not_decisive",
+    "JurisLean.Seams.UnifiedInstance.verdictDomain_support_not_decisive",
+    "JurisLean.Seams.UnifiedInstance.verdictDomain_unique_verdict",
+    "JurisLean.Seams.UnifiedInstance.weightM_pos",
+    "JurisLean.Seams.UnifiedInstance.weightM_total",
+    "JurisLean.Seams.UnifiedInstance.widening_is_conservative",
+    "JurisLean.Seams.UnifiedInstance.zero_in_closureM",
+    "JurisLean.Seams.UnifiedInstance.zero_mem_singleton",
     "JurisLean.Seams.unified_claim_is_not_general",
     "JurisLean.Seams.unified_legal_derivation_on_declared_fragment",
     "JurisLean.Seams.unified_model_is_not_vacuous",
@@ -2569,8 +2866,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "fdbe1c1cae976a80bbbb7fefe04465dbe13868b7546943bbaa7f1394dedfc38b",
-   "size_bytes": 138982,
+   "sha256": "d31dc54c6d4b118b229efc79080f1e0355e1594d617ee1dab0c4ca55073b4d4d",
+   "size_bytes": 160955,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -23295,6 +23592,477 @@
    "declarations": [
     {
      "kind": "inductive",
+     "name": "BurdenParty"
+    },
+    {
+     "kind": "inductive",
+     "name": "NormClass"
+    },
+    {
+     "kind": "structure",
+     "name": "BurdenAllocation"
+    },
+    {
+     "kind": "def",
+     "name": "art91IsClauseOne"
+    },
+    {
+     "kind": "def",
+     "name": "art91BurdenOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "art91_burden_follows_assertion"
+    },
+    {
+     "kind": "theorem",
+     "name": "art91_clause_partition"
+    },
+    {
+     "kind": "theorem",
+     "name": "art91_two_clauses_exhaust_the_four_poles"
+    },
+    {
+     "kind": "inductive",
+     "name": "ProductionStatus"
+    },
+    {
+     "kind": "def",
+     "name": "art90AdverseOn"
+    },
+    {
+     "kind": "theorem",
+     "name": "art90_adverse_when_burdened_party_has_gap"
+    },
+    {
+     "kind": "theorem",
+     "name": "art90_not_adverse_for_the_other_party"
+    },
+    {
+     "kind": "def",
+     "name": "art90_adverse_is_decidable"
+    },
+    {
+     "kind": "inductive",
+     "name": "AdmittedMatterClass"
+    },
+    {
+     "kind": "def",
+     "name": "art92Admission"
+    },
+    {
+     "kind": "theorem",
+     "name": "art92_admission_is_exact_conjunction"
+    },
+    {
+     "kind": "def",
+     "name": "art92WaivesProof"
+    },
+    {
+     "kind": "def",
+     "name": "art92Confirmed"
+    },
+    {
+     "kind": "theorem",
+     "name": "art92_waiver_covers_only_ordinary_class"
+    },
+    {
+     "kind": "theorem",
+     "name": "art92_confirmation_gate_follows_consistency"
+    },
+    {
+     "kind": "structure",
+     "name": "AdmittedRecord"
+    },
+    {
+     "kind": "theorem",
+     "name": "art92_confirmation_does_not_determine_ontic"
+    },
+    {
+     "kind": "inductive",
+     "name": "ExemptItem"
+    },
+    {
+     "kind": "def",
+     "name": "exemptItems"
+    },
+    {
+     "kind": "theorem",
+     "name": "exempt_items_are_seven"
+    },
+    {
+     "kind": "theorem",
+     "name": "art93_seven_items_are_enumerated"
+    },
+    {
+     "kind": "def",
+     "name": "art93Rebuttable"
+    },
+    {
+     "kind": "def",
+     "name": "art93Overturnable"
+    },
+    {
+     "kind": "theorem",
+     "name": "art93_rebuttal_tier_covers_items_two_to_four"
+    },
+    {
+     "kind": "theorem",
+     "name": "art93_overturn_tier_covers_items_five_to_seven"
+    },
+    {
+     "kind": "theorem",
+     "name": "art93_tiers_are_disjoint"
+    },
+    {
+     "kind": "theorem",
+     "name": "art93_item_one_is_in_neither_tier"
+    },
+    {
+     "kind": "inductive",
+     "name": "ContraryStrength"
+    },
+    {
+     "kind": "def",
+     "name": "art93DefeatsByRebuttal"
+    },
+    {
+     "kind": "def",
+     "name": "art93DefeatsByOverturn"
+    },
+    {
+     "kind": "theorem",
+     "name": "art93_overturn_is_at_least_as_strong_as_rebut"
+    },
+    {
+     "kind": "theorem",
+     "name": "art93_rebuttal_and_overturn_tiers_are_not_merged"
+    },
+    {
+     "kind": "theorem",
+     "name": "art93_overturn_entry_matches_seam"
+    },
+    {
+     "kind": "def",
+     "name": "art108_officialPhrase"
+    },
+    {
+     "kind": "def",
+     "name": "art108_paraphraseFoundInMasterPlan"
+    },
+    {
+     "kind": "theorem",
+     "name": "art108_phrase_is_high_probability_not_paraphrase"
+    },
+    {
+     "kind": "inductive",
+     "name": "FactFinding"
+    },
+    {
+     "kind": "def",
+     "name": "art108Finding"
+    },
+    {
+     "kind": "theorem",
+     "name": "art108_unclarity_yields_nonexistence"
+    },
+    {
+     "kind": "theorem",
+     "name": "art108_high_probability_yields_existence"
+    },
+    {
+     "kind": "theorem",
+     "name": "art108_no_gap_nofinding"
+    },
+    {
+     "kind": "structure",
+     "name": "EvaluatedFact"
+    },
+    {
+     "kind": "theorem",
+     "name": "art108_finding_does_not_determine_ontic"
+    },
+    {
+     "kind": "inductive",
+     "name": "ExceptionalMatter"
+    },
+    {
+     "kind": "def",
+     "name": "exceptionalMatters"
+    },
+    {
+     "kind": "theorem",
+     "name": "exceptional_matters_are_five"
+    },
+    {
+     "kind": "theorem",
+     "name": "art109_five_matters_are_enumerated"
+    },
+    {
+     "kind": "inductive",
+     "name": "ProofStandardName"
+    },
+    {
+     "kind": "theorem",
+     "name": "proof_standard_names_are_exactly_two"
+    },
+    {
+     "kind": "def",
+     "name": "art109StandardOf"
+    },
+    {
+     "kind": "def",
+     "name": "art108StandardOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "art109_all_five_use_the_stricter_tier"
+    },
+    {
+     "kind": "theorem",
+     "name": "art109_tier_is_not_the_108_tier"
+    },
+    {
+     "kind": "theorem",
+     "name": "art108_and_art109_standards_differ"
+    },
+    {
+     "kind": "def",
+     "name": "hasNonblankAdmissibleEvaluation"
+    },
+    {
+     "kind": "def",
+     "name": "admissibleWeakInterClosed"
+    },
+    {
+     "kind": "def",
+     "name": "admissibleFullInterClosed"
+    },
+    {
+     "kind": "def",
+     "name": "standardGate"
+    },
+    {
+     "kind": "def",
+     "name": "StandardNamedAt"
+    },
+    {
+     "kind": "def",
+     "name": "attachesNamedStandard"
+    },
+    {
+     "kind": "def",
+     "name": "EvalDomainLawful"
+    },
+    {
+     "kind": "theorem",
+     "name": "lawful_part_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "lawful_part_two"
+    },
+    {
+     "kind": "theorem",
+     "name": "lawful_part_three"
+    },
+    {
+     "kind": "theorem",
+     "name": "lawful_of_allowedSet_singleton"
+    },
+    {
+     "kind": "theorem",
+     "name": "standard109_named_at_implies_collapse"
+    },
+    {
+     "kind": "theorem",
+     "name": "trialDomain_attaches_the_108_standard"
+    },
+    {
+     "kind": "theorem",
+     "name": "trialDomain_holds_part_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "trialDomain_holds_part_three"
+    },
+    {
+     "kind": "theorem",
+     "name": "trialDomain_fails_the_109_standard"
+    },
+    {
+     "kind": "def",
+     "name": "vacuousDomain"
+    },
+    {
+     "kind": "theorem",
+     "name": "vacuousDomain_fails_part_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "vacuousDomain_holds_part_two"
+    },
+    {
+     "kind": "theorem",
+     "name": "vacuousDomain_holds_part_three"
+    },
+    {
+     "kind": "theorem",
+     "name": "vacuousDomain_is_not_lawful"
+    },
+    {
+     "kind": "def",
+     "name": "disjointVerdictDomain"
+    },
+    {
+     "kind": "theorem",
+     "name": "admissible_disjointVerdict"
+    },
+    {
+     "kind": "theorem",
+     "name": "disjointVerdict_holds_part_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "disjointVerdict_holds_part_two"
+    },
+    {
+     "kind": "theorem",
+     "name": "disjointVerdict_fails_fullInterClosed"
+    },
+    {
+     "kind": "theorem",
+     "name": "disjointVerdict_kernel_is_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "disjointVerdict_fails_part_three"
+    },
+    {
+     "kind": "theorem",
+     "name": "disjointVerdict_is_not_lawful"
+    },
+    {
+     "kind": "theorem",
+     "name": "trialDomain_fails_part_two"
+    },
+    {
+     "kind": "theorem",
+     "name": "trialDomain_is_not_lawful"
+    },
+    {
+     "kind": "def",
+     "name": "fullInterDomain"
+    },
+    {
+     "kind": "theorem",
+     "name": "admissible_fullInterDomain"
+    },
+    {
+     "kind": "theorem",
+     "name": "fullInter_holds_part_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "fullInter_holds_fullInterClosed"
+    },
+    {
+     "kind": "theorem",
+     "name": "fullInterClosed_implies_weak"
+    },
+    {
+     "kind": "theorem",
+     "name": "fullInter_holds_part_two"
+    },
+    {
+     "kind": "theorem",
+     "name": "fullInter_kernel_is_singleton"
+    },
+    {
+     "kind": "theorem",
+     "name": "fullInter_holds_part_three"
+    },
+    {
+     "kind": "theorem",
+     "name": "fullInter_collapse_fails"
+    },
+    {
+     "kind": "theorem",
+     "name": "fullInterDomain_is_lawful"
+    },
+    {
+     "kind": "theorem",
+     "name": "lawful_does_not_imply_collapse"
+    },
+    {
+     "kind": "inductive",
+     "name": "FactIndex"
+    },
+    {
+     "kind": "inductive",
+     "name": "CredProfile"
+    },
+    {
+     "kind": "def",
+     "name": "claimOn"
+    },
+    {
+     "kind": "def",
+     "name": "doubtOn"
+    },
+    {
+     "kind": "def",
+     "name": "residualDoubtOn"
+    },
+    {
+     "kind": "def",
+     "name": "meetsHighProbability108"
+    },
+    {
+     "kind": "def",
+     "name": "meetsBeyondReasonableDoubt109"
+    },
+    {
+     "kind": "def",
+     "name": "standardMeets"
+    },
+    {
+     "kind": "theorem",
+     "name": "standard_tier_is_a_hierarchy"
+    },
+    {
+     "kind": "theorem",
+     "name": "standard_tier_gap_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "standard_tiers_cannot_be_merged"
+    },
+    {
+     "kind": "theorem",
+     "name": "standard_tier_two_way_decision"
+    },
+    {
+     "kind": "theorem",
+     "name": "art108_art109_phrases_are_distinct"
+    }
+   ],
+   "imports": [
+    "JurisLean.Seams.AdjudicationBridge",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/BurdenStatutes.lean",
+   "print_axioms_targets": [],
+   "sha256": "e0682b7e1f1ab5b4ed89b691301471e5a779b47295378eadea821abda947a3b8",
+   "size_bytes": 64433,
+   "theorem_count": 66,
+   "theorem_count_bol_convention": 66
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
      "name": "Stage"
     },
     {
@@ -24528,6 +25296,270 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "clauseOfIVLRule"
+    },
+    {
+     "kind": "def",
+     "name": "hornSystemOfLegacyClauses"
+    },
+    {
+     "kind": "def",
+     "name": "hornSystemOfLegacyIVL"
+    },
+    {
+     "kind": "def",
+     "name": "edgeOfTypedAttack"
+    },
+    {
+     "kind": "def",
+     "name": "dungAAFOfLegacy"
+    },
+    {
+     "kind": "def",
+     "name": "dungAAFOfIVL"
+    },
+    {
+     "kind": "def",
+     "name": "derivationOfClause"
+    },
+    {
+     "kind": "def",
+     "name": "specDirectClauses"
+    },
+    {
+     "kind": "def",
+     "name": "specDirectNodes"
+    },
+    {
+     "kind": "def",
+     "name": "nodeOfSpecRule"
+    },
+    {
+     "kind": "def",
+     "name": "nodeOfIVLRule"
+    },
+    {
+     "kind": "theorem",
+     "name": "hop1_hop2_clauses_compose_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "hop1_hop3_nodes_compose_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "hop1_produces_no_attack_material"
+    },
+    {
+     "kind": "theorem",
+     "name": "hop1_hop3_edges_vanish"
+    },
+    {
+     "kind": "theorem",
+     "name": "hop2_hop4_compose_conclusion_rule_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "hop1_hop3_nodeMap_compose"
+    },
+    {
+     "kind": "theorem",
+     "name": "hop1_hop3_image_compose"
+    },
+    {
+     "kind": "theorem",
+     "name": "gc_image_preimage"
+    },
+    {
+     "kind": "def",
+     "name": "gi_image_preimage"
+    },
+    {
+     "kind": "theorem",
+     "name": "compose_two_hops_galois"
+    },
+    {
+     "kind": "def",
+     "name": "gi_dedup_legacyNodes"
+    },
+    {
+     "kind": "theorem",
+     "name": "compose_dedup_with_next_hop"
+    },
+    {
+     "kind": "theorem",
+     "name": "mem_conclusion_of_mem_rules"
+    },
+    {
+     "kind": "theorem",
+     "name": "derivable_is_legacy_node"
+    },
+    {
+     "kind": "def",
+     "name": "kindLossAttackA"
+    },
+    {
+     "kind": "def",
+     "name": "kindLossAttackB"
+    },
+    {
+     "kind": "theorem",
+     "name": "hop3_drops_attack_kind"
+    },
+    {
+     "kind": "theorem",
+     "name": "hop3_injective_general_form_is_false"
+    },
+    {
+     "kind": "def",
+     "name": "offDiagramRule"
+    },
+    {
+     "kind": "def",
+     "name": "offDiagramAttack"
+    },
+    {
+     "kind": "def",
+     "name": "offDiagramIVL"
+    },
+    {
+     "kind": "theorem",
+     "name": "offDiagramAttack_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "offDiagramAttack_witnessed"
+    },
+    {
+     "kind": "theorem",
+     "name": "hop3_off_diagram_edge_general_form_is_false"
+    },
+    {
+     "kind": "def",
+     "name": "decisiveLossIVLClean"
+    },
+    {
+     "kind": "def",
+     "name": "decisiveLossIVLUnsupported"
+    },
+    {
+     "kind": "theorem",
+     "name": "hop2_drops_decisive_gate"
+    },
+    {
+     "kind": "def",
+     "name": "offDiagramSpecRule"
+    },
+    {
+     "kind": "def",
+     "name": "modalityLossSpecRuleObligation"
+    },
+    {
+     "kind": "def",
+     "name": "modalityLossSpecRuleProhibition"
+    },
+    {
+     "kind": "theorem",
+     "name": "hop1_not_injective_general_form_is_false"
+    },
+    {
+     "kind": "def",
+     "name": "demoSpecRule1"
+    },
+    {
+     "kind": "def",
+     "name": "demoSpecRule2"
+    },
+    {
+     "kind": "def",
+     "name": "demoSpec"
+    },
+    {
+     "kind": "def",
+     "name": "demoIVL"
+    },
+    {
+     "kind": "def",
+     "name": "demoExpectedClauses"
+    },
+    {
+     "kind": "theorem",
+     "name": "legacy_cone_bridge_closed_hop12"
+    },
+    {
+     "kind": "theorem",
+     "name": "legacy_cone_bridge_closed_hop12_conclusions"
+    },
+    {
+     "kind": "theorem",
+     "name": "legacy_cone_bridge_closed_hop13_nodes"
+    },
+    {
+     "kind": "theorem",
+     "name": "legacy_cone_bridge_closed_hop13_edges"
+    },
+    {
+     "kind": "def",
+     "name": "witnessLossAttack"
+    },
+    {
+     "kind": "def",
+     "name": "witnessFilterIVL"
+    },
+    {
+     "kind": "theorem",
+     "name": "legacy_cone_bridge_closed_hop3_filter"
+    },
+    {
+     "kind": "theorem",
+     "name": "legacy_cone_bridge_closed_carrier_args"
+    },
+    {
+     "kind": "def",
+     "name": "node_may_be_underivable_obligation"
+    },
+    {
+     "kind": "def",
+     "name": "hop2_preserves_exceptions_candidate"
+    },
+    {
+     "kind": "def",
+     "name": "hop2_exception_slot_obligation"
+    },
+    {
+     "kind": "theorem",
+     "name": "legacy_cone_bridge_boundary_is_recorded"
+    }
+   ],
+   "imports": [
+    "JurisLean.DungDefinitions",
+    "JurisLean.HornAAFContract",
+    "JurisLean.HornDefinitions",
+    "JurisLean.HornFixedPoint",
+    "JurisLean.IVLToAAF",
+    "JurisLean.IVLToHorn",
+    "JurisLean.LegalSpecToIVL",
+    "JurisLean.Seams.SourceNorms",
+    "Mathlib.Data.Finset.Basic",
+    "Mathlib.Data.Finset.Dedup",
+    "Mathlib.Data.Finset.Image",
+    "Mathlib.Data.Finset.Lattice.Basic",
+    "Mathlib.Data.Set.Image",
+    "Mathlib.Order.GaloisConnection.Defs",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/LegacyConeBridge.lean",
+   "print_axioms_targets": [],
+   "sha256": "e18dc1dd9ebe5dbfb7ba28061b85ed0c1f41e79c58750a35b17538e6267fe91e",
+   "size_bytes": 33925,
+   "theorem_count": 26,
+   "theorem_count_bol_convention": 26
+  },
+  {
+   "declarations": [
+    {
      "kind": "inductive",
      "name": "LegalStatus"
     },
@@ -25646,6 +26678,245 @@
    "declarations": [
     {
      "kind": "structure",
+     "name": "ConditionRecord"
+    },
+    {
+     "kind": "def",
+     "name": "procedurePath"
+    },
+    {
+     "kind": "def",
+     "name": "extraGate"
+    },
+    {
+     "kind": "def",
+     "name": "recordGate"
+    },
+    {
+     "kind": "def",
+     "name": "cappedBasis"
+    },
+    {
+     "kind": "def",
+     "name": "recordFloor"
+    },
+    {
+     "kind": "def",
+     "name": "AllowC"
+    },
+    {
+     "kind": "def",
+     "name": "recordChoose"
+    },
+    {
+     "kind": "def",
+     "name": "recordGate_decidable"
+    },
+    {
+     "kind": "def",
+     "name": "band_membership_decidable"
+    },
+    {
+     "kind": "theorem",
+     "name": "allowC_iff_decidable"
+    },
+    {
+     "kind": "theorem",
+     "name": "recordFloor_le_agreed"
+    },
+    {
+     "kind": "theorem",
+     "name": "recordFloor_le_reductionFloor"
+    },
+    {
+     "kind": "theorem",
+     "name": "allowC_of_gate_open_band"
+    },
+    {
+     "kind": "theorem",
+     "name": "allowC_of_gate_closed"
+    },
+    {
+     "kind": "theorem",
+     "name": "not_allowC_of_gate_closed"
+    },
+    {
+     "kind": "theorem",
+     "name": "not_Allow_of_gate_open_and_lt_floor"
+    },
+    {
+     "kind": "def",
+     "name": "decidable_AllowC"
+    },
+    {
+     "kind": "def",
+     "name": "openBaseA"
+    },
+    {
+     "kind": "def",
+     "name": "openBaseB"
+    },
+    {
+     "kind": "theorem",
+     "name": "openBaseA_oldGate"
+    },
+    {
+     "kind": "theorem",
+     "name": "openBaseB_oldGate"
+    },
+    {
+     "kind": "theorem",
+     "name": "oldFloor_openBaseA"
+    },
+    {
+     "kind": "theorem",
+     "name": "oldFloor_openBaseB"
+    },
+    {
+     "kind": "def",
+     "name": "neutral"
+    },
+    {
+     "kind": "def",
+     "name": "programmeRecord"
+    },
+    {
+     "kind": "def",
+     "name": "capRecord"
+    },
+    {
+     "kind": "def",
+     "name": "malRecord"
+    },
+    {
+     "kind": "def",
+     "name": "clauseRecord"
+    },
+    {
+     "kind": "def",
+     "name": "burdenRecord"
+    },
+    {
+     "kind": "def",
+     "name": "likeRecord"
+    },
+    {
+     "kind": "theorem",
+     "name": "recordGate_neutral_of_oldGate_true"
+    },
+    {
+     "kind": "theorem",
+     "name": "recordGate_false_of_no_programme_entry"
+    },
+    {
+     "kind": "theorem",
+     "name": "like_standard_off_closes_gate"
+    },
+    {
+     "kind": "theorem",
+     "name": "allow_blind_to_programme_bits"
+    },
+    {
+     "kind": "theorem",
+     "name": "allow_blind_to_foreseeable_cap"
+    },
+    {
+     "kind": "theorem",
+     "name": "allow_blind_to_malicious_register"
+    },
+    {
+     "kind": "theorem",
+     "name": "allowC_blind_to_noAdjustmentClause"
+    },
+    {
+     "kind": "theorem",
+     "name": "recordGate_blind_to_noAdjustmentClause"
+    },
+    {
+     "kind": "theorem",
+     "name": "reductionGate_reads_only_base"
+    },
+    {
+     "kind": "theorem",
+     "name": "gate_programmeRecord_on"
+    },
+    {
+     "kind": "theorem",
+     "name": "gate_malRecord_on"
+    },
+    {
+     "kind": "theorem",
+     "name": "floor_capRecord_openBaseB_100"
+    },
+    {
+     "kind": "theorem",
+     "name": "floor_capRecord_openBaseB_300"
+    },
+    {
+     "kind": "theorem",
+     "name": "floor_programmeRecord_openBaseA"
+    },
+    {
+     "kind": "theorem",
+     "name": "floor_malRecord_openBaseB_off"
+    },
+    {
+     "kind": "theorem",
+     "name": "clarification_changes_extension"
+    },
+    {
+     "kind": "theorem",
+     "name": "foreseeable_cap_changes_extension"
+    },
+    {
+     "kind": "theorem",
+     "name": "malicious_register_changes_extension"
+    },
+    {
+     "kind": "theorem",
+     "name": "one_sided_burden_is_not_enough"
+    },
+    {
+     "kind": "theorem",
+     "name": "allowC_admits_recordChoose"
+    },
+    {
+     "kind": "theorem",
+     "name": "new_bits_never_open_base_closed_gate"
+    },
+    {
+     "kind": "theorem",
+     "name": "recordGate_true_implies_oldGate_true"
+    },
+    {
+     "kind": "def",
+     "name": "onMaliciousAllNewOpen"
+    },
+    {
+     "kind": "theorem",
+     "name": "all_new_bits_open_still_cannot_pass_malicious_base"
+    },
+    {
+     "kind": "theorem",
+     "name": "compliant_proof_alone_does_not_open_gate"
+    }
+   ],
+   "imports": [
+    "JurisLean.Seams.Probability",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/ReductionConditions2.lean",
+   "print_axioms_targets": [],
+   "sha256": "35b8700dcf40aff9ed38fbb5bfa674e34896999f4ad6f4243968fc58206f250c",
+   "size_bytes": 41513,
+   "theorem_count": 35,
+   "theorem_count_bol_convention": 35
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
      "name": "Fragment"
     },
     {
@@ -25837,6 +27108,206 @@
    "size_bytes": 25697,
    "theorem_count": 30,
    "theorem_count_bol_convention": 30
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "sanctionDailyRate"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanctionDailyRate_eq_wanfen_yi_dian_qi_wu"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanctionDailyRate_eq_seven_over_fourthousand"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanctionDailyRate_times_40000_eq_7"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanctionDailyRate_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanctionDailyRate_lt_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanctionDailyRate_cross_multiplication"
+    },
+    {
+     "kind": "def",
+     "name": "sanctionDailyRate_matches_statuteObligation"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanctionDailyRate_matches_unique"
+    },
+    {
+     "kind": "def",
+     "name": "doubleInterest"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_zero_days"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_zero_principal"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_monotone_days"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_strict_mono_days"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_injective_days"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_monotone_principal"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_scale_principal"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_add_days"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_succ_days"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_mul_days"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_cleared"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_sub_principal"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_partial_payment_gap"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanction_single_basis_overstates"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_case_1w_1d"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_case_10w_100d"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_case_100w_365d"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanction_days_5714_5715_int_window"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_ge_principal"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_case_10w_5714d"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_case_10w_5715d"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanction_threshold_concrete"
+    },
+    {
+     "kind": "def",
+     "name": "doubleInterestOfAmount"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterestOfAmount_apply"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterestOfAmount_case_10w_100d"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterestOfAmount_negative_is_negative"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterestOfAmount_negative_not_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "doubleInterest_Iv_bounds"
+    },
+    {
+     "kind": "def",
+     "name": "sanctionPeriodDaysObligation"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanction_amount_is_rule_blind"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanction_period_rule_gap_changes_amount"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanction_period_days_obligation_failure_changes_amount"
+    },
+    {
+     "kind": "def",
+     "name": "art264_obligationShape"
+    },
+    {
+     "kind": "theorem",
+     "name": "art264_obligationShape_holds"
+    },
+    {
+     "kind": "theorem",
+     "name": "art264_amount_is_not_a_fixed_sum"
+    }
+   ],
+   "imports": [
+    "JurisLean.FullMath.Numeric.Intervals",
+    "JurisLean.Seams.Probability",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/SanctionInterest.lean",
+   "print_axioms_targets": [],
+   "sha256": "3cf9ff105bfa810f2ce4b1191381568a7e925e78f3ad7ab0c13c6a11313d9d45",
+   "size_bytes": 36315,
+   "theorem_count": 40,
+   "theorem_count_bol_convention": 40
   },
   {
    "declarations": [
@@ -26034,6 +27505,226 @@
    "declarations": [
     {
      "kind": "def",
+     "name": "chainNormClass"
+    },
+    {
+     "kind": "def",
+     "name": "chainBurdenedParty"
+    },
+    {
+     "kind": "def",
+     "name": "chainGap"
+    },
+    {
+     "kind": "def",
+     "name": "chainAtomOfClass"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_norms_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_atom_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_aaf_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_pol_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_disputed_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_evalDom_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_aaf_args_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_admissible_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_stableKernel_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_zero_in_kernel"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_art91_allocation_hop"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_art91_clause_is_decidable"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_atom_is_the_clause_two_slot"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_L1_closure_hop"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_L1_derived_support_true"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_L2_finalDerivable"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_L2_not_defeated"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_L2_hop"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_tier_part_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_tier_part_two"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_tier_attaches_108"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_tier_attaches_109"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_tier_hop"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_collapse_from_the_109_tier"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_tier_gates_are_distinct_on_the_carrier"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_tier_material_is_a_strict_hierarchy"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_art108_finding_fires"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_phrases_are_distinct"
+    },
+    {
+     "kind": "def",
+     "name": "chainIntervalCarrier"
+    },
+    {
+     "kind": "def",
+     "name": "chainIntervalMem"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_amount_hop"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_amount_declared_choice_admitted"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_amount_faces_meet_only_numerically"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_seam_label_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_seam_label2_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_seam_args_eq_instance_args"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_subject_divergence"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_pol_support_is_constant"
+    },
+    {
+     "kind": "def",
+     "name": "chain_art90_gate_has_input"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_art90_gate_has_no_input"
+    },
+    {
+     "kind": "def",
+     "name": "chainNamingM"
+    },
+    {
+     "kind": "def",
+     "name": "chain_naming_hop_closes"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_naming_hop_does_not_close"
+    },
+    {
+     "kind": "def",
+     "name": "StatuteChainOn"
+    },
+    {
+     "kind": "theorem",
+     "name": "statuteChain_on_instanceM"
+    },
+    {
+     "kind": "theorem",
+     "name": "statuteChain_reaches_the_one_closed_instance"
+    }
+   ],
+   "imports": [
+    "JurisLean.FullMath.Numeric.Intervals",
+    "JurisLean.Seams.BurdenStatutes",
+    "JurisLean.Seams.Probability",
+    "JurisLean.Seams.Transitions",
+    "JurisLean.Seams.UnifiedInstance",
+    "Mathlib.Data.Finset.Basic",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/StatuteChain.lean",
+   "print_axioms_targets": [],
+   "sha256": "5eba95244fa09fb785740c3dc0a0d32c11aa24ca851a3c93b2e9bf952afef4f6",
+   "size_bytes": 51751,
+   "theorem_count": 40,
+   "theorem_count_bol_convention": 40
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
      "name": "trunc"
     },
     {
@@ -26199,6 +27890,209 @@
    "size_bytes": 29358,
    "theorem_count": 28,
    "theorem_count_bol_convention": 28
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "namedClosure"
+    },
+    {
+     "kind": "def",
+     "name": "admissibleFromHorn"
+    },
+    {
+     "kind": "def",
+     "name": "exceptionEdges"
+    },
+    {
+     "kind": "def",
+     "name": "aafOf"
+    },
+    {
+     "kind": "def",
+     "name": "noExc"
+    },
+    {
+     "kind": "def",
+     "name": "noExcDec"
+    },
+    {
+     "kind": "theorem",
+     "name": "args_are_named_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "named_closure_within_args"
+    },
+    {
+     "kind": "theorem",
+     "name": "horn_derived_is_admissible"
+    },
+    {
+     "kind": "theorem",
+     "name": "not_admissible_not_in_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "attacks_only_between_derived"
+    },
+    {
+     "kind": "theorem",
+     "name": "noPremiseRule_in_closure"
+    },
+    {
+     "kind": "def",
+     "name": "aafNoExceptions"
+    },
+    {
+     "kind": "def",
+     "name": "policyOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "exceptionEdges_noExc_eq_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "aafNoExceptions_attacks_eq_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "attackers_eq_empty_of_attacks_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "F_args_eq_args_of_attacks_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "baseSet_policyOf_eq_args"
+    },
+    {
+     "kind": "theorem",
+     "name": "policyClosed_obligation_for"
+    },
+    {
+     "kind": "inductive",
+     "name": "ClauseAtom"
+    },
+    {
+     "kind": "def",
+     "name": "encode"
+    },
+    {
+     "kind": "theorem",
+     "name": "encode_ne"
+    },
+    {
+     "kind": "def",
+     "name": "claimCase"
+    },
+    {
+     "kind": "def",
+     "name": "conflict"
+    },
+    {
+     "kind": "def",
+     "name": "conflictAAF"
+    },
+    {
+     "kind": "def",
+     "name": "conflictPolicy"
+    },
+    {
+     "kind": "def",
+     "name": "rcRule"
+    },
+    {
+     "kind": "def",
+     "name": "naRule"
+    },
+    {
+     "kind": "theorem",
+     "name": "rcRule_mem_rules"
+    },
+    {
+     "kind": "theorem",
+     "name": "naRule_mem_rules"
+    },
+    {
+     "kind": "theorem",
+     "name": "reduction_claim_derived_obligation"
+    },
+    {
+     "kind": "theorem",
+     "name": "no_adjustment_derived"
+    },
+    {
+     "kind": "theorem",
+     "name": "reduction_in_args"
+    },
+    {
+     "kind": "theorem",
+     "name": "no_adjustment_in_args"
+    },
+    {
+     "kind": "theorem",
+     "name": "conflict_args_eq_or"
+    },
+    {
+     "kind": "theorem",
+     "name": "attack_no_adjustment_to_reduction"
+    },
+    {
+     "kind": "theorem",
+     "name": "attack_reduction_to_no_adjustment"
+    },
+    {
+     "kind": "theorem",
+     "name": "conflict_arg_has_attacker"
+    },
+    {
+     "kind": "theorem",
+     "name": "rejectedStep_empty_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "conflict_baseSet_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "conflict_rounds_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "conflict_never_adopted_obligation"
+    },
+    {
+     "kind": "theorem",
+     "name": "conflict_not_final_derivable_obligation"
+    },
+    {
+     "kind": "theorem",
+     "name": "reduction_claim_support_is_true"
+    },
+    {
+     "kind": "theorem",
+     "name": "transitions_boundary_is_recorded"
+    }
+   ],
+   "imports": [
+    "JurisLean.DungDefinitions",
+    "JurisLean.HornDefinitions",
+    "JurisLean.Seams.AdjudicationBridge",
+    "JurisLean.Seams.SourceNorms",
+    "Mathlib.Data.Finset.Basic",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/Transitions.lean",
+   "print_axioms_targets": [],
+   "sha256": "dc81bd296cf4974e9cb6b6e0c1a7a0f108efe9c0df3dc4f1b53a7ad2707550f8",
+   "size_bytes": 27794,
+   "theorem_count": 30,
+   "theorem_count_bol_convention": 30
   },
   {
    "declarations": [
@@ -26557,6 +28451,333 @@
    "size_bytes": 17220,
    "theorem_count": 3,
    "theorem_count_bol_convention": 3
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "verdictDomain"
+    },
+    {
+     "kind": "theorem",
+     "name": "one_notin_singleton"
+    },
+    {
+     "kind": "theorem",
+     "name": "two_notin_singleton"
+    },
+    {
+     "kind": "theorem",
+     "name": "zero_mem_singleton"
+    },
+    {
+     "kind": "theorem",
+     "name": "set01_ne_set0"
+    },
+    {
+     "kind": "theorem",
+     "name": "set02_ne_set0"
+    },
+    {
+     "kind": "theorem",
+     "name": "set01_ne_set02"
+    },
+    {
+     "kind": "theorem",
+     "name": "verdictDomain_admissible"
+    },
+    {
+     "kind": "theorem",
+     "name": "verdictDomain_admissible_unique"
+    },
+    {
+     "kind": "theorem",
+     "name": "verdictDomain_admissibleNonempty"
+    },
+    {
+     "kind": "theorem",
+     "name": "verdictDomain_stableKernel"
+    },
+    {
+     "kind": "theorem",
+     "name": "verdictDomain_allowedSet"
+    },
+    {
+     "kind": "theorem",
+     "name": "verdictDomain_kernel_is_singleton"
+    },
+    {
+     "kind": "theorem",
+     "name": "verdictDomain_collapse"
+    },
+    {
+     "kind": "theorem",
+     "name": "verdictDomain_collapse_and_nonempty"
+    },
+    {
+     "kind": "theorem",
+     "name": "verdictDomain_unique_verdict"
+    },
+    {
+     "kind": "theorem",
+     "name": "trialDomain_not_admissible_at_singleton"
+    },
+    {
+     "kind": "theorem",
+     "name": "verdictDomain_ne_trialDomain"
+    },
+    {
+     "kind": "theorem",
+     "name": "verdictDomain_support_not_decisive"
+    },
+    {
+     "kind": "theorem",
+     "name": "verdictDomain_standard_not_decisive"
+    },
+    {
+     "kind": "theorem",
+     "name": "verdictDomain_rebuttal_not_decisive"
+    },
+    {
+     "kind": "def",
+     "name": "normsM"
+    },
+    {
+     "kind": "def",
+     "name": "ruleM"
+    },
+    {
+     "kind": "def",
+     "name": "atomM"
+    },
+    {
+     "kind": "theorem",
+     "name": "ruleM_mem_rules"
+    },
+    {
+     "kind": "theorem",
+     "name": "zero_in_closureM"
+    },
+    {
+     "kind": "theorem",
+     "name": "one_in_closureM"
+    },
+    {
+     "kind": "theorem",
+     "name": "atomM_entailed"
+    },
+    {
+     "kind": "theorem",
+     "name": "normsM_model_class_nonempty"
+    },
+    {
+     "kind": "def",
+     "name": "claimReduction"
+    },
+    {
+     "kind": "def",
+     "name": "claimNoAdjustment"
+    },
+    {
+     "kind": "theorem",
+     "name": "claimReduction_ne_noAdjustment"
+    },
+    {
+     "kind": "def",
+     "name": "aafM"
+    },
+    {
+     "kind": "theorem",
+     "name": "aafM_attacks_eq_empty"
+    },
+    {
+     "kind": "def",
+     "name": "polM"
+    },
+    {
+     "kind": "def",
+     "name": "disputedM"
+    },
+    {
+     "kind": "theorem",
+     "name": "attackers_eq_empty_of_attacks_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "F_eq_args_of_attacks_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "iter_pos_eq_args"
+    },
+    {
+     "kind": "theorem",
+     "name": "grounded_eq_args_of_attacks_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "baseSet_polM_eq_args"
+    },
+    {
+     "kind": "theorem",
+     "name": "policyClosed_polM_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "baseInGrounded_polM"
+    },
+    {
+     "kind": "theorem",
+     "name": "baseConflictFree_polM"
+    },
+    {
+     "kind": "theorem",
+     "name": "disputedM_is_grounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "aafM_args_has_two_distinct"
+    },
+    {
+     "kind": "def",
+     "name": "weightM"
+    },
+    {
+     "kind": "theorem",
+     "name": "weightM_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "weightM_total"
+    },
+    {
+     "kind": "def",
+     "name": "contaminatedM"
+    },
+    {
+     "kind": "theorem",
+     "name": "mem_envOld"
+    },
+    {
+     "kind": "def",
+     "name": "envWfDemo"
+    },
+    {
+     "kind": "def",
+     "name": "instanceM"
+    },
+    {
+     "kind": "theorem",
+     "name": "instanceM_collapse"
+    },
+    {
+     "kind": "theorem",
+     "name": "instanceM_admissibleNonempty"
+    },
+    {
+     "kind": "theorem",
+     "name": "instanceM_policyClosed"
+    },
+    {
+     "kind": "theorem",
+     "name": "instanceM_baseInGrounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "unified_model_has_closed_inhabitant"
+    },
+    {
+     "kind": "theorem",
+     "name": "instanceM_satisfies_declared_fragment"
+    },
+    {
+     "kind": "def",
+     "name": "statusObsM"
+    },
+    {
+     "kind": "def",
+     "name": "statusObsRegister"
+    },
+    {
+     "kind": "theorem",
+     "name": "statusObsM_faithful"
+    },
+    {
+     "kind": "theorem",
+     "name": "statusObsM_value_suspended"
+    },
+    {
+     "kind": "theorem",
+     "name": "statusObsM_value_unenforceable"
+    },
+    {
+     "kind": "theorem",
+     "name": "statusObsRegister_value_any"
+    },
+    {
+     "kind": "structure",
+     "name": "UnifiedModelObs"
+    },
+    {
+     "kind": "def",
+     "name": "forgetObservation"
+    },
+    {
+     "kind": "def",
+     "name": "liftWithObservation"
+    },
+    {
+     "kind": "def",
+     "name": "ObservedNonDegenerate"
+    },
+    {
+     "kind": "def",
+     "name": "instanceMObs"
+    },
+    {
+     "kind": "theorem",
+     "name": "instanceM_nondegenerate"
+    },
+    {
+     "kind": "theorem",
+     "name": "widening_is_conservative"
+    },
+    {
+     "kind": "theorem",
+     "name": "observation_not_determined_by_the_model"
+    },
+    {
+     "kind": "def",
+     "name": "observationDeterminedByModel"
+    },
+    {
+     "kind": "def",
+     "name": "instanceM_nondegenerate_obligation"
+    }
+   ],
+   "imports": [
+    "JurisLean.KernelV3",
+    "JurisLean.Seams.AdjudicationBridge",
+    "JurisLean.Seams.ClaimBasis",
+    "JurisLean.Seams.InstitutionalEffects",
+    "JurisLean.Seams.PrecedentFlow",
+    "JurisLean.Seams.Representation",
+    "JurisLean.Seams.SourceNorms",
+    "JurisLean.Seams.Uncertainty",
+    "JurisLean.Seams.Unified",
+    "JurisLean.TaintNoninterference",
+    "Mathlib.Algebra.BigOperators.Fin",
+    "Mathlib.Data.Finset.Basic",
+    "Mathlib.Data.Fintype.Basic",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
+   "print_axioms_targets": [],
+   "sha256": "77115cfc9460e3a1ccf925c36607eec0bda68683fc876297812feb77de243329",
+   "size_bytes": 42937,
+   "theorem_count": 53,
+   "theorem_count_bol_convention": 53
   },
   {
    "declarations": [
@@ -30116,17 +32337,24 @@
     "JurisLean.Seams.AdjudicationBridge",
     "JurisLean.Seams.BoundaryBridge5",
     "JurisLean.Seams.BoundaryClosure",
+    "JurisLean.Seams.BurdenStatutes",
     "JurisLean.Seams.ClaimBasis",
     "JurisLean.Seams.FullProcess",
     "JurisLean.Seams.InstitutionalEffects",
+    "JurisLean.Seams.LegacyConeBridge",
     "JurisLean.Seams.PayoffEquilibrium",
     "JurisLean.Seams.PrecedentFlow",
     "JurisLean.Seams.Probability",
+    "JurisLean.Seams.ReductionConditions2",
     "JurisLean.Seams.Representation",
+    "JurisLean.Seams.SanctionInterest",
     "JurisLean.Seams.SourceNorms",
+    "JurisLean.Seams.StatuteChain",
     "JurisLean.Seams.Temporal",
+    "JurisLean.Seams.Transitions",
     "JurisLean.Seams.Uncertainty",
     "JurisLean.Seams.Unified",
+    "JurisLean.Seams.UnifiedInstance",
     "JurisLean.SolverRouting",
     "JurisLean.SourceBundleSpec",
     "JurisLean.SourcePathSpec",
@@ -30161,8 +32389,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "2022671b6c5b14595669c3d21914a0852af6e8195ff89b1fa4bc4f52387ea68c",
-   "size_bytes": 8656,
+   "sha256": "e0a6ffdda55c541ac167dc2ffe9639bddad6e03a8ae1cf33246b527f730db655",
+   "size_bytes": 8928,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -30326,22 +32554,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3393,
-   "file_count": 312,
+   "counted_declaration_count": 3683,
+   "file_count": 319,
    "lemma_count": 141,
-   "print_axioms_command_count": 2277,
-   "print_axioms_distinct_targets": 2223,
-   "theorem_count": 3252,
-   "theorem_count_bol_convention": 3156
+   "print_axioms_command_count": 2567,
+   "print_axioms_distinct_targets": 2513,
+   "theorem_count": 3542,
+   "theorem_count_bol_convention": 3446
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3374,
-   "file_count": 297,
+   "counted_declaration_count": 3664,
+   "file_count": 304,
    "lemma_count": 134,
-   "print_axioms_command_count": 2277,
-   "print_axioms_distinct_targets": 2223,
-   "theorem_count": 3240,
-   "theorem_count_bol_convention": 3144
+   "print_axioms_command_count": 2567,
+   "print_axioms_distinct_targets": 2513,
+   "theorem_count": 3530,
+   "theorem_count_bol_convention": 3434
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -30609,17 +32837,24 @@
    "proofs/lean/juris_lean/JurisLean/Seams/AdjudicationBridge.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/BoundaryBridge5.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/BoundaryClosure.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/BurdenStatutes.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/ClaimBasis.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/FullProcess.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/InstitutionalEffects.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/LegacyConeBridge.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/PayoffEquilibrium.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/PrecedentFlow.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Probability.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/ReductionConditions2.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Representation.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/SanctionInterest.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/SourceNorms.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/StatuteChain.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Temporal.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/Transitions.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Uncertainty.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Unified.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
    "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
    "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
    "proofs/lean/juris_lean/JurisLean/SourcePathSpec.lean",
@@ -30919,17 +33154,24 @@
    "proofs/lean/juris_lean/JurisLean/Seams/AdjudicationBridge.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/BoundaryBridge5.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/BoundaryClosure.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/BurdenStatutes.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/ClaimBasis.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/FullProcess.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/InstitutionalEffects.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/LegacyConeBridge.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/PayoffEquilibrium.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/PrecedentFlow.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Probability.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/ReductionConditions2.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Representation.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/SanctionInterest.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/SourceNorms.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/StatuteChain.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Temporal.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/Transitions.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Uncertainty.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Unified.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
    "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
    "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
    "proofs/lean/juris_lean/JurisLean/SourcePathSpec.lean",
@@ -31007,17 +33249,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "0f78ecd17cc40d0fc05108567ab3322e9aa3848a137657a1a8cb608e0698d605",
+ "source_inventory_digest": "b70c0a9338249ccbf19e7438b430e01068c3e19cd7439ba55100ebcfe7cb1dfc",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "5fb11ad1d27a6ea30b34f613dca6575e40d43121",
-  "tree": "da13a04119bfb9cc81310f6c6be08d3f804bfbaa"
+  "commit": "7ac598e46fb075a84e3b2ebff2e1ace3b6f13c3f",
+  "tree": "a144f6f4e079baa6c025b735a98c1f65b7de6b87"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 312,
+  "files_total": 319,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

@@ -157,16 +157,20 @@ Honest status: run 36451514398 (subject `c556f04`) first produced a compile-face
 
 ---
 
-## Erratum (2026-10-02): current shape and closure figures
 
-**This section supersedes every sentence above that describes two measured scopes.** The report
-now walks one tree (`proofs/lean/juris_lean/JurisLean`) and cross-checks against the same file set, and the two sides agree:
-3450 declarations in the inventory, 3450 in this report.
+---
 
-3450 theorem declarations; 430 are one-line contract transfers; 1145 conclusions bind no
-variable. Closure form: 263 closed by a single reflexive term, 94 by pure `decide`,
-3093 containing tactics. Figures are read from the generated artifacts at run time.
+## Derived accounting section (2026-10-02, recomputed - do not edit by hand)
 
-The root grew today because seven modules each earned their own changed-module CI round; the build
-dimension is attested by `lean-full-clean-build` green at subject `ad6fbfe8`. The axiom dimension
-remains `CI_NOT_RUN` and this erratum does not claim it.
+Regenerated from the artifacts; it supersedes every earlier shape or closure figure above.
+Before writing, the generator checks that the three closure classes partition the total and that
+the shape report and the closure census agree on the declaration count. If either fails it refuses
+to write, so this prose can never look more consistent than the accounts behind it.
+
+of the 3530 declarations, 274 close on a single reflexivity term, 96 close on `decide` alone,
+and 3160 carry a tactic proof; 430 are one-line contract transfers and 1199 conclusions bind no
+variable. The cross-check agrees from both sides: 3530 in the inventory, 3530 in this report.
+
+Nothing here changes the strength of any claim. The root grew because seven modules each earned
+their own changed-module CI round; the build dimension is attested by a green clean build, and the
+axiom dimension remains CI_NOT_RUN, which this section does not claim otherwise.

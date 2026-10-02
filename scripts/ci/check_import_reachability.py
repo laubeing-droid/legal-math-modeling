@@ -153,12 +153,14 @@ PENDING_CI_MODULES: dict[str, str] = {
     # empty and alive: any new module that has not earned a build lands here first.
     # Second-wave bridge (2026-10-02). `Seams.Transitions` builds green locally in a
     # serialized single-process window (2955 jobs, log _seams_build_logs/transitions_9.log)
-    # -- provisional pre-check only, NOT a Lean PASS. It stays here until its own
-    # changed-module CI run attests the BUILD dimension; the axiom dimension waits for a
-    # full-release round. Its four obligations (policyClosed discharge for the constructed
-    # policy, plus the three mutual-defeat fixture claims) are registered as named Prop
-    # defs inside the file, so quarantine here is about missing CI, not about missing proof.
-    "JurisLean.Seams.Transitions": "awaiting its own changed-module CI run (2026-10-02 W3)",
+    # -- provisional pre-check only, NOT a Lean PASS. Its changed-module CI run landed on
+    # 2026-10-02 (run 37004715236, subject e0533737): `Built JurisLean.Seams.Transitions` at
+    # job 2955/2955. That attests the BUILD dimension only -- the axiom dimension still waits
+    # for a full-release round, and root entry is what removes this line. The four obligations
+    # this file used to park as `def ... : Prop` targets are now theorems on the same
+    # statements (policyClosed discharge plus the three mutual-defeat fixture claims), so the
+    # reason for quarantine is root entry, not missing proof and not missing CI.
+    "JurisLean.Seams.Transitions": "build attested by run 37004715236; awaiting root entry (2026-10-02 W3)",
 }
 
 # Same-pin external ports (elazarg/GameTheory @ 107085bc4 and

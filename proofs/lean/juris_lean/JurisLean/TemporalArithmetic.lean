@@ -26,6 +26,20 @@ def DayInterval.valid (i : DayInterval) : Prop :=
 def DayInterval.contains (i : DayInterval) (d : Int) : Prop :=
   i.fromDay ≤ d ∧ d ≤ i.toDay
 
+/-- 中文说明：**日数计数**——补 `Seams/Temporal.lean` §未覆盖第 5 项自记的"`DayInterval` 无日数计数"，
+    也是 `Nat`（论长）与 `DayInterval`（论区间）两格之间的具名换算。闭区间含的天数
+    `(toDay - fromDay).toNat + 1`。诚实边界：不假设 `valid`；端点逆序时 `Int.toNat` 落到 `0`、
+    计数退化为 `1`（见 `dayCount_ge_one`，故它是个全函数，不吞定义域）。 -/
+def DayInterval.dayCount (i : DayInterval) : Nat := (i.toDay - i.fromDay).toNat + 1
+
+/-- 中文证明：日数恒不小于 1（全函数有下界，逆序退化也仍是 1）。 -/
+theorem DayInterval.dayCount_ge_one (i : DayInterval) : 1 ≤ i.dayCount := by
+  unfold DayInterval.dayCount
+  exact Nat.le_add_left 1 _
+
+/-- 中文证明：单点闭区间 `[0,0]` 的日数是 1——具例核对定义不是空转。 -/
+theorem DayInterval.dayCount_single_day : DayInterval.dayCount ⟨0, 0⟩ = 1 := rfl
+
 /-- 中文说明：区间交集（可能为空）。 -/
 def intervalIntersection (a b : DayInterval) : Option DayInterval :=
   if max a.fromDay b.fromDay ≤ min a.toDay b.toDay then

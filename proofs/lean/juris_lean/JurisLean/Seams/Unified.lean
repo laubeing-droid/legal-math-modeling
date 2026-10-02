@@ -312,4 +312,36 @@ theorem bridge_distinguishes_two_statuses :
       bridgeClaimStatusToPayoff ClaimBasis.Status.notYet := by
   decide
 
+/-- 正向桥的**部分逆**：只在这张已定义的取象表上有唯一原像的三格回指
+    （`upheld↢established`、`partiallyUpheld↢suspended`、`unenforceable↢unenforceable`），
+    `dismissed` 回 `none`——因为它有两个原像（`notYet` 与 `extinguished`）。
+    诚实边界：这不是新增教义等同主张，只是把 `bridgeClaimStatusToPayoff` 的可逆性结构写清楚——
+    桥在 `dismissed` 处不单，故非单射、非同构（基数 5≠4）。`established/suspended` 两格的回指
+    仍是"逆向读取上面那张保守取象表"，不声称逐格语义等同。 -/
+def payoffToClaimStatusPartial : PayoffEquilibrium.LegalStatus → Option ClaimBasis.Status
+  | .upheld => some .established
+  | .partiallyUpheld => some .suspended
+  | .unenforceable => some .unenforceable
+  | .dismissed => none
+
+/-- 唯一原像格可回环：正向桥复合部分逆等于 `some`（`rfl` 即可，纯构造子计算）。 -/
+theorem bridge_partial_inverse_established :
+    payoffToClaimStatusPartial (bridgeClaimStatusToPayoff ClaimBasis.Status.established) =
+      some ClaimBasis.Status.established := rfl
+
+theorem bridge_partial_inverse_suspended :
+    payoffToClaimStatusPartial (bridgeClaimStatusToPayoff ClaimBasis.Status.suspended) =
+      some ClaimBasis.Status.suspended := rfl
+
+/-- 桥在 `dismissed` 处坍缩：`notYet` 与 `extinguished` 两格像相同但原像不同——
+    把"不是同构"由措辞落成可判定的反例。`ClaimBasis.Status` 只 `deriving Repr`，
+    故不等式走 `cases`（noConfusion），不依赖 `DecidableEq`。 -/
+theorem bridge_not_injective_at_dismissed :
+    bridgeClaimStatusToPayoff ClaimBasis.Status.notYet
+      = bridgeClaimStatusToPayoff ClaimBasis.Status.extinguished ∧
+      ClaimBasis.Status.notYet ≠ ClaimBasis.Status.extinguished := by
+  refine ⟨rfl, ?_⟩
+  intro h
+  cases h
+
 end JurisLean.Seams

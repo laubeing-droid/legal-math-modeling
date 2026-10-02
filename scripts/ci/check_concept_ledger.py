@@ -118,7 +118,11 @@ def legal_vocabulary() -> set[str]:
     else is printed as a report only.
     """
     words: set[str] = set()
-    for path in (ROOT / "docs" / "master-plan" / "基线" / "法律概念总谱.md", LEDGER):
+    # Deliberately NOT the ledger itself: if the gate's blocking set grew every time someone
+    # registered a pair, writing the ledger would silently change what the gate is entitled to
+    # judge, and an incidental mention could promote plumbing noise into a red. The register of
+    # legal concepts is the only vocabulary allowed to confer standing.
+    for path in (ROOT / "docs" / "master-plan" / "基线" / "法律概念总谱.md",):
         if not path.exists():
             continue
         for tok in re.findall(r"[A-Za-z][A-Za-z0-9_']{3,}", path.read_text(encoding="utf-8")):

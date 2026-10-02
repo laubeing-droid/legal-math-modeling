@@ -169,16 +169,16 @@ PENDING_CI_MODULES: dict[str, str] = {
     # session log), which is a provisional pre-check and NOT a Lean PASS: none of these four has
     # had its own changed-module CI round yet, and AGENTS forbids root entry before one. The
     # counts are never copied into this comment -- read them from the generated accounts.
-    "JurisLean.Seams.ReductionConditions2": "awaiting its own changed-module CI run (2026-10-02 W4 batch 1-2: 法释〔2023〕13号 63-66)",
-    "JurisLean.Seams.BurdenStatutes": "awaiting its own changed-module CI run (2026-10-02 W4 batch 2: 民诉法解释 90/91/92/93/108/109)",
-    "JurisLean.Seams.LegacyConeBridge": "awaiting its own changed-module CI run (2026-10-02 G4: legacy cone four hops)",
-    "JurisLean.Seams.UnifiedInstance": "awaiting its own changed-module CI run (2026-10-02 G5: closed inhabitant of UnifiedModel)",
+    # JurisLean.Seams.ReductionConditions2 promoted to the release root 2026-10-02 after its own run 37023245750 @ 00a6f947
+    # JurisLean.Seams.BurdenStatutes promoted to the release root 2026-10-02 after its own run 37019459862 @ 85165767
+    # JurisLean.Seams.LegacyConeBridge promoted to the release root 2026-10-02 after its own run 37022933583 @ 00a6f947
+    # JurisLean.Seams.UnifiedInstance promoted to the release root 2026-10-02 after its own run 37021298862 @ 00a6f947
     # Batch three of the statute work. The booking and the file go into the SAME commit: a
     # booking that precedes the commit lands in a checkout that has no such module, and
     # round 37013367757 reddened on exactly that ("quarantine names modules that do not exist").
-    "JurisLean.Seams.SanctionInterest": "awaiting its own changed-module CI run (2026-10-02 W4 batch 3: 民诉法 264 + 法释〔2014〕8号第一条第3款)",
+    # JurisLean.Seams.SanctionInterest promoted to the release root 2026-10-02 after its own run 37018899537 @ 85165767
     # The first end-to-end chain. Same commit as its file, same reason as above.
-    "JurisLean.Seams.StatuteChain": "awaiting its own changed-module CI run (2026-10-02 G6: burden -> closure -> admissible -> standard -> amount)",
+    # JurisLean.Seams.StatuteChain promoted to the release root 2026-10-02 after its own run 37022410829 @ 00a6f947
     # NOT booked here yet, and that is deliberate. Booking a module whose .lean file is still
     # untracked produces a red round with the message "quarantine names modules that do not
     # exist": the reachability walk reads the working tree while CI reads the checkout, so a

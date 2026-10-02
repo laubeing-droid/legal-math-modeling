@@ -29240,6 +29240,18 @@
     },
     {
      "kind": "def",
+     "name": "DayInterval.dayCount"
+    },
+    {
+     "kind": "theorem",
+     "name": "DayInterval.dayCount_ge_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "DayInterval.dayCount_single_day"
+    },
+    {
+     "kind": "def",
      "name": "intervalIntersection"
     },
     {
@@ -29273,10 +29285,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/TemporalArithmetic.lean",
    "print_axioms_targets": [],
-   "sha256": "b753a223f39e88f8a2802f98ca5455273f4e3c599462ee3ff5b2f41d0fb0aa94",
-   "size_bytes": 3115,
-   "theorem_count": 6,
-   "theorem_count_bol_convention": 6
+   "sha256": "172fc9474f91123ba4cebe89e7bac6fb0f9f2dbaa5be760d734581ea1c9556d7",
+   "size_bytes": 4075,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
   },
   {
    "declarations": [
@@ -32597,22 +32609,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3689,
+   "counted_declaration_count": 3691,
    "file_count": 319,
    "lemma_count": 141,
    "print_axioms_command_count": 2573,
    "print_axioms_distinct_targets": 2519,
-   "theorem_count": 3548,
-   "theorem_count_bol_convention": 3452
+   "theorem_count": 3550,
+   "theorem_count_bol_convention": 3454
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3670,
+   "counted_declaration_count": 3672,
    "file_count": 304,
    "lemma_count": 134,
    "print_axioms_command_count": 2573,
    "print_axioms_distinct_targets": 2519,
-   "theorem_count": 3536,
-   "theorem_count_bol_convention": 3440
+   "theorem_count": 3538,
+   "theorem_count_bol_convention": 3442
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33292,12 +33304,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "ef19b0862812d6961cbe3aa0260c9592df03b39607b7bd2e9bf782f551939561",
+ "source_inventory_digest": "672faa9cdd3164a7dff46bb6f00ba04c8443cb14fa674ffb82f8e56f14c98971",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "c1a6553f6b4768997de1f3ff6dd1b56a95ad367d",
-  "tree": "c220a7bc4bd8648078bdab0cba7c84262652fdc0"
+  "commit": "a078b6de0d06c847dda76178842bcb374bbc65da",
+  "tree": "3c0039c05f39e7b7992851069a8dc1aad090bea2"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

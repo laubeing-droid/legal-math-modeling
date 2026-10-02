@@ -151,7 +151,7 @@ PENDING_CI_MODULES: dict[str, str] = {
     # theorems were built and axiom-audited green by run 36468808532 (subject 3f44b8e)
     # and its root entry is attested by the build that contains it. The table stays
     # empty and alive: any new module that has not earned a build lands here first.
-    # Second-wave bridge (2026-10-02).  builds green locally in a
+    # Second-wave bridge (2026-10-02). `Seams.Transitions` builds green locally in a
     # serialized single-process window (2955 jobs, log _seams_build_logs/transitions_9.log)
     # -- provisional pre-check only, NOT a Lean PASS. It stays here until its own
     # changed-module CI run attests the BUILD dimension; the axiom dimension waits for a

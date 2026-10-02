@@ -189,19 +189,22 @@
 
 ---
 
-## 派生记账段（3532 口径，2026-10-02 重算，勿手改）
+
+---
+
+## 派生记账段（3534 口径，2026-10-02 重算，勿手改）
 
 本节由生成器从工件直读重写，**取代上文一切旧的计数与形状读数**。落笔前核实两件事：
 三类闭合形态之和恰等于总数；清单、闭包账与形状账三方对声明总数的读数一致。任一不成立即拒绝写。
 
-**作用域读数**（均取自 `theorem_inventory_v3.json`）：`juris_lean_package` 3532 条定理声明、304 个文件（`theorem_inventory_v3.json`）；
-`all_tracked_lean` 3544 条、319 文件（`theorem_inventory_v3.json`）。两作用域的包内审计面在源上是 2569 行 `#print axioms`（`theorem_inventory_v3.json`），
-去重后 2515 个具名目标（`theorem_inventory_v3.json`）；全仓侧共 2569 行、2515 个具名目标（`theorem_inventory_v3.json`）。
-审计驱动文件 `AxiomAudit.lean` 独占 2306 行（`theorem_inventory_v3.json`），军令层现由 280 条具名目标构成。
-2306 行里有 2515 个具名目标可解析（`theorem_inventory_v3.json`），余下为驱动自用条目。
+**作用域读数**（均取自 `theorem_inventory_v3.json`）：`juris_lean_package` 3534 条定理声明、304 个文件（`theorem_inventory_v3.json`）；
+`all_tracked_lean` 3546 条、319 文件（`theorem_inventory_v3.json`）。两作用域的包内审计面在源上是 2571 行 `#print axioms`（`theorem_inventory_v3.json`），
+去重后 2517 个具名目标（`theorem_inventory_v3.json`）；全仓侧共 2571 行、2517 个具名目标（`theorem_inventory_v3.json`）。
+审计驱动文件 `AxiomAudit.lean` 独占 2308 行（`theorem_inventory_v3.json`），军令层现由 280 条具名目标构成。
+2308 行里有 2517 个具名目标可解析（`theorem_inventory_v3.json`），余下为驱动自用条目。
 
-**闭合形态**：全仓 3532 条定理声明中（`theorem_inventory_v3.json`），274 条由单一反射项闭合、96 条由纯 decide 闭合、其余 3162 条含 tactic 过程（`theorem_inventory_v3.json` 与 `trivial_proof_census.json`）；其中一行式契约搬运 430 条（`theorem_inventory_v3.json`），结句中不绑定变量的 1200 条（`theorem_inventory_v3.json`）。
-交叉核对两侧相等：清单侧 3532，本报告侧 3532（`theorem_inventory_v3.json`）。
+**闭合形态**：全仓 3534 条定理声明中（`theorem_inventory_v3.json`），275 条由单一反射项闭合、96 条由纯 decide 闭合、其余 3163 条含 tactic 过程（`theorem_inventory_v3.json` 与 `trivial_proof_census.json`）；其中一行式契约搬运 430 条（`theorem_inventory_v3.json`），结句中不绑定变量的 1202 条（`theorem_inventory_v3.json`）。
+交叉核对两侧相等：清单侧 3534，本报告侧 3534（`theorem_inventory_v3.json`）。
 
 **本节不改变任何主张的强度**，只说明"数了多少、用什么项证的"。根扩大是因为七件模块各自拿到
 changed-module 认定后入根；构建面由 `lean-full-clean-build` 判绿认定，公理维度仍是 `CI_NOT_RUN`。

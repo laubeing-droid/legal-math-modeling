@@ -12,7 +12,9 @@ open JurisLean.FullMath.Numeric (Iv)
 **写者边界**：本件只新建这一份文件，不改动任何既有件，也**不**把本件加进根文件
 `proofs/lean/juris_lean/JurisLean.lean`（该处 `import JurisLean.Seams.*` 到 `:180` 为止，
 新模块要先拿到自己的 CI 单模块绿才入根，见 AGENTS.md「Lean Workflow」）。
-本件是**未编译草稿**：状态 `CI_NOT_RUN`，本地不跑 Lean（AGENTS.md「Lean Execution Boundary」）。
+编译状态（2026-10-02 本地预检更新）：本件已本地 `lake build JurisLean.Seams.SanctionInterest` 编过，
+`LAKE_EXIT=0`，日志 `_seams_build_logs/precheck3_SanctionInterest.log`（1 次尝试，本件零诊断）。
+该读数只是**本地临时预检**，不是 Lean 认定；认定仍只走绑定 subject SHA 的 CI，状态保持 `CI_NOT_RUN`。
 
 ### 一、施工令出处与实测缺口
 出处只有一行：`docs/master-plan/12_一次性全量落地施工计划_20261002.md:68` 的 §W4 表**第 5 行**
@@ -97,7 +99,8 @@ open JurisLean.FullMath.Numeric (Iv)
   （那一条的读数与政策关系本件**不复述**）。
 - **不做跨 2014-08-01 的分段**，不做部分履行的清偿顺位（抵充顺序），不做非金钱义务的迟延履行金。
 - **不碰公法制裁**：刑事罚金/没收、行政罚款按 `09 卷 §8.1` 判为越界，并列域未建。
-- **不声称本件已编译、已入根、已过 CI**；状态 `CI_NOT_RUN`，零 `sorry`、零 `admit`、
+- **不声称本件已入根、已过 CI**：本地 `lake build` 已绿一次（临时预检，见头注 §写者边界），
+  但**认定状态仍是 `CI_NOT_RUN`**，未入根；零 `sorry`、零 `admit`、
   零 `native_decide`、零自定义 `axiom`，没有把结论写进前提，没有削弱任何复用的陈述。
 -/
 

@@ -139,6 +139,9 @@ import JurisLean.Seams.ReductionConditions2
 import JurisLean.Seams.Transitions
 import JurisLean.Seams.UnifiedInstance
 
+import JurisLean.Seams.SanctionInterest
+import JurisLean.Seams.StatuteChain
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1504,6 +1507,46 @@ open HornSystem
 #print axioms JurisLean.Seams.Representation.representation_observations_preserved
 #print axioms JurisLean.Seams.Representation.representation_scope
 #print axioms JurisLean.Seams.Representation.separating_fragment_agreement_implies_equality
+#print axioms JurisLean.Seams.SanctionInterest.art264_amount_is_not_a_fixed_sum
+#print axioms JurisLean.Seams.SanctionInterest.art264_obligationShape_holds
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterestOfAmount_apply
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterestOfAmount_case_10w_100d
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterestOfAmount_negative_is_negative
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterestOfAmount_negative_not_zero
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_Iv_bounds
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_add_days
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_case_100w_365d
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_case_10w_100d
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_case_10w_5714d
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_case_10w_5715d
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_case_1w_1d
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_cleared
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_ge_principal
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_injective_days
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_monotone_days
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_monotone_principal
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_mul_days
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_nonneg
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_partial_payment_gap
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_scale_principal
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_strict_mono_days
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_sub_principal
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_succ_days
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_zero_days
+#print axioms JurisLean.Seams.SanctionInterest.doubleInterest_zero_principal
+#print axioms JurisLean.Seams.SanctionInterest.sanctionDailyRate_cross_multiplication
+#print axioms JurisLean.Seams.SanctionInterest.sanctionDailyRate_eq_seven_over_fourthousand
+#print axioms JurisLean.Seams.SanctionInterest.sanctionDailyRate_eq_wanfen_yi_dian_qi_wu
+#print axioms JurisLean.Seams.SanctionInterest.sanctionDailyRate_lt_one
+#print axioms JurisLean.Seams.SanctionInterest.sanctionDailyRate_matches_unique
+#print axioms JurisLean.Seams.SanctionInterest.sanctionDailyRate_pos
+#print axioms JurisLean.Seams.SanctionInterest.sanctionDailyRate_times_40000_eq_7
+#print axioms JurisLean.Seams.SanctionInterest.sanction_amount_is_rule_blind
+#print axioms JurisLean.Seams.SanctionInterest.sanction_days_5714_5715_int_window
+#print axioms JurisLean.Seams.SanctionInterest.sanction_period_days_obligation_failure_changes_amount
+#print axioms JurisLean.Seams.SanctionInterest.sanction_period_rule_gap_changes_amount
+#print axioms JurisLean.Seams.SanctionInterest.sanction_single_basis_overstates
+#print axioms JurisLean.Seams.SanctionInterest.sanction_threshold_concrete
 #print axioms JurisLean.Seams.SourceNorms.closure_is_model
 #print axioms JurisLean.Seams.SourceNorms.closure_only_entailed
 #print axioms JurisLean.Seams.SourceNorms.entailed_in_closure
@@ -1533,6 +1576,46 @@ open HornSystem
 #print axioms JurisLean.Seams.SourceNorms.resolveConflict_some_selects_maximal
 #print axioms JurisLean.Seams.SourceNorms.resolveConflict_tie_value_in
 #print axioms JurisLean.Seams.SourceNorms.step_within_model
+#print axioms JurisLean.Seams.StatuteChain.chain_L1_closure_hop
+#print axioms JurisLean.Seams.StatuteChain.chain_L1_derived_support_true
+#print axioms JurisLean.Seams.StatuteChain.chain_L2_finalDerivable
+#print axioms JurisLean.Seams.StatuteChain.chain_L2_hop
+#print axioms JurisLean.Seams.StatuteChain.chain_L2_not_defeated
+#print axioms JurisLean.Seams.StatuteChain.chain_aaf_args_eq
+#print axioms JurisLean.Seams.StatuteChain.chain_aaf_eq
+#print axioms JurisLean.Seams.StatuteChain.chain_admissible_iff
+#print axioms JurisLean.Seams.StatuteChain.chain_amount_declared_choice_admitted
+#print axioms JurisLean.Seams.StatuteChain.chain_amount_faces_meet_only_numerically
+#print axioms JurisLean.Seams.StatuteChain.chain_amount_hop
+#print axioms JurisLean.Seams.StatuteChain.chain_art108_finding_fires
+#print axioms JurisLean.Seams.StatuteChain.chain_art90_gate_has_no_input
+#print axioms JurisLean.Seams.StatuteChain.chain_art91_allocation_hop
+#print axioms JurisLean.Seams.StatuteChain.chain_art91_clause_is_decidable
+#print axioms JurisLean.Seams.StatuteChain.chain_atom_eq
+#print axioms JurisLean.Seams.StatuteChain.chain_atom_is_the_clause_two_slot
+#print axioms JurisLean.Seams.StatuteChain.chain_collapse_from_the_109_tier
+#print axioms JurisLean.Seams.StatuteChain.chain_disputed_eq
+#print axioms JurisLean.Seams.StatuteChain.chain_evalDom_eq
+#print axioms JurisLean.Seams.StatuteChain.chain_naming_hop_does_not_close
+#print axioms JurisLean.Seams.StatuteChain.chain_norms_eq
+#print axioms JurisLean.Seams.StatuteChain.chain_phrases_are_distinct
+#print axioms JurisLean.Seams.StatuteChain.chain_pol_eq
+#print axioms JurisLean.Seams.StatuteChain.chain_pol_support_is_constant
+#print axioms JurisLean.Seams.StatuteChain.chain_seam_args_eq_instance_args
+#print axioms JurisLean.Seams.StatuteChain.chain_seam_label2_eq
+#print axioms JurisLean.Seams.StatuteChain.chain_seam_label_eq
+#print axioms JurisLean.Seams.StatuteChain.chain_stableKernel_eq
+#print axioms JurisLean.Seams.StatuteChain.chain_subject_divergence
+#print axioms JurisLean.Seams.StatuteChain.chain_tier_attaches_108
+#print axioms JurisLean.Seams.StatuteChain.chain_tier_attaches_109
+#print axioms JurisLean.Seams.StatuteChain.chain_tier_gates_are_distinct_on_the_carrier
+#print axioms JurisLean.Seams.StatuteChain.chain_tier_hop
+#print axioms JurisLean.Seams.StatuteChain.chain_tier_material_is_a_strict_hierarchy
+#print axioms JurisLean.Seams.StatuteChain.chain_tier_part_one
+#print axioms JurisLean.Seams.StatuteChain.chain_tier_part_two
+#print axioms JurisLean.Seams.StatuteChain.chain_zero_in_kernel
+#print axioms JurisLean.Seams.StatuteChain.statuteChain_on_instanceM
+#print axioms JurisLean.Seams.StatuteChain.statuteChain_reaches_the_one_closed_instance
 #print axioms JurisLean.Seams.Temporal.IntertemporalLawSignature.withRetroFalse_preserves_wellFormed
 #print axioms JurisLean.Seams.Temporal.addDays_commutes_with_embedding
 #print axioms JurisLean.Seams.Temporal.aggregate_add_arrival_insensitive

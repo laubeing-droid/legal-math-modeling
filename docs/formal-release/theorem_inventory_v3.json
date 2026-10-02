@@ -2185,6 +2185,8 @@
     "JurisLean.Seams.SourceNorms.resolveConflict_some_selects_maximal",
     "JurisLean.Seams.SourceNorms.resolveConflict_tie_value_in",
     "JurisLean.Seams.SourceNorms.step_within_model",
+    "JurisLean.Seams.StatuteChain.amountBridge_order_iff",
+    "JurisLean.Seams.StatuteChain.amountBridge_subtraction_disagrees",
     "JurisLean.Seams.StatuteChain.chain_L1_closure_hop",
     "JurisLean.Seams.StatuteChain.chain_L1_derived_support_true",
     "JurisLean.Seams.StatuteChain.chain_L2_finalDerivable",
@@ -2870,8 +2872,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "356d431bbdd2aef0055b816004e037206dd5d7875c3b3271dd7223fd0971ed7a",
-   "size_bytes": 161239,
+   "sha256": "16dbd32558c33c1eaf6cc2ac7627428c9b2aef1e5c7e0fab8cf362080f26ffb6",
+   "size_bytes": 161383,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -27706,6 +27708,18 @@
     {
      "kind": "theorem",
      "name": "statuteChain_reaches_the_one_closed_instance"
+    },
+    {
+     "kind": "def",
+     "name": "amountBridge"
+    },
+    {
+     "kind": "theorem",
+     "name": "amountBridge_order_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "amountBridge_subtraction_disagrees"
     }
    ],
    "imports": [
@@ -27720,10 +27734,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/StatuteChain.lean",
    "print_axioms_targets": [],
-   "sha256": "5eba95244fa09fb785740c3dc0a0d32c11aa24ca851a3c93b2e9bf952afef4f6",
-   "size_bytes": 51751,
-   "theorem_count": 40,
-   "theorem_count_bol_convention": 40
+   "sha256": "76bd4dac9e3a8add59266ad94426d4a37f4b102af6ba77f971008a2e56b3cf8b",
+   "size_bytes": 53441,
+   "theorem_count": 42,
+   "theorem_count_bol_convention": 42
   },
   {
    "declarations": [
@@ -32583,22 +32597,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3687,
+   "counted_declaration_count": 3689,
    "file_count": 319,
    "lemma_count": 141,
-   "print_axioms_command_count": 2571,
-   "print_axioms_distinct_targets": 2517,
-   "theorem_count": 3546,
-   "theorem_count_bol_convention": 3450
+   "print_axioms_command_count": 2573,
+   "print_axioms_distinct_targets": 2519,
+   "theorem_count": 3548,
+   "theorem_count_bol_convention": 3452
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3668,
+   "counted_declaration_count": 3670,
    "file_count": 304,
    "lemma_count": 134,
-   "print_axioms_command_count": 2571,
-   "print_axioms_distinct_targets": 2517,
-   "theorem_count": 3534,
-   "theorem_count_bol_convention": 3438
+   "print_axioms_command_count": 2573,
+   "print_axioms_distinct_targets": 2519,
+   "theorem_count": 3536,
+   "theorem_count_bol_convention": 3440
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33278,12 +33292,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "2e67555c99dd08dbd0f5fad4291cf46fe306c4caeec55a5aab2e9ff7b10f85b0",
+ "source_inventory_digest": "ef19b0862812d6961cbe3aa0260c9592df03b39607b7bd2e9bf782f551939561",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "0b11bebbd4e33f3736a0132c9dc58a2af1141fe5",
-  "tree": "d2fa4c5ea7a3e725fa8e83c479c4297820b2acd8"
+  "commit": "c1a6553f6b4768997de1f3ff6dd1b56a95ad367d",
+  "tree": "c220a7bc4bd8648078bdab0cba7c84262652fdc0"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

@@ -184,18 +184,21 @@ Honest status: run 36451514398 (subject `c556f04`) first produced a compile-face
 
 ---
 
-## Derived accounting section (3534 basis, recomputed 2026-10-02 - do not edit by hand)
+
+---
+
+## Derived accounting section (3536 basis, recomputed 2026-10-02 - do not edit by hand)
 
 Regenerated from the artifacts; it supersedes every earlier count or shape figure above.
 Before writing, the generator checks that the closure classes partition the total and that the
 inventory, the closure census and the shape report all read the same declaration count. If any
 fails it refuses to write, so this prose can never look more consistent than its sources.
 
-3534 theorem declarations in scope `juris_lean_package` across 304 files (theorem_inventory_v3.json). 3546 in scope `all_tracked_lean` across 319 files (theorem_inventory_v3.json). The package audit surface carries 2571 `#print axioms` commands (theorem_inventory_v3.json) with 2517 distinct targets; the tracked scope holds 2571 commands and 2517 distinct targets. AxiomAudit.lean alone owns 2308 `#print axioms` commands and the mandate layer is 280 named targets, so 2308 lines resolve to 2517 distinct targets with the remainder driver-local.
+3536 theorem declarations in scope `juris_lean_package` across 304 files (theorem_inventory_v3.json). 3548 in scope `all_tracked_lean` across 319 files (theorem_inventory_v3.json). The package audit surface carries 2573 `#print axioms` commands (theorem_inventory_v3.json) with 2519 distinct targets; the tracked scope holds 2573 commands and 2519 distinct targets. AxiomAudit.lean alone owns 2310 `#print axioms` commands and the mandate layer is 280 named targets, so 2310 lines resolve to 2519 distinct targets with the remainder driver-local.
 
-of the 3534 declarations (theorem_inventory_v3.json), 275 close on a single reflexivity term, 96 close on `decide` alone, and 3163 carry a tactic proof (theorem_inventory_v3.json); 430 are one-line contract transfers and 1202 conclusions bind no variable. The cross-check agrees on both sides: 3534 and 3534 (theorem_inventory_v3.json).
+of the 3536 declarations (theorem_inventory_v3.json), 275 close on a single reflexivity term, 96 close on `decide` alone, and 3165 carry a tactic proof (theorem_inventory_v3.json); 430 are one-line contract transfers and 1203 conclusions bind no variable. The cross-check agrees on both sides: 3536 and 3536 (theorem_inventory_v3.json).
 
-The audit surface reports 2517 named targets and AxiomAudit.lean holds 2308 commands (theorem_inventory_v3.json); the mandate layer is 280 named targets (theorem_inventory_v3.json).
+The audit surface reports 2519 named targets and AxiomAudit.lean holds 2310 commands (theorem_inventory_v3.json); the mandate layer is 280 named targets (theorem_inventory_v3.json).
 
 Nothing here changes the strength of any claim. The root grew because seven modules each earned
 their own changed-module CI round; the build dimension is attested by a green clean build, and the

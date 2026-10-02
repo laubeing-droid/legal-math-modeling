@@ -14,8 +14,14 @@ NAME=re.compile(r"[A-Za-z_][A-Za-z_0-9']*(?:\.[A-Za-z_][A-Za-z_0-9']*)*")
 
 
 def strip_comments_strings(text: str) -> str:
-    """Preserve newlines and remove nested block/line comments and strings."""
+    """Preserve newlines and remove nested block/line comments, strings and char literals.
+
+    A bare `'` starts a Lean `Char` literal only when it is not part of an identifier: the
+    prime in `hx'` must not be taken as an opening quote (this scanner once turned
+    `def quoteByte : Char := '"'` into a phantom unclosed string and rejected the whole tree).
+    """
     out=[];i=0;depth=0;quoted=False
+    ident="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_"
     while i<len(text):
         ch=text[i]
         if depth:
@@ -31,6 +37,12 @@ def strip_comments_strings(text: str) -> str:
             out.extend(' '*(j-i));i=j;continue
         if text.startswith('/-',i):depth=1;out.extend('  ');i+=2;continue
         if ch=='"':quoted=True;out.append(' ');i+=1;continue
+        if ch=="'" and (i==0 or text[i-1] not in ident):
+            k=i+1
+            if k<len(text) and text[k]=='\\':k+=2
+            elif k<len(text):k+=1
+            if k<len(text) and text[k]=="'":
+                out.extend(' '*(k-i+1));i=k+1;continue
         out.append(ch);i+=1
     if depth or quoted:raise ValueError('Unclosed source comment/string; do not silently omit imports')
     return ''.join(out)

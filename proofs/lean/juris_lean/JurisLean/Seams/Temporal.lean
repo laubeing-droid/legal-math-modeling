@@ -416,6 +416,30 @@ theorem no_unified_time_carrier_yet :
   have hpre : Int.toNat (-1 : Int) ≤ Int.toNat (-2 : Int) := by decide
   exact absurd (hall (-1) (-2) hpre) (by decide : ¬ ((-1 : Int) ≤ (-2 : Int)))
 
+/-- **`Int`（有向时点）↔ `DayInterval`（期间）桥**——13_ 卷 C5 指定"先收两套：`Int` 与
+    `DayInterval` 保留为规范时间载体，四套无转换函数"。上面已把 `Nat↔Int(TimePoint)` 接上；
+    本条补上 `Int`↔`DayInterval` 这一对：把一个时点看成退化单日闭区间 `[d,d]`。
+    诚实边界：只交"时点→退化区间"这一方向的具名换算及其可逆/单射性，不声称 `String` 显示位、
+    两个 `EventHistory` 也已被桥接（那三句仍是 §未覆盖片段的散文边界）。 -/
+def instantToInterval (d : Int) : DayInterval := ⟨d, d⟩
+
+/-- 期间→时点：取区间起始端点；与 `instantToInterval` 在退化区间上互逆。 -/
+def intervalToInstant (i : DayInterval) : Int := i.fromDay
+
+/-- 往返：时点先成退化区间再读回起点，等于原时点（定义级）。 -/
+theorem intervalToInstant_instantToInterval (d : Int) :
+    intervalToInstant (instantToInterval d) = d := rfl
+
+/-- 桥非空洞：不同时点落到不同区间（`DayInterval` 有 DecidableEq，`decide` 直接判）。 -/
+theorem instantToInterval_distinguishes :
+    instantToInterval (0 : Int) ≠ instantToInterval (1 : Int) := by
+  decide
+
+/-- 桥是单的：把 `Int` 时点在 `DayInterval` 载体里不坍缩。 -/
+theorem instantToInterval_inj (a b : Int)
+    (h : instantToInterval a = instantToInterval b) : a = b := by
+  simpa [instantToInterval] using congrArg DayInterval.fromDay h
+
 end CarrierBridge
 
 section TransitionSkeleton

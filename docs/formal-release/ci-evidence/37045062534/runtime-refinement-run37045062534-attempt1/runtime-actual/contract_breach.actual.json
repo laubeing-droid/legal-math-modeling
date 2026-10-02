@@ -1,0 +1,33 @@
+{
+  "schema_version": "spec-runtime-refinement-v2",
+  "role": "actual",
+  "producer": "juris-calculus",
+  "lmm_commit": "4a25eab7bd70287b933aa361d2ac0b3ac2b7f5a7",
+  "runtime_commit": "c79e03b8d0cfed85c43cc013bf8a0b50326bc858",
+  "runtime_build_id": "github-actions:37045062534:1",
+  "fixture_digest": "8388a84e70398481aad8f1a0822495cbc6e6b27d9ae005d6ffd68466c7ef20ed",
+  "runtime_fixture_digest": "de2cc206fe70dbe8c2a76472928c1ede9f7c74766e28964f6fd8c5ed298d6563",
+  "source_snapshot_digests": [
+    "089756e3b086e9a48d04641fb5d2609bb1dffa15fdbe232c37531c5f0abb2f5b"
+  ],
+  "rule_pack_digest": "2530cd3fbd03ad13a7127798507234da60c9f41263cbf9291fb370f0cac6c73c",
+  "cases": [
+    {
+      "case_id": "contract::plain",
+      "actual_status": "PROVED",
+      "runtime_evidence_digest": "7c482cf5e65a617b3d95b65703b4d33978a7098ad00e09191807ff409cf5534c"
+    },
+    {
+      "case_id": "contract::force-majeure",
+      "actual_status": "REFUTED",
+      "runtime_evidence_digest": "2d646780d5a46826cb1e8d55f289366961a91f448035486c81bd700d246a5156"
+    },
+    {
+      "case_id": "contract::malformed-certificate",
+      "actual_status": "TAINTED",
+      "runtime_evidence_digest": "cbb5d5f73ad02a1e97ab6940db81b39025392d833c196dff605e639344158438"
+    }
+  ],
+  "execution_status": "SUCCESS",
+  "receipt_digest": "59e4587658c609403d884a7e4984b664cc0c97ffb6bbd4218d44204d58d9576d"
+}

@@ -168,25 +168,37 @@
 
 ---
 
-## 派生记账段（2026-10-02 重算，勿手改）
 
-本节由 `scripts/ci/` 下的生成器从工件直读重写，**取代上文一切旧的形状与闭合形态读数**。
-写盘前先核实两件事：三类闭合形态之和恰等于总数；形状账与闭包账对定理声明总数的读数一致。
-任一不成立，脚本拒绝落笔——所以这段文字不会比它背后的账更"自洽"。
+---
 
-| 口径 | 现行值 | 出处 |
-|------|--------|------|
-| 全仓 3530 条定理声明 | 3530 | `trivial_proof_census.json` theorem_declarations，与 `declaration_shape_report.json` scope.counts.theorems 一致 |
-| 一行式契约搬运 | 430 | 同上 ALIAS_ONE_LINER |
-| 结句不绑定变量 | 1199 | 同上 CLOSED_NO_BINDERS |
-| 单一闭式项 | 274 | `trivial_proof_census.json` closure_counts.TRIVIAL_TERM |
-| 纯 decide 闭合 | 96 | 同上 DECIDE_CLOSED |
-| 含 tactic 过程 | 3160 | 同上 TACTIC |
 
-散文口径：全仓 3530 条定理声明中，274 条由单一反射项闭合、96 条由纯 decide 闭合、其余 3160 条含 tactic 过程；
-其中一行式契约搬运 430 条，结句中不绑定变量的 1199 条。交叉核对两侧读数相等
-（清单侧 3530，本报告侧 3530）。
+---
 
-**本节不改变任何主张的强度。** 它只说明"数了多少、用什么项证的"。根扩大是因为七件模块各自
-拿到 changed-module 认定后入根；构建面由 `lean-full-clean-build` 判绿认定，
-公理维度仍是 `CI_NOT_RUN`，本节不代为声明。
+
+---
+
+
+---
+
+
+---
+
+
+---
+
+## 派生记账段（3530 口径，2026-10-02 重算，勿手改）
+
+本节由生成器从工件直读重写，**取代上文一切旧的计数与形状读数**。落笔前核实两件事：
+三类闭合形态之和恰等于总数；清单、闭包账与形状账三方对声明总数的读数一致。任一不成立即拒绝写。
+
+**作用域读数**（均取自 `theorem_inventory_v3.json`）：`juris_lean_package` 3530 条定理声明、304 个文件（`theorem_inventory_v3.json`）；
+`all_tracked_lean` 3542 条、319 文件（`theorem_inventory_v3.json`）。两作用域的包内审计面在源上是 2567 行 `#print axioms`（`theorem_inventory_v3.json`），
+去重后 2513 个具名目标（`theorem_inventory_v3.json`）；全仓侧共 2567 行、2513 个具名目标（`theorem_inventory_v3.json`）。
+审计驱动文件 `AxiomAudit.lean` 独占 2304 行（`theorem_inventory_v3.json`），军令层现由 280 条具名目标构成。
+2304 行里有 2513 个具名目标可解析（`theorem_inventory_v3.json`），余下为驱动自用条目。
+
+**闭合形态**：全仓 3530 条定理声明中（`theorem_inventory_v3.json`），274 条由单一反射项闭合、96 条由纯 decide 闭合、其余 3160 条含 tactic 过程（`theorem_inventory_v3.json` 与 `trivial_proof_census.json`）；其中一行式契约搬运 430 条（`theorem_inventory_v3.json`），结句中不绑定变量的 1199 条（`theorem_inventory_v3.json`）。
+交叉核对两侧相等：清单侧 3530，本报告侧 3530（`theorem_inventory_v3.json`）。
+
+**本节不改变任何主张的强度**，只说明"数了多少、用什么项证的"。根扩大是因为七件模块各自拿到
+changed-module 认定后入根；构建面由 `lean-full-clean-build` 判绿认定，公理维度仍是 `CI_NOT_RUN`。

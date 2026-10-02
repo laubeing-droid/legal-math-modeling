@@ -161,3 +161,29 @@
 
 此致
 每一位按行核过的人。
+
+
+---
+
+## 勘误（2026-10-02）：形状账与闭合形态账的现行数字
+
+**本节取代上文所有关于"两个作用域"的记账句。** 现行工件只测**一个**作用域
+（`walked_tree = proofs/lean/juris_lean/JurisLean`），并给出一条与之同文件集的交叉核对，两侧**相等**：
+清单侧 3450 条、本报告侧 3450 条。上文若仍出现 `all_tracked_lean` 与包外草稿并入的第二读数，
+那是旧版工件的结构，现行工件不再产出该口径，故不得据以引用。
+
+现行读数（逐字取自生成工件，不取自记忆，也不取自本文件上文）：
+
+| 口径 | 现行值 | 出处 |
+|------|--------|------|
+| 定理声明总数 | 3450 条定理声明 | `declaration_shape_report.json` scope.counts.theorems |
+| 一行式契约搬运 | 一行式契约搬运 430 条 | 同上 ALIAS_ONE_LINER |
+| 结句不绑定变量 | 结句中不绑定变量的 1145 条 | 同上 CLOSED_NO_BINDERS |
+| 单一闭式项闭合 | 263 条 | `trivial_proof_census.json` closure_counts.TRIVIAL_TERM |
+| 纯 decide 闭合 | 94 条 | 同上 DECIDE_CLOSED |
+| 含 tactic 闭合 | 3093 条 | 同上 TACTIC |
+
+**这张表不改变任何主张的强度**：它只把"数了多少"对齐到重算后的根。
+根在本日扩大是因为七件模块各自拿到自身 changed-module 认定后入根，
+构建面由 `lean-full-clean-build` 在 subject `ad6fbfe8` 判绿认定；
+公理维度仍是 `CI_NOT_RUN`，本勘误不代为声明。

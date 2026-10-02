@@ -31,7 +31,8 @@ L1（`Seams/SourceNorms.lean`）的原子是任意类型 `α`，"成立"读作�
 
 **这一跳不可被合并（`HeartWitness`）**：具体夹具——两个互相打断的主张（酌减请求 vs 仅凭
 "约定不得调整"的不予调整主张）。两条都在 L1 闭包里，但没有一条能被 L2 采纳：
-`reduction_claim_is_derived`（L1 成立）＋`cycle_not_final_derivable`（L2 永不可支持）。
+`reduction_claim_derived_obligation`（L1 成立）＋`conflict_never_adopted_obligation`
+与 `conflict_not_final_derivable_obligation`（L2 每层都不采纳，因而不是 `FinalDerivable`）。
 ⇒ `[已证]` 同一结论可以 L1 成立而 L2 不可支持；两层不是同一对象上的同一性质。
 
 ## 三、不主张什么（写成签名级限制，不留给注释）
@@ -83,6 +84,11 @@ def noExc (x y : α) : Prop := False
 
 def noExcDec (x y : α) : Decidable (noExc x y) := isFalse id
 
+/-- 中文说明：`noExc` 的可判定性**实例**，值就是上面的 `noExcDec`。
+    本轮实测的卡点：`Finset.mem_filter` 要合成 `DecidablePred (fun p => noExc p.1 p.2)`，
+    只具名传 `(hdec := noExcDec)` 到 `exceptionEdges` 不够——`mem_filter` 那一侧仍搜索失败。 -/
+instance noExcDecidableRel {β : Type} : DecidableRel (noExc (α := β)) := noExcDec
+
 /-- 中文证明：**不增**——框架里每个论点都是某个被推出原子的命名像。
     论点集不依赖例外关系，故这条对任何 `defeats` 都成立。 -/
 theorem args_are_named_closure (sys : HornSystem α) (n : α → Arg)
@@ -130,6 +136,20 @@ theorem attacks_only_between_derived (sys : HornSystem α) (n : α → Arg)
   rcases (Finset.mem_product).mp hp1 with ⟨hx, hy⟩
   exact ⟨p.1, p.2, hx, hy, hp2, rfl⟩
 
+/-- 中文证明（**技术引理·闭包成员的唯一生产方式**）：`sys` 里任何**无前提规则**的结论都在
+    L1 的 |univ| 步闭包里。
+    路径是仓内已证的典范模型 `SourceNorms.closure_is_model`（闭包自身是模型）在该规则处的
+    闭合条件：前提空 ⇒ 前提含于闭包 ⇒ 结论进闭包。
+    工程说明：这条引理**故意绕开** `FiniteMonotoneSystem.iter` 的逐层计算——
+    `SourceNorms.closureAt` 是 `abbrev`，`decide` 穿过 `HornSystem.TH` 的 `filter/image`
+    不再化简（前九轮编译的实测卡点），而固定点一侧的等式把同一件事变成一次成员推理。 -/
+theorem noPremiseRule_in_closure (sys : HornSystem α) (r : HornRule α)
+    (hr : r ∈ sys.rules) (hprem : r.premises = (∅ : Finset α)) :
+    r.conclusion ∈ SourceNorms.closureAt sys := by
+  refine ((SourceNorms.closure_is_model sys).2 r hr) ?_
+  rw [hprem]
+  exact Finset.empty_subset _
+
 end Preservation
 
 section Discharge
@@ -148,18 +168,71 @@ def policyOf (sys : HornSystem α) (n : α → Arg) :
   obstructed := ∅
   contraryEvidence := ∅
 
-/-- 中文说明（**义务登记·非已证**）：`policyOf sys n` 的第 0 层采纳集对 `F` 封闭。
-    这是 T2 前提 `policyClosed` 的消解目标。本轮七个编译周期内它**未被证明**，
-    卡点全部在 Lean 工程侧而非数学侧：`Finset.filter`/`image` 的投影不自动化简、
-    `decide` 在穿过 `Finset.decidableMem` 与 `Decidable.rec` 时拒绝求值、
-    `cases` 处理不了 `decide` 形状等式。已证到的部分是同一条链上的保义四件
-    （`Preservation` 一节），未证到的这一件在此如实挂账，**不降级为前提、不改窄陈述**。
-    下一轮的最小修法（已验证方向，未执行）：把 `baseSet`/`F` 的计算改写成
-    显式 `Finset.filter_congr` + `attackers` 的手工展开，或把该实例缩到一个
-    `Arg` 为字面 `Fin 2` 编码的有限片段后用 `decide` 一步算完。 -/
-def policyClosed_obligation_for (sys : HornSystem α) (n : α → Arg) : Prop :=
-  policyClosed (policyOf sys n) 0
+/-- 中文证明（技术引理）：恒假例外关系打不出任何攻击边——`filter` 的谓词是 `noExc`，
+    而 `noExc x y` 就展开成 `False`，故筛出的对集为空，其像亦空。 -/
+theorem exceptionEdges_noExc_eq_empty (sys : HornSystem α) (n : α → Arg) :
+    exceptionEdges sys n noExc (hdec := noExcDec) = ∅ := by
+  refine (Finset.eq_empty_iff_forall_notMem
+    (s := exceptionEdges sys n noExc (hdec := noExcDec))).mpr ?_
+  intro e he
+  rcases Finset.mem_image.mp
+    (show e ∈ exceptionEdges sys n noExc (hdec := noExcDec) from he) with ⟨p, hp, rfl⟩
+  rcases Finset.mem_filter.mp hp with ⟨_, hno⟩
+  exact hno
 
+/-- 中文证明（技术引理）：无例外规范介入时，框架的攻击边集为空。 -/
+theorem aafNoExceptions_attacks_eq_empty (sys : HornSystem α) (n : α → Arg) :
+    (aafNoExceptions sys n).attacks = ∅ :=
+  exceptionEdges_noExc_eq_empty sys n
+
+/-- 中文证明（技术引理）：攻击边为空 ⇒ 每个论点的攻击者集为空。
+    `attackers aaf a` 就是把 `aaf.args` 按"攻击 `a`"来筛，边集空则该筛必空。 -/
+theorem attackers_eq_empty_of_attacks_empty (aaf : DungAAF) (a : Arg)
+    (h : aaf.attacks = ∅) : DungAAF.attackers aaf a = ∅ := by
+  refine (Finset.eq_empty_iff_forall_notMem (s := DungAAF.attackers aaf a)).mpr ?_
+  intro b hb
+  have hb' : (b, a) ∈ aaf.attacks := (Finset.mem_filter.mp hb).2
+  rw [h] at hb'
+  exact notMemEmptyFinset _ hb'
+
+/-- 中文证明（技术引理，`policyClosed` 的**技术核**）：攻击边为空 ⇒ `F aaf` 把论点集映回自身。
+    `F aaf S` 只筛掉"存在一个不被 `S` 打回的攻击者"的论点；攻击者集恒空时该条件**真空成立**，
+    于是 `F aaf aaf.args = aaf.args`，即论点集是 `F` 的不动点。
+    工程说明：这里用 `Finset.ext` 手工展开两次成员刻画，不用 `decide`——
+    本 pin 的 `decide` 穿不过 `Finset.filter` 的 `Decidable.rec`。 -/
+theorem F_args_eq_args_of_attacks_empty (aaf : DungAAF) (h : aaf.attacks = ∅) :
+    DungAAF.F aaf aaf.args = aaf.args := by
+  refine Finset.ext ?_
+  intro a
+  refine ⟨fun ha => (Finset.mem_filter.mp ha).1, fun ha => Finset.mem_filter.mpr ⟨ha, ?_⟩⟩
+  intro b hb
+  rw [attackers_eq_empty_of_attacks_empty aaf a h] at hb
+  exact absurd hb (notMemEmptyFinset b)
+
+/-- 中文证明（技术引理）：把闭包像声明为明文采纳集时，第 0 层采纳集**恰是**框架论点集。
+    `baseSet` 的谓词是"不被妨碍 ∧（明文 ∨（推定 ∧ 无反证攻击））"；本策略里妨碍集空、
+    明文集＝论点集，故谓词对每个论点都真。 -/
+theorem baseSet_policyOf_eq_args (sys : HornSystem α) (n : α → Arg) :
+    baseSet (policyOf sys n) = (aafNoExceptions sys n).args := by
+  refine Finset.ext ?_
+  intro a
+  refine ⟨fun ha => (Finset.mem_filter.mp ha).1,
+    fun ha => Finset.mem_filter.mpr ⟨ha, ⟨fun h => notMemEmptyFinset a h, Or.inl ha⟩⟩⟩
+
+/-- 中文证明（**义务闭合·第 4 条**）：`policyOf sys n` 的第 0 层采纳集对 Dung 算子 `F` 封闭。
+    原为 `def policyClosed_obligation_for : Prop` 挂账项，陈述一字未改，改为 `theorem`。
+    链条：`policyClosed` 展开 → `rounds_zero_fst`（第 0 层＝`baseSet`）→
+    `baseSet_policyOf_eq_args`（该层＝论点集）→ `F_args_eq_args_of_attacks_empty`
+    （无例外规范 ⇒ 攻击边空 ⇒ 论点集是 `F` 的不动点）。
+    ⇒ T2（`Seams/Unified.lean:236`）载体 `UnifiedModel` 的 `policyClosed` 一栏
+    第一次有**被证明成立**的实例，不再只是外加片段。 -/
+theorem policyClosed_obligation_for (sys : HornSystem α) (n : α → Arg) :
+    policyClosed (policyOf sys n) 0 := by
+  show DungAAF.F (aafNoExceptions sys n) (rounds (policyOf sys n) 0).1 =
+      (rounds (policyOf sys n) 0).1
+  rw [rounds_zero_fst, baseSet_policyOf_eq_args]
+  exact F_args_eq_args_of_attacks_empty (aafNoExceptions sys n)
+    (aafNoExceptions_attacks_eq_empty sys n)
 
 end Discharge
 
@@ -215,35 +288,177 @@ def conflictPolicy : TerminalPolicy conflictAAF where
   obstructed := ∅
   contraryEvidence := ∅
 
-/-- 中文说明（**义务登记·非已证**）：酌减请求在 L1 的迭代闭包里。
-    数学上它几乎显然——两条无前提规则各自在第一步就产出结论，`|univ| = 2` 步处必然稳定；
-    本轮未证的原因是 Lean 工程侧：`SourceNorms.closureAt` 是 `abbrev`，
-    其 `FiniteMonotoneSystem.iter` 在 `decide` 下穿过 `HornSystem.TH` 的 `filter/image` 不再化简。
-    修法（方向已定，未执行）：改用 `FiniteMonotoneSystem.iter_succ` 逐步改写后再 `decide`。 -/
-def reduction_claim_derived_obligation : Prop :=
-  ClauseAtom.reductionClaim ∈ SourceNorms.closureAt claimCase
+/-- 中文说明（**见证项**）：`claimCase` 的两条无前提规则写成可命名的项，
+    使"某条规则在 `rules` 里"这一有限成员判定可以在下游被单独引用。 -/
+def rcRule : HornRule ClauseAtom :=
+  { premises := ∅, conclusion := ClauseAtom.reductionClaim }
 
-/-- 中文说明（**义务登记·非已证**）：互斥夹具下每一层采纳集都不含该请求。
-    不变式形状为 `∀ k, (rounds conflictPolicy k).1 = ∅ ∧ (rounds conflictPolicy k).2 = ∅`，
-    归纳骨架已写在上一轮的实现里（第 0 层由 `baseSet` 两支皆空置空，
-    归纳步由"双方各有一个未驳回的攻击者"堵死），未过的是三个有限集等式的 `decide` 求值。 -/
-def conflict_never_adopted_obligation : Prop :=
-  ∀ k : Nat, encode ClauseAtom.reductionClaim ∉ (rounds conflictPolicy k).1
+/-- 中文说明（**见证项**）：`claimCase` 的第二条无前提规则（"约定不得调整"主张）。 -/
+def naRule : HornRule ClauseAtom :=
+  { premises := ∅, conclusion := ClauseAtom.noAdjustment }
 
-/-- 中文说明（**义务登记·非已证**）：该请求 `¬ FinalDerivable`。
-    这是上一条的直接推论（`FinalDerivable` 就是 `∃ k, · ∈ (rounds · k).1`），
-    故本义务随上一条一同闭合，不需要新的数学想法。 -/
-def conflict_not_final_derivable_obligation : Prop :=
-  ¬ FinalDerivable conflictPolicy (encode ClauseAtom.reductionClaim)
+/-- 中文证明：两条规则确在 `claimCase.rules` 里（有限集字面量的成员判定，不涉及 `closureAt`
+    的迭代计算，故 `decide` 在此可用——与文件头登记的卡点是不同的判定对象）。 -/
+theorem rcRule_mem_rules : rcRule ∈ claimCase.rules := by decide
 
-/-- 中文说明：**本件已证部分与未证部分的分界**（一条可复读的自述）。
-    已证：`Preservation` 一节五件——L1 闭包与 L2 论点域/支持位/攻击边的四项对应，
-    外加"例外不能打断未推出的请求"。
-    未证：上面三条义务与 `policyClosed_obligation_for`。
-    ⇒ 这座桥目前确立了**载体的接法**（同一 `α` 经命名映射成为 L2 的输入域，
-    且支持位由下层算出），尚未确立**互斥夹具的不可支持性**。
-    后者才是"这一跳不可合并"的机器证据，仍属未覆盖片段，不得计入统一性。 -/
+/-- 中文证明：第二条规则的成员判定。 -/
+theorem naRule_mem_rules : naRule ∈ claimCase.rules := by decide
+
+/-- 中文证明（**义务闭合·第 1 条**）：酌减请求在 L1 的迭代闭包里。
+    原为 `def reduction_claim_derived_obligation : Prop` 挂账项，陈述一字未改，改为 `theorem`。
+    证法走 `noPremiseRule_in_closure`（典范模型一侧），**不**穿过 `FiniteMonotoneSystem.iter`
+    的逐层计算——这正是前九轮 `decide` 卡住的位置。
+    法律读法：民法典第585条第2款＋法释〔2023〕13号第65条第2款的门槛形状，
+    在夹具里就是一条无前提规则直接给出的主张。 -/
+theorem reduction_claim_derived_obligation :
+    ClauseAtom.reductionClaim ∈ SourceNorms.closureAt claimCase :=
+  noPremiseRule_in_closure claimCase rcRule rcRule_mem_rules rfl
+
+/-- 中文证明（技术引理）：另一主张同样在闭包里——互斥夹具要两条都在，才有环。 -/
+theorem no_adjustment_derived :
+    ClauseAtom.noAdjustment ∈ SourceNorms.closureAt claimCase :=
+  noPremiseRule_in_closure claimCase naRule naRule_mem_rules rfl
+
+/-- 中文证明（技术引理）：两条主张的命名像都在 L2 的论点集里（过了命名映射这一跳）。 -/
+theorem reduction_in_args : encode ClauseAtom.reductionClaim ∈ conflictAAF.args :=
+  Finset.mem_image.mpr ⟨ClauseAtom.reductionClaim, reduction_claim_derived_obligation, rfl⟩
+
+/-- 中文证明（技术引理）：同上，另一条。 -/
+theorem no_adjustment_in_args : encode ClauseAtom.noAdjustment ∈ conflictAAF.args :=
+  Finset.mem_image.mpr ⟨ClauseAtom.noAdjustment, no_adjustment_derived, rfl⟩
+
+/-- 中文证明（技术引理）：**论点集只有这两个元素**——L1 闭包走不出论域
+    （仓内 `HornSystem.horn_result_subset_univ`），而 `claimCase.univ` 只列了两条原子。
+    这条是"每个论点都有攻击者"的枚举依据。 -/
+theorem conflict_args_eq_or (a : Arg) (ha : a ∈ conflictAAF.args) :
+    a = encode ClauseAtom.reductionClaim ∨ a = encode ClauseAtom.noAdjustment := by
+  rcases Finset.mem_image.mp (show a ∈ namedClosure claimCase encode from ha) with ⟨x, hx, rfl⟩
+  have huniv : x ∈ claimCase.univ := HornSystem.horn_result_subset_univ claimCase hx
+  rcases Finset.mem_insert.mp huniv with rfl | hx2
+  · exact Or.inl rfl
+  · rcases Finset.mem_singleton.mp hx2 with rfl
+    exact Or.inr rfl
+
+/-- 中文证明（技术引理）：互斥边"不予调整 → 酌减请求"确在框架的攻击集里。
+    法律读法：主张"约定不得调整"若成立即否定酌减请求的要件前提（数额可依法调整）。 -/
+theorem attack_no_adjustment_to_reduction :
+    (encode ClauseAtom.noAdjustment, encode ClauseAtom.reductionClaim) ∈ conflictAAF.attacks := by
+  refine Finset.mem_image.mpr ⟨(ClauseAtom.noAdjustment, ClauseAtom.reductionClaim), ?_, rfl⟩
+  refine Finset.mem_filter.mpr
+    ⟨Finset.mem_product.mpr ⟨no_adjustment_derived, reduction_claim_derived_obligation⟩, ?_⟩
+  exact Or.inl ⟨rfl, rfl⟩
+
+/-- 中文证明（技术引理）：互斥边的反向"酌减请求 → 不予调整"。
+    法律读法：法定调整权成立即否定约定排除。 -/
+theorem attack_reduction_to_no_adjustment :
+    (encode ClauseAtom.reductionClaim, encode ClauseAtom.noAdjustment) ∈ conflictAAF.attacks := by
+  refine Finset.mem_image.mpr ⟨(ClauseAtom.reductionClaim, ClauseAtom.noAdjustment), ?_, rfl⟩
+  refine Finset.mem_filter.mpr
+    ⟨Finset.mem_product.mpr ⟨reduction_claim_derived_obligation, no_adjustment_derived⟩, ?_⟩
+  exact Or.inr ⟨rfl, rfl⟩
+
+/-- 中文证明（技术引理）：夹具里**每个**论点都带一个攻击者，故"全部攻击者都已被驳回"
+    这一支在驳倒集为空时永远堵死（`adoptedStep` 里 `attackers ⊆ ∅` 必假）。 -/
+theorem conflict_arg_has_attacker (a : Arg) (ha : a ∈ conflictAAF.args)
+    (hsub : DungAAF.attackers conflictAAF a ⊆ (∅ : Finset Arg)) : False := by
+  rcases conflict_args_eq_or a ha with rfl | rfl
+  · exact notMemEmptyFinset (encode ClauseAtom.noAdjustment)
+      (hsub (mem_attackers_of_mem no_adjustment_in_args attack_no_adjustment_to_reduction))
+  · exact notMemEmptyFinset (encode ClauseAtom.reductionClaim)
+      (hsub (mem_attackers_of_mem reduction_in_args attack_reduction_to_no_adjustment))
+
+/-- 中文证明（技术引理）：反证规则在"空采纳集＋空驳倒集"上不产出任何东西——
+    本案无材料可产反证，故该步仍为空。陈述对任意策略成立，不是夹具专属。 -/
+theorem rejectedStep_empty_empty (aaf : DungAAF) (pol : TerminalPolicy aaf) :
+    rejectedStep pol (∅ : Finset Arg) ∅ = ∅ := by
+  refine (Finset.eq_empty_iff_forall_notMem
+    (s := rejectedStep pol (∅ : Finset Arg) ∅)).mpr ?_
+  intro a ha
+  rcases Finset.mem_union.mp ha with h0 | h1
+  · exact notMemEmptyFinset a h0
+  · obtain ⟨_, hne⟩ := Finset.mem_filter.mp h1
+    have hfilter : (DungAAF.attackers aaf a).filter (fun b => b ∈ (∅ : Finset Arg)) = ∅ := by
+      refine (Finset.eq_empty_iff_forall_notMem
+        (s := (DungAAF.attackers aaf a).filter (fun b => b ∈ (∅ : Finset Arg)))).mpr ?_
+      intro b hb
+      exact notMemEmptyFinset b (Finset.mem_filter.mp hb).2
+    exact hne hfilter
+
+/-- 中文证明（技术引理）：第 0 层采纳集为空——四族材料（明文／推定／妨碍／反证）全空，
+    `baseSet` 的谓词两支都假。 -/
+theorem conflict_baseSet_empty : baseSet conflictPolicy = ∅ := by
+  refine (Finset.eq_empty_iff_forall_notMem (s := baseSet conflictPolicy)).mpr ?_
+  intro a ha
+  obtain ⟨_, _, hcond⟩ := Finset.mem_filter.mp ha
+  cases hcond with
+  | inl hc => exact notMemEmptyFinset a hc
+  | inr hp => exact notMemEmptyFinset a hp.1
+
+/-- 中文证明（技术引理·**不变式**）：互斥夹具下每一层的采纳集与驳倒集**都为空**。
+    第 0 层由 `conflict_baseSet_empty`（材料全空）；归纳步由两支各自堵死：
+    `adoptedStep` 那支因"每个论点都有攻击者而驳倒集为空"失败
+    （`conflict_arg_has_attacker`），`rejectedStep` 那支因无材料可产反证失败。 -/
+theorem conflict_rounds_empty :
+    ∀ k : Nat, (rounds conflictPolicy k).1 = ∅ ∧ (rounds conflictPolicy k).2 = ∅ := by
+  intro k
+  induction k with
+  | zero =>
+      refine ⟨?_, rounds_zero_snd conflictPolicy⟩
+      rw [rounds_zero_fst]
+      exact conflict_baseSet_empty
+  | succ n ih =>
+      obtain ⟨h1, h2⟩ := ih
+      refine ⟨?_, ?_⟩
+      · rw [rounds_succ_fst, h1, h2, rejectedStep_empty_empty]
+        refine (Finset.eq_empty_iff_forall_notMem
+          (s := adoptedStep conflictPolicy (∅ : Finset Arg) ∅)).mpr ?_
+        intro a ha
+        rcases Finset.mem_union.mp ha with h0 | h1'
+        · exact notMemEmptyFinset a h0
+        · obtain ⟨hargs, hcond⟩ := Finset.mem_filter.mp h1'
+          exact conflict_arg_has_attacker a hargs hcond.2.2.1
+      · rw [rounds_succ_snd, h1, h2, rejectedStep_empty_empty]
+
+/-- 中文证明（**义务闭合·第 2 条**）：互斥夹具下每一层采纳集都不含酌减请求。
+    原为 `def conflict_never_adopted_obligation : Prop` 挂账项，陈述一字未改，改为 `theorem`。
+    由不变式 `conflict_rounds_empty` 直接读出（该层采纳集恒为 `∅`）。 -/
+theorem conflict_never_adopted_obligation :
+    ∀ k : Nat, encode ClauseAtom.reductionClaim ∉ (rounds conflictPolicy k).1 := by
+  intro k
+  obtain ⟨h1, _⟩ := conflict_rounds_empty k
+  rw [h1]
+  exact notMemEmptyFinset _
+
+/-- 中文证明（**义务闭合·第 3 条**）：酌减请求 `¬ FinalDerivable`。
+    原为 `def conflict_not_final_derivable_obligation : Prop` 挂账项，陈述一字未改，改为 `theorem`。
+    `FinalDerivable` 就是 `∃ k, · ∈ (rounds · k).1`，故本条是第 2 条的直接推论，
+    **不含**新的数学想法（与原登记的依赖关系一致）。 -/
+theorem conflict_not_final_derivable_obligation :
+    ¬ FinalDerivable conflictPolicy (encode ClauseAtom.reductionClaim) := by
+  rintro ⟨k, hk⟩
+  exact conflict_never_adopted_obligation k hk
+
+/-- 中文证明（**见证的非空洞性检查**）：该请求在 L2 的可采纳支持位上**读出的就是真**
+    （`conflictPolicy.admissibleSupport` 即 `admissibleFromHorn claimCase encode`，
+    由 `Preservation` 的 `horn_derived_is_admissible` 给出）。
+    ⇒ 上一条的"永不可支持"**不是**因为支持性缺失、也不是因为论点集空（`reduction_in_args`
+    已证论点集有人住），而**只**因"攻击者未被驳回"这一支被互斥环堵死。
+    这条检查是必要的：没有它，`¬ FinalDerivable` 可以靠空载体空洞成立。 -/
+theorem reduction_claim_support_is_true :
+    conflictPolicy.admissibleSupport (encode ClauseAtom.reductionClaim) = true :=
+  horn_derived_is_admissible claimCase encode ClauseAtom.reductionClaim
+    reduction_claim_derived_obligation
+
+/-- 中文说明：**本件闭合面与未闭合面的分界**（一条可复读的自述，随义务闭合改写）。
+    已证：`Preservation` 一节五件（L1 闭包与 L2 论点域／支持位／攻击边的四项对应，
+    外加"例外不能打断未推出的请求"）；`policyClosed_obligation_for`（T2 的 `policyClosed`
+    一栏有被证明成立的实例）；本节三条义务——L1 成立、L2 每层不采纳、因而 `¬ FinalDerivable`。
+    ⇒ "这一跳不可合并"现在有**机器证据**：同一结论可以 L1 成立而 L2 永不可支持，
+      两层不是同一对象上的同一性质。
+    仍未闭合（不得计入统一性）：T2 另两条前提 `baseInGrounded`（`AdjudicationBridge.lean:514`）
+    与 `collapsesToKernel`（`:846`）；以及第64条第3款"不予支持"的**驳回**表达——
+    本件只建成"互斥且无明文采纳⇒未决"，把该主张读成"被驳回"仍属未覆盖片段。 -/
 theorem transitions_boundary_is_recorded :
-    (∃ p q : Prop, p = reduction_claim_derived_obligation ∧
-      q = conflict_not_final_derivable_obligation) :=
+    (∃ p q : Prop, p = (ClauseAtom.reductionClaim ∈ SourceNorms.closureAt claimCase) ∧
+      q = ¬ FinalDerivable conflictPolicy (encode ClauseAtom.reductionClaim)) :=
   ⟨_, _, rfl, rfl⟩

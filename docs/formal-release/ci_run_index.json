@@ -8703,7 +8703,7 @@
         "docs/master-plan/12_一次性全量落地施工计划_20261002.md:137",
         "docs/master-plan/12_一次性全量落地施工计划_20261002.md:80",
         "docs/master-plan/16_第九轮终态核对表_20261002.md:11",
-        "docs/master-plan/16_第九轮终态核对表_20261002.md:44"
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:58"
       ],
       "run_id": 37004715236,
       "started": true,
@@ -8955,7 +8955,7 @@
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
         "docs/master-plan/16_第九轮终态核对表_20261002.md:14",
-        "docs/master-plan/16_第九轮终态核对表_20261002.md:48"
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:62"
       ],
       "run_id": 37021298862,
       "started": true,
@@ -9018,7 +9018,7 @@
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
         "docs/master-plan/16_第九轮终态核对表_20261002.md:15",
-        "docs/master-plan/16_第九轮终态核对表_20261002.md:49"
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:63"
       ],
       "run_id": 37022410829,
       "started": true,
@@ -9081,7 +9081,7 @@
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
         "docs/master-plan/16_第九轮终态核对表_20261002.md:16",
-        "docs/master-plan/16_第九轮终态核对表_20261002.md:47"
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:61"
       ],
       "run_id": 37022933583,
       "started": true,
@@ -9205,13 +9205,77 @@
       "jobs_total": 8,
       "name": "chore(ledger): recompute manifest, closure census and duplication cen…",
       "quoted_by": [
-        "docs/master-plan/16_第九轮终态核对表_20261002.md:32",
-        "docs/master-plan/16_第九轮终态核对表_20261002.md:55"
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:46",
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:69"
       ],
       "run_id": 37025459941,
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-02T15:22:56Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-02T16:48:37Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/37036440163/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "b121e4aa61fc9b788b3e89badafdb030a1ec5603",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37036440163",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(ledger): index the wave's attestation rounds so the red ones ar…",
+      "quoted_by": [
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:23",
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:25",
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:65"
+      ],
+      "run_id": 37036440163,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-02T16:59:02Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

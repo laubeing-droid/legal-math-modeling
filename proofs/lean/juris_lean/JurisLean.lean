@@ -176,6 +176,7 @@ import JurisLean.Seams.Probability
 import JurisLean.Seams.Representation
 import JurisLean.Seams.SourceNorms
 import JurisLean.Seams.Temporal
+import JurisLean.Seams.Transitions
 import JurisLean.Seams.Uncertainty
 import JurisLean.Seams.Unified
 import JurisLean.SolverRouting

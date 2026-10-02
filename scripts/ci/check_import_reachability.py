@@ -160,7 +160,11 @@ PENDING_CI_MODULES: dict[str, str] = {
     # this file used to park as `def ... : Prop` targets are now theorems on the same
     # statements (policyClosed discharge plus the three mutual-defeat fixture claims), so the
     # reason for quarantine is root entry, not missing proof and not missing CI.
-    "JurisLean.Seams.Transitions": "build attested by run 37004715236; awaiting root entry (2026-10-02 W3)",
+    # Promoted to the release root on 2026-10-02 after run 37004715236 (subject e0533737) built
+    # it green in its own changed-module round: `Built JurisLean.Seams.Transitions` at job
+    # 2955/2955. That run attests the BUILD dimension only; the axiom dimension still waits for a
+    # full-release round that elaborates AxiomAudit, so promotion here is not a claim that the
+    # module is axiom-audited. Its four obligations are theorems on their original statements.
     # Wave-2 statute batches. Each is a green LOCAL serial build (LAKE_EXIT=0 recorded in the
     # session log), which is a provisional pre-check and NOT a Lean PASS: none of these four has
     # had its own changed-module CI round yet, and AGENTS forbids root entry before one. The
@@ -169,6 +173,10 @@ PENDING_CI_MODULES: dict[str, str] = {
     "JurisLean.Seams.BurdenStatutes": "awaiting its own changed-module CI run (2026-10-02 W4 batch 2: 民诉法解释 90/91/92/93/108/109)",
     "JurisLean.Seams.LegacyConeBridge": "awaiting its own changed-module CI run (2026-10-02 G4: legacy cone four hops)",
     "JurisLean.Seams.UnifiedInstance": "awaiting its own changed-module CI run (2026-10-02 G5: closed inhabitant of UnifiedModel)",
+    # Batch three of the statute work and the first end-to-end chain. Booked before either is
+    # green on purpose: the sentence below is only about CI, and neither has had a round.
+    "JurisLean.Seams.SanctionInterest": "awaiting its own changed-module CI run (2026-10-02 W4 batch 3: 民诉法 264 + 法释〔2014〕8号第一条第3款)",
+    "JurisLean.Seams.StatuteChain": "awaiting its own changed-module CI run (2026-10-02 G6: burden -> closure -> admissible -> standard -> amount)",
 }
 
 # Same-pin external ports (elazarg/GameTheory @ 107085bc4 and

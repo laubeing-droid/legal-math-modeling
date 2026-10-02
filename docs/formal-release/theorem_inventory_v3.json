@@ -2385,6 +2385,9 @@
     "JurisLean.Seams.UnifiedInstance.zero_in_closureM",
     "JurisLean.Seams.UnifiedInstance.zero_mem_singleton",
     "JurisLean.Seams.bridge_distinguishes_two_statuses",
+    "JurisLean.Seams.bridge_not_injective_at_dismissed",
+    "JurisLean.Seams.bridge_partial_inverse_established",
+    "JurisLean.Seams.bridge_partial_inverse_suspended",
     "JurisLean.Seams.bridge_shared_legal_status_point",
     "JurisLean.Seams.unified_claim_is_not_general",
     "JurisLean.Seams.unified_legal_derivation_on_declared_fragment",
@@ -2872,8 +2875,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "16dbd32558c33c1eaf6cc2ac7627428c9b2aef1e5c7e0fab8cf362080f26ffb6",
-   "size_bytes": 161383,
+   "sha256": "d823c0dc05102dd269cf9646373dcacc3f8ecbe3b73e43494b474a9c2864efaa",
+   "size_bytes": 161575,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -28459,6 +28462,22 @@
     {
      "kind": "theorem",
      "name": "bridge_distinguishes_two_statuses"
+    },
+    {
+     "kind": "def",
+     "name": "payoffToClaimStatusPartial"
+    },
+    {
+     "kind": "theorem",
+     "name": "bridge_partial_inverse_established"
+    },
+    {
+     "kind": "theorem",
+     "name": "bridge_partial_inverse_suspended"
+    },
+    {
+     "kind": "theorem",
+     "name": "bridge_not_injective_at_dismissed"
     }
    ],
    "imports": [
@@ -28478,10 +28497,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Unified.lean",
    "print_axioms_targets": [],
-   "sha256": "d3ec9b134a85cb02a1aab2ad1b1db6090441ca44e9220754764c87b84778bd09",
-   "size_bytes": 19775,
-   "theorem_count": 5,
-   "theorem_count_bol_convention": 5
+   "sha256": "2eeb702c7c20da39b512a3d3dab954acc790fc7944f3f7faa34e69531d0c2e4b",
+   "size_bytes": 21674,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
   },
   {
    "declarations": [
@@ -32609,22 +32628,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3691,
+   "counted_declaration_count": 3694,
    "file_count": 319,
    "lemma_count": 141,
-   "print_axioms_command_count": 2573,
-   "print_axioms_distinct_targets": 2519,
-   "theorem_count": 3550,
-   "theorem_count_bol_convention": 3454
+   "print_axioms_command_count": 2576,
+   "print_axioms_distinct_targets": 2522,
+   "theorem_count": 3553,
+   "theorem_count_bol_convention": 3457
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3672,
+   "counted_declaration_count": 3675,
    "file_count": 304,
    "lemma_count": 134,
-   "print_axioms_command_count": 2573,
-   "print_axioms_distinct_targets": 2519,
-   "theorem_count": 3538,
-   "theorem_count_bol_convention": 3442
+   "print_axioms_command_count": 2576,
+   "print_axioms_distinct_targets": 2522,
+   "theorem_count": 3541,
+   "theorem_count_bol_convention": 3445
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33304,12 +33323,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "672faa9cdd3164a7dff46bb6f00ba04c8443cb14fa674ffb82f8e56f14c98971",
+ "source_inventory_digest": "75f93a7d64d78020d6c8bfa3901c9c4e21bd41764e12e80de7c4eb031ccfe458",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "a078b6de0d06c847dda76178842bcb374bbc65da",
-  "tree": "3c0039c05f39e7b7992851069a8dc1aad090bea2"
+  "commit": "fda5f34a477aa8424c984fe7d4c5df3674b14b63",
+  "tree": "6a5ab0729f6b8194c1596d3f2b9932f92ef4e3ce"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

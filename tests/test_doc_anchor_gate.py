@@ -306,7 +306,11 @@ def test_a_mathlib_anchor_resolves_to_the_pinned_source_and_its_line_is_checked(
     """
 
     if not lake_is_on_disk():
-        assert_missing_root_is_blunt(tmp_path, f"照 `{MATHLIB_TOKEN}:1067` 的形状交见证。\n")
+        # A citation the committed record does not cover must still blame the checkout.
+        assert_missing_root_is_blunt(tmp_path, f"照 `Analysis/Convex/StdSimplex.lean:35` 的形状交见证。\n")
+        # And the record is line-bound: the same file cited at a line it does not name is red,
+        # because a file-keyed excuse would let any line number through.
+        assert_missing_root_is_blunt(tmp_path, f"照 `{MATHLIB_TOKEN}:9999` 的形状交见证。\n")
         return
     f = mathlib_facts()
     assert f["text"].startswith("theorem nonempty_iff"), f["text"]

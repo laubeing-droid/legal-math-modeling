@@ -739,4 +739,27 @@ theorem statuteChain_reaches_the_one_closed_instance :
     本件只解决了"两者能否同批编译"，没有解决"两者是否说同一件事"。
 -/
 
+/-! ## 九、数额跨载体桥（G4：`Nat` 履行面 ↔ `ℤ` 违约金面，此前只有裸 cast、无声明） -/
+
+/-- 数额桥（G4"消除一名多类型无桥"·数额那一格，并补本件 §未覆盖第 4 项"裸 `Nat.cast` 无声明载体"）：
+    L5 履行面的债务额是 `Nat`（`instanceM.performAmount`、`InstitutionalEffects.Debt.amount`），
+    违约金面是 `Probability.Amount := ℤ`。此前两者之间只有一个**裸 `Nat.cast`**，没有任何被**声明**、
+    且证了性质的载体换算。这里把该换算具名，并交出两条它的应有事实。
+    诚实边界：本桥只做**单向具名换算 + 序的反射**，不声称两量纲语义等同（一个欠额、一个违约金），
+    也不声称类型等同；下面的 `amountBridge_subtraction_disagrees` 恰恰证明两面在减法下**不等价**。 -/
+def amountBridge : Nat → Probability.Amount := fun n => (n : ℤ)
+
+/-- 具名桥**反射序**：搬到违约金面可比大小，且与 `Nat` 上的序完全一致（`abbrev Amount := ℤ` 可 unfold，走 `Nat.cast_le`）。 -/
+theorem amountBridge_order_iff (a b : Nat) :
+    amountBridge a ≤ amountBridge b ↔ a ≤ b := by
+  unfold amountBridge
+  exact Nat.cast_le
+
+/-- 桥**不是同构的证据**：`Nat` 的减是截断的、`ℤ` 的不是。`3 - 5 = 0`（`Nat`）搬到对面还是 `0`，
+    而两侧各自搬过去再减是 `-2`。这一格差异正是"两面的数额不能当同一个数"的机器见证，
+    也是本桥只做单向换算、不冒充等价的理由。 -/
+theorem amountBridge_subtraction_disagrees :
+    amountBridge (3 - 5 : Nat) ≠ amountBridge 3 - amountBridge 5 := by
+  decide
+
 end JurisLean.Seams.StatuteChain

@@ -1576,6 +1576,8 @@ open HornSystem
 #print axioms JurisLean.Seams.SourceNorms.resolveConflict_some_selects_maximal
 #print axioms JurisLean.Seams.SourceNorms.resolveConflict_tie_value_in
 #print axioms JurisLean.Seams.SourceNorms.step_within_model
+#print axioms JurisLean.Seams.StatuteChain.amountBridge_order_iff
+#print axioms JurisLean.Seams.StatuteChain.amountBridge_subtraction_disagrees
 #print axioms JurisLean.Seams.StatuteChain.chain_L1_closure_hop
 #print axioms JurisLean.Seams.StatuteChain.chain_L1_derived_support_true
 #print axioms JurisLean.Seams.StatuteChain.chain_L2_finalDerivable

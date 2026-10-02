@@ -1,23 +1,144 @@
 {
   "authority_note": "Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.",
-  "cross_family": {},
-  "cross_family_statement_types": 0,
-  "distinct_statement_types": 3375,
-  "duplicated_statement_types": 8,
-  "duplicates": {
-    "append_singleton_inj {α : Type*} {as bs : List α} {a b : α} (h : as ++ [a] = bs ++ [b]) : as = bs ∧ a = b": [
+  "cross_family": {
+    "(r : ℚ) : max r 0 - max (-r) 0 = r": [
       {
-        "carrier": "External/append_singleton_inj",
-        "line": 55,
-        "path": "External/GameTheory/Math/ParameterizedChain.lean"
+        "carrier": "FullMath/clipped_conservation",
+        "line": 94,
+        "path": "FullMath/GenericKernels.lean"
       },
       {
-        "carrier": "External/append_singleton_inj",
-        "line": 139,
-        "path": "External/GameTheory/Math/TraceRun.lean"
+        "carrier": "root/other/split_residual_identity",
+        "line": 21,
+        "path": "BusinessRelationsDelta.lean"
+      }
+    ]
+  },
+  "cross_family_statement_types": 1,
+  "distinct_statement_types": 3350,
+  "duplicated_statement_types": 40,
+  "duplicates": {
+    "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
+      {
+        "carrier": "root/other/grounded_is_least_complete",
+        "line": 94,
+        "path": "DungFixedPoint.lean"
+      },
+      {
+        "carrier": "root/other/grounded_is_least_fixed_point",
+        "line": 90,
+        "path": "DungFixedPoint.lean"
       }
     ],
-    "enumeration_member (pred : A → Bool) (a : A) : a ∈ enumerateAll pred ↔ pred a = true": [
+    "(S : Finset α) : TH sys S ⊆ sys.univ": [
+      {
+        "carrier": "root/other/TH_subset_univ",
+        "line": 55,
+        "path": "HornDefinitions.lean"
+      },
+      {
+        "carrier": "root/other/horn_operator_subset_univ",
+        "line": 17,
+        "path": "HornFixedPoint.lean"
+      }
+    ],
+    "(a : JurisLean.FactAdmissionAttestation) (f : JurisLean.LegalId .fact) (r : RequestKey) (h : PremiseToken.WF { fact := f, request := r, origin := .admitted a }) : a.status = .admitted": [
+      {
+        "carrier": "root/other/CORE_02_admitted_premise_status",
+        "line": 124,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/admitted_wf_has_admitted_status",
+        "line": 108,
+        "path": "ULM06FactEvidence.lean"
+      }
+    ],
+    "(a b : TrustVector) : TrustLE (a.meet b) a": [
+      {
+        "carrier": "root/other/COMP_C01_trust_nonupgrade_left",
+        "line": 75,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/trust_meet_le_left",
+        "line": 92,
+        "path": "ULM14CoverageTrust.lean"
+      }
+    ],
+    "(a b : TrustVector) : TrustLE (a.meet b) b": [
+      {
+        "carrier": "root/other/COMP_C01_trust_nonupgrade_right",
+        "line": 78,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/trust_meet_le_right",
+        "line": 97,
+        "path": "ULM14CoverageTrust.lean"
+      }
+    ],
+    "(c : Certificate) (hstatus : c.status = DecisionStatus.proved) (hkind : c.evidence.kind = EvidenceKind.candidate) : checkCertificate c ≠ CheckVerdict.accept": [
+      {
+        "carrier": "root/other/candidate_cannot_enter_verified_fact_gate",
+        "line": 12,
+        "path": "SafetyTheorems.lean"
+      },
+      {
+        "carrier": "root/other/candidate_evidence_not_accepted",
+        "line": 56,
+        "path": "CertificateChecker.lean"
+      }
+    ],
+    "(e : NFEdge) : (requiredObligations e).Nonempty": [
+      {
+        "carrier": "root/other/CORE_23_required_nonempty",
+        "line": 246,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/requiredObligations_nonempty",
+        "line": 64,
+        "path": "ULM04Obligations.lean"
+      }
+    ],
+    "(input : StructuredArgumentation) (policy : DefeatPolicy) : (resolveToDefeatAF input policy).WellFormed": [
+      {
+        "carrier": "root/other/CORE_07_resolved_bridge_wellFormed",
+        "line": 156,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/resolveToDefeatAF_wellFormed",
+        "line": 44,
+        "path": "ULM10DungProfiles.lean"
+      }
+    ],
+    "(obs : List Bool) : successes obs ≤ obs.length": [
+      {
+        "carrier": "Mandate/rate_num_le_den",
+        "line": 59,
+        "path": "Mandate/Kernel.lean"
+      },
+      {
+        "carrier": "Mandate/successes_le_length",
+        "line": 50,
+        "path": "Mandate/Kernel.lean"
+      }
+    ],
+    "(pat src : List Nat) (h : isPrefix pat src = true) : isSubstr pat src = true": [
+      {
+        "carrier": "Mandate/isSubstr_of_isPrefix",
+        "line": 64,
+        "path": "Mandate/SubstrAdmission.lean"
+      },
+      {
+        "carrier": "Mandate/prefix_adequate_for_admission",
+        "line": 90,
+        "path": "Mandate/SubstrAdmission.lean"
+      }
+    ],
+    "(pred : A → Bool) (a : A) : a ∈ enumerateAll pred ↔ pred a = true": [
       {
         "carrier": "FullMath/enumeration_member",
         "line": 34,
@@ -29,7 +150,7 @@
         "path": "FullMath/Representation/FiniteCertificates.lean"
       }
     ],
-    "exact_check_reflects (pred : A → Bool) (out : Finset A) (h : checkExact pred out = true) : (↑out : Set A) = solutionSet pred": [
+    "(pred : A → Bool) (out : Finset A) (h : checkExact pred out = true) : (↑out : Set A) = solutionSet pred": [
       {
         "carrier": "FullMath/exact_check_reflects",
         "line": 38,
@@ -41,43 +162,67 @@
         "path": "FullMath/Representation/FiniteCertificates.lean"
       }
     ],
-    "fwd_subst_heq {α : Type} {P : α → Type} {a b : α} (h : a = b) (x : P a) : HEq x (h ▸ x : P b)": [
+    "(pred : A → Bool) (out : Finset A) (h : ∀ a ∈ out, pred a = true) : (↑out : Set A) ⊆ solutionSet pred": [
       {
-        "carrier": "External/fwd_subst_heq",
-        "line": 183,
-        "path": "External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean"
+        "carrier": "FullMath/partial_check_sound",
+        "line": 49,
+        "path": "FullMath/GenericKernels.lean"
       },
       {
-        "carrier": "External/fwd_subst_heq",
-        "line": 52,
-        "path": "External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean"
+        "carrier": "FullMath/partial_scan_sound",
+        "line": 31,
+        "path": "FullMath/Representation/FiniteCertificates.lean"
       }
     ],
-    "pmf_bind_heq {α β₁ β₂ : Type} (hβ : β₁ = β₂) (p : PMF α) (f₁ : α → PMF β₁) (f₂ : α → PMF β₂) (hf : ∀ a, HEq (f₁ a) (f₂ a)) : HEq (p.bind f₁) (p.bind f₂)": [
+    "(pred : A → Bool) : checkExact pred (enumerateAll pred) = true": [
       {
-        "carrier": "External/pmf_bind_heq",
-        "line": 197,
-        "path": "External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean"
+        "carrier": "FullMath/enumeration_accepted",
+        "line": 44,
+        "path": "FullMath/GenericKernels.lean"
       },
       {
-        "carrier": "External/pmf_bind_heq",
-        "line": 58,
-        "path": "External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean"
+        "carrier": "FullMath/enumeration_certified",
+        "line": 55,
+        "path": "FullMath/Representation/FiniteCertificates.lean"
       }
     ],
-    "pmf_bind_heq' {α β₁ β₂ : Type} (hβ : β₁ = β₂) (p₁ p₂ : PMF α) (hp : p₁ = p₂) (f₁ : α → PMF β₁) (f₂ : α → PMF β₂) (hf : ∀ a, HEq (f₁ a) (f₂ a)) : HEq (p₁.bind f₁) (p₂.bind f₂)": [
+    "(r : ℚ) : max r 0 - max (-r) 0 = r": [
       {
-        "carrier": "External/pmf_bind_heq'",
-        "line": 204,
-        "path": "External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean"
+        "carrier": "FullMath/clipped_conservation",
+        "line": 94,
+        "path": "FullMath/GenericKernels.lean"
       },
       {
-        "carrier": "External/pmf_bind_heq'",
-        "line": 66,
-        "path": "External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean"
+        "carrier": "root/other/split_residual_identity",
+        "line": 21,
+        "path": "BusinessRelationsDelta.lean"
       }
     ],
-    "runDist_eq_of_stepIndependence (ν : PMF (PureProfile O)) (b : BehavioralProfile O) (hStep : ∀ n, ν.bind (fun π => (O.runDistPure n π).bind (fun ss => pushforward (O.stepDist b ss) (fun t => ss ++ [t]))) = ν.bind (fun π => (O.runDistPure n π).bind (fun ss => pushforward (O.stepDist (O.pureToBehavioral π) ss) (fun t => ss ++ [t])))) (k : Nat) : O.runDist k b = ν.bind (fun π => O.runDistPure k π)": [
+    "(r r' : X → Y → Prop) (s s' : Y → Z → Prop) (hr : ∀ x y, r x y → r' x y) (hs : ∀ y z, s y z → s' y z) : ∀ x z, relComp r s x z → relComp r' s' x z": [
+      {
+        "carrier": "FullMath/comp_preserves_inclusion",
+        "line": 18,
+        "path": "FullMath/Composition/RelationalComposition.lean"
+      },
+      {
+        "carrier": "FullMath/composition_preserves_inclusion",
+        "line": 60,
+        "path": "FullMath/GenericKernels.lean"
+      }
+    ],
+    "(μ : PMF α) (f : α → β) (g : β → γ) : pushforward (pushforward μ f) g = pushforward μ (g ∘ f)": [
+      {
+        "carrier": "External/pushforward_comp",
+        "line": 44,
+        "path": "External/GameTheory/Math/ProbabilityMassFunction.lean"
+      },
+      {
+        "carrier": "External/pushforward_pushforward",
+        "line": 49,
+        "path": "External/GameTheory/Math/ProbabilityMassFunction.lean"
+      }
+    ],
+    "(ν : PMF (PureProfile O)) (b : BehavioralProfile O) (hStep : ∀ n, ν.bind (fun π => (O.runDistPure n π).bind (fun ss => pushforward (O.stepDist b ss) (fun t => ss ++ [t]))) = ν.bind (fun π => (O.runDistPure n π).bind (fun ss => pushforward (O.stepDist (O.pureToBehavioral π) ss) (fun t => ss ++ [t])))) (k : Nat) : O.runDist k b = ν.bind (fun π => O.runDistPure k π)": [
       {
         "carrier": "External/runDist_eq_of_stepIndependence",
         "line": 599,
@@ -89,7 +234,199 @@
         "path": "External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean"
       }
     ],
-    "sum_mul_pmf_ne_top {α : Type*} [Fintype α] (d : PMF α) (w : α → ENNReal) (hw : ∀ a, w a ≤ 1) : ∑ a, d a * w a ≠ ⊤": [
+    ": checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with caseId := \"OTHER-CASE\" } }) (writeCalculation expectedCalculation) = false": [
+      {
+        "carrier": "root/other/reject_doc_caseId",
+        "line": 26,
+        "path": "BusinessRoot/SevenAxisCases.lean"
+      },
+      {
+        "carrier": "root/other/wrong_case_rejected",
+        "line": 380,
+        "path": "BusinessRoot/SevenAxis.lean"
+      }
+    ],
+    ": checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with debtor := \"丙公司\" } }) (writeCalculation expectedCalculation) = false": [
+      {
+        "carrier": "root/other/reject_doc_debtor",
+        "line": 53,
+        "path": "BusinessRoot/SevenAxisCases.lean"
+      },
+      {
+        "carrier": "root/other/wrong_debtor_rejected",
+        "line": 351,
+        "path": "BusinessRoot/SevenAxis.lean"
+      }
+    ],
+    "[∀ i, Finite (A i)] (σ : ∀ i, PMF (A i)) {j q : ι} (hq : q ≠ j) (E : A j → Prop) (hE : pmfMass (μ := σ j) E ≠ 0) : pushforward (pmfCond (μ := pmfPi (A := A) σ) (fun s => E (s j)) (by simpa [pmfMass_pmfPi_coord (A := A) (σ := σ) (j := j) (E := E)] using hE)) (fun s => s q) = σ q": [
+      {
+        "carrier": "External/pmfPi_cond_coord_other_marginal",
+        "line": 1193,
+        "path": "External/GameTheory/Math/PMFProduct.lean"
+      },
+      {
+        "carrier": "External/pmfPi_cond_coord_push_other",
+        "line": 708,
+        "path": "External/GameTheory/Math/PMFProduct.lean"
+      }
+    ],
+    "{S T : Finset α} (hST : S ⊆ T) : TH sys S ⊆ TH sys T": [
+      {
+        "carrier": "root/other/TH_monotone",
+        "line": 41,
+        "path": "HornDefinitions.lean"
+      },
+      {
+        "carrier": "root/other/horn_operator_monotone",
+        "line": 21,
+        "path": "HornFixedPoint.lean"
+      }
+    ],
+    "{a b c : TrustVector} (hab : TrustLE a b) (hbc : TrustLE b c) : TrustLE a c": [
+      {
+        "carrier": "root/other/bb5_trustLE_trans",
+        "line": 154,
+        "path": "Seams/BoundaryBridge5.lean"
+      },
+      {
+        "carrier": "root/other/trustLE_trans",
+        "line": 611,
+        "path": "Seams/BoundaryClosure.lean"
+      }
+    ],
+    "{af : DefeatAF} {s : Finset ArgId} (h : Preferred af s) : s ∈ preferredExtensions af": [
+      {
+        "carrier": "root/other/CORE_20_preferred_complete",
+        "line": 234,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/preferredExtensions_complete",
+        "line": 250,
+        "path": "ULM10DungProfiles.lean"
+      }
+    ],
+    "{bundle : DomainBundle} {policy : CompositionPolicy} {choice : CompositionChoice} (h : ChoiceWF bundle policy choice) : choice.selected ⊆ bundle.candidates": [
+      {
+        "carrier": "root/other/CORE_13_choice_membership",
+        "line": 191,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/choice_wf_selected_subset",
+        "line": 74,
+        "path": "ULM13DomainCompositionExact.lean"
+      }
+    ],
+    "{env : QueryEnvironment} {f : ExtensionFamily} {q : JurisLean.LegalId .claim} (h : UndecidedSome env f q) : ∃ e ∈ f.carrier, GateEnterable env e q": [
+      {
+        "carrier": "root/other/CORE_09_undecided_requires_enterable",
+        "line": 168,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/undecided_requires_enterable",
+        "line": 204,
+        "path": "ULM11BranchQuery.lean"
+      }
+    ],
+    "{expected actual : Finset CanonicalArgument} (hCoverage : ArgumentCoverage expected actual) (hExpectedWF : ∀ a ∈ expected, ArgumentWF a) {a : CanonicalArgument} (hActual : a ∈ actual) : ArgumentWF a": [
+      {
+        "carrier": "root/other/CORE_19_argument_coverage_sound",
+        "line": 225,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/covered_argument_is_well_formed",
+        "line": 107,
+        "path": "ULM08ArgumentConstruction.lean"
+      }
+    ],
+    "{g : TypedGraph} {s t : LocalState} (h : LocalTransition g s t) : t.request = s.request": [
+      {
+        "carrier": "root/other/CORE_01_typed_transition_request",
+        "line": 117,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/localTransition_preserves_request",
+        "line": 69,
+        "path": "ULM03TypedGraph.lean"
+      }
+    ],
+    "{g : TypedGraph} {x y : Machine} (h : Run g x y) : x.request = y.request": [
+      {
+        "carrier": "root/other/CORE_22_run_subject_preserved",
+        "line": 240,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/run_preserves_request",
+        "line": 75,
+        "path": "ULM05Machine.lean"
+      }
+    ],
+    "{goal : ProofSubject → Prop} {v : VerifierEntry} (hv : VerifierSound goal v) {subject : ProofSubject} (hs : Sat v subject) : subject.obligation ∈ requiredObligations subject.edge ∧ subject.obligation ∈ v.supported ∧ goal subject": [
+      {
+        "carrier": "root/other/CORE_24_sat_sound",
+        "line": 252,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/sat_sound",
+        "line": 99,
+        "path": "ULM04Obligations.lean"
+      }
+    ],
+    "{input : ValidatedAttackSet} {policy : DefeatPolicy} {x y : CanonicalArgument} (h : (x, y) ∈ resolveDefeat input policy) : ∃ a ∈ input.attacks, AttackWF a ∧ policy.succeeds a = true ∧ a.attacker = x ∧ a.target = y": [
+      {
+        "carrier": "root/other/CORE_05_resolved_defeat_has_source",
+        "line": 146,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/resolved_defeat_has_wf_source",
+        "line": 65,
+        "path": "ULM09AttackDefeat.lean"
+      }
+    ],
+    "{request : RequestKey} (a : ValidatedAdjudicationAuthority request) : a.1.rule.failureConsequence.isProcedural = false": [
+      {
+        "carrier": "root/other/CORE_11_burden_failure_nonprocedural",
+        "line": 184,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/burden_failure_is_nonprocedural",
+        "line": 237,
+        "path": "ULM12Procedure.lean"
+      }
+    ],
+    "{sys : TaggedHornSystem} {pool : Finset PositionCandidate} {c : PositionCandidate} (h : c ∈ generateCandidates sys pool) : CandidateWF sys c": [
+      {
+        "carrier": "root/other/CORE_04_generated_candidate_sound",
+        "line": 139,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/generated_candidate_sound",
+        "line": 54,
+        "path": "ULM07HornSupport.lean"
+      }
+    ],
+    "{x y : BranchArtifact} (h : x.branch ≠ y.branch) : ¬ ComposableAsOneLegalOutcome x y": [
+      {
+        "carrier": "root/other/CORE_08_branch_nonmixing",
+        "line": 162,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/different_branches_not_composable",
+        "line": 118,
+        "path": "ULM11BranchQuery.lean"
+      }
+    ],
+    "{α : Type*} [Fintype α] (d : PMF α) (w : α → ENNReal) (hw : ∀ a, w a ≤ 1) : ∑ a, d a * w a ≠ ⊤": [
       {
         "carrier": "External/sum_mul_pmf_ne_top",
         "line": 107,
@@ -100,14 +437,74 @@
         "line": 75,
         "path": "External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean"
       }
+    ],
+    "{α : Type*} {as bs : List α} {a b : α} (h : as ++ [a] = bs ++ [b]) : as = bs ∧ a = b": [
+      {
+        "carrier": "External/append_singleton_inj",
+        "line": 55,
+        "path": "External/GameTheory/Math/ParameterizedChain.lean"
+      },
+      {
+        "carrier": "External/append_singleton_inj",
+        "line": 139,
+        "path": "External/GameTheory/Math/TraceRun.lean"
+      }
+    ],
+    "{α : Type} {P : α → Type} {a b : α} (h : a = b) (x : P a) : HEq x (h ▸ x : P b)": [
+      {
+        "carrier": "External/fwd_subst_heq",
+        "line": 183,
+        "path": "External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean"
+      },
+      {
+        "carrier": "External/fwd_subst_heq",
+        "line": 52,
+        "path": "External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean"
+      }
+    ],
+    "{α β γ δ : Type*} (obsA : α → δ) (obsB : β → δ) (obsC : γ → δ) (f : α → β) (g : β → γ) (hf : Preserves obsA obsB f) (hg : Preserves obsB obsC g) : Preserves obsA obsC (g ∘ f)": [
+      {
+        "carrier": "root/other/COMP_C02_observation_preservation",
+        "line": 82,
+        "path": "ULM16TheoryComposition.lean"
+      },
+      {
+        "carrier": "root/other/preserves_comp",
+        "line": 138,
+        "path": "ULM01NormalForm.lean"
+      }
+    ],
+    "{α β₁ β₂ : Type} (hβ : β₁ = β₂) (p : PMF α) (f₁ : α → PMF β₁) (f₂ : α → PMF β₂) (hf : ∀ a, HEq (f₁ a) (f₂ a)) : HEq (p.bind f₁) (p.bind f₂)": [
+      {
+        "carrier": "External/pmf_bind_heq",
+        "line": 197,
+        "path": "External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean"
+      },
+      {
+        "carrier": "External/pmf_bind_heq",
+        "line": 58,
+        "path": "External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean"
+      }
+    ],
+    "{α β₁ β₂ : Type} (hβ : β₁ = β₂) (p₁ p₂ : PMF α) (hp : p₁ = p₂) (f₁ : α → PMF β₁) (f₂ : α → PMF β₂) (hf : ∀ a, HEq (f₁ a) (f₂ a)) : HEq (p₁.bind f₁) (p₂.bind f₂)": [
+      {
+        "carrier": "External/pmf_bind_heq'",
+        "line": 204,
+        "path": "External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean"
+      },
+      {
+        "carrier": "External/pmf_bind_heq'",
+        "line": 66,
+        "path": "External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean"
+      }
     ]
   },
-  "files_scanned": 297,
+  "files_scanned": 298,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
-  "headers_missed_by_scanner": 105,
+  "headers_missed_by_scanner": 98,
   "inventory_package_theorems": 3374,
   "private_protected_headers_read": 114,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 3383
+  "statements_read": 3390
 }

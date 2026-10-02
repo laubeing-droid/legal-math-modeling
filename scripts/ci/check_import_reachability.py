@@ -173,10 +173,11 @@ PENDING_CI_MODULES: dict[str, str] = {
     "JurisLean.Seams.BurdenStatutes": "awaiting its own changed-module CI run (2026-10-02 W4 batch 2: 民诉法解释 90/91/92/93/108/109)",
     "JurisLean.Seams.LegacyConeBridge": "awaiting its own changed-module CI run (2026-10-02 G4: legacy cone four hops)",
     "JurisLean.Seams.UnifiedInstance": "awaiting its own changed-module CI run (2026-10-02 G5: closed inhabitant of UnifiedModel)",
-    # Batch three of the statute work and the first end-to-end chain. Booked before either is
-    # green on purpose: the sentence below is only about CI, and neither has had a round.
-    "JurisLean.Seams.SanctionInterest": "awaiting its own changed-module CI run (2026-10-02 W4 batch 3: 民诉法 264 + 法释〔2014〕8号第一条第3款)",
-    "JurisLean.Seams.StatuteChain": "awaiting its own changed-module CI run (2026-10-02 G6: burden -> closure -> admissible -> standard -> amount)",
+    # NOT booked here yet, and that is deliberate. Booking a module whose .lean file is still
+    # untracked produces a red round with the message "quarantine names modules that do not
+    # exist": the reachability walk reads the working tree while CI reads the checkout, so a
+    # booking can only ever follow the commit. SanctionInterest and StatuteChain get their lines
+    # in the same commit that puts their files in the tree, not before.
 }
 
 # Same-pin external ports (elazarg/GameTheory @ 107085bc4 and

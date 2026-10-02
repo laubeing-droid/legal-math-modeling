@@ -155,6 +155,8 @@ without guessing where it came from.
 | 37054086733 | success | `50855bb` | ci/mandate-wave1 | workflow_dispatch | 7/8 | 10 | 16_第九轮终态核对表_20261002.md |
 | 37060599453 | success | `c1a6553` | ci/mandate-wave1 | workflow_dispatch | 1/8 | 1 | 16_第九轮终态核对表_20261002.md |
 | 37061796855 | success | `45453fd` | ci/mandate-wave1 | workflow_dispatch | 7/8 | 10 | 16_第九轮终态核对表_20261002.md |
+| 37071233544 | success | `fda5f34` | ci/mandate-wave1 | workflow_dispatch | 1/8 | 1 | 16_第九轮终态核对表_20261002.md |
+| 37073593187 | success | `a94f3e8` | ci/mandate-wave1 | workflow_dispatch | 7/8 | 10 | 16_第九轮终态核对表_20261002.md |
 
 Runs not concluding `success`: 58 — 34512426708, 34514241309, 34516894406, 34517689336, 34519379252, 35819869335, 35832550717, 36116094791, 36258179200, 36285858369, 36289822066, 36290409329, 36291053225, 36292599075, 36295032321, 36296061840, 36303397911, 36304261436, 36305404923, 36308381874, 36309484500, 36327456262, 36336037802, 36338968515, 36341001563, 36343993012, 36347838507, 36349847602, 36350810615, 36355767697, 36357526499, 36357820618, 36366431370, 36368232581, 36370196379, 36371673207, 36374824946, 36377625445, 36389750256, 36392435547, 36394196611, 36401817896, 36431969776, 36445176605, 36447860895, 36451514398, 36462222006, 36500482833, 36500486589, 36762048694, 36762059683, 36762070911, 36762766598, 36766617907, 36825200668, 36833561884, 37006893948, 37025459941.
 
@@ -203,6 +205,7 @@ JSON before repeating any "that run was green" claim.
 - run 37045062534: 18 files, 657335 bytes, digests in `docs/formal-release/ci-evidence/37045062534/digests.json`
 - run 37054086733: 18 files, 657709 bytes, digests in `docs/formal-release/ci-evidence/37054086733/digests.json`
 - run 37061796855: 18 files, 658120 bytes, digests in `docs/formal-release/ci-evidence/37061796855/digests.json`
+- run 37073593187: 18 files, 658886 bytes, digests in `docs/formal-release/ci-evidence/37073593187/digests.json`
 
 Land another run's bytes with `--fetch-evidence <run>`; `--check` recomputes every digest in every `digests.json` and fails if a landed set no longer matches, or belongs to a run nothing quotes.
 

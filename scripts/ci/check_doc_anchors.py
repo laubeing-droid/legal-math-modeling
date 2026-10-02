@@ -63,7 +63,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[2]
 SOURCE_ROOT = ROOT / "proofs" / "lean" / "juris_lean" / "JurisLean"
 DOCS = sorted((ROOT / "docs" / "master-plan").glob("0[6-9]_*.md")) + sorted(
-    (ROOT / "docs" / "master-plan").glob("1[01]_*.md")
+    (ROOT / "docs" / "master-plan").glob("1*_*.md")
 )
 
 # Subscript digits appear inside real declaration names (joint_obs₁_agrees).

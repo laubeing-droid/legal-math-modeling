@@ -15,8 +15,8 @@
     ]
   },
   "cross_family_statement_types": 1,
-  "distinct_statement_types": 3553,
-  "duplicated_statement_types": 40,
+  "distinct_statement_types": 3632,
+  "duplicated_statement_types": 41,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
@@ -256,6 +256,18 @@
         "carrier": "root/other/wrong_debtor_rejected",
         "line": 351,
         "path": "BusinessRoot/SevenAxis.lean"
+      }
+    ],
+    ": collapsesToKernel instanceM.evalDom": [
+      {
+        "carrier": "root/other/chain_collapse_from_the_109_tier",
+        "line": 326,
+        "path": "Seams/StatuteChain.lean"
+      },
+      {
+        "carrier": "root/other/instanceM_collapse",
+        "line": 599,
+        "path": "Seams/UnifiedInstance.lean"
       }
     ],
     "[∀ i, Finite (A i)] (σ : ∀ i, PMF (A i)) {j q : ι} (hq : q ≠ j) (E : A j → Prop) (hE : pmfMass (μ := σ j) E ≠ 0) : pushforward (pmfCond (μ := pmfPi (A := A) σ) (fun s => E (s j)) (by simpa [pmfMass_pmfPi_coord (A := A) (σ := σ) (j := j) (E := E)] using hE)) (fun s => s q) = σ q": [
@@ -499,12 +511,12 @@
       }
     ]
   },
-  "files_scanned": 302,
+  "files_scanned": 304,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
-  "headers_missed_by_scanner": -105,
+  "headers_missed_by_scanner": -185,
   "inventory_package_theorems": 3374,
   "private_protected_headers_read": 114,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 3593
+  "statements_read": 3673
 }

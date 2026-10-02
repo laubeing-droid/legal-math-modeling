@@ -55,6 +55,13 @@ NOT_A_GATE = {
     "changed_lean_modules.py",
     # Emits run identity only while running inside CI; exits 1 locally by design.
     "build_run_identity.py",
+    # Writes docs/master-plan/基线/未覆盖片段登记.md by copying each wave module's own closing
+    # comment. It HAS a --check mode and it is deliberately not wired this round: the modules it
+    # reads are being edited today, so the register changes on every proof that lands, and a gate
+    # that reddens because the work moved forward is a gate people learn to ignore. Wiring it is
+    # a recorded debt for after the wave settles, not an oversight -- see the header note the
+    # generated register carries.
+    "generate_uncovered_fragment_register.py",
 }
 
 

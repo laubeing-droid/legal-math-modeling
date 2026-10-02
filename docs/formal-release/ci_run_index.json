@@ -8699,12 +8699,79 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
+        "docs/master-plan/12_一次性全量落地施工计划_20261002.md:109",
+        "docs/master-plan/12_一次性全量落地施工计划_20261002.md:137",
         "docs/master-plan/12_一次性全量落地施工计划_20261002.md:80"
       ],
       "run_id": 37004715236,
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-02T12:09:59Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 5,
+      "conclusion": "failure",
+      "created_at": "2026-10-02T12:28:33Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "eca001fd3303f7ce1beae44e5ee63f78a0d187ce",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37006893948",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(ledger): recompute the five generated accounts after the wave-2…",
+      "quoted_by": [
+        "docs/master-plan/12_一次性全量落地施工计划_20261002.md:104",
+        "docs/master-plan/12_一次性全量落地施工计划_20261002.md:112",
+        "docs/master-plan/12_一次性全量落地施工计划_20261002.md:129",
+        "docs/master-plan/12_一次性全量落地施工计划_20261002.md:137"
+      ],
+      "run_id": 37006893948,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-02T12:37:51Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

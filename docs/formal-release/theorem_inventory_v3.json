@@ -2338,6 +2338,7 @@
     "JurisLean.Seams.UnifiedInstance.claimReduction_ne_noAdjustment",
     "JurisLean.Seams.UnifiedInstance.disputedM_is_grounded",
     "JurisLean.Seams.UnifiedInstance.grounded_eq_args_of_attacks_empty",
+    "JurisLean.Seams.UnifiedInstance.instanceMObs_nondegenerate",
     "JurisLean.Seams.UnifiedInstance.instanceM_admissibleNonempty",
     "JurisLean.Seams.UnifiedInstance.instanceM_baseInGrounded",
     "JurisLean.Seams.UnifiedInstance.instanceM_collapse",
@@ -2346,6 +2347,7 @@
     "JurisLean.Seams.UnifiedInstance.instanceM_satisfies_declared_fragment",
     "JurisLean.Seams.UnifiedInstance.iter_pos_eq_args",
     "JurisLean.Seams.UnifiedInstance.mem_envOld",
+    "JurisLean.Seams.UnifiedInstance.model_equality_determines_observation",
     "JurisLean.Seams.UnifiedInstance.normsM_model_class_nonempty",
     "JurisLean.Seams.UnifiedInstance.observation_not_determined_by_the_model",
     "JurisLean.Seams.UnifiedInstance.one_in_closureM",
@@ -2866,8 +2868,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "d31dc54c6d4b118b229efc79080f1e0355e1594d617ee1dab0c4ca55073b4d4d",
-   "size_bytes": 160955,
+   "sha256": "b30b6e85d1d45f4c884a7197c8b5c8dfd13695b5b41d380a51ca5e3064c7f4fe",
+   "size_bytes": 161112,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -28434,6 +28436,7 @@
    "imports": [
     "JurisLean.Seams.AdjudicationBridge",
     "JurisLean.Seams.BoundaryClosure",
+    "JurisLean.Seams.ClaimBasis",
     "JurisLean.Seams.InstitutionalEffects",
     "JurisLean.Seams.PayoffEquilibrium",
     "JurisLean.Seams.PrecedentFlow",
@@ -28447,8 +28450,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Unified.lean",
    "print_axioms_targets": [],
-   "sha256": "ce4b2b6b10adf30a4a43abdfa7b8d4d2ad8e3a20eae243d2be4c13bb71c60b05",
-   "size_bytes": 17220,
+   "sha256": "3200d197bbb579aab9b97fbe9281afd0198ed6170c3a23a44f8fd7c2d42881f1",
+   "size_bytes": 17713,
    "theorem_count": 3,
    "theorem_count_bol_convention": 3
   },
@@ -28664,6 +28667,10 @@
     },
     {
      "kind": "def",
+     "name": "statusObsM"
+    },
+    {
+     "kind": "def",
      "name": "instanceM"
     },
     {
@@ -28689,10 +28696,6 @@
     {
      "kind": "theorem",
      "name": "instanceM_satisfies_declared_fragment"
-    },
-    {
-     "kind": "def",
-     "name": "statusObsM"
     },
     {
      "kind": "def",
@@ -28732,11 +28735,23 @@
     },
     {
      "kind": "def",
+     "name": "UnifiedNonDegenerateOn"
+    },
+    {
+     "kind": "def",
      "name": "instanceMObs"
     },
     {
      "kind": "theorem",
      "name": "instanceM_nondegenerate"
+    },
+    {
+     "kind": "theorem",
+     "name": "instanceMObs_nondegenerate"
+    },
+    {
+     "kind": "theorem",
+     "name": "model_equality_determines_observation"
     },
     {
      "kind": "theorem",
@@ -28774,10 +28789,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
    "print_axioms_targets": [],
-   "sha256": "77115cfc9460e3a1ccf925c36607eec0bda68683fc876297812feb77de243329",
-   "size_bytes": 42937,
-   "theorem_count": 53,
-   "theorem_count_bol_convention": 53
+   "sha256": "750df596e0933a80d5d8db3b965ecf1c7c7d8ee04dde1fd764af2f2416651736",
+   "size_bytes": 46122,
+   "theorem_count": 55,
+   "theorem_count_bol_convention": 55
   },
   {
    "declarations": [
@@ -32554,22 +32569,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3683,
+   "counted_declaration_count": 3685,
    "file_count": 319,
    "lemma_count": 141,
-   "print_axioms_command_count": 2567,
-   "print_axioms_distinct_targets": 2513,
-   "theorem_count": 3542,
-   "theorem_count_bol_convention": 3446
+   "print_axioms_command_count": 2569,
+   "print_axioms_distinct_targets": 2515,
+   "theorem_count": 3544,
+   "theorem_count_bol_convention": 3448
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3664,
+   "counted_declaration_count": 3666,
    "file_count": 304,
    "lemma_count": 134,
-   "print_axioms_command_count": 2567,
-   "print_axioms_distinct_targets": 2513,
-   "theorem_count": 3530,
-   "theorem_count_bol_convention": 3434
+   "print_axioms_command_count": 2569,
+   "print_axioms_distinct_targets": 2515,
+   "theorem_count": 3532,
+   "theorem_count_bol_convention": 3436
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33249,12 +33264,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "b70c0a9338249ccbf19e7438b430e01068c3e19cd7439ba55100ebcfe7cb1dfc",
+ "source_inventory_digest": "fd8ea1ba56be26fdcffecf846a711d948b261d83db6d342c06ef456994fa2d74",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "7ac598e46fb075a84e3b2ebff2e1ace3b6f13c3f",
-  "tree": "a144f6f4e079baa6c025b735a98c1f65b7de6b87"
+  "commit": "4ca1432b975b0f09dc2eb80cc9b2743cf1fe852b",
+  "tree": "e37e28a84ec77bb443e25f9cb65bae18f02e1e21"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

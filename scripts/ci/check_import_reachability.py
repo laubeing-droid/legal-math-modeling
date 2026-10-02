@@ -173,6 +173,10 @@ PENDING_CI_MODULES: dict[str, str] = {
     "JurisLean.Seams.BurdenStatutes": "awaiting its own changed-module CI run (2026-10-02 W4 batch 2: 民诉法解释 90/91/92/93/108/109)",
     "JurisLean.Seams.LegacyConeBridge": "awaiting its own changed-module CI run (2026-10-02 G4: legacy cone four hops)",
     "JurisLean.Seams.UnifiedInstance": "awaiting its own changed-module CI run (2026-10-02 G5: closed inhabitant of UnifiedModel)",
+    # Batch three of the statute work. The booking and the file go into the SAME commit: a
+    # booking that precedes the commit lands in a checkout that has no such module, and
+    # round 37013367757 reddened on exactly that ("quarantine names modules that do not exist").
+    "JurisLean.Seams.SanctionInterest": "awaiting its own changed-module CI run (2026-10-02 W4 batch 3: 民诉法 264 + 法释〔2014〕8号第一条第3款)",
     # NOT booked here yet, and that is deliberate. Booking a module whose .lean file is still
     # untracked produces a red round with the message "quarantine names modules that do not
     # exist": the reachability walk reads the working tree while CI reads the checkout, so a

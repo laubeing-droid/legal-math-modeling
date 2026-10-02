@@ -63,43 +63,57 @@ def family(rel: str) -> str:
 
 
 def split_header(text: str) -> Tuple[str, str]:
-    """Return (name, normalised statement type) for a header line, or ('', '')."""
+    """Return (name, normalised statement type) for a header line, or ('', '').
+
+    The statement type is the header with the declaration *name removed*: the two
+    things being compared are the same statement written under two names, so the name
+    is exactly the part that must not be in the key. Keeping it made renaming invisible
+    -- `bb5_trustLE_trans` (Seams/BoundaryBridge5.lean) and `trustLE_trans`
+    (Seams/BoundaryClosure.lean) are byte-identical apart from their names, and a
+    name-inclusive key filed them as two distinct statements (W1b fix; the readings
+    went 8 -> 40 duplicated types once the name left the key).
+    """
     m = HEADER.match(text)
     if not m:
         return "", ""
     rest = text[m.end():]
-    name = re.split(r"[^A-Za-z0-9_']", rest, 1)[0]
+    named = re.match(r"[A-Za-z0-9_']*", rest)
+    name = named.group(0)
+    # Everything after the name is what gets compared. A name can only hold
+    # [A-Za-z0-9_'], so it carries no bracket and no depth-zero colon: cutting the
+    # scan base from `rest` to `body` shifts indices but changes no grouping.
+    body = rest[named.end():]
     # Braces count too: a statement like `check (writeDoc { meta := { ctx with
     # caseId := "X" } }) = false` has `:=` two levels in, and stopping at depth zero
     # for round brackets only truncates every such header to the same prefix, which
     # then reads as dozens of false duplicates.
     depth = 0
     colon = -1
-    for i, ch in enumerate(rest):
+    for i, ch in enumerate(body):
         if ch in "([{":
             depth += 1
         elif ch in ")]}":
             depth -= 1
-        elif ch == ":" and depth == 0 and rest[i:i + 2] != ":=":
+        elif ch == ":" and depth == 0 and body[i:i + 2] != ":=":
             colon = i
             break
     if colon < 0:
         return name, ""
-    end = len(rest)
+    end = len(body)
     depth = 0
-    for i in range(colon, len(rest)):
-        ch = rest[i]
+    for i in range(colon, len(body)):
+        ch = body[i]
         if ch in "([{":
             depth += 1
         elif ch in ")]}":
             depth -= 1
-        elif rest[i:i + 2] == ":=" and depth == 0:
+        elif body[i:i + 2] == ":=" and depth == 0:
             end = i
             break
     # The key is the WHOLE header minus the name: binders included. Counting only the
     # conclusion would let `theorem a (h : P) : Q` and `theorem b (h : R) : Q` match,
     # which is a shared shape, not a duplicated statement.
-    header = rest[:end]
+    header = body[:end]
     if ":" not in header:
         return name, ""
     stmt = WS.sub(" ", header).strip()

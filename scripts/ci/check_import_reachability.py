@@ -151,6 +151,14 @@ PENDING_CI_MODULES: dict[str, str] = {
     # theorems were built and axiom-audited green by run 36468808532 (subject 3f44b8e)
     # and its root entry is attested by the build that contains it. The table stays
     # empty and alive: any new module that has not earned a build lands here first.
+    # Second-wave bridge (2026-10-02).  builds green locally in a
+    # serialized single-process window (2955 jobs, log _seams_build_logs/transitions_9.log)
+    # -- provisional pre-check only, NOT a Lean PASS. It stays here until its own
+    # changed-module CI run attests the BUILD dimension; the axiom dimension waits for a
+    # full-release round. Its four obligations (policyClosed discharge for the constructed
+    # policy, plus the three mutual-defeat fixture claims) are registered as named Prop
+    # defs inside the file, so quarantine here is about missing CI, not about missing proof.
+    "JurisLean.Seams.Transitions": "awaiting its own changed-module CI run (2026-10-02 W3)",
 }
 
 # Same-pin external ports (elazarg/GameTheory @ 107085bc4 and

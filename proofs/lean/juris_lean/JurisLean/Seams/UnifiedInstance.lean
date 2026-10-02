@@ -18,8 +18,8 @@ import JurisLean.Seams.Unified
 
 本件按 §5.1 的字段方案逐栏造见证，交付**一个真的 `UnifiedModel` 闭合项** `instanceM`，
 并配套证明它身上那几条此前全仓无人满足的片段前提（`policyClosed`、`baseInGrounded`、
-`collapsesToKernel`）**同时成立**。本件**不**改 `Seams/Unified.lean`、
-**不**改 `AdjudicationBridge.lean`、**不**改 `Seams/Transitions.lean`。
+`collapsesToKernel`）**同时成立**。本件**不**改 `AdjudicationBridge.lean`、`Seams/Transitions.lean`；
+`Seams/Unified.lean` 本轮只动 Owner 授权的一处契约增量：`UnifiedModel` 增 `observation` 栏，既有定理文本一字未改。
 
 ## §为什么不能用现成的两个见证（§5.1 的两次避开）
 1. **`aaf/pol` 不能取 `cycle2`/`cycle2Policy`**（`AdjudicationBridge.lean:583/:589`）：
@@ -38,31 +38,31 @@ import JurisLean.Seams.Unified
 ## §`collapsesToKernel` 的分离（§5.2）与本轮的判断
 §5.2 预备的分离方案（`structure UnifiedModelOnKernel extends UnifiedModel where hCollapse : …`，
 主定理签名把该字段变成显式参数）是为"仓内造不出满足收缩性的评价域"这一情形准备的退路。
-**本轮不需要这条退路**：`verdictDomain` 本身就满足收缩性，故 `instanceM` 按原契约
-（`Seams/Unified.lean:96` 的字段表一字不改）直接闭合。
+**本轮不需要这条退路**：`verdictDomain` 本身就满足收缩性，故 `instanceM` 按契约
+（`Seams/Unified.lean:96` 的字段表；本轮只加 Owner 授权的 `observation` 一栏）直接闭合。
 分离方案不等于改窄的理由（照 §5.2）：`AdjudicationBridge.lean:855` 本来就以 `hcoll` 作显式参数，
 字段与参数是同一命题的两种写法——任何带该字段的 `M` 可降格、任何 `M` 加一条证明可升格，
 其余四条合取支陈述一字不动。本件把同一口径用在**观测槽**上（见下一节）。
 
 ## §缺的那一环（G5 收尾·非退化关于 𝔐，§5.4）
-§5.4 要求非退化的**分开者必须是 𝔐 自己声明的观测**，而契约 `09_…:32/:38` 与
-`Seams/Unified.lean:96` 的字段表里**没有任何 `Representation.Fragment` 形制的观测槽**，
-也没有任何 `ClaimBasis.Status` 形制的载体（`Unified.lean` 全文不 import `ClaimBasis`）。
-本件**不绕过**，分三步登记：
-- 另立加宽契约 `UnifiedModelObs`（一栏 `model : UnifiedModel V Rel` 加一栏
+§5.4 要求非退化的**分开者必须是 𝔐 自己声明的观测**。增栏之前契约里确实没有这一栏：
+`Seams/Unified.lean:96` 的字段表**没有 `Representation.Fragment` 形制的观测槽**，
+也没有任何 `ClaimBasis.Status` 形制的载体。本轮按 Owner 授权把该槽**做进本体**：
+`UnifiedModel.observation : Representation.Fragment ClaimBasis.Status`。于是分三步登记：
+- 加宽契约 `UnifiedModelObs`（一栏 `model : UnifiedModel V Rel` 加一栏
   `observation : Representation.Fragment ClaimBasis.Status`；不用 `extends` 只为避开
   父结构带实例隐式参数时的构造子问题，降格/升格两侧都有具名项：
-  `forgetObservation` 与 `liftWithObservation`），在**加宽实例**上证出
-  `instanceM_nondegenerate`：对象是仓内真见证 `ClaimBasis.Status.suspended`／`.unenforceable`
+  `forgetObservation` 与 `liftWithObservation`）**原样保留作对照**；`instanceM_nondegenerate`
+  现读 `instanceM.observation`：对象是仓内真见证 `ClaimBasis.Status.suspended`／`.unenforceable`
   （互异引 `ClaimBasis.status_five_labels_pairwise_distinct :187`），
-  分开者是**本实例自己声明的观测字段**（`statusObsM`，定义在本件），
+  分开者是**模型自己声明的观测字段**（`statusObsM`，定义在本件），
   **不是**拿 `ClaimBasis.fires`（`:95`，别文件的 def）冒充"本模型声明的观测"；
-- 把"𝔐 内建观测槽"写成**可表达的必要条件** `observationDeterminedByModel`
-  （模型相同 ⇒ 观测相同），并把它不成立的那一面钉成定理
-  `observation_not_determined_by_the_model`：同一个 𝔐 载体可配两份在同一法律对象上
-  取值不同的观测。所以这一环**必须**靠给 `Seams/Unified.lean` 的 `UnifiedModel`
-  增加一个字段才能闭合；那是**改契约**，属 Owner 授权范围，本轮边界禁止。
-- 该缺口以 `def instanceM_nondegenerate_obligation : Prop` 具名挂账，**不含证明**。
+- "观测由 𝔐 决定"这一必要条件在本体上已证（`model_equality_determines_observation`）；
+  加宽侧的必要条件 `observationDeterminedByModel` 与钉住旧事实的定理
+  `observation_not_determined_by_the_model`（同一个 𝔐 载体可在**模型外面**再配一份
+  取值不同的观测）**文本一字未改**——它们记录的就是"当初为何必须增栏"；
+- 义务位 `def instanceM_nondegenerate_obligation : Prop` **保留、仍不含证明**：它量化的是
+  `UnifiedModelObs` **外层**那一栏，增栏不消解它；消解动作是让加宽结构退役，见该条注释。
 
 ## §卡点与对策（§5.3 的工程说明）
 `SourceNorms.closureAt`（`SourceNorms.lean:108`）是 `abbrev`，`decide` 穿不过
@@ -79,7 +79,7 @@ import JurisLean.Seams.Unified
 ## §未覆盖片段
 1. `PrecedentFlow.EnvWf` 的闭合见证是本件新造的（§5.1 登记：全仓零闭合实例）；
    它只证明"这一栏有人住"，**不**证明前例回流对真实法源集合成立。
-2. 非退化只在**加宽实例**上证；`UnifiedModel` 本体的观测槽仍缺（见上节义务）。
+2. 非退化已改证在 𝔐 **本体**的 `observation` 栏上；加宽结构 `UnifiedModelObs` 的外层那一栏仍不由 𝔐 决定（见上节义务）。
 3. 端到端条文链（G6）不在本件：`Probability` 与 `ClaimBasis` 互相零 import，
    `badFaith` 位与 `Stage/Status` 之间无桥（§5.5 缺三环）。
 -/
@@ -532,6 +532,24 @@ end OtherLayers
 
 section ClosedInstance
 
+/-- 中文说明：**本件声明的观测**（`Representation.Fragment` 形制，载体取真实法律对象层
+    `ClaimBasis.Status`）。观测指标只有一个（`Fin 1`），取值是 `Bool`：
+    "行使段障碍除去（第580条式的障碍被排除）能否改变该法律地位"。
+    `statusObsM.obs` 的**材料**取自仓内裁决表 `ClaimBasis.fires :95`，
+    但**声明**这一动作发生在本件、并落在下面的字段 `observation` 上——
+    §5.4 不许的是把 `fires` 这个别文件的 def 直接顶替成"𝔐 声明的观测"，本件不那么做。
+    位置说明：因 `Seams/Unified.lean` 的 `UnifiedModel` 新增 `observation` 栏（Owner 授权的
+    契约增量），本定义须先于 `instanceM` 出现，故从 §六**整体上移到此处**；**定义体一字未改**，
+    §六 的读数与定理仍按原名 `statusObsM` 引用本件这一份声明。 -/
+def statusObsM : Representation.Fragment ClaimBasis.Status where
+  β := ClaimBasis.Status
+  ι := Fin 1
+  γ := Bool
+  obs := fun _ s =>
+    ClaimBasis.fires s ClaimBasis.Stage.exercisable ClaimBasis.Polarity.defuse true
+  enc := id
+  dec := id
+
 /-- **统一模型 𝔐 的诚实闭合项**（G5 的判定对象：`UnifiedModel` 第一次有闭合项）。
     每一栏都写字面见证或被证明成立的片段，缺任一条都构造不出来。
     载体选择按契约原样：`V := Fin 3`（评价域候选结论）、`Rel := Fin 1`（机构效果关系），
@@ -546,7 +564,9 @@ section ClosedInstance
       与契约里 `hUnauthorized` 那一栏相符；
     * `asOf/past/future₁/future₂/someLate`：XT 只有一条 `Int` 时间线（错位登记 #6 的实例）；
     * `weight/truthAssessment/hWeightPos/hWeightTotal`：XU 在 `ℚ` 上的等权心证；
-    * `contaminated`：XU 的污染案例（本件新造）。 -/
+    * `contaminated`：XU 的污染案例（本件新造）；
+    * `observation`：𝔐 **自己声明**的观测族，本件交 `statusObsM`——
+      契约增量那一栏，非退化性（`instanceM_nondegenerate`）就读它，不再读模型外面的槽。 -/
 def instanceM : UnifiedModel (Fin 3) (Fin 1) where
   norms := normsM
   atom := atomM
@@ -594,6 +614,7 @@ def instanceM : UnifiedModel (Fin 3) (Fin 1) where
   hWeightPos := weightM_pos
   hWeightTotal := weightM_total
   contaminated := contaminatedM
+  observation := statusObsM
 
 /-- 中文证明：闭合项的 `hCollapse` 栏（换个角度重述，便于按栏引用）。 -/
 theorem instanceM_collapse : collapsesToKernel instanceM.evalDom := verdictDomain_collapse
@@ -635,23 +656,9 @@ end ClosedInstance
 
 section ObservationSlot
 
-/-- 中文说明：**本件声明的观测**（`Representation.Fragment` 形制，载体取真实法律对象层
-    `ClaimBasis.Status`）。观测指标只有一个（`Fin 1`），取值是 `Bool`：
-    "行使段障碍除去（第580条式的障碍被排除）能否改变该法律地位"。
-    `statusObsM.obs` 的**材料**取自仓内裁决表 `ClaimBasis.fires :95`，
-    但**声明**这一动作发生在本件、并落在下面的字段 `observation` 上——
-    §5.4 不许的是把 `fires` 这个别文件的 def 直接顶替成"𝔐 声明的观测"，本件不那么做。 -/
-def statusObsM : Representation.Fragment ClaimBasis.Status where
-  β := ClaimBasis.Status
-  ι := Fin 1
-  γ := Bool
-  obs := fun _ s =>
-    ClaimBasis.fires s ClaimBasis.Stage.exercisable ClaimBasis.Polarity.defuse true
-  enc := id
-  dec := id
-
 /-- 中文说明：第二个观测——登记侧只记"是否已入簿"，对这两个地位**不加区分**（常值 `false`）。
-    它在本件只用于把"𝔐 没有观测槽"这件事证成定理（同一载体可配不同观测）。 -/
+    它在本件只用于把"**加宽结构外层那一栏**观测不由 𝔐 决定"这件事证成定理
+    （同一个 𝔐 载体可在**模型外面**再配一份不同的观测）。 -/
 def statusObsRegister : Representation.Fragment ClaimBasis.Status where
   β := ClaimBasis.Status
   ι := Fin 1
@@ -676,10 +683,13 @@ theorem statusObsM_value_unenforceable :
 theorem statusObsRegister_value_any (s : ClaimBasis.Status) :
     statusObsRegister.obs (0 : Fin 1) s = false := rfl
 
-/-- 中文说明：**加宽契约**——照 §5.2 的分离口径给 𝔐 加一栏观测。
-    这是**新结构**，`Seams/Unified.lean` 的 `UnifiedModel` 一字未改；
-    `model` 一支就是原契约（降格），`liftWithObservation` 是升格，
-    两者互逆到字段级，故加宽既不使任何既有陈述变弱，也不引入新前提（见 `widening_is_conservative`）。 -/
+/-- 中文说明：**加宽契约**——照 §5.2 的分离口径在 𝔐 之外再挂一栏观测。
+    本结构的**字段表未改**；但 `Seams/Unified.lean` 的 `UnifiedModel` 现已自带
+    `observation` 栏（Owner 授权的契约增量），故外层这一栏与 `M.model.observation` 是
+    **两个槽**，本件不再用它承担"非退化关于 𝔐"的读数（那条读数已搬进
+    `UnifiedNonDegenerateOn`）。`model` 一支是降格，`liftWithObservation` 是升格，
+    两者互逆到字段级，故加宽既不使任何既有陈述变弱，也不引入新前提
+    （见 `widening_is_conservative`）。 -/
 structure UnifiedModelObs (V Rel : Type) [DecidableEq Rel] where
   model : UnifiedModel V Rel
   observation : Representation.Fragment ClaimBasis.Status
@@ -701,19 +711,31 @@ def ObservedNonDegenerate (V Rel : Type) [DecidableEq Rel]
   ∃ (x y : ClaimBasis.Status) (i : M.observation.ι),
     x ≠ y ∧ M.observation.obs i x ≠ M.observation.obs i y
 
+/-- 中文说明（**契约 (1'')：非退化关于 𝔐 本体**）：两个不同的法律对象（`ClaimBasis.Status`）
+    要被**模型自己那一栏声明的观测**（`M.observation`）分开。
+    这正是 §5.4 要的字段形陈述——增栏之前它"连写都写不出来"（`M.observation` 不存在），
+    增栏之后它就是 𝔐 的读数，不再需要 `UnifiedModelObs` 作中介。
+    与 `ObservedNonDegenerate` 的关系：逻辑内容同形（同一对对象、同一份声明观测），
+    区别只在分开者取自**模型内**的栏位而非模型外的槽。 -/
+def UnifiedNonDegenerateOn (V Rel : Type) [DecidableEq Rel]
+    (M : UnifiedModel V Rel) : Prop :=
+  ∃ (x y : ClaimBasis.Status) (i : M.observation.ι),
+    x ≠ y ∧ M.observation.obs i x ≠ M.observation.obs i y
+
 /-- 中文说明：本实例的加宽形态——𝔐 的闭合项 + 本件声明的观测。 -/
 def instanceMObs : UnifiedModelObs (Fin 3) (Fin 1) :=
   { model := instanceM, observation := statusObsM }
 
-/-- 中文证明（**交付项 4**）：非退化**关于这个实例**。
+/-- 中文证明（**交付项 4**）：非退化**关于 𝔐 本体**——分开者是 `instanceM.observation`，
+    即模型**自己声明**的那一栏观测，不再是加宽结构外面的槽。
     对象是仓内两条真见证所用的法律地位——`suspended`（`ClaimBasis.lean:348` 的
     `witness_defense_suspends_not_extinguishes`）与 `unenforceable`（`:376` 的
-    `witness_enforceability_blocked`），互异由 `status_five_labels_pairwise_distinct :187` 交出；
-    分开它们的是 `instanceMObs.observation`，即**本实例声明的观测字段**。
-    诚实边界：本条证在**加宽实例**上，不是证在 `UnifiedModel` 本体上——
-    本体没有观测槽，缺的那一环见 `instanceM_nondegenerate_obligation`。 -/
+    `witness_enforceability_blocked`），互异由 `status_five_labels_pairwise_distinct :187` 交出。
+    本条与增栏前的版本**同内容**：那条读 `instanceMObs.observation`，本条读
+    `instanceM.observation`，而 `instanceM.observation` 就是本件声明的 `statusObsM`
+    （见 `instanceMObs_nondegenerate` 把旧读数原样保留为推论）；证明项一字未改。 -/
 theorem instanceM_nondegenerate :
-    ObservedNonDegenerate (Fin 3) (Fin 1) instanceMObs := by
+    UnifiedNonDegenerateOn (Fin 3) (Fin 1) instanceM := by
   obtain ⟨_, _, _, _, _, _, _, _, hne, _⟩ := ClaimBasis.status_five_labels_pairwise_distinct
   refine ⟨ClaimBasis.Status.suspended, ClaimBasis.Status.unenforceable, (0 : Fin 1), hne, ?_⟩
   show statusObsM.obs (0 : Fin 1) ClaimBasis.Status.suspended ≠
@@ -721,6 +743,21 @@ theorem instanceM_nondegenerate :
   rw [statusObsM_value_suspended, statusObsM_value_unenforceable]
   intro h
   cases h
+
+/-- 中文证明（**旧读数不丢**）：加宽实例上的非退化仍在——它现在只是 𝔐 本体那条读数的
+    同一个命题换了写法（两个 `observation` 槽在本实例上都是 `statusObsM`）。 -/
+theorem instanceMObs_nondegenerate :
+    ObservedNonDegenerate (Fin 3) (Fin 1) instanceMObs :=
+  instanceM_nondegenerate
+
+/-- 中文证明（**字段形必要条件在本体上成立**）：观测既是 𝔐 的一栏数据，
+    "模型相同 ⇒ 观测相同"就是投影的直接结果，不必经过加宽结构。
+    注意本式**不等于**义务位 `instanceM_nondegenerate_obligation`：后者量化的是
+    `UnifiedModelObs` **自己外层**那一栏观测，与本式不是同一个命题。 -/
+theorem model_equality_determines_observation {V Rel : Type} [DecidableEq Rel]
+    (M N : UnifiedModel V Rel) (h : M = N) : M.observation = N.observation := by
+  cases h
+  rfl
 
 /-- 中文证明：加宽是**保守扩张**——任何加宽实例的 𝔐 投影照样满足 T2 的五条合取支，
     故"把观测做成 𝔐 的字段"不会使任何既有陈述变窄（§5.2 的字段↔参数同一命题口径）。 -/
@@ -751,25 +788,22 @@ theorem observation_not_determined_by_the_model :
 def observationDeterminedByModel (V Rel : Type) [DecidableEq Rel] : Prop :=
   ∀ M N : UnifiedModelObs V Rel, M.model = N.model → M.observation = N.observation
 
-/-- 义务·未闭合（G5 收尾缺的那一环·§5.4）。
-    缺的**不是一条定理，而是契约的一个槽位**：`Seams/Unified.lean:96` 的 `UnifiedModel`
-    字段表里没有 `Representation.Fragment` 形制的观测，也没有任何 `ClaimBasis.Status`
-    形制的载体（`Unified.lean` 全文不 import `ClaimBasis`）。
-    §5.4 想要的字段形陈述
-    `UnifiedNonDegenerateOn (M : UnifiedModel V Rel) : Prop :=
-       ∃ x y : ClaimBasis.Status, ∃ i : M.observation.ι,
-         x ≠ y ∧ M.observation.obs i x ≠ M.observation.obs i y`
-    今天**连写都写不出来**（`M.observation` 不存在），所以本件：
-    ①已在**加宽实例**上证出同一条陈述（`instanceM_nondegenerate`）；
-    ②已交出"字段形"的必要条件这一可表达形态（`observationDeterminedByModel`），
-      并把它的否定面钉成事实（`observation_not_determined_by_the_model`：
-      同一个 𝔐 载体可配两个取值不同的观测）；
-    ③本义务**留在 `def … : Prop` 位，不含证明**——它当前为假，
-      而让它为真的唯一动作是给 `Seams/Unified.lean` 的 `UnifiedModel` 增一栏
-      `observation : Representation.Fragment ClaimBasis.Status`（改契约，须 Owner 授权；
-      本轮边界明令不改那个文件）。加宽之后本式由"读数即字段"自动成立，
-      `instanceM_nondegenerate` 的陈述可原样搬到 𝔐 本体上，
-      既有五条合取支一字不动（保守性见 `widening_is_conservative`）。 -/
+/-- 义务·**仍未闭合，且本次契约增量并不消解它**（G5 收尾·§5.4）。两面都要说清：
+    ①**已闭合的一半**：`Seams/Unified.lean` 的 `UnifiedModel` 现带
+      `observation : Representation.Fragment ClaimBasis.Status` 一栏（Owner 授权的契约增量），
+      于是当初"连写都写不出来"的字段形陈述现在**写得出来也证得出来**——它就是
+      `UnifiedNonDegenerateOn` 配 `instanceM_nondegenerate`，分开者读 `instanceM.observation`；
+      本体的"模型相同 ⇒ 观测相同"也已证（`model_equality_determines_observation`）。
+    ②**本义务本身留 `def … : Prop` 位，不含证明**。理由不是"没试"，而是**载体不同**：
+      本式 `observationDeterminedByModel (Fin 3) (Fin 1)` 量化的是**加宽结构**
+      `UnifiedModelObs` **自己外层**那一栏 `observation`，它与 `M.model.observation` 是两个槽；
+      `liftWithObservation` 允许同一个 `model` 分别配 `statusObsM` 与 `statusObsRegister`，
+      故外层栏仍不由 𝔐 决定。要在本式上交付，先得有 `statusObsM ≠ statusObsRegister`，
+      而那一步仍被 `Fragment.obs` 的依赖槽挡住（本 pin 实测 `motive is not type correct`，
+      见 `observation_not_determined_by_the_model` 的工程说明）。
+      ⇒ 消解本式的动作是**让加宽结构退役**（调用方一律改读 `M.observation`，
+      并把本式重述到 `UnifiedModel` 上，即 `model_equality_determines_observation` 那一形），
+      那属于下一步的清理，不在本轮边界内；本轮**不删本义务、不给假证明**。 -/
 def instanceM_nondegenerate_obligation : Prop :=
   observationDeterminedByModel (Fin 3) (Fin 1)
 

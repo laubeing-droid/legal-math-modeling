@@ -7,6 +7,7 @@ import JurisLean.Seams.PrecedentFlow
 import JurisLean.Seams.Temporal
 import JurisLean.Seams.Uncertainty
 import JurisLean.Seams.BoundaryClosure
+import JurisLean.Seams.ClaimBasis
 import Mathlib.Data.Fintype.Basic
 import Mathlib.Tactic
 
@@ -139,6 +140,11 @@ structure UnifiedModel (V Rel : Type) [DecidableEq Rel] where
   hWeightPos : ∀ a, 0 < weight a
   hWeightTotal : ∑ a : Fin 2, weight a = 1
   contaminated : Uncertainty.ContaminatedCase
+  /-- 中文说明（**声明观测族**，Owner 授权的契约增量）：𝔐 对法律对象 `ClaimBasis.Status`
+      所**声明**的那一份观测（`Representation.Fragment` 形制）。
+      非退化性要能说成"关于模型自己"，靠的就是这一栏：观测是 𝔐 的数据，
+      模型不许把它留在契约之外（缺它时同一载体可配两份互异观测）。 -/
+  observation : Representation.Fragment ClaimBasis.Status
 
 /-- 契约 (1)：统一模型**不退化**。三支都是"存在"式的正面见证，全部引用。 -/
 def UnifiedNonDegenerate : Prop :=

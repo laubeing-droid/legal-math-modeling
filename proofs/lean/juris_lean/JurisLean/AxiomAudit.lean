@@ -1729,6 +1729,7 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedInstance.claimReduction_ne_noAdjustment
 #print axioms JurisLean.Seams.UnifiedInstance.disputedM_is_grounded
 #print axioms JurisLean.Seams.UnifiedInstance.grounded_eq_args_of_attacks_empty
+#print axioms JurisLean.Seams.UnifiedInstance.instanceMObs_nondegenerate
 #print axioms JurisLean.Seams.UnifiedInstance.instanceM_admissibleNonempty
 #print axioms JurisLean.Seams.UnifiedInstance.instanceM_baseInGrounded
 #print axioms JurisLean.Seams.UnifiedInstance.instanceM_collapse
@@ -1737,6 +1738,7 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedInstance.instanceM_satisfies_declared_fragment
 #print axioms JurisLean.Seams.UnifiedInstance.iter_pos_eq_args
 #print axioms JurisLean.Seams.UnifiedInstance.mem_envOld
+#print axioms JurisLean.Seams.UnifiedInstance.model_equality_determines_observation
 #print axioms JurisLean.Seams.UnifiedInstance.normsM_model_class_nonempty
 #print axioms JurisLean.Seams.UnifiedInstance.observation_not_determined_by_the_model
 #print axioms JurisLean.Seams.UnifiedInstance.one_in_closureM

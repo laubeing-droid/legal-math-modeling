@@ -1773,6 +1773,8 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedInstance.widening_is_conservative
 #print axioms JurisLean.Seams.UnifiedInstance.zero_in_closureM
 #print axioms JurisLean.Seams.UnifiedInstance.zero_mem_singleton
+#print axioms JurisLean.Seams.bridge_distinguishes_two_statuses
+#print axioms JurisLean.Seams.bridge_shared_legal_status_point
 #print axioms JurisLean.Seams.unified_claim_is_not_general
 #print axioms JurisLean.Seams.unified_legal_derivation_on_declared_fragment
 #print axioms JurisLean.Seams.unified_model_is_not_vacuous

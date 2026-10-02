@@ -282,4 +282,34 @@ theorem unified_claim_is_not_general :
       ∀ (e : ULM.FailureCore), f (.failure e) = ULM.Outcome.complete (42 : Nat) :=
   BoundaryClosure.delimitation_is_not_general
 
+/-! ## 法律地位的跨载体桥（G4：一名多类型，无桥 → 有桥） -/
+
+/-- 桥（G4"消除一名多类型无桥"·法律地位那一格）：`ClaimBasis.Status`（5 值，请求权面）与
+    `PayoffEquilibrium.LegalStatus`（4 值，评价面）都带一个叫 `unenforceable` 的地位，此前两型之间
+    **零桥**——只是各自同名，没有任何连线。这里交出一条**全函数**对应，把它变成"有一条具名、
+    可证、非空洞的桥"。方向取"请求权面→评价面"：判区分性要用 `DecidableEq`，而 `LegalStatus`
+    `deriving DecidableEq`、`ClaimBasis.Status` 只 `deriving Repr`。
+    诚实边界：只有 `unenforceable` 是两侧的**共享语义点**（由 `bridge_shared_legal_status_point` 交出）；
+    其余格 `established→upheld / notYet→dismissed / extinguished→dismissed / suspended→partiallyUpheld`
+    是为让对应成为全函数的**保守取象**，不声称逐格语义等同，更不是同构（基数 5≠4）。逐格语义对应、
+    以及"为何 `suspended` 无评价面精确对手"仍属未覆盖，见 `13_` 卷 C1。 -/
+def bridgeClaimStatusToPayoff : ClaimBasis.Status → PayoffEquilibrium.LegalStatus
+  | .established => .upheld
+  | .notYet => .dismissed
+  | .suspended => .partiallyUpheld
+  | .extinguished => .dismissed
+  | .unenforceable => .unenforceable
+
+/-- 桥把两侧的 `unenforceable` 连到同一点——这一格是真共享语义，不是取象。 -/
+theorem bridge_shared_legal_status_point :
+    bridgeClaimStatusToPayoff ClaimBasis.Status.unenforceable =
+      PayoffEquilibrium.LegalStatus.unenforceable := rfl
+
+/-- 桥**不是常值**（非空洞）：`unenforceable` 与 `notYet` 两格被映到不同的评价地位；
+    判据走 `PayoffEquilibrium.LegalStatus` 的 `DecidableEq`（两构造子不同，`decide` 直接判真）。 -/
+theorem bridge_distinguishes_two_statuses :
+    bridgeClaimStatusToPayoff ClaimBasis.Status.unenforceable ≠
+      bridgeClaimStatusToPayoff ClaimBasis.Status.notYet := by
+  decide
+
 end JurisLean.Seams

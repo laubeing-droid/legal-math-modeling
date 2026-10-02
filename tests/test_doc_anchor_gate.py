@@ -365,7 +365,7 @@ def test_a_mathlib_name_is_checked_against_the_pinned_sources_not_against_memory
     f = facts()
     if not lake_is_on_disk():
         assert_missing_root_is_blunt(
-            tmp_path, f"照 `{f['name']}`、`Finset.filter_congr` 两条展开即可。\n")
+            tmp_path, f"照 `{f['name']}`、`Finset.mem_filter` 两条展开即可。\n")
         return
     index = GATES.build_index()
     real = GATES.resolve_token("Finset.filter_congr", index)

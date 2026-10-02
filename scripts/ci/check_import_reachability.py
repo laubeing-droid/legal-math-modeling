@@ -161,6 +161,14 @@ PENDING_CI_MODULES: dict[str, str] = {
     # statements (policyClosed discharge plus the three mutual-defeat fixture claims), so the
     # reason for quarantine is root entry, not missing proof and not missing CI.
     "JurisLean.Seams.Transitions": "build attested by run 37004715236; awaiting root entry (2026-10-02 W3)",
+    # Wave-2 statute batches. Each is a green LOCAL serial build (LAKE_EXIT=0 recorded in the
+    # session log), which is a provisional pre-check and NOT a Lean PASS: none of these four has
+    # had its own changed-module CI round yet, and AGENTS forbids root entry before one. The
+    # counts are never copied into this comment -- read them from the generated accounts.
+    "JurisLean.Seams.ReductionConditions2": "awaiting its own changed-module CI run (2026-10-02 W4 batch 1-2: 法释〔2023〕13号 63-66)",
+    "JurisLean.Seams.BurdenStatutes": "awaiting its own changed-module CI run (2026-10-02 W4 batch 2: 民诉法解释 90/91/92/93/108/109)",
+    "JurisLean.Seams.LegacyConeBridge": "awaiting its own changed-module CI run (2026-10-02 G4: legacy cone four hops)",
+    "JurisLean.Seams.UnifiedInstance": "awaiting its own changed-module CI run (2026-10-02 G5: closed inhabitant of UnifiedModel)",
 }
 
 # Same-pin external ports (elazarg/GameTheory @ 107085bc4 and

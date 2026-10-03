@@ -1004,10 +1004,12 @@ theorem unique_verdict_reverse_unconditional_falsum :
   simp only [Set.mem_singleton_iff] at h1
   exact absurd h1 (by decide)
 
-/-- 中文说明：G6"可采纳"跳的**可满足性**正向见证（不改动 `instanceM`）。
-    `chain_art90_gate_has_no_input` 为假，是因为 `instanceM.polM` 恰取常真策略；那不是"可采纳"机制空洞。
-    这里另造一个**只采纳 `pArg`** 的终端策略 `cycle2RejectQPolicy`，证明确有论点（`qArg`）落在框架
-    `cycle2.args` 内却不被该策略采纳——即"可采纳"判定在模型里真的能排除材料，这一跳可正跑。
+/-- 中文说明：G6"可采纳"跳的**可满足性**正向见证。
+    2026-10-03 G6 轮后 `instanceM.polM` 的支持位已改由 Horn 侧判定算出（非常真），
+    `StatuteChain.chain_art90_gate_has_input_witness` 在 `instanceM` 上交出支持位为假的论点。
+    本条是**一般机制**侧的见证：另造一个**只采纳 `pArg`** 的终端策略 `cycle2RejectQPolicy`，
+    证明确有论点（`qArg`）落在框架 `cycle2.args` 内却不被该策略采纳——
+    即"可采纳"判定在模型里真的能排除材料，这一跳可正跑。
     诚实边界：字段按字面有限数据赋值的**夹具**，不声称对应任何真实法条的采纳规则。 -/
 def cycle2RejectQPolicy : TerminalPolicy cycle2 where
   admissibleSupport := fun a => decide (a = pArg)

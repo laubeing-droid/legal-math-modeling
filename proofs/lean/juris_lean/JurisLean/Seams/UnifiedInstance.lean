@@ -11,6 +11,7 @@ import JurisLean.Seams.ClaimBasis
 import JurisLean.Seams.InstitutionalEffects
 import JurisLean.Seams.Uncertainty
 import JurisLean.Seams.PrecedentFlow
+import JurisLean.Seams.Transitions
 import JurisLean.Seams.Unified
 
 /-!
@@ -350,21 +351,26 @@ def aafM : DungAAF := { args := {claimReduction, claimNoAdjustment}, attacks := 
 /-- 中文证明：框架的攻击边集确实为空（字面量的自明等式）。 -/
 theorem aafM_attacks_eq_empty : aafM.attacks = (∅ : Finset (Arg × Arg)) := rfl
 
-/-- 中文说明：终端策略（§5.3 候选 A）：`conclusive` 取**整个论点集**，
-    推定／妨碍／反证三支置空，`admissibleSupport` 恒真。
-    法律读法：本案每条主张都有明文规则直接指定采纳，无推定、无妨碍、无相反证据。
-    注意候选 B（`round := card univ`）按 §5.3 会退化回 A：`adoptedStep`
-    （`AdjudicationBridge.lean:165`）含 `F` 没有的三项法律材料，要重合必须外加真空条件，
-    故本件直接取 `round = 0`。 -/
+/-- 中文说明：本实例的争议论点（`UnifiedModel.disputed` 栏）。
+    提前到 `polM` 之前定义，因为 `polM` 的可采纳支持位现在由 Horn 侧判定算出，
+    而那台判定以"命名映射把闭包原子映到争议论点"为参数。 -/
+def disputedM : Arg := claimReduction
+
+/-- 中文说明：终端策略（§5.3 候选 A，2026-10-03 G6 轮修订）：`conclusive` 取**整个论点集**，
+    推定／妨碍／反证三支置空；`admissibleSupport` **不再是常真**，而是由 Horn 闭包侧那台
+    判定算出——即"支持位＝在下层规范闭包的命名像里"。
+    法律读法：明文规则直接指定采纳的主张仍走 `conclusive`；可采纳性则回到
+    "该论点是否由已证立的规范闭包产生"这一 Horn 侧判定，与 §5.5 的链第 2→3 跳同源。
+    注意 `baseSet`（AdjudicationBridge.lean:143）只用 conclusive/presumed/obstructed，
+    不读 support，故本栏修订不动 `baseSet_polM_eq_args` 及其下游三定理；
+    受影响的是 `adoptedStep`（`:165`）的过滤条件——但本件 `round = 0`，
+    `rounds polM 0 = (baseSet, ∅)`，不进入 `adoptedStep`。 -/
 def polM : TerminalPolicy aafM where
-  admissibleSupport := fun _ => true
+  admissibleSupport := Transitions.admissibleFromHorn normsM (fun _ => disputedM)
   conclusive := aafM.args
   presumed := ∅
   obstructed := ∅
   contraryEvidence := ∅
-
-/-- 中文说明：本实例的争议论点（`UnifiedModel.disputed` 栏）。 -/
-def disputedM : Arg := claimReduction
 
 /-- 中文证明（技术引理，对任意框架成立）：攻击边为空 ⇒ 每个论点的攻击者集为空。
     `DungAAF.attackers aaf a`（`DungDefinitions.lean:24`）就是 `aaf.args` 按"攻击 `a`"来筛，

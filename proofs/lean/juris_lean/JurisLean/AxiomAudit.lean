@@ -1591,7 +1591,7 @@ open HornSystem
 #print axioms JurisLean.Seams.StatuteChain.chain_amount_faces_meet_only_numerically
 #print axioms JurisLean.Seams.StatuteChain.chain_amount_hop
 #print axioms JurisLean.Seams.StatuteChain.chain_art108_finding_fires
-#print axioms JurisLean.Seams.StatuteChain.chain_art90_gate_has_no_input
+#print axioms JurisLean.Seams.StatuteChain.chain_art90_gate_has_input_witness
 #print axioms JurisLean.Seams.StatuteChain.chain_art91_allocation_hop
 #print axioms JurisLean.Seams.StatuteChain.chain_art91_clause_is_decidable
 #print axioms JurisLean.Seams.StatuteChain.chain_atom_eq
@@ -1599,11 +1599,12 @@ open HornSystem
 #print axioms JurisLean.Seams.StatuteChain.chain_collapse_from_the_109_tier
 #print axioms JurisLean.Seams.StatuteChain.chain_disputed_eq
 #print axioms JurisLean.Seams.StatuteChain.chain_evalDom_eq
-#print axioms JurisLean.Seams.StatuteChain.chain_naming_hop_does_not_close
+#print axioms JurisLean.Seams.StatuteChain.chain_naming_hop_closes_witness
 #print axioms JurisLean.Seams.StatuteChain.chain_norms_eq
 #print axioms JurisLean.Seams.StatuteChain.chain_phrases_are_distinct
 #print axioms JurisLean.Seams.StatuteChain.chain_pol_eq
-#print axioms JurisLean.Seams.StatuteChain.chain_pol_support_is_constant
+#print axioms JurisLean.Seams.StatuteChain.chain_pol_support_is_horn_derived
+#print axioms JurisLean.Seams.StatuteChain.chain_pol_support_on_two_labels
 #print axioms JurisLean.Seams.StatuteChain.chain_seam_args_eq_instance_args
 #print axioms JurisLean.Seams.StatuteChain.chain_seam_label2_eq
 #print axioms JurisLean.Seams.StatuteChain.chain_seam_label_eq

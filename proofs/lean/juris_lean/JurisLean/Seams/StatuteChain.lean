@@ -430,7 +430,7 @@ def chainIntervalMem : ℚ → chainIntervalCarrier → Prop := JurisLean.FullMa
     ③④同一个额（下界）在现有 `AllowOf` 下仍被准许、在 `AllowTwo` 下**不再**被准许
     （`compliant_side_changes_extension:838` 两支）。
     法律读法：**在数额面上**举证要件是有输入的，并且改变外延；
-    与本实例采纳面的对照见 `chain_art90_gate_has_no_input`。 -/
+    与本实例采纳面的对照见 `chain_art90_gate_has_input_witness`（2026-10-03 G6 轮后两面对齐）。 -/
 theorem chain_amount_hop :
     Probability.reductionGate Probability.TwoSidedBurden.openGateData = true ∧
       Probability.TwoSidedBurden.twoSidedGate
@@ -536,87 +536,76 @@ theorem chain_subject_divergence :
   rw [hnil] at hpair
   exact notMemEmptyFinset _ hpair
 
-/-! ## 七、两条义务：`instanceM` 接不上的那一跳（具名 `def … : Prop` ＋ 判定式定理）-/
-
-/-- 中文说明（本实例的支持位是常函数）：`instanceM.pol.admissibleSupport`
-    ＝ `polM.admissibleSupport` ＝ `fun _ => true`（`Seams/UnifiedInstance.lean:360`）。
-    本式是下面第一条义务的**判据来源**，也是"举证要件在本实例的采纳面上无从发动"的机器证据。 -/
-theorem chain_pol_support_is_constant : ∀ a : Arg, instanceM.pol.admissibleSupport a = true :=
-  fun _ => rfl
-
-/-- 义务·未闭合（**第 1 跳 → 第 3 跳**）。缺的是**一个能发动的缺口**。
-    第 90 条第 2 款："在作出判决前，当事人未能提供证据或者证据不足以证明其事实主张的，
-    由负有举证证明责任的当事人承担不利的后果。"[一手已核]
-    该不利后果在终端策略里的形式就是"可采纳支持为假 ⇒ 该论点不被采纳"
-    （`AdjudicationBridge.adoptedStep:165` 的第二个合取项 `pol.admissibleSupport a`）。
-    本式要的正是"论点集里存在一个支持位为假的论点"。
-    **为什么接不上**：`instanceM.pol.admissibleSupport` 是常函数 `fun _ => true`
-    （`chain_pol_support_is_constant`），且 `polM` 的 `obstructed`、`contraryEvidence` 两支也置空
-    （`Seams/UnifiedInstance.lean:359-364`）——本实例的采纳判定**没有**任何举证材料入口。
-    判定式定理 `chain_art90_gate_has_no_input` 证明本式**当前为假**，
-    因此这不是"证法不够"而是**载体缺件**。
-    补法（唯一一条，属改契约，须 Owner 授权）：给 `Seams/Unified.lean` 的 `UnifiedModel`
-    增一栏第 90 条第 2 款形制的缺口材料（`BurdenStatutes.ProductionStatus` 或等价谓词），
-    并让 `pol.admissibleSupport` 由它算出；届时本式由该栏的见证即真。 -/
-def chain_art90_gate_has_input : Prop :=
-  ∃ a : Arg, a ∈ instanceM.aaf.args ∧ instanceM.pol.admissibleSupport a = false
-
-/-- 中文证明（上条义务的**判定**：本实例接不上第 1 跳 → 第 3 跳）：
-    任何论点的支持位都取 `true`，所以"存在支持位为假的论点"为假。 -/
-theorem chain_art90_gate_has_no_input : ¬ chain_art90_gate_has_input := by
-  rintro ⟨a, _, hfalse⟩
-  have htrue : instanceM.pol.admissibleSupport a = true := rfl
-  rw [htrue] at hfalse
-  exact absurd hfalse (by decide)
+/-! ## 七、两跳闭合（2026-10-03 G6 轮：`polM` 支持位改由 Horn 侧判定算出）-/
 
 /-- 中文说明（本实例唯一可**从 𝔐 读出**的命名映射）：`UnifiedModel` 的字段表里只有
-    `disputed : Arg` 这一个 `Arg` 形制的载体栏，没有"原子 → 论点"的映射栏，
+    `disputed : Arg` 这一个 `Arg` 形式的载体栏，没有"原子 → 论点"的映射栏，
     故本件能写出的、最贴近 𝔐 自身数据的读法就是把两个 L1 原子都命名为 `instanceM.disputed`。 -/
 def chainNamingM : Fin 2 → Arg := fun _ => instanceM.disputed
 
-/-- 义务·未闭合（**第 2 跳 → 第 3 跳**）。缺的是**命名映射这一跳本身**。
-    S1→S2 缝件的桥定理 `Transitions.horn_derived_is_admissible:110` 的结论落在
-    `Transitions.admissibleFromHorn sys n`（＝"在闭包的像里"这台 Bool 判定）上；
-    要把第 2 跳交给第 3 跳，必须让本实例的支持位**就是**这台判定机器，即本式。
-    **为什么接不上**：`Seams/Unified.lean:96` 的字段表里没有 `n : α → Arg` 这一栏，
-    而 `instanceM.aaf.args` 一栏按 `Seams/UnifiedInstance.lean:348` 写的是**字面 `Finset`**
-    （见 `chain_aaf_args_eq`），其理由由该件头注 §5.3 登记：`decide` 穿不过
-    `FiniteMonotoneSystem.iter` 与 `HornSystem.TH` 的 `filter/image`。
-    判定式定理 `chain_naming_hop_does_not_close` 证明本式**当前不成立**。
-    诚实边界：本件**只**否证"`chainNamingM` 这一种可读出映射"，
-    不声称"对一切 `n : Fin 2 → Arg` 都不成立"（那需要先把
-    `SourceNorms.closureAt instanceM.norms` 精确算成 `{0, 1}`，正是 §5.3 的卡点）——
-    该全称版本列在 §未覆盖第 2 项，不得计入本件交付。 -/
+/-- 中文说明（支持位的新形态）：`polM.admissibleSupport` 现在**就是** Horn 闭包侧那台
+    Bool 判定（`Transitions.admissibleFromHorn normsM (fun _ => disputedM)`），
+    不再是常真函数。法律读法：可采纳性回到"该论点是否由已证立的规范闭包产生"，
+    与 §5.5 链的第 2→3 跳同源。 -/
+theorem chain_pol_support_is_horn_derived :
+    instanceM.pol.admissibleSupport =
+      Transitions.admissibleFromHorn instanceM.norms chainNamingM := rfl
+
+/-- 中文证明（两点的具象读数，机器可核）：
+    `claimReduction`（争议论点＝闭包命名像的唯一元素）支持位为真；
+    `claimNoAdjustment` 不在命名像里（`claimReduction_ne_noAdjustment`），支持位为假。
+    这正是第 90 条第 2 款"证据不足以证明其事实主张 ⇒ 承担不利后果"在采纳面上的入口：
+    支持位为假的论点不再被 `adoptedStep` 采纳。 -/
+theorem chain_pol_support_on_two_labels :
+    instanceM.pol.admissibleSupport UnifiedInstance.claimReduction = true ∧
+      instanceM.pol.admissibleSupport UnifiedInstance.claimNoAdjustment = false := by
+  constructor
+  · show Transitions.admissibleFromHorn instanceM.norms chainNamingM
+        UnifiedInstance.claimReduction = true
+    have hmem : UnifiedInstance.claimReduction ∈
+        Transitions.namedClosure instanceM.norms chainNamingM := by
+      rcases UnifiedInstance.one_in_closureM with ⟨h0, _⟩
+      exact Finset.mem_image.mpr ⟨0, h0, rfl⟩
+    exact decide_eq_true hmem
+  · have hnotmem : ¬ UnifiedInstance.claimNoAdjustment ∈
+        Transitions.namedClosure instanceM.norms chainNamingM := by
+      intro hmem
+      rcases Finset.mem_image.mp hmem with ⟨x, _, hnx⟩
+      -- `chainNamingM x` 与 `claimReduction` 可定义相等（常函数映射到争议论点）。
+      exact absurd hnx (fun he => UnifiedInstance.claimReduction_ne_noAdjustment he)
+    show Transitions.admissibleFromHorn instanceM.norms chainNamingM
+        UnifiedInstance.claimNoAdjustment = false
+    exact decide_eq_false hnotmem
+
+/-- 义务·**已闭合**（**第 2 跳 → 第 3 跳**，2026-10-03 G6 轮）：
+    本实例的支持位现在**就是** Horn 闭包侧那台判定机器——
+    `polM.admissibleSupport := Transitions.admissibleFromHorn normsM (fun _ => disputedM)`
+    （`Seams/UnifiedInstance.lean`，`disputedM` 已提前定义），
+    而本式右面的 `instanceM.norms`/`chainNamingM` 与左面是同一批对象的投影，
+    故等式由 `rfl`（定义级）成立。 -/
 def chain_naming_hop_closes : Prop :=
   instanceM.pol.admissibleSupport = Transitions.admissibleFromHorn instanceM.norms chainNamingM
 
-/-- 中文证明（上条义务的**判定**：第 2 跳 → 第 3 跳在本实例上接不上）：
-    等式左面在标签 `"no_adjustment"` 上取 `true`（常函数，`chain_pol_support_is_constant`），
-    右面在同一标签上取 `false`——因为 `chainNamingM` 的像只含 `instanceM.disputed` 一个标签，
-    而 `Finset.mem_image` 是 `namedClosure` 成员关系的唯一生产方式
-    （写法照 `Transitions.args_are_named_closure:94`）。两面逐点不同，故等式不成立。 -/
-theorem chain_naming_hop_does_not_close : ¬ chain_naming_hop_closes := by
-  intro heq
-  have hnotmem : ¬ UnifiedInstance.claimNoAdjustment ∈
-      Transitions.namedClosure instanceM.norms chainNamingM := by
-    intro hmem
-    rcases Finset.mem_image.mp
-      (show UnifiedInstance.claimNoAdjustment ∈
-        Transitions.namedClosure instanceM.norms chainNamingM from hmem) with ⟨x, _, hnx⟩
-    -- `decide` 在此不可用：目标里有自由变量 `x`（编译器报 "Expected type must not contain
-    -- free variables"）。改用本仓已证的字符串不等式 `claimReduction_ne_noAdjustment`；
-    -- `chainNamingM x` 与 `claimReduction` 是可定义相等（该映射是常函数）。
-    exact absurd hnx (fun he => UnifiedInstance.claimReduction_ne_noAdjustment he)
-  have hfalse : Transitions.admissibleFromHorn instanceM.norms chainNamingM
-      UnifiedInstance.claimNoAdjustment = false := decide_eq_false hnotmem
-  have htrue : Transitions.admissibleFromHorn instanceM.norms chainNamingM
-      UnifiedInstance.claimNoAdjustment = true := by
-    have hp : instanceM.pol.admissibleSupport UnifiedInstance.claimNoAdjustment = true := rfl
-    exact (congrFun heq UnifiedInstance.claimNoAdjustment).symm.trans hp
-  have hcontra : (true : Bool) = false := by
-    rw [← htrue]
-    exact hfalse
-  exact absurd hcontra (by decide)
+/-- 中文证明：定义级等式（两侧都归结到 `admissibleFromHorn normsM (fun _ => disputedM)`）。 -/
+theorem chain_naming_hop_closes_witness : chain_naming_hop_closes := rfl
+
+/-- 义务·**已闭合**（**第 1 跳 → 第 3 跳**，2026-10-03 G6 轮）。
+    第 90 条第 2 款："在作出判决前，当事人未能提供证据或者证据不足以证明其事实主张的，
+    由负有举证证明责任的当事人承担不利的后果。"[一手已核]
+    该不利后果在终端策略里的形式是"可采纳支持为假 ⇒ 该论点不被采纳"
+    （`AdjudicationBridge.adoptedStep:165` 的第二个合取项 `pol.admissibleSupport a`）。
+    本式要的"论点集里存在一个支持位为假的论点"现在由 `claimNoAdjustment` 交出：
+    它不在 Horn 闭包的命名像里（像只含 `claimReduction`），支持位为假。 -/
+def chain_art90_gate_has_input : Prop :=
+  ∃ a : Arg, a ∈ instanceM.aaf.args ∧ instanceM.pol.admissibleSupport a = false
+
+/-- 中文证明：见证即 `claimNoAdjustment`——在论点集里（字面 `Finset` 的第二元素），
+    且支持位为假（`chain_pol_support_on_two_labels` 的右支）。 -/
+theorem chain_art90_gate_has_input_witness : chain_art90_gate_has_input := by
+  refine ⟨UnifiedInstance.claimNoAdjustment, ?_, chain_pol_support_on_two_labels.2⟩
+  show UnifiedInstance.claimNoAdjustment ∈
+      ({UnifiedInstance.claimReduction, UnifiedInstance.claimNoAdjustment} : Finset Arg)
+  exact Finset.mem_insert_of_mem (Finset.mem_insert_self _ _)
 
 /-! ## 八、链谓词与封顶陈述 -/
 
@@ -660,34 +649,38 @@ theorem statuteChain_on_instanceM : StatuteChainOn instanceM :=
     ⟨chain_seam_label_eq, chain_subject_divergence.2.1,
       chain_subject_divergence.2.2.2⟩⟩
 
-/-- **本件的封顶陈述（G6 的判定对象）**：存在 `UnifiedModel (Fin 3) (Fin 1)` 的一个闭合项，
-    它就是 `Seams/UnifiedInstance.lean:550` 的 `instanceM`；在它上面
-    第 1 跳（举证责任分配 → 待判原子）、第 2 跳（Horn 闭包 ↔ 语义后承）、
+/-- **本件的封顶陈述（G6 的判定对象，2026-10-03 G6 轮闭合）**：存在
+    `UnifiedModel (Fin 3) (Fin 1)` 的一个闭合项，它就是 `Seams/UnifiedInstance.lean` 的
+    `instanceM`；在它上面第 1 跳（举证责任分配 → 待判原子）、第 2 跳（Horn 闭包 ↔ 语义后承）、
+    **第 2→3 跳（命名映射：支持位＝Horn 侧判定，`chain_naming_hop_closes_witness`）**、
+    **第 1→3 跳的举证入口（`chain_art90_gate_has_input_witness`：`claimNoAdjustment`
+    支持位为假，第 90 条第 2 款的不利后果有了机器入口）**、
     第 3 跳（终端策略采纳且两值不塌）、第 4 跳（评价域依法＋109 档推出收缩性）、
-    第 5 跳（数额面的闸门与准许关系）以及主体检查全部作为定理成立；
-    同时**第 2 跳 → 第 3 跳之间那一跳在本实例上被证明接不上**
-    （`chain_naming_hop_does_not_close`），
-    **第 1 跳 → 第 3 跳的举证入口在本实例上被证明不存在**
-    （`chain_art90_gate_has_no_input`）。
-    ⇒ "同一条条文链从举证责任条款走到数额"这句话，今天在本仓的可证部分就是本式；
-    两处缺口不是被略过，而是作为同一条陈述里的否定合取支写进来。
-    禁止把本式读成"端到端条文链已闭合"。 -/
+    第 5 跳（数额面的闸门与准许关系）以及主体检查全部作为定理成立。
+    ⇒ "同一条条文链从举证责任条款走到数额"这句话由本式逐支交出。
+    诚实边界：两跳的闭合靠的是把 `polM.admissibleSupport` 定义为 Horn 侧判定
+    （定义级 `rfl`），闭包侧的成员判定走具名见证而非把 `closureAt` 整体 `decide`
+    （§5.3 卡点仍在，见 §未覆盖第 2 项的全称版本）。 -/
 theorem statuteChain_reaches_the_one_closed_instance :
     ∃ (M : UnifiedModel (Fin 3) (Fin 1)),
-      M = instanceM ∧ StatuteChainOn M ∧ ¬ chain_naming_hop_closes ∧
-        ¬ chain_art90_gate_has_input :=
-  ⟨instanceM, rfl, statuteChain_on_instanceM, chain_naming_hop_does_not_close,
-    chain_art90_gate_has_no_input⟩
+      M = instanceM ∧ StatuteChainOn M ∧ chain_naming_hop_closes ∧
+        chain_art90_gate_has_input :=
+  ⟨instanceM, rfl, statuteChain_on_instanceM, chain_naming_hop_closes_witness,
+    chain_art90_gate_has_input_witness⟩
 
 /-! ## §未覆盖片段（逐条：本链**没有**走到哪里，以及为什么）
 
-1. **第 1 跳 → 第 3 跳（举证缺口进入采纳面）**：已判定为**载体缺件**，不是证法不够——
-   `chain_art90_gate_has_no_input` 证明本实例的论点集里没有支持位为假的论点。
-   `UnifiedModel`（`Seams/Unified.lean:96`）没有任何栏承载 `ProductionStatus`／`BurdenAllocation`。
-2. **第 2 跳 → 第 3 跳（命名映射）**：`chain_naming_hop_does_not_close` 只否证了
-   "𝔐 唯一可读出的那个映射 `chainNamingM`"这一种读法。**未证**更强版本
-   `¬ ∃ n : Fin 2 → Arg, instanceM.pol.admissibleSupport =
-   Transitions.admissibleFromHorn instanceM.norms n`——它需要把
+1. **第 1 跳 → 第 3 跳（举证缺口进入采纳面）**：**2026-10-03 G6 轮已闭合**——
+   `polM.admissibleSupport` 改由 Horn 侧判定算出后，`chain_art90_gate_has_input_witness`
+   交出 `claimNoAdjustment` 这个支持位为假的论点，第 90 条第 2 款的不利后果有了机器入口。
+   仍未做的是**逐案材料化**：`UnifiedModel` 仍没有 `ProductionStatus`／`BurdenAllocation`
+   形式的栏，缺口位现在是"Horn 闭包是否产生该论点"，不是"本案证据清单是否不足"。
+2. **第 2 跳 → 第 3 跳（命名映射）**：**2026-10-03 G6 轮已闭合（定义级）**——
+   `polM.admissibleSupport := Transitions.admissibleFromHorn normsM (fun _ => disputedM)`，
+   `chain_naming_hop_closes_witness` 由 `rfl` 成立。**未证**的是反向全称版本
+   `∀ n : Fin 2 → Arg, instanceM.pol.admissibleSupport =
+   Transitions.admissibleFromHorn instanceM.norms n → n = chainNamingM`
+   （以及"除 `chainNamingM` 外都不成立"）——它需要把
    `SourceNorms.closureAt instanceM.norms` 精确算成 `{0, 1}`，正是
    `Seams/UnifiedInstance.lean` 头注 §5.3 登记的 `decide` 卡点
    （`FiniteMonotoneSystem.iter` ＋ `HornSystem.TH` 的 `filter/image`）。

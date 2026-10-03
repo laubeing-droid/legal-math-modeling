@@ -503,9 +503,9 @@ theorem art64_baseSet_eq_singleton :
   refine ⟨fun ha => ?_, fun ha => ?_⟩
   · obtain ⟨_, hobs, hdisj⟩ := Finset.mem_filter.mp ha
     cases hdisj with
-    | inl hc => exact Finset.mem_singleton.mp hc
+    | inl hc => exact hc
     | inr hp => exact absurd hp.1 (notMemEmptyFinset a)
-  · rw [ha]
+  · obtain rfl : a = encode ClauseAtom.reductionClaim := Finset.mem_singleton.mp ha
     exact Finset.mem_filter.mpr
       ⟨reduction_in_args, ⟨fun h => notMemEmptyFinset a h, Or.inl
         art64_conclusive_is_the_reduction_claim⟩⟩

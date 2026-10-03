@@ -709,10 +709,14 @@ theorem statuteChain_reaches_the_one_closed_instance :
    三者同名而异义，本件只用第一个。不得声称"证明标准已被统一"。
 7. **第 108 条第 3 款"法律对于待证事实所应达到的证明标准另有规定的，从其规定"**：
    仍是出口条款，本件不做成第三个构造子，也不认定任何"另有规定"。
-8. **第 64 条第 3 款的"驳回"表达**：法释〔2023〕13号第 64 条第 3 款实定"仅以合同约定
-   不得调整为由主张不予调整的，人民法院不予支持"。承 `Seams/Transitions.lean` 头注 §三
-   的登记，缝件只建成"互斥且无明文采纳 ⇒ 未决"，本件**没有**把它升级成"驳回"，
-   因此本链在缝件一侧的第 3 跳仍是 `¬ FinalDerivable` 而不是 `FinalDefeated`。
+8. **第 64 条第 3 款的"驳回"表达**：该款（"仅以合同约定不得调整为由主张不予调整的，
+   人民法院不予支持"）的驳回编码**已在缝件一侧给出**——`Seams/Transitions.lean` §五 的
+   `art64_no_adjustment_defeated` 把该主张读成 `FinalDefeated`，走的是反证栏
+   （本机唯一能产出驳倒集的入口；头注 §三 先前说"放进 obstructed 即可"是错的，已更正）。
+   但**本链没有接它**：`instanceM.pol` 的 contraryEvidence 是 `∅`，且本链取 `round = 0`，
+   第 3 跳仍是 `¬ FinalDerivable` 而不是 `FinalDefeated`；把 §五 接进本链要么给 `polM`
+   加反证栏（在第 0 层上不产生任何读数变化，只是挂读法），要么把第 3 跳搬到 `round ≥ 1`
+   （牵动 `chain_L2_*` 一系与已认定的闭合项），两条都属下一轮。
 9. **第 92 条自认与第 93 条免证七项**：本件一处都没用到（第 93 条第 1 款第 (五) 项
    与 `presumptionRuleFires` 的接点留在 `BurdenStatutes.art93_overturn_entry_matches_seam:388`），
    所以本链**不含**免证事实、自认与生效裁判确认事实进入闭包的那条支路。

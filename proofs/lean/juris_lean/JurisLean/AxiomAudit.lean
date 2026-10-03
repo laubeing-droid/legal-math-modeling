@@ -1664,6 +1664,11 @@ open HornSystem
 #print axioms JurisLean.Seams.Transitions.F_args_eq_args_of_attacks_empty
 #print axioms JurisLean.Seams.Transitions.aafNoExceptions_attacks_eq_empty
 #print axioms JurisLean.Seams.Transitions.args_are_named_closure
+#print axioms JurisLean.Seams.Transitions.art64_baseSet_empty
+#print axioms JurisLean.Seams.Transitions.art64_contrary_evidence_is_the_reduction_claim
+#print axioms JurisLean.Seams.Transitions.art64_no_adjustment_defeated
+#print axioms JurisLean.Seams.Transitions.art64_rejected_step_defeats_no_adjustment
+#print axioms JurisLean.Seams.Transitions.art64_rejection_is_extra_content
 #print axioms JurisLean.Seams.Transitions.attack_no_adjustment_to_reduction
 #print axioms JurisLean.Seams.Transitions.attack_reduction_to_no_adjustment
 #print axioms JurisLean.Seams.Transitions.attackers_eq_empty_of_attacks_empty
@@ -1673,6 +1678,7 @@ open HornSystem
 #print axioms JurisLean.Seams.Transitions.conflict_args_eq_or
 #print axioms JurisLean.Seams.Transitions.conflict_baseSet_empty
 #print axioms JurisLean.Seams.Transitions.conflict_never_adopted_obligation
+#print axioms JurisLean.Seams.Transitions.conflict_no_adjustment_final_undetermined
 #print axioms JurisLean.Seams.Transitions.conflict_not_final_derivable_obligation
 #print axioms JurisLean.Seams.Transitions.conflict_rounds_empty
 #print axioms JurisLean.Seams.Transitions.encode_ne

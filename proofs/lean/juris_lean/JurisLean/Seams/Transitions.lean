@@ -42,9 +42,9 @@ L1（`Seams/SourceNorms.lean`）的原子是任意类型 `α`，"成立"读作�
   与释明义务（第66条第1款）两项法律内容，故它是"规范运算→裁判推理"的最小桥，
   **不是**心证边界的桥（那是 P-051/S2 的职责）。
 - 心脏夹具的表达力**弱于条文**：第64条第3款实定"仅以合同约定不得调整为由主张不予调整的，
-  人民法院不予支持"，即该主张应被**驳回**；本件只能建成"两主张互斥且无明文采纳⇒未决"。
-  要表达"驳回"须把该主张放进 `obstructed`、或让请求进 `conclusive`，本件未做——
-  登记为未覆盖片段，不冒充已表达。
+  人民法院不予支持"，即该主张应被**驳回**；本件的互斥夹具一节只建成"两主张互斥且无明文采纳
+  ⇒未决"，§五另给该款的驳回编码。**先前此处写作"须把该主张放进 `obstructed`、或让请求进
+  `conclusive`"是错的**（那两支只作用于 `baseSet`，产不出 `FinalDefeated`），已在 §五 更正。
 - `baseInGrounded`（`AdjudicationBridge.lean:514`）与 `collapsesToKernel`（`:846`）两条前提
   本件**未**消解，仍属未覆盖片段。
 -/
@@ -456,9 +456,102 @@ theorem reduction_claim_support_is_true :
     ⇒ "这一跳不可合并"现在有**机器证据**：同一结论可以 L1 成立而 L2 永不可支持，
       两层不是同一对象上的同一性质。
     仍未闭合（不得计入统一性）：T2 另两条前提 `baseInGrounded`（`AdjudicationBridge.lean:514`）
-    与 `collapsesToKernel`（`:846`）；以及第64条第3款"不予支持"的**驳回**表达——
-    本件只建成"互斥且无明文采纳⇒未决"，把该主张读成"被驳回"仍属未覆盖片段。 -/
+    与 `collapsesToKernel`（`:846`）。第64条第3款"不予支持"的**驳回**表达已在 §五 给出
+    （`art64_no_adjustment_defeated`，并把旧状态留在 `conflict_no_adjustment_final_undetermined`
+    作对照）；那是**建模选择**：本机唯一能产出 `FinalDefeated` 的入口是反证栏。 -/
 theorem transitions_boundary_is_recorded :
     (∃ p q : Prop, p = (ClauseAtom.reductionClaim ∈ SourceNorms.closureAt claimCase) ∧
       q = ¬ FinalDerivable conflictPolicy (encode ClauseAtom.reductionClaim)) :=
   ⟨_, _, rfl, rfl⟩
+
+/-! ## 五、第 64 条第 3 款"不予支持"的**驳回**表达（补 §三 登记的那一格） -/
+
+section ArtSixtyFourClauseThree
+
+/-- 中文说明（**建模选择**，不是对条文效果的认定）：法释〔2023〕13号第 64 条第 3 款实定
+    "仅以合同约定不得调整为由主张不予调整的，人民法院不予支持"。本件把该款编成
+    **一条已产出的反证材料**：酌减请求一侧（法定调整权）进 `contraryEvidence` 栏，
+    其余四栏与 `conflictPolicy` 相同（明文／推定／妨碍全空）。
+    为什么只有这一条路（§三 先前写作"放进 `obstructed`、或让请求进 `conclusive`"，
+    **那是错的**）：本机的驳倒集只有一个生成口——`AdjudicationBridge.lean:153` 的
+    `rejectedStep` 只把"攻击者落在 `contraryEvidence` 里"的论点收进来；
+    `obstructed` 与 `conclusive` 两支都只作用于 `baseSet`（`:143`），
+    最多让某主张**不被采纳**，永远产不出 `FinalDefeated`。
+    ⇒ 这是签名级事实而非取舍；法律读法：该款不是"抗辩不成立"，而是"该抗辩被明文打回"。 -/
+def art64Policy : TerminalPolicy conflictAAF where
+  admissibleSupport := admissibleFromHorn claimCase encode
+  conclusive := ∅
+  presumed := ∅
+  obstructed := ∅
+  contraryEvidence := {encode ClauseAtom.reductionClaim}
+
+/-- 中文证明：反证栏里确实是酌减请求那一侧的论点（单元素字面集的成员判定）。 -/
+theorem art64_contrary_evidence_is_the_reduction_claim :
+    encode ClauseAtom.reductionClaim ∈ art64Policy.contraryEvidence :=
+  show encode ClauseAtom.reductionClaim ∈ ({encode ClauseAtom.reductionClaim} : Finset Arg)
+    from Finset.mem_singleton.mpr rfl
+
+/-- 中文证明：第 0 层采纳集仍为空——该款**不**改变"本案无一条明文规则直接指定采纳谁"，
+    它改变的是驳倒集。 -/
+theorem art64_baseSet_empty : baseSet art64Policy = ∅ := by
+  refine (Finset.eq_empty_iff_forall_notMem (s := baseSet art64Policy)).mpr ?_
+  intro a ha
+  obtain ⟨_, _, hcond⟩ := Finset.mem_filter.mp ha
+  cases hcond with
+  | inl hc => exact notMemEmptyFinset a hc
+  | inr hp => exact notMemEmptyFinset a hp.1
+
+/-- 中文证明（技术引理）：反证一步**确实**把"不予调整"主张收进驳倒集。
+    链条：酌减请求在论点集里（`reduction_in_args`）且它攻击"不予调整"
+    （`attack_no_adjustment_to_reduction`），而它又在反证栏里 ⇒ 该攻击者筛后非空。 -/
+theorem art64_rejected_step_defeats_no_adjustment :
+    encode ClauseAtom.noAdjustment ∈ rejectedStep art64Policy (∅ : Finset Arg) ∅ := by
+  have hmem : encode ClauseAtom.reductionClaim ∈
+      (DungAAF.attackers conflictAAF (encode ClauseAtom.noAdjustment))
+        .filter (fun b => b ∈ art64Policy.contraryEvidence) :=
+    Finset.mem_filter.mpr
+      ⟨mem_attackers_of_mem reduction_in_args attack_no_adjustment_to_reduction,
+        art64_contrary_evidence_is_the_reduction_claim⟩
+  unfold rejectedStep
+  refine Finset.mem_union.mpr (Or.inr (Finset.mem_filter.mpr ⟨no_adjustment_in_args, ?_⟩))
+  intro heq
+  rw [heq] at hmem
+  exact notMemEmptyFinset _ hmem
+
+/-- 中文证明（**G3 那一格闭合**）：第 64 条第 3 款在模型里是**驳回**
+    （`FinalDefeated`），不只是"未被采纳"（`¬ FinalDerivable`）。
+    层号取 1：第 0 层采纳集空（`art64_baseSet_empty`）、驳倒集空（`rounds_zero_snd`），
+    第 1 层驳倒集就是上一条的反证一步。 -/
+theorem art64_no_adjustment_defeated :
+    FinalDefeated art64Policy (encode ClauseAtom.noAdjustment) := by
+  refine ⟨1, ?_⟩
+  rw [rounds_succ_snd, rounds_zero_fst, art64_baseSet_empty, rounds_zero_snd]
+  exact art64_rejected_step_defeats_no_adjustment
+
+/-- 中文证明（对照面）：**不加**反证栏时，同一互斥夹具下"不予调整"主张是**未决**——
+    既未被采纳也未被驳倒（`conflict_rounds_empty` 给出两支恒空）。
+    这正是 §三 登记的旧状态，本件不把它说成本条文的读法。 -/
+theorem conflict_no_adjustment_final_undetermined :
+    finalUndetermined conflictPolicy (encode ClauseAtom.noAdjustment) := by
+  refine ⟨?_, ?_⟩
+  · rintro ⟨k, hk⟩
+    obtain ⟨h1, _⟩ := conflict_rounds_empty k
+    rw [h1] at hk
+    exact notMemEmptyFinset _ hk
+  · rintro ⟨k, hk⟩
+    obtain ⟨_, h2⟩ := conflict_rounds_empty k
+    rw [h2] at hk
+    exact notMemEmptyFinset _ hk
+
+/-- 中文证明（**§五 是加内容而不是换写法**）：同一主张在两个策略下读数不同——
+    加反证栏者被驳回，不加者不被驳回。与上一条合起来，"驳回"相对"未决"多出的那一格
+    有机器见证，不靠措辞。 -/
+theorem art64_rejection_is_extra_content :
+    FinalDefeated art64Policy (encode ClauseAtom.noAdjustment) ∧
+      ¬ FinalDefeated conflictPolicy (encode ClauseAtom.noAdjustment) :=
+  ⟨art64_no_adjustment_defeated, fun ⟨k, hk⟩ => by
+    obtain ⟨_, h2⟩ := conflict_rounds_empty k
+    rw [h2] at hk
+    exact notMemEmptyFinset _ hk⟩
+
+end ArtSixtyFourClauseThree

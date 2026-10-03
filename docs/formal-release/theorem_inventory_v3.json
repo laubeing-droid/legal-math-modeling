@@ -2260,6 +2260,8 @@
     "JurisLean.Seams.Temporal.reordering_requires_recomputation",
     "JurisLean.Seams.Temporal.shiftInterval_valid",
     "JurisLean.Seams.Temporal.shift_contains_iff",
+    "JurisLean.Seams.Temporal.timePointToInterval_distinguishes",
+    "JurisLean.Seams.Temporal.timePointToInterval_endpoints",
     "JurisLean.Seams.Temporal.trunc_asOf_append_future_irrelevant",
     "JurisLean.Seams.Temporal.trunc_of_all_future",
     "JurisLean.Seams.Temporal.trunc_sound",
@@ -2884,8 +2886,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "2f3eb0946bd09174f18df487025ace70f8b0dbb943809df1c44d2141a3b88715",
-   "size_bytes": 162184,
+   "sha256": "10cd692ae83ffbaf1c9ec8a05dd87ca6baf2a444769b188f059d8e486fe46eb3",
+   "size_bytes": 162326,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -27960,6 +27962,18 @@
     {
      "kind": "theorem",
      "name": "intervalToDisplay_distinguishes"
+    },
+    {
+     "kind": "def",
+     "name": "timePointToInterval"
+    },
+    {
+     "kind": "theorem",
+     "name": "timePointToInterval_endpoints"
+    },
+    {
+     "kind": "theorem",
+     "name": "timePointToInterval_distinguishes"
     }
    ],
    "imports": [
@@ -27972,10 +27986,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Temporal.lean",
    "print_axioms_targets": [],
-   "sha256": "52eb209ff4660a5be7b4877c8128ad3177a1430b615097a32c420eb4632d2598",
-   "size_bytes": 34201,
-   "theorem_count": 37,
-   "theorem_count_bol_convention": 37
+   "sha256": "754f40c289f80393a950791f8311c31b86a25d2cb0e767266b9a9fb2683e049a",
+   "size_bytes": 35094,
+   "theorem_count": 39,
+   "theorem_count_bol_convention": 39
   },
   {
    "declarations": [
@@ -32693,22 +32707,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3703,
+   "counted_declaration_count": 3705,
    "file_count": 319,
    "lemma_count": 141,
-   "print_axioms_command_count": 2585,
-   "print_axioms_distinct_targets": 2531,
-   "theorem_count": 3562,
-   "theorem_count_bol_convention": 3466
+   "print_axioms_command_count": 2587,
+   "print_axioms_distinct_targets": 2533,
+   "theorem_count": 3564,
+   "theorem_count_bol_convention": 3468
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3684,
+   "counted_declaration_count": 3686,
    "file_count": 304,
    "lemma_count": 134,
-   "print_axioms_command_count": 2585,
-   "print_axioms_distinct_targets": 2531,
-   "theorem_count": 3550,
-   "theorem_count_bol_convention": 3454
+   "print_axioms_command_count": 2587,
+   "print_axioms_distinct_targets": 2533,
+   "theorem_count": 3552,
+   "theorem_count_bol_convention": 3456
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33388,12 +33402,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "5c20f89aa9ffd267341092d11cb27d92a12a14fe8421f0b3b0a7d6b3e88d937a",
+ "source_inventory_digest": "8d711ba3e78110666de3eb975d096eddfc8a1f310c27e5d11c0a4c20d244b353",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "dc61a581e030568555396a0edb3181c037fd911b",
-  "tree": "36b121c54e62ebf67d3287a0ec69d8ba6f9442dd"
+  "commit": "4f5918068d391ef8064ab4b4231bee7885f32754",
+  "tree": "d6505623f6f54a75b4e83a6c8fd07f2a5d20c5ce"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

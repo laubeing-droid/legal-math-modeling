@@ -17661,7 +17661,7 @@
     },
     {
      "kind": "structure",
-     "name": "DefeatPolicy"
+     "name": "Batch1DefeatPolicy"
     },
     {
      "kind": "def",
@@ -17733,7 +17733,7 @@
     },
     {
      "kind": "structure",
-     "name": "RoundingPolicy"
+     "name": "Batch1RoundingPolicy"
     },
     {
      "kind": "inductive",
@@ -17958,8 +17958,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch1.lean",
    "print_axioms_targets": [],
-   "sha256": "a884461b9d6685596a1213311d34b77b069fefcaf970e89ef77afa2e760273c2",
-   "size_bytes": 37114,
+   "sha256": "7fadd856ffb77a3564f233b516be2cb9bc69545ae52ba74782b78820813b853b",
+   "size_bytes": 38908,
    "theorem_count": 21,
    "theorem_count_bol_convention": 21
   },
@@ -33420,16 +33420,21 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "ca9428e5554dfcf3f3d893187038a2ac5a3de7d5abf825684459faf3c73920ab",
+ "source_inventory_digest": "b5c54e139a27d6ac747040aac338cc1f7f3c50eda9f1baca83fef7219310cac5",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "c55561aa29deb47b4344e3839238d43ef00f72cc",
-  "tree": "ec6892a03b9fe92a27330a090bc2752aadb24ded"
+  "commit": "46cf8671c9df3328bb54aff38236d46c114b48cc",
+  "tree": "85a7949f9eb83335eb983018748bc085491cc5d2"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch1.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 319,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false

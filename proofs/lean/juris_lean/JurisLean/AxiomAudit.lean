@@ -884,6 +884,7 @@ open HornSystem
 #print axioms JurisLean.Seams.AdjudicationBridge.cycle2_q_undecided
 #print axioms JurisLean.Seams.AdjudicationBridge.finalDerivable_within_grounded
 #print axioms JurisLean.Seams.AdjudicationBridge.final_undetermined_iff_exhausted
+#print axioms JurisLean.Seams.AdjudicationBridge.gateAdmitsRejectingPolicy
 #print axioms JurisLean.Seams.AdjudicationBridge.grounded_equivalence
 #print axioms JurisLean.Seams.AdjudicationBridge.grounded_rejection_is_not_legal_refutation
 #print axioms JurisLean.Seams.AdjudicationBridge.grounded_support_correspondence

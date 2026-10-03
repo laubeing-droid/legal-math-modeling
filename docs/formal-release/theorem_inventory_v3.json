@@ -1493,6 +1493,7 @@
     "JurisLean.Seams.AdjudicationBridge.cycle2_q_undecided",
     "JurisLean.Seams.AdjudicationBridge.finalDerivable_within_grounded",
     "JurisLean.Seams.AdjudicationBridge.final_undetermined_iff_exhausted",
+    "JurisLean.Seams.AdjudicationBridge.gateAdmitsRejectingPolicy",
     "JurisLean.Seams.AdjudicationBridge.grounded_equivalence",
     "JurisLean.Seams.AdjudicationBridge.grounded_rejection_is_not_legal_refutation",
     "JurisLean.Seams.AdjudicationBridge.grounded_support_correspondence",
@@ -2887,8 +2888,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "a28efeb0115cc08ecd0eeb64173ecff761d113fb24cea1e2ac3a370e328cdd48",
-   "size_bytes": 162398,
+   "sha256": "a4328416f42af3b457beb9ae3143f43f4febc5023aeb9ba8640c271290353026",
+   "size_bytes": 162473,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -23126,6 +23127,14 @@
     {
      "kind": "theorem",
      "name": "unique_verdict_reverse_unconditional_falsum"
+    },
+    {
+     "kind": "def",
+     "name": "cycle2RejectQPolicy"
+    },
+    {
+     "kind": "theorem",
+     "name": "gateAdmitsRejectingPolicy"
     }
    ],
    "imports": [
@@ -23136,10 +23145,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/AdjudicationBridge.lean",
    "print_axioms_targets": [],
-   "sha256": "503b707d69386d723e8d4f66cb3da4b74b9d70f03dd845e2e53934991509c6df",
-   "size_bytes": 56670,
-   "theorem_count": 61,
-   "theorem_count_bol_convention": 61
+   "sha256": "0425df461823232ce7e9c9c892dddeb1c5c776dbf4962dfa6ef2fb482f8fe182",
+   "size_bytes": 57729,
+   "theorem_count": 62,
+   "theorem_count_bol_convention": 62
   },
   {
    "declarations": [
@@ -32716,22 +32725,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3706,
+   "counted_declaration_count": 3707,
    "file_count": 319,
    "lemma_count": 141,
-   "print_axioms_command_count": 2588,
-   "print_axioms_distinct_targets": 2534,
-   "theorem_count": 3565,
-   "theorem_count_bol_convention": 3469
+   "print_axioms_command_count": 2589,
+   "print_axioms_distinct_targets": 2535,
+   "theorem_count": 3566,
+   "theorem_count_bol_convention": 3470
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3687,
+   "counted_declaration_count": 3688,
    "file_count": 304,
    "lemma_count": 134,
-   "print_axioms_command_count": 2588,
-   "print_axioms_distinct_targets": 2534,
-   "theorem_count": 3553,
-   "theorem_count_bol_convention": 3457
+   "print_axioms_command_count": 2589,
+   "print_axioms_distinct_targets": 2535,
+   "theorem_count": 3554,
+   "theorem_count_bol_convention": 3458
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33411,12 +33420,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "99af23d50b8ed13cd1a7aeede20c505ee9cc594188ac6ced42cff3745af7bb14",
+ "source_inventory_digest": "ca9428e5554dfcf3f3d893187038a2ac5a3de7d5abf825684459faf3c73920ab",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "143628926cecd23d2cab11368f6ab17503e96ab2",
-  "tree": "910aed2771eb5a425c18d794bc11e73e6834de2a"
+  "commit": "c55561aa29deb47b4344e3839238d43ef00f72cc",
+  "tree": "ec6892a03b9fe92a27330a090bc2752aadb24ded"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

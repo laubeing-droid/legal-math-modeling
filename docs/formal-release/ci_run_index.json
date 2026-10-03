@@ -10281,8 +10281,7 @@
       "jobs_total": 8,
       "name": "chore(G3-ledger): record the art-64 defeat and make the paper account…",
       "quoted_by": [
-        "docs/master-plan/16_第九轮终态核对表_20261002.md:487",
-        "docs/master-plan/16_第九轮终态核对表_20261002.md:496"
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:492"
       ],
       "run_id": 37136389984,
       "started": true,
@@ -10344,12 +10343,136 @@
       "jobs_total": 8,
       "name": "docs(16_): name the red round that built the art-64 proofs and rebind…",
       "quoted_by": [
-        "docs/master-plan/16_第九轮终态核对表_20261002.md:492"
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:493"
       ],
       "run_id": 37137401300,
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-03T16:45:02Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 6,
+      "conclusion": "failure",
+      "created_at": "2026-10-03T17:30:44Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/37140777374/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "7851ef95190177e1955036a8a3f7119dea4bfb52",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37140777374",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(ledger): rebind hashes and paper figures to the regenerated aud…",
+      "quoted_by": [
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:494"
+      ],
+      "run_id": 37140777374,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-03T17:39:27Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 6,
+      "conclusion": "failure",
+      "created_at": "2026-10-03T17:48:46Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/37141879756/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "20b2a0e0e5a578ff4e4cfe381df5b8baa2a712c4",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37141879756",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(G3): rebind the inventory and stop the local gate runner from f…",
+      "quoted_by": [
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:495"
+      ],
+      "run_id": 37141879756,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-03T17:57:45Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

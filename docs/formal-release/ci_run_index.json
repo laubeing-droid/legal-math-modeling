@@ -10474,6 +10474,68 @@
       "status": "completed",
       "updated_at": "2026-10-03T17:57:45Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 6,
+      "conclusion": "failure",
+      "created_at": "2026-10-03T18:21:39Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/37143892456/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "20059ec00743043bbb2c3df03ac9b770de23bbc8",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37143892456",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(G3): land the two further red rounds and rebind to the fourth fix",
+      "quoted_by": [
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:496"
+      ],
+      "run_id": 37143892456,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-03T18:30:21Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],
   "schema_version": "ci-run-index-v1",

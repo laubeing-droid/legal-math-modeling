@@ -8,8 +8,9 @@ open Finset
 namespace DungAAF
 
 /-! Dung Grounded Extension Fixed Point Theorems — all 13 proved using the
-FiniteMonotoneSystem kernel. groundedSpec is the mathematical grounded extension;
-it is proven equal to the operational groundedExtension (go-based) in the refinement.
+FiniteMonotoneSystem kernel. grounded and groundedSpec are two names for the SAME iter-based
+set, so grounded_eq_groundedSpec is definitional (rfl); groundedExtension is that same set
+paired with the bound it was already defined at, so finite_termination is a self-bound.
 -/
 
 section SpecDefinition
@@ -23,7 +24,8 @@ def groundedSpec (aaf : DungAAF) : Finset Arg :=
 def grounded (aaf : DungAAF) : Finset Arg :=
   FiniteMonotoneSystem.iter (aafSystem aaf) (Finset.card (aafSystem aaf).univ)
 
-/-- Operational grounded extension with termination witness and iteration bound. -/
+/-- The same set as `grounded`, paired with the iteration count it was defined at. The second
+component is a bookkeeping pair (trivial witness + bound), not a run trace of a go backend. -/
 def groundedExtension (aaf : DungAAF) : Finset Arg × (PUnit × Nat) :=
   (grounded aaf, (PUnit.unit, Finset.card (aafSystem aaf).univ))
 

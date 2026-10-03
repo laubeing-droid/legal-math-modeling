@@ -30,7 +30,10 @@ Track B needs to prove only two things:
 Status: UNPROVED — Track B
 -/
 
-/-- Weighted maximum norm contract (unproven, pending Track B). -/
+/-- NOT the contraction contract. As written this Prop is just "0 < q /\ q < 1": it mentions
+neither the operator nor the weights (both are underscore-bound and discarded), so closing it
+establishes nothing about a contraction. It is kept only as the placeholder Track B replaces;
+do not cite it as a proved contraction bound, and nothing in the tree cites it today. -/
 def WeightedContractionTarget {X : Type} (_T : X → X) (n : ℕ) (_w : Fin n → ℝ) (q : ℝ) : Prop :=
   0 < q ∧ q < 1
   -- weightedDist w (T x) (T y) <= q * weightedDist w x y for all x, y

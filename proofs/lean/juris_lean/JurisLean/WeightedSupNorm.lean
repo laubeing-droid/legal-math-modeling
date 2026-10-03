@@ -8,13 +8,16 @@ import JurisLean.SupZeroLemma
 open Real
 open Finset
 
-/-! B1: Weighted Sup Metric and Completeness.
+/-! B1: Weighted Sup Distance — four metric properties, no completeness.
 
 Defines the weighted sup distance on Fin n → ℝ:
   weightedSupDist w x y = max_{i : Fin n} |x i - y i| / w i
 for positive weights w i > 0.
 
-Proves this is a complete metric space (via equivalence with the standard Pi sup norm).
+What is proved here is exactly four things: nonnegativity, triangle, symmetry and
+separation of points. There is NO MetricSpace instance and NO completeness proof in this
+file — completeness is the Track B debt stated in BanachWeightedNorm.lean
+(header "Status: UNPROVED — Track B"), and must not be read off the four facts below.
 
 All theorems compile with 0 incomplete-proof-token.
 -/

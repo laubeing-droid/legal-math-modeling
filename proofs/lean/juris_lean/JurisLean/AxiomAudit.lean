@@ -1599,6 +1599,7 @@ open HornSystem
 #print axioms JurisLean.Seams.StatuteChain.chain_collapse_from_the_109_tier
 #print axioms JurisLean.Seams.StatuteChain.chain_disputed_eq
 #print axioms JurisLean.Seams.StatuteChain.chain_evalDom_eq
+#print axioms JurisLean.Seams.StatuteChain.chain_gate_input_still_adopted_at_round0
 #print axioms JurisLean.Seams.StatuteChain.chain_naming_hop_closes_witness
 #print axioms JurisLean.Seams.StatuteChain.chain_norms_eq
 #print axioms JurisLean.Seams.StatuteChain.chain_phrases_are_distinct
@@ -1744,6 +1745,7 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedInstance.baseSet_polM_eq_args
 #print axioms JurisLean.Seams.UnifiedInstance.claimReduction_ne_noAdjustment
 #print axioms JurisLean.Seams.UnifiedInstance.disputedM_is_grounded
+#print axioms JurisLean.Seams.UnifiedInstance.gate_rejection_cannot_narrow_round0
 #print axioms JurisLean.Seams.UnifiedInstance.grounded_eq_args_of_attacks_empty
 #print axioms JurisLean.Seams.UnifiedInstance.instanceMObs_nondegenerate
 #print axioms JurisLean.Seams.UnifiedInstance.instanceM_admissibleNonempty
@@ -1760,6 +1762,7 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedInstance.one_in_closureM
 #print axioms JurisLean.Seams.UnifiedInstance.one_notin_singleton
 #print axioms JurisLean.Seams.UnifiedInstance.policyClosed_polM_zero
+#print axioms JurisLean.Seams.UnifiedInstance.rejected_arg_in_round0_base
 #print axioms JurisLean.Seams.UnifiedInstance.ruleM_mem_rules
 #print axioms JurisLean.Seams.UnifiedInstance.set01_ne_set0
 #print axioms JurisLean.Seams.UnifiedInstance.set01_ne_set02

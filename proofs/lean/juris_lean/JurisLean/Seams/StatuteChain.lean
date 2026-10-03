@@ -79,13 +79,15 @@ import JurisLean.Seams.UnifiedInstance
   两处接不上已写成定理（§七）。
 
 ## 四、档位
-`SEAM_G6_LOCAL_BUILD_PROVISIONAL / CI_NOT_RUN`（fail-closed）。零 `sorry`、零 `admit`、
+`SEAM_G6_CI_ATTESTED`（2026-10-03 G6 轮起，此前为 `CI_NOT_RUN`）。零 `sorry`、零 `admit`、
 零 `native_decide`、零自定义 `axiom`；没有把结论写进前提，没有为过编译改窄任何复用的陈述。
-本件**已**在本地 `lake build JurisLean.Seams.StatuteChain` 绿过一次（3 次尝试，末次 `LAKE_EXIT=0`，
-日志 `_seams_build_logs/precheck3_StatuteChain.log`），但那是**临时预检**不是认定；
-本件**未**入根 `JurisLean.lean`，Lean 权威认定只走绑定 subject SHA 的 CI。
+本件**已**入根 `JurisLean.lean`（`:182`），并随绑定 subject SHA 的 CI 轮次一并认定：
+构建面与公理面见 run 37115265521（`docs/formal-release/ci-evidence/37115265521/`，
+`statuteChain_reaches_the_one_closed_instance` 依赖限于标准三元组、全审计面 sorryAx 0）。
+早先那次本地 `lake build` 预检（`_seams_build_logs/precheck3_StatuteChain.log`）只是预检，
+现在已被上述 CI 轮次取代；权威口径始终是绑定 subject 的 CI，不是本机。
 条文文字：[一手已核]（承 `BurdenStatutes` 头注的核验记录）；把某款读成某谓词：[建模选择]；
-本件新增的法律归类读法：[代拟稿]；定理：[待 CI]。
+本件新增的法律归类读法：[代拟稿]；定理：[已 CI 认定，见上]。
 本件所有 `name:LINE` 与 `file:LINE` 坐标都在落笔**之后**重新对盘复算过一遍
 （81 条具名引用＋10 条文件锚，复算脚本逐条比对声明行）。
 注意：本轮施工期间 `Seams/BurdenStatutes.lean` 与 `Seams/UnifiedInstance.lean` 正被并行修改
@@ -717,10 +719,10 @@ theorem statuteChain_reaches_the_one_closed_instance :
 10. **`collapsesToKernel` 的一般性**：本件在第 4 跳得到它**在本实例上**由 109 档推出；
     `BurdenStatutes.lawful_does_not_imply_collapse:980` 已证三条候选公理推不出一般收缩性，
     本件不改变那一结论，也不把本实例的收缩性外推到任何真实评价域。
-11. **编译状态**：本件已在**本地** `lake build` 绿过一次（临时预检，`LAKE_EXIT=0`），
-    但**从未**在 CI 编译（`CI_NOT_RUN`，fail-closed）。
-    全部判定以绑定 subject SHA 的 CI 轮次为准；本件也未入根 `JurisLean.lean`，
-    因为新模块须在 CI 的模块矩阵先过一遍才准入根（AGENTS.md §Lean Workflow）。
+11. **编译状态**：本件**已**入根 `JurisLean.lean:182`，并随绑定 subject SHA 的 CI 轮次认定
+    （run 37115265521，构建面＋公理面，证据在 `docs/formal-release/ci-evidence/37115265521/`）。
+    早先那次本地 `lake build` 预检只是预检，已被上述轮次取代；权威口径始终是绑定 subject 的 CI。
+    本节先前写作"从未在 CI 编译／未入根"，那是 2026-10-02 的时点，**已过期**，在此更正。
 12. **请求地位面（L2 claim 面）未成为一跳**：`Seams/ClaimBasis.lean` 只随
     `Seams/UnifiedInstance.lean:10` 间接进入本件的 import 闭包，本件**没有**引用
     `ClaimBasis.Status`／`ClaimBasis.Stage`／`ClaimBasis.fires:95` 中的任何一个，
@@ -729,6 +731,18 @@ theorem statuteChain_reaches_the_one_closed_instance :
     与该地位面之间也没有已证的字典（`AdjudicationBridge` 头注把"不在 `FinalDerivable`
     与 `KernelV3.Judgment` 之间建双向字典"列为硬红线，同一限制对本面成立）。
     本件只解决了"两者能否同批编译"，没有解决"两者是否说同一件事"。
+13. **90 条的入口在第 0 层没有下游效果（2026-10-03 外部审计 P2-3，已核实并证成定理）**：
+    `chain_art90_gate_has_input_witness` 交出 `claimNoAdjustment` 的支持位为假，但同一策略
+    `polM` 的 `conclusive := aafM.args` 把这个论点**同时**列为明文采纳；而第 0 层采纳集
+    `baseSet`（`Seams/AdjudicationBridge.lean:143`）只读 obstructed／conclusive／presumed／
+    contraryEvidence 四栏，**不读** `admissibleSupport`，本件又取 `round = 0`，
+    `rounds polM 0 = (baseSet polM, ∅)` 根本不进 `adoptedStep`（`:165`）。
+    于是"支持位为假"在本实例的逐层推导里没有可观察后果——该论点照样在第 0 层被采纳。
+    本项**不写成道歉**，已升成两条定理正面登记：`chain_gate_input_still_adopted_at_round0`
+    （§十：入口真、输入仍被采纳）与 `UnifiedInstance.gate_rejection_cannot_narrow_round0`
+    （结构性不可能：空攻击夹具下 `policyClosed` 迫使第 0 层采纳集＝整个论点集）。
+    因此"收窄第 0 层以体现拒绝"与"已认定的 `hPolicyClosed` 栏"不可兼得；
+    要让 90 条的拒绝真的改变结论，先得换掉空攻击夹具，那是契约级改动、属 Owner 判断。
 -/
 
 /-! ## 九、数额跨载体桥（G4：`Nat` 履行面 ↔ `ℤ` 违约金面，此前只有裸 cast、无声明） -/
@@ -753,5 +767,24 @@ theorem amountBridge_order_iff (a b : Nat) :
 theorem amountBridge_subtraction_disagrees :
     amountBridge (3 - 5 : Nat) ≠ amountBridge 3 - amountBridge 5 := by
   decide
+
+/-! ## §十、90 条入口的"无下游效果"正面陈述（外部审计 P2-3，2026-10-03） -/
+
+/-- 中文证明（§未覆盖第 13 项的正面陈述）：被 Horn 侧判定**拒绝**的那个论点，
+    **同时**在第 0 层采纳集里。左支由 `rounds_zero_fst` ＋
+    `UnifiedInstance.baseSet_polM_eq_args` 化成字面成员判定（`Finset.mem_insert_of_mem`
+    套 `Finset.mem_singleton.mpr rfl`，本 pin 无 `Finset.mem_singleton_iff`）；
+    右支就是 `chain_pol_support_on_two_labels` 的第二支。
+    读法：本链交付的是"判定机器真的会拒绝"，**不是**"拒绝改变了结论"。
+    为什么修不动：见 `UnifiedInstance.gate_rejection_cannot_narrow_round0`——
+    空攻击夹具下，`policyClosed` 那一栏迫使第 0 层采纳集等于整个论点集。 -/
+theorem chain_gate_input_still_adopted_at_round0 :
+    UnifiedInstance.claimNoAdjustment ∈ (rounds UnifiedInstance.polM 0).1 ∧
+      UnifiedInstance.polM.admissibleSupport UnifiedInstance.claimNoAdjustment = false := by
+  refine ⟨?_, chain_pol_support_on_two_labels.2⟩
+  · rw [rounds_zero_fst, UnifiedInstance.baseSet_polM_eq_args]
+    show UnifiedInstance.claimNoAdjustment ∈
+        ({UnifiedInstance.claimReduction, UnifiedInstance.claimNoAdjustment} : Finset Arg)
+    exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl)
 
 end JurisLean.Seams.StatuteChain

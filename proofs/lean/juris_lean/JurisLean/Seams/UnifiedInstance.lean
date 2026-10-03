@@ -815,4 +815,37 @@ def instanceM_nondegenerate_obligation : Prop :=
 
 end ObservationSlot
 
+/-! ## 九、90 条"门有输入、无效果"的结构性不可能（2026-10-03 外部审计 P2-3） -/
+
+section GateNoEffect
+
+/-- 中文说明（审计 P2-3 的机器化登记，配套 `Seams/StatuteChain.lean` §未覆盖第 13 项）：
+    G6 轮把 `polM.admissibleSupport` 换成 Horn 侧判定后，`claimNoAdjustment` 的支持位为假，
+    第 90 条第 2 款的不利后果于是有了**机器入口**；但可采纳支持只在 `adoptedStep` 被读，
+    而本件取 `round = 0`，第 0 层采纳集 `baseSet` 只看 obstructed／conclusive／presumed／
+    contraryEvidence 四栏。本式说明这不是"再补一条引理就能修"的疏漏，而是**结构上不可能**：
+    在攻击集为空的框架上，只要第 0 层采纳集对 `F` 封闭（正是 `instanceM` 已认定的
+    `hPolicyClosed` 那一栏），该采纳集就必须等于**整个**论点集。
+    法律读法：本案没有例外／抗辩规范打成的攻击边，于是"未被驳回"与"被明文采纳"在 Dung
+    算子下不可区分；要让举证责任的拒绝真的改变结论，先得换掉空攻击夹具——那是契约级改动，
+    属 Owner 判断，本轮不擅改已认定的具例。 -/
+theorem gate_rejection_cannot_narrow_round0 (pol : TerminalPolicy aafM)
+    (h : policyClosed pol 0) : baseSet pol = aafM.args := by
+  have hF : DungAAF.F aafM (baseSet pol) = aafM.args :=
+    F_eq_args_of_attacks_empty aafM (baseSet pol) aafM_attacks_eq_empty
+  have hclosed : DungAAF.F aafM (baseSet pol) = baseSet pol := by
+    rw [← rounds_zero_fst pol]
+    exact h
+  exact hclosed.symm.trans hF
+
+/-- 中文推论（把上一条落到 `polM` 上）：本实例的第 0 层采纳集**含**那个被判定机器拒绝的论点。
+    与 `chain_gate_input_still_adopted_at_round0`（`Seams/StatuteChain.lean`）合起来读，
+    就是"入口真、效果无"的两侧证据；本件不假装 90 条的拒绝改变了结论。 -/
+theorem rejected_arg_in_round0_base (pol : TerminalPolicy aafM)
+    (h : policyClosed pol 0) (a : Arg) (ha : a ∈ aafM.args) : a ∈ baseSet pol := by
+  rw [gate_rejection_cannot_narrow_round0 pol h]
+  exact ha
+
+end GateNoEffect
+
 end JurisLean.Seams.UnifiedInstance

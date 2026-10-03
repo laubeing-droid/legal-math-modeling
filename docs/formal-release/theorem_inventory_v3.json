@@ -2200,7 +2200,7 @@
     "JurisLean.Seams.StatuteChain.chain_amount_faces_meet_only_numerically",
     "JurisLean.Seams.StatuteChain.chain_amount_hop",
     "JurisLean.Seams.StatuteChain.chain_art108_finding_fires",
-    "JurisLean.Seams.StatuteChain.chain_art90_gate_has_no_input",
+    "JurisLean.Seams.StatuteChain.chain_art90_gate_has_input_witness",
     "JurisLean.Seams.StatuteChain.chain_art91_allocation_hop",
     "JurisLean.Seams.StatuteChain.chain_art91_clause_is_decidable",
     "JurisLean.Seams.StatuteChain.chain_atom_eq",
@@ -2208,11 +2208,12 @@
     "JurisLean.Seams.StatuteChain.chain_collapse_from_the_109_tier",
     "JurisLean.Seams.StatuteChain.chain_disputed_eq",
     "JurisLean.Seams.StatuteChain.chain_evalDom_eq",
-    "JurisLean.Seams.StatuteChain.chain_naming_hop_does_not_close",
+    "JurisLean.Seams.StatuteChain.chain_naming_hop_closes_witness",
     "JurisLean.Seams.StatuteChain.chain_norms_eq",
     "JurisLean.Seams.StatuteChain.chain_phrases_are_distinct",
     "JurisLean.Seams.StatuteChain.chain_pol_eq",
-    "JurisLean.Seams.StatuteChain.chain_pol_support_is_constant",
+    "JurisLean.Seams.StatuteChain.chain_pol_support_is_horn_derived",
+    "JurisLean.Seams.StatuteChain.chain_pol_support_on_two_labels",
     "JurisLean.Seams.StatuteChain.chain_seam_args_eq_instance_args",
     "JurisLean.Seams.StatuteChain.chain_seam_label2_eq",
     "JurisLean.Seams.StatuteChain.chain_seam_label_eq",
@@ -2888,8 +2889,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "a4328416f42af3b457beb9ae3143f43f4febc5023aeb9ba8640c271290353026",
-   "size_bytes": 162473,
+   "sha256": "b306ba4436d5e467407e7584caf54fbc7eabd7488620033d293a1c4aabd79837",
+   "size_bytes": 162557,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -23145,8 +23146,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/AdjudicationBridge.lean",
    "print_axioms_targets": [],
-   "sha256": "0425df461823232ce7e9c9c892dddeb1c5c776dbf4962dfa6ef2fb482f8fe182",
-   "size_bytes": 57729,
+   "sha256": "0c0e633ec225876c1928dd5b8e944c37b5cdcb9fed5a6d976f540af12752f522",
+   "size_bytes": 57823,
    "theorem_count": 62,
    "theorem_count_bol_convention": 62
   },
@@ -27698,20 +27699,16 @@
      "name": "chain_subject_divergence"
     },
     {
-     "kind": "theorem",
-     "name": "chain_pol_support_is_constant"
-    },
-    {
-     "kind": "def",
-     "name": "chain_art90_gate_has_input"
-    },
-    {
-     "kind": "theorem",
-     "name": "chain_art90_gate_has_no_input"
-    },
-    {
      "kind": "def",
      "name": "chainNamingM"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_pol_support_is_horn_derived"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_pol_support_on_two_labels"
     },
     {
      "kind": "def",
@@ -27719,7 +27716,15 @@
     },
     {
      "kind": "theorem",
-     "name": "chain_naming_hop_does_not_close"
+     "name": "chain_naming_hop_closes_witness"
+    },
+    {
+     "kind": "def",
+     "name": "chain_art90_gate_has_input"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_art90_gate_has_input_witness"
     },
     {
      "kind": "def",
@@ -27758,10 +27763,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/StatuteChain.lean",
    "print_axioms_targets": [],
-   "sha256": "76bd4dac9e3a8add59266ad94426d4a37f4b102af6ba77f971008a2e56b3cf8b",
-   "size_bytes": 53441,
-   "theorem_count": 42,
-   "theorem_count_bol_convention": 42
+   "sha256": "d0f9167568e453f58df8c3a002f90fac8b0605eb5ad7d23e631ba113775566a2",
+   "size_bytes": 52662,
+   "theorem_count": 43,
+   "theorem_count_bol_convention": 43
   },
   {
    "declarations": [
@@ -28739,11 +28744,11 @@
     },
     {
      "kind": "def",
-     "name": "polM"
+     "name": "disputedM"
     },
     {
      "kind": "def",
-     "name": "disputedM"
+     "name": "polM"
     },
     {
      "kind": "theorem",
@@ -28922,6 +28927,7 @@
     "JurisLean.Seams.PrecedentFlow",
     "JurisLean.Seams.Representation",
     "JurisLean.Seams.SourceNorms",
+    "JurisLean.Seams.Transitions",
     "JurisLean.Seams.Uncertainty",
     "JurisLean.Seams.Unified",
     "JurisLean.TaintNoninterference",
@@ -28933,8 +28939,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
    "print_axioms_targets": [],
-   "sha256": "750df596e0933a80d5d8db3b965ecf1c7c7d8ee04dde1fd764af2f2416651736",
-   "size_bytes": 46122,
+   "sha256": "6d95f3732b4506d258c757905188e3d424e98f834a775cf3b2e191622dfa2bdf",
+   "size_bytes": 46742,
    "theorem_count": 55,
    "theorem_count_bol_convention": 55
   },
@@ -32725,22 +32731,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3707,
+   "counted_declaration_count": 3708,
    "file_count": 319,
    "lemma_count": 141,
-   "print_axioms_command_count": 2589,
-   "print_axioms_distinct_targets": 2535,
-   "theorem_count": 3566,
-   "theorem_count_bol_convention": 3470
+   "print_axioms_command_count": 2590,
+   "print_axioms_distinct_targets": 2536,
+   "theorem_count": 3567,
+   "theorem_count_bol_convention": 3471
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3688,
+   "counted_declaration_count": 3689,
    "file_count": 304,
    "lemma_count": 134,
-   "print_axioms_command_count": 2589,
-   "print_axioms_distinct_targets": 2535,
-   "theorem_count": 3554,
-   "theorem_count_bol_convention": 3458
+   "print_axioms_command_count": 2590,
+   "print_axioms_distinct_targets": 2536,
+   "theorem_count": 3555,
+   "theorem_count_bol_convention": 3459
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33420,19 +33426,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "e6d6f42e3f32bf0a116fc88b5d0b1359b29d024650eabb37e903e5d41b91aade",
+ "source_inventory_digest": "c2242a7c9ebbebe339ada7c37df6e2315002c6379ff8097d83f08da2b67ab393",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "3d04b27e9378646e9b3758c1d5002d9e20f98cc3",
-  "tree": "5f4c59d61878e15e719f28f08988b44b1c1bbd79"
+  "commit": "3d09702eab2745fcaefc4f32852fccc72fa575f0",
+  "tree": "0a21670d7ef66844314f4397645b4de4670c81af"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
   "files_total": 319,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": true
+  "worktree_dirty_under_proofs": false
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

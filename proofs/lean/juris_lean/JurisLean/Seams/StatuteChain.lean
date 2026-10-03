@@ -711,12 +711,12 @@ theorem statuteChain_reaches_the_one_closed_instance :
    仍是出口条款，本件不做成第三个构造子，也不认定任何"另有规定"。
 8. **第 64 条第 3 款的"驳回"表达**：该款（"仅以合同约定不得调整为由主张不予调整的，
    人民法院不予支持"）的驳回编码**已在缝件一侧给出**——`Seams/Transitions.lean` §五 的
-   `art64_no_adjustment_defeated` 把该主张读成 `FinalDefeated`，走的是反证栏
-   （本机唯一能产出驳倒集的入口；头注 §三 先前说"放进 obstructed 即可"是错的，已更正）。
-   但**本链没有接它**：`instanceM.pol` 的 contraryEvidence 是 `∅`，且本链取 `round = 0`，
-   第 3 跳仍是 `¬ FinalDerivable` 而不是 `FinalDefeated`；把 §五 接进本链要么给 `polM`
-   加反证栏（在第 0 层上不产生任何读数变化，只是挂读法），要么把第 3 跳搬到 `round ≥ 1`
-   （牵动 `chain_L2_*` 一系与已认定的闭合项），两条都属下一轮。
+   `art64_no_adjustment_defeated` 把该主张读成 `FinalDefeated`。机制要说准：本机产出驳倒集
+   的唯一入口是"该论点的某个攻击者已在上一层被采纳"（`rejectedStep`），所以编码是把**请求**
+   放进 `conclusive` 让它先被采纳；`contraryEvidence` 那一栏只作用于 `baseSet` 的推定分支。
+   但**本链没有接它**：`instanceM.pol` 的 conclusive 是整个论点集、反证栏为空，且本链取
+   `round = 0`，第 3 跳仍是 `¬ FinalDerivable` 而不是 `FinalDefeated`。把 §五 接进本链要把
+   第 3 跳搬到 `round ≥ 1`，那会牵动 `chain_L2_*` 一系与已认定的闭合项，属下一轮。
 9. **第 92 条自认与第 93 条免证七项**：本件一处都没用到（第 93 条第 1 款第 (五) 项
    与 `presumptionRuleFires` 的接点留在 `BurdenStatutes.art93_overturn_entry_matches_seam:388`），
    所以本链**不含**免证事实、自认与生效裁判确认事实进入闭包的那条支路。

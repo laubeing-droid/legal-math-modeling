@@ -1664,11 +1664,12 @@ open HornSystem
 #print axioms JurisLean.Seams.Transitions.F_args_eq_args_of_attacks_empty
 #print axioms JurisLean.Seams.Transitions.aafNoExceptions_attacks_eq_empty
 #print axioms JurisLean.Seams.Transitions.args_are_named_closure
-#print axioms JurisLean.Seams.Transitions.art64_baseSet_empty
-#print axioms JurisLean.Seams.Transitions.art64_contrary_evidence_is_the_reduction_claim
+#print axioms JurisLean.Seams.Transitions.art64_baseSet_eq_singleton
+#print axioms JurisLean.Seams.Transitions.art64_conclusive_is_the_reduction_claim
 #print axioms JurisLean.Seams.Transitions.art64_no_adjustment_defeated
-#print axioms JurisLean.Seams.Transitions.art64_no_adjustment_has_a_contrary_attacker
-#print axioms JurisLean.Seams.Transitions.art64_rejected_step_defeats_no_adjustment
+#print axioms JurisLean.Seams.Transitions.art64_no_adjustment_rejected_at_round1
+#print axioms JurisLean.Seams.Transitions.art64_outcome_is_one_sided
+#print axioms JurisLean.Seams.Transitions.art64_reduction_claim_adopted
 #print axioms JurisLean.Seams.Transitions.art64_rejection_is_extra_content
 #print axioms JurisLean.Seams.Transitions.attack_no_adjustment_to_reduction
 #print axioms JurisLean.Seams.Transitions.attack_reduction_to_no_adjustment

@@ -9780,6 +9780,68 @@
       "status": "completed",
       "updated_at": "2026-10-02T22:48:45Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-02T23:49:03Z",
+      "event": "workflow_dispatch",
+      "evidence": "docs/formal-release/ci-evidence/37079335245/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "c479d0874e34da9dc967a139e94bbe837fe63ee0",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37079335245",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:256"
+      ],
+      "run_id": 37079335245,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-02T23:59:12Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],
   "schema_version": "ci-run-index-v1",

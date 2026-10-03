@@ -533,4 +533,6 @@ theorem instantToDisplay_separates_three :
       instantToDisplay (0 : Int) ≠ instantToDisplay (-1 : Int) := by
   refine ⟨by decide, by decide⟩
 
+end DisplayCarrierBridge
+
 end JurisLean.Seams.Temporal

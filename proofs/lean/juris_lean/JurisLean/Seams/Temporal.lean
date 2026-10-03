@@ -533,6 +533,24 @@ theorem instantToDisplay_separates_three :
       instantToDisplay (0 : Int) ≠ instantToDisplay (-1 : Int) := by
   refine ⟨by decide, by decide⟩
 
+/-- 中文说明：C5 规定"`Nat` 日计数器降为 `DayInterval` 的特例"——把 `Nat` 日 n 嵌入成
+    单日闭区间 [↑n, ↑n]。这是 `Nat`↔`DayInterval` 这对载体此前缺的那条具名换算。
+    诚实边界：只交嵌入及其端点/良态/两点不同，不作 `DayInterval`→`Nat` 的全逆
+    （端点逆序或跨度 >1 的区间没有 `Nat` 前身，属未覆盖）。 -/
+def natToInterval (n : Nat) : DayInterval := ⟨(n : Int), (n : Int)⟩
+
+/-- 嵌入端点等于该日（定义级：结构投影落在字面构造子上）。 -/
+theorem natToInterval_endpoints (n : Nat) : (natToInterval n).fromDay = (n : Int) := rfl
+
+/-- 嵌入总是良态区间（端点相等 ⇒ fromDay ≤ toDay，用核心 `Int.le_refl`）。 -/
+theorem natToInterval_valid (n : Nat) : DayInterval.valid (natToInterval n) :=
+  Int.le_refl _
+
+/-- 嵌入非常值（非空洞）：日 0 与日 1 落成不同区间（`DayInterval` 有 DecidableEq，decide 判）。 -/
+theorem natToInterval_distinguishes :
+    natToInterval (0 : Nat) ≠ natToInterval (1 : Nat) := by
+  decide
+
 end DisplayCarrierBridge
 
 end JurisLean.Seams.Temporal

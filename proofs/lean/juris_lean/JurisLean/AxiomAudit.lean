@@ -1641,6 +1641,9 @@ open HornSystem
 #print axioms JurisLean.Seams.Temporal.ltl_always_implies_pointwise
 #print axioms JurisLean.Seams.Temporal.ltl_always_of_pointwise
 #print axioms JurisLean.Seams.Temporal.ltl_always_transition_independent
+#print axioms JurisLean.Seams.Temporal.natToInterval_distinguishes
+#print axioms JurisLean.Seams.Temporal.natToInterval_endpoints
+#print axioms JurisLean.Seams.Temporal.natToInterval_valid
 #print axioms JurisLean.Seams.Temporal.no_unified_time_carrier_yet
 #print axioms JurisLean.Seams.Temporal.nonanticipation_computed_agrees
 #print axioms JurisLean.Seams.Temporal.p049_frozen_witness_recovered

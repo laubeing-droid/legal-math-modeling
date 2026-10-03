@@ -17958,8 +17958,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch1.lean",
    "print_axioms_targets": [],
-   "sha256": "7fadd856ffb77a3564f233b516be2cb9bc69545ae52ba74782b78820813b853b",
-   "size_bytes": 38908,
+   "sha256": "f29ea4c0e71817acdb0970085611be6d1c26e44ab6ba5790fc58d375d95b6bae",
+   "size_bytes": 37162,
    "theorem_count": 21,
    "theorem_count_bol_convention": 21
   },
@@ -33420,21 +33420,16 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "b5c54e139a27d6ac747040aac338cc1f7f3c50eda9f1baca83fef7219310cac5",
+ "source_inventory_digest": "9df6fa9fa3425007b34586ee2c4db15227fee7c0880def473e964095c1066b2d",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "46cf8671c9df3328bb54aff38236d46c114b48cc",
-  "tree": "85a7949f9eb83335eb983018748bc085491cc5d2"
+  "commit": "ec3735b4c814db2d438320729bdf726d27566743",
+  "tree": "0f2b8104201d19d82c39e862a2969f6e9841c0a3"
  },
  "subject_binding": {
-  "binding": "STALE_SUBJECT",
-  "files_diverging_from_subject": [
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Genealogy/TSpectrum/Batch1.lean",
-    "reason": "bytes differ from subject"
-   }
-  ],
+  "binding": "BOUND_TO_SUBJECT",
+  "files_diverging_from_subject": [],
   "files_total": 319,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false

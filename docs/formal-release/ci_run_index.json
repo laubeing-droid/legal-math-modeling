@@ -10226,6 +10226,131 @@
       "status": "completed",
       "updated_at": "2026-10-03T15:07:36Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 6,
+      "conclusion": "failure",
+      "created_at": "2026-10-03T16:18:54Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/37136389984/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "b00afc2a16bd17c4fdb0f557b2f9cd2eb931d41f",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37136389984",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(G3-ledger): record the art-64 defeat and make the paper account…",
+      "quoted_by": [
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:487",
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:496"
+      ],
+      "run_id": 37136389984,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-03T16:26:41Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 4,
+      "conclusion": "failure",
+      "created_at": "2026-10-03T16:35:18Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/37137401300/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "aa5d5e23b6596e77fd7e223149a7c039236c285f",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37137401300",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "docs(16_): name the red round that built the art-64 proofs and rebind…",
+      "quoted_by": [
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:492"
+      ],
+      "run_id": 37137401300,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-03T16:45:02Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],
   "schema_version": "ci-run-index-v1",

@@ -28227,6 +28227,10 @@
     },
     {
      "kind": "theorem",
+     "name": "art64_no_adjustment_has_a_contrary_attacker"
+    },
+    {
+     "kind": "theorem",
      "name": "art64_rejected_step_defeats_no_adjustment"
     },
     {
@@ -28253,10 +28257,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Transitions.lean",
    "print_axioms_targets": [],
-   "sha256": "d5c616aa9c2579e9dd7cfbb1f8de4d4aa44256962e556207794ea4690d92ac62",
-   "size_bytes": 33145,
-   "theorem_count": 36,
-   "theorem_count_bol_convention": 36
+   "sha256": "3a9b4b2a224db66c6d460b75a525b7f54813df01802578697ba1c575dd4e57c3",
+   "size_bytes": 33563,
+   "theorem_count": 37,
+   "theorem_count_bol_convention": 37
   },
   {
    "declarations": [
@@ -32780,22 +32784,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3717,
+   "counted_declaration_count": 3718,
    "file_count": 319,
    "lemma_count": 141,
    "print_axioms_command_count": 2599,
    "print_axioms_distinct_targets": 2545,
-   "theorem_count": 3576,
-   "theorem_count_bol_convention": 3480
+   "theorem_count": 3577,
+   "theorem_count_bol_convention": 3481
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3698,
+   "counted_declaration_count": 3699,
    "file_count": 304,
    "lemma_count": 134,
    "print_axioms_command_count": 2599,
    "print_axioms_distinct_targets": 2545,
-   "theorem_count": 3564,
-   "theorem_count_bol_convention": 3468
+   "theorem_count": 3565,
+   "theorem_count_bol_convention": 3469
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33475,12 +33479,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "3d16695b17b673afc3b5662b058a3eb90698a895f229e9bd2ad94daee26bb80b",
+ "source_inventory_digest": "e1d6c026042804bd7406bf18f750e58c1b7277241bb3ae71dbf7c75ae6a79e84",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "248a764ac3a6053aafd8cf61888106edad5b2408",
-  "tree": "67f81a6a3be180e44ceb9471e9051086955aecb2"
+  "commit": "8001e97efd75911df3f065949a78453b96350160",
+  "tree": "d1a6b16f6afb8da09cecd57dbe30fee44606f6a6"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

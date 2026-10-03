@@ -294,11 +294,11 @@ inductive AttackKind where
   | undercut
   | rebuttal
 
-structure DefeatPolicy where
+structure Batch1DefeatPolicy where
   preference : Nat → Nat → Bool
 
 def defeats
-    (policy : DefeatPolicy)
+    (policy : Batch1DefeatPolicy)
     (attackKind : AttackKind)
     (attacker target : Nat) : Bool :=
   match attackKind with
@@ -308,7 +308,7 @@ def defeats
       policy.preference attacker target
 
 theorem undercut_defeat_independent_of_preference
-    (firstPolicy secondPolicy : DefeatPolicy)
+    (firstPolicy secondPolicy : Batch1DefeatPolicy)
     (attacker target : Nat) :
     defeats
         firstPolicy
@@ -564,7 +564,7 @@ inductive RoundingBasis where
   | accounting
   | custom
 
-structure RoundingPolicy where
+structure Batch1RoundingPolicy where
   scale : Nat
   roundMode : Nat
   tieMode : Nat
@@ -578,7 +578,7 @@ inductive RoundingResult where
   | unknown
 
 def applyRounding
-    (policy : RoundingPolicy)
+    (policy : Batch1RoundingPolicy)
     (value : Int) : RoundingResult :=
   match policy.basis with
   | none =>
@@ -587,7 +587,7 @@ def applyRounding
       .rounded value
 
 theorem rounding_without_basis_unknown
-    (policy : RoundingPolicy)
+    (policy : Batch1RoundingPolicy)
     (value : Int)
     (noBasis : policy.basis = none) :
     applyRounding policy value =
@@ -1441,7 +1441,7 @@ T05:
 AttackKind
 undercut
 rebuttal
-DefeatPolicy
+Batch1DefeatPolicy
 preference
 defeats
 undercut_defeat_independent_of_preference
@@ -1483,7 +1483,7 @@ statute
 contract
 accounting
 custom
-RoundingPolicy
+Batch1RoundingPolicy
 scale
 roundMode
 tieMode

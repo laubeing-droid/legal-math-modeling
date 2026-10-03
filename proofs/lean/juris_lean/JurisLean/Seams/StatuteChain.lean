@@ -604,7 +604,7 @@ theorem chain_art90_gate_has_input_witness : chain_art90_gate_has_input := by
   refine ⟨UnifiedInstance.claimNoAdjustment, ?_, chain_pol_support_on_two_labels.2⟩
   show UnifiedInstance.claimNoAdjustment ∈
       ({UnifiedInstance.claimReduction, UnifiedInstance.claimNoAdjustment} : Finset Arg)
-  exact Finset.mem_insert_of_mem (Finset.mem_singleton_iff.mpr rfl)
+  exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl)
 
 /-! ## 八、链谓词与封顶陈述 -/
 

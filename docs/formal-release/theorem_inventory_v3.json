@@ -2273,11 +2273,12 @@
     "JurisLean.Seams.Transitions.F_args_eq_args_of_attacks_empty",
     "JurisLean.Seams.Transitions.aafNoExceptions_attacks_eq_empty",
     "JurisLean.Seams.Transitions.args_are_named_closure",
-    "JurisLean.Seams.Transitions.art64_baseSet_empty",
-    "JurisLean.Seams.Transitions.art64_contrary_evidence_is_the_reduction_claim",
+    "JurisLean.Seams.Transitions.art64_baseSet_eq_singleton",
+    "JurisLean.Seams.Transitions.art64_conclusive_is_the_reduction_claim",
     "JurisLean.Seams.Transitions.art64_no_adjustment_defeated",
-    "JurisLean.Seams.Transitions.art64_no_adjustment_has_a_contrary_attacker",
-    "JurisLean.Seams.Transitions.art64_rejected_step_defeats_no_adjustment",
+    "JurisLean.Seams.Transitions.art64_no_adjustment_rejected_at_round1",
+    "JurisLean.Seams.Transitions.art64_outcome_is_one_sided",
+    "JurisLean.Seams.Transitions.art64_reduction_claim_adopted",
     "JurisLean.Seams.Transitions.art64_rejection_is_extra_content",
     "JurisLean.Seams.Transitions.attack_no_adjustment_to_reduction",
     "JurisLean.Seams.Transitions.attack_reduction_to_no_adjustment",
@@ -2899,8 +2900,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "aac31e6cd05fda4c849024b217a61235503c7353f67d5cf0fa53aab5694ae984",
-   "size_bytes": 163348,
+   "sha256": "aea8e53f7e798c8729d7fd0c3edfefe70016956b7999360e3d634287513b9652",
+   "size_bytes": 163400,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -27777,8 +27778,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/StatuteChain.lean",
    "print_axioms_targets": [],
-   "sha256": "78dc1b6360ecb8cb9cfc65b6363289084d5bc940caef828c034ea7b564f1a38a",
-   "size_bytes": 56062,
+   "sha256": "4be88dde5d77c3eb8ad40dc48e1b3153f41066495a050b4bc0fa2fbb6a372887",
+   "size_bytes": 56109,
    "theorem_count": 44,
    "theorem_count_bol_convention": 44
   },
@@ -28220,23 +28221,27 @@
     },
     {
      "kind": "theorem",
-     "name": "art64_contrary_evidence_is_the_reduction_claim"
+     "name": "art64_conclusive_is_the_reduction_claim"
     },
     {
      "kind": "theorem",
-     "name": "art64_baseSet_empty"
+     "name": "art64_baseSet_eq_singleton"
     },
     {
      "kind": "theorem",
-     "name": "art64_no_adjustment_has_a_contrary_attacker"
+     "name": "art64_reduction_claim_adopted"
     },
     {
      "kind": "theorem",
-     "name": "art64_rejected_step_defeats_no_adjustment"
+     "name": "art64_no_adjustment_rejected_at_round1"
     },
     {
      "kind": "theorem",
      "name": "art64_no_adjustment_defeated"
+    },
+    {
+     "kind": "theorem",
+     "name": "art64_outcome_is_one_sided"
     },
     {
      "kind": "theorem",
@@ -28245,6 +28250,10 @@
     {
      "kind": "theorem",
      "name": "art64_rejection_is_extra_content"
+    },
+    {
+     "kind": "def",
+     "name": "art64_one_sidedness_for_the_request_is_still_open"
     }
    ],
    "imports": [
@@ -28258,10 +28267,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Transitions.lean",
    "print_axioms_targets": [],
-   "sha256": "b6707b9d914baaa0cb054ecf3e82693c7f9517d3d321d9f38a420c4d2c9a8b8a",
-   "size_bytes": 34362,
-   "theorem_count": 37,
-   "theorem_count_bol_convention": 37
+   "sha256": "218e96c68d7cebb5a257fd2e9b805b6d75cc22dc324c20fb3fe5000faeb75781",
+   "size_bytes": 35138,
+   "theorem_count": 38,
+   "theorem_count_bol_convention": 38
   },
   {
    "declarations": [
@@ -32785,22 +32794,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3718,
+   "counted_declaration_count": 3719,
    "file_count": 319,
    "lemma_count": 141,
-   "print_axioms_command_count": 2600,
-   "print_axioms_distinct_targets": 2546,
-   "theorem_count": 3577,
-   "theorem_count_bol_convention": 3481
+   "print_axioms_command_count": 2601,
+   "print_axioms_distinct_targets": 2547,
+   "theorem_count": 3578,
+   "theorem_count_bol_convention": 3482
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3699,
+   "counted_declaration_count": 3700,
    "file_count": 304,
    "lemma_count": 134,
-   "print_axioms_command_count": 2600,
-   "print_axioms_distinct_targets": 2546,
-   "theorem_count": 3565,
-   "theorem_count_bol_convention": 3469
+   "print_axioms_command_count": 2601,
+   "print_axioms_distinct_targets": 2547,
+   "theorem_count": 3566,
+   "theorem_count_bol_convention": 3470
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33480,12 +33489,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "944a03e2b76b8f4f620fa37291dc701cda7e2f5dd475da0f5e5f7ee97182c5b2",
+ "source_inventory_digest": "2ce1032a307f6305376d560f61403ac10e1d7e9eb303874b00dc041d9f221c1a",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "e750cdd92b6a83f6c224123cd8a1846ec4b793db",
-  "tree": "b431c223f67379c44e476ff718ea8f3614503b43"
+  "commit": "52dfb6aac05a75a4653f71de4634341a5424996c",
+  "tree": "b2c8363d8795a2d699f2826df0575c124e204ca4"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

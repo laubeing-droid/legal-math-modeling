@@ -9016,8 +9016,7 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
-        "docs/master-plan/16_第九轮终态核对表_20261002.md:15",
-        "docs/master-plan/16_第九轮终态核对表_20261002.md:63"
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:15"
       ],
       "run_id": 37022410829,
       "started": true,
@@ -9961,7 +9960,8 @@
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
         "docs/master-plan/16_第九轮终态核对表_20261002.md:360",
-        "docs/master-plan/16_第九轮终态核对表_20261002.md:362"
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:362",
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:63"
       ],
       "run_id": 37092779504,
       "started": true,
@@ -10093,6 +10093,70 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-03T09:18:31Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-03T10:05:56Z",
+      "event": "workflow_dispatch",
+      "evidence": "docs/formal-release/ci-evidence/37115265521/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "13ab481bbde0183e3a3e55928c07fbb398780cbf",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37115265521",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:397",
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:399",
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:63"
+      ],
+      "run_id": 37115265521,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-03T10:16:19Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

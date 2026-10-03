@@ -510,4 +510,27 @@ theorem IntertemporalLawSignature.withRetroFalse_preserves_wellFormed
 
 end IntertemporalSignature
 
+section DisplayCarrierBridge
+
+/-- 中文说明：时间层第四套载体 `String` 的**显示桥**——把 `Int` 有向时点显示成字符串。
+    13_ 卷 C5 记 `String` 是"只作显示位"的载体、与前几套无转换函数；本件补上"时点→显示串"
+    这一方向的具名换算，把 `String` 从"零桥"变成"有桥"。
+    诚实边界：显示不是语义等同，也**不作** `String`↔`Int` 的解析逆（ISO 串反解回时点是另一件事，
+    本件不给）；只交"时点显示成串"及其非常值见证，`String` 与其它载体的完整可逆对应属未覆盖。 -/
+def instantToDisplay (d : Int) : String := toString d
+
+/-- 显示桥非常值（非空洞）：0 与 1 显示成不同字符串。`String` 有 DecidableEq，
+    `decide` 在内核里把 `toString` 求值到字面串再判不等（纯可计算函数，无需 native_decide）。 -/
+theorem instantToDisplay_distinguishes :
+    instantToDisplay (0 : Int) ≠ instantToDisplay (1 : Int) := by
+  decide
+
+/-- 显示桥把不同时点送到不同显示串（单射性的一个可判定见证片段：0/1/(-1) 三点两两不同）。
+    诚实边界：只给这三点的两两不同，不声称 `toString` 在整个 `Int` 上单射（那需要完整的
+    显示-解析逆，本件不做）。 -/
+theorem instantToDisplay_separates_three :
+    instantToDisplay (0 : Int) ≠ instantToDisplay (1 : Int) ∧
+      instantToDisplay (0 : Int) ≠ instantToDisplay (-1 : Int) := by
+  refine ⟨by decide, by decide⟩
+
 end JurisLean.Seams.Temporal

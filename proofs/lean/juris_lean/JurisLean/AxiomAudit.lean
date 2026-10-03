@@ -1626,6 +1626,8 @@ open HornSystem
 #print axioms JurisLean.Seams.Temporal.epochDay_dayToTimePoint
 #print axioms JurisLean.Seams.Temporal.evidenceAdmissible_iff
 #print axioms JurisLean.Seams.Temporal.foldr_add_arrival_insensitive
+#print axioms JurisLean.Seams.Temporal.instantToDisplay_distinguishes
+#print axioms JurisLean.Seams.Temporal.instantToDisplay_separates_three
 #print axioms JurisLean.Seams.Temporal.instantToInterval_distinguishes
 #print axioms JurisLean.Seams.Temporal.instantToInterval_inj
 #print axioms JurisLean.Seams.Temporal.intersection_agrees_with_contains_set

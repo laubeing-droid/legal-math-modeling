@@ -1633,6 +1633,7 @@ open HornSystem
 #print axioms JurisLean.Seams.Temporal.intersection_agrees_with_contains_set
 #print axioms JurisLean.Seams.Temporal.intersection_some_of_contains_both
 #print axioms JurisLean.Seams.Temporal.intertemporal_signature_preserves_effective_day
+#print axioms JurisLean.Seams.Temporal.intervalToDisplay_distinguishes
 #print axioms JurisLean.Seams.Temporal.intervalToInstant_instantToInterval
 #print axioms JurisLean.Seams.Temporal.invalidation_marker_computes_nothing
 #print axioms JurisLean.Seams.Temporal.late_insert_changes_noncommutative

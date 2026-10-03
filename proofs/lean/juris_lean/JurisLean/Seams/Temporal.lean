@@ -551,6 +551,18 @@ theorem natToInterval_distinguishes :
     natToInterval (0 : Nat) ≠ natToInterval (1 : Nat) := by
   decide
 
+/-- 中文说明：补 C5 里仍缺的 `DayInterval`→`String` 显示方向——把区间显示成 "起~止"，
+    复用 §十二 的 `instantToDisplay`。诚实边界：只给"期间→显示串"，不作显示串反解回区间
+    （ISO 式解析逆属未覆盖）。 -/
+def intervalToDisplay (i : DayInterval) : String :=
+  instantToDisplay i.fromDay ++ "~" ++ instantToDisplay i.toDay
+
+/-- 期间显示非常值：单日 [0,0] 与单日 [1,1] 显示成不同串（`decide` 把 toString 与 ++ 在内核归约到
+    字面串再判不等）。 -/
+theorem intervalToDisplay_distinguishes :
+    intervalToDisplay ⟨(0 : Int), (0 : Int)⟩ ≠ intervalToDisplay ⟨(1 : Int), (1 : Int)⟩ := by
+  decide
+
 end DisplayCarrierBridge
 
 end JurisLean.Seams.Temporal

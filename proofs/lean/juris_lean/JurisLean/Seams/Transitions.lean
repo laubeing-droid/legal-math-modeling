@@ -502,12 +502,13 @@ theorem art64_baseSet_empty : baseSet art64Policy = ∅ := by
   | inr hp => exact notMemEmptyFinset a hp.1
 
 /-- 中文证明（技术引理）：被驳回那一侧的论点**确实**有一个落在反证栏里的攻击者，
-    所以 `rejectedStep` 的筛子对它非空。陈述写成自己的表达式，不做 `unfold`——
-    展开后交给 `mem_filter` 反推谓词会让 `pol` 这个 metavar 漂到别的策略上
-    （run 37137401300 的第一处红就是这么来的）。 -/
+    所以 `rejectedStep` 的筛子对它非空。写成前缀的 `Finset.filter` 且整个表达式不换行：
+    点记法 `.filter` 落在续行会被读成"把 `.filter` 当实参应用到一个 `Finset Arg` 上"
+    （run 37140777374 的构建面就红在这里）。也不做定义展开——展开后把形状交给
+    `mem_filter` 反推谓词，会让策略那个 metavar 漂到别的策略上。 -/
 theorem art64_no_adjustment_has_a_contrary_attacker :
-    (DungAAF.attackers conflictAAF (encode ClauseAtom.noAdjustment))
-      .filter (fun b => b ∈ art64Policy.contraryEvidence) ≠ ∅ := by
+    Finset.filter (fun b => b ∈ art64Policy.contraryEvidence)
+      (DungAAF.attackers conflictAAF (encode ClauseAtom.noAdjustment)) ≠ ∅ := by
   intro heq
   refine notMemEmptyFinset _ ?_
   rw [← heq]

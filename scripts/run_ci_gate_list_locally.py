@@ -41,8 +41,34 @@ def gate_commands() -> list[str]:
     return commands
 
 
+def dirty_paths() -> set[str]:
+    """Tracked paths with modified content, so the run can tell its own writes from yours."""
+    proc = subprocess.run(["git", "status", "--porcelain"], cwd=ROOT,
+                          capture_output=True, text=True)
+    return {line[3:].strip().strip('"') for line in proc.stdout.splitlines() if line.strip()}
+
+
+def restore_own_writes(before: set[str]) -> list[str]:
+    """Revert files this run dirtied that were clean before it started.
+
+    One CI step regenerates a Lean source in place (`generate_lean_cases.py --output
+    proofs/.../SevenAxisCases.lean`). On Windows that write arrives with CRLF while the
+    repository pins `*.lean text eol=lf`, so the run leaves the tree looking edited and the
+    inventory's hash test then fails on bytes the pre-check itself produced -- a false red
+    that reads exactly like a real one.
+    """
+    restored = []
+    for path in sorted(dirty_paths() - before):
+        proc = subprocess.run(["git", "checkout", "--", path], cwd=ROOT,
+                              capture_output=True, text=True)
+        if proc.returncode == 0:
+            restored.append(path)
+    return restored
+
+
 def main() -> int:
     skip_pytest = "--skip-pytest" in sys.argv
+    before = dirty_paths()
     failures = []
     for command in gate_commands():
         if skip_pytest and re.search(r"-m pytest", command):
@@ -56,6 +82,9 @@ def main() -> int:
             for line in tail:
                 print("      | " + line[:160])
             failures.append(command)
+    restored = restore_own_writes(before)
+    for path in restored:
+        print(f"RESTORED {path} (this run wrote it; it was clean before)")
     print(f"\n{len(failures)} of the CI gate commands failed locally")
     return 1 if failures else 0
 

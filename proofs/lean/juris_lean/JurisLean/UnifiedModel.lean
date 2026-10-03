@@ -1,4 +1,4 @@
--- UnifiedModel.lean
+-- LegacyUnifiedModel.lean
 -- Formal verification of the unified mathematical model composition:
 --   Kripke → Horn → AAF → Banach
 --
@@ -253,7 +253,7 @@ theorem banach_bounded (price target : Nat) (n : Nat) :
 -- Unified Model with Rule-Argument Coherence
 -- ============================================================
 
-structure UnifiedModel where
+structure LegacyUnifiedModel where
   n : Nat
   kripke : KripkeStructure n
   rules : List HornRuleLegacy
@@ -268,14 +268,14 @@ structure UnifiedModel where
 -- ============================================================
 
 -- Step 1: Unattacked argument is in grounded extension
-theorem soundness_aaf (M : UnifiedModel) (a : Argument)
+theorem soundness_aaf (M : LegacyUnifiedModel) (a : Argument)
     (ha : a ∈ M.aaf.args)
     (hunat : is_unattacked M.aaf a) :
     a ∈ grounded_extension M.aaf :=
   unattacked_in_ge ha hunat
 
 -- Step 2: Price of accepted argument is bounded
-theorem soundness_banach (M : UnifiedModel) (a : Argument)
+theorem soundness_banach (M : LegacyUnifiedModel) (a : Argument)
     (ha : a ∈ grounded_extension M.aaf)
     (price : Argument → Nat)
     (hbound : ∀ arg ∈ grounded_extension M.aaf, price arg ≤ M.price_bound) :
@@ -290,7 +290,7 @@ theorem soundness_banach (M : UnifiedModel) (a : Argument)
 -- corresponding AAF argument is unattacked, then the argument
 -- is in the grounded extension.
 -- This is the completeness direction: derivable rules survive AAF.
-theorem gc2_completeness (M : UnifiedModel)
+theorem gc2_completeness (M : LegacyUnifiedModel)
     (r : HornRuleLegacy) (_hr : r ∈ M.rules)
     (facts : Finset Nat) (_hfire : is_fireable r facts)
     (a : Argument) (_ha_rule : M.rule_to_arg r.id = some a)
@@ -306,7 +306,7 @@ theorem gc2_completeness (M : UnifiedModel)
 -- The improved composition uses the Banach upper bound directly.
 -- If argument a is unattacked and the price function is bounded
 -- by the Banach iterate bound, then price(a) ≤ max(initial, target).
-theorem unified_composition_v2 (M : UnifiedModel)
+theorem unified_composition_v2 (M : LegacyUnifiedModel)
     (a : Argument)
     (ha : a ∈ M.aaf.args)
     (hunat : is_unattacked M.aaf a)
@@ -332,7 +332,7 @@ theorem unified_composition_v2 (M : UnifiedModel)
 -- argument unattacked → price bounded.
 -- This is the strongest composition theorem we can prove
 -- without assuming hbound.
-theorem full_chain (M : UnifiedModel)
+theorem full_chain (M : LegacyUnifiedModel)
     (r : HornRuleLegacy) (_hr : r ∈ M.rules)
     (facts : Finset Nat) (_hfire : is_fireable r facts)
     (a : Argument) (_ha_rule : M.rule_to_arg r.id = some a)

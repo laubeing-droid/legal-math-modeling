@@ -563,6 +563,21 @@ theorem intervalToDisplay_distinguishes :
     intervalToDisplay ⟨(0 : Int), (0 : Int)⟩ ≠ intervalToDisplay ⟨(1 : Int), (1 : Int)⟩ := by
   decide
 
+/-- 中文说明：`TimePoint`（`LegalIds.lean` 的 epoch 有向时点载体）与 `DayInterval`（期间载体）
+    此前只经 `Int` 传递相关；本条给两者的直连换算——把时点看成退化单日区间。
+    诚实边界：只交"时点→单日区间"及其端点/两点不同，不作区间反解回时点的解析逆。 -/
+def timePointToInterval (p : TimePoint) : DayInterval := ⟨p.epochDay, p.epochDay⟩
+
+/-- 端点即该时点的 epoch 日（定义级）。 -/
+theorem timePointToInterval_endpoints (p : TimePoint) :
+    (timePointToInterval p).fromDay = p.epochDay := rfl
+
+/-- 直连换算非常值：epoch 0 与 epoch 1 落成不同区间（`DayInterval` 有 DecidableEq，decide 判）。 -/
+theorem timePointToInterval_distinguishes :
+    timePointToInterval { epochDay := (0 : Int) } ≠
+      timePointToInterval { epochDay := (1 : Int) } := by
+  decide
+
 end DisplayCarrierBridge
 
 end JurisLean.Seams.Temporal

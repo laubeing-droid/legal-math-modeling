@@ -563,9 +563,8 @@ theorem chain_pol_support_on_two_labels :
   · show Transitions.admissibleFromHorn instanceM.norms chainNamingM
         UnifiedInstance.claimReduction = true
     have hmem : UnifiedInstance.claimReduction ∈
-        Transitions.namedClosure instanceM.norms chainNamingM := by
-      rcases UnifiedInstance.one_in_closureM with ⟨h0, _⟩
-      exact Finset.mem_image.mpr ⟨0, h0, rfl⟩
+        Transitions.namedClosure instanceM.norms chainNamingM :=
+      Finset.mem_image.mpr ⟨1, UnifiedInstance.one_in_closureM, rfl⟩
     exact decide_eq_true hmem
   · have hnotmem : ¬ UnifiedInstance.claimNoAdjustment ∈
         Transitions.namedClosure instanceM.norms chainNamingM := by
@@ -605,7 +604,7 @@ theorem chain_art90_gate_has_input_witness : chain_art90_gate_has_input := by
   refine ⟨UnifiedInstance.claimNoAdjustment, ?_, chain_pol_support_on_two_labels.2⟩
   show UnifiedInstance.claimNoAdjustment ∈
       ({UnifiedInstance.claimReduction, UnifiedInstance.claimNoAdjustment} : Finset Arg)
-  exact Finset.mem_insert_of_mem (Finset.mem_insert_self _ _)
+  exact Finset.mem_insert_of_mem (Finset.mem_singleton_iff.mpr rfl)
 
 /-! ## 八、链谓词与封顶陈述 -/
 

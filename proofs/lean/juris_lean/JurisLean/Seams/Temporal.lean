@@ -578,6 +578,15 @@ theorem timePointToInterval_distinguishes :
       timePointToInterval { epochDay := (1 : Int) } := by
   decide
 
+/-- 中文说明：补时间层最后一对 `TimePoint`→`String`——时点显示串，复用 `instantToDisplay`
+    作用在 epoch 日上。诚实边界：只给"时点→显示串"方向，不作解析逆。 -/
+def timePointToDisplay (p : TimePoint) : String := instantToDisplay p.epochDay
+
+/-- 时点显示非常值：epoch 0 与 1 显示成不同串（decide 把 toString 在内核归约到字面串判不等）。 -/
+theorem timePointToDisplay_distinguishes :
+    timePointToDisplay { epochDay := (0 : Int) } ≠ timePointToDisplay { epochDay := (1 : Int) } := by
+  decide
+
 end DisplayCarrierBridge
 
 end JurisLean.Seams.Temporal

@@ -1651,6 +1651,7 @@ open HornSystem
 #print axioms JurisLean.Seams.Temporal.reordering_requires_recomputation
 #print axioms JurisLean.Seams.Temporal.shiftInterval_valid
 #print axioms JurisLean.Seams.Temporal.shift_contains_iff
+#print axioms JurisLean.Seams.Temporal.timePointToDisplay_distinguishes
 #print axioms JurisLean.Seams.Temporal.timePointToInterval_distinguishes
 #print axioms JurisLean.Seams.Temporal.timePointToInterval_endpoints
 #print axioms JurisLean.Seams.Temporal.trunc_asOf_append_future_irrelevant

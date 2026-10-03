@@ -1667,6 +1667,7 @@ open HornSystem
 #print axioms JurisLean.Seams.Transitions.art64_baseSet_empty
 #print axioms JurisLean.Seams.Transitions.art64_contrary_evidence_is_the_reduction_claim
 #print axioms JurisLean.Seams.Transitions.art64_no_adjustment_defeated
+#print axioms JurisLean.Seams.Transitions.art64_no_adjustment_has_a_contrary_attacker
 #print axioms JurisLean.Seams.Transitions.art64_rejected_step_defeats_no_adjustment
 #print axioms JurisLean.Seams.Transitions.art64_rejection_is_extra_content
 #print axioms JurisLean.Seams.Transitions.attack_no_adjustment_to_reduction

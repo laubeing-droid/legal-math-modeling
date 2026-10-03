@@ -502,28 +502,38 @@ theorem art64_baseSet_empty : baseSet art64Policy = ∅ := by
   | inr hp => exact notMemEmptyFinset a hp.1
 
 /-- 中文证明（技术引理）：被驳回那一侧的论点**确实**有一个落在反证栏里的攻击者，
-    所以 `rejectedStep` 的筛子对它非空。写成前缀的 `Finset.filter` 且整个表达式不换行：
-    点记法 `.filter` 落在续行会被读成"把 `.filter` 当实参应用到一个 `Finset Arg` 上"
-    （run 37140777374 的构建面就红在这里）。也不做定义展开——展开后把形状交给
-    `mem_filter` 反推谓词，会让策略那个 metavar 漂到别的策略上。 -/
+    所以 `rejectedStep` 的筛子对它非空。三处写法都是被红轮换出来的：
+    ① `Finset.filter` 走前缀形（点记法 `.filter` 落在续行会被读成实参）；
+    ② `notMemEmptyFinset` 的论点**显式**给出（写 `_` 会让 `DecidableEq ?m` 卡住，
+       而卡住的 metavar 会顺着 `rejectedStep` 把策略参数漂到别的策略上）；
+    ③ 不做定义展开，形状由下一条的 `show` 钉住。 -/
 theorem art64_no_adjustment_has_a_contrary_attacker :
     Finset.filter (fun b => b ∈ art64Policy.contraryEvidence)
       (DungAAF.attackers conflictAAF (encode ClauseAtom.noAdjustment)) ≠ ∅ := by
   intro heq
-  refine notMemEmptyFinset _ ?_
-  rw [← heq]
-  exact Finset.mem_filter.mpr
-    ⟨mem_attackers_of_mem reduction_in_args attack_reduction_to_no_adjustment,
-      art64_contrary_evidence_is_the_reduction_claim⟩
+  have hmem : encode ClauseAtom.reductionClaim ∈
+      Finset.filter (fun b => b ∈ art64Policy.contraryEvidence)
+        (DungAAF.attackers conflictAAF (encode ClauseAtom.noAdjustment)) :=
+    Finset.mem_filter.mpr
+      ⟨mem_attackers_of_mem reduction_in_args attack_reduction_to_no_adjustment,
+        art64_contrary_evidence_is_the_reduction_claim⟩
+  rw [heq] at hmem
+  exact notMemEmptyFinset (encode ClauseAtom.reductionClaim) hmem
 
 /-- 中文证明（技术引理）：反证一步**确实**把"不予调整"主张收进驳倒集。
     链条：酌减请求在论点集里（`reduction_in_args`）且它攻击"不予调整"
-    （`attack_reduction_to_no_adjustment`），而它又在反证栏里 ⇒ 该攻击者筛后非空。 -/
+    （`attack_reduction_to_no_adjustment`），而它又在反证栏里 ⇒ 该攻击者筛后非空。
+    `show` 把 `rejectedStep` 的展开形状写死（`AdjudicationBridge.lean:153` 的体就是
+    `outN ∪ aaf.args.filter …`），这样策略参数在类型层面就钉在 `art64Policy` 上。 -/
 theorem art64_rejected_step_defeats_no_adjustment :
-    encode ClauseAtom.noAdjustment ∈ rejectedStep art64Policy (∅ : Finset Arg) ∅ :=
-  Finset.mem_union.mpr (Or.inr
-    (Finset.mem_filter.mpr ⟨no_adjustment_in_args,
-      art64_no_adjustment_has_a_contrary_attacker⟩))
+    encode ClauseAtom.noAdjustment ∈ rejectedStep art64Policy (∅ : Finset Arg) ∅ := by
+  show encode ClauseAtom.noAdjustment ∈
+      (∅ : Finset Arg) ∪
+        Finset.filter (fun a =>
+          Finset.filter (fun b => b ∈ art64Policy.contraryEvidence)
+            (DungAAF.attackers conflictAAF a) ≠ ∅) conflictAAF.args
+  refine Finset.mem_union.mpr (Or.inr (Finset.mem_filter.mpr ⟨no_adjustment_in_args, ?_⟩))
+  exact art64_no_adjustment_has_a_contrary_attacker
 
 /-- 中文证明（**G3 那一格闭合**）：第 64 条第 3 款在模型里是**驳回**
     （`FinalDefeated`），不只是"未被采纳"（`¬ FinalDerivable`）。

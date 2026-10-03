@@ -507,8 +507,9 @@ theorem art64_baseSet_eq_singleton :
     | inr hp => exact absurd hp.1 (notMemEmptyFinset a)
   · obtain rfl : a = encode ClauseAtom.reductionClaim := Finset.mem_singleton.mp ha
     exact Finset.mem_filter.mpr
-      ⟨reduction_in_args, ⟨fun h => notMemEmptyFinset a h, Or.inl
-        art64_conclusive_is_the_reduction_claim⟩⟩
+      ⟨reduction_in_args,
+        ⟨fun h => notMemEmptyFinset (encode ClauseAtom.reductionClaim) h, Or.inl
+          art64_conclusive_is_the_reduction_claim⟩⟩
 
 /-- 中文证明：酌减请求在第 0 层就被明文采纳。 -/
 theorem art64_reduction_claim_adopted :

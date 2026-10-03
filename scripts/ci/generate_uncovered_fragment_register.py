@@ -45,11 +45,18 @@ def extract(path: Path) -> tuple[str, int, list[str]]:
     A section *header* is preferred over any mention: the word also appears inside prose and
     inside the self-describing boundary theorem, and anchoring on the last mention copied a
     theorem statement into a list that is supposed to name gaps.
+
+    "Header" means a heading line, not merely a comment line: on 2026-10-03 the amount-bridge
+    doc comment of `Seams/StatuteChain.lean` ("...并补本件 §未覆盖第 4 项...") sat below the real
+    `## §未覆盖片段` section and, because it starts with `/`, the old test read it as a header
+    and the register reported a bridge doc as that file's gap list. Every gap section in the
+    wave is written as `## ...`, so `##` is what separates a heading from a mention.
     """
     text = path.read_text(encoding="utf-8", errors="replace")
     lines = text.splitlines()
     headers = [i for i, line in enumerate(lines)
-               if MARKER in line and line.lstrip().startswith(("#", "-", "/"))
+               if MARKER in line and "##" in line
+               and line.lstrip().startswith(("#", "-", "/"))
                and not line.lstrip().startswith(("theorem ", "def ", "lemma ", ">"))]
     hits = headers or [i for i, line in enumerate(lines) if MARKER in line]
     if not hits:

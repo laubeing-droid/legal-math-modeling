@@ -770,7 +770,7 @@ theorem amountBridge_subtraction_disagrees :
 
 /-! ## §十、90 条入口的"无下游效果"正面陈述（外部审计 P2-3，2026-10-03） -/
 
-/-- 中文证明（§未覆盖第 13 项的正面陈述）：被 Horn 侧判定**拒绝**的那个论点，
+/-- 中文证明（本件收尾清单第 13 项的正面陈述）：被 Horn 侧判定**拒绝**的那个论点，
     **同时**在第 0 层采纳集里。左支由 `rounds_zero_fst` ＋
     `UnifiedInstance.baseSet_polM_eq_args` 化成字面成员判定（`Finset.mem_insert_of_mem`
     套 `Finset.mem_singleton.mpr rfl`，本 pin 无 `Finset.mem_singleton_iff`）；

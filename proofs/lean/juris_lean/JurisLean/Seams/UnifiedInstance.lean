@@ -819,7 +819,7 @@ end ObservationSlot
 
 section GateNoEffect
 
-/-- 中文说明（审计 P2-3 的机器化登记，配套 `Seams/StatuteChain.lean` §未覆盖第 13 项）：
+/-- 中文说明（审计 P2-3 的机器化登记，配套 `Seams/StatuteChain.lean` 收尾清单第 13 项）：
     G6 轮把 `polM.admissibleSupport` 换成 Horn 侧判定后，`claimNoAdjustment` 的支持位为假，
     第 90 条第 2 款的不利后果于是有了**机器入口**；但可采纳支持只在 `adoptedStep` 被读，
     而本件取 `round = 0`，第 0 层采纳集 `baseSet` 只看 obstructed／conclusive／presumed／

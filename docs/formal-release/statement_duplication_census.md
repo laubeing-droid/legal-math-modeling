@@ -5,8 +5,8 @@
 Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.
 
 - files scanned: 304
-- theorem/lemma headers read: 3698
-- distinct statement types: 3657
+- theorem/lemma headers read: 3701
+- distinct statement types: 3660
 - statement types declared more than once: 41
 - of those spanning module families: 1
 
@@ -16,7 +16,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 
 ## Within the package (41)
 
-- `(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S` — `DungFixedPoint.lean:94` (root/other/grounded_is_least_complete), `DungFixedPoint.lean:90` (root/other/grounded_is_least_fixed_point)
+- `(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S` — `DungFixedPoint.lean:96` (root/other/grounded_is_least_complete), `DungFixedPoint.lean:92` (root/other/grounded_is_least_fixed_point)
 - `(S : Finset α) : TH sys S ⊆ sys.univ` — `HornDefinitions.lean:55` (root/other/TH_subset_univ), `HornFixedPoint.lean:17` (root/other/horn_operator_subset_univ)
 - `(a : JurisLean.FactAdmissionAttestation) (f : JurisLean.LegalId .fact) (r : RequestKey) (h : PremiseToken.WF { fact := f, request := r, origin := .admitted a })` — `ULM16TheoryComposition.lean:124` (root/other/CORE_02_admitted_premise_status), `ULM06FactEvidence.lean:108` (root/other/admitted_wf_has_admitted_status)
 - `(a b : TrustVector) : TrustLE (a.meet b) a` — `ULM16TheoryComposition.lean:75` (root/other/COMP_C01_trust_nonupgrade_left), `ULM14CoverageTrust.lean:92` (root/other/trust_meet_le_left)
@@ -36,7 +36,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(ν : PMF (PureProfile O)) (b : BehavioralProfile O) (hStep : ∀ n, ν.bind (fun π => (O.runDistPure n π).bind (fun ss => pushforward (O.stepDist b ss) (fun t => s` — `External/GameTheory/Theorems/Kuhn/BehavioralToMixedCore.lean:599` (External/runDist_eq_of_stepIndependence), `External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean:746` (External/runDist_eq_of_stepIndependence)
 - `: checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with caseId := "OTHER-CASE" } }) (writeCalcul` — `BusinessRoot/SevenAxisCases.lean:26` (root/other/reject_doc_caseId), `BusinessRoot/SevenAxis.lean:380` (root/other/wrong_case_rejected)
 - `: checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with debtor := "丙公司" } }) (writeCalculation e` — `BusinessRoot/SevenAxisCases.lean:53` (root/other/reject_doc_debtor), `BusinessRoot/SevenAxis.lean:351` (root/other/wrong_debtor_rejected)
-- `: collapsesToKernel instanceM.evalDom` — `Seams/StatuteChain.lean:337` (root/other/chain_collapse_from_the_109_tier), `Seams/UnifiedInstance.lean:626` (root/other/instanceM_collapse)
+- `: collapsesToKernel instanceM.evalDom` — `Seams/StatuteChain.lean:339` (root/other/chain_collapse_from_the_109_tier), `Seams/UnifiedInstance.lean:626` (root/other/instanceM_collapse)
 - `[∀ i, Finite (A i)] (σ : ∀ i, PMF (A i)) {j q : ι} (hq : q ≠ j) (E : A j → Prop) (hE : pmfMass (μ := σ j) E ≠ 0) : pushforward (pmfCond (μ := pmfPi (A := A) σ) ` — `External/GameTheory/Math/PMFProduct.lean:1193` (External/pmfPi_cond_coord_other_marginal), `External/GameTheory/Math/PMFProduct.lean:708` (External/pmfPi_cond_coord_push_other)
 - `{S T : Finset α} (hST : S ⊆ T) : TH sys S ⊆ TH sys T` — `HornDefinitions.lean:41` (root/other/TH_monotone), `HornFixedPoint.lean:21` (root/other/horn_operator_monotone)
 - `{a b c : TrustVector} (hab : TrustLE a b) (hbc : TrustLE b c) : TrustLE a c` — `Seams/BoundaryBridge5.lean:154` (root/other/bb5_trustLE_trans), `Seams/BoundaryClosure.lean:611` (root/other/trustLE_trans)

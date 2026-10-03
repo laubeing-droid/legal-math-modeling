@@ -15,18 +15,18 @@
     ]
   },
   "cross_family_statement_types": 1,
-  "distinct_statement_types": 3657,
+  "distinct_statement_types": 3660,
   "duplicated_statement_types": 41,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
         "carrier": "root/other/grounded_is_least_complete",
-        "line": 94,
+        "line": 96,
         "path": "DungFixedPoint.lean"
       },
       {
         "carrier": "root/other/grounded_is_least_fixed_point",
-        "line": 90,
+        "line": 92,
         "path": "DungFixedPoint.lean"
       }
     ],
@@ -261,7 +261,7 @@
     ": collapsesToKernel instanceM.evalDom": [
       {
         "carrier": "root/other/chain_collapse_from_the_109_tier",
-        "line": 337,
+        "line": 339,
         "path": "Seams/StatuteChain.lean"
       },
       {
@@ -514,9 +514,9 @@
   "files_scanned": 304,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
   "headers_missed_by_scanner": 105,
-  "inventory_package_theorems": 3689,
+  "inventory_package_theorems": 3692,
   "private_protected_headers_read": 114,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 3698
+  "statements_read": 3701
 }

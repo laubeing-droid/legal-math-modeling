@@ -515,8 +515,7 @@ theorem art64_rejected_step_defeats_no_adjustment :
   unfold rejectedStep
   refine Finset.mem_union.mpr (Or.inr (Finset.mem_filter.mpr ⟨no_adjustment_in_args, ?_⟩))
   intro heq
-  rw [heq] at hmem
-  exact notMemEmptyFinset _ hmem
+  exact notMemEmptyFinset _ (heq ▸ hmem)
 
 /-- 中文证明（**G3 那一格闭合**）：第 64 条第 3 款在模型里是**驳回**
     （`FinalDefeated`），不只是"未被采纳"（`¬ FinalDerivable`）。
@@ -548,10 +547,11 @@ theorem conflict_no_adjustment_final_undetermined :
     有机器见证，不靠措辞。 -/
 theorem art64_rejection_is_extra_content :
     FinalDefeated art64Policy (encode ClauseAtom.noAdjustment) ∧
-      ¬ FinalDefeated conflictPolicy (encode ClauseAtom.noAdjustment) :=
-  ⟨art64_no_adjustment_defeated, fun ⟨k, hk⟩ => by
-    obtain ⟨_, h2⟩ := conflict_rounds_empty k
-    rw [h2] at hk
-    exact notMemEmptyFinset _ hk⟩
+      ¬ FinalDefeated conflictPolicy (encode ClauseAtom.noAdjustment) := by
+  refine ⟨art64_no_adjustment_defeated, ?_⟩
+  rintro ⟨k, hk⟩
+  obtain ⟨_, h2⟩ := conflict_rounds_empty k
+  rw [h2] at hk
+  exact notMemEmptyFinset _ hk
 
 end ArtSixtyFourClauseThree

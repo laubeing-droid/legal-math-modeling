@@ -503,14 +503,14 @@ theorem art64_baseSet_empty : baseSet art64Policy = ∅ := by
 
 /-- 中文证明（技术引理）：反证一步**确实**把"不予调整"主张收进驳倒集。
     链条：酌减请求在论点集里（`reduction_in_args`）且它攻击"不予调整"
-    （`attack_no_adjustment_to_reduction`），而它又在反证栏里 ⇒ 该攻击者筛后非空。 -/
+    （`attack_reduction_to_no_adjustment`），而它又在反证栏里 ⇒ 该攻击者筛后非空。 -/
 theorem art64_rejected_step_defeats_no_adjustment :
     encode ClauseAtom.noAdjustment ∈ rejectedStep art64Policy (∅ : Finset Arg) ∅ := by
   have hmem : encode ClauseAtom.reductionClaim ∈
-      (DungAAF.attackers conflictAAF (encode ClauseAtom.noAdjustment))
-        .filter (fun b => b ∈ art64Policy.contraryEvidence) :=
+      (DungAAF.attackers conflictAAF (encode ClauseAtom.noAdjustment)).filter
+        (fun b => b ∈ art64Policy.contraryEvidence) :=
     Finset.mem_filter.mpr
-      ⟨mem_attackers_of_mem reduction_in_args attack_no_adjustment_to_reduction,
+      ⟨mem_attackers_of_mem reduction_in_args attack_reduction_to_no_adjustment,
         art64_contrary_evidence_is_the_reduction_claim⟩
   unfold rejectedStep
   refine Finset.mem_union.mpr (Or.inr (Finset.mem_filter.mpr ⟨no_adjustment_in_args, ?_⟩))

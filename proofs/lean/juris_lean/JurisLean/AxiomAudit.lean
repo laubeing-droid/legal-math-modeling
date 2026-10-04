@@ -1439,6 +1439,8 @@ open HornSystem
 #print axioms JurisLean.Seams.Probability.maliciousData_gate
 #print axioms JurisLean.Seams.Probability.ordinary_gate_still_blocks_maliciousExceptData
 #print axioms JurisLean.Seams.Probability.otherGroundData_not_overThirty
+#print axioms JurisLean.Seams.Probability.overThirtyTest_congr_badFaith
+#print axioms JurisLean.Seams.Probability.overThirtyTest_congr_exception
 #print axioms JurisLean.Seams.Probability.overThirtyTest_true_iff
 #print axioms JurisLean.Seams.Probability.overThirtyThreshold_iff_excess
 #print axioms JurisLean.Seams.Probability.overThirtyThreshold_iff_intTest

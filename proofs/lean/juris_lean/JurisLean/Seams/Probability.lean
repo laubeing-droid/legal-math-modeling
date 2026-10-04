@@ -657,19 +657,21 @@ theorem unforeseen_component_drops_out (b : LossBasis)
   ring
 
 /-- 中文证明（**计入总额不超过逐位绝对值之和**）：判定只做取舍不做增值。 -/
-theorem basisTotal_le_sum_of_amounts (b : LossBasis) :
+theorem basisTotal_le_sum_of_amounts (b : LossBasis)
+    (h1 : 0 ≤ b.direct.amount) (h2 : 0 ≤ b.gain.amount)
+    (h3 : 0 ≤ b.extraToThirdParty.amount) :
     basisTotal b ≤ b.direct.amount + b.gain.amount + b.extraToThirdParty.amount := by
   unfold basisTotal
-  have hkey : ∀ c : LossComponent,
+  have hkey : ∀ c : LossComponent, 0 ≤ c.amount →
       (if componentCounted c then c.amount else 0) ≤ c.amount := by
-    intro c
+    intro c hc
     by_cases h : componentCounted c = true
     · rw [if_pos h]
     · rw [if_neg h]
-      exact Int.le_refl 0
-  have h1 := hkey b.direct
-  have h2 := hkey b.gain
-  have h3 := hkey b.extraToThirdParty
+      exact hc
+  have e1 := hkey b.direct h1
+  have e2 := hkey b.gain h2
+  have e3 := hkey b.extraToThirdParty h3
   linarith
 
 /-- 中文说明（**第 63 条第 3 款的扣除**）：四类扣除项——扩大损失、
@@ -701,6 +703,7 @@ theorem unclaimed_item_does_not_deduct (items : List DeductionItem) (d : Deducti
   have h : (List.filter deductionCounted [d]) = [] := by
     simp [deductionCounted, hc]
   rw [h]
+  simp
 
 /-- 中文证明（**扣除总额非负**）：负数额的项被判定式拦住，
     扣除总额恒非负——它不会反向增加赔偿额。 -/
@@ -729,7 +732,7 @@ def netRecoverable (b : LossBasis) (items : List DeductionItem) : Amount :=
 theorem netRecoverable_may_be_negative (b : LossBasis) (items : List DeductionItem) :
     netRecoverable b items < 0 ↔ basisTotal b < deductionTotal items := by
   unfold netRecoverable
-  exact Int.sub_neg_iff_lt
+  constructor <;> intro h <;> linarith
 
 /-- 恶意违约把闸门关掉：`reductionGate maliciousData = false`（第65条第3款），
     即使其余三个条件位全为真、30% 门槛也成立。闭式 Bool/ℤ 计算，不用浮点。 -/

@@ -907,11 +907,9 @@ theorem chain_naming_uniqueness
            Transitions.admissibleFromHorn instanceM.norms chainNamingM) :
     n = chainNamingM := by
   have h1 : Transitions.admissibleFromHorn instanceM.norms chainNamingM
-      instanceM.disputed = true := by
-    refine Transitions.horn_derived_is_admissible instanceM.norms chainNamingM
-      instanceM.disputed ?_
-    show instanceM.disputed ∈ Transitions.namedClosure instanceM.norms chainNamingM
-    exact Finset.mem_image.mpr ⟨0, UnifiedInstance.zero_in_closureM, rfl⟩
+      instanceM.disputed = true :=
+    Transitions.horn_derived_is_admissible instanceM.norms chainNamingM 0
+      UnifiedInstance.zero_in_closureM
   have hd : instanceM.disputed ∈ Transitions.namedClosure instanceM.norms n := by
     rw [← h] at h1
     unfold Transitions.admissibleFromHorn at h1
@@ -919,13 +917,14 @@ theorem chain_naming_uniqueness
   have hfalse : ∀ b : Arg, b ≠ instanceM.disputed →
       Transitions.admissibleFromHorn instanceM.norms chainNamingM b = false := by
     intro b hb
-    unfold Transitions.admissibleFromHorn chainNamingM
-    simp only [decide_eq_false_iff, Finset.mem_image, not_exists]
-    intro i hcon
-    exact hb hcon.symm
+    unfold Transitions.admissibleFromHorn Transitions.namedClosure chainNamingM
+    refine decide_eq_false (fun hcon => ?_)
+    obtain ⟨i, _, hn⟩ := hcon
+    exact hb hn.symm
   have hsub : ∀ b ∈ Transitions.namedClosure instanceM.norms n,
       b = instanceM.disputed := by
-    intro b hb hne
+    intro b hb
+    by_contra hne
     have hf : Transitions.admissibleFromHorn instanceM.norms n b = true := by
       unfold Transitions.admissibleFromHorn
       simpa using hb

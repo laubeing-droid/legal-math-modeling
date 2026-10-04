@@ -537,6 +537,7 @@
     "JurisLean.Seams.BoundaryBridge5",
     "JurisLean.Seams.BoundaryClosure",
     "JurisLean.Seams.BurdenStatutes",
+    "JurisLean.Seams.CaseInput",
     "JurisLean.Seams.ClaimBasis",
     "JurisLean.Seams.FullProcess",
     "JurisLean.Seams.InstitutionalEffects",
@@ -1679,6 +1680,11 @@
     "JurisLean.Seams.BurdenStatutes.vacuousDomain_holds_part_three",
     "JurisLean.Seams.BurdenStatutes.vacuousDomain_holds_part_two",
     "JurisLean.Seams.BurdenStatutes.vacuousDomain_is_not_lawful",
+    "JurisLean.Seams.CaseInput.caseFacts_subset_caseUniv",
+    "JurisLean.Seams.CaseInput.caseHeads_subset_caseUniv",
+    "JurisLean.Seams.CaseInput.case_closure_sound",
+    "JurisLean.Seams.CaseInput.case_facts_in_closure",
+    "JurisLean.Seams.CaseInput.sample_conclusion_in_closure",
     "JurisLean.Seams.ClaimBasis.carriesBasis_cons",
     "JurisLean.Seams.ClaimBasis.citedAt_head_or_tail",
     "JurisLean.Seams.ClaimBasis.citedAt_singleton_fields",
@@ -2926,8 +2932,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "017508ff161a79cb4285be070dabaa29961bf2c21e4974bafea2aae5cb409f2d",
-   "size_bytes": 165442,
+   "sha256": "34ccb99cd73a8d36202fc6fcb1b536aa87d4b113c001b1f1f7393da22d133f2b",
+   "size_bytes": 165798,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -24166,6 +24172,62 @@
   {
    "declarations": [
     {
+     "kind": "structure",
+     "name": "CaseFile"
+    },
+    {
+     "kind": "def",
+     "name": "caseUniv"
+    },
+    {
+     "kind": "def",
+     "name": "caseFacts"
+    },
+    {
+     "kind": "theorem",
+     "name": "caseFacts_subset_caseUniv"
+    },
+    {
+     "kind": "theorem",
+     "name": "caseHeads_subset_caseUniv"
+    },
+    {
+     "kind": "def",
+     "name": "hornOfCase"
+    },
+    {
+     "kind": "theorem",
+     "name": "case_closure_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "case_facts_in_closure"
+    },
+    {
+     "kind": "def",
+     "name": "sampleFile"
+    },
+    {
+     "kind": "theorem",
+     "name": "sample_conclusion_in_closure"
+    }
+   ],
+   "imports": [
+    "JurisLean.HornDefinitions",
+    "JurisLean.Seams.SourceNorms",
+    "Mathlib.Data.Finset.Basic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/CaseInput.lean",
+   "print_axioms_targets": [],
+   "sha256": "421be8a1a3e88af816156945d2445de21d568e9482d604efc6ba890b91466899",
+   "size_bytes": 6193,
+   "theorem_count": 5,
+   "theorem_count_bol_convention": 5
+  },
+  {
+   "declarations": [
+    {
      "kind": "inductive",
      "name": "Stage"
     },
@@ -32725,6 +32787,7 @@
     "JurisLean.Seams.BoundaryBridge5",
     "JurisLean.Seams.BoundaryClosure",
     "JurisLean.Seams.BurdenStatutes",
+    "JurisLean.Seams.CaseInput",
     "JurisLean.Seams.ClaimBasis",
     "JurisLean.Seams.FullProcess",
     "JurisLean.Seams.InstitutionalEffects",
@@ -32776,8 +32839,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "e0a6ffdda55c541ac167dc2ffe9639bddad6e03a8ae1cf33246b527f730db655",
-   "size_bytes": 8928,
+   "sha256": "7e7d22df39c2a0ffac737fcac5af7e37032a1d619a2abdfc586da1c92b8ba91f",
+   "size_bytes": 8961,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -32941,22 +33004,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3745,
-   "file_count": 319,
+   "counted_declaration_count": 3750,
+   "file_count": 320,
    "lemma_count": 141,
-   "print_axioms_command_count": 2627,
-   "print_axioms_distinct_targets": 2573,
-   "theorem_count": 3604,
-   "theorem_count_bol_convention": 3508
+   "print_axioms_command_count": 2632,
+   "print_axioms_distinct_targets": 2578,
+   "theorem_count": 3609,
+   "theorem_count_bol_convention": 3513
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3726,
-   "file_count": 304,
+   "counted_declaration_count": 3731,
+   "file_count": 305,
    "lemma_count": 134,
-   "print_axioms_command_count": 2627,
-   "print_axioms_distinct_targets": 2573,
-   "theorem_count": 3592,
-   "theorem_count_bol_convention": 3496
+   "print_axioms_command_count": 2632,
+   "print_axioms_distinct_targets": 2578,
+   "theorem_count": 3597,
+   "theorem_count_bol_convention": 3501
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33225,6 +33288,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/BoundaryBridge5.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/BoundaryClosure.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/BurdenStatutes.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/CaseInput.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/ClaimBasis.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/FullProcess.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/InstitutionalEffects.lean",
@@ -33542,6 +33606,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/BoundaryBridge5.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/BoundaryClosure.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/BurdenStatutes.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/CaseInput.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/ClaimBasis.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/FullProcess.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/InstitutionalEffects.lean",
@@ -33636,17 +33701,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "148225855c7334362e6225fe733de7390437e20a78ea849778be7ab52fa82319",
+ "source_inventory_digest": "a6ff8afa44e082ac283680827d8a820e48b7fa077bca0530a17529c7a71cda9e",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "20a156b54fd16a58a646ea892d4039151a2abbd8",
-  "tree": "6454b77072b4cc0d484299500d57d8b9900729b1"
+  "commit": "d409af7976d394844639cb294b885b8366f9b743",
+  "tree": "23ffaa82655be4432a6ee89fdc53cdf112d2d5dc"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 319,
+  "files_total": 320,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

@@ -100,6 +100,23 @@ structure BurdenAllocation where
   displacedByLaw : Bool
   shiftCite : String := ""
 
+
+/-- 中文说明（可判定谓词）：第 91 条第 (一) 项／第 (二) 项的分组成员判定。 -/
+def art91IsClauseOne : NormClass → Bool
+  | .constitutive => true
+  | _ => false
+
+/-- 中文说明（第 91 条的分配函数）：负担挂在**就该基本事实提出主张的一方**。
+    [建模选择]：条文两款都是"主张……的当事人……承担举证证明责任"，
+    故分配规则的形式就是"提出者＝负担者"；规范类只决定落在第几款。 -/
+def art91BurdenOf (_c : NormClass) (assertor : BurdenParty) : BurdenParty := assertor
+
+/-- 中文证明（第 91 条第 (一)(二) 项的共同形式）：分配函数把负担交回提出主张的一方，
+    与规范类取值无关。这一式是定义本身（`rfl`），本件不把它读成对真实案件分配的断言。 -/
+theorem art91_burden_follows_assertion (c : NormClass) (p : BurdenParty) :
+    art91BurdenOf c p = p :=
+  rfl
+
 /-- 中文说明（规范说适用的条件）：但书未打开时，第 91 条的分配才**作为结论**可用。
     这不是对 `art91BurdenOf` 函数值的限制（它恒为提出者），而是对
     "负担由第 91 条指派"这一**法律结论**的可用性限制。 -/
@@ -132,23 +149,6 @@ theorem statutory_shift_has_a_witness :
   ⟨{ party := .proponent, displacedByLaw := true,
       shiftCite := "法定倒置例：本件不代读（17_卷 R6）" },
     rfl, (by decide), statutory_shift_blocks_art91 _ _ rfl⟩
-
-/-- 中文说明（可判定谓词）：第 91 条第 (一) 项／第 (二) 项的分组成员判定。 -/
-def art91IsClauseOne : NormClass → Bool
-  | .constitutive => true
-  | _ => false
-
-/-- 中文说明（第 91 条的分配函数）：负担挂在**就该基本事实提出主张的一方**。
-    [建模选择]：条文两款都是"主张……的当事人……承担举证证明责任"，
-    故分配规则的形式就是"提出者＝负担者"；规范类只决定落在第几款。 -/
-def art91BurdenOf (_c : NormClass) (assertor : BurdenParty) : BurdenParty := assertor
-
-/-- 中文证明（第 91 条第 (一)(二) 项的共同形式）：分配函数把负担交回提出主张的一方，
-    与规范类取值无关。这一式是定义本身（`rfl`），本件不把它读成对真实案件分配的断言。 -/
-theorem art91_burden_follows_assertion (c : NormClass) (p : BurdenParty) :
-    art91BurdenOf c p = p :=
-  rfl
-
 /-- 中文证明（第 91 条两款的划分表）：四目里恰第 (一) 项一项、第 (二) 项三目。
     逐点 `rfl`，不靠任何未核对的引理名。 -/
 theorem art91_clause_partition :

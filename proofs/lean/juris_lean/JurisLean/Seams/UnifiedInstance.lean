@@ -335,8 +335,8 @@ theorem normsM_closure_eq_univ :
     · rw [h0]; exact Finset.mem_insert_self _ _
     · rw [h1]; exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl)
   · rcases Finset.mem_insert.mp ha with h0 | h1
-    · rw [h0]; exact zero_in_closureM
-    · rw [h1]; exact one_in_closureM
+    · rw [h0] at ha ⊢; exact zero_in_closureM
+    · rw [h1] at ha ⊢; exact one_in_closureM
 
 /-- 中文证明：待判原子**语义上被蕴含**（`UnifiedChainCorrespondence` 第一条合取支的正方向，
     经仓内 `horn_closure_semantic_iff :171` 从闭包成员读出）。 -/

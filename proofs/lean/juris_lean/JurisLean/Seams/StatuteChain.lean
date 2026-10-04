@@ -912,8 +912,7 @@ theorem chain_naming_uniqueness
       UnifiedInstance.zero_in_closureM
   have hd : instanceM.disputed ∈ Transitions.namedClosure instanceM.norms n := by
     rw [← h] at h1
-    unfold Transitions.admissibleFromHorn at h1
-    simpa using h1
+    exact of_decide_eq_true h1
   have hfalse : ∀ b : Arg, b ≠ instanceM.disputed →
       Transitions.admissibleFromHorn instanceM.norms chainNamingM b = false := by
     intro b hb
@@ -931,13 +930,14 @@ theorem chain_naming_uniqueness
     rw [hfalse b hne] at hf
     exact absurd hf (by decide)
   funext i
-  have hmem : n i ∈ Transitions.namedClosure instanceM.norms n :=
-    Finset.mem_image.mpr ⟨i, by
-      show i ∈ SourceNorms.closureAt UnifiedInstance.normsM
+  have hmem : n i ∈ Transitions.namedClosure instanceM.norms n := by
+    refine Finset.mem_image.mpr ⟨i, ?_, rfl⟩
+    have hc : i ∈ SourceNorms.closureAt UnifiedInstance.normsM := by
       rw [UnifiedInstance.normsM_closure_eq_univ]
       cases i with
       | zero => exact Finset.mem_insert_self _ _
-      | one => exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl), rfl⟩
+      | one => exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl)
+    exact hc
   show n i = instanceM.disputed
   exact hsub _ hmem
 

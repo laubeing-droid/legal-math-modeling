@@ -1637,6 +1637,9 @@ open HornSystem
 #print axioms JurisLean.Seams.StatuteChain.chain_tier_part_one
 #print axioms JurisLean.Seams.StatuteChain.chain_tier_part_two
 #print axioms JurisLean.Seams.StatuteChain.chain_zero_in_kernel
+#print axioms JurisLean.Seams.StatuteChain.instanceM_observation_is_the_declared_one
+#print axioms JurisLean.Seams.StatuteChain.observation_does_not_touch_adoption
+#print axioms JurisLean.Seams.StatuteChain.observation_reports_something
 #print axioms JurisLean.Seams.StatuteChain.statuteChain_on_instanceM
 #print axioms JurisLean.Seams.StatuteChain.statuteChain_reaches_the_one_closed_instance
 #print axioms JurisLean.Seams.Temporal.IntertemporalLawSignature.withRetroFalse_preserves_wellFormed

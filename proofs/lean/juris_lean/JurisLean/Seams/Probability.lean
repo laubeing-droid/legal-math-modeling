@@ -662,11 +662,8 @@ theorem exception_gate_does_not_read_bad_faith {F : Type} (c : ReductionData F) 
 theorem exception_gate_requires_explicit_finding {F : Type} (c : ReductionData F)
     (h : exceptionGate c = true) : c.maliciousException = true := by
   unfold exceptionGate conditionHolds at h
-  simp only [Bool.and_eq_true, Bool.or_eq_true, decide_eq_true_eq] at h
-  cases h with
-  | intro _ hrest => cases hrest with
-    | intro _ hrest2 => cases hrest2 with
-      | intro _ hexc => exact hexc
+  simp only [Bool.and_eq_true, Bool.or_eq_true] at h
+  exact h.2
 
 /-- 中文见证（**一般闸门与例外通道在同一份数据上分道**）：`maliciousData` 上
     "一般"闸门关（既有定理），把例外面认定为真后例外通道开——同一份恶意违约数据，

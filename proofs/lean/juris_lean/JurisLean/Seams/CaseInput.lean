@@ -87,7 +87,7 @@ theorem sample_conclusion_in_closure :
   intro M hM
   have h1 : "欠款成立" ∈ M := hM.1 (by
     show "欠款成立" ∈ ({"欠款成立", "违约成立"} : Finset String)
-    exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl))
+    exact Finset.mem_insert_self _ _)
   have h2 : "违约成立" ∈ M := hM.1 (by
     show "违约成立" ∈ ({"欠款成立", "违约成立"} : Finset String)
     exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl))

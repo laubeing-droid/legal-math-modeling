@@ -1594,6 +1594,8 @@ open HornSystem
 #print axioms JurisLean.Seams.SourceNorms.step_within_model
 #print axioms JurisLean.Seams.StatuteChain.amountBridge_order_iff
 #print axioms JurisLean.Seams.StatuteChain.amountBridge_subtraction_disagrees
+#print axioms JurisLean.Seams.StatuteChain.case_burden_field_is_free_data
+#print axioms JurisLean.Seams.StatuteChain.case_data_does_not_imply_gate_input
 #print axioms JurisLean.Seams.StatuteChain.chain_L1_closure_hop
 #print axioms JurisLean.Seams.StatuteChain.chain_L1_derived_support_true
 #print axioms JurisLean.Seams.StatuteChain.chain_L2_finalDerivable
@@ -1607,6 +1609,7 @@ open HornSystem
 #print axioms JurisLean.Seams.StatuteChain.chain_amount_hop
 #print axioms JurisLean.Seams.StatuteChain.chain_art108_finding_fires
 #print axioms JurisLean.Seams.StatuteChain.chain_art90_gate_has_input_witness
+#print axioms JurisLean.Seams.StatuteChain.chain_art90_two_readings_coherent
 #print axioms JurisLean.Seams.StatuteChain.chain_art91_allocation_hop
 #print axioms JurisLean.Seams.StatuteChain.chain_art91_clause_is_decidable
 #print axioms JurisLean.Seams.StatuteChain.chain_atom_eq

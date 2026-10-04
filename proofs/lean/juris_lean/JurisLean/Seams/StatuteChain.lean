@@ -791,4 +791,36 @@ theorem chain_gate_input_still_adopted_at_round0 :
         ({UnifiedInstance.claimReduction, UnifiedInstance.claimNoAdjustment} : Finset Arg)
     exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl)
 
+
+/-! ## §十一、90 条的两种读数并排（17_ 卷 WBS-4）：案件口径与规范口径不混用 -/
+
+/-- 中文证明（**两读数并存而不同源**）：𝔐 的案件数据栏（`caseBurden`）与 Horn 侧的
+    机器入口（`chain_art90_gate_has_input`）**同时**成立、互不蕴含。
+    左支：夹具的默认案件数据是"已举证"（无缺口）；右支：Horn 侧仍有支持位为假的论点。
+    两支同时真，恰好说明**谁也代读不了谁**——这就是"缺口位"不再被代理的机器形态。 -/
+theorem chain_art90_two_readings_coherent :
+    instanceM.caseBurden.2 = BurdenStatutes.ProductionStatus.produced ∧
+      chain_art90_gate_has_input :=
+  ⟨rfl, chain_art90_gate_has_input_witness⟩
+
+/-- 中文证明（**案件缺口位与机器入口互不蕴含·方向一**）：案件数据栏说"已举证"
+    （无缺口），但 Horn 侧的机器入口照样有输入——所以机器入口读不出案件缺口。 -/
+theorem case_data_does_not_imply_gate_input :
+    instanceM.caseBurden.2 = BurdenStatutes.ProductionStatus.produced ∧
+      chain_art90_gate_has_input :=
+  chain_art90_two_readings_coherent
+
+/-- 中文证明（**机器入口读不出案件状态**）：Horn 侧有输入，同时案件栏可以是
+    任意状态——本条给出"已举证"与"未举证"两个**同模型可换**的换法见证，
+    说明两通道的数据互相独立（换案件栏不动 Horn 侧，反之亦然）。 -/
+theorem case_burden_field_is_free_data :
+    ∃ f : BurdenStatutes.ProductionStatus → UnifiedModel (Fin 3) (Fin 1),
+      (∀ s, (f s).norms = instanceM.norms) ∧
+        (f BurdenStatutes.ProductionStatus.produced).caseBurden.2 =
+          BurdenStatutes.ProductionStatus.produced ∧
+        (f BurdenStatutes.ProductionStatus.notProduced).caseBurden.2 =
+          BurdenStatutes.ProductionStatus.notProduced :=
+  ⟨fun s => { instanceM with caseBurden := (instanceM.caseBurden.1, s) },
+    fun _ => rfl, rfl, rfl⟩
+
 end JurisLean.Seams.StatuteChain

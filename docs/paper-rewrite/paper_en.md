@@ -197,11 +197,11 @@ Before writing, the generator checks that the closure classes partition the tota
 inventory, the closure census and the shape report all read the same declaration count. If any
 fails it refuses to write, so this prose can never look more consistent than its sources.
 
-3586 theorem declarations in scope `juris_lean_package` across 304 files (theorem_inventory_v3.json). 3598 in scope `all_tracked_lean` across 319 files (theorem_inventory_v3.json). The package audit surface carries 2621 `#print axioms` commands (theorem_inventory_v3.json) with 2567 distinct targets; the tracked scope reads the same: 2621 commands and 2567 distinct targets. AxiomAudit.lean alone owns 2358 `#print axioms` commands and the mandate layer is 280 named targets, so 2621 commands resolve to 2567 distinct targets; 2358 of them live in AxiomAudit.lean and 263 in other drivers.
+3586 theorem declarations in scope `juris_lean_package` across 304 files (theorem_inventory_v3.json). 3598 in scope `all_tracked_lean` across 319 files (theorem_inventory_v3.json). The package audit surface carries 2621 `#print axioms` commands (theorem_inventory_v3.json) with 2567 distinct targets; the tracked scope reads the same: 2621 commands and 2567 distinct targets. AxiomAudit.lean alone owns 2361 `#print axioms` commands and the mandate layer is 280 named targets, so 2621 commands resolve to 2567 distinct targets; 2361 of them live in AxiomAudit.lean and 260 in other drivers.
 
 of the 3586 declarations (theorem_inventory_v3.json), 283 close on a single reflexivity term, 102 close on `decide` alone, and 3201 carry a tactic proof (theorem_inventory_v3.json); 431 are one-line contract transfers and 1232 conclusions bind no variable. The cross-check: 3586 theorems plus 134 lemmas equal the 3720 counted declarations (theorem_inventory_v3.json).
 
-The audit surface reports 2567 named targets and AxiomAudit.lean holds 2358 commands (theorem_inventory_v3.json); the mandate layer is 280 named targets (theorem_inventory_v3.json).
+The audit surface reports 2567 named targets and AxiomAudit.lean holds 2361 commands (theorem_inventory_v3.json); the mandate layer is 280 named targets (theorem_inventory_v3.json).
 
 Nothing here changes the strength of any claim. The root grew because seven modules each earned
 their own changed-module CI round; the build dimension is attested by a green clean build, and the

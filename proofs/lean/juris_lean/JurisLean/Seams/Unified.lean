@@ -1,6 +1,7 @@
 import JurisLean.Seams.Representation
 import JurisLean.Seams.SourceNorms
 import JurisLean.Seams.AdjudicationBridge
+import JurisLean.Seams.BurdenStatutes
 import JurisLean.Seams.InstitutionalEffects
 import JurisLean.Seams.PayoffEquilibrium
 import JurisLean.Seams.PrecedentFlow
@@ -145,6 +146,14 @@ structure UnifiedModel (V Rel : Type) [DecidableEq Rel] where
       非退化性要能说成"关于模型自己"，靠的就是这一栏：观测是 𝔐 的数据，
       模型不许把它留在契约之外（缺它时同一载体可配两份互异观测）。 -/
   observation : Representation.Fragment ClaimBasis.Status
+  /-- 中文说明（**逐案举证状态栏**，2026-10-04 增，17_ 卷 WBS-4）：𝔐 对本案"谁负担、
+      举到哪一步"的**案件数据**通道。此前 90 条的缺口位只能由"Horn 闭包是否产生该论点"
+      代理（`StatuteChain` §未覆盖#1 自证）；本栏让案件口径与规范口径**并排存在、禁止混用**
+      （`chain_art90_two_readings_coherent`，见 `StatuteChain`）。
+      默认值是夹具：负担方＝提出方、但书未开、无引注、状态＝已举证——
+      即"案件数据缺省时读作无缺口"，不认定任何真实案件。 -/
+  caseBurden : BurdenStatutes.BurdenAllocation × BurdenStatutes.ProductionStatus :=
+    (⟨.proponent, false, ""⟩, .produced)
 
 /-- 契约 (1)：统一模型**不退化**。三支都是"存在"式的正面见证，全部引用。 -/
 def UnifiedNonDegenerate : Prop :=

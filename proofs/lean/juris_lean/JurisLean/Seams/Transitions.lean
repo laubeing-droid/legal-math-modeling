@@ -640,6 +640,33 @@ theorem art64_layers_keep_the_sides_apart : ∀ j : Nat,
     "不予支持"打的是抗辩，不是请求。原先此处是一条 `def … : Prop` 挂账
     （`art64_one_sidedness_for_the_request_is_still_open`），现由全层不变式
     `art64_layers_keep_the_sides_apart` 证成并删除该挂账项。 -/
+/-- 中文说明（WBS-1 的**不变量**，17_ 卷 §四）：策略自洽＝凡被采纳的论点其支持位为真。
+    "90 条不利后果"要求的就是这一条：一个论点若因举证不能而不被支持，它就**不得**
+    经由 conclusive 照样被采纳——否则"不利后果"在引擎里空转。 -/
+def AdoptedConsistent (pol : TerminalPolicy aaf) : Prop :=
+  ∀ a ∈ baseSet pol, pol.admissibleSupport a = true
+
+/-- 中文证明（**art64 策略自洽**）：第 0 层采纳集是单点集 {酌减请求}，
+    而酌减请求的支持位为真（它在闭包里），故不变量成立。
+    对照：instanceM 那个夹具（空攻击＋conclusive＝全论点集）**不满足**本不变量——
+    这不是待补的引理，是已证的不可能性（`gate_rejection_cannot_narrow_round0`，
+    16_ 卷 §二十：空攻击下"收窄第 0 层"与 policyClosed 不可兼得）。 -/
+theorem art64_policy_is_adopted_consistent : AdoptedConsistent art64Policy := by
+  intro a ha
+  rw [art64_baseSet_eq_singleton] at ha
+  obtain rfl : a = encode ClauseAtom.reductionClaim := Finset.mem_singleton.mp ha
+  exact horn_derived_is_admissible claimCase encode ClauseAtom.reductionClaim
+    reduction_claim_derived_obligation
+
+/-- 中文证明（**自洽策略的采纳集不进未支持论点**）：不变量的直接读数——
+    支持位为假的论点不在第 0 层采纳集里。这是"90 条不利后果有下游效果"的最小形式。 -/
+theorem unsupported_not_in_base_of_consistent {pol : TerminalPolicy aaf}
+    (h : AdoptedConsistent pol) (a : Arg) (ha : pol.admissibleSupport a = false) :
+    a ∉ baseSet pol := by
+  intro hmem
+  rw [h a hmem] at ha
+  exact absurd ha (by decide)
+
 theorem art64_request_is_never_defeated :
     ¬ FinalDefeated art64Policy (encode ClauseAtom.reductionClaim) := by
   rintro ⟨j, hj⟩

@@ -1685,6 +1685,7 @@ open HornSystem
 #print axioms JurisLean.Seams.Transitions.art64_no_adjustment_defeated
 #print axioms JurisLean.Seams.Transitions.art64_no_adjustment_rejected_at_round1
 #print axioms JurisLean.Seams.Transitions.art64_outcome_is_one_sided
+#print axioms JurisLean.Seams.Transitions.art64_policy_is_adopted_consistent
 #print axioms JurisLean.Seams.Transitions.art64_reduction_claim_adopted
 #print axioms JurisLean.Seams.Transitions.art64_rejection_is_extra_content
 #print axioms JurisLean.Seams.Transitions.art64_request_is_never_defeated
@@ -1717,6 +1718,7 @@ open HornSystem
 #print axioms JurisLean.Seams.Transitions.reduction_in_args
 #print axioms JurisLean.Seams.Transitions.rejectedStep_empty_empty
 #print axioms JurisLean.Seams.Transitions.transitions_boundary_is_recorded
+#print axioms JurisLean.Seams.Transitions.unsupported_not_in_base_of_consistent
 #print axioms JurisLean.Seams.Uncertainty.anchor_output_is_inside_band
 #print axioms JurisLean.Seams.Uncertainty.bridge_fails_without_positivity
 #print axioms JurisLean.Seams.Uncertainty.bridge_fails_without_support_finiteness

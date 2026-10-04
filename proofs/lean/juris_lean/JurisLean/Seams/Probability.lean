@@ -666,7 +666,7 @@ theorem basisTotal_le_sum_of_amounts (b : LossBasis) :
     by_cases h : componentCounted c = true
     · rw [if_pos h]
     · rw [if_neg h]
-      exact zero_le _
+      exact le_of_eq (by simp)
   have h1 := hkey b.direct
   have h2 := hkey b.gain
   have h3 := hkey b.extraToThirdParty
@@ -699,13 +699,13 @@ theorem unclaimed_item_does_not_deduct (items : List DeductionItem) (d : Deducti
   unfold deductionTotal
   simp only [List.filter_append, List.map_append, List.sum_append, List.sum_nil, add_zero]
   have h : (List.filter deductionCounted [d]) = [] := by
-    simp only [List.filter_cons, List.filter_nil, List.not_eq_empty]
-    intro hkeep
-    have hmem : d ∈ List.filter deductionCounted [d] := List.mem_filter_self _ _ (by simp)
-    rw [List.mem_filter] at hmem
-    unfold deductionCounted at hmem
-    rw [hc] at hmem
-    exact Bool.noConfusion hmem.2
+    rw [List.filter_eq_nil]
+    intro a ham
+    have had : a = d := List.mem_singleton.mp ham
+    subst had
+    unfold deductionCounted
+    rw [hc]
+    simp
   rw [h]
 
 /-- 中文证明（**扣除总额非负**）：负数额的项被判定式拦住，

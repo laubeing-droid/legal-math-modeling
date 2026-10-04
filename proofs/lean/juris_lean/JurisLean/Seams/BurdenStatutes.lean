@@ -582,9 +582,9 @@ def art108StandardOf : ExceptionalMatter → ProofStandardName
     本案属欺诈——它读的是这一位。夹具映射：第一项是欺诈，其余普通。
     `[代拟稿]`：真实案件里这一位由审理认定，本件只给通道与读数。 -/
 def factMatterClass : FactIndex → Option ExceptionalMatter
-  | .first => some ExceptionalMatter.fraud
-  | .second => none
-  | .third => none
+  | FactIndex.first => some ExceptionalMatter.fraud
+  | FactIndex.second => none
+  | FactIndex.third => none
 
 /-- 中文说明（**通道的读数**）：类别位给出该事实应达到的具名标准——
     五类挂 109 档，普通事实挂 108 条第 1 款档。 -/
@@ -622,7 +622,7 @@ theorem stricter_tier_requires_a_classified_fact (i : FactIndex)
   unfold standardFor at h
   cases hc : factMatterClass i with
   | none => rw [hc] at h; exact absurd h (by decide)
-  | some m => exact ⟨m, hc⟩
+  | some m => exact Exists.intro m hc
 
 /-- 中文证明（第 109 条的五类**全部**走"排除合理怀疑"档）：逐点判定，无一例外。 -/
 theorem art109_all_five_use_the_stricter_tier :

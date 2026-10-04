@@ -5,16 +5,16 @@
 Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.
 
 - files scanned: 304
-- theorem/lemma headers read: 3729
-- distinct statement types: 3688
-- statement types declared more than once: 41
+- theorem/lemma headers read: 3732
+- distinct statement types: 3690
+- statement types declared more than once: 42
 - of those spanning module families: 1
 
 ## Across module families (1)
 
 - `(r : ℚ) : max r 0 - max (-r) 0 = r` — `FullMath/GenericKernels.lean:94` (FullMath/clipped_conservation), `BusinessRelationsDelta.lean:21` (root/other/split_residual_identity)
 
-## Within the package (41)
+## Within the package (42)
 
 - `(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S` — `DungFixedPoint.lean:96` (root/other/grounded_is_least_complete), `DungFixedPoint.lean:92` (root/other/grounded_is_least_fixed_point)
 - `(S : Finset α) : TH sys S ⊆ sys.univ` — `HornDefinitions.lean:55` (root/other/TH_subset_univ), `HornFixedPoint.lean:17` (root/other/horn_operator_subset_univ)
@@ -37,6 +37,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `: checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with caseId := "OTHER-CASE" } }) (writeCalcul` — `BusinessRoot/SevenAxisCases.lean:26` (root/other/reject_doc_caseId), `BusinessRoot/SevenAxis.lean:380` (root/other/wrong_case_rejected)
 - `: checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with debtor := "丙公司" } }) (writeCalculation e` — `BusinessRoot/SevenAxisCases.lean:53` (root/other/reject_doc_debtor), `BusinessRoot/SevenAxis.lean:351` (root/other/wrong_debtor_rejected)
 - `: collapsesToKernel instanceM.evalDom` — `Seams/StatuteChain.lean:339` (root/other/chain_collapse_from_the_109_tier), `Seams/UnifiedInstance.lean:626` (root/other/instanceM_collapse)
+- `: instanceM.caseBurden.2 = BurdenStatutes.ProductionStatus.produced ∧ chain_art90_gate_has_input` — `Seams/StatuteChain.lean:808` (root/other/case_data_does_not_imply_gate_input), `Seams/StatuteChain.lean:801` (root/other/chain_art90_two_readings_coherent)
 - `[∀ i, Finite (A i)] (σ : ∀ i, PMF (A i)) {j q : ι} (hq : q ≠ j) (E : A j → Prop) (hE : pmfMass (μ := σ j) E ≠ 0) : pushforward (pmfCond (μ := pmfPi (A := A) σ) ` — `External/GameTheory/Math/PMFProduct.lean:1193` (External/pmfPi_cond_coord_other_marginal), `External/GameTheory/Math/PMFProduct.lean:708` (External/pmfPi_cond_coord_push_other)
 - `{S T : Finset α} (hST : S ⊆ T) : TH sys S ⊆ TH sys T` — `HornDefinitions.lean:41` (root/other/TH_monotone), `HornFixedPoint.lean:21` (root/other/horn_operator_monotone)
 - `{a b c : TrustVector} (hab : TrustLE a b) (hbc : TrustLE b c) : TrustLE a c` — `Seams/BoundaryBridge5.lean:154` (root/other/bb5_trustLE_trans), `Seams/BoundaryClosure.lean:611` (root/other/trustLE_trans)
@@ -55,5 +56,4 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `{α : Type*} {as bs : List α} {a b : α} (h : as ++ [a] = bs ++ [b]) : as = bs ∧ a = b` — `External/GameTheory/Math/ParameterizedChain.lean:55` (External/append_singleton_inj), `External/GameTheory/Math/TraceRun.lean:139` (External/append_singleton_inj)
 - `{α : Type} {P : α → Type} {a b : α} (h : a = b) (x : P a) : HEq x (h ▸ x : P b)` — `External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean:183` (External/fwd_subst_heq), `External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean:52` (External/fwd_subst_heq)
 - `{α β γ δ : Type*} (obsA : α → δ) (obsB : β → δ) (obsC : γ → δ) (f : α → β) (g : β → γ) (hf : Preserves obsA obsB f) (hg : Preserves obsB obsC g) : Preserves obs` — `ULM16TheoryComposition.lean:82` (root/other/COMP_C02_observation_preservation), `ULM01NormalForm.lean:138` (root/other/preserves_comp)
-- `{α β₁ β₂ : Type} (hβ : β₁ = β₂) (p : PMF α) (f₁ : α → PMF β₁) (f₂ : α → PMF β₂) (hf : ∀ a, HEq (f₁ a) (f₂ a)) : HEq (p.bind f₁) (p.bind f₂)` — `External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean:197` (External/pmf_bind_heq), `External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean:58` (External/pmf_bind_heq)
-- …1 more in the JSON
+- …2 more in the JSON

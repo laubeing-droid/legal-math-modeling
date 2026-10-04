@@ -15,8 +15,8 @@
     ]
   },
   "cross_family_statement_types": 1,
-  "distinct_statement_types": 3688,
-  "duplicated_statement_types": 41,
+  "distinct_statement_types": 3690,
+  "duplicated_statement_types": 42,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
@@ -270,6 +270,18 @@
         "path": "Seams/UnifiedInstance.lean"
       }
     ],
+    ": instanceM.caseBurden.2 = BurdenStatutes.ProductionStatus.produced ∧ chain_art90_gate_has_input": [
+      {
+        "carrier": "root/other/case_data_does_not_imply_gate_input",
+        "line": 808,
+        "path": "Seams/StatuteChain.lean"
+      },
+      {
+        "carrier": "root/other/chain_art90_two_readings_coherent",
+        "line": 801,
+        "path": "Seams/StatuteChain.lean"
+      }
+    ],
     "[∀ i, Finite (A i)] (σ : ∀ i, PMF (A i)) {j q : ι} (hq : q ≠ j) (E : A j → Prop) (hE : pmfMass (μ := σ j) E ≠ 0) : pushforward (pmfCond (μ := pmfPi (A := A) σ) (fun s => E (s j)) (by simpa [pmfMass_pmfPi_coord (A := A) (σ := σ) (j := j) (E := E)] using hE)) (fun s => s q) = σ q": [
       {
         "carrier": "External/pmfPi_cond_coord_other_marginal",
@@ -514,9 +526,9 @@
   "files_scanned": 304,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
   "headers_missed_by_scanner": 105,
-  "inventory_package_theorems": 3720,
+  "inventory_package_theorems": 3723,
   "private_protected_headers_read": 114,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 3729
+  "statements_read": 3732
 }

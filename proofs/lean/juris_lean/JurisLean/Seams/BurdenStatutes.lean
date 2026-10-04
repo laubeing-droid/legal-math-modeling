@@ -525,7 +525,8 @@ theorem named_tier_exhausts_non_escape :
 theorem statutory_escape_is_not_a_named_tier (c : String) :
     ProofStandardName.statutoryEscape c ≠ ProofStandardName.highProbability108 ∧
       ProofStandardName.statutoryEscape c ≠ ProofStandardName.excludesReasonableDoubt109 :=
-  ⟨by decide, by decide⟩
+  ⟨fun h => ProofStandardName.noConfusion h,
+    fun h => ProofStandardName.noConfusion h⟩
 
 /-- 中文说明：第 109 条与第 108 条第 1 款的**分档**表：事实类别 → 应达到的具名标准。
     第 109 条那五类一律挂"排除合理怀疑"档（`excludesReasonableDoubt109`）。 -/
@@ -653,7 +654,7 @@ theorem escape_tier_has_no_gate (c : String) {V : Type} (E : EvalDomain V) (S : 
 theorem escape_tier_cannot_name_a_nonblank_domain (c : String) {V : Type} (E : EvalDomain V)
     (hnb : hasNonblankAdmissibleEvaluation E) :
     ¬ StandardNamedAt (ProofStandardName.statutoryEscape c) E := by
-  obtain ⟨S, hS⟩ := hnb
+  obtain ⟨⟨S, hS⟩, _⟩ := hnb
   intro hσ
   exact escape_tier_has_no_gate c E S (hσ S hS)
 

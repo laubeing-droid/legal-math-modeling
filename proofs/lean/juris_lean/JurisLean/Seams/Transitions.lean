@@ -586,10 +586,11 @@ theorem only_no_adjustment_attacks_reduction_claim {b : Arg}
   obtain ⟨x, y, _hx, _hy, hcf, heq⟩ :=
     attacks_only_between_derived claimCase encode conflict
       (b, encode ClauseAtom.reductionClaim) he
+  rw [Prod.mk.injEq] at heq
   have hny : y = ClauseAtom.reductionClaim := by
     cases y with
     | reductionClaim => rfl
-    | noAdjustment => exact absurd heq.2.symm encode_ne
+    | noAdjustment => exact absurd heq.2 encode_ne
   subst hny
   cases x with
   | noAdjustment => exact heq.1
@@ -621,8 +622,9 @@ theorem art64_layers_keep_the_sides_apart : ∀ j : Nat,
         | inr h =>
             refine absurd h.2 ?_
             refine (Finset.eq_empty_iff_forall_notMem (s :=
-                (DungAAF.attackers conflictAAF (encode ClauseAtom.reductionClaim))
-                  .filter (fun c => c ∈ (rounds art64Policy k).1))).mpr ?_
+                Finset.filter (fun c => c ∈ (rounds art64Policy k).1)
+                  (DungAAF.attackers conflictAAF
+                    (encode ClauseAtom.reductionClaim)))).mpr ?_
             intro c hc
             obtain ⟨hca, hcm⟩ := Finset.mem_filter.mp hc
             have hc' : c = encode ClauseAtom.noAdjustment :=

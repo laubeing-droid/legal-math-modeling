@@ -576,12 +576,75 @@ theorem art64_rejection_is_extra_content :
   rw [h2] at hk
   exact notMemEmptyFinset _ hk
 
-/-- 中文说明（本格**仍未做**的两件事，写在这里不计入闭合）：
-    ①`¬ FinalDefeated art64Policy (encode ClauseAtom.reductionClaim)`（打回的是抗辩、
-      不是请求）需要对**所有层**的不变式，本件只证到第 1 层的正结果，没有把它证出来；
-    ②该款在真实案件里的适用（"是否仅以约定为由"）是事实认定，本件的 `conclusive`
-      栏是夹具标签，不认定任何真实案件。 -/
-def art64_one_sidedness_for_the_request_is_still_open : Prop :=
-  ¬ FinalDefeated art64Policy (encode ClauseAtom.reductionClaim)
+/-- 中文证明（技术引理）：本夹具里"酌减请求"的**任何**攻击者都只能是被驳回的那一侧。
+    反向靠仓内已证的 `attacks_only_between_derived`（本件 `:130`）给出边的两个原像与例外关系，
+    再按 `ClauseAtom` 的两支枚举——不猜形状，逐支用 `encode_ne` 或 `decide` 关掉。 -/
+theorem only_no_adjustment_attacks_reduction_claim {b : Arg}
+    (hb : b ∈ DungAAF.attackers conflictAAF (encode ClauseAtom.reductionClaim)) :
+    b = encode ClauseAtom.noAdjustment := by
+  have he : (b, encode ClauseAtom.reductionClaim) ∈ conflictAAF.attacks := mem_attackers hb
+  obtain ⟨x, y, _hx, _hy, hcf, heq⟩ :=
+    attacks_only_between_derived claimCase encode conflict
+      (b, encode ClauseAtom.reductionClaim) he
+  have hny : y = ClauseAtom.reductionClaim := by
+    cases y with
+    | reductionClaim => rfl
+    | noAdjustment => exact absurd heq.2.symm encode_ne
+  subst hny
+  cases x with
+  | noAdjustment => exact heq.1
+  | reductionClaim => exact absurd hcf (by decide)
+
+/-- 中文证明（**全层不变式**）：任一层上，酌减请求都不在驳倒集里、不予调整主张都不在采纳集里。
+    两条成员刻画都用 `AdjudicationBridge` 已证的 `mem_rounds_succ_fst_iff`（`:214`）与
+    `mem_rounds_succ_snd_iff`（`:222`），第 0 层用 `art64_baseSet_eq_singleton`；
+    归纳步的关键是采纳一侧要求"全部攻击者已被驳回"，而唯一能驳回请求的边来自抗辩本身。 -/
+theorem art64_layers_keep_the_sides_apart : ∀ j : Nat,
+    encode ClauseAtom.reductionClaim ∉ (rounds art64Policy j).2 ∧
+      encode ClauseAtom.noAdjustment ∉ (rounds art64Policy j).1 := by
+  intro j
+  induction j with
+  | zero =>
+      refine ⟨?_, ?_⟩
+      · intro h
+        rw [rounds_zero_snd] at h
+        exact notMemEmptyFinset _ h
+      · rw [rounds_zero_fst, art64_baseSet_eq_singleton]
+        intro h
+        exact encode_ne (Finset.mem_singleton.mp h).symm
+  | succ k ih =>
+      have hnd : encode ClauseAtom.reductionClaim ∉ (rounds art64Policy (k + 1)).2 := by
+        rw [mem_rounds_succ_snd_iff]
+        intro h
+        cases h with
+        | inl h => exact ih.1 h
+        | inr h =>
+            refine absurd h.2 ?_
+            refine (Finset.eq_empty_iff_forall_notMem (s :=
+                (DungAAF.attackers conflictAAF (encode ClauseAtom.reductionClaim))
+                  .filter (fun c => c ∈ (rounds art64Policy k).1))).mpr ?_
+            intro c hc
+            obtain ⟨hca, hcm⟩ := Finset.mem_filter.mp hc
+            have hc' : c = encode ClauseAtom.noAdjustment :=
+              only_no_adjustment_attacks_reduction_claim hca
+            subst hc'
+            exact ih.2 hcm
+      refine ⟨hnd, ?_⟩
+      rw [mem_rounds_succ_fst_iff]
+      intro h
+      cases h with
+      | inl h => exact ih.2 h
+      | inr h =>
+          exact hnd (h.2.2.2.1 (mem_attackers_of_mem reduction_in_args
+            attack_reduction_to_no_adjustment))
+
+/-- 中文说明（**本格的最后一半，已从挂账升成定理**）：酌减请求永远不会被驳倒——
+    "不予支持"打的是抗辩，不是请求。原先此处是一条 `def … : Prop` 挂账
+    （`art64_one_sidedness_for_the_request_is_still_open`），现由全层不变式
+    `art64_layers_keep_the_sides_apart` 证成并删除该挂账项。 -/
+theorem art64_request_is_never_defeated :
+    ¬ FinalDefeated art64Policy (encode ClauseAtom.reductionClaim) := by
+  rintro ⟨j, hj⟩
+  exact (art64_layers_keep_the_sides_apart j).1 hj
 
 end ArtSixtyFourClauseThree

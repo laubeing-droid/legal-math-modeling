@@ -636,7 +636,7 @@ structure LossBasis where
 
 /-- 中文说明：某一构成位**计入**损失基础的判定——数额非负且通过它自己的可预见检验。 -/
 def componentCounted (c : LossComponent) : Bool :=
-  0 ≤ c.amount && c.foreseen
+  decide (0 ≤ c.amount) && c.foreseen
 
 /-- 中文说明：损失基础的**计入总额**＝逐位判定后求和。未预见的部分自动落在外——
     这就是"哪一部分损失因何被计入"的可算回答。 -/
@@ -652,8 +652,8 @@ theorem unforeseen_component_drops_out (b : LossBasis)
     basisTotal b = (if componentCounted b.direct then b.direct.amount else 0) +
       (if componentCounted b.extraToThirdParty then b.extraToThirdParty.amount else 0) := by
   unfold basisTotal componentCounted
-  rw [hf, and_false]
-  simp only [if_false]
+  rw [hf]
+  simp only [Bool.and_false, Bool.false_eq_true, if_false]
   ring
 
 /-- 中文证明（**计入总额不超过逐位绝对值之和**）：判定只做取舍不做增值。 -/
@@ -692,8 +692,10 @@ theorem unclaimed_item_does_not_deduct (items : List DeductionItem) (d : Deducti
   unfold deductionTotal
   simp only [List.filter_append, List.map_append, List.sum_append]
   have h : (List.filter deductionCounted [d]) = [] := by
-    simp only [List.filter_cons, deductionCounted, hc, and_false, List.filter_nil]
-    rfl
+    simp only [List.filter_cons, List.filter_nil]
+    unfold deductionCounted
+    rw [hc]
+    simp
   rw [h]
   simp
 
@@ -702,13 +704,14 @@ theorem unclaimed_item_does_not_deduct (items : List DeductionItem) (d : Deducti
 theorem deductionTotal_nonneg (items : List DeductionItem) :
     0 ≤ deductionTotal items := by
   unfold deductionTotal
-  have : ∀ x ∈ (List.filter deductionCounted items).map (·.amount), 0 ≤ x := by
+  have hkey : ∀ x ∈ (List.filter deductionCounted items).map (·.amount), 0 ≤ x := by
     intro x hx
     obtain ⟨d, hd, rfl⟩ := List.mem_map.mp hx
-    have := (List.mem_filter.mp hd).2
-    unfold deductionCounted at this
-    exact this.2
-  exact List.sum_nonneg this
+    have hc := (List.mem_filter.mp hd).2
+    unfold deductionCounted at hc
+    have := of_decide_eq_true hc
+    exact this.1
+  exact List.sum_nonneg hkey
 
 /-- 中文说明（**赔偿额的完整读数**，第 63 条两款合读）：计入总额减去扣除总额。
     这就是"损失基础算不出来"的机器化回答：现在它是一条可算的复合读数，

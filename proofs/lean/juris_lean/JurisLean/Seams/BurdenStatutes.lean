@@ -564,13 +564,25 @@ theorem statutory_escape_is_not_a_named_tier (c : String) :
   ⟨fun h => ProofStandardName.noConfusion h,
     fun h => ProofStandardName.noConfusion h⟩
 
+/-- 中文说明：第 109 条与第 108 条第 1 款的**分档**表：事实类别 → 应达到的具名标准。
+    第 109 条那五类一律挂"排除合理怀疑"档（`excludesReasonableDoubt109`）。 -/
+def art109StandardOf : ExceptionalMatter → ProofStandardName
+  | .fraud | .duress | .maliciousCollusion | .oralWill | .gift =>
+      ProofStandardName.excludesReasonableDoubt109
+
+/-- 中文说明：普通民事待证事实挂第 108 条第 1 款档（第 109 条五类之外的默认档）。
+    [代拟稿]：默认档的读法是本件宣告——条文只对第 109 条那五类明写更高档，
+    对"其余事实一律用第 108 条第 1 款"没有逐字规定（第 108 条第 3 款还留了出口）。 -/
+def art108StandardOf : ExceptionalMatter → ProofStandardName
+  | _ => ProofStandardName.highProbability108
+
 /-- 中文说明（**案件事实类别位**，17_ 卷缺口 4 的桥）：待证事实在本案被归入
     第 109 条五类的哪一类（`some`），还是普通事实（`none`）。
     这是"证明标准 ↔ 事实认定"之间此前缺失的那条数据通道：模型不会自己"发现"
     本案属欺诈——它读的是这一位。夹具映射：第一项是欺诈，其余普通。
     `[代拟稿]`：真实案件里这一位由审理认定，本件只给通道与读数。 -/
 def factMatterClass : FactIndex → Option ExceptionalMatter
-  | .first => some .fraud
+  | .first => some ExceptionalMatter.fraud
   | .second => none
   | .third => none
 
@@ -611,18 +623,6 @@ theorem stricter_tier_requires_a_classified_fact (i : FactIndex)
   cases hc : factMatterClass i with
   | none => rw [hc] at h; exact absurd h (by decide)
   | some m => exact ⟨m, hc⟩
-
-/-- 中文说明：第 109 条与第 108 条第 1 款的**分档**表：事实类别 → 应达到的具名标准。
-    第 109 条那五类一律挂"排除合理怀疑"档（`excludesReasonableDoubt109`）。 -/
-def art109StandardOf : ExceptionalMatter → ProofStandardName
-  | .fraud | .duress | .maliciousCollusion | .oralWill | .gift =>
-      ProofStandardName.excludesReasonableDoubt109
-
-/-- 中文说明：普通民事待证事实挂第 108 条第 1 款档（第 109 条五类之外的默认档）。
-    [代拟稿]：默认档的读法是本件宣告——条文只对第 109 条那五类明写更高档，
-    对"其余事实一律用第 108 条第 1 款"没有逐字规定（第 108 条第 3 款还留了出口）。 -/
-def art108StandardOf : ExceptionalMatter → ProofStandardName
-  | _ => ProofStandardName.highProbability108
 
 /-- 中文证明（第 109 条的五类**全部**走"排除合理怀疑"档）：逐点判定，无一例外。 -/
 theorem art109_all_five_use_the_stricter_tier :

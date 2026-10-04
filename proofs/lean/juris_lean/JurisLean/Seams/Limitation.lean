@@ -1,4 +1,4 @@
-import Mathlib.Data.Int.Order
+import Mathlib.Tactic
 import JurisLean.Seams.Temporal
 
 /-! # 诉讼时效与审级位（17_ 卷缺口 6：民法典 192/193 条的程序面 + 第 66 条后两段）

@@ -54,7 +54,8 @@ theorem caseFacts_subset_caseUniv {α : Type} [DecidableEq α] (cf : CaseFile α
   intro a ha
   rw [caseFacts, caseUniv]
   refine Finset.mem_union_left _ (Finset.mem_union_left _ ?_)
-  rw [List.mem_toFinset, List.mem_toFinset at ha]
+  rw [List.mem_toFinset]
+  rw [List.mem_toFinset] at ha
   rcases List.mem_map.mp ha with ⟨p, hp, rfl⟩
   exact List.mem_map_of_mem hp.1
 
@@ -62,10 +63,10 @@ theorem caseFacts_subset_caseUniv {α : Type} [DecidableEq α] (cf : CaseFile α
 theorem caseHeads_subset_caseUniv {α : Type} [DecidableEq α] (cf : CaseFile α) :
     ∀ r ∈ (cf.rules.toFinset : Finset (HornRule α)), r.conclusion ∈ caseUniv cf := by
   intro r hr
-  simp only [caseUniv, List.mem_toFinset, Finset.mem_map, List.mem_union]
-  exact Or.inr ⟨Or.inl ⟨r, by
-    simp only [List.mem_toFinset] at hr
-    exact hr, rfl⟩⟩
+  rw [caseUniv]
+  refine Finset.mem_union_left _ (Finset.mem_union_left _ ?_)
+  rw [List.mem_toFinset]
+  exact List.mem_map_of_mem hr
 
 /-- **主构造**：把一份案卷折成一台 `HornSystem`。 -/
 noncomputable def hornOfCase {α : Type} [DecidableEq α] (cf : CaseFile α) : HornSystem α where

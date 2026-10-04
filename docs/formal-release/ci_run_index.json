@@ -10968,7 +10968,7 @@
         "docs/master-plan/16_第九轮终态核对表_20261002.md:511",
         "docs/master-plan/16_第九轮终态核对表_20261002.md:59",
         "docs/master-plan/17_技术顾问方案_20261004.md:71",
-        "docs/master-plan/17_技术顾问方案_20261004.md:95"
+        "docs/master-plan/17_技术顾问方案_20261004.md:96"
       ],
       "run_id": 37168433454,
       "started": true,
@@ -11093,7 +11093,7 @@
       "name": "chore(ledger): rebind to the noConfusion fix",
       "quoted_by": [
         "docs/master-plan/17_技术顾问方案_20261004.md:85",
-        "docs/master-plan/17_技术顾问方案_20261004.md:95"
+        "docs/master-plan/17_技术顾问方案_20261004.md:96"
       ],
       "run_id": 37177506820,
       "started": true,
@@ -11218,7 +11218,7 @@
       "name": "chore(ledger): rebind to the ordering fix",
       "quoted_by": [
         "docs/master-plan/17_技术顾问方案_20261004.md:92",
-        "docs/master-plan/17_技术顾问方案_20261004.md:95"
+        "docs/master-plan/17_技术顾问方案_20261004.md:96"
       ],
       "run_id": 37179788693,
       "started": true,
@@ -11529,7 +11529,7 @@
       "name": "fix(anchors): follow the clamp anchor to 697",
       "quoted_by": [
         "docs/master-plan/17_技术顾问方案_20261004.md:93",
-        "docs/master-plan/17_技术顾问方案_20261004.md:95"
+        "docs/master-plan/17_技术顾问方案_20261004.md:96"
       ],
       "run_id": 37184896627,
       "started": true,
@@ -11653,12 +11653,137 @@
       "jobs_total": 8,
       "name": "chore(ledger): rebind to the ordering fix",
       "quoted_by": [
-        "docs/master-plan/17_技术顾问方案_20261004.md:94"
+        "docs/master-plan/17_技术顾问方案_20261004.md:94",
+        "docs/master-plan/17_技术顾问方案_20261004.md:96"
       ],
       "run_id": 37187806501,
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-04T08:15:25Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 5,
+      "conclusion": "failure",
+      "created_at": "2026-10-04T10:50:02Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "4fc499f219c54a12308233a4417d889e872f4f65",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37196647141",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(ledger): rebind accounts to the source-bearing HEAD and correct…",
+      "quoted_by": [
+        "docs/master-plan/17_技术顾问方案_20261004.md:95"
+      ],
+      "run_id": 37196647141,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-04T11:00:28Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-04T11:07:10Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/37197637371/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "3a5f58c119bf788f497dc330ce91cf306c2b0202",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37197637371",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/master-plan/17_技术顾问方案_20261004.md:95"
+      ],
+      "run_id": 37197637371,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-04T11:17:32Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

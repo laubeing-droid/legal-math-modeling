@@ -2275,11 +2275,13 @@
     "JurisLean.Seams.Transitions.args_are_named_closure",
     "JurisLean.Seams.Transitions.art64_baseSet_eq_singleton",
     "JurisLean.Seams.Transitions.art64_conclusive_is_the_reduction_claim",
+    "JurisLean.Seams.Transitions.art64_layers_keep_the_sides_apart",
     "JurisLean.Seams.Transitions.art64_no_adjustment_defeated",
     "JurisLean.Seams.Transitions.art64_no_adjustment_rejected_at_round1",
     "JurisLean.Seams.Transitions.art64_outcome_is_one_sided",
     "JurisLean.Seams.Transitions.art64_reduction_claim_adopted",
     "JurisLean.Seams.Transitions.art64_rejection_is_extra_content",
+    "JurisLean.Seams.Transitions.art64_request_is_never_defeated",
     "JurisLean.Seams.Transitions.attack_no_adjustment_to_reduction",
     "JurisLean.Seams.Transitions.attack_reduction_to_no_adjustment",
     "JurisLean.Seams.Transitions.attackers_eq_empty_of_attacks_empty",
@@ -2301,6 +2303,7 @@
     "JurisLean.Seams.Transitions.no_adjustment_derived",
     "JurisLean.Seams.Transitions.no_adjustment_in_args",
     "JurisLean.Seams.Transitions.not_admissible_not_in_closure",
+    "JurisLean.Seams.Transitions.only_no_adjustment_attacks_reduction_claim",
     "JurisLean.Seams.Transitions.policyClosed_obligation_for",
     "JurisLean.Seams.Transitions.rcRule_mem_rules",
     "JurisLean.Seams.Transitions.reduction_claim_derived_obligation",
@@ -2900,8 +2903,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "aea8e53f7e798c8729d7fd0c3edfefe70016956b7999360e3d634287513b9652",
-   "size_bytes": 163400,
+   "sha256": "89657ee0183b2cd63b9a2f0878d21cb0d41097b356611ac4d0fc2aabef4955fc",
+   "size_bytes": 163635,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -28252,8 +28255,16 @@
      "name": "art64_rejection_is_extra_content"
     },
     {
-     "kind": "def",
-     "name": "art64_one_sidedness_for_the_request_is_still_open"
+     "kind": "theorem",
+     "name": "only_no_adjustment_attacks_reduction_claim"
+    },
+    {
+     "kind": "theorem",
+     "name": "art64_layers_keep_the_sides_apart"
+    },
+    {
+     "kind": "theorem",
+     "name": "art64_request_is_never_defeated"
     }
    ],
    "imports": [
@@ -28267,10 +28278,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Transitions.lean",
    "print_axioms_targets": [],
-   "sha256": "d6e6b9babc6a39cd7e58c586537c9e148041b04dbe8a0bb7edea507579b3b2fc",
-   "size_bytes": 35229,
-   "theorem_count": 38,
-   "theorem_count_bol_convention": 38
+   "sha256": "f5034a110b1876749855a7bb065095094e5b6d38ee4713050ba49422e1f1b2d7",
+   "size_bytes": 38171,
+   "theorem_count": 41,
+   "theorem_count_bol_convention": 41
   },
   {
    "declarations": [
@@ -32794,22 +32805,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3719,
+   "counted_declaration_count": 3722,
    "file_count": 319,
    "lemma_count": 141,
-   "print_axioms_command_count": 2601,
-   "print_axioms_distinct_targets": 2547,
-   "theorem_count": 3578,
-   "theorem_count_bol_convention": 3482
+   "print_axioms_command_count": 2604,
+   "print_axioms_distinct_targets": 2550,
+   "theorem_count": 3581,
+   "theorem_count_bol_convention": 3485
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3700,
+   "counted_declaration_count": 3703,
    "file_count": 304,
    "lemma_count": 134,
-   "print_axioms_command_count": 2601,
-   "print_axioms_distinct_targets": 2547,
-   "theorem_count": 3566,
-   "theorem_count_bol_convention": 3470
+   "print_axioms_command_count": 2604,
+   "print_axioms_distinct_targets": 2550,
+   "theorem_count": 3569,
+   "theorem_count_bol_convention": 3473
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33489,12 +33500,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "14f9df88a3e35ba3d07fd5f2ac3224744c4593098d04d3eefb4104d74bac08cd",
+ "source_inventory_digest": "dbe62b2c82740ad10b1b94a1e7a6c007f1dba0091dfb4d0910bdad9fb189ffe4",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "3d7460dee08bd4c082dc9ad69e2d55568b3aafad",
-  "tree": "9709b291f1df8f017b7ebccf42328129d877a020"
+  "commit": "ce522db562c7fc8be5ba8881457e90cc9c1a2d6a",
+  "tree": "0cd2b98605d3e36ecd98d5759d257fd1a269e13e"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

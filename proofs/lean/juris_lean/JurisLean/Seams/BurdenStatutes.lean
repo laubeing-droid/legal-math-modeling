@@ -576,52 +576,6 @@ def art109StandardOf : ExceptionalMatter → ProofStandardName
 def art108StandardOf : ExceptionalMatter → ProofStandardName
   | _ => ProofStandardName.highProbability108
 
-/-- 中文说明（**案件事实类别位**，17_ 卷缺口 4 的桥）：待证事实在本案被归入
-    第 109 条五类的哪一类（`some`），还是普通事实（`none`）。
-    这是"证明标准 ↔ 事实认定"之间此前缺失的那条数据通道：模型不会自己"发现"
-    本案属欺诈——它读的是这一位。夹具映射：第一项是欺诈，其余普通。
-    `[代拟稿]`：真实案件里这一位由审理认定，本件只给通道与读数。 -/
-def factMatterClass (i : FactIndex) : Option ExceptionalMatter :=
-  FactIndex.casesOn i (some ExceptionalMatter.fraud) none none
-
-/-- 中文说明（**通道的读数**）：类别位给出该事实应达到的具名标准——
-    五类挂 109 档，普通事实挂 108 条第 1 款档。 -/
-def standardFor : FactIndex → ProofStandardName :=
-  fun i => match factMatterClass i with
-    | some m => art109StandardOf m
-    | none => ProofStandardName.highProbability108
-
-/-- 中文证明（**五类事实必须走严档**）：类别位非空 ⇒ 读数恰为"排除合理怀疑"。 -/
-theorem exceptional_fact_requires_the_stricter_tier (i : FactIndex) (m : ExceptionalMatter)
-    (h : factMatterClass i = some m) :
-    standardFor i = ProofStandardName.excludesReasonableDoubt109 := by
-  unfold standardFor
-  rw [h]
-  cases m <;> rfl
-
-/-- 中文证明（**普通事实走常档**）：类别位为空 ⇒ 读数是 108 条第 1 款档。 -/
-theorem ordinary_fact_gets_the_ordinary_tier (i : FactIndex)
-    (h : factMatterClass i = none) :
-    standardFor i = ProofStandardName.highProbability108 := by
-  unfold standardFor
-  rw [h]
-
-/-- 中文证明（**通道与 109 分档表一致**）：读数就是 `art109StandardOf` 在该类别上的值。 -/
-theorem the_bridge_respects_the_109_table (i : FactIndex) (m : ExceptionalMatter)
-    (h : factMatterClass i = some m) : standardFor i = art109StandardOf m := by
-  unfold standardFor
-  rw [h]
-
-/-- 中文证明（**读严档必有类别**）：读数是严档 ⇒ 类别位非空——
-    模型不能凭空给某事实上严档，必须指回一项五类认定。 -/
-theorem stricter_tier_requires_a_classified_fact (i : FactIndex)
-    (h : standardFor i = ProofStandardName.excludesReasonableDoubt109) :
-    ∃ m : ExceptionalMatter, factMatterClass i = some m := by
-  unfold standardFor at h
-  cases hfm : factMatterClass i with
-  | none => rw [hfm] at h; exact absurd h (by simp [standardFor])
-  | some m => exact ⟨m, rfl⟩
-
 /-- 中文证明（第 109 条的五类**全部**走"排除合理怀疑"档）：逐点判定，无一例外。 -/
 theorem art109_all_five_use_the_stricter_tier :
     art109StandardOf ExceptionalMatter.fraud = ProofStandardName.excludesReasonableDoubt109 ∧
@@ -1151,6 +1105,56 @@ def doubtOn : CredProfile → FactIndex → Bool
 
 /-- 中文说明（残余合理怀疑）：被主张而未排除相反可能的那一项。 -/
 def residualDoubtOn (ρ : CredProfile) (i : FactIndex) : Bool := claimOn ρ i && doubtOn ρ i
+
+/-- 中文说明（**案件事实类别位**，17_ 卷缺口 4 的桥）：待证事实在本案被归入
+    第 109 条五类的哪一类（`some`），还是普通事实（`none`）。
+    这是"证明标准 ↔ 事实认定"之间此前缺失的那条数据通道：模型不会自己"发现"
+    本案属欺诈——它读的是这一位。夹具映射：第一项是欺诈，其余普通。
+    `[代拟稿]`：真实案件里这一位由审理认定，本件只给通道与读数。 -/
+def factMatterClass (i : FactIndex) : Option ExceptionalMatter :=
+  match i with
+  | .first => some ExceptionalMatter.fraud
+  | .second => none
+  | .third => none
+
+/-- 中文说明（**通道的读数**）：类别位给出该事实应达到的具名标准——
+    五类挂 109 档，普通事实挂 108 条第 1 款档。 -/
+def standardFor : FactIndex → ProofStandardName :=
+  fun i => match factMatterClass i with
+    | some m => art109StandardOf m
+    | none => ProofStandardName.highProbability108
+
+/-- 中文证明（**五类事实必须走严档**）：类别位非空 ⇒ 读数恰为"排除合理怀疑"。 -/
+theorem exceptional_fact_requires_the_stricter_tier (i : FactIndex) (m : ExceptionalMatter)
+    (h : factMatterClass i = some m) :
+    standardFor i = ProofStandardName.excludesReasonableDoubt109 := by
+  unfold standardFor
+  rw [h]
+  cases m <;> rfl
+
+/-- 中文证明（**普通事实走常档**）：类别位为空 ⇒ 读数是 108 条第 1 款档。 -/
+theorem ordinary_fact_gets_the_ordinary_tier (i : FactIndex)
+    (h : factMatterClass i = none) :
+    standardFor i = ProofStandardName.highProbability108 := by
+  unfold standardFor
+  rw [h]
+
+/-- 中文证明（**通道与 109 分档表一致**）：读数就是 `art109StandardOf` 在该类别上的值。 -/
+theorem the_bridge_respects_the_109_table (i : FactIndex) (m : ExceptionalMatter)
+    (h : factMatterClass i = some m) : standardFor i = art109StandardOf m := by
+  unfold standardFor
+  rw [h]
+
+/-- 中文证明（**读严档必有类别**）：读数是严档 ⇒ 类别位非空——
+    模型不能凭空给某事实上严档，必须指回一项五类认定。 -/
+theorem stricter_tier_requires_a_classified_fact (i : FactIndex)
+    (h : standardFor i = ProofStandardName.excludesReasonableDoubt109) :
+    ∃ m : ExceptionalMatter, factMatterClass i = some m := by
+  unfold standardFor at h
+  cases hfm : factMatterClass i with
+  | none => rw [hfm] at h; exact absurd h (by simp [standardFor])
+  | some m => exact ⟨m, rfl⟩
+
 
 /-- 中文说明（第 108 条第 1 款档的可判定读法）：三项待证事实都没有残余怀疑。
     [建模选择]：本件把"确信存在具有高度可能性"读成**序关系**上的低一档

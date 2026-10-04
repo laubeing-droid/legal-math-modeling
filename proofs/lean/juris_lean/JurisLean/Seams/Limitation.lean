@@ -106,21 +106,18 @@ theorem interruption_restarts_the_clock (c : LimitationClock) (atDay d : Int)
   exact absurd hFresh (by unfold limitationPeriod at *; linarith)
 
 /-- 中文说明：中止（民法典 193 条第 2 款最后六个月内的不可抗力等）——
-    中止原因消除后继续计算，本件建模为**期间顺延**一个中止窗口。 -/
+    中止原因消除后继续计算，本件建模为**期间顺延**一个中止窗口（起算日后移窗口长度）。 -/
 def suspendWithin (c : LimitationClock) (fromDay toDay : Int) : LimitationClock where
-  startDay := c.startDay - (toDay - fromDay)
+  startDay := c.startDay + (toDay - fromDay)
 
 /-- 中文证明（**中止推迟届满**）：中止窗口使届满日**只会后移**——
     旧时钟未届满则新时钟也未届满（顺延的期间把门槛抬高）。 -/
 theorem suspension_only_delays (c : LimitationClock) (fromDay toDay d : Int)
     (hWindow : fromDay ≤ toDay) (hNew : expiredAt (suspendWithin c fromDay toDay) d) :
     expiredAt c d := by
-  unfold expiredAt suspendWithin at hNew ⊢
-  have : c.startDay - (toDay - fromDay) + limitationPeriod ≤ d := hNew
-  have hshift : c.startDay + limitationPeriod ≤
-      c.startDay - (toDay - fromDay) + limitationPeriod := by
-    have : -(toDay - fromDay) ≤ 0 := by linarith
-    linarith
+  have h1 : (suspendWithin c fromDay toDay).startDay + limitationPeriod ≤ d := hNew
+  unfold suspendWithin at h1
+  unfold expiredAt
   linarith
 
 /-- 中文证明（**期间为正**）：三年期是非负期间——届满判定因此非空洞。 -/

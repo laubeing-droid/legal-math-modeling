@@ -39,23 +39,24 @@ structure CaseFile (α : Type) [DecidableEq α] where
   citations : List String
 
 /-- 案卷的**论域**：事实位与全部规则头尾出现的原子，去重。 -/
-def caseUniv {α : Type} [DecidableEq α] (cf : CaseFile α) : Finset α :=
+noncomputable def caseUniv {α : Type} [DecidableEq α] (cf : CaseFile α) : Finset α :=
   (cf.facts.map Prod.fst).toFinset ∪
     (cf.rules.map (·.conclusion)).toFinset ∪
     (cf.rules.flatMap (fun r => r.premises.toList)).toFinset
 
 /-- 案卷的**初始事实**：只取成立为真的那些事实位。 -/
-def caseFacts {α : Type} [DecidableEq α] (cf : CaseFile α) : Finset α :=
+noncomputable def caseFacts {α : Type} [DecidableEq α] (cf : CaseFile α) : Finset α :=
   (cf.facts.filter (·.2)).map Prod.fst |>.toFinset
 
 /-- 中文证明（技术引理）：初始事实都在论域里——论域本来就含全部事实位的名字。 -/
 theorem caseFacts_subset_caseUniv {α : Type} [DecidableEq α] (cf : CaseFile α) :
     caseFacts cf ⊆ caseUniv cf := by
   intro a ha
-  simp only [caseFacts, List.mem_toFinset, Finset.mem_map, List.mem_filter] at ha
-  obtain ⟨p, hp, rfl⟩ := ha
-  simp only [caseUniv, List.mem_toFinset, Finset.mem_map, List.mem_union]
-  exact Or.inl ⟨p, hp.1, rfl⟩
+  rw [caseFacts, caseUniv]
+  refine Finset.mem_union_left _ (Finset.mem_union_left _ ?_)
+  rw [List.mem_toFinset, List.mem_toFinset at ha]
+  rcases List.mem_map.mp ha with ⟨p, hp, rfl⟩
+  exact List.mem_map_of_mem hp.1
 
 /-- 中文证明（技术引理）：每条规则的结论都在论域里——论域并了全部规则头。 -/
 theorem caseHeads_subset_caseUniv {α : Type} [DecidableEq α] (cf : CaseFile α) :
@@ -67,7 +68,7 @@ theorem caseHeads_subset_caseUniv {α : Type} [DecidableEq α] (cf : CaseFile α
     exact hr, rfl⟩⟩
 
 /-- **主构造**：把一份案卷折成一台 `HornSystem`。 -/
-def hornOfCase {α : Type} [DecidableEq α] (cf : CaseFile α) : HornSystem α where
+noncomputable def hornOfCase {α : Type} [DecidableEq α] (cf : CaseFile α) : HornSystem α where
   univ := caseUniv cf
   initialFacts := caseFacts cf
   rules := cf.rules.toFinset

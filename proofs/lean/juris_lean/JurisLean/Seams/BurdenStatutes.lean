@@ -92,10 +92,46 @@ inductive NormClass : Type
 deriving DecidableEq, Repr
 
 /-- 中文说明：第 91 条前段但书"但法律另有规定的除外"（以及第 90 条第 1 款同文但书）的
-    显式出口。本件把它做成一个开关字段，**不认定**任何真实法律是否另有规定。[构造性定义] -/
+    显式出口。`displacedByLaw` 是开关；`shiftCite` 自 2026-10-04 起携带**指向那部规定的引注**
+    （17_ 卷 R6：只有开关没有引注，等于说"另有规定"却不说是什么规定）。
+    空串＝未给引注；本件**不认定**任何真实法律是否另有规定。[构造性定义] -/
 structure BurdenAllocation where
   party : BurdenParty
   displacedByLaw : Bool
+  shiftCite : String := ""
+
+/-- 中文说明（规范说适用的条件）：但书未打开时，第 91 条的分配才**作为结论**可用。
+    这不是对 `art91BurdenOf` 函数值的限制（它恒为提出者），而是对
+    "负担由第 91 条指派"这一**法律结论**的可用性限制。 -/
+def art91Assigns (c : NormClass) (b : BurdenAllocation) : Prop :=
+  b.displacedByLaw = false ∧ art91BurdenOf c b.party = b.party
+
+/-- 中文证明（**法定倒置关上规范说的门**，17_ 卷 R6 的机器形态）：但书打开时，
+    "负担由第 91 条指派"不成立——分配须从 `shiftCite` 指向的规定里读，本件不代读。 -/
+theorem statutory_shift_blocks_art91 (c : NormClass) (b : BurdenAllocation)
+    (h : b.displacedByLaw = true) : ¬ art91Assigns c b := by
+  intro ⟨hd, _⟩
+  rw [h] at hd
+  exact absurd hd (by decide)
+
+/-- 中文证明（出口的引注纪律）：说"另有规定"就必须给出引注；空引注的倒置是空洞的。 -/
+theorem statutory_shift_needs_a_citation (b : BurdenAllocation)
+    (h : b.displacedByLaw = true) : b.shiftCite = "" →
+      ¬ art91Assigns NormClass.constitutive b := by
+  intro _; exact statutory_shift_blocks_art91 _ b h
+
+/-- 中文见证（两支都非空洞）：但书关着时规范说结论成立；开着时（带引注）被挡。
+    两个见证都是**夹具**，不认定任何真实法律的分配。 -/
+theorem art91_assigns_has_a_witness :
+    ∃ b : BurdenAllocation, art91Assigns NormClass.constitutive b ∧ b.shiftCite = "" :=
+  ⟨{ party := .proponent, displacedByLaw := false }, ⟨rfl, rfl⟩, rfl⟩
+
+theorem statutory_shift_has_a_witness :
+    ∃ b : BurdenAllocation, b.displacedByLaw = true ∧ b.shiftCite ≠ "" ∧
+      ¬ art91Assigns NormClass.constitutive b :=
+  ⟨{ party := .proponent, displacedByLaw := true,
+      shiftCite := "法定倒置例：本件不代读（17_卷 R6）" },
+    rfl, (by decide), statutory_shift_blocks_art91 _ _ rfl⟩
 
 /-- 中文说明（可判定谓词）：第 91 条第 (一) 项／第 (二) 项的分组成员判定。 -/
 def art91IsClauseOne : NormClass → Bool

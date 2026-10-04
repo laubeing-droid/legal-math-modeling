@@ -1010,6 +1010,7 @@ open HornSystem
 #print axioms JurisLean.Seams.BurdenStatutes.art109_tier_is_not_the_108_tier
 #print axioms JurisLean.Seams.BurdenStatutes.art90_adverse_when_burdened_party_has_gap
 #print axioms JurisLean.Seams.BurdenStatutes.art90_not_adverse_for_the_other_party
+#print axioms JurisLean.Seams.BurdenStatutes.art91_assigns_has_a_witness
 #print axioms JurisLean.Seams.BurdenStatutes.art91_burden_follows_assertion
 #print axioms JurisLean.Seams.BurdenStatutes.art91_clause_partition
 #print axioms JurisLean.Seams.BurdenStatutes.art91_two_clauses_exhaust_the_four_poles
@@ -1056,6 +1057,9 @@ open HornSystem
 #print axioms JurisLean.Seams.BurdenStatutes.standard_tier_two_way_decision
 #print axioms JurisLean.Seams.BurdenStatutes.standard_tiers_cannot_be_merged
 #print axioms JurisLean.Seams.BurdenStatutes.statutory_escape_is_not_a_named_tier
+#print axioms JurisLean.Seams.BurdenStatutes.statutory_shift_blocks_art91
+#print axioms JurisLean.Seams.BurdenStatutes.statutory_shift_has_a_witness
+#print axioms JurisLean.Seams.BurdenStatutes.statutory_shift_needs_a_citation
 #print axioms JurisLean.Seams.BurdenStatutes.trialDomain_attaches_the_108_standard
 #print axioms JurisLean.Seams.BurdenStatutes.trialDomain_fails_part_two
 #print axioms JurisLean.Seams.BurdenStatutes.trialDomain_fails_the_109_standard

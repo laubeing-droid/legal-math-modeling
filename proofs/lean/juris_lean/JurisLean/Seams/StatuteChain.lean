@@ -925,19 +925,19 @@ theorem chain_naming_uniqueness
       b = instanceM.disputed := by
     intro b hb
     by_contra hne
-    have hf : Transitions.admissibleFromHorn instanceM.norms n b = true := by
-      unfold Transitions.admissibleFromHorn
-      simpa using hb
+    have hf : Transitions.admissibleFromHorn instanceM.norms n b = true :=
+      decide_eq_true hb
     rw [h] at hf
     rw [hfalse b hne] at hf
     exact absurd hf (by decide)
   funext i
-  have hmem : n i ∈ Transitions.namedClosure instanceM.norms n := by
-    refine Finset.mem_image.mpr ⟨i, ?_, rfl⟩
-    rw [UnifiedInstance.normsM_closure_eq_univ]
-    cases i with
-    | zero => exact Finset.mem_insert_self _ _
-    | one => exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl)
+  have hmem : n i ∈ Transitions.namedClosure instanceM.norms n :=
+    Finset.mem_image.mpr ⟨i, by
+      show i ∈ SourceNorms.closureAt UnifiedInstance.normsM
+      rw [UnifiedInstance.normsM_closure_eq_univ]
+      cases i with
+      | zero => exact Finset.mem_insert_self _ _
+      | one => exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl), rfl⟩
   show n i = instanceM.disputed
   exact hsub _ hmem
 

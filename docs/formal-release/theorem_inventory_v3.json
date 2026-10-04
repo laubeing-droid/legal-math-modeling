@@ -28352,6 +28352,10 @@
      "name": "art64_layers_keep_the_sides_apart"
     },
     {
+     "kind": "theorem",
+     "name": "art64_request_is_never_defeated"
+    },
+    {
      "kind": "def",
      "name": "AdoptedConsistent"
     },
@@ -28362,10 +28366,6 @@
     {
      "kind": "theorem",
      "name": "unsupported_not_in_base_of_consistent"
-    },
-    {
-     "kind": "theorem",
-     "name": "art64_request_is_never_defeated"
     }
    ],
    "imports": [
@@ -28379,7 +28379,7 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Transitions.lean",
    "print_axioms_targets": [],
-   "sha256": "68b8862bbb05ffd5d45dcd53aa70a4fc7764c63b2d94d092802aacbb0e8bd2b9",
+   "sha256": "53d0ccce6a19b43fd5e6f01bc93086a0add9df856e73369969cb5d551e633da7",
    "size_bytes": 39737,
    "theorem_count": 43,
    "theorem_count_bol_convention": 43
@@ -33601,12 +33601,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "a25f998f5242260dbf38536ad8c7865a3213bc8fd7150cb85d14cc088bb1146e",
+ "source_inventory_digest": "9cd3e73a85930ff072b4b0d78c56c0fc5f68e18e79bdea0156f66fd92ac7b321",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "18497b2871fdaef89cbb831aaa99f6865d2b19f5",
-  "tree": "e274fa9c35eae450eb1d02d81abcec07cf910333"
+  "commit": "0a2b836a58abef3ea236a21c8ba913e70f67f38e",
+  "tree": "80eeaf3195cc0c6187447df1a345f0c1e1ff39a3"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

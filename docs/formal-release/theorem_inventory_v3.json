@@ -2029,6 +2029,10 @@
     "JurisLean.Seams.Probability.evMass_posterior_refined",
     "JurisLean.Seams.Probability.exact_amount_denotation",
     "JurisLean.Seams.Probability.exact_amount_denotation_is_currency_blind",
+    "JurisLean.Seams.Probability.exception_does_not_rewrite_the_ordinary_gate",
+    "JurisLean.Seams.Probability.exception_gate_does_not_read_bad_faith",
+    "JurisLean.Seams.Probability.exception_gate_opens_on_explicit_finding",
+    "JurisLean.Seams.Probability.exception_gate_requires_explicit_finding",
     "JurisLean.Seams.Probability.finding_does_not_require_the_threshold",
     "JurisLean.Seams.Probability.finite_distribution_to_pmf_apply",
     "JurisLean.Seams.Probability.finite_distribution_to_pmf_atom_le_one",
@@ -2042,6 +2046,7 @@
     "JurisLean.Seams.Probability.maliciousData_clamp",
     "JurisLean.Seams.Probability.maliciousData_floor",
     "JurisLean.Seams.Probability.maliciousData_gate",
+    "JurisLean.Seams.Probability.ordinary_gate_still_blocks_maliciousExceptData",
     "JurisLean.Seams.Probability.otherGroundData_not_overThirty",
     "JurisLean.Seams.Probability.overThirtyTest_true_iff",
     "JurisLean.Seams.Probability.overThirtyThreshold_iff_excess",
@@ -2911,8 +2916,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "2874bda11835bbf2e1a385100ed178319081ed202cc72aefd5e9fa1a997178e8",
-   "size_bytes": 164250,
+   "sha256": "4036169207c579611e2fa2633f2628b9815b937fd3945a9a62f6794f37fe6ed0",
+   "size_bytes": 164673,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -26644,6 +26649,34 @@
      "name": "maliciousData_clamp"
     },
     {
+     "kind": "def",
+     "name": "exceptionGate"
+    },
+    {
+     "kind": "theorem",
+     "name": "exception_gate_does_not_read_bad_faith"
+    },
+    {
+     "kind": "theorem",
+     "name": "exception_gate_requires_explicit_finding"
+    },
+    {
+     "kind": "def",
+     "name": "maliciousExceptData"
+    },
+    {
+     "kind": "theorem",
+     "name": "ordinary_gate_still_blocks_maliciousExceptData"
+    },
+    {
+     "kind": "theorem",
+     "name": "exception_gate_opens_on_explicit_finding"
+    },
+    {
+     "kind": "theorem",
+     "name": "exception_does_not_rewrite_the_ordinary_gate"
+    },
+    {
      "kind": "theorem",
      "name": "maliciousData_floor"
     },
@@ -26758,10 +26791,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Probability.lean",
    "print_axioms_targets": [],
-   "sha256": "54e583322aa740b95b8a16c5eeeeafc49cb63785e9ab9a8dad96968ee8e1f5fd",
-   "size_bytes": 53063,
-   "theorem_count": 53,
-   "theorem_count_bol_convention": 53
+   "sha256": "4d19c2d2d048600e62e2e89017e608fd5354dbc9a21b92300e35384dca78fc67",
+   "size_bytes": 56314,
+   "theorem_count": 58,
+   "theorem_count_bol_convention": 58
   },
   {
    "declarations": [
@@ -32849,22 +32882,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3730,
+   "counted_declaration_count": 3735,
    "file_count": 319,
    "lemma_count": 141,
-   "print_axioms_command_count": 2612,
-   "print_axioms_distinct_targets": 2558,
-   "theorem_count": 3589,
-   "theorem_count_bol_convention": 3493
+   "print_axioms_command_count": 2617,
+   "print_axioms_distinct_targets": 2563,
+   "theorem_count": 3594,
+   "theorem_count_bol_convention": 3498
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3711,
+   "counted_declaration_count": 3716,
    "file_count": 304,
    "lemma_count": 134,
-   "print_axioms_command_count": 2612,
-   "print_axioms_distinct_targets": 2558,
-   "theorem_count": 3577,
-   "theorem_count_bol_convention": 3481
+   "print_axioms_command_count": 2617,
+   "print_axioms_distinct_targets": 2563,
+   "theorem_count": 3582,
+   "theorem_count_bol_convention": 3486
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33544,12 +33577,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "8f26cdd4b9d90b008f844faae13ac2c745b6c31537cba6ebfe4862fd7887eeb0",
+ "source_inventory_digest": "cdda4f1efce7c6e6eecbe7486adff6dcc6617cbf9e128a5d9b5eff7f790feb37",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "c694d35abe48d6e221f3fbcc7e78635c34ce2d72",
-  "tree": "bb43f76ac607677f45c33ff92a952a206723e9f3"
+  "commit": "d69faad83179a7a253fb5c2b4c8670de8817c986",
+  "tree": "2807e7be57a11b99876fa141089327aa54346258"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

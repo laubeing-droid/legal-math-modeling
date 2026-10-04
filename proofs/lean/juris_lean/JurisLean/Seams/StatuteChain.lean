@@ -907,9 +907,11 @@ theorem chain_naming_uniqueness
            Transitions.admissibleFromHorn instanceM.norms chainNamingM) :
     n = chainNamingM := by
   have h1 : Transitions.admissibleFromHorn instanceM.norms chainNamingM
-      instanceM.disputed = true :=
-    Transitions.horn_derived_is_admissible instanceM.norms chainNamingM _
-      (Finset.mem_image.mpr ⟨0, UnifiedInstance.zero_in_closureM, rfl⟩)
+      instanceM.disputed = true := by
+    refine Transitions.horn_derived_is_admissible instanceM.norms chainNamingM
+      instanceM.disputed ?_
+    show instanceM.disputed ∈ Transitions.namedClosure instanceM.norms chainNamingM
+    exact Finset.mem_image.mpr ⟨0, UnifiedInstance.zero_in_closureM, rfl⟩
   have hd : instanceM.disputed ∈ Transitions.namedClosure instanceM.norms n := by
     rw [← h] at h1
     unfold Transitions.admissibleFromHorn at h1

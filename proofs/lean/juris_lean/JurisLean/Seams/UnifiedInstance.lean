@@ -324,17 +324,19 @@ theorem normsM_closure_eq_univ :
   refine Finset.ext ?_
   intro a
   refine ⟨fun ha => ?_, fun ha => ?_⟩
-  · have hsub : SourceNorms.closureAt normsM ⊆ normsM.univ :=
-      JurisLean.HornSystem.horn_result_subset_univ normsM
-    have := hsub ha
-    unfold normsM at this
-    simp only [Finset.mem_insert, Finset.mem_singleton] at this
-    rcases this with rfl | rfl
-    · exact Finset.mem_insert_self _ _
-    · exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl)
-  · rcases Finset.mem_insert.mp ha with rfl | rfl
-    · exact zero_in_closureM
-    · exact one_in_closureM
+  · have hsub : SourceNorms.closureAt normsM ⊆ normsM.univ := by
+      show FiniteMonotoneSystem.iter (HornSystem.toFiniteMonotoneSystem normsM)
+          (Finset.card normsM.univ) ⊆ normsM.univ
+      exact HornSystem.horn_result_subset_univ normsM
+    have hmem := hsub ha
+    unfold normsM at hmem
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hmem
+    rcases hmem with h0 | h1
+    · rw [h0]; exact Finset.mem_insert_self _ _
+    · rw [h1]; exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl)
+  · rcases Finset.mem_insert.mp ha with h0 | h1
+    · rw [h0]; exact zero_in_closureM
+    · rw [h1]; exact one_in_closureM
 
 /-- 中文证明：待判原子**语义上被蕴含**（`UnifiedChainCorrespondence` 第一条合取支的正方向，
     经仓内 `horn_closure_semantic_iff :171` 从闭包成员读出）。 -/

@@ -462,6 +462,11 @@ structure ReductionData (F : Type) where
   proved : Bool
   /-- 第65条第2款："一般可以认定"的裁定位（许可，不是强制）。 -/
   overFound : Bool
+  /-- 第65条第3款"一般不予支持"的**例外面**（2026-10-04 增，17_ 卷 R5）：
+      `reductionGate` 里 `!badFaith` 是"一般"的机器形态；本位是法院认定例外情形的
+      **独立认定位**——例外的开启不靠把恶意违约位改小，而靠另行认定。默认 false，
+      所有既有夹具的读数不变。 -/
+  maliciousException : Bool := false
   /-- 第65条第1款的衡量因素面：自由输入。 -/
   factors : F
 
@@ -620,6 +625,49 @@ theorem maliciousData_choose : choose maliciousData = (200 : Amount) := by
 /-- 恶意违约数据上钳制值 = 100（落在带内，却低于约定额）。 -/
 theorem maliciousData_clamp : clampReduction maliciousData = (100 : Amount) := by
   simp [clampReduction, clampInt, maliciousData]
+
+/-- 中文说明（**例外通道**，17_ 卷 R5）：第 65 条第 3 款是"一般不予支持"，不是"一律"。
+    本通道与 `reductionGate` 并行：同样的三个条件位（请求、举证、认定过分高于或 30% 门槛），
+    但**不读 badFaith**、改读**独立认定的例外面** `maliciousException`。
+    法律读法：例外不是把恶意违约当没看见，而是法院另行认定本案属例外情形。 -/
+def exceptionGate {F : Type} (c : ReductionData F) : Bool :=
+  conditionHolds .request_by_party c && conditionHolds .burden_of_proof c &&
+    (conditionHolds .discretionary_finding c || conditionHolds .thirty_percent_ground c) &&
+    c.maliciousException
+
+/-- 中文证明（**例外通道对恶意违约位色盲**）：这正是"例外归例外、一般归一般"的机器形态——
+    改 `badFaith` 不改例外通道的读数，正如改例外面不动"一般"闸门。 -/
+theorem exception_gate_does_not_read_bad_faith {F : Type} (c : ReductionData F) (b b' : Bool) :
+    exceptionGate { c with badFaith := b } = exceptionGate { c with badFaith := b' } := by
+  simp [exceptionGate, conditionHolds]
+
+/-- 中文证明（**例外必须被显式认定**）：例外通道开启 ⇒ 例外面位为真。
+    这条堵住"输出层静默降档"——任何经例外通道的酌减都必须能指回一项认定。 -/
+theorem exception_gate_requires_explicit_finding {F : Type} (c : ReductionData F)
+    (h : exceptionGate c = true) : c.maliciousException = true := by
+  simp [exceptionGate] at h
+  exact h.2.2.1
+
+/-- 中文见证（**一般闸门与例外通道在同一份数据上分道**）：`maliciousData` 上
+    "一般"闸门关（既有定理），把例外面认定为真后例外通道开——同一份恶意违约数据，
+    两条路给出不同读数，且各自都要指回自己的认定。 -/
+def maliciousExceptData : ReductionData Unit :=
+  { agreed := 200, loss := 100, requested := true, badFaith := true, proved := true,
+    overFound := true, maliciousException := true, factors := () }
+
+theorem ordinary_gate_still_blocks_maliciousExceptData :
+    reductionGate maliciousExceptData = false := by
+  simp [reductionGate, conditionHolds, overThirtyTest, maliciousExceptData]
+
+theorem exception_gate_opens_on_explicit_finding :
+    exceptionGate maliciousExceptData = true := by
+  simp [exceptionGate, conditionHolds, overThirtyTest, maliciousExceptData]
+
+/-- 中文证明（**两条通道不可同时混用**）：例外通道开不改变"一般"闸门关；
+    反之亦然。把 R5 的修法说死：例外是并行的第二读数，不是对第一读数的改写。 -/
+theorem exception_does_not_rewrite_the_ordinary_gate {F : Type} (c : ReductionData F) :
+    reductionGate { c with maliciousException := true } = reductionGate c := by
+  simp [reductionGate, conditionHolds]
 
 /-- 恶意违约数据的下界同样是 100：钳制与下界在此例重合，正是误导之处。 -/
 theorem maliciousData_floor : reductionFloor maliciousData = (100 : Amount) := by

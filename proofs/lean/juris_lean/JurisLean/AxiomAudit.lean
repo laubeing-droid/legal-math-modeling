@@ -1420,6 +1420,10 @@ open HornSystem
 #print axioms JurisLean.Seams.Probability.evMass_posterior_refined
 #print axioms JurisLean.Seams.Probability.exact_amount_denotation
 #print axioms JurisLean.Seams.Probability.exact_amount_denotation_is_currency_blind
+#print axioms JurisLean.Seams.Probability.exception_does_not_rewrite_the_ordinary_gate
+#print axioms JurisLean.Seams.Probability.exception_gate_does_not_read_bad_faith
+#print axioms JurisLean.Seams.Probability.exception_gate_opens_on_explicit_finding
+#print axioms JurisLean.Seams.Probability.exception_gate_requires_explicit_finding
 #print axioms JurisLean.Seams.Probability.finding_does_not_require_the_threshold
 #print axioms JurisLean.Seams.Probability.finite_distribution_to_pmf_apply
 #print axioms JurisLean.Seams.Probability.finite_distribution_to_pmf_atom_le_one
@@ -1433,6 +1437,7 @@ open HornSystem
 #print axioms JurisLean.Seams.Probability.maliciousData_clamp
 #print axioms JurisLean.Seams.Probability.maliciousData_floor
 #print axioms JurisLean.Seams.Probability.maliciousData_gate
+#print axioms JurisLean.Seams.Probability.ordinary_gate_still_blocks_maliciousExceptData
 #print axioms JurisLean.Seams.Probability.otherGroundData_not_overThirty
 #print axioms JurisLean.Seams.Probability.overThirtyTest_true_iff
 #print axioms JurisLean.Seams.Probability.overThirtyThreshold_iff_excess

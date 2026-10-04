@@ -23927,6 +23927,14 @@
     },
     {
      "kind": "def",
+     "name": "art109StandardOf"
+    },
+    {
+     "kind": "def",
+     "name": "art108StandardOf"
+    },
+    {
+     "kind": "def",
      "name": "factMatterClass"
     },
     {
@@ -23948,14 +23956,6 @@
     {
      "kind": "theorem",
      "name": "stricter_tier_requires_a_classified_fact"
-    },
-    {
-     "kind": "def",
-     "name": "art109StandardOf"
-    },
-    {
-     "kind": "def",
-     "name": "art108StandardOf"
     },
     {
      "kind": "theorem",
@@ -24209,8 +24209,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/BurdenStatutes.lean",
    "print_axioms_targets": [],
-   "sha256": "87a5d2994261d7f03c1c704e8304b26d4a6a4f9276df93465d670e87851a6354",
-   "size_bytes": 72774,
+   "sha256": "5b9fbcafee99a3db6b34792c6dd70d7faa0a3fa06be51b294903808a4be50804",
+   "size_bytes": 72791,
    "theorem_count": 78,
    "theorem_count_bol_convention": 78
   },
@@ -25821,13 +25821,13 @@
    ],
    "imports": [
     "JurisLean.Seams.Temporal",
-    "Mathlib.Data.Int.Order"
+    "Mathlib.Tactic"
    ],
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Limitation.lean",
    "print_axioms_targets": [],
-   "sha256": "38bc908f064ea053bb3e39de30e64860cfdbd310dde2f3a822f629c52942b7e8",
-   "size_bytes": 6906,
+   "sha256": "75fb30151a81e9c7c4f5acefc17e69da7c21cafab16ec42765ebace550105c2c",
+   "size_bytes": 6898,
    "theorem_count": 7,
    "theorem_count_bol_convention": 7
   },
@@ -27031,8 +27031,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Probability.lean",
    "print_axioms_targets": [],
-   "sha256": "5d1ca02e7adad48812280b8b9f548ca701542ef7a407c0c464490e6c02c54e82",
-   "size_bytes": 63277,
+   "sha256": "8a6d39d56c17587bcd2903202181f996b2def506da92c03f3ea6d2357e532ff2",
+   "size_bytes": 63700,
    "theorem_count": 65,
    "theorem_count_bol_convention": 65
   },
@@ -33889,12 +33889,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "017654127048cb93a487fa2bbc29be5214b376fccd9771862e1bf353ee2ebd07",
+ "source_inventory_digest": "83504e6a04093c6b2da4b47ecc64fe2386088297b6d8882c8dc25be7dd8eec6b",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "0c6cea458a6d1591e55b55390f374aac4d2b8183",
-  "tree": "5de59363b7880acb76c74dfb5097d7c3d5a0e71d"
+  "commit": "b7a596f27fa1bccd12e0c854b24bb8f49b80b380",
+  "tree": "0794caf46699dccf41316970abb5822a379d119c"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

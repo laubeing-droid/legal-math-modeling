@@ -1,0 +1,90 @@
+{
+  "schema_version": "spec-ci-run-identity-v2",
+  "in_ci": true,
+  "status": "CI_RUN",
+  "generated_at": "2026-10-04T14:13:02.736072+00:00",
+  "github": {
+    "run_id": "37207860132",
+    "run_attempt": "1",
+    "event": "push",
+    "ref": "refs/heads/ci/mandate-wave1",
+    "workflow": "Lean Authority + Formal Release Pipeline",
+    "runner_os": "Linux",
+    "runner_image": "ubuntu24"
+  },
+  "subject": {
+    "sha": "789ac094eb1c9e6398984c6f0565b16ba1c368d8",
+    "tree": "ab24143e21ac0531fbf9177814e58aad14e31070"
+  },
+  "workflow_digest": "e6c8f358d78a6a719606e91d192bfbb9934c9d8f915f6b31d7776656a5e8917a",
+  "toolchain": {
+    "lean_toolchain": "leanprover/lean4:v4.30.0",
+    "lake_manifest_sha256": "7230ea7eeaf37899cdf17d1c878e853e3650d276e6ec6b7f1d2f4c841952963e"
+  },
+  "artifacts": {
+    "axiom-audit.raw.txt": {
+      "sha256": "e052030f4cb36c5d2cfbd19273933e482ad40977838b92a2ce0f49d25bcf3314",
+      "bytes": 236420
+    },
+    "contract_breach.actual.json": {
+      "sha256": "726148c4ab17ac8b9dbd1e03e50a42144ad956923adb0f50e3351491ade0dadd",
+      "bytes": 1374
+    },
+    "contract_breach.expected.json": {
+      "sha256": "34d2adf8608387aae82a626c6584504d63d9abcf9d8df64c29484128a7cca7b8",
+      "bytes": 847
+    },
+    "contract_breach.report.json": {
+      "sha256": "177295cf0eaa950e2f1044c86841487b91846cb463b6db61fb9daca363e6665b",
+      "bytes": 577
+    },
+    "fact_admission.actual.json": {
+      "sha256": "25355df173003452e5b740d2d8c2ddcfe1e9ea80e902540191b7c48cd7c81080",
+      "bytes": 1390
+    },
+    "fact_admission.expected.json": {
+      "sha256": "1b7888705daceb24a84b5276a1821706a34220d0b9bfe53217fd9d8462ee6b51",
+      "bytes": 863
+    },
+    "fact_admission.report.json": {
+      "sha256": "7661481778a05c3f0fdb782c8e7d83dc07ee8351e62f32b1e39215354601715c",
+      "bytes": 576
+    },
+    "lake-clean-build.log": {
+      "sha256": "3d12f8052476f8d4d12a0172f02fb566b513c18d34875ce1c44b980f0085ea1f",
+      "bytes": 1965391
+    },
+    "lean-guard-report.json": {
+      "sha256": "6f9e7a9e1ce14f2b0b386a4655704e29699d9dd7fb891e51259d8525df109d4f",
+      "bytes": 61445
+    },
+    "mutation-property-report.json": {
+      "sha256": "4a7061df4ca043d760182b1640b9e806c5617b1ce07404f0fe6c0bb2097166cc",
+      "bytes": 8994
+    },
+    "pytest-collection.txt": {
+      "sha256": "56b406ce777d320bced2e134b241dd4e5a168b66efdc5c82d78ff0df1a680e9a",
+      "bytes": 52951
+    },
+    "pytest-full.log": {
+      "sha256": "ccaaad1e82c6615496e2098a3242d921424b146bcd61ee129b89f9a9ca4ac897",
+      "bytes": 752
+    },
+    "runtime-refinement-report.json": {
+      "sha256": "8ec7d509f54b8ed418a8fa34097f1ab7aca645413271314d2fa3b0fb997a155b",
+      "bytes": 1730
+    },
+    "unknown_timeout.actual.json": {
+      "sha256": "bc17d74762e3ceb86f57f56a0607dcb6bebc9c404d3628c4a034994d7873c22c",
+      "bytes": 1190
+    },
+    "unknown_timeout.expected.json": {
+      "sha256": "a5fe82b9804c6ab23e8402d2a3201f911b8f42cc0893e0435821247ed1b9a2ba",
+      "bytes": 762
+    },
+    "unknown_timeout.report.json": {
+      "sha256": "9dbb8fb7acdd36e55cb584ec0aebfaf33e81a6605662ea84d9e92e9d8bb8f5b5",
+      "bytes": 577
+    }
+  }
+}

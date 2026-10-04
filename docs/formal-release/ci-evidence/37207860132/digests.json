@@ -1,0 +1,130 @@
+{
+  "artifacts_landed": [
+    "full-math-completion-37207860132-1",
+    "release-certificate-run37207860132-attempt1",
+    "runtime-refinement-run37207860132-attempt1",
+    "seven-axis-gate-37207860132-1"
+  ],
+  "artifacts_not_landed": [
+    "full-math-lean-37207860132-1",
+    "full-math-python-37207860132-1",
+    "lean-full-build-run37207860132-attempt1",
+    "python-gates-run37207860132-attempt1",
+    "seven-axis-lean-37207860132-1",
+    "seven-axis-python-37207860132-1"
+  ],
+  "authority_note": "Bytes downloaded from the GitHub Actions artifact store for this run, digested on arrival. Only the report artifacts a claim is actually cited from land here (certificate, gate, completion, refinement); build and test logs stay outside. A digest proves this repository's copy has not been edited since download -- it does not re-derive the result, which would mean re-running Lean.",
+  "files": [
+    {
+      "artifact": "axiom-audit",
+      "bytes": 236420,
+      "path": "axiom-audit/axiom-audit.raw.txt",
+      "sha256": "e052030f4cb36c5d2cfbd19273933e482ad40977838b92a2ce0f49d25bcf3314"
+    },
+    {
+      "artifact": "full-math-completion-37207860132-1",
+      "bytes": 3331,
+      "path": "full-math-completion-37207860132-1/EXPORT_CONTRACT.json",
+      "sha256": "210cbdb715f1099f1c1eb5871eea9db9c4239d980e65cf0e2c70b5e7db6e29da"
+    },
+    {
+      "artifact": "full-math-completion-37207860132-1",
+      "bytes": 1089,
+      "path": "full-math-completion-37207860132-1/MATH_COMPLETION.json",
+      "sha256": "3bee4696ef22f745b8ccf07ad3e3fa86e7a374ee85073802bb0e191601161854"
+    },
+    {
+      "artifact": "release-certificate-run37207860132-attempt1",
+      "bytes": 3140,
+      "path": "release-certificate-run37207860132-attempt1/ci-run-identity.json",
+      "sha256": "9c69f380515096c4e9ec6edba1f7b5db6235e70ded2b9cf97caec48cd9f6e666"
+    },
+    {
+      "artifact": "release-certificate-run37207860132-attempt1",
+      "bytes": 33,
+      "path": "release-certificate-run37207860132-attempt1/claim-audit-report.json",
+      "sha256": "8216aae5586a774e288bbb38c452fc95119d74b67c2f445f060015f2290de3f5"
+    },
+    {
+      "artifact": "release-certificate-run37207860132-attempt1",
+      "bytes": 415757,
+      "path": "release-certificate-run37207860132-attempt1/formal-release-certificate.json",
+      "sha256": "75071e44c10c7ed66684b7c4e6713d07d5b28981ffa34d4face03dad062673bb"
+    },
+    {
+      "artifact": "release-certificate-run37207860132-attempt1",
+      "bytes": 215,
+      "path": "release-certificate-run37207860132-attempt1/independent-verifier-report.json",
+      "sha256": "a48657791b3e755c2c686a37e720e3fff647216ed61a2c924fdfc0e693c26054"
+    },
+    {
+      "artifact": "runtime-refinement-run37207860132-attempt1",
+      "bytes": 1374,
+      "path": "runtime-refinement-run37207860132-attempt1/runtime-actual/contract_breach.actual.json",
+      "sha256": "726148c4ab17ac8b9dbd1e03e50a42144ad956923adb0f50e3351491ade0dadd"
+    },
+    {
+      "artifact": "runtime-refinement-run37207860132-attempt1",
+      "bytes": 1390,
+      "path": "runtime-refinement-run37207860132-attempt1/runtime-actual/fact_admission.actual.json",
+      "sha256": "25355df173003452e5b740d2d8c2ddcfe1e9ea80e902540191b7c48cd7c81080"
+    },
+    {
+      "artifact": "runtime-refinement-run37207860132-attempt1",
+      "bytes": 1190,
+      "path": "runtime-refinement-run37207860132-attempt1/runtime-actual/unknown_timeout.actual.json",
+      "sha256": "bc17d74762e3ceb86f57f56a0607dcb6bebc9c404d3628c4a034994d7873c22c"
+    },
+    {
+      "artifact": "runtime-refinement-run37207860132-attempt1",
+      "bytes": 1730,
+      "path": "runtime-refinement-run37207860132-attempt1/runtime-evidence/runtime-refinement-report.json",
+      "sha256": "8ec7d509f54b8ed418a8fa34097f1ab7aca645413271314d2fa3b0fb997a155b"
+    },
+    {
+      "artifact": "runtime-refinement-run37207860132-attempt1",
+      "bytes": 847,
+      "path": "runtime-refinement-run37207860132-attempt1/runtime-expected/contract_breach.expected.json",
+      "sha256": "34d2adf8608387aae82a626c6584504d63d9abcf9d8df64c29484128a7cca7b8"
+    },
+    {
+      "artifact": "runtime-refinement-run37207860132-attempt1",
+      "bytes": 863,
+      "path": "runtime-refinement-run37207860132-attempt1/runtime-expected/fact_admission.expected.json",
+      "sha256": "1b7888705daceb24a84b5276a1821706a34220d0b9bfe53217fd9d8462ee6b51"
+    },
+    {
+      "artifact": "runtime-refinement-run37207860132-attempt1",
+      "bytes": 762,
+      "path": "runtime-refinement-run37207860132-attempt1/runtime-expected/unknown_timeout.expected.json",
+      "sha256": "a5fe82b9804c6ab23e8402d2a3201f911b8f42cc0893e0435821247ed1b9a2ba"
+    },
+    {
+      "artifact": "runtime-refinement-run37207860132-attempt1",
+      "bytes": 577,
+      "path": "runtime-refinement-run37207860132-attempt1/runtime-reports/contract_breach.report.json",
+      "sha256": "177295cf0eaa950e2f1044c86841487b91846cb463b6db61fb9daca363e6665b"
+    },
+    {
+      "artifact": "runtime-refinement-run37207860132-attempt1",
+      "bytes": 576,
+      "path": "runtime-refinement-run37207860132-attempt1/runtime-reports/fact_admission.report.json",
+      "sha256": "7661481778a05c3f0fdb782c8e7d83dc07ee8351e62f32b1e39215354601715c"
+    },
+    {
+      "artifact": "runtime-refinement-run37207860132-attempt1",
+      "bytes": 577,
+      "path": "runtime-refinement-run37207860132-attempt1/runtime-reports/unknown_timeout.report.json",
+      "sha256": "9dbb8fb7acdd36e55cb584ec0aebfaf33e81a6605662ea84d9e92e9d8bb8f5b5"
+    },
+    {
+      "artifact": "seven-axis-gate-37207860132-1",
+      "bytes": 708,
+      "path": "seven-axis-gate-37207860132-1/seven-axis-gate.json",
+      "sha256": "68516c5233ce8a779a78648448728e74ce5ee3046d8a4e1106d86334a41004c8"
+    }
+  ],
+  "run_id": 37207860132,
+  "schema_version": "ci-run-evidence-v1",
+  "source": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37207860132"
+}

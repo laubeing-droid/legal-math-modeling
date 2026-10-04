@@ -10967,8 +10967,7 @@
         "docs/master-plan/16_第九轮终态核对表_20261002.md:489",
         "docs/master-plan/16_第九轮终态核对表_20261002.md:511",
         "docs/master-plan/16_第九轮终态核对表_20261002.md:59",
-        "docs/master-plan/17_技术顾问方案_20261004.md:71",
-        "docs/master-plan/17_技术顾问方案_20261004.md:97"
+        "docs/master-plan/17_技术顾问方案_20261004.md:71"
       ],
       "run_id": 37168433454,
       "started": true,
@@ -11092,8 +11091,7 @@
       "jobs_total": 8,
       "name": "chore(ledger): rebind to the noConfusion fix",
       "quoted_by": [
-        "docs/master-plan/17_技术顾问方案_20261004.md:85",
-        "docs/master-plan/17_技术顾问方案_20261004.md:97"
+        "docs/master-plan/17_技术顾问方案_20261004.md:85"
       ],
       "run_id": 37177506820,
       "started": true,
@@ -11217,8 +11215,7 @@
       "jobs_total": 8,
       "name": "chore(ledger): rebind to the ordering fix",
       "quoted_by": [
-        "docs/master-plan/17_技术顾问方案_20261004.md:92",
-        "docs/master-plan/17_技术顾问方案_20261004.md:97"
+        "docs/master-plan/17_技术顾问方案_20261004.md:92"
       ],
       "run_id": 37179788693,
       "started": true,
@@ -11528,8 +11525,7 @@
       "jobs_total": 8,
       "name": "fix(anchors): follow the clamp anchor to 697",
       "quoted_by": [
-        "docs/master-plan/17_技术顾问方案_20261004.md:93",
-        "docs/master-plan/17_技术顾问方案_20261004.md:97"
+        "docs/master-plan/17_技术顾问方案_20261004.md:93"
       ],
       "run_id": 37184896627,
       "started": true,
@@ -11653,8 +11649,7 @@
       "jobs_total": 8,
       "name": "chore(ledger): rebind to the ordering fix",
       "quoted_by": [
-        "docs/master-plan/17_技术顾问方案_20261004.md:94",
-        "docs/master-plan/17_技术顾问方案_20261004.md:97"
+        "docs/master-plan/17_技术顾问方案_20261004.md:94"
       ],
       "run_id": 37187806501,
       "started": true,
@@ -11778,8 +11773,7 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
-        "docs/master-plan/17_技术顾问方案_20261004.md:95",
-        "docs/master-plan/17_技术顾问方案_20261004.md:97"
+        "docs/master-plan/17_技术顾问方案_20261004.md:95"
       ],
       "run_id": 37197637371,
       "started": true,
@@ -11965,13 +11959,384 @@
       "jobs_total": 8,
       "name": "chore(ledger): rebind accounts to the parameterisation fix",
       "quoted_by": [
-        "docs/master-plan/17_技术顾问方案_20261004.md:96",
-        "docs/master-plan/17_技术顾问方案_20261004.md:97"
+        "docs/master-plan/17_技术顾问方案_20261004.md:96"
       ],
       "run_id": 37201076623,
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-04T12:18:37Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 6,
+      "conclusion": "failure",
+      "created_at": "2026-10-04T12:44:00Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "f89b3a3f41959feabcbcc55298c5a3c47e7ebaea",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37203118721",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(ledger): rebind accounts to the case-input round",
+      "quoted_by": [
+        "docs/master-plan/17_技术顾问方案_20261004.md:97"
+      ],
+      "run_id": 37203118721,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-04T12:53:23Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 6,
+      "conclusion": "failure",
+      "created_at": "2026-10-04T13:03:40Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "f1db4e501b09bae5bedd636c63d594ccca96e78d",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37204276249",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(ledger): rebind accounts to the pinned-names fix",
+      "quoted_by": [
+        "docs/master-plan/17_技术顾问方案_20261004.md:97"
+      ],
+      "run_id": 37204276249,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-04T13:13:02Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 6,
+      "conclusion": "failure",
+      "created_at": "2026-10-04T13:19:49Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "1909eb95a44a98f9e1fe7fe01d092f0cbff0b7ff",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37205231931",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "fix(anchors): cite hornOfCase without the backticks beside the soundn…",
+      "quoted_by": [
+        "docs/master-plan/17_技术顾问方案_20261004.md:97"
+      ],
+      "run_id": 37205231931,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-04T13:29:55Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 6,
+      "conclusion": "failure",
+      "created_at": "2026-10-04T13:33:30Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "28a82e11818f28a6672e393b5a87875df0f9472c",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37206045906",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(ledger): rebind accounts to the rewrite-syntax fix",
+      "quoted_by": [
+        "docs/master-plan/17_技术顾问方案_20261004.md:97"
+      ],
+      "run_id": 37206045906,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-04T13:42:42Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 4,
+      "conclusion": "failure",
+      "created_at": "2026-10-04T13:50:24Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "5dc58e654ef3cff97a022991544cf65ab8d82fb5",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37207050456",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(ledger): rebind accounts to the entry-condition redesign",
+      "quoted_by": [
+        "docs/master-plan/17_技术顾问方案_20261004.md:97"
+      ],
+      "run_id": 37207050456,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-04T13:59:15Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-04T14:03:33Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/37207860132/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "789ac094eb1c9e6398984c6f0565b16ba1c368d8",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37207860132",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(ledger): rebind accounts to the membership fix",
+      "quoted_by": [
+        "docs/master-plan/17_技术顾问方案_20261004.md:97"
+      ],
+      "run_id": 37207860132,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-04T14:13:15Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

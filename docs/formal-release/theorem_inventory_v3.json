@@ -26649,6 +26649,14 @@
      "name": "maliciousData_clamp"
     },
     {
+     "kind": "theorem",
+     "name": "overThirtyTest_congr_badFaith"
+    },
+    {
+     "kind": "theorem",
+     "name": "overThirtyTest_congr_exception"
+    },
+    {
      "kind": "def",
      "name": "exceptionGate"
     },
@@ -26791,10 +26799,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Probability.lean",
    "print_axioms_targets": [],
-   "sha256": "4d19c2d2d048600e62e2e89017e608fd5354dbc9a21b92300e35384dca78fc67",
-   "size_bytes": 56314,
-   "theorem_count": 58,
-   "theorem_count_bol_convention": 58
+   "sha256": "5cb47388652302640a293af1b67aad830c43b3409118fd359f179b808668e56e",
+   "size_bytes": 56960,
+   "theorem_count": 60,
+   "theorem_count_bol_convention": 60
   },
   {
    "declarations": [
@@ -32882,22 +32890,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3735,
+   "counted_declaration_count": 3737,
    "file_count": 319,
    "lemma_count": 141,
    "print_axioms_command_count": 2617,
    "print_axioms_distinct_targets": 2563,
-   "theorem_count": 3594,
-   "theorem_count_bol_convention": 3498
+   "theorem_count": 3596,
+   "theorem_count_bol_convention": 3500
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3716,
+   "counted_declaration_count": 3718,
    "file_count": 304,
    "lemma_count": 134,
    "print_axioms_command_count": 2617,
    "print_axioms_distinct_targets": 2563,
-   "theorem_count": 3582,
-   "theorem_count_bol_convention": 3486
+   "theorem_count": 3584,
+   "theorem_count_bol_convention": 3488
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33577,12 +33585,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "cdda4f1efce7c6e6eecbe7486adff6dcc6617cbf9e128a5d9b5eff7f790feb37",
+ "source_inventory_digest": "4414ffa4ad32f586e633d2d4f0161adf0ad701d90f0460488d5f6ec40491f467",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "d69faad83179a7a253fb5c2b4c8670de8817c986",
-  "tree": "2807e7be57a11b99876fa141089327aa54346258"
+  "commit": "8280336fc5783b635c141b8a12d06c3034019afa",
+  "tree": "7d86475e7b6112311e33d474b79f2f5df405f180"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

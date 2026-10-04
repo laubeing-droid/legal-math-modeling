@@ -931,13 +931,12 @@ theorem chain_naming_uniqueness
     rw [hfalse b hne] at hf
     exact absurd hf (by decide)
   funext i
-  have hmem : n i ∈ Transitions.namedClosure instanceM.norms n :=
-    Finset.mem_image.mpr
-      ⟨i, by rw [UnifiedInstance.normsM_closure_eq_univ]
-            cases i with
-            | zero => exact Finset.mem_insert_self _ _
-            | one => exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl),
-        rfl⟩
+  have hmem : n i ∈ Transitions.namedClosure instanceM.norms n := by
+    refine Finset.mem_image.mpr ⟨i, ?_, rfl⟩
+    rw [UnifiedInstance.normsM_closure_eq_univ]
+    cases i with
+    | zero => exact Finset.mem_insert_self _ _
+    | one => exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl)
   show n i = instanceM.disputed
   exact hsub _ hmem
 

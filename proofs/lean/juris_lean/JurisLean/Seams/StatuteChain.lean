@@ -829,8 +829,9 @@ theorem case_burden_field_is_free_data :
 /-- 中文说明（**观测谓词**）：模型 𝔐 的观测族在指标 `i` 处对法律对象 `s` 报告真。
     这是"从模型**读出**请求地位面"的唯一入口——只读，不回写。 -/
 def ObservationReports {V Rel : Type} [DecidableEq Rel]
-    (M : UnifiedModel V Rel) (i : M.observation.ι) (s : ClaimBasis.Status) : Prop :=
-  M.observation.obs i s = (true : M.observation.γ)
+    (M : UnifiedModel V Rel) (i : M.observation.ι) (s : ClaimBasis.Status)
+    (v : M.observation.γ) : Prop :=
+  M.observation.obs i s = v
 
 /-- 中文证明（**观测通道读的就是模型自己声明的那份**）：instanceM 的观测栏按定义就是
     `statusObsM`，没有任何第二个来源。 -/
@@ -852,12 +853,10 @@ theorem observation_does_not_touch_adoption {V Rel : Type} [DecidableEq Rel]
   · intro h; exact h
 
 /-- 中文见证（**单向观测真的在读东西**）：instanceM 的观测族在唯一指标处
-    对"不得强制实现"状态报告真——裁决表 `fires .unenforceable .exercisable .defuse true = true`（表行字面给出）。
+    对"不得强制实现"状态报告真——即 `fires .unenforceable .exercisable .defuse true = true`，在 instanceM 上按定义等价直接关闭（观测栏＝statusObsM，其 obs 就是那张裁决表）。
     没有这一条，"只读通道"可以是空转的空话。 -/
 theorem observation_reports_something :
-    ObservationReports instanceM (0 : Fin 1) ClaimBasis.Status.unenforceable := by
-  show ClaimBasis.fires ClaimBasis.Status.unenforceable ClaimBasis.Stage.exercisable
-      ClaimBasis.Polarity.defuse true = true
+    ObservationReports instanceM (0 : Fin 1) ClaimBasis.Status.unenforceable true := by
   rfl
 
 end JurisLean.Seams.StatuteChain

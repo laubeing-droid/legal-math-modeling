@@ -142,6 +142,8 @@ import JurisLean.Seams.UnifiedInstance
 import JurisLean.Seams.SanctionInterest
 import JurisLean.Seams.StatuteChain
 
+import JurisLean.Seams.CaseInput
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1070,6 +1072,11 @@ open HornSystem
 #print axioms JurisLean.Seams.BurdenStatutes.vacuousDomain_holds_part_three
 #print axioms JurisLean.Seams.BurdenStatutes.vacuousDomain_holds_part_two
 #print axioms JurisLean.Seams.BurdenStatutes.vacuousDomain_is_not_lawful
+#print axioms JurisLean.Seams.CaseInput.caseFacts_subset_caseUniv
+#print axioms JurisLean.Seams.CaseInput.caseHeads_subset_caseUniv
+#print axioms JurisLean.Seams.CaseInput.case_closure_sound
+#print axioms JurisLean.Seams.CaseInput.case_facts_in_closure
+#print axioms JurisLean.Seams.CaseInput.sample_conclusion_in_closure
 #print axioms JurisLean.Seams.ClaimBasis.carriesBasis_cons
 #print axioms JurisLean.Seams.ClaimBasis.citedAt_head_or_tail
 #print axioms JurisLean.Seams.ClaimBasis.citedAt_singleton_fields

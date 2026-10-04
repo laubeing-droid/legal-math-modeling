@@ -1072,8 +1072,6 @@ open HornSystem
 #print axioms JurisLean.Seams.BurdenStatutes.vacuousDomain_holds_part_three
 #print axioms JurisLean.Seams.BurdenStatutes.vacuousDomain_holds_part_two
 #print axioms JurisLean.Seams.BurdenStatutes.vacuousDomain_is_not_lawful
-#print axioms JurisLean.Seams.CaseInput.caseFacts_subset_caseUniv
-#print axioms JurisLean.Seams.CaseInput.caseHeads_subset_caseUniv
 #print axioms JurisLean.Seams.CaseInput.case_closure_sound
 #print axioms JurisLean.Seams.CaseInput.case_facts_in_closure
 #print axioms JurisLean.Seams.CaseInput.sample_conclusion_in_closure

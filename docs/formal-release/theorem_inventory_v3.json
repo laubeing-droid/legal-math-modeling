@@ -23657,6 +23657,18 @@
     },
     {
      "kind": "def",
+     "name": "art91IsClauseOne"
+    },
+    {
+     "kind": "def",
+     "name": "art91BurdenOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "art91_burden_follows_assertion"
+    },
+    {
+     "kind": "def",
      "name": "art91Assigns"
     },
     {
@@ -23674,18 +23686,6 @@
     {
      "kind": "theorem",
      "name": "statutory_shift_has_a_witness"
-    },
-    {
-     "kind": "def",
-     "name": "art91IsClauseOne"
-    },
-    {
-     "kind": "def",
-     "name": "art91BurdenOf"
-    },
-    {
-     "kind": "theorem",
-     "name": "art91_burden_follows_assertion"
     },
     {
      "kind": "theorem",
@@ -24143,7 +24143,7 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/BurdenStatutes.lean",
    "print_axioms_targets": [],
-   "sha256": "304af745db9cc1d3cbc1ff94764f92abf8539095c896feb6deb57b51afd7ebb9",
+   "sha256": "b900bb1030ce633d0f4a2876b84a321f1e973d0f7e1c5fa9f83eddaa664876db",
    "size_bytes": 70307,
    "theorem_count": 74,
    "theorem_count_bol_convention": 74
@@ -33544,12 +33544,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "a92bbbea89e7136924362701c2a922d60c494faca59f6291dd60cde7c66f730c",
+ "source_inventory_digest": "8f26cdd4b9d90b008f844faae13ac2c745b6c31537cba6ebfe4862fd7887eeb0",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "8b2b40987a9e9701e5c12bb999350874c8270de8",
-  "tree": "fc5274b4da106f3a1ed89d1fb0da2da0737ff809"
+  "commit": "c694d35abe48d6e221f3fbcc7e78635c34ce2d72",
+  "tree": "bb43f76ac607677f45c33ff92a952a206723e9f3"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

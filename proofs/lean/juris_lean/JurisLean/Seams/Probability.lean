@@ -666,7 +666,7 @@ theorem basisTotal_le_sum_of_amounts (b : LossBasis) :
     by_cases h : componentCounted c = true
     · rw [if_pos h]
     · rw [if_neg h]
-      exact le_of_eq (by simp)
+      exact Int.le_refl 0
   have h1 := hkey b.direct
   have h2 := hkey b.gain
   have h3 := hkey b.extraToThirdParty
@@ -685,7 +685,7 @@ structure DeductionItem where
 
 /-- 中文说明：某一扣除项**实际扣减**的判定——主张了且数额非负。 -/
 def deductionCounted (d : DeductionItem) : Bool :=
-  d.claimed && 0 ≤ d.amount
+  d.claimed && decide (0 ≤ d.amount)
 
 /-- 中文说明：**扣除总额**＝逐项判定后求和。 -/
 def deductionTotal (items : List DeductionItem) : Amount :=
@@ -699,13 +699,7 @@ theorem unclaimed_item_does_not_deduct (items : List DeductionItem) (d : Deducti
   unfold deductionTotal
   simp only [List.filter_append, List.map_append, List.sum_append, List.sum_nil, add_zero]
   have h : (List.filter deductionCounted [d]) = [] := by
-    rw [List.filter_eq_nil]
-    intro a ham
-    have had : a = d := List.mem_singleton.mp ham
-    subst had
-    unfold deductionCounted
-    rw [hc]
-    simp
+    simp [deductionCounted, hc]
   rw [h]
 
 /-- 中文证明（**扣除总额非负**）：负数额的项被判定式拦住，
@@ -716,10 +710,10 @@ theorem deductionTotal_nonneg (items : List DeductionItem) :
   have hkey : ∀ x ∈ (List.filter deductionCounted items).map (·.amount), 0 ≤ x := by
     intro x hx
     obtain ⟨d, hd, rfl⟩ := List.mem_map.mp hx
-    have hc := (List.mem_filter.mp hd).2
+    have hc : deductionCounted d = true := (List.mem_filter.mp hd).2
     unfold deductionCounted at hc
-    have := of_decide_eq_true hc
-    exact this.1
+    rw [Bool.and_eq_true] at hc
+    exact of_decide_eq_true hc.2
   exact List.sum_nonneg hkey
 
 /-- 中文说明（**赔偿额的完整读数**，第 63 条两款合读）：计入总额减去扣除总额。

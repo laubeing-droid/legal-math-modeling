@@ -660,10 +660,17 @@ theorem unforeseen_component_drops_out (b : LossBasis)
 theorem basisTotal_le_sum_of_amounts (b : LossBasis) :
     basisTotal b ≤ b.direct.amount + b.gain.amount + b.extraToThirdParty.amount := by
   unfold basisTotal
-  rcases componentCounted b.direct with hd <;>
-    rcases componentCounted b.gain with hg <;>
-      rcases componentCounted b.extraToThirdParty with he <;>
-        simp only [if_pos, if_neg] <;> linarith
+  have hkey : ∀ c : LossComponent,
+      (if componentCounted c then c.amount else 0) ≤ c.amount := by
+    intro c
+    by_cases h : componentCounted c = true
+    · rw [if_pos h]
+    · rw [if_neg h]
+      exact zero_le _
+  have h1 := hkey b.direct
+  have h2 := hkey b.gain
+  have h3 := hkey b.extraToThirdParty
+  linarith
 
 /-- 中文说明（**第 63 条第 3 款的扣除**）：四类扣除项——扩大损失、
     对方过错造成的相应损失、对方因违约获得的额外利益、减少的必要支出。
@@ -690,14 +697,16 @@ theorem unclaimed_item_does_not_deduct (items : List DeductionItem) (d : Deducti
     (hc : d.claimed = false) :
     deductionTotal (items ++ [d]) = deductionTotal items := by
   unfold deductionTotal
-  simp only [List.filter_append, List.map_append, List.sum_append]
+  simp only [List.filter_append, List.map_append, List.sum_append, List.sum_nil, add_zero]
   have h : (List.filter deductionCounted [d]) = [] := by
-    simp only [List.filter_cons, List.filter_nil]
-    unfold deductionCounted
-    rw [hc]
-    simp
+    simp only [List.filter_cons, List.filter_nil, List.not_eq_empty]
+    intro hkeep
+    have hmem : d ∈ List.filter deductionCounted [d] := List.mem_filter_self _ _ (by simp)
+    rw [List.mem_filter] at hmem
+    unfold deductionCounted at hmem
+    rw [hc] at hmem
+    exact Bool.noConfusion hmem.2
   rw [h]
-  simp
 
 /-- 中文证明（**扣除总额非负**）：负数额的项被判定式拦住，
     扣除总额恒非负——它不会反向增加赔偿额。 -/

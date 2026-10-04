@@ -49,7 +49,7 @@ import JurisLean.Seams.UnifiedInstance
    **事实纠正（写在这里，不留给注释）**：任务书称 `ProofStandard` 类型在
    `Seams/Probability.lean`。本件读盘核实：`Seams/Probability.lean` **没有** `ProofStandard`。
    仓内三个互不相通的"标准"载体是
-   ① `JurisLean.Seams.BurdenStatutes.ProofStandardName`（条文具名两档，`:495`，本件用它）；
+   ① `JurisLean.Seams.BurdenStatutes.ProofStandardName`（条文具名两档＋带引注的出口名，`:495`，本件只用两具名档）；
    ② `JurisLean.FullMath.Burden.Standard`（数值门槛＋范围串，`FullMath/Burden/Standards.lean:34`，
       配 `gate:48`）；③ `JurisLean.ULM.ProofStandard`（`standardId/domain/version` 三元元数据，
       `ULM12Procedure.lean:7`）。本件**只**用 ①，②③ 登记为未接（§未覆盖第 6 项）。

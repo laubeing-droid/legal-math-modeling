@@ -40,9 +40,12 @@ import Mathlib.Tactic
   规格早已指出"全交封闭也推不出收缩"（反例形状 `{{0,1},{0,2}}`：交 `{0}` 可采纳而
   `{0,1} ⊄ {0}`），本件把这一事实做成定理而不是散文。
 - **不改动、不削弱** `Seams/AdjudicationBridge.lean` 的任何已证陈述；本件只 import 它。
-- **不新增第三个证明标准档**。第 108 条第 3 款"法律对于待证事实所应达到的证明标准另有规定的，
-  从其规定"在本件里**不**做成 `ProofStandardName` 的第三个构造子（那等于自造档位），
-  只登记为一条"本件未覆盖"的说明。
+- **不新增第三个具名证明标准档**。第 108 条第 3 款"法律对于待证事实所应达到的证明标准另有规定的，
+  从其规定"自 2026-10-04 起以 `statutoryEscape (cite : String)` 构造子进入类型：它是**带引注的出口名**，
+  不是本件自造的档位——`standardGate` 对它给 `False`，且
+  `escape_tier_cannot_name_a_nonblank_domain` 证明它**永远不能**作为非空评价域的挂名档；
+  要判定出口档必须去读 `cite` 指向的规定，本模型不代读。此前的旧注（"不做成构造子"）同日撤回，
+  依据是 17_ 卷 R3：两档穷尽的枚举会把法律专门规定的合法档位排斥在类型之外。
 - 本件产出之前，`docs/master-plan/14_空壳档位降档申请_20261002.md` 里 **P-043（`ProofStandard`）
   与 P-044（`BurdenRule` 定理群）的档位申请不得升档**；该两档的申请与登记归 Owner。
   本件交付的定理只把"条文要件可判定"与"评价域合法性的三条收紧"坐实，
@@ -488,26 +491,41 @@ theorem art109_five_matters_are_enumerated (m : ExceptionalMatter) : m ∈ excep
   | oralWill => decide
   | gift => decide
 
-/-- 中文说明：本件承认的**两个**证明标准档，按条文具名。
-    构造子恰为两个：第三档不许自造。第 108 条第 3 款"法律对于待证事实所应达到的证明标准
-    另有规定的，从其规定"是**出口条款**，不是本件的一个档位，故不做成构造子
-    （做成构造子等于把"另有规定"当作本件已知的第三档，那是自造）。[一手已核＋构造性定义] -/
+/-- 中文说明：本件承认的**两个具名**证明标准档＋一个**带引注的出口名**，按条文具名。
+    两个具名构造子：第 108 条第 1 款"高度可能性"、第 109 条"排除合理怀疑"。
+    第 108 条第 3 款"另有规定的，从其规定"是出口条款——`statutoryEscape (cite : String)`
+    只携带指向那部规定的引注，**不是本件自造的第三档**：`standardGate` 对它恒为 `False`，
+    `escape_tier_cannot_name_a_nonblank_domain` 证明它不能作为任何非空评价域的挂名档。
+    换句话说："不许自造无名档位"保留为 `named_tier_exhausts_non_escape`。
+    [一手已核＋构造性定义；出口构造子为 2026-10-04 增（17_ 卷 R3）] -/
 inductive ProofStandardName : Type
   | highProbability108 -- 第 108 条第 1 款：高度可能性
   | excludesReasonableDoubt109 -- 第 109 条：排除合理怀疑
+  | statutoryEscape (cite : String) -- 第 108 条第 3 款：另有规定，从其规定（携带引注的出口名）
 deriving DecidableEq, Repr
 
-/-- 中文证明（档位只有两档，且两档互异）：这是公理③"不许自造第三档"的可检查形式。 -/
-theorem proof_standard_names_are_exactly_two :
+/-- 中文证明（旧定理 `proof_standard_names_are_exactly_two` 的诚实改写）：
+    两具名档互异；任何**非出口**的标准名必为两具名档之一——这就是"不许自造无名第三档"
+    的可检查形式。出口名另由 `statutory_escape_is_not_a_named_tier` 与
+    `escape_tier_cannot_name_a_nonblank_domain` 约束。 -/
+theorem named_tier_exhausts_non_escape :
     ProofStandardName.highProbability108 ≠ ProofStandardName.excludesReasonableDoubt109 ∧
       ∀ σ : ProofStandardName,
-        σ = ProofStandardName.highProbability108 ∨
-          σ = ProofStandardName.excludesReasonableDoubt109 :=
+        (∀ c : String, σ ≠ ProofStandardName.statutoryEscape c) →
+          σ = ProofStandardName.highProbability108 ∨
+            σ = ProofStandardName.excludesReasonableDoubt109 :=
   ⟨by decide, by
-    intro σ
+    intro σ hnesc
     cases σ with
     | highProbability108 => exact Or.inl rfl
-    | excludesReasonableDoubt109 => exact Or.inr rfl⟩
+    | excludesReasonableDoubt109 => exact Or.inr rfl
+    | statutoryEscape c => exact absurd rfl (hnesc c)⟩
+
+/-- 中文证明：出口名不是具名档（三条不等式）。 -/
+theorem statutory_escape_is_not_a_named_tier (c : String) :
+    ProofStandardName.statutoryEscape c ≠ ProofStandardName.highProbability108 ∧
+      ProofStandardName.statutoryEscape c ≠ ProofStandardName.excludesReasonableDoubt109 :=
+  ⟨by decide, by decide⟩
 
 /-- 中文说明：第 109 条与第 108 条第 1 款的**分档**表：事实类别 → 应达到的具名标准。
     第 109 条那五类一律挂"排除合理怀疑"档（`excludesReasonableDoubt109`）。 -/
@@ -594,14 +612,16 @@ def standardGate {V : Type} (σ : ProofStandardName) (E : EvalDomain V) (S : Set
   match σ with
   | .highProbability108 => ∃ x : V, x ∈ S ∧ x ∈ stableKernel E
   | .excludesReasonableDoubt109 => ∀ T : Set V, Admissible E T → S ⊆ T
+  | .statutoryEscape _ => False
 
 /-- 中文说明：标准 σ 对 `E` 的**全部**可采纳评价生效。 -/
 def StandardNamedAt {V : Type} (σ : ProofStandardName) (E : EvalDomain V) : Prop :=
   ∀ S : Set V, Admissible E S → standardGate σ E S
 
 /-- 中文说明（公理③·挂名到具体证明标准）：评价族挂名到第 108 条第 1 款与第 109 条这两档之一，
-    且该档对全体可采纳评价生效。二选一由 `∃ σ` 表达；`ProofStandardName` 只有两个构造子
-    （`proof_standard_names_are_exactly_two`），故不存在自造的第三档。
+    且该档对全体可采纳评价生效。二选一由 `∃ σ` 表达；出口名带 `False` 闸门，且
+    `escape_tier_cannot_name_a_nonblank_domain` 证明它挂不了非空评价域，
+    `lawful_named_standard_is_a_named_tier` 证明合法域挂的必是具名档。
     条文锚点：第 108 条第 1 款或第 109 条；第 108 条第 3 款**不**在本公理覆盖之列，
     它登记在本件头注"不做什么"里。[建模选择] -/
 def attachesNamedStandard {V : Type} (E : EvalDomain V) : Prop :=
@@ -621,6 +641,36 @@ def EvalDomainLawful {V : Type} (E : EvalDomain V) : Prop :=
 theorem lawful_part_one {V : Type} (E : EvalDomain V) (hl : EvalDomainLawful E) :
     hasNonblankAdmissibleEvaluation E :=
   And.left hl
+
+/-- 中文证明（**出口档在本模型内无闸门**）：`standardGate` 对出口名定义为 `False`，
+    所以它对任何评价域、任何采纳集都开不出闸——要判定"从其规定"必须去读 `cite` 指向的规定，
+    本模型不代读。这不是把出口档做废，而是"从其规定"的字面忠实。 -/
+theorem escape_tier_has_no_gate (c : String) {V : Type} (E : EvalDomain V) (S : Set V) :
+    ¬ standardGate (ProofStandardName.statutoryEscape c) E S := fun h => h
+
+/-- 中文证明（**出口名挂不了非空评价域**）：非空 ⇒ 存在某个可采纳 `S`；把挂名条件作用到 `S`
+    上就得到 `False`。于是"合法评价域的挂名标准必是具名档"（下一条）。 -/
+theorem escape_tier_cannot_name_a_nonblank_domain (c : String) {V : Type} (E : EvalDomain V)
+    (hnb : hasNonblankAdmissibleEvaluation E) :
+    ¬ StandardNamedAt (ProofStandardName.statutoryEscape c) E := by
+  obtain ⟨S, hS⟩ := hnb
+  intro hσ
+  exact escape_tier_has_no_gate c E S (hσ S hS)
+
+/-- 中文证明（**合法域只挂具名档**）：`EvalDomainLawful` 的第①条（非空）把出口名排除，
+    所以 `attachesNamedStandard` 的存在量词实际落在两具名档之一——
+    这就是旧定理"两档穷尽"在出口名加入后的诚实形态。 -/
+theorem lawful_named_standard_is_a_named_tier {V : Type} (E : EvalDomain V)
+    (hl : EvalDomainLawful E) :
+    ∃ σ : ProofStandardName,
+      (σ = ProofStandardName.highProbability108 ∨
+        σ = ProofStandardName.excludesReasonableDoubt109) ∧ StandardNamedAt σ E := by
+  obtain ⟨σ, hσ⟩ := hl.2.2
+  cases σ with
+  | highProbability108 => exact ⟨_, Or.inl rfl, hσ⟩
+  | excludesReasonableDoubt109 => exact ⟨_, Or.inr rfl, hσ⟩
+  | statutoryEscape c =>
+      exact absurd hσ (escape_tier_cannot_name_a_nonblank_domain c E hl.1)
 
 theorem lawful_part_two {V : Type} (E : EvalDomain V) (hl : EvalDomainLawful E) :
     admissibleWeakInterClosed E :=
@@ -824,6 +874,8 @@ theorem disjointVerdict_fails_part_three : ¬ attachesNamedStandard disjointVerd
     have hmem : (0 : Fin 3) ∈ ({0} : Set (Fin 3)) := by simp
     have hnotin : ¬ ((0 : Fin 3) ∈ ({1} : Set (Fin 3))) := by simp
     exact absurd (hsub hmem) hnotin
+  | statutoryEscape _ =>
+    exact (hσ ({0} : Set (Fin 3)) h0).elim
 
 theorem disjointVerdict_is_not_lawful : ¬ EvalDomainLawful disjointVerdictDomain := by
   intro h
@@ -1035,6 +1087,7 @@ def meetsBeyondReasonableDoubt109 : CredProfile → Bool
 def standardMeets : ProofStandardName → CredProfile → Bool
   | .highProbability108 => meetsHighProbability108
   | .excludesReasonableDoubt109 => meetsBeyondReasonableDoubt109
+  | .statutoryEscape _ => fun _ => false
 
 /-- 中文证明（**标准分级不可合并**，任务第四条·方向一：109 档严格不低于 108 档）：
     任一夹具达到第 109 条的档位，就必达第 108 条第 1 款的档位。逐点判定。 -/

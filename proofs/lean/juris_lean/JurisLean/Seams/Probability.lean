@@ -434,7 +434,7 @@ def amountQ (x : Amount) : ℚ := x
     `request_by_party` 与 `discretionary_finding` 出自《民法典》第585条第2款
     （"可以根据当事人的请求予以适当减少"）与法释〔2023〕13号第65条第2款的"一般可以认定"；
     `thirty_percent_ground` 是第65条第2款的百分之三十门槛；
-    `bad_faith_bar` 是第65条第2款"恶意违约……一般不予支持"；
+    `bad_faith_bar` 是第65条第3款"恶意违约……一般不予支持"；
     `burden_of_proof` 是第64条第2款的举证责任；
     `balancing_factors` 是第65条第1款列举的衡量因素面（刻意不产出结论）。 -/
 inductive ReductionCondition where
@@ -456,7 +456,7 @@ structure ReductionData (F : Type) where
   loss : Amount
   /-- 第585条第2款：是否有当事人请求。 -/
   requested : Bool
-  /-- 第65条第2款：是否恶意违约。 -/
+  /-- 第65条第3款：是否恶意违约。 -/
   badFaith : Bool
   /-- 第64条第2款：违约方是否完成"过分高于"的举证。 -/
   proved : Bool
@@ -601,12 +601,12 @@ theorem clampReduction_in_band {F : Type} (c : ReductionData F) (h : (0 : Amount
   · exact ⟨not_lt.mp h1, not_lt.mp h2⟩
 
 /-- 恶意违约的条件数据：请求、举证、认定过分高于皆备，约定额 200、损失 100（门槛成立），
-    但当事人恶意违约（第65条第2款）。 -/
+    但当事人恶意违约（第65条第3款）。 -/
 def maliciousData : ReductionData Unit :=
   { agreed := 200, loss := 100, requested := true, badFaith := true, proved := true,
     overFound := true, factors := () }
 
-/-- 恶意违约把闸门关掉：`reductionGate maliciousData = false`（第65条第2款），
+/-- 恶意违约把闸门关掉：`reductionGate maliciousData = false`（第65条第3款），
     即使其余三个条件位全为真、30% 门槛也成立。闭式 Bool/ℤ 计算，不用浮点。 -/
 theorem maliciousData_gate : reductionGate maliciousData = false := by
   simp [reductionGate, conditionHolds, overThirtyTest, maliciousData]

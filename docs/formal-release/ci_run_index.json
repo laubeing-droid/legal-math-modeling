@@ -10785,6 +10785,68 @@
       "status": "completed",
       "updated_at": "2026-10-03T23:41:01Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 4,
+      "conclusion": "failure",
+      "created_at": "2026-10-04T00:07:31Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/37163957193/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "6121f66e162a95ff75d54103419d082fb7b8f72a",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37163957193",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(ledger): rebind accounts to the all-layer invariant",
+      "quoted_by": [
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:509"
+      ],
+      "run_id": 37163957193,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-04T00:16:19Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],
   "schema_version": "ci-run-index-v1",

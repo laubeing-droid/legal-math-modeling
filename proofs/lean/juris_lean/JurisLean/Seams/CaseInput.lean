@@ -26,7 +26,7 @@ import JurisLean.Seams.SourceNorms
 
 namespace JurisLean.Seams.CaseInput
 
-open JurisLean.SourceNorms
+open JurisLean.Seams.SourceNorms
 
 /-- 一份案卷的最小数据结构。`citations` 是案卷**自报**的条文出处，
     仅供追溯与对账，不参与任何计算，也不验证其指向。 -/
@@ -37,13 +37,12 @@ structure CaseFile (α : Type) [DecidableEq α] where
   rules : List (HornRule α)
   /-- 案卷自报的条文出处（追溯用）。 -/
   citations : List String
-  deriving Repr
 
 /-- 案卷的**论域**：事实位与全部规则头尾出现的原子，去重。 -/
 def caseUniv {α : Type} [DecidableEq α] (cf : CaseFile α) : Finset α :=
   (cf.facts.map Prod.fst).toFinset ∪
     (cf.rules.map (·.conclusion)).toFinset ∪
-    (cf.rules.bind (fun r => r.premises.toList)).toFinset
+    (cf.rules.flatMap (fun r => r.premises.toList)).toFinset
 
 /-- 案卷的**初始事实**：只取成立为真的那些事实位。 -/
 def caseFacts {α : Type} [DecidableEq α] (cf : CaseFile α) : Finset α :=
@@ -53,18 +52,18 @@ def caseFacts {α : Type} [DecidableEq α] (cf : CaseFile α) : Finset α :=
 theorem caseFacts_subset_caseUniv {α : Type} [DecidableEq α] (cf : CaseFile α) :
     caseFacts cf ⊆ caseUniv cf := by
   intro a ha
-  simp only [caseFacts, Finset.mem_toFinset, Finset.mem_map, List.mem_filter] at ha
+  simp only [caseFacts, List.mem_toFinset, Finset.mem_map, List.mem_filter] at ha
   obtain ⟨p, hp, rfl⟩ := ha
-  simp only [caseUniv, Finset.mem_toFinset, Finset.mem_map, List.mem_union]
+  simp only [caseUniv, List.mem_toFinset, Finset.mem_map, List.mem_union]
   exact Or.inl ⟨p, hp.1, rfl⟩
 
 /-- 中文证明（技术引理）：每条规则的结论都在论域里——论域并了全部规则头。 -/
 theorem caseHeads_subset_caseUniv {α : Type} [DecidableEq α] (cf : CaseFile α) :
     ∀ r ∈ (cf.rules.toFinset : Finset (HornRule α)), r.conclusion ∈ caseUniv cf := by
   intro r hr
-  simp only [caseUniv, Finset.mem_toFinset, Finset.mem_map, List.mem_union]
+  simp only [caseUniv, List.mem_toFinset, Finset.mem_map, List.mem_union]
   exact Or.inr ⟨Or.inl ⟨r, by
-    simp only [Finset.mem_toFinset, List.mem_toFinset] at hr
+    simp only [List.mem_toFinset] at hr
     exact hr, rfl⟩⟩
 
 /-- **主构造**：把一份案卷折成一台 `HornSystem`。 -/
@@ -104,13 +103,13 @@ theorem sample_conclusion_in_closure :
   refine (horn_closure_semantic_iff (hornOfCase sampleFile) _).mpr ?_
   intro M hM
   have h1 : "欠款成立" ∈ M := hM.1 (by
-    simp only [hornOfCase, caseFacts, Finset.mem_toFinset, Finset.mem_map, List.mem_filter]
+    simp only [hornOfCase, caseFacts, List.mem_toFinset, Finset.mem_map, List.mem_filter]
     exact ⟨("欠款成立", true), ⟨by decide, by decide⟩, rfl⟩)
   have h2 : "违约成立" ∈ M := hM.1 (by
-    simp only [hornOfCase, caseFacts, Finset.mem_toFinset, Finset.mem_map, List.mem_filter]
+    simp only [hornOfCase, caseFacts, List.mem_toFinset, Finset.mem_map, List.mem_filter]
     exact ⟨("违约成立", true), ⟨by decide, by decide⟩, rfl⟩)
   have hr := hM.2 { premises := {"欠款成立", "违约成立"}, conclusion := "应付违约金" } (by
-    simp only [hornOfCase, Finset.mem_toFinset]
+    simp only [hornOfCase, List.mem_toFinset]
     exact List.Mem.head _)
   exact hr ⟨h1, h2⟩
 

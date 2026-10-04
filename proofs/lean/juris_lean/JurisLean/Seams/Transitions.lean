@@ -640,6 +640,11 @@ theorem art64_layers_keep_the_sides_apart : ∀ j : Nat,
     "不予支持"打的是抗辩，不是请求。原先此处是一条 `def … : Prop` 挂账
     （`art64_one_sidedness_for_the_request_is_still_open`），现由全层不变式
     `art64_layers_keep_the_sides_apart` 证成并删除该挂账项。 -/
+theorem art64_request_is_never_defeated :
+    ¬ FinalDefeated art64Policy (encode ClauseAtom.reductionClaim) := by
+  rintro ⟨j, hj⟩
+  exact (art64_layers_keep_the_sides_apart j).1 hj
+
 /-- 中文说明（WBS-1 的**不变量**，17_ 卷 §四）：策略自洽＝凡被采纳的论点其支持位为真。
     "90 条不利后果"要求的就是这一条：一个论点若因举证不能而不被支持，它就**不得**
     经由 conclusive 照样被采纳——否则"不利后果"在引擎里空转。 -/
@@ -666,10 +671,5 @@ theorem unsupported_not_in_base_of_consistent {pol : TerminalPolicy aaf}
   intro hmem
   rw [h a hmem] at ha
   exact absurd ha (by decide)
-
-theorem art64_request_is_never_defeated :
-    ¬ FinalDefeated art64Policy (encode ClauseAtom.reductionClaim) := by
-  rintro ⟨j, hj⟩
-  exact (art64_layers_keep_the_sides_apart j).1 hj
 
 end ArtSixtyFourClauseThree

@@ -2,6 +2,7 @@ import JurisLean.Seams.Representation
 import JurisLean.Seams.SourceNorms
 import JurisLean.Seams.AdjudicationBridge
 import JurisLean.Seams.BurdenStatutes
+import JurisLean.Seams.SanctionInterest
 import JurisLean.Seams.InstitutionalEffects
 import JurisLean.Seams.PayoffEquilibrium
 import JurisLean.Seams.PrecedentFlow
@@ -154,6 +155,13 @@ structure UnifiedModel (V Rel : Type) [DecidableEq Rel] where
       即"案件数据缺省时读作无缺口"，不认定任何真实案件。 -/
   caseBurden : BurdenStatutes.BurdenAllocation × BurdenStatutes.ProductionStatus :=
     (⟨.proponent, false, ""⟩, .produced)
+  /-- 中文说明（**L6 制裁栏**，2026-10-04 增，17_ 卷缺口 8）：本案迟延履行
+      加倍利息的输入位——未清偿本金（`ℚ`，与制裁件同载体）与迟延天数。
+      此前 `SanctionInterest` 的全部性质只被审计面消费，𝔐 没有栏位，
+      "加倍利息算得对、进不了裁判结论"。默认 `(0, 0)`＝无迟延材料，
+      读数为零；加载后经 `SanctionInterest.doubleInterest` 直读。
+      夹具默认不认定任何真实案件的执行阶段。 -/
+  sanction : ℚ × ℕ := (0, 0)
 
 /-- 契约 (1)：统一模型**不退化**。三支都是"存在"式的正面见证，全部引用。 -/
 def UnifiedNonDegenerate : Prop :=

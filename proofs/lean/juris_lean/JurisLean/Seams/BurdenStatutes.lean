@@ -564,6 +564,54 @@ theorem statutory_escape_is_not_a_named_tier (c : String) :
   ⟨fun h => ProofStandardName.noConfusion h,
     fun h => ProofStandardName.noConfusion h⟩
 
+/-- 中文说明（**案件事实类别位**，17_ 卷缺口 4 的桥）：待证事实在本案被归入
+    第 109 条五类的哪一类（`some`），还是普通事实（`none`）。
+    这是"证明标准 ↔ 事实认定"之间此前缺失的那条数据通道：模型不会自己"发现"
+    本案属欺诈——它读的是这一位。夹具映射：第一项是欺诈，其余普通。
+    `[代拟稿]`：真实案件里这一位由审理认定，本件只给通道与读数。 -/
+def factMatterClass : FactIndex → Option ExceptionalMatter
+  | .first => some .fraud
+  | .second => none
+  | .third => none
+
+/-- 中文说明（**通道的读数**）：类别位给出该事实应达到的具名标准——
+    五类挂 109 档，普通事实挂 108 条第 1 款档。 -/
+def standardFor : FactIndex → ProofStandardName :=
+  fun i => match factMatterClass i with
+    | some m => art109StandardOf m
+    | none => ProofStandardName.highProbability108
+
+/-- 中文证明（**五类事实必须走严档**）：类别位非空 ⇒ 读数恰为"排除合理怀疑"。 -/
+theorem exceptional_fact_requires_the_stricter_tier (i : FactIndex) (m : ExceptionalMatter)
+    (h : factMatterClass i = some m) :
+    standardFor i = ProofStandardName.excludesReasonableDoubt109 := by
+  unfold standardFor
+  rw [h]
+  cases m <;> rfl
+
+/-- 中文证明（**普通事实走常档**）：类别位为空 ⇒ 读数是 108 条第 1 款档。 -/
+theorem ordinary_fact_gets_the_ordinary_tier (i : FactIndex)
+    (h : factMatterClass i = none) :
+    standardFor i = ProofStandardName.highProbability108 := by
+  unfold standardFor
+  rw [h]
+
+/-- 中文证明（**通道与 109 分档表一致**）：读数就是 `art109StandardOf` 在该类别上的值。 -/
+theorem the_bridge_respects_the_109_table (i : FactIndex) (m : ExceptionalMatter)
+    (h : factMatterClass i = some m) : standardFor i = art109StandardOf m := by
+  unfold standardFor
+  rw [h]
+
+/-- 中文证明（**读严档必有类别**）：读数是严档 ⇒ 类别位非空——
+    模型不能凭空给某事实上严档，必须指回一项五类认定。 -/
+theorem stricter_tier_requires_a_classified_fact (i : FactIndex)
+    (h : standardFor i = ProofStandardName.excludesReasonableDoubt109) :
+    ∃ m : ExceptionalMatter, factMatterClass i = some m := by
+  unfold standardFor at h
+  cases hc : factMatterClass i with
+  | none => rw [hc] at h; exact absurd h (by decide)
+  | some m => exact ⟨m, hc⟩
+
 /-- 中文说明：第 109 条与第 108 条第 1 款的**分档**表：事实类别 → 应达到的具名标准。
     第 109 条那五类一律挂"排除合理怀疑"档（`excludesReasonableDoubt109`）。 -/
 def art109StandardOf : ExceptionalMatter → ProofStandardName

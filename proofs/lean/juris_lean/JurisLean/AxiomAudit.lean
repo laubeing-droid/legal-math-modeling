@@ -144,6 +144,8 @@ import JurisLean.Seams.StatuteChain
 
 import JurisLean.Seams.CaseInput
 
+import JurisLean.Seams.Limitation
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1036,6 +1038,7 @@ open HornSystem
 #print axioms JurisLean.Seams.BurdenStatutes.disjointVerdict_kernel_is_empty
 #print axioms JurisLean.Seams.BurdenStatutes.escape_tier_cannot_name_a_nonblank_domain
 #print axioms JurisLean.Seams.BurdenStatutes.escape_tier_has_no_gate
+#print axioms JurisLean.Seams.BurdenStatutes.exceptional_fact_requires_the_stricter_tier
 #print axioms JurisLean.Seams.BurdenStatutes.exceptional_matters_are_five
 #print axioms JurisLean.Seams.BurdenStatutes.exempt_items_are_seven
 #print axioms JurisLean.Seams.BurdenStatutes.fullInterClosed_implies_weak
@@ -1053,6 +1056,7 @@ open HornSystem
 #print axioms JurisLean.Seams.BurdenStatutes.lawful_part_three
 #print axioms JurisLean.Seams.BurdenStatutes.lawful_part_two
 #print axioms JurisLean.Seams.BurdenStatutes.named_tier_exhausts_non_escape
+#print axioms JurisLean.Seams.BurdenStatutes.ordinary_fact_gets_the_ordinary_tier
 #print axioms JurisLean.Seams.BurdenStatutes.standard109_named_at_implies_collapse
 #print axioms JurisLean.Seams.BurdenStatutes.standard_tier_gap_witness
 #print axioms JurisLean.Seams.BurdenStatutes.standard_tier_is_a_hierarchy
@@ -1062,6 +1066,8 @@ open HornSystem
 #print axioms JurisLean.Seams.BurdenStatutes.statutory_shift_blocks_art91
 #print axioms JurisLean.Seams.BurdenStatutes.statutory_shift_has_a_witness
 #print axioms JurisLean.Seams.BurdenStatutes.statutory_shift_needs_a_citation
+#print axioms JurisLean.Seams.BurdenStatutes.stricter_tier_requires_a_classified_fact
+#print axioms JurisLean.Seams.BurdenStatutes.the_bridge_respects_the_109_table
 #print axioms JurisLean.Seams.BurdenStatutes.trialDomain_attaches_the_108_standard
 #print axioms JurisLean.Seams.BurdenStatutes.trialDomain_fails_part_two
 #print axioms JurisLean.Seams.BurdenStatutes.trialDomain_fails_the_109_standard
@@ -1302,6 +1308,13 @@ open HornSystem
 #print axioms JurisLean.Seams.LegacyConeBridge.mem_conclusion_of_mem_rules
 #print axioms JurisLean.Seams.LegacyConeBridge.offDiagramAttack_mem
 #print axioms JurisLean.Seams.LegacyConeBridge.offDiagramAttack_witnessed
+#print axioms JurisLean.Seams.Limitation.art66Clause3_closed_when_both_present
+#print axioms JurisLean.Seams.Limitation.art66Clause3_witness
+#print axioms JurisLean.Seams.Limitation.expiration_day_exists
+#print axioms JurisLean.Seams.Limitation.interruption_restarts_the_clock
+#print axioms JurisLean.Seams.Limitation.limitationPeriod_pos
+#print axioms JurisLean.Seams.Limitation.second_instance_still_owes_clarification
+#print axioms JurisLean.Seams.Limitation.suspension_only_delays
 #print axioms JurisLean.Seams.PayoffEquilibrium.abs_two_close
 #print axioms JurisLean.Seams.PayoffEquilibrium.approxNash_agrees_with_isNashPure_at_k10
 #print axioms JurisLean.Seams.PayoffEquilibrium.approxNash_legalPay_k10
@@ -1414,11 +1427,13 @@ open HornSystem
 #print axioms JurisLean.Seams.Probability.allow_of_gate_open
 #print axioms JurisLean.Seams.Probability.allowed_amount_nonneg_of_nonneg_agreed
 #print axioms JurisLean.Seams.Probability.band_containment_is_not_allow
+#print axioms JurisLean.Seams.Probability.basisTotal_le_sum_of_amounts
 #print axioms JurisLean.Seams.Probability.beta_posterior_from_likelihood
 #print axioms JurisLean.Seams.Probability.beta_predictive_bracket_survives_update
 #print axioms JurisLean.Seams.Probability.choose_is_not_determined_by_allow
 #print axioms JurisLean.Seams.Probability.clampReduction_in_band
 #print axioms JurisLean.Seams.Probability.clamp_is_not_reduction
+#print axioms JurisLean.Seams.Probability.deductionTotal_nonneg
 #print axioms JurisLean.Seams.Probability.denotate_some_none
 #print axioms JurisLean.Seams.Probability.denotation_blocked_without_policy
 #print axioms JurisLean.Seams.Probability.denotation_independent_of_policy
@@ -1442,6 +1457,7 @@ open HornSystem
 #print axioms JurisLean.Seams.Probability.maliciousData_clamp
 #print axioms JurisLean.Seams.Probability.maliciousData_floor
 #print axioms JurisLean.Seams.Probability.maliciousData_gate
+#print axioms JurisLean.Seams.Probability.netRecoverable_may_be_negative
 #print axioms JurisLean.Seams.Probability.ordinary_gate_still_blocks_maliciousExceptData
 #print axioms JurisLean.Seams.Probability.otherGroundData_not_overThirty
 #print axioms JurisLean.Seams.Probability.overThirtyTest_congr_badFaith
@@ -1463,6 +1479,8 @@ open HornSystem
 #print axioms JurisLean.Seams.Probability.threshold_does_not_force_the_finding
 #print axioms JurisLean.Seams.Probability.transport_boundary_needs_nesting
 #print axioms JurisLean.Seams.Probability.transport_regime_positivity
+#print axioms JurisLean.Seams.Probability.unclaimed_item_does_not_deduct
+#print axioms JurisLean.Seams.Probability.unforeseen_component_drops_out
 #print axioms JurisLean.Seams.ReductionConditions2.all_new_bits_open_still_cannot_pass_malicious_base
 #print axioms JurisLean.Seams.ReductionConditions2.allowC_admits_recordChoose
 #print axioms JurisLean.Seams.ReductionConditions2.allowC_blind_to_noAdjustmentClause
@@ -1624,6 +1642,8 @@ open HornSystem
 #print axioms JurisLean.Seams.StatuteChain.chain_evalDom_eq
 #print axioms JurisLean.Seams.StatuteChain.chain_gate_input_still_adopted_at_round0
 #print axioms JurisLean.Seams.StatuteChain.chain_naming_hop_closes_witness
+#print axioms JurisLean.Seams.StatuteChain.chain_naming_is_constant
+#print axioms JurisLean.Seams.StatuteChain.chain_naming_uniqueness
 #print axioms JurisLean.Seams.StatuteChain.chain_norms_eq
 #print axioms JurisLean.Seams.StatuteChain.chain_phrases_are_distinct
 #print axioms JurisLean.Seams.StatuteChain.chain_pol_eq
@@ -1643,8 +1663,11 @@ open HornSystem
 #print axioms JurisLean.Seams.StatuteChain.chain_tier_part_two
 #print axioms JurisLean.Seams.StatuteChain.chain_zero_in_kernel
 #print axioms JurisLean.Seams.StatuteChain.instanceM_observation_is_the_declared_one
+#print axioms JurisLean.Seams.StatuteChain.instanceM_sanction_default_is_zero
 #print axioms JurisLean.Seams.StatuteChain.observation_does_not_touch_adoption
 #print axioms JurisLean.Seams.StatuteChain.observation_reports_something
+#print axioms JurisLean.Seams.StatuteChain.sanction_slot_can_carry_the_performance_amount
+#print axioms JurisLean.Seams.StatuteChain.sanction_slot_reads_the_sanction_module
 #print axioms JurisLean.Seams.StatuteChain.statuteChain_on_instanceM
 #print axioms JurisLean.Seams.StatuteChain.statuteChain_reaches_the_one_closed_instance
 #print axioms JurisLean.Seams.Temporal.IntertemporalLawSignature.withRetroFalse_preserves_wellFormed
@@ -1796,6 +1819,7 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedInstance.iter_pos_eq_args
 #print axioms JurisLean.Seams.UnifiedInstance.mem_envOld
 #print axioms JurisLean.Seams.UnifiedInstance.model_equality_determines_observation
+#print axioms JurisLean.Seams.UnifiedInstance.normsM_closure_eq_univ
 #print axioms JurisLean.Seams.UnifiedInstance.normsM_model_class_nonempty
 #print axioms JurisLean.Seams.UnifiedInstance.observation_not_determined_by_the_model
 #print axioms JurisLean.Seams.UnifiedInstance.one_in_closureM

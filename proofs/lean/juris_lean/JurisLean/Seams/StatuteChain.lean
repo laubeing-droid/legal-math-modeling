@@ -859,4 +859,86 @@ theorem observation_reports_something :
     ObservationReports instanceM (0 : Fin 1) ClaimBasis.Status.unenforceable true := by
   rfl
 
+
+/-! ## §十四、L6 制裁栏接通（17_ 卷缺口 8：加倍利息从孤岛进 𝔐） -/
+
+/-- 中文证明（**默认＝无迟延材料**）：夹具默认下加倍利息读数为零
+    （`doubleInterest 0 d = 0` 的直接实例）。 -/
+theorem instanceM_sanction_default_is_zero :
+    SanctionInterest.doubleInterest instanceM.sanction.1 instanceM.sanction.2 = 0 :=
+  SanctionInterest.doubleInterest_zero_principal _
+
+/-- 中文证明（**栏位直读制裁件**）：加载后的读数**就是** `SanctionInterest.doubleInterest`
+    在该输入上的值——𝔐 的 L6 栏与制裁件之间是定义级直读，不是另一台算式。
+    这条把"加倍利息进不了裁判结论"的孤岛状态关掉：结论侧要引用时读这一位即可。 -/
+theorem sanction_slot_reads_the_sanction_module (p : ℚ) (d : ℕ)
+    (M : UnifiedModel (Fin 3) (Fin 1)) (h : M.sanction = (p, d)) :
+    SanctionInterest.doubleInterest M.sanction.1 M.sanction.2 =
+      SanctionInterest.doubleInterest p d := by
+  rw [h]
+
+/-- 中文证明（**与 L5 履行面的桥**）：若把制裁栏的本金加载为履行额的 `ℚ` 化，
+    读数就是"迟延天数下的加倍利息"——一面给数、一面给制裁，两面对得上。
+    注意方向：本条**不**说履行额必等于制裁本金（那是加载决定，不是定理）。 -/
+theorem sanction_slot_can_carry_the_performance_amount
+    (M : UnifiedModel (Fin 3) (Fin 1)) (d : ℕ)
+    (h : M.sanction = ((M.performAmount : ℚ), d)) :
+    SanctionInterest.doubleInterest M.sanction.1 M.sanction.2 =
+      SanctionInterest.doubleInterest (M.performAmount : ℚ) d := by
+  rw [h]
+
+/-! ## §十三、命名跳的唯一性（17_ 卷缺口 10：反向全称版，经夹逼拆掉 decide 卡点） -/
+
+/-- 中文证明（**常函数命名**，审计 P2-2 的机器化登记）：`chainNamingM` 把两个原子
+    映到同一个论点——它不单射，是本件登记在案的事实，不是缺陷隐瞒。 -/
+theorem chain_naming_is_constant :
+    chainNamingM 0 = chainNamingM 1 :=
+  rfl
+
+/-- 中文证明（**唯一性，反向全称版**）：若另一台命名给出**同一台支持位**，
+    则它逐点等于 `chainNamingM`。此前这句话卡在 `closureAt` 的 `decide`
+    （§未覆盖第 2 项登记的 §5.3 卡点）；现在 `normsM_closure_eq_univ`
+    把闭包夹逼成 `{0, 1}`，卡点不复存在。
+    证法：支持位相等 ⇒ 命名像相等（`image` 上的 `decide` 单射）⇒
+    像是单点集 `{disputed}` ⇒ 两个原子的像都是 `disputed` ⇒ 函数逐点相等。 -/
+theorem chain_naming_uniqueness
+    (n : Fin 2 → Arg)
+    (h : Transitions.admissibleFromHorn instanceM.norms n =
+           Transitions.admissibleFromHorn instanceM.norms chainNamingM) :
+    n = chainNamingM := by
+  have h1 : Transitions.admissibleFromHorn instanceM.norms chainNamingM
+      instanceM.disputed = true :=
+    Transitions.horn_derived_is_admissible instanceM.norms chainNamingM _
+      (Finset.mem_image.mpr ⟨0, UnifiedInstance.zero_in_closureM, rfl⟩)
+  have hd : instanceM.disputed ∈ Transitions.namedClosure instanceM.norms n := by
+    rw [← h] at h1
+    unfold Transitions.admissibleFromHorn at h1
+    simpa using h1
+  have hfalse : ∀ b : Arg, b ≠ instanceM.disputed →
+      Transitions.admissibleFromHorn instanceM.norms chainNamingM b = false := by
+    intro b hb
+    unfold Transitions.admissibleFromHorn chainNamingM
+    simp only [decide_eq_false_iff, Finset.mem_image, not_exists]
+    intro i hcon
+    exact hb hcon.symm
+  have hsub : ∀ b ∈ Transitions.namedClosure instanceM.norms n,
+      b = instanceM.disputed := by
+    intro b hb hne
+    have hf : Transitions.admissibleFromHorn instanceM.norms n b = true := by
+      unfold Transitions.admissibleFromHorn
+      simpa using hb
+    rw [h] at hf
+    rw [hfalse b hne] at hf
+    exact absurd hf (by decide)
+  funext i
+  have hmem : n i ∈ Transitions.namedClosure instanceM.norms n :=
+    Finset.mem_image.mpr
+      ⟨i, by rw [UnifiedInstance.normsM_closure_eq_univ]
+            cases i with
+            | zero => exact Finset.mem_insert_self _ _
+            | one => exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl),
+        rfl⟩
+  show n i = instanceM.disputed
+  exact hsub _ hmem
+
 end JurisLean.Seams.StatuteChain

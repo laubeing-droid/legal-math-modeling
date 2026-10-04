@@ -314,6 +314,28 @@ theorem one_in_closureM : (1 : Fin 2) ∈ SourceNorms.closureAt normsM :=
   (SourceNorms.closure_is_model normsM).2 ruleM ruleM_mem_rules
     (Finset.singleton_subset_iff.mpr zero_in_closureM)
 
+/-- 中文证明（**G6 反向全称版的前置**，17_ 卷缺口 10）：`normsM` 的迭代闭包
+    恰是 `{0, 1}` 全域。此前这句只能靠 `decide`（穿不过 `iter`＋`TH` 的
+    `filter/image`，§5.3 登记的卡点），现在走两条已证引理的夹逼：
+    ⊆ 由 `horn_result_subset_univ`（载体全量性），⊇ 由 `zero_in_closureM`
+    与 `one_in_closureM`（典范模型的两个成员见证）。 -/
+theorem normsM_closure_eq_univ :
+    SourceNorms.closureAt normsM = ({0, 1} : Finset (Fin 2)) := by
+  refine Finset.ext ?_
+  intro a
+  refine ⟨fun ha => ?_, fun ha => ?_⟩
+  · have hsub : SourceNorms.closureAt normsM ⊆ normsM.univ :=
+      JurisLean.HornSystem.horn_result_subset_univ normsM
+    have := hsub ha
+    unfold normsM at this
+    simp only [Finset.mem_insert, Finset.mem_singleton] at this
+    rcases this with rfl | rfl
+    · exact Finset.mem_insert_self _ _
+    · exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl)
+  · rcases Finset.mem_insert.mp ha with rfl | rfl
+    · exact zero_in_closureM
+    · exact one_in_closureM
+
 /-- 中文证明：待判原子**语义上被蕴含**（`UnifiedChainCorrespondence` 第一条合取支的正方向，
     经仓内 `horn_closure_semantic_iff :171` 从闭包成员读出）。 -/
 theorem atomM_entailed : SourceNorms.entailed normsM atomM :=

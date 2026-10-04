@@ -611,6 +611,120 @@ def maliciousData : ReductionData Unit :=
   { agreed := 200, loss := 100, requested := true, badFaith := true, proved := true,
     overFound := true, factors := () }
 
+/-! ### 第 63 条第 2、3 款：损失基础的构成与扣除（17_ 卷缺口 9） -/
+
+/-- 中文说明（**损失基础的构成**，第 63 条第 2 款）：损失赔偿额的构成面——
+    直接损失、合同履行后可以获得的利益（可得利益）、向第三人承担违约责任
+    应当支出的额外费用，各自有**自己的数额位与自己的可预见检验位**。
+    此前只有一个总封顶 `foreseeableLoss`，分不出"哪一部分损失因何被计入"。
+    每一部分都带 `foreseen : Bool`——第 63 条第 2 款的"经审理认为该损失系违约一方
+    订立合同时预见到或者应当预见到的，人民法院应予支持"是逐部分的检验，不是总额检验。
+    `[建模选择]`：数额取 `Amount := ℤ`（最小货币单位，与件内一致）。 -/
+structure LossComponent where
+  /-- 这一部分损失的数额。 -/
+  amount : Amount
+  /-- 审理认定：订立合同时已预见或应当预见（第 63 条第 2 款的检验位）。 -/
+  foreseen : Bool
+  deriving Repr
+
+/-- 中文说明：损失基础的三个构成位——直接损失、可得利益、额外费用（第 63 条第 2 款的字面三分）。 -/
+structure LossBasis where
+  direct : LossComponent
+  gain : LossComponent
+  extraToThirdParty : LossComponent
+  deriving Repr
+
+/-- 中文说明：某一构成位**计入**损失基础的判定——数额非负且通过它自己的可预见检验。 -/
+def componentCounted (c : LossComponent) : Bool :=
+  0 ≤ c.amount && c.foreseen
+
+/-- 中文说明：损失基础的**计入总额**＝逐位判定后求和。未预见的部分自动落在外——
+    这就是"哪一部分损失因何被计入"的可算回答。 -/
+def basisTotal (b : LossBasis) : Amount :=
+  (if componentCounted b.direct then b.direct.amount else 0) +
+    (if componentCounted b.gain then b.gain.amount else 0) +
+      (if componentCounted b.extraToThirdParty then b.extraToThirdParty.amount else 0)
+
+/-- 中文证明（**未预见的部分不计入**）：把某一位的可预见位关掉，总额只减不加
+    （或不变，若该位原已不计入）。 -/
+theorem unforeseen_component_drops_out (b : LossBasis)
+    (hf : b.gain.foreseen = false) :
+    basisTotal b = (if componentCounted b.direct then b.direct.amount else 0) +
+      (if componentCounted b.extraToThirdParty then b.extraToThirdParty.amount else 0) := by
+  unfold basisTotal componentCounted
+  rw [hf, and_false]
+  simp only [if_false]
+  ring
+
+/-- 中文证明（**计入总额不超过逐位绝对值之和**）：判定只做取舍不做增值。 -/
+theorem basisTotal_le_sum_of_amounts (b : LossBasis) :
+    basisTotal b ≤ b.direct.amount + b.gain.amount + b.extraToThirdParty.amount := by
+  unfold basisTotal
+  rcases componentCounted b.direct with hd <;>
+    rcases componentCounted b.gain with hg <;>
+      rcases componentCounted b.extraToThirdParty with he <;>
+        simp only [if_pos, if_neg] <;> linarith
+
+/-- 中文说明（**第 63 条第 3 款的扣除**）：四类扣除项——扩大损失、
+    对方过错造成的相应损失、对方因违约获得的额外利益、减少的必要支出。
+    每一类有自己的数额位与"违约方主张扣除"的启动位（条文是"违约方主张……的，
+    人民法院依法予以支持"，不主张不扣）。 -/
+structure DeductionItem where
+  /-- 扣除项的数额（非负才有意义，判定式会拦住负数）。 -/
+  amount : Amount
+  /-- 违约方是否主张扣除本项（第 63 条第 3 款的启动位）。 -/
+  claimed : Bool
+  deriving Repr
+
+/-- 中文说明：某一扣除项**实际扣减**的判定——主张了且数额非负。 -/
+def deductionCounted (d : DeductionItem) : Bool :=
+  d.claimed && 0 ≤ d.amount
+
+/-- 中文说明：**扣除总额**＝逐项判定后求和。 -/
+def deductionTotal (items : List DeductionItem) : Amount :=
+  (items.filter deductionCounted).map (·.amount) |>.sum
+
+/-- 中文证明（**未主张的项不扣**）：扣减只发生在主张位为真的项上——
+    条文的"违约方主张……的，予以支持"落成机器读法。 -/
+theorem unclaimed_item_does_not_deduct (items : List DeductionItem) (d : DeductionItem)
+    (hc : d.claimed = false) :
+    deductionTotal (items ++ [d]) = deductionTotal items := by
+  unfold deductionTotal
+  simp only [List.filter_append, List.map_append, List.sum_append]
+  have h : (List.filter deductionCounted [d]) = [] := by
+    simp only [List.filter_cons, deductionCounted, hc, and_false, List.filter_nil]
+    rfl
+  rw [h]
+  simp
+
+/-- 中文证明（**扣除总额非负**）：负数额的项被判定式拦住，
+    扣除总额恒非负——它不会反向增加赔偿额。 -/
+theorem deductionTotal_nonneg (items : List DeductionItem) :
+    0 ≤ deductionTotal items := by
+  unfold deductionTotal
+  have : ∀ x ∈ (List.filter deductionCounted items).map (·.amount), 0 ≤ x := by
+    intro x hx
+    obtain ⟨d, hd, rfl⟩ := List.mem_map.mp hx
+    have := (List.mem_filter.mp hd).2
+    unfold deductionCounted at this
+    exact this.2
+  exact List.sum_nonneg this
+
+/-- 中文说明（**赔偿额的完整读数**，第 63 条两款合读）：计入总额减去扣除总额。
+    这就是"损失基础算不出来"的机器化回答：现在它是一条可算的复合读数，
+    每一步都能指回条文的那一款。 -/
+def netRecoverable (b : LossBasis) (items : List DeductionItem) : Amount :=
+  basisTotal b - deductionTotal items
+
+/-- 中文证明（**可扣到零但不为负**）：扣除再多，赔偿额不为负——
+    判定式保证扣除总额非负，而计入总额若小于扣除总额，读数可为负；
+    本条把"可为负"如实登记（民事上负赔偿额无意义，输出层须截零），
+    不假装机器自动截零。 -/
+theorem netRecoverable_may_be_negative (b : LossBasis) (items : List DeductionItem) :
+    netRecoverable b items < 0 ↔ basisTotal b < deductionTotal items := by
+  unfold netRecoverable
+  exact Int.sub_neg_iff_lt
+
 /-- 恶意违约把闸门关掉：`reductionGate maliciousData = false`（第65条第3款），
     即使其余三个条件位全为真、30% 门槛也成立。闭式 Bool/ℤ 计算，不用浮点。 -/
 theorem maliciousData_gate : reductionGate maliciousData = false := by

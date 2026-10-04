@@ -1640,6 +1640,8 @@
     "JurisLean.Seams.BurdenStatutes.disjointVerdict_holds_part_two",
     "JurisLean.Seams.BurdenStatutes.disjointVerdict_is_not_lawful",
     "JurisLean.Seams.BurdenStatutes.disjointVerdict_kernel_is_empty",
+    "JurisLean.Seams.BurdenStatutes.escape_tier_cannot_name_a_nonblank_domain",
+    "JurisLean.Seams.BurdenStatutes.escape_tier_has_no_gate",
     "JurisLean.Seams.BurdenStatutes.exceptional_matters_are_five",
     "JurisLean.Seams.BurdenStatutes.exempt_items_are_seven",
     "JurisLean.Seams.BurdenStatutes.fullInterClosed_implies_weak",
@@ -1651,16 +1653,18 @@
     "JurisLean.Seams.BurdenStatutes.fullInter_holds_part_two",
     "JurisLean.Seams.BurdenStatutes.fullInter_kernel_is_singleton",
     "JurisLean.Seams.BurdenStatutes.lawful_does_not_imply_collapse",
+    "JurisLean.Seams.BurdenStatutes.lawful_named_standard_is_a_named_tier",
     "JurisLean.Seams.BurdenStatutes.lawful_of_allowedSet_singleton",
     "JurisLean.Seams.BurdenStatutes.lawful_part_one",
     "JurisLean.Seams.BurdenStatutes.lawful_part_three",
     "JurisLean.Seams.BurdenStatutes.lawful_part_two",
-    "JurisLean.Seams.BurdenStatutes.proof_standard_names_are_exactly_two",
+    "JurisLean.Seams.BurdenStatutes.named_tier_exhausts_non_escape",
     "JurisLean.Seams.BurdenStatutes.standard109_named_at_implies_collapse",
     "JurisLean.Seams.BurdenStatutes.standard_tier_gap_witness",
     "JurisLean.Seams.BurdenStatutes.standard_tier_is_a_hierarchy",
     "JurisLean.Seams.BurdenStatutes.standard_tier_two_way_decision",
     "JurisLean.Seams.BurdenStatutes.standard_tiers_cannot_be_merged",
+    "JurisLean.Seams.BurdenStatutes.statutory_escape_is_not_a_named_tier",
     "JurisLean.Seams.BurdenStatutes.trialDomain_attaches_the_108_standard",
     "JurisLean.Seams.BurdenStatutes.trialDomain_fails_part_two",
     "JurisLean.Seams.BurdenStatutes.trialDomain_fails_the_109_standard",
@@ -2903,8 +2907,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "89657ee0183b2cd63b9a2f0878d21cb0d41097b356611ac4d0fc2aabef4955fc",
-   "size_bytes": 163635,
+   "sha256": "39a5247bca9e6adbbacb1a8ef76eb6a90edffd1a1eff6bca3afc612ca92259a1",
+   "size_bytes": 163950,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -23849,7 +23853,11 @@
     },
     {
      "kind": "theorem",
-     "name": "proof_standard_names_are_exactly_two"
+     "name": "named_tier_exhausts_non_escape"
+    },
+    {
+     "kind": "theorem",
+     "name": "statutory_escape_is_not_a_named_tier"
     },
     {
      "kind": "def",
@@ -23902,6 +23910,18 @@
     {
      "kind": "theorem",
      "name": "lawful_part_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "escape_tier_has_no_gate"
+    },
+    {
+     "kind": "theorem",
+     "name": "escape_tier_cannot_name_a_nonblank_domain"
+    },
+    {
+     "kind": "theorem",
+     "name": "lawful_named_standard_is_a_named_tier"
     },
     {
      "kind": "theorem",
@@ -24099,10 +24119,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/BurdenStatutes.lean",
    "print_axioms_targets": [],
-   "sha256": "e0682b7e1f1ab5b4ed89b691301471e5a779b47295378eadea821abda947a3b8",
-   "size_bytes": 64433,
-   "theorem_count": 66,
-   "theorem_count_bol_convention": 66
+   "sha256": "fd25a1a1589ad7b16af0b036e9ae10510299a35edcdca9f1c94cdccd3d11f354",
+   "size_bytes": 68052,
+   "theorem_count": 70,
+   "theorem_count_bol_convention": 70
   },
   {
    "declarations": [
@@ -26714,7 +26734,7 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Probability.lean",
    "print_axioms_targets": [],
-   "sha256": "002fd0e4e98a60dbe0dbf7ef4b72c9e08b08b93ae3f0872b87e0931a3a188599",
+   "sha256": "54e583322aa740b95b8a16c5eeeeafc49cb63785e9ab9a8dad96968ee8e1f5fd",
    "size_bytes": 53063,
    "theorem_count": 53,
    "theorem_count_bol_convention": 53
@@ -27781,8 +27801,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/StatuteChain.lean",
    "print_axioms_targets": [],
-   "sha256": "4be88dde5d77c3eb8ad40dc48e1b3153f41066495a050b4bc0fa2fbb6a372887",
-   "size_bytes": 56109,
+   "sha256": "be0b2309d7b5888a9732d585f9ef6963463a4505b7b03d0d075ca1cda960a67e",
+   "size_bytes": 56145,
    "theorem_count": 44,
    "theorem_count_bol_convention": 44
   },
@@ -32805,22 +32825,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3722,
+   "counted_declaration_count": 3726,
    "file_count": 319,
    "lemma_count": 141,
-   "print_axioms_command_count": 2604,
-   "print_axioms_distinct_targets": 2550,
-   "theorem_count": 3581,
-   "theorem_count_bol_convention": 3485
+   "print_axioms_command_count": 2608,
+   "print_axioms_distinct_targets": 2554,
+   "theorem_count": 3585,
+   "theorem_count_bol_convention": 3489
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3703,
+   "counted_declaration_count": 3707,
    "file_count": 304,
    "lemma_count": 134,
-   "print_axioms_command_count": 2604,
-   "print_axioms_distinct_targets": 2550,
-   "theorem_count": 3569,
-   "theorem_count_bol_convention": 3473
+   "print_axioms_command_count": 2608,
+   "print_axioms_distinct_targets": 2554,
+   "theorem_count": 3573,
+   "theorem_count_bol_convention": 3477
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33500,12 +33520,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "214c7af88897cd81de7091e430fc0520f3eab533c7202f873ad6d5fd582df248",
+ "source_inventory_digest": "ad71425dc4af8be7ea5ad47124d0e1ce1e4778d5a8e0aa960f4231ef55fe66c3",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "04430662df4b7d09ab22cc91218010b0cbaa8789",
-  "tree": "e93be38aaef0eaf9153a942827e93eee37a6bd1c"
+  "commit": "c71a36e6cfd3af67a82ef9d91a547bf9640ba052",
+  "tree": "a7a218c7256b3b67ec02d64ea8550b68728cd683"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

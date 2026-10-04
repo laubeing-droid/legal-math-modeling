@@ -25,11 +25,15 @@ import JurisLean.Seams.CaseInput
 
 
 /-- 中文说明：**由生成器写入的案卷**（`scripts/gen_case_input.py`，来源：{src}）。
-    本件是机器翻译的 `CaseFile`，不是手写夹具；改它请改 JSON 后重新生成。 -/
+    本件是机器翻译的 `CaseFile`，不是手写夹具；改它请改 JSON 后重新生成。
+    论域＝成立事实 ∪ 全部规则头（JSON 的 false 事实位已被生成器丢弃）。 -/
 def {name} : JurisLean.Seams.CaseInput.CaseFile String :=
-  {{ facts := {facts}
+  {{ univ := {univ}
+    facts := {facts}
     rules := {rules}
-    citations := {citations} }}
+    citations := {citations}
+    hFacts := by decide
+    hHeads := by decide }}
 """
 
 
@@ -66,14 +70,15 @@ def main() -> None:
             fail(f"missing key: {key}")
 
     names: set[str] = set()
-    facts_parts: list[str] = []
+    standing: list[str] = []
     for f in doc["facts"]:
         if not (isinstance(f, list) and len(f) == 2
                 and isinstance(f[0], str) and isinstance(f[1], bool)):
             fail(f"fact entries must be [name, bool], got: {f!r}")
+        if f[1]:
+            standing.append(f[0])
         names.add(f[0])
-        facts_parts.append(f"({esc(f[0])}, {'true' if f[1] else 'false'})")
-    facts = "[" + ", ".join(facts_parts) + "]"
+    facts = "{" + ", ".join(esc(s) for s in standing) + "}"
 
     rule_parts: list[str] = []
     for r in doc["rules"]:
@@ -84,11 +89,11 @@ def main() -> None:
         for p in r["premises"]:
             if not isinstance(p, str):
                 fail(f"rule premises must be strings, got: {p!r}")
-            names.add(p)
         names.add(r["conclusion"])
         prems = "{" + ", ".join(esc(p) for p in r["premises"]) + "}"
         rule_parts.append(f"{{ premises := {prems}, conclusion := {esc(r['conclusion'])} }}")
-    rules = "[" + ", ".join(rule_parts) + "]"
+    rules = "{" + ", ".join(rule_parts) + "}"
+    univ = "{" + ", ".join(esc(s) for s in standing) + ", " +         ", ".join(esc(r["conclusion"]) for r in doc["rules"]) + "}"
 
     cits = doc["citations"]
     if not (isinstance(cits, list) and all(isinstance(c, str) for c in cits)):
@@ -98,7 +103,7 @@ def main() -> None:
     name = "caseFile_" + src.stem.replace("-", "_").replace(".", "_")
     if not name.isidentifier():
         fail(f"derived name is not an identifier: {name}")
-    text = HEADER.format(src=esc(str(src)), name=name,
+    text = HEADER.format(src=esc(str(src)), name=name, univ=univ,
                          facts=facts, rules=rules, citations=citations)
     out.write_bytes(text.encode("utf-8"))
     print(f"wrote {out} ({len(doc['facts'])} facts, "

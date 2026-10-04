@@ -32,11 +32,12 @@ def test_happy_path_writes_the_literal(tmp_path: Path) -> None:
     }, out)
     assert proc.returncode == 0, proc.stderr
     text = out.read_text(encoding="utf-8")
-    assert '("欠款", true)' in text
-    assert '("违约", false)' in text
+    assert 'facts := {"欠款"}' in text
+    assert "违约" not in text.split("facts :=")[1].split("rules :=")[0]
     assert 'conclusion := "应付"' in text
     assert '"585条2款"' in text
-    assert "JurisLean.Seams.CaseInput.CaseFile String" in text
+    assert 'univ := {"欠款", "应付"}' in text
+    assert "hFacts := by decide" in text
 
 
 def test_unrecognised_key_is_refused(tmp_path: Path) -> None:

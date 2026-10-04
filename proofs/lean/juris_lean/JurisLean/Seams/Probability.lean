@@ -630,10 +630,16 @@ theorem maliciousData_clamp : clampReduction maliciousData = (100 : Amount) := b
 theorem overThirtyTest_congr_badFaith {F : Type} (c : ReductionData F) (b b' : Bool) :
     overThirtyTest { c with badFaith := b } = overThirtyTest { c with badFaith := b' } := by
   unfold overThirtyTest
+  show (if 13 * c.loss < 10 * c.agreed then true else false) =
+       (if 13 * c.loss < 10 * c.agreed then true else false)
+  rfl
 
 theorem overThirtyTest_congr_exception {F : Type} (c : ReductionData F) (e : Bool) :
     overThirtyTest { c with maliciousException := e } = overThirtyTest c := by
   unfold overThirtyTest
+  show (if 13 * c.loss < 10 * c.agreed then true else false) =
+       (if 13 * c.loss < 10 * c.agreed then true else false)
+  rfl
 
 /-- 中文说明（**例外通道**，17_ 卷 R5）：第 65 条第 3 款是"一般不予支持"，不是"一律"。
     本通道与 `reductionGate` 并行：同样的三个条件位（请求、举证、认定过分高于或 30% 门槛），
@@ -656,8 +662,9 @@ theorem exception_gate_does_not_read_bad_faith {F : Type} (c : ReductionData F) 
 theorem exception_gate_requires_explicit_finding {F : Type} (c : ReductionData F)
     (h : exceptionGate c = true) : c.maliciousException = true := by
   unfold exceptionGate conditionHolds at h
-  simp only [Bool.and_eq_true] at h
-  exact h.2.2.2
+  simp only [Bool.and_eq_true, Bool.or_eq_true] at h
+  rcases h with ⟨_, _, _, hexc⟩
+  exact hexc
 
 /-- 中文见证（**一般闸门与例外通道在同一份数据上分道**）：`maliciousData` 上
     "一般"闸门关（既有定理），把例外面认定为真后例外通道开——同一份恶意违约数据，

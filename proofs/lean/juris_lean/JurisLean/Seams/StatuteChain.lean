@@ -824,13 +824,13 @@ theorem case_burden_field_is_free_data :
     fun _ => rfl, rfl, rfl⟩
 
 
-/-! ## §十二、请求地位面→采纳面的**单向观测**（17_ 卷 WBS-6，守 §未覆盖#12 红线） -/
+/-! ## §十二、请求地位面→采纳面的**单向观测**（17_ 卷 WBS-6，守收尾清单第 12 项红线） -/
 
 /-- 中文说明（**观测谓词**）：模型 𝔐 的观测族在指标 `i` 处对法律对象 `s` 报告真。
     这是"从模型**读出**请求地位面"的唯一入口——只读，不回写。 -/
 def ObservationReports {V Rel : Type} [DecidableEq Rel]
     (M : UnifiedModel V Rel) (i : M.observation.ι) (s : ClaimBasis.Status) : Prop :=
-  M.observation.obs i s = true
+  M.observation.obs i s = (true : M.observation.γ)
 
 /-- 中文证明（**观测通道读的就是模型自己声明的那份**）：instanceM 的观测栏按定义就是
     `statusObsM`，没有任何第二个来源。 -/
@@ -840,7 +840,7 @@ theorem instanceM_observation_is_the_declared_one :
 /-- 中文证明（**观测是只读通道**——WBS-6 的单向性，机器形态）：换掉观测族
     **不改变**采纳面的任何读数。`pol`/`disputed` 不读 `observation` 栏，
     所以请求地位面无论怎么声明，采纳面照旧——这正是"可以观测、不可回写"。
-    它同时守住了 §未覆盖#12 的红线：本件给的是"观测不影响采纳"，
+    它同时守住了收尾清单第 12 项的红线：本件给的是"观测不影响采纳"，
     **不是**"从 Status 查出 FinalDerivable"——那个反方向字典本件不建。 -/
 theorem observation_does_not_touch_adoption {V Rel : Type} [DecidableEq Rel]
     (M : UnifiedModel V Rel) (f : Representation.Fragment ClaimBasis.Status) :
@@ -856,7 +856,8 @@ theorem observation_does_not_touch_adoption {V Rel : Type} [DecidableEq Rel]
     没有这一条，"只读通道"可以是空转的空话。 -/
 theorem observation_reports_something :
     ObservationReports instanceM (0 : Fin 1) ClaimBasis.Status.unenforceable := by
-  show UnifiedInstance.statusObsM.obs (0 : Fin 1) ClaimBasis.Status.unenforceable = true
+  show ClaimBasis.fires ClaimBasis.Status.unenforceable ClaimBasis.Stage.exercisable
+      ClaimBasis.Polarity.defuse true = true
   rfl
 
 end JurisLean.Seams.StatuteChain

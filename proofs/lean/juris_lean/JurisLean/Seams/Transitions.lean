@@ -620,11 +620,7 @@ theorem art64_layers_keep_the_sides_apart : ∀ j : Nat,
         cases h with
         | inl h => exact ih.1 h
         | inr h =>
-            refine absurd h.2 ?_
-            refine (Finset.eq_empty_iff_forall_notMem (s :=
-                Finset.filter (fun c => c ∈ (rounds art64Policy k).1)
-                  (DungAAF.attackers conflictAAF
-                    (encode ClauseAtom.reductionClaim)))).mpr ?_
+            refine h.2 (Finset.eq_empty_iff_forall_notMem.mpr ?_)
             intro c hc
             obtain ⟨hca, hcm⟩ := Finset.mem_filter.mp hc
             have hc' : c = encode ClauseAtom.noAdjustment :=

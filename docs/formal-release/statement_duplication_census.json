@@ -15,8 +15,8 @@
     ]
   },
   "cross_family_statement_types": 1,
-  "distinct_statement_types": 3696,
-  "duplicated_statement_types": 42,
+  "distinct_statement_types": 3717,
+  "duplicated_statement_types": 43,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
@@ -234,6 +234,18 @@
         "path": "External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean"
       }
     ],
+    ": art66Clause3Opens ⟨presentAtFirst": [
+      {
+        "carrier": "root/other/art66Clause3_closed_when_both_present",
+        "line": 71,
+        "path": "Seams/Limitation.lean"
+      },
+      {
+        "carrier": "root/other/art66Clause3_witness",
+        "line": 64,
+        "path": "Seams/Limitation.lean"
+      }
+    ],
     ": checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with caseId := \"OTHER-CASE\" } }) (writeCalculation expectedCalculation) = false": [
       {
         "carrier": "root/other/reject_doc_caseId",
@@ -266,7 +278,7 @@
       },
       {
         "carrier": "root/other/instanceM_collapse",
-        "line": 626,
+        "line": 648,
         "path": "Seams/UnifiedInstance.lean"
       }
     ],
@@ -523,12 +535,12 @@
       }
     ]
   },
-  "files_scanned": 305,
+  "files_scanned": 306,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
   "headers_missed_by_scanner": 105,
-  "inventory_package_theorems": 3729,
+  "inventory_package_theorems": 3751,
   "private_protected_headers_read": 114,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 3738
+  "statements_read": 3760
 }

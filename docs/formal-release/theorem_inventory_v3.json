@@ -542,6 +542,7 @@
     "JurisLean.Seams.FullProcess",
     "JurisLean.Seams.InstitutionalEffects",
     "JurisLean.Seams.LegacyConeBridge",
+    "JurisLean.Seams.Limitation",
     "JurisLean.Seams.PayoffEquilibrium",
     "JurisLean.Seams.PrecedentFlow",
     "JurisLean.Seams.Probability",
@@ -1644,6 +1645,7 @@
     "JurisLean.Seams.BurdenStatutes.disjointVerdict_kernel_is_empty",
     "JurisLean.Seams.BurdenStatutes.escape_tier_cannot_name_a_nonblank_domain",
     "JurisLean.Seams.BurdenStatutes.escape_tier_has_no_gate",
+    "JurisLean.Seams.BurdenStatutes.exceptional_fact_requires_the_stricter_tier",
     "JurisLean.Seams.BurdenStatutes.exceptional_matters_are_five",
     "JurisLean.Seams.BurdenStatutes.exempt_items_are_seven",
     "JurisLean.Seams.BurdenStatutes.fullInterClosed_implies_weak",
@@ -1661,6 +1663,7 @@
     "JurisLean.Seams.BurdenStatutes.lawful_part_three",
     "JurisLean.Seams.BurdenStatutes.lawful_part_two",
     "JurisLean.Seams.BurdenStatutes.named_tier_exhausts_non_escape",
+    "JurisLean.Seams.BurdenStatutes.ordinary_fact_gets_the_ordinary_tier",
     "JurisLean.Seams.BurdenStatutes.standard109_named_at_implies_collapse",
     "JurisLean.Seams.BurdenStatutes.standard_tier_gap_witness",
     "JurisLean.Seams.BurdenStatutes.standard_tier_is_a_hierarchy",
@@ -1670,6 +1673,8 @@
     "JurisLean.Seams.BurdenStatutes.statutory_shift_blocks_art91",
     "JurisLean.Seams.BurdenStatutes.statutory_shift_has_a_witness",
     "JurisLean.Seams.BurdenStatutes.statutory_shift_needs_a_citation",
+    "JurisLean.Seams.BurdenStatutes.stricter_tier_requires_a_classified_fact",
+    "JurisLean.Seams.BurdenStatutes.the_bridge_respects_the_109_table",
     "JurisLean.Seams.BurdenStatutes.trialDomain_attaches_the_108_standard",
     "JurisLean.Seams.BurdenStatutes.trialDomain_fails_part_two",
     "JurisLean.Seams.BurdenStatutes.trialDomain_fails_the_109_standard",
@@ -1910,6 +1915,13 @@
     "JurisLean.Seams.LegacyConeBridge.mem_conclusion_of_mem_rules",
     "JurisLean.Seams.LegacyConeBridge.offDiagramAttack_mem",
     "JurisLean.Seams.LegacyConeBridge.offDiagramAttack_witnessed",
+    "JurisLean.Seams.Limitation.art66Clause3_closed_when_both_present",
+    "JurisLean.Seams.Limitation.art66Clause3_witness",
+    "JurisLean.Seams.Limitation.expiration_day_exists",
+    "JurisLean.Seams.Limitation.interruption_restarts_the_clock",
+    "JurisLean.Seams.Limitation.limitationPeriod_pos",
+    "JurisLean.Seams.Limitation.second_instance_still_owes_clarification",
+    "JurisLean.Seams.Limitation.suspension_only_delays",
     "JurisLean.Seams.PayoffEquilibrium.abs_two_close",
     "JurisLean.Seams.PayoffEquilibrium.approxNash_agrees_with_isNashPure_at_k10",
     "JurisLean.Seams.PayoffEquilibrium.approxNash_legalPay_k10",
@@ -2022,11 +2034,13 @@
     "JurisLean.Seams.Probability.allow_of_gate_open",
     "JurisLean.Seams.Probability.allowed_amount_nonneg_of_nonneg_agreed",
     "JurisLean.Seams.Probability.band_containment_is_not_allow",
+    "JurisLean.Seams.Probability.basisTotal_le_sum_of_amounts",
     "JurisLean.Seams.Probability.beta_posterior_from_likelihood",
     "JurisLean.Seams.Probability.beta_predictive_bracket_survives_update",
     "JurisLean.Seams.Probability.choose_is_not_determined_by_allow",
     "JurisLean.Seams.Probability.clampReduction_in_band",
     "JurisLean.Seams.Probability.clamp_is_not_reduction",
+    "JurisLean.Seams.Probability.deductionTotal_nonneg",
     "JurisLean.Seams.Probability.denotate_some_none",
     "JurisLean.Seams.Probability.denotation_blocked_without_policy",
     "JurisLean.Seams.Probability.denotation_independent_of_policy",
@@ -2050,6 +2064,7 @@
     "JurisLean.Seams.Probability.maliciousData_clamp",
     "JurisLean.Seams.Probability.maliciousData_floor",
     "JurisLean.Seams.Probability.maliciousData_gate",
+    "JurisLean.Seams.Probability.netRecoverable_may_be_negative",
     "JurisLean.Seams.Probability.ordinary_gate_still_blocks_maliciousExceptData",
     "JurisLean.Seams.Probability.otherGroundData_not_overThirty",
     "JurisLean.Seams.Probability.overThirtyTest_congr_badFaith",
@@ -2071,6 +2086,8 @@
     "JurisLean.Seams.Probability.threshold_does_not_force_the_finding",
     "JurisLean.Seams.Probability.transport_boundary_needs_nesting",
     "JurisLean.Seams.Probability.transport_regime_positivity",
+    "JurisLean.Seams.Probability.unclaimed_item_does_not_deduct",
+    "JurisLean.Seams.Probability.unforeseen_component_drops_out",
     "JurisLean.Seams.ReductionConditions2.all_new_bits_open_still_cannot_pass_malicious_base",
     "JurisLean.Seams.ReductionConditions2.allowC_admits_recordChoose",
     "JurisLean.Seams.ReductionConditions2.allowC_blind_to_noAdjustmentClause",
@@ -2232,6 +2249,8 @@
     "JurisLean.Seams.StatuteChain.chain_evalDom_eq",
     "JurisLean.Seams.StatuteChain.chain_gate_input_still_adopted_at_round0",
     "JurisLean.Seams.StatuteChain.chain_naming_hop_closes_witness",
+    "JurisLean.Seams.StatuteChain.chain_naming_is_constant",
+    "JurisLean.Seams.StatuteChain.chain_naming_uniqueness",
     "JurisLean.Seams.StatuteChain.chain_norms_eq",
     "JurisLean.Seams.StatuteChain.chain_phrases_are_distinct",
     "JurisLean.Seams.StatuteChain.chain_pol_eq",
@@ -2251,8 +2270,11 @@
     "JurisLean.Seams.StatuteChain.chain_tier_part_two",
     "JurisLean.Seams.StatuteChain.chain_zero_in_kernel",
     "JurisLean.Seams.StatuteChain.instanceM_observation_is_the_declared_one",
+    "JurisLean.Seams.StatuteChain.instanceM_sanction_default_is_zero",
     "JurisLean.Seams.StatuteChain.observation_does_not_touch_adoption",
     "JurisLean.Seams.StatuteChain.observation_reports_something",
+    "JurisLean.Seams.StatuteChain.sanction_slot_can_carry_the_performance_amount",
+    "JurisLean.Seams.StatuteChain.sanction_slot_reads_the_sanction_module",
     "JurisLean.Seams.StatuteChain.statuteChain_on_instanceM",
     "JurisLean.Seams.StatuteChain.statuteChain_reaches_the_one_closed_instance",
     "JurisLean.Seams.Temporal.IntertemporalLawSignature.withRetroFalse_preserves_wellFormed",
@@ -2404,6 +2426,7 @@
     "JurisLean.Seams.UnifiedInstance.iter_pos_eq_args",
     "JurisLean.Seams.UnifiedInstance.mem_envOld",
     "JurisLean.Seams.UnifiedInstance.model_equality_determines_observation",
+    "JurisLean.Seams.UnifiedInstance.normsM_closure_eq_univ",
     "JurisLean.Seams.UnifiedInstance.normsM_model_class_nonempty",
     "JurisLean.Seams.UnifiedInstance.observation_not_determined_by_the_model",
     "JurisLean.Seams.UnifiedInstance.one_in_closureM",
@@ -2930,8 +2953,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "08289beaea86bcf8619333d65307b510b9e464f4646e8c5111b3c7fcf2802bfe",
-   "size_bytes": 165666,
+   "sha256": "1a9c99448d23a9f51a5c9a51f47ff0ba82e5509cf32a589fd89c18ef5988a250",
+   "size_bytes": 167331,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -23904,6 +23927,30 @@
     },
     {
      "kind": "def",
+     "name": "factMatterClass"
+    },
+    {
+     "kind": "def",
+     "name": "standardFor"
+    },
+    {
+     "kind": "theorem",
+     "name": "exceptional_fact_requires_the_stricter_tier"
+    },
+    {
+     "kind": "theorem",
+     "name": "ordinary_fact_gets_the_ordinary_tier"
+    },
+    {
+     "kind": "theorem",
+     "name": "the_bridge_respects_the_109_table"
+    },
+    {
+     "kind": "theorem",
+     "name": "stricter_tier_requires_a_classified_fact"
+    },
+    {
+     "kind": "def",
      "name": "art109StandardOf"
     },
     {
@@ -24162,10 +24209,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/BurdenStatutes.lean",
    "print_axioms_targets": [],
-   "sha256": "b900bb1030ce633d0f4a2876b84a321f1e973d0f7e1c5fa9f83eddaa664876db",
-   "size_bytes": 70307,
-   "theorem_count": 74,
-   "theorem_count_bol_convention": 74
+   "sha256": "87a5d2994261d7f03c1c704e8304b26d4a6a4f9276df93465d670e87851a6354",
+   "size_bytes": 72774,
+   "theorem_count": 78,
+   "theorem_count_bol_convention": 78
   },
   {
    "declarations": [
@@ -25709,6 +25756,85 @@
    "declarations": [
     {
      "kind": "inductive",
+     "name": "InstanceLevel"
+    },
+    {
+     "kind": "structure",
+     "name": "Attendance"
+    },
+    {
+     "kind": "def",
+     "name": "clarificationDutyAt"
+    },
+    {
+     "kind": "theorem",
+     "name": "second_instance_still_owes_clarification"
+    },
+    {
+     "kind": "def",
+     "name": "art66Clause3Opens"
+    },
+    {
+     "kind": "theorem",
+     "name": "art66Clause3_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "art66Clause3_closed_when_both_present"
+    },
+    {
+     "kind": "def",
+     "name": "limitationPeriod"
+    },
+    {
+     "kind": "structure",
+     "name": "LimitationClock"
+    },
+    {
+     "kind": "def",
+     "name": "expiredAt"
+    },
+    {
+     "kind": "def",
+     "name": "interruptAt"
+    },
+    {
+     "kind": "theorem",
+     "name": "interruption_restarts_the_clock"
+    },
+    {
+     "kind": "def",
+     "name": "suspendWithin"
+    },
+    {
+     "kind": "theorem",
+     "name": "suspension_only_delays"
+    },
+    {
+     "kind": "theorem",
+     "name": "limitationPeriod_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "expiration_day_exists"
+    }
+   ],
+   "imports": [
+    "JurisLean.Seams.Temporal",
+    "Mathlib.Data.Int.Order"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/Limitation.lean",
+   "print_axioms_targets": [],
+   "sha256": "38bc908f064ea053bb3e39de30e64860cfdbd310dde2f3a822f629c52942b7e8",
+   "size_bytes": 6906,
+   "theorem_count": 7,
+   "theorem_count_bol_convention": 7
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
      "name": "LegalStatus"
     },
     {
@@ -26691,6 +26817,58 @@
      "name": "maliciousData"
     },
     {
+     "kind": "structure",
+     "name": "LossComponent"
+    },
+    {
+     "kind": "structure",
+     "name": "LossBasis"
+    },
+    {
+     "kind": "def",
+     "name": "componentCounted"
+    },
+    {
+     "kind": "def",
+     "name": "basisTotal"
+    },
+    {
+     "kind": "theorem",
+     "name": "unforeseen_component_drops_out"
+    },
+    {
+     "kind": "theorem",
+     "name": "basisTotal_le_sum_of_amounts"
+    },
+    {
+     "kind": "structure",
+     "name": "DeductionItem"
+    },
+    {
+     "kind": "def",
+     "name": "deductionCounted"
+    },
+    {
+     "kind": "def",
+     "name": "deductionTotal"
+    },
+    {
+     "kind": "theorem",
+     "name": "unclaimed_item_does_not_deduct"
+    },
+    {
+     "kind": "theorem",
+     "name": "deductionTotal_nonneg"
+    },
+    {
+     "kind": "def",
+     "name": "netRecoverable"
+    },
+    {
+     "kind": "theorem",
+     "name": "netRecoverable_may_be_negative"
+    },
+    {
      "kind": "theorem",
      "name": "maliciousData_gate"
     },
@@ -26853,10 +27031,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Probability.lean",
    "print_axioms_targets": [],
-   "sha256": "f7257661c4355d1bbb41646c560de53fdab4e82f959bc1272c31d626e3b6bafc",
-   "size_bytes": 57233,
-   "theorem_count": 60,
-   "theorem_count_bol_convention": 60
+   "sha256": "5d1ca02e7adad48812280b8b9f548ca701542ef7a407c0c464490e6c02c54e82",
+   "size_bytes": 63277,
+   "theorem_count": 65,
+   "theorem_count_bol_convention": 65
   },
   {
    "declarations": [
@@ -27934,6 +28112,26 @@
     {
      "kind": "theorem",
      "name": "observation_reports_something"
+    },
+    {
+     "kind": "theorem",
+     "name": "instanceM_sanction_default_is_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanction_slot_reads_the_sanction_module"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanction_slot_can_carry_the_performance_amount"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_naming_is_constant"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_naming_uniqueness"
     }
    ],
    "imports": [
@@ -27948,10 +28146,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/StatuteChain.lean",
    "print_axioms_targets": [],
-   "sha256": "d27a1ba87e337244e42054d3cc3c90472ac6e3ace39e1d1e47fa03dac2275e09",
-   "size_bytes": 60375,
-   "theorem_count": 50,
-   "theorem_count_bol_convention": 50
+   "sha256": "c133b0ce76335b657d4aae334ca37e2a7d0255529a690635203a51300cc9df19",
+   "size_bytes": 64663,
+   "theorem_count": 55,
+   "theorem_count_bol_convention": 55
   },
   {
    "declarations": [
@@ -28836,6 +29034,7 @@
     "JurisLean.Seams.PayoffEquilibrium",
     "JurisLean.Seams.PrecedentFlow",
     "JurisLean.Seams.Representation",
+    "JurisLean.Seams.SanctionInterest",
     "JurisLean.Seams.SourceNorms",
     "JurisLean.Seams.Temporal",
     "JurisLean.Seams.Uncertainty",
@@ -28845,8 +29044,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Unified.lean",
    "print_axioms_targets": [],
-   "sha256": "6064de99a6b14c3cf670108e7fe536f7ba50c1bc0e6b0afb23c581a666e0703f",
-   "size_bytes": 22457,
+   "sha256": "5835cdf887ea03160ead11b501106ed52271f0533ffa7252fcdb67bc84e4ce58",
+   "size_bytes": 23063,
    "theorem_count": 8,
    "theorem_count_bol_convention": 8
   },
@@ -28959,6 +29158,10 @@
     {
      "kind": "theorem",
      "name": "one_in_closureM"
+    },
+    {
+     "kind": "theorem",
+     "name": "normsM_closure_eq_univ"
     },
     {
      "kind": "theorem",
@@ -29193,10 +29396,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
    "print_axioms_targets": [],
-   "sha256": "ad911848ab2ddbe50fe98449dfbb2904192dddd134fe16979c0eb4000c2d2fd9",
-   "size_bytes": 48918,
-   "theorem_count": 57,
-   "theorem_count_bol_convention": 57
+   "sha256": "a7e2a2d977aab5f86d42d5f2543e0cee203986ea47b5410de073beaa74ff9d6b",
+   "size_bytes": 50014,
+   "theorem_count": 58,
+   "theorem_count_bol_convention": 58
   },
   {
    "declarations": [
@@ -32774,6 +32977,7 @@
     "JurisLean.Seams.FullProcess",
     "JurisLean.Seams.InstitutionalEffects",
     "JurisLean.Seams.LegacyConeBridge",
+    "JurisLean.Seams.Limitation",
     "JurisLean.Seams.PayoffEquilibrium",
     "JurisLean.Seams.PrecedentFlow",
     "JurisLean.Seams.Probability",
@@ -32821,8 +33025,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "7e7d22df39c2a0ffac737fcac5af7e37032a1d619a2abdfc586da1c92b8ba91f",
-   "size_bytes": 8961,
+   "sha256": "e61a872d72845855be1f77737a7a2a99969f25bb8eeec965aa070b3cfb8243bd",
+   "size_bytes": 8995,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -32986,22 +33190,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3748,
-   "file_count": 320,
+   "counted_declaration_count": 3770,
+   "file_count": 321,
    "lemma_count": 141,
-   "print_axioms_command_count": 2630,
-   "print_axioms_distinct_targets": 2576,
-   "theorem_count": 3607,
-   "theorem_count_bol_convention": 3511
+   "print_axioms_command_count": 2652,
+   "print_axioms_distinct_targets": 2598,
+   "theorem_count": 3629,
+   "theorem_count_bol_convention": 3533
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3729,
-   "file_count": 305,
+   "counted_declaration_count": 3751,
+   "file_count": 306,
    "lemma_count": 134,
-   "print_axioms_command_count": 2630,
-   "print_axioms_distinct_targets": 2576,
-   "theorem_count": 3595,
-   "theorem_count_bol_convention": 3499
+   "print_axioms_command_count": 2652,
+   "print_axioms_distinct_targets": 2598,
+   "theorem_count": 3617,
+   "theorem_count_bol_convention": 3521
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33275,6 +33479,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/FullProcess.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/InstitutionalEffects.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/LegacyConeBridge.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/Limitation.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/PayoffEquilibrium.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/PrecedentFlow.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Probability.lean",
@@ -33593,6 +33798,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/FullProcess.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/InstitutionalEffects.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/LegacyConeBridge.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/Limitation.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/PayoffEquilibrium.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/PrecedentFlow.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Probability.lean",
@@ -33683,17 +33889,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "d49c9fe76f45e3d5488589c3dac792283b86e906cea217654a9345049256fc26",
+ "source_inventory_digest": "017654127048cb93a487fa2bbc29be5214b376fccd9771862e1bf353ee2ebd07",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "52b12200f14512c7c649afddba0c2c794e0268f7",
-  "tree": "b0be9e99ef38fccf0f5bc94ce0adbaefef032e82"
+  "commit": "0c6cea458a6d1591e55b55390f374aac4d2b8183",
+  "tree": "5de59363b7880acb76c74dfb5097d7c3d5a0e71d"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 320,
+  "files_total": 321,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

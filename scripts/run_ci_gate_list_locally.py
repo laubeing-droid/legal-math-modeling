@@ -82,6 +82,10 @@ def main() -> int:
             for line in tail:
                 print("      | " + line[:160])
             failures.append(command)
+    if skip_pytest:
+        print("NOTE: pytest is part of the CI step. Skipping it means the run below does "
+              "NOT reproduce python-gates -- run `python -m pytest tests/ -q -ra` too "
+              "before calling the tree green. (This is how run 37163957193 reddened.)")
     restored = restore_own_writes(before)
     for path in restored:
         print(f"RESTORED {path} (this run wrote it; it was clean before)")

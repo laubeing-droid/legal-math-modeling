@@ -10966,12 +10966,138 @@
       "quoted_by": [
         "docs/master-plan/16_第九轮终态核对表_20261002.md:489",
         "docs/master-plan/16_第九轮终态核对表_20261002.md:511",
-        "docs/master-plan/16_第九轮终态核对表_20261002.md:59"
+        "docs/master-plan/16_第九轮终态核对表_20261002.md:59",
+        "docs/master-plan/17_技术顾问方案_20261004.md:71",
+        "docs/master-plan/17_技术顾问方案_20261004.md:93"
       ],
       "run_id": 37168433454,
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-04T01:44:33Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 6,
+      "conclusion": "failure",
+      "created_at": "2026-10-04T04:24:04Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "96ebfbc376ee9e00f3d84f0dc5098b68a890370e",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37176891448",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(ledger): rebind accounts to the escape-tier round",
+      "quoted_by": [
+        "docs/master-plan/17_技术顾问方案_20261004.md:90"
+      ],
+      "run_id": 37176891448,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-04T04:33:05Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-04T04:36:40Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/37177506820/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "1dd6842baf0cd519f2ab846eed5d1ec7d61003b7",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37177506820",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(ledger): rebind to the noConfusion fix",
+      "quoted_by": [
+        "docs/master-plan/17_技术顾问方案_20261004.md:85"
+      ],
+      "run_id": 37177506820,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-04T04:46:48Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

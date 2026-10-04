@@ -62,14 +62,14 @@ def art66Clause3Opens (att : Attendance) : Bool :=
 
 /-- 中文证明（**开启位非空洞**）：这个组合真实可达（构造子级见证）。 -/
 theorem art66Clause3_witness :
-    art66Clause3Opens ⟨presentAtFirst := false, presentAtSecond := true⟩ = true := by
+    art66Clause3Opens { presentAtFirst := false, presentAtSecond := true } = true := by
   unfold art66Clause3Opens
   rfl
 
 /-- 中文证明（**到庭组合的互斥读数**）：一审二审都到庭时第 3 款不开——
     它只保护"一审因客观原因未到庭"的被告，不保护两次都到庭的。 -/
 theorem art66Clause3_closed_when_both_present :
-    art66Clause3Opens ⟨presentAtFirst := true, presentAtSecond := true⟩ = false := by
+    art66Clause3Opens { presentAtFirst := true, presentAtSecond := true } = false := by
   unfold art66Clause3Opens
   rfl
 

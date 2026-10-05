@@ -12839,6 +12839,68 @@
       "status": "completed",
       "updated_at": "2026-10-05T16:18:11Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 5,
+      "conclusion": "failure",
+      "created_at": "2026-10-05T17:20:16Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "c4a06476492439e3d3ff3b43c9ed8c258d8b6eef",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37347663435",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "feat(round2-P6): replace the hand-written ten-gap closure claim with …",
+      "quoted_by": [
+        "docs/master-plan/17_技术顾问方案_20261004.md:351"
+      ],
+      "run_id": 37347663435,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-05T17:29:54Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],
   "schema_version": "ci-run-index-v1",

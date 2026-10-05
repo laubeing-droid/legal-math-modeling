@@ -12652,6 +12652,69 @@
       "status": "completed",
       "updated_at": "2026-10-05T09:32:35Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-05T10:03:02Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/37294030205/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "a0389cfc787f9e62be8988e930f5fe19ad1d7847",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37294030205",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "docs(17_): record the acceptance round's attestation chain, with the …",
+      "quoted_by": [
+        "docs/master-plan/17_技术顾问方案_20261004.md:231",
+        "docs/master-plan/17_技术顾问方案_20261004.md:232"
+      ],
+      "run_id": 37294030205,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-05T10:12:55Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],
   "schema_version": "ci-run-index-v1",

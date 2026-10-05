@@ -12526,6 +12526,132 @@
       "status": "completed",
       "updated_at": "2026-10-04T19:25:17Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 5,
+      "conclusion": "failure",
+      "created_at": "2026-10-05T09:08:39Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/37288090452/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "ca25e68f1f79c808c6137a7d0aaf8c92a4bb7e76",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37288090452",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(ledger): rebind to the acceptance round's two new theorems",
+      "quoted_by": [
+        "docs/master-plan/17_技术顾问方案_20261004.md:221"
+      ],
+      "run_id": 37288090452,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-05T09:18:40Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-05T09:22:08Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/37289566468/digests.json",
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "c2a827ba7e707ceebfea9149aaac995f3ed7aef1",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37289566468",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(ledger): rebind to the audit-surface regeneration, not to its p…",
+      "quoted_by": [
+        "docs/master-plan/17_技术顾问方案_20261004.md:208",
+        "docs/master-plan/17_技术顾问方案_20261004.md:212",
+        "docs/master-plan/17_技术顾问方案_20261004.md:220"
+      ],
+      "run_id": 37289566468,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-05T09:32:35Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],
   "schema_version": "ci-run-index-v1",

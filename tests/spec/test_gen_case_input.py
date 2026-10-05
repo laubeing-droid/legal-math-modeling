@@ -8,6 +8,7 @@ one happy-path run whose output is checked field by field against the JSON.
 from __future__ import annotations
 
 import json
+import os
 import subprocess
 import sys
 from pathlib import Path
@@ -19,8 +20,15 @@ GEN = ROOT / "scripts" / "gen_case_input.py"
 def run(case: dict, out: Path) -> subprocess.CompletedProcess[str]:
     src = out.with_suffix(".json")
     src.write_text(json.dumps(case, ensure_ascii=False), encoding="utf-8")
+    # The generator's refusal messages quote the offending CJK atom name. On a GBK-locale
+    # Windows host the child writes those bytes in cp936 while `text=True` here decodes with
+    # the same locale, and any byte the reader cannot decode kills the reader thread -- leaving
+    # `proc.stderr` as None and turning a correct refusal into a TypeError in the test. Pin both
+    # ends to UTF-8 so the assertion reads the message it was written to check.
+    env = {**os.environ, "PYTHONIOENCODING": "utf-8"}
     return subprocess.run([sys.executable, str(GEN), "--from", str(src), str(out)],
-                          capture_output=True, text=True)
+                          capture_output=True, text=True, encoding="utf-8",
+                          errors="replace", env=env)
 
 
 def test_happy_path_writes_the_literal(tmp_path: Path) -> None:

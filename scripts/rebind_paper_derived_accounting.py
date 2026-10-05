@@ -19,6 +19,7 @@ from __future__ import annotations
 
 import json
 import re
+import subprocess
 import sys
 from pathlib import Path
 
@@ -27,6 +28,7 @@ INVENTORY = ROOT / "docs" / "formal-release" / "theorem_inventory_v3.json"
 CENSUS = ROOT / "docs" / "formal-release" / "trivial_proof_census.json"
 SHAPE = ROOT / "docs" / "formal-release" / "declaration_shape_report.json"
 AUDIT = ROOT / "proofs" / "lean" / "juris_lean" / "JurisLean" / "AxiomAudit.lean"
+REACH = ROOT / "scripts" / "ci" / "check_import_reachability.py"
 DRAFTS = {
     "cn": ROOT / "docs" / "paper-rewrite" / "paper_cn.md",
     "en": ROOT / "docs" / "paper-rewrite" / "paper_en.md",
@@ -44,6 +46,15 @@ def figures() -> dict[str, object]:
     lines = AUDIT.read_text(encoding="utf-8").splitlines()
     audit_cmds = sum(1 for line in lines if line.startswith("#print axioms"))
     audit_mandate = sum(1 for line in lines if line.startswith("#print axioms JurisLean.Mandate."))
+    # The drafts also quote the root-reachability account, whose own sentence says "computed
+    # live by check_import_reachability.py". Quoting a number that a script computes but the
+    # generator does not re-read is how 289/297 survived while the scope count moved to 306.
+    reach = subprocess.run(
+        [sys.executable, str(REACH)], cwd=ROOT, capture_output=True, text=True,
+        encoding="utf-8", check=True,
+    ).stdout
+    m = re.search(r"reachability ok: (\d+) of (\d+) modules, (\d+) allowed", reach)
+    assert m is not None, f"could not parse the reachability account: {reach!r}"
     out: dict[str, object] = {
         "pkg_theorems": pkg["theorem_count"],
         "pkg_lemmas": pkg["lemma_count"],
@@ -51,6 +62,9 @@ def figures() -> dict[str, object]:
         "pkg_files": pkg["file_count"],
         "tracked_theorems": tracked["theorem_count"],
         "tracked_files": tracked["file_count"],
+        "reachable": int(m.group(1)),
+        "reach_total": int(m.group(2)),
+        "reach_booked": int(m.group(3)),
         "cmds": pkg["print_axioms_command_count"],
         "targets": pkg["print_axioms_distinct_targets"],
         "audit_cmds": audit_cmds,
@@ -101,6 +115,31 @@ def cn_specs(f: dict[str, object]) -> list[tuple[str, str]]:
         (r"交叉核对：包内 \d+ 条定理加 \d+ 条 lemma，恰等于计入声明总数 \d+",
          f"交叉核对：包内 {n['pkg_theorems']} 条定理加 {n['pkg_lemmas']} 条 lemma，"
          f"恰等于计入声明总数 {n['pkg_counted']}"),
+        # 第五章那三句和派生记账段说的是同一批数，只是措辞不同。2026-10-05 验收轮发现
+        # 它们带着旧 subject 的读数与"取自 theorem_inventory_v3.json"的现在时声称并存，
+        # 而上面 `全仓 \d+ 条定理声明中` 一条在别处命中一次就让 apply() 报了 OK——
+        # 重复声称从不复算。以下四条把这些句式一并纳入生成器管辖。
+        (r"作用域 `juris_lean_package` \d+ 条定理声明、作用域 `all_tracked_lean` \d+ 条",
+         f"作用域 `juris_lean_package` {n['pkg_theorems']} 条定理声明、"
+         f"作用域 `all_tracked_lean` {n['tracked_theorems']} 条"),
+        (r"公理审计的实际覆盖面是 \d+ 个具名目标（`#print axioms` 共 \d+ 行）",
+         f"公理审计的实际覆盖面是 {n['targets']} 个具名目标"
+         f"（`#print axioms` 共 {n['cmds']} 行）"),
+        (r"`JurisLean/` 树内 \d+ 条定理声明里",
+         f"`JurisLean/` 树内 {n['pkg_theorems']} 条定理声明里"),
+        (r"全仓 \d+ 条定理声明里", f"全仓 {n['total']} 条定理声明里"),
+        (r"军令具名 173 条（本轮为 \d+ 条）",
+         f"军令具名 173 条（本轮为 {n['audit_mandate']} 条）"),
+        # 第二章承载账（与英文稿贡献列表第 2 条同位），此前无人管辖。
+        (r"`JurisLean/` 子树的 \d+ 个文件（`juris_lean_package`）共 \d+ 条定理声明；"
+         r"把包外草稿工件一并数入是 \d+ 条（`all_tracked_lean`，\d+ 文件）",
+         f"`JurisLean/` 子树的 {n['pkg_files']} 个文件（`juris_lean_package`）共 "
+         f"{n['pkg_theorems']} 条定理声明；把包外草稿工件一并数入是 "
+         f"{n['tracked_theorems']} 条（`all_tracked_lean`，{n['tracked_files']} 文件）"),
+        (r"该账现报 \d+ / \d+ 模块在根闭",
+         f"该账现报 {n['reachable']} / {n['reach_total']} 模块在根闭"),
+        (r"文件数的跳升（225[^）]*）",
+         f"文件数的跳升（225→296→297，本轮 {n['pkg_files']}）"),
     ]
 
 
@@ -144,6 +183,32 @@ def en_specs(f: dict[str, object]) -> list[tuple[str, str]]:
         (r"The audit surface reports \d+ named targets and AxiomAudit\.lean holds \d+ commands",
          f"The audit surface reports {n['targets']} named targets and AxiomAudit.lean "
          f"holds {n['audit_cmds']} commands"),
+        # 第五章（贡献列表第 2 条与 Claims ledger）与派生记账段说的是同一批数，
+        # 2026-10-05 验收轮前一直无人管辖，导致 3240/3242/3252 与 3617/3629 并存。
+        (r"\d+ theorem declarations across the \d+ files of scope `juris_lean_package`, "
+         r"and \d+ across every tracked Lean file",
+         f"{n['pkg_theorems']} theorem declarations across the {n['pkg_files']} files of "
+         f"scope `juris_lean_package`, and {n['tracked_theorems']} across every tracked "
+         f"Lean file"),
+        (r"\(`all_tracked_lean`, \d+ files\)",
+         f"(`all_tracked_lean`, {n['tracked_files']} files)"),
+        (r"\d+ theorem declarations in scope `juris_lean_package` and "
+         r"\d+ in scope `all_tracked_lean`",
+         f"{n['pkg_theorems']} theorem declarations in scope `juris_lean_package` and "
+         f"{n['tracked_theorems']} in scope `all_tracked_lean`"),
+        (r"The axiom audit covers \d+ named targets \(\d+ `#print axioms` commands\)",
+         f"The axiom audit covers {n['targets']} named targets "
+         f"({n['cmds']} `#print axioms` commands)"),
+        (r"of the \d+ theorem declarations, \d+ are one-line contract transfers",
+         f"of the {n['pkg_theorems']} theorem declarations, {n['alias']} are one-line "
+         f"contract transfers"),
+        (r"\(\d+ named there at that subject, \d+ today\)",
+         f"(173 named there at that subject, {n['audit_mandate']} today)"),
+        (r"reports \d+ of \d+ modules reachable and \d+ booked",
+         f"reports {n['reachable']} of {n['reach_total']} modules reachable and "
+         f"{n['reach_booked']} booked"),
+        (r"The jump in file count \(225[^)]*\)",
+         f"The jump in file count (225 to 294, {n['pkg_files']} now)"),
     ]
 
 

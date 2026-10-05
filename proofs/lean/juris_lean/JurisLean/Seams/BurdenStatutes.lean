@@ -62,7 +62,9 @@ import Mathlib.Tactic
 零 `sorry`、零 `admit`、零 `native_decide`、零自定义 `axiom`；没有把结论写进前提。
 档位标注：条文原文＝[一手已核]；枚举与判定函数＝[构造性定义]；
 把条文某款读成某谓词＝[建模选择]（本件宣告，不是条文措辞）；定理＝[已证·待 CI]。
-Lean 权威认定只走 CI；本件是**待验证草稿**，未入根 `JurisLean.lean`。
+Lean 权威认定只走 CI。本件**已入根**（`JurisLean.lean:170`）并已在整树 clean build
+轮中认定（run 37227626074，subject 5aa3863）；此处此前写作"待验证草稿，未入根"，
+系**过期档位**，2026-10-05 验收轮更正。认定只属于该 subject，后续提交不继承。
 -/
 
 open JurisLean.Seams.AdjudicationBridge

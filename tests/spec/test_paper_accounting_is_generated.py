@@ -63,3 +63,49 @@ def test_the_generator_reads_the_artifacts_it_claims() -> None:
     assert figures["pkg_theorems"] + figures["pkg_lemmas"] == figures["pkg_counted"]
     assert figures["audit_cmds"] + figures["outside_audit"] == figures["cmds"]
     assert figures["tracked_theorems"] >= figures["pkg_theorems"]
+
+
+# Every sentence that closes the three-way partition states its own total next to it, so the
+# sum can be checked without knowing which subject the sentence was written against.
+# This catches the failure the template checks cannot: `apply()` reports OK as soon as a
+# pattern matches *somewhere*, so a duplicate claim elsewhere -- e.g. Chapter 5's
+# "全仓 3240 条定理声明里，287 条…102 条…其余 3228 条", where 287+102+3228 = 3617 --
+# keeps an old total while its parts were rebound. 2026-10-05 acceptance round.
+CN_PARTITION = re.compile(
+    r"(\d+) 条由单一反射项闭合、(\d+) 条由纯 decide 闭合、其余 (\d+) 条含 tactic"
+)
+EN_PARTITION = re.compile(
+    r"(\d+) close on a single reflexivity term, (\d+) close on `decide` alone, "
+    r"and (\d+) carry a tactic proof"
+)
+TOTAL_CN = re.compile(r"(\d+) 条定理声明")
+TOTAL_EN = re.compile(r"of the (\d+) declarations")
+
+
+def test_each_partition_sentence_adds_up_to_its_own_total() -> None:
+    """Splitting on "." is not a sentence boundary in prose that quotes `json` filenames,
+    so the total is looked up in a window around the partition instead of a split piece."""
+    mod = _load()
+    for path, part_re, total_re in (
+        (mod.DRAFTS["cn"], CN_PARTITION, TOTAL_CN),
+        (mod.DRAFTS["en"], EN_PARTITION, TOTAL_EN),
+    ):
+        text = path.read_text(encoding="utf-8").replace("\n", " ")
+        checked = 0
+        for m in part_re.finditer(text):
+            checked += 1
+            parts = sum(int(g) for g in m.groups())
+            window = text[max(0, m.start() - 500):m.end() + 50]
+            totals = total_re.findall(window)
+            assert totals, (
+                f"{path.name}: a partition lists its three classes but no total appears "
+                f"within 500 characters before it: {window[-260:]!r}"
+            )
+            # the total the sentence applies to is the last one stated before the classes
+            assert parts == int(totals[-1]), (
+                f"{path.name}: the partition is stated against {totals[-1]} declarations but "
+                f"its three closure classes sum to {parts} -- the classes were rebound and "
+                "the total was left at an older subject's reading"
+            )
+        assert checked > 0, f"{path.name}: no partition sentence found; this gate is idle"
+

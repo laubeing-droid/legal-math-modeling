@@ -61,8 +61,10 @@ Dirichlet/Beta 共轭更新（`DirichletPosterior.dirWeights`）、精确 Beta C
 本件把这四条做成**有限条件集** `ReductionCondition`，再由条件集合成闸门
 `reductionGate` 与准许关系 `Allow`；30% 门槛取精确有理比较 `(13/10 : ℚ) * 损失 < 约定额`
 （整数等价式 `13 * 损失 < 10 * 约定额`，二者的等价性本件证明）。
-关键立场：65条第2款说的是"一般**可以**认定"（许可式），所以门槛只是 `Allow` 的**准入条件**，
-不是把结果算出来的规则；同一款的"恶意违约……一般**不予**支持"在本件里按默认情形建成
+关键立场：第65条**第2款**说的是"一般**可以**认定"（许可式），所以门槛只是 `Allow` 的**准入条件**，
+不是把结果算出来的规则；同条**第3款**的"恶意违约……一般**不予**支持"（一手发布页把该句列为
+第65条第3款，本件头注此前写作"同一款"系**误记**，`ReductionConditions2.lean` §二已登记此漂移）
+在本件里按默认情形建成
 硬关闸（`bad_faith_bar`），其"一般"留出的例外面未建模（§四第 7 项）；
 65条第1款列举的衡量因素面本件刻意留作自由输入 `factors : F`，
 不写成定理。据此给出反例对 `clamp_is_not_reduction`：一个满足区间归入（仓库现有 clamp 的形状）
@@ -627,14 +629,22 @@ structure LossComponent where
   foreseen : Bool
   deriving Repr
 
-/-- 中文说明：损失基础的三个构成位——直接损失、可得利益、额外费用（第 63 条第 2 款的字面三分）。 -/
+/-- 中文说明：损失基础的**三个构成位**。归属要分开说清，不能都挂在第 63 条第 2 款上：
+    `gain`（合同履行后可以获得的利益）与 `extraToThirdParty`（向第三人承担违约责任应当
+    支出的额外费用）确实是第 63 条第 2 款的字面条目；`direct`（直接损失）**不在**该款项
+    面内，它的来处是《民法典》第 584 条与第 65 条第 1 款"以民法典第 584 条规定的损失为
+    基础"。本件把三者做成同一形状的位，是为了逐位做自己的可预见检验，
+    不声称第 63 条第 2 款字面列了三类。 -/
 structure LossBasis where
   direct : LossComponent
   gain : LossComponent
   extraToThirdParty : LossComponent
   deriving Repr
 
-/-- 中文说明：某一构成位**计入**损失基础的判定——数额非负且通过它自己的可预见检验。 -/
+/-- 中文说明：某一构成位**计入**损失基础的判定——数额非负且通过它自己的可预见检验。
+    其中"数额非负才计入"是 `[建模选择]`：第 63 条第 2 款只给可预见性检验，
+    没有规定负数额怎么办；本件选择让负数不进基础，从而 `basisTotal` 不会因为
+    某一位记成负数而**减小**总额。该选择的可证后果见 `basisTotal_le_sum_needs_nonneg`。 -/
 def componentCounted (c : LossComponent) : Bool :=
   decide (0 ≤ c.amount) && c.foreseen
 
@@ -656,7 +666,10 @@ theorem unforeseen_component_drops_out (b : LossBasis)
   simp only [Bool.and_false, Bool.false_eq_true, if_false]
   ring
 
-/-- 中文证明（**计入总额不超过逐位绝对值之和**）：判定只做取舍不做增值。 -/
+/-- 中文证明（**计入总额不超过逐位数额之和**，需三位数额皆非负）：判定只做取舍不做增值。
+    假设是**不可去的**——无假设那支为假，机器反例见下面 `basisTotal_le_sum_needs_nonneg`。
+    本条 2026-10-04 以无假设形态提交时实测不过，故按"原命题为假就保留反例并改契约"
+    的仓库规矩补三条非负假设，并把被否证的那一支留成可判反例，而不只在注释里声称。 -/
 theorem basisTotal_le_sum_of_amounts (b : LossBasis)
     (h1 : 0 ≤ b.direct.amount) (h2 : 0 ≤ b.gain.amount)
     (h3 : 0 ≤ b.extraToThirdParty.amount) :
@@ -673,6 +686,22 @@ theorem basisTotal_le_sum_of_amounts (b : LossBasis)
   have e2 := hkey b.gain h2
   have e3 := hkey b.extraToThirdParty h3
   linarith
+
+/-- 中文见证（**反例数据**）：直接损失记 −5 且已预见，可得利益记 −10 且未预见，
+    额外费用记 0 且已预见。 -/
+def negBasis : LossBasis :=
+  { direct := { amount := -5, foreseen := true },
+    gain := { amount := -10, foreseen := false },
+    extraToThirdParty := { amount := 0, foreseen := true } }
+
+/-- 中文证明（**上式去假设即假**）：`negBasis` 上计入总额是 0（两位负数一位被取舍规则
+    挡在门外、一位未预见），而逐位数额之和是 −15，于是不等式**不成立**。
+    这条就是上面那三条非负假设的来处——它把"为什么收窄契约"变成机器可判的事实。 -/
+theorem basisTotal_le_sum_needs_nonneg :
+    ¬ (basisTotal negBasis ≤ negBasis.direct.amount + negBasis.gain.amount
+      + negBasis.extraToThirdParty.amount) := by
+  unfold basisTotal componentCounted
+  decide
 
 /-- 中文说明（**第 63 条第 3 款的扣除**）：四类扣除项——扩大损失、
     对方过错造成的相应损失、对方因违约获得的额外利益、减少的必要支出。

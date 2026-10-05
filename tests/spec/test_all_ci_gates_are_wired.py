@@ -62,6 +62,13 @@ NOT_A_GATE = {
     # a recorded debt for after the wave settles, not an oversight -- see the header note the
     # generated register carries.
     "generate_uncovered_fragment_register.py",
+    # An acceptance instrument, not a gate: it takes two subjects and reports the theorem-name
+    # set difference plus whether each addition is on the landed axiom surface. It cannot run as
+    # a CI step because it compares a commit against its ancestor, and the repository has no
+    # "this wave added N" contract to enforce -- the number it exists to check lives in prose.
+    # Added by the 2026-10-05 acceptance round, which found the ledger claiming 24 additions
+    # where the diff is 22.
+    "count_added_theorems.py",
 }
 
 

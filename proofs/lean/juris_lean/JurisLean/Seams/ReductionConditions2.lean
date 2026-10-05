@@ -101,9 +101,11 @@ open JurisLean.Seams.Probability
 9. **款号事实**：第66条分款读数未定谳；既有件第65条的五处款号未改（本件无权限改）。
 
 ### 六、档位
-`SEAM_W4_BATCH1_DRAFT_NOT_COMPILED`：**本件未编译**。本地不跑 Lean/Elan/Lake（仓库红线），
-CI 亦未派工，故 Lean 侧状态是 `CI_NOT_RUN`（fail-closed）。在主编排会话里本件默认是
-**待验证草稿**，不叫完成；`^theorem` 读数与编译结果一律以源码与 CI 工件为准。
+`LANDED_AND_ATTESTED`：**本件已入根并已认定**，此前此节写作"本件未编译／CI_NOT_RUN"是
+**过期档位**（2026-10-05 验收轮更正）。现状：本件由根文件 `JurisLean.lean:180` 导入，
+其 35 条定理逐条列在公理审计面 `AxiomAudit.lean:1484-1518`；最近一次整树 clean build
+认定是 run 37227626074（subject 5aa3863，八作业 success，sorryAx 0）。
+**该认定只属于那个 subject**：本文件之后的任何提交都不继承它，读数一律以源码与 CI 工件为准。
 -/
 
 namespace JurisLean.Seams.ReductionConditions2

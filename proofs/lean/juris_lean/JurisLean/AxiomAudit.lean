@@ -1665,6 +1665,7 @@ open HornSystem
 #print axioms JurisLean.Seams.StatuteChain.chain_tier_part_two
 #print axioms JurisLean.Seams.StatuteChain.chain_zero_in_kernel
 #print axioms JurisLean.Seams.StatuteChain.instanceM_observation_is_the_declared_one
+#print axioms JurisLean.Seams.StatuteChain.instanceM_pol_not_adopted_consistent
 #print axioms JurisLean.Seams.StatuteChain.instanceM_sanction_default_is_zero
 #print axioms JurisLean.Seams.StatuteChain.observation_does_not_touch_adoption
 #print axioms JurisLean.Seams.StatuteChain.observation_reports_something

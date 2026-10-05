@@ -608,6 +608,29 @@ theorem chain_art90_gate_has_input_witness : chain_art90_gate_has_input := by
       ({UnifiedInstance.claimReduction, UnifiedInstance.claimNoAdjustment} : Finset Arg)
   exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl)
 
+/-- 中文证明（**`instanceM.pol` 不满足策略自洽**——第二轮独立复核 B1 的如实登记）：
+    `AdoptedConsistent`（`Transitions.lean:651`）要求"凡第 0 层采纳的论点其支持位为真"。
+    而本件 `conclusive = aafM.args` 整个论点集都在第 0 层（`baseSet_polM_eq_args`），
+    其中 `claimNoAdjustment` 的支持位为假（`chain_pol_support_on_two_labels.2`）——
+    "空攻击夹具上 conclusive 取全集"与"第 90 条不利后果落地"不可兼得。这不是待补的
+    引理，是已证的否证：**引擎在 instanceM 上不自洽**。与
+    `art64_policy_is_adopted_consistent`（`Transitions.lean:659`）并读：策略自洽目前
+    只在 `art64Policy` 一台夹具上成立；WBS-1 的契约级重写仍在队列，17_ 卷缺口 3
+    不得据此标"已闭"。 -/
+theorem instanceM_pol_not_adopted_consistent :
+    ¬ Transitions.AdoptedConsistent instanceM.pol := by
+  intro h
+  have hmem : UnifiedInstance.claimNoAdjustment ∈ baseSet instanceM.pol := by
+    have h1 : UnifiedInstance.claimNoAdjustment ∈ baseSet UnifiedInstance.polM := by
+      rw [UnifiedInstance.baseSet_polM_eq_args]
+      show UnifiedInstance.claimNoAdjustment ∈
+          ({UnifiedInstance.claimReduction, UnifiedInstance.claimNoAdjustment} : Finset Arg)
+      exact Finset.mem_insert_of_mem (Finset.mem_singleton.mpr rfl)
+    exact h1
+  have hsupport := h UnifiedInstance.claimNoAdjustment hmem
+  rw [chain_pol_support_on_two_labels.2] at hsupport
+  exact absurd hsupport (by decide)
+
 /-! ## 八、链谓词与封顶陈述 -/
 
 /-- 中文说明（**条文链谓词** `StatuteChainOn`）：一个载体 `M` 把这条链说出来，

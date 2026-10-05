@@ -1308,10 +1308,10 @@ open HornSystem
 #print axioms JurisLean.Seams.LegacyConeBridge.mem_conclusion_of_mem_rules
 #print axioms JurisLean.Seams.LegacyConeBridge.offDiagramAttack_mem
 #print axioms JurisLean.Seams.LegacyConeBridge.offDiagramAttack_witnessed
-#print axioms JurisLean.Seams.Limitation.art66Clause3_closed_when_both_present
-#print axioms JurisLean.Seams.Limitation.art66Clause3_witness
 #print axioms JurisLean.Seams.Limitation.clarification_duty_is_level_blind
 #print axioms JurisLean.Seams.Limitation.expiration_day_exists
+#print axioms JurisLean.Seams.Limitation.fashi13_art66Clause3_closed_when_both_present
+#print axioms JurisLean.Seams.Limitation.fashi13_art66Clause3_witness
 #print axioms JurisLean.Seams.Limitation.interruption_restarts_the_clock
 #print axioms JurisLean.Seams.Limitation.limitationPeriod_pos
 #print axioms JurisLean.Seams.Limitation.second_instance_still_owes_clarification

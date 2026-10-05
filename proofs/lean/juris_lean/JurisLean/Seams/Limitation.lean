@@ -1,19 +1,19 @@
 import Mathlib.Tactic
 import JurisLean.Seams.Temporal
 
-/-! # 诉讼时效与审级位（17_ 卷缺口 6：民法典 192／194／195 条的程序面 + 第 66 条后两段）
+/-! # 诉讼时效与审级位（17_ 卷缺口 6：民法典 192／194／195 条的程序面 + 法释〔2023〕13号第 66 条后两段）
 
 此前时效只有 `ClaimBasis.lean` 注释面的读法与两个构造子级见证
 （时效抗辩 `:313`、同意履行 `:318`），没有起算／中断／中止／期间计算；
-审级位完全空缺（`ReductionConditions2.lean` §五#3 自证：第 66 条后两段
+审级位完全空缺（`ReductionConditions2.lean` §五#3 自证：法释〔2023〕13号第 66 条后两段
 "一审认为抗辩成立且未释明时**二审**可直接释明"无法表达，因为 `clarified`
 只有一个不分审级的总位）。本件补这两格：
 
 * **审级位**：`InstanceLevel`（一审／二审）＋ `presentAtSecond`（一审因客观原因
   未到庭、二审到庭）＋ `clarificationDutyAt`。**读法须收窄**：义务位对两个审级
-  都取真，因此它**不表达**第 66 条后两段的审级差异；这一条由
+  都取真，因此它**不表达**法释〔2023〕13号第 66 条后两段的审级差异；这一条由
   `clarification_duty_is_level_blind` 证出（该位对审级判定恒真）。
-  真正有内容的是第 3 款的**入口位** `art66Clause3Opens`（一审未到庭∧二审到庭）。
+  真正有内容的是第 3 款的**入口位** `fashi13_art66Clause3Opens`（一审未到庭∧二审到庭）。
 * **时效**：`LimitationClock`（起算日＋期间长度）＋ `expiredAt`（届满判定）＋
   `interruptAt`（民法典 195 条中断：重新起算）＋ `suspendWithin`（民法典 194 条
   中止：期间顺延）。载体取 `Int` 日标签，与 `Temporal.lean` 的 XT 层同形（错位登记 #6）。
@@ -31,16 +31,16 @@ import JurisLean.Seams.Temporal
 
 namespace JurisLean.Seams.Limitation
 
-/-! ## 一、审级位（第 66 条后两段） -/
+/-! ## 一、审级位（法释〔2023〕13号第 66 条后两段） -/
 
-/-- 审级：一审／二审。这一位在 `art66Clause3Opens` 上产生差异（是否到过庭），
+/-- 审级：一审／二审。这一位在 `fashi13_art66Clause3Opens` 上产生差异（是否到过庭），
     在 `clarificationDutyAt` 上**不**产生差异——见 `clarification_duty_is_level_blind`。 -/
 inductive InstanceLevel : Type
   | firstInstance -- 一审
   | secondInstance -- 二审
 deriving DecidableEq, Repr
 
-/-- 当事人到庭位：第 66 条第 3 款的情形——"被告因客观原因一审未到庭、二审到庭"。 -/
+/-- 当事人到庭位：法释〔2023〕13号第 66 条第 3 款的情形——"被告因客观原因一审未到庭、二审到庭"。 -/
 structure Attendance where
   /-- 一审是否到庭。 -/
   presentAtFirst : Bool
@@ -48,14 +48,14 @@ structure Attendance where
   presentAtSecond : Bool
   deriving Repr
 
-/-- 中文说明（第 66 条第 2 款的**弱化**读数）：把"有释明义务"做成一个位。
+/-- 中文说明（法释〔2023〕13号第 66 条第 2 款的**弱化**读数）：把"有释明义务"做成一个位。
     本件把它定义为**两审级都取真**，所以它只说"义务存在"，不说"二审才有"或
     "两审不同"。一审位的具体读数是 `ReductionConditions2.clarified` 那个总位。 -/
 def clarificationDutyAt : InstanceLevel → Bool
   | .firstInstance => true
   | .secondInstance => true
 
-/-- 中文证明（**二审释明义务存在**）：第 66 条第 2 款"二审可以直接释明"的
+/-- 中文证明（**二审释明义务存在**）：法释〔2023〕13号第 66 条第 2 款"二审可以直接释明"的
     机器读数——二审位上义务位为真。**强度如实**：这条只是上一条定义在
     `secondInstance` 处的取值，它不含"仅二审"或"审级有别"的意思，
     那层意思由下面那条否证定理登记为**未表达**。 -/
@@ -64,30 +64,30 @@ theorem second_instance_still_owes_clarification :
   rfl
 
 /-- 中文证明（**审级位对释明义务是盲的**）：`clarificationDutyAt` 对两个审级
-    给出同一读数，因此第 66 条后两段里"**二审**可以直接释明并组织举证、质证、辩论"
+    给出同一读数，因此法释〔2023〕13号第 66 条后两段里"**二审**可以直接释明并组织举证、质证、辩论"
     这一**审级差异**在本件未被表达。这是一条盲区登记，不是把该差异证否——
     它与 `ReductionConditions2.lean` §五#3 对旧件 `clarified` 总位的同一自证同形。 -/
 theorem clarification_duty_is_level_blind (l : InstanceLevel) :
     clarificationDutyAt l = true := by
   cases l <;> rfl
 
-/-- 中文证明（**第 66 条第 3 款的开启条件**）：一审因客观原因未到庭、
+/-- 中文证明（**法释〔2023〕13号第 66 条第 3 款的开启条件**）：一审因客观原因未到庭、
     二审到庭——这正是第 3 款"被告……请求减少的，人民法院应当……"的入口位。
     开启＝一审未到庭∧二审到庭。 -/
-def art66Clause3Opens (att : Attendance) : Bool :=
+def fashi13_art66Clause3Opens (att : Attendance) : Bool :=
   !att.presentAtFirst && att.presentAtSecond
 
 /-- 中文证明（**开启位非空洞**）：这个组合真实可达（构造子级见证）。 -/
-theorem art66Clause3_witness :
-    art66Clause3Opens { presentAtFirst := false, presentAtSecond := true } = true := by
-  unfold art66Clause3Opens
+theorem fashi13_art66Clause3_witness :
+    fashi13_art66Clause3Opens { presentAtFirst := false, presentAtSecond := true } = true := by
+  unfold fashi13_art66Clause3Opens
   rfl
 
 /-- 中文证明（**到庭组合的互斥读数**）：一审二审都到庭时第 3 款不开——
     它只保护"一审因客观原因未到庭"的被告，不保护两次都到庭的。 -/
-theorem art66Clause3_closed_when_both_present :
-    art66Clause3Opens { presentAtFirst := true, presentAtSecond := true } = false := by
-  unfold art66Clause3Opens
+theorem fashi13_art66Clause3_closed_when_both_present :
+    fashi13_art66Clause3Opens { presentAtFirst := true, presentAtSecond := true } = false := by
+  unfold fashi13_art66Clause3Opens
   rfl
 
 /-! ## 二、诉讼时效（民法典 192／194／195 条） -/
@@ -115,9 +115,15 @@ def expiredAt (c : LimitationClock) (d : Int) : Prop :=
     "人民法院不得主动适用诉讼时效的规定"，无第 1、2 款之分；同目录 `ClaimBasis.lean`
     对 193 条的用法才是正确读法。中断＝195 条，中止＝194 条。
     **档位**：192 条的引文已在仓内语料 `data/aaf_legal/yd_defense_limitation.csv:10-11`
-    逐字对上；194／195 的条号归属在本环境**未能取到权威原文页**（两次外网抓取失败、
-    仓内语料不含这两条），故记为 `[待一手核]`，不是 `[一手已核]`。条号错了要改的是引注，
-    本件的数学体（顺延／重启）不受影响。 -/
+    逐字对上；194／195 的条号归属 **`[一手已核]`**（2026-10-05 核验）——法院系统官网
+    五源逐字互证一致：ahczzy.ahcourt.gov.cn（article 7907772）、hbwqfy.nmgfy.gov.cn
+    （article 8902912）、kbsqfy.nmgfy.gov.cn（article 9307377）、hgns.hljcourt.gov.cn
+    （detail.php?id=4589）、qthqzh.hljcourt.gov.cn（detail.php?id=1372）。194＝"在诉讼
+    时效期间的最后六个月内，因下列障碍，不能行使请求权的，诉讼时效中止……自中止时效的
+    原因消除之日起满六个月，诉讼时效期间届满"；195＝"有下列情形之一的，诉讼时效中断，
+    从中断、有关程序终结时起，诉讼时效期间重新计算……"。尾账：国家法律法规数据库
+    详情页带防重复提交签名、本环境未取到，立法机关一手页复核留待后补。条号错了要改的
+    是引注，本件的数学体（顺延／重启）不受影响。 -/
 def interruptAt (c : LimitationClock) (atDay : Int) : LimitationClock where
   startDay := atDay
 

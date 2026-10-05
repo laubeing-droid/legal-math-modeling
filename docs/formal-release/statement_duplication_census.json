@@ -15,7 +15,7 @@
     ]
   },
   "cross_family_statement_types": 1,
-  "distinct_statement_types": 3720,
+  "distinct_statement_types": 3721,
   "duplicated_statement_types": 42,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
@@ -273,12 +273,12 @@
     ": instanceM.caseBurden.2 = BurdenStatutes.ProductionStatus.produced ∧ chain_art90_gate_has_input": [
       {
         "carrier": "root/other/case_data_does_not_imply_gate_input",
-        "line": 808,
+        "line": 831,
         "path": "Seams/StatuteChain.lean"
       },
       {
         "carrier": "root/other/chain_art90_two_readings_coherent",
-        "line": 801,
+        "line": 824,
         "path": "Seams/StatuteChain.lean"
       }
     ],
@@ -526,9 +526,9 @@
   "files_scanned": 306,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
   "headers_missed_by_scanner": 105,
-  "inventory_package_theorems": 3753,
+  "inventory_package_theorems": 3754,
   "private_protected_headers_read": 114,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 3762
+  "statements_read": 3763
 }

@@ -5,8 +5,8 @@
 Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.
 
 - files scanned: 306
-- theorem/lemma headers read: 3762
-- distinct statement types: 3720
+- theorem/lemma headers read: 3763
+- distinct statement types: 3721
 - statement types declared more than once: 42
 - of those spanning module families: 1
 
@@ -37,7 +37,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `: checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with caseId := "OTHER-CASE" } }) (writeCalcul` — `BusinessRoot/SevenAxisCases.lean:26` (root/other/reject_doc_caseId), `BusinessRoot/SevenAxis.lean:380` (root/other/wrong_case_rejected)
 - `: checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with debtor := "丙公司" } }) (writeCalculation e` — `BusinessRoot/SevenAxisCases.lean:53` (root/other/reject_doc_debtor), `BusinessRoot/SevenAxis.lean:351` (root/other/wrong_debtor_rejected)
 - `: collapsesToKernel instanceM.evalDom` — `Seams/StatuteChain.lean:339` (root/other/chain_collapse_from_the_109_tier), `Seams/UnifiedInstance.lean:650` (root/other/instanceM_collapse)
-- `: instanceM.caseBurden.2 = BurdenStatutes.ProductionStatus.produced ∧ chain_art90_gate_has_input` — `Seams/StatuteChain.lean:808` (root/other/case_data_does_not_imply_gate_input), `Seams/StatuteChain.lean:801` (root/other/chain_art90_two_readings_coherent)
+- `: instanceM.caseBurden.2 = BurdenStatutes.ProductionStatus.produced ∧ chain_art90_gate_has_input` — `Seams/StatuteChain.lean:831` (root/other/case_data_does_not_imply_gate_input), `Seams/StatuteChain.lean:824` (root/other/chain_art90_two_readings_coherent)
 - `[∀ i, Finite (A i)] (σ : ∀ i, PMF (A i)) {j q : ι} (hq : q ≠ j) (E : A j → Prop) (hE : pmfMass (μ := σ j) E ≠ 0) : pushforward (pmfCond (μ := pmfPi (A := A) σ) ` — `External/GameTheory/Math/PMFProduct.lean:1193` (External/pmfPi_cond_coord_other_marginal), `External/GameTheory/Math/PMFProduct.lean:708` (External/pmfPi_cond_coord_push_other)
 - `{S T : Finset α} (hST : S ⊆ T) : TH sys S ⊆ TH sys T` — `HornDefinitions.lean:41` (root/other/TH_monotone), `HornFixedPoint.lean:21` (root/other/horn_operator_monotone)
 - `{a b c : TrustVector} (hab : TrustLE a b) (hbc : TrustLE b c) : TrustLE a c` — `Seams/BoundaryBridge5.lean:154` (root/other/bb5_trustLE_trans), `Seams/BoundaryClosure.lean:611` (root/other/trustLE_trans)

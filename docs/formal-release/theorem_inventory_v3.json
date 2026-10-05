@@ -1915,10 +1915,10 @@
     "JurisLean.Seams.LegacyConeBridge.mem_conclusion_of_mem_rules",
     "JurisLean.Seams.LegacyConeBridge.offDiagramAttack_mem",
     "JurisLean.Seams.LegacyConeBridge.offDiagramAttack_witnessed",
-    "JurisLean.Seams.Limitation.art66Clause3_closed_when_both_present",
-    "JurisLean.Seams.Limitation.art66Clause3_witness",
     "JurisLean.Seams.Limitation.clarification_duty_is_level_blind",
     "JurisLean.Seams.Limitation.expiration_day_exists",
+    "JurisLean.Seams.Limitation.fashi13_art66Clause3_closed_when_both_present",
+    "JurisLean.Seams.Limitation.fashi13_art66Clause3_witness",
     "JurisLean.Seams.Limitation.interruption_restarts_the_clock",
     "JurisLean.Seams.Limitation.limitationPeriod_pos",
     "JurisLean.Seams.Limitation.second_instance_still_owes_clarification",
@@ -2955,8 +2955,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "f95b4301f6956711cabf3de61bafb81092a455cf26bc50212146d82135bf9a1d",
-   "size_bytes": 167479,
+   "sha256": "2a49060bc12a58c198a3adff0278f67c57db63162dede77fc38a15dfb4a33687",
+   "size_bytes": 167495,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -25778,15 +25778,15 @@
     },
     {
      "kind": "def",
-     "name": "art66Clause3Opens"
+     "name": "fashi13_art66Clause3Opens"
     },
     {
      "kind": "theorem",
-     "name": "art66Clause3_witness"
+     "name": "fashi13_art66Clause3_witness"
     },
     {
      "kind": "theorem",
-     "name": "art66Clause3_closed_when_both_present"
+     "name": "fashi13_art66Clause3_closed_when_both_present"
     },
     {
      "kind": "def",
@@ -25832,8 +25832,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Limitation.lean",
    "print_axioms_targets": [],
-   "sha256": "d4821a87239cedf89883364ae1b377b0f4308beca6c99795a94c9d2a90107fd6",
-   "size_bytes": 9572,
+   "sha256": "f45c0ae51994a8f3ec1fbce77d12f811093e0ea5344e27feddd658c634d078be",
+   "size_bytes": 10496,
    "theorem_count": 8,
    "theorem_count_bol_convention": 8
   },
@@ -33903,12 +33903,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "b654a8842f785940e5aaa604b6550e25497ffc6ae8e3be9130222da5f0b565b4",
+ "source_inventory_digest": "45003213cbfec451ba32ec3169c543d3c180f66f5f0a28e48c7360eec0e03d5c",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "ca25e68f1f79c808c6137a7d0aaf8c92a4bb7e76",
-  "tree": "17238dfb177cab99479985f760ea7739391d33a3"
+  "commit": "48512daefb7863fe53c89d2d34cb8197e311a2eb",
+  "tree": "251abf8f9f51742a56610e44314e90881e0704e2"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

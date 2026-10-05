@@ -59,6 +59,24 @@ def test_separate_sentences_are_allowed() -> None:
     assert gate.find_violations_in_text(ok) == []
 
 
+def test_camelcase_lean_spelling_still_fires() -> None:
+    """The Lean name is `StatuteChainOn`; re-coupling under that spelling must go red."""
+    bad = "StatuteChainOn 直接消费 CaseInput 的输出。"
+    assert gate.find_violations_in_text(bad), "camelCase chain name must not escape the gate"
+
+
+def test_folded_line_break_still_fires() -> None:
+    """A sentence folded across two Markdown lines must still be caught."""
+    bad = "Seams/CaseInput.lean 的输出直接喂给\nStatuteChainOn 消费。"
+    assert gate.find_violations_in_text(bad), "a line break must not end a sentence"
+
+
+def test_boundary_drawing_negation_is_allowed() -> None:
+    """Naming both to delimit them (no consumption edge) is the corrected wording."""
+    ok = "链谓词六支（StatuteChainOn）消费手写 UnifiedModel，CaseInput 与它之间没有一条消费边。"
+    assert gate.find_violations_in_text(ok) == [], "a boundary-drawing sentence must not go red"
+
+
 def test_cli_is_fail_closed(tmp_path: Path) -> None:
     (tmp_path / "bad.md").write_text("案卷跑通 statuteChain_on。", encoding="utf-8")
     proc = subprocess.run(

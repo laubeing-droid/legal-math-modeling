@@ -169,11 +169,11 @@ import JurisLean.Seams.BoundaryBridge5
 import JurisLean.Seams.BoundaryClosure
 import JurisLean.Seams.BurdenStatutes
 import JurisLean.Seams.CaseInput
-import JurisLean.Seams.Limitation
 import JurisLean.Seams.ClaimBasis
 import JurisLean.Seams.FullProcess
 import JurisLean.Seams.InstitutionalEffects
 import JurisLean.Seams.LegacyConeBridge
+import JurisLean.Seams.Limitation
 import JurisLean.Seams.PayoffEquilibrium
 import JurisLean.Seams.PrecedentFlow
 import JurisLean.Seams.Probability

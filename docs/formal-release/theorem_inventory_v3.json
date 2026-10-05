@@ -1917,6 +1917,7 @@
     "JurisLean.Seams.LegacyConeBridge.offDiagramAttack_witnessed",
     "JurisLean.Seams.Limitation.art66Clause3_closed_when_both_present",
     "JurisLean.Seams.Limitation.art66Clause3_witness",
+    "JurisLean.Seams.Limitation.clarification_duty_is_level_blind",
     "JurisLean.Seams.Limitation.expiration_day_exists",
     "JurisLean.Seams.Limitation.interruption_restarts_the_clock",
     "JurisLean.Seams.Limitation.limitationPeriod_pos",
@@ -2034,6 +2035,7 @@
     "JurisLean.Seams.Probability.allow_of_gate_open",
     "JurisLean.Seams.Probability.allowed_amount_nonneg_of_nonneg_agreed",
     "JurisLean.Seams.Probability.band_containment_is_not_allow",
+    "JurisLean.Seams.Probability.basisTotal_le_sum_needs_nonneg",
     "JurisLean.Seams.Probability.basisTotal_le_sum_of_amounts",
     "JurisLean.Seams.Probability.beta_posterior_from_likelihood",
     "JurisLean.Seams.Probability.beta_predictive_bracket_survives_update",
@@ -2953,8 +2955,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "1a9c99448d23a9f51a5c9a51f47ff0ba82e5509cf32a589fd89c18ef5988a250",
-   "size_bytes": 167331,
+   "sha256": "f95b4301f6956711cabf3de61bafb81092a455cf26bc50212146d82135bf9a1d",
+   "size_bytes": 167479,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -24209,8 +24211,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/BurdenStatutes.lean",
    "print_axioms_targets": [],
-   "sha256": "17ade717565f53e1c2518547234454b0b193ebb8b5612fb44a4735c184b0397d",
-   "size_bytes": 72827,
+   "sha256": "0c8a95f68af84ef86bf3f2b67098d5a2f290903c1fccd0a935c91ae746c86733",
+   "size_bytes": 73049,
    "theorem_count": 78,
    "theorem_count_bol_convention": 78
   },
@@ -25771,6 +25773,10 @@
      "name": "second_instance_still_owes_clarification"
     },
     {
+     "kind": "theorem",
+     "name": "clarification_duty_is_level_blind"
+    },
+    {
      "kind": "def",
      "name": "art66Clause3Opens"
     },
@@ -25826,10 +25832,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Limitation.lean",
    "print_axioms_targets": [],
-   "sha256": "b06174fec2a86f6cb0289285cce1871253d60d7cb348224d47f20cd55ac840d0",
-   "size_bytes": 6767,
-   "theorem_count": 7,
-   "theorem_count_bol_convention": 7
+   "sha256": "d4821a87239cedf89883364ae1b377b0f4308beca6c99795a94c9d2a90107fd6",
+   "size_bytes": 9572,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
   },
   {
    "declarations": [
@@ -26841,6 +26847,14 @@
      "name": "basisTotal_le_sum_of_amounts"
     },
     {
+     "kind": "def",
+     "name": "negBasis"
+    },
+    {
+     "kind": "theorem",
+     "name": "basisTotal_le_sum_needs_nonneg"
+    },
+    {
      "kind": "structure",
      "name": "DeductionItem"
     },
@@ -27031,10 +27045,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Probability.lean",
    "print_axioms_targets": [],
-   "sha256": "8b84b90133395d3e24f2a92372bd1d6778a79945eae4f80f738f63d6b128d3a4",
-   "size_bytes": 63630,
-   "theorem_count": 65,
-   "theorem_count_bol_convention": 65
+   "sha256": "5ced2dd6a14bebd694a896d70de502b387ff1f86e68442ebdd6630135ac1370f",
+   "size_bytes": 65896,
+   "theorem_count": 66,
+   "theorem_count_bol_convention": 66
   },
   {
    "declarations": [
@@ -27270,8 +27284,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/ReductionConditions2.lean",
    "print_axioms_targets": [],
-   "sha256": "35b8700dcf40aff9ed38fbb5bfa674e34896999f4ad6f4243968fc58206f250c",
-   "size_bytes": 41513,
+   "sha256": "8ab3b4e3750bb766e446d1510e387d7290f65fa600498c5ab891846fdb57931d",
+   "size_bytes": 41726,
    "theorem_count": 35,
    "theorem_count_bol_convention": 35
   },
@@ -33025,7 +33039,7 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "e61a872d72845855be1f77737a7a2a99969f25bb8eeec965aa070b3cfb8243bd",
+   "sha256": "34c86c51d992a3b2f637516c6d29c04c58e802bb3d41e3639b9844e99455ecf0",
    "size_bytes": 8995,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
@@ -33190,22 +33204,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3770,
+   "counted_declaration_count": 3772,
    "file_count": 321,
    "lemma_count": 141,
-   "print_axioms_command_count": 2652,
-   "print_axioms_distinct_targets": 2598,
-   "theorem_count": 3629,
-   "theorem_count_bol_convention": 3533
+   "print_axioms_command_count": 2654,
+   "print_axioms_distinct_targets": 2600,
+   "theorem_count": 3631,
+   "theorem_count_bol_convention": 3535
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3751,
+   "counted_declaration_count": 3753,
    "file_count": 306,
    "lemma_count": 134,
-   "print_axioms_command_count": 2652,
-   "print_axioms_distinct_targets": 2598,
-   "theorem_count": 3617,
-   "theorem_count_bol_convention": 3521
+   "print_axioms_command_count": 2654,
+   "print_axioms_distinct_targets": 2600,
+   "theorem_count": 3619,
+   "theorem_count_bol_convention": 3523
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33889,19 +33903,28 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "b32f6ec51790501c1675bf4f04f64bc302f456d2f36b8b2b5cdad7e30b85a0b4",
+ "source_inventory_digest": "51a3932930008df332ef3860d426c1106f6d93277900294117aa3975fdaea340",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "2a203d33ca30ffa597fdc99c900ff18a04b4b2c0",
-  "tree": "fccee6f5c8849252c87d5f9f9596eff6de9de4d4"
+  "commit": "497496ff70553f4de2fafd6ed3b5ca1b5a4c81f6",
+  "tree": "7eee0b33fa417d9c28558bf5ecf13fb1bc0073ed"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 321,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

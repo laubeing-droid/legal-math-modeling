@@ -1310,6 +1310,7 @@ open HornSystem
 #print axioms JurisLean.Seams.LegacyConeBridge.offDiagramAttack_witnessed
 #print axioms JurisLean.Seams.Limitation.art66Clause3_closed_when_both_present
 #print axioms JurisLean.Seams.Limitation.art66Clause3_witness
+#print axioms JurisLean.Seams.Limitation.clarification_duty_is_level_blind
 #print axioms JurisLean.Seams.Limitation.expiration_day_exists
 #print axioms JurisLean.Seams.Limitation.interruption_restarts_the_clock
 #print axioms JurisLean.Seams.Limitation.limitationPeriod_pos
@@ -1427,6 +1428,7 @@ open HornSystem
 #print axioms JurisLean.Seams.Probability.allow_of_gate_open
 #print axioms JurisLean.Seams.Probability.allowed_amount_nonneg_of_nonneg_agreed
 #print axioms JurisLean.Seams.Probability.band_containment_is_not_allow
+#print axioms JurisLean.Seams.Probability.basisTotal_le_sum_needs_nonneg
 #print axioms JurisLean.Seams.Probability.basisTotal_le_sum_of_amounts
 #print axioms JurisLean.Seams.Probability.beta_posterior_from_likelihood
 #print axioms JurisLean.Seams.Probability.beta_predictive_bracket_survives_update

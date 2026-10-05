@@ -33903,28 +33903,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "51a3932930008df332ef3860d426c1106f6d93277900294117aa3975fdaea340",
+ "source_inventory_digest": "b654a8842f785940e5aaa604b6550e25497ffc6ae8e3be9130222da5f0b565b4",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/mandate-wave1",
-  "commit": "497496ff70553f4de2fafd6ed3b5ca1b5a4c81f6",
-  "tree": "7eee0b33fa417d9c28558bf5ecf13fb1bc0073ed"
+  "commit": "ca25e68f1f79c808c6137a7d0aaf8c92a4bb7e76",
+  "tree": "17238dfb177cab99479985f760ea7739391d33a3"
  },
  "subject_binding": {
-  "binding": "STALE_SUBJECT",
-  "files_diverging_from_subject": [
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean.lean",
-    "reason": "bytes differ from subject"
-   }
-  ],
+  "binding": "BOUND_TO_SUBJECT",
+  "files_diverging_from_subject": [],
   "files_total": 321,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": true
+  "worktree_dirty_under_proofs": false
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

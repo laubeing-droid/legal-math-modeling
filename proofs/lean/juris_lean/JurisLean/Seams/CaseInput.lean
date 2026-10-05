@@ -22,6 +22,14 @@ import JurisLean.Seams.SourceNorms
 与本件同批交付；生成器把 JSON 里 `false` 的事实位直接丢弃（不进 `facts`），
 因为"不成立的事实"在 Horn 输入里就是"没有这个初始事实"。
 
+**禁止声称**（第二轮独立复核 B3 坐实后登记，2026-10-05）：本件只达 `HornSystem`
+骨架，**未接裁决链**——任何"案卷经本件端到端跑通 `statuteChain_on`／真实案件
+喂得进 `instanceM`"的说法都不成立：`statuteChain_on_instanceM` 消费的是手写
+`UnifiedModel`，本件全仓无下游消费者；证据认定与规范抽取这两件最难的法律工作
+由案卷自带（`hFacts`／`hHeads`／`facts`／`rules`），不在本件。通道的证明义务与
+输入字段另立 `docs/master-plan/18_WBS-8_案卷到裁决链通道规格_20261005.md`；
+在 WBS-8 落地前，缺口 1 的状态是"部分闭合"，不是"已闭"。
+
 制造日期：2026-10-04（17_ 卷 WBS-5 轮）。
 -/
 

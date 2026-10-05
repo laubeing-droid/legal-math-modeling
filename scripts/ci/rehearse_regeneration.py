@@ -36,6 +36,9 @@ SEQUENCE = (
     ("python", "scripts/ci/generate_structure_and_volume_reports.py"),
     ("python", "scripts/ci/generate_theorem_manifest.py"),
     ("python", "scripts/ci/generate_trivial_proof_census.py"),
+    # Round-2 F7: the ten-gap closure status is a generated account like the others;
+    # outside the sequence its --check could stay green over a stale claim.
+    ("python", "scripts/ci/generate_gap_status.py", "--write"),
     # Both were missing from the sequence until a round added three mandate modules and the
     # committed duplication census went stale by 225 - 222 files without anything complaining
     # about the rehearsal. `build_statement_duplication_census.py` writes only with `--write`,

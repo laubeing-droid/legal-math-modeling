@@ -171,6 +171,13 @@ def build() -> dict:
     }
 
 
+def _strip_volatile(doc: dict) -> dict:
+    """generated_on is a wall-clock fact, not a freshness fact (same precedent as
+    rehearse_regeneration stripping the manifest's subject fields): a correct
+    regeneration on another date or in another timezone must not read as stale."""
+    return {k: v for k, v in doc.items() if k != "generated_on"}
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--write", action="store_true")
@@ -179,14 +186,19 @@ def main() -> int:
     doc = build()
     rendered = json.dumps(doc, ensure_ascii=False, indent=2) + "\n"
     if args.check:
-        current = ARTIFACT.read_text(encoding="utf-8") if ARTIFACT.is_file() else ""
-        if current != rendered:
-            print("gap_status.json is stale")
+        if not ARTIFACT.is_file():
+            print("gap_status.json is missing")
+            return 1
+        current = json.loads(ARTIFACT.read_text(encoding="utf-8"))
+        if _strip_volatile(current) != _strip_volatile(doc):
+            print("gap_status.json is stale (compared with generated_on stripped)")
             return 1
         print("gap_status.json is fresh")
         return 0
     if args.write:
-        ARTIFACT.write_text(rendered, encoding="utf-8")
+        # newline="\n": text-mode writes on Windows would otherwise store CRLF, and
+        # a Linux CI regeneration would then read the committed artifact as stale.
+        ARTIFACT.write_text(rendered, encoding="utf-8", newline="\n")
     counts = ", ".join(f"{k}={v}" for k, v in sorted(doc["summary"].items()))
     print(f"gap status: {counts}")
     for g in doc["gaps"]:

@@ -37,6 +37,15 @@ def test_committed_artifact_is_fresh() -> None:
     assert proc.returncode == 0, proc.stdout + proc.stderr
 
 
+def test_check_ignores_the_volatile_generated_on() -> None:
+    """A correct regeneration on another date/timezone must not read as stale
+    (run 37347663435 red: local midnight rolled the date; Linux LF vs CRLF)."""
+    doc = gen.build()
+    shifted = dict(doc, generated_on="1999-01-01")
+    assert gen._strip_volatile(shifted) == gen._strip_volatile(doc)
+    assert "generated_on" not in gen._strip_volatile(doc)
+
+
 def test_status_matches_source_side_truth() -> None:
     doc = gen.build()
     assert _status(doc, 3) == "OPEN", "the registered instanceM refutation must hold gap 3 open"

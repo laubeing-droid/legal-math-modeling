@@ -1,0 +1,72 @@
+{
+  "generated_by": "scripts/ci/generate_gap_status.py",
+  "generated_on": "2026-10-06",
+  "rule": "status is derived from source-side witnesses; hand-written closure claims are void",
+  "gaps": [
+    {
+      "gap": 1,
+      "title": "案卷→载体输入层",
+      "status": "PARTIAL",
+      "evidence": "case_closure_sound present (HornSystem skeleton); no downstream consumer of CaseFile/hornOfCase in the package -- adjudication chain not connected"
+    },
+    {
+      "gap": 2,
+      "title": "逐案举证状态栏",
+      "status": "CLOSED",
+      "evidence": "caseBurden field coherent-reading theorem present"
+    },
+    {
+      "gap": 3,
+      "title": "90 条不利后果/引擎自洽",
+      "status": "OPEN",
+      "evidence": "instanceM_pol_not_adopted_consistent registered: AdoptedConsistent holds on the art64Policy fixture only"
+    },
+    {
+      "gap": 4,
+      "title": "证明标准↔事实通道",
+      "status": "CLOSED",
+      "evidence": "109-tier bridge theorems present (factMatterClass fixture mapping noted)"
+    },
+    {
+      "gap": 5,
+      "title": "驳回/不予支持结论类型",
+      "status": "CLOSED",
+      "evidence": "rejection outcome theorem present on the art64 carrier"
+    },
+    {
+      "gap": 6,
+      "title": "时效与审级",
+      "status": "PARTIAL",
+      "evidence": "limitation clock theorems present; clarification duty is a constant-Bool skeleton (level-blind blind-spot registered)"
+    },
+    {
+      "gap": 7,
+      "title": "请求地位面→采纳面单向观测",
+      "status": "CLOSED",
+      "evidence": "one-way observation theorem present; reverse dictionary remains a permanent red line"
+    },
+    {
+      "gap": 8,
+      "title": "制裁层孤岛",
+      "status": "PARTIAL",
+      "evidence": "sanction field is loaded as data (definition-level read); no theorem states a legal effect of doubled interest -- registration is not closure"
+    },
+    {
+      "gap": 9,
+      "title": "损失基础",
+      "status": "CLOSED",
+      "evidence": "loss-basis negative-readout honestly registered"
+    },
+    {
+      "gap": 10,
+      "title": "命名唯一性",
+      "status": "CLOSED",
+      "evidence": "naming uniqueness theorem present"
+    }
+  ],
+  "summary": {
+    "PARTIAL": 3,
+    "CLOSED": 6,
+    "OPEN": 1
+  }
+}

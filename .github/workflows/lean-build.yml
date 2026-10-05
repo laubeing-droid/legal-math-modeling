@@ -101,6 +101,9 @@ jobs:
         python scripts/ci/generate_declaration_shape_report.py --check
         python scripts/ci/check_import_reachability.py
         python scripts/ci/check_concept_ledger.py
+        python scripts/ci/check_statute_chain_caseinput_claim.py
+        python scripts/ci/check_paper_single_count.py
+        python scripts/ci/generate_gap_status.py --check
         python scripts/ci/check_declaration_collisions.py --root JurisLean --check
         python scripts/run_mutation_property_gate.py --repo-root . --output mutation-property-report.json
         python tools/ulm_consolidation/scripts/run_all.py --output work/seven-python/retained

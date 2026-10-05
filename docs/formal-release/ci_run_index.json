@@ -12894,12 +12894,77 @@
       "jobs_total": 8,
       "name": "feat(round2-P6): replace the hand-written ten-gap closure claim with …",
       "quoted_by": [
-        "docs/master-plan/17_技术顾问方案_20261004.md:351"
+        "docs/master-plan/17_技术顾问方案_20261004.md:351",
+        "docs/master-plan/17_技术顾问方案_20261004.md:376"
       ],
       "run_id": 37347663435,
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-05T17:29:54Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-05T18:06:03Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "8091f730285887b707814728bc05bd25bd010ff8",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37353394365",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "chore(ledger): recompute the gap-status account as LF, index the fina…",
+      "quoted_by": [
+        "docs/master-plan/17_技术顾问方案_20261004.md:368",
+        "docs/master-plan/17_技术顾问方案_20261004.md:370",
+        "docs/master-plan/17_技术顾问方案_20261004.md:377"
+      ],
+      "run_id": 37353394365,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-05T18:16:20Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

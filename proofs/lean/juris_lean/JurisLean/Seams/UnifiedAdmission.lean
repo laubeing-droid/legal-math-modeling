@@ -205,8 +205,14 @@ theorem admission_reaches_fixed_point (admitted₀ U : Finset F)
           exact ⟨k, le_refl _, by omega, hfix⟩
         · have hsub0 : s ⊆ admittedStep s bases :=
             admittedStep_mono s bases
-          have hcard0 : s.card < (admittedStep s bases).card :=
-            Finset.card_lt_card ⟨hsub0, fun heq => hfix heq.symm⟩
+          have hcard0 : s.card < (admittedStep s bases).card := by
+            have hle : s.card ≤ (admittedStep s bases).card :=
+              Finset.card_le_card hsub0
+            have hne : s.card ≠ (admittedStep s bases).card := by
+              intro heq
+              exact hfix
+                (Finset.eq_of_subset_of_card_le hsub0 (by omega)).symm
+            omega
           have hnext : admittedRounds admitted₀ bases (k + 1)
               = admittedStep s bases := by
             rw [hs]
@@ -219,7 +225,7 @@ theorem admission_reaches_fixed_point (admitted₀ U : Finset F)
             rw [hnext]
             omega
           obtain ⟨m, hm1, hm2, hfixm⟩ :=
-            ih (admittedStep s bases) (k + 1) hnext hsub1 hcard1
+            ih (admittedStep s bases) (k + 1) hnext.symm hsub1 hcard1
           exact ⟨m, by omega, by omega, hfixm⟩
   obtain ⟨m, _, _, hfix⟩ :=
     key U.card admitted₀ 0 rfl h₀ (by omega)
@@ -228,7 +234,7 @@ theorem admission_reaches_fixed_point (admitted₀ U : Finset F)
 end Rounds
 
 section Burden
-variable {I : Type}
+variable {I : Type} [DecidableEq I]
 
 /-- The final-burden state of §5.2: the issues whose full evaluation
 opportunity has closed without the fact being established. -/

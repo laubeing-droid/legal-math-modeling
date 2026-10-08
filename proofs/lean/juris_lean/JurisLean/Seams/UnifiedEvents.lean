@@ -227,7 +227,7 @@ theorem runEvents_exact (s : EvState) (es : List Ev) (t : EvState) :
   induction es generalizing s with
   | nil =>
       simp only [runEvents, denoteNext]
-      exact ⟨fun h => by subst h; exact ActualEffectSteps.nil s,
+      exact ⟨fun h => h ▸ ActualEffectSteps.nil s,
         fun h => (by cases h with
           | nil _ => exact rfl)⟩
   | cons e es ih =>
@@ -254,7 +254,7 @@ theorem runEvents_exact (s : EvState) (es : List Ev) (t : EvState) :
             have hden' : denoteNext (step s e) u' := (step_exact s e u').mpr h₁
             rw [h] at hden'
             simp only [denoteNext] at hden'
-            subst hden'
+            rw [hden'] at h₂
             exact (ih u).mpr h₂
 
 /-- **轨迹合成分配律**：xs++ys 的轨迹关系分解为共享中间态。 -/
@@ -279,7 +279,7 @@ theorem runEvents_append (s t : EvState) (xs ys : List Ev) :
       · intro h
         obtain ⟨u, hxs, hys⟩ := h
         obtain ⟨w, h₁, hrest⟩ := steps_cons_inv hxs
-        exact ActualEffectSteps.cons s w t e es h₁ ((ih w).mpr ⟨u, hrest, hys⟩)
+        exact ActualEffectSteps.cons s w t e (es ++ ys) h₁ ((ih w).mpr ⟨u, hrest, hys⟩)
 
 /-! ## 五、撤销保留付款与撤证失效（§9 纪律见证） -/
 

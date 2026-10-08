@@ -29458,6 +29458,14 @@
     {
      "kind": "theorem",
      "name": "abc_A_alone_unstable"
+    },
+    {
+     "kind": "theorem",
+     "name": "mem_enumerateStable_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "enumerateStable_mem_subset"
     }
    ],
    "imports": [
@@ -29467,10 +29475,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
    "print_axioms_targets": [],
-   "sha256": "cecb4b2c0bd7cb5ec4b11661d39ddf21f1d1263ab8c3718ea0e9e6d0bcae0c32",
-   "size_bytes": 5849,
-   "theorem_count": 4,
-   "theorem_count_bol_convention": 4
+   "sha256": "9f444d9f3c323c9ad6875003007231a5942dd97c7120fa72d42ee2c4340d5f78",
+   "size_bytes": 8121,
+   "theorem_count": 6,
+   "theorem_count_bol_convention": 6
   },
   {
    "declarations": [
@@ -33262,22 +33270,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3777,
+   "counted_declaration_count": 3779,
    "file_count": 322,
    "lemma_count": 141,
    "print_axioms_command_count": 2659,
    "print_axioms_distinct_targets": 2605,
-   "theorem_count": 3636,
-   "theorem_count_bol_convention": 3540
+   "theorem_count": 3638,
+   "theorem_count_bol_convention": 3542
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3758,
+   "counted_declaration_count": 3760,
    "file_count": 307,
    "lemma_count": 134,
    "print_axioms_command_count": 2659,
    "print_axioms_distinct_targets": 2605,
-   "theorem_count": 3624,
-   "theorem_count_bol_convention": 3528
+   "theorem_count": 3626,
+   "theorem_count_bol_convention": 3530
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33963,12 +33971,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "f8e26a6b3e733d4c85623405a3fd7d3bbf462b5a4793b021f4f72c301da6e6f3",
+ "source_inventory_digest": "0d1d33cf4ca15665e941c14f297e2efeb5169b59a3eaae8f1a4f1e6a0bf07819",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "fa9ed411c740e6f75e1e973b1c78c518eefd6fbd",
-  "tree": "45e6ef62dd7b0a7464090803b7ce98c87c29abb2"
+  "commit": "5fdc1a0af913afd20ec61f82594acbaa0e2edfd0",
+  "tree": "07307da22b7fbaebcc152ccb915b73e6b0cec45b"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

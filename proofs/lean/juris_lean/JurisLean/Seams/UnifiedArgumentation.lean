@@ -336,7 +336,7 @@ theorem summary_implies_gateDefeat (gp : GatePerimeter A) (a : Arg A) :
       cases b with
       | leaf _ =>
           simp only [summaryGateDefeat, gateTargets] at hsum
-          exact (List.not_mem_nil _) hsum
+          simp at hsum
       | node r ps =>
           have h1 : 1 ≤ Arg.height (.node r ps) := by
             simp only [Arg.height]; omega
@@ -346,7 +346,7 @@ theorem summary_implies_gateDefeat (gp : GatePerimeter A) (a : Arg A) :
       cases b with
       | leaf _ =>
           simp only [summaryGateDefeat, gateTargets] at hsum
-          exact (List.not_mem_nil _) hsum
+          simp at hsum
       | node r ps =>
           simp only [summaryGateDefeat, gateTargets] at hsum
           rcases List.mem_append.mp hsum with hg | hg

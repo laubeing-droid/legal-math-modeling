@@ -200,6 +200,7 @@ class Claim:
     remedy: str
     at_day: int = 0
     subject: str = ""
+    issue: str = ""  # scopes the claim to an issue; empty = any
 
 
 @dataclass(frozen=True)
@@ -421,6 +422,7 @@ class LegalEnvironment:
     jurisdiction: Jurisdiction
     rules: Tuple[LegalRuleRecord, ...] = ()
     strong_templates: Tuple[StrongTemplate, ...] = ()
+    counter_evidences: Tuple[object, ...] = ()  # standards.CounterEvidence
     interpretation_policy_id: str = ""
     authorized_assessments: Tuple[AuthorizedAssessment, ...] = ()
     admission_bases: Tuple[AdmissionBasis, ...] = ()
@@ -462,11 +464,14 @@ class CaseEvent:
 
 
 class LedgerEntryKind(str, Enum):
-    """§6.1 accounts: gross receipts may exceed the entitlement; satisfied
-    is the legally allocated offset; the effective title is tracked
-    separately from both."""
+    """§6.1 accounts: GROSS_RECEIVED is the payment TRAJECTORY (one entry
+    per payment, full amount); GROSS_ALLOCATED is the per-basis
+    attribution (allocated share; the full amount for a single-basis
+    payment — the Rcash view never truncates at the entitlement);
+    satisfied is the legal offset; the effective title is separate."""
 
     GROSS_RECEIVED = "GROSS_RECEIVED"
+    GROSS_ALLOCATED = "GROSS_ALLOCATED"
     SATISFIED = "SATISFIED"
     TITLE_ENTITLEMENT = "TITLE_ENTITLEMENT"
 

@@ -46,13 +46,18 @@ class CheckReport:
 
 
 def _claim_key(predicate: str, polar: Polar, subject: str = "") -> str:
-    core = f"{subject}|{predicate}" if subject else predicate
+    while predicate.startswith("~"):
+        predicate = predicate[1:]
+        polar = Polar.NEG if polar is Polar.POS else Polar.POS
+    core = f"{len(subject)}|{subject}|{predicate}"
     return core if polar is Polar.POS else "~" + core
 
 
 def _inline_candidates(case: CaseInput, env: LegalEnvironment):
     day = case.initial_state.as_of_day
     jurisdiction = env.jurisdiction.route.value
+    case_stages = {s for _p, s in case.initial_state.stages}
+    stage = next(iter(case_stages)) if len(case_stages) == 1 else ""
     out = []
     for rule in env.rules:
         if rule.validity is None:
@@ -60,6 +65,8 @@ def _inline_candidates(case: CaseInput, env: LegalEnvironment):
             continue
         jur, stages, _matters, lo, hi = rule.validity
         if jur != jurisdiction:
+            continue
+        if stages and stage not in stages:
             continue
         if lo is not None and day < lo:
             continue
@@ -114,12 +121,29 @@ def _inline_universe_nodes(case: CaseInput, env: LegalEnvironment,
         f.proposition.predicate for f in case.fact_records
         if f.standing is FactStanding.EXPLICIT_NEGATION
     }
+    admitted_keys = {
+        (f.proposition.predicate, f.proposition.polar, f.proposition.issue)
+        for f in case.fact_records
+        if f.standing is FactStanding.ADMITTED_POSITIVE
+    }
     for template in env.strong_templates:
         if template.license_rule_id and template.license_rule_id not in selection:
             continue
-        if not all(p in admitted_predicates for p in template.premise_predicates):
+        scope = template.scope_issue
+
+        def _matches(pred, scope=scope):
+            if scope:
+                return (pred, Polar.POS, scope) in admitted_keys or (
+                    (pred, Polar.POS, "") in admitted_keys
+                )
+            return any(
+                k[0] == pred and k[1] is Polar.POS for k in admitted_keys
+            )
+
+        if not all(_matches(p) for p in template.premise_predicates):
             continue
-        if any(p in negated_predicates for p in template.failure_predicates):
+        # failure EVENTS are admitted positives (round-2 defect 1)
+        if any(p in admitted_predicates for p in template.failure_predicates):
             continue
         nodes.append(
             (f"template:{template.template_id}",
@@ -238,12 +262,26 @@ def check_case_run(
             and f.standing is FactStanding.ADMITTED_POSITIVE
             for f in case.fact_records
         )
+        stage_ready = bool(stages) and bool(
+            stages & {"trial", "ready_for_decision", "decided"}
+        )
         burden_ready = (
             bool(stages) and stages <= {"ready_for_decision", "decided", "trial"}
         ) or window_closed
+        referenced_ids = set()
+        for basis in env.admission_bases:
+            referenced_ids.update(basis.premise_refs)
+            referenced_ids.update(basis.block_refs)
         need = any(
             f.standing in (FactStanding.NOT_SUBMITTED, FactStanding.AWAITING_ADMISSION)
+            and f.fact_id in referenced_ids
             for f in case.fact_records
+        )
+        fact_ids = {f.fact_id for f in case.fact_records}
+        exhausted4 = all(
+            all(r in fact_ids for r in basis.premise_refs)
+            and all(b in fact_ids for b in basis.block_refs)
+            for basis in env.admission_bases
         )
         for claim, outcome in zip(case.claims, branch.standards):
             expected_high = _inline_civil_high(
@@ -270,18 +308,33 @@ def check_case_run(
             blocked = bool(expected_blockers)
             established = outcome.civil_high or claim.basis in special
             burden_ready_effective = burden_ready and not need
-            if blocked:
+            if not stage_ready:
+                expected = Judgment.PENDING
+                expected_basis = "NOT_READY"
+            elif blocked:
                 expected = Judgment.NOT_ESTABLISHED
+                expected_basis = "NEG_BLOCKED"
             elif established:
                 expected = Judgment.ESTABLISHED
+                expected_basis = "POS"
             elif burden_ready_effective:
                 expected = Judgment.NOT_ESTABLISHED
+                expected_basis = "NEG_BURDEN"
+            elif exhausted4 and need:
+                expected = Judgment.PENDING
+                expected_basis = "LEGALLY_UNDETERMINED"
             else:
                 expected = Judgment.PENDING
+                expected_basis = "GAP"
             if finalization.judgment is not expected:
                 problems.append(
                     f"finalization mismatch for {claim.claim_id}: "
                     f"{finalization.judgment} vs {expected}"
+                )
+            if getattr(finalization, "basis", None) is not None and                     finalization.basis.value != expected_basis:
+                problems.append(
+                    f"basis mismatch for {claim.claim_id}: "
+                    f"{finalization.basis.value} vs {expected_basis}"
                 )
     if problems:
         return CheckReport.fail(*problems)
@@ -346,12 +399,26 @@ def _inline_step(state, pe):
         if pe.amount is None or not pe.debt_order:
             return state
         single = len(pe.debt_order) == 1
-        entries = []
+        entries = [
+            LedgerEntry(
+                entry_id=f"gross:i:{pe.event.event_id}",
+                kind=LedgerEntryKind.GROSS_RECEIVED,
+                basis_key=";".join(pe.debt_order),
+                obligor="", proceeding="",
+                amount=pe.amount, event_ref=pe.event.event_id,
+                at_day=pe.event.occurred_at,
+            )
+        ]
         remaining = pe.amount
         for key in pe.debt_order:
+            titles = tuple(
+                e for e in state.ledger
+                if e.kind is LedgerEntryKind.TITLE_ENTITLEMENT
+                and e.basis_key == key
+            )
+            dead = {sid for e in titles for sid in e.supersedes}
             entitled = sum(
-                (e.amount for e in state.ledger
-                 if e.kind is LedgerEntryKind.TITLE_ENTITLEMENT and e.basis_key == key),
+                (e.amount for e in titles if e.entry_id not in dead),
                 Fraction(0),
             )
             paid = sum(
@@ -366,8 +433,8 @@ def _inline_step(state, pe):
             if gross_amount > 0:
                 entries.append(
                     LedgerEntry(
-                        entry_id=f"gross:i:{pe.event.event_id}:{key}",
-                        kind=LedgerEntryKind.GROSS_RECEIVED,
+                        entry_id=f"gross-alloc:i:{pe.event.event_id}:{key}",
+                        kind=LedgerEntryKind.GROSS_ALLOCATED,
                         basis_key=key, obligor="", proceeding="",
                         amount=gross_amount, event_ref=pe.event.event_id,
                         at_day=pe.event.occurred_at,
@@ -386,8 +453,8 @@ def _inline_step(state, pe):
         if not single and remaining > 0:
             entries.append(
                 LedgerEntry(
-                    entry_id=f"gross:i:{pe.event.event_id}:unallocated",
-                    kind=LedgerEntryKind.GROSS_RECEIVED,
+                    entry_id=f"gross-alloc:i:{pe.event.event_id}:unallocated",
+                    kind=LedgerEntryKind.GROSS_ALLOCATED,
                     basis_key="unallocated", obligor="", proceeding="",
                     amount=remaining, event_ref=pe.event.event_id,
                     at_day=pe.event.occurred_at,
@@ -395,5 +462,41 @@ def _inline_step(state, pe):
             )
         return replace(state, ledger=state.ledger + tuple(entries),
                        events=state.events + (pe.event,))
-    # non-payment fragment kinds: only the history grows
+    if pe.kind.value == "AWARD_EFFECTIVE":
+        if not pe.authority_ref or pe.amount is None or not pe.basis_key:
+            return replace(state, events=state.events + (pe.event,))
+        return replace(
+            state,
+            ledger=state.ledger + (
+                LedgerEntry(
+                    entry_id=f"title:i:{pe.event.event_id}",
+                    kind=LedgerEntryKind.TITLE_ENTITLEMENT,
+                    basis_key=pe.basis_key, obligor="", proceeding="",
+                    amount=pe.amount, event_ref=pe.event.event_id,
+                    at_day=pe.event.occurred_at,
+                ),
+            ),
+            events=state.events + (pe.event,),
+        )
+    if pe.kind.value == "AWARD_REVOKED":
+        prior = tuple(
+            e for e in state.ledger
+            if e.kind is LedgerEntryKind.TITLE_ENTITLEMENT
+            and e.basis_key == pe.basis_key
+        )
+        return replace(
+            state,
+            ledger=state.ledger + (
+                LedgerEntry(
+                    entry_id=f"title:i:{pe.event.event_id}",
+                    kind=LedgerEntryKind.TITLE_ENTITLEMENT,
+                    basis_key=pe.basis_key, obligor="", proceeding="",
+                    amount=Fraction(0), event_ref=pe.event.event_id,
+                    at_day=pe.event.occurred_at,
+                    supersedes=tuple(e.entry_id for e in prior),
+                ),
+            ),
+            events=state.events + (pe.event,),
+        )
+    # other fragment kinds: only the history grows
     return replace(state, events=state.events + (pe.event,))

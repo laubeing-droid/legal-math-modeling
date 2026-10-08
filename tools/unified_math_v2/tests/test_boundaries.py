@@ -234,3 +234,20 @@ class Bnd06DedupJoinTests(TestCase):
         ledger.derive("dup", ["src-tainted"], "same-payload")
         ledger.dedup("kept", "dup")
         self.assertTrue(ledger.taint_of("kept"))
+
+
+class Bnd06DedupSourceTests(TestCase):
+    def test_dedup_joins_tainted_source_node(self):
+        """Round-2 defect B: the duplicate itself is a tainted SOURCE
+        (no parents) — the kept node must become tainted."""
+        ledger = TaintLedger()
+        ledger.add(DagNode("src-tainted", (), True, "forged"))
+        ledger.derive("kept", ["src-clean"] if False else [])
+        # kept derives from nothing (clean source below)
+        ledger2 = TaintLedger()
+        ledger2.add(DagNode("src-clean", (), False, "bank"))
+        ledger2.add(DagNode("src-tainted", (), True, "forged"))
+        ledger2.add(DagNode("kept", ("src-clean",), False, "payload"))
+        ledger2.add(DagNode("dup", (), True, "same payload"))
+        ledger2.dedup("kept", "dup")
+        self.assertTrue(ledger2.taint_of("kept"))

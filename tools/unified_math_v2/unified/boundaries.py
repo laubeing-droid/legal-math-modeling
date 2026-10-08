@@ -355,9 +355,17 @@ class TaintLedger:
         if kept_id not in self._nodes or duplicate_id not in self._nodes:
             raise KeyError("dedup requires both nodes")
         kept = self._nodes[kept_id]
-        merged = tuple(dict.fromkeys(kept.parents + self._nodes[duplicate_id].parents))
+        duplicate = self._nodes[duplicate_id]
+        # the duplicate ITSELF joins the kept ancestry: a tainted SOURCE
+        # duplicate (no parents, source_tainted) propagates through the
+        # parent link (round-2 defect B)
+        merged = tuple(
+            dict.fromkeys(kept.parents + duplicate.parents + (duplicate_id,))
+        )
         self._nodes[kept_id] = DagNode(
-            kept.node_id, merged, kept.source_tainted, kept.payload
+            kept.node_id, merged,
+            kept.source_tainted or duplicate.source_tainted,
+            kept.payload,
         )
 
     def taint_of(self, node_id: str) -> bool:

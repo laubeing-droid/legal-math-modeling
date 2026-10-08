@@ -145,6 +145,7 @@ class CounterEvidence:
     direct_support: bool = False
     corroborated: bool = False
     dispositive: bool = False
+    decisive_contradiction: bool = False  # 5.3.2: (佐证 OR 决定性矛盾)
     anchor: str = ""            # concrete factual anchor (W-ALT)
     is_alternative: bool = False  # W-ALT package instead of W-MATERIAL
 
@@ -188,7 +189,13 @@ def counter_reason_nodes(evidence: Iterable[CounterEvidence]) -> Tuple[ReasonNod
                 )
             )
             continue
-        if ev.direct_support and ev.corroborated and ev.dispositive:
+        # 5.3.2 W-MATERIAL: direct support AND dispositive AND
+        # (independent corroboration OR decisive contradiction)
+        if (
+            ev.direct_support
+            and ev.dispositive
+            and (ev.corroborated or ev.decisive_contradiction)
+        ):
             nodes.append(
                 ReasonNode(
                     node_id=f"material:{ev.evidence_id}",

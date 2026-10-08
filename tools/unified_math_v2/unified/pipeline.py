@@ -51,10 +51,15 @@ from .process import ProcessEvent as _ProcessEvent, run_trace as _run_trace, ste
 
 
 def _claim_key(predicate: str, polar: Polar, subject: str = "") -> str:
-    """Scoped claim key (reviewer finding 4): the subject is part of the
-    atom identity — a same-predicate claim about D2 never attacks a
-    claim about D1.  Empty subject = issue-level conclusion."""
-    core = f"{subject}|{predicate}" if subject else predicate
+    """Scoped claim key (round-2 defect E): collision-free encoding —
+    the polarity marker leads, the subject is LENGTH-PREFIXED (so a
+    subject containing the delimiter cannot merge with a different
+    split), and a '~' inside the predicate normalizes into the polarity
+    instead of colliding with it.  Empty subject = issue level."""
+    while predicate.startswith("~"):
+        predicate = predicate[1:]
+        polar = Polar.NEG if polar is Polar.POS else Polar.POS
+    core = f"{len(subject)}|{subject}|{predicate}"
     return core if polar is Polar.POS else "~" + core
 
 
@@ -121,13 +126,21 @@ def build_reason_universe(
         for f in facts
         if f.standing is FactStanding.ADMITTED_POSITIVE
     ]
-    admitted_predicates = {
-        f.proposition.predicate for f in facts
+    # premise matching keys are (predicate, polar, issue): the ScopedAtom
+    # discipline — a polar-NEG admission of a premise predicate is NOT
+    # premise satisfaction, and a template scoped to an issue only fires
+    # on that issue's facts (round-2 defect 4)
+    admitted_keys = {
+        (f.proposition.predicate, f.proposition.polar, f.proposition.issue)
+        for f in facts
         if f.standing is FactStanding.ADMITTED_POSITIVE
     }
-    negated_predicates = {
+    # a named failure predicate ADMITTED POSITIVELY is the failure EVENT
+    # (round-2 defect 1: the goods-payment counterexample is a positive
+    # fact, not a negation — the old polarity inversion defeated 5.3.4)
+    admitted_failure_events = {
         f.proposition.predicate for f in facts
-        if f.standing is FactStanding.EXPLICIT_NEGATION
+        if f.standing is FactStanding.ADMITTED_POSITIVE
     }
     admitted_ids = {
         f.fact_id for f in facts
@@ -138,16 +151,28 @@ def build_reason_universe(
         # rule is among the adopted candidates
         if template.license_rule_id and template.license_rule_id not in selection:
             continue
-        # every premise predicate must be admitted positively
-        if not all(p in admitted_predicates for p in template.premise_predicates):
+        scope = template.scope_issue
+
+        def _matches(pred, scope=scope):
+            if scope:
+                return (pred, Polar.POS, scope) in admitted_keys or (
+                    (pred, Polar.POS, "") in admitted_keys
+                )
+            return any(
+                k[0] == pred and k[1] is Polar.POS for k in admitted_keys
+            )
+
+        # every premise predicate must be admitted POSITIVELY (in scope)
+        if not all(_matches(p) for p in template.premise_predicates):
             continue
-        # a named failure predicate explicitly negated blocks the template
-        if any(p in negated_predicates for p in template.failure_predicates):
+        # an admitted failure EVENT blocks the template
+        if any(p in admitted_failure_events for p in template.failure_predicates):
             continue
         matched = tuple(
             f.fact_id for f in facts
             if f.standing is FactStanding.ADMITTED_POSITIVE
             and f.proposition.predicate in template.premise_predicates
+            and f.proposition.polar is Polar.POS
         )
         reasons.append(
             ReasonNode(
@@ -162,6 +187,10 @@ def build_reason_universe(
                 conditions=matched + (template.template_id,),
             )
         )
+    # the environment's declared counter-evidence profile (Gamma_eval
+    # materials, never case input) joins the universe
+    from .standards import counter_reason_nodes
+    reasons.extend(counter_reason_nodes(env.counter_evidences))
     del admitted_ids
     # Contrary closure over ALL reason claims (facts AND template
     # conclusions): a strong reason for x is a material counter against
@@ -279,23 +308,46 @@ def run_case(
                     and f.standing is FactStanding.ADMITTED_POSITIVE
                     for f in case.fact_records
                 )
-                burden_ready = bool(stages) and stages <= {
-                    "ready_for_decision", "decided", "trial"
-                } or window_closed_fact
-                # Need: a necessary material still not obtained
+                # Ready: the evaluating stage has been REACHED (an
+                # earlier/suspended stage is NOT_READY, 5.4)
+                stage_ready = bool(stages) and bool(
+                    stages & {"trial", "ready_for_decision", "decided"}
+                )
+                burden_ready = (
+                    bool(stages) and stages <= {
+                        "ready_for_decision", "decided", "trial"
+                    }
+                ) or window_closed_fact
+                # Need: a material REFERENCED by an active channel's
+                # premises/blocks that is still not obtained — unrelated
+                # unsubmitted papers do not defer anything (5.4)
+                facts = case.fact_records
+                referenced_ids = set()
+                for basis in env.admission_bases:
+                    referenced_ids.update(basis.premise_refs)
+                    referenced_ids.update(basis.block_refs)
+                for tpl in env.strong_templates:
+                    if not tpl.license_rule_id or tpl.license_rule_id in selection:
+                        for f in facts:
+                            if (f.proposition.predicate in tpl.premise_predicates
+                                    and f.standing is FactStanding.ADMITTED_POSITIVE):
+                                referenced_ids.add(f.fact_id)
                 need = any(
                     f.standing in (
                         FactStanding.NOT_SUBMITTED,
                         FactStanding.AWAITING_ADMISSION,
                     )
+                    and f.fact_id in referenced_ids
                     for f in case.fact_records
                 )
-                # Exhausted4: every declared basis has been evaluated
-                # (its issue resolved one way or the other through the
-                # channels above); it is INDEPENDENT of need — an
-                # unsubmitted material does not un-exhaust the rules,
-                # it defers the burden instead (5.4: 阶段未到不启动终局负担)
-                exhausted4 = True
+                # Exhausted4: every declared basis is RESOLVABLE — each
+                # premise/block reference names an existing fact record
+                fact_ids = {f.fact_id for f in case.fact_records}
+                exhausted4 = all(
+                    all(r in fact_ids for r in basis.premise_refs)
+                    and all(b in fact_ids for b in basis.block_refs)
+                    for basis in env.admission_bases
+                )
                 # the burden opportunity is not complete while a
                 # necessary material is still outstanding
                 burden_ready_effective = burden_ready and not need
@@ -314,8 +366,7 @@ def run_case(
                     finalizations.append(
                         finalize_issue(
                             claim.claim_id,
-                            ready=True,  # ready-ness per branch: the
-                            # fragment reached the evaluating stage
+                            ready=stage_ready,
                             elements=elements,
                             blockers=defense_blockers,
                             burden_ready=burden_ready_effective,

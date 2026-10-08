@@ -158,3 +158,22 @@ class TwoPointQuantileTests(TestCase):
             mixture_cdf_factory([Q(1, 2), Q(1, 3)], [comp, comp])
         with pytest.raises(ValueError):
             mixture_cdf_factory([Q(-1), Q(2)], [comp, comp])
+
+
+class Round2RegressionTests(TestCase):
+    """Round-2 math-review defects, pinned."""
+
+    def test_negative_exponent_small_x_no_zero_division(self):
+        # defect A: x < width used to leave lo_root = 0 -> 1/0
+        lo, hi = rat_power_enclosure(Q(1, 10 ** 6), Q(-1, 2), Q(1, 10))
+        target = Q(1000)  # (1e-6)^(-1/2) = 1000
+        self.assertLessEqual(lo, target)
+        self.assertGreaterEqual(hi, target)
+
+    def test_budget_width_contract_enforced(self):
+        # defect C: the enclosure either honors eps or refuses — it never
+        # silently returns a violating interval
+        enc = beta_cdf_enclosure(Q(1), Q(99, 100), Q(1, 2), Q(1, 10))
+        self.assertLessEqual(enc.hi - enc.lo, Q(1, 10))
+        self.assertLessEqual(enc.lo, Q(1, 2))
+        self.assertGreaterEqual(enc.hi, Q(1, 2))

@@ -135,17 +135,28 @@ class TemplateChannelTests(TestCase):
         self.assertTrue(check_case_run(case, env, run).ok)
 
     def test_template_blocked_by_named_failure(self):
-        """The goods-payment counterexample (§5.3.4): an explicit
-        negation of a named failure predicate blocks the template."""
-        facts = _loan_facts() + [
+        """The goods-payment counterexample (5.3.4, round-2 defect 1):
+        the failure EVENT — an ADMITTED POSITIVE fact that the same
+        reference matches an existing goods payment — blocks the
+        template.  An explicit negation of the failure predicate is the
+        NORMAL loan case and must NOT block."""
+        goods_payment_established = _loan_facts() + [
             FactRecord("f-goods", _atom("ref_matches_existing_goods_payment"),
-                       FactStanding.EXPLICIT_NEGATION, produced_at=4, known_at=4),
+                       FactStanding.ADMITTED_POSITIVE, produced_at=4, known_at=4),
         ]
-        case = _case(facts)
+        case = _case(goods_payment_established)
         env = _env(templates=(_loan_template(),))
         run = run_case(case, env)
         self.assertIn(Judgment.NOT_ESTABLISHED, run.judgments_of("c1"))
         self.assertTrue(check_case_run(case, env, run).ok)
+
+        normal_loan = _case(_loan_facts() + [
+            FactRecord("f-goods-neg", _atom("ref_matches_existing_goods_payment"),
+                       FactStanding.EXPLICIT_NEGATION, produced_at=4, known_at=4),
+        ])
+        run2 = run_case(normal_loan, env)
+        self.assertIn(Judgment.ESTABLISHED, run2.judgments_of("c1"))
+        self.assertTrue(check_case_run(normal_loan, env, run2).ok)
 
     def test_missing_premise_blocks_template(self):
         facts = _loan_facts()[:2]  # no receipt confirmation
@@ -374,12 +385,15 @@ class DefenseIntegrationTests(TestCase):
         )
 
     def _defense_facts(self):
+        def _latom(pred):
+            return ScopedAtom(case_id="case-1", subject="D", issue="limitation",
+                              stage="trial", predicate=pred, polar=Polar.POS)
         return [
-            FactRecord("f-mature", _atom("maturity_reached"),
+            FactRecord("f-mature", _latom("maturity_reached"),
                        FactStanding.ADMITTED_POSITIVE, produced_at=1, known_at=1),
-            FactRecord("f-passed", _atom("limitation_period_passed"),
+            FactRecord("f-passed", _latom("limitation_period_passed"),
                        FactStanding.ADMITTED_POSITIVE, produced_at=2, known_at=2),
-            FactRecord("f-raised", _atom("defense_raised"),
+            FactRecord("f-raised", _latom("defense_raised"),
                        FactStanding.ADMITTED_POSITIVE, produced_at=3, known_at=3),
         ]
 
@@ -435,13 +449,20 @@ class DefenseIntegrationTests(TestCase):
                        FactStanding.NOT_SUBMITTED, produced_at=0, known_at=0),
         ]
         case = _case(facts)
-        run = run_case(case, _env())
+        from theory.spec.canonical_v2.case import AdmissionBasis as AB, BasisKind as BK
+        env = _env(bases=(
+            # the channel's premise references the outstanding witness:
+            # the deferral is real, not manufactured by unrelated papers
+            AB("b-doc", BK.FORENSIC_EXEMPT, "loan", "C", "trial", "v1",
+               premise_refs=("f-witness",)),
+        ))
+        run = run_case(case, env)
         self.assertIn(Judgment.PENDING, run.judgments_of("c1"))
         for branch in run.branches:
             self.assertEqual(
                 branch.finalizations[0].basis, FinalBasis.LEGALLY_UNDETERMINED
             )
-        self.assertTrue(check_case_run(case, _env(), run).ok)
+        self.assertTrue(check_case_run(case, env, run).ok)
 
 
 class SelectionConsumptionTests(TestCase):
@@ -593,3 +614,93 @@ class ScopedAtomDisciplineTests(TestCase):
         # but through the SCOPED key no pollution occurs either way
         self.assertTrue(check_case_run(case, env, run).ok)
         self.assertTrue(run.branches)
+
+
+class Round2RegressionTests(TestCase):
+    """Round-2 review defects, each pinned."""
+
+    def test_gross_views_no_double_count_multi_basis(self):
+        """Defect 2: a 15 payment over (wage=10, loan=100) — the two
+        views must never sum to 25/20."""
+        from unified.process import (
+            CaseEvent as _CE, LegalEventKind, ProcessEvent as _PE,
+            gross_total_of, outstanding_of, step_event,
+        )
+        st = step_event(_state(), _PE(
+            event=_CE("t-w", "award", 1, 1, "wage"),
+            kind=LegalEventKind.AWARD_EFFECTIVE, basis_key="wage",
+            amount=Q(10), authority_ref="c:1")).next_state
+        st = step_event(st, _PE(
+            event=_CE("t-l", "award", 1, 1, "loan"),
+            kind=LegalEventKind.AWARD_EFFECTIVE, basis_key="loan",
+            amount=Q(100), authority_ref="c:1")).next_state
+        st = step_event(st, _PE(
+            event=_CE("p", "payment", 2, 2, "wage;loan"),
+            kind=LegalEventKind.PAYMENT_PERFORMED,
+            amount=Q(15), debt_order=("wage", "loan"))).next_state
+        self.assertEqual(gross_total_of(st, "wage"), Q(15))  # traffic
+        self.assertEqual(outstanding_of(st, "wage"), Q(0))
+        self.assertEqual(outstanding_of(st, "loan"), Q(95))
+        from unified.process import gross_of
+        self.assertEqual(gross_of(st, "wage") + gross_of(st, "loan")
+                         + gross_of(st, "unallocated"), Q(15))  # conservation
+
+    def test_award_legally_correct_filters_by_claim(self):
+        """Defect 3: multi-claim runs — a verdict for c1 says nothing
+        about c2."""
+        class F:
+            def __init__(self, claim, judgment):
+                self.claim = claim
+                self.judgment = judgment
+        class B:
+            def __init__(self, fins):
+                self.finalizations = fins
+        class R:
+            def __init__(self, branches):
+                self.branches = branches
+        from theory.spec.canonical_v2.kernel import Judgment as J
+        run = R([B([F("c1", J.ESTABLISHED), F("c2", J.NOT_ESTABLISHED)])])
+        from unified.process import award_legally_correct
+        self.assertIs(award_legally_correct(run, "c1"), True)
+        self.assertIs(award_legally_correct(run, "c2"), False)
+
+    def test_polar_neg_admission_is_not_premise(self):
+        """Defect 4: an admitted polar-NEG atom of a premise predicate
+        (e.g. 'contract not signed' admitted) must not satisfy the
+        template's premise."""
+        neg_signed = FactRecord(
+            "f-neg",
+            ScopedAtom(case_id="case-1", subject="D", issue="loan",
+                       stage="trial", predicate="contract_signed",
+                       polar=Polar.NEG),
+            FactStanding.ADMITTED_POSITIVE, produced_at=1, known_at=1,
+        )
+        settlement = FactRecord("f-settlement", _atom("final_settlement"),
+                                FactStanding.ADMITTED_POSITIVE,
+                                produced_at=2, known_at=2)
+        receipt = FactRecord("f-receipt", _atom("receipt_confirmed"),
+                             FactStanding.ADMITTED_POSITIVE,
+                             produced_at=3, known_at=3)
+        case = _case([neg_signed, settlement, receipt])
+        env = _env(templates=(_loan_template(),))
+        run = run_case(case, env)
+        self.assertIn(Judgment.NOT_ESTABLISHED, run.judgments_of("c1"))
+        self.assertTrue(check_case_run(case, env, run).ok)
+
+    def test_cross_issue_template_does_not_fire(self):
+        """Defect 5 partial: a template scoped to issue 'limitation'
+        never fires for loan-issue facts."""
+        from theory.spec.canonical_v2.case import StrongTemplate
+        tpl = StrongTemplate(
+            template_id="tpl-cross", kind="LOAN_DELIVERY",
+            scope_issue="limitation",
+            premise_predicates=("contract_signed", "final_settlement",
+                                "receipt_confirmed"),
+            conclusion_predicate="loan",
+            source_id="x:1",
+        )
+        case = _case(_loan_facts())
+        env = _env(templates=(tpl,))
+        run = run_case(case, env)
+        self.assertIn(Judgment.NOT_ESTABLISHED, run.judgments_of("c1"))
+        self.assertTrue(check_case_run(case, env, run).ok)

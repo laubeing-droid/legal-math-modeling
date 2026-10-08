@@ -48,7 +48,11 @@ def rat_root_enclosure(
     if x <= 0 or q < 1 or width <= 0:
         raise ValueError("positive x, q >= 1, positive width required")
     hi = max(Fraction(1), x)
-    lo = Fraction(0)
+    # a strictly positive VALID lower bracket: for x >= 1 the root lies
+    # in [1, x]; for x < 1 it lies in [x, 1].  Starting at 0 would leave
+    # lo = 0 whenever x < width — unusable for negative exponents
+    # (round-2 defect A)
+    lo = Fraction(1) if x >= 1 else x
     while hi - lo > width:
         mid = (lo + hi) / 2
         if mid ** q <= x:
@@ -221,7 +225,7 @@ def _beta_half_half_enclosure(x: Fraction, eps: Fraction) -> BetaEnclosure:
     sq_lo, sq_hi = rat_power_enclosure(x, Fraction(1, 2), w / 4)
     pi_lo, pi_hi = _pi_enclosure(w / 4)
     # asin(z) = Σ_{n≥0} c_n z^{2n+1}, c_n = C(2n,n)/(4^n(2n+1)) > 0;
-    # the term ratio ≤ z² ≤ 1/4 on this domain, giving a geometric tail.
+    # the term ratio ≤ z² = x ≤ 1/2 on this domain, giving a geometric tail.
     from math import comb as _comb
 
     n_terms = 40
@@ -347,21 +351,39 @@ def _beta_budget_enclosure(
     #    same budget pieces over the FULL interval — the CDF lower bound
     #    is numerator_lo / B_upper, never numerator_lo raw (B(a,b) can
     #    exceed 1 when a<1 or b<1; reviewer counterexample (1, 99/100)).
+    beta_lb_tight = beta_lb
     beta_ub = l_hi + r_hi
     if hi_int > lo_int and ell > 0:
         internal_upper_full = Fraction(0)
+        internal_lower_full = Fraction(0)
         step_full = ell / n
         for i in range(n):
             t = eta + i * step_full
             g_a = _g_bound(t, a, b, w, upper=True)
             g_b = _g_bound(t + step_full, a, b, w, upper=True)
+            g_lo = _g_bound(t, a, b, w, upper=False)
             internal_upper_full += (max(g_a, g_b) + l_bar * step_full) * step_full
+            internal_lower_full += g_lo * step_full
         internal_upper_full += (l_bar * ell * ell) / n + point_w * ell
+        internal_lower_full -= (l_bar * ell * ell) / n + point_w * ell
         beta_ub += internal_upper_full
+        # the same-grid rectangle lower bound of B(a,b) (tails are
+        # nonnegative): a far tighter denominator lower bound than the
+        # crude positivity witness (round-2 defect C)
+        beta_lb_tight = max(beta_lb, internal_lower_full)
     beta_ub = max(beta_ub, Fraction(1))
 
     lo = min(Fraction(1), numerator_lo / beta_ub)
-    hi = min(Fraction(1), numerator_hi / beta_lb)
+    hi = min(Fraction(1), numerator_hi / beta_lb_tight)
+    if hi - lo > eps:
+        # the slop budget was too loose for these parameters: tighten and
+        # recompute rather than return an enclosure that violates the
+        # promised width (round-2 defect C)
+        raise ValueError(
+            f"budget enclosure width {float(hi - lo):.4g} exceeds eps "
+            f"{float(eps):.4g} for a={a}, b={b}: tighten eps or use an "
+            "integer/half-integer route"
+        )
     return BetaEnclosure(lo, hi)
 
 

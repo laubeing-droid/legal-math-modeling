@@ -278,21 +278,19 @@ def _apply_payment(
         outstanding.append(max(entitled - paid, Fraction(0)))
     alloc = allocate_payment(ev.amount, tuple((o,) for o in outstanding))
     entries = []
-    if len(ev.debt_order) > 1:
-        # combined trajectory entry for multi-basis payments; a
-        # single-basis payment gets exactly one (per-basis) entry below
-        entries.append(
-            LedgerEntry(
-                entry_id=f"gross:{ev.event.event_id}",
-                kind=LedgerEntryKind.GROSS_RECEIVED,
-                basis_key=";".join(ev.debt_order),
-                obligor="",
-                proceeding="",
-                amount=ev.amount,
-                event_ref=ev.event.event_id,
-                at_day=ev.event.occurred_at,
-            )
+    # trajectory entry: ONE per payment, full amount (GROSS_RECEIVED)
+    entries.append(
+        LedgerEntry(
+            entry_id=f"gross:{ev.event.event_id}",
+            kind=LedgerEntryKind.GROSS_RECEIVED,
+            basis_key=";".join(ev.debt_order),
+            obligor="",
+            proceeding="",
+            amount=ev.amount,
+            event_ref=ev.event.event_id,
+            at_day=ev.event.occurred_at,
         )
+    )
     notes = []
     for key, (a,), (resid,) in zip(ev.debt_order, alloc.allocations, alloc.residuals):
         if a > 0:
@@ -322,8 +320,8 @@ def _apply_payment(
         if amount > 0:
             entries.append(
                 LedgerEntry(
-                    entry_id=f"gross:{ev.event.event_id}:{key}",
-                    kind=LedgerEntryKind.GROSS_RECEIVED,
+                    entry_id=f"gross-alloc:{ev.event.event_id}:{key}",
+                    kind=LedgerEntryKind.GROSS_ALLOCATED,
                     basis_key=key,
                     obligor="",
                     proceeding="",
@@ -335,8 +333,8 @@ def _apply_payment(
     if not single and alloc.remaining > 0:
         entries.append(
             LedgerEntry(
-                entry_id=f"gross:{ev.event.event_id}:unallocated",
-                kind=LedgerEntryKind.GROSS_RECEIVED,
+                entry_id=f"gross-alloc:{ev.event.event_id}:unallocated",
+                kind=LedgerEntryKind.GROSS_ALLOCATED,
                 basis_key="unallocated",
                 obligor="",
                 proceeding="",
@@ -496,12 +494,11 @@ def outstanding_of(state: ProcessState, basis_key: str) -> Fraction:
 
 
 def gross_of(state: ProcessState, basis_key: str) -> Fraction:
-    """Actual receipts attributable to ONE basis: only single-key gross
-    entries count (combined multi-basis entries record the payment
-    trajectory, not a per-basis attribution)."""
+    """Actual receipts ATTRIBUTABLE to one basis (the Rcash view — full
+    amount for a single-basis payment, allocated share otherwise)."""
     return sum(
         (e.amount for e in state.ledger
-         if e.kind is LedgerEntryKind.GROSS_RECEIVED
+         if e.kind is LedgerEntryKind.GROSS_ALLOCATED
          and e.basis_key == basis_key),
         Fraction(0),
     )
@@ -546,17 +543,23 @@ def is_final(state: ProcessState, proceeding: str) -> bool:
     )
 
 
-def award_legally_correct(run, basis: str) -> Optional[bool]:
+def award_legally_correct(run, claim_id: str) -> Optional[bool]:
     """LegallyCorrect for an issued award read off the model's own
     results: True iff every branch establishes the basis (a compelled
     decision); None when branches disagree (a legally-possible choice
     the model does not stamp)."""
     if not run.branches:
         return None
-    verdicts = {
-        any(f.judgment.value == "ESTABLISHED" for f in b.finalizations)
-        for b in run.branches
-    }
+    verdicts = set()
+    for b in run.branches:
+        relevant = [
+            f for f in b.finalizations
+            if getattr(f, "claim", None) in (None, claim_id)
+        ]
+        if relevant:
+            verdicts.add(
+                any(f.judgment.value == "ESTABLISHED" for f in relevant)
+            )
     if len(verdicts) == 1:
         return verdicts.pop()
     return None

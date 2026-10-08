@@ -68,7 +68,7 @@ theorem refN_sound (hc : RefinesContract ref) :
   | zero => intro e v h; exact h
   | succ m ih =>
       intro e v h
-      exact ih (ref e) v (hc.keeps e v h)
+      exact hc.keeps (refN ref m e) v (ih e v h)
 
 theorem refN_width (hc : RefinesContract ref) :
     ∀ (n : ℕ) (e : Enc), (refN ref n e).width ≤ (2 / 3) ^ n * e.width := by
@@ -106,8 +106,10 @@ theorem pow_two_thirds_le :
   | zero => norm_num
   | succ m ih =>
       have hm : (0 : ℚ) ≤ m := by exact_mod_cast Nat.zero_le m
-      rw [show ((m + 1 : ℚ)) + 2 = (m : ℚ) + 3 from by push_cast; ring]
-      rw [show (2 / 3 : ℚ) ^ (m + 3) = (2 / 3 : ℚ) ^ (m + 2) * (2 / 3) by rw [pow_succ]]
+      push_cast
+      rw [show (m : ℕ) + 1 + 2 = m + 3 from rfl,
+          show ((m : ℚ) + 1 + 2) = ((m : ℚ) + 3) from by ring,
+          show (2 / 3 : ℚ) ^ (m + 3) = (2 / 3 : ℚ) ^ (m + 2) * (2 / 3) by rw [pow_succ]]
       calc (2 / 3 : ℚ) ^ (m + 2) * (2 / 3)
           ≤ (1 / ((m : ℚ) + 2)) * (2 / 3) :=
             mul_le_mul_of_nonneg_right ih (by norm_num)
@@ -207,10 +209,12 @@ theorem strict_comparison_eventually_found (ref : Enc → Enc)
   obtain ⟨hl_a, hh_a⟩ := hsa
   obtain ⟨hl_b, hh_b⟩ := hsb
   have e1 : (refN ref N ea).hi ≤ x + ((2 / 3 : ℚ) ^ N * ea.width) := by
-    unfold Enc.width at hwa
+    have hw1 : (refN ref N ea).hi - (refN ref N ea).lo
+        ≤ (2 / 3 : ℚ) ^ N * ea.width := hwa
     linarith
   have e2 : y - ((2 / 3 : ℚ) ^ N * eb.width) ≤ (refN ref N eb).lo := by
-    unfold Enc.width at hwb
+    have hw2 : (refN ref N eb).hi - (refN ref N eb).lo
+        ≤ (2 / 3 : ℚ) ^ N * eb.width := hwb
     linarith
   have hhi_a : (refN ref N ea).hi < (refN ref N eb).lo := by linarith
   unfold cmpEnc

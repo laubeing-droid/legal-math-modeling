@@ -320,8 +320,8 @@ by the attacker's conclusion in the gate-target list. -/
 theorem gateDefeat_implies_summary {gp : GatePerimeter A} {a b : Arg A}
     (h : GateDefeat A gp a b) : summaryGateDefeat gp (Arg.concl a) b := by
   induction h with
-  | gate a r ps hg => exact own_gate_mem_gateTargets hg
-  | lift a r ps p hp h ih => exact mem_gateTargets_of_child hp ih
+  | gate r ps hg => exact own_gate_mem_gateTargets hg
+  | lift r ps p hp ih => exact mem_gateTargets_of_child hp ih
 
 /-- §4.3 gate factorization, completeness: every summary-level gate hit
 is realized by a gate defeat — fuel-driven recursion on the tree
@@ -332,11 +332,14 @@ theorem summary_implies_gateDefeat (gp : GatePerimeter A) (a : Arg A) :
   intro k
   induction k with
   | zero =>
-      intro b hb _
+      intro b _ hsum
       cases b with
-      | leaf _ => exact absurd hb (by simp only [Arg.height]; omega)
+      | leaf _ =>
+          simp only [gateTargets] at hsum
+          exact absurd hsum (List.not_mem_nil _)
       | node r ps =>
-          simp only [Arg.height] at hb
+          have h1 : 1 ≤ Arg.height (.node r ps) := by
+            simp only [Arg.height]; omega
           omega
   | succ k ih =>
       intro b hb hsum

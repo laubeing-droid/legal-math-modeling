@@ -38,7 +38,7 @@ variable {P A C : Type} [DecidableEq P] [DecidableEq A]
 
 /-- 规范形有限博弈：每方一个**尝试菜单**（非空，违法/非理性动作照列），
     效用只读策略组合。 -/
-structure NormGame where
+structure NormGame (P A : Type) where
   /-- 各方尝试菜单。 -/
   menu : P → Finset A
   /-- 效用（读整组合；ℚ 精确求值）。 -/
@@ -57,7 +57,7 @@ def pureNash (g : NormGame P A) (s : ∀ p, A) : Prop :=
 /-! ## 二、效用经后果分解与显示改名不变 -/
 
 /-- 后果通道（抽象后果载体 C 与读数 φ）。 -/
-structure FactoredGame where
+structure FactoredGame (P A C : Type) where
   /-- 组合的法定后果。 -/
   consequences : (∀ p, A) → C
   /-- 各方对后果的效用读数。 -/

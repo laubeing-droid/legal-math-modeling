@@ -193,10 +193,9 @@ theorem admission_reaches_fixed_point (admitted₀ U : Finset F)
           Finset.eq_of_subset_of_card_le hsub (by omega)
         have hstepsub : admittedStep s bases ⊆ U :=
           admittedStep_bounded s U bases hsub hgrant
+        rw [← hsU] at hstepsub
         have hfix : admittedStep s bases = s :=
-          Finset.Subset.antisymm
-            (by rw [← hsU]; exact hstepsub)
-            (admittedStep_mono s bases)
+          Finset.Subset.antisymm hstepsub (admittedStep_mono s bases)
         rw [hs] at hfix
         exact ⟨k, le_refl _, by omega, hfix⟩
     | succ d ih =>
@@ -207,7 +206,7 @@ theorem admission_reaches_fixed_point (admitted₀ U : Finset F)
         · have hsub0 : s ⊆ admittedStep s bases :=
             admittedStep_mono s bases
           have hcard0 : s.card < (admittedStep s bases).card :=
-            Finset.card_lt_card hsub0 (fun heq => hfix heq.symm)
+            Finset.card_lt_card ⟨hsub0, fun heq => hfix heq.symm⟩
           have hnext : admittedRounds admitted₀ bases (k + 1)
               = admittedStep s bases := by
             rw [hs]
@@ -222,9 +221,9 @@ theorem admission_reaches_fixed_point (admitted₀ U : Finset F)
           obtain ⟨m, hm1, hm2, hfixm⟩ :=
             ih (admittedStep s bases) (k + 1) hnext hsub1 hcard1
           exact ⟨m, by omega, by omega, hfixm⟩
-  obtain ⟨m, _, hm2, hfix⟩ :=
+  obtain ⟨m, _, _, hfix⟩ :=
     key U.card admitted₀ 0 rfl h₀ (by omega)
-  exact ⟨m, hm2, hfix⟩
+  refine ⟨m, by omega, hfix⟩
 
 end Rounds
 

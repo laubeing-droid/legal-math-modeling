@@ -1924,8 +1924,12 @@
     "JurisLean.Seams.Limitation.fashi13_art66Clause3_witness",
     "JurisLean.Seams.Limitation.interruption_restarts_the_clock",
     "JurisLean.Seams.Limitation.limitationPeriod_pos",
+    "JurisLean.Seams.Limitation.obstacle_before_window_not_qualified",
     "JurisLean.Seams.Limitation.second_instance_still_owes_clarification",
+    "JurisLean.Seams.Limitation.suspension_never_shortens",
     "JurisLean.Seams.Limitation.suspension_only_delays",
+    "JurisLean.Seams.Limitation.suspension_remaining_month_counterexample",
+    "JurisLean.Seams.Limitation.suspension_strictly_delays_when_inside",
     "JurisLean.Seams.PayoffEquilibrium.abs_two_close",
     "JurisLean.Seams.PayoffEquilibrium.approxNash_agrees_with_isNashPure_at_k10",
     "JurisLean.Seams.PayoffEquilibrium.approxNash_legalPay_k10",
@@ -2986,8 +2990,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "b07c2bcc49a640869367874a7bfaa07b2df7a700ff226b21e497cda52b986d36",
-   "size_bytes": 169721,
+   "sha256": "58e587056cfce61c000bd18865be38ea0b750625c444ba2ab9f57b51bdae11f1",
+   "size_bytes": 170029,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -25841,11 +25845,39 @@
     },
     {
      "kind": "def",
-     "name": "suspendWithin"
+     "name": "sixMonths"
+    },
+    {
+     "kind": "def",
+     "name": "naturalExpiry"
+    },
+    {
+     "kind": "def",
+     "name": "obstacleInLastSixMonths"
+    },
+    {
+     "kind": "def",
+     "name": "suspensionExpiryAfter"
+    },
+    {
+     "kind": "theorem",
+     "name": "suspension_never_shortens"
+    },
+    {
+     "kind": "theorem",
+     "name": "obstacle_before_window_not_qualified"
+    },
+    {
+     "kind": "theorem",
+     "name": "suspension_strictly_delays_when_inside"
     },
     {
      "kind": "theorem",
      "name": "suspension_only_delays"
+    },
+    {
+     "kind": "theorem",
+     "name": "suspension_remaining_month_counterexample"
     },
     {
      "kind": "theorem",
@@ -25863,10 +25895,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/Limitation.lean",
    "print_axioms_targets": [],
-   "sha256": "f45c0ae51994a8f3ec1fbce77d12f811093e0ea5344e27feddd658c634d078be",
-   "size_bytes": 10496,
-   "theorem_count": 8,
-   "theorem_count_bol_convention": 8
+   "sha256": "9010d1ee016fade6e48952ebc2b77356a19e19eaab66ca1e9e5cab1828a7e2ba",
+   "size_bytes": 14476,
+   "theorem_count": 12,
+   "theorem_count_bol_convention": 12
   },
   {
    "declarations": [
@@ -33467,22 +33499,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3800,
+   "counted_declaration_count": 3804,
    "file_count": 324,
    "lemma_count": 141,
-   "print_axioms_command_count": 2682,
-   "print_axioms_distinct_targets": 2628,
-   "theorem_count": 3659,
-   "theorem_count_bol_convention": 3563
+   "print_axioms_command_count": 2686,
+   "print_axioms_distinct_targets": 2632,
+   "theorem_count": 3663,
+   "theorem_count_bol_convention": 3567
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3781,
+   "counted_declaration_count": 3785,
    "file_count": 309,
    "lemma_count": 134,
-   "print_axioms_command_count": 2682,
-   "print_axioms_distinct_targets": 2628,
-   "theorem_count": 3647,
-   "theorem_count_bol_convention": 3551
+   "print_axioms_command_count": 2686,
+   "print_axioms_distinct_targets": 2632,
+   "theorem_count": 3651,
+   "theorem_count_bol_convention": 3555
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -34172,12 +34204,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "f40e9af69e5022986775b27dc785fb97c4de0bb53b3734e67d74945269b63c28",
+ "source_inventory_digest": "54580b75f8ad96602225d1bc4d103e1d4f663801febffe4fc852d264bdf18bbc",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "2c1d745d5d5c771cffe880d3b9c2fb70ea1c2a6f",
-  "tree": "adf278b9c33ea0a185dffa5ee0b43fda08821dbb"
+  "commit": "da030126a97863fc1b26811aadc40bf4c217d697",
+  "tree": "cb919eeb09c663ea6cf48d3ce54c6cd5130719c1"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

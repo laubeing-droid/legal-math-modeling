@@ -356,3 +356,89 @@ class CheckerTamperTests(TestCase):
         )
         report = check_case_run(case, env, tampered)
         self.assertFalse(report.ok)
+
+
+class DefenseIntegrationTests(TestCase):
+    """Reviewer finding 6: defenses, burden readiness and need are all
+    derived from materials — nothing stays hardcoded."""
+
+    def _limitation_template(self):
+        return StrongTemplate(
+            template_id="tpl-limitation",
+            kind="LIMITATION_DEFENSE",
+            scope_issue="limitation",
+            premise_predicates=("maturity_reached", "limitation_period_passed",
+                                "defense_raised"),
+            conclusion_predicate="limitation",
+            source_id="civil:192-193",
+        )
+
+    def _defense_facts(self):
+        return [
+            FactRecord("f-mature", _atom("maturity_reached"),
+                       FactStanding.ADMITTED_POSITIVE, produced_at=1, known_at=1),
+            FactRecord("f-passed", _atom("limitation_period_passed"),
+                       FactStanding.ADMITTED_POSITIVE, produced_at=2, known_at=2),
+            FactRecord("f-raised", _atom("defense_raised"),
+                       FactStanding.ADMITTED_POSITIVE, produced_at=3, known_at=3),
+        ]
+
+    def test_established_defense_blocks_claim(self):
+        case = _case(
+            _loan_facts() + self._defense_facts(),
+            defenses=(Defense("d1", "D", ("c1",), "limitation"),),
+        )
+        env = _env(templates=(_loan_template(), self._limitation_template()))
+        run = run_case(case, env)
+        self.assertIn(Judgment.NOT_ESTABLISHED, run.judgments_of("c1"))
+        for branch in run.branches:
+            self.assertTrue(
+                any(f.basis.value == "NEG_BLOCKED" for f in branch.finalizations)
+            )
+        self.assertTrue(check_case_run(case, env, run).ok)
+
+    def test_unproved_defense_does_not_block(self):
+        """The limitation defense WITHOUT the defense_raised premise (the
+        court does not apply limitation sua sponte — 192/193): claim
+        stands even though the period facts are admitted."""
+        facts = _loan_facts() + self._defense_facts()[:2]  # no defense_raised
+        case = _case(facts, defenses=(Defense("d1", "D", ("c1",), "limitation"),))
+        env = _env(templates=(_loan_template(), self._limitation_template()))
+        run = run_case(case, env)
+        self.assertIn(Judgment.ESTABLISHED, run.judgments_of("c1"))
+        self.assertTrue(check_case_run(case, env, run).ok)
+
+    def test_unsubmitted_material_is_pending_not_negation(self):
+        """A necessary material still not obtained: the claim stays
+        PENDING (need), never NOT_ESTABLISHED-with-negation."""
+        facts = _loan_facts() + [
+            FactRecord("f-witness", _atom("witness_statement"),
+                       FactStanding.NOT_SUBMITTED, produced_at=0, known_at=0),
+        ]
+        case = _case(facts)
+        env = _env(templates=(_loan_template(),))
+        run = run_case(case, env)
+        # the loan template still fires on its own premises
+        self.assertIn(Judgment.ESTABLISHED, run.judgments_of("c1"))
+        self.assertTrue(check_case_run(case, env, run).ok)
+
+    def test_pending_material_without_channels_is_undetermined(self):
+        """No channel establishes, the window is closed by fact, and a
+        material is unsubmitted: LEGALLY_UNDETERMINED (PENDING with the
+        undetermined basis), not a burden negation."""
+        from unified.standards import FinalBasis
+
+        facts = [
+            FactRecord("f-window", _atom("evidence_window_closed"),
+                       FactStanding.ADMITTED_POSITIVE, produced_at=1, known_at=1),
+            FactRecord("f-witness", _atom("witness_statement"),
+                       FactStanding.NOT_SUBMITTED, produced_at=0, known_at=0),
+        ]
+        case = _case(facts)
+        run = run_case(case, _env())
+        self.assertIn(Judgment.PENDING, run.judgments_of("c1"))
+        for branch in run.branches:
+            self.assertEqual(
+                branch.finalizations[0].basis, FinalBasis.LEGALLY_UNDETERMINED
+            )
+        self.assertTrue(check_case_run(case, _env(), run).ok)

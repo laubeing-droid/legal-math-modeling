@@ -210,14 +210,25 @@ def check_case_run(
         universe_nodes = _inline_universe_nodes(case, env, branch.selection)
         special = _inline_special_establishments(case, env, branch.selection)
         node_ids = {n for n, _c, _s in universe_nodes}
-        # extension: conflict-free and self-defending over the branch's
-        # own standards witnesses — we re-check the In/Out split reported
-        # implicitly through outcomes; the fragment reports In via
-        # branch.extension.
+        # extension: the fragment reports In via branch.extension
         in_nodes = frozenset(n for n in branch.extension if n in node_ids)
         if in_nodes != frozenset(branch.extension):
             problems.append("extension names unknown nodes")
         out_nodes = frozenset()
+        # burden readiness and need, re-derived from materials
+        stages = {s for _p, s in case.initial_state.stages}
+        window_closed = any(
+            f.proposition.predicate == "evidence_window_closed"
+            and f.standing is FactStanding.ADMITTED_POSITIVE
+            for f in case.fact_records
+        )
+        burden_ready = (
+            bool(stages) and stages <= {"ready_for_decision", "decided", "trial"}
+        ) or window_closed
+        need = any(
+            f.standing in (FactStanding.NOT_SUBMITTED, FactStanding.AWAITING_ADMISSION)
+            for f in case.fact_records
+        )
         for claim, outcome in zip(case.claims, branch.standards):
             expected_high = _inline_civil_high(
                 _claim_key(claim.basis, Polar.POS), in_nodes, out_nodes, universe_nodes
@@ -227,12 +238,28 @@ def check_case_run(
                     f"standard mismatch for {claim.claim_id}: "
                     f"reported {outcome.civil_high}, inline {expected_high}"
                 )
+        # blockers re-derived: a defense blocks when its issue is strong
+        # In or specially established
+        expected_blockers = frozenset(
+            d.defense_id for d in case.defenses
+            if _inline_civil_high(
+                _claim_key(d.basis, Polar.POS), in_nodes, out_nodes, universe_nodes
+            ) or d.basis in special
+        )
         for claim, outcome, finalization in zip(
             case.claims, branch.standards, branch.finalizations
         ):
-            expected = _inline_finalize(
-                outcome.civil_high or claim.basis in special, ready=True
-            )
+            blocked = bool(expected_blockers)
+            established = outcome.civil_high or claim.basis in special
+            burden_ready_effective = burden_ready and not need
+            if blocked:
+                expected = Judgment.NOT_ESTABLISHED
+            elif established:
+                expected = Judgment.ESTABLISHED
+            elif burden_ready_effective:
+                expected = Judgment.NOT_ESTABLISHED
+            else:
+                expected = Judgment.PENDING
             if finalization.judgment is not expected:
                 problems.append(
                     f"finalization mismatch for {claim.claim_id}: "

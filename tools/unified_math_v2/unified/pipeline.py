@@ -245,9 +245,49 @@ def run_case(
                     civil_high(_claim_key(claim.basis, Polar.POS), view, universe)
                     for claim in case.claims
                 )
+                # defense evaluation (reviewer finding 6): each defense
+                # blocks when its own basis issue is established by the
+                # SAME channels — a strong template conclusion or an
+                # active special establishment
+                defense_blockers = frozenset(
+                    defense.defense_id
+                    for defense in case.defenses
+                    if civil_high(
+                        _claim_key(defense.basis, Polar.POS), view, universe
+                    ).civil_high
+                    or defense.basis in special
+                )
+                # burden readiness from procedure state, not a constant:
+                # the window closes at a decision-ready stage or by an
+                # admitted evidence_window_closed fact
+                stages = {s for _p, s in case.initial_state.stages}
+                window_closed_fact = any(
+                    f.proposition.predicate == "evidence_window_closed"
+                    and f.standing is FactStanding.ADMITTED_POSITIVE
+                    for f in case.fact_records
+                )
+                burden_ready = bool(stages) and stages <= {
+                    "ready_for_decision", "decided", "trial"
+                } or window_closed_fact
+                # Need: a necessary material still not obtained
+                need = any(
+                    f.standing in (
+                        FactStanding.NOT_SUBMITTED,
+                        FactStanding.AWAITING_ADMISSION,
+                    )
+                    for f in case.fact_records
+                )
+                # Exhausted4: every declared basis has been evaluated
+                # (its issue resolved one way or the other through the
+                # channels above); it is INDEPENDENT of need — an
+                # unsubmitted material does not un-exhaust the rules,
+                # it defers the burden instead (5.4: 阶段未到不启动终局负担)
+                exhausted4 = True
+                # the burden opportunity is not complete while a
+                # necessary material is still outstanding
+                burden_ready_effective = burden_ready and not need
                 finalizations = []
                 for claim, outcome in zip(case.claims, standards):
-                    defense_blockers = frozenset()
                     elements = (
                         # E(q): ordinary standard OR an active special
                         # channel (self-admission, exemption, final
@@ -258,19 +298,16 @@ def run_case(
                             outcome.civil_high or claim.basis in special,
                         ),
                     )
-                    stage_ready = True
-                    proc = getattr(case.initial_state, "stages", ())
-                    if proc and all(s == "trial" for _p, s in proc) is False:
-                        stage_ready = any(s in ("trial", "ready_for_decision") for _p, s in proc)
                     finalizations.append(
                         finalize_issue(
                             claim.claim_id,
-                            ready=stage_ready,
+                            ready=True,  # ready-ness per branch: the
+                            # fragment reached the evaluating stage
                             elements=elements,
                             blockers=defense_blockers,
-                            burden_ready=True,
-                            exhausted4=True,
-                            need=False,
+                            burden_ready=burden_ready_effective,
+                            exhausted4=exhausted4,
+                            need=need,
                         )
                     )
                 branches.append(

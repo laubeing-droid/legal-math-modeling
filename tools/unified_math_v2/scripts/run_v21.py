@@ -123,19 +123,102 @@ def run_case_main(args) -> int:
     return 0 if check.ok else 1
 
 
+def run_trace_main(args) -> int:
+    """v3 trace entry (J.13.1 --case + --events): fold the events with
+    the step semantics, then INDEPENDENTLY re-check the fold with
+    reference.legal_semantics.check_trace_run (its first consumer)."""
+    import sys as _sys
+    from fractions import Fraction as _Fraction
+    _sys.path.insert(0, str(ROOT))          # unified/reference packages
+    _sys.path.insert(0, str(ROOT.parents[1]))  # repo root: theory/ lives there
+    from theory.spec.canonical_v2.case import ProcessState
+    from theory.spec.canonical_v2.kernel import NormState
+    from unified.process import (
+        LegalEventKind, ProcessEvent, outstanding_of, run_trace,
+    )
+    from theory.spec.canonical_v2.case import CaseEvent
+    from reference.legal_semantics import check_trace_run
+
+    KINDS = {
+        "PAYMENT_PERFORMED": ("amount", "debt_order"),
+        "AWARD_EFFECTIVE": ("amount", "basis_key"),
+        "AWARD_REVOKED": ("basis_key",),
+        "EVIDENCE_SUBMITTED": (),
+        "EVIDENCE_WITHDRAWN": (),
+        "AWARD_ISSUED": (),
+        "NORM_CHANGE_AUTHORIZED": (),
+        "NORM_CHANGE_PROPOSED": (),
+    }
+    events = []
+    for line_no, line in enumerate(
+        Path(args.events).read_text(encoding="utf-8").splitlines(), 1
+    ):
+        if not line.strip():
+            continue
+        row = json.loads(line)
+        kind_value = row.get("kind", "")
+        if kind_value not in KINDS:
+            raise SystemExit(f"events line {line_no}: unknown kind {kind_value}")
+        ev = CaseEvent(
+            event_id=row.get("event_id", f"e{line_no}"),
+            event_type=kind_value,
+            occurred_at=row.get("occurred_at", 0),
+            observed_at=row.get("observed_at", row.get("occurred_at", 0)),
+            object_ref=row.get("object_ref", ""),
+        )
+        pe = ProcessEvent(
+            event=ev,
+            kind=LegalEventKind[kind_value],
+            basis_key=row.get("basis_key", ""),
+            amount=_Fraction(str(row["amount"])) if row.get("amount") is not None else None,
+            debt_order=tuple(row.get("debt_order", ())),
+            authority_ref=row.get("authority_ref", ""),
+        )
+        events.append(pe)
+    initial = ProcessState(
+        r=NormState(relations=()),
+        environment_id="env-1",
+        stages=(("loan-trial", "trial"),),
+        target_day=1, as_of_day=99,
+    )
+    final_state, notes = run_trace(initial, events)
+    check = check_trace_run(initial, None, events, final_state, notes)
+    payload = {
+        "schema": "unified-v3-trace-run/1",
+        "events": len(events),
+        "notes": list(notes),
+        "outstanding": {
+            key: str(outstanding_of(final_state, key))
+            for key in sorted({
+                e.basis_key for e in final_state.ledger if e.basis_key
+            } - {"unallocated"})
+        },
+        "independent_check": {"ok": check.ok, "reasons": list(check.reasons)},
+        "lean": "CI_NOT_RUN", "empirical": "SYNTHETIC_ONLY",
+    }
+    args.output.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
+    )
+    print(json.dumps({"events": len(events),
+                      "independent_check_ok": check.ok}))
+    return 0 if check.ok else 1
+
+
 def main():
     p=argparse.ArgumentParser()
     p.add_argument('--output',type=Path,required=False)
     p.add_argument('--case',type=Path,help='v3 case JSON (J.13.1 main chain)')
     p.add_argument('--policy',type=Path,help='policy JSON with admission bases')
-    p.add_argument('--events',type=Path,help='events JSONL (reserved)')
+    p.add_argument('--events',type=Path,help='events JSONL for the trace check (J.13.1)')
     p.add_argument('--check-only',type=Path,help='re-check a stored v3 result (reserved)')
     p.add_argument('--resume',type=Path,help='resume from a stored input (reserved)')
     a=p.parse_args()
     if a.case:
         if a.output is None:
             p.error('--output is required with --case')
-        return run_case_main(a)
+        if a.events is None:
+            return run_case_main(a)
+        return run_trace_main(a)
     if a.output is None:
         p.error('--output is required')
     out=a.output;out.mkdir(parents=True,exist_ok=True)

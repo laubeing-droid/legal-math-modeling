@@ -9,9 +9,11 @@ formal path; a missing rounding policy blocks decisive results.
 
 from __future__ import annotations
 
-import math
 from dataclasses import dataclass
+from fractions import Fraction
 from typing import List, Optional, Tuple
+
+from .canonical_v2.case import round_fraction
 
 ROUNDING_MODES = frozenset({"HALF_UP", "HALF_DOWN", "DOWN", "UP"})
 
@@ -49,22 +51,21 @@ def check_range(value: int, lower: int, upper: int) -> NumericReport:
     return NumericReport(True, value, ())
 
 
-def round_minor_units(amount: int, mode: Optional[str]) -> NumericReport:
-    """Rounding at minor-unit boundaries; missing policy is fail-closed."""
+def round_minor_units(amount, mode: Optional[str]) -> NumericReport:
+    """Rounding at minor-unit boundaries; missing policy is fail-closed.
+
+    Accepts integers and Fractions; binary floats and bools are rejected.
+    Midpoints are resolved by exact integer arithmetic — the previous
+    ``amount + 0.5`` float expression is gone (J.4.3).
+    """
 
     if mode is None:
         return NumericReport(False, None, ("MISSING_ROUNDING_POLICY",))
     if mode not in ROUNDING_MODES:
         return NumericReport(False, None, ("UNKNOWN_ROUNDING_MODE",))
-    if mode == "HALF_UP":
-        rounded = math.floor(amount + 0.5) if amount >= 0 else math.ceil(amount - 0.5)
-    elif mode == "HALF_DOWN":
-        rounded = math.ceil(amount - 0.5) if amount >= 0 else math.floor(amount + 0.5)
-    elif mode == "DOWN":
-        rounded = math.trunc(amount)
-    else:
-        rounded = math.ceil(amount) if amount >= 0 else math.trunc(amount)
-    return NumericReport(True, int(rounded), ())
+    if isinstance(amount, bool) or not isinstance(amount, (int, Fraction)):
+        return NumericReport(False, None, ("WRONG_SORT", "BINARY_FLOAT_FORBIDDEN"))
+    return NumericReport(True, round_fraction(Fraction(amount), mode), ())
 
 
 def rate_well_formed(numerator: int, denominator: int) -> NumericReport:

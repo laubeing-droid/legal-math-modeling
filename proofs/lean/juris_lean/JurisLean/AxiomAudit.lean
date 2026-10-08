@@ -152,6 +152,8 @@ import JurisLean.Seams.UnifiedArgumentation
 
 import JurisLean.Seams.UnifiedAdmission
 
+import JurisLean.Seams.UnifiedFinalization
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1831,6 +1833,24 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedArgumentation.rule_target_mem_attackTargets
 #print axioms JurisLean.Seams.UnifiedArgumentation.summaryDefeat_implies_defeat
 #print axioms JurisLean.Seams.UnifiedArgumentation.summary_implies_gateDefeat
+#print axioms JurisLean.Seams.UnifiedFinalization.allowedUnion_cons
+#print axioms JurisLean.Seams.UnifiedFinalization.allowedUnion_eq_singleton_of_all
+#print axioms JurisLean.Seams.UnifiedFinalization.finalize_complete
+#print axioms JurisLean.Seams.UnifiedFinalization.finalize_legal
+#print axioms JurisLean.Seams.UnifiedFinalization.finalize_representation_exact
+#print axioms JurisLean.Seams.UnifiedFinalization.gap_is_not_undetermined_pose
+#print axioms JurisLean.Seams.UnifiedFinalization.intersection_singleton_not_unique
+#print axioms JurisLean.Seams.UnifiedFinalization.notReady_iff
+#print axioms JurisLean.Seams.UnifiedFinalization.not_ready_yields_pending_only
+#print axioms JurisLean.Seams.UnifiedFinalization.pos_negBlocked_exclusive
+#print axioms JurisLean.Seams.UnifiedFinalization.pos_negBurden_exclusive
+#print axioms JurisLean.Seams.UnifiedFinalization.procedural_and_substantive_incompatible
+#print axioms JurisLean.Seams.UnifiedFinalization.subset_allowedUnion
+#print axioms JurisLean.Seams.UnifiedFinalization.undetermined_requires_exhausted_need
+#print axioms JurisLean.Seams.UnifiedFinalization.unique_allowed_iff_all_singleton
+#print axioms JurisLean.Seams.UnifiedFinalization.witness_gap_is_not_undetermined_pose
+#print axioms JurisLean.Seams.UnifiedFinalization.witness_not_ready
+#print axioms JurisLean.Seams.UnifiedFinalization.witness_undetermined
 #print axioms JurisLean.Seams.UnifiedInstance.F_eq_args_of_attacks_empty
 #print axioms JurisLean.Seams.UnifiedInstance.aafM_args_has_two_distinct
 #print axioms JurisLean.Seams.UnifiedInstance.aafM_attacks_eq_empty

@@ -188,6 +188,7 @@ import JurisLean.Seams.Uncertainty
 import JurisLean.Seams.Unified
 import JurisLean.Seams.UnifiedAdmission
 import JurisLean.Seams.UnifiedArgumentation
+import JurisLean.Seams.UnifiedFinalization
 import JurisLean.Seams.UnifiedInstance
 import JurisLean.Seams.UnifiedSemantics
 import JurisLean.SolverRouting

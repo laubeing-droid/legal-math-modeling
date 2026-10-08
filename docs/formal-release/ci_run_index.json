@@ -14524,6 +14524,503 @@
       "status": "completed",
       "updated_at": "2026-10-08T15:00:19Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 5,
+      "conclusion": "failure",
+      "created_at": "2026-10-08T15:16:40Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "ci/unified-construction-20261008",
+      "head_sha": "faa7e0b190579044e3864101af9095ab50a41a0b",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37799399946",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:222"
+      ],
+      "run_id": 37799399946,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-08T15:27:41Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "failure",
+      "created_at": "2026-10-08T15:33:18Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "ci/unified-construction-20261008",
+      "head_sha": "51bf1133b3b48cb57996df5880ada35a5d6928d9",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37801721800",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:220"
+      ],
+      "run_id": 37801721800,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-08T15:36:11Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "failure",
+      "created_at": "2026-10-08T15:40:33Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "ci/unified-construction-20261008",
+      "head_sha": "bcbf86d31b93db5da61d143f052f3af90a3f2855",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37802703534",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:220"
+      ],
+      "run_id": 37802703534,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-08T15:44:16Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "failure",
+      "created_at": "2026-10-08T15:49:59Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "ci/unified-construction-20261008",
+      "head_sha": "158322eafbbe148efa2dfb6819c70954928c532e",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37803970817",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:220"
+      ],
+      "run_id": 37803970817,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-08T15:54:04Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "failure",
+      "created_at": "2026-10-08T15:57:38Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "ci/unified-construction-20261008",
+      "head_sha": "2090c323f86549a13f90166cb8d6b3a112c845cd",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37804989803",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:220"
+      ],
+      "run_id": 37804989803,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-08T16:01:44Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "failure",
+      "created_at": "2026-10-08T16:04:19Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "ci/unified-construction-20261008",
+      "head_sha": "85e1c230209db8925ce79b5a334f99c1ffed568a",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37805890650",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:220"
+      ],
+      "run_id": 37805890650,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-08T16:07:06Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "failure",
+      "created_at": "2026-10-08T16:14:00Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "ci/unified-construction-20261008",
+      "head_sha": "dbcd8ce88237c9e088b1946fbe3eabeb36beca36",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37807166560",
+      "jobs": [
+        {
+          "conclusion": "failure",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:220"
+      ],
+      "run_id": 37807166560,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-08T16:16:39Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-10-08T16:20:27Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "ci/unified-construction-20261008",
+      "head_sha": "cb3c0363b19182e2724a7c2f051350ae7a9eddfc",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37808008444",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:220",
+        "docs/统一法律数学模型_主件_20261008.md:95"
+      ],
+      "run_id": 37808008444,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-08T16:24:40Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],
   "schema_version": "ci-run-index-v1",

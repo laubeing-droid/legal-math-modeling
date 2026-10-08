@@ -160,6 +160,8 @@ import JurisLean.Seams.UnifiedBeta
 
 import JurisLean.Seams.UnifiedUtility
 
+import JurisLean.Seams.UnifiedEvents
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1847,6 +1849,14 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedBeta.refN_width
 #print axioms JurisLean.Seams.UnifiedBeta.strict_comparison_eventually_found
 #print axioms JurisLean.Seams.UnifiedBeta.width_nonneg
+#print axioms JurisLean.Seams.UnifiedEvents.not_mem_removeAll
+#print axioms JurisLean.Seams.UnifiedEvents.revoke_keeps_payments
+#print axioms JurisLean.Seams.UnifiedEvents.runEvents_append
+#print axioms JurisLean.Seams.UnifiedEvents.runEvents_exact
+#print axioms JurisLean.Seams.UnifiedEvents.step_exact
+#print axioms JurisLean.Seams.UnifiedEvents.step_preserves
+#print axioms JurisLean.Seams.UnifiedEvents.steps_cons_inv
+#print axioms JurisLean.Seams.UnifiedEvents.withdrawn_not_in_state
 #print axioms JurisLean.Seams.UnifiedFinalization.allowedUnion_cons
 #print axioms JurisLean.Seams.UnifiedFinalization.allowedUnion_eq_singleton_of_all
 #print axioms JurisLean.Seams.UnifiedFinalization.finalize_complete

@@ -189,6 +189,7 @@ import JurisLean.Seams.Unified
 import JurisLean.Seams.UnifiedAdmission
 import JurisLean.Seams.UnifiedArgumentation
 import JurisLean.Seams.UnifiedBeta
+import JurisLean.Seams.UnifiedEvents
 import JurisLean.Seams.UnifiedFinalization
 import JurisLean.Seams.UnifiedInstance
 import JurisLean.Seams.UnifiedQuantities

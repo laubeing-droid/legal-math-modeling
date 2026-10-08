@@ -68,10 +68,9 @@ no block admitted. -/
 def BasisValid (admitted : Finset F) (b : AdmissionBasis F I) : Prop :=
   b.premises ⊆ admitted ∧ Disjoint b.blocks admitted
 
-/-- Decidable version used by the step. -/
+/-- Decidable version used by the step: the contract itself decided. -/
 def basisValidB (admitted : Finset F) (b : AdmissionBasis F I) : Bool :=
-  b.premises.all (fun f => decide (f ∈ admitted))
-  && b.blocks.all (fun f => !decide (f ∈ admitted))
+  decide (b.premises ⊆ admitted ∧ Disjoint b.blocks admitted)
 
 /-- The one-round admission step: newly admitted facts are exactly the
 grants of valid bases. -/
@@ -86,32 +85,10 @@ def admittedRounds (admitted₀ : Finset F)
   | 0 => admitted₀
   | n + 1 => admittedStep (admittedRounds admitted₀ bases n) bases
 
-/-- Reflection: the Boolean checker reads exactly the subset-and-
-disjoint contract. -/
+/-- Reflection: the decided checker reads exactly the contract. -/
 theorem basisValidB_iff (admitted : Finset F) (b : AdmissionBasis F I) :
     basisValidB admitted b = true ↔ BasisValid admitted b := by
-  constructor
-  · intro h
-    simp only [basisValidB, Bool.and_eq_true, Finset.all_eq_true,
-               decide_eq_true_eq] at h
-    obtain ⟨hp, hb⟩ := h
-    refine ⟨?_, ?_⟩
-    · intro f hf
-      exact hp f hf
-    · rw [Finset.disjoint_left]
-      intro f hf hmem
-      have hnot := hb f hf
-      rw [hmem] at hnot
-      simp at hnot
-  · intro ⟨hsub, hdisj⟩
-    simp only [basisValidB, Bool.and_eq_true, Finset.all_eq_true,
-               decide_eq_true_eq, Bool.not_eq_true']
-    refine ⟨?_, ?_⟩
-    · intro f hf
-      exact hsub hf
-    · intro f hf
-      intro hmem
-      exact absurd (hdisj hf hmem) (by simp [Finset.disjoint_left])
+  simp [basisValidB, BasisValid]
 
 /-- **U08** — every fact admitted after `n` rounds carries a legal
 basis: it was admitted initially, or it is the grant of a basis valid

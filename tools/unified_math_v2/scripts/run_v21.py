@@ -221,6 +221,7 @@ def main():
         return run_trace_main(a)
     if a.output is None:
         p.error('--output is required')
+    sys.path.insert(0, str(ROOT.parents[1]))  # repo root: theory/ package
     out=a.output;out.mkdir(parents=True,exist_ok=True)
     suite=unittest.defaultTestLoader.discover(str(ROOT/'tests'));ids=list(flatten(suite))
     (out/'collection.json').write_text(json.dumps(ids,indent=2)+'\n',encoding='utf-8')

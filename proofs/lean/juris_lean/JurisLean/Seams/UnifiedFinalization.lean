@@ -131,7 +131,7 @@ theorem finalize_legal (inp : IssueInputs) : LegalFinal inp (finalizeIssue inp) 
         | rfl
         | exact Or.inl rfl
         | exact Or.inr rfl
-        | (by decide))
+        | decide)
 
 /-- **完备**：任何满足语义前提的推导都落在表的同一输出上（对推导分例归纳）。 -/
 theorem finalize_complete {inp : IssueInputs} {o : Judgment × FinalBasis}
@@ -246,6 +246,10 @@ variable {V : Type} [DecidableEq V]
 def allowedUnion (dom : List (Finset V)) : Finset V :=
   dom.foldr (fun S acc => S ∪ acc) ∅
 
+/-- 允许并的 cons 读数（foldr 定义展开）。 -/
+theorem allowedUnion_cons (T : Finset V) (rest : List (Finset V)) :
+    allowedUnion (T :: rest) = T ∪ allowedUnion rest := rfl
+
 /-- 成员评价包含于允许并。 -/
 theorem subset_allowedUnion {dom : List (Finset V)} {S : Finset V} (h : S ∈ dom) :
     S ⊆ allowedUnion dom := by
@@ -256,7 +260,8 @@ theorem subset_allowedUnion {dom : List (Finset V)} {S : Finset V} (h : S ∈ do
       simp only [allowedUnion, List.foldr_cons]
       rcases List.mem_cons.mp h with rfl | hrest
       · exact Finset.mem_union.mpr (Or.inl hx)
-      · exact Finset.mem_union.mpr (Or.inr (ih hrest x hx))
+      · exact Finset.mem_union.mpr
+          (Or.inr (Finset.mem_of_subset (ih hrest) hx))
 
 /-- 全单点族（非空）的允许并是那个单点。 -/
 theorem allowedUnion_eq_singleton_of_all {v : V} :
@@ -267,7 +272,7 @@ theorem allowedUnion_eq_singleton_of_all {v : V} :
   | cons T rest ih =>
       intro _ hAll
       have hT : T = {v} := hAll T (by simp)
-      simp only [allowedUnion, List.foldr_cons, hT]
+      rw [allowedUnion_cons, hT]
       cases rest with
       | nil => simp [allowedUnion]
       | cons T' rest' =>

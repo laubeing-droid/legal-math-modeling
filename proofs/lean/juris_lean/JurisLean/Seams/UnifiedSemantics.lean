@@ -19,6 +19,7 @@ compilation evidence is the CI run recorded for this module's subject
 -/
 
 import Mathlib.Data.Finset.Basic
+import Mathlib.Tactic
 
 namespace JurisLean.Seams.UnifiedSemantics
 
@@ -75,25 +76,19 @@ theorem escalation_only_has_no_stable_selection {C : Type} [DecidableEq C]
     (prof : SelectionProfile C) (hwf : ProfileWF prof) (p : C × C)
     (hp : p ∈ prof.escalationPairs)
     (hnedges : prof.exclusions = ∅)
-    (hcand : prof.candidates = Finset.cons p.1 (Finset.cons p.2 Finset.empty)) :
+    (hcand : prof.candidates = {p.1, p.2}) :
     ¬∃ S : Finset C, StableSelection prof S := by
   rintro ⟨S, hsub, hfree, hcover, hesc⟩
-  have hc1 : p.1 ∈ prof.candidates := by
-    rw [hcand]
-    exact Finset.mem_cons_self p.1 (Finset.cons p.2 Finset.empty)
-  have hc2 : p.2 ∈ prof.candidates := by
-    rw [hcand]
-    exact Finset.mem_cons_of_mem p.1 (Finset.mem_cons_self p.2 Finset.empty)
+  have hc1 : p.1 ∈ prof.candidates := by simp [hcand]
+  have hc2 : p.2 ∈ prof.candidates := by simp [hcand]
   have h1 : p.1 ∈ S := by
     by_contra hout
     obtain ⟨_s, _hs, hse⟩ := hcover p.1 hc1 hout
-    rw [hnedges] at hse
-    exact absurd hse (Finset.notMem_empty (s := (_s, p.1)))
+    simp [hnedges] at hse
   have h2 : p.2 ∈ S := by
     by_contra hout
     obtain ⟨_s, _hs, hse⟩ := hcover p.2 hc2 hout
-    rw [hnedges] at hse
-    exact absurd hse (Finset.notMem_empty (s := (_s, p.2)))
+    simp [hnedges] at hse
   exact hesc p hp ⟨h1, h2⟩
 
 /-- The A > B > C witness profile: candidates {A, B, C} with edges
@@ -109,35 +104,32 @@ theorem abc_stable_AC : StableSelection abcProfile {0, 2} := by
   refine ⟨?_, ?_, ?_, ?_⟩
   · intro x hx
     simp only [Finset.mem_insert, Finset.mem_singleton] at hx ⊢
-    rcases hx with rfl | rfl | rfl
-    · exact Or.inl rfl
-    · exact Or.inr (Or.inl rfl)
-    · exact Or.inr (Or.inr rfl)
+    tauto
   · intro a ha b hb hab
-    simp only [abcProfile, Finset.mem_insert, Finset.mem_singleton] at ha hb
-    simp only [abcProfile, Finset.mem_insert, Finset.mem_singleton,
-               Prod.mk.injEq] at hab
-    rcases ha with rfl | rfl | rfl <;>
-      rcases hb with rfl | rfl | rfl <;>
-      simp at hab
+    simp only [Finset.mem_insert, Finset.mem_singleton] at ha hb
+    simp only [abcProfile, Finset.mem_insert, Finset.mem_singleton] at hab
+    rcases ha with h1 | h1 | h1 <;>
+      rcases hb with h2 | h2 | h2 <;>
+      simp_all
   · intro n hn hout
-    simp only [abcProfile, Finset.mem_insert, Finset.mem_singleton] at hn hout
-    rcases hn with rfl | rfl | rfl
-    · exact absurd hout (by simp [abcProfile])
-    · exact ⟨0, by simp [abcProfile], by simp [abcProfile]⟩
-    · exact absurd hout (by simp [abcProfile])
+    simp only [abcProfile, Finset.mem_insert, Finset.mem_singleton] at hn
+    rcases hn with h | h | h
+    · simp only [Finset.mem_insert, Finset.mem_singleton] at hout
+      exact absurd rfl hout
+    · subst h
+      exact ⟨0, by decide, by simp [abcProfile]⟩
+    · simp only [Finset.mem_insert, Finset.mem_singleton] at hout
+      tauto
   · intro p hp
-    simp only [abcProfile, Finset.notMem_empty] at hp
+    simp [abcProfile] at hp
 
 /-- `{A}` alone is NOT stable: the compatible candidate C is non-adopted
 with no excluder — the exact hole in a global-maximal screen. -/
 theorem abc_A_alone_unstable : ¬StableSelection abcProfile {0} := by
   rintro ⟨_sub, _free, hcover, _esc⟩
-  obtain ⟨s, hs, hse⟩ := hcover 2 (by simp [abcProfile]) (by simp [abcProfile])
+  obtain ⟨s, hs, hse⟩ := hcover 2 (by simp [abcProfile]) (by decide)
   simp only [Finset.mem_singleton] at hs
   subst hs
-  simp only [abcProfile, Finset.mem_insert, Finset.mem_singleton,
-             Prod.mk.injEq, one_ne_zero, false_or] at hse
-  exact absurd hse (by simp)
+  simp [abcProfile] at hse
 
 end JurisLean.Seams.UnifiedSemantics

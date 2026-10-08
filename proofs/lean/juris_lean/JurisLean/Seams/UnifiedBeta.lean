@@ -46,13 +46,13 @@ structure Enc where
 def Enc.width (e : Enc) : ℚ := e.hi - e.lo
 
 /-- v 落在 e 内（健全包围）。 -/
-def Enc.sound (e : Enc) (v : ℚ) : Prop := e.lo ≤ v ∧ v ≤ e.hi
+def Enc.holds (e : Enc) (v : ℚ) : Prop := e.lo ≤ v ∧ v ≤ e.hi
 
 /-- 细化合同：健全性保持＋每轮宽度收缩到 2/3 以下
     （主文 §7.4 的"宽度乘 2/3 证明总终止"）。 -/
 structure RefinesContract (ref : Enc → Enc) : Prop where
   /-- 细化不丢被围值。 -/
-  keeps : ∀ e v, e.sound v → (ref e).sound v
+  keeps : ∀ e v, e.holds v → (ref e).holds v
   /-- 宽度几何收缩。 -/
   shrinks : ∀ e, (ref e).width ≤ (2 / 3) * e.width
 
@@ -62,7 +62,7 @@ def refN (ref : Enc → Enc) : ℕ → Enc → Enc
   | n + 1, e => ref (refN ref n e)
 
 theorem refN_sound (hc : RefinesContract ref) :
-    ∀ (n : ℕ) (e : Enc) (v : ℚ), e.sound v → (refN ref n e).sound v := by
+    ∀ (n : ℕ) (e : Enc) (v : ℚ), e.holds v → (refN ref n e).holds v := by
   intro n
   induction n with
   | zero => intro e v h; exact h
@@ -157,7 +157,7 @@ def cmpEnc (a b : Enc) : Cmp :=
 
 /-- **判定为真**：cmpEnc 给出 lt 时，任何被两包围分别容纳的 x < y。 -/
 theorem cmpEnc_decided_is_true (a b : Enc) (x y : ℚ)
-    (ha : a.sound x) (hb : b.sound y) (h : cmpEnc a b = Cmp.lt) : x < y := by
+    (ha : a.holds x) (hb : b.holds y) (h : cmpEnc a b = Cmp.lt) : x < y := by
   unfold cmpEnc at h
   split at h
   · rename_i hlt
@@ -171,7 +171,7 @@ theorem cmpEnc_decided_is_true (a b : Enc) (x y : ℚ)
 /-! ## 四、严格比较最终被分离（Δ/2 纪律） -/
 
 /-- 健全包围的宽度非负。 -/
-theorem width_nonneg {e : Enc} {v : ℚ} (h : e.sound v) : 0 ≤ e.width := by
+theorem width_nonneg {e : Enc} {v : ℚ} (h : e.holds v) : 0 ≤ e.width := by
   obtain ⟨hlo, hhi⟩ := h
   unfold Enc.width
   linarith
@@ -181,7 +181,7 @@ theorem width_nonneg {e : Enc} {v : ℚ} (h : e.sound v) : 0 ≤ e.width := by
     上界经 (2/3)^N 几何收缩与 Archimedeanness 取得。 -/
 theorem strict_comparison_eventually_found (ref : Enc → Enc)
     (hc : RefinesContract ref) (x y : ℚ) (hxy : x < y)
-    (ea eb : Enc) (ha : ea.sound x) (hb : eb.sound y) :
+    (ea eb : Enc) (ha : ea.holds x) (hb : eb.holds y) :
     ∃ n : ℕ, cmpEnc (refN ref n ea) (refN ref n eb) = Cmp.lt := by
   have hδ : (0 : ℚ) < y - x := sub_pos.mpr hxy
   set A := ea.width + eb.width + 1 with hAdef

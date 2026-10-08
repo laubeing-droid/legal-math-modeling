@@ -97,7 +97,7 @@ theorem case_regret_bound (g : NormGame P A) (s : ∀ p : P, A) (p : P) (B : ℚ
     regret g s p ≤ B := by
   have hsup : (g.menu p).sup' (g.menuNonempty p) (fun a => g.u (dev s p a) p)
       ≤ g.u s p + B :=
-    Finset.sup'_le (g.menu p) (g.menuNonempty p) (fun a ha => hB a ha)
+    Finset.sup'_le (g.menuNonempty p) (fun a ha => hB a ha)
   unfold regret
   linarith
 
@@ -122,26 +122,22 @@ theorem pennies_all_playable : ∀ s : Bool → Bool, playable pennies s := by
 theorem pennies_no_pure_nash : ∀ s : Bool → Bool, ¬ pureNash pennies s := by
   intro s hs
   rcases ht : s true with st | st <;> rcases hf : s false with sf | sf
-  · have e1 : pennies.u (dev s false false) false = 1 := by simp [pennies, dev, ht, hf]
-    have e2 : pennies.u s false = 0 := by simp [pennies, ht, hf]
-    have hle := hs false false (pennies_menu_full false)
-    rw [e1, e2] at hle
-    exact absurd hle (by norm_num)
-  · have e1 : pennies.u (dev s true false) true = 1 := by simp [pennies, dev, ht, hf]
-    have e2 : pennies.u s true = 0 := by simp [pennies, ht, hf]
-    have hle := hs true false (pennies_menu_full false)
-    rw [e1, e2] at hle
-    exact absurd hle (by norm_num)
-  · have e1 : pennies.u (dev s true true) true = 1 := by simp [pennies, dev, ht, hf]
-    have e2 : pennies.u s true = 0 := by simp [pennies, ht, hf]
-    have hle := hs true true (pennies_menu_full true)
-    rw [e1, e2] at hle
-    exact absurd hle (by norm_num)
-  · have e1 : pennies.u (dev s false true) false = 1 := by simp [pennies, dev, ht, hf]
-    have e2 : pennies.u s false = 0 := by simp [pennies, ht, hf]
-    have hle := hs false true (pennies_menu_full true)
-    rw [e1, e2] at hle
-    exact absurd hle (by norm_num)
+  · have hsdef : s = fun _ : Bool => true := by funext q; cases q <;> simp [ht, hf]
+    subst hsdef
+    have hle := hs false false (by simp)
+    simp [pennies, dev] at hle
+  · have hsdef : s = fun q : Bool => q := by funext q; cases q <;> simp [ht, hf]
+    subst hsdef
+    have hle := hs true false (by simp)
+    simp [pennies, dev] at hle
+  · have hsdef : s = fun q : Bool => !q := by funext q; cases q <;> simp [ht, hf]
+    subst hsdef
+    have hle := hs true true (by simp)
+    simp [pennies, dev] at hle
+  · have hsdef : s = fun _ : Bool => false := by funext q; cases q <;> simp [ht, hf]
+    subst hsdef
+    have hle := hs false true (by simp)
+    simp [pennies, dev] at hle
 
 /-- **均衡不断言发生**：配硬币四组合全可玩且无一纯均衡——稳定性陈述
     对"实际发生了什么/将发生什么"零断言（违法/非理性行动照常可发生，

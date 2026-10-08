@@ -115,26 +115,54 @@ inductive LegalFinal : IssueInputs → Judgment × FinalBasis → Prop
 /-! ## 三、精确表示（U11）：终结表＝合法终结关系的外延 -/
 
 /-- **健全**：表给出的每个输出都满足自己型别的语义前提。
-    证明按 `finalizeIssue` 的同一模式序展开为十个字面量分支（负担未触发的
-    依法未决／缺口各按 Or 左右再分），每支的字面前提都是 `rfl`／小 `decide`。 -/
-theorem finalize_legal :
-    ∀ (inp : IssueInputs), LegalFinal inp (finalizeIssue inp)
-  | ⟨false, b, a, br, u, e, n⟩ => LegalFinal.notReady _ rfl
-  | ⟨true, true, a, br, u, e, n⟩ => LegalFinal.negBlocked _ rfl rfl
-  | ⟨true, false, true, br, u, e, n⟩ => LegalFinal.pos _ rfl rfl rfl
-  | ⟨true, false, false, true, true, e, n⟩ => LegalFinal.negBurden _ rfl rfl rfl rfl rfl
-  | ⟨true, false, false, false, u, true, true⟩ =>
-      LegalFinal.undetermined _ rfl rfl rfl (Or.inl rfl) rfl rfl
-  | ⟨true, false, false, br, false, true, true⟩ =>
-      LegalFinal.undetermined _ rfl rfl rfl (Or.inr rfl) rfl rfl
-  | ⟨true, false, false, false, u, false, n⟩ =>
-      LegalFinal.gap _ rfl rfl rfl (Or.inl rfl) (by cases n <;> decide)
-  | ⟨true, false, false, false, u, true, false⟩ =>
-      LegalFinal.gap _ rfl rfl rfl (Or.inl rfl) (by decide)
-  | ⟨true, false, false, br, false, false, n⟩ =>
-      LegalFinal.gap _ rfl rfl rfl (Or.inr rfl) (by cases n <;> decide)
-  | ⟨true, false, false, br, false, true, false⟩ =>
-      LegalFinal.gap _ rfl rfl rfl (Or.inr rfl) (by decide)
+    证明按终结表自己的判别序逐位 cases，叶端全字面量（`decide` 不吃自由变量，
+    故把 e/n 及其前的负担位全部拆尽）。 -/
+theorem finalize_legal (inp : IssueInputs) : LegalFinal inp (finalizeIssue inp) := by
+  rcases inp with ⟨r, b, a, br, u, e, n⟩
+  cases r
+  · exact LegalFinal.notReady ⟨false, b, a, br, u, e, n⟩ rfl
+  · cases b
+    · cases a
+      · exact LegalFinal.pos ⟨true, false, true, br, u, e, n⟩ rfl rfl rfl
+      · cases br
+        · cases u
+          · exact LegalFinal.negBurden ⟨true, false, false, true, true, e, n⟩
+              rfl rfl rfl rfl rfl
+          · cases e
+            · cases n
+              · exact LegalFinal.gap ⟨true, false, false, true, false, false, false⟩
+                  rfl rfl rfl (Or.inr rfl) (by decide)
+              · exact LegalFinal.gap ⟨true, false, false, true, false, false, true⟩
+                  rfl rfl rfl (Or.inr rfl) (by decide)
+            · cases n
+              · exact LegalFinal.gap ⟨true, false, false, true, false, true, false⟩
+                  rfl rfl rfl (Or.inr rfl) (by decide)
+              · exact LegalFinal.undetermined ⟨true, false, false, true, false, true, true⟩
+                  rfl rfl rfl (Or.inr rfl) rfl rfl
+        · cases u
+          · cases e
+            · cases n
+              · exact LegalFinal.gap ⟨true, false, false, false, true, false, false⟩
+                  rfl rfl rfl (Or.inl rfl) (by decide)
+              · exact LegalFinal.gap ⟨true, false, false, false, true, false, true⟩
+                  rfl rfl rfl (Or.inl rfl) (by decide)
+            · cases n
+              · exact LegalFinal.gap ⟨true, false, false, false, true, true, false⟩
+                  rfl rfl rfl (Or.inl rfl) (by decide)
+              · exact LegalFinal.undetermined ⟨true, false, false, false, true, true, true⟩
+                  rfl rfl rfl (Or.inl rfl) rfl rfl
+          · cases e
+            · cases n
+              · exact LegalFinal.gap ⟨true, false, false, false, false, false, false⟩
+                  rfl rfl rfl (Or.inl rfl) (by decide)
+              · exact LegalFinal.gap ⟨true, false, false, false, false, false, true⟩
+                  rfl rfl rfl (Or.inl rfl) (by decide)
+            · cases n
+              · exact LegalFinal.gap ⟨true, false, false, false, false, true, false⟩
+                  rfl rfl rfl (Or.inl rfl) (by decide)
+              · exact LegalFinal.undetermined ⟨true, false, false, false, false, true, true⟩
+                  rfl rfl rfl (Or.inl rfl) rfl rfl
+    · exact LegalFinal.negBlocked ⟨true, true, a, br, u, e, n⟩ rfl rfl
 
 /-- **完备**：任何满足语义前提的推导都落在表的同一输出上（对推导分例归纳）。 -/
 theorem finalize_complete {inp : IssueInputs} {o : Judgment × FinalBasis}

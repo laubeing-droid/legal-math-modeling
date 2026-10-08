@@ -43,6 +43,8 @@ structure NormGame (P A : Type) where
   menu : P → Finset A
   /-- 效用（读整组合；ℚ 精确求值）。 -/
   u : (∀ p : P, A) → P → ℚ
+  /-- 尝试菜单非空（主文 §8：尝试行动域非空）。 -/
+  menuNonempty : ∀ p : P, (menu p).Nonempty
 
 /-- 组合可发生（每个分量都在自己的尝试菜单内）。 -/
 def playable (g : NormGame P A) (s : ∀ p : P, A) : Prop := ∀ p, s p ∈ g.menu p
@@ -84,17 +86,18 @@ theorem utility_invariant_under_display_rename (fg : FactoredGame P A C)
 
 /-! ## 三、悔恨界（G05 面） -/
 
-/-- 菜单内悔恨：最好偏离增益减现效用。 -/
+/-- 菜单内悔恨：最好偏离增益减现效用（sup'：菜单非空）。 -/
 def regret (g : NormGame P A) (s : ∀ p : P, A) (p : P) : ℚ :=
-  (g.menu p).sup (fun a => g.u (dev s p a) p) - g.u s p
+  (g.menu p).sup' (g.menuNonempty p) (fun a => g.u (dev s p a) p) - g.u s p
 
 /-- **悔恨界**：对菜单内每个替代都有松弛 B，则悔恨 ≤ B
-    （证书式上界，不重算 sup）。 -/
+    （证书式上界，不重算 sup'）。 -/
 theorem case_regret_bound (g : NormGame P A) (s : ∀ p : P, A) (p : P) (B : ℚ)
     (hB : ∀ a ∈ g.menu p, g.u (dev s p a) p ≤ g.u s p + B) :
     regret g s p ≤ B := by
-  have hsup : (g.menu p).sup (fun a => g.u (dev s p a) p) ≤ g.u s p + B :=
-    Finset.sup_le hB
+  have hsup : (g.menu p).sup' (g.menuNonempty p) (fun a => g.u (dev s p a) p)
+      ≤ g.u s p + B :=
+    Finset.sup'_le (g.menu p) (g.menuNonempty p) (fun a ha => hB a ha)
   unfold regret
   linarith
 
@@ -105,6 +108,7 @@ theorem case_regret_bound (g : NormGame P A) (s : ∀ p : P, A) (p : P) (B : ℚ
 def pennies : NormGame Bool Bool where
   menu := fun _ => {false, true}
   u := fun s p => if s true = s false then (if p then 1 else 0) else (if p then 0 else 1)
+  menuNonempty := fun _ => ⟨false, by simp⟩
 
 theorem pennies_menu_full (b : Bool) : b ∈ ({false, true} : Finset Bool) := by
   cases b <;> simp
@@ -118,14 +122,26 @@ theorem pennies_all_playable : ∀ s : Bool → Bool, playable pennies s := by
 theorem pennies_no_pure_nash : ∀ s : Bool → Bool, ¬ pureNash pennies s := by
   intro s hs
   rcases ht : s true with st | st <;> rcases hf : s false with sf | sf
-  · exact absurd (hs false false (pennies_menu_full false))
-      (by simp [pennies, dev, ht, hf])
-  · exact absurd (hs true false (pennies_menu_full false))
-      (by simp [pennies, dev, ht, hf])
-  · exact absurd (hs true true (pennies_menu_full true))
-      (by simp [pennies, dev, ht, hf])
-  · exact absurd (hs false true (pennies_menu_full true))
-      (by simp [pennies, dev, ht, hf])
+  · have e1 : pennies.u (dev s false false) false = 1 := by simp [pennies, dev, ht, hf]
+    have e2 : pennies.u s false = 0 := by simp [pennies, ht, hf]
+    have hle := hs false false (pennies_menu_full false)
+    rw [e1, e2] at hle
+    exact absurd hle (by norm_num)
+  · have e1 : pennies.u (dev s true false) true = 1 := by simp [pennies, dev, ht, hf]
+    have e2 : pennies.u s true = 0 := by simp [pennies, ht, hf]
+    have hle := hs true false (pennies_menu_full false)
+    rw [e1, e2] at hle
+    exact absurd hle (by norm_num)
+  · have e1 : pennies.u (dev s true true) true = 1 := by simp [pennies, dev, ht, hf]
+    have e2 : pennies.u s true = 0 := by simp [pennies, ht, hf]
+    have hle := hs true true (pennies_menu_full true)
+    rw [e1, e2] at hle
+    exact absurd hle (by norm_num)
+  · have e1 : pennies.u (dev s false true) false = 1 := by simp [pennies, dev, ht, hf]
+    have e2 : pennies.u s false = 0 := by simp [pennies, ht, hf]
+    have hle := hs false true (pennies_menu_full true)
+    rw [e1, e2] at hle
+    exact absurd hle (by norm_num)
 
 /-- **均衡不断言发生**：配硬币四组合全可玩且无一纯均衡——稳定性陈述
     对"实际发生了什么/将发生什么"零断言（违法/非理性行动照常可发生，

@@ -134,4 +134,50 @@ theorem abc_A_alone_unstable : ¬StableSelection abcProfile {0} := by
   subst hs
   simp [abcProfile] at hse
 
+/-! ### The exhaustive-enumeration reflection (layer B, U03)
+
+The §3.1 algorithm is exhaustive subset enumeration; these declarations
+state and prove that the enumerated family is EXACTLY the stable
+selections — soundness (every enumerated member is stable) and
+completeness (every stable selection is enumerated) as one biconditional.
+The family is a classical (noncomputable) semantic object per plan I.3.2:
+it carries the semantics of the full-solution construction and is not
+the execution path of any decision procedure. -/
+
+/-- The family of ALL stable selections: filter the full powerset of
+the candidate set on stability.  Classical decidability — a semantic
+object, not a computation (plan I.3.2). -/
+open Classical in
+noncomputable def enumerateStable {C : Type} [DecidableEq C]
+    (prof : SelectionProfile C) : Finset (Finset C) :=
+  prof.candidates.powerset.filter (fun S => decide (StableSelection prof S))
+
+/-- U03 (§3.1): the exhaustive enumeration is EXACT — `S` appears in
+`enumerateStable prof` if and only if `S` is a stable selection.  The
+forward direction is soundness of the enumeration (and re-derives the
+subset bookkeeping from powerset membership); the backward direction is
+completeness (every stable selection, being a subset of the candidates,
+is reached by the powerset scan). -/
+open Classical in
+theorem mem_enumerateStable_iff {C : Type} [DecidableEq C]
+    (prof : SelectionProfile C) (S : Finset C) :
+    S ∈ enumerateStable prof ↔ StableSelection prof S := by
+  constructor
+  · intro h
+    obtain ⟨hp, hd⟩ := Finset.mem_filter.mp h
+    obtain ⟨_hsub, hfree, hcover, hesc⟩ := decide_eq_true_iff.mp hd
+    exact ⟨Finset.mem_powerset.mp hp, hfree, hcover, hesc⟩
+  · intro h
+    obtain ⟨hsub, hfree, hcover, hesc⟩ := h
+    refine Finset.mem_filter.mpr ⟨Finset.mem_powerset.mpr hsub, ?_⟩
+    exact decide_eq_true_iff.mpr ⟨hsub, hfree, hcover, hesc⟩
+
+/-- Every enumerated selection is a subset of the candidate set — the
+enumeration never invents candidates. -/
+open Classical in
+theorem enumerateStable_mem_subset {C : Type} [DecidableEq C]
+    (prof : SelectionProfile C) (S : Finset C)
+    (h : S ∈ enumerateStable prof) : S ⊆ prof.candidates :=
+  (mem_enumerateStable_iff prof S).mp h |>.1
+
 end JurisLean.Seams.UnifiedSemantics

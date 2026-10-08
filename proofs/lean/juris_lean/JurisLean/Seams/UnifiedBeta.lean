@@ -56,10 +56,10 @@ structure RefinesContract (ref : Enc → Enc) : Prop where
   /-- 宽度几何收缩。 -/
   shrinks : ∀ e, (ref e).width ≤ (2 / 3) * e.width
 
-/-- n 轮细化。 -/
+/-- n 轮细化（先递归后细化，使 refN (n+1) = ref (refN n) 逐字成立）。 -/
 def refN (ref : Enc → Enc) : ℕ → Enc → Enc
   | 0, e => e
-  | n + 1, e => refN ref n (ref e)
+  | n + 1, e => ref (refN ref n e)
 
 theorem refN_sound (hc : RefinesContract ref) :
     ∀ (n : ℕ) (e : Enc) (v : ℚ), e.sound v → (refN ref n e).sound v := by
@@ -106,12 +106,14 @@ theorem pow_two_thirds_le :
   | zero => norm_num
   | succ m ih =>
       have hm : (0 : ℚ) ≤ m := by exact_mod_cast Nat.zero_le m
+      rw [show ((m + 1 : ℚ)) + 2 = (m : ℚ) + 3 from by push_cast; ring]
       rw [show (2 / 3 : ℚ) ^ (m + 3) = (2 / 3 : ℚ) ^ (m + 2) * (2 / 3) by rw [pow_succ]]
       calc (2 / 3 : ℚ) ^ (m + 2) * (2 / 3)
           ≤ (1 / ((m : ℚ) + 2)) * (2 / 3) :=
             mul_le_mul_of_nonneg_right ih (by norm_num)
-        _ = 2 / (3 * ((m : ℚ) + 2)) := by field_simp; ring
         _ ≤ 1 / ((m : ℚ) + 3) := by
+            have h2 : (0 : ℚ) < (m : ℚ) + 2 := by linarith
+            have h3 : (0 : ℚ) < (m : ℚ) + 3 := by linarith
             field_simp
             linarith
 
@@ -154,13 +156,15 @@ def cmpEnc (a b : Enc) : Cmp :=
 /-- **判定为真**：cmpEnc 给出 lt 时，任何被两包围分别容纳的 x < y。 -/
 theorem cmpEnc_decided_is_true (a b : Enc) (x y : ℚ)
     (ha : a.sound x) (hb : b.sound y) (h : cmpEnc a b = Cmp.lt) : x < y := by
-  simp only [cmpEnc] at h
+  unfold cmpEnc at h
   split at h
   · rename_i hlt
     obtain ⟨hal, hah⟩ := ha
     obtain ⟨hbl, hbh⟩ := hb
     linarith
-  · exact absurd h (by simp)
+  · split at h
+    · exact absurd h (by simp)
+    · exact absurd h (by simp)
 
 /-! ## 四、严格比较最终被分离（Δ/2 纪律） -/
 
@@ -202,10 +206,14 @@ theorem strict_comparison_eventually_found (ref : Enc → Enc)
   have hsb := refN_sound hc N eb y hb
   obtain ⟨hl_a, hh_a⟩ := hsa
   obtain ⟨hl_b, hh_b⟩ := hsb
-  have hhi_a : (refN ref N ea).hi < (refN ref N eb).lo := by
-    unfold Enc.width at hwa hwb
+  have e1 : (refN ref N ea).hi ≤ x + ((2 / 3 : ℚ) ^ N * ea.width) := by
+    unfold Enc.width at hwa
     linarith
-  simp only [cmpEnc]
+  have e2 : y - ((2 / 3 : ℚ) ^ N * eb.width) ≤ (refN ref N eb).lo := by
+    unfold Enc.width at hwb
+    linarith
+  have hhi_a : (refN ref N ea).hi < (refN ref N eb).lo := by linarith
+  unfold cmpEnc
   rw [if_pos hhi_a]
 
 end JurisLean.Seams.UnifiedBeta

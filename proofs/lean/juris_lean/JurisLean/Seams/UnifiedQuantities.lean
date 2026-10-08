@@ -157,15 +157,15 @@ theorem waterfall_t25_prefix :
       have hhp : 0 ≤ p - min p d := sub_nonneg.mpr (min_le_left p d)
       have hout : ∀ a ∈ waterfall ds (p - min p d), 0 ≤ a :=
         waterfall_mem_nonneg ds hnnds (p - min p d) hhp
-      have hsub : (List.drop k (waterfall ds (p - min p d))).sum
-          ≤ (waterfall ds (p - min p d)).sum :=
-        drop_sum_le_sum _ hout k
       cases k with
       | zero => rfl
       | succ k =>
           simp only [waterfall_cons, List.drop, List.take] at hk ⊢
+          have hsub' : (List.drop k (waterfall ds (p - min p d))).sum
+              ≤ (waterfall ds (p - min p d)).sum :=
+            drop_sum_le_sum _ hout k
           have hpos : 0 < (waterfall ds (p - min p d)).sum :=
-            lt_of_lt_of_le hk hsub
+            lt_of_lt_of_le hk hsub'
           rw [ih hnnds (p - min p d) k hk,
               waterfall_head_full_of_tail_positive d ds p hnnds hpos]
 
@@ -202,7 +202,6 @@ theorem waterfall_depends_on_debt :
     have h2 : min ((15 : ℚ) - 6) 8 = 8 := min_eq_right (by norm_num)
     rw [waterfall_cons, h1, waterfall_cons, h2]
     simp only [waterfall]
-    norm_num
   rw [joint_overallocation_excluded, h68]
   decide
 
@@ -222,7 +221,7 @@ theorem waterfall_homogeneous (c : ℚ) (hc : 0 ≤ c) :
         · rw [min_eq_left h, min_eq_left (mul_le_mul_of_nonneg_right h hc)]
         · rw [min_eq_right (by linarith : d ≤ p),
             min_eq_right (mul_le_mul_of_nonneg_right (by linarith : d ≤ p) hc)]
-      simp only [List.map_cons, waterfall_cons, hmin, sub_mul,
+      simp only [List.map_cons, waterfall_cons, hmin, ← sub_mul,
           ih (p - min p d)]
       try rfl
 

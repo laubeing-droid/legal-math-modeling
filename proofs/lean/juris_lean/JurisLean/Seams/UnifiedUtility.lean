@@ -24,6 +24,10 @@ asserts that play occurred or will occur there.
   profiles are playable and NONE is a pure equilibrium; stability says
   nothing about occurrence.
 
+Menus are LISTS (nonempty by field): the attempt domain is finite and
+carries no computational Finset machinery (Finset.toList is
+noncomputable and would poison the regret function).
+
 Scope, honestly: pure strategies with finite menus and exact ℚ payoffs.
 Mixed strategies, sequential rationality/consistent beliefs (§8.3) and
 the Kakutani/Brouwer existence limits stay on their own tracks (the
@@ -32,19 +36,19 @@ CAD track owns "all solutions" for polynomial systems).
 
 namespace JurisLean.Seams.UnifiedUtility
 
-variable {P A C : Type} [DecidableEq P] [DecidableEq A]
+variable {P A C : Type} [DecidableEq P]
 
 /-! ## 一、载体：尝试菜单与效用 -/
 
-/-- 规范形有限博弈：每方一个**尝试菜单**（非空，违法/非理性动作照列），
-    效用只读策略组合。 -/
+/-- 规范形有限博弈：每方一个**尝试菜单**（非空列表，违法/非理性动作
+    照列），效用只读策略组合。 -/
 structure NormGame (P A : Type) where
   /-- 各方尝试菜单。 -/
-  menu : P → Finset A
+  menu : P → List A
   /-- 效用（读整组合；ℚ 精确求值）。 -/
   u : (∀ p : P, A) → P → ℚ
   /-- 尝试菜单非空（主文 §8：尝试行动域非空）。 -/
-  menuNonempty : ∀ p : P, (menu p).Nonempty
+  menuNonempty : ∀ p : P, menu p ≠ []
 
 /-- 组合可发生（每个分量都在自己的尝试菜单内）。 -/
 def playable (g : NormGame P A) (s : ∀ p : P, A) : Prop := ∀ p, s p ∈ g.menu p
@@ -86,47 +90,55 @@ theorem utility_invariant_under_display_rename (fg : FactoredGame P A C)
 
 /-! ## 三、悔恨界（G05 面） -/
 
-/-- 列表最大（自含：空表取 0，配合下界假设使用）。 -/
+/-- 列表最大（空表 0；界引理要求非空）。 -/
 def maxQ : List ℚ → ℚ
   | [] => 0
   | x :: xs => max x (maxQ xs)
 
-theorem maxQ_le (l : List ℚ) (B : ℚ) (h : ∀ x ∈ l, x ≤ B) : maxQ l ≤ B := by
+/-- 非空列表的整体最大不超过逐元素上界。 -/
+theorem maxQ_le (l : List ℚ) (hne : l ≠ []) (B : ℚ)
+    (h : ∀ x ∈ l, x ≤ B) : maxQ l ≤ B := by
   induction l with
-  | nil => simp [maxQ]
+  | nil => exact absurd rfl hne
   | cons x xs ih =>
-      rw [maxQ, max_le]
-      exact ⟨h x (by simp), ih (fun y hy => h y (by simp [hy]))⟩
+      cases xs with
+      | nil => exact h x (by simp)
+      | cons y ys =>
+          have hx : x ≤ B := h x (by simp)
+          have hrest : maxQ (y :: ys) ≤ B :=
+            ih (by simp) (fun z hz => h z (by simp [hz]))
+          change max x (maxQ (y :: ys)) ≤ B
+          exact max_le hx hrest
 
 /-- 菜单内悔恨：最好偏离增益减现效用（经列表 max）。 -/
 def regret (g : NormGame P A) (s : ∀ p : P, A) (p : P) : ℚ :=
-  maxQ ((g.menu p).toList.map (fun a => g.u (dev s p a) p)) - g.u s p
+  maxQ (g.menu p).map (fun a => g.u (dev s p a) p) - g.u s p
 
 /-- **悔恨界**：对菜单内每个替代都有松弛 B，则悔恨 ≤ B
     （证书式上界，不重算 maxQ）。 -/
 theorem case_regret_bound (g : NormGame P A) (s : ∀ p : P, A) (p : P) (B : ℚ)
     (hB : ∀ a ∈ g.menu p, g.u (dev s p a) p ≤ g.u s p + B) :
     regret g s p ≤ B := by
-  have h1 : ∀ x ∈ (g.menu p).toList.map (fun a => g.u (dev s p a) p),
+  have h1 : ∀ x ∈ (g.menu p).map (fun a => g.u (dev s p a) p),
       x ≤ g.u s p + B := by
     intro x hx
     obtain ⟨a, ham, hxa⟩ := List.mem_map.mp hx
     subst hxa
-    exact hB a (Finset.mem_toList.mp ham)
-  have hmax := maxQ_le _ (g.u s p + B) h1
+    exact hB a ham
+  have hmax := maxQ_le _ (g.menuNonempty p) (g.u s p + B) h1
   unfold regret
   linarith
 
 /-! ## 四、配硬币见证：无纯均衡且全组合可玩 -/
 
-/-- 配硬币：两方（Bool 承载），菜单 {false,true}；同则甲方得 1 乙方 0，
+/-- 配硬币：两方（Bool 承载），菜单 [false,true]；同则甲方得 1 乙方 0，
     异则反之。 -/
 def pennies : NormGame Bool Bool where
-  menu := fun _ => {false, true}
+  menu := fun _ => [false, true]
   u := fun s p => if s true = s false then (if p then 1 else 0) else (if p then 0 else 1)
-  menuNonempty := fun _ => ⟨false, by simp⟩
+  menuNonempty := fun _ => by simp
 
-theorem pennies_menu_full (b : Bool) : b ∈ ({false, true} : Finset Bool) := by
+theorem pennies_menu_full (b : Bool) : b ∈ ([false, true] : List Bool) := by
   cases b <;> simp
 
 /-- 全组合可玩（尝试域不挑均衡）。 -/
@@ -142,28 +154,28 @@ theorem pennies_no_pure_nash : ∀ s : Bool → Bool, ¬ pureNash pennies s := b
     subst hsdef
     have e1 : pennies.u (dev (fun _ : Bool => false) false true) false = 1 := by rfl
     have e2 : pennies.u (fun _ : Bool => false) false = 0 := by rfl
-    have hle := hs false true (by simp)
+    have hle := hs false true (pennies_menu_full true)
     rw [e1, e2] at hle
     exact absurd hle (by norm_num)
   · have hsdef : s = fun q : Bool => !q := by funext q; cases q <;> simp [ht, hf]
     subst hsdef
     have e1 : pennies.u (dev (fun q : Bool => !q) true true) true = 1 := by rfl
     have e2 : pennies.u (fun q : Bool => !q) true = 0 := by rfl
-    have hle := hs true true (by simp)
+    have hle := hs true true (pennies_menu_full true)
     rw [e1, e2] at hle
     exact absurd hle (by norm_num)
   · have hsdef : s = fun q : Bool => q := by funext q; cases q <;> simp [ht, hf]
     subst hsdef
     have e1 : pennies.u (dev (fun q : Bool => q) true false) true = 1 := by rfl
     have e2 : pennies.u (fun q : Bool => q) true = 0 := by rfl
-    have hle := hs true false (by simp)
+    have hle := hs true false (pennies_menu_full false)
     rw [e1, e2] at hle
     exact absurd hle (by norm_num)
   · have hsdef : s = fun _ : Bool => true := by funext q; cases q <;> simp [ht, hf]
     subst hsdef
     have e1 : pennies.u (dev (fun _ : Bool => true) false false) false = 1 := by rfl
     have e2 : pennies.u (fun _ : Bool => true) false = 0 := by rfl
-    have hle := hs false false (by simp)
+    have hle := hs false false (pennies_menu_full false)
     rw [e1, e2] at hle
     exact absurd hle (by norm_num)
 

@@ -279,3 +279,39 @@ class OptFormulaTests(TestCase):
         diff_atom = formula.parts[-1].body.parts[1]
         self.assertTrue(denote(diff_atom, {"y": Q(0), "y#": Q(5)}))
         self.assertFalse(denote(diff_atom, {"y": Q(5), "y#": Q(0)}))
+
+
+class ReviewerRegressionTests(TestCase):
+    """Defects found by the independent math review, pinned here."""
+
+    def test_fm_lower_strictness_preserved(self):
+        # x <= y AND y < x (reviewer counterexample): eliminating x must
+        # yield FALSE — weakening the flipped strict '<' to '<=' would
+        # make the empty family look satisfiable.
+        from unified.quantities import RAnd, fm_eliminate
+        f = RAnd((_lin(("x", "y"), (Q(1), Q(-1)), "<="),
+                  _lin(("x", "y"), (Q(-1), Q(1)), "<")))
+        out = fm_eliminate(f, "x")
+        self.assertEqual(len(out.parts), 1)  # the FALSE atom survives
+
+    def test_half_paid_earlier_group_is_unpaid(self):
+        from unified.quantities import Allocation, earlier_groups_fully_paid
+        # hand-built allocation: group 0 debt 10 paid 5 (half), group 1 paid 1
+        alloc = Allocation(((Q(5),), (Q(1),)), Q(0), ((Q(5),), (Q(4),)))
+        self.assertFalse(earlier_groups_fully_paid(alloc, 1))
+
+    def test_power_enclosure_negative_exponent_inclusion(self):
+        from unified.beta import rat_power_enclosure
+        lo, hi = rat_power_enclosure(Q(3, 16), Q(-1, 2), Q(1, 2))
+        target = Q(4) / Q(3).__pow__(0) if False else None
+        # (3/16)^(-1/2) = 4/sqrt(3) ≈ 2.309: must lie inside [lo, hi]
+        self.assertLessEqual(lo, Q(7, 3))
+        self.assertGreaterEqual(hi, Q(7, 3))
+
+    def test_beta_budget_lower_bound_divides_by_beta_upper(self):
+        from unified.beta import beta_cdf_enclosure
+        # (1, 99/100): B > 1, so lo = numerator_lo / B_upper; the true
+        # CDF(1/2) = 1 - 2^(-0.99) ≈ 0.4965 must be contained.
+        enc = beta_cdf_enclosure(Q(1), Q(99, 100), Q(1, 2), Q(1, 10))
+        self.assertLessEqual(enc.lo, Q(1, 2))
+        self.assertGreaterEqual(enc.hi, Q(1, 2))

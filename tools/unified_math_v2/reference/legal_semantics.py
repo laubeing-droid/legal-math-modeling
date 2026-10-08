@@ -160,8 +160,10 @@ def check_case_run(
     if getattr(actual, "case_id", None) != case.case_id:
         return CheckReport.fail("case id mismatch")
     if actual.status is RunStatus.FAILED:
-        # technical failure is a legal state; nothing to cross-check
-        return CheckReport.pass_()
+        # A technical failure is honest only when reported as a FAILURE:
+        # the checker never blesses one as verified content (BND-04).
+        return CheckReport.fail("run carries a technical failure: "
+                                + "; ".join(actual.failures))
     candidates = _inline_candidates(case, env)
     exclusions = _inline_exclusions(env)
     universe_nodes = _inline_universe_nodes(case, env)

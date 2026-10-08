@@ -61,17 +61,28 @@ def enumerate_norm_selections(
     edges come from ``priority_over`` declarations (plan 3.1)."""
 
     day = case.initial_state.as_of_day
-    candidates = tuple(
+    stages = {s for _p, s in case.initial_state.stages}
+    stage = next(iter(stages)) if len(stages) == 1 else ""
+    candidates = frozenset(
+        rule.rule_id
+        for rule in env.rules
+        if rule.applicable_at(env.jurisdiction.route.value, day, stage)
+    )
+    cand_objs = tuple(
         NormCandidate(rule.rule_id, env.jurisdiction.route.value)
         for rule in env.rules
-        if rule.applicable_at(env.jurisdiction.route.value, day)
+        if rule.rule_id in candidates
     )
+    # Edges naming non-candidates (e.g. superseded norms kept for
+    # priority records) lapse with them instead of crashing the run.
     exclusions = frozenset(
         (rule.rule_id, other)
         for rule in env.rules
+        if rule.rule_id in candidates
         for other in rule.priority_over
+        if other in candidates
     )
-    return enumerate_stable_selections(candidates, exclusions)
+    return enumerate_stable_selections(cand_objs, exclusions)
 
 
 def build_reason_universe(
@@ -126,9 +137,14 @@ def build_reason_universe(
                 )
             )
     del selection  # the fragment's bases are not selection-indexed yet
-    predicates = {f.proposition.predicate for f in facts}
+    # Contrary closure over ALL reason claims (facts AND basis issues):
+    # a strong reason for x is a material counter against ~x whenever
+    # both claim keys occur in the universe (reviewer finding 1).
+    claim_keys = {r.claim for r in reasons}
     contraries = frozenset(
-        (_claim_key(p, Polar.POS), _claim_key(p, Polar.NEG)) for p in predicates
+        (c, "~" + c[1:] if c.startswith("~") else "~" + c)
+        for c in claim_keys
+        if ("~" + c[1:] if c.startswith("~") else "~" + c) in claim_keys
     )
     return ReasonUniverse(reasons=tuple(reasons), contraries=contraries)
 

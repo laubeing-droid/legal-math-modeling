@@ -347,13 +347,18 @@ class TaintLedger:
         self.add(DagNode(new_attempt_id, tuple(original_sources), False, "retry"))
 
     def dedup(self, kept_id: str, duplicate_id: str) -> None:
-        """Folding a duplicate keeps the ORIGINAL identity — join of the
-        same taint, never a laundering."""
+        """Folding a duplicate JOINS the two source sets: the kept node
+        gains the duplicate's parents (12.6.7 transfer table).  A clean
+        kept node with a tainted duplicate becomes tainted — identical
+        payloads do not launder different ancestries."""
 
         if kept_id not in self._nodes or duplicate_id not in self._nodes:
             raise KeyError("dedup requires both nodes")
-        # no mutation: the duplicate simply is no longer referenced; its
-        # sources remain recorded under the kept id's ancestry already.
+        kept = self._nodes[kept_id]
+        merged = tuple(dict.fromkeys(kept.parents + self._nodes[duplicate_id].parents))
+        self._nodes[kept_id] = DagNode(
+            kept.node_id, merged, kept.source_tainted, kept.payload
+        )
 
     def taint_of(self, node_id: str) -> bool:
         seen = set()

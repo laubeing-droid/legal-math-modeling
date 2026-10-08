@@ -61,27 +61,32 @@ def rat_root_enclosure(
 def rat_power_enclosure(
     x: Fraction, r: Fraction, width: Fraction
 ) -> Tuple[Fraction, Fraction]:
-    """Enclose x^r for x > 0 and rational r to the requested width."""
+    """Enclose x^r for x > 0 and rational r to the requested width.
+
+    x^r = (x^(1/den))^num.  A conservative root width is retried at
+    quarter steps until the FINAL interval meets the requested width —
+    the loop tightens by re-enclosing (never by moving an endpoint
+    toward the other), so inclusion of the true value is preserved for
+    both increasing and decreasing exponents."""
 
     x = _as_fraction(x)
     r = _as_fraction(r)
     if x <= 0 or width <= 0:
         raise ValueError("positive x and width required")
     num, den = r.numerator, r.denominator
-    # x^r = (x^(1/den))^num; tighten the root so the final width holds.
-    scale = max(abs(num), 1)
-    root_width = width / (scale * 2)  # conservative: growth bounded
-    lo_root, hi_root = rat_root_enclosure(x, den, root_width)
-    if num >= 0:
-        lo, hi = lo_root ** num, hi_root ** num
-    else:
-        # x > 0 so both bounds are positive; reciprocals reverse order
-        lo, hi = Fraction(1) / (hi_root ** (-num)), Fraction(1) / (lo_root ** (-num))
-    # final trim by one extra bisection if needed
-    while hi - lo > width:
-        lo = (lo + hi) / 2 if lo > 0 else lo
-        break  # the conservative root width already bounds the gap
-    return lo, hi
+    if num == 0:
+        return Fraction(1), Fraction(1)
+    root_width = width / 8
+    while True:
+        lo_root, hi_root = rat_root_enclosure(x, den, root_width)
+        if num > 0:
+            lo, hi = lo_root ** num, hi_root ** num
+        else:
+            lo = Fraction(1) / (hi_root ** (-num))
+            hi = Fraction(1) / (lo_root ** (-num))
+        if hi - lo <= width:
+            return lo, hi
+        root_width = root_width / 4
 
 
 # ---------------------------------------------------------------------------
@@ -324,21 +329,38 @@ def _beta_budget_enclosure(
             t = lo_int + i * step
             g_lo = _g_bound(t, a, b, w, upper=False)
             g_hi = _g_bound(t + step, a, b, w, upper=True)
+            # g is unimodal, not monotone: a cell's sup is bounded by the
+            # endpoint max plus the certified Lipschitz slack.
+            cell_hi = max(g_lo, g_hi) + l_bar * step
             numerator_lo += g_lo * step
-            numerator_hi += g_hi * step
+            numerator_hi += cell_hi * step
         numerator_lo -= (l_bar * ell * ell) / n
         numerator_hi += (l_bar * ell * ell) / n + point_w * ell
 
     # 4. Tail parts inside [0, x].
-    if x > eta:
-        numerator_hi += l_hi
-    else:
-        numerator_hi += l_hi
+    numerator_hi += l_hi
     if x >= 1 - eta:
         numerator_hi += r_hi
     numerator_lo = max(Fraction(0), numerator_lo)
 
-    lo = numerator_lo
+    # 5. Denominator bounds: B(a,b) ≥ beta_lb AND an upper bound from the
+    #    same budget pieces over the FULL interval — the CDF lower bound
+    #    is numerator_lo / B_upper, never numerator_lo raw (B(a,b) can
+    #    exceed 1 when a<1 or b<1; reviewer counterexample (1, 99/100)).
+    beta_ub = l_hi + r_hi
+    if hi_int > lo_int and ell > 0:
+        internal_upper_full = Fraction(0)
+        step_full = ell / n
+        for i in range(n):
+            t = eta + i * step_full
+            g_a = _g_bound(t, a, b, w, upper=True)
+            g_b = _g_bound(t + step_full, a, b, w, upper=True)
+            internal_upper_full += (max(g_a, g_b) + l_bar * step_full) * step_full
+        internal_upper_full += (l_bar * ell * ell) / n + point_w * ell
+        beta_ub += internal_upper_full
+    beta_ub = max(beta_ub, Fraction(1))
+
+    lo = min(Fraction(1), numerator_lo / beta_ub)
     hi = min(Fraction(1), numerator_hi / beta_lb)
     return BetaEnclosure(lo, hi)
 

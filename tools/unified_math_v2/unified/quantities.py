@@ -350,8 +350,9 @@ def fm_eliminate(formula: RAnd, var: str) -> RAnd:
             if c > 0:
                 upper.append((norm, rel, nrhs))
             else:
-                # dividing by negative flips the relation
-                flipped = {"<": ">=", "<=": ">=", "=": "="}[rel]
+                # dividing by a negative flips the relation, STRICTNESS
+                # PRESERVED: c·var + R < rhs ⟺ var > (rhs−R)/c.
+                flipped = {"<": ">", "<=": ">=", "=": "="}[rel]
                 lower.append((norm, flipped, nrhs))
         combined: list = list(zero)
         for lnorm, lrel, lrhs in lower:
@@ -432,18 +433,16 @@ def allocate_payment(
 
 def earlier_groups_fully_paid(allocation: Allocation, g: int) -> bool:
     """Corrected T25 property: if group g received anything positive, all
-    earlier groups are exactly cleared (with their reserved amounts
-    already excluded by the caller's debt inputs)."""
+    earlier groups are exactly cleared (residuals all zero).  Allocation
+    amounts are NOT consulted — a half-paid earlier group with a matching
+    partial allocation is still unpaid."""
 
     got = sum(allocation.allocations[g])
     if got <= 0:
         return True
     for j in range(g):
-        for a, d in zip(allocation.allocations[j], allocation.residuals[j]):
-            if d != 0 and a != d:
-                return False
-            if a != d and d > 0:
-                return False
+        if any(resid != 0 for resid in allocation.residuals[j]):
+            return False
     return True
 
 

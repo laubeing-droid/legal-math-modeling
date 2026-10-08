@@ -221,3 +221,16 @@ class Bnd06Tests(TestCase):
         ledger = TaintLedger()
         with pytest.raises(ValueError, match="must exist"):
             ledger.derive("child", ["ghost"])
+
+
+class Bnd06DedupJoinTests(TestCase):
+    def test_dedup_joins_tainted_ancestry(self):
+        """12.6.7 transfer table: folding a duplicate joins the source
+        sets — a clean kept node with a tainted duplicate is tainted."""
+        ledger = TaintLedger()
+        ledger.add(DagNode("src-clean", (), False, "a"))
+        ledger.add(DagNode("src-tainted", (), True, "b"))
+        ledger.derive("kept", ["src-clean"])
+        ledger.derive("dup", ["src-tainted"], "same-payload")
+        ledger.dedup("kept", "dup")
+        self.assertTrue(ledger.taint_of("kept"))

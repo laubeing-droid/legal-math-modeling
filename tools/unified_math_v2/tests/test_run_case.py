@@ -442,3 +442,75 @@ class DefenseIntegrationTests(TestCase):
                 branch.finalizations[0].basis, FinalBasis.LEGALLY_UNDETERMINED
             )
         self.assertTrue(check_case_run(case, _env(), run).ok)
+
+
+class SelectionConsumptionTests(TestCase):
+    """Obligation 3: norm selections actually change reason/derivation
+    instantiation — template AND special-channel paths both gated."""
+
+    def test_special_channel_gated_by_lapsed_license(self):
+        from theory.spec.canonical_v2.case import LegalRuleRecord, RuleKind, Modality
+
+        rule = LegalRuleRecord(
+            rule_id="r-old-admit",
+            kind=RuleKind.PROCEDURAL,
+            premises=(_atom("court_admission"),),
+            conclusion=_atom("admission_effective"),
+            modality=Modality.CONSTITUTIVE,
+            source_id="old-proc:1",
+        ).with_validity("MAINLAND", from_day=0, to_day=5)
+        facts = [FactRecord("f-admit", _atom("court_admission"),
+                            FactStanding.ADMITTED_POSITIVE,
+                            produced_at=1, known_at=1)]
+        case = _case(facts)
+        env = _env(bases=(
+            AdmissionBasis("b-admit", BasisKind.JUDICIAL_ADMISSION, "loan", "D",
+                           "trial", "v1", premise_refs=("f-admit",),
+                           license_rule_id="r-old-admit"),
+        ), rules=(rule,))
+        run = run_case(case, env)
+        # the licensed procedural rule lapsed: the special channel
+        # cannot fire and the burden table decides
+        self.assertIn(Judgment.NOT_ESTABLISHED, run.judgments_of("c1"))
+        self.assertTrue(check_case_run(case, env, run).ok)
+
+    def test_selection_changes_branch_outcomes(self):
+        """Two live rules with an exclusion edge produce two selections;
+        a template licensed to one fires only in its branch."""
+        rule_a = LegalRuleRecord(
+            rule_id="r-a", kind=RuleKind.STRICT_HORN,
+            premises=(_atom("contract_signed"),), conclusion=_atom("loan"),
+            modality=Modality.OBLIGATION, source_id="a:1",
+        )
+        rule_b = LegalRuleRecord(
+            rule_id="r-b", kind=RuleKind.STRICT_HORN,
+            premises=(_atom("contract_signed"),), conclusion=_atom("loan_v2"),
+            modality=Modality.OBLIGATION, source_id="b:1",
+            priority_over=("r-a",),
+        )
+        rule_a = rule_a.replace(priority_over=("r-b",)) if hasattr(rule_a, "replace") else rule_a
+        # same-rank authorized choice: bidirectional exclusion keeps both
+        # single-rule selections stable (plan 3.1)
+        rule_a = LegalRuleRecord(
+            rule_id="r-a", kind=RuleKind.STRICT_HORN,
+            premises=(_atom("contract_signed"),), conclusion=_atom("loan"),
+            modality=Modality.OBLIGATION, source_id="a:1",
+            priority_over=("r-b",),
+        )
+        case = _case(_loan_facts())
+        env = _env(templates=(_loan_template(license_rule="r-a"),),
+                   rules=(rule_a, rule_b))
+        run = run_case(case, env)
+        selections = {frozenset(b.selection) for b in run.branches}
+        self.assertIn(frozenset({"r-a"}), selections)
+        self.assertIn(frozenset({"r-b"}), selections)
+        # branch with r-a adopted establishes; branch with only r-b does not
+        judgments_by_selection = {
+            frozenset(b.selection): {f.judgment for f in b.finalizations}
+            for b in run.branches
+        }
+        self.assertIn(Judgment.ESTABLISHED,
+                      judgments_by_selection[frozenset({"r-a"})])
+        self.assertNotIn(Judgment.ESTABLISHED,
+                         judgments_by_selection[frozenset({"r-b"})])
+        self.assertTrue(check_case_run(case, env, run).ok)

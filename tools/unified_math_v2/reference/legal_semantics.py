@@ -214,7 +214,18 @@ def check_case_run(
         in_nodes = frozenset(n for n in branch.extension if n in node_ids)
         if in_nodes != frozenset(branch.extension):
             problems.append("extension names unknown nodes")
-        out_nodes = frozenset()
+        # Out re-derivation (obligation 5): in the fragment the graph
+        # edges are the contrary-claim rebuttals, so a node is Out when
+        # some In node holds a contrary claim.
+        claims_of = {n: c for n, c, _s in universe_nodes}
+
+        def _contrary(a, b):
+            return a == ("~" + b[1:] if b.startswith("~") else "~" + b) or                 b == ("~" + a[1:] if a.startswith("~") else "~" + a)
+
+        out_nodes = frozenset(
+            n for n in node_ids
+            if any(_contrary(claims_of[s], claims_of[n]) for s in in_nodes)
+        )
         # burden readiness and need, re-derived from materials
         stages = {s for _p, s in case.initial_state.stages}
         window_closed = any(

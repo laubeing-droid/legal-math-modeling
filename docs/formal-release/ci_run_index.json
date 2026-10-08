@@ -15388,12 +15388,75 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
-        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:242"
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:242",
+        "docs/统一法律数学模型_主件_20261008.md:97"
       ],
       "run_id": 37825022256,
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-08T18:35:44Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-08T18:52:41Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "ci/unified-construction-20261008",
+      "head_sha": "1124d1acc20991c7a71333e03bdbf08cba18d1a1",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37827659380",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:244"
+      ],
+      "run_id": 37827659380,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-08T19:03:38Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

@@ -1,6 +1,18 @@
 {
   "authority_note": "Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.",
   "cross_family": {
+    "(r : Rul A) (ps : List (Arg A)) (p : Arg A) (hp : p ∈ ps) (k : ℕ) (hk : Arg.height (.node r ps) ≤ k + 1) : Arg.height p ≤ k": [
+      {
+        "carrier": "FullMath/child_height_le",
+        "line": 57,
+        "path": "FullMath/Logic/AttackCompilation.lean"
+      },
+      {
+        "carrier": "root/other/child_height_lt",
+        "line": 104,
+        "path": "Seams/UnifiedArgumentation.lean"
+      }
+    ],
     "(r : ℚ) : max r 0 - max (-r) 0 = r": [
       {
         "carrier": "FullMath/clipped_conservation",
@@ -14,9 +26,9 @@
       }
     ]
   },
-  "cross_family_statement_types": 1,
-  "distinct_statement_types": 3727,
-  "duplicated_statement_types": 42,
+  "cross_family_statement_types": 2,
+  "distinct_statement_types": 3735,
+  "duplicated_statement_types": 43,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
@@ -184,6 +196,18 @@
         "carrier": "FullMath/enumeration_certified",
         "line": 55,
         "path": "FullMath/Representation/FiniteCertificates.lean"
+      }
+    ],
+    "(r : Rul A) (ps : List (Arg A)) (p : Arg A) (hp : p ∈ ps) (k : ℕ) (hk : Arg.height (.node r ps) ≤ k + 1) : Arg.height p ≤ k": [
+      {
+        "carrier": "FullMath/child_height_le",
+        "line": 57,
+        "path": "FullMath/Logic/AttackCompilation.lean"
+      },
+      {
+        "carrier": "root/other/child_height_lt",
+        "line": 104,
+        "path": "Seams/UnifiedArgumentation.lean"
       }
     ],
     "(r : ℚ) : max r 0 - max (-r) 0 = r": [
@@ -523,12 +547,12 @@
       }
     ]
   },
-  "files_scanned": 307,
+  "files_scanned": 308,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
   "headers_missed_by_scanner": 105,
-  "inventory_package_theorems": 3760,
-  "private_protected_headers_read": 114,
+  "inventory_package_theorems": 3767,
+  "private_protected_headers_read": 116,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 3769
+  "statements_read": 3778
 }

@@ -4,17 +4,18 @@
 
 Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.
 
-- files scanned: 307
-- theorem/lemma headers read: 3769
-- distinct statement types: 3727
-- statement types declared more than once: 42
-- of those spanning module families: 1
+- files scanned: 308
+- theorem/lemma headers read: 3778
+- distinct statement types: 3735
+- statement types declared more than once: 43
+- of those spanning module families: 2
 
-## Across module families (1)
+## Across module families (2)
 
+- `(r : Rul A) (ps : List (Arg A)) (p : Arg A) (hp : p ∈ ps) (k : ℕ) (hk : Arg.height (.node r ps) ≤ k + 1) : Arg.height p ≤ k` — `FullMath/Logic/AttackCompilation.lean:57` (FullMath/child_height_le), `Seams/UnifiedArgumentation.lean:104` (root/other/child_height_lt)
 - `(r : ℚ) : max r 0 - max (-r) 0 = r` — `FullMath/GenericKernels.lean:94` (FullMath/clipped_conservation), `BusinessRelationsDelta.lean:21` (root/other/split_residual_identity)
 
-## Within the package (42)
+## Within the package (43)
 
 - `(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S` — `DungFixedPoint.lean:96` (root/other/grounded_is_least_complete), `DungFixedPoint.lean:92` (root/other/grounded_is_least_fixed_point)
 - `(S : Finset α) : TH sys S ⊆ sys.univ` — `HornDefinitions.lean:55` (root/other/TH_subset_univ), `HornFixedPoint.lean:17` (root/other/horn_operator_subset_univ)
@@ -30,6 +31,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(pred : A → Bool) (out : Finset A) (h : checkExact pred out = true) : (↑out : Set A) = solutionSet pred` — `FullMath/GenericKernels.lean:38` (FullMath/exact_check_reflects), `FullMath/Representation/FiniteCertificates.lean:43` (FullMath/exact_check_reflects)
 - `(pred : A → Bool) (out : Finset A) (h : ∀ a ∈ out, pred a = true) : (↑out : Set A) ⊆ solutionSet pred` — `FullMath/GenericKernels.lean:49` (FullMath/partial_check_sound), `FullMath/Representation/FiniteCertificates.lean:31` (FullMath/partial_scan_sound)
 - `(pred : A → Bool) : checkExact pred (enumerateAll pred) = true` — `FullMath/GenericKernels.lean:44` (FullMath/enumeration_accepted), `FullMath/Representation/FiniteCertificates.lean:55` (FullMath/enumeration_certified)
+- `(r : Rul A) (ps : List (Arg A)) (p : Arg A) (hp : p ∈ ps) (k : ℕ) (hk : Arg.height (.node r ps) ≤ k + 1) : Arg.height p ≤ k` — `FullMath/Logic/AttackCompilation.lean:57` (FullMath/child_height_le), `Seams/UnifiedArgumentation.lean:104` (root/other/child_height_lt)
 - `(r : ℚ) : max r 0 - max (-r) 0 = r` — `FullMath/GenericKernels.lean:94` (FullMath/clipped_conservation), `BusinessRelationsDelta.lean:21` (root/other/split_residual_identity)
 - `(r r' : X → Y → Prop) (s s' : Y → Z → Prop) (hr : ∀ x y, r x y → r' x y) (hs : ∀ y z, s y z → s' y z) : ∀ x z, relComp r s x z → relComp r' s' x z` — `FullMath/Composition/RelationalComposition.lean:18` (FullMath/comp_preserves_inclusion), `FullMath/GenericKernels.lean:60` (FullMath/composition_preserves_inclusion)
 - `(μ : PMF α) (f : α → β) (g : β → γ) : pushforward (pushforward μ f) g = pushforward μ (g ∘ f)` — `External/GameTheory/Math/ProbabilityMassFunction.lean:44` (External/pushforward_comp), `External/GameTheory/Math/ProbabilityMassFunction.lean:49` (External/pushforward_pushforward)
@@ -55,5 +57,4 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `{α : Type*} [Fintype α] (d : PMF α) (w : α → ENNReal) (hw : ∀ a, w a ≤ 1) : ∑ a, d a * w a ≠ ⊤` — `External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean:107` (External/sum_mul_pmf_ne_top), `External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean:75` (External/sum_mul_pmf_ne_top)
 - `{α : Type*} {as bs : List α} {a b : α} (h : as ++ [a] = bs ++ [b]) : as = bs ∧ a = b` — `External/GameTheory/Math/ParameterizedChain.lean:55` (External/append_singleton_inj), `External/GameTheory/Math/TraceRun.lean:139` (External/append_singleton_inj)
 - `{α : Type} {P : α → Type} {a b : α} (h : a = b) (x : P a) : HEq x (h ▸ x : P b)` — `External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean:183` (External/fwd_subst_heq), `External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean:52` (External/fwd_subst_heq)
-- `{α β γ δ : Type*} (obsA : α → δ) (obsB : β → δ) (obsC : γ → δ) (f : α → β) (g : β → γ) (hf : Preserves obsA obsB f) (hg : Preserves obsB obsC g) : Preserves obs` — `ULM16TheoryComposition.lean:82` (root/other/COMP_C02_observation_preservation), `ULM01NormalForm.lean:138` (root/other/preserves_comp)
-- …2 more in the JSON
+- …3 more in the JSON

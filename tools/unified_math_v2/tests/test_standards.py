@@ -23,6 +23,7 @@ from theory.spec.canonical_v2.kernel import Judgment
 from unified.standards import (
     AnswerCertificate,
     CompareCertificate,
+    CounterEvidence,
     ElementStatus,
     FinalBasis,
     ReasonNode,
@@ -31,6 +32,7 @@ from unified.standards import (
     build_reason_graph,
     civil_high,
     counter_roles,
+    counter_reason_nodes,
     extension_view,
     finalize_issue,
     strong_roles,
@@ -304,3 +306,54 @@ class FinalizationTests(TestCase):
         self.assertIs(pos.basis, FinalBasis.POS)
         self.assertIs(neg.basis, FinalBasis.NEG_BLOCKED)
         self.assertNotEqual(pos.basis.value.startswith("NEG"), True)
+
+
+class CounterGeneratorTests(TestCase):
+    """Obligation 7: W-MATERIAL / W-ALT / W-ANSWER generators (5.3.2)."""
+
+    def test_material_counter_blocks_civil_high(self):
+        strong = _strong("r1", "p")
+        counters = counter_reason_nodes((
+            CounterEvidence("ce1", "p", direct_support=True,
+                            corroborated=True, dispositive=True),
+        ))
+        universe = ReasonUniverse(
+            reasons=(strong,) + counters,
+            contraries=frozenset({("p", "~p")}),
+        )
+        graph = build_reason_graph(universe)
+        for view in extension_view(universe, graph):
+            outcome = civil_high("p", view, universe)
+            if "material:ce1" in outcome.live_counters:
+                self.assertFalse(outcome.civil_high)
+
+    def test_bare_denial_generates_nothing(self):
+        nodes = counter_reason_nodes((
+            CounterEvidence("deny1", "p"),  # no direct support at all
+            CounterEvidence("weak2", "p", direct_support=True,
+                            corroborated=False, dispositive=True),
+        ))
+        self.assertEqual(nodes, ())
+
+    def test_alternative_needs_anchor(self):
+        with pytest.raises(ValueError, match="anchor"):
+            counter_reason_nodes((
+                CounterEvidence("alt1", "p", is_alternative=True),
+            ))
+
+    def test_alternative_is_weak_not_a_counter(self):
+        strong = _strong("r1", "p")
+        alts = counter_reason_nodes((
+            CounterEvidence("alt1", "p", is_alternative=True,
+                            anchor="same ref was a goods payment"),
+        ))
+        universe = ReasonUniverse(
+            reasons=(strong,) + alts,
+            contraries=frozenset({("p", "~p")}),
+        )
+        graph = build_reason_graph(universe)
+        for view in extension_view(universe, graph):
+            outcome = civil_high("p", view, universe)
+            # an alternative is NOT a material counter: the ordinary
+            # standard tolerates residual abstract possibilities
+            self.assertNotIn("alt:alt1", outcome.live_counters)

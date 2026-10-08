@@ -128,6 +128,83 @@ class ReasonUniverse:
                 raise ValueError("compare certificate names unknown attacker")
 
 
+@dataclass(frozen=True)
+class CounterEvidence:
+    """One counter-evidence package against a claim (plan 5.3.2):
+
+    * W-MATERIAL fires when the evidence has verifiable DIRECT support
+      and either independent corroboration or a decisive contradiction,
+      AND would change the element if it held — only then does it become
+      a material counter (a bare denial generates nothing).
+    * W-ALT produces an anchored reasonable alternative (harmless to the
+      ordinary standard; must be answered under high standards).
+    """
+
+    evidence_id: str
+    against_claim: str
+    direct_support: bool = False
+    corroborated: bool = False
+    dispositive: bool = False
+    anchor: str = ""            # concrete factual anchor (W-ALT)
+    is_alternative: bool = False  # W-ALT package instead of W-MATERIAL
+
+    def __post_init__(self) -> None:
+        if not self.evidence_id or not self.against_claim:
+            raise ValueError("counter evidence requires id and target claim")
+
+
+def counter_reason_nodes(evidence: Iterable[CounterEvidence]) -> Tuple[ReasonNode, ...]:
+    """Generate W-MATERIAL / W-ALT / W-COUNTER reason nodes from the
+    material packages (5.3.2's middle table):
+
+    * a MATERIAL package becomes a strong node for the CONTRARY claim —
+      the same-identity bridge then makes it a material counter
+      automatically (Strong(not-p, s) doubles as MaterialCounter(p, s));
+    * an ALTERNATIVE package becomes a weak W-ALT node carrying its
+      anchor in the conditions (an answer certificate must defeat it
+      under high standards);
+    * bare denials without direct support generate NOTHING.
+    """
+
+    def _contrary(claim: str) -> str:
+        return "~" + claim[1:] if claim.startswith("~") else "~" + claim
+
+    nodes: list = []
+    for ev in evidence:
+        if ev.is_alternative:
+            if not ev.anchor:
+                raise ValueError(
+                    f"alternative {ev.evidence_id} needs a concrete anchor"
+                )
+            nodes.append(
+                ReasonNode(
+                    node_id=f"alt:{ev.evidence_id}",
+                    claim=_contrary(ev.against_claim),
+                    polar=Polar.NEG,
+                    kind=WarrantKind.W_ALT,
+                    leaves=frozenset({ev.evidence_id}),
+                    warrant_id=ev.evidence_id,
+                    conditions=(ev.anchor,),
+                )
+            )
+            continue
+        if ev.direct_support and ev.corroborated and ev.dispositive:
+            nodes.append(
+                ReasonNode(
+                    node_id=f"material:{ev.evidence_id}",
+                    claim=_contrary(ev.against_claim),
+                    polar=Polar.NEG,
+                    kind=WarrantKind.W_MATERIAL,
+                    leaves=frozenset({ev.evidence_id}),
+                    warrant_id=ev.evidence_id,
+                    conditions=(ev.evidence_id, "direct", "corroborated",
+                                "dispositive"),
+                )
+            )
+        # bare denial or non-dispositive material: generates nothing
+    return tuple(nodes)
+
+
 def strong_roles(universe: ReasonUniverse) -> FrozenSet[Tuple[str, str]]:
     """(claim, node_id) pairs where the node's warrant actually confers
     StrongBasis — W-STRONG (or a named sufficientity template) with its
@@ -137,6 +214,10 @@ def strong_roles(universe: ReasonUniverse) -> FrozenSet[Tuple[str, str]]:
     roles: set = set()
     for reason in universe.reasons:
         if reason.kind is WarrantKind.W_STRONG and reason.conditions:
+            roles.add((reason.claim, reason.node_id))
+        # a W-MATERIAL node carries strong force for its own (contrary)
+        # claim: Strong(not-p, s) doubles as MaterialCounter(p, s)
+        if reason.kind is WarrantKind.W_MATERIAL and reason.conditions:
             roles.add((reason.claim, reason.node_id))
     return frozenset(roles)
 

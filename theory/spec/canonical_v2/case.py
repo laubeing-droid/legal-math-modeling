@@ -374,13 +374,15 @@ class AuthorizedAssessment:
 @dataclass(frozen=True)
 class LegalEnvironment:
     """Jurisdiction, versioned rules, interpretation policy identity,
-    authorized assessments, procedure policy, evaluation day."""
+    authorized assessments, declared admission bases, procedure policy,
+    evaluation day."""
 
     environment_id: str
     jurisdiction: Jurisdiction
     rules: Tuple[LegalRuleRecord, ...] = ()
     interpretation_policy_id: str = ""
     authorized_assessments: Tuple[AuthorizedAssessment, ...] = ()
+    admission_bases: Tuple[AdmissionBasis, ...] = ()
     procedure_policy_id: str = ""
     evaluation_day: int = 0
 
@@ -390,6 +392,9 @@ class LegalEnvironment:
             if rule.rule_id in seen:
                 raise ValueError(f"duplicate rule id: {rule.rule_id}")
             seen.add(rule.rule_id)
+        basis_ids = [b.basis_id for b in self.admission_bases]
+        if len(set(basis_ids)) != len(basis_ids):
+            raise ValueError("duplicate admission basis ids")
 
 
 @dataclass(frozen=True)

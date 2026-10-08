@@ -119,12 +119,19 @@ theorem finalize_legal (inp : IssueInputs) : LegalFinal inp (finalizeIssue inp) 
   rcases inp with ⟨r, b, a, br, u, e, n⟩
   cases r <;> cases b <;> cases a <;> cases br <;> cases u <;> cases e <;> cases n
   first
-    | exact LegalFinal.notReady _ rfl
-    | exact LegalFinal.negBlocked _ rfl rfl
-    | exact LegalFinal.pos _ rfl rfl rfl
-    | exact LegalFinal.negBurden _ rfl rfl rfl rfl rfl
-    | exact LegalFinal.undetermined _ rfl rfl rfl (by decide) rfl rfl
-    | exact LegalFinal.gap _ rfl rfl rfl (by decide) (by decide)
+    | (apply LegalFinal.notReady <;> rfl)
+    | (apply LegalFinal.negBlocked <;> rfl)
+    | (apply LegalFinal.pos <;> rfl)
+    | (apply LegalFinal.negBurden <;> rfl)
+    | (apply LegalFinal.undetermined <;> first
+        | rfl
+        | exact Or.inl rfl
+        | exact Or.inr rfl)
+    | (apply LegalFinal.gap <;> first
+        | rfl
+        | exact Or.inl rfl
+        | exact Or.inr rfl
+        | (by decide))
 
 /-- **完备**：任何满足语义前提的推导都落在表的同一输出上（对推导分例归纳）。 -/
 theorem finalize_complete {inp : IssueInputs} {o : Judgment × FinalBasis}
@@ -218,7 +225,7 @@ theorem pos_negBurden_exclusive (inp : IssueInputs)
   cases h₁ with
   | pos _ _ ha =>
       cases h₂ with
-      | negBurden _ _ _ ha' _ => rw [ha] at ha'; exact Bool.noConfusion ha'
+      | negBurden _ _ ha' _ _ => rw [ha] at ha'; exact Bool.noConfusion ha'
 
 /-- 程序门与实体判断不相容（ready 同时为假与真）。 -/
 theorem procedural_and_substantive_incompatible (inp : IssueInputs)
@@ -245,15 +252,11 @@ theorem subset_allowedUnion {dom : List (Finset V)} {S : Finset V} (h : S ∈ do
   induction dom with
   | nil => simp at h
   | cons T rest ih =>
-      by_cases hS : S = T
-      · subst hS
-        simp only [allowedUnion, List.foldr_cons]
-        exact Finset.subset_union_left S (allowedUnion rest)
-      · have hmem : S ∈ rest := by
-          simpa [hS] using h
-        simp only [allowedUnion, List.foldr_cons]
-        exact Finset.subset_trans (ih hmem)
-          (Finset.subset_union_right T (allowedUnion rest))
+      intro x hx
+      simp only [allowedUnion, List.foldr_cons]
+      rcases List.mem_cons.mp h with rfl | hrest
+      · exact Finset.mem_union.mpr (Or.inl hx)
+      · exact Finset.mem_union.mpr (Or.inr (ih hrest x hx))
 
 /-- 全单点族（非空）的允许并是那个单点。 -/
 theorem allowedUnion_eq_singleton_of_all {v : V} :
@@ -263,12 +266,13 @@ theorem allowedUnion_eq_singleton_of_all {v : V} :
   | nil => intro h; exact absurd rfl h
   | cons T rest ih =>
       intro _ hAll
-      simp only [allowedUnion, List.foldr_cons, hAll T (List.mem_cons_self T rest)]
-      rcases List.eq_nil_or_cons rest with hrest | hrest
-      · rw [hrest]
-        simp
-      · rw [ih (by rw [hrest]; simp) (fun S hS => hAll S (List.mem_cons_of_mem T hS))]
-        simp
+      have hT : T = {v} := hAll T (by simp)
+      simp only [allowedUnion, List.foldr_cons, hT]
+      cases rest with
+      | nil => simp [allowedUnion]
+      | cons T' rest' =>
+          rw [ih (by simp) (fun S hS => hAll S (by simp [hS]))]
+          simp
 
 /-- **唯一允许**：允许并为单点 ↔（族非空时）每个评价都是那个单点。
     这是 I.4.7 "UniqueAllowed ↔ (⋃α∈EvalDomain,Out α)={v} 且域非空" 的有限族片段；

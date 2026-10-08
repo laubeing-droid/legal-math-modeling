@@ -207,8 +207,8 @@ theorem summaryDefeat_implies_defeat {con : Contrary A} {rc : RuleContra A}
           obtain ⟨x, hx, hcon⟩ := hsum
           simp only [attackTargets] at hx
           have hxc : x = c := List.mem_singleton.mp hx
-          subst hxc
-          exact Defeat.rebut a (.leaf c) hcon
+          have hc : con (Arg.concl a) c = true := by rw [← hxc]; exact hcon
+          exact Defeat.rebut a (.leaf c) hc
       | node r ps =>
           simp only [Arg.height] at hb
           omega
@@ -219,8 +219,8 @@ theorem summaryDefeat_implies_defeat {con : Contrary A} {rc : RuleContra A}
           obtain ⟨x, hx, hcon⟩ := hsum
           simp only [attackTargets] at hx
           have hxc : x = c := List.mem_singleton.mp hx
-          subst hxc
-          exact Defeat.rebut a (.leaf c) hcon
+          have hc : con (Arg.concl a) c = true := by rw [← hxc]; exact hcon
+          exact Defeat.rebut a (.leaf c) hc
       | node r ps =>
           obtain ⟨x, hx, hcon⟩ := hsum
           simp only [attackTargets] at hx

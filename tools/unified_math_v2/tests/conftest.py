@@ -11,6 +11,7 @@ from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
 PKG = HERE.parent
+ROOT = PKG.parents[1]  # repo root: theory/ lives here
 
 # `reference` is also the package name of tools/full_math/reference; under a
 # repo-wide single-process pytest run whichever tree is collected first wins in
@@ -22,6 +23,6 @@ for shared in ("reference", "unified", "unified_v21"):
     for name in [m for m in sys.modules if m == shared or m.startswith(shared + ".")]:
         del sys.modules[name]
 
-for candidate in (str(PKG), str(HERE)):
+for candidate in (str(PKG), str(HERE), str(ROOT)):
     if candidate not in sys.path:
         sys.path.insert(0, candidate)

@@ -109,11 +109,11 @@ class EquilibriumTests(TestCase):
             ("B", "B"): (Q(0), Q(0)),
         }
         game = NormalFormGame(("R", "C"), (("A", "B"), ("A", "B")), profiles)
-        # Row indifferent at column q(A)=1/3; column indifferent at row
-        # p(A)=2/3 — the交错 (staggered) mixed equilibrium.
-        sigma = ([Q(1, 3), Q(2, 3)], [Q(2, 3), Q(1, 3)])
+        # u_R(A)=2(1−y), u_R(B)=y are equal at y=2/3; symmetric for the
+        # column player: both mixing 2/3-on-A is the mixed equilibrium.
+        sigma = ([Q(2, 3), Q(1, 3)], [Q(2, 3), Q(1, 3)])
         self.assertTrue(verify_equilibrium(game, sigma))
-        # The symmetric same-mix profile is NOT an equilibrium here.
+        # The staggered same-mix profile is NOT an equilibrium here.
         bad = ([Q(1, 3), Q(2, 3)], [Q(1, 3), Q(2, 3)])
         self.assertFalse(verify_equilibrium(game, bad))
 

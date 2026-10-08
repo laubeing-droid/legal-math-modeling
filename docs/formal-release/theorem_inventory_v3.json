@@ -2466,6 +2466,10 @@
     "JurisLean.Seams.UnifiedInstance.widening_is_conservative",
     "JurisLean.Seams.UnifiedInstance.zero_in_closureM",
     "JurisLean.Seams.UnifiedInstance.zero_mem_singleton",
+    "JurisLean.Seams.UnifiedSemantics.abc_A_alone_unstable",
+    "JurisLean.Seams.UnifiedSemantics.abc_stable_AC",
+    "JurisLean.Seams.UnifiedSemantics.escalation_only_has_no_stable_selection",
+    "JurisLean.Seams.UnifiedSemantics.isolated_in_every_stable_selection",
     "JurisLean.Seams.bridge_distinguishes_two_statuses",
     "JurisLean.Seams.bridge_not_injective_at_dismissed",
     "JurisLean.Seams.bridge_partial_inverse_established",
@@ -2957,8 +2961,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "3d12bc3128699bed25b23323d04812e17283b0ff38228dc140bb4993d918cf68",
-   "size_bytes": 167616,
+   "sha256": "5497cb418106f3420ab997d562f44123368adae1066e69205573567274c7e8a1",
+   "size_bytes": 167914,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -33261,8 +33265,8 @@
    "counted_declaration_count": 3777,
    "file_count": 322,
    "lemma_count": 141,
-   "print_axioms_command_count": 2655,
-   "print_axioms_distinct_targets": 2601,
+   "print_axioms_command_count": 2659,
+   "print_axioms_distinct_targets": 2605,
    "theorem_count": 3636,
    "theorem_count_bol_convention": 3540
   },
@@ -33270,8 +33274,8 @@
    "counted_declaration_count": 3758,
    "file_count": 307,
    "lemma_count": 134,
-   "print_axioms_command_count": 2655,
-   "print_axioms_distinct_targets": 2601,
+   "print_axioms_command_count": 2659,
+   "print_axioms_distinct_targets": 2605,
    "theorem_count": 3624,
    "theorem_count_bol_convention": 3528
   },
@@ -33959,16 +33963,21 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "8aa6329515e95504a2274bf3d718d95047a08b5ad85e907cf5ac0d2fdab8703a",
+ "source_inventory_digest": "c98284beadb98e44454749a7d10aad0be17a89d0589fe678678e134e5d76b16c",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "aae47a8ff1e42b1c7990ee67d6d142f981a6402b",
-  "tree": "5446906e94f18acdf9bf0e2bab25b7b1c340f35c"
+  "commit": "8273135da846e94f6adaeb778547c9c3e9ec8628",
+  "tree": "4057fb5cecf4a801da69e2a86fca0b589582b669"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 322,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": true

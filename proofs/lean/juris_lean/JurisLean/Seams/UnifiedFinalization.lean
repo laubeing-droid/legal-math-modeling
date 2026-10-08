@@ -112,18 +112,11 @@ inductive LegalFinal : IssueInputs → Judgment × FinalBasis → Prop
       (hnot : ¬ (inp.exhausted4 = true ∧ inp.need = true)) :
       LegalFinal inp (Judgment.pending, FinalBasis.gapB)
 
-/-- 全 Bool 案例展开（终结表证明的统一骨架）。 -/
-theorem bool_cases {p : IssueInputs → Prop}
-    (H : ∀ r b a br u e n : Bool, p ⟨r, b, a, br, u, e, n⟩)
-    (inp : IssueInputs) : p inp := by
-  obtain ⟨r, b, a, br, u, e, n⟩ := inp
-  exact H r b a br u e n
-
 /-! ## 三、精确表示（U11）：终结表＝合法终结关系的外延 -/
 
 /-- **健全**：表给出的每个输出都满足自己型别的语义前提。 -/
 theorem finalize_legal (inp : IssueInputs) : LegalFinal inp (finalizeIssue inp) := by
-  refine bool_cases (fun r b a br u e n => ?_) inp
+  rcases inp with ⟨r, b, a, br, u, e, n⟩
   cases r <;> cases b <;> cases a <;> cases br <;> cases u <;> cases e <;> cases n
   first
     | exact LegalFinal.notReady _ rfl
@@ -137,29 +130,29 @@ theorem finalize_legal (inp : IssueInputs) : LegalFinal inp (finalizeIssue inp) 
 theorem finalize_complete {inp : IssueInputs} {o : Judgment × FinalBasis}
     (h : LegalFinal inp o) : o = finalizeIssue inp := by
   cases h with
-  | notReady inp h =>
+  | notReady h =>
       rcases inp with ⟨r, b, a, br, u, e, n⟩
       subst h
       cases b <;> cases a <;> cases br <;> cases u <;> cases e <;> cases n <;> rfl
-  | negBlocked inp hr hb =>
+  | negBlocked hr hb =>
       rcases inp with ⟨r, b, a, br, u, e, n⟩
       subst hr; subst hb
       cases a <;> cases br <;> cases u <;> cases e <;> cases n <;> rfl
-  | pos inp hr hb ha =>
+  | pos hr hb ha =>
       rcases inp with ⟨r, b, a, br, u, e, n⟩
       subst hr; subst hb; subst ha
       cases br <;> cases u <;> cases e <;> cases n <;> rfl
-  | negBurden inp hr hb ha hbr hu =>
+  | negBurden hr hb ha hbr hu =>
       rcases inp with ⟨r, b, a, br, u, e, n⟩
       subst hr; subst hb; subst ha; subst hbr; subst hu
       cases e <;> cases n <;> rfl
-  | undetermined inp hr hb ha hnf he hn =>
+  | undetermined hr hb ha hnf he hn =>
       rcases inp with ⟨r, b, a, br, u, e, n⟩
       subst hr; subst hb; subst ha; subst he; subst hn
       rcases hnf with h1 | h1
       · subst h1; cases u <;> rfl
       · subst h1; cases br <;> rfl
-  | gap inp hr hb ha hnf hnot =>
+  | gap hr hb ha hnf hnot =>
       rcases inp with ⟨r, b, a, br, u, e, n⟩
       subst hr; subst hb; subst ha
       rcases hnf with h1 | h1
@@ -181,7 +174,7 @@ theorem finalize_representation_exact (inp : IssueInputs) (o : Judgment × Final
 /-- 程序门读数：NOT_READY 当且仅当程序未就绪（其他五型都要求就绪）。 -/
 theorem notReady_iff (inp : IssueInputs) :
     (finalizeIssue inp).2 = FinalBasis.notReadyB ↔ inp.ready = false := by
-  refine bool_cases (fun r b a br u e n => ?_) inp
+  rcases inp with ⟨r, b, a, br, u, e, n⟩
   cases r <;> cases b <;> cases a <;> cases br <;> cases u <;> cases e <;> cases n <;> decide
 
 /-- **程序结果不供给实体依据**：程序未就绪只给 PENDING/NOT_READY，
@@ -199,7 +192,7 @@ theorem undetermined_requires_exhausted_need (inp : IssueInputs)
     (h : LegalFinal inp (Judgment.pending, FinalBasis.legallyUndeterminedB)) :
     inp.exhausted4 = true ∧ inp.need = true := by
   cases h with
-  | undetermined _ _ _ _ _ he hn => exact ⟨he, hn⟩
+  | undetermined _ _ _ _ he hn => exact ⟨he, hn⟩
 
 /-- **未穷尽不得冒充未决**：Exhausted4 不满足时输出绝不是 LEGALLY_UNDETERMINED
     （那是 GAP——Python 终结表同一纪律的 Lean 读数）。 -/
@@ -214,27 +207,27 @@ theorem pos_negBlocked_exclusive (inp : IssueInputs)
     (h₁ : LegalFinal inp (Judgment.established, FinalBasis.posB))
     (h₂ : LegalFinal inp (Judgment.notEstablished, FinalBasis.negBlockedB)) : False := by
   cases h₁ with
-  | pos _ _ hb _ =>
+  | pos _ hb _ =>
       cases h₂ with
-      | negBlocked _ _ hb' => rw [hb] at hb'; exact Bool.noConfusion hb'
+      | negBlocked _ hb' => rw [hb] at hb'; exact Bool.noConfusion hb'
 
 /-- 成立与负担不成立互斥（要件全立 vs 有未立负担性要件）。 -/
 theorem pos_negBurden_exclusive (inp : IssueInputs)
     (h₁ : LegalFinal inp (Judgment.established, FinalBasis.posB))
     (h₂ : LegalFinal inp (Judgment.notEstablished, FinalBasis.negBurdenB)) : False := by
   cases h₁ with
-  | pos _ _ _ ha =>
+  | pos _ _ ha =>
       cases h₂ with
-      | negBurden _ _ _ ha' _ _ => rw [ha] at ha'; exact Bool.noConfusion ha'
+      | negBurden _ _ _ ha' _ => rw [ha] at ha'; exact Bool.noConfusion ha'
 
 /-- 程序门与实体判断不相容（ready 同时为假与真）。 -/
 theorem procedural_and_substantive_incompatible (inp : IssueInputs)
     (h₁ : LegalFinal inp (Judgment.pending, FinalBasis.notReadyB))
     (h₂ : LegalFinal inp (Judgment.established, FinalBasis.posB)) : False := by
   cases h₁ with
-  | notReady _ hr =>
+  | notReady hr =>
       cases h₂ with
-      | pos _ hr' _ _ => rw [hr] at hr'; exact Bool.noConfusion hr'
+      | pos hr' _ _ => rw [hr] at hr'; exact Bool.noConfusion hr'
 
 /-! ## 五、允许并的唯一性（U13）与交集单点反例 -/
 
@@ -296,7 +289,6 @@ theorem unique_allowed_iff_all_singleton {dom : List (Finset V)} {v : V}
         subst hyv
         subst hxv
         exact hx
-      have hc1 : S.card ≤ ({v} : Finset V).card := Finset.card_le_card hsub
       have hc2 : ({v} : Finset V).card ≤ S.card := Finset.card_le_card hvs
       exact Finset.eq_of_subset_of_card_le hsub hc2
   · exact allowedUnion_eq_singleton_of_all dom hne

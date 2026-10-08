@@ -193,6 +193,7 @@ import JurisLean.Seams.UnifiedFinalization
 import JurisLean.Seams.UnifiedInstance
 import JurisLean.Seams.UnifiedQuantities
 import JurisLean.Seams.UnifiedSemantics
+import JurisLean.Seams.UnifiedUtility
 import JurisLean.SolverRouting
 import JurisLean.SourceBundleSpec
 import JurisLean.SourcePathSpec

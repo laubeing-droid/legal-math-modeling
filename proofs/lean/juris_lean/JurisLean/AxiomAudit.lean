@@ -158,6 +158,8 @@ import JurisLean.Seams.UnifiedQuantities
 
 import JurisLean.Seams.UnifiedBeta
 
+import JurisLean.Seams.UnifiedUtility
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1941,6 +1943,14 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedSemantics.escalation_only_has_no_stable_selection
 #print axioms JurisLean.Seams.UnifiedSemantics.isolated_in_every_stable_selection
 #print axioms JurisLean.Seams.UnifiedSemantics.mem_enumerateStable_iff
+#print axioms JurisLean.Seams.UnifiedUtility.case_regret_bound
+#print axioms JurisLean.Seams.UnifiedUtility.equilibrium_does_not_assert_occurrence
+#print axioms JurisLean.Seams.UnifiedUtility.maxQ_le
+#print axioms JurisLean.Seams.UnifiedUtility.pennies_all_playable
+#print axioms JurisLean.Seams.UnifiedUtility.pennies_menu_full
+#print axioms JurisLean.Seams.UnifiedUtility.pennies_no_pure_nash
+#print axioms JurisLean.Seams.UnifiedUtility.utility_factorization_through_consequences
+#print axioms JurisLean.Seams.UnifiedUtility.utility_invariant_under_display_rename
 #print axioms JurisLean.Seams.bridge_distinguishes_two_statuses
 #print axioms JurisLean.Seams.bridge_not_injective_at_dismissed
 #print axioms JurisLean.Seams.bridge_partial_inverse_established

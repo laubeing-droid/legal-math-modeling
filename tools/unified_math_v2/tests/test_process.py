@@ -1,6 +1,7 @@
 """WP-7 tests: attempt actions, exact equilibrium checks, settlement,
 and the §9 step semantics."""
 
+from dataclasses import replace
 from fractions import Fraction as Q
 from unittest import TestCase
 
@@ -20,7 +21,9 @@ from unified.process import (
     LegalEventKind,
     NormalFormGame,
     ProcessEvent,
+    award_legally_correct,
     gross_of,
+    is_final,
     max_regret,
     mixed_payoff,
     outstanding_of,
@@ -200,9 +203,13 @@ class StepEventTests(TestCase):
             ),
         )
         after = outcome.next_state
-        # satisfied caps at entitlement; gross keeps the true 140
+        # satisfied caps at entitlement; a single-basis payment's FULL
+        # receipt (overpayment included) is attributable to the basis —
+        # the Rcash formula never truncates at the entitlement
+        from unified.process import gross_total_of
         self.assertEqual(outstanding_of(after, "loan"), Q(0))
         self.assertEqual(gross_of(after, "loan"), Q(140))
+        self.assertEqual(gross_total_of(after, "loan"), Q(140))
         self.assertIn("overpay", outcome.notes[-1])
 
     def test_multi_debt_waterfall_order(self):
@@ -278,3 +285,104 @@ class StepEventTests(TestCase):
         state = self._title(_state(), "loan", Q(100))
         self.assertEqual(outstanding_of(state, "loan"), Q(100))
         self.assertEqual(gross_of(state, "loan"), Q(0))
+
+
+class TitleLifecycleTests(TestCase):
+    def _title_state(self, basis="loan", amount=Q(100)):
+        ev = ProcessEvent(
+            event=_event("t1", "award"),
+            kind=LegalEventKind.AWARD_EFFECTIVE,
+            basis_key=basis,
+            amount=amount,
+            authority_ref="court:2026-1",
+        )
+        return step_event(_state(), ev).next_state
+
+    def test_revocation_supersedes_title_keeps_history(self):
+        state = self._title_state()
+        state = step_event(
+            state,
+            ProcessEvent(
+                event=_event("p1", "payment"),
+                kind=LegalEventKind.PAYMENT_PERFORMED,
+                amount=Q(40), debt_order=("loan",),
+            ),
+        ).next_state
+        revoked = step_event(
+            state,
+            ProcessEvent(
+                event=_event("r1", "revocation"),
+                kind=LegalEventKind.AWARD_REVOKED,
+                basis_key="loan",
+                authority_ref="court:2026-2",
+            ),
+        ).next_state
+        # the enforceable amount drops to zero…
+        self.assertEqual(outstanding_of(revoked, "loan"), Q(0))
+        # …but the payment history is untouched (revocation never erases
+        # payments already made)
+        self.assertEqual(gross_of(revoked, "loan"), Q(40))
+
+    def test_revocation_requires_authority(self):
+        with pytest.raises(ValueError, match="authority"):
+            step_event(
+                _state(),
+                ProcessEvent(
+                    event=_event("r1", "revocation"),
+                    kind=LegalEventKind.AWARD_REVOKED,
+                    basis_key="loan",
+                ),
+            )
+
+    def test_multi_basis_payment_no_double_count(self):
+        state = self._title_state("wage", Q(10))
+        state = step_event(
+            state,
+            ProcessEvent(
+                event=_event("t2", "award"),
+                kind=LegalEventKind.AWARD_EFFECTIVE,
+                basis_key="loan", amount=Q(100),
+                authority_ref="court:2026-1",
+            ),
+        ).next_state
+        after = step_event(
+            state,
+            ProcessEvent(
+                event=_event("p1", "payment"),
+                kind=LegalEventKind.PAYMENT_PERFORMED,
+                amount=Q(15), debt_order=("wage", "loan"),
+            ),
+        ).next_state
+        self.assertEqual(gross_of(after, "wage"), Q(10))
+        self.assertEqual(gross_of(after, "loan"), Q(5))
+        self.assertEqual(gross_of(after, "wage") + gross_of(after, "loan"), Q(15))
+
+    def test_is_final(self):
+        from theory.spec.canonical_v2.case import ProcessState as PS
+        decided = PS(r=NormState(relations=()), environment_id="e",
+                     stages=(("p1", "decided"),), target_day=5, as_of_day=5)
+        self.assertTrue(is_final(decided, "p1"))
+        appealed = replace(decided, events=(
+            CaseEvent("a1", "appeal_filed", 6, 6, "p1"),), as_of_day=7, target_day=5)
+        self.assertFalse(is_final(appealed, "p1"))
+        trial = PS(r=NormState(relations=()), environment_id="e",
+                   stages=(("p1", "trial"),), target_day=5, as_of_day=5)
+        self.assertFalse(is_final(trial, "p1"))
+
+    def test_award_legally_correct(self):
+        class FakeFinalization:
+            def __init__(self, judgment):
+                self.judgment = judgment
+        class FakeBranch:
+            def __init__(self, judgments):
+                self.finalizations = [FakeFinalization(j) for j in judgments]
+        class FakeRun:
+            def __init__(self, branches):
+                self.branches = branches
+        from theory.spec.canonical_v2.kernel import Judgment as J
+        self.assertIs(award_legally_correct(
+            FakeRun([FakeBranch([J.ESTABLISHED])]), "loan"), True)
+        self.assertIs(award_legally_correct(
+            FakeRun([FakeBranch([J.ESTABLISHED]), FakeBranch([J.NOT_ESTABLISHED])]),
+            "loan"), None)
+        self.assertIs(award_legally_correct(FakeRun([]), "loan"), None)

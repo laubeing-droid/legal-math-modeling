@@ -338,16 +338,8 @@ def _inline_step(state, pe):
     if pe.kind.value == "PAYMENT_PERFORMED":
         if pe.amount is None or not pe.debt_order:
             return state
-        entries = [
-            LedgerEntry(
-                entry_id=f"gross:i:{pe.event.event_id}",
-                kind=LedgerEntryKind.GROSS_RECEIVED,
-                basis_key=";".join(pe.debt_order),
-                obligor="", proceeding="",
-                amount=pe.amount, event_ref=pe.event.event_id,
-                at_day=pe.event.occurred_at,
-            )
-        ]
+        single = len(pe.debt_order) == 1
+        entries = []
         remaining = pe.amount
         for key in pe.debt_order:
             entitled = sum(
@@ -363,6 +355,17 @@ def _inline_step(state, pe):
             outstanding = max(entitled - paid, Fraction(0))
             alloc = min(outstanding, remaining)
             remaining -= alloc
+            gross_amount = pe.amount if single else alloc
+            if gross_amount > 0:
+                entries.append(
+                    LedgerEntry(
+                        entry_id=f"gross:i:{pe.event.event_id}:{key}",
+                        kind=LedgerEntryKind.GROSS_RECEIVED,
+                        basis_key=key, obligor="", proceeding="",
+                        amount=gross_amount, event_ref=pe.event.event_id,
+                        at_day=pe.event.occurred_at,
+                    )
+                )
             if alloc > 0:
                 entries.append(
                     LedgerEntry(
@@ -373,6 +376,16 @@ def _inline_step(state, pe):
                         at_day=pe.event.occurred_at,
                     )
                 )
+        if not single and remaining > 0:
+            entries.append(
+                LedgerEntry(
+                    entry_id=f"gross:i:{pe.event.event_id}:unallocated",
+                    kind=LedgerEntryKind.GROSS_RECEIVED,
+                    basis_key="unallocated", obligor="", proceeding="",
+                    amount=remaining, event_ref=pe.event.event_id,
+                    at_day=pe.event.occurred_at,
+                )
+            )
         return replace(state, ledger=state.ledger + tuple(entries),
                        events=state.events + (pe.event,))
     # non-payment fragment kinds: only the history grows

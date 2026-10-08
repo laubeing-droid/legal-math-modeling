@@ -231,6 +231,7 @@ class LegalEventKind(_enum.Enum):
     AWARD_ISSUED = "AWARD_ISSUED"            # ActualIssued — may be wrong
     AWARD_EFFECTIVE = "AWARD_EFFECTIVE"      # Effective — authority + form held
     PAYMENT_PERFORMED = "PAYMENT_PERFORMED"
+    AWARD_REVOKED = "AWARD_REVOKED"          # supersedes titles on a basis
     NORM_CHANGE_AUTHORIZED = "NORM_CHANGE_AUTHORIZED"
     NORM_CHANGE_PROPOSED = "NORM_CHANGE_PROPOSED"  # never mutates the environment
 
@@ -273,28 +274,25 @@ def _apply_payment(
             Fraction(0),
         )
         # look up the current entitlement for the basis from the title ledger
-        entitled = sum(
-            (
-                e.amount
-                for e in state.ledger
-                if e.kind is LedgerEntryKind.TITLE_ENTITLEMENT and e.basis_key == key
-            ),
-            Fraction(0),
-        )
+        entitled = sum((e.amount for e in effective_titles(state, key)), Fraction(0))
         outstanding.append(max(entitled - paid, Fraction(0)))
     alloc = allocate_payment(ev.amount, tuple((o,) for o in outstanding))
-    entries = [
-        LedgerEntry(
-            entry_id=f"gross:{ev.event.event_id}",
-            kind=LedgerEntryKind.GROSS_RECEIVED,
-            basis_key=";".join(ev.debt_order),
-            obligor="",
-            proceeding="",
-            amount=ev.amount,
-            event_ref=ev.event.event_id,
-            at_day=ev.event.occurred_at,
+    entries = []
+    if len(ev.debt_order) > 1:
+        # combined trajectory entry for multi-basis payments; a
+        # single-basis payment gets exactly one (per-basis) entry below
+        entries.append(
+            LedgerEntry(
+                entry_id=f"gross:{ev.event.event_id}",
+                kind=LedgerEntryKind.GROSS_RECEIVED,
+                basis_key=";".join(ev.debt_order),
+                obligor="",
+                proceeding="",
+                amount=ev.amount,
+                event_ref=ev.event.event_id,
+                at_day=ev.event.occurred_at,
+            )
         )
-    ]
     notes = []
     for key, (a,), (resid,) in zip(ev.debt_order, alloc.allocations, alloc.residuals):
         if a > 0:
@@ -312,6 +310,41 @@ def _apply_payment(
             )
             notes.append(f"allocated {a} to {key}")
         del resid
+    # per-basis gross entries.  A single-basis payment's FULL receipt is
+    # attributable to that basis (the Rcash formula never truncates at
+    # the entitlement — overpayment included).  For multi-basis payments
+    # each basis records its allocated share and the unallocated
+    # remainder gets an entry attributable to no basis (fixes the
+    # cross-basis double count).
+    single = len(ev.debt_order) == 1
+    for key, (a,) in zip(ev.debt_order, alloc.allocations):
+        amount = ev.amount if single else a
+        if amount > 0:
+            entries.append(
+                LedgerEntry(
+                    entry_id=f"gross:{ev.event.event_id}:{key}",
+                    kind=LedgerEntryKind.GROSS_RECEIVED,
+                    basis_key=key,
+                    obligor="",
+                    proceeding="",
+                    amount=amount,
+                    event_ref=ev.event.event_id,
+                    at_day=ev.event.occurred_at,
+                )
+            )
+    if not single and alloc.remaining > 0:
+        entries.append(
+            LedgerEntry(
+                entry_id=f"gross:{ev.event.event_id}:unallocated",
+                kind=LedgerEntryKind.GROSS_RECEIVED,
+                basis_key="unallocated",
+                obligor="",
+                proceeding="",
+                amount=alloc.remaining,
+                event_ref=ev.event.event_id,
+                at_day=ev.event.occurred_at,
+            )
+        )
     if alloc.remaining > 0:
         notes.append(f"overpay {alloc.remaining} recorded in gross only")
     new_state = replace(
@@ -384,6 +417,32 @@ def step_event(
         new_state = replace(state, ledger=state.ledger + (entry,),
                             events=state.events + (ev.event,))
         return StepOutcome(new_state, env, ("title entitlement recorded",))
+    if kind is LegalEventKind.AWARD_REVOKED:
+        # A revocation supersedes every earlier title on the basis with a
+        # zero-title: the enforceable amount drops, the payment history
+        # (gross/satisfied) is untouched (plan 9.2: revocation does not
+        # erase payments already made).
+        if not ev.basis_key or not ev.authority_ref:
+            raise ValueError("revocation requires basis and authority")
+        prior_titles = tuple(
+            e for e in state.ledger
+            if e.kind is LedgerEntryKind.TITLE_ENTITLEMENT
+            and e.basis_key == ev.basis_key
+        )
+        entry = LedgerEntry(
+            entry_id=f"title:{ev.event.event_id}",
+            kind=LedgerEntryKind.TITLE_ENTITLEMENT,
+            basis_key=ev.basis_key,
+            obligor="",
+            proceeding="",
+            amount=Fraction(0),
+            event_ref=ev.event.event_id,
+            at_day=ev.event.occurred_at,
+            supersedes=tuple(e.entry_id for e in prior_titles),
+        )
+        new_state = replace(state, ledger=state.ledger + (entry,),
+                            events=state.events + (ev.event,))
+        return StepOutcome(new_state, env, ("titles superseded; history kept",))
     if kind is LegalEventKind.NORM_CHANGE_AUTHORIZED:
         if env is None:
             raise ValueError("authorized norm change requires the environment")
@@ -427,11 +486,7 @@ def outstanding_of(state: ProcessState, basis_key: str) -> Fraction:
     """Legal remaining amount: title entitlement minus satisfied — the
     §6.1/§9 reading that never confuses gross receipts with offsets."""
 
-    entitled = sum(
-        (e.amount for e in state.ledger
-         if e.kind is LedgerEntryKind.TITLE_ENTITLEMENT and e.basis_key == basis_key),
-        Fraction(0),
-    )
+    entitled = sum((e.amount for e in effective_titles(state, basis_key)), Fraction(0))
     paid = sum(
         (e.amount for e in state.ledger
          if e.kind is LedgerEntryKind.SATISFIED and e.basis_key == basis_key),
@@ -441,8 +496,67 @@ def outstanding_of(state: ProcessState, basis_key: str) -> Fraction:
 
 
 def gross_of(state: ProcessState, basis_key: str) -> Fraction:
+    """Actual receipts attributable to ONE basis: only single-key gross
+    entries count (combined multi-basis entries record the payment
+    trajectory, not a per-basis attribution)."""
     return sum(
         (e.amount for e in state.ledger
-         if e.kind is LedgerEntryKind.GROSS_RECEIVED and basis_key in e.basis_key.split(";")),
+         if e.kind is LedgerEntryKind.GROSS_RECEIVED
+         and e.basis_key == basis_key),
         Fraction(0),
     )
+
+
+def gross_total_of(state: ProcessState, basis_key: str) -> Fraction:
+    """The full payment TRAFFIC through a basis group: combined
+    multi-basis entries that name it (the trajectory view of 6.1 —
+    actual inflows, overpayments included)."""
+    return sum(
+        (e.amount for e in state.ledger
+         if e.kind is LedgerEntryKind.GROSS_RECEIVED
+         and basis_key in e.basis_key.split(";")),
+        Fraction(0),
+    )
+
+
+def effective_titles(state: ProcessState, basis_key: str) -> Tuple[LedgerEntry, ...]:
+    """Currently effective titles: those not superseded by any later
+    title on the same basis (plan 6.1: the CURRENTLY effective title)."""
+    titles = tuple(
+        e for e in state.ledger
+        if e.kind is LedgerEntryKind.TITLE_ENTITLEMENT and e.basis_key == basis_key
+    )
+    superseded = {sid for e in titles for sid in e.supersedes}
+    return tuple(e for e in titles if e.entry_id not in superseded)
+
+
+def is_final(state: ProcessState, proceeding: str) -> bool:
+    """Final(a, proceeding): the ordinary-remedy stages are exhausted
+    (stage 'decided', no pending appeal).  Final does NOT mean immune to
+    retrial (plan 9.2A: Final is not 'never subject to retrial')."""
+    try:
+        stage = state.stage_of(proceeding)
+    except ValueError:
+        return False
+    if stage != "decided":
+        return False
+    return not any(
+        e.event_type == "appeal_filed" and e.observed_at <= state.as_of_day
+        for e in state.events
+    )
+
+
+def award_legally_correct(run, basis: str) -> Optional[bool]:
+    """LegallyCorrect for an issued award read off the model's own
+    results: True iff every branch establishes the basis (a compelled
+    decision); None when branches disagree (a legally-possible choice
+    the model does not stamp)."""
+    if not run.branches:
+        return None
+    verdicts = {
+        any(f.judgment.value == "ESTABLISHED" for f in b.finalizations)
+        for b in run.branches
+    }
+    if len(verdicts) == 1:
+        return verdicts.pop()
+    return None

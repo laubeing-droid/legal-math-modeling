@@ -478,6 +478,7 @@ class LedgerEntry:
     amount: Fraction
     event_ref: str
     at_day: int
+    supersedes: Tuple[str, ...] = ()  # title entries this one replaces
 
     def __post_init__(self) -> None:
         if type(self.amount) is not Fraction or self.amount < 0:

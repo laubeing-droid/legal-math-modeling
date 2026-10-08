@@ -150,6 +150,8 @@ import JurisLean.Seams.UnifiedSemantics
 
 import JurisLean.Seams.UnifiedArgumentation
 
+import JurisLean.Seams.UnifiedAdmission
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1804,6 +1806,15 @@ open HornSystem
 #print axioms JurisLean.Seams.Uncertainty.xuc_conditioning_denominator_is_clean_mass
 #print axioms JurisLean.Seams.Uncertainty.xuc_out_at_two_one
 #print axioms JurisLean.Seams.Uncertainty.zero_radius_band_does_not_cover_other_inputs
+#print axioms JurisLean.Seams.UnifiedAdmission.accepted_has_legal_basis
+#print axioms JurisLean.Seams.UnifiedAdmission.admission_reaches_fixed_point
+#print axioms JurisLean.Seams.UnifiedAdmission.admittedRounds_bounded
+#print axioms JurisLean.Seams.UnifiedAdmission.admittedStep_bounded
+#print axioms JurisLean.Seams.UnifiedAdmission.admittedStep_mono
+#print axioms JurisLean.Seams.UnifiedAdmission.basisValidB_iff
+#print axioms JurisLean.Seams.UnifiedAdmission.burden_failure_issue_scoped
+#print axioms JurisLean.Seams.UnifiedAdmission.burden_failure_not_ontic_negation
+#print axioms JurisLean.Seams.UnifiedAdmission.mem_step_grants_iff
 #print axioms JurisLean.Seams.UnifiedArgumentation.child_concl_mem_attackTargets
 #print axioms JurisLean.Seams.UnifiedArgumentation.defeat_iff_summaryDefeat
 #print axioms JurisLean.Seams.UnifiedArgumentation.defeat_implies_summaryDefeat

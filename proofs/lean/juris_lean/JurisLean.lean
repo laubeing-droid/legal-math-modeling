@@ -186,6 +186,7 @@ import JurisLean.Seams.Temporal
 import JurisLean.Seams.Transitions
 import JurisLean.Seams.Uncertainty
 import JurisLean.Seams.Unified
+import JurisLean.Seams.UnifiedAdmission
 import JurisLean.Seams.UnifiedArgumentation
 import JurisLean.Seams.UnifiedInstance
 import JurisLean.Seams.UnifiedSemantics

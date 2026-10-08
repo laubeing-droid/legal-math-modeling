@@ -59,7 +59,7 @@ theorem waterfall_zero :
   | nil => intro _; rfl
   | cons d ds ih =>
       intro hnn
-      rw [waterfall_cons, min_eq_left (hnn d (by simp)),
+      rw [waterfall_cons, min_eq_left (hnn d (by simp)), sub_zero,
           ih (fun x hx => hnn x (by simp [hx]))]
       rfl
 
@@ -88,10 +88,9 @@ theorem waterfall_conservation :
   | nil => intro p; simp [waterfall, remainingAfter]
   | cons d ds ih =>
       intro p
-      rw [waterfall_cons, remainingAfter_cons, List.sum_cons, ih (p - min p d)]
-      by_cases h : p ≤ d
-      · rw [min_eq_left h]; ring
-      · rw [min_eq_right (by linarith : d ≤ p)]; ring
+      have hq := ih (p - min p d)
+      rw [waterfall_cons, remainingAfter_cons, List.sum_cons]
+      linarith
 
 /-- 剩余非负（付款非负时）。 -/
 theorem remainingAfter_nonneg :
@@ -124,7 +123,8 @@ theorem drop_sum_le_sum :
       cases k with
       | zero => simp
       | succ k =>
-          rw [List.drop_succ, List.sum_cons]
+          simp only [List.drop]
+          rw [List.sum_cons]
           exact le_trans (ih (fun x hx => hnn x (by simp [hx])) k)
             (by linarith [hnn a (by simp)])
 
@@ -154,17 +154,18 @@ theorem waterfall_t25_prefix :
   | cons d ds ih =>
       intro hnn p k hk
       have hnnds : ∀ x ∈ ds, 0 ≤ x := fun x hx => hnn x (by simp [hx])
-      have hhp : 0 ≤ p - min p d := by have := min_le_left p d; linarith
+      have hhp : 0 ≤ p - min p d := sub_nonneg.mpr (min_le_left p d)
       have hout : ∀ a ∈ waterfall ds (p - min p d), 0 ≤ a :=
         waterfall_mem_nonneg ds hnnds (p - min p d) hhp
       have hsub : (List.drop k (waterfall ds (p - min p d))).sum
           ≤ (waterfall ds (p - min p d)).sum :=
         drop_sum_le_sum _ hout k
-      have hpos : 0 < (waterfall ds (p - min p d)).sum := by linarith
       cases k with
       | zero => rfl
       | succ k =>
-          simp only [waterfall_cons, List.drop_succ, List.take_succ_cons] at hk ⊢
+          simp only [waterfall_cons, List.drop, List.take] at hk ⊢
+          have hpos : 0 < (waterfall ds (p - min p d)).sum :=
+            lt_of_lt_of_le hk hsub
           rw [ih hnnds (p - min p d) k hk,
               waterfall_head_full_of_tail_positive d ds p hnnds hpos]
 
@@ -192,16 +193,17 @@ theorem waterfall_depends_on_payment :
   rw [joint_overallocation_excluded, h20]
   decide
 
-/-- **依赖债表**：债额变化必须改变允许域。 -/
+/-- **依赖债表**：债额变化必须改变允许域
+    （[6,8] 付 15 全清偿到 [6,8]，与 [10,10] 付 15 的 [10,5] 不同）。 -/
 theorem waterfall_depends_on_debt :
-    waterfall [10, 10] 15 ≠ waterfall [10, 8] 15 := by
-  have h8 : waterfall [10, 8] 15 = [8, 7] := by
-    have h1 : min (15 : ℚ) 8 = 8 := min_eq_right (by norm_num)
-    have h2 : min ((15 : ℚ) - 8) 8 = 15 - 8 := min_eq_left (by norm_num)
+    waterfall [10, 10] 15 ≠ waterfall [6, 8] 15 := by
+  have h68 : waterfall [6, 8] 15 = [6, 8] := by
+    have h1 : min (15 : ℚ) 6 = 6 := min_eq_right (by norm_num)
+    have h2 : min ((15 : ℚ) - 6) 8 = 8 := min_eq_right (by norm_num)
     rw [waterfall_cons, h1, waterfall_cons, h2]
     simp only [waterfall]
     norm_num
-  rw [joint_overallocation_excluded, h8]
+  rw [joint_overallocation_excluded, h68]
   decide
 
 /-! ## 五、齐次性（同一上游依据／单位不重算） -/
@@ -220,8 +222,8 @@ theorem waterfall_homogeneous (c : ℚ) (hc : 0 ≤ c) :
         · rw [min_eq_left h, min_eq_left (mul_le_mul_of_nonneg_right h hc)]
         · rw [min_eq_right (by linarith : d ≤ p),
             min_eq_right (mul_le_mul_of_nonneg_right (by linarith : d ≤ p) hc)]
-      simp only [List.map_cons, waterfall_cons, hmin, sub_mul]
-      rw [ih (p - min p d)]
+      simp only [List.map_cons, waterfall_cons, hmin, sub_mul,
+          ih (p - min p d)]
       try rfl
 
 end JurisLean.Seams.UnifiedQuantities

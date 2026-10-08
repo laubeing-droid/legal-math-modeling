@@ -114,24 +114,27 @@ inductive LegalFinal : IssueInputs → Judgment × FinalBasis → Prop
 
 /-! ## 三、精确表示（U11）：终结表＝合法终结关系的外延 -/
 
-/-- **健全**：表给出的每个输出都满足自己型别的语义前提。 -/
-theorem finalize_legal (inp : IssueInputs) : LegalFinal inp (finalizeIssue inp) := by
-  rcases inp with ⟨r, b, a, br, u, e, n⟩
-  cases r <;> cases b <;> cases a <;> cases br <;> cases u <;> cases e <;> cases n
-  first
-    | (apply LegalFinal.notReady <;> rfl)
-    | (apply LegalFinal.negBlocked <;> rfl)
-    | (apply LegalFinal.pos <;> rfl)
-    | (apply LegalFinal.negBurden <;> rfl)
-    | (apply LegalFinal.undetermined <;> first
-        | rfl
-        | exact Or.inl rfl
-        | exact Or.inr rfl)
-    | (apply LegalFinal.gap <;> first
-        | rfl
-        | exact Or.inl rfl
-        | exact Or.inr rfl
-        | decide)
+/-- **健全**：表给出的每个输出都满足自己型别的语义前提。
+    证明按 `finalizeIssue` 的同一模式序展开为十个字面量分支（负担未触发的
+    依法未决／缺口各按 Or 左右再分），每支的字面前提都是 `rfl`／小 `decide`。 -/
+theorem finalize_legal :
+    ∀ (inp : IssueInputs), LegalFinal inp (finalizeIssue inp)
+  | ⟨false, b, a, br, u, e, n⟩ => LegalFinal.notReady _ rfl
+  | ⟨true, true, a, br, u, e, n⟩ => LegalFinal.negBlocked _ rfl rfl
+  | ⟨true, false, true, br, u, e, n⟩ => LegalFinal.pos _ rfl rfl rfl
+  | ⟨true, false, false, true, true, e, n⟩ => LegalFinal.negBurden _ rfl rfl rfl rfl rfl
+  | ⟨true, false, false, false, u, true, true⟩ =>
+      LegalFinal.undetermined _ rfl rfl rfl (Or.inl rfl) rfl rfl
+  | ⟨true, false, false, br, false, true, true⟩ =>
+      LegalFinal.undetermined _ rfl rfl rfl (Or.inr rfl) rfl rfl
+  | ⟨true, false, false, false, u, false, n⟩ =>
+      LegalFinal.gap _ rfl rfl rfl (Or.inl rfl) (by cases n <;> decide)
+  | ⟨true, false, false, false, u, true, false⟩ =>
+      LegalFinal.gap _ rfl rfl rfl (Or.inl rfl) (by decide)
+  | ⟨true, false, false, br, false, false, n⟩ =>
+      LegalFinal.gap _ rfl rfl rfl (Or.inr rfl) (by cases n <;> decide)
+  | ⟨true, false, false, br, false, true, false⟩ =>
+      LegalFinal.gap _ rfl rfl rfl (Or.inr rfl) (by decide)
 
 /-- **完备**：任何满足语义前提的推导都落在表的同一输出上（对推导分例归纳）。 -/
 theorem finalize_complete {inp : IssueInputs} {o : Judgment × FinalBasis}
@@ -287,20 +290,19 @@ theorem unique_allowed_iff_all_singleton {dom : List (Finset V)} {v : V}
     allowedUnion dom = {v} ↔ ∀ S ∈ dom, S = {v} := by
   constructor
   · intro hU S hS
-      have hsub : S ⊆ ({v} : Finset V) := by
-        rw [← hU]
-        exact subset_allowedUnion hS
-      obtain ⟨x, hx⟩ := hnn S hS
-      have hxv : x = v := Finset.mem_singleton.mp (hsub hx)
-      have hvs : ({v} : Finset V) ⊆ S := by
-        intro y hy
-        have hyv : y = v := Finset.mem_singleton.mp hy
-        subst hyv
-        subst hxv
-        exact hx
-      have hc2 : ({v} : Finset V).card ≤ S.card := Finset.card_le_card hvs
-      exact Finset.eq_of_subset_of_card_le hsub hc2
-  · exact allowedUnion_eq_singleton_of_all dom hne
+    have hsub : S ⊆ allowedUnion dom := subset_allowedUnion hS
+    rw [hU] at hsub
+    obtain ⟨x, hx⟩ := hnn S hS
+    have hxv : x = v := Finset.mem_singleton.mp (hsub hx)
+    have hvs : ({v} : Finset V) ⊆ S := by
+      intro y hy
+      have hyv : y = v := Finset.mem_singleton.mp hy
+      subst hyv
+      subst hxv
+      exact hx
+    exact Finset.eq_of_subset_of_card_le hsub (Finset.card_le_card hvs)
+  · intro hAll
+    exact allowedUnion_eq_singleton_of_all dom hne hAll
 
 /-- **交集单点反例（保留）**：两个非单点评价的交可以是单点而允许并不是单点——
     把"稳定核塌缩成单点"当"唯一允许"的捷径在此不通

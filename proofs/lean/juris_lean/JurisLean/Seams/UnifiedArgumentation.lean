@@ -105,7 +105,8 @@ private theorem child_height_lt (r : Rul A) (ps : List (Arg A))
     (p : Arg A) (hp : p ∈ ps) (k : ℕ)
     (hk : Arg.height (.node r ps) ≤ k + 1) : Arg.height p ≤ k := by
   have hfoldp : Arg.height p ≤ (ps.map Arg.height).foldr max 0 :=
-    foldr_max_le _ (Arg.height p) (List.mem_map_of_mem hp)
+    JurisLean.FullMath.Logic.foldr_max_le _ (Arg.height p)
+      (List.mem_map_of_mem hp)
   simp only [Arg.height] at hk
   omega
 
@@ -136,7 +137,9 @@ private theorem edgeFuel_iff_summaryDefeat (con : Contrary A)
               have hxc : x = c := List.mem_singleton.mp hx
               subst hxc
               exact h⟩
-      | node r ps => omega
+      | node r ps =>
+          simp only [Arg.height] at hb
+          omega
   | succ k ih =>
       intro b hb
       cases b with
@@ -150,7 +153,7 @@ private theorem edgeFuel_iff_summaryDefeat (con : Contrary A)
               exact h⟩
       | node r ps =>
           simp only [edgeFuel, Bool.or_eq_true, List.any_eq_true, or_assoc,
-                     summaryDefeat, attackTargets, exists_or]
+                     summaryDefeat, exists_or]
           constructor
           · rintro (h1 | ⟨p, hp, h2⟩ | h3 | ⟨p, hp, h4⟩)
             · exact ⟨r.head, head_mem_attackTargets rc (.node r ps), h1⟩
@@ -160,6 +163,7 @@ private theorem edgeFuel_iff_summaryDefeat (con : Contrary A)
                 (ih p (child_height_lt r ps p hp k hb)).mp h4
               exact ⟨x, mem_attackTargets_of_child hp hx, hcon⟩
           · rintro ⟨x, hx, hcon⟩
+            simp only [attackTargets] at hx
             rcases List.mem_append.mp hx with hx | hx
             · rcases List.mem_cons.mp hx with hx | hx
               · subst hx
@@ -205,7 +209,9 @@ theorem summaryDefeat_implies_defeat {con : Contrary A} {rc : RuleContra A}
           have hxc : x = c := List.mem_singleton.mp hx
           subst hxc
           exact Defeat.rebut a (.leaf c) hcon
-      | node r ps => omega
+      | node r ps =>
+          simp only [Arg.height] at hb
+          omega
   | succ k ih =>
       intro b hb hsum
       cases b with

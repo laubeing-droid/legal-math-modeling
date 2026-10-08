@@ -45,8 +45,9 @@ class CheckReport:
 # ---------------------------------------------------------------------------
 
 
-def _claim_key(predicate: str, polar: Polar) -> str:
-    return predicate if polar is Polar.POS else "~" + predicate
+def _claim_key(predicate: str, polar: Polar, subject: str = "") -> str:
+    core = f"{subject}|{predicate}" if subject else predicate
+    return core if polar is Polar.POS else "~" + core
 
 
 def _inline_candidates(case: CaseInput, env: LegalEnvironment):
@@ -100,9 +101,11 @@ def _inline_universe_nodes(case: CaseInput, env: LegalEnvironment,
     nodes = []
     for f in case.fact_records:
         if f.standing is FactStanding.ADMITTED_POSITIVE:
-            nodes.append((f"fact:{f.fact_id}",
-                          _claim_key(f.proposition.predicate, f.proposition.polar),
-                          False))
+            nodes.append(
+                (f"fact:{f.fact_id}",
+                 _claim_key(f.proposition.predicate, f.proposition.polar,
+                            f.proposition.subject),
+                 False))
     admitted_predicates = {
         f.proposition.predicate for f in case.fact_records
         if f.standing is FactStanding.ADMITTED_POSITIVE
@@ -120,7 +123,9 @@ def _inline_universe_nodes(case: CaseInput, env: LegalEnvironment,
             continue
         nodes.append(
             (f"template:{template.template_id}",
-             _claim_key(template.conclusion_predicate, Polar.POS), True)
+             _claim_key(template.conclusion_predicate, Polar.POS,
+                        template.subject),
+             True)
         )
     return tuple(nodes)
 
@@ -242,7 +247,8 @@ def check_case_run(
         )
         for claim, outcome in zip(case.claims, branch.standards):
             expected_high = _inline_civil_high(
-                _claim_key(claim.basis, Polar.POS), in_nodes, out_nodes, universe_nodes
+                _claim_key(claim.basis, Polar.POS, claim.subject),
+                in_nodes, out_nodes, universe_nodes,
             )
             if outcome.civil_high != expected_high:
                 problems.append(
@@ -254,7 +260,8 @@ def check_case_run(
         expected_blockers = frozenset(
             d.defense_id for d in case.defenses
             if _inline_civil_high(
-                _claim_key(d.basis, Polar.POS), in_nodes, out_nodes, universe_nodes
+                _claim_key(d.basis, Polar.POS, d.subject),
+                in_nodes, out_nodes, universe_nodes,
             ) or d.basis in special
         )
         for claim, outcome, finalization in zip(

@@ -50,8 +50,12 @@ from .process import ProcessEvent as _ProcessEvent, run_trace as _run_trace, ste
 # ---------------------------------------------------------------------------
 
 
-def _claim_key(predicate: str, polar: Polar) -> str:
-    return predicate if polar is Polar.POS else "~" + predicate
+def _claim_key(predicate: str, polar: Polar, subject: str = "") -> str:
+    """Scoped claim key (reviewer finding 4): the subject is part of the
+    atom identity — a same-predicate claim about D2 never attacks a
+    claim about D1.  Empty subject = issue-level conclusion."""
+    core = f"{subject}|{predicate}" if subject else predicate
+    return core if polar is Polar.POS else "~" + core
 
 
 def enumerate_norm_selections(
@@ -106,7 +110,10 @@ def build_reason_universe(
     reasons = [
         ReasonNode(
             node_id=f"fact:{f.fact_id}",
-            claim=_claim_key(f.proposition.predicate, f.proposition.polar),
+            claim=_claim_key(
+                f.proposition.predicate, f.proposition.polar,
+                f.proposition.subject,
+            ),
             polar=f.proposition.polar,
             kind=WarrantKind.W_DIRECT,
             leaves=frozenset({f.fact_id}),
@@ -145,7 +152,9 @@ def build_reason_universe(
         reasons.append(
             ReasonNode(
                 node_id=f"template:{template.template_id}",
-                claim=_claim_key(template.conclusion_predicate, Polar.POS),
+                claim=_claim_key(
+                    template.conclusion_predicate, Polar.POS, template.subject
+                ),
                 polar=Polar.POS,
                 kind=WarrantKind.W_STRONG,
                 leaves=frozenset(matched),
@@ -242,7 +251,10 @@ def run_case(
             graph = build_reason_graph(universe)
             for view in extension_view(universe, graph):
                 standards = tuple(
-                    civil_high(_claim_key(claim.basis, Polar.POS), view, universe)
+                    civil_high(
+                        _claim_key(claim.basis, Polar.POS, claim.subject),
+                        view, universe,
+                    )
                     for claim in case.claims
                 )
                 # defense evaluation (reviewer finding 6): each defense
@@ -253,7 +265,8 @@ def run_case(
                     defense.defense_id
                     for defense in case.defenses
                     if civil_high(
-                        _claim_key(defense.basis, Polar.POS), view, universe
+                        _claim_key(defense.basis, Polar.POS, defense.subject),
+                        view, universe,
                     ).civil_high
                     or defense.basis in special
                 )

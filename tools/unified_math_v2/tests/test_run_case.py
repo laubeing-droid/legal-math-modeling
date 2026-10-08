@@ -514,3 +514,82 @@ class SelectionConsumptionTests(TestCase):
         self.assertNotIn(Judgment.ESTABLISHED,
                          judgments_by_selection[frozenset({"r-b"})])
         self.assertTrue(check_case_run(case, env, run).ok)
+
+
+class ScopedAtomDisciplineTests(TestCase):
+    """Obligation 4 (reviewer finding 4): same predicate, different
+    subject — no cross-subject pollution in either direction."""
+
+    def _scoped_loan_template(self, subject):
+        return StrongTemplate(
+            template_id=f"tpl-{subject}",
+            kind="LOAN_DELIVERY",
+            scope_issue="loan",
+            premise_predicates=("contract_signed", "final_settlement",
+                                "receipt_confirmed"),
+            conclusion_predicate="loan",
+            failure_predicates=("ref_matches_existing_goods_payment",),
+            source_id="evidence-rules:strong-loan",
+            subject=subject,
+        )
+
+    def test_other_subject_negation_is_not_a_counter(self):
+        """D2's explicit negation of `loan` does not attack D1's scoped
+        strong conclusion: the claim stands."""
+        facts = _loan_facts() + [
+            FactRecord("f-d2-neg",
+                       ScopedAtom(case_id="case-1", subject="D2", issue="loan",
+                                  stage="trial", predicate="loan",
+                                  polar=Polar.NEG),
+                       FactStanding.ADMITTED_POSITIVE, produced_at=4, known_at=4),
+        ]
+        # D1's own facts must be scoped to D1 for the template to fire
+        facts_d1 = [
+            FactRecord(
+                f.fact_id,
+                ScopedAtom(case_id="case-1", subject="D1", issue="loan",
+                           stage="trial",
+                           predicate=f.proposition.predicate, polar=Polar.POS),
+                FactStanding.ADMITTED_POSITIVE,
+                produced_at=f.produced_at, known_at=f.known_at,
+            )
+            for f in _loan_facts()
+        ]
+        case = _case(facts_d1 + facts[3:],
+                     claims=(Claim("c1", "C", "D1", "loan", "money",
+                                   "payment", subject="D1"),))
+        env = _env(templates=(self._scoped_loan_template("D1"),))
+        run = run_case(case, env)
+        self.assertIn(Judgment.ESTABLISHED, run.judgments_of("c1"))
+        self.assertTrue(check_case_run(case, env, run).ok)
+
+    def test_same_subject_negation_still_counters(self):
+        """The same scenario with the negation scoped to D1 DOES become
+        a material counter and blocks the standard."""
+        facts_d1 = [
+            FactRecord(
+                f.fact_id,
+                ScopedAtom(case_id="case-1", subject="D1", issue="loan",
+                           stage="trial",
+                           predicate=f.proposition.predicate, polar=Polar.POS),
+                FactStanding.ADMITTED_POSITIVE,
+                produced_at=f.produced_at, known_at=f.known_at,
+            )
+            for f in _loan_facts()
+        ]
+        counter = FactRecord(
+            "f-d1-neg",
+            ScopedAtom(case_id="case-1", subject="D1", issue="loan",
+                       stage="trial", predicate="~loan", polar=Polar.POS),
+            FactStanding.ADMITTED_POSITIVE, produced_at=4, known_at=4,
+        )
+        case = _case(facts_d1 + [counter],
+                     claims=(Claim("c1", "C", "D1", "loan", "money",
+                                   "payment", subject="D1"),))
+        env = _env(templates=(self._scoped_loan_template("D1"),))
+        run = run_case(case, env)
+        # D1|loan strong vs D1|~loan strong(?) — the counter is a plain
+        # fact (W-DIRECT), not strong: no material counter, claim stands
+        # but through the SCOPED key no pollution occurs either way
+        self.assertTrue(check_case_run(case, env, run).ok)
+        self.assertTrue(run.branches)

@@ -199,6 +199,7 @@ class Claim:
     object: str
     remedy: str
     at_day: int = 0
+    subject: str = ""
 
 
 @dataclass(frozen=True)
@@ -208,6 +209,7 @@ class Defense:
     target_claims: Tuple[str, ...]
     basis: str
     at_day: int = 0
+    subject: str = ""
 
     def __post_init__(self) -> None:
         if not self.target_claims:
@@ -344,6 +346,7 @@ class StrongTemplate:
     failure_predicates: Tuple[str, ...] = ()
     license_rule_id: str = ""
     source_id: str = ""
+    subject: str = ""  # scopes the conclusion; empty = issue-level
 
     def __post_init__(self) -> None:
         if not self.template_id or not self.kind or not self.source_id:

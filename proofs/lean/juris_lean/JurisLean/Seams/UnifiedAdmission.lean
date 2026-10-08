@@ -217,10 +217,8 @@ theorem admission_reaches_fixed_point (admitted₀ U : Finset F)
               = admittedStep s bases := by
             rw [hs]
             rfl
-          have hcard1 : U.card ≤
-              (admittedRounds admitted₀ bases (k + 1)).card + d := by
-            rw [hnext]
-            omega
+          rw [hnext] at hcard0
+          have hcard1 : U.card ≤ (admittedStep s bases).card + d := by omega
           obtain ⟨m, hm1, hm2, hfixm⟩ :=
             ih (admittedStep s bases) (k + 1) hnext.symm
               (admittedStep_bounded s U bases hsub hgrant) hcard1

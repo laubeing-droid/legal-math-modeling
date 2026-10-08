@@ -15,16 +15,26 @@ import JurisLean.Seams.Temporal
   `clarification_duty_is_level_blind` 证出（该位对审级判定恒真）。
   真正有内容的是第 3 款的**入口位** `fashi13_art66Clause3Opens`（一审未到庭∧二审到庭）。
 * **时效**：`LimitationClock`（起算日＋期间长度）＋ `expiredAt`（届满判定）＋
-  `interruptAt`（民法典 195 条中断：重新起算）＋ `suspendWithin`（民法典 194 条
-  中止：期间顺延）。载体取 `Int` 日标签，与 `Temporal.lean` 的 XT 层同形（错位登记 #6）。
+  `interruptAt`（民法典 195 条中断：重新起算）＋ 194 条中止面（`sixMonths`／
+  `naturalExpiry`／`obstacleInLastSixMonths`／`suspensionExpiryAfter`：
+  最后六个月门槛＋消除日起满六个月届满）。载体取 `Int` 日标签，与 `Temporal.lean`
+  的 XT 层同形（错位登记 #6）。
 
-**本件不做的**：期间长度按 `[建模选择]` 取 `1095` 天（三年，忽略闰年）；
-不建"知道或应当知道权利受损"的起算认定（那是事实认定，`startDay` 由案卷给）；
-不认定任何真实案件的时效状态。另有两处**已知与条文不同形**，在此登记而不是隐藏：
-① 中止建模为"顺延整个中止窗口"，而第 194 条的读数是"自中止时效的原因消除之日起
-**满六个月**届满"，两者不同形，本件不做六个月那支；
-② 第 194 条要求障碍发生在"时效期间最后六个月内"，本件的 `suspendWithin` 不设
-该时间窗检验，任何窗口都可顺延——比条文宽。
+**本件不做的**：期间长度按 `[建模选择]` 取 `1095` 天（三年，忽略闰年），六个月
+取 `180` 天（同口径忽略大小月）；不建"知道或应当知道权利受损"的起算认定
+（那是事实认定，`startDay` 由案卷给）；不认定任何真实案件的时效状态。
+
+**修订登记（2026-10-08，审查指定修正）**：本件此前把 194 条中止建成"期间顺延
+一个中止窗口"（`suspendWithin`），且不设"最后六个月内"门槛，两处与条文不同形
+并在头注登记为已知偏差。审查裁定该简化不能成立：194 条的读数是**门槛**（障碍
+发生在时效期间最后六个月内）＋**届满**（自中止原因消除之日起满六个月届满）。
+本轮已按条文原样重建（删除 `suspendWithin`，新增上述 194 条四个定义与
+`suspension_never_shortens`／`suspension_strictly_delays_when_inside`／
+`obstacle_before_window_not_qualified`／`suspension_only_delays`／
+`suspension_remaining_month_counterexample` 五条定理，其中反例定理对应审查指定的
+"剩余一个月＋次日消除"对照）。**范围**：这一支只表达普通诉讼时效的中止；
+保证期间（692 条第 2 款）不适用中止／中断，除斥等其他期间按各自法源，
+本件不把六个月规则外推给它们。
 
 制造日期：2026-10-04（17_ 卷缺口 6 轮）。
 -/
@@ -137,23 +147,77 @@ theorem interruption_restarts_the_clock (c : LimitationClock) (atDay d : Int)
   unfold expiredAt interruptAt at hNew
   exact absurd hFresh (by unfold limitationPeriod at *; linarith)
 
-/-- 中文说明：中止（**民法典第 194 条**）——该条要求在"诉讼时效期间的最后六个月内"
-    发生不可抗力等障碍，且第 194 条末句的读数是"自中止时效的原因消除之日起**满六个月**
-    诉讼时效期间届满"。本件不建那六个月，改为**期间顺延**一个中止窗口（起算日后移窗口
-    长度）：这只保证"届满日后移"这一方向，比条文**宽**（不设最后六个月的时间窗检验），
-    偏差已在头注登记，不靠措辞掩盖。 -/
-def suspendWithin (c : LimitationClock) (fromDay toDay : Int) : LimitationClock where
-  startDay := c.startDay + (toDay - fromDay)
+/-- 中文说明：六个月（`[建模选择]`：180 天，与三年＝1095 天同口径忽略闰年与
+    大小月；民法典 194 条的"六个月"，门槛与届满各用一次）。 -/
+def sixMonths : Int := 180
 
-/-- 中文证明（**中止推迟届满**）：中止窗口使届满日**只会后移**——
-    旧时钟未届满则新时钟也未届满（顺延的期间把门槛抬高）。 -/
-theorem suspension_only_delays (c : LimitationClock) (fromDay toDay d : Int)
-    (hWindow : fromDay ≤ toDay) (hNew : expiredAt (suspendWithin c fromDay toDay) d) :
-    expiredAt c d := by
-  have h1 : (suspendWithin c fromDay toDay).startDay + limitationPeriod ≤ d := hNew
-  unfold suspendWithin at h1
-  unfold expiredAt
+/-- 中文说明：自然届满日——起算日＋期间（无中止／中断时的届满日标签）。 -/
+def naturalExpiry (c : LimitationClock) : Int := c.startDay + limitationPeriod
+
+/-- 中文说明：194 条**门槛**——障碍发生日落在时效期间的最后六个月内
+    （自然届满日前六个月（含）至届满日（不含））。门槛外的障碍不合格：
+    194 条不适用，届满保持自然届满日（`obstacle_before_window_not_qualified`；
+    Python 侧同合同 fail-closed 分支）。 -/
+def obstacleInLastSixMonths (c : LimitationClock) (onsetDay : Int) : Prop :=
+  naturalExpiry c - sixMonths ≤ onsetDay ∧ onsetDay < naturalExpiry c
+
+/-- 中文说明：194 条**届满**——合格中止下，自中止原因消除之日起满六个月，
+    诉讼时效期间届满（194 条末句的机器读数）。**不是**冻结剩余长度后继续：
+    剩余长度根本不进这个式子。 -/
+def suspensionExpiryAfter (removedDay : Int) : Int := removedDay + sixMonths
+
+/-- 中文证明（**中止不缩短期限**）：合格中止（门槛内发生、消除不早于发生）下，
+    194 条届满日不早于自然届满日——中止只会推迟，从不提前。 -/
+theorem suspension_never_shortens (c : LimitationClock) (onsetDay removedDay : Int)
+    (hGate : obstacleInLastSixMonths c onsetDay) (hWindow : onsetDay ≤ removedDay) :
+    naturalExpiry c ≤ suspensionExpiryAfter removedDay := by
+  obtain ⟨h1, _⟩ := hGate
+  simp only [naturalExpiry, suspensionExpiryAfter, sixMonths] at h1 ⊢
   linarith
+
+/-- 中文证明（**门槛必要**）：障碍发生在最后六个月开始之前的不合格——194 条
+    不给它六个月规则，届满不因之改变。 -/
+theorem obstacle_before_window_not_qualified (c : LimitationClock) (onsetDay : Int)
+    (h : onsetDay < naturalExpiry c - sixMonths) :
+    ¬ obstacleInLastSixMonths c onsetDay := by
+  intro hgate
+  obtain ⟨h1, _⟩ := hgate
+  linarith
+
+/-- 中文证明（**不能只续算剩余**）：只要障碍严格进入最后六个月（不是恰好踩在
+    六个月边界那一天开始），194 条届满日就**严格晚于**自然届满日——
+    "冻结剩余长度续算"（届满停在自然届满日附近）与条文不同形。 -/
+theorem suspension_strictly_delays_when_inside (c : LimitationClock)
+    (onsetDay removedDay : Int)
+    (hInside : naturalExpiry c - sixMonths < onsetDay) (hWindow : onsetDay ≤ removedDay) :
+    naturalExpiry c < suspensionExpiryAfter removedDay := by
+  simp only [naturalExpiry, suspensionExpiryAfter, sixMonths] at hInside ⊢
+  linarith
+
+/-- 中文证明（**中止推迟届满判定**）：合格中止下，按 194 条届满日已过
+    （d ≥ 消除日＋六个月）蕴含按自然期间也已届满——与旧件同名定理同一方向：
+    中止只把届满门槛往后挪。 -/
+theorem suspension_only_delays (c : LimitationClock) (onsetDay removedDay d : Int)
+    (hGate : obstacleInLastSixMonths c onsetDay) (hWindow : onsetDay ≤ removedDay)
+    (hSusp : suspensionExpiryAfter removedDay ≤ d) : expiredAt c d := by
+  have h := suspension_never_shortens c onsetDay removedDay hGate hWindow
+  simp only [naturalExpiry, suspensionExpiryAfter, limitationPeriod] at h
+  simp only [suspensionExpiryAfter] at hSusp
+  simp only [expiredAt, limitationPeriod]
+  linarith
+
+/-- 中文证明（**反例：剩余一个月≠只续一个月**）：起算日 0、三年期，自然届满日
+    1095。原期间只剩一个月（30 天）时（第 1065 天）发生合格障碍，次日（第 1066 天）
+    消除——194 条读数给届满日 **1246**（消除日＋180）；既不是自然届满日 1095
+    （"冻结续算"到原届满），也不是"续算剩余一个月"的 1096。这是 2026-10-08
+    审查指定的对照反例，机器读数如下。 -/
+theorem suspension_remaining_month_counterexample :
+    obstacleInLastSixMonths { startDay := 0 } 1065
+      ∧ suspensionExpiryAfter 1066 = 1246
+      ∧ suspensionExpiryAfter 1066 ≠ naturalExpiry { startDay := 0 } := by
+  unfold obstacleInLastSixMonths suspensionExpiryAfter naturalExpiry
+    limitationPeriod sixMonths
+  decide
 
 /-- 中文证明（**期间为正**）：三年期是非负期间——届满判定因此非空洞。 -/
 theorem limitationPeriod_pos : 0 < limitationPeriod := by

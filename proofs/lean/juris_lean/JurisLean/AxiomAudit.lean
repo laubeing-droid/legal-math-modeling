@@ -1320,8 +1320,12 @@ open HornSystem
 #print axioms JurisLean.Seams.Limitation.fashi13_art66Clause3_witness
 #print axioms JurisLean.Seams.Limitation.interruption_restarts_the_clock
 #print axioms JurisLean.Seams.Limitation.limitationPeriod_pos
+#print axioms JurisLean.Seams.Limitation.obstacle_before_window_not_qualified
 #print axioms JurisLean.Seams.Limitation.second_instance_still_owes_clarification
+#print axioms JurisLean.Seams.Limitation.suspension_never_shortens
 #print axioms JurisLean.Seams.Limitation.suspension_only_delays
+#print axioms JurisLean.Seams.Limitation.suspension_remaining_month_counterexample
+#print axioms JurisLean.Seams.Limitation.suspension_strictly_delays_when_inside
 #print axioms JurisLean.Seams.PayoffEquilibrium.abs_two_close
 #print axioms JurisLean.Seams.PayoffEquilibrium.approxNash_agrees_with_isNashPure_at_k10
 #print axioms JurisLean.Seams.PayoffEquilibrium.approxNash_legalPay_k10

@@ -90,9 +90,10 @@ theorem utility_invariant_under_display_rename (fg : FactoredGame P A C)
 
 /-! ## 三、悔恨界（G05 面） -/
 
-/-- 列表最大（空表 0；界引理要求非空）。 -/
+/-- 列表最大（空表 0；单元素直取；界引理要求非空）。 -/
 def maxQ : List ℚ → ℚ
   | [] => 0
+  | [x] => x
   | x :: xs => max x (maxQ xs)
 
 /-- 非空列表的整体最大不超过逐元素上界。 -/
@@ -112,20 +113,22 @@ theorem maxQ_le (l : List ℚ) (hne : l ≠ []) (B : ℚ)
 
 /-- 菜单内悔恨：最好偏离增益减现效用（经列表 max）。 -/
 def regret (g : NormGame P A) (s : ∀ p : P, A) (p : P) : ℚ :=
-  maxQ (g.menu p).map (fun a => g.u (dev s p a) p) - g.u s p
+  maxQ (List.map (fun a => g.u (dev s p a) p) (g.menu p)) - g.u s p
 
 /-- **悔恨界**：对菜单内每个替代都有松弛 B，则悔恨 ≤ B
     （证书式上界，不重算 maxQ）。 -/
 theorem case_regret_bound (g : NormGame P A) (s : ∀ p : P, A) (p : P) (B : ℚ)
     (hB : ∀ a ∈ g.menu p, g.u (dev s p a) p ≤ g.u s p + B) :
     regret g s p ≤ B := by
-  have h1 : ∀ x ∈ (g.menu p).map (fun a => g.u (dev s p a) p),
+  have h1 : ∀ x ∈ List.map (fun a => g.u (dev s p a) p) (g.menu p),
       x ≤ g.u s p + B := by
     intro x hx
     obtain ⟨a, ham, hxa⟩ := List.mem_map.mp hx
     subst hxa
     exact hB a ham
-  have hmax := maxQ_le _ (g.menuNonempty p) (g.u s p + B) h1
+  have hmapne : List.map (fun a => g.u (dev s p a) p) (g.menu p) ≠ [] := by
+    simp [g.menuNonempty p]
+  have hmax := maxQ_le _ hmapne (g.u s p + B) h1
   unfold regret
   linarith
 

@@ -24,6 +24,11 @@ biconditional below is the §4.3 factorization for this fragment:
 tree-level defeat is decided by the finite summary, path witnesses ride
 the actual positions.
 
+Proof skeleton: `Arg` is a NESTED inductive (recursion through List),
+which the `induction` tactic does not support — all recursion is driven
+through the FUEL parameter exactly as the repository's proved
+`edgeFuel_iff` does, with `cases` on the tree at each fuel level.
+
 STATUS: proved theorems pending their CI compile round (module check
 then root then full release); no `sorry`/`admit`/custom `axiom`/
 `: True :=`/`native_decide` appears here.
@@ -34,7 +39,8 @@ import JurisLean.FullMath.Logic.AttackCompilation
 
 namespace JurisLean.Seams.UnifiedArgumentation
 
-open JurisLean.FullMath.Logic (Rul Arg Contrary RuleContra Defeat)
+open JurisLean.FullMath.Logic (Rul Arg Contrary RuleContra Defeat
+  edgeFuel edgeFuel_iff)
 
 section Summary
 variable {A : Type} [DecidableEq A]
@@ -42,11 +48,12 @@ variable {A : Type} [DecidableEq A]
 /-- Every attackable position of a tree, as the finite target list the
 summary level reads: root conclusion, direct-child conclusions
 (undermine), the rule-license target (undercut), and all recursive
-positions (subargument lifting). -/
+positions (subargument lifting).  The cons/append nesting is explicit:
+the root rides the head of the FIRST segment. -/
 def attackTargets (rc : RuleContra A) : Arg A → List A
   | .leaf c => [c]
   | .node r ps =>
-      r.head :: ps.map Arg.concl ++ [rc r] ++ ps.flatMap (attackTargets rc)
+      (r.head :: ps.map Arg.concl) ++ ([rc r] ++ ps.flatMap (attackTargets rc))
 
 /-- The summary-level defeat predicate `D(s, t)` of §4.3 for this
 fragment: the attacker's head conclusion hits one of the target's
@@ -56,33 +63,32 @@ def summaryDefeat (con : Contrary A) (rc : RuleContra A)
     (s : A) (t : Arg A) : Prop :=
     ∃ x ∈ attackTargets rc t, con s x = true
 
-private theorem mem_cons_right {α : Type} {a b : α} {l : List α}
-    (h : a ∈ l) : a ∈ b :: l := List.mem_cons.mpr (Or.inr h)
-
-/-- The root conclusion is a target. -/
+/-- The root conclusion is a target (head of the first segment). -/
 theorem head_mem_attackTargets (rc : RuleContra A) (b : Arg A) :
     Arg.concl b ∈ attackTargets rc b := by
   cases b with
   | leaf c => simp [attackTargets, Arg.concl]
   | node r ps =>
-      show Arg.concl (.node r ps) ∈ _
       simp only [attackTargets, Arg.concl]
-      exact List.mem_cons.mpr (Or.inl rfl)
+      exact List.mem_append.mpr
+        (Or.inl (List.mem_cons.mpr (Or.inl rfl)))
 
 /-- A direct child's conclusion is a target of the parent. -/
 theorem child_concl_mem_attackTargets {rc : RuleContra A} {r : Rul A}
     {ps : List (Arg A)} {p : Arg A} (hp : p ∈ ps) :
     Arg.concl p ∈ attackTargets rc (.node r ps) := by
   simp only [attackTargets]
-  exact mem_cons_right (List.mem_append.mpr
-    (Or.inl (List.mem_map_of_mem (f := Arg.concl) hp)))
+  exact List.mem_append.mpr
+    (Or.inl (List.mem_cons.mpr
+      (Or.inr (List.mem_map_of_mem (f := Arg.concl) hp))))
 
 /-- The rule-license target is a target. -/
 theorem rule_target_mem_attackTargets {rc : RuleContra A} {r : Rul A}
     {ps : List (Arg A)} : rc r ∈ attackTargets rc (.node r ps) := by
   simp only [attackTargets]
-  exact mem_cons_right (List.mem_append.mpr
-    (Or.inr (List.mem_append.mpr (Or.inl (List.mem_singleton.mpr rfl)))))
+  exact List.mem_append.mpr
+    (Or.inr (List.mem_append.mpr
+      (Or.inl (List.mem_singleton.mpr rfl))))
 
 /-- A position of a direct child appears in the parent's target list. -/
 theorem mem_attackTargets_of_child {rc : RuleContra A} {r : Rul A}
@@ -90,9 +96,18 @@ theorem mem_attackTargets_of_child {rc : RuleContra A} {r : Rul A}
     (hp : p ∈ ps) (hx : x ∈ attackTargets rc p) :
     x ∈ attackTargets rc (.node r ps) := by
   simp only [attackTargets]
-  exact mem_cons_right (List.mem_append.mpr
+  exact List.mem_append.mpr
     (Or.inr (List.mem_append.mpr
-      (Or.inr (List.mem_flatMap_of_mem hp hx)))))
+      (Or.inr (List.mem_flatMap_of_mem hp hx))))
+
+/-- A child's height is below the node's (fuel descent). -/
+private theorem child_height_lt (r : Rul A) (ps : List (Arg A))
+    (p : Arg A) (hp : p ∈ ps) (k : ℕ)
+    (hk : Arg.height (.node r ps) ≤ k + 1) : Arg.height p ≤ k := by
+  have hfoldp : Arg.height p ≤ (ps.map Arg.height).foldr max 0 :=
+    foldr_max_le _ (Arg.height p) (List.mem_map_of_mem hp)
+  simp only [Arg.height] at hk
+  omega
 
 end Summary
 
@@ -100,117 +115,134 @@ section Factorization
 variable {A : Type} [DecidableEq A]
 
 /-- The compiled checker at sufficient fuel hits exactly the summary
-positions.  Structural induction on the target tree; the recursive
-disjunct of `edgeFuel` is transferred through the child's hypothesis
-(the nested recursor provides `ih` per child of the list). -/
+positions.  Recursion is driven through the fuel parameter (`Arg` is a
+nested inductive; `induction` does not apply) with `cases` on the tree
+— the same skeleton as the repository's proved `edgeFuel_iff`. -/
 private theorem edgeFuel_iff_summaryDefeat (con : Contrary A)
     (rc : RuleContra A) (a : Arg A) :
-    ∀ (b : Arg A) (k : ℕ), Arg.height b ≤ k →
+    ∀ (k : ℕ) (b : Arg A), Arg.height b ≤ k →
       (edgeFuel con rc a b k = true ↔
         summaryDefeat con rc (Arg.concl a) b) := by
-  intro b
-  induction b with
-  | leaf c =>
-      intro k _
-      simp only [edgeFuel, summaryDefeat, attackTargets, List.mem_singleton]
-      exact ⟨fun h => ⟨c, rfl, h⟩, fun ⟨_, _, h⟩ => h⟩
-  | node r ps ih =>
-      intro k hk
-      match k with
-      | 0 =>
-          have h1 : 1 ≤ Arg.height (.node r ps) := by
-            simp only [Arg.height]
-            omega
-          omega
-      | k + 1 =>
-          have hstep : ∀ p ∈ ps, Arg.height p ≤ k := by
-            intro p hp
-            have hfoldp : Arg.height p ≤ (ps.map Arg.height).foldr max 0 :=
-              foldr_max_le _ (Arg.height p) (List.mem_map_of_mem hp)
-            simp only [Arg.height] at hk
-            omega
+  intro k
+  induction k with
+  | zero =>
+      intro b hb
+      cases b with
+      | leaf c =>
+          simp only [edgeFuel, summaryDefeat, attackTargets]
+          exact ⟨fun h => ⟨c, List.mem_singleton.mpr rfl, h⟩,
+            fun hc => by
+              obtain ⟨x, hx, h⟩ := hc
+              have hxc : x = c := List.mem_singleton.mp hx
+              subst hxc
+              exact h⟩
+      | node r ps => omega
+  | succ k ih =>
+      intro b hb
+      cases b with
+      | leaf c =>
+          simp only [edgeFuel, summaryDefeat, attackTargets]
+          exact ⟨fun h => ⟨c, List.mem_singleton.mpr rfl, h⟩,
+            fun hc => by
+              obtain ⟨x, hx, h⟩ := hc
+              have hxc : x = c := List.mem_singleton.mp hx
+              subst hxc
+              exact h⟩
+      | node r ps =>
           simp only [edgeFuel, Bool.or_eq_true, List.any_eq_true, or_assoc,
                      summaryDefeat, attackTargets, exists_or]
           constructor
           · rintro (h1 | ⟨p, hp, h2⟩ | h3 | ⟨p, hp, h4⟩)
-            · exact ⟨r.head, List.mem_cons.mpr (Or.inl rfl), h1⟩
-            · exact ⟨Arg.concl p, mem_cons_right (List.mem_append.mpr
-                (Or.inl (List.mem_map_of_mem hp))), h2⟩
-            · exact ⟨rc r, mem_cons_right (List.mem_append.mpr
-                (Or.inr (List.mem_append.mpr
-                  (Or.inl (List.mem_singleton.mpr rfl))))), h3⟩
-            · obtain ⟨x, hx, hcon⟩ := (ih p hp k (hstep p hp)).mp h4
-              exact ⟨x, mem_cons_right (List.mem_append.mpr
-                (Or.inr (List.mem_append.mpr
-                  (Or.inr (List.mem_flatMap_of_mem hp hx))))), hcon⟩
+            · exact ⟨r.head, head_mem_attackTargets rc (.node r ps), h1⟩
+            · exact ⟨Arg.concl p, child_concl_mem_attackTargets hp, h2⟩
+            · exact ⟨rc r, rule_target_mem_attackTargets, h3⟩
+            · obtain ⟨x, hx, hcon⟩ :=
+                (ih p (child_height_lt r ps p hp k hb)).mp h4
+              exact ⟨x, mem_attackTargets_of_child hp hx, hcon⟩
           · rintro ⟨x, hx, hcon⟩
-            rcases List.mem_cons.mp hx with hx | hx
-            · subst hx
-              exact Or.inl hcon
-            · rcases List.mem_append.mp hx with hx | hx
+            rcases List.mem_append.mp hx with hx | hx
+            · rcases List.mem_cons.mp hx with hx | hx
+              · subst hx
+                exact Or.inl hcon
               · obtain ⟨p, hp, hpx⟩ := List.mem_map.mp hx
                 subst hpx
                 exact Or.inr (Or.inl ⟨p, hp, hcon⟩)
-              · rcases List.mem_append.mp hx with hx | hx
-                · have hx' : x = rc r := List.mem_singleton.mp hx
-                  subst hx'
-                  exact Or.inr (Or.inr (Or.inl hcon))
-                · obtain ⟨p, hp, hxp⟩ := List.mem_flatMap.mp hx
-                  exact Or.inr (Or.inr (Or.inr
-                    ⟨p, hp, (ih p hp k (hstep p hp)).mpr ⟨x, hxp, hcon⟩⟩))
+            · rcases List.mem_append.mp hx with hx | hx
+              · have hx' : x = rc r := List.mem_singleton.mp hx
+                subst hx'
+                exact Or.inr (Or.inr (Or.inl hcon))
+              · obtain ⟨p, hp, hxp⟩ := List.mem_flatMap.mp hx
+                exact Or.inr (Or.inr (Or.inr
+                  ⟨p, hp, (ih p (child_height_lt r ps p hp k hb)).mpr
+                    ⟨x, hxp, hcon⟩⟩))
 
 /-- §4.3 factorization, soundness direction: every tree-level defeat is
 witnessed by a position in the target's summary list — via the
 repository's proved `edgeFuel_iff` reflection at fuel = the target's
-height, transferred to the summary by the lemma above. -/
+height, transferred to the summary by the bridge lemma above. -/
 theorem defeat_implies_summaryDefeat {con : Contrary A} {rc : RuleContra A}
     {a b : Arg A} (h : Defeat A con rc a b) :
     summaryDefeat con rc (Arg.concl a) b :=
-  (edgeFuel_iff_summaryDefeat con rc a b (Arg.height b) (le_refl _)).mp
+  (edgeFuel_iff_summaryDefeat con rc a (Arg.height b) b (le_refl _)).mp
     ((edgeFuel_iff con rc a (Arg.height b) b (le_refl _)).mpr h)
 
 /-- §4.3 factorization, completeness direction: every summary-level hit
 is realized by a tree-level defeat of the GIVEN attacker — the
 constructors read the attacker only through its conclusion, and the
 summary hit supplies exactly that clash.  Path witnesses ride the real
-child positions (lift chain). -/
+child positions (the lift chain descends with the fuel). -/
 theorem summaryDefeat_implies_defeat {con : Contrary A} {rc : RuleContra A}
-    (a : Arg A) : ∀ b : Arg A,
+    (a : Arg A) : ∀ (k : ℕ) (b : Arg A), Arg.height b ≤ k →
       summaryDefeat con rc (Arg.concl a) b → Defeat A con rc a b := by
-  intro b
-  induction b with
-  | leaf c =>
-      intro ⟨x, hx, hcon⟩
-      simp only [attackTargets] at hx
-      have hx' : x = c := List.mem_singleton.mp hx
-      subst hx'
-      exact Defeat.rebut a (.leaf c) hcon
-  | node r ps ih =>
-      intro ⟨x, hx, hcon⟩
-      simp only [attackTargets] at hx
-      rcases List.mem_cons.mp hx with hx | hx
-      · subst hx
-        exact Defeat.rebut a (.node r ps) hcon
-      · rcases List.mem_append.mp hx with hx | hx
-        · obtain ⟨p, hp, hpx⟩ := List.mem_map.mp hx
-          subst hpx
-          exact Defeat.undermine a r ps p hp hcon
-        · rcases List.mem_append.mp hx with hx | hx
-          · have hx' : x = rc r := List.mem_singleton.mp hx
-            subst hx'
-            exact Defeat.undercut a r ps hcon
-          · obtain ⟨p, hp, hxp⟩ := List.mem_flatMap.mp hx
-            exact Defeat.lift a r ps p hp (ih p ⟨x, hxp, hcon⟩)
+  intro k
+  induction k with
+  | zero =>
+      intro b hb hsum
+      cases b with
+      | leaf c =>
+          obtain ⟨x, hx, hcon⟩ := hsum
+          simp only [attackTargets] at hx
+          have hxc : x = c := List.mem_singleton.mp hx
+          subst hxc
+          exact Defeat.rebut a (.leaf c) hcon
+      | node r ps => omega
+  | succ k ih =>
+      intro b hb hsum
+      cases b with
+      | leaf c =>
+          obtain ⟨x, hx, hcon⟩ := hsum
+          simp only [attackTargets] at hx
+          have hxc : x = c := List.mem_singleton.mp hx
+          subst hxc
+          exact Defeat.rebut a (.leaf c) hcon
+      | node r ps =>
+          obtain ⟨x, hx, hcon⟩ := hsum
+          simp only [attackTargets] at hx
+          rcases List.mem_append.mp hx with hx | hx
+          · rcases List.mem_cons.mp hx with hx | hx
+            · subst hx
+              exact Defeat.rebut a (.node r ps) hcon
+            · obtain ⟨p, hp, hpx⟩ := List.mem_map.mp hx
+              subst hpx
+              exact Defeat.undermine a r ps p hp hcon
+          · rcases List.mem_append.mp hx with hx | hx
+            · have hx' : x = rc r := List.mem_singleton.mp hx
+              subst hx'
+              exact Defeat.undercut a r ps hcon
+            · obtain ⟨p, hp, hxp⟩ := List.mem_flatMap.mp hx
+              exact Defeat.lift a r ps p hp
+                (ih p (child_height_lt r ps p hp k hb) ⟨x, hxp, hcon⟩)
 
 /-- §4.3 factorization for this fragment — the full biconditional:
 tree-level defeat between two argument trees is DECIDED by the finite
 summary observables (the attacker's head conclusion and the target's
-position list).  The two halves above compose directly; no tree shape,
-fuel, or identity leaks into the deciding side. -/
+position list).  The two halves compose at fuel = the target's height;
+no tree shape, fuel, or identity leaks into the deciding side. -/
 theorem defeat_iff_summaryDefeat (con : Contrary A) (rc : RuleContra A)
     (a b : Arg A) :
     Defeat A con rc a b ↔ summaryDefeat con rc (Arg.concl a) b :=
-  ⟨defeat_implies_summaryDefeat, summaryDefeat_implies_defeat a b⟩
+  ⟨defeat_implies_summaryDefeat,
+    fun h => summaryDefeat_implies_defeat a (Arg.height b) b (le_refl _) h⟩
 
 end Factorization
 

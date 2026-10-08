@@ -252,4 +252,115 @@ theorem defeat_iff_summaryDefeat (con : Contrary A) (rc : RuleContra A)
 
 end Factorization
 
+section GateKinds
+variable {A : Type} [DecidableEq A]
+
+/-! ### The four gate kinds (§4.3 rows exception / authority / scope /
+procedure), following the `rc`-perimeter pattern.
+
+A gate attack does NOT clash with a conclusion: the attacker's
+conclusion IS the named `GateBlocked g` atom, and the attack lands on
+the target's use of the guarded rule.  The guard perimeter is
+`gatePerimeter : Rul A → List A` — for each rule the (finite) list of
+gate-block atoms its guarded slots license.  Reading it through
+`attackTargets` would conflate gate hits with clashes, so the gate
+target list is separate: `gateTargets` collects the perimeter atoms of
+every rule in the tree.  No preference is consulted for any gate kind
+(§4.3: only rebut/undermine read `Stronger`). -/
+
+/-- The gate perimeter of a rule: the atoms `GateBlocked g` that block
+its guarded uses.  Carried by the environment, like `rc`. -/
+abbrev GatePerimeter (A : Type) := Rul A → List A
+
+/-- Gate attack kinds (§4.3).  All four share the same clause shape:
+the attacker concludes exactly the gate-block atom of a guarded slot the
+target actually uses; they differ only in the guard kind, which lives
+in the perimeter's tag. -/
+inductive GateDefeat (A : Type) (gp : GatePerimeter A) :
+    Arg A → Arg A → Prop
+  /-- Gate hit on the target's own rule use. -/
+  | gate (a : Arg A) (r : Rul A) (ps : List (Arg A))
+      (hg : Arg.concl a ∈ gp r) :
+      GateDefeat A gp a (.node r ps)
+  /-- Subargument lifting of a gate hit. -/
+  | lift (a : Arg A) (r : Rul A) (ps : List (Arg A)) (p : Arg A)
+      (hp : p ∈ ps) (h : GateDefeat A gp a p) :
+      GateDefeat A gp a (.node r ps)
+
+/-- Every guard atom of every rule in the tree — the finite gate-target
+list the summary level reads. -/
+def gateTargets (gp : GatePerimeter A) : Arg A → List A
+  | .leaf _ => []
+  | .node r ps => gp r ++ ps.flatMap (gateTargets gp)
+
+/-- The summary-level gate predicate: the attacker's head conclusion is
+one of the tree's guard atoms.  Reads only the head observable and the
+gate-target list — never the trees. -/
+def summaryGateDefeat (gp : GatePerimeter A) (s : A) (t : Arg A) : Prop :=
+    s ∈ gateTargets gp t
+
+/-- The perimeter of the target's own rule is in the gate list. -/
+theorem own_gate_mem_gateTargets {gp : GatePerimeter A} {r : Rul A}
+    {ps : List (Arg A)} {x : A} (hx : x ∈ gp r) :
+    x ∈ gateTargets gp (.node r ps) := by
+  simp only [gateTargets]
+  exact List.mem_append.mpr (Or.inl hx)
+
+/-- A child's gate position is in the parent's gate list. -/
+theorem mem_gateTargets_of_child {gp : GatePerimeter A} {r : Rul A}
+    {ps : List (Arg A)} {p : Arg A} {x : A}
+    (hp : p ∈ ps) (hx : x ∈ gateTargets gp p) :
+    x ∈ gateTargets gp (.node r ps) := by
+  simp only [gateTargets]
+  exact List.mem_append.mpr
+    (Or.inr (List.mem_flatMap_of_mem hp hx))
+
+/-- §4.3 gate factorization, soundness: every gate defeat is witnessed
+by the attacker's conclusion in the gate-target list. -/
+theorem gateDefeat_implies_summary {gp : GatePerimeter A} {a b : Arg A}
+    (h : GateDefeat A gp a b) : summaryGateDefeat gp (Arg.concl a) b := by
+  induction h with
+  | gate a r ps hg => exact own_gate_mem_gateTargets hg
+  | lift a r ps p hp h ih => exact mem_gateTargets_of_child hp ih
+
+/-- §4.3 gate factorization, completeness: every summary-level gate hit
+is realized by a gate defeat — fuel-driven recursion on the tree
+(`induction` is unavailable on the nested `Arg`). -/
+theorem summary_implies_gateDefeat (gp : GatePerimeter A) (a : Arg A) :
+    ∀ (k : ℕ) (b : Arg A), Arg.height b ≤ k →
+      summaryGateDefeat gp (Arg.concl a) b → GateDefeat A gp a b := by
+  intro k
+  induction k with
+  | zero =>
+      intro b hb _
+      cases b with
+      | leaf _ => exact absurd hb (by simp only [Arg.height]; omega)
+      | node r ps =>
+          simp only [Arg.height] at hb
+          omega
+  | succ k ih =>
+      intro b hb hsum
+      cases b with
+      | leaf _ =>
+          simp only [gateTargets] at hsum
+          exact absurd hsum (List.not_mem_nil _)
+      | node r ps =>
+          simp only [gateTargets] at hsum
+          rcases List.mem_append.mp hsum with hg | hg
+          · exact GateDefeat.gate a r ps hg
+          · obtain ⟨p, hp, hxp⟩ := List.mem_flatMap.mp hg
+            exact GateDefeat.lift a r ps p hp
+              (ih p (child_height_lt r ps p hp k hb) hxp)
+
+/-- §4.3 gate factorization — the full biconditional for the four gate
+kinds (exception / authority / scope / procedure share the clause
+shape; the kind tag rides the perimeter). -/
+theorem gateDefeat_iff_summaryDefeat (gp : GatePerimeter A)
+    (a b : Arg A) :
+    GateDefeat A gp a b ↔ summaryGateDefeat gp (Arg.concl a) b :=
+  ⟨gateDefeat_implies_summary,
+    fun h => summary_implies_gateDefeat gp a (Arg.height b) b (le_refl _) h⟩
+
+end GateKinds
+
 end JurisLean.Seams.UnifiedArgumentation

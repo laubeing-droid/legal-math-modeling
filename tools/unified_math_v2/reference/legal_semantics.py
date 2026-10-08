@@ -89,9 +89,13 @@ def _inline_stable(
     return True
 
 
-def _inline_universe_nodes(case: CaseInput, env: LegalEnvironment):
+def _inline_universe_nodes(case: CaseInput, env: LegalEnvironment,
+                           selection=frozenset()):
     """(node_id, claim, is_strong) triples — the checker's own reading of
-    the fragment's construction rules."""
+    the fragment's construction rules: facts are W-DIRECT only; bases
+    create no nodes; StrongBasis comes ONLY from named sufficiency
+    templates whose premises are admitted, whose named failures are
+    unmet, and whose license rule is inside the selection."""
 
     nodes = []
     for f in case.fact_records:
@@ -99,23 +103,55 @@ def _inline_universe_nodes(case: CaseInput, env: LegalEnvironment):
             nodes.append((f"fact:{f.fact_id}",
                           _claim_key(f.proposition.predicate, f.proposition.polar),
                           False))
+    admitted_predicates = {
+        f.proposition.predicate for f in case.fact_records
+        if f.standing is FactStanding.ADMITTED_POSITIVE
+    }
+    negated_predicates = {
+        f.proposition.predicate for f in case.fact_records
+        if f.standing is FactStanding.EXPLICIT_NEGATION
+    }
+    for template in env.strong_templates:
+        if template.license_rule_id and template.license_rule_id not in selection:
+            continue
+        if not all(p in admitted_predicates for p in template.premise_predicates):
+            continue
+        if any(p in negated_predicates for p in template.failure_predicates):
+            continue
+        nodes.append(
+            (f"template:{template.template_id}",
+             _claim_key(template.conclusion_predicate, Polar.POS), True)
+        )
+    return tuple(nodes)
+
+
+_SPECIAL_KINDS = frozenset({
+    "JUDICIAL_ADMISSION", "FORENSIC_EXEMPT", "FINAL_BINDING",
+    "EVIDENCE_OBSTRUCTION",
+})
+
+
+def _inline_special_establishments(case: CaseInput, env: LegalEnvironment,
+                                   selection=frozenset()):
+    """The checker's own re-derivation of the special channels."""
+
     admitted = {
         f.fact_id for f in case.fact_records
         if f.standing is FactStanding.ADMITTED_POSITIVE
     }
-    negated = {
-        f.fact_id for f in case.fact_records
-        if f.standing is FactStanding.EXPLICIT_NEGATION
-    }
+    out = set()
     for basis in env.admission_bases:
-        if basis.premise_refs and all(r in admitted for r in basis.premise_refs):
-            if any(b in negated for b in basis.block_refs):
-                continue
-            strong = basis.kind in (BasisKind.ORDINARY_SUPPORT, BasisKind.PRESUMPTION)
-            nodes.append(
-                (f"basis:{basis.basis_id}", _claim_key(basis.issue_id, Polar.POS), strong)
-            )
-    return tuple(nodes)
+        if basis.kind.value not in _SPECIAL_KINDS:
+            continue
+        if basis.license_rule_id and basis.license_rule_id not in selection:
+            continue
+        if not basis.premise_refs or not all(r in admitted for r in basis.premise_refs):
+            continue
+        # block references name admitted revocation/defeat events
+        if any(b in admitted for b in basis.block_refs):
+            continue
+        out.add(basis.issue_id)
+    return frozenset(out)
 
 
 def _inline_civil_high(
@@ -166,13 +202,14 @@ def check_case_run(
                                 + "; ".join(actual.failures))
     candidates = _inline_candidates(case, env)
     exclusions = _inline_exclusions(env)
-    universe_nodes = _inline_universe_nodes(case, env)
-    node_ids = {n for n, _c, _s in universe_nodes}
     problems: list = []
 
     for branch in actual.branches:
         if not _inline_stable(branch.selection, candidates, exclusions):
             problems.append(f"unstable selection {sorted(branch.selection)}")
+        universe_nodes = _inline_universe_nodes(case, env, branch.selection)
+        special = _inline_special_establishments(case, env, branch.selection)
+        node_ids = {n for n, _c, _s in universe_nodes}
         # extension: conflict-free and self-defending over the branch's
         # own standards witnesses — we re-check the In/Out split reported
         # implicitly through outcomes; the fragment reports In via
@@ -193,7 +230,9 @@ def check_case_run(
         for claim, outcome, finalization in zip(
             case.claims, branch.standards, branch.finalizations
         ):
-            expected = _inline_finalize(outcome.civil_high, ready=True)
+            expected = _inline_finalize(
+                outcome.civil_high or claim.basis in special, ready=True
+            )
             if finalization.judgment is not expected:
                 problems.append(
                     f"finalization mismatch for {claim.claim_id}: "

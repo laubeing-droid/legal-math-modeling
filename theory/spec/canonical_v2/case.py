@@ -324,7 +324,43 @@ class BasisKind(str, Enum):
 
 
 @dataclass(frozen=True)
+class StrongTemplate:
+    """A NAMED sufficiency template (plan §5.3.2 W-STRONG, §5.3.4 loan
+    template, §5.3.5 S1–S6): the only source of StrongBasis.  The
+    template itself declares which premise predicates license strong
+    support for WHICH conclusion predicate, plus its named failure
+    predicates (具名败因) and the rule that licenses it.  An admission
+    basis never carries a conclusion or a strength — only templates do.
+
+    ``license_rule_id`` binds the template to a LegalRuleRecord: the
+    template fires only in norm selections that adopt that rule (empty
+    means selection-independent)."""
+
+    template_id: str
+    kind: str  # LOAN_DELIVERY | S1_DIRECT | S2_RECORD | ... (open domain)
+    scope_issue: str
+    premise_predicates: Tuple[str, ...]
+    conclusion_predicate: str
+    failure_predicates: Tuple[str, ...] = ()
+    license_rule_id: str = ""
+    source_id: str = ""
+
+    def __post_init__(self) -> None:
+        if not self.template_id or not self.kind or not self.source_id:
+            raise ValueError("template requires id, kind and source")
+        if not self.premise_predicates or not self.conclusion_predicate:
+            raise ValueError("a sufficiency template names premises and its conclusion")
+
+
+@dataclass(frozen=True)
 class AdmissionBasis:
+    """A material-reference record for an admission channel.  It NEVER
+    carries a conclusion predicate or a strength: ordinary support
+    creates nothing by itself, and special channels (judicial
+    admission, forensic exemption, final binding, evidence obstruction)
+    establish their ISSUE directly when their premises hold.  An
+    optional license rule binds the channel to a norm selection."""
+
     basis_id: str
     kind: BasisKind
     issue_id: str
@@ -334,6 +370,7 @@ class AdmissionBasis:
     premise_refs: Tuple[str, ...] = ()
     block_refs: Tuple[str, ...] = ()
     authorization_refs: Tuple[str, ...] = ()
+    license_rule_id: str = ""
 
 
 @dataclass(frozen=True)
@@ -380,6 +417,7 @@ class LegalEnvironment:
     environment_id: str
     jurisdiction: Jurisdiction
     rules: Tuple[LegalRuleRecord, ...] = ()
+    strong_templates: Tuple[StrongTemplate, ...] = ()
     interpretation_policy_id: str = ""
     authorized_assessments: Tuple[AuthorizedAssessment, ...] = ()
     admission_bases: Tuple[AdmissionBasis, ...] = ()
@@ -395,6 +433,9 @@ class LegalEnvironment:
         basis_ids = [b.basis_id for b in self.admission_bases]
         if len(set(basis_ids)) != len(basis_ids):
             raise ValueError("duplicate admission basis ids")
+        template_ids = [t.template_id for t in self.strong_templates]
+        if len(set(template_ids)) != len(template_ids):
+            raise ValueError("duplicate strong template ids")
 
 
 @dataclass(frozen=True)

@@ -1,6 +1,11 @@
-"""WP-8 tests: the composed run_case main chain and its independent
-checker (J.6.1 / J.7): loan fragment, burden failure variant, R
-non-interference, and tamper detection."""
+"""WP-8/round-2 tests: the template-licensed main chain (J.6.1 / J.7).
+
+Review round-2 contract: StrongBasis exists ONLY as an instantiation of
+a named sufficiency template; admission bases carry materials (never a
+conclusion or a strength); special channels (judicial admission, …)
+establish their issue directly without conferring StrongBasis; licensed
+templates fire only in selections adopting their rule.
+"""
 
 from fractions import Fraction as Q
 from unittest import TestCase
@@ -16,10 +21,14 @@ from theory.spec.canonical_v2.case import (
     FactRecord,
     FactStanding,
     LegalEnvironment,
+    LegalRuleRecord,
+    Modality,
     Polar,
     ProcessState,
+    RuleKind,
     RunStatus,
     ScopedAtom,
+    StrongTemplate,
 )
 from theory.spec.canonical_v2.kernel import (
     Judgment,
@@ -64,16 +73,17 @@ def _case(facts, claims=None, defenses=()):
     )
 
 
-def _env(bases=(), rules=()):
+def _env(bases=(), rules=(), templates=()):
     return LegalEnvironment(
         environment_id="env-1",
         jurisdiction=Jurisdiction(route=JurisdictionRoute.MAINLAND),
         admission_bases=tuple(bases),
         rules=tuple(rules),
+        strong_templates=tuple(templates),
     )
 
 
-def _strong_loan_facts():
+def _loan_facts():
     """contract + final settlement + receipt confirmation (§5.3.4)."""
     return [
         FactRecord("f-contract", _atom("contract_signed"), FactStanding.ADMITTED_POSITIVE,
@@ -85,70 +95,158 @@ def _strong_loan_facts():
     ]
 
 
-class RunCaseLoanTests(TestCase):
-    def test_delivery_established_with_strong_basis(self):
-        case = _case(_strong_loan_facts())
-        env = _env(bases=(
-            AdmissionBasis(
-                "b-delivery", BasisKind.ORDINARY_SUPPORT, "loan", "C", "trial", "v1",
-                premise_refs=("f-contract", "f-settlement", "f-receipt"),
-            ),
-        ))
+def _loan_template(license_rule=""):
+    return StrongTemplate(
+        template_id="tpl-loan-delivery",
+        kind="LOAN_DELIVERY",
+        scope_issue="loan",
+        premise_predicates=("contract_signed", "final_settlement",
+                            "receipt_confirmed"),
+        conclusion_predicate="loan",
+        failure_predicates=("ref_matches_existing_goods_payment",),
+        license_rule_id=license_rule,
+        source_id="evidence-rules:strong-loan",
+    )
+
+
+class TemplateChannelTests(TestCase):
+    def test_template_fires_and_establishes(self):
+        case = _case(_loan_facts())
+        env = _env(templates=(_loan_template(),))
         run = run_case(case, env)
         self.assertIs(run.status, RunStatus.COMPLETE)
-        self.assertTrue(run.branches)
-        judgments = run.judgments_of("c1")
-        self.assertIn(Judgment.ESTABLISHED, judgments)
-        report = check_case_run(case, env, run)
-        self.assertTrue(report.ok, report.reasons)
+        self.assertIn(Judgment.ESTABLISHED, run.judgments_of("c1"))
+        self.assertTrue(check_case_run(case, env, run).ok)
 
-    def test_no_materials_burden_failure(self):
-        """h⁻: only the claimant's own favorable statement — no basis
-        fires, the burden table returns NOT_ESTABLISHED (never a factual
-        negation)."""
-        facts = [FactRecord("f-say", _atom("claimant_says"), FactStanding.ADMITTED_POSITIVE,
-                            produced_at=1, known_at=1)]
-        case = _case(facts)
+    def test_backdoor_closed_no_template_no_strong(self):
+        """Admitted loan materials WITHOUT a named template establish
+        nothing: the conclusion can no longer ride in through a basis
+        record (reviewer finding 3)."""
+        case = _case(_loan_facts())
         env = _env(bases=(
-            AdmissionBasis("b-delivery", BasisKind.ORDINARY_SUPPORT, "loan", "C",
+            # an ORDINARY_SUPPORT basis referencing the same materials
+            AdmissionBasis("b-ord", BasisKind.ORDINARY_SUPPORT, "loan", "C",
                            "trial", "v1",
                            premise_refs=("f-contract", "f-settlement", "f-receipt")),
         ))
         run = run_case(case, env)
-        judgments = run.judgments_of("c1")
-        self.assertTrue(judgments)
-        self.assertIn(Judgment.NOT_ESTABLISHED, judgments)
-        report = check_case_run(case, env, run)
-        self.assertTrue(report.ok, report.reasons)
+        # ordinary support alone is W-DIRECT: burden table decides
+        self.assertIn(Judgment.NOT_ESTABLISHED, run.judgments_of("c1"))
+        self.assertTrue(check_case_run(case, env, run).ok)
 
-    def test_blocked_basis_does_not_fire(self):
-        """An explicit negation among the block refs kills the basis."""
-        facts = _strong_loan_facts() + [
-            FactRecord("f-fraud", _atom("contract_void"), FactStanding.EXPLICIT_NEGATION,
-                       produced_at=4, known_at=4),
+    def test_template_blocked_by_named_failure(self):
+        """The goods-payment counterexample (§5.3.4): an explicit
+        negation of a named failure predicate blocks the template."""
+        facts = _loan_facts() + [
+            FactRecord("f-goods", _atom("ref_matches_existing_goods_payment"),
+                       FactStanding.EXPLICIT_NEGATION, produced_at=4, known_at=4),
         ]
         case = _case(facts)
-        env = _env(bases=(
-            AdmissionBasis(
-                "b-delivery", BasisKind.ORDINARY_SUPPORT, "loan", "C", "trial", "v1",
-                premise_refs=("f-contract", "f-settlement", "f-receipt"),
-                block_refs=("f-fraud",),
-            ),
-        ))
+        env = _env(templates=(_loan_template(),))
         run = run_case(case, env)
         self.assertIn(Judgment.NOT_ESTABLISHED, run.judgments_of("c1"))
         self.assertTrue(check_case_run(case, env, run).ok)
 
-    def test_r_noninterference(self):
-        """Same knowledge view, different hidden R: identical outputs
-        (J.6.1 noninterference pair)."""
+    def test_missing_premise_blocks_template(self):
+        facts = _loan_facts()[:2]  # no receipt confirmation
+        case = _case(facts)
+        env = _env(templates=(_loan_template(),))
+        run = run_case(case, env)
+        self.assertIn(Judgment.NOT_ESTABLISHED, run.judgments_of("c1"))
 
-        facts = _strong_loan_facts()
+    def test_license_rule_gates_template_by_selection(self):
+        """A licensed template fires only in selections adopting its
+        rule: norm selections now actually change the outcome (reviewer
+        finding 18 — selection consumption for the strong channel)."""
+        rule = LegalRuleRecord(
+            rule_id="r-old",
+            kind=RuleKind.STRICT_HORN,
+            premises=(_atom("contract_signed"),),
+            conclusion=_atom("loan"),
+            modality=Modality.OBLIGATION,
+            source_id="old:1",
+        ).with_validity("MAINLAND", from_day=0, to_day=5)  # expired by day 10
+        case = _case(_loan_facts())
+        env = _env(templates=(_loan_template(license_rule="r-old"),),
+                   rules=(rule,))
+        run = run_case(case, env)
+        # the licensed rule lapsed, so the empty selection is the only
+        # branch and the template cannot fire there
+        self.assertTrue(run.branches)
+        for branch in run.branches:
+            self.assertNotIn("r-old", branch.selection)
+        self.assertIn(Judgment.NOT_ESTABLISHED, run.judgments_of("c1"))
+        self.assertTrue(check_case_run(case, env, run).ok)
+
+    def test_active_license_rule_lets_template_fire(self):
+        rule = LegalRuleRecord(
+            rule_id="r-live",
+            kind=RuleKind.STRICT_HORN,
+            premises=(_atom("contract_signed"),),
+            conclusion=_atom("loan"),
+            modality=Modality.OBLIGATION,
+            source_id="live:1",
+        )
+        case = _case(_loan_facts())
+        env = _env(templates=(_loan_template(license_rule="r-live"),),
+                   rules=(rule,))
+        run = run_case(case, env)
+        self.assertIn(Judgment.ESTABLISHED, run.judgments_of("c1"))
+        self.assertTrue(check_case_run(case, env, run).ok)
+
+    def test_special_channel_establishes_without_strong(self):
+        """A judicial admission establishes its issue directly — the
+        §5.3.3 independent path that never confers StrongBasis."""
+        facts = [FactRecord("f-admit", _atom("court_admission"),
+                            FactStanding.ADMITTED_POSITIVE,
+                            produced_at=1, known_at=1)]
+        case = _case(facts)
         env = _env(bases=(
-            AdmissionBasis("b-delivery", BasisKind.ORDINARY_SUPPORT, "loan", "C",
-                           "trial", "v1",
-                           premise_refs=("f-contract", "f-settlement", "f-receipt")),
+            AdmissionBasis("b-admit", BasisKind.JUDICIAL_ADMISSION, "loan", "D",
+                           "trial", "v1", premise_refs=("f-admit",)),
         ))
+        run = run_case(case, env)
+        self.assertIn(Judgment.ESTABLISHED, run.judgments_of("c1"))
+        # but no StrongBasis exists — the ordinary standard did not fire
+        for branch in run.branches:
+            self.assertTrue(
+                all(not s.civil_high or s.strong_in for s in branch.standards)
+            )
+            # civil_high alone would be False; establishment came from
+            # the special channel
+            self.assertFalse(branch.standards[0].civil_high)
+        self.assertTrue(check_case_run(case, env, run).ok)
+
+    def test_special_channel_blocked_by_negation(self):
+        facts = [
+            FactRecord("f-admit", _atom("court_admission"),
+                       FactStanding.ADMITTED_POSITIVE,
+                       produced_at=1, known_at=1),
+            FactRecord("f-revoked", _atom("admission_revoked"),
+                       FactStanding.ADMITTED_POSITIVE,
+                       produced_at=2, known_at=2),
+        ]
+        case = _case(facts)
+        env = _env(bases=(
+            AdmissionBasis("b-admit", BasisKind.JUDICIAL_ADMISSION, "loan", "D",
+                           "trial", "v1", premise_refs=("f-admit",),
+                           block_refs=("f-revoked",)),
+        ))
+        run = run_case(case, env)
+        self.assertIn(Judgment.NOT_ESTABLISHED, run.judgments_of("c1"))
+
+    def test_no_materials_burden_failure(self):
+        facts = [FactRecord("f-say", _atom("claimant_says"),
+                            FactStanding.ADMITTED_POSITIVE,
+                            produced_at=1, known_at=1)]
+        case = _case(facts)
+        run = run_case(case, _env())
+        self.assertIn(Judgment.NOT_ESTABLISHED, run.judgments_of("c1"))
+        self.assertTrue(check_case_run(case, _env(), run).ok)
+
+    def test_r_noninterference(self):
+        facts = _loan_facts()
+        env = _env(templates=(_loan_template(),))
         case_a = _case(facts)
         hidden = (Relation("secret-1", ("C", "D"), "side_agreement"),)
         case_b = CaseInput(
@@ -166,33 +264,14 @@ class RunCaseLoanTests(TestCase):
         run_a = run_case(case_a, env)
         run_b = run_case(case_b, env)
         self.assertEqual(run_a.branches, run_b.branches)
-        self.assertEqual(run_a.judgments_of("c1"), run_b.judgments_of("c1"))
-
-    def test_technical_failure_is_failed_not_verdict(self):
-        env = _env()
-        # environment with a broken rule record cannot even be built; a
-        # failing case is simulated by an env whose validity window
-        # excludes everything — that is a PAUSED/EMPTY diagnosis, not a
-        # verdict.  A crashed run must surface FAILED.
-        case = _case(_strong_loan_facts())
-        run = run_case(case, env)
-        self.assertIn(run.status, (RunStatus.COMPLETE, RunStatus.PAUSED))
-        # no admission bases at all: every claim hits the burden table
-        self.assertIn(Judgment.NOT_ESTABLISHED, run.judgments_of("c1"))
 
 
 class CheckerTamperTests(TestCase):
     def test_checker_catches_tampered_standard(self):
-        """M3-style mutation: flip a branch's CivilHigh outcome; the
-        independent checker must reject the run."""
         from dataclasses import replace
 
-        case = _case(_strong_loan_facts())
-        env = _env(bases=(
-            AdmissionBasis("b-delivery", BasisKind.ORDINARY_SUPPORT, "loan", "C",
-                           "trial", "v1",
-                           premise_refs=("f-contract", "f-settlement", "f-receipt")),
-        ))
+        case = _case(_loan_facts())
+        env = _env(templates=(_loan_template(),))
         run = run_case(case, env)
         self.assertTrue(check_case_run(case, env, run).ok)
         branch = run.branches[0]
@@ -213,7 +292,57 @@ class CheckerTamperTests(TestCase):
         case = _case([FactRecord("f-say", _atom("claimant_says"),
                                  FactStanding.ADMITTED_POSITIVE,
                                  produced_at=1, known_at=1)])
-        env = _env()
+        run = run_case(case, _env())
+        self.assertTrue(check_case_run(case, _env(), run).ok)
+        branch = run.branches[0]
+        fake = replace(
+            branch.finalizations[0],
+            judgment=Judgment.ESTABLISHED,
+            basis=FinalBasis.POS,
+        )
+        tampered = replace(
+            run, branches=(replace(branch, finalizations=(fake,)),)
+        )
+        report = check_case_run(case, _env(), tampered)
+        self.assertFalse(report.ok)
+        self.assertTrue(any("finalization mismatch" in r for r in report.reasons))
+
+    def test_checker_catches_unstable_selection(self):
+        from dataclasses import replace
+
+        rule = LegalRuleRecord(
+            rule_id="r-loan",
+            kind=RuleKind.STRICT_HORN,
+            premises=(_atom("contract_signed"), _atom("final_settlement")),
+            conclusion=_atom("loan"),
+            modality=Modality.OBLIGATION,
+            source_id="civil:577",
+        )
+        case = _case(_loan_facts())
+        env = _env(templates=(_loan_template(),), rules=(rule,))
+        run = run_case(case, env)
+        self.assertTrue(check_case_run(case, env, run).ok)
+        branch = run.branches[0]
+        tampered = replace(
+            run, branches=(replace(branch, selection=frozenset()),)
+        )
+        report = check_case_run(case, env, tampered)
+        self.assertFalse(report.ok)
+        self.assertTrue(any("unstable selection" in r for r in report.reasons))
+
+    def test_checker_catches_conclusion_smuggling(self):
+        """The closed backdoor, verified from the checker side: an
+        ORDINARY_SUPPORT basis must never establish its issue."""
+        from dataclasses import replace
+
+        from unified.standards import FinalBasis
+
+        case = _case(_loan_facts())
+        env = _env(bases=(
+            AdmissionBasis("b-ord", BasisKind.ORDINARY_SUPPORT, "loan", "C",
+                           "trial", "v1",
+                           premise_refs=("f-contract", "f-settlement", "f-receipt")),
+        ))
         run = run_case(case, env)
         self.assertTrue(check_case_run(case, env, run).ok)
         branch = run.branches[0]
@@ -227,38 +356,3 @@ class CheckerTamperTests(TestCase):
         )
         report = check_case_run(case, env, tampered)
         self.assertFalse(report.ok)
-        self.assertTrue(any("finalization mismatch" in r for r in report.reasons))
-
-    def test_checker_catches_unstable_selection(self):
-        from dataclasses import replace
-
-        from theory.spec.canonical_v2.case import (
-            LegalRuleRecord,
-            Modality,
-            RuleKind,
-        )
-
-        rule = LegalRuleRecord(
-            rule_id="r-loan",
-            kind=RuleKind.STRICT_HORN,
-            premises=(_atom("contract_signed"), _atom("final_settlement")),
-            conclusion=_atom("loan"),
-            modality=Modality.OBLIGATION,
-            source_id="civil:577",
-        )
-        case = _case(_strong_loan_facts())
-        env = _env(bases=(
-            AdmissionBasis("b-delivery", BasisKind.ORDINARY_SUPPORT, "loan", "C",
-                           "trial", "v1",
-                           premise_refs=("f-contract", "f-settlement", "f-receipt")),
-        ), rules=(rule,))
-        run = run_case(case, env)
-        self.assertTrue(check_case_run(case, env, run).ok)
-        branch = run.branches[0]
-        # an empty selection leaves the isolated candidate unadopted
-        tampered = replace(
-            run, branches=(replace(branch, selection=frozenset()),)
-        )
-        report = check_case_run(case, env, tampered)
-        self.assertFalse(report.ok)
-        self.assertTrue(any("unstable selection" in r for r in report.reasons))

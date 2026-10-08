@@ -89,10 +89,18 @@ def build_reason_universe(
     case: CaseInput, env: LegalEnvironment, selection: frozenset
 ) -> ReasonUniverse:
     """Reason nodes from the case's own materials under one norm
-    selection: admitted positive facts are W-DIRECT reasons; admission
-    bases whose premises are admitted and blocks unmet instantiate
-    W-STRONG strong-basis nodes for their issue (the strong template's
-    local conditions ride in the basis record, never a verdict)."""
+    selection (reviewer findings 2/3/18 fixed):
+
+    * admitted positive facts are W-DIRECT reasons — nothing more;
+    * an admission basis NEVER carries a conclusion or a strength: it
+      only references materials, and creates no reason node at all
+      (special channels are consumed in finalization instead);
+    * StrongBasis exists ONLY as an instantiation of a NAMED
+      sufficiency template from the environment: the template declares
+      which premise predicates license strong support for which
+      conclusion, plus its named failure predicates; a licensed rule
+      binds the template to the norm selection, so selections now
+      actually change the reason universe."""
 
     facts = case.fact_records
     reasons = [
@@ -106,40 +114,49 @@ def build_reason_universe(
         for f in facts
         if f.standing is FactStanding.ADMITTED_POSITIVE
     ]
+    admitted_predicates = {
+        f.proposition.predicate for f in facts
+        if f.standing is FactStanding.ADMITTED_POSITIVE
+    }
+    negated_predicates = {
+        f.proposition.predicate for f in facts
+        if f.standing is FactStanding.EXPLICIT_NEGATION
+    }
     admitted_ids = {
         f.fact_id for f in facts
         if f.standing is FactStanding.ADMITTED_POSITIVE
     }
-    blocked_ids = {
-        f.fact_id for f in facts
-        if f.standing is FactStanding.EXPLICIT_NEGATION
-    }
-    for basis in env.admission_bases:
-        if basis.premise_refs and all(r in admitted_ids for r in basis.premise_refs):
-            if any(b in blocked_ids for b in basis.block_refs):
-                continue
-            issue_claim = _claim_key(basis.issue_id, Polar.POS)
-            conditions = tuple(basis.premise_refs) + (basis.basis_id,)
-            warrant = (
-                WarrantKind.W_STRONG
-                if basis.kind in (BasisKind.ORDINARY_SUPPORT, BasisKind.PRESUMPTION)
-                else WarrantKind.W_DIRECT
+    for template in env.strong_templates:
+        # selection consumption: a licensed template fires only when its
+        # rule is among the adopted candidates
+        if template.license_rule_id and template.license_rule_id not in selection:
+            continue
+        # every premise predicate must be admitted positively
+        if not all(p in admitted_predicates for p in template.premise_predicates):
+            continue
+        # a named failure predicate explicitly negated blocks the template
+        if any(p in negated_predicates for p in template.failure_predicates):
+            continue
+        matched = tuple(
+            f.fact_id for f in facts
+            if f.standing is FactStanding.ADMITTED_POSITIVE
+            and f.proposition.predicate in template.premise_predicates
+        )
+        reasons.append(
+            ReasonNode(
+                node_id=f"template:{template.template_id}",
+                claim=_claim_key(template.conclusion_predicate, Polar.POS),
+                polar=Polar.POS,
+                kind=WarrantKind.W_STRONG,
+                leaves=frozenset(matched),
+                warrant_id=template.template_id,
+                conditions=matched + (template.template_id,),
             )
-            reasons.append(
-                ReasonNode(
-                    node_id=f"basis:{basis.basis_id}",
-                    claim=issue_claim,
-                    polar=Polar.POS,
-                    kind=warrant,
-                    leaves=frozenset(basis.premise_refs),
-                    warrant_id=basis.basis_id,
-                    conditions=conditions if warrant is WarrantKind.W_STRONG else (),
-                )
-            )
-    del selection  # the fragment's bases are not selection-indexed yet
-    # Contrary closure over ALL reason claims (facts AND basis issues):
-    # a strong reason for x is a material counter against ~x whenever
-    # both claim keys occur in the universe (reviewer finding 1).
+        )
+    del admitted_ids
+    # Contrary closure over ALL reason claims (facts AND template
+    # conclusions): a strong reason for x is a material counter against
+    # ~x whenever both claim keys occur in the universe.
     claim_keys = {r.claim for r in reasons}
     contraries = frozenset(
         (c, "~" + c[1:] if c.startswith("~") else "~" + c)
@@ -147,6 +164,47 @@ def build_reason_universe(
         if ("~" + c[1:] if c.startswith("~") else "~" + c) in claim_keys
     )
     return ReasonUniverse(reasons=tuple(reasons), contraries=contraries)
+
+
+SPECIAL_ESTABLISHMENT_KINDS = frozenset({
+    BasisKind.JUDICIAL_ADMISSION,
+    BasisKind.FORENSIC_EXEMPT,
+    BasisKind.FINAL_BINDING,
+    BasisKind.EVIDENCE_OBSTRUCTION,
+})
+
+
+def active_special_establishments(
+    case: CaseInput, env: LegalEnvironment, selection: frozenset
+) -> frozenset:
+    """Issues established by SPECIAL channels (§5.3.3: 自认、免证等走
+    独立特别路径): an admission basis of a special kind whose premises
+    are all admitted and whose blocks are unmet establishes its issue
+    directly — it never passes through the ordinary-support standard
+    and never confers StrongBasis."""
+
+    facts = case.fact_records
+    admitted_ids = {
+        f.fact_id for f in facts
+        if f.standing is FactStanding.ADMITTED_POSITIVE
+    }
+    established: set = set()
+    for basis in env.admission_bases:
+        if basis.kind not in SPECIAL_ESTABLISHMENT_KINDS:
+            continue
+        if basis.license_rule_id and basis.license_rule_id not in selection:
+            continue
+        if not basis.premise_refs or not all(
+            r in admitted_ids for r in basis.premise_refs
+        ):
+            continue
+        # a block reference names an ADMITTED revocation/defeat EVENT
+        # (11.1: 依法裁定撤销则撤去该依据) — a positive fact, not a
+        # negation of the premise
+        if any(b in admitted_ids for b in basis.block_refs):
+            continue
+        established.add(basis.issue_id)
+    return frozenset(established)
 
 
 def run_case(
@@ -180,6 +238,7 @@ def run_case(
             selections = selection_result.selections
         for selection in selections:
             universe = build_reason_universe(case, env, selection)
+            special = active_special_establishments(case, env, selection)
             graph = build_reason_graph(universe)
             for view in extension_view(universe, graph):
                 standards = tuple(
@@ -190,7 +249,14 @@ def run_case(
                 for claim, outcome in zip(case.claims, standards):
                     defense_blockers = frozenset()
                     elements = (
-                        ElementStatus(claim.basis, outcome.civil_high),
+                        # E(q): ordinary standard OR an active special
+                        # channel (self-admission, exemption, final
+                        # binding, obstruction) — separate paths that
+                        # never confer StrongBasis.
+                        ElementStatus(
+                            claim.basis,
+                            outcome.civil_high or claim.basis in special,
+                        ),
                     )
                     stage_ready = True
                     proc = getattr(case.initial_state, "stages", ())

@@ -217,7 +217,6 @@ theorem admission_reaches_fixed_point (admitted₀ U : Finset F)
               = admittedStep s bases := by
             rw [hs]
             rfl
-          rw [hnext] at hcard0
           have hcard1 : U.card ≤ (admittedStep s bases).card + d := by omega
           obtain ⟨m, hm1, hm2, hfixm⟩ :=
             ih (admittedStep s bases) (k + 1) hnext.symm

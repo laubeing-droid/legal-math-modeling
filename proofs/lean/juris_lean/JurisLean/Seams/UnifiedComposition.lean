@@ -35,7 +35,7 @@ summary saturation) and are not claimed here.
 namespace JurisLean.Seams.UnifiedComposition
 
 open JurisLean.Seams.UnifiedFinalization (IssueInputs Judgment FinalBasis
-  finalizeIssue LegalFinal)
+  finalizeIssue LegalFinal finalize_representation_exact)
 
 variable {P : Type} [DecidableEq P]
 
@@ -43,7 +43,7 @@ variable {P : Type} [DecidableEq P]
 
 /-- 准入快照（P 为前提/争点载体）：已采纳集合、活反证、负担未立、四穷尽、需要认定。
     程序就绪恒真（本片段只做实体面；程序门是 finalizeIssue 的另一输入位）。 -/
-structure Snapshot where
+structure Snapshot (P : Type) where
   /-- 已采纳前提集合。 -/
   admitted : Finset P
   /-- 活的实质反证集合。 -/
@@ -59,8 +59,8 @@ structure Snapshot where
   /-- 需要认定。 -/
   need : Bool
 
-/-- 桥：快照 → 终结表输入（要件全立 := 前提全部在已采纳集 ∧ 无活反证）。 -/
-def deriveInputs (s : Snapshot P) : IssueInputs where
+/-- 桥：快照 → 终结表输入（要件全立 := 前提全部在已采纳集∧无活反证）。 -/
+def deriveInputs [DecidableEq P] (s : Snapshot P) : IssueInputs where
   ready := true
   blockers := decide (s.counterEvidence ≠ ∅)
   allEstablished := decide (s.premises ⊆ s.admitted)
@@ -70,7 +70,7 @@ def deriveInputs (s : Snapshot P) : IssueInputs where
   need := s.need
 
 /-- 合成语义关系：快照经桥映射后按层E的合法终结关系判定。 -/
-def CompositeLegal (s : Snapshot P) (o : Judgment × FinalBasis) : Prop :=
+def CompositeLegal [DecidableEq P] (s : Snapshot P) (o : Judgment × FinalBasis) : Prop :=
   LegalFinal (deriveInputs s) o
 
 /-- **合成精确性**：管线输出恰由合成语义关系外延给定

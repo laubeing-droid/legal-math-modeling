@@ -34336,28 +34336,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "6b44d777c4c10460e9849e3560b7371b4c5da9bcdc9baa38fc4f136ecac1db0b",
+ "source_inventory_digest": "2ea47cbb3da67ba98ed15f2f23f4811c7511115081ca57f33d614da1fd73b98b",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "cb3c0363b19182e2724a7c2f051350ae7a9eddfc",
-  "tree": "6b40eacaed9e6d68e3ea3fa261259e5fc44a598c"
+  "commit": "5a0167a2c8bc855b8232e393a21539a52c3d6543",
+  "tree": "abcdc8e53b1eb2b758e4f2682f44bc2bfe6747f3"
  },
  "subject_binding": {
-  "binding": "STALE_SUBJECT",
-  "files_diverging_from_subject": [
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean.lean",
-    "reason": "bytes differ from subject"
-   }
-  ],
+  "binding": "BOUND_TO_SUBJECT",
+  "files_diverging_from_subject": [],
   "files_total": 325,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": true
+  "worktree_dirty_under_proofs": false
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

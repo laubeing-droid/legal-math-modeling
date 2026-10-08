@@ -14,10 +14,10 @@ exactly the grants of valid bases — never a caller-fed verdict.
 
 U08 `accepted_has_legal_basis`: every fact admitted after `n` rounds
 either was admitted initially or is the grant of a basis VALID AT SOME
-ROUND m ≤ n — the round at which its admission was licensed.  (Validity
-is NOT claimed to persist forward: a later-admitted block can revoke a
-basis's validity at later rounds; the witness is anchored to the
-licensing round.)
+ROUND m ≤ n — the round at which its admission was licensed.
+(Validity is NOT claimed to persist forward: a later-admitted block
+can revoke a basis's validity at later rounds; the witness is anchored
+to the licensing round.)
 
 U09: burden scoping, two facts.  `burden_failure_issue_scoped`: the
 notEstablished consequence of §5.2's final-burden rule lands ONLY on
@@ -29,7 +29,7 @@ leave the burden unmet while the world makes the issue true.
 
 U10 `admission_reaches_fixed_point`: over a finite fact universe the
 monotone admitted sequence reaches a fixed point within `card U` steps
-(each strict growth strictly increases the cardinality; strong
+(each strict growth strictly increases the cardinality; budget
 induction on the remaining count).
 
 STATUS: proved theorems pending their CI compile round (module check
@@ -61,7 +61,7 @@ structure AdmissionBasis (F I : Type) where
   grants : F
 
 section Rounds
-variable {F I : Type} [DecidableEq F] [DecidableEq I]
+variable {F I : Type} [DecidableEq F]
 
 /-- Basis validity under the admitted facts: every premise admitted,
 no block admitted. -/
@@ -90,6 +90,24 @@ theorem basisValidB_iff (admitted : Finset F) (b : AdmissionBasis F I) :
     basisValidB admitted b = true ↔ BasisValid admitted b := by
   simp [basisValidB, BasisValid]
 
+/-- Membership in the step's image part, decomposed once and reused:
+a fact is granted by the step exactly when some basis of the table,
+valid under `s`, grants it. -/
+theorem mem_step_grants_iff (s : Finset F)
+    (bases : Finset (AdmissionBasis F I)) (f : F) :
+    f ∈ (bases.filter (fun b => basisValidB s b)).image
+        (fun b => b.grants) ↔
+    ∃ b ∈ bases, BasisValid s b ∧ b.grants = f := by
+  constructor
+  · intro h
+    obtain ⟨b, hb, hgrant⟩ := Finset.mem_image.mp h
+    obtain ⟨hb1, hb2⟩ := Finset.mem_filter.mp hb
+    exact ⟨b, hb1, (basisValidB_iff s b).mp hb2, hgrant⟩
+  · rintro ⟨b, hbmem, hval, rfl⟩
+    exact Finset.mem_image.mpr
+      ⟨b, Finset.mem_filter.mpr ⟨hbmem, (basisValidB_iff s b).mpr hval⟩,
+       rfl⟩
+
 /-- **U08** — every fact admitted after `n` rounds carries a legal
 basis: it was admitted initially, or it is the grant of a basis valid
 at some round m ≤ n (the round that licensed its admission). -/
@@ -105,23 +123,36 @@ theorem accepted_has_legal_basis (admitted₀ : Finset F)
       exact Or.inl hf
   | succ n ih =>
       intro f hf
-      simp only [admittedRounds, admittedStep, Finset.mem_union] at hf
+      rw [admittedRounds, admittedStep, Finset.mem_union] at hf
       rcases hf with hf | hf
-      · rcases ih f hf with h0 | ⟨b, hbmem, m, hm, hval, hgrant⟩
+      · rcases ih hf with h0 | ⟨b, hbmem, m, hm, hval, hgrant⟩
         · exact Or.inl h0
-        · exact Or.inr ⟨b, hbmem, m, by omega, hval, hgrant⟩
-      · simp only [Finset.mem_filter, Finset.mem_image] at hf
-        obtain ⟨b, hbmem, hvalb, hgrant⟩ := hf
-        refine Or.inr ⟨b, hbmem, n, le_refl _, ?_, hgrant⟩
-        exact (basisValidB_iff _ b).mp hvalb
+        · exact Or.inr ⟨b, hbmem, m, Nat.le_succ_of_le hm, hval, hgrant⟩
+      · rw [mem_step_grants_iff] at hf
+        obtain ⟨b, hbmem, hval, hgrant⟩ := hf
+        exact Or.inr ⟨b, hbmem, n, le_refl _, hval, hgrant⟩
 
 /-- The step is monotone in the admitted set. -/
 theorem admittedStep_mono (s : Finset F)
     (bases : Finset (AdmissionBasis F I)) :
     s ⊆ admittedStep s bases := by
   intro f hf
-  simp only [admittedStep, Finset.mem_union]
+  rw [admittedStep, Finset.mem_union]
   exact Or.inl hf
+
+/-- The step stays inside the universe. -/
+theorem admittedStep_bounded (s U : Finset F)
+    (bases : Finset (AdmissionBasis F I))
+    (hs : s ⊆ U) (hgrant : ∀ b ∈ bases, b.grants ∈ U) :
+    admittedStep s bases ⊆ U := by
+  intro f hf
+  rw [admittedStep, Finset.mem_union] at hf
+  rcases hf with hf | hf
+  · exact hs hf
+  · rw [mem_step_grants_iff] at hf
+    obtain ⟨b, hbmem, _, hgrant'⟩ := hf
+    rw [← hgrant']
+    exact hgrant b hbmem
 
 /-- Every round is bounded by a universe containing the initial facts
 and every grant. -/
@@ -134,40 +165,8 @@ theorem admittedRounds_bounded (admitted₀ U : Finset F)
   | zero => exact h₀
   | succ n ih =>
       intro f hf
-      simp only [admittedRounds, admittedStep, Finset.mem_union] at hf
-      rcases hf with hf | hf
-      · exact ih f hf
-      · simp only [Finset.mem_filter, Finset.mem_image] at hf
-        obtain ⟨b, hbmem, _, hgrant⟩ := hf
-        rw [← hgrant]
-        exact hgrant b hbmem
-
-/-- A fact newly admitted by a step is the grant of a basis valid
-before the step. -/
-private theorem new_grant_has_valid_basis (s : Finset F)
-    (bases : Finset (AdmissionBasis F I)) (f : F)
-    (hmem : f ∈ admittedStep s bases) (hnew : f ∉ s) :
-    ∃ b ∈ bases, BasisValid s b ∧ b.grants = f := by
-  simp only [admittedStep, Finset.mem_union] at hmem
-  rcases hmem with hold | himg
-  · exact absurd hold hnew
-  · simp only [Finset.mem_filter, Finset.mem_image] at himg
-    obtain ⟨b, hbmem, hvalb, hgrant⟩ := himg
-    exact ⟨b, hbmem, (basisValidB_iff s b).mp hvalb, hgrant⟩
-
-/-- The step stays inside the universe. -/
-private theorem admittedStep_bounded (s U : Finset F)
-    (bases : Finset (AdmissionBasis F I))
-    (hs : s ⊆ U) (hgrant : ∀ b ∈ bases, b.grants ∈ U) :
-    admittedStep s bases ⊆ U := by
-  intro f hf
-  simp only [admittedStep, Finset.mem_union] at hf
-  rcases hf with hf | hf
-  · exact hs f hf
-  · simp only [Finset.mem_filter, Finset.mem_image] at hf
-    obtain ⟨b, hbmem, _, hgrant'⟩ := hf
-    rw [← hgrant']
-    exact hgrant b hbmem
+      rw [admittedRounds] at hf
+      exact admittedStep_bounded _ U bases ih hgrant hf
 
 /-- **U10** — the monotone bounded admission sequence reaches a fixed
 point within the universe's cardinality budget: induction on the
@@ -190,19 +189,17 @@ theorem admission_reaches_fixed_point (admitted₀ U : Finset F)
     induction d with
     | zero =>
         intro s k hs hsub hcard
-        -- budget exhausted: s fills U, and the step adds nothing new
-        have hsU : s = U := by
-          apply Finset.eq_of_subset_of_card_le hsub
-          omega
+        have hsU : s = U :=
+          Finset.eq_of_subset_of_card_le hsub (by omega)
         have hstepsub : admittedStep s bases ⊆ U :=
           admittedStep_bounded s U bases hsub hgrant
-        have hfix : admittedStep s bases = s := by
-          apply Finset.eq_of_subset_of_card_le
-            · exact admittedStep_mono s bases
-            · have hsu : s.card = U.card := by rw [hsU]
+        have hfix : admittedStep s bases = s :=
+          Finset.eq_of_subset_of_card_le (admittedStep_mono s bases)
+            (by
+              have hsu : s.card = U.card := by rw [hsU]
               have hstep : (admittedStep s bases).card ≤ U.card :=
                 Finset.card_le_card.mpr hstepsub
-              omega
+              omega)
         rw [← hs] at hfix
         exact ⟨k, le_refl _, by omega, hfix⟩
     | succ d ih =>
@@ -214,7 +211,6 @@ theorem admission_reaches_fixed_point (admitted₀ U : Finset F)
             admittedStep_mono s bases
           have hcard0 : s.card < (admittedStep s bases).card :=
             Finset.card_lt_card hsub0 (fun heq => hfix heq.symm)
-          -- restart from round k+1 with budget d
           have hnext : admittedRounds admitted₀ bases (k + 1)
               = admittedStep s bases := by
             rw [hs]

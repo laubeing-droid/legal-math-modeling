@@ -125,12 +125,12 @@ theorem accepted_has_legal_basis (admitted₀ : Finset F)
       intro f hf
       rw [admittedRounds, admittedStep, Finset.mem_union] at hf
       rcases hf with hf | hf
-      · rcases ih hf with h0 | ⟨b, hbmem, m, hm, hval, hgrant⟩
+      · rcases ih f hf with h0 | ⟨b, hbmem, m, hm, hval, hgrant⟩
         · exact Or.inl h0
         · exact Or.inr ⟨b, hbmem, m, Nat.le_succ_of_le hm, hval, hgrant⟩
       · rw [mem_step_grants_iff] at hf
         obtain ⟨b, hbmem, hval, hgrant⟩ := hf
-        exact Or.inr ⟨b, hbmem, n, le_refl _, hval, hgrant⟩
+        exact Or.inr ⟨b, hbmem, n, Nat.le_succ n, hval, hgrant⟩
 
 /-- The step is monotone in the admitted set. -/
 theorem admittedStep_mono (s : Finset F)
@@ -194,18 +194,15 @@ theorem admission_reaches_fixed_point (admitted₀ U : Finset F)
         have hstepsub : admittedStep s bases ⊆ U :=
           admittedStep_bounded s U bases hsub hgrant
         have hfix : admittedStep s bases = s :=
-          Finset.eq_of_subset_of_card_le (admittedStep_mono s bases)
-            (by
-              have hsu : s.card = U.card := by rw [hsU]
-              have hstep : (admittedStep s bases).card ≤ U.card :=
-                Finset.card_le_card.mpr hstepsub
-              omega)
-        rw [← hs] at hfix
+          Finset.Subset.antisymm
+            (by rw [← hsU]; exact hstepsub)
+            (admittedStep_mono s bases)
+        rw [hs] at hfix
         exact ⟨k, le_refl _, by omega, hfix⟩
     | succ d ih =>
         intro s k hs hsub hcard
         by_cases hfix : admittedStep s bases = s
-        · rw [← hs] at hfix
+        · rw [hs] at hfix
           exact ⟨k, le_refl _, by omega, hfix⟩
         · have hsub0 : s ⊆ admittedStep s bases :=
             admittedStep_mono s bases

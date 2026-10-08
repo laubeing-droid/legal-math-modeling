@@ -562,6 +562,7 @@
     "JurisLean.Seams.UnifiedInstance",
     "JurisLean.Seams.UnifiedQuantities",
     "JurisLean.Seams.UnifiedSemantics",
+    "JurisLean.Seams.UnifiedUtility",
     "JurisLean.TaintNoninterference",
     "JurisLean.ULMAxiomAudit",
     "JurisLean.WeightedSupNorm"
@@ -2542,6 +2543,14 @@
     "JurisLean.Seams.UnifiedSemantics.escalation_only_has_no_stable_selection",
     "JurisLean.Seams.UnifiedSemantics.isolated_in_every_stable_selection",
     "JurisLean.Seams.UnifiedSemantics.mem_enumerateStable_iff",
+    "JurisLean.Seams.UnifiedUtility.case_regret_bound",
+    "JurisLean.Seams.UnifiedUtility.equilibrium_does_not_assert_occurrence",
+    "JurisLean.Seams.UnifiedUtility.maxQ_le",
+    "JurisLean.Seams.UnifiedUtility.pennies_all_playable",
+    "JurisLean.Seams.UnifiedUtility.pennies_menu_full",
+    "JurisLean.Seams.UnifiedUtility.pennies_no_pure_nash",
+    "JurisLean.Seams.UnifiedUtility.utility_factorization_through_consequences",
+    "JurisLean.Seams.UnifiedUtility.utility_invariant_under_display_rename",
     "JurisLean.Seams.bridge_distinguishes_two_statuses",
     "JurisLean.Seams.bridge_not_injective_at_dismissed",
     "JurisLean.Seams.bridge_partial_inverse_established",
@@ -3033,8 +3042,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "1f309606aea8b5d7d00f23903430c6f45c40f724ccd7df47bf0faa32549128d2",
-   "size_bytes": 173005,
+   "sha256": "d4c575ca0d7cdd2279f2e2ed126fe16427f30c0390414cd5ff51e246082c97ab",
+   "size_bytes": 173611,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -30017,6 +30026,88 @@
    "declarations": [
     {
      "kind": "structure",
+     "name": "NormGame"
+    },
+    {
+     "kind": "def",
+     "name": "playable"
+    },
+    {
+     "kind": "def",
+     "name": "dev"
+    },
+    {
+     "kind": "def",
+     "name": "pureNash"
+    },
+    {
+     "kind": "structure",
+     "name": "FactoredGame"
+    },
+    {
+     "kind": "def",
+     "name": "FactoredGame.utility"
+    },
+    {
+     "kind": "theorem",
+     "name": "utility_factorization_through_consequences"
+    },
+    {
+     "kind": "theorem",
+     "name": "utility_invariant_under_display_rename"
+    },
+    {
+     "kind": "def",
+     "name": "maxQ"
+    },
+    {
+     "kind": "theorem",
+     "name": "maxQ_le"
+    },
+    {
+     "kind": "def",
+     "name": "regret"
+    },
+    {
+     "kind": "theorem",
+     "name": "case_regret_bound"
+    },
+    {
+     "kind": "def",
+     "name": "pennies"
+    },
+    {
+     "kind": "theorem",
+     "name": "pennies_menu_full"
+    },
+    {
+     "kind": "theorem",
+     "name": "pennies_all_playable"
+    },
+    {
+     "kind": "theorem",
+     "name": "pennies_no_pure_nash"
+    },
+    {
+     "kind": "theorem",
+     "name": "equilibrium_does_not_assert_occurrence"
+    }
+   ],
+   "imports": [
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedUtility.lean",
+   "print_axioms_targets": [],
+   "sha256": "4b6ab0ab6525efe3776fbd1922642b14ba8097ffd64b22725a19f1ad0c8e42d0",
+   "size_bytes": 8577,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
      "name": "SMTModelWitness"
     },
     {
@@ -33609,6 +33700,7 @@
     "JurisLean.Seams.UnifiedInstance",
     "JurisLean.Seams.UnifiedQuantities",
     "JurisLean.Seams.UnifiedSemantics",
+    "JurisLean.Seams.UnifiedUtility",
     "JurisLean.SolverRouting",
     "JurisLean.SourceBundleSpec",
     "JurisLean.SourcePathSpec",
@@ -33643,8 +33735,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "0876e9055d31cdc8e46ace9f75d2f537a1b91792ab240a03f9eacaacb9d7a124",
-   "size_bytes": 9238,
+   "sha256": "e4bcb11f74a2a90f69e0a644d7a000bb1df63fcd744556a4ffa99c87398dfaa6",
+   "size_bytes": 9276,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -33808,22 +33900,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3844,
-   "file_count": 327,
+   "counted_declaration_count": 3852,
+   "file_count": 328,
    "lemma_count": 141,
-   "print_axioms_command_count": 2726,
-   "print_axioms_distinct_targets": 2672,
-   "theorem_count": 3703,
-   "theorem_count_bol_convention": 3607
+   "print_axioms_command_count": 2734,
+   "print_axioms_distinct_targets": 2680,
+   "theorem_count": 3711,
+   "theorem_count_bol_convention": 3615
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3825,
-   "file_count": 312,
+   "counted_declaration_count": 3833,
+   "file_count": 313,
    "lemma_count": 134,
-   "print_axioms_command_count": 2726,
-   "print_axioms_distinct_targets": 2672,
-   "theorem_count": 3691,
-   "theorem_count_bol_convention": 3595
+   "print_axioms_command_count": 2734,
+   "print_axioms_distinct_targets": 2680,
+   "theorem_count": 3699,
+   "theorem_count_bol_convention": 3603
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -34117,6 +34209,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantities.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedUtility.lean",
    "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
    "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
    "proofs/lean/juris_lean/JurisLean/SourcePathSpec.lean",
@@ -34442,6 +34535,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantities.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedUtility.lean",
    "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
    "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
    "proofs/lean/juris_lean/JurisLean/SourcePathSpec.lean",
@@ -34519,17 +34613,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "28d94d02ea09b1024bd53275ec1a3535d054e2c87aae480eec913c6dbca48fd7",
+ "source_inventory_digest": "766c5cd497ba1892a8426963670adb71bdf521e23b6decf51d354a435090a202",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "92df927732b9e8a566faa47903a6dcde4cffb97a",
-  "tree": "781ac791b310f9d27ee84c1eb7f27be239568577"
+  "commit": "9d418c4c99dc87c840a9466830c994b0aafa58a9",
+  "tree": "316d4dcc8de4855112b6315b3d1d0897144f495f"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 327,
+  "files_total": 328,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

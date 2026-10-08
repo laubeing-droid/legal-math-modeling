@@ -29424,6 +29424,52 @@
    "declarations": [
     {
      "kind": "structure",
+     "name": "SelectionProfile"
+    },
+    {
+     "kind": "def",
+     "name": "ProfileWF"
+    },
+    {
+     "kind": "def",
+     "name": "StableSelection"
+    },
+    {
+     "kind": "def",
+     "name": "isolated_in_every_stable_selection"
+    },
+    {
+     "kind": "def",
+     "name": "escalation_only_has_no_stable_selection"
+    },
+    {
+     "kind": "def",
+     "name": "abcProfile"
+    },
+    {
+     "kind": "def",
+     "name": "abc_stable_AC"
+    },
+    {
+     "kind": "def",
+     "name": "abc_A_alone_unstable"
+    }
+   ],
+   "imports": [
+    "Mathlib.Data.Finset.Basic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
+   "print_axioms_targets": [],
+   "sha256": "8eef4f76ce6132d5154b2c9effcd84f1075cab93e905ec6c0923f96ede6ce987",
+   "size_bytes": 4293,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
      "name": "SMTModelWitness"
     },
     {
@@ -33010,6 +33056,7 @@
     "JurisLean.Seams.Uncertainty",
     "JurisLean.Seams.Unified",
     "JurisLean.Seams.UnifiedInstance",
+    "JurisLean.Seams.UnifiedSemantics",
     "JurisLean.SolverRouting",
     "JurisLean.SourceBundleSpec",
     "JurisLean.SourcePathSpec",
@@ -33044,8 +33091,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "34c86c51d992a3b2f637516c6d29c04c58e802bb3d41e3639b9844e99455ecf0",
-   "size_bytes": 8995,
+   "sha256": "2946392ff9b604699a03fe348b34cefc425409f79118c36bece13da02c99866b",
+   "size_bytes": 9035,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -33210,7 +33257,7 @@
  "scope_summary": {
   "all_tracked_lean": {
    "counted_declaration_count": 3773,
-   "file_count": 321,
+   "file_count": 322,
    "lemma_count": 141,
    "print_axioms_command_count": 2655,
    "print_axioms_distinct_targets": 2601,
@@ -33219,7 +33266,7 @@
   },
   "juris_lean_package": {
    "counted_declaration_count": 3754,
-   "file_count": 306,
+   "file_count": 307,
    "lemma_count": 134,
    "print_axioms_command_count": 2655,
    "print_axioms_distinct_targets": 2601,
@@ -33512,6 +33559,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/Uncertainty.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Unified.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
    "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
    "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
    "proofs/lean/juris_lean/JurisLean/SourcePathSpec.lean",
@@ -33831,6 +33879,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/Uncertainty.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Unified.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
    "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
    "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
    "proofs/lean/juris_lean/JurisLean/SourcePathSpec.lean",
@@ -33908,17 +33957,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "c4056648b9e589cb61418d4eefdfd38c1df1c1a396a8c03a1f0006cb1e4a0a30",
+ "source_inventory_digest": "8b40110990b86c0b12cab4ffb982cf254478776cd9e74bec1f31d944290a75f1",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "ci/mandate-wave1",
-  "commit": "701d8fbcac6bc00df766e53f687b95ef07f7e4f7",
-  "tree": "a0a9eb0c9dbc3a09f2a3b5b85327967592610d90"
+  "branch": "ci/unified-construction-20261008",
+  "commit": "94a7493c48aa1c299f68758c0d25cc3782f250f9",
+  "tree": "af689af87e3032fcd4108c0ac826ffe950162908"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 321,
+  "files_total": 322,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

@@ -56,35 +56,43 @@ def summaryDefeat (con : Contrary A) (rc : RuleContra A)
     (s : A) (t : Arg A) : Prop :=
     ∃ x ∈ attackTargets rc t, con s x = true
 
+private theorem mem_cons_right {α : Type} {a b : α} {l : List α}
+    (h : a ∈ l) : a ∈ b :: l := List.mem_cons.mpr (Or.inr h)
+
 /-- The root conclusion is a target. -/
 theorem head_mem_attackTargets (rc : RuleContra A) (b : Arg A) :
     Arg.concl b ∈ attackTargets rc b := by
   cases b with
   | leaf c => simp [attackTargets, Arg.concl]
   | node r ps =>
-      simp only [attackTargets, List.mem_cons, Arg.concl]
-      exact Or.inl rfl
+      show Arg.concl (.node r ps) ∈ _
+      simp only [attackTargets, Arg.concl]
+      exact List.mem_cons.mpr (Or.inl rfl)
 
 /-- A direct child's conclusion is a target of the parent. -/
 theorem child_concl_mem_attackTargets {rc : RuleContra A} {r : Rul A}
     {ps : List (Arg A)} {p : Arg A} (hp : p ∈ ps) :
     Arg.concl p ∈ attackTargets rc (.node r ps) := by
-  simp only [attackTargets, List.mem_cons, List.mem_append]
-  exact Or.inr (Or.inl (List.mem_map_of_mem (f := Arg.concl) hp))
+  simp only [attackTargets]
+  exact mem_cons_right (List.mem_append.mpr
+    (Or.inl (List.mem_map_of_mem (f := Arg.concl) hp)))
 
 /-- The rule-license target is a target. -/
 theorem rule_target_mem_attackTargets {rc : RuleContra A} {r : Rul A}
     {ps : List (Arg A)} : rc r ∈ attackTargets rc (.node r ps) := by
-  simp only [attackTargets, List.mem_cons, List.mem_append]
-  exact Or.inr (Or.inr (Or.inl (by simp)))
+  simp only [attackTargets]
+  exact mem_cons_right (List.mem_append.mpr
+    (Or.inr (List.mem_append.mpr (Or.inl (List.mem_singleton.mpr rfl)))))
 
 /-- A position of a direct child appears in the parent's target list. -/
 theorem mem_attackTargets_of_child {rc : RuleContra A} {r : Rul A}
     {ps : List (Arg A)} {p : Arg A} {x : A}
     (hp : p ∈ ps) (hx : x ∈ attackTargets rc p) :
     x ∈ attackTargets rc (.node r ps) := by
-  simp only [attackTargets, List.mem_append]
-  exact Or.inr (Or.inr (Or.inr (List.mem_flatMap_of_mem hp hx)))
+  simp only [attackTargets]
+  exact mem_cons_right (List.mem_append.mpr
+    (Or.inr (List.mem_append.mpr
+      (Or.inr (List.mem_flatMap_of_mem hp hx)))))
 
 end Summary
 
@@ -122,28 +130,34 @@ private theorem edgeFuel_iff_summaryDefeat (con : Contrary A)
             simp only [Arg.height] at hk
             omega
           simp only [edgeFuel, Bool.or_eq_true, List.any_eq_true, or_assoc,
-                     summaryDefeat, attackTargets, List.mem_cons, List.mem_append,
-                     exists_or]
+                     summaryDefeat, attackTargets, exists_or]
           constructor
           · rintro (h1 | ⟨p, hp, h2⟩ | h3 | ⟨p, hp, h4⟩)
-            · exact ⟨r.head, Or.inl rfl, h1⟩
-            · exact ⟨Arg.concl p, Or.inr (Or.inl (List.mem_map_of_mem hp)), h2⟩
-            · exact ⟨rc r, Or.inr (Or.inr (Or.inl (by simp))), h3⟩
+            · exact ⟨r.head, List.mem_cons.mpr (Or.inl rfl), h1⟩
+            · exact ⟨Arg.concl p, mem_cons_right (List.mem_append.mpr
+                (Or.inl (List.mem_map_of_mem hp))), h2⟩
+            · exact ⟨rc r, mem_cons_right (List.mem_append.mpr
+                (Or.inr (List.mem_append.mpr
+                  (Or.inl (List.mem_singleton.mpr rfl))))), h3⟩
             · obtain ⟨x, hx, hcon⟩ := (ih p hp k (hstep p hp)).mp h4
-              exact ⟨x, Or.inr (Or.inr (Or.inr
-                (List.mem_flatMap_of_mem hp hx))), hcon⟩
-          · rintro ⟨x, (hx | hx | hx | hx), hcon⟩
+              exact ⟨x, mem_cons_right (List.mem_append.mpr
+                (Or.inr (List.mem_append.mpr
+                  (Or.inr (List.mem_flatMap_of_mem hp hx))))), hcon⟩
+          · rintro ⟨x, hx, hcon⟩
+            rcases List.mem_cons.mp hx with hx | hx
             · subst hx
               exact Or.inl hcon
-            · obtain ⟨p, hp, hpx⟩ := List.mem_map.mp hx
-              subst hpx
-              exact Or.inr (Or.inl ⟨p, hp, hcon⟩)
-            · simp only [List.mem_singleton] at hx
-              subst hx
-              exact Or.inr (Or.inr (Or.inl hcon))
-            · obtain ⟨p, hp, hxp⟩ := List.mem_flatMap.mp hx
-              exact Or.inr (Or.inr (Or.inr
-                ⟨p, hp, (ih p hp k (hstep p hp)).mpr ⟨x, hxp, hcon⟩⟩))
+            · rcases List.mem_append.mp hx with hx | hx
+              · obtain ⟨p, hp, hpx⟩ := List.mem_map.mp hx
+                subst hpx
+                exact Or.inr (Or.inl ⟨p, hp, hcon⟩)
+              · rcases List.mem_append.mp hx with hx | hx
+                · have hx' : x = rc r := List.mem_singleton.mp hx
+                  subst hx'
+                  exact Or.inr (Or.inr (Or.inl hcon))
+                · obtain ⟨p, hp, hxp⟩ := List.mem_flatMap.mp hx
+                  exact Or.inr (Or.inr (Or.inr
+                    ⟨p, hp, (ih p hp k (hstep p hp)).mpr ⟨x, hxp, hcon⟩⟩))
 
 /-- §4.3 factorization, soundness direction: every tree-level defeat is
 witnessed by a position in the target's summary list — via the
@@ -167,23 +181,26 @@ theorem summaryDefeat_implies_defeat {con : Contrary A} {rc : RuleContra A}
   induction b with
   | leaf c =>
       intro ⟨x, hx, hcon⟩
-      simp only [attackTargets, List.mem_singleton] at hx
-      subst hx
+      simp only [attackTargets] at hx
+      have hx' : x = c := List.mem_singleton.mp hx
+      subst hx'
       exact Defeat.rebut a (.leaf c) hcon
   | node r ps ih =>
       intro ⟨x, hx, hcon⟩
-      simp only [attackTargets, List.mem_cons, List.mem_append] at hx
-      rcases hx with hx | hx | hx | hx
+      simp only [attackTargets] at hx
+      rcases List.mem_cons.mp hx with hx | hx
       · subst hx
         exact Defeat.rebut a (.node r ps) hcon
-      · obtain ⟨p, hp, hpx⟩ := List.mem_map.mp hx
-        subst hpx
-        exact Defeat.undermine a r ps p hp hcon
-      · simp only [List.mem_singleton] at hx
-        subst hx
-        exact Defeat.undercut a r ps hcon
-      · obtain ⟨p, hp, hxp⟩ := List.mem_flatMap.mp hx
-        exact Defeat.lift a r ps p hp (ih p ⟨x, hxp, hcon⟩)
+      · rcases List.mem_append.mp hx with hx | hx
+        · obtain ⟨p, hp, hpx⟩ := List.mem_map.mp hx
+          subst hpx
+          exact Defeat.undermine a r ps p hp hcon
+        · rcases List.mem_append.mp hx with hx | hx
+          · have hx' : x = rc r := List.mem_singleton.mp hx
+            subst hx'
+            exact Defeat.undercut a r ps hcon
+          · obtain ⟨p, hp, hxp⟩ := List.mem_flatMap.mp hx
+            exact Defeat.lift a r ps p hp (ih p ⟨x, hxp, hcon⟩)
 
 /-- §4.3 factorization for this fragment — the full biconditional:
 tree-level defeat between two argument trees is DECIDED by the finite

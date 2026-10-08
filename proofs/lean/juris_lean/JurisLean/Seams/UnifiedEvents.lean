@@ -136,46 +136,46 @@ theorem step_exact (s : EvState) (e : Ev) (t : EvState) :
       · simp only [step, denoteNext, if_pos h]
         exact ⟨fun hf => hf.elim, fun hstep =>
           (by cases hstep with
-            | evAdd _ _ hn => exact absurd hn h)⟩
+            | evAdd _ hn => exact absurd hn h)⟩
       · simp only [step, denoteNext, if_neg h]
         exact ⟨fun heq => by subst heq; exact ActualEffectStep.evAdd s id h,
           fun hstep => (by cases hstep with
-            | evAdd _ _ _ => exact rfl)⟩
+            | evAdd _ _ => exact rfl)⟩
   | evidenceWithdrawn id =>
       by_cases h : id ∈ s.evidence
       · simp only [step, denoteNext, if_pos h]
         exact ⟨fun heq => by subst heq; exact ActualEffectStep.evWithdraw s id h,
           fun hstep => (by cases hstep with
-            | evWithdraw _ _ _ => exact rfl)⟩
+            | evWithdraw _ _ => exact rfl)⟩
       · simp only [step, denoteNext, if_neg h]
         exact ⟨fun hf => hf.elim, fun hstep =>
           (by cases hstep with
-            | evWithdraw _ _ hm => exact absurd hm h)⟩
+            | evWithdraw _ hm => exact absurd hm h)⟩
   | judgmentIssued id =>
       simp only [step, denoteNext]
       exact ⟨fun heq => by subst heq; exact ActualEffectStep.evJudge s id,
         fun hstep => (by cases hstep with
-          | evJudge _ _ => exact rfl)⟩
+          | evJudge _ => exact rfl)⟩
   | judgmentRevoked id =>
       by_cases h : id ∈ s.judgments
       · simp only [step, denoteNext, if_pos h]
         exact ⟨fun heq => by subst heq; exact ActualEffectStep.evRevoke s id h,
           fun hstep => (by cases hstep with
-            | evRevoke _ _ _ => exact rfl)⟩
+            | evRevoke _ _ => exact rfl)⟩
       · simp only [step, denoteNext, if_neg h]
         exact ⟨fun hf => hf.elim, fun hstep =>
           (by cases hstep with
-            | evRevoke _ _ hm => exact absurd hm h)⟩
+            | evRevoke _ hm => exact absurd hm h)⟩
   | paymentMade id =>
       simp only [step, denoteNext]
       exact ⟨fun heq => by subst heq; exact ActualEffectStep.evPay s id,
         fun hstep => (by cases hstep with
-          | evPay _ _ => exact rfl)⟩
+          | evPay _ => exact rfl)⟩
   | normAuthorized v =>
       simp only [step, denoteNext]
       exact ⟨fun heq => by subst heq; exact ActualEffectStep.evNorm s v,
         fun hstep => (by cases hstep with
-          | evNorm _ _ => exact rfl)⟩
+          | evNorm _ => exact rfl)⟩
 
 /-! ## 三、不变式保持 -/
 
@@ -183,17 +183,19 @@ theorem step_exact (s : EvState) (e : Ev) (t : EvState) :
 theorem step_preserves (s : EvState) (e : Ev) (t : EvState)
     (hwf : StateWF s) (hstep : ActualEffectStep s e t) : StateWF t := by
   cases hstep with
-  | evAdd _ _ _ => simpa [StateWF] using hwf
-  | evWithdraw _ _ _ => simpa [StateWF] using hwf
-  | evJudge _ _ => simpa [StateWF] using hwf
-  | evRevoke s id hm =>
+  | evAdd _ _ => simpa [StateWF] using hwf
+  | evWithdraw _ _ => simpa [StateWF] using hwf
+  | evJudge _ =>
+      intro x hx
+      exact List.mem_cons.mpr (Or.inr (hwf x hx))
+  | evRevoke _ hm =>
       intro x hx
       simp only [List.mem_cons] at hx
       rcases hx with rfl | hx
       · exact hm
       · exact hwf x hx
-  | evPay _ _ => simpa [StateWF] using hwf
-  | evNorm _ _ => simpa [StateWF] using hwf
+  | evPay _ => simpa [StateWF] using hwf
+  | evNorm _ => simpa [StateWF] using hwf
 
 /-! ## 四、轨迹：折叠与合成 -/
 
@@ -282,12 +284,12 @@ theorem runEvents_append (s t : EvState) (xs ys : List Ev) :
 theorem revoke_keeps_payments (s : EvState) (id : ℕ) (t : EvState)
     (h : ActualEffectStep s (.judgmentRevoked id) t) : t.payments = s.payments := by
   cases h with
-  | evRevoke _ _ _ => rfl
+  | evRevoke _ _ => rfl
 
 /-- **撤证后派生采纳失效**（证据 id 的每一处出现都被移除）。 -/
 theorem withdrawn_not_in_state (s : EvState) (id : ℕ) (t : EvState)
     (h : ActualEffectStep s (.evidenceWithdrawn id) t) : id ∉ t.evidence := by
   cases h with
-  | evWithdraw _ _ _ => exact not_mem_removeAll id s.evidence
+  | evWithdraw _ _ => exact not_mem_removeAll id s.evidence
 
 end JurisLean.Seams.UnifiedEvents

@@ -148,6 +148,8 @@ import JurisLean.Seams.Limitation
 
 import JurisLean.Seams.UnifiedSemantics
 
+import JurisLean.Seams.UnifiedArgumentation
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1802,6 +1804,13 @@ open HornSystem
 #print axioms JurisLean.Seams.Uncertainty.xuc_conditioning_denominator_is_clean_mass
 #print axioms JurisLean.Seams.Uncertainty.xuc_out_at_two_one
 #print axioms JurisLean.Seams.Uncertainty.zero_radius_band_does_not_cover_other_inputs
+#print axioms JurisLean.Seams.UnifiedArgumentation.child_concl_mem_attackTargets
+#print axioms JurisLean.Seams.UnifiedArgumentation.defeat_iff_summaryDefeat
+#print axioms JurisLean.Seams.UnifiedArgumentation.defeat_implies_summaryDefeat
+#print axioms JurisLean.Seams.UnifiedArgumentation.head_mem_attackTargets
+#print axioms JurisLean.Seams.UnifiedArgumentation.mem_attackTargets_of_child
+#print axioms JurisLean.Seams.UnifiedArgumentation.rule_target_mem_attackTargets
+#print axioms JurisLean.Seams.UnifiedArgumentation.summaryDefeat_implies_defeat
 #print axioms JurisLean.Seams.UnifiedInstance.F_eq_args_of_attacks_empty
 #print axioms JurisLean.Seams.UnifiedInstance.aafM_args_has_two_distinct
 #print axioms JurisLean.Seams.UnifiedInstance.aafM_attacks_eq_empty

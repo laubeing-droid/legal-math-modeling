@@ -97,7 +97,8 @@ theorem case_regret_bound (g : NormGame P A) (s : ∀ p : P, A) (p : P) (B : ℚ
     regret g s p ≤ B := by
   have hsup : (g.menu p).sup' (g.menuNonempty p) (fun a => g.u (dev s p a) p)
       ≤ g.u s p + B :=
-    Finset.sup'_le (g.menuNonempty p) (fun a ha => hB a ha)
+    Finset.sup'_le (g.menu p) (g.menuNonempty p) (fun a => g.u (dev s p a) p)
+      (fun a ha => hB a ha)
   unfold regret
   linarith
 
@@ -122,21 +123,21 @@ theorem pennies_all_playable : ∀ s : Bool → Bool, playable pennies s := by
 theorem pennies_no_pure_nash : ∀ s : Bool → Bool, ¬ pureNash pennies s := by
   intro s hs
   rcases ht : s true with st | st <;> rcases hf : s false with sf | sf
-  · have hsdef : s = fun _ : Bool => true := by funext q; cases q <;> simp [ht, hf]
+  · have hsdef : s = fun _ : Bool => false := by funext q; cases q <;> simp [ht, hf]
     subst hsdef
-    have hle := hs false false (by simp)
-    simp [pennies, dev] at hle
-  · have hsdef : s = fun q : Bool => q := by funext q; cases q <;> simp [ht, hf]
-    subst hsdef
-    have hle := hs true false (by simp)
+    have hle := hs false true (by simp)
     simp [pennies, dev] at hle
   · have hsdef : s = fun q : Bool => !q := by funext q; cases q <;> simp [ht, hf]
     subst hsdef
     have hle := hs true true (by simp)
     simp [pennies, dev] at hle
-  · have hsdef : s = fun _ : Bool => false := by funext q; cases q <;> simp [ht, hf]
+  · have hsdef : s = fun q : Bool => q := by funext q; cases q <;> simp [ht, hf]
     subst hsdef
-    have hle := hs false true (by simp)
+    have hle := hs true false (by simp)
+    simp [pennies, dev] at hle
+  · have hsdef : s = fun _ : Bool => true := by funext q; cases q <;> simp [ht, hf]
+    subst hsdef
+    have hle := hs false false (by simp)
     simp [pennies, dev] at hle
 
 /-- **均衡不断言发生**：配硬币四组合全可玩且无一纯均衡——稳定性陈述

@@ -556,6 +556,7 @@
     "JurisLean.Seams.Uncertainty",
     "JurisLean.Seams.Unified",
     "JurisLean.Seams.UnifiedInstance",
+    "JurisLean.Seams.UnifiedSemantics",
     "JurisLean.TaintNoninterference",
     "JurisLean.ULMAxiomAudit",
     "JurisLean.WeightedSupNorm"
@@ -2956,8 +2957,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "cb4d0c49481c62f0611e5116ef7da2b851d069729aaa484c6e01d6c5cf772a04",
-   "size_bytes": 167575,
+   "sha256": "3d12bc3128699bed25b23323d04812e17283b0ff38228dc140bb4993d918cf68",
+   "size_bytes": 167616,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -33957,19 +33958,24 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "8b40110990b86c0b12cab4ffb982cf254478776cd9e74bec1f31d944290a75f1",
+ "source_inventory_digest": "e9da6e5628299ea682627badceff2b0c0813309f14b0b63082dff821f1b2ab65",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "94a7493c48aa1c299f68758c0d25cc3782f250f9",
-  "tree": "af689af87e3032fcd4108c0ac826ffe950162908"
+  "commit": "ea53c4fd5f8071114c6773a2a6d3c2e4e42afaa2",
+  "tree": "2398e1da632dc2bd14b4a73916cecd175109dd82"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 322,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

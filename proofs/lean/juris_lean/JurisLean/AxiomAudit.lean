@@ -146,6 +146,8 @@ import JurisLean.Seams.CaseInput
 
 import JurisLean.Seams.Limitation
 
+import JurisLean.Seams.UnifiedSemantics
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem

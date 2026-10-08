@@ -1862,8 +1862,10 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedInstance.zero_mem_singleton
 #print axioms JurisLean.Seams.UnifiedSemantics.abc_A_alone_unstable
 #print axioms JurisLean.Seams.UnifiedSemantics.abc_stable_AC
+#print axioms JurisLean.Seams.UnifiedSemantics.enumerateStable_mem_subset
 #print axioms JurisLean.Seams.UnifiedSemantics.escalation_only_has_no_stable_selection
 #print axioms JurisLean.Seams.UnifiedSemantics.isolated_in_every_stable_selection
+#print axioms JurisLean.Seams.UnifiedSemantics.mem_enumerateStable_iff
 #print axioms JurisLean.Seams.bridge_distinguishes_two_statuses
 #print axioms JurisLean.Seams.bridge_not_injective_at_dismissed
 #print axioms JurisLean.Seams.bridge_partial_inverse_established

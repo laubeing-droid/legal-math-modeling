@@ -33958,24 +33958,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "e9da6e5628299ea682627badceff2b0c0813309f14b0b63082dff821f1b2ab65",
+ "source_inventory_digest": "b0602a783d98327e5ce75af65bb4edcf1f3492d3a3322735b0d7e5314cfaa4fd",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "ea53c4fd5f8071114c6773a2a6d3c2e4e42afaa2",
-  "tree": "2398e1da632dc2bd14b4a73916cecd175109dd82"
+  "commit": "3bb29bb48ae35e2e67ad8d57ca3e8f0f3fff0ecb",
+  "tree": "270a2695a3d2b23b5f6f4327d75e7759a5cc60fe"
  },
  "subject_binding": {
-  "binding": "STALE_SUBJECT",
-  "files_diverging_from_subject": [
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
-    "reason": "bytes differ from subject"
-   }
-  ],
+  "binding": "BOUND_TO_SUBJECT",
+  "files_diverging_from_subject": [],
   "files_total": 322,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": true
+  "worktree_dirty_under_proofs": false
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

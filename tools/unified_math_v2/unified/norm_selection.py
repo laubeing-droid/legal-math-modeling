@@ -70,6 +70,9 @@ def _is_stable(
     exclusions: FrozenSet[Tuple[str, str]],
     escalation_pairs: FrozenSet[FrozenSet[str]],
 ) -> bool:
+    # A selection is a SUBSET of the candidates (Lean's first conjunct).
+    if not subset <= candidates:
+        return False
     # Internal freedom: no exclusion edge — including self-loops — inside S.
     for a in subset:
         for b in subset:

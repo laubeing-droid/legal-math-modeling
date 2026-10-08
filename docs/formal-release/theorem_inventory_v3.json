@@ -29436,11 +29436,11 @@
      "name": "StableSelection"
     },
     {
-     "kind": "def",
+     "kind": "theorem",
      "name": "isolated_in_every_stable_selection"
     },
     {
-     "kind": "def",
+     "kind": "theorem",
      "name": "escalation_only_has_no_stable_selection"
     },
     {
@@ -29448,11 +29448,11 @@
      "name": "abcProfile"
     },
     {
-     "kind": "def",
+     "kind": "theorem",
      "name": "abc_stable_AC"
     },
     {
-     "kind": "def",
+     "kind": "theorem",
      "name": "abc_A_alone_unstable"
     }
    ],
@@ -29462,10 +29462,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
    "print_axioms_targets": [],
-   "sha256": "8eef4f76ce6132d5154b2c9effcd84f1075cab93e905ec6c0923f96ede6ce987",
-   "size_bytes": 4293,
-   "theorem_count": 0,
-   "theorem_count_bol_convention": 0
+   "sha256": "39e5cc05201e7587a02170960f28f87fe1eff663ce195233e5ef2acac87021fc",
+   "size_bytes": 6347,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
   },
   {
    "declarations": [
@@ -33257,22 +33257,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3773,
+   "counted_declaration_count": 3777,
    "file_count": 322,
    "lemma_count": 141,
    "print_axioms_command_count": 2655,
    "print_axioms_distinct_targets": 2601,
-   "theorem_count": 3632,
-   "theorem_count_bol_convention": 3536
+   "theorem_count": 3636,
+   "theorem_count_bol_convention": 3540
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3754,
+   "counted_declaration_count": 3758,
    "file_count": 307,
    "lemma_count": 134,
    "print_axioms_command_count": 2655,
    "print_axioms_distinct_targets": 2601,
-   "theorem_count": 3620,
-   "theorem_count_bol_convention": 3524
+   "theorem_count": 3624,
+   "theorem_count_bol_convention": 3528
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -33958,19 +33958,24 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "b0602a783d98327e5ce75af65bb4edcf1f3492d3a3322735b0d7e5314cfaa4fd",
+ "source_inventory_digest": "a059c84e52930e49040530c45f942426d0c48826ff1687258c6b73589915e36a",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "3bb29bb48ae35e2e67ad8d57ca3e8f0f3fff0ecb",
-  "tree": "270a2695a3d2b23b5f6f4327d75e7759a5cc60fe"
+  "commit": "67a69929acd85a7dd7ca08a99b6ce9a69676031e",
+  "tree": "a25a4a46074b8fe1e3df7a33ff36ad1109720d87"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 322,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

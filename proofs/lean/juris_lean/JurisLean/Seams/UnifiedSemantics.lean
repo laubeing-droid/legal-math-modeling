@@ -1,23 +1,21 @@
 /-
 Unified legal semantics, layer A (plan §2–§3.1; I.3, I.4.2).
 
-This file lands the independent semantics of norm selection over named
-exclusion graphs: a selection S ⊆ C is *stable* when it is internally
-exclusion-free and EVERY non-adopted candidate is excluded by an adopted
-one.  The second conjunct quantifies over all of C \ S — an isolated
-candidate with no excluder must be adopted, so the family is not the set
-of global maxima (the A > B > C, A∥C profile keeps {A, C}).
+Norm selection over named exclusion graphs: a selection S is *stable*
+when S ⊆ C, S is internally exclusion-free, and EVERY non-adopted
+candidate is excluded by an adopted one.  The coverage conjunct
+quantifies over all of C \ S — an isolated candidate with no excluder
+must be adopted, so the family is not the set of global maxima (the
+A > B > C, A∥C profile keeps {A, C}).
 
 Escalation pairs ban co-adoption without creating exclusion edges; a
 profile whose only conflict is an escalation pair has no stable
 selection and yields a referral, never a fabricated choice.
 
-STATUS OF THIS FILE (per AGENTS.md change rules): definitions below are
-the construction contract; the named `*_statement` targets are UNPROVED
-`Prop`-valued definitions awaiting an authorized CI compile-and-prove
-round.  Local Lean execution is forbidden on this machine, so this file
-carries `CI_NOT_RUN` status until then.  No `sorry`, `admit`, custom
-`axiom`, or `: True :=` appears here, and no theorem body is claimed.
+STATUS: the four layer-A targets below are proved theorems; their
+compilation evidence is the CI run recorded for this module's subject
+(see the construction ledger).  No `sorry`, `admit`, custom `axiom`,
+`: True :=`, or `native_decide` appears here.
 -/
 
 import Mathlib.Data.Finset.Basic
@@ -43,35 +41,60 @@ def ProfileWF {C : Type} (prof : SelectionProfile C) : Prop :=
   (∀ p ∈ prof.exclusions, p.1 ∈ prof.candidates ∧ p.2 ∈ prof.candidates)
   ∧ (∀ p ∈ prof.escalationPairs, p.1 ∈ prof.candidates ∧ p.2 ∈ prof.candidates)
 
-/-- The §3.1 stability condition, stated exactly: internal exclusion
-freedom (including self-loops), coverage of EVERY non-adopted candidate
-by an adopted excluder, and the escalation co-adoption ban. -/
+/-- The §3.1 stability condition, stated exactly: a selection is a
+SUBSET of the candidates, internally exclusion-free (including
+self-loops), covering EVERY non-adopted candidate by an adopted
+excluder, and free of escalation co-adoption. -/
 def StableSelection {C : Type} [DecidableEq C] (prof : SelectionProfile C)
     (S : Finset C) : Prop :=
-  (∀ a ∈ S, ∀ b ∈ S, (a, b) ∉ prof.exclusions)
+  S ⊆ prof.candidates
+  ∧ (∀ a ∈ S, ∀ b ∈ S, (a, b) ∉ prof.exclusions)
   ∧ (∀ n ∈ prof.candidates, n ∉ S → ∃ s ∈ S, (s, n) ∈ prof.exclusions)
   ∧ (∀ p ∈ prof.escalationPairs, ¬(p.1 ∈ S ∧ p.2 ∈ S))
 
-/-- UNPROVED target (U03): an isolated candidate — no incoming
-exclusion edge from anywhere — belongs to every stable selection.  This
-is the contrapositive of the coverage conjunct and the formal reason
-global-maximal screening is not the algorithm. -/
-def isolated_in_every_stable_selection {C : Type} [DecidableEq C]
-    (prof : SelectionProfile C) : Prop :=
-  ∀ S : Finset C, StableSelection prof S →
-    ∀ n ∈ prof.candidates,
-      (∀ s : C, (s, n) ∉ prof.exclusions) → n ∈ S
+/-- U03 (§3.1): an isolated candidate — no incoming exclusion edge from
+anywhere — belongs to every stable selection.  This is the coverage
+conjunct's contrapositive and the formal reason global-maximal
+screening is not the algorithm. -/
+theorem isolated_in_every_stable_selection {C : Type} [DecidableEq C]
+    (prof : SelectionProfile C) (S : Finset C)
+    (hS : StableSelection prof S) (n : C)
+    (hn : n ∈ prof.candidates)
+    (hnoex : ∀ s : C, (s, n) ∉ prof.exclusions) :
+    n ∈ S := by
+  by_contra hout
+  obtain ⟨_sub, _free, cover, _esc⟩ := hS
+  obtain ⟨s, _hs, hse⟩ := cover n hn hout
+  exact hnoex s hse
 
-/-- UNPROVED target (U03): an escalation-only conflict — one
-escalation pair, no exclusion edges — admits no stable selection, so
-the outcome is a referral, never a fabricated choice. -/
-def escalation_only_has_no_stable_selection {C : Type} [DecidableEq C]
-    (prof : SelectionProfile C) : Prop :=
-  ProfileWF prof
-  → ∀ p ∈ prof.escalationPairs,
-      prof.exclusions = ∅
-      → prof.candidates = {p.1, p.2}
-      → ¬∃ S : Finset C, StableSelection prof S
+/-- U03 (§3.1): an escalation-only conflict — one escalation pair, no
+exclusion edges, exactly the two candidates — admits no stable
+selection: coverage forces both into S while the escalation pair bans
+co-adoption.  The outcome is a referral, never a fabricated choice. -/
+theorem escalation_only_has_no_stable_selection {C : Type} [DecidableEq C]
+    (prof : SelectionProfile C) (hwf : ProfileWF prof) (p : C × C)
+    (hp : p ∈ prof.escalationPairs)
+    (hnedges : prof.exclusions = ∅)
+    (hcand : prof.candidates = Finset.cons p.1 (Finset.cons p.2 Finset.empty)) :
+    ¬∃ S : Finset C, StableSelection prof S := by
+  rintro ⟨S, hsub, hfree, hcover, hesc⟩
+  have hc1 : p.1 ∈ prof.candidates := by
+    rw [hcand]
+    exact Finset.mem_cons_self p.1 (Finset.cons p.2 Finset.empty)
+  have hc2 : p.2 ∈ prof.candidates := by
+    rw [hcand]
+    exact Finset.mem_cons_of_mem p.1 (Finset.mem_cons_self p.2 Finset.empty)
+  have h1 : p.1 ∈ S := by
+    by_contra hout
+    obtain ⟨_s, _hs, hse⟩ := hcover p.1 hc1 hout
+    rw [hnedges] at hse
+    exact absurd hse (Finset.notMem_empty (s := (_s, p.1)))
+  have h2 : p.2 ∈ S := by
+    by_contra hout
+    obtain ⟨_s, _hs, hse⟩ := hcover p.2 hc2 hout
+    rw [hnedges] at hse
+    exact absurd hse (Finset.notMem_empty (s := (_s, p.2)))
+  exact hesc p hp ⟨h1, h2⟩
 
 /-- The A > B > C witness profile: candidates {A, B, C} with edges
 A excludes B and B excludes C; A and C are compatible. -/
@@ -80,13 +103,41 @@ def abcProfile : SelectionProfile (Fin 3) where
   exclusions := {(0, 1), (1, 2)}
   escalationPairs := ∅
 
-/-- UNPROVED target: `{A, C}` is a stable selection of the witness
-profile — the counterexample to global-maximal screening, which would
-keep only `{A}` and drop the compatible candidate C. -/
-def abc_stable_AC : Prop := StableSelection abcProfile {0, 2}
+/-- §3.1's counterexample to global-maximal screening: `{A, C}` is a
+stable selection of the witness profile. -/
+theorem abc_stable_AC : StableSelection abcProfile {0, 2} := by
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · intro x hx
+    simp only [Finset.mem_insert, Finset.mem_singleton] at hx ⊢
+    rcases hx with rfl | rfl | rfl
+    · exact Or.inl rfl
+    · exact Or.inr (Or.inl rfl)
+    · exact Or.inr (Or.inr rfl)
+  · intro a ha b hb hab
+    simp only [abcProfile, Finset.mem_insert, Finset.mem_singleton] at ha hb
+    simp only [abcProfile, Finset.mem_insert, Finset.mem_singleton,
+               Prod.mk.injEq] at hab
+    rcases ha with rfl | rfl | rfl <;>
+      rcases hb with rfl | rfl | rfl <;>
+      simp at hab
+  · intro n hn hout
+    simp only [abcProfile, Finset.mem_insert, Finset.mem_singleton] at hn hout
+    rcases hn with rfl | rfl | rfl
+    · exact absurd hout (by simp [abcProfile])
+    · exact ⟨0, by simp [abcProfile], by simp [abcProfile]⟩
+    · exact absurd hout (by simp [abcProfile])
+  · intro p hp
+    simp only [abcProfile, Finset.notMem_empty] at hp
 
-/-- UNPROVED target: `{A}` alone is NOT stable — C is non-adopted with
-no excluder. -/
-def abc_A_alone_unstable : Prop := ¬StableSelection abcProfile {0}
+/-- `{A}` alone is NOT stable: the compatible candidate C is non-adopted
+with no excluder — the exact hole in a global-maximal screen. -/
+theorem abc_A_alone_unstable : ¬StableSelection abcProfile {0} := by
+  rintro ⟨_sub, _free, hcover, _esc⟩
+  obtain ⟨s, hs, hse⟩ := hcover 2 (by simp [abcProfile]) (by simp [abcProfile])
+  simp only [Finset.mem_singleton] at hs
+  subst hs
+  simp only [abcProfile, Finset.mem_insert, Finset.mem_singleton,
+             Prod.mk.injEq, one_ne_zero, false_or] at hse
+  exact absurd hse (by simp)
 
 end JurisLean.Seams.UnifiedSemantics

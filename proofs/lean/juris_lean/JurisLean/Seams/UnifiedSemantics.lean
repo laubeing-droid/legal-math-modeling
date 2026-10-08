@@ -116,12 +116,12 @@ theorem abc_stable_AC : StableSelection abcProfile {0, 2} := by
     rcases hn with h | h | h
     · subst h
       simp only [Finset.mem_insert, Finset.mem_singleton] at hout
-      exact absurd (Or.inl rfl) hout
+      simp at hout
     · subst h
       exact ⟨0, by decide, by simp [abcProfile]⟩
     · subst h
       simp only [Finset.mem_insert, Finset.mem_singleton] at hout
-      exact absurd (Or.inr rfl) hout
+      simp at hout
   · intro p hp
     simp [abcProfile] at hp
 

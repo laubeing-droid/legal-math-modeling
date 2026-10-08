@@ -42,16 +42,16 @@ structure NormGame (P A : Type) where
   /-- 各方尝试菜单。 -/
   menu : P → Finset A
   /-- 效用（读整组合；ℚ 精确求值）。 -/
-  u : (∀ p, A) → P → ℚ
+  u : (∀ p : P, A) → P → ℚ
 
 /-- 组合可发生（每个分量都在自己的尝试菜单内）。 -/
-def playable (g : NormGame P A) (s : ∀ p, A) : Prop := ∀ p, s p ∈ g.menu p
+def playable (g : NormGame P A) (s : ∀ p : P, A) : Prop := ∀ p, s p ∈ g.menu p
 
 /-- 单方偏离后的组合。 -/
-def dev (s : ∀ p, A) (p : P) (a : A) : ∀ p, A := fun q => if q = p then a else s q
+def dev (s : ∀ p : P, A) (p : P) (a : A) : ∀ p : P, A := fun q => if q = p then a else s q
 
 /-- **纯策略 Nash（尝试域内）**：菜单内任何单方偏离都不增该方效用。 -/
-def pureNash (g : NormGame P A) (s : ∀ p, A) : Prop :=
+def pureNash (g : NormGame P A) (s : ∀ p : P, A) : Prop :=
   ∀ (p : P) (a : A), a ∈ g.menu p → g.u (dev s p a) p ≤ g.u s p
 
 /-! ## 二、效用经后果分解与显示改名不变 -/
@@ -59,25 +59,25 @@ def pureNash (g : NormGame P A) (s : ∀ p, A) : Prop :=
 /-- 后果通道（抽象后果载体 C 与读数 φ）。 -/
 structure FactoredGame (P A C : Type) where
   /-- 组合的法定后果。 -/
-  consequences : (∀ p, A) → C
+  consequences : (∀ p : P, A) → C
   /-- 各方对后果的效用读数。 -/
   phi : C → P → ℚ
 
 /-- 因子化博弈的效用。 -/
-def FactoredGame.utility (fg : FactoredGame P A C) (s : ∀ p, A) (p : P) : ℚ :=
+def FactoredGame.utility (fg : FactoredGame P A C) (s : ∀ p : P, A) (p : P) : ℚ :=
   fg.phi (fg.consequences s) p
 
 /-- **效用经后果分解**：后果相同的组合效用相同（同一法定后果可因不同
     偏好产生不同效用——偏好活在 φ 里，效用不是法律对象本身）。 -/
 theorem utility_factorization_through_consequences (fg : FactoredGame P A C)
-    (s t : ∀ p, A) (h : fg.consequences s = fg.consequences t) (p : P) :
+    (s t : ∀ p : P, A) (h : fg.consequences s = fg.consequences t) (p : P) :
     fg.utility s p = fg.utility t p := by
   unfold FactoredGame.utility
   rw [h]
 
 /-- **显示改名不变**：动作显示名经双射重贴而后果语义不动时，效用不变。 -/
 theorem utility_invariant_under_display_rename (fg : FactoredGame P A C)
-    (r : A ≃ A) (s : ∀ p, A)
+    (r : A ≃ A) (s : ∀ p : P, A)
     (hcon : fg.consequences (fun q => r (s q)) = fg.consequences s) (p : P) :
     fg.utility (fun q => r (s q)) p = fg.utility s p :=
   utility_factorization_through_consequences fg _ _ hcon p
@@ -85,12 +85,12 @@ theorem utility_invariant_under_display_rename (fg : FactoredGame P A C)
 /-! ## 三、悔恨界（G05 面） -/
 
 /-- 菜单内悔恨：最好偏离增益减现效用。 -/
-def regret (g : NormGame P A) (s : ∀ p, A) (p : P) : ℚ :=
+def regret (g : NormGame P A) (s : ∀ p : P, A) (p : P) : ℚ :=
   (g.menu p).sup (fun a => g.u (dev s p a) p) - g.u s p
 
 /-- **悔恨界**：对菜单内每个替代都有松弛 B，则悔恨 ≤ B
     （证书式上界，不重算 sup）。 -/
-theorem case_regret_bound (g : NormGame P A) (s : ∀ p, A) (p : P) (B : ℚ)
+theorem case_regret_bound (g : NormGame P A) (s : ∀ p : P, A) (p : P) (B : ℚ)
     (hB : ∀ a ∈ g.menu p, g.u (dev s p a) p ≤ g.u s p + B) :
     regret g s p ≤ B := by
   have hsup : (g.menu p).sup (fun a => g.u (dev s p a) p) ≤ g.u s p + B :=

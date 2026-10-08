@@ -260,6 +260,11 @@ def _apply_payment(
 ) -> Tuple[ProcessState, Tuple[str, ...]]:
     if ev.amount is None or ev.amount < 0 or not ev.debt_order:
         raise ValueError("payment events carry a nonnegative amount and debt order")
+    if len(set(ev.debt_order)) != len(ev.debt_order):
+        raise ValueError(
+            "duplicate basis keys in debt_order: a repeated key would "
+            "double-satisfy one entitlement (round-3 N4)"
+        )
     # One waterfall pass over the declared order (same priority groups
     # expressed by repeated keys in order).
     groups = tuple((k,) for k in ev.debt_order)

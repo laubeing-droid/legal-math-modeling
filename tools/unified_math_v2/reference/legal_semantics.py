@@ -117,6 +117,11 @@ def _inline_universe_nodes(case: CaseInput, env: LegalEnvironment,
         f.proposition.predicate for f in case.fact_records
         if f.standing is FactStanding.ADMITTED_POSITIVE
     }
+    admitted_positive_predicates = {
+        f.proposition.predicate for f in case.fact_records
+        if f.standing is FactStanding.ADMITTED_POSITIVE
+        and f.proposition.polar is Polar.POS
+    }
     negated_predicates = {
         f.proposition.predicate for f in case.fact_records
         if f.standing is FactStanding.EXPLICIT_NEGATION
@@ -142,8 +147,10 @@ def _inline_universe_nodes(case: CaseInput, env: LegalEnvironment,
 
         if not all(_matches(p) for p in template.premise_predicates):
             continue
-        # failure EVENTS are admitted positives (round-2 defect 1)
-        if any(p in admitted_predicates for p in template.failure_predicates):
+        # failure EVENTS are POS-polarity admitted positives
+        # (round-2 defect 1 + round-3 N2)
+        if any(p in admitted_positive_predicates
+               for p in template.failure_predicates):
             continue
         nodes.append(
             (f"template:{template.template_id}",
@@ -151,6 +158,10 @@ def _inline_universe_nodes(case: CaseInput, env: LegalEnvironment,
                         template.subject),
              True)
         )
+    # mirror the counter-evidence profile (W-MATERIAL / W-ALT nodes)
+    from unified.standards import counter_reason_nodes
+    for r in counter_reason_nodes(getattr(env, "counter_evidences", ())):
+        nodes.append((r.node_id, r.claim, r.kind.value == "W-MATERIAL"))
     return tuple(nodes)
 
 
@@ -193,7 +204,7 @@ def _inline_civil_high(
     A counter here is a strong node for the exact contrary claim."""
 
     contrary = (
-        "~" + claim[1:] if claim.startswith("~") else "~" + claim
+        claim[1:] if claim.startswith("~") else "~" + claim
     )
     strong_claim = any(n_id in in_nodes and c == claim and strong
                        for n_id, c, strong in universe_nodes)
@@ -353,32 +364,27 @@ def check_trace_run(
     for pe in events:
         state = _inline_step(state, pe)
     # compare outstanding amounts for every basis key mentioned
-    keys = {e.basis_key for e in state.ledger if e.basis_key}
-    for key in keys:
-        if ";" in key:
-            continue
+    def _effective_outstanding(ledger, key):
+        titles = tuple(
+            e for e in ledger
+            if e.kind is LedgerEntryKind.TITLE_ENTITLEMENT and e.basis_key == key
+        )
+        dead = {sid for e in titles for sid in e.supersedes}
         entitled = sum(
-            (e.amount for e in state.ledger
-             if e.kind is LedgerEntryKind.TITLE_ENTITLEMENT and e.basis_key == key),
-            Fraction(0),
+            (e.amount for e in titles if e.entry_id not in dead), Fraction(0)
         )
         paid = sum(
-            (e.amount for e in state.ledger
+            (e.amount for e in ledger
              if e.kind is LedgerEntryKind.SATISFIED and e.basis_key == key),
             Fraction(0),
         )
-        expected = max(entitled - paid, Fraction(0))
-        entitled_a = sum(
-            (e.amount for e in actual_state.ledger
-             if e.kind is LedgerEntryKind.TITLE_ENTITLEMENT and e.basis_key == key),
-            Fraction(0),
-        )
-        paid_a = sum(
-            (e.amount for e in actual_state.ledger
-             if e.kind is LedgerEntryKind.SATISFIED and e.basis_key == key),
-            Fraction(0),
-        )
-        if max(entitled_a - paid_a, Fraction(0)) != expected:
+        return max(entitled - paid, Fraction(0))
+
+    keys = {e.basis_key for e in state.ledger if e.basis_key}
+    for key in keys:
+        if ";" in key or key == "unallocated":
+            continue
+        if _effective_outstanding(actual_state.ledger, key) !=                 _effective_outstanding(state.ledger, key):
             return CheckReport.fail(f"outstanding mismatch on {key}")
     del actual_notes
     return CheckReport.pass_()

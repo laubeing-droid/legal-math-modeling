@@ -141,6 +141,7 @@ def build_reason_universe(
     admitted_failure_events = {
         f.proposition.predicate for f in facts
         if f.standing is FactStanding.ADMITTED_POSITIVE
+        and f.proposition.polar is Polar.POS
     }
     admitted_ids = {
         f.fact_id for f in facts
@@ -197,9 +198,9 @@ def build_reason_universe(
     # ~x whenever both claim keys occur in the universe.
     claim_keys = {r.claim for r in reasons}
     contraries = frozenset(
-        (c, "~" + c[1:] if c.startswith("~") else "~" + c)
+        (c, c[1:] if c.startswith("~") else "~" + c)
         for c in claim_keys
-        if ("~" + c[1:] if c.startswith("~") else "~" + c) in claim_keys
+        if (c[1:] if c.startswith("~") else "~" + c) in claim_keys
     )
     return ReasonUniverse(reasons=tuple(reasons), contraries=contraries)
 

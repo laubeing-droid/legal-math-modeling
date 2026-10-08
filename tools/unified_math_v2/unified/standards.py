@@ -168,7 +168,7 @@ def counter_reason_nodes(evidence: Iterable[CounterEvidence]) -> Tuple[ReasonNod
     """
 
     def _contrary(claim: str) -> str:
-        return "~" + claim[1:] if claim.startswith("~") else "~" + claim
+        return claim[1:] if claim.startswith("~") else "~" + claim
 
     nodes: list = []
     for ev in evidence:

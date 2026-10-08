@@ -240,10 +240,6 @@ class Bnd06DedupSourceTests(TestCase):
     def test_dedup_joins_tainted_source_node(self):
         """Round-2 defect B: the duplicate itself is a tainted SOURCE
         (no parents) — the kept node must become tainted."""
-        ledger = TaintLedger()
-        ledger.add(DagNode("src-tainted", (), True, "forged"))
-        ledger.derive("kept", ["src-clean"] if False else [])
-        # kept derives from nothing (clean source below)
         ledger2 = TaintLedger()
         ledger2.add(DagNode("src-clean", (), False, "bank"))
         ledger2.add(DagNode("src-tainted", (), True, "forged"))

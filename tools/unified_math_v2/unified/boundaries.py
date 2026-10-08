@@ -354,6 +354,23 @@ class TaintLedger:
 
         if kept_id not in self._nodes or duplicate_id not in self._nodes:
             raise KeyError("dedup requires both nodes")
+        if kept_id == duplicate_id:
+            raise ValueError("a node cannot be deduplicated with itself")
+        # folding a DESCENDANT into its own ancestor would create a
+        # cycle; the ledger stays a DAG (round-3 N3)
+        stack = list(self._nodes[duplicate_id].parents)
+        seen_guard = set()
+        while stack:
+            cur = stack.pop()
+            if cur in seen_guard:
+                continue
+            seen_guard.add(cur)
+            if cur == kept_id:
+                raise ValueError(
+                    "dedup would fold a descendant into its ancestor "
+                    "(cycle); fold the ancestor into the descendant instead"
+                )
+            stack.extend(self._nodes[cur].parents)
         kept = self._nodes[kept_id]
         duplicate = self._nodes[duplicate_id]
         # the duplicate ITSELF joins the kept ancestry: a tainted SOURCE

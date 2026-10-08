@@ -7,6 +7,7 @@ establish their issue directly without conferring StrongBasis; licensed
 templates fire only in selections adopting their rule.
 """
 
+import pytest
 from fractions import Fraction as Q
 from unittest import TestCase
 
@@ -39,6 +40,27 @@ from theory.spec.canonical_v2.kernel import (
 )
 
 from unified.pipeline import run_case
+from unified.process import LegalEventKind
+
+
+def _event(eid, kind_value, occurred=5, observed=6, obj="loan"):
+    from theory.spec.canonical_v2.case import CaseEvent
+    return CaseEvent(event_id=eid, event_type=kind_value,
+                     occurred_at=occurred, observed_at=observed,
+                     object_ref=obj)
+
+
+def _state(relations=(), day=10):
+    from theory.spec.canonical_v2.kernel import NormState
+    from theory.spec.canonical_v2.case import ProcessState
+    return ProcessState(
+        r=NormState(relations=relations),
+        environment_id="env-1",
+        stages=(("loan-trial", "trial"),),
+        events=(),
+        target_day=day, as_of_day=day,
+    )
+
 from reference.legal_semantics import check_case_run
 
 
@@ -704,3 +726,104 @@ class Round2RegressionTests(TestCase):
         run = run_case(case, env)
         self.assertIn(Judgment.NOT_ESTABLISHED, run.judgments_of("c1"))
         self.assertTrue(check_case_run(case, env, run).ok)
+
+
+class Round3RegressionTests(TestCase):
+    """Round-3 review defects, pinned."""
+
+    def _material_counter_env(self):
+        from unified.standards import CounterEvidence as CE
+        tpl = StrongTemplate(
+            template_id="tpl-p", kind="GENERIC", scope_issue="loan",
+            premise_predicates=("pa",), conclusion_predicate="p",
+            source_id="s:1",
+        )
+        facts = [FactRecord("f-pa", _atom("pa"), FactStanding.ADMITTED_POSITIVE,
+                            produced_at=1, known_at=1)]
+        case = _case(facts)
+        env = LegalEnvironment(
+            environment_id="env-1",
+            jurisdiction=Jurisdiction(route=JurisdictionRoute.MAINLAND),
+            strong_templates=(tpl,),
+            counter_evidences=(
+                CE("ce1", "p", direct_support=True, corroborated=True,
+                   dispositive=True),
+            ),
+        )
+        return case, env
+
+    def test_n1_no_self_contrary_pairs(self):
+        """The '~' flip must REMOVE the marker on NEG keys: contraries
+        never contain (n, n), and a material counter can be In."""
+        from unified.pipeline import build_reason_universe
+        case, env = self._material_counter_env()
+        u = build_reason_universe(case, env, frozenset())
+        for a, b in u.contraries:
+            self.assertNotEqual(a, b)
+        # the material counter exists as a strong node for ~p
+        self.assertTrue(any(r.node_id == "material:ce1" for r in u.reasons))
+        # and it is a live counter in every branch lacking an answer
+        run = run_case(case, env)
+        self.assertIn(Judgment.NOT_ESTABLISHED, run.judgments_of("c1"))
+        self.assertTrue(check_case_run(case, env, run).ok)
+
+    def test_n2_failure_event_requires_pos_polarity(self):
+        """ADMITTED_POSITIVE with polar=NEG ('this receipt does NOT match
+        a goods payment' — the normal loan case stated negatively) must
+        NOT block the template."""
+        facts = _loan_facts() + [
+            FactRecord("f-goods-neg",
+                       ScopedAtom(case_id="case-1", subject="D", issue="loan",
+                                  stage="trial",
+                                  predicate="ref_matches_existing_goods_payment",
+                                  polar=Polar.NEG),
+                       FactStanding.ADMITTED_POSITIVE, produced_at=4, known_at=4),
+        ]
+        case = _case(facts)
+        env = _env(templates=(_loan_template(),))
+        run = run_case(case, env)
+        self.assertIn(Judgment.ESTABLISHED, run.judgments_of("c1"))
+        self.assertTrue(check_case_run(case, env, run).ok)
+
+    def test_n4_duplicate_debt_keys_rejected(self):
+        from unified.process import ProcessEvent as _PE, step_event
+        with pytest.raises(ValueError, match="duplicate basis keys"):
+            step_event(_state(), _PE(
+                event=_event("p", "payment"),
+                kind=LegalEventKind.PAYMENT_PERFORMED,
+                amount=Q(10), debt_order=("loan", "loan")))
+
+    def test_d_trace_check_with_revocation(self):
+        """check_trace_run differentiates the REAL outstanding semantics
+        through supersession (round-3 D)."""
+        from unified.process import ProcessEvent as _PE, run_trace
+        from reference.legal_semantics import check_trace_run
+        evs = (
+            _PE(event=_event("t1", "award"), kind=LegalEventKind.AWARD_EFFECTIVE,
+                basis_key="loan", amount=Q(100), authority_ref="c:1"),
+            _PE(event=_event("p1", "payment"),
+                kind=LegalEventKind.PAYMENT_PERFORMED,
+                amount=Q(30), debt_order=("loan",)),
+            _PE(event=_event("r1", "revocation"), kind=LegalEventKind.AWARD_REVOKED,
+                basis_key="loan", authority_ref="c:2"),
+            _PE(event=_event("p2", "payment"),
+                kind=LegalEventKind.PAYMENT_PERFORMED,
+                amount=Q(10), debt_order=("loan",)),
+        )
+        final, notes = run_trace(_state(), evs)
+        report = check_trace_run(_state(), None, evs, final, notes)
+        self.assertTrue(report.ok, report.reasons)
+        # tamper: drop the revocation — the outstanding semantics diverge
+        final2, notes2 = run_trace(_state(), evs[:2] + evs[3:])
+        bad = check_trace_run(_state(), None, evs, final2, notes2)
+        self.assertFalse(bad.ok)
+
+    def test_n3_dedup_cycle_guard(self):
+        from unified.boundaries import DagNode, TaintLedger
+        ledger = TaintLedger()
+        ledger.add(DagNode("a", (), False, "x"))
+        ledger.add(DagNode("b", ("a",), False, "y"))
+        with pytest.raises(ValueError, match="cycle"):
+            ledger.dedup("a", "b")
+        with pytest.raises(ValueError, match="itself"):
+            ledger.dedup("a", "a")

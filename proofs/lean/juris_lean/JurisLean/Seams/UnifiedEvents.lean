@@ -136,7 +136,7 @@ theorem step_exact (s : EvState) (e : Ev) (t : EvState) :
       · simp only [step, denoteNext, if_pos h]
         exact ⟨fun hf => hf.elim, fun hstep =>
           (by cases hstep with
-            | evAdd _ hn => exact absurd hn h)⟩
+            | evAdd _ hn => exact absurd h hn)⟩
       · simp only [step, denoteNext, if_neg h]
         exact ⟨fun heq => by subst heq; exact ActualEffectStep.evAdd s id h,
           fun hstep => (by cases hstep with
@@ -214,13 +214,20 @@ def runEvents : EvState → List Ev → TransitionResult EvState
       | .blocked => .blocked
       | .ok u => runEvents u es
 
+/-- 轨迹反演：cons 形轨迹分解为单步＋尾轨迹。 -/
+theorem steps_cons_inv {s : EvState} {e : Ev} {es : List Ev} {t : EvState}
+    (h : ActualEffectSteps s (e :: es) t) :
+    ∃ u, ActualEffectStep s e u ∧ ActualEffectSteps u es t := by
+  cases h with
+  | cons _ u _ _ _ h₁ h₂ => exact ⟨u, h₁, h₂⟩
+
 /-- **轨迹精确对应**。 -/
 theorem runEvents_exact (s : EvState) (es : List Ev) (t : EvState) :
     denoteNext (runEvents s es) t ↔ ActualEffectSteps s es t := by
   induction es generalizing s with
   | nil =>
       simp only [runEvents, denoteNext]
-      exact ⟨fun _ => ActualEffectSteps.nil s,
+      exact ⟨fun h => by subst h; exact ActualEffectSteps.nil s,
         fun h => (by cases h with
           | nil _ => exact rfl)⟩
   | cons e es ih =>
@@ -229,11 +236,10 @@ theorem runEvents_exact (s : EvState) (es : List Ev) (t : EvState) :
       | blocked =>
           have hnone : ¬ ActualEffectSteps s (e :: es) t := by
             intro hsteps
-            cases hsteps with
-            | cons _ u _ _ _ h₁ _ =>
-                have hden : denoteNext (step s e) u := (step_exact s e u).mpr h₁
-                rw [h] at hden
-                exact hden
+            obtain ⟨u, h₁, _⟩ := steps_cons_inv hsteps
+            have hden : denoteNext (step s e) u := (step_exact s e u).mpr h₁
+            rw [h] at hden
+            exact hden
           simp only [denoteNext]
           exact ⟨fun hf => hf.elim, fun hsteps => absurd hsteps hnone⟩
       | ok u =>
@@ -242,15 +248,14 @@ theorem runEvents_exact (s : EvState) (es : List Ev) (t : EvState) :
             exact (step_exact s e u).mp hd
           constructor
           · intro hden
-            exact ActualEffectSteps.cons s u t e es hstep ((ih u t).mp hden)
+            exact ActualEffectSteps.cons s u t e es hstep ((ih u).mp hden)
           · intro hsteps
-            cases hsteps with
-            | cons _ u' _ _ _ h₁ h₂ =>
-                have hden' : denoteNext (step s e) u' := (step_exact s e u').mpr h₁
-                rw [h] at hden'
-                simp only [denoteNext] at hden'
-                subst hden'
-                exact (ih u t).mpr h₂
+            obtain ⟨u', h₁, h₂⟩ := steps_cons_inv hsteps
+            have hden' : denoteNext (step s e) u' := (step_exact s e u').mpr h₁
+            rw [h] at hden'
+            simp only [denoteNext] at hden'
+            subst hden'
+            exact (ih u).mpr h₂
 
 /-- **轨迹合成分配律**：xs++ys 的轨迹关系分解为共享中间态。 -/
 theorem runEvents_append (s t : EvState) (xs ys : List Ev) :
@@ -268,15 +273,13 @@ theorem runEvents_append (s t : EvState) (xs ys : List Ev) :
       simp only [List.cons_append]
       constructor
       · intro h
-        cases h with
-        | cons _ w _ _ _ h₁ hrest =>
-            obtain ⟨v, hev, hvy⟩ := (ih w t).mp hrest
-            exact ⟨v, ActualEffectSteps.cons s w v e es h₁ hev, hvy⟩
+        obtain ⟨w, h₁, hrest⟩ := steps_cons_inv h
+        obtain ⟨v, hev, hvy⟩ := (ih w).mp hrest
+        exact ⟨v, ActualEffectSteps.cons s w v e es h₁ hev, hvy⟩
       · intro h
         obtain ⟨u, hxs, hys⟩ := h
-        cases hxs with
-        | cons _ w _ _ _ h₁ hrest =>
-            exact ActualEffectSteps.cons s w t e es h₁ ((ih w t).mpr ⟨u, hrest, hys⟩)
+        obtain ⟨w, h₁, hrest⟩ := steps_cons_inv hxs
+        exact ActualEffectSteps.cons s w t e es h₁ ((ih w).mpr ⟨u, hrest, hys⟩)
 
 /-! ## 五、撤销保留付款与撤证失效（§9 纪律见证） -/
 

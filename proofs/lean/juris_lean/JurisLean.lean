@@ -190,6 +190,7 @@ import JurisLean.Seams.UnifiedAdmission
 import JurisLean.Seams.UnifiedArgumentation
 import JurisLean.Seams.UnifiedFinalization
 import JurisLean.Seams.UnifiedInstance
+import JurisLean.Seams.UnifiedQuantities
 import JurisLean.Seams.UnifiedSemantics
 import JurisLean.SolverRouting
 import JurisLean.SourceBundleSpec

@@ -154,6 +154,8 @@ import JurisLean.Seams.UnifiedAdmission
 
 import JurisLean.Seams.UnifiedFinalization
 
+import JurisLean.Seams.UnifiedQuantities
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1909,6 +1911,20 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedInstance.widening_is_conservative
 #print axioms JurisLean.Seams.UnifiedInstance.zero_in_closureM
 #print axioms JurisLean.Seams.UnifiedInstance.zero_mem_singleton
+#print axioms JurisLean.Seams.UnifiedQuantities.drop_sum_le_sum
+#print axioms JurisLean.Seams.UnifiedQuantities.joint_overallocation_excluded
+#print axioms JurisLean.Seams.UnifiedQuantities.remainingAfter_cons
+#print axioms JurisLean.Seams.UnifiedQuantities.remainingAfter_nonneg
+#print axioms JurisLean.Seams.UnifiedQuantities.waterfall_cons
+#print axioms JurisLean.Seams.UnifiedQuantities.waterfall_conservation
+#print axioms JurisLean.Seams.UnifiedQuantities.waterfall_depends_on_debt
+#print axioms JurisLean.Seams.UnifiedQuantities.waterfall_depends_on_payment
+#print axioms JurisLean.Seams.UnifiedQuantities.waterfall_head_full_of_tail_positive
+#print axioms JurisLean.Seams.UnifiedQuantities.waterfall_homogeneous
+#print axioms JurisLean.Seams.UnifiedQuantities.waterfall_mem_nonneg
+#print axioms JurisLean.Seams.UnifiedQuantities.waterfall_sum_le
+#print axioms JurisLean.Seams.UnifiedQuantities.waterfall_t25_prefix
+#print axioms JurisLean.Seams.UnifiedQuantities.waterfall_zero
 #print axioms JurisLean.Seams.UnifiedSemantics.abc_A_alone_unstable
 #print axioms JurisLean.Seams.UnifiedSemantics.abc_stable_AC
 #print axioms JurisLean.Seams.UnifiedSemantics.enumerateStable_mem_subset

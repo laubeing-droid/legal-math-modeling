@@ -187,6 +187,7 @@ import JurisLean.Seams.Transitions
 import JurisLean.Seams.Uncertainty
 import JurisLean.Seams.Unified
 import JurisLean.Seams.UnifiedInstance
+import JurisLean.Seams.UnifiedSemantics
 import JurisLean.SolverRouting
 import JurisLean.SourceBundleSpec
 import JurisLean.SourcePathSpec

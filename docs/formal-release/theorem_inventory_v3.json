@@ -29457,13 +29457,14 @@
     }
    ],
    "imports": [
-    "Mathlib.Data.Finset.Basic"
+    "Mathlib.Data.Finset.Basic",
+    "Mathlib.Tactic"
    ],
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
    "print_axioms_targets": [],
-   "sha256": "39e5cc05201e7587a02170960f28f87fe1eff663ce195233e5ef2acac87021fc",
-   "size_bytes": 6347,
+   "sha256": "34bcb1a3a754725d19fabc9d329aa490eca398f146f66b3d755220d656cecd32",
+   "size_bytes": 5986,
    "theorem_count": 4,
    "theorem_count_bol_convention": 4
   },
@@ -33958,12 +33959,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "a059c84e52930e49040530c45f942426d0c48826ff1687258c6b73589915e36a",
+ "source_inventory_digest": "50b88c165c2314d1296017fa86995927779b1bfc0fce89fb1ca7a306c1f95c2f",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "67a69929acd85a7dd7ca08a99b6ce9a69676031e",
-  "tree": "a25a4a46074b8fe1e3df7a33ff36ad1109720d87"
+  "commit": "acf4694cccd3bf217c21b2b3e654625773fbbe27",
+  "tree": "ee239d4ed35f02af3218f20e5d3aeeb55bcf89a5"
  },
  "subject_binding": {
   "binding": "STALE_SUBJECT",
@@ -33975,7 +33976,7 @@
   ],
   "files_total": 322,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": true
+  "worktree_dirty_under_proofs": false
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

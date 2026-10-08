@@ -2412,10 +2412,15 @@
     "JurisLean.Seams.UnifiedArgumentation.child_concl_mem_attackTargets",
     "JurisLean.Seams.UnifiedArgumentation.defeat_iff_summaryDefeat",
     "JurisLean.Seams.UnifiedArgumentation.defeat_implies_summaryDefeat",
+    "JurisLean.Seams.UnifiedArgumentation.gateDefeat_iff_summaryDefeat",
+    "JurisLean.Seams.UnifiedArgumentation.gateDefeat_implies_summary",
     "JurisLean.Seams.UnifiedArgumentation.head_mem_attackTargets",
     "JurisLean.Seams.UnifiedArgumentation.mem_attackTargets_of_child",
+    "JurisLean.Seams.UnifiedArgumentation.mem_gateTargets_of_child",
+    "JurisLean.Seams.UnifiedArgumentation.own_gate_mem_gateTargets",
     "JurisLean.Seams.UnifiedArgumentation.rule_target_mem_attackTargets",
     "JurisLean.Seams.UnifiedArgumentation.summaryDefeat_implies_defeat",
+    "JurisLean.Seams.UnifiedArgumentation.summary_implies_gateDefeat",
     "JurisLean.Seams.UnifiedInstance.F_eq_args_of_attacks_empty",
     "JurisLean.Seams.UnifiedInstance.aafM_args_has_two_distinct",
     "JurisLean.Seams.UnifiedInstance.aafM_attacks_eq_empty",
@@ -2971,8 +2976,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "8f3e6d0f6144c32a04afaf5cae65d4c747b80e0755ae44ce5147ed9c63599523",
-   "size_bytes": 168654,
+   "sha256": "4e9d8c2c78a48d48d0dbae844339f6862bac5aad6df01e4e5beea923e93ad784",
+   "size_bytes": 169042,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -29120,6 +29125,38 @@
     {
      "kind": "theorem",
      "name": "defeat_iff_summaryDefeat"
+    },
+    {
+     "kind": "inductive",
+     "name": "GateDefeat"
+    },
+    {
+     "kind": "def",
+     "name": "gateTargets"
+    },
+    {
+     "kind": "def",
+     "name": "summaryGateDefeat"
+    },
+    {
+     "kind": "theorem",
+     "name": "own_gate_mem_gateTargets"
+    },
+    {
+     "kind": "theorem",
+     "name": "mem_gateTargets_of_child"
+    },
+    {
+     "kind": "theorem",
+     "name": "gateDefeat_implies_summary"
+    },
+    {
+     "kind": "theorem",
+     "name": "summary_implies_gateDefeat"
+    },
+    {
+     "kind": "theorem",
+     "name": "gateDefeat_iff_summaryDefeat"
     }
    ],
    "imports": [
@@ -29129,10 +29166,10 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedArgumentation.lean",
    "print_axioms_targets": [],
-   "sha256": "a25cbbfd6579396aa755b374fe905737a2d25a0a76a0c16ba126e08d4f85b114",
-   "size_bytes": 11198,
-   "theorem_count": 7,
-   "theorem_count_bol_convention": 7
+   "sha256": "f77685f6c5cd303eac618c7333fb3d92f50696b00dc66ddf5f06aa904e727309",
+   "size_bytes": 16136,
+   "theorem_count": 12,
+   "theorem_count_bol_convention": 12
   },
   {
    "declarations": [
@@ -33332,22 +33369,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3786,
+   "counted_declaration_count": 3791,
    "file_count": 323,
    "lemma_count": 141,
-   "print_axioms_command_count": 2668,
-   "print_axioms_distinct_targets": 2614,
-   "theorem_count": 3645,
-   "theorem_count_bol_convention": 3549
+   "print_axioms_command_count": 2673,
+   "print_axioms_distinct_targets": 2619,
+   "theorem_count": 3650,
+   "theorem_count_bol_convention": 3554
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3767,
+   "counted_declaration_count": 3772,
    "file_count": 308,
    "lemma_count": 134,
-   "print_axioms_command_count": 2668,
-   "print_axioms_distinct_targets": 2614,
-   "theorem_count": 3633,
-   "theorem_count_bol_convention": 3537
+   "print_axioms_command_count": 2673,
+   "print_axioms_distinct_targets": 2619,
+   "theorem_count": 3638,
+   "theorem_count_bol_convention": 3542
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -34035,12 +34072,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "87974e62deca7d660c0e3892e76cfa91951b43375514f009727435891ca53e9b",
+ "source_inventory_digest": "7d43cc46354cd75fb4521f10171a5acae0627019cd3b67660ffd48e76c3cca8f",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "c3e2f1ab8acf1bbc17ed43d7e3c3ce125c5799a2",
-  "tree": "d842de5003fe515693905d2fd63edff637c1e573"
+  "commit": "9e5936328f6753a5e7f60d23cb0b4c522ef163fd",
+  "tree": "81888b0af15ddc39a839f4dca7ce018eaf2869b9"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

@@ -147,7 +147,7 @@
 四、涵摄完备性、八处降级、六类边界界定定理——**部分已于九轮问压实**：25 条新定理（General.lean+Boundary.lean，CI 验证）；P127 左插命题被最小反例关闭并登记，右扩张修正版已证；第 5/6 类边界经指针压实（consensus_does_not_escalate / repetition_does_not_clean / majority_cannot_clean）；
 五、检索第一层向量引擎——**已于九轮问压实**：确定性 TF-IDF 余弦引擎落仓（vector_engine.py，8 条门测试：归一化不变/自相似/对称/确定性排序/候选级封顶），零依赖纯 Python。
 
-**声明账本**：作用域 `juris_lean_package` 3624 条定理声明、作用域 `all_tracked_lean` 3636 条，均绑定清单工件 theorem_inventory_v3.json（subject 及其 subject_binding 记在工件里）。计数口径在此交代（可复算）：生成器 `scripts/ci/generate_theorem_manifest.py` 的文法是去注释后行首 `theorem` 或带 `@[...]` 属性前缀的 `theorem`，`private theorem`（本 subject 69 条）与 `private lemma` 不在清单计数内；lemma 同文法（去注释窄式 125 条＋属性前缀 9 条＝134 条）。复算路径：重跑该生成器（`--verify` 校验现有工件）或按其 DECL_RE 文法逐文件数。公理审计的实际覆盖面是 2601 个具名目标（`#print axioms` 共 2655 行），不是全部声明；本轮由 scripts/ci/generate_probability_audit_surface.py 把原先进不了审计面的统计定理、军令层定理与外部移植件生成式纳入（该 subject 源上军令具名 173 条（本轮为 280 条））。编译与公理判定绑定 run 36351623739 及其 subject 71d2177bc：`lean-full-clean-build`、发布证书（220 文件 / 1932 条声明）与独立校验均为 success；该判定只属于那一个 subject。计数成分也要交代：按 declaration_shape_report.json 声明的两条句法规则实测，`JurisLean/` 树内 3624 条定理声明里，一行式契约搬运 431 条（形如 `theorem 别名 : 契约名 := 证明名`，计数诚实、但不含数学内容），结句中不绑定变量的 1246 条；两条规则可交叠，故不可相加。此处此前写作 433 与 791，而仓库里没有任何脚本能复现其判据，本轮起改用有工件、有门测的实测值。本文未主张：整部中国法已完备形式化；神经逼近器输出可当结论；T 谱已闭合。系统使用者看到的每一个结论，都能沿回执追到其证据等级；对后续施工，T 谱覆盖账就是推进顺序本身。闭合形态另立一账（只说证完用了什么项，不评判命题价值）：全仓 3620 条定理声明里，287 条由单一反射项闭合、102 条由纯 decide 闭合、其余 3231 条含 tactic 过程；逐文件名单在 trivial_proof_census.json，三类相加恰等于总数由门测试核。
+**声明账本**：作用域 `juris_lean_package` 3624 条定理声明、作用域 `all_tracked_lean` 3636 条，均绑定清单工件 theorem_inventory_v3.json（subject 及其 subject_binding 记在工件里）。计数口径在此交代（可复算）：生成器 `scripts/ci/generate_theorem_manifest.py` 的文法是去注释后行首 `theorem` 或带 `@[...]` 属性前缀的 `theorem`，`private theorem`（本 subject 69 条）与 `private lemma` 不在清单计数内；lemma 同文法（去注释窄式 125 条＋属性前缀 9 条＝134 条）。复算路径：重跑该生成器（`--verify` 校验现有工件）或按其 DECL_RE 文法逐文件数。公理审计的实际覆盖面是 2601 个具名目标（`#print axioms` 共 2655 行），不是全部声明；本轮由 scripts/ci/generate_probability_audit_surface.py 把原先进不了审计面的统计定理、军令层定理与外部移植件生成式纳入（该 subject 源上军令具名 173 条（本轮为 280 条））。编译与公理判定绑定 run 36351623739 及其 subject 71d2177bc：`lean-full-clean-build`、发布证书（220 文件 / 1932 条声明）与独立校验均为 success；该判定只属于那一个 subject。计数成分也要交代：按 declaration_shape_report.json 声明的两条句法规则实测，`JurisLean/` 树内 3624 条定理声明里，一行式契约搬运 431 条（形如 `theorem 别名 : 契约名 := 证明名`，计数诚实、但不含数学内容），结句中不绑定变量的 1248 条；两条规则可交叠，故不可相加。此处此前写作 433 与 791，而仓库里没有任何脚本能复现其判据，本轮起改用有工件、有门测的实测值。本文未主张：整部中国法已完备形式化；神经逼近器输出可当结论；T 谱已闭合。系统使用者看到的每一个结论，都能沿回执追到其证据等级；对后续施工，T 谱覆盖账就是推进顺序本身。闭合形态另立一账（只说证完用了什么项，不评判命题价值）：全仓 3624 条定理声明里，287 条由单一反射项闭合、102 条由纯 decide 闭合、其余 3235 条含 tactic 过程；逐文件名单在 trivial_proof_census.json，三类相加恰等于总数由门测试核。
 
 ### 三缺口的载体对齐
 
@@ -209,7 +209,7 @@
 审计驱动文件 `AxiomAudit.lean` 独占 2392 行（`theorem_inventory_v3.json`），军令层现由 280 条具名目标构成。
 2655 条命令去重得 2601 个具名目标（同一目标可在多处被点名），其中 2392 条来自 `AxiomAudit.lean`，余下 263 条在别的驱动里（`theorem_inventory_v3.json`）。
 
-**闭合形态**：全仓 3620 条定理声明中（`theorem_inventory_v3.json`），287 条由单一反射项闭合、102 条由纯 decide 闭合、其余 3231 条含 tactic 过程（`theorem_inventory_v3.json` 与 `trivial_proof_census.json`）；其中一行式契约搬运 431 条（`theorem_inventory_v3.json`），结句中不绑定变量的 1246 条（`theorem_inventory_v3.json`）。
+**闭合形态**：全仓 3624 条定理声明中（`theorem_inventory_v3.json`），287 条由单一反射项闭合、102 条由纯 decide 闭合、其余 3235 条含 tactic 过程（`theorem_inventory_v3.json` 与 `trivial_proof_census.json`）；其中一行式契约搬运 431 条（`theorem_inventory_v3.json`），结句中不绑定变量的 1248 条（`theorem_inventory_v3.json`）。
 交叉核对：包内 3624 条定理加 134 条 lemma，恰等于计入声明总数 3758（`theorem_inventory_v3.json`）。
 
 **本节不改变任何主张的强度**，只说明"数了多少、用什么项证的"。根扩大是因为七件模块各自拿到

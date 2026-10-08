@@ -103,7 +103,7 @@ stable selection of the witness profile. -/
 theorem abc_stable_AC : StableSelection abcProfile {0, 2} := by
   refine ⟨?_, ?_, ?_, ?_⟩
   · intro x hx
-    simp only [Finset.mem_insert, Finset.mem_singleton] at hx ⊢
+    simp only [abcProfile, Finset.mem_insert, Finset.mem_singleton] at hx ⊢
     tauto
   · intro a ha b hb hab
     simp only [Finset.mem_insert, Finset.mem_singleton] at ha hb
@@ -114,12 +114,14 @@ theorem abc_stable_AC : StableSelection abcProfile {0, 2} := by
   · intro n hn hout
     simp only [abcProfile, Finset.mem_insert, Finset.mem_singleton] at hn
     rcases hn with h | h | h
-    · simp only [Finset.mem_insert, Finset.mem_singleton] at hout
-      exact absurd rfl hout
+    · subst h
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hout
+      exact absurd (Or.inl rfl) hout
     · subst h
       exact ⟨0, by decide, by simp [abcProfile]⟩
-    · simp only [Finset.mem_insert, Finset.mem_singleton] at hout
-      tauto
+    · subst h
+      simp only [Finset.mem_insert, Finset.mem_singleton] at hout
+      exact absurd (Or.inr rfl) hout
   · intro p hp
     simp [abcProfile] at hp
 

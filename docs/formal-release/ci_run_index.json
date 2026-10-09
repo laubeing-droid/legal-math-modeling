@@ -13209,6 +13209,69 @@
       "workflow": "Lean Authority + Formal Release Pipeline"
     },
     {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-05T23:46:30Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/mandate-wave1",
+      "head_sha": "257d584993097b3dbfadfd7d3dbe2ef0ef9660ba",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37390399619",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "docs(round3-audit): correct the B7 ruling and record the re-audit fin…",
+      "quoted_by": [
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:414",
+        "docs/spec/20261007-统一法律数学模型_全量施工方案.md:1416"
+      ],
+      "run_id": 37390399619,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-05T23:56:40Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
       "artifacts_total": 2,
       "conclusion": "cancelled",
       "created_at": "2026-10-08T05:16:57Z",
@@ -20481,6 +20544,68 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-09T16:58:15Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 5,
+      "conclusion": "failure",
+      "created_at": "2026-10-09T17:38:11Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/unified-construction-20261008",
+      "head_sha": "94470eea5129a03b9a91650fc45548a52bbc8c76",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/37967668060",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "ledger xxxi finalized (run 37961703515 / subject 4e9c6b3, certificate…",
+      "quoted_by": [
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:414"
+      ],
+      "run_id": 37967668060,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-09T17:48:05Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

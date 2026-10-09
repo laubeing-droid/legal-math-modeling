@@ -48,10 +48,10 @@ S3 族的最后 5 针（#22–#26），绑定表见 `docs/full-math/BINDING_217_
 主文 §6.5："舍入记录依据、单位、刻度、方向、半值处理、发生节点、输入基数"——
 七字段 `RoundingRule`。舍入核心不依赖语言默认除法：自建 `natQR`（结构递归的
 欧几里得商余数，规范由归纳证明），带符号值按正负分支处理；nearest 比较 `2r`
-与 `d`，半值按具名策略（halfUp＝数轴向 +∞、halfDown＝向 −∞）。七字段全部被
+与 `d`，半值按具名策略（halfUp＝数轴向 +∞、halfDown＝向 -∞）。七字段全部被
 `applyRule` 读取：依据空／节点不符／刻度为零 fail-closed 返回 `none`（policy
 不是无效装饰）；单位、输入基数、节点回执进输出；方向与半值进算术分支。误差界
-在节点处证明（nearest 的 `2·(取整值 − n)` 双侧界），floor/ceil 各有单侧刻度界。
+在节点处证明（nearest 的 `2·(取整值 - n)` 双侧界），floor/ceil 各有单侧刻度界。
 
 ## 二、数学对象
 
@@ -155,7 +155,7 @@ theorem cdfAt_mono (ρ : X → ℕ) (p : X → ℚ) (hp : ∀ x, 0 ≤ p x) (b b
     唯一的多算点在秩恰为 lo 的状态上——由端点无原子假设清零。 -/
 theorem closed_band_mass_eq_cdf_diff (ρ : X → ℕ) (p : X → ℚ) (lo hi : ℕ)
     (hle : lo ≤ hi) (hAtom : ∀ x, ρ x = lo → p x = 0) :
-    bandMass ρ p lo hi = cdfAt ρ p hi − cdfAt ρ p lo := by
+    bandMass ρ p lo hi = cdfAt ρ p hi - cdfAt ρ p lo := by
   have key : ∀ x : X, (if ρ x ≤ hi then p x else 0)
       = (if lo ≤ ρ x ∧ ρ x ≤ hi then p x else 0) + (if ρ x ≤ lo then p x else 0) := by
     intro x
@@ -190,7 +190,7 @@ def atomAtLow : Bool → ℚ := fun b => if b then 0 else 1
     有限支撑非退化分布必有原子，故"无原子性"只能落在端点上——这正是连续版
     与离散版的强度差，本条把它钉成机器反例。 -/
 theorem closed_mass_needs_atomfree_endpoint :
-    ¬ (bandMass rankTwo atomAtLow 0 1 = cdfAt rankTwo atomAtLow 1 − cdfAt rankTwo atomAtLow 0) := by
+    ¬ (bandMass rankTwo atomAtLow 0 1 = cdfAt rankTwo atomAtLow 1 - cdfAt rankTwo atomAtLow 0) := by
   intro h
   have h1 : bandMass rankTwo atomAtLow 0 1 = 1 := by
     simp [bandMass, rankTwo, atomAtLow]; norm_num
@@ -210,7 +210,7 @@ theorem beta_interval_posterior_mass [DecidableEq X]
     (ρ : X → ℕ) (p₀ : X → ℚ) (e : X → Bool) (hZ : 0 < evMass p₀ e) (lo hi : ℕ)
     (hle : lo ≤ hi) (hAtom : ∀ x, ρ x = lo → posterior p₀ e hZ x = 0) :
     bandMass ρ (posterior p₀ e hZ) lo hi
-      = cdfAt ρ (posterior p₀ e hZ) hi − cdfAt ρ (posterior p₀ e hZ) lo :=
+      = cdfAt ρ (posterior p₀ e hZ) hi - cdfAt ρ (posterior p₀ e hZ) lo :=
   closed_band_mass_eq_cdf_diff ρ (posterior p₀ e hZ) lo hi hle hAtom
 
 end Needle22
@@ -791,13 +791,13 @@ theorem natQR_spec : ∀ (d : ℕ), 0 < d → ∀ (m : ℕ),
       · exact ⟨q0, r0 + 1, by simp [hc], by omega, hc⟩
       · exact ⟨q0 + 1, 0, by simp [hc], by omega, by omega⟩
 
-/-- 舍入方向：floor（向 −∞）／ceil（向 +∞）／nearest（最近值，半值按策略）。 -/
+/-- 舍入方向：floor（向 -∞）／ceil（向 +∞）／nearest（最近值，半值按策略）。 -/
 inductive RoundDir where
   | floorDir
   | ceilDir
   | nearestDir
 
-/-- 半值策略（具名）：halfUp＝数轴向 +∞ 取上候选；halfDown＝向 −∞ 取下候选。
+/-- 半值策略（具名）：halfUp＝数轴向 +∞ 取上候选；halfDown＝向 -∞ 取下候选。
     这是本件的显式定义，不是任何法条的转写。 -/
 inductive HalfPolicy where
   | halfUp
@@ -822,8 +822,8 @@ def pickPos (d : ℕ) (dir : RoundDir) (hp : HalfPolicy) (q r : ℕ) : ℤ :=
         | .halfUp => candHigh q d
         | .halfDown => candLow q d
 
-/-- 负基数上的方向选择（数轴语义镜像）：floor(−m) = −ceil(m)、ceil(−m) = −floor(m)；
-    nearest 对称（距离同为 r 与 d−r），半值的上/下候选按数轴方向对换。 -/
+/-- 负基数上的方向选择（数轴语义镜像）：floor(-m) = -ceil(m)、ceil(-m) = -floor(m)；
+    nearest 对称（距离同为 r 与 d-r），半值的上/下候选按数轴方向对换。 -/
 def pickNeg (d : ℕ) (dir : RoundDir) (hp : HalfPolicy) (q r : ℕ) : ℤ :=
   match dir with
   | .floorDir => if r = 0 then -(candLow q d) else -(candHigh q d)
@@ -947,7 +947,7 @@ theorem roundCore_ceil_spec (d : ℕ) (hd : 0 < d) (hp : HalfPolicy) (n : ℤ) :
     constructor <;> omega
 
 /-- nearest 的双侧误差界（主文 §6.5"误差界在该节点证明"）：半值分支取到
-    d/2，非半值分支严格小于 d/2，故 2·(取整值 − n) 落在 [−d, d]。 -/
+    d/2，非半值分支严格小于 d/2，故 2·(取整值 - n) 落在 [-d, d]。 -/
 theorem roundCore_near_error (d : ℕ) (hd : 0 < d) (hp : HalfPolicy) (n : ℤ) :
     2 * (roundCore d .nearestDir hp n - n) ≤ (d : ℤ)
       ∧ -((d : ℤ)) ≤ 2 * (roundCore d .nearestDir hp n - n) := by
@@ -1020,9 +1020,9 @@ theorem node_guard_is_load_bearing :
     applyRule demoRule "elsewhere" 25 = none := by decide
 
 /-- 带符号半值分支数值见证：25 于刻度 10 半值（2r = d）——
-    halfUp 向 +∞ 取 30；−25 的 halfUp 取 −20、halfDown 取 −30（数轴语义，
-    非语言默认除法截断）；floor(−25) = −30（欧几里得 floor ≠ 截断 −20）；
-    ceil(−25) = −20；24 与 26 落在非半值分支各取 20/30。 -/
+    halfUp 向 +∞ 取 30；-25 的 halfUp 取 -20、halfDown 取 -30（数轴语义，
+    非语言默认除法截断）；floor(-25) = -30（欧几里得 floor ≠ 截断 -20）；
+    ceil(-25) = -20；24 与 26 落在非半值分支各取 20/30。 -/
 theorem rounding_near_signed_witnesses :
     roundCore 10 .nearestDir .halfUp 25 = 30
       ∧ roundCore 10 .nearestDir .halfUp (-(25 : ℤ)) = -(20 : ℤ)

@@ -174,15 +174,23 @@ theorem summs_cons_iff {A : Type} [DecidableEq A] (t : STree A) (fs : SForest A)
   constructor
   · intro h
     simp only [summs] at h
-    cases h1 : summarize t with
-    | none => rw [h1] at h; simp at h
-    | some q =>
-      cases h2 : summs fs with
-      | none => rw [h1, h2] at h; simp at h
-      | some qs' =>
-        rw [h1, h2] at h
-        simp only at h
-        exact ⟨q, qs', h1, h2, h.symm⟩
+    have key : ∀ v1 : Option (Summ A), ∀ v2 : Option (List (Summ A)),
+        (match v1, v2 with
+         | some q, some qs => some (q :: qs)
+         | _, _ => none) = some qs →
+        ∃ q qs', v1 = some q ∧ v2 = some qs' ∧ qs = q :: qs' := by
+      intro v1 v2 hm
+      cases v1 with
+      | none => simp at hm
+      | some q =>
+        cases v2 with
+        | none => simp at hm
+        | some qs' =>
+          dsimp only at hm
+          injection hm with hm2
+          exact ⟨q, qs', rfl, rfl, hm2.symm⟩
+    obtain ⟨q, qs', h1, h2, h3⟩ := key _ _ h
+    exact ⟨q, qs', h1, h2, h3⟩
   · rintro ⟨q, qs', h1, h2, h3⟩
     rw [summs_cons_of h1 h2, h3]
 
@@ -195,14 +203,26 @@ theorem summarize_node_iff {A : Type} [DecidableEq A] (r : SRule A)
   constructor
   · intro h
     simp only [summarize] at h
-    cases h1 : summs fs with
-    | none => rw [h1] at h; simp at h
-    | some qs =>
-      simp only [h1] at h
-      by_cases hp : qs.map Summ.conc = r.premises
-      · rw [if_pos hp] at h
-        exact ⟨qs, h1, hp, h.symm⟩
-      · rw [if_neg hp] at h; simp at h
+    have key : ∀ v : Option (List (Summ A)),
+        (match v with
+         | none => none
+         | some qs =>
+             if qs.map Summ.conc = r.premises then some (deltaS r qs)
+             else none) = some q →
+        ∃ qs, v = some qs ∧ qs.map Summ.conc = r.premises ∧
+          q = deltaS r qs := by
+      intro v hm
+      cases v with
+      | none => simp at hm
+      | some qs =>
+        dsimp only at hm
+        by_cases hp : qs.map Summ.conc = r.premises
+        · rw [if_pos hp] at hm
+          injection hm with hm2
+          exact ⟨qs, rfl, hp, hm2.symm⟩
+        · rw [if_neg hp] at hm; simp at hm
+    obtain ⟨qs, h1, hp, hq⟩ := key _ h
+    exact ⟨qs, h1, hp, hq⟩
   · rintro ⟨qs, h1, hp, hq⟩
     rw [summarize_node_of h1 hp, hq]
 

@@ -30,6 +30,8 @@ touched); statistical composition beyond the finite union bound
 
 namespace JurisLean.Seams.UnifiedAnalysis
 
+variable {Ω : Type} [DecidableEq Ω]
+
 /-! ## 一、有限概率空间与并集界（同 Ω 实测） -/
 
 /-- 有限概率空间（ℚ 质量函数，总质量 1）。 -/

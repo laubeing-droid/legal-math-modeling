@@ -563,6 +563,7 @@
     "JurisLean.Seams.UnifiedComposition",
     "JurisLean.Seams.UnifiedEvents",
     "JurisLean.Seams.UnifiedFinalization",
+    "JurisLean.Seams.UnifiedGuards",
     "JurisLean.Seams.UnifiedInstance",
     "JurisLean.Seams.UnifiedLegacy",
     "JurisLean.Seams.UnifiedNormFlow",
@@ -2503,6 +2504,23 @@
     "JurisLean.Seams.UnifiedFinalization.witness_gap_is_not_undetermined_pose",
     "JurisLean.Seams.UnifiedFinalization.witness_not_ready",
     "JurisLean.Seams.UnifiedFinalization.witness_undetermined",
+    "JurisLean.Seams.UnifiedGuards.atom_eq_iff",
+    "JurisLean.Seams.UnifiedGuards.atom_eq_of_scope_change",
+    "JurisLean.Seams.UnifiedGuards.atom_mem_perimeter_iff",
+    "JurisLean.Seams.UnifiedGuards.atom_ne_of_inst_ne",
+    "JurisLean.Seams.UnifiedGuards.atom_ne_of_kind_ne",
+    "JurisLean.Seams.UnifiedGuards.atom_ne_of_slot_ne",
+    "JurisLean.Seams.UnifiedGuards.atom_scope_free",
+    "JurisLean.Seams.UnifiedGuards.attackOfGuardKind_injective",
+    "JurisLean.Seams.UnifiedGuards.exception_vs_authority_atoms_differ",
+    "JurisLean.Seams.UnifiedGuards.foreign_guard_not_in_perimeter",
+    "JurisLean.Seams.UnifiedGuards.foreign_slot_fails_own_instance",
+    "JurisLean.Seams.UnifiedGuards.guardKindName_injective",
+    "JurisLean.Seams.UnifiedGuards.guardKindName_mem",
+    "JurisLean.Seams.UnifiedGuards.guard_fires_only_own_kind",
+    "JurisLean.Seams.UnifiedGuards.own_guard_atom_mem_perimeter",
+    "JurisLean.Seams.UnifiedGuards.scope_change_keeps_concrete_atom",
+    "JurisLean.Seams.UnifiedGuards.slot_names_distinguish_atoms",
     "JurisLean.Seams.UnifiedInstance.F_eq_args_of_attacks_empty",
     "JurisLean.Seams.UnifiedInstance.aafM_args_has_two_distinct",
     "JurisLean.Seams.UnifiedInstance.aafM_attacks_eq_empty",
@@ -3095,8 +3113,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "e4bec7c5c46e68f5ffcdb1b44901aee7817e20b0cecd43f5e443f87f1fc6dba8",
-   "size_bytes": 176989,
+   "sha256": "786788753bca709b8a4216d5e01c550700fb52ecdc76c7666ff1a37504a5253a",
+   "size_bytes": 178193,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -29886,6 +29904,132 @@
   {
    "declarations": [
     {
+     "kind": "inductive",
+     "name": "GuardKind"
+    },
+    {
+     "kind": "def",
+     "name": "guardKindsList"
+    },
+    {
+     "kind": "def",
+     "name": "guardKindName"
+    },
+    {
+     "kind": "theorem",
+     "name": "guardKindName_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "guardKindName_injective"
+    },
+    {
+     "kind": "structure",
+     "name": "GuardSlot"
+    },
+    {
+     "kind": "structure",
+     "name": "GateAtom"
+    },
+    {
+     "kind": "def",
+     "name": "GuardSlot.atom"
+    },
+    {
+     "kind": "theorem",
+     "name": "atom_eq_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "atom_ne_of_kind_ne"
+    },
+    {
+     "kind": "theorem",
+     "name": "atom_ne_of_slot_ne"
+    },
+    {
+     "kind": "theorem",
+     "name": "atom_ne_of_inst_ne"
+    },
+    {
+     "kind": "theorem",
+     "name": "atom_eq_of_scope_change"
+    },
+    {
+     "kind": "theorem",
+     "name": "atom_scope_free"
+    },
+    {
+     "kind": "inductive",
+     "name": "GateAttackKind"
+    },
+    {
+     "kind": "def",
+     "name": "attackOfGuardKind"
+    },
+    {
+     "kind": "theorem",
+     "name": "attackOfGuardKind_injective"
+    },
+    {
+     "kind": "theorem",
+     "name": "guard_fires_only_own_kind"
+    },
+    {
+     "kind": "structure",
+     "name": "GuardedRule"
+    },
+    {
+     "kind": "def",
+     "name": "GuardsOwnInstance"
+    },
+    {
+     "kind": "def",
+     "name": "GuardedRule.perimeter"
+    },
+    {
+     "kind": "theorem",
+     "name": "atom_mem_perimeter_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "own_guard_atom_mem_perimeter"
+    },
+    {
+     "kind": "theorem",
+     "name": "foreign_guard_not_in_perimeter"
+    },
+    {
+     "kind": "theorem",
+     "name": "exception_vs_authority_atoms_differ"
+    },
+    {
+     "kind": "theorem",
+     "name": "slot_names_distinguish_atoms"
+    },
+    {
+     "kind": "theorem",
+     "name": "scope_change_keeps_concrete_atom"
+    },
+    {
+     "kind": "theorem",
+     "name": "foreign_slot_fails_own_instance"
+    }
+   ],
+   "imports": [
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedGuards.lean",
+   "print_axioms_targets": [],
+   "sha256": "61de2ea3f965a6465d48f3476242e777ca3db5c719a09cf31bb00811df9ae778",
+   "size_bytes": 11504,
+   "theorem_count": 17,
+   "theorem_count_bol_convention": 17
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "verdictDomain"
     },
@@ -34266,6 +34410,7 @@
     "JurisLean.Seams.UnifiedComposition",
     "JurisLean.Seams.UnifiedEvents",
     "JurisLean.Seams.UnifiedFinalization",
+    "JurisLean.Seams.UnifiedGuards",
     "JurisLean.Seams.UnifiedInstance",
     "JurisLean.Seams.UnifiedLegacy",
     "JurisLean.Seams.UnifiedNormFlow",
@@ -34307,8 +34452,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "cca3a7a74ea0534f3eb4648ec7e2b238186f27855a948f0075321de507f4bd92",
-   "size_bytes": 9546,
+   "sha256": "7ce916a77e2f5289e18fabc44acf17a588232ad12d993e3518cda9a8a3977d3b",
+   "size_bytes": 9583,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -34472,22 +34617,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3898,
-   "file_count": 335,
+   "counted_declaration_count": 3915,
+   "file_count": 336,
    "lemma_count": 141,
-   "print_axioms_command_count": 2780,
-   "print_axioms_distinct_targets": 2726,
-   "theorem_count": 3757,
-   "theorem_count_bol_convention": 3661
+   "print_axioms_command_count": 2797,
+   "print_axioms_distinct_targets": 2743,
+   "theorem_count": 3774,
+   "theorem_count_bol_convention": 3678
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3879,
-   "file_count": 320,
+   "counted_declaration_count": 3896,
+   "file_count": 321,
    "lemma_count": 134,
-   "print_axioms_command_count": 2780,
-   "print_axioms_distinct_targets": 2726,
-   "theorem_count": 3745,
-   "theorem_count_bol_convention": 3649
+   "print_axioms_command_count": 2797,
+   "print_axioms_distinct_targets": 2743,
+   "theorem_count": 3762,
+   "theorem_count_bol_convention": 3666
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -34782,6 +34927,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvents.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedGuards.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedLegacy.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNormFlow.lean",
@@ -35115,6 +35261,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvents.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedGuards.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedLegacy.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNormFlow.lean",
@@ -35199,17 +35346,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "cf62ec799289401b4e3bc739329637acf1041c72a921d59d9851da80d18a1189",
+ "source_inventory_digest": "ab61b86bf1ac3a161b37c70c08ccd3656ad48ebb323e9129efa18994a9c55ae7",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "6f2865b049cf6d13df27a4152542d821eab894ee",
-  "tree": "e177845fa150b998d123459ec74ae0e700caaceb"
+  "commit": "72f479028a8b1a21d3d04341fe48463535f62a85",
+  "tree": "9bfd25f8b84e5efe426e10c5b6bf581750553d35"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 335,
+  "files_total": 336,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

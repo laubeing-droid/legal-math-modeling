@@ -39,7 +39,7 @@ namespace JurisLean.Seams.UnifiedPerformance
 /-! ## 一、双轨账：实收与依法冲抵 -/
 
 /-- 义务（具名载体，金额非负由 WF 承载）。 -/
-structure Obligation where
+structure PerfObligation where
   /-- 义务号。 -/
   id : ℕ
   /-- 本金。 -/
@@ -55,15 +55,15 @@ structure GrossLedger where
 def grossReceived (g : GrossLedger) : ℚ := g.inflows.sum
 
 /-- 依法冲抵（satisfied 轨道）：不超过本金。 -/
-def satisfiedBy (obl : Obligation) (g : GrossLedger) : ℚ :=
+def satisfiedBy (obl : PerfObligation) (g : GrossLedger) : ℚ :=
   min (grossReceived g) obl.amount
 
 /-- 剩余义务。 -/
-def outstanding (obl : Obligation) (g : GrossLedger) : ℚ :=
+def outstanding (obl : PerfObligation) (g : GrossLedger) : ℚ :=
   obl.amount - satisfiedBy obl g
 
 /-- **守恒**：冲抵＋剩余＝本金。 -/
-theorem outstanding_conservation (obl : Obligation) (g : GrossLedger) :
+theorem outstanding_conservation (obl : PerfObligation) (g : GrossLedger) :
     satisfiedBy obl g + outstanding obl g = obl.amount := by
   simp only [satisfiedBy, outstanding]
   rcases le_total (grossReceived g) obl.amount with h | h
@@ -71,7 +71,7 @@ theorem outstanding_conservation (obl : Obligation) (g : GrossLedger) :
   · rw [min_eq_right h]; ring
 
 /-- 剩余非负（本金非负时）。 -/
-theorem outstanding_nonneg (obl : Obligation) (g : GrossLedger)
+theorem outstanding_nonneg (obl : PerfObligation) (g : GrossLedger)
     (h : 0 ≤ obl.amount) : 0 ≤ outstanding obl g := by
   simp only [outstanding, satisfiedBy]
   rcases le_total (grossReceived g) obl.amount with h' | h'
@@ -79,13 +79,13 @@ theorem outstanding_nonneg (obl : Obligation) (g : GrossLedger)
   · rw [min_eq_right h']; linarith
 
 /-- **Gross 可超付**：现实可以超额流入——账的分解不假设永不超付。 -/
-theorem gross_can_exceed (obl : Obligation) (g : GrossLedger)
+theorem gross_can_exceed (obl : PerfObligation) (g : GrossLedger)
     (h : obl.amount < grossReceived g) : satisfiedBy obl g = obl.amount := by
   unfold satisfiedBy
   rw [min_eq_right h.le]
 
 /-- 相对具名基数的超额数值。 -/
-def excessOver (obl : Obligation) (g : GrossLedger) : ℚ :=
+def excessOver (obl : PerfObligation) (g : GrossLedger) : ℚ :=
   max (grossReceived g - obl.amount) 0
 
 /-! ## 二、超额≠返还：返还读民法985/民诉244要件 -/
@@ -173,20 +173,20 @@ theorem sanction_trigger_iff (r : SanctionRule) (basis : ℚ) :
 /-- **制裁读派生基数**：触发时制裁金额恰为倍率×剩余
     （基数从案卷守恒式一路生成，不手填）。 -/
 theorem sanction_reads_derived_basis (r : SanctionRule)
-    (obl : Obligation) (g : GrossLedger) :
+    (obl : PerfObligation) (g : GrossLedger) :
     sanctionAmount r (outstanding obl g)
       = if r.trigger then r.rate * outstanding obl g else 0 := rfl
 
 /-! ## 五、记账投影不造实体 -/
 
 /-- 记账视图（携带同一账本与派生读数）。 -/
-def ledgerView (obl : Obligation) (g : GrossLedger) :
+def ledgerView (obl : PerfObligation) (g : GrossLedger) :
     GrossLedger × ℚ := (g, outstanding obl g)
 
 /-- **记账投影保持本体状态**：视图里的账本与原账本逐字相同
     ——只限不新造实体对象的投影；既判力/执行效力/证据状态的变化
     不在本片段冒称。 -/
-theorem confirmatory_preserves_ontic_state (obl : Obligation) (g : GrossLedger) :
+theorem confirmatory_preserves_ontic_state (obl : PerfObligation) (g : GrossLedger) :
     (ledgerView obl g).1.inflows = g.inflows := rfl
 
 end JurisLean.Seams.UnifiedPerformance

@@ -563,6 +563,7 @@
     "JurisLean.Seams.UnifiedFinalization",
     "JurisLean.Seams.UnifiedInstance",
     "JurisLean.Seams.UnifiedNormFlow",
+    "JurisLean.Seams.UnifiedPerformance",
     "JurisLean.Seams.UnifiedQuantities",
     "JurisLean.Seams.UnifiedSemantics",
     "JurisLean.Seams.UnifiedUtility",
@@ -2542,6 +2543,15 @@
     "JurisLean.Seams.UnifiedNormFlow.norm_update_reselects_content",
     "JurisLean.Seams.UnifiedNormFlow.unauthorized_proposal_has_no_norm_effect",
     "JurisLean.Seams.UnifiedNormFlow.updateEnv_keeps_other_versions",
+    "JurisLean.Seams.UnifiedPerformance.allocated_not_double_counted",
+    "JurisLean.Seams.UnifiedPerformance.confirmatory_preserves_ontic_state",
+    "JurisLean.Seams.UnifiedPerformance.double_spend_rejected",
+    "JurisLean.Seams.UnifiedPerformance.gross_can_exceed",
+    "JurisLean.Seams.UnifiedPerformance.outstanding_conservation",
+    "JurisLean.Seams.UnifiedPerformance.outstanding_nonneg",
+    "JurisLean.Seams.UnifiedPerformance.same_excess_different_restitution",
+    "JurisLean.Seams.UnifiedPerformance.sanction_reads_derived_basis",
+    "JurisLean.Seams.UnifiedPerformance.sanction_trigger_iff",
     "JurisLean.Seams.UnifiedQuantities.drop_sum_le_sum",
     "JurisLean.Seams.UnifiedQuantities.joint_overallocation_excluded",
     "JurisLean.Seams.UnifiedQuantities.remainingAfter_cons",
@@ -3061,8 +3071,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "95c0ad2e41c58a2d4aeb71ccf932b11b71d76aefa18b377d609257111d8582d9",
-   "size_bytes": 174842,
+   "sha256": "c2b560f19bac61db619028abf3e10caf3b7eb785ace050b4a725b802f586b6bd",
+   "size_bytes": 175557,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -30106,6 +30116,104 @@
   {
    "declarations": [
     {
+     "kind": "structure",
+     "name": "Obligation"
+    },
+    {
+     "kind": "structure",
+     "name": "GrossLedger"
+    },
+    {
+     "kind": "def",
+     "name": "grossReceived"
+    },
+    {
+     "kind": "def",
+     "name": "satisfiedBy"
+    },
+    {
+     "kind": "def",
+     "name": "outstanding"
+    },
+    {
+     "kind": "theorem",
+     "name": "outstanding_conservation"
+    },
+    {
+     "kind": "theorem",
+     "name": "outstanding_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "gross_can_exceed"
+    },
+    {
+     "kind": "def",
+     "name": "excessOver"
+    },
+    {
+     "kind": "inductive",
+     "name": "RestitutionBasis"
+    },
+    {
+     "kind": "def",
+     "name": "restitutionDue"
+    },
+    {
+     "kind": "theorem",
+     "name": "same_excess_different_restitution"
+    },
+    {
+     "kind": "def",
+     "name": "allocLegal"
+    },
+    {
+     "kind": "theorem",
+     "name": "allocated_not_double_counted"
+    },
+    {
+     "kind": "theorem",
+     "name": "double_spend_rejected"
+    },
+    {
+     "kind": "structure",
+     "name": "SanctionRule"
+    },
+    {
+     "kind": "def",
+     "name": "sanctionAmount"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanction_trigger_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "sanction_reads_derived_basis"
+    },
+    {
+     "kind": "def",
+     "name": "ledgerView"
+    },
+    {
+     "kind": "theorem",
+     "name": "confirmatory_preserves_ontic_state"
+    }
+   ],
+   "imports": [
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedPerformance.lean",
+   "print_axioms_targets": [],
+   "sha256": "6f241460640575e52a86b1d8d5586eac27a1b9b7c43e438222ea76cef41743f6",
+   "size_bytes": 7688,
+   "theorem_count": 9,
+   "theorem_count_bol_convention": 9
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "waterfall"
     },
@@ -33916,6 +34024,7 @@
     "JurisLean.Seams.UnifiedFinalization",
     "JurisLean.Seams.UnifiedInstance",
     "JurisLean.Seams.UnifiedNormFlow",
+    "JurisLean.Seams.UnifiedPerformance",
     "JurisLean.Seams.UnifiedQuantities",
     "JurisLean.Seams.UnifiedSemantics",
     "JurisLean.Seams.UnifiedUtility",
@@ -33953,8 +34062,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "c95d5eb5735386bdc048f3922c9b3cbef8ad707a7692d5b6938b93ad96f147fe",
-   "size_bytes": 9394,
+   "sha256": "300331bd4830f199a95501efbd75ff4f4b079af8f6d0886c66c097bff96c7e3f",
+   "size_bytes": 9436,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -34118,22 +34227,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3868,
-   "file_count": 331,
+   "counted_declaration_count": 3877,
+   "file_count": 332,
    "lemma_count": 141,
-   "print_axioms_command_count": 2750,
-   "print_axioms_distinct_targets": 2696,
-   "theorem_count": 3727,
-   "theorem_count_bol_convention": 3631
+   "print_axioms_command_count": 2759,
+   "print_axioms_distinct_targets": 2705,
+   "theorem_count": 3736,
+   "theorem_count_bol_convention": 3640
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3849,
-   "file_count": 316,
+   "counted_declaration_count": 3858,
+   "file_count": 317,
    "lemma_count": 134,
-   "print_axioms_command_count": 2750,
-   "print_axioms_distinct_targets": 2696,
-   "theorem_count": 3715,
-   "theorem_count_bol_convention": 3619
+   "print_axioms_command_count": 2759,
+   "print_axioms_distinct_targets": 2705,
+   "theorem_count": 3724,
+   "theorem_count_bol_convention": 3628
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -34428,6 +34537,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNormFlow.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedPerformance.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantities.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedUtility.lean",
@@ -34757,6 +34867,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNormFlow.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedPerformance.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantities.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedUtility.lean",
@@ -34837,17 +34948,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "da2954c1a69de4aa36eb0f46e30797eea2bd9d8ecb1bf2c5a791ce2ad4094df3",
+ "source_inventory_digest": "686ba08211055d4bfd190757c1a4d80a517cc84d3184dc9359112d43bcc80b2c",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "3f4f2d1c452ef498454b6362b5cf7ce401086686",
-  "tree": "f511c1f9850827243913b761fe43af862707082f"
+  "commit": "9e6407fe297b391b50892b59fbfb97da23e2231a",
+  "tree": "0dfcbd7bf21d070816a79f8d0eb963746720b13d"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 331,
+  "files_total": 332,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

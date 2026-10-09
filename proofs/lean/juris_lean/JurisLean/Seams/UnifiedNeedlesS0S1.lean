@@ -196,7 +196,6 @@ theorem caseFragment_roundTrip : RoundTrip caseFragment := by
   intro a
   show (⟨decodeKey (encodeKey a.key), a.claimedAmount, a.registered⟩ : CaseRecord) = a
   rw [identity_roundtrip a.key]
-  rfl
 
 /-- 01 针前提之二（覆盖性）：模型侧每个状态都有法律原像。 -/
 theorem caseFragment_coverage : Coverage caseFragment := by
@@ -437,7 +436,8 @@ theorem uniformCase_separates (i : Fin 14) :
     familyNet.obs i (uniformCase MaterialPayload.divergent) ≠
       familyNet.obs i (uniformCase MaterialPayload.declared) := by
   intro h
-  exact absurd h (by decide)
+  simp only [familyNet, uniformCase] at h
+  exact MaterialPayload.noConfusion h
 
 /-- **第 05 针（S0，I.13:759；BINDING 行 05）**：联合法律模型存在性（总入口见证）。
     旧锚 `Representation.lean:366` 是 `Fin 2` 两投影见证（该旧引理保留不动）；本针以

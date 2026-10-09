@@ -150,7 +150,7 @@ theorem CAD2_build_none_fail_closed (cx cy t x : ℚ)
     (h : CAD2BuildWitness cx cy t x = none) : ¬ CAD2Proj cx t x := by
   intro hp
   rw [(CAD2_build_accepted cx cy t x hp).1] at h
-  exact Option.noConfusion h
+  exact absurd h (by simp)
 
 /-! ## 五、STATUS -/
 

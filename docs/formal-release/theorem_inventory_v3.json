@@ -558,6 +558,7 @@
     "JurisLean.Seams.UnifiedAdmission",
     "JurisLean.Seams.UnifiedArgumentation",
     "JurisLean.Seams.UnifiedBeta",
+    "JurisLean.Seams.UnifiedComposition",
     "JurisLean.Seams.UnifiedEvents",
     "JurisLean.Seams.UnifiedFinalization",
     "JurisLean.Seams.UnifiedInstance",
@@ -2448,6 +2449,10 @@
     "JurisLean.Seams.UnifiedBeta.refN_width",
     "JurisLean.Seams.UnifiedBeta.strict_comparison_eventually_found",
     "JurisLean.Seams.UnifiedBeta.width_nonneg",
+    "JurisLean.Seams.UnifiedComposition.composite_exact",
+    "JurisLean.Seams.UnifiedComposition.deriveInputs_allEstablished_iff",
+    "JurisLean.Seams.UnifiedComposition.established_requires_admitted_premises",
+    "JurisLean.Seams.UnifiedComposition.nondegenerate_family",
     "JurisLean.Seams.UnifiedEvents.not_mem_removeAll",
     "JurisLean.Seams.UnifiedEvents.revoke_keeps_payments",
     "JurisLean.Seams.UnifiedEvents.runEvents_append",
@@ -3051,8 +3056,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "9cd388eb5498fe08e2550d7b1063f50a36c4242ec008785933f0f0366391c6df",
-   "size_bytes": 174138,
+   "sha256": "42df32af78ed9025b79f020f9b78a476ac1a8d1150d3523c1cf12682cc80ff01",
+   "size_bytes": 174485,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -29439,6 +29444,50 @@
    "declarations": [
     {
      "kind": "structure",
+     "name": "Snapshot"
+    },
+    {
+     "kind": "def",
+     "name": "deriveInputs"
+    },
+    {
+     "kind": "def",
+     "name": "CompositeLegal"
+    },
+    {
+     "kind": "theorem",
+     "name": "composite_exact"
+    },
+    {
+     "kind": "theorem",
+     "name": "established_requires_admitted_premises"
+    },
+    {
+     "kind": "theorem",
+     "name": "deriveInputs_allEstablished_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "nondegenerate_family"
+    }
+   ],
+   "imports": [
+    "JurisLean.Seams.UnifiedAdmission",
+    "JurisLean.Seams.UnifiedFinalization",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
+   "print_axioms_targets": [],
+   "sha256": "5b3e495a2e25d3ca6b6bb398ff152fcba38d05acf9824031e41a177dbe75520a",
+   "size_bytes": 5468,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
      "name": "EvState"
     },
     {
@@ -33791,6 +33840,7 @@
     "JurisLean.Seams.UnifiedAdmission",
     "JurisLean.Seams.UnifiedArgumentation",
     "JurisLean.Seams.UnifiedBeta",
+    "JurisLean.Seams.UnifiedComposition",
     "JurisLean.Seams.UnifiedEvents",
     "JurisLean.Seams.UnifiedFinalization",
     "JurisLean.Seams.UnifiedInstance",
@@ -33831,8 +33881,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "8ad6091990607b5c396b47fb3d14f50d0e3e50fc5c3cc8b7b9483d73479a7b55",
-   "size_bytes": 9313,
+   "sha256": "d4b639af21e33c4e48e5f5e8cf2498fde296aa4977b9e2be7230af72db58f264",
+   "size_bytes": 9355,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -33996,22 +34046,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3860,
-   "file_count": 329,
+   "counted_declaration_count": 3864,
+   "file_count": 330,
    "lemma_count": 141,
-   "print_axioms_command_count": 2742,
-   "print_axioms_distinct_targets": 2688,
-   "theorem_count": 3719,
-   "theorem_count_bol_convention": 3623
+   "print_axioms_command_count": 2746,
+   "print_axioms_distinct_targets": 2692,
+   "theorem_count": 3723,
+   "theorem_count_bol_convention": 3627
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3841,
-   "file_count": 314,
+   "counted_declaration_count": 3845,
+   "file_count": 315,
    "lemma_count": 134,
-   "print_axioms_command_count": 2742,
-   "print_axioms_distinct_targets": 2688,
-   "theorem_count": 3707,
-   "theorem_count_bol_convention": 3611
+   "print_axioms_command_count": 2746,
+   "print_axioms_distinct_targets": 2692,
+   "theorem_count": 3711,
+   "theorem_count_bol_convention": 3615
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -34301,6 +34351,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedAdmission.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedArgumentation.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedBeta.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvents.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
@@ -34628,6 +34679,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedAdmission.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedArgumentation.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedBeta.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvents.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
@@ -34711,17 +34763,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "47538813b42cdde6154c05446d6c989e21bacb6939ced00d94f1c359597431d4",
+ "source_inventory_digest": "bd8461e13ac8a841db53aa05e1742c28d918833e083ce11792b7f7505dada98b",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "a35f52c4e501cd776ee320912a8db634caf5f5f6",
-  "tree": "14b51b143f20854d79c19f5a9e06f6aec25e7cd3"
+  "commit": "93995080b40ab4508b37d292612db15928ce0aa4",
+  "tree": "9f185c0d11aa31cfc217558e706276ce129a74de"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 329,
+  "files_total": 330,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

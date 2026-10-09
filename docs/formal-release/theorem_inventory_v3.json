@@ -559,6 +559,7 @@
     "JurisLean.Seams.UnifiedAnalysis",
     "JurisLean.Seams.UnifiedArgumentation",
     "JurisLean.Seams.UnifiedBeta",
+    "JurisLean.Seams.UnifiedCAD",
     "JurisLean.Seams.UnifiedComposition",
     "JurisLean.Seams.UnifiedEvents",
     "JurisLean.Seams.UnifiedFinalization",
@@ -2461,6 +2462,17 @@
     "JurisLean.Seams.UnifiedBeta.refN_width",
     "JurisLean.Seams.UnifiedBeta.strict_comparison_eventually_found",
     "JurisLean.Seams.UnifiedBeta.width_nonneg",
+    "JurisLean.Seams.UnifiedCAD.buildCAD2_accepted",
+    "JurisLean.Seams.UnifiedCAD.buildCAD2_total",
+    "JurisLean.Seams.UnifiedCAD.checkCAD2_a",
+    "JurisLean.Seams.UnifiedCAD.checkCAD2_ne",
+    "JurisLean.Seams.UnifiedCAD.checkCAD2_r1",
+    "JurisLean.Seams.UnifiedCAD.checkCAD2_r2",
+    "JurisLean.Seams.UnifiedCAD.checkCAD2_sound",
+    "JurisLean.Seams.UnifiedCAD.linear_two_roots_zero",
+    "JurisLean.Seams.UnifiedCAD.quad_at_most_two_roots",
+    "JurisLean.Seams.UnifiedCAD.quad_factors",
+    "JurisLean.Seams.UnifiedCAD.sign_invariant_cells",
     "JurisLean.Seams.UnifiedComposition.composite_exact",
     "JurisLean.Seams.UnifiedComposition.deriveInputs_allEstablished_iff",
     "JurisLean.Seams.UnifiedComposition.established_requires_admitted_premises",
@@ -3083,8 +3095,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "1d39edb680cfbdc4600147b35451fc9424ff8c1cadd432d94a73c3d01d8f58ce",
-   "size_bytes": 176322,
+   "sha256": "e4bec7c5c46e68f5ffcdb1b44901aee7817e20b0cecd43f5e443f87f1fc6dba8",
+   "size_bytes": 176989,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -29557,6 +29569,84 @@
    "declarations": [
     {
      "kind": "structure",
+     "name": "Poly2"
+    },
+    {
+     "kind": "def",
+     "name": "eval2"
+    },
+    {
+     "kind": "structure",
+     "name": "QuadCert"
+    },
+    {
+     "kind": "theorem",
+     "name": "linear_two_roots_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "quad_factors"
+    },
+    {
+     "kind": "theorem",
+     "name": "quad_at_most_two_roots"
+    },
+    {
+     "kind": "def",
+     "name": "checkCAD2"
+    },
+    {
+     "kind": "theorem",
+     "name": "checkCAD2_a"
+    },
+    {
+     "kind": "theorem",
+     "name": "checkCAD2_r1"
+    },
+    {
+     "kind": "theorem",
+     "name": "checkCAD2_r2"
+    },
+    {
+     "kind": "theorem",
+     "name": "checkCAD2_ne"
+    },
+    {
+     "kind": "theorem",
+     "name": "checkCAD2_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "sign_invariant_cells"
+    },
+    {
+     "kind": "def",
+     "name": "buildCAD2"
+    },
+    {
+     "kind": "theorem",
+     "name": "buildCAD2_total"
+    },
+    {
+     "kind": "theorem",
+     "name": "buildCAD2_accepted"
+    }
+   ],
+   "imports": [
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD.lean",
+   "print_axioms_targets": [],
+   "sha256": "afe3e28de1beb29465818f7e1ff5e5cb41277d0cc43a3aa680795643aef7615f",
+   "size_bytes": 9132,
+   "theorem_count": 11,
+   "theorem_count_bol_convention": 11
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
      "name": "Snapshot"
     },
     {
@@ -34172,6 +34262,7 @@
     "JurisLean.Seams.UnifiedAnalysis",
     "JurisLean.Seams.UnifiedArgumentation",
     "JurisLean.Seams.UnifiedBeta",
+    "JurisLean.Seams.UnifiedCAD",
     "JurisLean.Seams.UnifiedComposition",
     "JurisLean.Seams.UnifiedEvents",
     "JurisLean.Seams.UnifiedFinalization",
@@ -34216,8 +34307,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "0fe3960bcbc95da3dbeeb199980f5d737aa7b584d140219778e09123b2590a01",
-   "size_bytes": 9512,
+   "sha256": "cca3a7a74ea0534f3eb4648ec7e2b238186f27855a948f0075321de507f4bd92",
+   "size_bytes": 9546,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -34381,22 +34472,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3887,
-   "file_count": 334,
+   "counted_declaration_count": 3898,
+   "file_count": 335,
    "lemma_count": 141,
-   "print_axioms_command_count": 2769,
-   "print_axioms_distinct_targets": 2715,
-   "theorem_count": 3746,
-   "theorem_count_bol_convention": 3650
+   "print_axioms_command_count": 2780,
+   "print_axioms_distinct_targets": 2726,
+   "theorem_count": 3757,
+   "theorem_count_bol_convention": 3661
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3868,
-   "file_count": 319,
+   "counted_declaration_count": 3879,
+   "file_count": 320,
    "lemma_count": 134,
-   "print_axioms_command_count": 2769,
-   "print_axioms_distinct_targets": 2715,
-   "theorem_count": 3734,
-   "theorem_count_bol_convention": 3638
+   "print_axioms_command_count": 2780,
+   "print_axioms_distinct_targets": 2726,
+   "theorem_count": 3745,
+   "theorem_count_bol_convention": 3649
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -34687,6 +34778,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedAnalysis.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedArgumentation.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedBeta.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvents.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
@@ -35019,6 +35111,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedAnalysis.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedArgumentation.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedBeta.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvents.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
@@ -35106,17 +35199,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "cc7d78afd51dc5cb7553e597a47d559a4fa620e5a43b224d547d9fdfc9325a23",
+ "source_inventory_digest": "cf62ec799289401b4e3bc739329637acf1041c72a921d59d9851da80d18a1189",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "8352f12dc54d0dfd2785659e23d3d09906fee635",
-  "tree": "a74b809efdd11bbb38ecd6842e75cea7aedd92a3"
+  "commit": "6f2865b049cf6d13df27a4152542d821eab894ee",
+  "tree": "e177845fa150b998d123459ec74ae0e700caaceb"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 334,
+  "files_total": 335,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

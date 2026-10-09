@@ -66,15 +66,17 @@ def outstanding (obl : Obligation) (g : GrossLedger) : ℚ :=
 theorem outstanding_conservation (obl : Obligation) (g : GrossLedger) :
     satisfiedBy obl g + outstanding obl g = obl.amount := by
   unfold satisfiedBy outstanding
-  linarith [min_le_left (grossReceived g) obl.amount,
-    min_le_right (grossReceived g) obl.amount,
-    le_total (grossReceived g) obl.amount]
+  rcases le_total (grossReceived g) obl.amount with h | h
+  · rw [min_eq_left h]; ring
+  · rw [min_eq_right h]; ring
 
 /-- 剩余非负（本金非负时）。 -/
 theorem outstanding_nonneg (obl : Obligation) (g : GrossLedger)
     (h : 0 ≤ obl.amount) : 0 ≤ outstanding obl g := by
   unfold outstanding satisfiedBy
-  linarith [min_le_left (grossReceived g) obl.amount]
+  rcases le_total (grossReceived g) obl.amount with h' | h'
+  · rw [min_eq_left h']; linarith
+  · rw [min_eq_right h']; linarith
 
 /-- **Gross 可超付**：现实可以超额流入——账的分解不假设永不超付。 -/
 theorem gross_can_exceed (obl : Obligation) (g : GrossLedger)
@@ -165,7 +167,7 @@ theorem sanction_trigger_iff (r : SanctionRule) (basis : ℚ) :
       exact mul_ne_zero hr hb
   · rw [if_neg h]
     constructor
-    · intro hne; exact hne rfl
+    · intro hne; exact absurd rfl hne
     · intro ⟨h1, _, _⟩; exact absurd h1 h
 
 /-- **制裁读派生基数**：触发时制裁金额恰为倍率×剩余

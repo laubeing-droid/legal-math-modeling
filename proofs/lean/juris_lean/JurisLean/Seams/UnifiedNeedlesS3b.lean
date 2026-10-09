@@ -265,8 +265,8 @@ theorem evMass_shared_sel_obs (π : Θ → ℚ) (q : Nty → ℚ) (E : Θ → Bo
     rw [if_pos hE, ← Finset.mul_sum]
     refine Finset.sum_congr rfl (fun n _ => ?_)
     by_cases hS : S n = true
-    · rw [if_pos (by simp [hE, hS] : (E θ && S n) = true), if_pos hS]
-    · rw [if_neg (by simp [hE, hS] : ¬((E θ && S n) = true)), if_neg hS, mul_zero]
+    · rw [if_pos (show (E θ && S n) = true from by simp [hE, hS]), if_pos hS]
+    · rw [if_neg (show ¬((E θ && S n) = true) from by simp [hE, hS]), if_neg hS, mul_zero]
   | false =>
     rw [if_neg hE, mul_zero]
     simp [hE]

@@ -160,7 +160,7 @@ theorem sign_invariant_cells (p : Poly2) (cert : QuadCert)
       mul_pos_of_neg_of_neg (by linarith) (by linarith)
     have hy : (y - cert.root1) * (y - cert.root2) > 0 :=
       mul_pos_of_neg_of_neg (by linarith) (by linarith)
-    nlinarith [mul_nonneg (mul_nonneg hnn hx) hy]
+    nlinarith [mul_nonneg (mul_nonneg hnn (le_of_lt hx)) (le_of_lt hy)]
   · have hx : (x - cert.root1) * (x - cert.root2) < 0 := by
       have hpos : x - cert.root2 < 0 := by linarith
       have hneg : x - cert.root1 > 0 := by linarith
@@ -169,12 +169,12 @@ theorem sign_invariant_cells (p : Poly2) (cert : QuadCert)
       have hpos : y - cert.root2 < 0 := by linarith
       have hneg : y - cert.root1 > 0 := by linarith
       exact mul_neg_of_pos_of_neg hneg hpos
-    nlinarith [mul_nonneg hnn (mul_pos_of_neg_of_neg hx hy)]
+    nlinarith [mul_nonneg hnn (le_of_lt (mul_pos_of_neg_of_neg hx hy))]
   · have hx : (x - cert.root1) * (x - cert.root2) > 0 :=
       mul_pos (by linarith) (by linarith)
     have hy : (y - cert.root1) * (y - cert.root2) > 0 :=
       mul_pos (by linarith) (by linarith)
-    nlinarith [mul_nonneg (mul_nonneg hnn hx) hy]
+    nlinarith [mul_nonneg (mul_nonneg hnn (le_of_lt hx)) (le_of_lt hy)]
 
 /-! ## 五、义务二/三：构造器全与证书必被接受 -/
 

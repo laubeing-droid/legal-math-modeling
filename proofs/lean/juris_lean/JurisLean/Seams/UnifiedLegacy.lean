@@ -40,12 +40,12 @@ inductive LegacyIn : Type
 
 /-- 新输入：带作用域。 -/
 inductive NewIn : Type
-  | scoped (v : ℚ) (scope : ℕ)
+  | tagged (v : ℚ) (scope : ℕ)
   deriving DecidableEq
 
 /-- 部分转换：成功条件只含结构条件（作用域标签在）。 -/
 def convertLegacy : LegacyIn → Option NewIn
-  | .plain v => some (.scoped v 0)
+  | .plain v => some (.tagged v 0)
   | .unscoped _ => none
 
 /-! ## 二、七根受保护观察与投影 -/
@@ -75,7 +75,8 @@ def projectNew : NewOut → LegacyObs
 
 /-- 新管线（片段：金额直通，就绪恒真）。 -/
 def newRun : NewIn → NewOut
-  | .scoped v _ => { amount := v, ready := true }
+  | .tagged v _ =>
+      { amount := v, ready := true }
 
 /-- 旧管线（unscoped 的旧错误结果按历史载体保留：root2=false 哨兵）。 -/
 def legacyRun : LegacyIn → LegacyObs
@@ -108,6 +109,6 @@ theorem no_global_behavior_equality :
   have h2 : (projectNew (newRun ni)).root2
       = (legacyRun (.unscoped 5)).root2 := by rw [h]
   cases ni with
-  | scoped v s => simp [projectNew, newRun, legacyRun] at h2
+  | tagged v s => simp [projectNew, newRun, legacyRun] at h2
 
 end JurisLean.Seams.UnifiedLegacy

@@ -41,26 +41,31 @@ structure FinProb (Ω : Type) [DecidableEq Ω] where
   /-- 质量函数。 -/
   mass : Ω → ℚ
 
-/-- 事件概率（同 Ω 上实测）。 -/
+/-- 事件概率（同 Ω 上实测；指标函数形，逐点算术可达）。 -/
 def prob (fp : FinProb Ω) (A : Finset Ω) : ℚ :=
-  ∑ ω ∈ fp.support ∩ A, fp.mass ω
+  ∑ ω ∈ fp.support, (if ω ∈ A then fp.mass ω else 0)
 
 /-- **并集界（证明，不假设）**：同一 Ω 上 P(A∪B) ≤ P(A)+P(B)
     ——由有限集和的交并分解直接推出，不对任意集合函数假设立得。 -/
 theorem prob_union_bound (fp : FinProb Ω) (A B : Finset Ω) :
     prob fp (A ∪ B) ≤ prob fp A + prob fp B := by
-  have hsub : fp.support ∩ (A ∪ B) ⊆ (fp.support ∩ A) ∪ (fp.support ∩ B) := by
-    intro ω hω
-    simp only [Finset.mem_inter, Finset.mem_union] at hω ⊢
-    rcases hω.2 with hA | hB
-    · exact Or.inl ⟨hω.1, hA⟩
-    · exact Or.inr ⟨hω.1, hB⟩
-  unfold prob
-  calc ∑ ω ∈ fp.support ∩ (A ∪ B), fp.mass ω
-      ≤ ∑ ω ∈ (fp.support ∩ A) ∪ (fp.support ∩ B), fp.mass ω :=
-        Finset.sum_le_sum_of_subset hsub
-    _ ≤ (∑ ω ∈ fp.support ∩ A, fp.mass ω) + ∑ ω ∈ fp.support ∩ B, fp.mass ω :=
-        Finset.sum_union_le _ _
+  have key : ∀ ω ∈ fp.support,
+      (if ω ∈ A ∪ B then fp.mass ω else 0)
+        ≤ (if ω ∈ A then fp.mass ω else 0) + (if ω ∈ B then fp.mass ω else 0) := by
+    intro ω _
+    by_cases h1 : ω ∈ A <;> by_cases h2 : ω ∈ B <;>
+      simp only [Finset.mem_union, h1, h2, if_true, if_false] <;>
+      first
+        | linarith
+        | rfl
+  calc prob fp (A ∪ B)
+      = ∑ ω ∈ fp.support, (if ω ∈ A ∪ B then fp.mass ω else 0) := rfl
+    _ ≤ ∑ ω ∈ fp.support,
+          ((if ω ∈ A then fp.mass ω else 0) + (if ω ∈ B then fp.mass ω else 0)) :=
+        Finset.sum_le_sum key
+    _ = (∑ ω ∈ fp.support, (if ω ∈ A then fp.mass ω else 0))
+        + ∑ ω ∈ fp.support, (if ω ∈ B then fp.mass ω else 0) :=
+        Finset.sum_add_distrib _ _
 
 /-! ## 二、外界的复合单调 -/
 
@@ -89,7 +94,7 @@ theorem outer_compose_stays_outer (a b c : Iv)
     (h1 : ivSub a b) (h2 : ivSub b c) : ivSub a c := by
   obtain ⟨hl1, hh1⟩ := h1
   obtain ⟨hl2, hh2⟩ := h2
-  exact ⟨le_trans hl1 hl2, le_trans hh1 hh2⟩
+  exact ⟨le_trans hl2 hl1, le_trans hh1 hh2⟩
 
 /-! ## 三、内界要可实现见证；局部内界的笛卡尔积不是联合内界 -/
 

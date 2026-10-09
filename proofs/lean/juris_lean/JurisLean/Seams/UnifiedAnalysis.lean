@@ -38,8 +38,10 @@ variable {Ω : Type} [DecidableEq Ω]
 structure FinProb (Ω : Type) [DecidableEq Ω] where
   /-- 支撑集。 -/
   support : Finset Ω
-  /-- 质量函数。 -/
+  /-- 质量函数（非负）。 -/
   mass : Ω → ℚ
+  /-- 质量非负（并集界的逐点式需要它——负质量会使 P(A∪B)≤P(A)+P(B) 失败）。 -/
+  mass_nonneg : ∀ ω, 0 ≤ mass ω
 
 /-- 事件概率（同 Ω 上实测；指标函数形，逐点算术可达）。 -/
 def prob (fp : FinProb Ω) (A : Finset Ω) : ℚ :=
@@ -57,17 +59,17 @@ theorem prob_union_bound (fp : FinProb Ω) (A B : Finset Ω) :
     · have hAB : ω ∈ A ∪ B := Finset.mem_union_left _ h1
       rw [if_pos hAB, if_pos h1]
       by_cases h2 : ω ∈ B
-      · rw [if_pos h2]; linarith
-      · rw [if_neg h2]; linarith
+      · rw [if_pos h2]; linarith [fp.mass_nonneg ω]
+      · rw [if_neg h2]; linarith [fp.mass_nonneg ω]
     · by_cases h2 : ω ∈ B
       · have hAB : ω ∈ A ∪ B := Finset.mem_union_right _ h2
-        rw [if_pos hAB, if_neg h1, if_pos h2]; linarith
+        rw [if_pos hAB, if_neg h1, if_pos h2]; linarith [fp.mass_nonneg ω]
       · have hAB : ω ∉ A ∪ B := by
           intro hmem
           rcases Finset.mem_union.mp hmem with h | h
           · exact h1 h
           · exact h2 h
-        rw [if_neg hAB, if_neg h1, if_neg h2]; linarith
+        rw [if_neg hAB, if_neg h1, if_neg h2]; linarith [fp.mass_nonneg ω]
   calc prob fp (A ∪ B)
       = ∑ ω ∈ fp.support, (if ω ∈ A ∪ B then fp.mass ω else 0) := rfl
     _ ≤ ∑ ω ∈ fp.support,

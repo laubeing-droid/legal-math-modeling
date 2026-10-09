@@ -56,15 +56,16 @@ theorem judgment_step_refines_frozen_T {Rel : Type} [DecidableEq Rel]
     (effective (next L (.formative eventId rel)) r ↔ (r = rel ∨ effective L r)) ∧
       (r ≠ rel →
         effective (next L (.formative eventId rel)) r ↔ effective L r) := by
-  refine ⟨effective_next_formative_iff L eventId rel r, ?_⟩
-  intro hne
   constructor
-  · intro h
-    rcases (effective_next_formative_iff L eventId rel r).1 h with heq | hold
-    · exact absurd heq hne
-    · exact hold
-  · intro h
-    exact (effective_next_formative_iff L eventId rel r).2 (Or.inr h)
+  · exact effective_next_formative_iff L eventId rel r
+  · intro hne
+    constructor
+    · intro h
+      rcases (effective_next_formative_iff L eventId rel r).1 h with heq | hold
+      · exact absurd heq hne
+      · exact hold
+    · intro h
+      exact (effective_next_formative_iff L eventId rel r).2 (Or.inr h)
 
 /-! ## 第 33 针：confirmatory_preserves_R -/
 
@@ -97,8 +98,8 @@ theorem judgment_R_change_requires_formative {Rel : Type} [DecidableEq Rel]
 名单里的 r（r ≠ rel），有效性逐项保持（create 场景=名单外不动）。 -/
 theorem formative_preserves_common_constraints {Rel : Type} [DecidableEq Rel]
     (L : Ledger Rel) (eventId : String) (rel r : Rel) (hne : r ≠ rel) :
-    effective (next L (.formative eventId rel)) r ↔ effective L r :=
-  (judgment_step_refines_frozen_T L eventId rel r).2 hne
+    effective (next L (.formative eventId rel)) r ↔ effective L r := by
+  exact (judgment_step_refines_frozen_T L eventId rel r).2 hne
 
 /-! ## 第 36 针：distinct_payload_effect_witness -/
 
@@ -147,11 +148,10 @@ theorem actual_payment_discharge_exact (d : Debt) (x : Nat)
 消费（字段相等即身份相等），他债务不受影响——以两条具名债务互异作证。 -/
 theorem debt_identity_confines_discharge :
     debtDemo.obligor = "甲" ∧
-      (d : Debt) → d.obligor ≠ debtDemo.obligor → d ≠ debtDemo := by
+      ∀ d : Debt, d.obligor ≠ debtDemo.obligor → d ≠ debtDemo := by
   refine ⟨rfl, ?_⟩
-  intro d hne
-  by_contra heq
-  subst heq
+  intro d hne heq
+  rw [heq] at hne
   exact hne rfl
 
 end JurisLean.Seams.UnifiedNeedlesS5

@@ -176,6 +176,10 @@ theorem closed_band_mass_eq_cdf_diff (ρ : X → ℕ) (p : X → ℚ) (lo hi : �
           if_pos (show lo ≤ ρ x ∧ ρ x ≤ hi from by omega),
           if_neg (Nat.not_le.mpr hgt)]
         ring
+      · rw [if_neg (show ¬(ρ x ≤ hi) from by omega),
+          if_neg (show ¬(lo ≤ ρ x ∧ ρ x ≤ hi) from by omega),
+          if_neg (Nat.not_le.mpr hgt)]
+        ring
   have hsum : cdfAt ρ p hi = bandMass ρ p lo hi + cdfAt ρ p lo := by
     unfold cdfAt bandMass
     rw [← Finset.sum_add_distrib]
@@ -243,6 +247,7 @@ theorem evMass_shared_obs (π : Θ → ℚ) (q : Nty → ℚ) (E : Θ → Bool)
   unfold evMass sharedJoint
   rw [Fintype.sum_prod_type]
   refine Finset.sum_congr rfl (fun θ _ => ?_)
+  dsimp only
   cases hE : E θ with
   | true =>
       rw [if_pos hE]
@@ -310,6 +315,7 @@ theorem selection_transport_from_shared_mechanism (π : Θ → ℚ) (q : Nty →
         by_cases hS : S n = true
         · rw [if_pos (show (E θ && S n) = true from by simp [hE, hS]), if_pos hS]
         · rw [if_neg (show ¬((E θ && S n) = true) from by simp [hE, hS]), if_neg hS, zero_div]
+          rfl
       simp only [paramMarginal, posterior, hstep]
       rw [Finset.sum_div]
       rw [show (∑ n, if S n then π θ * q n else 0)
@@ -354,15 +360,15 @@ theorem selection_transport_from_shared_mechanism (π : Θ → ℚ) (q : Nty →
 theorem parameter_reading_selection_enters_likelihood :
     paramMarginal (sharedJoint (fun _ => (1 / 2 : ℚ)) (fun _ => (1 / 2 : ℚ)))
       (fun ω : Bool × Bool => true && ω.1)
-      (by simp [evMass, sharedJoint, Fintype.sum_prod_type])
+      (by norm_num [evMass, sharedJoint, Fintype.sum_prod_type, Finset.mul_sum])
       true
     ≠ paramMarginal (sharedJoint (fun _ => (1 / 2 : ℚ)) (fun _ => (1 / 2 : ℚ)))
       (fun _ => true)
-      (by simp [evMass, sharedJoint, Fintype.sum_prod_type])
+      (by norm_num [evMass, sharedJoint, Fintype.sum_prod_type, Finset.mul_sum])
       true := by
   intro h
-  simp [paramMarginal, posterior, evMass, sharedJoint, Fintype.sum_prod_type] at h
-  norm_num at h
+  norm_num [paramMarginal, posterior, evMass, sharedJoint, Fintype.sum_prod_type,
+    Finset.mul_sum] at h
 
 end Needle23
 
@@ -377,7 +383,8 @@ variable {Yty : Type} [Fintype Yty] [DecidableEq Yty]
 /-- 后验预测法律模型：事件 θ（先验）→ 材料 m（材料通道）→ 裁判观察 y（观察通道），
     三者有限支撑、逐行非负归一。材料与观察在给定 θ 下条件独立——由联合的
     因子化定义承载（主文 §7.3"须给同一法律观察 Y 的条件机制"）。 -/
-structure PredictiveLegalModel where
+structure PredictiveLegalModel (Θ Mt Yty : Type) [Fintype Θ] [Fintype Mt]
+    [Fintype Yty] where
   /-- 事件类型上的先验。 -/
   prior : Θ → ℚ
   /-- 材料通道：P(材料 m | 事件 θ)。 -/
@@ -513,7 +520,7 @@ def wobs : Bool → Bool → ℚ :=
 def wobsAlt : Bool → Bool → ℚ := fun _ _ => 1 / 3
 
 /-- 见证模型。 -/
-def witnessModel : PredictiveLegalModel where
+def witnessModel : PredictiveLegalModel Bool Bool Bool where
   prior := wprior
   material := wmat
   obs := wobs

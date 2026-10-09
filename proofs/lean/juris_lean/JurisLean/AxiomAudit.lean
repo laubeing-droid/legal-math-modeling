@@ -174,6 +174,8 @@ import JurisLean.Seams.UnifiedLegacy
 
 import JurisLean.Seams.UnifiedCAD
 
+import JurisLean.Seams.UnifiedGuards
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1910,6 +1912,23 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedFinalization.witness_gap_is_not_undetermined_pose
 #print axioms JurisLean.Seams.UnifiedFinalization.witness_not_ready
 #print axioms JurisLean.Seams.UnifiedFinalization.witness_undetermined
+#print axioms JurisLean.Seams.UnifiedGuards.atom_eq_iff
+#print axioms JurisLean.Seams.UnifiedGuards.atom_eq_of_scope_change
+#print axioms JurisLean.Seams.UnifiedGuards.atom_mem_perimeter_iff
+#print axioms JurisLean.Seams.UnifiedGuards.atom_ne_of_inst_ne
+#print axioms JurisLean.Seams.UnifiedGuards.atom_ne_of_kind_ne
+#print axioms JurisLean.Seams.UnifiedGuards.atom_ne_of_slot_ne
+#print axioms JurisLean.Seams.UnifiedGuards.atom_scope_free
+#print axioms JurisLean.Seams.UnifiedGuards.attackOfGuardKind_injective
+#print axioms JurisLean.Seams.UnifiedGuards.exception_vs_authority_atoms_differ
+#print axioms JurisLean.Seams.UnifiedGuards.foreign_guard_not_in_perimeter
+#print axioms JurisLean.Seams.UnifiedGuards.foreign_slot_fails_own_instance
+#print axioms JurisLean.Seams.UnifiedGuards.guardKindName_injective
+#print axioms JurisLean.Seams.UnifiedGuards.guardKindName_mem
+#print axioms JurisLean.Seams.UnifiedGuards.guard_fires_only_own_kind
+#print axioms JurisLean.Seams.UnifiedGuards.own_guard_atom_mem_perimeter
+#print axioms JurisLean.Seams.UnifiedGuards.scope_change_keeps_concrete_atom
+#print axioms JurisLean.Seams.UnifiedGuards.slot_names_distinguish_atoms
 #print axioms JurisLean.Seams.UnifiedInstance.F_eq_args_of_attacks_empty
 #print axioms JurisLean.Seams.UnifiedInstance.aafM_args_has_two_distinct
 #print axioms JurisLean.Seams.UnifiedInstance.aafM_attacks_eq_empty

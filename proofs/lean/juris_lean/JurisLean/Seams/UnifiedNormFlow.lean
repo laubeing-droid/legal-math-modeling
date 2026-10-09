@@ -41,8 +41,8 @@ inductive Rule : Type where
 
 /-- 授权来源（谁授权）。 -/
 inductive Authority : Type where
-  | supreme /-- 立法机关位。 -/
-  | delegated (scope : ℕ) /-- 授权转授（带作用域）。 -/
+  | supreme
+  | delegated (scope : ℕ)
   deriving DecidableEq, Repr
 
 /-- 规范环境：版本号 → 规则集。 -/

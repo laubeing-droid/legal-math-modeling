@@ -556,6 +556,7 @@
     "JurisLean.Seams.Uncertainty",
     "JurisLean.Seams.Unified",
     "JurisLean.Seams.UnifiedAdmission",
+    "JurisLean.Seams.UnifiedAnalysis",
     "JurisLean.Seams.UnifiedArgumentation",
     "JurisLean.Seams.UnifiedBeta",
     "JurisLean.Seams.UnifiedComposition",
@@ -2431,6 +2432,14 @@
     "JurisLean.Seams.UnifiedAdmission.burden_failure_issue_scoped",
     "JurisLean.Seams.UnifiedAdmission.burden_failure_not_ontic_negation",
     "JurisLean.Seams.UnifiedAdmission.mem_step_grants_iff",
+    "JurisLean.Seams.UnifiedAnalysis.cartesian_point_infeasible",
+    "JurisLean.Seams.UnifiedAnalysis.error_not_court_judgment",
+    "JurisLean.Seams.UnifiedAnalysis.hull_monotone",
+    "JurisLean.Seams.UnifiedAnalysis.joint_interior_witness",
+    "JurisLean.Seams.UnifiedAnalysis.missing_propagates_scope",
+    "JurisLean.Seams.UnifiedAnalysis.outer_compose_stays_outer",
+    "JurisLean.Seams.UnifiedAnalysis.prob_union_bound",
+    "JurisLean.Seams.UnifiedAnalysis.unrelated_continue",
     "JurisLean.Seams.UnifiedArgumentation.child_concl_mem_attackTargets",
     "JurisLean.Seams.UnifiedArgumentation.defeat_iff_summaryDefeat",
     "JurisLean.Seams.UnifiedArgumentation.defeat_implies_summaryDefeat",
@@ -3071,8 +3080,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "c2b560f19bac61db619028abf3e10caf3b7eb785ace050b4a725b802f586b6bd",
-   "size_bytes": 175557,
+   "sha256": "5e30a9bfa8fdb66c42f00eacd77cc0e8b639cf1901d159e1733009dd4822591e",
+   "size_bytes": 176141,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -29301,6 +29310,92 @@
   {
    "declarations": [
     {
+     "kind": "structure",
+     "name": "FinProb"
+    },
+    {
+     "kind": "def",
+     "name": "prob"
+    },
+    {
+     "kind": "theorem",
+     "name": "prob_union_bound"
+    },
+    {
+     "kind": "structure",
+     "name": "Iv"
+    },
+    {
+     "kind": "def",
+     "name": "ivSub"
+    },
+    {
+     "kind": "def",
+     "name": "hull"
+    },
+    {
+     "kind": "theorem",
+     "name": "hull_monotone"
+    },
+    {
+     "kind": "theorem",
+     "name": "outer_compose_stays_outer"
+    },
+    {
+     "kind": "def",
+     "name": "feasibleQ"
+    },
+    {
+     "kind": "theorem",
+     "name": "cartesian_point_infeasible"
+    },
+    {
+     "kind": "theorem",
+     "name": "joint_interior_witness"
+    },
+    {
+     "kind": "inductive",
+     "name": "IssueStatus"
+    },
+    {
+     "kind": "inductive",
+     "name": "CourtRead"
+    },
+    {
+     "kind": "def",
+     "name": "readOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "error_not_court_judgment"
+    },
+    {
+     "kind": "def",
+     "name": "statusOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "missing_propagates_scope"
+    },
+    {
+     "kind": "theorem",
+     "name": "unrelated_continue"
+    }
+   ],
+   "imports": [
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedAnalysis.lean",
+   "print_axioms_targets": [],
+   "sha256": "e42bc1ce2bfb722dd74aaec994a97c6fcad433f8bcc37c54abd0f245ff042e69",
+   "size_bytes": 6987,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "attackTargets"
     },
@@ -34017,6 +34112,7 @@
     "JurisLean.Seams.Uncertainty",
     "JurisLean.Seams.Unified",
     "JurisLean.Seams.UnifiedAdmission",
+    "JurisLean.Seams.UnifiedAnalysis",
     "JurisLean.Seams.UnifiedArgumentation",
     "JurisLean.Seams.UnifiedBeta",
     "JurisLean.Seams.UnifiedComposition",
@@ -34062,8 +34158,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "300331bd4830f199a95501efbd75ff4f4b079af8f6d0886c66c097bff96c7e3f",
-   "size_bytes": 9436,
+   "sha256": "5620e70a45bb7c7a06b40daf1763ab7df78f0df7a392a752327261e125391996",
+   "size_bytes": 9475,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -34227,22 +34323,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3877,
-   "file_count": 332,
+   "counted_declaration_count": 3885,
+   "file_count": 333,
    "lemma_count": 141,
-   "print_axioms_command_count": 2759,
-   "print_axioms_distinct_targets": 2705,
-   "theorem_count": 3736,
-   "theorem_count_bol_convention": 3640
+   "print_axioms_command_count": 2767,
+   "print_axioms_distinct_targets": 2713,
+   "theorem_count": 3744,
+   "theorem_count_bol_convention": 3648
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3858,
-   "file_count": 317,
+   "counted_declaration_count": 3866,
+   "file_count": 318,
    "lemma_count": 134,
-   "print_axioms_command_count": 2759,
-   "print_axioms_distinct_targets": 2705,
-   "theorem_count": 3724,
-   "theorem_count_bol_convention": 3628
+   "print_axioms_command_count": 2767,
+   "print_axioms_distinct_targets": 2713,
+   "theorem_count": 3732,
+   "theorem_count_bol_convention": 3636
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -34530,6 +34626,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/Uncertainty.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Unified.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedAdmission.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedAnalysis.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedArgumentation.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedBeta.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
@@ -34860,6 +34957,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/Uncertainty.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/Unified.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedAdmission.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedAnalysis.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedArgumentation.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedBeta.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
@@ -34948,17 +35046,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "b95176f05a41dcdae0d80a3688bf17d2106098df5adb3c2a9c5501bae59ebe13",
+ "source_inventory_digest": "f065f3b92fb685c445c52d231c710a6db973bb5405ee43f6f50008b9e6d31c92",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "0728140304e15d5f64ec4b6d8bef4ac0ac57c5b0",
-  "tree": "239410cd730b416f514e5ccfa4437b4a7de2cd6e"
+  "commit": "0fee274f1739a62391dc8f7ccc7ccb6d68242b25",
+  "tree": "9476a959b31f0a4f499f135d9b205d1a7793857a"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 332,
+  "files_total": 333,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

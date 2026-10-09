@@ -168,13 +168,13 @@ theorem closed_band_mass_eq_cdf_diff (ρ : X → ℕ) (p : X → ℚ) (lo hi : �
         if_pos (show lo ≤ ρ x ∧ ρ x ≤ hi from by omega), if_pos (show ρ x ≤ lo from by omega), hpx]
       ring
     · rcases Nat.lt_trichotomy (ρ x) hi with hlt2 | heq2 | hgt2
-      · rw [if_pos (show ρ x ≤ hi from by omega),
-          if_pos (show lo ≤ ρ x ∧ ρ x ≤ hi from by omega),
-          if_pos (show ρ x ≤ lo from by omega)]
+      · rw [if_pos (Nat.le_of_lt hlt2),
+          if_pos ⟨Nat.le_of_lt hgt, Nat.le_of_lt hlt2⟩,
+          if_neg (Nat.not_le.mpr hgt)]
         ring
       · rw [if_pos (show ρ x ≤ hi from by omega),
           if_pos (show lo ≤ ρ x ∧ ρ x ≤ hi from by omega),
-          if_pos (show ρ x ≤ lo from by omega)]
+          if_neg (Nat.not_le.mpr hgt)]
         ring
   have hsum : cdfAt ρ p hi = bandMass ρ p lo hi + cdfAt ρ p lo := by
     unfold cdfAt bandMass
@@ -245,10 +245,12 @@ theorem evMass_shared_obs (π : Θ → ℚ) (q : Nty → ℚ) (E : Θ → Bool)
   refine Finset.sum_congr rfl (fun θ _ => ?_)
   cases hE : E θ with
   | true =>
-      rw [if_pos hE, ← Finset.mul_sum, hq1]
+      rw [if_pos hE]
+      simp only [Finset.mul_sum]
+      rw [hq1]
       ring
   | false =>
-      rw [if_neg hE]
+      rw [if_neg (show ¬(E θ = true) from by simp [hE])]
       simp
 
 /-- 选择读 n 时的双重证据质量因子分解：观察（读 θ）∧选择（读 n）的证据质量
@@ -257,19 +259,7 @@ theorem evMass_shared_sel_obs (π : Θ → ℚ) (q : Nty → ℚ) (E : Θ → Bo
     (S : Nty → Bool) :
     evMass (sharedJoint π q) (fun ω => E ω.1 && S ω.2)
       = (∑ θ, if E θ then π θ else 0) * (∑ n, if S n then q n else 0) := by
-  unfold evMass sharedJoint
-  rw [Fintype.sum_prod_type]
-  refine Finset.sum_congr rfl (fun θ _ => ?_)
-  cases hE : E θ with
-  | true =>
-    rw [if_pos hE, ← Finset.mul_sum]
-    refine Finset.sum_congr rfl (fun n _ => ?_)
-    by_cases hS : S n = true
-    · rw [if_pos (show (E θ && S n) = true from by simp [hE, hS]), if_pos hS]
-    · rw [if_neg (show ¬((E θ && S n) = true) from by simp [hE, hS]), if_neg hS, mul_zero]
-  | false =>
-    rw [if_neg hE, mul_zero]
-    simp [hE]
+  simp [evMass, sharedJoint, Fintype.sum_prod_type, Finset.mul_sum]
 
 /-- 双重条件化的两个正性前提都可由"参数侧观察质量＞0 ∧ 选择质量＞0"导出，
     主定理里的正性假设不是白拿的。 -/
@@ -279,7 +269,8 @@ theorem shared_selection_masses_pos (π : Θ → ℚ) (q : Nty → ℚ) (E : Θ 
     0 < evMass (sharedJoint π q) (fun ω => E ω.1 && S ω.2) ∧
       0 < evMass (sharedJoint π q) (fun ω => E ω.1) := by
   rw [evMass_shared_sel_obs, evMass_shared_obs _ _ _ hq1]
-  exact ⟨mul_pos hZe hS, by rw [mul_one]; exact hZe⟩
+  refine ⟨mul_pos hZe hS, ?_⟩
+  simpa using hZe
 
 /-- 针 23 主定理（原验收名 `selection_transport_from_shared_mechanism`）：
     共享生成机制（因子化联合）＋选择只读共享无关分量时，选择条件在参数后验
@@ -363,11 +354,11 @@ theorem selection_transport_from_shared_mechanism (π : Θ → ℚ) (q : Nty →
 theorem parameter_reading_selection_enters_likelihood :
     paramMarginal (sharedJoint (fun _ => (1 / 2 : ℚ)) (fun _ => (1 / 2 : ℚ)))
       (fun ω : Bool × Bool => true && ω.1)
-      (by simp [evMass, sharedJoint, Fintype.sum_prod_type]; norm_num)
+      (by simp [evMass, sharedJoint, Fintype.sum_prod_type])
       true
     ≠ paramMarginal (sharedJoint (fun _ => (1 / 2 : ℚ)) (fun _ => (1 / 2 : ℚ)))
       (fun _ => true)
-      (by simp [evMass, sharedJoint, Fintype.sum_prod_type]; norm_num)
+      (by simp [evMass, sharedJoint, Fintype.sum_prod_type])
       true := by
   intro h
   simp [paramMarginal, posterior, evMass, sharedJoint, Fintype.sum_prod_type] at h

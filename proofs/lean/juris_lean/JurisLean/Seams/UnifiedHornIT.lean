@@ -81,14 +81,14 @@ theorem hprovN_mem_closure (sys : HornSystem α) (ι : Type) [DecidableEq ι]
   | zero =>
       intro P a h
       cases h with
-      | fact _ a h =>
-          exact (JurisLean.Seams.SourceNorms.closure_is_model sys).1 h
+      | @fact _ _ hm =>
+          exact (JurisLean.Seams.SourceNorms.closure_is_model sys).1 hm
   | succ k ih =>
       intro P a h
       cases h with
-      | fact _ a h =>
-          exact (JurisLean.Seams.SourceNorms.closure_is_model sys).1 h
-      | rule _ r hr f hch =>
+      | @fact _ _ hm =>
+          exact (JurisLean.Seams.SourceNorms.closure_is_model sys).1 hm
+      | @rule _ r hr f hch =>
           have hfp : HornSystem.TH sys
               (JurisLean.Seams.SourceNorms.closureAt sys)
               = JurisLean.Seams.SourceNorms.closureAt sys :=
@@ -110,12 +110,12 @@ theorem hprovN_prov_sound (sys : HornSystem α) (ι : Type) [DecidableEq ι]
   | zero =>
       intro P a h s hs
       cases h with
-      | fact _ b hb => exact ⟨b, hb, hs⟩
+      | @fact _ b hb => exact ⟨b, hb, hs⟩
   | succ k ih =>
       intro P a h s hs
       cases h with
-      | fact _ b hb => exact ⟨b, hb, hs⟩
-      | rule _ r _ f hch =>
+      | @fact _ b hb => exact ⟨b, hb, hs⟩
+      | @rule _ r _ f hch =>
           rcases Finset.mem_biUnion.mp hs with ⟨p, hp, hfp⟩
           exact ih (f p) p (hch p hp) s hfp
 
@@ -141,7 +141,7 @@ theorem iter_mem_hprovN (sys : HornSystem α) (ι : Type) [DecidableEq ι]
       · exact ⟨srcOf a, HProvN.fact (k + 1) a ha0⟩
       · rcases Finset.mem_image.mp ha1 with ⟨r, hr, rfl⟩
         rcases Finset.mem_filter.mp hr with ⟨hr, hprem⟩
-        choose f hf using
+        choose! f hf using
           fun (p : α) (hp : p ∈ r.premises) => ih p (hprem hp)
         refine ⟨r.premises.biUnion f, HProvN.rule (k + 1) r hr f ?_⟩
         intro p hp
@@ -202,8 +202,7 @@ theorem chain_marginal (K : σ → σ → ℝ≥0) (hK : isStochastic K)
       exact hK x
   | cons z t ih =>
       simp only [List.cons_append, chainMass]
-      rw [Finset.sum_mul]
-      exact congrArg (fun v => K x z * v) (ih z)
+      rw [← Finset.mul_sum, ih z]
 
 /-- Cylinder compatibility, trajectory side (the 9.3 reading:
 projecting away the last coordinate returns the prefix mass). -/
@@ -211,8 +210,7 @@ theorem pathMass_marginal (μ0 : σ → ℝ≥0) (K : σ → σ → ℝ≥0)
     (hK : isStochastic K) (x : σ) (l : List σ) :
     ∑ y, pathMass μ0 K ((x :: l) ++ [y]) = pathMass μ0 K (x :: l) := by
   simp only [List.cons_append, pathMass]
-  rw [Finset.sum_mul]
-  exact congrArg (fun v => μ0 x * v) (chain_marginal K hK x l)
+  rw [← Finset.mul_sum, chain_marginal K hK x l]
 
 /-- A normalized initial distribution gives total mass one on the
 one-step cylinder (the empty-prefix convention endpoint). -/
@@ -226,7 +224,7 @@ readout). -/
 theorem pathMass_nonneg (μ0 : σ → ℝ≥0) (K : σ → σ → ℝ≥0)
     (l : List σ) : 0 ≤ pathMass μ0 K l := by
   induction l with
-  | nil => exact zero_le 1
+  | nil => exact zero_le_one
   | cons x t ih =>
       simp only [pathMass]
       exact mul_nonneg (zero_le _) ih

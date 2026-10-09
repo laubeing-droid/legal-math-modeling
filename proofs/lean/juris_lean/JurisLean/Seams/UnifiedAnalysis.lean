@@ -53,11 +53,21 @@ theorem prob_union_bound (fp : FinProb Ω) (A B : Finset Ω) :
       (if ω ∈ A ∪ B then fp.mass ω else 0)
         ≤ (if ω ∈ A then fp.mass ω else 0) + (if ω ∈ B then fp.mass ω else 0) := by
     intro ω _
-    simp only [Finset.mem_union]
-    split <;> split <;> split <;>
-      first
-        | linarith
-        | rfl
+    by_cases h1 : ω ∈ A
+    · have hAB : ω ∈ A ∪ B := Finset.mem_union_left _ h1
+      rw [if_pos hAB, if_pos h1]
+      by_cases h2 : ω ∈ B
+      · rw [if_pos h2]; linarith
+      · rw [if_neg h2]; linarith
+    · by_cases h2 : ω ∈ B
+      · have hAB : ω ∈ A ∪ B := Finset.mem_union_right _ h2
+        rw [if_pos hAB, if_neg h1, if_pos h2]; linarith
+      · have hAB : ω ∉ A ∪ B := by
+          intro hmem
+          rcases Finset.mem_union.mp hmem with h | h
+          · exact h1 h
+          · exact h2 h
+        rw [if_neg hAB, if_neg h1, if_neg h2]; linarith
   calc prob fp (A ∪ B)
       = ∑ ω ∈ fp.support, (if ω ∈ A ∪ B then fp.mass ω else 0) := rfl
     _ ≤ ∑ ω ∈ fp.support,

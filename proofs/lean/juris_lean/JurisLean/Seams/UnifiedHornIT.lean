@@ -5,14 +5,14 @@ import JurisLean.Seams.SourceNorms
 Unified Horn provenance bridge and Ionescu-Tulcea kernel wiring
 (main doc 8.2 leftovers; master plan 3.3 layer-B extension and 9.3).
 
-Part 1 - HORN PROVENANCE BRIDGE (master plan 3.3: "closure provenance
-feeds into the grammar, a derived p keeps the source-leaf tree").
-`HProvN` is a height-indexed provenance-carrying derivation over the
-existing `HornSystem`: the fact case cites the declared source set of
-an initial fact; the rule case derives a conclusion with provenance
-EXACTLY the union of the premises' provenances (`biUnion f`).  The
-height index (children at level n, parent at n+1) is what makes the
-inductions go through - membership-style hypotheses carry no IH.
+Part 1 - HORN PROVENANCE BRIDGE (master plan 3.3: a derived atom keeps
+the source leaves of its derivation).  `HProvN` is a height-indexed
+provenance-carrying derivation over the existing `HornSystem`: the
+fact case cites the declared source set of an initial fact; the rule
+case derives a conclusion with provenance EXACTLY the union of the
+premises' provenances (`biUnion f`).  The height index (children at
+level n, parent at n+1) is what makes the inductions go through -
+membership-style hypotheses carry no IH.
 Deliverables:
 - soundness `hprovN_mem_closure`: every derivable atom is in the
   semantic closure (composes with `horn_closure_semantic_iff`);
@@ -29,8 +29,7 @@ compatibility the extension theorem consumes:
 - `chain_marginal` (isStochastic rows: summing over an appended state
   recovers the chain mass);
 - `pathMass_marginal` (the trajectory-level version: projecting away
-  the LAST coordinate of a length-(n+1) prefix mass returns the
-  length-n prefix mass);
+  the LAST coordinate of a longer prefix returns the prefix mass);
 - `pathMass_init_total` (a normalized initial distribution gives
   total mass 1 on the one-step cylinder).
 The existence/uniqueness of the INFINITE trajectory measure is
@@ -54,27 +53,29 @@ open Finset
 
 variable {α : Type} [DecidableEq α]
 
-/-- 高度索引的溯源推导：叶层任意 n（初始事实在每层可用）；规则步的
-子推导住 n 层、父推导住 n+1 层。结论的来源集恰为诸前提来源集的并。 -/
-inductive HProvN (sys : HornSystem α) {ι : Type} (srcOf : α → Finset ι) :
-    ℕ → Finset ι → α → Prop
+/-- Height-indexed provenance-carrying derivation: the fact case holds
+at any level; a rule step takes premise derivations at level n and
+concludes at level n+1, with provenance exactly the union of the
+premise provenances. -/
+inductive HProvN (sys : HornSystem α) (ι : Type) [DecidableEq ι]
+    (srcOf : α → Finset ι) : ℕ → Finset ι → α → Prop
   | fact (n : ℕ) (a : α) (h : a ∈ sys.initialFacts) :
-      HProvN sys srcOf n (srcOf a) a
+      HProvN sys ι srcOf n (srcOf a) a
   | rule (n : ℕ) (r : HornRule α) (hr : r ∈ sys.rules)
       (f : α → Finset ι)
-      (hch : ∀ p ∈ r.premises, HProvN sys srcOf n (f p) p) :
-      HProvN sys srcOf (r.premises.biUnion f) r.conclusion
+      (hch : ∀ p ∈ r.premises, HProvN sys ι srcOf n (f p) p) :
+      HProvN sys ι srcOf (n + 1) (r.premises.biUnion f) r.conclusion
 
-/-- 无高度包装。 -/
-def HProv (sys : HornSystem α) {ι : Type} (srcOf : α → Finset ι)
-    (P : Finset ι) (a : α) : Prop :=
-  ∃ n, HProvN sys srcOf n P a
+/-- Unheighted wrapper. -/
+def HProv (sys : HornSystem α) (ι : Type) [DecidableEq ι]
+    (srcOf : α → Finset ι) (P : Finset ι) (a : α) : Prop :=
+  ∃ n, HProvN sys ι srcOf n P a
 
-/-- 健全性：凡可溯源推导的原子都在语义闭包里。 -/
-theorem hprovN_mem_closure {sys : HornSystem α} {ι : Type}
+/-- Soundness: every derivable atom is in the semantic closure. -/
+theorem hprovN_mem_closure (sys : HornSystem α) (ι : Type) [DecidableEq ι]
     (srcOf : α → Finset ι) :
     ∀ (n : ℕ) (P : Finset ι) (a : α),
-      HProvN sys srcOf n P a → a ∈ JurisLean.Seams.SourceNorms.closureAt sys := by
+      HProvN sys ι srcOf n P a → a ∈ JurisLean.Seams.SourceNorms.closureAt sys := by
   intro n
   induction n with
   | zero =>
@@ -97,12 +98,12 @@ theorem hprovN_mem_closure {sys : HornSystem α} {ι : Type}
           intro p hp
           exact ih (f p) p (hch p hp)
 
-/-- 溯源健全性：推导引用的每个来源都属于某个初始事实的声明来源集——
-推导不能发明来源。 -/
-theorem hprovN_prov_sound {sys : HornSystem α} {ι : Type}
+/-- Provenance soundness: every source cited by a derivation belongs
+to the declared sources of some initial fact. -/
+theorem hprovN_prov_sound (sys : HornSystem α) (ι : Type) [DecidableEq ι]
     (srcOf : α → Finset ι) :
     ∀ (n : ℕ) (P : Finset ι) (a : α),
-      HProvN sys srcOf n P a →
+      HProvN sys ι srcOf n P a →
         ∀ s ∈ P, ∃ b : α, b ∈ sys.initialFacts ∧ s ∈ srcOf b := by
   intro n
   induction n with
@@ -118,12 +119,13 @@ theorem hprovN_prov_sound {sys : HornSystem α} {ι : Type}
           rcases Finset.mem_biUnion.mp hs with ⟨p, hp, hfp⟩
           exact ih (f p) p (hch p hp) s hfp
 
-/-- 迭代层引理：第 n 层迭代里的原子都有第 n 层溯源推导。 -/
-theorem iter_mem_hprovN {sys : HornSystem α} {ι : Type}
+/-- Iteration lemma: an atom inside iteration level n has a
+level-n derivation. -/
+theorem iter_mem_hprovN (sys : HornSystem α) (ι : Type) [DecidableEq ι]
     (srcOf : α → Finset ι) :
     ∀ (n : ℕ) (a : α),
         a ∈ FiniteMonotoneSystem.iter (HornSystem.toFiniteMonotoneSystem sys) n →
-        ∃ P : Finset ι, HProvN sys srcOf n P a := by
+        ∃ P : Finset ι, HProvN sys ι srcOf n P a := by
   intro n
   induction n with
   | zero =>
@@ -133,73 +135,78 @@ theorem iter_mem_hprovN {sys : HornSystem α} {ι : Type}
   | succ k ih =>
       intro a ha
       rw [FiniteMonotoneSystem.iter_succ] at ha
+      simp only [HornSystem.toFiniteMonotoneSystem] at ha
       unfold HornSystem.TH at ha
       rcases Finset.mem_union.mp ha with (ha0 | ha1)
       · exact ⟨srcOf a, HProvN.fact (k + 1) a ha0⟩
       · rcases Finset.mem_image.mp ha1 with ⟨r, hr, rfl⟩
-          rcases Finset.mem_filter.mp hr with ⟨hr, hprem⟩
+        rcases Finset.mem_filter.mp hr with ⟨hr, hprem⟩
         choose f hf using
           fun (p : α) (hp : p ∈ r.premises) => ih p (hprem hp)
         refine ⟨r.premises.biUnion f, HProvN.rule (k + 1) r hr f ?_⟩
         intro p hp
         exact hf p hp
 
-/-- 完备性：闭包里的原子都有溯源推导（无高度包装）。 -/
-theorem closure_mem_hprov {sys : HornSystem α} {ι : Type}
+/-- Completeness: every closure atom has a provenance derivation. -/
+theorem closure_mem_hprov (sys : HornSystem α) (ι : Type) [DecidableEq ι]
     (srcOf : α → Finset ι) {a : α}
     (h : a ∈ JurisLean.Seams.SourceNorms.closureAt sys) :
-    ∃ P : Finset ι, HProv sys srcOf P a :=
-  let ⟨P, hP⟩ := iter_mem_hprovN srcOf
+    ∃ P : Finset ι, HProv sys ι srcOf P a := by
+  obtain ⟨P, hP⟩ := iter_mem_hprovN sys ι srcOf
     (Finset.card sys.univ) a h
-  ⟨P, Finset.card sys.univ, hP⟩
+  exact ⟨P, Finset.card sys.univ, hP⟩
 
-/-- 桥接双侧：可溯源推导 ⟺ 语义闭包成员。 -/
-theorem hprov_iff_closure {sys : HornSystem α} {ι : Type}
+/-- Bridge, both directions: derivable-with-provenance iff in the
+semantic closure. -/
+theorem hprov_iff_closure (sys : HornSystem α) (ι : Type) [DecidableEq ι]
     (srcOf : α → Finset ι) (a : α) :
-    (∃ P : Finset ι, HProv sys srcOf P a) ↔
+    (∃ P : Finset ι, HProv sys ι srcOf P a) ↔
       a ∈ JurisLean.Seams.SourceNorms.closureAt sys := by
   constructor
   · rintro ⟨P, n, hn⟩
-      exact hprovN_mem_closure srcOf n P a hn
+    exact hprovN_mem_closure sys ι srcOf n P a hn
   · intro h
-      exact closure_mem_hprov srcOf h
+    exact closure_mem_hprov sys ι srcOf h
 
 /-! ## Part 2: Ionescu-Tulcea wiring, discrete fragment -/
 
 section IonescuTulcea
 
+open scoped NNReal
+
 variable {σ : Type} [Fintype σ] [DecidableEq σ]
 
-/-- 随机核（行和为一）。 -/
+/-- Stochastic kernel: every row sums to one. -/
 def isStochastic (K : σ → σ → ℝ≥0) : Prop :=
   ∀ x : σ, ∑ y, K x y = 1
 
-/-- 链质量：从状态 x 出发沿列表转移的乘积。 -/
+/-- Chain mass: the transfer product along a list from state x. -/
 def chainMass (K : σ → σ → ℝ≥0) (x : σ) : List σ → ℝ≥0
   | [] => 1
   | y :: l => K x y * chainMass K y l
 
-/-- 前缀测度（§9.3 有限前缀递推的离散形）。 -/
+/-- Prefix mass (the discrete form of the 9.3 finite-prefix
+recursion). -/
 def pathMass (μ0 : σ → ℝ≥0) (K : σ → σ → ℝ≥0) : List σ → ℝ≥0
   | [] => 1
   | x :: l => μ0 x * chainMass K x l
 
-/-- 柱集相容（核侧）：对追加的末坐标求和恢复原链质量。 -/
+/-- Cylinder compatibility, kernel side: summing over an appended
+last state recovers the chain mass. -/
 theorem chain_marginal (K : σ → σ → ℝ≥0) (hK : isStochastic K)
     (x : σ) (l : List σ) :
     ∑ y, chainMass K x (l ++ [y]) = chainMass K x l := by
   induction l generalizing x with
   | nil =>
-      simp only [List.nil_append, List.cons_append, chainMass, List.nil_append,
-        mul_one]
-      rw [← Finset.mul_sum]
-      exact congrArg (K x) (hK x) ▸ congrArg (fun v => K x * v) (hK x)
+      simp only [List.nil_append, chainMass, mul_one]
+      exact hK x
   | cons z t ih =>
       simp only [List.cons_append, chainMass]
       rw [Finset.sum_mul]
       exact congrArg (fun v => K x z * v) (ih z)
 
-/-- 柱集相容（轨迹侧，§9.3 原文读数）：投影掉末坐标恢复前缀测度。 -/
+/-- Cylinder compatibility, trajectory side (the 9.3 reading:
+projecting away the last coordinate returns the prefix mass). -/
 theorem pathMass_marginal (μ0 : σ → ℝ≥0) (K : σ → σ → ℝ≥0)
     (hK : isStochastic K) (x : σ) (l : List σ) :
     ∑ y, pathMass μ0 K ((x :: l) ++ [y]) = pathMass μ0 K (x :: l) := by
@@ -207,13 +214,15 @@ theorem pathMass_marginal (μ0 : σ → ℝ≥0) (K : σ → σ → ℝ≥0)
   rw [Finset.sum_mul]
   exact congrArg (fun v => μ0 x * v) (chain_marginal K hK x l)
 
-/-- 初始分布归一 ⟹ 一步柱集总质量为 1（空路径约定的退化端）。 -/
+/-- A normalized initial distribution gives total mass one on the
+one-step cylinder (the empty-prefix convention endpoint). -/
 theorem pathMass_init_total (μ0 : σ → ℝ≥0) (K : σ → σ → ℝ≥0)
     (hμ : ∑ x, μ0 x = 1) : ∑ y, pathMass μ0 K [y] = 1 := by
   simp only [pathMass, chainMass, mul_one]
   exact hμ
 
-/-- 质量非负（ℝ≥0 载体上平凡，登记为读数）。 -/
+/-- Masses are nonnegative (trivial on ℝ≥0; recorded as a
+readout). -/
 theorem pathMass_nonneg (μ0 : σ → ℝ≥0) (K : σ → σ → ℝ≥0)
     (l : List σ) : 0 ≤ pathMass μ0 K l := by
   induction l with

@@ -562,6 +562,7 @@
     "JurisLean.Seams.UnifiedEvents",
     "JurisLean.Seams.UnifiedFinalization",
     "JurisLean.Seams.UnifiedInstance",
+    "JurisLean.Seams.UnifiedNormFlow",
     "JurisLean.Seams.UnifiedQuantities",
     "JurisLean.Seams.UnifiedSemantics",
     "JurisLean.Seams.UnifiedUtility",
@@ -2537,6 +2538,10 @@
     "JurisLean.Seams.UnifiedInstance.widening_is_conservative",
     "JurisLean.Seams.UnifiedInstance.zero_in_closureM",
     "JurisLean.Seams.UnifiedInstance.zero_mem_singleton",
+    "JurisLean.Seams.UnifiedNormFlow.delegated_scope_denied_witness",
+    "JurisLean.Seams.UnifiedNormFlow.norm_update_reselects_content",
+    "JurisLean.Seams.UnifiedNormFlow.unauthorized_proposal_has_no_norm_effect",
+    "JurisLean.Seams.UnifiedNormFlow.updateEnv_keeps_other_versions",
     "JurisLean.Seams.UnifiedQuantities.drop_sum_le_sum",
     "JurisLean.Seams.UnifiedQuantities.joint_overallocation_excluded",
     "JurisLean.Seams.UnifiedQuantities.remainingAfter_cons",
@@ -3056,8 +3061,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "42df32af78ed9025b79f020f9b78a476ac1a8d1150d3523c1cf12682cc80ff01",
-   "size_bytes": 174485,
+   "sha256": "95c0ad2e41c58a2d4aeb71ccf932b11b71d76aefa18b377d609257111d8582d9",
+   "size_bytes": 174842,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -30035,6 +30040,72 @@
   {
    "declarations": [
     {
+     "kind": "inductive",
+     "name": "Rule"
+    },
+    {
+     "kind": "inductive",
+     "name": "Authority"
+    },
+    {
+     "kind": "def",
+     "name": "NormEnv"
+    },
+    {
+     "kind": "structure",
+     "name": "Proposal"
+    },
+    {
+     "kind": "structure",
+     "name": "AuthorizedChange"
+    },
+    {
+     "kind": "def",
+     "name": "GrantValid"
+    },
+    {
+     "kind": "def",
+     "name": "authorize"
+    },
+    {
+     "kind": "def",
+     "name": "updateEnv"
+    },
+    {
+     "kind": "def",
+     "name": "activeRules"
+    },
+    {
+     "kind": "theorem",
+     "name": "unauthorized_proposal_has_no_norm_effect"
+    },
+    {
+     "kind": "theorem",
+     "name": "delegated_scope_denied_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "norm_update_reselects_content"
+    },
+    {
+     "kind": "theorem",
+     "name": "updateEnv_keeps_other_versions"
+    }
+   ],
+   "imports": [
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNormFlow.lean",
+   "print_axioms_targets": [],
+   "sha256": "1c0722e19e07bd9d9d5f30926c3b7267745fd8fa9e3c30d0a0f6220ed0a4ed92",
+   "size_bytes": 5231,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "waterfall"
     },
@@ -33844,6 +33915,7 @@
     "JurisLean.Seams.UnifiedEvents",
     "JurisLean.Seams.UnifiedFinalization",
     "JurisLean.Seams.UnifiedInstance",
+    "JurisLean.Seams.UnifiedNormFlow",
     "JurisLean.Seams.UnifiedQuantities",
     "JurisLean.Seams.UnifiedSemantics",
     "JurisLean.Seams.UnifiedUtility",
@@ -33881,8 +33953,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "d4b639af21e33c4e48e5f5e8cf2498fde296aa4977b9e2be7230af72db58f264",
-   "size_bytes": 9355,
+   "sha256": "c95d5eb5735386bdc048f3922c9b3cbef8ad707a7692d5b6938b93ad96f147fe",
+   "size_bytes": 9394,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -34046,22 +34118,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3864,
-   "file_count": 330,
+   "counted_declaration_count": 3868,
+   "file_count": 331,
    "lemma_count": 141,
-   "print_axioms_command_count": 2746,
-   "print_axioms_distinct_targets": 2692,
-   "theorem_count": 3723,
-   "theorem_count_bol_convention": 3627
+   "print_axioms_command_count": 2750,
+   "print_axioms_distinct_targets": 2696,
+   "theorem_count": 3727,
+   "theorem_count_bol_convention": 3631
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3845,
-   "file_count": 315,
+   "counted_declaration_count": 3849,
+   "file_count": 316,
    "lemma_count": 134,
-   "print_axioms_command_count": 2746,
-   "print_axioms_distinct_targets": 2692,
-   "theorem_count": 3711,
-   "theorem_count_bol_convention": 3615
+   "print_axioms_command_count": 2750,
+   "print_axioms_distinct_targets": 2696,
+   "theorem_count": 3715,
+   "theorem_count_bol_convention": 3619
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -34355,6 +34427,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvents.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNormFlow.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantities.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedUtility.lean",
@@ -34683,6 +34756,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvents.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNormFlow.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantities.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedUtility.lean",
@@ -34763,17 +34837,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "bd8461e13ac8a841db53aa05e1742c28d918833e083ce11792b7f7505dada98b",
+ "source_inventory_digest": "da2954c1a69de4aa36eb0f46e30797eea2bd9d8ecb1bf2c5a791ce2ad4094df3",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "93995080b40ab4508b37d292612db15928ce0aa4",
-  "tree": "9f185c0d11aa31cfc217558e706276ce129a74de"
+  "commit": "3f4f2d1c452ef498454b6362b5cf7ce401086686",
+  "tree": "f511c1f9850827243913b761fe43af862707082f"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 330,
+  "files_total": 331,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

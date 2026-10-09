@@ -172,6 +172,8 @@ import JurisLean.Seams.UnifiedAnalysis
 
 import JurisLean.Seams.UnifiedLegacy
 
+import JurisLean.Seams.UnifiedCAD
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1867,6 +1869,17 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedBeta.refN_width
 #print axioms JurisLean.Seams.UnifiedBeta.strict_comparison_eventually_found
 #print axioms JurisLean.Seams.UnifiedBeta.width_nonneg
+#print axioms JurisLean.Seams.UnifiedCAD.buildCAD2_accepted
+#print axioms JurisLean.Seams.UnifiedCAD.buildCAD2_total
+#print axioms JurisLean.Seams.UnifiedCAD.checkCAD2_a
+#print axioms JurisLean.Seams.UnifiedCAD.checkCAD2_ne
+#print axioms JurisLean.Seams.UnifiedCAD.checkCAD2_r1
+#print axioms JurisLean.Seams.UnifiedCAD.checkCAD2_r2
+#print axioms JurisLean.Seams.UnifiedCAD.checkCAD2_sound
+#print axioms JurisLean.Seams.UnifiedCAD.linear_two_roots_zero
+#print axioms JurisLean.Seams.UnifiedCAD.quad_at_most_two_roots
+#print axioms JurisLean.Seams.UnifiedCAD.quad_factors
+#print axioms JurisLean.Seams.UnifiedCAD.sign_invariant_cells
 #print axioms JurisLean.Seams.UnifiedComposition.composite_exact
 #print axioms JurisLean.Seams.UnifiedComposition.deriveInputs_allEstablished_iff
 #print axioms JurisLean.Seams.UnifiedComposition.established_requires_admitted_premises

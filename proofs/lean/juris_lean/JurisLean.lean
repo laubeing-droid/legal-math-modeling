@@ -191,10 +191,12 @@ import JurisLean.Seams.UnifiedAnalysis
 import JurisLean.Seams.UnifiedArgumentation
 import JurisLean.Seams.UnifiedBeta
 import JurisLean.Seams.UnifiedCAD
+import JurisLean.Seams.UnifiedCAD2
 import JurisLean.Seams.UnifiedComposition
 import JurisLean.Seams.UnifiedEvents
 import JurisLean.Seams.UnifiedFinalization
 import JurisLean.Seams.UnifiedGuards
+import JurisLean.Seams.UnifiedHornIT
 import JurisLean.Seams.UnifiedInstance
 import JurisLean.Seams.UnifiedLegacy
 import JurisLean.Seams.UnifiedNormFlow

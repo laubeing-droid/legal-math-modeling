@@ -178,6 +178,9 @@ import JurisLean.Seams.UnifiedGuards
 
 import JurisLean.Seams.UnifiedSummary
 
+import JurisLean.Seams.UnifiedCAD2
+import JurisLean.Seams.UnifiedHornIT
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1884,6 +1887,14 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedCAD.quad_at_most_two_roots
 #print axioms JurisLean.Seams.UnifiedCAD.quad_factors
 #print axioms JurisLean.Seams.UnifiedCAD.sign_invariant_cells
+#print axioms JurisLean.Seams.UnifiedCAD2.CAD2_build_accepted
+#print axioms JurisLean.Seams.UnifiedCAD2.CAD2_build_none_fail_closed
+#print axioms JurisLean.Seams.UnifiedCAD2.CAD2_build_total
+#print axioms JurisLean.Seams.UnifiedCAD2.CAD2_proj_disk_complete
+#print axioms JurisLean.Seams.UnifiedCAD2.CAD2_proj_point_sound
+#print axioms JurisLean.Seams.UnifiedCAD2.CAD2_proj_sound
+#print axioms JurisLean.Seams.UnifiedCAD2.CAD2_sys_proj_incomplete
+#print axioms JurisLean.Seams.UnifiedCAD2.CAD2_sys_proj_sound
 #print axioms JurisLean.Seams.UnifiedComposition.composite_exact
 #print axioms JurisLean.Seams.UnifiedComposition.deriveInputs_allEstablished_iff
 #print axioms JurisLean.Seams.UnifiedComposition.established_requires_admitted_premises
@@ -1931,6 +1942,16 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedGuards.own_guard_atom_mem_perimeter
 #print axioms JurisLean.Seams.UnifiedGuards.scope_change_keeps_concrete_atom
 #print axioms JurisLean.Seams.UnifiedGuards.slot_names_distinguish_atoms
+#print axioms JurisLean.Seams.UnifiedHornIT.chainMass_nonneg
+#print axioms JurisLean.Seams.UnifiedHornIT.chain_marginal
+#print axioms JurisLean.Seams.UnifiedHornIT.closure_mem_hprov
+#print axioms JurisLean.Seams.UnifiedHornIT.hprovN_mem_closure
+#print axioms JurisLean.Seams.UnifiedHornIT.hprovN_prov_sound
+#print axioms JurisLean.Seams.UnifiedHornIT.hprov_iff_closure
+#print axioms JurisLean.Seams.UnifiedHornIT.iter_mem_hprovN
+#print axioms JurisLean.Seams.UnifiedHornIT.pathMass_init_total
+#print axioms JurisLean.Seams.UnifiedHornIT.pathMass_marginal
+#print axioms JurisLean.Seams.UnifiedHornIT.pathMass_nonneg
 #print axioms JurisLean.Seams.UnifiedInstance.F_eq_args_of_attacks_empty
 #print axioms JurisLean.Seams.UnifiedInstance.aafM_args_has_two_distinct
 #print axioms JurisLean.Seams.UnifiedInstance.aafM_attacks_eq_empty

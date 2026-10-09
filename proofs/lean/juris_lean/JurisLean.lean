@@ -194,6 +194,7 @@ import JurisLean.Seams.UnifiedCAD
 import JurisLean.Seams.UnifiedComposition
 import JurisLean.Seams.UnifiedEvents
 import JurisLean.Seams.UnifiedFinalization
+import JurisLean.Seams.UnifiedGuards
 import JurisLean.Seams.UnifiedInstance
 import JurisLean.Seams.UnifiedLegacy
 import JurisLean.Seams.UnifiedNormFlow

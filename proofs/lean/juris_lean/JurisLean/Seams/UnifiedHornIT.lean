@@ -221,13 +221,21 @@ theorem pathMass_init_total (μ0 : σ → ℝ≥0) (K : σ → σ → ℝ≥0)
 
 /-- Masses are nonnegative (trivial on ℝ≥0; recorded as a
 readout). -/
+theorem chainMass_nonneg (K : σ → σ → ℝ≥0) (x : σ)
+    (l : List σ) : 0 ≤ chainMass K x l := by
+  induction l generalizing x with
+  | nil => exact zero_le_one
+  | cons y t ih =>
+      simp only [chainMass]
+      exact mul_nonneg (zero_le _) (ih y)
+
 theorem pathMass_nonneg (μ0 : σ → ℝ≥0) (K : σ → σ → ℝ≥0)
     (l : List σ) : 0 ≤ pathMass μ0 K l := by
-  induction l with
+  cases l with
   | nil => exact zero_le_one
-  | cons x t ih =>
+  | cons x t =>
       simp only [pathMass]
-      exact mul_nonneg (by positivity) ih
+      exact mul_nonneg (zero_le _) (chainMass_nonneg K x t)
 
 end IonescuTulcea
 

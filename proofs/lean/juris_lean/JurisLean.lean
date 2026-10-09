@@ -194,6 +194,7 @@ import JurisLean.Seams.UnifiedEvents
 import JurisLean.Seams.UnifiedFinalization
 import JurisLean.Seams.UnifiedInstance
 import JurisLean.Seams.UnifiedNormFlow
+import JurisLean.Seams.UnifiedPerformance
 import JurisLean.Seams.UnifiedQuantities
 import JurisLean.Seams.UnifiedSemantics
 import JurisLean.Seams.UnifiedUtility

@@ -166,6 +166,8 @@ import JurisLean.Seams.UnifiedComposition
 
 import JurisLean.Seams.UnifiedNormFlow
 
+import JurisLean.Seams.UnifiedPerformance
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1945,6 +1947,15 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedNormFlow.norm_update_reselects_content
 #print axioms JurisLean.Seams.UnifiedNormFlow.unauthorized_proposal_has_no_norm_effect
 #print axioms JurisLean.Seams.UnifiedNormFlow.updateEnv_keeps_other_versions
+#print axioms JurisLean.Seams.UnifiedPerformance.allocated_not_double_counted
+#print axioms JurisLean.Seams.UnifiedPerformance.confirmatory_preserves_ontic_state
+#print axioms JurisLean.Seams.UnifiedPerformance.double_spend_rejected
+#print axioms JurisLean.Seams.UnifiedPerformance.gross_can_exceed
+#print axioms JurisLean.Seams.UnifiedPerformance.outstanding_conservation
+#print axioms JurisLean.Seams.UnifiedPerformance.outstanding_nonneg
+#print axioms JurisLean.Seams.UnifiedPerformance.same_excess_different_restitution
+#print axioms JurisLean.Seams.UnifiedPerformance.sanction_reads_derived_basis
+#print axioms JurisLean.Seams.UnifiedPerformance.sanction_trigger_iff
 #print axioms JurisLean.Seams.UnifiedQuantities.drop_sum_le_sum
 #print axioms JurisLean.Seams.UnifiedQuantities.joint_overallocation_excluded
 #print axioms JurisLean.Seams.UnifiedQuantities.remainingAfter_cons

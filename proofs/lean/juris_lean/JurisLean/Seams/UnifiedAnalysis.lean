@@ -53,8 +53,8 @@ theorem prob_union_bound (fp : FinProb Ω) (A B : Finset Ω) :
       (if ω ∈ A ∪ B then fp.mass ω else 0)
         ≤ (if ω ∈ A then fp.mass ω else 0) + (if ω ∈ B then fp.mass ω else 0) := by
     intro ω _
-    by_cases h1 : ω ∈ A <;> by_cases h2 : ω ∈ B <;>
-      simp [Finset.mem_union, h1, h2] <;>
+    simp only [Finset.mem_union]
+    split <;> split <;> split <;>
       first
         | linarith
         | rfl
@@ -65,7 +65,7 @@ theorem prob_union_bound (fp : FinProb Ω) (A B : Finset Ω) :
         Finset.sum_le_sum key
     _ = (∑ ω ∈ fp.support, (if ω ∈ A then fp.mass ω else 0))
         + ∑ ω ∈ fp.support, (if ω ∈ B then fp.mass ω else 0) :=
-        Finset.sum_add_distrib _ _
+        Finset.sum_add_distrib
 
 /-! ## 二、外界的复合单调 -/
 

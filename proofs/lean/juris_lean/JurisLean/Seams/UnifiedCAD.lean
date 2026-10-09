@@ -133,7 +133,9 @@ theorem checkCAD2_sound (p : Poly2) (cert : QuadCert)
       · exact Or.inl (sub_eq_zero.mp hx)
     · exact Or.inr (sub_eq_zero.mp hright)
   · intro hx
-    rcases hx with rfl | rfl <;> rw [h1] <;> rw [h2]
+    rcases hx with rfl | rfl
+    · exact h1
+    · exact h2
 
 /-! ## 四、C2 微型：三胞腔符号不变 -/
 
@@ -152,13 +154,13 @@ theorem sign_invariant_cells (p : Poly2) (cert : QuadCert)
   have hfx := quad_factors p cert.root1 cert.root2 h1 h2 hne x
   have hfy := quad_factors p cert.root1 cert.root2 h1 h2 hne y
   rw [hfx, hfy]
-  have hnn : (0 : ℚ) ≤ p.a * p.a := by positivity
+  have hnn : (0 : ℚ) ≤ p.a * p.a := mul_self_nonneg p.a
   rcases hcell with ⟨hx1, hx2, hy1, hy2⟩ | ⟨h1x, h2x, h1y, h2y⟩ | ⟨hx1, hx2, hy1, hy2⟩
   · have hx : (x - cert.root1) * (x - cert.root2) > 0 :=
       mul_pos_of_neg_of_neg (by linarith) (by linarith)
     have hy : (y - cert.root1) * (y - cert.root2) > 0 :=
       mul_pos_of_neg_of_neg (by linarith) (by linarith)
-    nlinarith
+    nlinarith [mul_nonneg (mul_nonneg hnn hx) hy]
   · have hx : (x - cert.root1) * (x - cert.root2) < 0 := by
       have hpos : x - cert.root2 < 0 := by linarith
       have hneg : x - cert.root1 > 0 := by linarith
@@ -167,12 +169,12 @@ theorem sign_invariant_cells (p : Poly2) (cert : QuadCert)
       have hpos : y - cert.root2 < 0 := by linarith
       have hneg : y - cert.root1 > 0 := by linarith
       exact mul_neg_of_pos_of_neg hneg hpos
-    nlinarith
+    nlinarith [mul_nonneg hnn (mul_pos_of_neg_of_neg hx hy)]
   · have hx : (x - cert.root1) * (x - cert.root2) > 0 :=
       mul_pos (by linarith) (by linarith)
     have hy : (y - cert.root1) * (y - cert.root2) > 0 :=
       mul_pos (by linarith) (by linarith)
-    nlinarith
+    nlinarith [mul_nonneg (mul_nonneg hnn hx) hy]
 
 /-! ## 五、义务二/三：构造器全与证书必被接受 -/
 

@@ -111,12 +111,12 @@ def GuardSlot.atom (g : GuardSlot I) : GateAtom I :=
 theorem atom_eq_iff {I : Type} [DecidableEq I] (g₁ g₂ : GuardSlot I) :
     g₁.atom = g₂.atom ↔
       g₁.ruleInst = g₂.ruleInst ∧ g₁.kind = g₂.kind ∧ g₁.slot = g₂.slot := by
-  simp only [GuardSlot.atom, GateAtom.mk.injEq, and_assoc]
+  simp only [GuardSlot.atom, GateAtom.mk.injEq]
 
 /-- kind 区分：同实例同槽名、守卫类不同 ⟹ 原子必不同
 （authority 阻断与 exception 阻断是不同的攻击，不共享原子）。 -/
 theorem atom_ne_of_kind_ne {I : Type} [DecidableEq I] {i : I} {s : String}
-    {k₁ k₂ : GuardKind} (hne : k₁ ≠ k₂) (σ₁ σ₂ : List String) :
+    {k₁ k₂ : GuardKind} {σ₁ σ₂ : List String} (hne : k₁ ≠ k₂) :
     (⟨i, k₁, s, σ₁⟩ : GuardSlot I).atom ≠ (⟨i, k₂, s, σ₂⟩ : GuardSlot I).atom := by
   intro h
   have h3 := (atom_eq_iff _ _).mp h
@@ -125,14 +125,14 @@ theorem atom_ne_of_kind_ne {I : Type} [DecidableEq I] {i : I} {s : String}
 /-- slot 区分：同实例同类、槽名不同 ⟹ 原子必不同
 （exception"上诉审"与 exception"管辖异议"是不同槽）。 -/
 theorem atom_ne_of_slot_ne {I : Type} [DecidableEq I] {i : I} {k : GuardKind}
-    {s₁ s₂ : String} (hne : s₁ ≠ s₂) (σ₁ σ₂ : List String) :
+    {s₁ s₂ : String} {σ₁ σ₂ : List String} (hne : s₁ ≠ s₂) :
     (⟨i, k, s₁, σ₁⟩ : GuardSlot I).atom ≠ (⟨i, k, s₂, σ₂⟩ : GuardSlot I).atom :=
   fun h => hne ((atom_eq_iff _ _).mp h).2.2
 
 /-- 实例区分：守卫类与槽名相同、规则实例不同 ⟹ 原子必不同
 （他规则的同名守卫不是本规则的守卫）。 -/
 theorem atom_ne_of_inst_ne {I : Type} [DecidableEq I] {i₁ i₂ : I} {k : GuardKind}
-    {s : String} (hne : i₁ ≠ i₂) (σ₁ σ₂ : List String) :
+    {s : String} {σ₁ σ₂ : List String} (hne : i₁ ≠ i₂) :
     (⟨i₁, k, s, σ₁⟩ : GuardSlot I).atom ≠ (⟨i₂, k, s, σ₂⟩ : GuardSlot I).atom :=
   fun h => hne ((atom_eq_iff _ _).mp h).1
 
@@ -215,9 +215,9 @@ theorem foreign_guard_not_in_perimeter {I : Type} [DecidableEq I]
     g.atom ∉ r.perimeter := by
   intro hmem
   obtain ⟨g', hg', hatom⟩ := (atom_mem_perimeter_iff r g.atom).mp hmem
-  have h1 := ((atom_eq_iff g g').mp hatom).1
+  have h1 := ((atom_eq_iff g' g).mp hatom).1
   rw [hval g' hg'] at h1
-  exact hforeign h1
+  exact hforeign h1.symm
 
 /-! ## 五、字面量钉死（kind / slot / scope 三分各有可判读数） -/
 
@@ -225,15 +225,18 @@ theorem foreign_guard_not_in_perimeter {I : Type} [DecidableEq I]
 的原子可判定地不相等。 -/
 theorem exception_vs_authority_atoms_differ :
     (⟨"r1", GuardKind.exception, "appeal", ["civil"]⟩ : GuardSlot String).atom ≠
-      (⟨"r1", GuardKind.authority, "appeal", ["civil"]⟩ : GuardSlot String).atom :=
-  atom_ne_of_kind_ne (by intro h; cases h)
+      (⟨"r1", GuardKind.authority, "appeal", ["civil"]⟩ : GuardSlot String).atom := by
+  apply atom_ne_of_kind_ne
+  intro h
+  cases h
 
 /-- slot 区分的字面量钉死：同规则同类，槽名 appeal 与
 counterclaim 的原子可判定地不相等。 -/
 theorem slot_names_distinguish_atoms :
     (⟨"r1", GuardKind.exception, "appeal", []⟩ : GuardSlot String).atom ≠
-      (⟨"r1", GuardKind.exception, "counterclaim", []⟩ : GuardSlot String).atom :=
-  atom_ne_of_slot_ne (by decide)
+      (⟨"r1", GuardKind.exception, "counterclaim", []⟩ : GuardSlot String).atom := by
+  apply atom_ne_of_slot_ne
+  decide
 
 /-- scope 零约束的字面量钉死：scope 从 ["civil"] 换成
 ["criminal", "administrative"]，原子逐字节相等。 -/
@@ -251,7 +254,7 @@ theorem foreign_slot_fails_own_instance :
          guardSlots := [⟨"art32", GuardKind.authority, "tribunal", []⟩] } :
         GuardedRule String) := by
   intro h
-  have h1 := h _ (List.mem_cons_self _ _)
+  have h1 := h _ List.mem_cons_self
   exact absurd h1 (by decide)
 
 end JurisLean.Seams.UnifiedGuards

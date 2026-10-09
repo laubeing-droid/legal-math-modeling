@@ -70,10 +70,12 @@ theorem linear_two_roots_zero (m k r1 r2 : ℚ)
 theorem quad_factors (p : Poly2) (r1 r2 : ℚ)
     (h1 : eval2 p r1 = 0) (h2 : eval2 p r2 = 0) (hne : r1 ≠ r2) :
     ∀ x, eval2 p x = p.a * (x - r1) * (x - r2) := by
+  simp only [eval2] at h1 h2
   obtain ⟨hm1, hm2⟩ := linear_two_roots_zero
     (p.b + p.a * (r1 + r2)) (p.c - p.a * r1 * r2) r1 r2
     (by linear_combination h1) (by linear_combination h2) hne
   intro x
+  simp only [eval2]
   linear_combination hm1 * x + hm2
 
 /-- **至多两根**（二次的 Vandermonde：第三根必与已知根之一重合）。 -/

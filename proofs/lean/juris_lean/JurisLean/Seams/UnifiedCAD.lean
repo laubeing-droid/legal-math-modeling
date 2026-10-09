@@ -86,11 +86,11 @@ theorem quad_at_most_two_roots (p : Poly2) (ha : p.a ≠ 0)
     r3 = r1 ∨ r3 = r2 := by
   have hf : p.a * (r3 - r1) * (r3 - r2) = 0 := by
     rw [← quad_factors p r1 r2 h1 h2 h12 r3, h3]
-  rcases mul_eq_zero.mp hf with ha' | hrest
-  · exact absurd ha' ha
-  · rcases mul_eq_zero.mp hrest with h | h
+  rcases mul_eq_zero.mp hf with hleft | hright
+  · rcases mul_eq_zero.mp hleft with ha' | h
+    · exact absurd ha' ha
     · exact Or.inl (sub_eq_zero.mp h)
-    · exact Or.inr (sub_eq_zero.mp h)
+  · exact Or.inr (sub_eq_zero.mp hright)
 
 /-! ## 三、义务一：检查器健全（检查器不调求解器） -/
 
@@ -127,11 +127,11 @@ theorem checkCAD2_sound (p : Poly2) (cert : QuadCert)
   · intro hzero
     have hf : p.a * (x - cert.root1) * (x - cert.root2) = 0 := by
       rw [← quad_factors p cert.root1 cert.root2 h1 h2 hne x, hzero]
-    rcases mul_eq_zero.mp hf with ha' | hrest
-    · exact absurd ha' ha
-    · rcases mul_eq_zero.mp hrest with hx | hx
+    rcases mul_eq_zero.mp hf with hleft | hright
+    · rcases mul_eq_zero.mp hleft with ha' | hx
+      · exact absurd ha' ha
       · exact Or.inl (sub_eq_zero.mp hx)
-      · exact Or.inr (sub_eq_zero.mp hx)
+    · exact Or.inr (sub_eq_zero.mp hright)
   · intro hx
     rcases hx with rfl | rfl <;> rw [h1] <;> rw [h2]
 

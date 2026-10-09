@@ -164,6 +164,8 @@ import JurisLean.Seams.UnifiedEvents
 
 import JurisLean.Seams.UnifiedComposition
 
+import JurisLean.Seams.UnifiedNormFlow
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1939,6 +1941,10 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedInstance.widening_is_conservative
 #print axioms JurisLean.Seams.UnifiedInstance.zero_in_closureM
 #print axioms JurisLean.Seams.UnifiedInstance.zero_mem_singleton
+#print axioms JurisLean.Seams.UnifiedNormFlow.delegated_scope_denied_witness
+#print axioms JurisLean.Seams.UnifiedNormFlow.norm_update_reselects_content
+#print axioms JurisLean.Seams.UnifiedNormFlow.unauthorized_proposal_has_no_norm_effect
+#print axioms JurisLean.Seams.UnifiedNormFlow.updateEnv_keeps_other_versions
 #print axioms JurisLean.Seams.UnifiedQuantities.drop_sum_le_sum
 #print axioms JurisLean.Seams.UnifiedQuantities.joint_overallocation_excluded
 #print axioms JurisLean.Seams.UnifiedQuantities.remainingAfter_cons

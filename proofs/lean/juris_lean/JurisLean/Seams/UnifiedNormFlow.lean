@@ -119,10 +119,9 @@ theorem delegated_scope_denied_witness :
 /-- **规范更新重选内容**：授权变更落盘后，目标版本的现行规则恰为
     变更记录的新内容（读取跟内容走，不跟记忆走）。 -/
 theorem norm_update_reselects_content (e : NormEnv) (p : Proposal)
-    (auth : Authority) (h : GrantValid auth p.scope)
-    (hv : p.targetVersion = p.targetVersion) :
+    (auth : Authority) (_h : GrantValid auth p.scope) :
     activeRules (updateEnv e (authorize p auth h)) p.targetVersion = p.newRules := by
-  simp only [activeRules, updateEnv, authorize, if_pos rfl]
+  simp [activeRules, updateEnv, authorize]
 
 /-- 未触及版本保持原内容（合法变更不殃及其他截面）。 -/
 theorem updateEnv_keeps_other_versions (e : NormEnv) (c : AuthorizedChange)

@@ -54,7 +54,7 @@ theorem prob_union_bound (fp : FinProb Ω) (A B : Finset Ω) :
         ≤ (if ω ∈ A then fp.mass ω else 0) + (if ω ∈ B then fp.mass ω else 0) := by
     intro ω _
     by_cases h1 : ω ∈ A <;> by_cases h2 : ω ∈ B <;>
-      simp only [Finset.mem_union, h1, h2, if_true, if_false] <;>
+      simp [Finset.mem_union, h1, h2] <;>
       first
         | linarith
         | rfl

@@ -79,10 +79,12 @@ def newRun : NewIn → NewOut
 
 /-- 旧管线（unscoped 的旧错误结果按历史载体保留：root2=false 哨兵）。 -/
 def legacyRun : LegacyIn → LegacyObs
-  | .plain v => { root1 := v, root2 := true, root3 := true, root4 := true,
-      root5 := true, root6 := true, root7 := true }
-  | .unscoped v => { root1 := v, root2 := false, root3 := true, root4 := true,
-      root5 := true, root6 := true, root7 := true }
+  | .plain v =>
+      { root1 := v, root2 := true, root3 := true, root4 := true,
+        root5 := true, root6 := true, root7 := true }
+  | .unscoped v =>
+      { root1 := v, root2 := false, root3 := true, root4 := true,
+        root5 := true, root6 := true, root7 := true }
 
 /-! ## 三、子域交换与全域不等 -/
 

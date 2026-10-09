@@ -109,15 +109,15 @@ theorem hprovN_prov_sound (sys : HornSystem α) (ι : Type) [DecidableEq ι]
   induction n with
   | zero =>
       intro P a h s hs
-      cases h with
-      | @fact _ b hb => exact ⟨b, hb, hs⟩
+      exact match h, hs with
+        | .fact _ b hb, hs => ⟨b, hb, hs⟩
   | succ k ih =>
       intro P a h s hs
-      cases h with
-      | @fact _ b hb => exact ⟨b, hb, hs⟩
-      | @rule _ r _ f hch =>
-          rcases Finset.mem_biUnion.mp hs with ⟨p, hp, hfp⟩
-          exact ih (f p) p (hch p hp) s hfp
+      exact match h, hs with
+        | .fact _ b hb, hs => ⟨b, hb, hs⟩
+        | .rule _ _ _ f hch, hs =>
+            match Finset.mem_biUnion.mp hs with
+            | ⟨p, hp, hfp⟩ => ih (f p) p (hch p hp) s hfp
 
 /-- Iteration lemma: an atom inside iteration level n has a
 level-n derivation. -/
@@ -143,7 +143,7 @@ theorem iter_mem_hprovN (sys : HornSystem α) (ι : Type) [DecidableEq ι]
         rcases Finset.mem_filter.mp hr with ⟨hr, hprem⟩
         choose! f hf using
           fun (p : α) (hp : p ∈ r.premises) => ih p (hprem hp)
-        refine ⟨r.premises.biUnion f, HProvN.rule (k + 1) r hr f ?_⟩
+        refine ⟨r.premises.biUnion f, HProvN.rule k r hr f ?_⟩
         intro p hp
         exact hf p hp
 
@@ -227,7 +227,7 @@ theorem pathMass_nonneg (μ0 : σ → ℝ≥0) (K : σ → σ → ℝ≥0)
   | nil => exact zero_le_one
   | cons x t ih =>
       simp only [pathMass]
-      exact mul_nonneg (zero_le _) ih
+      exact mul_nonneg (by positivity) ih
 
 end IonescuTulcea
 

@@ -168,6 +168,8 @@ import JurisLean.Seams.UnifiedNormFlow
 
 import JurisLean.Seams.UnifiedPerformance
 
+import JurisLean.Seams.UnifiedAnalysis
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -1835,6 +1837,14 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedAdmission.burden_failure_issue_scoped
 #print axioms JurisLean.Seams.UnifiedAdmission.burden_failure_not_ontic_negation
 #print axioms JurisLean.Seams.UnifiedAdmission.mem_step_grants_iff
+#print axioms JurisLean.Seams.UnifiedAnalysis.cartesian_point_infeasible
+#print axioms JurisLean.Seams.UnifiedAnalysis.error_not_court_judgment
+#print axioms JurisLean.Seams.UnifiedAnalysis.hull_monotone
+#print axioms JurisLean.Seams.UnifiedAnalysis.joint_interior_witness
+#print axioms JurisLean.Seams.UnifiedAnalysis.missing_propagates_scope
+#print axioms JurisLean.Seams.UnifiedAnalysis.outer_compose_stays_outer
+#print axioms JurisLean.Seams.UnifiedAnalysis.prob_union_bound
+#print axioms JurisLean.Seams.UnifiedAnalysis.unrelated_continue
 #print axioms JurisLean.Seams.UnifiedArgumentation.child_concl_mem_attackTargets
 #print axioms JurisLean.Seams.UnifiedArgumentation.defeat_iff_summaryDefeat
 #print axioms JurisLean.Seams.UnifiedArgumentation.defeat_implies_summaryDefeat

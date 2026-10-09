@@ -187,6 +187,7 @@ import JurisLean.Seams.Transitions
 import JurisLean.Seams.Uncertainty
 import JurisLean.Seams.Unified
 import JurisLean.Seams.UnifiedAdmission
+import JurisLean.Seams.UnifiedAnalysis
 import JurisLean.Seams.UnifiedArgumentation
 import JurisLean.Seams.UnifiedBeta
 import JurisLean.Seams.UnifiedComposition

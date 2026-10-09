@@ -169,10 +169,12 @@ theorem closed_band_mass_eq_cdf_diff (ρ : X → ℕ) (p : X → ℚ) (lo hi : �
       ring
     · rcases Nat.lt_trichotomy (ρ x) hi with hlt2 | heq2 | hgt2
       · rw [if_pos (show ρ x ≤ hi from by omega),
-          if_pos (show lo ≤ ρ x ∧ ρ x ≤ hi from by omega), if_neg (show ¬(ρ x ≤ lo) from by omega)]
+          if_pos (show lo ≤ ρ x ∧ ρ x ≤ hi from by omega),
+          if_pos (show ρ x ≤ lo from by omega)]
         ring
       · rw [if_pos (show ρ x ≤ hi from by omega),
-          if_neg (show ¬(lo ≤ ρ x ∧ ρ x ≤ hi) from by omega), if_neg (show ¬(ρ x ≤ lo) from by omega)]
+          if_pos (show lo ≤ ρ x ∧ ρ x ≤ hi from by omega),
+          if_pos (show ρ x ≤ lo from by omega)]
         ring
   have hsum : cdfAt ρ p hi = bandMass ρ p lo hi + cdfAt ρ p lo := by
     unfold cdfAt bandMass
@@ -193,11 +195,11 @@ theorem closed_mass_needs_atomfree_endpoint :
     ¬ (bandMass rankTwo atomAtLow 0 1 = cdfAt rankTwo atomAtLow 1 - cdfAt rankTwo atomAtLow 0) := by
   intro h
   have h1 : bandMass rankTwo atomAtLow 0 1 = 1 := by
-    simp [bandMass, rankTwo, atomAtLow]; norm_num
+    simp [bandMass, rankTwo, atomAtLow]
   have h2 : cdfAt rankTwo atomAtLow 1 = 1 := by
-    simp [cdfAt, rankTwo, atomAtLow]; norm_num
+    simp [cdfAt, rankTwo, atomAtLow]
   have h3 : cdfAt rankTwo atomAtLow 0 = 1 := by
-    simp [cdfAt, rankTwo, atomAtLow]; norm_num
+    simp [cdfAt, rankTwo, atomAtLow]
   rw [h1, h2, h3] at h
   norm_num at h
 
@@ -242,8 +244,12 @@ theorem evMass_shared_obs (π : Θ → ℚ) (q : Nty → ℚ) (E : Θ → Bool)
   rw [Fintype.sum_prod_type]
   refine Finset.sum_congr rfl (fun θ _ => ?_)
   cases hE : E θ with
-  | true => simp only [if_pos hE, ← Finset.mul_sum, hq1, mul_one]
-  | false => simp only [if_neg hE]; simp
+  | true =>
+      rw [if_pos hE, ← Finset.mul_sum, hq1]
+      ring
+  | false =>
+      rw [if_neg hE]
+      simp
 
 /-- 选择读 n 时的双重证据质量因子分解：观察（读 θ）∧选择（读 n）的证据质量
     ＝参数侧观察质量 × 选择质量。选择质量因子是后面被约掉的那个因子。 -/
@@ -311,8 +317,8 @@ theorem selection_transport_from_shared_mechanism (π : Θ → ℚ) (q : Nty →
               / evMass (sharedJoint π q) (fun ω => E ω.1 && S ω.2) := by
         intro n
         by_cases hS : S n = true
-        · rw [if_pos (by simp [hE, hS] : (E θ && S n) = true), if_pos hS]
-        · rw [if_neg (by simp [hE, hS] : ¬((E θ && S n) = true)), if_neg hS, zero_div]
+        · rw [if_pos (show (E θ && S n) = true from by simp [hE, hS]), if_pos hS]
+        · rw [if_neg (show ¬((E θ && S n) = true) from by simp [hE, hS]), if_neg hS, zero_div]
       simp only [paramMarginal, posterior, hstep]
       rw [Finset.sum_div]
       rw [show (∑ n, if S n then π θ * q n else 0)

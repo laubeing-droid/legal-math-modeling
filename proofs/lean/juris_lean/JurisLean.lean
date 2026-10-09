@@ -201,6 +201,7 @@ import JurisLean.Seams.UnifiedNormFlow
 import JurisLean.Seams.UnifiedPerformance
 import JurisLean.Seams.UnifiedQuantities
 import JurisLean.Seams.UnifiedSemantics
+import JurisLean.Seams.UnifiedSummary
 import JurisLean.Seams.UnifiedUtility
 import JurisLean.SolverRouting
 import JurisLean.SourceBundleSpec

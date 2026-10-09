@@ -176,6 +176,8 @@ import JurisLean.Seams.UnifiedCAD
 
 import JurisLean.Seams.UnifiedGuards
 
+import JurisLean.Seams.UnifiedSummary
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -2022,6 +2024,26 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedSemantics.escalation_only_has_no_stable_selection
 #print axioms JurisLean.Seams.UnifiedSemantics.isolated_in_every_stable_selection
 #print axioms JurisLean.Seams.UnifiedSemantics.mem_enumerateStable_iff
+#print axioms JurisLean.Seams.UnifiedSummary.delta_conc
+#print axioms JurisLean.Seams.UnifiedSummary.delta_last_defeasible
+#print axioms JurisLean.Seams.UnifiedSummary.delta_last_strict
+#print axioms JurisLean.Seams.UnifiedSummary.delta_sites
+#print axioms JurisLean.Seams.UnifiedSummary.exempt_site_free
+#print axioms JurisLean.Seams.UnifiedSummary.leaf_last_empty
+#print axioms JurisLean.Seams.UnifiedSummary.leaf_site_mem
+#print axioms JurisLean.Seams.UnifiedSummary.own_site_typed
+#print axioms JurisLean.Seams.UnifiedSummary.saturatedN_into_closed
+#print axioms JurisLean.Seams.UnifiedSummary.saturatedN_witness
+#print axioms JurisLean.Seams.UnifiedSummary.saturated_witness
+#print axioms JurisLean.Seams.UnifiedSummary.summarize_conc
+#print axioms JurisLean.Seams.UnifiedSummary.summarize_leafExempt
+#print axioms JurisLean.Seams.UnifiedSummary.summarize_leafOrd
+#print axioms JurisLean.Seams.UnifiedSummary.summarize_node_iff
+#print axioms JurisLean.Seams.UnifiedSummary.summarize_node_of
+#print axioms JurisLean.Seams.UnifiedSummary.summs_accumulate
+#print axioms JurisLean.Seams.UnifiedSummary.summs_cons_iff
+#print axioms JurisLean.Seams.UnifiedSummary.summs_cons_of
+#print axioms JurisLean.Seams.UnifiedSummary.summs_nil
 #print axioms JurisLean.Seams.UnifiedUtility.case_regret_bound
 #print axioms JurisLean.Seams.UnifiedUtility.equilibrium_does_not_assert_occurrence
 #print axioms JurisLean.Seams.UnifiedUtility.maxQ_le

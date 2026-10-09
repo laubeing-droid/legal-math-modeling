@@ -220,11 +220,22 @@ def active_special_establishments(
     独立特别路径): an admission basis of a special kind whose premises
     are all admitted and whose blocks are unmet establishes its issue
     directly — it never passes through the ordinary-support standard
-    and never confers StrongBasis."""
+    and never confers StrongBasis.  §11.1 射程 guard: when the same
+    issue carries an ADOPTED contrary assertion (same predicate/subject,
+    reversed-polarity claim key) the channel must NOT confirm the issue
+    against it — the issue falls back to ordinary evaluation."""
 
     facts = case.fact_records
     admitted_ids = {
         f.fact_id for f in facts
+        if f.standing is FactStanding.ADMITTED_POSITIVE
+    }
+    # claim keys of the adopted assertions — the same key/contrary
+    # discipline build_reason_universe applies to fact claims
+    admitted_keys = {
+        _claim_key(f.proposition.predicate, f.proposition.polar,
+                   f.proposition.subject)
+        for f in facts
         if f.standing is FactStanding.ADMITTED_POSITIVE
     }
     established: set = set()
@@ -241,6 +252,15 @@ def active_special_establishments(
         # (11.1: 依法裁定撤销则撤去该依据) — a positive fact, not a
         # negation of the premise
         if any(b in admitted_ids for b in basis.block_refs):
+            continue
+        # an ADOPTED contrary assertion on the issue's own claim key
+        # blocks the direct establishment (§11.1): the issue goes to
+        # ordinary evaluation instead of the special-channel shortcut
+        issue_key = _claim_key(basis.issue_id, Polar.POS, basis.subject)
+        contrary = (
+            issue_key[1:] if issue_key.startswith("~") else "~" + issue_key
+        )
+        if contrary in admitted_keys:
             continue
         established.add(basis.issue_id)
     return frozenset(established)

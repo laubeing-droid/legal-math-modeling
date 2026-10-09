@@ -560,10 +560,12 @@
     "JurisLean.Seams.UnifiedArgumentation",
     "JurisLean.Seams.UnifiedBeta",
     "JurisLean.Seams.UnifiedCAD",
+    "JurisLean.Seams.UnifiedCAD2",
     "JurisLean.Seams.UnifiedComposition",
     "JurisLean.Seams.UnifiedEvents",
     "JurisLean.Seams.UnifiedFinalization",
     "JurisLean.Seams.UnifiedGuards",
+    "JurisLean.Seams.UnifiedHornIT",
     "JurisLean.Seams.UnifiedInstance",
     "JurisLean.Seams.UnifiedLegacy",
     "JurisLean.Seams.UnifiedNormFlow",
@@ -2475,6 +2477,14 @@
     "JurisLean.Seams.UnifiedCAD.quad_at_most_two_roots",
     "JurisLean.Seams.UnifiedCAD.quad_factors",
     "JurisLean.Seams.UnifiedCAD.sign_invariant_cells",
+    "JurisLean.Seams.UnifiedCAD2.CAD2_build_accepted",
+    "JurisLean.Seams.UnifiedCAD2.CAD2_build_none_fail_closed",
+    "JurisLean.Seams.UnifiedCAD2.CAD2_build_total",
+    "JurisLean.Seams.UnifiedCAD2.CAD2_proj_disk_complete",
+    "JurisLean.Seams.UnifiedCAD2.CAD2_proj_point_sound",
+    "JurisLean.Seams.UnifiedCAD2.CAD2_proj_sound",
+    "JurisLean.Seams.UnifiedCAD2.CAD2_sys_proj_incomplete",
+    "JurisLean.Seams.UnifiedCAD2.CAD2_sys_proj_sound",
     "JurisLean.Seams.UnifiedComposition.composite_exact",
     "JurisLean.Seams.UnifiedComposition.deriveInputs_allEstablished_iff",
     "JurisLean.Seams.UnifiedComposition.established_requires_admitted_premises",
@@ -2522,6 +2532,16 @@
     "JurisLean.Seams.UnifiedGuards.own_guard_atom_mem_perimeter",
     "JurisLean.Seams.UnifiedGuards.scope_change_keeps_concrete_atom",
     "JurisLean.Seams.UnifiedGuards.slot_names_distinguish_atoms",
+    "JurisLean.Seams.UnifiedHornIT.chainMass_nonneg",
+    "JurisLean.Seams.UnifiedHornIT.chain_marginal",
+    "JurisLean.Seams.UnifiedHornIT.closure_mem_hprov",
+    "JurisLean.Seams.UnifiedHornIT.hprovN_mem_closure",
+    "JurisLean.Seams.UnifiedHornIT.hprovN_prov_sound",
+    "JurisLean.Seams.UnifiedHornIT.hprov_iff_closure",
+    "JurisLean.Seams.UnifiedHornIT.iter_mem_hprovN",
+    "JurisLean.Seams.UnifiedHornIT.pathMass_init_total",
+    "JurisLean.Seams.UnifiedHornIT.pathMass_marginal",
+    "JurisLean.Seams.UnifiedHornIT.pathMass_nonneg",
     "JurisLean.Seams.UnifiedInstance.F_eq_args_of_attacks_empty",
     "JurisLean.Seams.UnifiedInstance.aafM_args_has_two_distinct",
     "JurisLean.Seams.UnifiedInstance.aafM_attacks_eq_empty",
@@ -3134,8 +3154,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "76034e0b48b1c4b818fc6077ae1ebe7fd2561a9a97a1686eaf4590abe044e73c",
-   "size_bytes": 179464,
+   "sha256": "a35ac6f7998c6dd23875163e894b7f1314381418d1f6ad9671e237e77f561f43",
+   "size_bytes": 180660,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -29685,6 +29705,80 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "cad2Lhs"
+    },
+    {
+     "kind": "def",
+     "name": "cad2Sat"
+    },
+    {
+     "kind": "def",
+     "name": "CAD2Proj"
+    },
+    {
+     "kind": "theorem",
+     "name": "CAD2_proj_point_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "CAD2_proj_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "CAD2_proj_disk_complete"
+    },
+    {
+     "kind": "def",
+     "name": "cad2SysSat"
+    },
+    {
+     "kind": "def",
+     "name": "CAD2ProjSys"
+    },
+    {
+     "kind": "theorem",
+     "name": "CAD2_sys_proj_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "CAD2_sys_proj_incomplete"
+    },
+    {
+     "kind": "def",
+     "name": "CAD2CheckWitness"
+    },
+    {
+     "kind": "def",
+     "name": "CAD2BuildWitness"
+    },
+    {
+     "kind": "theorem",
+     "name": "CAD2_build_total"
+    },
+    {
+     "kind": "theorem",
+     "name": "CAD2_build_accepted"
+    },
+    {
+     "kind": "theorem",
+     "name": "CAD2_build_none_fail_closed"
+    }
+   ],
+   "imports": [
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD2.lean",
+   "print_axioms_targets": [],
+   "sha256": "07ecf26f40649a1b4dfdc87df7690742eaa4f5908a822204a8408e3f45eab34f",
+   "size_bytes": 8873,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "Snapshot"
     },
@@ -30047,6 +30141,81 @@
    "size_bytes": 11504,
    "theorem_count": 17,
    "theorem_count_bol_convention": 17
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
+     "name": "HProvN"
+    },
+    {
+     "kind": "def",
+     "name": "HProv"
+    },
+    {
+     "kind": "theorem",
+     "name": "hprovN_mem_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "hprovN_prov_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "iter_mem_hprovN"
+    },
+    {
+     "kind": "theorem",
+     "name": "closure_mem_hprov"
+    },
+    {
+     "kind": "theorem",
+     "name": "hprov_iff_closure"
+    },
+    {
+     "kind": "def",
+     "name": "isStochastic"
+    },
+    {
+     "kind": "def",
+     "name": "chainMass"
+    },
+    {
+     "kind": "def",
+     "name": "pathMass"
+    },
+    {
+     "kind": "theorem",
+     "name": "chain_marginal"
+    },
+    {
+     "kind": "theorem",
+     "name": "pathMass_marginal"
+    },
+    {
+     "kind": "theorem",
+     "name": "pathMass_init_total"
+    },
+    {
+     "kind": "theorem",
+     "name": "chainMass_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "pathMass_nonneg"
+    }
+   ],
+   "imports": [
+    "JurisLean.Seams.SourceNorms",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedHornIT.lean",
+   "print_axioms_targets": [],
+   "sha256": "7540ac2d3e2847b3e74816436d8667488157c3220a35a0da41840a88f4e6b57d",
+   "size_bytes": 9803,
+   "theorem_count": 10,
+   "theorem_count_bol_convention": 10
   },
   {
    "declarations": [
@@ -34587,10 +34756,12 @@
     "JurisLean.Seams.UnifiedArgumentation",
     "JurisLean.Seams.UnifiedBeta",
     "JurisLean.Seams.UnifiedCAD",
+    "JurisLean.Seams.UnifiedCAD2",
     "JurisLean.Seams.UnifiedComposition",
     "JurisLean.Seams.UnifiedEvents",
     "JurisLean.Seams.UnifiedFinalization",
     "JurisLean.Seams.UnifiedGuards",
+    "JurisLean.Seams.UnifiedHornIT",
     "JurisLean.Seams.UnifiedInstance",
     "JurisLean.Seams.UnifiedLegacy",
     "JurisLean.Seams.UnifiedNormFlow",
@@ -34633,8 +34804,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "42dfc4ab1b24a3bed219aedd1ad62034b4994dcfbe8daae4d38e0cfa2c100205",
-   "size_bytes": 9621,
+   "sha256": "a08bbf3f98be8b00734493a41653d0c46c63109f0c5a0b05073798a0a17da608",
+   "size_bytes": 9693,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -34798,22 +34969,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3935,
-   "file_count": 337,
+   "counted_declaration_count": 3953,
+   "file_count": 339,
    "lemma_count": 141,
-   "print_axioms_command_count": 2817,
-   "print_axioms_distinct_targets": 2763,
-   "theorem_count": 3794,
-   "theorem_count_bol_convention": 3698
+   "print_axioms_command_count": 2835,
+   "print_axioms_distinct_targets": 2781,
+   "theorem_count": 3812,
+   "theorem_count_bol_convention": 3716
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3916,
-   "file_count": 322,
+   "counted_declaration_count": 3934,
+   "file_count": 324,
    "lemma_count": 134,
-   "print_axioms_command_count": 2817,
-   "print_axioms_distinct_targets": 2763,
-   "theorem_count": 3782,
-   "theorem_count_bol_convention": 3686
+   "print_axioms_command_count": 2835,
+   "print_axioms_distinct_targets": 2781,
+   "theorem_count": 3800,
+   "theorem_count_bol_convention": 3704
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -35105,10 +35276,12 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedArgumentation.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedBeta.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD2.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvents.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedGuards.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedHornIT.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedLegacy.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNormFlow.lean",
@@ -35440,10 +35613,12 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedArgumentation.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedBeta.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD2.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvents.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedGuards.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedHornIT.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedLegacy.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNormFlow.lean",
@@ -35529,17 +35704,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "361a3b976dc56bb38870dd306cbbeaa36a029feee0ec44662bcac7abbfafcf03",
+ "source_inventory_digest": "17b23d333d10be63c917acb2e95320441c40112ab3894e4b39db2a9ff97522a0",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "a9b8fbd2b594b803ff0b712534dd5b3e405a0e61",
-  "tree": "b34903a87854aa718c1aef4dc390058bc8518a4d"
+  "commit": "606fe93c9853daaee2aeee1ab3a0ee408c5f94e4",
+  "tree": "b21cb0298219313f1ec43bf12cebd000f9979103"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 337,
+  "files_total": 339,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

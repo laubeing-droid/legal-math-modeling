@@ -407,6 +407,19 @@ def step_event(
             raise ValueError("an effective award requires its authority reference")
         if ev.amount is None or ev.amount < 0 or not ev.basis_key:
             raise ValueError("effective awards name basis and amount")
+        # Fail-closed (ledger ruling): a basis that already holds an
+        # effective title must be explicitly revoked first — consecutive
+        # AWARD_EFFECTIVEs would stack into a doubled outstanding.  A
+        # revocation's zero-title is a supersession marker, not an
+        # entitlement, so it never blocks the re-award.
+        if any(
+            not e.supersedes for e in effective_titles(state, ev.basis_key)
+        ):
+            raise ValueError(
+                f"basis '{ev.basis_key}' already holds an effective title "
+                "entitlement: AWARD_REVOKED must supersede it before "
+                "another AWARD_EFFECTIVE"
+            )
         entry = LedgerEntry(
             entry_id=f"title:{ev.event.event_id}",
             kind=LedgerEntryKind.TITLE_ENTITLEMENT,

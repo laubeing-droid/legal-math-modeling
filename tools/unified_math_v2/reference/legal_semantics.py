@@ -179,6 +179,14 @@ def _inline_special_establishments(case: CaseInput, env: LegalEnvironment,
         f.fact_id for f in case.fact_records
         if f.standing is FactStanding.ADMITTED_POSITIVE
     }
+    # adopted-assertion claim keys, same discipline as the evaluator's
+    # §11.1 contrary guard
+    admitted_keys = {
+        _claim_key(f.proposition.predicate, f.proposition.polar,
+                   f.proposition.subject)
+        for f in case.fact_records
+        if f.standing is FactStanding.ADMITTED_POSITIVE
+    }
     out = set()
     for basis in env.admission_bases:
         if basis.kind.value not in _SPECIAL_KINDS:
@@ -189,6 +197,12 @@ def _inline_special_establishments(case: CaseInput, env: LegalEnvironment,
             continue
         # block references name admitted revocation/defeat events
         if any(b in admitted for b in basis.block_refs):
+            continue
+        # an adopted contrary assertion on the issue's claim key blocks
+        # the direct establishment (§11.1 — mirrors the evaluator guard)
+        issue_key = _claim_key(basis.issue_id, Polar.POS, basis.subject)
+        contrary = issue_key[1:] if issue_key.startswith("~") else "~" + issue_key
+        if contrary in admitted_keys:
             continue
         out.add(basis.issue_id)
     return frozenset(out)
@@ -470,6 +484,20 @@ def _inline_step(state, pe):
                        events=state.events + (pe.event,))
     if pe.kind.value == "AWARD_EFFECTIVE":
         if not pe.authority_ref or pe.amount is None or not pe.basis_key:
+            return replace(state, events=state.events + (pe.event,))
+        # Same ledger ruling as the evaluator, in the checker's own
+        # refuse-and-record convention: a second award on a basis still
+        # holding an effective title adds NO title (a stacked actual
+        # ledger then diverges in the outstanding comparison below).
+        # A revocation zero-title is a supersession marker, not an
+        # entitlement, and never blocks the re-award.
+        titles = tuple(
+            e for e in state.ledger
+            if e.kind is LedgerEntryKind.TITLE_ENTITLEMENT
+            and e.basis_key == pe.basis_key
+        )
+        dead = {sid for e in titles for sid in e.supersedes}
+        if any(not e.supersedes for e in titles if e.entry_id not in dead):
             return replace(state, events=state.events + (pe.event,))
         return replace(
             state,

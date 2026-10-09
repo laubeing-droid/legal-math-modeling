@@ -56,7 +56,6 @@ structure Proposal where
   newRules : Finset Rule
   /-- 作用域标签。 -/
   scope : ℕ
-  deriving Repr
 
 /-- 已获授权的规范变更（授权位内嵌，不经提案构造）。 -/
 structure AuthorizedChange where
@@ -68,7 +67,6 @@ structure AuthorizedChange where
   authority : Authority
   /-- 授权作用域覆盖提案作用域。 -/
   authorityCovers : ℕ
-  deriving Repr
 
 /-- 授权谓词：权威来源且作用域覆盖。 -/
 def GrantValid (auth : Authority) (scope : ℕ) : Prop :=

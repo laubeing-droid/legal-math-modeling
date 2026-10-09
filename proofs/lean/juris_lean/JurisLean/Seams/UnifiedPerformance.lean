@@ -65,7 +65,7 @@ def outstanding (obl : Obligation) (g : GrossLedger) : ℚ :=
 /-- **守恒**：冲抵＋剩余＝本金。 -/
 theorem outstanding_conservation (obl : Obligation) (g : GrossLedger) :
     satisfiedBy obl g + outstanding obl g = obl.amount := by
-  unfold satisfiedBy outstanding
+  simp only [satisfiedBy, outstanding]
   rcases le_total (grossReceived g) obl.amount with h | h
   · rw [min_eq_left h]; ring
   · rw [min_eq_right h]; ring
@@ -73,7 +73,7 @@ theorem outstanding_conservation (obl : Obligation) (g : GrossLedger) :
 /-- 剩余非负（本金非负时）。 -/
 theorem outstanding_nonneg (obl : Obligation) (g : GrossLedger)
     (h : 0 ≤ obl.amount) : 0 ≤ outstanding obl g := by
-  unfold outstanding satisfiedBy
+  simp only [outstanding, satisfiedBy]
   rcases le_total (grossReceived g) obl.amount with h' | h'
   · rw [min_eq_left h']; linarith
   · rw [min_eq_right h']; linarith

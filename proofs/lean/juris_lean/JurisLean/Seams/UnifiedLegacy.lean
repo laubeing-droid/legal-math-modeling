@@ -94,14 +94,14 @@ theorem legacy_projection_commutes : ∀ l : LegacyIn,
     | none => True := by
   intro l
   cases l with
-  | plain v => rfl
-  | unscoped v => rfl
+  | plain v => simp [convertLegacy, projectNew, newRun, legacyRun]
+  | unscoped v => simp [convertLegacy]
 
 /-- **全域行为相等不成立**：unscoped 输入的旧错误结果（root2=false 哨兵）
     是历史载体，与任何新投影都不相等——不得为维持旧错误结果把交换律
     拉伸成全域等式。 -/
 theorem no_global_behavior_equality :
-    ∀ ni : NewIn, projectNew (newRun ni) ≠ legacyRun (.unscoped 5) := by
+    ∀ ni : NewIn, projectNew (newRun ni) ≠ legacyRun (LegacyIn.unscoped 5) := by
   intro ni h
   have h2 : (projectNew (newRun ni)).root2
       = (legacyRun (.unscoped 5)).root2 := by rw [h]

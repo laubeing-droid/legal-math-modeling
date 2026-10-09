@@ -4,9 +4,9 @@
 
 Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.
 
-- files scanned: 321
-- theorem/lemma headers read: 3907
-- distinct statement types: 3864
+- files scanned: 322
+- theorem/lemma headers read: 3927
+- distinct statement types: 3884
 - statement types declared more than once: 43
 - of those spanning module families: 2
 

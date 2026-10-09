@@ -570,6 +570,7 @@
     "JurisLean.Seams.UnifiedPerformance",
     "JurisLean.Seams.UnifiedQuantities",
     "JurisLean.Seams.UnifiedSemantics",
+    "JurisLean.Seams.UnifiedSummary",
     "JurisLean.Seams.UnifiedUtility",
     "JurisLean.TaintNoninterference",
     "JurisLean.ULMAxiomAudit",
@@ -2614,6 +2615,26 @@
     "JurisLean.Seams.UnifiedSemantics.escalation_only_has_no_stable_selection",
     "JurisLean.Seams.UnifiedSemantics.isolated_in_every_stable_selection",
     "JurisLean.Seams.UnifiedSemantics.mem_enumerateStable_iff",
+    "JurisLean.Seams.UnifiedSummary.delta_conc",
+    "JurisLean.Seams.UnifiedSummary.delta_last_defeasible",
+    "JurisLean.Seams.UnifiedSummary.delta_last_strict",
+    "JurisLean.Seams.UnifiedSummary.delta_sites",
+    "JurisLean.Seams.UnifiedSummary.exempt_site_free",
+    "JurisLean.Seams.UnifiedSummary.leaf_last_empty",
+    "JurisLean.Seams.UnifiedSummary.leaf_site_mem",
+    "JurisLean.Seams.UnifiedSummary.own_site_typed",
+    "JurisLean.Seams.UnifiedSummary.saturatedN_into_closed",
+    "JurisLean.Seams.UnifiedSummary.saturatedN_witness",
+    "JurisLean.Seams.UnifiedSummary.saturated_witness",
+    "JurisLean.Seams.UnifiedSummary.summarize_conc",
+    "JurisLean.Seams.UnifiedSummary.summarize_leafExempt",
+    "JurisLean.Seams.UnifiedSummary.summarize_leafOrd",
+    "JurisLean.Seams.UnifiedSummary.summarize_node_iff",
+    "JurisLean.Seams.UnifiedSummary.summarize_node_of",
+    "JurisLean.Seams.UnifiedSummary.summs_accumulate",
+    "JurisLean.Seams.UnifiedSummary.summs_cons_iff",
+    "JurisLean.Seams.UnifiedSummary.summs_cons_of",
+    "JurisLean.Seams.UnifiedSummary.summs_nil",
     "JurisLean.Seams.UnifiedUtility.case_regret_bound",
     "JurisLean.Seams.UnifiedUtility.equilibrium_does_not_assert_occurrence",
     "JurisLean.Seams.UnifiedUtility.maxQ_le",
@@ -3113,8 +3134,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "786788753bca709b8a4216d5e01c550700fb52ecdc76c7666ff1a37504a5253a",
-   "size_bytes": 178193,
+   "sha256": "76034e0b48b1c4b818fc6077ae1ebe7fd2561a9a97a1686eaf4590abe044e73c",
+   "size_bytes": 179464,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -30734,6 +30755,165 @@
   {
    "declarations": [
     {
+     "kind": "inductive",
+     "name": "SMode"
+    },
+    {
+     "kind": "inductive",
+     "name": "SiteSum"
+    },
+    {
+     "kind": "structure",
+     "name": "Summ"
+    },
+    {
+     "kind": "structure",
+     "name": "SRule"
+    },
+    {
+     "kind": "inductive",
+     "name": "STree"
+    },
+    {
+     "kind": "inductive",
+     "name": "SForest"
+    },
+    {
+     "kind": "def",
+     "name": "headT"
+    },
+    {
+     "kind": "def",
+     "name": "lastOfRule"
+    },
+    {
+     "kind": "def",
+     "name": "ownSiteOf"
+    },
+    {
+     "kind": "def",
+     "name": "deltaS"
+    },
+    {
+     "kind": "def",
+     "name": "leafOrdSum"
+    },
+    {
+     "kind": "def",
+     "name": "leafExemptSum"
+    },
+    {
+     "kind": "def",
+     "name": "summarize"
+    },
+    {
+     "kind": "def",
+     "name": "summs"
+    },
+    {
+     "kind": "theorem",
+     "name": "summarize_leafOrd"
+    },
+    {
+     "kind": "theorem",
+     "name": "summarize_leafExempt"
+    },
+    {
+     "kind": "theorem",
+     "name": "summs_nil"
+    },
+    {
+     "kind": "theorem",
+     "name": "summarize_node_of"
+    },
+    {
+     "kind": "theorem",
+     "name": "summs_cons_of"
+    },
+    {
+     "kind": "theorem",
+     "name": "summs_cons_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "summarize_node_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "summarize_conc"
+    },
+    {
+     "kind": "theorem",
+     "name": "delta_last_defeasible"
+    },
+    {
+     "kind": "theorem",
+     "name": "delta_last_strict"
+    },
+    {
+     "kind": "theorem",
+     "name": "delta_sites"
+    },
+    {
+     "kind": "theorem",
+     "name": "own_site_typed"
+    },
+    {
+     "kind": "theorem",
+     "name": "delta_conc"
+    },
+    {
+     "kind": "theorem",
+     "name": "leaf_last_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "leaf_site_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "exempt_site_free"
+    },
+    {
+     "kind": "inductive",
+     "name": "SaturatedN"
+    },
+    {
+     "kind": "def",
+     "name": "Saturated"
+    },
+    {
+     "kind": "theorem",
+     "name": "summs_accumulate"
+    },
+    {
+     "kind": "theorem",
+     "name": "saturatedN_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "saturated_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "saturatedN_into_closed"
+    }
+   ],
+   "imports": [
+    "JurisLean.Seams.UnifiedGuards",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSummary.lean",
+   "print_axioms_targets": [],
+   "sha256": "239c6e435443f43112d11cb869322255e4e86a43218543cfcb7f9500b6425960",
+   "size_bytes": 13562,
+   "theorem_count": 20,
+   "theorem_count_bol_convention": 20
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "NormGame"
     },
@@ -34417,6 +34597,7 @@
     "JurisLean.Seams.UnifiedPerformance",
     "JurisLean.Seams.UnifiedQuantities",
     "JurisLean.Seams.UnifiedSemantics",
+    "JurisLean.Seams.UnifiedSummary",
     "JurisLean.Seams.UnifiedUtility",
     "JurisLean.SolverRouting",
     "JurisLean.SourceBundleSpec",
@@ -34452,8 +34633,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "7ce916a77e2f5289e18fabc44acf17a588232ad12d993e3518cda9a8a3977d3b",
-   "size_bytes": 9583,
+   "sha256": "42dfc4ab1b24a3bed219aedd1ad62034b4994dcfbe8daae4d38e0cfa2c100205",
+   "size_bytes": 9621,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -34617,22 +34798,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 3915,
-   "file_count": 336,
+   "counted_declaration_count": 3935,
+   "file_count": 337,
    "lemma_count": 141,
-   "print_axioms_command_count": 2797,
-   "print_axioms_distinct_targets": 2743,
-   "theorem_count": 3774,
-   "theorem_count_bol_convention": 3678
+   "print_axioms_command_count": 2817,
+   "print_axioms_distinct_targets": 2763,
+   "theorem_count": 3794,
+   "theorem_count_bol_convention": 3698
   },
   "juris_lean_package": {
-   "counted_declaration_count": 3896,
-   "file_count": 321,
+   "counted_declaration_count": 3916,
+   "file_count": 322,
    "lemma_count": 134,
-   "print_axioms_command_count": 2797,
-   "print_axioms_distinct_targets": 2743,
-   "theorem_count": 3762,
-   "theorem_count_bol_convention": 3666
+   "print_axioms_command_count": 2817,
+   "print_axioms_distinct_targets": 2763,
+   "theorem_count": 3782,
+   "theorem_count_bol_convention": 3686
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -34934,6 +35115,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedPerformance.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantities.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSummary.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedUtility.lean",
    "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
    "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
@@ -35268,6 +35450,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedPerformance.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantities.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSummary.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedUtility.lean",
    "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
    "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
@@ -35346,17 +35529,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "ab61b86bf1ac3a161b37c70c08ccd3656ad48ebb323e9129efa18994a9c55ae7",
+ "source_inventory_digest": "361a3b976dc56bb38870dd306cbbeaa36a029feee0ec44662bcac7abbfafcf03",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "72f479028a8b1a21d3d04341fe48463535f62a85",
-  "tree": "9bfd25f8b84e5efe426e10c5b6bf581750553d35"
+  "commit": "a9b8fbd2b594b803ff0b712534dd5b3e405a0e61",
+  "tree": "b34903a87854aa718c1aef4dc390058bc8518a4d"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 336,
+  "files_total": 337,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

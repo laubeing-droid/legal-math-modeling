@@ -207,12 +207,13 @@ inductive Forum where
   | bankruptcy
 deriving DecidableEq
 
-/-- 审级/程序层级：一审/二审/再审/仲裁/行政复议/破产受理。 -/
+/-- 审级/程序层级：一审/二审/再审/仲裁/劳动仲裁/行政复议/破产受理。 -/
 inductive TrialLevel where
   | firstInstance
   | secondInstance
   | retrial
   | arbitration
+  | laborArbitration
   | adminReview
   | bankruptcyAcceptance
 deriving DecidableEq
@@ -565,6 +566,9 @@ inductive Atom where
   | adminFinalDisposition
 deriving DecidableEq, Fintype
 
+/-- 裸构造子开箱：本件陈述与证明大量直接引用材料/状态原子。 -/
+open Atom
+
 /-! ## 六、具名法源（来源/条款/版本/效力时段按合同 :713 字段保留） -/
 
 /-- 本网络登记的 22 个具名法源（条文号照 §10.2.2/§11 表；新增核查一手条款见
@@ -592,7 +596,7 @@ inductive LawSource where
   | stateCompensationLaw36
   | maritimeLaw43_57
   | maritimeLaw51
-deriving DecidableEq
+deriving DecidableEq, Fintype
 
 /-- 法源标签：法源 + 条款 + 版本 + 效力窗口（合成网络的固定版本登记）。 -/
 structure SourceTag where
@@ -762,7 +766,7 @@ structure LawRule where
   premises : Finset Atom
   conclusion : Atom
   src : LawSource
-deriving DecidableEq
+deriving DecidableEq, Fintype
 
 /-- 投影为既有 `HornRule`（消费 SourceNorms/UnifiedHornIT 机器的接口）。 -/
 def LawRule.horn (r : LawRule) : HornRule Atom := ⟨r.premises, r.conclusion⟩
@@ -997,8 +1001,8 @@ theorem matCl (a : Atom) (h : materialHolds a fullDocket = true) :
 /-- 闭包引入：规则前提全在闭包 ⇒ 结论在闭包（closure_is_model 右支）。
     每一次应用都真检查前提，不是标签搬运。 -/
 theorem memByRule (r : LawRule) (hr : r ∈ familyRuleList)
-    (hp : ∀ p ∈ r.horn.premises, p ∈ closureAt familyHorn) :
-    r.horn.conclusion ∈ closureAt familyHorn :=
+    (hp : ∀ p ∈ r.premises, p ∈ closureAt familyHorn) :
+    r.conclusion ∈ closureAt familyHorn :=
   (SourceNorms.closure_is_model familyHorn).2 r.horn (rule_horn_mem r hr) hp
 
 /-- R01。 -/
@@ -1006,18 +1010,18 @@ theorem loanEntitlement_mem : loanEntitlement ∈ closureAt familyHorn :=
   memByRule ruleLoanEntitlement (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matContractSigned rfl
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matBankSettlementMatched rfl
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matReconciliationUnpaid rfl)
 
 /-- R02。 -/
 theorem guarantorStanding_mem : guarantorStanding ∈ closureAt familyHorn :=
   memByRule ruleGuarantorStanding (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matGuaranteeByGOpen rfl)
 
 /-- R03。 -/
 theorem gEnforcementAfterExhaustion_mem : gEnforcementAfterExhaustion ∈ closureAt familyHorn :=
@@ -1031,27 +1035,27 @@ theorem publicInterestStanding_mem : publicInterestStanding ∈ closureAt family
   memByRule rulePublicStanding (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matNQualified rfl)
 
 /-- R08。 -/
 theorem ecoViolationEstablished_mem : ecoViolationEstablished ∈ closureAt familyHorn :=
   memByRule ruleEcoViolation (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matSamplingMatch rfl
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matExceedance rfl
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matNoExculpation rfl
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matInNewLawPeriod rfl)
 
 /-- R09。 -/
 theorem fishPrivateCompensation_mem : fishPrivateCompensation ∈ closureAt familyHorn :=
   memByRule ruleFishPrivate (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matPondTesting rfl
     rcases Finset.mem_singleton.mp hp with rfl
     exact ecoViolationEstablished_mem)
 
@@ -1060,7 +1064,7 @@ theorem ecoRemediationCosts_mem : ecoRemediationCosts ∈ closureAt familyHorn :
   memByRule ruleEcoRemediation (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matEcoCostDocs rfl
     rcases Finset.mem_insert.mp hp with rfl | hp
     · exact publicInterestStanding_mem
     rcases Finset.mem_singleton.mp hp with rfl
@@ -1071,41 +1075,41 @@ theorem carDamageLiability_mem : carDamageLiability ∈ closureAt familyHorn :=
   memByRule ruleCarDamage (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matWorkInstruction rfl
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matDamageCorroboration rfl)
 
 /-- R06。 -/
 theorem medicalFaultPresumed_mem : medicalFaultPresumed ∈ closureAt familyHorn :=
   memByRule ruleMedicalFault (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matTreatmentAtM rfl
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matRecordsWithheld rfl)
 
 /-- R11。 -/
 theorem wageDueEstablished_mem : wageDueEstablished ∈ closureAt familyHorn :=
   memByRule ruleWageDue (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matWageBasisOnFile rfl)
 
 /-- R12。 -/
 theorem noComminglingProven_mem : noComminglingProven ∈ closureAt familyHorn :=
   memByRule ruleNoCommingling (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matSeparateAccounts rfl)
 
 /-- R13。 -/
 theorem bankruptcyAccepted_mem : bankruptcyAccepted ∈ closureAt familyHorn :=
   memByRule ruleBankruptcyAccepted (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matInsolvencyShown rfl
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matAcceptanceDecided rfl)
 
 /-- R14。 -/
 theorem bankruptcyExecutionStay_mem : bankruptcyExecutionStay ∈ closureAt familyHorn :=
@@ -1142,9 +1146,9 @@ theorem mortgageSecuredPriority_mem : mortgageSecuredPriority ∈ closureAt fami
   memByRule ruleMortgagePriority (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matMortgageRegistered rfl
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matRealizationRecord rfl
     rcases Finset.mem_singleton.mp hp with rfl
     exact loanEntitlement_mem)
 
@@ -1153,20 +1157,20 @@ theorem ipOrdinaryInfringement_mem : ipOrdinaryInfringement ∈ closureAt family
   memByRule ruleIpInfringement (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matCreationChain rfl
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matLicenseExpired rfl
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matPostTermUse rfl)
 
 /-- R19。 -/
 theorem stayForSuccession_mem : stayForSuccession ∈ closureAt familyHorn :=
   memByRule ruleStaySuccession (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matCDeathRecord rfl
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matHeirsNotYetJoined rfl)
 
 /-- R20。 -/
 theorem stayDecreeIssued_mem : stayDecreeIssued ∈ closureAt familyHorn :=
@@ -1175,7 +1179,7 @@ theorem stayDecreeIssued_mem : stayDecreeIssued ∈ closureAt familyHorn :=
     rcases Finset.mem_insert.mp hp with rfl | hp
     · exact stayForSuccession_mem
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matStayEventsKept rfl)
 
 /-- R21。 -/
 theorem holdOnLoanFinal_mem : holdOnLoanFinal ∈ closureAt familyHorn :=
@@ -1189,51 +1193,51 @@ theorem holdOnDependentClaim_mem : holdOnDependentClaim ∈ closureAt familyHorn
   memByRule ruleHoldDependent (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matDependentClaimFiled rfl
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matPriorCaseUnconcluded rfl)
 
 /-- R23。 -/
 theorem adminDefectsEstablished_mem : adminDefectsEstablished ∈ closureAt familyHorn :=
   memByRule ruleAdminDefects (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matPenaltyServedWithBasis rfl
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matHearingMissed rfl
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matRecordContradictions rfl)
 
 /-- R24。 -/
 theorem xReturnDue_mem : xReturnDue ∈ closureAt familyHorn :=
   memByRule ruleXReturn (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matDetentionX rfl
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matReturnDamageRecords rfl
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matReviewFiledInTime rfl)
 
 /-- R25。 -/
 theorem xDamageCompensation_mem : xDamageCompensation ∈ closureAt familyHorn :=
   memByRule ruleXDamage (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matDetentionX rfl
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matReturnDamageRecords rfl)
 
 /-- R26。 -/
 theorem retrialAdmitted_mem : retrialAdmitted ∈ closureAt familyHorn :=
   memByRule ruleRetrial (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matPriorCarJudgment rfl
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matNamedErrorAlleged rfl
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matStayEventsKept rfl)
 
 /-- R27。 -/
 theorem executoryEffectKept_mem : executoryEffectKept ∈ closureAt familyHorn :=
@@ -1247,9 +1251,9 @@ theorem maritimeCarrierLiability_mem : maritimeCarrierLiability ∈ closureAt fa
   memByRule ruleMaritime (by simp [familyRuleList]) (by
     intro p hp
     rcases Finset.mem_insert.mp hp with rfl | hp
-    · exact matCl _ (by decide)
+    · exact matCl Atom.matCarrierCustody rfl
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matCargoDamage rfl)
 
 /-- R29。 -/
 theorem exemptionBurdenOnCarrier_mem : exemptionBurdenOnCarrier ∈ closureAt familyHorn :=
@@ -1258,7 +1262,7 @@ theorem exemptionBurdenOnCarrier_mem : exemptionBurdenOnCarrier ∈ closureAt fa
     rcases Finset.mem_insert.mp hp with rfl | hp
     · exact maritimeCarrierLiability_mem
     rcases Finset.mem_singleton.mp hp with rfl
-    exact matCl _ (by decide))
+    exact matCl Atom.matExemptionMaterials rfl)
 
 /-! ## 十、未成立侧：显式模型见证（NotEstablished ≠ Established(¬p)） -/
 
@@ -1286,7 +1290,7 @@ theorem rule_concl_avoid_bad (r : LawRule) (hr : r ∈ familyRuleList) :
 
 /-- 初始事实与坏集不相交（初始事实都是真材料，材料原子的 failureish 恒 false）。 -/
 theorem initial_bad_disjoint :
-    Finset.Disjoint familyHorn.initialFacts
+    Disjoint familyHorn.initialFacts
       (Finset.univ.filter (fun a => failureish a && !materialHolds a fullDocket)) := by
   rw [Finset.disjoint_left]
   intro a ha hb
@@ -1297,8 +1301,9 @@ theorem initial_bad_disjoint :
   simp at h2
 
 /-- 一般引理：避开坏集的全域是一个模型（初始事实避开坏集 + 规则结论避开坏集）。 -/
-theorem isModel_avoiding {α : Type} [DecidableEq α] (sys : HornSystem α) (bad : Finset α)
-    (hdisj : Finset.Disjoint sys.initialFacts bad)
+theorem isModel_avoiding {α : Type} [DecidableEq α] [Fintype α] (sys : HornSystem α)
+    (bad : Finset α)
+    (hdisj : Disjoint sys.initialFacts bad)
     (havoid : ∀ r ∈ sys.rules, r.conclusion ∉ bad) :
     SourceNorms.isModel sys (Finset.univ \ bad) := by
   refine ⟨?_, ?_⟩
@@ -1332,45 +1337,45 @@ theorem not_in_closure_of_bad (f : Atom)
 /-- 失败原子逐个（L07 加班请求：无加班事实材料且无掌握拒不提供证明——
     妨碍推定不得作出）。 -/
 theorem overtimeClaim_not_closure : overtimeClaimEstablished ∉ closureAt familyHorn :=
-  not_in_closure_of_bad _ (inBad _ (by decide))
+  not_in_closure_of_bad _ (inBad Atom.overtimeClaimEstablished rfl)
 
 /-- 失败原子逐个（L04 新增/加重损害：1222 推定不直接推定全部因果和损失）。 -/
 theorem medicalAddedDamage_not_closure : medicalAddedDamageAward ∉ closureAt familyHorn :=
-  not_in_closure_of_bad _ (inBad _ (by decide))
+  not_in_closure_of_bad _ (inBad Atom.medicalAddedDamageAward rfl)
 
 /-- 失败原子逐个（L06 H 共同债务：1064 路径缺少要件，请求可失败）。 -/
 theorem spousalJointDebt_not_closure : spousalJointDebt ∉ closureAt familyHorn :=
-  not_in_closure_of_bad _ (inBad _ (by decide))
+  not_in_closure_of_bad _ (inBad Atom.spousalJointDebt rfl)
 
 /-- 失败原子逐个（L09 惩罚性赔偿：无故意且情节严重的充分材料）。 -/
 theorem ipPunitive_not_closure : ipPunitiveDamages ∉ closureAt familyHorn :=
-  not_in_closure_of_bad _ (inBad _ (by decide))
+  not_in_closure_of_bad _ (inBad Atom.ipPunitiveDamages rfl)
 
 /-- 失败原子逐个（L10 诈骗定罪：非仅供述+正常经营替代共同阻止）。 -/
 theorem fraudConviction_not_closure : fraudConviction ∉ closureAt familyHorn :=
-  not_in_closure_of_bad _ (inBad _ (by decide))
+  not_in_closure_of_bad _ (inBad Atom.fraudConviction rfl)
 
 /-- 失败原子逐个（L12 远端利润：无直接损失和因果材料不当然支持）。 -/
 theorem remoteProfit_not_closure : remoteProfitAward ∉ closureAt familyHorn :=
-  not_in_closure_of_bad _ (inBad _ (by decide))
+  not_in_closure_of_bad _ (inBad Atom.remoteProfitAward rfl)
 
 /-- 失败原子逐个（L08 人格否认：财产独立证明完成则请求失败）。 -/
 theorem corporateVeil_not_closure : corporateVeilPierced ∉ closureAt familyHorn :=
-  not_in_closure_of_bad _ (inBad _ (by decide))
+  not_in_closure_of_bad _ (inBad Atom.corporateVeilPierced rfl)
 
 /-- 失败原子逐个（L01 loan 实体终局：因继承中止暂不作成——注意其状态是
     依法暂未决而非证明不足，四态归类的 hold 原子见 `holdOf`）。 -/
 theorem loanFinalDecree_not_closure : loanFinalDecree ∉ closureAt familyHorn :=
-  not_in_closure_of_bad _ (inBad _ (by decide))
+  not_in_closure_of_bad _ (inBad Atom.loanFinalDecree rfl)
 
 /-- 失败原子逐个（L13 依赖他案的请求：先决未到，依法未决）。 -/
 theorem dependentClaimFinal_not_closure : dependentClaimFinalDecree ∉ closureAt familyHorn :=
-  not_in_closure_of_bad _ (inBad _ (by decide))
+  not_in_closure_of_bad _ (inBad Atom.dependentClaimFinalDecree rfl)
 
 /-- 失败原子逐个（L11 行政终局处分：**故意开放**——冲突排除分支枚举为针 06
     预留接口；本件只证它当前不可推导，不预填任何一种终局处分）。 -/
 theorem adminFinalDisposition_not_closure : adminFinalDisposition ∉ closureAt familyHorn :=
-  not_in_closure_of_bad _ (inBad _ (by decide))
+  not_in_closure_of_bad _ (inBad Atom.adminFinalDisposition rfl)
 
 /-! ## 十一、溯源健全：消费 HProvN（材料侧）+ 镜像 LTagN（法源侧） -/
 
@@ -1399,11 +1404,11 @@ theorem family_horn_deriv_sound :
 theorem premiseInitEnt (p : Atom) (hp : p ∈ ruleLoanEntitlement.horn.premises) :
     p ∈ familyHorn.initialFacts := by
   rcases Finset.mem_insert.mp hp with rfl | hp
-  · exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, by decide⟩
+  · exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, rfl⟩
   rcases Finset.mem_insert.mp hp with rfl | hp
-  · exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, by decide⟩
+  · exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, rfl⟩
   rcases Finset.mem_singleton.mp hp with rfl
-  exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, by decide⟩
+  exact Finset.mem_filter.mpr ⟨Finset.mem_univ _, rfl⟩
 
 /-- R01 的溯源集：结论的来源 = 三份在卷材料来源之并（由构造给出，不是标注）。 -/
 def loanProvSet : Finset Atom :=
@@ -1420,8 +1425,8 @@ theorem loanEntitlement_prov :
 /-- 溯源集非空且含银行结算材料（防 prov_sound 空洞为真）。 -/
 theorem loanProvSet_settlement_mem : matBankSettlementMatched ∈ loanProvSet := by
   refine Finset.mem_biUnion.mpr ⟨matBankSettlementMatched,
-    Finset.mem_insert_of_mem (Finset.mem_insert_self _ _), ?_⟩
-  rw [matSrcOf_self _ (by decide)]
+    (by simp [ruleLoanEntitlement]), ?_⟩
+  rw [matSrcOf_self matBankSettlementMatched rfl]
   exact Finset.mem_singleton_self _
 
 /-- **溯源健全的旗舰实例化**：R01 推导引用的每个来源都追到已声明在卷材料
@@ -1452,13 +1457,13 @@ theorem ltagN_declared :
   | zero =>
       intro C a h s hs
       cases h with
-      | fact _ a' ha =>
-          exact Or.inl ⟨a', ha, Finset.mem_singleton.mp hs⟩
+      | fact _ _ ha =>
+          exact Or.inl ⟨a, ha, Finset.mem_singleton.mp hs⟩
   | succ k ih =>
       intro C a h s hs
       cases h with
-      | fact _ a' ha =>
-          exact Or.inl ⟨a', ha, Finset.mem_singleton.mp hs⟩
+      | fact _ _ ha =>
+          exact Or.inl ⟨a, ha, Finset.mem_singleton.mp hs⟩
       | rule _ r hr C' hch =>
           rcases Finset.mem_insert.mp hs with rfl | hmem
           · exact Or.inr ⟨r, hr, rfl⟩
@@ -1474,11 +1479,11 @@ theorem ltagN_mem_closure :
   | zero =>
       intro C a h
       cases h with
-      | fact _ a' ha => exact (SourceNorms.closure_is_model familyHorn).1 ha
+      | fact _ _ ha => exact (SourceNorms.closure_is_model familyHorn).1 ha
   | succ k ih =>
       intro C a h
       cases h with
-      | fact _ a' ha => exact (SourceNorms.closure_is_model familyHorn).1 ha
+      | fact _ _ ha => exact (SourceNorms.closure_is_model familyHorn).1 ha
       | rule _ r hr C' hch =>
           refine (SourceNorms.closure_is_model familyHorn).2 r.horn (rule_horn_mem r hr) ?_
           intro p hp
@@ -1507,7 +1512,7 @@ theorem loan_cited_nonempty :
       SrcId.statute LawSource.civilCode490_626 ∈ loanCited := by
   refine ⟨?_, Finset.mem_insert_self _ _⟩
   exact Finset.mem_insert_of_mem (Finset.mem_biUnion.mpr ⟨matBankSettlementMatched,
-    Finset.mem_insert_of_mem (Finset.mem_insert_self _ _), Finset.mem_singleton.mpr rfl⟩)
+    (by simp [ruleLoanEntitlement]), Finset.mem_singleton.mpr rfl⟩)
 
 /-! ## 十二、四态联合输出与见证案完整求值 -/
 
@@ -1575,7 +1580,7 @@ def witnessOutput : WitnessJointOutput where
 theorem witness_established_ok :
     ∀ a ∈ witnessOutput.established, a ∈ closureAt familyHorn := by
   intro a ha
-  simp only [witnessOutput, witnessEstablished, List.mem_cons, List.mem_nil] at ha
+  simp only [witnessOutput, witnessEstablished, List.mem_cons, List.mem_nil_iff] at ha
   obtain rfl | ha := ha
   · exact loanEntitlement_mem
   obtain rfl | ha := ha
@@ -1624,7 +1629,7 @@ theorem witness_established_ok :
 theorem witness_not_established_ok :
     ∀ a ∈ witnessOutput.notEstablished, a ∉ closureAt familyHorn := by
   intro a ha
-  simp only [witnessOutput, witnessNotEstablished, List.mem_cons, List.mem_nil] at ha
+  simp only [witnessOutput, witnessNotEstablished, List.mem_cons, List.mem_nil_iff] at ha
   obtain rfl | ha := ha
   · exact overtimeClaim_not_closure
   obtain rfl | ha := ha
@@ -1647,7 +1652,7 @@ theorem witness_pending_ok :
     ∀ a ∈ witnessOutput.pendingByLaw,
       holdOf a ∈ closureAt familyHorn ∧ a ∉ closureAt familyHorn := by
   intro a ha
-  simp only [witnessOutput, witnessPending, List.mem_cons, List.mem_nil] at ha
+  simp only [witnessOutput, witnessPending, List.mem_cons, List.mem_nil_iff] at ha
   obtain rfl | ha := ha
   · exact ⟨holdOnLoanFinal_mem, loanFinalDecree_not_closure⟩
   obtain rfl | ha := ha
@@ -1658,7 +1663,7 @@ theorem witness_pending_ok :
 theorem witness_procedural_ok :
     ∀ a ∈ witnessOutput.procedural, a ∈ closureAt familyHorn := by
   intro a ha
-  simp only [witnessOutput, witnessProcedural, List.mem_cons, List.mem_nil] at ha
+  simp only [witnessOutput, witnessProcedural, List.mem_cons, List.mem_nil_iff] at ha
   obtain rfl | ha := ha
   · exact bankruptcyExecutionStay_mem
   obtain rfl | ha := ha
@@ -1761,6 +1766,6 @@ theorem execution_effect_not_correctness :
     executoryEffectKept ∈ closureAt familyHorn ∧
     retrialAdmitted ∈ closureAt familyHorn ∧
     matNamedErrorAlleged ∈ closureAt familyHorn :=
-  ⟨executoryEffectKept_mem, retrialAdmitted_mem, matCl _ (by decide)⟩
+  ⟨executoryEffectKept_mem, retrialAdmitted_mem, matCl Atom.matNamedErrorAlleged rfl⟩
 
 end JurisLean.Seams.UnifiedFourteenFamilies

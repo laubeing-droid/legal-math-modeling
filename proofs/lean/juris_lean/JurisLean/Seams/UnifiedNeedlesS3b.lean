@@ -248,15 +248,13 @@ theorem evMass_shared_obs (π : Θ → ℚ) (q : Nty → ℚ) (E : Θ → Bool)
   rw [Fintype.sum_prod_type]
   refine Finset.sum_congr rfl (fun θ _ => ?_)
   dsimp only
-  cases hE : E θ with
-  | true =>
-      rw [if_pos hE]
-      simp only [Finset.mul_sum]
-      rw [hq1]
-      ring
-  | false =>
-      rw [if_neg (show ¬(E θ = true) from by simp [hE])]
-      simp
+  by_cases hE : E θ = true
+  · rw [if_pos hE]
+    simp only [Finset.mul_sum]
+    rw [hq1]
+    ring
+  · rw [if_neg hE]
+    simp
 
 /-- 选择读 n 时的双重证据质量因子分解：观察（读 θ）∧选择（读 n）的证据质量
     ＝参数侧观察质量 × 选择质量。选择质量因子是后面被约掉的那个因子。 -/
@@ -264,7 +262,27 @@ theorem evMass_shared_sel_obs (π : Θ → ℚ) (q : Nty → ℚ) (E : Θ → Bo
     (S : Nty → Bool) :
     evMass (sharedJoint π q) (fun ω => E ω.1 && S ω.2)
       = (∑ θ, if E θ then π θ else 0) * (∑ n, if S n then q n else 0) := by
-  simp [evMass, sharedJoint, Fintype.sum_prod_type, Finset.mul_sum]
+  have hper : ∀ θ : Θ,
+      (∑ n, (if E θ && S n then π θ * q n else 0))
+        = (if E θ then π θ else 0) * (∑ n, (if S n then q n else 0)) := by
+    intro θ
+    by_cases hE : E θ = true
+    · have hcond : ∀ n : Nty, (E θ && S n) = S n := by
+        intro n; rw [hE, Bool.true_and]
+      simp only [hcond]
+      rw [if_pos hE, Finset.mul_sum]
+      refine Finset.sum_congr rfl (fun n _ => ?_)
+      by_cases hS : S n = true
+      · rw [if_pos hS, if_pos hS]
+      · rw [if_neg hS, if_neg hS, mul_zero]
+    · rw [if_neg hE, mul_zero]
+      refine Finset.sum_eq_zero (fun n _ => ?_)
+      rw [if_neg (show ¬((E θ && S n) = true) from by simp [hE])]
+  unfold evMass sharedJoint
+  rw [Fintype.sum_prod_type]
+  dsimp only
+  rw [Finset.sum_mul]
+  exact Finset.sum_congr rfl (fun θ _ => hper θ)
 
 /-- 双重条件化的两个正性前提都可由"参数侧观察质量＞0 ∧ 选择质量＞0"导出，
     主定理里的正性假设不是白拿的。 -/
@@ -314,16 +332,16 @@ theorem selection_transport_from_shared_mechanism (π : Θ → ℚ) (q : Nty →
         intro n
         by_cases hS : S n = true
         · rw [if_pos (show (E θ && S n) = true from by simp [hE, hS]), if_pos hS]
-        · rw [if_neg (show ¬((E θ && S n) = true) from by simp [hE, hS]), if_neg hS, zero_div]
           rfl
+        · rw [if_neg (show ¬((E θ && S n) = true) from by simp [hE, hS]), if_neg hS, zero_div]
       simp only [paramMarginal, posterior, hstep]
-      rw [Finset.sum_div]
+      rw [← Finset.sum_div]
       rw [show (∑ n, if S n then π θ * q n else 0)
             = π θ * (∑ n, if S n then q n else 0) from by
           rw [← Finset.mul_sum]
           exact Finset.sum_congr rfl (fun n _ => by
             by_cases hS : S n = true
-            · rw [if_pos hS, if_pos hS, mul_comm]
+            · rw [if_pos hS, if_pos hS]
             · rw [if_neg hS, if_neg hS, mul_zero])]
     have hR : paramMarginal (sharedJoint π q) (fun ω => E ω.1) hZo θ
         = ((π θ * (∑ n, q n)) / evMass (sharedJoint π q) (fun ω => E ω.1)) := by
@@ -334,7 +352,7 @@ theorem selection_transport_from_shared_mechanism (π : Θ → ℚ) (q : Nty →
         intro n
         rw [if_pos hE]
       simp only [paramMarginal, posterior, hstep]
-      rw [Finset.sum_div]
+      rw [← Finset.sum_div]
       rw [show (∑ n, (sharedJoint π q) (θ, n)) = ∑ n, π θ * q n from by
           simp only [sharedJoint], ← Finset.mul_sum]
     rw [hL, hR, hZbeq, hZoeq, hq1, mul_one]
@@ -357,18 +375,46 @@ theorem selection_transport_from_shared_mechanism (π : Θ → ℚ) (q : Nty →
     "仅 S⊥Y|θ,x 不够（似然变 θ²）"现象的有限支撑机器见证：均匀 π、均匀 q、
     全真观察 E；选择读参数时 θ=true 的边际从 1/2 变成 1——选择携带参数信息，
     必须留在完整似然里，不能当可忽略因子约掉。 -/
+/-- Bool 有限和分解（与绿色件 `Seams/Uncertainty.lean` 的 `sum_bool_eq` 同构，
+    供本件数值见证使用）。 -/
+theorem bool_sum_split (f : Bool → ℚ) : (∑ b : Bool, f b) = f true + f false := by
+  rw [show (∑ b : Bool, f b) = Finset.sum (Finset.univ : Finset Bool) f from rfl]
+  rw [Fintype.univ_bool]
+  simp
+
+/-- 数值前提一：均匀 π、均匀 q、读参数选择（true && ω.1）下的证据质量
+    ＝ (1/2·1/2)×2 ＝ 1/2 ＞ 0。 -/
+theorem unif_sel_mass_pos :
+    0 < evMass (sharedJoint (fun _ => (1 / 2 : ℚ)) (fun _ => (1 / 2 : ℚ)))
+      (fun ω : Bool × Bool => true && ω.1) := by
+  unfold evMass sharedJoint
+  rw [Fintype.sum_prod_type]
+  dsimp only
+  rw [bool_sum_split, bool_sum_split]
+  norm_num
+
+/-- 数值前提二：全真观察下证据质量 ＝ 1 ＞ 0。 -/
+theorem unif_all_mass_pos :
+    0 < evMass (sharedJoint (fun _ => (1 / 2 : ℚ)) (fun _ => (1 / 2 : ℚ)))
+      (fun _ : Bool × Bool => true) := by
+  unfold evMass sharedJoint
+  rw [Fintype.sum_prod_type]
+  dsimp only
+  rw [bool_sum_split, bool_sum_split]
+  norm_num
+
 theorem parameter_reading_selection_enters_likelihood :
     paramMarginal (sharedJoint (fun _ => (1 / 2 : ℚ)) (fun _ => (1 / 2 : ℚ)))
       (fun ω : Bool × Bool => true && ω.1)
-      (by norm_num [evMass, sharedJoint, Fintype.sum_prod_type, Finset.mul_sum])
+      unif_sel_mass_pos
       true
     ≠ paramMarginal (sharedJoint (fun _ => (1 / 2 : ℚ)) (fun _ => (1 / 2 : ℚ)))
       (fun _ => true)
-      (by norm_num [evMass, sharedJoint, Fintype.sum_prod_type, Finset.mul_sum])
+      unif_all_mass_pos
       true := by
   intro h
   norm_num [paramMarginal, posterior, evMass, sharedJoint, Fintype.sum_prod_type,
-    Finset.mul_sum] at h
+    Finset.mul_sum, bool_sum_split] at h
 
 end Needle23
 
@@ -405,7 +451,7 @@ structure PredictiveLegalModel (Θ Mt Yty : Type) [Fintype Θ] [Fintype Mt]
   obs_one : ∀ θ, ∑ y, obs θ y = 1
 
 /-- 完整联合：P(θ, m, y) = 先验 × 材料通道 × 观察通道（条件独立的因子化形态）。 -/
-def legalJoint (mdl : PredictiveLegalModel) : Θ × Mt × Yty → ℚ :=
+def legalJoint (mdl : PredictiveLegalModel Θ Mt Yty) : Θ × Mt × Yty → ℚ :=
   fun w => mdl.prior w.1 * mdl.material w.2.1 * mdl.obs w.2.2
 
 /-- 材料证据事件：联合状态的第二分量恰为观察到的材料 m。 -/
@@ -413,23 +459,23 @@ def materialEvent (m : Mt) : Θ × Mt × Yty → Bool :=
   fun w => decide (m = w.2.1)
 
 /-- 材料证据质量：∑_θ 先验×材料。 -/
-def matMass (mdl : PredictiveLegalModel) (m : Mt) : ℚ :=
+def matMass (mdl : PredictiveLegalModel Θ Mt Yty) (m : Mt) : ℚ :=
   ∑ θ, mdl.prior θ * mdl.material θ m
 
 /-- 材料后验：θ 的后验读数。hZ 为正性前提（fail-closed）。 -/
-def matPosterior (mdl : PredictiveLegalModel) (m : Mt)
+def matPosterior (mdl : PredictiveLegalModel Θ Mt Yty) (m : Mt)
     (hZ : 0 < matMass mdl m) (θ : Θ) : ℚ :=
   mdl.prior θ * mdl.material θ m / matMass mdl m
 
 /-- 后验预测：对**同一观察通道**按后验加权的显式有限和（有限支撑版的
     "积分后验预测"）。 -/
-def posteriorPredictive (mdl : PredictiveLegalModel) (m : Mt)
+def posteriorPredictive (mdl : PredictiveLegalModel Θ Mt Yty) (m : Mt)
     (hZ : 0 < matMass mdl m) (y : Yty) : ℚ :=
   ∑ θ, mdl.obs θ y * matPosterior mdl m hZ θ
 
 /-- 联合按材料证据条件化的证据质量恰等于材料质量——`hZ` 与 `hZj` 两个正性
     前提互通（`legalJoint_material_mass` 是它们的桥）。 -/
-theorem legalJoint_material_mass (mdl : PredictiveLegalModel) (m : Mt) :
+theorem legalJoint_material_mass (mdl : PredictiveLegalModel Θ Mt Yty) (m : Mt) :
     evMass (legalJoint mdl) (materialEvent m) = matMass mdl m := by
   unfold evMass legalJoint materialEvent matMass
   simp only [Fintype.sum_prod_type, decide_eq_true_eq]
@@ -452,7 +498,7 @@ theorem legalJoint_material_mass (mdl : PredictiveLegalModel) (m : Mt) :
     ＝先按同一通道算逐 θ 均值再加权后验（有限 Fubini 的显式和形态）。
     诚实声明：有限支撑（Fintype）版；`Y_actual` 与 `Y_allowed` 的相等或投影
     对应不在本定理内（须显式假设，主文 §7.1）。 -/
-theorem posterior_predictive_legal_target (mdl : PredictiveLegalModel) (m : Mt)
+theorem posterior_predictive_legal_target (mdl : PredictiveLegalModel Θ Mt Yty) (m : Mt)
     (hZ : 0 < matMass mdl m)
     (hZj : 0 < evMass (legalJoint mdl) (materialEvent m)) :
     (∀ y : Yty, ∑ θ, ∑ mt, posterior (legalJoint mdl) (materialEvent m) hZj (θ, mt, y)
@@ -486,7 +532,7 @@ theorem posterior_predictive_legal_target (mdl : PredictiveLegalModel) (m : Mt)
     rw [← Finset.sum_mul]
 
 /-- 后验预测归一：显式和是一份分布（材料后验与观察通道各自归一的合成）。 -/
-theorem posterior_predictive_normalizes (mdl : PredictiveLegalModel) (m : Mt)
+theorem posterior_predictive_normalizes (mdl : PredictiveLegalModel Θ Mt Yty) (m : Mt)
     (hZ : 0 < matMass mdl m) : ∑ y, posteriorPredictive mdl m hZ y = 1 := by
   simp only [posteriorPredictive, matPosterior]
   rw [Finset.sum_comm]
@@ -532,7 +578,7 @@ def witnessModel : PredictiveLegalModel Bool Bool Bool where
   obs_one := by intro θ; cases θ <;> simp [wobs] <;> norm_num
 
 /-- 对照模型：只换观察通道，先验与材料通道不变。 -/
-def witnessModelAlt : PredictiveLegalModel where
+def witnessModelAlt : PredictiveLegalModel Bool Bool Bool where
   prior := wprior
   material := wmat
   obs := wobsAlt
@@ -543,26 +589,30 @@ def witnessModelAlt : PredictiveLegalModel where
   material_one := by intro θ; cases θ <;> simp [wmat] <;> norm_num
   obs_one := by intro θ; simp [wobsAlt]; norm_num
 
+/-- 数值见证的正性前提：见证模型的材料质量 1/2·3/4 + 1/2·1/4 = 1/2 > 0。 -/
+theorem witnessMatMass_pos : 0 < matMass witnessModel true := by
+  norm_num [matMass, witnessModel, wprior, wmat, bool_sum_split]
+
+/-- 对照模型的正性前提：先验与材料通道不变，材料质量同为 1/2。 -/
+theorem witnessMatMassAlt_pos : 0 < matMass witnessModelAlt true := by
+  norm_num [matMass, witnessModelAlt, wprior, wmat, bool_sum_split]
+
 /-- 数值见证：材料后验 3/4、1/4，后验预测（同一 Y）读到 7/12
     （2/3·3/4 + 1/3·1/4），闭式有理、无浮点。 -/
 theorem posterior_predictive_bool_witness :
-    posteriorPredictive witnessModel true
-      (by simp [matMass, witnessModel, wprior, wmat]; norm_num) true = 7 / 12 := by
-  simp [posteriorPredictive, matPosterior, matMass, witnessModel, wprior, wmat, wobs]
-  norm_num
+    posteriorPredictive witnessModel true witnessMatMass_pos true = 7 / 12 := by
+  norm_num [posteriorPredictive, matPosterior, matMass, witnessModel, wprior, wmat, wobs,
+    bool_sum_split]
 
 /-- 通道追踪见证（不另造目标）：只把观察通道换成不读 θ 的常数通道，后验预测
     就从 7/12 变成 1/3——预测读取的是**声明的那个**观察通道，换通道即换预测，
     不存在与通道无关的"天然目标"。 -/
 theorem predictive_tracks_declared_channel :
-    posteriorPredictive witnessModel true
-      (by simp [matMass, witnessModel, wprior, wmat]; norm_num) true
-    ≠ posteriorPredictive witnessModelAlt true
-      (by simp [matMass, witnessModelAlt, wprior, wmat]; norm_num) true := by
+    posteriorPredictive witnessModel true witnessMatMass_pos true
+    ≠ posteriorPredictive witnessModelAlt true witnessMatMassAlt_pos true := by
   intro h
-  simp [posteriorPredictive, matPosterior, matMass, witnessModel, witnessModelAlt,
-    wprior, wmat, wobs, wobsAlt] at h
-  norm_num at h
+  norm_num [posteriorPredictive, matPosterior, matMass, witnessModel, witnessModelAlt,
+    wprior, wmat, wobs, wobsAlt, bool_sum_split] at h
 
 end Needle24Witness
 
@@ -589,6 +639,7 @@ structure QtyVal where
   val : ℚ
   /-- 单位标签。 -/
   unit : String
+  deriving DecidableEq
 
 /-- 指称：Option 语义，任何 guard 失败（除零、单位失配、双量纲乘法、子项失败）
     一律 `none`。 -/
@@ -670,13 +721,14 @@ theorem qtyDenote_divFree_int_valued :
       · rcases hb : qtyDenote b with _ | y
         · intro z h; simp at h
         · intro z h
+          dsimp only at h
           by_cases hu : x.unit = y.unit
           · rw [if_pos hu] at h
             injection h with hz
-            injection hz with e1 e2
             obtain ⟨k1, hk1⟩ := ihA hA' x ha
             obtain ⟨k2, hk2⟩ := ihB hB' y hb
-            exact ⟨k1 + k2, by rw [← e1, hk1, hk2]; push_cast; ring⟩
+            have e1 : x.val + y.val = z.val := congrArg QtyVal.val hz
+            exact ⟨k1 + k2, by rw [← e1, hk1, hk2]; push_cast⟩
           · rw [if_neg hu] at h
             simp at h
   | mul a b ihA ihB =>
@@ -689,21 +741,22 @@ theorem qtyDenote_divFree_int_valued :
       · rcases hb : qtyDenote b with _ | y
         · intro z h; simp at h
         · intro z h
+          dsimp only at h
           by_cases hu : x.unit = ""
           · rw [if_pos hu] at h
             injection h with hz
-            injection hz with e1 e2
             obtain ⟨k1, hk1⟩ := ihA hA' x ha
             obtain ⟨k2, hk2⟩ := ihB hB' y hb
-            exact ⟨k1 * k2, by rw [← e1, hk1, hk2]; push_cast; ring⟩
+            have e1 : x.val * y.val = z.val := congrArg QtyVal.val hz
+            exact ⟨k1 * k2, by rw [← e1, hk1, hk2]; push_cast⟩
           · rw [if_neg hu] at h
             by_cases hv : y.unit = ""
             · rw [if_pos hv] at h
               injection h with hz
-              injection hz with e1 e2
               obtain ⟨k1, hk1⟩ := ihA hA' x ha
               obtain ⟨k2, hk2⟩ := ihB hB' y hb
-              exact ⟨k1 * k2, by rw [← e1, hk1, hk2]; push_cast; ring⟩
+              have e1 : x.val * y.val = z.val := congrArg QtyVal.val hz
+              exact ⟨k1 * k2, by rw [← e1, hk1, hk2]; push_cast⟩
             · rw [if_neg hv] at h
               simp at h
   | divGuard a b ihA ihB =>
@@ -715,11 +768,11 @@ theorem qtyDenote_divFree_int_valued :
       rcases ha : qtyDenote a with _ | x
       · intro z h; simp at h
       · intro z h
-        have h' : some ⟨x.val, u⟩ = some z := h
-        injection h' with hz
-        injection hz with e1 e2
+        dsimp only at h
+        injection h with hz
         obtain ⟨k, hk⟩ := ihA hfree x ha
-        exact ⟨k, e1.trans hk⟩
+        have hv : x.val = z.val := congrArg QtyVal.val hz
+        exact ⟨k, hv.symm.trans hk⟩
 
 /-- 针 25 主定理（原验收名 `exact_amount_denotation`）：五合一——
     (i) 整叶有理嵌入（定义事实）；
@@ -793,7 +846,12 @@ theorem natQR_spec : ∀ (d : ℕ), 0 < d → ∀ (m : ℕ),
       rw [natQR, hqr]
       by_cases hc : r0 + 1 < d
       · exact ⟨q0, r0 + 1, by simp [hc], by omega, hc⟩
-      · exact ⟨q0 + 1, 0, by simp [hc], by omega, by omega⟩
+      · refine ⟨q0 + 1, 0, by simp [hc], ?_, by omega⟩
+        have hr1 : r0 + 1 = d := by omega
+        rw [hEq]
+        have hL : d * q0 + r0 + 1 = d * q0 + (r0 + 1) := by ring
+        rw [hL, hr1]
+        ring
 
 /-- 舍入方向：floor（向 -∞）／ceil（向 +∞）／nearest（最近值，半值按策略）。 -/
 inductive RoundDir where
@@ -873,6 +931,7 @@ structure RoundedOutcome where
   base : ℤ
   /-- 发生节点回执。 -/
   node : String
+  deriving DecidableEq
 
 /-- 规则施加：七字段全部被读取——依据为守卫、节点为守卫、刻度为算术输入、
     方向与半值为算术分支、单位与输入基数为回执。任一守卫失败 ⇒ `none`。 -/
@@ -964,8 +1023,7 @@ theorem roundCore_near_error (d : ℕ) (hd : 0 < d) (hp : HalfPolicy) (n : ℤ) 
   by_cases hn : 0 ≤ n
   · have hc : (n.natAbs : ℤ) = n := by omega
     rw [if_pos hn]
-    simp only [hqr]
-    rw [pickPos]
+    simp only [hqr, pickPos]
     by_cases h2r : 2 * r < d
     · rw [if_pos h2r, candLow] <;> omega
     · rw [if_neg h2r]
@@ -975,8 +1033,7 @@ theorem roundCore_near_error (d : ℕ) (hd : 0 < d) (hp : HalfPolicy) (n : ℤ) 
         cases hp <;> simp only [candLow, candHigh] <;> omega
   · have hc : (n.natAbs : ℤ) = -n := by omega
     rw [if_neg hn]
-    simp only [hqr]
-    rw [pickNeg]
+    simp only [hqr, pickNeg]
     by_cases h2r : 2 * r < d
     · rw [if_pos h2r, candLow] <;> omega
     · rw [if_neg h2r]
@@ -991,8 +1048,9 @@ theorem roundCore_near_error (d : ℕ) (hd : 0 < d) (hp : HalfPolicy) (n : ℤ) 
     都被 `applyRule` 消费（三个 fail-closed 守卫＋四字段回执）。 -/
 theorem rounding_matches_rule (rule : RoundingRule) (cur : String) (n : ℤ)
     (hb : rule.basis ≠ "") (hs : 0 < rule.scale) (hcur : cur = rule.node) :
-    applyRule rule cur n = some { value := roundCore rule.scale rule.dir rule.half n,
-        unit := rule.unit, base := rule.inputBase, node := rule.node }
+    applyRule rule cur n
+      = some (RoundedOutcome.mk (roundCore rule.scale rule.dir rule.half n)
+          rule.unit rule.inputBase rule.node)
       ∧ (rule.dir = .nearestDir → 2 * (roundCore rule.scale rule.dir rule.half n - n)
             ≤ (rule.scale : ℤ)
           ∧ -((rule.scale : ℤ)) ≤ 2 * (roundCore rule.scale rule.dir rule.half n - n)) := by

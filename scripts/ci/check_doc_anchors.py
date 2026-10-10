@@ -255,7 +255,6 @@ EXEMPT: dict[str, str] = {
     "introN": "binder name quoted out of a compiler error",
     "remainder": "field explicitly flagged as 溢缴 rather than 未偿",
     "compose": "Mathlib function named inside a fragment quote",
-    "enc": "string fragment quoted from a codec",
     "penalt": "string fragment quoted from a grep",
     "liquidated": "legal term in backticks, not an identifier",
     "nonempty_iff": "name fragment quoted while discussing a suffix collision",

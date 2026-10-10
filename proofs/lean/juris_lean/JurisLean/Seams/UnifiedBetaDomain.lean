@@ -298,26 +298,17 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
     refine Finset.sum_congr rfl fun i hi => ?_
     obtain ⟨h1, h2⟩ := Finset.mem_Ico.mp hi
     have he := choose_mul_left (α + β - 1) (i + 1) (by omega) (by omega)
-    have hr : ((Nat.choose (α + β - 1) (i + 1) : ℕ) : ℝ) * ((i + 1 : ℕ) : ℝ)
-        = ((Nat.choose (α + β - 2) i * (α + β - 1) : ℕ) : ℝ) := by
+    have hrc : (((Nat.choose (α + β - 1) (i + 1) : ℕ) : ℝ) * (((i + 1 : ℕ) : ℝ)))
+        = (((Nat.choose (α + β - 2) i : ℕ) : ℝ) * (((α + β - 1 : ℕ) : ℝ))) := by
       have hc := congrArg (fun n : ℕ => (n : ℝ)) he
       rw [show (i + 1 - 1 : ℕ) = i from by omega,
         show (α + β - 1 - 1 : ℕ) = α + β - 2 from by omega] at hc
-      simp only [Nat.cast_mul] at hc
-      rw [Nat.cast_mul, mul_comm (Nat.choose (α + β - 1) (i + 1)) ((i + 1 : ℕ)),
-        mul_comm (Nat.choose (α + β - 2) i) ((α + β - 1 : ℕ))]
-      exact hc
+      push_cast at hc
+      linear_combination hc
     rw [huApp, show (i + 1 - 1 : ℕ) = i from by omega,
-      show (α + β - 1) - (i + 1) = α + β - 2 - i from by omega]
-    refine Eq.symm (calc ((Nat.choose (α + β - 1) (i + 1) : ℕ) : ℝ)
-          * (((i + 1 : ℕ) : ℝ) * x ^ i * (1 - x) ^ (α + β - 2 - i))
-        = (((Nat.choose (α + β - 1) (i + 1) : ℕ) : ℝ) * ((i + 1 : ℕ) : ℝ))
-            * (x ^ i * (1 - x) ^ (α + β - 2 - i)) := by ring
-      _ = ((Nat.choose (α + β - 2) i * (α + β - 1) : ℕ) : ℝ)
-            * (x ^ i * (1 - x) ^ (α + β - 2 - i)) := by rw [hr]; ring
-      _ = ((Nat.choose (α + β - 2) i * (α + β - 1) : ℕ) : ℝ) * x ^ i
-            * (1 - x) ^ (α + β - 2 - i) := by ring)
-    exact Eq.symm this
+      show (α + β - 1 - (i + 1) : ℕ) = α + β - 2 - i from by omega]
+    push_cast
+    linear_combination (x ^ i * (1 - x) ^ (α + β - 2 - i)) * hrc
   -- (C) 右和：j = m 项为零，其余 = u j
   have hC : (∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
@@ -345,14 +336,14 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
       have h2 := Finset.mem_Ico.mp hj
       omega
     have he := choose_mul_right (α + β - 1) j hjlt
-    have hr : ((Nat.choose (α + β - 1) j : ℕ) : ℝ) * (((α + β - 1 - j : ℕ) : ℝ))
-        = ((Nat.choose (α + β - 2) j * (α + β - 1) : ℕ) : ℝ) := by
+    have hrc : (((Nat.choose (α + β - 1) j : ℕ) : ℝ) * (((α + β - 1 - j : ℕ) : ℝ)))
+        = (((Nat.choose (α + β - 2) j : ℕ) : ℝ) * (((α + β - 1 : ℕ) : ℝ))) := by
       have hc := congrArg (fun n : ℕ => (n : ℝ)) he
-      simp only [Nat.cast_mul] at hc
-      rw [Nat.cast_mul, mul_comm (Nat.choose (α + β - 1) j) (((α + β - 1 - j : ℕ) : ℝ)),
-        mul_comm (Nat.choose (α + β - 2) j) ((α + β - 1 : ℕ))]
-      exact hc
-    rw [huApp, mul_assoc, mul_assoc, hr, mul_assoc]
+      push_cast at hc
+      linear_combination hc
+    rw [huApp]
+    push_cast
+    linear_combination (x ^ j * (1 - x) ^ (α + β - 2 - j)) * hrc
   -- (D) 差 = u(α−1)
   have hD : (∑ i ∈ Finset.Ico (α - 1) (α + β - 1), u i)
       - (∑ i ∈ Finset.Ico α (α + β - 1), u i) = u (α - 1) := by
@@ -1053,7 +1044,7 @@ theorem rightInnerExact (b η : ℝ) (hb : 0 < b) (hη : 0 < η) (hη1 : η ≤ 
       HasDerivAt.sub (hasDerivAt_const t (1:ℝ)) (hasDerivAt_id t)
     have h2 := h1.rpow_const (p := b)
       (Or.inl (show (1 - t : ℝ) ≠ 0 from by linarith [ht.2]))
-    refine (h2.div_const b).neg.congr_deriv ?_
+    refine (h2.neg.div_const b).congr_deriv ?_
     rw [show ((0:ℝ) - 1) = -1 from by norm_num]
     field_simp [hb.ne'] <;> ring
   have hint : IntervalIntegrable (fun t => (1 - t) ^ (b - 1)) MeasureTheory.volume (1 - η) 1 := by
@@ -1519,8 +1510,13 @@ theorem exists_precision_schedule (ε a b Lbar : ℚ) (hε : 0 < ε) (ha : 0 < a
     div_pos hρq (by norm_num)
   obtain ⟨k, hk⟩ := exists_tail_budget (a:ℝ) (b:ℝ) ((ε * b / 8 / 4 : ℚ) : ℝ)
     (by exact_mod_cast ha) (by exact_mod_cast hb) (by exact_mod_cast hρ4)
+  have hk' : (max 1 ((1 / 2) ^ (↑b - 1)) * ((1 / 4) ^ ↑a / ↑a) +
+        max 1 ((1 / 2) ^ (↑a - 1)) * ((1 / 4) ^ ↑b / ↑b)) *
+      ((1 / 2) ^ min ↑a ↑b) ^ k ≤
+      ((ε * b / 8 : ℚ) : ℝ) / 4 := by
+    exact_mod_cast hk
   obtain ⟨N, hN1, hN2⟩ := exists_grid_N ((4:ℚ) * Lbar / (ε * b / 8))
-  refine ⟨k, N, ε * b / 8, hρq, ?_, hk, ?_, ?_⟩
+  refine ⟨k, N, ε * b / 8, hρq, ?_, hk', ?_, ?_⟩
   · rw [div_le_div_iff₀ (by norm_num : (0:ℚ) < 8) (by norm_num : (0:ℚ) < 4)]
     linarith
   · exact_mod_cast hN1
@@ -1620,7 +1616,7 @@ theorem mixture_quantile_unique {n : ℕ} (w : Fin n → ℚ) (F : Fin n → ℝ
       exact hq1.ne hvq.symm
     exact ⟨lt_of_le_of_ne hv.1 (Ne.symm h0), lt_of_le_of_ne hv.2 h1'⟩
   · exact hvq
-  · intro u hu huu
+  · intro u hu
     obtain ⟨⟨hu0, hu1⟩, huu'⟩ := hu
     exact (mixture_strictMonoOn w F hw j hwj hm hs).injOn
       (Set.mem_Icc.mpr ⟨hu0.le, hu1.le⟩) (Set.mem_Icc.mpr ⟨hv.1, hv.2⟩) (by rw [huu', hvq])
@@ -1689,14 +1685,14 @@ theorem cdfEnc_real (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ)
   have hBpos : (0:ℝ) < ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ) :=
     by exact_mod_cast UnifiedNeedlesS3a.betaTwoConst_pos (α - 1) (β - 1)
   have hBu : (0:ℝ) < B_u := lt_of_lt_of_le hBpos hBuB
+  have hNpos : 0 ≤ bernCdf α β x := by
+    by_contra hnc
+    push_neg at hnc
+    have hneg : bernCdf α β x * ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ) < 0 :=
+      mul_neg_of_neg_of_pos hnc hBpos
+    exact absurd (le_trans hNl0 hNl) (by linarith)
   refine ⟨?_, ?_⟩
-  · have hNpos : 0 ≤ bernCdf α β x := by
-      by_contra hnc
-      push_neg at hnc
-      have hneg : bernCdf α β x * ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ) < 0 :=
-        mul_neg_of_neg_of_pos hnc hBpos
-      exact absurd (le_trans hNl0 hNl) (by linarith)
-    refine (div_le_iff₀ hBu).mpr ?_
+  · refine (div_le_iff₀ hBu).mpr ?_
     calc N_l ≤ bernCdf α β x * ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ) := hNl
       _ ≤ bernCdf α β x * B_u := mul_le_mul_of_nonneg_left hBuB hNpos
   · refine (le_div_iff₀ hBl).mpr ?_

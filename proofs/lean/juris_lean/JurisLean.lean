@@ -203,6 +203,16 @@ import JurisLean.Seams.UnifiedNormFlow
 import JurisLean.Seams.UnifiedPerformance
 import JurisLean.Seams.UnifiedQuantities
 import JurisLean.Seams.UnifiedSemantics
+import JurisLean.Seams.UnifiedNeedlesS0S1
+import JurisLean.Seams.UnifiedNeedlesS2
+import JurisLean.Seams.UnifiedNeedlesS3a
+import JurisLean.Seams.UnifiedNeedlesS3b
+import JurisLean.Seams.UnifiedNeedlesS4
+import JurisLean.Seams.UnifiedNeedlesS5
+import JurisLean.Seams.UnifiedNeedlesS6S7
+import JurisLean.Seams.UnifiedNeedlesXT
+import JurisLean.Seams.UnifiedNeedlesXU
+import JurisLean.Seams.UnifiedNeedlesTotal
 import JurisLean.Seams.UnifiedSummary
 import JurisLean.Seams.UnifiedUtility
 import JurisLean.SolverRouting

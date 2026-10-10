@@ -302,12 +302,12 @@
 | 51 XT | `past_applicability_without_retroactivity` | 过去适用且无追溯 | 针名已闭合@UnifiedNeedlesXT.lean；;锚`update_does_not_reach_before_effective_from`@PrecedentFlow.lean:L867| BOUND | changed-module run 38015835746 success| BOUND（UnifiedNeedlesXT 模块轮绿 run 38015835746；历史缺口注记，现行降级/开放点以模块 doc 为准）|
 | 52 XT | `independent_events_commute` | 独立事件可交换 | 针名已闭合@UnifiedNeedlesXT.lean；;锚`late_insert_changes_noncommutative`@Temporal.lean:L342| BOUND | changed-module run 38015835746 success| BOUND（UnifiedNeedlesXT 模块轮绿 run 38015835746；历史缺口注记，现行降级/开放点以模块 doc 为准）|
 | 53 XU | `finite_positive_support_truth_bridge` | 有限正支撑真值桥 | `finite_positive_support_truth_bridge`@Uncertainty.lean:L134(theorem) | UNBOUND | run 37294030205(a0389cf)cert L134 | BOUND |
-| 54 XU | `ae_truth_not_universal_truth` | 几乎处处真不等于全称真 | 针名UNBOUND;锚`bridge_fails_without_support_finiteness`@Uncertainty.lean:L249 | UNBOUND | — | PARTIAL |
-| 55 XU | `conjunction_probability_bounds` | 合取概率界 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
-| 56 XU | `contamination_conditioning_identity` | 污染条件化恒等式 | 针名UNBOUND;锚`contamination_and_conditioning_do_not_commute`@Uncertainty.lean:L567 | UNBOUND | — | PARTIAL |
-| 57 XU | `conditioned_contamination_bound` | 条件化后污染界 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
-| 58 XU | `nn_interval_certificate_sound` | 神经网络区间证书健全 | 针名UNBOUND;锚`nn_interval_certificate_sound_of_two_inputs_two_hidden_one_output`@Uncertainty.lean:L604 | UNBOUND | — | PARTIAL |
-| 59 XU | `observational_ambiguity_preserved` | 观察歧义保持 | 针名UNBOUND;锚`uncertainty_allowed_non_singleton_with_singleton_kernel`@Uncertainty.lean:L763 | UNBOUND | — | PARTIAL |
+| 54 XU | `ae_truth_not_universal_truth` | 几乎处处真不等于全称真 | 针名已闭合@UnifiedNeedlesXU.lean；原锚/原无锚| BOUND | changed-module run 38018785445 success| BOUND（UnifiedNeedlesXU 模块轮绿 run 38018785445；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 55 XU | `conjunction_probability_bounds` | 合取概率界 | 针名已闭合@UnifiedNeedlesXU.lean；原锚/原无锚| BOUND | changed-module run 38018785445 success| BOUND（UnifiedNeedlesXU 模块轮绿 run 38018785445）|
+| 56 XU | `contamination_conditioning_identity` | 污染条件化恒等式 | 针名已闭合@UnifiedNeedlesXU.lean；原锚/原无锚| BOUND | changed-module run 38018785445 success| BOUND（UnifiedNeedlesXU 模块轮绿 run 38018785445；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 57 XU | `conditioned_contamination_bound` | 条件化后污染界 | 针名已闭合@UnifiedNeedlesXU.lean；原锚/原无锚| BOUND | changed-module run 38018785445 success| BOUND（UnifiedNeedlesXU 模块轮绿 run 38018785445）|
+| 58 XU | `nn_interval_certificate_sound` | 神经网络区间证书健全 | 针名已闭合@UnifiedNeedlesXU.lean；原锚/原无锚| BOUND | changed-module run 38018785445 success| BOUND（UnifiedNeedlesXU 模块轮绿 run 38018785445；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 59 XU | `observational_ambiguity_preserved` | 观察歧义保持 | 针名已闭合@UnifiedNeedlesXU.lean；原锚/原无锚| BOUND | changed-module run 38018785445 success| BOUND（UnifiedNeedlesXU 模块轮绿 run 38018785445；历史缺口注记，现行降级/开放点以模块 doc 为准）|
 | 60 总 | `unified_legal_derivation_on_declared_fragment` | 声明片段上统一法律推导 | `unified_legal_derivation_on_declared_fragment`@Unified.lean:L259(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L259；changed-module run 38016648718 success| BOUND（UnifiedNeedlesTotal 模块轮绿 run 38016648718；历史缺口注记（I.13:旧固定实例合取不能兑现新合同），现行降级/开放点以模块 doc 为准）|
 
 小计：BOUND 2，PARTIAL 42，UNBOUND 16（共 60 行）。
@@ -325,9 +325,9 @@
   - Python 载体按 BINDINGS.json 的 implementation_sources 登记（horn_logic/argumentation_ref/numeric_ref/probability_ref/burden_ref/action_ref 六个通用参考模块），函数粒度非逐项一一对应；57 目标另附 TARGETS_57.json 的 reference 字段（unified/contract.py 等，位于 tools/unified_math_v2/unified/，已核存在）。
 
 ### 4.2 60 针侧（2026-10-10 针补强波后更新）
-- BOUND 48 / UNBOUND 12（原 2/42/16）。
+- BOUND 54 / UNBOUND 6（2026-10-10 针补强波；XU 54-59 已闭合：changed-module run 38018785445）。
 - BOUND=48：原 BOUND 2 个中的 feedback_need_not_converge（针 47，S6S7 模块轮绿 38013046496 复认）＋针补强波新闭合 47 个（针 01-15、22-52、60），每行第三节表格已带逐行模块名与 changed-module run 证据（S0S1 37976758723 / S2 38014714649 / S3b 38011043954 / S4 38015261120 / S5 38008834151 / S6S7 38013046496 / XT 38015835746 / Total 38016648718）。原 BOUND 的 finite_positive_support_truth_bridge（针 53）行维持原判定，XU 模块轮待复认。
-- UNBOUND=12 个＝S3a 六针（16-21，count_measure_event_exact / rate_crossmul_iff_rat_le / beta_posterior_from_likelihood / equal_rate_different_posterior / beta_cdf_rat_cast / beta_quantile_enclosure）＋XU 六针（54-59，ae_truth_not_universal_truth / conjunction_probability_bounds / contamination_conditioning_identity / conditioned_contamination_bound / nn_interval_certificate_sound / observational_ambiguity_preserved）——两模块 `UnifiedNeedlesS3a.lean`/`UnifiedNeedlesXU.lean` 已在工作树、CI 修复中（S3a 首轮 31 错、XU 首轮 18 错），闭合后本节与第三节逐行更新。
+- UNBOUND=6 个＝S3a 六针（16-21，count_measure_event_exact / rate_crossmul_iff_rat_le / beta_posterior_from_likelihood / equal_rate_different_posterior / beta_cdf_rat_cast / beta_quantile_enclosure）——`UnifiedNeedlesS3a.lean` 已在工作树、CI 修复中（首轮 31 错），闭合后本节与第三节逐行更新。
 - Python 载体：60 针名在 `tools/unified_math_v2/unified/` 16 个模块的函数名中均无精确同名命中，全部记 UNBOUND（针名属 Lean 侧 Seams 合同，本就无 Python 同名函数承诺）。
 
 ### 4.3 总体诚实边界

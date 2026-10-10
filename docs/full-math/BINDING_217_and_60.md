@@ -264,12 +264,12 @@
 | 13 S2 | `proof_failure_not_ontic_negation` | 证明失败非本体否定 | `proof_failure_not_ontic_negation`@AdjudicationBridge.lean:L746(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L746；changed-module run 38014714649 success| BOUND（UnifiedNeedlesS2 模块轮绿 run 38014714649；历史缺口注记（I.13:旧乘积见证仅参考，同输入真推导族内重建拟补），现行降级/开放点以模块 doc 为准）|
 | 14 S2 | `argument_undec_not_final_undetermined` | 论证未决不等于终局未定 | `argument_undec_not_final_undetermined`@AdjudicationBridge.lean:L714(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L714；changed-module run 38014714649 success| BOUND（UnifiedNeedlesS2 模块轮绿 run 38014714649；历史缺口注记（I.13:旧cycle2例仅反例意图，法定负担输入拟补），现行降级/开放点以模块 doc 为准）|
 | 15 S2 | `analogy_preserves_judgment_under_full_conditions` | 全条件下类比保持判断 | 针名已闭合@UnifiedNeedlesS2.lean（原无锚，本波新建）| BOUND | changed-module run 38014714649 success| BOUND（UnifiedNeedlesS2 模块轮绿 run 38014714649）|
-| 16 S3 | `count_measure_event_exact` | 计数测度与事件精确对应 | 针名UNBOUND;锚`finite_distribution_to_pmf_apply`@Probability.lean:L183 | UNBOUND | — | PARTIAL |
-| 17 S3 | `rate_crossmul_iff_rat_le` | 比率交叉相乘等价 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
-| 18 S3 | `beta_posterior_from_likelihood` | Beta后验来自似然 | `beta_posterior_from_likelihood`@Probability.lean:L289(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L289 | PARTIAL（I.13:同basename实际只有有理权重归一，真实Beta密度似然拟补） |
-| 19 S3 | `equal_rate_different_posterior` | 同比率不同后验 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
-| 20 S3 | `beta_cdf_rat_cast` | Beta CDF有理转换 | 针名UNBOUND;锚`beta_predictive_bracket_survives_update`@Probability.lean:L311 | UNBOUND | — | PARTIAL |
-| 21 S3 | `beta_quantile_enclosure` | Beta分位数括界 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
+| 16 S3 | `count_measure_event_exact` | 计数测度与事件精确对应 | 针名已闭合@UnifiedNeedlesS3a.lean；原锚/原无锚| BOUND | changed-module run 38023275115 success| BOUND（UnifiedNeedlesS3a 模块轮绿 run 38023275115（8 轮修复）；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 17 S3 | `rate_crossmul_iff_rat_le` | 比率交叉相乘等价 | 针名已闭合@UnifiedNeedlesS3a.lean；原锚/原无锚| BOUND | changed-module run 38023275115 success| BOUND（UnifiedNeedlesS3a 模块轮绿 run 38023275115）|
+| 18 S3 | `beta_posterior_from_likelihood` | Beta后验来自似然 | 针名已闭合@UnifiedNeedlesS3a.lean；`beta_posterior_from_likelihood`@Probability.lean:L289(theorem)（同名弱式）| BOUND | run 37294030205(a0389cf)cert L289；changed-module run 38023275115 success| BOUND（UnifiedNeedlesS3a 模块轮绿 run 38023275115（8 轮修复）；历史缺口注记（I.13:同basename实际只有有理权重归一，真实Beta密度似然拟补），现行降级/开放点以模块 doc 为准）|
+| 19 S3 | `equal_rate_different_posterior` | 同比率不同后验 | 针名已闭合@UnifiedNeedlesS3a.lean；原锚/原无锚| BOUND | changed-module run 38023275115 success| BOUND（UnifiedNeedlesS3a 模块轮绿 run 38023275115）|
+| 20 S3 | `beta_cdf_rat_cast` | Beta CDF有理转换 | 针名已闭合@UnifiedNeedlesS3a.lean；原锚/原无锚| BOUND | changed-module run 38023275115 success| BOUND（UnifiedNeedlesS3a 模块轮绿 run 38023275115（8 轮修复）；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 21 S3 | `beta_quantile_enclosure` | Beta分位数括界 | 针名已闭合@UnifiedNeedlesS3a.lean；原锚/原无锚| BOUND | changed-module run 38023275115 success| BOUND（UnifiedNeedlesS3a 模块轮绿 run 38023275115）|
 | 22 S3 | `beta_interval_posterior_mass` | Beta区间后验质量 | 针名已闭合@UnifiedNeedlesS3b.lean（原无锚，本波新建）| BOUND | changed-module run 38011043954 success| BOUND（UnifiedNeedlesS3b 模块轮绿 run 38011043954）|
 | 23 S3 | `selection_transport_from_shared_mechanism` | 共享机制的选择传输 | `selection_transport_from_shared_mechanism`@Probability.lean:L345(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L345；changed-module run 38011043954 success| BOUND（UnifiedNeedlesS3b 模块轮绿 run 38011043954；历史缺口注记（I.13:同basename仅嵌套条件化，共享机制+选择消因子拟补），现行降级/开放点以模块 doc 为准）|
 | 24 S3 | `posterior_predictive_legal_target` | 后验预测法律目标 | 针名已闭合@UnifiedNeedlesS3b.lean（原无锚，本波新建）| BOUND | changed-module run 38011043954 success| BOUND（UnifiedNeedlesS3b 模块轮绿 run 38011043954）|
@@ -325,9 +325,9 @@
   - Python 载体按 BINDINGS.json 的 implementation_sources 登记（horn_logic/argumentation_ref/numeric_ref/probability_ref/burden_ref/action_ref 六个通用参考模块），函数粒度非逐项一一对应；57 目标另附 TARGETS_57.json 的 reference 字段（unified/contract.py 等，位于 tools/unified_math_v2/unified/，已核存在）。
 
 ### 4.2 60 针侧（2026-10-10 针补强波后更新）
-- BOUND 54 / UNBOUND 6（2026-10-10 针补强波；XU 54-59 已闭合：changed-module run 38018785445）。
+- BOUND 60 / UNBOUND 0（2026-10-10 针补强波收官；S3a 16-21 闭合：changed-module run 38023275115，主控 8 轮修复——两轮子代理空亡后接管）。
 - BOUND=48：原 BOUND 2 个中的 feedback_need_not_converge（针 47，S6S7 模块轮绿 38013046496 复认）＋针补强波新闭合 47 个（针 01-15、22-52、60），每行第三节表格已带逐行模块名与 changed-module run 证据（S0S1 37976758723 / S2 38014714649 / S3b 38011043954 / S4 38015261120 / S5 38008834151 / S6S7 38013046496 / XT 38015835746 / Total 38016648718）。原 BOUND 的 finite_positive_support_truth_bridge（针 53）行维持原判定，XU 模块轮待复认。
-- UNBOUND=6 个＝S3a 六针（16-21，count_measure_event_exact / rate_crossmul_iff_rat_le / beta_posterior_from_likelihood / equal_rate_different_posterior / beta_cdf_rat_cast / beta_quantile_enclosure）——`UnifiedNeedlesS3a.lean` 已在工作树、CI 修复中（首轮 31 错），闭合后本节与第三节逐行更新。
+- UNBOUND=0。60 针全部以原验收名在十个 UnifiedNeedles*.lean 模块落定理并经 changed-module 轮独立认定（S0S1 37976758723 / S2 38014714649 / S3a 38023275115 / S3b 38011043954 / S4 38015261120 / S5 38008834151 / S6S7 38013046496 / XT 38015835746 / XU 38018785445 / Total 38016648718）。诚实边界：逐针的降级载体与开放点以各模块 doc 注为准（如 XU 54 连续 Uniform[0,1] 版开放、S6S7 42 demo 载体非十四族网络）。
 - Python 载体：60 针名在 `tools/unified_math_v2/unified/` 16 个模块的函数名中均无精确同名命中，全部记 UNBOUND（针名属 Lean 侧 Seams 合同，本就无 Python 同名函数承诺）。
 
 ### 4.3 总体诚实边界

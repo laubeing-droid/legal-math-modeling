@@ -319,19 +319,12 @@ theorem licensed_empirical_use_possible :
 /-! ## 第 44 针：precedent_update_preserves_norm_structure -/
 
 /-- **第 44 针（S7，I.13）**：precedent_update_preserves_norm_structure。
-在锚版本结构保持（区间良态、supersession 边非自指、失效记录继续失效——以锚定理
-全限定名整体实例化，避免在语句里重写记录字面量）之上，补三件事：更新入口的授权
-保持（`AuthorizedDecision` 自带 `Competence` 见证）；授权范围形状保持（任何授权更新
-的主体必为最高法、范围必为全国）；后续规则选择消费保持（未命中取代名单的旧记录
-原样留在新环境中，规则选择仍能读到它）。开放点：`applicableVersions` 查询层的
-双向等式重述未在本件展开。 -/
-/-- 第 44 针的锚承载体：锚版本结构保持（区间良态、supersession 边非自指、失效记录
-继续失效）以全限定名整体实例化（诊断拆分：单独承锚，语句内不再嵌锚应用）。 -/
-theorem precedent_update_norm_structure_anchor (E : VersionEnv)
-    (ad : AuthorizedDecision) (hwf : EnvWf E ad) (t : Int) :
-    JurisLean.Seams.PrecedentFlow.precedent_update_preserves_norm_structure E ad hwf t :=
-  JurisLean.Seams.PrecedentFlow.precedent_update_preserves_norm_structure E ad hwf t
-
+锚版本结构保持（区间良态、supersession 边非自指、失效记录继续失效）由下条
+`precedent_update_norm_structure_anchor` 以全限定名整体实例化承接；本针补三件事：
+更新入口的授权保持（`AuthorizedDecision` 自带 `Competence` 见证）；授权范围形状保持
+（任何授权更新的主体必为最高法、范围必为全国）；后续规则选择消费保持（未命中取代
+名单的旧记录原样留在新环境中，规则选择仍能读到它）。开放点：`applicableVersions`
+查询层的双向等式重述未在本件展开。 -/
 theorem precedent_update_preserves_norm_structure (E : VersionEnv)
     (ad : AuthorizedDecision) (hwf : EnvWf E ad) (t : Int) :
     authorized ad.decision.production ∧
@@ -352,6 +345,13 @@ theorem precedent_update_preserves_norm_structure (E : VersionEnv)
             (Or.inr (List.mem_map.mpr ⟨v, hv, supersedeRecord_keeps_unhit ad.decision v hhit⟩))
         · rw [update_versions_silent ad E hfire]
           exact hv
+
+/-- 第 44 针的锚承载体：锚版本结构保持（区间良态、supersession 边非自指、
+    失效记录继续失效）以全限定名整体实例化。 -/
+theorem precedent_update_norm_structure_anchor (E : VersionEnv)
+    (ad : AuthorizedDecision) (hwf : EnvWf E ad) (t : Int) :
+    JurisLean.Seams.PrecedentFlow.precedent_update_preserves_norm_structure E ad hwf t :=
+  JurisLean.Seams.PrecedentFlow.precedent_update_preserves_norm_structure E ad hwf t
 
 /-! ## 第 47 针：feedback_need_not_converge -/
 

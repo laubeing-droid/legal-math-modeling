@@ -323,7 +323,9 @@ theorem betaInt_eq (m : ℕ) : ∀ n : ℕ, betaInt m n = ((betaTwoConst m n : �
       simp only [Nat.factorial_succ]
       push_cast
       field_simp [hfa.ne', hfb.ne', hfab.ne', hfab2.ne'] <;> ring
-    norm_num [hq]
+    have hR := congrArg (fun x : ℚ => (x : ℝ)) hq
+    push_cast at hR
+    exact hR
 
 /-- 闭式比值一：I(a+1,b)/I(a,b) = (a+1)/(a+b+2)（一阶矩的归一化比值）。 -/
 theorem betaTwoConst_ratio1 (a b : ℕ) :

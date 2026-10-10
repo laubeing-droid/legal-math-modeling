@@ -298,17 +298,16 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
     refine Finset.sum_congr rfl fun i hi => ?_
     obtain ⟨h1, h2⟩ := Finset.mem_Ico.mp hi
     have he := choose_mul_left (α + β - 1) (i + 1) (by omega) (by omega)
-    have hrc : (((Nat.choose (α + β - 1) (i + 1) : ℕ) : ℝ) * (((i + 1 : ℕ) : ℝ)))
+    have hkey : (((Nat.choose (α + β - 1) (i + 1) : ℕ) : ℝ) * (((i + 1 : ℕ) : ℝ)))
         = (((Nat.choose (α + β - 2) i : ℕ) : ℝ) * (((α + β - 1 : ℕ) : ℝ))) := by
       have hc := congrArg (fun n : ℕ => (n : ℝ)) he
       rw [show (i + 1 - 1 : ℕ) = i from by omega,
         show (α + β - 1 - 1 : ℕ) = α + β - 2 from by omega] at hc
-      push_cast at hc
+      simp only [Nat.cast_mul] at hc
       linear_combination hc
     rw [huApp, show (i + 1 - 1 : ℕ) = i from by omega,
-      show (α + β - 1 - (i + 1) : ℕ) = α + β - 2 - i from by omega]
-    push_cast
-    linear_combination (x ^ i * (1 - x) ^ (α + β - 2 - i)) * hrc
+      show (α + β - 1 - (i + 1) : ℕ) = α + β - 2 - i from by omega, Nat.cast_mul]
+    linear_combination (x ^ i * (1 - x) ^ (α + β - 2 - i)) * hkey
   -- (C) 右和：j = m 项为零，其余 = u j
   have hC : (∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
@@ -336,14 +335,13 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
       have h2 := Finset.mem_Ico.mp hj
       omega
     have he := choose_mul_right (α + β - 1) j hjlt
-    have hrc : (((Nat.choose (α + β - 1) j : ℕ) : ℝ) * (((α + β - 1 - j : ℕ) : ℝ)))
+    have hkey : (((Nat.choose (α + β - 1) j : ℕ) : ℝ) * (((α + β - 1 - j : ℕ) : ℝ)))
         = (((Nat.choose (α + β - 2) j : ℕ) : ℝ) * (((α + β - 1 : ℕ) : ℝ))) := by
       have hc := congrArg (fun n : ℕ => (n : ℝ)) he
-      push_cast at hc
+      simp only [Nat.cast_mul] at hc
       linear_combination hc
-    rw [huApp]
-    push_cast
-    linear_combination (x ^ j * (1 - x) ^ (α + β - 2 - j)) * hrc
+    rw [huApp, Nat.cast_mul]
+    linear_combination (x ^ j * (1 - x) ^ (α + β - 2 - j)) * hkey
   -- (D) 差 = u(α−1)
   have hD : (∑ i ∈ Finset.Ico (α - 1) (α + β - 1), u i)
       - (∑ i ∈ Finset.Ico α (α + β - 1), u i) = u (α - 1) := by
@@ -1510,10 +1508,10 @@ theorem exists_precision_schedule (ε a b Lbar : ℚ) (hε : 0 < ε) (ha : 0 < a
     div_pos hρq (by norm_num)
   obtain ⟨k, hk⟩ := exists_tail_budget (a:ℝ) (b:ℝ) ((ε * b / 8 / 4 : ℚ) : ℝ)
     (by exact_mod_cast ha) (by exact_mod_cast hb) (by exact_mod_cast hρ4)
-  have hk' : (max 1 ((1 / 2) ^ (↑b - 1)) * ((1 / 4) ^ ↑a / ↑a) +
-        max 1 ((1 / 2) ^ (↑a - 1)) * ((1 / 4) ^ ↑b / ↑b)) *
-      ((1 / 2) ^ min ↑a ↑b) ^ k ≤
-      ((ε * b / 8 : ℚ) : ℝ) / 4 := by
+  have hk' : (((max 1 ((1 / 2 : ℝ) ^ ((b:ℝ) - 1))) * (((1 / 4 : ℝ) ^ (a:ℝ)) / (a:ℝ))
+          + (max 1 ((1 / 2 : ℝ) ^ ((a:ℝ) - 1))) * (((1 / 4 : ℝ) ^ (b:ℝ)) / (b:ℝ)))
+          * ((1 / 2 : ℝ) ^ (min (a:ℝ) (b:ℝ))) ^ k
+      ≤ ((ε * b / 8 : ℚ) : ℝ) / 4) := by
     exact_mod_cast hk
   obtain ⟨N, hN1, hN2⟩ := exists_grid_N ((4:ℚ) * Lbar / (ε * b / 8))
   refine ⟨k, N, ε * b / 8, hρq, ?_, hk', ?_, ?_⟩

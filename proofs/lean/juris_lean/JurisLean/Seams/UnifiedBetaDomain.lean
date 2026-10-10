@@ -271,24 +271,37 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
         * (((α + β - 1 - j : ℕ) : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j))) := by
     rw [← Finset.sum_sub_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
-  -- (B) 左和移标：j ↦ j−1
+  -- (B) 左和移标：j ↦ j−1（非依赖 nbij'＋全显式参数，钉死 ℕ 层——依赖版 sum_bij'
+  --     的元变量统一化把成员目标抬到 cast 层，是前几轮 omega 齐炸的根因）
   have hB : (∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
         * ((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)))
       = ∑ i ∈ Finset.Ico (α - 1) (α + β - 1), u i := by
-    refine Eq.symm (Finset.sum_bij' (fun i _ => i + 1) (fun j _ => j - 1) ?_ ?_ ?_ ?_ ?_)
-    · intro i hi; have := Finset.mem_Ico.mp hi; exact Finset.mem_Ico.mpr ⟨by omega, by omega⟩
-    · intro j hj; have := Finset.mem_Ico.mp hj; exact Finset.mem_Ico.mpr ⟨by omega, by omega⟩
-    · intro i hi; omega
-    · intro j hj; have := Finset.mem_Ico.mp hj; omega
+    refine (Finset.sum_nbij'
+        (s := Finset.Ico (α - 1) (α + β - 1)) (t := Finset.Ico α (α + β)) (f := u)
+        (g := fun j => ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
+          * ((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)))
+        (fun i => i + 1) (fun j => j - 1) ?_ ?_ ?_ ?_ ?_).symm
     · intro i hi
+      obtain ⟨h1, h2⟩ := Finset.mem_Ico.mp hi
+      exact Finset.mem_Ico.mpr ⟨by omega, by omega⟩
+    · intro j hj
+      obtain ⟨h1, h2⟩ := Finset.mem_Ico.mp hj
+      exact Finset.mem_Ico.mpr ⟨by omega, by omega⟩
+    · intro i _
+      omega
+    · intro j hj
+      obtain ⟨h1, h2⟩ := Finset.mem_Ico.mp hj
+      omega
+    · intro i hi
+      obtain ⟨h1, h2⟩ := Finset.mem_Ico.mp hi
       have he := choose_mul_left (α + β - 1) (i + 1) (by omega) (by omega)
       have hr : ((Nat.choose (α + β - 1) (i + 1) : ℕ) : ℝ) * ((i + 1 : ℕ) : ℝ)
           = ((Nat.choose (α + β - 2) i * (α + β - 1) : ℕ) : ℝ) := by
-        rw [Nat.cast_mul] at he
-        rw [mul_comm (Nat.choose (α + β - 1) (i + 1)) ((i + 1 : ℕ)), he, Nat.cast_mul,
-          show (i + 1 - 1 : ℕ) = i from by omega,
-          mul_comm (Nat.choose (α + β - 2) i) ((α + β - 1 : ℕ))]
+        have hc := congrArg (fun n : ℕ => (n : ℝ)) he
+        rw [show (i + 1 - 1 : ℕ) = i from by omega] at hc
+        simp only [Nat.cast_mul] at hc
+        linear_combination hc
       rw [huApp, mul_assoc, mul_assoc, hr, show (i + 1 - 1 : ℕ) = i from by omega,
         show (α + β - 1) - (i + 1) = α + β - 2 - i from by omega]
   -- (C) 右和：j = m 项为零，其余 = u j
@@ -320,11 +333,11 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
     have he := choose_mul_right (α + β - 1) j hjlt
     have hr : ((Nat.choose (α + β - 1) j : ℕ) : ℝ) * (((α + β - 1 - j : ℕ) : ℝ))
         = ((Nat.choose (α + β - 2) j * (α + β - 1) : ℕ) : ℝ) := by
-      rw [Nat.cast_mul] at he
-      rw [mul_comm (Nat.choose (α + β - 1) j) (((α + β - 1 - j : ℕ) : ℝ)), he,
-        Nat.cast_mul, show (α + β - 1 - 1 : ℕ) = α + β - 2 from by omega,
-        mul_comm (Nat.choose (α + β - 2) j) (((α + β - 1 : ℕ) : ℝ))]
-    rw [huApp, mul_assoc, mul_assoc, hr, mul_assoc]
+      have hc := congrArg (fun n : ℕ => (n : ℝ)) he
+      simp only [Nat.cast_mul] at hc
+      linear_combination hc
+    rw [huApp]
+    linear_combination (x ^ j * (1 - x) ^ (α + β - 2 - j)) * hr
   -- (D) 差 = u(α−1)
   have hD : (∑ i ∈ Finset.Ico (α - 1) (α + β - 1), u i)
       - (∑ i ∈ Finset.Ico α (α + β - 1), u i) = u (α - 1) := by

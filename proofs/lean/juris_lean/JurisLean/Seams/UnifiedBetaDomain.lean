@@ -70,12 +70,12 @@ mixture — is present in ONE module; no parameter class is dropped.
    Deterministic precision allocation, by the contract numbers:
    `exists_tail_budget` (increase k until the certified tail bounds sum
    ≤ ρ/4 — exponential decay, finite termination), `exists_grid_N`
-   (N ≥ max(1, 4L̄ℓ²/ρ) at FIXED η — never synchronously with k, since L
+   (N ≥ max(1, 4Lbarℓ²/ρ) at FIXED η — never synchronously with k, since L
    may diverge as η ↓ 0), `quotientWidth` (N_u/B_l − N_l/B_u ≤ 2ρ/β),
    `cdfWidthFromRho` (ρ ≤ εβ/4 ⟹ width ≤ ε).  Enclosures of the rational
    powers at positive rational endpoints (algebraic isolations) enter as
    the explicit hypothesis bundle `RpowRatEnclosureInput` plus the value
-   bound L̄ — declared in the header, kept out of the proven part.
+   bound Lbar — declared in the header, kept out of the proven part.
 
 四、Finite mixture (§7.4:475-476).
    `mixtureCdf` with weights nonnegative summing to 1: continuity,
@@ -262,13 +262,13 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
   have h1 : ∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
         * (((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)
-          - (α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j)))
+          - ((α + β - 1 - j : ℕ) : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j)))
       = (∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
         * ((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)))
       - (∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
-        * ((α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j))) := by
+        * (((α + β - 1 - j : ℕ) : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j))) := by
     rw [← Finset.sum_sub_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
   -- (B) 左和移标：j ↦ j−1
@@ -276,7 +276,7 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
         * ((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)))
       = ∑ i ∈ Finset.Ico (α - 1) (α + β - 1), u i := by
-    refine Eq.symm (Finset.sum_nbij' (fun i => i + 1) (fun j => j - 1) ?_ ?_ ?_ ?_ ?_)
+    refine Eq.symm (Finset.sum_bij' (fun i _ => i + 1) (fun j _ => j - 1) ?_ ?_ ?_ ?_ ?_)
     · intro i hi; have := Finset.mem_Ico.mp hi; exact Finset.mem_Ico.mpr ⟨by omega, by omega⟩
     · intro j hj; have := Finset.mem_Ico.mp hj; exact Finset.mem_Ico.mpr ⟨by omega, by omega⟩
     · intro i hi; omega
@@ -284,14 +284,17 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
     · intro i hi
       have he := choose_mul_left (α + β - 1) (i + 1) (by omega) (by omega)
       have hr : ((Nat.choose (α + β - 1) (i + 1) : ℕ) : ℝ) * ((i + 1 : ℕ) : ℝ)
-          = ((Nat.choose (α + β - 2) i * (α + β - 1) : ℕ) : ℝ) :=
-        congrArg (fun n : ℕ => ((n : ℝ))) he
-      rw [huApp, hr, show (i + 1 - 1 : ℕ) = i from by omega,
+          = ((Nat.choose (α + β - 2) i * (α + β - 1) : ℕ) : ℝ) := by
+        rw [Nat.cast_mul] at he
+        rw [mul_comm (Nat.choose (α + β - 1) (i + 1)) ((i + 1 : ℕ)), he, Nat.cast_mul,
+          show (i + 1 - 1 : ℕ) = i from by omega,
+          mul_comm (Nat.choose (α + β - 2) i) ((α + β - 1 : ℕ))]
+      rw [huApp, mul_assoc, mul_assoc, hr, show (i + 1 - 1 : ℕ) = i from by omega,
         show (α + β - 1) - (i + 1) = α + β - 2 - i from by omega]
   -- (C) 右和：j = m 项为零，其余 = u j
   have hC : (∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
-        * ((α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j)))
+        * (((α + β - 1 - j : ℕ) : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j)))
       = ∑ i ∈ Finset.Ico α (α + β - 1), u i := by
     have hins : Finset.Ico α (α + β)
         = insert (α + β - 1) (Finset.Ico α (α + β - 1)) := by
@@ -304,20 +307,24 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
       omega
     rw [hins, Finset.sum_insert hnotins]
     have hzero : ((Nat.choose (α + β - 1) (α + β - 1) : ℕ) : ℝ)
-        * ((α + β - 1 - ((α + β - 1 : ℕ) : ℝ)) * x ^ (α + β - 1)
+        * (((α + β - 1 - (α + β - 1 : ℕ) : ℕ) : ℝ) * x ^ (α + β - 1)
           * (1 - x) ^ (α + β - 2 - (α + β - 1))) = 0 := by
+      rw [Nat.sub_self]
       push_cast
-      rw [sub_self, zero_mul, mul_zero]
+      simp
     rw [hzero, zero_add]
     refine Finset.sum_congr rfl fun j hj => ?_
     have hjlt : j < α + β - 1 := by
       have h2 := Finset.mem_Ico.mp hj
       omega
     have he := choose_mul_right (α + β - 1) j hjlt
-    have hr : ((Nat.choose (α + β - 1) j : ℕ) : ℝ) * ((α + β - 1 - j : ℕ) : ℝ)
-        = ((Nat.choose (α + β - 2) j * (α + β - 1) : ℕ) : ℝ) :=
-      congrArg (fun n : ℕ => ((n : ℝ))) he
-    rw [huApp, hr]
+    have hr : ((Nat.choose (α + β - 1) j : ℕ) : ℝ) * (((α + β - 1 - j : ℕ) : ℝ))
+        = ((Nat.choose (α + β - 2) j * (α + β - 1) : ℕ) : ℝ) := by
+      rw [Nat.cast_mul] at he
+      rw [mul_comm (Nat.choose (α + β - 1) j) (((α + β - 1 - j : ℕ) : ℝ)), he,
+        Nat.cast_mul, show (α + β - 1 - 1 : ℕ) = α + β - 2 from by omega,
+        mul_comm (Nat.choose (α + β - 2) j) (((α + β - 1 : ℕ) : ℝ))]
+    rw [huApp, mul_assoc, mul_assoc, hr, mul_assoc]
   -- (D) 差 = u(α−1)
   have hD : (∑ i ∈ Finset.Ico (α - 1) (α + β - 1), u i)
       - (∑ i ∈ Finset.Ico α (α + β - 1), u i) = u (α - 1) := by
@@ -341,7 +348,7 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
   calc ∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
         * (((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)
-          - (α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j)))
+          - ((α + β - 1 - j : ℕ) : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j)))
       = (∑ j ∈ Finset.Ico α (α + β),
         ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
           * ((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)))
@@ -680,7 +687,7 @@ theorem recursion_ibp_nat (n m : ℕ) (x : ℝ) :
         - ((m : ℝ) + 1) * (t ^ (n + 1) * (1 - t) ^ m) := by
     rw [← hIA, ← hIB]
     exact (intervalIntegral.integral_sub hIIA hIIB).symm
-  have hf0 : ((0:ℝ) ^ (n + 1) * (1 - (0:ℝ)) ^ (m + 1)) = 0 := by simp
+  have hf0 : ((fun y => y ^ (n + 1) * (1 - y) ^ (m + 1)) (0:ℝ)) = 0 := by simp
   rw [hL, hFT, hf0, sub_zero]
 
 /-- 半整数格：t^{n+1}√t 的导数（归纳，无 ℕ 减法）。 -/
@@ -1016,7 +1023,8 @@ theorem rightInnerExact (b η : ℝ) (hb : 0 < b) (hη : 0 < η) (hη1 : η ≤ 
       HasDerivAt.sub (hasDerivAt_const t (1:ℝ)) (hasDerivAt_id t)
     have h2 := h1.rpow_const (p := b)
       (Or.inl (show (1 - t : ℝ) ≠ 0 from by linarith [ht.2]))
-    refine (h2.div_const b).neg.congr_deriv ?_
+    refine (h2.div_const b).neg.congr_of_eventuallyEq
+      (Filter.Eventually.of_forall fun y => rfl) |>.congr_deriv ?_
     rw [show ((0:ℝ) - 1) = -1 from by norm_num]
     field_simp [hb.ne'] <;> ring
   have hint : IntervalIntegrable (fun t => (1 - t) ^ (b - 1)) MeasureTheory.volume (1 - η) 1 := by
@@ -1059,7 +1067,7 @@ theorem rightTail_aux (a b M η : ℝ) (ha : 0 < a) (hb : 0 < b) (hη : 0 < η) 
       MeasureTheory.volume (1 - η) 1 := hpowint.const_mul M
   have hmono := intervalIntegral.integral_mono_on (by linarith) hint hMint hpt
   rw [intervalIntegral.integral_const_mul] at hmono
-  rw [mul_div_assoc', ← rightInnerExact b η hb hη hη1]
+  rw [← mul_div_assoc', ← rightInnerExact b η hb hη hη1]
   exact hmono
 
 /-- 右尾常数，a ≥ 1：M_a = 1。 -/
@@ -1161,18 +1169,19 @@ theorem mbound_le (r t : ℝ) (ht : t ∈ Set.Icc (1 / 4 : ℝ) (3 / 4 : ℝ)) :
   · have hp : 0 < t ^ (-r) :=
       Real.rpow_pos_of_pos (lt_of_lt_of_le (by norm_num : (0:ℝ) < 1 / 4) ht.1) _
     have hp' : 0 < (3 / 4 : ℝ) ^ (-r) := Real.rpow_pos_of_pos (by norm_num) _
-    have hge : (3 / 4 : ℝ) ^ (-r) ≤ t ^ (-r) := Real.rpow_le_rpow (by norm_num) ht.2 (by linarith)
+    have hge : t ^ (-r) ≤ (3 / 4 : ℝ) ^ (-r) :=
+      Real.rpow_le_rpow (by norm_num) ht.2 (by linarith)
     have e1 : t ^ r = 1 / t ^ (-r) := by
-      have h1 := Real.rpow_neg (by linarith [ht.1]) (-r)
+      have h1 := Real.rpow_neg (x := t) (by linarith [ht.1]) (-r)
       rw [neg_neg] at h1
       rw [h1, inv_eq_one_div]
     have e2 : (3 / 4 : ℝ) ^ r = 1 / (3 / 4 : ℝ) ^ (-r) := by
-      have h2 := Real.rpow_neg (by norm_num) (-r)
+      have h2 := Real.rpow_neg (x := 3 / 4) (by norm_num) (-r)
       rw [neg_neg] at h2
       rw [h2, inv_eq_one_div]
     show min ((1 / 4 : ℝ) ^ r) ((3 / 4 : ℝ) ^ r) ≤ t ^ r
-    rw [e1, e2]
-    exact min_le_iff.mpr (Or.inr (one_div_le_one_div' hp hp' hge))
+    rw [e2, e1]
+    exact min_le_iff.mpr (Or.inr (one_div_le_one_div' hp' hp hge))
 
 /-- **分母正下界（四义务之一）**：m(r)=min((1/4)^r,(3/4)^r) 时
     B(a,b) = ∫₀¹ g ≥ m(a−1)·m(b−1)/2 > 0。 -/
@@ -1357,7 +1366,7 @@ theorem cdfWidthFromRho (ε ρ β : ℚ) (hε : 0 < ε) (hρ : 0 < ρ) (hβ : 0 
 def RpowRatEnclosureInput (η : ℚ) : Prop :=
   ∀ r : ℚ, ∃ lo hi : ℚ, ((lo : ℝ) ≤ (η : ℝ) ^ (r : ℝ)) ∧ ((η : ℝ) ^ (r : ℝ) ≤ (hi : ℝ))
 
-/-- 格点数存在（合同 N ≥ max(1, ⌈4L̄ℓ²/ρ⌉) 的存在性；固定 η 后由 Archimedean
+/-- 格点数存在（合同 N ≥ max(1, ⌈4Lbarℓ²/ρ⌉) 的存在性；固定 η 后由 Archimedean
     单独取 N——不得与 k 同步增长，因 L 随 η 减小可发散）。 -/
 theorem exists_grid_N (c : ℚ) : ∃ N : ℕ, (1 : ℚ) ≤ N ∧ c ≤ N := by
   obtain ⟨n, hn⟩ := exists_nat_ge (max 1 c)
@@ -1465,15 +1474,15 @@ theorem tailBudgetAt (a b : ℝ) (ha : 0 < a) (hb : 0 < b) (k : ℕ) :
 
 /-- **任意精度可达（四义务之三，按合同调度）**：对每个 ε > 0 存在 (k, N, ρ)：
     ρ = εβ/8 ≤ εβ/4；两尾有证上界和 ≤ ρ/4（k 的指数衰减有限步达到）；
-    N ≥ max(1, 4L̄/ρ)（固定 η 后单独取；L̄ 为 L 的有理上界，代数包围输入，
+    N ≥ max(1, 4Lbar/ρ)（固定 η 后单独取；Lbar 为 L 的有理上界，代数包围输入，
     见 `RpowRatEnclosureInput`）。 -/
-theorem exists_precision_schedule (ε a b L̄ : ℚ) (hε : 0 < ε) (ha : 0 < a) (hb : 0 < b)
-    (hL̄ : 0 < L̄) :
+theorem exists_precision_schedule (ε a b Lbar : ℚ) (hε : 0 < ε) (ha : 0 < a) (hb : 0 < b)
+    (hLbar : 0 < Lbar) :
     ∃ (k N : ℕ) (ρ : ℚ), 0 < ρ ∧ ρ ≤ ε * b / 4 ∧
       (((max 1 ((1 / 2 : ℝ) ^ ((b:ℝ) - 1))) * (((1 / 4 : ℝ) ^ (a:ℝ)) / (a:ℝ))
           + (max 1 ((1 / 2 : ℝ) ^ ((a:ℝ) - 1))) * (((1 / 4 : ℝ) ^ (b:ℝ)) / (b:ℝ)))
           * ((1 / 2 : ℝ) ^ (min (a:ℝ) (b:ℝ))) ^ k ≤ (ρ:ℝ) / 4) ∧
-      ((1:ℚ) ≤ N) ∧ ((4:ℚ) * L̄ / ρ ≤ N) := by
+      ((1:ℚ) ≤ N) ∧ ((4:ℚ) * Lbar / ρ ≤ N) := by
   have hp : (0:ℚ) < ε * b := mul_pos hε hb
   have hρq : (0:ℚ) < ε * b / 8 :=
     div_pos hp (by norm_num)
@@ -1481,7 +1490,7 @@ theorem exists_precision_schedule (ε a b L̄ : ℚ) (hε : 0 < ε) (ha : 0 < a)
     div_pos hρq (by norm_num)
   obtain ⟨k, hk⟩ := exists_tail_budget (a:ℝ) (b:ℝ) ((ε * b / 8 / 4 : ℚ) : ℝ)
     (by exact_mod_cast ha) (by exact_mod_cast hb) (by exact_mod_cast hρ4)
-  obtain ⟨N, hN1, hN2⟩ := exists_grid_N ((4:ℚ) * L̄ / (ε * b / 8))
+  obtain ⟨N, hN1, hN2⟩ := exists_grid_N ((4:ℚ) * Lbar / (ε * b / 8))
   refine ⟨k, N, ε * b / 8, hρq, ?_, ?_, ?_⟩
   · rw [div_le_div_iff₀ (by norm_num : (0:ℚ) < 8) (by norm_num : (0:ℚ) < 4)]
     linarith
@@ -1536,7 +1545,7 @@ theorem mixture_strictMonoOn {n : ℕ} (w : Fin n → ℚ) (F : Fin n → ℝ �
     StrictMonoOn (mixtureCdf w F) (Set.Icc 0 1) := by
   intro x hx y hy hxy
   have hnonneg : ∀ h, 0 ≤ (w h : ℝ) * (F h y - F h x) := fun h =>
-    mul_nonneg (by exact_mod_cast hw h) (hm h hx hy hxy.le).le
+    mul_nonneg (by exact_mod_cast hw h) (sub_nonneg.mpr (hm h hx hy hxy.le))
   have hjlt : F j x < F j y := hs hx hy hxy
   have hpos : 0 < (w j : ℝ) * (F j y - F j x) :=
     mul_pos (by exact_mod_cast hwj) (by linarith)
@@ -1576,15 +1585,16 @@ theorem mixture_quantile_unique {n : ℕ} (w : Fin n → ℚ) (F : Fin n → ℝ
   · have h0 : v ≠ 0 := by
       intro h
       rw [h, hF0m] at hvq
-      exact hq.ne hvq.symm
+      exact hq.ne hvq
     have h1' : v ≠ 1 := by
       intro h
       rw [h, hF1m] at hvq
-      exact hq1.ne hvq.symm
-    exact ⟨lt_of_le_of_ne hv.1 h0, lt_of_le_of_ne hv.2 h1'⟩
+      exact hq1.ne hvq
+    exact ⟨lt_of_le_of_ne hv.1 (Ne.symm h0), lt_of_le_of_ne hv.2 h1'⟩
   · exact hvq
-  · rintro u ⟨⟨hu0, hu1⟩, huu⟩
-    refine hs.injOn (Set.mem_Icc.mpr ⟨hu0.le, hu1.le⟩) (Set.mem_Icc.mpr ⟨hv.1, hv.2⟩) ?_
+  · rintro ⟨⟨hu0, hu1⟩, huu⟩
+    refine (mixture_strictMonoOn w F hw j hwj hm hs).injOn
+      (Set.mem_Icc.mpr ⟨hu0.le, hu1.le⟩) (Set.mem_Icc.mpr ⟨hv.1, hv.2⟩) ?_
     rw [huu, hvq]
 
 /-- **不取分量分位平均（合同）**：反例 w = (1/2, 1/2)、F = (x, x²)
@@ -1605,6 +1615,7 @@ theorem component_quantile_average_counterexample :
         * (![fun x : ℝ => x, fun x : ℝ => x * x] i) ((Real.sqrt 5 - 1) / 2) = 1 / 2
     rw [Fin.sum_univ_two]
     simp only [Matrix.cons_val_zero, Matrix.cons_val_one]
+    push_cast
     rw [hv]
     norm_num
   refine ⟨hval, ?_⟩
@@ -1660,11 +1671,11 @@ theorem cdfEnc_real (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ)
       exact absurd (le_trans hNl0 hNl) (by linarith)
     refine (div_le_iff₀ hBu).mpr ?_
     calc N_l ≤ bernCdf α β x * ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ) := hNl
-      _ ≤ bernCdf α β x * B_u := mul_le_mul_of_nonneg_right hBuB hNpos.le
+      _ ≤ bernCdf α β x * B_u := mul_le_mul_of_nonneg_right hBuB hNpos
   · refine (le_div_iff₀ hBl).mpr ?_
     calc bernCdf α β x * B_l
         ≤ bernCdf α β x * ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ) :=
-          mul_le_mul_of_nonneg_right hBlB hNpos.le
+          mul_le_mul_of_nonneg_right hBlB hNpos
       _ ≤ N_u := hNu
 
 end JurisLean.Seams.UnifiedBetaDomain

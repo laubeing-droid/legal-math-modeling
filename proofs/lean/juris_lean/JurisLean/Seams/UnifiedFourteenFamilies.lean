@@ -992,7 +992,7 @@ abbrev familyHorn : HornSystem Atom := hornOf fullDocket
 /-- 规则表内规则在 Horn 制度的规则集合内。 -/
 theorem rule_horn_mem (r : LawRule) (hr : r ∈ familyRuleList) :
     r.horn ∈ familyHorn.rules :=
-  Finset.mem_image.mpr ⟨r, Finset.mem_toFinset.mpr hr, rfl⟩
+  Finset.mem_image.mpr ⟨r, List.mem_toFinset.mpr hr, rfl⟩
 
 /-- 材料前提进闭包：初始事实含于闭包（closure_is_model 左支）。 -/
 theorem matCl (a : Atom) (h : materialHolds a fullDocket = true) :
@@ -1322,7 +1322,7 @@ theorem witness_model :
   refine isModel_avoiding familyHorn _ initial_bad_disjoint ?_
   intro rh hrh
   obtain ⟨r, hr, rfl⟩ := Finset.mem_image.mp hrh
-  exact rule_concl_avoid_bad r (Finset.mem_toFinset.mp hr)
+  exact rule_concl_avoid_bad r (List.mem_toFinset.mp hr)
 
 /-- 坏集内原子不可推导：若可推导则落入每个模型，与见证模型矛盾。 -/
 theorem not_in_closure_of_bad (f : Atom)

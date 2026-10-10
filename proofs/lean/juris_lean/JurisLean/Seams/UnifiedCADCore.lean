@@ -77,6 +77,10 @@ noncomputable section
 
 namespace JurisLean.Seams.UnifiedCADCore
 
+/-- `ℚ[X]` 等多项式记号是 `Polynomial` 命名空间内的 scoped 记号（CI 38064007904 核实），
+    文件级打开一次。 -/
+open Polynomial
+
 /-! ## 〇、公共：有理数到实数的精确嵌入 -/
 
 /-- ℚ → ℝ 的精确环嵌入（cast 同态；与 `Rat.cast` 逐点重合）。 -/
@@ -117,14 +121,15 @@ structure RAtom (n : ℕ) : Type where
   poly : MvPolynomial (Fin n) ℚ
 
 /-- C0 实闭域公式：固定变量表 `Fin n`，量词按表扩展嵌套（de Bruijn 风格），
-    量词顺序由构造保义。 -/
-inductive RealFormula (n : ℕ) : Type where
-  | atom : RAtom n → RealFormula n
-  | and : RealFormula n → RealFormula n → RealFormula n
-  | or : RealFormula n → RealFormula n → RealFormula n
-  | not : RealFormula n → RealFormula n
-  | all : RealFormula (n + 1) → RealFormula n
-  | ex : RealFormula (n + 1) → RealFormula n
+    量词顺序由构造保义。深度 `n` 是**索引**（量词构造子引用 `RealFormula (n+1)`，
+    参数形式下不允许变化——CI 38064007904 第 126 行根因）。 -/
+inductive RealFormula : ℕ → Type where
+  | atom {n : ℕ} : RAtom n → RealFormula n
+  | and {n : ℕ} : RealFormula n → RealFormula n → RealFormula n
+  | or {n : ℕ} : RealFormula n → RealFormula n → RealFormula n
+  | not {n : ℕ} : RealFormula n → RealFormula n
+  | all {n : ℕ} : RealFormula (n + 1) → RealFormula n
+  | ex {n : ℕ} : RealFormula (n + 1) → RealFormula n
 
 /-- 多项式在赋值下的实指称。 -/
 def polyDenote {n : ℕ} (ρ : Fin n → ℝ) (p : MvPolynomial (Fin n) ℚ) : ℝ :=
@@ -231,13 +236,13 @@ theorem algEval_X2_sub_2 (x : ℝ) : AlgEval (X ^ 2 - C 2) x = x ^ 2 - 2 := by
     Polynomial.eval_X, Polynomial.eval_C, qToR_two]
 
 open Polynomial in
-/-- 实例的区间界的具体值（便于有序域推理）。 -/
-theorem algRealSqrt2_bounds {x : ℝ} (hx : AlgMeaning algRealSqrt2 x) :
+/-- 实例的区间界的具体值（便于有序域推理；x 显式以便调用侧直接喂点）。 -/
+theorem algRealSqrt2_bounds (x : ℝ) (hx : AlgMeaning algRealSqrt2 x) :
     (1:ℝ) < x ∧ x < 2 := by
   have e1 : ((algRealSqrt2.lo : ℚ) : ℝ) = (1:ℝ) := by norm_num [algRealSqrt2]
   have e2 : ((algRealSqrt2.hi : ℚ) : ℝ) = (2:ℝ) := by norm_num [algRealSqrt2]
   obtain ⟨-, h1, h2⟩ := hx
-  exact ⟨by rwa [← e1], by rwa [← e2]⟩
+  exact ⟨by rw [← e1]; exact h1, by rw [← e2]; exact h2⟩
 
 open Polynomial in
 theorem algRealSqrt2_validity : algRealSqrt2.Validity := by
@@ -247,9 +252,13 @@ theorem algRealSqrt2_validity : algRealSqrt2.Validity := by
       exact Real.sqrt_lt_sqrt (by norm_num) (by norm_num)
     · have h := Real.sqrt_lt_sqrt (by norm_num : (0:ℝ) ≤ 2) (by norm_num : (2:ℝ) < 4)
       rwa [show (4:ℝ) = (2:ℝ) * 2 from by norm_num, Real.sqrt_mul_self (by norm_num)] at h
-  refine ⟨Real.sqrt 2, ⟨?_, hb.1, hb.2⟩, fun y hy => ?_⟩
+  have hlo : ((algRealSqrt2.lo : ℚ) : ℝ) = (1:ℝ) := by norm_num [algRealSqrt2]
+  have hhi : ((algRealSqrt2.hi : ℚ) : ℝ) = (2:ℝ) := by norm_num [algRealSqrt2]
+  refine ⟨Real.sqrt 2,
+    ⟨?_, by rw [hlo]; exact hb.1, by rw [hhi]; exact hb.2⟩, fun y hy => ?_⟩
   · show AlgEval (X ^ 2 - C 2) (Real.sqrt 2) = 0
     rw [algEval_X2_sub_2, Real.sq_sqrt (by norm_num)]
+    norm_num
   · obtain ⟨h1y, h2y⟩ := algRealSqrt2_bounds y hy
     have hy2 : y ^ 2 = 2 := by
       have hz : AlgEval (X ^ 2 - C 2) y = 0 := hy.1
@@ -326,7 +335,7 @@ theorem div_mul_lt_zero_iff {n d : ℝ} (hd : d ≠ 0) : n / d < 0 ↔ n * d < 0
   constructor
   · intro h
     have h2 : (n / d) * (d * d) < 0 * (d * d) := mul_lt_mul_of_pos_right h hdd
-    rwa [key, zero_mul] at h2
+    rwa [← key, zero_mul] at h2
   · intro h
     rw [key] at h
     exact lt_of_mul_lt_mul_right (by rwa [zero_mul]) (le_of_lt hdd)
@@ -338,7 +347,7 @@ theorem div_mul_le_zero_iff {n d : ℝ} (hd : d ≠ 0) : n / d ≤ 0 ↔ n * d �
   constructor
   · intro h
     have h2 : (n / d) * (d * d) ≤ 0 * (d * d) := mul_le_mul_of_nonneg_right h (le_of_lt hdd)
-    rwa [key, zero_mul] at h2
+    rwa [← key, zero_mul] at h2
   · intro h
     rw [key] at h
     exact le_of_mul_le_mul_right (by rwa [zero_mul]) hdd
@@ -347,11 +356,13 @@ theorem div_mul_le_zero_iff {n d : ℝ} (hd : d ≠ 0) : n / d ≤ 0 ↔ n * d �
 theorem div_mul_eq_zero_iff {n d : ℝ} (hd : d ≠ 0) : n / d = 0 ↔ n * d = 0 := by
   constructor
   · intro h
-    rw [div_eq_mul_inv, mul_eq_zero, inv_eq_zero, or_iff_right hd] at h
-    rw [h, zero_mul]
+    rcases div_eq_zero_iff.mp h with h' | h'
+    · rw [h', zero_mul]
+    · exact absurd h' hd
   · intro h
-    rw [mul_eq_zero, or_iff_left hd] at h
-    rw [h, div_zero]
+    rcases mul_eq_zero.mp h with h' | h'
+    · rw [h', div_zero]
+    · exact absurd h' hd
 
 /-- 减式比较引理（逐点保义用）。 -/
 theorem eq_iff_sub_eq_zero {x y : ℝ} : x = y ↔ x - y = 0 := by
@@ -398,9 +409,6 @@ theorem div_translation_sound {n : ℕ} (a b : SrcExpr n) (op : CmpOp) (ρ : Fin
       RealFormula.denote ρ (RealFormula.and
         (RealFormula.not (RealFormula.atom (RAtom.mk CmpOp.eq (toPoly b))))
         (RealFormula.atom (RAtom.mk op (toPoly a * toPoly b)))) := by
-  have hb : srcVal ρ b ≠ 0 := by
-    show polyDenote ρ (toPoly b) ≠ 0
-    exact hqb
   constructor
   · rintro ⟨hd, hop⟩
     refine ⟨fun hzero => hd hzero, ?_⟩
@@ -416,9 +424,9 @@ theorem div_translation_sound {n : ℕ} (a b : SrcExpr n) (op : CmpOp) (ρ : Fin
     show cmpRel op (srcVal ρ a / srcVal ρ b) 0
     simp only [RealFormula.denote, denoteAtom, polyDenote, MvPolynomial.eval₂_mul] at hop
     cases op <;> simp only [cmpRel] at hop ⊢
-    · exact (div_mul_eq_zero_iff hb).mpr hop
-    · exact (div_mul_lt_zero_iff hb).mpr hop
-    · exact (div_mul_le_zero_iff hb).mpr hop
+    · exact (div_mul_eq_zero_iff hd).mpr hop
+    · exact (div_mul_lt_zero_iff hd).mpr hop
+    · exact (div_mul_le_zero_iff hd).mpr hop
 
 /-- 原子翻译器：除原子分母为零多项式时整体进 Failed（携带原因），
     否则输出带 guard 的公式。 -/
@@ -644,7 +652,7 @@ open Polynomial in
     证书中的 (h, g) 由检查器以多项式恒等式 `h * g = p ∧ h = gcd(p, p′)` 核验。 -/
 theorem sqfree_decomp_identity {p : ℚ[X]} (hp : p ≠ 0) :
     sqfreeGcd p * sqfreePart p = p :=
-  EuclideanDomain.mul_div_cancel' hp (sqfreeGcd_dvd p)
+  EuclideanDomain.mul_div_cancel' (sqfreeGcd_ne_zero hp) (sqfreeGcd_dvd p)
 
 open Polynomial in
 /-- 分解存在性（builder 侧片段）：对每个非零 p 都有被检查器接受形式的分解。 -/
@@ -682,10 +690,17 @@ def signVariations : List ℤ → ℕ
 /-- x → +∞ 时首项符号。 -/
 def signAtPosInf (p : ℚ[X]) : ℤ := qsign p.leadingCoeff
 
+/-- 自然数奇偶（自建 Bool 版；此工具链无 `Nat.beven`——CI 38064007904 核实），
+    字面输入由内核归约，decide 可判定。 -/
+def natEven : ℕ → Bool
+  | 0 => true
+  | 1 => false
+  | n + 2 => natEven n
+
 /-- x → −∞ 时首项符号（含次数奇偶翻转；对任意存储形多项式定义，
     首系数零降次由 natDegree/leadingCoeff 的实际值自动处理）。 -/
 def signAtNegInf (p : ℚ[X]) : ℤ :=
-  if Nat.beven p.natDegree then qsign p.leadingCoeff else -qsign p.leadingCoeff
+  if natEven p.natDegree then qsign p.leadingCoeff else -qsign p.leadingCoeff
 
 /-- 余式链（fuel 有界；余式次数严格下降由 `degree_drop` 保证足够 fuel 时完整）。 -/
 def chainAux : ℕ → ℚ[X] → ℚ[X] → List (ℚ[X])
@@ -791,7 +806,9 @@ theorem entries_r_nodup :
     obtain ⟨e', he', hr⟩ := List.mem_map.mp hmemr
     have h1 := hmem e (List.Mem.head _)
     have h2 := hmem e' (List.Mem.tail _ he')
-    have hlt : e.r < e'.r := by linarith [hord.1 e' he', h1.2, h2.1]
+    -- IsoEntry 的界在 ℚ、根在 ℝ：把 ℚ 端界单调升到 ℝ 再串链（CI 794 根因）
+    have hsep : ((e.hi : ℚ) : ℝ) ≤ ((e'.lo : ℚ) : ℝ) := Rat.cast_le.mpr (hord.1 e' he')
+    have hlt : e.r < e'.r := by linarith [h1.2, hsep, h2.1]
     rw [← hr] at hlt
     exact absurd hlt (lt_irrefl _)
 
@@ -977,10 +994,10 @@ theorem varCount_double_root : varCount ((X - C 0 : ℚ[X]) ^ 2) = 1 := by
       Polynomial.leadingCoeff_X, Polynomial.leadingCoeff_C]
     norm_num
   have hs1 : signAtNegInf ((X - C 0 : ℚ[X]) ^ 2) = 1 := by
-    rw [signAtNegInf, hnd, hlc, if_pos (by decide : Nat.beven 2 = true)]
+    rw [signAtNegInf, hnd, hlc, if_pos (by decide : natEven 2 = true)]
     exact qsign_of_pos (by norm_num)
   have hs2 : signAtNegInf (C 2 * (X - C 0 : ℚ[X])) = -1 := by
-    rw [signAtNegInf, hnd', hlc', if_neg (by decide : ¬(Nat.beven 1 = true))]
+    rw [signAtNegInf, hnd', hlc', if_neg (by decide : ¬(natEven 1 = true))]
     exact qsign_of_pos (by norm_num)
   have hs3 : signAtPosInf ((X - C 0 : ℚ[X]) ^ 2) = 1 := by
     rw [signAtPosInf, hlc]

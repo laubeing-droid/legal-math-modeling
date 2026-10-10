@@ -136,10 +136,6 @@ def analogyPreserves {S F V U J : Type} (m : AnalogyMap S F V U J) : Prop :=
     m.judge (m.onSubject s) (m.onFacts f) (m.onVersion v) (m.onUse u)
       = m.judge s f v u
 
-/-- **第 15 针（S2，I.13；BINDING 行 15）**：全条件下类比保持判断。
-自建显式类比结构（主体/事实/规范版本/证明用途四映射），以恒等映射族给出
-全条件保持的构造性见证；缺映射（full = false）的类比不承载保持（反例：
-判断函数读 full 位，缺映射时判断翻变）。结构归纳，非计数相同。 -/
 /-- 全条件类比见证：四恒等映射＋合取判断函数＋full 位。 -/
 def fullIdMap : AnalogyMap Bool Bool Bool Bool Bool where
   onSubject := fun s => s
@@ -158,6 +154,10 @@ def brokenIdMap : AnalogyMap Bool Bool Bool Bool Bool where
   judge := fun s f v u => s && f && v && u
   full := false
 
+/-- **第 15 针（S2，I.13；BINDING 行 15）**：全条件下类比保持判断。
+自建显式类比结构（主体/事实/规范版本/证明用途四映射），以恒等映射族给出
+全条件保持的构造性见证；缺映射（full = false）的类比不承载保持（反例：
+判断函数读 full 位，缺映射时判断翻变）。结构归纳，非计数相同。 -/
 theorem analogy_preserves_judgment_under_full_conditions :
     ∃ (m : AnalogyMap Bool Bool Bool Bool Bool), analogyPreserves m ∧
       ∃ (m' : AnalogyMap Bool Bool Bool Bool Bool), ¬ analogyPreserves m' := by

@@ -172,7 +172,7 @@ instance stateP_standardBorel_xconst (n : ℕ) : StandardBorelSpace (XConst Stat
 
 /-- 乘积编码的逐 n Nonempty 全局实例（立案态＋零参数作见证）。 -/
 instance stateP_nonempty_xconst (n : ℕ) : Nonempty (XConst StateP n) :=
-  .mk (show StateP from (Disc.filing, fun _ => (0 : ℝ)))
+  .intro (show StateP from (Disc.filing, fun _ => (0 : ℝ)))
 
 /- **如实记录的开放点**：mathlib 在锁定提交处没有 `StandardBorelSpace (α ⊕ β)` 实例，
 也没有 `borel (α ⊕ β) = Sum.instMeasurableSpace` 型引理；因此 Sum 编码全状态的标准 Borel

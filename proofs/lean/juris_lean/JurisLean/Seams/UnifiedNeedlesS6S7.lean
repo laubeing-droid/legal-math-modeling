@@ -146,7 +146,7 @@ theorem trace_concatenation_iff {Rel : Type} (st₀ s : State Rel) (tr : Trace R
     refine ⟨tr, [], runTrace st₀ tr, (List.append_nil tr).symm, rfl, ?_⟩
     rw [runTrace_nil]
     exact h
-  · intro a b mid ⟨htr, hmid, hfin⟩
+  · rintro ⟨a, b, mid, htr, hmid, hfin⟩
     subst htr
     rw [runTrace_append, hmid]
     exact hfin
@@ -325,29 +325,33 @@ theorem licensed_empirical_use_possible :
 的主体必为最高法、范围必为全国）；后续规则选择消费保持（未命中取代名单的旧记录
 原样留在新环境中，规则选择仍能读到它）。开放点：`applicableVersions` 查询层的
 双向等式重述未在本件展开。 -/
+/-- 第 44 针的锚承载体：锚版本结构保持（区间良态、supersession 边非自指、失效记录
+继续失效）以全限定名整体实例化（诊断拆分：单独承锚，语句内不再嵌锚应用）。 -/
+theorem precedent_update_norm_structure_anchor (E : VersionEnv)
+    (ad : AuthorizedDecision) (hwf : EnvWf E ad) (t : Int) :
+    JurisLean.Seams.PrecedentFlow.precedent_update_preserves_norm_structure E ad hwf t :=
+  JurisLean.Seams.PrecedentFlow.precedent_update_preserves_norm_structure E ad hwf t
+
 theorem precedent_update_preserves_norm_structure (E : VersionEnv)
     (ad : AuthorizedDecision) (hwf : EnvWf E ad) (t : Int) :
-    JurisLean.Seams.PrecedentFlow.precedent_update_preserves_norm_structure E ad hwf t ∧
-      authorized ad.decision.production ∧
+    authorized ad.decision.production ∧
       ad.decision.production.actor = Actor.supremeCourt ∧
       ad.decision.production.scope = Scope.nationwide ∧
       (∀ v : SourceVersionRecord, v ∈ E.versions →
           hitsSupersession ad.decision v ≠ true → v ∈ (precedentUpdate ad E).versions) := by
   constructor
-  · exact JurisLean.Seams.PrecedentFlow.precedent_update_preserves_norm_structure E ad hwf t
+  · exact ⟨ad.witness⟩
   · constructor
-    · exact ⟨ad.witness⟩
+    · exact (competence_shape ad.witness).1
     · constructor
-      · exact (competence_shape ad.witness).1
-      · constructor
-        · exact (competence_shape ad.witness).2.2
-        · intro v hv hhit
-          by_cases hfire : updateFires ad.decision = true
-          · rw [update_versions_fires ad E hfire]
-            exact List.mem_cons.mpr
-              (Or.inr (List.mem_map.mpr ⟨v, hv, supersedeRecord_keeps_unhit ad.decision v hhit⟩))
-          · rw [update_versions_silent ad E hfire]
-            exact hv
+      · exact (competence_shape ad.witness).2.2
+      · intro v hv hhit
+        by_cases hfire : updateFires ad.decision = true
+        · rw [update_versions_fires ad E hfire]
+          exact List.mem_cons.mpr
+            (Or.inr (List.mem_map.mpr ⟨v, hv, supersedeRecord_keeps_unhit ad.decision v hhit⟩))
+        · rw [update_versions_silent ad E hfire]
+          exact hv
 
 /-! ## 第 47 针：feedback_need_not_converge -/
 

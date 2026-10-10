@@ -249,58 +249,58 @@
 
 | # | 针名 | 含义(一行) | Lean 载体 | Python 载体 | 证据 | 状态 |
 |---|---|---|---|---|---|---|
-| 01 S0 | `representation_observations_preserved` | 表示层保持业务观察 | `representation_observations_preserved`@Representation.lean:L162(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L162 | PARTIAL（I.13:同basename仅在给定FaithfulRep下搬运观察，前提实例化拟补） |
-| 02 S0 | `representable_roundtrip` | 可表示编码往返一致 | 针名UNBOUND;锚`obsModel_roundTrip`@Representation.lean:L153 | UNBOUND | — | PARTIAL |
-| 03 S0 | `ontic_epistemic_separation_witness` | 本体/认识分离见证 | 针名UNBOUND;锚`proof_failure_not_ontic_negation`@AdjudicationBridge.lean:L746 | UNBOUND | — | PARTIAL |
-| 04 S0 | `power_obligation_occurrence_independent` | 权力/义务/事件三独立见证 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
-| 05 S0 | `joint_legal_model_exists` | 联合法律模型存在性 | `joint_legal_model_exists`@Representation.lean:L366(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L366 | PARTIAL（I.13:现为Fin2两投影，十四族共同材料网络见证拟补） |
-| 06 S1 | `applicability_matches_source_semantics` | 规范适用与来源语义一致 | 针名UNBOUND;锚`applicableAtBool_true_iff`@PrecedentFlow.lean:L490 | UNBOUND | — | PARTIAL |
-| 07 S1 | `finite_priority_maximal_elements_exist` | 有限优先序极大元存在 | 针名UNBOUND;锚`exists_maximal_acyclic`@SourceNorms.lean:L308 | UNBOUND | — | PARTIAL |
-| 08 S1 | `horn_closure_semantic_iff` | Horn闭包与语义等价 | `horn_closure_semantic_iff`@SourceNorms.lean:L171(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L171 | PARTIAL（I.13:同basename可按纯正Horn原域复用，法律规则/来源树实例化另接） |
-| 09 S1 | `incomparable_norms_not_forced_unique` | 不可比规范不强制唯一适用 | 针名UNBOUND;锚`p015_some_not_unique_maximal`@SourceNorms.lean:L521 | UNBOUND | — | PARTIAL |
-| 10 S2 | `eval_has_licensed_derivation` | 评价有许可推导 | 针名UNBOUND;锚`mem_rounds_fst_fires`@AdjudicationBridge.lean:L436 | UNBOUND | — | PARTIAL |
-| 11 S2 | `final_binary_decisions_exclusive` | 终局二值判定互斥 | 针名UNBOUND;锚`two_valued_exclusion`@AdjudicationBridge.lean:L401 | UNBOUND | — | PARTIAL |
-| 12 S2 | `final_undetermined_iff_exhausted` | 终局未定当且仅当穷尽 | `final_undetermined_iff_exhausted`@AdjudicationBridge.lean:L467(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L467 | PARTIAL（I.13:旧exhaustionOf读法不足，更正版加入Need） |
-| 13 S2 | `proof_failure_not_ontic_negation` | 证明失败非本体否定 | `proof_failure_not_ontic_negation`@AdjudicationBridge.lean:L746(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L746 | PARTIAL（I.13:旧乘积见证仅参考，同输入真推导族内重建拟补） |
-| 14 S2 | `argument_undec_not_final_undetermined` | 论证未决不等于终局未定 | `argument_undec_not_final_undetermined`@AdjudicationBridge.lean:L714(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L714 | PARTIAL（I.13:旧cycle2例仅反例意图，法定负担输入拟补） |
-| 15 S2 | `analogy_preserves_judgment_under_full_conditions` | 全条件下类比保持判断 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
+| 01 S0 | `representation_observations_preserved` | 表示层保持业务观察 | `representation_observations_preserved`@Representation.lean:L162(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L162；changed-module run 37976758723 success| BOUND（UnifiedNeedlesS0S1 模块轮绿 run 37976758723；历史缺口注记（I.13:同basename仅在给定FaithfulRep下搬运观察，前提实例化拟补），现行降级/开放点以模块 doc 为准）|
+| 02 S0 | `representable_roundtrip` | 可表示编码往返一致 | 针名已闭合@UnifiedNeedlesS0S1.lean；;锚`obsModel_roundTrip`@Representation.lean:L153| BOUND | changed-module run 37976758723 success| BOUND（UnifiedNeedlesS0S1 模块轮绿 run 37976758723；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 03 S0 | `ontic_epistemic_separation_witness` | 本体/认识分离见证 | 针名已闭合@UnifiedNeedlesS0S1.lean；;锚`proof_failure_not_ontic_negation`@AdjudicationBridge.lean:L746| BOUND | changed-module run 37976758723 success| BOUND（UnifiedNeedlesS0S1 模块轮绿 run 37976758723；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 04 S0 | `power_obligation_occurrence_independent` | 权力/义务/事件三独立见证 | 针名已闭合@UnifiedNeedlesS0S1.lean（原无锚，本波新建）| BOUND | changed-module run 37976758723 success| BOUND（UnifiedNeedlesS0S1 模块轮绿 run 37976758723）|
+| 05 S0 | `joint_legal_model_exists` | 联合法律模型存在性 | `joint_legal_model_exists`@Representation.lean:L366(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L366；changed-module run 37976758723 success| BOUND（UnifiedNeedlesS0S1 模块轮绿 run 37976758723；历史缺口注记（I.13:现为Fin2两投影，十四族共同材料网络见证拟补），现行降级/开放点以模块 doc 为准）|
+| 06 S1 | `applicability_matches_source_semantics` | 规范适用与来源语义一致 | 针名已闭合@UnifiedNeedlesS0S1.lean；;锚`applicableAtBool_true_iff`@PrecedentFlow.lean:L490| BOUND | changed-module run 37976758723 success| BOUND（UnifiedNeedlesS0S1 模块轮绿 run 37976758723；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 07 S1 | `finite_priority_maximal_elements_exist` | 有限优先序极大元存在 | 针名已闭合@UnifiedNeedlesS0S1.lean；;锚`exists_maximal_acyclic`@SourceNorms.lean:L308| BOUND | changed-module run 37976758723 success| BOUND（UnifiedNeedlesS0S1 模块轮绿 run 37976758723；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 08 S1 | `horn_closure_semantic_iff` | Horn闭包与语义等价 | `horn_closure_semantic_iff`@SourceNorms.lean:L171(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L171；changed-module run 37976758723 success| BOUND（UnifiedNeedlesS0S1 模块轮绿 run 37976758723；历史缺口注记（I.13:同basename可按纯正Horn原域复用，法律规则/来源树实例化另接），现行降级/开放点以模块 doc 为准）|
+| 09 S1 | `incomparable_norms_not_forced_unique` | 不可比规范不强制唯一适用 | 针名已闭合@UnifiedNeedlesS0S1.lean；;锚`p015_some_not_unique_maximal`@SourceNorms.lean:L521| BOUND | changed-module run 37976758723 success| BOUND（UnifiedNeedlesS0S1 模块轮绿 run 37976758723；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 10 S2 | `eval_has_licensed_derivation` | 评价有许可推导 | 针名已闭合@UnifiedNeedlesS2.lean；;锚`mem_rounds_fst_fires`@AdjudicationBridge.lean:L436| BOUND | changed-module run 38014714649 success| BOUND（UnifiedNeedlesS2 模块轮绿 run 38014714649；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 11 S2 | `final_binary_decisions_exclusive` | 终局二值判定互斥 | 针名已闭合@UnifiedNeedlesS2.lean；;锚`two_valued_exclusion`@AdjudicationBridge.lean:L401| BOUND | changed-module run 38014714649 success| BOUND（UnifiedNeedlesS2 模块轮绿 run 38014714649；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 12 S2 | `final_undetermined_iff_exhausted` | 终局未定当且仅当穷尽 | `final_undetermined_iff_exhausted`@AdjudicationBridge.lean:L467(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L467；changed-module run 38014714649 success| BOUND（UnifiedNeedlesS2 模块轮绿 run 38014714649；历史缺口注记（I.13:旧exhaustionOf读法不足，更正版加入Need），现行降级/开放点以模块 doc 为准）|
+| 13 S2 | `proof_failure_not_ontic_negation` | 证明失败非本体否定 | `proof_failure_not_ontic_negation`@AdjudicationBridge.lean:L746(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L746；changed-module run 38014714649 success| BOUND（UnifiedNeedlesS2 模块轮绿 run 38014714649；历史缺口注记（I.13:旧乘积见证仅参考，同输入真推导族内重建拟补），现行降级/开放点以模块 doc 为准）|
+| 14 S2 | `argument_undec_not_final_undetermined` | 论证未决不等于终局未定 | `argument_undec_not_final_undetermined`@AdjudicationBridge.lean:L714(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L714；changed-module run 38014714649 success| BOUND（UnifiedNeedlesS2 模块轮绿 run 38014714649；历史缺口注记（I.13:旧cycle2例仅反例意图，法定负担输入拟补），现行降级/开放点以模块 doc 为准）|
+| 15 S2 | `analogy_preserves_judgment_under_full_conditions` | 全条件下类比保持判断 | 针名已闭合@UnifiedNeedlesS2.lean（原无锚，本波新建）| BOUND | changed-module run 38014714649 success| BOUND（UnifiedNeedlesS2 模块轮绿 run 38014714649）|
 | 16 S3 | `count_measure_event_exact` | 计数测度与事件精确对应 | 针名UNBOUND;锚`finite_distribution_to_pmf_apply`@Probability.lean:L183 | UNBOUND | — | PARTIAL |
 | 17 S3 | `rate_crossmul_iff_rat_le` | 比率交叉相乘等价 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
 | 18 S3 | `beta_posterior_from_likelihood` | Beta后验来自似然 | `beta_posterior_from_likelihood`@Probability.lean:L289(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L289 | PARTIAL（I.13:同basename实际只有有理权重归一，真实Beta密度似然拟补） |
 | 19 S3 | `equal_rate_different_posterior` | 同比率不同后验 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
 | 20 S3 | `beta_cdf_rat_cast` | Beta CDF有理转换 | 针名UNBOUND;锚`beta_predictive_bracket_survives_update`@Probability.lean:L311 | UNBOUND | — | PARTIAL |
 | 21 S3 | `beta_quantile_enclosure` | Beta分位数括界 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
-| 22 S3 | `beta_interval_posterior_mass` | Beta区间后验质量 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
-| 23 S3 | `selection_transport_from_shared_mechanism` | 共享机制的选择传输 | `selection_transport_from_shared_mechanism`@Probability.lean:L345(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L345 | PARTIAL（I.13:同basename仅嵌套条件化，共享机制+选择消因子拟补） |
-| 24 S3 | `posterior_predictive_legal_target` | 后验预测法律目标 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
-| 25 S3 | `exact_amount_denotation` | 精确金额指称 | `exact_amount_denotation`@Probability.lean:L401(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L401 | PARTIAL（I.13:同basename只是读取exactAmountQ，数量AST结构归纳拟补） |
-| 26 S3 | `rounding_matches_rule` | 舍入符合规则 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
-| 27 S4 | `legal_outcome_law_preserved` | 法律结果分布保持 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
-| 28 S4 | `legal_payoff_preserved` | 法律收益保持 | `legal_payoff_preserved`@PayoffEquilibrium.lean:L224(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L224 | PARTIAL（I.13:仅固定法律status同余，现金流/成本/偏好编码保持拟补） |
-| 29 S4 | `external_equilibrium_reflects_legal` | 外部均衡反映法律约束 | `external_equilibrium_reflects_legal`@PayoffEquilibrium.lean:L320(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L320 | PARTIAL（I.13:仅两玩家有理纯策略ε+2η，任意有限玩家/混合拟补） |
-| 30 S4 | `finite_legal_mixed_equilibrium_exists` | 有限法律混合均衡存在 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
-| 31 S4 | `payoff_error_yields_two_eta_equilibrium` | 收益误差导出2η均衡 | 针名UNBOUND;锚`dev_gain_two_eta`@PayoffEquilibrium.lean:L303 | UNBOUND | — | PARTIAL |
-| 32 S5 | `judgment_step_refines_frozen_T` | 裁判步细化冻结T | 针名UNBOUND;锚`projection_of_append_matches_step`@InstitutionalEffects.lean:L414 | UNBOUND | — | PARTIAL |
-| 33 S5 | `confirmatory_preserves_R` | 确认性裁判保持实体关系R | 针名UNBOUND;锚`next_declaratory_is_identity`@InstitutionalEffects.lean:L400 | UNBOUND | — | PARTIAL |
-| 34 S5 | `judgment_R_change_requires_formative` | R改变须经形成裁判 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
-| 35 S5 | `formative_preserves_common_constraints` | 形成裁判保持共同约束 | 针名UNBOUND;锚`effective_next_formative_iff`@InstitutionalEffects.lean:L450 | UNBOUND | — | PARTIAL |
-| 36 S5 | `distinct_payload_effect_witness` | 不同载荷效果见证 | 针名UNBOUND;锚`ledger_can_express_termination`@InstitutionalEffects.lean:L495 | UNBOUND | — | PARTIAL |
-| 37 S5 | `actual_payment_discharge_exact` | 实际支付精确消灭债务 | 针名UNBOUND;锚`performStep_conservation`@InstitutionalEffects.lean:L565 | UNBOUND | — | PARTIAL |
-| 38 S6 | `each_event_preserves_legal_invariants` | 逐事件保持法律不变量 | 针名UNBOUND;锚`coreStep_preserves_admissible`@FullProcess.lean:L357 | UNBOUND | — | PARTIAL |
-| 39 S6 | `finite_trace_preserves_legal_invariants` | 有限轨迹保持法律不变量 | `finite_trace_preserves_legal_invariants`@FullProcess.lean:L470(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L470 | PARTIAL（I.13:旧域排除规范回流等，全部承诺事件前缀归纳拟补） |
-| 40 S6 | `trace_concatenation_iff` | 轨迹拼接当且仅当共享中间态 | 针名UNBOUND;锚`runTrace_append`@FullProcess.lean:L276 | UNBOUND | — | PARTIAL |
-| 41 S6 | `receipt_has_semantic_derivation` | 回执有语义推导 | `receipt_has_semantic_derivation`@FullProcess.lean:L874(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L874 | PARTIAL（I.13:仅空初账+旧fullDomain事件出处，初态来源合同拟补） |
-| 42 S6 | `nontrivial_legal_trace_exists` | 非平凡法律轨迹存在 | 针名UNBOUND;锚`trace_performs_and_keeps_history`@FullProcess.lean:L1304 | UNBOUND | — | PARTIAL |
-| 43 S7 | `stat_update_conservative_for_fixed_legal_context` | 固定法律语境统计更新保守 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
-| 44 S7 | `precedent_update_preserves_norm_structure` | 判例更新保持规范结构 | `precedent_update_preserves_norm_structure`@PrecedentFlow.lean:L443(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L443 | PARTIAL（I.13:已有版本结构保持，真实规范内容及消费拟补） |
-| 45 S7 | `feedback_preserves_target_model_when_conditions_hold` | 条件成立时反馈保持目标模型 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
-| 46 S7 | `empirical_frequency_not_binding_source` | 经验频率不是有约束力法源 | 针名UNBOUND;锚`unauthorized_output_is_not_a_norm`@PrecedentFlow.lean:L792 | UNBOUND | — | PARTIAL |
-| 47 S7 | `feedback_need_not_converge` | 反馈不必收敛 | `feedback_need_not_converge`@PrecedentFlow.lean:L705(theorem) | UNBOUND | run 37294030205(a0389cf)cert L705 | BOUND |
-| 48 XT | `legal_time_nonanticipation` | 法律时间非预期性 | `legal_time_nonanticipation`@Temporal.lean:L159(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L159 | PARTIAL（I.13:只trunc前缀等式，逐规则使用点lawView证明拟补） |
-| 49 XT | `late_evidence_preserves_ontic_state` | 迟到证据保持本体状态 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
-| 50 XT | `temporal_observations_preserved` | 时间观察保持 | 针名UNBOUND;锚`addDays_commutes_with_embedding`@Temporal.lean:L399 | UNBOUND | — | PARTIAL |
-| 51 XT | `past_applicability_without_retroactivity` | 过去适用且无追溯 | 针名UNBOUND;锚`update_does_not_reach_before_effective_from`@PrecedentFlow.lean:L867 | UNBOUND | — | PARTIAL |
-| 52 XT | `independent_events_commute` | 独立事件可交换 | 针名UNBOUND;锚`late_insert_changes_noncommutative`@Temporal.lean:L342 | UNBOUND | — | PARTIAL |
+| 22 S3 | `beta_interval_posterior_mass` | Beta区间后验质量 | 针名已闭合@UnifiedNeedlesS3b.lean（原无锚，本波新建）| BOUND | changed-module run 38011043954 success| BOUND（UnifiedNeedlesS3b 模块轮绿 run 38011043954）|
+| 23 S3 | `selection_transport_from_shared_mechanism` | 共享机制的选择传输 | `selection_transport_from_shared_mechanism`@Probability.lean:L345(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L345；changed-module run 38011043954 success| BOUND（UnifiedNeedlesS3b 模块轮绿 run 38011043954；历史缺口注记（I.13:同basename仅嵌套条件化，共享机制+选择消因子拟补），现行降级/开放点以模块 doc 为准）|
+| 24 S3 | `posterior_predictive_legal_target` | 后验预测法律目标 | 针名已闭合@UnifiedNeedlesS3b.lean（原无锚，本波新建）| BOUND | changed-module run 38011043954 success| BOUND（UnifiedNeedlesS3b 模块轮绿 run 38011043954）|
+| 25 S3 | `exact_amount_denotation` | 精确金额指称 | `exact_amount_denotation`@Probability.lean:L401(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L401；changed-module run 38011043954 success| BOUND（UnifiedNeedlesS3b 模块轮绿 run 38011043954；历史缺口注记（I.13:同basename只是读取exactAmountQ，数量AST结构归纳拟补），现行降级/开放点以模块 doc 为准）|
+| 26 S3 | `rounding_matches_rule` | 舍入符合规则 | 针名已闭合@UnifiedNeedlesS3b.lean（原无锚，本波新建）| BOUND | changed-module run 38011043954 success| BOUND（UnifiedNeedlesS3b 模块轮绿 run 38011043954）|
+| 27 S4 | `legal_outcome_law_preserved` | 法律结果分布保持 | 针名已闭合@UnifiedNeedlesS4.lean（原无锚，本波新建）| BOUND | changed-module run 38015261120 success| BOUND（UnifiedNeedlesS4 模块轮绿 run 38015261120）|
+| 28 S4 | `legal_payoff_preserved` | 法律收益保持 | `legal_payoff_preserved`@PayoffEquilibrium.lean:L224(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L224；changed-module run 38015261120 success| BOUND（UnifiedNeedlesS4 模块轮绿 run 38015261120；历史缺口注记（I.13:仅固定法律status同余，现金流/成本/偏好编码保持拟补），现行降级/开放点以模块 doc 为准）|
+| 29 S4 | `external_equilibrium_reflects_legal` | 外部均衡反映法律约束 | `external_equilibrium_reflects_legal`@PayoffEquilibrium.lean:L320(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L320；changed-module run 38015261120 success| BOUND（UnifiedNeedlesS4 模块轮绿 run 38015261120；历史缺口注记（I.13:仅两玩家有理纯策略ε+2η，任意有限玩家/混合拟补），现行降级/开放点以模块 doc 为准）|
+| 30 S4 | `finite_legal_mixed_equilibrium_exists` | 有限法律混合均衡存在 | 针名已闭合@UnifiedNeedlesS4.lean（原无锚，本波新建）| BOUND | changed-module run 38015261120 success| BOUND（UnifiedNeedlesS4 模块轮绿 run 38015261120）|
+| 31 S4 | `payoff_error_yields_two_eta_equilibrium` | 收益误差导出2η均衡 | 针名已闭合@UnifiedNeedlesS4.lean；;锚`dev_gain_two_eta`@PayoffEquilibrium.lean:L303| BOUND | changed-module run 38015261120 success| BOUND（UnifiedNeedlesS4 模块轮绿 run 38015261120；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 32 S5 | `judgment_step_refines_frozen_T` | 裁判步细化冻结T | 针名已闭合@UnifiedNeedlesS5.lean；;锚`projection_of_append_matches_step`@InstitutionalEffects.lean:L414| BOUND | changed-module run 38008834151 success| BOUND（UnifiedNeedlesS5 模块轮绿 run 38008834151；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 33 S5 | `confirmatory_preserves_R` | 确认性裁判保持实体关系R | 针名已闭合@UnifiedNeedlesS5.lean；;锚`next_declaratory_is_identity`@InstitutionalEffects.lean:L400| BOUND | changed-module run 38008834151 success| BOUND（UnifiedNeedlesS5 模块轮绿 run 38008834151；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 34 S5 | `judgment_R_change_requires_formative` | R改变须经形成裁判 | 针名已闭合@UnifiedNeedlesS5.lean（原无锚，本波新建）| BOUND | changed-module run 38008834151 success| BOUND（UnifiedNeedlesS5 模块轮绿 run 38008834151）|
+| 35 S5 | `formative_preserves_common_constraints` | 形成裁判保持共同约束 | 针名已闭合@UnifiedNeedlesS5.lean；;锚`effective_next_formative_iff`@InstitutionalEffects.lean:L450| BOUND | changed-module run 38008834151 success| BOUND（UnifiedNeedlesS5 模块轮绿 run 38008834151；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 36 S5 | `distinct_payload_effect_witness` | 不同载荷效果见证 | 针名已闭合@UnifiedNeedlesS5.lean；;锚`ledger_can_express_termination`@InstitutionalEffects.lean:L495| BOUND | changed-module run 38008834151 success| BOUND（UnifiedNeedlesS5 模块轮绿 run 38008834151；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 37 S5 | `actual_payment_discharge_exact` | 实际支付精确消灭债务 | 针名已闭合@UnifiedNeedlesS5.lean；;锚`performStep_conservation`@InstitutionalEffects.lean:L565| BOUND | changed-module run 38008834151 success| BOUND（UnifiedNeedlesS5 模块轮绿 run 38008834151；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 38 S6 | `each_event_preserves_legal_invariants` | 逐事件保持法律不变量 | 针名已闭合@UnifiedNeedlesS6S7.lean；;锚`coreStep_preserves_admissible`@FullProcess.lean:L357| BOUND | changed-module run 38013046496 success| BOUND（UnifiedNeedlesS6S7 模块轮绿 run 38013046496；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 39 S6 | `finite_trace_preserves_legal_invariants` | 有限轨迹保持法律不变量 | `finite_trace_preserves_legal_invariants`@FullProcess.lean:L470(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L470；changed-module run 38013046496 success| BOUND（UnifiedNeedlesS6S7 模块轮绿 run 38013046496；历史缺口注记（I.13:旧域排除规范回流等，全部承诺事件前缀归纳拟补），现行降级/开放点以模块 doc 为准）|
+| 40 S6 | `trace_concatenation_iff` | 轨迹拼接当且仅当共享中间态 | 针名已闭合@UnifiedNeedlesS6S7.lean；;锚`runTrace_append`@FullProcess.lean:L276| BOUND | changed-module run 38013046496 success| BOUND（UnifiedNeedlesS6S7 模块轮绿 run 38013046496；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 41 S6 | `receipt_has_semantic_derivation` | 回执有语义推导 | `receipt_has_semantic_derivation`@FullProcess.lean:L874(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L874；changed-module run 38013046496 success| BOUND（UnifiedNeedlesS6S7 模块轮绿 run 38013046496；历史缺口注记（I.13:仅空初账+旧fullDomain事件出处，初态来源合同拟补），现行降级/开放点以模块 doc 为准）|
+| 42 S6 | `nontrivial_legal_trace_exists` | 非平凡法律轨迹存在 | 针名已闭合@UnifiedNeedlesS6S7.lean；;锚`trace_performs_and_keeps_history`@FullProcess.lean:L1304| BOUND | changed-module run 38013046496 success| BOUND（UnifiedNeedlesS6S7 模块轮绿 run 38013046496；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 43 S7 | `stat_update_conservative_for_fixed_legal_context` | 固定法律语境统计更新保守 | 针名已闭合@UnifiedNeedlesS6S7.lean（原无锚，本波新建）| BOUND | changed-module run 38013046496 success| BOUND（UnifiedNeedlesS6S7 模块轮绿 run 38013046496）|
+| 44 S7 | `precedent_update_preserves_norm_structure` | 判例更新保持规范结构 | `precedent_update_preserves_norm_structure`@PrecedentFlow.lean:L443(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L443；changed-module run 38013046496 success| BOUND（UnifiedNeedlesS6S7 模块轮绿 run 38013046496；历史缺口注记（I.13:已有版本结构保持，真实规范内容及消费拟补），现行降级/开放点以模块 doc 为准）|
+| 45 S7 | `feedback_preserves_target_model_when_conditions_hold` | 条件成立时反馈保持目标模型 | 针名已闭合@UnifiedNeedlesS6S7.lean（原无锚，本波新建）| BOUND | changed-module run 38013046496 success| BOUND（UnifiedNeedlesS6S7 模块轮绿 run 38013046496）|
+| 46 S7 | `empirical_frequency_not_binding_source` | 经验频率不是有约束力法源 | 针名已闭合@UnifiedNeedlesS6S7.lean；;锚`unauthorized_output_is_not_a_norm`@PrecedentFlow.lean:L792| BOUND | changed-module run 38013046496 success| BOUND（UnifiedNeedlesS6S7 模块轮绿 run 38013046496；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 47 S7 | `feedback_need_not_converge` | 反馈不必收敛 | `feedback_need_not_converge`@PrecedentFlow.lean:L705(theorem) | BOUND | run 37294030205(a0389cf)cert L705；changed-module run 38013046496 success| BOUND |
+| 48 XT | `legal_time_nonanticipation` | 法律时间非预期性 | `legal_time_nonanticipation`@Temporal.lean:L159(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L159；changed-module run 38015835746 success| BOUND（UnifiedNeedlesXT 模块轮绿 run 38015835746；历史缺口注记（I.13:只trunc前缀等式，逐规则使用点lawView证明拟补），现行降级/开放点以模块 doc 为准）|
+| 49 XT | `late_evidence_preserves_ontic_state` | 迟到证据保持本体状态 | 针名已闭合@UnifiedNeedlesXT.lean（原无锚，本波新建）| BOUND | changed-module run 38015835746 success| BOUND（UnifiedNeedlesXT 模块轮绿 run 38015835746）|
+| 50 XT | `temporal_observations_preserved` | 时间观察保持 | 针名已闭合@UnifiedNeedlesXT.lean；;锚`addDays_commutes_with_embedding`@Temporal.lean:L399| BOUND | changed-module run 38015835746 success| BOUND（UnifiedNeedlesXT 模块轮绿 run 38015835746；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 51 XT | `past_applicability_without_retroactivity` | 过去适用且无追溯 | 针名已闭合@UnifiedNeedlesXT.lean；;锚`update_does_not_reach_before_effective_from`@PrecedentFlow.lean:L867| BOUND | changed-module run 38015835746 success| BOUND（UnifiedNeedlesXT 模块轮绿 run 38015835746；历史缺口注记，现行降级/开放点以模块 doc 为准）|
+| 52 XT | `independent_events_commute` | 独立事件可交换 | 针名已闭合@UnifiedNeedlesXT.lean；;锚`late_insert_changes_noncommutative`@Temporal.lean:L342| BOUND | changed-module run 38015835746 success| BOUND（UnifiedNeedlesXT 模块轮绿 run 38015835746；历史缺口注记，现行降级/开放点以模块 doc 为准）|
 | 53 XU | `finite_positive_support_truth_bridge` | 有限正支撑真值桥 | `finite_positive_support_truth_bridge`@Uncertainty.lean:L134(theorem) | UNBOUND | run 37294030205(a0389cf)cert L134 | BOUND |
 | 54 XU | `ae_truth_not_universal_truth` | 几乎处处真不等于全称真 | 针名UNBOUND;锚`bridge_fails_without_support_finiteness`@Uncertainty.lean:L249 | UNBOUND | — | PARTIAL |
 | 55 XU | `conjunction_probability_bounds` | 合取概率界 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
@@ -308,7 +308,7 @@
 | 57 XU | `conditioned_contamination_bound` | 条件化后污染界 | UNBOUND(锚:无) | UNBOUND | — | UNBOUND |
 | 58 XU | `nn_interval_certificate_sound` | 神经网络区间证书健全 | 针名UNBOUND;锚`nn_interval_certificate_sound_of_two_inputs_two_hidden_one_output`@Uncertainty.lean:L604 | UNBOUND | — | PARTIAL |
 | 59 XU | `observational_ambiguity_preserved` | 观察歧义保持 | 针名UNBOUND;锚`uncertainty_allowed_non_singleton_with_singleton_kernel`@Uncertainty.lean:L763 | UNBOUND | — | PARTIAL |
-| 60 总 | `unified_legal_derivation_on_declared_fragment` | 声明片段上统一法律推导 | `unified_legal_derivation_on_declared_fragment`@Unified.lean:L259(theorem)（同名弱式） | UNBOUND | run 37294030205(a0389cf)cert L259 | PARTIAL（I.13:旧固定实例合取不能兑现新合同） |
+| 60 总 | `unified_legal_derivation_on_declared_fragment` | 声明片段上统一法律推导 | `unified_legal_derivation_on_declared_fragment`@Unified.lean:L259(theorem)（同名弱式） | BOUND | run 37294030205(a0389cf)cert L259；changed-module run 38016648718 success| BOUND（UnifiedNeedlesTotal 模块轮绿 run 38016648718；历史缺口注记（I.13:旧固定实例合取不能兑现新合同），现行降级/开放点以模块 doc 为准）|
 
 小计：BOUND 2，PARTIAL 42，UNBOUND 16（共 60 行）。
 

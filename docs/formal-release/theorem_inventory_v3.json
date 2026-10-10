@@ -559,11 +559,14 @@
     "JurisLean.Seams.UnifiedAnalysis",
     "JurisLean.Seams.UnifiedArgumentation",
     "JurisLean.Seams.UnifiedBeta",
+    "JurisLean.Seams.UnifiedBetaDomain",
     "JurisLean.Seams.UnifiedCAD",
     "JurisLean.Seams.UnifiedCAD2",
+    "JurisLean.Seams.UnifiedCADCore",
     "JurisLean.Seams.UnifiedComposition",
     "JurisLean.Seams.UnifiedEvents",
     "JurisLean.Seams.UnifiedFinalization",
+    "JurisLean.Seams.UnifiedFourteenFamilies",
     "JurisLean.Seams.UnifiedGuards",
     "JurisLean.Seams.UnifiedHornIT",
     "JurisLean.Seams.UnifiedInstance",
@@ -583,6 +586,7 @@
     "JurisLean.Seams.UnifiedQuantities",
     "JurisLean.Seams.UnifiedSemantics",
     "JurisLean.Seams.UnifiedSummary",
+    "JurisLean.Seams.UnifiedTrajectory",
     "JurisLean.Seams.UnifiedUtility",
     "JurisLean.TaintNoninterference",
     "JurisLean.ULMAxiomAudit",
@@ -2476,6 +2480,75 @@
     "JurisLean.Seams.UnifiedBeta.refN_width",
     "JurisLean.Seams.UnifiedBeta.strict_comparison_eventually_found",
     "JurisLean.Seams.UnifiedBeta.width_nonneg",
+    "JurisLean.Seams.UnifiedBetaDomain.Mb_le",
+    "JurisLean.Seams.UnifiedBetaDomain.bernCdf_continuous",
+    "JurisLean.Seams.UnifiedBetaDomain.bernCdf_deriv",
+    "JurisLean.Seams.UnifiedBetaDomain.bernCdf_eq_integral",
+    "JurisLean.Seams.UnifiedBetaDomain.bernCdf_eq_normed",
+    "JurisLean.Seams.UnifiedBetaDomain.bernCdf_mixable",
+    "JurisLean.Seams.UnifiedBetaDomain.bernCdf_one",
+    "JurisLean.Seams.UnifiedBetaDomain.bernCdf_rat_cast",
+    "JurisLean.Seams.UnifiedBetaDomain.bernCdf_rat_comparable",
+    "JurisLean.Seams.UnifiedBetaDomain.bernCdf_strictMonoOn",
+    "JurisLean.Seams.UnifiedBetaDomain.bernCdf_zero",
+    "JurisLean.Seams.UnifiedBetaDomain.betaB_lower",
+    "JurisLean.Seams.UnifiedBetaDomain.betaB_pos",
+    "JurisLean.Seams.UnifiedBetaDomain.cdfEnc_real",
+    "JurisLean.Seams.UnifiedBetaDomain.cdfEnc_width",
+    "JurisLean.Seams.UnifiedBetaDomain.cdfWidthFromRho",
+    "JurisLean.Seams.UnifiedBetaDomain.choose_mul_left",
+    "JurisLean.Seams.UnifiedBetaDomain.choose_mul_right",
+    "JurisLean.Seams.UnifiedBetaDomain.component_quantile_average_counterexample",
+    "JurisLean.Seams.UnifiedBetaDomain.div_mem_enclosure",
+    "JurisLean.Seams.UnifiedBetaDomain.exists_grid_N",
+    "JurisLean.Seams.UnifiedBetaDomain.exists_precision_schedule",
+    "JurisLean.Seams.UnifiedBetaDomain.exists_tail_budget",
+    "JurisLean.Seams.UnifiedBetaDomain.halfCdf11_deriv",
+    "JurisLean.Seams.UnifiedBetaDomain.halfCdf11_one",
+    "JurisLean.Seams.UnifiedBetaDomain.halfCdf11_zero",
+    "JurisLean.Seams.UnifiedBetaDomain.halfCdf12_deriv",
+    "JurisLean.Seams.UnifiedBetaDomain.halfCdf12_one",
+    "JurisLean.Seams.UnifiedBetaDomain.halfCdf12_zero",
+    "JurisLean.Seams.UnifiedBetaDomain.halfCdf21_deriv",
+    "JurisLean.Seams.UnifiedBetaDomain.halfCdf21_one",
+    "JurisLean.Seams.UnifiedBetaDomain.halfCdf21_zero",
+    "JurisLean.Seams.UnifiedBetaDomain.halfCdf22_deriv",
+    "JurisLean.Seams.UnifiedBetaDomain.halfCdf22_enclosure_from_half",
+    "JurisLean.Seams.UnifiedBetaDomain.halfCdf22_one",
+    "JurisLean.Seams.UnifiedBetaDomain.halfCdf22_symm",
+    "JurisLean.Seams.UnifiedBetaDomain.halfCdf22_zero",
+    "JurisLean.Seams.UnifiedBetaDomain.halfColInt",
+    "JurisLean.Seams.UnifiedBetaDomain.halfConst12",
+    "JurisLean.Seams.UnifiedBetaDomain.halfConst21",
+    "JurisLean.Seams.UnifiedBetaDomain.halfConst22",
+    "JurisLean.Seams.UnifiedBetaDomain.halfDens22_integrable",
+    "JurisLean.Seams.UnifiedBetaDomain.half_pow_le_one",
+    "JurisLean.Seams.UnifiedBetaDomain.hasDerivAt_betaDens",
+    "JurisLean.Seams.UnifiedBetaDomain.hasDerivAt_oneSubTmSqrt",
+    "JurisLean.Seams.UnifiedBetaDomain.hasDerivAt_tnSqrt",
+    "JurisLean.Seams.UnifiedBetaDomain.leftTailFlatBoundCounterexample",
+    "JurisLean.Seams.UnifiedBetaDomain.leftTail_aux",
+    "JurisLean.Seams.UnifiedBetaDomain.leftTail_ge1",
+    "JurisLean.Seams.UnifiedBetaDomain.leftTail_lt1",
+    "JurisLean.Seams.UnifiedBetaDomain.mbound_le",
+    "JurisLean.Seams.UnifiedBetaDomain.mixture_continuous",
+    "JurisLean.Seams.UnifiedBetaDomain.mixture_endpoints",
+    "JurisLean.Seams.UnifiedBetaDomain.mixture_mono",
+    "JurisLean.Seams.UnifiedBetaDomain.mixture_quantile_unique",
+    "JurisLean.Seams.UnifiedBetaDomain.mixture_strictMonoOn",
+    "JurisLean.Seams.UnifiedBetaDomain.one_div_le_one_div'",
+    "JurisLean.Seams.UnifiedBetaDomain.pi_rat_enclosure_trivial",
+    "JurisLean.Seams.UnifiedBetaDomain.quotientWidth",
+    "JurisLean.Seams.UnifiedBetaDomain.recursion_ibp_half",
+    "JurisLean.Seams.UnifiedBetaDomain.recursion_ibp_nat",
+    "JurisLean.Seams.UnifiedBetaDomain.recursion_sum",
+    "JurisLean.Seams.UnifiedBetaDomain.rightInnerExact",
+    "JurisLean.Seams.UnifiedBetaDomain.rightTail_aux",
+    "JurisLean.Seams.UnifiedBetaDomain.rightTail_ge1",
+    "JurisLean.Seams.UnifiedBetaDomain.rightTail_lt1",
+    "JurisLean.Seams.UnifiedBetaDomain.rpow_le_Mbound",
+    "JurisLean.Seams.UnifiedBetaDomain.rpow_neg_half_eq_inv_sqrt",
+    "JurisLean.Seams.UnifiedBetaDomain.tailBudgetAt",
     "JurisLean.Seams.UnifiedCAD.buildCAD2_accepted",
     "JurisLean.Seams.UnifiedCAD.buildCAD2_total",
     "JurisLean.Seams.UnifiedCAD.checkCAD2_a",
@@ -2495,6 +2568,53 @@
     "JurisLean.Seams.UnifiedCAD2.CAD2_proj_sound",
     "JurisLean.Seams.UnifiedCAD2.CAD2_sys_proj_incomplete",
     "JurisLean.Seams.UnifiedCAD2.CAD2_sys_proj_sound",
+    "JurisLean.Seams.UnifiedCADCore.AlgMeaning_subsingleton",
+    "JurisLean.Seams.UnifiedCADCore.algEval_X2_sub_2",
+    "JurisLean.Seams.UnifiedCADCore.algRealSqrt2_bounds",
+    "JurisLean.Seams.UnifiedCADCore.algRealSqrt2_denote_eq",
+    "JurisLean.Seams.UnifiedCADCore.algRealSqrt2_validity",
+    "JurisLean.Seams.UnifiedCADCore.checkRootCert_const",
+    "JurisLean.Seams.UnifiedCADCore.checkRootCert_const_sound",
+    "JurisLean.Seams.UnifiedCADCore.checkRootCert_double_root",
+    "JurisLean.Seams.UnifiedCADCore.checkRootCert_mult_exact",
+    "JurisLean.Seams.UnifiedCADCore.checkRootCert_sound",
+    "JurisLean.Seams.UnifiedCADCore.cmp_translation_sound",
+    "JurisLean.Seams.UnifiedCADCore.degree_drop",
+    "JurisLean.Seams.UnifiedCADCore.div_mul_eq_zero_iff",
+    "JurisLean.Seams.UnifiedCADCore.div_mul_le_zero_iff",
+    "JurisLean.Seams.UnifiedCADCore.div_mul_lt_zero_iff",
+    "JurisLean.Seams.UnifiedCADCore.div_translation_sound",
+    "JurisLean.Seams.UnifiedCADCore.double_root_chain",
+    "JurisLean.Seams.UnifiedCADCore.entries_r_nodup",
+    "JurisLean.Seams.UnifiedCADCore.eq_iff_sub_eq_zero",
+    "JurisLean.Seams.UnifiedCADCore.eval₂_X_castSucc",
+    "JurisLean.Seams.UnifiedCADCore.eval₂_X_last",
+    "JurisLean.Seams.UnifiedCADCore.failed_is_not_formula_false",
+    "JurisLean.Seams.UnifiedCADCore.isRRoot_C_smul",
+    "JurisLean.Seams.UnifiedCADCore.isrroot_iff_IsRoot",
+    "JurisLean.Seams.UnifiedCADCore.le_iff_sub_le_zero",
+    "JurisLean.Seams.UnifiedCADCore.lt_iff_sub_lt_zero",
+    "JurisLean.Seams.UnifiedCADCore.map_qToR_ne_zero",
+    "JurisLean.Seams.UnifiedCADCore.qToR_injective",
+    "JurisLean.Seams.UnifiedCADCore.qToR_two",
+    "JurisLean.Seams.UnifiedCADCore.qToR_zero",
+    "JurisLean.Seams.UnifiedCADCore.qsign_of_neg",
+    "JurisLean.Seams.UnifiedCADCore.qsign_of_pos",
+    "JurisLean.Seams.UnifiedCADCore.quantifier_order_matters",
+    "JurisLean.Seams.UnifiedCADCore.rmult_exact",
+    "JurisLean.Seams.UnifiedCADCore.sq_decomp_exists",
+    "JurisLean.Seams.UnifiedCADCore.sqfreeGcd_dvd",
+    "JurisLean.Seams.UnifiedCADCore.sqfreeGcd_ne_zero",
+    "JurisLean.Seams.UnifiedCADCore.sqfree_decomp_identity",
+    "JurisLean.Seams.UnifiedCADCore.translateAtom_sound",
+    "JurisLean.Seams.UnifiedCADCore.translate_div_ok",
+    "JurisLean.Seams.UnifiedCADCore.translate_sound",
+    "JurisLean.Seams.UnifiedCADCore.translate_zero_denom_fails",
+    "JurisLean.Seams.UnifiedCADCore.varCount_C",
+    "JurisLean.Seams.UnifiedCADCore.varCount_double_root",
+    "JurisLean.Seams.UnifiedCADCore.zero_poly_no_finite_root_list",
+    "JurisLean.Seams.UnifiedCADCore.zero_poly_rejected",
+    "JurisLean.Seams.UnifiedCADCore.zero_poly_universal_root",
     "JurisLean.Seams.UnifiedComposition.composite_exact",
     "JurisLean.Seams.UnifiedComposition.deriveInputs_allEstablished_iff",
     "JurisLean.Seams.UnifiedComposition.established_requires_admitted_premises",
@@ -2525,6 +2645,87 @@
     "JurisLean.Seams.UnifiedFinalization.witness_gap_is_not_undetermined_pose",
     "JurisLean.Seams.UnifiedFinalization.witness_not_ready",
     "JurisLean.Seams.UnifiedFinalization.witness_undetermined",
+    "JurisLean.Seams.UnifiedFourteenFamilies.adminDefectsEstablished_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.adminFinalDisposition_not_closure",
+    "JurisLean.Seams.UnifiedFourteenFamilies.all_rules_sources_in_force",
+    "JurisLean.Seams.UnifiedFourteenFamilies.arbitrationStayed_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.bankruptcyAccepted_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.bankruptcyCivilStay_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.bankruptcyExecutionStay_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.carDamageLiability_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.civil_not_criminal",
+    "JurisLean.Seams.UnifiedFourteenFamilies.corporateVeil_not_closure",
+    "JurisLean.Seams.UnifiedFourteenFamilies.dependentClaimFinal_not_closure",
+    "JurisLean.Seams.UnifiedFourteenFamilies.ecoRemediationCosts_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.ecoViolationEstablished_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.execution_effect_not_correctness",
+    "JurisLean.Seams.UnifiedFourteenFamilies.executoryEffectKept_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.exemptionBurdenOnCarrier_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.famToFin_injective",
+    "JurisLean.Seams.UnifiedFourteenFamilies.family_horn_deriv_sound",
+    "JurisLean.Seams.UnifiedFourteenFamilies.family_prov_sound",
+    "JurisLean.Seams.UnifiedFourteenFamilies.fault_presumed_not_all_awarded",
+    "JurisLean.Seams.UnifiedFourteenFamilies.fishPrivateCompensation_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.fraudConviction_not_closure",
+    "JurisLean.Seams.UnifiedFourteenFamilies.gEnforcementAfterExhaustion_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.guarantorStanding_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.holdOnDependentClaim_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.holdOnLoanFinal_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.inBad",
+    "JurisLean.Seams.UnifiedFourteenFamilies.initial_bad_disjoint",
+    "JurisLean.Seams.UnifiedFourteenFamilies.ipOrdinaryInfringement_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.ipPunitive_not_closure",
+    "JurisLean.Seams.UnifiedFourteenFamilies.isModel_avoiding",
+    "JurisLean.Seams.UnifiedFourteenFamilies.joint_debt_fails_guarantee_stands",
+    "JurisLean.Seams.UnifiedFourteenFamilies.loanEntitlement_ltag",
+    "JurisLean.Seams.UnifiedFourteenFamilies.loanEntitlement_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.loanEntitlement_prov",
+    "JurisLean.Seams.UnifiedFourteenFamilies.loanFinalDecree_not_closure",
+    "JurisLean.Seams.UnifiedFourteenFamilies.loanProvSet_settlement_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.loan_cited_declared",
+    "JurisLean.Seams.UnifiedFourteenFamilies.loan_cited_nonempty",
+    "JurisLean.Seams.UnifiedFourteenFamilies.loan_sources_trace",
+    "JurisLean.Seams.UnifiedFourteenFamilies.ltagN_declared",
+    "JurisLean.Seams.UnifiedFourteenFamilies.ltagN_mem_closure",
+    "JurisLean.Seams.UnifiedFourteenFamilies.maritimeCarrierLiability_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.matCl",
+    "JurisLean.Seams.UnifiedFourteenFamilies.matSrcOf_self",
+    "JurisLean.Seams.UnifiedFourteenFamilies.medicalAddedDamage_not_closure",
+    "JurisLean.Seams.UnifiedFourteenFamilies.medicalFaultPresumed_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.memByRule",
+    "JurisLean.Seams.UnifiedFourteenFamilies.mortgageSecuredPriority_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.noComminglingProven_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.no_double_debt",
+    "JurisLean.Seams.UnifiedFourteenFamilies.not_in_closure_of_bad",
+    "JurisLean.Seams.UnifiedFourteenFamilies.overtimeClaim_not_closure",
+    "JurisLean.Seams.UnifiedFourteenFamilies.premiseInitEnt",
+    "JurisLean.Seams.UnifiedFourteenFamilies.publicInterestStanding_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.remoteProfit_not_closure",
+    "JurisLean.Seams.UnifiedFourteenFamilies.retrialAdmitted_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.rule_concl_avoid_bad",
+    "JurisLean.Seams.UnifiedFourteenFamilies.rule_concl_not_failureish",
+    "JurisLean.Seams.UnifiedFourteenFamilies.rule_horn_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.shortfall_positive",
+    "JurisLean.Seams.UnifiedFourteenFamilies.spousalJointDebt_not_closure",
+    "JurisLean.Seams.UnifiedFourteenFamilies.stayDecreeIssued_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.stayForSuccession_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.stay_coexists_with_entitlement",
+    "JurisLean.Seams.UnifiedFourteenFamilies.wageBankruptcyPriority_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.wageDueEstablished_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.witness_admin_branch_open",
+    "JurisLean.Seams.UnifiedFourteenFamilies.witness_completeness_ok",
+    "JurisLean.Seams.UnifiedFourteenFamilies.witness_entitlement_not_finality",
+    "JurisLean.Seams.UnifiedFourteenFamilies.witness_established_ok",
+    "JurisLean.Seams.UnifiedFourteenFamilies.witness_forums_separate",
+    "JurisLean.Seams.UnifiedFourteenFamilies.witness_joint_evaluation",
+    "JurisLean.Seams.UnifiedFourteenFamilies.witness_model",
+    "JurisLean.Seams.UnifiedFourteenFamilies.witness_not_established_ok",
+    "JurisLean.Seams.UnifiedFourteenFamilies.witness_pending_ok",
+    "JurisLean.Seams.UnifiedFourteenFamilies.witness_procedural_ok",
+    "JurisLean.Seams.UnifiedFourteenFamilies.witness_shortfall_ok",
+    "JurisLean.Seams.UnifiedFourteenFamilies.witness_stages_not_shared",
+    "JurisLean.Seams.UnifiedFourteenFamilies.xDamageCompensation_mem",
+    "JurisLean.Seams.UnifiedFourteenFamilies.xReturnDue_mem",
     "JurisLean.Seams.UnifiedGuards.atom_eq_iff",
     "JurisLean.Seams.UnifiedGuards.atom_eq_of_scope_change",
     "JurisLean.Seams.UnifiedGuards.atom_mem_perimeter_iff",
@@ -2851,6 +3052,34 @@
     "JurisLean.Seams.UnifiedSummary.summs_cons_iff",
     "JurisLean.Seams.UnifiedSummary.summs_cons_of",
     "JurisLean.Seams.UnifiedSummary.summs_nil",
+    "JurisLean.Seams.UnifiedTrajectory.compProd_projection",
+    "JurisLean.Seams.UnifiedTrajectory.condDistrib_boundary",
+    "JurisLean.Seams.UnifiedTrajectory.condDistrib_boundary_stateFull",
+    "JurisLean.Seams.UnifiedTrajectory.condDistrib_boundary_stateP",
+    "JurisLean.Seams.UnifiedTrajectory.disc_standardBorel",
+    "JurisLean.Seams.UnifiedTrajectory.disc_target_satisfies",
+    "JurisLean.Seams.UnifiedTrajectory.enc_injective",
+    "JurisLean.Seams.UnifiedTrajectory.isProbabilityMeasure_weightedDirac",
+    "JurisLean.Seams.UnifiedTrajectory.legalChain_row_probability",
+    "JurisLean.Seams.UnifiedTrajectory.legal_prefix_joint",
+    "JurisLean.Seams.UnifiedTrajectory.legal_prefix_projection",
+    "JurisLean.Seams.UnifiedTrajectory.measurable_discSucc",
+    "JurisLean.Seams.UnifiedTrajectory.measurable_next",
+    "JurisLean.Seams.UnifiedTrajectory.measurable_nextP",
+    "JurisLean.Seams.UnifiedTrajectory.measurable_obs",
+    "JurisLean.Seams.UnifiedTrajectory.measurable_paramStep",
+    "JurisLean.Seams.UnifiedTrajectory.measurable_policy",
+    "JurisLean.Seams.UnifiedTrajectory.measurable_policy_apply",
+    "JurisLean.Seams.UnifiedTrajectory.measurable_step",
+    "JurisLean.Seams.UnifiedTrajectory.measurable_stepOn",
+    "JurisLean.Seams.UnifiedTrajectory.nonempty_empty_target",
+    "JurisLean.Seams.UnifiedTrajectory.param_standardBorel",
+    "JurisLean.Seams.UnifiedTrajectory.param_target_satisfies",
+    "JurisLean.Seams.UnifiedTrajectory.prefix_iterate_compose",
+    "JurisLean.Seams.UnifiedTrajectory.stateP_standardBorel",
+    "JurisLean.Seams.UnifiedTrajectory.traj_markov_property",
+    "JurisLean.Seams.UnifiedTrajectory.traj_prefix_value",
+    "JurisLean.Seams.UnifiedTrajectory.traj_unique_prefix",
     "JurisLean.Seams.UnifiedUtility.case_regret_bound",
     "JurisLean.Seams.UnifiedUtility.equilibrium_does_not_assert_occurrence",
     "JurisLean.Seams.UnifiedUtility.maxQ_le",
@@ -3350,8 +3579,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "a0bcff967998d006f8d90827afd58a1a7048e73b9c30ac36db5f850db41907c9",
-   "size_bytes": 195018,
+   "sha256": "031ac6f3cbcd0aec351c7022b5304ed27ef4a1ad2dec5ac43d1e24e435c6657b",
+   "size_bytes": 210866,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -29823,6 +30052,342 @@
   {
    "declarations": [
     {
+     "kind": "theorem",
+     "name": "one_div_le_one_div'"
+    },
+    {
+     "kind": "theorem",
+     "name": "half_pow_le_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "rpow_neg_half_eq_inv_sqrt"
+    },
+    {
+     "kind": "theorem",
+     "name": "choose_mul_left"
+    },
+    {
+     "kind": "theorem",
+     "name": "choose_mul_right"
+    },
+    {
+     "kind": "def",
+     "name": "bernCdf"
+    },
+    {
+     "kind": "theorem",
+     "name": "bernCdf_continuous"
+    },
+    {
+     "kind": "theorem",
+     "name": "bernCdf_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "bernCdf_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "bernCdf_deriv"
+    },
+    {
+     "kind": "theorem",
+     "name": "bernCdf_eq_integral"
+    },
+    {
+     "kind": "theorem",
+     "name": "bernCdf_eq_normed"
+    },
+    {
+     "kind": "theorem",
+     "name": "bernCdf_strictMonoOn"
+    },
+    {
+     "kind": "def",
+     "name": "ratBernCdf"
+    },
+    {
+     "kind": "theorem",
+     "name": "bernCdf_rat_cast"
+    },
+    {
+     "kind": "theorem",
+     "name": "bernCdf_rat_comparable"
+    },
+    {
+     "kind": "theorem",
+     "name": "bernCdf_mixable"
+    },
+    {
+     "kind": "def",
+     "name": "halfCdf11"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfCdf11_deriv"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfCdf12_deriv"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfCdf21_deriv"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfCdf22_deriv"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfCdf11_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfCdf11_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfCdf12_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfCdf12_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfCdf21_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfCdf21_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfCdf22_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfCdf22_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfConst12"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfConst21"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfDens22_integrable"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfConst22"
+    },
+    {
+     "kind": "theorem",
+     "name": "recursion_sum"
+    },
+    {
+     "kind": "theorem",
+     "name": "recursion_ibp_nat"
+    },
+    {
+     "kind": "theorem",
+     "name": "hasDerivAt_tnSqrt"
+    },
+    {
+     "kind": "theorem",
+     "name": "hasDerivAt_oneSubTmSqrt"
+    },
+    {
+     "kind": "theorem",
+     "name": "recursion_ibp_half"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfColInt"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfCdf22_symm"
+    },
+    {
+     "kind": "def",
+     "name": "PiRatEnclosureInput"
+    },
+    {
+     "kind": "theorem",
+     "name": "pi_rat_enclosure_trivial"
+    },
+    {
+     "kind": "def",
+     "name": "AsinRatEnclosureInput"
+    },
+    {
+     "kind": "theorem",
+     "name": "halfCdf22_enclosure_from_half"
+    },
+    {
+     "kind": "theorem",
+     "name": "rpow_le_Mbound"
+    },
+    {
+     "kind": "theorem",
+     "name": "hasDerivAt_betaDens"
+    },
+    {
+     "kind": "theorem",
+     "name": "leftTail_aux"
+    },
+    {
+     "kind": "theorem",
+     "name": "leftTail_ge1"
+    },
+    {
+     "kind": "theorem",
+     "name": "leftTail_lt1"
+    },
+    {
+     "kind": "theorem",
+     "name": "rightInnerExact"
+    },
+    {
+     "kind": "theorem",
+     "name": "rightTail_aux"
+    },
+    {
+     "kind": "theorem",
+     "name": "rightTail_ge1"
+    },
+    {
+     "kind": "theorem",
+     "name": "rightTail_lt1"
+    },
+    {
+     "kind": "theorem",
+     "name": "leftTailFlatBoundCounterexample"
+    },
+    {
+     "kind": "theorem",
+     "name": "mbound_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "betaB_lower"
+    },
+    {
+     "kind": "theorem",
+     "name": "betaB_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "quotientWidth"
+    },
+    {
+     "kind": "theorem",
+     "name": "div_mem_enclosure"
+    },
+    {
+     "kind": "theorem",
+     "name": "cdfWidthFromRho"
+    },
+    {
+     "kind": "def",
+     "name": "RpowRatEnclosureInput"
+    },
+    {
+     "kind": "theorem",
+     "name": "exists_grid_N"
+    },
+    {
+     "kind": "theorem",
+     "name": "Mb_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "exists_tail_budget"
+    },
+    {
+     "kind": "theorem",
+     "name": "tailBudgetAt"
+    },
+    {
+     "kind": "theorem",
+     "name": "exists_precision_schedule"
+    },
+    {
+     "kind": "def",
+     "name": "mixtureCdf"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixture_continuous"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixture_endpoints"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixture_mono"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixture_strictMonoOn"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixture_quantile_unique"
+    },
+    {
+     "kind": "theorem",
+     "name": "component_quantile_average_counterexample"
+    },
+    {
+     "kind": "def",
+     "name": "cdfEnc"
+    },
+    {
+     "kind": "theorem",
+     "name": "cdfEnc_width"
+    },
+    {
+     "kind": "theorem",
+     "name": "cdfEnc_real"
+    }
+   ],
+   "imports": [
+    "JurisLean.Seams.UnifiedBeta",
+    "JurisLean.Seams.UnifiedNeedlesS3a",
+    "Mathlib.Analysis.Calculus.Deriv.Add",
+    "Mathlib.Analysis.Calculus.Deriv.Comp",
+    "Mathlib.Analysis.Calculus.Deriv.MeanValue",
+    "Mathlib.Analysis.Calculus.Deriv.Mul",
+    "Mathlib.Analysis.Calculus.Deriv.Pow",
+    "Mathlib.Analysis.Real.Pi.Bounds",
+    "Mathlib.Analysis.SpecialFunctions.Integrability.Basic",
+    "Mathlib.Analysis.SpecialFunctions.Integrals.Basic",
+    "Mathlib.Analysis.SpecialFunctions.Pow.Continuity",
+    "Mathlib.Analysis.SpecialFunctions.Pow.Deriv",
+    "Mathlib.Analysis.SpecialFunctions.Trigonometric.InverseDeriv",
+    "Mathlib.MeasureTheory.Integral.IntervalIntegral.FundThmCalculus",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedBetaDomain.lean",
+   "print_axioms_targets": [],
+   "sha256": "7b545eff1f5abb46e661d1f414efbb360b500d2689644feec86a3de41d98b763",
+   "size_bytes": 92698,
+   "theorem_count": 69,
+   "theorem_count_bol_convention": 69
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "Poly2"
     },
@@ -29971,6 +30536,396 @@
    "size_bytes": 8873,
    "theorem_count": 8,
    "theorem_count_bol_convention": 8
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "qToR_injective"
+    },
+    {
+     "kind": "theorem",
+     "name": "qToR_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "qToR_two"
+    },
+    {
+     "kind": "inductive",
+     "name": "CmpOp"
+    },
+    {
+     "kind": "def",
+     "name": "cmpRel"
+    },
+    {
+     "kind": "structure",
+     "name": "RAtom"
+    },
+    {
+     "kind": "inductive",
+     "name": "RealFormula"
+    },
+    {
+     "kind": "def",
+     "name": "polyDenote"
+    },
+    {
+     "kind": "def",
+     "name": "denoteAtom"
+    },
+    {
+     "kind": "def",
+     "name": "RealFormula.denote"
+    },
+    {
+     "kind": "theorem",
+     "name": "eval₂_X_castSucc"
+    },
+    {
+     "kind": "theorem",
+     "name": "eval₂_X_last"
+    },
+    {
+     "kind": "theorem",
+     "name": "quantifier_order_matters"
+    },
+    {
+     "kind": "def",
+     "name": "AlgEval"
+    },
+    {
+     "kind": "structure",
+     "name": "AlgRealCode"
+    },
+    {
+     "kind": "def",
+     "name": "AlgMeaning"
+    },
+    {
+     "kind": "def",
+     "name": "AlgRealCode.Validity"
+    },
+    {
+     "kind": "theorem",
+     "name": "AlgMeaning_subsingleton"
+    },
+    {
+     "kind": "def",
+     "name": "algRealSqrt2"
+    },
+    {
+     "kind": "theorem",
+     "name": "algEval_X2_sub_2"
+    },
+    {
+     "kind": "theorem",
+     "name": "algRealSqrt2_bounds"
+    },
+    {
+     "kind": "theorem",
+     "name": "algRealSqrt2_validity"
+    },
+    {
+     "kind": "theorem",
+     "name": "algRealSqrt2_denote_eq"
+    },
+    {
+     "kind": "inductive",
+     "name": "SrcExpr"
+    },
+    {
+     "kind": "def",
+     "name": "toPoly"
+    },
+    {
+     "kind": "def",
+     "name": "srcVal"
+    },
+    {
+     "kind": "inductive",
+     "name": "SrcAtom"
+    },
+    {
+     "kind": "def",
+     "name": "srcAtomSat"
+    },
+    {
+     "kind": "def",
+     "name": "srcAtomDefined"
+    },
+    {
+     "kind": "inductive",
+     "name": "TransResult"
+    },
+    {
+     "kind": "theorem",
+     "name": "div_mul_lt_zero_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "div_mul_le_zero_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "div_mul_eq_zero_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "eq_iff_sub_eq_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "lt_iff_sub_lt_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "le_iff_sub_le_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "cmp_translation_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "div_translation_sound"
+    },
+    {
+     "kind": "def",
+     "name": "translateAtom"
+    },
+    {
+     "kind": "theorem",
+     "name": "translate_zero_denom_fails"
+    },
+    {
+     "kind": "theorem",
+     "name": "translate_div_ok"
+    },
+    {
+     "kind": "theorem",
+     "name": "translateAtom_sound"
+    },
+    {
+     "kind": "inductive",
+     "name": "SrcFormula"
+    },
+    {
+     "kind": "def",
+     "name": "srcDenote"
+    },
+    {
+     "kind": "def",
+     "name": "bind2"
+    },
+    {
+     "kind": "def",
+     "name": "bind1"
+    },
+    {
+     "kind": "def",
+     "name": "translate"
+    },
+    {
+     "kind": "theorem",
+     "name": "translate_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "failed_is_not_formula_false"
+    },
+    {
+     "kind": "def",
+     "name": "reval"
+    },
+    {
+     "kind": "def",
+     "name": "IsRRoot"
+    },
+    {
+     "kind": "def",
+     "name": "rp"
+    },
+    {
+     "kind": "def",
+     "name": "rmult"
+    },
+    {
+     "kind": "theorem",
+     "name": "map_qToR_ne_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "isrroot_iff_IsRoot"
+    },
+    {
+     "kind": "def",
+     "name": "sqfreeGcd"
+    },
+    {
+     "kind": "def",
+     "name": "sqfreePart"
+    },
+    {
+     "kind": "theorem",
+     "name": "sqfreeGcd_dvd"
+    },
+    {
+     "kind": "theorem",
+     "name": "sqfreeGcd_ne_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "sqfree_decomp_identity"
+    },
+    {
+     "kind": "theorem",
+     "name": "sq_decomp_exists"
+    },
+    {
+     "kind": "theorem",
+     "name": "rmult_exact"
+    },
+    {
+     "kind": "def",
+     "name": "qsign"
+    },
+    {
+     "kind": "theorem",
+     "name": "qsign_of_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "qsign_of_neg"
+    },
+    {
+     "kind": "def",
+     "name": "signVariations"
+    },
+    {
+     "kind": "def",
+     "name": "signAtPosInf"
+    },
+    {
+     "kind": "def",
+     "name": "natEven"
+    },
+    {
+     "kind": "def",
+     "name": "signAtNegInf"
+    },
+    {
+     "kind": "def",
+     "name": "chainAux"
+    },
+    {
+     "kind": "def",
+     "name": "sturmChain"
+    },
+    {
+     "kind": "def",
+     "name": "varNegInf"
+    },
+    {
+     "kind": "def",
+     "name": "varPosInf"
+    },
+    {
+     "kind": "def",
+     "name": "varCount"
+    },
+    {
+     "kind": "theorem",
+     "name": "degree_drop"
+    },
+    {
+     "kind": "theorem",
+     "name": "varCount_C"
+    },
+    {
+     "kind": "def",
+     "name": "SturmComplete"
+    },
+    {
+     "kind": "structure",
+     "name": "IsoEntry"
+    },
+    {
+     "kind": "def",
+     "name": "IvsOrdered"
+    },
+    {
+     "kind": "structure",
+     "name": "RootCert"
+    },
+    {
+     "kind": "def",
+     "name": "checkRootCert"
+    },
+    {
+     "kind": "theorem",
+     "name": "entries_r_nodup"
+    },
+    {
+     "kind": "theorem",
+     "name": "checkRootCert_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "checkRootCert_mult_exact"
+    },
+    {
+     "kind": "theorem",
+     "name": "zero_poly_universal_root"
+    },
+    {
+     "kind": "theorem",
+     "name": "zero_poly_rejected"
+    },
+    {
+     "kind": "theorem",
+     "name": "zero_poly_no_finite_root_list"
+    },
+    {
+     "kind": "def",
+     "name": "emptyCert"
+    },
+    {
+     "kind": "theorem",
+     "name": "checkRootCert_const"
+    },
+    {
+     "kind": "theorem",
+     "name": "checkRootCert_const_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "double_root_chain"
+    },
+    {
+     "kind": "theorem",
+     "name": "varCount_double_root"
+    },
+    {
+     "kind": "theorem",
+     "name": "checkRootCert_double_root"
+    },
+    {
+     "kind": "theorem",
+     "name": "isRRoot_C_smul"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCADCore.lean",
+   "print_axioms_targets": [],
+   "sha256": "101b85e7deb5fa36a47a3424cecd8eac9342b8f34dd32bccf989f711cf757477",
+   "size_bytes": 52597,
+   "theorem_count": 47,
+   "theorem_count_bol_convention": 47
   },
   {
    "declarations": [
@@ -30211,6 +31166,674 @@
    "size_bytes": 18042,
    "theorem_count": 18,
    "theorem_count_bol_convention": 18
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
+     "name": "Fam"
+    },
+    {
+     "kind": "def",
+     "name": "famToFin"
+    },
+    {
+     "kind": "theorem",
+     "name": "famToFin_injective"
+    },
+    {
+     "kind": "inductive",
+     "name": "Party"
+    },
+    {
+     "kind": "structure",
+     "name": "SharedQuantities"
+    },
+    {
+     "kind": "theorem",
+     "name": "shortfall_positive"
+    },
+    {
+     "kind": "theorem",
+     "name": "no_double_debt"
+    },
+    {
+     "kind": "def",
+     "name": "witnessQty"
+    },
+    {
+     "kind": "inductive",
+     "name": "Forum"
+    },
+    {
+     "kind": "inductive",
+     "name": "TrialLevel"
+    },
+    {
+     "kind": "inductive",
+     "name": "ProcStage"
+    },
+    {
+     "kind": "structure",
+     "name": "ProcRecord"
+    },
+    {
+     "kind": "structure",
+     "name": "Fam01Mats"
+    },
+    {
+     "kind": "structure",
+     "name": "Fam02Mats"
+    },
+    {
+     "kind": "structure",
+     "name": "Fam03Mats"
+    },
+    {
+     "kind": "structure",
+     "name": "Fam04Mats"
+    },
+    {
+     "kind": "structure",
+     "name": "Fam05Mats"
+    },
+    {
+     "kind": "structure",
+     "name": "Fam06Mats"
+    },
+    {
+     "kind": "structure",
+     "name": "Fam07Mats"
+    },
+    {
+     "kind": "structure",
+     "name": "Fam08Mats"
+    },
+    {
+     "kind": "structure",
+     "name": "Fam09Mats"
+    },
+    {
+     "kind": "structure",
+     "name": "Fam10Mats"
+    },
+    {
+     "kind": "structure",
+     "name": "Fam11Mats"
+    },
+    {
+     "kind": "structure",
+     "name": "Fam12Mats"
+    },
+    {
+     "kind": "structure",
+     "name": "Fam13Mats"
+    },
+    {
+     "kind": "structure",
+     "name": "Fam14Mats"
+    },
+    {
+     "kind": "structure",
+     "name": "CaseDocket"
+    },
+    {
+     "kind": "def",
+     "name": "fullProc"
+    },
+    {
+     "kind": "def",
+     "name": "fullDocket"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_stages_not_shared"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_forums_separate"
+    },
+    {
+     "kind": "inductive",
+     "name": "Atom"
+    },
+    {
+     "kind": "inductive",
+     "name": "LawSource"
+    },
+    {
+     "kind": "structure",
+     "name": "SourceTag"
+    },
+    {
+     "kind": "def",
+     "name": "srcTag"
+    },
+    {
+     "kind": "def",
+     "name": "srcInForce"
+    },
+    {
+     "kind": "inductive",
+     "name": "SrcId"
+    },
+    {
+     "kind": "def",
+     "name": "materialHolds"
+    },
+    {
+     "kind": "def",
+     "name": "failureish"
+    },
+    {
+     "kind": "def",
+     "name": "familyWitness"
+    },
+    {
+     "kind": "def",
+     "name": "familyParties"
+    },
+    {
+     "kind": "structure",
+     "name": "LawRule"
+    },
+    {
+     "kind": "def",
+     "name": "LawRule.horn"
+    },
+    {
+     "kind": "def",
+     "name": "ruleLoanEntitlement"
+    },
+    {
+     "kind": "def",
+     "name": "ruleGuarantorStanding"
+    },
+    {
+     "kind": "def",
+     "name": "ruleGAfterExhaustion"
+    },
+    {
+     "kind": "def",
+     "name": "ruleMortgagePriority"
+    },
+    {
+     "kind": "def",
+     "name": "ruleCarDamage"
+    },
+    {
+     "kind": "def",
+     "name": "ruleMedicalFault"
+    },
+    {
+     "kind": "def",
+     "name": "rulePublicStanding"
+    },
+    {
+     "kind": "def",
+     "name": "ruleEcoViolation"
+    },
+    {
+     "kind": "def",
+     "name": "ruleFishPrivate"
+    },
+    {
+     "kind": "def",
+     "name": "ruleEcoRemediation"
+    },
+    {
+     "kind": "def",
+     "name": "ruleWageDue"
+    },
+    {
+     "kind": "def",
+     "name": "ruleNoCommingling"
+    },
+    {
+     "kind": "def",
+     "name": "ruleBankruptcyAccepted"
+    },
+    {
+     "kind": "def",
+     "name": "ruleExecStay"
+    },
+    {
+     "kind": "def",
+     "name": "ruleCivilStay"
+    },
+    {
+     "kind": "def",
+     "name": "ruleArbStay"
+    },
+    {
+     "kind": "def",
+     "name": "ruleWagePriority"
+    },
+    {
+     "kind": "def",
+     "name": "ruleIpInfringement"
+    },
+    {
+     "kind": "def",
+     "name": "ruleStaySuccession"
+    },
+    {
+     "kind": "def",
+     "name": "ruleStayDecree"
+    },
+    {
+     "kind": "def",
+     "name": "ruleHoldLoan"
+    },
+    {
+     "kind": "def",
+     "name": "ruleHoldDependent"
+    },
+    {
+     "kind": "def",
+     "name": "ruleAdminDefects"
+    },
+    {
+     "kind": "def",
+     "name": "ruleXReturn"
+    },
+    {
+     "kind": "def",
+     "name": "ruleXDamage"
+    },
+    {
+     "kind": "def",
+     "name": "ruleRetrial"
+    },
+    {
+     "kind": "def",
+     "name": "ruleExecEffect"
+    },
+    {
+     "kind": "def",
+     "name": "ruleMaritime"
+    },
+    {
+     "kind": "def",
+     "name": "ruleExemptionBurden"
+    },
+    {
+     "kind": "def",
+     "name": "familyRuleList"
+    },
+    {
+     "kind": "def",
+     "name": "familyRuleFinset"
+    },
+    {
+     "kind": "theorem",
+     "name": "all_rules_sources_in_force"
+    },
+    {
+     "kind": "def",
+     "name": "hornOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "rule_horn_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "matCl"
+    },
+    {
+     "kind": "theorem",
+     "name": "memByRule"
+    },
+    {
+     "kind": "theorem",
+     "name": "loanEntitlement_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "guarantorStanding_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "gEnforcementAfterExhaustion_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "publicInterestStanding_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "ecoViolationEstablished_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "fishPrivateCompensation_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "ecoRemediationCosts_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "carDamageLiability_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "medicalFaultPresumed_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "wageDueEstablished_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "noComminglingProven_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "bankruptcyAccepted_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "bankruptcyExecutionStay_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "bankruptcyCivilStay_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "arbitrationStayed_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "wageBankruptcyPriority_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "mortgageSecuredPriority_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "ipOrdinaryInfringement_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "stayForSuccession_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "stayDecreeIssued_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "holdOnLoanFinal_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "holdOnDependentClaim_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "adminDefectsEstablished_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "xReturnDue_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "xDamageCompensation_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "retrialAdmitted_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "executoryEffectKept_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "maritimeCarrierLiability_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "exemptionBurdenOnCarrier_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "inBad"
+    },
+    {
+     "kind": "theorem",
+     "name": "rule_concl_not_failureish"
+    },
+    {
+     "kind": "theorem",
+     "name": "rule_concl_avoid_bad"
+    },
+    {
+     "kind": "theorem",
+     "name": "initial_bad_disjoint"
+    },
+    {
+     "kind": "theorem",
+     "name": "isModel_avoiding"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_model"
+    },
+    {
+     "kind": "theorem",
+     "name": "not_in_closure_of_bad"
+    },
+    {
+     "kind": "theorem",
+     "name": "overtimeClaim_not_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "medicalAddedDamage_not_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "spousalJointDebt_not_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "ipPunitive_not_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "fraudConviction_not_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "remoteProfit_not_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "corporateVeil_not_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "loanFinalDecree_not_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "dependentClaimFinal_not_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "adminFinalDisposition_not_closure"
+    },
+    {
+     "kind": "def",
+     "name": "matSrcOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "matSrcOf_self"
+    },
+    {
+     "kind": "theorem",
+     "name": "family_prov_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "family_horn_deriv_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "premiseInitEnt"
+    },
+    {
+     "kind": "def",
+     "name": "loanProvSet"
+    },
+    {
+     "kind": "theorem",
+     "name": "loanEntitlement_prov"
+    },
+    {
+     "kind": "theorem",
+     "name": "loanProvSet_settlement_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "loan_sources_trace"
+    },
+    {
+     "kind": "inductive",
+     "name": "LTagN"
+    },
+    {
+     "kind": "theorem",
+     "name": "ltagN_declared"
+    },
+    {
+     "kind": "theorem",
+     "name": "ltagN_mem_closure"
+    },
+    {
+     "kind": "def",
+     "name": "loanCited"
+    },
+    {
+     "kind": "theorem",
+     "name": "loanEntitlement_ltag"
+    },
+    {
+     "kind": "theorem",
+     "name": "loan_cited_declared"
+    },
+    {
+     "kind": "theorem",
+     "name": "loan_cited_nonempty"
+    },
+    {
+     "kind": "inductive",
+     "name": "JointState"
+    },
+    {
+     "kind": "def",
+     "name": "holdOf"
+    },
+    {
+     "kind": "structure",
+     "name": "WitnessJointOutput"
+    },
+    {
+     "kind": "def",
+     "name": "witnessEstablished"
+    },
+    {
+     "kind": "def",
+     "name": "witnessNotEstablished"
+    },
+    {
+     "kind": "def",
+     "name": "witnessPending"
+    },
+    {
+     "kind": "def",
+     "name": "witnessProcedural"
+    },
+    {
+     "kind": "def",
+     "name": "witnessOutput"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_established_ok"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_not_established_ok"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_pending_ok"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_procedural_ok"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_completeness_ok"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_entitlement_not_finality"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_shortfall_ok"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_admin_branch_open"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_joint_evaluation"
+    },
+    {
+     "kind": "theorem",
+     "name": "civil_not_criminal"
+    },
+    {
+     "kind": "theorem",
+     "name": "fault_presumed_not_all_awarded"
+    },
+    {
+     "kind": "theorem",
+     "name": "joint_debt_fails_guarantee_stands"
+    },
+    {
+     "kind": "theorem",
+     "name": "stay_coexists_with_entitlement"
+    },
+    {
+     "kind": "theorem",
+     "name": "execution_effect_not_correctness"
+    }
+   ],
+   "imports": [
+    "JurisLean.Seams.SourceNorms",
+    "JurisLean.Seams.UnifiedHornIT",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFourteenFamilies.lean",
+   "print_axioms_targets": [],
+   "sha256": "20d9ba22d7a716dce8c561a84d737a9c443c0b27bb6b0587f2dd8fc8a8366455",
+   "size_bytes": 82865,
+   "theorem_count": 81,
+   "theorem_count_bol_convention": 81
   },
   {
    "declarations": [
@@ -32729,6 +34352,200 @@
    "size_bytes": 13562,
    "theorem_count": 20,
    "theorem_count_bol_convention": 20
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "XConst"
+    },
+    {
+     "kind": "def",
+     "name": "Traj"
+    },
+    {
+     "kind": "inductive",
+     "name": "Disc"
+    },
+    {
+     "kind": "def",
+     "name": "enc"
+    },
+    {
+     "kind": "theorem",
+     "name": "enc_injective"
+    },
+    {
+     "kind": "theorem",
+     "name": "disc_standardBorel"
+    },
+    {
+     "kind": "theorem",
+     "name": "param_standardBorel"
+    },
+    {
+     "kind": "theorem",
+     "name": "stateP_standardBorel"
+    },
+    {
+     "kind": "def",
+     "name": "discSucc"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurable_discSucc"
+    },
+    {
+     "kind": "def",
+     "name": "paramStep"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurable_paramStep"
+    },
+    {
+     "kind": "def",
+     "name": "step"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurable_step"
+    },
+    {
+     "kind": "def",
+     "name": "obs"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurable_obs"
+    },
+    {
+     "kind": "def",
+     "name": "policy"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurable_policy"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurable_policy_apply"
+    },
+    {
+     "kind": "def",
+     "name": "next"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurable_next"
+    },
+    {
+     "kind": "def",
+     "name": "mu0"
+    },
+    {
+     "kind": "theorem",
+     "name": "isProbabilityMeasure_weightedDirac"
+    },
+    {
+     "kind": "def",
+     "name": "stepOn"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurable_stepOn"
+    },
+    {
+     "kind": "def",
+     "name": "chainOn"
+    },
+    {
+     "kind": "def",
+     "name": "legalChain"
+    },
+    {
+     "kind": "theorem",
+     "name": "legalChain_row_probability"
+    },
+    {
+     "kind": "theorem",
+     "name": "compProd_projection"
+    },
+    {
+     "kind": "theorem",
+     "name": "legal_prefix_joint"
+    },
+    {
+     "kind": "theorem",
+     "name": "legal_prefix_projection"
+    },
+    {
+     "kind": "theorem",
+     "name": "prefix_iterate_compose"
+    },
+    {
+     "kind": "theorem",
+     "name": "traj_prefix_value"
+    },
+    {
+     "kind": "theorem",
+     "name": "traj_unique_prefix"
+    },
+    {
+     "kind": "theorem",
+     "name": "traj_markov_property"
+    },
+    {
+     "kind": "theorem",
+     "name": "condDistrib_boundary"
+    },
+    {
+     "kind": "theorem",
+     "name": "disc_target_satisfies"
+    },
+    {
+     "kind": "theorem",
+     "name": "param_target_satisfies"
+    },
+    {
+     "kind": "theorem",
+     "name": "nonempty_empty_target"
+    },
+    {
+     "kind": "theorem",
+     "name": "condDistrib_boundary_stateFull"
+    },
+    {
+     "kind": "def",
+     "name": "nextP"
+    },
+    {
+     "kind": "theorem",
+     "name": "measurable_nextP"
+    },
+    {
+     "kind": "def",
+     "name": "chainP"
+    },
+    {
+     "kind": "def",
+     "name": "mu0P"
+    },
+    {
+     "kind": "theorem",
+     "name": "condDistrib_boundary_stateP"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedTrajectory.lean",
+   "print_axioms_targets": [],
+   "sha256": "1b3d80e344b54f13573fbfdb25271a43a5fa2fb17d85c5b5bef140fde8ff97c2",
+   "size_bytes": 24804,
+   "theorem_count": 28,
+   "theorem_count_bol_convention": 28
   },
   {
    "declarations": [
@@ -36405,11 +38222,14 @@
     "JurisLean.Seams.UnifiedAnalysis",
     "JurisLean.Seams.UnifiedArgumentation",
     "JurisLean.Seams.UnifiedBeta",
+    "JurisLean.Seams.UnifiedBetaDomain",
     "JurisLean.Seams.UnifiedCAD",
     "JurisLean.Seams.UnifiedCAD2",
+    "JurisLean.Seams.UnifiedCADCore",
     "JurisLean.Seams.UnifiedComposition",
     "JurisLean.Seams.UnifiedEvents",
     "JurisLean.Seams.UnifiedFinalization",
+    "JurisLean.Seams.UnifiedFourteenFamilies",
     "JurisLean.Seams.UnifiedGuards",
     "JurisLean.Seams.UnifiedHornIT",
     "JurisLean.Seams.UnifiedInstance",
@@ -36429,6 +38249,7 @@
     "JurisLean.Seams.UnifiedQuantities",
     "JurisLean.Seams.UnifiedSemantics",
     "JurisLean.Seams.UnifiedSummary",
+    "JurisLean.Seams.UnifiedTrajectory",
     "JurisLean.Seams.UnifiedUtility",
     "JurisLean.SolverRouting",
     "JurisLean.SourceBundleSpec",
@@ -36464,8 +38285,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "396ced496bdc8b6e1c4533b2446b4e66d3dd323f4b5c58d3d8f80f023a47032e",
-   "size_bytes": 10102,
+   "sha256": "589c97eb4fcd3d7eac51432a970936d4a4bac6410f9d4871afcea99823015a41",
+   "size_bytes": 10269,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -36629,22 +38450,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 4139,
-   "file_count": 349,
+   "counted_declaration_count": 4364,
+   "file_count": 353,
    "lemma_count": 141,
-   "print_axioms_command_count": 3021,
-   "print_axioms_distinct_targets": 2967,
-   "theorem_count": 3998,
-   "theorem_count_bol_convention": 3902
+   "print_axioms_command_count": 3246,
+   "print_axioms_distinct_targets": 3192,
+   "theorem_count": 4223,
+   "theorem_count_bol_convention": 4127
   },
   "juris_lean_package": {
-   "counted_declaration_count": 4120,
-   "file_count": 334,
+   "counted_declaration_count": 4345,
+   "file_count": 338,
    "lemma_count": 134,
-   "print_axioms_command_count": 3021,
-   "print_axioms_distinct_targets": 2967,
-   "theorem_count": 3986,
-   "theorem_count_bol_convention": 3890
+   "print_axioms_command_count": 3246,
+   "print_axioms_distinct_targets": 3192,
+   "theorem_count": 4211,
+   "theorem_count_bol_convention": 4115
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -36935,11 +38756,14 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedAnalysis.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedArgumentation.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedBeta.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedBetaDomain.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD2.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCADCore.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvents.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFourteenFamilies.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedGuards.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedHornIT.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
@@ -36959,6 +38783,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantities.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSummary.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedTrajectory.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedUtility.lean",
    "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
    "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
@@ -37282,11 +39107,14 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedAnalysis.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedArgumentation.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedBeta.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedBetaDomain.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD2.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCADCore.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvents.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFourteenFamilies.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedGuards.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedHornIT.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
@@ -37306,6 +39134,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantities.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSummary.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedTrajectory.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedUtility.lean",
    "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
    "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
@@ -37384,19 +39213,24 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "766dfba2426a692fcd32ac6dddf48d3be05167b609ab6c235002c5e178d73bd6",
+ "source_inventory_digest": "a6e4b5de0d112cac620f44cfe54e68c8a0bb9810869ac0779f87419c871ce344",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "ee3ac40932486d2d07542e28ec3bfe5ea8f39bad",
-  "tree": "8d95a18aad437cb2218f405a810b3f1ab9bd6ffa"
+  "commit": "ef765f2fdaecb2845bf326a4bad64d8782ea5c07",
+  "tree": "93486652f75e8e4a0c9581414e714fc7c0e02989"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
-  "files_total": 349,
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
+  "files_total": 353,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

@@ -27,8 +27,8 @@
     ]
   },
   "cross_family_statement_types": 2,
-  "distinct_statement_types": 4081,
-  "duplicated_statement_types": 50,
+  "distinct_statement_types": 4305,
+  "duplicated_statement_types": 51,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
@@ -292,6 +292,18 @@
         "carrier": "External/runDist_eq_of_stepIndependence",
         "line": 746,
         "path": "External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean"
+      }
+    ],
+    ": adminFinalDisposition ∉ closureAt familyHorn": [
+      {
+        "carrier": "root/other/adminFinalDisposition_not_closure",
+        "line": 1378,
+        "path": "Seams/UnifiedFourteenFamilies.lean"
+      },
+      {
+        "carrier": "root/other/witness_admin_branch_open",
+        "line": 1706,
+        "path": "Seams/UnifiedFourteenFamilies.lean"
       }
     ],
     ": checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with caseId := \"OTHER-CASE\" } }) (writeCalculation expectedCalculation) = false": [
@@ -631,12 +643,12 @@
       }
     ]
   },
-  "files_scanned": 334,
+  "files_scanned": 338,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
   "headers_missed_by_scanner": 105,
-  "inventory_package_theorems": 4120,
+  "inventory_package_theorems": 4345,
   "private_protected_headers_read": 116,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 4131
+  "statements_read": 4356
 }

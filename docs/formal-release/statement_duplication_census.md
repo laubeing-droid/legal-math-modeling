@@ -4,10 +4,10 @@
 
 Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.
 
-- files scanned: 334
-- theorem/lemma headers read: 4131
-- distinct statement types: 4081
-- statement types declared more than once: 50
+- files scanned: 338
+- theorem/lemma headers read: 4356
+- distinct statement types: 4305
+- statement types declared more than once: 51
 - of those spanning module families: 2
 
 ## Across module families (2)
@@ -15,7 +15,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(r : Rul A) (ps : List (Arg A)) (p : Arg A) (hp : p ∈ ps) (k : ℕ) (hk : Arg.height (.node r ps) ≤ k + 1) : Arg.height p ≤ k` — `FullMath/Logic/AttackCompilation.lean:57` (FullMath/child_height_le), `Seams/UnifiedArgumentation.lean:104` (root/other/child_height_lt)
 - `(r : ℚ) : max r 0 - max (-r) 0 = r` — `FullMath/GenericKernels.lean:94` (FullMath/clipped_conservation), `BusinessRelationsDelta.lean:21` (root/other/split_residual_identity)
 
-## Within the package (50)
+## Within the package (51)
 
 - `(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S` — `DungFixedPoint.lean:96` (root/other/grounded_is_least_complete), `DungFixedPoint.lean:92` (root/other/grounded_is_least_fixed_point)
 - `(S : Finset α) : TH sys S ⊆ sys.univ` — `HornDefinitions.lean:55` (root/other/TH_subset_univ), `HornFixedPoint.lean:17` (root/other/horn_operator_subset_univ)
@@ -39,6 +39,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(r r' : X → Y → Prop) (s s' : Y → Z → Prop) (hr : ∀ x y, r x y → r' x y) (hs : ∀ y z, s y z → s' y z) : ∀ x z, relComp r s x z → relComp r' s' x z` — `FullMath/Composition/RelationalComposition.lean:18` (FullMath/comp_preserves_inclusion), `FullMath/GenericKernels.lean:60` (FullMath/composition_preserves_inclusion)
 - `(μ : PMF α) (f : α → β) (g : β → γ) : pushforward (pushforward μ f) g = pushforward μ (g ∘ f)` — `External/GameTheory/Math/ProbabilityMassFunction.lean:44` (External/pushforward_comp), `External/GameTheory/Math/ProbabilityMassFunction.lean:49` (External/pushforward_pushforward)
 - `(ν : PMF (PureProfile O)) (b : BehavioralProfile O) (hStep : ∀ n, ν.bind (fun π => (O.runDistPure n π).bind (fun ss => pushforward (O.stepDist b ss) (fun t => s` — `External/GameTheory/Theorems/Kuhn/BehavioralToMixedCore.lean:599` (External/runDist_eq_of_stepIndependence), `External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean:746` (External/runDist_eq_of_stepIndependence)
+- `: adminFinalDisposition ∉ closureAt familyHorn` — `Seams/UnifiedFourteenFamilies.lean:1378` (root/other/adminFinalDisposition_not_closure), `Seams/UnifiedFourteenFamilies.lean:1706` (root/other/witness_admin_branch_open)
 - `: checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with caseId := "OTHER-CASE" } }) (writeCalcul` — `BusinessRoot/SevenAxisCases.lean:26` (root/other/reject_doc_caseId), `BusinessRoot/SevenAxis.lean:380` (root/other/wrong_case_rejected)
 - `: checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with debtor := "丙公司" } }) (writeCalculation e` — `BusinessRoot/SevenAxisCases.lean:53` (root/other/reject_doc_debtor), `BusinessRoot/SevenAxis.lean:351` (root/other/wrong_debtor_rejected)
 - `: collapsesToKernel instanceM.evalDom` — `Seams/StatuteChain.lean:339` (root/other/chain_collapse_from_the_109_tier), `Seams/UnifiedInstance.lean:650` (root/other/instanceM_collapse)
@@ -56,5 +57,4 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `{expected actual : Finset CanonicalArgument} (hCoverage : ArgumentCoverage expected actual) (hExpectedWF : ∀ a ∈ expected, ArgumentWF a) {a : CanonicalArgument}` — `ULM16TheoryComposition.lean:225` (root/other/CORE_19_argument_coverage_sound), `ULM08ArgumentConstruction.lean:107` (root/other/covered_argument_is_well_formed)
 - `{g : TypedGraph} {s t : LocalState} (h : LocalTransition g s t) : t.request = s.request` — `ULM16TheoryComposition.lean:117` (root/other/CORE_01_typed_transition_request), `ULM03TypedGraph.lean:69` (root/other/localTransition_preserves_request)
 - `{g : TypedGraph} {x y : Machine} (h : Run g x y) : x.request = y.request` — `ULM16TheoryComposition.lean:240` (root/other/CORE_22_run_subject_preserved), `ULM05Machine.lean:75` (root/other/run_preserves_request)
-- `{goal : ProofSubject → Prop} {v : VerifierEntry} (hv : VerifierSound goal v) {subject : ProofSubject} (hs : Sat v subject) : subject.obligation ∈ requiredObliga` — `ULM16TheoryComposition.lean:252` (root/other/CORE_24_sat_sound), `ULM04Obligations.lean:99` (root/other/sat_sound)
-- …10 more in the JSON
+- …11 more in the JSON

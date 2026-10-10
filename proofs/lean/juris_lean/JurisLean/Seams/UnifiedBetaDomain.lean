@@ -247,7 +247,8 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
     intro j _
     refine ((UnifiedNeedlesS3a.s3aPowDeriv j (α + β - 1 - j) x).const_mul
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)).congr_of_eventuallyEq
-      (Filter.Eventually.of_forall fun y _ => mul_assoc _ _ _) |>.congr_deriv ?_
+      (Filter.Eventually.of_forall fun y => mul_assoc
+        ((Nat.choose (α + β - 1) j : ℕ) : ℝ) (y ^ j) ((1 - y) ^ (α + β - 1 - j))) |>.congr_deriv ?_
     rw [show (α + β - 1 - j - 1 : ℕ) = α + β - 2 - j from by omega]
     ring
   have hsum := HasDerivAt.sum htermb
@@ -258,24 +259,24 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
       = ((Nat.choose (α + β - 2) i * (α + β - 1) : ℕ) : ℝ)
         * x ^ i * (1 - x) ^ (α + β - 2 - i) := fun i => rfl
   -- (A) 拆和：∑c(A−B) = ∑cA − ∑cB
-  have h1 : (∑ j ∈ Finset.Ico α (α + β),
-      ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
-        * ((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)))
-      + (∑ j ∈ Finset.Ico α (α + β),
-      ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
-        * ((α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j)))
-      = ∑ j ∈ Finset.Ico α (α + β),
+  have h1 : ∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
         * (((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)
-          - (α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j))) := by
-    rw [← Finset.sum_add_distrib]
+          - (α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j)))
+      = (∑ j ∈ Finset.Ico α (α + β),
+      ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
+        * ((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)))
+      - (∑ j ∈ Finset.Ico α (α + β),
+      ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
+        * ((α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j))) := by
+    rw [← Finset.sum_sub_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
   -- (B) 左和移标：j ↦ j−1
   have hB : (∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
         * ((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)))
       = ∑ i ∈ Finset.Ico (α - 1) (α + β - 1), u i := by
-    refine eq_symm (Finset.sum_nbij' (fun i => i + 1) (fun j => j - 1) ?_ ?_ ?_ ?_ ?_)
+    refine Eq.symm (Finset.sum_nbij' (fun i => i + 1) (fun j => j - 1) ?_ ?_ ?_ ?_ ?_)
     · intro i hi; have := Finset.mem_Ico.mp hi; exact Finset.mem_Ico.mpr ⟨by omega, by omega⟩
     · intro j hj; have := Finset.mem_Ico.mp hj; exact Finset.mem_Ico.mpr ⟨by omega, by omega⟩
     · intro i hi; omega
@@ -303,11 +304,10 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
       omega
     rw [hins, Finset.sum_insert hnotins]
     have hzero : ((Nat.choose (α + β - 1) (α + β - 1) : ℕ) : ℝ)
-        * ((α + β - 1 - (α + β - 1) : ℝ) * x ^ (α + β - 1)
+        * ((α + β - 1 - ((α + β - 1 : ℕ) : ℝ)) * x ^ (α + β - 1)
           * (1 - x) ^ (α + β - 2 - (α + β - 1))) = 0 := by
-      rw [Nat.sub_self]
       push_cast
-      ring
+      rw [sub_self, zero_mul, mul_zero]
     rw [hzero, zero_add]
     refine Finset.sum_congr rfl fun j hj => ?_
     have hjlt : j < α + β - 1 := by
@@ -330,13 +330,14 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
       intro hcon
       have := Finset.mem_Ico.mp hcon
       omega
-    rw [hins, Finset.sum_insert hnotins, add_sub_cancel]
+    rw [hins, Finset.sum_insert hnotins, add_sub_cancel_right]
   -- (E) u(α−1) = 目标常数形状
   have hE : u (α - 1)
       = ((Nat.choose (α + β - 2) (α - 1) * (α + β - 1) : ℕ) : ℝ)
         * x ^ (α - 1) * (1 - x) ^ (β - 1) := by
     rw [huApp, show α + β - 2 - (α - 1) = β - 1 from by omega]
-  refine hsum.congr_deriv ?_
+  refine hsum.congr_of_eventuallyEq
+    (Filter.Eventually.of_forall fun y => by simp [Finset.sum_apply', bernCdf]) |>.congr_deriv ?_
   calc ∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
         * (((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)
@@ -346,8 +347,7 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
           * ((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)))
         - (∑ j ∈ Finset.Ico α (α + β),
         ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
-          * ((α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j))) := by
-        linarith [h1]
+          * ((α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j))) := h1
     _ = (∑ i ∈ Finset.Ico (α - 1) (α + β - 1), u i)
         - (∑ i ∈ Finset.Ico α (α + β - 1), u i) := by rw [hB, hC]
     _ = u (α - 1) := hD
@@ -490,9 +490,9 @@ theorem halfCdf22_deriv (x : ℝ) (hx0 : 0 < x) (hx1 : x < 1) :
   have hd0 : HasDerivAt (fun y : ℝ => 2 / Real.pi * Real.arcsin (Real.sqrt y))
       ((2 / Real.pi) * (1 / Real.sqrt (1 - Real.sqrt x ^ 2) * (1 / (2 * Real.sqrt x)))) x :=
     ((hasin.comp x hsqrt).const_mul (2 / Real.pi)).congr_of_eventuallyEq
-      (Filter.Eventually.of_forall fun y _ => rfl)
+      (Filter.Eventually.of_forall fun y => rfl)
   refine hd0.congr_of_eventuallyEq
-    (Filter.Eventually.of_forall fun y _ => ?_) |>.congr_deriv ?_
+    (Filter.Eventually.of_forall fun y => ?_) |>.congr_deriv ?_
   · show 2 * Real.arcsin (Real.sqrt y) / Real.pi
       = 2 / Real.pi * Real.arcsin (Real.sqrt y)
     ring
@@ -550,7 +550,7 @@ theorem halfConst21 : (∫ t in (0:ℝ)..1, (1 - t) ^ (-(1 / 2 : ℝ))) = 2 := b
   have e1 : ((1:ℝ) - 1) ^ ((1 / 2 : ℝ)) = (0:ℝ) := by
     rw [show ((1:ℝ) - 1) = 0 from by norm_num, Real.zero_rpow (by norm_num)]
   have e2 : ((1:ℝ) - 0) ^ ((1 / 2 : ℝ)) = (1:ℝ) := by
-    rw [show ((1:ℝ) - 0) = 1 from by norm_num, Real.rpow_one]
+    rw [show ((1:ℝ) - 0) = 1 from by norm_num, Real.one_rpow]
   rw [e1, e2]
   norm_num
 
@@ -586,7 +586,7 @@ theorem halfDens22_integrable :
   have hright : IntervalIntegrable halfDens22 MeasureTheory.volume (1 / 2) 1 := by
     refine intervalIntegrable_congr_ae
       (f := fun x => x ^ (-(1 / 2 : ℝ)) * (1 - x) ^ (-(1 / 2 : ℝ))) (g := halfDens22)
-      (Filter.Eventually.of_forall (fun x _ => rfl)) |>.mp
+      (Filter.Eventually.of_forall (fun x => rfl)) |>.mp
       (IntervalIntegrable.continuousOn_mul hright0
         (by
           have hne : ∀ x ∈ Set.uIcc ((1:ℝ) / 2) 1, (x:ℝ) ≠ 0 ∨ (0:ℝ) ≤ -(1 / 2 : ℝ) := by
@@ -668,10 +668,12 @@ theorem recursion_ibp_nat (n m : ℕ) (x : ℝ) :
       MeasureTheory.volume 0 x := Continuous.intervalIntegrable (by fun_prop) 0 x
   have hIIB : IntervalIntegrable (fun t => ((m : ℝ) + 1) * (t ^ (n + 1) * (1 - t) ^ m))
       MeasureTheory.volume 0 x := Continuous.intervalIntegrable (by fun_prop) 0 x
-  have hIA := intervalIntegral.integral_const_mul ((n : ℝ) + 1)
-    (fun t => t ^ n * (1 - t) ^ (m + 1))
-  have hIB := intervalIntegral.integral_const_mul ((m : ℝ) + 1)
-    (fun t => t ^ (n + 1) * (1 - t) ^ m)
+  have hIA : (∫ t in (0:ℝ)..x, ((n : ℝ) + 1) * (t ^ n * (1 - t) ^ (m + 1)))
+      = ((n : ℝ) + 1) * (∫ t in (0:ℝ)..x, t ^ n * (1 - t) ^ (m + 1)) :=
+    intervalIntegral.integral_const_mul ((n : ℝ) + 1) (fun t => t ^ n * (1 - t) ^ (m + 1))
+  have hIB : (∫ t in (0:ℝ)..x, ((m : ℝ) + 1) * (t ^ (n + 1) * (1 - t) ^ m))
+      = ((m : ℝ) + 1) * (∫ t in (0:ℝ)..x, t ^ (n + 1) * (1 - t) ^ m) :=
+    intervalIntegral.integral_const_mul ((m : ℝ) + 1) (fun t => t ^ (n + 1) * (1 - t) ^ m)
   have hL : ((n : ℝ) + 1) * (∫ t in (0:ℝ)..x, t ^ n * (1 - t) ^ (m + 1))
       - ((m : ℝ) + 1) * (∫ t in (0:ℝ)..x, t ^ (n + 1) * (1 - t) ^ m)
       = ∫ t in (0:ℝ)..x, ((n : ℝ) + 1) * (t ^ n * (1 - t) ^ (m + 1))
@@ -693,7 +695,7 @@ theorem hasDerivAt_tnSqrt (n : ℕ) (t : ℝ) (ht : 0 < t) :
       have hb : HasDerivAt (fun y : ℝ => y * Real.sqrt y)
           (Real.sqrt t + t * (1 / (2 * Real.sqrt t))) t := by
         refine ((hasDerivAt_id t).mul hs).congr_of_eventuallyEq
-          (Filter.Eventually.of_forall fun y _ => rfl) |>.congr_deriv ?_
+          (Filter.Eventually.of_forall fun y => rfl) |>.congr_deriv ?_
         simp only [id_eq, one_mul]
       have hfEq : (fun y : ℝ => y * Real.sqrt y)
           = (fun y : ℝ => y ^ (0 + 1) * Real.sqrt y) := by
@@ -703,7 +705,7 @@ theorem hasDerivAt_tnSqrt (n : ℕ) (t : ℝ) (ht : 0 < t) :
       norm_num
       have hsq0 : Real.sqrt t ≠ 0 := (Real.sqrt_pos_of_pos ht).ne'
       have hsq' : Real.sqrt t ^ 2 = t := Real.sq_sqrt ht.le
-      field_simp [hsq', hsq0] <;> ring
+      field_simp [hsq', hsq0] <;> linarith [Real.sq_sqrt ht.le]
   | succ k ih =>
       have hne : t ≠ 0 := ne_of_gt ht
       have hbid : HasDerivAt (fun y : ℝ => y) 1 t := hasDerivAt_id t
@@ -753,7 +755,7 @@ theorem recursion_ibp_half (n m : ℕ) (x : ℝ) (hx0 : 0 ≤ x) (hx1 : x ≤ 1)
             * ((t ^ (n + 1) * Real.sqrt t) * ((1 - t) ^ m * Real.sqrt (1 - t)))) t := by
     intro t ht
     have ht1 : 0 < t := ht.1
-    have ht2 : t < 1 := by linarith [hx1]
+    have ht2 : t < 1 := by linarith [ht.2, hx1]
     refine (hasDerivAt_tnSqrt n t ht1).mul (hasDerivAt_oneSubTmSqrt m t ht2) |>.congr_deriv ?_
     ring
   have hcont : ContinuousOn (fun y => (y ^ (n + 1) * Real.sqrt y)
@@ -881,9 +883,11 @@ theorem halfCdf22_enclosure_from_half (hAsin : AsinRatEnclosureInput) (q : ℚ)
     obtain ⟨lo, hi, hlo, hhi⟩ := hAsin (1 - q) hq' hq1'
     rw [hsymm, ← hcast]
     refine ⟨1 - hi, 1 - lo, ?_, ?_⟩
-    · show ((1:ℚ) - hi : ℚ) ≤ 1 - (2 * Real.arcsin (Real.sqrt ((1:ℚ) - q)) / Real.pi)
+    · simp only [halfCdf22]
+      push_cast at hhi ⊢
       linarith
-    · show (1:ℝ) - (2 * Real.arcsin (Real.sqrt ((1:ℚ) - q)) / Real.pi) ≤ ((1:ℚ) - lo : ℚ)
+    · simp only [halfCdf22]
+      push_cast at hlo ⊢
       linarith
 
 /-! ## 三、一般正有理参数的积分包围（合同 §7.4 第三段） -/
@@ -916,7 +920,9 @@ theorem rpow_le_Mbound (η r t : ℝ) (hη : 0 < η) (hη1 : η < 1) (ht : t ∈
       have h2 := Real.rpow_neg hη.le (-r)
       rw [neg_neg] at h2
       rw [h2, inv_eq_one_div]
-    rw [e1, e2]
+    rw [e1]
+    show 1 / t ^ (-r) ≤ max (η ^ r) ((1 - η) ^ r)
+    rw [e2]
     exact le_max_iff.mpr (Or.inl (one_div_le_one_div' hp2 hp1 hge))
 
 /-- g′ 的显式导数（t ∈ (0,1)）：((a−1)t^{a−2}(1−t)^{b−1} − (b−1)t^{a−1}(1−t)^{b−2})。 -/
@@ -927,7 +933,7 @@ theorem hasDerivAt_betaDens (a b t : ℝ) (ht : 0 < t) (ht1 : t < 1) :
   have h1 : HasDerivAt (fun y : ℝ => y) 1 t := hasDerivAt_id t
   have h2 : HasDerivAt (fun y : ℝ => 1 - y) (0 - 1) t :=
     HasDerivAt.sub (hasDerivAt_const t (1:ℝ)) (hasDerivAt_id t)
-  have hp1 := h1.rpow_const (p := a - 1) (Or.inl ht.ne)
+  have hp1 := h1.rpow_const (p := a - 1) (Or.inl ht.ne')
   have hp2 := h2.rpow_const (p := b - 1) (Or.inl (show (1 - t : ℝ) ≠ 0 from by linarith))
   rw [show (a - 1 : ℝ) - 1 = a - 2 from by ring] at hp1
   rw [show (b - 1 : ℝ) - 1 = b - 2 from by ring] at hp2
@@ -967,7 +973,7 @@ theorem leftTail_aux (a b M η : ℝ) (ha : 0 < a) (hb : 0 < b) (hη : 0 < η) (
     rw [integral_rpow (Or.inl (show (-1:ℝ) < a - 1 by linarith)),
       show (a - 1) + 1 = a from by ring, Real.zero_rpow (by linarith)]
     field_simp <;> ring
-  rw [hexact] at hmono
+  rw [hexact, mul_div_assoc'] at hmono
   exact hmono
 
 /-- 左尾常数，b ≥ 1：M_b = 1。 -/
@@ -1010,8 +1016,7 @@ theorem rightInnerExact (b η : ℝ) (hb : 0 < b) (hη : 0 < η) (hη1 : η ≤ 
       HasDerivAt.sub (hasDerivAt_const t (1:ℝ)) (hasDerivAt_id t)
     have h2 := h1.rpow_const (p := b)
       (Or.inl (show (1 - t : ℝ) ≠ 0 from by linarith [ht.2]))
-    refine (h2.div_const b).neg.congr_of_eventuallyEq
-      (Filter.Eventually.of_forall fun y _ => neg_div _ _) |>.congr_deriv ?_
+    refine (h2.div_const b).neg.congr_deriv ?_
     rw [show ((0:ℝ) - 1) = -1 from by norm_num]
     field_simp [hb.ne'] <;> ring
   have hint : IntervalIntegrable (fun t => (1 - t) ^ (b - 1)) MeasureTheory.volume (1 - η) 1 := by
@@ -1044,7 +1049,7 @@ theorem rightTail_aux (a b M η : ℝ) (ha : 0 < a) (hb : 0 < b) (hη : 0 < η) 
   have hpowint : IntervalIntegrable (fun t => (1 - t) ^ (b - 1)) MeasureTheory.volume (1 - η) 1 := by
     simpa using (intervalIntegral.intervalIntegrable_rpow' (r := b - 1) (by linarith)
       (a := η) (b := 0)).comp_sub_left 1
-  have hne1 : ∀ x ∈ Set.uIcc (1 - η) 1, (x:ℝ) ≠ 0 ∨ (0:ℝ) ≤ (b - 1) := by
+  have hne1 : ∀ x ∈ Set.uIcc (1 - η) 1, (x:ℝ) ≠ 0 ∨ (0:ℝ) ≤ (a - 1) := by
     intro x hx
     rw [Set.uIcc_of_le (show ((1:ℝ) - η) ≤ 1 by linarith)] at hx
     exact Or.inl (by have hx0 : (1:ℝ) - η ≤ x := hx.1; linarith [hη2.le, hx0])
@@ -1054,7 +1059,7 @@ theorem rightTail_aux (a b M η : ℝ) (ha : 0 < a) (hb : 0 < b) (hη : 0 < η) 
       MeasureTheory.volume (1 - η) 1 := hpowint.const_mul M
   have hmono := intervalIntegral.integral_mono_on (by linarith) hint hMint hpt
   rw [intervalIntegral.integral_const_mul] at hmono
-  rw [← rightInnerExact b η hb hη hη1]
+  rw [mul_div_assoc', ← rightInnerExact b η hb hη hη1]
   exact hmono
 
 /-- 右尾常数，a ≥ 1：M_a = 1。 -/
@@ -1146,7 +1151,7 @@ theorem leftTailFlatBoundCounterexample :
     have ex : (2 - Real.sqrt 3) * (2 * Real.sqrt 3) = 4 * Real.sqrt 3 - 6 := by
       have hsq3 : Real.sqrt 3 * Real.sqrt 3 = 3 := Real.mul_self_sqrt (by norm_num)
       nlinarith [hsq3]
-    rw [le_div_iff₀ h3pos, ex]
+    rw [le_div_iff₀ (by positivity), ex]
     linarith
 
 /-- m(r) ≤ t^r 于 t ∈ [1/4,3/4]（分母下界的逐点腿）。 -/
@@ -1158,9 +1163,13 @@ theorem mbound_le (r t : ℝ) (ht : t ∈ Set.Icc (1 / 4 : ℝ) (3 / 4 : ℝ)) :
     have hp' : 0 < (3 / 4 : ℝ) ^ (-r) := Real.rpow_pos_of_pos (by norm_num) _
     have hge : (3 / 4 : ℝ) ^ (-r) ≤ t ^ (-r) := Real.rpow_le_rpow (by norm_num) ht.2 (by linarith)
     have e1 : t ^ r = 1 / t ^ (-r) := by
-      rw [show r = -(-r) from by ring, Real.rpow_neg (by linarith [ht.1]), inv_eq_one_div]
+      have h1 := Real.rpow_neg (by linarith [ht.1]) (-r)
+      rw [neg_neg] at h1
+      rw [h1, inv_eq_one_div]
     have e2 : (3 / 4 : ℝ) ^ r = 1 / (3 / 4 : ℝ) ^ (-r) := by
-      rw [show r = -(-r) from by ring, Real.rpow_neg (by norm_num), inv_eq_one_div]
+      have h2 := Real.rpow_neg (by norm_num) (-r)
+      rw [neg_neg] at h2
+      rw [h2, inv_eq_one_div]
     show min ((1 / 4 : ℝ) ^ r) ((3 / 4 : ℝ) ^ r) ≤ t ^ r
     rw [e1, e2]
     exact min_le_iff.mpr (Or.inr (one_div_le_one_div' hp hp' hge))
@@ -1209,7 +1218,7 @@ theorem betaB_lower (a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
   have hintR : IntervalIntegrable (betaDens a b) MeasureTheory.volume (3 / 4) 1 :=
     IntervalIntegrable.continuousOn_mul hintR0
       (by
-        have hne : ∀ x ∈ Set.uIcc ((3:ℝ) / 4) 1, (x:ℝ) ≠ 0 ∨ (0:ℝ) ≤ (b - 1) := by
+        have hne : ∀ x ∈ Set.uIcc ((3:ℝ) / 4) 1, (x:ℝ) ≠ 0 ∨ (0:ℝ) ≤ (a - 1) := by
           intro x hx
           rw [Set.uIcc_of_le (show (3:ℝ)/4 ≤ 1 by norm_num)] at hx
           exact Or.inl (by have hx0 : (3:ℝ)/4 ≤ x := hx.1; linarith)
@@ -1259,8 +1268,8 @@ theorem betaB_lower (a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
       = (∫ t in (0:ℝ)..(1 / 4), betaDens a b t)
         + ((∫ t in (1 / 4:ℝ)..(3 / 4), betaDens a b t)
           + (∫ t in (3 / 4:ℝ)..1, betaDens a b t)) := by
-    rw [← add_assoc, ← intervalIntegral.integral_add_adjacent_intervals hintL hintM,
-      ← intervalIntegral.integral_add_adjacent_intervals (hintL.trans hintM) hintR]
+    rw [← intervalIntegral.integral_add_adjacent_intervals (hintL.trans hintM) hintR,
+      ← intervalIntegral.integral_add_adjacent_intervals hintL hintM, add_assoc]
   rw [htotal]
   linarith
 
@@ -1415,7 +1424,7 @@ theorem tailBudgetAt (a b : ℝ) (ha : 0 < a) (hb : 0 < b) (k : ℕ) :
     mul_pos (by norm_num) (pow_pos (by norm_num) k)
   have hη1 : ((1:ℝ) / 4) * ((1:ℝ) / 2) ^ k ≤ (1:ℝ) / 4 := by
     have h1 : ((1:ℝ) / 2) ^ k ≤ 1 := half_pow_le_one k
-    exact mul_le_mul_of_nonneg_left h1 (by norm_num)
+    linarith
   have hMb := Mb_le b _ hb hη0 hη1
   have hMa := Mb_le a _ ha hη0 hη1
   have hXa : (0:ℝ) ≤ ((1 / 4 : ℝ) * (1 / 2) ^ k) ^ a / a :=
@@ -1424,37 +1433,35 @@ theorem tailBudgetAt (a b : ℝ) (ha : 0 < a) (hb : 0 < b) (k : ℕ) :
     div_nonneg (Real.rpow_nonneg hη0.le b) hb.le
   refine ⟨hη0, hη1, ?_, ?_⟩
   · rcases le_total 1 b with hb1 | hb1
-    · refine le_trans (leftTail_ge1 a b _ ha hb1 hη0 (by linarith)) ?_
-      calc ((1 / 4 : ℝ) * (1 / 2) ^ k) ^ a / a
-          ≤ (1:ℝ) * (((1 / 4 : ℝ) * (1 / 2) ^ k) ^ a / a) := by
-            rw [one_mul]; exact le_rfl
-        _ ≤ (max 1 ((1 / 2 : ℝ) ^ (b - 1))) * (((1 / 4 : ℝ) * (1 / 2) ^ k) ^ a / a) :=
-            mul_le_mul_of_nonneg_right (le_max_left _ _) hXa
+    · have h1' := leftTail_ge1 a b ((1 / 4 : ℝ) * (1 / 2) ^ k) ha hb1 hη0 (by linarith)
+      exact le_trans h1' (le_trans
+        (le_of_eq (one_mul (((1 / 4 : ℝ) * (1 / 2) ^ k) ^ a / a)).symm)
+        (mul_le_mul_of_nonneg_right (le_max_left _ _) hXa))
     · rcases lt_or_eq_of_le hb1 with hb1' | hb1'
-      · refine le_trans (leftTail_lt1 a b _ ha hb hb1' hη0 (by linarith)) ?_
-        exact mul_le_mul_of_nonneg_right hMb hXa
-      · refine le_trans (leftTail_ge1 a b _ ha (le_of_eq hb1'.symm) hη0 (by linarith)) ?_
-        calc ((1 / 4 : ℝ) * (1 / 2) ^ k) ^ a / a
-            ≤ (1:ℝ) * (((1 / 4 : ℝ) * (1 / 2) ^ k) ^ a / a) := by
-              rw [one_mul]; exact le_rfl
-          _ ≤ (max 1 ((1 / 2 : ℝ) ^ (b - 1))) * (((1 / 4 : ℝ) * (1 / 2) ^ k) ^ a / a) :=
-              mul_le_mul_of_nonneg_right (le_max_left _ _) hXa
+      · have h1' := leftTail_lt1 a b ((1 / 4 : ℝ) * (1 / 2) ^ k) ha hb hb1' hη0 (by linarith)
+        rw [← mul_div_assoc'] at h1'
+        exact le_trans h1' (mul_le_mul_of_nonneg_right hMb hXa)
+      · have h1' := leftTail_ge1 a b ((1 / 4 : ℝ) * (1 / 2) ^ k) ha (le_of_eq hb1'.symm)
+          hη0 (by linarith)
+        exact le_trans h1' (le_trans
+          (le_of_eq (one_mul (((1 / 4 : ℝ) * (1 / 2) ^ k) ^ a / a)).symm)
+          (mul_le_mul_of_nonneg_right (le_max_left _ _) hXa))
   · rcases le_total 1 a with ha1 | ha1
-    · refine le_trans (rightTail_ge1 a b _ ha1 hb hη0 hη1 (by linarith)) ?_
-      calc ((1 / 4 : ℝ) * (1 / 2) ^ k) ^ b / b
-          ≤ (1:ℝ) * (((1 / 4 : ℝ) * (1 / 2) ^ k) ^ b / b) := by
-            rw [one_mul]; exact le_rfl
-        _ ≤ (max 1 ((1 / 2 : ℝ) ^ (a - 1))) * (((1 / 4 : ℝ) * (1 / 2) ^ k) ^ b / b) :=
-            mul_le_mul_of_nonneg_right (le_max_left _ _) hXb
+    · have h1' := rightTail_ge1 a b ((1 / 4 : ℝ) * (1 / 2) ^ k) ha1 hb hη0 (by linarith)
+        (by linarith)
+      exact le_trans h1' (le_trans
+        (le_of_eq (one_mul (((1 / 4 : ℝ) * (1 / 2) ^ k) ^ b / b)).symm)
+        (mul_le_mul_of_nonneg_right (le_max_left _ _) hXb))
     · rcases lt_or_eq_of_le ha1 with ha1' | ha1'
-      · refine le_trans (rightTail_lt1 a b _ ha ha1' hb hη0 hη1 (by linarith)) ?_
-        exact mul_le_mul_of_nonneg_right hMa hXb
-      · refine le_trans (rightTail_ge1 a b _ (le_of_eq ha1'.symm) hb hη0 hη1 (by linarith)) ?_
-        calc ((1 / 4 : ℝ) * (1 / 2) ^ k) ^ b / b
-            ≤ (1:ℝ) * (((1 / 4 : ℝ) * (1 / 2) ^ k) ^ b / b) := by
-              rw [one_mul]; exact le_rfl
-          _ ≤ (max 1 ((1 / 2 : ℝ) ^ (a - 1))) * (((1 / 4 : ℝ) * (1 / 2) ^ k) ^ b / b) :=
-              mul_le_mul_of_nonneg_right (le_max_left _ _) hXb
+      · have h1' := rightTail_lt1 a b ((1 / 4 : ℝ) * (1 / 2) ^ k) ha ha1' hb hη0
+          (by linarith) (by linarith)
+        rw [← mul_div_assoc'] at h1'
+        exact le_trans h1' (mul_le_mul_of_nonneg_right hMa hXb)
+      · have h1' := rightTail_ge1 a b ((1 / 4 : ℝ) * (1 / 2) ^ k) (le_of_eq ha1'.symm) hb
+          hη0 (by linarith) (by linarith)
+        exact le_trans h1' (le_trans
+          (le_of_eq (one_mul (((1 / 4 : ℝ) * (1 / 2) ^ k) ^ b / b)).symm)
+          (mul_le_mul_of_nonneg_right (le_max_left _ _) hXb))
 
 /-- **任意精度可达（四义务之三，按合同调度）**：对每个 ε > 0 存在 (k, N, ρ)：
     ρ = εβ/8 ≤ εβ/4；两尾有证上界和 ≤ ρ/4（k 的指数衰减有限步达到）；
@@ -1529,7 +1536,7 @@ theorem mixture_strictMonoOn {n : ℕ} (w : Fin n → ℚ) (F : Fin n → ℝ �
     StrictMonoOn (mixtureCdf w F) (Set.Icc 0 1) := by
   intro x hx y hy hxy
   have hnonneg : ∀ h, 0 ≤ (w h : ℝ) * (F h y - F h x) := fun h =>
-    mul_nonneg (by exact_mod_cast hw h) (hm h hx hy hxy).le
+    mul_nonneg (by exact_mod_cast hw h) (hm h hx hy hxy.le).le
   have hjlt : F j x < F j y := hs hx hy hxy
   have hpos : 0 < (w j : ℝ) * (F j y - F j x) :=
     mul_pos (by exact_mod_cast hwj) (by linarith)
@@ -1566,17 +1573,17 @@ theorem mixture_quantile_unique {n : ℕ} (w : Fin n → ℚ) (F : Fin n → ℝ
       (by rw [hF0m, hF1m]; exact ⟨hq.le, hq1.le⟩)
   obtain ⟨v, hv, hvq⟩ := hmem
   refine ⟨v, ⟨?_, ?_⟩, ?_⟩
-  · rcases eq_or_lt_of_le (zero_le v) with h | h
-    · exfalso
+  · have h0 : v ≠ 0 := by
+      intro h
       rw [h, hF0m] at hvq
-      linarith
-    · exact h
-  · rcases eq_or_lt_of_le (by linarith : v ≤ 1) with h | h
-    · exfalso
+      exact hq.ne hvq.symm
+    have h1' : v ≠ 1 := by
+      intro h
       rw [h, hF1m] at hvq
-      linarith
-    · exact h
-  · rintro u ⟨hu0, hu1⟩ huu
+      exact hq1.ne hvq.symm
+    exact ⟨lt_of_le_of_ne hv.1 h0, lt_of_le_of_ne hv.2 h1'⟩
+  · exact hvq
+  · rintro u ⟨⟨hu0, hu1⟩, huu⟩
     refine hs.injOn (Set.mem_Icc.mpr ⟨hu0.le, hu1.le⟩) (Set.mem_Icc.mpr ⟨hv.1, hv.2⟩) ?_
     rw [huu, hvq]
 
@@ -1588,7 +1595,7 @@ theorem component_quantile_average_counterexample :
     (mixtureCdf ![1 / 2, 1 / 2] ![fun x : ℝ => x, fun x : ℝ => x * x]
         ((Real.sqrt 5 - 1) / 2) = 1 / 2)
       ∧ ((1 / 2 + 1 / Real.sqrt 2) / 2 ≠ (Real.sqrt 5 - 1) / 2) := by
-  have hv : ((Real.sqrt 5 - 1) / 2) ^ 2 = (3 - Real.sqrt 5) / 2 := by
+  have hv : ((Real.sqrt 5 - 1) / 2) * ((Real.sqrt 5 - 1) / 2) = (3 - Real.sqrt 5) / 2 := by
     have h5 : Real.sqrt 5 * Real.sqrt 5 = 5 := Real.mul_self_sqrt (by norm_num)
     field_simp <;> nlinarith [h5]
   have hval : mixtureCdf ![1 / 2, 1 / 2] ![fun x : ℝ => x, fun x : ℝ => x * x]
@@ -1597,7 +1604,7 @@ theorem component_quantile_average_counterexample :
       ((![1 / 2, 1 / 2] i : ℚ) : ℝ)
         * (![fun x : ℝ => x, fun x : ℝ => x * x] i) ((Real.sqrt 5 - 1) / 2) = 1 / 2
     rw [Fin.sum_univ_two]
-    simp only [Matrix.cons_val_zero, Matrix.cons_val_one, Matrix.head_cons]
+    simp only [Matrix.cons_val_zero, Matrix.cons_val_one]
     rw [hv]
     norm_num
   refine ⟨hval, ?_⟩
@@ -1644,21 +1651,20 @@ theorem cdfEnc_real (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ)
   have hBpos : (0:ℝ) < ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ) :=
     by exact_mod_cast UnifiedNeedlesS3a.betaTwoConst_pos (α - 1) (β - 1)
   have hBu : (0:ℝ) < B_u := lt_of_lt_of_le hBpos hBuB
-  have hN : 0 ≤ bernCdf α β x * ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ) :=
-    le_trans hNl0 hNl
   refine ⟨?_, ?_⟩
-  · refine (div_le_div_iff₀ hBu hBpos).mpr ?_
-    calc N_l * ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ)
-        ≤ bernCdf α β x * ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ) :=
-          mul_le_mul_of_nonneg_right hNl hBpos.le
-      _ ≤ bernCdf α β x * B_u := mul_le_mul_of_nonneg_left hBuB hN
+  · have hNpos : 0 ≤ bernCdf α β x := by
+      by_contra hnc
+      push_neg at hnc
+      have hneg : bernCdf α β x * ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ) < 0 :=
+        mul_neg_of_neg_of_pos hnc hBpos
+      exact absurd (le_trans hNl0 hNl) (by linarith)
+    refine (div_le_iff₀ hBu).mpr ?_
+    calc N_l ≤ bernCdf α β x * ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ) := hNl
+      _ ≤ bernCdf α β x * B_u := mul_le_mul_of_nonneg_right hBuB hNpos.le
   · refine (le_div_iff₀ hBl).mpr ?_
     calc bernCdf α β x * B_l
         ≤ bernCdf α β x * ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ) :=
-          mul_le_mul_of_nonneg_right hBlB hN
-      _ ≤ N_u * ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ) :=
-          mul_le_mul_of_nonneg_right hNu hBpos.le
-      _ = N_u := by
-          field_simp [hBpos.ne'] <;> ring
+          mul_le_mul_of_nonneg_right hBlB hNpos.le
+      _ ≤ N_u := hNu
 
 end JurisLean.Seams.UnifiedBetaDomain

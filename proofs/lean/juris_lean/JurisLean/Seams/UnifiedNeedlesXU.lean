@@ -130,9 +130,6 @@ theorem xuConstRangeSum (n : ℕ) (c : ℚ) :
       ring
   | succ n ih =>
       rw [Finset.sum_range_succ]
-      show (∑ i ∈ Finset.range (n + 1), (if i = 0 then (0 : ℚ) else c))
-          + (if (n : ℕ) + 1 = 0 then (0 : ℚ) else c)
-          = ((n : ℕ) + 1 : ℚ) * c
       rw [if_neg (show ¬ ((n : ℕ) + 1 = 0) from by omega), ih]
       push_cast
       ring
@@ -191,10 +188,9 @@ theorem ae_truth_not_universal_truth (N : ℕ) (hN : 0 < N) :
     show 0 ≤ (if i = 0 then (0 : ℚ) else 1 / (N : ℚ))
     by_cases h0 : i = 0
     · rw [if_pos h0]
-      exact le_rfl
     · rw [if_neg h0]
       exact le_of_lt (div_pos (show (0 : ℚ) < 1 from by norm_num) hNq)
-  · exact ⟨Finset.mem_range.mpr (Nat.lt_succ_self 0), by
+  · exact ⟨Finset.mem_range.mpr (by omega), by
       show decide (xuGridX N 0 ≠ 0) = false
       simp [xuGridX]⟩
 
@@ -214,9 +210,8 @@ theorem xuIteAnd_le_left {α : Type} (p : α → ℚ) (hnn : ∀ a, 0 ≤ p a) (
   by_cases hA : A a = true
   · rw [if_pos hA]
     by_cases hB : B a = true
-    · have hab : A a && B a = true := by rw [hA, hB, Bool.true_and]
+    · have hab : (A a && B a) = true := by rw [hA, hB, Bool.true_and]
       rw [if_pos hab]
-      exact le_rfl
     · have hne : ¬ ((A a && B a) = true) := by
         rw [Bool.and_eq_true]
         exact fun h => hB h.2
@@ -227,7 +222,6 @@ theorem xuIteAnd_le_left {α : Type} (p : α → ℚ) (hnn : ∀ a, 0 ≤ p a) (
       rw [Bool.and_eq_true]
       exact fun h => hA h.1
     rw [if_neg hne]
-    exact le_rfl
 
 /-- 第 55 针逐点引理：合取事件的指示质量不超过第二事件的指示质量（0 <= p 逐点）。 -/
 theorem xuIteAnd_le_right {α : Type} (p : α → ℚ) (hnn : ∀ a, 0 ≤ p a) (A B : α → Bool) :
@@ -236,9 +230,8 @@ theorem xuIteAnd_le_right {α : Type} (p : α → ℚ) (hnn : ∀ a, 0 ≤ p a) 
   by_cases hB : B a = true
   · rw [if_pos hB]
     by_cases hA : A a = true
-    · have hab : A a && B a = true := by rw [hA, hB, Bool.true_and]
+    · have hab : (A a && B a) = true := by rw [hA, hB, Bool.true_and]
       rw [if_pos hab]
-      exact le_rfl
     · have hne : ¬ ((A a && B a) = true) := by
         rw [Bool.and_eq_true]
         exact fun h => hA h.1
@@ -249,7 +242,6 @@ theorem xuIteAnd_le_right {α : Type} (p : α → ℚ) (hnn : ∀ a, 0 ≤ p a) 
       rw [Bool.and_eq_true]
       exact fun h => hB h.2
     rw [if_neg hne]
-    exact le_rfl
 
 /-- 第 55 针逐点引理：补集 union 法下界的逐点形态——
     iA + iB - p <= iAB（四种 Bool 组合逐一核对，唯一非平凡分支用 0 <= p）。 -/
@@ -259,7 +251,7 @@ theorem xuIteLower {α : Type} (p : α → ℚ) (hnn : ∀ a, 0 ≤ p a) (A B : 
   by_cases hA : A a = true
   · rw [if_pos hA]
     by_cases hB : B a = true
-    · have hab : A a && B a = true := by rw [hA, hB, Bool.true_and]
+    · have hab : (A a && B a) = true := by rw [hA, hB, Bool.true_and]
       rw [if_pos hB, if_pos hab]
       linarith
     · have hne : ¬ ((A a && B a) = true) := by
@@ -289,7 +281,7 @@ theorem conjunction_equals_smaller_event_under_inclusion
   show (∑ a : α, (if A a && B a then p a else 0)) = (∑ a : α, (if A a then p a else 0))
   refine Finset.sum_congr rfl (fun a _ => ?_)
   by_cases hA : A a = true
-  · have hab : A a && B a = true := by rw [hA, hinc a hA, Bool.true_and]
+  · have hab : (A a && B a) = true := by rw [hA, hinc a hA, Bool.true_and]
     rw [if_pos hab, if_pos hA]
   · have hne : ¬ ((A a && B a) = true) := by
       rw [Bool.and_eq_true]
@@ -334,8 +326,7 @@ theorem conjunction_probability_bounds
       by_cases hab : (A a && B a) = true
       · rw [if_pos hab]
         exact hnn a
-      · rw [if_neg hab]
-        exact le_rfl)
+      · rw [if_neg hab])
   have hDis : evMass xuHalf (fun b => b && !b) = 0 := by
     unfold evMass
     rw [sum_bool_eq]
@@ -452,14 +443,13 @@ theorem contamination_conditioning_degenerate
         by_cases hab : (E a && H a) = true
         · rw [if_pos hab]
           exact hmixnn a
-        · rw [if_neg hab]
-          exact le_rfl)
+        · rw [if_neg hab])
     have hle : evMass (xuMixMass ε c t) (fun a => E a && H a)
         ≤ evMass (xuMixMass ε c t) H := by
       show (∑ a : α, (if E a && H a then xuMixMass ε c t a else 0))
           ≤ (∑ a : α, (if H a then xuMixMass ε c t a else 0))
       exact Finset.sum_le_sum (fun a _ => xuIteAnd_le_right (xuMixMass ε c t) hmixnn E H a)
-    exact le_antisymm hle hge
+    exact le_antisymm (le_trans hle hmixH) hge
   refine ⟨hmixH, ?_⟩
   unfold xuCondShare
   rw [hsub, hmixH]

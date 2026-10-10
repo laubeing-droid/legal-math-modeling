@@ -307,11 +307,7 @@ theorem betaInt_eq (m : ℕ) : ∀ n : ℕ, betaInt m n = ((betaTwoConst m n : �
       rw [Nat.factorial_succ]
       push_cast at hn1 ⊢
       field_simp [hfn.ne', hn1.ne']
-    have hq' : (((1 : ℚ) / ((n : ℕ) + 1 : ℚ) : ℚ) : ℝ
-        = ((betaTwoConst 0 n : ℚ) : ℝ)) := by
-      norm_num [hq]
-    push_cast at hq' ⊢
-    exact hq'
+    norm_num [hq]
   | succ m ih =>
     intro n
     rw [betaInt_step (m + 1) n (by omega), Nat.add_sub_cancel, ih (n + 1)]
@@ -327,12 +323,7 @@ theorem betaInt_eq (m : ℕ) : ∀ n : ℕ, betaInt m n = ((betaTwoConst m n : �
       simp only [Nat.factorial_succ]
       push_cast
       field_simp [hfa.ne', hfb.ne', hfab.ne', hfab2.ne'] <;> ring
-    have hq' : ((((m : ℕ) + 1 : ℚ) / ((n : ℕ) + 1 : ℚ)
-          * betaTwoConst m (n + 1) : ℚ) : ℝ
-        = ((betaTwoConst (m + 1) n : ℚ) : ℝ)) := by
-      norm_num [hq]
-    push_cast at hq' ⊢
-    exact hq'
+    norm_num [hq]
 
 /-- 闭式比值一：I(a+1,b)/I(a,b) = (a+1)/(a+b+2)（一阶矩的归一化比值）。 -/
 theorem betaTwoConst_ratio1 (a b : ℕ) :

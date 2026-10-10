@@ -46,6 +46,13 @@ def allowed_counts(artifact: Path = ARTIFACT) -> set[int]:
     for scope in doc["scope_summary"].values():
         out.add(scope["theorem_count"])
         out.add(scope["counted_declaration_count"])
+        # Audit-surface figures are generated artifact counts too; quoting them in
+        # theorem-context sentences is not a foreign count (first crossed the >=3000
+        # scan threshold when the audit surface grew past 3000 commands).
+        for field in ("print_axioms_command_count", "print_axioms_distinct_targets"):
+            value = scope.get(field)
+            if isinstance(value, int):
+                out.add(value)
     census = artifact.parent / "trivial_proof_census.json"
     if census.is_file():
         cdoc = json.loads(census.read_text(encoding="utf-8"))

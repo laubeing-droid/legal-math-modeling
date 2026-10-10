@@ -9,9 +9,10 @@ The eight mandated obligations, and where each lives:
 1. TRAJECTORY SPACE — `Traj State = Π n : ℕ, XConst State n`, the dependent
    product over the constant family `X n := State` (i.e. `ℕ → State`), exactly
    the shape the pinned Mathlib Ionescu-Tulcea development consumes
-   (`ProbabilityTheory.Kernel.trajMeasure`, local source
-   Mathlib/Probability/Kernel/IonescuTulcea/Traj.lean:762-791).  Not a general
-   function space: no `ℝ → ℕ` anywhere.
+   (`ProbabilityTheory.Kernel.trajMeasure`; local source
+   Mathlib/Probability/Kernel/IonescuTulcea/Traj.lean:762-791, whose index
+   interval is `Finset.Iic` — the spelling used throughout this file).  Not a
+   general function space: no `ℝ → ℕ` anywhere.
 2. REAL STATE ENCODING — `State = Disc ⊕ Param`: a countable discrete syntactic
    identity layer (`Disc`, six procedure identities incl. the §9.3 diagnostic
    terminal `noLegalSelection`) and a finite-dimensional Borel parameter piece
@@ -133,9 +134,8 @@ theorem enc_injective : Function.Injective enc := by
   intro a b h
   cases a <;> cases b <;> simp_all [enc]
 
-/-- Disc 有限（从而可数）。 -/
-instance instFiniteDisc : Finite Disc :=
-  Finite.of_injective enc enc_injective
+/-- Disc 可数：单射入 ℕ 直接给出 `Countable`（定义场 `exists_injective_nat'`）。 -/
+instance instCountableDisc : Countable Disc := ⟨enc, enc_injective⟩
 
 /-- 实参数片：有限维（k = 3）Borel 域。第 0 分量取"债权额/本金"，第 1 分量取
 "对照阈值"，第 2 分量取"增量（迟延步长）"；具体语义为示意，交付物是形状可测性。 -/
@@ -165,7 +165,7 @@ theorem param_standardBorel : StandardBorelSpace Param := by infer_instance
 /-- 乘积编码标准 Borel：`StandardBorelSpace.prod` 实例。 -/
 theorem stateP_standardBorel : StandardBorelSpace StateP := by infer_instance
 
-/-- **如实记录的开放点**：mathlib 在锁定提交处没有 `StandardBorelSpace (α ⊕ β)` 实例，
+/- **如实记录的开放点**：mathlib 在锁定提交处没有 `StandardBorelSpace (α ⊕ β)` 实例，
 也没有 `borel (α ⊕ β) = Sum.instMeasurableSpace` 型引理；因此 Sum 编码全状态的标准 Borel
 条件在本模块中以显式具名假设传递（§八 `condDistrib_boundary_stateFull`），不伪造实例。 -/
 
@@ -224,14 +224,19 @@ def policy : Disc → State → State := fun d s =>
 theorem measurable_policy : Measurable fun p : Disc × State => policy p.1 p.2 := by
   have hcond : MeasurableSet {p : Disc × State | p.1 = Disc.noLegalSelection} :=
     measurable_fst (measurableSet_singleton Disc.noLegalSelection)
-  exact Measurable.ite hcond measurable_snd (measurable_snd.comp measurable_step)
+  have hf : Measurable (Prod.snd : Disc × State → State) := measurable_snd
+  have hg : Measurable fun p : Disc × State => step p.2 :=
+    measurable_step.comp measurable_snd
+  exact Measurable.ite hcond hf hg
 
 /-- 策略映射逐观察可测（策略是观察适应的）。 -/
 theorem measurable_policy_apply (o : Disc) : Measurable (policy o) := by
   by_cases h : o = Disc.noLegalSelection
-  · simp only [policy, if_pos h]
+  · show Measurable fun s => if o = Disc.noLegalSelection then s else step s
+    rw [if_pos h]
     exact measurable_id'
-  · simp only [policy, if_neg h]
+  · show Measurable fun s => if o = Disc.noLegalSelection then s else step s
+    rw [if_neg h]
     exact measurable_step
 
 /-- 完整转移：观察 → 策略 → 推前。 -/
@@ -256,33 +261,45 @@ instance mu0_isProbabilityMeasure : IsProbabilityMeasure mu0 :=
 /-- **构造性离散加权初始分布**：任给权和为 1 的非负权 `w`，把质量放在
 离散身份层上（`w d • dirac (inl d)` 的可数和）得到初始概率。 -/
 theorem isProbabilityMeasure_weightedDirac {w : Disc → ℝ≥0∞} (hw : HasSum w 1) :
-    IsProbabilityMeasure (Measure.sum fun d : Disc => w d • Measure.dirac (Sum.inl d)) :=
+    IsProbabilityMeasure (Measure.sum fun d : Disc => w d • Measure.dirac (Sum.inl d : State)) :=
   HasSum.isProbabilityMeasure_sum_dirac_ennreal hw
 
 /-! ## 五、Markov 核归一（第 5 项） -/
 
 /-! ### 一般确定性链构造 -/
 
+/-- 末坐标上的转移步（`chainOn` 的确定性核体；index interval 取 mathlib
+Ionescu-Tulcea 开发所用的 `Finset.Iic`）。 -/
+def stepOn {S : Type} [MeasurableSpace S] (next : S → S) (hnext : Measurable next) (n : ℕ) :
+    (Π i : Finset.Iic n, XConst S i) → S :=
+  fun h => next (h ⟨n, Finset.mem_Iic.mpr le_rfl⟩)
+
+/-- 末坐标转移可测。 -/
+theorem measurable_stepOn {S : Type} [MeasurableSpace S] (next : S → S) (hnext : Measurable next)
+    (n : ℕ) :
+    Measurable fun h : Π i : Finset.Iic n, XConst S i =>
+      next (h (⟨n, Finset.mem_Iic.mpr le_rfl⟩ : Finset.Iic n)) :=
+  hnext.comp (measurable_pi_apply (⟨n, Finset.mem_Iic.mpr le_rfl⟩ : Finset.Iic n))
+
 /-- 一般确定性链：给定任意可测状态空间 `S` 上的可测转移 `next`，
 返回 Ionescu–Tulcea 机制消费的 κ 族——第 n 核从"至时刻 n 的前缀"出发，
 在末坐标上施加转移的确定性核。 -/
 def chainOn {S : Type} [MeasurableSpace S]
     (next : S → S) (hnext : Measurable next) (n : ℕ) :
-    Kernel (Π i : Set.Iic n, XConst S i) (XConst S (n + 1)) :=
-  Kernel.deterministic (fun h => next (h ⟨n, Set.mem_Iic.2 (Nat.le_succ n)⟩))
-    (hnext.comp (measurable_pi_apply ⟨n, Set.mem_Iic.2 (Nat.le_succ n)⟩))
+    Kernel (Π i : Finset.Iic n, XConst S i) (XConst S (n + 1)) :=
+  Kernel.deterministic (stepOn next hnext n) (measurable_stepOn next hnext n)
 
 /-- 一般确定性链的 Markov 归一：每行都是概率测度。 -/
 instance chainOn_isMarkovKernel {S : Type} [MeasurableSpace S]
     (next : S → S) (hnext : Measurable next) (n : ℕ) :
     IsMarkovKernel (chainOn next hnext n) :=
-  Kernel.isMarkovKernel_deterministic _
+  Kernel.isMarkovKernel_deterministic (stepOn next hnext n) (measurable_stepOn next hnext n)
 
 /-! ### 法律链 -/
 
 /-- 法律转移核链：`legalChain n` 把确定性推前 `next` 施加在前缀末坐标上。 -/
 def legalChain (n : ℕ) :
-    Kernel (Π i : Set.Iic n, XConst State i) (XConst State (n + 1)) :=
+    Kernel (Π i : Finset.Iic n, XConst State i) (XConst State (n + 1)) :=
   chainOn next measurable_next n
 
 /-- 法律链逐核 Markov（`∀ n` 形实例，trajMeasure 的前提）。 -/
@@ -291,8 +308,8 @@ instance legalChain_isMarkovKernel : ∀ n : ℕ, IsMarkovKernel (legalChain n) 
 
 /-- **「每行质量 1」的逐点读出**：`IsMarkovKernel` 的语义正是逐行概率测度——
 这就是 §9.3 "每行质量 1 来自各核归一"的形式化（非假设：由确定性核构造性成立）。 -/
-theorem legalChain_row_probability (n : ℕ) (h : Π i : Set.Iic n, XConst State i) :
-    IsProbabilityMeasure (legalChain n h) := infer_instance
+theorem legalChain_row_probability (n : ℕ) (h : Π i : Finset.Iic n, XConst State i) :
+    IsProbabilityMeasure (legalChain n h) := inferInstance
 
 /-! ## 六、柱集投影对应（第 6 项） -/
 
@@ -334,7 +351,7 @@ theorem prefix_iterate_compose (a b c : ℕ) (hab : a ≤ b) (hbc : b ≤ c) :
   Kernel.partialTraj_comp_partialTraj (κ := legalChain) hab hbc
 
 /-- 柱集值读出：从给定点 `x₀` 出发的轨迹测度限制到前 b 位即有限前缀测度。 -/
-theorem traj_prefix_value (x₀ : Π i : Set.Iic 0, XConst State i) (b : ℕ) :
+theorem traj_prefix_value (x₀ : Π i : Finset.Iic 0, XConst State i) (b : ℕ) :
     (Kernel.traj legalChain 0 x₀).map (frestrictLe b)
       = Kernel.partialTraj legalChain 0 b x₀ :=
   Kernel.traj_map_frestrictLe_apply (κ := legalChain) 0 b x₀
@@ -346,7 +363,7 @@ theorem traj_prefix_value (x₀ : Π i : Set.Iic 0, XConst State i) (b : ℕ) :
 `IsProbabilityMeasure μ₀`（本节前提）——由此 mathlib 给出无限轨迹概率测度。 -/
 instance isProbabilityMeasure_trajMeasure_legalChain :
     IsProbabilityMeasure (Kernel.trajMeasure μ₀ legalChain) :=
-  infer_instance
+  inferInstance
 
 /-- 具体初始分布 `mu0` 的实例化读出。 -/
 example : IsProbabilityMeasure (Kernel.trajMeasure mu0 legalChain) := by
@@ -355,7 +372,7 @@ example : IsProbabilityMeasure (Kernel.trajMeasure mu0 legalChain) := by
 /-- **唯一性**（消费 `eq_traj`）：任何与 `partialTraj legalChain 0 b` 逐位相容的核
 必等于 `traj legalChain 0`——柱集值唯一决定无限轨迹分布。 -/
 theorem traj_unique_prefix
-    (η : Kernel (Π i : Set.Iic 0, XConst State i) (Π n, XConst State n))
+    (η : Kernel (Π i : Finset.Iic 0, XConst State i) (Π n, XConst State n))
     (hη : ∀ b : ℕ, η.map (frestrictLe b) = Kernel.partialTraj legalChain 0 b) :
     η = Kernel.traj legalChain 0 :=
   Kernel.eq_traj (κ := legalChain) η hη
@@ -404,8 +421,8 @@ theorem condDistrib_boundary_stateFull (a : ℕ)
     ProbabilityTheory.condDistrib (fun x : Π n, XConst State n => x (a + 1))
         (frestrictLe a) (Kernel.trajMeasure μ₀ legalChain)
       =ᵐ[(Kernel.trajMeasure μ₀ legalChain).map (frestrictLe a)] legalChain a := by
-  haveI := stateSB
-  haveI : Nonempty State := ⟨Sum.inl Disc.filing⟩
+  haveI : StandardBorelSpace (XConst State (a + 1)) := stateSB
+  haveI : Nonempty (XConst State (a + 1)) := ⟨Sum.inl Disc.filing⟩
   exact Kernel.condDistrib_trajMeasure (X := XConst State) (κ := legalChain) (μ₀ := μ₀)
 
 /-! ### 乘积编码 StateP：端到端无条件成立 -/
@@ -419,7 +436,7 @@ theorem measurable_nextP : Measurable nextP :=
 
 /-- 乘积编码的链。 -/
 def chainP (n : ℕ) :
-    Kernel (Π i : Set.Iic n, XConst StateP i) (XConst StateP (n + 1)) :=
+    Kernel (Π i : Finset.Iic n, XConst StateP i) (XConst StateP (n + 1)) :=
   chainOn nextP measurable_nextP n
 
 instance chainP_isMarkovKernel : ∀ n : ℕ, IsMarkovKernel (chainP n) :=
@@ -434,7 +451,7 @@ instance mu0P_isProbabilityMeasure : IsProbabilityMeasure mu0P :=
 /-- 乘积编码轨迹的无限概率测度存在（全部假设无条件成立）。 -/
 instance isProbabilityMeasure_trajMeasure_chainP :
     IsProbabilityMeasure (Kernel.trajMeasure mu0P chainP) :=
-  infer_instance
+  inferInstance
 
 /-- **端到端无条件成立的条件分布读出**：StateP 是 StandardBorelSpace（乘积实例）
 且 Nonempty，故边界定理前提无需任何额外假设即满足——这是"单个
@@ -443,7 +460,7 @@ theorem condDistrib_boundary_stateP (a : ℕ) :
     ProbabilityTheory.condDistrib (fun x : Π n, XConst StateP n => x (a + 1))
         (frestrictLe a) (Kernel.trajMeasure mu0P chainP)
       =ᵐ[(Kernel.trajMeasure mu0P chainP).map (frestrictLe a)] chainP a := by
-  haveI : Nonempty StateP := ⟨(Disc.filing, fun _ => (0 : ℝ))⟩
+  haveI : Nonempty (XConst StateP (a + 1)) := ⟨(Disc.filing, fun _ => (0 : ℝ))⟩
   exact Kernel.condDistrib_trajMeasure (X := XConst StateP) (κ := chainP) (μ₀ := mu0P)
 
 end Traj

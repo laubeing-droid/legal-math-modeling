@@ -271,39 +271,41 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
         * (((α + β - 1 - j : ℕ) : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j))) := by
     rw [← Finset.sum_sub_distrib]
     exact Finset.sum_congr rfl fun j _ => by ring
-  -- (B) 左和移标：j ↦ j−1（非依赖 nbij'＋全显式参数，钉死 ℕ 层——依赖版 sum_bij'
-  --     的元变量统一化把成员目标抬到 cast 层，是前几轮 omega 齐炸的根因）
+  -- (B) 左和移标：j ↦ j−1（image 重标＋sum_image，全程 ℕ 层——bij' 系引理的
+  --     元变量统一化无论依赖版还是显式参版都会把索引类型抬到 cast 层）
   have hB : (∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
         * ((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)))
       = ∑ i ∈ Finset.Ico (α - 1) (α + β - 1), u i := by
-    refine (Finset.sum_nbij'
-        (s := Finset.Ico (α - 1) (α + β - 1)) (t := Finset.Ico α (α + β)) (f := u)
-        (g := fun j => ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
-          * ((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)))
-        (fun i => i + 1) (fun j => j - 1) ?_ ?_ ?_ ?_ ?_).symm
-    · intro i hi
-      obtain ⟨h1, h2⟩ := Finset.mem_Ico.mp hi
-      exact Finset.mem_Ico.mpr ⟨by omega, by omega⟩
-    · intro j hj
-      obtain ⟨h1, h2⟩ := Finset.mem_Ico.mp hj
-      exact Finset.mem_Ico.mpr ⟨by omega, by omega⟩
-    · intro i _
+    have himg : Finset.Ico α (α + β)
+        = (Finset.Ico (α - 1) (α + β - 1)).image (fun i => i + 1) := by
+      refine Finset.ext fun j => ?_
+      simp only [Finset.mem_image, Finset.mem_Ico]
+      constructor
+      · intro h
+        obtain ⟨h1, h2⟩ := h
+        exact ⟨j - 1, ⟨by omega, by omega⟩, by omega⟩
+      · rintro ⟨i, hi, rfl⟩
+        obtain ⟨h1, h2⟩ := hi
+        exact ⟨by omega, by omega⟩
+    have hinj : ∀ i₁ ∈ Finset.Ico (α - 1) (α + β - 1), ∀ i₂ ∈ Finset.Ico (α - 1) (α + β - 1),
+        i₁ + 1 = i₂ + 1 → i₁ = i₂ := by
+      intro i₁ h₁ i₂ h₂ h
+      obtain ⟨a1, a2⟩ := Finset.mem_Ico.mp h₁
+      obtain ⟨b1, b2⟩ := Finset.mem_Ico.mp h₂
       omega
-    · intro j hj
-      obtain ⟨h1, h2⟩ := Finset.mem_Ico.mp hj
-      omega
-    · intro i hi
-      obtain ⟨h1, h2⟩ := Finset.mem_Ico.mp hi
-      have he := choose_mul_left (α + β - 1) (i + 1) (by omega) (by omega)
-      have hr : ((Nat.choose (α + β - 1) (i + 1) : ℕ) : ℝ) * ((i + 1 : ℕ) : ℝ)
-          = ((Nat.choose (α + β - 2) i * (α + β - 1) : ℕ) : ℝ) := by
-        have hc := congrArg (fun n : ℕ => (n : ℝ)) he
-        rw [show (i + 1 - 1 : ℕ) = i from by omega] at hc
-        simp only [Nat.cast_mul] at hc
-        linear_combination hc
-      rw [huApp, mul_assoc, mul_assoc, hr, show (i + 1 - 1 : ℕ) = i from by omega,
-        show (α + β - 1) - (i + 1) = α + β - 2 - i from by omega]
+    rw [himg, Finset.sum_image hinj]
+    refine Finset.sum_congr rfl fun i hi => ?_
+    obtain ⟨h1, h2⟩ := Finset.mem_Ico.mp hi
+    have he := choose_mul_left (α + β - 1) (i + 1) (by omega) (by omega)
+    have hr : ((Nat.choose (α + β - 1) (i + 1) : ℕ) : ℝ) * ((i + 1 : ℕ) : ℝ)
+        = ((Nat.choose (α + β - 2) i * (α + β - 1) : ℕ) : ℝ) := by
+      have hc := congrArg (fun n : ℕ => (n : ℝ)) he
+      rw [show (i + 1 - 1 : ℕ) = i from by omega] at hc
+      simp only [Nat.cast_mul] at hc
+      linear_combination hc
+    rw [huApp, mul_assoc, mul_assoc, hr, show (i + 1 - 1 : ℕ) = i from by omega,
+      show (α + β - 1) - (i + 1) = α + β - 2 - i from by omega]
   -- (C) 右和：j = m 项为零，其余 = u j
   have hC : (∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)

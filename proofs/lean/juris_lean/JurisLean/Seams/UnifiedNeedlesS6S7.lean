@@ -143,10 +143,10 @@ theorem trace_concatenation_iff {Rel : Type} (st₀ s : State Rel) (tr : Trace R
         tr = a ++ b ∧ runTrace st₀ a = mid ∧ runTrace mid b = s := by
   constructor
   · intro h
-    refine ⟨tr, [], runTrace st₀ tr, List.append_nil tr, rfl, ?_⟩
+    refine ⟨tr, [], runTrace st₀ tr, (List.append_nil tr).symm, rfl, ?_⟩
     rw [runTrace_nil]
     exact h
-  · intro a b mid htr hmid hfin
+  · intro a b mid ⟨htr, hmid, hfin⟩
     subst htr
     rw [runTrace_append, hmid]
     exact hfin
@@ -296,6 +296,7 @@ theorem empirical_draft_unauthorized (se : StatContext) :
     ¬ authorized (empiricalDraft se) := by
   rintro ⟨c⟩
   obtain ⟨h1, _, _⟩ := competence_shape c
+  simp only [empiricalDraft] at h1
   exact absurd h1 (by decide)
 
 /-- **第 46 针（S7，I.13）**：empirical_frequency_not_binding_source。
@@ -332,15 +333,21 @@ theorem precedent_update_preserves_norm_structure (E : VersionEnv)
       ad.decision.production.scope = Scope.nationwide ∧
       (∀ v : SourceVersionRecord, v ∈ E.versions →
           hitsSupersession ad.decision v ≠ true → v ∈ (precedentUpdate ad E).versions) := by
-  refine ⟨JurisLean.Seams.PrecedentFlow.precedent_update_preserves_norm_structure E ad hwf t,
-    ⟨ad.witness⟩, (competence_shape ad.witness).1, (competence_shape ad.witness).2.2, ?_⟩
-  intro v hv hhit
-  by_cases hfire : updateFires ad.decision = true
-  · rw [update_versions_fires ad E hfire]
-    exact List.mem_cons.mpr
-      (Or.inr (List.mem_map.mpr ⟨v, hv, supersedeRecord_keeps_unhit ad.decision v hhit⟩))
-  · rw [update_versions_silent ad E hfire]
-    exact hv
+  constructor
+  · exact JurisLean.Seams.PrecedentFlow.precedent_update_preserves_norm_structure E ad hwf t
+  · constructor
+    · exact ⟨ad.witness⟩
+    · constructor
+      · exact (competence_shape ad.witness).1
+      · constructor
+        · exact (competence_shape ad.witness).2.2
+        · intro v hv hhit
+          by_cases hfire : updateFires ad.decision = true
+          · rw [update_versions_fires ad E hfire]
+            exact List.mem_cons.mpr
+              (Or.inr (List.mem_map.mpr ⟨v, hv, supersedeRecord_keeps_unhit ad.decision v hhit⟩))
+          · rw [update_versions_silent ad E hfire]
+            exact hv
 
 /-! ## 第 47 针：feedback_need_not_converge -/
 

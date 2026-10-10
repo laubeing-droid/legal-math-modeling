@@ -130,8 +130,9 @@ theorem retro_effect_goes_through_ontic_channel {α : Type} (e : Int × α)
 /-- 第 49 针配套（不混同的构造子层见证）：证据事件与效果事件是不同构造子，
     无法用等式互冒。 -/
 theorem late_evidence_is_not_retro_effect {α : Type} (e e' : Int × α) :
-    (LawEvent.lateEvidence e : LawEvent α) ≠ LawEvent.retroEffect e' :=
-  fun h => LawEvent.noConfusion h
+    (LawEvent.lateEvidence e : LawEvent α) ≠ LawEvent.retroEffect e' := by
+  intro h
+  cases h
 
 end Needle49EvidenceOntic
 
@@ -203,14 +204,11 @@ theorem applicableAtBool_of_supersede (d : PrecedentDecision) (v : SourceVersion
     (t : Int) (h : applicableAtBool (supersedeRecord d v) t = true) :
     applicableAtBool v t = true := by
   rw [applicableAtBool_true_iff] at h ⊢
-  unfold supersedeRecord at h
+  simp only [versionApplicableAt, supersedeRecord] at h ⊢
   by_cases hh : hitsSupersession d v = true
   · rw [if_pos hh] at h
     by_cases ha : v.status = VersionStatus.active
     · rw [if_pos ha] at h
-      have hst : ({v with status := VersionStatus.superseded} : SourceVersionRecord).status
-          = VersionStatus.superseded := rfl
-      rw [hst] at h
       exact absurd h.2 (by simp)
     · rw [if_neg ha] at h
       exact h
@@ -242,18 +240,18 @@ theorem past_applicability_without_retroactivity (E : VersionEnv) (ad : Authoriz
     obtain ⟨hw, happ⟩ := hmem
     obtain (heq | hin) := List.mem_cons.mp hw
     · rw [heq] at happ
-      exact absurd ((applicableAtBool_true_iff _ _).mpr happ) hnew
+      exact absurd ((applicableAtBool_true_iff _ _).mp happ) hnew
     · obtain ⟨v, hv, hfw⟩ := List.mem_map.mp hin
       have happ' : applicableAtBool (supersedeRecord ad.decision v) t = true := by
         rw [hfw]; exact happ
       have hfv := applicableAtBool_of_supersede ad.decision v t happ'
-      have hnhit := hnoRel v hv ((applicableAtBool_true_iff _ _).mpr hfv)
+      have hnhit := hnoRel v hv ((applicableAtBool_true_iff _ _).mp hfv)
       rw [supersedeRecord_keeps_unhit ad.decision v hnhit] at hfw
       subst hfw
       exact ⟨hv, hfv⟩
   · intro hmem
     obtain ⟨hw, happ⟩ := hmem
-    have hnhit := hnoRel w hw ((applicableAtBool_true_iff _ _).mpr happ)
+    have hnhit := hnoRel w hw ((applicableAtBool_true_iff _ _).mp happ)
     have hkeep : supersedeRecord ad.decision w = w :=
       supersedeRecord_keeps_unhit ad.decision w hnhit
     exact ⟨List.mem_cons_of_mem _ (List.mem_map.mpr ⟨w, hw, hkeep⟩), happ⟩

@@ -165,6 +165,15 @@ theorem param_standardBorel : StandardBorelSpace Param := by infer_instance
 /-- 乘积编码标准 Borel：`StandardBorelSpace.prod` 实例。 -/
 theorem stateP_standardBorel : StandardBorelSpace StateP := by infer_instance
 
+/-- 乘积编码的逐 n 全局实例（`XConst StateP n` 定义同 `StateP`）：
+`condDistrib` 语句层要求目标上 StandardBorelSpace 与 Nonempty，只作 theorem 不够。 -/
+instance stateP_standardBorel_xconst (n : ℕ) : StandardBorelSpace (XConst StateP n) :=
+  stateP_standardBorel
+
+/-- 乘积编码的逐 n Nonempty 全局实例（立案态＋零参数作见证）。 -/
+instance stateP_nonempty_xconst (n : ℕ) : Nonempty (XConst StateP n) :=
+  .mk (show StateP from (Disc.filing, fun _ => (0 : ℝ)))
+
 /- **如实记录的开放点**：mathlib 在锁定提交处没有 `StandardBorelSpace (α ⊕ β)` 实例，
 也没有 `borel (α ⊕ β) = Sum.instMeasurableSpace` 型引理；因此 Sum 编码全状态的标准 Borel
 条件在本模块中以显式具名假设传递（§八 `condDistrib_boundary_stateFull`），不伪造实例。 -/
@@ -233,10 +242,10 @@ theorem measurable_policy : Measurable fun p : Disc × State => policy p.1 p.2 :
 theorem measurable_policy_apply (o : Disc) : Measurable (policy o) := by
   by_cases h : o = Disc.noLegalSelection
   · show Measurable fun s => if o = Disc.noLegalSelection then s else step s
-    rw [if_pos h]
+    simp only [if_pos h]
     exact measurable_id'
   · show Measurable fun s => if o = Disc.noLegalSelection then s else step s
-    rw [if_neg h]
+    simp only [if_neg h]
     exact measurable_step
 
 /-- 完整转移：观察 → 策略 → 推前。 -/
@@ -293,7 +302,7 @@ def chainOn {S : Type} [MeasurableSpace S]
 instance chainOn_isMarkovKernel {S : Type} [MeasurableSpace S]
     (next : S → S) (hnext : Measurable next) (n : ℕ) :
     IsMarkovKernel (chainOn next hnext n) :=
-  Kernel.isMarkovKernel_deterministic (stepOn next hnext n) (measurable_stepOn next hnext n)
+  Kernel.isMarkovKernel_deterministic (measurable_stepOn next hnext n)
 
 /-! ### 法律链 -/
 
@@ -401,12 +410,12 @@ theorem condDistrib_boundary (a : ℕ)
 /-- **满足侧读出（可数离散目标）**：Disc 是 StandardBorelSpace 且 Nonempty，
 以 Disc 为观察目标时边界定理前提成立。 -/
 theorem disc_target_satisfies : StandardBorelSpace Disc ∧ Nonempty Disc :=
-  ⟨infer_instance, ⟨Disc.filing⟩⟩
+  ⟨inferInstance, ⟨Disc.filing⟩⟩
 
 /-- **满足侧读出（实值目标）**：Param = Fin 3 → ℝ 是 StandardBorelSpace 且 Nonempty，
 以实参数为观察目标时边界定理前提成立。 -/
 theorem param_target_satisfies : StandardBorelSpace Param ∧ Nonempty Param :=
-  ⟨infer_instance, ⟨fun _ => (0 : ℝ)⟩⟩
+  ⟨inferInstance, ⟨fun _ => (0 : ℝ)⟩⟩
 
 /-- **不满足侧（空目标）**：空空间无 Nonempty（且不可能有）——
 `condDistrib_trajMeasure` 的 Nonempty 前提对空目标不可满足。 -/
@@ -460,7 +469,6 @@ theorem condDistrib_boundary_stateP (a : ℕ) :
     ProbabilityTheory.condDistrib (fun x : Π n, XConst StateP n => x (a + 1))
         (frestrictLe a) (Kernel.trajMeasure mu0P chainP)
       =ᵐ[(Kernel.trajMeasure mu0P chainP).map (frestrictLe a)] chainP a := by
-  haveI : Nonempty (XConst StateP (a + 1)) := ⟨(Disc.filing, fun _ => (0 : ℝ))⟩
   exact Kernel.condDistrib_trajMeasure (X := XConst StateP) (κ := chainP) (μ₀ := mu0P)
 
 end Traj

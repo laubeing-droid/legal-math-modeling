@@ -566,7 +566,7 @@ inductive Atom where
   | adminFinalDisposition
 deriving DecidableEq, Fintype
 
-/-- 裸构造子开箱：本件陈述与证明大量直接引用材料/状态原子。 -/
+/- 裸构造子开箱：本件陈述与证明大量直接引用材料/状态原子。 -/
 open Atom
 
 /-! ## 六、具名法源（来源/条款/版本/效力时段按合同 :713 字段保留） -/
@@ -766,7 +766,7 @@ structure LawRule where
   premises : Finset Atom
   conclusion : Atom
   src : LawSource
-deriving DecidableEq, Fintype
+deriving DecidableEq
 
 /-- 投影为既有 `HornRule`（消费 SourceNorms/UnifiedHornIT 机器的接口）。 -/
 def LawRule.horn (r : LawRule) : HornRule Atom := ⟨r.premises, r.conclusion⟩
@@ -965,9 +965,10 @@ def familyRuleList : List LawRule :=
     ruleStayDecree, ruleHoldLoan, ruleHoldDependent, ruleAdminDefects, ruleXReturn,
     ruleXDamage, ruleRetrial, ruleExecEffect, ruleMaritime, ruleExemptionBurden]
 
-/-- 规则总表的集合形。 -/
+/-- 规则总表的集合形（`rid : Nat` 使 LawRule 无穷型，不能 deriving Fintype，
+    故从列表直接造 Finset）。 -/
 def familyRuleFinset : Finset LawRule :=
-  Finset.univ.filter (fun r : LawRule => r ∈ familyRuleList)
+  familyRuleList.toFinset
 
 /-- 对全部 29 条规则做内核级全查：每条规则的具名法源都在效力窗口内
     （合同 :713 效力时段字段的核验定理）。 -/
@@ -991,7 +992,7 @@ abbrev familyHorn : HornSystem Atom := hornOf fullDocket
 /-- 规则表内规则在 Horn 制度的规则集合内。 -/
 theorem rule_horn_mem (r : LawRule) (hr : r ∈ familyRuleList) :
     r.horn ∈ familyHorn.rules :=
-  Finset.mem_image.mpr ⟨r, Finset.mem_filter.mpr ⟨Finset.mem_univ _, hr⟩, rfl⟩
+  Finset.mem_image.mpr ⟨r, Finset.mem_toFinset.mpr hr, rfl⟩
 
 /-- 材料前提进闭包：初始事实含于闭包（closure_is_model 左支）。 -/
 theorem matCl (a : Atom) (h : materialHolds a fullDocket = true) :
@@ -1321,7 +1322,7 @@ theorem witness_model :
   refine isModel_avoiding familyHorn _ initial_bad_disjoint ?_
   intro rh hrh
   obtain ⟨r, hr, rfl⟩ := Finset.mem_image.mp hrh
-  exact rule_concl_avoid_bad r hr
+  exact rule_concl_avoid_bad r (Finset.mem_toFinset.mp hr)
 
 /-- 坏集内原子不可推导：若可推导则落入每个模型，与见证模型矛盾。 -/
 theorem not_in_closure_of_bad (f : Atom)
@@ -1425,7 +1426,7 @@ theorem loanEntitlement_prov :
 /-- 溯源集非空且含银行结算材料（防 prov_sound 空洞为真）。 -/
 theorem loanProvSet_settlement_mem : matBankSettlementMatched ∈ loanProvSet := by
   refine Finset.mem_biUnion.mpr ⟨matBankSettlementMatched,
-    (by simp [ruleLoanEntitlement]), ?_⟩
+    (by simp [ruleLoanEntitlement, LawRule.horn]), ?_⟩
   rw [matSrcOf_self matBankSettlementMatched rfl]
   exact Finset.mem_singleton_self _
 
@@ -1512,7 +1513,7 @@ theorem loan_cited_nonempty :
       SrcId.statute LawSource.civilCode490_626 ∈ loanCited := by
   refine ⟨?_, Finset.mem_insert_self _ _⟩
   exact Finset.mem_insert_of_mem (Finset.mem_biUnion.mpr ⟨matBankSettlementMatched,
-    (by simp [ruleLoanEntitlement]), Finset.mem_singleton.mpr rfl⟩)
+    (by simp [ruleLoanEntitlement, LawRule.horn]), Finset.mem_singleton.mpr rfl⟩)
 
 /-! ## 十二、四态联合输出与见证案完整求值 -/
 

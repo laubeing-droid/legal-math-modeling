@@ -206,8 +206,8 @@
 **作用域读数**（均取自 `theorem_inventory_v3.json`）：`juris_lean_package` 3986 条定理声明、334 个文件（`theorem_inventory_v3.json`）；
 `all_tracked_lean` 3998 条、349 文件（`theorem_inventory_v3.json`）。两作用域的包内审计面在源上是 2835 行 `#print axioms`（`theorem_inventory_v3.json`），
 去重后 2781 个具名目标（`theorem_inventory_v3.json`）；全仓侧与包内同读数：2835 行、2781 个具名目标（`theorem_inventory_v3.json`）。
-审计驱动文件 `AxiomAudit.lean` 独占 2572 行（`theorem_inventory_v3.json`），军令层现由 280 条具名目标构成。
-2835 条命令去重得 2781 个具名目标（同一目标可在多处被点名），其中 2572 条来自 `AxiomAudit.lean`，余下 263 条在别的驱动里（`theorem_inventory_v3.json`）。
+审计驱动文件 `AxiomAudit.lean` 独占 2758 行（`theorem_inventory_v3.json`），军令层现由 280 条具名目标构成。
+2835 条命令去重得 2781 个具名目标（同一目标可在多处被点名），其中 2758 条来自 `AxiomAudit.lean`，余下 77 条在别的驱动里（`theorem_inventory_v3.json`）。
 
 **闭合形态**：全仓 3986 条定理声明中（`theorem_inventory_v3.json`），304 条由单一反射项闭合、108 条由纯 decide 闭合、其余 3574 条含 tactic 过程（`theorem_inventory_v3.json` 与 `trivial_proof_census.json`）；其中一行式契约搬运 431 条（`theorem_inventory_v3.json`），结句中不绑定变量的 1312 条（`theorem_inventory_v3.json`）。
 交叉核对：包内 3986 条定理加 134 条 lemma，恰等于计入声明总数 4120（`theorem_inventory_v3.json`）。

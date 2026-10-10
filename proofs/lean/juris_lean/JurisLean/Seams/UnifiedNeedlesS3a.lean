@@ -307,9 +307,9 @@ theorem betaInt_eq (m : ℕ) : ∀ n : ℕ, betaInt m n = ((betaTwoConst m n : �
       rw [Nat.factorial_succ]
       push_cast at hn1 ⊢
       field_simp [hfn.ne', hn1.ne']
-    have hq' : ((((1 : ℚ) / (((n : ℕ) + 1 : ℚ)) : ℝ)
+    have hq' : (((1 : ℚ) / ((n : ℕ) + 1 : ℚ) : ℚ) : ℝ
         = ((betaTwoConst 0 n : ℚ) : ℝ)) := by
-      rw [hq]
+      norm_num [hq]
     push_cast at hq' ⊢
     exact hq'
   | succ m ih =>
@@ -327,10 +327,10 @@ theorem betaInt_eq (m : ℕ) : ∀ n : ℕ, betaInt m n = ((betaTwoConst m n : �
       simp only [Nat.factorial_succ]
       push_cast
       field_simp [hfa.ne', hfb.ne', hfab.ne', hfab2.ne'] <;> ring
-    have hq' : (((((m : ℕ) + 1 : ℚ) / (((n : ℕ) + 1 : ℚ))
-          * betaTwoConst m (n + 1) : ℚ) : ℝ)
+    have hq' : ((((m : ℕ) + 1 : ℚ) / ((n : ℕ) + 1 : ℚ)
+          * betaTwoConst m (n + 1) : ℚ) : ℝ
         = ((betaTwoConst (m + 1) n : ℚ) : ℝ)) := by
-      rw [hq]
+      norm_num [hq]
     push_cast at hq' ⊢
     exact hq'
 

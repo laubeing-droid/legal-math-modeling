@@ -4,10 +4,10 @@
 
 Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.
 
-- files scanned: 324
-- theorem/lemma headers read: 3945
-- distinct statement types: 3902
-- statement types declared more than once: 43
+- files scanned: 334
+- theorem/lemma headers read: 4131
+- distinct statement types: 4081
+- statement types declared more than once: 50
 - of those spanning module families: 2
 
 ## Across module families (2)
@@ -15,7 +15,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(r : Rul A) (ps : List (Arg A)) (p : Arg A) (hp : p ∈ ps) (k : ℕ) (hk : Arg.height (.node r ps) ≤ k + 1) : Arg.height p ≤ k` — `FullMath/Logic/AttackCompilation.lean:57` (FullMath/child_height_le), `Seams/UnifiedArgumentation.lean:104` (root/other/child_height_lt)
 - `(r : ℚ) : max r 0 - max (-r) 0 = r` — `FullMath/GenericKernels.lean:94` (FullMath/clipped_conservation), `BusinessRelationsDelta.lean:21` (root/other/split_residual_identity)
 
-## Within the package (43)
+## Within the package (50)
 
 - `(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S` — `DungFixedPoint.lean:96` (root/other/grounded_is_least_complete), `DungFixedPoint.lean:92` (root/other/grounded_is_least_fixed_point)
 - `(S : Finset α) : TH sys S ⊆ sys.univ` — `HornDefinitions.lean:55` (root/other/TH_subset_univ), `HornFixedPoint.lean:17` (root/other/horn_operator_subset_univ)
@@ -24,9 +24,12 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(a b : TrustVector) : TrustLE (a.meet b) b` — `ULM16TheoryComposition.lean:78` (root/other/COMP_C01_trust_nonupgrade_right), `ULM14CoverageTrust.lean:97` (root/other/trust_meet_le_right)
 - `(c : Certificate) (hstatus : c.status = DecisionStatus.proved) (hkind : c.evidence.kind = EvidenceKind.candidate) : checkCertificate c ≠ CheckVerdict.accept` — `SafetyTheorems.lean:12` (root/other/candidate_cannot_enter_verified_fact_gate), `CertificateChecker.lean:56` (root/other/candidate_evidence_not_accepted)
 - `(e : NFEdge) : (requiredObligations e).Nonempty` — `ULM16TheoryComposition.lean:246` (root/other/CORE_23_required_nonempty), `ULM04Obligations.lean:64` (root/other/requiredObligations_nonempty)
+- `(f : Bool → ℚ) : (∑ b : Bool, f b) = f true + f false` — `Seams/Uncertainty.lean:124` (root/other/sum_bool_eq), `Seams/UnifiedNeedlesS3b.lean:375` (root/other/sum_bool_split)
 - `(input : StructuredArgumentation) (policy : DefeatPolicy) : (resolveToDefeatAF input policy).WellFormed` — `ULM16TheoryComposition.lean:156` (root/other/CORE_07_resolved_bridge_wellFormed), `ULM10DungProfiles.lean:44` (root/other/resolveToDefeatAF_wellFormed)
 - `(obs : List Bool) : successes obs ≤ obs.length` — `Mandate/Kernel.lean:59` (Mandate/rate_num_le_den), `Mandate/Kernel.lean:50` (Mandate/successes_le_length)
 - `(pat src : List Nat) (h : isPrefix pat src = true) : isSubstr pat src = true` — `Mandate/SubstrAdmission.lean:64` (Mandate/isSubstr_of_isPrefix), `Mandate/SubstrAdmission.lean:90` (Mandate/prefix_adequate_for_admission)
+- `(pol : TerminalPolicy aaf) (a : Arg) : finalUndetermined pol a ↔ KernelV3.FullyExhausted (exhaustionOf pol a)` — `Seams/AdjudicationBridge.lean:467` (root/other/final_undetermined_iff_exhausted), `Seams/UnifiedNeedlesS2.lean:88` (root/other/final_undetermined_iff_exhausted)
+- `(pol : TerminalPolicy aaf) (hw : baseConflictFree pol) (a : Arg) (h1 : FinalDerivable pol a) (h2 : FinalDefeated pol a) : False` — `Seams/UnifiedNeedlesS2.lean:69` (root/other/final_binary_decisions_exclusive), `Seams/AdjudicationBridge.lean:401` (root/other/two_valued_exclusion)
 - `(pred : A → Bool) (a : A) : a ∈ enumerateAll pred ↔ pred a = true` — `FullMath/GenericKernels.lean:34` (FullMath/enumeration_member), `FullMath/Representation/FiniteCertificates.lean:38` (FullMath/enumeration_member)
 - `(pred : A → Bool) (out : Finset A) (h : checkExact pred out = true) : (↑out : Set A) = solutionSet pred` — `FullMath/GenericKernels.lean:38` (FullMath/exact_check_reflects), `FullMath/Representation/FiniteCertificates.lean:43` (FullMath/exact_check_reflects)
 - `(pred : A → Bool) (out : Finset A) (h : ∀ a ∈ out, pred a = true) : (↑out : Set A) ⊆ solutionSet pred` — `FullMath/GenericKernels.lean:49` (FullMath/partial_check_sound), `FullMath/Representation/FiniteCertificates.lean:31` (FullMath/partial_scan_sound)
@@ -39,9 +42,13 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `: checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with caseId := "OTHER-CASE" } }) (writeCalcul` — `BusinessRoot/SevenAxisCases.lean:26` (root/other/reject_doc_caseId), `BusinessRoot/SevenAxis.lean:380` (root/other/wrong_case_rejected)
 - `: checkSevenAxisBundle selectedInput selectedInput (writeDoc { expectedDoc with metaData := { expectedDoc.metaData with debtor := "丙公司" } }) (writeCalculation e` — `BusinessRoot/SevenAxisCases.lean:53` (root/other/reject_doc_debtor), `BusinessRoot/SevenAxis.lean:351` (root/other/wrong_debtor_rejected)
 - `: collapsesToKernel instanceM.evalDom` — `Seams/StatuteChain.lean:339` (root/other/chain_collapse_from_the_109_tier), `Seams/UnifiedInstance.lean:650` (root/other/instanceM_collapse)
+- `: forms (ledgerFormedDemo ++ [terminatedRecord "J3" relationOther]) relationDemo` — `Seams/UnifiedNeedlesS5.lean:123` (root/other/distinct_payload_effect_witness_left), `Seams/InstitutionalEffects.lean:513` (root/other/termination_of_other_keeps_projection_witness)
 - `: instanceM.caseBurden.2 = BurdenStatutes.ProductionStatus.produced ∧ chain_art90_gate_has_input` — `Seams/StatuteChain.lean:831` (root/other/case_data_does_not_imply_gate_input), `Seams/StatuteChain.lean:824` (root/other/chain_art90_two_readings_coherent)
+- `: pArg ∈ (DungAAF.labelling cycle2).2.2 ∧ FinalDerivable cycle2Policy pArg ∧ ¬ finalUndetermined cycle2Policy pArg ∧ qArg ∈ (DungAAF.labelling cycle2).2.2 ∧ Fin` — `Seams/AdjudicationBridge.lean:714` (root/other/argument_undec_not_final_undetermined), `Seams/UnifiedNeedlesS2.lean:114` (root/other/argument_undec_not_final_undetermined)
 - `[∀ i, Finite (A i)] (σ : ∀ i, PMF (A i)) {j q : ι} (hq : q ≠ j) (E : A j → Prop) (hE : pmfMass (μ := σ j) E ≠ 0) : pushforward (pmfCond (μ := pmfPi (A := A) σ) ` — `External/GameTheory/Math/PMFProduct.lean:1193` (External/pmfPi_cond_coord_other_marginal), `External/GameTheory/Math/PMFProduct.lean:708` (External/pmfPi_cond_coord_push_other)
+- `{Rel : Type} [DecidableEq Rel] (L : Ledger Rel) (eventId : String) (rel r : Rel) (hne : r ≠ rel) : effective (next L (.formative eventId rel)) r ↔ effective L r` — `Seams/UnifiedNeedlesS5.lean:104` (root/other/formative_preserves_common_constraints), `Seams/UnifiedNeedlesS5.lean:52` (root/other/judgment_step_frozen_side)
 - `{S T : Finset α} (hST : S ⊆ T) : TH sys S ⊆ TH sys T` — `HornDefinitions.lean:41` (root/other/TH_monotone), `HornFixedPoint.lean:21` (root/other/horn_operator_monotone)
+- `{V Rel : Type} [DecidableEq Rel] (M : UnifiedModel V Rel) : UnifiedNonDegenerate ∧ UnifiedInterpretationPreserved V Rel M ∧ UnifiedChainCorrespondence V Rel M ∧` — `Seams/UnifiedNeedlesTotal.lean:49` (root/other/total_legacy_five_contracts), `Seams/Unified.lean:259` (root/other/unified_legal_derivation_on_declared_fragment)
 - `{a b c : TrustVector} (hab : TrustLE a b) (hbc : TrustLE b c) : TrustLE a c` — `Seams/BoundaryBridge5.lean:154` (root/other/bb5_trustLE_trans), `Seams/BoundaryClosure.lean:611` (root/other/trustLE_trans)
 - `{af : DefeatAF} {s : Finset ArgId} (h : Preferred af s) : s ∈ preferredExtensions af` — `ULM16TheoryComposition.lean:234` (root/other/CORE_20_preferred_complete), `ULM10DungProfiles.lean:250` (root/other/preferredExtensions_complete)
 - `{bundle : DomainBundle} {policy : CompositionPolicy} {choice : CompositionChoice} (h : ChoiceWF bundle policy choice) : choice.selected ⊆ bundle.candidates` — `ULM16TheoryComposition.lean:191` (root/other/CORE_13_choice_membership), `ULM13DomainCompositionExact.lean:74` (root/other/choice_wf_selected_subset)
@@ -50,11 +57,4 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `{g : TypedGraph} {s t : LocalState} (h : LocalTransition g s t) : t.request = s.request` — `ULM16TheoryComposition.lean:117` (root/other/CORE_01_typed_transition_request), `ULM03TypedGraph.lean:69` (root/other/localTransition_preserves_request)
 - `{g : TypedGraph} {x y : Machine} (h : Run g x y) : x.request = y.request` — `ULM16TheoryComposition.lean:240` (root/other/CORE_22_run_subject_preserved), `ULM05Machine.lean:75` (root/other/run_preserves_request)
 - `{goal : ProofSubject → Prop} {v : VerifierEntry} (hv : VerifierSound goal v) {subject : ProofSubject} (hs : Sat v subject) : subject.obligation ∈ requiredObliga` — `ULM16TheoryComposition.lean:252` (root/other/CORE_24_sat_sound), `ULM04Obligations.lean:99` (root/other/sat_sound)
-- `{input : ValidatedAttackSet} {policy : DefeatPolicy} {x y : CanonicalArgument} (h : (x, y) ∈ resolveDefeat input policy) : ∃ a ∈ input.attacks, AttackWF a ∧ pol` — `ULM16TheoryComposition.lean:146` (root/other/CORE_05_resolved_defeat_has_source), `ULM09AttackDefeat.lean:65` (root/other/resolved_defeat_has_wf_source)
-- `{request : RequestKey} (a : ValidatedAdjudicationAuthority request) : a.1.rule.failureConsequence.isProcedural = false` — `ULM16TheoryComposition.lean:184` (root/other/CORE_11_burden_failure_nonprocedural), `ULM12Procedure.lean:237` (root/other/burden_failure_is_nonprocedural)
-- `{sys : TaggedHornSystem} {pool : Finset PositionCandidate} {c : PositionCandidate} (h : c ∈ generateCandidates sys pool) : CandidateWF sys c` — `ULM16TheoryComposition.lean:139` (root/other/CORE_04_generated_candidate_sound), `ULM07HornSupport.lean:54` (root/other/generated_candidate_sound)
-- `{x y : BranchArtifact} (h : x.branch ≠ y.branch) : ¬ ComposableAsOneLegalOutcome x y` — `ULM16TheoryComposition.lean:162` (root/other/CORE_08_branch_nonmixing), `ULM11BranchQuery.lean:118` (root/other/different_branches_not_composable)
-- `{α : Type*} [Fintype α] (d : PMF α) (w : α → ENNReal) (hw : ∀ a, w a ≤ 1) : ∑ a, d a * w a ≠ ⊤` — `External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean:107` (External/sum_mul_pmf_ne_top), `External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean:75` (External/sum_mul_pmf_ne_top)
-- `{α : Type*} {as bs : List α} {a b : α} (h : as ++ [a] = bs ++ [b]) : as = bs ∧ a = b` — `External/GameTheory/Math/ParameterizedChain.lean:55` (External/append_singleton_inj), `External/GameTheory/Math/TraceRun.lean:139` (External/append_singleton_inj)
-- `{α : Type} {P : α → Type} {a b : α} (h : a = b) (x : P a) : HEq x (h ▸ x : P b)` — `External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean:183` (External/fwd_subst_heq), `External/GameTheory/Theorems/Kuhn/MixedToBehavioralCore.lean:52` (External/fwd_subst_heq)
-- …3 more in the JSON
+- …10 more in the JSON

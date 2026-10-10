@@ -27,8 +27,8 @@
     ]
   },
   "cross_family_statement_types": 2,
-  "distinct_statement_types": 3902,
-  "duplicated_statement_types": 43,
+  "distinct_statement_types": 4081,
+  "duplicated_statement_types": 50,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
@@ -114,6 +114,18 @@
         "path": "ULM04Obligations.lean"
       }
     ],
+    "(f : Bool → ℚ) : (∑ b : Bool, f b) = f true + f false": [
+      {
+        "carrier": "root/other/sum_bool_eq",
+        "line": 124,
+        "path": "Seams/Uncertainty.lean"
+      },
+      {
+        "carrier": "root/other/sum_bool_split",
+        "line": 375,
+        "path": "Seams/UnifiedNeedlesS3b.lean"
+      }
+    ],
     "(input : StructuredArgumentation) (policy : DefeatPolicy) : (resolveToDefeatAF input policy).WellFormed": [
       {
         "carrier": "root/other/CORE_07_resolved_bridge_wellFormed",
@@ -148,6 +160,30 @@
         "carrier": "Mandate/prefix_adequate_for_admission",
         "line": 90,
         "path": "Mandate/SubstrAdmission.lean"
+      }
+    ],
+    "(pol : TerminalPolicy aaf) (a : Arg) : finalUndetermined pol a ↔ KernelV3.FullyExhausted (exhaustionOf pol a)": [
+      {
+        "carrier": "root/other/final_undetermined_iff_exhausted",
+        "line": 467,
+        "path": "Seams/AdjudicationBridge.lean"
+      },
+      {
+        "carrier": "root/other/final_undetermined_iff_exhausted",
+        "line": 88,
+        "path": "Seams/UnifiedNeedlesS2.lean"
+      }
+    ],
+    "(pol : TerminalPolicy aaf) (hw : baseConflictFree pol) (a : Arg) (h1 : FinalDerivable pol a) (h2 : FinalDefeated pol a) : False": [
+      {
+        "carrier": "root/other/final_binary_decisions_exclusive",
+        "line": 69,
+        "path": "Seams/UnifiedNeedlesS2.lean"
+      },
+      {
+        "carrier": "root/other/two_valued_exclusion",
+        "line": 401,
+        "path": "Seams/AdjudicationBridge.lean"
       }
     ],
     "(pred : A → Bool) (a : A) : a ∈ enumerateAll pred ↔ pred a = true": [
@@ -294,6 +330,18 @@
         "path": "Seams/UnifiedInstance.lean"
       }
     ],
+    ": forms (ledgerFormedDemo ++ [terminatedRecord \"J3\" relationOther]) relationDemo": [
+      {
+        "carrier": "root/other/distinct_payload_effect_witness_left",
+        "line": 123,
+        "path": "Seams/UnifiedNeedlesS5.lean"
+      },
+      {
+        "carrier": "root/other/termination_of_other_keeps_projection_witness",
+        "line": 513,
+        "path": "Seams/InstitutionalEffects.lean"
+      }
+    ],
     ": instanceM.caseBurden.2 = BurdenStatutes.ProductionStatus.produced ∧ chain_art90_gate_has_input": [
       {
         "carrier": "root/other/case_data_does_not_imply_gate_input",
@@ -304,6 +352,18 @@
         "carrier": "root/other/chain_art90_two_readings_coherent",
         "line": 824,
         "path": "Seams/StatuteChain.lean"
+      }
+    ],
+    ": pArg ∈ (DungAAF.labelling cycle2).2.2 ∧ FinalDerivable cycle2Policy pArg ∧ ¬ finalUndetermined cycle2Policy pArg ∧ qArg ∈ (DungAAF.labelling cycle2).2.2 ∧ FinalDefeated cycle2Policy qArg ∧ ¬ finalUndetermined cycle2Policy qArg ∧ ¬ FinalDerivable cycle2Policy qArg": [
+      {
+        "carrier": "root/other/argument_undec_not_final_undetermined",
+        "line": 714,
+        "path": "Seams/AdjudicationBridge.lean"
+      },
+      {
+        "carrier": "root/other/argument_undec_not_final_undetermined",
+        "line": 114,
+        "path": "Seams/UnifiedNeedlesS2.lean"
       }
     ],
     "[∀ i, Finite (A i)] (σ : ∀ i, PMF (A i)) {j q : ι} (hq : q ≠ j) (E : A j → Prop) (hE : pmfMass (μ := σ j) E ≠ 0) : pushforward (pmfCond (μ := pmfPi (A := A) σ) (fun s => E (s j)) (by simpa [pmfMass_pmfPi_coord (A := A) (σ := σ) (j := j) (E := E)] using hE)) (fun s => s q) = σ q": [
@@ -318,6 +378,18 @@
         "path": "External/GameTheory/Math/PMFProduct.lean"
       }
     ],
+    "{Rel : Type} [DecidableEq Rel] (L : Ledger Rel) (eventId : String) (rel r : Rel) (hne : r ≠ rel) : effective (next L (.formative eventId rel)) r ↔ effective L r": [
+      {
+        "carrier": "root/other/formative_preserves_common_constraints",
+        "line": 104,
+        "path": "Seams/UnifiedNeedlesS5.lean"
+      },
+      {
+        "carrier": "root/other/judgment_step_frozen_side",
+        "line": 52,
+        "path": "Seams/UnifiedNeedlesS5.lean"
+      }
+    ],
     "{S T : Finset α} (hST : S ⊆ T) : TH sys S ⊆ TH sys T": [
       {
         "carrier": "root/other/TH_monotone",
@@ -328,6 +400,18 @@
         "carrier": "root/other/horn_operator_monotone",
         "line": 21,
         "path": "HornFixedPoint.lean"
+      }
+    ],
+    "{V Rel : Type} [DecidableEq Rel] (M : UnifiedModel V Rel) : UnifiedNonDegenerate ∧ UnifiedInterpretationPreserved V Rel M ∧ UnifiedChainCorrespondence V Rel M ∧ UnifiedFiniteProcessComposition V Rel M ∧ UnifiedTimeAndUncertaintyPreserved V Rel M": [
+      {
+        "carrier": "root/other/total_legacy_five_contracts",
+        "line": 49,
+        "path": "Seams/UnifiedNeedlesTotal.lean"
+      },
+      {
+        "carrier": "root/other/unified_legal_derivation_on_declared_fragment",
+        "line": 259,
+        "path": "Seams/Unified.lean"
       }
     ],
     "{a b c : TrustVector} (hab : TrustLE a b) (hbc : TrustLE b c) : TrustLE a c": [
@@ -547,12 +631,12 @@
       }
     ]
   },
-  "files_scanned": 324,
+  "files_scanned": 334,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
   "headers_missed_by_scanner": 105,
-  "inventory_package_theorems": 3934,
+  "inventory_package_theorems": 4120,
   "private_protected_headers_read": 116,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 3945
+  "statements_read": 4131
 }

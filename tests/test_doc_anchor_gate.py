@@ -193,14 +193,14 @@ def test_volume_and_line_reference_is_checked_when_the_volume_exists(tmp_path):
 def test_bare_name_cited_beside_real_declarations_must_exist(tmp_path):
     """Shape 4: the headline defect -- a name with no green check behind it.
 
-    `applicability_matches_source_semantics` is listed as a delivered S1 theorem beside one
+    `ghost_applicability_never_delivered` (a name with no carrier in any era) is listed as a delivered S1 theorem beside one
     that is real, while the same document admits the name appears nowhere in the tree.
     """
 
     f = facts()
-    ghost = run(tmp_path, f"契约要求：`{f['name']}`、`applicability_matches_source_semantics`\n")
+    ghost = run(tmp_path, f"契约要求：`{f['name']}`、`ghost_applicability_never_delivered`\n")
     assert ghost.returncode == 1, ghost.stdout + ghost.stderr
-    assert "applicability_matches_source_semantics" in ghost.stdout
+    assert "ghost_applicability_never_delivered" in ghost.stdout
 
     real_pair = run(tmp_path, f"契约要求：`{f['name']}`、`carriesTaint_iff_taintOfInputs_tainted`\n")
     assert real_pair.returncode == 0, real_pair.stdout + real_pair.stderr

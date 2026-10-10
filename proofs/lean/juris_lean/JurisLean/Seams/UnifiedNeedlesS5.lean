@@ -47,6 +47,20 @@ open JurisLean.Seams.InstitutionalEffects
 
 /-! ## 第 32 针：judgment_step_refines_frozen_T -/
 
+/-- 辅助引理（第 32 针第二分量与第 35 针共用）：形成性步进后，未被点名
+的关系（r ≠ rel）的 `effective` 读数原样保留。 -/
+theorem judgment_step_frozen_side {Rel : Type} [DecidableEq Rel]
+    (L : Ledger Rel) (eventId : String) (rel r : Rel) (hne : r ≠ rel) :
+    effective (next L (.formative eventId rel)) r ↔ effective L r := by
+  have hiff := effective_next_formative_iff L eventId rel r
+  constructor
+  · intro hval
+    rcases hiff.1 hval with heq | hold
+    · exact absurd heq hne
+    · exact hold
+  · intro hold
+    exact hiff.2 (Or.inr hold)
+
 /-- **第 32 针（S5，I.13；BINDING 行 32）**：裁判步骤精化冻结 T。
 形成性事件步进后：追加语义与逐步语义在 `effective` 上一致（锚
 `effective_next_formative_iff`），且未被点名的关系投影原样保留（信息
@@ -56,12 +70,7 @@ theorem judgment_step_refines_frozen_T {Rel : Type} [DecidableEq Rel]
     (effective (next L (.formative eventId rel)) r ↔ (r = rel ∨ effective L r)) ∧
       (r ≠ rel →
         effective (next L (.formative eventId rel)) r ↔ effective L r) :=
-  ⟨effective_next_formative_iff L eventId rel r,
-    fun hne => ⟨
-      fun h => match (effective_next_formative_iff L eventId rel r).1 h with
-        | Or.inl heq => absurd heq hne
-        | Or.inr hold => hold,
-      fun h => (effective_next_formative_iff L eventId rel r).2 (Or.inr h)⟩⟩
+  ⟨effective_next_formative_iff L eventId rel r, judgment_step_frozen_side L eventId rel r⟩
 
 /-! ## 第 33 针：confirmatory_preserves_R -/
 
@@ -94,8 +103,8 @@ theorem judgment_R_change_requires_formative {Rel : Type} [DecidableEq Rel]
 名单里的 r（r ≠ rel），有效性逐项保持（create 场景=名单外不动）。 -/
 theorem formative_preserves_common_constraints {Rel : Type} [DecidableEq Rel]
     (L : Ledger Rel) (eventId : String) (rel r : Rel) (hne : r ≠ rel) :
-    effective (next L (.formative eventId rel)) r ↔ effective L r := by
-  exact (judgment_step_refines_frozen_T L eventId rel r).2 hne
+    effective (next L (.formative eventId rel)) r ↔ effective L r :=
+  judgment_step_frozen_side L eventId rel r hne
 
 /-! ## 第 36 针：distinct_payload_effect_witness -/
 

@@ -249,11 +249,11 @@ theorem evMass_shared_obs (π : Θ → ℚ) (q : Nty → ℚ) (E : Θ → Bool)
   refine Finset.sum_congr rfl (fun θ _ => ?_)
   dsimp only
   by_cases hE : E θ = true
-  · rw [if_pos hE]
+  · simp only [if_pos hE]
     rw [← Finset.mul_sum]
     rw [hq1]
     ring
-  · rw [if_neg hE, if_neg hE]
+  · simp only [if_neg hE]
     simp
 
 /-- 选择读 n 时的双重证据质量因子分解：观察（读 θ）∧选择（读 n）的证据质量
@@ -372,7 +372,7 @@ theorem selection_transport_from_shared_mechanism (π : Θ → ℚ) (q : Nty →
 
 /-- Bool 有限和分解（与绿色件 `Seams/Uncertainty.lean` 的 `sum_bool_eq` 同构，
     供本件数值见证使用）。 -/
-theorem bool_sum_split (f : Bool → ℚ) : (∑ b : Bool, f b) = f true + f false := by
+theorem sum_bool_split (f : Bool → ℚ) : (∑ b : Bool, f b) = f true + f false := by
   rw [show (∑ b : Bool, f b) = Finset.sum (Finset.univ : Finset Bool) f from rfl]
   rw [Fintype.univ_bool]
   simp
@@ -385,7 +385,7 @@ theorem unif_sel_mass_pos :
   unfold evMass sharedJoint
   rw [Fintype.sum_prod_type]
   dsimp only
-  rw [bool_sum_split, bool_sum_split]
+  rw [sum_bool_split, sum_bool_split]
   norm_num
 
 /-- 数值前提二：全真观察下证据质量 ＝ 1 ＞ 0。 -/
@@ -395,7 +395,7 @@ theorem unif_all_mass_pos :
   unfold evMass sharedJoint
   rw [Fintype.sum_prod_type]
   dsimp only
-  rw [bool_sum_split, bool_sum_split]
+  rw [sum_bool_split, sum_bool_split]
   norm_num
 
 /-- 针 23 边界（参数相关选择进入完整似然）：选择改读参数坐标（`ω.1`）时，
@@ -414,7 +414,7 @@ theorem parameter_reading_selection_enters_likelihood :
       true := by
   intro h
   norm_num [paramMarginal, posterior, evMass, sharedJoint, Fintype.sum_prod_type,
-    Finset.mul_sum, bool_sum_split] at h
+    Finset.mul_sum, sum_bool_split] at h
 
 end Needle23
 
@@ -541,7 +541,7 @@ theorem posterior_predictive_normalizes (mdl : PredictiveLegalModel Θ Mt Yty) (
   have key : ∀ θ : Θ, ∑ y, mdl.obs θ y * (mdl.prior θ * mdl.material θ m / matMass mdl m)
       = (mdl.prior θ * mdl.material θ m / matMass mdl m) * 1 := by
     intro θ
-    rw [← Finset.sum_mul, mdl.obs_one θ, mul_one]
+    rw [← Finset.sum_mul, mdl.obs_one θ, mul_one, one_mul]
   simp only [key, mul_one]
   rw [← Finset.sum_div]
   rw [show (∑ θ, mdl.prior θ * mdl.material θ m) = matMass mdl m from rfl]
@@ -593,18 +593,18 @@ def witnessModelAlt : PredictiveLegalModel Bool Bool Bool where
 
 /-- 数值见证的正性前提：见证模型的材料质量 1/2·3/4 + 1/2·1/4 = 1/2 > 0。 -/
 theorem witnessMatMass_pos : 0 < matMass witnessModel true := by
-  norm_num [matMass, witnessModel, wprior, wmat, bool_sum_split]
+  norm_num [matMass, witnessModel, wprior, wmat, sum_bool_split]
 
 /-- 对照模型的正性前提：先验与材料通道不变，材料质量同为 1/2。 -/
 theorem witnessMatMassAlt_pos : 0 < matMass witnessModelAlt true := by
-  norm_num [matMass, witnessModelAlt, wprior, wmat, bool_sum_split]
+  norm_num [matMass, witnessModelAlt, wprior, wmat, sum_bool_split]
 
 /-- 数值见证：材料后验 3/4、1/4，后验预测（同一 Y）读到 7/12
     （2/3·3/4 + 1/3·1/4），闭式有理、无浮点。 -/
 theorem posterior_predictive_bool_witness :
     posteriorPredictive witnessModel true witnessMatMass_pos true = 7 / 12 := by
   norm_num [posteriorPredictive, matPosterior, matMass, witnessModel, wprior, wmat, wobs,
-    bool_sum_split]
+    sum_bool_split]
 
 /-- 通道追踪见证（不另造目标）：只把观察通道换成不读 θ 的常数通道，后验预测
     就从 7/12 变成 1/3——预测读取的是**声明的那个**观察通道，换通道即换预测，
@@ -614,7 +614,7 @@ theorem predictive_tracks_declared_channel :
     ≠ posteriorPredictive witnessModelAlt true witnessMatMassAlt_pos true := by
   intro h
   norm_num [posteriorPredictive, matPosterior, matMass, witnessModel, witnessModelAlt,
-    wprior, wmat, wobs, wobsAlt, bool_sum_split] at h
+    wprior, wmat, wobs, wobsAlt, sum_bool_split] at h
 
 end Needle24Witness
 
@@ -730,7 +730,7 @@ theorem qtyDenote_divFree_int_valued :
             obtain ⟨k1, hk1⟩ := ihA hA' x ha
             obtain ⟨k2, hk2⟩ := ihB hB' y hb
             have e1 : x.val + y.val = z.val := congrArg QtyVal.val hz
-            exact ⟨k1 + k2, by norm_num [e1, hk1, hk2]⟩
+            exact ⟨k1 + k2, by norm_num [← e1, hk1, hk2]⟩
           · rw [if_neg hu] at h
             simp at h
   | mul a b ihA ihB =>
@@ -750,7 +750,7 @@ theorem qtyDenote_divFree_int_valued :
             obtain ⟨k1, hk1⟩ := ihA hA' x ha
             obtain ⟨k2, hk2⟩ := ihB hB' y hb
             have e1 : x.val * y.val = z.val := congrArg QtyVal.val hz
-            exact ⟨k1 * k2, by norm_num [e1, hk1, hk2]⟩
+            exact ⟨k1 * k2, by norm_num [← e1, hk1, hk2]⟩
           · rw [if_neg hu] at h
             by_cases hv : y.unit = ""
             · rw [if_pos hv] at h
@@ -758,7 +758,7 @@ theorem qtyDenote_divFree_int_valued :
               obtain ⟨k1, hk1⟩ := ihA hA' x ha
               obtain ⟨k2, hk2⟩ := ihB hB' y hb
               have e1 : x.val * y.val = z.val := congrArg QtyVal.val hz
-              exact ⟨k1 * k2, by norm_num [e1, hk1, hk2]⟩
+              exact ⟨k1 * k2, by norm_num [← e1, hk1, hk2]⟩
             · rw [if_neg hv] at h
               simp at h
   | divGuard a b ihA ihB =>

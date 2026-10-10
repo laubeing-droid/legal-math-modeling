@@ -449,7 +449,7 @@ theorem contamination_conditioning_degenerate
       show (∑ a : α, (if E a && H a then xuMixMass ε c t a else 0))
           ≤ (∑ a : α, (if H a then xuMixMass ε c t a else 0))
       exact Finset.sum_le_sum (fun a _ => xuIteAnd_le_right (xuMixMass ε c t) hmixnn E H a)
-    exact le_antisymm (le_trans hle hmixH) hge
+    exact le_antisymm (le_trans hle (le_of_eq hmixH)) hge
   refine ⟨hmixH, ?_⟩
   unfold xuCondShare
   rw [hsub, hmixH]

@@ -990,7 +990,7 @@ theorem varCount_double_root : varCount ((X - C 0 : ℚ[X]) ^ 2) = 1 := by
     rw [pow_two, Polynomial.C_0, sub_zero, pow_two]
   have hnd : Polynomial.natDegree ((X - C 0 : ℚ[X]) ^ 2) = 2 := by
     rw [hsq]
-    exact Polynomial.natDegree_X_pow
+    exact Polynomial.natDegree_X_pow (R := ℚ) 2
   have hlc : Polynomial.leadingCoeff ((X - C 0 : ℚ[X]) ^ 2) = 1 := by
     rw [hsq]
     exact Polynomial.leadingCoeff_X_pow (R := ℚ) 2

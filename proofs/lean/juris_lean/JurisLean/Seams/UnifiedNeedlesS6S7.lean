@@ -347,10 +347,17 @@ theorem precedent_update_preserves_norm_structure (E : VersionEnv)
           exact hv
 
 /-- 第 44 针的锚承载体：锚版本结构保持（区间良态、supersession 边非自指、
-    失效记录继续失效）以全限定名整体实例化。 -/
+    失效记录继续失效）。语句内联锚语句原文，证明体以锚定理闭合。 -/
 theorem precedent_update_norm_structure_anchor (E : VersionEnv)
     (ad : AuthorizedDecision) (hwf : EnvWf E ad) (t : Int) :
-    JurisLean.Seams.PrecedentFlow.precedent_update_preserves_norm_structure E ad hwf t :=
+    (∀ v ∈ (precedentUpdate ad E).versions, SourceVersionRecord.intervalValid v) ∧
+      (∀ v : SourceVersionRecord, isTouchedBy ad E v →
+          supersessionWellFormed
+            { oldSnap := v.snapshot, newSnap := ad.decision.newSnapshot : SupersessionEdge }) ∧
+      (∀ v : SourceVersionRecord, v ∈ E.versions →
+          v.status = VersionStatus.retracted ∨ v.status = VersionStatus.superseded →
+            ∃ w ∈ (precedentUpdate ad E).versions,
+              w.snapshot = v.snapshot ∧ ¬versionApplicableAt w t) :=
   JurisLean.Seams.PrecedentFlow.precedent_update_preserves_norm_structure E ad hwf t
 
 /-! ## 第 47 针：feedback_need_not_converge -/

@@ -180,7 +180,6 @@ theorem quantifier_order_matters :
     simp only [polyDenote, MvPolynomial.eval₂_sub,
       eval₂_X_castSucc, eval₂_X_last, Fin.snoc_zero, cmpRel]
     rw [sub_self]
-    exact le_refl 0
   · rintro ⟨x, hx⟩
     specialize hx (x - 1)
     have hx2 : cmpRel CmpOp.le
@@ -570,7 +569,8 @@ theorem translate_sound {n : ℕ} (f : SrcFormula n) : ∀ g : RealFormula n,
       rw [hEq] at h
       cases h
       simp only [srcDenote, RealFormula.denote]
-      exact ⟨fun hx hfx => hx ((ihf f' hf ρ).1 hfx), fun hx => (ihf f' hf ρ).2 hx⟩
+      exact ⟨fun hx hfx => hx ((ihf f' hf ρ).2 hfx),
+        fun hx hsrc => hx ((ihf f' hf ρ).1 hsrc)⟩
     | failed r =>
       have hEq : translate (SrcFormula.not f) = TransResult.failed r := by
         simp only [translate, hf, bind1]
@@ -828,12 +828,12 @@ theorem checkRootCert_sound (p : ℚ[X]) (c : RootCert) (h : checkRootCert p c)
   have hnodup : (c.entries.map (fun e => e.r)).Nodup :=
     entries_r_nodup c.entries hord
       (fun e he => And.intro (hmem e he).2.1 (hmem e he).2.2.1)
-  have hcardS : ((c.entries.map (fun e => e.r)).toFinset).card = c.entries.length :=
-    List.toFinset_card_of_nodup hnodup
+  have hcardS : ((c.entries.map (fun e => e.r)).toFinset).card = c.entries.length := by
+    rw [List.toFinset_card_of_nodup hnodup, List.length_map]
   -- 总计数声明与 Sturm 计数对齐 ⇒ 与相异实根个数对齐
   have hcount : c.total = (rp p).roots.toFinset.card := by
     have hz : ((c.total : ℕ) : ℤ) = (((rp p).roots.toFinset.card : ℕ) : ℤ) :=
-      htot.symm.trans hsturm
+      htot.trans hsturm
     exact Nat.cast_injective hz
   -- 子集 + 计数相等 ⇒ 根集相等
   have hsub : ((c.entries.map (fun e => e.r)).toFinset) ⊆ ((rp p).roots.toFinset) := by
@@ -843,7 +843,7 @@ theorem checkRootCert_sound (p : ℚ[X]) (c : RootCert) (h : checkRootCert p c)
     rw [← hr]
     exact hmemR e he
   have heq : ((c.entries.map (fun e => e.r)).toFinset) = ((rp p).roots.toFinset) :=
-    Finset.eq_of_subset_of_card_le hsub (by rw [hcardS, hlen, hcount]; exact le_refl _)
+    Finset.eq_of_subset_of_card_le hsub (by rw [hcardS, hlen, hcount])
   constructor
   · intro hx
     have hxR : x ∈ (rp p).roots.toFinset :=
@@ -914,7 +914,6 @@ theorem checkRootCert_const (c : ℚ) (hc : c ≠ 0) :
     checkRootCert (Polynomial.C c) (emptyCert (EuclideanDomain.gcd (Polynomial.C c) 0) 1) := by
   have hivs : IvsOrdered (emptyCert (EuclideanDomain.gcd (Polynomial.C c) 0) 1).entries := by
     simp only [emptyCert, IvsOrdered]
-    trivial
   have hmem : ∀ e ∈ (emptyCert (EuclideanDomain.gcd (Polynomial.C c) 0) 1).entries,
       e.lo < e.hi ∧ e.lo < e.r ∧ e.r < e.hi ∧ IsRRoot (Polynomial.C c) e.r ∧
         rmult (Polynomial.C c) e.r = e.m := by
@@ -931,7 +930,6 @@ theorem checkRootCert_const (c : ℚ) (hc : c ≠ 0) :
   have hlen : (emptyCert (EuclideanDomain.gcd (Polynomial.C c) 0) 1).entries.length =
       (emptyCert (EuclideanDomain.gcd (Polynomial.C c) 0) 1).total := by
     simp only [emptyCert, List.length_nil]
-    norm_num
   have htot : ((emptyCert (EuclideanDomain.gcd (Polynomial.C c) 0) 1).total : ℤ) =
       varCount (Polynomial.C c) := by
     show ((0 : ℕ) : ℤ) = varCount (Polynomial.C c)
@@ -946,7 +944,7 @@ theorem checkRootCert_const_sound (c : ℚ) (hc : c ≠ 0) (x : ℝ) :
   intro hx
   replace hx : ((Polynomial.C c).map qToR).eval x = 0 := hx
   rw [Polynomial.map_C, Polynomial.eval_C] at hx
-  exact hc (qToR_injective (show qToR c = qToR 0 from hx))
+  exact hc (qToR_injective (by rw [qToR_zero]; exact hx))
 
 open Polynomial in
 /-- 重根实例的链：sturmChain ((X−0)²) = [(X−0)², C 2·(X−0)]——
@@ -973,14 +971,13 @@ theorem double_root_chain :
   -- 燃料取字面值（stuck 的 natDegree 会卡住 chainAux 匹配展开——CI 969/972 根因）
   have hnd2 : Polynomial.natDegree ((X - C 0 : ℚ[X]) ^ 2) = 2 := by
     rw [pow_two, Polynomial.C_0, sub_zero, Polynomial.natDegree_mul' (by
-      rw [Polynomial.leadingCoeff_X, Polynomial.leadingCoeff_X]; norm_num),
+      rw [Polynomial.leadingCoeff_X]; norm_num),
       Polynomial.natDegree_X]
-    norm_num
   rw [sturmChain, if_neg hne, hder, hnd2]
   have step : chainAux (2 + 1) ((X - C 0 : ℚ[X]) ^ 2) (C 2 * (X - C 0 : ℚ[X])) =
       (C 2 * (X - C 0 : ℚ[X])) :: chainAux 2 (C 2 * (X - C 0 : ℚ[X]))
-        (-(((X - C 0 : ℚ[X]) ^ 2) % (C 2 * (X - C 0 : ℚ[X])))) :=
-    if_neg hX0
+        (-(((X - C 0 : ℚ[X]) ^ 2) % (C 2 * (X - C 0 : ℚ[X])))) := by
+    simp only [chainAux, if_neg (mul_ne_zero (Polynomial.C_ne_zero.mpr two_ne_zero) hX0)]
   rw [step, hmod, neg_zero]
   have hzero : chainAux 2 (C 2 * (X - C 0 : ℚ[X])) 0 = [] := if_pos rfl
   rw [hzero]
@@ -996,7 +993,7 @@ theorem varCount_double_root : varCount ((X - C 0 : ℚ[X]) ^ 2) = 1 := by
     exact Polynomial.natDegree_X_pow
   have hlc : Polynomial.leadingCoeff ((X - C 0 : ℚ[X]) ^ 2) = 1 := by
     rw [hsq]
-    exact Polynomial.leadingCoeff_X_pow 2
+    exact Polynomial.leadingCoeff_X_pow (R := ℚ) 2
   have hnd' : Polynomial.natDegree (C 2 * (X - C 0 : ℚ[X])) = 1 := by
     rw [Polynomial.C_0, sub_zero, mul_comm, Polynomial.natDegree_mul_C (by norm_num)]
     exact Polynomial.natDegree_X
@@ -1083,8 +1080,8 @@ theorem isRRoot_C_smul (a : ℚ) (ha : a ≠ 0) (p : ℚ[X]) (x : ℝ) :
     have hmul : ((Polynomial.C a * p).map qToR).eval x =
         qToR a * ((p.map qToR).eval x) := by
       rw [Polynomial.map_mul, Polynomial.map_C, Polynomial.eval_mul, Polynomial.eval_C]
-    rw [hmul, show (p.map qToR).eval x = (0:ℝ) from hx]
-    exact mul_zero (qToR a)
+    have h0 : qToR a * ((p.map qToR).eval x) = 0 := hmul.symm.trans hx
+    exact (mul_eq_zero.mp h0).resolve_left haR
 
 /-! ## 九、STATUS -/
 

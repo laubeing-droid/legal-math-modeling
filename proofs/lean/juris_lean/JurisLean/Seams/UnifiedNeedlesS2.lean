@@ -99,7 +99,7 @@ theorem proof_failure_not_ontic_negation :
     ∃ (x : KernelV3.TruthJudgment) (a : Arg),
       x.truth = true ∧ x.judgment = KernelV3.Judgment.notEstablished ∧
         ¬ FinalDerivable cycle2Policy a ∧ FinalDefeated cycle2Policy a ∧
-          a ∈ aaf.args :=
+          a ∈ cycle2.args :=
   by
     obtain ⟨x, hx, hj⟩ := KernelV3.judgment_notEstablished_does_not_force_truth_false
     exact ⟨x, qArg, hx, hj, cycle2_not_finalDerivable_q, cycle2_finalDefeated_q,
@@ -128,7 +128,6 @@ structure AnalogyMap (S F V U J : Type) where
   onUse : U → U
   judge : S → F → V → U → J
   full : Bool
-  deriving DecidableEq
 
 /-- 类比保持判断的载体命题：全条件下，判断函数沿四个映射可交换
 （结构归纳的终点形态——对四分量逐点保持）。 -/
@@ -144,20 +143,16 @@ def analogyPreserves {S F V U J : Type} (m : AnalogyMap S F V U J) : Prop :=
 theorem analogy_preserves_judgment_under_full_conditions :
     ∃ (m : AnalogyMap Bool Bool Bool Bool Bool), analogyPreserves m ∧
       ∃ (m' : AnalogyMap Bool Bool Bool Bool Bool), ¬ analogyPreserves m' := by
-  refine ⟨?full, ?broken⟩
-  · let judge : Bool → Bool → Bool → Bool → Bool := fun s f v u => s && f && v && u
-    refine ⟨{ onSubject := fun s => s, onFacts := fun f => f,
-      onVersion := fun v => v, onUse := fun u => u, judge := judge,
-      full := true }, rfl, ?_⟩
-    intro s f v u
-    rfl
-  · -- 缺映射的类比不承载保持：full = false 直接不满足全条件，且可给出
-    -- 判断翻变的具体读数（judge 读 full 位）。
-    let judge' : Bool → Bool → Bool → Bool → Bool := fun s f v u => s && f && v && u
-    refine ⟨{ onSubject := fun s => s, onFacts := fun f => f,
-      onVersion := fun v => v, onUse := fun u => u, judge := judge',
-      full := false }, ?_⟩
-    intro ⟨hfull, _⟩
+  refine ⟨{ onSubject := fun s => s, onFacts := fun f => f,
+      onVersion := fun v => v, onUse := fun u => u,
+      judge := fun s f v u => s && f && v && u, full := true },
+    ⟨rfl, fun s f v u => rfl⟩, ?_⟩
+  · refine ⟨{ onSubject := fun s => s, onFacts := fun f => f,
+      onVersion := fun v => v, onUse := fun u => u,
+      judge := fun s f v u => s && f && v && u, full := false }, ?_⟩
+    intro h
+    rw [analogyPreserves] at h
+    obtain ⟨hfull, _⟩ := h
     exact Bool.noConfusion hfull
 
 end JurisLean.Seams.UnifiedNeedlesS2

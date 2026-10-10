@@ -77,8 +77,8 @@ noncomputable section
 
 namespace JurisLean.Seams.UnifiedCADCore
 
-/-- `ℚ[X]` 等多项式记号是 `Polynomial` 命名空间内的 scoped 记号（CI 38064007904 核实），
-    文件级打开一次。 -/
+/- `ℚ[X]` 等多项式记号是 `Polynomial` 命名空间内的 scoped 记号（CI 38064007904 核实），
+文件级打开一次。doc 注不能连挂 `open`（CI 38065516547 第 81 行），此处用普通块注。 -/
 open Polynomial
 
 /-! ## 〇、公共：有理数到实数的精确嵌入 -/
@@ -177,7 +177,7 @@ theorem quantifier_order_matters :
       (polyDenote (Fin.snoc (Fin.snoc (fun _ : Fin 0 => (0:ℝ)) x) x)
         (MvPolynomial.X (Fin.castSucc (0 : Fin 1)) -
           MvPolynomial.X (Fin.last 1))) 0
-    simp only [polyDenote, MvPolynomial.eval₂_sub, MvPolynomial.eval₂_X,
+    simp only [polyDenote, MvPolynomial.eval₂_sub,
       eval₂_X_castSucc, eval₂_X_last, Fin.snoc_zero, cmpRel]
     rw [sub_self]
     exact le_refl 0
@@ -187,7 +187,7 @@ theorem quantifier_order_matters :
       (polyDenote (Fin.snoc (Fin.snoc (fun _ : Fin 0 => (0:ℝ)) x) (x - 1))
         (MvPolynomial.X (Fin.castSucc (0 : Fin 1)) -
           MvPolynomial.X (Fin.last 1))) 0 := hx
-    simp only [polyDenote, MvPolynomial.eval₂_sub, MvPolynomial.eval₂_X,
+    simp only [polyDenote, MvPolynomial.eval₂_sub,
       eval₂_X_castSucc, eval₂_X_last, Fin.snoc_zero, cmpRel] at hx2
     linarith
 
@@ -361,7 +361,7 @@ theorem div_mul_eq_zero_iff {n d : ℝ} (hd : d ≠ 0) : n / d = 0 ↔ n * d = 0
     · exact absurd h' hd
   · intro h
     rcases mul_eq_zero.mp h with h' | h'
-    · rw [h', div_zero]
+    · rw [h', zero_div]
     · exact absurd h' hd
 
 /-- 减式比较引理（逐点保义用）。 -/
@@ -466,7 +466,7 @@ theorem translateAtom_sound {n : ℕ} (a : SrcAtom n) (g : RealFormula n)
   | divCmp a b op =>
     by_cases hqb : toPoly b = 0
     · rw [translate_zero_denom_fails a b op hqb] at hg
-      exact TransResult.noConfusion hg
+      simp at hg
     · rw [translate_div_ok a b op hqb] at hg
       cases hg
       exact div_translation_sound a b op ρ hqb
@@ -514,7 +514,7 @@ theorem translate_sound {n : ℕ} (f : SrcFormula n) : ∀ g : RealFormula n,
   induction f with
   | atom a => exact translateAtom_sound a
   | and f g ihf ihg =>
-    intro g h ρ
+    intro gres h ρ
     cases hf : translate f with
     | ok f' =>
       cases hg' : translate g with
@@ -523,7 +523,6 @@ theorem translate_sound {n : ℕ} (f : SrcFormula n) : ∀ g : RealFormula n,
           simp only [translate, hf, hg', bind2]
         rw [hEq] at h
         cases h
-        rw [hEq]
         simp only [srcDenote, RealFormula.denote]
         exact ⟨fun hx => ⟨(ihf f' hf ρ).1 hx.1, (ihg g' hg' ρ).1 hx.2⟩,
           fun hx => ⟨(ihf f' hf ρ).2 hx.1, (ihg g' hg' ρ).2 hx.2⟩⟩
@@ -531,14 +530,14 @@ theorem translate_sound {n : ℕ} (f : SrcFormula n) : ∀ g : RealFormula n,
         have hEq : translate (SrcFormula.and f g) = TransResult.failed r := by
           simp only [translate, hf, hg', bind2]
         rw [hEq] at h
-        exact TransResult.noConfusion h
+        simp at h
     | failed r =>
       have hEq : translate (SrcFormula.and f g) = TransResult.failed r := by
         simp only [translate, hf, bind2]
       rw [hEq] at h
-      exact TransResult.noConfusion h
+      simp at h
   | or f g ihf ihg =>
-    intro g h ρ
+    intro gres h ρ
     cases hf : translate f with
     | ok f' =>
       cases hg' : translate g with
@@ -547,7 +546,6 @@ theorem translate_sound {n : ℕ} (f : SrcFormula n) : ∀ g : RealFormula n,
           simp only [translate, hf, hg', bind2]
         rw [hEq] at h
         cases h
-        rw [hEq]
         simp only [srcDenote, RealFormula.denote]
         exact ⟨fun hx => hx.elim (fun x => Or.inl ((ihf f' hf ρ).1 x))
             (fun y => Or.inr ((ihg g' hg' ρ).1 y)),
@@ -557,28 +555,27 @@ theorem translate_sound {n : ℕ} (f : SrcFormula n) : ∀ g : RealFormula n,
         have hEq : translate (SrcFormula.or f g) = TransResult.failed r := by
           simp only [translate, hf, hg', bind2]
         rw [hEq] at h
-        exact TransResult.noConfusion h
+        simp at h
     | failed r =>
       have hEq : translate (SrcFormula.or f g) = TransResult.failed r := by
         simp only [translate, hf, bind2]
       rw [hEq] at h
-      exact TransResult.noConfusion h
+      simp at h
   | not f ihf =>
-    intro g h ρ
+    intro gres h ρ
     cases hf : translate f with
     | ok f' =>
       have hEq : translate (SrcFormula.not f) = TransResult.ok (RealFormula.not f') := by
         simp only [translate, hf, bind1]
       rw [hEq] at h
       cases h
-      rw [hEq]
       simp only [srcDenote, RealFormula.denote]
       exact ⟨fun hx hfx => hx ((ihf f' hf ρ).1 hfx), fun hx => (ihf f' hf ρ).2 hx⟩
     | failed r =>
       have hEq : translate (SrcFormula.not f) = TransResult.failed r := by
         simp only [translate, hf, bind1]
       rw [hEq] at h
-      exact TransResult.noConfusion h
+      simp at h
 
 /-- **Failed 不是公式假**：翻译失败与恒假公式语义可分——
     零分母除原子处处无定义（翻译 Failed），而恒假公式 0 = 1 处处有定义；
@@ -826,10 +823,11 @@ theorem checkRootCert_sound (p : ℚ[X]) (c : RootCert) (h : checkRootCert p c)
   have hmemR : ∀ e ∈ c.entries, e.r ∈ (rp p).roots.toFinset := by
     intro e he
     exact Multiset.mem_toFinset.mpr
-      ((Polynomial.mem_roots hrp0).mp (isrroot_iff_IsRoot.mp (hmem e he).2.2.2.1))
+      ((Polynomial.mem_roots hrp0).mpr (isrroot_iff_IsRoot.mp (hmem e he).2.2.2.1))
   -- 证书根两两不同 ⇒ toFinset 计数 = 条目数
   have hnodup : (c.entries.map (fun e => e.r)).Nodup :=
-    entries_r_nodup c.entries hord (fun e he => ((hmem e he).2.1, (hmem e he).2.2.1))
+    entries_r_nodup c.entries hord
+      (fun e he => And.intro (hmem e he).2.1 (hmem e he).2.2.1)
   have hcardS : ((c.entries.map (fun e => e.r)).toFinset).card = c.entries.length :=
     List.toFinset_card_of_nodup hnodup
   -- 总计数声明与 Sturm 计数对齐 ⇒ 与相异实根个数对齐
@@ -849,7 +847,7 @@ theorem checkRootCert_sound (p : ℚ[X]) (c : RootCert) (h : checkRootCert p c)
   constructor
   · intro hx
     have hxR : x ∈ (rp p).roots.toFinset :=
-      Multiset.mem_toFinset.mpr ((Polynomial.mem_roots hrp0).mp (isrroot_iff_IsRoot.mp hx))
+      Multiset.mem_toFinset.mpr ((Polynomial.mem_roots hrp0).mpr (isrroot_iff_IsRoot.mp hx))
     rw [← heq] at hxR
     exact List.mem_toFinset.mp hxR
   · intro hx
@@ -917,17 +915,29 @@ theorem checkRootCert_const (c : ℚ) (hc : c ≠ 0) :
   have hivs : IvsOrdered (emptyCert (EuclideanDomain.gcd (Polynomial.C c) 0) 1).entries := by
     simp only [emptyCert, IvsOrdered]
     trivial
-  refine ⟨Polynomial.C_ne_zero.mpr hc, hivs, ?_, ?_, ?_, ?_, ?_⟩
-  · intro e he
+  have hmem : ∀ e ∈ (emptyCert (EuclideanDomain.gcd (Polynomial.C c) 0) 1).entries,
+      e.lo < e.hi ∧ e.lo < e.r ∧ e.r < e.hi ∧ IsRRoot (Polynomial.C c) e.r ∧
+        rmult (Polynomial.C c) e.r = e.m := by
+    intro e he
     exact absurd he (by simp [emptyCert])
-  · simp only [emptyCert]
+  have hid : (emptyCert (EuclideanDomain.gcd (Polynomial.C c) 0) 1).sqH *
+      (emptyCert (EuclideanDomain.gcd (Polynomial.C c) 0) 1).sqG = Polynomial.C c := by
+    simp only [emptyCert]
     rw [mul_one, EuclideanDomain.gcd_zero_right]
-  · simp only [emptyCert]
+  have hid2 : (emptyCert (EuclideanDomain.gcd (Polynomial.C c) 0) 1).sqH =
+      EuclideanDomain.gcd (Polynomial.C c) (Polynomial.derivative (Polynomial.C c)) := by
+    simp only [emptyCert]
     rw [Polynomial.derivative_C, EuclideanDomain.gcd_zero_right]
-  · simp only [emptyCert, List.length_nil]
-  · simp only [emptyCert]
+  have hlen : (emptyCert (EuclideanDomain.gcd (Polynomial.C c) 0) 1).entries.length =
+      (emptyCert (EuclideanDomain.gcd (Polynomial.C c) 0) 1).total := by
+    simp only [emptyCert, List.length_nil]
+    norm_num
+  have htot : ((emptyCert (EuclideanDomain.gcd (Polynomial.C c) 0) 1).total : ℤ) =
+      varCount (Polynomial.C c) := by
     show ((0 : ℕ) : ℤ) = varCount (Polynomial.C c)
     rw [varCount_C c hc]
+    norm_num
+  exact ⟨Polynomial.C_ne_zero.mpr hc, hivs, hmem, hid, hid2, hlen, htot⟩
 
 open Polynomial in
 /-- 无解情形的健全性（无条件）：非零常数处处非根——被接受的空证书判定"没有实根"。 -/
@@ -936,7 +946,7 @@ theorem checkRootCert_const_sound (c : ℚ) (hc : c ≠ 0) (x : ℝ) :
   intro hx
   replace hx : ((Polynomial.C c).map qToR).eval x = 0 := hx
   rw [Polynomial.map_C, Polynomial.eval_C] at hx
-  exact hc (qToR_injective hx)
+  exact hc (qToR_injective (show qToR c = qToR 0 from hx))
 
 open Polynomial in
 /-- 重根实例的链：sturmChain ((X−0)²) = [(X−0)², C 2·(X−0)]——
@@ -960,16 +970,19 @@ theorem double_root_chain :
   have hX0 : (X - C 0 : ℚ[X]) ≠ 0 := by
     rw [Polynomial.C_0, sub_zero]
     exact Polynomial.X_ne_zero
-  rw [sturmChain, if_neg hne, hder]
-  have step : chainAux (Polynomial.natDegree ((X - C 0 : ℚ[X]) ^ 2) + 1)
-      ((X - C 0 : ℚ[X]) ^ 2) (C 2 * (X - C 0 : ℚ[X])) =
-      (C 2 * (X - C 0 : ℚ[X])) :: chainAux (Polynomial.natDegree ((X - C 0 : ℚ[X]) ^ 2))
-        (C 2 * (X - C 0 : ℚ[X]))
+  -- 燃料取字面值（stuck 的 natDegree 会卡住 chainAux 匹配展开——CI 969/972 根因）
+  have hnd2 : Polynomial.natDegree ((X - C 0 : ℚ[X]) ^ 2) = 2 := by
+    rw [pow_two, Polynomial.C_0, sub_zero, Polynomial.natDegree_mul' (by
+      rw [Polynomial.leadingCoeff_X, Polynomial.leadingCoeff_X]; norm_num),
+      Polynomial.natDegree_X]
+    norm_num
+  rw [sturmChain, if_neg hne, hder, hnd2]
+  have step : chainAux (2 + 1) ((X - C 0 : ℚ[X]) ^ 2) (C 2 * (X - C 0 : ℚ[X])) =
+      (C 2 * (X - C 0 : ℚ[X])) :: chainAux 2 (C 2 * (X - C 0 : ℚ[X]))
         (-(((X - C 0 : ℚ[X]) ^ 2) % (C 2 * (X - C 0 : ℚ[X])))) :=
     if_neg hX0
   rw [step, hmod, neg_zero]
-  have hzero : chainAux (Polynomial.natDegree ((X - C 0 : ℚ[X]) ^ 2))
-      (C 2 * (X - C 0 : ℚ[X])) 0 = [] := if_pos rfl
+  have hzero : chainAux 2 (C 2 * (X - C 0 : ℚ[X])) 0 = [] := if_pos rfl
   rw [hzero]
 
 open Polynomial in
@@ -997,8 +1010,8 @@ theorem varCount_double_root : varCount ((X - C 0 : ℚ[X]) ^ 2) = 1 := by
     rw [signAtNegInf, hnd, hlc, if_pos (by decide : natEven 2 = true)]
     exact qsign_of_pos (by norm_num)
   have hs2 : signAtNegInf (C 2 * (X - C 0 : ℚ[X])) = -1 := by
-    rw [signAtNegInf, hnd', hlc', if_neg (by decide : ¬(natEven 1 = true))]
-    exact qsign_of_pos (by norm_num)
+    rw [signAtNegInf, hnd', hlc', if_neg (by decide : ¬(natEven 1 = true)),
+      qsign_of_pos (by norm_num)]
   have hs3 : signAtPosInf ((X - C 0 : ℚ[X]) ^ 2) = 1 := by
     rw [signAtPosInf, hlc]
     exact qsign_of_pos (by norm_num)
@@ -1048,6 +1061,7 @@ theorem checkRootCert_double_root :
       exact Polynomial.rootMultiplicity_X_sub_C_pow 0 2
   · show ((1 : ℕ) : ℤ) = varCount ((X - C 0 : ℚ[X]) ^ 2)
     rw [varCount_double_root]
+    norm_num
 
 open Polynomial in
 /-- **首系数零降次（专门定理 1）**：首系数单位缩放不改变根集——
@@ -1056,21 +1070,21 @@ theorem isRRoot_C_smul (a : ℚ) (ha : a ≠ 0) (p : ℚ[X]) (x : ℝ) :
     IsRRoot p x ↔ IsRRoot (Polynomial.C a * p) x := by
   have haR : qToR a ≠ 0 := by
     intro h
-    exact ha (qToR_injective (by rw [h]; exact rfl))
+    exact ha (qToR_injective (by rw [h]; exact qToR_zero.symm))
   constructor
   · intro hx
     show ((Polynomial.C a * p).map qToR).eval x = 0
     rw [Polynomial.map_mul, Polynomial.map_C, Polynomial.eval_mul, Polynomial.eval_C]
     show qToR a * ((p.map qToR).eval x) = 0
     rw [show (p.map qToR).eval x = (0:ℝ) from hx]
-    exact mul_zero a
+    exact mul_zero (qToR a)
   · intro hx
     show ((p.map qToR).eval x) = 0
-    have h : qToR a * ((p.map qToR).eval x) = 0 := by
-      show ((Polynomial.C a * p).map qToR).eval x = 0
+    have hmul : ((Polynomial.C a * p).map qToR).eval x =
+        qToR a * ((p.map qToR).eval x) := by
       rw [Polynomial.map_mul, Polynomial.map_C, Polynomial.eval_mul, Polynomial.eval_C]
-      exact hx
-    exact (mul_eq_zero.mp h).resolve_left haR
+    rw [hmul, show (p.map qToR).eval x = (0:ℝ) from hx]
+    exact mul_zero (qToR a)
 
 /-! ## 九、STATUS -/
 

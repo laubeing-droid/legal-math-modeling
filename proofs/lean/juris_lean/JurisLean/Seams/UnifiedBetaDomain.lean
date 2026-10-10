@@ -301,11 +301,20 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
     have hr : ((Nat.choose (α + β - 1) (i + 1) : ℕ) : ℝ) * ((i + 1 : ℕ) : ℝ)
         = ((Nat.choose (α + β - 2) i * (α + β - 1) : ℕ) : ℝ) := by
       have hc := congrArg (fun n : ℕ => (n : ℝ)) he
-      rw [show (i + 1 - 1 : ℕ) = i from by omega] at hc
+      rw [show (i + 1 - 1 : ℕ) = i from by omega,
+        show (α + β - 1 - 1 : ℕ) = α + β - 2 from by omega] at hc
       simp only [Nat.cast_mul] at hc
       linear_combination hc
-    rw [huApp, mul_assoc, mul_assoc, hr, show (i + 1 - 1 : ℕ) = i from by omega,
+    rw [huApp, show (i + 1 - 1 : ℕ) = i from by omega,
       show (α + β - 1) - (i + 1) = α + β - 2 - i from by omega]
+    calc ((Nat.choose (α + β - 1) (i + 1) : ℕ) : ℝ)
+          * (((i + 1 : ℕ) : ℝ) * (x ^ i * (1 - x) ^ (α + β - 2 - i)))
+        = ((((Nat.choose (α + β - 1) (i + 1) : ℕ) : ℝ) * ((i + 1 : ℕ) : ℝ))
+            * (x ^ i * (1 - x) ^ (α + β - 2 - i))) := by ring
+      _ = ((Nat.choose (α + β - 2) i * (α + β - 1) : ℕ) : ℝ)
+          * (x ^ i * (1 - x) ^ (α + β - 2 - i)) := by rw [hr]
+      _ = ((Nat.choose (α + β - 2) i * (α + β - 1) : ℕ) : ℝ) * x ^ i
+          * (1 - x) ^ (α + β - 2 - i) := by ring
   -- (C) 右和：j = m 项为零，其余 = u j
   have hC : (∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
@@ -339,7 +348,14 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
       simp only [Nat.cast_mul] at hc
       linear_combination hc
     rw [huApp]
-    linear_combination (x ^ j * (1 - x) ^ (α + β - 2 - j)) * hr
+    calc ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
+          * ((((α + β - 1 - j : ℕ) : ℝ) * x ^ j) * (1 - x) ^ (α + β - 2 - j))
+        = ((((Nat.choose (α + β - 1) j : ℕ) : ℝ) * (((α + β - 1 - j : ℕ) : ℝ)))
+            * (x ^ j * (1 - x) ^ (α + β - 2 - j))) := by ring
+      _ = ((Nat.choose (α + β - 2) j * (α + β - 1) : ℕ) : ℝ)
+          * (x ^ j * (1 - x) ^ (α + β - 2 - j)) := by rw [hr]
+      _ = ((Nat.choose (α + β - 2) j * (α + β - 1) : ℕ) : ℝ) * x ^ j
+          * (1 - x) ^ (α + β - 2 - j) := by ring
   -- (D) 差 = u(α−1)
   have hD : (∑ i ∈ Finset.Ico (α - 1) (α + β - 1), u i)
       - (∑ i ∈ Finset.Ico α (α + β - 1), u i) = u (α - 1) := by
@@ -369,7 +385,9 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
           * ((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)))
         - (∑ j ∈ Finset.Ico α (α + β),
         ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
-          * ((α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j))) := h1
+          * ((α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j))) := by
+        rw [← Finset.sum_sub_distrib]
+        exact Finset.sum_congr rfl fun j _ => by ring
     _ = (∑ i ∈ Finset.Ico (α - 1) (α + β - 1), u i)
         - (∑ i ∈ Finset.Ico α (α + β - 1), u i) := by rw [hB, hC]
     _ = u (α - 1) := hD
@@ -1185,7 +1203,7 @@ theorem mbound_le (r t : ℝ) (ht : t ∈ Set.Icc (1 / 4 : ℝ) (3 / 4 : ℝ)) :
       Real.rpow_pos_of_pos (lt_of_lt_of_le (by norm_num : (0:ℝ) < 1 / 4) ht.1) _
     have hp' : 0 < (3 / 4 : ℝ) ^ (-r) := Real.rpow_pos_of_pos (by norm_num) _
     have hge : t ^ (-r) ≤ (3 / 4 : ℝ) ^ (-r) :=
-      Real.rpow_le_rpow (by norm_num) ht.2 (by linarith)
+      Real.rpow_le_rpow (by linarith [ht.1]) ht.2 (by linarith)
     have e1 : t ^ r = 1 / t ^ (-r) := by
       have h1 := Real.rpow_neg (x := t) (by linarith [ht.1]) (-r)
       rw [neg_neg] at h1

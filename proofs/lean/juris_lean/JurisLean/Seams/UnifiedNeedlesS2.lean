@@ -143,16 +143,16 @@ def analogyPreserves {S F V U J : Type} (m : AnalogyMap S F V U J) : Prop :=
 theorem analogy_preserves_judgment_under_full_conditions :
     ∃ (m : AnalogyMap Bool Bool Bool Bool Bool), analogyPreserves m ∧
       ∃ (m' : AnalogyMap Bool Bool Bool Bool Bool), ¬ analogyPreserves m' := by
-  refine ⟨{ onSubject := fun s => s, onFacts := fun f => f,
-      onVersion := fun v => v, onUse := fun u => u,
-      judge := fun s f v u => s && f && v && u, full := true },
-    ⟨rfl, fun s f v u => rfl⟩, ?_⟩
-  · refine ⟨{ onSubject := fun s => s, onFacts := fun f => f,
-      onVersion := fun v => v, onUse := fun u => u,
-      judge := fun s f v u => s && f && v && u, full := false }, ?_⟩
-    intro h
-    rw [analogyPreserves] at h
-    obtain ⟨hfull, _⟩ := h
-    exact Bool.noConfusion hfull
+  refine ⟨{ onSubject := (fun s => s), onFacts := (fun f => f),
+      onVersion := (fun v => v), onUse := (fun u => u),
+      judge := (fun s f v u => s && f && v && u), full := true },
+    ⟨⟨rfl, (fun s f v u => rfl)⟩,
+      ⟨{ onSubject := (fun s => s), onFacts := (fun f => f),
+        onVersion := (fun v => v), onUse := (fun u => u),
+        judge := (fun s f v u => s && f && v && u), full := false }, ?_⟩⟩⟩
+  intro h
+  rw [analogyPreserves] at h
+  obtain ⟨hfull, _⟩ := h
+  exact Bool.noConfusion hfull
 
 end JurisLean.Seams.UnifiedNeedlesS2

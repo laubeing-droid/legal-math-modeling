@@ -161,7 +161,7 @@ theorem choose_mul_left (m j : ℕ) (hj : 1 ≤ j) (hjm : j ≤ m) :
         ring
     _ = Nat.choose m (i + 1) * (Nat.factorial (i + 1) * Nat.factorial (m - 1 - i)) := by
         rw [hfs]
-    _ = Nat.factorial m := h1
+    _ = Nat.factorial m := by rw [mul_assoc]; exact h1
     _ = m * Nat.factorial (m - 1) := hfm
     _ = m * (Nat.choose (m - 1) i * Nat.factorial i * Nat.factorial (m - 1 - i)) := by
         rw [← h2]
@@ -187,7 +187,7 @@ theorem choose_mul_right (m j : ℕ) (hjm : j < m) :
   calc (m - j) * Nat.choose m j * (Nat.factorial j * Nat.factorial (m - 1 - j))
       = Nat.choose m j * (Nat.factorial j * (Nat.factorial (m - j))) := by
         rw [hfs]; ring
-    _ = Nat.factorial m := h1
+    _ = Nat.factorial m := by rw [mul_assoc]; exact h1
     _ = m * Nat.factorial (m - 1) := hfm
     _ = m * (Nat.choose (m - 1) j * Nat.factorial j * Nat.factorial (m - 1 - j)) := by
         rw [← h2]
@@ -212,12 +212,13 @@ theorem bernCdf_zero (α β : ℕ) (hα : 1 ≤ α) : bernCdf α β 0 = 0 := by
   unfold bernCdf
   refine Finset.sum_eq_zero (fun j hj => ?_)
   have hj1 : 1 ≤ j := by have := Finset.mem_Ico.mp hj; omega
-  rw [zero_pow (by omega), mul_zero]
+  rw [zero_pow (by omega)]
+  ring
 
 /-- 端点：F(1) = 1（仅 j = m 项存活）。 -/
 theorem bernCdf_one (α β : ℕ) (hβ : 1 ≤ β) : bernCdf α β 1 = 1 := by
   unfold bernCdf
-  have hmem : α + β - 1 ∈ Finset.Ico α (α + β) := ⟨by omega, by omega⟩
+  have hmem : α + β - 1 ∈ Finset.Ico α (α + β) := Finset.mem_Ico.mpr ⟨by omega, by omega⟩
   refine Eq.trans (Finset.sum_eq_single_of_mem (α + β - 1) hmem ?_) ?_
   · intro j hj hjm
     have hjlt : j < α + β - 1 := by
@@ -250,30 +251,19 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
   have huApp : ∀ i : ℕ, u i
       = ((Nat.choose (α + β - 2) i * (α + β - 1) : ℕ) : ℝ)
         * x ^ i * (1 - x) ^ (α + β - 2 - i) := fun i => rfl
-  -- (A) 拆和：c·(A − B) = c·A − c·B 后逐项求和相减
-  have hsplit : (∑ j ∈ Finset.Ico α (α + β),
+  -- (A) 拆和：∑c(A−B) = ∑cA − ∑cB
+  have h1 : (∑ j ∈ Finset.Ico α (α + β),
+      ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
+        * ((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)))
+      + (∑ j ∈ Finset.Ico α (α + β),
+      ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
+        * ((α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j)))
+      = ∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
         * (((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)
-          - ((α + β - 1 - j : ℕ) : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j)))
-    = (∑ j ∈ Finset.Ico α (α + β),
-        ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
-          * ((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)))
-      - (∑ j ∈ Finset.Ico α (α + β),
-        ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
-          * (((α + β - 1 - j : ℕ) : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j))) := by
-    have h1 : (∑ j ∈ Finset.Ico α (α + β),
-        ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
-          * ((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)))
-        = (∑ j ∈ Finset.Ico α (α + β),
-          ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
-            * (((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)
-              - ((α + β - 1 - j : ℕ) : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j))))
-        + (∑ j ∈ Finset.Ico α (α + β),
-          ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
-            * (((α + β - 1 - j : ℕ) : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j))) := by
-      rw [← Finset.sum_add_distrib]
-      exact Finset.sum_congr rfl fun j _ => by ring
-    linarith
+          - (α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j))) := by
+    rw [← Finset.sum_add_distrib]
+    exact Finset.sum_congr rfl fun j _ => by ring
   -- (B) 左和移标：j ↦ j−1
   have hB : (∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
@@ -285,7 +275,6 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
     · intro i hi; omega
     · intro j hj; have := Finset.mem_Ico.mp hj; omega
     · intro i hi
-      have hi' := Finset.mem_Ico.mp hi
       have he := choose_mul_left (α + β - 1) (i + 1) (by omega) (by omega)
       have hr : ((Nat.choose (α + β - 1) (i + 1) : ℕ) : ℝ) * ((i + 1 : ℕ) : ℝ)
           = ((Nat.choose (α + β - 2) i * (α + β - 1) : ℕ) : ℝ) :=
@@ -295,7 +284,7 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
   -- (C) 右和：j = m 项为零，其余 = u j
   have hC : (∑ j ∈ Finset.Ico α (α + β),
       ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
-        * (((α + β - 1 - j : ℕ) : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j)))
+        * ((α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j)))
       = ∑ i ∈ Finset.Ico α (α + β - 1), u i := by
     have hins : Finset.Ico α (α + β)
         = insert (α + β - 1) (Finset.Ico α (α + β - 1)) := by
@@ -307,15 +296,15 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
       have := Finset.mem_Ico.mp hcon
       omega)]
     have hzero : ((Nat.choose (α + β - 1) (α + β - 1) : ℕ) : ℝ)
-        * (((α + β - 1 - (α + β - 1) : ℕ) : ℝ)
-          * x ^ (α + β - 1) * (1 - x) ^ (α + β - 2 - (α + β - 1))) = 0 := by
+        * ((α + β - 1 - (α + β - 1) : ℝ) * x ^ (α + β - 1)
+          * (1 - x) ^ (α + β - 2 - (α + β - 1))) = 0 := by
       rw [Nat.sub_self]
       push_cast
       ring
     rw [hzero, zero_add]
     refine Finset.sum_congr rfl fun j hj => ?_
     have hjlt : j < α + β - 1 := by
-      have h1 := Finset.mem_Ico.mp hj
+      have h2 := Finset.mem_Ico.mp hj
       omega
     have he := choose_mul_right (α + β - 1) j hjlt
     have hr : ((Nat.choose (α + β - 1) j : ℕ) : ℝ) * ((α + β - 1 - j : ℕ) : ℝ)
@@ -340,7 +329,22 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
         * x ^ (α - 1) * (1 - x) ^ (β - 1) := by
     rw [huApp, show α + β - 2 - (α - 1) = β - 1 from by omega]
   refine hsum.congr_deriv ?_
-  rw [hsplit, hB, hC, hD, hE]
+  calc ∑ j ∈ Finset.Ico α (α + β),
+      ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
+        * (((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)
+          - (α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j)))
+      = (∑ j ∈ Finset.Ico α (α + β),
+        ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
+          * ((j : ℝ) * x ^ (j - 1) * (1 - x) ^ (α + β - 1 - j)))
+        - (∑ j ∈ Finset.Ico α (α + β),
+        ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
+          * ((α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j))) := by
+      linarith [h1]
+    _ = (∑ i ∈ Finset.Ico (α - 1) (α + β - 1), u i)
+        - (∑ i ∈ Finset.Ico α (α + β - 1), u i) := by rw [hB, hC]
+    _ = u (α - 1) := hD
+    _ = ((Nat.choose (α + β - 2) (α - 1) * (α + β - 1) : ℕ) : ℝ)
+          * x ^ (α - 1) * (1 - x) ^ (β - 1) := hE
 
 /-- **F 与积分 CDF 相同**：F(x) = C·∫₀ˣ t^{α−1}(1−t)^{β−1}（由 F(0)=0 与望远镜求导）。 -/
 theorem bernCdf_eq_integral (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) :
@@ -348,10 +352,9 @@ theorem bernCdf_eq_integral (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x :
       = ((Nat.choose (α + β - 2) (α - 1) * (α + β - 1) : ℕ) : ℝ)
         * ∫ t in (0:ℝ)..x, t ^ (α - 1) * (1 - t) ^ (β - 1) := by
   have hd : ∀ t : ℝ, HasDerivAt (bernCdf α β)
-      (((Nat.choose (α + β - 2) (α - 1) * (α + β - 1) : ℕ) : ℝ)
-        * t ^ (α - 1) * (1 - t) ^ (β - 1)) t :=
-    bernCdf_deriv α β hα hβ
-  have hC : Continuous (bernCdf α β) := bernCdf_continuous α β
+      ((fun u => ((Nat.choose (α + β - 2) (α - 1) * (α + β - 1) : ℕ) : ℝ)
+        * (u ^ (α - 1) * (1 - u) ^ (β - 1))) t) t :=
+    fun t => (bernCdf_deriv α β hα hβ t).congr_deriv (by rfl)
   have hint : IntervalIntegrable (fun t => ((Nat.choose (α + β - 2) (α - 1) * (α + β - 1) : ℕ) : ℝ)
       * (t ^ (α - 1) * (1 - t) ^ (β - 1))) MeasureTheory.volume 0 x :=
     Continuous.intervalIntegrable (by fun_prop) 0 x
@@ -363,7 +366,6 @@ theorem bernCdf_eq_integral (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x :
   have hF0 : bernCdf α β 0 = 0 := bernCdf_zero α β hα
   rw [hF0, sub_zero] at hFT
   rw [← hFT, intervalIntegral.integral_const_mul]
-  ring
 
 /-- **归一化一致**：F(x) = ∫₀ˣ g / B(α,β)，其中 B(α,β) = betaTwoConst(α−1,β−1)
     的实像（复用 UnifiedNeedlesS3a 的整数 Beta 积分闭式，本件在 x=1 处反解常数）。 -/
@@ -378,8 +380,9 @@ theorem bernCdf_eq_normed (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : �
     UnifiedNeedlesS3a.betaInt_eq (α - 1) (β - 1)
   have hkey : ((Nat.choose (α + β - 2) (α - 1) * (α + β - 1) : ℕ) : ℝ)
       * ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ) = 1 := by
-    rw [← hint1]
-    exact (h1 1).symm.trans h2
+    have hx1 := bernCdf_eq_integral α β hα hβ 1
+    rw [h2, hint1] at hx1
+    exact hx1.symm
   have hBpos : (0:ℝ) < ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ) :=
     by exact_mod_cast UnifiedNeedlesS3a.betaTwoConst_pos (α - 1) (β - 1)
   have hCinv : ((Nat.choose (α + β - 2) (α - 1) * (α + β - 1) : ℕ) : ℝ)
@@ -388,19 +391,18 @@ theorem bernCdf_eq_normed (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : �
   rw [h1, hCinv]
   field_simp <;> ring
 
-/-- **(0,1) 上严格递增**（导数 = 正常数 × 正密度形状）。 -/
+/-- **(0,1) 上严格递增**（导数 = 正常数 × 正密度形状；Icc 形，端点由单调化消费）。 -/
 theorem bernCdf_strictMonoOn (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) :
-    StrictMonoOn (bernCdf α β) (Set.Ioo 0 1) := by
+    StrictMonoOn (bernCdf α β) (Set.Icc 0 1) := by
   have hC : Continuous (bernCdf α β) := bernCdf_continuous α β
   have hpos : ∀ t ∈ Set.Ioo (0:ℝ) 1, 0 < deriv (bernCdf α β) t := by
     intro t ht
     rw [(bernCdf_deriv α β hα hβ t).deriv]
     have h1 : (0:ℝ) < ((Nat.choose (α + β - 2) (α - 1) * (α + β - 1) : ℕ) : ℝ) :=
       Nat.cast_pos.mpr (Nat.mul_pos (Nat.choose_pos (by omega)) (Nat.pos_of_ne_zero (by omega)))
-    exact mul_pos (mul_pos h1 (pow_pos ht.1 _)) (pow_pos (by linarith) _)
-  have h := strictMonoOn_of_deriv_pos (D := Set.Icc (0:ℝ) 1) convex_Icc hC.continuousOn
-    (by rwa [Set.interior_Icc])
-  exact h.mono Set.Ioo_subset_Icc_self
+    exact mul_pos (mul_pos h1 (pow_pos ht.1 _)) (pow_pos (by linarith [ht.2]) _)
+  exact strictMonoOn_of_deriv_pos (D := Set.Icc (0:ℝ) 1) (convex_Icc 0 1) hC.continuousOn
+    (by rwa [interior_Icc])
 
 /-- ℚ 层同式（有理形状、有理点：闭式精确可计算）。 -/
 def ratBernCdf (α β : ℕ) (q : ℚ) : ℚ :=
@@ -410,21 +412,14 @@ def ratBernCdf (α β : ℕ) (q : ℚ) : ℚ :=
 /-- 有理点桥：ℚ 闭式在实层的像 = bernCdf 在该有理点的值（精确，无近似）。 -/
 theorem bernCdf_rat_cast (α β : ℕ) (q : ℚ) :
     (ratBernCdf α β q : ℝ) = bernCdf α β (q : ℝ) := by
-  show (Rat.castRingHom ℝ) (∑ j ∈ Finset.Ico α (α + β),
-      ((Nat.choose (α + β - 1) j : ℕ) : ℚ) * q ^ j * (1 - q) ^ (α + β - 1 - j))
-    = ∑ j ∈ Finset.Ico α (α + β),
-      ((Nat.choose (α + β - 1) j : ℕ) : ℝ) * (q : ℝ) ^ j * (1 - (q : ℝ)) ^ (α + β - 1 - j)
-  rw [map_sum]
-  exact Finset.sum_congr rfl fun j _ => by
-    show (Rat.castRingHom ℝ) (((Nat.choose (α + β - 1) j : ℕ) : ℚ) * q ^ j
-        * (1 - q) ^ (α + β - 1 - j))
-      = _
-    rw [map_mul, map_mul, Rat.cast_pow, Rat.cast_pow, Rat.cast_natCast]
+  simp only [ratBernCdf, bernCdf, Rat.cast_sum, Rat.cast_mul, Rat.cast_pow, Rat.cast_natCast,
+    Rat.cast_sub]
+  rfl
 
 /-- **有理 x 精确可比较**：F 在有理点的序 = ℚ 闭式的序（decide/精确算术可判定）。 -/
 theorem bernCdf_rat_comparable (α β : ℕ) (q₁ q₂ : ℚ) :
     (bernCdf α β (q₁ : ℝ) ≤ bernCdf α β (q₂ : ℝ)) ↔ (ratBernCdf α β q₁ ≤ ratBernCdf α β q₂) := by
-  rw [bernCdf_rat_cast, bernCdf_rat_cast]
+  rw [← bernCdf_rat_cast, ← bernCdf_rat_cast]
   exact Rat.cast_le
 
 /-- 整型形状分量是合法混合分量：连续、单调、端点 0/1、严格递增（四义务之"有限混合"
@@ -433,7 +428,7 @@ theorem bernCdf_mixable (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) :
     Continuous (bernCdf α β) ∧ MonotoneOn (bernCdf α β) (Set.Icc 0 1) ∧
     bernCdf α β 0 = 0 ∧ bernCdf α β 1 = 1 ∧
     StrictMonoOn (bernCdf α β) (Set.Icc 0 1) := by
-  have hs := (bernCdf_strictMonoOn α β hα hβ).mono Set.Ioo_subset_Icc_self
+  have hs := bernCdf_strictMonoOn α β hα hβ
   exact ⟨bernCdf_continuous α β, hs.monotoneOn, bernCdf_zero α β hα, bernCdf_one α β hβ, hs⟩
 
 /-! ## 二、半整型路径（合同 §7.4 第二段：四基底 + 分部积分递推） -/
@@ -442,13 +437,13 @@ theorem bernCdf_mixable (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) :
 def halfCdf11 (x : ℝ) : ℝ := x
 
 /-- 基底二：I_x(1/2,1) = √x。 -/
-def halfCdf12 (x : ℝ) : ℝ := Real.sqrt x
+noncomputable def halfCdf12 (x : ℝ) : ℝ := Real.sqrt x
 
 /-- 基底三：I_x(1,1/2) = 1−√(1−x)。 -/
-def halfCdf21 (x : ℝ) : ℝ := 1 - Real.sqrt (1 - x)
+noncomputable def halfCdf21 (x : ℝ) : ℝ := 1 - Real.sqrt (1 - x)
 
 /-- 基底四：I_x(1/2,1/2) = 2·arcsin(√x)/π。 -/
-def halfCdf22 (x : ℝ) : ℝ := 2 * Real.arcsin (Real.sqrt x) / Real.pi
+noncomputable def halfCdf22 (x : ℝ) : ℝ := 2 * Real.arcsin (Real.sqrt x) / Real.pi
 
 /-- 基底一是恒等函数的积分：d/dx x = 1。 -/
 theorem halfCdf11_deriv (x : ℝ) : HasDerivAt halfCdf11 1 x :=
@@ -474,8 +469,8 @@ theorem halfCdf21_deriv (x : ℝ) (hx : x ≠ 1) :
 theorem halfCdf22_deriv (x : ℝ) (hx0 : 0 < x) (hx1 : x < 1) :
     HasDerivAt halfCdf22 (1 / (Real.pi * Real.sqrt x * Real.sqrt (1 - x))) x := by
   have hπ : Real.pi ≠ 0 := Real.pi_ne_zero
-  have hsqx : Real.sqrt x ≠ 0 := (Real.sqrt_pos hx0).ne'
-  have hsq1 : Real.sqrt (1 - x) ≠ 0 := (Real.sqrt_pos (by linarith)).ne'
+  have hsqx : Real.sqrt x ≠ 0 := (Real.sqrt_pos_of_pos hx0).ne'
+  have hsq1 : Real.sqrt (1 - x) ≠ 0 := (Real.sqrt_pos_of_pos (by linarith)).ne'
   have hs1 : Real.sqrt x ≠ -1 :=
     ne_of_gt (lt_of_lt_of_le (by norm_num) (Real.sqrt_nonneg x))
   have hs2 : Real.sqrt x ≠ 1 := fun h => hx1 (Real.sqrt_eq_one.mp h)
@@ -494,27 +489,25 @@ theorem halfCdf11_zero : halfCdf11 0 = 0 := rfl
 
 theorem halfCdf11_one : halfCdf11 1 = 1 := rfl
 
-theorem halfCdf12_zero : halfCdf12 0 = 0 := rfl
+theorem halfCdf12_zero : halfCdf12 0 = 0 := by simp [halfCdf12]
 
-theorem halfCdf12_one : halfCdf12 1 = 1 := rfl
+theorem halfCdf12_one : halfCdf12 1 = 1 := by simp [halfCdf12]
 
-theorem halfCdf21_zero : halfCdf21 0 = 0 := by
-  show (1:ℝ) - Real.sqrt 1 = 0; norm_num
+theorem halfCdf21_zero : halfCdf21 0 = 0 := by simp [halfCdf21]
 
-theorem halfCdf21_one : halfCdf21 1 = 1 := by
-  show (1:ℝ) - Real.sqrt 0 = 1; norm_num
+theorem halfCdf21_one : halfCdf21 1 = 1 := by simp [halfCdf21]
 
 theorem halfCdf22_zero : halfCdf22 0 = 0 := by
-  show 2 * Real.arcsin (Real.sqrt 0) / Real.pi = 0
-  norm_num [Real.sqrt_zero, Real.arcsin_zero]
+  simp only [halfCdf22, Real.sqrt_zero, Real.arcsin_zero]
+  norm_num
 
 theorem halfCdf22_one : halfCdf22 1 = 1 := by
-  show 2 * Real.arcsin (Real.sqrt 1) / Real.pi = 1
-  norm_num [Real.sqrt_one, Real.arcsin_one]
+  simp only [halfCdf22, Real.sqrt_one, Real.arcsin_one]
+  field_simp [Real.pi_ne_zero]
 
 /-- 归一化常数：B(1/2,1) = ∫₀¹ t^{−1/2} dt = 2（`integral_rpow` 精确计算）。 -/
 theorem halfConst12 : (∫ t in (0:ℝ)..1, t ^ (-(1 / 2 : ℝ))) = 2 := by
-  rw [intervalIntegral.integral_rpow (Or.inl (show (-1 : ℝ) < -(1 / 2 : ℝ) by norm_num)),
+  rw [integral_rpow (Or.inl (show (-1 : ℝ) < -(1 / 2 : ℝ) by norm_num)),
     Real.one_rpow, Real.zero_rpow (by norm_num)]
   norm_num
 
@@ -526,11 +519,11 @@ theorem halfConst21 : (∫ t in (0:ℝ)..1, (1 - t) ^ (-(1 / 2 : ℝ))) = 2 := b
     have h1 : HasDerivAt (fun y : ℝ => 1 - y) (0 - 1) t :=
       HasDerivAt.sub (hasDerivAt_const t (1:ℝ)) (hasDerivAt_id t)
     have h2 := h1.rpow_const (p := (1 / 2 : ℝ))
-      (Or.inl (show (1 - t : ℝ) ≠ 0 from by linarith))
+      (Or.inl (show (1 - t : ℝ) ≠ 0 from by linarith [ht.2]))
     rw [show ((1 : ℝ) / 2 - 1) = (-(1 / 2 : ℝ)) from by norm_num] at h2
     exact h2.const_mul (-2) |>.congr_deriv (by ring)
-  have hint : IntervalIntegrable (fun t => (1 - t) ^ (-(1 / 2 : ℝ))) MeasureTheory.volume 0 1 :=
-    ((intervalIntegral.intervalIntegrable_rpow' (r := -(1 / 2 : ℝ))
+  have hint : IntervalIntegrable (fun t => (1 - t) ^ (-(1 / 2 : ℝ))) MeasureTheory.volume 0 1 := by
+    simpa using ((intervalIntegral.intervalIntegrable_rpow' (r := -(1 / 2 : ℝ))
       (show (-1 : ℝ) < -(1 / 2 : ℝ) by norm_num) (a := 0) (b := 1)).comp_sub_left 1).symm
   have hcont : ContinuousOn (fun t => -2 * (1 - t) ^ ((1 / 2 : ℝ))) (Set.Icc 0 1) := by
     refine Continuous.continuousOn ?_
@@ -546,13 +539,13 @@ theorem halfConst21 : (∫ t in (0:ℝ)..1, (1 - t) ^ (-(1 / 2 : ℝ))) = 2 := b
   norm_num
 
 /-- 半整密形状（两 −1/2 次幂的乘积）：Beta(1/2,1/2) 的密度形状。 -/
-def halfDens22 (t : ℝ) : ℝ := t ^ (-(1 / 2 : ℝ)) * (1 - t) ^ (-(1 / 2 : ℝ))
+noncomputable def halfDens22 (t : ℝ) : ℝ := t ^ (-(1 / 2 : ℝ)) * (1 - t) ^ (-(1 / 2 : ℝ))
 
 /-- B(1/2,1/2) 侧的密度在 [0,1] 可积（两半各用「有界连续 × 可积幂」拼接）。 -/
 theorem halfDens22_integrable :
     IntervalIntegrable halfDens22 MeasureTheory.volume 0 1 := by
   have hleft : IntervalIntegrable halfDens22 MeasureTheory.volume 0 (1 / 2) := by
-    refine intervalIntegral.intervalIntegrable_congr_ae
+    refine intervalIntegrable_congr_ae
       (f := fun x => (1 - x) ^ (-(1 / 2 : ℝ)) * x ^ (-(1 / 2 : ℝ)))
       (g := halfDens22)
       (Filter.Eventually.of_forall (fun x _ => mul_comm _ _)) |>.mp
@@ -584,7 +577,7 @@ theorem halfConst22 : (∫ t in (0:ℝ)..1, halfDens22 t) = Real.pi := by
       HasDerivAt (fun y => 2 * Real.arcsin (Real.sqrt y)) (halfDens22 t) t := by
     intro t ht
     have hx0 : (0:ℝ) < t := ht.1
-    have hsqx : Real.sqrt t ≠ 0 := (Real.sqrt_pos hx0).ne'
+    have hsqx : Real.sqrt t ≠ 0 := (Real.sqrt_pos_of_pos hx0).ne'
     have hs1 : Real.sqrt t ≠ -1 :=
       ne_of_gt (lt_of_lt_of_le (by norm_num) (Real.sqrt_nonneg t))
     have hs2 : Real.sqrt t ≠ 1 := fun h => ht.2 (Real.sqrt_eq_one.mp h)
@@ -608,14 +601,13 @@ theorem halfConst22 : (∫ t in (0:ℝ)..1, halfDens22 t) = Real.pi := by
     Real.arcsin_one, Real.arcsin_zero, e0]
   field_simp <;> ring
 
-/-- **递推（和式，代数形式——a、b 各加一的第一式）**：对任意形状 integrand g，
-    J(a+1,b) + J(a,b+1) = J(a,b)：t + (1−t) = 1 的纯代数，全实数域成立。 -/
-theorem recursion_sum (g : ℝ → ℝ) (x : ℝ) :
+/-- **递推（和式，代数形式——a、b 各加一的第一式）**：对任意连续形状 g，
+    J(a+1,b) + J(a,b+1) = J(a,b)：t + (1−t) = 1 的纯代数。 -/
+theorem recursion_sum (g : ℝ → ℝ) (hg : Continuous g) (x : ℝ) :
     (∫ t in (0:ℝ)..x, g t * t) + (∫ t in (0:ℝ)..x, g t * (1 - t))
       = ∫ t in (0:ℝ)..x, g t := by
-  rw [← intervalIntegral.integral_add (by
-      exact Continuous.intervalIntegrable (by fun_prop) 0 x)
-    (by exact Continuous.intervalIntegrable (by fun_prop) 0 x)]
+  rw [← intervalIntegral.integral_add (hg.mul continuous_id).intervalIntegrable
+    ((hg.mul (continuous_const.sub continuous_id))).intervalIntegrable]
   refine intervalIntegral.integral_congr (fun t _ => ?_)
   ring
 
@@ -628,20 +620,20 @@ theorem recursion_ibp_nat (n m : ℕ) (x : ℝ) :
   have hII : IntervalIntegrable (fun t => ((n : ℝ) + 1) * (t ^ n * (1 - t) ^ (m + 1))
       - ((m : ℝ) + 1) * (t ^ (n + 1) * (1 - t) ^ m)) MeasureTheory.volume 0 x :=
     Continuous.intervalIntegrable (by fun_prop) 0 x
+  have hD : ∀ t : ℝ, HasDerivAt (fun y => y ^ (n + 1) * (1 - y) ^ (m + 1))
+      (((n : ℝ) + 1) * (t ^ n * (1 - t) ^ (m + 1))
+        - ((m : ℝ) + 1) * (t ^ (n + 1) * (1 - t) ^ m)) t := by
+    intro t
+    refine (UnifiedNeedlesS3a.s3aPowDeriv (n + 1) (m + 1) t).congr_deriv ?_
+    rw [show (n + 1 - 1 : ℕ) = n from by omega, show (m + 1 - 1 : ℕ) = m from by omega]
   have hFT := intervalIntegral.integral_eq_sub_of_hasDerivAt
     (f := fun y => y ^ (n + 1) * (1 - y) ^ (m + 1))
     (f' := fun t => ((n : ℝ) + 1) * (t ^ n * (1 - t) ^ (m + 1))
       - ((m : ℝ) + 1) * (t ^ (n + 1) * (1 - t) ^ m))
-    (a := 0) (b := x) (fun t _ => UnifiedNeedlesS3a.s3aPowDeriv (n + 1) (m + 1) t) hII
+    (a := 0) (b := x) hD hII
   have hb : ((fun y => y ^ (n + 1) * (1 - y) ^ (m + 1)) 1
       - (fun y => y ^ (n + 1) * (1 - y) ^ (m + 1)) 0) = 0 := by
-    have h1 : ((1:ℝ) ^ (n + 1) * (1 - 1) ^ (m + 1)) = 0 := by
-      rw [one_pow, sub_self, zero_pow (by omega), mul_zero]
-    have h0 : ((0:ℝ) ^ (n + 1) * (1 - 0) ^ (m + 1)) = 0 := by
-      rw [zero_pow (by omega), sub_zero, one_pow, zero_mul]
-    show ((1:ℝ) ^ (n + 1) * (1 - 1) ^ (m + 1))
-      - ((0:ℝ) ^ (n + 1) * (1 - 0) ^ (m + 1)) = 0
-    rw [h1, h0, sub_zero]
+    simp
   rw [hFT, hb, sub_zero]
   have hIA : (∫ t in (0:ℝ)..x, ((n : ℝ) + 1) * (t ^ n * (1 - t) ^ (m + 1)))
       = ((n : ℝ) + 1) * (∫ t in (0:ℝ)..x, t ^ n * (1 - t) ^ (m + 1)) :=
@@ -649,12 +641,14 @@ theorem recursion_ibp_nat (n m : ℕ) (x : ℝ) :
   have hIB : (∫ t in (0:ℝ)..x, ((m : ℝ) + 1) * (t ^ (n + 1) * (1 - t) ^ m))
       = ((m : ℝ) + 1) * (∫ t in (0:ℝ)..x, t ^ (n + 1) * (1 - t) ^ m) :=
     (intervalIntegral.integral_const_mul _ _).symm
-  rw [show (∫ t in (0:ℝ)..x, ((n : ℝ) + 1) * (t ^ n * (1 - t) ^ (m + 1))
+  have hsub : (∫ t in (0:ℝ)..x, ((n : ℝ) + 1) * (t ^ n * (1 - t) ^ (m + 1))
       - ((m : ℝ) + 1) * (t ^ (n + 1) * (1 - t) ^ m))
-    = (∫ t in (0:ℝ)..x, ((n : ℝ) + 1) * (t ^ n * (1 - t) ^ (m + 1)))
-      - (∫ t in (0:ℝ)..x, ((m : ℝ) + 1) * (t ^ (n + 1) * (1 - t) ^ m)) from by
-    rw [intervalIntegral.integral_sub (by exact Continuous.intervalIntegrable (by fun_prop) 0 x)
-      (by exact Continuous.intervalIntegrable (by fun_prop) 0 x)], hIA, hIB]
+      = (∫ t in (0:ℝ)..x, ((n : ℝ) + 1) * (t ^ n * (1 - t) ^ (m + 1)))
+        - (∫ t in (0:ℝ)..x, ((m : ℝ) + 1) * (t ^ (n + 1) * (1 - t) ^ m)) := by
+    rw [intervalIntegral.integral_sub
+      (by exact Continuous.intervalIntegrable (by fun_prop) 0 x)
+      (by exact Continuous.intervalIntegrable (by fun_prop) 0 x)]
+  rw [hsub, hIA, hIB]
   ring
 
 /-- 半整数格：t^{n+1}√t 的导数（归纳，无 ℕ 减法）。 -/
@@ -663,20 +657,30 @@ theorem hasDerivAt_tnSqrt (n : ℕ) (t : ℝ) (ht : 0 < t) :
       ((((2 * n + 3 : ℕ) : ℝ) / 2) * t ^ n * Real.sqrt t) t := by
   induction n with
   | zero =>
-      have hne : Real.sqrt t ≠ 0 := (Real.sqrt_pos ht).ne'
+      have hne : t ≠ 0 := ne_of_gt ht
       have hs : HasDerivAt Real.sqrt (1 / (2 * Real.sqrt t)) t :=
         Real.hasDerivAt_sqrt hne
-      refine ((hasDerivAt_id t).mul hs).congr_deriv ?_
+      have hb : HasDerivAt (fun y : ℝ => y * Real.sqrt y)
+          (Real.sqrt t + t * (1 / (2 * Real.sqrt t))) t := (hasDerivAt_id t).mul hs
+      have hfEq : (fun y : ℝ => y * Real.sqrt y)
+          = (fun y : ℝ => y ^ (0 + 1) * Real.sqrt y) := by
+        funext y; simp
+      rw [hfEq] at hb
+      refine hb.congr_deriv ?_
       norm_num
-      ring
+      field_simp <;> ring
   | succ k ih =>
-      -- y^{k+2}√y = (y^{k+1}√y)·y，导数 = ih 的值·y + y^{k+1}√y
-      have hprod : HasDerivAt (fun y => (y ^ (k + 1) * Real.sqrt y) * y)
-          (((((2 * k + 3 : ℕ) : ℝ) / 2) * t ^ k * Real.sqrt t) * t
-            + t ^ (k + 1) * Real.sqrt t) t := ih.mul (hasDerivAt_id t)
-      refine hprod.congr_deriv ?_
-      rw [show t ^ (k + 2) = t ^ (k + 1) * t from by rw [pow_succ],
-        show t ^ (k + 1) = t ^ k * t from by rw [pow_succ]]
+      have hne : t ≠ 0 := ne_of_gt ht
+      have hbid : HasDerivAt (fun y : ℝ => y) 1 t := hasDerivAt_id t
+      have hb : HasDerivAt (fun y : ℝ => y ^ (k + 1 + 1) * Real.sqrt y)
+          ((((2 * k + 3 : ℕ) : ℝ) / 2 * t ^ k * Real.sqrt t) * t
+            + t ^ (k + 1) * Real.sqrt t) t := by
+        have h := (ih.mul hbid).congr (by
+          funext y
+          simp [mul_assoc, pow_succ])
+        exact h
+      rw [show t ^ (k + 1) = t ^ k * t from by rw [pow_succ]] at hb
+      refine hb.congr_deriv ?_
       push_cast
       ring
 
@@ -688,27 +692,21 @@ theorem hasDerivAt_oneSubTmSqrt (m : ℕ) (t : ℝ) (ht : t < 1) :
     HasDerivAt.sub (hasDerivAt_const t (1:ℝ)) (hasDerivAt_id t)
   have hcomp := (hasDerivAt_tnSqrt m (1 - t) (by linarith)).comp t h1
   refine hcomp.congr_deriv ?_
-  have hzero : (0 - 1 : ℝ) * ((((2 * m + 3 : ℕ) : ℝ) / 2) * (1 - t) ^ m * Real.sqrt (1 - t))
-      = -((((2 * m + 3 : ℕ) : ℝ) / 2) * (1 - t) ^ m * Real.sqrt (1 - t)) := by ring
-  rw [hzero]
+  ring
 
 /-- **递推（分部积分，半整格——对全部 n m : ℕ，加 a 或加 b 各进一步）**：
     ((2n+3)/2)·J(n+3/2, m+5/2) − ((2m+3)/2)·J(n+5/2, m+3/2)
       = x^{n+1}√x·(1−x)^{m+1}√(1−x)。 -/
-theorem recursion_ibp_half (n m : ℕ) (x : ℝ) (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
-    (((2 * n + 3 : ℕ) : ℝ) / 2)
-        * (∫ t in (0:ℝ)..x, (t ^ n * Real.sqrt t) * ((1 - t) ^ (m + 1) * Real.sqrt (1 - t)))
-      - (((2 * m + 3 : ℕ) : ℝ) / 2)
-        * (∫ t in (0:ℝ)..x, (t ^ (n + 1) * Real.sqrt t) * ((1 - t) ^ m * Real.sqrt (1 - t)))
-      = x ^ (n + 1) * Real.sqrt x * ((1 - x) ^ (m + 1) * Real.sqrt (1 - x)) := by
-  have hf' : ∀ t ∈ Set.Ioo (0:ℝ) 1,
+  have hf' : ∀ t ∈ Set.Ioo (0:ℝ) x,
       HasDerivAt (fun y => (y ^ (n + 1) * Real.sqrt y) * ((1 - y) ^ (m + 1) * Real.sqrt (1 - y)))
         ((((2 * n + 3 : ℕ) : ℝ) / 2)
             * ((t ^ n * Real.sqrt t) * ((1 - t) ^ (m + 1) * Real.sqrt (1 - t)))
           - (((2 * m + 3 : ℕ) : ℝ) / 2)
             * ((t ^ (n + 1) * Real.sqrt t) * ((1 - t) ^ m * Real.sqrt (1 - t)))) t := by
     intro t ht
-    refine (hasDerivAt_tnSqrt n t ht.1).mul (hasDerivAt_oneSubTmSqrt m t ht.2) |>.congr_deriv ?_
+    have ht1 : 0 < t := ht.1
+    have ht2 : t < 1 := by linarith
+    refine (hasDerivAt_tnSqrt n t ht1).mul (hasDerivAt_oneSubTmSqrt m t ht2) |>.congr_deriv ?_
     ring
   have hcont : ContinuousOn (fun y => (y ^ (n + 1) * Real.sqrt y)
       * ((1 - y) ^ (m + 1) * Real.sqrt (1 - y))) (Set.Icc 0 x) := by
@@ -733,9 +731,7 @@ theorem recursion_ibp_half (n m : ℕ) (x : ℝ) (hx0 : 0 ≤ x) (hx1 : x ≤ 1)
   have hFT := intervalIntegral.integral_eq_sub_of_hasDerivAt_of_le hx0 hcont hf' hII
   have hf0 : ((fun y => (y ^ (n + 1) * Real.sqrt y) * ((1 - y) ^ (m + 1) * Real.sqrt (1 - y))) (0:ℝ))
       = 0 := by
-    show ((0:ℝ) ^ (n + 1) * Real.sqrt 0) * ((1 - 0) ^ (m + 1) * Real.sqrt (1 - 0)) = 0
-    rw [Real.sqrt_zero, Real.sqrt_one, sub_zero, one_pow, one_pow, mul_one,
-      zero_pow (by omega), zero_mul]
+    simp
   have hAsplit : (((2 * n + 3 : ℕ) : ℝ) / 2)
       * (∫ t in (0:ℝ)..x, (t ^ n * Real.sqrt t) * ((1 - t) ^ (m + 1) * Real.sqrt (1 - t)))
       = ∫ t in (0:ℝ)..x, (((2 * n + 3 : ℕ) : ℝ) / 2)
@@ -754,12 +750,15 @@ theorem halfColInt (n : ℕ) (x : ℝ) (hx : 0 ≤ x) :
       = (2 / ((2 * n + 3 : ℕ) : ℝ)) * (x ^ (n + 1) * Real.sqrt x) := by
   have hne : ((2 * n + 3 : ℕ) : ℝ) ≠ 0 := by
     have hp : 0 < (2 * n + 3 : ℕ) := by omega
-    exact_mod_cast hp
-  have hf : ∀ t ∈ Set.Ioo (0:ℝ) 1,
+    exact_mod_cast hp.ne'
+  have hf : ∀ t ∈ Set.Ioo (0:ℝ) x,
       HasDerivAt (fun y => (2 / ((2 * n + 3 : ℕ) : ℝ)) * (y ^ (n + 1) * Real.sqrt y))
         (t ^ n * Real.sqrt t) t := by
     intro t ht
-    refine (hasDerivAt_tnSqrt n t ht.1).const_mul (2 / ((2 * n + 3 : ℕ) : ℝ)) |>.congr_deriv ?_
+    have ht1 : 0 < t := ht.1
+    refine (hasDerivAt_tnSqrt n t ht1).const_mul (2 / ((2 * n + 3 : ℕ) : ℝ)) |>.congr_deriv ?_
+    have hne2 : ((2 * n + 3 : ℕ) : ℝ) ≠ 0 := hne
+    field_simp [hne2]
     ring
   have hcont : ContinuousOn (fun y => (2 / ((2 * n + 3 : ℕ) : ℝ)) * (y ^ (n + 1) * Real.sqrt y))
       (Set.Icc 0 x) := by
@@ -769,10 +768,8 @@ theorem halfColInt (n : ℕ) (x : ℝ) (hx : 0 ≤ x) :
     Continuous.intervalIntegrable (by fun_prop) 0 x
   have hFT := intervalIntegral.integral_eq_sub_of_hasDerivAt_of_le hx hcont hf hint
   have hf0 : (fun y => (2 / ((2 * n + 3 : ℕ) : ℝ)) * (y ^ (n + 1) * Real.sqrt y)) (0:ℝ) = 0 := by
-    show (2 / ((2 * n + 3 : ℕ) : ℝ)) * ((0:ℝ) ^ (n + 1) * Real.sqrt 0) = 0
-    rw [Real.sqrt_zero, zero_pow (by omega), zero_mul]
+    simp
   rw [hFT, hf0, sub_zero]
-
 /-- **平方比较隔离根／对称式**：基底四满足 halfCdf22 x = 1 − halfCdf22 (1−x)，
     （arcsin√x + arcsin√(1−x) = π/2 的精确证明，x > 1/2 化归到 x ≤ 1/2 的依据）。 -/
 theorem halfCdf22_symm (x : ℝ) (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
@@ -782,11 +779,14 @@ theorem halfCdf22_symm (x : ℝ) (hx0 : 0 ≤ x) (hx1 : x ≤ 1) :
   have hθ1 : Real.arcsin (Real.sqrt x) ≤ Real.pi / 2 := Real.arcsin_le_pi_div_two _
   have hcos : Real.cos (Real.arcsin (Real.sqrt x)) = Real.sqrt (1 - x) := by
     have hc := Real.cos_arcsin (Real.sqrt x)
-    rw [Real.sq_sqrt hx0.le] at hc
+    rw [Real.sq_sqrt hx0] at hc
     exact hc
   have hkey : Real.arcsin (Real.sqrt (1 - x)) = Real.pi / 2 - Real.arcsin (Real.sqrt x) := by
-    rw [← Real.arcsin_sin (Real.pi / 2 - Real.arcsin (Real.sqrt x))
-      (by linarith) (by linarith), Real.sin_pi_div_two_sub, hcos]
+    have hb1 : -(Real.pi / 2) ≤ Real.pi / 2 - Real.arcsin (Real.sqrt x) := by linarith
+    have hb2 : Real.pi / 2 - Real.arcsin (Real.sqrt x) ≤ Real.pi / 2 := by linarith
+    have hs : Real.sin (Real.pi / 2 - Real.arcsin (Real.sqrt x)) = Real.sqrt (1 - x) := by
+      rw [Real.sin_pi_div_two_sub, hcos]
+    rw [← hs, Real.arcsin_sin hb1 hb2]
   show 2 * Real.arcsin (Real.sqrt x) / Real.pi
       = 1 - 2 * Real.arcsin (Real.sqrt (1 - x)) / Real.pi
   rw [hkey]
@@ -814,38 +814,40 @@ theorem halfCdf22_enclosure_from_half (hAsin : AsinRatEnclosureInput) (q : ℚ)
     (hq0 : 0 ≤ q) (hq1 : q ≤ 1) :
     ∃ lo hi : ℚ, ((lo : ℝ) ≤ halfCdf22 (q : ℝ)) ∧ (halfCdf22 (q : ℝ) ≤ (hi : ℝ)) := by
   have hcast : (((1:ℚ) - q : ℚ) : ℝ) = (1:ℝ) - (q:ℝ) := by push_cast; ring
-  rcases le_total (q : ℝ) (1 / 2) with h | h
-  · exact hAsin q hq0 (by exact_mod_cast hq1)
-  · have hqR : ((1:ℚ) / 2 : ℚ) < q := by exact_mod_cast h
-    have hq' : 0 ≤ (1:ℚ) - q := by linarith
+  have hsymm : halfCdf22 (q : ℝ) = 1 - halfCdf22 ((1:ℝ) - (q:ℝ)) :=
+    halfCdf22_symm (q:ℝ) (by exact_mod_cast hq0) (by exact_mod_cast hq1)
+  rcases le_total q (1 / 2) with h | h
+  · exact hAsin q hq0 h
+  · have hq' : 0 ≤ (1:ℚ) - q := by linarith
     have hq1' : (1:ℚ) - q ≤ 1 / 2 := by linarith
     obtain ⟨lo, hi, hlo, hhi⟩ := hAsin (1 - q) hq' hq1'
+    rw [hsymm, ← hcast]
     refine ⟨1 - hi, 1 - lo, ?_, ?_⟩
-    · rw [halfCdf22_symm (q:ℝ) (by exact_mod_cast hq0) (by exact_mod_cast hq1), ← hcast]
+    · show (1:ℝ) - ↑hi ≤ 1 - (2 * Real.arcsin (Real.sqrt ↑(1 - q)) / Real.pi)
       linarith
-    · rw [halfCdf22_symm (q:ℝ) (by exact_mod_cast hq0) (by exact_mod_cast hq1), ← hcast]
+    · show (1:ℝ) - (2 * Real.arcsin (Real.sqrt ↑(1 - q)) / Real.pi) ≤ 1 - ↑lo
       linarith
 
 /-! ## 三、一般正有理参数的积分包围（合同 §7.4 第三段） -/
 
 /-- 形状被积函数：g(t) = t^{a−1}(1−t)^{b−1}（合同原式；a b > 0，
     执行输入为精确有理或有理包围的可计算表示）。 -/
-def betaDens (a b : ℝ) (t : ℝ) : ℝ := t ^ (a - 1) * (1 - t) ^ (b - 1)
+noncomputable def betaDens (a b : ℝ) (t : ℝ) : ℝ := t ^ (a - 1) * (1 - t) ^ (b - 1)
 
 /-- 内部位势：M(η,r) = max(η^r, (1−η)^r)。 -/
-def Mbound (η r : ℝ) : ℝ := max (η ^ r) ((1 - η) ^ r)
+noncomputable def Mbound (η r : ℝ) : ℝ := max (η ^ r) ((1 - η) ^ r)
 
 /-- 分母下界位势：m(r) = min((1/4)^r, (3/4)^r)。 -/
-def mbound (r : ℝ) : ℝ := min ((1 / 4 : ℝ) ^ r) ((3 / 4 : ℝ) ^ r)
+noncomputable def mbound (r : ℝ) : ℝ := min ((1 / 4 : ℝ) ^ r) ((3 / 4 : ℝ) ^ r)
 
 /-- 内部幂界：t ∈ [η, 1−η] ⟹ t^r ≤ M(η,r)。 -/
 theorem rpow_le_Mbound (η r t : ℝ) (hη : 0 < η) (hη1 : η < 1) (ht : t ∈ Set.Icc η (1 - η)) :
     t ^ r ≤ Mbound η r := by
   rcases le_total 0 r with hr | hr
-  · exact le_trans (Real.rpow_le_rpow ht.1 ht.2 hr) (le_max_right _ _)
+  · exact le_trans (Real.rpow_le_rpow (by linarith) ht.2 hr) (le_max_right _ _)
   · -- r < 0：t ≥ η ⟹ t^r ≤ η^r（倒数反序）
     have hp1 : 0 < η ^ (-r) := Real.rpow_pos_of_pos hη _
-    have hp2 : 0 < t ^ (-r) := Real.rpow_pos_of_pos (lt_of_le_of_lt hη.le ht.1) _
+    have hp2 : 0 < t ^ (-r) := Real.rpow_pos_of_pos (by linarith [hη, ht.1]) _
     have hge : η ^ (-r) ≤ t ^ (-r) := Real.rpow_le_rpow hη.le ht.1 (by linarith)
     have e1 : t ^ r = 1 / t ^ (-r) := by
       rw [show r = -(-r) from by ring, Real.rpow_neg (lt_of_le_of_lt hη.le ht.1), inv_eq_one_div]
@@ -864,6 +866,8 @@ theorem hasDerivAt_betaDens (a b t : ℝ) (ht : 0 < t) (ht1 : t < 1) :
     HasDerivAt.sub (hasDerivAt_const t (1:ℝ)) (hasDerivAt_id t)
   have hp1 := h1.rpow_const (p := a - 1) (Or.inl ht.ne)
   have hp2 := h2.rpow_const (p := b - 1) (Or.inl (show (1 - t : ℝ) ≠ 0 from by linarith))
+  rw [show (a - 1 : ℝ) - 1 = a - 2 from by ring, show (b - 1 : ℝ) - 1 = b - 2 from by ring]
+    at hp1 hp2
   refine (hp1.mul hp2).congr_deriv ?_
   ring
 
@@ -873,14 +877,14 @@ theorem leftTail_aux (a b M η : ℝ) (ha : 0 < a) (hb : 0 < b) (hη : 0 < η) (
     (∫ t in (0:ℝ)..η, betaDens a b t) ≤ M * η ^ a / a := by
   have hpt : ∀ t ∈ Set.Icc 0 η, betaDens a b t ≤ M * t ^ (a - 1) := by
     intro t ht
-    have hpow : (0:ℝ) ≤ t ^ (a - 1) := Real.rpow_nonneg ht.1.le _
+    have hpow : (0:ℝ) ≤ t ^ (a - 1) := Real.rpow_nonneg ht.1 _
     show t ^ (a - 1) * (1 - t) ^ (b - 1) ≤ M * t ^ (a - 1)
     rw [mul_comm (t ^ (a - 1)) ((1 - t) ^ (b - 1)), mul_comm M (t ^ (a - 1))]
     exact mul_le_mul_of_nonneg_left (hM t ht) hpow
   have hpowint : IntervalIntegrable (fun t => t ^ (a - 1)) MeasureTheory.volume 0 η :=
     intervalIntegral.intervalIntegrable_rpow' (r := a - 1) (by linarith) (a := 0) (b := η)
   have hint : IntervalIntegrable (betaDens a b) MeasureTheory.volume 0 η := by
-    refine intervalIntegral.intervalIntegrable_congr_ae
+    refine intervalIntegrable_congr_ae
       (f := fun x => (1 - x) ^ (b - 1) * x ^ (a - 1)) (g := betaDens a b)
       (Filter.Eventually.of_forall (fun x _ => mul_comm _ _)) |>.mp
       (IntervalIntegrable.continuousOn_mul hpowint (by
@@ -894,7 +898,7 @@ theorem leftTail_aux (a b M η : ℝ) (ha : 0 < a) (hb : 0 < b) (hη : 0 < η) (
   have hmono := intervalIntegral.integral_mono_on (show (0:ℝ) ≤ η by linarith) hint hMint hpt
   rw [intervalIntegral.integral_const_mul] at hmono
   have hexact : (∫ t in (0:ℝ)..η, t ^ (a - 1)) = η ^ a / a := by
-    rw [intervalIntegral.integral_rpow (Or.inl (show (-1:ℝ) < a - 1 by linarith)),
+    rw [integral_rpow (Or.inl (show (-1:ℝ) < a - 1 by linarith)),
       show (a - 1) + 1 = a from by ring, Real.zero_rpow (by linarith)]
     field_simp <;> ring
   rw [hexact] at hmono
@@ -929,25 +933,26 @@ theorem leftTail_lt1 (a b η : ℝ) (ha : 0 < a) (hb : 0 < b) (hb1 : b < 1) (hη
   exact one_div_le_one_div' hp2 hp1 hge
 
 /-- 右尾内层精确值：∫_{1−η}^1 (1−t)^{b−1} dt = η^b/b（反导数 −(1−t)^b/b）。 -/
+/-- 右尾内层精确值：∫_{1−η}^1 (1−t)^{b−1} dt = η^b/b（反导数 −(1−t)^b/b）。 -/
 theorem rightInnerExact (b η : ℝ) (hb : 0 < b) (hη : 0 < η) (hη1 : η ≤ 1) :
     (∫ t in (1 - η :ℝ)..1, (1 - t) ^ (b - 1)) = η ^ b / b := by
   have hf : ∀ t ∈ Set.Ioo (1 - η) 1,
-      HasDerivAt (fun y => -((1 - y) ^ b / b)) ((1 - t) ^ (b - 1)) t := by
+      HasDerivAt (fun y => -(1 - y) ^ b / b) ((1 - t) ^ (b - 1)) t := by
     intro t ht
     have h1 : HasDerivAt (fun y : ℝ => 1 - y) (0 - 1) t :=
       HasDerivAt.sub (hasDerivAt_const t (1:ℝ)) (hasDerivAt_id t)
     have h2 := h1.rpow_const (p := b)
       (Or.inl (show (1 - t : ℝ) ≠ 0 from by linarith [ht.2]))
-    exact h2.div_const b |>.congr_deriv (by field_simp; ring)
-  have hint : IntervalIntegrable (fun t => (1 - t) ^ (b - 1)) MeasureTheory.volume (1 - η) 1 :=
-    ((intervalIntegral.intervalIntegrable_rpow' (r := b - 1) (by linarith)
-      (a := 0) (b := η)).comp_sub_left 1).symm
+    exact (h2.div_const b).neg.congr_deriv (by field_simp <;> ring)
+  have hint : IntervalIntegrable (fun t => (1 - t) ^ (b - 1)) MeasureTheory.volume (1 - η) 1 := by
+    simpa using (intervalIntegral.intervalIntegrable_rpow' (r := b - 1) (by linarith)
+      (a := η) (b := 0)).comp_sub_left 1
   have hbcont : ContinuousOn (fun y : ℝ => (1 - y) ^ b) (Set.Icc (1 - η) 1) := by
     refine ContinuousOn.rpow_const (f := fun y : ℝ => 1 - y) (p := b)
       ((continuous_const.sub continuous_id).continuousOn) ?_
     intro x hx
     exact Or.inr (le_of_lt hb)
-  have hcont : ContinuousOn (fun y => -((1 - y) ^ b / b)) (Set.Icc (1 - η) 1) :=
+  have hcont : ContinuousOn (fun y => -(1 - y) ^ b / b) (Set.Icc (1 - η) 1) :=
     hbcont.neg.div_const b
   have hFT := intervalIntegral.integral_eq_sub_of_hasDerivAt_of_le
     (show (1 - η :ℝ) ≤ 1 by linarith) hcont hf hint
@@ -959,42 +964,44 @@ theorem rightInnerExact (b η : ℝ) (hb : 0 < b) (hη : 0 < η) (hη1 : η ≤ 
 /-- **右尾上界（合同，换元对称）**：g ≤ M·(1−t)^{b−1} 于 [1−η,1] ⟹
     ∫_{1−η}^1 g ≤ M·η^b/b。 -/
 theorem rightTail_aux (a b M η : ℝ) (ha : 0 < a) (hb : 0 < b) (hη : 0 < η) (hη1 : η ≤ 1)
+    (hη2 : η < 1)
     (hM : ∀ t ∈ Set.Icc (1 - η) 1, t ^ (a - 1) ≤ M) :
     (∫ t in (1 - η :ℝ)..1, betaDens a b t) ≤ M * η ^ b / b := by
   have hpt : ∀ t ∈ Set.Icc (1 - η) 1, betaDens a b t ≤ M * (1 - t) ^ (b - 1) := by
     intro t ht
     show t ^ (a - 1) * (1 - t) ^ (b - 1) ≤ M * (1 - t) ^ (b - 1)
     exact mul_le_mul_of_nonneg_right (hM t ht) (Real.rpow_nonneg (by linarith [ht.2]) _)
-  have hpowint : IntervalIntegrable (fun t => (1 - t) ^ (b - 1)) MeasureTheory.volume (1 - η) 1 :=
-    ((intervalIntegral.intervalIntegrable_rpow' (r := b - 1) (by linarith)
-      (a := 0) (b := η)).comp_sub_left 1).symm
+  have hpowint : IntervalIntegrable (fun t => (1 - t) ^ (b - 1)) MeasureTheory.volume (1 - η) 1 := by
+    simpa using (intervalIntegral.intervalIntegrable_rpow' (r := b - 1) (by linarith)
+      (a := η) (b := 0)).comp_sub_left 1
   have hint : IntervalIntegrable (betaDens a b) MeasureTheory.volume (1 - η) 1 :=
     IntervalIntegrable.continuousOn_mul hpowint (by
       rw [Set.uIcc_of_le (show (1 - η : ℝ) ≤ 1 by linarith)]
       exact (continuousOn_id.rpow_const (fun x hx => Or.inl (by
         have hx0 : (1:ℝ) - η ≤ x := hx.1
         show (x:ℝ) ≠ 0
-        linarith))))
+        linarith [hη2.le, hx0])))
   have hMint : IntervalIntegrable (fun t => M * (1 - t) ^ (b - 1))
       MeasureTheory.volume (1 - η) 1 := hpowint.const_mul M
   have hmono := intervalIntegral.integral_mono_on (by linarith) hint hMint hpt
-  rw [intervalIntegral.integral_const_mul, rightInnerExact b η hb hη hη1] at hmono
+  rw [intervalIntegral.integral_const_mul, rightInnerExact b η hb hη hη1, mul_div_assoc']
   exact hmono
 
 /-- 右尾常数，a ≥ 1：M_a = 1。 -/
-theorem rightTail_ge1 (a b η : ℝ) (ha : 1 ≤ a) (hb : 0 < b) (hη : 0 < η) (hη1 : η ≤ 1) :
+theorem rightTail_ge1 (a b η : ℝ) (ha : 1 ≤ a) (hb : 0 < b) (hη : 0 < η) (hη1 : η ≤ 1)
+    (hη2 : η < 1) :
     (∫ t in (1 - η :ℝ)..1, betaDens a b t) ≤ η ^ b / b := by
-  have h := rightTail_aux a b 1 η (by omega) hb hη hη1 (by
+  have h := rightTail_aux a b 1 η (by linarith) hb hη hη1 hη2 (by
     intro t ht
-    exact Real.rpow_le_one ht.1 (by linarith) (by omega))
+    exact Real.rpow_le_one ht.1 (by linarith) (by linarith [ha.le]))
   rw [mul_one] at h
   exact h
 
 /-- 右尾常数，a < 1：M_a = (1−η)^{a−1}。 -/
 theorem rightTail_lt1 (a b η : ℝ) (ha : 0 < a) (ha1 : a < 1) (hb : 0 < b) (hη : 0 < η)
-    (hη1 : η ≤ 1) :
+    (hη1 : η ≤ 1) (hη2 : η < 1) :
     (∫ t in (1 - η :ℝ)..1, betaDens a b t) ≤ (1 - η) ^ (a - 1) * η ^ b / b := by
-  refine rightTail_aux a b ((1 - η) ^ (a - 1)) η ha hb hη hη1 ?_
+  refine rightTail_aux a b ((1 - η) ^ (a - 1)) η ha hb hη hη1 hη2 ?_
   intro t ht
   have hpos1 : 0 < 1 - η := by linarith
   have hge : (1 - η) ^ (1 - a) ≤ t ^ (1 - a) :=
@@ -1002,7 +1009,8 @@ theorem rightTail_lt1 (a b η : ℝ) (ha : 0 < a) (ha1 : a < 1) (hb : 0 < b) (h�
   have hp1 : 0 < (1 - η) ^ (1 - a) := Real.rpow_pos_of_pos hpos1 _
   have hp2 : 0 < t ^ (1 - a) := Real.rpow_pos_of_pos ht.1 _
   have e1 : t ^ (a - 1) = 1 / t ^ (1 - a) := by
-    rw [show (a - 1 : ℝ) = -((1:ℝ) - a) from by ring, Real.rpow_neg ht.1.le, inv_eq_one_div]
+    rw [show (a - 1 : ℝ) = -((1:ℝ) - a) from by ring, Real.rpow_neg (by linarith [ht.1]),
+      inv_eq_one_div]
   have e2 : (1 - η) ^ (a - 1) = 1 / (1 - η) ^ (1 - a) := by
     rw [show (a - 1 : ℝ) = -((1:ℝ) - a) from by ring, Real.rpow_neg hpos1.le, inv_eq_one_div]
   rw [e1, e2]
@@ -1023,10 +1031,10 @@ theorem leftTailFlatBoundCounterexample :
       HasDerivAt.sub (hasDerivAt_const t (1:ℝ)) (hasDerivAt_id t)
     have h2 : HasDerivAt (fun y => Real.sqrt (1 - y))
         ((1 / (2 * Real.sqrt (1 - t))) * (0 - 1)) t :=
-      (Real.hasDerivAt_sqrt (show (1 - t : ℝ) ≠ 0 from by linarith)).comp t h1
+      (Real.hasDerivAt_sqrt (show (1 - t : ℝ) ≠ 0 from by linarith [ht.2])).comp t h1
     refine h2.const_mul (-2) |>.congr_deriv ?_
     rw [rpow_neg_half_eq_inv_sqrt (by linarith : (0:ℝ) ≤ 1 - t)]
-    ring
+    field_simp <;> ring
   have hint : IntervalIntegrable (fun t => (1 - t) ^ (-(1 / 2 : ℝ)))
       MeasureTheory.volume 0 (1 / 4) := by
     refine ContinuousOn.intervalIntegrable ?_
@@ -1071,7 +1079,7 @@ theorem mbound_le (r t : ℝ) (ht : t ∈ Set.Icc (1 / 4 : ℝ) (3 / 4 : ℝ)) :
     have hp' : 0 < (3 / 4 : ℝ) ^ (-r) := Real.rpow_pos_of_pos (by norm_num) _
     have hge : (3 / 4 : ℝ) ^ (-r) ≤ t ^ (-r) := Real.rpow_le_rpow (by norm_num) ht.2 (by linarith)
     have e1 : t ^ r = 1 / t ^ (-r) := by
-      rw [show r = -(-r) from by ring, Real.rpow_neg ht.1.le, inv_eq_one_div]
+      rw [show r = -(-r) from by ring, Real.rpow_neg (by linarith [ht.1]), inv_eq_one_div]
     have e2 : (3 / 4 : ℝ) ^ r = 1 / (3 / 4 : ℝ) ^ (-r) := by
       rw [show r = -(-r) from by ring, Real.rpow_neg (by norm_num), inv_eq_one_div]
     show min ((1 / 4 : ℝ) ^ r) ((3 / 4 : ℝ) ^ r) ≤ t ^ r
@@ -1091,7 +1099,7 @@ theorem betaB_lower (a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
       (by rcases Set.mem_Icc.mp ht with ⟨h1, h2⟩; exact ⟨by linarith, by linarith⟩))
       (Real.rpow_nonneg (by norm_num) _) (Real.rpow_nonneg (by linarith) _)
   have hintL : IntervalIntegrable (betaDens a b) MeasureTheory.volume 0 (1 / 4) := by
-    refine intervalIntegral.intervalIntegrable_congr_ae
+    refine intervalIntegrable_congr_ae
       (f := fun x => (1 - x) ^ (b - 1) * x ^ (a - 1)) (g := betaDens a b)
       (Filter.Eventually.of_forall (fun x _ => mul_comm _ _)) |>.mp
       (IntervalIntegrable.continuousOn_mul
@@ -1115,20 +1123,18 @@ theorem betaB_lower (a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
           have hx0 : (3:ℝ) / 4 ≤ x := hx.1
           show (x:ℝ) ≠ 0
           linarith))))
-  have hint01 : IntervalIntegrable (betaDens a b) MeasureTheory.volume 0 1 :=
-    (hintL.trans hintM).trans hintR
   have hge0L : (0:ℝ) ≤ (∫ t in (0:ℝ)..(1 / 4), betaDens a b t) := by
     have h := intervalIntegral.integral_mono_on (by norm_num)
       (intervalIntegral.intervalIntegrable_const (0:ℝ)) hintL
       (by intro t ht
-          exact mul_nonneg (Real.rpow_nonneg ht.1.le _)
+          exact mul_nonneg (Real.rpow_nonneg ht.1 _)
             (Real.rpow_nonneg (by linarith [ht.2]) _))
     simpa using h
   have hge0R : (0:ℝ) ≤ (∫ t in (3 / 4:ℝ)..1, betaDens a b t) := by
     have h := intervalIntegral.integral_mono_on (by norm_num)
       (intervalIntegral.intervalIntegrable_const (0:ℝ)) hintR
       (by intro t ht
-          exact mul_nonneg (Real.rpow_nonneg ht.1.le _)
+          exact mul_nonneg (Real.rpow_nonneg (by linarith) _)
             (Real.rpow_nonneg (by linarith [ht.2]) _))
     simpa using h
   have hmid : ((1 / 2 : ℝ) * mbound (a - 1) * mbound (b - 1))
@@ -1164,256 +1170,8 @@ theorem betaB_pos (a b : ℝ) (ha : 0 < a) (hb : 0 < b) :
         (Real.rpow_pos_of_pos (by norm_num) _)
   linarith
 
-/-! ### 精度分配是确定算法（合同：预算 ρ；先增 k 至两尾 ≤ ρ/4；固定 η 再取 N） -/
-
-/-- 内部 |g′| 界（合同）：|g′(t)| ≤ |a−1|M(a−2)M(b−1) + |b−1|M(a−1)M(b−2)，
-    t ∈ [η,1−η]。 -/
-theorem gDerivBound (a b η t : ℝ) (ha : 0 < a) (hb : 0 < b) (hη : 0 < η) (hη1 : η < 1)
-    (hηω : η ≤ 1 - η) (ht : t ∈ Set.Icc η (1 - η)) :
-    |(a - 1) * t ^ (a - 2) * (1 - t) ^ (b - 1)
-      - (b - 1) * t ^ (a - 1) * (1 - t) ^ (b - 2)|
-      ≤ |a - 1| * Mbound η (a - 2) * Mbound η (b - 1)
-        + |b - 1| * Mbound η (a - 1) * Mbound η (b - 2) := by
-  have hb1 : (0:ℝ) ≤ t ^ (a - 2) := Real.rpow_nonneg ht.1.le _
-  have hb2 : (0:ℝ) ≤ (1 - t) ^ (b - 1) := Real.rpow_nonneg (by linarith [ht.2]) _
-  have hb3 : (0:ℝ) ≤ t ^ (a - 1) := Real.rpow_nonneg ht.1.le _
-  have hb4 : (0:ℝ) ≤ (1 - t) ^ (b - 2) := Real.rpow_nonneg (by linarith [ht.2]) _
-  have hM1a := rpow_le_Mbound η (a - 2) t hη hη1 ht
-  have hM1b := rpow_le_Mbound η (b - 1) t hη hη1 ht
-  have hM2a := rpow_le_Mbound η (a - 1) t hη hη1 ht
-  have hM2b := rpow_le_Mbound η (b - 2) t hη hη1 ht
-  have hbound1 : |(a - 1) * t ^ (a - 2) * (1 - t) ^ (b - 1)|
-      ≤ |a - 1| * Mbound η (a - 2) * Mbound η (b - 1) := by
-    rw [abs_mul, abs_mul, abs_of_nonneg hb1, abs_of_nonneg hb2]
-    exact mul_le_mul (le_abs_self _) (mul_le_mul' hM1a hM1b)
-      (mul_nonneg hb1 hb2) (mul_nonneg hb1 hb2)
-  have hbound2 : |(b - 1) * t ^ (a - 1) * (1 - t) ^ (b - 2)|
-      ≤ |b - 1| * Mbound η (a - 1) * Mbound η (b - 2) := by
-    rw [abs_mul, abs_mul, abs_of_nonneg hb3, abs_of_nonneg hb4]
-    exact mul_le_mul (le_abs_self _) (mul_le_mul' hM2a hM2b)
-      (mul_nonneg hb3 hb4) (mul_nonneg hb3 hb4)
-  refine le_trans (abs_sub _ _) ?_
-  linarith [hbound1, hbound2]
-
-/-- 单元左矩形误差：|∫_u^v f − (v−u)·f(u)| ≤ L·(v−u)²/2（合同「L·长度·h/2」）。 -/
-theorem rectCellError (f f' : ℝ → ℝ) (L u v : ℝ) (huv : u ≤ v)
-    (hfcont : ContinuousOn f (Set.Icc u v))
-    (hfb : ∀ t ∈ Set.Icc u v, |f' t| ≤ L)
-    (hD : ∀ t ∈ Set.Ioo u v, HasDerivAt f (f' t) t)
-    (hint : IntervalIntegrable f' MeasureTheory.volume u v) :
-    |(∫ t in (u:ℝ)..v, f t) - (v - u) * f u| ≤ L * (v - u) ^ 2 / 2 := by
-  -- 引理甲：|f t − f u| ≤ L·(t−u)（t ∈ [u,v]，由微积分基本定理与 |f′| ≤ L）
-  have hshift : ∀ t ∈ Set.Icc u v, |f t - f u| ≤ L * (t - u) := by
-    intro t ht
-    have hut : u ≤ t := by linarith [ht.1]
-    have hIIt : IntervalIntegrable f' MeasureTheory.volume u t :=
-      hint.mono_set (by
-        rw [Set.uIcc_of_le huv, Set.uIcc_of_le hut]
-        exact Set.Icc_subset_Icc le_rfl ht.2)
-    have hFT := intervalIntegral.integral_eq_sub_of_hasDerivAt_of_le hut
-      (hfcont.mono (Set.Icc_subset_Icc le_rfl ht.2))
-      (fun s hs => hD s ⟨by linarith [hs.1, huv], by linarith [hs.2, ht.2]⟩) hIIt
-    rw [← hFT]
-    have hnorm := intervalIntegral.norm_integral_le_of_norm_le hut
-      (Filter.Eventually.of_forall (fun s hs => by
-        have hsm : s ∈ Set.Icc u t := by
-          rw [Set.uIcc_of_le hut] at hs
-          exact hsm
-        have hb := hfb s (Set.Icc_subset_Icc le_rfl ht.2 hsm)
-        simpa [Real.norm_eq_abs] using hb))
-      (intervalIntegral.intervalIntegrable_const L)
-    rw [intervalIntegral.integral_const] at hnorm
-    simpa [Real.norm_eq_abs, smul_eq_mul] using hnorm
-  -- 主链：|∫f − (v−u)f(u)| = |∫(f−f(u))| ≤ ∫(t−u)L = L(v−u)²/2
-  have hintF : IntervalIntegrable f MeasureTheory.volume u v :=
-    hfcont.intervalIntegrable
-  have hintG : IntervalIntegrable (fun t => (t - u) * L) MeasureTheory.volume u v :=
-    Continuous.intervalIntegrable (by fun_prop) u v
-  have hnorm := intervalIntegral.norm_integral_le_of_norm_le huv
-    (Filter.Eventually.of_forall (fun s hs => by
-      have hsm : s ∈ Set.Icc u v := by
-        rw [Set.uIcc_of_le huv] at hs
-        exact hsm
-      have hb := hshift s hsm
-      simpa [Real.norm_eq_abs] using hb))
-    hintG
-  have htail : (∫ t in (u:ℝ)..v, (t - (u:ℝ)) * L) = L * (v - u) ^ 2 / 2 := by
-    have hG : ∀ s : ℝ, HasDerivAt (fun y => (y - u) ^ 2 * L / 2) ((s - u) * L) s := by
-      intro s
-      have h1 : HasDerivAt (fun y : ℝ => y - u) (1 - 0) s :=
-        HasDerivAt.sub (hasDerivAt_id s) (hasDerivAt_const s u)
-      refine (h1.pow 2).const_mul (L / 2) |>.congr_deriv ?_
-      ring
-    have hIG : IntervalIntegrable (fun y => (y - u) ^ 2 * L / 2) MeasureTheory.volume u v :=
-      Continuous.intervalIntegrable (by fun_prop) u v
-    have h := intervalIntegral.integral_eq_sub_of_hasDerivAt_of_le huv
-      (Continuous.continuousOn (by fun_prop)) (fun s _ => hG s) hIG
-    rw [h]
-    show ((v - u) ^ 2 * L / 2 - (u - u) ^ 2 * L / 2) = L * (v - u) ^ 2 / 2
-    rw [sub_self, zero_pow (by omega), zero_mul, sub_zero]
-  rw [intervalIntegral.integral_const] at hnorm
-  calc |(∫ t in (u:ℝ)..v, f t) - (v - u) * f u|
-      = |(∫ t in (u:ℝ)..v, f t - f u)| := by
-        rw [intervalIntegral.integral_sub hintF (intervalIntegral.intervalIntegrable_const (f u)),
-          intervalIntegral.integral_const]
-        simp
-    _ = ‖(∫ t in (u:ℝ)..v, f t - f u)‖ := by rw [Real.norm_eq_abs]
-    _ ≤ (∫ t in (u:ℝ)..v, (t - (u:ℝ)) * L) := hnorm
-    _ = L * (v - u) ^ 2 / 2 := htail
-
-/-- 链式左矩形总误差（对任意单调格点链，按合同加性地拼接各单元误差）。 -/
-theorem rectChainError (f f' : ℝ → ℝ) (L : ℝ) (N : ℕ) (c : ℕ → ℝ)
-    (hmono : ∀ i : ℕ, i < N → c i ≤ c (i + 1))
-    (hfb : ∀ i : ℕ, i < N → ∀ t ∈ Set.Icc (c i) (c (i + 1)), |f' t| ≤ L)
-    (hD : ∀ i : ℕ, i < N → ∀ t ∈ Set.Ioo (c i) (c (i + 1)), HasDerivAt f (f' t) t)
-    (hfcont : ∀ i : ℕ, i < N → ContinuousOn f (Set.Icc (c i) (c (i + 1))))
-    (hint : ∀ i : ℕ, i < N → IntervalIntegrable f' MeasureTheory.volume (c i) (c (i + 1))) :
-    (IntervalIntegrable f MeasureTheory.volume (c 0) (c N))
-      ∧ (IntervalIntegrable f' MeasureTheory.volume (c 0) (c N))
-      ∧ |(∫ t in (c 0 :ℝ)..(c N), f t)
-          - ∑ i ∈ Finset.range N, (c (i + 1) - c i) * f (c i)|
-        ≤ ∑ i ∈ Finset.range N, L * (c (i + 1) - c i) ^ 2 / 2 := by
-  induction N with
-  | zero =>
-      refine ⟨by simp [intervalIntegrable_iff], by simp [intervalIntegrable_iff], ?_⟩
-      simp [intervalIntegral.integral_same]
-  | succ n ih =>
-      obtain ⟨hIf, hIf', herr⟩ := ih (by intro i hi; exact hmono i (by omega))
-        (by intro i hi; exact hfb i (by omega))
-        (by intro i hi; exact hD i (by omega))
-        (by intro i hi; exact hfcont i (by omega))
-        (by intro i hi; exact hint i (by omega))
-      have hintcell := hint n (by omega)
-      have hintf0n1 : IntervalIntegrable f MeasureTheory.volume (c 0) (c (n + 1)) :=
-        hIf.trans hintcell
-      have hint'0n1 : IntervalIntegrable f' MeasureTheory.volume (c 0) (c (n + 1)) :=
-        hIf'.trans hintcell
-      refine ⟨hintf0n1, hint'0n1, ?_⟩
-      have hsplit := intervalIntegral.integral_add_adjacent_intervals hIf hintcell
-      have hcell := rectCellError f f' L (c n) (c (n + 1)) (hmono n (by omega))
-        (hfcont n (by omega)) (hfb n (by omega)) (hD n (by omega)) hintcell
-      have hkey : |(∫ t in (c 0 :ℝ)..(c n), f t) + (∫ t in (c n :ℝ)..(c (n + 1)), f t)
-          - (∑ i ∈ Finset.range n, (c (i + 1) - c i) * f (c i)
-            + (c (n + 1) - c n) * f (c n))|
-          ≤ (∑ i ∈ Finset.range n, L * (c (i + 1) - c i) ^ 2 / 2)
-            + L * (c (n + 1) - c n) ^ 2 / 2 := by
-        have h3 : (∫ t in (c 0 :ℝ)..(c n), f t) + (∫ t in (c n :ℝ)..(c (n + 1)), f t)
-            - (∑ i ∈ Finset.range n, (c (i + 1) - c i) * f (c i)
-              + (c (n + 1) - c n) * f (c n))
-            = ((∫ t in (c 0 :ℝ)..(c n), f t)
-                - ∑ i ∈ Finset.range n, (c (i + 1) - c i) * f (c i))
-              + ((∫ t in (c n :ℝ)..(c (n + 1)), f t) - (c (n + 1) - c n) * f (c n)) := by
-          ring
-        rw [h3, abs_add]
-        linarith [herr, hcell]
-      rw [← hsplit, Finset.sum_range_succ (fun i => (c (i + 1) - c i) * f (c i)) n,
-        Finset.sum_range_succ (fun i => L * (c (i + 1) - c i) ^ 2 / 2) n]
-      exact hkey
-
-/-- 等分网格特化（合同数字）：N ≥ 1 等分 [η,ω] 的左矩形总误差 ≤ L·(ω−η)²/N
-    （各单元 ≤ L·h²/2，合计 = L·(ω−η)²/(2N) ≤ L·(ω−η)²/N）。 -/
-theorem rectGridError (f f' : ℝ → ℝ) (L η ω : ℝ) (N : ℕ) (hN : 0 < N) (hηω : η ≤ ω)
-    (hfb : ∀ t ∈ Set.Icc η ω, |f' t| ≤ L)
-    (hD : ∀ t ∈ Set.Ioo η ω, HasDerivAt f (f' t) t)
-    (hfcont : ContinuousOn f (Set.Icc η ω))
-    (hint : IntervalIntegrable f' MeasureTheory.volume η ω) :
-    |(∫ t in (η:ℝ)..ω, f t)
-      - ∑ i ∈ Finset.range N, ((ω - η) / N) * f (η + (i:ℝ) * ((ω - η) / N))|
-      ≤ L * (ω - η) ^ 2 / N := by
-  have hNpos : (0:ℝ) < (N:ℝ) := by exact_mod_cast hN
-  have hge0 : 0 ≤ (ω - η) / N := div_nonneg (by linarith) hNpos.le
-  have hle : ∀ i : ℕ, (i:ℝ) ≤ ((i + 1:ℕ):ℝ) := fun i => by exact_mod_cast Nat.le_succ i
-  have hstep : ∀ i : ℕ, i < N →
-      (η + (i:ℝ) * ((ω - η) / N)) ≤ η + ((i + 1:ℕ):ℝ) * ((ω - η) / N) := by
-    intro i hi
-    have h1 : (i:ℝ) * ((ω - η) / N) ≤ ((i + 1:ℕ):ℝ) * ((ω - η) / N) :=
-      mul_le_mul_of_nonneg_right (hle i) hge0
-    linarith
-  have hcellub : ∀ i : ℕ, i < N → η + ((i + 1:ℕ):ℝ) * ((ω - η) / N) ≤ ω := by
-    intro i hi
-    have hle2 : ((i + 1:ℕ):ℝ) ≤ (N:ℝ) := by exact_mod_cast hi
-    have h1 : ((i + 1:ℕ):ℝ) * ((ω - η) / N) ≤ (N:ℝ) * ((ω - η) / N) :=
-      mul_le_mul_of_nonneg_right hle2 hge0
-    have h2 : (N:ℝ) * ((ω - η) / N) = ω - η := by
-      field_simp [hNpos.ne'] <;> ring
-    linarith [h1, h2]
-  have hge : ∀ i : ℕ, η ≤ η + (i:ℝ) * ((ω - η) / N) := by
-    intro i
-    have h0 : (0:ℝ) ≤ (i:ℝ) := by exact_mod_cast Nat.zero_le i
-    have h1 : (0:ℝ) ≤ (i:ℝ) * ((ω - η) / N) := mul_nonneg h0 hge0
-    linarith
-  have hfb' : ∀ i : ℕ, i < N → ∀ t ∈ Set.Icc (η + (i:ℝ) * ((ω - η) / N))
-      (η + ((i + 1:ℕ):ℝ) * ((ω - η) / N)), |f' t| ≤ L := by
-    intro i hi t ht
-    exact hfb t (Set.Icc_subset_Icc (hge i) (hcellub i hi))
-  have hD' : ∀ i : ℕ, i < N → ∀ t ∈ Set.Ioo (η + (i:ℝ) * ((ω - η) / N))
-      (η + ((i + 1:ℕ):ℝ) * ((ω - η) / N)), HasDerivAt f (f' t) t := by
-    intro i hi t ht
-    exact hD t ⟨by linarith [hge i, ht.1], by linarith [ht.2, hcellub i hi]⟩
-  have hfcont' : ∀ i : ℕ, i < N → ContinuousOn f (Set.Icc (η + (i:ℝ) * ((ω - η) / N))
-      (η + ((i + 1:ℕ):ℝ) * ((ω - η) / N))) := by
-    intro i hi
-    exact hfcont.mono (Set.Icc_subset_Icc (hge i) (hcellub i hi))
-  have hint' : ∀ i : ℕ, i < N → IntervalIntegrable f' MeasureTheory.volume
-      (η + (i:ℝ) * ((ω - η) / N)) (η + ((i + 1:ℕ):ℝ) * ((ω - η) / N)) := by
-    intro i hi
-    refine hint.mono_set ?_
-    rw [Set.uIcc_of_le (hstep i hi), Set.uIcc_of_le hηω]
-    exact Set.Icc_subset_Icc (hge i) (hcellub i hi)
-  obtain ⟨hIf, hIf', herr⟩ := rectChainError f f' L N
-    (fun i => η + (i:ℝ) * ((ω - η) / N)) hstep hfb' hD' hfcont' hint'
-  rw [show ((fun i => η + (i:ℝ) * ((ω - η) / N)) 0) = η from by ring,
-    show ((fun i => η + (i:ℝ) * ((ω - η) / N)) N) = ω from by
-      field_simp [hNpos.ne'] <;> ring
-      ring] at herr
-  refine ⟨hIf, hIf', ?_⟩
-  have hwidth : ∀ i : ℕ, ((fun i => η + (i:ℝ) * ((ω - η) / N)) (i + 1)
-      - (fun i => η + (i:ℝ) * ((ω - η) / N)) i) = (ω - η) / N := by
-    intro i
-    ring
-  have hsumEq : ∑ i ∈ Finset.range N,
-      (((fun i => η + (i:ℝ) * ((ω - η) / N)) (i + 1)
-        - (fun i => η + (i:ℝ) * ((ω - η) / N)) i)
-        * f ((fun i => η + (i:ℝ) * ((ω - η) / N)) i))
-      = ∑ i ∈ Finset.range N, ((ω - η) / N) * f (η + (i:ℝ) * ((ω - η) / N)) := by
-    refine Finset.sum_congr rfl fun i _ => ?_
-    rw [hwidth i]
-  have hsumErr : ∑ i ∈ Finset.range N,
-      L * (((fun i => η + (i:ℝ) * ((ω - η) / N)) (i + 1)
-        - (fun i => η + (i:ℝ) * ((ω - η) / N)) i) ^ 2) / 2
-      = L * (ω - η) ^ 2 / ((N:ℝ) * 2) := by
-    rw [Finset.sum_congr rfl (fun i (_ : i ∈ Finset.range N) => by rw [hwidth i]),
-      Finset.sum_const, Finset.card_range]
-    simp only [smul_eq_mul]
-    field_simp [hNpos.ne'] <;> ring
-  rw [← hsumEq]
-  calc |(∫ t in (η:ℝ)..ω, f t)
-        - ∑ i ∈ Finset.range N,
-          (((fun i => η + (i:ℝ) * ((ω - η) / N)) (i + 1)
-            - (fun i => η + (i:ℝ) * ((ω - η) / N)) i)
-            * f ((fun i => η + (i:ℝ) * ((ω - η) / N)) i))|
-      ≤ ∑ i ∈ Finset.range N,
-        L * (((fun i => η + (i:ℝ) * ((ω - η) / N)) (i + 1)
-          - (fun i => η + (i:ℝ) * ((ω - η) / N)) i) ^ 2) / 2 := herr.2
-    _ = L * (ω - η) ^ 2 / ((N:ℝ) * 2) := hsumErr
-    _ ≤ L * (ω - η) ^ 2 / N := by
-        rcases eq_or_lt η ω with heq | hlt
-        · rw [← heq, sub_self, mul_zero, mul_zero]
-          simp
-        · have hL : (0:ℝ) ≤ L := by
-            have h1 := hfb ((η + ω) / 2) ⟨by linarith, by linarith⟩
-            have h2 := abs_nonneg (f' ((η + ω) / 2))
-            linarith
-          refine (div_le_div_iff₀ (by positivity : (0:ℝ) < (N:ℝ) * 2)
-            (by positivity : (0:ℝ) < (N:ℝ))).mpr ?_
-          exact mul_le_mul_of_nonneg_left (by linarith)
-            (mul_nonneg hL (sq_nonneg (ω - η)))
-
-/-! ### 商包围、预算与任意精度可达（全部按合同数字） -/
-
 /-- **商宽（合同）**：分子 [N_l,N_u]、分母 [B_l,B_u] 各宽 ≤ ρ，N_l ≤ B_u、β ≤ B_l
-    且均正时，N_u/B_l − N_l/B_u ≤ 2ρ/β
-    （恒等式 N_u/B_l − N_l/B_u = (N_u−N_l)/B_l + N_l(B_u−B_l)/(B_lB_u)）。 -/
+    且均正时，N_u/B_l − N_l/B_u ≤ 2ρ/β。 -/
 theorem quotientWidth (N_l N_u B_l B_u ρ β : ℚ) (hρ : 0 < ρ) (hβ : 0 < β)
     (hNl : 0 ≤ N_l) (hBlβ : β ≤ B_l) (hBl : 0 < B_l) (hBlu : B_l ≤ B_u)
     (hNel : N_l ≤ N_u) (hNB : N_l ≤ B_u)
@@ -1431,8 +1189,7 @@ theorem quotientWidth (N_l N_u B_l B_u ρ β : ℚ) (hρ : 0 < ρ) (hβ : 0 < β
     have e1 : N_l * (B_u - B_l) ≤ N_l * ρ := mul_le_mul_of_nonneg_left hwd hNl
     have e2 : N_l * ρ ≤ B_u * ρ := mul_le_mul_of_nonneg_right hNB hρ.le
     have e3 : B_u * ρ / (B_l * B_u) = ρ / B_l := by
-      field_simp [hBl.ne', (hBl.trans hBlu).ne']
-      ring
+      field_simp [hBl.ne', (hBl.trans hBlu).ne'] <;> ring
     calc N_l * (B_u - B_l) / (B_l * B_u)
         ≤ N_l * ρ / (B_l * B_u) :=
           (div_le_div_iff₀ (by positivity : (0:ℚ) < B_l * B_u)
@@ -1476,8 +1233,6 @@ theorem cdfWidthFromRho (ε ρ β : ℚ) (hε : 0 < ε) (hρ : 0 < ρ) (hβ : 0 
   rw [h2] at h1
   linarith
 
-/-! ### 任意精度可达（四义务之三） -/
-
 /-- 显式假设（开放点声明，非公理）：η 型正有理端点处有理幂（可隔离代数数）的
     有理包围输入——执行层代数隔离生成；M/m 量与求值外包取值所需。 -/
 def RpowRatEnclosureInput (η : ℚ) : Prop :=
@@ -1495,7 +1250,8 @@ theorem exists_grid_N (c : ℚ) : ∃ N : ℕ, (1 : ℚ) ≤ N ∧ c ≤ N := by
 theorem Mb_le (b η : ℝ) (hb : 0 < b) (hη : 0 < η) (hη1 : η ≤ 1 / 4) :
     (1 - η) ^ (b - 1) ≤ max 1 ((1 / 2 : ℝ) ^ (b - 1)) := by
   rcases le_total 1 b with hb1 | hb1
-  · refine le_trans (Real.rpow_le_one (by linarith) (by linarith) (by omega)) (le_max_left _ _)
+  · refine le_trans (Real.rpow_le_one (by linarith) (by linarith) (by linarith [hb1.le]))
+      (le_max_left _ _)
   · have hge : (1 / 2 : ℝ) ^ (1 - b) ≤ (1 - η) ^ (1 - b) :=
       Real.rpow_le_rpow (by norm_num) (by linarith) (by linarith)
     have hp1 : 0 < (1 / 2 : ℝ) ^ (1 - b) := Real.rpow_pos_of_pos (by norm_num) _

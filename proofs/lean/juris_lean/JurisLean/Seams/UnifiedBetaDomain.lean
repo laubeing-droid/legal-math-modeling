@@ -116,7 +116,8 @@ theorem one_div_le_one_div' {A B : ℝ} (hA : 0 < A) (hB : 0 < B) (h : B ≤ A) 
   by_contra hcon
   push_neg at hcon
   have h2 : (1 / B) * B < (1 / A) * B := mul_lt_mul_of_pos_right hcon hB
-  have h3 : (1 / A) * B ≤ (1 / A) * A := mul_le_mul_of_nonneg_left h hA.le
+  have h3 : (1 / A) * B ≤ (1 / A) * A :=
+    mul_le_mul_of_nonneg_left h (one_div_pos.mpr hA).le
   have h4 : (1 / B) * B = 1 := by field_simp
   have h5 : (1 / A) * A = 1 := by field_simp
   rw [h4] at h2
@@ -161,7 +162,7 @@ theorem choose_mul_left (m j : ℕ) (hj : 1 ≤ j) (hjm : j ≤ m) :
         ring
     _ = Nat.choose m (i + 1) * (Nat.factorial (i + 1) * Nat.factorial (m - 1 - i)) := by
         rw [hfs]
-    _ = Nat.factorial m := by rw [mul_assoc]; exact h1
+    _ = Nat.factorial m := by rw [← Nat.mul_assoc]; exact h1
     _ = m * Nat.factorial (m - 1) := hfm
     _ = m * (Nat.choose (m - 1) i * Nat.factorial i * Nat.factorial (m - 1 - i)) := by
         rw [← h2]
@@ -187,7 +188,7 @@ theorem choose_mul_right (m j : ℕ) (hjm : j < m) :
   calc (m - j) * Nat.choose m j * (Nat.factorial j * Nat.factorial (m - 1 - j))
       = Nat.choose m j * (Nat.factorial j * (Nat.factorial (m - j))) := by
         rw [hfs]; ring
-    _ = Nat.factorial m := by rw [mul_assoc]; exact h1
+    _ = Nat.factorial m := by rw [← Nat.mul_assoc]; exact h1
     _ = m * Nat.factorial (m - 1) := hfm
     _ = m * (Nat.choose (m - 1) j * Nat.factorial j * Nat.factorial (m - 1 - j)) := by
         rw [← h2]
@@ -339,7 +340,7 @@ theorem bernCdf_deriv (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : ℝ) 
         - (∑ j ∈ Finset.Ico α (α + β),
         ((Nat.choose (α + β - 1) j : ℕ) : ℝ)
           * ((α + β - 1 - j : ℝ) * x ^ j * (1 - x) ^ (α + β - 2 - j))) := by
-      linarith [h1]
+        linarith [h1]
     _ = (∑ i ∈ Finset.Ico (α - 1) (α + β - 1), u i)
         - (∑ i ∈ Finset.Ico α (α + β - 1), u i) := by rw [hB, hC]
     _ = u (α - 1) := hD
@@ -354,7 +355,7 @@ theorem bernCdf_eq_integral (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x :
   have hd : ∀ t : ℝ, HasDerivAt (bernCdf α β)
       ((fun u => ((Nat.choose (α + β - 2) (α - 1) * (α + β - 1) : ℕ) : ℝ)
         * (u ^ (α - 1) * (1 - u) ^ (β - 1))) t) t :=
-    fun t => (bernCdf_deriv α β hα hβ t).congr_deriv (by rfl)
+    fun t => (bernCdf_deriv α β hα hβ t).congr_deriv (by ring)
   have hint : IntervalIntegrable (fun t => ((Nat.choose (α + β - 2) (α - 1) * (α + β - 1) : ℕ) : ℝ)
       * (t ^ (α - 1) * (1 - t) ^ (β - 1))) MeasureTheory.volume 0 x :=
     Continuous.intervalIntegrable (by fun_prop) 0 x
@@ -387,7 +388,8 @@ theorem bernCdf_eq_normed (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : �
     by exact_mod_cast UnifiedNeedlesS3a.betaTwoConst_pos (α - 1) (β - 1)
   have hCinv : ((Nat.choose (α + β - 2) (α - 1) * (α + β - 1) : ℕ) : ℝ)
       = 1 / ((UnifiedNeedlesS3a.betaTwoConst (α - 1) (β - 1) : ℚ) : ℝ) := by
-    field_simp <;> ring
+    field_simp
+    exact hkey
   rw [h1, hCinv]
   field_simp <;> ring
 
@@ -413,7 +415,7 @@ def ratBernCdf (α β : ℕ) (q : ℚ) : ℚ :=
 theorem bernCdf_rat_cast (α β : ℕ) (q : ℚ) :
     (ratBernCdf α β q : ℝ) = bernCdf α β (q : ℝ) := by
   simp only [ratBernCdf, bernCdf, Rat.cast_sum, Rat.cast_mul, Rat.cast_pow, Rat.cast_natCast,
-    Rat.cast_sub]
+    Rat.cast_sub, Rat.cast_one]
   rfl
 
 /-- **有理 x 精确可比较**：F 在有理点的序 = ℚ 闭式的序（decide/精确算术可判定）。 -/

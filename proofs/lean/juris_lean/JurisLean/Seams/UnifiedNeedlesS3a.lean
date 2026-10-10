@@ -108,15 +108,29 @@ theorem s3aEventCount : ∑ i : Fin 4, (if s3aSuccess i = true then s3aCount i e
 /-- 权重层非负（桥定理前提之一，对具体载体证出）。 -/
 theorem s3aMass_nonneg : ∀ i : Fin 4, 0 ≤ s3aMass i := by
   intro i
-  fin_cases i <;> norm_num [s3aCount, s3aMass, s3aSuccess]
+  simp only [s3aMass]
+  exact div_nonneg (Nat.cast_nonneg _) (by norm_num)
 
 /-- 权重层归一（桥定理前提之二，对具体载体证出）。 -/
 theorem s3aMass_sum : ∑ i : Fin 4, s3aMass i = 1 := by
-  norm_num [s3aCount, s3aMass, s3aSuccess]
+  simp only [s3aMass]
+  rw [Finset.sum_div, ← Nat.cast_sum, s3aCount_sum]
+  norm_num
 
 /-- 权重层事件质量：事件测度（ℚ 侧 `evMass` 读法）= 5/6。 -/
 theorem s3aEventMass : JurisLean.FullMath.Probability.evMass s3aMass s3aSuccess = 5 / 6 := by
-  norm_num [s3aCount, s3aMass, s3aSuccess, JurisLean.FullMath.Probability.evMass]
+  have key : ∀ i : Fin 4,
+      (if s3aSuccess i = true then s3aMass i else 0)
+        = (((if s3aSuccess i = true then s3aCount i else 0) : ℕ) : ℚ) / 6 := by
+    intro i
+    by_cases h : s3aSuccess i = true
+    · simp only [if_pos h, s3aMass]
+    · simp only [if_neg h]
+      norm_num
+  unfold JurisLean.FullMath.Probability.evMass
+  rw [Finset.sum_congr rfl (fun i _ => key i), Finset.sum_div, ← Nat.cast_sum,
+    s3aEventCount]
+  norm_num
 
 /-- **第 16 针（S3，I.13:770；BINDING 行 16）**：计数→权重→事件测度同一目标桥。
     四层逐层对齐：(1) 计数总量与事件计数（5/6 的分子分母来源）；(2) 权重非负与
@@ -136,7 +150,7 @@ theorem count_measure_event_exact :
     (∑ i : Fin 4, (if s3aSuccess i = true
           then JurisLean.Seams.Probability.rationalMass s3aMass i else 0)
         = ENNReal.ofReal (((5 / 6 : ℚ)) : ℝ)) :=
-  ⟨s3aCount_sum, s3aEventCount, s3aMass_nonneg, s3aMass_sum, by norm_num [s3aCount, s3aMass, s3aSuccess],
+  ⟨s3aCount_sum, s3aEventCount, s3aMass_nonneg, s3aMass_sum, by exact s3aEventMass,
     fun i => JurisLean.Seams.Probability.finite_distribution_to_pmf_apply s3aMass
       s3aMass_nonneg s3aMass_sum i, by
       have h := JurisLean.Seams.Probability.rationalMass_evMass s3aMass s3aMass_nonneg
@@ -166,7 +180,7 @@ theorem s3aPowDeriv (p q : ℕ) (x : ℝ) :
       (((p : ℝ) * (x ^ (p - 1) * (1 - x) ^ q)
         - (q : ℝ) * (x ^ p * (1 - x) ^ (q - 1)))) x := by
   have hsub : HasDerivAt (fun y : ℝ => 1 - y) (0 - 1) x :=
-    HasDerivAt.sub (hasDerivAt_const (1 : ℝ) x) (hasDerivAt_id x)
+    HasDerivAt.sub (hasDerivAt_const x (1 : ℝ)) (hasDerivAt_id x)
   have hq : HasDerivAt (fun y => (1 - y) ^ q) (-((q : ℝ) * (1 - x) ^ (q - 1))) x := by
     refine (HasDerivAt.scomp_of_eq (hasDerivAt_pow q (1 - x)) hsub rfl).congr_deriv ?_
     rw [smul_eq_mul]
@@ -182,7 +196,7 @@ theorem betaInt_zero_left (n : ℕ) : betaInt 0 n = 1 / (((n + 1 : ℕ) : ℝ)) 
       ((1 - x) ^ n) x := by
     intro x
     have hsub : HasDerivAt (fun y : ℝ => 1 - y) (0 - 1) x :=
-      HasDerivAt.sub (hasDerivAt_const (1 : ℝ) x) (hasDerivAt_id x)
+      HasDerivAt.sub (hasDerivAt_const x (1 : ℝ)) (hasDerivAt_id x)
     have h1 : HasDerivAt (fun y => (1 - y) ^ (n + 1))
         (-(((n + 1 : ℕ) : ℝ) * (1 - x) ^ n)) x := by
       refine (HasDerivAt.scomp_of_eq (hasDerivAt_pow (n + 1) (1 - x)) hsub rfl).congr_deriv ?_
@@ -191,7 +205,7 @@ theorem betaInt_zero_left (n : ℕ) : betaInt 0 n = 1 / (((n + 1 : ℕ) : ℝ)) 
     have h2 := (h1.div_const ((n + 1 : ℕ) : ℝ)).neg
     refine h2.congr_deriv ?_
     have hn1 : ((n + 1 : ℕ) : ℝ) ≠ 0 := by
-    exact_mod_cast (Nat.succ_ne_zero n)
+      exact_mod_cast (Nat.succ_ne_zero n)
     field_simp [hn1]
   have hII : IntervalIntegrable (fun y => (1 - y) ^ n) MeasureTheory.volume 0 1 :=
     Continuous.intervalIntegrable (by continuity) 0 1
@@ -288,7 +302,7 @@ theorem betaInt_eq (m : ℕ) : ∀ n : ℕ, betaInt m n = ((betaTwoConst m n : �
   | zero =>
     intro n
     rw [betaInt_zero_left]
-    have hq : betaTwoConst 0 n = 1 / ((n : ℚ) + 1) := by
+    have hq : betaTwoConst 0 n = 1 / (((n : ℕ) + 1 : ℚ)) := by
       have hfn : (0 : ℚ) < ((Nat.factorial n : ℕ) : ℚ) := s3aFactPos n
       have hn1 : (0 : ℚ) < ((n : ℕ) + 1 : ℚ) := by
         exact_mod_cast (Nat.succ_pos n)
@@ -297,7 +311,11 @@ theorem betaInt_eq (m : ℕ) : ∀ n : ℕ, betaInt m n = ((betaTwoConst m n : �
       rw [Nat.factorial_succ]
       push_cast at hn1 ⊢
       field_simp [hfn.ne', hn1.ne']
-    exact_mod_cast hq.symm
+    have hq' : ((((1 : ℚ) / (((n : ℕ) + 1 : ℚ)) : ℝ)
+        = ((betaTwoConst 0 n : ℚ) : ℝ)) := by
+      exact_mod_cast hq.symm
+    push_cast at hq' ⊢
+    exact hq'
   | succ m ih =>
     intro n
     rw [betaInt_step (m + 1) n (by omega), Nat.add_sub_cancel, ih (n + 1)]
@@ -313,7 +331,12 @@ theorem betaInt_eq (m : ℕ) : ∀ n : ℕ, betaInt m n = ((betaTwoConst m n : �
       simp only [Nat.factorial_succ]
       push_cast
       field_simp [hfa.ne', hfb.ne', hfab.ne', hfab2.ne'] <;> ring
-    rw_mod_cast [hq]
+    have hq' : ((((((m : ℕ) + 1 : ℚ) / (((n : ℕ) + 1 : ℚ)
+          * betaTwoConst m (n + 1)) : ℚ) : ℝ)
+        = ((betaTwoConst (m + 1) n : ℚ) : ℝ)) := by
+      exact_mod_cast hq
+    push_cast at hq' ⊢
+    exact hq'
 
 /-- 闭式比值一：I(a+1,b)/I(a,b) = (a+1)/(a+b+2)（一阶矩的归一化比值）。 -/
 theorem betaTwoConst_ratio1 (a b : ℕ) :
@@ -531,7 +554,9 @@ theorem beta_cdf_rat_cast (q : ℚ) :
     intro x
     have h2 := ((hasDerivAt_pow 2 x).const_mul 3)
     have h3 := ((hasDerivAt_pow 3 x).const_mul 2)
-    simpa using h2.sub h3
+    have hcomb : HasDerivAt (fun t => 3 * t ^ 2 - 2 * t ^ 3)
+        (3 * (2 * x) - 2 * (3 * x ^ 2)) x := h2.sub h3
+    simpa using hcomb
   have hII : IntervalIntegrable (fun y => 6 * (y * (1 - y))) MeasureTheory.volume 0 ((q : ℝ)) :=
     Continuous.intervalIntegrable (by continuity) 0 _
   have hFT0 := intervalIntegral.integral_eq_sub_of_hasDerivAt
@@ -558,7 +583,7 @@ theorem gridCdf_mono_bounded :
       intro j k hjk
       fin_cases j <;> fin_cases k <;>
         first
-        | exact absurd hjk (by omega)
+        | exact absurd hjk (by decide)
         | norm_num [gridCdf, ratCdf22]
 
 /-- 格点 CDF 在 0..4 上单调（由有限枚举版转换）。 -/

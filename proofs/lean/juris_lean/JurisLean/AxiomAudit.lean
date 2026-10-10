@@ -181,6 +181,11 @@ import JurisLean.Seams.UnifiedSummary
 import JurisLean.Seams.UnifiedCAD2
 import JurisLean.Seams.UnifiedHornIT
 
+import JurisLean.Seams.UnifiedBetaDomain
+import JurisLean.Seams.UnifiedCADCore
+import JurisLean.Seams.UnifiedFourteenFamilies
+import JurisLean.Seams.UnifiedTrajectory
+
 import JurisLean.Seams.UnifiedNeedlesS0S1
 import JurisLean.Seams.UnifiedNeedlesS2
 import JurisLean.Seams.UnifiedNeedlesS3a

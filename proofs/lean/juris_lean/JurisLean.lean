@@ -190,11 +190,14 @@ import JurisLean.Seams.UnifiedAdmission
 import JurisLean.Seams.UnifiedAnalysis
 import JurisLean.Seams.UnifiedArgumentation
 import JurisLean.Seams.UnifiedBeta
+import JurisLean.Seams.UnifiedBetaDomain
 import JurisLean.Seams.UnifiedCAD
 import JurisLean.Seams.UnifiedCAD2
+import JurisLean.Seams.UnifiedCADCore
 import JurisLean.Seams.UnifiedComposition
 import JurisLean.Seams.UnifiedEvents
 import JurisLean.Seams.UnifiedFinalization
+import JurisLean.Seams.UnifiedFourteenFamilies
 import JurisLean.Seams.UnifiedGuards
 import JurisLean.Seams.UnifiedHornIT
 import JurisLean.Seams.UnifiedInstance
@@ -214,6 +217,7 @@ import JurisLean.Seams.UnifiedNeedlesXT
 import JurisLean.Seams.UnifiedNeedlesXU
 import JurisLean.Seams.UnifiedNeedlesTotal
 import JurisLean.Seams.UnifiedSummary
+import JurisLean.Seams.UnifiedTrajectory
 import JurisLean.Seams.UnifiedUtility
 import JurisLean.SolverRouting
 import JurisLean.SourceBundleSpec

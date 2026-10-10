@@ -1,0 +1,47 @@
+=======================================================
+                Quantifier Elimination                 
+                          in                           
+            Elementary Algebra and Geometry            
+                          by                           
+      Partial Cylindrical Algebraic Decomposition      
+                                                       
+               Version B 1.69, 16 Mar 2012
+                                                       
+                          by                           
+                       Hoon Hong                       
+                  (hhong@math.ncsu.edu)                
+                                                       
+With contributions by: Christopher W. Brown, George E. 
+Collins, Mark J. Encarnacion, Jeremy R. Johnson        
+Werner Krandick, Richard Liska, Scott McCallum,        
+Nicolas Robidoux, and Stanly Steinberg                 
+=======================================================
+Enter an informal description  between '[' and ']':
+[cert-001-no-solution]Enter a variable list:
+(x)Enter the number of free variables:
+0
+Enter a prenex formula:
+(Ex)[x^2 + 2x + 1 = 0 /\ x > 0].
+
+=======================================================
+
+Before Normalization >
+go
+
+At the end of projection phase >
+finish
+
+An equivalent quantifier-free formula:
+
+FALSE
+
+
+=====================  The End  =======================
+
+-----------------------------------------------------------------------------
+0 Garbage collections, 0 Cells and 0 Arrays reclaimed, in 0 milliseconds.
+49992593 Cells in AVAIL, 50000000 Cells in SPACE.
+
+System time: 212 milliseconds.
+System time after the initialization: 92 milliseconds.
+-----------------------------------------------------------------------------

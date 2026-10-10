@@ -69,7 +69,7 @@ theorem judgment_step_refines_frozen_T {Rel : Type} [DecidableEq Rel]
     (L : Ledger Rel) (eventId : String) (rel r : Rel) :
     (effective (next L (.formative eventId rel)) r ↔ (r = rel ∨ effective L r)) ∧
       (r ≠ rel →
-        effective (next L (.formative eventId rel)) r ↔ effective L r) :=
+        (effective (next L (.formative eventId rel)) r ↔ effective L r)) :=
   ⟨effective_next_formative_iff L eventId rel r, judgment_step_frozen_side L eventId rel r⟩
 
 /-! ## 第 33 针：confirmatory_preserves_R -/

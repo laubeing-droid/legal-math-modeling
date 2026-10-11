@@ -105,6 +105,23 @@ theorem find?_eq_some_of_unique {α : Type} (p : α → Bool) :
       · intro u hu hpu
         exact huni u (List.mem_cons_of_mem _ hu) hpu
 
+/-- 变谓词版取值：`find?` 命中即谓词成立。v4.30 的 `List.find?_some` 是常谓词形
+    （`find? (fun _ => decide p) l = some a → p`），对逐元素谓词不适用，本件自备。 -/
+theorem find?_eq_some_pred {α : Type} (p : α → Bool) :
+    ∀ (l : List α) (a : α), l.find? p = some a → p a = true := by
+  intro l
+  induction l with
+  | nil => intro a h; cases h
+  | cons b l ih =>
+    intro a h
+    by_cases hpb : p b = true
+    · rw [List.find?_cons_of_pos hpb] at h
+      injection h with hba
+      subst hba
+      exact hpb
+    · rw [List.find?_cons_of_neg hpb] at h
+      exact ih a h
+
 /-- **查询面**：时点 `t` 对键 `k` 的版本查询——经可适用性过滤后取首个命中键。 -/
 def queryVersion (E : VersionEnv) (t : Int) (k : String) : Option SourceVersionRecord :=
   (applicableVersions E t).find? (fun u => bindKey u = k)
@@ -121,8 +138,10 @@ theorem query_eq_some_iff_face (E : VersionEnv) (t : Int) (k : String)
   · intro h
     have hf : (applicableVersions E t).find? (fun u => decide (bindKey u = k)) = some v := h
     have hmem : v ∈ applicableVersions E t := List.mem_of_find?_eq_some hf
+    have hpv : (fun u => decide (bindKey u = k)) v = true :=
+      find?_eq_some_pred (fun u => decide (bindKey u = k)) (applicableVersions E t) v hf
     obtain ⟨hin, happ⟩ := mem_applicableVersions E t v |>.mp hmem
-    exact ⟨hin, decide_eq_true_iff.mp (List.find?_some hf), happ⟩
+    exact ⟨hin, decide_eq_true_iff.mp hpv, happ⟩
   · rintro ⟨hin, hkey, happ⟩
     refine find?_eq_some_of_unique (fun u => decide (bindKey u = k)) (applicableVersions E t) v
       (mem_applicableVersions E t v |>.mpr ⟨hin, happ⟩) (decide_eq_true_iff.mpr hkey) ?_
@@ -137,7 +156,8 @@ theorem query_eq_some_iff_face_of_faceWf (E : VersionEnv) (hwf : FaceWf E) (t : 
     (k : String) (v : SourceVersionRecord) (hmemv : v ∈ E.versions)
     (hkey : bindKey v = k) :
     queryVersion E t k = some v ↔ (v ∈ E.versions ∧ applicableAtBool v t = true) := by
-  refine (query_eq_some_iff_face E t k v fun u hu huk _ => hwf k u v hu huk hkey).trans ?_
+  refine (query_eq_some_iff_face E t k v fun u hu huk _ =>
+    hwf k u v hu hmemv huk hkey).trans ?_
   constructor
   · rintro ⟨hin, happ⟩
     exact ⟨hin, hmemv, happ⟩
@@ -151,8 +171,10 @@ theorem query_some_imp_face (E : VersionEnv) (t : Int) (k : String)
     v ∈ E.versions ∧ bindKey v = k ∧ applicableAtBool v t = true := by
   have hf : (applicableVersions E t).find? (fun u => decide (bindKey u = k)) = some v := h
   have hmem : v ∈ applicableVersions E t := List.mem_of_find?_eq_some hf
+  have hpv : (fun u => decide (bindKey u = k)) v = true :=
+    find?_eq_some_pred (fun u => decide (bindKey u = k)) (applicableVersions E t) v hf
   obtain ⟨hin, happ⟩ := mem_applicableVersions E t v |>.mp hmem
-  exact ⟨hin, decide_eq_true_iff.mp (List.find?_some hf), happ⟩
+  exact ⟨hin, decide_eq_true_iff.mp hpv, happ⟩
 
 /-- 键唯一性穿过授权前例更新（键不因更新改变：取代只动 status，新键由
     `hfresh` 保证不撞旧键）。 -/

@@ -707,12 +707,12 @@ theorem demand_D037 : Contracts.demand_D037 := And.intro JurisLean.FullMath.Burd
     intro cands outs houts
     subst houts
     refine ⟨?_, ?_, ?_⟩
-  · intro l hl
-    obtain ⟨e, hf, hc1⟩ := List.mem_map.mp hl
-    obtain ⟨hmem', hdec⟩ := List.mem_filter.mp hf
-    rw [Bool.and_eq_true] at hdec
-    rw [Bool.and_eq_true] at hdec
-    exact ⟨e, hmem', hc1, hdec.1.1, hdec.1.2, hdec.2⟩
+    · intro l hl
+      obtain ⟨e, hf, hc1⟩ := List.mem_map.mp hl
+      obtain ⟨hmem', hdec⟩ := List.mem_filter.mp hf
+      rw [Bool.and_eq_true] at hdec
+      rw [Bool.and_eq_true] at hdec
+      exact ⟨e, hmem', hc1, hdec.1.1, hdec.1.2, hdec.2⟩
     · intro e he f1 f2 f3
       exact List.mem_map.mpr ⟨e, List.mem_filter.mpr ⟨he, by rw [f1, f2, f3]; rfl⟩, rfl⟩
     · intro c₁ c₂ hc₁ hc₂ hne a1 a2 a3 b1 b2 b3
@@ -770,7 +770,7 @@ theorem demand_D039 : Contracts.demand_D039 := And.intro JurisLean.FullMath.Burd
     intro rows
     refine ⟨?_, ?_, ?_, ⟨?_, ?_, ?_, ?_⟩⟩
     · intro hall
-      simp [penTotal, hall]
+      simp [Contracts.penTotal, hall]
     · intro h
       obtain ⟨r, hr, hr2⟩ := h
       by_cases hall : rows.all (fun r => r.1 = 1 && r.2.isSome) = true
@@ -778,7 +778,7 @@ theorem demand_D039 : Contracts.demand_D039 := And.intro JurisLean.FullMath.Burd
         have h1 := List.all_eq_true.mp hall r hr
         simp at h1
         omega
-      · simp [penTotal, hall]
+      · simp [Contracts.penTotal, hall]
     · intro h
       obtain ⟨r, hr, hr2⟩ := h
       by_cases hall : rows.all (fun r => r.1 = 1 && r.2.isSome) = true
@@ -786,7 +786,7 @@ theorem demand_D039 : Contracts.demand_D039 := And.intro JurisLean.FullMath.Burd
         have h1 := List.all_eq_true.mp hall r hr
         simp at h1
         omega
-      · simp [penTotal, hall]
+      · simp [Contracts.penTotal, hall]
     · rfl
     · rfl
     · rfl
@@ -829,11 +829,11 @@ theorem demand_D042 : Contracts.demand_D042 := And.intro JurisLean.FullMath.Burd
   (by
     intro required vd relationOk d₁ d₂ s₁ s₂
     refine ⟨?_, ?_, ?_⟩
-  · intro hall hrel
-    have h1 : required.all (fun d => vd d == some true) = true :=
-      List.all_eq_true.mpr (fun d hd => by rw [hall d hd]; simp)
-    rw [h1, hrel]
-    rfl
+    · intro hall hrel
+      have h1 : required.all (fun d => vd d == some true) = true :=
+        List.all_eq_true.mpr (fun d hd => by rw [hall d hd]; simp)
+      rw [h1, hrel]
+      rfl
     · intro h
       obtain ⟨d, hd, hdnone⟩ := h
       by_cases hall : required.all (fun d => vd d == some true) = true
@@ -854,15 +854,15 @@ theorem demand_D042 : Contracts.demand_D042 := And.intro JurisLean.FullMath.Burd
 
 theorem demand_D043 : Contracts.demand_D043 := And.intro JurisLean.FullMath.Burden.perPerson_slots_distinct
   (by
-  intro rec txt
-  refine ⟨?_, ?_, ?_, ?_⟩
-  · intro h
-    obtain ⟨h1, h2, h3⟩ := h
-    simp [readBack, h1, h2, h3]
+    intro rec txt
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · intro h
+      obtain ⟨h1, h2, h3⟩ := h
+      simp [Contracts.readBack, h1, h2, h3]
     · intro hne
-      simp [readBack, hne]
-    · simp [readBack]
-    · simp [readBack])
+      simp [Contracts.readBack, hne]
+    · simp [Contracts.readBack]
+    · simp [Contracts.readBack])
 
 theorem demand_D044 : Contracts.demand_D044 := And.intro JurisLean.FullMath.Burden.perPerson_slots_distinct
   (by
@@ -892,10 +892,10 @@ theorem demand_D045 : Contracts.demand_D045 := And.intro JurisLean.FullMath.Burd
       simp at hd
     · intro y hy
       exact (List.mem_filter.mp hy).1
-  · intro s t a b hne
-    simp [countOnce, crimOK, Ne.symm hne] <;> norm_num
-  · intro s a b
-    simp [countOnce, crimOK] <;> norm_num
+    · intro s t a b hne
+      simp [Contracts.countOnce, Contracts.crimOK, Ne.symm hne] <;> norm_num
+    · intro s a b
+      simp [Contracts.countOnce, Contracts.crimOK] <;> norm_num
     · rfl
     · rfl)
 
@@ -911,9 +911,9 @@ theorem demand_D046 : Contracts.demand_D046 := And.intro JurisLean.FullMath.Burd
     · intro l b hEq
       simp at hEq
     · intro ⟨hv, he, hx, hu⟩
-      simp [hearsayResolve, hv, he, hx, hu]
+      simp [Contracts.hearsayResolve, hv, he, hx, hu]
     · intro hv
-      simp [hearsayResolve, hv])
+      simp [Contracts.hearsayResolve, hv])
 
 theorem demand_D047 : Contracts.demand_D047 := JurisLean.FullMath.Numeric.parts_nonneg
 

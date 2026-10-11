@@ -337,7 +337,6 @@ theorem witness_prevention_clipped :
       (by rw [hlo]; norm_num) (by rw [hhi]; norm_num)
   · show decide (normDomainDemo.monthsLo ≤ 65 ∧ 65 ≤ normDomainDemo.monthsHi) = false
     rw [hlo, hhi]
-    decide
 
 /-- 经验线见证：预测值 75 在自身值域 [70,80] 内、但越出法定域 [10,60]——
 裸值被拒、裁剪回 60 后入域（经验拟合不反向修改法定范围）。 -/
@@ -407,7 +406,8 @@ theorem accR1_false_iff (p : BargainParams) (y : ℚ) :
   · intro h
     have hnot : ¬ (0 ≤ p.delta * y) := by
       intro hh
-      rw [decide_eq_true_iff.mpr hh] at h
+      have ht : accR1 p y = true := decide_eq_true_iff.mpr hh
+      rw [ht] at h
       exact Bool.noConfusion h
     linarith
   · intro h
@@ -425,7 +425,8 @@ theorem accR0_false_iff (p : BargainParams) (x : ℚ) :
   · intro h
     have hnot : ¬ (x ≥ p.delta * (biR1 p).2) := by
       intro hh
-      rw [decide_eq_true_iff.mpr hh] at h
+      have ht : accR0 p x = true := decide_eq_true_iff.mpr hh
+      rw [ht] at h
       exact Bool.noConfusion h
     linarith
   · intro h
@@ -909,10 +910,9 @@ theorem tail_bound_mul (δ M : ℚ) (hδ0 : 0 ≤ δ) (hδ1 : δ < 1) (hM : 0 �
   have habssum : ∑ t ∈ Finset.range k, |δ ^ (N + t) * u (N + t)|
       = ∑ t ∈ Finset.range k, δ ^ (N + t) * |u (N + t)| :=
     Finset.sum_congr rfl fun t _ => habs t
-  have hle1 : ∑ t ∈ Finset.range k, |δ ^ (N + t) * u (N + t)|
+  have hle2 : ∑ t ∈ Finset.range k, δ ^ (N + t) * |u (N + t)|
       ≤ ∑ t ∈ Finset.range k, δ ^ (N + t) * M := by
     refine Finset.sum_le_sum fun t _ => ?_
-    rw [habs t]
     exact mul_le_mul_of_nonneg_left (hu (N + t)) (hδpow (N + t))
   have hfact : ∑ t ∈ Finset.range k, δ ^ (N + t) * M
       = δ ^ N * (∑ t ∈ Finset.range k, δ ^ t * M) := by
@@ -930,7 +930,7 @@ theorem tail_bound_mul (δ M : ℚ) (hδ0 : 0 ≤ δ) (hδ1 : δ < 1) (hM : 0 �
   calc |∑ t ∈ Finset.range k, δ ^ (N + t) * u (N + t)| * (1 - δ)
       ≤ (∑ t ∈ Finset.range k, δ ^ (N + t) * M) * (1 - δ) :=
         mul_le_mul_of_nonneg_right
-          (le_trans hsplit (le_trans habssum.le hle1)) hpos
+          (le_trans hsplit (le_trans habssum.le hle2)) hpos
     _ = δ ^ N * ((1 - δ) * (∑ t ∈ Finset.range k, δ ^ t * M)) := by
         rw [hfact]
         ring
@@ -989,9 +989,8 @@ theorem one_dev_principle (δ : ℚ) (g : Nat → Bool → ℚ) (a : Nat → Boo
     (b : Nat → Bool) (h2 : ∀ s, N ≤ s → b s = a s) :
     truncSum δ (fun s => g s (b s)) N ≤ truncSum δ (fun s => g s (a s)) N := by
   induction N generalizing b with
-  | zero => intro b _; simp [truncSum]
+  | zero => simp [truncSum]
   | succ N ih =>
-    intro b h2
     by_cases hbN : b N = a N
     · -- 末位一致：限制假设后直接用归纳
       have key := ih (fun t ht x => h1 t (Nat.lt_succ_of_lt ht) x) b (by
@@ -1127,18 +1126,16 @@ theorem w4_games_flagship :
       |∑ t ∈ Finset.range 5, (2 / 3 : ℚ) ^ (1 + t) * 2|
         ≤ 2 * (2 / 3 : ℚ) ^ 1 / (1 - 2 / 3)) ∧
     ((4 : ℚ) + (2 / 3) * 2 / (1 - 2 / 3) ≤ 3 / (1 - 2 / 3) ↔
-      (4 - 3 : ℚ) / (4 - 2) ≤ 2 / 3) := by
-  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
-  · exact (dual_line_stays_normative normDomainDemo 25 40).1
-  · exact witness_foreign_facts_rejected
-  · exact witness_prevention_clipped.2.1
-  · exact bi_one_step_no_gain bParamsDemo
-  · exact witness_bargain_bi.2
-  · exact witness_pooling_seq_eq
-  · exact witness_inconsistent_mu_rejected
-  · intro h
-    exact tail_bound (2 / 3 : ℚ) 2 (by norm_num) (by norm_num) (by norm_num)
-      (fun _ => (2 : ℚ)) h 1 5
-  · exact coop_threshold_iff 3 4 2 (2 / 3) (by norm_num) (by norm_num) (by norm_num)
+      (4 - 3 : ℚ) / (4 - 2) ≤ 2 / 3) :=
+  ⟨(dual_line_stays_normative normDomainDemo 25 40).1,
+    witness_foreign_facts_rejected,
+    witness_prevention_clipped.2.1,
+    bi_one_step_no_gain bParamsDemo,
+    witness_bargain_bi.2,
+    witness_pooling_seq_eq,
+    witness_inconsistent_mu_rejected,
+    fun h => tail_bound (2 / 3 : ℚ) 2 (by norm_num) (by norm_num) (by norm_num)
+      (fun _ => (2 : ℚ)) h 1 5,
+    coop_threshold_iff 3 4 2 (2 / 3) (by norm_num) (by norm_num) (by norm_num)
 
 end JurisLean.Seams.UnifiedW4Games

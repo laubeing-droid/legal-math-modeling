@@ -81,7 +81,7 @@ theorem snapshot_eq_of_bindKey_eq {v w : SourceVersionRecord} (h : bindKey v = b
 /-- 绑定面良态：同键必同记录（键在环境内唯一）。这是查询反向等式的
     键唯一形前提。 -/
 def FaceWf (E : VersionEnv) : Prop :=
-  ∀ k v w : SourceVersionRecord, v ∈ E.versions → w ∈ E.versions →
+  ∀ (k : String) (v w : SourceVersionRecord), v ∈ E.versions → w ∈ E.versions →
     bindKey v = k → bindKey w = k → v = w
 
 /-- 通用辅助：表中元素满足谓词且谓词命中者唯一时，`find?` 精确返回该元素。 -/
@@ -101,7 +101,7 @@ theorem find?_eq_some_of_unique {α : Type} (p : α → Bool) :
       · rcases List.mem_cons.mp hv with heq | hm
         · subst heq
           exact absurd hpv hpa
-        · exact List.mem_cons_of_mem _ hm
+        · exact hm
       · intro u hu hpu
         exact huni u (List.mem_cons_of_mem _ hu) hpu
 
@@ -121,13 +121,13 @@ theorem query_eq_some_iff_face (E : VersionEnv) (t : Int) (k : String)
   · intro h
     have hmem : v ∈ applicableVersions E t := List.mem_of_find?_eq_some h
     obtain ⟨hin, happ⟩ := mem_applicableVersions E t v |>.mp hmem
-    exact ⟨hin, List.find?_some h, happ⟩
+    exact ⟨hin, decide_eq_true_iff.mp (List.find?_some h), happ⟩
   · rintro ⟨hin, hkey, happ⟩
-    refine List.find?_eq_some_of_unique (fun u => bindKey u = k) (applicableVersions E t) v
-      (mem_applicableVersions E t v |>.mpr ⟨hin, happ⟩) happ ?_
+    refine find?_eq_some_of_unique (fun u => bindKey u = k) (applicableVersions E t) v
+      (mem_applicableVersions E t v |>.mpr ⟨hin, happ⟩) (decide_eq_true_iff.mpr hkey) ?_
     intro u hu huk
     obtain ⟨huin, huap⟩ := mem_applicableVersions E t u |>.mp hu
-    exact huni u huin huk huap
+    exact huni u huin (decide_eq_true_iff.mp huk) huap
 
 /-- **第 44 针·双向等式（绑定面良态形）**：`FaceWf` 下，键恰为 k 的记录 v 的查询
     结果是 v 当且仅当 v 在环境中且时点可适用——"查询结果=v ↔ 绑定面记录=v"
@@ -135,9 +135,14 @@ theorem query_eq_some_iff_face (E : VersionEnv) (t : Int) (k : String)
 theorem query_eq_some_iff_face_of_faceWf (E : VersionEnv) (hwf : FaceWf E) (t : Int)
     (k : String) (v : SourceVersionRecord) (hkey : bindKey v = k) :
     queryVersion E t k = some v ↔ (v ∈ E.versions ∧ applicableAtBool v t = true) := by
-  refine query_eq_some_iff_face E t k v ?_
-  intro u hu huk _
-  exact hwf k u v hu huk hkey
+  refine (query_eq_some_iff_face E t k v ?_).trans ?_
+  · intro u hu huk _
+    exact hwf k u v hu huk hkey
+  · constructor
+    · rintro ⟨hin, happ⟩
+      exact ⟨hin, hkey, happ⟩
+    · rintro ⟨hin, _, happ⟩
+      exact ⟨hin, happ⟩
 
 /-- 正向读数无条件成立（无 `FaceWf` 也真）：查询命中 ⇒ 绑定面确有该键登记且
     记录在时点可适用。 -/
@@ -146,7 +151,7 @@ theorem query_some_imp_face (E : VersionEnv) (t : Int) (k : String)
     v ∈ E.versions ∧ bindKey v = k ∧ applicableAtBool v t = true := by
   have hmem : v ∈ applicableVersions E t := List.mem_of_find?_eq_some h
   obtain ⟨hin, happ⟩ := mem_applicableVersions E t v |>.mp hmem
-  exact ⟨hin, List.find?_some h, happ⟩
+  exact ⟨hin, decide_eq_true_iff.mp (List.find?_some h), happ⟩
 
 /-- 键唯一性穿过授权前例更新（键不因更新改变：取代只动 status，新键由
     `hfresh` 保证不撞旧键）。 -/
@@ -165,27 +170,39 @@ theorem faceWf_precedentUpdate (E : VersionEnv) (ad : AuthorizedDecision)
     · obtain ⟨u, hu, huw⟩ := List.mem_map.mp hw'
       subst huw
       have hku : bindKey u = bindKey ad.decision.newRecord := by
-        simp only [bindKey, supersedeRecord_snapshot] at hkw
+        have e2 : bindKey (supersedeRecord ad.decision u) = bindKey u := by
+          show (supersedeRecord ad.decision u).snapshot.payload = u.snapshot.payload
+          rw [supersedeRecord_snapshot ad.decision u]
+        rw [← e2]
         exact hkw.trans hkv.symm
       exact absurd hku (hfresh u hu)
   · obtain ⟨u, hu, huv⟩ := List.mem_map.mp hv'
     subst huv
     have hku : bindKey u = k := by
-      simp only [bindKey, supersedeRecord_snapshot] at hkv
+      have e2 : bindKey (supersedeRecord ad.decision u) = bindKey u := by
+        show (supersedeRecord ad.decision u).snapshot.payload = u.snapshot.payload
+        rw [supersedeRecord_snapshot ad.decision u]
+      rw [← e2]
       exact hkv
-    obtain ⟨u', hu', huw⟩ := List.mem_map.mp hw
-    subst huw
-    have hku' : bindKey u' = k := by
-      simp only [bindKey, supersedeRecord_snapshot] at hkw
-      exact hkw
-    rw [hwf k u u' hu hu' hku hku']
+    rcases List.mem_cons.mp hw with hew | hw'
+    · subst hew
+      exact absurd (hku.trans hkw.symm) (hfresh u hu)
+    · obtain ⟨u', hu', huw⟩ := List.mem_map.mp hw'
+      subst huw
+      have hku' : bindKey u' = k := by
+        have e2 : bindKey (supersedeRecord ad.decision u') = bindKey u' := by
+          show (supersedeRecord ad.decision u').snapshot.payload = u'.snapshot.payload
+          rw [supersedeRecord_snapshot ad.decision u']
+        rw [← e2]
+        exact hkw
+      rw [hwf k u u' hu hu' hku hku']
 
 /-- `EnvWf` 的快照新鲜度翻成键新鲜度（`bindKey` 读法），供消费链定理取用。 -/
 theorem bindKey_fresh_of_EnvWf (E : VersionEnv) (ad : AuthorizedDecision) (hwf : EnvWf E ad)
     (u : SourceVersionRecord) (hu : u ∈ E.versions) :
     bindKey u ≠ bindKey ad.decision.newRecord := by
   intro he
-  exact hwf.fresh u hu (snapshot_eq_of_bindKey_eq he)
+  exact hwf.fresh u hu ((snapshot_eq_of_bindKey_eq he).trans hwf.recordMatchesSnapshot)
 
 /-- **第 44 针·变更后可观察性（新版本可查）**：授权前例更新触发后，凡时点落在
     新版本生效区间内，键查询精确返回新版本——版本变更经查询面**可观察**。 -/
@@ -224,18 +241,20 @@ theorem query_old_version_unreadable_after_update (E : VersionEnv) (ad : Authori
   rw [update_versions_fires ad E hfire] at hmem
   rcases List.mem_cons.mp hmem.1 with heq | hm
   · subst heq
-    have huk' : bindKey ad.decision.newRecord = bindKey v := huk
+    have huk' : bindKey ad.decision.newRecord = bindKey v := decide_eq_true_iff.mp huk
     exact hfresh v hv.1 huk'.symm
   · obtain ⟨w, hwmem, hwu⟩ := List.mem_map.mp hm
     subst hwu
     have hk : bindKey w = bindKey v := by
-      simp only [bindKey] at huk ⊢
-      rw [supersedeRecord_snapshot] at huk
-      exact huk
+      have h1 : bindKey (supersedeRecord ad.decision w) = bindKey v :=
+        decide_eq_true_iff.mp huk
+      simp only [bindKey] at h1
+      rw [supersedeRecord_snapshot ad.decision w] at h1
+      exact h1
     have hweqv : w = v := hwf (bindKey v) w v hwmem hv.1 hk rfl
     subst hweqv
-    have hstat : (supersedeRecord ad.decision v).status = VersionStatus.superseded := by
-      rw [supersedeRecord_drops_hit_active ad.decision v hv.2.1 hv.2.2]
+    have hstat : (supersedeRecord ad.decision w).status = VersionStatus.superseded := by
+      rw [supersedeRecord_drops_hit_active ad.decision w hv.2.1 hv.2.2]
     exact absurd (applicableAtBool_true_iff _ _ |>.mp hmem.2)
       (superseded_source_invalidates _ t hstat)
 
@@ -272,7 +291,7 @@ theorem explicit_backflow_restores_readability (E : VersionEnv) (v : SourceVersi
   have hbf : applicableAtBool v t = false := by
     cases hb : applicableAtBool v t with
     | false => rfl
-    | true => exact absurd (applicableAtBool_true_iff v t |>.mpr hb) hnotapp
+    | true => exact absurd (applicableAtBool_true_iff v t |>.mp hb) hnotapp
   refine (query_eq_some_iff_face _ _ _ _ ?_).mpr ⟨List.mem_cons_self, rfl, ?_⟩
   · intro u hu hkey happ'
     rcases List.mem_cons.mp hu with heq | hm
@@ -315,7 +334,7 @@ theorem load_plane_consumes_binding (E : VersionEnv) (b : RunBinding)
     (v : SourceVersionRecord) (hload : loadDataPlane E b = some v) :
     bindKey v = b.key ∧ versionApplicableAt v b.t := by
   obtain ⟨_, hkey, happ⟩ := query_some_imp_face E b.t b.key v hload
-  exact ⟨hkey, applicableAtBool_true_iff v b.t |>.mpr happ⟩
+  exact ⟨hkey, applicableAtBool_true_iff v b.t |>.mp happ⟩
 
 /-- **下游判定**：下游消费入口面对绑定的两级输出——不出不利，或以**数据面
     加载出的那条记录**出不利。判定是加载面与推导闭合位的纯函数：
@@ -352,9 +371,8 @@ theorem adverse_citation_is_loaded_plane (E : VersionEnv) (b : RunBinding) (d : 
     by_cases hd : d = true
     · rw [hdm, if_pos hd] at hadv
       injection hadv with huv
-      refine ⟨?_, hd⟩
-      rw [huv] at hload
-      exact hload
+      subst huv
+      exact ⟨hload, hd⟩
     · rw [hdm, if_neg hd] at hadv
       exact DownstreamVerdict.noConfusion hadv
 
@@ -497,7 +515,7 @@ theorem le_coordBound : ∀ (segs : List SegEntry) (s : SegEntry), s ∈ segs �
       simp only [coordBound]
       exact le_max_left _ _
     · simp only [coordBound]
-      exact le_trans (ih s hm) (le_max_right _ _)
+      exact le_trans (ih hm) (le_max_right _ _)
 
 /-- **第 58 针·hstab 纪律（不覆盖侧）**：有限段表**永不**覆盖全空间——任取有限
     胞腔表，存在点不在任何胞腔内。所以"整域 hstab"不可能由有限逐段证书替身
@@ -625,7 +643,7 @@ theorem mkCellSeg_segBound (S₁ S₂ : List Seg1) (s₁ s₂ : Seg1)
     have hsum : abs (s₁.m * (x.1 - (s₁.lo + s₁.hi) / 2) +
         s₂.m * (x.2 - (s₂.lo + s₂.hi) / 2)) ≤
         (abs s₁.m + abs s₂.m) * min ((s₁.hi - s₁.lo) / 2) ((s₂.hi - s₂.lo) / 2) := by
-      have hab := abs_add (s₁.m * (x.1 - (s₁.lo + s₁.hi) / 2))
+      have hab := abs_add_le (s₁.m * (x.1 - (s₁.lo + s₁.hi) / 2))
         (s₂.m * (x.2 - (s₂.lo + s₂.hi) / 2))
       have hsplit := mul_add (abs s₁.m) (abs s₂.m)
         (min ((s₁.hi - s₁.lo) / 2) ((s₂.hi - s₂.lo) / 2))
@@ -658,7 +676,7 @@ theorem buildEtaCert_all_segBound (S₁ S₂ : List Seg1) (pairing : List (Seg1 
       segBound (fun p => pwlNet S₁ p.1 + pwlNet S₂ p.2) s := by
   intro s hs
   simp only [buildEtaCert] at hs
-  obtain ⟨pr, hpr, heq⟩ := hs
+  obtain ⟨pr, hpr, heq⟩ := List.mem_map.mp hs
   subst heq
   exact mkCellSeg_segBound S₁ S₂ pr.1 pr.2 (hmem pr hpr).1 (hmem pr hpr).2
     (hwidth pr hpr).1 (hwidth pr hpr).2 hd₁ hd₂
@@ -669,14 +687,20 @@ theorem buildEtaCert_precheck (pairing : List (Seg1 × Seg1)) (dom : List (ℚ �
   have hlen : (buildEtaCert pairing dom).bits.length =
       (buildEtaCert pairing dom).segs.length := by
     simp only [buildEtaCert, List.length_map, List.length_replicate]
-  have hall : ∀ b ∈ (buildEtaCert pairing dom).bits, b = true := by
+  have hall : ((buildEtaCert pairing dom).bits.all fun b => b) = true := by
+    rw [List.all_eq_true]
     intro b hb
     have hbr : b ∈ List.replicate pairing.length true := hb
     exact List.mem_replicate.mp hbr |>.2
-  show ((buildEtaCert pairing dom).bits.length == (buildEtaCert pairing dom).segs.length) &&
-      ((buildEtaCert pairing dom).bits.all fun b => b) = true
-  rw [hlen, beq_self_eq_true, Bool.true_and, List.all_eq_true]
-  exact hall
+  have hbeq : ((buildEtaCert pairing dom).bits.length ==
+      (buildEtaCert pairing dom).segs.length) = true := by
+    rw [hlen]
+    exact beq_self_eq_true _
+  rw [show certPrecheckOk (buildEtaCert pairing dom) =
+        ((buildEtaCert pairing dom).bits.length ==
+            (buildEtaCert pairing dom).segs.length) &&
+          ((buildEtaCert pairing dom).bits.all fun b => b) from rfl,
+    hbeq, Bool.true_and, hall]
 
 /-- 逐点胞腔判定：点坐标到两段中点的距离都不超过半径（半宽较小者）⇒ 该点
     在构造出的胞腔内——哪些域点可被覆盖的具名判定。 -/
@@ -745,11 +769,14 @@ theorem xu_ambiguity_nonsingleton_of_cert (f : ℚ × ℚ → ℚ) (c : EtaCert)
   have hrel : ∀ m : {p : ℚ × ℚ // p ∈ c.dom}, (lo, hi).1 ≤ f m.val ∧ f m.val ≤ (lo, hi).2 :=
     fun m => etaCert_sound hacc m.val m.property
   exact JurisLean.Seams.UnifiedNeedlesXU.observational_ambiguity_preserved
-    (fun _ : {p : ℚ × ℚ // p ∈ c.dom} => ()) f (fun _ => (lo, hi)) hrel x y rfl hne
+    (fun _ : {p : ℚ × ℚ // p ∈ c.dom} => ())
+    (fun m : {p : ℚ × ℚ // p ∈ c.dom} => f m.val) (fun _ => (lo, hi)) hrel x y rfl hne
 
 /-- **适配③（证书格式对接）**：以 `Mandate/ReLUApprox.out` 为目标函数的段条目
     一经锚点对齐且局部常数取 `ReLUApprox.lip`，即产出 XU 面 `RadiusCert` 并过
-    其接受判据 `admitsRadiusCert`——本件证书格式与 XU 既有证书面互联。 -/
+    其接受判据 `admitsRadiusCert`；且胞腔球内真实输出确落在证书声明的区间内
+    （`hcell` 保证证书锚与段锚一致， soundness 由逐段界承接）——本件证书格式
+    与 XU 既有证书面互联。 -/
 theorem xu_admitsRadiusCert_of_segBound (s : SegEntry) (anchor : ℚ × ℚ)
     (hs : segBound JurisLean.Mandate.ReLUApprox.out s)
     (hcell : s.cell.anchor = anchor)
@@ -757,9 +784,17 @@ theorem xu_admitsRadiusCert_of_segBound (s : SegEntry) (anchor : ℚ × ℚ)
     JurisLean.Seams.Uncertainty.admitsRadiusCert anchor
       { E := s.cell.eta
         lo := JurisLean.Mandate.ReLUApprox.out anchor - s.lip * s.cell.eta
-        hi := JurisLean.Mandate.ReLUApprox.out anchor + s.lip * s.cell.eta } := by
-  refine ⟨hs.1, ?_, ?_⟩
+        hi := JurisLean.Mandate.ReLUApprox.out anchor + s.lip * s.cell.eta } ∧
+      ∀ x : ℚ × ℚ, withinBall s.cell.eta x anchor →
+        JurisLean.Mandate.ReLUApprox.out anchor - s.lip * s.cell.eta ≤
+            JurisLean.Mandate.ReLUApprox.out x ∧
+          JurisLean.Mandate.ReLUApprox.out x ≤
+            JurisLean.Mandate.ReLUApprox.out anchor + s.lip * s.cell.eta := by
+  refine ⟨⟨hs.1, ?_, ?_⟩, ?_⟩
   · rw [hlip]
   · rw [hlip]
+  · intro x hx
+    rw [← hcell]
+    exact hs.2.2 x hx
 
 end JurisLean.Seams.UnifiedNeedlesGapLate

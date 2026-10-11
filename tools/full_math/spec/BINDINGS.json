@@ -2159,25 +2159,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D009",
    "contract": "JurisLean.FullMath.Contracts.demand_D009",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.unknown_is_pending's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-02 sourcing demand instance in the shared semantic framework: this item's own contract semantics plus the registered fail-closed applicable-source component, with its adverse case executed as a negative test.",
+   "independent_semantics": "quoted_span equals the [start,end) slice of the declared source; every protected proposition's provenance coordinates read back verbatim; a real quotation citing the wrong version is rejected by the cache-key version check.",
+   "algorithm": "tools/full_math/implementation/sourcing_ref.py quote_span/version_accepts computes the intermediate result from structured input; sourcing_check.check_D009 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source text with quote coordinates and version triples, frozen rule tables, effective/registration timelines, definition and citation tables, score and feature tables, pool/corpus lists, citation stance records, per-issue overrule days, framework condition tuples, jurisdiction regime records); outputs are exactly the contract quantities (quote span with provenance and version verdict, applicable hits with coverage certificate, historical version decision, definition resolution with qualifier and rejection path, score order and witnessed transfer decision, returned subset and corpus claim verdict, approved edges and upgrade verdict, per-issue validity at the citation day, framework selection with retained pending branch, regime comparison with difference witness).",
+   "external_assumptions": "Truth of external legal facts, natural-language coverage, human relevance labels and official revision/repeal registries remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/SourceTime.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/sourcing_ref.py",
+    "tools/full_math/implementation/sourcing_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D009]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_positive[D009]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_counterexample[D009]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_downstream_pipeline_consumes_sourcing"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D009]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D009]"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_checker_rejects_tampered[D009]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.unknown_is_pending"
@@ -2188,25 +2189,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D010",
    "contract": "JurisLean.FullMath.Contracts.demand_D010",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.unknown_is_pending's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-02 sourcing demand instance in the shared semantic framework: this item's own contract semantics plus the registered fail-closed applicable-source component, with its adverse case executed as a negative test.",
+   "independent_semantics": "results satisfy the applicability predicate inside the frozen rule base and candidate interpretations; a full-applicability claim requires independent candidate coverage; similar but inapplicable rules never enter the result.",
+   "algorithm": "tools/full_math/implementation/sourcing_ref.py applicable_rules/full_applicability_certificate computes the intermediate result from structured input; sourcing_check.check_D010 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source text with quote coordinates and version triples, frozen rule tables, effective/registration timelines, definition and citation tables, score and feature tables, pool/corpus lists, citation stance records, per-issue overrule days, framework condition tuples, jurisdiction regime records); outputs are exactly the contract quantities (quote span with provenance and version verdict, applicable hits with coverage certificate, historical version decision, definition resolution with qualifier and rejection path, score order and witnessed transfer decision, returned subset and corpus claim verdict, approved edges and upgrade verdict, per-issue validity at the citation day, framework selection with retained pending branch, regime comparison with difference witness).",
+   "external_assumptions": "Truth of external legal facts, natural-language coverage, human relevance labels and official revision/repeal registries remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/SourceTime.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/sourcing_ref.py",
+    "tools/full_math/implementation/sourcing_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D010]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_positive[D010]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_counterexample[D010]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_downstream_pipeline_consumes_sourcing"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D010]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D010]"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_checker_rejects_tampered[D010]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.unknown_is_pending"
@@ -2217,25 +2219,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D011",
    "contract": "JurisLean.FullMath.Contracts.demand_D011",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.unknown_is_pending's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-02 sourcing demand instance in the shared semantic framework: this item's own contract semantics plus the registered fail-closed applicable-source component, with its adverse case executed as a negative test.",
+   "independent_semantics": "applicability is decided by the legal-effect time at the event day (Applicable(v,eventTime)); the registration time and the effect time are stored separately; a later-uploaded old text is judged by its own effective window, never by its upload date.",
+   "algorithm": "tools/full_math/implementation/sourcing_ref.py applies_at/historical_version_decision computes the intermediate result from structured input; sourcing_check.check_D011 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source text with quote coordinates and version triples, frozen rule tables, effective/registration timelines, definition and citation tables, score and feature tables, pool/corpus lists, citation stance records, per-issue overrule days, framework condition tuples, jurisdiction regime records); outputs are exactly the contract quantities (quote span with provenance and version verdict, applicable hits with coverage certificate, historical version decision, definition resolution with qualifier and rejection path, score order and witnessed transfer decision, returned subset and corpus claim verdict, approved edges and upgrade verdict, per-issue validity at the citation day, framework selection with retained pending branch, regime comparison with difference witness).",
+   "external_assumptions": "Truth of external legal facts, natural-language coverage, human relevance labels and official revision/repeal registries remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/SourceTime.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/sourcing_ref.py",
+    "tools/full_math/implementation/sourcing_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D011]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_positive[D011]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_counterexample[D011]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_downstream_pipeline_consumes_sourcing"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D011]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D011]"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_checker_rejects_tampered[D011]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.unknown_is_pending"
@@ -2246,25 +2249,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D012",
    "contract": "JurisLean.FullMath.Contracts.demand_D012",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.unknown_is_pending's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-02 sourcing demand instance in the shared semantic framework: this item's own contract semantics plus the registered fail-closed applicable-source component, with its adverse case executed as a negative test.",
+   "independent_semantics": "the qualifier/definition-scope and citation-graph interpreter keeps semantics: registered meanings resolve with their exclusion qualifier intact; recursive references follow a bounded chase with an explicit rejection path (fuel exhaustion), never an invented meaning.",
+   "algorithm": "tools/full_math/implementation/sourcing_ref.py resolve_definition computes the intermediate result from structured input; sourcing_check.check_D012 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source text with quote coordinates and version triples, frozen rule tables, effective/registration timelines, definition and citation tables, score and feature tables, pool/corpus lists, citation stance records, per-issue overrule days, framework condition tuples, jurisdiction regime records); outputs are exactly the contract quantities (quote span with provenance and version verdict, applicable hits with coverage certificate, historical version decision, definition resolution with qualifier and rejection path, score order and witnessed transfer decision, returned subset and corpus claim verdict, approved edges and upgrade verdict, per-issue validity at the citation day, framework selection with retained pending branch, regime comparison with difference witness).",
+   "external_assumptions": "Truth of external legal facts, natural-language coverage, human relevance labels and official revision/repeal registries remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/SourceTime.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/sourcing_ref.py",
+    "tools/full_math/implementation/sourcing_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D012]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_positive[D012]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_counterexample[D012]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_downstream_pipeline_consumes_sourcing"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D012]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D012]"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_checker_rejects_tampered[D012]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.unknown_is_pending"
@@ -2275,25 +2279,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D013",
    "contract": "JurisLean.FullMath.Contracts.demand_D013",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.unknown_is_pending's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-02 sourcing demand instance in the shared semantic framework: this item's own contract semantics plus the registered fail-closed applicable-source component, with its adverse case executed as a negative test.",
+   "independent_semantics": "under a fixed issue the ranking agrees with the designated score (antisymmetric order, equal scores share a rank); a similar-case transfer copies the substantive conclusion only under a relevant-feature preservation witness.",
+   "algorithm": "tools/full_math/implementation/sourcing_ref.py compare_score/transfer_case computes the intermediate result from structured input; sourcing_check.check_D013 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source text with quote coordinates and version triples, frozen rule tables, effective/registration timelines, definition and citation tables, score and feature tables, pool/corpus lists, citation stance records, per-issue overrule days, framework condition tuples, jurisdiction regime records); outputs are exactly the contract quantities (quote span with provenance and version verdict, applicable hits with coverage certificate, historical version decision, definition resolution with qualifier and rejection path, score order and witnessed transfer decision, returned subset and corpus claim verdict, approved edges and upgrade verdict, per-issue validity at the citation day, framework selection with retained pending branch, regime comparison with difference witness).",
+   "external_assumptions": "Truth of external legal facts, natural-language coverage, human relevance labels and official revision/repeal registries remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/SourceTime.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/sourcing_ref.py",
+    "tools/full_math/implementation/sourcing_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D013]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_positive[D013]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_counterexample[D013]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_downstream_pipeline_consumes_sourcing"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D013]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D013]"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_checker_rejects_tampered[D013]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.unknown_is_pending"
@@ -2304,25 +2309,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D014",
    "contract": "JurisLean.FullMath.Contracts.demand_D014",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.unknown_is_pending's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-02 sourcing demand instance in the shared semantic framework: this item's own contract semantics plus the registered fail-closed applicable-source component, with its adverse case executed as a negative test.",
+   "independent_semantics": "Returned is a subset of Relevant_D (pool-internal and relevant item by item); Returned=Relevant_D over the corpus is claimable only when the pool covers the corpus and every item is adjudicated; a relevant corpus item outside the pool refuses the no-miss claim.",
+   "algorithm": "tools/full_math/implementation/sourcing_ref.py pool_recall/corpus_completeness_claimable computes the intermediate result from structured input; sourcing_check.check_D014 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source text with quote coordinates and version triples, frozen rule tables, effective/registration timelines, definition and citation tables, score and feature tables, pool/corpus lists, citation stance records, per-issue overrule days, framework condition tuples, jurisdiction regime records); outputs are exactly the contract quantities (quote span with provenance and version verdict, applicable hits with coverage certificate, historical version decision, definition resolution with qualifier and rejection path, score order and witnessed transfer decision, returned subset and corpus claim verdict, approved edges and upgrade verdict, per-issue validity at the citation day, framework selection with retained pending branch, regime comparison with difference witness).",
+   "external_assumptions": "Truth of external legal facts, natural-language coverage, human relevance labels and official revision/repeal registries remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/SourceTime.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/sourcing_ref.py",
+    "tools/full_math/implementation/sourcing_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D014]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_positive[D014]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_counterexample[D014]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_downstream_pipeline_consumes_sourcing"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D014]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D014]"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_checker_rejects_tampered[D014]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.unknown_is_pending"
@@ -2333,25 +2339,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D015",
    "contract": "JurisLean.FullMath.Contracts.demand_D015",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.unknown_is_pending's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-02 sourcing demand instance in the shared semantic framework: this item's own contract semantics plus the registered fail-closed applicable-source component, with its adverse case executed as a negative test.",
+   "independent_semantics": "every cited proposition keeps its span and an approved semantic-support edge; approved edges are generated only from pro-stance citations; a declaration upgrade requires every cited id to carry an approved edge.",
+   "algorithm": "tools/full_math/implementation/sourcing_ref.py approved_edges/upgrade_claim computes the intermediate result from structured input; sourcing_check.check_D015 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source text with quote coordinates and version triples, frozen rule tables, effective/registration timelines, definition and citation tables, score and feature tables, pool/corpus lists, citation stance records, per-issue overrule days, framework condition tuples, jurisdiction regime records); outputs are exactly the contract quantities (quote span with provenance and version verdict, applicable hits with coverage certificate, historical version decision, definition resolution with qualifier and rejection path, score order and witnessed transfer decision, returned subset and corpus claim verdict, approved edges and upgrade verdict, per-issue validity at the citation day, framework selection with retained pending branch, regime comparison with difference witness).",
+   "external_assumptions": "Truth of external legal facts, natural-language coverage, human relevance labels and official revision/repeal registries remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/SourceTime.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/sourcing_ref.py",
+    "tools/full_math/implementation/sourcing_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D015]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_positive[D015]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_counterexample[D015]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_downstream_pipeline_consumes_sourcing"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D015]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D015]"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_checker_rejects_tampered[D015]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.unknown_is_pending"
@@ -2362,25 +2369,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D016",
    "contract": "JurisLean.FullMath.Contracts.demand_D016",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.unknown_is_pending's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-02 sourcing demand instance in the shared semantic framework: this item's own contract semantics plus the registered fail-closed applicable-source component, with its adverse case executed as a negative test.",
+   "independent_semantics": "the precedent validity graph is keyed by (case, issue) and tied to the citation day: the overturned point is invalid from its effective day on, unrelated issues of the same case stay valid and are never deleted.",
+   "algorithm": "tools/full_math/implementation/sourcing_ref.py precedent_validity computes the intermediate result from structured input; sourcing_check.check_D016 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source text with quote coordinates and version triples, frozen rule tables, effective/registration timelines, definition and citation tables, score and feature tables, pool/corpus lists, citation stance records, per-issue overrule days, framework condition tuples, jurisdiction regime records); outputs are exactly the contract quantities (quote span with provenance and version verdict, applicable hits with coverage certificate, historical version decision, definition resolution with qualifier and rejection path, score order and witnessed transfer decision, returned subset and corpus claim verdict, approved edges and upgrade verdict, per-issue validity at the citation day, framework selection with retained pending branch, regime comparison with difference witness).",
+   "external_assumptions": "Truth of external legal facts, natural-language coverage, human relevance labels and official revision/repeal registries remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/SourceTime.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/sourcing_ref.py",
+    "tools/full_math/implementation/sourcing_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D016]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_positive[D016]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_counterexample[D016]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_downstream_pipeline_consumes_sourcing"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D016]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D016]"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_checker_rejects_tampered[D016]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.unknown_is_pending"
@@ -2391,25 +2399,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D017",
    "contract": "JurisLean.FullMath.Contracts.demand_D017",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.unknown_is_pending's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-02 sourcing demand instance in the shared semantic framework: this item's own contract semantics plus the registered fail-closed applicable-source component, with its adverse case executed as a negative test.",
+   "independent_semantics": "LegalFramework candidates are filtered by the conjunction of jurisdiction, subject, conflict-of-law and applicability conditions; undecided branches stay retained as pending and no single condition (English contract or US party alone) auto-selects the UCC.",
+   "algorithm": "tools/full_math/implementation/sourcing_ref.py select_framework computes the intermediate result from structured input; sourcing_check.check_D017 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source text with quote coordinates and version triples, frozen rule tables, effective/registration timelines, definition and citation tables, score and feature tables, pool/corpus lists, citation stance records, per-issue overrule days, framework condition tuples, jurisdiction regime records); outputs are exactly the contract quantities (quote span with provenance and version verdict, applicable hits with coverage certificate, historical version decision, definition resolution with qualifier and rejection path, score order and witnessed transfer decision, returned subset and corpus claim verdict, approved edges and upgrade verdict, per-issue validity at the citation day, framework selection with retained pending branch, regime comparison with difference witness).",
+   "external_assumptions": "Truth of external legal facts, natural-language coverage, human relevance labels and official revision/repeal registries remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/SourceTime.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/sourcing_ref.py",
+    "tools/full_math/implementation/sourcing_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D017]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_positive[D017]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_counterexample[D017]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_downstream_pipeline_consumes_sourcing"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D017]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D017]"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_checker_rejects_tampered[D017]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.unknown_is_pending"
@@ -2420,25 +2429,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D018",
    "contract": "JurisLean.FullMath.Contracts.demand_D018",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.unknown_is_pending's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-02 sourcing demand instance in the shared semantic framework: this item's own contract semantics plus the registered fail-closed applicable-source component, with its adverse case executed as a negative test.",
+   "independent_semantics": "the cross-jurisdiction comparison preserves each domain's subjects/threshold/timing/effect; without a preserving mapping it returns a named difference witness — identical filing thresholds with different effects are distinguished, never reported as equivalent.",
+   "algorithm": "tools/full_math/implementation/sourcing_ref.py compare_regimes computes the intermediate result from structured input; sourcing_check.check_D018 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source text with quote coordinates and version triples, frozen rule tables, effective/registration timelines, definition and citation tables, score and feature tables, pool/corpus lists, citation stance records, per-issue overrule days, framework condition tuples, jurisdiction regime records); outputs are exactly the contract quantities (quote span with provenance and version verdict, applicable hits with coverage certificate, historical version decision, definition resolution with qualifier and rejection path, score order and witnessed transfer decision, returned subset and corpus claim verdict, approved edges and upgrade verdict, per-issue validity at the citation day, framework selection with retained pending branch, regime comparison with difference witness).",
+   "external_assumptions": "Truth of external legal facts, natural-language coverage, human relevance labels and official revision/repeal registries remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/SourceTime.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/sourcing_ref.py",
+    "tools/full_math/implementation/sourcing_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D018]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_positive[D018]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_demand_counterexample[D018]",
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_downstream_pipeline_consumes_sourcing"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D018]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D018]"
+    "tools/full_math/implementation_tests::test_sourcing_group02.py::test_checker_rejects_tampered[D018]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.unknown_is_pending"

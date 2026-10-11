@@ -171,7 +171,7 @@ theorem demand_D001 : Contracts.demand_D001 := And.intro JurisLean.FullMath.Core
     intro scope paras
     refine ⟨?_, ?_, ?_, ?_⟩
     · exact fun t h => of_decide_eq_true (List.mem_filter.mp h).2
-    · exact fun t hsc hp => List.mem_filter.mpr ⟨hp, decide_eq_true hsc⟩
+    · exact fun t hsc hp => List.mem_filter.mpr ⟨of_decide_eq_true hp, decide_eq_true hsc⟩
     · exact fun p hp hno =>
         List.mem_filter.mpr ⟨hp, decide_eq_true (of_decide_eq_false hno)⟩
     · exact fun p h => of_decide_eq_true (List.mem_filter.mp h).2)
@@ -196,7 +196,7 @@ theorem demand_D003 : Contracts.demand_D003 := And.intro JurisLean.FullMath.Core
 
 theorem demand_D004 : Contracts.demand_D004 := And.intro JurisLean.FullMath.Core.locator_not_identity
   (by
-    refine ⟨List.all_eq_true, ?_⟩
+    refine ⟨fun ok required => List.all_eq_true, ?_⟩
     intro u v x y huv hxy
     refine ⟨?_, ?_⟩
     · simpa using hxy
@@ -258,25 +258,134 @@ theorem demand_D008 : Contracts.demand_D008 := And.intro JurisLean.FullMath.Core
       simp at hEq
       exact har hEq.1)
 
-theorem demand_D009 : Contracts.demand_D009 := JurisLean.FullMath.Burden.unknown_is_pending
+theorem demand_D009 : Contracts.demand_D009 := And.intro JurisLean.FullMath.Burden.unknown_is_pending
+  (by
+    intro source st en span v q hkey hend hspan
+    refine ⟨hspan.symm, ?_, ?_, ?_⟩
+    · subst hspan
+      rw [List.length_drop, List.length_take, Nat.min_eq_left hend]
+    · subst hspan
+      simp
+    · exact JurisLean.FullMath.Burden.version_change_invalidates v q hkey)
 
-theorem demand_D010 : Contracts.demand_D010 := JurisLean.FullMath.Burden.unknown_is_pending
+theorem demand_D010 : Contracts.demand_D010 := And.intro JurisLean.FullMath.Burden.unknown_is_pending
+  (by
+    intro rules hits hhits
+    subst hhits
+    refine ⟨?_, ?_, ?_⟩
+    · intro s hs
+      obtain ⟨r, hr, rfl⟩ := List.mem_map.mp hs
+      obtain ⟨he, hp⟩ := List.mem_filter.mp hr
+      exact ⟨r, he, rfl, hp⟩
+    · intro e he hp
+      exact List.mem_map.mpr ⟨e, List.mem_filter.mpr ⟨he, hp⟩, rfl⟩
+    · intro e he hp hmem
+      obtain ⟨_, htrue⟩ := List.mem_filter.mp hmem
+      simp [hp] at htrue)
 
-theorem demand_D011 : Contracts.demand_D011 := JurisLean.FullMath.Burden.unknown_is_pending
+theorem demand_D011 : Contracts.demand_D011 := And.intro JurisLean.FullMath.Burden.unknown_is_pending
+  (by
+    intro old new t p e r _hlt hlate
+    refine ⟨JurisLean.FullMath.Burden.not_yet_effective new t hlate, rfl, rfl, ?_⟩
+    intro hle hrep
+    exact JurisLean.FullMath.Burden.effective_window_applicable old t hle hrep)
 
-theorem demand_D012 : Contracts.demand_D012 := JurisLean.FullMath.Burden.unknown_is_pending
+theorem demand_D012 : Contracts.demand_D012 := And.intro JurisLean.FullMath.Burden.unknown_is_pending
+  (by
+    intro defs cites x m fuel
+    refine ⟨?_, rfl, ?_⟩
+    · intro h
+      simp only [Contracts.citeChase, h]
+    · intro x' m' h
+      simp only [Contracts.citeChase, h])
 
-theorem demand_D013 : Contracts.demand_D013 := JurisLean.FullMath.Burden.unknown_is_pending
+theorem demand_D013 : Contracts.demand_D013 := And.intro JurisLean.FullMath.Burden.unknown_is_pending
+  (by
+    intro score a b tgtFeats relevant copied
+    refine ⟨decide_eq_true_iff, ?_, ?_, ?_⟩
+    · exact decide_eq_true_iff
+    · intro h1 h2
+      exact absurd (lt_trans h1 h2) (lt_irrefl (score b))
+    · intro hcop hw
+      subst hcop
+      cases h : relevant.all (fun f => decide (f ∈ tgtFeats)) with
+      | false => rfl
+      | true =>
+        exfalso
+        obtain ⟨f, hfr, hfn⟩ := hw
+        exact hfn (of_decide_eq_true (List.all_eq_true.mp h f hfr)))
 
-theorem demand_D014 : Contracts.demand_D014 := JurisLean.FullMath.Burden.unknown_is_pending
+theorem demand_D014 : Contracts.demand_D014 := And.intro JurisLean.FullMath.Burden.unknown_is_pending
+  (by
+    intro corpus pool returned relevant hret
+    subst hret
+    refine ⟨?_, ?_, ?_⟩
+    · intro s hs
+      exact List.mem_filter.mp hs
+    · intro s hsp hrel
+      exact List.mem_filter.mpr ⟨hsp, hrel⟩
+    · intro ex hall
+      obtain ⟨s, hsc, hsp, hsr⟩ := ex
+      obtain ⟨hmem, _⟩ := List.mem_filter.mp (hall s hsc hsr)
+      exact hsp hmem)
 
-theorem demand_D015 : Contracts.demand_D015 := JurisLean.FullMath.Burden.unknown_is_pending
+theorem demand_D015 : Contracts.demand_D015 := And.intro JurisLean.FullMath.Burden.unknown_is_pending
+  (by
+    intro cites edges propId hedges
+    subst hedges
+    refine ⟨?_, ?_, ?_⟩
+    · intro e he
+      obtain ⟨c, hc, rfl⟩ := List.mem_map.mp he
+      obtain ⟨hcm, hcp⟩ := List.mem_filter.mp hc
+      exact ⟨c, hcm, rfl, hcp⟩
+    · intro c hc hmem
+      obtain ⟨_, htrue⟩ := List.mem_filter.mp hmem
+      simp [hc] at htrue
+    · intro c hc
+      exact ⟨c.2.1, hc, rfl⟩)
 
-theorem demand_D016 : Contracts.demand_D016 := JurisLean.FullMath.Burden.unknown_is_pending
+theorem demand_D016 : Contracts.demand_D016 := And.intro JurisLean.FullMath.Burden.unknown_is_pending
+  (by
+    intro overruled c i j t d hc hd
+    refine ⟨?_, ?_⟩
+    · cases h : (overruled.filter (fun o => decide (o.1 = c ∧ o.2.1 = i))).all
+        (fun o => decide (t < o.2.2)) with
+      | false => exact h
+      | true =>
+        exfalso
+        have hmem : (c, i, d) ∈ overruled.filter (fun o => decide (o.1 = c ∧ o.2.1 = i)) :=
+          List.mem_filter.mpr ⟨hc, by simp⟩
+        have hall := List.all_eq_true.mp h (c, i, d) hmem
+        simp at hall
+        omega
+    · intro hall
+      refine List.all_eq_true.mpr ?_
+      intro o ho
+      obtain ⟨hov, _⟩ := List.mem_filter.mp ho
+      exact decide_eq_true (hall o hov))
 
-theorem demand_D017 : Contracts.demand_D017 := JurisLean.FullMath.Burden.unknown_is_pending
+theorem demand_D017 : Contracts.demand_D017 := And.intro JurisLean.FullMath.Burden.unknown_is_pending
+  (by
+    intro cands name b₁ b₂ b₃ b₄ hfind
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · simp
+    · cases b₁ <;> cases b₂ <;> cases b₃ <;> cases b₄ <;> decide
+    · intro h1 h2
+      simp [h1, h2]
+    · exact List.mem_of_find?_eq_some hfind)
 
-theorem demand_D018 : Contracts.demand_D018 := JurisLean.FullMath.Burden.unknown_is_pending
+theorem demand_D018 : Contracts.demand_D018 := And.intro JurisLean.FullMath.Burden.unknown_is_pending
+  (by
+    intro a b m
+    refine ⟨?_, ?_, ?_⟩
+    · intro hm
+      subst hm
+      exact ⟨rfl, rfl, rfl, rfl⟩
+    · intro _h1 h2 heq
+      exact h2 (by rw [heq])
+    · intro _h1 h2
+      rw [if_neg h2]
+      simp)
 
 theorem demand_D019 : Contracts.demand_D019 := JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
 

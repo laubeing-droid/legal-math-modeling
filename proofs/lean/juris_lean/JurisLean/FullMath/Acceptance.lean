@@ -590,13 +590,15 @@ theorem demand_D030 : Contracts.demand_D030 := And.intro JurisLean.FullMath.Logi
     subst hecho
     refine ⟨?_, ?_, ?_, ?_, ?_⟩
     · intro r hr
+      exact (List.mem_filter.mp hr).1
+    · intro r hr
       exact (List.mem_filter.mp (List.mem_filter.mp hr).1).1
     · intro r hr
       exact (List.mem_filter.mp hr).1
-    · intro r hr
-      obtain ⟨h1, hdec⟩ := List.mem_filter.mp hr
-      obtain ⟨_, hdec1⟩ := List.mem_filter.mp h1
-      exact ⟨hdec1, hdec⟩
+    · intro e he
+      obtain ⟨h1, h2⟩ := List.mem_filter.mp he
+      obtain ⟨_, hpre⟩ := List.mem_filter.mp h1
+      exact ⟨hpre, h2⟩
     · intro e he hpre hnotin hEq
       have hmem : e.1 ∈ (table.filter (fun r => r.2)).map (fun r => r.1) :=
         List.mem_map.mpr ⟨e, List.mem_filter.mpr ⟨he, hpre⟩, rfl⟩

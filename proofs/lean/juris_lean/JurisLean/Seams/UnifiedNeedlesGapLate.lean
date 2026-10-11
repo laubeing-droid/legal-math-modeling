@@ -119,11 +119,12 @@ theorem query_eq_some_iff_face (E : VersionEnv) (t : Int) (k : String)
       (v ∈ E.versions ∧ bindKey v = k ∧ applicableAtBool v t = true) := by
   constructor
   · intro h
-    have hmem : v ∈ applicableVersions E t := List.mem_of_find?_eq_some h
+    have hf : (applicableVersions E t).find? (fun u => decide (bindKey u = k)) = some v := h
+    have hmem : v ∈ applicableVersions E t := List.mem_of_find?_eq_some hf
     obtain ⟨hin, happ⟩ := mem_applicableVersions E t v |>.mp hmem
-    exact ⟨hin, decide_eq_true_iff.mp (List.find?_some h), happ⟩
+    exact ⟨hin, decide_eq_true_iff.mp (List.find?_some hf), happ⟩
   · rintro ⟨hin, hkey, happ⟩
-    refine find?_eq_some_of_unique (fun u => bindKey u = k) (applicableVersions E t) v
+    refine find?_eq_some_of_unique (fun u => decide (bindKey u = k)) (applicableVersions E t) v
       (mem_applicableVersions E t v |>.mpr ⟨hin, happ⟩) (decide_eq_true_iff.mpr hkey) ?_
     intro u hu huk
     obtain ⟨huin, huap⟩ := mem_applicableVersions E t u |>.mp hu
@@ -133,25 +134,25 @@ theorem query_eq_some_iff_face (E : VersionEnv) (t : Int) (k : String)
     结果是 v 当且仅当 v 在环境中且时点可适用——"查询结果=v ↔ 绑定面记录=v"
     两个方向都是定理，不再只有单向成员读数。 -/
 theorem query_eq_some_iff_face_of_faceWf (E : VersionEnv) (hwf : FaceWf E) (t : Int)
-    (k : String) (v : SourceVersionRecord) (hkey : bindKey v = k) :
+    (k : String) (v : SourceVersionRecord) (hmemv : v ∈ E.versions)
+    (hkey : bindKey v = k) :
     queryVersion E t k = some v ↔ (v ∈ E.versions ∧ applicableAtBool v t = true) := by
-  refine (query_eq_some_iff_face E t k v ?_).trans ?_
-  · intro u hu huk _
-    exact hwf k u v hu huk hkey
-  · constructor
-    · rintro ⟨hin, happ⟩
-      exact ⟨hin, hkey, happ⟩
-    · rintro ⟨hin, _, happ⟩
-      exact ⟨hin, happ⟩
+  refine (query_eq_some_iff_face E t k v fun u hu huk _ => hwf k u v hu huk hkey).trans ?_
+  constructor
+  · rintro ⟨hin, happ⟩
+    exact ⟨hin, hmemv, happ⟩
+  · rintro ⟨hin, _, happ⟩
+    exact ⟨hin, happ⟩
 
 /-- 正向读数无条件成立（无 `FaceWf` 也真）：查询命中 ⇒ 绑定面确有该键登记且
     记录在时点可适用。 -/
 theorem query_some_imp_face (E : VersionEnv) (t : Int) (k : String)
     (v : SourceVersionRecord) (h : queryVersion E t k = some v) :
     v ∈ E.versions ∧ bindKey v = k ∧ applicableAtBool v t = true := by
-  have hmem : v ∈ applicableVersions E t := List.mem_of_find?_eq_some h
+  have hf : (applicableVersions E t).find? (fun u => decide (bindKey u = k)) = some v := h
+  have hmem : v ∈ applicableVersions E t := List.mem_of_find?_eq_some hf
   obtain ⟨hin, happ⟩ := mem_applicableVersions E t v |>.mp hmem
-  exact ⟨hin, decide_eq_true_iff.mp (List.find?_some h), happ⟩
+  exact ⟨hin, decide_eq_true_iff.mp (List.find?_some hf), happ⟩
 
 /-- 键唯一性穿过授权前例更新（键不因更新改变：取代只动 status，新键由
     `hfresh` 保证不撞旧键）。 -/
@@ -268,7 +269,7 @@ theorem query_observable_change_on_supersession (E : VersionEnv) (ad : Authorize
     queryVersion E t (bindKey v) = some v ∧
       queryVersion (precedentUpdate ad E) t (bindKey v) = none := by
   refine ⟨?_, query_old_version_unreadable_after_update E ad v t hwf hfire hv hfresh⟩
-  rw [query_eq_some_iff_face_of_faceWf E hwf t (bindKey v) v rfl]
+  rw [query_eq_some_iff_face_of_faceWf E hwf t (bindKey v) v hv.1 rfl]
   exact ⟨hv.1, applicableAtBool_true_iff v t |>.mpr happ⟩
 
 /-- **显式回流事件**（旧版本可回读的唯一通道）：把被降级记录以 active 状态
@@ -372,7 +373,7 @@ theorem adverse_citation_is_loaded_plane (E : VersionEnv) (b : RunBinding) (d : 
     · rw [hdm, if_pos hd] at hadv
       injection hadv with huv
       subst huv
-      exact ⟨hload, hd⟩
+      exact ⟨rfl, hd⟩
     · rw [hdm, if_neg hd] at hadv
       exact DownstreamVerdict.noConfusion hadv
 
@@ -696,11 +697,8 @@ theorem buildEtaCert_precheck (pairing : List (Seg1 × Seg1)) (dom : List (ℚ �
       (buildEtaCert pairing dom).segs.length) = true := by
     rw [hlen]
     exact beq_self_eq_true _
-  rw [show certPrecheckOk (buildEtaCert pairing dom) =
-        ((buildEtaCert pairing dom).bits.length ==
-            (buildEtaCert pairing dom).segs.length) &&
-          ((buildEtaCert pairing dom).bits.all fun b => b) from rfl,
-    hbeq, Bool.true_and, hall]
+  simp only [certPrecheckOk]
+  rw [hbeq, Bool.true_and, hall]
 
 /-- 逐点胞腔判定：点坐标到两段中点的距离都不超过半径（半宽较小者）⇒ 该点
     在构造出的胞腔内——哪些域点可被覆盖的具名判定。 -/
@@ -794,7 +792,7 @@ theorem xu_admitsRadiusCert_of_segBound (s : SegEntry) (anchor : ℚ × ℚ)
   · rw [hlip]
   · rw [hlip]
   · intro x hx
-    rw [← hcell]
+    rw [← hcell] at hx ⊢
     exact hs.2.2 x hx
 
 end JurisLean.Seams.UnifiedNeedlesGapLate

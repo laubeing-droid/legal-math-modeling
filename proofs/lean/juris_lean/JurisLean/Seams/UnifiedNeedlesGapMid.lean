@@ -349,7 +349,7 @@ theorem update_pureM (p : I → Act) (i : I) (b : Act) :
   by_cases hj : j = i
   · subst hj
     simp [point]
-  · simp only [if_neg hj]
+  · simp [Function.update_apply, if_neg hj]
 
 /-- 单行点质量的加权求和。 -/
 theorem sum_point_weight (σ' : Act → ℚ) (b : Act) :

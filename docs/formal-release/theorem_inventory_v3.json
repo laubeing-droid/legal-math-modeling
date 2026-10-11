@@ -571,6 +571,9 @@
     "JurisLean.Seams.UnifiedHornIT",
     "JurisLean.Seams.UnifiedInstance",
     "JurisLean.Seams.UnifiedLegacy",
+    "JurisLean.Seams.UnifiedNeedlesGap05",
+    "JurisLean.Seams.UnifiedNeedlesGapLate",
+    "JurisLean.Seams.UnifiedNeedlesGapMid",
     "JurisLean.Seams.UnifiedNeedlesS0S1",
     "JurisLean.Seams.UnifiedNeedlesS2",
     "JurisLean.Seams.UnifiedNeedlesS3a",
@@ -583,11 +586,16 @@
     "JurisLean.Seams.UnifiedNeedlesXU",
     "JurisLean.Seams.UnifiedNormFlow",
     "JurisLean.Seams.UnifiedPerformance",
+    "JurisLean.Seams.UnifiedQuantileNarrow",
     "JurisLean.Seams.UnifiedQuantities",
     "JurisLean.Seams.UnifiedSemantics",
     "JurisLean.Seams.UnifiedSummary",
     "JurisLean.Seams.UnifiedTrajectory",
     "JurisLean.Seams.UnifiedUtility",
+    "JurisLean.Seams.UnifiedW4Behavior",
+    "JurisLean.Seams.UnifiedW4Deviation",
+    "JurisLean.Seams.UnifiedW4Games",
+    "JurisLean.Seams.UnifiedW4Interp",
     "JurisLean.TaintNoninterference",
     "JurisLean.ULMAxiomAudit",
     "JurisLean.WeightedSupNorm"
@@ -2813,6 +2821,155 @@
     "JurisLean.Seams.UnifiedInstance.zero_mem_singleton",
     "JurisLean.Seams.UnifiedLegacy.legacy_projection_commutes",
     "JurisLean.Seams.UnifiedLegacy.no_global_behavior_equality",
+    "JurisLean.Seams.UnifiedNeedlesGap05.adminDefects_fires_iff",
+    "JurisLean.Seams.UnifiedNeedlesGap05.adminFinalDisposition_not_closure_any",
+    "JurisLean.Seams.UnifiedNeedlesGap05.admin_branch_table",
+    "JurisLean.Seams.UnifiedNeedlesGap05.admin_missing_premise_check",
+    "JurisLean.Seams.UnifiedNeedlesGap05.allMaterialAtomList_length",
+    "JurisLean.Seams.UnifiedNeedlesGap05.all_rule_concl_in_closure",
+    "JurisLean.Seams.UnifiedNeedlesGap05.brAbsent_not_consistent",
+    "JurisLean.Seams.UnifiedNeedlesGap05.brAbsent_not_divergent",
+    "JurisLean.Seams.UnifiedNeedlesGap05.brConsistent_not_divergent",
+    "JurisLean.Seams.UnifiedNeedlesGap05.conclusion_blocked_of_missing_premise",
+    "JurisLean.Seams.UnifiedNeedlesGap05.corporateVeilPierced_not_closure_any",
+    "JurisLean.Seams.UnifiedNeedlesGap05.dependentClaimFinalDecree_not_closure_any",
+    "JurisLean.Seams.UnifiedNeedlesGap05.docketMatLayer_roundTrip",
+    "JurisLean.Seams.UnifiedNeedlesGap05.ecoRemediationCosts_ltag",
+    "JurisLean.Seams.UnifiedNeedlesGap05.ecoRemediationCosts_prov",
+    "JurisLean.Seams.UnifiedNeedlesGap05.eco_cited_nonempty",
+    "JurisLean.Seams.UnifiedNeedlesGap05.eco_leaf_materials_on_file",
+    "JurisLean.Seams.UnifiedNeedlesGap05.eco_prov_steps_named",
+    "JurisLean.Seams.UnifiedNeedlesGap05.eco_prov_trace",
+    "JurisLean.Seams.UnifiedNeedlesGap05.eco_sources_declared",
+    "JurisLean.Seams.UnifiedNeedlesGap05.failureish_model",
+    "JurisLean.Seams.UnifiedNeedlesGap05.failureish_not_closure_any",
+    "JurisLean.Seams.UnifiedNeedlesGap05.famBranchOf_eq_absent_iff",
+    "JurisLean.Seams.UnifiedNeedlesGap05.famBranchOf_eq_consistent_iff",
+    "JurisLean.Seams.UnifiedNeedlesGap05.famBranchOf_eq_divergent_iff",
+    "JurisLean.Seams.UnifiedNeedlesGap05.famBranch_fullDocket_all_consistent",
+    "JurisLean.Seams.UnifiedNeedlesGap05.famBranch_partition",
+    "JurisLean.Seams.UnifiedNeedlesGap05.famBranch_partition_and_exclusive",
+    "JurisLean.Seams.UnifiedNeedlesGap05.famBranch_variant_L01_divergent",
+    "JurisLean.Seams.UnifiedNeedlesGap05.familyMatoms_ne_nil",
+    "JurisLean.Seams.UnifiedNeedlesGap05.familyWitness_mem",
+    "JurisLean.Seams.UnifiedNeedlesGap05.fraudConviction_not_closure_any",
+    "JurisLean.Seams.UnifiedNeedlesGap05.hornLayer_separates",
+    "JurisLean.Seams.UnifiedNeedlesGap05.horn_ltag_consistency",
+    "JurisLean.Seams.UnifiedNeedlesGap05.hprovN_lands_on_table_or_fact",
+    "JurisLean.Seams.UnifiedNeedlesGap05.ipPunitiveDamages_not_closure_any",
+    "JurisLean.Seams.UnifiedNeedlesGap05.isModel_avoiding_gen",
+    "JurisLean.Seams.UnifiedNeedlesGap05.joint_legal_model_exists_material",
+    "JurisLean.Seams.UnifiedNeedlesGap05.l01_absent_downstream",
+    "JurisLean.Seams.UnifiedNeedlesGap05.l01_absent_hblock_check",
+    "JurisLean.Seams.UnifiedNeedlesGap05.l01_absent_hdisj",
+    "JurisLean.Seams.UnifiedNeedlesGap05.legal_horn_instantiation_end_to_end",
+    "JurisLean.Seams.UnifiedNeedlesGap05.loanEntitlement_fires_iff",
+    "JurisLean.Seams.UnifiedNeedlesGap05.loanFinalDecree_not_closure_any",
+    "JurisLean.Seams.UnifiedNeedlesGap05.loan_branch_table",
+    "JurisLean.Seams.UnifiedNeedlesGap05.loan_missing_premise_check",
+    "JurisLean.Seams.UnifiedNeedlesGap05.matEcoCostDocs_mem_ecoProvSet",
+    "JurisLean.Seams.UnifiedNeedlesGap05.matInitEnt",
+    "JurisLean.Seams.UnifiedNeedlesGap05.matLayer_separates",
+    "JurisLean.Seams.UnifiedNeedlesGap05.material_level_strictly_finer_than_state_level",
+    "JurisLean.Seams.UnifiedNeedlesGap05.medicalAddedDamageAward_not_closure_any",
+    "JurisLean.Seams.UnifiedNeedlesGap05.memByRule_general",
+    "JurisLean.Seams.UnifiedNeedlesGap05.overtimeClaimEstablished_not_closure_any",
+    "JurisLean.Seams.UnifiedNeedlesGap05.remoteProfitAward_not_closure_any",
+    "JurisLean.Seams.UnifiedNeedlesGap05.rule_concl_holds_false",
+    "JurisLean.Seams.UnifiedNeedlesGap05.rule_concl_not_material_atom",
+    "JurisLean.Seams.UnifiedNeedlesGap05.rule_fires_of_materials",
+    "JurisLean.Seams.UnifiedNeedlesGap05.rule_horn_mem_general",
+    "JurisLean.Seams.UnifiedNeedlesGap05.spousalJointDebt_not_closure_any",
+    "JurisLean.Seams.UnifiedNeedlesGap05.stateObs_via_familyNet",
+    "JurisLean.Seams.UnifiedNeedlesGap05.stateOf_collapse",
+    "JurisLean.Seams.UnifiedNeedlesGap05.statePayload_variant_agrees",
+    "JurisLean.Seams.UnifiedNeedlesGap05.state_layer_collapses_variant",
+    "JurisLean.Seams.UnifiedNeedlesGap05.stayForSuccession_fires_iff",
+    "JurisLean.Seams.UnifiedNeedlesGap05.stay_missing_premise_check",
+    "JurisLean.Seams.UnifiedNeedlesGap05.succession_branch_table",
+    "JurisLean.Seams.UnifiedNeedlesGap05.variant_hblock",
+    "JurisLean.Seams.UnifiedNeedlesGap05.variant_hblock_check",
+    "JurisLean.Seams.UnifiedNeedlesGap05.variant_hdisj",
+    "JurisLean.Seams.UnifiedNeedlesGap05.variant_loan_not_closure",
+    "JurisLean.Seams.UnifiedNeedlesGap05.variant_model",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.adverse_citation_is_loaded_plane",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.adverse_full_chain",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.bindKey_fresh_of_EnvWf",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.binding_resolves_to_face_record",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.buildEtaCert_accepted",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.buildEtaCert_all_segBound",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.buildEtaCert_coversDom",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.buildEtaCert_precheck",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.designated_hstab_from_segs",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.etaCert_sound",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.explicit_backflow_restores_readability",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.faceWf_precedentUpdate",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.find?_eq_some_of_unique",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.find?_eq_some_pred",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.finite_segs_never_cover_whole_space",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.inCell_of_coord_le",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.incomplete_derivation_never_adverse",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.le_coordBound",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.load_plane_consumes_binding",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.mkCellSeg_segBound",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.query_eq_some_iff_face",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.query_eq_some_iff_face_of_faceWf",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.query_new_version_readable_after_update",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.query_observable_change_on_supersession",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.query_old_version_unreadable_after_update",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.query_some_imp_face",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.read_after_write_same_plane",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.same_binding_same_plane",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.snapshot_eq_of_bindKey_eq",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.xu_admitsRadiusCert_of_segBound",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.xu_ambiguity_nonsingleton_of_cert",
+    "JurisLean.Seams.UnifiedNeedlesGapLate.xu_nn_propagation_of_single_cell",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.actual_payment_discharge_exact_q",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.analogyA_ne_analogyB",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.analogyA_preserves",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.analogyA_rules_preserved",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.analogyB_preserves",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.analogyB_rules_preserved",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.analogy_real_maps_substantive",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.dischargeItems_ident",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.dischargeItems_nonneg",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.discharge_unique",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.eu_abs_sub_le",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.eu_dev_linear",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.eu_pureM",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.external_equilibrium_reflects_legal_nplayer",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.flow_payment_closed",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.followJudge_separates",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.follow_judge_preserved",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.nash_iff_no_pure_dev_gain",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.overpay_separate_account",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.payoff_error_yields_two_eta_equilibrium_nplayer",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.point_rowSimplex",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.prioritized_adjacent",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.pureM_inSimplex",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.pureM_rowSimplex",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.runPay_prioritized",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.runPay_sum_add_runRes",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.runPay_sum_eq_due",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.runPay_zero_all",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.runRes_nonneg",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.runRes_zero",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.statDebts_amounts_nonneg",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.statDebts_ordered",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.statDebts_readout",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.statRun_exists",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.statRun_length",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.statRun_unique",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.stepAlloc_eq_amount_of_le",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.stepAlloc_eq_min",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.stepAlloc_eq_self_of_lt",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.stepAlloc_le_amount",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.stepAlloc_le_r",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.stepAlloc_zero",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.sum_point_weight",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.three_player_mixed_nash_instance",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.three_player_not_nash_counterexample",
+    "JurisLean.Seams.UnifiedNeedlesGapMid.update_pureM",
     "JurisLean.Seams.UnifiedNeedlesS0S1.applicability_matches_source_semantics",
     "JurisLean.Seams.UnifiedNeedlesS0S1.caseFragment_coverage",
     "JurisLean.Seams.UnifiedNeedlesS0S1.caseFragment_faithful",
@@ -3012,6 +3169,50 @@
     "JurisLean.Seams.UnifiedPerformance.same_excess_different_restitution",
     "JurisLean.Seams.UnifiedPerformance.sanction_reads_derived_basis",
     "JurisLean.Seams.UnifiedPerformance.sanction_trigger_iff",
+    "JurisLean.Seams.UnifiedQuantileNarrow.bern_cdfEnc_valid",
+    "JurisLean.Seams.UnifiedQuantileNarrow.bern_full_chain",
+    "JurisLean.Seams.UnifiedQuantileNarrow.certFound_both_iff",
+    "JurisLean.Seams.UnifiedQuantileNarrow.certFound_left_iff",
+    "JurisLean.Seams.UnifiedQuantileNarrow.certFound_right_iff",
+    "JurisLean.Seams.UnifiedQuantileNarrow.certifies_of_certFound",
+    "JurisLean.Seams.UnifiedQuantileNarrow.cmpEnc_lt_iff",
+    "JurisLean.Seams.UnifiedQuantileNarrow.coarse_update_deletes_quantile",
+    "JurisLean.Seams.UnifiedQuantileNarrow.dirConsN_succ",
+    "JurisLean.Seams.UnifiedQuantileNarrow.dirConsN_zero",
+    "JurisLean.Seams.UnifiedQuantileNarrow.dirCons_succ",
+    "JurisLean.Seams.UnifiedQuantileNarrow.dirCons_zero",
+    "JurisLean.Seams.UnifiedQuantileNarrow.dirUpdate_both_fst",
+    "JurisLean.Seams.UnifiedQuantileNarrow.dirUpdate_both_snd",
+    "JurisLean.Seams.UnifiedQuantileNarrow.dirUpdate_invariant",
+    "JurisLean.Seams.UnifiedQuantileNarrow.dirUpdate_left_fst",
+    "JurisLean.Seams.UnifiedQuantileNarrow.dirUpdate_left_snd",
+    "JurisLean.Seams.UnifiedQuantileNarrow.dirUpdate_right_fst",
+    "JurisLean.Seams.UnifiedQuantileNarrow.dirUpdate_right_snd",
+    "JurisLean.Seams.UnifiedQuantileNarrow.dirUpdate_width",
+    "JurisLean.Seams.UnifiedQuantileNarrow.exists_run_from",
+    "JurisLean.Seams.UnifiedQuantileNarrow.full_chain",
+    "JurisLean.Seams.UnifiedQuantileNarrow.hi_below_eventually",
+    "JurisLean.Seams.UnifiedQuantileNarrow.lo_above_eventually",
+    "JurisLean.Seams.UnifiedQuantileNarrow.mixture_full_chain",
+    "JurisLean.Seams.UnifiedQuantileNarrow.narrow_quantile_mem",
+    "JurisLean.Seams.UnifiedQuantileNarrow.plateauCdf_continuous",
+    "JurisLean.Seams.UnifiedQuantileNarrow.plateauCdf_flat",
+    "JurisLean.Seams.UnifiedQuantileNarrow.plateauCdf_not_strictMonoOn",
+    "JurisLean.Seams.UnifiedQuantileNarrow.plateauCdf_one",
+    "JurisLean.Seams.UnifiedQuantileNarrow.plateauCdf_zero",
+    "JurisLean.Seams.UnifiedQuantileNarrow.plateau_delta_zero",
+    "JurisLean.Seams.UnifiedQuantileNarrow.plateau_no_strict_certificate",
+    "JurisLean.Seams.UnifiedQuantileNarrow.plateau_out_of_domain",
+    "JurisLean.Seams.UnifiedQuantileNarrow.plateau_quantile_not_unique",
+    "JurisLean.Seams.UnifiedQuantileNarrow.refN_keeps",
+    "JurisLean.Seams.UnifiedQuantileNarrow.refN_widthQ",
+    "JurisLean.Seams.UnifiedQuantileNarrow.refN_width_real",
+    "JurisLean.Seams.UnifiedQuantileNarrow.round_discovery",
+    "JurisLean.Seams.UnifiedQuantileNarrow.round_gap_analysis",
+    "JurisLean.Seams.UnifiedQuantileNarrow.runState_cons",
+    "JurisLean.Seams.UnifiedQuantileNarrow.runState_zero",
+    "JurisLean.Seams.UnifiedQuantileNarrow.stateOk_quantile_mem",
+    "JurisLean.Seams.UnifiedQuantileNarrow.strictMonoOn_lt_of_lt",
     "JurisLean.Seams.UnifiedQuantities.drop_sum_le_sum",
     "JurisLean.Seams.UnifiedQuantities.joint_overallocation_excluded",
     "JurisLean.Seams.UnifiedQuantities.remainingAfter_cons",
@@ -3088,6 +3289,188 @@
     "JurisLean.Seams.UnifiedUtility.pennies_no_pure_nash",
     "JurisLean.Seams.UnifiedUtility.utility_factorization_through_consequences",
     "JurisLean.Seams.UnifiedUtility.utility_invariant_under_display_rename",
+    "JurisLean.Seams.UnifiedW4Behavior.backflow_chain_general",
+    "JurisLean.Seams.UnifiedW4Behavior.backflow_chain_witness",
+    "JurisLean.Seams.UnifiedW4Behavior.compliance_dominance",
+    "JurisLean.Seams.UnifiedW4Behavior.decVal_nine",
+    "JurisLean.Seams.UnifiedW4Behavior.decVal_one_fifth",
+    "JurisLean.Seams.UnifiedW4Behavior.deterrence_can_fail",
+    "JurisLean.Seams.UnifiedW4Behavior.event_changes_observation",
+    "JurisLean.Seams.UnifiedW4Behavior.evidence_value_nonmonotone",
+    "JurisLean.Seams.UnifiedW4Behavior.gross_voi_nonneg",
+    "JurisLean.Seams.UnifiedW4Behavior.le_vmax_left",
+    "JurisLean.Seams.UnifiedW4Behavior.le_vmax_right",
+    "JurisLean.Seams.UnifiedW4Behavior.le_vmin",
+    "JurisLean.Seams.UnifiedW4Behavior.mem_le_listMax",
+    "JurisLean.Seams.UnifiedW4Behavior.net_voi_can_be_negative",
+    "JurisLean.Seams.UnifiedW4Behavior.paretoB_iff",
+    "JurisLean.Seams.UnifiedW4Behavior.projection_functional",
+    "JurisLean.Seams.UnifiedW4Behavior.projection_separation",
+    "JurisLean.Seams.UnifiedW4Behavior.rectVal_lt_sharedVal",
+    "JurisLean.Seams.UnifiedW4Behavior.rectVal_zero",
+    "JurisLean.Seams.UnifiedW4Behavior.robust_intersects",
+    "JurisLean.Seams.UnifiedW4Behavior.robust_shared_threshold",
+    "JurisLean.Seams.UnifiedW4Behavior.same_obs_same_eval",
+    "JurisLean.Seams.UnifiedW4Behavior.shared_theta_not_rectangular",
+    "JurisLean.Seams.UnifiedW4Behavior.shared_total_identity",
+    "JurisLean.Seams.UnifiedW4Behavior.shared_val_one",
+    "JurisLean.Seams.UnifiedW4Behavior.snell_policy_achieves",
+    "JurisLean.Seams.UnifiedW4Behavior.stopPayoff_le_snell",
+    "JurisLean.Seams.UnifiedW4Behavior.strong_deterrence_dominates",
+    "JurisLean.Seams.UnifiedW4Behavior.strong_deterrence_values",
+    "JurisLean.Seams.UnifiedW4Behavior.t116_argmax_not_unique",
+    "JurisLean.Seams.UnifiedW4Behavior.t116_both_argmax",
+    "JurisLean.Seams.UnifiedW4Behavior.t116_ir_can_be_empty",
+    "JurisLean.Seams.UnifiedW4Behavior.t116_paretoB_readings",
+    "JurisLean.Seams.UnifiedW4Behavior.unauthorized_keeps_rule",
+    "JurisLean.Seams.UnifiedW4Behavior.unauthorized_no_flip",
+    "JurisLean.Seams.UnifiedW4Behavior.vmax_le",
+    "JurisLean.Seams.UnifiedW4Behavior.vmin_le_left",
+    "JurisLean.Seams.UnifiedW4Behavior.vmin_le_right",
+    "JurisLean.Seams.UnifiedW4Behavior.w4_behavior_flagship",
+    "JurisLean.Seams.UnifiedW4Behavior.wsum_max_is_pareto",
+    "JurisLean.Seams.UnifiedW4Behavior.wsum_max_passes_paretoB",
+    "JurisLean.Seams.UnifiedW4Deviation.comparable_refs_admitted",
+    "JurisLean.Seams.UnifiedW4Deviation.comparisonGateB_iff",
+    "JurisLean.Seams.UnifiedW4Deviation.comparison_accepts_named_assumptions",
+    "JurisLean.Seams.UnifiedW4Deviation.comparison_requires_named_assumptions",
+    "JurisLean.Seams.UnifiedW4Deviation.dHaus_symm",
+    "JurisLean.Seams.UnifiedW4Deviation.devMaxList_ge_of_mem",
+    "JurisLean.Seams.UnifiedW4Deviation.devMaxList_le_of_forall",
+    "JurisLean.Seams.UnifiedW4Deviation.devMinList_le_of_mem",
+    "JurisLean.Seams.UnifiedW4Deviation.devMinList_mem",
+    "JurisLean.Seams.UnifiedW4Deviation.devMinList_nonneg",
+    "JurisLean.Seams.UnifiedW4Deviation.devOf_attained",
+    "JurisLean.Seams.UnifiedW4Deviation.devOf_le_add_devOf",
+    "JurisLean.Seams.UnifiedW4Deviation.devOf_le_of_mem",
+    "JurisLean.Seams.UnifiedW4Deviation.devOf_lipschitz",
+    "JurisLean.Seams.UnifiedW4Deviation.devOf_nonneg",
+    "JurisLean.Seams.UnifiedW4Deviation.devReadingOkB_iff",
+    "JurisLean.Seams.UnifiedW4Deviation.dev_kind_exhaustive",
+    "JurisLean.Seams.UnifiedW4Deviation.dev_set_change_bound",
+    "JurisLean.Seams.UnifiedW4Deviation.dev_triangle",
+    "JurisLean.Seams.UnifiedW4Deviation.empty_ref_no_baseline",
+    "JurisLean.Seams.UnifiedW4Deviation.hausdorff_shift_bound",
+    "JurisLean.Seams.UnifiedW4Deviation.incomparable_refs_rejected",
+    "JurisLean.Seams.UnifiedW4Deviation.propensity_unit_interval",
+    "JurisLean.Seams.UnifiedW4Deviation.record_adoptable_matches",
+    "JurisLean.Seams.UnifiedW4Deviation.record_rule_faithful",
+    "JurisLean.Seams.UnifiedW4Deviation.reflow_accepted_appends",
+    "JurisLean.Seams.UnifiedW4Deviation.reflow_accepts_authorized_in_window",
+    "JurisLean.Seams.UnifiedW4Deviation.reflow_rejected_keeps_log",
+    "JurisLean.Seams.UnifiedW4Deviation.reflow_rejects_out_of_window",
+    "JurisLean.Seams.UnifiedW4Deviation.reflow_rejects_unauthorized",
+    "JurisLean.Seams.UnifiedW4Deviation.rep_gate_rejects_drift",
+    "JurisLean.Seams.UnifiedW4Deviation.rep_log_omits_unadoptable",
+    "JurisLean.Seams.UnifiedW4Deviation.rep_log_only_adoptable",
+    "JurisLean.Seams.UnifiedW4Deviation.rep_log_rule_is_preimage",
+    "JurisLean.Seams.UnifiedW4Deviation.rep_readings_match_rule_base",
+    "JurisLean.Seams.UnifiedW4Deviation.report_faithful_projection",
+    "JurisLean.Seams.UnifiedW4Deviation.report_gate_accepts_full_coverage",
+    "JurisLean.Seams.UnifiedW4Deviation.report_gate_rejects_drift",
+    "JurisLean.Seams.UnifiedW4Deviation.report_gate_rejects_unnamed_source",
+    "JurisLean.Seams.UnifiedW4Deviation.report_preserves_interval",
+    "JurisLean.Seams.UnifiedW4Deviation.report_preserves_sources",
+    "JurisLean.Seams.UnifiedW4Deviation.report_preserves_status",
+    "JurisLean.Seams.UnifiedW4Deviation.strat_layer_in_table",
+    "JurisLean.Seams.UnifiedW4Deviation.strat_table_reads_obs_only",
+    "JurisLean.Seams.UnifiedW4Deviation.strat_use_exhaustive",
+    "JurisLean.Seams.UnifiedW4Deviation.t124_interp_consistency",
+    "JurisLean.Seams.UnifiedW4Deviation.t125_three_ref_deviation",
+    "JurisLean.Seams.UnifiedW4Deviation.t126_stratified_propensity",
+    "JurisLean.Seams.UnifiedW4Deviation.t127_deviation_report_complete",
+    "JurisLean.Seams.UnifiedW4Deviation.unauthCand_not_adoptable",
+    "JurisLean.Seams.UnifiedW4Deviation.w4_deviation_flagship",
+    "JurisLean.Seams.UnifiedW4Deviation.witness_hausdorff_shift_half",
+    "JurisLean.Seams.UnifiedW4Deviation.witness_mixed_in_detectable",
+    "JurisLean.Seams.UnifiedW4Deviation.witness_prior_not_double_used",
+    "JurisLean.Seams.UnifiedW4Deviation.witness_unadopted_not_readable",
+    "JurisLean.Seams.UnifiedW4Games.a0Choice_menu",
+    "JurisLean.Seams.UnifiedW4Games.a0Choice_val",
+    "JurisLean.Seams.UnifiedW4Games.a0_best_response",
+    "JurisLean.Seams.UnifiedW4Games.accR0_false_iff",
+    "JurisLean.Seams.UnifiedW4Games.accR0_iff",
+    "JurisLean.Seams.UnifiedW4Games.accR1_false_iff",
+    "JurisLean.Seams.UnifiedW4Games.accR1_iff",
+    "JurisLean.Seams.UnifiedW4Games.b1Choice_menu",
+    "JurisLean.Seams.UnifiedW4Games.b1Choice_val",
+    "JurisLean.Seams.UnifiedW4Games.b1_best_response",
+    "JurisLean.Seams.UnifiedW4Games.biOutcome_accept",
+    "JurisLean.Seams.UnifiedW4Games.bi_one_step_no_gain",
+    "JurisLean.Seams.UnifiedW4Games.bi_outcome_unique",
+    "JurisLean.Seams.UnifiedW4Games.clip_fix_in_domain",
+    "JurisLean.Seams.UnifiedW4Games.clip_in_domain",
+    "JurisLean.Seams.UnifiedW4Games.composeGateB_iff",
+    "JurisLean.Seams.UnifiedW4Games.composeGateB_rejects_foreign_facts",
+    "JurisLean.Seams.UnifiedW4Games.consistentB_on_path_pins",
+    "JurisLean.Seams.UnifiedW4Games.coop_threshold_iff",
+    "JurisLean.Seams.UnifiedW4Games.dual_line_stays_normative",
+    "JurisLean.Seams.UnifiedW4Games.empirical_outside_needs_clip",
+    "JurisLean.Seams.UnifiedW4Games.geom_partial",
+    "JurisLean.Seams.UnifiedW4Games.one_dev_principle",
+    "JurisLean.Seams.UnifiedW4Games.penaltyInDomainB_fixed_of_le",
+    "JurisLean.Seams.UnifiedW4Games.penaltyInDomainB_iff",
+    "JurisLean.Seams.UnifiedW4Games.penalty_exhaust",
+    "JurisLean.Seams.UnifiedW4Games.penalty_pairwise_ne",
+    "JurisLean.Seams.UnifiedW4Games.receiver_all_continuation_no_gain",
+    "JurisLean.Seams.UnifiedW4Games.sender_all_continuation_no_gain",
+    "JurisLean.Seams.UnifiedW4Games.seqEqCheckB_iff",
+    "JurisLean.Seams.UnifiedW4Games.tail_bound",
+    "JurisLean.Seams.UnifiedW4Games.tail_bound_mul",
+    "JurisLean.Seams.UnifiedW4Games.truncSum_congr",
+    "JurisLean.Seams.UnifiedW4Games.truncSum_succ",
+    "JurisLean.Seams.UnifiedW4Games.val_tail_bound",
+    "JurisLean.Seams.UnifiedW4Games.val_telescoping",
+    "JurisLean.Seams.UnifiedW4Games.w4_games_flagship",
+    "JurisLean.Seams.UnifiedW4Games.witness_bargain_bi",
+    "JurisLean.Seams.UnifiedW4Games.witness_empirical_outside_needs_clip",
+    "JurisLean.Seams.UnifiedW4Games.witness_foreign_facts_rejected",
+    "JurisLean.Seams.UnifiedW4Games.witness_inconsistent_mu_rejected",
+    "JurisLean.Seams.UnifiedW4Games.witness_offpath_unnormalized_rejected",
+    "JurisLean.Seams.UnifiedW4Games.witness_pooling_seq_eq",
+    "JurisLean.Seams.UnifiedW4Games.witness_prevention_clipped",
+    "JurisLean.Seams.UnifiedW4Games.witness_punish_credible",
+    "JurisLean.Seams.UnifiedW4Games.witness_receiver_mixed_no_gain",
+    "JurisLean.Seams.UnifiedW4Games.witness_same_source_passes",
+    "JurisLean.Seams.UnifiedW4Games.witness_tail_bound_instance",
+    "JurisLean.Seams.UnifiedW4Games.witness_threshold_directions",
+    "JurisLean.Seams.UnifiedW4Interp.adoptableB_iff",
+    "JurisLean.Seams.UnifiedW4Interp.adoption_adds_only_rule",
+    "JurisLean.Seams.UnifiedW4Interp.branchCompatible_iff",
+    "JurisLean.Seams.UnifiedW4Interp.branchCompatible_symmetric",
+    "JurisLean.Seams.UnifiedW4Interp.branchEach_count",
+    "JurisLean.Seams.UnifiedW4Interp.branch_isolation",
+    "JurisLean.Seams.UnifiedW4Interp.constitutional_legal",
+    "JurisLean.Seams.UnifiedW4Interp.cross_citation_not_wf",
+    "JurisLean.Seams.UnifiedW4Interp.derivationOk_iff",
+    "JurisLean.Seams.UnifiedW4Interp.derivation_wf_accepts",
+    "JurisLean.Seams.UnifiedW4Interp.five_methods_exhaust",
+    "JurisLean.Seams.UnifiedW4Interp.five_methods_pairwise_ne",
+    "JurisLean.Seams.UnifiedW4Interp.hasPriorityB_iff",
+    "JurisLean.Seams.UnifiedW4Interp.historical_legal",
+    "JurisLean.Seams.UnifiedW4Interp.interpAttack_symmetric",
+    "JurisLean.Seams.UnifiedW4Interp.literal_legal",
+    "JurisLean.Seams.UnifiedW4Interp.method_use_not_proof_of_correctness",
+    "JurisLean.Seams.UnifiedW4Interp.priority_wf_targets_conflict",
+    "JurisLean.Seams.UnifiedW4Interp.rejects_foreign_premise",
+    "JurisLean.Seams.UnifiedW4Interp.resolved_keeps_unopposed",
+    "JurisLean.Seams.UnifiedW4Interp.resolved_omits_inferior",
+    "JurisLean.Seams.UnifiedW4Interp.resolved_subset_of_pool",
+    "JurisLean.Seams.UnifiedW4Interp.rule_base_omits_unadoptable",
+    "JurisLean.Seams.UnifiedW4Interp.rule_base_only_adoptable",
+    "JurisLean.Seams.UnifiedW4Interp.systematic_legal",
+    "JurisLean.Seams.UnifiedW4Interp.teleological_legal",
+    "JurisLean.Seams.UnifiedW4Interp.unauth_not_adoptable",
+    "JurisLean.Seams.UnifiedW4Interp.unauth_rule_not_in_base",
+    "JurisLean.Seams.UnifiedW4Interp.witness_attack_both_ways",
+    "JurisLean.Seams.UnifiedW4Interp.witness_conflict",
+    "JurisLean.Seams.UnifiedW4Interp.witness_cross_not_wf",
+    "JurisLean.Seams.UnifiedW4Interp.witness_cross_rejected",
+    "JurisLean.Seams.UnifiedW4Interp.witness_disjoint",
+    "JurisLean.Seams.UnifiedW4Interp.witness_no_priority_keeps_both",
+    "JurisLean.Seams.UnifiedW4Interp.witness_own_accepted",
+    "JurisLean.Seams.UnifiedW4Interp.witness_superior_adopted",
+    "JurisLean.Seams.UnifiedW4Interp.witness_two_branches_kept",
     "JurisLean.Seams.bridge_distinguishes_two_statuses",
     "JurisLean.Seams.bridge_not_injective_at_dismissed",
     "JurisLean.Seams.bridge_partial_inverse_established",
@@ -3579,8 +3962,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "031ac6f3cbcd0aec351c7022b5304ed27ef4a1ad2dec5ac43d1e24e435c6657b",
-   "size_bytes": 210866,
+   "sha256": "9ed39ccd5d2bf94c2deba4821c7a7aaa26f51b1a0d641619da8825af5c45e642",
+   "size_bytes": 238112,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -11584,8 +11967,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean",
    "print_axioms_targets": [],
-   "sha256": "adb085b78cfca71b232bbe5ab9e5f7f09de0d3b826aaedae74b35d99da5125ec",
-   "size_bytes": 21473,
+   "sha256": "342d1c521fa607068781cdc8b42611b0c347c08c57efda0b4acbd4affcd43c25",
+   "size_bytes": 37381,
    "theorem_count": 217,
    "theorem_count_bol_convention": 217
   },
@@ -13613,6 +13996,10 @@
     },
     {
      "kind": "def",
+     "name": "citeChase"
+    },
+    {
+     "kind": "def",
      "name": "demand_D009"
     },
     {
@@ -14168,8 +14555,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
    "print_axioms_targets": [],
-   "sha256": "820b97f8dc8cdd130ff9c531b4aeaa14ef141cfc50443fce3cebd7e1f833076a",
-   "size_bytes": 39037,
+   "sha256": "b2c16d1d5e63a9d8ad58182e7e86692e9747c2b8d158c4f031394a4b5725f778",
+   "size_bytes": 72924,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -32445,6 +32832,965 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "familyMatoms"
+    },
+    {
+     "kind": "def",
+     "name": "familyMatsList"
+    },
+    {
+     "kind": "def",
+     "name": "allMaterialAtomList"
+    },
+    {
+     "kind": "theorem",
+     "name": "allMaterialAtomList_length"
+    },
+    {
+     "kind": "theorem",
+     "name": "familyMatoms_ne_nil"
+    },
+    {
+     "kind": "theorem",
+     "name": "familyWitness_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "rule_concl_holds_false"
+    },
+    {
+     "kind": "theorem",
+     "name": "rule_concl_not_material_atom"
+    },
+    {
+     "kind": "def",
+     "name": "variantDocket"
+    },
+    {
+     "kind": "def",
+     "name": "statePayload"
+    },
+    {
+     "kind": "def",
+     "name": "finToFam"
+    },
+    {
+     "kind": "def",
+     "name": "stateOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "statePayload_variant_agrees"
+    },
+    {
+     "kind": "theorem",
+     "name": "stateObs_via_familyNet"
+    },
+    {
+     "kind": "theorem",
+     "name": "state_layer_collapses_variant"
+    },
+    {
+     "kind": "theorem",
+     "name": "stateOf_collapse"
+    },
+    {
+     "kind": "def",
+     "name": "docketMatLayer"
+    },
+    {
+     "kind": "theorem",
+     "name": "docketMatLayer_roundTrip"
+    },
+    {
+     "kind": "def",
+     "name": "docketHornLayer"
+    },
+    {
+     "kind": "theorem",
+     "name": "matLayer_separates"
+    },
+    {
+     "kind": "theorem",
+     "name": "isModel_avoiding_gen"
+    },
+    {
+     "kind": "def",
+     "name": "badVariant"
+    },
+    {
+     "kind": "theorem",
+     "name": "variant_hblock_check"
+    },
+    {
+     "kind": "theorem",
+     "name": "variant_hdisj"
+    },
+    {
+     "kind": "theorem",
+     "name": "variant_hblock"
+    },
+    {
+     "kind": "theorem",
+     "name": "variant_model"
+    },
+    {
+     "kind": "theorem",
+     "name": "variant_loan_not_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "hornLayer_separates"
+    },
+    {
+     "kind": "theorem",
+     "name": "all_rule_concl_in_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "joint_legal_model_exists_material"
+    },
+    {
+     "kind": "theorem",
+     "name": "material_level_strictly_finer_than_state_level"
+    },
+    {
+     "kind": "inductive",
+     "name": "FamBranch"
+    },
+    {
+     "kind": "def",
+     "name": "brIsAbsent"
+    },
+    {
+     "kind": "def",
+     "name": "brIsConsistent"
+    },
+    {
+     "kind": "def",
+     "name": "brIsDivergent"
+    },
+    {
+     "kind": "def",
+     "name": "famBranchOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "famBranch_partition"
+    },
+    {
+     "kind": "theorem",
+     "name": "brAbsent_not_consistent"
+    },
+    {
+     "kind": "theorem",
+     "name": "brAbsent_not_divergent"
+    },
+    {
+     "kind": "theorem",
+     "name": "brConsistent_not_divergent"
+    },
+    {
+     "kind": "theorem",
+     "name": "famBranchOf_eq_consistent_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "famBranchOf_eq_absent_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "famBranchOf_eq_divergent_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "famBranch_partition_and_exclusive"
+    },
+    {
+     "kind": "theorem",
+     "name": "famBranch_fullDocket_all_consistent"
+    },
+    {
+     "kind": "theorem",
+     "name": "famBranch_variant_L01_divergent"
+    },
+    {
+     "kind": "theorem",
+     "name": "rule_horn_mem_general"
+    },
+    {
+     "kind": "theorem",
+     "name": "memByRule_general"
+    },
+    {
+     "kind": "theorem",
+     "name": "rule_fires_of_materials"
+    },
+    {
+     "kind": "theorem",
+     "name": "conclusion_blocked_of_missing_premise"
+    },
+    {
+     "kind": "theorem",
+     "name": "loan_missing_premise_check"
+    },
+    {
+     "kind": "theorem",
+     "name": "admin_missing_premise_check"
+    },
+    {
+     "kind": "theorem",
+     "name": "stay_missing_premise_check"
+    },
+    {
+     "kind": "theorem",
+     "name": "loanEntitlement_fires_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "adminDefects_fires_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "stayForSuccession_fires_iff"
+    },
+    {
+     "kind": "def",
+     "name": "badL01Absent"
+    },
+    {
+     "kind": "theorem",
+     "name": "l01_absent_hblock_check"
+    },
+    {
+     "kind": "theorem",
+     "name": "l01_absent_hdisj"
+    },
+    {
+     "kind": "theorem",
+     "name": "l01_absent_downstream"
+    },
+    {
+     "kind": "theorem",
+     "name": "failureish_model"
+    },
+    {
+     "kind": "theorem",
+     "name": "failureish_not_closure_any"
+    },
+    {
+     "kind": "theorem",
+     "name": "loan_branch_table"
+    },
+    {
+     "kind": "theorem",
+     "name": "admin_branch_table"
+    },
+    {
+     "kind": "theorem",
+     "name": "succession_branch_table"
+    },
+    {
+     "kind": "theorem",
+     "name": "adminFinalDisposition_not_closure_any"
+    },
+    {
+     "kind": "theorem",
+     "name": "overtimeClaimEstablished_not_closure_any"
+    },
+    {
+     "kind": "theorem",
+     "name": "medicalAddedDamageAward_not_closure_any"
+    },
+    {
+     "kind": "theorem",
+     "name": "spousalJointDebt_not_closure_any"
+    },
+    {
+     "kind": "theorem",
+     "name": "ipPunitiveDamages_not_closure_any"
+    },
+    {
+     "kind": "theorem",
+     "name": "fraudConviction_not_closure_any"
+    },
+    {
+     "kind": "theorem",
+     "name": "remoteProfitAward_not_closure_any"
+    },
+    {
+     "kind": "theorem",
+     "name": "corporateVeilPierced_not_closure_any"
+    },
+    {
+     "kind": "theorem",
+     "name": "loanFinalDecree_not_closure_any"
+    },
+    {
+     "kind": "theorem",
+     "name": "dependentClaimFinalDecree_not_closure_any"
+    },
+    {
+     "kind": "theorem",
+     "name": "matInitEnt"
+    },
+    {
+     "kind": "def",
+     "name": "ecoChildC"
+    },
+    {
+     "kind": "def",
+     "name": "ecoCited"
+    },
+    {
+     "kind": "def",
+     "name": "ecoChildM"
+    },
+    {
+     "kind": "def",
+     "name": "ecoProvSet"
+    },
+    {
+     "kind": "theorem",
+     "name": "ecoRemediationCosts_prov"
+    },
+    {
+     "kind": "theorem",
+     "name": "ecoRemediationCosts_ltag"
+    },
+    {
+     "kind": "theorem",
+     "name": "eco_prov_trace"
+    },
+    {
+     "kind": "theorem",
+     "name": "eco_sources_declared"
+    },
+    {
+     "kind": "theorem",
+     "name": "eco_cited_nonempty"
+    },
+    {
+     "kind": "theorem",
+     "name": "eco_prov_steps_named"
+    },
+    {
+     "kind": "theorem",
+     "name": "horn_ltag_consistency"
+    },
+    {
+     "kind": "theorem",
+     "name": "hprovN_lands_on_table_or_fact"
+    },
+    {
+     "kind": "theorem",
+     "name": "eco_leaf_materials_on_file"
+    },
+    {
+     "kind": "theorem",
+     "name": "matEcoCostDocs_mem_ecoProvSet"
+    },
+    {
+     "kind": "theorem",
+     "name": "legal_horn_instantiation_end_to_end"
+    }
+   ],
+   "imports": [
+    "JurisLean.Seams.UnifiedFourteenFamilies",
+    "JurisLean.Seams.UnifiedNeedlesS0S1",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesGap05.lean",
+   "print_axioms_targets": [],
+   "sha256": "2ee14d674ca7a7ae76b188217335ddb3a18e65c95777c9a5af3bedb3bd99bb89",
+   "size_bytes": 72715,
+   "theorem_count": 71,
+   "theorem_count_bol_convention": 71
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "bindKey"
+    },
+    {
+     "kind": "theorem",
+     "name": "snapshot_eq_of_bindKey_eq"
+    },
+    {
+     "kind": "def",
+     "name": "FaceWf"
+    },
+    {
+     "kind": "theorem",
+     "name": "find?_eq_some_of_unique"
+    },
+    {
+     "kind": "theorem",
+     "name": "find?_eq_some_pred"
+    },
+    {
+     "kind": "def",
+     "name": "queryVersion"
+    },
+    {
+     "kind": "theorem",
+     "name": "query_eq_some_iff_face"
+    },
+    {
+     "kind": "theorem",
+     "name": "query_eq_some_iff_face_of_faceWf"
+    },
+    {
+     "kind": "theorem",
+     "name": "query_some_imp_face"
+    },
+    {
+     "kind": "theorem",
+     "name": "faceWf_precedentUpdate"
+    },
+    {
+     "kind": "theorem",
+     "name": "bindKey_fresh_of_EnvWf"
+    },
+    {
+     "kind": "theorem",
+     "name": "query_new_version_readable_after_update"
+    },
+    {
+     "kind": "theorem",
+     "name": "query_old_version_unreadable_after_update"
+    },
+    {
+     "kind": "theorem",
+     "name": "query_observable_change_on_supersession"
+    },
+    {
+     "kind": "def",
+     "name": "backflowReactivate"
+    },
+    {
+     "kind": "def",
+     "name": "explicitBackflow"
+    },
+    {
+     "kind": "theorem",
+     "name": "explicit_backflow_restores_readability"
+    },
+    {
+     "kind": "structure",
+     "name": "RunBinding"
+    },
+    {
+     "kind": "def",
+     "name": "loadDataPlane"
+    },
+    {
+     "kind": "theorem",
+     "name": "binding_resolves_to_face_record"
+    },
+    {
+     "kind": "theorem",
+     "name": "load_plane_consumes_binding"
+    },
+    {
+     "kind": "inductive",
+     "name": "DownstreamVerdict"
+    },
+    {
+     "kind": "def",
+     "name": "downstreamVerdict"
+    },
+    {
+     "kind": "theorem",
+     "name": "adverse_citation_is_loaded_plane"
+    },
+    {
+     "kind": "theorem",
+     "name": "incomplete_derivation_never_adverse"
+    },
+    {
+     "kind": "theorem",
+     "name": "adverse_full_chain"
+    },
+    {
+     "kind": "structure",
+     "name": "Session"
+    },
+    {
+     "kind": "def",
+     "name": "openSession"
+    },
+    {
+     "kind": "theorem",
+     "name": "same_binding_same_plane"
+    },
+    {
+     "kind": "theorem",
+     "name": "read_after_write_same_plane"
+    },
+    {
+     "kind": "structure",
+     "name": "EtaCell"
+    },
+    {
+     "kind": "structure",
+     "name": "SegEntry"
+    },
+    {
+     "kind": "structure",
+     "name": "EtaCert"
+    },
+    {
+     "kind": "def",
+     "name": "segBound"
+    },
+    {
+     "kind": "def",
+     "name": "coversDom"
+    },
+    {
+     "kind": "def",
+     "name": "certPrecheckOk"
+    },
+    {
+     "kind": "def",
+     "name": "etaCertAccepted"
+    },
+    {
+     "kind": "theorem",
+     "name": "etaCert_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "designated_hstab_from_segs"
+    },
+    {
+     "kind": "def",
+     "name": "coordBound"
+    },
+    {
+     "kind": "theorem",
+     "name": "le_coordBound"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_segs_never_cover_whole_space"
+    },
+    {
+     "kind": "structure",
+     "name": "Seg1"
+    },
+    {
+     "kind": "def",
+     "name": "inSeg"
+    },
+    {
+     "kind": "def",
+     "name": "SegsDisjoint"
+    },
+    {
+     "kind": "def",
+     "name": "pwlNet"
+    },
+    {
+     "kind": "def",
+     "name": "mkCellSeg"
+    },
+    {
+     "kind": "theorem",
+     "name": "mkCellSeg_segBound"
+    },
+    {
+     "kind": "def",
+     "name": "buildEtaCert"
+    },
+    {
+     "kind": "theorem",
+     "name": "buildEtaCert_all_segBound"
+    },
+    {
+     "kind": "theorem",
+     "name": "buildEtaCert_precheck"
+    },
+    {
+     "kind": "theorem",
+     "name": "inCell_of_coord_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "buildEtaCert_coversDom"
+    },
+    {
+     "kind": "theorem",
+     "name": "buildEtaCert_accepted"
+    },
+    {
+     "kind": "theorem",
+     "name": "xu_nn_propagation_of_single_cell"
+    },
+    {
+     "kind": "theorem",
+     "name": "xu_ambiguity_nonsingleton_of_cert"
+    },
+    {
+     "kind": "theorem",
+     "name": "xu_admitsRadiusCert_of_segBound"
+    }
+   ],
+   "imports": [
+    "JurisLean.Seams.PrecedentFlow",
+    "JurisLean.Seams.UnifiedNeedlesXU",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesGapLate.lean",
+   "print_axioms_targets": [],
+   "sha256": "41cc8c014b33844dab5f18dd2785e4224e6550abb729022b899cf05934182528",
+   "size_bytes": 44489,
+   "theorem_count": 32,
+   "theorem_count_bol_convention": 32
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
+     "name": "GapSubject"
+    },
+    {
+     "kind": "inductive",
+     "name": "GapFact"
+    },
+    {
+     "kind": "inductive",
+     "name": "GapVersion"
+    },
+    {
+     "kind": "inductive",
+     "name": "GapUse"
+    },
+    {
+     "kind": "inductive",
+     "name": "GapJudg"
+    },
+    {
+     "kind": "def",
+     "name": "isNaturalPerson"
+    },
+    {
+     "kind": "def",
+     "name": "evidencedFact"
+    },
+    {
+     "kind": "def",
+     "name": "ruleInVersion"
+    },
+    {
+     "kind": "def",
+     "name": "followUse"
+    },
+    {
+     "kind": "def",
+     "name": "followJudge"
+    },
+    {
+     "kind": "theorem",
+     "name": "follow_judge_preserved"
+    },
+    {
+     "kind": "def",
+     "name": "analogyA"
+    },
+    {
+     "kind": "def",
+     "name": "analogyB"
+    },
+    {
+     "kind": "theorem",
+     "name": "analogyA_rules_preserved"
+    },
+    {
+     "kind": "theorem",
+     "name": "analogyB_rules_preserved"
+    },
+    {
+     "kind": "theorem",
+     "name": "analogyA_preserves"
+    },
+    {
+     "kind": "theorem",
+     "name": "analogyB_preserves"
+    },
+    {
+     "kind": "theorem",
+     "name": "followJudge_separates"
+    },
+    {
+     "kind": "def",
+     "name": "SubstantiveAnalogy"
+    },
+    {
+     "kind": "theorem",
+     "name": "analogyA_ne_analogyB"
+    },
+    {
+     "kind": "theorem",
+     "name": "analogy_real_maps_substantive"
+    },
+    {
+     "kind": "def",
+     "name": "RowSimplex"
+    },
+    {
+     "kind": "def",
+     "name": "InSimplex"
+    },
+    {
+     "kind": "def",
+     "name": "point"
+    },
+    {
+     "kind": "def",
+     "name": "pureM"
+    },
+    {
+     "kind": "theorem",
+     "name": "point_rowSimplex"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureM_rowSimplex"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureM_inSimplex"
+    },
+    {
+     "kind": "def",
+     "name": "dev"
+    },
+    {
+     "kind": "def",
+     "name": "eu"
+    },
+    {
+     "kind": "theorem",
+     "name": "eu_pureM"
+    },
+    {
+     "kind": "theorem",
+     "name": "update_pureM"
+    },
+    {
+     "kind": "theorem",
+     "name": "sum_point_weight"
+    },
+    {
+     "kind": "theorem",
+     "name": "eu_dev_linear"
+    },
+    {
+     "kind": "def",
+     "name": "IsNash"
+    },
+    {
+     "kind": "def",
+     "name": "IsEpsNash"
+    },
+    {
+     "kind": "theorem",
+     "name": "nash_iff_no_pure_dev_gain"
+    },
+    {
+     "kind": "theorem",
+     "name": "eu_abs_sub_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "payoff_error_yields_two_eta_equilibrium_nplayer"
+    },
+    {
+     "kind": "theorem",
+     "name": "external_equilibrium_reflects_legal_nplayer"
+    },
+    {
+     "kind": "def",
+     "name": "u3"
+    },
+    {
+     "kind": "theorem",
+     "name": "three_player_mixed_nash_instance"
+    },
+    {
+     "kind": "theorem",
+     "name": "three_player_not_nash_counterexample"
+    },
+    {
+     "kind": "inductive",
+     "name": "DebtKind"
+    },
+    {
+     "kind": "def",
+     "name": "statOrder"
+    },
+    {
+     "kind": "structure",
+     "name": "DebtItem"
+    },
+    {
+     "kind": "def",
+     "name": "stepAlloc"
+    },
+    {
+     "kind": "def",
+     "name": "stepRest"
+    },
+    {
+     "kind": "theorem",
+     "name": "stepAlloc_eq_min"
+    },
+    {
+     "kind": "theorem",
+     "name": "stepAlloc_le_amount"
+    },
+    {
+     "kind": "theorem",
+     "name": "stepAlloc_le_r"
+    },
+    {
+     "kind": "theorem",
+     "name": "stepAlloc_eq_amount_of_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "stepAlloc_eq_self_of_lt"
+    },
+    {
+     "kind": "theorem",
+     "name": "stepAlloc_zero"
+    },
+    {
+     "kind": "def",
+     "name": "runPay"
+    },
+    {
+     "kind": "def",
+     "name": "runRes"
+    },
+    {
+     "kind": "inductive",
+     "name": "StatRun"
+    },
+    {
+     "kind": "theorem",
+     "name": "statRun_exists"
+    },
+    {
+     "kind": "theorem",
+     "name": "statRun_unique"
+    },
+    {
+     "kind": "theorem",
+     "name": "statRun_length"
+    },
+    {
+     "kind": "theorem",
+     "name": "discharge_unique"
+    },
+    {
+     "kind": "theorem",
+     "name": "runPay_sum_add_runRes"
+    },
+    {
+     "kind": "theorem",
+     "name": "runRes_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "runRes_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "runPay_zero_all"
+    },
+    {
+     "kind": "def",
+     "name": "Prioritized"
+    },
+    {
+     "kind": "theorem",
+     "name": "runPay_prioritized"
+    },
+    {
+     "kind": "theorem",
+     "name": "prioritized_adjacent"
+    },
+    {
+     "kind": "theorem",
+     "name": "runPay_sum_eq_due"
+    },
+    {
+     "kind": "def",
+     "name": "dischargeItems"
+    },
+    {
+     "kind": "theorem",
+     "name": "dischargeItems_ident"
+    },
+    {
+     "kind": "theorem",
+     "name": "dischargeItems_nonneg"
+    },
+    {
+     "kind": "def",
+     "name": "StatutoryOrdered"
+    },
+    {
+     "kind": "def",
+     "name": "statDebts"
+    },
+    {
+     "kind": "theorem",
+     "name": "statDebts_ordered"
+    },
+    {
+     "kind": "theorem",
+     "name": "statDebts_amounts_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_payment_discharge_exact_q"
+    },
+    {
+     "kind": "theorem",
+     "name": "overpay_separate_account"
+    },
+    {
+     "kind": "theorem",
+     "name": "flow_payment_closed"
+    },
+    {
+     "kind": "theorem",
+     "name": "statDebts_readout"
+    }
+   ],
+   "imports": [
+    "JurisLean.Seams.UnifiedNeedlesS2",
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesGapMid.lean",
+   "print_axioms_targets": [],
+   "sha256": "09a5ce50f44aaa8e94ad653f75f9d0e163754fb1c7bbaee22d751eac4bbdca89",
+   "size_bytes": 41021,
+   "theorem_count": 46,
+   "theorem_count_bol_convention": 46
+  },
+  {
+   "declarations": [
+    {
      "kind": "inductive",
      "name": "IdScope"
     },
@@ -34063,6 +35409,243 @@
   {
    "declarations": [
     {
+     "kind": "structure",
+     "name": "NarrowDomain"
+    },
+    {
+     "kind": "def",
+     "name": "StateOk"
+    },
+    {
+     "kind": "theorem",
+     "name": "strictMonoOn_lt_of_lt"
+    },
+    {
+     "kind": "theorem",
+     "name": "stateOk_quantile_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "narrow_quantile_mem"
+    },
+    {
+     "kind": "inductive",
+     "name": "Dir"
+    },
+    {
+     "kind": "theorem",
+     "name": "dirUpdate_left_fst"
+    },
+    {
+     "kind": "theorem",
+     "name": "dirUpdate_left_snd"
+    },
+    {
+     "kind": "theorem",
+     "name": "dirUpdate_right_fst"
+    },
+    {
+     "kind": "theorem",
+     "name": "dirUpdate_right_snd"
+    },
+    {
+     "kind": "theorem",
+     "name": "dirUpdate_both_fst"
+    },
+    {
+     "kind": "theorem",
+     "name": "dirUpdate_both_snd"
+    },
+    {
+     "kind": "def",
+     "name": "certCertifies"
+    },
+    {
+     "kind": "theorem",
+     "name": "cmpEnc_lt_iff"
+    },
+    {
+     "kind": "def",
+     "name": "certFound"
+    },
+    {
+     "kind": "theorem",
+     "name": "certFound_left_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "certFound_right_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "certFound_both_iff"
+    },
+    {
+     "kind": "def",
+     "name": "encValid"
+    },
+    {
+     "kind": "structure",
+     "name": "RealRefines"
+    },
+    {
+     "kind": "theorem",
+     "name": "refN_widthQ"
+    },
+    {
+     "kind": "theorem",
+     "name": "refN_width_real"
+    },
+    {
+     "kind": "theorem",
+     "name": "refN_keeps"
+    },
+    {
+     "kind": "theorem",
+     "name": "hi_below_eventually"
+    },
+    {
+     "kind": "theorem",
+     "name": "lo_above_eventually"
+    },
+    {
+     "kind": "theorem",
+     "name": "certifies_of_certFound"
+    },
+    {
+     "kind": "theorem",
+     "name": "round_gap_analysis"
+    },
+    {
+     "kind": "theorem",
+     "name": "round_discovery"
+    },
+    {
+     "kind": "theorem",
+     "name": "dirUpdate_invariant"
+    },
+    {
+     "kind": "theorem",
+     "name": "dirUpdate_width"
+    },
+    {
+     "kind": "theorem",
+     "name": "runState_zero"
+    },
+    {
+     "kind": "def",
+     "name": "dirCons"
+    },
+    {
+     "kind": "theorem",
+     "name": "dirCons_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "dirCons_succ"
+    },
+    {
+     "kind": "def",
+     "name": "dirConsN"
+    },
+    {
+     "kind": "theorem",
+     "name": "dirConsN_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "dirConsN_succ"
+    },
+    {
+     "kind": "theorem",
+     "name": "runState_cons"
+    },
+    {
+     "kind": "theorem",
+     "name": "exists_run_from"
+    },
+    {
+     "kind": "theorem",
+     "name": "full_chain"
+    },
+    {
+     "kind": "def",
+     "name": "bern_in_domain"
+    },
+    {
+     "kind": "theorem",
+     "name": "bern_cdfEnc_valid"
+    },
+    {
+     "kind": "theorem",
+     "name": "bern_full_chain"
+    },
+    {
+     "kind": "def",
+     "name": "mixture_in_domain"
+    },
+    {
+     "kind": "theorem",
+     "name": "mixture_full_chain"
+    },
+    {
+     "kind": "theorem",
+     "name": "plateauCdf_continuous"
+    },
+    {
+     "kind": "theorem",
+     "name": "plateauCdf_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "plateauCdf_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "plateauCdf_flat"
+    },
+    {
+     "kind": "theorem",
+     "name": "plateauCdf_not_strictMonoOn"
+    },
+    {
+     "kind": "theorem",
+     "name": "plateau_delta_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "plateau_no_strict_certificate"
+    },
+    {
+     "kind": "theorem",
+     "name": "plateau_quantile_not_unique"
+    },
+    {
+     "kind": "theorem",
+     "name": "plateau_out_of_domain"
+    },
+    {
+     "kind": "theorem",
+     "name": "coarse_update_deletes_quantile"
+    }
+   ],
+   "imports": [
+    "JurisLean.Seams.UnifiedBeta",
+    "JurisLean.Seams.UnifiedBetaDomain",
+    "Mathlib.Tactic",
+    "Mathlib.Topology.Order.IntermediateValue"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantileNarrow.lean",
+   "print_axioms_targets": [],
+   "sha256": "885ce229102ec779f740791833ca19700a91700f345cce79ac67421996753fba",
+   "size_bytes": 44375,
+   "theorem_count": 44,
+   "theorem_count_bol_convention": 40
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "waterfall"
     },
@@ -34628,6 +36211,1411 @@
    "size_bytes": 8577,
    "theorem_count": 8,
    "theorem_count_bol_convention": 8
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "vmax"
+    },
+    {
+     "kind": "theorem",
+     "name": "le_vmax_left"
+    },
+    {
+     "kind": "theorem",
+     "name": "le_vmax_right"
+    },
+    {
+     "kind": "theorem",
+     "name": "vmax_le"
+    },
+    {
+     "kind": "def",
+     "name": "vmin"
+    },
+    {
+     "kind": "theorem",
+     "name": "vmin_le_left"
+    },
+    {
+     "kind": "theorem",
+     "name": "vmin_le_right"
+    },
+    {
+     "kind": "theorem",
+     "name": "le_vmin"
+    },
+    {
+     "kind": "def",
+     "name": "wsum"
+    },
+    {
+     "kind": "def",
+     "name": "paretoB"
+    },
+    {
+     "kind": "theorem",
+     "name": "paretoB_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "wsum_max_is_pareto"
+    },
+    {
+     "kind": "theorem",
+     "name": "wsum_max_passes_paretoB"
+    },
+    {
+     "kind": "theorem",
+     "name": "t116_ir_can_be_empty"
+    },
+    {
+     "kind": "def",
+     "name": "negoU"
+    },
+    {
+     "kind": "def",
+     "name": "negoW"
+    },
+    {
+     "kind": "theorem",
+     "name": "t116_both_argmax"
+    },
+    {
+     "kind": "theorem",
+     "name": "t116_argmax_not_unique"
+    },
+    {
+     "kind": "theorem",
+     "name": "t116_paretoB_readings"
+    },
+    {
+     "kind": "structure",
+     "name": "STree"
+    },
+    {
+     "kind": "def",
+     "name": "evalUnder"
+    },
+    {
+     "kind": "def",
+     "name": "rT"
+    },
+    {
+     "kind": "def",
+     "name": "rF"
+    },
+    {
+     "kind": "def",
+     "name": "twoPeriod"
+    },
+    {
+     "kind": "theorem",
+     "name": "shared_total_identity"
+    },
+    {
+     "kind": "def",
+     "name": "rectVal"
+    },
+    {
+     "kind": "def",
+     "name": "sharedVal"
+    },
+    {
+     "kind": "theorem",
+     "name": "rectVal_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "shared_val_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "rectVal_lt_sharedVal"
+    },
+    {
+     "kind": "theorem",
+     "name": "shared_theta_not_rectangular"
+    },
+    {
+     "kind": "theorem",
+     "name": "robust_intersects"
+    },
+    {
+     "kind": "theorem",
+     "name": "robust_shared_threshold"
+    },
+    {
+     "kind": "theorem",
+     "name": "gross_voi_nonneg"
+    },
+    {
+     "kind": "def",
+     "name": "netVoi"
+    },
+    {
+     "kind": "theorem",
+     "name": "net_voi_can_be_negative"
+    },
+    {
+     "kind": "def",
+     "name": "snell"
+    },
+    {
+     "kind": "def",
+     "name": "stopPayoff"
+    },
+    {
+     "kind": "theorem",
+     "name": "stopPayoff_le_snell"
+    },
+    {
+     "kind": "def",
+     "name": "snellPolicy"
+    },
+    {
+     "kind": "theorem",
+     "name": "snell_policy_achieves"
+    },
+    {
+     "kind": "def",
+     "name": "decVal"
+    },
+    {
+     "kind": "theorem",
+     "name": "decVal_nine"
+    },
+    {
+     "kind": "theorem",
+     "name": "decVal_one_fifth"
+    },
+    {
+     "kind": "theorem",
+     "name": "evidence_value_nonmonotone"
+    },
+    {
+     "kind": "structure",
+     "name": "Act"
+    },
+    {
+     "kind": "def",
+     "name": "causalReading"
+    },
+    {
+     "kind": "def",
+     "name": "liableB"
+    },
+    {
+     "kind": "def",
+     "name": "utilityReading"
+    },
+    {
+     "kind": "def",
+     "name": "selfDefense"
+    },
+    {
+     "kind": "theorem",
+     "name": "projection_separation"
+    },
+    {
+     "kind": "theorem",
+     "name": "projection_functional"
+    },
+    {
+     "kind": "structure",
+     "name": "Action"
+    },
+    {
+     "kind": "def",
+     "name": "eu"
+    },
+    {
+     "kind": "def",
+     "name": "ActionOK"
+    },
+    {
+     "kind": "def",
+     "name": "compliantEus"
+    },
+    {
+     "kind": "def",
+     "name": "listMax"
+    },
+    {
+     "kind": "theorem",
+     "name": "mem_le_listMax"
+    },
+    {
+     "kind": "theorem",
+     "name": "compliance_dominance"
+    },
+    {
+     "kind": "def",
+     "name": "actComply"
+    },
+    {
+     "kind": "def",
+     "name": "actViolate"
+    },
+    {
+     "kind": "def",
+     "name": "strongDeterrence"
+    },
+    {
+     "kind": "theorem",
+     "name": "strong_deterrence_values"
+    },
+    {
+     "kind": "theorem",
+     "name": "strong_deterrence_dominates"
+    },
+    {
+     "kind": "def",
+     "name": "weakViolate"
+    },
+    {
+     "kind": "def",
+     "name": "weakDeterrence"
+    },
+    {
+     "kind": "theorem",
+     "name": "deterrence_can_fail"
+    },
+    {
+     "kind": "def",
+     "name": "obsGet"
+    },
+    {
+     "kind": "structure",
+     "name": "Ev"
+    },
+    {
+     "kind": "def",
+     "name": "applyObs"
+    },
+    {
+     "kind": "structure",
+     "name": "Rule"
+    },
+    {
+     "kind": "def",
+     "name": "ruleEval"
+    },
+    {
+     "kind": "theorem",
+     "name": "event_changes_observation"
+    },
+    {
+     "kind": "theorem",
+     "name": "backflow_chain_general"
+    },
+    {
+     "kind": "def",
+     "name": "bfObs"
+    },
+    {
+     "kind": "def",
+     "name": "bfEv"
+    },
+    {
+     "kind": "def",
+     "name": "bfRule"
+    },
+    {
+     "kind": "theorem",
+     "name": "backflow_chain_witness"
+    },
+    {
+     "kind": "def",
+     "name": "ruleAfter"
+    },
+    {
+     "kind": "theorem",
+     "name": "unauthorized_keeps_rule"
+    },
+    {
+     "kind": "theorem",
+     "name": "same_obs_same_eval"
+    },
+    {
+     "kind": "theorem",
+     "name": "unauthorized_no_flip"
+    },
+    {
+     "kind": "theorem",
+     "name": "w4_behavior_flagship"
+    }
+   ],
+   "imports": [
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Behavior.lean",
+   "print_axioms_targets": [],
+   "sha256": "6aceae45de8312c56f73916f0111a5ae35349714410262239b7aa2e29924199f",
+   "size_bytes": 39113,
+   "theorem_count": 41,
+   "theorem_count_bol_convention": 41
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "RepRecord"
+    },
+    {
+     "kind": "def",
+     "name": "recordOf"
+    },
+    {
+     "kind": "def",
+     "name": "recordRule"
+    },
+    {
+     "kind": "def",
+     "name": "recordAdoptableB"
+    },
+    {
+     "kind": "theorem",
+     "name": "record_rule_faithful"
+    },
+    {
+     "kind": "theorem",
+     "name": "record_adoptable_matches"
+    },
+    {
+     "kind": "def",
+     "name": "repLog"
+    },
+    {
+     "kind": "def",
+     "name": "repReadings"
+    },
+    {
+     "kind": "theorem",
+     "name": "rep_readings_match_rule_base"
+    },
+    {
+     "kind": "theorem",
+     "name": "rep_log_only_adoptable"
+    },
+    {
+     "kind": "theorem",
+     "name": "rep_log_rule_is_preimage"
+    },
+    {
+     "kind": "theorem",
+     "name": "rep_log_omits_unadoptable"
+    },
+    {
+     "kind": "def",
+     "name": "repOkB"
+    },
+    {
+     "kind": "theorem",
+     "name": "rep_gate_rejects_drift"
+    },
+    {
+     "kind": "def",
+     "name": "unauthCand"
+    },
+    {
+     "kind": "theorem",
+     "name": "unauthCand_not_adoptable"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_unadopted_not_readable"
+    },
+    {
+     "kind": "structure",
+     "name": "ReflowEvent"
+    },
+    {
+     "kind": "structure",
+     "name": "ReflowWindow"
+    },
+    {
+     "kind": "def",
+     "name": "authorityOkB"
+    },
+    {
+     "kind": "def",
+     "name": "inWindowB"
+    },
+    {
+     "kind": "def",
+     "name": "reflowOkB"
+    },
+    {
+     "kind": "theorem",
+     "name": "reflow_rejects_unauthorized"
+    },
+    {
+     "kind": "theorem",
+     "name": "reflow_rejects_out_of_window"
+    },
+    {
+     "kind": "theorem",
+     "name": "reflow_accepts_authorized_in_window"
+    },
+    {
+     "kind": "def",
+     "name": "applyReflow"
+    },
+    {
+     "kind": "theorem",
+     "name": "reflow_rejected_keeps_log"
+    },
+    {
+     "kind": "theorem",
+     "name": "reflow_accepted_appends"
+    },
+    {
+     "kind": "theorem",
+     "name": "t124_interp_consistency"
+    },
+    {
+     "kind": "def",
+     "name": "devMinList"
+    },
+    {
+     "kind": "def",
+     "name": "devMaxList"
+    },
+    {
+     "kind": "theorem",
+     "name": "devMinList_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "devMinList_le_of_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "devMaxList_ge_of_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "devMaxList_le_of_forall"
+    },
+    {
+     "kind": "theorem",
+     "name": "devMinList_nonneg"
+    },
+    {
+     "kind": "def",
+     "name": "devOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "devOf_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "devOf_le_of_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "devOf_attained"
+    },
+    {
+     "kind": "theorem",
+     "name": "dev_triangle"
+    },
+    {
+     "kind": "theorem",
+     "name": "devOf_le_add_devOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "devOf_lipschitz"
+    },
+    {
+     "kind": "def",
+     "name": "dHaus"
+    },
+    {
+     "kind": "theorem",
+     "name": "dHaus_symm"
+    },
+    {
+     "kind": "theorem",
+     "name": "dev_set_change_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "hausdorff_shift_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_hausdorff_shift_half"
+    },
+    {
+     "kind": "inductive",
+     "name": "RefKind"
+    },
+    {
+     "kind": "structure",
+     "name": "ThreeRefs"
+    },
+    {
+     "kind": "structure",
+     "name": "Comparability"
+    },
+    {
+     "kind": "def",
+     "name": "comparableB"
+    },
+    {
+     "kind": "def",
+     "name": "devReadingOkB"
+    },
+    {
+     "kind": "theorem",
+     "name": "devReadingOkB_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "empty_ref_no_baseline"
+    },
+    {
+     "kind": "def",
+     "name": "refAdmitB"
+    },
+    {
+     "kind": "theorem",
+     "name": "incomparable_refs_rejected"
+    },
+    {
+     "kind": "theorem",
+     "name": "comparable_refs_admitted"
+    },
+    {
+     "kind": "theorem",
+     "name": "t125_three_ref_deviation"
+    },
+    {
+     "kind": "structure",
+     "name": "StratObs"
+    },
+    {
+     "kind": "def",
+     "name": "obsTotal"
+    },
+    {
+     "kind": "def",
+     "name": "obsOkB"
+    },
+    {
+     "kind": "def",
+     "name": "propensity"
+    },
+    {
+     "kind": "theorem",
+     "name": "propensity_unit_interval"
+    },
+    {
+     "kind": "structure",
+     "name": "StratTable"
+    },
+    {
+     "kind": "def",
+     "name": "buildStratTable"
+    },
+    {
+     "kind": "theorem",
+     "name": "strat_table_reads_obs_only"
+    },
+    {
+     "kind": "theorem",
+     "name": "strat_layer_in_table"
+    },
+    {
+     "kind": "structure",
+     "name": "PriorTable"
+    },
+    {
+     "kind": "def",
+     "name": "posteriorMean"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_prior_not_double_used"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_mixed_in_detectable"
+    },
+    {
+     "kind": "structure",
+     "name": "PropensityAssumptions"
+    },
+    {
+     "kind": "def",
+     "name": "assumptionsNamed"
+    },
+    {
+     "kind": "def",
+     "name": "comparisonGateB"
+    },
+    {
+     "kind": "theorem",
+     "name": "comparisonGateB_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "comparison_requires_named_assumptions"
+    },
+    {
+     "kind": "theorem",
+     "name": "comparison_accepts_named_assumptions"
+    },
+    {
+     "kind": "inductive",
+     "name": "StratUse"
+    },
+    {
+     "kind": "theorem",
+     "name": "strat_use_exhaustive"
+    },
+    {
+     "kind": "theorem",
+     "name": "t126_stratified_propensity"
+    },
+    {
+     "kind": "inductive",
+     "name": "DevKind"
+    },
+    {
+     "kind": "structure",
+     "name": "DevSource"
+    },
+    {
+     "kind": "theorem",
+     "name": "dev_kind_exhaustive"
+    },
+    {
+     "kind": "structure",
+     "name": "Uncert"
+    },
+    {
+     "kind": "def",
+     "name": "uncertWFB"
+    },
+    {
+     "kind": "structure",
+     "name": "DeviationReport"
+    },
+    {
+     "kind": "def",
+     "name": "mkReport"
+    },
+    {
+     "kind": "theorem",
+     "name": "report_faithful_projection"
+    },
+    {
+     "kind": "theorem",
+     "name": "report_preserves_sources"
+    },
+    {
+     "kind": "theorem",
+     "name": "report_preserves_interval"
+    },
+    {
+     "kind": "theorem",
+     "name": "report_preserves_status"
+    },
+    {
+     "kind": "def",
+     "name": "reportOkB"
+    },
+    {
+     "kind": "theorem",
+     "name": "report_gate_rejects_drift"
+    },
+    {
+     "kind": "def",
+     "name": "coverageOkB"
+    },
+    {
+     "kind": "theorem",
+     "name": "report_gate_rejects_unnamed_source"
+    },
+    {
+     "kind": "theorem",
+     "name": "report_gate_accepts_full_coverage"
+    },
+    {
+     "kind": "theorem",
+     "name": "t127_deviation_report_complete"
+    },
+    {
+     "kind": "def",
+     "name": "flagshipReport"
+    },
+    {
+     "kind": "theorem",
+     "name": "w4_deviation_flagship"
+    }
+   ],
+   "imports": [
+    "JurisLean.Seams.UnifiedW4Interp",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Deviation.lean",
+   "print_axioms_targets": [],
+   "sha256": "95dc277a0de889092738894ba723a32a099656a280d5bed3edbe9b9e5302a5b0",
+   "size_bytes": 45858,
+   "theorem_count": 55,
+   "theorem_count_bol_convention": 55
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
+     "name": "PenaltyKind"
+    },
+    {
+     "kind": "theorem",
+     "name": "penalty_exhaust"
+    },
+    {
+     "kind": "theorem",
+     "name": "penalty_pairwise_ne"
+    },
+    {
+     "kind": "structure",
+     "name": "NormDomain"
+    },
+    {
+     "kind": "def",
+     "name": "penaltyInDomainB"
+    },
+    {
+     "kind": "theorem",
+     "name": "penaltyInDomainB_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "penaltyInDomainB_fixed_of_le"
+    },
+    {
+     "kind": "def",
+     "name": "clipTo"
+    },
+    {
+     "kind": "theorem",
+     "name": "clip_in_domain"
+    },
+    {
+     "kind": "theorem",
+     "name": "clip_fix_in_domain"
+    },
+    {
+     "kind": "structure",
+     "name": "EmpPrediction"
+    },
+    {
+     "kind": "theorem",
+     "name": "dual_line_stays_normative"
+    },
+    {
+     "kind": "theorem",
+     "name": "empirical_outside_needs_clip"
+    },
+    {
+     "kind": "inductive",
+     "name": "LineKind"
+    },
+    {
+     "kind": "structure",
+     "name": "SentCert"
+    },
+    {
+     "kind": "def",
+     "name": "composeGateB"
+    },
+    {
+     "kind": "theorem",
+     "name": "composeGateB_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "composeGateB_rejects_foreign_facts"
+    },
+    {
+     "kind": "def",
+     "name": "certRespDemo"
+    },
+    {
+     "kind": "def",
+     "name": "certPrevDemo"
+    },
+    {
+     "kind": "def",
+     "name": "certPrevForeignDemo"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_same_source_passes"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_foreign_facts_rejected"
+    },
+    {
+     "kind": "def",
+     "name": "normDomainDemo"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_prevention_clipped"
+    },
+    {
+     "kind": "def",
+     "name": "empHighDemo"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_empirical_outside_needs_clip"
+    },
+    {
+     "kind": "structure",
+     "name": "BargainParams"
+    },
+    {
+     "kind": "def",
+     "name": "accR1"
+    },
+    {
+     "kind": "def",
+     "name": "r1Pay"
+    },
+    {
+     "kind": "def",
+     "name": "b1Choice"
+    },
+    {
+     "kind": "def",
+     "name": "biR1"
+    },
+    {
+     "kind": "def",
+     "name": "accR0"
+    },
+    {
+     "kind": "def",
+     "name": "r0Pay"
+    },
+    {
+     "kind": "def",
+     "name": "a0Choice"
+    },
+    {
+     "kind": "def",
+     "name": "biOutcome"
+    },
+    {
+     "kind": "theorem",
+     "name": "accR1_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "accR1_false_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "accR0_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "accR0_false_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "b1Choice_menu"
+    },
+    {
+     "kind": "theorem",
+     "name": "a0Choice_menu"
+    },
+    {
+     "kind": "theorem",
+     "name": "b1Choice_val"
+    },
+    {
+     "kind": "theorem",
+     "name": "a0Choice_val"
+    },
+    {
+     "kind": "theorem",
+     "name": "b1_best_response"
+    },
+    {
+     "kind": "theorem",
+     "name": "a0_best_response"
+    },
+    {
+     "kind": "theorem",
+     "name": "biOutcome_accept"
+    },
+    {
+     "kind": "theorem",
+     "name": "bi_one_step_no_gain"
+    },
+    {
+     "kind": "theorem",
+     "name": "bi_outcome_unique"
+    },
+    {
+     "kind": "def",
+     "name": "bParamsDemo"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_bargain_bi"
+    },
+    {
+     "kind": "inductive",
+     "name": "SigType"
+    },
+    {
+     "kind": "structure",
+     "name": "Belief"
+    },
+    {
+     "kind": "structure",
+     "name": "SigGame"
+    },
+    {
+     "kind": "theorem",
+     "name": "consistentB_on_path_pins"
+    },
+    {
+     "kind": "def",
+     "name": "euR"
+    },
+    {
+     "kind": "def",
+     "name": "senderPay"
+    },
+    {
+     "kind": "def",
+     "name": "seqEqCheckB"
+    },
+    {
+     "kind": "theorem",
+     "name": "seqEqCheckB_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "receiver_all_continuation_no_gain"
+    },
+    {
+     "kind": "theorem",
+     "name": "sender_all_continuation_no_gain"
+    },
+    {
+     "kind": "def",
+     "name": "demoGame"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_pooling_seq_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_inconsistent_mu_rejected"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_offpath_unnormalized_rejected"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_receiver_mixed_no_gain"
+    },
+    {
+     "kind": "def",
+     "name": "truncSum"
+    },
+    {
+     "kind": "theorem",
+     "name": "truncSum_congr"
+    },
+    {
+     "kind": "theorem",
+     "name": "truncSum_succ"
+    },
+    {
+     "kind": "theorem",
+     "name": "geom_partial"
+    },
+    {
+     "kind": "theorem",
+     "name": "tail_bound_mul"
+    },
+    {
+     "kind": "theorem",
+     "name": "tail_bound"
+    },
+    {
+     "kind": "structure",
+     "name": "DiscountVal"
+    },
+    {
+     "kind": "theorem",
+     "name": "val_telescoping"
+    },
+    {
+     "kind": "theorem",
+     "name": "val_tail_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "one_dev_principle"
+    },
+    {
+     "kind": "theorem",
+     "name": "coop_threshold_iff"
+    },
+    {
+     "kind": "def",
+     "name": "punishPermitted"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_threshold_directions"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_tail_bound_instance"
+    },
+    {
+     "kind": "def",
+     "name": "permittedFull"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_punish_credible"
+    },
+    {
+     "kind": "theorem",
+     "name": "w4_games_flagship"
+    }
+   ],
+   "imports": [
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Games.lean",
+   "print_axioms_targets": [],
+   "sha256": "a08ea8ee24bcf91deffce03494bc3d6268fc9a57866037782405e445ac4cb758",
+   "size_bytes": 60606,
+   "theorem_count": 49,
+   "theorem_count_bol_convention": 49
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
+     "name": "InterpMethod"
+    },
+    {
+     "kind": "inductive",
+     "name": "InterpEffect"
+    },
+    {
+     "kind": "structure",
+     "name": "RuleAst"
+    },
+    {
+     "kind": "structure",
+     "name": "InterpInput"
+    },
+    {
+     "kind": "structure",
+     "name": "InterpCandidate"
+    },
+    {
+     "kind": "def",
+     "name": "mkLiteral"
+    },
+    {
+     "kind": "def",
+     "name": "mkSystematic"
+    },
+    {
+     "kind": "def",
+     "name": "mkTeleological"
+    },
+    {
+     "kind": "def",
+     "name": "mkHistorical"
+    },
+    {
+     "kind": "def",
+     "name": "mkConstitutional"
+    },
+    {
+     "kind": "theorem",
+     "name": "five_methods_exhaust"
+    },
+    {
+     "kind": "theorem",
+     "name": "five_methods_pairwise_ne"
+    },
+    {
+     "kind": "theorem",
+     "name": "literal_legal"
+    },
+    {
+     "kind": "theorem",
+     "name": "systematic_legal"
+    },
+    {
+     "kind": "theorem",
+     "name": "teleological_legal"
+    },
+    {
+     "kind": "theorem",
+     "name": "historical_legal"
+    },
+    {
+     "kind": "theorem",
+     "name": "constitutional_legal"
+    },
+    {
+     "kind": "def",
+     "name": "adoptableB"
+    },
+    {
+     "kind": "theorem",
+     "name": "adoptableB_iff"
+    },
+    {
+     "kind": "def",
+     "name": "ruleBase"
+    },
+    {
+     "kind": "theorem",
+     "name": "rule_base_only_adoptable"
+    },
+    {
+     "kind": "theorem",
+     "name": "rule_base_omits_unadoptable"
+    },
+    {
+     "kind": "def",
+     "name": "unauthLiteral"
+    },
+    {
+     "kind": "theorem",
+     "name": "unauth_not_adoptable"
+    },
+    {
+     "kind": "theorem",
+     "name": "unauth_rule_not_in_base"
+    },
+    {
+     "kind": "theorem",
+     "name": "method_use_not_proof_of_correctness"
+    },
+    {
+     "kind": "theorem",
+     "name": "adoption_adds_only_rule"
+    },
+    {
+     "kind": "structure",
+     "name": "InterpBranch"
+    },
+    {
+     "kind": "def",
+     "name": "ConflictOn"
+    },
+    {
+     "kind": "def",
+     "name": "InterpAttack"
+    },
+    {
+     "kind": "def",
+     "name": "BranchCompatible"
+    },
+    {
+     "kind": "theorem",
+     "name": "interpAttack_symmetric"
+    },
+    {
+     "kind": "theorem",
+     "name": "branchCompatible_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "branchCompatible_symmetric"
+    },
+    {
+     "kind": "structure",
+     "name": "PriorityPair"
+    },
+    {
+     "kind": "def",
+     "name": "HasPriority"
+    },
+    {
+     "kind": "def",
+     "name": "hasPriorityB"
+    },
+    {
+     "kind": "theorem",
+     "name": "hasPriorityB_iff"
+    },
+    {
+     "kind": "def",
+     "name": "PriorityWF"
+    },
+    {
+     "kind": "theorem",
+     "name": "priority_wf_targets_conflict"
+    },
+    {
+     "kind": "def",
+     "name": "resolvedByPriority"
+    },
+    {
+     "kind": "theorem",
+     "name": "resolved_subset_of_pool"
+    },
+    {
+     "kind": "theorem",
+     "name": "resolved_omits_inferior"
+    },
+    {
+     "kind": "theorem",
+     "name": "resolved_keeps_unopposed"
+    },
+    {
+     "kind": "def",
+     "name": "candX"
+    },
+    {
+     "kind": "def",
+     "name": "candY"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_superior_adopted"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_no_priority_keeps_both"
+    },
+    {
+     "kind": "def",
+     "name": "branchPremisesOf"
+    },
+    {
+     "kind": "def",
+     "name": "branchOf"
+    },
+    {
+     "kind": "def",
+     "name": "branchEach"
+    },
+    {
+     "kind": "theorem",
+     "name": "branchEach_count"
+    },
+    {
+     "kind": "def",
+     "name": "branchX"
+    },
+    {
+     "kind": "def",
+     "name": "branchY"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_two_branches_kept"
+    },
+    {
+     "kind": "structure",
+     "name": "BranchDerivation"
+    },
+    {
+     "kind": "def",
+     "name": "DisjointPremises"
+    },
+    {
+     "kind": "def",
+     "name": "DerivationWF"
+    },
+    {
+     "kind": "def",
+     "name": "derivationOk"
+    },
+    {
+     "kind": "theorem",
+     "name": "derivationOk_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "derivation_wf_accepts"
+    },
+    {
+     "kind": "theorem",
+     "name": "rejects_foreign_premise"
+    },
+    {
+     "kind": "theorem",
+     "name": "branch_isolation"
+    },
+    {
+     "kind": "theorem",
+     "name": "cross_citation_not_wf"
+    },
+    {
+     "kind": "def",
+     "name": "crossDeriv"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_disjoint"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_conflict"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_attack_both_ways"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_own_accepted"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_cross_rejected"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_cross_not_wf"
+    }
+   ],
+   "imports": [
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Interp.lean",
+   "print_axioms_targets": [],
+   "sha256": "41f2765758cc97da5dbb426a1abfd84d6d82373d16e2b3ea45778708e61d9caf",
+   "size_bytes": 32267,
+   "theorem_count": 37,
+   "theorem_count_bol_convention": 37
   },
   {
    "declarations": [
@@ -38234,6 +41222,9 @@
     "JurisLean.Seams.UnifiedHornIT",
     "JurisLean.Seams.UnifiedInstance",
     "JurisLean.Seams.UnifiedLegacy",
+    "JurisLean.Seams.UnifiedNeedlesGap05",
+    "JurisLean.Seams.UnifiedNeedlesGapLate",
+    "JurisLean.Seams.UnifiedNeedlesGapMid",
     "JurisLean.Seams.UnifiedNeedlesS0S1",
     "JurisLean.Seams.UnifiedNeedlesS2",
     "JurisLean.Seams.UnifiedNeedlesS3a",
@@ -38246,11 +41237,16 @@
     "JurisLean.Seams.UnifiedNeedlesXU",
     "JurisLean.Seams.UnifiedNormFlow",
     "JurisLean.Seams.UnifiedPerformance",
+    "JurisLean.Seams.UnifiedQuantileNarrow",
     "JurisLean.Seams.UnifiedQuantities",
     "JurisLean.Seams.UnifiedSemantics",
     "JurisLean.Seams.UnifiedSummary",
     "JurisLean.Seams.UnifiedTrajectory",
     "JurisLean.Seams.UnifiedUtility",
+    "JurisLean.Seams.UnifiedW4Behavior",
+    "JurisLean.Seams.UnifiedW4Deviation",
+    "JurisLean.Seams.UnifiedW4Games",
+    "JurisLean.Seams.UnifiedW4Interp",
     "JurisLean.SolverRouting",
     "JurisLean.SourceBundleSpec",
     "JurisLean.SourcePathSpec",
@@ -38285,8 +41281,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "589c97eb4fcd3d7eac51432a970936d4a4bac6410f9d4871afcea99823015a41",
-   "size_bytes": 10269,
+   "sha256": "86c2688ca50054cda23c2021b1ef99b66c2eeb4be0adb4dbab305ea96039e3ed",
+   "size_bytes": 10606,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -38450,22 +41446,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 4364,
-   "file_count": 353,
+   "counted_declaration_count": 4739,
+   "file_count": 361,
    "lemma_count": 141,
-   "print_axioms_command_count": 3246,
-   "print_axioms_distinct_targets": 3192,
-   "theorem_count": 4223,
-   "theorem_count_bol_convention": 4127
+   "print_axioms_command_count": 3621,
+   "print_axioms_distinct_targets": 3567,
+   "theorem_count": 4598,
+   "theorem_count_bol_convention": 4498
   },
   "juris_lean_package": {
-   "counted_declaration_count": 4345,
-   "file_count": 338,
+   "counted_declaration_count": 4720,
+   "file_count": 346,
    "lemma_count": 134,
-   "print_axioms_command_count": 3246,
-   "print_axioms_distinct_targets": 3192,
-   "theorem_count": 4211,
-   "theorem_count_bol_convention": 4115
+   "print_axioms_command_count": 3621,
+   "print_axioms_distinct_targets": 3567,
+   "theorem_count": 4586,
+   "theorem_count_bol_convention": 4486
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -38768,6 +41764,9 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedHornIT.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedLegacy.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesGap05.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesGapLate.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesGapMid.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesS0S1.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesS2.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesS3a.lean",
@@ -38780,11 +41779,16 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesXU.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNormFlow.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedPerformance.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantileNarrow.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantities.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSummary.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedTrajectory.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedUtility.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Behavior.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Deviation.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Games.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Interp.lean",
    "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
    "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
    "proofs/lean/juris_lean/JurisLean/SourcePathSpec.lean",
@@ -39119,6 +42123,9 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedHornIT.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedInstance.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedLegacy.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesGap05.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesGapLate.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesGapMid.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesS0S1.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesS2.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesS3a.lean",
@@ -39131,11 +42138,16 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesXU.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNormFlow.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedPerformance.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantileNarrow.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantities.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSummary.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedTrajectory.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedUtility.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Behavior.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Deviation.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Games.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Interp.lean",
    "proofs/lean/juris_lean/JurisLean/SolverRouting.lean",
    "proofs/lean/juris_lean/JurisLean/SourceBundleSpec.lean",
    "proofs/lean/juris_lean/JurisLean/SourcePathSpec.lean",
@@ -39213,19 +42225,28 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "2933b40918acf7a3af2641d3695e0bc5e25bd0092fb554acf7cbcc4a3c7107b5",
+ "source_inventory_digest": "fe26e098b47b29b8393607d1d8b62a27da91de245879046cd6a2eb144d392713",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "d6dcaa09f7558ce9a53e64afd4530bf65bae6219",
-  "tree": "5f95dacae0fce7b043bcd2eb80537f9ddbb428cd"
+  "commit": "276ec7d3f7d03340f24ae3b76829860454d525f6",
+  "tree": "75306c1d0a0cf707665a36d0c8e96de4456379d6"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
-  "files_total": 353,
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Games.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
+  "files_total": 361,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

@@ -11967,8 +11967,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean",
    "print_axioms_targets": [],
-   "sha256": "342d1c521fa607068781cdc8b42611b0c347c08c57efda0b4acbd4affcd43c25",
-   "size_bytes": 37381,
+   "sha256": "a59bbece3ba69d8e863ac16b434f7ab9ec5c22ff886a88a7396e72e3a6b9c854",
+   "size_bytes": 43647,
    "theorem_count": 217,
    "theorem_count_bol_convention": 217
   },
@@ -14112,6 +14112,22 @@
     },
     {
      "kind": "def",
+     "name": "penTotal"
+    },
+    {
+     "kind": "def",
+     "name": "readBack"
+    },
+    {
+     "kind": "def",
+     "name": "crimOK"
+    },
+    {
+     "kind": "def",
+     "name": "countOnce"
+    },
+    {
+     "kind": "def",
      "name": "demand_D037"
     },
     {
@@ -14145,6 +14161,10 @@
     {
      "kind": "def",
      "name": "demand_D045"
+    },
+    {
+     "kind": "def",
+     "name": "hearsayResolve"
     },
     {
      "kind": "def",
@@ -14555,8 +14575,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
    "print_axioms_targets": [],
-   "sha256": "b2c16d1d5e63a9d8ad58182e7e86692e9747c2b8d158c4f031394a4b5725f778",
-   "size_bytes": 72924,
+   "sha256": "4cbc772ef61907c13518c8023e3d30925ae1e81085978dbdbe6685eee4dc8a48",
+   "size_bytes": 84949,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -42225,12 +42245,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "01b89b1d96b3ac09a0a327b0ee8b2eeea771b9f2a5e20d96f31776d61a8875df",
+ "source_inventory_digest": "f54689c16e03679c03606df546f6d0ef18ce2779453adb8e7910ae1cb7231384",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "546888c7b54e7e7322f2b498cf19abf44e1e2e0a",
-  "tree": "bcda8024d00075ed8f765164e46f62bb091fe1fe"
+  "commit": "ff0f896d97d3a7081cbb5ad54a14b1812915feb7",
+  "tree": "0ebdd99f69ea4dbe4db58c4e44d775dcf26301a8"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

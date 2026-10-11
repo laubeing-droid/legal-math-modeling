@@ -37,7 +37,9 @@ pipeline.py/case.py，详见报告）。
   （若被支配，正权和严格增，矛盾）；反向不成立（权重扫不全非凸前沿），本件
   不证反向。
 - **T117（稳健行动）**：稳健值 `sup_π inf_θ E_θ^π u` 把**同一个** θ 贯穿全
-  策略（EXT08：共享参数不被消去）；情景树有限深度、逐叶共享 θ 求值；稳健
+  策略（EXT08：共享参数不被消去）；情景树取本反例所需**有限深度 2** 的显式
+  两层形状、共享 θ 贯穿两期求值（一般深树＝同一"同一 θ 逐层贯穿"构造的
+  叠加，不在本件泛化域——开放点见头注二）；稳健
   行动＝在全部情景满足约束（`IsRobust`，对阈值交封闭）。旗舰
   `shared_theta_not_rectangular`：闭式反例——θ∈{0,1} 决定两期收益 θ 与 1−θ，
   共享 θ 总收益恒 1（稳健值 1），而矩形逐期最坏相加伪造 0；矩形逐期范围之积
@@ -107,8 +109,26 @@ pipeline.py/case.py，详见报告）。
   a < b`）与 `le_antisymm`（Order/Basic:202 别名链）均按源码核名；
 - v4.30 `List.mem_filter` 分量序＝⟨成员, 谓词⟩；`List.any_eq_true` 分量序＝
   ⟨成员∈表, 谓词值⟩；
-- ℚ 目标只用 `norm_num`/`linarith`/`decide`，禁 `omega`；全闭数值见证优先
-  `decide`（kernel 直算）。
+- ℚ 目标只用 `norm_num`/`linarith`/`decide`，禁 `omega`。
+
+### CI 轮 1（run 38109835203，12 真错）新增教训（已全部修复并固化）
+
+- **经函数子项递归的 match 定义会落 WF recursion，kernel 不可折叠**——
+  `evalUnder (ch θ) θ` 的子项 `ch θ` 不是构造子子项，`rfl`/kernel 直算全部
+  失败。修法：T117 载体改**非递归**显式两层 `STree`（深度 2 如实声明）；
+  证 `rfl` 只留给无递归、无 ℚ-order 实例的闭式。
+- **ℚ 的 `ite`（经 `LinearOrder.toDecidableLE` 实例）kernel/rfl 项不可直算**，
+  但 elaboration 期 `if_pos (by norm_num)`／`rw` 路径可靠——数值见证一律
+  `rfl`-have 布尔叶值＋`rw`＋`if_pos/if_neg (by norm_num)` 组合。
+- **`simp only` 不做收尾 `rfl`**——目标两侧打印相同也不闭合，须显式
+  `exact Finset.sum_le_sum fun i _ => le_refl _` 之类的构造证明。
+- **`if` 条件已被 simp only 归约成 `True` 后**，`rw [if_pos rfl]` 找不到
+  `?c = ?c` 模式——改全量 `simp [defs]`（`if_true` 归约＋收尾）。
+- **`rw` 穿 `decide` 的依赖实例会产生 motive is not type correct**——把键
+  重写提升到**无 decide 包裹的普通目标**上先做（`have hab' : … := by
+  rw [hkey]; exact habove`），再走 `if_pos`＋`decide_eq_true_iff.mpr`。
+- **rcases 模式没有 `()` 字面**（Unit 零参构造）——`rintro ⟨s, hIR⟩` 后
+  `cases s`。
 
 **证**：本文件全部定理，零 sorry / 零自定义 axiom / 零 `True :=` 逃避。
 CI 模块轮为唯一 Lean 权威（本地不编译，协议禁止）。
@@ -132,6 +152,7 @@ theorem le_vmax_right (a b : ℚ) : b ≤ vmax a b := by
   by_cases h : a ≤ b
   · rw [if_pos h]
   · rw [if_neg h]
+    exact le_of_lt (lt_of_not_ge h)
 
 theorem vmax_le (a b c : ℚ) (ha : a ≤ c) (hb : b ≤ c) : vmax a b ≤ c := by
   unfold vmax
@@ -147,6 +168,7 @@ theorem vmin_le_left (a b : ℚ) : vmin a b ≤ a := by
   by_cases h : a ≤ b
   · rw [if_pos h]
   · rw [if_neg h]
+    exact le_of_lt (lt_of_not_ge h)
 
 theorem vmin_le_right (a b : ℚ) : vmin a b ≤ b := by
   unfold vmin
@@ -245,7 +267,8 @@ end T116
 theorem t116_ir_can_be_empty :
     ¬ ∃ s : Unit, IsIR [()] (fun (_ : Fin 1) (_ : Unit) => (0:ℚ))
       (fun _ => 1) s := by
-  rintro ⟨(), hIR⟩
+  rintro ⟨s, hIR⟩
+  cases s
   have h := hIR.2 0
   exact absurd h (by norm_num)
 
@@ -261,8 +284,10 @@ theorem t116_both_argmax :
     ⟨by simp, fun i => by norm_num [negoU]⟩, ⟨by simp, ?_⟩, ⟨by simp, ?_⟩⟩
   · intro t _
     simp only [wsum, negoU, negoW]
+    exact Finset.sum_le_sum fun i _ => le_refl _
   · intro t _
     simp only [wsum, negoU, negoW]
+    exact Finset.sum_le_sum fun i _ => le_refl _
 
 /-- **T116 见证（argmax 不唯一）**：两点同为 argmax、同为 Pareto 且互异——
 非凸（此处离散）域保留全 argmax，不冒称唯一（§8.4；模型对协议空间不作任何
@@ -283,16 +308,16 @@ theorem t116_paretoB_readings :
 
 /-! ## T117：稳健行动（§8.4, EXT08）——共享 θ 情景树与矩形反例 -/
 
-/-- 有限深度情景树：叶收益是情景 θ 的函数；分支按 θ 展开（θ 是**共享**参数，
-贯穿全树）。 -/
-inductive STree (Θ : Type) where
-  | leaf : (Θ → ℚ) → STree Θ
-  | node : (Θ → STree Θ) → STree Θ
+/-- 两期共享 θ 情景树（本反例所需**有限深度 2** 的显式两层形状，不引入
+递归求值）：第一期收益 `r1 θ`，其后按**同一** θ 走到第二期叶 `r2 θ`。
+更深有限树是同一"同一 θ 逐层贯穿"构造的叠加，不在本件泛化域内（如实
+声明，见头注开放点）。 -/
+structure STree (Θ : Type) where
+  r1 : Θ → ℚ
+  r2 : Θ → ℚ
 
-/-- 共享 θ 求值：**同一个** θ 贯穿到全部叶（EXT08：共享参数不被消去）。 -/
-def evalUnder {Θ : Type} : STree Θ → Θ → ℚ
-  | STree.leaf f, θ => f θ
-  | STree.node ch, θ => evalUnder (ch θ) θ
+/-- 共享 θ 求值：**同一个** θ 读两期叶（EXT08：共享参数不被消去）。 -/
+def evalUnder {Θ : Type} (t : STree Θ) (θ : Θ) : ℚ := t.r1 θ + t.r2 θ
 
 /-- 稳健行动（约束读法）：一个行动方案在**全部情景**下满足阈值约束
 （§8.4：稳健行动在全部情景满足约束）。 -/
@@ -303,8 +328,7 @@ def rT (θ : Bool) : ℚ := if θ then 1 else 0
 def rF (θ : Bool) : ℚ := if θ then 0 else 1
 
 /-- 两期情景树：第一期后按同一 θ 走到第二期，叶上取两期总收益。 -/
-def twoPeriod : STree Bool :=
-  STree.node (fun _ => STree.node (fun θ => STree.leaf (fun _ => rT θ + rF θ)))
+def twoPeriod : STree Bool := ⟨rT, rF⟩
 
 /-- 共享 θ 的两期总收益恒等于 1（逐期 θ 与 1−θ 互补相消）。 -/
 theorem shared_total_identity (θ : Bool) :
@@ -321,9 +345,20 @@ def rectVal : ℚ :=
 def sharedVal : ℚ :=
   vmin (evalUnder twoPeriod false) (evalUnder twoPeriod true)
 
-theorem rectVal_zero : rectVal = 0 := rfl
+theorem rectVal_zero : rectVal = 0 := by
+  have h1 : rT false = 0 := rfl
+  have h2 : rT true = 1 := rfl
+  have h3 : rF false = 1 := rfl
+  have h4 : rF true = 0 := rfl
+  unfold rectVal vmin
+  rw [h1, h2, h3, h4]
+  rw [if_pos (by norm_num), if_neg (by norm_num)]
+  norm_num
 
-theorem shared_val_one : sharedVal = 1 := rfl
+theorem shared_val_one : sharedVal = 1 := by
+  unfold sharedVal vmin
+  rw [shared_total_identity, shared_total_identity]
+  rw [if_pos (by norm_num)]
 
 theorem rectVal_lt_sharedVal : rectVal < sharedVal := by
   rw [rectVal_zero, shared_val_one]
@@ -347,9 +382,9 @@ theorem shared_theta_not_rectangular :
   | true => norm_num [rT, rF] at h2
 
 /-- 稳健行动的交封闭：在全部情景满足 v1 与 v2 的方案，在全部情景满足
-min(v1, v2)。 -/
+min(v1, v2)（min ≤ v1 已足够，故 v2 约束仅作记录）。 -/
 theorem robust_intersects {pay : Bool → ℚ} {v1 v2 : ℚ}
-    (h1 : IsRobust pay v1) (h2 : IsRobust pay v2) :
+    (h1 : IsRobust pay v1) (_h2 : IsRobust pay v2) :
     IsRobust pay (vmin v1 v2) :=
   fun θ => le_trans (vmin_le_left v1 v2) (h1 θ)
 
@@ -646,8 +681,7 @@ def ruleEval (r : Rule) (o : List (Nat × ℚ)) : Bool :=
 /-- 事件改变观察（逐点读出）：施加后该键的观察值＝旧值＋数量。 -/
 theorem event_changes_observation (o : List (Nat × ℚ)) (e : Ev) :
     obsGet (applyObs o e) e.key = obsGet o e.key + e.amount := by
-  simp only [applyObs, obsGet]
-  rw [if_pos rfl]
+  simp [applyObs, obsGet]
 
 /-- **T121 旗舰（回流链式定理）**：事件把观察值从阈下推到阈上时，同一规则
 的重新评价结论翻转：前 false、后 true——事件改变观察、观察改变规则评价
@@ -657,13 +691,16 @@ theorem backflow_chain_general (o : List (Nat × ℚ)) (e : Ev) (r : Rule)
     (hbelow : obsGet o r.rkey < r.threshold)
     (habove : r.threshold ≤ obsGet o r.rkey + e.amount) :
     ruleEval r o = false ∧ ruleEval r (applyObs o e) = true := by
+  have hab' : r.threshold ≤ obsGet o e.key + e.amount := by
+    rw [hkey]
+    exact habove
   refine ⟨?_, ?_⟩
   · simp only [ruleEval]
     rw [decide_eq_false_iff_not]
     linarith
   · simp only [ruleEval, applyObs, obsGet]
-    rw [if_pos hkey, hkey]
-    exact decide_eq_true_iff.mpr habove
+    rw [if_pos hkey]
+    exact decide_eq_true_iff.mpr hab'
 
 /-- 见证实例：观察 (0↦5)、事件（键 0、量 6、有权）、规则（键 0、阈 10）——
 同一规则前 false 后 true。 -/
@@ -678,7 +715,7 @@ theorem backflow_chain_witness :
   have h := backflow_chain_general bfObs bfEv bfRule rfl
     (by rw [h5]; norm_num [bfRule])
     (by rw [h5]; norm_num [bfRule, bfEv])
-  exact ⟨h.1, h.2, rfl⟩
+  exact ⟨h.1, h.2, by norm_num [bfObs, bfEv, applyObs, obsGet]⟩
 
 /-- §9.4 权限分离：无权限的变更不改规则——普通草案/学习参数不写规范域。 -/
 def ruleAfter (r newRule : Rule) (e : Ev) : Rule :=

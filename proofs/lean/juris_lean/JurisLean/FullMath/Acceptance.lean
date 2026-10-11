@@ -427,14 +427,14 @@ theorem demand_D021 : Contracts.demand_D021 := And.intro JurisLean.FullMath.Prob
       rw [hnone] at hdec'
       exact absurd hdec' (by simp)
     · intro e d hmem hsome
-      have hb : e.2.isSome = true := by rw [hsome]
+      have hb : e.2.isSome = true := by rw [hsome]; rfl
       exact List.mem_filter.mpr ⟨hmem, hb⟩
     · intro e hmem
       by_cases h : e.2.isSome = true
       · exact Or.inl (List.mem_filter.mpr ⟨hmem, h⟩)
       · cases h2 : e.2 with
         | none => exact Or.inr rfl
-        | some d => exact absurd (show e.2.isSome = true from by rw [h2]) h
+        | some d => exact absurd (show e.2.isSome = true from by rw [h2]; rfl) h
     · exact fun _ _ _ h1 h2 => lt_trans h1 h2
     · exact fun a h => lt_irrefl a h)
 
@@ -509,13 +509,13 @@ theorem demand_D026 : Contracts.demand_D026 := And.intro JurisLean.FullMath.Prob
     · intro c s u hmem
       obtain ⟨_, hdec⟩ := List.mem_filter.mp hmem
       exact absurd (of_decide_eq_true hdec)
-        (by decide : ¬ (("asserted", c, s, u).1 = "adjudicated"))
+        (by simp : ¬ (("asserted", c, s, u).1 = "adjudicated"))
     · intro r hmem
       obtain ⟨hmem', hdec⟩ := List.mem_filter.mp hmem
       exact ⟨hmem', of_decide_eq_true hdec⟩
     · intro c s u hEq
       exact absurd hEq
-        (by decide : ¬ (("asserted", c, s, u) = ("adjudicated", c, s, u))))
+        (by simp : ¬ (("asserted", c, s, u) = ("adjudicated", c, s, u))))
 
 theorem demand_D027 : Contracts.demand_D027 := And.intro JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
   (by

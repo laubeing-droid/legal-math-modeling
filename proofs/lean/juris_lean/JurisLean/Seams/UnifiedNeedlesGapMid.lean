@@ -349,7 +349,7 @@ theorem update_pureM (p : I → Act) (i : I) (b : Act) :
   by_cases hj : j = i
   · subst hj
     simp [point]
-  · simp [point, hj]
+  · simp only [if_neg hj]
 
 /-- 单行点质量的加权求和。 -/
 theorem sum_point_weight (σ' : Act → ℚ) (b : Act) :
@@ -388,7 +388,8 @@ theorem eu_dev_linear (u : (I → Act) → I → ℚ) (σ : I → Act → ℚ) (
   show (∑ a, (∏ j, Function.update σ i σ' j (a j)) * u a i)
       = ∑ a', σ' a' * eu u (dev σ i (point a')) i
   simp only [hfac, hpoint]
-  rw [Finset.mul_sum, Finset.sum_comm]
+  simp only [Finset.mul_sum]
+  rw [Finset.sum_comm]
   refine Finset.sum_congr rfl (fun a _ => ?_)
   have hterm : ∀ a' : Act,
       σ' a' * (((point a') (a i) * ∏ j ∈ Finset.univ \ ({i} : Finset I), σ j (a j)) * u a i)
@@ -430,6 +431,7 @@ theorem nash_iff_no_pure_dev_gain (u : (I → Act) → I → ℚ) (σ : I → Ac
       _ = 1 * eu u σ i := by rw [hσ'.2]
       _ = eu u σ i := one_mul _
 
+set_option maxHeartbeats 1000000 in
 /-- 单剖面期望扰动界：逐剖面逐玩家收益误差 ≤ η 且 σ 在单纯形内时，
     期望收益误差 ≤ η（混合期望保持；总概率归一）。 -/
 theorem eu_abs_sub_le (u v : (I → Act) → I → ℚ) (η : ℚ) (j : I) (σ : I → Act → ℚ)
@@ -437,10 +439,9 @@ theorem eu_abs_sub_le (u v : (I → Act) → I → ℚ) (η : ℚ) (j : I) (σ :
     |eu v σ j - eu u σ j| ≤ η := by
   have hw : ∀ a : I → Act, 0 ≤ ∏ k : I, σ k (a k) :=
     fun a => Finset.prod_nonneg (fun k _ => (hσ k).1 (a k))
-  have htotal : ∑ a : I → Act, ∏ k : I, σ k (a k) = (1 : ℚ) := by
-    have hps := Fintype.prod_sum (R := ℚ) (fun (k : I) (a : Act) => σ k a)
-    rw [← hps]
-    exact Finset.prod_eq_one (fun k _ => (hσ k).2)
+  have htotal : ∑ a : I → Act, ∏ k : I, σ k (a k) = (1 : ℚ) :=
+    (Fintype.prod_sum (R := ℚ) (fun (k : I) (a : Act) => σ k a)).symm.trans
+      (Finset.prod_eq_one (fun k _ => (hσ k).2))
   have hsplit : eu v σ j - eu u σ j
       = ∑ a : I → Act, (∏ k : I, σ k (a k)) * (v a j - u a j) := by
     simp only [eu]
@@ -527,6 +528,7 @@ theorem three_player_not_nash_counterexample :
     simp [u3, Function.update_self]
   have h2 : eu u3 (pureM (fun _ : Fin 3 => false)) 0 = 0 := by
     rw [eu_pureM]
+    rfl
   have hbad := h 0 true
   rw [h1, h2] at hbad
   exact absurd hbad (by decide)

@@ -217,6 +217,7 @@ import JurisLean.Seams.UnifiedNeedlesTotal
 import JurisLean.Seams.UnifiedNeedlesXT
 import JurisLean.Seams.UnifiedNeedlesXU
 import JurisLean.Seams.UnifiedNormFlow
+import JurisLean.Seams.UnifiedPayoffChain
 import JurisLean.Seams.UnifiedPerformance
 import JurisLean.Seams.UnifiedQuantileNarrow
 import JurisLean.Seams.UnifiedQuantities
@@ -228,6 +229,7 @@ import JurisLean.Seams.UnifiedW4Behavior
 import JurisLean.Seams.UnifiedW4Deviation
 import JurisLean.Seams.UnifiedW4Games
 import JurisLean.Seams.UnifiedW4Interp
+import JurisLean.Seams.UniformContinuous
 import JurisLean.SolverRouting
 import JurisLean.SourceBundleSpec
 import JurisLean.SourcePathSpec

@@ -208,6 +208,9 @@ import JurisLean.Seams.UnifiedW4Deviation
 
 import JurisLean.Seams.UnifiedEvalLayer
 
+import JurisLean.Seams.UnifiedPayoffChain
+import JurisLean.Seams.UniformContinuous
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -2642,6 +2645,67 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedNormFlow.norm_update_reselects_content
 #print axioms JurisLean.Seams.UnifiedNormFlow.unauthorized_proposal_has_no_norm_effect
 #print axioms JurisLean.Seams.UnifiedNormFlow.updateEnv_keeps_other_versions
+#print axioms JurisLean.Seams.UnifiedPayoffChain.allCons_delta
+#print axioms JurisLean.Seams.UnifiedPayoffChain.allCons_w_delta
+#print axioms JurisLean.Seams.UnifiedPayoffChain.badR01_check
+#print axioms JurisLean.Seams.UnifiedPayoffChain.badR19_check
+#print axioms JurisLean.Seams.UnifiedPayoffChain.badR23_check
+#print axioms JurisLean.Seams.UnifiedPayoffChain.cashTotal_cons
+#print axioms JurisLean.Seams.UnifiedPayoffChain.cash_rewrite_propagates_to_reading
+#print axioms JurisLean.Seams.UnifiedPayoffChain.conclusion_blocked_of_premise_missing
+#print axioms JurisLean.Seams.UnifiedPayoffChain.costAt_cons
+#print axioms JurisLean.Seams.UnifiedPayoffChain.costAt_cons_of
+#print axioms JurisLean.Seams.UnifiedPayoffChain.costAt_ne_zero_witness
+#print axioms JurisLean.Seams.UnifiedPayoffChain.costTotal_cons
+#print axioms JurisLean.Seams.UnifiedPayoffChain.costTotal_eq_cashTotal
+#print axioms JurisLean.Seams.UnifiedPayoffChain.dropped_kind_breaks_total
+#print axioms JurisLean.Seams.UnifiedPayoffChain.evalAt_append_future
+#print axioms JurisLean.Seams.UnifiedPayoffChain.eval_is_view_valued
+#print axioms JurisLean.Seams.UnifiedPayoffChain.fires_when_premises_occur
+#print axioms JurisLean.Seams.UnifiedPayoffChain.flipTags_preserves_costs
+#print axioms JurisLean.Seams.UnifiedPayoffChain.foldr_add_distrib
+#print axioms JurisLean.Seams.UnifiedPayoffChain.foldr_w_distrib
+#print axioms JurisLean.Seams.UnifiedPayoffChain.future_only_no_firing
+#print axioms JurisLean.Seams.UnifiedPayoffChain.late_material_blocked_before_cut
+#print axioms JurisLean.Seams.UnifiedPayoffChain.lawDocket_append_future
+#print axioms JurisLean.Seams.UnifiedPayoffChain.lawDocket_is_view
+#print axioms JurisLean.Seams.UnifiedPayoffChain.lawView_append_future
+#print axioms JurisLean.Seams.UnifiedPayoffChain.lawView_cons
+#print axioms JurisLean.Seams.UnifiedPayoffChain.lawView_idem
+#print axioms JurisLean.Seams.UnifiedPayoffChain.legal_payoff_preserved
+#print axioms JurisLean.Seams.UnifiedPayoffChain.legal_reading_cons_covariance
+#print axioms JurisLean.Seams.UnifiedPayoffChain.legal_reading_single_kind_reflection
+#print axioms JurisLean.Seams.UnifiedPayoffChain.legal_time_nonanticipation
+#print axioms JurisLean.Seams.UnifiedPayoffChain.materialHolds_of_not_material
+#print axioms JurisLean.Seams.UnifiedPayoffChain.materialHolds_via_view
+#print axioms JurisLean.Seams.UnifiedPayoffChain.net_aggregation_swallows_gross
+#print axioms JurisLean.Seams.UnifiedPayoffChain.occursBy_append_future
+#print axioms JurisLean.Seams.UnifiedPayoffChain.occursBy_of_all_future
+#print axioms JurisLean.Seams.UnifiedPayoffChain.old_status_congruence_and_independent_cash
+#print axioms JurisLean.Seams.UnifiedPayoffChain.prefIntegral_congr
+#print axioms JurisLean.Seams.UnifiedPayoffChain.prefIntegral_cons
+#print axioms JurisLean.Seams.UnifiedPayoffChain.r01_blocked_when_contract_missing
+#print axioms JurisLean.Seams.UnifiedPayoffChain.r01_eval_nonanticipating
+#print axioms JurisLean.Seams.UnifiedPayoffChain.r01_fires_witness
+#print axioms JurisLean.Seams.UnifiedPayoffChain.r01_premises_material
+#print axioms JurisLean.Seams.UnifiedPayoffChain.r01_use_point
+#print axioms JurisLean.Seams.UnifiedPayoffChain.r19_blocked_when_death_missing
+#print axioms JurisLean.Seams.UnifiedPayoffChain.r19_eval_nonanticipating
+#print axioms JurisLean.Seams.UnifiedPayoffChain.r19_fires_witness
+#print axioms JurisLean.Seams.UnifiedPayoffChain.r19_premises_material
+#print axioms JurisLean.Seams.UnifiedPayoffChain.r19_use_point
+#print axioms JurisLean.Seams.UnifiedPayoffChain.r23_blocked_when_penalty_missing
+#print axioms JurisLean.Seams.UnifiedPayoffChain.r23_eval_nonanticipating
+#print axioms JurisLean.Seams.UnifiedPayoffChain.r23_fires_witness
+#print axioms JurisLean.Seams.UnifiedPayoffChain.r23_premises_material
+#print axioms JurisLean.Seams.UnifiedPayoffChain.r23_use_point
+#print axioms JurisLean.Seams.UnifiedPayoffChain.reading_layer_docket_blind
+#print axioms JurisLean.Seams.UnifiedPayoffChain.reflection_fails_at_zero_weight
+#print axioms JurisLean.Seams.UnifiedPayoffChain.statusIntegral_eq_payoff
+#print axioms JurisLean.Seams.UnifiedPayoffChain.status_projection_drops_cash
+#print axioms JurisLean.Seams.UnifiedPayoffChain.wit_reads
+#print axioms JurisLean.Seams.UnifiedPayoffChain.witness_firing_future_blind
+#print axioms JurisLean.Seams.UnifiedPayoffChain.witness_readouts
 #print axioms JurisLean.Seams.UnifiedPerformance.allocated_not_double_counted
 #print axioms JurisLean.Seams.UnifiedPerformance.confirmatory_preserves_ontic_state
 #print axioms JurisLean.Seams.UnifiedPerformance.double_spend_rejected
@@ -2953,6 +3017,30 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedW4Interp.witness_own_accepted
 #print axioms JurisLean.Seams.UnifiedW4Interp.witness_superior_adopted
 #print axioms JurisLean.Seams.UnifiedW4Interp.witness_two_branches_kept
+#print axioms JurisLean.Seams.UniformContinuous.ae_truth_not_universal_truth_uniform
+#print axioms JurisLean.Seams.UniformContinuous.falsity_event_eq_singleton
+#print axioms JurisLean.Seams.UniformContinuous.falsity_event_volume_zero
+#print axioms JurisLean.Seams.UniformContinuous.grid_mass_sum_one
+#print axioms JurisLean.Seams.UniformContinuous.n_equal_Ioc_pairwise_disjoint
+#print axioms JurisLean.Seams.UniformContinuous.rational_grid_atom_vs_lebesgue_no_atoms
+#print axioms JurisLean.Seams.UniformContinuous.truth_event_eq_Ioc
+#print axioms JurisLean.Seams.UniformContinuous.uniform01_is_probability
+#print axioms JurisLean.Seams.UniformContinuous.uniform01_no_atoms
+#print axioms JurisLean.Seams.UniformContinuous.uniform01_of_Icc_event
+#print axioms JurisLean.Seams.UniformContinuous.uniform01_truth_event
+#print axioms JurisLean.Seams.UniformContinuous.uniform_event_split
+#print axioms JurisLean.Seams.UniformContinuous.uniform_prob_Icc_event
+#print axioms JurisLean.Seams.UniformContinuous.uniform_prob_Ioc_event
+#print axioms JurisLean.Seams.UniformContinuous.uniform_prob_Ioo_event
+#print axioms JurisLean.Seams.UniformContinuous.unit_interval_inter_Icc
+#print axioms JurisLean.Seams.UniformContinuous.unit_interval_inter_Ioc
+#print axioms JurisLean.Seams.UniformContinuous.unit_interval_inter_Ioo
+#print axioms JurisLean.Seams.UniformContinuous.volume_Ioc_nth_cell
+#print axioms JurisLean.Seams.UniformContinuous.volume_disjoint_Ioc_pair
+#print axioms JurisLean.Seams.UniformContinuous.volume_finite_disjoint_Ioc
+#print axioms JurisLean.Seams.UniformContinuous.volume_n_equal_Ioc_partition
+#print axioms JurisLean.Seams.UniformContinuous.volume_point_in_unit_interval
+#print axioms JurisLean.Seams.UniformContinuous.volume_unit_interval
 #print axioms JurisLean.Seams.bridge_distinguishes_two_statuses
 #print axioms JurisLean.Seams.bridge_not_injective_at_dismissed
 #print axioms JurisLean.Seams.bridge_partial_inverse_established

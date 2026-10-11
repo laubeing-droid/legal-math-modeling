@@ -259,14 +259,17 @@ theorem analogy_real_maps_substantive :
     ¬ SubstantiveAnalogy fullIdMap ∧
     analogyPreserves analogyA ∧
     analogyPreserves analogyB ∧
-    followJudge_separates := by
+    (followJudge GapSubject.zhang GapFact.written GapVersion.postCode GapUse.follow
+        = GapJudg.uphold ∧
+      followJudge GapSubject.corp GapFact.oralOnly GapVersion.postCode GapUse.distinguish
+        = GapJudg.reject) := by
   refine ⟨⟨⟨GapSubject.zhang, by decide⟩, ⟨GapFact.performed, by decide⟩,
       ⟨GapVersion.preCode, by decide⟩, ⟨GapUse.reinforce, by decide⟩⟩,
     ⟨⟨GapSubject.li, by decide⟩, ⟨GapFact.written, by decide⟩,
       ⟨GapVersion.preCode, by decide⟩, ⟨GapUse.distinguish, by decide⟩⟩,
     analogyA_ne_analogyB, ?_, analogyA_preserves, analogyB_preserves, followJudge_separates⟩
   intro h
-  obtain ⟨s, hs, -, -, -⟩ := h
+  obtain ⟨⟨s, hs⟩, -, -, -⟩ := h
   exact hs rfl
 
 /-! ## 第 29–31 针：任意有限玩家的混合策略均衡（同一"全部均衡"关系） -/
@@ -324,14 +327,14 @@ theorem eu_pureM (u : (I → Act) → I → ℚ) (p : I → Act) (i : I) :
       exact Finset.prod_eq_zero (Finset.mem_univ j₀) (by rw [if_neg hj₀])
   have hstep : ∀ a : I → Act, (∏ j, pureM p j (a j)) * u a i = if a = p then u p i else 0 := by
     intro a
+    simp only [pureM]
     rw [hprod a]
     by_cases hall : ∀ j, a j = p j
     · rw [if_pos hall, if_pos (funext hall), funext hall]
       ring
     · simp only [not_forall] at hall
       obtain ⟨j₀, hj₀⟩ := hall
-      rw [if_neg (fun hxe => hall (fun j => congrFun hxe j)),
-        Finset.prod_eq_zero (Finset.mem_univ j₀) (if_neg hj₀)]
+      rw [if_neg (fun hxe => hj₀ (hxe j₀)), if_neg (fun hxe => hj₀ (congrFun hxe j₀))]
       ring
   show (∑ a, (∏ j, pureM p j (a j)) * u a i) = u p i
   rw [Finset.sum_congr rfl (fun a _ => hstep a)]
@@ -341,11 +344,12 @@ theorem eu_pureM (u : (I → Act) → I → ℚ) (p : I → Act) (i : I) :
 theorem update_pureM (p : I → Act) (i : I) (b : Act) :
     Function.update (pureM p) i (point b) = pureM (Function.update p i b) := by
   funext j a
+  simp only [pureM]
   rw [Function.update_apply, Function.update_apply]
   by_cases hj : j = i
   · subst hj
-    simp [point, pureM]
-  · simp [point, pureM, hj]
+    simp [point]
+  · simp [point, hj]
 
 /-- 单行点质量的加权求和。 -/
 theorem sum_point_weight (σ' : Act → ℚ) (b : Act) :
@@ -366,7 +370,7 @@ theorem eu_dev_linear (u : (I → Act) → I → ℚ) (σ : I → Act → ℚ) (
     eu u (dev σ i σ') i = ∑ a', σ' a' * eu u (dev σ i (point a')) i := by
   have hfac : ∀ (a : I → Act) (τ : Act → ℚ),
       (∏ j, Function.update σ i τ j (a j))
-        = τ (a i) * ∏ j ∈ Finset.univ \ Finset.singleton i, σ j (a j) := by
+        = τ (a i) * ∏ j ∈ Finset.univ \ ({i} : Finset I), σ j (a j) := by
     intro a τ
     have hperj : ∀ j : I, Function.update σ i τ j (a j)
         = Function.update (fun k => σ k (a k)) i (τ (a i)) j := by
@@ -378,20 +382,18 @@ theorem eu_dev_linear (u : (I → Act) → I → ℚ) (σ : I → Act → ℚ) (
     rw [Finset.prod_congr rfl (fun j _ => hperj j)]
     exact Finset.prod_update_of_mem (Finset.mem_univ i) (fun k => σ k (a k)) (τ (a i))
   have hpoint : ∀ a' : Act, eu u (dev σ i (point a')) i
-      = ∑ a, ((point a') (a i) * ∏ j ∈ Finset.univ \ Finset.singleton i, σ j (a j)) * u a i := by
+      = ∑ a, ((point a') (a i) * ∏ j ∈ Finset.univ \ ({i} : Finset I), σ j (a j)) * u a i := by
     intro a'
-    simp only [eu, dev]
-    rw [hfac a' (point a')]
+    simp only [eu, dev, hfac]
   show (∑ a, (∏ j, Function.update σ i σ' j (a j)) * u a i)
       = ∑ a', σ' a' * eu u (dev σ i (point a')) i
-  rw [hfac]
-  rw [hpoint]
+  simp only [hfac, hpoint]
   rw [Finset.mul_sum, Finset.sum_comm]
   refine Finset.sum_congr rfl (fun a _ => ?_)
   have hterm : ∀ a' : Act,
-      σ' a' * (((point a') (a i) * ∏ j ∈ Finset.univ \ Finset.singleton i, σ j (a j)) * u a i)
+      σ' a' * (((point a') (a i) * ∏ j ∈ Finset.univ \ ({i} : Finset I), σ j (a j)) * u a i)
         = (σ' a' * (point a') (a i))
-          * ((∏ j ∈ Finset.univ \ Finset.singleton i, σ j (a j)) * u a i) := fun a' => by ring
+          * ((∏ j ∈ Finset.univ \ ({i} : Finset I), σ j (a j)) * u a i) := fun a' => by ring
   rw [Finset.sum_congr rfl (fun a' _ => hterm a'), ← Finset.sum_mul, sum_point_weight]
   ring
 
@@ -418,12 +420,13 @@ theorem nash_iff_no_pure_dev_gain (u : (I → Act) → I → ℚ) (σ : I → Ac
   · intro h i b
     exact h i (point b) (point_rowSimplex b)
   · intro h i σ' hσ'
+    show eu u (dev σ i σ') i ≤ eu u σ i
     rw [eu_dev_linear u σ i σ' hσ']
-    calc ∑ a', σ' a' * eu u (Function.update σ i (point a')) i
+    calc ∑ a', σ' a' * eu u (dev σ i (point a')) i
         ≤ ∑ a', σ' a' * eu u σ i :=
           Finset.sum_le_sum (fun a' _ =>
             mul_le_mul_of_nonneg_left (h i a') (hσ'.1 a'))
-      _ = (∑ a', σ' a') * eu u σ i := Finset.sum_mul _ _ _
+      _ = (∑ a', σ' a') * eu u σ i := (Finset.sum_mul _ _ _).symm
       _ = 1 * eu u σ i := by rw [hσ'.2]
       _ = eu u σ i := one_mul _
 
@@ -432,14 +435,16 @@ theorem nash_iff_no_pure_dev_gain (u : (I → Act) → I → ℚ) (σ : I → Ac
 theorem eu_abs_sub_le (u v : (I → Act) → I → ℚ) (η : ℚ) (j : I) (σ : I → Act → ℚ)
     (hσ : InSimplex σ) (hpt : ∀ a k, |v a k - u a k| ≤ η) :
     |eu v σ j - eu u σ j| ≤ η := by
-  have hw : ∀ a, 0 ≤ ∏ k, σ k (a k) :=
+  have hw : ∀ a : I → Act, 0 ≤ ∏ k : I, σ k (a k) :=
     fun a => Finset.prod_nonneg (fun k _ => (hσ k).1 (a k))
-  have htotal : ∑ a, ∏ k, σ k (a k) = 1 := by
+  have htotal : ∑ a : I → Act, ∏ k : I, σ k (a k) = (1 : ℚ) := by
     have hps := Fintype.prod_sum (R := ℚ) (fun (k : I) (a : Act) => σ k a)
     rw [← hps]
     exact Finset.prod_eq_one (fun k _ => (hσ k).2)
-  have hsplit : eu v σ j - eu u σ j = ∑ a, (∏ k, σ k (a k)) * (v a j - u a j) := by
-    simp only [eu, Finset.sum_sub_distrib]
+  have hsplit : eu v σ j - eu u σ j
+      = ∑ a : I → Act, (∏ k : I, σ k (a k)) * (v a j - u a j) := by
+    simp only [eu]
+    rw [← Finset.sum_sub_distrib]
     exact Finset.sum_congr rfl (fun a _ => by ring)
   calc |eu v σ j - eu u σ j|
       = |∑ a, (∏ k, σ k (a k)) * (v a j - u a j)| := by rw [hsplit]
@@ -449,7 +454,7 @@ theorem eu_abs_sub_le (u v : (I → Act) → I → ℚ) (η : ℚ) (j : I) (σ :
         Finset.sum_congr rfl (fun a _ => by rw [abs_mul, abs_of_nonneg (hw a)])
     _ ≤ ∑ a, (∏ k, σ k (a k)) * η :=
         Finset.sum_le_sum (fun a _ => mul_le_mul_of_nonneg_left (hpt a j) (hw a))
-    _ = (∑ a, ∏ k, σ k (a k)) * η := Finset.sum_mul _ _ _
+    _ = (∑ a : I → Act, ∏ k : I, σ k (a k)) * η := (Finset.sum_mul _ _ _).symm
     _ = η * 1 := by rw [htotal]; ring
     _ = η := mul_one _
 
@@ -472,9 +477,10 @@ theorem payoff_error_yields_two_eta_equilibrium_nplayer
     eu_abs_sub_le u v η i _ hupd hpt
   have h2 := hrat i σ' hσ'
   have h3 : |eu v σ i - eu u σ i| ≤ η := eu_abs_sub_le u v η i σ hσ hpt
-  have h1' : eu u (Function.update σ i σ') i ≤ eu v (Function.update σ i σ') i + η :=
-    le_trans (le_of_abs_le h1) (le_abs_self _)
-  have h3' : eu v σ i ≤ eu u σ i + η := le_trans (le_of_abs_le h3) (le_abs_self _)
+  have h1' : eu u (Function.update σ i σ') i ≤ eu v (Function.update σ i σ') i + η := by
+    linarith [(abs_le.mp h1).1]
+  have h3' : eu v σ i ≤ eu u σ i + η := by
+    linarith [(abs_le.mp h3).2]
   linarith
 
 /-- **第 29 针（任意有限玩家版）**：外部估计的精确均衡折回法律收益——ε = 0 情形的
@@ -503,11 +509,12 @@ theorem three_player_mixed_nash_instance :
   refine ⟨?_, rfl, rfl⟩
   rw [nash_iff_no_pure_dev_gain]
   intro i b
-  rw [update_pureM, eu_pureM]
+  rw [update_pureM]
+  simp only [eu_pureM]
   have hdev : u3 (Function.update (fun _ : Fin 3 => true) i b) i = if b then (1 : ℚ) else 0 := by
     simp only [u3, Function.update_self]
   rw [hdev]
-  cases b <;> simp [u3]
+  cases b <;> simp [u3] <;> norm_num
 
 /-- **非均衡反例**：同一 `IsNash` 关系在 Fin 3 上——全体全押"背离"的剖面不是
     均衡：玩家 0 单方纯偏离到"坚持"严格获益（1 > 0）。 -/
@@ -520,7 +527,7 @@ theorem three_player_not_nash_counterexample :
     simp [u3, Function.update_self]
   have h2 : eu u3 (pureM (fun _ : Fin 3 => false)) 0 = 0 := by
     rw [eu_pureM]
-  have hbad := h 0 (point true) (point_rowSimplex true)
+  have hbad := h 0 true
   rw [h1, h2] at hbad
   exact absurd hbad (by decide)
 
@@ -603,9 +610,9 @@ inductive StatRun : ℚ → List DebtItem → List ℚ → Prop
 
 theorem statRun_exists (p : ℚ) : ∀ (ds : List DebtItem), StatRun p ds (runPay p ds) := by
   intro ds
-  induction ds with
+  induction ds generalizing p with
   | nil => exact StatRun.nil
-  | cons d ds ih => exact StatRun.cons ih
+  | cons d ds ih => exact StatRun.cons (ih (p - stepAlloc p d))
 
 theorem statRun_unique : ∀ (ds : List DebtItem) (a b : List ℚ) (r : ℚ),
     StatRun r ds a → StatRun r ds b → a = b := by
@@ -634,7 +641,7 @@ theorem statRun_length : ∀ (ds : List DebtItem) (a : List ℚ) (r : ℚ),
     运行 `runPay` 的输出——给定支付与债项集，法定冲抵结果唯一。 -/
 theorem discharge_unique (p : ℚ) (ds : List DebtItem) (a : List ℚ)
     (h : StatRun p ds a) : a = runPay p ds :=
-  (statRun_unique ds a (runPay p ds) p h (statRun_exists p ds)).symm
+  statRun_unique ds a (runPay p ds) p h (statRun_exists p ds)
 
 /-- 对账闭合（望远镜）：Σ各项冲抵 + 溢余 = 支付额。 -/
 theorem runPay_sum_add_runRes : ∀ (ds : List DebtItem) (r : ℚ),
@@ -664,10 +671,10 @@ theorem runRes_nonneg : ∀ (ds : List DebtItem) (r : ℚ),
 theorem runRes_zero : ∀ (ds : List DebtItem), (∀ d ∈ ds, 0 ≤ d.amount) → runRes 0 ds = 0 := by
   intro ds
   induction ds with
-  | nil => rfl
+  | nil => intro _; rfl
   | cons d ds ih =>
       intro hpos
-      have hd : 0 ≤ d.amount := hpos d (List.mem_cons_self _ _)
+      have hd : 0 ≤ d.amount := hpos d List.mem_cons_self
       show runRes (0 - stepAlloc 0 d) ds = 0
       rw [stepAlloc_zero d hd, sub_zero]
       exact ih (fun d' hd' => hpos d' (List.mem_cons_of_mem _ hd'))
@@ -679,7 +686,7 @@ theorem runPay_zero_all : ∀ (ds : List DebtItem), (∀ d ∈ ds, 0 ≤ d.amoun
   | nil => intro _ x hx; simp [runPay] at hx
   | cons d ds ih =>
       intro hpos x hx
-      have hd : 0 ≤ d.amount := hpos d (List.mem_cons_self _ _)
+      have hd : 0 ≤ d.amount := hpos d List.mem_cons_self
       simp only [runPay] at hx
       rcases List.mem_cons.1 hx with hx | hx
       · rw [hx, stepAlloc_zero d hd]
@@ -701,7 +708,7 @@ theorem runPay_prioritized : ∀ (ds : List DebtItem) (r : ℚ),
     (∀ d ∈ ds, 0 ≤ d.amount) → Prioritized ds (runPay r ds) := by
   intro ds
   induction ds with
-  | nil => intro _; trivial
+  | nil => intro r _; trivial
   | cons d ds ih =>
       intro r hpos
       refine ⟨stepAlloc_le_amount r d, ?_,
@@ -718,7 +725,7 @@ theorem prioritized_adjacent {d d' : DebtItem} {rest : List DebtItem}
   obtain ⟨hle, hlt, -⟩ := hp
   by_contra hne
   have hxlt : x < d.amount := lt_of_le_of_ne hle hne
-  exact absurd (hlt hxlt y (List.mem_cons_self _ _)) (ne_of_gt hpos)
+  exact absurd (hlt hxlt y List.mem_cons_self) (ne_of_gt hpos)
 
 /-- 溢余为正 ⇒ 每一项都被足额冲抵：总冲抵 = 总到期额。 -/
 theorem runPay_sum_eq_due : ∀ (ds : List DebtItem) (r : ℚ),
@@ -726,10 +733,10 @@ theorem runPay_sum_eq_due : ∀ (ds : List DebtItem) (r : ℚ),
     (runPay r ds).sum = (ds.map DebtItem.amount).sum := by
   intro ds
   induction ds with
-  | nil => intro _ _; rfl
+  | nil => intro _ _ _; rfl
   | cons d ds ih =>
       intro r hpos hover
-      have hd : 0 ≤ d.amount := hpos d (List.mem_cons_self _ _)
+      have hd : 0 ≤ d.amount := hpos d List.mem_cons_self
       have hpos' : ∀ d' ∈ ds, 0 ≤ d'.amount :=
         fun d' hd' => hpos d' (List.mem_cons_of_mem _ hd')
       have hover' : 0 < runRes (r - stepAlloc r d) ds := hover
@@ -743,6 +750,7 @@ theorem runPay_sum_eq_due : ∀ (ds : List DebtItem) (r : ℚ),
           rw [hminr, sub_self] at hover'
           rw [runRes_zero ds hpos'] at hover'
           norm_num at hover'
+      rw [hmin] at hover'
       show (stepAlloc r d :: runPay (r - stepAlloc r d) ds).sum
           = (d.amount :: (ds.map DebtItem.amount)).sum
       rw [hmin, List.sum_cons, List.sum_cons, ih (r - d.amount) hpos' hover']
@@ -767,8 +775,7 @@ theorem dischargeItems_ident : ∀ (ds : List DebtItem) (as : List ℚ),
       cases as with
       | nil => simp at hlen
       | cons a as =>
-          have hlen' : as.length = ds.length := by
-            simpa using congrArg List.length hlen
+          have hlen' : as.length = ds.length := by simpa using hlen
           have hrec := ih as hlen'
           show (⟨d.ident, d.kind, d.amount - a⟩ :: dischargeItems ds as).map DebtItem.ident
               = d.ident :: ds.map DebtItem.ident
@@ -786,8 +793,6 @@ theorem dischargeItems_nonneg : ∀ (ds : List DebtItem) (r : ℚ),
       cases hx
   | cons d ds ih =>
       intro r x hx
-      show x ∈ (⟨d.ident, d.kind, d.amount - stepAlloc r d⟩ :: dischargeItems ds
-        (runPay (r - stepAlloc r d) ds) : List DebtItem)
       rcases List.mem_cons.1 hx with hx | hx
       · subst hx
         have hmin := stepAlloc_le_amount r d
@@ -862,7 +867,7 @@ theorem flow_payment_closed (ps : List ℚ) (ds : List DebtItem) :
     (ps.map (fun p => (runPay p ds).sum)).sum
       + (ps.map (fun p => runRes p ds)).sum = ps.sum := by
   induction ps with
-  | nil => rfl
+  | nil => simp
   | cons p ps ih =>
       have htele := runPay_sum_add_runRes ds p
       simp only [List.map_cons, List.sum_cons]
@@ -875,6 +880,6 @@ theorem statDebts_readout :
     runRes 150 statDebts = 0 ∧
     runPay 350 statDebts = [10, 100, 200] ∧
     runRes 350 statDebts = 40 := by
-  decide
+  norm_num [statDebts, runPay, runRes, stepAlloc]
 
 end JurisLean.Seams.UnifiedNeedlesGapMid

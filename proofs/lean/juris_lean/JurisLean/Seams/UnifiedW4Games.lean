@@ -334,7 +334,7 @@ theorem witness_prevention_clipped :
   refine ⟨hclip, ?_, ?_⟩
   · rw [hclip]
     exact penaltyInDomainB_fixed_of_le normDomainDemo 60
-      (by rw [hlo]; norm_num) (by rw [hhi]; norm_num)
+      (by rw [hlo]) (by rw [hhi]; norm_num)
   · show decide (normDomainDemo.monthsLo ≤ 65 ∧ 65 ≤ normDomainDemo.monthsHi) = false
     rw [hlo, hhi]
     decide
@@ -999,10 +999,8 @@ theorem one_dev_principle (δ : ℚ) (g : Nat → Bool → ℚ) (a : Nat → Boo
           ≤ truncSum δ (fun s => g s (a s)) N := by
       intro t ht x
       have h := h1 t (Nat.lt_succ_of_lt ht) x
-      have hN : (fun s => g s (if s = t then x else a s)) N
-          = (fun s => g s (a s)) N := by
-        show g N (if N = t then x else a N) = g N (a N)
-        rw [if_neg (fun hcon => ht hcon.symm)]
+      have hN : g N (if N = t then x else a N) = g N (a N) := by
+        rw [if_neg (Ne.symm (Nat.ne_of_lt ht))]
       rw [truncSum_succ δ _ N, truncSum_succ δ _ N, hN] at h
       linarith
     by_cases hbN : b N = a N
@@ -1140,16 +1138,17 @@ theorem w4_games_flagship :
       |∑ t ∈ Finset.range 5, (2 / 3 : ℚ) ^ (1 + t) * 2|
         ≤ 2 * (2 / 3 : ℚ) ^ 1 / (1 - 2 / 3)) ∧
     ((4 : ℚ) + (2 / 3) * 2 / (1 - 2 / 3) ≤ 3 / (1 - 2 / 3) ↔
-      (4 - 3 : ℚ) / (4 - 2) ≤ 2 / 3) :=
-  ⟨(dual_line_stays_normative normDomainDemo 25 40).1,
-    ⟨witness_foreign_facts_rejected,
-    ⟨witness_prevention_clipped.2.1,
-    ⟨bi_one_step_no_gain bParamsDemo,
-    ⟨witness_bargain_bi.2,
-    ⟨witness_pooling_seq_eq,
-    ⟨witness_inconsistent_mu_rejected,
-    ⟨fun h => tail_bound (2 / 3 : ℚ) 2 (by norm_num) (by norm_num) (by norm_num)
-      (fun _ => (2 : ℚ)) h 1 5,
-    coop_threshold_iff 3 4 2 (2 / 3) (by norm_num) (by norm_num) (by norm_num)⟩⟩⟩⟩⟩⟩⟩⟩
+      (4 - 3 : ℚ) / (4 - 2) ≤ 2 / 3) := by
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+  · exact (dual_line_stays_normative normDomainDemo 25 40).1
+  · exact witness_foreign_facts_rejected
+  · exact witness_prevention_clipped.2.1
+  · exact bi_one_step_no_gain bParamsDemo
+  · exact witness_bargain_bi.2
+  · exact witness_pooling_seq_eq
+  · exact witness_inconsistent_mu_rejected
+  · exact fun h => tail_bound (2 / 3 : ℚ) 2 (by norm_num) (by norm_num) (by norm_num)
+      (fun _ => (2 : ℚ)) h 1 5
+  · exact coop_threshold_iff 3 4 2 (2 / 3) (by norm_num) (by norm_num) (by norm_num)
 
 end JurisLean.Seams.UnifiedW4Games

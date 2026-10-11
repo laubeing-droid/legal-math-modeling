@@ -108,31 +108,32 @@ theorem stateOk_quantile_mem (F : ℝ → ℝ) (hsm : StrictMonoOn F (Set.Icc (0
   have hLv : L ≤ v := by
     by_contra hcon
     push_neg at hcon
-    exact absurd (hsm (Set.mem_Icc.mpr ⟨hL0, hLU⟩) hv0 hcon) (by linarith)
+    exact absurd (hsm (Set.mem_Icc.mpr ⟨hL0, by linarith⟩) hv0 hcon) (by linarith)
   have hvU : v ≤ U := by
     by_contra hcon
     push_neg at hcon
     exact absurd (hsm (Set.mem_Icc.mpr ⟨by linarith, hU1⟩) hv0 hcon) (by linarith)
   exact Set.mem_Icc.mpr ⟨hLv, hvU⟩
 
-/-- 缩区域内必含分位（IVT）：dom 连续、端点 0/1、q ∈ [0,1] 时存在 v ∈ [0,1]
+/-- 缩区域内必含分位（IVT）：F 连续、端点 0/1、q ∈ [0,1] 时存在 v ∈ [0,1]
     使 F v = q（唯一性不在本件主张；混合唯一性已由 UnifiedBetaDomain
     `mixture_quantile_unique` 交付）。 -/
-theorem narrow_quantile_mem (dom : NarrowDomain) (q : ℚ) (hq0 : (0:ℝ) ≤ q) (hq1 : q ≤ 1) :
-    ∃ v : ℝ, v ∈ Set.Icc (0:ℝ) 1 ∧ dom.F v = (q:ℝ) := by
+theorem narrow_quantile_mem (F : ℝ → ℝ) (hcont : Continuous F) (hz : F 0 = 0) (ho : F 1 = 1)
+    (q : ℚ) (hq0 : (0:ℝ) ≤ q) (hq1 : q ≤ 1) :
+    ∃ v : ℝ, v ∈ Set.Icc (0:ℝ) 1 ∧ F v = (q:ℝ) := by
   obtain ⟨v, hv, hvq⟩ :=
-    intermediate_value_Icc (show (0:ℝ) ≤ 1 from by norm_num) dom.cont.continuousOn
-      (show (q:ℝ) ∈ Set.Icc (dom.F 0) (dom.F 1) from by
-        rw [dom.zero, dom.one]; exact ⟨hq0, hq1⟩)
+    intermediate_value_Icc (show (0:ℝ) ≤ 1 from by norm_num) hcont.continuousOn
+      (show (q:ℝ) ∈ Set.Icc (F 0) (F 1) from by
+        rw [hz, ho]; exact ⟨hq0, by exact_mod_cast hq1⟩)
   exact ⟨v, hv, hvq⟩
 
 /-! ## 二、双点几何与证书语言 -/
 
 /-- 下三分点：m₁ = L + (U−L)/3（合同 §7.4:471 原式）。 -/
-def mid1 (L U : ℝ) : ℝ := L + (U - L) / 3
+noncomputable def mid1 (L U : ℝ) : ℝ := L + (U - L) / 3
 
 /-- 上三分点：m₂ = U − (U−L)/3（合同 §7.4:471 原式）。 -/
-def mid2 (L U : ℝ) : ℝ := U - (U - L) / 3
+noncomputable def mid2 (L U : ℝ) : ℝ := U - (U - L) / 3
 
 /-- 缩区方向：left＝有证 F m₁ < q 才取 L ← m₁；right＝有证 q < F m₂ 才取
     U ← m₂；both＝两比较同时成立时任选一项或同时收缩都安全（§7.4:471）。 -/
@@ -142,7 +143,7 @@ inductive Dir : Type where
   | both
 
 /-- 单轮有证缩区的区间更新。 -/
-def dirUpdate : Dir → ℝ → ℝ → ℝ × ℝ
+noncomputable def dirUpdate : Dir → ℝ → ℝ → ℝ × ℝ
   | Dir.left, L, U => (mid1 L U, U)
   | Dir.right, L, U => (L, mid2 L U)
   | Dir.both, L, U => (mid1 L U, mid2 L U)
@@ -169,17 +170,15 @@ def certCertifies (F : ℝ → ℝ) (q : ℚ) : Dir → ℝ → ℝ → Prop
 /-- UnifiedBeta 判定语言的最小读出引理：cmpEnc 给出 lt ⟺ 首包围上端低于
     次包围下端（只读两个端点——粗"平台读数"不是这个形状）。 -/
 theorem cmpEnc_lt_iff (a b : Enc) : cmpEnc a b = Cmp.lt ↔ a.hi < b.lo := by
-  constructor
-  · intro h
-    unfold cmpEnc at h
-    split at h
-    · exact h
-    · split at h
-      · exact absurd h (by simp)
-      · exact absurd h (by simp)
-  · intro h
-    unfold cmpEnc
-    rw [if_pos h]
+  by_cases hcond : a.hi < b.lo
+  · simp only [cmpEnc, if_pos hcond]
+    exact iff_of_true rfl hcond
+  · simp only [cmpEnc, if_neg hcond]
+    by_cases hcond2 : b.hi < a.lo
+    · simp only [if_pos hcond2]
+      exact iff_of_false (by simp) hcond
+    · simp only [if_neg hcond2]
+      exact iff_of_false (by simp) hcond
 
 /-- 找到的证书（可执行层）：把 m₁ 处的包围细化 r 轮后，对点包围 `Enc.mk q q`
     做 UnifiedBeta 的 `cmpEnc` 判定为 lt——即细化后的 b₁ < q。
@@ -198,7 +197,6 @@ theorem certFound_left_iff (F : ℝ → ℝ) (enc : ℝ → Enc) (ref : Enc → 
   show cmpEnc (refN ref r (enc (mid1 L U))) (Enc.mk q q) = Cmp.lt
       ↔ (refN ref r (enc (mid1 L U))).hi < q
   rw [cmpEnc_lt_iff]
-  rfl
 
 theorem certFound_right_iff (F : ℝ → ℝ) (enc : ℝ → Enc) (ref : Enc → Enc) (q : ℚ)
     (L U : ℝ) (r : ℕ) :
@@ -206,7 +204,6 @@ theorem certFound_right_iff (F : ℝ → ℝ) (enc : ℝ → Enc) (ref : Enc →
   show cmpEnc (Enc.mk q q) (refN ref r (enc (mid2 L U))) = Cmp.lt
       ↔ q < (refN ref r (enc (mid2 L U))).lo
   rw [cmpEnc_lt_iff]
-  rfl
 
 theorem certFound_both_iff (F : ℝ → ℝ) (enc : ℝ → Enc) (ref : Enc → Enc) (q : ℚ)
     (L U : ℝ) (r : ℕ) :
@@ -215,7 +212,6 @@ theorem certFound_both_iff (F : ℝ → ℝ) (enc : ℝ → Enc) (ref : Enc → 
   show (cmpEnc (refN ref r (enc (mid1 L U))) (Enc.mk q q) = Cmp.lt
       ∧ cmpEnc (Enc.mk q q) (refN ref r (enc (mid2 L U))) = Cmp.lt) ↔ _
   rw [cmpEnc_lt_iff, cmpEnc_lt_iff]
-  exact ⟨fun h => ⟨h.1, h.2⟩, fun h => ⟨h.1, h.2⟩⟩
 
 /-! ## 三、每步严格比较可发现（合同 1） -/
 
@@ -250,13 +246,13 @@ theorem refN_width_real (ref : Enc → Enc) (F : ℝ → ℝ) (hrc : RealRefines
     ((refN ref n e).width : ℝ) ≤ ((2:ℝ) / 3) ^ n * ((e.width : ℚ) : ℝ) := by
   have h4r : (((refN ref n e).width : ℚ) : ℝ)
       ≤ ((2:ℝ) / 3) ^ n * ((e.width : ℚ) : ℝ) := by
-    have h := Rat.cast_le.mpr (refN_widthQ hrc n e)
+    have h := Rat.cast_le.mpr (refN_widthQ ref F hrc n e)
     push_cast at h
     exact h
   have h6 : ((e.width : ℚ) : ℝ) = (e.hi : ℝ) - (e.lo : ℝ) := by push_cast [Enc.width]; ring
   have h7 : ((2:ℝ) / 3) ^ n * ((e.width : ℚ) : ℝ)
       ≤ ((2:ℝ) / 3) ^ n * ((e.hi : ℝ) - (e.lo : ℝ)) :=
-    mul_le_mul_of_nonneg_left h6 (pow_nonneg (by norm_num) n)
+    mul_le_mul_of_nonneg_left h6.le (pow_nonneg (by norm_num) n)
   linarith
 
 /-- 细化保持实层有效（沿 `RealRefines.keeps` 逐轮传递）。 -/
@@ -279,8 +275,13 @@ theorem hi_below_eventually (ref : Enc → Enc) (F : ℝ → ℝ) (hrc : RealRef
   have hmul : ((2:ℝ) / 3) ^ n * (((e.width : ℚ) : ℝ) + 1) < (q:ℝ) - F x :=
     (lt_div_iff₀ hw1).mp hn
   have hstep : ((2:ℝ) / 3) ^ n * ((e.width : ℚ) : ℝ)
-      ≤ ((2:ℝ) / 3) ^ n * (((e.width : ℚ) : ℝ) + 1) :=
-    mul_le_mul_of_nonneg_right (by linarith) (pow_nonneg (by norm_num) n)
+      ≤ ((2:ℝ) / 3) ^ n * (((e.width : ℚ) : ℝ) + 1) := by
+    have hle : ((e.width : ℚ) : ℝ) ≤ ((e.width : ℚ) : ℝ) + 1 := by linarith
+    calc ((2:ℝ) / 3) ^ n * ((e.width : ℚ) : ℝ)
+        = ((e.width : ℚ) : ℝ) * ((2:ℝ) / 3) ^ n := mul_comm _ _
+      _ ≤ (((e.width : ℚ) : ℝ) + 1) * ((2:ℝ) / 3) ^ n :=
+          mul_le_mul_of_nonneg_right hle (pow_nonneg (by norm_num) n)
+      _ = ((2:ℝ) / 3) ^ n * (((e.width : ℚ) : ℝ) + 1) := mul_comm _ _
   have hkey : ((2:ℝ) / 3) ^ n * ((e.width : ℚ) : ℝ) < (q:ℝ) - F x :=
     lt_of_le_of_lt hstep hmul
   have hkeep := refN_keeps ref F hrc n e x hx
@@ -303,8 +304,13 @@ theorem lo_above_eventually (ref : Enc → Enc) (F : ℝ → ℝ) (hrc : RealRef
   have hmul : ((2:ℝ) / 3) ^ n * (((e.width : ℚ) : ℝ) + 1) < F x - (q:ℝ) :=
     (lt_div_iff₀ hw1).mp hn
   have hstep : ((2:ℝ) / 3) ^ n * ((e.width : ℚ) : ℝ)
-      ≤ ((2:ℝ) / 3) ^ n * (((e.width : ℚ) : ℝ) + 1) :=
-    mul_le_mul_of_nonneg_right (by linarith) (pow_nonneg (by norm_num) n)
+      ≤ ((2:ℝ) / 3) ^ n * (((e.width : ℚ) : ℝ) + 1) := by
+    have hle : ((e.width : ℚ) : ℝ) ≤ ((e.width : ℚ) : ℝ) + 1 := by linarith
+    calc ((2:ℝ) / 3) ^ n * ((e.width : ℚ) : ℝ)
+        = ((e.width : ℚ) : ℝ) * ((2:ℝ) / 3) ^ n := mul_comm _ _
+      _ ≤ (((e.width : ℚ) : ℝ) + 1) * ((2:ℝ) / 3) ^ n :=
+          mul_le_mul_of_nonneg_right hle (pow_nonneg (by norm_num) n)
+      _ = ((2:ℝ) / 3) ^ n * (((e.width : ℚ) : ℝ) + 1) := mul_comm _ _
   have hkey : ((2:ℝ) / 3) ^ n * ((e.width : ℚ) : ℝ) < F x - (q:ℝ) :=
     lt_of_le_of_lt hstep hmul
   have hkeep := refN_keeps ref F hrc n e x hx
@@ -395,8 +401,8 @@ theorem dirUpdate_invariant (F : ℝ → ℝ) (hsm : StrictMonoOn F (Set.Icc (0:
     StateOk F q (dirUpdate d L U).1 (dirUpdate d L U).2
       ∧ v ∈ Set.Icc (dirUpdate d L U).1 (dirUpdate d L U).2
       ∧ L ≤ (dirUpdate d L U).1 ∧ (dirUpdate d L U).2 ≤ U := by
-  obtain ⟨hL0, hU1, hLU, hFL, hFU⟩ := hok
   have hvmem := stateOk_quantile_mem F hsm q v hv0 hvq L U hok
+  obtain ⟨hL0, hU1, hLU, hFL, hFU⟩ := hok
   cases d with
   | left =>
       rw [dirUpdate_left_fst, dirUpdate_left_snd]
@@ -404,16 +410,17 @@ theorem dirUpdate_invariant (F : ℝ → ℝ) (hsm : StrictMonoOn F (Set.Icc (0:
       have hm0 : (0:ℝ) ≤ mid1 L U := by simp only [mid1]; linarith
       have hmem : mid1 L U ∈ Set.Icc (0:ℝ) 1 := ⟨hm0, by simp only [mid1]; linarith⟩
       have hmv : mid1 L U ≤ v := strictMonoOn_lt_of_lt hsm hmem hv0 (by rw [hvq]; exact hclt)
-      refine ⟨⟨hm0, hU1, by simp only [mid1]; linarith, hclt.le, hFU⟩, ⟨hmv, hvmem.2⟩,
-        ⟨by simp only [mid1]; linarith, le_refl U⟩, le_refl U⟩
+      have hb1 : mid1 L U ≤ U := by simp only [mid1]; linarith
+      have hb2 : L ≤ mid1 L U := by simp only [mid1]; linarith
+      refine ⟨⟨hm0, hU1, hb1, hclt.le, hFU⟩, ⟨hmv, hvmem.2⟩, hb2, le_refl U⟩
   | right =>
       rw [dirUpdate_right_fst, dirUpdate_right_snd]
       have hcgt : (q:ℝ) < F (mid2 L U) := hcert
       have hmu1 : mid2 L U ≤ 1 := by simp only [mid2]; linarith
       have hmem : mid2 L U ∈ Set.Icc (0:ℝ) 1 := ⟨by simp only [mid2]; linarith, hmu1⟩
       have hvm : v ≤ mid2 L U := strictMonoOn_lt_of_lt hsm hv0 hmem (by rw [hvq]; exact hcgt)
-      refine ⟨⟨hL0, hmu1, by simp only [mid2]; linarith, hFL, hcgt.le⟩, ⟨hvmem.1, hvm⟩,
-        ⟨le_refl L, by simp only [mid2]; linarith⟩, by simp only [mid2]; linarith⟩
+      have hb3 : mid2 L U ≤ U := by simp only [mid2]; linarith
+      refine ⟨⟨hL0, hmu1, hb3, hFL, hcgt.le⟩, ⟨hvmem.1, hvm⟩, le_refl L, hb3⟩
   | both =>
       rw [dirUpdate_both_fst, dirUpdate_both_snd]
       have hclt : F (mid1 L U) < (q:ℝ) := hcert.1
@@ -424,9 +431,10 @@ theorem dirUpdate_invariant (F : ℝ → ℝ) (hsm : StrictMonoOn F (Set.Icc (0:
       have hmem2 : mid2 L U ∈ Set.Icc (0:ℝ) 1 := ⟨by simp only [mid2]; linarith, hmu1⟩
       have hmv : mid1 L U ≤ v := strictMonoOn_lt_of_lt hsm hmem1 hv0 (by rw [hvq]; exact hclt)
       have hvm : v ≤ mid2 L U := strictMonoOn_lt_of_lt hsm hv0 hmem2 (by rw [hvq]; exact hcgt)
-      refine ⟨⟨hm0, hmu1, by simp only [mid1, mid2]; linarith, hclt.le, hcgt⟩,
-        ⟨hmv, hvm⟩, ⟨by simp only [mid1]; linarith, by simp only [mid2]; linarith⟩,
-        by simp only [mid2]; linarith⟩
+      have hb4 : mid1 L U ≤ mid2 L U := by simp only [mid1, mid2]; linarith
+      have hb5 : L ≤ mid1 L U := by simp only [mid1]; linarith
+      have hb6 : mid2 L U ≤ U := by simp only [mid2]; linarith
+      refine ⟨⟨hm0, hmu1, hb4, hclt.le, hcgt.le⟩, ⟨hmv, hvm⟩, hb5, hb6⟩
 
 /-- 有证缩区的宽度收缩：每轮至多 ×2/3（left/right 恰为 2/3，both 为 1/3）。 -/
 theorem dirUpdate_width (d : Dir) (L U : ℝ) (hLU : L ≤ U) :
@@ -458,7 +466,7 @@ theorem dirUpdate_width (d : Dir) (L U : ℝ) (hLU : L ≤ U) :
 /-! ## 五、总终止（合同 3） -/
 
 /-- 缩区主循环的区间序列：从 (L, U) 出发按方向序列 Ds 折叠 `dirUpdate`。 -/
-def runState (L U : ℝ) (Ds : ℕ → Dir) : ℕ → ℝ × ℝ
+noncomputable def runState (L U : ℝ) (Ds : ℕ → Dir) : ℕ → ℝ × ℝ
   | 0 => (L, U)
   | n + 1 => dirUpdate (Ds n) (runState L U Ds n).1 (runState L U Ds n).2
 
@@ -561,45 +569,48 @@ theorem exists_run_from (F : ℝ → ℝ) (hsm : StrictMonoOn F (Set.Icc (0:ℝ)
             show StateOk F q L U ∧ v ∈ Set.Icc L U
             exact ⟨hok, stateOk_quantile_mem F hsm q v hv0 hvq L U hok⟩
           · obtain ⟨j', rfl⟩ : ∃ j' : ℕ, j = j' + 1 := ⟨j - 1, by omega⟩
-            rw [← runState_cons, dirCons_succ, dirConsN_succ]
+            rw [← runState_cons]
             exact hok2 j' (by omega)
         · rw [← runState_cons]
           exact hw'
 
-/-- **端到端全链（合同 3＋4 合口）**：任一 `NarrowDomain` 域实例＋任意健全
+/-- **端到端全链（合同 3＋4 合口）**：任一连续严格递增端点 0/1 的 F＋任意健全
     包围器＋任意满足细化合同的细化器下，对 0 ≤ q ≤ 1 与任意 ε > 0 存在有限
     缩区运行：分位 v 由 IVT 供给，每轮证书在有限细化深度实际找到，不变量与
-    分位包含全程保持，终点宽度 ≤ ε。 -/
-theorem full_chain (dom : NarrowDomain) (q : ℚ) (hq0 : (0:ℝ) ≤ q) (hq1 : q ≤ 1)
+    分位包含全程保持，终点宽度 ≤ ε。域字段直取（不经记录投影），Beta/混合
+    实例由 §六两条全链按字段供给。 -/
+theorem full_chain (F : ℝ → ℝ) (hcont : Continuous F) (hsmono : StrictMonoOn F (Set.Icc (0:ℝ) 1))
+    (hz : F 0 = 0) (ho : F 1 = 1) (q : ℚ) (hq0 : (0:ℝ) ≤ q) (hq1 : q ≤ 1)
     (ε : ℚ) (hε : 0 < ε)
-    (enc : ℝ → Enc) (henc : ∀ x, encValid dom.F (enc x) x)
-    (ref : Enc → Enc) (hrc : RealRefines ref dom.F) :
+    (enc : ℝ → Enc) (henc : ∀ x, encValid F (enc x) x)
+    (ref : Enc → Enc) (hrc : RealRefines ref F) :
     ∃ (n : ℕ) (Ds : ℕ → Dir) (Rs : ℕ → ℕ) (v : ℝ),
-      v ∈ Set.Icc (0:ℝ) 1 ∧ dom.F v = (q:ℝ) ∧
-      (∀ j, j < n → certFound dom.F enc ref q (Ds j) (runState 0 1 Ds j).1
+      v ∈ Set.Icc (0:ℝ) 1 ∧ F v = (q:ℝ) ∧
+      (∀ j, j < n → certFound F enc ref q (Ds j) (runState 0 1 Ds j).1
           (runState 0 1 Ds j).2 (Rs j)) ∧
-      (∀ j, j ≤ n → StateOk dom.F q (runState 0 1 Ds j).1 (runState 0 1 Ds j).2
+      (∀ j, j ≤ n → StateOk F q (runState 0 1 Ds j).1 (runState 0 1 Ds j).2
           ∧ v ∈ Set.Icc (runState 0 1 Ds j).1 (runState 0 1 Ds j).2) ∧
       ((runState 0 1 Ds n).2 - (runState 0 1 Ds n).1) ≤ (ε:ℝ) := by
-  obtain ⟨v, hv0, hvq⟩ := narrow_quantile_mem dom q hq0 hq1
+  obtain ⟨v, hv0, hvq⟩ := narrow_quantile_mem F hcont hz ho q hq0 hq1
   have hεr : (0:ℝ) < (ε:ℝ) := by exact_mod_cast hε
   obtain ⟨k, hk⟩ := exists_pow_lt_of_lt_one hεr
     (show ((2:ℝ) / 3) < 1 from by norm_num)
-  have hinit : StateOk dom.F q 0 1 :=
+  have hinit : StateOk F q 0 1 :=
     ⟨by norm_num, by norm_num, by norm_num,
-      by rw [dom.zero]; exact hq0, by rw [dom.one]; exact hq1⟩
+      by rw [hz]; exact hq0, by rw [ho]; exact_mod_cast hq1⟩
   have hentry : ((2:ℝ) / 3) ^ k * (1 - 0) ≤ (ε:ℝ) := by
     have h1 : ((2:ℝ) / 3) ^ k * (1 - 0) = ((2:ℝ) / 3) ^ k := by ring
     rw [h1]
     exact hk.le
   obtain ⟨n, Ds, Rs, hcerts, hoks, hwidth⟩ :=
-    exists_run_from dom.F dom.smono q enc henc ref hrc (ε:ℝ) hεr v hv0 hvq k 0 1 hinit hentry
+    exists_run_from F hsmono q enc henc ref hrc (ε:ℝ) hεr v hv0 hvq k 0 1 hinit hentry
   exact ⟨n, Ds, Rs, v, hv0, hvq, hcerts, hoks, hwidth⟩
 
 /-! ## 六、Beta／有限混合实例化（合同 4：域内实例全链） -/
 
-/-- 整数 Bernstein CDF 是域内实例（四件套齐全，消费 UnifiedBetaDomain 交付）。 -/
-theorem bern_in_domain (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) : NarrowDomain :=
+/-- 整数 Bernstein CDF 是域内实例（NarrowDomain 四件套齐全，
+    消费 UnifiedBetaDomain 交付；全链定理按字段直接消费，见下）。 -/
+def bern_in_domain (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) : NarrowDomain :=
   ⟨bernCdf α β, bernCdf_continuous α β, bernCdf_strictMonoOn α β hα hβ,
     bernCdf_zero α β hα, bernCdf_one α β hβ⟩
 
@@ -623,7 +634,7 @@ theorem bern_cdfEnc_valid (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β) (x : �
   exact h
 
 /-- **Beta 端到端全链**：整数形状 bernCdf 上，健全包围器＋细化合同给
-    `full_chain` 的全部结论（域实例由 `bern_in_domain` 供给）。 -/
+    `full_chain` 的全部结论（域字段由 `bern_in_domain` 各分量供给）。 -/
 theorem bern_full_chain (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β)
     (q : ℚ) (hq0 : (0:ℝ) ≤ q) (hq1 : q ≤ 1) (ε : ℚ) (hε : 0 < ε)
     (enc : ℝ → Enc) (henc : ∀ x, encValid (bernCdf α β) (enc x) x)
@@ -636,11 +647,12 @@ theorem bern_full_chain (α β : ℕ) (hα : 1 ≤ α) (hβ : 1 ≤ β)
           (runState 0 1 Ds j).2 ∧ v ∈ Set.Icc (runState 0 1 Ds j).1
           (runState 0 1 Ds j).2) ∧
       ((runState 0 1 Ds n).2 - (runState 0 1 Ds n).1) ≤ (ε:ℝ) :=
-  full_chain (bern_in_domain α β hα hβ) q hq0 hq1 ε hε enc henc ref hrc
+  full_chain (bernCdf α β) (bernCdf_continuous α β) (bernCdf_strictMonoOn α β hα hβ)
+    (bernCdf_zero α β hα) (bernCdf_one α β hβ) q hq0 hq1 ε hε enc henc ref hrc
 
 /-- 有限混合 CDF 是域内实例（权重非负和 1＋某正权分量严格递增；
     消费 UnifiedBetaDomain 的 mixture_* 四件）。 -/
-theorem mixture_in_domain {n : ℕ} (w : Fin n → ℚ) (Fs : Fin n → ℝ → ℝ)
+def mixture_in_domain {n : ℕ} (w : Fin n → ℚ) (Fs : Fin n → ℝ → ℝ)
     (hFc : ∀ h, Continuous (Fs h)) (hw : ∀ h, 0 ≤ w h) (hwsum : ∑ h, w h = 1)
     (hF0 : ∀ h, Fs h 0 = 0) (hF1 : ∀ h, Fs h 1 = 1)
     (j : Fin n) (hwj : 0 < w j) (hm : ∀ h, MonotoneOn (Fs h) (Set.Icc (0:ℝ) 1))
@@ -667,8 +679,10 @@ theorem mixture_full_chain {n : ℕ} (w : Fin n → ℚ) (Fs : Fin n → ℝ →
           (runState 0 1 Ds j).2 ∧ v ∈ Set.Icc (runState 0 1 Ds j).1
           (runState 0 1 Ds j).2) ∧
       ((runState 0 1 Ds k).2 - (runState 0 1 Ds k).1) ≤ (ε:ℝ) :=
-  full_chain (mixture_in_domain w Fs hFc hw hwsum hF0 hF1 j hwj hm hs) q hq0 hq1 ε hε
-    enc henc ref hrc
+  full_chain (mixtureCdf w Fs) (mixture_continuous w Fs hFc)
+    (mixture_strictMonoOn w Fs hw j hwj hm hs)
+    (mixture_endpoints w Fs hwsum hF0 hF1).1 (mixture_endpoints w Fs hwsum hF0 hF1).2
+    q hq0 hq1 ε hε enc henc ref hrc
 
 /-! ## 七、域外声明（评审第 6 条：[1/3, 2/3] 平台反例，必须保留） -/
 
@@ -778,8 +792,6 @@ theorem coarse_update_deletes_quantile :
     rw [hb] at hcon
     norm_num at hcon
   · intro hcon
-    have hb : id ((1:ℝ) / 3) = (1:ℝ) / 3 := rfl
-    rw [hb] at hcon
     obtain ⟨_, h2⟩ := Set.mem_Icc.mp hcon
     norm_num at h2
 

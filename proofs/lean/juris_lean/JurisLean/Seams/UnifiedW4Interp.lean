@@ -61,8 +61,20 @@ W4 试点 T122 五方法解释 ＋ T123 解释分支 —— 六件套之 Lean �
   `PriorityPair`/`HasPriority`/`hasPriorityB`/`PriorityWF`/`resolvedByPriority`、
   `branchEach`（支路枚举：一候选一支，不合并不丢弃）。
 
+## 三、本件证明 API 纪律（第一轮 CI 38104892437 的 32 错教训，全部按
+v4.30 工具链源码/本仓已绿模块核实后改写）
+
+- 合取命题不能 `:= rfl`（term-rfl 只对 Eq 目标点火）——改 `⟨rfl, …, rfl⟩` 逐分量；
+- v4.30 core `Bool.and_eq_true (a b : Bool) : ((a && b) = true) = (a = true ∧ b = true)`
+  是 **Prop 等式形**（非 Iff）——只作 `rw`/`simp only` 引理，不做 `.mp/.mpr`；
+- 自家 Iff 定理的投影一律写显式 `Iff.mp`/`Iff.mpr`；
+- v4.30 `List.mem_filter` 分量序＝⟨成员, 谓词⟩；`List.length_map` 只有一个显式参；
+  `List.not_mem_nil` 不作函数式应用，用 `simp` 收；
+- 前缀 `!` 优先级低于 `=`：`!p = true` 会被析成 `!(p = true)` 并插 decide 强转——
+  一律带括号写 `((!p) = true)` 或经 `dsimp only`/`rw` 绕开。
+
 **证**：本文件全部定理，零 sorry / 零自定义 axiom / 零 `True :=` 逃避。
-本机不编译，CI 模块轮为唯一 Lean 权威（CI_NOT_RUN 记入分包报告）。
+CI 模块轮为唯一 Lean 权威。
 -/
 
 namespace JurisLean.Seams.UnifiedW4Interp
@@ -181,7 +193,8 @@ theorem literal_legal (candId : Nat) (i : InterpInput) (target scope : Nat)
     (mkLiteral candId i target scope e r reason).scope = scope ∧
     (mkLiteral candId i target scope e r reason).effect = e ∧
     (mkLiteral candId i target scope e r reason).reasonId = some reason ∧
-    (mkLiteral candId i target scope e r reason).authorityId = none := rfl
+    (mkLiteral candId i target scope e r reason).authorityId = none :=
+  ⟨rfl, rfl, rfl, rfl, rfl, rfl⟩
 
 /-- 体系解释合法性定理（同上六面）。 -/
 theorem systematic_legal (candId : Nat) (i : InterpInput) (target scope : Nat)
@@ -191,7 +204,8 @@ theorem systematic_legal (candId : Nat) (i : InterpInput) (target scope : Nat)
     (mkSystematic candId i target scope e r reason).scope = scope ∧
     (mkSystematic candId i target scope e r reason).effect = e ∧
     (mkSystematic candId i target scope e r reason).reasonId = some reason ∧
-    (mkSystematic candId i target scope e r reason).authorityId = none := rfl
+    (mkSystematic candId i target scope e r reason).authorityId = none :=
+  ⟨rfl, rfl, rfl, rfl, rfl, rfl⟩
 
 /-- 目的解释合法性定理（同上六面）。 -/
 theorem teleological_legal (candId : Nat) (i : InterpInput) (target scope : Nat)
@@ -201,16 +215,19 @@ theorem teleological_legal (candId : Nat) (i : InterpInput) (target scope : Nat)
     (mkTeleological candId i target scope e r reason).scope = scope ∧
     (mkTeleological candId i target scope e r reason).effect = e ∧
     (mkTeleological candId i target scope e r reason).reasonId = some reason ∧
-    (mkTeleological candId i target scope e r reason).authorityId = none := rfl
+    (mkTeleological candId i target scope e r reason).authorityId = none :=
+  ⟨rfl, rfl, rfl, rfl, rfl, rfl⟩
 
 /-- 历史解释合法性定理（同上六面）。 -/
 theorem historical_legal (candId : Nat) (i : InterpInput) (target scope : Nat)
     (e : InterpEffect) (r : RuleAst) (reason : Nat) :
     (mkHistorical candId i target scope e r reason).input = i ∧
     (mkHistorical candId i target scope e r reason).target = target ∧
+    (mkHistorical candId i target scope e r reason).scope = scope ∧
     (mkHistorical candId i target scope e r reason).effect = e ∧
     (mkHistorical candId i target scope e r reason).reasonId = some reason ∧
-    (mkHistorical candId i target scope e r reason).authorityId = none := rfl
+    (mkHistorical candId i target scope e r reason).authorityId = none :=
+  ⟨rfl, rfl, rfl, rfl, rfl, rfl⟩
 
 /-- 合宪解释合法性定理（同上六面；P066：受制度权限约束——权限位不内置，
 采用时另行法定授予）。 -/
@@ -221,7 +238,8 @@ theorem constitutional_legal (candId : Nat) (i : InterpInput) (target scope : Na
     (mkConstitutional candId i target scope e r reason).scope = scope ∧
     (mkConstitutional candId i target scope e r reason).effect = e ∧
     (mkConstitutional candId i target scope e r reason).reasonId = some reason ∧
-    (mkConstitutional candId i target scope e r reason).authorityId = none := rfl
+    (mkConstitutional candId i target scope e r reason).authorityId = none :=
+  ⟨rfl, rfl, rfl, rfl, rfl, rfl⟩
 
 /-- 采用门（§3.1：采用/排除解释仍须法定权限与具名理由）：候选可被采用当且仅当
 具名理由与法定权限都在位。 -/
@@ -231,11 +249,7 @@ def adoptableB (c : InterpCandidate) : Bool :=
 /-- 采用门双侧互译。 -/
 theorem adoptableB_iff (c : InterpCandidate) :
     adoptableB c = true ↔ c.reasonId.isSome = true ∧ c.authorityId.isSome = true := by
-  constructor
-  · intro h
-    exact Bool.and_eq_true.mp h
-  · rintro ⟨h1, h2⟩
-    exact Bool.and_eq_true.mpr ⟨h1, h2⟩
+  simp [adoptableB]
 
 /-- 无条件规则库：只收可合法采用候选的规则 AST（§3.1：未采用候选不进入无条件
 规则库）。 -/
@@ -275,12 +289,12 @@ theorem unauth_not_adoptable : adoptableB unauthLiteral = false := rfl
 /-- 反例见证的规则库判定：该候选的规则不进库（未采用候选不进入无条件规则库）。 -/
 theorem unauth_rule_not_in_base : unauthLiteral.rule ∉ ruleBase [unauthLiteral] := by
   intro hmem
-  obtain ⟨c, hc_mem, hc_rule, hc_ad⟩ := rule_base_only_adoptable [unauthLiteral]
+  obtain ⟨c, hc_mem, _hc_rule, hc_ad⟩ := rule_base_only_adoptable [unauthLiteral]
     unauthLiteral.rule hmem
   have hcu : c = unauthLiteral := by
     rcases List.mem_cons.mp hc_mem with h | h
     · exact h
-    · exact absurd h (List.not_mem_nil c)
+    · exact absurd h (by simp)
   rw [hcu] at hc_ad
   rw [unauth_not_adoptable] at hc_ad
   exact Bool.noConfusion hc_ad
@@ -300,7 +314,7 @@ theorem adoption_adds_only_rule (c : InterpCandidate) (cands : List InterpCandid
   rcases List.mem_cons.mp hx_mem with hx_eq | hx_in
   · rw [hx_eq] at hx_rule
     exact Or.inl hx_rule.symm
-  · exact Or.inr ⟨x, hx_in, hx_rule, _hx_ad⟩
+  · exact Or.inr (List.mem_map.mpr ⟨x, hx_in, hx_rule⟩)
 
 /-! ## T123：解释分支（§3.1、§4.3） -/
 
@@ -365,12 +379,12 @@ theorem hasPriorityB_iff (pairs : List PriorityPair) (s n : Nat) :
   constructor
   · intro h
     obtain ⟨p, hp, hpv⟩ := List.any_eq_true.mp h
-    refine ⟨p, hp, ?_, ?_⟩
-    · exact decide_eq_true_iff.mp (Bool.and_eq_true.mp hpv).1
-    · exact decide_eq_true_iff.mp (Bool.and_eq_true.mp hpv).2
+    simp only at hpv
+    simp only [Bool.and_eq_true, decide_eq_true_iff] at hpv
+    exact ⟨p, hp, hpv.1, hpv.2⟩
   · rintro ⟨p, hp, hs, hn⟩
     refine List.any_eq_true.mpr ⟨p, hp, ?_⟩
-    exact Bool.and_eq_true.mpr ⟨decide_eq_true_iff.mpr hs, decide_eq_true_iff.mpr hn⟩
+    simp [hs, hn]
 
 /-- 优先良构：每条具名排除边都落在池中一对真冲突上（§3.1：相冲突的候选才进入
 冲突实例；无冲突不造边）。 -/
@@ -401,7 +415,7 @@ def resolvedByPriority (pairs : List PriorityPair) (pool : List InterpCandidate)
 theorem resolved_subset_of_pool (pairs : List PriorityPair)
     (pool : List InterpCandidate) (c : InterpCandidate)
     (h : c ∈ resolvedByPriority pairs pool) : c ∈ pool :=
-  (List.mem_filter.mp h).2
+  (List.mem_filter.mp h).1
 
 /-- 劣位被排除：若 superior ∈ 池、具名边 superior→inferior、二者不同候选且
 superior 本身存活，则 inferior 不进采用集。 -/
@@ -413,33 +427,35 @@ theorem resolved_omits_inferior (pairs : List PriorityPair)
     (_hxres : x ∈ resolvedByPriority pairs pool) :
     y ∉ resolvedByPriority pairs pool := by
   intro hyres
-  have hpred : !(pool.any
-      (fun s => decide (s ≠ y) && hasPriorityB pairs s.candId y.candId)) = true :=
-    (List.mem_filter.mp hyres).1
+  have hpred := (List.mem_filter.mp hyres).2
+  simp only at hpred
+  obtain ⟨p, hp_mem, hs, hn⟩ := hprio
+  have h2 : hasPriorityB pairs x.candId y.candId = true :=
+    Iff.mpr (hasPriorityB_iff pairs x.candId y.candId) ⟨p, hp_mem, hs, hn⟩
   have hany : pool.any
-      (fun s => decide (s ≠ y) && hasPriorityB pairs s.candId y.candId) = true :=
-    List.any_eq_true.mpr ⟨x, hx,
-      Bool.and_eq_true.mpr ⟨decide_eq_true_iff.mpr hxy, hasPriorityB_iff.mpr hprio⟩⟩
+      (fun s => decide (s ≠ y) && hasPriorityB pairs s.candId y.candId) = true := by
+    refine List.any_eq_true.mpr ⟨x, hx, ?_⟩
+    dsimp only
+    rw [decide_eq_true_iff.mpr hxy, h2]
   rw [hany] at hpred
   simp at hpred
 
 /-- 优位存活（一般形）：x ∈ 池且池中无其他候选对 x 具名优先时，x 进采用集。 -/
 theorem resolved_keeps_unopposed (pairs : List PriorityPair)
     (pool : List InterpCandidate) (x : InterpCandidate) (hx : x ∈ pool)
-    (hanti : ∀ s ∈ pool, s.candId ≠ x.candId →
+    (hanti : ∀ s ∈ pool, s ≠ x →
       ¬ HasPriority pairs s.candId x.candId) :
     x ∈ resolvedByPriority pairs pool := by
   refine List.mem_filter.mpr ⟨hx, ?_⟩
-  show !(pool.any
-    (fun s => decide (s ≠ x) && hasPriorityB pairs s.candId x.candId)) = true
+  dsimp only
   cases hany : pool.any
       (fun s => decide (s ≠ x) && hasPriorityB pairs s.candId x.candId) with
   | true =>
     obtain ⟨s, hs_mem, hs_val⟩ := List.any_eq_true.mp hany
-    exact absurd
-      (hasPriorityB_iff.mp (Bool.and_eq_true.mp hs_val).2)
-      (hanti s hs_mem (decide_eq_true_iff.mp (Bool.and_eq_true.mp hs_val).1))
-  | false => simpa using hany
+    simp only [Bool.and_eq_true, decide_eq_true_iff] at hs_val
+    exact absurd (Iff.mpr (hasPriorityB_iff pairs s.candId x.candId) hs_val.2)
+      (hanti s hs_mem hs_val.1)
+  | false => rfl
 
 /-- 见证候选 x：文义构造，目标 7，规则 AST#1，上下文材料 11，理由与权限具名。 -/
 def candX : InterpCandidate :=
@@ -475,7 +491,8 @@ def branchEach (cands : List InterpCandidate) : List InterpBranch :=
 
 /-- 枚举不丢弃：支路数＝候选数。 -/
 theorem branchEach_count (cands : List InterpCandidate) :
-    (branchEach cands).length = cands.length := List.length_map _ _
+    (branchEach cands).length = cands.length := by
+  simp [branchEach]
 
 /-- 支路 X：已采用 candX，私有前提＝材料 11。 -/
 def branchX : InterpBranch :=
@@ -489,10 +506,11 @@ def branchY : InterpBranch :=
 分支层不作唯一化（采用层才按具名优先收敛，见 `witness_superior_adopted`）。 -/
 theorem witness_two_branches_kept :
     branchEach [candX, candY] = [branchX, branchY] ∧ branchX ≠ branchY := by
-  refine ⟨rfl, ?_⟩
-  intro h
-  have hprem := congrArg InterpBranch.privatePremises h
-  simp [branchX, branchY] at hprem
+  refine ⟨?_, ?_⟩
+  · decide
+  · intro h
+    have hprem := congrArg InterpBranch.privatePremises h
+    simp [branchX, branchY] at hprem
 
 /-! ### 分支隔离（T123 旗舰：一支的证明不能引用另一支的前提） -/
 
@@ -527,7 +545,7 @@ theorem derivationOk_iff (B : InterpBranch) (d : BranchDerivation) :
 /-- 本支前提内的推导被隔离门接受。 -/
 theorem derivation_wf_accepts (B : InterpBranch) (d : BranchDerivation)
     (h : DerivationWF B d) : derivationOk B d = true :=
-  derivationOk_iff.mpr h
+  Iff.mpr derivationOk_iff h
 
 /-- 越界即拒（一般形）：引用前提只要有一个不在本支私有前提内，隔离门拒绝。 -/
 theorem rejects_foreign_premise (B : InterpBranch) (d : BranchDerivation)
@@ -537,9 +555,9 @@ theorem rejects_foreign_premise (B : InterpBranch) (d : BranchDerivation)
   by_contra hcon
   have htrue : derivationOk B d = true := by
     cases h : derivationOk B d with
-    | true => exact h
+    | true => exact rfl
     | false => exact absurd h hcon
-  exact hp_out (derivationOk_iff.mp htrue p hp_mem)
+  exact hp_out (Iff.mp derivationOk_iff htrue p hp_mem)
 
 /-- **分支隔离定理（T123 旗舰）**：前提不相交的两支，一支的合法推导不可能引用
 另一支的任何前提——否则立刻矛盾。这就是"一支的证明不能引用另一支前提"的
@@ -569,10 +587,8 @@ theorem witness_disjoint : DisjointPremises branchX branchY := by
   intro p hp hin
   have h11 : p ∈ [11] := hp
   have h22 : p ∈ [22] := hin
-  rcases List.mem_cons.mp h11 with rfl | hnil
-  · rcases List.mem_cons.mp h22 with h | h'
-    · exact absurd h (by decide)
-    · exact List.not_mem_nil 22 h'
+  simp at h11 h22
+  exact absurd (h11.symm.trans h22) (by decide)
 
 /-- 见证：两支确在真冲突（同目标、不相容规则）。 -/
 theorem witness_conflict : ConflictOn candX candY := ⟨rfl, by decide⟩
@@ -582,7 +598,7 @@ theorem witness_attack_both_ways :
     InterpAttack branchX branchY ∧ InterpAttack branchY branchX := by
   have h1 : InterpAttack branchX branchY :=
     ⟨candX, by simp [branchX], candY, by simp [branchY], witness_conflict⟩
-  exact ⟨h1, interpAttack_symmetric.mp h1⟩
+  exact ⟨h1, Iff.mp interpAttack_symmetric h1⟩
 
 /-- 见证：X 支自身的合法推导（引用本支前提 11）被隔离门接受。 -/
 theorem witness_own_accepted : derivationOk branchX

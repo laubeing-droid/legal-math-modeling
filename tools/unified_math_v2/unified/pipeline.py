@@ -44,6 +44,7 @@ from .standards import (
 )
 from .process import ProcessEvent as _ProcessEvent, run_trace as _run_trace, step_event as _step_event  # noqa: F401  (re-export)
 from tools.full_math.implementation import interpretation_ref as _interp_ref
+from tools.full_math.implementation import games_ref as _games_ref
 
 
 # ---------------------------------------------------------------------------
@@ -267,6 +268,58 @@ def active_special_establishments(
     return frozenset(established)
 
 
+def _build_games_layer(env) -> "GamesLayerSnapshot | None":
+    """W4 博弈层（T112–T115）构建：env 的四个可选冻结载体
+    （case.SentencingInput / games_ref.BargainParams / case.SignalInput /
+    case.RepetitionInput，属性名＝games_ref 形参名）全 None＝未委托博弈分析
+    （返回 None）；任一非 None 则四槽全要，从载体属性取参调 games_ref，
+    属性缺失 AttributeError／任一门失败（序贯检查不过、T ≤ P、折扣越界、
+    尾界证书不成立、不可信惩罚下主张合作）向上抛 ValueError——由 run_case
+    的既有 except 收敛为 FAILED，不是法律结论。折扣尾界的收益流 callable
+    在此从 repetition_input.p 构造，不进 env（env 只承载 ℚ 数与 bool）。"""
+
+    carriers = (env.sentencing_input, env.bargain_params,
+                env.signal_input, env.repetition_input)
+    if all(c is None for c in carriers):
+        return None
+    if any(c is None for c in carriers):
+        raise ValueError(
+            "games layer requires all four carriers when any is declared: "
+            "sentencing_input/bargain_params/signal_input/repetition_input")
+    layer = _games_ref.build_games_layer(
+        env.sentencing_input.domain,
+        env.sentencing_input.responsibility,
+        env.sentencing_input.prevention_adjustment,
+        tuple(env.sentencing_input.certs),
+        env.bargain_params,
+        env.signal_input.game,
+        env.signal_input.sS,
+        env.signal_input.sR,
+        env.signal_input.mu_l,
+        env.signal_input.mu_h,
+        env.repetition_input.r,
+        env.repetition_input.t,
+        env.repetition_input.p,
+        env.repetition_input.delta,
+    )
+    if not layer.tail_ok:
+        raise ValueError("repetition tail bound certificate failed")
+    credible = _games_ref.punish_credible(
+        lambda _action: bool(env.repetition_input.punishment_permitted))
+    if layer.sustains and not credible:
+        raise ValueError(
+            "cooperation claimed with non-permitted punishment path")
+    return GamesLayerSnapshot(
+        sentencing=layer.sentencing,
+        bargaining=layer.bargaining,
+        seq_eq=layer.seq_eq,
+        tail_ok=layer.tail_ok,
+        sustains=layer.sustains,
+        threshold=layer.threshold,
+        credible=credible,
+    )
+
+
 def run_case(
     case: CaseInput,
     env: LegalEnvironment,
@@ -294,6 +347,17 @@ def run_case(
             pending_notes.append(
                 "interpretation conflict requires referral (§3.1): "
                 + ", ".join(f"{a}/{b}" for a, b in interp_layer.referral))
+        # W4 games layer (T112–T115): four optional frozen carriers on the
+        # environment; any declared carrier requires all four, the layers are
+        # built through games_ref from carrier attributes (missing attribute
+        # = AttributeError), gate failures hit the shared FAILED path below,
+        # and a below-threshold discount surfaces as a pending note (a
+        # finding, not a verdict).
+        games_layer = _build_games_layer(env)
+        if games_layer is not None and not games_layer.sustains:
+            pending_notes.append(
+                "repetition: cooperation not sustained at delta (below the "
+                "credible-punishment threshold)")
         if selection_result.status is SelectionStatus.ESCALATE:
             pending_notes.append(
                 "norm conflict requires referral: "
@@ -414,6 +478,7 @@ def run_case(
                         standards=standards,
                         finalizations=tuple(finalizations),
                         interp_layer=interp_layer,
+                        games_layer=games_layer,
                     )
                 )
         status = RunStatus.COMPLETE if branches else RunStatus.PAUSED
@@ -460,6 +525,28 @@ class CaseRunBranch:
     # relations, referral records, and the rule base built from ADOPTED
     # interpretations only.
     interp_layer: object = None
+    # W4 games layer (T112–T115), Γ-level and identical across selection
+    # branches: sentencing dual-line readout over the normative domain,
+    # bargaining backward induction with its one-step deviation checks,
+    # the sequential-equilibrium report, and the repetition tail /
+    # credible-punishment certificates.
+    games_layer: object = None
+
+
+@dataclass(frozen=True)
+class GamesLayerSnapshot:
+    """W4 博弈层挂接快照（T112–T115）：四槽读数＋可信惩罚门。credible 由
+    repetition_input.punishment_permitted 经 games_ref.punish_credible 判定
+    （不取 build_games_layer 内的常量位）；tail_ok＝折扣尾界证书成立；
+    threshold＝可信惩罚阈值 δ* = (T−R)/(T−P)（Fraction）。"""
+
+    sentencing: object = None   # games_ref.SentencingLayer（T112）
+    bargaining: object = None   # games_ref.BIResult（T113）
+    seq_eq: object = None       # games_ref.SeqEqReport（T114）
+    tail_ok: bool = False       # T115 尾界证书
+    sustains: bool = False      # T115 合作维持读数
+    threshold: object = None    # T115 阈值 δ*
+    credible: bool = False      # T115 惩罚可信门
 
 
 @dataclass(frozen=True)

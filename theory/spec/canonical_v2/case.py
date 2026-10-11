@@ -413,6 +413,45 @@ class AuthorizedAssessment:
 
 
 @dataclass(frozen=True)
+class SentencingInput:
+    """W4 T112 量刑双线输入载体：属性名与 games_ref.build_games_layer 形参
+    一致——domain＝games_ref.NormDomain；responsibility／
+    prevention_adjustment＝ℚ 月数（Fraction）；certs＝games_ref.SentCert
+    序列（同源合成门在层内核验，异源对记入 foreign_pairs）."""
+
+    domain: object
+    responsibility: object
+    prevention_adjustment: object
+    certs: Tuple[object, ...] = ()
+
+
+@dataclass(frozen=True)
+class SignalInput:
+    """W4 T114 隐藏信息输入载体——game＝games_ref.SigGame；sS＝型→信号
+    bool 对、sR＝信息集→行动 bool 对（纯策略剖面）；mu_l／mu_h＝
+    games_ref.Belief（路径贝叶斯钉定可达信息集，离轨须落支撑内）."""
+
+    game: object
+    sS: object
+    sR: object
+    mu_l: object
+    mu_h: object
+
+
+@dataclass(frozen=True)
+class RepetitionInput:
+    """W4 T115 重复博弈输入载体：Trigger 收益 R/T/P 与折扣 δ，全 ℚ/Fraction；
+    折扣尾界的收益流 callable 由 run_case 从 p 构造（env 不承载 callable），
+    惩罚路径许可经 punishment_permitted 过 games_ref.punish_credible 门."""
+
+    r: object
+    t: object
+    p: object
+    delta: object
+    punishment_permitted: bool = True
+
+
+@dataclass(frozen=True)
 class LegalEnvironment:
     """Jurisdiction, versioned rules, interpretation policy identity,
     authorized assessments, declared admission bases, procedure policy,
@@ -428,6 +467,15 @@ class LegalEnvironment:
     # 冻结载体；未采用候选不进入规则库，同位冲突无具名优先时走报请路径。
     interpretation_candidates: Tuple[object, ...] = ()
     interpretation_priorities: Tuple[object, ...] = ()
+    # W4 博弈层（T112–T115）：四个可选冻结载体，属性名与 games_ref 形参一致，
+    # 各自携带对应调用槽的全部参数（games_ref.NormDomain/SentCert/ℚ 月数/
+    # BargainParams/SigGame/Belief/Trigger 收益）；全 None＝未委托博弈分析；
+    # 任一非 None 时四槽全要，run_case 从属性取参构建博弈层读数，属性缺失
+    # AttributeError／门校验 ValueError 走既有 FAILED 路径 fail-closed。
+    sentencing_input: object = None    # SentencingInput（T112）
+    bargain_params: object = None      # games_ref.BargainParams（T113）
+    signal_input: object = None        # SignalInput（T114）
+    repetition_input: object = None    # RepetitionInput（T115）
     authorized_assessments: Tuple[AuthorizedAssessment, ...] = ()
     admission_bases: Tuple[AdmissionBasis, ...] = ()
     procedure_policy_id: str = ""

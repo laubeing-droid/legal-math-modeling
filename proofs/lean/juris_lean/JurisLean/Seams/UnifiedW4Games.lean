@@ -87,6 +87,25 @@ W4 批 T112–T115 —— 六件套之 Lean 合同件（量刑双线／动态谈
   `Finset.abs_sum_le_sum_abs`/`div_le_iff₀`/`le_div_iff₀`/`div_mul_cancel₀`
   均按 .lake/packages/mathlib（v4.30）实际签名核对。
 
+## 四、首轮 CI（38113499991）修复轮增补纪律（逐错核实后的新教训）
+
+- **structure 字段不支持空格多 binder**：`x1 x2 y1 y2 : ℚ` 被析成单字段
+  `x1 : x2 → y1 → y2 → ℚ`（三个无类型 binder → "Failed to infer type of
+  binder"）——结构字段一律一行一个；定理签名 `(R T P δ : ℚ)` 不受影响。
+- **decide 拒绝含自由变量的 Decidable 实例**（"Expected type must not
+  contain free variables"）——`absurd h (by decide)` 前先核对 h 绑定的是
+  合取的哪一侧；构造子错配等式用 `simp at h` 关闭（reduceCtorEq，自由
+  变量无碍），不用 decide。
+- **decide 的内核求值过不去 ℚ 的 `min`/`max`/序 ite 与复合和**（287/676 系
+  卡在 `.num`：序格 ite 的 Decidable 不归约）——数值见证一律走组件事实链：
+  投影事实（`rfl`）→ `show` 展开 def（含 iota）→ `rw`/`if_pos`/`decide_
+  eq_true_iff.mpr`（norm_num 事实）→ 纯字面量交给 norm_num；ℚ 的直接
+  `Rat.decLe` 字面量比较 decide 可归约（:witness_empirical 系通过实证）。
+- **simp only 不重排 ∧ 结合律**：LHS 左结合 ↔ RHS 右结合会剩 unsolved——
+  互译定理用全量 `simp`（归一化含 and_assoc）。
+- **v4.30 `Finset.sum_mul : (∑ f) * b = ∑ (f * b)`**——需要反向时加
+  `.symm`；`rw` 收尾的 `rfl` 已能关则不再追加（"No goals"）。
+
 **证**：本文件全部定理，零 sorry / 零自定义 axiom / 零 `True :=` 逃避。
 CI 模块轮为唯一 Lean 权威（本机不编译，协议禁止）。
 -/
@@ -147,29 +166,29 @@ theorem penaltyInDomainB_iff (d : NormDomain) (p : PenaltyKind) :
       have hc := decide_eq_true_iff.mp h
       exact Or.inl ⟨m, rfl, hc.1, hc.2⟩
     · intro h
-      rcases h with ⟨m', hm', hlo, hhi⟩ | ⟨_, hl⟩ | ⟨_, hd⟩
+      rcases h with ⟨m', hm', hlo, hhi⟩ | ⟨hpl, _⟩ | ⟨hpd, _⟩
       · injection hm' with hm'
         subst hm'
         exact decide_eq_true_iff.mpr ⟨hlo, hhi⟩
-      · exact absurd hl (by decide)
-      · exact absurd hd (by decide)
+      · simp at hpl
+      · simp at hpd
   | life =>
     constructor
     · intro h
       exact Or.inr (Or.inl ⟨rfl, h⟩)
     · intro h
-      rcases h with ⟨m', hm', _, _⟩ | ⟨_, hl⟩ | ⟨_, hd⟩
-      · exact absurd hm' (by decide)
+      rcases h with ⟨m', hm', _, _⟩ | ⟨_, hl⟩ | ⟨hpd, _⟩
+      · simp at hm'
       · exact hl
-      · exact absurd hd (by decide)
+      · simp at hpd
   | death =>
     constructor
     · intro h
       exact Or.inr (Or.inr ⟨rfl, h⟩)
     · intro h
-      rcases h with ⟨m', hm', _, _⟩ | ⟨_, hl⟩ | ⟨_, hd⟩
-      · exact absurd hm' (by decide)
-      · exact absurd hl (by decide)
+      rcases h with ⟨m', hm', _, _⟩ | ⟨hpl, _⟩ | ⟨_, hd⟩
+      · simp at hm'
+      · simp at hpl
       · exact hd
 
 /-- 有期徒刑在域的充分条件（构造级门）。 -/
@@ -184,13 +203,13 @@ def clipTo (d : NormDomain) (x : ℚ) : ℚ := max d.monthsLo (min d.monthsHi x)
 /-- 裁剪恒在域内（预防线调整不得越出责任刑边界——投影保证）。 -/
 theorem clip_in_domain (d : NormDomain) (x : ℚ) :
     d.monthsLo ≤ clipTo d x ∧ clipTo d x ≤ d.monthsHi :=
-  ⟨le_max_left _ _, max_le d.lo_le_hi (min_le_right _ _)⟩
+  ⟨le_max_left _ _, max_le d.lo_le_hi (min_le_left _ _)⟩
 
 /-- 域内不动点（责任刑边界内的合成不扭曲：调整后仍在域内时裁剪＝恒等）。 -/
 theorem clip_fix_in_domain (d : NormDomain) (x : ℚ)
     (hlo : d.monthsLo ≤ x) (hhi : x ≤ d.monthsHi) : clipTo d x = x := by
   show max d.monthsLo (min d.monthsHi x) = x
-  rw [min_eq_right hhi, max_eq_left hlo]
+  rw [min_eq_right hhi, max_eq_right hlo]
 
 /-- 经验/预防线的有界预测输入（§8.6 T84：有界经验模型 Y∈[a,a+D]；构造级
 fail-fast——值域声明与值同时给出，越界预测构造不出来）。 -/
@@ -284,7 +303,18 @@ theorem witness_prevention_clipped :
     penaltyInDomainB normDomainDemo
       (PenaltyKind.fixed (clipTo normDomainDemo (25 + 40))) = true ∧
     penaltyInDomainB normDomainDemo (PenaltyKind.fixed 65) = false := by
-  decide
+  have hlo : normDomainDemo.monthsLo = 10 := rfl
+  have hhi : normDomainDemo.monthsHi = 60 := rfl
+  have hclip : clipTo normDomainDemo (25 + 40) = 60 := by
+    show max normDomainDemo.monthsLo (min normDomainDemo.monthsHi (25 + 40)) = 60
+    rw [hlo, hhi]
+    norm_num
+  refine ⟨hclip, ?_, ?_⟩
+  · rw [hclip]
+    exact penaltyInDomainB_fixed_of_le normDomainDemo 60 (by norm_num) (by norm_num)
+  · show decide (normDomainDemo.monthsLo ≤ 65 ∧ 65 ≤ normDomainDemo.monthsHi) = false
+    rw [hlo, hhi]
+    decide
 
 /-- 经验线见证：预测值 75 在自身值域 [70,80] 内、但越出法定域 [10,60]——
 裸值被拒、裁剪回 60 后入域（经验拟合不反向修改法定范围）。 -/
@@ -308,7 +338,10 @@ theorem witness_empirical_outside_needs_clip :
 structure BargainParams where
   cake : ℚ
   delta : ℚ
-  x1 x2 y1 y2 : ℚ
+  x1 : ℚ
+  x2 : ℚ
+  y1 : ℚ
+  y2 : ℚ
   hdelta : 0 ≤ delta
   hcake : 0 ≤ cake
 
@@ -535,7 +568,59 @@ def bParamsDemo : BargainParams :=
 
 theorem witness_bargain_bi :
     b1Choice bParamsDemo = 20 ∧ biOutcome bParamsDemo = ((60 : ℚ), (40 : ℚ)) := by
-  refine ⟨?_, ?_⟩ <;> decide
+  -- 组件事实链（不经 decide 整体求值：先换字面量、逐门用 norm_num 事实打开）
+  have hv1 : r1Pay bParamsDemo 20 = ((10 : ℚ), 40) := by
+    show (if decide (0 ≤ bParamsDemo.delta * 20)
+        then (bParamsDemo.delta * 20, bParamsDemo.delta * (bParamsDemo.cake - 20))
+        else (0, 0)) = ((10 : ℚ), 40)
+    rw [show bParamsDemo.delta = 1 / 2 from rfl, show bParamsDemo.cake = 100 from rfl,
+        decide_eq_true_iff.mpr (by norm_num : (0 : ℚ) ≤ 1 / 2 * 20)]
+  have hv2 : r1Pay bParamsDemo 50 = ((25 : ℚ), 25) := by
+    show (if decide (0 ≤ bParamsDemo.delta * 50)
+        then (bParamsDemo.delta * 50, bParamsDemo.delta * (bParamsDemo.cake - 50))
+        else (0, 0)) = ((25 : ℚ), 25)
+    rw [show bParamsDemo.delta = 1 / 2 from rfl, show bParamsDemo.cake = 100 from rfl,
+        decide_eq_true_iff.mpr (by norm_num : (0 : ℚ) ≤ 1 / 2 * 50)]
+  have hb1 : b1Choice bParamsDemo = 20 := by
+    show (if (r1Pay bParamsDemo bParamsDemo.y1).2 ≥ (r1Pay bParamsDemo bParamsDemo.y2).2
+        then bParamsDemo.y1 else bParamsDemo.y2) = 20
+    rw [show bParamsDemo.y1 = 20 from rfl, show bParamsDemo.y2 = 50 from rfl,
+        hv1, hv2]
+    show (if bParamsDemo.delta * (bParamsDemo.cake - 20)
+        ≥ bParamsDemo.delta * (bParamsDemo.cake - 50) then 20 else 50) = 20
+    rw [if_pos (by norm_num :
+      (bParamsDemo.delta * (bParamsDemo.cake - 20) : ℚ) ≥
+        bParamsDemo.delta * (bParamsDemo.cake - 50))]
+  have hbir : biR1 bParamsDemo = ((10 : ℚ), 40) := by
+    show r1Pay bParamsDemo (b1Choice bParamsDemo) = ((10 : ℚ), 40)
+    rw [hb1, hv1]
+  have hv40 : r0Pay bParamsDemo 40 = ((60 : ℚ), 40) := by
+    show (if decide (40 ≥ bParamsDemo.delta * (biR1 bParamsDemo).2)
+        then (bParamsDemo.cake - 40, 40) else biR1 bParamsDemo)
+      = ((60 : ℚ), 40)
+    rw [show bParamsDemo.cake = 100 from rfl, hbir]
+    show (if decide ((40 : ℚ) ≥ 1 / 2 * 40) then ((60 : ℚ), 40) else ((10 : ℚ), 40))
+      = ((60 : ℚ), 40)
+    rw [decide_eq_true_iff.mpr (by norm_num : (40 : ℚ) ≥ 1 / 2 * 40)]
+  have hv60 : r0Pay bParamsDemo 60 = ((40 : ℚ), 60) := by
+    show (if decide (60 ≥ bParamsDemo.delta * (biR1 bParamsDemo).2)
+        then (bParamsDemo.cake - 60, 60) else biR1 bParamsDemo)
+      = ((40 : ℚ), 60)
+    rw [show bParamsDemo.cake = 100 from rfl, hbir]
+    show (if decide ((60 : ℚ) ≥ 1 / 2 * 40) then ((40 : ℚ), 60) else ((10 : ℚ), 40))
+      = ((40 : ℚ), 60)
+    rw [decide_eq_true_iff.mpr (by norm_num : (60 : ℚ) ≥ 1 / 2 * 40)]
+  have ha0 : a0Choice bParamsDemo = 40 := by
+    show (if (r0Pay bParamsDemo bParamsDemo.x1).1 ≥ (r0Pay bParamsDemo bParamsDemo.x2).1
+        then bParamsDemo.x1 else bParamsDemo.x2) = 40
+    rw [show bParamsDemo.x1 = 40 from rfl, show bParamsDemo.x2 = 60 from rfl,
+        hv40, hv60]
+    show (if bParamsDemo.cake - 40 ≥ bParamsDemo.cake - 60 then 40 else 60) = 40
+    rw [if_pos (by norm_num : (bParamsDemo.cake - 40 : ℚ) ≥ bParamsDemo.cake - 60)]
+  have hout : biOutcome bParamsDemo = ((60 : ℚ), (40 : ℚ)) := by
+    show r0Pay bParamsDemo (a0Choice bParamsDemo) = ((60 : ℚ), (40 : ℚ))
+    rw [ha0, hv40]
+  exact ⟨hb1, hout⟩
 
 /-! ## T114：隐藏信息与信念（§8.3：类型/信息集/一致离轨信念与全部延续偏离） -/
 
@@ -622,7 +707,7 @@ theorem seqEqCheckB_iff (g : SigGame) (sS : SigType → Bool) (sR : Bool → Boo
       consistentB g sS true μL ∧ consistentB g sS false μH ∧
       receiverBR g true μL sR ∧ receiverBR g false μH sR ∧
       senderBR g sS sR .strong ∧ senderBR g sS sR .weak := by
-  simp only [seqEqCheckB, Bool.and_eq_true, decide_eq_true_iff]
+  simp [seqEqCheckB, Bool.and_eq_true, decide_eq_true_iff]
 
 /-- **全部延续偏离无益（接收者侧）**：两纯行动的检查通过 ⇒ 任意凸组合偏离
 （§8.3：完美记忆保证混合偏离为纯延续计划的凸组合——两行动菜单上凸组合即
@@ -670,22 +755,66 @@ def demoGame : SigGame :=
       if m then (if a then (3 : ℚ) else (0 : ℚ)) else (if a then (1 : ℚ) else (0 : ℚ)) }
 
 /-- **T114 原反例见证（独立保留）**：池化均衡在一致信念 μL＝先验 1/2 下通过
-序贯检查器。 -/
+序贯检查器（组件事实链：六门逐个 norm_num 打开，不经 decide 整体求值）。 -/
 theorem witness_pooling_seq_eq :
     seqEqCheckB demoGame (fun _ => true) (fun _ => true) ⟨1 / 2⟩ ⟨1 / 2⟩ = true := by
-  decide
+  have h1 : consistentB demoGame (fun _ => true) true ⟨1 / 2⟩ := by
+    norm_num [consistentB, beliefWF, demoGame]
+  have h2 : consistentB demoGame (fun _ => true) false ⟨1 / 2⟩ := by
+    norm_num [consistentB, beliefWF, demoGame]
+  have h3 : receiverBR demoGame true ⟨1 / 2⟩ (fun _ => true) := by
+    norm_num [receiverBR, euR, demoGame]
+  have h4 : receiverBR demoGame false ⟨1 / 2⟩ (fun _ => true) := by
+    norm_num [receiverBR, euR, demoGame]
+  have h5 : senderBR demoGame (fun _ => true) (fun _ => true) SigType.strong := by
+    norm_num [senderBR, senderPay, demoGame]
+  have h6 : senderBR demoGame (fun _ => true) (fun _ => true) SigType.weak := by
+    norm_num [senderBR, senderPay, demoGame]
+  simp only [seqEqCheckB]
+  rw [decide_eq_true_iff.mpr h1, decide_eq_true_iff.mpr h2, decide_eq_true_iff.mpr h3,
+    decide_eq_true_iff.mpr h4, decide_eq_true_iff.mpr h5, decide_eq_true_iff.mpr h6]
 
 /-- **T114 原反例见证（独立保留）：不一致信念被拒**——池化下信息集 L 可达，
 路径贝叶斯钉定 μL＝先验 1/2；谎报 9/10 被检查器拒绝。 -/
 theorem witness_inconsistent_mu_rejected :
     seqEqCheckB demoGame (fun _ => true) (fun _ => true) ⟨9 / 10⟩ ⟨1 / 2⟩ = false := by
-  decide
+  have h1 : ¬ consistentB demoGame (fun _ => true) true ⟨9 / 10⟩ := by
+    norm_num [consistentB, beliefWF, demoGame]
+  have h2 : consistentB demoGame (fun _ => true) false ⟨1 / 2⟩ := by
+    norm_num [consistentB, beliefWF, demoGame]
+  have h3 : receiverBR demoGame true ⟨9 / 10⟩ (fun _ => true) := by
+    norm_num [receiverBR, euR, demoGame]
+  have h4 : receiverBR demoGame false ⟨1 / 2⟩ (fun _ => true) := by
+    norm_num [receiverBR, euR, demoGame]
+  have h5 : senderBR demoGame (fun _ => true) (fun _ => true) SigType.strong := by
+    norm_num [senderBR, senderPay, demoGame]
+  have h6 : senderBR demoGame (fun _ => true) (fun _ => true) SigType.weak := by
+    norm_num [senderBR, senderPay, demoGame]
+  simp only [seqEqCheckB]
+  rw [decide_eq_false_iff_not.mpr h1, decide_eq_true_iff.mpr h2,
+    decide_eq_true_iff.mpr h3, decide_eq_true_iff.mpr h4,
+    decide_eq_true_iff.mpr h5, decide_eq_true_iff.mpr h6]
 
 /-- **T114 原反例见证（独立保留）：离轨信念越界被拒**——H 离轨只要求支撑内
 良构；3/2 越界被拒（不能任填）。 -/
 theorem witness_offpath_unnormalized_rejected :
     seqEqCheckB demoGame (fun _ => true) (fun _ => true) ⟨1 / 2⟩ ⟨3 / 2⟩ = false := by
-  decide
+  have h1 : consistentB demoGame (fun _ => true) true ⟨1 / 2⟩ := by
+    norm_num [consistentB, beliefWF, demoGame]
+  have h2 : ¬ consistentB demoGame (fun _ => true) false ⟨3 / 2⟩ := by
+    norm_num [consistentB, beliefWF, demoGame]
+  have h3 : receiverBR demoGame true ⟨1 / 2⟩ (fun _ => true) := by
+    norm_num [receiverBR, euR, demoGame]
+  have h4 : receiverBR demoGame false ⟨3 / 2⟩ (fun _ => true) := by
+    norm_num [receiverBR, euR, demoGame]
+  have h5 : senderBR demoGame (fun _ => true) (fun _ => true) SigType.strong := by
+    norm_num [senderBR, senderPay, demoGame]
+  have h6 : senderBR demoGame (fun _ => true) (fun _ => true) SigType.weak := by
+    norm_num [senderBR, senderPay, demoGame]
+  simp only [seqEqCheckB]
+  rw [decide_eq_true_iff.mpr h1, decide_eq_false_iff_not.mpr h2,
+    decide_eq_true_iff.mpr h3, decide_eq_true_iff.mpr h4,
+    decide_eq_true_iff.mpr h5, decide_eq_true_iff.mpr h6]
 
 /-- 合成见证上的凸组合偏离读数：u 支配 d（2 > 1），任意混合不超 u——w=2/5 时
 混合收益 7/5 ≤ 2。 -/
@@ -693,7 +822,8 @@ theorem witness_receiver_mixed_no_gain :
     (2 / 5 : ℚ) * euR demoGame true ⟨1 / 2⟩ true
       + (1 - 2 / 5) * euR demoGame true ⟨1 / 2⟩ false
       ≤ euR demoGame true ⟨1 / 2⟩ true := by
-  decide
+  unfold euR demoGame
+  norm_num
 
 /-! ## T115：无限重复折扣（§8.3：尾界/离轨单偏离/可信惩罚阈值） -/
 
@@ -713,7 +843,6 @@ theorem truncSum_succ (δ : ℚ) (u : Nat → ℚ) (N : Nat) :
     truncSum δ u (N + 1) = truncSum δ u N + δ ^ N * u N := by
   unfold truncSum
   rw [Finset.sum_range_succ]
-  rfl
 
 /-- 几何部分和恒等式（§8.3 几何级数的有限形式）：(1−δ)·∑_{t<k} δ^t = 1 − δ^k。 -/
 theorem geom_partial (δ : ℚ) (k : Nat) :
@@ -751,7 +880,7 @@ theorem tail_bound_mul (δ M : ℚ) (hδ0 : 0 ≤ δ) (hδ1 : δ < 1) (hM : 0 �
     ring
   have hkey : (1 - δ) * (∑ t ∈ Finset.range k, δ ^ t * M) ≤ M := by
     have h2 : (∑ t ∈ Finset.range k, δ ^ t * M)
-        = (∑ t ∈ Finset.range k, δ ^ t) * M := Finset.sum_mul _ _ _
+        = (∑ t ∈ Finset.range k, δ ^ t) * M := (Finset.sum_mul _ _ _).symm
     have h3 : (1 - δ) * ((∑ t ∈ Finset.range k, δ ^ t) * M)
         = ((1 - δ) * (∑ t ∈ Finset.range k, δ ^ t)) * M := by ring
     rw [h2, h3, geom_partial δ k]
@@ -926,7 +1055,7 @@ theorem witness_tail_bound_instance :
     |∑ t ∈ Finset.range 5, (2 / 3 : ℚ) ^ (1 + t) * 2| * (1 - 2 / 3)
       ≤ 2 * (2 / 3 : ℚ) ^ 1 :=
   tail_bound_mul (2 / 3) 2 (by norm_num) (by norm_num) (by norm_num)
-    (fun _ => (2 : ℚ)) (fun _ => by decide) 1 5
+    (fun _ => (2 : ℚ)) (fun _ => by norm_num) 1 5
 
 /-- 惩罚可信性见证：许可谓词 full（两行动都许可）满足可信前置。 -/
 def permittedFull : Bool → Bool := fun _ => true

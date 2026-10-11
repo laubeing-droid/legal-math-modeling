@@ -105,6 +105,28 @@ W4 批 T112–T115 —— 六件套之 Lean 合同件（量刑双线／动态谈
   互译定理用全量 `simp`（归一化含 and_assoc）。
 - **v4.30 `Finset.sum_mul : (∑ f) * b = ∑ (f * b)`**——需要反向时加
   `.symm`；`rw` 收尾的 `rfl` 已能关则不再追加（"No goals"）。
+- **v4.30 `mul_add` 是 `a * (b + c) = a*b + a*c`**；`(a + b) * c` 的分配是
+  `add_mul`——方向写反即 pattern 不匹配。
+
+## 五、二轮 CI（38115488113）修复轮增补纪律（23 错逐错核实）
+
+- **`norm_num`/`show` 的 defeq 都不穿透 plain-def 投影与 ℚ 算术**：投影
+  （`normDomainDemo.monthsLo`）先建 `rfl` 事实再 `rw` 换成字面量；字面量
+  之间的 ℚ 算术/不等式才交 norm_num；`show` 只许纯 iota/delta（剥显式对的
+  `Prod.snd`、内联 decide），任何跨 ℚ 计算的 show 必败。
+- **linarith 的原子不展开 def**：`(biOutcome p).1` 与
+  `(r0Pay p (a0Choice p)).1` 是不同原子——先用类型标注 `have hb1' : ... := hb1`
+  （defeq 通过）同化原子，再 linarith。
+- **等式不能当函数应用**：`h : A = false` 要引出矛盾用
+  `rw [decide_eq_true_iff.mpr hh] at h; exact Bool.noConfusion h`。
+- **rw 链收尾的 reducible-rfl 不计算 Bool.and 与 ℚ 算术**：`(true && …) = true`
+  与 `(1/2*20, 1/2*80) = (10, 40)` 需显式补 `rfl`/`norm_num`。
+- **simp only 不重排 ∧ 结合律、全量 simp 又会把 abbrev 展开穿**：互译定理用
+  `simp only [defs…, and_assoc]`（显式列 and_assoc 归一到右结合）。
+- **calc 链中段的 Eq 不能直接喂 le_trans**：`Eq.le`（写成 `.le`）后再
+  le_trans。
+- **induction 不自动泛化无关 binder**：归纳中要代入修改流的变量必须
+  `induction N generalizing b`（其依赖假设 h2 随之量化，逐例 intro）。
 
 **证**：本文件全部定理，零 sorry / 零自定义 axiom / 零 `True :=` 逃避。
 CI 模块轮为唯一 Lean 权威（本机不编译，协议禁止）。
@@ -311,7 +333,8 @@ theorem witness_prevention_clipped :
     norm_num
   refine ⟨hclip, ?_, ?_⟩
   · rw [hclip]
-    exact penaltyInDomainB_fixed_of_le normDomainDemo 60 (by norm_num) (by norm_num)
+    exact penaltyInDomainB_fixed_of_le normDomainDemo 60
+      (by rw [hlo]; norm_num) (by rw [hhi]; norm_num)
   · show decide (normDomainDemo.monthsLo ≤ 65 ∧ 65 ≤ normDomainDemo.monthsHi) = false
     rw [hlo, hhi]
     decide
@@ -382,7 +405,10 @@ theorem accR1_false_iff (p : BargainParams) (y : ℚ) :
     accR1 p y = false ↔ p.delta * y < 0 := by
   constructor
   · intro h
-    have hnot : ¬ (0 ≤ p.delta * y) := fun hh => h (decide_eq_true_iff.mpr hh)
+    have hnot : ¬ (0 ≤ p.delta * y) := by
+      intro hh
+      rw [decide_eq_true_iff.mpr hh] at h
+      exact Bool.noConfusion h
     linarith
   · intro h
     show decide (p.delta * y ≥ 0) = false
@@ -397,7 +423,10 @@ theorem accR0_false_iff (p : BargainParams) (x : ℚ) :
     accR0 p x = false ↔ x < p.delta * (biR1 p).2 := by
   constructor
   · intro h
-    have hnot : ¬ (x ≥ p.delta * (biR1 p).2) := fun hh => h (decide_eq_true_iff.mpr hh)
+    have hnot : ¬ (x ≥ p.delta * (biR1 p).2) := by
+      intro hh
+      rw [decide_eq_true_iff.mpr hh] at h
+      exact Bool.noConfusion h
     linarith
   · intro h
     show decide (x ≥ p.delta * (biR1 p).2) = false
@@ -512,6 +541,10 @@ theorem bi_outcome_unique (p : BargainParams) (x : ℚ)
   obtain ⟨ha01, ha02⟩ := ha0
   have hbA := a0_best_response p
   obtain ⟨hb1, hb2⟩ := hbA
+  -- biOutcome 未展开时与 r0Pay (a0Choice p) 是不同原子——linarith 前先按
+  -- 定义同化（defeq 类型标注，非重写）
+  have hb1' : (r0Pay p (a0Choice p)).1 ≥ (r0Pay p p.x1).1 := hb1
+  have hb2' : (r0Pay p (a0Choice p)).1 ≥ (r0Pay p p.x2).1 := hb2
   have hxm : (r0Pay p x).1 = (r0Pay p p.x1).1 ∨ (r0Pay p x).1 = (r0Pay p p.x2).1 := by
     rcases hx with h | h
     · exact Or.inl (by rw [h])
@@ -575,22 +608,21 @@ theorem witness_bargain_bi :
         else (0, 0)) = ((10 : ℚ), 40)
     rw [show bParamsDemo.delta = 1 / 2 from rfl, show bParamsDemo.cake = 100 from rfl,
         decide_eq_true_iff.mpr (by norm_num : (0 : ℚ) ≤ 1 / 2 * 20)]
+    norm_num
   have hv2 : r1Pay bParamsDemo 50 = ((25 : ℚ), 25) := by
     show (if decide (0 ≤ bParamsDemo.delta * 50)
         then (bParamsDemo.delta * 50, bParamsDemo.delta * (bParamsDemo.cake - 50))
         else (0, 0)) = ((25 : ℚ), 25)
     rw [show bParamsDemo.delta = 1 / 2 from rfl, show bParamsDemo.cake = 100 from rfl,
         decide_eq_true_iff.mpr (by norm_num : (0 : ℚ) ≤ 1 / 2 * 50)]
+    norm_num
   have hb1 : b1Choice bParamsDemo = 20 := by
     show (if (r1Pay bParamsDemo bParamsDemo.y1).2 ≥ (r1Pay bParamsDemo bParamsDemo.y2).2
         then bParamsDemo.y1 else bParamsDemo.y2) = 20
     rw [show bParamsDemo.y1 = 20 from rfl, show bParamsDemo.y2 = 50 from rfl,
         hv1, hv2]
-    show (if bParamsDemo.delta * (bParamsDemo.cake - 20)
-        ≥ bParamsDemo.delta * (bParamsDemo.cake - 50) then 20 else 50) = 20
-    rw [if_pos (by norm_num :
-      (bParamsDemo.delta * (bParamsDemo.cake - 20) : ℚ) ≥
-        bParamsDemo.delta * (bParamsDemo.cake - 50))]
+    show (if (40 : ℚ) ≥ (25 : ℚ) then 20 else 50) = 20
+    rw [if_pos (by norm_num : (40 : ℚ) ≥ (25 : ℚ))]
   have hbir : biR1 bParamsDemo = ((10 : ℚ), 40) := by
     show r1Pay bParamsDemo (b1Choice bParamsDemo) = ((10 : ℚ), 40)
     rw [hb1, hv1]
@@ -599,24 +631,28 @@ theorem witness_bargain_bi :
         then (bParamsDemo.cake - 40, 40) else biR1 bParamsDemo)
       = ((60 : ℚ), 40)
     rw [show bParamsDemo.cake = 100 from rfl, hbir]
-    show (if decide ((40 : ℚ) ≥ 1 / 2 * 40) then ((60 : ℚ), 40) else ((10 : ℚ), 40))
-      = ((60 : ℚ), 40)
-    rw [decide_eq_true_iff.mpr (by norm_num : (40 : ℚ) ≥ 1 / 2 * 40)]
+    show (if decide ((40 : ℚ) ≥ bParamsDemo.delta * 40) = true
+        then (100 - 40, 40) else ((10 : ℚ), 40)) = ((60 : ℚ), 40)
+    rw [show bParamsDemo.delta = 1 / 2 from rfl,
+        decide_eq_true_iff.mpr (by norm_num : (40 : ℚ) ≥ 1 / 2 * 40)]
+    norm_num
   have hv60 : r0Pay bParamsDemo 60 = ((40 : ℚ), 60) := by
     show (if decide (60 ≥ bParamsDemo.delta * (biR1 bParamsDemo).2)
         then (bParamsDemo.cake - 60, 60) else biR1 bParamsDemo)
       = ((40 : ℚ), 60)
     rw [show bParamsDemo.cake = 100 from rfl, hbir]
-    show (if decide ((60 : ℚ) ≥ 1 / 2 * 40) then ((40 : ℚ), 60) else ((10 : ℚ), 40))
-      = ((40 : ℚ), 60)
-    rw [decide_eq_true_iff.mpr (by norm_num : (60 : ℚ) ≥ 1 / 2 * 40)]
+    show (if decide ((60 : ℚ) ≥ bParamsDemo.delta * 40) = true
+        then (100 - 60, 60) else ((10 : ℚ), 40)) = ((40 : ℚ), 60)
+    rw [show bParamsDemo.delta = 1 / 2 from rfl,
+        decide_eq_true_iff.mpr (by norm_num : (60 : ℚ) ≥ 1 / 2 * 40)]
+    norm_num
   have ha0 : a0Choice bParamsDemo = 40 := by
     show (if (r0Pay bParamsDemo bParamsDemo.x1).1 ≥ (r0Pay bParamsDemo bParamsDemo.x2).1
         then bParamsDemo.x1 else bParamsDemo.x2) = 40
     rw [show bParamsDemo.x1 = 40 from rfl, show bParamsDemo.x2 = 60 from rfl,
         hv40, hv60]
-    show (if bParamsDemo.cake - 40 ≥ bParamsDemo.cake - 60 then 40 else 60) = 40
-    rw [if_pos (by norm_num : (bParamsDemo.cake - 40 : ℚ) ≥ bParamsDemo.cake - 60)]
+    show (if (60 : ℚ) ≥ (40 : ℚ) then 40 else 60) = 40
+    rw [if_pos (by norm_num : (60 : ℚ) ≥ (40 : ℚ))]
   have hout : biOutcome bParamsDemo = ((60 : ℚ), (40 : ℚ)) := by
     show r0Pay bParamsDemo (a0Choice bParamsDemo) = ((60 : ℚ), (40 : ℚ))
     rw [ha0, hv40]
@@ -707,7 +743,7 @@ theorem seqEqCheckB_iff (g : SigGame) (sS : SigType → Bool) (sR : Bool → Boo
       consistentB g sS true μL ∧ consistentB g sS false μH ∧
       receiverBR g true μL sR ∧ receiverBR g false μH sR ∧
       senderBR g sS sR .strong ∧ senderBR g sS sR .weak := by
-  simp [seqEqCheckB, Bool.and_eq_true, decide_eq_true_iff]
+  simp only [seqEqCheckB, Bool.and_eq_true, decide_eq_true_iff, and_assoc]
 
 /-- **全部延续偏离无益（接收者侧）**：两纯行动的检查通过 ⇒ 任意凸组合偏离
 （§8.3：完美记忆保证混合偏离为纯延续计划的凸组合——两行动菜单上凸组合即
@@ -773,6 +809,7 @@ theorem witness_pooling_seq_eq :
   simp only [seqEqCheckB]
   rw [decide_eq_true_iff.mpr h1, decide_eq_true_iff.mpr h2, decide_eq_true_iff.mpr h3,
     decide_eq_true_iff.mpr h4, decide_eq_true_iff.mpr h5, decide_eq_true_iff.mpr h6]
+  rfl
 
 /-- **T114 原反例见证（独立保留）：不一致信念被拒**——池化下信息集 L 可达，
 路径贝叶斯钉定 μL＝先验 1/2；谎报 9/10 被检查器拒绝。 -/
@@ -794,6 +831,7 @@ theorem witness_inconsistent_mu_rejected :
   rw [decide_eq_false_iff_not.mpr h1, decide_eq_true_iff.mpr h2,
     decide_eq_true_iff.mpr h3, decide_eq_true_iff.mpr h4,
     decide_eq_true_iff.mpr h5, decide_eq_true_iff.mpr h6]
+  rfl
 
 /-- **T114 原反例见证（独立保留）：离轨信念越界被拒**——H 离轨只要求支撑内
 良构；3/2 越界被拒（不能任填）。 -/
@@ -815,6 +853,7 @@ theorem witness_offpath_unnormalized_rejected :
   rw [decide_eq_true_iff.mpr h1, decide_eq_false_iff_not.mpr h2,
     decide_eq_true_iff.mpr h3, decide_eq_true_iff.mpr h4,
     decide_eq_true_iff.mpr h5, decide_eq_true_iff.mpr h6]
+  rfl
 
 /-- 合成见证上的凸组合偏离读数：u 支配 d（2 > 1），任意混合不超 u——w=2/5 时
 混合收益 7/5 ≤ 2。 -/
@@ -867,6 +906,9 @@ theorem tail_bound_mul (δ M : ℚ) (hδ0 : 0 ≤ δ) (hδ1 : δ < 1) (hM : 0 �
   have habs : ∀ t : Nat, |δ ^ (N + t) * u (N + t)| = δ ^ (N + t) * |u (N + t)| := by
     intro t
     rw [abs_mul, abs_of_nonneg (hδpow (N + t))]
+  have habssum : ∑ t ∈ Finset.range k, |δ ^ (N + t) * u (N + t)|
+      = ∑ t ∈ Finset.range k, δ ^ (N + t) * |u (N + t)| :=
+    Finset.sum_congr rfl fun t _ => habs t
   have hle1 : ∑ t ∈ Finset.range k, |δ ^ (N + t) * u (N + t)|
       ≤ ∑ t ∈ Finset.range k, δ ^ (N + t) * M := by
     refine Finset.sum_le_sum fun t _ => ?_
@@ -888,7 +930,7 @@ theorem tail_bound_mul (δ M : ℚ) (hδ0 : 0 ≤ δ) (hδ1 : δ < 1) (hM : 0 �
   calc |∑ t ∈ Finset.range k, δ ^ (N + t) * u (N + t)| * (1 - δ)
       ≤ (∑ t ∈ Finset.range k, δ ^ (N + t) * M) * (1 - δ) :=
         mul_le_mul_of_nonneg_right
-          (le_trans hsplit (le_trans (Finset.sum_congr rfl fun t _ => habs t) hle1)) hpos
+          (le_trans hsplit (le_trans habssum.le hle1)) hpos
     _ = δ ^ N * ((1 - δ) * (∑ t ∈ Finset.range k, δ ^ t * M)) := by
         rw [hfact]
         ring
@@ -946,10 +988,10 @@ theorem one_dev_principle (δ : ℚ) (g : Nat → Bool → ℚ) (a : Nat → Boo
         ≤ truncSum δ (fun s => g s (a s)) N)
     (b : Nat → Bool) (h2 : ∀ s, N ≤ s → b s = a s) :
     truncSum δ (fun s => g s (b s)) N ≤ truncSum δ (fun s => g s (a s)) N := by
-  induction N with
-  | zero => intro h1 b _; simp [truncSum]
+  induction N generalizing b with
+  | zero => intro b _; simp [truncSum]
   | succ N ih =>
-    intro h1 b h2
+    intro b h2
     by_cases hbN : b N = a N
     · -- 末位一致：限制假设后直接用归纳
       have key := ih (fun t ht x => h1 t (Nat.lt_succ_of_lt ht) x) b (by
@@ -992,7 +1034,7 @@ theorem one_dev_principle (δ : ℚ) (g : Nat → Bool → ℚ) (a : Nat → Boo
               exact absurd hbad (Nat.lt_irrefl s)
             · by_cases heq : s = N
               · rw [heq, if_pos rfl]
-              · rw [if_neg heq, h2 s (by omega)]))
+              · rw [if_neg heq, h2 s (by omega)])
       have preEq : truncSum δ (fun s => g s (if s = N then a N else b s)) N
           = truncSum δ (fun s => g s (b s)) N :=
         truncSum_congr δ (N := N) (u := fun s => g s (if s = N then a N else b s))
@@ -1015,7 +1057,7 @@ theorem coop_threshold_iff (R T P δ : ℚ) (hTP : P < T) (hδ1 : δ < 1) (hδ0 
     intro X
     rw [mul_comm, div_mul_cancel₀ _ hM1]
   have e1 : (T + δ * P / (1 - δ)) * (1 - δ) = T * (1 - δ) + δ * P := by
-    rw [mul_add, div_mul_cancel₀ (δ * P) hM1]
+    rw [add_mul, div_mul_cancel₀ (δ * P) hM1]
   constructor
   · intro h
     have he := (le_div_iff₀ hpos).mp h

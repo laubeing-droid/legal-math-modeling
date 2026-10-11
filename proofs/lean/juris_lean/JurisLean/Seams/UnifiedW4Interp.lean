@@ -437,6 +437,7 @@ theorem resolved_omits_inferior (pairs : List PriorityPair)
     refine List.any_eq_true.mpr ⟨x, hx, ?_⟩
     dsimp only
     rw [decide_eq_true_iff.mpr hxy, h2]
+    rfl
   rw [hany] at hpred
   simp at hpred
 
@@ -510,7 +511,7 @@ def branchY : InterpBranch :=
 theorem witness_two_branches_kept :
     branchEach [candX, candY] = [branchX, branchY] ∧ branchX ≠ branchY := by
   refine ⟨?_, ?_⟩
-  · simp [branchEach, branchOf, candX, candY, branchX, branchY]
+  · simp [branchEach, branchOf, branchPremisesOf, candX, candY, branchX, branchY]
   · intro h
     have hprem := congrArg InterpBranch.privatePremises h
     simp [branchX, branchY] at hprem

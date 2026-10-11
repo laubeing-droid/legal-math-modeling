@@ -113,6 +113,10 @@ pipeline.py/case.py，详见报告）。
 
 ### CI 轮 1（run 38109835203，12 真错）新增教训（已全部修复并固化）
 
+> 本模块全量定版证据轮 run 38129952481 的 lean-full-clean-build job success
+> （axiom-audit 工件含 JurisLean.Seams.UnifiedW4Behavior.* 声明 41 条，
+> subject 4789406）；模块级绿轮＝38111466008（changed-module）。
+
 - **经函数子项递归的 match 定义会落 WF recursion，kernel 不可折叠**——
   `evalUnder (ch θ) θ` 的子项 `ch θ` 不是构造子子项，`rfl`/kernel 直算全部
   失败。修法：T117 载体改**非递归**显式两层 `STree`（深度 2 如实声明）；

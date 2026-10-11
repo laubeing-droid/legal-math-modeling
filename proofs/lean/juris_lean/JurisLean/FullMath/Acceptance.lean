@@ -166,21 +166,97 @@ theorem target_EXT08 : Contracts.target_EXT08 := JurisLean.FullMath.Action.share
 
 theorem target_EXT09 : Contracts.target_EXT09 := ⟨JurisLean.FullMath.Roots.ext09_domainComposition, Acceptance.root_CIVIL, Acceptance.root_CRIMINAL, Acceptance.root_ADMINISTRATIVE⟩
 
-theorem demand_D001 : Contracts.demand_D001 := JurisLean.FullMath.Core.locator_not_identity
+theorem demand_D001 : Contracts.demand_D001 := And.intro JurisLean.FullMath.Core.locator_not_identity
+  (by
+    intro scope paras
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · exact fun t h => of_decide_eq_true (List.mem_filter.mp h).2
+    · exact fun t hsc hp => List.mem_filter.mpr ⟨hp, decide_eq_true hsc⟩
+    · exact fun p hp hno =>
+        List.mem_filter.mpr ⟨hp, decide_eq_true (of_decide_eq_false hno)⟩
+    · exact fun p h => of_decide_eq_true (List.mem_filter.mp h).2)
 
-theorem demand_D002 : Contracts.demand_D002 := JurisLean.FullMath.Core.locator_not_identity
+theorem demand_D002 : Contracts.demand_D002 := And.intro JurisLean.FullMath.Core.locator_not_identity
+  (by
+    intro table s facts
+    refine ⟨fun e he => List.mem_of_find?_eq_some he, ?_, ?_⟩
+    · exact fun e _ hh => by subst hh; rfl
+    · exact fun r => by cases r <;> rfl)
 
-theorem demand_D003 : Contracts.demand_D003 := JurisLean.FullMath.Core.locator_not_identity
+theorem demand_D003 : Contracts.demand_D003 := And.intro JurisLean.FullMath.Core.locator_not_identity
+  (by
+    intro bindings person matter stage
+    refine ⟨fun e he => List.mem_of_find?_eq_some he, ?_, ?_⟩
+    · intro p r₁ r₂ hr hEq
+      simp at hEq
+      exact hr hEq
+    · intro n₁ n₂ r hn hEq
+      simp at hEq
+      exact hn hEq)
 
-theorem demand_D004 : Contracts.demand_D004 := JurisLean.FullMath.Core.locator_not_identity
+theorem demand_D004 : Contracts.demand_D004 := And.intro JurisLean.FullMath.Core.locator_not_identity
+  (by
+    refine ⟨List.all_eq_true, ?_⟩
+    intro u v x y huv hxy
+    refine ⟨?_, ?_⟩
+    · simpa using hxy
+    · have hne : v ≠ u := Ne.symm huv
+      have e1 : (fun d : String => if d = u then (x:ℕ) else if d = v then y else 0) u = x := by
+        simp
+      have e2 : (fun d : String => if d = u then (x:ℕ) else if d = v then y else 0) v = y := by
+        simp [hne]
+      have e3 : (fun d : String => if d = u then (y:ℕ) else if d = v then x else 0) u = y := by
+        simp
+      have e4 : (fun d : String => if d = u then (y:ℕ) else if d = v then x else 0) v = x := by
+        simp [hne]
+      rw [e1, e2, e3, e4]
+      omega)
 
-theorem demand_D005 : Contracts.demand_D005 := JurisLean.FullMath.Core.locator_not_identity
+theorem demand_D005 : Contracts.demand_D005 := And.intro JurisLean.FullMath.Core.locator_not_identity
+  (by
+    intro c₁ c₂ nm rest hc
+    refine ⟨?_, ?_, ?_⟩
+    · simp
+    · simp [hc]
+    · exact fun e he => List.mem_of_find?_eq_some he)
 
-theorem demand_D006 : Contracts.demand_D006 := JurisLean.FullMath.Core.locator_not_identity
+theorem demand_D006 : Contracts.demand_D006 := And.intro JurisLean.FullMath.Core.locator_not_identity
+  (by
+    intro c₁ c₂ k₁ k₂ addr rules hc
+    refine ⟨?_, ?_, ?_⟩
+    · intro hEq
+      simp at hEq
+      exact hc hEq.1
+    · intro e he
+      obtain ⟨r, hr, rfl⟩ := List.mem_map.mp he
+      exact ⟨r, hr, rfl⟩
+    · intro h
+      subst h
+      rfl)
 
-theorem demand_D007 : Contracts.demand_D007 := JurisLean.FullMath.Core.locator_not_identity
+theorem demand_D007 : Contracts.demand_D007 := And.intro JurisLean.FullMath.Core.locator_not_identity
+  (by
+    intro courts sources t exclusions cd inst lv
+    refine ⟨fun e he => List.mem_of_find?_eq_some he, ?_, ?_⟩
+    · exact fun hnone hnot =>
+        JurisLean.FullMath.Burden.unknown_is_pending sources t exclusions cd hnone hnot
+    · intro d₂ i₁ i₂ l hcd hEq
+      simp at hEq
+      exact hcd hEq.1)
 
-theorem demand_D008 : Contracts.demand_D008 := JurisLean.FullMath.Core.locator_not_identity
+theorem demand_D008 : Contracts.demand_D008 := And.intro JurisLean.FullMath.Core.locator_not_identity
+  (by
+    intro claims
+    refine ⟨?_, ?_, ?_⟩
+    · intro e he
+      obtain ⟨c, hc, rfl⟩ := List.mem_map.mp he
+      exact ⟨c, hc, rfl⟩
+    · intro a r bs bj₁ bj₂ rm sc hb hEq
+      simp at hEq
+      exact hb hEq
+    · intro a r har hEq
+      simp at hEq
+      exact har hEq.1)
 
 theorem demand_D009 : Contracts.demand_D009 := JurisLean.FullMath.Burden.unknown_is_pending
 

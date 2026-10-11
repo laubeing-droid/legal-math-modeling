@@ -1919,25 +1919,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D001",
    "contract": "JurisLean.FullMath.Contracts.demand_D001",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Core.locator_not_identity's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-01 intake demand instance in the shared semantic framework: this item's own contract semantics plus the registered locator/identity separation component, with its adverse case executed as a negative test.",
+   "independent_semantics": "topics(out) is inside the declared Topics_scope; every confirmed parallel issue has its own canonical demand object; unclassified paragraphs enter residual.",
+   "algorithm": "tools/full_math/implementation/intake_ref.py classify_topics computes the intermediate result from structured input; intake_check.check_D001 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared tables (scope/paragraphs, route table, binding table, per-defendant maps, registry snapshot, rules, court table, claim rows); outputs are exactly the contract quantities (topics/residual/objects, route+facts, binding+typed key, per-defendant correctness and swap detection, canonical keys, edges and merge decisions, court and jurisdiction status, claim records with party-pair amount keys).",
+   "external_assumptions": "Truth of external facts, natural-language intake coverage and misclassification rates remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Core/IdentityCodec.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/intake_ref.py",
+    "tools/full_math/implementation/intake_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D001]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_demand_positive[D001]",
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_demand_counterexample[D001]",
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_downstream_pipeline_consumes_intake"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D001]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D001]"
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_checker_rejects_tampered[D001]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Core.locator_not_identity"
@@ -1948,25 +1949,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D002",
    "contract": "JurisLean.FullMath.Contracts.demand_D002",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Core.locator_not_identity's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-01 intake demand instance in the shared semantic framework: this item's own contract semantics plus the registered locator/identity separation component, with its adverse case executed as a negative test.",
+   "independent_semantics": "route(s) allows civil, criminal, parallel or pending; a declared parallel is returned as-is; classification never rewrites the admitted facts.",
+   "algorithm": "tools/full_math/implementation/intake_ref.py classify_route computes the intermediate result from structured input; intake_check.check_D002 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared tables (scope/paragraphs, route table, binding table, per-defendant maps, registry snapshot, rules, court table, claim rows); outputs are exactly the contract quantities (topics/residual/objects, route+facts, binding+typed key, per-defendant correctness and swap detection, canonical keys, edges and merge decisions, court and jurisdiction status, claim records with party-pair amount keys).",
+   "external_assumptions": "Truth of external facts, natural-language intake coverage and misclassification rates remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Core/IdentityCodec.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/intake_ref.py",
+    "tools/full_math/implementation/intake_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D002]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_demand_positive[D002]",
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_demand_counterexample[D002]",
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_downstream_pipeline_consumes_intake"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D002]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D002]"
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_checker_rejects_tampered[D002]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Core.locator_not_identity"
@@ -1977,25 +1979,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D003",
    "contract": "JurisLean.FullMath.Contracts.demand_D003",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Core.locator_not_identity's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-01 intake demand instance in the shared semantic framework: this item's own contract semantics plus the registered locator/identity separation component, with its adverse case executed as a negative test.",
+   "independent_semantics": "every Role(person,matter,stage) binding is resolved from the declared binding table; person, role and name are distinct typed fields.",
+   "algorithm": "tools/full_math/implementation/intake_ref.py resolve_role computes the intermediate result from structured input; intake_check.check_D003 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared tables (scope/paragraphs, route table, binding table, per-defendant maps, registry snapshot, rules, court table, claim rows); outputs are exactly the contract quantities (topics/residual/objects, route+facts, binding+typed key, per-defendant correctness and swap detection, canonical keys, edges and merge decisions, court and jurisdiction status, claim records with party-pair amount keys).",
+   "external_assumptions": "Truth of external facts, natural-language intake coverage and misclassification rates remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Core/IdentityCodec.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/intake_ref.py",
+    "tools/full_math/implementation/intake_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D003]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_demand_positive[D003]",
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_demand_counterexample[D003]",
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_downstream_pipeline_consumes_intake"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D003]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D003]"
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_checker_rejects_tampered[D003]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Core.locator_not_identity"
@@ -2006,25 +2009,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D004",
    "contract": "JurisLean.FullMath.Contracts.demand_D004",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Core.locator_not_identity's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-01 intake demand instance in the shared semantic framework: this item's own contract semantics plus the registered locator/identity separation component, with its adverse case executed as a negative test.",
+   "independent_semantics": "per-defendant result edges keep the same actor_id, act set and case; case correctness = every required per-defendant mapping; a disposition swap stays detected while totals match.",
+   "algorithm": "tools/full_math/implementation/intake_ref.py case_correctness/swap_detected computes the intermediate result from structured input; intake_check.check_D004 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared tables (scope/paragraphs, route table, binding table, per-defendant maps, registry snapshot, rules, court table, claim rows); outputs are exactly the contract quantities (topics/residual/objects, route+facts, binding+typed key, per-defendant correctness and swap detection, canonical keys, edges and merge decisions, court and jurisdiction status, claim records with party-pair amount keys).",
+   "external_assumptions": "Truth of external facts, natural-language intake coverage and misclassification rates remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Core/IdentityCodec.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/intake_ref.py",
+    "tools/full_math/implementation/intake_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D004]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_demand_positive[D004]",
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_demand_counterexample[D004]",
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_downstream_pipeline_consumes_intake"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D004]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D004]"
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_checker_rejects_tampered[D004]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Core.locator_not_identity"
@@ -2035,25 +2039,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D005",
    "contract": "JurisLean.FullMath.Contracts.demand_D005",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Core.locator_not_identity's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-01 intake demand instance in the shared semantic framework: this item's own contract semantics plus the registered locator/identity separation component, with its adverse case executed as a negative test.",
+   "independent_semantics": "for a fixed registry snapshot, canonical-key (registration code) join and alias resolution equal the independent table semantics; same name with different codes never merges; same code across a rename resolves by validity time.",
+   "algorithm": "tools/full_math/implementation/intake_ref.py resolve_registry computes the intermediate result from structured input; intake_check.check_D005 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared tables (scope/paragraphs, route table, binding table, per-defendant maps, registry snapshot, rules, court table, claim rows); outputs are exactly the contract quantities (topics/residual/objects, route+facts, binding+typed key, per-defendant correctness and swap detection, canonical keys, edges and merge decisions, court and jurisdiction status, claim records with party-pair amount keys).",
+   "external_assumptions": "Truth of external facts, natural-language intake coverage and misclassification rates remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Core/IdentityCodec.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/intake_ref.py",
+    "tools/full_math/implementation/intake_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D005]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_demand_positive[D005]",
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_demand_counterexample[D005]",
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_downstream_pipeline_consumes_intake"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D005]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D005]"
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_checker_rejects_tampered[D005]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Core.locator_not_identity"
@@ -2064,25 +2069,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D006",
    "contract": "JurisLean.FullMath.Contracts.demand_D006",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Core.locator_not_identity's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-01 intake demand instance in the shared semantic framework: this item's own contract semantics plus the registered locator/identity separation component, with its adverse case executed as a negative test.",
+   "independent_semantics": "natural person, legal person, affiliate and representative relations are not identity equality; responsibility edges are generated only by explicitly declared rules.",
+   "algorithm": "tools/full_math/implementation/intake_ref.py responsibility_edges/merged_by_equality computes the intermediate result from structured input; intake_check.check_D006 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared tables (scope/paragraphs, route table, binding table, per-defendant maps, registry snapshot, rules, court table, claim rows); outputs are exactly the contract quantities (topics/residual/objects, route+facts, binding+typed key, per-defendant correctness and swap detection, canonical keys, edges and merge decisions, court and jurisdiction status, claim records with party-pair amount keys).",
+   "external_assumptions": "Truth of external facts, natural-language intake coverage and misclassification rates remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Core/IdentityCodec.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/intake_ref.py",
+    "tools/full_math/implementation/intake_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D006]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_demand_positive[D006]",
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_demand_counterexample[D006]",
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_downstream_pipeline_consumes_intake"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D006]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D006]"
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_checker_rejects_tampered[D006]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Core.locator_not_identity"
@@ -2093,25 +2099,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D007",
    "contract": "JurisLean.FullMath.Contracts.demand_D007",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Core.locator_not_identity's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-01 intake demand instance in the shared semantic framework: this item's own contract semantics plus the registered locator/identity separation component, with its adverse case executed as a negative test.",
+   "independent_semantics": "court code resolves to (institution, level) by the declared table; jurisdiction is a separate applicable-source decision and stays pending without an applicable source.",
+   "algorithm": "tools/full_math/implementation/intake_ref.py resolve_court/jurisdiction_status computes the intermediate result from structured input; intake_check.check_D007 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared tables (scope/paragraphs, route table, binding table, per-defendant maps, registry snapshot, rules, court table, claim rows); outputs are exactly the contract quantities (topics/residual/objects, route+facts, binding+typed key, per-defendant correctness and swap detection, canonical keys, edges and merge decisions, court and jurisdiction status, claim records with party-pair amount keys).",
+   "external_assumptions": "Truth of external facts, natural-language intake coverage and misclassification rates remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Core/IdentityCodec.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/intake_ref.py",
+    "tools/full_math/implementation/intake_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D007]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_demand_positive[D007]",
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_demand_counterexample[D007]",
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_downstream_pipeline_consumes_intake"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D007]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D007]"
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_checker_rejects_tampered[D007]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Core.locator_not_identity"
@@ -2122,25 +2129,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D008",
    "contract": "JurisLean.FullMath.Contracts.demand_D008",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Core.locator_not_identity's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-01 intake demand instance in the shared semantic framework: this item's own contract semantics plus the registered locator/identity separation component, with its adverse case executed as a negative test.",
+   "independent_semantics": "Claim=(claimant,respondent,basis,object,remedy,scope); every amount field is keyed to a named party pair; relations and differences among claims are preserved.",
+   "algorithm": "tools/full_math/implementation/intake_ref.py parse_claims computes the intermediate result from structured input; intake_check.check_D008 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared tables (scope/paragraphs, route table, binding table, per-defendant maps, registry snapshot, rules, court table, claim rows); outputs are exactly the contract quantities (topics/residual/objects, route+facts, binding+typed key, per-defendant correctness and swap detection, canonical keys, edges and merge decisions, court and jurisdiction status, claim records with party-pair amount keys).",
+   "external_assumptions": "Truth of external facts, natural-language intake coverage and misclassification rates remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Core/IdentityCodec.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/intake_ref.py",
+    "tools/full_math/implementation/intake_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D008]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_demand_positive[D008]",
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_demand_counterexample[D008]",
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_downstream_pipeline_consumes_intake"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D008]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D008]"
+    "tools/full_math/implementation_tests::test_intake_group01.py::test_checker_rejects_tampered[D008]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Core.locator_not_identity"

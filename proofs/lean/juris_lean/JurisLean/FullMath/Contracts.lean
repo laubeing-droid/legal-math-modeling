@@ -250,21 +250,108 @@ def target_EXT09 : Prop := (∀ (Person : Type)
     (enforceable : Prop)
     (hrule : enforceable → ac.authorityHeld ∧ ac.dutyImposed ∧ ac.procedureFollowed), enforceable → ac.authorityHeld ∧ ac.dutyImposed ∧ ac.procedureFollowed)
 
-def demand_D001 : Prop := ∃ a b : List String, locator a = locator b ∧ a ≠ b
+/-! D001-D008 (group 01 接案、问题与主体识别, W2-A batch B01): each def is
+that demand's own contract, translated from ALL_134_MATH_CONTRACTS.md.
+The first conjunct is the group-registered locator/identity separation
+component (a locator collision never merges two records); the remaining
+conjuncts are the demand's operational semantics with its adverse case. -/
 
-def demand_D002 : Prop := ∃ a b : List String, locator a = locator b ∧ a ≠ b
+/-- D001 咨询主题与并列争点：topics(out) ⊆ Topics_scope；每个已确认并列
+争点拿到自己的规范需求对象（不因主主题只报一个）；未分类段落进入 residual
+且 residual 不含已确认段落。 -/
+def demand_D001 : Prop :=
+  (∃ a b : List String, locator a = locator b ∧ a ≠ b) ∧
+  ∀ (scope : Finset String) (paras : List String),
+    (∀ t ∈ paras.filter (fun p => decide (p ∈ scope)), t ∈ scope) ∧
+    (∀ t ∈ scope, decide (t ∈ paras) = true →
+        t ∈ paras.filter (fun p => decide (p ∈ scope))) ∧
+    (∀ p ∈ paras, decide (p ∈ scope) = false →
+        p ∈ paras.filter (fun p => decide (¬(p ∈ scope)))) ∧
+    (∀ p ∈ paras.filter (fun p => decide (¬(p ∈ scope))), ¬(p ∈ scope))
 
-def demand_D003 : Prop := ∃ a b : List String, locator a = locator b ∧ a ≠ b
+/-- D002 民刑性质路由：route(s) 允许民事、刑事、并行或待定（并行
+(true,true) 被政策声明即原样返回，不拆成二选一）；分类不得自动改变
+准入事实（事实层无论路由结果如何逐条原样保留）。 -/
+def demand_D002 : Prop :=
+  (∃ a b : List String, locator a = locator b ∧ a ≠ b) ∧
+  ∀ (table : List (String × Bool × Bool)) (s : String) (facts : List String),
+    (∀ e, table.find? (fun p => decide (p.1 = s)) = some e → e ∈ table) ∧
+    (∀ e, table.find? (fun p => decide (p.1 = s)) = some e → e = (s, true, true) →
+        (e.2.1, e.2.2) = (true, true)) ∧
+    (∀ r : Option (String × Bool × Bool),
+        (match r with | some _ => facts | none => facts) = facts)
 
-def demand_D004 : Prop := ∃ a b : List String, locator a = locator b ∧ a ≠ b
+/-- D003 主体与角色：Role(person,matter,stage) 的每个绑定都有出处
+（解析只返回表内绑定）；主体、角色、名称为不同类型字段——角色不同或
+主体不同都不因其余字段同名而合并。 -/
+def demand_D003 : Prop :=
+  (∃ a b : List String, locator a = locator b ∧ a ≠ b) ∧
+  ∀ (bindings : List (String × String × String × String))
+      (person matter stage : String),
+    (∀ e, bindings.find?
+            (fun b => decide (b.1 = person ∧ b.2.1 = matter ∧ b.2.2.1 = stage)) = some e →
+        e ∈ bindings) ∧
+    (∀ (p r₁ r₂ : String), r₁ ≠ r₂ → (p, matter, stage, r₁) ≠ (p, matter, stage, r₂)) ∧
+    (∀ (n₁ n₂ r : String), n₁ ≠ n₂ → (n₁, matter, stage, r) ≠ (n₂, matter, stage, r))
 
-def demand_D005 : Prop := ∃ a b : List String, locator a = locator b ∧ a ≠ b
+/-- D004 逐被告结果图：整案正确 = 所有必查被告的逐人映射全部正确；
+交换两被告处分而总量（平均）不变，逐被告检查仍然失败。 -/
+def demand_D004 : Prop :=
+  (∃ a b : List String, locator a = locator b ∧ a ≠ b) ∧
+  (∀ (ok : String → Bool) (required : List String),
+      required.all ok = true ↔ ∀ d ∈ required, ok d = true) ∧
+  (∀ (u v : String) (x y : ℕ), u ≠ v → x ≠ y →
+      ((fun d => if d = u then x else if d = v then y else 0) u
+          ≠ (fun d => if d = u then y else if d = v then x else 0) u) ∧
+      ((fun d => if d = u then x else if d = v then y else 0) u
+          + (fun d => if d = u then x else if d = v then y else 0) v
+        = (fun d => if d = u then y else if d = v then x else 0) u
+          + (fun d => if d = u then y else if d = v then x else 0) v))
 
-def demand_D006 : Prop := ∃ a b : List String, locator a = locator b ∧ a ≠ b
+/-- D005 登记快照一致解析：同名异码按规范主体键（登记代码）各自解析
+不合并；按名称的别名解析命中的条目就是独立查表语义下的表内条目。 -/
+def demand_D005 : Prop :=
+  (∃ a b : List String, locator a = locator b ∧ a ≠ b) ∧
+  ∀ (c₁ c₂ : ℕ) (nm : String) (rest : List (ℕ × String × ℕ)), c₁ ≠ c₂ →
+    ((⟨c₁, nm, 0⟩ :: ⟨c₂, nm, 0⟩ :: rest).find? (fun r => decide (r.1 = c₁))
+        = some (c₁, nm, 0)) ∧
+    ((⟨c₁, nm, 0⟩ :: ⟨c₂, nm, 0⟩ :: rest).find? (fun r => decide (r.1 = c₂))
+        = some (c₂, nm, 0)) ∧
+    (∀ e, (⟨c₁, nm, 0⟩ :: ⟨c₂, nm, 0⟩ :: rest).find? (fun r => decide (r.2.1 = nm))
+            = some e →
+        e ∈ (⟨c₁, nm, 0⟩ :: ⟨c₂, nm, 0⟩ :: rest))
 
-def demand_D007 : Prop := ∃ a b : List String, locator a = locator b ∧ a ≠ b
+/-- D006 混同防线：同地址不传播身份（等号不把两实体合并为同一主体）；
+责任边只由明确规则生成（每条生成边都有规则出处）；无规则声明则无边。 -/
+def demand_D006 : Prop :=
+  (∃ a b : List String, locator a = locator b ∧ a ≠ b) ∧
+  ∀ (c₁ c₂ : ℕ) (k₁ k₂ addr : String) (rules : List (ℕ × (ℕ × String))), c₁ ≠ c₂ →
+    ((c₁, k₁, addr) ≠ (c₂, k₂, addr)) ∧
+    (∀ e ∈ rules.map (fun r => (r.1, r.2.1)), ∃ r ∈ rules, e = (r.1, r.2.1)) ∧
+    (rules = [] → rules.map (fun r => (r.1, r.2.1)) = [])
 
-def demand_D008 : Prop := ∃ a b : List String, locator a = locator b ∧ a ≠ b
+/-- D007 法院代字与管辖：代字到机构与级别的查表结果有出处且字段原样；
+管辖判断走另外的适用规则（无适用法源且无排除事由 = 待定，不因代字
+解析成功而获得管辖）；同级别不同代字仍是两个机关。 -/
+def demand_D007 : Prop :=
+  (∃ a b : List String, locator a = locator b ∧ a ≠ b) ∧
+  ∀ (courts : List (String × String × String))
+      (sources : List SourceVersion) (t : ℕ) (exclusions cd inst lv : String),
+    (∀ e, courts.find? (fun c => decide (c.1 = cd)) = some e → e ∈ courts) ∧
+    (applicableSources sources t = [] → ¬(cd ∈ exclusions) →
+        decideSlot sources t exclusions cd = SlotStatus.pending) ∧
+    (∀ (d₂ i₁ i₂ l : String), cd ≠ d₂ → (cd, inst, l) ≠ (d₂, i₂, l))
+
+/-- D008 请求结构：Claim=(claimant,respondent,basis,object,remedy,scope)；
+每个金额字段都挂在具名主体对上（无主体的金额槽位不存在）；任一字段
+不同即不同请求；claimant 与 respondent 互换即不同请求。 -/
+def demand_D008 : Prop :=
+  (∃ a b : List String, locator a = locator b ∧ a ≠ b) ∧
+  ∀ claims : List (String × String × String × String × String × String),
+    (∀ e ∈ claims.map (fun c => (c.1, c.2.1)), ∃ c ∈ claims, (c.1, c.2.1) = e) ∧
+    (∀ (a r bs bj₁ bj₂ rm sc : String), bj₁ ≠ bj₂ →
+        (a, r, bs, bj₁, rm, sc) ≠ (a, r, bs, bj₂, rm, sc)) ∧
+    (∀ a r : String, a ≠ r → (a, r) ≠ (r, a))
 
 def demand_D009 : Prop := ∀ (sources : List SourceVersion) (t : ℕ)
     (exclusions : List String) (s : String)

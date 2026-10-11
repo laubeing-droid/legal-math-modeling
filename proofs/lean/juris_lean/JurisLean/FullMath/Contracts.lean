@@ -556,11 +556,11 @@ def demand_D019 : Prop :=
       (tags : List (String × List String × String × Bool × ℕ × ℕ)),
     ((∀ (ty : String) (acs : List String) (ob : String) (q : Bool) (st en : ℕ),
         (ty, acs, ob, q, st, en) ∈ tags → en ≤ source.length) →
-     ((∀ (ty : String) (acs ob : String) (q : Bool) (st en : ℕ),
+     ((∀ (ty : String) (acs : List String) (ob : String) (q : Bool) (st en : ℕ),
           q = true →
           (ty, acs, ob, q, st, en) ∉
             tags.filter (fun r => decide (r.2.2.2.1 = false))) ∧
-      (∀ (ty : String) (acs ob : String) (q : Bool) (st en : ℕ),
+      (∀ (ty : String) (acs : List String) (ob : String) (q : Bool) (st en : ℕ),
           (ty, acs, ob, q, st, en) ∈ tags → en ≤ source.length →
           ((source.take en).drop st).length = en - st) ∧
       (∀ (ty ty' ob : String) (acs₁ acs₂ : List String) (q : Bool) (st en : ℕ),
@@ -609,20 +609,20 @@ def demand_D022 : Prop :=
   ∀ (cands : List ((String × ℕ × String) × (String × ℕ × String) × String))
       (ctres : List (String × String)),
     ((∀ r ∈ cands.filter (fun r =>
-          decide (r.1.1 = r.2.1.1 ∧ r.1.2.1 = r.2.2.1 ∧
-            (r.1.2.2, r.2.2.2) ∈ ctres ∧ r.2.2 ≠ "")),
-        r.1.1 = r.2.1.1 ∧ r.1.2.1 = r.2.2.1 ∧
-          (r.1.2.2, r.2.2.2) ∈ ctres ∧ r.2.2 ≠ "") ∧
-     (∀ r ∈ cands, r.1.2.1 ≠ r.2.2.1 →
+          decide (r.1.1 = r.2.1.1 ∧ r.1.2.1 = r.2.1.2.1 ∧
+            (r.1.2.2, r.2.1.2.2) ∈ ctres ∧ r.2.2 ≠ "")),
+        r.1.1 = r.2.1.1 ∧ r.1.2.1 = r.2.1.2.1 ∧
+          (r.1.2.2, r.2.1.2.2) ∈ ctres ∧ r.2.2 ≠ "") ∧
+     (∀ r ∈ cands, r.1.2.1 ≠ r.2.1.2.1 →
         r ∉ cands.filter (fun r =>
-          decide (r.1.1 = r.2.1.1 ∧ r.1.2.1 = r.2.2.1 ∧
-            (r.1.2.2, r.2.2.2) ∈ ctres ∧ r.2.2 ≠ ""))) ∧
-     (∀ r ∈ cands, (r.1.2.2, r.2.2.2) ∉ ctres →
+          decide (r.1.1 = r.2.1.1 ∧ r.1.2.1 = r.2.1.2.1 ∧
+            (r.1.2.2, r.2.1.2.2) ∈ ctres ∧ r.2.2 ≠ ""))) ∧
+     (∀ r ∈ cands, (r.1.2.2, r.2.1.2.2) ∉ ctres →
         r ∉ cands.filter (fun r =>
-          decide (r.1.1 = r.2.1.1 ∧ r.1.2.1 = r.2.2.1 ∧
-            (r.1.2.2, r.2.2.2) ∈ ctres ∧ r.2.2 ≠ ""))) ∧
-     (∀ r ∈ cands, (r.1.2.2, r.2.2.2) ∈
-        cands.map (fun r => (r.1.2.2, r.2.2.2))))
+          decide (r.1.1 = r.2.1.1 ∧ r.1.2.1 = r.2.1.2.1 ∧
+            (r.1.2.2, r.2.1.2.2) ∈ ctres ∧ r.2.2 ≠ ""))) ∧
+     (∀ r ∈ cands, (r.1.2.2, r.2.1.2.2) ∈
+        cands.map (fun r => (r.1.2.2, r.2.1.2.2))))
 
 /-- D023 缺直接材料与否定证据分开（反例：材料未附付款凭证不得推出
 肯定未付款）：q 无记录不推出 q 的否定证据构造——缺记录时不存在
@@ -678,7 +678,8 @@ def demand_D026 : Prop :=
   (∀ (k : ℕ) (v v' : ℚ) (l : List Obs),
       (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id) ∧
   ∀ (recs : List (String × String × String × String)),
-    ((∀ (kd c s u : String), (kd, c, s, u).2.1 = s ∧ (kd, c, s, u).2.2 = u) ∧
+    ((∀ (kd c s u : String),
+        (kd, c, s, u).2.2.1 = s ∧ (kd, c, s, u).2.2.2 = u) ∧
      (∀ (c s u : String),
         ("asserted", c, s, u) ∉
           recs.filter (fun r => decide (r.1 = "adjudicated"))) ∧

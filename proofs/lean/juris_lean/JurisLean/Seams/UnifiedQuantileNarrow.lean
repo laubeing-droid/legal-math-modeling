@@ -108,7 +108,7 @@ theorem stateOk_quantile_mem (F : ℝ → ℝ) (hsm : StrictMonoOn F (Set.Icc (0
   have hLv : L ≤ v := by
     by_contra hcon
     push_neg at hcon
-    exact absurd (hsm (Set.mem_Icc.mpr ⟨hL0, by linarith⟩) hv0 hcon) (by linarith)
+    exact absurd (hsm hv0 (Set.mem_Icc.mpr ⟨hL0, by linarith⟩) hcon) (by linarith)
   have hvU : v ≤ U := by
     by_contra hcon
     push_neg at hcon
@@ -172,7 +172,7 @@ def certCertifies (F : ℝ → ℝ) (q : ℚ) : Dir → ℝ → ℝ → Prop
 theorem cmpEnc_lt_iff (a b : Enc) : cmpEnc a b = Cmp.lt ↔ a.hi < b.lo := by
   by_cases hcond : a.hi < b.lo
   · simp only [cmpEnc, if_pos hcond]
-    exact iff_of_true rfl hcond
+    exact iff_of_true trivial hcond
   · simp only [cmpEnc, if_neg hcond]
     by_cases hcond2 : b.hi < a.lo
     · simp only [if_pos hcond2]
@@ -249,7 +249,10 @@ theorem refN_width_real (ref : Enc → Enc) (F : ℝ → ℝ) (hrc : RealRefines
     have h := Rat.cast_le.mpr (refN_widthQ ref F hrc n e)
     push_cast at h
     exact h
-  have h6 : ((e.width : ℚ) : ℝ) = (e.hi : ℝ) - (e.lo : ℝ) := by push_cast [Enc.width]; ring
+  have h6 : ((e.width : ℚ) : ℝ) = (e.hi : ℝ) - (e.lo : ℝ) := by
+    show (((e.hi - e.lo : ℚ)) : ℝ) = (e.hi : ℝ) - (e.lo : ℝ)
+    push_cast
+    ring
   have h7 : ((2:ℝ) / 3) ^ n * ((e.width : ℚ) : ℝ)
       ≤ ((2:ℝ) / 3) ^ n * ((e.hi : ℝ) - (e.lo : ℝ)) :=
     mul_le_mul_of_nonneg_left h6.le (pow_nonneg (by norm_num) n)
@@ -288,7 +291,11 @@ theorem hi_below_eventually (ref : Enc → Enc) (F : ℝ → ℝ) (hrc : RealRef
   have hwid := refN_width_real ref F hrc n e
   have hwrel : ((refN ref n e).hi : ℝ)
       = ((refN ref n e).lo : ℝ) + ((refN ref n e).width : ℝ) := by
-    push_cast [Enc.width]; ring
+    have hw : (refN ref n e).width
+        = (refN ref n e).hi - (refN ref n e).lo := rfl
+    rw [hw]
+    push_cast
+    ring
   refine ⟨n, Rat.cast_lt.mp ?_⟩
   linarith
 
@@ -317,7 +324,11 @@ theorem lo_above_eventually (ref : Enc → Enc) (F : ℝ → ℝ) (hrc : RealRef
   have hwid := refN_width_real ref F hrc n e
   have hwrel : ((refN ref n e).lo : ℝ)
       = ((refN ref n e).hi : ℝ) - ((refN ref n e).width : ℝ) := by
-    push_cast [Enc.width]; ring
+    have hw : (refN ref n e).width
+        = (refN ref n e).hi - (refN ref n e).lo := rfl
+    rw [hw]
+    push_cast
+    ring
   refine ⟨n, Rat.cast_lt.mp ?_⟩
   linarith
 
@@ -420,7 +431,8 @@ theorem dirUpdate_invariant (F : ℝ → ℝ) (hsm : StrictMonoOn F (Set.Icc (0:
       have hmem : mid2 L U ∈ Set.Icc (0:ℝ) 1 := ⟨by simp only [mid2]; linarith, hmu1⟩
       have hvm : v ≤ mid2 L U := strictMonoOn_lt_of_lt hsm hv0 hmem (by rw [hvq]; exact hcgt)
       have hb3 : mid2 L U ≤ U := by simp only [mid2]; linarith
-      refine ⟨⟨hL0, hmu1, hb3, hFL, hcgt.le⟩, ⟨hvmem.1, hvm⟩, le_refl L, hb3⟩
+      have hlm2 : L ≤ mid2 L U := by simp only [mid2]; linarith
+      refine ⟨⟨hL0, hmu1, hlm2, hFL, hcgt.le⟩, ⟨hvmem.1, hvm⟩, le_refl L, hb3⟩
   | both =>
       rw [dirUpdate_both_fst, dirUpdate_both_snd]
       have hclt : F (mid1 L U) < (q:ℝ) := hcert.1

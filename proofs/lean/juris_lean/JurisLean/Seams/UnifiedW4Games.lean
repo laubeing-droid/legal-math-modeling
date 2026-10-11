@@ -608,14 +608,14 @@ theorem witness_bargain_bi :
     show (if accR1 bParamsDemo 20
         then (bParamsDemo.delta * 20, bParamsDemo.delta * (bParamsDemo.cake - 20))
         else (0, 0)) = ((10 : ℚ), 40)
-    have hacc : accR1 bParamsDemo 20 = true := by decide
+    have hacc : accR1 bParamsDemo 20 = true := by norm_num [accR1, bParamsDemo]
     simp only [hacc, if_true]
     norm_num [bParamsDemo]
   have hv2 : r1Pay bParamsDemo 50 = ((25 : ℚ), 25) := by
     show (if accR1 bParamsDemo 50
         then (bParamsDemo.delta * 50, bParamsDemo.delta * (bParamsDemo.cake - 50))
         else (0, 0)) = ((25 : ℚ), 25)
-    have hacc : accR1 bParamsDemo 50 = true := by decide
+    have hacc : accR1 bParamsDemo 50 = true := by norm_num [accR1, bParamsDemo]
     simp only [hacc, if_true]
     norm_num [bParamsDemo]
   have hb1 : b1Choice bParamsDemo = 20 := by
@@ -632,14 +632,20 @@ theorem witness_bargain_bi :
     show (if accR0 bParamsDemo 40
         then (bParamsDemo.cake - 40, 40) else biR1 bParamsDemo)
       = ((60 : ℚ), 40)
-    have hacc : accR0 bParamsDemo 40 = true := by decide
+    have hacc : accR0 bParamsDemo 40 = true := by
+      show decide ((40 : ℚ) ≥ bParamsDemo.delta * (biR1 bParamsDemo).2) = true
+      rw [hbir]
+      norm_num [bParamsDemo]
     simp only [hacc, if_true]
     norm_num [bParamsDemo]
   have hv60 : r0Pay bParamsDemo 60 = ((40 : ℚ), 60) := by
     show (if accR0 bParamsDemo 60
         then (bParamsDemo.cake - 60, 60) else biR1 bParamsDemo)
       = ((40 : ℚ), 60)
-    have hacc : accR0 bParamsDemo 60 = true := by decide
+    have hacc : accR0 bParamsDemo 60 = true := by
+      show decide ((60 : ℚ) ≥ bParamsDemo.delta * (biR1 bParamsDemo).2) = true
+      rw [hbir]
+      norm_num [bParamsDemo]
     simp only [hacc, if_true]
     norm_num [bParamsDemo]
   have ha0 : a0Choice bParamsDemo = 40 := by

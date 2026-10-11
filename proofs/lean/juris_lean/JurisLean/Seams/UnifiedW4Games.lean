@@ -334,7 +334,7 @@ theorem witness_prevention_clipped :
   refine ⟨hclip, ?_, ?_⟩
   · rw [hclip]
     exact penaltyInDomainB_fixed_of_le normDomainDemo 60
-      (by rw [hlo]) (by rw [hhi]; norm_num)
+      (by rw [hlo]; norm_num) (by rw [hhi])
   · show decide (normDomainDemo.monthsLo ≤ 65 ∧ 65 ≤ normDomainDemo.monthsHi) = false
     rw [hlo, hhi]
     decide
@@ -1123,12 +1123,23 @@ T115 尾界实例＋可信惩罚阈值双向读数——四件独立结论同时
 见上；反例另行独立保留，不合入旗舰）。 -/
 theorem w4_games_flagship :
     -- T112
-    (dual_line_stays_normative normDomainDemo 25 40).1 ∧
+    normDomainDemo.monthsLo ≤ clipTo normDomainDemo (25 + 40) ∧
     composeGateB certRespDemo certPrevForeignDemo = false ∧
     penaltyInDomainB normDomainDemo
       (PenaltyKind.fixed (clipTo normDomainDemo (25 + 40))) = true ∧
     -- T113
-    bi_one_step_no_gain bParamsDemo ∧
+    ((biR1 bParamsDemo).2 ≥ (r1Pay bParamsDemo bParamsDemo.y1).2 ∧
+      (biR1 bParamsDemo).2 ≥ (r1Pay bParamsDemo bParamsDemo.y2).2 ∧
+      (accR1 bParamsDemo (b1Choice bParamsDemo) = true →
+        0 ≤ bParamsDemo.delta * (b1Choice bParamsDemo)) ∧
+      (accR1 bParamsDemo (b1Choice bParamsDemo) = false →
+        bParamsDemo.delta * (b1Choice bParamsDemo) ≤ 0) ∧
+      (biOutcome bParamsDemo).1 ≥ (r0Pay bParamsDemo bParamsDemo.x1).1 ∧
+      (biOutcome bParamsDemo).1 ≥ (r0Pay bParamsDemo bParamsDemo.x2).1 ∧
+      (accR0 bParamsDemo (a0Choice bParamsDemo) = true →
+        bParamsDemo.delta * (biR1 bParamsDemo).2 ≤ (biOutcome bParamsDemo).2) ∧
+      (accR0 bParamsDemo (a0Choice bParamsDemo) = false →
+        a0Choice bParamsDemo ≤ bParamsDemo.delta * (biR1 bParamsDemo).2)) ∧
     biOutcome bParamsDemo = ((60 : ℚ), (40 : ℚ)) ∧
     -- T114
     seqEqCheckB demoGame (fun _ => true) (fun _ => true) ⟨1 / 2⟩ ⟨1 / 2⟩ = true ∧

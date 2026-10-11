@@ -951,29 +951,165 @@ theorem demand_D063 : Contracts.demand_D063 := JurisLean.FullMath.Numeric.Iv.fix
 
 theorem demand_D064 : Contracts.demand_D064 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
 
-theorem demand_D065 : Contracts.demand_D065 := JurisLean.FullMath.Document.docPut_docPut
+/-! D065-D076 (group 08 合同条款与权利义务审核, W2-A batch B08): each
+theorem discharges the demand's own contract; the first conjunct is the
+group-registered clause component inlined as `docPut_docPut`. -/
 
-theorem demand_D066 : Contracts.demand_D066 := JurisLean.FullMath.Document.docPut_docPut
+theorem demand_D065 : Contracts.demand_D065 := And.intro JurisLean.FullMath.Document.docPut_docPut
+  (by
+    intro e f x obs
+    refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
+    · cases f <;> cases x <;> rfl
+    · rfl
+    · rfl
+    · rfl
+    · decide
+    · intro h
+      exact h)
 
-theorem demand_D067 : Contracts.demand_D067 := JurisLean.FullMath.Document.docPut_docPut
+theorem demand_D066 : Contracts.demand_D066 := And.intro JurisLean.FullMath.Document.docPut_docPut
+  (by
+    intro cands chosen
+    refine ⟨?_, ?_, ?_⟩
+    · intro row hf
+      simp only [Contracts.lawFinal]
+      rw [hf]
+    · intro hnone
+      simp [Contracts.lawFinal, hnone]
+    · intro hfind
+      simp [Contracts.lawFinal, hfind])
 
-theorem demand_D068 : Contracts.demand_D068 := JurisLean.FullMath.Document.docPut_docPut
+theorem demand_D067 : Contracts.demand_D067 := And.intro JurisLean.FullMath.Document.docPut_docPut
+  (by
+    intro rows s a r p x f hfind
+    refine ⟨?_, ⟨?_, ?_⟩, ?_⟩
+    · exact fun e he => List.mem_of_find?_eq_some he
+    · rfl
+    · intro a' hne hEq
+      simp at hEq
+      exact hne hEq.symm
+    · intro hEq
+      exact absurd hEq (by simp))
 
-theorem demand_D069 : Contracts.demand_D069 := JurisLean.FullMath.Document.docPut_docPut
+theorem demand_D068 : Contracts.demand_D068 := And.intro JurisLean.FullMath.Document.docPut_docPut
+  (by
+    intro out k₁ k₂
+    refine ⟨⟨?_, ?_, ?_, ?_, ?_⟩, ?_⟩
+    · exact ⟨rfl, rfl, rfl, rfl⟩
+    · decide
+    · intro hne
+      simp [Contracts.scopedApply, hne]
+    · simp [Contracts.scopedApply]
+    · simp [Contracts.scopedApply]
+    · simp [Contracts.prioEval])
 
-theorem demand_D070 : Contracts.demand_D070 := JurisLean.FullMath.Document.docPut_docPut
+theorem demand_D069 : Contracts.demand_D069 := And.intro JurisLean.FullMath.Document.docPut_docPut
+  (by
+    intro rec
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · decide
+    · decide
+    · exact ⟨rfl, rfl, rfl, rfl⟩
+    · rfl)
 
-theorem demand_D071 : Contracts.demand_D071 := JurisLean.FullMath.Document.docPut_docPut
+theorem demand_D070 : Contracts.demand_D070 := And.intro JurisLean.FullMath.Document.docPut_docPut
+  (by
+    intro n c t
+    refine ⟨⟨?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩, ⟨?_, ?_⟩⟩
+    · rfl
+    · rfl
+    · rfl
+    · norm_num [Contracts.cocTrigger]
+    · norm_num [Contracts.cocTrigger]
+    · norm_num [Contracts.cocTrigger]
+    · simp
+    · simp)
 
-theorem demand_D072 : Contracts.demand_D072 := JurisLean.FullMath.Document.docPut_docPut
+theorem demand_D071 : Contracts.demand_D071 := And.intro JurisLean.FullMath.Document.docPut_docPut
+  (by
+    intro g
+    refine ⟨?_, ?_, ⟨?_, ?_⟩⟩
+    · rfl
+    · simp
+    · simp [Contracts.convertLicense]
+    · simp [Contracts.convertLicense])
 
-theorem demand_D073 : Contracts.demand_D073 := JurisLean.FullMath.Document.docPut_docPut
+theorem demand_D072 : Contracts.demand_D072 := And.intro JurisLean.FullMath.Document.docPut_docPut
+  (by
+    intro rows g
+    refine ⟨⟨?_, ?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩⟩
+    · decide
+    · decide
+    · decide
+    · decide
+    · intro h
+      simp only [Contracts.grantOf, h]
+    · intro h
+      simp only [Contracts.grantOf, h]
+    · intro h
+      have hnone : rows.find? (fun r => decide (r.1 = Contracts.relAff)) = none :=
+        List.find?_eq_none.mpr
+          (fun r hr hdec => absurd (of_decide_eq_true hdec) (h r hr))
+      simp only [Contracts.grantOf, hnone])
 
-theorem demand_D074 : Contracts.demand_D074 := JurisLean.FullMath.Document.docPut_docPut
+theorem demand_D073 : Contracts.demand_D073 := And.intro JurisLean.FullMath.Document.docPut_docPut
+  (by
+    intro p r t c
+    refine ⟨⟨?_, ?_, ?_, ?_⟩, ⟨?_, ?_⟩⟩
+    · simp
+    · simp
+    · simp
+    · simp
+    · simp
+    · simp)
 
-theorem demand_D075 : Contracts.demand_D075 := JurisLean.FullMath.Document.docPut_docPut
+theorem demand_D074 : Contracts.demand_D074 := And.intro JurisLean.FullMath.Document.docPut_docPut
+  (by
+    intro p u a
+    refine ⟨⟨?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩, ⟨?_, ?_⟩⟩
+    · rfl
+    · rfl
+    · rfl
+    · norm_num [Contracts.revShare]
+    · norm_num [Contracts.revShare]
+    · norm_num [Contracts.revShare]
+    · simp [Contracts.feeLine]
+    · norm_num [Contracts.feeLine])
 
-theorem demand_D076 : Contracts.demand_D076 := JurisLean.FullMath.Document.docPut_docPut
+theorem demand_D075 : Contracts.demand_D075 := And.intro JurisLean.FullMath.Document.docPut_docPut
+  (by
+    intro a c
+    refine ⟨⟨?_, ?_⟩, ⟨?_, ?_, ?_⟩, ?_⟩
+    · simp [Contracts.applyCap]
+    · simp [Contracts.applyCap]
+    · simp [Contracts.applyCap]
+    · norm_num [Contracts.applyCap]
+    · norm_num [Contracts.applyCap]
+    · simp)
+
+theorem demand_D076 : Contracts.demand_D076 := And.intro JurisLean.FullMath.Document.docPut_docPut
+  (by
+    intro rows
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · intro s hs
+      simp only [Contracts.survivors] at hs
+      obtain ⟨r, hr, rfl⟩ := List.mem_map.mp hs
+      obtain ⟨hmem, hp⟩ := List.mem_filter.mp hr
+      exact ⟨r, hmem, rfl, hp⟩
+    · intro r hr hp
+      simp only [Contracts.survivors]
+      exact List.mem_map.mpr ⟨r, List.mem_filter.mpr ⟨hr, hp⟩, rfl⟩
+    · intro kind hno hmem
+      simp only [Contracts.survivors] at hmem
+      obtain ⟨r, hr, rfl⟩ := List.mem_map.mp hmem
+      obtain ⟨hmemR, _⟩ := List.mem_filter.mp hr
+      exact hno r hmemR rfl
+    · intro hall hne hnil
+      simp only [Contracts.survivors, List.map_eq_nil_iff] at hnil
+      have hself : rows.filter (fun r => r.2) = rows :=
+        List.filter_eq_self.mpr hall
+      rw [hself] at hnil
+      exact hne hnil)
 
 theorem demand_D077 : Contracts.demand_D077 := JurisLean.FullMath.Logic.cl_least_iterate
 

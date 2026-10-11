@@ -3821,25 +3821,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D065",
    "contract": "JurisLean.FullMath.Contracts.demand_D065",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.docPut_docPut's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-08 contract-clauses demand instance in the shared semantic framework: this item's own contract semantics plus the registered clause component (the docPut lens law: repeated puts to the same key agree with the last put, so a clause field is never silently overwritten by an earlier draft), with its adverse case executed as a negative test.",
+   "independent_semantics": "contract state advances through distinct events: formation without effectiveness is its own state (a signing day never counts as the effective day), expiry is a distinct terminal state, and the surviving-obligation list rides on the transition carrier as its own component — no event, expiry included, erases it.",
+   "algorithm": "tools/full_math/implementation/clauses_ref.py contract_state_events computes the intermediate result from structured input; clauses_check.check_D065 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (contract-state event flags with the surviving-obligation list, governing-law candidate rows keyed by clause name with conflict-path flags, six-axis restriction rows with typed effect codes, three-level priority inputs with scope keys, termination-chain event records over four distinct event tags, per-contract threshold rows with a transaction fact and separate consequence flags, license-conversion mode/grant pairs, relation-tagged grant rows, four-slot license attribute records with an optional usage cap, period/unit-tagged exact fee lines with share bases and rates, classified indemnity items with carve-out flags and caps, and survival-declared clause tables); outputs are exactly the contract quantities (the event-advanced state with the untouched survival component, the row-determined judgment next to the separate candidate carrier, the field-by-field restriction read-back with distinct effect codes, the priority level with in-scope and out-of-scope results, the folded event trace with the notice-only adverse witness, the per-contract trigger verdicts, the grant-kept conversion, the keyed relation grants, the independent attribute reads with the witness inequality, the exact base-sensitive shares and period sums, the per-class cap applications with the separate insurance field, and the declared-survivor carrier after termination).",
+   "external_assumptions": "The adopted contract interpretation, governing-law and conflict-of-laws doctrine, reasonableness of restriction scopes, notice-validity and delivery facts, control relationships and transaction substance, IP ownership and work-for-hire facts, declared sales figures and audit outcomes, insurability and loss characterization, escrow conditions and third-party status remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/clauses_ref.py",
+    "tools/full_math/implementation/clauses_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D065]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_positive[D065]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_counterexample[D065]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_downstream_pipeline_consumes_clauses"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D065]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D065]"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_checker_rejects_tampered[D065]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.docPut_docPut"
@@ -3850,25 +3851,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D066",
    "contract": "JurisLean.FullMath.Contracts.demand_D066",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.docPut_docPut's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-08 contract-clauses demand instance in the shared semantic framework: this item's own contract semantics plus the registered clause component (the docPut lens law: repeated puts to the same key agree with the last put, so a clause field is never silently overwritten by an earlier draft), with its adverse case executed as a negative test.",
+   "independent_semantics": "the final applicable-law judgment is a pure function of the chosen candidate clause row plus its declared conflict-of-laws path; candidates and judgment are separate carriers, no candidate row means no judgment, and an undeclared conflict path never yields the final judgment — the incorporation venue alone does not decide.",
+   "algorithm": "tools/full_math/implementation/clauses_ref.py governing_law computes the intermediate result from structured input; clauses_check.check_D066 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (contract-state event flags with the surviving-obligation list, governing-law candidate rows keyed by clause name with conflict-path flags, six-axis restriction rows with typed effect codes, three-level priority inputs with scope keys, termination-chain event records over four distinct event tags, per-contract threshold rows with a transaction fact and separate consequence flags, license-conversion mode/grant pairs, relation-tagged grant rows, four-slot license attribute records with an optional usage cap, period/unit-tagged exact fee lines with share bases and rates, classified indemnity items with carve-out flags and caps, and survival-declared clause tables); outputs are exactly the contract quantities (the event-advanced state with the untouched survival component, the row-determined judgment next to the separate candidate carrier, the field-by-field restriction read-back with distinct effect codes, the priority level with in-scope and out-of-scope results, the folded event trace with the notice-only adverse witness, the per-contract trigger verdicts, the grant-kept conversion, the keyed relation grants, the independent attribute reads with the witness inequality, the exact base-sensitive shares and period sums, the per-class cap applications with the separate insurance field, and the declared-survivor carrier after termination).",
+   "external_assumptions": "The adopted contract interpretation, governing-law and conflict-of-laws doctrine, reasonableness of restriction scopes, notice-validity and delivery facts, control relationships and transaction substance, IP ownership and work-for-hire facts, declared sales figures and audit outcomes, insurability and loss characterization, escrow conditions and third-party status remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/clauses_ref.py",
+    "tools/full_math/implementation/clauses_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D066]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_positive[D066]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_counterexample[D066]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_downstream_pipeline_consumes_clauses"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D066]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D066]"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_checker_rejects_tampered[D066]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.docPut_docPut"
@@ -3879,25 +3881,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D067",
    "contract": "JurisLean.FullMath.Contracts.demand_D067",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.docPut_docPut's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-08 contract-clauses demand instance in the shared semantic framework: this item's own contract semantics plus the registered clause component (the docPut lens law: repeated puts to the same key agree with the last put, so a clause field is never silently overwritten by an earlier draft), with its adverse case executed as a negative test.",
+   "independent_semantics": "a restriction binds along six axes (subject, conduct, region, period, exception, normative effect) that read back field-by-field; a differing axis makes a different row, and the exclusivity-obligation effect code is never the exclusive-IP-transfer effect code.",
+   "algorithm": "tools/full_math/implementation/clauses_ref.py restriction_rows computes the intermediate result from structured input; clauses_check.check_D067 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (contract-state event flags with the surviving-obligation list, governing-law candidate rows keyed by clause name with conflict-path flags, six-axis restriction rows with typed effect codes, three-level priority inputs with scope keys, termination-chain event records over four distinct event tags, per-contract threshold rows with a transaction fact and separate consequence flags, license-conversion mode/grant pairs, relation-tagged grant rows, four-slot license attribute records with an optional usage cap, period/unit-tagged exact fee lines with share bases and rates, classified indemnity items with carve-out flags and caps, and survival-declared clause tables); outputs are exactly the contract quantities (the event-advanced state with the untouched survival component, the row-determined judgment next to the separate candidate carrier, the field-by-field restriction read-back with distinct effect codes, the priority level with in-scope and out-of-scope results, the folded event trace with the notice-only adverse witness, the per-contract trigger verdicts, the grant-kept conversion, the keyed relation grants, the independent attribute reads with the witness inequality, the exact base-sensitive shares and period sums, the per-class cap applications with the separate insurance field, and the declared-survivor carrier after termination).",
+   "external_assumptions": "The adopted contract interpretation, governing-law and conflict-of-laws doctrine, reasonableness of restriction scopes, notice-validity and delivery facts, control relationships and transaction substance, IP ownership and work-for-hire facts, declared sales figures and audit outcomes, insurability and loss characterization, escrow conditions and third-party status remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/clauses_ref.py",
+    "tools/full_math/implementation/clauses_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D067]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_positive[D067]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_counterexample[D067]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_downstream_pipeline_consumes_clauses"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D067]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D067]"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_checker_rejects_tampered[D067]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.docPut_docPut"
@@ -3908,25 +3911,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D068",
    "contract": "JurisLean.FullMath.Contracts.demand_D068",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.docPut_docPut's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-08 contract-clauses demand instance in the shared semantic framework: this item's own contract semantics plus the registered clause component (the docPut lens law: repeated puts to the same key agree with the last put, so a clause field is never silently overwritten by an earlier draft), with its adverse case executed as a negative test.",
+   "independent_semantics": "rules, exceptions and exceptions-of-exceptions carry an explicit three-level priority (2 > 1 > 0); a positive main-clause hit takes the later exception level (never skips it), and an exception applies only inside its declared scope key.",
+   "algorithm": "tools/full_math/implementation/clauses_ref.py prio_eval/scoped_apply/priority_scope_eval computes the intermediate result from structured input; clauses_check.check_D068 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (contract-state event flags with the surviving-obligation list, governing-law candidate rows keyed by clause name with conflict-path flags, six-axis restriction rows with typed effect codes, three-level priority inputs with scope keys, termination-chain event records over four distinct event tags, per-contract threshold rows with a transaction fact and separate consequence flags, license-conversion mode/grant pairs, relation-tagged grant rows, four-slot license attribute records with an optional usage cap, period/unit-tagged exact fee lines with share bases and rates, classified indemnity items with carve-out flags and caps, and survival-declared clause tables); outputs are exactly the contract quantities (the event-advanced state with the untouched survival component, the row-determined judgment next to the separate candidate carrier, the field-by-field restriction read-back with distinct effect codes, the priority level with in-scope and out-of-scope results, the folded event trace with the notice-only adverse witness, the per-contract trigger verdicts, the grant-kept conversion, the keyed relation grants, the independent attribute reads with the witness inequality, the exact base-sensitive shares and period sums, the per-class cap applications with the separate insurance field, and the declared-survivor carrier after termination).",
+   "external_assumptions": "The adopted contract interpretation, governing-law and conflict-of-laws doctrine, reasonableness of restriction scopes, notice-validity and delivery facts, control relationships and transaction substance, IP ownership and work-for-hire facts, declared sales figures and audit outcomes, insurability and loss characterization, escrow conditions and third-party status remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/clauses_ref.py",
+    "tools/full_math/implementation/clauses_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D068]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_positive[D068]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_counterexample[D068]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_downstream_pipeline_consumes_clauses"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D068]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D068]"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_checker_rejects_tampered[D068]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.docPut_docPut"
@@ -3937,25 +3941,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D069",
    "contract": "JurisLean.FullMath.Contracts.demand_D069",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.docPut_docPut's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-08 contract-clauses demand instance in the shared semantic framework: this item's own contract semantics plus the registered clause component (the docPut lens law: repeated puts to the same key agree with the last put, so a clause field is never silently overwritten by an earlier draft), with its adverse case executed as a negative test.",
+   "independent_semantics": "exercise of the termination right, notice arrival, termination effectiveness and refusal to renew are four distinct events, each setting only its own flag; a stop-renewal notice leaves the current term's effectiveness flag untouched (false).",
+   "algorithm": "tools/full_math/implementation/clauses_ref.py apply_event/termination_event_chain computes the intermediate result from structured input; clauses_check.check_D069 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (contract-state event flags with the surviving-obligation list, governing-law candidate rows keyed by clause name with conflict-path flags, six-axis restriction rows with typed effect codes, three-level priority inputs with scope keys, termination-chain event records over four distinct event tags, per-contract threshold rows with a transaction fact and separate consequence flags, license-conversion mode/grant pairs, relation-tagged grant rows, four-slot license attribute records with an optional usage cap, period/unit-tagged exact fee lines with share bases and rates, classified indemnity items with carve-out flags and caps, and survival-declared clause tables); outputs are exactly the contract quantities (the event-advanced state with the untouched survival component, the row-determined judgment next to the separate candidate carrier, the field-by-field restriction read-back with distinct effect codes, the priority level with in-scope and out-of-scope results, the folded event trace with the notice-only adverse witness, the per-contract trigger verdicts, the grant-kept conversion, the keyed relation grants, the independent attribute reads with the witness inequality, the exact base-sensitive shares and period sums, the per-class cap applications with the separate insurance field, and the declared-survivor carrier after termination).",
+   "external_assumptions": "The adopted contract interpretation, governing-law and conflict-of-laws doctrine, reasonableness of restriction scopes, notice-validity and delivery facts, control relationships and transaction substance, IP ownership and work-for-hire facts, declared sales figures and audit outcomes, insurability and loss characterization, escrow conditions and third-party status remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/clauses_ref.py",
+    "tools/full_math/implementation/clauses_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D069]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_positive[D069]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_counterexample[D069]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_downstream_pipeline_consumes_clauses"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D069]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D069]"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_checker_rejects_tampered[D069]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.docPut_docPut"
@@ -3966,25 +3971,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D070",
    "contract": "JurisLean.FullMath.Contracts.demand_D070",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.docPut_docPut's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-08 contract-clauses demand instance in the shared semantic framework: this item's own contract semantics plus the registered clause component (the docPut lens law: repeated puts to the same key agree with the last put, so a clause field is never silently overwritten by an earlier draft), with its adverse case executed as a negative test.",
+   "independent_semantics": "each contract is triggered against its own change-of-control threshold row (fact 60 crosses 50 but not 80, so one uniform threshold is rejected) and the notice / consent / termination consequences are three separate verbatim flags.",
+   "algorithm": "tools/full_math/implementation/clauses_ref.py coc_trigger/coc_consequences/change_of_control computes the intermediate result from structured input; clauses_check.check_D070 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (contract-state event flags with the surviving-obligation list, governing-law candidate rows keyed by clause name with conflict-path flags, six-axis restriction rows with typed effect codes, three-level priority inputs with scope keys, termination-chain event records over four distinct event tags, per-contract threshold rows with a transaction fact and separate consequence flags, license-conversion mode/grant pairs, relation-tagged grant rows, four-slot license attribute records with an optional usage cap, period/unit-tagged exact fee lines with share bases and rates, classified indemnity items with carve-out flags and caps, and survival-declared clause tables); outputs are exactly the contract quantities (the event-advanced state with the untouched survival component, the row-determined judgment next to the separate candidate carrier, the field-by-field restriction read-back with distinct effect codes, the priority level with in-scope and out-of-scope results, the folded event trace with the notice-only adverse witness, the per-contract trigger verdicts, the grant-kept conversion, the keyed relation grants, the independent attribute reads with the witness inequality, the exact base-sensitive shares and period sums, the per-class cap applications with the separate insurance field, and the declared-survivor carrier after termination).",
+   "external_assumptions": "The adopted contract interpretation, governing-law and conflict-of-laws doctrine, reasonableness of restriction scopes, notice-validity and delivery facts, control relationships and transaction substance, IP ownership and work-for-hire facts, declared sales figures and audit outcomes, insurability and loss characterization, escrow conditions and third-party status remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/clauses_ref.py",
+    "tools/full_math/implementation/clauses_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D070]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_positive[D070]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_counterexample[D070]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_downstream_pipeline_consumes_clauses"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D070]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D070]"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_checker_rejects_tampered[D070]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.docPut_docPut"
@@ -3995,25 +4001,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D071",
    "contract": "JurisLean.FullMath.Contracts.demand_D071",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.docPut_docPut's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-08 contract-clauses demand instance in the shared semantic framework: this item's own contract semantics plus the registered clause component (the docPut lens law: repeated puts to the same key agree with the last put, so a clause field is never silently overwritten by an earlier draft), with its adverse case executed as a negative test.",
+   "independent_semantics": "converting a license from exclusive to nonexclusive changes only the mode and keeps the usage grant verbatim; license_nonexclusive is not license_terminated, so deleting the whole usage grant on conversion is intercepted.",
+   "algorithm": "tools/full_math/implementation/clauses_ref.py convert_license/license_conversion computes the intermediate result from structured input; clauses_check.check_D071 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (contract-state event flags with the surviving-obligation list, governing-law candidate rows keyed by clause name with conflict-path flags, six-axis restriction rows with typed effect codes, three-level priority inputs with scope keys, termination-chain event records over four distinct event tags, per-contract threshold rows with a transaction fact and separate consequence flags, license-conversion mode/grant pairs, relation-tagged grant rows, four-slot license attribute records with an optional usage cap, period/unit-tagged exact fee lines with share bases and rates, classified indemnity items with carve-out flags and caps, and survival-declared clause tables); outputs are exactly the contract quantities (the event-advanced state with the untouched survival component, the row-determined judgment next to the separate candidate carrier, the field-by-field restriction read-back with distinct effect codes, the priority level with in-scope and out-of-scope results, the folded event trace with the notice-only adverse witness, the per-contract trigger verdicts, the grant-kept conversion, the keyed relation grants, the independent attribute reads with the witness inequality, the exact base-sensitive shares and period sums, the per-class cap applications with the separate insurance field, and the declared-survivor carrier after termination).",
+   "external_assumptions": "The adopted contract interpretation, governing-law and conflict-of-laws doctrine, reasonableness of restriction scopes, notice-validity and delivery facts, control relationships and transaction substance, IP ownership and work-for-hire facts, declared sales figures and audit outcomes, insurability and loss characterization, escrow conditions and third-party status remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/clauses_ref.py",
+    "tools/full_math/implementation/clauses_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D071]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_positive[D071]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_counterexample[D071]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_downstream_pipeline_consumes_clauses"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D071]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D071]"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_checker_rejects_tampered[D071]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.docPut_docPut"
@@ -4024,25 +4031,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D072",
    "contract": "JurisLean.FullMath.Contracts.demand_D072",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.docPut_docPut's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-08 contract-clauses demand instance in the shared semantic framework: this item's own contract semantics plus the registered clause component (the docPut lens law: repeated puts to the same key agree with the last put, so a clause field is never silently overwritten by an earlier draft), with its adverse case executed as a negative test.",
+   "independent_semantics": "ownership, co-ownership share, license, sublicense and affiliate scope are five distinct relation tags; the grant lookup is keyed by relation (a license row never creates an ownership grant) and an affiliate without a grant row of its own gets nothing.",
+   "algorithm": "tools/full_math/implementation/clauses_ref.py grant_of/ip_relations computes the intermediate result from structured input; clauses_check.check_D072 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (contract-state event flags with the surviving-obligation list, governing-law candidate rows keyed by clause name with conflict-path flags, six-axis restriction rows with typed effect codes, three-level priority inputs with scope keys, termination-chain event records over four distinct event tags, per-contract threshold rows with a transaction fact and separate consequence flags, license-conversion mode/grant pairs, relation-tagged grant rows, four-slot license attribute records with an optional usage cap, period/unit-tagged exact fee lines with share bases and rates, classified indemnity items with carve-out flags and caps, and survival-declared clause tables); outputs are exactly the contract quantities (the event-advanced state with the untouched survival component, the row-determined judgment next to the separate candidate carrier, the field-by-field restriction read-back with distinct effect codes, the priority level with in-scope and out-of-scope results, the folded event trace with the notice-only adverse witness, the per-contract trigger verdicts, the grant-kept conversion, the keyed relation grants, the independent attribute reads with the witness inequality, the exact base-sensitive shares and period sums, the per-class cap applications with the separate insurance field, and the declared-survivor carrier after termination).",
+   "external_assumptions": "The adopted contract interpretation, governing-law and conflict-of-laws doctrine, reasonableness of restriction scopes, notice-validity and delivery facts, control relationships and transaction substance, IP ownership and work-for-hire facts, declared sales figures and audit outcomes, insurability and loss characterization, escrow conditions and third-party status remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/clauses_ref.py",
+    "tools/full_math/implementation/clauses_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D072]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_positive[D072]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_counterexample[D072]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_downstream_pipeline_consumes_clauses"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D072]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D072]"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_checker_rejects_tampered[D072]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.docPut_docPut"
@@ -4053,25 +4061,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D073",
    "contract": "JurisLean.FullMath.Contracts.demand_D073",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.docPut_docPut's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-08 contract-clauses demand instance in the shared semantic framework: this item's own contract semantics plus the registered clause component (the docPut lens law: repeated puts to the same key agree with the last put, so a clause field is never silently overwritten by an earlier draft), with its adverse case executed as a negative test.",
+   "independent_semantics": "perpetuity, revocability, transferability and the usage cap are four independent attributes, each writable alone; a perpetual license that is revocable and capped differs from a perpetual irrevocable unlimited one, so perpetual never entails the rest.",
+   "algorithm": "tools/full_math/implementation/clauses_ref.py license_attributes computes the intermediate result from structured input; clauses_check.check_D073 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (contract-state event flags with the surviving-obligation list, governing-law candidate rows keyed by clause name with conflict-path flags, six-axis restriction rows with typed effect codes, three-level priority inputs with scope keys, termination-chain event records over four distinct event tags, per-contract threshold rows with a transaction fact and separate consequence flags, license-conversion mode/grant pairs, relation-tagged grant rows, four-slot license attribute records with an optional usage cap, period/unit-tagged exact fee lines with share bases and rates, classified indemnity items with carve-out flags and caps, and survival-declared clause tables); outputs are exactly the contract quantities (the event-advanced state with the untouched survival component, the row-determined judgment next to the separate candidate carrier, the field-by-field restriction read-back with distinct effect codes, the priority level with in-scope and out-of-scope results, the folded event trace with the notice-only adverse witness, the per-contract trigger verdicts, the grant-kept conversion, the keyed relation grants, the independent attribute reads with the witness inequality, the exact base-sensitive shares and period sums, the per-class cap applications with the separate insurance field, and the declared-survivor carrier after termination).",
+   "external_assumptions": "The adopted contract interpretation, governing-law and conflict-of-laws doctrine, reasonableness of restriction scopes, notice-validity and delivery facts, control relationships and transaction substance, IP ownership and work-for-hire facts, declared sales figures and audit outcomes, insurability and loss characterization, escrow conditions and third-party status remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/clauses_ref.py",
+    "tools/full_math/implementation/clauses_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D073]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_positive[D073]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_counterexample[D073]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_downstream_pipeline_consumes_clauses"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D073]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D073]"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_checker_rejects_tampered[D073]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.docPut_docPut"
@@ -4082,25 +4091,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D074",
    "contract": "JurisLean.FullMath.Contracts.demand_D074",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.docPut_docPut's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-08 contract-clauses demand instance in the shared semantic framework: this item's own contract semantics plus the registered clause component (the docPut lens law: repeated puts to the same key agree with the last put, so a clause field is never silently overwritten by an earlier draft), with its adverse case executed as a negative test.",
+   "independent_semantics": "every fee line carries its own period and unit; the revenue share multiplies the declared base (bases 100000 vs 20000 at rate 1/10 give exact 10000 vs 2000, so a misused profit base is detected) and two period rows stay distinct while their amounts add exactly (8000, no cross-period double summation).",
+   "algorithm": "tools/full_math/implementation/clauses_ref.py fee_line/rev_share/fee_lines computes the intermediate result from structured input; clauses_check.check_D074 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (contract-state event flags with the surviving-obligation list, governing-law candidate rows keyed by clause name with conflict-path flags, six-axis restriction rows with typed effect codes, three-level priority inputs with scope keys, termination-chain event records over four distinct event tags, per-contract threshold rows with a transaction fact and separate consequence flags, license-conversion mode/grant pairs, relation-tagged grant rows, four-slot license attribute records with an optional usage cap, period/unit-tagged exact fee lines with share bases and rates, classified indemnity items with carve-out flags and caps, and survival-declared clause tables); outputs are exactly the contract quantities (the event-advanced state with the untouched survival component, the row-determined judgment next to the separate candidate carrier, the field-by-field restriction read-back with distinct effect codes, the priority level with in-scope and out-of-scope results, the folded event trace with the notice-only adverse witness, the per-contract trigger verdicts, the grant-kept conversion, the keyed relation grants, the independent attribute reads with the witness inequality, the exact base-sensitive shares and period sums, the per-class cap applications with the separate insurance field, and the declared-survivor carrier after termination).",
+   "external_assumptions": "The adopted contract interpretation, governing-law and conflict-of-laws doctrine, reasonableness of restriction scopes, notice-validity and delivery facts, control relationships and transaction substance, IP ownership and work-for-hire facts, declared sales figures and audit outcomes, insurability and loss characterization, escrow conditions and third-party status remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/clauses_ref.py",
+    "tools/full_math/implementation/clauses_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D074]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_positive[D074]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_counterexample[D074]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_downstream_pipeline_consumes_clauses"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D074]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D074]"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_checker_rejects_tampered[D074]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.docPut_docPut"
@@ -4111,25 +4121,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D075",
    "contract": "JurisLean.FullMath.Contracts.demand_D075",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.docPut_docPut's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-08 contract-clauses demand instance in the shared semantic framework: this item's own contract semantics plus the registered clause component (the docPut lens law: repeated puts to the same key agree with the last put, so a clause field is never silently overwritten by an earlier draft), with its adverse case executed as a negative test.",
+   "independent_semantics": "indemnity items are classified first, then the cap / carve-out rule is applied per class: a carve-out passes through untouched, a capped kind is clipped at the cap (same amount 1500000 and cap 1000000 give different results per class), and the insurance limit is a separate field from the liability cap.",
+   "algorithm": "tools/full_math/implementation/clauses_ref.py apply_cap/indemnity_classification computes the intermediate result from structured input; clauses_check.check_D075 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (contract-state event flags with the surviving-obligation list, governing-law candidate rows keyed by clause name with conflict-path flags, six-axis restriction rows with typed effect codes, three-level priority inputs with scope keys, termination-chain event records over four distinct event tags, per-contract threshold rows with a transaction fact and separate consequence flags, license-conversion mode/grant pairs, relation-tagged grant rows, four-slot license attribute records with an optional usage cap, period/unit-tagged exact fee lines with share bases and rates, classified indemnity items with carve-out flags and caps, and survival-declared clause tables); outputs are exactly the contract quantities (the event-advanced state with the untouched survival component, the row-determined judgment next to the separate candidate carrier, the field-by-field restriction read-back with distinct effect codes, the priority level with in-scope and out-of-scope results, the folded event trace with the notice-only adverse witness, the per-contract trigger verdicts, the grant-kept conversion, the keyed relation grants, the independent attribute reads with the witness inequality, the exact base-sensitive shares and period sums, the per-class cap applications with the separate insurance field, and the declared-survivor carrier after termination).",
+   "external_assumptions": "The adopted contract interpretation, governing-law and conflict-of-laws doctrine, reasonableness of restriction scopes, notice-validity and delivery facts, control relationships and transaction substance, IP ownership and work-for-hire facts, declared sales figures and audit outcomes, insurability and loss characterization, escrow conditions and third-party status remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/clauses_ref.py",
+    "tools/full_math/implementation/clauses_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D075]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_positive[D075]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_counterexample[D075]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_downstream_pipeline_consumes_clauses"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D075]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D075]"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_checker_rejects_tampered[D075]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.docPut_docPut"
@@ -4140,25 +4151,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D076",
    "contract": "JurisLean.FullMath.Contracts.demand_D076",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.docPut_docPut's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-08 contract-clauses demand instance in the shared semantic framework: this item's own contract semantics plus the registered clause component (the docPut lens law: repeated puts to the same key agree with the last put, so a clause field is never silently overwritten by an earlier draft), with its adverse case executed as a negative test.",
+   "independent_semantics": "the survival carrier keeps exactly the kinds the table declares to survive, each row traceable, undeclared kinds never appear, and a nonempty all-surviving table keeps a nonempty carrier after termination — settlement, audit, escrow and third-party rights are never bulk-deleted.",
+   "algorithm": "tools/full_math/implementation/clauses_ref.py survivors/survival_rules computes the intermediate result from structured input; clauses_check.check_D076 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (contract-state event flags with the surviving-obligation list, governing-law candidate rows keyed by clause name with conflict-path flags, six-axis restriction rows with typed effect codes, three-level priority inputs with scope keys, termination-chain event records over four distinct event tags, per-contract threshold rows with a transaction fact and separate consequence flags, license-conversion mode/grant pairs, relation-tagged grant rows, four-slot license attribute records with an optional usage cap, period/unit-tagged exact fee lines with share bases and rates, classified indemnity items with carve-out flags and caps, and survival-declared clause tables); outputs are exactly the contract quantities (the event-advanced state with the untouched survival component, the row-determined judgment next to the separate candidate carrier, the field-by-field restriction read-back with distinct effect codes, the priority level with in-scope and out-of-scope results, the folded event trace with the notice-only adverse witness, the per-contract trigger verdicts, the grant-kept conversion, the keyed relation grants, the independent attribute reads with the witness inequality, the exact base-sensitive shares and period sums, the per-class cap applications with the separate insurance field, and the declared-survivor carrier after termination).",
+   "external_assumptions": "The adopted contract interpretation, governing-law and conflict-of-laws doctrine, reasonableness of restriction scopes, notice-validity and delivery facts, control relationships and transaction substance, IP ownership and work-for-hire facts, declared sales figures and audit outcomes, insurability and loss characterization, escrow conditions and third-party status remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/clauses_ref.py",
+    "tools/full_math/implementation/clauses_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D076]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_positive[D076]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_demand_counterexample[D076]",
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_downstream_pipeline_consumes_clauses"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D076]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D076]"
+    "tools/full_math/implementation_tests::test_clauses_group08.py::test_checker_rejects_tampered[D076]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.docPut_docPut"

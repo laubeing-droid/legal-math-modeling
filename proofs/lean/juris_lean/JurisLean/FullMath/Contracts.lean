@@ -1122,29 +1122,284 @@ def demand_D063 : Prop := ∀ (i : Iv) (x y : ℚ) (hx : mem x i), min (i.lo * y
 
 def demand_D064 : Prop := ∀ (i : Iv) (x y : ℚ) (hx : mem x i), min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)
 
-def demand_D065 : Prop := ∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v'
+/-! D065-D076 (group 08 合同条款与权利义务审核, W2-A batch B08): each def is
+that demand's own contract, translated from ALL_134_MATH_CONTRACTS.md.
+The first conjunct is the group-registered clause component (the docPut
+lens law: repeated puts to the same key agree with the last put, so a
+clause field is never silently overwritten by an earlier draft); the
+remaining conjuncts are the demand's own operational semantics with its
+adverse case. -/
 
-def demand_D066 : Prop := ∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v'
+/-- D065 helper: one contract-state transition — formation (executed)
+without effectiveness is its own state, so a signing day never counts as
+the effective day; expiry is a distinct terminal state. -/
+def clauseState (executed eff expired : Bool) : Nat :=
+  if executed then (if eff then (if expired then 3 else 2) else 1) else 0
 
-def demand_D067 : Prop := ∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v'
+/-- D065 helper: the state transition rides on a carrier that keeps the
+surviving-obligations list as its own component — no event, expiry
+included, erases it. -/
+def clauseCarry (executed eff expired : Bool) (obs : List String) :
+    Nat × List String :=
+  (clauseState executed eff expired, obs)
 
-def demand_D068 : Prop := ∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v'
+/-- D066 helper: the final applicable-law judgment — chosen only from a
+candidate clause row whose conflict-of-laws path is declared; the
+candidate table and the final judgment stay separate carriers. -/
+def lawFinal (cands : List (String × Bool)) (chosen : String) :
+    Option String :=
+  match cands.find? (fun r => decide (r.1 = chosen)) with
+  | some row => if row.2 then some chosen else none
+  | none => none
 
-def demand_D069 : Prop := ∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v'
+/-- D068 helper: three-level priority evaluation — an exception of the
+exception outranks the exception, which outranks the main rule; a
+positive main-clause hit never skips a later exception. -/
+def prioEval (main ex exex : Bool) : Nat :=
+  if exex then 2 else if ex then 1 else 0
 
-def demand_D070 : Prop := ∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v'
+/-- D068 helper: an exception applies only inside its declared scope —
+an exception whose scope key differs from the clause key never changes
+the outcome. -/
+def scopedApply (scopeKey mainKey : String) (ex : Bool) (out : Nat) :
+    Nat :=
+  if scopeKey = mainKey ∧ ex = true then 1 else out
 
-def demand_D071 : Prop := ∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v'
+/-- D069 helper: the termination chain is four separate events —
+exercise, notice arrival, effectiveness, refusal to renew; each event
+sets only its own flag. -/
+def applyEvent (rec : Bool × Bool × Bool × Bool) (ev : Nat) :
+    Bool × Bool × Bool × Bool :=
+  if ev = 0 then (true, rec.2.1, rec.2.2.1, rec.2.2.2)
+  else if ev = 1 then (rec.1, true, rec.2.2.1, rec.2.2.2)
+  else if ev = 2 then (rec.1, rec.2.1, true, rec.2.2.2)
+  else if ev = 3 then (rec.1, rec.2.1, rec.2.2.1, true)
+  else rec
 
-def demand_D072 : Prop := ∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v'
+/-- D070 helper: a per-contract change-of-control trigger — each
+contract carries its own threshold row, so one transaction fact never
+decides all contracts uniformly. -/
+def cocTrigger (row : String × ℚ) (fact : ℚ) : Bool := decide (row.2 ≤ fact)
 
-def demand_D073 : Prop := ∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v'
+/-- D070 helper: the consequences (notice / consent / termination) are
+separate flags carried verbatim out of the per-contract row. -/
+def cocCons (flags : Bool × Bool × Bool) : Bool × Bool × Bool := flags
 
-def demand_D074 : Prop := ∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v'
+/-- D071 helper: converting a license from exclusive to nonexclusive
+changes only the mode and keeps the grant alive — termination is not a
+consequence of the conversion. -/
+def convertLicense (mode grant : String) : String × String :=
+  ("license_nonexclusive", grant)
 
-def demand_D075 : Prop := ∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v'
+/-- D072 helper: the five IP relations are distinct tags — ownership,
+co-ownership share, license, sublicense, affiliate scope. -/
+def relOwn : Nat := 0
 
-def demand_D076 : Prop := ∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v'
+def relCo : Nat := 1
+
+def relLic : Nat := 2
+
+def relSub : Nat := 3
+
+def relAff : Nat := 4
+
+/-- D072 helper: a relation grant lookup returns the grant of the first
+row carrying exactly that relation tag. -/
+def grantOf (rows : List (Nat × String)) (rel : Nat) : Option String :=
+  match rows.find? (fun r => decide (r.1 = rel)) with
+  | some r => some r.2
+  | none => none
+
+/-- D074 helper: a computed fee line carries its own period and unit. -/
+def feeLine (period unit : String) (amt : ℚ) : String × String × ℚ :=
+  (period, unit, amt)
+
+/-- D074 helper: the revenue share multiplies the declared base — a
+profit base or any other base gives a different number. -/
+def revShare (base rate : ℚ) : ℚ := base * rate
+
+/-- D075 helper: classification precedes capping — a carve-out kind
+passes through untouched, a capped kind is clipped at the cap. -/
+def applyCap (carve : Bool) (amt cap : ℚ) : ℚ :=
+  if carve then amt else min amt cap
+
+/-- D076 helper: the survival carrier — on termination exactly the
+kinds declared to survive keep their rows, nothing is bulk-deleted. -/
+def survivors (rows : List (String × Bool)) : List String :=
+  (rows.filter (fun r => r.2)).map (fun r => r.1)
+
+/-- D065 合同状态依成立、生效、终止、续展等不同事件更新（反例：签订日
+不自动等于生效日；到期不自动抹去存续义务）：成立而未生效是独立状态
+（状态 1 ≠ 2，签订≠生效），终止是另一独立状态（状态 3）；存续义务
+清单是迁移载体的自有分量——到期之后它原样保留。 -/
+def demand_D065 : Prop :=
+  (∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v') ∧
+  ∀ (e f x : Bool) (obs : List String),
+    clauseState false f x = 0 ∧ clauseState true false x = 1 ∧
+      clauseState true true false = 2 ∧ clauseState true true true = 3 ∧
+      (1 : ℕ) ≠ 2 ∧ (obs ≠ [] → (clauseCarry e f true obs).2 ≠ [])
+
+/-- D066 准据法条款候选与最终适用法判断分离并保留冲突法路径（反例：
+当事人在某州设立不自动推定该州法管全部合同）：最终适用法判断=候选行的
+纯函数（判断与候选表是两个载体，判断不回流改表）；候选缺行时无判断
+（不凭空生成）；候选行的冲突路径未声明时最终判断不得给出（设立地不
+自动当准据法）。 -/
+def demand_D066 : Prop :=
+  (∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v') ∧
+  ∀ (cands : List (String × Bool)) (chosen : String),
+    ((∀ row, cands.find? (fun r => decide (r.1 = chosen)) = some row →
+        lawFinal cands chosen = if row.2 then some chosen else none) ∧
+     (cands.find? (fun r => decide (r.1 = chosen)) = none →
+        lawFinal cands chosen = none) ∧
+     (cands.find? (fun r => decide (r.1 = chosen)) = some (chosen, false) →
+        lawFinal cands chosen = none ∧ lawFinal cands chosen ≠ some chosen))
+
+/-- D067 限制按主体、行为、区域、期间、例外及规范效力表达（反例：排他
+义务不是自动转让排他知识产权）：限制行六轴逐轴保真（查得的行分量逐层
+原样）；任一轴不同即不同行（行为轴不同即行不同）；排他义务与排他知识
+产权转让是两个不同的规范效力编码，不互相顶替。 -/
+def demand_D067 : Prop :=
+  (∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v') ∧
+  ∀ (rows : List (String × String × String × String × String × String))
+      (s a r p x f : String),
+    rows.find? (fun w => decide (w.1 = s ∧ w.2.1 = a ∧ w.2.2.1 = r ∧
+          w.2.2.2.1 = p ∧ w.2.2.2.2.1 = x)) = some (s, a, r, p, x, f) →
+    ((∀ e, rows.find? (fun w => decide (w.1 = s ∧ w.2.1 = a ∧ w.2.2.1 = r ∧
+            w.2.2.2.1 = p ∧ w.2.2.2.2.1 = x)) = some e → e ∈ rows) ∧
+     ((s, a, r, p, x, f).2.2.2.2.2 = f ∧
+       ∀ (a' : String), a' ≠ a → (s, a, r, p, x, f) ≠ (s, a', r, p, x, f)) ∧
+     (("exclusive-obligation" : String) ≠ "exclusive-ip-transfer"))
+
+/-- D068 规则、例外、例外之例外采用明确优先或作用域语义（反例：正向主
+条款命中后不得跳过后文除外事项）：例外之例外(2)＞例外(1)＞主规则(0)
+三级优先、互不相同；主条款命中而例外在后时结果取例外层（1 ≠ 0，不
+跳过后文除外）；例外只在自身作用域键与条款键一致时生效，键不同不改
+结果。 -/
+def demand_D068 : Prop :=
+  (∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v') ∧
+  ∀ (out : Nat) (k₁ k₂ : String),
+    ((prioEval true true false = 1 ∧ prioEval true true true = 2 ∧
+       prioEval true false false = 0 ∧ prioEval false false false = 0) ∧
+     ((1 : Nat) ≠ 0 ∧ (2 : ℕ) ≠ 1 ∧ (2 : ℕ) ≠ 0) ∧
+     (k₁ ≠ k₂ → scopedApply k₁ k₂ true out = out) ∧
+     scopedApply k₂ k₂ false out = out ∧ scopedApply k₂ k₂ true out = 1) ∧
+    prioEval true true false ≠ 0
+
+/-- D069 终止权行使、通知到达、终止生效、拒绝续展分别为事件（反例：
+发出停止续展通知不能直接终止当前履行期）：四个事件标签两两不同；每个
+事件只置自己的分量、其余三个分量逐字保留；对已行使且已通知、尚未生效
+的记录施加拒绝续展事件后，"终止生效"分量仍为 false——当前履行期
+不被续展通知终止。 -/
+def demand_D069 : Prop :=
+  (∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v') ∧
+  ∀ rec : Bool × Bool × Bool × Bool,
+    (((0 : Nat) ≠ 1 ∧ (0 : ℕ) ≠ 2 ∧ (0 : ℕ) ≠ 3) ∧
+     ((1 : ℕ) ≠ 2 ∧ (1 : ℕ) ≠ 3 ∧ (2 : ℕ) ≠ 3) ∧
+     (applyEvent rec 0 = (true, rec.2.1, rec.2.2.1, rec.2.2.2) ∧
+       applyEvent rec 1 = (rec.1, true, rec.2.2.1, rec.2.2.2) ∧
+       applyEvent rec 2 = (rec.1, rec.2.1, true, rec.2.2.2) ∧
+       applyEvent rec 3 = (rec.1, rec.2.1, rec.2.2.1, true)) ∧
+     applyEvent (true, true, false, false) 3 = (true, true, false, true))
+
+/-- D070 控制权变化按每份合同定义求触发，再分别产生通知、同意、终止等
+后果（反例：同一交易事实不可用统一阈值覆盖全部合同）：后果三开关逐字
+各自保留；同一事实 60 下阈值 50 与 80 的两份合同触发分立（过 50 不过
+80，统一阈值被拒绝）；通知/同意/终止是三个不同的后果种类。 -/
+def demand_D070 : Prop :=
+  (∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v') ∧
+  ∀ n c t : Bool,
+    ((cocCons (n, c, t)).1 = n ∧ (cocCons (n, c, t)).2.1 = c ∧
+      (cocCons (n, c, t)).2.2 = t) ∧
+    (cocTrigger ("C-1", 50) 60 = true ∧ cocTrigger ("C-2", 80) 60 = false ∧
+      cocTrigger ("C-1", 50) 60 ≠ cocTrigger ("C-2", 80) 60) ∧
+    (("notice" : String) ≠ "consent" ∧ "consent" ≠ "termination")
+
+/-- D071 转换license_exclusive→license_nonexclusive不推出
+license_terminated（反例：只失去排他性时删除全部使用许可，应拦截）：
+转换只改许可方式、使用许可分量逐字存续；非排他与终止是两个不同的许可
+状态——转换后的许可方式永不等于 license_terminated。 -/
+def demand_D071 : Prop :=
+  (∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v') ∧
+  ∀ g : String,
+    ((convertLicense "license_exclusive" g = ("license_nonexclusive", g)) ∧
+     ("license_nonexclusive" : String) ≠ "license_terminated" ∧
+     ((convertLicense "license_exclusive" g).1 ≠ "license_terminated" ∧
+       (convertLicense "license_exclusive" g).2 = g))
+
+/-- D072 IP归属、共有份额、许可、再许可和关联方范围使用不同关系（反例：
+有许可不等于成为权利人；关联方不因集团标签自动获许可）：五种关系标签
+两两不同；授权查表按关系键——无所有权行则无所有权授权（有许可≠权利
+人）；许可行的授权逐字返回；关联方无自己的授权行时其授权为空（集团
+标签不自动获许可）。 -/
+def demand_D072 : Prop :=
+  (∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v') ∧
+  ∀ (rows : List (Nat × String)) (g : String),
+    ((relOwn ≠ relCo ∧ relOwn ≠ relLic ∧ relOwn ≠ relSub ∧ relOwn ≠ relAff) ∧
+     (relCo ≠ relLic ∧ relCo ≠ relSub ∧ relCo ≠ relAff) ∧
+     (relLic ≠ relSub ∧ relLic ≠ relAff) ∧ relSub ≠ relAff) ∧
+    ((rows.find? (fun r => decide (r.1 = relOwn)) = none →
+        grantOf rows relOwn = none) ∧
+     (rows.find? (fun r => decide (r.1 = relLic)) = some (relLic, g) →
+        grantOf rows relLic = some g) ∧
+     ((∀ r ∈ rows, r.1 ≠ relAff) → grantOf rows relAff = none))
+
+/-- D073 永久性、可撤销性、可转让性、用量上限为独立属性和事件规则
+（反例：永久许可不自动等于不可撤销且无限量）：四属性各自独立读写
+（每属性能单独翻转记录其余不动）；"永久且可撤销且不可转让且限量
+1000" 与 "永久且不可撤销且可转让且无限量" 是两个不同的许可——
+永久性不推出其余属性，用量上限独立存在。 -/
+def demand_D073 : Prop :=
+  (∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v') ∧
+  ∀ (p r t : Bool) (c : Option ℕ),
+    (((p, r, t, c) = (true, r, t, c) ↔ p = true) ∧
+     ((p, r, t, c) = (p, true, t, c) ↔ r = true) ∧
+     ((p, r, t, c) = (p, r, true, c) ↔ t = true) ∧
+     ((p, r, t, c) = (p, r, t, none) ↔ c = none)) ∧
+    ((true, true, false, some 1000) ≠ (true, false, true, none) ∧
+      (some (1000 : ℕ)) ≠ none)
+
+/-- D074 采购量、价格机制、分成基数及用量费分别计算并保留期间/单位
+（反例：销售额分成误用利润基数或跨期重复汇总）：每条费用行自带期间与
+单位（分量逐字保留）；分成=声明基数×费率——基数 100000 与误用的利润
+基数 20000 按 1/10 费率给出 10000 与 2000 两个不同数（误用被检出）；
+两个期间的行是两行分立、金额精确相加 8000（不跨期重复汇总）。 -/
+def demand_D074 : Prop :=
+  (∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v') ∧
+  ∀ (p u : String) (a : ℚ),
+    ((feeLine p u a).1 = p ∧ (feeLine p u a).2.1 = u ∧
+      (feeLine p u a).2.2 = a) ∧
+    (revShare 100000 (1 / 10) = 10000 ∧ revShare 20000 (1 / 10) = 2000 ∧
+      revShare 100000 (1 / 10) ≠ revShare 20000 (1 / 10)) ∧
+    ((feeLine "2026-Q1" "CNY" 3000) ≠ (feeLine "2026-Q2" "CNY" 5000) ∧
+      (feeLine "2026-Q1" "CNY" 3000).2.2 +
+          (feeLine "2026-Q2" "CNY" 5000).2.2 = 8000)
+
+/-- D075 赔偿分项先归类，再应用cap、carveout、时间/责任模式约束
+（反例：对保密例外也机械套一般cap，或将保险限额当责任上限）：先归类
+后限量——carveout 类逐字通过（不套cap）、capped 类截在cap处；同一
+金额 1500000、cap 1000000 下两类给出不同结果（先归类可检出）；保险
+限额 5000000 与责任上限 1000000 是两个不同的约束字段。 -/
+def demand_D075 : Prop :=
+  (∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v') ∧
+  ∀ (a c : ℚ),
+    ((applyCap true a c = a ∧ applyCap false a c = min a c) ∧
+     (applyCap true 1500000 1000000 = 1500000 ∧
+       applyCap false 1500000 1000000 = 1000000 ∧
+       applyCap true 1500000 1000000 ≠ applyCap false 1500000 1000000) ∧
+     ((("insurance" : String), 5000000) ≠ ("liability-cap", 1000000)))
+
+/-- D076 终止后服务、审计、托管及第三方权利按survival规则独立维持
+（反例：合同状态终止不得全量删除结算清理等存续效果）：存续载体=表内
+声明存续的行——每条存续项都回指表内存真行、表内存真行全部进入、表内
+未声明的种类永不凭空出现；声明存续的非空表终止后存续载体不空（结算/
+审计/托管/第三方逐行保留，不全量删除）。 -/
+def demand_D076 : Prop :=
+  (∀ (d : Doc) (k v v' : String), docPut (docPut d k v) k v' = docPut d k v') ∧
+  ∀ rows : List (String × Bool),
+    ((∀ s ∈ survivors rows, ∃ r ∈ rows, r.1 = s ∧ r.2 = true) ∧
+     (∀ r ∈ rows, r.2 = true → r.1 ∈ survivors rows) ∧
+     (∀ kind : String, (∀ r ∈ rows, r.1 ≠ kind) → kind ∉ survivors rows) ∧
+     ((∀ r ∈ rows, r.2 = true) → rows ≠ [] → survivors rows ≠ []))
 
 def demand_D077 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
     (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P

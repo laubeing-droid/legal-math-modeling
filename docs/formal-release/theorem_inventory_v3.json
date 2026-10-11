@@ -36553,8 +36553,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Behavior.lean",
    "print_axioms_targets": [],
-   "sha256": "6aceae45de8312c56f73916f0111a5ae35349714410262239b7aa2e29924199f",
-   "size_bytes": 39113,
+   "sha256": "f91fa91513922cd1ff135ab565680168a590433a1177a2c1882dfed589a217ef",
+   "size_bytes": 39357,
    "theorem_count": 41,
    "theorem_count_bol_convention": 41
   },
@@ -37314,8 +37314,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Games.lean",
    "print_axioms_targets": [],
-   "sha256": "6aa599bc81c82d0e4d30890397ee01be54af166f372c81e1d58d639a10401b61",
-   "size_bytes": 59441,
+   "sha256": "366536f04c61b8d70488b7d3c91e64c3d110d30cbade10be0211a6ab1ed6ea94",
+   "size_bytes": 58155,
    "theorem_count": 49,
    "theorem_count_bol_convention": 49
   },
@@ -42225,19 +42225,24 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "39612a5ea9b7bea44d523872c05b4b1d8229693988e87413e95db94ad931a672",
+ "source_inventory_digest": "1a9a76b9c5206221e6d35cc8dbab6f176bf9f391a7c22c0d4fb470d91e694fd3",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "a19785b25431e4f575f19ec471eadbd380f39a40",
-  "tree": "9365310caa1aab784812a1449afdf5d1c1786371"
+  "commit": "87d4851b1a3a688b1a7cb7d7524c78c9cd939e68",
+  "tree": "d7fd7e2ded8a2ec9e61ef27c5ad44e592451ccef"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedW4Games.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 361,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

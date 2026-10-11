@@ -159,10 +159,10 @@ theorem query_eq_some_iff_face_of_faceWf (E : VersionEnv) (hwf : FaceWf E) (t : 
   refine (query_eq_some_iff_face E t k v fun u hu huk _ =>
     hwf k u v hu hmemv huk hkey).trans ?_
   constructor
-  · rintro ⟨hin, happ⟩
-    exact ⟨hin, hmemv, happ⟩
   · rintro ⟨hin, _, happ⟩
     exact ⟨hin, happ⟩
+  · rintro ⟨hin, happ⟩
+    exact ⟨hin, hkey, happ⟩
 
 /-- 正向读数无条件成立（无 `FaceWf` 也真）：查询命中 ⇒ 绑定面确有该键登记且
     记录在时点可适用。 -/

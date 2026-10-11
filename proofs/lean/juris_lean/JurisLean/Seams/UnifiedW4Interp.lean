@@ -314,7 +314,8 @@ theorem adoption_adds_only_rule (c : InterpCandidate) (cands : List InterpCandid
   rcases List.mem_cons.mp hx_mem with hx_eq | hx_in
   · rw [hx_eq] at hx_rule
     exact Or.inl hx_rule.symm
-  · exact Or.inr (List.mem_map.mpr ⟨x, hx_in, hx_rule⟩)
+  · exact Or.inr (List.mem_map.mpr
+      ⟨x, List.mem_filter.mpr ⟨hx_in, _hx_ad⟩, hx_rule⟩)
 
 /-! ## T123：解释分支（§3.1、§4.3） -/
 
@@ -379,7 +380,6 @@ theorem hasPriorityB_iff (pairs : List PriorityPair) (s n : Nat) :
   constructor
   · intro h
     obtain ⟨p, hp, hpv⟩ := List.any_eq_true.mp h
-    simp only at hpv
     simp only [Bool.and_eq_true, decide_eq_true_iff] at hpv
     exact ⟨p, hp, hpv.1, hpv.2⟩
   · rintro ⟨p, hp, hs, hn⟩
@@ -423,7 +423,7 @@ theorem resolved_omits_inferior (pairs : List PriorityPair)
     (pool : List InterpCandidate) (x y : InterpCandidate)
     (hx : x ∈ pool) (_hy : y ∈ pool)
     (hprio : HasPriority pairs x.candId y.candId)
-    (hxy : x.candId ≠ y.candId)
+    (hxy : x ≠ y)
     (_hxres : x ∈ resolvedByPriority pairs pool) :
     y ∉ resolvedByPriority pairs pool := by
   intro hyres
@@ -453,7 +453,7 @@ theorem resolved_keeps_unopposed (pairs : List PriorityPair)
   | true =>
     obtain ⟨s, hs_mem, hs_val⟩ := List.any_eq_true.mp hany
     simp only [Bool.and_eq_true, decide_eq_true_iff] at hs_val
-    exact absurd (Iff.mpr (hasPriorityB_iff pairs s.candId x.candId) hs_val.2)
+    exact absurd (Iff.mp (hasPriorityB_iff pairs s.candId x.candId) hs_val.2)
       (hanti s hs_mem hs_val.1)
   | false => rfl
 
@@ -484,10 +484,13 @@ theorem witness_no_priority_keeps_both :
 /-- 支路私有前提默认取该候选的上下文理由材料（输入面保存的下游读法）。 -/
 def branchPremisesOf (c : InterpCandidate) : List Nat := c.input.contextIds
 
+/-- 一候选一支的支路构造（具名顶层 def——lambda 内多行结构实例不采用）。 -/
+def branchOf (c : InterpCandidate) : InterpBranch :=
+  { branchId := c.candId, adopted := [c], privatePremises := branchPremisesOf c }
+
 /-- 支路枚举（一候选一支，不合并不丢弃——§3.1：保留每个具来源的解释支路）。 -/
 def branchEach (cands : List InterpCandidate) : List InterpBranch :=
-  cands.map (fun c => { branchId := c.candId, adopted := [c],
-    privatePremises := branchPremisesOf c })
+  cands.map branchOf
 
 /-- 枚举不丢弃：支路数＝候选数。 -/
 theorem branchEach_count (cands : List InterpCandidate) :
@@ -507,7 +510,7 @@ def branchY : InterpBranch :=
 theorem witness_two_branches_kept :
     branchEach [candX, candY] = [branchX, branchY] ∧ branchX ≠ branchY := by
   refine ⟨?_, ?_⟩
-  · decide
+  · simp [branchEach, branchOf, candX, candY, branchX, branchY]
   · intro h
     have hprem := congrArg InterpBranch.privatePremises h
     simp [branchX, branchY] at hprem
@@ -545,7 +548,7 @@ theorem derivationOk_iff (B : InterpBranch) (d : BranchDerivation) :
 /-- 本支前提内的推导被隔离门接受。 -/
 theorem derivation_wf_accepts (B : InterpBranch) (d : BranchDerivation)
     (h : DerivationWF B d) : derivationOk B d = true :=
-  Iff.mpr derivationOk_iff h
+  Iff.mpr (derivationOk_iff B d) h
 
 /-- 越界即拒（一般形）：引用前提只要有一个不在本支私有前提内，隔离门拒绝。 -/
 theorem rejects_foreign_premise (B : InterpBranch) (d : BranchDerivation)
@@ -557,7 +560,7 @@ theorem rejects_foreign_premise (B : InterpBranch) (d : BranchDerivation)
     cases h : derivationOk B d with
     | true => exact rfl
     | false => exact absurd h hcon
-  exact hp_out (Iff.mp derivationOk_iff htrue p hp_mem)
+  exact hp_out (Iff.mp (derivationOk_iff B d) htrue p hp_mem)
 
 /-- **分支隔离定理（T123 旗舰）**：前提不相交的两支，一支的合法推导不可能引用
 另一支的任何前提——否则立刻矛盾。这就是"一支的证明不能引用另一支前提"的
@@ -598,7 +601,7 @@ theorem witness_attack_both_ways :
     InterpAttack branchX branchY ∧ InterpAttack branchY branchX := by
   have h1 : InterpAttack branchX branchY :=
     ⟨candX, by simp [branchX], candY, by simp [branchY], witness_conflict⟩
-  exact ⟨h1, Iff.mp interpAttack_symmetric h1⟩
+  exact ⟨h1, Iff.mp (interpAttack_symmetric branchX branchY) h1⟩
 
 /-- 见证：X 支自身的合法推导（引用本支前提 11）被隔离门接受。 -/
 theorem witness_own_accepted : derivationOk branchX

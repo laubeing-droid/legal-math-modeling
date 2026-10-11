@@ -605,12 +605,18 @@ theorem witness_bargain_bi :
     b1Choice bParamsDemo = 20 ∧ biOutcome bParamsDemo = ((60 : ℚ), (40 : ℚ)) := by
   -- 组件事实链（不经 decide 整体求值：先换字面量、逐门用 norm_num 事实打开）
   have hv1 : r1Pay bParamsDemo 20 = ((10 : ℚ), 40) := by
-    show (bParamsDemo.delta * 20, bParamsDemo.delta * (bParamsDemo.cake - 20))
-        = ((10 : ℚ), 40)
+    show (if accR1 bParamsDemo 20
+        then (bParamsDemo.delta * 20, bParamsDemo.delta * (bParamsDemo.cake - 20))
+        else (0, 0)) = ((10 : ℚ), 40)
+    have hacc : accR1 bParamsDemo 20 = true := by norm_num [accR1, bParamsDemo]
+    simp only [hacc, if_true]
     norm_num
   have hv2 : r1Pay bParamsDemo 50 = ((25 : ℚ), 25) := by
-    show (bParamsDemo.delta * 50, bParamsDemo.delta * (bParamsDemo.cake - 50))
-        = ((25 : ℚ), 25)
+    show (if accR1 bParamsDemo 50
+        then (bParamsDemo.delta * 50, bParamsDemo.delta * (bParamsDemo.cake - 50))
+        else (0, 0)) = ((25 : ℚ), 25)
+    have hacc : accR1 bParamsDemo 50 = true := by norm_num [accR1, bParamsDemo]
+    simp only [hacc, if_true]
     norm_num
   have hb1 : b1Choice bParamsDemo = 20 := by
     show (if (r1Pay bParamsDemo bParamsDemo.y1).2 ≥ (r1Pay bParamsDemo bParamsDemo.y2).2
@@ -623,10 +629,20 @@ theorem witness_bargain_bi :
     show r1Pay bParamsDemo (b1Choice bParamsDemo) = ((10 : ℚ), 40)
     rw [hb1, hv1]
   have hv40 : r0Pay bParamsDemo 40 = ((60 : ℚ), 40) := by
-    show (bParamsDemo.cake - 40, 40) = ((60 : ℚ), 40)
+    show (if accR0 bParamsDemo 40
+        then (bParamsDemo.cake - 40, 40) else biR1 bParamsDemo)
+      = ((60 : ℚ), 40)
+    have hacc : accR0 bParamsDemo 40 = true := by
+      norm_num [accR0, bParamsDemo, biR1, b1Choice, r1Pay]
+    simp only [hacc, if_true]
     norm_num
   have hv60 : r0Pay bParamsDemo 60 = ((40 : ℚ), 60) := by
-    show (bParamsDemo.cake - 60, 60) = ((40 : ℚ), 60)
+    show (if accR0 bParamsDemo 60
+        then (bParamsDemo.cake - 60, 60) else biR1 bParamsDemo)
+      = ((40 : ℚ), 60)
+    have hacc : accR0 bParamsDemo 60 = true := by
+      norm_num [accR0, bParamsDemo, biR1, b1Choice, r1Pay]
+    simp only [hacc, if_true]
     norm_num
   have ha0 : a0Choice bParamsDemo = 40 := by
     show (if (r0Pay bParamsDemo bParamsDemo.x1).1 ≥ (r0Pay bParamsDemo bParamsDemo.x2).1

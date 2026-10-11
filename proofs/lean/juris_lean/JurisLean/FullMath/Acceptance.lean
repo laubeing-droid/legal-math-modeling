@@ -1111,25 +1111,129 @@ theorem demand_D076 : Contracts.demand_D076 := And.intro JurisLean.FullMath.Docu
       rw [hself] at hnil
       exact hne hnil)
 
-theorem demand_D077 : Contracts.demand_D077 := JurisLean.FullMath.Logic.cl_least_iterate
+/-! D077-D086 (group 09 并购与交割条件, W2-A batch B09): each
+theorem discharges the demand's own contract; the first conjunct is the
+group-registered Horn fixpoint component inlined as `cl_least_iterate`. -/
 
-theorem demand_D078 : Contracts.demand_D078 := JurisLean.FullMath.Logic.cl_least_iterate
+theorem demand_D077 : Contracts.demand_D077 := And.intro JurisLean.FullMath.Logic.cl_least_iterate
+  (by
+    intro rows times
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · intro r _hr
+      simp [Contracts.repVerdict]
+    · intro r _hr hs hc
+      simp [Contracts.repVerdict, hs, hc]
+    · simp
+    · decide)
 
-theorem demand_D079 : Contracts.demand_D079 := JurisLean.FullMath.Logic.cl_least_iterate
+theorem demand_D078 : Contracts.demand_D078 := And.intro JurisLean.FullMath.Logic.cl_least_iterate
+  (by
+    intro k₁
+    refine ⟨⟨?_, ?_⟩, ⟨?_, ?_⟩, ?_, ?_⟩
+    · simp [Contracts.maeHit]
+    · simp [Contracts.maeHit]
+    · simp [Contracts.maeHit]
+    · simp [Contracts.maeHit]
+    · intro k₂ hne
+      show (if k₂ = k₁ ∧ true = true then false else true) = true ∧
+          (if k₂ = k₁ ∧ true = true then true else true) = true
+      exact ⟨if_neg (fun h => hne h.1.symm), if_neg (fun h => hne h.1.symm)⟩
+    · simp [Contracts.maeHit])
 
-theorem demand_D080 : Contracts.demand_D080 := JurisLean.FullMath.Logic.cl_least_iterate
+theorem demand_D079 : Contracts.demand_D079 := And.intro JurisLean.FullMath.Logic.cl_least_iterate
+  (by
+    intro g kind b
+    refine ⟨?_, ⟨?_, ?_⟩, ?_⟩
+    · decide
+    · simp [Contracts.knOf]
+    · simp [Contracts.knOf]
+    · intro hne hEq
+      simp at hEq
+      exact hne hEq.symm)
 
-theorem demand_D081 : Contracts.demand_D081 := JurisLean.FullMath.Logic.cl_least_iterate
+theorem demand_D080 : Contracts.demand_D080 := And.intro JurisLean.FullMath.Logic.cl_least_iterate
+  (by
+    intro acts
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · intro a ha
+      obtain ⟨hmem, hc⟩ := List.mem_filter.mp ha
+      simp only [Contracts.contactLegal, Bool.and_eq_true] at hc
+      obtain ⟨h1, h2⟩ := hc
+      exact ⟨hmem, h1, h2⟩
+    · intro a ha h1 h2
+      exact List.mem_filter.mpr ⟨ha, by
+        simp only [Contracts.contactLegal, Bool.and_eq_true]
+        exact ⟨h1, h2⟩⟩
+    · intro a _ha hfalse hmem
+      obtain ⟨_, hc⟩ := List.mem_filter.mp hmem
+      simp [Contracts.contactLegal, hfalse] at hc
+    · decide)
 
-theorem demand_D082 : Contracts.demand_D082 := JurisLean.FullMath.Logic.cl_least_iterate
+theorem demand_D081 : Contracts.demand_D081 := And.intro JurisLean.FullMath.Logic.cl_least_iterate
+  (by
+    intro day noticeDay windowEnd recChanged matched _horder
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · intro hle
+      simp [Contracts.canTerm, hle]
+    · intro hlt hm
+      have hnle : ¬(day ≤ windowEnd) := by omega
+      simp [Contracts.canTerm, hnle, hm]
+    · intro _ hle
+      simp [Contracts.canTerm, hle]
+    · decide)
 
-theorem demand_D083 : Contracts.demand_D083 := JurisLean.FullMath.Logic.cl_least_iterate
+theorem demand_D082 : Contracts.demand_D082 := And.intro JurisLean.FullMath.Logic.cl_least_iterate
+  (by
+    intro inWindow
+    refine ⟨⟨?_, ?_⟩, ?_, ?_, ⟨?_, ?_⟩, ?_⟩
+    · norm_num [Contracts.isSuperiorOffer]
+    · decide
+    · norm_num [Contracts.isSuperiorOffer]
+    · norm_num [Contracts.isSuperiorOffer]
+    · rfl
+    · have hlt : ((100 : ℚ) < 110) := by norm_num
+      simp [Contracts.isSuperiorOffer, decide_eq_true hlt]
+    · norm_num)
 
-theorem demand_D084 : Contracts.demand_D084 := JurisLean.FullMath.Logic.cl_least_iterate
+theorem demand_D083 : Contracts.demand_D083 := And.intro JurisLean.FullMath.Logic.cl_least_iterate
+  (by
+    intro ordinary consent
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · simp [Contracts.actionAllowed]
+    · decide
+    · simp
+    · simp [Contracts.actionAllowed])
 
-theorem demand_D085 : Contracts.demand_D085 := JurisLean.FullMath.Logic.cl_least_iterate
+theorem demand_D084 : Contracts.demand_D084 := And.intro JurisLean.FullMath.Logic.cl_least_iterate
+  (by
+    refine ⟨⟨?_, ?_⟩, ?_, ?_⟩
+    · simp [Contracts.closingRemedies]
+    · simp [Contracts.closingRemedies]
+    · intro closingAlive wantsSP wantsTerm
+      cases closingAlive <;> cases wantsSP <;> cases wantsTerm <;>
+        simp [Contracts.closingRemedies]
+    · intro wantsSP wantsTerm
+      cases wantsSP <;> cases wantsTerm <;> simp [Contracts.closingRemedies])
 
-theorem demand_D086 : Contracts.demand_D086 := JurisLean.FullMath.Logic.cl_least_iterate
+theorem demand_D085 : Contracts.demand_D085 := And.intro JurisLean.FullMath.Logic.cl_least_iterate
+  (by
+    intro price
+    refine ⟨⟨?_, ?_⟩, ?_, ?_, ?_⟩
+    · simp [Contracts.doubleTriggerPayout]
+    · simp [Contracts.doubleTriggerPayout]
+    · simp [Contracts.doubleTriggerPayout]
+    · simp
+    · norm_num [Contracts.doubleTriggerPayout])
+
+theorem demand_D086 : Contracts.demand_D086 := And.intro JurisLean.FullMath.Logic.cl_least_iterate
+  (by
+    intro rows entity period prop
+    refine ⟨?_, ?_, ⟨?_, ?_⟩, ?_⟩
+    · simp [Contracts.diffWitness]
+    · simp [Contracts.diffWitness]
+    · simp [Contracts.schedStatus]
+    · simp [Contracts.schedStatus]
+    · simp)
 
 theorem demand_D087 : Contracts.demand_D087 := JurisLean.FullMath.Logic.exists_extension_witnessed
 

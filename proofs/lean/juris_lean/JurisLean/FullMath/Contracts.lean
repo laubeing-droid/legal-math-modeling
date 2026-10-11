@@ -1401,35 +1401,271 @@ def demand_D076 : Prop :=
      (∀ kind : String, (∀ r ∈ rows, r.1 ≠ kind) → kind ∉ survivors rows) ∧
      ((∀ r ∈ rows, r.2 = true) → rows ≠ [] → survivors rows ≠ []))
 
-def demand_D077 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
-    (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
+/-! D077-D086 (group 09 并购与交割条件, W2-A batch B09): each def is
+that demand's own contract, translated from ALL_134_MATH_CONTRACTS.md.
+The first conjunct is the group-registered Horn fixpoint component
+(every closure iterate is contained in every pre-fixed point — the
+least-closure discipline behind closing-condition evaluation); the
+remaining conjuncts are the demand's own operational semantics with its
+adverse case. -/
 
-def demand_D078 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
-    (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
+/-- D077 helper: one representation row carries its own bring-down
+standard together with a separate accuracy status per evaluation time —
+index 0 is the signing test, index 1 the bring-down (closing) test. -/
+def repVerdict (row : String × String × Bool × Bool) (t : ℕ) : Bool :=
+  if t = 0 then row.2.2.1 else row.2.2.2
 
-def demand_D079 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
-    (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
+/-- D078 helper: MAE evaluation with scoped expressions — the main
+definition applies; an exception whose scope key matches takes the event
+out of MAE unless it disproportionately affects the target (the
+disproportionate-impact proviso lives inside the exception's
+scope). -/
+def maeHit (scopeKey clauseKey : String) (isException dispro : Bool) : Bool :=
+  if scopeKey = clauseKey ∧ isException = true then dispro else true
 
-def demand_D080 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
-    (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
+/-- D079 helper: the three knowledge standards are distinct tags —
+actual knowledge, constructive (presumed) knowledge, and knowledge
+after reasonable investigation; three typed fields, not one boolean. -/
+def knActual : Nat := 0
 
-def demand_D081 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
-    (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
+def knConstructive : Nat := 1
 
-def demand_D082 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
-    (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
+def knInvestigated : Nat := 2
 
-def demand_D083 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
-    (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
+/-- D079 helper: knowledge is recorded per (holder group, standard tag);
+the lookup returns the matching row's flag, and a query with no matching
+row has no knowledge verdict — an employee row never answers a
+management query. -/
+def knOf : List (String × Nat × Bool) → String → Nat → Option Bool
+  | [], _, _ => none
+  | r :: rest, group, kind =>
+    if r.1 = group ∧ r.2.1 = kind then some r.2.2 else knOf rest group kind
 
-def demand_D084 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
-    (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
+/-- D080 helper: contacting another bidder is legal only when a declared
+exception applies and its own exercise precondition is met — the general
+no-shop ban is never erased by the exception, and the exception never
+cancels the precondition. -/
+def contactLegal (exception precond : Bool) : Bool :=
+  exception && precond
 
-def demand_D085 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
-    (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
+/-- D080 helper: the legal action set is the filter of the candidate
+actions through both gates. -/
+def legalContacts (acts : List (String × Bool × Bool)) :
+    List (String × Bool × Bool) :=
+  acts.filter (fun a => contactLegal a.2.1 a.2.2)
 
-def demand_D086 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
-    (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P
+/-- D081 helper: the termination right after an unmatched superior
+offer is exercisable only once the matching window has expired — before
+the window ends no earlier event (offer notice, recommendation change)
+makes the deal terminable. -/
+def canTerm (day windowEnd : ℕ) (matched : Bool) : Bool :=
+  if day ≤ windowEnd then false else if matched = true then false else true
+
+/-- D082 helper: a superior-offer qualification — strictly better
+consideration received inside the declared time bound. -/
+def isSuperiorOffer (price floor : ℚ) (inWindow : Bool) : Bool :=
+  decide (floor < price) && inWindow
+
+/-- D082 helper: an intervening-event qualification — an unforeseeable
+event inside its own time bound; a mere new offer is never one. -/
+def isInterveningEvent (unforeseen inWindow : Bool) : Bool :=
+  unforeseen && inWindow
+
+/-- D083 helper: an interim-operating action passes all of its own
+necessary gates at once — it must clear every declared prohibition AND
+stay inside the ordinary-course covenant or carry buyer consent; one
+consent receipt never exempts an independent prohibition. -/
+def actionAllowed (ordinary consent : Bool) (prohibited : Bool) : Bool :=
+  (!prohibited) && (ordinary || consent)
+
+/-- D084 helper: the joint remedy result under the compatibility
+policy — after closing, specific performance (with damages) is
+available and termination is not; once the deal is off, termination
+(with damages) is available and specific performance is not: the two
+mutually exclusive remedies are never jointly listed. -/
+def closingRemedies (closingAlive wantsSP wantsTerm : Bool) : List String :=
+  (if closingAlive = true ∧ wantsSP = true then ["specific-performance"] else []) ++
+    (if closingAlive = false ∧ wantsTerm = true then ["termination"] else []) ++
+    (if wantsSP = true ∨ wantsTerm = true then ["damages"] else [])
+
+/-- D085 helper: the equity-award ledger computes every payout field
+from the same record — the double-trigger compensation pays out only
+when the award is vested AND the second trigger (the separation) has
+fired; without the second trigger the payout is exactly zero. -/
+def doubleTriggerPayout (vested separated : Bool) (price : ℚ) : ℚ :=
+  if vested = true ∧ separated = true then price else 0
+
+/-- D086 helper: the disclosure-schedule status of one proposition under
+a single (entity, period) key — the lookup is keyed on both; an unknown
+entry stays none and is never read as a warranted-true row. -/
+def schedStatus : List (String × String × String × Option Bool) →
+    String → String → String → Option Bool
+  | [], _, _, _ => none
+  | r :: rest, entity, period, prop =>
+    if r.1 = entity ∧ r.2.1 = period ∧ r.2.2.1 = prop then r.2.2.2
+    else schedStatus rest entity period prop
+
+/-- D086 helper: the difference witness between two same-key statuses —
+empty exactly when the two carriers agree, a named witness otherwise. -/
+def diffWitness (a b : Option Bool) : List String :=
+  if a = b then [] else ["entity/period"]
+
+/-- D077 交割时陈述保证的准确性标准及bring-down时点（反例：签约时真实
+不自动证明交割时真实）：每项陈述行自带 bring-down 标准与两个分别保存的
+时点状态——0 号时点（签约测试）读签约状态、1 号时点（bring-down 测试）
+读交割状态，各交割时点分别求值、每时点一行结论；签约真而交割假的行两个
+时点结论不同（合并的单一布尔字段给不出这个分离）。 -/
+def demand_D077 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+      (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P) ∧
+  ∀ (rows : List (String × String × Bool × Bool)) (times : List ℕ),
+    ((∀ r ∈ rows, repVerdict r 0 = r.2.2.1 ∧ repVerdict r 1 = r.2.2.2) ∧
+     (∀ r ∈ rows, r.2.2.1 = true → r.2.2.2 = false →
+        repVerdict r 0 = true ∧ repVerdict r 1 = false ∧
+          repVerdict r 0 ≠ repVerdict r 1) ∧
+     (times.map (fun t => repVerdict ("cap-table", "flat", true, false) t)).length
+       = times.length ∧
+     repVerdict ("cap-table", "flat", true, false) 0 ≠
+       repVerdict ("cap-table", "flat", true, false) 1)
+
+/-- D078 MAE定义、除外事项与不成比例影响修饰（反例：除外事件无论怎样
+影响都排除，丢失修饰条款）：例外只在自身作用域键与 MAE 条款键一致时
+介入；作用域内例外若对目标有不成比例影响，修饰条款把事件放回主定义
+（不排除）；作用域外例外不改结果；修饰条款是载荷性的——同一例外有无
+不成比例影响给出两个不同结论。 -/
+def demand_D078 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+      (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P) ∧
+  ∀ (k₁ : String),
+    ((maeHit k₁ k₁ false false = true ∧ maeHit k₁ k₁ false true = true) ∧
+     (maeHit k₁ k₁ true false = false ∧ maeHit k₁ k₁ true true = true) ∧
+     (∀ (k₂ : String), k₁ ≠ k₂ →
+        maeHit k₂ k₁ true false = true ∧ maeHit k₂ k₁ true true = true) ∧
+     (maeHit k₁ k₁ true true ≠ maeHit k₁ k₁ true false))
+
+/-- D079 知识标准（反例：一员工知道不自动等于定义中的管理层知道）：
+实际知道、推定知道、合理调查后知道是三个互异的类型标签（不得压成一个
+布尔字段）；知识记录按（人员组，标准标签）双键存放——按组按标签查表，
+员工行回答不了管理层查询（无匹配行即无知识结论 none），标准标签不同即
+记录不同。 -/
+def demand_D079 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+      (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P) ∧
+  ∀ (g : String) (kind : Nat) (b : Bool),
+    ((knActual ≠ knConstructive ∧ knActual ≠ knInvestigated ∧
+       knConstructive ≠ knInvestigated) ∧
+     (knOf [("employee", knActual, true)] "employee" knActual = some true ∧
+       knOf [("employee", knActual, true)] "management" knInvestigated = none) ∧
+     (kind ≠ knActual → (g, knActual, b) ≠ (g, kind, b)))
+
+/-- D080 no-shop与受托义务例外（反例：一般禁止不能抹去明确例外，例外也
+不能取消全部限制）：合法接触集=候选行动表中（例外成立且行使前提满足）
+全真的行——结果行逐条回指表内行且双门全真，表内双门全真行全部进入；
+无例外行永不进入（一般禁止不被他人的例外抹去）、有例外而无前提行永不
+进入（例外不取消前提）；四个布尔组合只有（真，真）合法。 -/
+def demand_D080 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+      (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P) ∧
+  ∀ (acts : List (String × Bool × Bool)),
+    ((∀ a ∈ legalContacts acts, a ∈ acts ∧ a.2.1 = true ∧ a.2.2 = true) ∧
+     (∀ a ∈ acts, a.2.1 = true → a.2.2 = true → a ∈ legalContacts acts) ∧
+     (∀ a ∈ acts, a.2.1 = false → a ∉ legalContacts acts) ∧
+     (contactLegal false false = false ∧ contactLegal true false = false ∧
+       contactLegal false true = false ∧ contactLegal true true = true))
+
+/-- D081 变更推荐、终止权及匹配期（反例：在匹配期届满前自动生成已可
+终止状态）：终止可行=匹配窗已届满且未匹配——窗口未满时无论报价通知
+已到、推荐已变更，终止一律不可行（事件先后不跳步）；窗满且未匹配才
+可行；窗口边界日当天仍不可终止（90/90 见证）。 -/
+def demand_D081 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+      (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P) ∧
+  ∀ (day noticeDay windowEnd : ℕ) (recChanged matched : Bool),
+    noticeDay ≤ day →
+    ((day ≤ windowEnd → canTerm day windowEnd matched = false) ∧
+     (windowEnd < day → matched = false → canTerm day windowEnd matched = true) ∧
+     (recChanged = true → day ≤ windowEnd → canTerm day windowEnd matched = false) ∧
+     (canTerm 91 90 false = true ∧ canTerm 90 90 false = false))
+
+/-- D082 SuperiorOffer与InterveningEvent（反例：所有新报价都算介入事件
+导致错误权利触发）：两个资格各自匹配定义与时间界——SuperiorOffer 要求
+对价严格更优且在时间界内（界外恒不成立），InterveningEvent 要求不可
+预见且在时间界内；同一新报价 100 对既有 100 不更优（非更优报价两资格
+皆不成立），110 对 100 在界内成立 SuperiorOffer，不因"新"自动成立介入
+事件。 -/
+def demand_D082 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+      (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P) ∧
+  ∀ (inWindow : Bool),
+    ((isSuperiorOffer (100 : ℚ) 100 false = false ∧
+       isInterveningEvent true false = false) ∧
+     (isSuperiorOffer (110 : ℚ) 100 true = true) ∧
+     (isSuperiorOffer (100 : ℚ) 100 true = false) ∧
+     (isInterveningEvent true inWindow = inWindow ∧
+       isSuperiorOffer (110 : ℚ) 100 inWindow = inWindow) ∧
+     ((110 : ℚ) ≠ (100 : ℚ)))
+
+/-- D083 通常经营承诺、买方同意和禁止性中间承诺（反例：一个同意回执
+不得豁免其他独立禁止事项）：行动可行=同时通过必要门——未触禁止事项
+且（通常经营或已获买方同意）；禁止事项命中时无论有无同意一律不可行
+（同意不豁免独立禁止），两项都缺也不可行；门的三个输入是决策记录上
+各自独立的字段（任一翻转即不同记录）。 -/
+def demand_D083 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+      (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P) ∧
+  ∀ (ordinary consent : Bool),
+    ((actionAllowed ordinary consent true = false) ∧
+     (actionAllowed false false false = false ∧
+       actionAllowed true false false = true ∧ actionAllowed false true false = true) ∧
+     ((ordinary, consent, false) ≠ (ordinary, consent, true)) ∧
+     (actionAllowed ordinary consent false = (ordinary || consent)))
+
+/-- D084 特定履行等救济（反例：相互排斥救济无条件同时列为最终可得）：
+相容政策下的联合结果——特定履行只在交割仍存活时可得、终止只在交割已
+不存活时可得，两者互斥永不同时进入最终清单（即使两项都请求，联合结果
+也不含二者并集）；赔偿与两者相容、随任一请求进入。 -/
+def demand_D084 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+      (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P) ∧
+  ((closingRemedies true true true = ["specific-performance", "damages"] ∧
+     closingRemedies false true true = ["termination", "damages"]) ∧
+   (∀ (closingAlive wantsSP wantsTerm : Bool),
+      ¬ (("specific-performance" ∈ closingRemedies closingAlive wantsSP wantsTerm) ∧
+         ("termination" ∈ closingRemedies closingAlive wantsSP wantsTerm))) ∧
+   (∀ (wantsSP wantsTerm : Bool),
+      ("damages" ∈ closingRemedies true wantsSP wantsTerm ↔
+        (wantsSP = true ∨ wantsTerm = true))))
+
+/-- D085 期权、RSU、离职员工权益与双重触发补偿（反例：未发生第二触发
+仍支付全部双触发补偿）：权益种类、归属、服务身份、价格与双触发事件
+同一记录联算——补偿额由同一记录的归属位、离职位（第二扳机）与价格
+联合计算：未归属或未触发第二扳机时补偿恰为 0（无论价格多少）；两者
+齐备时恰为价格；归属位与离职位是记录上独立的字段（翻转即不同记录）。 -/
+def demand_D085 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+      (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P) ∧
+  ∀ (price : ℚ),
+    ((doubleTriggerPayout false true price = 0 ∧
+       doubleTriggerPayout true false price = 0) ∧
+     (doubleTriggerPayout true true price = price) ∧
+     ((true, true, price) ≠ (true, false, price)) ∧
+     (doubleTriggerPayout true true (7 / 4 : ℚ) = 7 / 4))
+
+/-- D086 交易结构、披露附表与尽调发现（反例：披露表的未知条目被视为
+保证完全真实）：比较按同一实体/期间双键进行——结构面与披露面各查同一
+键、同键自比较无差异见证；状态不同即输出具名差异见证（键名入见证）；
+披露表未知（none）不是保证为真（some true），两载体比较非空。 -/
+def demand_D086 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R : Finset (Finset A × A)) (F P : Finset A)
+      (hP : PreFixed R F P), ∀ n, cl R F n ⊆ P) ∧
+  ∀ (rows : List (String × String × String × Option Bool))
+      (entity period prop : String),
+    ((diffWitness (schedStatus rows entity period prop)
+        (schedStatus rows entity period prop) = []) ∧
+     (diffWitness none (some true) ≠ []) ∧
+     (schedStatus [(entity, period, prop, some true)] entity period prop = some true ∧
+       schedStatus [(entity, period, prop, none)] entity period prop = none) ∧
+     ((none : Option Bool) ≠ some true))
 
 def demand_D087 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
     (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'

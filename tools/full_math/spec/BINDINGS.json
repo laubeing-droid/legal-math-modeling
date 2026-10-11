@@ -4181,25 +4181,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D077",
    "contract": "JurisLean.FullMath.Contracts.demand_D077",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.cl_least_iterate's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-09 M&A-closing demand instance in the shared semantic framework: this item's own contract semantics plus the registered Horn fixpoint component (every closure iterate is contained in every pre-fixed point — the least-closure discipline behind closing-condition evaluation), with its adverse case executed as a negative test.",
+   "independent_semantics": "every representation row carries its own bring-down standard with a separate accuracy status per evaluation time; each declared closing time is tested separately, and a row true at signing and false at closing yields two different verdicts — true at signing never proves true at closing.",
+   "algorithm": "tools/full_math/implementation/mna_ref.py rep_verdict/rep_bringdown computes the intermediate result from structured input; mna_check.check_D077 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (representation rows with per-time accuracy statuses and bring-down standards, scoped MAE keys with exception and disproportionate-impact flags, relation-keyed knowledge rows over three typed standards, candidate contact actions with exception and precondition gates, matching-window day/notice/expiry/order records, offer qualifications with prices and time bounds, interim-action gate records with ordinary-course, consent and prohibition flags, remedy-request triples under the closing state, equity-award records with vesting, service status and exact prices, and disclosure-schedule rows keyed by entity and period); outputs are exactly the contract quantities (per-time verdicts with the adverse split witness, the scoped MAE hit with the load-bearing modifier, the keyed knowledge lookups, the two-gate legal action set with the truth table, the window-ordered termination feasibility, the separately matched offer and intervening qualifications, the all-gates decision record, the joint remedy lists with the mutual-exclusion check, the double-trigger payouts with the zero witness, and the same-key comparison with its difference witness).",
+   "external_assumptions": "The adopted deal interpretation, materiality and disproportionate-impact judgments, knowledge attribution and investigation scope, fiduciary-out determinations, board strategy evaluations, offer superiority and foreseeability, ordinary-course reasonableness, remedy availability and court discretion, equity plan terms and separation facts, and disclosure adequacy remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/HornFixpoint.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/mna_ref.py",
+    "tools/full_math/implementation/mna_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D077]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_positive[D077]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_counterexample[D077]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_downstream_pipeline_consumes_mna"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D077]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D077]"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_checker_rejects_tampered[D077]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.cl_least_iterate"
@@ -4210,25 +4211,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D078",
    "contract": "JurisLean.FullMath.Contracts.demand_D078",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.cl_least_iterate's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-09 M&A-closing demand instance in the shared semantic framework: this item's own contract semantics plus the registered Horn fixpoint component (every closure iterate is contained in every pre-fixed point — the least-closure discipline behind closing-condition evaluation), with its adverse case executed as a negative test.",
+   "independent_semantics": "the MAE clause evaluates with scoped expressions: an in-scope exception takes the event out of MAE, but the disproportionate-impact proviso puts an exception that disproportionately harms the target back inside the main definition; an out-of-scope exception never changes the outcome, and the modifier is load-bearing.",
+   "algorithm": "tools/full_math/implementation/mna_ref.py mae_hit/mae_evaluation computes the intermediate result from structured input; mna_check.check_D078 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (representation rows with per-time accuracy statuses and bring-down standards, scoped MAE keys with exception and disproportionate-impact flags, relation-keyed knowledge rows over three typed standards, candidate contact actions with exception and precondition gates, matching-window day/notice/expiry/order records, offer qualifications with prices and time bounds, interim-action gate records with ordinary-course, consent and prohibition flags, remedy-request triples under the closing state, equity-award records with vesting, service status and exact prices, and disclosure-schedule rows keyed by entity and period); outputs are exactly the contract quantities (per-time verdicts with the adverse split witness, the scoped MAE hit with the load-bearing modifier, the keyed knowledge lookups, the two-gate legal action set with the truth table, the window-ordered termination feasibility, the separately matched offer and intervening qualifications, the all-gates decision record, the joint remedy lists with the mutual-exclusion check, the double-trigger payouts with the zero witness, and the same-key comparison with its difference witness).",
+   "external_assumptions": "The adopted deal interpretation, materiality and disproportionate-impact judgments, knowledge attribution and investigation scope, fiduciary-out determinations, board strategy evaluations, offer superiority and foreseeability, ordinary-course reasonableness, remedy availability and court discretion, equity plan terms and separation facts, and disclosure adequacy remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/HornFixpoint.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/mna_ref.py",
+    "tools/full_math/implementation/mna_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D078]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_positive[D078]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_counterexample[D078]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_downstream_pipeline_consumes_mna"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D078]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D078]"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_checker_rejects_tampered[D078]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.cl_least_iterate"
@@ -4239,25 +4241,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D079",
    "contract": "JurisLean.FullMath.Contracts.demand_D079",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.cl_least_iterate's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-09 M&A-closing demand instance in the shared semantic framework: this item's own contract semantics plus the registered Horn fixpoint component (every closure iterate is contained in every pre-fixed point — the least-closure discipline behind closing-condition evaluation), with its adverse case executed as a negative test.",
+   "independent_semantics": "actual knowledge, constructive knowledge and knowledge-after-investigation are three distinct typed tags (never one boolean field); knowledge rows are keyed by (holder group, standard tag), so an employee row never answers a management query.",
+   "algorithm": "tools/full_math/implementation/mna_ref.py kn_of/knowledge_standards computes the intermediate result from structured input; mna_check.check_D079 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (representation rows with per-time accuracy statuses and bring-down standards, scoped MAE keys with exception and disproportionate-impact flags, relation-keyed knowledge rows over three typed standards, candidate contact actions with exception and precondition gates, matching-window day/notice/expiry/order records, offer qualifications with prices and time bounds, interim-action gate records with ordinary-course, consent and prohibition flags, remedy-request triples under the closing state, equity-award records with vesting, service status and exact prices, and disclosure-schedule rows keyed by entity and period); outputs are exactly the contract quantities (per-time verdicts with the adverse split witness, the scoped MAE hit with the load-bearing modifier, the keyed knowledge lookups, the two-gate legal action set with the truth table, the window-ordered termination feasibility, the separately matched offer and intervening qualifications, the all-gates decision record, the joint remedy lists with the mutual-exclusion check, the double-trigger payouts with the zero witness, and the same-key comparison with its difference witness).",
+   "external_assumptions": "The adopted deal interpretation, materiality and disproportionate-impact judgments, knowledge attribution and investigation scope, fiduciary-out determinations, board strategy evaluations, offer superiority and foreseeability, ordinary-course reasonableness, remedy availability and court discretion, equity plan terms and separation facts, and disclosure adequacy remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/HornFixpoint.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/mna_ref.py",
+    "tools/full_math/implementation/mna_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D079]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_positive[D079]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_counterexample[D079]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_downstream_pipeline_consumes_mna"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D079]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D079]"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_checker_rejects_tampered[D079]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.cl_least_iterate"
@@ -4268,25 +4271,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D080",
    "contract": "JurisLean.FullMath.Contracts.demand_D080",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.cl_least_iterate's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-09 M&A-closing demand instance in the shared semantic framework: this item's own contract semantics plus the registered Horn fixpoint component (every closure iterate is contained in every pre-fixed point — the least-closure discipline behind closing-condition evaluation), with its adverse case executed as a negative test.",
+   "independent_semantics": "the legal action set is the candidate contact actions filtered through both gates (a declared exception AND its own exercise precondition); a no-exception action never enters (the general ban is not erased) and an exception without its precondition never enters (the exception cancels no restriction).",
+   "algorithm": "tools/full_math/implementation/mna_ref.py contact_legal/legal_contacts/noshop_actions computes the intermediate result from structured input; mna_check.check_D080 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (representation rows with per-time accuracy statuses and bring-down standards, scoped MAE keys with exception and disproportionate-impact flags, relation-keyed knowledge rows over three typed standards, candidate contact actions with exception and precondition gates, matching-window day/notice/expiry/order records, offer qualifications with prices and time bounds, interim-action gate records with ordinary-course, consent and prohibition flags, remedy-request triples under the closing state, equity-award records with vesting, service status and exact prices, and disclosure-schedule rows keyed by entity and period); outputs are exactly the contract quantities (per-time verdicts with the adverse split witness, the scoped MAE hit with the load-bearing modifier, the keyed knowledge lookups, the two-gate legal action set with the truth table, the window-ordered termination feasibility, the separately matched offer and intervening qualifications, the all-gates decision record, the joint remedy lists with the mutual-exclusion check, the double-trigger payouts with the zero witness, and the same-key comparison with its difference witness).",
+   "external_assumptions": "The adopted deal interpretation, materiality and disproportionate-impact judgments, knowledge attribution and investigation scope, fiduciary-out determinations, board strategy evaluations, offer superiority and foreseeability, ordinary-course reasonableness, remedy availability and court discretion, equity plan terms and separation facts, and disclosure adequacy remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/HornFixpoint.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/mna_ref.py",
+    "tools/full_math/implementation/mna_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D080]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_positive[D080]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_counterexample[D080]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_downstream_pipeline_consumes_mna"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D080]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D080]"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_checker_rejects_tampered[D080]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.cl_least_iterate"
@@ -4297,25 +4301,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D081",
    "contract": "JurisLean.FullMath.Contracts.demand_D081",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.cl_least_iterate's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-09 M&A-closing demand instance in the shared semantic framework: this item's own contract semantics plus the registered Horn fixpoint component (every closure iterate is contained in every pre-fixed point — the least-closure discipline behind closing-condition evaluation), with its adverse case executed as a negative test.",
+   "independent_semantics": "the termination right after an unmatched superior offer is exercisable only once the matching window has expired: before the window ends no earlier event (offer notice, recommendation change) makes the deal terminable, the boundary day itself is still inside the window, and only after it does an unmatched deal become terminable.",
+   "algorithm": "tools/full_math/implementation/mna_ref.py can_term/matching_window computes the intermediate result from structured input; mna_check.check_D081 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (representation rows with per-time accuracy statuses and bring-down standards, scoped MAE keys with exception and disproportionate-impact flags, relation-keyed knowledge rows over three typed standards, candidate contact actions with exception and precondition gates, matching-window day/notice/expiry/order records, offer qualifications with prices and time bounds, interim-action gate records with ordinary-course, consent and prohibition flags, remedy-request triples under the closing state, equity-award records with vesting, service status and exact prices, and disclosure-schedule rows keyed by entity and period); outputs are exactly the contract quantities (per-time verdicts with the adverse split witness, the scoped MAE hit with the load-bearing modifier, the keyed knowledge lookups, the two-gate legal action set with the truth table, the window-ordered termination feasibility, the separately matched offer and intervening qualifications, the all-gates decision record, the joint remedy lists with the mutual-exclusion check, the double-trigger payouts with the zero witness, and the same-key comparison with its difference witness).",
+   "external_assumptions": "The adopted deal interpretation, materiality and disproportionate-impact judgments, knowledge attribution and investigation scope, fiduciary-out determinations, board strategy evaluations, offer superiority and foreseeability, ordinary-course reasonableness, remedy availability and court discretion, equity plan terms and separation facts, and disclosure adequacy remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/HornFixpoint.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/mna_ref.py",
+    "tools/full_math/implementation/mna_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D081]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_positive[D081]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_counterexample[D081]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_downstream_pipeline_consumes_mna"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D081]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D081]"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_checker_rejects_tampered[D081]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.cl_least_iterate"
@@ -4326,25 +4331,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D082",
    "contract": "JurisLean.FullMath.Contracts.demand_D082",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.cl_least_iterate's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-09 M&A-closing demand instance in the shared semantic framework: this item's own contract semantics plus the registered Horn fixpoint component (every closure iterate is contained in every pre-fixed point — the least-closure discipline behind closing-condition evaluation), with its adverse case executed as a negative test.",
+   "independent_semantics": "SuperiorOffer and InterveningEvent are matched against their own definitions and time bounds: strictly better consideration inside the window qualifies as superior (outside it never does), an unforeseeable event inside the window qualifies as intervening, and a mere new offer is never one.",
+   "algorithm": "tools/full_math/implementation/mna_ref.py is_superior_offer/is_intervening_event/offer_qualification computes the intermediate result from structured input; mna_check.check_D082 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (representation rows with per-time accuracy statuses and bring-down standards, scoped MAE keys with exception and disproportionate-impact flags, relation-keyed knowledge rows over three typed standards, candidate contact actions with exception and precondition gates, matching-window day/notice/expiry/order records, offer qualifications with prices and time bounds, interim-action gate records with ordinary-course, consent and prohibition flags, remedy-request triples under the closing state, equity-award records with vesting, service status and exact prices, and disclosure-schedule rows keyed by entity and period); outputs are exactly the contract quantities (per-time verdicts with the adverse split witness, the scoped MAE hit with the load-bearing modifier, the keyed knowledge lookups, the two-gate legal action set with the truth table, the window-ordered termination feasibility, the separately matched offer and intervening qualifications, the all-gates decision record, the joint remedy lists with the mutual-exclusion check, the double-trigger payouts with the zero witness, and the same-key comparison with its difference witness).",
+   "external_assumptions": "The adopted deal interpretation, materiality and disproportionate-impact judgments, knowledge attribution and investigation scope, fiduciary-out determinations, board strategy evaluations, offer superiority and foreseeability, ordinary-course reasonableness, remedy availability and court discretion, equity plan terms and separation facts, and disclosure adequacy remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/HornFixpoint.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/mna_ref.py",
+    "tools/full_math/implementation/mna_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D082]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_positive[D082]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_counterexample[D082]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_downstream_pipeline_consumes_mna"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D082]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D082]"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_checker_rejects_tampered[D082]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.cl_least_iterate"
@@ -4355,25 +4361,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D083",
    "contract": "JurisLean.FullMath.Contracts.demand_D083",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.cl_least_iterate's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-09 M&A-closing demand instance in the shared semantic framework: this item's own contract semantics plus the registered Horn fixpoint component (every closure iterate is contained in every pre-fixed point — the least-closure discipline behind closing-condition evaluation), with its adverse case executed as a negative test.",
+   "independent_semantics": "an interim-operating action passes all of its own necessary gates at once: it must clear every declared prohibition AND stay inside the ordinary-course covenant or carry buyer consent; the three inputs are separate record fields and one consent receipt never exempts an independent prohibition.",
+   "algorithm": "tools/full_math/implementation/mna_ref.py action_allowed/interim_gates computes the intermediate result from structured input; mna_check.check_D083 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (representation rows with per-time accuracy statuses and bring-down standards, scoped MAE keys with exception and disproportionate-impact flags, relation-keyed knowledge rows over three typed standards, candidate contact actions with exception and precondition gates, matching-window day/notice/expiry/order records, offer qualifications with prices and time bounds, interim-action gate records with ordinary-course, consent and prohibition flags, remedy-request triples under the closing state, equity-award records with vesting, service status and exact prices, and disclosure-schedule rows keyed by entity and period); outputs are exactly the contract quantities (per-time verdicts with the adverse split witness, the scoped MAE hit with the load-bearing modifier, the keyed knowledge lookups, the two-gate legal action set with the truth table, the window-ordered termination feasibility, the separately matched offer and intervening qualifications, the all-gates decision record, the joint remedy lists with the mutual-exclusion check, the double-trigger payouts with the zero witness, and the same-key comparison with its difference witness).",
+   "external_assumptions": "The adopted deal interpretation, materiality and disproportionate-impact judgments, knowledge attribution and investigation scope, fiduciary-out determinations, board strategy evaluations, offer superiority and foreseeability, ordinary-course reasonableness, remedy availability and court discretion, equity plan terms and separation facts, and disclosure adequacy remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/HornFixpoint.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/mna_ref.py",
+    "tools/full_math/implementation/mna_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D083]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_positive[D083]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_counterexample[D083]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_downstream_pipeline_consumes_mna"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D083]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D083]"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_checker_rejects_tampered[D083]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.cl_least_iterate"
@@ -4384,25 +4391,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D084",
    "contract": "JurisLean.FullMath.Contracts.demand_D084",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.cl_least_iterate's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-09 M&A-closing demand instance in the shared semantic framework: this item's own contract semantics plus the registered Horn fixpoint component (every closure iterate is contained in every pre-fixed point — the least-closure discipline behind closing-condition evaluation), with its adverse case executed as a negative test.",
+   "independent_semantics": "the joint remedy result under the compatibility policy: after closing specific performance (with damages) is available and termination is not; once the deal is off, termination (with damages) is available and specific performance is not — mutually exclusive remedies are never jointly listed, while damages stay compatible with either.",
+   "algorithm": "tools/full_math/implementation/mna_ref.py closing_remedies/remedy_compatibility computes the intermediate result from structured input; mna_check.check_D084 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (representation rows with per-time accuracy statuses and bring-down standards, scoped MAE keys with exception and disproportionate-impact flags, relation-keyed knowledge rows over three typed standards, candidate contact actions with exception and precondition gates, matching-window day/notice/expiry/order records, offer qualifications with prices and time bounds, interim-action gate records with ordinary-course, consent and prohibition flags, remedy-request triples under the closing state, equity-award records with vesting, service status and exact prices, and disclosure-schedule rows keyed by entity and period); outputs are exactly the contract quantities (per-time verdicts with the adverse split witness, the scoped MAE hit with the load-bearing modifier, the keyed knowledge lookups, the two-gate legal action set with the truth table, the window-ordered termination feasibility, the separately matched offer and intervening qualifications, the all-gates decision record, the joint remedy lists with the mutual-exclusion check, the double-trigger payouts with the zero witness, and the same-key comparison with its difference witness).",
+   "external_assumptions": "The adopted deal interpretation, materiality and disproportionate-impact judgments, knowledge attribution and investigation scope, fiduciary-out determinations, board strategy evaluations, offer superiority and foreseeability, ordinary-course reasonableness, remedy availability and court discretion, equity plan terms and separation facts, and disclosure adequacy remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/HornFixpoint.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/mna_ref.py",
+    "tools/full_math/implementation/mna_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D084]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_positive[D084]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_counterexample[D084]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_downstream_pipeline_consumes_mna"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D084]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D084]"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_checker_rejects_tampered[D084]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.cl_least_iterate"
@@ -4413,25 +4421,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D085",
    "contract": "JurisLean.FullMath.Contracts.demand_D085",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.cl_least_iterate's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-09 M&A-closing demand instance in the shared semantic framework: this item's own contract semantics plus the registered Horn fixpoint component (every closure iterate is contained in every pre-fixed point — the least-closure discipline behind closing-condition evaluation), with its adverse case executed as a negative test.",
+   "independent_semantics": "the equity-award record computes every payout field jointly: the double-trigger compensation pays out only when the award is vested AND the second trigger (the separation) has fired; without the second trigger the payout is exactly zero, and vesting and service status remain independent record fields.",
+   "algorithm": "tools/full_math/implementation/mna_ref.py double_trigger_payout/equity_double_trigger computes the intermediate result from structured input; mna_check.check_D085 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (representation rows with per-time accuracy statuses and bring-down standards, scoped MAE keys with exception and disproportionate-impact flags, relation-keyed knowledge rows over three typed standards, candidate contact actions with exception and precondition gates, matching-window day/notice/expiry/order records, offer qualifications with prices and time bounds, interim-action gate records with ordinary-course, consent and prohibition flags, remedy-request triples under the closing state, equity-award records with vesting, service status and exact prices, and disclosure-schedule rows keyed by entity and period); outputs are exactly the contract quantities (per-time verdicts with the adverse split witness, the scoped MAE hit with the load-bearing modifier, the keyed knowledge lookups, the two-gate legal action set with the truth table, the window-ordered termination feasibility, the separately matched offer and intervening qualifications, the all-gates decision record, the joint remedy lists with the mutual-exclusion check, the double-trigger payouts with the zero witness, and the same-key comparison with its difference witness).",
+   "external_assumptions": "The adopted deal interpretation, materiality and disproportionate-impact judgments, knowledge attribution and investigation scope, fiduciary-out determinations, board strategy evaluations, offer superiority and foreseeability, ordinary-course reasonableness, remedy availability and court discretion, equity plan terms and separation facts, and disclosure adequacy remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/HornFixpoint.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/mna_ref.py",
+    "tools/full_math/implementation/mna_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D085]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_positive[D085]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_counterexample[D085]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_downstream_pipeline_consumes_mna"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D085]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D085]"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_checker_rejects_tampered[D085]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.cl_least_iterate"
@@ -4442,25 +4451,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D086",
    "contract": "JurisLean.FullMath.Contracts.demand_D086",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.cl_least_iterate's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-09 M&A-closing demand instance in the shared semantic framework: this item's own contract semantics plus the registered Horn fixpoint component (every closure iterate is contained in every pre-fixed point — the least-closure discipline behind closing-condition evaluation), with its adverse case executed as a negative test.",
+   "independent_semantics": "structure-side and disclosure-side statuses are looked up under one (entity, period) key and compared: differing statuses yield a named difference witness, agreeing carriers yield none, and an unknown disclosure entry (no row) is never read as a warranted-true row.",
+   "algorithm": "tools/full_math/implementation/mna_ref.py sched_status/diff_witness/schedule_diff computes the intermediate result from structured input; mna_check.check_D086 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (representation rows with per-time accuracy statuses and bring-down standards, scoped MAE keys with exception and disproportionate-impact flags, relation-keyed knowledge rows over three typed standards, candidate contact actions with exception and precondition gates, matching-window day/notice/expiry/order records, offer qualifications with prices and time bounds, interim-action gate records with ordinary-course, consent and prohibition flags, remedy-request triples under the closing state, equity-award records with vesting, service status and exact prices, and disclosure-schedule rows keyed by entity and period); outputs are exactly the contract quantities (per-time verdicts with the adverse split witness, the scoped MAE hit with the load-bearing modifier, the keyed knowledge lookups, the two-gate legal action set with the truth table, the window-ordered termination feasibility, the separately matched offer and intervening qualifications, the all-gates decision record, the joint remedy lists with the mutual-exclusion check, the double-trigger payouts with the zero witness, and the same-key comparison with its difference witness).",
+   "external_assumptions": "The adopted deal interpretation, materiality and disproportionate-impact judgments, knowledge attribution and investigation scope, fiduciary-out determinations, board strategy evaluations, offer superiority and foreseeability, ordinary-course reasonableness, remedy availability and court discretion, equity plan terms and separation facts, and disclosure adequacy remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/HornFixpoint.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/mna_ref.py",
+    "tools/full_math/implementation/mna_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D086]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_positive[D086]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_demand_counterexample[D086]",
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_downstream_pipeline_consumes_mna"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D086]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D086]"
+    "tools/full_math/implementation_tests::test_mna_group09.py::test_checker_rejects_tampered[D086]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.cl_least_iterate"

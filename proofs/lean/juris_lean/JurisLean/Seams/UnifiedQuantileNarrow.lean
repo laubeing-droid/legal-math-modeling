@@ -246,7 +246,11 @@ theorem refN_width_real (ref : Enc → Enc) (F : ℝ → ℝ) (hrc : RealRefines
     ((refN ref n e).width : ℝ) ≤ ((2:ℝ) / 3) ^ n * ((e.width : ℚ) : ℝ) := by
   have h4r : (((refN ref n e).width : ℚ) : ℝ)
       ≤ ((2:ℝ) / 3) ^ n * ((e.width : ℚ) : ℝ) := by
-    exact_mod_cast refN_widthQ ref F hrc n e
+    have hR : (((refN ref n e).width : ℚ) : ℝ)
+        ≤ (((2 / 3 : ℚ) ^ n * e.width : ℚ) : ℝ) :=
+      Rat.cast_le.mpr (refN_widthQ ref F hrc n e)
+    push_cast at hR
+    exact hR
   have h6 : ((e.width : ℚ) : ℝ) = (e.hi : ℝ) - (e.lo : ℝ) := by
     show (((e.hi - e.lo : ℚ)) : ℝ) = (e.hi : ℝ) - (e.lo : ℝ)
     push_cast

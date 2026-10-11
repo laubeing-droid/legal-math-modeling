@@ -11967,8 +11967,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean",
    "print_axioms_targets": [],
-   "sha256": "a791cf445f74bb9c664df3348c0361379dabe94763ff5b946f081e0972d6ff24",
-   "size_bytes": 43817,
+   "sha256": "28d633ae5d0be8c41d95657758637735595b5279231bb33f09526097b2c443e3",
+   "size_bytes": 47707,
    "theorem_count": 217,
    "theorem_count_bol_convention": 217
   },
@@ -14244,6 +14244,82 @@
     },
     {
      "kind": "def",
+     "name": "clauseState"
+    },
+    {
+     "kind": "def",
+     "name": "clauseCarry"
+    },
+    {
+     "kind": "def",
+     "name": "lawFinal"
+    },
+    {
+     "kind": "def",
+     "name": "prioEval"
+    },
+    {
+     "kind": "def",
+     "name": "scopedApply"
+    },
+    {
+     "kind": "def",
+     "name": "applyEvent"
+    },
+    {
+     "kind": "def",
+     "name": "cocTrigger"
+    },
+    {
+     "kind": "def",
+     "name": "cocCons"
+    },
+    {
+     "kind": "def",
+     "name": "convertLicense"
+    },
+    {
+     "kind": "def",
+     "name": "relOwn"
+    },
+    {
+     "kind": "def",
+     "name": "relCo"
+    },
+    {
+     "kind": "def",
+     "name": "relLic"
+    },
+    {
+     "kind": "def",
+     "name": "relSub"
+    },
+    {
+     "kind": "def",
+     "name": "relAff"
+    },
+    {
+     "kind": "def",
+     "name": "grantOf"
+    },
+    {
+     "kind": "def",
+     "name": "feeLine"
+    },
+    {
+     "kind": "def",
+     "name": "revShare"
+    },
+    {
+     "kind": "def",
+     "name": "applyCap"
+    },
+    {
+     "kind": "def",
+     "name": "survivors"
+    },
+    {
+     "kind": "def",
      "name": "demand_D065"
     },
     {
@@ -14575,8 +14651,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
    "print_axioms_targets": [],
-   "sha256": "4cbc772ef61907c13518c8023e3d30925ae1e81085978dbdbe6685eee4dc8a48",
-   "size_bytes": 84949,
+   "sha256": "532fe0b6b308c7a0b9f4057c06c5fd9c1c22dab3ba26058faa8ce974095b675d",
+   "size_bytes": 99760,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -42245,12 +42321,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "508bb079d827709a35ff1eae2067652e0282683a9c5fa07bd18e25d8b5f6421f",
+ "source_inventory_digest": "1a95687f20f0f419b65361134c5be2397787401441e3d5ca49795a4331250a04",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "01f602c0202663b717f021497885f219a3b0eebc",
-  "tree": "2706674734ec4a7db24e5f70be204b92c8ece07b"
+  "commit": "1f91c1d940fb467c06cbf65c707188210e658a97",
+  "tree": "b10556b54bfb5f8c30c16cce4736168f917ea1ea"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

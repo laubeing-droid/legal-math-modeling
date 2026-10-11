@@ -2759,25 +2759,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D029",
    "contract": "JurisLean.FullMath.Contracts.demand_D029",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.generate_sound's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-04 claims/issues demand instance in the shared semantic framework: this item's own contract semantics plus the registered argument-construction component (bounded generation is sound — every generated argument is well-formed with height at most the budget), with its adverse case executed as a negative test.",
+   "independent_semantics": "claim candidates are exactly the remedy combinations the given facts and the rule table allow (each candidate sits in the table with a true premise, and every premise-true row is a candidate); the principal performance and the incidental costs stay independent debt items; mutually exclusive alternative claims are never both fully awarded by default — the alternative enters the award carrier only when the primary claim is not satisfied.",
+   "algorithm": "tools/full_math/implementation/claims_ref.py enumerate_claims computes the intermediate result from structured input; claims_check.check_D029 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (rule-table rows with premises and remedies plus primary/alternative award switches and debt amounts, filed rows with support/award flags and an allowed table, relation rows over one delivered sum with defense routing flags, branch identity/version pairs with the closed regime-rule table, limitation switches with the acknowledgment day, issue rows with five link fields and a support switch, defense rows with targets and admission/source flags, party/share rows with a total and per-obligor payments); outputs are exactly the contract quantities (the candidate and award carriers with the separate debt items, the four stage carriers with the echo verdict, the scenario rows and the exclusive routing carriers, the shared-identity branches with the stitch verdicts, the separate limitation switches with their own restart ledger, the five-link graph with the proof status, the linked defenses with the admissions/review split, and the joint liability rows with the separate external ledger).",
+   "external_assumptions": "Claim-strategy selection, text-to-claim understanding, substantive relation classification, fact-finding and interpretation choices, knowledge-time and demand-conduct proofs, issue-discovery recall, defense quality and argument sufficiency, proportionality evaluation and damage facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/ArgumentConstruction.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/claims_ref.py",
+    "tools/full_math/implementation/claims_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D029]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_demand_positive[D029]",
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_demand_counterexample[D029]",
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_downstream_pipeline_consumes_claims"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D029]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D029]"
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_checker_rejects_tampered[D029]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.generate_sound"
@@ -2788,25 +2789,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D030",
    "contract": "JurisLean.FullMath.Contracts.demand_D030",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.generate_sound's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-04 claims/issues demand instance in the shared semantic framework: this item's own contract semantics plus the registered argument-construction component (bounded generation is sound — every generated argument is well-formed with height at most the budget), with its adverse case executed as a negative test.",
+   "independent_semantics": "FiledClaims, AllowedClaims, SupportedClaims and AwardedClaims are four distinct carriers with the explicit chain awarded ⊆ supported ⊆ filed; merely echoing the filed list never earns the all-allowed certificate when the allowed table has rows beyond the filed claims.",
+   "algorithm": "tools/full_math/implementation/claims_ref.py claim_stages computes the intermediate result from structured input; claims_check.check_D030 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (rule-table rows with premises and remedies plus primary/alternative award switches and debt amounts, filed rows with support/award flags and an allowed table, relation rows over one delivered sum with defense routing flags, branch identity/version pairs with the closed regime-rule table, limitation switches with the acknowledgment day, issue rows with five link fields and a support switch, defense rows with targets and admission/source flags, party/share rows with a total and per-obligor payments); outputs are exactly the contract quantities (the candidate and award carriers with the separate debt items, the four stage carriers with the echo verdict, the scenario rows and the exclusive routing carriers, the shared-identity branches with the stitch verdicts, the separate limitation switches with their own restart ledger, the five-link graph with the proof status, the linked defenses with the admissions/review split, and the joint liability rows with the separate external ledger).",
+   "external_assumptions": "Claim-strategy selection, text-to-claim understanding, substantive relation classification, fact-finding and interpretation choices, knowledge-time and demand-conduct proofs, issue-discovery recall, defense quality and argument sufficiency, proportionality evaluation and damage facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/ArgumentConstruction.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/claims_ref.py",
+    "tools/full_math/implementation/claims_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D030]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_demand_positive[D030]",
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_demand_counterexample[D030]",
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_downstream_pipeline_consumes_claims"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D030]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D030]"
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_checker_rejects_tampered[D030]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.generate_sound"
@@ -2817,25 +2819,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D031",
    "contract": "JurisLean.FullMath.Contracts.demand_D031",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.generate_sound's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-04 claims/issues demand instance in the shared semantic framework: this item's own contract semantics plus the registered argument-construction component (bounded generation is sound — every generated argument is well-formed with height at most the budget), with its adverse case executed as a negative test.",
+   "independent_semantics": "loan and investment are distinct scenario rows sharing the same delivered sum, each exporting its own premise and conclusion; the admission-of-loan and contrary-fact carriers are mutually exclusive, so the defendant's investment defense is never both an admission of the loan and the opposite fact.",
+   "algorithm": "tools/full_math/implementation/claims_ref.py alternative_scenarios/route_defenses computes the intermediate result from structured input; claims_check.check_D031 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (rule-table rows with premises and remedies plus primary/alternative award switches and debt amounts, filed rows with support/award flags and an allowed table, relation rows over one delivered sum with defense routing flags, branch identity/version pairs with the closed regime-rule table, limitation switches with the acknowledgment day, issue rows with five link fields and a support switch, defense rows with targets and admission/source flags, party/share rows with a total and per-obligor payments); outputs are exactly the contract quantities (the candidate and award carriers with the separate debt items, the four stage carriers with the echo verdict, the scenario rows and the exclusive routing carriers, the shared-identity branches with the stitch verdicts, the separate limitation switches with their own restart ledger, the five-link graph with the proof status, the linked defenses with the admissions/review split, and the joint liability rows with the separate external ledger).",
+   "external_assumptions": "Claim-strategy selection, text-to-claim understanding, substantive relation classification, fact-finding and interpretation choices, knowledge-time and demand-conduct proofs, issue-discovery recall, defense quality and argument sufficiency, proportionality evaluation and damage facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/ArgumentConstruction.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/claims_ref.py",
+    "tools/full_math/implementation/claims_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D031]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_demand_positive[D031]",
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_demand_counterexample[D031]",
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_downstream_pipeline_consumes_claims"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D031]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D031]"
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_checker_rejects_tampered[D031]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.generate_sound"
@@ -2846,25 +2849,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D032",
    "contract": "JurisLean.FullMath.Contracts.demand_D032",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.generate_sound's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-04 claims/issues demand instance in the shared semantic framework: this item's own contract semantics plus the registered argument-construction component (bounded generation is sound — every generated argument is well-formed with height at most the budget), with its adverse case executed as a negative test.",
+   "independent_semantics": "branches forked from one claim share its identity and the input version while staying distinct rows; the applicable-rule table is declared closed per regime (valid→principal, invalid→yield), so the cross-branch stitch pairs are rejected.",
+   "algorithm": "tools/full_math/implementation/claims_ref.py branch_fork/stitched_rule computes the intermediate result from structured input; claims_check.check_D032 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (rule-table rows with premises and remedies plus primary/alternative award switches and debt amounts, filed rows with support/award flags and an allowed table, relation rows over one delivered sum with defense routing flags, branch identity/version pairs with the closed regime-rule table, limitation switches with the acknowledgment day, issue rows with five link fields and a support switch, defense rows with targets and admission/source flags, party/share rows with a total and per-obligor payments); outputs are exactly the contract quantities (the candidate and award carriers with the separate debt items, the four stage carriers with the echo verdict, the scenario rows and the exclusive routing carriers, the shared-identity branches with the stitch verdicts, the separate limitation switches with their own restart ledger, the five-link graph with the proof status, the linked defenses with the admissions/review split, and the joint liability rows with the separate external ledger).",
+   "external_assumptions": "Claim-strategy selection, text-to-claim understanding, substantive relation classification, fact-finding and interpretation choices, knowledge-time and demand-conduct proofs, issue-discovery recall, defense quality and argument sufficiency, proportionality evaluation and damage facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/ArgumentConstruction.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/claims_ref.py",
+    "tools/full_math/implementation/claims_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D032]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_demand_positive[D032]",
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_demand_counterexample[D032]",
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_downstream_pipeline_consumes_claims"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D032]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D032]"
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_checker_rejects_tampered[D032]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.generate_sound"
@@ -2875,25 +2879,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D033",
    "contract": "JurisLean.FullMath.Contracts.demand_D033",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.generate_sound's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-04 claims/issues demand instance in the shared semantic framework: this item's own contract semantics plus the registered argument-construction component (bounded generation is sound — every generated argument is well-formed with height at most the budget), with its adverse case executed as a negative test.",
+   "independent_semantics": "expiry, the defense being raised, the subsequent acknowledgment and the period restart are computed as separate switches; dismissal requires both the period met and the defense raised — expiry alone never deletes the claim — and the interruption restart is its own ledger.",
+   "algorithm": "tools/full_math/implementation/claims_ref.py limitation_state computes the intermediate result from structured input; claims_check.check_D033 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (rule-table rows with premises and remedies plus primary/alternative award switches and debt amounts, filed rows with support/award flags and an allowed table, relation rows over one delivered sum with defense routing flags, branch identity/version pairs with the closed regime-rule table, limitation switches with the acknowledgment day, issue rows with five link fields and a support switch, defense rows with targets and admission/source flags, party/share rows with a total and per-obligor payments); outputs are exactly the contract quantities (the candidate and award carriers with the separate debt items, the four stage carriers with the echo verdict, the scenario rows and the exclusive routing carriers, the shared-identity branches with the stitch verdicts, the separate limitation switches with their own restart ledger, the five-link graph with the proof status, the linked defenses with the admissions/review split, and the joint liability rows with the separate external ledger).",
+   "external_assumptions": "Claim-strategy selection, text-to-claim understanding, substantive relation classification, fact-finding and interpretation choices, knowledge-time and demand-conduct proofs, issue-discovery recall, defense quality and argument sufficiency, proportionality evaluation and damage facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/ArgumentConstruction.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/claims_ref.py",
+    "tools/full_math/implementation/claims_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D033]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_demand_positive[D033]",
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_demand_counterexample[D033]",
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_downstream_pipeline_consumes_claims"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D033]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D033]"
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_checker_rejects_tampered[D033]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.generate_sound"
@@ -2904,25 +2909,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D034",
    "contract": "JurisLean.FullMath.Contracts.demand_D034",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.generate_sound's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-04 claims/issues demand instance in the shared semantic framework: this item's own contract semantics plus the registered argument-construction component (bounded generation is sound — every generated argument is well-formed with height at most the budget), with its adverse case executed as a negative test.",
+   "independent_semantics": "the issue graph links claim, rebuttal, responsible party, support set and attack target separately per node; a claim is proved only through its own support set — a rebuttal failing (or holding) never proves the other side's claim by itself (the jump is refused).",
+   "algorithm": "tools/full_math/implementation/claims_ref.py build_issue_graph/claim_proved computes the intermediate result from structured input; claims_check.check_D034 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (rule-table rows with premises and remedies plus primary/alternative award switches and debt amounts, filed rows with support/award flags and an allowed table, relation rows over one delivered sum with defense routing flags, branch identity/version pairs with the closed regime-rule table, limitation switches with the acknowledgment day, issue rows with five link fields and a support switch, defense rows with targets and admission/source flags, party/share rows with a total and per-obligor payments); outputs are exactly the contract quantities (the candidate and award carriers with the separate debt items, the four stage carriers with the echo verdict, the scenario rows and the exclusive routing carriers, the shared-identity branches with the stitch verdicts, the separate limitation switches with their own restart ledger, the five-link graph with the proof status, the linked defenses with the admissions/review split, and the joint liability rows with the separate external ledger).",
+   "external_assumptions": "Claim-strategy selection, text-to-claim understanding, substantive relation classification, fact-finding and interpretation choices, knowledge-time and demand-conduct proofs, issue-discovery recall, defense quality and argument sufficiency, proportionality evaluation and damage facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/ArgumentConstruction.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/claims_ref.py",
+    "tools/full_math/implementation/claims_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D034]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_demand_positive[D034]",
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_demand_counterexample[D034]",
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_downstream_pipeline_consumes_claims"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D034]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D034]"
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_checker_rejects_tampered[D034]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.generate_sound"
@@ -2933,25 +2939,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D035",
    "contract": "JurisLean.FullMath.Contracts.demand_D035",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.generate_sound's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-04 claims/issues demand instance in the shared semantic framework: this item's own contract semantics plus the registered argument-construction component (bounded generation is sound — every generated argument is well-formed with height at most the budget), with its adverse case executed as a negative test.",
+   "independent_semantics": "every defense proposition links the claim and the evidence it responds to; a new admission enters the record only with its own authorization source — an unsourced admission from a template is flagged for review, never silently written.",
+   "algorithm": "tools/full_math/implementation/claims_ref.py link_defenses computes the intermediate result from structured input; claims_check.check_D035 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (rule-table rows with premises and remedies plus primary/alternative award switches and debt amounts, filed rows with support/award flags and an allowed table, relation rows over one delivered sum with defense routing flags, branch identity/version pairs with the closed regime-rule table, limitation switches with the acknowledgment day, issue rows with five link fields and a support switch, defense rows with targets and admission/source flags, party/share rows with a total and per-obligor payments); outputs are exactly the contract quantities (the candidate and award carriers with the separate debt items, the four stage carriers with the echo verdict, the scenario rows and the exclusive routing carriers, the shared-identity branches with the stitch verdicts, the separate limitation switches with their own restart ledger, the five-link graph with the proof status, the linked defenses with the admissions/review split, and the joint liability rows with the separate external ledger).",
+   "external_assumptions": "Claim-strategy selection, text-to-claim understanding, substantive relation classification, fact-finding and interpretation choices, knowledge-time and demand-conduct proofs, issue-discovery recall, defense quality and argument sufficiency, proportionality evaluation and damage facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/ArgumentConstruction.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/claims_ref.py",
+    "tools/full_math/implementation/claims_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D035]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_demand_positive[D035]",
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_demand_counterexample[D035]",
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_downstream_pipeline_consumes_claims"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D035]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D035]"
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_checker_rejects_tampered[D035]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.generate_sound"
@@ -2962,25 +2969,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D036",
    "contract": "JurisLean.FullMath.Contracts.demand_D036",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.generate_sound's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-04 claims/issues demand instance in the shared semantic framework: this item's own contract semantics plus the registered argument-construction component (bounded generation is sound — every generated argument is well-formed with height at most the budget), with its adverse case executed as a negative test.",
+   "independent_semantics": "liable party, method, share and amount are computed jointly by one liability model (internal rows are share × total and conserve the total); the external payment ledger is a separate per-obligor carrier and is never read as a per-capita proportional award.",
+   "algorithm": "tools/full_math/implementation/claims_ref.py joint_liability_model computes the intermediate result from structured input; claims_check.check_D036 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (rule-table rows with premises and remedies plus primary/alternative award switches and debt amounts, filed rows with support/award flags and an allowed table, relation rows over one delivered sum with defense routing flags, branch identity/version pairs with the closed regime-rule table, limitation switches with the acknowledgment day, issue rows with five link fields and a support switch, defense rows with targets and admission/source flags, party/share rows with a total and per-obligor payments); outputs are exactly the contract quantities (the candidate and award carriers with the separate debt items, the four stage carriers with the echo verdict, the scenario rows and the exclusive routing carriers, the shared-identity branches with the stitch verdicts, the separate limitation switches with their own restart ledger, the five-link graph with the proof status, the linked defenses with the admissions/review split, and the joint liability rows with the separate external ledger).",
+   "external_assumptions": "Claim-strategy selection, text-to-claim understanding, substantive relation classification, fact-finding and interpretation choices, knowledge-time and demand-conduct proofs, issue-discovery recall, defense quality and argument sufficiency, proportionality evaluation and damage facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/ArgumentConstruction.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/claims_ref.py",
+    "tools/full_math/implementation/claims_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D036]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_demand_positive[D036]",
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_demand_counterexample[D036]",
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_downstream_pipeline_consumes_claims"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D036]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D036]"
+    "tools/full_math/implementation_tests::test_claims_group04.py::test_checker_rejects_tampered[D036]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.generate_sound"

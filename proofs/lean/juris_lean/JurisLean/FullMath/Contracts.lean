@@ -727,21 +727,159 @@ def demand_D028 : Prop :=
         (c₁, e, x, false) ≠ (c₂, e, x, false)) ∧
      (∀ (e₁ e₂ x : String), e₁ ≠ e₂ → (c, e₁, x, false) ≠ (c, e₂, x, false)))
 
-def demand_D029 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
+/-! D029-D036 (group 04 请求权、抗辩及争点处理, W2-A batch B04): each def is
+that demand's own contract, translated from ALL_134_MATH_CONTRACTS.md.
+The first conjunct is the group-registered argument-construction component
+(bounded generation is sound: every generated argument is well-formed with
+height at most the budget); the remaining conjuncts are the demand's own
+operational semantics with its adverse case. -/
 
-def demand_D030 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
+/-- D029 请求候选与主给付/附随费独立（反例：互斥备位请求不能默认同时
+全额受偿）：候选=给定事实下规则表允许的 remedy 组合——每条候选都在表
+内且前提为真，表内前提为真的行全部进入候选（结果=filter 全表）；
+主给付与附随费是两个独立债项（种类不同即不同，不合并为一个数目）；
+备位请求的受偿以主请求未受偿为前提——主请求受偿时备位行不在受偿结果。 -/
+def demand_D029 : Prop :=
+  (∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)),
+      ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d) ∧
+  ∀ (table : List (String × Bool × String)) (p i : String) (pr alt : Bool)
+      (awards : List String),
+    p ≠ i → pr = true →
+    awards = (if pr then [p] else []) ++ (if !pr && alt then [i] else []) →
+    ((∀ c ∈ (table.filter (fun r => r.2.1)).map (fun r => r.1),
+        ∃ e ∈ table, e.1 = c ∧ e.2.1 = true) ∧
+     (∀ e ∈ table, e.2.1 = true → e.1 ∈ (table.filter (fun r => r.2.1)).map (fun r => r.1)) ∧
+     (∀ (d : String) (x y : ℚ), (d, "principal", x) ≠ (d, "incidental", y)) ∧
+     i ∉ awards)
 
-def demand_D031 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
+/-- D030 诉请四阶段分立（反例：生成与原告诉请相同不获得全部合法请求
+证书）：Filed/Allowed/Supported/Awarded 是四个不同载体（标签两两不同）
+并显式连接——受偿 ⊆ 支持 ⊆ 已提（逐行携带支持/受偿标记）；仅仅回声
+已提清单不等于全部可获支持清单：允许表中有已提清单之外的行时，回声
+清单与全部允许清单必不相同。 -/
+def demand_D030 : Prop :=
+  (∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)),
+      ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d) ∧
+  ((("filed" : String) ≠ "allowed" ∧ "filed" ≠ "supported" ∧ "filed" ≠ "awarded") ∧
+    ("allowed" ≠ "supported" ∧ "allowed" ≠ "awarded") ∧ "supported" ≠ "awarded") ∧
+  ∀ (filed sup awd : List (String × Bool × Bool)) (echo : List String)
+      (table : List (String × Bool)),
+    sup = filed.filter (fun r => r.2.1) →
+    awd = sup.filter (fun r => r.2.2) →
+    echo = filed.map (fun r => r.1) →
+    ((∀ r ∈ awd, r ∈ sup) ∧ (∀ r ∈ awd, r ∈ filed) ∧ (∀ r ∈ sup, r ∈ filed) ∧
+     (∀ r ∈ awd, r.2.1 = true ∧ r.2.2 = true) ∧
+     (∀ e ∈ table, e.2 = true → e.1 ∉ echo →
+        echo ≠ (table.filter (fun r => r.2)).map (fun r => r.1)))
 
-def demand_D032 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
+/-- D031 备选法律关系情景（反例：不得把被告的投资抗辩既当承认借款又作
+相反事实）：借贷与投资是两张不同情景行——关系不同即行不同，各自的前
+提/结果从各自登记行导出（查表带出处）；答辩命题的"承认借款"与"相反
+事实"是互斥载体——双标记行不进任何载体，承认载体行不同时是相反事实，
+相反事实载体行不同时是承认。 -/
+def demand_D031 : Prop :=
+  (∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)),
+      ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d) ∧
+  ∀ (rows : List (String × String × String))
+      (defs : List (String × Bool × Bool))
+      (r₁ r₂ p₁ c₁ p₂ c₂ : String) (adm contra : List (String × Bool × Bool)),
+    r₁ ≠ r₂ →
+    rows.find? (fun d => decide (d.1 = r₁)) = some (r₁, p₁, c₁) →
+    rows.find? (fun d => decide (d.1 = r₂)) = some (r₂, p₂, c₂) →
+    adm = defs.filter (fun d => d.2.1 && !d.2.2) →
+    contra = defs.filter (fun d => d.2.2 && !d.2.1) →
+    (((r₁, p₁, c₁) ≠ (r₂, p₂, c₂)) ∧
+     ((r₁, p₁, c₁) ∈ rows ∧ (r₂, p₂, c₂) ∈ rows) ∧
+     (∀ d ∈ defs, d.2.1 = true → d.2.2 = true → d ∉ adm ∧ d ∉ contra) ∧
+     (∀ d ∈ adm, d.2.2 = false) ∧
+     (∀ d ∈ contra, d.2.1 = false))
 
-def demand_D033 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
+/-- D032 分支共享与相容约束（反例：在有效分支取本金规则、无效分支取
+收益规则拼接不合法结果）：从同一主张与输入版本分出的各支共享身份与
+版本（身份/版本字段逐支相同、分支不同即行不同），但规则适用表按支内
+regime 闭合声明——有效支配本金规则、无效支配收益规则，跨支拼接对
+(valid, yield) 与 (invalid, principal) 都不在适用表内。 -/
+def demand_D032 : Prop :=
+  (∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)),
+      ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d) ∧
+  ∀ bV bI : String × String × String × String,
+    bV.1 ≠ bI.1 →
+    bV.2.1 = bI.2.1 →
+    bV.2.2.1 = bI.2.2.1 →
+    (((("valid", "principal") : String × String) ∈
+        [("valid", "principal"), ("invalid", "yield")] ∧
+      (("invalid", "yield") : String × String) ∈
+        [("valid", "principal"), ("invalid", "yield")]) ∧
+     (("valid", "yield") : String × String) ∉
+        [("valid", "principal"), ("invalid", "yield")] ∧
+     (("invalid", "principal") : String × String) ∉
+        [("valid", "principal"), ("invalid", "yield")]) ∧
+    bV ≠ bI ∧
+    ((bV.2.1, bV.2.2.1) = (bI.2.1, bI.2.2.1))
 
-def demand_D034 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
+/-- D033 时效各要素分别计算（反例：只有到期、无抗辩提出，不自动按时效
+驳回）：驳回须同时具备"期间届满"与"被告提出抗辩"两个独立开关——仅
+到期而未抗辩时债权照常存活（到期不自动删债权）；中断后的重新起算是
+另一本独立的账（自承诺日起算的加法），承诺开关不并入到期判定。 -/
+def demand_D033 : Prop :=
+  (∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)),
+      ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d) ∧
+  ∀ (due raised ack : Bool) (ackDay restart : ℕ) (dismissed alive : Bool),
+    dismissed = decide (due && raised) →
+    alive = !(decide (due && raised)) →
+    restart = ackDay + 1095 →
+    ((due = true → raised = false → dismissed = false ∧ alive = true) ∧
+     (due = true → raised = true → dismissed = true) ∧
+     (ack = true → restart = ackDay + 1095) ∧
+     (∀ ack' : Bool, dismissed = decide (due && raised)))
 
-def demand_D035 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
+/-- D034 Issue 图五链与拒绝跳步（反例：把反驳未成立当作对方主张已证明
+须拒绝）：每行分别携带争点、主张、反驳、责任主体与攻击靶点五个链位；
+主张的证明状态只由其自身支持集导出——支持集未立时主张不证明，反驳
+成立或未成立都不代行证明。 -/
+def demand_D034 : Prop :=
+  (∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)),
+      ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d) ∧
+  ∀ (row : String × String × String × String × String)
+      (issues : List (String × String × String × String × String))
+      (supOk proved : Bool),
+    row ∈ issues →
+    proved = decide supOk →
+    (((row.1, row.2.1, row.2.2.1, row.2.2.2.1, row.2.2.2.2) ∈
+        issues.map (fun x => (x.1, x.2.1, x.2.2.1, x.2.2.2.1, x.2.2.2.2))) ∧
+     (∀ (c₁ c₂ i r p a : String), c₁ ≠ c₂ →
+        (i, c₁, r, p, a) ≠ (i, c₂, r, p, a)) ∧
+     (supOk = false → proved = false) ∧
+     (∀ rebOk : Bool, proved = decide supOk))
 
-def demand_D036 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
+/-- D035 答辩链接与承认授权（反例：模板中无来源的债务承认应触发审查
+而非静默写入）：每条承认进入记录载体都带自身授权来源（写入的承认都
+有来源为真的行）；无来源的承认行进入审查清单，绝不静默写入记录。 -/
+def demand_D035 : Prop :=
+  (∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)),
+      ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d) ∧
+  ∀ (defs : List (String × String × String × Bool × Bool))
+      (admissions reviewed : List String),
+    admissions = (defs.filter (fun d => d.2.2.2.1 && d.2.2.2.2)).map (fun d => d.1) →
+    reviewed = (defs.filter (fun d => d.2.2.2.1 && !d.2.2.2.2)).map (fun d => d.1) →
+    ((∀ p ∈ admissions, ∃ d ∈ defs, d.1 = p ∧ d.2.2.2.2 = true) ∧
+     (∀ d ∈ defs, d.2.2.2.1 = true → d.2.2.2.2 = false → d.1 ∈ reviewed))
+
+/-- D036 同一责任模型联算（反例：连带责任外部给付与内部份额不得混为
+每人比例给付）：主体、方式、份额与金额由同一模型逐人联合计算——
+内部份额行 = (主体, 份额×总额)，两行主体不同即行不同，份额账守恒
+（Σ 份额×总额 = 总额）；外部给付是另一本逐人账，外部给付额与内部
+比例额不同时，两本账的清单必不相同。 -/
+def demand_D036 : Prop :=
+  (∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)),
+      ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d) ∧
+  ∀ (p₁ p₂ : String) (s₁ s₂ e₁ e₂ total : ℚ),
+    p₁ ≠ p₂ → s₁ + s₂ = 1 → e₁ + e₂ = total →
+    (((p₁, s₁ * total) ≠ (p₂, s₂ * total)) ∧
+     (s₁ * total + s₂ * total = total) ∧
+     (e₁ ≠ s₁ * total →
+        ([(p₁, s₁ * total), (p₂, s₂ * total)] : List (String × ℚ)) ≠
+          [(p₁, e₁), (p₂, e₂)]))
 
 def demand_D037 : Prop := ∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j
 

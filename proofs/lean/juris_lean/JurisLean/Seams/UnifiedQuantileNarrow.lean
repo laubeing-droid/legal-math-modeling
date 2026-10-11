@@ -246,9 +246,7 @@ theorem refN_width_real (ref : Enc → Enc) (F : ℝ → ℝ) (hrc : RealRefines
     ((refN ref n e).width : ℝ) ≤ ((2:ℝ) / 3) ^ n * ((e.width : ℚ) : ℝ) := by
   have h4r : (((refN ref n e).width : ℚ) : ℝ)
       ≤ ((2:ℝ) / 3) ^ n * ((e.width : ℚ) : ℝ) := by
-    have h := Rat.cast_le.mpr (refN_widthQ ref F hrc n e)
-    push_cast at h
-    exact h
+    exact_mod_cast refN_widthQ ref F hrc n e
   have h6 : ((e.width : ℚ) : ℝ) = (e.hi : ℝ) - (e.lo : ℝ) := by
     show (((e.hi - e.lo : ℚ)) : ℝ) = (e.hi : ℝ) - (e.lo : ℝ)
     push_cast
@@ -296,8 +294,9 @@ theorem hi_below_eventually (ref : Enc → Enc) (F : ℝ → ℝ) (hrc : RealRef
     rw [hw]
     push_cast
     ring
-  refine ⟨n, Rat.cast_lt.mp ?_⟩
-  linarith
+  have hreal : ((refN ref n e).hi : ℝ) < (q:ℝ) := by
+    linarith [hkeep.1, hwrel, hwid, hkey]
+  exact ⟨n, Rat.cast_lt.mp hreal⟩
 
 /-- **右证终被发现**：q < F x 为真时，细化有限轮后必有 `q < (refN ref n e).lo`。 -/
 theorem lo_above_eventually (ref : Enc → Enc) (F : ℝ → ℝ) (hrc : RealRefines ref F)
@@ -329,8 +328,9 @@ theorem lo_above_eventually (ref : Enc → Enc) (F : ℝ → ℝ) (hrc : RealRef
     rw [hw]
     push_cast
     ring
-  refine ⟨n, Rat.cast_lt.mp ?_⟩
-  linarith
+  have hreal : (q:ℝ) < ((refN ref n e).lo : ℝ) := by
+    linarith [hkeep.2, hwrel, hwid, hkey]
+  exact ⟨n, Rat.cast_lt.mp hreal⟩
 
 /-- **找到的证书即真证书**（有证才更新的合法性桥）：包围健全＋细化合同成立时，
     `certFound`（细化后端点分离）给出 `certCertifies`（真严格比较）。 -/

@@ -881,25 +881,210 @@ def demand_D036 : Prop :=
         ([(p₁, s₁ * total), (p₂, s₂ * total)] : List (String × ℚ)) ≠
           [(p₁, e₁), (p₂, e₂)]))
 
-def demand_D037 : Prop := ∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j
+/-! D037-D046 (group 05 刑事定罪、量刑与多被告, W2-A batch B05): each def is
+that demand's own contract, translated from ALL_134_MATH_CONTRACTS.md.
+The first conjunct is the group-registered per-person component (conviction
+slot keys are indexed by the person, so two defendants never share one
+elements slot); the remaining conjuncts are the demand's own operational
+semantics with its adverse case. -/
 
-def demand_D038 : Prop := ∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j
+/-- D039 helper: the numeric aggregate over a penalty-kind ledger exists
+    only when every row is a term row (kind 1) carrying its month count;
+    life (kind 2) and death (kind 3) rows are non-numeric kinds — they
+    poison the aggregate instead of entering ordinary addition, so no
+    sentinel number can be mixed into a sentence average. -/
+def penTotal (rows : List (ℕ × Option ℕ)) : Option ℕ :=
+  if rows.all (fun r => r.1 = 1 && r.2.isSome) then
+    some (rows.map (fun r => r.2.getD 0)).sum
+  else none
 
-def demand_D039 : Prop := ∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j
+/-- D043 helper: field-by-field read-back of a rendered main text against
+    the verified structured record — each mismatched field (kind, period,
+    fine) is reported by name, so a mis-written fine is found on read-back. -/
+def readBack (rec txt : String × ℕ × ℚ) : List String :=
+  (if txt.1 = rec.1 then [] else ["kind"]) ++
+    (if txt.2.1 = rec.2.1 then [] else ["months"]) ++
+    (if txt.2.2 = rec.2.2 then [] else ["fine"])
 
-def demand_D040 : Prop := ∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j
+/-- D045 helper: an amount item enters the criminal total only when its
+    three attribution axes (property / act / subject) are all verified. -/
+def crimOK (it : ℕ × Bool × Bool × Bool × ℚ) : Bool :=
+  it.2.1 && it.2.2.1 && it.2.2.2.1
 
-def demand_D041 : Prop := ∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j
+/-- D045 helper: count each verified item once — a source already seen is
+    skipped, so the same loot appearing in two records is never added
+    twice. -/
+def countOnce : List (ℕ × Bool × Bool × Bool × ℚ) → List ℕ → ℚ
+  | [], _ => 0
+  | it :: rest, seen =>
+    if crimOK it = true ∧ ¬(it.1 ∈ seen) then
+      it.2.2.2.2 + countOnce rest (it.1 :: seen)
+    else countOnce rest seen
 
-def demand_D042 : Prop := ∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j
+/-- D037 多罪标签与要件/阻却/竞合政策（反例：单标签接口不得悄悄丢掉第二项
+合法罪名候选）：输出标签集 = 冻结候选表中同时满足选定要件、阻却排除与竞合
+政策的行——输出标签逐项回指表内全真行，表内全真行全部进入输出（标签与
+语义双向映射）；两个不同的全真候选同时在输出里，只保留首个的单标签载体
+因此不等于输出（丢掉第二项被检出）。 -/
+def demand_D037 : Prop :=
+  (∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j) ∧
+  ∀ (cands : List (String × Bool × Bool × Bool)) (outs : List String),
+    outs = (cands.filter (fun c => c.2.1 && c.2.2.1 && c.2.2.2)).map (fun c => c.1) →
+    ((∀ l ∈ outs, ∃ e ∈ cands, e.1 = l ∧ e.2.1 = true ∧ e.2.2.1 = true ∧ e.2.2.2 = true) ∧
+     (∀ e ∈ cands, e.2.1 = true → e.2.2.1 = true → e.2.2.2 = true → e.1 ∈ outs) ∧
+     (∀ c₁ c₂ : String × Bool × Bool × Bool,
+        c₁ ∈ cands → c₂ ∈ cands → c₁.1 ≠ c₂.1 →
+        c₁.2.1 = true → c₁.2.2.1 = true → c₁.2.2.2 = true →
+        c₂.2.1 = true → c₂.2.2.1 = true → c₂.2.2.2 = true →
+        c₁.1 ∈ outs ∧ c₂.1 ∈ outs ∧ [c₁.1] ≠ outs))
 
-def demand_D043 : Prop := ∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j
+/-- D038 法条类别编码往返与类型分立（反例：law.txt 第1项不自动打印为刑法
+第1条）：冻结词典按标签ID与（法条编号、款项）双向可查——（编号、款项）
+命中唯一时，按ID查得的行与按编号查得的行同一条（往返）；三类字段各自
+保真、换值即换行；未登记的ID查无行（fail-closed），凭空引用无从产生。 -/
+def demand_D038 : Prop :=
+  (∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j) ∧
+  ∀ (dict : List (ℕ × String × String)) (n : ℕ) (art cls : String),
+    dict.find? (fun d => decide (d.1 = n)) = some (n, art, cls) →
+    (∀ a b : ℕ × String × String, a ∈ dict → b ∈ dict →
+        a.2.1 = b.2.1 → a.2.2 = b.2.2 → a.1 = b.1) →
+    ((dict.find? (fun d => decide (d.2.1 = art ∧ d.2.2 = cls)) = some (n, art, cls)) ∧
+     ((n, art, cls).1 = n ∧ (n, art, cls).2.1 = art ∧ (n, art, cls).2.2 = cls) ∧
+     (∀ n' : ℕ, n' ≠ n → (n', art, cls) ≠ (n, art, cls)) ∧
+     (∀ m : ℕ, (∀ d ∈ dict, d.1 ≠ m) →
+        dict.find? (fun d => decide (d.1 = m)) = none))
 
-def demand_D044 : Prop := ∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j
+/-- D039 刑种为和类型、不可普通加法混算（反例：−1/−2哨兵不进入刑期均值
+或罚金计算）：和类型行 (1, some 月数)=有期徒刑、(2, none)=无期、
+(3, none)=死刑——全部行都是有期且带月数时，聚合 = 月数精确和；任何
+无期/死刑行混入即聚合不存在（none）——普通加法对混合刑种无定义，
+哨兵数值无从混入；空账聚合为 0。 -/
+def demand_D039 : Prop :=
+  (∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j) ∧
+  ∀ rows : List (ℕ × Option ℕ),
+    (((rows.all (fun r => r.1 = 1 && r.2.isSome) = true) →
+        penTotal rows = some (rows.map (fun r => r.2.getD 0)).sum) ∧
+     ((∃ r ∈ rows, r.1 = 2) → penTotal rows = none) ∧
+     ((∃ r ∈ rows, r.1 = 3) → penTotal rows = none) ∧
+     (penTotal [(1, some 24), (1, some 12)] = some 36 ∧
+      penTotal [(1, some 24), (2, none)] = none ∧
+      penTotal [(3, none), (1, some 24)] = none ∧
+      penTotal [] = some 0))
 
-def demand_D045 : Prop := ∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j
+/-- D040 预测配置与分母（反例：有金标法条的预测分数不可标为无依据独立
+定罪能力）：有法条/无法条是两个固定特征预算（0=行为、1=故意、2=法条
+文本）——预算固定、互不相同、长度不同、法条特征只入有法条预算（标注
+无依据者必无该特征）；分数按各自预算长度精确归一（分母不得混用）：
+3 项预算全命中得分 1，同命中数按 2 项预算的 3/2 与之不同。 -/
+def demand_D040 : Prop :=
+  (∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j) ∧
+  ∀ (hw ho : List ℕ) (n : ℕ) (s : ℚ),
+    hw = [0, 1, 2] → ho = [0, 1] → s = (n : ℚ) / hw.length → n = 3 →
+    ((hw ≠ ho ∧ hw.length ≠ ho.length) ∧
+     (decide ((2 : ℕ) ∈ hw) = true ∧ decide ((2 : ℕ) ∈ ho) = false) ∧
+     (s = 1 ∧ s ≠ (n : ℚ) / ho.length))
 
-def demand_D046 : Prop := ∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j
+/-- D041 逐被告共同身份保持（反例：互换姓名仍维持全案刑期合计但检查须
+失败）：逐被告行 (主体, 构成, 情节, 刑期) 以主体为键回查——正置行按
+主体查中各自的构成/情节/刑期，刑期合计照加；互换两主体的刑期后合计
+不变，但按主体回查命中的是别人的刑期，逐人检查失败（刑期不同即查不中）。 -/
+def demand_D041 : Prop :=
+  (∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j) ∧
+  ∀ (p q : ℕ) (ep ec : String) (x y : ℕ), p ≠ q → x ≠ y →
+    ((([(p, ep, ec, x), (q, ep, ec, y)].find? (fun r => decide (r.1 = p)))
+        = some (p, ep, ec, x)) ∧
+     ([(p, ep, ec, x), (q, ep, ec, y)].find? (fun r => decide (r.1 = q))
+        = some (q, ep, ec, y)) ∧
+     (([(p, ep, ec, x), (q, ep, ec, y)].map (fun r => r.2.2.2)).sum = x + y) ∧
+     (([(p, ep, ec, y), (q, ep, ec, x)].map (fun r => r.2.2.2)).sum = x + y) ∧
+     ([(p, ep, ec, y), (q, ep, ec, x)].find? (fun r => decide (r.1 = p))
+        = some (p, ep, ec, y)) ∧
+     (some (p, ep, ec, y) ≠ some (p, ep, ec, x)))
+
+/-- D042 整案正确与显式未决（反例：逐人平均99%不得声称每名被告都正确）：
+整案正确 = 必查被告清单上每人的裁决都是确定成立且关系一致性成立；任一
+必查被告裁决未决（none）时全员正确不成立且未决者显式进入未决清单；
+平均分再高也不改变逐人未决——99/100 两分平均 99.5 与"非全员正确"
+同时成立。 -/
+def demand_D042 : Prop :=
+  (∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j) ∧
+  ∀ (required : List String) (vd : String → Option Bool) (relationOk : Bool)
+      (d₁ d₂ : String) (s₁ s₂ : ℚ),
+    (((∀ d ∈ required, vd d = some true) → relationOk = true →
+        (required.all (fun d => vd d == some true) && relationOk) = true) ∧
+     ((∃ d ∈ required, vd d = none) →
+        (required.all (fun d => vd d == some true)) = false) ∧
+     (required = [d₁, d₂] → d₁ ≠ d₂ → vd d₁ = some true → vd d₂ = none →
+        relationOk = true → s₁ = 99 → s₂ = 100 →
+        ((required.filter (fun d => vd d == none) = [d₂]) ∧
+         ((required.all (fun d => vd d == some true)) = false) ∧
+         (s₁ ≤ (s₁ + s₂) / 2 ∧
+          (required.all (fun d => vd d == some true)) = false))))
+
+/-- D043 裁判主文投影与结构记录（反例：结构罚金5000，正文误写50000应被
+回读发现）：主文的刑种、期间、罚金投影逐字段等于核验后的结构记录——
+字段一致时回读差异为空；罚金字段不等时回读差异含具名字段 "fine"；
+结构 5000 对正文 50000 的经典篡改回读恰报 ["fine"]，正文如实则报空。 -/
+def demand_D043 : Prop :=
+  (∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j) ∧
+  ∀ rec txt : String × ℕ × ℚ,
+    (((txt.1 = rec.1 ∧ txt.2.1 = rec.2.1 ∧ txt.2.2 = rec.2.2) →
+        readBack rec txt = []) ∧
+     (txt.2.2 ≠ rec.2.2 → "fine" ∈ readBack rec txt) ∧
+     (readBack ("imprisonment", 24, 5000) ("imprisonment", 24, 50000) = ["fine"] ∧
+      readBack ("imprisonment", 24, 5000) ("imprisonment", 24, 5000) = []))
+
+/-- D044 定罪结论与理由路径（反例：理由解释一罪、主文出现另一罪不因文风
+相似而通过）：已核结论 = 主文罪名与理由路径的逐字交集——已核罪名既在
+主文又在路径里；无路径罪名永不进入已核清单（查的是路径成员，不是字符串
+相）；理由只覆盖一罪时，带第二罪的主文不等于已核清单。 -/
+def demand_D044 : Prop :=
+  (∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j) ∧
+  ∀ (paths conclusions : List String),
+    ((∀ x ∈ conclusions.filter (fun y => decide (y ∈ paths)),
+        x ∈ conclusions ∧ x ∈ paths) ∧
+     (∀ x ∈ conclusions, x ∉ paths →
+        x ∉ conclusions.filter (fun y => decide (y ∈ paths))) ∧
+     (paths = ["theft"] → conclusions = ["theft", "fraud"] →
+        (conclusions.filter (fun y => decide (y ∈ paths)) = ["theft"] ∧
+         ["theft"] ≠ ["theft", "fraud"])))
+
+/-- D045 犯罪金额归属与去重复（反例：赃款在两份记录出现不得加两遍）：
+计入前逐项验证财物/行为/主体三轴归属——未过归属门的条目永不进入计入
+结果，计入结果逐条都过门且来自原始记录；同源财物只计首次——两笔不同源
+各计一次（精确 ℚ 和），同源两笔只计首笔，归属门逐条可独立判定。 -/
+def demand_D045 : Prop :=
+  (∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j) ∧
+  ∀ (items : List (ℕ × Bool × Bool × Bool × ℚ)) (x : ℕ × Bool × Bool × Bool × ℚ),
+    ((x ∈ items → crimOK x = false →
+        x ∉ items.filter (fun y => crimOK y)) ∧
+     (∀ y ∈ items.filter (fun z => crimOK z), y ∈ items) ∧
+     (∀ (s t : ℕ) (a b : ℚ), s ≠ t →
+        countOnce [(s, true, true, true, a), (t, true, true, true, b)] [] = a + b) ∧
+     (∀ (s : ℕ) (a b : ℚ),
+        countOnce [(s, true, true, true, a), (s, true, true, true, b)] [] = a) ∧
+     (crimOK (7, true, true, true, 30000) = true ∧
+      crimOK (7, true, false, true, 30000) = false))
+
+/-- D046 传闻规则分支与法域隔离（反例：不得把美国传闻标签直接变成中国
+证据排除结论）：在指定美国证据法版本（合成登记版 1975）内逐要件/例外/
+用途判定——要件+例外+用途全真给允许分支，版本不符给显式未决（none），
+不静默排除；结论行按法域键过滤——CN 结果逐条键为 CN，非 CN 行永不进入
+CN 结果，即便标签与布尔逐字相同 ("US-FRE", l, b) 与 ("CN", l, b) 也是
+两行不同一。 -/
+def hearsayResolve (v : ℕ) (e x u : Bool) : Option Bool :=
+  if v = 1975 && e && x && u then some true else none
+
+def demand_D046 : Prop :=
+  (∀ (i j : ℕ) (h : personSlot i = personSlot j), i = j) ∧
+  ∀ (rows : List (String × String × Bool)) (v : ℕ) (e x u : Bool),
+    ((∀ r ∈ rows.filter (fun r => decide (r.1 = "CN")), r.1 = "CN") ∧
+     (∀ r : String × String × Bool, r.1 ≠ "CN" →
+        r ∉ rows.filter (fun r => decide (r.1 = "CN"))) ∧
+     (∀ (l : String) (b : Bool), ("US-FRE", l, b) ≠ ("CN", l, b)) ∧
+     ((v = 1975 ∧ e = true ∧ x = true ∧ u = true) →
+        hearsayResolve v e x u = some true) ∧
+     (v ≠ 1975 → hearsayResolve v e x u = none))
 
 def demand_D047 : Prop := ∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r
 

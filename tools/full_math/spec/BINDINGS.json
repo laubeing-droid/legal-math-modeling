@@ -2999,25 +2999,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D037",
    "contract": "JurisLean.FullMath.Contracts.demand_D037",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.perPerson_slots_distinct's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-05 criminal demand instance in the shared semantic framework: this item's own contract semantics plus the registered per-person component (conviction slot keys are indexed by the person, so two defendants never share one elements slot), with its adverse case executed as a negative test.",
+   "independent_semantics": "each defendant's crime-label set is exactly the frozen candidate rows meeting the selected elements, barrier and concurrence policy at once — labels and semantics map in both directions; a single-label interface that keeps only the first legitimate candidate is distinguishable from the full output, so a second legitimate crime candidate is never silently dropped.",
+   "algorithm": "tools/full_math/implementation/criminal_ref.py crime_label_sets computes the intermediate result from structured input; criminal_check.check_D037 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (crime-label candidate rows with elements/barrier/concurrence flags, frozen statute-dictionary rows keyed by label id and article/clause with an injectivity witness, penalty-kind ledger rows over the sum type, the two fixed feature budgets with hit counts, per-defendant rows against a register, required-defendant verdicts with an optional-pending carrier and per-person scores, the structured record against a rendered main text, reason paths against operative-text crimes, attribution-flagged amount items with source ids, and versioned jurisdiction-keyed conclusion rows with hearsay queries); outputs are exactly the contract quantities (the policy label set with the single-label drop carrier, the roundtrip row with its typed fields and the fail-closed unregistered verdict, the sum-type aggregate with its poison flags, the per-budget scores with their free-label flags, the per-person checks with the swap verdict, the explicit pending carrier next to the average, the named-field mismatch list, the certified/unbacked split, the deduplicated exact total with the raw sum, and the allow-or-pending branches with the keyed CN carrier).",
+   "external_assumptions": "The criminal-law version and the adopted dogmatic structure, substantive element/barrier/concurrence classification, penalty-kind substantive choice, holdout accuracy and drift, fact attribution to defendants, docket completeness, narrative audit beyond the declared projections, legal-interpretation sufficiency, property value and attribution proofs, statement purpose and exception facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Families.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/criminal_ref.py",
+    "tools/full_math/implementation/criminal_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D037]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_positive[D037]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_counterexample[D037]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_downstream_pipeline_consumes_criminal"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D037]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D037]"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_checker_rejects_tampered[D037]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.perPerson_slots_distinct"
@@ -3028,25 +3029,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D038",
    "contract": "JurisLean.FullMath.Contracts.demand_D038",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.perPerson_slots_distinct's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-05 criminal demand instance in the shared semantic framework: this item's own contract semantics plus the registered per-person component (conviction slot keys are indexed by the person, so two defendants never share one elements slot), with its adverse case executed as a negative test.",
+   "independent_semantics": "the frozen statute dictionary answers a label-id lookup and, under declared (article, clause) uniqueness, the same row back by its article and clause (encode/decode roundtrip); the label id, the article and the clause stay distinct typed fields, and an unregistered id resolves to nothing (fail-closed) — a raw corpus line is never auto-rendered as a statute citation.",
+   "algorithm": "tools/full_math/implementation/criminal_ref.py law_dict_roundtrip computes the intermediate result from structured input; criminal_check.check_D038 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (crime-label candidate rows with elements/barrier/concurrence flags, frozen statute-dictionary rows keyed by label id and article/clause with an injectivity witness, penalty-kind ledger rows over the sum type, the two fixed feature budgets with hit counts, per-defendant rows against a register, required-defendant verdicts with an optional-pending carrier and per-person scores, the structured record against a rendered main text, reason paths against operative-text crimes, attribution-flagged amount items with source ids, and versioned jurisdiction-keyed conclusion rows with hearsay queries); outputs are exactly the contract quantities (the policy label set with the single-label drop carrier, the roundtrip row with its typed fields and the fail-closed unregistered verdict, the sum-type aggregate with its poison flags, the per-budget scores with their free-label flags, the per-person checks with the swap verdict, the explicit pending carrier next to the average, the named-field mismatch list, the certified/unbacked split, the deduplicated exact total with the raw sum, and the allow-or-pending branches with the keyed CN carrier).",
+   "external_assumptions": "The criminal-law version and the adopted dogmatic structure, substantive element/barrier/concurrence classification, penalty-kind substantive choice, holdout accuracy and drift, fact attribution to defendants, docket completeness, narrative audit beyond the declared projections, legal-interpretation sufficiency, property value and attribution proofs, statement purpose and exception facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Families.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/criminal_ref.py",
+    "tools/full_math/implementation/criminal_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D038]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_positive[D038]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_counterexample[D038]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_downstream_pipeline_consumes_criminal"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D038]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D038]"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_checker_rejects_tampered[D038]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.perPerson_slots_distinct"
@@ -3057,25 +3059,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D039",
    "contract": "JurisLean.FullMath.Contracts.demand_D039",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.perPerson_slots_distinct's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-05 criminal demand instance in the shared semantic framework: this item's own contract semantics plus the registered per-person component (conviction slot keys are indexed by the person, so two defendants never share one elements slot), with its adverse case executed as a negative test.",
+   "independent_semantics": "penalty kinds are a sum type (term with months, life, death without); the numeric aggregate exists only when every row is a term row carrying months, and any life/death row poisons it — ordinary addition never mixes penalty kinds, so no sentinel number can enter a sentence average or a fine computation.",
+   "algorithm": "tools/full_math/implementation/criminal_ref.py penalty_ledger computes the intermediate result from structured input; criminal_check.check_D039 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (crime-label candidate rows with elements/barrier/concurrence flags, frozen statute-dictionary rows keyed by label id and article/clause with an injectivity witness, penalty-kind ledger rows over the sum type, the two fixed feature budgets with hit counts, per-defendant rows against a register, required-defendant verdicts with an optional-pending carrier and per-person scores, the structured record against a rendered main text, reason paths against operative-text crimes, attribution-flagged amount items with source ids, and versioned jurisdiction-keyed conclusion rows with hearsay queries); outputs are exactly the contract quantities (the policy label set with the single-label drop carrier, the roundtrip row with its typed fields and the fail-closed unregistered verdict, the sum-type aggregate with its poison flags, the per-budget scores with their free-label flags, the per-person checks with the swap verdict, the explicit pending carrier next to the average, the named-field mismatch list, the certified/unbacked split, the deduplicated exact total with the raw sum, and the allow-or-pending branches with the keyed CN carrier).",
+   "external_assumptions": "The criminal-law version and the adopted dogmatic structure, substantive element/barrier/concurrence classification, penalty-kind substantive choice, holdout accuracy and drift, fact attribution to defendants, docket completeness, narrative audit beyond the declared projections, legal-interpretation sufficiency, property value and attribution proofs, statement purpose and exception facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Families.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/criminal_ref.py",
+    "tools/full_math/implementation/criminal_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D039]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_positive[D039]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_counterexample[D039]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_downstream_pipeline_consumes_criminal"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D039]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D039]"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_checker_rejects_tampered[D039]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.perPerson_slots_distinct"
@@ -3086,25 +3089,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D040",
    "contract": "JurisLean.FullMath.Contracts.demand_D040",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.perPerson_slots_distinct's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-05 criminal demand instance in the shared semantic framework: this item's own contract semantics plus the registered per-person component (conviction slot keys are indexed by the person, so two defendants never share one elements slot), with its adverse case executed as a negative test.",
+   "independent_semantics": "with-statute and without-statute are two fixed feature budgets; the statute feature sits only in the with budget, the budgets differ in length, and each score is normalized by its own budget length (denominators never mix): a full 3-feature hit is 1, not the 2-budget 3/2, so a gold-statute score cannot be reported as statute-free independent capability.",
+   "algorithm": "tools/full_math/implementation/criminal_ref.py prediction_configs computes the intermediate result from structured input; criminal_check.check_D040 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (crime-label candidate rows with elements/barrier/concurrence flags, frozen statute-dictionary rows keyed by label id and article/clause with an injectivity witness, penalty-kind ledger rows over the sum type, the two fixed feature budgets with hit counts, per-defendant rows against a register, required-defendant verdicts with an optional-pending carrier and per-person scores, the structured record against a rendered main text, reason paths against operative-text crimes, attribution-flagged amount items with source ids, and versioned jurisdiction-keyed conclusion rows with hearsay queries); outputs are exactly the contract quantities (the policy label set with the single-label drop carrier, the roundtrip row with its typed fields and the fail-closed unregistered verdict, the sum-type aggregate with its poison flags, the per-budget scores with their free-label flags, the per-person checks with the swap verdict, the explicit pending carrier next to the average, the named-field mismatch list, the certified/unbacked split, the deduplicated exact total with the raw sum, and the allow-or-pending branches with the keyed CN carrier).",
+   "external_assumptions": "The criminal-law version and the adopted dogmatic structure, substantive element/barrier/concurrence classification, penalty-kind substantive choice, holdout accuracy and drift, fact attribution to defendants, docket completeness, narrative audit beyond the declared projections, legal-interpretation sufficiency, property value and attribution proofs, statement purpose and exception facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Families.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/criminal_ref.py",
+    "tools/full_math/implementation/criminal_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D040]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_positive[D040]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_counterexample[D040]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_downstream_pipeline_consumes_criminal"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D040]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D040]"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_checker_rejects_tampered[D040]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.perPerson_slots_distinct"
@@ -3115,25 +3119,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D041",
    "contract": "JurisLean.FullMath.Contracts.demand_D041",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.perPerson_slots_distinct's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-05 criminal demand instance in the shared semantic framework: this item's own contract semantics plus the registered per-person component (conviction slot keys are indexed by the person, so two defendants never share one elements slot), with its adverse case executed as a negative test.",
+   "independent_semantics": "per-defendant rows (person, elements, circumstance, penalty) are checked per person against the register; swapping two defendants' penalties keeps the case total but fails the per-person checks, so the common identity is preserved per defendant and the set result stays independently checkable.",
+   "algorithm": "tools/full_math/implementation/criminal_ref.py per_defendant_mapping/identity_swap computes the intermediate result from structured input; criminal_check.check_D041 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (crime-label candidate rows with elements/barrier/concurrence flags, frozen statute-dictionary rows keyed by label id and article/clause with an injectivity witness, penalty-kind ledger rows over the sum type, the two fixed feature budgets with hit counts, per-defendant rows against a register, required-defendant verdicts with an optional-pending carrier and per-person scores, the structured record against a rendered main text, reason paths against operative-text crimes, attribution-flagged amount items with source ids, and versioned jurisdiction-keyed conclusion rows with hearsay queries); outputs are exactly the contract quantities (the policy label set with the single-label drop carrier, the roundtrip row with its typed fields and the fail-closed unregistered verdict, the sum-type aggregate with its poison flags, the per-budget scores with their free-label flags, the per-person checks with the swap verdict, the explicit pending carrier next to the average, the named-field mismatch list, the certified/unbacked split, the deduplicated exact total with the raw sum, and the allow-or-pending branches with the keyed CN carrier).",
+   "external_assumptions": "The criminal-law version and the adopted dogmatic structure, substantive element/barrier/concurrence classification, penalty-kind substantive choice, holdout accuracy and drift, fact attribution to defendants, docket completeness, narrative audit beyond the declared projections, legal-interpretation sufficiency, property value and attribution proofs, statement purpose and exception facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Families.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/criminal_ref.py",
+    "tools/full_math/implementation/criminal_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D041]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_positive[D041]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_counterexample[D041]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_downstream_pipeline_consumes_criminal"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D041]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D041]"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_checker_rejects_tampered[D041]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.perPerson_slots_distinct"
@@ -3144,25 +3149,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D042",
    "contract": "JurisLean.FullMath.Contracts.demand_D042",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.perPerson_slots_distinct's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-05 criminal demand instance in the shared semantic framework: this item's own contract semantics plus the registered per-person component (conviction slot keys are indexed by the person, so two defendants never share one elements slot), with its adverse case executed as a negative test.",
+   "independent_semantics": "CaseCorrect = every required defendant's verdict is determined-true AND relation consistency holds; a required defendant with no verdict is explicitly pending (listed), never silently correct, and a high per-person average (99/100 → 99.5) coexists with not-all-correct.",
+   "algorithm": "tools/full_math/implementation/criminal_ref.py case_correctness computes the intermediate result from structured input; criminal_check.check_D042 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (crime-label candidate rows with elements/barrier/concurrence flags, frozen statute-dictionary rows keyed by label id and article/clause with an injectivity witness, penalty-kind ledger rows over the sum type, the two fixed feature budgets with hit counts, per-defendant rows against a register, required-defendant verdicts with an optional-pending carrier and per-person scores, the structured record against a rendered main text, reason paths against operative-text crimes, attribution-flagged amount items with source ids, and versioned jurisdiction-keyed conclusion rows with hearsay queries); outputs are exactly the contract quantities (the policy label set with the single-label drop carrier, the roundtrip row with its typed fields and the fail-closed unregistered verdict, the sum-type aggregate with its poison flags, the per-budget scores with their free-label flags, the per-person checks with the swap verdict, the explicit pending carrier next to the average, the named-field mismatch list, the certified/unbacked split, the deduplicated exact total with the raw sum, and the allow-or-pending branches with the keyed CN carrier).",
+   "external_assumptions": "The criminal-law version and the adopted dogmatic structure, substantive element/barrier/concurrence classification, penalty-kind substantive choice, holdout accuracy and drift, fact attribution to defendants, docket completeness, narrative audit beyond the declared projections, legal-interpretation sufficiency, property value and attribution proofs, statement purpose and exception facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Families.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/criminal_ref.py",
+    "tools/full_math/implementation/criminal_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D042]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_positive[D042]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_counterexample[D042]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_downstream_pipeline_consumes_criminal"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D042]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D042]"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_checker_rejects_tampered[D042]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.perPerson_slots_distinct"
@@ -3173,25 +3179,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D043",
    "contract": "JurisLean.FullMath.Contracts.demand_D043",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.perPerson_slots_distinct's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-05 criminal demand instance in the shared semantic framework: this item's own contract semantics plus the registered per-person component (conviction slot keys are indexed by the person, so two defendants never share one elements slot), with its adverse case executed as a negative test.",
+   "independent_semantics": "the main text's kind, period and fine projections are compared field-by-field against the verified structured record; each mismatch is reported by name, so the classic tamper (structured fine 5000, text 50000) is found on read-back while faithful text reads back empty.",
+   "algorithm": "tools/full_math/implementation/criminal_ref.py judgment_readback computes the intermediate result from structured input; criminal_check.check_D043 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (crime-label candidate rows with elements/barrier/concurrence flags, frozen statute-dictionary rows keyed by label id and article/clause with an injectivity witness, penalty-kind ledger rows over the sum type, the two fixed feature budgets with hit counts, per-defendant rows against a register, required-defendant verdicts with an optional-pending carrier and per-person scores, the structured record against a rendered main text, reason paths against operative-text crimes, attribution-flagged amount items with source ids, and versioned jurisdiction-keyed conclusion rows with hearsay queries); outputs are exactly the contract quantities (the policy label set with the single-label drop carrier, the roundtrip row with its typed fields and the fail-closed unregistered verdict, the sum-type aggregate with its poison flags, the per-budget scores with their free-label flags, the per-person checks with the swap verdict, the explicit pending carrier next to the average, the named-field mismatch list, the certified/unbacked split, the deduplicated exact total with the raw sum, and the allow-or-pending branches with the keyed CN carrier).",
+   "external_assumptions": "The criminal-law version and the adopted dogmatic structure, substantive element/barrier/concurrence classification, penalty-kind substantive choice, holdout accuracy and drift, fact attribution to defendants, docket completeness, narrative audit beyond the declared projections, legal-interpretation sufficiency, property value and attribution proofs, statement purpose and exception facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Families.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/criminal_ref.py",
+    "tools/full_math/implementation/criminal_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D043]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_positive[D043]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_counterexample[D043]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_downstream_pipeline_consumes_criminal"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D043]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D043]"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_checker_rejects_tampered[D043]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.perPerson_slots_distinct"
@@ -3202,25 +3209,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D044",
    "contract": "JurisLean.FullMath.Contracts.demand_D044",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.perPerson_slots_distinct's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-05 criminal demand instance in the shared semantic framework: this item's own contract semantics plus the registered per-person component (conviction slot keys are indexed by the person, so two defendants never share one elements slot), with its adverse case executed as a negative test.",
+   "independent_semantics": "the certified conclusions are the verbatim intersection of the operative-text crimes with the reasons' rule paths; a pathless crime is never certified (membership, not string similarity), so a text citing a second crime fails when the reasons cover only the first.",
+   "algorithm": "tools/full_math/implementation/criminal_ref.py conviction_paths computes the intermediate result from structured input; criminal_check.check_D044 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (crime-label candidate rows with elements/barrier/concurrence flags, frozen statute-dictionary rows keyed by label id and article/clause with an injectivity witness, penalty-kind ledger rows over the sum type, the two fixed feature budgets with hit counts, per-defendant rows against a register, required-defendant verdicts with an optional-pending carrier and per-person scores, the structured record against a rendered main text, reason paths against operative-text crimes, attribution-flagged amount items with source ids, and versioned jurisdiction-keyed conclusion rows with hearsay queries); outputs are exactly the contract quantities (the policy label set with the single-label drop carrier, the roundtrip row with its typed fields and the fail-closed unregistered verdict, the sum-type aggregate with its poison flags, the per-budget scores with their free-label flags, the per-person checks with the swap verdict, the explicit pending carrier next to the average, the named-field mismatch list, the certified/unbacked split, the deduplicated exact total with the raw sum, and the allow-or-pending branches with the keyed CN carrier).",
+   "external_assumptions": "The criminal-law version and the adopted dogmatic structure, substantive element/barrier/concurrence classification, penalty-kind substantive choice, holdout accuracy and drift, fact attribution to defendants, docket completeness, narrative audit beyond the declared projections, legal-interpretation sufficiency, property value and attribution proofs, statement purpose and exception facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Families.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/criminal_ref.py",
+    "tools/full_math/implementation/criminal_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D044]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_positive[D044]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_counterexample[D044]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_downstream_pipeline_consumes_criminal"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D044]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D044]"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_checker_rejects_tampered[D044]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.perPerson_slots_distinct"
@@ -3231,25 +3239,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D045",
    "contract": "JurisLean.FullMath.Contracts.demand_D045",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.perPerson_slots_distinct's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-05 criminal demand instance in the shared semantic framework: this item's own contract semantics plus the registered per-person component (conviction slot keys are indexed by the person, so two defendants never share one elements slot), with its adverse case executed as a negative test.",
+   "independent_semantics": "an item enters the criminal amount only when its property, act and subject attribution axes are all verified, and each verified source is counted exactly once — the same loot appearing in two records is added once, never twice, with the raw attributed sum kept visible for contrast.",
+   "algorithm": "tools/full_math/implementation/criminal_ref.py criminal_amounts computes the intermediate result from structured input; criminal_check.check_D045 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (crime-label candidate rows with elements/barrier/concurrence flags, frozen statute-dictionary rows keyed by label id and article/clause with an injectivity witness, penalty-kind ledger rows over the sum type, the two fixed feature budgets with hit counts, per-defendant rows against a register, required-defendant verdicts with an optional-pending carrier and per-person scores, the structured record against a rendered main text, reason paths against operative-text crimes, attribution-flagged amount items with source ids, and versioned jurisdiction-keyed conclusion rows with hearsay queries); outputs are exactly the contract quantities (the policy label set with the single-label drop carrier, the roundtrip row with its typed fields and the fail-closed unregistered verdict, the sum-type aggregate with its poison flags, the per-budget scores with their free-label flags, the per-person checks with the swap verdict, the explicit pending carrier next to the average, the named-field mismatch list, the certified/unbacked split, the deduplicated exact total with the raw sum, and the allow-or-pending branches with the keyed CN carrier).",
+   "external_assumptions": "The criminal-law version and the adopted dogmatic structure, substantive element/barrier/concurrence classification, penalty-kind substantive choice, holdout accuracy and drift, fact attribution to defendants, docket completeness, narrative audit beyond the declared projections, legal-interpretation sufficiency, property value and attribution proofs, statement purpose and exception facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Families.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/criminal_ref.py",
+    "tools/full_math/implementation/criminal_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D045]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_positive[D045]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_counterexample[D045]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_downstream_pipeline_consumes_criminal"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D045]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D045]"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_checker_rejects_tampered[D045]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.perPerson_slots_distinct"
@@ -3260,25 +3269,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D046",
    "contract": "JurisLean.FullMath.Contracts.demand_D046",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Burden.perPerson_slots_distinct's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-05 criminal demand instance in the shared semantic framework: this item's own contract semantics plus the registered per-person component (conviction slot keys are indexed by the person, so two defendants never share one elements slot), with its adverse case executed as a negative test.",
+   "independent_semantics": "inside one declared US evidence-law version each element/exception/use query gets an allowed branch (all hold) or the explicit pending branch (none), never a silent exclusion; conclusion rows are keyed by jurisdiction, so a US-FRE row never enters the CN carrier even with a verbatim-identical label and boolean.",
+   "algorithm": "tools/full_math/implementation/criminal_ref.py hearsay_resolve/jurisdiction_rows computes the intermediate result from structured input; criminal_check.check_D046 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (crime-label candidate rows with elements/barrier/concurrence flags, frozen statute-dictionary rows keyed by label id and article/clause with an injectivity witness, penalty-kind ledger rows over the sum type, the two fixed feature budgets with hit counts, per-defendant rows against a register, required-defendant verdicts with an optional-pending carrier and per-person scores, the structured record against a rendered main text, reason paths against operative-text crimes, attribution-flagged amount items with source ids, and versioned jurisdiction-keyed conclusion rows with hearsay queries); outputs are exactly the contract quantities (the policy label set with the single-label drop carrier, the roundtrip row with its typed fields and the fail-closed unregistered verdict, the sum-type aggregate with its poison flags, the per-budget scores with their free-label flags, the per-person checks with the swap verdict, the explicit pending carrier next to the average, the named-field mismatch list, the certified/unbacked split, the deduplicated exact total with the raw sum, and the allow-or-pending branches with the keyed CN carrier).",
+   "external_assumptions": "The criminal-law version and the adopted dogmatic structure, substantive element/barrier/concurrence classification, penalty-kind substantive choice, holdout accuracy and drift, fact attribution to defendants, docket completeness, narrative audit beyond the declared projections, legal-interpretation sufficiency, property value and attribution proofs, statement purpose and exception facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Burden/Families.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/criminal_ref.py",
+    "tools/full_math/implementation/criminal_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D046]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_positive[D046]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_demand_counterexample[D046]",
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_downstream_pipeline_consumes_criminal"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D046]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D046]"
+    "tools/full_math/implementation_tests::test_criminal_group05.py::test_checker_rejects_tampered[D046]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Burden.perPerson_slots_distinct"

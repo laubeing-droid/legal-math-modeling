@@ -702,25 +702,218 @@ theorem demand_D036 : Contracts.demand_D036 := And.intro JurisLean.FullMath.Logi
       simp at hEq
       exact hne hEq.1.symm)
 
-theorem demand_D037 : Contracts.demand_D037 := JurisLean.FullMath.Burden.perPerson_slots_distinct
+theorem demand_D037 : Contracts.demand_D037 := And.intro JurisLean.FullMath.Burden.perPerson_slots_distinct
+  (by
+    intro cands outs houts
+    subst houts
+    refine ⟨?_, ?_, ?_⟩
+  · intro l hl
+    obtain ⟨e, hf, hc1⟩ := List.mem_map.mp hl
+    obtain ⟨hmem', hdec⟩ := List.mem_filter.mp hf
+    rw [Bool.and_eq_true] at hdec
+    rw [Bool.and_eq_true] at hdec
+    exact ⟨e, hmem', hc1, hdec.1.1, hdec.1.2, hdec.2⟩
+    · intro e he f1 f2 f3
+      exact List.mem_map.mpr ⟨e, List.mem_filter.mpr ⟨he, by rw [f1, f2, f3]; rfl⟩, rfl⟩
+    · intro c₁ c₂ hc₁ hc₂ hne a1 a2 a3 b1 b2 b3
+      refine ⟨List.mem_map.mpr ⟨c₁, List.mem_filter.mpr ⟨hc₁, by rw [a1, a2, a3]; rfl⟩, rfl⟩,
+        List.mem_map.mpr ⟨c₂, List.mem_filter.mpr ⟨hc₂, by rw [b1, b2, b3]; rfl⟩, rfl⟩, ?_⟩
+      have hmem : c₂.1 ∈ (cands.filter (fun c => c.2.1 && c.2.2.1 && c.2.2.2)).map
+          (fun c => c.1) :=
+        List.mem_map.mpr ⟨c₂, List.mem_filter.mpr ⟨hc₂, by rw [b1, b2, b3]; rfl⟩, rfl⟩
+      intro hEq
+      rw [← hEq] at hmem
+      simp at hmem
+      exact hne hmem.symm)
 
-theorem demand_D038 : Contracts.demand_D038 := JurisLean.FullMath.Burden.perPerson_slots_distinct
+theorem demand_D038 : Contracts.demand_D038 := And.intro JurisLean.FullMath.Burden.perPerson_slots_distinct
+  (by
+    intro dict n art cls hfind huniq
+    have hmem : (n, art, cls) ∈ dict := List.mem_of_find?_eq_some hfind
+    have hpred : decide ((n, art, cls).2.1 = art ∧ (n, art, cls).2.2 = cls) = true := by
+      simp
+    have find_unique : ∀ {α : Type} (p : α → Bool) (l : List α) (v : α),
+        v ∈ l → p v = true → (∀ u ∈ l, p u = true → u = v) → l.find? p = some v := by
+      intro α p l
+      induction l with
+      | nil => intro v hv _ _; exact absurd hv (by simp)
+      | cons a l ih =>
+        intro v hv hpv huni
+        by_cases hpa : p a = true
+        · rw [List.find?_cons_of_pos hpa]
+          exact congrArg some (huni a List.mem_cons_self hpa)
+        · rw [List.find?_cons_of_neg hpa]
+          refine ih v ?_ hpv ?_
+          · rcases List.mem_cons.mp hv with heq | hm
+            · subst heq
+              exact absurd hpv hpa
+            · exact hm
+          · intro u hu hpu
+            exact huni u (List.mem_cons_of_mem _ hu) hpu
+    refine ⟨find_unique (fun d => decide (d.2.1 = art ∧ d.2.2 = cls)) dict (n, art, cls)
+      hmem hpred ?_, ⟨rfl, rfl, rfl⟩, ?_, ?_⟩
+    · intro u hu hpu
+      obtain ⟨u₁, u₂, u₃⟩ := u
+      have hp := of_decide_eq_true hpu
+      have h1 : u₁ = n := huniq (u₁, u₂, u₃) (n, art, cls) hu hmem hp.1 hp.2
+      have e2 : u₂ = art := hp.1
+      have e3 : u₃ = cls := hp.2
+      simp [h1, e2, e3]
+    · intro n' hne hEq
+      simp at hEq
+      exact hne hEq
+    · intro m hno
+      exact List.find?_eq_none.mpr (fun d hd => by simp [hno d hd]))
 
-theorem demand_D039 : Contracts.demand_D039 := JurisLean.FullMath.Burden.perPerson_slots_distinct
+theorem demand_D039 : Contracts.demand_D039 := And.intro JurisLean.FullMath.Burden.perPerson_slots_distinct
+  (by
+    intro rows
+    refine ⟨?_, ?_, ?_, ⟨?_, ?_, ?_, ?_⟩⟩
+    · intro hall
+      simp [penTotal, hall]
+    · intro h
+      obtain ⟨r, hr, hr2⟩ := h
+      by_cases hall : rows.all (fun r => r.1 = 1 && r.2.isSome) = true
+      · exfalso
+        have h1 := List.all_eq_true.mp hall r hr
+        simp at h1
+        omega
+      · simp [penTotal, hall]
+    · intro h
+      obtain ⟨r, hr, hr2⟩ := h
+      by_cases hall : rows.all (fun r => r.1 = 1 && r.2.isSome) = true
+      · exfalso
+        have h1 := List.all_eq_true.mp hall r hr
+        simp at h1
+        omega
+      · simp [penTotal, hall]
+    · rfl
+    · rfl
+    · rfl
+    · rfl)
 
-theorem demand_D040 : Contracts.demand_D040 := JurisLean.FullMath.Burden.perPerson_slots_distinct
+theorem demand_D040 : Contracts.demand_D040 := And.intro JurisLean.FullMath.Burden.perPerson_slots_distinct
+  (by
+    intro hw ho n s h1 h2 h3 h4
+    subst h1
+    subst h2
+    subst h4
+    subst h3
+    have hl : ([0, 1, 2] : List ℕ).length = 3 := rfl
+    have ho2 : ([0, 1] : List ℕ).length = 2 := rfl
+    refine ⟨⟨?_, ?_⟩, ⟨?_, ?_⟩, ⟨?_, ?_⟩⟩
+    · decide
+    · decide
+    · decide
+    · decide
+    · rw [hl]
+      norm_num
+    · rw [hl, ho2]
+      norm_num)
 
-theorem demand_D041 : Contracts.demand_D041 := JurisLean.FullMath.Burden.perPerson_slots_distinct
+theorem demand_D041 : Contracts.demand_D041 := And.intro JurisLean.FullMath.Burden.perPerson_slots_distinct
+  (by
+  intro p q ep ec x y hpq hxy
+  refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
+  · simp
+  · simp [hpq]
+  · simp <;> omega
+  · simp <;> omega
+  · simp
+  · intro hEq
+    have h1 : (p, ep, ec, y) = (p, ep, ec, x) := Option.some.inj hEq
+    have h2 : y = x := congrArg (fun t : ℕ × String × String × ℕ => t.2.2.2) h1
+    exact hxy h2.symm)
 
-theorem demand_D042 : Contracts.demand_D042 := JurisLean.FullMath.Burden.perPerson_slots_distinct
+theorem demand_D042 : Contracts.demand_D042 := And.intro JurisLean.FullMath.Burden.perPerson_slots_distinct
+  (by
+    intro required vd relationOk d₁ d₂ s₁ s₂
+    refine ⟨?_, ?_, ?_⟩
+  · intro hall hrel
+    have h1 : required.all (fun d => vd d == some true) = true :=
+      List.all_eq_true.mpr (fun d hd => by rw [hall d hd]; simp)
+    rw [h1, hrel]
+    rfl
+    · intro h
+      obtain ⟨d, hd, hdnone⟩ := h
+      by_cases hall : required.all (fun d => vd d == some true) = true
+      · exfalso
+        rw [List.all_eq_true] at hall
+        have h2 := hall d hd
+        rw [hdnone] at h2
+        simp at h2
+      · exact Bool.of_not_eq_true hall
+    · intro hreq hne h1 h2 h3 hs1 hs2
+      subst hreq
+      refine ⟨?_, ?_, ⟨?_, ?_⟩⟩
+      · simp [h1, h2]
+      · simp [h1, h2]
+      · rw [hs1, hs2]
+        norm_num
+      · simp [h1, h2])
 
-theorem demand_D043 : Contracts.demand_D043 := JurisLean.FullMath.Burden.perPerson_slots_distinct
+theorem demand_D043 : Contracts.demand_D043 := And.intro JurisLean.FullMath.Burden.perPerson_slots_distinct
+  (by
+  intro rec txt
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · intro h
+    obtain ⟨h1, h2, h3⟩ := h
+    simp [readBack, h1, h2, h3]
+    · intro hne
+      simp [readBack, hne]
+    · simp [readBack]
+    · simp [readBack])
 
-theorem demand_D044 : Contracts.demand_D044 := JurisLean.FullMath.Burden.perPerson_slots_distinct
+theorem demand_D044 : Contracts.demand_D044 := And.intro JurisLean.FullMath.Burden.perPerson_slots_distinct
+  (by
+    intro paths conclusions
+    refine ⟨?_, ?_, ?_⟩
+    · intro x hx
+      obtain ⟨hm, hd⟩ := List.mem_filter.mp hx
+      exact ⟨hm, of_decide_eq_true hd⟩
+    · intro x hx hnp hmem
+      obtain ⟨_, hd⟩ := List.mem_filter.mp hmem
+      simp [hnp] at hd
+    · intro hp hc
+      subst hp
+      subst hc
+      refine ⟨?_, ?_⟩
+      · simp
+      · intro hEq
+        simp at hEq)
 
-theorem demand_D045 : Contracts.demand_D045 := JurisLean.FullMath.Burden.perPerson_slots_distinct
+theorem demand_D045 : Contracts.demand_D045 := And.intro JurisLean.FullMath.Burden.perPerson_slots_distinct
+  (by
+    intro items x
+    refine ⟨?_, ?_, ?_, ?_, ⟨?_, ?_⟩⟩
+    · intro hin hok hmem
+      obtain ⟨_, hd⟩ := List.mem_filter.mp hmem
+      rw [hok] at hd
+      simp at hd
+    · intro y hy
+      exact (List.mem_filter.mp hy).1
+  · intro s t a b hne
+    simp [countOnce, crimOK, Ne.symm hne] <;> norm_num
+  · intro s a b
+    simp [countOnce, crimOK] <;> norm_num
+    · rfl
+    · rfl)
 
-theorem demand_D046 : Contracts.demand_D046 := JurisLean.FullMath.Burden.perPerson_slots_distinct
+theorem demand_D046 : Contracts.demand_D046 := And.intro JurisLean.FullMath.Burden.perPerson_slots_distinct
+  (by
+    intro rows v e x u
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · intro r hr
+      exact of_decide_eq_true (List.mem_filter.mp hr).2
+    · intro r hr1 hmem
+      obtain ⟨_, hd⟩ := List.mem_filter.mp hmem
+      simp [hr1] at hd
+    · intro l b hEq
+      simp at hEq
+    · intro ⟨hv, he, hx, hu⟩
+      simp [hearsayResolve, hv, he, hx, hu]
+    · intro hv
+      simp [hearsayResolve, hv])
 
 theorem demand_D047 : Contracts.demand_D047 := JurisLean.FullMath.Numeric.parts_nonneg
 

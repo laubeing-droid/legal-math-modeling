@@ -333,9 +333,7 @@ def twoPeriod : STree Bool := ⟨rT, rF⟩
 /-- 共享 θ 的两期总收益恒等于 1（逐期 θ 与 1−θ 互补相消）。 -/
 theorem shared_total_identity (θ : Bool) :
     evalUnder twoPeriod θ = 1 := by
-  cases θ with
-  | false => rfl
-  | true => rfl
+  cases θ <;> simp [evalUnder, twoPeriod, rT, rF] <;> norm_num
 
 /-- 矩形（逐期独立最坏）估值：`min r₁ + min r₂`——逐期各取最坏相加。 -/
 def rectVal : ℚ :=
@@ -699,8 +697,9 @@ theorem backflow_chain_general (o : List (Nat × ℚ)) (e : Ev) (r : Rule)
     rw [decide_eq_false_iff_not]
     linarith
   · simp only [ruleEval, applyObs, obsGet]
+    refine decide_eq_true_iff.mpr ?_
     rw [if_pos hkey]
-    exact decide_eq_true_iff.mpr hab'
+    exact hab'
 
 /-- 见证实例：观察 (0↦5)、事件（键 0、量 6、有权）、规则（键 0、阈 10）——
 同一规则前 false 后 true。 -/

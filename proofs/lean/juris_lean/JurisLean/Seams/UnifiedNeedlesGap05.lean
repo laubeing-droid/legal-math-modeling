@@ -708,10 +708,12 @@ theorem conclusion_blocked_of_missing_premise (d : CaseDocket) (r : LawRule)
       rw [hself] at hchk
       simp only [Bool.not_true, Bool.false_or, Bool.or_eq_true] at hchk
       rcases hchk with h9 | h9
-      · exact hempty (Finset.mem_inter.mpr ⟨of_decide_eq_true h9,
-          Finset.mem_insert_self p {hc}⟩)
-      · exact hempty (Finset.mem_inter.mpr ⟨of_decide_eq_true h9,
-          Finset.mem_insert_of_mem (Finset.mem_singleton_self hc)⟩)
+      · exact Finset.eq_empty_iff_forall_notMem.mp hempty _
+          (Finset.mem_inter.mpr ⟨of_decide_eq_true h9,
+            Finset.mem_insert_self p {hc}⟩)
+      · exact Finset.eq_empty_iff_forall_notMem.mp hempty _
+          (Finset.mem_inter.mpr ⟨of_decide_eq_true h9,
+            Finset.mem_insert_of_mem (Finset.mem_singleton_self hc)⟩)
   obtain ⟨_, hnot⟩ := Finset.mem_sdiff.mp
     (closure_only_entailed (hornOf d) hmem (Finset.univ \ {p, hc}) hmodel)
   exact hnot (Finset.mem_insert_of_mem (Finset.mem_singleton_self hc))

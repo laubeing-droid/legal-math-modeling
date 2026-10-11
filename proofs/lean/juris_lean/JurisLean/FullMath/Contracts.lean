@@ -336,7 +336,8 @@ def demand_D006 : Prop :=
 def demand_D007 : Prop :=
   (∃ a b : List String, locator a = locator b ∧ a ≠ b) ∧
   ∀ (courts : List (String × String × String))
-      (sources : List SourceVersion) (t : ℕ) (exclusions cd inst lv : String),
+      (sources : List SourceVersion) (t : ℕ) (exclusions : List String)
+      (cd inst lv : String),
     (∀ e, courts.find? (fun c => decide (c.1 = cd)) = some e → e ∈ courts) ∧
     (applicableSources sources t = [] → ¬(cd ∈ exclusions) →
         decideSlot sources t exclusions cd = SlotStatus.pending) ∧
@@ -353,45 +354,188 @@ def demand_D008 : Prop :=
         (a, r, bs, bj₁, rm, sc) ≠ (a, r, bs, bj₂, rm, sc)) ∧
     (∀ a r : String, a ≠ r → (a, r) ≠ (r, a))
 
-def demand_D009 : Prop := ∀ (sources : List SourceVersion) (t : ℕ)
-    (exclusions : List String) (s : String)
-    (hnone : applicableSources sources t = []) (hnot : ¬ (s ∈ exclusions)), decideSlot sources t exclusions s = SlotStatus.pending
+/-! D009-D018 (group 02 法源、解释与类案研究, W2-A batch B02): each def is
+that demand's own contract, translated from ALL_134_MATH_CONTRACTS.md.
+The first conjunct is the group-registered fail-closed source component
+(a slot with no applicable source and no exclusion ground stays pending,
+never inapplicable); the remaining conjuncts are the demand's own
+operational semantics with its adverse case. -/
 
-def demand_D010 : Prop := ∀ (sources : List SourceVersion) (t : ℕ)
-    (exclusions : List String) (s : String)
-    (hnone : applicableSources sources t = []) (hnot : ¬ (s ∈ exclusions)), decideSlot sources t exclusions s = SlotStatus.pending
+/-- D012 helper: bounded citation chase — resolve a term through the
+declared definition table, following declared cross-references with at
+most `fuel` hops; `none` is the explicit rejection path (fuel exhausted,
+or neither a registered meaning nor a declared reference exists). -/
+def citeChase (defs : List (String × String × Bool))
+    (cites : List (String × String)) : ℕ → String → Option (String × Bool)
+  | 0, _ => none
+  | fuel + 1, x =>
+    match defs.find? (fun d => decide (d.1 = x)) with
+    | some d => some (d.2.1, d.2.2)
+    | none =>
+      match cites.find? (fun c => decide (c.1 = x)) with
+      | some c => citeChase defs cites fuel c.2
+      | none => none
 
-def demand_D011 : Prop := ∀ (sources : List SourceVersion) (t : ℕ)
-    (exclusions : List String) (s : String)
-    (hnone : applicableSources sources t = []) (hnot : ¬ (s ∈ exclusions)), decideSlot sources t exclusions s = SlotStatus.pending
+/-- D009 引文回读与版本拒绝（反例：真实引文但引用错版本，版本检查须
+拒绝）：quoted_span 就是 source 的 [st,en) 切片——按出处坐标从原文重取
+逐字还原该引文、长度恰为 en-st；整段重读引文自身亦逐字还原（受保护
+命题的可回读出处）；版本检查按缓存键三元组判定，键不同即拒绝，
+引文内容为真也不放行。 -/
+def demand_D009 : Prop :=
+  (∀ (sources : List SourceVersion) (t : ℕ) (exclusions : List String)
+      (s : String), applicableSources sources t = [] → ¬(s ∈ exclusions) →
+      decideSlot sources t exclusions s = SlotStatus.pending) ∧
+  ∀ (source : List Char) (st en : ℕ) (span : List Char)
+      (v q : SourceVersion) (hkey : cacheKey v ≠ cacheKey q),
+    en ≤ source.length →
+    span = (source.take en).drop st →
+    ((source.take en).drop st = span ∧
+      span.length = en - st ∧
+      (span.take span.length).drop 0 = span ∧
+      cacheHit v q = false)
 
-def demand_D012 : Prop := ∀ (sources : List SourceVersion) (t : ℕ)
-    (exclusions : List String) (s : String)
-    (hnone : applicableSources sources t = []) (hnot : ¬ (s ∈ exclusions)), decideSlot sources t exclusions s = SlotStatus.pending
+/-- D010 适用法条（反例：只召回相似法条不能签全部适用法条证书）：结果
+= 冻结规则库中满足适用谓词的成员——每条结果既在库内又满足谓词；
+"全部适用"声称要求独立候选覆盖：库内每条满足谓词的规则都必须在结果
+里（结果=filter 全库）；谓词为假的相似法条记录永不进入适用结果。 -/
+def demand_D010 : Prop :=
+  (∀ (sources : List SourceVersion) (t : ℕ) (exclusions : List String)
+      (s : String), applicableSources sources t = [] → ¬(s ∈ exclusions) →
+      decideSlot sources t exclusions s = SlotStatus.pending) ∧
+  ∀ (rules : List (String × Bool)) (hits : List String),
+    hits = (rules.filter (fun r => r.2)).map (fun r => r.1) →
+    ((∀ s ∈ hits, ∃ e ∈ rules, e.1 = s ∧ e.2 = true) ∧
+     (∀ e ∈ rules, e.2 = true → e.1 ∈ hits) ∧
+     (∀ e ∈ rules, e.2 = false → e ∉ rules.filter (fun r => r.2)))
 
-def demand_D013 : Prop := ∀ (sources : List SourceVersion) (t : ℕ)
-    (exclusions : List String) (s : String)
-    (hnone : applicableSources sources t = []) (hnot : ¬ (s ∈ exclusions)), decideSlot sources t exclusions s = SlotStatus.pending
+/-- D011 历史版本与法效时间（反例：后上传旧文本不得按新上传日期当新
+法）：Applicable(v,eventTime) 只按法效时间判定——事件时点早于 effective
+即不适用，与其登记（published）先后无关；登记时间与法效时间是分别
+保存的两个字段；旧文本在其自身 effective 之后照常适用（考查的是历史
+版本）。 -/
+def demand_D011 : Prop :=
+  (∀ (sources : List SourceVersion) (t : ℕ) (exclusions : List String)
+      (s : String), applicableSources sources t = [] → ¬(s ∈ exclusions) →
+      decideSlot sources t exclusions s = SlotStatus.pending) ∧
+  ∀ (old new : SourceVersion) (t p e r : ℕ),
+    new.published < old.published → t < new.effective →
+    (appliesAt new t = false ∧
+      (⟨p, e, r⟩ : SourceVersion).published = p ∧
+      (⟨p, e, r⟩ : SourceVersion).effective = e ∧
+      (old.effective ≤ t → (∀ rr, old.repealed = some rr → t < rr) →
+        appliesAt old t = true))
 
-def demand_D014 : Prop := ∀ (sources : List SourceVersion) (t : ℕ)
-    (exclusions : List String) (s : String)
-    (hnone : applicableSources sources t = []) (hnot : ¬ (s ∈ exclusions)), decideSlot sources t exclusions s = SlotStatus.pending
+/-- D012 定义作用域与引用图解释器（反例：定义中排除关联方，主文不得
+重新无条件纳入）：有界引用追踪在注册含义处停机并原样返回含义与限定
+词——被定义排除的词元解析结果仍带排除标记；燃料耗尽给出明确拒绝
+路径（none），不发明未注册含义。 -/
+def demand_D012 : Prop :=
+  (∀ (sources : List SourceVersion) (t : ℕ) (exclusions : List String)
+      (s : String), applicableSources sources t = [] → ¬(s ∈ exclusions) →
+      decideSlot sources t exclusions s = SlotStatus.pending) ∧
+  ∀ (defs : List (String × String × Bool)) (cites : List (String × String))
+      (x m : String) (fuel : ℕ),
+    (defs.find? (fun d => decide (d.1 = x)) = some (x, m, false) →
+        citeChase defs cites (fuel + 1) x = some (m, false)) ∧
+    (citeChase defs cites 0 x = none) ∧
+    (∀ (x' m' : String),
+        defs.find? (fun d => decide (d.1 = x')) = some (x', m', true) →
+        citeChase defs cites (fuel + 1) x' = some (m', true))
 
-def demand_D015 : Prop := ∀ (sources : List SourceVersion) (t : ℕ)
-    (exclusions : List String) (s : String)
-    (hnone : applicableSources sources t = []) (hnot : ¬ (s ∈ exclusions)), decideSlot sources t exclusions s = SlotStatus.pending
+/-- D013 类案相关性与迁移（反例：程序上相关但实体事实不同，不复制
+实体结论）：排序键就是指定 score——序关系与 score 的序一致且反对称；
+类案迁移须持有相关特征保留见证——relevant 特征全部保留于目标案才可
+复制实体结论，缺任一相关特征即不得复制。 -/
+def demand_D013 : Prop :=
+  (∀ (sources : List SourceVersion) (t : ℕ) (exclusions : List String)
+      (s : String), applicableSources sources t = [] → ¬(s ∈ exclusions) →
+      decideSlot sources t exclusions s = SlotStatus.pending) ∧
+  ∀ (score : String → ℚ) (a b : String)
+      (tgtFeats relevant : List String) (copied : Bool),
+    (decide (score a > score b) = true ↔ score a > score b) ∧
+    (score a > score b → score b > score a → False) ∧
+    (copied = decide (relevant.all (fun f => decide (f ∈ tgtFeats))) →
+      (∃ f ∈ relevant, f ∉ tgtFeats) → copied = false)
 
-def demand_D016 : Prop := ∀ (sources : List SourceVersion) (t : ℕ)
-    (exclusions : List String) (s : String)
-    (hnone : applicableSources sources t = []) (hnot : ¬ (s ∈ exclusions)), decideSlot sources t exclusions s = SlotStatus.pending
+/-- D014 固定候选池重排与全库检索（反例：100项pool全命中不能改写成
+全库无遗漏）：返回集 ⊆ Relevant_D——返回成员逐项来自池内且满足独立
+相关性定义；池内满足谓词者全部被返回（无漏池内）；等号声称（全库
+无遗漏）需要覆盖 D：语料中有池外真相关条目时，全库无遗漏声称即被
+拒绝。 -/
+def demand_D014 : Prop :=
+  (∀ (sources : List SourceVersion) (t : ℕ) (exclusions : List String)
+      (s : String), applicableSources sources t = [] → ¬(s ∈ exclusions) →
+      decideSlot sources t exclusions s = SlotStatus.pending) ∧
+  ∀ (corpus pool returned : List String) (relevant : String → Bool),
+    returned = pool.filter relevant →
+    ((∀ s ∈ returned, s ∈ pool ∧ relevant s = true) ∧
+     (∀ s ∈ pool, relevant s = true → s ∈ returned) ∧
+     ((∃ s ∈ corpus, s ∉ pool ∧ relevant s = true) →
+        ¬ (∀ s ∈ corpus, relevant s = true → s ∈ returned)))
 
-def demand_D017 : Prop := ∀ (sources : List SourceVersion) (t : ℕ)
-    (exclusions : List String) (s : String)
-    (hnone : applicableSources sources t = []) (hnot : ¬ (s ∈ exclusions)), decideSlot sources t exclusions s = SlotStatus.pending
+/-- D015 引用支持与声明升级（反例：案号真实但只支持相反观点，不准当
+正向依据）：核准支持边只由正向 stance 的引用生成——每条边的来源都是
+一条正向引用；反方 stance 的引用记录永不进入核准边来源；每个引用
+命题的 span 原样保留在登记中。 -/
+def demand_D015 : Prop :=
+  (∀ (sources : List SourceVersion) (t : ℕ) (exclusions : List String)
+      (s : String), applicableSources sources t = [] → ¬(s ∈ exclusions) →
+      decideSlot sources t exclusions s = SlotStatus.pending) ∧
+  ∀ (cites : List (String × List Char × Bool)) (edges : List (String × String))
+      (propId : String),
+    edges = (cites.filter (fun c => c.2.2)).map (fun c => (c.1, propId)) →
+    ((∀ e ∈ edges, ∃ c ∈ cites, c.1 = e.1 ∧ c.2.2 = true) ∧
+     (∀ c ∈ cites, c.2.2 = false → c ∉ cites.filter (fun c => c.2.2)) ∧
+     (∀ c ∈ cites, ∃ span, (c.1, span, c.2.2) ∈ cites ∧ span = c.2.1))
 
-def demand_D018 : Prop := ∀ (sources : List SourceVersion) (t : ℕ)
-    (exclusions : List String) (s : String)
-    (hnone : applicableSources sources t = []) (hnot : ¬ (s ∈ exclusions)), decideSlot sources t exclusions s = SlotStatus.pending
+/-- D016 先例效力图与引用时点（反例：推翻一个争点不得删除该案所有
+无关论点，亦不得保留被推翻点）：推翻按 (判例, 争点) 逐点登记生效日，
+效力随引用时点判定——生效日后该点失效；无关争点（其推翻记录在引用
+时点之前均未生效）照常有效；两争点切片互不串扰。 -/
+def demand_D016 : Prop :=
+  (∀ (sources : List SourceVersion) (t : ℕ) (exclusions : List String)
+      (s : String), applicableSources sources t = [] → ¬(s ∈ exclusions) →
+      decideSlot sources t exclusions s = SlotStatus.pending) ∧
+  ∀ (overruled : List (String × String × ℕ)) (c i j : String) (t d : ℕ),
+    (c, i, d) ∈ overruled → d ≤ t →
+    ((overruled.filter (fun o => decide (o.1 = c ∧ o.2.1 = i))).all
+        (fun o => decide (t < o.2.2)) = false ∧
+      ((∀ o ∈ overruled, o.1 = c ∧ o.2.1 = j → t < o.2.2) →
+        (overruled.filter (fun o => decide (o.1 = c ∧ o.2.1 = j))).all
+          (fun o => decide (t < o.2.2)) = true))
+
+/-- D017 法律框架候选筛选（反例：不能按英文合同或美国当事人自动选
+UCC）：候选按四项适用条件（管辖、标的、冲突法、适用条件）合取筛选，
+全真才选中、任一为假即未选中；单一条件为真而其余为假时仍不选中
+（未决分支保留在候选表中，不丢弃）。 -/
+def demand_D017 : Prop :=
+  (∀ (sources : List SourceVersion) (t : ℕ) (exclusions : List String)
+      (s : String), applicableSources sources t = [] → ¬(s ∈ exclusions) →
+      decideSlot sources t exclusions s = SlotStatus.pending) ∧
+  ∀ (cands : List (String × Bool × Bool × Bool × Bool)) (name : String)
+      (b₁ b₂ b₃ b₄ : Bool),
+    cands.find? (fun c => decide (c.1 = name)) = some (name, b₁, b₂, b₃, b₄) →
+    (((b₁ && b₂ && b₃ && b₄) = true ↔
+        b₁ = true ∧ b₂ = true ∧ b₃ = true ∧ b₄ = true) ∧
+     ((b₁ && b₂ && b₃ && b₄) = false ↔
+        b₁ = false ∨ b₂ = false ∨ b₃ = false ∨ b₄ = false) ∧
+     (b₁ = true → b₂ = false → (b₁ && b₂ && b₃ && b₄) = false) ∧
+     (name, b₁, b₂, b₃, b₄) ∈ cands)
+
+/-- D018 跨法域申报规则比较（反例：将申报门槛相同误当申报后果相同须
+被区分）：比较保持每个域的主体/门槛/时间/效果四维——恒等比较下四维
+逐维一致；门槛相同而后果不同的两个制度必须被区分（不同一），并返回
+具名差异见证（"effect"维），不得判为等同。 -/
+def demand_D018 : Prop :=
+  (∀ (sources : List SourceVersion) (t : ℕ) (exclusions : List String)
+      (s : String), applicableSources sources t = [] → ¬(s ∈ exclusions) →
+      decideSlot sources t exclusions s = SlotStatus.pending) ∧
+  ∀ (a b : List String × ℚ × ℕ × String)
+      (m : List String × ℚ × ℕ × String),
+    (m = a → m.1 = a.1 ∧ m.2.1 = a.2.1 ∧ m.2.2.1 = a.2.2.1 ∧ m.2.2.2 = a.2.2.2) ∧
+    (a.2.1 = b.2.1 → a.2.2.2 ≠ b.2.2.2 → a ≠ b) ∧
+    (a.2.1 = b.2.1 → a.2.2.2 ≠ b.2.2.2 →
+      (if a.2.2.2 = b.2.2.2 then ([] : List String) else ["effect"]) ≠ [])
 
 def demand_D019 : Prop := ∀ (k : ℕ) (v v' : ℚ) (l : List Obs), (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id
 

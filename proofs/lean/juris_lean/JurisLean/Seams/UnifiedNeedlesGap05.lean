@@ -164,7 +164,7 @@ theorem familyMatoms_ne_nil (f : Fam) : familyMatoms f ≠ [] := by
 
 /-- `familyWitness` 的逐族见证原子确实属于该族材料原子表（表头一致性）。 -/
 theorem familyWitness_mem (f : Fam) : familyWitness f ∈ familyMatoms f := by
-  cases f <;> simp [familyMatoms]
+  cases f <;> simp [familyMatoms, familyWitness]
 
 /-- 内核级全查：29 条规则的结论都是推导原子——在任何案卷上 `materialHolds`
     恒为 false（推导原子不是输入材料）。 -/
@@ -197,10 +197,10 @@ def statePayload (f : Fam) (d : CaseDocket) : MaterialPayload :=
   if materialHolds (familyWitness f) d = true then MaterialPayload.declared
   else MaterialPayload.absent
 
-/-- `Fin 14` → 族标签读出（供 `stateOf` 喂旧 `familyNet` 的 `Fin 14` 指标）；
-    末支 catch-all 对合法下标不可达（val < 14），仅满足全匹配。 -/
-def finToFam (i : Fin 14) : Fam :=
-  match i.val with
+/-- `Fin 14` 下标 → 族标签读出（供 `stateOf` 喂旧 `familyNet` 的 `Fin 14` 指标，
+    调用点传 `i.val`）；末支 catch-all 对合法下标（val < 14）不可达，仅满足全匹配。 -/
+def finToFam (i : ℕ) : Fam :=
+  match i with
   | 0 => Fam.L01Contract
   | 1 => Fam.L02Property
   | 2 => Fam.L03Tort
@@ -261,7 +261,7 @@ def docketMatLayer : Fragment CaseDocket where
       ⟨q, pr, m01, m02, m03, m04, m05, m06, m07, m08, m09, m10, m11, m12, m13, m14⟩
 
 /-- 材料内容层往返（结构 eta 级，同 `familyNet_roundTrip` 的处理方式）。 -/
-theorem docketMatLayer_roundTrip : RoundTrip docketMatLayer := fun d => rfl
+theorem docketMatLayer_roundTrip : RoundTrip docketMatLayer := fun _ => rfl
 
 /-- **推导层片段**：观测值 = 任一原子是否在该案卷 Horn 网络闭包内。
     `dec` 取常值（同旧 `registerLayer` 的处理），本件不为其声称 RoundTrip。 -/
@@ -341,9 +341,10 @@ theorem variant_hblock :
       r.horn.premises ∩ badVariant ≠ ∅ := by
   intro r hr hcon
   have hchk := List.all_eq_true.mp variant_hblock_check r hr
-  rcases Bool.or_eq_true.mp hchk with h9 | h9
-  · exact absurd hcon (by simpa using h9)
-  · exact fun hempty => (by simpa using h9) hempty
+  simp only [Bool.or_eq_true, not_decide_eq_true] at hchk
+  rcases hchk with h9 | h9
+  · exact absurd hcon h9
+  · exact h9
 
 /-- **变体案的避开坏集模型**：全域去掉坏集是 `hornOf variantDocket` 的模型。 -/
 theorem variant_model : isModel (hornOf variantDocket) (Finset.univ \ badVariant) := by
@@ -398,7 +399,24 @@ theorem joint_legal_model_exists_material :
         familyParties fullDocket f ≠ []) ∧
     (familyHorn.initialFacts.Nonempty ∧ familyHorn.rules.Nonempty ∧
       ∀ r ∈ familyRuleList, r.horn.conclusion ∈ closureAt familyHorn) ∧
-    witness_joint_evaluation ∧
+    -- 以下十一合取即 `UnifiedFourteenFamilies.witness_joint_evaluation` 的命题原文：
+    -- 裸定理名是证明项而非 Prop，不能直接作 `∧` 操作数，故展开书写（命题恒等）。
+    (∀ a ∈ witnessOutput.established, a ∈ closureAt familyHorn) ∧
+    (∀ a ∈ witnessOutput.notEstablished, a ∉ closureAt familyHorn) ∧
+    (∀ a ∈ witnessOutput.pendingByLaw,
+        holdOf a ∈ closureAt familyHorn ∧ a ∉ closureAt familyHorn) ∧
+    (∀ a ∈ witnessOutput.procedural, a ∈ closureAt familyHorn) ∧
+    (∀ f : Fam,
+        materialHolds (familyWitness f) fullDocket = true ∧
+        familyParties fullDocket f ≠ []) ∧
+    (fullDocket.procOf Fam.L01Contract).stage ≠
+      (fullDocket.procOf Fam.L03Tort).stage ∧
+    (fullDocket.procOf Fam.L07Labor).forum ≠
+      (fullDocket.procOf Fam.L14ArbitrationMaritimePublic).forum ∧
+    (loanEntitlement ∈ closureAt familyHorn ∧ loanFinalDecree ∉ closureAt familyHorn) ∧
+    0 < witnessOutput.unmetBalance ∧
+    (familyRuleList.all (fun r => srcInForce r.src) = true) ∧
+    (adminFinalDisposition ∉ closureAt familyHorn) ∧
     (∃ (p q : Joint docketMatLayer docketHornLayer), p ≠ q ∧ ∃ i : docketMatLayer.ι,
       jointObs₁ docketMatLayer docketHornLayer i p ≠
         jointObs₁ docketMatLayer docketHornLayer i q) ∧
@@ -411,7 +429,19 @@ theorem joint_legal_model_exists_material :
     ⟨⟨matContractSigned, Finset.mem_filter.mpr ⟨Finset.mem_univ _, rfl⟩⟩,
       ⟨ruleLoanEntitlement.horn, rule_horn_mem ruleLoanEntitlement (by simp [familyRuleList])⟩,
       all_rule_concl_in_closure⟩,
-    witness_joint_evaluation,
+    -- 十一合取支逐项供给（与 `UnifiedFourteenFamilies.witness_joint_evaluation` 的
+    -- 证明项逐字段同形）：
+    witness_established_ok,
+    witness_not_established_ok,
+    witness_pending_ok,
+    witness_procedural_ok,
+    witness_completeness_ok,
+    witness_stages_not_shared,
+    witness_forums_separate,
+    witness_entitlement_not_finality,
+    witness_shortfall_ok,
+    all_rules_sources_in_force,
+    witness_admin_branch_open,
     joint_model_is_not_collapsed docketMatLayer docketHornLayer fullDocket variantDocket
       docketMatLayer_roundTrip ⟨Fam.L01Contract, matLayer_separates⟩,
     ⟨stateOf_collapse, matLayer_separates, loanEntitlement_mem, variant_loan_not_closure⟩⟩
@@ -470,16 +500,16 @@ theorem famBranch_partition (f : Fam) (d : CaseDocket) :
     by_contra hall
     push_neg at hall
     refine hcon (fun a ha => ?_)
-    by_cases hb : materialHolds a d = true
-    · exact hb
-    · exact absurd hb (hall a ha)
+    cases h9 : materialHolds a d with
+    | true => rfl
+    | false => exact absurd h9 (hall a ha)
   have htr : ∃ a ∈ familyMatoms f, materialHolds a d = true := by
     by_contra hall
     push_neg at hall
     refine hab (fun a ha => ?_)
-    by_cases hb : materialHolds a d = false
-    · exact hb
-    · exact absurd hb (hall a ha)
+    cases h9 : materialHolds a d with
+    | false => rfl
+    | true => exact absurd h9 (hall a ha)
   obtain ⟨a₁, h₁m, h₁f⟩ := htf
   obtain ⟨a₂, h₂m, h₂t⟩ := htr
   exact ⟨a₂, h₂m, a₁, h₁m, h₂t, h₁f⟩
@@ -487,7 +517,7 @@ theorem famBranch_partition (f : Fam) (d : CaseDocket) :
 /-- **互斥一**：缺料与一致不可共存（每族材料表非空）。 -/
 theorem brAbsent_not_consistent (f : Fam) (d : CaseDocket)
     (ha : brIsAbsent f d) (hc : brIsConsistent f d) : False := by
-  obtain ⟨a, ham⟩ := List.exists_mem_of_ne_nil (familyMatoms_ne_nil f)
+  obtain ⟨a, ham⟩ := List.exists_mem_of_ne_nil (familyMatoms f) (familyMatoms_ne_nil f)
   exact Bool.noConfusion ((ha a ham).symm.trans (hc a ham))
 
 /-- **互斥二**：缺料与分歧不可共存。 -/
@@ -499,8 +529,8 @@ theorem brAbsent_not_divergent (f : Fam) (d : CaseDocket)
 /-- **互斥三**：一致与分歧不可共存。 -/
 theorem brConsistent_not_divergent (f : Fam) (d : CaseDocket)
     (hc : brIsConsistent f d) (hd : brIsDivergent f d) : False := by
-  obtain ⟨a₁, h₁m, _, _, ht, _⟩ := hd
-  exact Bool.noConfusion ((hc a₁ h₁m).trans ht)
+  obtain ⟨a₁, h₁m, a₂, h₂m, _, hf⟩ := hd
+  exact Bool.noConfusion ((hc a₂ h₂m).symm.trans hf)
 
 /-- 分类器 ↔ 语义谓词（一致支）。 -/
 theorem famBranchOf_eq_consistent_iff (f : Fam) (d : CaseDocket) :
@@ -509,8 +539,7 @@ theorem famBranchOf_eq_consistent_iff (f : Fam) (d : CaseDocket) :
   by_cases h1 : (familyMatsList f d).all id = true
   · rw [if_pos h1, eq_self_iff_true, true_iff]
     intro a ha
-    exact of_decide_eq_true (List.all_eq_true.mp h1 a
-      (List.mem_map.mpr ⟨a, ha, rfl⟩))
+    exact List.all_eq_true.mp h1 (materialHolds a d) (List.mem_map.mpr ⟨a, ha, rfl⟩)
   · rw [if_neg h1]
     constructor
     · intro heq
@@ -534,7 +563,7 @@ theorem famBranchOf_eq_absent_iff (f : Fam) (d : CaseDocket) :
   · rw [if_pos h1]
     refine iff_of_false (fun heq => FamBranch.noConfusion heq) ?_
     intro hall
-    obtain ⟨a, ham⟩ := List.exists_mem_of_ne_nil (familyMatoms_ne_nil f)
+    obtain ⟨a, ham⟩ := List.exists_mem_of_ne_nil (familyMatoms f) (familyMatoms_ne_nil f)
     have hmem : materialHolds a d ∈ familyMatsList f d :=
       List.mem_map.mpr ⟨a, ham, rfl⟩
     exact Bool.noConfusion ((hall a ham).symm.trans (List.all_eq_true.mp h1 _ hmem))
@@ -542,8 +571,10 @@ theorem famBranchOf_eq_absent_iff (f : Fam) (d : CaseDocket) :
     by_cases h2 : (familyMatsList f d).all (fun b => !b) = true
     · rw [if_pos h2, eq_self_iff_true, true_iff]
       intro a ha
-      exact of_decide_eq_true (List.all_eq_true.mp h2 a
-        (List.mem_map.mpr ⟨a, ha, rfl⟩))
+      have h9 : (!materialHolds a d) = true :=
+        List.all_eq_true.mp h2 (materialHolds a d) (List.mem_map.mpr ⟨a, ha, rfl⟩)
+      rw [Bool.not_eq_true'] at h9
+      exact h9
     · rw [if_neg h2]
       refine iff_of_false (fun heq => FamBranch.noConfusion heq) ?_
       intro habs
@@ -564,20 +595,38 @@ theorem famBranchOf_eq_divergent_iff (f : Fam) (d : CaseDocket) :
     intro hd
     obtain ⟨a₁, _, a₂, h₂m, _, hf⟩ := hd
     have hfa : materialHolds a₂ d = true :=
-      of_decide_eq_true (List.all_eq_true.mp h1 a₂ (List.mem_map.mpr ⟨a₂, h₂m, rfl⟩))
-    exact Bool.noConfusion (hfa.trans hf)
+      List.all_eq_true.mp h1 (materialHolds a₂ d) (List.mem_map.mpr ⟨a₂, h₂m, rfl⟩)
+    exact Bool.noConfusion (hf.symm.trans hfa)
   · rw [if_neg h1]
     by_cases h2 : (familyMatsList f d).all (fun b => !b) = true
     · rw [if_pos h2]
       refine iff_of_false (fun heq => FamBranch.noConfusion heq) ?_
       intro hd
       obtain ⟨a₁, h₁m, _, _, ht, _⟩ := hd
-      have hta : materialHolds a₁ d = false :=
-        of_decide_eq_true (List.all_eq_true.mp h2 a₁ (List.mem_map.mpr ⟨a₁, h₁m, rfl⟩))
-      exact Bool.noConfusion (hta.symm.trans ht)
+      have h9 : (!materialHolds a₁ d) = true :=
+        List.all_eq_true.mp h2 (materialHolds a₁ d) (List.mem_map.mpr ⟨a₁, h₁m, rfl⟩)
+      rw [Bool.not_eq_true'] at h9
+      exact Bool.noConfusion (h9.symm.trans ht)
     · rw [if_neg h2, eq_self_iff_true, true_iff]
-      intro a₁ h₁m a₂ h₂m ht hf
-      exact ⟨a₁, h₁m, a₂, h₂m, ht, hf⟩
+      have htf : ∃ a ∈ familyMatoms f, materialHolds a d = false := by
+        by_contra h9
+        push_neg at h9
+        refine h1 (List.all_eq_true.mpr fun b hb => ?_)
+        obtain ⟨a, ha, rfl⟩ := List.mem_map.mp hb
+        cases hb2 : materialHolds a d with
+        | true => rfl
+        | false => exact absurd hb2 (h9 a ha)
+      have htr : ∃ a ∈ familyMatoms f, materialHolds a d = true := by
+        by_contra h9
+        push_neg at h9
+        refine h2 (List.all_eq_true.mpr fun b hb => ?_)
+        obtain ⟨a, ha, rfl⟩ := List.mem_map.mp hb
+        cases hb2 : materialHolds a d with
+        | false => rfl
+        | true => exact absurd hb2 (h9 a ha)
+      obtain ⟨a₁, h₁m, h₁f⟩ := htf
+      obtain ⟨a₂, h₂m, h₂t⟩ := htr
+      exact ⟨a₂, h₂m, a₁, h₁m, h₂t, h₁f⟩
 
 /-- **分支枚举总表**：完备 + 互斥 + 分类器与语义谓词双侧互译（对任一族任一案卷）。 -/
 theorem famBranch_partition_and_exclusive (f : Fam) (d : CaseDocket) :
@@ -652,12 +701,13 @@ theorem conclusion_blocked_of_missing_premise (d : CaseDocket) (r : LawRule)
     · exfalso
       have hm : r'.horn.conclusion ∈ allMaterialAtomList := by rw [hcp]; exact hpmat0
       exact rule_concl_not_material_atom r' (List.mem_toFinset.mp hr') hm
-    · have hchk := List.all_eq_true.mp hcheck r' (List.mem_toFinset.mp hr')
+    · rcases Finset.mem_singleton.mp hcon with hcp
+      have hchk := List.all_eq_true.mp hcheck r' (List.mem_toFinset.mp hr')
       rw [hcp] at hchk
       have hself : decide (hc = hc) = true := decide_eq_true rfl
       rw [hself] at hchk
-      simp only [Bool.not_true, Bool.false_or] at hchk
-      rcases Bool.or_eq_true.mp hchk with h9 | h9
+      simp only [Bool.not_true, Bool.false_or, Bool.or_eq_true] at hchk
+      rcases hchk with h9 | h9
       · exact hempty (Finset.mem_inter.mpr ⟨of_decide_eq_true h9,
           Finset.mem_insert_self p {hc}⟩)
       · exact hempty (Finset.mem_inter.mpr ⟨of_decide_eq_true h9,
@@ -903,9 +953,10 @@ theorem l01_absent_downstream (d : CaseDocket) (habs : brIsAbsent Fam.L01Contrac
     intro rh hrh hcon
     obtain ⟨r, hr, rfl⟩ := Finset.mem_image.mp hrh
     have hchk := List.all_eq_true.mp l01_absent_hblock_check r (List.mem_toFinset.mp hr)
-    rcases Bool.or_eq_true.mp hchk with h9 | h9
-    · exact absurd hcon (by simpa using h9)
-    · exact fun hempty => (by simpa using h9) hempty
+    simp only [Bool.or_eq_true, not_decide_eq_true] at hchk
+    rcases hchk with h9 | h9
+    · exact absurd hcon h9
+    · exact h9
   refine ⟨fun hmem => ?_, fun hmem => ?_⟩
   · obtain ⟨_, hnot⟩ := Finset.mem_sdiff.mp
       (closure_only_entailed (hornOf d) hmem (Finset.univ \ badL01Absent) hmodel)
@@ -934,11 +985,15 @@ theorem failureish_model (d : CaseDocket) :
   · intro rh hrh hcon
     obtain ⟨r, hr, rfl⟩ := Finset.mem_image.mp hrh
     exfalso
-    have hf : failureish r.horn.conclusion = true :=
-      (Bool.and_eq_true.mp (Finset.mem_filter.mp hcon).2).1
+    have h2 : (failureish r.horn.conclusion && !materialHolds r.horn.conclusion d) = true :=
+      (Finset.mem_filter.mp hcon).2
+    simp only [Bool.and_eq_true] at h2
+    have hf : failureish r.horn.conclusion = true := h2.1
     have hnot : (!failureish r.horn.conclusion) = true :=
       List.all_eq_true.mp rule_concl_not_failureish r (List.mem_toFinset.mp hr)
-    have hfalse : failureish r.horn.conclusion = false := by simpa using hnot
+    have hfalse : failureish r.horn.conclusion = false := by
+      rw [← Bool.not_eq_true']
+      exact hnot
     rw [hfalse] at hf
     exact Bool.noConfusion hf
 
@@ -1094,16 +1149,24 @@ def ecoCited : Finset SrcId :=
   insert (SrcId.statute LawSource.ecoCode1080)
     (ruleEcoRemediation.horn.premises.biUnion ecoChildC)
 
-/-- R10 结论的材料侧溯源集（消费 `matSrcOf`）。 -/
+/-- R07→R08→R10 链的材料侧溯源函数：跨族派生前提各自携带其推导所用叶子材料
+    （材料侧对偶于法源侧引用函数 `ecoChildC`；材料前提以自身为来源）。 -/
+def ecoChildM (p : Atom) : Finset Atom :=
+  match p with
+  | .publicInterestStanding => rulePublicStanding.horn.premises.biUnion matSrcOf
+  | .ecoViolationEstablished => ruleEcoViolation.horn.premises.biUnion matSrcOf
+  | _ => matSrcOf p
+
+/-- R10 结论的材料侧溯源集（消费 `matSrcOf`；经 `ecoChildM` 收全六份在卷叶子材料）。 -/
 def ecoProvSet : Finset Atom :=
-  ruleEcoRemediation.horn.premises.biUnion matSrcOf
+  ruleEcoRemediation.horn.premises.biUnion ecoChildM
 
 /-- **旗舰推导树（材料侧）**：`ecoRemediationCosts` 的高度 3 带来源 HProvN 推导
     （R10 顶节点，R07/R08 中间节点，6 份在卷材料为叶）。 -/
 theorem ecoRemediationCosts_prov :
     HProvN familyHorn Atom matSrcOf 3 ecoProvSet ecoRemediationCosts := by
   refine HProvN.rule 2 ruleEcoRemediation.horn
-    (rule_horn_mem ruleEcoRemediation (by simp [familyRuleList])) matSrcOf ?_
+    (rule_horn_mem ruleEcoRemediation (by simp [familyRuleList])) ecoChildM ?_
   intro p hp
   rcases Finset.mem_insert.mp hp with rfl | hp
   · exact HProvN.fact 2 matEcoCostDocs (matInitEnt _ rfl)
@@ -1200,7 +1263,7 @@ theorem eco_prov_steps_named :
         ruleEcoViolation.src = LawSource.ecoCode1075_1081) ∧
       (familyRuleList.all (fun r => srcInForce r.src) = true) :=
   ⟨by simp [familyRuleList], by simp [familyRuleList], by simp [familyRuleList],
-    rfl, rfl, rfl, all_rules_sources_in_force⟩
+    ⟨rfl, rfl, rfl⟩, all_rules_sources_in_force⟩
 
 /-- **与 LTagN 法源树一致（一般形）**：同一原子的任何 HProvN 推导树与任何
     LTagN 来源树，结论同进 Horn 闭包，且两侧引用集全部落在已声明在卷材料或
@@ -1240,6 +1303,7 @@ theorem eco_leaf_materials_on_file :
 theorem matEcoCostDocs_mem_ecoProvSet : matEcoCostDocs ∈ ecoProvSet := by
   refine Finset.mem_biUnion.mpr ⟨matEcoCostDocs,
     (by simp [ruleEcoRemediation, LawRule.horn]), ?_⟩
+  simp only [ecoChildM]
   rw [matSrcOf_self matEcoCostDocs rfl]
   exact Finset.mem_singleton_self _
 

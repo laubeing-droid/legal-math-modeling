@@ -320,7 +320,8 @@ theorem devMinList_mem : ∀ (l : List ℚ), l ≠ [] → ∃ v, v ∈ l ∧ dev
         · rw [min_eq_left h]; simp
         · simp only [devMinList, hv_eq, min_eq_left h]
       · refine ⟨min a v, ?_, ?_⟩
-        · rw [min_eq_right h]; simp
+        · rw [min_eq_right h]
+          exact List.mem_cons_of_mem _ hv_mem
         · simp only [devMinList, hv_eq, min_eq_right h]
 
 /-- 成员上界：表中任意元素 ≥ 最小值。 -/
@@ -339,7 +340,7 @@ theorem devMinList_le_of_mem : ∀ (l : List ℚ) (v : ℚ), v ∈ l → devMinL
       simp only [devMinList]
       rcases List.mem_cons.mp hv with h | h
       · subst h; exact min_le_left _ _
-      · exact min_le_right _ _ (ih v h)
+      · exact le_trans (min_le_right _ _) (ih v h)
 
 /-- 成员下界：表中任意元素 ≤ 最大值。 -/
 theorem devMaxList_ge_of_mem : ∀ (l : List ℚ) (v : ℚ), v ∈ l → v ≤ devMaxList l := by
@@ -357,7 +358,7 @@ theorem devMaxList_ge_of_mem : ∀ (l : List ℚ) (v : ℚ), v ∈ l → v ≤ d
       simp only [devMaxList]
       rcases List.mem_cons.mp hv with h | h
       · subst h; exact le_max_left _ _
-      · exact le_max_right _ _ (ih v h)
+      · exact le_trans (ih v h) (le_max_right _ _)
 
 /-- 全员上界则 max 上界（空表用 0 ≤ B 兜底）。 -/
 theorem devMaxList_le_of_forall : ∀ (l : List ℚ) (B : ℚ), (∀ v ∈ l, v ≤ B) →
@@ -371,7 +372,8 @@ theorem devMaxList_le_of_forall : ∀ (l : List ℚ) (B : ℚ), (∀ v ∈ l, v 
     | nil => simpa [devMaxList] using hall a (by simp)
     | cons b rest2 =>
       simp only [devMaxList]
-      exact max_le (hall a (by simp)) (ih B (fun v hv => hall v (by simp)) h0)
+      exact max_le (hall a (by simp))
+        (ih B (fun v hv => hall v (List.mem_cons_of_mem _ hv)) h0)
 
 /-- 全员非负则 min 非负。 -/
 theorem devMinList_nonneg : ∀ (l : List ℚ), (∀ v ∈ l, 0 ≤ v) → 0 ≤ devMinList l := by
@@ -384,7 +386,8 @@ theorem devMinList_nonneg : ∀ (l : List ℚ), (∀ v ∈ l, 0 ≤ v) → 0 ≤
     | nil => simpa [devMinList] using hall a (by simp)
     | cons b rest2 =>
       simp only [devMinList]
-      exact le_min (hall a (by simp)) (ih (fun v hv => hall v (by simp)))
+      exact le_min (hall a (by simp))
+        (ih (fun v hv => hall v (List.mem_cons_of_mem _ hv)))
 
 /-- §12.2 偏离：`dev(x,S)=min_{s∈S}|x−s|`（ℚ 值；有限参照集为 min；
 空集回退 0 但由非空门拒填——见 `devReadingOkB`）。 -/
@@ -394,7 +397,9 @@ def devOf (x : ℚ) (S : List ℚ) : ℚ := devMinList (S.map (fun s => |x - s|)
 theorem devOf_nonneg (x : ℚ) (S : List ℚ) : 0 ≤ devOf x S :=
   devMinList_nonneg _ (fun v hv => by
     obtain ⟨s, _, hs⟩ := List.mem_map.mp hv
-    rw [hs]; exact abs_nonneg _)
+    have hs' : |x - s| = v := hs
+    rw [← hs']
+    exact abs_nonneg _)
 
 /-- 偏离上界面：对任意参照点 s ∈ S，dev ≤ |x−s|。 -/
 theorem devOf_le_of_mem (x : ℚ) (S : List ℚ) (s : ℚ) (h : s ∈ S) :
@@ -454,17 +459,17 @@ theorem dHaus_symm (S T : List ℚ) : dHaus S T = dHaus T S := by
 （§12.2：双向用任意 ε 近邻——有限集取到）。 -/
 theorem dev_set_change_bound (x : ℚ) (S T : List ℚ) (hS : S ≠ []) (hT : T ≠ []) :
     |devOf x S - devOf x T| ≤ dHaus S T := by
-  obtain ⟨t*, htmem, htatt⟩ := devOf_attained x T hT
-  have h1 : devOf x S ≤ |x - t*| + devOf t* S := devOf_le_add_devOf x t* S hS
-  have h2 : devOf t* S ≤ devMaxList (T.map (fun t => devOf t S)) :=
-    devMaxList_ge_of_mem _ _ (List.mem_map.mpr ⟨t*, htmem, rfl⟩)
-  have h3 : |x - t*| = devOf x T := htatt.symm
+  obtain ⟨tc, htmem, htatt⟩ := devOf_attained x T hT
+  have h1 : devOf x S ≤ |x - tc| + devOf tc S := devOf_le_add_devOf x tc S hS
+  have h2 : devOf tc S ≤ devMaxList (T.map (fun t => devOf t S)) :=
+    devMaxList_ge_of_mem _ _ (List.mem_map.mpr ⟨tc, htmem, rfl⟩)
+  have h3 : |x - tc| = devOf x T := htatt.symm
   have hmax : devMaxList (T.map (fun t => devOf t S)) ≤ dHaus S T := le_max_right _ _
-  obtain ⟨s*, hsmem, hsatt⟩ := devOf_attained x S hS
-  have h1' : devOf x T ≤ |x - s*| + devOf s* T := devOf_le_add_devOf x s* T hT
-  have h2' : devOf s* T ≤ devMaxList (S.map (fun s => devOf s T)) :=
-    devMaxList_ge_of_mem _ _ (List.mem_map.mpr ⟨s*, hsmem, rfl⟩)
-  have h3' : |x - s*| = devOf x S := hsatt.symm
+  obtain ⟨sc, hsmem, hsatt⟩ := devOf_attained x S hS
+  have h1' : devOf x T ≤ |x - sc| + devOf sc T := devOf_le_add_devOf x sc T hT
+  have h2' : devOf sc T ≤ devMaxList (S.map (fun s => devOf s T)) :=
+    devMaxList_ge_of_mem _ _ (List.mem_map.mpr ⟨sc, hsmem, rfl⟩)
+  have h3' : |x - sc| = devOf x S := hsatt.symm
   have hmax' : devMaxList (S.map (fun s => devOf s T)) ≤ dHaus S T := le_max_left _ _
   refine abs_le.mpr ⟨?_, ?_⟩
   · rw [h3] at h1
@@ -554,28 +559,29 @@ def refAdmitB (g : Comparability) (S : List ℚ) : Bool :=
 /-- 不可比参照被拒。 -/
 theorem incomparable_refs_rejected (g : Comparability) (S : List ℚ)
     (h : comparableB g = false) : refAdmitB g S = false := by
-  simp [refAdmitB, comparableB, h]
+  simp [refAdmitB, h]
 
 /-- 可比且非空的参照被准入。 -/
 theorem comparable_refs_admitted (g : Comparability) (S : List ℚ)
     (h : comparableB g = true) (hne : S ≠ []) : refAdmitB g S = true := by
   have hne' : (!(S.isEmpty)) = true := Iff.mpr (devReadingOkB_iff S) hne
-  simp [refAdmitB, comparableB, h, hne']
+  simp [refAdmitB, h, hne']
 
 /-- **T125 独立结论定理（三参照偏离）**：三参照各自偏离非负、SELF 偏离可达、
-对读数点 Lipschitz、对 UPPER 的参照集变化 Hausdorff 界、固定域平移偏移界。 -/
+SELF 偏离对读数点 Lipschitz（§12.2 原句：同参照集 `|dev(x,S)−dev(y,S)|≤d(x,y)`）、
+SELF 对 UPPER 的参照集变化 Hausdorff 界、固定域平移偏移界。 -/
 theorem t125_three_ref_deviation (refs : ThreeRefs) (x y δ : ℚ)
     (h1 : refs.selfSet ≠ []) (h2 : refs.peerSet ≠ []) (h3 : refs.upperSet ≠ []) :
     0 ≤ devOf x refs.selfSet ∧
     0 ≤ devOf x refs.peerSet ∧
     0 ≤ devOf x refs.upperSet ∧
     (∃ s ∈ refs.selfSet, devOf x refs.selfSet = |x - s|) ∧
-    (|devOf x refs.selfSet - devOf x refs.peerSet| ≤ |x - y|) ∧
+    (|devOf x refs.selfSet - devOf y refs.selfSet| ≤ |x - y|) ∧
     (|devOf x refs.selfSet - devOf x refs.upperSet| ≤
       dHaus refs.selfSet refs.upperSet) ∧
     (dHaus refs.selfSet (refs.selfSet.map (fun t => t + δ)) ≤ |δ|) := by
   refine ⟨devOf_nonneg x _, devOf_nonneg x _, devOf_nonneg x _,
-    devOf_attained x refs.selfSet h1, devOf_lipschitz x y refs.peerSet h2,
+    devOf_attained x refs.selfSet h1, devOf_lipschitz x y refs.selfSet h1,
     dev_set_change_bound x refs.selfSet refs.upperSet h1 h3,
     hausdorff_shift_bound refs.selfSet δ⟩
 
@@ -650,7 +656,7 @@ theorem witness_prior_not_double_used :
       posteriorMean 1 1 ⟨1, 3, 1⟩ = 2 / 3 ∧
       propensity ⟨1, 3, 1⟩ ≠ posteriorMean 1 1 ⟨1, 3, 1⟩ := by
   refine ⟨?_, ?_, ?_⟩
-  · simp only [propensity, posteriorMean, obsTotal]; norm_num
+  · simp only [propensity, obsTotal]; norm_num
   · simp only [posteriorMean, obsTotal]; norm_num
   · simp only [propensity, posteriorMean, obsTotal]; norm_num
 
@@ -827,7 +833,8 @@ theorem report_gate_rejects_unnamed_source (actual : List DevSource)
 theorem report_gate_accepts_full_coverage (actual : List DevSource)
     (r : DeviationReport) (hcov : ∀ s ∈ actual, s ∈ r.sources) :
     coverageOkB actual r = true := by
-  refine Bool.or_eq_true.mpr (Or.inl ?_)
+  simp only [coverageOkB, Bool.or_eq_true]
+  refine Or.inl ?_
   exact List.all_eq_true.mpr fun s hs => decide_eq_true_iff.mpr (hcov s hs)
 
 /-- **T127 独立结论定理（偏离报告）**：忠实投影（读数＝原像）＋来源/区间/status
@@ -846,7 +853,8 @@ theorem t127_deviation_report_complete (reportId : Nat) (k : RefKind) (v : ℚ)
   · show decide ((mkReport reportId k v sources u).reading = preimage) = true
     rw [report_faithful_projection reportId k v sources u]
     exact decide_eq_true_iff.mpr hpre
-  · refine Bool.or_eq_true.mpr (Or.inl ?_)
+  · simp only [coverageOkB, Bool.or_eq_true]
+    refine Or.inl ?_
     exact List.all_eq_true.mpr fun s hs => decide_eq_true_iff.mpr (hcov s hs)
   · rw [report_faithful_projection reportId k v sources u]
     exact hpre
@@ -916,7 +924,8 @@ theorem w4_deviation_flagship (cands : List InterpCandidate) (c : InterpCandidat
     · show decide ((flagshipReport refs x obs u).reading = devOf x refs.selfSet) = true
       rw [hread]
       exact decide_eq_true_iff.mpr rfl
-    · refine Bool.or_eq_true.mpr (Or.inl ?_)
+    · simp only [coverageOkB, Bool.or_eq_true]
+      refine Or.inl ?_
       refine List.all_eq_true.mpr fun s hs => decide_eq_true_iff.mpr ?_
       have hsrc : (flagshipReport refs x obs u).sources =
         (obs.filter obsOkB).map (fun o =>

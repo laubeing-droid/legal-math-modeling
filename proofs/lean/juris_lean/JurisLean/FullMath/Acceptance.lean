@@ -302,8 +302,7 @@ theorem demand_D012 : Contracts.demand_D012 := And.intro JurisLean.FullMath.Burd
 theorem demand_D013 : Contracts.demand_D013 := And.intro JurisLean.FullMath.Burden.unknown_is_pending
   (by
     intro score a b tgtFeats relevant copied
-    refine ⟨decide_eq_true_iff, ?_, ?_, ?_⟩
-    · exact decide_eq_true_iff
+    refine ⟨decide_eq_true_iff, ?_, ?_⟩
     · intro h1 h2
       exact absurd (lt_trans h1 h2) (lt_irrefl (score b))
     · intro hcop hw
@@ -338,9 +337,9 @@ theorem demand_D015 : Contracts.demand_D015 := And.intro JurisLean.FullMath.Burd
       obtain ⟨c, hc, rfl⟩ := List.mem_map.mp he
       obtain ⟨hcm, hcp⟩ := List.mem_filter.mp hc
       exact ⟨c, hcm, rfl, hcp⟩
-    · intro c hc hmem
+    · intro c _hc hcon hmem
       obtain ⟨_, htrue⟩ := List.mem_filter.mp hmem
-      simp [hc] at htrue
+      simp [hcon] at htrue
     · intro c hc
       exact ⟨c.2.1, hc, rfl⟩)
 
@@ -350,7 +349,7 @@ theorem demand_D016 : Contracts.demand_D016 := And.intro JurisLean.FullMath.Burd
     refine ⟨?_, ?_⟩
     · cases h : (overruled.filter (fun o => decide (o.1 = c ∧ o.2.1 = i))).all
         (fun o => decide (t < o.2.2)) with
-      | false => exact h
+      | false => rfl
       | true =>
         exfalso
         have hmem : (c, i, d) ∈ overruled.filter (fun o => decide (o.1 = c ∧ o.2.1 = i)) :=
@@ -361,14 +360,14 @@ theorem demand_D016 : Contracts.demand_D016 := And.intro JurisLean.FullMath.Burd
     · intro hall
       refine List.all_eq_true.mpr ?_
       intro o ho
-      obtain ⟨hov, _⟩ := List.mem_filter.mp ho
-      exact decide_eq_true (hall o hov))
+      obtain ⟨hov, hdec⟩ := List.mem_filter.mp ho
+      exact decide_eq_true (hall o hov (of_decide_eq_true hdec)))
 
 theorem demand_D017 : Contracts.demand_D017 := And.intro JurisLean.FullMath.Burden.unknown_is_pending
   (by
     intro cands name b₁ b₂ b₃ b₄ hfind
     refine ⟨?_, ?_, ?_, ?_⟩
-    · simp
+    · cases b₁ <;> cases b₂ <;> cases b₃ <;> cases b₄ <;> decide
     · cases b₁ <;> cases b₂ <;> cases b₃ <;> cases b₄ <;> decide
     · intro h1 h2
       simp [h1, h2]

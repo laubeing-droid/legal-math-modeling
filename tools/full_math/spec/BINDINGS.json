@@ -2459,25 +2459,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D019",
    "contract": "JurisLean.FullMath.Contracts.demand_D019",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Probability.dedup_conflict_not_overwrite's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-03 evidence/event demand instance in the shared semantic framework: this item's own contract semantics plus the registered evidence-identity component (conflicting resubmission never overwrites the first acceptance), with its adverse case executed as a negative test.",
+   "independent_semantics": "every event row (type, actors, object, span) points back into the source text: its [start,end) coordinates slice the source verbatim; the trigger-to-type label map is collision-free (one trigger under two type labels is refused, never merged); a trigger quoted as a hypothesis never becomes an occurred event.",
+   "algorithm": "tools/full_math/implementation/evidence_ref.py extract_events computes the intermediate result from structured input; evidence_check.check_D019 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source token list with per-trigger spans and quoted flags, per-edge case/person/object/stage/standing rows, dated and undated timeline items, same-subject/same-day claim pairs with a declared contrary table, record rows with polarity and a negative-query scope, answer support links with span bounds, four-value status strings with a branch default, kind/content/source/use record rows, draft/admitted/conditional/tamper proposition lists, per-act (case, event, historical) rows with named history rules); outputs are exactly the contract quantities (source-pointing event spans with blocked quoted triggers and the collision-free label map, case-keyed binding edges, the topological timeline with unknown pending, witnessed conflicts with preserved ambiguity readings, the missing/negative carrier split, passing and rejected support spans, the identity status projection with intercepted branches, classified records with refused promotions, the section/pending split with the semantic delta, and the scoped charge list with the named history channel).",
+   "external_assumptions": "Trigger-word recall and event understanding, multi-subject coreference resolution, event date extraction, conflict-discovery recall and pragmatic interpretation, real-world evidence availability, annotation faithfulness, reliability of actual findings, free-narrative completeness and the truth of external legal facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Probability/EvidenceIdentity.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/evidence_ref.py",
+    "tools/full_math/implementation/evidence_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D019]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_positive[D019]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_counterexample[D019]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_downstream_pipeline_consumes_evidence"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D019]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D019]"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_checker_rejects_tampered[D019]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Probability.dedup_conflict_not_overwrite"
@@ -2488,25 +2489,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D020",
    "contract": "JurisLean.FullMath.Contracts.demand_D020",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Probability.dedup_conflict_not_overwrite's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-03 evidence/event demand instance in the shared semantic framework: this item's own contract semantics plus the registered evidence-identity component (conflicting resubmission never overwrites the first acceptance), with its adverse case executed as a negative test.",
+   "independent_semantics": "event participants, objects, legal stages and evidence standings are bound edge by edge under an explicit case key; no row is bound to this case by positional default, so a prior-case victim stays outside this case's bindings.",
+   "algorithm": "tools/full_math/implementation/evidence_ref.py bind_roles computes the intermediate result from structured input; evidence_check.check_D020 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source token list with per-trigger spans and quoted flags, per-edge case/person/object/stage/standing rows, dated and undated timeline items, same-subject/same-day claim pairs with a declared contrary table, record rows with polarity and a negative-query scope, answer support links with span bounds, four-value status strings with a branch default, kind/content/source/use record rows, draft/admitted/conditional/tamper proposition lists, per-act (case, event, historical) rows with named history rules); outputs are exactly the contract quantities (source-pointing event spans with blocked quoted triggers and the collision-free label map, case-keyed binding edges, the topological timeline with unknown pending, witnessed conflicts with preserved ambiguity readings, the missing/negative carrier split, passing and rejected support spans, the identity status projection with intercepted branches, classified records with refused promotions, the section/pending split with the semantic delta, and the scoped charge list with the named history channel).",
+   "external_assumptions": "Trigger-word recall and event understanding, multi-subject coreference resolution, event date extraction, conflict-discovery recall and pragmatic interpretation, real-world evidence availability, annotation faithfulness, reliability of actual findings, free-narrative completeness and the truth of external legal facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Probability/EvidenceIdentity.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/evidence_ref.py",
+    "tools/full_math/implementation/evidence_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D020]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_positive[D020]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_counterexample[D020]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_downstream_pipeline_consumes_evidence"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D020]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D020]"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_checker_rejects_tampered[D020]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Probability.dedup_conflict_not_overwrite"
@@ -2517,25 +2519,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D021",
    "contract": "JurisLean.FullMath.Contracts.demand_D021",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Probability.dedup_conflict_not_overwrite's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-03 evidence/event demand instance in the shared semantic framework: this item's own contract semantics plus the registered evidence-identity component (conflicting resubmission never overwrites the first acceptance), with its adverse case executed as a negative test.",
+   "independent_semantics": "explicitly dated events form a strict partial order and the output timeline is a valid topological order of the day order; undated events are marked unknown/pending and never receive a precise date invented from narrative order.",
+   "algorithm": "tools/full_math/implementation/evidence_ref.py build_timeline computes the intermediate result from structured input; evidence_check.check_D021 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source token list with per-trigger spans and quoted flags, per-edge case/person/object/stage/standing rows, dated and undated timeline items, same-subject/same-day claim pairs with a declared contrary table, record rows with polarity and a negative-query scope, answer support links with span bounds, four-value status strings with a branch default, kind/content/source/use record rows, draft/admitted/conditional/tamper proposition lists, per-act (case, event, historical) rows with named history rules); outputs are exactly the contract quantities (source-pointing event spans with blocked quoted triggers and the collision-free label map, case-keyed binding edges, the topological timeline with unknown pending, witnessed conflicts with preserved ambiguity readings, the missing/negative carrier split, passing and rejected support spans, the identity status projection with intercepted branches, classified records with refused promotions, the section/pending split with the semantic delta, and the scoped charge list with the named history channel).",
+   "external_assumptions": "Trigger-word recall and event understanding, multi-subject coreference resolution, event date extraction, conflict-discovery recall and pragmatic interpretation, real-world evidence availability, annotation faithfulness, reliability of actual findings, free-narrative completeness and the truth of external legal facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Probability/EvidenceIdentity.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/evidence_ref.py",
+    "tools/full_math/implementation/evidence_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D021]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_positive[D021]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_counterexample[D021]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_downstream_pipeline_consumes_evidence"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D021]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D021]"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_checker_rejects_tampered[D021]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Probability.dedup_conflict_not_overwrite"
@@ -2546,25 +2549,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D022",
    "contract": "JurisLean.FullMath.Contracts.demand_D022",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Probability.dedup_conflict_not_overwrite's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-03 evidence/event demand instance in the shared semantic framework: this item's own contract semantics plus the registered evidence-identity component (conflicting resubmission never overwrites the first acceptance), with its adverse case executed as a negative test.",
+   "independent_semantics": "a contradiction is reported only with the named proposition, the same subject and the same time, a declared contrary pair and a nonempty witness; different-time or undeclared pairs stay ambiguity and both readings are preserved.",
+   "algorithm": "tools/full_math/implementation/evidence_ref.py find_conflicts computes the intermediate result from structured input; evidence_check.check_D022 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source token list with per-trigger spans and quoted flags, per-edge case/person/object/stage/standing rows, dated and undated timeline items, same-subject/same-day claim pairs with a declared contrary table, record rows with polarity and a negative-query scope, answer support links with span bounds, four-value status strings with a branch default, kind/content/source/use record rows, draft/admitted/conditional/tamper proposition lists, per-act (case, event, historical) rows with named history rules); outputs are exactly the contract quantities (source-pointing event spans with blocked quoted triggers and the collision-free label map, case-keyed binding edges, the topological timeline with unknown pending, witnessed conflicts with preserved ambiguity readings, the missing/negative carrier split, passing and rejected support spans, the identity status projection with intercepted branches, classified records with refused promotions, the section/pending split with the semantic delta, and the scoped charge list with the named history channel).",
+   "external_assumptions": "Trigger-word recall and event understanding, multi-subject coreference resolution, event date extraction, conflict-discovery recall and pragmatic interpretation, real-world evidence availability, annotation faithfulness, reliability of actual findings, free-narrative completeness and the truth of external legal facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Probability/EvidenceIdentity.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/evidence_ref.py",
+    "tools/full_math/implementation/evidence_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D022]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_positive[D022]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_counterexample[D022]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_downstream_pipeline_consumes_evidence"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D022]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D022]"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_checker_rejects_tampered[D022]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Probability.dedup_conflict_not_overwrite"
@@ -2575,25 +2579,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D023",
    "contract": "JurisLean.FullMath.Contracts.demand_D023",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Probability.dedup_conflict_not_overwrite's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-03 evidence/event demand instance in the shared semantic framework: this item's own contract semantics plus the registered evidence-identity component (conflicting resubmission never overwrites the first acceptance), with its adverse case executed as a negative test.",
+   "independent_semantics": "missing_support(q) does not entail not-q: a query absent from the record is only missing, the no-record marker and the explicit negative-evidence record are separate carriers, and negative queries are granted only inside the declared complete-record scope.",
+   "algorithm": "tools/full_math/implementation/evidence_ref.py missing_support computes the intermediate result from structured input; evidence_check.check_D023 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source token list with per-trigger spans and quoted flags, per-edge case/person/object/stage/standing rows, dated and undated timeline items, same-subject/same-day claim pairs with a declared contrary table, record rows with polarity and a negative-query scope, answer support links with span bounds, four-value status strings with a branch default, kind/content/source/use record rows, draft/admitted/conditional/tamper proposition lists, per-act (case, event, historical) rows with named history rules); outputs are exactly the contract quantities (source-pointing event spans with blocked quoted triggers and the collision-free label map, case-keyed binding edges, the topological timeline with unknown pending, witnessed conflicts with preserved ambiguity readings, the missing/negative carrier split, passing and rejected support spans, the identity status projection with intercepted branches, classified records with refused promotions, the section/pending split with the semantic delta, and the scoped charge list with the named history channel).",
+   "external_assumptions": "Trigger-word recall and event understanding, multi-subject coreference resolution, event date extraction, conflict-discovery recall and pragmatic interpretation, real-world evidence availability, annotation faithfulness, reliability of actual findings, free-narrative completeness and the truth of external legal facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Probability/EvidenceIdentity.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/evidence_ref.py",
+    "tools/full_math/implementation/evidence_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D023]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_positive[D023]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_counterexample[D023]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_downstream_pipeline_consumes_evidence"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D023]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D023]"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_checker_rejects_tampered[D023]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Probability.dedup_conflict_not_overwrite"
@@ -2604,25 +2609,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D024",
    "contract": "JurisLean.FullMath.Contracts.demand_D024",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Probability.dedup_conflict_not_overwrite's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-03 evidence/event demand instance in the shared semantic framework: this item's own contract semantics plus the registered evidence-identity component (conflicting resubmission never overwrites the first acceptance), with its adverse case executed as a negative test.",
+   "independent_semantics": "every answer's supporting span exists, has legal bounds and links to the corresponding proposition; an irrelevant citation fails the support check; redundant supports are retained.",
+   "algorithm": "tools/full_math/implementation/evidence_ref.py support_check computes the intermediate result from structured input; evidence_check.check_D024 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source token list with per-trigger spans and quoted flags, per-edge case/person/object/stage/standing rows, dated and undated timeline items, same-subject/same-day claim pairs with a declared contrary table, record rows with polarity and a negative-query scope, answer support links with span bounds, four-value status strings with a branch default, kind/content/source/use record rows, draft/admitted/conditional/tamper proposition lists, per-act (case, event, historical) rows with named history rules); outputs are exactly the contract quantities (source-pointing event spans with blocked quoted triggers and the collision-free label map, case-keyed binding edges, the topological timeline with unknown pending, witnessed conflicts with preserved ambiguity readings, the missing/negative carrier split, passing and rejected support spans, the identity status projection with intercepted branches, classified records with refused promotions, the section/pending split with the semantic delta, and the scoped charge list with the named history channel).",
+   "external_assumptions": "Trigger-word recall and event understanding, multi-subject coreference resolution, event date extraction, conflict-discovery recall and pragmatic interpretation, real-world evidence availability, annotation faithfulness, reliability of actual findings, free-narrative completeness and the truth of external legal facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Probability/EvidenceIdentity.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/evidence_ref.py",
+    "tools/full_math/implementation/evidence_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D024]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_positive[D024]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_counterexample[D024]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_downstream_pipeline_consumes_evidence"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D024]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D024]"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_checker_rejects_tampered[D024]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Probability.dedup_conflict_not_overwrite"
@@ -2633,25 +2639,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D025",
    "contract": "JurisLean.FullMath.Contracts.demand_D025",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Probability.dedup_conflict_not_overwrite's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-03 evidence/event demand instance in the shared semantic framework: this item's own contract semantics plus the registered evidence-identity component (conflicting resubmission never overwrites the first acceptance), with its adverse case executed as a negative test.",
+   "independent_semantics": "true/false/unknown/conflict stay distinct and are never coerced into one another; a conditional branch consumes only a definite yes/no — unknown and conflict are intercepted and fall back to the declared default instead of manufacturing a negated conclusion.",
+   "algorithm": "tools/full_math/implementation/evidence_ref.py project_status/decide_branch computes the intermediate result from structured input; evidence_check.check_D025 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source token list with per-trigger spans and quoted flags, per-edge case/person/object/stage/standing rows, dated and undated timeline items, same-subject/same-day claim pairs with a declared contrary table, record rows with polarity and a negative-query scope, answer support links with span bounds, four-value status strings with a branch default, kind/content/source/use record rows, draft/admitted/conditional/tamper proposition lists, per-act (case, event, historical) rows with named history rules); outputs are exactly the contract quantities (source-pointing event spans with blocked quoted triggers and the collision-free label map, case-keyed binding edges, the topological timeline with unknown pending, witnessed conflicts with preserved ambiguity readings, the missing/negative carrier split, passing and rejected support spans, the identity status projection with intercepted branches, classified records with refused promotions, the section/pending split with the semantic delta, and the scoped charge list with the named history channel).",
+   "external_assumptions": "Trigger-word recall and event understanding, multi-subject coreference resolution, event date extraction, conflict-discovery recall and pragmatic interpretation, real-world evidence availability, annotation faithfulness, reliability of actual findings, free-narrative completeness and the truth of external legal facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Probability/EvidenceIdentity.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/evidence_ref.py",
+    "tools/full_math/implementation/evidence_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D025]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_positive[D025]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_counterexample[D025]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_downstream_pipeline_consumes_evidence"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D025]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D025]"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_checker_rejects_tampered[D025]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Probability.dedup_conflict_not_overwrite"
@@ -2662,25 +2669,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D026",
    "contract": "JurisLean.FullMath.Contracts.demand_D026",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Probability.dedup_conflict_not_overwrite's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-03 evidence/event demand instance in the shared semantic framework: this item's own contract semantics plus the registered evidence-identity component (conflicting resubmission never overwrites the first acceptance), with its adverse case executed as a negative test.",
+   "independent_semantics": "asserted, evidence-content and adjudicated records each carry their own source and use; promotion from asserted to adjudicated requires an explicit court-registry entry, never an implicit upgrade through a summary.",
+   "algorithm": "tools/full_math/implementation/evidence_ref.py classify_records computes the intermediate result from structured input; evidence_check.check_D026 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source token list with per-trigger spans and quoted flags, per-edge case/person/object/stage/standing rows, dated and undated timeline items, same-subject/same-day claim pairs with a declared contrary table, record rows with polarity and a negative-query scope, answer support links with span bounds, four-value status strings with a branch default, kind/content/source/use record rows, draft/admitted/conditional/tamper proposition lists, per-act (case, event, historical) rows with named history rules); outputs are exactly the contract quantities (source-pointing event spans with blocked quoted triggers and the collision-free label map, case-keyed binding edges, the topological timeline with unknown pending, witnessed conflicts with preserved ambiguity readings, the missing/negative carrier split, passing and rejected support spans, the identity status projection with intercepted branches, classified records with refused promotions, the section/pending split with the semantic delta, and the scoped charge list with the named history channel).",
+   "external_assumptions": "Trigger-word recall and event understanding, multi-subject coreference resolution, event date extraction, conflict-discovery recall and pragmatic interpretation, real-world evidence availability, annotation faithfulness, reliability of actual findings, free-narrative completeness and the truth of external legal facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Probability/EvidenceIdentity.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/evidence_ref.py",
+    "tools/full_math/implementation/evidence_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D026]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_positive[D026]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_counterexample[D026]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_downstream_pipeline_consumes_evidence"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D026]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D026]"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_checker_rejects_tampered[D026]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Probability.dedup_conflict_not_overwrite"
@@ -2691,25 +2699,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D027",
    "contract": "JurisLean.FullMath.Contracts.demand_D027",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Probability.dedup_conflict_not_overwrite's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-03 evidence/event demand instance in the shared semantic framework: this item's own contract semantics plus the registered evidence-identity component (conflicting resubmission never overwrites the first acceptance), with its adverse case executed as a negative test.",
+   "independent_semantics": "the drafted fact section's protected propositions are contained in the admitted facts or the declared conditional semantics; undecided items are retained as pending; an unconfirmed act rewritten as established makes the semantic delta fail (nonempty).",
+   "algorithm": "tools/full_math/implementation/evidence_ref.py draft_fact_section/semantic_delta computes the intermediate result from structured input; evidence_check.check_D027 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source token list with per-trigger spans and quoted flags, per-edge case/person/object/stage/standing rows, dated and undated timeline items, same-subject/same-day claim pairs with a declared contrary table, record rows with polarity and a negative-query scope, answer support links with span bounds, four-value status strings with a branch default, kind/content/source/use record rows, draft/admitted/conditional/tamper proposition lists, per-act (case, event, historical) rows with named history rules); outputs are exactly the contract quantities (source-pointing event spans with blocked quoted triggers and the collision-free label map, case-keyed binding edges, the topological timeline with unknown pending, witnessed conflicts with preserved ambiguity readings, the missing/negative carrier split, passing and rejected support spans, the identity status projection with intercepted branches, classified records with refused promotions, the section/pending split with the semantic delta, and the scoped charge list with the named history channel).",
+   "external_assumptions": "Trigger-word recall and event understanding, multi-subject coreference resolution, event date extraction, conflict-discovery recall and pragmatic interpretation, real-world evidence availability, annotation faithfulness, reliability of actual findings, free-narrative completeness and the truth of external legal facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Probability/EvidenceIdentity.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/evidence_ref.py",
+    "tools/full_math/implementation/evidence_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D027]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_positive[D027]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_counterexample[D027]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_downstream_pipeline_consumes_evidence"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D027]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D027]"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_checker_rejects_tampered[D027]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Probability.dedup_conflict_not_overwrite"
@@ -2720,25 +2729,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D028",
    "contract": "JurisLean.FullMath.Contracts.demand_D028",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Probability.dedup_conflict_not_overwrite's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-03 evidence/event demand instance in the shared semantic framework: this item's own contract semantics plus the registered evidence-identity component (conflicting resubmission never overwrites the first acceptance), with its adverse case executed as a negative test.",
+   "independent_semantics": "every act carries its (case, event) scope; the current charge list contains only this case's non-historical acts; historical experience enters the current analysis only through a named admission rule — a past robbery never joins the current charge list by itself.",
+   "algorithm": "tools/full_math/implementation/evidence_ref.py scope_acts computes the intermediate result from structured input; evidence_check.check_D028 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (source token list with per-trigger spans and quoted flags, per-edge case/person/object/stage/standing rows, dated and undated timeline items, same-subject/same-day claim pairs with a declared contrary table, record rows with polarity and a negative-query scope, answer support links with span bounds, four-value status strings with a branch default, kind/content/source/use record rows, draft/admitted/conditional/tamper proposition lists, per-act (case, event, historical) rows with named history rules); outputs are exactly the contract quantities (source-pointing event spans with blocked quoted triggers and the collision-free label map, case-keyed binding edges, the topological timeline with unknown pending, witnessed conflicts with preserved ambiguity readings, the missing/negative carrier split, passing and rejected support spans, the identity status projection with intercepted branches, classified records with refused promotions, the section/pending split with the semantic delta, and the scoped charge list with the named history channel).",
+   "external_assumptions": "Trigger-word recall and event understanding, multi-subject coreference resolution, event date extraction, conflict-discovery recall and pragmatic interpretation, real-world evidence availability, annotation faithfulness, reliability of actual findings, free-narrative completeness and the truth of external legal facts remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Probability/EvidenceIdentity.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/evidence_ref.py",
+    "tools/full_math/implementation/evidence_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D028]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_positive[D028]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_demand_counterexample[D028]",
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_downstream_pipeline_consumes_evidence"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D028]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D028]"
+    "tools/full_math/implementation_tests::test_evidence_group03.py::test_checker_rejects_tampered[D028]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Probability.dedup_conflict_not_overwrite"

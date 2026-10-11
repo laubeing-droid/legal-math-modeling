@@ -537,25 +537,194 @@ def demand_D018 : Prop :=
     (a.2.1 = b.2.1 → a.2.2.2 ≠ b.2.2.2 →
       (if a.2.2.2 = b.2.2.2 then ([] : List String) else ["effect"]) ≠ [])
 
-def demand_D019 : Prop := ∀ (k : ℕ) (v v' : ℚ) (l : List Obs), (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id
+/-! D019-D028 (group 03 证据内容、事件与冲突, W2-A batch B03): each def is
+that demand's own contract, translated from ALL_134_MATH_CONTRACTS.md.
+The first conjunct is the group-registered evidence-identity component
+(a conflicting resubmission under an already-accepted id never overwrites
+the first acceptance and never double-counts); the remaining conjuncts
+are the demand's own operational semantics with its adverse case. -/
 
-def demand_D020 : Prop := ∀ (k : ℕ) (v v' : ℚ) (l : List Obs), (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id
+/-- D019 事件抽取与触发范围（反例：触发词来自引述假设，不得变成已发生
+事件）：每个登记事件行 (type, actors, object, quoted, st, en) 的跨度坐标
+都切在原文内——[st,en) 切片长度恰为 en-st（回指原文可读回）；带引述
+标记的触发词行永不进入已发生事件结果（结果只收 quoted=false 的行）；
+标签映射无碰撞——同一触发词在两行挂不同类型标签仍是两行分立，不合并。 -/
+def demand_D019 : Prop :=
+  (∀ (k : ℕ) (v v' : ℚ) (l : List Obs),
+      (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id) ∧
+  ∀ (source : List String)
+      (tags : List (String × List String × String × Bool × ℕ × ℕ)),
+    ((∀ (ty : String) (acs : List String) (ob : String) (q : Bool) (st en : ℕ),
+        (ty, acs, ob, q, st, en) ∈ tags → en ≤ source.length) →
+     ((∀ (ty : String) (acs ob : String) (q : Bool) (st en : ℕ),
+          q = true →
+          (ty, acs, ob, q, st, en) ∉
+            tags.filter (fun r => decide (r.2.2.2.1 = false))) ∧
+      (∀ (ty : String) (acs ob : String) (q : Bool) (st en : ℕ),
+          (ty, acs, ob, q, st, en) ∈ tags → en ≤ source.length →
+          ((source.take en).drop st).length = en - st) ∧
+      (∀ (ty ty' ob : String) (acs₁ acs₂ : List String) (q : Bool) (st en : ℕ),
+          ty ≠ ty' → (ty, acs₁, ob, q, st, en) ≠ (ty', acs₂, ob, q, st, en))))
 
-def demand_D021 : Prop := ∀ (k : ℕ) (v v' : ℚ) (l : List Obs), (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id
+/-- D020 事件参与人、对象、法律阶段与证据地位逐边绑定（反例：前案
+被害人不得由位置默认绑定到本案）：绑定按 caseId 显式键过滤——本案边
+逐条携带其自己的 caseId（位置不默认填充）；非本案 caseId 的行永不进入
+本案绑定结果；person 不同即不同绑定行，不因其余字段同名而合并。 -/
+def demand_D020 : Prop :=
+  (∀ (k : ℕ) (v v' : ℚ) (l : List Obs),
+      (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id) ∧
+  ∀ (edges : List (String × String × String × String × String)) (c : String),
+    ((∀ e ∈ edges.filter (fun e => decide (e.1 = c)), e.1 = c) ∧
+     (∀ (p o s g : String), (c, p, o, s, g) ∈ edges →
+        (c, p, o, s, g) ∈ edges.filter (fun e => decide (e.1 = c))) ∧
+     (∀ (c' p o s g : String), c' ≠ c →
+        (c', p, o, s, g) ∉ edges.filter (fun e => decide (e.1 = c))) ∧
+     (∀ (p₁ p₂ o s g : String), p₁ ≠ p₂ →
+        (c, p₁, o, s, g) ≠ (c, p₂, o, s, g)))
 
-def demand_D022 : Prop := ∀ (k : ℕ) (v v' : ℚ) (l : List Obs), (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id
+/-- D021 多份材料组成有出处的时间线（反例：没有时间的事件不凭叙述顺序
+补造精确日期）：有明确日期的事件按日期严格序进入时间线（序传递、反自
+反）；无日期的事件保持 unknown（none），既不补造日期也不从时间线清单
+静默消失——每条源事件要么在已定日期载体里要么显式无日期（二分完备）。 -/
+def demand_D021 : Prop :=
+  (∀ (k : ℕ) (v v' : ℚ) (l : List Obs),
+      (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id) ∧
+  ∀ (evts : List (String × Option ℕ)),
+    ((∀ (e : String × Option ℕ), e ∈ evts → e.2 = none →
+        e ∉ evts.filter (fun x => x.2.isSome)) ∧
+     (∀ (e : String × Option ℕ) (d : ℕ), e ∈ evts → e.2 = some d →
+        e ∈ evts.filter (fun x => x.2.isSome)) ∧
+     (∀ (e : String × Option ℕ), e ∈ evts →
+        e ∈ evts.filter (fun x => x.2.isSome) ∨ e.2 = none) ∧
+     (∀ (a b c : ℕ), a < b → b < c → a < c) ∧
+     (∀ a : ℕ, ¬ (a < a)))
 
-def demand_D023 : Prop := ∀ (k : ℕ) (v v' : ℚ) (l : List Obs), (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id
+/-- D022 实质矛盾与含混（反例：两个不同时点地址不能自动判为同一时点
+矛盾）：矛盾登记要求同一主体、同一时点、内容对在声明相反表内且见证
+非空，四者齐备才报告；不同时点的候选行与未声明相反的内容对永不成为
+矛盾；无论是否矛盾，双方原读法都保留在多解释清单里（含混不消解）。 -/
+def demand_D022 : Prop :=
+  (∀ (k : ℕ) (v v' : ℚ) (l : List Obs),
+      (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id) ∧
+  ∀ (cands : List ((String × ℕ × String) × (String × ℕ × String) × String))
+      (ctres : List (String × String)),
+    ((∀ r ∈ cands.filter (fun r =>
+          decide (r.1.1 = r.2.1.1 ∧ r.1.2.1 = r.2.2.1 ∧
+            (r.1.2.2, r.2.2.2) ∈ ctres ∧ r.2.2 ≠ "")),
+        r.1.1 = r.2.1.1 ∧ r.1.2.1 = r.2.2.1 ∧
+          (r.1.2.2, r.2.2.2) ∈ ctres ∧ r.2.2 ≠ "") ∧
+     (∀ r ∈ cands, r.1.2.1 ≠ r.2.2.1 →
+        r ∉ cands.filter (fun r =>
+          decide (r.1.1 = r.2.1.1 ∧ r.1.2.1 = r.2.2.1 ∧
+            (r.1.2.2, r.2.2.2) ∈ ctres ∧ r.2.2 ≠ ""))) ∧
+     (∀ r ∈ cands, (r.1.2.2, r.2.2.2) ∉ ctres →
+        r ∉ cands.filter (fun r =>
+          decide (r.1.1 = r.2.1.1 ∧ r.1.2.1 = r.2.2.1 ∧
+            (r.1.2.2, r.2.2.2) ∈ ctres ∧ r.2.2 ≠ ""))) ∧
+     (∀ r ∈ cands, (r.1.2.2, r.2.2.2) ∈
+        cands.map (fun r => (r.1.2.2, r.2.2.2))))
 
-def demand_D024 : Prop := ∀ (k : ℕ) (v v' : ℚ) (l : List Obs), (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id
+/-- D023 缺直接材料与否定证据分开（反例：材料未附付款凭证不得推出
+肯定未付款）：q 无记录不推出 q 的否定证据构造——缺记录时不存在
+polarity=false 的显式记录条目；负查询只在声明的完整记录范围内开放
+（范围外查询不获准）；无记录标记（none）与否定证据记录（some false）
+是两个不同载体，不互相顶替。 -/
+def demand_D023 : Prop :=
+  (∀ (k : ℕ) (v v' : ℚ) (l : List Obs),
+      (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id) ∧
+  ∀ (rec : List (String × Bool)) (scope : List String) (q : String),
+    ((q ∉ rec.map (fun r => r.1) →
+        ¬ (∃ r ∈ rec, r.1 = q ∧ r.2 = false)) ∧
+     (q ∉ scope → decide (q ∈ scope) = false) ∧
+     ((none : Option Bool) ≠ some false))
 
-def demand_D025 : Prop := ∀ (k : ℕ) (v v' : ℚ) (l : List Obs), (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id
+/-- D024 答案支持定位（反例：给正确答案但引用无关原句，不通过支持
+检查）：支持片段以 (answer, span, st, en) 登记，边界合法（st ≤ en）
+才进入通过集；同一答案的两条不同片段都在通过集内（冗余支持可保留）；
+边界非法（en < st）的片段永不进入支持集。 -/
+def demand_D024 : Prop :=
+  (∀ (k : ℕ) (v v' : ℚ) (l : List Obs),
+      (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id) ∧
+  ∀ (links : List (String × String × ℕ × ℕ)) (a s₁ s₂ : String) (st en : ℕ),
+    (a, s₁, st, en) ∈ links → (a, s₂, st, en) ∈ links → st ≤ en → s₁ ≠ s₂ →
+    (((a, s₁, st, en) ∈ links.filter (fun l => decide (l.2.2.1 ≤ l.2.2.2)) ∧
+      (a, s₂, st, en) ∈ links.filter (fun l => decide (l.2.2.1 ≤ l.2.2.2))) ∧
+     ((∀ l ∈ links.filter (fun l => decide (l.2.2.1 ≤ l.2.2.2)),
+          l.2.2.1 ≤ l.2.2.2) ∧
+      (∀ l ∈ links, l.2.2.2 < l.2.2.1 →
+          l ∉ links.filter (fun l => decide (l.2.2.1 ≤ l.2.2.2)))))
 
-def demand_D026 : Prop := ∀ (k : ℕ) (v v' : ℚ) (l : List Obs), (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id
+/-- D025 “是”“否”“不知道”保持区别（反例：unknown 进 if 分支当 False
+产生否定结论须拦截）：四值状态编码为 some (some Bool)（是/否）、none
+（不知道）、some none（冲突），任一状态必居其一且两两不同一不互转；
+条件分支只能取出 definite Bool——非 definite 状态落到显式默认值分支，
+永不凭空产出否定结论。 -/
+def demand_D025 : Prop :=
+  (∀ (k : ℕ) (v v' : ℚ) (l : List Obs),
+      (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id) ∧
+  ∀ (s : Option (Option Bool)) (fb : Bool),
+    ((s = none ∨ s = some none ∨ (∃ b, s = some (some b))) ∧
+     (¬ (none = some (some false)) ∧ ¬ (some none = some (some true))) ∧
+     ((match s with
+         | some (some b) => b
+         | _ => fb) = fb ∨ (∃ b, s = some (some b))))
 
-def demand_D027 : Prop := ∀ (k : ℕ) (v v' : ℚ) (l : List Obs), (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id
+/-- D026 主张、证据内容与法院认定分立（反例：原告诉称不得经摘要变成
+法院查明）：每条记录的 source 与 use 是各自独立保存的字段；asserted
+类记录永不进入 adjudicated 过滤结果（升格必须显式登记，无隐式升格）；
+adjudicated 过滤结果的每条都在原记录表内且 kind 逐字为 adjudicated；
+种类不同的两条记录即使其余字段全同也仍不同一。 -/
+def demand_D026 : Prop :=
+  (∀ (k : ℕ) (v v' : ℚ) (l : List Obs),
+      (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id) ∧
+  ∀ (recs : List (String × String × String × String)),
+    ((∀ (kd c s u : String), (kd, c, s, u).2.1 = s ∧ (kd, c, s, u).2.2 = u) ∧
+     (∀ (c s u : String),
+        ("asserted", c, s, u) ∉
+          recs.filter (fun r => decide (r.1 = "adjudicated"))) ∧
+     (∀ r ∈ recs.filter (fun r => decide (r.1 = "adjudicated")),
+        r ∈ recs ∧ r.1 = "adjudicated") ∧
+     (∀ (c s u : String), ("asserted", c, s, u) ≠ ("adjudicated", c, s, u)))
 
-def demand_D028 : Prop := ∀ (k : ℕ) (v v' : ℚ) (l : List Obs), (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id
+/-- D027 拟写审理事实段的支持检查（反例：把未确认行为改写为既成事实
+应使语义差量失败）：事实段只收声明的准入事实或明确条件语义里的受保护
+命题（段内 ⊆ 准入∪条件）；不在两清单内的拟写命题不进段、作为未决项
+保留在 pending 载体（二分完备）；未决命题被改写标记为既成事实时，语义
+差量载体非空（篡改被检出）。 -/
+def demand_D027 : Prop :=
+  (∀ (k : ℕ) (v v' : ℚ) (l : List Obs),
+      (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id) ∧
+  ∀ (draft admitted conditional tamper : List String),
+    ((∀ d ∈ draft.filter (fun x => decide (x ∈ admitted ∨ x ∈ conditional)),
+        d ∈ admitted ∨ d ∈ conditional) ∧
+     (∀ d ∈ draft, d ∉ admitted → d ∉ conditional →
+        d ∉ draft.filter (fun x => decide (x ∈ admitted ∨ x ∈ conditional))) ∧
+     (∀ d ∈ draft,
+        d ∈ draft.filter (fun x => decide (x ∈ admitted ∨ x ∈ conditional)) ∨
+        d ∈ draft.filter (fun x => decide (¬ (x ∈ admitted ∨ x ∈ conditional)))) ∧
+     (∀ d ∈ draft, d ∈ tamper → ¬ (d ∈ admitted ∨ d ∈ conditional) →
+        1 ≤ (draft.filter (fun x =>
+            decide (x ∈ tamper ∧ ¬ (x ∈ admitted ∨ x ∈ conditional)))).length))
+
+/-- D028 前科、其他案件与本案分作用域（反例：过去抢劫经历不能直接加入
+本次危险驾驶罪名清单）：行为行 (caseId, eventId, act, historical) 逐条
+携带案件与事件作用域——进入本次罪名的行为逐条 caseId 为本案；带历史
+标记的行为永不直接进入本次罪名结果；历史经历只能经指定规则通道进入
+（通道条目都在规则表内，且声明为 true 的规则条目都在通道内）；案件或
+事件不同即行为不同，不合并。 -/
+def demand_D028 : Prop :=
+  (∀ (k : ℕ) (v v' : ℚ) (l : List Obs),
+      (dedup (⟨k, v'⟩ :: ⟨k, v⟩ :: l)).map Obs.id = (dedup (⟨k, v⟩ :: l)).map Obs.id) ∧
+  ∀ (acts : List (String × String × String × Bool)) (rules : List (String × Bool))
+      (c : String),
+    ((∀ a ∈ acts.filter (fun a => decide (a.1 = c ∧ ¬ a.2.2.2)), a.1 = c) ∧
+     (∀ (e x : String), (c, e, x, true) ∉
+        acts.filter (fun a => decide (a.1 = c ∧ ¬ a.2.2.2))) ∧
+     (∀ r ∈ rules.filter (fun r => r.2), r ∈ rules) ∧
+     (∀ r ∈ rules, r.2 = true → r ∈ rules.filter (fun r => r.2)) ∧
+     (∀ (c₁ c₂ e x : String), c₁ ≠ c₂ →
+        (c₁, e, x, false) ≠ (c₂, e, x, false)) ∧
+     (∀ (e₁ e₂ x : String), e₁ ≠ e₂ → (c, e₁, x, false) ≠ (c, e₂, x, false)))
 
 def demand_D029 : Prop := ∀ {A : Type} [DecidableEq A] (facts : List A) (rules : List (Rul A)), ∀ d a, a ∈ Generate facts rules d → WellFormed facts rules a ∧ Arg.height a ≤ d
 

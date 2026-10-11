@@ -386,25 +386,182 @@ theorem demand_D018 : Contracts.demand_D018 := And.intro JurisLean.FullMath.Burd
       rw [if_neg h2]
       simp)
 
-theorem demand_D019 : Contracts.demand_D019 := JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+theorem demand_D019 : Contracts.demand_D019 := And.intro JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+  (by
+    intro source tags hbound
+    refine ⟨?_, ?_, ?_⟩
+    · intro ty acs ob q st en hq hmem
+      obtain ⟨_, hdec⟩ := List.mem_filter.mp hmem
+      exact absurd (of_decide_eq_true hdec) (by simp [hq])
+    · intro ty acs ob q st en hmem hlen
+      rw [List.length_drop, List.length_take, Nat.min_eq_left hlen]
+    · intro ty ty' ob acs₁ acs₂ q st en hne hEq
+      simp at hEq
+      exact hne hEq.1)
 
-theorem demand_D020 : Contracts.demand_D020 := JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+theorem demand_D020 : Contracts.demand_D020 := And.intro JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+  (by
+    intro edges c
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · intro e hmem
+      obtain ⟨_, hdec⟩ := List.mem_filter.mp hmem
+      exact of_decide_eq_true hdec
+    · intro p o s g hmem
+      exact List.mem_filter.mpr ⟨hmem, decide_eq_true rfl⟩
+    · intro c' p o s g hc' hmem
+      obtain ⟨_, hdec⟩ := List.mem_filter.mp hmem
+      have hkey : (c', p, o, s, g).1 = c' := rfl
+      rw [hkey] at hdec
+      exact hc' (of_decide_eq_true hdec)
+    · intro p₁ p₂ o s g hne hEq
+      simp at hEq
+      exact hne hEq)
 
-theorem demand_D021 : Contracts.demand_D021 := JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+theorem demand_D021 : Contracts.demand_D021 := And.intro JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+  (by
+    intro evts
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · intro e hmem hnone hmemF
+      obtain ⟨_, hdec⟩ := List.mem_filter.mp hmemF
+      have hdec' : e.2.isSome = true := hdec
+      rw [hnone] at hdec'
+      exact absurd hdec' (by simp)
+    · intro e d hmem hsome
+      have hb : e.2.isSome = true := by rw [hsome]
+      exact List.mem_filter.mpr ⟨hmem, hb⟩
+    · intro e hmem
+      by_cases h : e.2.isSome = true
+      · exact Or.inl (List.mem_filter.mpr ⟨hmem, h⟩)
+      · cases h2 : e.2 with
+        | none => exact Or.inr rfl
+        | some d => exact absurd (show e.2.isSome = true from by rw [h2]) h
+    · exact fun _ _ _ h1 h2 => lt_trans h1 h2
+    · exact fun a h => lt_irrefl a h)
 
-theorem demand_D022 : Contracts.demand_D022 := JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+theorem demand_D022 : Contracts.demand_D022 := And.intro JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+  (by
+    intro cands ctres
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · intro r hmem
+      obtain ⟨_, hdec⟩ := List.mem_filter.mp hmem
+      exact of_decide_eq_true hdec
+    · intro r hmem hne hmemF
+      obtain ⟨_, hdec⟩ := List.mem_filter.mp hmemF
+      exact hne (of_decide_eq_true hdec).2.1
+    · intro r hmem hnc hmemF
+      obtain ⟨_, hdec⟩ := List.mem_filter.mp hmemF
+      exact hnc (of_decide_eq_true hdec).2.2.1
+    · intro r hmem
+      exact List.mem_map.mpr ⟨r, hmem, rfl⟩)
 
-theorem demand_D023 : Contracts.demand_D023 := JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+theorem demand_D023 : Contracts.demand_D023 := And.intro JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+  (by
+    intro rec scope q
+    refine ⟨?_, ?_, ?_⟩
+    · intro hmiss hneg
+      obtain ⟨r, hr, hrq, _⟩ := hneg
+      exact hmiss (List.mem_map.mpr ⟨r, hr, hrq⟩)
+    · intro hout
+      exact decide_eq_false hout
+    · intro hEq
+      exact absurd hEq (by decide))
 
-theorem demand_D024 : Contracts.demand_D024 := JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+theorem demand_D024 : Contracts.demand_D024 := And.intro JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+  (by
+    intro links a s₁ s₂ st en h₁ h₂ hle _hne
+    refine ⟨⟨List.mem_filter.mpr ⟨h₁, decide_eq_true hle⟩,
+             List.mem_filter.mpr ⟨h₂, decide_eq_true hle⟩⟩, ?_, ?_⟩
+    · intro l hmem
+      obtain ⟨_, hdec⟩ := List.mem_filter.mp hmem
+      exact of_decide_eq_true hdec
+    · intro l hmem hbad hmemF
+      obtain ⟨_, hdec⟩ := List.mem_filter.mp hmemF
+      exact absurd (lt_of_le_of_lt (of_decide_eq_true hdec) hbad) (lt_irrefl _))
 
-theorem demand_D025 : Contracts.demand_D025 := JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+theorem demand_D025 : Contracts.demand_D025 := And.intro JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+  (by
+    intro s fb
+    refine ⟨?_, ?_, ?_⟩
+    · cases s with
+      | none => exact Or.inl rfl
+      | some s' =>
+        cases s' with
+        | none => exact Or.inr (Or.inl rfl)
+        | some b => exact Or.inr (Or.inr ⟨b, rfl⟩)
+    · refine ⟨?_, ?_⟩
+      · intro hEq
+        simp at hEq
+      · intro hEq
+        simp at hEq
+    · cases s with
+      | none => exact Or.inl rfl
+      | some s' =>
+        cases s' with
+        | none => exact Or.inl rfl
+        | some b => exact Or.inr ⟨b, rfl⟩)
 
-theorem demand_D026 : Contracts.demand_D026 := JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+theorem demand_D026 : Contracts.demand_D026 := And.intro JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+  (by
+    intro recs
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · intro kd c s u
+      exact ⟨rfl, rfl⟩
+    · intro c s u hmem
+      obtain ⟨_, hdec⟩ := List.mem_filter.mp hmem
+      exact absurd (of_decide_eq_true hdec)
+        (by decide : ¬ (("asserted", c, s, u).1 = "adjudicated"))
+    · intro r hmem
+      obtain ⟨hmem', hdec⟩ := List.mem_filter.mp hmem
+      exact ⟨hmem', of_decide_eq_true hdec⟩
+    · intro c s u hEq
+      exact absurd hEq
+        (by decide : ¬ (("asserted", c, s, u) = ("adjudicated", c, s, u))))
 
-theorem demand_D027 : Contracts.demand_D027 := JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+theorem demand_D027 : Contracts.demand_D027 := And.intro JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+  (by
+    intro draft admitted conditional tamper
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · intro d hmem
+      obtain ⟨_, hdec⟩ := List.mem_filter.mp hmem
+      exact of_decide_eq_true hdec
+    · intro d hdraft h₁ h₂ hmemF
+      obtain ⟨_, hdec⟩ := List.mem_filter.mp hmemF
+      rcases of_decide_eq_true hdec with h | h
+      · exact h₁ h
+      · exact h₂ h
+    · intro d hdraft
+      by_cases h : d ∈ admitted ∨ d ∈ conditional
+      · exact Or.inl (List.mem_filter.mpr ⟨hdraft, decide_eq_true h⟩)
+      · exact Or.inr (List.mem_filter.mpr ⟨hdraft, decide_eq_true h⟩)
+    · intro d hdraft htam hpend
+      have hdelta : d ∈ draft.filter (fun x =>
+          decide (x ∈ tamper ∧ ¬ (x ∈ admitted ∨ x ∈ conditional))) :=
+        List.mem_filter.mpr ⟨hdraft, decide_eq_true ⟨htam, hpend⟩⟩
+      cases hlist : draft.filter (fun x =>
+          decide (x ∈ tamper ∧ ¬ (x ∈ admitted ∨ x ∈ conditional))) with
+      | nil => rw [hlist] at hdelta; simp at hdelta
+      | cons _ _ => exact Nat.succ_le_succ (Nat.zero_le _))
 
-theorem demand_D028 : Contracts.demand_D028 := JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+theorem demand_D028 : Contracts.demand_D028 := And.intro JurisLean.FullMath.Probability.dedup_conflict_not_overwrite
+  (by
+    intro acts rules c
+    refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
+    · intro a hmem
+      obtain ⟨_, hdec⟩ := List.mem_filter.mp hmem
+      exact (of_decide_eq_true hdec).1
+    · intro e x hmem
+      obtain ⟨_, hdec⟩ := List.mem_filter.mp hmem
+      exact (of_decide_eq_true hdec).2 rfl
+    · intro r hmem
+      exact (List.mem_filter.mp hmem).1
+    · intro r hmem hrt
+      exact List.mem_filter.mpr ⟨hmem, hrt⟩
+    · intro c₁ c₂ e x hne hEq
+      simp at hEq
+      exact hne hEq
+    · intro e₁ e₂ x hne hEq
+      simp at hEq
+      exact hne hEq)
 
 theorem demand_D029 : Contracts.demand_D029 := JurisLean.FullMath.Logic.generate_sound
 

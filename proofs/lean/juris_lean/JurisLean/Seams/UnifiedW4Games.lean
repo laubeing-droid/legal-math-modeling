@@ -337,6 +337,7 @@ theorem witness_prevention_clipped :
       (by rw [hlo]; norm_num) (by rw [hhi]; norm_num)
   · show decide (normDomainDemo.monthsLo ≤ 65 ∧ 65 ≤ normDomainDemo.monthsHi) = false
     rw [hlo, hhi]
+    decide
 
 /-- 经验线见证：预测值 75 在自身值域 [70,80] 内、但越出法定域 [10,60]——
 裸值被拒、裁剪回 60 后入域（经验拟合不反向修改法定范围）。 -/
@@ -991,9 +992,22 @@ theorem one_dev_principle (δ : ℚ) (g : Nat → Bool → ℚ) (a : Nat → Boo
   induction N generalizing b with
   | zero => simp [truncSum]
   | succ N ih =>
+    -- ih 首参是 N 窗口单偏差命题；h1 只有 N+1 窗口形——N+1 窗口不蕴含 N 窗口，
+    -- 须先经 truncSum_succ 双侧展开＋第 N 项同值（t < N ⇒ N ≠ t）消去公共项导出。
+    have h1' : ∀ t < N, ∀ x : Bool,
+        truncSum δ (fun s => g s (if s = t then x else a s)) N
+          ≤ truncSum δ (fun s => g s (a s)) N := by
+      intro t ht x
+      have h := h1 t (Nat.lt_succ_of_lt ht) x
+      have hN : (fun s => g s (if s = t then x else a s)) N
+          = (fun s => g s (a s)) N := by
+        show g N (if N = t then x else a N) = g N (a N)
+        rw [if_neg (fun hcon => ht hcon.symm)]
+      rw [truncSum_succ δ _ N, truncSum_succ δ _ N, hN] at h
+      linarith
     by_cases hbN : b N = a N
     · -- 末位一致：限制假设后直接用归纳
-      have key := ih (fun t ht x => h1 t (Nat.lt_succ_of_lt ht) x) b (by
+      have key := ih h1' b (by
         intro s hs
         rcases Nat.lt_or_ge s N with hlt | hge
         · have hbad : s < s := Nat.lt_of_lt_of_le hlt hs
@@ -1023,7 +1037,7 @@ theorem one_dev_principle (δ : ℚ) (g : Nat → Bool → ℚ) (a : Nat → Boo
       -- h1N : truncSum(a,N) + δ^N·g N (b N) ≤ truncSum(a,N) + δ^N·g N (a N)
       have ihApp : truncSum δ (fun s => g s (if s = N then a N else b s)) N
           ≤ truncSum δ (fun s => g s (a s)) N :=
-        ih (fun t ht x => h1 t (Nat.lt_succ_of_lt ht) x)
+        ih h1'
           (fun s => if s = N then a N else b s)
           (by
             intro s hs
@@ -1128,14 +1142,14 @@ theorem w4_games_flagship :
     ((4 : ℚ) + (2 / 3) * 2 / (1 - 2 / 3) ≤ 3 / (1 - 2 / 3) ↔
       (4 - 3 : ℚ) / (4 - 2) ≤ 2 / 3) :=
   ⟨(dual_line_stays_normative normDomainDemo 25 40).1,
-    witness_foreign_facts_rejected,
-    witness_prevention_clipped.2.1,
-    bi_one_step_no_gain bParamsDemo,
-    witness_bargain_bi.2,
-    witness_pooling_seq_eq,
-    witness_inconsistent_mu_rejected,
-    fun h => tail_bound (2 / 3 : ℚ) 2 (by norm_num) (by norm_num) (by norm_num)
+    ⟨witness_foreign_facts_rejected,
+    ⟨witness_prevention_clipped.2.1,
+    ⟨bi_one_step_no_gain bParamsDemo,
+    ⟨witness_bargain_bi.2,
+    ⟨witness_pooling_seq_eq,
+    ⟨witness_inconsistent_mu_rejected,
+    ⟨fun h => tail_bound (2 / 3 : ℚ) 2 (by norm_num) (by norm_num) (by norm_num)
       (fun _ => (2 : ℚ)) h 1 5,
-    coop_threshold_iff 3 4 2 (2 / 3) (by norm_num) (by norm_num) (by norm_num)
+    coop_threshold_iff 3 4 2 (2 / 3) (by norm_num) (by norm_num) (by norm_num)⟩⟩⟩⟩⟩⟩⟩⟩
 
 end JurisLean.Seams.UnifiedW4Games

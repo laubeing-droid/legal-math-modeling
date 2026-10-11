@@ -570,8 +570,8 @@ theorem demand_D029 : Contracts.demand_D029 := And.intro JurisLean.FullMath.Logi
     refine ⟨?_, ?_, ?_, ?_⟩
     · intro c hc
       obtain ⟨e, hf, hc1⟩ := List.mem_map.mp hc
-      obtain ⟨_, hdec⟩ := List.mem_filter.mp hf
-      exact ⟨e, hf.1, hc1, of_decide_eq_true hdec⟩
+      obtain ⟨hmem', hdec⟩ := List.mem_filter.mp hf
+      exact ⟨e, hmem', hc1, hdec⟩
     · intro e he hp
       exact List.mem_map.mpr ⟨e, List.mem_filter.mpr ⟨he, hp⟩, rfl⟩
     · intro d x y hEq
@@ -590,21 +590,17 @@ theorem demand_D030 : Contracts.demand_D030 := And.intro JurisLean.FullMath.Logi
     subst hecho
     refine ⟨?_, ?_, ?_, ?_, ?_⟩
     · intro r hr
-      exact (List.mem_filter.mp hr).1
-    · intro r hr
-      have h1 : r ∈ sup := (List.mem_filter.mp hr).1
-      exact (List.mem_filter.mp h1).1
+      exact (List.mem_filter.mp (List.mem_filter.mp hr).1).1
     · intro r hr
       exact (List.mem_filter.mp hr).1
     · intro r hr
-      obtain ⟨_, hdec⟩ := List.mem_filter.mp hr
-      have h1 : r ∈ sup := (List.mem_filter.mp hr).1
+      obtain ⟨h1, hdec⟩ := List.mem_filter.mp hr
       obtain ⟨_, hdec1⟩ := List.mem_filter.mp h1
-      exact ⟨of_decide_eq_true hdec1, of_decide_eq_true hdec⟩
+      exact ⟨hdec1, hdec⟩
     · intro e he hpre hnotin hEq
       have hmem : e.1 ∈ (table.filter (fun r => r.2)).map (fun r => r.1) :=
         List.mem_map.mpr ⟨e, List.mem_filter.mpr ⟨he, hpre⟩, rfl⟩
-      rw [hEq] at hmem
+      rw [← hEq] at hmem
       exact hnotin hmem)
 
 theorem demand_D031 : Contracts.demand_D031 := And.intro JurisLean.FullMath.Logic.generate_sound
@@ -621,26 +617,22 @@ theorem demand_D031 : Contracts.demand_D031 := And.intro JurisLean.FullMath.Logi
       refine ⟨?_, ?_⟩
       · intro hmem
         obtain ⟨_, hdec⟩ := List.mem_filter.mp hmem
-        have hval := of_decide_eq_true hdec
-        simp at hval
-        rw [h2] at hval
-        exact hval.2
+        simp at hdec
+        rw [h2] at hdec
+        simp at hdec
       · intro hmem
         obtain ⟨_, hdec⟩ := List.mem_filter.mp hmem
-        have hval := of_decide_eq_true hdec
-        simp at hval
-        rw [h1] at hval
-        exact hval.2
+        simp at hdec
+        rw [h1] at hdec
+        simp at hdec
     · intro d hmem
       obtain ⟨_, hdec⟩ := List.mem_filter.mp hmem
-      have hval := of_decide_eq_true hdec
-      simp at hval
-      exact hval.2
+      simp at hdec
+      exact hdec.2
     · intro d hmem
       obtain ⟨_, hdec⟩ := List.mem_filter.mp hmem
-      have hval := of_decide_eq_true hdec
-      simp at hval
-      exact hval.2)
+      simp at hdec
+      exact hdec.2)
 
 theorem demand_D032 : Contracts.demand_D032 := And.intro JurisLean.FullMath.Logic.generate_sound
   (by
@@ -686,8 +678,8 @@ theorem demand_D035 : Contracts.demand_D035 := And.intro JurisLean.FullMath.Logi
     refine ⟨?_, ?_⟩
     · intro p hp
       obtain ⟨d, hf, hd1⟩ := List.mem_map.mp hp
-      obtain ⟨_, hdec⟩ := List.mem_filter.mp hf
-      refine ⟨d, hf.1, hd1, ?_⟩
+      obtain ⟨hmem', hdec⟩ := List.mem_filter.mp hf
+      refine ⟨d, hmem', hd1, ?_⟩
       cases hA : d.2.2.2.2 with
       | true => rfl
       | false => rw [hA] at hdec; simp at hdec

@@ -43,6 +43,7 @@ from .standards import (
     ElementStatus,
 )
 from .process import ProcessEvent as _ProcessEvent, run_trace as _run_trace, step_event as _step_event  # noqa: F401  (re-export)
+from tools.full_math.implementation import interpretation_ref as _interp_ref
 
 
 # ---------------------------------------------------------------------------
@@ -282,6 +283,17 @@ def run_case(
         selection_result = enumerate_norm_selections(case, env, limits)
         branches = []
         pending_notes = []
+        # §3.1 interpretation layer (T122/T123): per-sourced-reading branches
+        # with named reasons; non-adopted candidates never enter the rule
+        # base; a same-rank conflict without a named priority edge yields a
+        # referral path instead of a forced choice.  The layer is part of Γ
+        # and rides with every selection branch.
+        interp_layer = _interp_ref.build_interp_layer(
+            env.interpretation_candidates, env.interpretation_priorities)
+        if interp_layer.referral:
+            pending_notes.append(
+                "interpretation conflict requires referral (§3.1): "
+                + ", ".join(f"{a}/{b}" for a, b in interp_layer.referral))
         if selection_result.status is SelectionStatus.ESCALATE:
             pending_notes.append(
                 "norm conflict requires referral: "
@@ -401,6 +413,7 @@ def run_case(
                         extension=view.extension,
                         standards=standards,
                         finalizations=tuple(finalizations),
+                        interp_layer=interp_layer,
                     )
                 )
         status = RunStatus.COMPLETE if branches else RunStatus.PAUSED
@@ -442,6 +455,11 @@ class CaseRunBranch:
     extension: frozenset
     standards: tuple
     finalizations: tuple
+    # §3.1 interpretation branch layer (T122/T123), Γ-level and identical
+    # across selection branches: adopted candidates, attack/priority
+    # relations, referral records, and the rule base built from ADOPTED
+    # interpretations only.
+    interp_layer: object = None
 
 
 @dataclass(frozen=True)

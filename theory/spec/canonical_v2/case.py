@@ -424,6 +424,10 @@ class LegalEnvironment:
     strong_templates: Tuple[StrongTemplate, ...] = ()
     counter_evidences: Tuple[object, ...] = ()  # standards.CounterEvidence
     interpretation_policy_id: str = ""
+    # §3.1 解释层（T122/T123）：interpretation_ref.InterpCandidate / PriorityPair
+    # 冻结载体；未采用候选不进入规则库，同位冲突无具名优先时走报请路径。
+    interpretation_candidates: Tuple[object, ...] = ()
+    interpretation_priorities: Tuple[object, ...] = ()
     authorized_assessments: Tuple[AuthorizedAssessment, ...] = ()
     admission_bases: Tuple[AdmissionBasis, ...] = ()
     procedure_policy_id: str = ""

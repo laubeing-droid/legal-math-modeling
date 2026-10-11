@@ -206,6 +206,8 @@ import JurisLean.Seams.UnifiedW4Games
 import JurisLean.Seams.UnifiedW4Behavior
 import JurisLean.Seams.UnifiedW4Deviation
 
+import JurisLean.Seams.UnifiedEvalLayer
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -2040,6 +2042,73 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedComposition.deriveInputs_allEstablished_iff
 #print axioms JurisLean.Seams.UnifiedComposition.established_requires_admitted_premises
 #print axioms JurisLean.Seams.UnifiedComposition.nondegenerate_family
+#print axioms JurisLean.Seams.UnifiedEvalLayer.anchorless_attack_rejected
+#print axioms JurisLean.Seams.UnifiedEvalLayer.anchorless_attack_witness
+#print axioms JurisLean.Seams.UnifiedEvalLayer.argument_undec_not_final_undetermined
+#print axioms JurisLean.Seams.UnifiedEvalLayer.burden_channel_leaves_evidence_layer
+#print axioms JurisLean.Seams.UnifiedEvalLayer.burden_input_leaves_argument_layer
+#print axioms JurisLean.Seams.UnifiedEvalLayer.burden_input_never_flips_pos
+#print axioms JurisLean.Seams.UnifiedEvalLayer.burden_input_triggers_reevaluation
+#print axioms JurisLean.Seams.UnifiedEvalLayer.civil_high_burden_invariant
+#print axioms JurisLean.Seams.UnifiedEvalLayer.civil_high_same_identity_exclusive
+#print axioms JurisLean.Seams.UnifiedEvalLayer.covered_fragment_binary_or_need
+#print axioms JurisLean.Seams.UnifiedEvalLayer.covered_fragment_witness
+#print axioms JurisLean.Seams.UnifiedEvalLayer.eval_blind_to_ontic_truth
+#print axioms JurisLean.Seams.UnifiedEvalLayer.eval_has_licensed_derivation
+#print axioms JurisLean.Seams.UnifiedEvalLayer.finalJudgment_eq
+#print axioms JurisLean.Seams.UnifiedEvalLayer.final_binary_decisions_exclusive
+#print axioms JurisLean.Seams.UnifiedEvalLayer.final_binary_decisions_witness
+#print axioms JurisLean.Seams.UnifiedEvalLayer.final_undetermined_iff_exhausted
+#print axioms JurisLean.Seams.UnifiedEvalLayer.finalization_closed
+#print axioms JurisLean.Seams.UnifiedEvalLayer.in_ext_burden_invariant
+#print axioms JurisLean.Seams.UnifiedEvalLayer.legalDerives_attack_sound
+#print axioms JurisLean.Seams.UnifiedEvalLayer.legalDerives_card_sound
+#print axioms JurisLean.Seams.UnifiedEvalLayer.legalDerives_final_sound
+#print axioms JurisLean.Seams.UnifiedEvalLayer.legalDerives_standard_sound
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n11_all_elements
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n11_card_derives
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n11_civil_high
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n11_conflict_free
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n11_final_established
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n11_in_ext
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n11_not_civil_high_neg
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n11_not_neg
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n11_pos
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n11_reason_licensed
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n12_gap_exhausted
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n12_gap_not_need
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n12_gap_not_neg
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n12_gap_not_pos
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n12_undet_exhausted
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n12_undet_need
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n12_undet_not_neg
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n12_undet_not_pos
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n13_covered
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n13_final
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n13_gen_truth
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n13_neg
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n13_no_card
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n13_no_need
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n13_no_standard
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n13_not_pos
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n14_after_neg
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n14_after_notEstablished
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n14_after_not_undetermined
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n14_before_none
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n14_no_need
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n14_not_in_ext_30
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n14_not_in_ext_30_after
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n14_not_neg_before
+#print axioms JurisLean.Seams.UnifiedEvalLayer.n14_not_pos
+#print axioms JurisLean.Seams.UnifiedEvalLayer.no_reasons_no_standard
+#print axioms JurisLean.Seams.UnifiedEvalLayer.old_simple_form_in_fragment
+#print axioms JurisLean.Seams.UnifiedEvalLayer.old_simple_form_refuted
+#print axioms JurisLean.Seams.UnifiedEvalLayer.pos_outcome_burden_invariant
+#print axioms JurisLean.Seams.UnifiedEvalLayer.proof_failure_not_ontic_negation
+#print axioms JurisLean.Seams.UnifiedEvalLayer.standard_blocked_by_live_counter
+#print axioms JurisLean.Seams.UnifiedEvalLayer.strong_counter_same_identity
+#print axioms JurisLean.Seams.UnifiedEvalLayer.undetermined_witness
+#print axioms JurisLean.Seams.UnifiedEvalLayer.unified_eval_layer_flagship
 #print axioms JurisLean.Seams.UnifiedEvents.not_mem_removeAll
 #print axioms JurisLean.Seams.UnifiedEvents.revoke_keeps_payments
 #print axioms JurisLean.Seams.UnifiedEvents.runEvents_append

@@ -195,6 +195,7 @@ import JurisLean.Seams.UnifiedCAD
 import JurisLean.Seams.UnifiedCAD2
 import JurisLean.Seams.UnifiedCADCore
 import JurisLean.Seams.UnifiedComposition
+import JurisLean.Seams.UnifiedEvalLayer
 import JurisLean.Seams.UnifiedEvents
 import JurisLean.Seams.UnifiedFinalization
 import JurisLean.Seams.UnifiedFourteenFamilies

@@ -564,6 +564,7 @@
     "JurisLean.Seams.UnifiedCAD2",
     "JurisLean.Seams.UnifiedCADCore",
     "JurisLean.Seams.UnifiedComposition",
+    "JurisLean.Seams.UnifiedEvalLayer",
     "JurisLean.Seams.UnifiedEvents",
     "JurisLean.Seams.UnifiedFinalization",
     "JurisLean.Seams.UnifiedFourteenFamilies",
@@ -2627,6 +2628,73 @@
     "JurisLean.Seams.UnifiedComposition.deriveInputs_allEstablished_iff",
     "JurisLean.Seams.UnifiedComposition.established_requires_admitted_premises",
     "JurisLean.Seams.UnifiedComposition.nondegenerate_family",
+    "JurisLean.Seams.UnifiedEvalLayer.anchorless_attack_rejected",
+    "JurisLean.Seams.UnifiedEvalLayer.anchorless_attack_witness",
+    "JurisLean.Seams.UnifiedEvalLayer.argument_undec_not_final_undetermined",
+    "JurisLean.Seams.UnifiedEvalLayer.burden_channel_leaves_evidence_layer",
+    "JurisLean.Seams.UnifiedEvalLayer.burden_input_leaves_argument_layer",
+    "JurisLean.Seams.UnifiedEvalLayer.burden_input_never_flips_pos",
+    "JurisLean.Seams.UnifiedEvalLayer.burden_input_triggers_reevaluation",
+    "JurisLean.Seams.UnifiedEvalLayer.civil_high_burden_invariant",
+    "JurisLean.Seams.UnifiedEvalLayer.civil_high_same_identity_exclusive",
+    "JurisLean.Seams.UnifiedEvalLayer.covered_fragment_binary_or_need",
+    "JurisLean.Seams.UnifiedEvalLayer.covered_fragment_witness",
+    "JurisLean.Seams.UnifiedEvalLayer.eval_blind_to_ontic_truth",
+    "JurisLean.Seams.UnifiedEvalLayer.eval_has_licensed_derivation",
+    "JurisLean.Seams.UnifiedEvalLayer.finalJudgment_eq",
+    "JurisLean.Seams.UnifiedEvalLayer.final_binary_decisions_exclusive",
+    "JurisLean.Seams.UnifiedEvalLayer.final_binary_decisions_witness",
+    "JurisLean.Seams.UnifiedEvalLayer.final_undetermined_iff_exhausted",
+    "JurisLean.Seams.UnifiedEvalLayer.finalization_closed",
+    "JurisLean.Seams.UnifiedEvalLayer.in_ext_burden_invariant",
+    "JurisLean.Seams.UnifiedEvalLayer.legalDerives_attack_sound",
+    "JurisLean.Seams.UnifiedEvalLayer.legalDerives_card_sound",
+    "JurisLean.Seams.UnifiedEvalLayer.legalDerives_final_sound",
+    "JurisLean.Seams.UnifiedEvalLayer.legalDerives_standard_sound",
+    "JurisLean.Seams.UnifiedEvalLayer.n11_all_elements",
+    "JurisLean.Seams.UnifiedEvalLayer.n11_card_derives",
+    "JurisLean.Seams.UnifiedEvalLayer.n11_civil_high",
+    "JurisLean.Seams.UnifiedEvalLayer.n11_conflict_free",
+    "JurisLean.Seams.UnifiedEvalLayer.n11_final_established",
+    "JurisLean.Seams.UnifiedEvalLayer.n11_in_ext",
+    "JurisLean.Seams.UnifiedEvalLayer.n11_not_civil_high_neg",
+    "JurisLean.Seams.UnifiedEvalLayer.n11_not_neg",
+    "JurisLean.Seams.UnifiedEvalLayer.n11_pos",
+    "JurisLean.Seams.UnifiedEvalLayer.n11_reason_licensed",
+    "JurisLean.Seams.UnifiedEvalLayer.n12_gap_exhausted",
+    "JurisLean.Seams.UnifiedEvalLayer.n12_gap_not_need",
+    "JurisLean.Seams.UnifiedEvalLayer.n12_gap_not_neg",
+    "JurisLean.Seams.UnifiedEvalLayer.n12_gap_not_pos",
+    "JurisLean.Seams.UnifiedEvalLayer.n12_undet_exhausted",
+    "JurisLean.Seams.UnifiedEvalLayer.n12_undet_need",
+    "JurisLean.Seams.UnifiedEvalLayer.n12_undet_not_neg",
+    "JurisLean.Seams.UnifiedEvalLayer.n12_undet_not_pos",
+    "JurisLean.Seams.UnifiedEvalLayer.n13_covered",
+    "JurisLean.Seams.UnifiedEvalLayer.n13_final",
+    "JurisLean.Seams.UnifiedEvalLayer.n13_gen_truth",
+    "JurisLean.Seams.UnifiedEvalLayer.n13_neg",
+    "JurisLean.Seams.UnifiedEvalLayer.n13_no_card",
+    "JurisLean.Seams.UnifiedEvalLayer.n13_no_need",
+    "JurisLean.Seams.UnifiedEvalLayer.n13_no_standard",
+    "JurisLean.Seams.UnifiedEvalLayer.n13_not_pos",
+    "JurisLean.Seams.UnifiedEvalLayer.n14_after_neg",
+    "JurisLean.Seams.UnifiedEvalLayer.n14_after_notEstablished",
+    "JurisLean.Seams.UnifiedEvalLayer.n14_after_not_undetermined",
+    "JurisLean.Seams.UnifiedEvalLayer.n14_before_none",
+    "JurisLean.Seams.UnifiedEvalLayer.n14_no_need",
+    "JurisLean.Seams.UnifiedEvalLayer.n14_not_in_ext_30",
+    "JurisLean.Seams.UnifiedEvalLayer.n14_not_in_ext_30_after",
+    "JurisLean.Seams.UnifiedEvalLayer.n14_not_neg_before",
+    "JurisLean.Seams.UnifiedEvalLayer.n14_not_pos",
+    "JurisLean.Seams.UnifiedEvalLayer.no_reasons_no_standard",
+    "JurisLean.Seams.UnifiedEvalLayer.old_simple_form_in_fragment",
+    "JurisLean.Seams.UnifiedEvalLayer.old_simple_form_refuted",
+    "JurisLean.Seams.UnifiedEvalLayer.pos_outcome_burden_invariant",
+    "JurisLean.Seams.UnifiedEvalLayer.proof_failure_not_ontic_negation",
+    "JurisLean.Seams.UnifiedEvalLayer.standard_blocked_by_live_counter",
+    "JurisLean.Seams.UnifiedEvalLayer.strong_counter_same_identity",
+    "JurisLean.Seams.UnifiedEvalLayer.undetermined_witness",
+    "JurisLean.Seams.UnifiedEvalLayer.unified_eval_layer_flagship",
     "JurisLean.Seams.UnifiedEvents.not_mem_removeAll",
     "JurisLean.Seams.UnifiedEvents.revoke_keeps_payments",
     "JurisLean.Seams.UnifiedEvents.runEvents_append",
@@ -3962,8 +4030,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "9ed39ccd5d2bf94c2deba4821c7a7aaa26f51b1a0d641619da8825af5c45e642",
-   "size_bytes": 238112,
+   "sha256": "ac2b42afb27076ea9687e82a0c2eac029e8e220bdfa93ec72df931ea4f81a124",
+   "size_bytes": 242777,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -11967,8 +12035,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean",
    "print_axioms_targets": [],
-   "sha256": "28d633ae5d0be8c41d95657758637735595b5279231bb33f09526097b2c443e3",
-   "size_bytes": 47707,
+   "sha256": "1d2726e4efe51add9fa2a6659ad161ebb89143e26870422760c01cb7f38ddb58",
+   "size_bytes": 51216,
    "theorem_count": 217,
    "theorem_count_bol_convention": 217
   },
@@ -14368,6 +14436,70 @@
     },
     {
      "kind": "def",
+     "name": "repVerdict"
+    },
+    {
+     "kind": "def",
+     "name": "maeHit"
+    },
+    {
+     "kind": "def",
+     "name": "knActual"
+    },
+    {
+     "kind": "def",
+     "name": "knConstructive"
+    },
+    {
+     "kind": "def",
+     "name": "knInvestigated"
+    },
+    {
+     "kind": "def",
+     "name": "knOf"
+    },
+    {
+     "kind": "def",
+     "name": "contactLegal"
+    },
+    {
+     "kind": "def",
+     "name": "legalContacts"
+    },
+    {
+     "kind": "def",
+     "name": "canTerm"
+    },
+    {
+     "kind": "def",
+     "name": "isSuperiorOffer"
+    },
+    {
+     "kind": "def",
+     "name": "isInterveningEvent"
+    },
+    {
+     "kind": "def",
+     "name": "actionAllowed"
+    },
+    {
+     "kind": "def",
+     "name": "closingRemedies"
+    },
+    {
+     "kind": "def",
+     "name": "doubleTriggerPayout"
+    },
+    {
+     "kind": "def",
+     "name": "schedStatus"
+    },
+    {
+     "kind": "def",
+     "name": "diffWitness"
+    },
+    {
+     "kind": "def",
      "name": "demand_D077"
     },
     {
@@ -14651,8 +14783,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
    "print_axioms_targets": [],
-   "sha256": "532fe0b6b308c7a0b9f4057c06c5fd9c1c22dab3ba26058faa8ce974095b675d",
-   "size_bytes": 99760,
+   "sha256": "de6e85d797451688f5f64d9649ed114aa837a1f66a6c198a7c2e2efa631e51cc",
+   "size_bytes": 114062,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -31458,6 +31590,509 @@
    "declarations": [
     {
      "kind": "structure",
+     "name": "EvidenceItem"
+    },
+    {
+     "kind": "structure",
+     "name": "FactCard"
+    },
+    {
+     "kind": "structure",
+     "name": "ReasonNode"
+    },
+    {
+     "kind": "structure",
+     "name": "AttackCert"
+    },
+    {
+     "kind": "inductive",
+     "name": "PendingKind"
+    },
+    {
+     "kind": "structure",
+     "name": "NeedItem"
+    },
+    {
+     "kind": "structure",
+     "name": "RuleEntry"
+    },
+    {
+     "kind": "structure",
+     "name": "ExhaustionRec"
+    },
+    {
+     "kind": "def",
+     "name": "emptyExh"
+    },
+    {
+     "kind": "structure",
+     "name": "Frame"
+    },
+    {
+     "kind": "def",
+     "name": "reasonIds"
+    },
+    {
+     "kind": "def",
+     "name": "card"
+    },
+    {
+     "kind": "def",
+     "name": "attack"
+    },
+    {
+     "kind": "def",
+     "name": "reasonLicensed"
+    },
+    {
+     "kind": "def",
+     "name": "strongFor"
+    },
+    {
+     "kind": "def",
+     "name": "materialCounter"
+    },
+    {
+     "kind": "def",
+     "name": "inExt"
+    },
+    {
+     "kind": "def",
+     "name": "outExt"
+    },
+    {
+     "kind": "def",
+     "name": "undecExt"
+    },
+    {
+     "kind": "def",
+     "name": "liveExt"
+    },
+    {
+     "kind": "def",
+     "name": "conflictFree"
+    },
+    {
+     "kind": "def",
+     "name": "civilHigh"
+    },
+    {
+     "kind": "def",
+     "name": "civilHighNeg"
+    },
+    {
+     "kind": "def",
+     "name": "allElementsEstablished"
+    },
+    {
+     "kind": "def",
+     "name": "posOutcome"
+    },
+    {
+     "kind": "def",
+     "name": "negOutcome"
+    },
+    {
+     "kind": "def",
+     "name": "standard"
+    },
+    {
+     "kind": "def",
+     "name": "final"
+    },
+    {
+     "kind": "def",
+     "name": "entryResolved"
+    },
+    {
+     "kind": "def",
+     "name": "familyResolved"
+    },
+    {
+     "kind": "def",
+     "name": "exhausted4"
+    },
+    {
+     "kind": "def",
+     "name": "needHolds"
+    },
+    {
+     "kind": "inductive",
+     "name": "FinalCall"
+    },
+    {
+     "kind": "def",
+     "name": "judgmentOf"
+    },
+    {
+     "kind": "def",
+     "name": "coveredFragment"
+    },
+    {
+     "kind": "structure",
+     "name": "BurdenInput"
+    },
+    {
+     "kind": "def",
+     "name": "applyBurdenInput"
+    },
+    {
+     "kind": "theorem",
+     "name": "finalJudgment_eq"
+    },
+    {
+     "kind": "structure",
+     "name": "GenInput"
+    },
+    {
+     "kind": "theorem",
+     "name": "legalDerives_card_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "legalDerives_attack_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "anchorless_attack_rejected"
+    },
+    {
+     "kind": "def",
+     "name": "n10Anchorless"
+    },
+    {
+     "kind": "def",
+     "name": "n10Frame"
+    },
+    {
+     "kind": "theorem",
+     "name": "anchorless_attack_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "legalDerives_standard_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "standard_blocked_by_live_counter"
+    },
+    {
+     "kind": "theorem",
+     "name": "strong_counter_same_identity"
+    },
+    {
+     "kind": "theorem",
+     "name": "legalDerives_final_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "finalization_closed"
+    },
+    {
+     "kind": "theorem",
+     "name": "burden_channel_leaves_evidence_layer"
+    },
+    {
+     "kind": "theorem",
+     "name": "eval_has_licensed_derivation"
+    },
+    {
+     "kind": "theorem",
+     "name": "final_binary_decisions_exclusive"
+    },
+    {
+     "kind": "theorem",
+     "name": "civil_high_same_identity_exclusive"
+    },
+    {
+     "kind": "def",
+     "name": "n11Material"
+    },
+    {
+     "kind": "def",
+     "name": "n11Card"
+    },
+    {
+     "kind": "def",
+     "name": "n11Reason"
+    },
+    {
+     "kind": "def",
+     "name": "n11Frame"
+    },
+    {
+     "kind": "theorem",
+     "name": "n11_card_derives"
+    },
+    {
+     "kind": "theorem",
+     "name": "n11_reason_licensed"
+    },
+    {
+     "kind": "theorem",
+     "name": "n11_in_ext"
+    },
+    {
+     "kind": "theorem",
+     "name": "n11_civil_high"
+    },
+    {
+     "kind": "theorem",
+     "name": "n11_all_elements"
+    },
+    {
+     "kind": "theorem",
+     "name": "n11_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "n11_not_neg"
+    },
+    {
+     "kind": "theorem",
+     "name": "n11_conflict_free"
+    },
+    {
+     "kind": "theorem",
+     "name": "n11_not_civil_high_neg"
+    },
+    {
+     "kind": "theorem",
+     "name": "n11_final_established"
+    },
+    {
+     "kind": "theorem",
+     "name": "final_binary_decisions_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "final_undetermined_iff_exhausted"
+    },
+    {
+     "kind": "theorem",
+     "name": "no_reasons_no_standard"
+    },
+    {
+     "kind": "def",
+     "name": "n12BaseFrame"
+    },
+    {
+     "kind": "theorem",
+     "name": "n12_gap_exhausted"
+    },
+    {
+     "kind": "theorem",
+     "name": "n12_gap_not_need"
+    },
+    {
+     "kind": "theorem",
+     "name": "n12_gap_not_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "n12_gap_not_neg"
+    },
+    {
+     "kind": "theorem",
+     "name": "old_simple_form_refuted"
+    },
+    {
+     "kind": "theorem",
+     "name": "covered_fragment_binary_or_need"
+    },
+    {
+     "kind": "theorem",
+     "name": "old_simple_form_in_fragment"
+    },
+    {
+     "kind": "def",
+     "name": "n12NeedItem"
+    },
+    {
+     "kind": "def",
+     "name": "n12UndetExh"
+    },
+    {
+     "kind": "def",
+     "name": "n12UndetFrame"
+    },
+    {
+     "kind": "theorem",
+     "name": "n12_undet_exhausted"
+    },
+    {
+     "kind": "theorem",
+     "name": "n12_undet_need"
+    },
+    {
+     "kind": "theorem",
+     "name": "n12_undet_not_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "n12_undet_not_neg"
+    },
+    {
+     "kind": "theorem",
+     "name": "undetermined_witness"
+    },
+    {
+     "kind": "def",
+     "name": "n13Material"
+    },
+    {
+     "kind": "def",
+     "name": "n13Card"
+    },
+    {
+     "kind": "def",
+     "name": "n13Reason"
+    },
+    {
+     "kind": "def",
+     "name": "n13Frame"
+    },
+    {
+     "kind": "theorem",
+     "name": "n13_no_card"
+    },
+    {
+     "kind": "theorem",
+     "name": "n13_no_standard"
+    },
+    {
+     "kind": "theorem",
+     "name": "n13_not_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "n13_neg"
+    },
+    {
+     "kind": "theorem",
+     "name": "n13_final"
+    },
+    {
+     "kind": "theorem",
+     "name": "n13_covered"
+    },
+    {
+     "kind": "theorem",
+     "name": "n13_no_need"
+    },
+    {
+     "kind": "theorem",
+     "name": "covered_fragment_witness"
+    },
+    {
+     "kind": "def",
+     "name": "n13Gen"
+    },
+    {
+     "kind": "theorem",
+     "name": "n13_gen_truth"
+    },
+    {
+     "kind": "theorem",
+     "name": "eval_blind_to_ontic_truth"
+    },
+    {
+     "kind": "theorem",
+     "name": "proof_failure_not_ontic_negation"
+    },
+    {
+     "kind": "theorem",
+     "name": "burden_input_leaves_argument_layer"
+    },
+    {
+     "kind": "theorem",
+     "name": "in_ext_burden_invariant"
+    },
+    {
+     "kind": "theorem",
+     "name": "civil_high_burden_invariant"
+    },
+    {
+     "kind": "theorem",
+     "name": "pos_outcome_burden_invariant"
+    },
+    {
+     "kind": "theorem",
+     "name": "burden_input_never_flips_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "burden_input_triggers_reevaluation"
+    },
+    {
+     "kind": "def",
+     "name": "n14Frame"
+    },
+    {
+     "kind": "def",
+     "name": "n14BurdenInput"
+    },
+    {
+     "kind": "theorem",
+     "name": "n14_not_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "n14_not_neg_before"
+    },
+    {
+     "kind": "theorem",
+     "name": "n14_no_need"
+    },
+    {
+     "kind": "theorem",
+     "name": "n14_before_none"
+    },
+    {
+     "kind": "theorem",
+     "name": "n14_not_in_ext_30"
+    },
+    {
+     "kind": "theorem",
+     "name": "n14_not_in_ext_30_after"
+    },
+    {
+     "kind": "theorem",
+     "name": "n14_after_neg"
+    },
+    {
+     "kind": "theorem",
+     "name": "n14_after_notEstablished"
+    },
+    {
+     "kind": "theorem",
+     "name": "n14_after_not_undetermined"
+    },
+    {
+     "kind": "theorem",
+     "name": "argument_undec_not_final_undetermined"
+    },
+    {
+     "kind": "theorem",
+     "name": "unified_eval_layer_flagship"
+    }
+   ],
+   "imports": [
+    "JurisLean.KernelV3",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvalLayer.lean",
+   "print_axioms_targets": [],
+   "sha256": "e420973499a310085d07390eb9e70a2cebb1206e1f18ffe551234b9ac3d93eb8",
+   "size_bytes": 55420,
+   "theorem_count": 67,
+   "theorem_count_bol_convention": 67
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
      "name": "EvState"
     },
     {
@@ -41311,6 +41946,7 @@
     "JurisLean.Seams.UnifiedCAD2",
     "JurisLean.Seams.UnifiedCADCore",
     "JurisLean.Seams.UnifiedComposition",
+    "JurisLean.Seams.UnifiedEvalLayer",
     "JurisLean.Seams.UnifiedEvents",
     "JurisLean.Seams.UnifiedFinalization",
     "JurisLean.Seams.UnifiedFourteenFamilies",
@@ -41377,8 +42013,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "86c2688ca50054cda23c2021b1ef99b66c2eeb4be0adb4dbab305ea96039e3ed",
-   "size_bytes": 10606,
+   "sha256": "698764dc1330f47cd4d1ce82f4bf83ec347420ad74ac81eba051ec46460e969a",
+   "size_bytes": 10646,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -41542,22 +42178,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 4739,
-   "file_count": 361,
+   "counted_declaration_count": 4806,
+   "file_count": 362,
    "lemma_count": 141,
-   "print_axioms_command_count": 3621,
-   "print_axioms_distinct_targets": 3567,
-   "theorem_count": 4598,
-   "theorem_count_bol_convention": 4498
+   "print_axioms_command_count": 3688,
+   "print_axioms_distinct_targets": 3634,
+   "theorem_count": 4665,
+   "theorem_count_bol_convention": 4565
   },
   "juris_lean_package": {
-   "counted_declaration_count": 4720,
-   "file_count": 346,
+   "counted_declaration_count": 4787,
+   "file_count": 347,
    "lemma_count": 134,
-   "print_axioms_command_count": 3621,
-   "print_axioms_distinct_targets": 3567,
-   "theorem_count": 4586,
-   "theorem_count_bol_convention": 4486
+   "print_axioms_command_count": 3688,
+   "print_axioms_distinct_targets": 3634,
+   "theorem_count": 4653,
+   "theorem_count_bol_convention": 4553
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -41853,6 +42489,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD2.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCADCore.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvalLayer.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvents.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFourteenFamilies.lean",
@@ -42212,6 +42849,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD2.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCADCore.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvalLayer.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvents.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFourteenFamilies.lean",
@@ -42321,19 +42959,32 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "1a95687f20f0f419b65361134c5be2397787401441e3d5ca49795a4331250a04",
+ "source_inventory_digest": "5460879be23e832afeae1d8e0cff081b46bee75aad2c5d55582d2d2243f5970c",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "1f91c1d940fb467c06cbf65c707188210e658a97",
-  "tree": "b10556b54bfb5f8c30c16cce4736168f917ea1ea"
+  "commit": "f8267488f3eb5c7118491326215d2368c49ff755",
+  "tree": "ac22614b8264926cc2cba8f987d4ca858d6091ca"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
-  "files_total": 361,
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/AxiomAudit.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvalLayer.lean",
+    "reason": "bytes differ from subject"
+   },
+   {
+    "path": "proofs/lean/juris_lean/JurisLean.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
+  "files_total": 362,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

@@ -12122,8 +12122,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean",
    "print_axioms_targets": [],
-   "sha256": "1d2726e4efe51add9fa2a6659ad161ebb89143e26870422760c01cb7f38ddb58",
-   "size_bytes": 51216,
+   "sha256": "63ac5d45ffc6659d65514b5a3a07194823bdff02b05f4c47f8754a1059958783",
+   "size_bytes": 55061,
    "theorem_count": 217,
    "theorem_count_bol_convention": 217
   },
@@ -14627,6 +14627,110 @@
     },
     {
      "kind": "def",
+     "name": "regSnapshot"
+    },
+    {
+     "kind": "def",
+     "name": "penHop"
+    },
+    {
+     "kind": "def",
+     "name": "chainStake"
+    },
+    {
+     "kind": "def",
+     "name": "controlOf"
+    },
+    {
+     "kind": "def",
+     "name": "caseRowOf"
+    },
+    {
+     "kind": "def",
+     "name": "keySeen"
+    },
+    {
+     "kind": "def",
+     "name": "caseKeysOf"
+    },
+    {
+     "kind": "def",
+     "name": "ecRestrictHigh"
+    },
+    {
+     "kind": "def",
+     "name": "ecDishonest"
+    },
+    {
+     "kind": "def",
+     "name": "ecTerminated"
+    },
+    {
+     "kind": "def",
+     "name": "ecDebtCleared"
+    },
+    {
+     "kind": "def",
+     "name": "ecOf"
+    },
+    {
+     "kind": "def",
+     "name": "amtCase"
+    },
+    {
+     "kind": "def",
+     "name": "amtTarget"
+    },
+    {
+     "kind": "def",
+     "name": "amtUnpaid"
+    },
+    {
+     "kind": "def",
+     "name": "amtPaid"
+    },
+    {
+     "kind": "def",
+     "name": "amtTotalOf"
+    },
+    {
+     "kind": "def",
+     "name": "penEffective"
+    },
+    {
+     "kind": "def",
+     "name": "penRevoked"
+    },
+    {
+     "kind": "def",
+     "name": "penaltyCurrent"
+    },
+    {
+     "kind": "def",
+     "name": "penaltyProvenance"
+    },
+    {
+     "kind": "def",
+     "name": "currentPenalties"
+    },
+    {
+     "kind": "def",
+     "name": "organRowAt"
+    },
+    {
+     "kind": "def",
+     "name": "repEdgeOf"
+    },
+    {
+     "kind": "def",
+     "name": "servedBy"
+    },
+    {
+     "kind": "def",
+     "name": "infersAllCases"
+    },
+    {
+     "kind": "def",
      "name": "demand_D087"
     },
     {
@@ -14870,8 +14974,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
    "print_axioms_targets": [],
-   "sha256": "de6e85d797451688f5f64d9649ed114aa837a1f66a6c198a7c2e2efa631e51cc",
-   "size_bytes": 114062,
+   "sha256": "47796bd4d7cdea7d0c9c5b6b7637a2a456afb9154bc08acdaa691e61c9d34954",
+   "size_bytes": 133321,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -36063,6 +36167,441 @@
   {
    "declarations": [
     {
+     "kind": "structure",
+     "name": "Step"
+    },
+    {
+     "kind": "def",
+     "name": "initState"
+    },
+    {
+     "kind": "theorem",
+     "name": "initState_eq"
+    },
+    {
+     "kind": "def",
+     "name": "runNetTrace"
+    },
+    {
+     "kind": "def",
+     "name": "addAll"
+    },
+    {
+     "kind": "theorem",
+     "name": "mem_addAll"
+    },
+    {
+     "kind": "inductive",
+     "name": "TraceOk"
+    },
+    {
+     "kind": "theorem",
+     "name": "matIn"
+    },
+    {
+     "kind": "theorem",
+     "name": "notMem_init_of_derived"
+    },
+    {
+     "kind": "theorem",
+     "name": "initState_subset_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "rule_horn_mem_any"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceOk_mono"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceOk_runNetTrace"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceOk_concl_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceOk_split"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceOk_start_mono"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceOk_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "traceOk_init_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "trace_reaches_mem_closure"
+    },
+    {
+     "kind": "def",
+     "name": "remainCard"
+    },
+    {
+     "kind": "theorem",
+     "name": "remain_insert_lt"
+    },
+    {
+     "kind": "inductive",
+     "name": "Productive"
+    },
+    {
+     "kind": "theorem",
+     "name": "productive_card_bound"
+    },
+    {
+     "kind": "def",
+     "name": "prodStepRel"
+    },
+    {
+     "kind": "theorem",
+     "name": "prodStep_remain_lt"
+    },
+    {
+     "kind": "theorem",
+     "name": "prodStep_wf"
+    },
+    {
+     "kind": "inductive",
+     "name": "TimesInc"
+    },
+    {
+     "kind": "theorem",
+     "name": "incCons2"
+    },
+    {
+     "kind": "def",
+     "name": "stR01"
+    },
+    {
+     "kind": "def",
+     "name": "stR04"
+    },
+    {
+     "kind": "def",
+     "name": "stR07"
+    },
+    {
+     "kind": "def",
+     "name": "stR08"
+    },
+    {
+     "kind": "def",
+     "name": "stR09"
+    },
+    {
+     "kind": "def",
+     "name": "stR10"
+    },
+    {
+     "kind": "def",
+     "name": "stR11"
+    },
+    {
+     "kind": "def",
+     "name": "stR13"
+    },
+    {
+     "kind": "def",
+     "name": "stR17"
+    },
+    {
+     "kind": "def",
+     "name": "stR14"
+    },
+    {
+     "kind": "def",
+     "name": "stR15"
+    },
+    {
+     "kind": "def",
+     "name": "stR16"
+    },
+    {
+     "kind": "def",
+     "name": "stR28"
+    },
+    {
+     "kind": "def",
+     "name": "stR29"
+    },
+    {
+     "kind": "def",
+     "name": "stR19"
+    },
+    {
+     "kind": "def",
+     "name": "stR20"
+    },
+    {
+     "kind": "def",
+     "name": "stR21"
+    },
+    {
+     "kind": "def",
+     "name": "fullTraj"
+    },
+    {
+     "kind": "def",
+     "name": "fullTrajConcls"
+    },
+    {
+     "kind": "def",
+     "name": "stE0"
+    },
+    {
+     "kind": "def",
+     "name": "stE1"
+    },
+    {
+     "kind": "def",
+     "name": "stE2"
+    },
+    {
+     "kind": "def",
+     "name": "ecoChain"
+    },
+    {
+     "kind": "theorem",
+     "name": "premMat"
+    },
+    {
+     "kind": "theorem",
+     "name": "premConcl"
+    },
+    {
+     "kind": "theorem",
+     "name": "hnew_of"
+    },
+    {
+     "kind": "theorem",
+     "name": "tstep"
+    },
+    {
+     "kind": "theorem",
+     "name": "pstep"
+    },
+    {
+     "kind": "theorem",
+     "name": "ecoChain_ok"
+    },
+    {
+     "kind": "theorem",
+     "name": "ecoChain_productive"
+    },
+    {
+     "kind": "theorem",
+     "name": "ecoChain_times"
+    },
+    {
+     "kind": "theorem",
+     "name": "eco_chain_depth3"
+    },
+    {
+     "kind": "theorem",
+     "name": "fullTraj_ok"
+    },
+    {
+     "kind": "theorem",
+     "name": "fullTraj_productive"
+    },
+    {
+     "kind": "theorem",
+     "name": "fullTraj_times"
+    },
+    {
+     "kind": "theorem",
+     "name": "fullTraj_length"
+    },
+    {
+     "kind": "theorem",
+     "name": "fullTraj_run"
+    },
+    {
+     "kind": "theorem",
+     "name": "fullTraj_sources_scan"
+    },
+    {
+     "kind": "theorem",
+     "name": "fullTraj_sources"
+    },
+    {
+     "kind": "theorem",
+     "name": "ecoChain_sources_scan"
+    },
+    {
+     "kind": "theorem",
+     "name": "ecoChain_sources"
+    },
+    {
+     "kind": "theorem",
+     "name": "net_atom_card"
+    },
+    {
+     "kind": "def",
+     "name": "partialEcoDocket"
+    },
+    {
+     "kind": "def",
+     "name": "badEco"
+    },
+    {
+     "kind": "theorem",
+     "name": "eco_block_scan"
+    },
+    {
+     "kind": "theorem",
+     "name": "isModel_avoiding_gen"
+    },
+    {
+     "kind": "theorem",
+     "name": "eco_block"
+    },
+    {
+     "kind": "theorem",
+     "name": "eco_initial_disjoint"
+    },
+    {
+     "kind": "theorem",
+     "name": "eco_model"
+    },
+    {
+     "kind": "theorem",
+     "name": "not_in_closure_partialEco"
+    },
+    {
+     "kind": "theorem",
+     "name": "ecoViolation_partial_diff"
+    },
+    {
+     "kind": "theorem",
+     "name": "partial_eco_no_traj_reaches"
+    },
+    {
+     "kind": "def",
+     "name": "stP0"
+    },
+    {
+     "kind": "def",
+     "name": "partialEcoTraj"
+    },
+    {
+     "kind": "theorem",
+     "name": "partialEcoTraj_ok"
+    },
+    {
+     "kind": "theorem",
+     "name": "partialEcoTraj_productive"
+    },
+    {
+     "kind": "theorem",
+     "name": "partialEcoTraj_times"
+    },
+    {
+     "kind": "def",
+     "name": "partialBankDocket"
+    },
+    {
+     "kind": "def",
+     "name": "badBank"
+    },
+    {
+     "kind": "theorem",
+     "name": "bank_block_scan"
+    },
+    {
+     "kind": "theorem",
+     "name": "bank_block"
+    },
+    {
+     "kind": "theorem",
+     "name": "bank_initial_disjoint"
+    },
+    {
+     "kind": "theorem",
+     "name": "bank_model"
+    },
+    {
+     "kind": "theorem",
+     "name": "not_in_closure_partialBank"
+    },
+    {
+     "kind": "theorem",
+     "name": "bankruptcy_partial_diff"
+    },
+    {
+     "kind": "theorem",
+     "name": "partial_bank_no_traj_reaches"
+    },
+    {
+     "kind": "def",
+     "name": "stQ0"
+    },
+    {
+     "kind": "def",
+     "name": "stQ1"
+    },
+    {
+     "kind": "def",
+     "name": "stQ2"
+    },
+    {
+     "kind": "def",
+     "name": "stQ3"
+    },
+    {
+     "kind": "def",
+     "name": "partialBankTraj"
+    },
+    {
+     "kind": "theorem",
+     "name": "partialBankTraj_ok"
+    },
+    {
+     "kind": "theorem",
+     "name": "partialBankTraj_productive"
+    },
+    {
+     "kind": "theorem",
+     "name": "partialBankTraj_times"
+    },
+    {
+     "kind": "theorem",
+     "name": "nontrivial_net_trajectory_exists"
+    },
+    {
+     "kind": "theorem",
+     "name": "full_net_trajectory_end_to_end"
+    },
+    {
+     "kind": "theorem",
+     "name": "partial_net_trajectory_difference"
+    }
+   ],
+   "imports": [
+    "JurisLean.Seams.UnifiedFourteenFamilies",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNetTrajectory.lean",
+   "print_axioms_targets": [],
+   "sha256": "f7fbeb8f04d7a1feb8afb3fe1112758d71b4071476aed4e0f76ff3ab1ac3a694",
+   "size_bytes": 61962,
+   "theorem_count": 62,
+   "theorem_count_bol_convention": 62
+  },
+  {
+   "declarations": [
+    {
      "kind": "inductive",
      "name": "Rule"
     },
@@ -42734,22 +43273,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 4891,
-   "file_count": 364,
+   "counted_declaration_count": 4953,
+   "file_count": 365,
    "lemma_count": 141,
    "print_axioms_command_count": 3773,
    "print_axioms_distinct_targets": 3719,
-   "theorem_count": 4750,
-   "theorem_count_bol_convention": 4650
+   "theorem_count": 4812,
+   "theorem_count_bol_convention": 4712
   },
   "juris_lean_package": {
-   "counted_declaration_count": 4872,
-   "file_count": 349,
+   "counted_declaration_count": 4934,
+   "file_count": 350,
    "lemma_count": 134,
    "print_axioms_command_count": 3773,
    "print_axioms_distinct_targets": 3719,
-   "theorem_count": 4738,
-   "theorem_count_bol_convention": 4638
+   "theorem_count": 4800,
+   "theorem_count_bol_convention": 4700
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -43066,6 +43605,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesTotal.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesXT.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesXU.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNetTrajectory.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNormFlow.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedPayoffChain.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedPerformance.lean",
@@ -43428,6 +43968,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesTotal.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesXT.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNeedlesXU.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNetTrajectory.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNormFlow.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedPayoffChain.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedPerformance.lean",
@@ -43519,17 +44060,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "0a390557c597c40ca7df4ab423953564adb060a2dee0c1028ffea1f3333fd6f6",
+ "source_inventory_digest": "21c83011f80b915c3fd640de621846adca10a3499ab481127b67459042d8e7e5",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "f9e5070a751c456dff3f59c1d5c83581be74a887",
-  "tree": "ba51e00798b7eb85a6c983f1bf47de21f51d6c4f"
+  "commit": "780aabdcad8595d68826e36d3b7287ee41e3ef61",
+  "tree": "d631b7d39dbae5ffebbb3c3e2469c3bf48ccb291"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 364,
+  "files_total": 365,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

@@ -2051,29 +2051,398 @@ def demand_D102 : Prop := ∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfY
 
 def demand_D103 : Prop := ∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1
 
-def demand_D104 : Prop := ∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])
+/-! D104-D115 (group 12 起草、修订与交付, W2-A batch B12): each def is
+that demand's own contract, translated from ALL_134_MATH_CONTRACTS.md.
+The first conjunct is the group-registered byte-syntax component (the
+parse/render roundtrip on plain segments: an independent read-back of a
+rendered plain segment returns exactly the segment, so delivered free
+text is never silently transformed); the remaining conjuncts are the
+demand's own operational semantics with its adverse case. -/
 
-def demand_D105 : Prop := ∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])
+/-- D104 helper: the three answer stances that count as an explicit
+answer — admission, denial and reservation are distinct labels, so
+narrative copying is never one of them. -/
+def ansAdmits : String := "admitted"
 
-def demand_D106 : Prop := ∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])
+def ansDenies : String := "denied"
 
-def demand_D107 : Prop := ∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])
+def ansReserves : String := "reserved"
 
-def demand_D108 : Prop := ∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])
+/-- D104 helper: mandatory-reply coverage — every required request has
+an answer row of its own id with an explicit stance and non-empty
+source and assumption fields. -/
+def defenseCovers (required : List String)
+    (answers : List (String × String × String × String)) : Prop :=
+  ∀ r ∈ required, ∃ a ∈ answers,
+    a.1 = r ∧ (a.2.1 = ansAdmits ∨ a.2.1 = ansDenies ∨ a.2.1 = ansReserves)
+      ∧ a.2.2.1 ≠ "" ∧ a.2.2.2 ≠ ""
 
-def demand_D109 : Prop := ∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])
+/-- D105 helper: every proposition cited by one section is grounded in
+the same one registry of fact/argument/result objects. -/
+def segGrounded (registry : List String) (seg : List String) : Prop :=
+  ∀ p ∈ seg, p ∈ registry
 
-def demand_D110 : Prop := ∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])
+/-- D105 helper: citing a proposition requires citing its declared
+upstream dependency — the fact → argument → result chain is never
+skipped. -/
+def depsMet (cited : List String) (deps : List (String × String)) : Prop :=
+  ∀ d ∈ deps, d.1 ∈ cited → d.2 ∈ cited
 
-def demand_D111 : Prop := ∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])
+/-- D106 helper: the confirmed claim list to the document list is an
+identity-preserving covering — every confirmed claim row appears in the
+document list as the very same (id, target, amount) row. -/
+def claimCovered (claims : List (String × String × ℚ))
+    (docs : List (String × String × ℚ)) : Prop :=
+  ∀ c ∈ claims, c ∈ docs
 
-def demand_D112 : Prop := ∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])
+/-- D107 helper: the four change kinds a client alert must present
+separately — statute change, adjudication effect, enforcement posture
+and expected reform. -/
+def chgStatute : Nat := 0
 
-def demand_D113 : Prop := ∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])
+def chgCaseEffect : Nat := 1
 
-def demand_D114 : Prop := ∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])
+def chgEnforcePosture : Nat := 2
 
-def demand_D115 : Prop := ∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])
+def chgReformPlan : Nat := 3
+
+/-- D107 helper: the client-alert row lookup by change kind — only a
+row of the same kind answers, carrying its own content, time and
+source. -/
+def alertRowOf (rows : List (Nat × String × ℕ × String)) (kind : Nat) :
+    Option (String × ℕ × String) :=
+  match rows with
+  | [] => none
+  | r :: rest =>
+      if r.1 = kind then some (r.2.1, r.2.2.1, r.2.2.2) else alertRowOf rest kind
+
+/-- D108 helper: each required memo slot — section, conclusion,
+citation, numeric example — is present in the memo document with
+non-empty verifiable content. -/
+def memoSlotsOK (memo : Doc) : Prop :=
+  ∀ s ∈ ["section", "conclusion", "citation", "numeric"],
+    ∃ v, docGet memo s = some v ∧ v ≠ ""
+
+/-- D108 helper: the conclusion keeps its assumption conditions — every
+declared hypothesis of the conclusion is still cited in it. -/
+def conclAssumptionsMet (assumptions conclusion : List String) : Prop :=
+  ∀ a ∈ assumptions, a ∈ conclusion
+
+/-- D109 helper: the generated resolution draft keeps the organ, the
+vote, the authorized item and the conflict safeguard as its own fields,
+with the actual-approval flag fixed to false — a draft is not an
+approval event however it is worded. -/
+def draftResolution (organ vote item safeguard : String) :
+    (String × String × String × String) × Bool :=
+  ((organ, vote, item, safeguard), false)
+
+/-- D109 helper: actual approval comes only from a recorded approval
+event for the very item — never from draft wording. -/
+def approvedBy (events : List String) (item : String) : Bool :=
+  events.any (fun e => decide (e = "approved:" ++ item))
+
+/-- D110 helper: the draft satisfies one verified termsheet constraint —
+the term's value in the draft is exactly the verified value. -/
+def termMet (draft : Doc) (term : String × String) : Prop :=
+  docGet draft term.1 = some term.2
+
+/-- D110 helper: a stale placeholder of the reused template — the old
+client's name still in the client field — is detected. -/
+def staleClient (draft : Doc) (oldClient : String) : Bool :=
+  decide (docGet draft "client" = some oldClient)
+
+/-- D110 helper: two mutually exclusive clauses present together in one
+draft are flagged. -/
+def exclConflict (draft : Doc) : Bool :=
+  (docGet draft "exclusive-deal").isSome && (docGet draft "open-license").isSome
+
+/-- D111 helper: one dependency-spread step — the zone grows by the
+targets of every edge whose source is already inside the zone, without
+duplicating keys already in the zone. -/
+def spreadOnce (edges : List (String × String)) (zone : List String) :
+    List String :=
+  (edges.filter (fun e => zone.any (fun z => decide (e.1 = z)))).foldl
+    (fun acc e => if acc.contains e.2 then acc else acc ++ [e.2]) zone
+
+/-- D111 helper: the effective value of a defined term resolves through
+its defining edge — a term whose definition references another key reads
+that key's value, so a definition edit changes the effective legal
+effect even when the citing text is untouched. -/
+def definedTermOf (d : Doc) (edges : List (String × String)) (k : String) :
+    String :=
+  match edges.find? (fun e => decide (e.1 = k)) with
+  | some e => (docGet d e.2).getD ""
+  | none => (docGet d k).getD ""
+
+/-- D112 helper: the values that multiple documents carry for one shared
+constraint key. -/
+def valuesOf (docs : List Doc) (k : String) : List String :=
+  docs.filterMap (fun d => docGet d k)
+
+/-- D112 helper: all values in the list agree — the shared-constraint
+consistency across documents. -/
+def allSame (values : List String) : Prop :=
+  ∀ x ∈ values, ∀ y ∈ values, x = y
+
+/-- D113 helper: a controlled-term translation keeps the role, the
+negation, the exception and the numeric value of the term. -/
+def translateTerm (t : String × Bool × String × ℚ) :
+    String × Bool × String × ℚ :=
+  ("EN-" ++ t.1, t.2.1, "EN-" ++ t.2.2.1, t.2.2.2)
+
+/-- D113 helper: the modal flip the contract forbids — rendering "may"
+as an unconditional "shall" replaces the role in place. -/
+def mayToShall (t : String × Bool × String × ℚ) :
+    String × Bool × String × ℚ :=
+  ("obligation", t.2.1, t.2.2.1, t.2.2.2)
+
+/-- D113 helper: the negation drop the contract forbids. -/
+def dropNegation (t : String × Bool × String × ℚ) :
+    String × Bool × String × ℚ :=
+  (t.1, false, t.2.2.1, t.2.2.2)
+
+/-- D113 helper: only terms whose exception field is a controlled label
+are auto-translatable; a free-text exception is preserved for manual
+review — no auto output at all. -/
+def translateChecked (t : String × Bool × String × ℚ) :
+    Option (String × Bool × String × ℚ) :=
+  if t.2.2.1 = "free-text" then none else some (translateTerm t)
+
+/-- D114 helper: every protected proposition of the summary carries a
+non-empty source. -/
+def summarySourced (props : List (String × String)) : Prop :=
+  ∀ p ∈ props, p.2 ≠ ""
+
+/-- D114 helper: every independently determined key point is covered by
+some summary proposition of the same id. -/
+def coversPoints (points : List String) (props : List (String × String)) : Prop :=
+  ∀ k ∈ points, ∃ p ∈ props, p.1 = k
+
+/-- D115 helper: the delivery name format — the required `dl-` prefix,
+checked by structural recursion over the name's characters (no opaque
+string-search primitives). -/
+def prefixDl (name : String) : Bool :=
+  match name.data with
+  | 'd' :: 'l' :: '-' :: _ => true
+  | _ => false
+
+/-- D115 helper: a required deliverable is fit — its name carries the
+delivery prefix, its body is non-empty and each row's key is
+well-formed. -/
+def deliverableOK (name : String) (rows : List (String × String)) : Prop :=
+  prefixDl name = true ∧ rows ≠ [] ∧ (∀ r ∈ rows, r.1 ≠ "")
+
+/-- D115 helper: no annotation row exposes internal scratch work. -/
+def cleanAnnotations (rows : List (String × String)) : Prop :=
+  ∀ r ∈ rows, r.1 ≠ "internal-scratch"
+
+/-- D115 helper: the full delivery gate — fit deliverable plus clean
+annotations. -/
+def deliverableGate (name : String) (rows : List (String × String)) : Prop :=
+  deliverableOK name rows ∧ cleanAnnotations rows
+
+/-- D104 答辩覆盖必答请求，命题有出处/假设，承认与保留明确（反例：只
+复制原告事实也获文本相似高分不能称有效答辩）：必答清单每项都有自带
+立场（承认/否认/保留三互异标签之一）且出处与假设非空的答辩行；纯叙
+事复述（无立场标签）、无出处、无假设的行都不构成覆盖。 -/
+def demand_D104 : Prop :=
+  (∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])) ∧
+  ∀ (req src asmp : String),
+    src ≠ "" →
+    asmp ≠ "" →
+    ((defenseCovers [req] [(req, ansAdmits, src, asmp)] ∧
+      defenseCovers [req] [(req, ansDenies, src, asmp)] ∧
+      defenseCovers [req] [(req, ansReserves, src, asmp)]) ∧
+     (¬ defenseCovers [req] [(req, "narrate", req, req)] ∧
+      ¬ defenseCovers [req] [(req, ansDenies, "", asmp)] ∧
+      ¬ defenseCovers [req] [(req, ansDenies, src, "")]) ∧
+     (ansAdmits ≠ ansReserves ∧ ansAdmits ≠ ansDenies ∧ ansDenies ≠ ansReserves))
+
+/-- D105 各段受保护命题与同一事实/论证/结果对象一致，不跳过上游条
+件（反例：给金标事实的阶段分数不得当原始卷宗全链分数）：三段命题全
+部落在同一对象注册表内；引用某命题必须同时引用其声明的上游依赖
+（res-1 依赖 arg-1、arg-1 依赖 fact-1）；金标命题不在本卷宗注册表
+（gold-9 不入册）、裁断引 res-1 而漏 arg-1 都不成链。 -/
+def demand_D105 : Prop :=
+  (∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])) ∧
+  ((segGrounded ["fact-1", "arg-1", "res-1"] ["fact-1"] ∧
+    segGrounded ["fact-1", "arg-1", "res-1"] ["fact-1", "arg-1"] ∧
+    segGrounded ["fact-1", "arg-1", "res-1"] ["arg-1", "res-1"] ∧
+    depsMet (["fact-1"] ++ ["fact-1", "arg-1"] ++ ["arg-1", "res-1"])
+      [("arg-1", "fact-1"), ("res-1", "arg-1")]) ∧
+   (¬ segGrounded ["fact-1", "arg-1", "res-1"] ["gold-9"] ∧
+    ¬ depsMet ["fact-1", "res-1"] [("arg-1", "fact-1"), ("res-1", "arg-1")]))
+
+/-- D106 已确认诉请列表到文书列表为身份保持的覆盖映射，无遗漏/错误合
+并（反例：两项同金额但不同请求对象不能在去重时删一项）：全量映射两
+行原样入文书；同金额异请求对象的 claim-a/claim-b 是两行不同记录
+（id 不同即行不同）；漏列一行、按金额去重合并成一行都不构成覆盖。 -/
+def demand_D106 : Prop :=
+  (∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])) ∧
+  ∀ (amt : ℚ),
+    ((claimCovered [("claim-a", "pay-costs", amt), ("claim-b", "pay-costs", amt)]
+        [("claim-a", "pay-costs", amt), ("claim-b", "pay-costs", amt)] ∧
+      (("claim-a", "pay-costs", amt) : String × String × ℚ) ≠
+        ("claim-b", "pay-costs", amt)) ∧
+     (¬ claimCovered [("claim-a", "pay-costs", amt), ("claim-b", "pay-costs", amt)]
+         [("claim-a", "pay-costs", amt)] ∧
+      ¬ claimCovered [("claim-a", "pay-costs", amt), ("claim-b", "pay-costs", amt)]
+         [("merged-claim", "pay-costs", amt + amt)]))
+
+/-- D107 法律变化、裁判效果、执法姿态、预期修法分别呈现并带时间来源
+（反例："暂不执法"写成"规范已经废止"应失败）：四类标签互异、按类查
+询——执法姿态行只答姿态查询（附自有时间与来源），法条/裁判/修法通道
+查询皆 none（暂不执法的记录不在废止通道里）；"暂不执法"与"已废止"
+两个标签互异，姿态不冒充废止。 -/
+def demand_D107 : Prop :=
+  (∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])) ∧
+  ∀ (t : ℕ) (src : String),
+    (((chgStatute ≠ chgCaseEffect ∧ chgStatute ≠ chgEnforcePosture ∧
+      chgStatute ≠ chgReformPlan ∧ chgCaseEffect ≠ chgEnforcePosture ∧
+      chgCaseEffect ≠ chgReformPlan ∧ chgEnforcePosture ≠ chgReformPlan) ∧
+     (alertRowOf [(chgEnforcePosture, "temp-not-enforced", t, src)] chgEnforcePosture
+        = some ("temp-not-enforced", t, src) ∧
+      alertRowOf [(chgEnforcePosture, "temp-not-enforced", t, src)] chgStatute = none ∧
+      alertRowOf [(chgEnforcePosture, "temp-not-enforced", t, src)] chgCaseEffect = none ∧
+      alertRowOf [(chgEnforcePosture, "temp-not-enforced", t, src)] chgReformPlan = none)) ∧
+    ("temp-not-enforced" ≠ "repealed"))
+
+/-- D108 指定章节/结论/引文/数值样例可逐项验证；核心观察保持（反例：
+数值正确但结论删去假设条件不得通过业务合同）：四槽齐备且各自非空；
+结论行保留全部假设条件（assumption-1 仍在结论中）；数值槽回读等于核
+验值 900-fen；删假设的结论、缺数值槽的备忘录都不过。 -/
+def demand_D108 : Prop :=
+  (∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])) ∧
+  ((memoSlotsOK [("section", "structure-1"), ("conclusion", "concl-1"),
+      ("citation", "cite-1"), ("numeric", "900-fen")] ∧
+    conclAssumptionsMet ["assumption-1"] ["assumption-1", "concl-1"] ∧
+    docGet [("section", "structure-1"), ("conclusion", "concl-1"),
+      ("citation", "cite-1"), ("numeric", "900-fen")] "numeric" = some "900-fen") ∧
+   (¬ conclAssumptionsMet ["assumption-1"] ["concl-1"] ∧
+    ¬ memoSlotsOK [("section", "structure-1"), ("conclusion", "concl-1"),
+      ("citation", "cite-1")]))
+
+/-- D109 决议生成保留机关、表决、授权事项、冲突保障；草稿不构成实际
+批准事件（反例：生成"已决议"措辞不能使法定程序自动视为完成）：草稿
+四字段（机关/表决/授权事项/冲突保障）原样保留、批准位恒 false；实际
+批准只来自登记的批准事件（"approved:item-1"），措辞写成已决议的草稿
+行不是批准事件。 -/
+def demand_D109 : Prop :=
+  (∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])) ∧
+  ∀ (organ vote item safeguard : String),
+    ((draftResolution organ vote item safeguard).1 = (organ, vote, item, safeguard) ∧
+     (draftResolution organ vote item safeguard).2 = false) ∧
+    (approvedBy [] "item-1" = false ∧
+     approvedBy ["approved:item-1"] "item-1" = true ∧
+     approvedBy ["item-1-worded-as-resolved"] "item-1" = false)
+
+/-- D110 草案满足termsheet已核验约束；模板变换保持未授权变动区域
+（反例：复用模板中的旧客户名或互斥条款应被识别）：已核验条款值经
+docPut 落稿后回读恰为该值（一般 ∀，即 docGet_put 律）；client 键的
+模板变换不动 term-1 键区域（整稿等式＋term-1 回读不变）；旧客户名
+残留可检出（换新后不误报）；互斥条款同稿即冲突、单条款不冲突。 -/
+def demand_D110 : Prop :=
+  (∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])) ∧
+  ((∀ (d : Doc) (t v : String), termMet (docPut d t v) (t, v)) ∧
+   (docPut [("client", "old-co"), ("term-1", "v1")] "client" "new-co"
+      = [("client", "new-co"), ("term-1", "v1")] ∧
+    docGet (docPut [("client", "old-co"), ("term-1", "v1")] "client" "new-co")
+      "term-1" = some "v1")) ∧
+  (staleClient [("client", "old-co")] "old-co" = true ∧
+   staleClient [("client", "new-co")] "old-co" = false ∧
+   exclConflict [("exclusive-deal", "yes"), ("open-license", "yes")] = true ∧
+   exclConflict [("exclusive-deal", "yes")] = false)
+
+/-- D111 修改点及所有依赖闭包形成受影响区；区外受保护观察不变（反
+例：修改定义后正文不变不代表法律效果未变）：修改 def-1 经一次扩散得
+受影响区 [def-1, clause-2]、经两次得全闭包 [def-1, clause-2,
+outcome-3]，区外键 preamble-9 不在区内且其观察经 docPut 变换后原样
+（整稿等式保留 preamble-9 行）；而 clause-2 的有效值经定义边解析读
+def-1 之值——def-1 由 v1 改 v2 后 clause-2 正文文本不变（回读仍
+text-cites-def-1）但有效值从 v1 变 v2。 -/
+def demand_D111 : Prop :=
+  (∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])) ∧
+  ((spreadOnce [("def-1", "clause-2")] ["def-1"] = ["def-1", "clause-2"] ∧
+    spreadOnce [("def-1", "clause-2"), ("clause-2", "outcome-3")]
+      (spreadOnce [("def-1", "clause-2")] ["def-1"])
+      = ["def-1", "clause-2", "outcome-3"] ∧
+    ¬ ("preamble-9" ∈ spreadOnce [("def-1", "clause-2"), ("clause-2", "outcome-3")]
+        (spreadOnce [("def-1", "clause-2")] ["def-1"])) ∧
+    (docPut [("def-1", "v1"), ("preamble-9", "text-9")] "def-1" "v2"
+        = [("def-1", "v2"), ("preamble-9", "text-9")] ∧
+     docGet (docPut [("def-1", "v1"), ("preamble-9", "text-9")] "def-1" "v2")
+        "preamble-9" = some "text-9")) ∧
+   (definedTermOf [("def-1", "v1"), ("clause-2", "text-cites-def-1")]
+       [("clause-2", "def-1")] "clause-2" = "v1" ∧
+    definedTermOf [("def-1", "v2"), ("clause-2", "text-cites-def-1")]
+       [("clause-2", "def-1")] "clause-2" = "v2" ∧
+    docGet [("def-1", "v2"), ("clause-2", "text-cites-def-1")] "clause-2"
+      = some "text-cites-def-1"))
+
+/-- D112 多文书对同一承诺/金额/事件满足共享约束Γ，差异不被静默覆盖
+（反例：融资承诺和终版额度不同仍输出"全部一致"须失败）：披露附表与
+并购协议对 commitment-amount 键的值全同（500-fen）；换上终版额度
+800-fen 的文书后值列表 [500-fen, 800-fen] 不再全同——差异显式可见，
+两值互异不被任何合并语义抹平。 -/
+def demand_D112 : Prop :=
+  (∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])) ∧
+  ((allSame (valuesOf [[("commitment-amount", "500-fen")],
+      [("commitment-amount", "500-fen"), ("closing-event", "signed")]]
+      "commitment-amount") ∧
+    valuesOf [[("commitment-amount", "500-fen")],
+      [("commitment-amount", "500-fen"), ("closing-event", "signed")]]
+      "commitment-amount" = ["500-fen", "500-fen"]) ∧
+   (¬ allSame (valuesOf [[("commitment-amount", "500-fen")],
+       [("commitment-amount", "800-fen")]] "commitment-amount") ∧
+    valuesOf [[("commitment-amount", "500-fen")],
+      [("commitment-amount", "800-fen")]] "commitment-amount"
+      = ["500-fen", "800-fen"] ∧
+    ("500-fen" : String) ≠ "800-fen"))
+
+/-- D113 受控术语翻译保持角色/否定/例外/数值；不支持结构保留人工审核
+（反例："may"译成无条件"应当"、否定词丢失）：受控翻译对（角色,否定,
+例外,数值）四分量逐项保序保值（EN- 前缀只加不改、Bool 与 ℚ 原样）；
+may→shall 的角色改写把 discretionary 换成 obligation（两标签互异）；
+否定丢失把 true 变 false；例外为自由文本的术语不出自动译文（none，
+保留人工审核），受控术语照常出译文。 -/
+def demand_D113 : Prop :=
+  (∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])) ∧
+  ∀ (role : String) (amt : ℚ),
+    ((translateTerm (role, true, "none-exc", amt)
+        = ("EN-" ++ role, true, "EN-none-exc", amt) ∧
+      (translateTerm (role, true, "none-exc", amt)).2.1 = true ∧
+      (translateTerm (role, true, "none-exc", amt)).2.2.2 = amt) ∧
+     ((mayToShall ("discretionary", false, "none-exc", amt)).1 = "obligation" ∧
+      ("discretionary" : String) ≠ "obligation" ∧
+      (dropNegation ("duty", true, "none-exc", amt)).2.1 = false) ∧
+     (translateChecked ("discretionary", false, "none-exc", amt)
+        = some ("EN-discretionary", false, "EN-none-exc", amt) ∧
+      translateChecked ("free-role", false, "free-text", amt) = none))
+
+/-- D114 摘要的受保护命题有来源；已独立确定的关键要点均覆盖（反例：
+只保留支持方论据，删掉关键例外，不可称完整摘要）：支持论据与关键例外
+两命题都带非空来源；两关键要点都被同 id 命题覆盖；删掉例外命题后
+覆盖不再成立，无来源（空串）命题也过不了来源门。 -/
+def demand_D114 : Prop :=
+  (∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])) ∧
+  ((summarySourced [("support-1", "src-1"), ("exception-1", "src-2")] ∧
+    coversPoints ["support-1", "exception-1"]
+      [("support-1", "src-1"), ("exception-1", "src-2")]) ∧
+   (¬ coversPoints ["support-1", "exception-1"] [("support-1", "src-1")] ∧
+    ¬ summarySourced [("exception-1", "")]))
+
+/-- D115 必交文件存在、可解析、名称格式正确；回读的关键语义/表格等于
+核验对象（反例：文件存在但正文为空，或批注暴露内部备算，必须失败）：
+名称带 dl- 前缀、正文非空、行键良构且无内部备算批注的交付物过门，
+其关键表格回读（docPut 后 docGet）恰等于核验值 900-fen；空正文、错
+名称格式、批注暴露 internal-scratch 行三者各各不过门。 -/
+def demand_D115 : Prop :=
+  (∀ (cs : List Char) (hplain : Plain cs), parseL (renderL cs) = some (cs, [])) ∧
+  ((deliverableGate "dl-motion.csv" [("claim-1", "900-fen")] ∧
+    docGet (docPut ([] : Doc) "claim-1" "900-fen") "claim-1" = some "900-fen") ∧
+   (¬ deliverableGate "dl-motion.csv" [] ∧
+    ¬ deliverableGate "motion.csv" [("claim-1", "900-fen")] ∧
+    ¬ deliverableGate "dl-motion.csv" [("internal-scratch", "draft-notes")]))
 
 def demand_D116 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
     (p : S → A → S → ℚ)

@@ -4982,25 +4982,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D104",
    "contract": "JurisLean.FullMath.Contracts.demand_D104",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.parse_render_roundtrip's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-12 drafting/delivery demand instance in the shared semantic framework: this item's own contract semantics plus the registered byte syntax component (the parse/render roundtrip: an independent read-back of a rendered plain segment returns exactly the segment, so delivered free text is never silently transformed), with its adverse case executed as a negative test.",
+   "independent_semantics": "the mandatory-reply coverage of an answer draft: every required request has an answer row of its own id with an explicit stance (admission, denial and reservation are three distinct labels) and non-empty source and assumption fields; narrative copying, a missing source and a missing assumption never cover.",
+   "algorithm": "tools/full_math/implementation/drafting_ref.py stance_ok/defense_covers/defense_answer computes the intermediate result from structured input; drafting_check.check_D104 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (mandatory-request lists with answer rows carrying stance, source and assumption fields, section proposition lists over one registry with dependency edges, confirmed claim rows with ids, targets and exact amounts, client-alert rows keyed by change kind with time and source, memo documents with slot keys, resolution-draft governance fields with approval events, draft documents as key-value rows with termsheet terms and template placeholders, definition dependency edges with effective-term resolution, multiple documents sharing one constraint key, controlled terms with role, negation, exception and numeric components, summary propositions with sources and key-point lists, and deliverable names with row tables and annotations); outputs are exactly the contract quantities (the stance-keyed coverage verdicts, the registry-grounding and chain-dependency verdicts, the identity-preserving covering verdicts, the kind-keyed alert lookups with their miss witnesses, the slot-gate and assumption-keeping verdicts with the numeric read-back, the field-preserving draft with its never-approving flag and event-keyed approval, the put-law read-back with the region-preserving transform and the stale/exclusive flags, the spread zone with the unchanged outside observation and the moving effective value, the per-document value lists with the all-same verdicts, the four-component translation with the violation witnesses and the manual-review gate, the source and coverage verdicts, and the delivery gate with its key read-back).",
+   "external_assumptions": "Argument quality and language persuasiveness, full semantic equivalence of free-text translation, judgment on whether claims are optimal or legally supportable, future enforcement prediction and client-facing explanation quality, real corporate authorization and conflict-of-interest evaluation, commercial and legal quality of terms, implied impacts and open-language understanding, interpretation of ambiguous clauses and omitted annexes, and cross-reader rendering remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/drafting_ref.py",
+    "tools/full_math/implementation/drafting_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D104]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_positive[D104]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_counterexample[D104]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_downstream_pipeline_consumes_drafting"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D104]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D104]"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_checker_rejects_tampered[D104]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.parse_render_roundtrip"
@@ -5011,25 +5012,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D105",
    "contract": "JurisLean.FullMath.Contracts.demand_D105",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.parse_render_roundtrip's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-12 drafting/delivery demand instance in the shared semantic framework: this item's own contract semantics plus the registered byte syntax component (the parse/render roundtrip: an independent read-back of a rendered plain segment returns exactly the segment, so delivered free text is never silently transformed), with its adverse case executed as a negative test.",
+   "independent_semantics": "the fact, reason and ruling sections cite only propositions grounded in the same one registry of fact/argument/result objects, and citing a proposition always cites its declared upstream dependency (the fact → argument → result chain is never skipped); a gold-standard proposition outside the registry and a ruling that skips the argument level both fail.",
+   "algorithm": "tools/full_math/implementation/drafting_ref.py seg_grounded/deps_met/structured_sections computes the intermediate result from structured input; drafting_check.check_D105 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (mandatory-request lists with answer rows carrying stance, source and assumption fields, section proposition lists over one registry with dependency edges, confirmed claim rows with ids, targets and exact amounts, client-alert rows keyed by change kind with time and source, memo documents with slot keys, resolution-draft governance fields with approval events, draft documents as key-value rows with termsheet terms and template placeholders, definition dependency edges with effective-term resolution, multiple documents sharing one constraint key, controlled terms with role, negation, exception and numeric components, summary propositions with sources and key-point lists, and deliverable names with row tables and annotations); outputs are exactly the contract quantities (the stance-keyed coverage verdicts, the registry-grounding and chain-dependency verdicts, the identity-preserving covering verdicts, the kind-keyed alert lookups with their miss witnesses, the slot-gate and assumption-keeping verdicts with the numeric read-back, the field-preserving draft with its never-approving flag and event-keyed approval, the put-law read-back with the region-preserving transform and the stale/exclusive flags, the spread zone with the unchanged outside observation and the moving effective value, the per-document value lists with the all-same verdicts, the four-component translation with the violation witnesses and the manual-review gate, the source and coverage verdicts, and the delivery gate with its key read-back).",
+   "external_assumptions": "Argument quality and language persuasiveness, full semantic equivalence of free-text translation, judgment on whether claims are optimal or legally supportable, future enforcement prediction and client-facing explanation quality, real corporate authorization and conflict-of-interest evaluation, commercial and legal quality of terms, implied impacts and open-language understanding, interpretation of ambiguous clauses and omitted annexes, and cross-reader rendering remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/drafting_ref.py",
+    "tools/full_math/implementation/drafting_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D105]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_positive[D105]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_counterexample[D105]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_downstream_pipeline_consumes_drafting"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D105]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D105]"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_checker_rejects_tampered[D105]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.parse_render_roundtrip"
@@ -5040,25 +5042,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D106",
    "contract": "JurisLean.FullMath.Contracts.demand_D106",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.parse_render_roundtrip's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-12 drafting/delivery demand instance in the shared semantic framework: this item's own contract semantics plus the registered byte syntax component (the parse/render roundtrip: an independent read-back of a rendered plain segment returns exactly the segment, so delivered free text is never silently transformed), with its adverse case executed as a negative test.",
+   "independent_semantics": "the confirmed claim list to the document list is an identity-preserving covering: every confirmed (id, target, amount) row appears in the document list as the very same row; an omission and an amount-keyed merge (two same-amount claims of different objects collapsed) never cover.",
+   "algorithm": "tools/full_math/implementation/drafting_ref.py claim_covered/claim_schedule computes the intermediate result from structured input; drafting_check.check_D106 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (mandatory-request lists with answer rows carrying stance, source and assumption fields, section proposition lists over one registry with dependency edges, confirmed claim rows with ids, targets and exact amounts, client-alert rows keyed by change kind with time and source, memo documents with slot keys, resolution-draft governance fields with approval events, draft documents as key-value rows with termsheet terms and template placeholders, definition dependency edges with effective-term resolution, multiple documents sharing one constraint key, controlled terms with role, negation, exception and numeric components, summary propositions with sources and key-point lists, and deliverable names with row tables and annotations); outputs are exactly the contract quantities (the stance-keyed coverage verdicts, the registry-grounding and chain-dependency verdicts, the identity-preserving covering verdicts, the kind-keyed alert lookups with their miss witnesses, the slot-gate and assumption-keeping verdicts with the numeric read-back, the field-preserving draft with its never-approving flag and event-keyed approval, the put-law read-back with the region-preserving transform and the stale/exclusive flags, the spread zone with the unchanged outside observation and the moving effective value, the per-document value lists with the all-same verdicts, the four-component translation with the violation witnesses and the manual-review gate, the source and coverage verdicts, and the delivery gate with its key read-back).",
+   "external_assumptions": "Argument quality and language persuasiveness, full semantic equivalence of free-text translation, judgment on whether claims are optimal or legally supportable, future enforcement prediction and client-facing explanation quality, real corporate authorization and conflict-of-interest evaluation, commercial and legal quality of terms, implied impacts and open-language understanding, interpretation of ambiguous clauses and omitted annexes, and cross-reader rendering remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/drafting_ref.py",
+    "tools/full_math/implementation/drafting_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D106]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_positive[D106]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_counterexample[D106]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_downstream_pipeline_consumes_drafting"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D106]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D106]"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_checker_rejects_tampered[D106]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.parse_render_roundtrip"
@@ -5069,25 +5072,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D107",
    "contract": "JurisLean.FullMath.Contracts.demand_D107",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.parse_render_roundtrip's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-12 drafting/delivery demand instance in the shared semantic framework: this item's own contract semantics plus the registered byte syntax component (the parse/render roundtrip: an independent read-back of a rendered plain segment returns exactly the segment, so delivered free text is never silently transformed), with its adverse case executed as a negative test.",
+   "independent_semantics": "statute change, adjudication effect, enforcement posture and expected reform are four distinct kinds, queried by kind so an enforcement-posture row (carrying its own time and source) never answers the statute channel; 'temporarily not enforced' and 'repealed' are distinct labels.",
+   "algorithm": "tools/full_math/implementation/drafting_ref.py alert_row_of/client_alert computes the intermediate result from structured input; drafting_check.check_D107 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (mandatory-request lists with answer rows carrying stance, source and assumption fields, section proposition lists over one registry with dependency edges, confirmed claim rows with ids, targets and exact amounts, client-alert rows keyed by change kind with time and source, memo documents with slot keys, resolution-draft governance fields with approval events, draft documents as key-value rows with termsheet terms and template placeholders, definition dependency edges with effective-term resolution, multiple documents sharing one constraint key, controlled terms with role, negation, exception and numeric components, summary propositions with sources and key-point lists, and deliverable names with row tables and annotations); outputs are exactly the contract quantities (the stance-keyed coverage verdicts, the registry-grounding and chain-dependency verdicts, the identity-preserving covering verdicts, the kind-keyed alert lookups with their miss witnesses, the slot-gate and assumption-keeping verdicts with the numeric read-back, the field-preserving draft with its never-approving flag and event-keyed approval, the put-law read-back with the region-preserving transform and the stale/exclusive flags, the spread zone with the unchanged outside observation and the moving effective value, the per-document value lists with the all-same verdicts, the four-component translation with the violation witnesses and the manual-review gate, the source and coverage verdicts, and the delivery gate with its key read-back).",
+   "external_assumptions": "Argument quality and language persuasiveness, full semantic equivalence of free-text translation, judgment on whether claims are optimal or legally supportable, future enforcement prediction and client-facing explanation quality, real corporate authorization and conflict-of-interest evaluation, commercial and legal quality of terms, implied impacts and open-language understanding, interpretation of ambiguous clauses and omitted annexes, and cross-reader rendering remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/drafting_ref.py",
+    "tools/full_math/implementation/drafting_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D107]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_positive[D107]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_counterexample[D107]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_downstream_pipeline_consumes_drafting"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D107]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D107]"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_checker_rejects_tampered[D107]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.parse_render_roundtrip"
@@ -5098,25 +5102,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D108",
    "contract": "JurisLean.FullMath.Contracts.demand_D108",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.parse_render_roundtrip's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-12 drafting/delivery demand instance in the shared semantic framework: this item's own contract semantics plus the registered byte syntax component (the parse/render roundtrip: an independent read-back of a rendered plain segment returns exactly the segment, so delivered free text is never silently transformed), with its adverse case executed as a negative test.",
+   "independent_semantics": "section, conclusion, citation and numeric slots are each present with non-empty verifiable content, the conclusion keeps its assumption conditions, and the numeric slot read-back equals the verified value; a conclusion with a dropped assumption or a memo missing the numeric slot fails.",
+   "algorithm": "tools/full_math/implementation/drafting_ref.py memo_slots_ok/concl_assumptions_met/memo_review computes the intermediate result from structured input; drafting_check.check_D108 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (mandatory-request lists with answer rows carrying stance, source and assumption fields, section proposition lists over one registry with dependency edges, confirmed claim rows with ids, targets and exact amounts, client-alert rows keyed by change kind with time and source, memo documents with slot keys, resolution-draft governance fields with approval events, draft documents as key-value rows with termsheet terms and template placeholders, definition dependency edges with effective-term resolution, multiple documents sharing one constraint key, controlled terms with role, negation, exception and numeric components, summary propositions with sources and key-point lists, and deliverable names with row tables and annotations); outputs are exactly the contract quantities (the stance-keyed coverage verdicts, the registry-grounding and chain-dependency verdicts, the identity-preserving covering verdicts, the kind-keyed alert lookups with their miss witnesses, the slot-gate and assumption-keeping verdicts with the numeric read-back, the field-preserving draft with its never-approving flag and event-keyed approval, the put-law read-back with the region-preserving transform and the stale/exclusive flags, the spread zone with the unchanged outside observation and the moving effective value, the per-document value lists with the all-same verdicts, the four-component translation with the violation witnesses and the manual-review gate, the source and coverage verdicts, and the delivery gate with its key read-back).",
+   "external_assumptions": "Argument quality and language persuasiveness, full semantic equivalence of free-text translation, judgment on whether claims are optimal or legally supportable, future enforcement prediction and client-facing explanation quality, real corporate authorization and conflict-of-interest evaluation, commercial and legal quality of terms, implied impacts and open-language understanding, interpretation of ambiguous clauses and omitted annexes, and cross-reader rendering remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/drafting_ref.py",
+    "tools/full_math/implementation/drafting_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D108]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_positive[D108]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_counterexample[D108]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_downstream_pipeline_consumes_drafting"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D108]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D108]"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_checker_rejects_tampered[D108]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.parse_render_roundtrip"
@@ -5127,25 +5132,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D109",
    "contract": "JurisLean.FullMath.Contracts.demand_D109",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.parse_render_roundtrip's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-12 drafting/delivery demand instance in the shared semantic framework: this item's own contract semantics plus the registered byte syntax component (the parse/render roundtrip: an independent read-back of a rendered plain segment returns exactly the segment, so delivered free text is never silently transformed), with its adverse case executed as a negative test.",
+   "independent_semantics": "the generated resolution draft keeps organ, vote, authorized item and conflict safeguard with the actual-approval flag fixed to false; actual approval comes only from a recorded approval event for the very item, never from 'resolved'-worded draft text.",
+   "algorithm": "tools/full_math/implementation/drafting_ref.py draft_resolution/approved_by/resolution_draft computes the intermediate result from structured input; drafting_check.check_D109 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (mandatory-request lists with answer rows carrying stance, source and assumption fields, section proposition lists over one registry with dependency edges, confirmed claim rows with ids, targets and exact amounts, client-alert rows keyed by change kind with time and source, memo documents with slot keys, resolution-draft governance fields with approval events, draft documents as key-value rows with termsheet terms and template placeholders, definition dependency edges with effective-term resolution, multiple documents sharing one constraint key, controlled terms with role, negation, exception and numeric components, summary propositions with sources and key-point lists, and deliverable names with row tables and annotations); outputs are exactly the contract quantities (the stance-keyed coverage verdicts, the registry-grounding and chain-dependency verdicts, the identity-preserving covering verdicts, the kind-keyed alert lookups with their miss witnesses, the slot-gate and assumption-keeping verdicts with the numeric read-back, the field-preserving draft with its never-approving flag and event-keyed approval, the put-law read-back with the region-preserving transform and the stale/exclusive flags, the spread zone with the unchanged outside observation and the moving effective value, the per-document value lists with the all-same verdicts, the four-component translation with the violation witnesses and the manual-review gate, the source and coverage verdicts, and the delivery gate with its key read-back).",
+   "external_assumptions": "Argument quality and language persuasiveness, full semantic equivalence of free-text translation, judgment on whether claims are optimal or legally supportable, future enforcement prediction and client-facing explanation quality, real corporate authorization and conflict-of-interest evaluation, commercial and legal quality of terms, implied impacts and open-language understanding, interpretation of ambiguous clauses and omitted annexes, and cross-reader rendering remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/drafting_ref.py",
+    "tools/full_math/implementation/drafting_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D109]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_positive[D109]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_counterexample[D109]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_downstream_pipeline_consumes_drafting"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D109]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D109]"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_checker_rejects_tampered[D109]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.parse_render_roundtrip"
@@ -5156,25 +5162,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D110",
    "contract": "JurisLean.FullMath.Contracts.demand_D110",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.parse_render_roundtrip's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-12 drafting/delivery demand instance in the shared semantic framework: this item's own contract semantics plus the registered byte syntax component (the parse/render roundtrip: an independent read-back of a rendered plain segment returns exactly the segment, so delivered free text is never silently transformed), with its adverse case executed as a negative test.",
+   "independent_semantics": "a verified termsheet value put into the draft reads back exactly (the put lens law on any base document); a template transform on the client key leaves the term-1 region untouched; a stale old client name is detected (no false positive after the update) and two mutually exclusive clauses together are flagged.",
+   "algorithm": "tools/full_math/implementation/drafting_ref.py term_met/stale_client/excl_conflict/termsheet_draft computes the intermediate result from structured input; drafting_check.check_D110 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (mandatory-request lists with answer rows carrying stance, source and assumption fields, section proposition lists over one registry with dependency edges, confirmed claim rows with ids, targets and exact amounts, client-alert rows keyed by change kind with time and source, memo documents with slot keys, resolution-draft governance fields with approval events, draft documents as key-value rows with termsheet terms and template placeholders, definition dependency edges with effective-term resolution, multiple documents sharing one constraint key, controlled terms with role, negation, exception and numeric components, summary propositions with sources and key-point lists, and deliverable names with row tables and annotations); outputs are exactly the contract quantities (the stance-keyed coverage verdicts, the registry-grounding and chain-dependency verdicts, the identity-preserving covering verdicts, the kind-keyed alert lookups with their miss witnesses, the slot-gate and assumption-keeping verdicts with the numeric read-back, the field-preserving draft with its never-approving flag and event-keyed approval, the put-law read-back with the region-preserving transform and the stale/exclusive flags, the spread zone with the unchanged outside observation and the moving effective value, the per-document value lists with the all-same verdicts, the four-component translation with the violation witnesses and the manual-review gate, the source and coverage verdicts, and the delivery gate with its key read-back).",
+   "external_assumptions": "Argument quality and language persuasiveness, full semantic equivalence of free-text translation, judgment on whether claims are optimal or legally supportable, future enforcement prediction and client-facing explanation quality, real corporate authorization and conflict-of-interest evaluation, commercial and legal quality of terms, implied impacts and open-language understanding, interpretation of ambiguous clauses and omitted annexes, and cross-reader rendering remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/drafting_ref.py",
+    "tools/full_math/implementation/drafting_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D110]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_positive[D110]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_counterexample[D110]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_downstream_pipeline_consumes_drafting"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D110]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D110]"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_checker_rejects_tampered[D110]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.parse_render_roundtrip"
@@ -5185,25 +5192,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D111",
    "contract": "JurisLean.FullMath.Contracts.demand_D111",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.parse_render_roundtrip's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-12 drafting/delivery demand instance in the shared semantic framework: this item's own contract semantics plus the registered byte syntax component (the parse/render roundtrip: an independent read-back of a rendered plain segment returns exactly the segment, so delivered free text is never silently transformed), with its adverse case executed as a negative test.",
+   "independent_semantics": "the modification point and its dependency closure form the affected zone (one spread step, then the closed zone); a key outside the zone keeps its protected observation across the edit, while a term defined through the edited definition changes its effective value even though its citing text is untouched.",
+   "algorithm": "tools/full_math/implementation/drafting_ref.py spread_once/defined_term_of/redline_impact computes the intermediate result from structured input; drafting_check.check_D111 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (mandatory-request lists with answer rows carrying stance, source and assumption fields, section proposition lists over one registry with dependency edges, confirmed claim rows with ids, targets and exact amounts, client-alert rows keyed by change kind with time and source, memo documents with slot keys, resolution-draft governance fields with approval events, draft documents as key-value rows with termsheet terms and template placeholders, definition dependency edges with effective-term resolution, multiple documents sharing one constraint key, controlled terms with role, negation, exception and numeric components, summary propositions with sources and key-point lists, and deliverable names with row tables and annotations); outputs are exactly the contract quantities (the stance-keyed coverage verdicts, the registry-grounding and chain-dependency verdicts, the identity-preserving covering verdicts, the kind-keyed alert lookups with their miss witnesses, the slot-gate and assumption-keeping verdicts with the numeric read-back, the field-preserving draft with its never-approving flag and event-keyed approval, the put-law read-back with the region-preserving transform and the stale/exclusive flags, the spread zone with the unchanged outside observation and the moving effective value, the per-document value lists with the all-same verdicts, the four-component translation with the violation witnesses and the manual-review gate, the source and coverage verdicts, and the delivery gate with its key read-back).",
+   "external_assumptions": "Argument quality and language persuasiveness, full semantic equivalence of free-text translation, judgment on whether claims are optimal or legally supportable, future enforcement prediction and client-facing explanation quality, real corporate authorization and conflict-of-interest evaluation, commercial and legal quality of terms, implied impacts and open-language understanding, interpretation of ambiguous clauses and omitted annexes, and cross-reader rendering remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/drafting_ref.py",
+    "tools/full_math/implementation/drafting_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D111]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_positive[D111]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_counterexample[D111]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_downstream_pipeline_consumes_drafting"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D111]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D111]"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_checker_rejects_tampered[D111]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.parse_render_roundtrip"
@@ -5214,25 +5222,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D112",
    "contract": "JurisLean.FullMath.Contracts.demand_D112",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.parse_render_roundtrip's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-12 drafting/delivery demand instance in the shared semantic framework: this item's own contract semantics plus the registered byte syntax component (the parse/render roundtrip: an independent read-back of a rendered plain segment returns exactly the segment, so delivered free text is never silently transformed), with its adverse case executed as a negative test.",
+   "independent_semantics": "multiple documents carry their own values for one shared constraint key; agreement means all values are the same, and a financing-commitment 500-fen against a final-version 800-fen stays an explicit visible difference (never silently overwritten into 'all consistent').",
+   "algorithm": "tools/full_math/implementation/drafting_ref.py values_of/all_same/cross_doc_consistency computes the intermediate result from structured input; drafting_check.check_D112 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (mandatory-request lists with answer rows carrying stance, source and assumption fields, section proposition lists over one registry with dependency edges, confirmed claim rows with ids, targets and exact amounts, client-alert rows keyed by change kind with time and source, memo documents with slot keys, resolution-draft governance fields with approval events, draft documents as key-value rows with termsheet terms and template placeholders, definition dependency edges with effective-term resolution, multiple documents sharing one constraint key, controlled terms with role, negation, exception and numeric components, summary propositions with sources and key-point lists, and deliverable names with row tables and annotations); outputs are exactly the contract quantities (the stance-keyed coverage verdicts, the registry-grounding and chain-dependency verdicts, the identity-preserving covering verdicts, the kind-keyed alert lookups with their miss witnesses, the slot-gate and assumption-keeping verdicts with the numeric read-back, the field-preserving draft with its never-approving flag and event-keyed approval, the put-law read-back with the region-preserving transform and the stale/exclusive flags, the spread zone with the unchanged outside observation and the moving effective value, the per-document value lists with the all-same verdicts, the four-component translation with the violation witnesses and the manual-review gate, the source and coverage verdicts, and the delivery gate with its key read-back).",
+   "external_assumptions": "Argument quality and language persuasiveness, full semantic equivalence of free-text translation, judgment on whether claims are optimal or legally supportable, future enforcement prediction and client-facing explanation quality, real corporate authorization and conflict-of-interest evaluation, commercial and legal quality of terms, implied impacts and open-language understanding, interpretation of ambiguous clauses and omitted annexes, and cross-reader rendering remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/drafting_ref.py",
+    "tools/full_math/implementation/drafting_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D112]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_positive[D112]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_counterexample[D112]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_downstream_pipeline_consumes_drafting"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D112]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D112]"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_checker_rejects_tampered[D112]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.parse_render_roundtrip"
@@ -5243,25 +5252,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D113",
    "contract": "JurisLean.FullMath.Contracts.demand_D113",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.parse_render_roundtrip's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-12 drafting/delivery demand instance in the shared semantic framework: this item's own contract semantics plus the registered byte syntax component (the parse/render roundtrip: an independent read-back of a rendered plain segment returns exactly the segment, so delivered free text is never silently transformed), with its adverse case executed as a negative test.",
+   "independent_semantics": "a controlled-term translation keeps the role, the negation, the exception and the numeric amount (the EN- prefix only decorates); a 'may'→'shall' modal flip and a negation drop are detected violations, and a term whose exception field is free text produces no auto translation at all (kept for manual review).",
+   "algorithm": "tools/full_math/implementation/drafting_ref.py translate_term/may_to_shall/drop_negation/translate_checked/term_translation computes the intermediate result from structured input; drafting_check.check_D113 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (mandatory-request lists with answer rows carrying stance, source and assumption fields, section proposition lists over one registry with dependency edges, confirmed claim rows with ids, targets and exact amounts, client-alert rows keyed by change kind with time and source, memo documents with slot keys, resolution-draft governance fields with approval events, draft documents as key-value rows with termsheet terms and template placeholders, definition dependency edges with effective-term resolution, multiple documents sharing one constraint key, controlled terms with role, negation, exception and numeric components, summary propositions with sources and key-point lists, and deliverable names with row tables and annotations); outputs are exactly the contract quantities (the stance-keyed coverage verdicts, the registry-grounding and chain-dependency verdicts, the identity-preserving covering verdicts, the kind-keyed alert lookups with their miss witnesses, the slot-gate and assumption-keeping verdicts with the numeric read-back, the field-preserving draft with its never-approving flag and event-keyed approval, the put-law read-back with the region-preserving transform and the stale/exclusive flags, the spread zone with the unchanged outside observation and the moving effective value, the per-document value lists with the all-same verdicts, the four-component translation with the violation witnesses and the manual-review gate, the source and coverage verdicts, and the delivery gate with its key read-back).",
+   "external_assumptions": "Argument quality and language persuasiveness, full semantic equivalence of free-text translation, judgment on whether claims are optimal or legally supportable, future enforcement prediction and client-facing explanation quality, real corporate authorization and conflict-of-interest evaluation, commercial and legal quality of terms, implied impacts and open-language understanding, interpretation of ambiguous clauses and omitted annexes, and cross-reader rendering remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/drafting_ref.py",
+    "tools/full_math/implementation/drafting_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D113]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_positive[D113]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_counterexample[D113]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_downstream_pipeline_consumes_drafting"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D113]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D113]"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_checker_rejects_tampered[D113]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.parse_render_roundtrip"
@@ -5272,25 +5282,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D114",
    "contract": "JurisLean.FullMath.Contracts.demand_D114",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.parse_render_roundtrip's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-12 drafting/delivery demand instance in the shared semantic framework: this item's own contract semantics plus the registered byte syntax component (the parse/render roundtrip: an independent read-back of a rendered plain segment returns exactly the segment, so delivered free text is never silently transformed), with its adverse case executed as a negative test.",
+   "independent_semantics": "every protected proposition of the summary carries a non-empty source and every independently determined key point is covered by a same-id proposition; dropping the key exception or carrying an unsourced proposition fails.",
+   "algorithm": "tools/full_math/implementation/drafting_ref.py summary_sourced/covers_points/summary_review computes the intermediate result from structured input; drafting_check.check_D114 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (mandatory-request lists with answer rows carrying stance, source and assumption fields, section proposition lists over one registry with dependency edges, confirmed claim rows with ids, targets and exact amounts, client-alert rows keyed by change kind with time and source, memo documents with slot keys, resolution-draft governance fields with approval events, draft documents as key-value rows with termsheet terms and template placeholders, definition dependency edges with effective-term resolution, multiple documents sharing one constraint key, controlled terms with role, negation, exception and numeric components, summary propositions with sources and key-point lists, and deliverable names with row tables and annotations); outputs are exactly the contract quantities (the stance-keyed coverage verdicts, the registry-grounding and chain-dependency verdicts, the identity-preserving covering verdicts, the kind-keyed alert lookups with their miss witnesses, the slot-gate and assumption-keeping verdicts with the numeric read-back, the field-preserving draft with its never-approving flag and event-keyed approval, the put-law read-back with the region-preserving transform and the stale/exclusive flags, the spread zone with the unchanged outside observation and the moving effective value, the per-document value lists with the all-same verdicts, the four-component translation with the violation witnesses and the manual-review gate, the source and coverage verdicts, and the delivery gate with its key read-back).",
+   "external_assumptions": "Argument quality and language persuasiveness, full semantic equivalence of free-text translation, judgment on whether claims are optimal or legally supportable, future enforcement prediction and client-facing explanation quality, real corporate authorization and conflict-of-interest evaluation, commercial and legal quality of terms, implied impacts and open-language understanding, interpretation of ambiguous clauses and omitted annexes, and cross-reader rendering remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/drafting_ref.py",
+    "tools/full_math/implementation/drafting_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D114]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_positive[D114]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_counterexample[D114]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_downstream_pipeline_consumes_drafting"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D114]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D114]"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_checker_rejects_tampered[D114]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.parse_render_roundtrip"
@@ -5301,25 +5312,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D115",
    "contract": "JurisLean.FullMath.Contracts.demand_D115",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Document.parse_render_roundtrip's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-12 drafting/delivery demand instance in the shared semantic framework: this item's own contract semantics plus the registered byte syntax component (the parse/render roundtrip: an independent read-back of a rendered plain segment returns exactly the segment, so delivered free text is never silently transformed), with its adverse case executed as a negative test.",
+   "independent_semantics": "a required deliverable passes the gate only when its name carries the dl- prefix, its body is non-empty with well-formed row keys and no annotation row exposes internal scratch work; the key table read-back (put then get) equals the verified value.",
+   "algorithm": "tools/full_math/implementation/drafting_ref.py prefix_dl/deliverable_ok/clean_annotations/deliverable_gate/delivery_check computes the intermediate result from structured input; drafting_check.check_D115 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (mandatory-request lists with answer rows carrying stance, source and assumption fields, section proposition lists over one registry with dependency edges, confirmed claim rows with ids, targets and exact amounts, client-alert rows keyed by change kind with time and source, memo documents with slot keys, resolution-draft governance fields with approval events, draft documents as key-value rows with termsheet terms and template placeholders, definition dependency edges with effective-term resolution, multiple documents sharing one constraint key, controlled terms with role, negation, exception and numeric components, summary propositions with sources and key-point lists, and deliverable names with row tables and annotations); outputs are exactly the contract quantities (the stance-keyed coverage verdicts, the registry-grounding and chain-dependency verdicts, the identity-preserving covering verdicts, the kind-keyed alert lookups with their miss witnesses, the slot-gate and assumption-keeping verdicts with the numeric read-back, the field-preserving draft with its never-approving flag and event-keyed approval, the put-law read-back with the region-preserving transform and the stale/exclusive flags, the spread zone with the unchanged outside observation and the moving effective value, the per-document value lists with the all-same verdicts, the four-component translation with the violation witnesses and the manual-review gate, the source and coverage verdicts, and the delivery gate with its key read-back).",
+   "external_assumptions": "Argument quality and language persuasiveness, full semantic equivalence of free-text translation, judgment on whether claims are optimal or legally supportable, future enforcement prediction and client-facing explanation quality, real corporate authorization and conflict-of-interest evaluation, commercial and legal quality of terms, implied impacts and open-language understanding, interpretation of ambiguous clauses and omitted annexes, and cross-reader rendering remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Document/ByteSyntax.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/drafting_ref.py",
+    "tools/full_math/implementation/drafting_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D115]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_positive[D115]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_demand_counterexample[D115]",
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_downstream_pipeline_consumes_drafting"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D115]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D115]"
+    "tools/full_math/implementation_tests::test_drafting_group12.py::test_checker_rejects_tampered[D115]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Document.parse_render_roundtrip"

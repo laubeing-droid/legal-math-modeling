@@ -1362,29 +1362,241 @@ theorem demand_D102 : Contracts.demand_D102 := JurisLean.FullMath.Numeric.succDa
 
 theorem demand_D103 : Contracts.demand_D103 := JurisLean.FullMath.Numeric.succDay_ordinal_mono
 
-theorem demand_D104 : Contracts.demand_D104 := JurisLean.FullMath.Document.parse_render_roundtrip
+/-! D104-D115 (group 12 起草、修订与交付, W2-A batch B12): each
+theorem discharges the demand's own contract; the first conjunct is the
+group-registered byte-syntax component inlined as
+`parse_render_roundtrip`. -/
 
-theorem demand_D105 : Contracts.demand_D105 := JurisLean.FullMath.Document.parse_render_roundtrip
+theorem demand_D104 : Contracts.demand_D104 := And.intro JurisLean.FullMath.Document.parse_render_roundtrip
+  (by
+    intro req src asmp hsrc hasmp
+    refine ⟨⟨?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩⟩
+    · intro r hr
+      simp at hr
+      exact ⟨(req, Contracts.ansAdmits, src, asmp), by simp, hr.symm,
+        Or.inl rfl, hsrc, hasmp⟩
+    · intro r hr
+      simp at hr
+      exact ⟨(req, Contracts.ansDenies, src, asmp), by simp, hr.symm,
+        Or.inr (Or.inl rfl), hsrc, hasmp⟩
+    · intro r hr
+      simp at hr
+      exact ⟨(req, Contracts.ansReserves, src, asmp), by simp, hr.symm,
+        Or.inr (Or.inr rfl), hsrc, hasmp⟩
+    · intro h
+      obtain ⟨a, hmem, -, hstance, -, -⟩ := h req (by simp)
+      simp at hmem
+      subst hmem
+      rcases hstance with h | h | h <;>
+        simp [Contracts.ansAdmits, Contracts.ansDenies,
+          Contracts.ansReserves] at h
+    · intro h
+      obtain ⟨a, hmem, -, -, h2, -⟩ := h req (by simp)
+      simp at hmem
+      subst hmem
+      exact h2 rfl
+    · intro h
+      obtain ⟨a, hmem, -, -, -, h3⟩ := h req (by simp)
+      simp at hmem
+      subst hmem
+      exact h3 rfl
+    · simp [Contracts.ansAdmits, Contracts.ansReserves]
+    · simp [Contracts.ansAdmits, Contracts.ansDenies]
+    · simp [Contracts.ansDenies, Contracts.ansReserves])
 
-theorem demand_D106 : Contracts.demand_D106 := JurisLean.FullMath.Document.parse_render_roundtrip
+theorem demand_D105 : Contracts.demand_D105 := And.intro JurisLean.FullMath.Document.parse_render_roundtrip
+  (by
+    refine ⟨⟨?_, ?_, ?_, ?_⟩, ⟨?_, ?_⟩⟩
+    · intro p hp
+      simp at hp
+      subst hp
+      simp
+    · intro p hp
+      simp at hp
+      rcases hp with rfl | rfl <;> simp
+    · intro p hp
+      simp at hp
+      rcases hp with rfl | rfl <;> simp
+    · intro d hd
+      simp only [List.cons_append, List.nil_append]
+      simp at hd
+      rcases hd with rfl | rfl <;> (intro _; simp)
+    · intro h
+      have hg := h "gold-9" (by simp)
+      simp at hg
+    · intro h
+      have hd := h ("res-1", "arg-1") (by simp)
+      have harg := hd (by simp)
+      simp at harg)
 
-theorem demand_D107 : Contracts.demand_D107 := JurisLean.FullMath.Document.parse_render_roundtrip
+theorem demand_D106 : Contracts.demand_D106 := And.intro JurisLean.FullMath.Document.parse_render_roundtrip
+  (by
+    intro amt
+    refine ⟨⟨?_, ?_⟩, ⟨?_, ?_⟩⟩
+    · intro c hc
+      simp at hc
+      rcases hc with rfl | rfl <;> simp
+    · simp
+    · intro h
+      have hb := h ("claim-b", "pay-costs", amt) (by simp)
+      simp at hb
+    · intro h
+      have hb := h ("claim-b", "pay-costs", amt) (by simp)
+      simp at hb)
 
-theorem demand_D108 : Contracts.demand_D108 := JurisLean.FullMath.Document.parse_render_roundtrip
+theorem demand_D107 : Contracts.demand_D107 := And.intro JurisLean.FullMath.Document.parse_render_roundtrip
+  (by
+    intro t src
+    refine ⟨⟨⟨?_, ?_, ?_, ?_, ?_, ?_⟩, ⟨?_, ?_, ?_, ?_⟩⟩, ?_⟩
+    · decide
+    · decide
+    · decide
+    · decide
+    · decide
+    · decide
+    · simp [Contracts.alertRowOf, Contracts.chgEnforcePosture]
+    · simp [Contracts.alertRowOf, Contracts.chgEnforcePosture,
+      Contracts.chgStatute]
+    · simp [Contracts.alertRowOf, Contracts.chgEnforcePosture,
+      Contracts.chgCaseEffect]
+    · simp [Contracts.alertRowOf, Contracts.chgEnforcePosture,
+      Contracts.chgReformPlan]
+    · simp)
 
-theorem demand_D109 : Contracts.demand_D109 := JurisLean.FullMath.Document.parse_render_roundtrip
+theorem demand_D108 : Contracts.demand_D108 := And.intro JurisLean.FullMath.Document.parse_render_roundtrip
+  (by
+    refine ⟨⟨?_, ?_, ?_⟩, ⟨?_, ?_⟩⟩
+    · intro s hs
+      simp at hs
+      rcases hs with rfl | rfl | rfl | rfl
+      · exact ⟨"structure-1", by decide, by simp⟩
+      · exact ⟨"concl-1", by decide, by simp⟩
+      · exact ⟨"cite-1", by decide, by simp⟩
+      · exact ⟨"900-fen", by decide, by simp⟩
+    · intro a ha
+      simp at ha
+      subst ha
+      simp
+    · decide
+    · intro h
+      have happ := h "assumption-1" (by simp)
+      simp at happ
+    · intro h
+      obtain ⟨v, hv, -⟩ := h "numeric" (by simp)
+      have hn : docGet [("section", "structure-1"), ("conclusion", "concl-1"),
+          ("citation", "cite-1")] "numeric" = none := by decide
+      rw [hn] at hv
+      contradiction)
 
-theorem demand_D110 : Contracts.demand_D110 := JurisLean.FullMath.Document.parse_render_roundtrip
+theorem demand_D109 : Contracts.demand_D109 := And.intro JurisLean.FullMath.Document.parse_render_roundtrip
+  (by
+    intro organ vote item safeguard
+    refine ⟨⟨rfl, rfl⟩, rfl, ?_, ?_⟩
+    · simp [Contracts.approvedBy]
+    · simp [Contracts.approvedBy])
 
-theorem demand_D111 : Contracts.demand_D111 := JurisLean.FullMath.Document.parse_render_roundtrip
+theorem demand_D110 : Contracts.demand_D110 := And.intro JurisLean.FullMath.Document.parse_render_roundtrip
+  (by
+    refine ⟨⟨fun d t v => JurisLean.FullMath.Document.docGet_put d t v,
+      ⟨?_, ?_⟩⟩, ⟨?_, ?_, ?_, ?_⟩⟩
+    · decide
+    · decide
+    · simp [Contracts.staleClient, docGet]
+    · simp [Contracts.staleClient, docGet]
+    · simp [Contracts.exclConflict, docGet]
+    · simp [Contracts.exclConflict, docGet])
 
-theorem demand_D112 : Contracts.demand_D112 := JurisLean.FullMath.Document.parse_render_roundtrip
+theorem demand_D111 : Contracts.demand_D111 := And.intro JurisLean.FullMath.Document.parse_render_roundtrip
+  (by
+    refine ⟨⟨?_, ?_, ?_, ⟨?_, ?_⟩⟩, ⟨?_, ?_, ?_⟩⟩
+    · decide
+    · decide
+    · intro h
+      have hn : ¬ ("preamble-9" ∈ Contracts.spreadOnce
+          [("def-1", "clause-2"), ("clause-2", "outcome-3")]
+          (Contracts.spreadOnce [("def-1", "clause-2")] ["def-1"])) := by decide
+      exact hn h
+    · decide
+    · decide
+    · decide
+    · decide
+    · decide)
 
-theorem demand_D113 : Contracts.demand_D113 := JurisLean.FullMath.Document.parse_render_roundtrip
+theorem demand_D112 : Contracts.demand_D112 := And.intro JurisLean.FullMath.Document.parse_render_roundtrip
+  (by
+    refine ⟨⟨?_, ?_⟩, ⟨?_, ?_, ?_⟩⟩
+    · intro x hx y hy
+      have hvals : Contracts.valuesOf [[("commitment-amount", "500-fen")],
+          [("commitment-amount", "500-fen"), ("closing-event", "signed")]]
+          "commitment-amount" = ["500-fen", "500-fen"] := by decide
+      rw [hvals] at hx hy
+      simp at hx hy
+      rcases hx with rfl | rfl <;> rcases hy with rfl | rfl <;> rfl
+    · decide
+    · intro h
+      have hx := h "500-fen" (by decide) "800-fen" (by decide)
+      exact absurd hx (by decide)
+    · decide
+    · decide)
 
-theorem demand_D114 : Contracts.demand_D114 := JurisLean.FullMath.Document.parse_render_roundtrip
+theorem demand_D113 : Contracts.demand_D113 := And.intro JurisLean.FullMath.Document.parse_render_roundtrip
+  (by
+    intro role amt
+    refine ⟨⟨?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩, ⟨?_, ?_⟩⟩
+    · simp [Contracts.translateTerm]
+    · simp [Contracts.translateTerm]
+    · simp [Contracts.translateTerm]
+    · rfl
+    · simp
+    · rfl
+    · simp [Contracts.translateChecked, Contracts.translateTerm]
+    · simp [Contracts.translateChecked])
 
-theorem demand_D115 : Contracts.demand_D115 := JurisLean.FullMath.Document.parse_render_roundtrip
+theorem demand_D114 : Contracts.demand_D114 := And.intro JurisLean.FullMath.Document.parse_render_roundtrip
+  (by
+    refine ⟨⟨?_, ?_⟩, ⟨?_, ?_⟩⟩
+    · intro p hp
+      simp at hp
+      rcases hp with rfl | rfl <;> simp
+    · intro k hk
+      simp at hk
+      rcases hk with rfl | rfl
+      · exact ⟨("support-1", "src-1"), by simp, rfl⟩
+      · exact ⟨("exception-1", "src-2"), by simp, rfl⟩
+    · intro h
+      have hk := h "exception-1" (by simp)
+      obtain ⟨p, hp, h1⟩ := hk
+      simp at hp
+      subst hp
+      simp at h1
+    · intro h
+      have hpp := h ("exception-1", "") (by simp)
+      simp at hpp)
+
+theorem demand_D115 : Contracts.demand_D115 := And.intro JurisLean.FullMath.Document.parse_render_roundtrip
+  (by
+    refine ⟨⟨⟨⟨?_, ?_, ?_⟩, ?_⟩, ?_⟩, ⟨?_, ?_, ?_⟩⟩
+    · rfl
+    · simp
+    · intro r hr
+      simp at hr
+      subst hr
+      simp
+    · intro r hr
+      simp at hr
+      subst hr
+      simp
+    · exact JurisLean.FullMath.Document.docGet_put [] "claim-1" "900-fen"
+    · intro h
+      exact h.1.2.1 rfl
+    · intro h
+      have h1 := h.1.1
+      have hf : Contracts.prefixDl "motion.csv" = false := rfl
+      rw [hf] at h1
+      exact Bool.noConfusion h1
+    · intro h
+      have hbad := h.2 ("internal-scratch", "draft-notes") (by simp)
+      exact hbad rfl)
 
 theorem demand_D116 : Contracts.demand_D116 := JurisLean.FullMath.Numeric.bellman_onesided
 

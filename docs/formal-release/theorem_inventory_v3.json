@@ -564,6 +564,7 @@
     "JurisLean.Seams.UnifiedCAD2",
     "JurisLean.Seams.UnifiedCADCore",
     "JurisLean.Seams.UnifiedComposition",
+    "JurisLean.Seams.UnifiedEquilExist",
     "JurisLean.Seams.UnifiedEvalLayer",
     "JurisLean.Seams.UnifiedEvents",
     "JurisLean.Seams.UnifiedFinalization",
@@ -2631,6 +2632,53 @@
     "JurisLean.Seams.UnifiedComposition.deriveInputs_allEstablished_iff",
     "JurisLean.Seams.UnifiedComposition.established_requires_admitted_premises",
     "JurisLean.Seams.UnifiedComposition.nondegenerate_family",
+    "JurisLean.Seams.UnifiedEquilExist.best_response_pure_vertex_exists",
+    "JurisLean.Seams.UnifiedEquilExist.brCorr_closedGraph",
+    "JurisLean.Seams.UnifiedEquilExist.brCorr_values",
+    "JurisLean.Seams.UnifiedEquilExist.cad_equil_solution_nonempty",
+    "JurisLean.Seams.UnifiedEquilExist.cad_output_same_equilibrium_relation",
+    "JurisLean.Seams.UnifiedEquilExist.castProfile_inSimplex",
+    "JurisLean.Seams.UnifiedEquilExist.castProfile_update",
+    "JurisLean.Seams.UnifiedEquilExist.conjAll_denote",
+    "JurisLean.Seams.UnifiedEquilExist.continuous_euR_update",
+    "JurisLean.Seams.UnifiedEquilExist.denote_dev_atom",
+    "JurisLean.Seams.UnifiedEquilExist.denote_nonneg_atom",
+    "JurisLean.Seams.UnifiedEquilExist.denote_norm_atom",
+    "JurisLean.Seams.UnifiedEquilExist.euR_cast",
+    "JurisLean.Seams.UnifiedEquilExist.euR_dev_linear",
+    "JurisLean.Seams.UnifiedEquilExist.euR_pureMR",
+    "JurisLean.Seams.UnifiedEquilExist.euR_update_row_affine",
+    "JurisLean.Seams.UnifiedEquilExist.eval2_devRowPoly",
+    "JurisLean.Seams.UnifiedEquilExist.eval2_euDevPoly",
+    "JurisLean.Seams.UnifiedEquilExist.eval2_euPoly",
+    "JurisLean.Seams.UnifiedEquilExist.exists_rowOf_eq",
+    "JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists",
+    "JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists_of_menu",
+    "JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists_upstream",
+    "JurisLean.Seams.UnifiedEquilExist.fixed_point_brCorr_iff_nash",
+    "JurisLean.Seams.UnifiedEquilExist.gapmid_nash_iff_real",
+    "JurisLean.Seams.UnifiedEquilExist.legalGame_Strategy_eq",
+    "JurisLean.Seams.UnifiedEquilExist.legalGame_bound",
+    "JurisLean.Seams.UnifiedEquilExist.legalGame_eu_pure",
+    "JurisLean.Seams.UnifiedEquilExist.legalGame_mixedExtension_eu",
+    "JurisLean.Seams.UnifiedEquilExist.nashR_iff_no_pure_dev_gain",
+    "JurisLean.Seams.UnifiedEquilExist.pmfOfRow_toReal",
+    "JurisLean.Seams.UnifiedEquilExist.pointR_cast_eq",
+    "JurisLean.Seams.UnifiedEquilExist.pointR_rowSimplex",
+    "JurisLean.Seams.UnifiedEquilExist.prod_updateR_factor",
+    "JurisLean.Seams.UnifiedEquilExist.pureMR_inSimplex",
+    "JurisLean.Seams.UnifiedEquilExist.pureMR_rowSimplex",
+    "JurisLean.Seams.UnifiedEquilExist.qToR_apply",
+    "JurisLean.Seams.UnifiedEquilExist.simplexSet_compact",
+    "JurisLean.Seams.UnifiedEquilExist.simplexSet_convex",
+    "JurisLean.Seams.UnifiedEquilExist.simplexSet_isBounded",
+    "JurisLean.Seams.UnifiedEquilExist.simplexSet_isClosed",
+    "JurisLean.Seams.UnifiedEquilExist.simplexSet_nonempty",
+    "JurisLean.Seams.UnifiedEquilExist.sum_pointR_weight",
+    "JurisLean.Seams.UnifiedEquilExist.toRow_inSimplex",
+    "JurisLean.Seams.UnifiedEquilExist.toRow_update",
+    "JurisLean.Seams.UnifiedEquilExist.toRow_update_pmf",
+    "JurisLean.Seams.UnifiedEquilExist.upstream_nash_iff",
     "JurisLean.Seams.UnifiedEvalLayer.anchorless_attack_rejected",
     "JurisLean.Seams.UnifiedEvalLayer.anchorless_attack_witness",
     "JurisLean.Seams.UnifiedEvalLayer.argument_undec_not_final_undetermined",
@@ -4180,8 +4228,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "4ec108a3c61d4c76cdead1f0b109948955c1efa1e2443b3f80903c4c976f5839",
-   "size_bytes": 253300,
+   "sha256": "8a4a281de40a2a66b967c94d849970ae7515d1cdc471a3f3a19e7d5b696ef40d",
+   "size_bytes": 256564,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -31843,6 +31891,320 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "RowSimplexR"
+    },
+    {
+     "kind": "def",
+     "name": "InSimplexR"
+    },
+    {
+     "kind": "def",
+     "name": "pointR"
+    },
+    {
+     "kind": "def",
+     "name": "pureMR"
+    },
+    {
+     "kind": "theorem",
+     "name": "pointR_rowSimplex"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureMR_rowSimplex"
+    },
+    {
+     "kind": "theorem",
+     "name": "pureMR_inSimplex"
+    },
+    {
+     "kind": "def",
+     "name": "euR"
+    },
+    {
+     "kind": "theorem",
+     "name": "euR_pureMR"
+    },
+    {
+     "kind": "theorem",
+     "name": "sum_pointR_weight"
+    },
+    {
+     "kind": "theorem",
+     "name": "prod_updateR_factor"
+    },
+    {
+     "kind": "theorem",
+     "name": "euR_dev_linear"
+    },
+    {
+     "kind": "def",
+     "name": "IsNashR"
+    },
+    {
+     "kind": "theorem",
+     "name": "nashR_iff_no_pure_dev_gain"
+    },
+    {
+     "kind": "def",
+     "name": "simplexSet"
+    },
+    {
+     "kind": "theorem",
+     "name": "simplexSet_nonempty"
+    },
+    {
+     "kind": "theorem",
+     "name": "simplexSet_convex"
+    },
+    {
+     "kind": "theorem",
+     "name": "simplexSet_isClosed"
+    },
+    {
+     "kind": "theorem",
+     "name": "simplexSet_isBounded"
+    },
+    {
+     "kind": "theorem",
+     "name": "simplexSet_compact"
+    },
+    {
+     "kind": "theorem",
+     "name": "continuous_euR_update"
+    },
+    {
+     "kind": "def",
+     "name": "brCorr"
+    },
+    {
+     "kind": "theorem",
+     "name": "best_response_pure_vertex_exists"
+    },
+    {
+     "kind": "theorem",
+     "name": "euR_update_row_affine"
+    },
+    {
+     "kind": "theorem",
+     "name": "brCorr_values"
+    },
+    {
+     "kind": "theorem",
+     "name": "brCorr_closedGraph"
+    },
+    {
+     "kind": "theorem",
+     "name": "fixed_point_brCorr_iff_nash"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_legal_mixed_equilibrium_exists"
+    },
+    {
+     "kind": "inductive",
+     "name": "LegalEval"
+    },
+    {
+     "kind": "def",
+     "name": "LegalEval.toQ"
+    },
+    {
+     "kind": "structure",
+     "name": "LegalActionMenu"
+    },
+    {
+     "kind": "def",
+     "name": "LegalActionMenu.uReal"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_legal_mixed_equilibrium_exists_of_menu"
+    },
+    {
+     "kind": "def",
+     "name": "legalGame"
+    },
+    {
+     "kind": "theorem",
+     "name": "legalGame_Strategy_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "legalGame_eu_pure"
+    },
+    {
+     "kind": "def",
+     "name": "toRow"
+    },
+    {
+     "kind": "theorem",
+     "name": "toRow_inSimplex"
+    },
+    {
+     "kind": "def",
+     "name": "pmfOfRow"
+    },
+    {
+     "kind": "theorem",
+     "name": "pmfOfRow_toReal"
+    },
+    {
+     "kind": "theorem",
+     "name": "toRow_update"
+    },
+    {
+     "kind": "theorem",
+     "name": "toRow_update_pmf"
+    },
+    {
+     "kind": "theorem",
+     "name": "legalGame_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "legalGame_mixedExtension_eu"
+    },
+    {
+     "kind": "theorem",
+     "name": "upstream_nash_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "finite_legal_mixed_equilibrium_exists_upstream"
+    },
+    {
+     "kind": "def",
+     "name": "castProfile"
+    },
+    {
+     "kind": "theorem",
+     "name": "euR_cast"
+    },
+    {
+     "kind": "theorem",
+     "name": "castProfile_update"
+    },
+    {
+     "kind": "theorem",
+     "name": "pointR_cast_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "castProfile_inSimplex"
+    },
+    {
+     "kind": "theorem",
+     "name": "gapmid_nash_iff_real"
+    },
+    {
+     "kind": "def",
+     "name": "cadVarN"
+    },
+    {
+     "kind": "def",
+     "name": "cadIdx"
+    },
+    {
+     "kind": "def",
+     "name": "rowOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "exists_rowOf_eq"
+    },
+    {
+     "kind": "def",
+     "name": "uR"
+    },
+    {
+     "kind": "theorem",
+     "name": "qToR_apply"
+    },
+    {
+     "kind": "def",
+     "name": "euPoly"
+    },
+    {
+     "kind": "def",
+     "name": "devRowPoly"
+    },
+    {
+     "kind": "def",
+     "name": "euDevPoly"
+    },
+    {
+     "kind": "theorem",
+     "name": "eval2_euPoly"
+    },
+    {
+     "kind": "theorem",
+     "name": "eval2_devRowPoly"
+    },
+    {
+     "kind": "theorem",
+     "name": "eval2_euDevPoly"
+    },
+    {
+     "kind": "def",
+     "name": "conjAll"
+    },
+    {
+     "kind": "theorem",
+     "name": "conjAll_denote"
+    },
+    {
+     "kind": "def",
+     "name": "cadAtom"
+    },
+    {
+     "kind": "def",
+     "name": "cadAtomList"
+    },
+    {
+     "kind": "def",
+     "name": "cadEquilFormula"
+    },
+    {
+     "kind": "theorem",
+     "name": "denote_nonneg_atom"
+    },
+    {
+     "kind": "theorem",
+     "name": "denote_norm_atom"
+    },
+    {
+     "kind": "theorem",
+     "name": "denote_dev_atom"
+    },
+    {
+     "kind": "theorem",
+     "name": "cad_output_same_equilibrium_relation"
+    },
+    {
+     "kind": "theorem",
+     "name": "cad_equil_solution_nonempty"
+    }
+   ],
+   "imports": [
+    "JurisLean.External.FixedPointTheorems.kakutani",
+    "JurisLean.External.GameTheory.Theorems.NashExistenceMixed",
+    "JurisLean.Seams.UnifiedCADCore",
+    "JurisLean.Seams.UnifiedNeedlesGapMid",
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEquilExist.lean",
+   "print_axioms_targets": [],
+   "sha256": "65065e301b35efba8de2f38ede9f57fabcfd8a66893d05ed0b5d08f750c84549",
+   "size_bytes": 42830,
+   "theorem_count": 47,
+   "theorem_count_bol_convention": 47
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "EvidenceItem"
     },
@@ -43102,6 +43464,7 @@
     "JurisLean.Seams.UnifiedCAD2",
     "JurisLean.Seams.UnifiedCADCore",
     "JurisLean.Seams.UnifiedComposition",
+    "JurisLean.Seams.UnifiedEquilExist",
     "JurisLean.Seams.UnifiedEvalLayer",
     "JurisLean.Seams.UnifiedEvents",
     "JurisLean.Seams.UnifiedFinalization",
@@ -43172,8 +43535,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "55e2b6b71aff632aab82bedb10314abcdcf0bc2ab3f101393205a022f6696905",
-   "size_bytes": 10773,
+   "sha256": "df12d5b78ec9b53e79046cd49d4302f2334dd2d35d44f5054094c88f8cd133b0",
+   "size_bytes": 10814,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -43337,22 +43700,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 4953,
-   "file_count": 365,
+   "counted_declaration_count": 5000,
+   "file_count": 366,
    "lemma_count": 141,
-   "print_axioms_command_count": 3835,
-   "print_axioms_distinct_targets": 3781,
-   "theorem_count": 4812,
-   "theorem_count_bol_convention": 4712
+   "print_axioms_command_count": 3882,
+   "print_axioms_distinct_targets": 3828,
+   "theorem_count": 4859,
+   "theorem_count_bol_convention": 4759
   },
   "juris_lean_package": {
-   "counted_declaration_count": 4934,
-   "file_count": 350,
+   "counted_declaration_count": 4981,
+   "file_count": 351,
    "lemma_count": 134,
-   "print_axioms_command_count": 3835,
-   "print_axioms_distinct_targets": 3781,
-   "theorem_count": 4800,
-   "theorem_count_bol_convention": 4700
+   "print_axioms_command_count": 3882,
+   "print_axioms_distinct_targets": 3828,
+   "theorem_count": 4847,
+   "theorem_count_bol_convention": 4747
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -43648,6 +44011,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD2.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCADCore.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEquilExist.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvalLayer.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvents.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
@@ -44011,6 +44375,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD2.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCADCore.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEquilExist.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvalLayer.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvents.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedFinalization.lean",
@@ -44124,17 +44489,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "96ae952f08a7d807105213189d65a77450de3506130d4c1402800aab27b31083",
+ "source_inventory_digest": "c2a4fcc41d7247fb3ab3fc0ed7a8d15d5c84530a68520bf62f3c71b8770f0516",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "8a3e5a83eb6152128c0bea30641235e73211771a",
-  "tree": "75d932cfec2eac2db5f0d6741d019f0a6bf6da72"
+  "commit": "9475f0fe50b1d73816e1cdfb146b449846280b1e",
+  "tree": "85792093a16dd7cd3d1887d207444f1d5ba11b7b"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 365,
+  "files_total": 366,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

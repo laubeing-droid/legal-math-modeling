@@ -27,8 +27,8 @@
     ]
   },
   "cross_family_statement_types": 2,
-  "distinct_statement_types": 4888,
-  "duplicated_statement_types": 53,
+  "distinct_statement_types": 4934,
+  "duplicated_statement_types": 54,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
@@ -280,6 +280,18 @@
         "carrier": "FullMath/composition_preserves_inclusion",
         "line": 60,
         "path": "FullMath/GenericKernels.lean"
+      }
+    ],
+    "(u : (I → Act) → I → ℝ) : ∃ σ : I → Act → ℝ, InSimplexR σ ∧ IsNashR u σ": [
+      {
+        "carrier": "root/other/finite_legal_mixed_equilibrium_exists",
+        "line": 459,
+        "path": "Seams/UnifiedEquilExist.lean"
+      },
+      {
+        "carrier": "root/other/finite_legal_mixed_equilibrium_exists_upstream",
+        "line": 613,
+        "path": "Seams/UnifiedEquilExist.lean"
       }
     ],
     "(μ : PMF α) (f : α → β) (g : β → γ) : pushforward (pushforward μ f) g = pushforward μ (g ∘ f)": [
@@ -667,12 +679,12 @@
       }
     ]
   },
-  "files_scanned": 350,
+  "files_scanned": 351,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
   "headers_missed_by_scanner": 109,
-  "inventory_package_theorems": 4934,
+  "inventory_package_theorems": 4981,
   "private_protected_headers_read": 116,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 4941
+  "statements_read": 4988
 }

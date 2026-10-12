@@ -216,6 +216,7 @@ import JurisLean.Seams.UnifiedNeedlesS6S7
 import JurisLean.Seams.UnifiedNeedlesTotal
 import JurisLean.Seams.UnifiedNeedlesXT
 import JurisLean.Seams.UnifiedNeedlesXU
+import JurisLean.Seams.UnifiedNetTrajectory
 import JurisLean.Seams.UnifiedNormFlow
 import JurisLean.Seams.UnifiedPayoffChain
 import JurisLean.Seams.UnifiedPerformance

@@ -25469,12 +25469,137 @@
       "jobs_total": 8,
       "name": "artifact leg after EquilExist root-join (inventory/census/shape/dupli…",
       "quoted_by": [
-        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:513"
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:513",
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:515"
       ],
       "run_id": 38216412094,
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-12T07:24:31Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 5,
+      "conclusion": "failure",
+      "created_at": "2026-10-12T07:51:40Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/unified-construction-20261008",
+      "head_sha": "1ce9657af91964f0dff22da7522806f1762cf162",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/38220120330",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "failure",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "ledger §38 (needle-30 finalized, W16) + index rebuild collecting §37 …",
+      "quoted_by": [
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:515"
+      ],
+      "run_id": 38220120330,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-12T08:02:45Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-12T08:28:40Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "ci/unified-construction-20261008",
+      "head_sha": "a6f7926de095d46e34df84e3a16ac632cde53d82",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/38223794626",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "index rebuild as the LAST leg after section 38 landed (order lesson: …",
+      "quoted_by": [
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:515"
+      ],
+      "run_id": 38223794626,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-12T08:39:24Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

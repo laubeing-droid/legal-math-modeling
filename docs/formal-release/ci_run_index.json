@@ -24725,7 +24725,8 @@
       "name": "B05 inventory artifact leg after fix (two-leg discipline)",
       "quoted_by": [
         "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:482",
-        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:488"
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:488",
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:519"
       ],
       "run_id": 38151002921,
       "started": true,
@@ -24787,7 +24788,8 @@
       "jobs_total": 8,
       "name": "index rebuild: collect run 38151002921 (B05 finalization round quoted…",
       "quoted_by": [
-        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:488"
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:488",
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:519"
       ],
       "run_id": 38167133573,
       "started": true,
@@ -24911,7 +24913,8 @@
       "jobs_total": 8,
       "name": "EOL normalize UnifiedEvalLayer to LF (blob-consistent bytes) + invent…",
       "quoted_by": [
-        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:488"
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:488",
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:519"
       ],
       "run_id": 38173540921,
       "started": true,
@@ -25345,7 +25348,8 @@
       "jobs_total": 8,
       "name": "artifact leg after probability surface (inventory/census/shape/papers…",
       "quoted_by": [
-        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:507"
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:507",
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:519"
       ],
       "run_id": 38212013857,
       "started": true,
@@ -25600,6 +25604,68 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-12T08:39:24Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-10-12T22:00:02Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "ci/unified-construction-20261008",
+      "head_sha": "7c61b90b90a4c10ec37b75c9b302dd766cd266d8",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/38314065295",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/master-plan/施工台账_20261008_统一法律数学模型全量施工.md:523"
+      ],
+      "run_id": 38314065295,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-12T22:07:21Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

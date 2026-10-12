@@ -1068,21 +1068,118 @@ theorem demand_D056 : Contracts.demand_D056 := And.intro JurisLean.FullMath.Nume
     · simp [statusConsistent, feeSupported]
     · exact sum_filter_partition)
 
-theorem demand_D057 : Contracts.demand_D057 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
+/-! D057-D064 (group 07 侵权责任与损害, W2-A batch B07): each
+theorem discharges the demand's own contract; the first conjunct is
+the group-registered interval component inlined as
+`JurisLean.FullMath.Numeric.Iv.fixed_y_bounds`. The interval/tort
+constructions (QIv/TIv, tort kinds, gates/shares, liability modes,
+loss ledger, remedies, scenario witnesses) are consumed from the
+shared carrier `Seams/UnifiedQuantLedger.lean` (B07 prerequisite). -/
 
-theorem demand_D058 : Contracts.demand_D058 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
+open JurisLean.Seams.UnifiedQuantLedger (TortKind TortCand
+  selectByElements toResidual unmatched_partition unknown_kept_in_residual
+  IvTag TIv tMem tScale FaultOK causeTimesLoss causeTimesLoss_sound
+  FaultOK_scale imputed ivStrongCause correlation_not_imputation
+  ivCause ivLossC ivLossA ivLossB ivInter interval_readout
+  Shares LegalShares no_resp_zero_share small_share_mask_rejected badShares
+  goodShares goodGate goodShares_legal
+  RespMode externalDue JointRecoveryOK joint_double_full_violates recourseOf
+  deficitOf recourse_pool_balanced suppDistribution supp_zero_when_primary_covers
+  pays_sum_base joint_external_not_share_reduced
+  LossEntry lossTotal dedupFirst dedupFirst_keys_nodup dedup_sum_le
+  dedupFirst_id_of_nodup invoiceEntry appraisalEntry
+  invoice_double_count_prevented
+  Remedy amountOf nonmonetary_no_amount monetaryTotal monetary_total_blind_spot
+  ScenarioWitness SummaryRecord FromSameWitness same_witness_consistent
+  cross_scenario_mix_rejected wA wB mixedRecord)
 
-theorem demand_D059 : Contracts.demand_D059 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
+open JurisLean.Seams.UnifiedQuantLedger.QIv
 
-theorem demand_D060 : Contracts.demand_D060 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
+theorem demand_D057 : Contracts.demand_D057 := And.intro JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
+  (by
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · exact unmatched_partition
+    · intro cands c hc
+      by_cases hmet : c.elementsMet = true
+      · exact Or.inl (List.mem_filter.mpr ⟨hc, by simp [hmet]⟩)
+      · exact Or.inr (List.mem_filter.mpr ⟨hc, by simp [hmet]⟩)
+    · exact unknown_kept_in_residual.1
+    · exact unknown_kept_in_residual.2)
 
-theorem demand_D061 : Contracts.demand_D061 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
+theorem demand_D058 : Contracts.demand_D058 := And.intro JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
+  (by
+    refine ⟨⟨?_, ?_, ?_⟩, ?_, ?_, ⟨?_, ?_⟩, ?_, ?_⟩
+    · decide
+    · decide
+    · decide
+    · exact causeTimesLoss_sound
+    · exact fun a c ha hc0 hc1 => FaultOK_scale a ha c hc0 hc1
+    · intro g ci
+      exact Iff.rfl
+    · exact correlation_not_imputation
+    · exact interval_readout.2.2.2.1
+    · exact interval_readout.2.2.2.2)
 
-theorem demand_D062 : Contracts.demand_D062 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
+theorem demand_D059 : Contracts.demand_D059 := And.intro JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
+  (by
+    refine ⟨?_, ?_, ?_⟩
+    · exact fun s h i hg => no_resp_zero_share s h i hg
+    · exact small_share_mask_rejected
+    · exact goodShares_legal)
 
-theorem demand_D063 : Contracts.demand_D063 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
+theorem demand_D060 : Contracts.demand_D060 := And.intro JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
+  (by
+    refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
+    · intro loss share p d
+      rfl
+    · intro loss share p d
+      rfl
+    · intro loss share p d
+      rfl
+    · exact joint_double_full_violates
+    · exact fun paid internalShare hsum => recourse_pool_balanced paid internalShare hsum
+    · exact supp_zero_when_primary_covers)
 
-theorem demand_D064 : Contracts.demand_D064 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
+theorem demand_D061 : Contracts.demand_D061 := And.intro JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
+  (by
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · exact dedupFirst_keys_nodup
+    · intro l h
+      exact dedup_sum_le l [] h
+    · exact dedupFirst_id_of_nodup
+    · exact invoice_double_count_prevented.1
+    · exact invoice_double_count_prevented.2)
+
+theorem demand_D062 : Contracts.demand_D062 := And.intro JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
+  (by
+    refine ⟨?_, ?_, ⟨?_, ?_⟩, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+    · exact pays_sum_base
+    · exact joint_external_not_share_reduced
+    · intro loss recoveries
+      exact Iff.rfl
+    · norm_num [JointRecoveryOK]
+    · exact fun paid internalShare hsum => recourse_pool_balanced paid internalShare hsum
+    · exact vadd_assoc
+    · exact vadd_comm
+    · exact scale_distrib
+    · exact scale_assoc
+    · exact interval_readout.1
+    · have hall : ∀ i : Fin 2, goodShares.gate i = true := by
+        intro i
+        fin_cases i <;> simp [goodShares, goodGate]
+      exact pays_sum_base 100 goodShares.share (goodShares_legal.2.2 hall))
+
+theorem demand_D063 : Contracts.demand_D063 := And.intro JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
+  (by
+    refine ⟨nonmonetary_no_amount, ?_, monetary_total_blind_spot⟩
+    intro q
+    rfl)
+
+theorem demand_D064 : Contracts.demand_D064 := And.intro JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
+  (by
+    refine ⟨?_, same_witness_consistent, cross_scenario_mix_rejected⟩
+    intro r w h
+    exact h)
 
 /-! D065-D076 (group 08 合同条款与权利义务审核, W2-A batch B08): each
 theorem discharges the demand's own contract; the first conjunct is the

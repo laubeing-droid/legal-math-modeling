@@ -3614,28 +3614,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D057",
    "contract": "JurisLean.FullMath.Contracts.demand_D057",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.Iv.fixed_y_bounds's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-07 tort/damages demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger interval carrier (tagged legal intervals with endpoint algebra, element-based tort classification with an open residual, gate/share separation, several/joint/supplementary external duties with the recourse pool, first-seen loss dedup, non-monetary remedies, scenario witnesses) plus the registered interval component (for a fixed second factor every product with a member of the interval lies between the two endpoint products), with its adverse case executed as a negative test.",
+   "independent_semantics": "tort-type candidates are selected by their elements while an open residual bucket keeps everything the classifier does not recognize: an element-unmet candidate never enters the selection and always lands in the residual, every candidate lands in exactly one bucket, and an unknown new scenario keeps its claim carrier instead of returning a claim-less empty result.",
+   "algorithm": "tools/full_math/implementation/tort_ref.py tort_classification computes the intermediate result from structured input (the interval/tort surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); tort_check.check_D057 re-derives the contract independently with different code paths (index scans, four-product tables, early-return loops, branch tables, kept-key scans, endpoint tuples) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (tort-type candidates as kind/elements-met pairs, causal/loss/fault interval endpoints with a legal-gate flag, gate/share configurations, liability-mode parameters with recovery, payment and internal-share sequences, loss entries keyed by event/beneficiary/item/time with exact Fraction amounts, shared-base share and recovery sequences, remedy lists mixing money amounts and non-monetary tags, and scenario witnesses with their summary records); outputs are exactly the contract quantities (the selected and residual buckets with the unknown-scenario carrier, the tagged interval readouts with the cause×loss product and the imputation verdict, the gate/share legality with the masked rejection, the three external duties with the recovery constraint and the balanced recourse pool, the deduped loss totals with the invoice/appraisal witness, the shared-base payment consistency with the endpoint algebra, the amount views with the blind-spot witness, and the same-witness summary with the cross-scenario rejection).",
+   "external_assumptions": "Element findings for the tort-type classification and the residual scenario's later analysis, causal-measure estimation and the legal imputation gate's substantive justification, discretionary share quantification, the applicable liability-mode law and its ordering policy, compensability and valuation of loss items including future damages, the joint/supplementary policy boundaries with actual payment records, feasibility and proportionality of non-monetary relief, and free-text semantic review of the final summary remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Intervals.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/tort_ref.py",
+    "tools/full_math/implementation/tort_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D057]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_demand_positive[D057]",
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_demand_counterexample[D057]",
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_downstream_pipeline_consumes_tort"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D057]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D057]"
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_checker_rejects_tampered[D057]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.Iv.fixed_y_bounds"
+    "JurisLean.FullMath.Numeric.Iv.fixed_y_bounds",
+    "JurisLean.Seams.UnifiedQuantLedger.unmatched_partition",
+    "JurisLean.Seams.UnifiedQuantLedger.unknown_kept_in_residual"
    ]
   },
   {
@@ -3643,28 +3646,32 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D058",
    "contract": "JurisLean.FullMath.Contracts.demand_D058",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.Iv.fixed_y_bounds's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-07 tort/damages demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger interval carrier (tagged legal intervals with endpoint algebra, element-based tort classification with an open residual, gate/share separation, several/joint/supplementary external duties with the recourse pool, first-seen loss dedup, non-monetary remedies, scenario witnesses) plus the registered interval component (for a fixed second factor every product with a member of the interval lies between the two endpoint products), with its adverse case executed as a negative test.",
+   "independent_semantics": "behaviour, damage, causation and fault are typed interval relations (three distinct tags, cross-tag operations rejected, the [0,1] fault well-formedness surviving [0,1] scaling) and statistical causation is layered apart from legal imputation: the cause×loss four-endpoint product stays sound while imputation needs an open legal gate AND a strictly positive causal lower bound — a [9/10, 1] measure with a closed gate never imputes.",
+   "algorithm": "tools/full_math/implementation/tort_ref.py causation_layering computes the intermediate result from structured input (the interval/tort surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); tort_check.check_D058 re-derives the contract independently with different code paths (index scans, four-product tables, early-return loops, branch tables, kept-key scans, endpoint tuples) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (tort-type candidates as kind/elements-met pairs, causal/loss/fault interval endpoints with a legal-gate flag, gate/share configurations, liability-mode parameters with recovery, payment and internal-share sequences, loss entries keyed by event/beneficiary/item/time with exact Fraction amounts, shared-base share and recovery sequences, remedy lists mixing money amounts and non-monetary tags, and scenario witnesses with their summary records); outputs are exactly the contract quantities (the selected and residual buckets with the unknown-scenario carrier, the tagged interval readouts with the cause×loss product and the imputation verdict, the gate/share legality with the masked rejection, the three external duties with the recovery constraint and the balanced recourse pool, the deduped loss totals with the invoice/appraisal witness, the shared-base payment consistency with the endpoint algebra, the amount views with the blind-spot witness, and the same-witness summary with the cross-scenario rejection).",
+   "external_assumptions": "Element findings for the tort-type classification and the residual scenario's later analysis, causal-measure estimation and the legal imputation gate's substantive justification, discretionary share quantification, the applicable liability-mode law and its ordering policy, compensability and valuation of loss items including future damages, the joint/supplementary policy boundaries with actual payment records, feasibility and proportionality of non-monetary relief, and free-text semantic review of the final summary remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Intervals.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/tort_ref.py",
+    "tools/full_math/implementation/tort_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D058]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_demand_positive[D058]",
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_demand_counterexample[D058]",
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_downstream_pipeline_consumes_tort"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D058]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D058]"
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_checker_rejects_tampered[D058]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.Iv.fixed_y_bounds"
+    "JurisLean.FullMath.Numeric.Iv.fixed_y_bounds",
+    "JurisLean.Seams.UnifiedQuantLedger.causeTimesLoss_sound",
+    "JurisLean.Seams.UnifiedQuantLedger.FaultOK_scale",
+    "JurisLean.Seams.UnifiedQuantLedger.correlation_not_imputation"
    ]
   },
   {
@@ -3672,28 +3679,32 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D059",
    "contract": "JurisLean.FullMath.Contracts.demand_D059",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.Iv.fixed_y_bounds's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-07 tort/damages demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger interval carrier (tagged legal intervals with endpoint algebra, element-based tort classification with an open residual, gate/share separation, several/joint/supplementary external duties with the recourse pool, first-seen loss dedup, non-monetary remedies, scenario witnesses) plus the registered interval component (for a fixed second factor every product with a member of the interval lies between the two endpoint products), with its adverse case executed as a negative test.",
+   "independent_semantics": "the establishment gate and the share choice are separate fields connected only by the legality predicate: a closed gate forces a zero share, the masked configuration (gate closed with a 1/10 share) is illegal, and the open-gate 1/4+3/4 configuration is legal with the shares summing to one.",
+   "algorithm": "tools/full_math/implementation/tort_ref.py gate_share_readout computes the intermediate result from structured input (the interval/tort surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); tort_check.check_D059 re-derives the contract independently with different code paths (index scans, four-product tables, early-return loops, branch tables, kept-key scans, endpoint tuples) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (tort-type candidates as kind/elements-met pairs, causal/loss/fault interval endpoints with a legal-gate flag, gate/share configurations, liability-mode parameters with recovery, payment and internal-share sequences, loss entries keyed by event/beneficiary/item/time with exact Fraction amounts, shared-base share and recovery sequences, remedy lists mixing money amounts and non-monetary tags, and scenario witnesses with their summary records); outputs are exactly the contract quantities (the selected and residual buckets with the unknown-scenario carrier, the tagged interval readouts with the cause×loss product and the imputation verdict, the gate/share legality with the masked rejection, the three external duties with the recovery constraint and the balanced recourse pool, the deduped loss totals with the invoice/appraisal witness, the shared-base payment consistency with the endpoint algebra, the amount views with the blind-spot witness, and the same-witness summary with the cross-scenario rejection).",
+   "external_assumptions": "Element findings for the tort-type classification and the residual scenario's later analysis, causal-measure estimation and the legal imputation gate's substantive justification, discretionary share quantification, the applicable liability-mode law and its ordering policy, compensability and valuation of loss items including future damages, the joint/supplementary policy boundaries with actual payment records, feasibility and proportionality of non-monetary relief, and free-text semantic review of the final summary remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Intervals.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/tort_ref.py",
+    "tools/full_math/implementation/tort_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D059]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_demand_positive[D059]",
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_demand_counterexample[D059]",
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_downstream_pipeline_consumes_tort"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D059]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D059]"
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_checker_rejects_tampered[D059]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.Iv.fixed_y_bounds"
+    "JurisLean.FullMath.Numeric.Iv.fixed_y_bounds",
+    "JurisLean.Seams.UnifiedQuantLedger.no_resp_zero_share",
+    "JurisLean.Seams.UnifiedQuantLedger.small_share_mask_rejected",
+    "JurisLean.Seams.UnifiedQuantLedger.goodShares_legal"
    ]
   },
   {
@@ -3701,28 +3712,32 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D060",
    "contract": "JurisLean.FullMath.Contracts.demand_D060",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.Iv.fixed_y_bounds's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-07 tort/damages demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger interval carrier (tagged legal intervals with endpoint algebra, element-based tort classification with an open residual, gate/share separation, several/joint/supplementary external duties with the recourse pool, first-seen loss dedup, non-monetary remedies, scenario witnesses) plus the registered interval component (for a fixed second factor every product with a member of the interval lies between the two endpoint products), with its adverse case executed as a negative test.",
+   "independent_semantics": "several/joint/supplementary external payment duties are built separately from the internal recourse relation: several equals the internal share, joint equals the full loss, supplementary equals the unpaid remainder capped by the supplementary due; the joint external total constraint rejects two full-100 recoveries on a 100 loss; the recourse pool equals the deficit pool when total payments equal total internal shares; the supplementary party pays exactly zero when the primary party covers the loss.",
+   "algorithm": "tools/full_math/implementation/tort_ref.py liability_modes computes the intermediate result from structured input (the interval/tort surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); tort_check.check_D060 re-derives the contract independently with different code paths (index scans, four-product tables, early-return loops, branch tables, kept-key scans, endpoint tuples) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (tort-type candidates as kind/elements-met pairs, causal/loss/fault interval endpoints with a legal-gate flag, gate/share configurations, liability-mode parameters with recovery, payment and internal-share sequences, loss entries keyed by event/beneficiary/item/time with exact Fraction amounts, shared-base share and recovery sequences, remedy lists mixing money amounts and non-monetary tags, and scenario witnesses with their summary records); outputs are exactly the contract quantities (the selected and residual buckets with the unknown-scenario carrier, the tagged interval readouts with the cause×loss product and the imputation verdict, the gate/share legality with the masked rejection, the three external duties with the recovery constraint and the balanced recourse pool, the deduped loss totals with the invoice/appraisal witness, the shared-base payment consistency with the endpoint algebra, the amount views with the blind-spot witness, and the same-witness summary with the cross-scenario rejection).",
+   "external_assumptions": "Element findings for the tort-type classification and the residual scenario's later analysis, causal-measure estimation and the legal imputation gate's substantive justification, discretionary share quantification, the applicable liability-mode law and its ordering policy, compensability and valuation of loss items including future damages, the joint/supplementary policy boundaries with actual payment records, feasibility and proportionality of non-monetary relief, and free-text semantic review of the final summary remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Intervals.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/tort_ref.py",
+    "tools/full_math/implementation/tort_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D060]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_demand_positive[D060]",
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_demand_counterexample[D060]",
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_downstream_pipeline_consumes_tort"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D060]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D060]"
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_checker_rejects_tampered[D060]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.Iv.fixed_y_bounds"
+    "JurisLean.FullMath.Numeric.Iv.fixed_y_bounds",
+    "JurisLean.Seams.UnifiedQuantLedger.joint_double_full_violates",
+    "JurisLean.Seams.UnifiedQuantLedger.recourse_pool_balanced",
+    "JurisLean.Seams.UnifiedQuantLedger.supp_zero_when_primary_covers"
    ]
   },
   {
@@ -3730,28 +3745,33 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D061",
    "contract": "JurisLean.FullMath.Contracts.demand_D061",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.Iv.fixed_y_bounds's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-07 tort/damages demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger interval carrier (tagged legal intervals with endpoint algebra, element-based tort classification with an open residual, gate/share separation, several/joint/supplementary external duties with the recourse pool, first-seen loss dedup, non-monetary remedies, scenario witnesses) plus the registered interval component (for a fixed second factor every product with a member of the interval lies between the two endpoint products), with its adverse case executed as a negative test.",
+   "independent_semantics": "the loss ledger is deduplicated by the (event, beneficiary, item, time) key before the explicit aggregation: keys are duplicate-free after dedup, dedup never inflates a nonnegative ledger, an already-unique ledger is returned identically, and an invoice 1000 plus an 800 appraisal of the same loss key is pressed back from a double-counted 1800 to the first-seen 1000.",
+   "algorithm": "tools/full_math/implementation/tort_ref.py loss_ledger_readout computes the intermediate result from structured input (the interval/tort surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); tort_check.check_D061 re-derives the contract independently with different code paths (index scans, four-product tables, early-return loops, branch tables, kept-key scans, endpoint tuples) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (tort-type candidates as kind/elements-met pairs, causal/loss/fault interval endpoints with a legal-gate flag, gate/share configurations, liability-mode parameters with recovery, payment and internal-share sequences, loss entries keyed by event/beneficiary/item/time with exact Fraction amounts, shared-base share and recovery sequences, remedy lists mixing money amounts and non-monetary tags, and scenario witnesses with their summary records); outputs are exactly the contract quantities (the selected and residual buckets with the unknown-scenario carrier, the tagged interval readouts with the cause×loss product and the imputation verdict, the gate/share legality with the masked rejection, the three external duties with the recovery constraint and the balanced recourse pool, the deduped loss totals with the invoice/appraisal witness, the shared-base payment consistency with the endpoint algebra, the amount views with the blind-spot witness, and the same-witness summary with the cross-scenario rejection).",
+   "external_assumptions": "Element findings for the tort-type classification and the residual scenario's later analysis, causal-measure estimation and the legal imputation gate's substantive justification, discretionary share quantification, the applicable liability-mode law and its ordering policy, compensability and valuation of loss items including future damages, the joint/supplementary policy boundaries with actual payment records, feasibility and proportionality of non-monetary relief, and free-text semantic review of the final summary remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Intervals.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/tort_ref.py",
+    "tools/full_math/implementation/tort_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D061]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_demand_positive[D061]",
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_demand_counterexample[D061]",
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_downstream_pipeline_consumes_tort"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D061]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D061]"
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_checker_rejects_tampered[D061]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.Iv.fixed_y_bounds"
+    "JurisLean.FullMath.Numeric.Iv.fixed_y_bounds",
+    "JurisLean.Seams.UnifiedQuantLedger.dedupFirst_keys_nodup",
+    "JurisLean.Seams.UnifiedQuantLedger.dedup_sum_le",
+    "JurisLean.Seams.UnifiedQuantLedger.dedupFirst_id_of_nodup",
+    "JurisLean.Seams.UnifiedQuantLedger.invoice_double_count_prevented"
    ]
   },
   {
@@ -3759,28 +3779,34 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D062",
    "contract": "JurisLean.FullMath.Contracts.demand_D062",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.Iv.fixed_y_bounds's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-07 tort/damages demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger interval carrier (tagged legal intervals with endpoint algebra, element-based tort classification with an open residual, gate/share separation, several/joint/supplementary external duties with the recourse pool, first-seen loss dedup, non-monetary remedies, scenario witnesses) plus the registered interval component (for a fixed second factor every product with a member of the interval lies between the two endpoint products), with its adverse case executed as a negative test.",
+   "independent_semantics": "per-party payments satisfy the external recovery constraint and the internal rules on one shared loss base: shares summing to one pay exactly the base, the joint external duty is the full loss (never the internal share reduced), the recovery constraint is exactly total recoveries not exceeding the loss, the recourse pool balances, and the interval endpoint algebra (assoc/comm/distrib/scale-assoc, [100,200]∩[150,300] = [150,200]) keeps the share×loss computation consistent.",
+   "algorithm": "tools/full_math/implementation/tort_ref.py payment_consistency computes the intermediate result from structured input (the interval/tort surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); tort_check.check_D062 re-derives the contract independently with different code paths (index scans, four-product tables, early-return loops, branch tables, kept-key scans, endpoint tuples) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (tort-type candidates as kind/elements-met pairs, causal/loss/fault interval endpoints with a legal-gate flag, gate/share configurations, liability-mode parameters with recovery, payment and internal-share sequences, loss entries keyed by event/beneficiary/item/time with exact Fraction amounts, shared-base share and recovery sequences, remedy lists mixing money amounts and non-monetary tags, and scenario witnesses with their summary records); outputs are exactly the contract quantities (the selected and residual buckets with the unknown-scenario carrier, the tagged interval readouts with the cause×loss product and the imputation verdict, the gate/share legality with the masked rejection, the three external duties with the recovery constraint and the balanced recourse pool, the deduped loss totals with the invoice/appraisal witness, the shared-base payment consistency with the endpoint algebra, the amount views with the blind-spot witness, and the same-witness summary with the cross-scenario rejection).",
+   "external_assumptions": "Element findings for the tort-type classification and the residual scenario's later analysis, causal-measure estimation and the legal imputation gate's substantive justification, discretionary share quantification, the applicable liability-mode law and its ordering policy, compensability and valuation of loss items including future damages, the joint/supplementary policy boundaries with actual payment records, feasibility and proportionality of non-monetary relief, and free-text semantic review of the final summary remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Intervals.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/tort_ref.py",
+    "tools/full_math/implementation/tort_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D062]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_demand_positive[D062]",
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_demand_counterexample[D062]",
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_downstream_pipeline_consumes_tort"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D062]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D062]"
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_checker_rejects_tampered[D062]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.Iv.fixed_y_bounds"
+    "JurisLean.FullMath.Numeric.Iv.fixed_y_bounds",
+    "JurisLean.Seams.UnifiedQuantLedger.pays_sum_base",
+    "JurisLean.Seams.UnifiedQuantLedger.joint_external_not_share_reduced",
+    "JurisLean.Seams.UnifiedQuantLedger.recourse_pool_balanced",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.scale_distrib",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.scale_assoc"
    ]
   },
   {
@@ -3788,28 +3814,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D063",
    "contract": "JurisLean.FullMath.Contracts.demand_D063",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.Iv.fixed_y_bounds's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-07 tort/damages demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger interval carrier (tagged legal intervals with endpoint algebra, element-based tort classification with an open residual, gate/share separation, several/joint/supplementary external duties with the recourse pool, first-seen loss dedup, non-monetary remedies, scenario witnesses) plus the registered interval component (for a fixed second factor every product with a member of the interval lies between the two endpoint products), with its adverse case executed as a negative test.",
+   "independent_semantics": "restitution, cessation and apology are action/state objectives that never coerce into RMB: non-monetary remedies carry no amount view (None, never a fake 0), money amounts are preserved exactly, and the money projection is a blind spot — two remedy lists with the same monetary total 100 remain different obligations.",
+   "algorithm": "tools/full_math/implementation/tort_ref.py remedy_readout computes the intermediate result from structured input (the interval/tort surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); tort_check.check_D063 re-derives the contract independently with different code paths (index scans, four-product tables, early-return loops, branch tables, kept-key scans, endpoint tuples) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (tort-type candidates as kind/elements-met pairs, causal/loss/fault interval endpoints with a legal-gate flag, gate/share configurations, liability-mode parameters with recovery, payment and internal-share sequences, loss entries keyed by event/beneficiary/item/time with exact Fraction amounts, shared-base share and recovery sequences, remedy lists mixing money amounts and non-monetary tags, and scenario witnesses with their summary records); outputs are exactly the contract quantities (the selected and residual buckets with the unknown-scenario carrier, the tagged interval readouts with the cause×loss product and the imputation verdict, the gate/share legality with the masked rejection, the three external duties with the recovery constraint and the balanced recourse pool, the deduped loss totals with the invoice/appraisal witness, the shared-base payment consistency with the endpoint algebra, the amount views with the blind-spot witness, and the same-witness summary with the cross-scenario rejection).",
+   "external_assumptions": "Element findings for the tort-type classification and the residual scenario's later analysis, causal-measure estimation and the legal imputation gate's substantive justification, discretionary share quantification, the applicable liability-mode law and its ordering policy, compensability and valuation of loss items including future damages, the joint/supplementary policy boundaries with actual payment records, feasibility and proportionality of non-monetary relief, and free-text semantic review of the final summary remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Intervals.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/tort_ref.py",
+    "tools/full_math/implementation/tort_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D063]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_demand_positive[D063]",
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_demand_counterexample[D063]",
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_downstream_pipeline_consumes_tort"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D063]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D063]"
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_checker_rejects_tampered[D063]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.Iv.fixed_y_bounds"
+    "JurisLean.FullMath.Numeric.Iv.fixed_y_bounds",
+    "JurisLean.Seams.UnifiedQuantLedger.nonmonetary_no_amount",
+    "JurisLean.Seams.UnifiedQuantLedger.monetary_total_blind_spot"
    ]
   },
   {
@@ -3817,28 +3846,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D064",
    "contract": "JurisLean.FullMath.Contracts.demand_D064",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.Iv.fixed_y_bounds's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-07 tort/damages demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger interval carrier (tagged legal intervals with endpoint algebra, element-based tort classification with an open residual, gate/share separation, several/joint/supplementary external duties with the recourse pool, first-seen loss dedup, non-monetary remedies, scenario witnesses) plus the registered interval component (for a fixed second factor every product with a member of the interval lies between the two endpoint products), with its adverse case executed as a negative test.",
+   "independent_semantics": "every responsibility, ratio, value and limit in the final summary comes from one scenario witness: a same-witness record takes the witness's three projections as its own fields and inherits its ratio conservation, while a record stitched from scenario 1's identity and scenario 2's values is the summary of no single witness.",
+   "algorithm": "tools/full_math/implementation/tort_ref.py summary_witness computes the intermediate result from structured input (the interval/tort surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); tort_check.check_D064 re-derives the contract independently with different code paths (index scans, four-product tables, early-return loops, branch tables, kept-key scans, endpoint tuples) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (tort-type candidates as kind/elements-met pairs, causal/loss/fault interval endpoints with a legal-gate flag, gate/share configurations, liability-mode parameters with recovery, payment and internal-share sequences, loss entries keyed by event/beneficiary/item/time with exact Fraction amounts, shared-base share and recovery sequences, remedy lists mixing money amounts and non-monetary tags, and scenario witnesses with their summary records); outputs are exactly the contract quantities (the selected and residual buckets with the unknown-scenario carrier, the tagged interval readouts with the cause×loss product and the imputation verdict, the gate/share legality with the masked rejection, the three external duties with the recovery constraint and the balanced recourse pool, the deduped loss totals with the invoice/appraisal witness, the shared-base payment consistency with the endpoint algebra, the amount views with the blind-spot witness, and the same-witness summary with the cross-scenario rejection).",
+   "external_assumptions": "Element findings for the tort-type classification and the residual scenario's later analysis, causal-measure estimation and the legal imputation gate's substantive justification, discretionary share quantification, the applicable liability-mode law and its ordering policy, compensability and valuation of loss items including future damages, the joint/supplementary policy boundaries with actual payment records, feasibility and proportionality of non-monetary relief, and free-text semantic review of the final summary remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Intervals.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/tort_ref.py",
+    "tools/full_math/implementation/tort_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D064]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_demand_positive[D064]",
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_demand_counterexample[D064]",
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_downstream_pipeline_consumes_tort"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D064]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D064]"
+    "tools/full_math/implementation_tests::test_tort_group07.py::test_checker_rejects_tampered[D064]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.Iv.fixed_y_bounds"
+    "JurisLean.FullMath.Numeric.Iv.fixed_y_bounds",
+    "JurisLean.Seams.UnifiedQuantLedger.same_witness_consistent",
+    "JurisLean.Seams.UnifiedQuantLedger.cross_scenario_mix_rejected"
    ]
   },
   {

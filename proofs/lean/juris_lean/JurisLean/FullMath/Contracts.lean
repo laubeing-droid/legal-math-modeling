@@ -1321,21 +1321,179 @@ def demand_D056 : Prop :=
         + ((items.filter (fun it => !f it)).map LedgerItem.amount).sum
         = (items.map LedgerItem.amount).sum))
 
-def demand_D057 : Prop := ∀ (i : Iv) (x y : ℚ) (hx : mem x i), min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)
+/-! D057-D064 (group 07 侵权责任与损害, W2-A batch B07): each def is
+that demand's own contract, translated from ALL_134_MATH_CONTRACTS.md.
+The first conjunct is the group-registered interval component (for a
+fixed second factor every product with a member of the interval lies
+between the two endpoint products — the ratio-times-loss kernel of
+every sharing/computation figure); the remaining conjuncts are the
+demand's own operational semantics with its adverse case, consumed from
+the shared quantity-ledger carrier `Seams/UnifiedQuantLedger.lean`
+(B07 prerequisite, module round green: the interval constructions QIv
+and TIv, tort kinds, gates/shares, liability modes, the loss ledger,
+remedies and scenario witnesses). -/
 
-def demand_D058 : Prop := ∀ (i : Iv) (x y : ℚ) (hx : mem x i), min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)
+open JurisLean.Seams.UnifiedQuantLedger (TortKind TortCand
+  selectByElements toResidual
+  IvTag TIv tMem tScale FaultOK causeTimesLoss imputed ivStrongCause
+  ivCause ivLossC ivLossA ivLossB ivInter
+  Shares LegalShares badShares goodShares
+  RespMode externalDue JointRecoveryOK recourseOf deficitOf suppDistribution
+  pays_sum_base
+  LossEntry lossTotal dedupFirst invoiceEntry appraisalEntry
+  Remedy amountOf monetaryTotal
+  ScenarioWitness SummaryRecord FromSameWitness wA wB mixedRecord)
 
-def demand_D059 : Prop := ∀ (i : Iv) (x y : ℚ) (hx : mem x i), min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)
+open JurisLean.Seams.UnifiedQuantLedger.QIv
 
-def demand_D060 : Prop := ∀ (i : Iv) (x y : ℚ) (hx : mem x i), min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)
+/-- D057 侵权类型候选按要件选择，开放残余不强制塞既有类别（反例：分类器
+不认识的新情形不能返回无任何请求权）：要件满足与否决定入选/入残余——
+要件未满足的候选必落入残余桶且不入选择；每个候选必落入选择或残余之一
+（双向 filter 覆盖全部候选）；分类器不认识的残余情形与可归类的既有情形
+并存——残余桶恰一、选择桶恰一，新情形保留请求权载体而非返回空账。 -/
+def demand_D057 : Prop :=
+  (∀ (i : Iv) (x y : ℚ) (hx : mem x i),
+      min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)) ∧
+  ((∀ (cands : List TortCand) (c : TortCand), c ∈ cands →
+      c.elementsMet = false → c ∈ toResidual cands ∧ c ∉ selectByElements cands) ∧
+   (∀ (cands : List TortCand) (c : TortCand), c ∈ cands →
+      c ∈ selectByElements cands ∨ c ∈ toResidual cands) ∧
+   (toResidual [⟨TortKind.openResidual, false⟩,
+       ⟨TortKind.general, true⟩]).length = 1 ∧
+   (selectByElements [⟨TortKind.openResidual, false⟩,
+       ⟨TortKind.general, true⟩]).length = 1)
 
-def demand_D061 : Prop := ∀ (i : Iv) (x y : ℚ) (hx : mem x i), min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)
+/-- D058 行为—损害—因果—过错是类型化关系；统计因果与法律归责分层（反
+例：相关性显著不直接推出法律上的相当因果或责任）：损失/因果度量/过错比
+例三区间标签互异（跨标签运算在类型层被拒）；因果度量区间×损失区间的四
+端点乘积健全（统计因果度量的分担乘积仍是损失区间）；过错比例区间的
+[0,1] 良构在 [0,1] 缩放下保持；法律归责门与统计度量分层——归责任须门开
+且因果度量下界为正（等价刻画），因果度量再强 [9/10,1] 而归责门关则不归
+责；因果度量 [1/3,2/3] 乘损失 [90,120] 恰得 [30,80]。 -/
+def demand_D058 : Prop :=
+  (∀ (i : Iv) (x y : ℚ) (hx : mem x i),
+      min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)) ∧
+  ((IvTag.cause ≠ IvTag.loss ∧ IvTag.loss ≠ IvTag.fault ∧
+      IvTag.cause ≠ IvTag.fault) ∧
+   (∀ (ci : TIv IvTag.cause) (li : TIv IvTag.loss) (x y : ℚ),
+      tMem x ci → tMem y li → tMem (x * y) (causeTimesLoss ci li)) ∧
+   (∀ (a : TIv IvTag.fault) (c : ℚ) (ha : FaultOK a) (hc0 : 0 ≤ c) (hc1 : c ≤ 1),
+      FaultOK (tScale c hc0 a)) ∧
+   ((∀ (g : Bool) (ci : TIv IvTag.cause),
+       imputed g ci ↔ (g = true ∧ 0 < ci.iv.lo)) ∧
+    ¬ imputed false ivStrongCause) ∧
+   (causeTimesLoss ivCause ivLossC).iv.lo = 30 ∧
+   (causeTimesLoss ivCause ivLossC).iv.hi = 80)
 
-def demand_D062 : Prop := ∀ (i : Iv) (x y : ℚ) (hx : mem x i), min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)
+/-- D059 成立门和份额选择分开；无责任不得被赋正赔偿份额（反例：用小比
+例掩盖根本不承担该责任的主体）：份额配置的成立门（gate）与份额（share）
+是分立字段，合法性谓词只做连接——门关 ⇒ 份额恰为零；门关却赋 1/10 份额
+的配置非法（小比例不能掩盖无责任）；门全开、份额 1/4＋3/4 的配置合法。 -/
+def demand_D059 : Prop :=
+  (∀ (i : Iv) (x y : ℚ) (hx : mem x i),
+      min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)) ∧
+  ((∀ {ι : Type} [Fintype ι] (s : Shares ι), LegalShares s →
+      ∀ i, s.gate i = false → s.share i = 0) ∧
+   ¬ LegalShares badShares ∧
+   LegalShares goodShares)
 
-def demand_D063 : Prop := ∀ (i : Iv) (x y : ℚ) (hx : mem x i), min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)
+/-- D060 分别建按份、连带、补充等外部给付义务与内部追偿关系（反例：同
+一损害多个连带债务全额相加造成超额受偿）：三种责任方式的外部给付义务分
+别给出——按份＝内部份额、连带＝全额损失、补充＝损失超出主责清偿部分与
+补充责任额的较小者；连带外部偿付总约束——受偿总额不超过损失，两笔全额
+100 相加成 200 违反约束；内部追偿池平衡——总付款＝总内部份额时多付总额
+＝缺额总额（追偿池＝缺额池，无中生有的追偿不可能）；补充责任顺序语义
+——主责任人足额清偿 ⇒ 补充方分配恰为零。 -/
+def demand_D060 : Prop :=
+  (∀ (i : Iv) (x y : ℚ) (hx : mem x i),
+      min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)) ∧
+  ((∀ (loss share p d : ℚ), externalDue RespMode.several loss share p d = share) ∧
+   (∀ (loss share p d : ℚ), externalDue RespMode.joint loss share p d = loss) ∧
+   (∀ (loss share p d : ℚ),
+      externalDue RespMode.supplementary loss share p d = min (max (loss - p) 0) d) ∧
+   ¬ JointRecoveryOK 100 [100, 100] ∧
+   (∀ {ι : Type} [Fintype ι] (paid internalShare : ι → ℚ),
+      ∑ i, paid i = ∑ i, internalShare i →
+      ∑ i, recourseOf (paid i) (internalShare i)
+        = ∑ i, deficitOf (paid i) (internalShare i)) ∧
+   (∀ (p d loss : ℚ), loss ≤ p → 0 ≤ d → suppDistribution p d loss = [loss, 0]))
 
-def demand_D064 : Prop := ∀ (i : Iv) (x y : ℚ) (hx : mem x i), min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)
+/-- D061 损失账本按损害事件、受益人、项目和时间去重，再执行明确聚合
+（反例：发票额和同一损失评估额不得无条件双计）：去重后键（损害事件，受
+益人，项目，时间）无重复；非负账项下去重不虚增（去重后总额不超过原总
+额）；键本无重复时去重是恒等（无重复账目不被误删）；发票额 1000 与同一
+损失键的评估额 800 双计成 1800 被首见去重压回 1000。 -/
+def demand_D061 : Prop :=
+  (∀ (i : Iv) (x y : ℚ) (hx : mem x i),
+      min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)) ∧
+  ((∀ (l : List LossEntry), ((dedupFirst l).map LossEntry.key).Nodup) ∧
+   (∀ (l : List LossEntry), (∀ e ∈ l, 0 ≤ e.amount) →
+      lossTotal (dedupFirst l) ≤ lossTotal l) ∧
+   (∀ (l : List LossEntry), (l.map LossEntry.key).Nodup → dedupFirst l = l) ∧
+   lossTotal (dedupFirst [invoiceEntry, appraisalEntry]) = 1000 ∧
+   lossTotal [invoiceEntry, appraisalEntry] = 1800)
+
+/-- D062 逐方给付满足外部偿付总约束及内部规则；共享损失基数一致（反例：
+把外部连带金额按内部份额削减，须发现语义不符）：份额和为一 ⇒ 逐方按份
+给付之和恰等于共享损失基数（1/4＋3/4 份额乘基数 100 恰得 100）；连带方外
+部义务是全额损失，份额小于损失时两者必不相等；外部偿付总约束谓词恰是
+受偿总额不超损失（等价刻画，单笔全额 100 的受偿合法）；内部追偿池平衡
+——总付款＝总内部份额时追偿池＝缺额池；区间端点代数——加法结合/交换、
+非负缩放对加法分配、缩放结合，份额×损失的区间计算与逐方加总一致（损失
+区间 [100,200] 与 [150,300] 求交得 [150,200]——共同基数带）。 -/
+def demand_D062 : Prop :=
+  (∀ (i : Iv) (x y : ℚ) (hx : mem x i),
+      min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)) ∧
+  ((∀ {ι : Type} [Fintype ι] (base : ℚ) (share : ι → ℚ), ∑ i, share i = 1 →
+      ∑ i, share i * base = base) ∧
+   (∀ (loss share : ℚ), 0 < loss → share < loss →
+      externalDue RespMode.joint loss share 0 0 ≠ share) ∧
+   ((∀ (loss : ℚ) (recoveries : List ℚ),
+       JointRecoveryOK loss recoveries ↔ recoveries.sum ≤ loss) ∧
+    JointRecoveryOK 100 [100]) ∧
+   (∀ {ι : Type} [Fintype ι] (paid internalShare : ι → ℚ),
+      ∑ i, paid i = ∑ i, internalShare i →
+      ∑ i, recourseOf (paid i) (internalShare i)
+        = ∑ i, deficitOf (paid i) (internalShare i)) ∧
+   (∀ (i j k : Iv), Iv.add (Iv.add i j) k = Iv.add i (Iv.add j k)) ∧
+   (∀ (i j : Iv), Iv.add i j = Iv.add j i) ∧
+   (∀ (c : ℚ) (hc : 0 ≤ c) (i j : Iv),
+      vscale c hc (Iv.add i j) = Iv.add (vscale c hc i) (vscale c hc j)) ∧
+   (∀ (c1 c2 : ℚ) (h1 : 0 ≤ c1) (h2 : 0 ≤ c2) (i : Iv),
+      vscale c1 h1 (vscale c2 h2 i) = vscale (c1 * c2) (mul_nonneg h1 h2) i) ∧
+   vinter ivLossA ivLossB = some ivInter ∧
+   (∑ i : Fin 2, goodShares.share i * 100) = 100)
+
+/-- D063 恢复原状、停止侵害等非金钱救济为动作/状态目标，不强转人民币
+（反例：道歉或禁令不能当赔偿金额零而消失）：非金钱救济没有金额视图——
+恢复原状/停止侵害/赔礼道歉的金额视图皆为 none（不伪装成 0）；金钱赔偿的
+金额视图恰为该金额；金钱投影是盲区——两份清单金钱总额同为 100 而非金钱
+义务不同（清单身份仍区分，道歉不因金额为零而消失）。 -/
+def demand_D063 : Prop :=
+  (∀ (i : Iv) (x y : ℚ) (hx : mem x i),
+      min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)) ∧
+  ((amountOf Remedy.restitution = none ∧
+    amountOf Remedy.cessation = none ∧
+    amountOf Remedy.apology = none) ∧
+   (∀ (q : ℚ), amountOf (Remedy.moneyAmt q) = some q) ∧
+   (monetaryTotal [Remedy.moneyAmt 100, Remedy.apology] = 100 ∧
+    monetaryTotal [Remedy.moneyAmt 100] = 100 ∧
+    [Remedy.moneyAmt 100, Remedy.apology] ≠ [Remedy.moneyAmt 100]))
+
+/-- D064 总结中每项责任、比例、数值和限制来自同一场景见证（反例：不同
+情景各取最有利结果拼成无条件总结）：来自同一见证的记录恰以该见证的场景
+号/比例/数值三投影为其字段（FromSameWitness 的展开刻画——字段不来自别
+处）；同一见证 ⇒ 总结继承见证的比例守恒（见证比例和为一 ⇒ 记录比例和为
+一）；跨场景拼接的记录——场景 1 的身份配场景 2 的数值——不是任何单一场
+景见证的总结。 -/
+def demand_D064 : Prop :=
+  (∀ (i : Iv) (x y : ℚ) (hx : mem x i),
+      min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)) ∧
+  ((∀ (r : SummaryRecord) (w : ScenarioWitness), FromSameWitness r w →
+      r.scenId = w.scenId ∧ r.ratios = w.ratios ∧ r.values = w.values) ∧
+   (∀ (r : SummaryRecord) (w : ScenarioWitness), FromSameWitness r w →
+      w.ratios.sum = 1 → r.ratios.sum = 1) ∧
+   (¬ FromSameWitness mixedRecord wA ∧ ¬ FromSameWitness mixedRecord wB))
 
 /-! D065-D076 (group 08 合同条款与权利义务审核, W2-A batch B08): each def is
 that demand's own contract, translated from ALL_134_MATH_CONTRACTS.md.

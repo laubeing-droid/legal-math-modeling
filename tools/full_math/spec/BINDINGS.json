@@ -4721,28 +4721,30 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D095",
    "contract": "JurisLean.FullMath.Contracts.demand_D095",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.succDay_ordinal_mono's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-11 money/time demand instance in the shared semantic framework: this item's own contract semantics plus the registered calendar component (month-ordinal monotonicity under same-month succession — integer day order, leap years and month lengths from the unified calendar), with its adverse case executed as a negative test.",
+   "independent_semantics": "principal, interest, penalty and fees are computed on independent bases, periods and combination rules with conservative imputation: a period split at a midpoint gives two exact day counts summing to the whole (the unified calendar's integer days, never a 30-day average), the waterfall imputation never double-spends or loses a payment, and after a repayment the interest accrues on the residual base — using the old principal over the full period overstates the debt.",
+   "algorithm": "tools/full_math/implementation/timeamount_ref.py interest_seg/impute_all/debt_statement computes the intermediate result from structured input (calendar surface consumed from calendar_ref, the mirror of JurisLean.Seams.UnifiedCalendar); timeamount_check.check_D095 re-derives the contract independently against the stdlib datetime oracle.",
+   "observation_contract": "Inputs are the declared structures (calendar dates with exact integer day counts, Fraction bases/rates/ratios and amounts, one-step benchmark policy tables, cash+stock consideration legs with per-share prices and fx rates, prepayment quotes with facility, balance, ratio and trigger dates, period specifications with anchor, length, holiday table and roll fuel, back-schedule deadlines with lead days and floor dates, exposure rows with four distinct kinds and a declared risk function, obligation rows with survival kinds and day periods, and account rows with names, exact values and exclusion lists); outputs are exactly the contract quantities (the segment interest values with the split conservation and the waterfall allocations, the as-of benchmark and the confirmed-multiple applications with the backfill divergence, the dimensional consideration totals with both rounding stages, the separated prepayment quote with the jointly-verified premium, the period deadlines with the idempotent roll and evidence-gated right, the back-scheduled plans with the conflict reports, the declared aggregation against the mixed and double-counted totals, the survival updates with the ray-law verdicts, and the same-definition adjustment against the mixed-scope difference).",
+   "external_assumptions": "Actual debt and expense documentation, real benchmark publication data, price sources and employee-identity facts, repayment balances and projected closing dates, arrival/knowledge/performance event verification, third-party processing durations and availability, relevance/probability and economic-loss evaluation, subsequent performance and payment facts, and statement truth, earnings quality and audit judgment remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/timeamount_ref.py",
+    "tools/full_math/implementation/timeamount_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D095]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_positive[D095]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_counterexample[D095]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_downstream_pipeline_consumes_timeamount"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D095]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D095]"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_checker_rejects_tampered[D095]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.succDay_ordinal_mono"
+    "JurisLean.FullMath.Numeric.succDay_ordinal_mono",
+    "JurisLean.Seams.UnifiedCalendar.daysDiff_split"
    ]
   },
   {
@@ -4750,28 +4752,30 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D096",
    "contract": "JurisLean.FullMath.Contracts.demand_D096",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.succDay_ordinal_mono's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-11 money/time demand instance in the shared semantic framework: this item's own contract semantics plus the registered calendar component (month-ordinal monotonicity under same-month succession — integer day order, leap years and month lengths from the unified calendar), with its adverse case executed as a negative test.",
+   "independent_semantics": "the benchmark value is decided by the event date and the legal policy (from the event day the new benchmark applies, before it the old one), and the interest-rate multiple acts only on a confirmed benchmark — an unconfirmed base passes through unchanged, so backfilling the current benchmark into a historical loan period yields a visibly different applied rate.",
+   "algorithm": "tools/full_math/implementation/timeamount_ref.py step_rate/capped_mult/rate_scenario computes the intermediate result from structured input (calendar surface consumed from calendar_ref, the mirror of JurisLean.Seams.UnifiedCalendar); timeamount_check.check_D096 re-derives the contract independently against the stdlib datetime oracle.",
+   "observation_contract": "Inputs are the declared structures (calendar dates with exact integer day counts, Fraction bases/rates/ratios and amounts, one-step benchmark policy tables, cash+stock consideration legs with per-share prices and fx rates, prepayment quotes with facility, balance, ratio and trigger dates, period specifications with anchor, length, holiday table and roll fuel, back-schedule deadlines with lead days and floor dates, exposure rows with four distinct kinds and a declared risk function, obligation rows with survival kinds and day periods, and account rows with names, exact values and exclusion lists); outputs are exactly the contract quantities (the segment interest values with the split conservation and the waterfall allocations, the as-of benchmark and the confirmed-multiple applications with the backfill divergence, the dimensional consideration totals with both rounding stages, the separated prepayment quote with the jointly-verified premium, the period deadlines with the idempotent roll and evidence-gated right, the back-scheduled plans with the conflict reports, the declared aggregation against the mixed and double-counted totals, the survival updates with the ray-law verdicts, and the same-definition adjustment against the mixed-scope difference).",
+   "external_assumptions": "Actual debt and expense documentation, real benchmark publication data, price sources and employee-identity facts, repayment balances and projected closing dates, arrival/knowledge/performance event verification, third-party processing durations and availability, relevance/probability and economic-loss evaluation, subsequent performance and payment facts, and statement truth, earnings quality and audit judgment remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/timeamount_ref.py",
+    "tools/full_math/implementation/timeamount_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D096]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_positive[D096]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_counterexample[D096]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_downstream_pipeline_consumes_timeamount"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D096]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D096]"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_checker_rejects_tampered[D096]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.succDay_ordinal_mono"
+    "JurisLean.FullMath.Numeric.succDay_ordinal_mono",
+    "JurisLean.Seams.UnifiedCalendar.epoch_le_iff_lex"
    ]
   },
   {
@@ -4779,28 +4783,30 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D097",
    "contract": "JurisLean.FullMath.Contracts.demand_D097",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.succDay_ordinal_mono's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-11 money/time demand instance in the shared semantic framework: this item's own contract semantics plus the registered calendar component (month-ordinal monotonicity under same-month succession — integer day order, leap years and month lengths from the unified calendar), with its adverse case executed as a negative test.",
+   "independent_semantics": "cash, share count, per-share price, fx and exchange ratio derive by dimension (share × per-share = total; fx commutes with the share multiplication) and rounding is applied once at the declared final stage — rounding mid-derivation gives a different total, so the stage is explicit, and per-share and total prices are never mixed.",
+   "algorithm": "tools/full_math/implementation/timeamount_ref.py consideration/round_units/consideration_split computes the intermediate result from structured input (calendar surface consumed from calendar_ref, the mirror of JurisLean.Seams.UnifiedCalendar); timeamount_check.check_D097 re-derives the contract independently against the stdlib datetime oracle.",
+   "observation_contract": "Inputs are the declared structures (calendar dates with exact integer day counts, Fraction bases/rates/ratios and amounts, one-step benchmark policy tables, cash+stock consideration legs with per-share prices and fx rates, prepayment quotes with facility, balance, ratio and trigger dates, period specifications with anchor, length, holiday table and roll fuel, back-schedule deadlines with lead days and floor dates, exposure rows with four distinct kinds and a declared risk function, obligation rows with survival kinds and day periods, and account rows with names, exact values and exclusion lists); outputs are exactly the contract quantities (the segment interest values with the split conservation and the waterfall allocations, the as-of benchmark and the confirmed-multiple applications with the backfill divergence, the dimensional consideration totals with both rounding stages, the separated prepayment quote with the jointly-verified premium, the period deadlines with the idempotent roll and evidence-gated right, the back-scheduled plans with the conflict reports, the declared aggregation against the mixed and double-counted totals, the survival updates with the ray-law verdicts, and the same-definition adjustment against the mixed-scope difference).",
+   "external_assumptions": "Actual debt and expense documentation, real benchmark publication data, price sources and employee-identity facts, repayment balances and projected closing dates, arrival/knowledge/performance event verification, third-party processing durations and availability, relevance/probability and economic-loss evaluation, subsequent performance and payment facts, and statement truth, earnings quality and audit judgment remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/timeamount_ref.py",
+    "tools/full_math/implementation/timeamount_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D097]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_positive[D097]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_counterexample[D097]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_downstream_pipeline_consumes_timeamount"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D097]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D097]"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_checker_rejects_tampered[D097]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.succDay_ordinal_mono"
+    "JurisLean.FullMath.Numeric.succDay_ordinal_mono",
+    "JurisLean.Seams.UnifiedCalendar.epoch_le_iff_lex"
    ]
   },
   {
@@ -4808,28 +4814,30 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D098",
    "contract": "JurisLean.FullMath.Contracts.demand_D098",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.succDay_ordinal_mono's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-11 money/time demand instance in the shared semantic framework: this item's own contract semantics plus the registered calendar component (month-ordinal monotonicity under same-month succession — integer day order, leap years and month lengths from the unified calendar), with its adverse case executed as a negative test.",
+   "independent_semantics": "the prepaid principal balance and the make-whole premium are separate accounts: the premium ratio applies to the balance being repaid (never the original facility) and only when the month-arithmetic trigger date is reached — trigger day and applicable ratio verified jointly.",
+   "algorithm": "tools/full_math/implementation/timeamount_ref.py triggered/make_whole/prepay_quote computes the intermediate result from structured input (calendar surface consumed from calendar_ref, the mirror of JurisLean.Seams.UnifiedCalendar); timeamount_check.check_D098 re-derives the contract independently against the stdlib datetime oracle.",
+   "observation_contract": "Inputs are the declared structures (calendar dates with exact integer day counts, Fraction bases/rates/ratios and amounts, one-step benchmark policy tables, cash+stock consideration legs with per-share prices and fx rates, prepayment quotes with facility, balance, ratio and trigger dates, period specifications with anchor, length, holiday table and roll fuel, back-schedule deadlines with lead days and floor dates, exposure rows with four distinct kinds and a declared risk function, obligation rows with survival kinds and day periods, and account rows with names, exact values and exclusion lists); outputs are exactly the contract quantities (the segment interest values with the split conservation and the waterfall allocations, the as-of benchmark and the confirmed-multiple applications with the backfill divergence, the dimensional consideration totals with both rounding stages, the separated prepayment quote with the jointly-verified premium, the period deadlines with the idempotent roll and evidence-gated right, the back-scheduled plans with the conflict reports, the declared aggregation against the mixed and double-counted totals, the survival updates with the ray-law verdicts, and the same-definition adjustment against the mixed-scope difference).",
+   "external_assumptions": "Actual debt and expense documentation, real benchmark publication data, price sources and employee-identity facts, repayment balances and projected closing dates, arrival/knowledge/performance event verification, third-party processing durations and availability, relevance/probability and economic-loss evaluation, subsequent performance and payment facts, and statement truth, earnings quality and audit judgment remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/timeamount_ref.py",
+    "tools/full_math/implementation/timeamount_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D098]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_positive[D098]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_counterexample[D098]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_downstream_pipeline_consumes_timeamount"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D098]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D098]"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_checker_rejects_tampered[D098]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.succDay_ordinal_mono"
+    "JurisLean.FullMath.Numeric.succDay_ordinal_mono",
+    "JurisLean.Seams.UnifiedCalendar.addCalMonths_valid"
    ]
   },
   {
@@ -4837,28 +4845,30 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D099",
    "contract": "JurisLean.FullMath.Contracts.demand_D099",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.succDay_ordinal_mono's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-11 money/time demand instance in the shared semantic framework: this item's own contract semantics plus the registered calendar component (month-ordinal monotonicity under same-month succession — integer day order, leap years and month lengths from the unified calendar), with its adverse case executed as a negative test.",
+   "independent_semantics": "each period carries anchor, length, calendar and deadline_effect (the business-day roll is idempotent — a rolled deadline rolled again does not move) plus an evidence status; the termination right arises only when the deadline has arrived AND the arrival is evidenced — the 30-day notice expiring never substitutes for the 60-day cure period.",
+   "algorithm": "tools/full_math/implementation/timeamount_ref.py deadline_arrived/right_arises/notice_vs_cure computes the intermediate result from structured input (calendar surface consumed from calendar_ref, the mirror of JurisLean.Seams.UnifiedCalendar); timeamount_check.check_D099 re-derives the contract independently against the stdlib datetime oracle.",
+   "observation_contract": "Inputs are the declared structures (calendar dates with exact integer day counts, Fraction bases/rates/ratios and amounts, one-step benchmark policy tables, cash+stock consideration legs with per-share prices and fx rates, prepayment quotes with facility, balance, ratio and trigger dates, period specifications with anchor, length, holiday table and roll fuel, back-schedule deadlines with lead days and floor dates, exposure rows with four distinct kinds and a declared risk function, obligation rows with survival kinds and day periods, and account rows with names, exact values and exclusion lists); outputs are exactly the contract quantities (the segment interest values with the split conservation and the waterfall allocations, the as-of benchmark and the confirmed-multiple applications with the backfill divergence, the dimensional consideration totals with both rounding stages, the separated prepayment quote with the jointly-verified premium, the period deadlines with the idempotent roll and evidence-gated right, the back-scheduled plans with the conflict reports, the declared aggregation against the mixed and double-counted totals, the survival updates with the ray-law verdicts, and the same-definition adjustment against the mixed-scope difference).",
+   "external_assumptions": "Actual debt and expense documentation, real benchmark publication data, price sources and employee-identity facts, repayment balances and projected closing dates, arrival/knowledge/performance event verification, third-party processing durations and availability, relevance/probability and economic-loss evaluation, subsequent performance and payment facts, and statement truth, earnings quality and audit judgment remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/timeamount_ref.py",
+    "tools/full_math/implementation/timeamount_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D099]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_positive[D099]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_counterexample[D099]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_downstream_pipeline_consumes_timeamount"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D099]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D099]"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_checker_rejects_tampered[D099]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.succDay_ordinal_mono"
+    "JurisLean.FullMath.Numeric.succDay_ordinal_mono",
+    "JurisLean.Seams.UnifiedCalendar.PeriodSpec.base_strict_order"
    ]
   },
   {
@@ -4866,28 +4876,30 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D100",
    "contract": "JurisLean.FullMath.Contracts.demand_D100",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.succDay_ordinal_mono's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-11 money/time demand instance in the shared semantic framework: this item's own contract semantics plus the registered calendar component (month-ordinal monotonicity under same-month succession — integer day order, leap years and month lengths from the unified calendar), with its adverse case executed as a negative test.",
+   "independent_semantics": "a back-scheduled start satisfies the precedence constraint exactly (adding the lead days forward returns the deadline) and satisfies the calendar constraint (epoch-bounded backward steps); a start before the floor date (for example today) is reported as a conflict, never silently clamped into an executable plan.",
+   "algorithm": "tools/full_math/implementation/timeamount_ref.py back_item/back_plan computes the intermediate result from structured input (calendar surface consumed from calendar_ref, the mirror of JurisLean.Seams.UnifiedCalendar); timeamount_check.check_D100 re-derives the contract independently against the stdlib datetime oracle.",
+   "observation_contract": "Inputs are the declared structures (calendar dates with exact integer day counts, Fraction bases/rates/ratios and amounts, one-step benchmark policy tables, cash+stock consideration legs with per-share prices and fx rates, prepayment quotes with facility, balance, ratio and trigger dates, period specifications with anchor, length, holiday table and roll fuel, back-schedule deadlines with lead days and floor dates, exposure rows with four distinct kinds and a declared risk function, obligation rows with survival kinds and day periods, and account rows with names, exact values and exclusion lists); outputs are exactly the contract quantities (the segment interest values with the split conservation and the waterfall allocations, the as-of benchmark and the confirmed-multiple applications with the backfill divergence, the dimensional consideration totals with both rounding stages, the separated prepayment quote with the jointly-verified premium, the period deadlines with the idempotent roll and evidence-gated right, the back-scheduled plans with the conflict reports, the declared aggregation against the mixed and double-counted totals, the survival updates with the ray-law verdicts, and the same-definition adjustment against the mixed-scope difference).",
+   "external_assumptions": "Actual debt and expense documentation, real benchmark publication data, price sources and employee-identity facts, repayment balances and projected closing dates, arrival/knowledge/performance event verification, third-party processing durations and availability, relevance/probability and economic-loss evaluation, subsequent performance and payment facts, and statement truth, earnings quality and audit judgment remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/timeamount_ref.py",
+    "tools/full_math/implementation/timeamount_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D100]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_positive[D100]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_counterexample[D100]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_downstream_pipeline_consumes_timeamount"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D100]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D100]"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_checker_rejects_tampered[D100]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.succDay_ordinal_mono"
+    "JurisLean.FullMath.Numeric.succDay_ordinal_mono",
+    "JurisLean.Seams.UnifiedCalendar.backSchedule_some_addBack"
    ]
   },
   {
@@ -4895,28 +4907,30 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D101",
    "contract": "JurisLean.FullMath.Contracts.demand_D101",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.succDay_ordinal_mono's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-11 money/time demand instance in the shared semantic framework: this item's own contract semantics plus the registered calendar component (month-ordinal monotonicity under same-month succession — integer day order, leap years and month lengths from the unified calendar), with its adverse case executed as a negative test.",
+   "independent_semantics": "debt principal, accrued cost, income risk and contingent compensation are distinct kinds with distinct conditions; contingent items enter the total only through the declared risk function (probability-weighted), so treating a risk figure as a realized loss or double-adding it overstates the exposure; exposure periods keep exact integer day counts.",
+   "algorithm": "tools/full_math/implementation/timeamount_ref.py aggregate/exposure_mixing computes the intermediate result from structured input (calendar surface consumed from calendar_ref, the mirror of JurisLean.Seams.UnifiedCalendar); timeamount_check.check_D101 re-derives the contract independently against the stdlib datetime oracle.",
+   "observation_contract": "Inputs are the declared structures (calendar dates with exact integer day counts, Fraction bases/rates/ratios and amounts, one-step benchmark policy tables, cash+stock consideration legs with per-share prices and fx rates, prepayment quotes with facility, balance, ratio and trigger dates, period specifications with anchor, length, holiday table and roll fuel, back-schedule deadlines with lead days and floor dates, exposure rows with four distinct kinds and a declared risk function, obligation rows with survival kinds and day periods, and account rows with names, exact values and exclusion lists); outputs are exactly the contract quantities (the segment interest values with the split conservation and the waterfall allocations, the as-of benchmark and the confirmed-multiple applications with the backfill divergence, the dimensional consideration totals with both rounding stages, the separated prepayment quote with the jointly-verified premium, the period deadlines with the idempotent roll and evidence-gated right, the back-scheduled plans with the conflict reports, the declared aggregation against the mixed and double-counted totals, the survival updates with the ray-law verdicts, and the same-definition adjustment against the mixed-scope difference).",
+   "external_assumptions": "Actual debt and expense documentation, real benchmark publication data, price sources and employee-identity facts, repayment balances and projected closing dates, arrival/knowledge/performance event verification, third-party processing durations and availability, relevance/probability and economic-loss evaluation, subsequent performance and payment facts, and statement truth, earnings quality and audit judgment remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/timeamount_ref.py",
+    "tools/full_math/implementation/timeamount_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D101]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_positive[D101]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_counterexample[D101]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_downstream_pipeline_consumes_timeamount"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D101]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D101]"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_checker_rejects_tampered[D101]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.succDay_ordinal_mono"
+    "JurisLean.FullMath.Numeric.succDay_ordinal_mono",
+    "JurisLean.Seams.UnifiedCalendar.daysDiff_split"
    ]
   },
   {
@@ -4924,28 +4938,30 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D102",
    "contract": "JurisLean.FullMath.Contracts.demand_D102",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.succDay_ordinal_mono's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-11 money/time demand instance in the shared semantic framework: this item's own contract semantics plus the registered calendar component (month-ordinal monotonicity under same-month succession — integer day order, leap years and month lengths from the unified calendar), with its adverse case executed as a negative test.",
+   "independent_semantics": "post-termination obligations are updated by the survival rules, not cleared together with the main performance: an accrued payable survives verbatim, a wholly-future performance obligation is extinguished, and the ordering of a closed period after the termination day is decided by its start (the survival ray law).",
+   "algorithm": "tools/full_math/implementation/timeamount_ref.py survival_update/termination_closeout computes the intermediate result from structured input (calendar surface consumed from calendar_ref, the mirror of JurisLean.Seams.UnifiedCalendar); timeamount_check.check_D102 re-derives the contract independently against the stdlib datetime oracle.",
+   "observation_contract": "Inputs are the declared structures (calendar dates with exact integer day counts, Fraction bases/rates/ratios and amounts, one-step benchmark policy tables, cash+stock consideration legs with per-share prices and fx rates, prepayment quotes with facility, balance, ratio and trigger dates, period specifications with anchor, length, holiday table and roll fuel, back-schedule deadlines with lead days and floor dates, exposure rows with four distinct kinds and a declared risk function, obligation rows with survival kinds and day periods, and account rows with names, exact values and exclusion lists); outputs are exactly the contract quantities (the segment interest values with the split conservation and the waterfall allocations, the as-of benchmark and the confirmed-multiple applications with the backfill divergence, the dimensional consideration totals with both rounding stages, the separated prepayment quote with the jointly-verified premium, the period deadlines with the idempotent roll and evidence-gated right, the back-scheduled plans with the conflict reports, the declared aggregation against the mixed and double-counted totals, the survival updates with the ray-law verdicts, and the same-definition adjustment against the mixed-scope difference).",
+   "external_assumptions": "Actual debt and expense documentation, real benchmark publication data, price sources and employee-identity facts, repayment balances and projected closing dates, arrival/knowledge/performance event verification, third-party processing durations and availability, relevance/probability and economic-loss evaluation, subsequent performance and payment facts, and statement truth, earnings quality and audit judgment remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/timeamount_ref.py",
+    "tools/full_math/implementation/timeamount_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D102]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_positive[D102]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_counterexample[D102]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_downstream_pipeline_consumes_timeamount"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D102]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D102]"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_checker_rejects_tampered[D102]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.succDay_ordinal_mono"
+    "JurisLean.FullMath.Numeric.succDay_ordinal_mono",
+    "JurisLean.Seams.UnifiedCalendar.interval_in_ray_iff"
    ]
   },
   {
@@ -4953,28 +4969,30 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D103",
    "contract": "JurisLean.FullMath.Contracts.demand_D103",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.succDay_ordinal_mono's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-11 money/time demand instance in the shared semantic framework: this item's own contract semantics plus the registered calendar component (month-ordinal monotonicity under same-month succession — integer day order, leap years and month lengths from the unified calendar), with its adverse case executed as a negative test.",
+   "independent_semantics": "the price adjustment is computed from one working-capital definition, one reference-date equivalence, one exclusion list and the reconciliation difference: the same scope at target and closing gives the exact adjustment, excluded accounts never enter, and letting an extra account into one side only is a different-scope difference, not this definition's reconciliation.",
+   "algorithm": "tools/full_math/implementation/timeamount_ref.py working_capital/adjustment/wc_adjustment computes the intermediate result from structured input (calendar surface consumed from calendar_ref, the mirror of JurisLean.Seams.UnifiedCalendar); timeamount_check.check_D103 re-derives the contract independently against the stdlib datetime oracle.",
+   "observation_contract": "Inputs are the declared structures (calendar dates with exact integer day counts, Fraction bases/rates/ratios and amounts, one-step benchmark policy tables, cash+stock consideration legs with per-share prices and fx rates, prepayment quotes with facility, balance, ratio and trigger dates, period specifications with anchor, length, holiday table and roll fuel, back-schedule deadlines with lead days and floor dates, exposure rows with four distinct kinds and a declared risk function, obligation rows with survival kinds and day periods, and account rows with names, exact values and exclusion lists); outputs are exactly the contract quantities (the segment interest values with the split conservation and the waterfall allocations, the as-of benchmark and the confirmed-multiple applications with the backfill divergence, the dimensional consideration totals with both rounding stages, the separated prepayment quote with the jointly-verified premium, the period deadlines with the idempotent roll and evidence-gated right, the back-scheduled plans with the conflict reports, the declared aggregation against the mixed and double-counted totals, the survival updates with the ray-law verdicts, and the same-definition adjustment against the mixed-scope difference).",
+   "external_assumptions": "Actual debt and expense documentation, real benchmark publication data, price sources and employee-identity facts, repayment balances and projected closing dates, arrival/knowledge/performance event verification, third-party processing durations and availability, relevance/probability and economic-loss evaluation, subsequent performance and payment facts, and statement truth, earnings quality and audit judgment remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/timeamount_ref.py",
+    "tools/full_math/implementation/timeamount_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D103]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_positive[D103]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_demand_counterexample[D103]",
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_downstream_pipeline_consumes_timeamount"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D103]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D103]"
+    "tools/full_math/implementation_tests::test_timeamount_group11.py::test_checker_rejects_tampered[D103]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.succDay_ordinal_mono"
+    "JurisLean.FullMath.Numeric.succDay_ordinal_mono",
+    "JurisLean.Seams.UnifiedCalendar.toEpochDay_inj"
    ]
   },
   {

@@ -1344,23 +1344,229 @@ theorem demand_D094 : Contracts.demand_D094 := And.intro JurisLean.FullMath.Logi
     · simp [Contracts.infersAllCases, Contracts.servedBy, Contracts.repEdgeOf]
     · simp [Contracts.infersAllCases, Contracts.servedBy, Contracts.repEdgeOf])
 
-theorem demand_D095 : Contracts.demand_D095 := JurisLean.FullMath.Numeric.succDay_ordinal_mono
+/-! D095-D103 (group 11 金额、时间和经济敞口, W2-A batch B11): each
+theorem discharges the demand's own contract; the first conjunct is
+the group-registered calendar component inlined as
+`succDay_ordinal_mono`. The calendar facts are consumed from
+`Seams/UnifiedCalendar.lean`; the group-11 helpers live in
+`Contracts`. -/
 
-theorem demand_D096 : Contracts.demand_D096 := JurisLean.FullMath.Numeric.succDay_ordinal_mono
+open JurisLean.FullMath.Contracts (taInterestSeg taImputeAll taStepRate
+  taCappedMult taConsideration taRound taTriggered taMakeWhole
+  taDeadlineArrived taRightArises taBackItem taAggregate taSurvivalUpdate
+  taWorkingCapital taAdjustment)
 
-theorem demand_D097 : Contracts.demand_D097 := JurisLean.FullMath.Numeric.succDay_ordinal_mono
+open JurisLean.Seams.UnifiedCalendar (daysDiff toEpochDay)
 
-theorem demand_D098 : Contracts.demand_D098 := JurisLean.FullMath.Numeric.succDay_ordinal_mono
+set_option maxRecDepth 100000 in
+theorem demand_D095 : Contracts.demand_D095 := And.intro JurisLean.FullMath.Numeric.succDay_ordinal_mono
+  (by
+    refine ⟨?_, ?_, ?_⟩
+    · intro a m b base rate
+      have h : (daysDiff a m : ℤ) + (daysDiff m b : ℤ) = daysDiff a b :=
+        JurisLean.Seams.UnifiedCalendar.daysDiff_split a m b
+      have hq : ((daysDiff a m : ℤ) : ℚ) + ((daysDiff m b : ℤ) : ℚ)
+          = ((daysDiff a b : ℤ) : ℚ) := by exact_mod_cast h
+      simp only [taInterestSeg]
+      linear_combination (base * rate) * hq
+    · intro pay buckets hpay hnn
+      induction buckets generalizing pay with
+      | nil =>
+        refine ⟨?_, ?_⟩
+        · simp only [taImputeAll, List.sum_nil]
+          linarith
+        · intro htot
+          rw [List.sum_nil] at htot
+          simp only [taImputeAll, List.sum_nil]
+          linarith
+      | cons b rest ih =>
+        have hb : 0 ≤ b := hnn b (by simp)
+        have hrest : ∀ x ∈ rest, 0 ≤ x := fun x hx => hnn x (by simp [hx])
+        have hsub : 0 ≤ pay - min pay b := by
+          have hmin := min_le_left pay b
+          linarith
+        obtain ⟨h1, h2⟩ := ih (pay - min pay b) hsub hrest
+        simp only [taImputeAll, List.sum_cons]
+        refine ⟨?_, ?_⟩
+        · linarith
+        · intro htot
+          have hge : 0 ≤ List.sum rest := List.sum_nonneg hrest
+          have key : pay - min pay b ≤ List.sum rest := by
+            by_cases hle : pay ≤ b
+            · have hm : min pay b = pay := min_eq_left hle
+              linarith
+            · have hm : min pay b = b := min_eq_right (by linarith)
+              linarith
+          have heq := h2 key
+          linarith
+    · refine ⟨?_, ?_, ?_⟩
+      · have h1 : daysDiff ⟨2024, 1, 15⟩ ⟨2024, 3, 10⟩ = 55 := by decide
+        simp only [taInterestSeg, h1]
+        norm_num
+      · have h2 : daysDiff ⟨2024, 1, 15⟩ ⟨2024, 2, 1⟩ = 17 := by decide
+        have h3 : daysDiff ⟨2024, 2, 1⟩ ⟨2024, 3, 10⟩ = 38 := by decide
+        simp only [taInterestSeg, h2, h3]
+        norm_num
+      · norm_num)
 
-theorem demand_D099 : Contracts.demand_D099 := JurisLean.FullMath.Numeric.succDay_ordinal_mono
+set_option maxRecDepth 100000 in
+theorem demand_D096 : Contracts.demand_D096 := And.intro JurisLean.FullMath.Numeric.succDay_ordinal_mono
+  (by
+    refine ⟨?_, ?_, ?_⟩
+    · intro ev a b oldRate newRate h1 h2
+      have ha : ¬ (toEpochDay ev ≤ toEpochDay a) := by omega
+      have hb : ¬ (toEpochDay ev ≤ toEpochDay b) := by omega
+      simp only [taStepRate, if_neg ha, if_neg hb]
+    · intro mult base
+      simp only [taCappedMult]
+      rfl
+    · refine ⟨?_, ?_, ?_, ?_⟩
+      · decide
+      · have hc : ¬ (toEpochDay ⟨2024, 1, 1⟩ ≤ toEpochDay ⟨2023, 6, 30⟩) := by decide
+        simp only [taStepRate, taCappedMult]
+        rw [if_neg hc]
+        rfl
+      · have hc2 : toEpochDay ⟨2024, 1, 1⟩ ≤ toEpochDay ⟨2024, 1, 1⟩ := le_refl _
+        simp only [taStepRate, taCappedMult]
+        rw [if_pos hc2]
+        rfl
+      · norm_num)
 
-theorem demand_D100 : Contracts.demand_D100 := JurisLean.FullMath.Numeric.succDay_ordinal_mono
+set_option maxRecDepth 100000 in
+theorem demand_D097 : Contracts.demand_D097 := And.intro JurisLean.FullMath.Numeric.succDay_ordinal_mono
+  (by
+    refine ⟨?_, ?_, ?_⟩
+    · intro cash shares p1 p2 hs hne h
+      apply hne
+      simp only [taConsideration] at h
+      have hm : shares * p1 = shares * p2 := by linarith
+      exact mul_left_cancel₀ hs hm
+    · intro shares price fx
+      ring
+    · refine ⟨?_, ?_, ?_⟩
+      · simp only [taRound, taConsideration]
+        norm_num
+      · simp only [taRound]
+        norm_num
+      · norm_num)
 
-theorem demand_D101 : Contracts.demand_D101 := JurisLean.FullMath.Numeric.succDay_ordinal_mono
+set_option maxRecDepth 100000 in
+theorem demand_D098 : Contracts.demand_D098 := And.intro JurisLean.FullMath.Numeric.succDay_ordinal_mono
+  (by
+    refine ⟨?_, ?_, ?_⟩
+    · intro facility balance ratio hr hne h
+      apply hne
+      exact mul_right_cancel₀ hr h
+    · intro trigger prepay balance ratio h
+      have hd : taTriggered trigger prepay = false := by simp [taTriggered, h]
+      rw [hd]
+      rfl
+    · refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
+      · decide
+      · decide
+      · decide
+      · norm_num [taMakeWhole]
+      · norm_num [taMakeWhole]
+      · norm_num)
 
-theorem demand_D102 : Contracts.demand_D102 := JurisLean.FullMath.Numeric.succDay_ordinal_mono
+set_option maxRecDepth 100000 in
+theorem demand_D099 : Contracts.demand_D099 := And.intro JurisLean.FullMath.Numeric.succDay_ordinal_mono
+  (by
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · intro p q ha hb hanchor hlt
+      exact JurisLean.Seams.UnifiedCalendar.PeriodSpec.base_strict_order p q ha hb hanchor hlt
+    · intro p h
+      exact JurisLean.Seams.UnifiedCalendar.nextBiz_fixpoint p.holiday p.rollFuel p.deadline
+        ((JurisLean.Seams.UnifiedCalendar.PeriodSpec.deadline_ge_base p h).1)
+    · refine ⟨?_, ?_, ?_⟩
+      · decide
+      · decide
+      · decide
+    · refine ⟨?_, ?_, ?_, ?_, ?_⟩
+      · decide
+      · decide
+      · decide
+      · decide
+      · decide)
 
-theorem demand_D103 : Contracts.demand_D103 := JurisLean.FullMath.Numeric.succDay_ordinal_mono
+set_option maxRecDepth 100000 in
+theorem demand_D100 : Contracts.demand_D100 := And.intro JurisLean.FullMath.Numeric.succDay_ordinal_mono
+  (by
+    refine ⟨?_, ?_, ?_⟩
+    · intro deadline lead a hdv h
+      exact JurisLean.Seams.UnifiedCalendar.backSchedule_some_addBack deadline lead a hdv h
+    · intro floor deadline lead s hback hlt
+      simp only [taBackItem, hback, if_neg (by omega : ¬ (toEpochDay floor ≤ toEpochDay s))]
+    · refine ⟨?_, ?_, ?_, ?_⟩
+      · decide
+      · decide
+      · decide
+      · decide)
+
+set_option maxRecDepth 100000 in
+theorem demand_D101 : Contracts.demand_D101 := And.intro JurisLean.FullMath.Numeric.succDay_ordinal_mono
+  (by
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · decide
+    · intro p c hp0 hp1 hc0
+      have hpos : 0 < c * (1 - p) := mul_pos hc0 (by linarith)
+      have hring : c * (1 - p) = c - p * c := by ring
+      linarith
+    · refine ⟨?_, ?_, ?_, ?_⟩
+      · simp only [taAggregate]
+        norm_num
+      · norm_num
+      · norm_num
+      · norm_num
+    · refine ⟨?_, ?_⟩
+      · decide
+      · decide)
+
+set_option maxRecDepth 100000 in
+theorem demand_D102 : Contracts.demand_D102 := And.intro JurisLean.FullMath.Numeric.succDay_ordinal_mono
+  (by
+    refine ⟨?_, ?_, ?_, ?_, ?_⟩
+    · intro amount endDay termDay
+      rfl
+    · intro amount startDay endDay termDay hse hts
+      have hn : ¬ (endDay ≤ termDay) := by omega
+      simp only [taSurvivalUpdate, if_neg hn]
+    · intro amount endDay termDay h
+      simp only [taSurvivalUpdate, if_pos h]
+    · intro term a b hab
+      exact JurisLean.Seams.UnifiedCalendar.interval_in_ray_iff term a b hab
+    · refine ⟨?_, ?_, ?_, ?_, ?_, ?_⟩
+      · decide
+      · decide
+      · decide
+      · decide
+      · decide
+      · decide)
+
+set_option maxRecDepth 100000 in
+theorem demand_D103 : Contracts.demand_D103 := And.intro JurisLean.FullMath.Numeric.succDay_ordinal_mono
+  (by
+    refine ⟨?_, ?_, ?_⟩
+    · intro d1 d2 h1 h2 h
+      exact JurisLean.Seams.UnifiedCalendar.toEpochDay_inj d1 d2 h1 h2 h
+    · intro accounts exclusions e v h
+      show (if exclusions.contains e then taWorkingCapital accounts exclusions
+            else v + taWorkingCapital accounts exclusions)
+          = taWorkingCapital accounts exclusions
+      rw [h]
+      rfl
+    · refine ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
+      · simp [taWorkingCapital]
+        norm_num
+      · simp [taWorkingCapital]
+        norm_num
+      · simp [taWorkingCapital]
+        norm_num
+      · norm_num [taAdjustment]
+      · simp [taWorkingCapital]
+        norm_num
+      · norm_num [taAdjustment]
+      · norm_num)
 
 /-! D104-D115 (group 12 起草、修订与交付, W2-A batch B12): each
 theorem discharges the demand's own contract; the first conjunct is the

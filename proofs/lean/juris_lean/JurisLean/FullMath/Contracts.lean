@@ -5,6 +5,7 @@ import JurisLean.FullMath.Tranche4
 import JurisLean.FullMath.Tranche5
 import JurisLean.FullMath.Tranche6
 import JurisLean.FullMath.Tranche7
+import JurisLean.Seams.UnifiedCalendar
 
 /-! Generated from the module signatures: each contract is the real
 statement of its mapped theorem. This file contains no proofs. -/
@@ -23,6 +24,8 @@ open JurisLean.FullMath.Document
 open JurisLean.FullMath.Roots
 open JurisLean.FullMath.Gaps
 open JurisLean.FullMath.Numeric.Iv
+open JurisLean.Seams.UnifiedCalendar (CalDate daysDiff toEpochDay PeriodSpec
+  nextBiz backSchedule addCalDays addCalMonths syntheticWeekend)
 
 namespace JurisLean.FullMath.Contracts
 
@@ -2033,23 +2036,306 @@ def demand_D094 : Prop :=
        infersAllCases [("law-a", "acme-co")] [("acme-case-1", "law-a")] "law-a"
         "acme-co" "acme-case-3" = false))
 
-def demand_D095 : Prop := ∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1
+/-! D095-D103 (group 11 金额、时间和经济敞口, W2-A batch B11): each def is
+that demand's own contract, translated from ALL_134_MATH_CONTRACTS.md.
+The first conjunct of every demand is the group-registered calendar
+component inlined as `succDay_ordinal_mono` (month-ordinal monotonicity
+under same-month succession — integer day order, leap years and month
+lengths from the unified calendar); the remaining conjuncts are the
+demand's own operational semantics with its adverse case. The calendar
+surface (CalDate, toEpochDay, daysDiff, addCalDays, addCalMonths,
+PeriodSpec, nextBiz, backSchedule, syntheticWeekend) is consumed from
+`Seams/UnifiedCalendar.lean`, never redefined here; amounts are ℚ and
+day counts are exact ℤ. -/
 
-def demand_D096 : Prop := ∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1
+/-- D095 helper: interest accrued on one segment — base × daily rate ×
+the exact ℤ day count from the unified calendar (independent base,
+independent period, exact days; no 30-day averaging). -/
+def taInterestSeg (base rate : ℚ) (a b : CalDate) : ℚ :=
+  base * rate * ((daysDiff a b : ℤ) : ℚ)
 
-def demand_D097 : Prop := ∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1
+/-- D095 helper: waterfall imputation of one payment across a list of
+debt components (fees, interest, penalty, principal …) — each component
+is covered only from what remains after the previous ones (守恒抵充:
+a payment is never double-spent, never lost). -/
+def taImputeAll (pay : ℚ) : List ℚ → List ℚ
+  | [] => []
+  | b :: rest => min pay b :: taImputeAll (pay - min pay b) rest
 
-def demand_D098 : Prop := ∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1
+/-- D096 helper: the applicable benchmark at one epoch day under a
+one-step policy — from the event day on, the new benchmark applies;
+before it, the old one (the event date and the legal policy decide,
+not the current date). -/
+def taStepRate (eventDay : ℤ) (oldRate newRate : ℚ) (day : ℤ) : ℚ :=
+  if eventDay ≤ day then newRate else oldRate
 
-def demand_D099 : Prop := ∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1
+/-- D096 helper: the interest-rate multiple acts only on a confirmed
+benchmark — an unconfirmed base passes through unchanged. -/
+def taCappedMult (mult : ℚ) (confirmed : Bool) (base : ℚ) : ℚ :=
+  if confirmed then mult * base else base
 
-def demand_D100 : Prop := ∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1
+/-- D097 helper: total consideration of one cash + stock leg — cash
+plus share count × per-share price (share count and per-share price
+are different dimensions; their product is the money amount). -/
+def taConsideration (cash shares price : ℚ) : ℚ := cash + shares * price
 
-def demand_D101 : Prop := ∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1
+/-- D097 helper: explicit rounding to whole currency units — applied
+once, at the declared stage of the derivation. -/
+def taRound (x : ℚ) : ℚ := ((⌊x⌋ : ℤ) : ℚ)
 
-def demand_D102 : Prop := ∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1
+/-- D098 helper: has the prepayment date reached the trigger date (the
+month-arithmetic deadline, month-end clamped)? -/
+def taTriggered (trigger prepay : CalDate) : Bool :=
+  decide (toEpochDay trigger ≤ toEpochDay prepay)
 
-def demand_D103 : Prop := ∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1
+/-- D098 helper: the make-whole premium due — only when the trigger
+date is reached AND the ratio is positive (trigger day and applicable
+ratio verified jointly). -/
+def taMakeWhole (triggered : Bool) (balance ratio : ℚ) : ℚ :=
+  if triggered && decide (0 < ratio) then balance * ratio else 0
+
+/-- D099 helper: has this period's (business-day-rolled) deadline
+arrived by the given epoch day? -/
+def taDeadlineArrived (p : PeriodSpec) (day : ℤ) : Bool :=
+  decide (p.deadline ≤ day)
+
+/-- D099 helper: the termination right on one period arises only when
+the deadline has arrived AND the arrival is evidenced — either missing
+blocks it (the 30-day notice expiring never substitutes for the
+60-day cure period). -/
+def taRightArises (arrived evidenced : Bool) : Bool := arrived && evidenced
+
+/-- D100 helper: back-scheduling one item from its deadline by the lead
+days; a start that falls before the floor date (for example today) is
+reported as a conflict (none), never silently clamped into an
+executable plan. -/
+def taBackItem (floor deadline : CalDate) (lead : ℕ) : Option CalDate :=
+  match backSchedule deadline lead with
+  | some s => if toEpochDay floor ≤ toEpochDay s then some s else none
+  | none => none
+
+/-- D101 helper: the four exposure kinds — debt principal (a balance),
+accrued cost, income risk (a contingent, scenario-valued exposure)
+and contingent compensation; distinct labels, so a risk figure can
+never pose as a realized amount. -/
+def taExpDebt : ℕ := 0
+
+def taExpCost : ℕ := 1
+
+def taExpRisk : ℕ := 2
+
+def taExpContingent : ℕ := 3
+
+/-- D101 helper: the declared aggregation — realized items (debt,
+cost) sum directly; contingent items enter only through the declared
+risk function (probability-weighted), never as raw amounts. -/
+def taAggregate (debt cost : ℚ) (contingent : List ℚ) (prob : ℚ) : ℚ :=
+  debt + cost + (contingent.map (fun c => prob * c)).sum
+
+/-- D102 helper: the survival update of one obligation row on
+termination — an accrued payable (kind 0) survives verbatim (never
+cleared together with the main performance); a main performance
+obligation (kind 1) survives only the part already complete at the
+termination day; any undeclared kind contributes nothing (fail-closed). -/
+def taSurvivalUpdate (kind : ℕ) (amount : ℚ) (endDay termDay : ℤ) : ℚ :=
+  match kind with
+  | 0 => amount
+  | 1 => if endDay ≤ termDay then amount else 0
+  | _ => 0
+
+/-- D103 helper: working capital under one declared definition — the
+same account scope at any reference date, minus the same exclusion
+list (same definition, same exclusions; only the reference date
+differs). -/
+def taWorkingCapital : List (String × ℚ) → List String → ℚ
+  | [], _ => 0
+  | (name, v) :: rest, exclusions =>
+      if exclusions.contains name then taWorkingCapital rest exclusions
+      else v + taWorkingCapital rest exclusions
+
+/-- D103 helper: the price adjustment — closing working capital minus
+target working capital, both computed by the same definition; the
+reconciliation difference is exact. -/
+def taAdjustment (target closing : ℚ) : ℚ := closing - target
+
+/-- D095 本息违约金费用按独立基数、期间和组合规则解释并守恒抵充（反例：还
+款后仍用旧本金累计全部期间利息）：同一基数下期间在中点切开的两天数利
+息相加等于整段利息（分段计息守恒——天数差来自统一历法的 ℤ 精确值，非
+30 天均摊）；瀑布抵充不超付不丢失（每笔付款至多消费一次，付款额不超过
+组件总额时恰全额分配）；还款后残余本金分段计息与旧本金全期间计息不同
+（100000 元、日利率 1/1000、2024-01-15→2024-03-10 于 2024-02-01 还款
+40000：正确 3980 ≠ 旧本金 5500）。 -/
+def demand_D095 : Prop :=
+  (∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1) ∧
+    (∀ (a m b : CalDate) (base rate : ℚ),
+        taInterestSeg base rate a m + taInterestSeg base rate m b = taInterestSeg base rate a b) ∧
+    (∀ (pay : ℚ) (buckets : List ℚ), 0 ≤ pay → (∀ b ∈ buckets, 0 ≤ b) →
+        (taImputeAll pay buckets).sum ≤ pay ∧
+          (pay ≤ buckets.sum → (taImputeAll pay buckets).sum = pay)) ∧
+    (taInterestSeg 100000 (1 / 1000) ⟨2024, 1, 15⟩ ⟨2024, 3, 10⟩ = 5500 ∧
+      taInterestSeg 100000 (1 / 1000) ⟨2024, 1, 15⟩ ⟨2024, 2, 1⟩
+        + taInterestSeg 60000 (1 / 1000) ⟨2024, 2, 1⟩ ⟨2024, 3, 10⟩ = 3980 ∧
+      (5500 : ℚ) ≠ 3980)
+
+/-- D096 基准率取值由事件与法律政策决定，倍数运算只作用于被确认基准（反
+例：用当前LPR倒填所有历史借款期间）：政策事件日之前两天的基准取值相同
+（同一政策段内基准一致——事件日决定取值而非当前日期，历元日序即日期
+序）；未确认基准上倍数恒为恒等（倍数只作用于被确认基准）；2024-01-01
+政策步进（旧 71/2000、新 69/2000）下 2023-06-30 的历史期间取旧基准得
+4×71/2000，倒填新基准得 4×69/2000，两者不等。 -/
+def demand_D096 : Prop :=
+  (∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1) ∧
+    (∀ (ev a b : CalDate) (oldRate newRate : ℚ),
+        toEpochDay a ≤ toEpochDay b → toEpochDay b < toEpochDay ev →
+          taStepRate (toEpochDay ev) oldRate newRate (toEpochDay a)
+            = taStepRate (toEpochDay ev) oldRate newRate (toEpochDay b)) ∧
+    (∀ (mult base : ℚ), taCappedMult mult false base = base) ∧
+    (toEpochDay ⟨2023, 6, 30⟩ < toEpochDay ⟨2024, 1, 1⟩ ∧
+      taCappedMult 4 true
+          (taStepRate (toEpochDay ⟨2024, 1, 1⟩) (71 / 2000) (69 / 2000)
+            (toEpochDay ⟨2023, 6, 30⟩)) = 4 * (71 / 2000) ∧
+        taCappedMult 4 true
+          (taStepRate (toEpochDay ⟨2024, 1, 1⟩) (71 / 2000) (69 / 2000)
+            (toEpochDay ⟨2024, 1, 1⟩)) = 4 * (69 / 2000) ∧
+        (4 * (71 / 2000) : ℚ) ≠ 4 * (69 / 2000))
+
+/-- D097 现金、股份数、股价、汇率和转换比例按维度推导，舍入阶段显式（反
+例：按股计价格与总价混用使倍率相差股份数）：股份数非零时不同的单价给
+出不同的对价（每股价与总价两维不可混用）；汇率折算与股份数乘法可换（维
+度一致：先折单价再乘股数＝先乘股数再折总价）；舍入阶段显式——期末一次
+取整（1/2+3×(1/2)=2 取整得 2）与中段先取整再相加（0+1=1）结果不同。 -/
+def demand_D097 : Prop :=
+  (∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1) ∧
+    (∀ (cash shares p1 p2 : ℚ), shares ≠ 0 → p1 ≠ p2 →
+        taConsideration cash shares p1 ≠ taConsideration cash shares p2) ∧
+    (∀ (shares price fx : ℚ), shares * (price * fx) = (shares * price) * fx) ∧
+    (taRound (taConsideration (1 / 2) 3 (1 / 2)) = 2 ∧
+      taRound (1 / 2) + taRound (3 * (1 / 2)) = 1 ∧ (2 : ℚ) ≠ 1)
+
+/-- D098 提前清偿本金与premium分账；触发日和适用比例共同验证（反例：2%
+溢价计在原授信额度而非应清偿余额）：倍数右消去律（余额≠额度⇒余额×比例
+≠额度×比例——溢价只按应清偿余额计）；触发日未到溢价恒为零（日期与比例
+共同验证，与金额无关）；2024-03-15 起息 6 个月触发日为 2024-09-15（月
+算术、月末钳制）下 2024-09-01 未触发、2024-09-20 已触发溢价
+400000×2%=8000，而计在原授信额度 1000000 上得 20000≠8000。 -/
+def demand_D098 : Prop :=
+  (∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1) ∧
+    (∀ (facility balance ratio : ℚ), ratio ≠ 0 → balance ≠ facility →
+        balance * ratio ≠ facility * ratio) ∧
+    (∀ (trigger prepay : CalDate) (balance ratio : ℚ),
+        ¬ (toEpochDay trigger ≤ toEpochDay prepay) →
+          taMakeWhole (taTriggered trigger prepay) balance ratio = 0) ∧
+    (addCalMonths 6 ⟨2024, 3, 15⟩ = ⟨2024, 9, 15⟩ ∧
+      taTriggered ⟨2024, 9, 15⟩ ⟨2024, 9, 1⟩ = false ∧
+      taTriggered ⟨2024, 9, 15⟩ ⟨2024, 9, 20⟩ = true ∧
+      taMakeWhole true 400000 (2 / 100) = 8000 ∧
+      taMakeWhole true 1000000 (2 / 100) = 20000 ∧ (20000 : ℚ) ≠ 8000)
+
+/-- D099 不同期限带anchor、length、calendar、deadline_effect和证据状态（反
+例：60日补正期未到，仅因30日通知期到便认定终止）：同锚点更长期限给出更
+晚的基础期限（期限严格区分）；顺延后的期限是营业日不动点（deadline_
+effect 只顺延一次）；到期与证据二者缺一权利不产生（证据状态独立）；
+锚点 2024-05-06 下 30/60 日期限基础历元 739042/739072，第 739050 日通
+知期已到而补正期未到——补正期限的权利不产生。 -/
+def demand_D099 : Prop :=
+  (∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1) ∧
+    (∀ (p q : PeriodSpec), p.anchor.Valid → q.anchor.Valid → p.anchor = q.anchor →
+        p.length < q.length → toEpochDay p.baseDeadline < toEpochDay q.baseDeadline) ∧
+    (∀ (p : PeriodSpec),
+        (∃ k, k ≤ p.rollFuel ∧ p.holiday (toEpochDay p.baseDeadline + k) = false) →
+          nextBiz p.holiday p.rollFuel p.deadline = p.deadline) ∧
+    (taRightArises true false = false ∧ taRightArises false true = false ∧
+      taRightArises true true = true) ∧
+    (toEpochDay (addCalDays 30 ⟨2024, 5, 6⟩) = 739042 ∧
+      toEpochDay (addCalDays 60 ⟨2024, 5, 6⟩) = 739072 ∧
+      taDeadlineArrived (⟨⟨2024, 5, 6⟩, 30, syntheticWeekend, 7⟩ : PeriodSpec) 739050 = true ∧
+      taDeadlineArrived (⟨⟨2024, 5, 6⟩, 60, syntheticWeekend, 7⟩ : PeriodSpec) 739050 = false ∧
+      taRightArises
+        (taDeadlineArrived (⟨⟨2024, 5, 6⟩, 60, syntheticWeekend, 7⟩ : PeriodSpec) 739050)
+        false = false)
+
+/-- D100 倒排得到的时间表满足所有前置和日历约束；不可行时报告冲突（反例：
+倒排某项日期在过去，不能仍输出可执行完整计划）：可行的倒排结果有效且
+正向推回恰得原期限（前置约束满足，倒排不越过历元）；起算日落在底界日
+（如今天）之前同样报冲突不输出计划——2024-03-31 回退 30 天得
+2024-03-01，底界 2024-03-10 时起算日在过去→none，底界 2024-02-15 时输
+出 some 2024-03-1 且正向 30 天回到 2024-03-31。 -/
+def demand_D100 : Prop :=
+  (∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1) ∧
+    (∀ (deadline : CalDate) (lead : ℕ) (a : CalDate), deadline.Valid →
+        backSchedule deadline lead = some a → a.Valid ∧ addCalDays lead a = deadline) ∧
+    (∀ (floor deadline : CalDate) (lead : ℕ) (s : CalDate),
+        backSchedule deadline lead = some s → toEpochDay s < toEpochDay floor →
+          taBackItem floor deadline lead = none) ∧
+    (backSchedule ⟨2024, 3, 31⟩ 30 = some ⟨2024, 3, 1⟩ ∧
+      taBackItem ⟨2024, 3, 10⟩ ⟨2024, 3, 31⟩ 30 = none ∧
+      taBackItem ⟨2024, 2, 15⟩ ⟨2024, 3, 31⟩ 30 = some ⟨2024, 3, 1⟩ ∧
+      addCalDays 30 ⟨2024, 3, 1⟩ = ⟨2024, 3, 31⟩)
+
+/-- D101 债务本金、成本、收入风险、或有赔偿用不同数量/条件；只按声明风险
+函数聚合（反例：将收入风险当已实现损失并与原收入重复相加）：四类敞口
+标签互异（数量/条件不同类，风险数字不能冒充已实现额）；概率加权项小于
+同额已实现项（0<p<1、c>0 时 pc<c）；声明聚合只经风险函数计入或有项——
+债务 5000＋成本 1000＋或有 2000 按 p=1/4 聚合得 6500，把或有项当已实现
+直加得 8000≠6500，再与原收入重复相加得 8500≠6500；敞口期间天数差为
+ℤ 精确（2024-Q1 为 90 天、2023-Q1 为 89 天，闰差不均摊）。 -/
+def demand_D101 : Prop :=
+  (∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1) ∧
+    (taExpDebt ≠ taExpCost ∧ taExpDebt ≠ taExpRisk ∧ taExpDebt ≠ taExpContingent ∧
+      taExpCost ≠ taExpRisk ∧ taExpCost ≠ taExpContingent ∧ taExpRisk ≠ taExpContingent) ∧
+    (∀ (p c : ℚ), 0 < p → p < 1 → 0 < c → p * c < c) ∧
+    (taAggregate 5000 1000 [2000] (1 / 4) = 6500 ∧
+      (5000 + 1000 + 2000 : ℚ) = 8000 ∧ (8000 : ℚ) ≠ 6500 ∧
+      (5000 + 1000 + 2000 + (1 / 4) * 2000 : ℚ) = 8500) ∧
+    (daysDiff ⟨2024, 1, 1⟩ ⟨2024, 3, 31⟩ = 90 ∧ daysDiff ⟨2023, 1, 1⟩ ⟨2023, 3, 31⟩ = 89)
+
+/-- D102 终止后的义务由存续规则更新，不与主履行义务一并清空（反例：删除
+终止前已发生的应付款或已产生责任）：已发生应付款经存续规则更新后原额
+存续（不清空）；终止日之后才开始的主履行义务被清零（主履行义务随终止
+熄灭）；终止日之前已完结的主履行义务仍按原额计入（更新而非清空）；闭
+期间整体落在终止日之后⟺起点落在终止日之后（存续射线律）；终止日
+2024-06-30 下 2024-05-10→06-15 的 8000 元应付款存续 8000≠0（一并清空得
+0），2024-07-01→07-31 的 9000 元未来服务义务清零，7 月期间起点 07-01 与
+中点 07-15 都在终止日之后。 -/
+def demand_D102 : Prop :=
+  (∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1) ∧
+    (∀ (amount : ℚ) (endDay termDay : ℤ),
+        taSurvivalUpdate 0 amount endDay termDay = amount) ∧
+    (∀ (amount : ℚ) (startDay endDay termDay : ℤ), startDay ≤ endDay → termDay < startDay →
+        taSurvivalUpdate 1 amount endDay termDay = 0) ∧
+    (∀ (amount : ℚ) (endDay termDay : ℤ), endDay ≤ termDay →
+        taSurvivalUpdate 1 amount endDay termDay = amount) ∧
+    (∀ (term a b : CalDate), toEpochDay a ≤ toEpochDay b →
+        (toEpochDay term ≤ toEpochDay a ↔
+          ∀ x : CalDate, toEpochDay a ≤ toEpochDay x ∧ toEpochDay x ≤ toEpochDay b →
+            toEpochDay term ≤ toEpochDay x)) ∧
+    (taSurvivalUpdate 0 8000 (toEpochDay ⟨2024, 6, 15⟩) (toEpochDay ⟨2024, 6, 30⟩) = 8000 ∧
+      taSurvivalUpdate 1 9000 (toEpochDay ⟨2024, 7, 31⟩) (toEpochDay ⟨2024, 6, 30⟩) = 0 ∧
+      toEpochDay ⟨2024, 6, 15⟩ ≤ toEpochDay ⟨2024, 6, 30⟩ ∧
+      toEpochDay ⟨2024, 6, 30⟩ ≤ toEpochDay ⟨2024, 7, 1⟩ ∧
+      toEpochDay ⟨2024, 6, 30⟩ ≤ toEpochDay ⟨2024, 7, 15⟩ ∧ (0 : ℚ) ≠ 8000)
+
+/-- D103 价格调整由同一营运资金定义、参考日、排除项和对账差异计算（反例：
+目标与期末使用不同科目范围仍报告精确差额）：同一历元日的两个合法日期
+是同一参考日（参考日判据）；排除项按名称精确剔除且两侧同一（同一排除
+项表下排除账户不入净值）；同一口径的目标/期末差额精确——目标 6000、期
+末 6200 调整额恰为 200；期末侧混入现金科目 1000（不同科目范围）时差额
+变 1200≠200，不是本定义的对账差异。 -/
+def demand_D103 : Prop :=
+  (∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1) ∧
+    (∀ (d1 d2 : CalDate), d1.Valid → d2.Valid → toEpochDay d1 = toEpochDay d2 → d1 = d2) ∧
+    (∀ (accounts : List (String × ℚ)) (exclusions : List String) (e : String) (v : ℚ),
+        exclusions.contains e = true →
+          taWorkingCapital ((e, v) :: accounts) exclusions
+            = taWorkingCapital accounts exclusions) ∧
+    (taWorkingCapital [("receivables", 5000), ("inventory", 3000), ("payables", -2000)] [] = 6000 ∧
+      taWorkingCapital [("receivables", 5000), ("inventory", 3000), ("payables", -2000),
+        ("debt-like", 999)] ["debt-like"] = 6000 ∧
+      taWorkingCapital [("receivables", 5200), ("inventory", 3000), ("payables", -2000)] [] = 6200 ∧
+      taAdjustment 6000 6200 = 200 ∧
+      taWorkingCapital [("receivables", 5200), ("inventory", 3000), ("payables", -2000),
+        ("cash", 1000)] [] = 7200 ∧
+      taAdjustment 6000 7200 = 1200 ∧ (1200 : ℚ) ≠ 200)
 
 /-! D104-D115 (group 12 起草、修订与交付, W2-A batch B12): each def is
 that demand's own contract, translated from ALL_134_MATH_CONTRACTS.md.

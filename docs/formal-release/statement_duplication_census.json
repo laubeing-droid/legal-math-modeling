@@ -27,7 +27,7 @@
     ]
   },
   "cross_family_statement_types": 2,
-  "distinct_statement_types": 5088,
+  "distinct_statement_types": 5132,
   "duplicated_statement_types": 54,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
@@ -679,12 +679,12 @@
       }
     ]
   },
-  "files_scanned": 353,
+  "files_scanned": 354,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
   "headers_missed_by_scanner": 109,
-  "inventory_package_theorems": 5133,
+  "inventory_package_theorems": 5177,
   "private_protected_headers_read": 118,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 5142
+  "statements_read": 5186
 }

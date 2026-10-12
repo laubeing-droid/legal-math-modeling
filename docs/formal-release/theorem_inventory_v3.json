@@ -12233,8 +12233,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean",
    "print_axioms_targets": [],
-   "sha256": "63ac5d45ffc6659d65514b5a3a07194823bdff02b05f4c47f8754a1059958783",
-   "size_bytes": 55061,
+   "sha256": "f0cc756489a4f8d61be75e10fed05549d0e930e44b310d6fbbb4a70bbc10e336",
+   "size_bytes": 61792,
    "theorem_count": 217,
    "theorem_count_bol_convention": 217
   },
@@ -14910,6 +14910,138 @@
     },
     {
      "kind": "def",
+     "name": "ansAdmits"
+    },
+    {
+     "kind": "def",
+     "name": "ansDenies"
+    },
+    {
+     "kind": "def",
+     "name": "ansReserves"
+    },
+    {
+     "kind": "def",
+     "name": "defenseCovers"
+    },
+    {
+     "kind": "def",
+     "name": "segGrounded"
+    },
+    {
+     "kind": "def",
+     "name": "depsMet"
+    },
+    {
+     "kind": "def",
+     "name": "claimCovered"
+    },
+    {
+     "kind": "def",
+     "name": "chgStatute"
+    },
+    {
+     "kind": "def",
+     "name": "chgCaseEffect"
+    },
+    {
+     "kind": "def",
+     "name": "chgEnforcePosture"
+    },
+    {
+     "kind": "def",
+     "name": "chgReformPlan"
+    },
+    {
+     "kind": "def",
+     "name": "alertRowOf"
+    },
+    {
+     "kind": "def",
+     "name": "memoSlotsOK"
+    },
+    {
+     "kind": "def",
+     "name": "conclAssumptionsMet"
+    },
+    {
+     "kind": "def",
+     "name": "draftResolution"
+    },
+    {
+     "kind": "def",
+     "name": "approvedBy"
+    },
+    {
+     "kind": "def",
+     "name": "termMet"
+    },
+    {
+     "kind": "def",
+     "name": "staleClient"
+    },
+    {
+     "kind": "def",
+     "name": "exclConflict"
+    },
+    {
+     "kind": "def",
+     "name": "spreadOnce"
+    },
+    {
+     "kind": "def",
+     "name": "definedTermOf"
+    },
+    {
+     "kind": "def",
+     "name": "valuesOf"
+    },
+    {
+     "kind": "def",
+     "name": "allSame"
+    },
+    {
+     "kind": "def",
+     "name": "translateTerm"
+    },
+    {
+     "kind": "def",
+     "name": "mayToShall"
+    },
+    {
+     "kind": "def",
+     "name": "dropNegation"
+    },
+    {
+     "kind": "def",
+     "name": "translateChecked"
+    },
+    {
+     "kind": "def",
+     "name": "summarySourced"
+    },
+    {
+     "kind": "def",
+     "name": "coversPoints"
+    },
+    {
+     "kind": "def",
+     "name": "prefixDl"
+    },
+    {
+     "kind": "def",
+     "name": "deliverableOK"
+    },
+    {
+     "kind": "def",
+     "name": "cleanAnnotations"
+    },
+    {
+     "kind": "def",
+     "name": "deliverableGate"
+    },
+    {
+     "kind": "def",
      "name": "demand_D104"
     },
     {
@@ -15085,8 +15217,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
    "print_axioms_targets": [],
-   "sha256": "47796bd4d7cdea7d0c9c5b6b7637a2a456afb9154bc08acdaa691e61c9d34954",
-   "size_bytes": 133321,
+   "sha256": "b6ddd75799e8c7d3fb2679784d75f875bf0f1f86af6baca4c7d585801a8bc635",
+   "size_bytes": 153837,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -44489,19 +44621,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "c2a4fcc41d7247fb3ab3fc0ed7a8d15d5c84530a68520bf62f3c71b8770f0516",
+ "source_inventory_digest": "894a74c9cd6fb0d79bb83cac58e166c8ab70739ea2efdea3d8806155cacea274",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "9475f0fe50b1d73816e1cdfb146b449846280b1e",
-  "tree": "85792093a16dd7cd3d1887d207444f1d5ba11b7b"
+  "commit": "5f410fe8018f7ff009b3ee9ff1c3a2799c0e41e9",
+  "tree": "f2a5bbf84eb0a4c2d1e16ace7f8cdab83b0ae7a7"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
   "files_total": 366,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

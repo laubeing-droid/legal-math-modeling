@@ -12387,8 +12387,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean",
    "print_axioms_targets": [],
-   "sha256": "f0cc756489a4f8d61be75e10fed05549d0e930e44b310d6fbbb4a70bbc10e336",
-   "size_bytes": 61792,
+   "sha256": "f908fed80046936db7bd304b5ce6e36b1155cd3cc495ad3a09d5edf0e6126906",
+   "size_bytes": 94771,
    "theorem_count": 217,
    "theorem_count_bol_convention": 217
   },
@@ -14592,6 +14592,10 @@
     },
     {
      "kind": "def",
+     "name": "loanRow"
+    },
+    {
+     "kind": "def",
      "name": "demand_D047"
     },
     {
@@ -14611,12 +14615,40 @@
      "name": "demand_D051"
     },
     {
+     "kind": "inductive",
+     "name": "SigningCapacity"
+    },
+    {
+     "kind": "def",
+     "name": "respOf"
+    },
+    {
      "kind": "def",
      "name": "demand_D052"
     },
     {
+     "kind": "structure",
+     "name": "SpousalDebt"
+    },
+    {
+     "kind": "def",
+     "name": "jointDebt"
+    },
+    {
      "kind": "def",
      "name": "demand_D053"
+    },
+    {
+     "kind": "inductive",
+     "name": "CorpEdge"
+    },
+    {
+     "kind": "def",
+     "name": "personalityMix"
+    },
+    {
+     "kind": "def",
+     "name": "corpJointDue"
     },
     {
      "kind": "def",
@@ -15028,6 +15060,82 @@
     },
     {
      "kind": "def",
+     "name": "taInterestSeg"
+    },
+    {
+     "kind": "def",
+     "name": "taImputeAll"
+    },
+    {
+     "kind": "def",
+     "name": "taStepRate"
+    },
+    {
+     "kind": "def",
+     "name": "taCappedMult"
+    },
+    {
+     "kind": "def",
+     "name": "taConsideration"
+    },
+    {
+     "kind": "def",
+     "name": "taRound"
+    },
+    {
+     "kind": "def",
+     "name": "taTriggered"
+    },
+    {
+     "kind": "def",
+     "name": "taMakeWhole"
+    },
+    {
+     "kind": "def",
+     "name": "taDeadlineArrived"
+    },
+    {
+     "kind": "def",
+     "name": "taRightArises"
+    },
+    {
+     "kind": "def",
+     "name": "taBackItem"
+    },
+    {
+     "kind": "def",
+     "name": "taExpDebt"
+    },
+    {
+     "kind": "def",
+     "name": "taExpCost"
+    },
+    {
+     "kind": "def",
+     "name": "taExpRisk"
+    },
+    {
+     "kind": "def",
+     "name": "taExpContingent"
+    },
+    {
+     "kind": "def",
+     "name": "taAggregate"
+    },
+    {
+     "kind": "def",
+     "name": "taSurvivalUpdate"
+    },
+    {
+     "kind": "def",
+     "name": "taWorkingCapital"
+    },
+    {
+     "kind": "def",
+     "name": "taAdjustment"
+    },
+    {
+     "kind": "def",
      "name": "demand_D095"
     },
     {
@@ -15244,6 +15352,214 @@
     },
     {
      "kind": "def",
+     "name": "strIn"
+    },
+    {
+     "kind": "def",
+     "name": "vdrGap"
+    },
+    {
+     "kind": "def",
+     "name": "toPending"
+    },
+    {
+     "kind": "structure",
+     "name": "CloTask"
+    },
+    {
+     "kind": "def",
+     "name": "cloBefore"
+    },
+    {
+     "kind": "def",
+     "name": "cloReady"
+    },
+    {
+     "kind": "def",
+     "name": "cloLegalOrder"
+    },
+    {
+     "kind": "def",
+     "name": "cloVerdict"
+    },
+    {
+     "kind": "def",
+     "name": "shipTasks"
+    },
+    {
+     "kind": "def",
+     "name": "shipOrder"
+    },
+    {
+     "kind": "def",
+     "name": "cycTasks"
+    },
+    {
+     "kind": "inductive",
+     "name": "ClarKind"
+    },
+    {
+     "kind": "structure",
+     "name": "ClarAction"
+    },
+    {
+     "kind": "def",
+     "name": "clarLegal"
+    },
+    {
+     "kind": "def",
+     "name": "clarValue"
+    },
+    {
+     "kind": "structure",
+     "name": "RiskItem"
+    },
+    {
+     "kind": "def",
+     "name": "riskScore"
+    },
+    {
+     "kind": "def",
+     "name": "riskInsert"
+    },
+    {
+     "kind": "def",
+     "name": "riskSort"
+    },
+    {
+     "kind": "def",
+     "name": "riskRank"
+    },
+    {
+     "kind": "def",
+     "name": "rankOrigin"
+    },
+    {
+     "kind": "def",
+     "name": "infraRisks"
+    },
+    {
+     "kind": "def",
+     "name": "blockedTop"
+    },
+    {
+     "kind": "def",
+     "name": "weightCfgA"
+    },
+    {
+     "kind": "def",
+     "name": "weightCfgB"
+    },
+    {
+     "kind": "inductive",
+     "name": "AdviceKind"
+    },
+    {
+     "kind": "structure",
+     "name": "MarketSample"
+    },
+    {
+     "kind": "def",
+     "name": "marketShare"
+    },
+    {
+     "kind": "structure",
+     "name": "ClauseAdvice"
+    },
+    {
+     "kind": "def",
+     "name": "adviseFromMarket"
+    },
+    {
+     "kind": "def",
+     "name": "majoritySample"
+    },
+    {
+     "kind": "inductive",
+     "name": "SubpoenaMeasure"
+    },
+    {
+     "kind": "structure",
+     "name": "SubpoenaCtx"
+    },
+    {
+     "kind": "def",
+     "name": "measureLegal"
+    },
+    {
+     "kind": "def",
+     "name": "legalOptions"
+    },
+    {
+     "kind": "structure",
+     "name": "ArgNode"
+    },
+    {
+     "kind": "structure",
+     "name": "Outline"
+    },
+    {
+     "kind": "def",
+     "name": "strEqList"
+    },
+    {
+     "kind": "def",
+     "name": "keptFor"
+    },
+    {
+     "kind": "def",
+     "name": "depsKeptFor"
+    },
+    {
+     "kind": "def",
+     "name": "altsKeptFor"
+    },
+    {
+     "kind": "def",
+     "name": "coversFrozen"
+    },
+    {
+     "kind": "def",
+     "name": "frozenGraph"
+    },
+    {
+     "kind": "def",
+     "name": "fullOutline"
+    },
+    {
+     "kind": "def",
+     "name": "weakOutline"
+    },
+    {
+     "kind": "inductive",
+     "name": "QueryOutcome"
+    },
+    {
+     "kind": "inductive",
+     "name": "FactReadout"
+    },
+    {
+     "kind": "def",
+     "name": "readoutOf"
+    },
+    {
+     "kind": "structure",
+     "name": "FinalAssertion"
+    },
+    {
+     "kind": "def",
+     "name": "sourced"
+    },
+    {
+     "kind": "def",
+     "name": "litigationAssertion"
+    },
+    {
+     "kind": "def",
+     "name": "hollowAssertion"
+    },
+    {
+     "kind": "def",
      "name": "demand_D116"
     },
     {
@@ -15273,6 +15589,434 @@
     {
      "kind": "def",
      "name": "demand_D123"
+    },
+    {
+     "kind": "structure",
+     "name": "IntEdge"
+    },
+    {
+     "kind": "structure",
+     "name": "ConRule"
+    },
+    {
+     "kind": "def",
+     "name": "ethKindIn"
+    },
+    {
+     "kind": "def",
+     "name": "ethDuties"
+    },
+    {
+     "kind": "inductive",
+     "name": "AuthLevel"
+    },
+    {
+     "kind": "inductive",
+     "name": "ApprovalState"
+    },
+    {
+     "kind": "def",
+     "name": "ethCleared"
+    },
+    {
+     "kind": "def",
+     "name": "ethRegistry"
+    },
+    {
+     "kind": "def",
+     "name": "matterEdges"
+    },
+    {
+     "kind": "structure",
+     "name": "FairRow"
+    },
+    {
+     "kind": "def",
+     "name": "flipProt"
+    },
+    {
+     "kind": "def",
+     "name": "verdictSame"
+    },
+    {
+     "kind": "def",
+     "name": "invariantUnder"
+    },
+    {
+     "kind": "def",
+     "name": "groupSel"
+    },
+    {
+     "kind": "def",
+     "name": "groupSize"
+    },
+    {
+     "kind": "def",
+     "name": "groupRate"
+    },
+    {
+     "kind": "inductive",
+     "name": "FairTag"
+    },
+    {
+     "kind": "def",
+     "name": "isInvTag"
+    },
+    {
+     "kind": "def",
+     "name": "isRiskTag"
+    },
+    {
+     "kind": "def",
+     "name": "fairnessAll"
+    },
+    {
+     "kind": "def",
+     "name": "leakRows"
+    },
+    {
+     "kind": "def",
+     "name": "proxyKeyed"
+    },
+    {
+     "kind": "def",
+     "name": "leakCerts"
+    },
+    {
+     "kind": "structure",
+     "name": "DataFlow"
+    },
+    {
+     "kind": "structure",
+     "name": "UsePerm"
+    },
+    {
+     "kind": "structure",
+     "name": "PolicyPromise"
+    },
+    {
+     "kind": "def",
+     "name": "flowOk"
+    },
+    {
+     "kind": "def",
+     "name": "flowsOk"
+    },
+    {
+     "kind": "def",
+     "name": "noSharePromise"
+    },
+    {
+     "kind": "def",
+     "name": "adFlow"
+    },
+    {
+     "kind": "def",
+     "name": "serviceFlow"
+    },
+    {
+     "kind": "def",
+     "name": "sitePerms"
+    },
+    {
+     "kind": "inductive",
+     "name": "DiscKind"
+    },
+    {
+     "kind": "structure",
+     "name": "DiscItem"
+    },
+    {
+     "kind": "def",
+     "name": "isStatutory"
+    },
+    {
+     "kind": "def",
+     "name": "isBestPractice"
+    },
+    {
+     "kind": "def",
+     "name": "statCovered"
+    },
+    {
+     "kind": "def",
+     "name": "advisoryDone"
+    },
+    {
+     "kind": "def",
+     "name": "scRegister"
+    },
+    {
+     "kind": "def",
+     "name": "gapDone"
+    },
+    {
+     "kind": "def",
+     "name": "fullDone"
+    },
+    {
+     "kind": "structure",
+     "name": "ValChoice"
+    },
+    {
+     "kind": "def",
+     "name": "scoreOn"
+    },
+    {
+     "kind": "def",
+     "name": "betterUnder"
+    },
+    {
+     "kind": "def",
+     "name": "nameNe"
+    },
+    {
+     "kind": "def",
+     "name": "beatsAny"
+    },
+    {
+     "kind": "def",
+     "name": "decideBy"
+    },
+    {
+     "kind": "inductive",
+     "name": "PremKind"
+    },
+    {
+     "kind": "structure",
+     "name": "ValPremise"
+    },
+    {
+     "kind": "def",
+     "name": "decideUnder"
+    },
+    {
+     "kind": "def",
+     "name": "valOpts"
+    },
+    {
+     "kind": "def",
+     "name": "privacyFirst"
+    },
+    {
+     "kind": "def",
+     "name": "efficiencyFirst"
+    },
+    {
+     "kind": "def",
+     "name": "majorityPrem"
+    },
+    {
+     "kind": "structure",
+     "name": "SourceRec"
+    },
+    {
+     "kind": "structure",
+     "name": "ClaimRow"
+    },
+    {
+     "kind": "def",
+     "name": "citeOk"
+    },
+    {
+     "kind": "def",
+     "name": "scopeOk"
+    },
+    {
+     "kind": "def",
+     "name": "recompute"
+    },
+    {
+     "kind": "inductive",
+     "name": "ClaimVerdict"
+    },
+    {
+     "kind": "def",
+     "name": "conflictTouches"
+    },
+    {
+     "kind": "def",
+     "name": "claimVerdict"
+    },
+    {
+     "kind": "def",
+     "name": "repSources"
+    },
+    {
+     "kind": "def",
+     "name": "lossClaim"
+    },
+    {
+     "kind": "def",
+     "name": "countClaim"
+    },
+    {
+     "kind": "def",
+     "name": "misusedCitation"
+    },
+    {
+     "kind": "def",
+     "name": "inflatedClaim"
+    },
+    {
+     "kind": "def",
+     "name": "tableConflict"
+    },
+    {
+     "kind": "structure",
+     "name": "ScenConc"
+    },
+    {
+     "kind": "def",
+     "name": "allSameScen"
+    },
+    {
+     "kind": "inductive",
+     "name": "AssembleOut"
+    },
+    {
+     "kind": "def",
+     "name": "assemble"
+    },
+    {
+     "kind": "def",
+     "name": "kappa1Only"
+    },
+    {
+     "kind": "def",
+     "name": "cherryPicked"
+    },
+    {
+     "kind": "inductive",
+     "name": "ProvKind"
+    },
+    {
+     "kind": "structure",
+     "name": "Provision"
+    },
+    {
+     "kind": "def",
+     "name": "kindIs"
+    },
+    {
+     "kind": "def",
+     "name": "provOf"
+    },
+    {
+     "kind": "def",
+     "name": "hasPrivAction"
+    },
+    {
+     "kind": "def",
+     "name": "prohibitionFragment"
+    },
+    {
+     "kind": "def",
+     "name": "rightPlusBanFragment"
+    },
+    {
+     "kind": "def",
+     "name": "privActionFragment"
+    },
+    {
+     "kind": "structure",
+     "name": "HoldingCand"
+    },
+    {
+     "kind": "def",
+     "name": "keywordSimilar"
+    },
+    {
+     "kind": "structure",
+     "name": "MatchCert"
+    },
+    {
+     "kind": "def",
+     "name": "holdingMatch"
+    },
+    {
+     "kind": "def",
+     "name": "scqQuestion"
+    },
+    {
+     "kind": "def",
+     "name": "scqKeys"
+    },
+    {
+     "kind": "def",
+     "name": "scqWords"
+    },
+    {
+     "kind": "def",
+     "name": "coreHolding"
+    },
+    {
+     "kind": "def",
+     "name": "similarDictum"
+    },
+    {
+     "kind": "def",
+     "name": "holdingPool"
+    },
+    {
+     "kind": "def",
+     "name": "dictumOnly"
+    },
+    {
+     "kind": "structure",
+     "name": "Mention"
+    },
+    {
+     "kind": "structure",
+     "name": "ExSegment"
+    },
+    {
+     "kind": "def",
+     "name": "spanOk"
+    },
+    {
+     "kind": "def",
+     "name": "plaintiffsOf"
+    },
+    {
+     "kind": "def",
+     "name": "sslaSegment"
+    },
+    {
+     "kind": "def",
+     "name": "mergedName"
+    },
+    {
+     "kind": "def",
+     "name": "ghostSegment"
+    },
+    {
+     "kind": "inductive",
+     "name": "EvClass"
+    },
+    {
+     "kind": "def",
+     "name": "classifyHits"
+    },
+    {
+     "kind": "structure",
+     "name": "DoEffect"
+    },
+    {
+     "kind": "def",
+     "name": "doFromEvidence"
+    },
+    {
+     "kind": "def",
+     "name": "statPassage"
+    },
+    {
+     "kind": "def",
+     "name": "directPassage"
+    },
+    {
+     "kind": "def",
+     "name": "mixedOffTopic"
     },
     {
      "kind": "def",
@@ -15366,13 +16110,15 @@
     "JurisLean.FullMath.Tranche4",
     "JurisLean.FullMath.Tranche5",
     "JurisLean.FullMath.Tranche6",
-    "JurisLean.FullMath.Tranche7"
+    "JurisLean.FullMath.Tranche7",
+    "JurisLean.Seams.UnifiedCalendar",
+    "JurisLean.Seams.UnifiedQuantLedger"
    ],
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
    "print_axioms_targets": [],
-   "sha256": "b6ddd75799e8c7d3fb2679784d75f875bf0f1f86af6baca4c7d585801a8bc635",
-   "size_bytes": 153837,
+   "sha256": "3f1cd4ef53b2fa4c723d4a54dd812ffccfe0475e1b21157111e1407e47ab3965",
+   "size_bytes": 256048,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -45874,12 +46620,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "5f03c19400da7190cb5e41b59aaaf9eaa38df024b4d35418cc02a91c4c022038",
+ "source_inventory_digest": "1fc3a08b4c3ba40a321948f0df51b0255d90681dbfa0b8119abb41ebfc7f7670",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "37620083d29c984e65a3db5cd2a8c895a0d51042",
-  "tree": "b8db942e969976d0dc92b58f96ab743a5ab606da"
+  "commit": "7bf35ea77ddda52e88cfbecdc4e9de65da44b159",
+  "tree": "6223ee3219d9c735b58fbe6ca7790e7d57ba52b3"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

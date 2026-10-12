@@ -204,6 +204,7 @@ import JurisLean.Seams.UnifiedGuards
 import JurisLean.Seams.UnifiedHornIT
 import JurisLean.Seams.UnifiedInstance
 import JurisLean.Seams.UnifiedLegacy
+import JurisLean.Seams.UnifiedMasterNeedle
 import JurisLean.Seams.UnifiedNeedlesGap05
 import JurisLean.Seams.UnifiedNeedlesGapLate
 import JurisLean.Seams.UnifiedNeedlesGapMid

@@ -218,6 +218,8 @@ import JurisLean.Seams.UnifiedEquilExist
 import JurisLean.Seams.UnifiedCalendar
 import JurisLean.Seams.UnifiedQuantLedger
 
+import JurisLean.Seams.UnifiedMasterNeedle
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -2433,6 +2435,50 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedInstance.zero_mem_singleton
 #print axioms JurisLean.Seams.UnifiedLegacy.legacy_projection_commutes
 #print axioms JurisLean.Seams.UnifiedLegacy.no_global_behavior_equality
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.abs_sub_max_zero
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.amtPerturb_cons
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.beta_enclosure_expected_reading
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.cashTotal_append
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.cashTotal_payEntriesOf
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.conclInClosure
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.conclInFinalNet
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.dedupAux_scale_commute
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.dedup_scale_commute
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.ledger_payment_split_exchange
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.legalReading_perturb
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.lossTotal_scale
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.masterAllElements
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.masterBalance_eq
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.masterCardDerives
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.masterCivilHigh
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.masterFinalEstablished
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.masterInterim_coherent
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.masterLawful_0
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.masterLawful_1
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.masterLawful_eq
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.masterLoss_dedup_total
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.masterPos
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.masterReading_eq
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.masterReasonLicensed
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.master_allocs_rows
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.master_base_eu
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.master_beta_face
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.master_channel_exchange_readings
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.master_dev_eu
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.master_equil_face
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.master_error_propagation_chain
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.master_exposure_perturb_chain
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.master_loss_aggregation_share_exchange
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.master_pay_dev
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.master_qty_ast_carries_balance
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.master_static_event_correspondence
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.master_uReal_eq_cast
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.outstanding_payment_perturb
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.prefIntegral_perturb
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.qtyDenote_masterQtyAst
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.required_concl_mem
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.unified_legal_derivation_on_declared_fragment
+#print axioms JurisLean.Seams.UnifiedMasterNeedle.update_pureMR
 #print axioms JurisLean.Seams.UnifiedNeedlesGap05.adminDefects_fires_iff
 #print axioms JurisLean.Seams.UnifiedNeedlesGap05.adminFinalDisposition_not_closure_any
 #print axioms JurisLean.Seams.UnifiedNeedlesGap05.admin_branch_table

@@ -45588,7 +45588,6 @@
     "JurisLean.Seams.UnifiedCAD",
     "JurisLean.Seams.UnifiedCAD2",
     "JurisLean.Seams.UnifiedCADCore",
-    "JurisLean.Seams.UnifiedCalendar",
     "JurisLean.Seams.UnifiedComposition",
     "JurisLean.Seams.UnifiedEquilExist",
     "JurisLean.Seams.UnifiedEvalLayer",
@@ -45616,9 +45615,7 @@
     "JurisLean.Seams.UnifiedNormFlow",
     "JurisLean.Seams.UnifiedPayoffChain",
     "JurisLean.Seams.UnifiedPerformance",
-    "JurisLean.Seams.UnifiedQuantLedger",
     "JurisLean.Seams.UnifiedQuantileNarrow",
-    "JurisLean.Seams.UnifiedQuantities",
     "JurisLean.Seams.UnifiedSemantics",
     "JurisLean.Seams.UnifiedSummary",
     "JurisLean.Seams.UnifiedTrajectory",
@@ -45634,7 +45631,6 @@
     "JurisLean.SupZeroLemma",
     "JurisLean.TaintNoninterference",
     "JurisLean.TemporalApplicability",
-    "JurisLean.TemporalArithmetic",
     "JurisLean.TemporalKripke",
     "JurisLean.TranslationRefinement",
     "JurisLean.TranslationWitness",
@@ -45662,8 +45658,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "955d879cbf05dc4ec2ffb4f9d5465f948533dff8821c572f3d9479452efdd9ce",
-   "size_bytes": 10895,
+   "sha256": "1073fd33a13b0638e4820b2d8d354b8d03e51b4f1e08a97f9c1cdfd01ec67c35",
+   "size_bytes": 10737,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -46620,19 +46616,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "1fc3a08b4c3ba40a321948f0df51b0255d90681dbfa0b8119abb41ebfc7f7670",
+ "source_inventory_digest": "df4ae8a4d6d5ad3885c15e773ba1813c069d3391a45c695ef9fcc628bd2853cb",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "7bf35ea77ddda52e88cfbecdc4e9de65da44b159",
-  "tree": "6223ee3219d9c735b58fbe6ca7790e7d57ba52b3"
+  "commit": "b86637a7dd02993e8530413b7968fe9baafc0fec",
+  "tree": "700b7a569c565290f46a944312ce97c4681cf8f0"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
   "files_total": 368,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

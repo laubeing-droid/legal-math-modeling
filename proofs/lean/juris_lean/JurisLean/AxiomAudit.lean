@@ -211,6 +211,8 @@ import JurisLean.Seams.UnifiedEvalLayer
 import JurisLean.Seams.UnifiedPayoffChain
 import JurisLean.Seams.UniformContinuous
 
+import JurisLean.Seams.UnifiedNetTrajectory
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -2641,6 +2643,68 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedNeedlesXU.xuIteAnd_le_right
 #print axioms JurisLean.Seams.UnifiedNeedlesXU.xuIteLower
 #print axioms JurisLean.Seams.UnifiedNeedlesXU.xuMixMassSum
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.bank_block
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.bank_block_scan
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.bank_initial_disjoint
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.bank_model
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.bankruptcy_partial_diff
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.ecoChain_ok
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.ecoChain_productive
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.ecoChain_sources
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.ecoChain_sources_scan
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.ecoChain_times
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.ecoViolation_partial_diff
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.eco_block
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.eco_block_scan
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.eco_chain_depth3
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.eco_initial_disjoint
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.eco_model
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.fullTraj_length
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.fullTraj_ok
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.fullTraj_productive
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.fullTraj_run
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.fullTraj_sources
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.fullTraj_sources_scan
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.fullTraj_times
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.full_net_trajectory_end_to_end
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.hnew_of
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.incCons2
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.initState_eq
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.initState_subset_closure
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.isModel_avoiding_gen
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.matIn
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.mem_addAll
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.net_atom_card
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.nontrivial_net_trajectory_exists
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.notMem_init_of_derived
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.not_in_closure_partialBank
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.not_in_closure_partialEco
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.partialBankTraj_ok
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.partialBankTraj_productive
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.partialBankTraj_times
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.partialEcoTraj_ok
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.partialEcoTraj_productive
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.partialEcoTraj_times
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.partial_bank_no_traj_reaches
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.partial_eco_no_traj_reaches
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.partial_net_trajectory_difference
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.premConcl
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.premMat
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.prodStep_remain_lt
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.prodStep_wf
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.productive_card_bound
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.pstep
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.remain_insert_lt
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.rule_horn_mem_any
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.traceOk_closure
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.traceOk_concl_mem
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.traceOk_init_closure
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.traceOk_mono
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.traceOk_runNetTrace
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.traceOk_split
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.traceOk_start_mono
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.trace_reaches_mem_closure
+#print axioms JurisLean.Seams.UnifiedNetTrajectory.tstep
 #print axioms JurisLean.Seams.UnifiedNormFlow.delegated_scope_denied_witness
 #print axioms JurisLean.Seams.UnifiedNormFlow.norm_update_reselects_content
 #print axioms JurisLean.Seams.UnifiedNormFlow.unauthorized_proposal_has_no_norm_effect

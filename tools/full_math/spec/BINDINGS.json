@@ -4481,25 +4481,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D087",
    "contract": "JurisLean.FullMath.Contracts.demand_D087",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.exists_extension_witnessed's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-10 enterprise-data demand instance in the shared semantic framework: this item's own contract semantics plus the registered query aggregation component (existential answers are witnessed by membership — every query result carries its source-row witness), with its adverse case executed as a negative test.",
+   "independent_semantics": "the multi-table registry join is keyed on the (subject key, valid time) pair: a same-key same-time lookup hits the row's own value; a renamed key, a same-name other company's key or a different validity time never answers, and different snapshot values are different records.",
+   "algorithm": "tools/full_math/implementation/data_ref.py reg_snapshot/registry_join computes the intermediate result from structured input; data_check.check_D087 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (registry snapshot rows keyed by subject and valid time, typed penetration edges with holding ratios, litigation rows keyed by enterprise and case with roles, exact amounts and original texts, enforcement-procedure records keyed by subject and typed kind, execution-amount rows keyed by debt item and typed amount kind, penalty records with authority, conduct, date and status tags, versioned court-directory rows with validity windows, and representation/service relation tables); outputs are exactly the contract quantities (the keyed snapshot join with its miss witnesses, the typed hop and the cycle-guarded compounded stake with its separate control verdict, the keyed case row with verbatim text and the deduplicated case roster, the kind-keyed procedure lookups, the kind-and-debt-keyed amount totals with the cross-kind-sum witness, the status-tagged penalty verdicts with their provenance chains, the whole-row versioned directory lookups, and the table-citing representation and service verdicts with the reverse-inference witnesses).",
+   "external_assumptions": "The registry data's truth and timeliness, beneficial-owner and nominee-holder investigations, court record coverage and name-relation verification, enforcement-record updates and releases, official penalty verification and appeal status, current court addresses and office moves, and representation authenticity and privacy permissions remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/QueryAggregation.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/data_ref.py",
+    "tools/full_math/implementation/data_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D087]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_data_group10.py::test_demand_positive[D087]",
+    "tools/full_math/implementation_tests::test_data_group10.py::test_demand_counterexample[D087]",
+    "tools/full_math/implementation_tests::test_data_group10.py::test_downstream_pipeline_consumes_data"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D087]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D087]"
+    "tools/full_math/implementation_tests::test_data_group10.py::test_checker_rejects_tampered[D087]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.exists_extension_witnessed"
@@ -4510,25 +4511,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D088",
    "contract": "JurisLean.FullMath.Contracts.demand_D088",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.exists_extension_witnessed's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-10 enterprise-data demand instance in the shared semantic framework: this item's own contract semantics plus the registered query aggregation component (existential answers are witnessed by membership — every query result carries its source-row witness), with its adverse case executed as a negative test.",
+   "independent_semantics": "penetration is a typed-edge graph query: a holding edge connects the two parties while the same parties under a service edge type never connect; the holding chain compounds its own edge ratios (empty chain = the entity itself, 1) with a cycle guard — a chain whose last edge re-enters the start compounds to exactly 0 — and control is a separate boolean verdict on the compounded stake.",
+   "algorithm": "tools/full_math/implementation/data_ref.py pen_hop/chain_stake/control_of/penetration computes the intermediate result from structured input; data_check.check_D088 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (registry snapshot rows keyed by subject and valid time, typed penetration edges with holding ratios, litigation rows keyed by enterprise and case with roles, exact amounts and original texts, enforcement-procedure records keyed by subject and typed kind, execution-amount rows keyed by debt item and typed amount kind, penalty records with authority, conduct, date and status tags, versioned court-directory rows with validity windows, and representation/service relation tables); outputs are exactly the contract quantities (the keyed snapshot join with its miss witnesses, the typed hop and the cycle-guarded compounded stake with its separate control verdict, the keyed case row with verbatim text and the deduplicated case roster, the kind-keyed procedure lookups, the kind-and-debt-keyed amount totals with the cross-kind-sum witness, the status-tagged penalty verdicts with their provenance chains, the whole-row versioned directory lookups, and the table-citing representation and service verdicts with the reverse-inference witnesses).",
+   "external_assumptions": "The registry data's truth and timeliness, beneficial-owner and nominee-holder investigations, court record coverage and name-relation verification, enforcement-record updates and releases, official penalty verification and appeal status, current court addresses and office moves, and representation authenticity and privacy permissions remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/QueryAggregation.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/data_ref.py",
+    "tools/full_math/implementation/data_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D088]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_data_group10.py::test_demand_positive[D088]",
+    "tools/full_math/implementation_tests::test_data_group10.py::test_demand_counterexample[D088]",
+    "tools/full_math/implementation_tests::test_data_group10.py::test_downstream_pipeline_consumes_data"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D088]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D088]"
+    "tools/full_math/implementation_tests::test_data_group10.py::test_checker_rejects_tampered[D088]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.exists_extension_witnessed"
@@ -4539,25 +4541,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D089",
    "contract": "JurisLean.FullMath.Contracts.demand_D089",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.exists_extension_witnessed's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-10 enterprise-data demand instance in the shared semantic framework: this item's own contract semantics plus the registered query aggregation component (existential answers are witnessed by membership — every query result carries its source-row witness), with its adverse case executed as a negative test.",
+   "independent_semantics": "enterprise, case, role, amount and the original text are read from one keyed row: the (enterprise, case) double-key lookup carries the row's own text verbatim and rows of another case or another enterprise never answer; case keys are deduplicated per enterprise so the same case under two documents is one case, while different documents remain different records.",
+   "algorithm": "tools/full_math/implementation/data_ref.py case_row_of/key_seen/case_keys_of/litigation_join computes the intermediate result from structured input; data_check.check_D089 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (registry snapshot rows keyed by subject and valid time, typed penetration edges with holding ratios, litigation rows keyed by enterprise and case with roles, exact amounts and original texts, enforcement-procedure records keyed by subject and typed kind, execution-amount rows keyed by debt item and typed amount kind, penalty records with authority, conduct, date and status tags, versioned court-directory rows with validity windows, and representation/service relation tables); outputs are exactly the contract quantities (the keyed snapshot join with its miss witnesses, the typed hop and the cycle-guarded compounded stake with its separate control verdict, the keyed case row with verbatim text and the deduplicated case roster, the kind-keyed procedure lookups, the kind-and-debt-keyed amount totals with the cross-kind-sum witness, the status-tagged penalty verdicts with their provenance chains, the whole-row versioned directory lookups, and the table-citing representation and service verdicts with the reverse-inference witnesses).",
+   "external_assumptions": "The registry data's truth and timeliness, beneficial-owner and nominee-holder investigations, court record coverage and name-relation verification, enforcement-record updates and releases, official penalty verification and appeal status, current court addresses and office moves, and representation authenticity and privacy permissions remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/QueryAggregation.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/data_ref.py",
+    "tools/full_math/implementation/data_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D089]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_data_group10.py::test_demand_positive[D089]",
+    "tools/full_math/implementation_tests::test_data_group10.py::test_demand_counterexample[D089]",
+    "tools/full_math/implementation_tests::test_data_group10.py::test_downstream_pipeline_consumes_data"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D089]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D089]"
+    "tools/full_math/implementation_tests::test_data_group10.py::test_checker_rejects_tampered[D089]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.exists_extension_witnessed"
@@ -4568,25 +4571,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D090",
    "contract": "JurisLean.FullMath.Contracts.demand_D090",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.exists_extension_witnessed's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-10 enterprise-data demand instance in the shared semantic framework: this item's own contract semantics plus the registered query aggregation component (existential answers are witnessed by membership — every query result carries its source-row witness), with its adverse case executed as a negative test.",
+   "independent_semantics": "restriction on high consumption, dishonesty listing, termination of this execution round and debt extinction are four distinct typed procedure tags; records are keyed by (subject, kind), so a termination row never answers a dishonesty, restriction or debt-extinction query — the statuses never implicitly infer one another.",
+   "algorithm": "tools/full_math/implementation/data_ref.py ec_of/enforcement_statuses computes the intermediate result from structured input; data_check.check_D090 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (registry snapshot rows keyed by subject and valid time, typed penetration edges with holding ratios, litigation rows keyed by enterprise and case with roles, exact amounts and original texts, enforcement-procedure records keyed by subject and typed kind, execution-amount rows keyed by debt item and typed amount kind, penalty records with authority, conduct, date and status tags, versioned court-directory rows with validity windows, and representation/service relation tables); outputs are exactly the contract quantities (the keyed snapshot join with its miss witnesses, the typed hop and the cycle-guarded compounded stake with its separate control verdict, the keyed case row with verbatim text and the deduplicated case roster, the kind-keyed procedure lookups, the kind-and-debt-keyed amount totals with the cross-kind-sum witness, the status-tagged penalty verdicts with their provenance chains, the whole-row versioned directory lookups, and the table-citing representation and service verdicts with the reverse-inference witnesses).",
+   "external_assumptions": "The registry data's truth and timeliness, beneficial-owner and nominee-holder investigations, court record coverage and name-relation verification, enforcement-record updates and releases, official penalty verification and appeal status, current court addresses and office moves, and representation authenticity and privacy permissions remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/QueryAggregation.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/data_ref.py",
+    "tools/full_math/implementation/data_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D090]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_data_group10.py::test_demand_positive[D090]",
+    "tools/full_math/implementation_tests::test_data_group10.py::test_demand_counterexample[D090]",
+    "tools/full_math/implementation_tests::test_data_group10.py::test_downstream_pipeline_consumes_data"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D090]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D090]"
+    "tools/full_math/implementation_tests::test_data_group10.py::test_checker_rejects_tampered[D090]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.exists_extension_witnessed"
@@ -4597,25 +4601,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D091",
    "contract": "JurisLean.FullMath.Contracts.demand_D091",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.exists_extension_witnessed's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-10 enterprise-data demand instance in the shared semantic framework: this item's own contract semantics plus the registered query aggregation component (existential answers are witnessed by membership — every query result carries its source-row witness), with its adverse case executed as a negative test.",
+   "independent_semantics": "case amount, execution target, unfulfilled amount and paid amount are distinct typed quantity kinds; the aggregation is keyed on (debt-item key, amount kind), rows of other keys or other kinds never enter, and the cross-kind sum is not the output of any single-kind aggregation.",
+   "algorithm": "tools/full_math/implementation/data_ref.py amt_total_of/execution_amounts computes the intermediate result from structured input; data_check.check_D091 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (registry snapshot rows keyed by subject and valid time, typed penetration edges with holding ratios, litigation rows keyed by enterprise and case with roles, exact amounts and original texts, enforcement-procedure records keyed by subject and typed kind, execution-amount rows keyed by debt item and typed amount kind, penalty records with authority, conduct, date and status tags, versioned court-directory rows with validity windows, and representation/service relation tables); outputs are exactly the contract quantities (the keyed snapshot join with its miss witnesses, the typed hop and the cycle-guarded compounded stake with its separate control verdict, the keyed case row with verbatim text and the deduplicated case roster, the kind-keyed procedure lookups, the kind-and-debt-keyed amount totals with the cross-kind-sum witness, the status-tagged penalty verdicts with their provenance chains, the whole-row versioned directory lookups, and the table-citing representation and service verdicts with the reverse-inference witnesses).",
+   "external_assumptions": "The registry data's truth and timeliness, beneficial-owner and nominee-holder investigations, court record coverage and name-relation verification, enforcement-record updates and releases, official penalty verification and appeal status, current court addresses and office moves, and representation authenticity and privacy permissions remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/QueryAggregation.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/data_ref.py",
+    "tools/full_math/implementation/data_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D091]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_data_group10.py::test_demand_positive[D091]",
+    "tools/full_math/implementation_tests::test_data_group10.py::test_demand_counterexample[D091]",
+    "tools/full_math/implementation_tests::test_data_group10.py::test_downstream_pipeline_consumes_data"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D091]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D091]"
+    "tools/full_math/implementation_tests::test_data_group10.py::test_checker_rejects_tampered[D091]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.exists_extension_witnessed"
@@ -4626,25 +4631,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D092",
    "contract": "JurisLean.FullMath.Contracts.demand_D092",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.exists_extension_witnessed's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-10 enterprise-data demand instance in the shared semantic framework: this item's own contract semantics plus the registered query aggregation component (existential answers are witnessed by membership — every query result carries its source-row witness), with its adverse case executed as a negative test.",
+   "independent_semantics": "an administrative-penalty record carries authority, subject, conduct, date and its status tag on one record: the current-validity verdict reads the record's own status (a revoked decision never reads as a current violation conclusion), and the subject's currently effective penalties never include revoked rows.",
+   "algorithm": "tools/full_math/implementation/data_ref.py penalty_current/penalty_provenance/current_penalties/penalty_records computes the intermediate result from structured input; data_check.check_D092 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (registry snapshot rows keyed by subject and valid time, typed penetration edges with holding ratios, litigation rows keyed by enterprise and case with roles, exact amounts and original texts, enforcement-procedure records keyed by subject and typed kind, execution-amount rows keyed by debt item and typed amount kind, penalty records with authority, conduct, date and status tags, versioned court-directory rows with validity windows, and representation/service relation tables); outputs are exactly the contract quantities (the keyed snapshot join with its miss witnesses, the typed hop and the cycle-guarded compounded stake with its separate control verdict, the keyed case row with verbatim text and the deduplicated case roster, the kind-keyed procedure lookups, the kind-and-debt-keyed amount totals with the cross-kind-sum witness, the status-tagged penalty verdicts with their provenance chains, the whole-row versioned directory lookups, and the table-citing representation and service verdicts with the reverse-inference witnesses).",
+   "external_assumptions": "The registry data's truth and timeliness, beneficial-owner and nominee-holder investigations, court record coverage and name-relation verification, enforcement-record updates and releases, official penalty verification and appeal status, current court addresses and office moves, and representation authenticity and privacy permissions remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/QueryAggregation.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/data_ref.py",
+    "tools/full_math/implementation/data_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D092]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_data_group10.py::test_demand_positive[D092]",
+    "tools/full_math/implementation_tests::test_data_group10.py::test_demand_counterexample[D092]",
+    "tools/full_math/implementation_tests::test_data_group10.py::test_downstream_pipeline_consumes_data"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D092]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D092]"
+    "tools/full_math/implementation_tests::test_data_group10.py::test_checker_rejects_tampered[D092]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.exists_extension_witnessed"
@@ -4655,25 +4661,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D093",
    "contract": "JurisLean.FullMath.Contracts.demand_D093",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.exists_extension_witnessed's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-10 enterprise-data demand instance in the shared semantic framework: this item's own contract semantics plus the registered query aggregation component (existential answers are witnessed by membership — every query result carries its source-row witness), with its adverse case executed as a negative test.",
+   "independent_semantics": "the code-organ-address-district join is versioned: rows match on the court code AND the query time inside the row's validity window, returning the whole matched row (no intermediate witness lost); a district rename keeps one court with two versioned rows, and an out-of-window time or another code never answers.",
+   "algorithm": "tools/full_math/implementation/data_ref.py organ_row_at/court_directory computes the intermediate result from structured input; data_check.check_D093 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (registry snapshot rows keyed by subject and valid time, typed penetration edges with holding ratios, litigation rows keyed by enterprise and case with roles, exact amounts and original texts, enforcement-procedure records keyed by subject and typed kind, execution-amount rows keyed by debt item and typed amount kind, penalty records with authority, conduct, date and status tags, versioned court-directory rows with validity windows, and representation/service relation tables); outputs are exactly the contract quantities (the keyed snapshot join with its miss witnesses, the typed hop and the cycle-guarded compounded stake with its separate control verdict, the keyed case row with verbatim text and the deduplicated case roster, the kind-keyed procedure lookups, the kind-and-debt-keyed amount totals with the cross-kind-sum witness, the status-tagged penalty verdicts with their provenance chains, the whole-row versioned directory lookups, and the table-citing representation and service verdicts with the reverse-inference witnesses).",
+   "external_assumptions": "The registry data's truth and timeliness, beneficial-owner and nominee-holder investigations, court record coverage and name-relation verification, enforcement-record updates and releases, official penalty verification and appeal status, current court addresses and office moves, and representation authenticity and privacy permissions remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/QueryAggregation.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/data_ref.py",
+    "tools/full_math/implementation/data_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D093]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_data_group10.py::test_demand_positive[D093]",
+    "tools/full_math/implementation_tests::test_data_group10.py::test_demand_counterexample[D093]",
+    "tools/full_math/implementation_tests::test_data_group10.py::test_downstream_pipeline_consumes_data"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D093]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D093]"
+    "tools/full_math/implementation_tests::test_data_group10.py::test_checker_rejects_tampered[D093]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.exists_extension_witnessed"
@@ -4684,25 +4691,26 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D094",
    "contract": "JurisLean.FullMath.Contracts.demand_D094",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Logic.exists_extension_witnessed's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-10 enterprise-data demand instance in the shared semantic framework: this item's own contract semantics plus the registered query aggregation component (existential answers are witnessed by membership — every query result carries its source-row witness), with its adverse case executed as a negative test.",
+   "independent_semantics": "case-representation edges and law-firm service records cite their own original tables (feeding one table to the other's query misses), and the reverse inference passes only through an original representation edge for the very case — serving a client never implies representing that client's other cases.",
+   "algorithm": "tools/full_math/implementation/data_ref.py rep_edge_of/served_by/infers_all_cases/law_firm_query computes the intermediate result from structured input; data_check.check_D094 re-derives the contract independently.",
+   "observation_contract": "Inputs are the declared structures (registry snapshot rows keyed by subject and valid time, typed penetration edges with holding ratios, litigation rows keyed by enterprise and case with roles, exact amounts and original texts, enforcement-procedure records keyed by subject and typed kind, execution-amount rows keyed by debt item and typed amount kind, penalty records with authority, conduct, date and status tags, versioned court-directory rows with validity windows, and representation/service relation tables); outputs are exactly the contract quantities (the keyed snapshot join with its miss witnesses, the typed hop and the cycle-guarded compounded stake with its separate control verdict, the keyed case row with verbatim text and the deduplicated case roster, the kind-keyed procedure lookups, the kind-and-debt-keyed amount totals with the cross-kind-sum witness, the status-tagged penalty verdicts with their provenance chains, the whole-row versioned directory lookups, and the table-citing representation and service verdicts with the reverse-inference witnesses).",
+   "external_assumptions": "The registry data's truth and timeliness, beneficial-owner and nominee-holder investigations, court record coverage and name-relation verification, enforcement-record updates and releases, official penalty verification and appeal status, current court addresses and office moves, and representation authenticity and privacy permissions remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Logic/QueryAggregation.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/data_ref.py",
+    "tools/full_math/implementation/data_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D094]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_data_group10.py::test_demand_positive[D094]",
+    "tools/full_math/implementation_tests::test_data_group10.py::test_demand_counterexample[D094]",
+    "tools/full_math/implementation_tests::test_data_group10.py::test_downstream_pipeline_consumes_data"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D094]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D094]"
+    "tools/full_math/implementation_tests::test_data_group10.py::test_checker_rejects_tampered[D094]"
    ],
    "semantic_links": [
     "JurisLean.FullMath.Logic.exists_extension_witnessed"

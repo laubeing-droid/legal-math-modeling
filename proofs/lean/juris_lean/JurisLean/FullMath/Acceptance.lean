@@ -1235,21 +1235,114 @@ theorem demand_D086 : Contracts.demand_D086 := And.intro JurisLean.FullMath.Logi
     · simp [Contracts.schedStatus]
     · simp)
 
-theorem demand_D087 : Contracts.demand_D087 := JurisLean.FullMath.Logic.exists_extension_witnessed
+/-! D087-D094 (group 10 企业调查、诉讼与执行数据, W2-A batch B10): each
+theorem discharges the demand's own contract; the first conjunct is the
+group-registered query-aggregation component inlined as
+`exists_extension_witnessed`. -/
 
-theorem demand_D088 : Contracts.demand_D088 := JurisLean.FullMath.Logic.exists_extension_witnessed
+theorem demand_D087 : Contracts.demand_D087 := And.intro JurisLean.FullMath.Logic.exists_extension_witnessed
+  (by
+    intro key field v₁ v₂ hne
+    refine ⟨?_, ⟨?_, ?_, ?_⟩, ⟨?_, ?_⟩, ?_⟩
+    · simp [Contracts.regSnapshot]
+    · simp [Contracts.regSnapshot]
+    · simp [Contracts.regSnapshot]
+    · simp [Contracts.regSnapshot]
+    · simp [Contracts.regSnapshot]
+    · simp [Contracts.regSnapshot]
+    · intro hEq
+      simp at hEq)
 
-theorem demand_D089 : Contracts.demand_D089 := JurisLean.FullMath.Logic.exists_extension_witnessed
+theorem demand_D088 : Contracts.demand_D088 := And.intro JurisLean.FullMath.Logic.exists_extension_witnessed
+  (by
+    intro p q hp hq
+    refine ⟨⟨?_, ?_⟩, ⟨?_, ?_⟩, ⟨?_, ?_⟩, ⟨?_, ?_, ?_⟩⟩
+    · simp [Contracts.penHop]
+    · simp [Contracts.penHop]
+    · simp [Contracts.chainStake]
+    · rfl
+    · simp [Contracts.chainStake]
+    · exact mul_ne_zero (ne_of_gt hp) (ne_of_gt hq)
+    · norm_num [Contracts.controlOf]
+    · norm_num [Contracts.controlOf]
+    · rfl)
 
-theorem demand_D090 : Contracts.demand_D090 := JurisLean.FullMath.Logic.exists_extension_witnessed
+theorem demand_D089 : Contracts.demand_D089 := And.intro JurisLean.FullMath.Logic.exists_extension_witnessed
+  (by
+    intro ent caseId role text amt
+    refine ⟨?_, ⟨?_, ?_⟩, ⟨?_, ?_, ?_⟩, ?_⟩
+    · simp [Contracts.caseRowOf]
+    · simp [Contracts.caseRowOf]
+    · simp [Contracts.caseRowOf]
+    · simp [Contracts.caseKeysOf, Contracts.keySeen]
+    · simp [Contracts.caseKeysOf, Contracts.keySeen]
+    · simp [Contracts.caseKeysOf, Contracts.keySeen]
+    · simp)
 
-theorem demand_D091 : Contracts.demand_D091 := JurisLean.FullMath.Logic.exists_extension_witnessed
+theorem demand_D090 : Contracts.demand_D090 := And.intro JurisLean.FullMath.Logic.exists_extension_witnessed
+  (by
+    intro subject
+    refine ⟨?_, ⟨?_, ?_, ?_, ?_⟩, ?_⟩
+    · decide
+    · simp [Contracts.ecOf]
+    · simp [Contracts.ecOf, Contracts.ecTerminated, Contracts.ecDishonest]
+    · simp [Contracts.ecOf, Contracts.ecTerminated, Contracts.ecRestrictHigh]
+    · simp [Contracts.ecOf, Contracts.ecTerminated, Contracts.ecDebtCleared]
+    · intro hEq
+      simp [Contracts.ecTerminated, Contracts.ecDishonest] at hEq)
 
-theorem demand_D092 : Contracts.demand_D092 := JurisLean.FullMath.Logic.exists_extension_witnessed
+theorem demand_D091 : Contracts.demand_D091 := And.intro JurisLean.FullMath.Logic.exists_extension_witnessed
+  (by
+    intro u t w hu ht _hw
+    refine ⟨?_, ⟨?_, ?_, ?_, ?_, ?_, ?_⟩, ⟨?_, ?_⟩⟩
+    · decide
+    · simp [Contracts.amtTotalOf, Contracts.amtUnpaid]
+    · simp [Contracts.amtTotalOf, Contracts.amtUnpaid, Contracts.amtTarget]
+    · simp [Contracts.amtTotalOf, Contracts.amtUnpaid]
+    · simp [Contracts.amtTotalOf, Contracts.amtUnpaid, Contracts.amtTarget]
+    · simp [Contracts.amtTotalOf, Contracts.amtUnpaid, Contracts.amtTarget]
+    · simp [Contracts.amtTotalOf, Contracts.amtUnpaid]
+    · simp [Contracts.amtTotalOf, Contracts.amtUnpaid, Contracts.amtTarget]
+    · intro h
+      simp [Contracts.amtTotalOf, Contracts.amtCase, Contracts.amtTarget,
+        Contracts.amtUnpaid] at h
+      linarith)
 
-theorem demand_D093 : Contracts.demand_D093 := JurisLean.FullMath.Logic.exists_extension_witnessed
+theorem demand_D092 : Contracts.demand_D092 := And.intro JurisLean.FullMath.Logic.exists_extension_witnessed
+  (by
+    intro auth subject conduct date
+    refine ⟨⟨?_, ?_⟩, ?_, ⟨?_, ?_⟩⟩
+    · simp [Contracts.penaltyCurrent, Contracts.penEffective]
+    · simp [Contracts.penaltyCurrent, Contracts.penEffective, Contracts.penRevoked]
+    · rfl
+    · decide
+    · simp [Contracts.currentPenalties, Contracts.penaltyCurrent, Contracts.penEffective, Contracts.penRevoked])
 
-theorem demand_D094 : Contracts.demand_D094 := JurisLean.FullMath.Logic.exists_extension_witnessed
+theorem demand_D093 : Contracts.demand_D093 := And.intro JurisLean.FullMath.Logic.exists_extension_witnessed
+  (by
+    refine ⟨⟨?_, ?_⟩, ⟨?_, ?_, ?_, ?_⟩, ?_⟩
+    · simp [Contracts.organRowAt]
+    · simp [Contracts.organRowAt]
+    · simp [Contracts.organRowAt]
+    · simp [Contracts.organRowAt]
+    · simp [Contracts.organRowAt]
+    · simp [Contracts.organRowAt]
+    · simp)
+
+theorem demand_D094 : Contracts.demand_D094 := And.intro JurisLean.FullMath.Logic.exists_extension_witnessed
+  (by
+    refine ⟨⟨?_, ?_, ?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩, ⟨?_, ?_, ?_⟩⟩
+    · simp [Contracts.repEdgeOf]
+    · simp [Contracts.repEdgeOf]
+    · simp [Contracts.repEdgeOf]
+    · simp [Contracts.repEdgeOf]
+    · simp [Contracts.repEdgeOf]
+    · simp [Contracts.servedBy]
+    · simp [Contracts.servedBy]
+    · simp [Contracts.servedBy]
+    · simp [Contracts.infersAllCases, Contracts.servedBy, Contracts.repEdgeOf]
+    · simp [Contracts.infersAllCases, Contracts.servedBy, Contracts.repEdgeOf]
+    · simp [Contracts.infersAllCases, Contracts.servedBy, Contracts.repEdgeOf])
 
 theorem demand_D095 : Contracts.demand_D095 := JurisLean.FullMath.Numeric.succDay_ordinal_mono
 

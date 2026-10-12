@@ -1667,29 +1667,371 @@ def demand_D086 : Prop :=
        schedStatus [(entity, period, prop, none)] entity period prop = none) ∧
      ((none : Option Bool) ≠ some true))
 
-def demand_D087 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
-    (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'
+/-- D087 helper: the registry snapshot of one field under the
+(subject key, valid time) pair — the multi-table join is keyed on both;
+a row of another subject (a renamed key or a same-name company) or of
+another validity time never answers, and every snapshot value is its own
+record. -/
+def regSnapshot : List (String × String × ℕ × String) →
+    String → ℕ → String → Option String
+  | [], _, _, _ => none
+  | r :: rest, key, t, field =>
+    if r.1 = key ∧ r.2.2.1 = t ∧ r.2.1 = field then r.2.2.2
+    else regSnapshot rest key t field
 
-def demand_D088 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
-    (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'
+/-- D088 helper: one typed penetration hop — an edge (parent, child,
+edge type) links the two exactly when the queried edge type matches; the
+same parties under another edge type never connect for this query. -/
+def penHop : List (String × String × String) →
+    String → String → String → Bool
+  | [], _, _, _ => false
+  | e :: rest, parent, child, etype =>
+    if e.1 = parent ∧ e.2.1 = child ∧ e.2.2 = etype then true
+    else penHop rest parent child etype
 
-def demand_D089 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
-    (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'
+/-- D088 helper: the compounded holding ratio along one declared chain
+of holding edges (each edge its own (holder, held, ratio) record), with
+a cycle guard — a chain whose last edge re-enters the chain's start
+entity compounds to exactly 0, so a holding cycle can never multiply
+its way to phantom equity; the empty chain is the entity itself (1). -/
+def chainStake : String → List (String × String × ℚ) → ℚ
+  | _, [] => 1
+  | start, [e] => if e.2.1 = start then 0 else e.2.2
+  | start, e :: rest => e.2.2 * chainStake start rest
 
-def demand_D090 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
-    (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'
+/-- D088 helper: the control verdict is a separate boolean on the
+compounded stake (at least half), never merged into the stake number
+itself. -/
+def controlOf (stake : ℚ) : Bool := decide (1 / 2 ≤ stake)
 
-def demand_D091 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
-    (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'
+/-- D089 helper: the keyed litigation join — the (role, amount,
+original-text) triple of one (enterprise, case) key; the row's own text
+field is carried through verbatim; a row of another enterprise or
+another case never answers. -/
+def caseRowOf : List (String × String × String × ℚ × String) →
+    String → String → Option (String × ℚ × String)
+  | [], _, _ => none
+  | r :: rest, ent, caseId =>
+    if r.1 = ent ∧ r.2.1 = caseId then some (r.2.2.1, r.2.2.2.1, r.2.2.2.2)
+    else caseRowOf rest ent caseId
 
-def demand_D092 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
-    (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'
+/-- D089 helper: has this case key already been collected? -/
+def keySeen : List String → String → Bool
+  | [], _ => false
+  | k :: rest, key => if k = key then true else keySeen rest key
 
-def demand_D093 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
-    (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'
+/-- D089 helper: the distinct case keys of one enterprise, scanning
+(enterprise, case, document) rows — a case already collected never
+re-enters, so the same case under two documents is one case, not two;
+rows of other enterprises never enter. -/
+def caseKeysOf : List String → List (String × String × String) →
+    String → List String
+  | acc, [], _ => acc
+  | acc, r :: rest, ent =>
+    if r.1 = ent ∧ keySeen acc r.2.1 = false then
+      caseKeysOf (r.2.1 :: acc) rest ent
+    else caseKeysOf acc rest ent
 
-def demand_D094 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
-    (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E'
+/-- D090 helper: the enforcement-procedure record kinds — restriction
+on high consumption, dishonesty listing, termination of this execution
+round and debt extinction are distinct typed procedure tags, never one
+status field. -/
+def ecRestrictHigh : Nat := 0
+
+def ecDishonest : Nat := 1
+
+def ecTerminated : Nat := 2
+
+def ecDebtCleared : Nat := 3
+
+/-- D090 helper: the procedure-record lookup by (subject, kind) — only
+a row of the same subject AND the same procedure kind answers; a
+termination-of-execution row never answers a dishonesty, restriction or
+debt-extinction query, so the record kinds never implicitly infer one
+another. -/
+def ecOf : List (String × Nat × Bool) → String → Nat → Option Bool
+  | [], _, _ => none
+  | r :: rest, subject, kind =>
+    if r.1 = subject ∧ r.2.1 = kind then some r.2.2 else ecOf rest subject kind
+
+/-- D091 helper: the execution-amount kinds — case amount, execution
+target, unfulfilled amount and paid amount are distinct typed quantity
+kinds, never interchangeable scalars. -/
+def amtCase : Nat := 0
+
+def amtTarget : Nat := 1
+
+def amtUnpaid : Nat := 2
+
+def amtPaid : Nat := 3
+
+/-- D091 helper: the kind-and-debt-keyed aggregation — the total of one
+amount kind on one debt-item key sums only rows carrying exactly that
+debt key AND that kind; rows of other keys or other kinds never enter,
+so an unfulfilled amount is never added into an execution-target
+total. -/
+def amtTotalOf : List (String × Nat × ℚ) → String → Nat → ℚ
+  | [], _, _ => 0
+  | r :: rest, debt, kind =>
+    if r.1 = debt ∧ r.2.1 = kind then r.2.2 + amtTotalOf rest debt kind
+    else amtTotalOf rest debt kind
+
+/-- D092 helper: the two decision statuses of an administrative-penalty
+record — effective and revoked are distinct typed tags. -/
+def penEffective : Nat := 0
+
+def penRevoked : Nat := 1
+
+/-- D092 helper: the current-validity verdict of one penalty record
+(authority, subject, conduct, date, status) — effective exactly when
+the record's own status tag is effective; a revoked record never reads
+as a current violation conclusion. -/
+def penaltyCurrent (r : String × String × String × ℕ × Nat) : Bool :=
+  decide (r.2.2.2.2 = penEffective)
+
+/-- D092 helper: the provenance chain of one penalty record — authority,
+subject, conduct and date are read from the same record as the status,
+so the validity verdict never detaches from its provenance. -/
+def penaltyProvenance (r : String × String × String × ℕ × Nat) :
+    String × String × String × ℕ :=
+  (r.1, r.2.1, r.2.2.1, r.2.2.2.1)
+
+/-- D092 helper: the currently-effective penalties of one subject —
+revoked rows never enter (a revoked decision is not a current violation
+conclusion). -/
+def currentPenalties : List (String × String × String × ℕ × Nat) →
+    String → List (String × String × String × ℕ × Nat)
+  | [], _ => []
+  | r :: rest, subject =>
+    if r.2.1 = subject ∧ penaltyCurrent r = true then
+      r :: currentPenalties rest subject
+    else currentPenalties rest subject
+
+/-- D093 helper: the versioned court-directory join — (court code,
+organ, address, district, valid-from, valid-to) rows match on the court
+code AND the query time inside the row's validity window; the matched
+row itself is returned (organ, address, district and both window ends
+ride along), so no intermediate witness is lost; rows of another code
+or outside their validity never answer. -/
+def organRowAt : List (String × String × String × String × ℕ × ℕ) →
+    String → ℕ → Option (String × String × String × String × ℕ × ℕ)
+  | [], _, _ => none
+  | r :: rest, code, t =>
+    if r.1 = code ∧ r.2.2.2.2.1 ≤ t ∧ t ≤ r.2.2.2.2.2 then some r
+    else organRowAt rest code t
+
+/-- D094 helper: the representation-edge lookup — a firm represents a
+case exactly when a representation-edge row (case, firm) exists;
+service rows never answer this query. -/
+def repEdgeOf : List (String × String) → String → String → Bool
+  | [], _, _ => false
+  | r :: rest, caseId, firm =>
+    if r.1 = caseId ∧ r.2 = firm then true else repEdgeOf rest caseId firm
+
+/-- D094 helper: the service-record lookup — a firm served a client
+exactly when a service row (firm, client) exists; representation edges
+never answer this query. -/
+def servedBy : List (String × String) → String → String → Bool
+  | [], _, _ => false
+  | r :: rest, firm, client =>
+    if r.1 = firm ∧ r.2 = client then true else servedBy rest firm client
+
+/-- D094 helper: the reverse-inference trap — from a service record
+alone, whether a firm represents one of the client's cases stays false
+until an original representation edge for that very case exists; the
+service row never substitutes for the edge. -/
+def infersAllCases (serviceRows : List (String × String))
+    (repRows : List (String × String)) (firm client caseId : String) : Bool :=
+  servedBy serviceRows firm client && repEdgeOf repRows caseId firm
+
+/-- D087 多表join使用主体键与有效时间；不同快照值作为不同记录（反例：混
+用更名前名称和另一同名公司的资本）：注册快照 join 按主体键＋有效时间双键
+进行——同键同时点命中行值；更名后键或同名他公司的键查同一时点为 none、
+同键异时点也为 none；不同快照值是不同记录（同键 0/1 两时点各回各值，两行
+记录不等）。 -/
+def demand_D087 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
+      (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E') ∧
+  ∀ (key field : String) (v₁ v₂ : String),
+    v₁ ≠ v₂ →
+    ((regSnapshot [(key, field, 0, v₁)] key 0 field = some v₁) ∧
+     (regSnapshot [("acme-co", "capital", 0, v₁)] "acme-renamed-co" 0 "capital" = none ∧
+       regSnapshot [("acme-co", "capital", 0, v₁)] "acme-namesake-co" 0 "capital" = none ∧
+       regSnapshot [("acme-co", "capital", 0, v₁)] "acme-co" 1 "capital" = none) ∧
+     (regSnapshot [("acme-co", "capital", 0, v₁), ("acme-co", "capital", 1, v₂)]
+        "acme-co" 0 "capital" = some v₁ ∧
+       regSnapshot [("acme-co", "capital", 0, v₁), ("acme-co", "capital", 1, v₂)]
+        "acme-co" 1 "capital" = some v₂) ∧
+     ((("acme-co", "capital", 0, v₁) : String × String × ℕ × String) ≠
+       ("acme-co", "capital", 1, v₂)))
+
+/-- D088 穿透关系为带边类型的图查询；持股链、控制和投资额分别表达（反
+例：循环持股反复乘加产生虚假权益）：holding 边连接的双方在 service 边类型
+查询下不连接；持股链按边记录复合（空链=自身 1）、末边重回起点的闭环链复
+合恰为 0（循环不产生虚假权益，正比率积非 0）；控制是持股比例之外的独立布
+尔判决（1/2 真、1/4 假、一般值恰为 decide (1/2 ≤ 比例)）。 -/
+def demand_D088 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
+      (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E') ∧
+  ∀ (p q : ℚ),
+    0 < p →
+    0 < q →
+    ((penHop [("sub-co", "mid-co", "holding")] "sub-co" "mid-co" "holding" = true ∧
+       penHop [("sub-co", "mid-co", "holding")] "sub-co" "mid-co" "service" = false) ∧
+     (chainStake "sub-co" [("sub-co", "mid-co", p), ("mid-co", "top-co", q)] = p * q ∧
+       chainStake "sub-co" [] = 1) ∧
+     (chainStake "sub-co" [("sub-co", "mid-co", p), ("mid-co", "sub-co", q)] = 0 ∧
+       p * q ≠ 0) ∧
+     (controlOf (1 / 2 : ℚ) = true ∧ controlOf (1 / 4 : ℚ) = false ∧
+       controlOf (p * q) = decide (1 / 2 ≤ p * q)))
+
+/-- D089 企业—案件—角色—金额按键连接，保留原文与记录去重（反例：同一案
+件不同文书重复算作多案）：(企业,案件) 双键命中返回行自有的（角色,金额,原
+文）三元组（原文逐字保留）；异案件或异企业查询为 none；案件键去重按（企
+业,案件,文书）行扫描——同案双文书只入一次、他企业行不入；不同文书仍是
+不同记录。 -/
+def demand_D089 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
+      (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E') ∧
+  ∀ (ent caseId role text : String) (amt : ℚ),
+    ((caseRowOf [(ent, caseId, role, amt, text)] ent caseId = some (role, amt, text)) ∧
+     (caseRowOf [("acme-co", "case-1", "defendant", 100, "judgment-text-1")]
+        "acme-co" "case-2" = none ∧
+       caseRowOf [("acme-co", "case-1", "defendant", 100, "judgment-text-1")]
+        "beta-co" "case-1" = none) ∧
+     (caseKeysOf [] [("acme-co", "case-1", "doc-1"),
+                     ("acme-co", "case-1", "doc-2"),
+                     ("acme-co", "case-2", "doc-3")] "acme-co" = ["case-2", "case-1"] ∧
+       caseKeysOf [] [("acme-co", "case-1", "doc-1"), ("acme-co", "case-1", "doc-2")]
+         "acme-co" = ["case-1"] ∧
+       caseKeysOf [] [("acme-co", "case-1", "doc-1"), ("beta-co", "case-9", "doc-9")]
+         "acme-co" = ["case-1"]) ∧
+     ((("acme-co", "case-1", "doc-1") : String × String × String) ≠
+       ("acme-co", "case-1", "doc-2")))
+
+/-- D090 限高、失信、终本为不同程序记录/状态，不能隐式互推（反例：终本
+不自动等于永久失信或债务消灭）：限高、失信、终本、债务消灭是四个互异的
+程序记录类型标签（不得压成一个状态字段）；程序记录按（主体,类型）双键存
+放——终本行只回答终本查询，失信/限高/债务消灭查询皆为 none（互不隐式互
+推）；类型不同即记录不同。 -/
+def demand_D090 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
+      (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E') ∧
+  ∀ (subject : String),
+    ((ecRestrictHigh ≠ ecDishonest ∧ ecRestrictHigh ≠ ecTerminated ∧
+       ecRestrictHigh ≠ ecDebtCleared ∧ ecDishonest ≠ ecTerminated ∧
+       ecDishonest ≠ ecDebtCleared ∧ ecTerminated ≠ ecDebtCleared) ∧
+     (ecOf [(subject, ecTerminated, true)] subject ecTerminated = some true ∧
+       ecOf [(subject, ecTerminated, true)] subject ecDishonest = none ∧
+       ecOf [(subject, ecTerminated, true)] subject ecRestrictHigh = none ∧
+       ecOf [(subject, ecTerminated, true)] subject ecDebtCleared = none) ∧
+     ((subject, ecTerminated, true) ≠ (subject, ecDishonest, true)))
+
+/-- D091 涉案额、执行标的、未履行额、已付额不同数量类型；归并保留债项键
+（反例：把未履行额与执行标的加成总债务）：四金额类型标签互异；聚合按（债
+项键,金额类型）双键进行——只累计同键同类行（异类行不入、他债项键行不
+入）；跨类相加不是任何单类聚合的输出（未履行额与执行标的之和 t+u 不是涉
+案额类总额 0——错误模型的"总债务"在类型化聚合中不存在）。 -/
+def demand_D091 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
+      (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E') ∧
+  ∀ (u t w : ℚ),
+    0 < u →
+    0 < t →
+    0 < w →
+    ((amtCase ≠ amtTarget ∧ amtCase ≠ amtUnpaid ∧ amtCase ≠ amtPaid ∧
+       amtTarget ≠ amtUnpaid ∧ amtTarget ≠ amtPaid ∧ amtUnpaid ≠ amtPaid) ∧
+     (amtTotalOf [("debt-1", amtUnpaid, u)] "debt-1" amtUnpaid = u ∧
+       amtTotalOf [("debt-1", amtUnpaid, u)] "debt-1" amtTarget = 0 ∧
+       amtTotalOf [("debt-1", amtUnpaid, u)] "debt-2" amtUnpaid = 0 ∧
+       amtTotalOf [("debt-1", amtTarget, t), ("debt-1", amtUnpaid, u)] "debt-1"
+          amtTarget = t ∧
+       amtTotalOf [("debt-1", amtTarget, t), ("debt-1", amtUnpaid, u)] "debt-1"
+          amtUnpaid = u ∧
+       amtTotalOf [("debt-2", amtUnpaid, w)] "debt-2" amtUnpaid = w) ∧
+     (amtTotalOf [("debt-1", amtTarget, t), ("debt-1", amtUnpaid, u)] "debt-1"
+          amtTarget +
+        amtTotalOf [("debt-1", amtTarget, t), ("debt-1", amtUnpaid, u)] "debt-1"
+          amtUnpaid
+          = t + u ∧
+       amtTotalOf [("debt-1", amtTarget, t), ("debt-1", amtUnpaid, u)] "debt-1"
+          amtCase ≠ t + u))
+
+/-- D092 行政处罚记录保留机关、主体、行为、日期及结果效力链（反例：已撤
+销处罚继续标为当前有效违法结论）：处罚记录（机关,主体,行为,日期,状态）同
+记录联算——当前有效判决恰为记录自有状态标签=生效（已撤销恒不有效）；
+机关/主体/行为/日期四溯源字段与状态同一记录读出（判决不脱离溯源链）；生
+效与撤销是互异标签；主体查询当前有效处罚集时已撤销行永不进入。 -/
+def demand_D092 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
+      (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E') ∧
+  ∀ (auth subject conduct : String) (date : ℕ),
+    ((penaltyCurrent (auth, subject, conduct, date, penEffective) = true ∧
+       penaltyCurrent (auth, subject, conduct, date, penRevoked) = false) ∧
+     (penaltyProvenance (auth, subject, conduct, date, penRevoked)
+        = (auth, subject, conduct, date)) ∧
+     (penEffective ≠ penRevoked ∧
+       currentPenalties
+         [("mkt-auth", "acme-co", "false-ad", 20260101, penRevoked),
+          ("mkt-auth", "acme-co", "price-fraud", 20260202, penEffective)]
+         "acme-co"
+         = [("mkt-auth", "acme-co", "price-fraud", 20260202, penEffective)]))
+
+/-- D093 代码、机关、地址与区划的连接有版本/有效期，不丢中间见证（反例：
+区划改名不得制造两个不同法院或错用旧送达地址）：代码—机关—地址—区划连
+接按（法院代码,查询时点∈有效期窗口）进行——命中返回整行匹配记录（机关/
+地址/区划/窗口两端随行，中间见证不丢）；区划改名前后同一代码同一机关各在
+各自窗口命中（改的是版本不是法院，两版本行是不同记录）；窗口外时点、异代
+码查询为 none，仅存旧窗口行时新时点为 none（旧送达地址不得沿用）。 -/
+def demand_D093 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
+      (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E') ∧
+    ((organRowAt [("ct-0101", "court-0101", "addr-old-1", "chaoyang-county", 0, 10),
+                  ("ct-0101", "court-0101", "addr-new-1", "chaoyang-district", 11, 20)]
+        "ct-0101" 5
+        = some ("ct-0101", "court-0101", "addr-old-1", "chaoyang-county", 0, 10) ∧
+      organRowAt [("ct-0101", "court-0101", "addr-old-1", "chaoyang-county", 0, 10),
+                  ("ct-0101", "court-0101", "addr-new-1", "chaoyang-district", 11, 20)]
+        "ct-0101" 15
+        = some ("ct-0101", "court-0101", "addr-new-1", "chaoyang-district", 11, 20)) ∧
+     (organRowAt [("ct-0101", "court-0101", "addr-old-1", "chaoyang-county", 0, 10),
+                  ("ct-0101", "court-0101", "addr-new-1", "chaoyang-district", 11, 20)]
+        "ct-0101" 15
+        ≠ some ("ct-0101", "court-0101", "addr-old-1", "chaoyang-county", 0, 10) ∧
+      organRowAt [("ct-0101", "court-0101", "addr-old-1", "chaoyang-county", 0, 10),
+                  ("ct-0101", "court-0101", "addr-new-1", "chaoyang-district", 11, 20)]
+        "ct-9999" 5 = none ∧
+      organRowAt [("ct-0101", "court-0101", "addr-old-1", "chaoyang-county", 0, 10),
+                  ("ct-0101", "court-0101", "addr-new-1", "chaoyang-district", 11, 20)]
+        "ct-0101" 21 = none ∧
+      organRowAt [("ct-0101", "court-0101", "addr-old-1", "chaoyang-county", 0, 10)]
+        "ct-0101" 15 = none) ∧
+     ((("ct-0101", "court-0101", "addr-old-1", "chaoyang-county", 0, 10) :
+         String × String × String × String × ℕ × ℕ) ≠
+       ("ct-0101", "court-0101", "addr-new-1", "chaoyang-district", 11, 20)))
+
+/-- D094 案件代理边与律所服务记录分别引用原始关系，不作逆向无根据推断
+（反例：服务某上市公司不能推出代理该公司全部案件）：代理查询只由代理边行
+回答（服务表喂入为 false）、服务查询只由服务行回答（代理边表喂入为
+false）——两类关系分别引用各自原始表；逆向推断必须经原始代理边——服务记
+录∧具体案件边才为真，无边的其他案件（case-2/case-3）恒为 false。 -/
+def demand_D094 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (af : AF A) (P : Finset A → Prop)
+      (E : Finset A) (hstab : Stable af E) (hP : P E), ∃ E', Stable af E' ∧ P E') ∧
+    ((repEdgeOf [("acme-case-1", "law-a")] "acme-case-1" "law-a" = true ∧
+       repEdgeOf [("acme-case-1", "law-a")] "acme-case-2" "law-a" = false ∧
+       repEdgeOf [("acme-case-1", "law-a")] "acme-case-1" "law-b" = false ∧
+       repEdgeOf [] "acme-case-2" "law-a" = false ∧
+       repEdgeOf [("law-a", "acme-co")] "acme-case-1" "law-a" = false) ∧
+     (servedBy [("law-a", "acme-co")] "law-a" "acme-co" = true ∧
+       servedBy [("law-a", "acme-co")] "law-b" "acme-co" = false ∧
+       servedBy [("acme-case-1", "law-a")] "law-a" "acme-co" = false) ∧
+     (infersAllCases [("law-a", "acme-co")] [("acme-case-1", "law-a")] "law-a"
+        "acme-co" "acme-case-1" = true ∧
+       infersAllCases [("law-a", "acme-co")] [("acme-case-1", "law-a")] "law-a"
+        "acme-co" "acme-case-2" = false ∧
+       infersAllCases [("law-a", "acme-co")] [("acme-case-1", "law-a")] "law-a"
+        "acme-co" "acme-case-3" = false))
 
 def demand_D095 : Prop := ∀ (y m d : ℕ) (h : d + 1 ≤ monthLen y m), dayOfYear y m (d + 1) = dayOfYear y m d + 1
 

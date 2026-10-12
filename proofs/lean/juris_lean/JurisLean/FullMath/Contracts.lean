@@ -3645,27 +3645,876 @@ def demand_D123 : Prop :=
       readoutOf (QueryOutcome.records []) = FactReadout.noRecords) ∧
    (sourced hollowAssertion = false))
 
-def demand_D124 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
+/-! D124-D134 (groups 14+15 伦理、隐私与表达可靠性＋美国法特定问题与
+法律语言任务, W2-A batch B14): each def is that demand's own contract,
+translated from ALL_134_MATH_CONTRACTS.md.  The first conjunct is the
+group-registered component — Evidence.step_rules_mono for group 14
+(D124-D130), Probability.condition_incompatible_iff for group 15
+(D131-D134); the remaining conjuncts are the demand's own operational
+semantics with its adverse case, built on helpers local to this region
+in the group-08/13 style.  C2-C5 suspension check (W2B §5.3 B14 row):
+none of the eleven bold sentences carries a CAD/optimization sub-clause —
+D128's "明示价值序/约束下的决策与敏感性" is a discrete lexicographic
+decision over an explicitly declared finite value order with an
+order-swap sensitivity witness (no continuous program, no quantifier
+elimination, values are ℕ preference indices, not amounts), so no C2-C5
+suspension annotation applies — determination recorded in
+.local/agent_AG_w2a_b14_report.md §三, following the B13 precedent of
+recording the honest reading instead of fabricating a suspension.  The
+green carriers actually consumed: Evidence/Withdrawal (step_rules_mono)
+and Probability/Conditioning (condition_incompatible_iff) as the
+first-conjunct components; Seams/UnifiedBetaDomain was checked and needs
+no Lean-side face here (no bold sentence claims a posterior weight or
+CDF value) — the PY-PROB faces of D125/D134 consume its exact-ℚ mirror
+unified.beta on the Python side. -/
 
-def demand_D125 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
+/-- D124 helper: one interest-relation edge of the matter's interest
+graph — the person, the related party and the relation kind. -/
+structure IntEdge where
+  person : String
+  party : String
+  kind : String
 
-def demand_D126 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
+/-- D124 helper: a registered conflict rule — the relation kind that
+triggers it, the disposition obligation it carries, and whether the
+conflict class may be waived at all. -/
+structure ConRule where
+  trigger : String
+  duty : String
+  waivable : Bool
 
-def demand_D127 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
+/-- D124 helper: does any edge of the graph carry relation kind `k`. -/
+def ethKindIn (k : String) : List IntEdge → Bool
+  | [] => false
+  | e :: es => if e.kind = k then true else ethKindIn k es
 
-def demand_D128 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
+/-- D124 helper: the triggered obligations — exactly the registered
+rules whose trigger kind occurs in the interest graph, each reported
+with its disposition duty. -/
+def ethDuties (edges : List IntEdge) (rules : List ConRule) :
+    List (String × String) :=
+  (rules.filter (fun r => ethKindIn r.trigger edges)).map
+    (fun r => (r.trigger, r.duty))
 
-def demand_D129 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
+/-- D124 helper: the authority levels that may grant a waiver or
+approval. -/
+inductive AuthLevel where
+  | none | managingPartner | ethicsPanel
+  deriving DecidableEq
 
-def demand_D130 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
+/-- D124 helper: the state of an approval document — a draft nobody has
+granted, or a grant by a named authority. -/
+inductive ApprovalState where
+  | draft
+  | granted (auth : AuthLevel)
 
-def demand_D131 : Prop := ∀ {S : Type} [Fintype S] [DecidableEq S] (p : S → ℚ) (e : S → Bool), condition p e = .incompatible ↔ ¬ (0 < evMass p e)
+/-- D124 helper: a conflict is cleared only by a granted approval with
+adequate authority — non-waivable conflicts are never cleared, waivable
+ones need the ethics panel, and a draft clears nothing. -/
+def ethCleared (r : ConRule) (st : ApprovalState) : Bool :=
+  match st with
+  | ApprovalState.draft => false
+  | ApprovalState.granted auth =>
+      if r.waivable = true then
+        (if auth = AuthLevel.ethicsPanel then true else false)
+      else false
 
-def demand_D132 : Prop := ∀ {S : Type} [Fintype S] [DecidableEq S] (p : S → ℚ) (e : S → Bool), condition p e = .incompatible ↔ ¬ (0 < evMass p e)
+/-- D124 witness: the ethics registry — a non-waivable concurrent-client
+conflict and a waivable former-client conflict. -/
+def ethRegistry : List ConRule :=
+  [{ trigger := "concurrent-client", duty := "disclose-and-screen",
+     waivable := false },
+   { trigger := "former-client", duty := "disclose-and-obtain-waiver",
+     waivable := true }]
 
-def demand_D133 : Prop := ∀ {S : Type} [Fintype S] [DecidableEq S] (p : S → ℚ) (e : S → Bool), condition p e = .incompatible ↔ ¬ (0 < evMass p e)
+/-- D124 witness: the matter's interest graph carries a concurrent-client
+edge (and nothing else). -/
+def matterEdges : List IntEdge :=
+  [{ person := "attorney-x", party := "opposing-corp",
+     kind := "concurrent-client" }]
 
-def demand_D134 : Prop := ∀ {S : Type} [Fintype S] [DecidableEq S] (p : S → ℚ) (e : S → Bool), condition p e = .incompatible ↔ ¬ (0 < evMass p e)
+/-- D125 helper: one row of a fairness audit — the protected attribute,
+a proxy variable that may leak it, and a case number. -/
+structure FairRow where
+  prot : Bool
+  proxy : String
+  caseNo : ℕ
+
+/-- D125 helper: the counterfactual twin of a row — the same row with
+the protected attribute flipped. -/
+def flipProt (r : FairRow) : FairRow := { r with prot := !r.prot }
+
+/-- D125 helper: equality of two verdicts as a plain match on Bool. -/
+def verdictSame (a b : Bool) : Bool :=
+  match a, b with
+  | true, true => true
+  | false, false => true
+  | _, _ => false
+
+/-- D125 helper: the counterfactual invariance check — flipping the
+protected attribute of every audited row leaves the classifier output
+unchanged. -/
+def invariantUnder (f : FairRow → Bool) (rows : List FairRow) : Bool :=
+  rows.all (fun r => verdictSame (f (flipProt r)) (f r))
+
+/-- D125 helper: how many rows of group `g` the classifier flags. -/
+def groupSel (f : FairRow → Bool) (rows : List FairRow) (g : Bool) : ℕ :=
+  (rows.filter (fun r => (r.prot == g) && f r)).length
+
+/-- D125 helper: the size of group `g` among the audited rows. -/
+def groupSize (rows : List FairRow) (g : Bool) : ℕ :=
+  (rows.filter (fun r => r.prot == g)).length
+
+/-- D125 helper: the group risk indicator — the flagging rate of one
+protected group (exact ℚ ratio). -/
+def groupRate (f : FairRow → Bool) (rows : List FairRow) (g : Bool) : ℚ :=
+  (groupSel f rows g : ℚ) / (groupSize rows g : ℚ)
+
+/-- D125 helper: which check a fairness certificate attests — the two
+checks stay separately tagged; a tag attests exactly one. -/
+inductive FairTag where
+  | invariance | groupRisk
+  deriving DecidableEq
+
+def isInvTag (t : FairTag) : Bool :=
+  match t with
+  | FairTag.invariance => true
+  | FairTag.groupRisk => false
+
+def isRiskTag (t : FairTag) : Bool :=
+  match t with
+  | FairTag.invariance => false
+  | FairTag.groupRisk => true
+
+/-- D125 helper: the full-fairness claim needs both certificates — no
+single-tag certificate list suffices. -/
+def fairnessAll (tags : List FairTag) : Bool :=
+  (tags.any isInvTag) && (tags.any isRiskTag)
+
+/-- D125 adverse witness: rows whose protected attribute is perfectly
+leaked by the proxy. -/
+def leakRows : List FairRow :=
+  [{ prot := true, proxy := "zip-17", caseNo := 1 },
+   { prot := true, proxy := "zip-17", caseNo := 2 },
+   { prot := false, proxy := "zip-03", caseNo := 3 },
+   { prot := false, proxy := "zip-03", caseNo := 4 }]
+
+/-- D125 adverse witness: the proxy-keyed classifier — it never reads
+`prot`, so invariance holds, while the two groups' flagging rates differ
+maximally. -/
+def proxyKeyed : FairRow → Bool :=
+  fun r => if r.proxy = "zip-17" then true else false
+
+/-- D125 adverse witness: the leak audit produced only the invariance
+certificate — the full-fairness claim is not licensed. -/
+def leakCerts : List FairTag := [FairTag.invariance]
+
+/-- D126 helper: one actual data flow — the data category, the
+destination and the declared purpose. -/
+structure DataFlow where
+  category : String
+  dest : String
+  purpose : String
+
+/-- D126 helper: one permitted use — a category/purpose pair the user
+has consented to. -/
+structure UsePerm where
+  category : String
+  purpose : String
+
+/-- D126 helper: one policy-promise sentence — the text ledger is a
+separate type and never enters the compliance computation. -/
+structure PolicyPromise where
+  category : String
+  text : String
+
+/-- D126 helper: a flow is compliant iff its category/purpose pair is a
+permitted use — the promises ledger is not an input. -/
+def flowOk (perms : List UsePerm) (f : DataFlow) : Bool :=
+  perms.any (fun p =>
+    if p.category = f.category then
+      (if p.purpose = f.purpose then true else false)
+    else false)
+
+/-- D126 helper: the compliance verdict over all flows. -/
+def flowsOk (perms : List UsePerm) (flows : List DataFlow) : Bool :=
+  flows.all (fun f => flowOk perms f)
+
+/-- D126 adverse witness: the policy promises "we never share" while an
+actual ad-partner marketing flow exists. -/
+def noSharePromise : PolicyPromise where
+  category := "email-list"
+  text := "we never share"
+
+def adFlow : DataFlow where
+  category := "email-list"
+  dest := "ad-partner"
+  purpose := "marketing"
+
+/-- D126 witness: the permitted service flow. -/
+def serviceFlow : DataFlow where
+  category := "usage-stats"
+  dest := "internal-analytics"
+  purpose := "service-improvement"
+
+/-- D126 witness: the site's permitted uses. -/
+def sitePerms : List UsePerm :=
+  [{ category := "usage-stats", purpose := "service-improvement" }]
+
+/-- D127 helper: disclosure items are typed — statutory requirements vs
+best-practice recommendations; the two types never merge. -/
+inductive DiscKind where
+  | statutory | bestPractice
+  deriving DecidableEq
+
+structure DiscItem where
+  item : String
+  kind : DiscKind
+
+def isStatutory (i : DiscItem) : Bool :=
+  if i.kind = DiscKind.statutory then true else false
+
+def isBestPractice (i : DiscItem) : Bool :=
+  if i.kind = DiscKind.bestPractice then true else false
+
+/-- D127 helper: the statutory-coverage gate — every statutory item of
+the register is in the done list. -/
+def statCovered (items : List DiscItem) (done : List String) : Bool :=
+  (items.filter isStatutory).all (fun i => strIn i.item done)
+
+/-- D127 helper: the best-practice readout stays advisory-typed — done
+best-practice items are reported as (item, "advisory") pairs. -/
+def advisoryDone (items : List DiscItem) (done : List String) :
+    List (String × String) :=
+  (items.filter (fun i => isBestPractice i && strIn i.item done)).map
+    (fun i => (i.item, "advisory"))
+
+/-- D127 witness: the register — three statutory items, two best-practice
+items. -/
+def scRegister : List DiscItem :=
+  [{ item := "conflict-mineral-report", kind := DiscKind.statutory },
+   { item := "forced-labor-disclosure", kind := DiscKind.statutory },
+   { item := "ghg-emissions", kind := DiscKind.statutory },
+   { item := "supplier-diversity", kind := DiscKind.bestPractice },
+   { item := "open-source-policy", kind := DiscKind.bestPractice }]
+
+/-- D127 adverse witness: the filing covers two of three statutory items
+plus both best-practice items — four done entries, yet the statutory
+gate fails; optional disclosures cannot compensate. -/
+def gapDone : List String :=
+  ["conflict-mineral-report", "forced-labor-disclosure",
+   "supplier-diversity", "open-source-policy"]
+
+def fullDone : List String :=
+  ["conflict-mineral-report", "forced-labor-disclosure", "ghg-emissions",
+   "supplier-diversity", "open-source-policy"]
+
+/-- D128 helper: one decision option with its explicit scores on the two
+declared value dimensions — privacy standing and efficiency standing
+(ℕ preference indices, not amounts). -/
+structure ValChoice where
+  name : String
+  privacy : ℕ
+  efficiency : ℕ
+  deriving DecidableEq
+
+/-- D128 helper: the score of an option on a named declared dimension. -/
+def scoreOn (c : ValChoice) (dim : String) : ℕ :=
+  if dim = "privacy" then c.privacy
+  else if dim = "efficiency" then c.efficiency
+  else 0
+
+/-- D128 helper: `a` is strictly better than `b` under the declared
+lexicographic order — the first declared dimension on which they differ
+decides. -/
+def betterUnder : List String → ValChoice → ValChoice → Bool
+  | [], _, _ => false
+  | d :: ds, a, b =>
+      if scoreOn a d > scoreOn b d then true
+      else if scoreOn b d > scoreOn a d then false
+      else betterUnder ds a b
+
+def nameNe (x y : String) : Bool := if x = y then false else true
+
+/-- D128 helper: does any option strictly beat `a` under the declared
+order. -/
+def beatsAny (order : List String) (opts : List ValChoice)
+    (a : ValChoice) : Bool :=
+  opts.any (fun b => nameNe b.name a.name && betterUnder order b a)
+
+/-- D128 helper: the decision under a declared order — an option that no
+other option strictly beats; with no declared order there is no
+decision (none). -/
+def decideBy (order : List String) (opts : List ValChoice) :
+    Option ValChoice :=
+  match order with
+  | [] => none
+  | _ :: _ =>
+      match (opts.filter (fun a => !beatsAny order opts a)) with
+      | winner :: _ => some winner
+      | [] => none
+
+/-- D128 helper: the kind of premise that may license a value-ordered
+decision — an explicitly declared value order, or a historical majority
+preference; only the first licenses decisions. -/
+inductive PremKind where
+  | declaredValue | majorityPreference
+  deriving DecidableEq
+
+structure ValPremise where
+  kind : PremKind
+  order : List String
+
+/-- D128 helper: decisions ride only on declared-value premises — a
+majority-preference premise yields no decision. -/
+def decideUnder (prem : ValPremise) (opts : List ValChoice) :
+    Option ValChoice :=
+  if prem.kind = PremKind.declaredValue then decideBy prem.order opts
+  else none
+
+/-- D128 witness: three disclosure options — a strict-privacy option, a
+fast option and a privacy-preserving efficient option. -/
+def valOpts : List ValChoice :=
+  [{ name := "full-privacy", privacy := 5, efficiency := 2 },
+   { name := "fast-track", privacy := 2, efficiency := 5 },
+   { name := "balanced-veil", privacy := 5, efficiency := 4 }]
+
+def privacyFirst : List String := ["privacy", "efficiency"]
+
+def efficiencyFirst : List String := ["efficiency", "privacy"]
+
+/-- D128 adverse witness: a historical majority preference (the rubric
+majority liked the fast track) — as a premise it licenses no decision. -/
+def majorityPrem : ValPremise where
+  kind := PremKind.majorityPreference
+  order := efficiencyFirst
+
+/-- D129 helper: one source of record with its declared support scope —
+the proposition ids it actually supports. -/
+structure SourceRec where
+  id : String
+  supports : List String
+
+/-- D129 helper: one report claim — the proposition, the cited source,
+the data rows, the declared operation, and the claimed number. -/
+structure ClaimRow where
+  prop : String
+  source : String
+  data : List ℚ
+  op : String
+  claimed : ℚ
+
+/-- D129 helper: the citation read-back — the cited id exists in the
+source registry. -/
+def citeOk (srcs : List SourceRec) (c : ClaimRow) : Bool :=
+  srcs.any (fun s => if s.id = c.source then true else false)
+
+/-- D129 helper: the support-scope check — the cited source's declared
+scope actually contains the proposition. -/
+def scopeOk (srcs : List SourceRec) (c : ClaimRow) : Bool :=
+  srcs.any (fun s =>
+    if s.id = c.source then (if strIn c.prop s.supports then true else false)
+    else false)
+
+/-- D129 helper: the numeric recomputation of the claimed value. -/
+def recompute (c : ClaimRow) : ℚ :=
+  if c.op = "sum" then c.data.foldl (fun acc x => acc + x) 0
+  else if c.op = "count" then (c.data.length : ℚ)
+  else 0
+
+/-- D129 helper: the verification verdict — an unresolved conflict
+touching the cited source holds the claim (never escalates); otherwise
+the claim verifies only with citation read-back and support scope. -/
+inductive ClaimVerdict where
+  | verified | failed | held
+  deriving DecidableEq
+
+def conflictTouches (conflicts : List (String × String)) (src : String) :
+    Bool :=
+  conflicts.any (fun k =>
+    if k.1 = src then true else (if k.2 = src then true else false))
+
+def claimVerdict (srcs : List SourceRec)
+    (conflicts : List (String × String)) (c : ClaimRow) : ClaimVerdict :=
+  if conflictTouches conflicts c.source = true then ClaimVerdict.held
+  else if (citeOk srcs c && scopeOk srcs c) = true then ClaimVerdict.verified
+  else ClaimVerdict.failed
+
+/-- D129 witness: the source registry — a damages table supporting the
+loss-total proposition, a docket index supporting the count
+proposition. -/
+def repSources : List SourceRec :=
+  [{ id := "damages-table-7", supports := ["total-loss"] },
+   { id := "docket-index-2026", supports := ["pending-count"] }]
+
+/-- D129 witness: the faithful claims — the numbers recompute and the
+propositions sit in the cited sources' scopes. -/
+def lossClaim : ClaimRow where
+  prop := "total-loss"
+  source := "damages-table-7"
+  data := [100, 250, 150]
+  op := "sum"
+  claimed := 500
+
+def countClaim : ClaimRow where
+  prop := "pending-count"
+  source := "docket-index-2026"
+  data := [1, 1, 1]
+  op := "count"
+  claimed := 3
+
+/-- D129 adverse witness: a real citation that does not support the
+proposition — the docket index cited for the loss total. -/
+def misusedCitation : ClaimRow where
+  prop := "total-loss"
+  source := "docket-index-2026"
+  data := [100, 250, 150]
+  op := "sum"
+  claimed := 500
+
+/-- D129 adverse witness: a hallucinated number on a right citation —
+the same source and proposition, the claimed value inflated. -/
+def inflatedClaim : ClaimRow where
+  prop := "total-loss"
+  source := "damages-table-7"
+  data := [100, 250, 150]
+  op := "sum"
+  claimed := 600
+
+/-- D129 witness: an unresolved authenticity conflict on the damages
+table. -/
+def tableConflict : List (String × String) :=
+  [("damages-table-7", "affidavit-9")]
+
+/-- D130 helper: one scenario-tagged conclusion — the scenario label (κ,
+fact assumption or interpretation) and the conclusion reached under it. -/
+structure ScenConc where
+  scenario : String
+  conclusion : String
+
+/-- D130 helper: every conclusion of `cs` carries scenario `s`. -/
+def allSameScen (s : String) : List ScenConc → Bool
+  | [] => true
+  | c :: cs => if c.scenario = s then allSameScen s cs else false
+
+/-- D130 helper: assembling a witness — conclusions from a single
+scenario assemble into a conditional witness carrying that label;
+conclusions from different scenarios are rejected outright. -/
+inductive AssembleOut where
+  | conditional (scen : String)
+  | rejected
+  deriving DecidableEq
+
+def assemble (cs : List ScenConc) : AssembleOut :=
+  match cs with
+  | [] => AssembleOut.rejected
+  | c :: rest =>
+      if allSameScen c.scenario (c :: rest) then
+        AssembleOut.conditional c.scenario
+      else AssembleOut.rejected
+
+/-- D130 witness: two conclusions under κ1 alone assemble
+conditionally. -/
+def kappa1Only : List ScenConc :=
+  [{ scenario := "kappa-1", conclusion := "motion-to-dismiss-denied" },
+   { scenario := "kappa-1", conclusion := "liability-found" }]
+
+/-- D130 adverse witness: the favorable conclusions cherry-picked from
+two mutually exclusive scenarios — rejected, no unconditional witness. -/
+def cherryPicked : List ScenConc :=
+  [{ scenario := "kappa-1", conclusion := "liability-found" },
+   { scenario := "kappa-2", conclusion := "damages-maximized" }]
+
+/-- D131 helper: the provision types inside a selected statute fragment —
+a private-action pathway, a substantive right, a bare prohibition. -/
+inductive ProvKind where
+  | privateAction | substantiveRight | prohibition
+  deriving DecidableEq
+
+structure Provision where
+  cite : String
+  kind : ProvKind
+
+def kindIs (p : Provision) (k : ProvKind) : Bool :=
+  if p.kind = k then true else false
+
+/-- D131 helper: the provisions of the fragment of one kind. -/
+def provOf (frags : List Provision) (k : ProvKind) : List Provision :=
+  frags.filter (fun p => kindIs p k)
+
+/-- D131 helper: the private-action determination — made only inside the
+selected fragment: some provision of the fragment is a private-action
+pathway. -/
+def hasPrivAction (frags : List Provision) : Bool :=
+  !(provOf frags ProvKind.privateAction).isEmpty
+
+/-- D131 adverse witness: a prohibition-only fragment — no private
+action follows. -/
+def prohibitionFragment : List Provision :=
+  [{ cite := "§5(a)(1)", kind := ProvKind.prohibition }]
+
+/-- D131 adverse witness: prohibition plus substantive rights — still no
+private-action pathway. -/
+def rightPlusBanFragment : List Provision :=
+  [{ cite := "§5(a)(1)", kind := ProvKind.prohibition },
+   { cite := "§4(b)", kind := ProvKind.substantiveRight }]
+
+/-- D131 witness: a fragment with an explicit private-action pathway
+beside its substantive right — separately identified. -/
+def privActionFragment : List Provision :=
+  [{ cite := "§4(b)", kind := ProvKind.substantiveRight },
+   { cite := "§4(c)", kind := ProvKind.privateAction }]
+
+/-- D132 helper: one holding candidate — a core holding or a dictum, its
+issue key, and its salient words. -/
+structure HoldingCand where
+  id : String
+  isHolding : Bool
+  issueKey : String
+  words : List String
+
+/-- D132 helper: keyword similarity — the candidate shares at least one
+salient word with the question. -/
+def keywordSimilar (qwords : List String) (c : HoldingCand) : Bool :=
+  c.words.any (fun w => strIn w qwords)
+
+/-- D132 helper: the match certificate — the matched candidate, the
+question it answers, and a transferable flag that stays false (transfer
+to a new case needs its own relevance proof). -/
+structure MatchCert where
+  cand : String
+  question : String
+  transferable : Bool
+  deriving DecidableEq
+
+/-- D132 helper: holding matching under the given candidates and question
+semantics — only a core holding whose issue key matches the question's
+keys and whose words overlap counts; a dictum never matches however
+similar its words. -/
+def holdingMatch (question : String) (qkeys : List String)
+    (qwords : List String) (cands : List HoldingCand) : Option MatchCert :=
+  match cands.filter (fun c =>
+    c.isHolding && strIn c.issueKey qkeys && keywordSimilar qwords c) with
+  | [] => none
+  | c :: _ => some { cand := c.id, question := question,
+                     transferable := false }
+
+/-- D132 witness: the question — preemption of state-law claims. -/
+def scqQuestion : String := "is the state-law claim preempted"
+
+def scqKeys : List String := ["federal-preemption"]
+
+def scqWords : List String := ["preempt", "state-law", "federal"]
+
+/-- D132 witness: the core holding with the matching issue key. -/
+def coreHolding : HoldingCand where
+  id := "holding-preemption"
+  isHolding := true
+  issueKey := "federal-preemption"
+  words := ["preempt", "federal", "scheme"]
+
+/-- D132 adverse witness: a keyword-similar dictum — same salient words,
+wrong status (a dictum), so it never substitutes for the core holding. -/
+def similarDictum : HoldingCand where
+  id := "dictum-preemption-aside"
+  isHolding := false
+  issueKey := "federal-preemption"
+  words := ["preempt", "state-law", "aside"]
+
+def holdingPool : List HoldingCand := [coreHolding, similarDictum]
+
+def dictumOnly : List HoldingCand := [similarDictum]
+
+/-- D133 helper: one independently annotated plaintiff mention — the
+person key and the character span of the mention in the segment. -/
+structure Mention where
+  person : String
+  st : ℕ
+  en : ℕ
+
+/-- D133 helper: the segment under extraction — its length and the
+annotated mentions. -/
+structure ExSegment where
+  len : ℕ
+  mentions : List Mention
+
+/-- D133 helper: a mention's span is valid — nonempty and inside the
+segment. -/
+def spanOk (seg : ExSegment) (m : Mention) : Bool :=
+  Nat.ble m.st m.en && Nat.ble m.en seg.len
+
+/-- D133 helper: the plaintiff extraction — exactly the persons whose
+annotated mentions carry valid spans; each person stays a separate key. -/
+def plaintiffsOf (seg : ExSegment) : List String :=
+  (seg.mentions.filter (fun m => spanOk seg m)).map Mention.person
+
+/-- D133 witness: the class-action segment — two co-plaintiffs, each
+with her own annotated span. -/
+def sslaSegment : ExSegment where
+  len := 120
+  mentions :=
+    [{ person := "Alice Chen", st := 14, en := 24 },
+     { person := "Bob Diaz", st := 60, en := 67 }]
+
+/-- D133 adverse witness: the merged-name row — "Alice Chen and Bob Diaz"
+as one key is not an annotated person and never enters the extraction. -/
+def mergedName : String := "Alice Chen and Bob Diaz"
+
+/-- D133 adverse witness: a span running past the segment end (en > len)
+— the annotation is excluded from the extraction. -/
+def ghostSegment : ExSegment where
+  len := 10
+  mentions := [{ person := "Ghost", st := 8, en := 12 }]
+
+/-- D134 helper: the argument-evidence text classes — statistical
+evidence, direct evidence, or neither. -/
+inductive EvClass where
+  | statistical | directEvidence | neither
+  deriving DecidableEq
+
+/-- D134 helper: the text classification of one passage by its evidence
+markers — statistical hits vs direct-evidence hits (ℕ marker counts). -/
+def classifyHits (statHits directHits : ℕ) : EvClass :=
+  if 0 < statHits && statHits > directHits then EvClass.statistical
+  else if 0 < directHits && directHits > statHits then EvClass.directEvidence
+  else EvClass.neither
+
+/-- D134 helper: a do-effect (interventional causal-effect) conclusion —
+requires an identification witness of its own type. -/
+structure DoEffect where
+  eff : ℚ
+  ident : String
+
+/-- D134 helper: the classification-to-causation bridge — structurally
+absent: no text classification generates a do-effect conclusion. -/
+def doFromEvidence : EvClass → Option DoEffect :=
+  fun _ => none
+
+/-- D134 witness: the discrimination brief's marker profiles — a
+statistical passage, a direct-evidence passage, and an off-topic tie. -/
+def statPassage : ℕ × ℕ := (3, 0)
+
+def directPassage : ℕ × ℕ := (0, 2)
+
+def mixedOffTopic : ℕ × ℕ := (1, 1)
+
+/-- D124 专业利益冲突是否被识别并在批准中给出保障措施（反例：只生成董
+事会批准草稿就自动消除实际利益冲突）：利益关系图触发已登记的冲突与处
+置义务——触发的义务对恰来自登记规则且触发关系确实出现在图中；豁免或
+批准需适当权限——草稿对一切冲突不消除（草稿≠批准），不可豁免冲突哪怕
+伦理委员会也不消除，可豁免冲突仅伦理委员会消除（管理合伙人权限不
+足）；见证——concurrent-client 边触发 disclose-and-screen 义务。 -/
+def demand_D124 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S) ∧
+  ((∀ (edges : List IntEdge) (rules : List ConRule) (tr duty : String),
+      (tr, duty) ∈ ethDuties edges rules →
+        ethKindIn tr edges = true ∧
+          ∃ r : ConRule, r ∈ rules ∧ r.trigger = tr ∧ r.duty = duty) ∧
+   (∀ (r : ConRule), ethCleared r ApprovalState.draft = false) ∧
+   (ethDuties matterEdges ethRegistry =
+      [("concurrent-client", "disclose-and-screen")] ∧
+    ethCleared { trigger := "concurrent-client",
+                 duty := "disclose-and-screen", waivable := false }
+        (ApprovalState.granted AuthLevel.ethicsPanel) = false) ∧
+   (ethCleared { trigger := "former-client",
+                 duty := "disclose-and-obtain-waiver", waivable := true }
+        (ApprovalState.granted AuthLevel.managingPartner) = false ∧
+    ethCleared { trigger := "former-client",
+                 duty := "disclose-and-obtain-waiver", waivable := true }
+        (ApprovalState.granted AuthLevel.ethicsPanel) = true))
+
+/-- D125 回答是否体现偏见、歧视或不当的法律伦理判断（反例：移除敏感属
+性但代理变量仍泄露，不得声称已证明公平）：可指定的反事实输入不变性与
+群体风险指标分别检验——不变性检查全称成立当且仅当翻转保护属性逐行保
+持输出；两项检查分立标注——单一标签证书不构成公平全概念；反例见证
+——代理键分类器通过不变性检查（从不读保护属性）而两组风险指标一个为
+1 一个为 0（代理泄露），不变性通过≠公平。 -/
+def demand_D125 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S) ∧
+  ((∀ (f : FairRow → Bool) (rows : List FairRow),
+      invariantUnder f rows = true →
+        ∀ r ∈ rows, f (flipProt r) = f r) ∧
+   (invariantUnder proxyKeyed leakRows = true ∧
+      groupRate proxyKeyed leakRows true = 1 ∧
+      groupRate proxyKeyed leakRows false = 0 ∧
+      ¬ (groupRate proxyKeyed leakRows true =
+         groupRate proxyKeyed leakRows false)) ∧
+   (fairnessAll leakCerts = false ∧
+      ∀ (t : FairTag), isInvTag t = true → isRiskTag t = false))
+
+/-- D126 隐私政策如何描述收集、使用、共享、保存与用户权利（反例：文本
+写“不共享”不能直接证明代码与运营从不共享）：隐私政策承诺、实际数据流
+与准许用途分开——合规判定只吃准许用途表与实际数据流，承诺文本账本根
+本不是判定的输入（任何承诺文本都翻转不了判定）；全称——过合规门的
+数据流的类别/目的对确实登记为准许用途；见证——准许的 service 流过
+门、未准许的 ad-partner 营销流不过门（哪怕政策写着 we never
+share）。 -/
+def demand_D126 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S) ∧
+  ((∀ (perms : List UsePerm) (flows : List DataFlow),
+      flowsOk perms flows = true →
+        ∀ f ∈ flows, ∃ p ∈ perms, p.category = f.category ∧
+          p.purpose = f.purpose) ∧
+   (flowsOk sitePerms [serviceFlow] = true) ∧
+   (flowsOk sitePerms [adFlow] = false ∧
+      ∀ (p : PolicyPromise), flowsOk sitePerms [adFlow] = false))
+
+/-- D127 供应链披露是否包含规定项目，与最佳实践是否区分（反例：遗漏法
+定项目却用更多可选披露补分，不算满足）：法定必需披露集合逐项覆盖
+——过覆盖门当且仅当每个法定条目都在完成清单里；反例见证——三法定条
+目只完成两条加两条最佳实践（四条完成记录）仍不过门，可选披露补不了法
+定缺口；全法定完成才过门；最佳实践保持建议类型——建议读出全部带
+advisory 标注。 -/
+def demand_D127 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S) ∧
+  ((∀ (items : List DiscItem) (done : List String),
+      statCovered items done = true →
+        ∀ i ∈ items, i.kind = DiscKind.statutory →
+          strIn i.item done = true) ∧
+   (statCovered scRegister gapDone = false ∧ gapDone.length = 4 ∧
+      statCovered scRegister fullDone = true) ∧
+   (∀ (items : List DiscItem) (done : List String) (p : String × String),
+      p ∈ advisoryDone items done → p.2 = "advisory"))
+
+/-- D128 法律与道德、社会影响问题能否给出符合题目要求的判断（反例：把
+评分rubric或历史多数偏好当规范真理）：可形式化的是明示价值序/约束下
+的决策与敏感性——决策随声明的价值序走（privacy 优先选出
+balanced-veil、efficiency 优先选出 fast-track，两序不同结论不同＝敏
+感性见证）；不从事实推出价值——无声明序则无决策（none），历史多数偏
+好作为前提同样不产生决策（类型分立，多数偏好≠声明的价值前提）；全称
+——任何决策输出都落在声明选项集内。 -/
+def demand_D128 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S) ∧
+  ((decideUnder { kind := PremKind.declaredValue, order := privacyFirst }
+        valOpts =
+      some { name := "balanced-veil", privacy := 5, efficiency := 4 } ∧
+    decideUnder { kind := PremKind.declaredValue, order := efficiencyFirst }
+        valOpts =
+      some { name := "fast-track", privacy := 2, efficiency := 5 } ∧
+    (decideUnder { kind := PremKind.declaredValue,
+                   order := privacyFirst } valOpts).map ValChoice.name ≠
+      (decideUnder { kind := PremKind.declaredValue,
+                     order := efficiencyFirst } valOpts).map ValChoice.name) ∧
+   (decideBy ([] : List String) valOpts = none ∧
+      decideUnder majorityPrem valOpts = none) ∧
+   (∀ (order : List String) (opts : List ValChoice) (o : ValChoice),
+      decideBy order opts = some o → o ∈ opts))
+
+/-- D129 引文、事实和数值是否有据，是否有幻觉或相关但误用的信息（反
+例：引用真实但不支持该命题仍应失败）：引文回读、数值重算、支持范围与
+声明逐项绑定——过验证门的断言其引文确实登记且命题确实落在该源的支
+持范围内；数值重算——忠实声明的数值重算相等（sum 500、count 3），灌
+水数值（600）重算不等即失败；反例见证——docket-index 真实存在但不
+支持 total-loss，判定 failed；冲突未决不升级——damages-table 上的未
+决真实性冲突使引用它的断言 held（既不 verified 也不升级），冲突消解
+后才 verified。 -/
+def demand_D129 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S) ∧
+  ((∀ (srcs : List SourceRec) (conflicts : List (String × String))
+      (c : ClaimRow),
+      claimVerdict srcs conflicts c = ClaimVerdict.verified →
+        citeOk srcs c = true ∧ scopeOk srcs c = true) ∧
+   (recompute lossClaim = 500 ∧ lossClaim.claimed = 500 ∧
+      recompute inflatedClaim = 500 ∧
+      ¬ (recompute inflatedClaim = inflatedClaim.claimed) ∧
+      recompute countClaim = 3 ∧ countClaim.claimed = 3) ∧
+   (citeOk repSources misusedCitation = true ∧
+      scopeOk repSources misusedCitation = false ∧
+      claimVerdict repSources ([] : List (String × String)) misusedCitation =
+        ClaimVerdict.failed) ∧
+   (claimVerdict repSources tableConflict lossClaim = ClaimVerdict.held ∧
+      ¬ (claimVerdict repSources tableConflict lossClaim =
+         ClaimVerdict.verified) ∧
+      claimVerdict repSources ([] : List (String × String)) lossClaim =
+        ClaimVerdict.verified))
+
+/-- D130 不同事实、规则、法域及假设的结论是否被不当混成单一确定答案
+（反例：从互斥分支各取有利结论合并必须拒绝）：不同κ、事实假设或解释
+的结果不得组成一个无条件见证——装配器只产条件见证（带单一场景标签）
+或拒绝，无无条件形态；全称——装成条件见证则每条结论都带同一场景标
+签；反例见证——κ1 下的两条结论装配为 conditional kappa-1，而跨 κ1/
+κ2 各取一条有利结论（liability-found＋damages-maximized）被拒
+绝。 -/
+def demand_D130 : Prop :=
+  (∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S) ∧
+  ((∀ (cs : List ScenConc) (s : String),
+      assemble cs = AssembleOut.conditional s →
+        ∀ c ∈ cs, c.scenario = s) ∧
+   (assemble kappa1Only = AssembleOut.conditional "kappa-1" ∧
+      assemble cherryPicked = AssembleOut.rejected))
+
+/-- D131 法条是否明文赋予私人起诉实施权利的途径（反例：存在禁止性条文
+不自动推出任何私人可起诉）：规定的私人起诉途径/权限与实体权利分别标
+识——途径查找与权利查找的成员互斥（一个条文不会同时是途径与权利，
+类型分立）；并在选择法片段内判定——全称——判定为有私人起诉途径当
+且仅当片段内存在 privateAction 条文（不从片段外推断）；反例见证
+——仅禁止条文的片段判定无途径，禁止＋实体权利的片段同样无途径，含
+§4(c) 明文途径的片段才判定有。 -/
+def demand_D131 : Prop :=
+  (∀ {S : Type} [Fintype S] [DecidableEq S] (p : S → ℚ) (e : S → Bool), condition p e = .incompatible ↔ ¬ (0 < evMass p e)) ∧
+  ((∀ (frags : List Provision), hasPrivAction frags = true →
+      ∃ p ∈ frags, p.kind = ProvKind.privateAction) ∧
+   (∀ (frags : List Provision) (p : Provision),
+      p ∈ provOf frags ProvKind.privateAction →
+        p ∉ provOf frags ProvKind.substantiveRight) ∧
+   (hasPrivAction prohibitionFragment = false ∧
+      hasPrivAction rightPlusBanFragment = false ∧
+      hasPrivAction privActionFragment = true))
+
+/-- D132 最高法院审理问题应对应哪一个核心裁判要旨，而非相近措辞（反
+例：关键词相似的旁论不能替代核心裁判要旨）：holding匹配在给定候选与
+问题语义下检查——全称——任何匹配证书的候选都确实是核心要旨
+（isHolding）且问题键在范围内且关键词确有重叠；类案迁移另证——匹配
+证书恒不可迁移（transferable=false，迁移需要自己的相关性证明）；见
+证——holding 池中核心要旨被配上不可迁移证书，而只含关键词相似旁论
+的候选池匹配不出任何证书。 -/
+def demand_D132 : Prop :=
+  (∀ {S : Type} [Fintype S] [DecidableEq S] (p : S → ℚ) (e : S → Bool), condition p e = .incompatible ↔ ¬ (0 < evMass p e)) ∧
+  ((∀ (question : String) (qkeys qwords : List String)
+      (cands : List HoldingCand) (cert : MatchCert),
+      holdingMatch question qkeys qwords cands = some cert →
+        ∃ c ∈ cands, cert.cand = c.id ∧ c.isHolding = true ∧
+          strIn c.issueKey qkeys = true ∧
+          keywordSimilar qwords c = true) ∧
+   (∀ (question : String) (qkeys qwords : List String)
+      (cands : List HoldingCand) (cert : MatchCert),
+      holdingMatch question qkeys qwords cands = some cert →
+        cert.transferable = false) ∧
+   (holdingMatch scqQuestion scqKeys scqWords holdingPool =
+      some { cand := "holding-preemption",
+             question := "is the state-law claim preempted",
+             transferable := false } ∧
+    holdingMatch scqQuestion scqKeys scqWords dictumOnly = none))
+
+/-- D133 证券集体诉讼片段是否载明原告；有多人时是否全部抽取（反例：首
+个名字抽对不等于全体原告齐全）：片段原告提及集合完整抽取需独立跨度标
+注——全称——抽出的每个原告都有带合法跨度的独立标注（跨度在段内且非
+空）；见证——两位共同原告 Alice Chen 与 Bob Diaz 各带自己的跨度被分
+别抽出（只抽对首个名字不等于齐全：单名字表≠完整抽取）；多主体键不
+合并——合并名"Alice Chen and Bob Diaz"不是标注过的主体键，永不入抽
+取；越界跨度的标注（Ghost，en>len）被排除。 -/
+def demand_D133 : Prop :=
+  (∀ {S : Type} [Fintype S] [DecidableEq S] (p : S → ℚ) (e : S → Bool), condition p e = .incompatible ↔ ¬ (0 < evMass p e)) ∧
+  ((∀ (seg : ExSegment) (n : String), n ∈ plaintiffsOf seg →
+      ∃ m ∈ seg.mentions, m.person = n ∧ spanOk seg m = true) ∧
+      (plaintiffsOf sslaSegment = ["Alice Chen", "Bob Diaz"] ∧
+      ¬ (mergedName ∈ plaintiffsOf sslaSegment) ∧
+      (["Alice Chen"] ≠ plaintiffsOf sslaSegment) ∧
+      (plaintiffsOf ghostSegment = ([] : List String))))
+
+/-- D134 劳动歧视案因果论证使用统计还是直接证据？这不是估计干预效果
+（反例：统计证据类别命中不意味着识别了个案因果效应）：输出“统计/直接
+证据使用”是文本分类——按标记命中数分类（统计型、直接证据型、皆非三
+型，见证 3/0、0/2、1/1）；不得自动生成do效果结论——分类→因果结论的
+桥结构性缺失：对一切分类标签 doFromEvidence 都是 none，统计型命中
+（3/0）也产不出任何 do-effect 结论记录。 -/
+def demand_D134 : Prop :=
+  (∀ {S : Type} [Fintype S] [DecidableEq S] (p : S → ℚ) (e : S → Bool), condition p e = .incompatible ↔ ¬ (0 < evMass p e)) ∧
+  ((classifyHits 3 0 = EvClass.statistical ∧
+      classifyHits 0 2 = EvClass.directEvidence ∧
+      classifyHits 1 1 = EvClass.neither) ∧
+   (∀ (c : EvClass), doFromEvidence c = none) ∧
+   (¬ ∃ (d : DoEffect), doFromEvidence (classifyHits 3 0) = some d))
 
 def gap_X01 : Prop := (∀ (data : List Row) r, r ∈ legalRows data → r.featT < r.labelT) ∧ (∀ (data : List Row) r1 r2, r1 ∈ legalRows data → r2 ∈ legalRows data → r1.cluster = r2.cluster → tagOf r1 = tagOf r2)
 

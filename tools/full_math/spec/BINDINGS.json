@@ -5673,28 +5673,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D124",
    "contract": "JurisLean.FullMath.Contracts.demand_D124",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Evidence.step_rules_mono's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-14/15 ethics, privacy, expression-reliability and US-law demand instance in the shared semantic framework: this item's own contract semantics over region-local ethics/US-law operational defs (authority-gated conflict clearance, separately certified fairness checks, promise/flow/permission separation, statutory coverage with advisory typing, declared-value-order decisions with sensitivity, item-wise citation support with conflict holding, scenario-tagged assembly, within-fragment private-action typing, non-transferable holding matches, span-backed plaintiff extraction, and statistical/direct text classification without a causation bridge) plus the group-registered component (Evidence.step_rules_mono for group 14, Probability.condition_incompatible_iff for group 15), with its adverse case executed as a negative test.",
+   "independent_semantics": "the interest-relation graph triggers the registered conflicts and their disposition obligations (every reported duty pair comes from a registered rule whose trigger kind occurs in the graph), and a waiver or approval clears a conflict only when granted by adequate authority — non-waivable conflicts are never cleared, waivable ones need the ethics panel, and a draft clears nothing: generating a board-approval draft does not auto-erase the actual conflict.",
+   "algorithm": "tools/full_math/implementation/ethics_ref.py conflict_clearance computes the intermediate result from structured input (the exact-ℚ Beta face unified.beta.beta_cdf_integer — the mirror of Seams/UnifiedBetaDomain.ratBernCdf — consumed by the D125 group-risk coverage and the D134 label confidence); ethics_check.check_D124 re-derives the contract independently with different code paths (index scans, decision tables, row counters, gate ladders, score-vector picks, label-set assembly, bound-checked walks, two-column tables) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (interest-relation edges and ethics registry rows with waiver flags and approval states, fairness audit rows with protected/proxy/case fields and certificates, privacy ledgers of promises, permissions and flows, disclosure registers with statutory/best-practice typing, value premises with declared orders and options with integer preference scores, source registries with support scopes, conflict pairs and claims with exact Fraction data, scenario-tagged conclusions, statute fragments with provision typing, holding candidates with status/keys/words, segments with annotated mention spans, and passage marker-hit counts); outputs are exactly the contract quantities (the triggered duties with the authority-gated clearance verdicts, the invariance verdict with the group rates and Beta coverage, the per-flow compliance verdicts, the statutory coverage with the advisory readout, the decision with the sensitivity and majority-rejection witnesses, the verified/failed/held verdicts with the recomputed numbers, the conditional/rejected assembly, the within-fragment pathway typing, the match certificate, the extracted plaintiff keys, and the classification labels with the absent causation bridge).",
+   "external_assumptions": "The applicable professional-conduct rules and non-waivable conflict classes, the fairness policy that declares which attributes must not influence which outputs and the representativeness of the audited rows, the actual data practices behind the privacy ledgers and the consent semantics of the permission table, the substantive truth and sufficiency of supply-chain disclosures, the authorization of the declared value orderings, the authenticity of cited sources and the resolution of conflicts, the mutual exclusivity of scenarios, the US-statute fragment semantics and holding typologies, the correctness of span annotations on new texts, and the classifier's real-world performance remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Evidence/Withdrawal.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/ethics_ref.py",
+    "tools/full_math/implementation/ethics_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D124]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_positive[D124]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_counterexample[D124]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_downstream_pipeline_consumes_ethics"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D124]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D124]"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_checker_rejects_tampered[D124]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Evidence.step_rules_mono"
+    "JurisLean.FullMath.Evidence.step_rules_mono",
+    "JurisLean.FullMath.Contracts.ethDuties",
+    "JurisLean.FullMath.Contracts.ethCleared"
    ]
   },
   {
@@ -5702,28 +5705,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D125",
    "contract": "JurisLean.FullMath.Contracts.demand_D125",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Evidence.step_rules_mono's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-14/15 ethics, privacy, expression-reliability and US-law demand instance in the shared semantic framework: this item's own contract semantics over region-local ethics/US-law operational defs (authority-gated conflict clearance, separately certified fairness checks, promise/flow/permission separation, statutory coverage with advisory typing, declared-value-order decisions with sensitivity, item-wise citation support with conflict holding, scenario-tagged assembly, within-fragment private-action typing, non-transferable holding matches, span-backed plaintiff extraction, and statistical/direct text classification without a causation bridge) plus the group-registered component (Evidence.step_rules_mono for group 14, Probability.condition_incompatible_iff for group 15), with its adverse case executed as a negative test.",
+   "independent_semantics": "the counterfactual invariance check and the group risk indicators are separate tests, separately certified (a certificate attests exactly one tag; the full-fairness claim needs both): the proxy-keyed witness passes invariance while the two groups' rates are 1 and 0, so invariance is not fairness — removing the sensitive attribute while a proxy leaks it cannot claim proven fairness; the group-risk indicators carry exact-ℚ Beta coverage through the unified mirror of ratBernCdf.",
+   "algorithm": "tools/full_math/implementation/ethics_ref.py fairness_checks computes the intermediate result from structured input (the exact-ℚ Beta face unified.beta.beta_cdf_integer — the mirror of Seams/UnifiedBetaDomain.ratBernCdf — consumed by the D125 group-risk coverage and the D134 label confidence); ethics_check.check_D125 re-derives the contract independently with different code paths (index scans, decision tables, row counters, gate ladders, score-vector picks, label-set assembly, bound-checked walks, two-column tables) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (interest-relation edges and ethics registry rows with waiver flags and approval states, fairness audit rows with protected/proxy/case fields and certificates, privacy ledgers of promises, permissions and flows, disclosure registers with statutory/best-practice typing, value premises with declared orders and options with integer preference scores, source registries with support scopes, conflict pairs and claims with exact Fraction data, scenario-tagged conclusions, statute fragments with provision typing, holding candidates with status/keys/words, segments with annotated mention spans, and passage marker-hit counts); outputs are exactly the contract quantities (the triggered duties with the authority-gated clearance verdicts, the invariance verdict with the group rates and Beta coverage, the per-flow compliance verdicts, the statutory coverage with the advisory readout, the decision with the sensitivity and majority-rejection witnesses, the verified/failed/held verdicts with the recomputed numbers, the conditional/rejected assembly, the within-fragment pathway typing, the match certificate, the extracted plaintiff keys, and the classification labels with the absent causation bridge).",
+   "external_assumptions": "The applicable professional-conduct rules and non-waivable conflict classes, the fairness policy that declares which attributes must not influence which outputs and the representativeness of the audited rows, the actual data practices behind the privacy ledgers and the consent semantics of the permission table, the substantive truth and sufficiency of supply-chain disclosures, the authorization of the declared value orderings, the authenticity of cited sources and the resolution of conflicts, the mutual exclusivity of scenarios, the US-statute fragment semantics and holding typologies, the correctness of span annotations on new texts, and the classifier's real-world performance remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Evidence/Withdrawal.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/ethics_ref.py",
+    "tools/full_math/implementation/ethics_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D125]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_positive[D125]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_counterexample[D125]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_downstream_pipeline_consumes_ethics"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D125]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D125]"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_checker_rejects_tampered[D125]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Evidence.step_rules_mono"
+    "JurisLean.FullMath.Evidence.step_rules_mono",
+    "JurisLean.FullMath.Contracts.invariantUnder",
+    "JurisLean.FullMath.Contracts.groupRate"
    ]
   },
   {
@@ -5731,28 +5737,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D126",
    "contract": "JurisLean.FullMath.Contracts.demand_D126",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Evidence.step_rules_mono's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-14/15 ethics, privacy, expression-reliability and US-law demand instance in the shared semantic framework: this item's own contract semantics over region-local ethics/US-law operational defs (authority-gated conflict clearance, separately certified fairness checks, promise/flow/permission separation, statutory coverage with advisory typing, declared-value-order decisions with sensitivity, item-wise citation support with conflict holding, scenario-tagged assembly, within-fragment private-action typing, non-transferable holding matches, span-backed plaintiff extraction, and statistical/direct text classification without a causation bridge) plus the group-registered component (Evidence.step_rules_mono for group 14, Probability.condition_incompatible_iff for group 15), with its adverse case executed as a negative test.",
+   "independent_semantics": "the privacy-policy promises, the actual data flows and the permitted uses stay separate: the compliance verdict is a function of the permission table and the flows only (any promise text leaves the verdict unchanged), a compliant flow's category/purpose pair is a registered permission, and the unpermitted ad-partner marketing flow fails even though the policy says 'we never share'.",
+   "algorithm": "tools/full_math/implementation/ethics_ref.py privacy_compliance computes the intermediate result from structured input (the exact-ℚ Beta face unified.beta.beta_cdf_integer — the mirror of Seams/UnifiedBetaDomain.ratBernCdf — consumed by the D125 group-risk coverage and the D134 label confidence); ethics_check.check_D126 re-derives the contract independently with different code paths (index scans, decision tables, row counters, gate ladders, score-vector picks, label-set assembly, bound-checked walks, two-column tables) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (interest-relation edges and ethics registry rows with waiver flags and approval states, fairness audit rows with protected/proxy/case fields and certificates, privacy ledgers of promises, permissions and flows, disclosure registers with statutory/best-practice typing, value premises with declared orders and options with integer preference scores, source registries with support scopes, conflict pairs and claims with exact Fraction data, scenario-tagged conclusions, statute fragments with provision typing, holding candidates with status/keys/words, segments with annotated mention spans, and passage marker-hit counts); outputs are exactly the contract quantities (the triggered duties with the authority-gated clearance verdicts, the invariance verdict with the group rates and Beta coverage, the per-flow compliance verdicts, the statutory coverage with the advisory readout, the decision with the sensitivity and majority-rejection witnesses, the verified/failed/held verdicts with the recomputed numbers, the conditional/rejected assembly, the within-fragment pathway typing, the match certificate, the extracted plaintiff keys, and the classification labels with the absent causation bridge).",
+   "external_assumptions": "The applicable professional-conduct rules and non-waivable conflict classes, the fairness policy that declares which attributes must not influence which outputs and the representativeness of the audited rows, the actual data practices behind the privacy ledgers and the consent semantics of the permission table, the substantive truth and sufficiency of supply-chain disclosures, the authorization of the declared value orderings, the authenticity of cited sources and the resolution of conflicts, the mutual exclusivity of scenarios, the US-statute fragment semantics and holding typologies, the correctness of span annotations on new texts, and the classifier's real-world performance remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Evidence/Withdrawal.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/ethics_ref.py",
+    "tools/full_math/implementation/ethics_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D126]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_positive[D126]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_counterexample[D126]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_downstream_pipeline_consumes_ethics"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D126]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D126]"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_checker_rejects_tampered[D126]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Evidence.step_rules_mono"
+    "JurisLean.FullMath.Evidence.step_rules_mono",
+    "JurisLean.FullMath.Contracts.flowOk",
+    "JurisLean.FullMath.Contracts.flowsOk"
    ]
   },
   {
@@ -5760,28 +5769,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D127",
    "contract": "JurisLean.FullMath.Contracts.demand_D127",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Evidence.step_rules_mono's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-14/15 ethics, privacy, expression-reliability and US-law demand instance in the shared semantic framework: this item's own contract semantics over region-local ethics/US-law operational defs (authority-gated conflict clearance, separately certified fairness checks, promise/flow/permission separation, statutory coverage with advisory typing, declared-value-order decisions with sensitivity, item-wise citation support with conflict holding, scenario-tagged assembly, within-fragment private-action typing, non-transferable holding matches, span-backed plaintiff extraction, and statistical/direct text classification without a causation bridge) plus the group-registered component (Evidence.step_rules_mono for group 14, Probability.condition_incompatible_iff for group 15), with its adverse case executed as a negative test.",
+   "independent_semantics": "the statutory-coverage gate checks every statutory item of the register (covered iff each is in the done list): two statutory plus two best-practice entries — four done — still fail the gate because optional disclosures cannot compensate a missing statutory item, and the best-practice readout stays advisory-typed.",
+   "algorithm": "tools/full_math/implementation/ethics_ref.py supply_chain_disclosure computes the intermediate result from structured input (the exact-ℚ Beta face unified.beta.beta_cdf_integer — the mirror of Seams/UnifiedBetaDomain.ratBernCdf — consumed by the D125 group-risk coverage and the D134 label confidence); ethics_check.check_D127 re-derives the contract independently with different code paths (index scans, decision tables, row counters, gate ladders, score-vector picks, label-set assembly, bound-checked walks, two-column tables) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (interest-relation edges and ethics registry rows with waiver flags and approval states, fairness audit rows with protected/proxy/case fields and certificates, privacy ledgers of promises, permissions and flows, disclosure registers with statutory/best-practice typing, value premises with declared orders and options with integer preference scores, source registries with support scopes, conflict pairs and claims with exact Fraction data, scenario-tagged conclusions, statute fragments with provision typing, holding candidates with status/keys/words, segments with annotated mention spans, and passage marker-hit counts); outputs are exactly the contract quantities (the triggered duties with the authority-gated clearance verdicts, the invariance verdict with the group rates and Beta coverage, the per-flow compliance verdicts, the statutory coverage with the advisory readout, the decision with the sensitivity and majority-rejection witnesses, the verified/failed/held verdicts with the recomputed numbers, the conditional/rejected assembly, the within-fragment pathway typing, the match certificate, the extracted plaintiff keys, and the classification labels with the absent causation bridge).",
+   "external_assumptions": "The applicable professional-conduct rules and non-waivable conflict classes, the fairness policy that declares which attributes must not influence which outputs and the representativeness of the audited rows, the actual data practices behind the privacy ledgers and the consent semantics of the permission table, the substantive truth and sufficiency of supply-chain disclosures, the authorization of the declared value orderings, the authenticity of cited sources and the resolution of conflicts, the mutual exclusivity of scenarios, the US-statute fragment semantics and holding typologies, the correctness of span annotations on new texts, and the classifier's real-world performance remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Evidence/Withdrawal.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/ethics_ref.py",
+    "tools/full_math/implementation/ethics_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D127]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_positive[D127]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_counterexample[D127]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_downstream_pipeline_consumes_ethics"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D127]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D127]"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_checker_rejects_tampered[D127]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Evidence.step_rules_mono"
+    "JurisLean.FullMath.Evidence.step_rules_mono",
+    "JurisLean.FullMath.Contracts.statCovered",
+    "JurisLean.FullMath.Contracts.advisoryDone"
    ]
   },
   {
@@ -5789,28 +5801,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D128",
    "contract": "JurisLean.FullMath.Contracts.demand_D128",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Evidence.step_rules_mono's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-14/15 ethics, privacy, expression-reliability and US-law demand instance in the shared semantic framework: this item's own contract semantics over region-local ethics/US-law operational defs (authority-gated conflict clearance, separately certified fairness checks, promise/flow/permission separation, statutory coverage with advisory typing, declared-value-order decisions with sensitivity, item-wise citation support with conflict holding, scenario-tagged assembly, within-fragment private-action typing, non-transferable holding matches, span-backed plaintiff extraction, and statistical/direct text classification without a causation bridge) plus the group-registered component (Evidence.step_rules_mono for group 14, Probability.condition_incompatible_iff for group 15), with its adverse case executed as a negative test.",
+   "independent_semantics": "the decision runs under the declared lexicographic value order (privacy-first picks balanced-veil, efficiency-first picks fast-track — the decision tracks the declared order, the sensitivity witness); with no declared order there is no decision, and a historical majority preference as a premise licenses nothing — values are not derived from facts.",
+   "algorithm": "tools/full_math/implementation/ethics_ref.py value_ordered_decision computes the intermediate result from structured input (the exact-ℚ Beta face unified.beta.beta_cdf_integer — the mirror of Seams/UnifiedBetaDomain.ratBernCdf — consumed by the D125 group-risk coverage and the D134 label confidence); ethics_check.check_D128 re-derives the contract independently with different code paths (index scans, decision tables, row counters, gate ladders, score-vector picks, label-set assembly, bound-checked walks, two-column tables) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (interest-relation edges and ethics registry rows with waiver flags and approval states, fairness audit rows with protected/proxy/case fields and certificates, privacy ledgers of promises, permissions and flows, disclosure registers with statutory/best-practice typing, value premises with declared orders and options with integer preference scores, source registries with support scopes, conflict pairs and claims with exact Fraction data, scenario-tagged conclusions, statute fragments with provision typing, holding candidates with status/keys/words, segments with annotated mention spans, and passage marker-hit counts); outputs are exactly the contract quantities (the triggered duties with the authority-gated clearance verdicts, the invariance verdict with the group rates and Beta coverage, the per-flow compliance verdicts, the statutory coverage with the advisory readout, the decision with the sensitivity and majority-rejection witnesses, the verified/failed/held verdicts with the recomputed numbers, the conditional/rejected assembly, the within-fragment pathway typing, the match certificate, the extracted plaintiff keys, and the classification labels with the absent causation bridge).",
+   "external_assumptions": "The applicable professional-conduct rules and non-waivable conflict classes, the fairness policy that declares which attributes must not influence which outputs and the representativeness of the audited rows, the actual data practices behind the privacy ledgers and the consent semantics of the permission table, the substantive truth and sufficiency of supply-chain disclosures, the authorization of the declared value orderings, the authenticity of cited sources and the resolution of conflicts, the mutual exclusivity of scenarios, the US-statute fragment semantics and holding typologies, the correctness of span annotations on new texts, and the classifier's real-world performance remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Evidence/Withdrawal.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/ethics_ref.py",
+    "tools/full_math/implementation/ethics_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D128]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_positive[D128]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_counterexample[D128]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_downstream_pipeline_consumes_ethics"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D128]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D128]"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_checker_rejects_tampered[D128]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Evidence.step_rules_mono"
+    "JurisLean.FullMath.Evidence.step_rules_mono",
+    "JurisLean.FullMath.Contracts.decideBy",
+    "JurisLean.FullMath.Contracts.decideUnder"
    ]
   },
   {
@@ -5818,28 +5833,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D129",
    "contract": "JurisLean.FullMath.Contracts.demand_D129",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Evidence.step_rules_mono's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-14/15 ethics, privacy, expression-reliability and US-law demand instance in the shared semantic framework: this item's own contract semantics over region-local ethics/US-law operational defs (authority-gated conflict clearance, separately certified fairness checks, promise/flow/permission separation, statutory coverage with advisory typing, declared-value-order decisions with sensitivity, item-wise citation support with conflict holding, scenario-tagged assembly, within-fragment private-action typing, non-transferable holding matches, span-backed plaintiff extraction, and statistical/direct text classification without a causation bridge) plus the group-registered component (Evidence.step_rules_mono for group 14, Probability.condition_incompatible_iff for group 15), with its adverse case executed as a negative test.",
+   "independent_semantics": "citation read-back, numeric recomputation and support scope bind to each claim item-wise; a real citation that does not support the proposition fails (the docket index cited for the loss total), an inflated number fails the exact recomputation, and an unresolved authenticity conflict holds the claim instead of escalating it to a verdict.",
+   "algorithm": "tools/full_math/implementation/ethics_ref.py citation_support computes the intermediate result from structured input (the exact-ℚ Beta face unified.beta.beta_cdf_integer — the mirror of Seams/UnifiedBetaDomain.ratBernCdf — consumed by the D125 group-risk coverage and the D134 label confidence); ethics_check.check_D129 re-derives the contract independently with different code paths (index scans, decision tables, row counters, gate ladders, score-vector picks, label-set assembly, bound-checked walks, two-column tables) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (interest-relation edges and ethics registry rows with waiver flags and approval states, fairness audit rows with protected/proxy/case fields and certificates, privacy ledgers of promises, permissions and flows, disclosure registers with statutory/best-practice typing, value premises with declared orders and options with integer preference scores, source registries with support scopes, conflict pairs and claims with exact Fraction data, scenario-tagged conclusions, statute fragments with provision typing, holding candidates with status/keys/words, segments with annotated mention spans, and passage marker-hit counts); outputs are exactly the contract quantities (the triggered duties with the authority-gated clearance verdicts, the invariance verdict with the group rates and Beta coverage, the per-flow compliance verdicts, the statutory coverage with the advisory readout, the decision with the sensitivity and majority-rejection witnesses, the verified/failed/held verdicts with the recomputed numbers, the conditional/rejected assembly, the within-fragment pathway typing, the match certificate, the extracted plaintiff keys, and the classification labels with the absent causation bridge).",
+   "external_assumptions": "The applicable professional-conduct rules and non-waivable conflict classes, the fairness policy that declares which attributes must not influence which outputs and the representativeness of the audited rows, the actual data practices behind the privacy ledgers and the consent semantics of the permission table, the substantive truth and sufficiency of supply-chain disclosures, the authorization of the declared value orderings, the authenticity of cited sources and the resolution of conflicts, the mutual exclusivity of scenarios, the US-statute fragment semantics and holding typologies, the correctness of span annotations on new texts, and the classifier's real-world performance remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Evidence/Withdrawal.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/ethics_ref.py",
+    "tools/full_math/implementation/ethics_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D129]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_positive[D129]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_counterexample[D129]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_downstream_pipeline_consumes_ethics"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D129]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D129]"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_checker_rejects_tampered[D129]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Evidence.step_rules_mono"
+    "JurisLean.FullMath.Evidence.step_rules_mono",
+    "JurisLean.FullMath.Contracts.claimVerdict",
+    "JurisLean.FullMath.Contracts.recompute"
    ]
   },
   {
@@ -5847,28 +5865,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D130",
    "contract": "JurisLean.FullMath.Contracts.demand_D130",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Evidence.step_rules_mono's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-14/15 ethics, privacy, expression-reliability and US-law demand instance in the shared semantic framework: this item's own contract semantics over region-local ethics/US-law operational defs (authority-gated conflict clearance, separately certified fairness checks, promise/flow/permission separation, statutory coverage with advisory typing, declared-value-order decisions with sensitivity, item-wise citation support with conflict holding, scenario-tagged assembly, within-fragment private-action typing, non-transferable holding matches, span-backed plaintiff extraction, and statistical/direct text classification without a causation bridge) plus the group-registered component (Evidence.step_rules_mono for group 14, Probability.condition_incompatible_iff for group 15), with its adverse case executed as a negative test.",
+   "independent_semantics": "conclusions from a single scenario assemble into a conditional witness carrying that label; conclusions cherry-picked from two mutually exclusive scenarios are rejected outright — no unconditional witness is ever produced.",
+   "algorithm": "tools/full_math/implementation/ethics_ref.py scenario_merge computes the intermediate result from structured input (the exact-ℚ Beta face unified.beta.beta_cdf_integer — the mirror of Seams/UnifiedBetaDomain.ratBernCdf — consumed by the D125 group-risk coverage and the D134 label confidence); ethics_check.check_D130 re-derives the contract independently with different code paths (index scans, decision tables, row counters, gate ladders, score-vector picks, label-set assembly, bound-checked walks, two-column tables) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (interest-relation edges and ethics registry rows with waiver flags and approval states, fairness audit rows with protected/proxy/case fields and certificates, privacy ledgers of promises, permissions and flows, disclosure registers with statutory/best-practice typing, value premises with declared orders and options with integer preference scores, source registries with support scopes, conflict pairs and claims with exact Fraction data, scenario-tagged conclusions, statute fragments with provision typing, holding candidates with status/keys/words, segments with annotated mention spans, and passage marker-hit counts); outputs are exactly the contract quantities (the triggered duties with the authority-gated clearance verdicts, the invariance verdict with the group rates and Beta coverage, the per-flow compliance verdicts, the statutory coverage with the advisory readout, the decision with the sensitivity and majority-rejection witnesses, the verified/failed/held verdicts with the recomputed numbers, the conditional/rejected assembly, the within-fragment pathway typing, the match certificate, the extracted plaintiff keys, and the classification labels with the absent causation bridge).",
+   "external_assumptions": "The applicable professional-conduct rules and non-waivable conflict classes, the fairness policy that declares which attributes must not influence which outputs and the representativeness of the audited rows, the actual data practices behind the privacy ledgers and the consent semantics of the permission table, the substantive truth and sufficiency of supply-chain disclosures, the authorization of the declared value orderings, the authenticity of cited sources and the resolution of conflicts, the mutual exclusivity of scenarios, the US-statute fragment semantics and holding typologies, the correctness of span annotations on new texts, and the classifier's real-world performance remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Evidence/Withdrawal.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/ethics_ref.py",
+    "tools/full_math/implementation/ethics_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D130]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_positive[D130]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_counterexample[D130]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_downstream_pipeline_consumes_ethics"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D130]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D130]"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_checker_rejects_tampered[D130]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Evidence.step_rules_mono"
+    "JurisLean.FullMath.Evidence.step_rules_mono",
+    "JurisLean.FullMath.Contracts.assemble",
+    "JurisLean.FullMath.Contracts.allSameScen"
    ]
   },
   {
@@ -5876,28 +5897,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D131",
    "contract": "JurisLean.FullMath.Contracts.demand_D131",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Probability.condition_incompatible_iff's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-14/15 ethics, privacy, expression-reliability and US-law demand instance in the shared semantic framework: this item's own contract semantics over region-local ethics/US-law operational defs (authority-gated conflict clearance, separately certified fairness checks, promise/flow/permission separation, statutory coverage with advisory typing, declared-value-order decisions with sensitivity, item-wise citation support with conflict holding, scenario-tagged assembly, within-fragment private-action typing, non-transferable holding matches, span-backed plaintiff extraction, and statistical/direct text classification without a causation bridge) plus the group-registered component (Evidence.step_rules_mono for group 14, Probability.condition_incompatible_iff for group 15), with its adverse case executed as a negative test.",
+   "independent_semantics": "the private-action pathway and the substantive rights inside the selected statute fragment are separately typed (a provision is never both), and the determination is made only within the fragment: a prohibition-only fragment, and a prohibition-plus-rights fragment, both yield 'no private action' — a prohibitory provision does not imply private actionability.",
+   "algorithm": "tools/full_math/implementation/ethics_ref.py private_action_scan computes the intermediate result from structured input (the exact-ℚ Beta face unified.beta.beta_cdf_integer — the mirror of Seams/UnifiedBetaDomain.ratBernCdf — consumed by the D125 group-risk coverage and the D134 label confidence); ethics_check.check_D131 re-derives the contract independently with different code paths (index scans, decision tables, row counters, gate ladders, score-vector picks, label-set assembly, bound-checked walks, two-column tables) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (interest-relation edges and ethics registry rows with waiver flags and approval states, fairness audit rows with protected/proxy/case fields and certificates, privacy ledgers of promises, permissions and flows, disclosure registers with statutory/best-practice typing, value premises with declared orders and options with integer preference scores, source registries with support scopes, conflict pairs and claims with exact Fraction data, scenario-tagged conclusions, statute fragments with provision typing, holding candidates with status/keys/words, segments with annotated mention spans, and passage marker-hit counts); outputs are exactly the contract quantities (the triggered duties with the authority-gated clearance verdicts, the invariance verdict with the group rates and Beta coverage, the per-flow compliance verdicts, the statutory coverage with the advisory readout, the decision with the sensitivity and majority-rejection witnesses, the verified/failed/held verdicts with the recomputed numbers, the conditional/rejected assembly, the within-fragment pathway typing, the match certificate, the extracted plaintiff keys, and the classification labels with the absent causation bridge).",
+   "external_assumptions": "The applicable professional-conduct rules and non-waivable conflict classes, the fairness policy that declares which attributes must not influence which outputs and the representativeness of the audited rows, the actual data practices behind the privacy ledgers and the consent semantics of the permission table, the substantive truth and sufficiency of supply-chain disclosures, the authorization of the declared value orderings, the authenticity of cited sources and the resolution of conflicts, the mutual exclusivity of scenarios, the US-statute fragment semantics and holding typologies, the correctness of span annotations on new texts, and the classifier's real-world performance remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Probability/Conditioning.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/ethics_ref.py",
+    "tools/full_math/implementation/ethics_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D131]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_positive[D131]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_counterexample[D131]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_downstream_pipeline_consumes_ethics"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D131]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D131]"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_checker_rejects_tampered[D131]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Probability.condition_incompatible_iff"
+    "JurisLean.FullMath.Probability.condition_incompatible_iff",
+    "JurisLean.FullMath.Contracts.provOf",
+    "JurisLean.FullMath.Contracts.hasPrivAction"
    ]
   },
   {
@@ -5905,28 +5929,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D132",
    "contract": "JurisLean.FullMath.Contracts.demand_D132",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Probability.condition_incompatible_iff's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-14/15 ethics, privacy, expression-reliability and US-law demand instance in the shared semantic framework: this item's own contract semantics over region-local ethics/US-law operational defs (authority-gated conflict clearance, separately certified fairness checks, promise/flow/permission separation, statutory coverage with advisory typing, declared-value-order decisions with sensitivity, item-wise citation support with conflict holding, scenario-tagged assembly, within-fragment private-action typing, non-transferable holding matches, span-backed plaintiff extraction, and statistical/direct text classification without a causation bridge) plus the group-registered component (Evidence.step_rules_mono for group 14, Probability.condition_incompatible_iff for group 15), with its adverse case executed as a negative test.",
+   "independent_semantics": "a holding match requires the candidate to be a core holding with the question's issue key and real keyword overlap; a keyword-similar dictum never substitutes, and every match certificate stays non-transferable (transfer to a new case needs its own relevance proof).",
+   "algorithm": "tools/full_math/implementation/ethics_ref.py holding_match_entry computes the intermediate result from structured input (the exact-ℚ Beta face unified.beta.beta_cdf_integer — the mirror of Seams/UnifiedBetaDomain.ratBernCdf — consumed by the D125 group-risk coverage and the D134 label confidence); ethics_check.check_D132 re-derives the contract independently with different code paths (index scans, decision tables, row counters, gate ladders, score-vector picks, label-set assembly, bound-checked walks, two-column tables) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (interest-relation edges and ethics registry rows with waiver flags and approval states, fairness audit rows with protected/proxy/case fields and certificates, privacy ledgers of promises, permissions and flows, disclosure registers with statutory/best-practice typing, value premises with declared orders and options with integer preference scores, source registries with support scopes, conflict pairs and claims with exact Fraction data, scenario-tagged conclusions, statute fragments with provision typing, holding candidates with status/keys/words, segments with annotated mention spans, and passage marker-hit counts); outputs are exactly the contract quantities (the triggered duties with the authority-gated clearance verdicts, the invariance verdict with the group rates and Beta coverage, the per-flow compliance verdicts, the statutory coverage with the advisory readout, the decision with the sensitivity and majority-rejection witnesses, the verified/failed/held verdicts with the recomputed numbers, the conditional/rejected assembly, the within-fragment pathway typing, the match certificate, the extracted plaintiff keys, and the classification labels with the absent causation bridge).",
+   "external_assumptions": "The applicable professional-conduct rules and non-waivable conflict classes, the fairness policy that declares which attributes must not influence which outputs and the representativeness of the audited rows, the actual data practices behind the privacy ledgers and the consent semantics of the permission table, the substantive truth and sufficiency of supply-chain disclosures, the authorization of the declared value orderings, the authenticity of cited sources and the resolution of conflicts, the mutual exclusivity of scenarios, the US-statute fragment semantics and holding typologies, the correctness of span annotations on new texts, and the classifier's real-world performance remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Probability/Conditioning.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/ethics_ref.py",
+    "tools/full_math/implementation/ethics_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D132]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_positive[D132]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_counterexample[D132]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_downstream_pipeline_consumes_ethics"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D132]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D132]"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_checker_rejects_tampered[D132]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Probability.condition_incompatible_iff"
+    "JurisLean.FullMath.Probability.condition_incompatible_iff",
+    "JurisLean.FullMath.Contracts.holdingMatch",
+    "JurisLean.FullMath.Contracts.keywordSimilar"
    ]
   },
   {
@@ -5934,28 +5961,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D133",
    "contract": "JurisLean.FullMath.Contracts.demand_D133",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Probability.condition_incompatible_iff's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-14/15 ethics, privacy, expression-reliability and US-law demand instance in the shared semantic framework: this item's own contract semantics over region-local ethics/US-law operational defs (authority-gated conflict clearance, separately certified fairness checks, promise/flow/permission separation, statutory coverage with advisory typing, declared-value-order decisions with sensitivity, item-wise citation support with conflict holding, scenario-tagged assembly, within-fragment private-action typing, non-transferable holding matches, span-backed plaintiff extraction, and statistical/direct text classification without a causation bridge) plus the group-registered component (Evidence.step_rules_mono for group 14, Probability.condition_incompatible_iff for group 15), with its adverse case executed as a negative test.",
+   "independent_semantics": "every extracted plaintiff is backed by an independently annotated valid span (start ≤ end ≤ segment length); the two co-plaintiffs are extracted as separate keys, the merged name never enters, and an out-of-segment span is excluded — the first name alone is not the full plaintiff set.",
+   "algorithm": "tools/full_math/implementation/ethics_ref.py plaintiff_extraction computes the intermediate result from structured input (the exact-ℚ Beta face unified.beta.beta_cdf_integer — the mirror of Seams/UnifiedBetaDomain.ratBernCdf — consumed by the D125 group-risk coverage and the D134 label confidence); ethics_check.check_D133 re-derives the contract independently with different code paths (index scans, decision tables, row counters, gate ladders, score-vector picks, label-set assembly, bound-checked walks, two-column tables) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (interest-relation edges and ethics registry rows with waiver flags and approval states, fairness audit rows with protected/proxy/case fields and certificates, privacy ledgers of promises, permissions and flows, disclosure registers with statutory/best-practice typing, value premises with declared orders and options with integer preference scores, source registries with support scopes, conflict pairs and claims with exact Fraction data, scenario-tagged conclusions, statute fragments with provision typing, holding candidates with status/keys/words, segments with annotated mention spans, and passage marker-hit counts); outputs are exactly the contract quantities (the triggered duties with the authority-gated clearance verdicts, the invariance verdict with the group rates and Beta coverage, the per-flow compliance verdicts, the statutory coverage with the advisory readout, the decision with the sensitivity and majority-rejection witnesses, the verified/failed/held verdicts with the recomputed numbers, the conditional/rejected assembly, the within-fragment pathway typing, the match certificate, the extracted plaintiff keys, and the classification labels with the absent causation bridge).",
+   "external_assumptions": "The applicable professional-conduct rules and non-waivable conflict classes, the fairness policy that declares which attributes must not influence which outputs and the representativeness of the audited rows, the actual data practices behind the privacy ledgers and the consent semantics of the permission table, the substantive truth and sufficiency of supply-chain disclosures, the authorization of the declared value orderings, the authenticity of cited sources and the resolution of conflicts, the mutual exclusivity of scenarios, the US-statute fragment semantics and holding typologies, the correctness of span annotations on new texts, and the classifier's real-world performance remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Probability/Conditioning.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/ethics_ref.py",
+    "tools/full_math/implementation/ethics_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D133]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_positive[D133]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_counterexample[D133]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_downstream_pipeline_consumes_ethics"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D133]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D133]"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_checker_rejects_tampered[D133]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Probability.condition_incompatible_iff"
+    "JurisLean.FullMath.Probability.condition_incompatible_iff",
+    "JurisLean.FullMath.Contracts.plaintiffsOf",
+    "JurisLean.FullMath.Contracts.spanOk"
    ]
   },
   {
@@ -5963,28 +5993,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D134",
    "contract": "JurisLean.FullMath.Contracts.demand_D134",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Probability.condition_incompatible_iff's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-14/15 ethics, privacy, expression-reliability and US-law demand instance in the shared semantic framework: this item's own contract semantics over region-local ethics/US-law operational defs (authority-gated conflict clearance, separately certified fairness checks, promise/flow/permission separation, statutory coverage with advisory typing, declared-value-order decisions with sensitivity, item-wise citation support with conflict holding, scenario-tagged assembly, within-fragment private-action typing, non-transferable holding matches, span-backed plaintiff extraction, and statistical/direct text classification without a causation bridge) plus the group-registered component (Evidence.step_rules_mono for group 14, Probability.condition_incompatible_iff for group 15), with its adverse case executed as a negative test.",
+   "independent_semantics": "the output is the text classification (statistical / direct evidence / neither) by marker hits; the classification-to-causation bridge is structurally absent — no do-effect conclusion is generated for any label, and the statistical-evidence category hit does not identify an individual causal effect; the statistical label confidence is an exact-ℚ Beta computation through the unified mirror of ratBernCdf.",
+   "algorithm": "tools/full_math/implementation/ethics_ref.py evidence_classification computes the intermediate result from structured input (the exact-ℚ Beta face unified.beta.beta_cdf_integer — the mirror of Seams/UnifiedBetaDomain.ratBernCdf — consumed by the D125 group-risk coverage and the D134 label confidence); ethics_check.check_D134 re-derives the contract independently with different code paths (index scans, decision tables, row counters, gate ladders, score-vector picks, label-set assembly, bound-checked walks, two-column tables) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (interest-relation edges and ethics registry rows with waiver flags and approval states, fairness audit rows with protected/proxy/case fields and certificates, privacy ledgers of promises, permissions and flows, disclosure registers with statutory/best-practice typing, value premises with declared orders and options with integer preference scores, source registries with support scopes, conflict pairs and claims with exact Fraction data, scenario-tagged conclusions, statute fragments with provision typing, holding candidates with status/keys/words, segments with annotated mention spans, and passage marker-hit counts); outputs are exactly the contract quantities (the triggered duties with the authority-gated clearance verdicts, the invariance verdict with the group rates and Beta coverage, the per-flow compliance verdicts, the statutory coverage with the advisory readout, the decision with the sensitivity and majority-rejection witnesses, the verified/failed/held verdicts with the recomputed numbers, the conditional/rejected assembly, the within-fragment pathway typing, the match certificate, the extracted plaintiff keys, and the classification labels with the absent causation bridge).",
+   "external_assumptions": "The applicable professional-conduct rules and non-waivable conflict classes, the fairness policy that declares which attributes must not influence which outputs and the representativeness of the audited rows, the actual data practices behind the privacy ledgers and the consent semantics of the permission table, the substantive truth and sufficiency of supply-chain disclosures, the authorization of the declared value orderings, the authenticity of cited sources and the resolution of conflicts, the mutual exclusivity of scenarios, the US-statute fragment semantics and holding typologies, the correctness of span annotations on new texts, and the classifier's real-world performance remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Probability/Conditioning.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/ethics_ref.py",
+    "tools/full_math/implementation/ethics_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D134]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_positive[D134]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_demand_counterexample[D134]",
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_downstream_pipeline_consumes_ethics"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D134]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D134]"
+    "tools/full_math/implementation_tests::test_ethics_group14.py::test_checker_rejects_tampered[D134]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Probability.condition_incompatible_iff"
+    "JurisLean.FullMath.Probability.condition_incompatible_iff",
+    "JurisLean.FullMath.Contracts.classifyHits",
+    "JurisLean.FullMath.Contracts.doFromEvidence"
    ]
   },
   {

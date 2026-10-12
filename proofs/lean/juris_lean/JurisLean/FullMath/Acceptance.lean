@@ -2233,27 +2233,277 @@ theorem demand_D123 : Contracts.demand_D123 := And.intro JurisLean.FullMath.Nume
     · intro h
       exact Contracts.FactReadout.noConfusion h)
 
-theorem demand_D124 : Contracts.demand_D124 := JurisLean.FullMath.Evidence.step_rules_mono
+/-! D124-D134 (groups 14+15 伦理、隐私与表达可靠性＋美国法特定问题与
+法律语言任务, W2-A batch B14): each theorem discharges the demand's own
+contract; the first conjunct is the group-registered component
+(JurisLean.FullMath.Evidence.step_rules_mono for D124-D130,
+JurisLean.FullMath.Probability.condition_incompatible_iff for D131-D134)
+inlined, the remaining conjuncts are discharged against the region-local
+operational defs in Contracts (conflict clearance, fairness checks,
+privacy compliance, statutory coverage, value-ordered decisions, citation
+support, scenario assembly, private-action scan, holding match, plaintiff
+extraction, evidence classification). -/
 
-theorem demand_D125 : Contracts.demand_D125 := JurisLean.FullMath.Evidence.step_rules_mono
+private theorem allSameScen_iff (s : String) (cs : List Contracts.ScenConc) :
+    Contracts.allSameScen s cs = true ↔ ∀ c ∈ cs, c.scenario = s := by
+  induction cs with
+  | nil =>
+    constructor
+    · intro _ c hc
+      cases hc
+    · intro _
+      rfl
+  | cons c cs ih =>
+    by_cases h : c.scenario = s
+    · rw [Contracts.allSameScen, if_pos h, ih]
+      constructor
+      · intro hball x hx
+        rcases List.mem_cons.mp hx with heq | hx
+        · exact heq ▸ h
+        · exact hball x hx
+      · intro hball x hx
+        exact hball x (List.mem_cons_of_mem _ hx)
+    · rw [Contracts.allSameScen, if_neg h]
+      constructor
+      · intro hfalse
+        simp at hfalse
+      · intro hball
+        exact absurd (hball c List.mem_cons_self) h
 
-theorem demand_D126 : Contracts.demand_D126 := JurisLean.FullMath.Evidence.step_rules_mono
+theorem demand_D124 : Contracts.demand_D124 := And.intro JurisLean.FullMath.Evidence.step_rules_mono
+  (by
+    refine ⟨?_, ?_, ⟨rfl, rfl⟩, ⟨rfl, rfl⟩⟩
+    · intro edges rules tr duty hmem
+      obtain ⟨r, hrfilter, hrpair⟩ := List.mem_map.mp hmem
+      obtain ⟨hrules, hkind⟩ := List.mem_filter.mp hrfilter
+      have htr : r.trigger = tr := congrArg Prod.fst hrpair
+      have hduty : r.duty = duty := congrArg Prod.snd hrpair
+      exact ⟨by rw [← htr]; exact hkind, r, hrules, htr, hduty⟩
+    · intro r
+      rfl)
 
-theorem demand_D127 : Contracts.demand_D127 := JurisLean.FullMath.Evidence.step_rules_mono
+theorem demand_D125 : Contracts.demand_D125 := And.intro JurisLean.FullMath.Evidence.step_rules_mono
+  (by
+    refine ⟨?_, ⟨?_, ?_, ?_, ?_⟩, ⟨by rfl, ?_⟩⟩
+    · intro f rows hall r hr
+      have hrow := List.all_eq_true.mp hall r hr
+      cases ha : f (Contracts.flipProt r) with
+      | true =>
+        cases hb : f r with
+        | true => rfl
+        | false =>
+          rw [ha, hb] at hrow
+          simp [Contracts.verdictSame] at hrow
+      | false =>
+        cases hb : f r with
+        | true =>
+          rw [ha, hb] at hrow
+          simp [Contracts.verdictSame] at hrow
+        | false => rfl
+    · rfl
+    · show ((2 : ℚ) / (2 : ℚ)) = 1
+      norm_num
+    · show ((0 : ℚ) / (2 : ℚ)) = 0
+      norm_num
+    · intro heq
+      rw [show Contracts.groupRate Contracts.proxyKeyed Contracts.leakRows true =
+            ((2 : ℚ) / (2 : ℚ)) from rfl,
+          show Contracts.groupRate Contracts.proxyKeyed Contracts.leakRows false =
+            ((0 : ℚ) / (2 : ℚ)) from rfl] at heq
+      norm_num at heq
+    · intro t h
+      cases t with
+      | invariance => rfl
+      | groupRisk => simp [Contracts.isInvTag] at h)
 
-theorem demand_D128 : Contracts.demand_D128 := JurisLean.FullMath.Evidence.step_rules_mono
+theorem demand_D126 : Contracts.demand_D126 := And.intro JurisLean.FullMath.Evidence.step_rules_mono
+  (by
+    refine ⟨?_, rfl, ⟨rfl, ?_⟩⟩
+    · intro perms flows hall f hf
+      have hflow : Contracts.flowOk perms f = true :=
+        List.all_eq_true.mp hall f hf
+      obtain ⟨p, hp, hpred⟩ := List.any_eq_true.mp hflow
+      by_cases hc : p.category = f.category
+      · rw [if_pos hc] at hpred
+        by_cases hpur : p.purpose = f.purpose
+        · rw [if_pos hpur] at hpred
+          exact ⟨p, hp, hc, hpur⟩
+        · rw [if_neg hpur] at hpred
+          simp at hpred
+      · rw [if_neg hc] at hpred
+        simp at hpred
+    · intro p
+      rfl)
 
-theorem demand_D129 : Contracts.demand_D129 := JurisLean.FullMath.Evidence.step_rules_mono
+theorem demand_D127 : Contracts.demand_D127 := And.intro JurisLean.FullMath.Evidence.step_rules_mono
+  (by
+    refine ⟨?_, ⟨rfl, rfl, rfl⟩, ?_⟩
+    · intro items done hall i hi hkind
+      have hkindIs : Contracts.isStatutory i = true := by
+        rw [Contracts.isStatutory, if_pos hkind]
+      have hmem : i ∈ items.filter (fun i => Contracts.isStatutory i) :=
+        List.mem_filter.mpr ⟨hi, hkindIs⟩
+      exact List.all_eq_true.mp hall i hmem
+    · intro items done p hp
+      obtain ⟨i, hif, hpair⟩ := List.mem_map.mp hp
+      obtain ⟨_, _⟩ := List.mem_filter.mp hif
+      have h2 : ("advisory" : String) = p.2 := congrArg Prod.snd hpair
+      exact h2.symm)
 
-theorem demand_D130 : Contracts.demand_D130 := JurisLean.FullMath.Evidence.step_rules_mono
+theorem demand_D128 : Contracts.demand_D128 := And.intro JurisLean.FullMath.Evidence.step_rules_mono
+  (by
+    refine ⟨⟨by decide, by decide, by decide⟩, ⟨rfl, rfl⟩, ?_⟩
+    intro order opts o ho
+    unfold Contracts.decideBy at ho
+    cases order with
+    | nil => simp at ho
+    | cons d ds =>
+      dsimp only at ho
+      cases hlist : opts.filter (fun a => !Contracts.beatsAny (d :: ds) opts a) with
+      | nil =>
+        rw [hlist] at ho
+        simp at ho
+      | cons winner rest =>
+        rw [hlist] at ho
+        dsimp only at ho
+        injection ho with heq
+        subst heq
+        have hmem : winner ∈
+            opts.filter (fun a => !Contracts.beatsAny (d :: ds) opts a) := by
+          rw [hlist]
+          exact List.mem_cons_self
+        exact (List.mem_filter.mp hmem).1)
 
-theorem demand_D131 : Contracts.demand_D131 := JurisLean.FullMath.Probability.condition_incompatible_iff
+theorem demand_D129 : Contracts.demand_D129 := And.intro JurisLean.FullMath.Evidence.step_rules_mono
+  (by
+    refine ⟨?_, ⟨?_, rfl, ?_, ?_, ?_, rfl⟩, ⟨rfl, rfl, by decide⟩,
+      ⟨by decide, by decide, by decide⟩⟩
+    · intro srcs conflicts c hverdict
+      unfold Contracts.claimVerdict at hverdict
+      by_cases hconf : Contracts.conflictTouches conflicts c.source = true
+      · rw [if_pos hconf] at hverdict
+        exact Contracts.ClaimVerdict.noConfusion hverdict
+      · by_cases hok : (Contracts.citeOk srcs c && Contracts.scopeOk srcs c) = true
+        · rw [if_neg hconf, if_pos hok] at hverdict
+          obtain ⟨hc, hs⟩ := Bool.and_eq_true_iff.mp hok
+          exact ⟨hc, hs⟩
+        · rw [if_neg hconf, if_neg hok] at hverdict
+          exact Contracts.ClaimVerdict.noConfusion hverdict
+    · show ((0 : ℚ) + 100 + 250 + 150) = 500
+      norm_num
+    · show ((0 : ℚ) + 100 + 250 + 150) = 500
+      norm_num
+    · intro hne
+      have h500 : Contracts.recompute Contracts.inflatedClaim = 500 := by
+        show ((0 : ℚ) + 100 + 250 + 150) = 500
+        norm_num
+      have h600 : Contracts.inflatedClaim.claimed = 600 := rfl
+      rw [h500, h600] at hne
+      norm_num at hne
+    · show ((3 : ℕ) : ℚ) = 3
+      rfl)
 
-theorem demand_D132 : Contracts.demand_D132 := JurisLean.FullMath.Probability.condition_incompatible_iff
+theorem demand_D130 : Contracts.demand_D130 := And.intro JurisLean.FullMath.Evidence.step_rules_mono
+  (by
+    refine ⟨?_, ⟨by rfl, by rfl⟩⟩
+    intro cs s hasm hc cmem
+    cases cs with
+    | nil => cases cmem
+    | cons c rest =>
+      unfold Contracts.assemble at hasm
+      dsimp only at hasm
+      by_cases hall : Contracts.allSameScen c.scenario (c :: rest) = true
+      · rw [if_pos hall] at hasm
+        injection hasm with hcs
+        subst hcs
+        rcases List.mem_cons.mp cmem with heq | hmem
+        · rw [heq]
+        · exact (allSameScen_iff _ _).mp hall hc
+            (List.mem_cons_of_mem _ hmem)
+      · rw [if_neg hall] at hasm
+        exact Contracts.AssembleOut.noConfusion hasm)
 
-theorem demand_D133 : Contracts.demand_D133 := JurisLean.FullMath.Probability.condition_incompatible_iff
+theorem demand_D131 : Contracts.demand_D131 := And.intro JurisLean.FullMath.Probability.condition_incompatible_iff
+  (by
+    refine ⟨?_, ?_, ⟨rfl, rfl, rfl⟩⟩
+    · intro frags h
+      unfold Contracts.hasPrivAction at h
+      cases hlist : Contracts.provOf frags Contracts.ProvKind.privateAction with
+      | nil =>
+        rw [hlist] at h
+        simp at h
+      | cons p ps =>
+        have hmem : p ∈
+            Contracts.provOf frags Contracts.ProvKind.privateAction := by
+          rw [hlist]
+          exact List.mem_cons_self
+        obtain ⟨hp, hkind⟩ := List.mem_filter.mp hmem
+        rw [Contracts.kindIs] at hkind
+        by_cases hpk : p.kind = Contracts.ProvKind.privateAction
+        · exact ⟨p, hp, hpk⟩
+        · rw [if_neg hpk] at hkind
+          simp at hkind
+    · intro frags p hp hq
+      obtain ⟨_, hk1⟩ := List.mem_filter.mp hp
+      obtain ⟨_, hk2⟩ := List.mem_filter.mp hq
+      rw [Contracts.kindIs] at hk1 hk2
+      by_cases h1 : p.kind = Contracts.ProvKind.privateAction
+      · rw [if_pos h1] at hk1
+        by_cases h2 : p.kind = Contracts.ProvKind.substantiveRight
+        · rw [if_pos h2] at hk2
+          exact Contracts.ProvKind.noConfusion (h1.symm.trans h2)
+        · rw [if_neg h2] at hk2
+          simp at hk2
+      · rw [if_neg h1] at hk1
+        simp at hk1)
 
-theorem demand_D134 : Contracts.demand_D134 := JurisLean.FullMath.Probability.condition_incompatible_iff
+theorem demand_D132 : Contracts.demand_D132 := And.intro JurisLean.FullMath.Probability.condition_incompatible_iff
+  (by
+    refine ⟨?_, ?_, ⟨by rfl, by rfl⟩⟩
+    · intro question qkeys qwords cands cert hmatch
+      unfold Contracts.holdingMatch at hmatch
+      split at hmatch
+      · simp at hmatch
+      · next c cs hlist =>
+        have hinj : ({ cand := c.id, question := question,
+                       transferable := false } : Contracts.MatchCert) = cert :=
+          Option.some.inj hmatch
+        have hcand : c.id = cert.cand :=
+          congrArg Contracts.MatchCert.cand hinj
+        have hmem : c ∈ cands.filter (fun c =>
+            c.isHolding && Contracts.strIn c.issueKey qkeys &&
+              Contracts.keywordSimilar qwords c) := by
+          rw [hlist]
+          exact List.mem_cons_self
+        obtain ⟨hccands, hpred⟩ := List.mem_filter.mp hmem
+        simp only [Bool.and_eq_true] at hpred
+        exact ⟨c, hccands, hcand.symm, hpred.1.1, hpred.1.2, hpred.2⟩
+    · intro question qkeys qwords cands cert hmatch
+      unfold Contracts.holdingMatch at hmatch
+      split at hmatch
+      · simp at hmatch
+      · next c _cs hlist =>
+        have hinj : ({ cand := c.id, question := question,
+                       transferable := false } : Contracts.MatchCert) = cert :=
+          Option.some.inj hmatch
+        exact (congrArg Contracts.MatchCert.transferable hinj).symm)
+
+theorem demand_D133 : Contracts.demand_D133 := And.intro JurisLean.FullMath.Probability.condition_incompatible_iff
+  (by
+    refine ⟨?_, ⟨by rfl, by decide, by decide, rfl⟩⟩
+    intro seg n hn
+    obtain ⟨m, hmem, hpair⟩ := List.mem_map.mp hn
+    obtain ⟨hm, hspan⟩ := List.mem_filter.mp hmem
+    exact ⟨m, hm, hpair, hspan⟩)
+
+theorem demand_D134 : Contracts.demand_D134 := And.intro JurisLean.FullMath.Probability.condition_incompatible_iff
+  (by
+    refine ⟨⟨rfl, rfl, rfl⟩, ?_, ?_⟩
+    · intro c
+      rfl
+    · intro hexp
+      obtain ⟨d, hd⟩ := hexp
+      simp [Contracts.doFromEvidence] at hd)
 
 theorem gap_X01 : Contracts.gap_X01 := JurisLean.FullMath.Gaps.gap_X01
 

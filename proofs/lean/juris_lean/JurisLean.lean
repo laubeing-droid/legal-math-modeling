@@ -194,7 +194,6 @@ import JurisLean.Seams.UnifiedBetaDomain
 import JurisLean.Seams.UnifiedCAD
 import JurisLean.Seams.UnifiedCAD2
 import JurisLean.Seams.UnifiedCADCore
-import JurisLean.Seams.UnifiedCalendar
 import JurisLean.Seams.UnifiedComposition
 import JurisLean.Seams.UnifiedEquilExist
 import JurisLean.Seams.UnifiedEvalLayer
@@ -222,9 +221,7 @@ import JurisLean.Seams.UnifiedNetTrajectory
 import JurisLean.Seams.UnifiedNormFlow
 import JurisLean.Seams.UnifiedPayoffChain
 import JurisLean.Seams.UnifiedPerformance
-import JurisLean.Seams.UnifiedQuantLedger
 import JurisLean.Seams.UnifiedQuantileNarrow
-import JurisLean.Seams.UnifiedQuantities
 import JurisLean.Seams.UnifiedSemantics
 import JurisLean.Seams.UnifiedSummary
 import JurisLean.Seams.UnifiedTrajectory
@@ -240,7 +237,6 @@ import JurisLean.SourcePathSpec
 import JurisLean.SupZeroLemma
 import JurisLean.TaintNoninterference
 import JurisLean.TemporalApplicability
-import JurisLean.TemporalArithmetic
 import JurisLean.TranslationRefinement
 import JurisLean.TypedAttack
 import JurisLean.UnifiedV21.Audit

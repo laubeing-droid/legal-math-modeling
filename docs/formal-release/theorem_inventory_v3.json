@@ -563,6 +563,7 @@
     "JurisLean.Seams.UnifiedCAD",
     "JurisLean.Seams.UnifiedCAD2",
     "JurisLean.Seams.UnifiedCADCore",
+    "JurisLean.Seams.UnifiedCalendar",
     "JurisLean.Seams.UnifiedComposition",
     "JurisLean.Seams.UnifiedEquilExist",
     "JurisLean.Seams.UnifiedEvalLayer",
@@ -590,6 +591,7 @@
     "JurisLean.Seams.UnifiedNormFlow",
     "JurisLean.Seams.UnifiedPayoffChain",
     "JurisLean.Seams.UnifiedPerformance",
+    "JurisLean.Seams.UnifiedQuantLedger",
     "JurisLean.Seams.UnifiedQuantileNarrow",
     "JurisLean.Seams.UnifiedQuantities",
     "JurisLean.Seams.UnifiedSemantics",
@@ -2628,6 +2630,79 @@
     "JurisLean.Seams.UnifiedCADCore.zero_poly_no_finite_root_list",
     "JurisLean.Seams.UnifiedCADCore.zero_poly_rejected",
     "JurisLean.Seams.UnifiedCADCore.zero_poly_universal_root",
+    "JurisLean.Seams.UnifiedCalendar.PeriodSpec.baseDeadline_epoch",
+    "JurisLean.Seams.UnifiedCalendar.PeriodSpec.baseDeadline_valid",
+    "JurisLean.Seams.UnifiedCalendar.PeriodSpec.base_strict_order",
+    "JurisLean.Seams.UnifiedCalendar.PeriodSpec.deadline_ge_base",
+    "JurisLean.Seams.UnifiedCalendar.addCalDays_add",
+    "JurisLean.Seams.UnifiedCalendar.addCalDays_comm",
+    "JurisLean.Seams.UnifiedCalendar.addCalDays_epoch",
+    "JurisLean.Seams.UnifiedCalendar.addCalDays_succ_eq",
+    "JurisLean.Seams.UnifiedCalendar.addCalDays_valid",
+    "JurisLean.Seams.UnifiedCalendar.addCalMonths_12_eq_addCalYears_1",
+    "JurisLean.Seams.UnifiedCalendar.addCalMonths_1_epoch_ge",
+    "JurisLean.Seams.UnifiedCalendar.addCalMonths_1_wrap_pos",
+    "JurisLean.Seams.UnifiedCalendar.addCalMonths_valid",
+    "JurisLean.Seams.UnifiedCalendar.addCalMonths_zero",
+    "JurisLean.Seams.UnifiedCalendar.addCalYears_epoch_pos",
+    "JurisLean.Seams.UnifiedCalendar.addCalYears_valid",
+    "JurisLean.Seams.UnifiedCalendar.addCalYears_zero",
+    "JurisLean.Seams.UnifiedCalendar.addDays_bridge",
+    "JurisLean.Seams.UnifiedCalendar.backSchedule_none_iff",
+    "JurisLean.Seams.UnifiedCalendar.backSchedule_some_addBack",
+    "JurisLean.Seams.UnifiedCalendar.beforeMonth_mono_le",
+    "JurisLean.Seams.UnifiedCalendar.beforeMonth_mono_span",
+    "JurisLean.Seams.UnifiedCalendar.beforeMonth_one",
+    "JurisLean.Seams.UnifiedCalendar.beforeMonth_succ",
+    "JurisLean.Seams.UnifiedCalendar.cal_disjoint",
+    "JurisLean.Seams.UnifiedCalendar.cal_intersection_sound",
+    "JurisLean.Seams.UnifiedCalendar.clampDay_idem",
+    "JurisLean.Seams.UnifiedCalendar.clampDay_le_len",
+    "JurisLean.Seams.UnifiedCalendar.clampDay_le_self",
+    "JurisLean.Seams.UnifiedCalendar.contains_bridge",
+    "JurisLean.Seams.UnifiedCalendar.dayCount_bridge",
+    "JurisLean.Seams.UnifiedCalendar.dayCount_ge_one_cal",
+    "JurisLean.Seams.UnifiedCalendar.dayOfYear_le_yearLen",
+    "JurisLean.Seams.UnifiedCalendar.dayOfYear_lt_of_ml",
+    "JurisLean.Seams.UnifiedCalendar.dayOfYear_pos",
+    "JurisLean.Seams.UnifiedCalendar.daysBeforeYear_add_ge",
+    "JurisLean.Seams.UnifiedCalendar.daysBeforeYear_mono",
+    "JurisLean.Seams.UnifiedCalendar.daysBeforeYear_step_ge",
+    "JurisLean.Seams.UnifiedCalendar.daysBeforeYear_succ",
+    "JurisLean.Seams.UnifiedCalendar.daysDiff_nonneg_iff_lex",
+    "JurisLean.Seams.UnifiedCalendar.daysDiff_split",
+    "JurisLean.Seams.UnifiedCalendar.epoch_le_iff_lex",
+    "JurisLean.Seams.UnifiedCalendar.interval_in_ray_iff",
+    "JurisLean.Seams.UnifiedCalendar.leap_mod_iff",
+    "JurisLean.Seams.UnifiedCalendar.monthLen_ge_28",
+    "JurisLean.Seams.UnifiedCalendar.monthLen_pos",
+    "JurisLean.Seams.UnifiedCalendar.monthTotal_eq_yearLen",
+    "JurisLean.Seams.UnifiedCalendar.nextBiz_displacement_bound",
+    "JurisLean.Seams.UnifiedCalendar.nextBiz_fixpoint",
+    "JurisLean.Seams.UnifiedCalendar.nextBiz_spec",
+    "JurisLean.Seams.UnifiedCalendar.predDate_epoch",
+    "JurisLean.Seams.UnifiedCalendar.predDate_valid",
+    "JurisLean.Seams.UnifiedCalendar.pred_succ",
+    "JurisLean.Seams.UnifiedCalendar.ray_trans",
+    "JurisLean.Seams.UnifiedCalendar.roll_idempotent",
+    "JurisLean.Seams.UnifiedCalendar.subCalDays_epoch",
+    "JurisLean.Seams.UnifiedCalendar.sub_add_cancel",
+    "JurisLean.Seams.UnifiedCalendar.succDate_epoch",
+    "JurisLean.Seams.UnifiedCalendar.succDate_valid",
+    "JurisLean.Seams.UnifiedCalendar.toEpochDay_inj",
+    "JurisLean.Seams.UnifiedCalendar.witness_addCalYears_1_feb29",
+    "JurisLean.Seams.UnifiedCalendar.witness_add_days",
+    "JurisLean.Seams.UnifiedCalendar.witness_clamp_months",
+    "JurisLean.Seams.UnifiedCalendar.witness_d096_d102",
+    "JurisLean.Seams.UnifiedCalendar.witness_d099_periods",
+    "JurisLean.Seams.UnifiedCalendar.witness_d100_back",
+    "JurisLean.Seams.UnifiedCalendar.witness_epoch_anchors",
+    "JurisLean.Seams.UnifiedCalendar.witness_feb_days",
+    "JurisLean.Seams.UnifiedCalendar.witness_leap_years",
+    "JurisLean.Seams.UnifiedCalendar.witness_q1_counts",
+    "JurisLean.Seams.UnifiedCalendar.witness_segmentation",
+    "JurisLean.Seams.UnifiedCalendar.witness_valid_leap_feb",
+    "JurisLean.Seams.UnifiedCalendar.yearLen_bounds",
     "JurisLean.Seams.UnifiedComposition.composite_exact",
     "JurisLean.Seams.UnifiedComposition.deriveInputs_allEstablished_iff",
     "JurisLean.Seams.UnifiedComposition.established_requires_admitted_premises",
@@ -3411,6 +3486,85 @@
     "JurisLean.Seams.UnifiedPerformance.same_excess_different_restitution",
     "JurisLean.Seams.UnifiedPerformance.sanction_reads_derived_basis",
     "JurisLean.Seams.UnifiedPerformance.sanction_trigger_iff",
+    "JurisLean.Seams.UnifiedQuantLedger.FaultOK_scale",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.Cont_add",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.Cont_refl",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.Cont_scale",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.Cont_trans",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.eq_of_lo_hi",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.scale_assoc",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.scale_distrib",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.vadd_assoc",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.vadd_comm",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.vinter_contained",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.vinter_none_disjoint",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.vinter_sound",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.vneg_sound",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.vscale_sound",
+    "JurisLean.Seams.UnifiedQuantLedger.QIv.vsub_sound",
+    "JurisLean.Seams.UnifiedQuantLedger.afterPay_amounts_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.afterPay_idents",
+    "JurisLean.Seams.UnifiedQuantLedger.allocsOf_eq_waterfall",
+    "JurisLean.Seams.UnifiedQuantLedger.allocsOf_mem_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_add_remaining",
+    "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_eq_min",
+    "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_le",
+    "JurisLean.Seams.UnifiedQuantLedger.causeTimesLoss_sound",
+    "JurisLean.Seams.UnifiedQuantLedger.clamp_clamp",
+    "JurisLean.Seams.UnifiedQuantLedger.compound_ge_simple",
+    "JurisLean.Seams.UnifiedQuantLedger.compound_two_periods",
+    "JurisLean.Seams.UnifiedQuantLedger.correlation_not_imputation",
+    "JurisLean.Seams.UnifiedQuantLedger.cross_scenario_mix_rejected",
+    "JurisLean.Seams.UnifiedQuantLedger.dedupAux_spec",
+    "JurisLean.Seams.UnifiedQuantLedger.dedupFirst_id_of_nodup",
+    "JurisLean.Seams.UnifiedQuantLedger.dedupFirst_keys_nodup",
+    "JurisLean.Seams.UnifiedQuantLedger.dedup_sum_le",
+    "JurisLean.Seams.UnifiedQuantLedger.delivery_repayment_separate_readout",
+    "JurisLean.Seams.UnifiedQuantLedger.demoLedger_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.demoLedger_ordered",
+    "JurisLean.Seams.UnifiedQuantLedger.demoLedger_readout",
+    "JurisLean.Seams.UnifiedQuantLedger.discharged_iff_paid_covered",
+    "JurisLean.Seams.UnifiedQuantLedger.distribute_conserve",
+    "JurisLean.Seams.UnifiedQuantLedger.distribute_priority",
+    "JurisLean.Seams.UnifiedQuantLedger.duplicate_payment_rejected",
+    "JurisLean.Seams.UnifiedQuantLedger.goodShares_legal",
+    "JurisLean.Seams.UnifiedQuantLedger.income_not_impossible",
+    "JurisLean.Seams.UnifiedQuantLedger.interval_readout",
+    "JurisLean.Seams.UnifiedQuantLedger.invoice_appraisal_single_count",
+    "JurisLean.Seams.UnifiedQuantLedger.invoice_double_count_prevented",
+    "JurisLean.Seams.UnifiedQuantLedger.joint_double_full_violates",
+    "JurisLean.Seams.UnifiedQuantLedger.joint_external_not_share_reduced",
+    "JurisLean.Seams.UnifiedQuantLedger.monetary_total_blind_spot",
+    "JurisLean.Seams.UnifiedQuantLedger.no_blanket_invalidation",
+    "JurisLean.Seams.UnifiedQuantLedger.no_resp_zero_share",
+    "JurisLean.Seams.UnifiedQuantLedger.nonmonetary_no_amount",
+    "JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay",
+    "JurisLean.Seams.UnifiedQuantLedger.outstanding_afterPay_clamp",
+    "JurisLean.Seams.UnifiedQuantLedger.outstanding_afterStream",
+    "JurisLean.Seams.UnifiedQuantLedger.outstanding_loanLedger",
+    "JurisLean.Seams.UnifiedQuantLedger.outstanding_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.pays_sum_base",
+    "JurisLean.Seams.UnifiedQuantLedger.recourse_pool_balanced",
+    "JurisLean.Seams.UnifiedQuantLedger.same_witness_consistent",
+    "JurisLean.Seams.UnifiedQuantLedger.segInterest_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.segInterest_zero_days",
+    "JurisLean.Seams.UnifiedQuantLedger.seg_split",
+    "JurisLean.Seams.UnifiedQuantLedger.self_quoted_not_supported",
+    "JurisLean.Seams.UnifiedQuantLedger.signing_not_mortgage_established",
+    "JurisLean.Seams.UnifiedQuantLedger.signing_not_pledge_established",
+    "JurisLean.Seams.UnifiedQuantLedger.small_share_mask_rejected",
+    "JurisLean.Seams.UnifiedQuantLedger.stacking_not_default",
+    "JurisLean.Seams.UnifiedQuantLedger.streamAllocs_rows_legal",
+    "JurisLean.Seams.UnifiedQuantLedger.sum_filter_partition",
+    "JurisLean.Seams.UnifiedQuantLedger.supp_unfold",
+    "JurisLean.Seams.UnifiedQuantLedger.supp_zero_when_primary_covers",
+    "JurisLean.Seams.UnifiedQuantLedger.tAdd_sound",
+    "JurisLean.Seams.UnifiedQuantLedger.tScale_sound",
+    "JurisLean.Seams.UnifiedQuantLedger.termInterest_indep",
+    "JurisLean.Seams.UnifiedQuantLedger.unknown_kept_in_residual",
+    "JurisLean.Seams.UnifiedQuantLedger.unmatched_partition",
+    "JurisLean.Seams.UnifiedQuantLedger.unsourced_not_admitted",
+    "JurisLean.Seams.UnifiedQuantLedger.waterfall_sum_eq_min",
     "JurisLean.Seams.UnifiedQuantileNarrow.bern_cdfEnc_valid",
     "JurisLean.Seams.UnifiedQuantileNarrow.bern_full_chain",
     "JurisLean.Seams.UnifiedQuantileNarrow.certFound_both_iff",
@@ -4228,8 +4382,8 @@
     "weightedSupDist_separates_points",
     "zero_ne_last"
    ],
-   "sha256": "8a4a281de40a2a66b967c94d849970ae7515d1cdc471a3f3a19e7d5b696ef40d",
-   "size_bytes": 256564,
+   "sha256": "8d5c2fc68e05179d1ce3c7064c1c14380709ab98d6572e63c9e343bd45f094e9",
+   "size_bytes": 266903,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -31980,6 +32134,398 @@
    "declarations": [
     {
      "kind": "structure",
+     "name": "CalDate"
+    },
+    {
+     "kind": "def",
+     "name": "CalDate.Valid"
+    },
+    {
+     "kind": "def",
+     "name": "yearLen"
+    },
+    {
+     "kind": "theorem",
+     "name": "yearLen_bounds"
+    },
+    {
+     "kind": "theorem",
+     "name": "monthLen_ge_28"
+    },
+    {
+     "kind": "theorem",
+     "name": "monthLen_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "beforeMonth_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "beforeMonth_succ"
+    },
+    {
+     "kind": "theorem",
+     "name": "beforeMonth_mono_span"
+    },
+    {
+     "kind": "theorem",
+     "name": "beforeMonth_mono_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "monthTotal_eq_yearLen"
+    },
+    {
+     "kind": "theorem",
+     "name": "dayOfYear_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "dayOfYear_le_yearLen"
+    },
+    {
+     "kind": "def",
+     "name": "daysBeforeYear"
+    },
+    {
+     "kind": "def",
+     "name": "toEpochDay"
+    },
+    {
+     "kind": "def",
+     "name": "daysDiff"
+    },
+    {
+     "kind": "theorem",
+     "name": "leap_mod_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "daysBeforeYear_succ"
+    },
+    {
+     "kind": "theorem",
+     "name": "daysBeforeYear_step_ge"
+    },
+    {
+     "kind": "theorem",
+     "name": "daysBeforeYear_add_ge"
+    },
+    {
+     "kind": "theorem",
+     "name": "daysBeforeYear_mono"
+    },
+    {
+     "kind": "def",
+     "name": "lexLE"
+    },
+    {
+     "kind": "theorem",
+     "name": "dayOfYear_lt_of_ml"
+    },
+    {
+     "kind": "theorem",
+     "name": "epoch_le_iff_lex"
+    },
+    {
+     "kind": "theorem",
+     "name": "toEpochDay_inj"
+    },
+    {
+     "kind": "theorem",
+     "name": "daysDiff_nonneg_iff_lex"
+    },
+    {
+     "kind": "theorem",
+     "name": "daysDiff_split"
+    },
+    {
+     "kind": "def",
+     "name": "succDate"
+    },
+    {
+     "kind": "def",
+     "name": "predDate"
+    },
+    {
+     "kind": "theorem",
+     "name": "succDate_valid"
+    },
+    {
+     "kind": "theorem",
+     "name": "succDate_epoch"
+    },
+    {
+     "kind": "theorem",
+     "name": "predDate_valid"
+    },
+    {
+     "kind": "theorem",
+     "name": "predDate_epoch"
+    },
+    {
+     "kind": "theorem",
+     "name": "pred_succ"
+    },
+    {
+     "kind": "def",
+     "name": "addCalDays"
+    },
+    {
+     "kind": "def",
+     "name": "subCalDays"
+    },
+    {
+     "kind": "theorem",
+     "name": "addCalDays_succ_eq"
+    },
+    {
+     "kind": "theorem",
+     "name": "addCalDays_valid"
+    },
+    {
+     "kind": "theorem",
+     "name": "addCalDays_epoch"
+    },
+    {
+     "kind": "theorem",
+     "name": "addCalDays_add"
+    },
+    {
+     "kind": "theorem",
+     "name": "addCalDays_comm"
+    },
+    {
+     "kind": "theorem",
+     "name": "subCalDays_epoch"
+    },
+    {
+     "kind": "theorem",
+     "name": "sub_add_cancel"
+    },
+    {
+     "kind": "def",
+     "name": "clampDay"
+    },
+    {
+     "kind": "def",
+     "name": "addCalMonths"
+    },
+    {
+     "kind": "def",
+     "name": "addCalYears"
+    },
+    {
+     "kind": "theorem",
+     "name": "clampDay_le_self"
+    },
+    {
+     "kind": "theorem",
+     "name": "clampDay_le_len"
+    },
+    {
+     "kind": "theorem",
+     "name": "clampDay_idem"
+    },
+    {
+     "kind": "theorem",
+     "name": "addCalMonths_valid"
+    },
+    {
+     "kind": "theorem",
+     "name": "addCalMonths_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "addCalYears_valid"
+    },
+    {
+     "kind": "theorem",
+     "name": "addCalYears_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "addCalMonths_12_eq_addCalYears_1"
+    },
+    {
+     "kind": "theorem",
+     "name": "addCalMonths_1_epoch_ge"
+    },
+    {
+     "kind": "theorem",
+     "name": "addCalMonths_1_wrap_pos"
+    },
+    {
+     "kind": "theorem",
+     "name": "addCalYears_epoch_pos"
+    },
+    {
+     "kind": "def",
+     "name": "nextBiz"
+    },
+    {
+     "kind": "theorem",
+     "name": "nextBiz_spec"
+    },
+    {
+     "kind": "theorem",
+     "name": "nextBiz_displacement_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "nextBiz_fixpoint"
+    },
+    {
+     "kind": "theorem",
+     "name": "roll_idempotent"
+    },
+    {
+     "kind": "structure",
+     "name": "PeriodSpec"
+    },
+    {
+     "kind": "def",
+     "name": "PeriodSpec.baseDeadline"
+    },
+    {
+     "kind": "def",
+     "name": "PeriodSpec.deadline"
+    },
+    {
+     "kind": "theorem",
+     "name": "PeriodSpec.baseDeadline_epoch"
+    },
+    {
+     "kind": "theorem",
+     "name": "PeriodSpec.baseDeadline_valid"
+    },
+    {
+     "kind": "theorem",
+     "name": "PeriodSpec.deadline_ge_base"
+    },
+    {
+     "kind": "theorem",
+     "name": "PeriodSpec.base_strict_order"
+    },
+    {
+     "kind": "def",
+     "name": "backSchedule"
+    },
+    {
+     "kind": "theorem",
+     "name": "backSchedule_none_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "backSchedule_some_addBack"
+    },
+    {
+     "kind": "def",
+     "name": "toDayInterval"
+    },
+    {
+     "kind": "theorem",
+     "name": "addDays_bridge"
+    },
+    {
+     "kind": "theorem",
+     "name": "contains_bridge"
+    },
+    {
+     "kind": "theorem",
+     "name": "dayCount_bridge"
+    },
+    {
+     "kind": "theorem",
+     "name": "dayCount_ge_one_cal"
+    },
+    {
+     "kind": "theorem",
+     "name": "cal_intersection_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "cal_disjoint"
+    },
+    {
+     "kind": "theorem",
+     "name": "ray_trans"
+    },
+    {
+     "kind": "theorem",
+     "name": "interval_in_ray_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_valid_leap_feb"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_epoch_anchors"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_leap_years"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_segmentation"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_feb_days"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_q1_counts"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_add_days"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_clamp_months"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_addCalYears_1_feb29"
+    },
+    {
+     "kind": "def",
+     "name": "syntheticWeekend"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_d099_periods"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_d100_back"
+    },
+    {
+     "kind": "theorem",
+     "name": "witness_d096_d102"
+    }
+   ],
+   "imports": [
+    "JurisLean.FullMath.Numeric.Quantities",
+    "JurisLean.TemporalArithmetic",
+    "Mathlib.Tactic"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCalendar.lean",
+   "print_axioms_targets": [],
+   "sha256": "11e3e25647a8dfe2fb5fdf2a1670a8002de8fe33c45f9d5e037a145bcfff5b13",
+   "size_bytes": 62949,
+   "theorem_count": 73,
+   "theorem_count_bol_convention": 73
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
      "name": "Snapshot"
     },
     {
@@ -37989,6 +38535,707 @@
   {
    "declarations": [
     {
+     "kind": "inductive",
+     "name": "DebtKind"
+    },
+    {
+     "kind": "inductive",
+     "name": "FeeBasis"
+    },
+    {
+     "kind": "inductive",
+     "name": "ClaimStatus"
+    },
+    {
+     "kind": "structure",
+     "name": "LedgerItem"
+    },
+    {
+     "kind": "def",
+     "name": "liAmounts"
+    },
+    {
+     "kind": "def",
+     "name": "outstanding"
+    },
+    {
+     "kind": "def",
+     "name": "allocsOf"
+    },
+    {
+     "kind": "def",
+     "name": "afterPay"
+    },
+    {
+     "kind": "theorem",
+     "name": "allocsOf_eq_waterfall"
+    },
+    {
+     "kind": "theorem",
+     "name": "allocsOf_mem_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "allocsOf_sum_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "allocsOf_sum_add_remaining"
+    },
+    {
+     "kind": "theorem",
+     "name": "waterfall_sum_eq_min"
+    },
+    {
+     "kind": "theorem",
+     "name": "allocsOf_sum_eq_min"
+    },
+    {
+     "kind": "theorem",
+     "name": "afterPay_idents"
+    },
+    {
+     "kind": "theorem",
+     "name": "afterPay_amounts_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "outstanding_afterPay"
+    },
+    {
+     "kind": "theorem",
+     "name": "outstanding_afterPay_clamp"
+    },
+    {
+     "kind": "def",
+     "name": "afterStream"
+    },
+    {
+     "kind": "def",
+     "name": "streamAllocs"
+    },
+    {
+     "kind": "theorem",
+     "name": "clamp_clamp"
+    },
+    {
+     "kind": "theorem",
+     "name": "outstanding_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "outstanding_afterStream"
+    },
+    {
+     "kind": "theorem",
+     "name": "discharged_iff_paid_covered"
+    },
+    {
+     "kind": "theorem",
+     "name": "streamAllocs_rows_legal"
+    },
+    {
+     "kind": "def",
+     "name": "StreamLegal"
+    },
+    {
+     "kind": "theorem",
+     "name": "duplicate_payment_rejected"
+    },
+    {
+     "kind": "def",
+     "name": "loanLedger"
+    },
+    {
+     "kind": "theorem",
+     "name": "outstanding_loanLedger"
+    },
+    {
+     "kind": "theorem",
+     "name": "delivery_repayment_separate_readout"
+    },
+    {
+     "kind": "def",
+     "name": "feeSupported"
+    },
+    {
+     "kind": "def",
+     "name": "statusConsistent"
+    },
+    {
+     "kind": "theorem",
+     "name": "self_quoted_not_supported"
+    },
+    {
+     "kind": "theorem",
+     "name": "sum_filter_partition"
+    },
+    {
+     "kind": "def",
+     "name": "sumWhereBeneficiary"
+    },
+    {
+     "kind": "structure",
+     "name": "InterestSeg"
+    },
+    {
+     "kind": "def",
+     "name": "segInterest"
+    },
+    {
+     "kind": "theorem",
+     "name": "segInterest_zero_days"
+    },
+    {
+     "kind": "theorem",
+     "name": "segInterest_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "seg_split"
+    },
+    {
+     "kind": "structure",
+     "name": "LoanCharges"
+    },
+    {
+     "kind": "def",
+     "name": "termInterest"
+    },
+    {
+     "kind": "def",
+     "name": "overdueInterest"
+    },
+    {
+     "kind": "def",
+     "name": "penaltyCharge"
+    },
+    {
+     "kind": "def",
+     "name": "totalCharges"
+    },
+    {
+     "kind": "theorem",
+     "name": "termInterest_indep"
+    },
+    {
+     "kind": "def",
+     "name": "ChargesWithin"
+    },
+    {
+     "kind": "def",
+     "name": "sampleAll"
+    },
+    {
+     "kind": "def",
+     "name": "sampleNoPenalty"
+    },
+    {
+     "kind": "theorem",
+     "name": "stacking_not_default"
+    },
+    {
+     "kind": "def",
+     "name": "capitalize"
+    },
+    {
+     "kind": "theorem",
+     "name": "compound_two_periods"
+    },
+    {
+     "kind": "theorem",
+     "name": "compound_ge_simple"
+    },
+    {
+     "kind": "inductive",
+     "name": "SecKind"
+    },
+    {
+     "kind": "inductive",
+     "name": "SecEvent"
+    },
+    {
+     "kind": "def",
+     "name": "requiredEvent"
+    },
+    {
+     "kind": "def",
+     "name": "secEstablished"
+    },
+    {
+     "kind": "theorem",
+     "name": "signing_not_mortgage_established"
+    },
+    {
+     "kind": "theorem",
+     "name": "signing_not_pledge_established"
+    },
+    {
+     "kind": "def",
+     "name": "corpSuretyEstablished"
+    },
+    {
+     "kind": "theorem",
+     "name": "no_blanket_invalidation"
+    },
+    {
+     "kind": "def",
+     "name": "distributeProceeds"
+    },
+    {
+     "kind": "theorem",
+     "name": "distribute_conserve"
+    },
+    {
+     "kind": "theorem",
+     "name": "distribute_priority"
+    },
+    {
+     "kind": "def",
+     "name": "vscale"
+    },
+    {
+     "kind": "def",
+     "name": "vneg"
+    },
+    {
+     "kind": "def",
+     "name": "vsub"
+    },
+    {
+     "kind": "def",
+     "name": "vinter"
+    },
+    {
+     "kind": "def",
+     "name": "Cont"
+    },
+    {
+     "kind": "theorem",
+     "name": "eq_of_lo_hi"
+    },
+    {
+     "kind": "theorem",
+     "name": "vscale_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "vneg_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "vsub_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "vinter_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "vinter_none_disjoint"
+    },
+    {
+     "kind": "theorem",
+     "name": "Cont_refl"
+    },
+    {
+     "kind": "theorem",
+     "name": "Cont_trans"
+    },
+    {
+     "kind": "theorem",
+     "name": "Cont_add"
+    },
+    {
+     "kind": "theorem",
+     "name": "Cont_scale"
+    },
+    {
+     "kind": "theorem",
+     "name": "vinter_contained"
+    },
+    {
+     "kind": "theorem",
+     "name": "vadd_assoc"
+    },
+    {
+     "kind": "theorem",
+     "name": "vadd_comm"
+    },
+    {
+     "kind": "theorem",
+     "name": "scale_distrib"
+    },
+    {
+     "kind": "theorem",
+     "name": "scale_assoc"
+    },
+    {
+     "kind": "inductive",
+     "name": "IvTag"
+    },
+    {
+     "kind": "structure",
+     "name": "TIv"
+    },
+    {
+     "kind": "def",
+     "name": "tAdd"
+    },
+    {
+     "kind": "def",
+     "name": "tScale"
+    },
+    {
+     "kind": "def",
+     "name": "tMem"
+    },
+    {
+     "kind": "def",
+     "name": "tCont"
+    },
+    {
+     "kind": "theorem",
+     "name": "tAdd_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "tScale_sound"
+    },
+    {
+     "kind": "def",
+     "name": "FaultOK"
+    },
+    {
+     "kind": "theorem",
+     "name": "FaultOK_scale"
+    },
+    {
+     "kind": "def",
+     "name": "causeTimesLoss"
+    },
+    {
+     "kind": "theorem",
+     "name": "causeTimesLoss_sound"
+    },
+    {
+     "kind": "def",
+     "name": "ivLossA"
+    },
+    {
+     "kind": "def",
+     "name": "ivLossB"
+    },
+    {
+     "kind": "def",
+     "name": "ivInter"
+    },
+    {
+     "kind": "def",
+     "name": "ivCause"
+    },
+    {
+     "kind": "def",
+     "name": "ivLossC"
+    },
+    {
+     "kind": "theorem",
+     "name": "interval_readout"
+    },
+    {
+     "kind": "structure",
+     "name": "Shares"
+    },
+    {
+     "kind": "def",
+     "name": "LegalShares"
+    },
+    {
+     "kind": "theorem",
+     "name": "no_resp_zero_share"
+    },
+    {
+     "kind": "def",
+     "name": "badGate"
+    },
+    {
+     "kind": "def",
+     "name": "badShare"
+    },
+    {
+     "kind": "def",
+     "name": "badShares"
+    },
+    {
+     "kind": "theorem",
+     "name": "small_share_mask_rejected"
+    },
+    {
+     "kind": "def",
+     "name": "goodGate"
+    },
+    {
+     "kind": "def",
+     "name": "goodShare"
+    },
+    {
+     "kind": "def",
+     "name": "goodShares"
+    },
+    {
+     "kind": "theorem",
+     "name": "goodShares_legal"
+    },
+    {
+     "kind": "inductive",
+     "name": "RespMode"
+    },
+    {
+     "kind": "def",
+     "name": "externalDue"
+    },
+    {
+     "kind": "theorem",
+     "name": "pays_sum_base"
+    },
+    {
+     "kind": "def",
+     "name": "JointRecoveryOK"
+    },
+    {
+     "kind": "theorem",
+     "name": "joint_double_full_violates"
+    },
+    {
+     "kind": "theorem",
+     "name": "joint_external_not_share_reduced"
+    },
+    {
+     "kind": "def",
+     "name": "recourseOf"
+    },
+    {
+     "kind": "def",
+     "name": "deficitOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "recourse_pool_balanced"
+    },
+    {
+     "kind": "def",
+     "name": "suppDistribution"
+    },
+    {
+     "kind": "theorem",
+     "name": "supp_unfold"
+    },
+    {
+     "kind": "theorem",
+     "name": "supp_zero_when_primary_covers"
+    },
+    {
+     "kind": "structure",
+     "name": "LossEntry"
+    },
+    {
+     "kind": "def",
+     "name": "lossTotal"
+    },
+    {
+     "kind": "def",
+     "name": "dedupAux"
+    },
+    {
+     "kind": "def",
+     "name": "dedupFirst"
+    },
+    {
+     "kind": "theorem",
+     "name": "dedupAux_spec"
+    },
+    {
+     "kind": "theorem",
+     "name": "dedupFirst_keys_nodup"
+    },
+    {
+     "kind": "theorem",
+     "name": "dedup_sum_le"
+    },
+    {
+     "kind": "theorem",
+     "name": "dedupFirst_id_of_nodup"
+    },
+    {
+     "kind": "def",
+     "name": "invoiceEntry"
+    },
+    {
+     "kind": "def",
+     "name": "appraisalEntry"
+    },
+    {
+     "kind": "theorem",
+     "name": "invoice_appraisal_single_count"
+    },
+    {
+     "kind": "theorem",
+     "name": "invoice_double_count_prevented"
+    },
+    {
+     "kind": "inductive",
+     "name": "Remedy"
+    },
+    {
+     "kind": "def",
+     "name": "amountOf"
+    },
+    {
+     "kind": "theorem",
+     "name": "nonmonetary_no_amount"
+    },
+    {
+     "kind": "def",
+     "name": "monetaryTotal"
+    },
+    {
+     "kind": "theorem",
+     "name": "monetary_total_blind_spot"
+    },
+    {
+     "kind": "structure",
+     "name": "ScenarioWitness"
+    },
+    {
+     "kind": "structure",
+     "name": "SummaryRecord"
+    },
+    {
+     "kind": "def",
+     "name": "FromSameWitness"
+    },
+    {
+     "kind": "theorem",
+     "name": "same_witness_consistent"
+    },
+    {
+     "kind": "def",
+     "name": "wA"
+    },
+    {
+     "kind": "def",
+     "name": "wB"
+    },
+    {
+     "kind": "def",
+     "name": "mixedRecord"
+    },
+    {
+     "kind": "theorem",
+     "name": "cross_scenario_mix_rejected"
+    },
+    {
+     "kind": "inductive",
+     "name": "FactCand"
+    },
+    {
+     "kind": "def",
+     "name": "admittedFact"
+    },
+    {
+     "kind": "theorem",
+     "name": "unsourced_not_admitted"
+    },
+    {
+     "kind": "inductive",
+     "name": "CashFact"
+    },
+    {
+     "kind": "inductive",
+     "name": "CashRule"
+    },
+    {
+     "kind": "theorem",
+     "name": "income_not_impossible"
+    },
+    {
+     "kind": "inductive",
+     "name": "TortKind"
+    },
+    {
+     "kind": "structure",
+     "name": "TortCand"
+    },
+    {
+     "kind": "def",
+     "name": "selectByElements"
+    },
+    {
+     "kind": "def",
+     "name": "toResidual"
+    },
+    {
+     "kind": "theorem",
+     "name": "unmatched_partition"
+    },
+    {
+     "kind": "theorem",
+     "name": "unknown_kept_in_residual"
+    },
+    {
+     "kind": "def",
+     "name": "imputed"
+    },
+    {
+     "kind": "def",
+     "name": "ivStrongCause"
+    },
+    {
+     "kind": "theorem",
+     "name": "correlation_not_imputation"
+    },
+    {
+     "kind": "def",
+     "name": "statRank"
+    },
+    {
+     "kind": "def",
+     "name": "RankOrdered"
+    },
+    {
+     "kind": "def",
+     "name": "demoLedger"
+    },
+    {
+     "kind": "theorem",
+     "name": "demoLedger_ordered"
+    },
+    {
+     "kind": "theorem",
+     "name": "demoLedger_nonneg"
+    },
+    {
+     "kind": "theorem",
+     "name": "demoLedger_readout"
+    }
+   ],
+   "imports": [
+    "JurisLean.FullMath.Numeric.Intervals",
+    "JurisLean.FullMath.Numeric.Quantities",
+    "JurisLean.Seams.UnifiedQuantities",
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantLedger.lean",
+   "print_axioms_targets": [],
+   "sha256": "138d149be182b5c3ad50b362013527a1266d4442f7f36a0633aec73facf4eb8a",
+   "size_bytes": 55542,
+   "theorem_count": 79,
+   "theorem_count_bol_convention": 79
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "SelectionProfile"
     },
@@ -43595,6 +44842,7 @@
     "JurisLean.Seams.UnifiedCAD",
     "JurisLean.Seams.UnifiedCAD2",
     "JurisLean.Seams.UnifiedCADCore",
+    "JurisLean.Seams.UnifiedCalendar",
     "JurisLean.Seams.UnifiedComposition",
     "JurisLean.Seams.UnifiedEquilExist",
     "JurisLean.Seams.UnifiedEvalLayer",
@@ -43622,6 +44870,7 @@
     "JurisLean.Seams.UnifiedNormFlow",
     "JurisLean.Seams.UnifiedPayoffChain",
     "JurisLean.Seams.UnifiedPerformance",
+    "JurisLean.Seams.UnifiedQuantLedger",
     "JurisLean.Seams.UnifiedQuantileNarrow",
     "JurisLean.Seams.UnifiedQuantities",
     "JurisLean.Seams.UnifiedSemantics",
@@ -43667,8 +44916,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "df12d5b78ec9b53e79046cd49d4302f2334dd2d35d44f5054094c88f8cd133b0",
-   "size_bytes": 10814,
+   "sha256": "955d879cbf05dc4ec2ffb4f9d5465f948533dff8821c572f3d9479452efdd9ce",
+   "size_bytes": 10895,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -43832,22 +45081,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5000,
-   "file_count": 366,
+   "counted_declaration_count": 5152,
+   "file_count": 368,
    "lemma_count": 141,
-   "print_axioms_command_count": 3882,
-   "print_axioms_distinct_targets": 3828,
-   "theorem_count": 4859,
-   "theorem_count_bol_convention": 4759
+   "print_axioms_command_count": 4034,
+   "print_axioms_distinct_targets": 3980,
+   "theorem_count": 5011,
+   "theorem_count_bol_convention": 4911
   },
   "juris_lean_package": {
-   "counted_declaration_count": 4981,
-   "file_count": 351,
+   "counted_declaration_count": 5133,
+   "file_count": 353,
    "lemma_count": 134,
-   "print_axioms_command_count": 3882,
-   "print_axioms_distinct_targets": 3828,
-   "theorem_count": 4847,
-   "theorem_count_bol_convention": 4747
+   "print_axioms_command_count": 4034,
+   "print_axioms_distinct_targets": 3980,
+   "theorem_count": 4999,
+   "theorem_count_bol_convention": 4899
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -44142,6 +45391,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD2.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCADCore.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCalendar.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEquilExist.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvalLayer.lean",
@@ -44169,6 +45419,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNormFlow.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedPayoffChain.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedPerformance.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantLedger.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantileNarrow.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantities.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
@@ -44506,6 +45757,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCAD2.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCADCore.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedCalendar.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedComposition.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEquilExist.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedEvalLayer.lean",
@@ -44533,6 +45785,7 @@
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedNormFlow.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedPayoffChain.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedPerformance.lean",
+   "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantLedger.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantileNarrow.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantities.lean",
    "proofs/lean/juris_lean/JurisLean/Seams/UnifiedSemantics.lean",
@@ -44621,19 +45874,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "894a74c9cd6fb0d79bb83cac58e166c8ab70739ea2efdea3d8806155cacea274",
+ "source_inventory_digest": "5f03c19400da7190cb5e41b59aaaf9eaa38df024b4d35418cc02a91c4c022038",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "ci/unified-construction-20261008",
-  "commit": "5f410fe8018f7ff009b3ee9ff1c3a2799c0e41e9",
-  "tree": "f2a5bbf84eb0a4c2d1e16ace7f8cdab83b0ae7a7"
+  "commit": "37620083d29c984e65a3db5cd2a8c895a0d51042",
+  "tree": "b8db942e969976d0dc92b58f96ab743a5ab606da"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 366,
+  "files_total": 368,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": true
+  "worktree_dirty_under_proofs": false
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

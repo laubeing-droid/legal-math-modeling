@@ -213,6 +213,8 @@ import JurisLean.Seams.UniformContinuous
 
 import JurisLean.Seams.UnifiedNetTrajectory
 
+import JurisLean.Seams.UnifiedEquilExist
+
 /-! Axiom audit for formal core release v1. -/
 
 open FiniteMonotoneSystem
@@ -2047,6 +2049,53 @@ open HornSystem
 #print axioms JurisLean.Seams.UnifiedComposition.deriveInputs_allEstablished_iff
 #print axioms JurisLean.Seams.UnifiedComposition.established_requires_admitted_premises
 #print axioms JurisLean.Seams.UnifiedComposition.nondegenerate_family
+#print axioms JurisLean.Seams.UnifiedEquilExist.best_response_pure_vertex_exists
+#print axioms JurisLean.Seams.UnifiedEquilExist.brCorr_closedGraph
+#print axioms JurisLean.Seams.UnifiedEquilExist.brCorr_values
+#print axioms JurisLean.Seams.UnifiedEquilExist.cad_equil_solution_nonempty
+#print axioms JurisLean.Seams.UnifiedEquilExist.cad_output_same_equilibrium_relation
+#print axioms JurisLean.Seams.UnifiedEquilExist.castProfile_inSimplex
+#print axioms JurisLean.Seams.UnifiedEquilExist.castProfile_update
+#print axioms JurisLean.Seams.UnifiedEquilExist.conjAll_denote
+#print axioms JurisLean.Seams.UnifiedEquilExist.continuous_euR_update
+#print axioms JurisLean.Seams.UnifiedEquilExist.denote_dev_atom
+#print axioms JurisLean.Seams.UnifiedEquilExist.denote_nonneg_atom
+#print axioms JurisLean.Seams.UnifiedEquilExist.denote_norm_atom
+#print axioms JurisLean.Seams.UnifiedEquilExist.euR_cast
+#print axioms JurisLean.Seams.UnifiedEquilExist.euR_dev_linear
+#print axioms JurisLean.Seams.UnifiedEquilExist.euR_pureMR
+#print axioms JurisLean.Seams.UnifiedEquilExist.euR_update_row_affine
+#print axioms JurisLean.Seams.UnifiedEquilExist.eval2_devRowPoly
+#print axioms JurisLean.Seams.UnifiedEquilExist.eval2_euDevPoly
+#print axioms JurisLean.Seams.UnifiedEquilExist.eval2_euPoly
+#print axioms JurisLean.Seams.UnifiedEquilExist.exists_rowOf_eq
+#print axioms JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists
+#print axioms JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists_of_menu
+#print axioms JurisLean.Seams.UnifiedEquilExist.finite_legal_mixed_equilibrium_exists_upstream
+#print axioms JurisLean.Seams.UnifiedEquilExist.fixed_point_brCorr_iff_nash
+#print axioms JurisLean.Seams.UnifiedEquilExist.gapmid_nash_iff_real
+#print axioms JurisLean.Seams.UnifiedEquilExist.legalGame_Strategy_eq
+#print axioms JurisLean.Seams.UnifiedEquilExist.legalGame_bound
+#print axioms JurisLean.Seams.UnifiedEquilExist.legalGame_eu_pure
+#print axioms JurisLean.Seams.UnifiedEquilExist.legalGame_mixedExtension_eu
+#print axioms JurisLean.Seams.UnifiedEquilExist.nashR_iff_no_pure_dev_gain
+#print axioms JurisLean.Seams.UnifiedEquilExist.pmfOfRow_toReal
+#print axioms JurisLean.Seams.UnifiedEquilExist.pointR_cast_eq
+#print axioms JurisLean.Seams.UnifiedEquilExist.pointR_rowSimplex
+#print axioms JurisLean.Seams.UnifiedEquilExist.prod_updateR_factor
+#print axioms JurisLean.Seams.UnifiedEquilExist.pureMR_inSimplex
+#print axioms JurisLean.Seams.UnifiedEquilExist.pureMR_rowSimplex
+#print axioms JurisLean.Seams.UnifiedEquilExist.qToR_apply
+#print axioms JurisLean.Seams.UnifiedEquilExist.simplexSet_compact
+#print axioms JurisLean.Seams.UnifiedEquilExist.simplexSet_convex
+#print axioms JurisLean.Seams.UnifiedEquilExist.simplexSet_isBounded
+#print axioms JurisLean.Seams.UnifiedEquilExist.simplexSet_isClosed
+#print axioms JurisLean.Seams.UnifiedEquilExist.simplexSet_nonempty
+#print axioms JurisLean.Seams.UnifiedEquilExist.sum_pointR_weight
+#print axioms JurisLean.Seams.UnifiedEquilExist.toRow_inSimplex
+#print axioms JurisLean.Seams.UnifiedEquilExist.toRow_update
+#print axioms JurisLean.Seams.UnifiedEquilExist.toRow_update_pmf
+#print axioms JurisLean.Seams.UnifiedEquilExist.upstream_nash_iff
 #print axioms JurisLean.Seams.UnifiedEvalLayer.anchorless_attack_rejected
 #print axioms JurisLean.Seams.UnifiedEvalLayer.anchorless_attack_witness
 #print axioms JurisLean.Seams.UnifiedEvalLayer.argument_undec_not_final_undetermined

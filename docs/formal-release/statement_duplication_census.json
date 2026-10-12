@@ -27,8 +27,8 @@
     ]
   },
   "cross_family_statement_types": 2,
-  "distinct_statement_types": 4828,
-  "duplicated_statement_types": 51,
+  "distinct_statement_types": 4888,
+  "duplicated_statement_types": 53,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
@@ -100,6 +100,18 @@
         "carrier": "root/other/candidate_evidence_not_accepted",
         "line": 56,
         "path": "CertificateChecker.lean"
+      }
+    ],
+    "(d : CaseDocket) (r : LawRule) (hr : r ∈ familyRuleList) : r.horn ∈ (hornOf d).rules": [
+      {
+        "carrier": "root/other/rule_horn_mem_any",
+        "line": 180,
+        "path": "Seams/UnifiedNetTrajectory.lean"
+      },
+      {
+        "carrier": "root/other/rule_horn_mem_general",
+        "line": 655,
+        "path": "Seams/UnifiedNeedlesGap05.lean"
       }
     ],
     "(e : NFEdge) : (requiredObligations e).Nonempty": [
@@ -594,6 +606,18 @@
         "path": "External/GameTheory/Math/TraceRun.lean"
       }
     ],
+    "{α : Type} [DecidableEq α] [Fintype α] (sys : HornSystem α) (bad : Finset α) (hdisj : Disjoint sys.initialFacts bad) (hblock : ∀ r ∈ sys.rules, r.conclusion ∈ bad → r.premises ∩ bad ≠ ∅) : isModel sys (Finset.univ \\ bad)": [
+      {
+        "carrier": "root/other/isModel_avoiding_gen",
+        "line": 292,
+        "path": "Seams/UnifiedNeedlesGap05.lean"
+      },
+      {
+        "carrier": "root/other/isModel_avoiding_gen",
+        "line": 824,
+        "path": "Seams/UnifiedNetTrajectory.lean"
+      }
+    ],
     "{α : Type} {P : α → Type} {a b : α} (h : a = b) (x : P a) : HEq x (h ▸ x : P b)": [
       {
         "carrier": "External/fwd_subst_heq",
@@ -643,12 +667,12 @@
       }
     ]
   },
-  "files_scanned": 349,
+  "files_scanned": 350,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
   "headers_missed_by_scanner": 109,
-  "inventory_package_theorems": 4872,
+  "inventory_package_theorems": 4934,
   "private_protected_headers_read": 116,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 4879
+  "statements_read": 4941
 }

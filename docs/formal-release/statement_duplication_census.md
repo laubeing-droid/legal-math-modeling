@@ -4,10 +4,10 @@
 
 Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.
 
-- files scanned: 349
-- theorem/lemma headers read: 4879
-- distinct statement types: 4828
-- statement types declared more than once: 51
+- files scanned: 350
+- theorem/lemma headers read: 4941
+- distinct statement types: 4888
+- statement types declared more than once: 53
 - of those spanning module families: 2
 
 ## Across module families (2)
@@ -15,7 +15,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(r : Rul A) (ps : List (Arg A)) (p : Arg A) (hp : p ∈ ps) (k : ℕ) (hk : Arg.height (.node r ps) ≤ k + 1) : Arg.height p ≤ k` — `FullMath/Logic/AttackCompilation.lean:57` (FullMath/child_height_le), `Seams/UnifiedArgumentation.lean:104` (root/other/child_height_lt)
 - `(r : ℚ) : max r 0 - max (-r) 0 = r` — `FullMath/GenericKernels.lean:94` (FullMath/clipped_conservation), `BusinessRelationsDelta.lean:21` (root/other/split_residual_identity)
 
-## Within the package (51)
+## Within the package (53)
 
 - `(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S` — `DungFixedPoint.lean:96` (root/other/grounded_is_least_complete), `DungFixedPoint.lean:92` (root/other/grounded_is_least_fixed_point)
 - `(S : Finset α) : TH sys S ⊆ sys.univ` — `HornDefinitions.lean:55` (root/other/TH_subset_univ), `HornFixedPoint.lean:17` (root/other/horn_operator_subset_univ)
@@ -23,6 +23,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(a b : TrustVector) : TrustLE (a.meet b) a` — `ULM16TheoryComposition.lean:75` (root/other/COMP_C01_trust_nonupgrade_left), `ULM14CoverageTrust.lean:92` (root/other/trust_meet_le_left)
 - `(a b : TrustVector) : TrustLE (a.meet b) b` — `ULM16TheoryComposition.lean:78` (root/other/COMP_C01_trust_nonupgrade_right), `ULM14CoverageTrust.lean:97` (root/other/trust_meet_le_right)
 - `(c : Certificate) (hstatus : c.status = DecisionStatus.proved) (hkind : c.evidence.kind = EvidenceKind.candidate) : checkCertificate c ≠ CheckVerdict.accept` — `SafetyTheorems.lean:12` (root/other/candidate_cannot_enter_verified_fact_gate), `CertificateChecker.lean:56` (root/other/candidate_evidence_not_accepted)
+- `(d : CaseDocket) (r : LawRule) (hr : r ∈ familyRuleList) : r.horn ∈ (hornOf d).rules` — `Seams/UnifiedNetTrajectory.lean:180` (root/other/rule_horn_mem_any), `Seams/UnifiedNeedlesGap05.lean:655` (root/other/rule_horn_mem_general)
 - `(e : NFEdge) : (requiredObligations e).Nonempty` — `ULM16TheoryComposition.lean:246` (root/other/CORE_23_required_nonempty), `ULM04Obligations.lean:64` (root/other/requiredObligations_nonempty)
 - `(f : Bool → ℚ) : (∑ b : Bool, f b) = f true + f false` — `Seams/Uncertainty.lean:124` (root/other/sum_bool_eq), `Seams/UnifiedNeedlesS3b.lean:375` (root/other/sum_bool_split)
 - `(input : StructuredArgumentation) (policy : DefeatPolicy) : (resolveToDefeatAF input policy).WellFormed` — `ULM16TheoryComposition.lean:156` (root/other/CORE_07_resolved_bridge_wellFormed), `ULM10DungProfiles.lean:44` (root/other/resolveToDefeatAF_wellFormed)
@@ -56,5 +57,4 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `{env : QueryEnvironment} {f : ExtensionFamily} {q : JurisLean.LegalId .claim} (h : UndecidedSome env f q) : ∃ e ∈ f.carrier, GateEnterable env e q` — `ULM16TheoryComposition.lean:168` (root/other/CORE_09_undecided_requires_enterable), `ULM11BranchQuery.lean:204` (root/other/undecided_requires_enterable)
 - `{expected actual : Finset CanonicalArgument} (hCoverage : ArgumentCoverage expected actual) (hExpectedWF : ∀ a ∈ expected, ArgumentWF a) {a : CanonicalArgument}` — `ULM16TheoryComposition.lean:225` (root/other/CORE_19_argument_coverage_sound), `ULM08ArgumentConstruction.lean:107` (root/other/covered_argument_is_well_formed)
 - `{g : TypedGraph} {s t : LocalState} (h : LocalTransition g s t) : t.request = s.request` — `ULM16TheoryComposition.lean:117` (root/other/CORE_01_typed_transition_request), `ULM03TypedGraph.lean:69` (root/other/localTransition_preserves_request)
-- `{g : TypedGraph} {x y : Machine} (h : Run g x y) : x.request = y.request` — `ULM16TheoryComposition.lean:240` (root/other/CORE_22_run_subject_preserved), `ULM05Machine.lean:75` (root/other/run_preserves_request)
-- …11 more in the JSON
+- …13 more in the JSON

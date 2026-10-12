@@ -5417,28 +5417,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D116",
    "contract": "JurisLean.FullMath.Contracts.demand_D116",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.bellman_onesided's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-13 matter/trade workflow-strategy demand instance in the shared semantic framework: this item's own contract semantics over region-local workflow operational defs (the exact VDR gap with pending rows, legal closing orders with infeasibility reporting, gated clarification moves with explicit value models, preference-measured risk ranking with hard blocks, market-sample advice typed apart from legal duty, subpoena option gates, outline coverage of the frozen argument graph, and multi-hop provenance chains with the timeout discipline) plus the registered Bellman component (the one-sided max-gap bound of the legal-action Bellman operator), with its adverse case executed as a negative test.",
+   "independent_semantics": "the required-documents minus VDR-catalog gap is exact (member of the gap iff required and not in the catalog, the required list never re-derived from the catalog), every missing document becomes an explicit pending row instead of being dropped, and the witness (litigation-search required, only the charter in the room) keeps the missing item pending — it cannot be erased by generating the required list from what the room already has.",
+   "algorithm": "tools/full_math/implementation/workflow_ref.py diligence_gap computes the intermediate result from structured input (the Bellman surface mirrored from JurisLean.FullMath.Numeric.Bellman and consumed by the D118 value model); workflow_check.check_D116 re-derives the contract independently with different code paths (index scans, round counters, branch tables, selection maxima, gate ladders, row-matching scans, flag accumulation) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (required-document and VDR-catalog name lists, closing tasks as name/prerequisite/permission triples, clarification actions as kind/norm/waivable/probability/gain/cost records with exact Fraction values, risk items as name/weight/measure/hard-block records with integer preference indices, market samples as clause/count/total records, subpoena contexts as standing/stage/timeliness flags, outlines as covered/deps-kept/alts-kept tables over the frozen graph, and final assertions with their provenance chains); outputs are exactly the contract quantities (the exact gap with its pending rows and the fabrication witness, the executable order or the infeasibility report with the cycle witness, the legality gates with the mandatory-waiver rejection and the prediction-model values on the Bellman mirror, the descending ranked readout with the hard-block exclusion and the weight-sensitivity witness, the market-share advice typed apart from legal duty, the option sets for the full/party/late contexts, the coverage verdict with the weak-outline witness, and the sourcing verdicts with the timeout readout discipline).",
+   "external_assumptions": "The authoritative required-documents list and the data room's actual completeness, third-party cooperation and document authenticity for closing execution, the substantive calibration of success probabilities and gains in the explicit prediction model, the declared preference weights and risk measures, the market sample's representativeness and selection bias, the applicable foreign procedural rules behind the option gates, the frozen argument graph's candidate scope and the adversarial target, and the upstream legal tools' actual coverage and availability remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Bellman.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/workflow_ref.py",
+    "tools/full_math/implementation/workflow_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D116]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_demand_positive[D116]",
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_demand_counterexample[D116]",
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_downstream_pipeline_consumes_workflow"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D116]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D116]"
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_checker_rejects_tampered[D116]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.bellman_onesided"
+    "JurisLean.FullMath.Numeric.bellman_onesided",
+    "JurisLean.FullMath.Contracts.vdrGap",
+    "JurisLean.FullMath.Contracts.toPending"
    ]
   },
   {
@@ -5446,28 +5449,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D117",
    "contract": "JurisLean.FullMath.Contracts.demand_D117",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.bellman_onesided's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-13 matter/trade workflow-strategy demand instance in the shared semantic framework: this item's own contract semantics over region-local workflow operational defs (the exact VDR gap with pending rows, legal closing orders with infeasibility reporting, gated clarification moves with explicit value models, preference-measured risk ranking with hard blocks, market-sample advice typed apart from legal duty, subpoena option gates, outline coverage of the frozen argument graph, and multi-hop provenance chains with the timeout discipline) plus the registered Bellman component (the one-sided max-gap bound of the legal-action Bellman operator), with its adverse case executed as a negative test.",
+   "independent_semantics": "occurrences, permissions and prerequisites compose a legal closing order: each task is permitted and runs after its prerequisite; the acyclic board-approval → signature → closing chain receives its executable checklist, while the two-task dependency cycle is reported infeasible (none) — no unconditional checklist is ever produced for the cycle.",
+   "algorithm": "tools/full_math/implementation/workflow_ref.py closing_schedule computes the intermediate result from structured input (the Bellman surface mirrored from JurisLean.FullMath.Numeric.Bellman and consumed by the D118 value model); workflow_check.check_D117 re-derives the contract independently with different code paths (index scans, round counters, branch tables, selection maxima, gate ladders, row-matching scans, flag accumulation) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (required-document and VDR-catalog name lists, closing tasks as name/prerequisite/permission triples, clarification actions as kind/norm/waivable/probability/gain/cost records with exact Fraction values, risk items as name/weight/measure/hard-block records with integer preference indices, market samples as clause/count/total records, subpoena contexts as standing/stage/timeliness flags, outlines as covered/deps-kept/alts-kept tables over the frozen graph, and final assertions with their provenance chains); outputs are exactly the contract quantities (the exact gap with its pending rows and the fabrication witness, the executable order or the infeasibility report with the cycle witness, the legality gates with the mandatory-waiver rejection and the prediction-model values on the Bellman mirror, the descending ranked readout with the hard-block exclusion and the weight-sensitivity witness, the market-share advice typed apart from legal duty, the option sets for the full/party/late contexts, the coverage verdict with the weak-outline witness, and the sourcing verdicts with the timeout readout discipline).",
+   "external_assumptions": "The authoritative required-documents list and the data room's actual completeness, third-party cooperation and document authenticity for closing execution, the substantive calibration of success probabilities and gains in the explicit prediction model, the declared preference weights and risk measures, the market sample's representativeness and selection bias, the applicable foreign procedural rules behind the option gates, the frozen argument graph's candidate scope and the adversarial target, and the upstream legal tools' actual coverage and availability remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Bellman.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/workflow_ref.py",
+    "tools/full_math/implementation/workflow_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D117]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_demand_positive[D117]",
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_demand_counterexample[D117]",
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_downstream_pipeline_consumes_workflow"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D117]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D117]"
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_checker_rejects_tampered[D117]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.bellman_onesided"
+    "JurisLean.FullMath.Numeric.bellman_onesided",
+    "JurisLean.FullMath.Contracts.cloLegalOrder",
+    "JurisLean.FullMath.Contracts.cloVerdict"
    ]
   },
   {
@@ -5475,28 +5481,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D118",
    "contract": "JurisLean.FullMath.Contracts.demand_D118",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.bellman_onesided's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-13 matter/trade workflow-strategy demand instance in the shared semantic framework: this item's own contract semantics over region-local workflow operational defs (the exact VDR gap with pending rows, legal closing orders with infeasibility reporting, gated clarification moves with explicit value models, preference-measured risk ranking with hard blocks, market-sample advice typed apart from legal duty, subpoena option gates, outline coverage of the frozen argument graph, and multi-hop provenance chains with the timeout discipline) plus the registered Bellman component (the one-sided max-gap bound of the legal-action Bellman operator), with its adverse case executed as a negative test.",
+   "independent_semantics": "written confirmation, waiver and supplementary evidence are gated legal moves: confirmation and supplement are always legal, a waiver only against a waivable norm (the mandatory-audit waiver stays illegal), and each move's value is computed by the explicit prediction model prob×gain−cost (witnesses 3/4×100−10=65 and 1/2×40−5=15) on the Bellman backward-induction mirror of the registered component.",
+   "algorithm": "tools/full_math/implementation/workflow_ref.py clarification_actions computes the intermediate result from structured input (the Bellman surface mirrored from JurisLean.FullMath.Numeric.Bellman and consumed by the D118 value model); workflow_check.check_D118 re-derives the contract independently with different code paths (index scans, round counters, branch tables, selection maxima, gate ladders, row-matching scans, flag accumulation) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (required-document and VDR-catalog name lists, closing tasks as name/prerequisite/permission triples, clarification actions as kind/norm/waivable/probability/gain/cost records with exact Fraction values, risk items as name/weight/measure/hard-block records with integer preference indices, market samples as clause/count/total records, subpoena contexts as standing/stage/timeliness flags, outlines as covered/deps-kept/alts-kept tables over the frozen graph, and final assertions with their provenance chains); outputs are exactly the contract quantities (the exact gap with its pending rows and the fabrication witness, the executable order or the infeasibility report with the cycle witness, the legality gates with the mandatory-waiver rejection and the prediction-model values on the Bellman mirror, the descending ranked readout with the hard-block exclusion and the weight-sensitivity witness, the market-share advice typed apart from legal duty, the option sets for the full/party/late contexts, the coverage verdict with the weak-outline witness, and the sourcing verdicts with the timeout readout discipline).",
+   "external_assumptions": "The authoritative required-documents list and the data room's actual completeness, third-party cooperation and document authenticity for closing execution, the substantive calibration of success probabilities and gains in the explicit prediction model, the declared preference weights and risk measures, the market sample's representativeness and selection bias, the applicable foreign procedural rules behind the option gates, the frozen argument graph's candidate scope and the adversarial target, and the upstream legal tools' actual coverage and availability remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Bellman.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/workflow_ref.py",
+    "tools/full_math/implementation/workflow_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D118]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_demand_positive[D118]",
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_demand_counterexample[D118]",
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_downstream_pipeline_consumes_workflow"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D118]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D118]"
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_checker_rejects_tampered[D118]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.bellman_onesided"
+    "JurisLean.FullMath.Numeric.bellman_onesided",
+    "JurisLean.FullMath.Contracts.clarLegal",
+    "JurisLean.FullMath.Contracts.clarValue"
    ]
   },
   {
@@ -5504,28 +5513,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D119",
    "contract": "JurisLean.FullMath.Contracts.demand_D119",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.bellman_onesided's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-13 matter/trade workflow-strategy demand instance in the shared semantic framework: this item's own contract semantics over region-local workflow operational defs (the exact VDR gap with pending rows, legal closing orders with infeasibility reporting, gated clarification moves with explicit value models, preference-measured risk ranking with hard blocks, market-sample advice typed apart from legal duty, subpoena option gates, outline coverage of the frozen argument graph, and multi-hop provenance chains with the timeout discipline) plus the registered Bellman component (the one-sided max-gap bound of the legal-action Bellman operator), with its adverse case executed as a negative test.",
+   "independent_semantics": "the risk ranking executes the declared preference weight × risk measure in descending order (40/15/2 witness), hard-blocked items are filtered out before any weight is applied (the score-100 unpermitted plant stays out), the readout declares its origin as an explicit preference — never a statutory order — and the same measures under two weight vectors rank differently, so no weight vector is the statutory unique priority.",
+   "algorithm": "tools/full_math/implementation/workflow_ref.py risk_ranking computes the intermediate result from structured input (the Bellman surface mirrored from JurisLean.FullMath.Numeric.Bellman and consumed by the D118 value model); workflow_check.check_D119 re-derives the contract independently with different code paths (index scans, round counters, branch tables, selection maxima, gate ladders, row-matching scans, flag accumulation) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (required-document and VDR-catalog name lists, closing tasks as name/prerequisite/permission triples, clarification actions as kind/norm/waivable/probability/gain/cost records with exact Fraction values, risk items as name/weight/measure/hard-block records with integer preference indices, market samples as clause/count/total records, subpoena contexts as standing/stage/timeliness flags, outlines as covered/deps-kept/alts-kept tables over the frozen graph, and final assertions with their provenance chains); outputs are exactly the contract quantities (the exact gap with its pending rows and the fabrication witness, the executable order or the infeasibility report with the cycle witness, the legality gates with the mandatory-waiver rejection and the prediction-model values on the Bellman mirror, the descending ranked readout with the hard-block exclusion and the weight-sensitivity witness, the market-share advice typed apart from legal duty, the option sets for the full/party/late contexts, the coverage verdict with the weak-outline witness, and the sourcing verdicts with the timeout readout discipline).",
+   "external_assumptions": "The authoritative required-documents list and the data room's actual completeness, third-party cooperation and document authenticity for closing execution, the substantive calibration of success probabilities and gains in the explicit prediction model, the declared preference weights and risk measures, the market sample's representativeness and selection bias, the applicable foreign procedural rules behind the option gates, the frozen argument graph's candidate scope and the adversarial target, and the upstream legal tools' actual coverage and availability remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Bellman.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/workflow_ref.py",
+    "tools/full_math/implementation/workflow_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D119]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_demand_positive[D119]",
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_demand_counterexample[D119]",
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_downstream_pipeline_consumes_workflow"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D119]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D119]"
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_checker_rejects_tampered[D119]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.bellman_onesided"
+    "JurisLean.FullMath.Numeric.bellman_onesided",
+    "JurisLean.FullMath.Contracts.riskRank",
+    "JurisLean.FullMath.Contracts.rankOrigin"
    ]
   },
   {
@@ -5533,28 +5545,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D120",
    "contract": "JurisLean.FullMath.Contracts.demand_D120",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.bellman_onesided's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-13 matter/trade workflow-strategy demand instance in the shared semantic framework: this item's own contract semantics over region-local workflow operational defs (the exact VDR gap with pending rows, legal closing orders with infeasibility reporting, gated clarification moves with explicit value models, preference-measured risk ranking with hard blocks, market-sample advice typed apart from legal duty, subpoena option gates, outline coverage of the frozen argument graph, and multi-hop provenance chains with the timeout discipline) plus the registered Bellman component (the one-sided max-gap bound of the legal-action Bellman operator), with its adverse case executed as a negative test.",
+   "independent_semantics": "market-clause distribution and normative force stay typed apart: advice built from market data is typed marketSample with the share it actually has (a 3/5 majority), declares the market-sample basis, and a 3/5 majority never yields any legalDuty-typed advice — the majority itself is not a source of legal obligation.",
+   "algorithm": "tools/full_math/implementation/workflow_ref.py market_clause_advice computes the intermediate result from structured input (the Bellman surface mirrored from JurisLean.FullMath.Numeric.Bellman and consumed by the D118 value model); workflow_check.check_D120 re-derives the contract independently with different code paths (index scans, round counters, branch tables, selection maxima, gate ladders, row-matching scans, flag accumulation) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (required-document and VDR-catalog name lists, closing tasks as name/prerequisite/permission triples, clarification actions as kind/norm/waivable/probability/gain/cost records with exact Fraction values, risk items as name/weight/measure/hard-block records with integer preference indices, market samples as clause/count/total records, subpoena contexts as standing/stage/timeliness flags, outlines as covered/deps-kept/alts-kept tables over the frozen graph, and final assertions with their provenance chains); outputs are exactly the contract quantities (the exact gap with its pending rows and the fabrication witness, the executable order or the infeasibility report with the cycle witness, the legality gates with the mandatory-waiver rejection and the prediction-model values on the Bellman mirror, the descending ranked readout with the hard-block exclusion and the weight-sensitivity witness, the market-share advice typed apart from legal duty, the option sets for the full/party/late contexts, the coverage verdict with the weak-outline witness, and the sourcing verdicts with the timeout readout discipline).",
+   "external_assumptions": "The authoritative required-documents list and the data room's actual completeness, third-party cooperation and document authenticity for closing execution, the substantive calibration of success probabilities and gains in the explicit prediction model, the declared preference weights and risk measures, the market sample's representativeness and selection bias, the applicable foreign procedural rules behind the option gates, the frozen argument graph's candidate scope and the adversarial target, and the upstream legal tools' actual coverage and availability remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Bellman.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/workflow_ref.py",
+    "tools/full_math/implementation/workflow_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D120]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_demand_positive[D120]",
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_demand_counterexample[D120]",
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_downstream_pipeline_consumes_workflow"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D120]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D120]"
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_checker_rejects_tampered[D120]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.bellman_onesided"
+    "JurisLean.FullMath.Numeric.bellman_onesided",
+    "JurisLean.FullMath.Contracts.marketShare",
+    "JurisLean.FullMath.Contracts.adviseFromMarket"
    ]
   },
   {
@@ -5562,28 +5577,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D121",
    "contract": "JurisLean.FullMath.Contracts.demand_D121",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.bellman_onesided's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-13 matter/trade workflow-strategy demand instance in the shared semantic framework: this item's own contract semantics over region-local workflow operational defs (the exact VDR gap with pending rows, legal closing orders with infeasibility reporting, gated clarification moves with explicit value models, preference-measured risk ranking with hard blocks, market-sample advice typed apart from legal duty, subpoena option gates, outline coverage of the frozen argument graph, and multi-hop provenance chains with the timeout discipline) plus the registered Bellman component (the one-sided max-gap bound of the legal-action Bellman operator), with its adverse case executed as a negative test.",
+   "independent_semantics": "quash/vacate/protective measures compose from jurisdiction/standing/stage/deadline gates: timeliness is a universal precondition of every measure, the non-party/pre-trial/timely context gets all three options, the party context does not get the non-party quash path, and the late context gets nothing — the deadline is not cured by standing or stage.",
+   "algorithm": "tools/full_math/implementation/workflow_ref.py subpoena_options computes the intermediate result from structured input (the Bellman surface mirrored from JurisLean.FullMath.Numeric.Bellman and consumed by the D118 value model); workflow_check.check_D121 re-derives the contract independently with different code paths (index scans, round counters, branch tables, selection maxima, gate ladders, row-matching scans, flag accumulation) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (required-document and VDR-catalog name lists, closing tasks as name/prerequisite/permission triples, clarification actions as kind/norm/waivable/probability/gain/cost records with exact Fraction values, risk items as name/weight/measure/hard-block records with integer preference indices, market samples as clause/count/total records, subpoena contexts as standing/stage/timeliness flags, outlines as covered/deps-kept/alts-kept tables over the frozen graph, and final assertions with their provenance chains); outputs are exactly the contract quantities (the exact gap with its pending rows and the fabrication witness, the executable order or the infeasibility report with the cycle witness, the legality gates with the mandatory-waiver rejection and the prediction-model values on the Bellman mirror, the descending ranked readout with the hard-block exclusion and the weight-sensitivity witness, the market-share advice typed apart from legal duty, the option sets for the full/party/late contexts, the coverage verdict with the weak-outline witness, and the sourcing verdicts with the timeout readout discipline).",
+   "external_assumptions": "The authoritative required-documents list and the data room's actual completeness, third-party cooperation and document authenticity for closing execution, the substantive calibration of success probabilities and gains in the explicit prediction model, the declared preference weights and risk measures, the market sample's representativeness and selection bias, the applicable foreign procedural rules behind the option gates, the frozen argument graph's candidate scope and the adversarial target, and the upstream legal tools' actual coverage and availability remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Bellman.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/workflow_ref.py",
+    "tools/full_math/implementation/workflow_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D121]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_demand_positive[D121]",
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_demand_counterexample[D121]",
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_downstream_pipeline_consumes_workflow"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D121]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D121]"
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_checker_rejects_tampered[D121]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.bellman_onesided"
+    "JurisLean.FullMath.Numeric.bellman_onesided",
+    "JurisLean.FullMath.Contracts.measureLegal",
+    "JurisLean.FullMath.Contracts.legalOptions"
    ]
   },
   {
@@ -5591,28 +5609,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D122",
    "contract": "JurisLean.FullMath.Contracts.demand_D122",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.bellman_onesided's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-13 matter/trade workflow-strategy demand instance in the shared semantic framework: this item's own contract semantics over region-local workflow operational defs (the exact VDR gap with pending rows, legal closing orders with infeasibility reporting, gated clarification moves with explicit value models, preference-measured risk ranking with hard blocks, market-sample advice typed apart from legal duty, subpoena option gates, outline coverage of the frozen argument graph, and multi-hop provenance chains with the timeout discipline) plus the registered Bellman component (the one-sided max-gap bound of the legal-action Bellman operator), with its adverse case executed as a negative test.",
+   "independent_semantics": "the argument outline covers the frozen claim/rebuttal graph with every node's evidence dependencies and alternative (备位) positions kept; the weak outline (the main claim plus two weak rebuttals — three covered ids) fails coverage because the best rebuttal and the primary/fallback structure are missing — the count alone does not answer the strongest counter-argument.",
+   "algorithm": "tools/full_math/implementation/workflow_ref.py argument_outline computes the intermediate result from structured input (the Bellman surface mirrored from JurisLean.FullMath.Numeric.Bellman and consumed by the D118 value model); workflow_check.check_D122 re-derives the contract independently with different code paths (index scans, round counters, branch tables, selection maxima, gate ladders, row-matching scans, flag accumulation) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (required-document and VDR-catalog name lists, closing tasks as name/prerequisite/permission triples, clarification actions as kind/norm/waivable/probability/gain/cost records with exact Fraction values, risk items as name/weight/measure/hard-block records with integer preference indices, market samples as clause/count/total records, subpoena contexts as standing/stage/timeliness flags, outlines as covered/deps-kept/alts-kept tables over the frozen graph, and final assertions with their provenance chains); outputs are exactly the contract quantities (the exact gap with its pending rows and the fabrication witness, the executable order or the infeasibility report with the cycle witness, the legality gates with the mandatory-waiver rejection and the prediction-model values on the Bellman mirror, the descending ranked readout with the hard-block exclusion and the weight-sensitivity witness, the market-share advice typed apart from legal duty, the option sets for the full/party/late contexts, the coverage verdict with the weak-outline witness, and the sourcing verdicts with the timeout readout discipline).",
+   "external_assumptions": "The authoritative required-documents list and the data room's actual completeness, third-party cooperation and document authenticity for closing execution, the substantive calibration of success probabilities and gains in the explicit prediction model, the declared preference weights and risk measures, the market sample's representativeness and selection bias, the applicable foreign procedural rules behind the option gates, the frozen argument graph's candidate scope and the adversarial target, and the upstream legal tools' actual coverage and availability remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Bellman.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/workflow_ref.py",
+    "tools/full_math/implementation/workflow_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D122]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_demand_positive[D122]",
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_demand_counterexample[D122]",
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_downstream_pipeline_consumes_workflow"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D122]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D122]"
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_checker_rejects_tampered[D122]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.bellman_onesided"
+    "JurisLean.FullMath.Numeric.bellman_onesided",
+    "JurisLean.FullMath.Contracts.coversFrozen",
+    "JurisLean.FullMath.Contracts.depsKeptFor"
    ]
   },
   {
@@ -5620,28 +5641,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D123",
    "contract": "JurisLean.FullMath.Contracts.demand_D123",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.bellman_onesided's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-13 matter/trade workflow-strategy demand instance in the shared semantic framework: this item's own contract semantics over region-local workflow operational defs (the exact VDR gap with pending rows, legal closing orders with infeasibility reporting, gated clarification moves with explicit value models, preference-measured risk ranking with hard blocks, market-sample advice typed apart from legal duty, subpoena option gates, outline coverage of the frozen argument graph, and multi-hop provenance chains with the timeout discipline) plus the registered Bellman component (the one-sided max-gap bound of the legal-action Bellman operator), with its adverse case executed as a negative test.",
+   "independent_semantics": "every data assertion of the final report links its query inputs, intermediate joins, original records and transform witness; a timed-out tool query reads back unavailable, never no-records, and only an ok empty result is a verified no-records; the hollow assertion (no joins, no records, a silently-empty transform) is rejected.",
+   "algorithm": "tools/full_math/implementation/workflow_ref.py provenance_chain computes the intermediate result from structured input (the Bellman surface mirrored from JurisLean.FullMath.Numeric.Bellman and consumed by the D118 value model); workflow_check.check_D123 re-derives the contract independently with different code paths (index scans, round counters, branch tables, selection maxima, gate ladders, row-matching scans, flag accumulation) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (required-document and VDR-catalog name lists, closing tasks as name/prerequisite/permission triples, clarification actions as kind/norm/waivable/probability/gain/cost records with exact Fraction values, risk items as name/weight/measure/hard-block records with integer preference indices, market samples as clause/count/total records, subpoena contexts as standing/stage/timeliness flags, outlines as covered/deps-kept/alts-kept tables over the frozen graph, and final assertions with their provenance chains); outputs are exactly the contract quantities (the exact gap with its pending rows and the fabrication witness, the executable order or the infeasibility report with the cycle witness, the legality gates with the mandatory-waiver rejection and the prediction-model values on the Bellman mirror, the descending ranked readout with the hard-block exclusion and the weight-sensitivity witness, the market-share advice typed apart from legal duty, the option sets for the full/party/late contexts, the coverage verdict with the weak-outline witness, and the sourcing verdicts with the timeout readout discipline).",
+   "external_assumptions": "The authoritative required-documents list and the data room's actual completeness, third-party cooperation and document authenticity for closing execution, the substantive calibration of success probabilities and gains in the explicit prediction model, the declared preference weights and risk measures, the market sample's representativeness and selection bias, the applicable foreign procedural rules behind the option gates, the frozen argument graph's candidate scope and the adversarial target, and the upstream legal tools' actual coverage and availability remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Bellman.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/workflow_ref.py",
+    "tools/full_math/implementation/workflow_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D123]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_demand_positive[D123]",
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_demand_counterexample[D123]",
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_downstream_pipeline_consumes_workflow"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D123]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D123]"
+    "tools/full_math/implementation_tests::test_workflow_group13.py::test_checker_rejects_tampered[D123]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.bellman_onesided"
+    "JurisLean.FullMath.Numeric.bellman_onesided",
+    "JurisLean.FullMath.Contracts.readoutOf",
+    "JurisLean.FullMath.Contracts.sourced"
    ]
   },
   {

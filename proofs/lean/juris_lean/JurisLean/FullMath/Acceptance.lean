@@ -2034,21 +2034,204 @@ theorem demand_D115 : Contracts.demand_D115 := And.intro JurisLean.FullMath.Docu
       have hbad := h.2 ("internal-scratch", "draft-notes") (by simp)
       exact hbad rfl)
 
-theorem demand_D116 : Contracts.demand_D116 := JurisLean.FullMath.Numeric.bellman_onesided
+/-! D116-D123 (group 13 办案、交易工作流与策略, W2-A batch B13): each
+theorem discharges the demand's own contract; the first conjunct is the
+group-registered Bellman component
+(JurisLean.FullMath.Numeric.bellman_onesided) inlined, the remaining
+conjuncts are discharged against the region-local operational defs in
+Contracts (VDR gap, closing-order legality, clarification actions,
+risk ranking, market-sample advice, subpoena options, outline coverage,
+provenance sourcing). -/
 
-theorem demand_D117 : Contracts.demand_D117 := JurisLean.FullMath.Numeric.bellman_onesided
+private theorem strIn_iff {d : String} {l : List String} :
+    Contracts.strIn d l = true ↔ d ∈ l := by
+  induction l with
+  | nil =>
+    constructor
+    · intro h; simp [Contracts.strIn] at h
+    · intro h; cases h
+  | cons x xs ih =>
+    by_cases hx : x = d
+    · subst hx
+      constructor
+      · intro _; exact List.Mem.head _
+      · intro _
+        simp [Contracts.strIn]
+    · simp only [Contracts.strIn, if_neg hx, ih, List.mem_cons]
+      constructor
+      · intro h; exact Or.inr h
+      · intro h
+        cases h with
+        | inl he => exact absurd he.symm hx
+        | inr h => exact h
 
-theorem demand_D118 : Contracts.demand_D118 := JurisLean.FullMath.Numeric.bellman_onesided
+theorem demand_D116 : Contracts.demand_D116 := And.intro JurisLean.FullMath.Numeric.bellman_onesided
+  (by
+    refine ⟨?_, ?_, ?_⟩
+    · intro required vdr d
+      constructor
+      · intro hmem
+        obtain ⟨h1, h2⟩ := List.mem_filter.mp hmem
+        refine ⟨h1, ?_⟩
+        intro hc
+        rw [strIn_iff.mpr hc] at h2
+        simp at h2
+      · intro hmem
+        obtain ⟨h1, h2⟩ := hmem
+        refine List.mem_filter.mpr ⟨h1, ?_⟩
+        cases hv : Contracts.strIn d vdr with
+        | false => rfl
+        | true => exact absurd (strIn_iff.mp hv) h2
+    · intro required vdr d hd
+      exact List.mem_map_of_mem hd
+    · exact ⟨by rfl, by decide⟩)
 
-theorem demand_D119 : Contracts.demand_D119 := JurisLean.FullMath.Numeric.bellman_onesided
+theorem demand_D117 : Contracts.demand_D117 := And.intro JurisLean.FullMath.Numeric.bellman_onesided
+  (by
+    refine ⟨?_, rfl, ?_⟩
+    · intro ts order t hlegal hmem
+      simp only [Contracts.cloLegalOrder, Bool.and_eq_true] at hlegal
+      obtain ⟨_, hall⟩ := hlegal
+      have hft : Contracts.strIn t.name order = true
+          ∧ Contracts.cloReady order t = true :=
+        Bool.and_eq_true_iff.mp (List.all_eq_true.mp hall t hmem)
+      exact hft.2
+    · intro order
+      cases order with
+      | nil => rfl
+      | cons x xs =>
+        cases xs with
+        | nil => rfl
+        | cons y ys =>
+          cases ys with
+          | cons z zs => rfl
+          | nil =>
+            by_contra hfalse
+            have h : Contracts.cloLegalOrder Contracts.cycTasks [x, y] = true := by
+              cases hbool : Contracts.cloLegalOrder Contracts.cycTasks [x, y] with
+              | true => rfl
+              | false => exact absurd hbool hfalse
+            simp only [Contracts.cloLegalOrder, Bool.and_eq_true] at h
+            obtain ⟨_, hall⟩ := h
+            have hA := List.all_eq_true.mp hall
+              { name := "task-a", prereq := "task-b", permitted := true }
+              (by simp [Contracts.cycTasks])
+            have hB := List.all_eq_true.mp hall
+              { name := "task-b", prereq := "task-a", permitted := true }
+              (by simp [Contracts.cycTasks])
+            simp only [Bool.and_eq_true] at hA hB
+            obtain ⟨_, hA⟩ := hA
+            obtain ⟨_, hB⟩ := hB
+            have hA' : Contracts.cloBefore [x, y] "task-b" "task-a" = true := by
+              have hthis : Contracts.cloReady [x, y]
+                  { name := "task-a", prereq := "task-b", permitted := true }
+                    = true := hA
+              simp only [Contracts.cloReady] at hthis
+              exact hthis
+            have hB' : Contracts.cloBefore [x, y] "task-a" "task-b" = true := by
+              have hthis : Contracts.cloReady [x, y]
+                  { name := "task-b", prereq := "task-a", permitted := true }
+                    = true := hB
+              simp only [Contracts.cloReady] at hthis
+              exact hthis
+            unfold Contracts.cloBefore at hA' hB'
+            by_cases hxB : x = "task-b"
+            · rw [if_pos hxB] at hA'
+              have hy : y = "task-a" := by
+                have hmem := strIn_iff.mp hA'
+                simp at hmem
+                exact hmem.symm
+              have hxB2 : ¬ (x = "task-a") := fun hx => by
+                have hne : ("task-a" : String) = "task-b" := hx.symm.trans hxB
+                exact absurd hne (by decide)
+              rw [if_neg hxB2, hy] at hB'
+              unfold Contracts.cloBefore at hB'
+              simp [Contracts.strIn] at hB'
+            · rw [if_neg hxB] at hA'
+              unfold Contracts.cloBefore at hA'
+              by_cases hyB : y = "task-b"
+              · rw [if_pos hyB] at hA'
+                simp [Contracts.strIn] at hA'
+              · rw [if_neg hyB] at hA'
+                simp [Contracts.cloBefore] at hA')
 
-theorem demand_D120 : Contracts.demand_D120 := JurisLean.FullMath.Numeric.bellman_onesided
+theorem demand_D118 : Contracts.demand_D118 := And.intro JurisLean.FullMath.Numeric.bellman_onesided
+  (by
+    refine ⟨?_, ?_, rfl, ⟨by simp only [Contracts.clarValue]; norm_num,
+      by simp only [Contracts.clarValue]; norm_num⟩⟩
+    · intro a hk hw
+      cases kind : a.kind with
+      | writtenConfirm => rw [kind] at hk; exact absurd hk (by decide)
+      | supplement => rw [kind] at hk; exact absurd hk (by decide)
+      | waiver =>
+        simp only [Contracts.clarLegal, kind, hw]
+    · intro norm pq g c
+      exact ⟨rfl, rfl⟩)
 
-theorem demand_D121 : Contracts.demand_D121 := JurisLean.FullMath.Numeric.bellman_onesided
+theorem demand_D119 : Contracts.demand_D119 := And.intro JurisLean.FullMath.Numeric.bellman_onesided
+  (by
+    refine ⟨by rfl, ?_, by rfl, ⟨rfl, by decide⟩, by decide⟩
+    · intro items i hblocked hmem
+      obtain ⟨_, h2⟩ := List.mem_filter.mp hmem
+      rw [hblocked] at h2
+      simp at h2)
 
-theorem demand_D122 : Contracts.demand_D122 := JurisLean.FullMath.Numeric.bellman_onesided
+theorem demand_D120 : Contracts.demand_D120 := And.intro JurisLean.FullMath.Numeric.bellman_onesided
+  (by
+    refine ⟨?_, ⟨by norm_num [Contracts.marketShare, Contracts.majoritySample],
+      by norm_num [Contracts.marketShare, Contracts.majoritySample]⟩, ?_⟩
+    · intro s
+      exact ⟨rfl, rfl, fun h => Contracts.AdviceKind.noConfusion h⟩
+    · intro clause q basis h
+      have hk : (Contracts.adviseFromMarket Contracts.majoritySample).kind
+          = Contracts.AdviceKind.legalDuty := by
+        rw [h]
+      exact Contracts.AdviceKind.noConfusion hk)
 
-theorem demand_D123 : Contracts.demand_D123 := JurisLean.FullMath.Numeric.bellman_onesided
+theorem demand_D121 : Contracts.demand_D121 := And.intro JurisLean.FullMath.Numeric.bellman_onesided
+  (by
+    refine ⟨?_, rfl, rfl, rfl⟩
+    intro c m h
+    cases m with
+    | quash =>
+      simp only [Contracts.measureLegal, Bool.and_eq_true] at h
+      obtain ⟨_, h2⟩ := h
+      exact h2
+    | vacate => exact h
+    | protective =>
+      simp only [Contracts.measureLegal, Bool.and_eq_true] at h
+      obtain ⟨_, h2⟩ := h
+      exact h2)
+
+theorem demand_D122 : Contracts.demand_D122 := And.intro JurisLean.FullMath.Numeric.bellman_onesided
+  (by
+    refine ⟨by rfl, ?_, ⟨by rfl, rfl⟩⟩
+    intro g o hcov n hn
+    have hft : (Contracts.strIn n.id o.covered && Contracts.depsKeptFor o n
+        && Contracts.altsKeptFor o n) = true := List.all_eq_true.mp hcov n hn
+    have hall : (Contracts.strIn n.id o.covered && Contracts.depsKeptFor o n)
+        = true ∧ Contracts.altsKeptFor o n = true := Bool.and_eq_true_iff.mp hft
+    have hall2 : Contracts.strIn n.id o.covered = true
+        ∧ Contracts.depsKeptFor o n = true := Bool.and_eq_true_iff.mp hall.1
+    exact ⟨hall2.1, hall2.2, hall.2⟩)
+
+theorem demand_D123 : Contracts.demand_D123 := And.intro JurisLean.FullMath.Numeric.bellman_onesided
+  (by
+    refine ⟨?_, ⟨by rfl, by rfl⟩, ⟨rfl, ?_, by rfl⟩, by rfl⟩
+    · intro a hs
+      simp only [Contracts.sourced, Bool.and_eq_true] at hs
+      obtain ⟨h1, h2⟩ := hs
+      obtain ⟨h3, h4⟩ := h2
+      obtain ⟨h5, h6⟩ := h4
+      constructor
+      · intro hnil
+        rw [hnil] at h1
+        simp at h1
+      · intro hnil
+        rw [hnil] at h5
+        simp at h5
+    · intro h
+      exact Contracts.FactReadout.noConfusion h)
 
 theorem demand_D124 : Contracts.demand_D124 := JurisLean.FullMath.Evidence.step_rules_mono
 

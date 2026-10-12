@@ -3100,69 +3100,550 @@ def demand_D115 : Prop :=
     ¬ deliverableGate "motion.csv" [("claim-1", "900-fen")] ∧
     ¬ deliverableGate "dl-motion.csv" [("internal-scratch", "draft-notes")]))
 
-def demand_D116 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
-    (p : S → A → S → ℚ)
-    (hpn : ∀ s a s', 0 ≤ p s a s')
-    (hsum : ∀ s a, ∑ s', p s a s' = 1)
-    (β : ℚ) (hβ : 0 ≤ β)
-    (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
-    (hne : (legal s).Nonempty) (hny : (legal s).Nonempty), bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M
+/-! D116-D123 (group 13 办案、交易工作流与策略, W2-A batch B13): each def
+is that demand's own contract, translated from ALL_134_MATH_CONTRACTS.md.
+The first conjunct is the group-registered Bellman component (the
+one-sided max-gap bound of the legal-action Bellman operator: when two
+value tables differ pointwise by at most M, the optimized continuation
+value of the first stays within β*M of the second — the kernel of every
+explicit prediction/value model a workflow strategy uses); the remaining
+conjuncts are the demand's own operational semantics with its adverse
+case, built on helpers local to this region in the group-08 style (the
+green Numeric/Bellman carrier supplies the registered component; the
+green Action/* surface offers no workflow-scheduling carrier and
+Seams/UnifiedTrajectory no per-demand witness this contract needs, so
+the operational defs live here).  None of the eight bold sentences
+carries a CAD/optimization sub-clause (D117 reports discrete-ordering
+infeasibility, not a continuous program), so no C2-C5 suspension
+annotation applies. -/
 
-def demand_D117 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
-    (p : S → A → S → ℚ)
-    (hpn : ∀ s a s', 0 ≤ p s a s')
-    (hsum : ∀ s a, ∑ s', p s a s' = 1)
-    (β : ℚ) (hβ : 0 ≤ β)
-    (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
-    (hne : (legal s).Nonempty) (hny : (legal s).Nonempty), bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M
+/-- D116 helper: string membership as a plain recursive Bool. -/
+def strIn (d : String) : List String → Bool
+  | [] => false
+  | x :: xs => if x = d then true else strIn d xs
 
-def demand_D118 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
-    (p : S → A → S → ℚ)
-    (hpn : ∀ s a s', 0 ≤ p s a s')
-    (hsum : ∀ s a, ∑ s', p s a s' = 1)
-    (β : ℚ) (hβ : 0 ≤ β)
-    (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
-    (hne : (legal s).Nonempty) (hny : (legal s).Nonempty), bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M
+/-- D116 helper: the exact gap required_documents ∖ VDR catalog. -/
+def vdrGap (required vdr : List String) : List String :=
+  required.filter (fun d => !strIn d vdr)
 
-def demand_D119 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
-    (p : S → A → S → ℚ)
-    (hpn : ∀ s a s', 0 ≤ p s a s')
-    (hsum : ∀ s a, ∑ s', p s a s' = 1)
-    (β : ℚ) (hβ : 0 ≤ β)
-    (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
-    (hne : (legal s).Nonempty) (hny : (legal s).Nonempty), bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M
+/-- D116 helper: every missing document becomes an explicit pending row
+(name, status) instead of being dropped. -/
+def toPending : List String → List (String × String) :=
+  fun missing => missing.map (fun d => (d, "pending"))
 
-def demand_D120 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
-    (p : S → A → S → ℚ)
-    (hpn : ∀ s a s', 0 ≤ p s a s')
-    (hsum : ∀ s a, ∑ s', p s a s' = 1)
-    (β : ℚ) (hβ : 0 ≤ β)
-    (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
-    (hne : (legal s).Nonempty) (hny : (legal s).Nonempty), bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M
+/-- D117 helper: one closing task — a name, its prerequisite task name
+("" = none) and whether the authority/permission to run it is held. -/
+structure CloTask where
+  name : String
+  prereq : String
+  permitted : Bool
 
-def demand_D121 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
-    (p : S → A → S → ℚ)
-    (hpn : ∀ s a s', 0 ≤ p s a s')
-    (hsum : ∀ s a, ∑ s', p s a s' = 1)
-    (β : ℚ) (hβ : 0 ≤ β)
-    (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
-    (hne : (legal s).Nonempty) (hny : (legal s).Nonempty), bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M
+/-- D117 helper: `pre` occurs in `order` strictly before `name`. -/
+def cloBefore (order : List String) (pre name : String) : Bool :=
+  match order with
+  | [] => false
+  | w :: ws => if w = pre then strIn name ws else cloBefore ws pre name
 
-def demand_D122 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
-    (p : S → A → S → ℚ)
-    (hpn : ∀ s a s', 0 ≤ p s a s')
-    (hsum : ∀ s a, ∑ s', p s a s' = 1)
-    (β : ℚ) (hβ : 0 ≤ β)
-    (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
-    (hne : (legal s).Nonempty) (hny : (legal s).Nonempty), bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M
+/-- D117 helper: a task is ready in a proposed order when the permission
+is held and its prerequisite (if any) ran earlier in that order. -/
+def cloReady (order : List String) (t : CloTask) : Bool :=
+  t.permitted && (if t.prereq = "" then true
+    else cloBefore order t.prereq t.name)
 
-def demand_D123 : Prop := ∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A] (legal : S → Finset A) (r : S → A → ℚ)
-    (p : S → A → S → ℚ)
-    (hpn : ∀ s a s', 0 ≤ p s a s')
-    (hsum : ∀ s a, ∑ s', p s a s' = 1)
-    (β : ℚ) (hβ : 0 ≤ β)
-    (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
-    (hne : (legal s).Nonempty) (hny : (legal s).Nonempty), bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M
+/-- D117 helper: `order` legally executes `ts` when it covers the task
+set (equal length with every name present over distinct names) and every
+task is permitted and runs after its prerequisite. -/
+def cloLegalOrder (ts : List CloTask) (order : List String) : Bool :=
+  (order.length == ts.length)
+    && ts.all (fun t => strIn t.name order && cloReady order t)
+
+/-- D117 helper: the executable-checklist verdict — some order when the
+proposal is legal, none (= infeasibility reported) otherwise. -/
+def cloVerdict (ts : List CloTask) (order : List String) : Option (List String) :=
+  if cloLegalOrder ts order = true then some order else none
+
+/-- D117 witness: an acyclic board-approval → signature → closing chain
+that does close. -/
+def shipTasks : List CloTask :=
+  [{ name := "board-approval", prereq := "", permitted := true },
+   { name := "signature", prereq := "board-approval", permitted := true },
+   { name := "closing", prereq := "signature", permitted := true }]
+
+def shipOrder : List String := ["board-approval", "signature", "closing"]
+
+/-- D117 adverse witness: a two-task dependency cycle. -/
+def cycTasks : List CloTask :=
+  [{ name := "task-a", prereq := "task-b", permitted := true },
+   { name := "task-b", prereq := "task-a", permitted := true }]
+
+/-- D118 helper: the three clarification moves of a transaction
+workflow. -/
+inductive ClarKind where
+  | writtenConfirm | waiver | supplement
+  deriving DecidableEq
+
+/-- D118 helper: one clarification action against a norm — `waivable`
+records whether that norm may be waived by private parties; the value
+model inputs are explicit (success probability, gain if it succeeds,
+cost of the move). -/
+structure ClarAction where
+  kind : ClarKind
+  norm : String
+  waivable : Bool
+  prob : ℚ
+  gain : ℚ
+  cost : ℚ
+
+/-- D118 helper: written confirmation and supplementary evidence are
+always legal moves; a waiver is legal only against a waivable norm. -/
+def clarLegal (a : ClarAction) : Bool :=
+  match a.kind with
+  | ClarKind.waiver => a.waivable
+  | _ => true
+
+/-- D118 helper: the explicit prediction-model value of a clarification
+move — expected gain minus cost. -/
+def clarValue (a : ClarAction) : ℚ := a.prob * a.gain - a.cost
+
+/-- D119 helper: one risk to critical infrastructure or revenue — an
+explicit preference weight, an explicit risk measure (preference
+indices, not amounts), and whether a hard legal constraint blocks the
+item outright. -/
+structure RiskItem where
+  name : String
+  weight : ℕ
+  measure : ℕ
+  hardBlocked : Bool
+
+/-- D119 helper: the explicit score = weight × measure. -/
+def riskScore (i : RiskItem) : ℕ := i.weight * i.measure
+
+/-- D119 helper: insertion into a descending-score list. -/
+def riskInsert (i : RiskItem) : List RiskItem → List RiskItem
+  | [] => [i]
+  | j :: js => if riskScore j < riskScore i then i :: j :: js
+    else j :: riskInsert i js
+
+/-- D119 helper: descending-score sort — the explicit preference/risk
+measure executed. -/
+def riskSort : List RiskItem → List RiskItem
+  | [] => []
+  | i :: is => riskInsert i (riskSort is)
+
+/-- D119 helper: the ranked readout — hard-blocked items are filtered
+out before any weight is applied, the rest sorted by explicit score. -/
+def riskRank (items : List RiskItem) : List (String × ℕ) :=
+  (riskSort (items.filter (fun i => !i.hardBlocked))).map
+    (fun i => (i.name, riskScore i))
+
+/-- D119 helper: every ranked readout declares its origin — an explicit
+preference, never a statutory order. -/
+def rankOrigin : String := "explicit-preference"
+
+/-- D119 witness: three unblocked risks scored 40 / 15 / 2. -/
+def infraRisks : List RiskItem :=
+  [{ name := "power-grid", weight := 4, measure := 10, hardBlocked := false },
+   { name := "revenue-stream", weight := 5, measure := 3, hardBlocked := false },
+   { name := "ip-license", weight := 1, measure := 2, hardBlocked := false }]
+
+/-- D119 adverse witness: the highest-scoring item (100) is hard-blocked
+and stays out of the ranked work list whatever its weight. -/
+def blockedTop : List RiskItem :=
+  [{ name := "unpermitted-plant", weight := 10, measure := 10, hardBlocked := true },
+   { name := "power-grid", weight := 4, measure := 10, hardBlocked := false },
+   { name := "revenue-stream", weight := 5, measure := 3, hardBlocked := false }]
+
+/-- D119 adverse witness: the same measures under two explicit weight
+vectors rank in different orders — the order follows the declared
+weights, so no weight vector is the statutory unique priority. -/
+def weightCfgA : List RiskItem :=
+  [{ name := "power-grid", weight := 1, measure := 2, hardBlocked := false },
+   { name := "revenue-stream", weight := 3, measure := 3, hardBlocked := false }]
+
+def weightCfgB : List RiskItem :=
+  [{ name := "power-grid", weight := 5, measure := 2, hardBlocked := false },
+   { name := "revenue-stream", weight := 1, measure := 3, hardBlocked := false }]
+
+/-- D120 helper: what kind of advice a clause comparison yields — a
+market-sample observation or a legal duty; the two never merge. -/
+inductive AdviceKind where
+  | marketSample | legalDuty
+  deriving DecidableEq
+
+/-- D120 helper: a market-clause sample — how many of how many sampled
+deals carry the clause. -/
+structure MarketSample where
+  clause : String
+  count : ℕ
+  total : ℕ
+
+def marketShare (s : MarketSample) : ℚ := (s.count : ℚ) / (s.total : ℚ)
+
+structure ClauseAdvice where
+  kind : AdviceKind
+  clause : String
+  share : ℚ
+  basis : String
+
+/-- D120 helper: advice built from market data only — typed as a market
+sample with the share it actually has, never as a legal duty. -/
+def adviseFromMarket (s : MarketSample) : ClauseAdvice where
+  kind := AdviceKind.marketSample
+  clause := s.clause
+  share := marketShare s
+  basis := "market-sample"
+
+/-- D120 adverse witness: a 3-of-5 market majority. -/
+def majoritySample : MarketSample where
+  clause := "change-of-control-consent"
+  count := 3
+  total := 5
+
+/-- D121 helper: the three subpoena responses composed from their
+gates — the quash motion is the non-party path and needs timeliness;
+vacating needs timeliness alone; the protective order needs the
+pre-trial stage and timeliness. -/
+inductive SubpoenaMeasure where
+  | quash | vacate | protective
+
+structure SubpoenaCtx where
+  isNonParty : Bool
+  stagePreTrial : Bool
+  filedInTime : Bool
+
+def measureLegal : SubpoenaMeasure → SubpoenaCtx → Bool
+  | SubpoenaMeasure.quash, c => c.isNonParty && c.filedInTime
+  | SubpoenaMeasure.vacate, c => c.filedInTime
+  | SubpoenaMeasure.protective, c => c.stagePreTrial && c.filedInTime
+
+def legalOptions (c : SubpoenaCtx) : List SubpoenaMeasure :=
+  [SubpoenaMeasure.quash, SubpoenaMeasure.vacate,
+    SubpoenaMeasure.protective].filter (fun m => measureLegal m c)
+
+/-- D122 helper: one node of the frozen claim/rebuttal graph — its
+evidence dependencies and its alternative (备位) positions. -/
+structure ArgNode where
+  id : String
+  deps : List String
+  alts : List String
+
+structure Outline where
+  covered : List String
+  depsKept : List (String × List String)
+  altsKept : List (String × List String)
+
+/-- D122 helper: list equality as a plain recursive Bool. -/
+def strEqList : List String → List String → Bool
+  | [], [] => true
+  | x :: xs, y :: ys => if x = y then strEqList xs ys else false
+  | _, _ => false
+
+/-- D122 helper: the (key, value) row survives in the kept list. -/
+def keptFor (rows : List (String × List String)) (key : String)
+    (val : List String) : Bool :=
+  match rows with
+  | [] => false
+  | p :: ps =>
+      if p.1 = key then (if strEqList p.2 val then true else keptFor ps key val)
+      else keptFor ps key val
+
+/-- D122 helper: the node's evidence dependencies survive in the kept
+list (a node with no dependencies keeps them vacuously). -/
+def depsKeptFor (o : Outline) (n : ArgNode) : Bool :=
+  match n.deps with
+  | [] => true
+  | ds => keptFor o.depsKept n.id ds
+
+/-- D122 helper: the node's alternative (备位) positions survive in the
+kept list (a node with no alternatives keeps them vacuously). -/
+def altsKeptFor (o : Outline) (n : ArgNode) : Bool :=
+  match n.alts with
+  | [] => true
+  | as => keptFor o.altsKept n.id as
+
+/-- D122 helper: the outline covers the frozen graph when every node id
+is covered with its evidence dependencies and alternatives kept. -/
+def coversFrozen (g : List ArgNode) (o : Outline) : Bool :=
+  g.all (fun n => strIn n.id o.covered && depsKeptFor o n && altsKeptFor o n)
+
+/-- D122 witness: the frozen graph — main claim, best rebuttal, two weak
+rebuttals, one primary theory with its fallback. -/
+def frozenGraph : List ArgNode :=
+  [{ id := "main-claim", deps := ["ex-contract", "ex-performance"], alts := [] },
+   { id := "best-rebuttal", deps := ["ex-causation"], alts := [] },
+   { id := "weak-rebuttal-a", deps := ["ex-timing"], alts := [] },
+   { id := "weak-rebuttal-b", deps := [], alts := [] },
+   { id := "primary-theory", deps := ["ex-contract"],
+     alts := ["fallback-theory"] }]
+
+def fullOutline : Outline where
+  covered := ["main-claim", "best-rebuttal", "weak-rebuttal-a",
+    "weak-rebuttal-b", "primary-theory"]
+  depsKept := [("main-claim", ["ex-contract", "ex-performance"]),
+    ("best-rebuttal", ["ex-causation"]), ("weak-rebuttal-a", ["ex-timing"]),
+    ("weak-rebuttal-b", []), ("primary-theory", ["ex-contract"])]
+  altsKept := [("primary-theory", ["fallback-theory"])]
+
+/-- D122 adverse witness: three covered ids — the main claim and two
+weak rebuttals — while the best rebuttal and the primary/alternative
+structure are missing; the count alone does not answer the strongest
+counter-argument. -/
+def weakOutline : Outline where
+  covered := ["main-claim", "weak-rebuttal-a", "weak-rebuttal-b"]
+  depsKept := [("main-claim", ["ex-contract", "ex-performance"]),
+    ("weak-rebuttal-a", ["ex-timing"]), ("weak-rebuttal-b", [])]
+  altsKept := []
+
+/-- D123 helper: a legal-tool query outcome — ok-with-records or a
+timeout. -/
+inductive QueryOutcome where
+  | records (rs : List String)
+  | timeout
+
+/-- D123 helper: the readout of a tool query — an ok result reads as the
+records found (an ok empty list is a verified no-records); a timeout
+reads as unavailable, never as no records. -/
+inductive FactReadout where
+  | found (n : ℕ)
+  | noRecords
+  | unavailable
+
+def readoutOf : QueryOutcome → FactReadout
+  | QueryOutcome.records [] => FactReadout.noRecords
+  | QueryOutcome.records rs => FactReadout.found rs.length
+  | QueryOutcome.timeout => FactReadout.unavailable
+
+/-- D123 helper: one data assertion of the final report with its full
+provenance chain. -/
+structure FinalAssertion where
+  text : String
+  inputs : List String
+  joins : List String
+  records : List String
+  transform : String
+
+/-- D123 helper: an assertion is sourced when every chain component is
+present — query inputs, intermediate joins, original records and the
+transform witness. -/
+def sourced (a : FinalAssertion) : Bool :=
+  !(a.inputs.isEmpty) && (!(a.joins.isEmpty)
+    && (!(a.records.isEmpty) && !(a.transform.isEmpty)))
+
+def litigationAssertion : FinalAssertion where
+  text := "target has one pending litigation"
+  inputs := ["query-litigation-by-entity"]
+  joins := ["join-on-entity-id"]
+  records := ["docket-2026-001"]
+  transform := "normalize-and-count"
+
+/-- D123 adverse witness: the hollow assertion a timed-out interface
+would produce if silence were written up as a finding — no joins, no
+records, a fabricated readout. -/
+def hollowAssertion : FinalAssertion where
+  text := "no litigation found"
+  inputs := ["query-litigation-by-entity"]
+  joins := []
+  records := []
+  transform := "silently-empty"
+
+/-- D116 尽调请求清单与资料室目录是否对应，哪些材料仍缺失（反例：缺失
+材料不得通过从现有目录生成"必需清单"抹去）：差集按成员资格精确刻画
+（入差集 ⇔ 在必需清单且不在资料室目录——不从资料室反推必需）；每个缺失
+文件转为显式未决行（名称，状态），不被静默丢弃；见证——必需清单含
+litigation-search 而资料室只有 charter，差集恰为 [litigation-search]
+（缺失材料无法被资料室现有目录抹去）。 -/
+def demand_D116 : Prop :=
+  (∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A]
+      (legal : S → Finset A) (r : S → A → ℚ)
+      (p : S → A → S → ℚ)
+      (hpn : ∀ s a s', 0 ≤ p s a s')
+      (hsum : ∀ s a, ∑ s', p s a s' = 1)
+      (β : ℚ) (hβ : 0 ≤ β)
+      (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
+      (hne : (legal s).Nonempty) (hny : (legal s).Nonempty),
+      bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M) ∧
+  ((∀ (required vdr : List String) (d : String),
+      d ∈ vdrGap required vdr ↔ (d ∈ required ∧ ¬ d ∈ vdr)) ∧
+   (∀ (required vdr : List String) (d : String), d ∈ vdrGap required vdr →
+      (d, "pending") ∈ toPending (vdrGap required vdr)) ∧
+   (vdrGap ["charter", "litigation-search"] ["charter"] = ["litigation-search"] ∧
+      ¬ (("litigation-search" : String) ∈ ["charter"])))
+
+/-- D117 交割清单、审批、同意与解除条件是否满足先后依赖（反例：互相依
+赖形成环仍生成无条件可执行清单）：合法排序的每项任务权限在手且前置已
+先行（发生事件、权限与前置满足的逐步语义）；无环链 board-approval →
+signature → closing 的可行序过裁定（some）；两任务互为前置的环对一切
+排序都不合法——不可行必须报告（none），不生成无条件清单。 -/
+def demand_D117 : Prop :=
+  (∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A]
+      (legal : S → Finset A) (r : S → A → ℚ)
+      (p : S → A → S → ℚ)
+      (hpn : ∀ s a s', 0 ≤ p s a s')
+      (hsum : ∀ s a, ∑ s', p s a s' = 1)
+      (β : ℚ) (hβ : 0 ≤ β)
+      (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
+      (hne : (legal s).Nonempty) (hny : (legal s).Nonempty),
+      bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M) ∧
+  ((∀ (ts : List CloTask) (order : List String) (t : CloTask),
+      cloLegalOrder ts order = true → t ∈ ts → cloReady order t = true) ∧
+   (cloVerdict shipTasks shipOrder =
+      some ["board-approval", "signature", "closing"]) ∧
+   (∀ (order : List String), cloLegalOrder cycTasks order = false))
+
+/-- D118 对模糊条款应何时寻求书面确认、同意或豁免（反例：强制法义务
+不能由私人豁免事件删除）：书面确认与补证恒为合法行动（对不可豁免规范
+亦然）；豁免行动仅当目标规范可豁免时合法——不可豁免（强制法）规范的
+豁免行动非法；价值由明确预测模型计算（成功概率×收益−成本），两个数值
+见证：3/4×100−10=65、1/2×40−5=15。 -/
+def demand_D118 : Prop :=
+  (∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A]
+      (legal : S → Finset A) (r : S → A → ℚ)
+      (p : S → A → S → ℚ)
+      (hpn : ∀ s a s', 0 ≤ p s a s')
+      (hsum : ∀ s a, ∑ s', p s a s' = 1)
+      (β : ℚ) (hβ : 0 ≤ β)
+      (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
+      (hne : (legal s).Nonempty) (hny : (legal s).Nonempty),
+      bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M) ∧
+  ((∀ (a : ClarAction), a.kind = ClarKind.waiver → a.waivable = false →
+      clarLegal a = false) ∧
+   (∀ (norm : String) (pq g c : ℚ),
+      clarLegal { kind := ClarKind.writtenConfirm, norm := norm,
+                  waivable := false, prob := pq, gain := g, cost := c } = true ∧
+      clarLegal { kind := ClarKind.supplement, norm := norm,
+                  waivable := false, prob := pq, gain := g, cost := c } = true) ∧
+   (clarLegal { kind := ClarKind.waiver, norm := "mandatory-audit",
+                waivable := false, prob := 1, gain := 100, cost := 0 } = false) ∧
+   (clarValue { kind := ClarKind.writtenConfirm, norm := "clause-7",
+                waivable := true, prob := 3 / 4, gain := 100, cost := 10 } = 65 ∧
+    clarValue { kind := ClarKind.supplement, norm := "missing-board-res",
+                waivable := true, prob := 1 / 2, gain := 40, cost := 5 } = 15))
+
+/-- D119 对关键基础设施和收入来源的风险应怎样排序（反例：将任意重要
+性权重误标法定唯一优先序）：排序按明示偏好/风险度量执行——权重×度量
+的降序读出（40/15/2 见证）；硬法律约束不被权重抵消——被硬约束封禁的
+条目（哪怕评分最高 100）在任何权重下都不入排序工作清单；排序出处的
+诚实标注——origin 是 explicit-preference 而非 statutory-unique；同一
+度量在两组权重下产生不同排序，证明排序随明示权重而变、无唯一法定
+序。 -/
+def demand_D119 : Prop :=
+  (∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A]
+      (legal : S → Finset A) (r : S → A → ℚ)
+      (p : S → A → S → ℚ)
+      (hpn : ∀ s a s', 0 ≤ p s a s')
+      (hsum : ∀ s a, ∑ s', p s a s' = 1)
+      (β : ℚ) (hβ : 0 ≤ β)
+      (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
+      (hne : (legal s).Nonempty) (hny : (legal s).Nonempty),
+      bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M) ∧
+  ((riskRank infraRisks =
+      [("power-grid", 40), ("revenue-stream", 15), ("ip-license", 2)]) ∧
+   (∀ (items : List RiskItem) (i : RiskItem), i.hardBlocked = true →
+      ¬ (i ∈ items.filter (fun x => !x.hardBlocked))) ∧
+   ((blockedTop.filter (fun x => !x.hardBlocked)).map RiskItem.name =
+      ["power-grid", "revenue-stream"]) ∧
+   (rankOrigin = "explicit-preference" ∧ rankOrigin ≠ "statutory-unique") ∧
+   ((riskRank weightCfgA).map Prod.fst ≠ (riskRank weightCfgB).map Prod.fst))
+
+/-- D120 先例市场条款比较如何支持谈判立场而非成为法律规则（反例：多
+数合同如此写不自动推导依法必须如此）：先例条款分布与规范效力分类型
+——市场样本建议恒带 marketSample 类型与 market-sample 基础标注，绝不
+是 legalDuty；市场占比按样本显式计算（3/5）；多数见证——3/5 过半的
+条款样本仍产不出任何 legalDuty 类型的建议（多数本身不是法律义务来
+源）。 -/
+def demand_D120 : Prop :=
+  (∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A]
+      (legal : S → Finset A) (r : S → A → ℚ)
+      (p : S → A → S → ℚ)
+      (hpn : ∀ s a s', 0 ≤ p s a s')
+      (hsum : ∀ s a, ∑ s', p s a s' = 1)
+      (β : ℚ) (hβ : 0 ≤ β)
+      (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
+      (hne : (legal s).Nonempty) (hny : (legal s).Nonempty),
+      bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M) ∧
+  ((∀ (s : MarketSample), (adviseFromMarket s).kind = AdviceKind.marketSample ∧
+      (adviseFromMarket s).basis = "market-sample" ∧
+      (adviseFromMarket s).kind ≠ AdviceKind.legalDuty) ∧
+   (marketShare majoritySample = 3 / 5 ∧ 1 / 2 < marketShare majoritySample) ∧
+   (∀ (clause : String) (q : ℚ) (basis : String),
+      adviseFromMarket majoritySample ≠
+        { kind := AdviceKind.legalDuty, clause := clause, share := q,
+          basis := basis }))
+
+/-- D121 第三方传票应提出何种异议、撤销申请或保护措施（反例：将非当
+事人异议路径无条件给另一诉讼当事人）：选项合法性由法域/主体资格/阶段
+及期限的门组合——任何合法选项都以按期提出为前提（期限门对全部三类选
+项普遍成立）；非当事人、审前、按期的完整上下文三选项皆合法；当事人
+上下文得不到非当事人的撤销异议路径（quash 恒缺席）；逾期上下文一切
+选项皆空（期限不被主体资格或阶段补正）。 -/
+def demand_D121 : Prop :=
+  (∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A]
+      (legal : S → Finset A) (r : S → A → ℚ)
+      (p : S → A → S → ℚ)
+      (hpn : ∀ s a s', 0 ≤ p s a s')
+      (hsum : ∀ s a, ∑ s', p s a s' = 1)
+      (β : ℚ) (hβ : 0 ≤ β)
+      (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
+      (hne : (legal s).Nonempty) (hny : (legal s).Nonempty),
+      bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M) ∧
+  ((∀ (c : SubpoenaCtx) (m : SubpoenaMeasure), measureLegal m c = true →
+      c.filedInTime = true) ∧
+   (legalOptions { isNonParty := true, stagePreTrial := true,
+                   filedInTime := true } =
+      [SubpoenaMeasure.quash, SubpoenaMeasure.vacate,
+       SubpoenaMeasure.protective]) ∧
+   (legalOptions { isNonParty := false, stagePreTrial := true,
+                   filedInTime := true } =
+      [SubpoenaMeasure.vacate, SubpoenaMeasure.protective]) ∧
+   (legalOptions { isNonParty := true, stagePreTrial := true,
+                   filedInTime := false } = []))
+
+/-- D122 庭审或口头辩论提纲能否回应最佳反方观点与具体事实（反例：只
+列弱反方并以数量宣称已回应最强反方）：提纲覆盖冻结图——主主张、最佳
+反驳、两条弱反驳与主理论（含备位）全部覆盖且证据依赖逐节点保留（全
+称：过覆盖门的图中每节点 id 覆盖、依赖与备位保持）；数量见证——只列
+主主张加两条弱反驳的提纲（3 项）不过覆盖门，最佳反驳与备位结构缺
+失，数量不等于回应了最强反方。 -/
+def demand_D122 : Prop :=
+  (∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A]
+      (legal : S → Finset A) (r : S → A → ℚ)
+      (p : S → A → S → ℚ)
+      (hpn : ∀ s a s', 0 ≤ p s a s')
+      (hsum : ∀ s a, ∑ s', p s a s' = 1)
+      (β : ℚ) (hβ : 0 ≤ β)
+      (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
+      (hne : (legal s).Nonempty) (hny : (legal s).Nonempty),
+      bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M) ∧
+  ((coversFrozen frozenGraph fullOutline = true) ∧
+   (∀ (g : List ArgNode) (o : Outline), coversFrozen g o = true →
+      ∀ (n : ArgNode), n ∈ g → strIn n.id o.covered = true
+        ∧ depsKeptFor o n = true ∧ altsKeptFor o n = true) ∧
+   (coversFrozen frozenGraph weakOutline = false ∧ weakOutline.covered.length = 3))
+
+/-- D123 多跳法律工具查询是否足以支撑最后报告中的每项陈述（反例：接
+口超时返回空列表，不能写成查无诉讼）：全称——过溯源门的断言必有查询
+输入与原始记录（溯源门 = 四链组件全在场：输入、中间连接、原记录、转
+换见证）；完整见证——有据断言过门且 ok 查询读出 found 1；超时≠查无
+——超时读出 unavailable 且绝非 noRecords，只有 ok 空列表才是查无
+（verified no-records）；空洞断言（无连接、无记录、静默空转换）不过
+门。 -/
+def demand_D123 : Prop :=
+  (∀ {S A : Type} [Fintype S] [DecidableEq S] [DecidableEq A]
+      (legal : S → Finset A) (r : S → A → ℚ)
+      (p : S → A → S → ℚ)
+      (hpn : ∀ s a s', 0 ≤ p s a s')
+      (hsum : ∀ s a, ∑ s', p s a s' = 1)
+      (β : ℚ) (hβ : 0 ≤ β)
+      (x y : S → ℚ) (M : ℚ) (hM : ∀ t, |x t - y t| ≤ M) (s : S)
+      (hne : (legal s).Nonempty) (hny : (legal s).Nonempty),
+      bellmanOf legal r p β x s hne ≤ bellmanOf legal r p β y s hny + β * M) ∧
+  ((∀ (a : FinalAssertion), sourced a = true → a.inputs ≠ [] ∧ a.records ≠ []) ∧
+   (sourced litigationAssertion = true ∧
+      readoutOf (QueryOutcome.records ["docket-2026-001"]) = FactReadout.found 1) ∧
+   (readoutOf QueryOutcome.timeout = FactReadout.unavailable ∧
+      ¬ (readoutOf QueryOutcome.timeout = FactReadout.noRecords) ∧
+      readoutOf (QueryOutcome.records []) = FactReadout.noRecords) ∧
+   (sourced hollowAssertion = false))
 
 def demand_D124 : Prop := ∀ {A : Type} [DecidableEq A] [Fintype A] (R R' : Finset (Finset A × A)) (hR : R ⊆ R') (F S : Finset A), step R F S ⊆ step R' F S
 

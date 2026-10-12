@@ -3299,28 +3299,30 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D047",
    "contract": "JurisLean.FullMath.Contracts.demand_D047",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.parts_nonneg's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-06 loan/guarantee demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger carrier (seven-field debt identity, admission-order allocation, integer-day interest components, typed security establishment events) plus the registered quantity component (both parts of the covered/uncovered split stay nonnegative), with its adverse case executed as a negative test.",
+   "independent_semantics": "the delivery fact and the discharge fact enter the responsibility chain separately: only a delivered loan is booked (an undelivered IOU has a zero balance), discharge means the payment stream actually covered the booked amounts (balance zero iff paid covers due), and a lending record alone never implies later non-discharge — the same delivered ledger with a full repayment stream is discharged.",
+   "algorithm": "tools/full_math/implementation/loan_ref.py loan_discharge computes the intermediate result from structured input (the ledger surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); loan_check.check_D047 re-derives the contract independently with different code paths (index-walking allocations, direct division, branch tables, occurrence counting) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (delivered loans with principal and repayment streams of exact Fractions, admission-ordered ledger rows with ident/kind/basis/beneficiary/status/amount fields, charge configurations with rates, integer day counts and denominators plus a policy cap, security event lists and priority claim lists with liquidation proceeds, corporate-guarantee event sets, signature attributions with signer, capacity and principal ids, spousal-debt issue flags, company-relation evidence edges, sourced/unsourced fact candidates, and fee ledgers with three fee kinds and their bases); outputs are exactly the contract quantities (the booked/discharged readouts with the equivalence and the full-stream witness, the offset rows with per-payment bounds, identity preservation and duplicate-id gates, the three charge components with independence, split additivity and the cap verdict, the typed establishment verdicts with the priority waterfall, the corporate predicates with the same-event-set contrast, the responsible-subject attribution with beneficiary preservation, the spousal attribution with marriage-flip invariance, the veil evaluation with the phone-only rejection, the admission table with the empty rule base, and the fee consistency with the partition conservation).",
+   "external_assumptions": "Actual delivery and repayment records, bank-statement authenticity and fund use, stipulated-purpose evidence for offsets, charge-term validity and the actual default period, registration and delivery facts for security interests with document verification, good-faith/knowledge judgments on corporate guarantees, signing intent and counterparty awareness, spousal common-intent and household-use proofs, open legal evaluation of personality mixing and real corporate-relation investigation, lender capability and practice facts, and reasonableness plus actual payment proofs for fees remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/loan_ref.py",
+    "tools/full_math/implementation/loan_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D047]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_positive[D047]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_counterexample[D047]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_downstream_pipeline_consumes_loan"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D047]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D047]"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_checker_rejects_tampered[D047]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.parts_nonneg"
+    "JurisLean.FullMath.Numeric.parts_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.discharged_iff_paid_covered"
    ]
   },
   {
@@ -3328,28 +3330,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D048",
    "contract": "JurisLean.FullMath.Contracts.demand_D048",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.parts_nonneg's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-06 loan/guarantee demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger carrier (seven-field debt identity, admission-order allocation, integer-day interest components, typed security establishment events) plus the registered quantity component (both parts of the covered/uncovered split stay nonnegative), with its adverse case executed as a negative test.",
+   "independent_semantics": "the offset ledger updates in admission order: every allocation is nonnegative and within its payment, debt identities are preserved row by row (traceable balance), a duplicated payment id makes the stream illegal, and one repayment can never simultaneously cover the interest in full and the principal in full.",
+   "algorithm": "tools/full_math/implementation/loan_ref.py offset_ledger/demo_offset_150/double_full_rejected computes the intermediate result from structured input (the ledger surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); loan_check.check_D048 re-derives the contract independently with different code paths (index-walking allocations, direct division, branch tables, occurrence counting) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (delivered loans with principal and repayment streams of exact Fractions, admission-ordered ledger rows with ident/kind/basis/beneficiary/status/amount fields, charge configurations with rates, integer day counts and denominators plus a policy cap, security event lists and priority claim lists with liquidation proceeds, corporate-guarantee event sets, signature attributions with signer, capacity and principal ids, spousal-debt issue flags, company-relation evidence edges, sourced/unsourced fact candidates, and fee ledgers with three fee kinds and their bases); outputs are exactly the contract quantities (the booked/discharged readouts with the equivalence and the full-stream witness, the offset rows with per-payment bounds, identity preservation and duplicate-id gates, the three charge components with independence, split additivity and the cap verdict, the typed establishment verdicts with the priority waterfall, the corporate predicates with the same-event-set contrast, the responsible-subject attribution with beneficiary preservation, the spousal attribution with marriage-flip invariance, the veil evaluation with the phone-only rejection, the admission table with the empty rule base, and the fee consistency with the partition conservation).",
+   "external_assumptions": "Actual delivery and repayment records, bank-statement authenticity and fund use, stipulated-purpose evidence for offsets, charge-term validity and the actual default period, registration and delivery facts for security interests with document verification, good-faith/knowledge judgments on corporate guarantees, signing intent and counterparty awareness, spousal common-intent and household-use proofs, open legal evaluation of personality mixing and real corporate-relation investigation, lender capability and practice facts, and reasonableness plus actual payment proofs for fees remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/loan_ref.py",
+    "tools/full_math/implementation/loan_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D048]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_positive[D048]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_counterexample[D048]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_downstream_pipeline_consumes_loan"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D048]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D048]"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_checker_rejects_tampered[D048]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.parts_nonneg"
+    "JurisLean.FullMath.Numeric.parts_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.allocsOf_mem_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.allocsOf_sum_le"
    ]
   },
   {
@@ -3357,28 +3362,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D049",
    "contract": "JurisLean.FullMath.Contracts.demand_D049",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.parts_nonneg's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-06 loan/guarantee demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger carrier (seven-field debt identity, admission-order allocation, integer-day interest components, typed security establishment events) plus the registered quantity component (both parts of the covered/uncovered split stay nonnegative), with its adverse case executed as a negative test.",
+   "independent_semantics": "term interest, overdue interest and the penalty are separate computation components (the term component is invariant under the overdue parameters; a period splits additively in integer days, never a 30-day month conversion), and their composition is subject to the applicable policy cap — similar percentages do not stack by default.",
+   "algorithm": "tools/full_math/implementation/loan_ref.py charges_report/stacking_not_default computes the intermediate result from structured input (the ledger surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); loan_check.check_D049 re-derives the contract independently with different code paths (index-walking allocations, direct division, branch tables, occurrence counting) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (delivered loans with principal and repayment streams of exact Fractions, admission-ordered ledger rows with ident/kind/basis/beneficiary/status/amount fields, charge configurations with rates, integer day counts and denominators plus a policy cap, security event lists and priority claim lists with liquidation proceeds, corporate-guarantee event sets, signature attributions with signer, capacity and principal ids, spousal-debt issue flags, company-relation evidence edges, sourced/unsourced fact candidates, and fee ledgers with three fee kinds and their bases); outputs are exactly the contract quantities (the booked/discharged readouts with the equivalence and the full-stream witness, the offset rows with per-payment bounds, identity preservation and duplicate-id gates, the three charge components with independence, split additivity and the cap verdict, the typed establishment verdicts with the priority waterfall, the corporate predicates with the same-event-set contrast, the responsible-subject attribution with beneficiary preservation, the spousal attribution with marriage-flip invariance, the veil evaluation with the phone-only rejection, the admission table with the empty rule base, and the fee consistency with the partition conservation).",
+   "external_assumptions": "Actual delivery and repayment records, bank-statement authenticity and fund use, stipulated-purpose evidence for offsets, charge-term validity and the actual default period, registration and delivery facts for security interests with document verification, good-faith/knowledge judgments on corporate guarantees, signing intent and counterparty awareness, spousal common-intent and household-use proofs, open legal evaluation of personality mixing and real corporate-relation investigation, lender capability and practice facts, and reasonableness plus actual payment proofs for fees remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/loan_ref.py",
+    "tools/full_math/implementation/loan_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D049]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_positive[D049]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_counterexample[D049]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_downstream_pipeline_consumes_loan"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D049]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D049]"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_checker_rejects_tampered[D049]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.parts_nonneg"
+    "JurisLean.FullMath.Numeric.parts_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.termInterest_indep",
+    "JurisLean.Seams.UnifiedQuantLedger.seg_split"
    ]
   },
   {
@@ -3386,28 +3394,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D050",
    "contract": "JurisLean.FullMath.Contracts.demand_D050",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.parts_nonneg's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-06 loan/guarantee demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger carrier (seven-field debt identity, admission-order allocation, integer-day interest components, typed security establishment events) plus the registered quantity component (both parts of the covered/uncovered split stay nonnegative), with its adverse case executed as a negative test.",
+   "independent_semantics": "suretyship, mortgage and pledge are distinct legal relations with distinct establishment events (contract, registration, delivery): a signed security document alone establishes neither the mortgage nor the pledge, and the collateral proceeds run down a priority waterfall with conservation and priority (a positive later rank implies full earlier coverage).",
+   "algorithm": "tools/full_math/implementation/loan_ref.py security_readout computes the intermediate result from structured input (the ledger surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); loan_check.check_D050 re-derives the contract independently with different code paths (index-walking allocations, direct division, branch tables, occurrence counting) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (delivered loans with principal and repayment streams of exact Fractions, admission-ordered ledger rows with ident/kind/basis/beneficiary/status/amount fields, charge configurations with rates, integer day counts and denominators plus a policy cap, security event lists and priority claim lists with liquidation proceeds, corporate-guarantee event sets, signature attributions with signer, capacity and principal ids, spousal-debt issue flags, company-relation evidence edges, sourced/unsourced fact candidates, and fee ledgers with three fee kinds and their bases); outputs are exactly the contract quantities (the booked/discharged readouts with the equivalence and the full-stream witness, the offset rows with per-payment bounds, identity preservation and duplicate-id gates, the three charge components with independence, split additivity and the cap verdict, the typed establishment verdicts with the priority waterfall, the corporate predicates with the same-event-set contrast, the responsible-subject attribution with beneficiary preservation, the spousal attribution with marriage-flip invariance, the veil evaluation with the phone-only rejection, the admission table with the empty rule base, and the fee consistency with the partition conservation).",
+   "external_assumptions": "Actual delivery and repayment records, bank-statement authenticity and fund use, stipulated-purpose evidence for offsets, charge-term validity and the actual default period, registration and delivery facts for security interests with document verification, good-faith/knowledge judgments on corporate guarantees, signing intent and counterparty awareness, spousal common-intent and household-use proofs, open legal evaluation of personality mixing and real corporate-relation investigation, lender capability and practice facts, and reasonableness plus actual payment proofs for fees remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/loan_ref.py",
+    "tools/full_math/implementation/loan_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D050]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_positive[D050]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_counterexample[D050]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_downstream_pipeline_consumes_loan"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D050]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D050]"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_checker_rejects_tampered[D050]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.parts_nonneg"
+    "JurisLean.FullMath.Numeric.parts_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.signing_not_mortgage_established",
+    "JurisLean.Seams.UnifiedQuantLedger.distribute_priority"
    ]
   },
   {
@@ -3415,28 +3426,30 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D051",
    "contract": "JurisLean.FullMath.Contracts.demand_D051",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.parts_nonneg's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-06 loan/guarantee demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger carrier (seven-field debt identity, admission-order allocation, integer-day interest components, typed security establishment events) plus the registered quantity component (both parts of the covered/uncovered split stay nonnegative), with its adverse case executed as a negative test.",
+   "independent_semantics": "resolution existence, procedure, representative authority and guarantee validity are separate predicates connected by rules: the corporate surety needs resolution AND signature, and on the very same signature-only event set the corporate guarantee is unestablished while the natural-person suretyship is established — no single blanket invalidation rule.",
+   "algorithm": "tools/full_math/implementation/loan_ref.py corp_guarantee computes the intermediate result from structured input (the ledger surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); loan_check.check_D051 re-derives the contract independently with different code paths (index-walking allocations, direct division, branch tables, occurrence counting) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (delivered loans with principal and repayment streams of exact Fractions, admission-ordered ledger rows with ident/kind/basis/beneficiary/status/amount fields, charge configurations with rates, integer day counts and denominators plus a policy cap, security event lists and priority claim lists with liquidation proceeds, corporate-guarantee event sets, signature attributions with signer, capacity and principal ids, spousal-debt issue flags, company-relation evidence edges, sourced/unsourced fact candidates, and fee ledgers with three fee kinds and their bases); outputs are exactly the contract quantities (the booked/discharged readouts with the equivalence and the full-stream witness, the offset rows with per-payment bounds, identity preservation and duplicate-id gates, the three charge components with independence, split additivity and the cap verdict, the typed establishment verdicts with the priority waterfall, the corporate predicates with the same-event-set contrast, the responsible-subject attribution with beneficiary preservation, the spousal attribution with marriage-flip invariance, the veil evaluation with the phone-only rejection, the admission table with the empty rule base, and the fee consistency with the partition conservation).",
+   "external_assumptions": "Actual delivery and repayment records, bank-statement authenticity and fund use, stipulated-purpose evidence for offsets, charge-term validity and the actual default period, registration and delivery facts for security interests with document verification, good-faith/knowledge judgments on corporate guarantees, signing intent and counterparty awareness, spousal common-intent and household-use proofs, open legal evaluation of personality mixing and real corporate-relation investigation, lender capability and practice facts, and reasonableness plus actual payment proofs for fees remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/loan_ref.py",
+    "tools/full_math/implementation/loan_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D051]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_positive[D051]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_counterexample[D051]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_downstream_pipeline_consumes_loan"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D051]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D051]"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_checker_rejects_tampered[D051]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.parts_nonneg"
+    "JurisLean.FullMath.Numeric.parts_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.no_blanket_invalidation"
    ]
   },
   {
@@ -3444,28 +3457,30 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D052",
    "contract": "JurisLean.FullMath.Contracts.demand_D052",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.parts_nonneg's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-06 loan/guarantee demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger carrier (seven-field debt identity, admission-order allocation, integer-day interest components, typed security establishment events) plus the registered quantity component (both parts of the covered/uncovered split stay nonnegative), with its adverse case executed as a negative test.",
+   "independent_semantics": "signer, nominal capacity, the representation relation, the contract party and the responsible person are separately encoded: signing on behalf of a company makes the company (not the natural-person signer whose name is in the signature text) the responsible subject, and the ledger-side beneficiary field survives the offsetting row by row.",
+   "algorithm": "tools/full_math/implementation/loan_ref.py signature_attribution computes the intermediate result from structured input (the ledger surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); loan_check.check_D052 re-derives the contract independently with different code paths (index-walking allocations, direct division, branch tables, occurrence counting) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (delivered loans with principal and repayment streams of exact Fractions, admission-ordered ledger rows with ident/kind/basis/beneficiary/status/amount fields, charge configurations with rates, integer day counts and denominators plus a policy cap, security event lists and priority claim lists with liquidation proceeds, corporate-guarantee event sets, signature attributions with signer, capacity and principal ids, spousal-debt issue flags, company-relation evidence edges, sourced/unsourced fact candidates, and fee ledgers with three fee kinds and their bases); outputs are exactly the contract quantities (the booked/discharged readouts with the equivalence and the full-stream witness, the offset rows with per-payment bounds, identity preservation and duplicate-id gates, the three charge components with independence, split additivity and the cap verdict, the typed establishment verdicts with the priority waterfall, the corporate predicates with the same-event-set contrast, the responsible-subject attribution with beneficiary preservation, the spousal attribution with marriage-flip invariance, the veil evaluation with the phone-only rejection, the admission table with the empty rule base, and the fee consistency with the partition conservation).",
+   "external_assumptions": "Actual delivery and repayment records, bank-statement authenticity and fund use, stipulated-purpose evidence for offsets, charge-term validity and the actual default period, registration and delivery facts for security interests with document verification, good-faith/knowledge judgments on corporate guarantees, signing intent and counterparty awareness, spousal common-intent and household-use proofs, open legal evaluation of personality mixing and real corporate-relation investigation, lender capability and practice facts, and reasonableness plus actual payment proofs for fees remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/loan_ref.py",
+    "tools/full_math/implementation/loan_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D052]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_positive[D052]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_counterexample[D052]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_downstream_pipeline_consumes_loan"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D052]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D052]"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_checker_rejects_tampered[D052]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.parts_nonneg"
+    "JurisLean.FullMath.Numeric.parts_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.afterPay_idents"
    ]
   },
   {
@@ -3473,28 +3488,30 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D053",
    "contract": "JurisLean.FullMath.Contracts.demand_D053",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.parts_nonneg's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-06 loan/guarantee demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger carrier (seven-field debt identity, admission-order allocation, integer-day interest components, typed security establishment events) plus the registered quantity component (both parts of the covered/uncovered split stay nonnegative), with its adverse case executed as a negative test.",
+   "independent_semantics": "marriage period, spouse signature, common intent, household/business use and debt attribution are independent issues: joint attribution requires the signature or the intent+use pair, flipping the marriage-period field never changes the attribution, and a marriage-period loan with no signature, intent or use is not a joint debt.",
+   "algorithm": "tools/full_math/implementation/loan_ref.py spousal_attribution computes the intermediate result from structured input (the ledger surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); loan_check.check_D053 re-derives the contract independently with different code paths (index-walking allocations, direct division, branch tables, occurrence counting) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (delivered loans with principal and repayment streams of exact Fractions, admission-ordered ledger rows with ident/kind/basis/beneficiary/status/amount fields, charge configurations with rates, integer day counts and denominators plus a policy cap, security event lists and priority claim lists with liquidation proceeds, corporate-guarantee event sets, signature attributions with signer, capacity and principal ids, spousal-debt issue flags, company-relation evidence edges, sourced/unsourced fact candidates, and fee ledgers with three fee kinds and their bases); outputs are exactly the contract quantities (the booked/discharged readouts with the equivalence and the full-stream witness, the offset rows with per-payment bounds, identity preservation and duplicate-id gates, the three charge components with independence, split additivity and the cap verdict, the typed establishment verdicts with the priority waterfall, the corporate predicates with the same-event-set contrast, the responsible-subject attribution with beneficiary preservation, the spousal attribution with marriage-flip invariance, the veil evaluation with the phone-only rejection, the admission table with the empty rule base, and the fee consistency with the partition conservation).",
+   "external_assumptions": "Actual delivery and repayment records, bank-statement authenticity and fund use, stipulated-purpose evidence for offsets, charge-term validity and the actual default period, registration and delivery facts for security interests with document verification, good-faith/knowledge judgments on corporate guarantees, signing intent and counterparty awareness, spousal common-intent and household-use proofs, open legal evaluation of personality mixing and real corporate-relation investigation, lender capability and practice facts, and reasonableness plus actual payment proofs for fees remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/loan_ref.py",
+    "tools/full_math/implementation/loan_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D053]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_positive[D053]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_counterexample[D053]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_downstream_pipeline_consumes_loan"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D053]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D053]"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_checker_rejects_tampered[D053]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.parts_nonneg"
+    "JurisLean.FullMath.Numeric.parts_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.sum_filter_partition"
    ]
   },
   {
@@ -3502,28 +3519,30 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D054",
    "contract": "JurisLean.FullMath.Contracts.demand_D054",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.parts_nonneg's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-06 loan/guarantee demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger carrier (seven-field debt identity, admission-order allocation, integer-day interest components, typed security establishment events) plus the registered quantity component (both parts of the covered/uncovered split stay nonnegative), with its adverse case executed as a negative test.",
+   "independent_semantics": "the company-relation evidence forms a support graph and the personality-mixing evaluation is a separate rule layer: the joint-liability consequence attaches exactly through the evaluation (commingled funds or one-way control); a shared phone number alone generates no unlimited joint-liability edge.",
+   "algorithm": "tools/full_math/implementation/loan_ref.py veil_readout computes the intermediate result from structured input (the ledger surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); loan_check.check_D054 re-derives the contract independently with different code paths (index-walking allocations, direct division, branch tables, occurrence counting) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (delivered loans with principal and repayment streams of exact Fractions, admission-ordered ledger rows with ident/kind/basis/beneficiary/status/amount fields, charge configurations with rates, integer day counts and denominators plus a policy cap, security event lists and priority claim lists with liquidation proceeds, corporate-guarantee event sets, signature attributions with signer, capacity and principal ids, spousal-debt issue flags, company-relation evidence edges, sourced/unsourced fact candidates, and fee ledgers with three fee kinds and their bases); outputs are exactly the contract quantities (the booked/discharged readouts with the equivalence and the full-stream witness, the offset rows with per-payment bounds, identity preservation and duplicate-id gates, the three charge components with independence, split additivity and the cap verdict, the typed establishment verdicts with the priority waterfall, the corporate predicates with the same-event-set contrast, the responsible-subject attribution with beneficiary preservation, the spousal attribution with marriage-flip invariance, the veil evaluation with the phone-only rejection, the admission table with the empty rule base, and the fee consistency with the partition conservation).",
+   "external_assumptions": "Actual delivery and repayment records, bank-statement authenticity and fund use, stipulated-purpose evidence for offsets, charge-term validity and the actual default period, registration and delivery facts for security interests with document verification, good-faith/knowledge judgments on corporate guarantees, signing intent and counterparty awareness, spousal common-intent and household-use proofs, open legal evaluation of personality mixing and real corporate-relation investigation, lender capability and practice facts, and reasonableness plus actual payment proofs for fees remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/loan_ref.py",
+    "tools/full_math/implementation/loan_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D054]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_positive[D054]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_counterexample[D054]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_downstream_pipeline_consumes_loan"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D054]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D054]"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_checker_rejects_tampered[D054]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.parts_nonneg"
+    "JurisLean.FullMath.Numeric.parts_nonneg",
+    "JurisLean.FullMath.Numeric.joint_shares_bound"
    ]
   },
   {
@@ -3531,28 +3550,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D055",
    "contract": "JurisLean.FullMath.Contracts.demand_D055",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.parts_nonneg's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-06 loan/guarantee demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger carrier (seven-field debt identity, admission-order allocation, integer-day interest components, typed security establishment events) plus the registered quantity component (both parts of the covered/uncovered split stay nonnegative), with its adverse case executed as a negative test.",
+   "independent_semantics": "fund source and cash capability are sourced fact candidates: an unsourced candidate stays unproven (never admitted), a sourced one is admitted, and from income-low to cash-lending-impossible no rule is admitted — insufficiency of sources reads out unproven, never a fabricated negative fact.",
+   "algorithm": "tools/full_math/implementation/loan_ref.py fund_source_readout computes the intermediate result from structured input (the ledger surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); loan_check.check_D055 re-derives the contract independently with different code paths (index-walking allocations, direct division, branch tables, occurrence counting) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (delivered loans with principal and repayment streams of exact Fractions, admission-ordered ledger rows with ident/kind/basis/beneficiary/status/amount fields, charge configurations with rates, integer day counts and denominators plus a policy cap, security event lists and priority claim lists with liquidation proceeds, corporate-guarantee event sets, signature attributions with signer, capacity and principal ids, spousal-debt issue flags, company-relation evidence edges, sourced/unsourced fact candidates, and fee ledgers with three fee kinds and their bases); outputs are exactly the contract quantities (the booked/discharged readouts with the equivalence and the full-stream witness, the offset rows with per-payment bounds, identity preservation and duplicate-id gates, the three charge components with independence, split additivity and the cap verdict, the typed establishment verdicts with the priority waterfall, the corporate predicates with the same-event-set contrast, the responsible-subject attribution with beneficiary preservation, the spousal attribution with marriage-flip invariance, the veil evaluation with the phone-only rejection, the admission table with the empty rule base, and the fee consistency with the partition conservation).",
+   "external_assumptions": "Actual delivery and repayment records, bank-statement authenticity and fund use, stipulated-purpose evidence for offsets, charge-term validity and the actual default period, registration and delivery facts for security interests with document verification, good-faith/knowledge judgments on corporate guarantees, signing intent and counterparty awareness, spousal common-intent and household-use proofs, open legal evaluation of personality mixing and real corporate-relation investigation, lender capability and practice facts, and reasonableness plus actual payment proofs for fees remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/loan_ref.py",
+    "tools/full_math/implementation/loan_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D055]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_positive[D055]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_counterexample[D055]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_downstream_pipeline_consumes_loan"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D055]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D055]"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_checker_rejects_tampered[D055]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.parts_nonneg"
+    "JurisLean.FullMath.Numeric.parts_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.unsourced_not_admitted",
+    "JurisLean.Seams.UnifiedQuantLedger.income_not_impossible"
    ]
   },
   {
@@ -3560,28 +3582,31 @@
    "theorem": "JurisLean.FullMath.Acceptance.demand_D056",
    "contract": "JurisLean.FullMath.Contracts.demand_D056",
    "proof_mode": "KERNEL_CONTRACT_PROOF",
-   "generality": "UNIVERSAL_THEOREM",
-   "formal_scope": "Business demand instance in the shared semantic framework: the formal part is the group-level theorem instantiated through the registered observation and adverse case; external validation obligations stay separate.",
-   "independent_semantics": "The contract statement is extracted verbatim from JurisLean.FullMath.Numeric.parts_nonneg's own signature; the acceptance is that theorem.",
-   "algorithm": "Independent checker/algorithm in the mapped module: the Lean theorem is the contract; the Python reference implementation in implementation_sources computes the same objects on concrete data.",
-   "observation_contract": "Observation contract: inputs, parameters and scope are declared per binding; outputs are exactly the contract quantities; adverse cases are executed as negative tests.",
-   "external_assumptions": "Truth of external legal facts, natural-language coverage, empirical calibration validity and JC/Harness production integration are NOT claimed by this mathematical registration and remain separately tracked.",
+   "formal_scope": "Group-06 loan/guarantee demand instance in the shared semantic framework: this item's own contract semantics over the quantity-ledger carrier (seven-field debt identity, admission-order allocation, integer-day interest components, typed security establishment events) plus the registered quantity component (both parts of the covered/uncovered split stay nonnegative), with its adverse case executed as a negative test.",
+   "independent_semantics": "attorney fees, court fees and preservation fees are independent debt items with their own basis, beneficiary and claim status (three distinct fee kinds), a supported status requires a supporting basis — a self-quoted attorney-fee row is never auto-supported — and grouping the ledger conserves the total.",
+   "algorithm": "tools/full_math/implementation/loan_ref.py fee_ledger_readout computes the intermediate result from structured input (the ledger surface consumed from quantledger_ref, the mirror of JurisLean.Seams.UnifiedQuantLedger); loan_check.check_D056 re-derives the contract independently with different code paths (index-walking allocations, direct division, branch tables, occurrence counting) — zero code sharing with the reference.",
+   "observation_contract": "Inputs are the declared structures (delivered loans with principal and repayment streams of exact Fractions, admission-ordered ledger rows with ident/kind/basis/beneficiary/status/amount fields, charge configurations with rates, integer day counts and denominators plus a policy cap, security event lists and priority claim lists with liquidation proceeds, corporate-guarantee event sets, signature attributions with signer, capacity and principal ids, spousal-debt issue flags, company-relation evidence edges, sourced/unsourced fact candidates, and fee ledgers with three fee kinds and their bases); outputs are exactly the contract quantities (the booked/discharged readouts with the equivalence and the full-stream witness, the offset rows with per-payment bounds, identity preservation and duplicate-id gates, the three charge components with independence, split additivity and the cap verdict, the typed establishment verdicts with the priority waterfall, the corporate predicates with the same-event-set contrast, the responsible-subject attribution with beneficiary preservation, the spousal attribution with marriage-flip invariance, the veil evaluation with the phone-only rejection, the admission table with the empty rule base, and the fee consistency with the partition conservation).",
+   "external_assumptions": "Actual delivery and repayment records, bank-statement authenticity and fund use, stipulated-purpose evidence for offsets, charge-term validity and the actual default period, registration and delivery facts for security interests with document verification, good-faith/knowledge judgments on corporate guarantees, signing intent and counterparty awareness, spousal common-intent and household-use proofs, open legal evaluation of personality mixing and real corporate-relation investigation, lender capability and practice facts, and reasonableness plus actual payment proofs for fees remain external validation obligations, not part of this registration.",
    "proof_sources": [
-    "proofs/lean/juris_lean/JurisLean/FullMath/Numeric/Quantities.lean"
+    "proofs/lean/juris_lean/JurisLean/FullMath/Contracts.lean",
+    "proofs/lean/juris_lean/JurisLean/FullMath/Acceptance.lean"
    ],
    "implementation_sources": [
-    "tools/full_math/implementation/horn_logic.py"
+    "tools/full_math/implementation/loan_ref.py",
+    "tools/full_math/implementation/loan_check.py"
    ],
    "test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_positive[demand_D056]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_scope_integrity"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_positive[D056]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_demand_counterexample[D056]",
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_downstream_pipeline_consumes_loan"
    ],
    "negative_test_ids": [
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative[demand_D056]",
-    "tools/full_math/implementation_tests::test_registration_bindings.py::test_binding_negative_mode[demand_D056]"
+    "tools/full_math/implementation_tests::test_loan_group06.py::test_checker_rejects_tampered[D056]"
    ],
    "semantic_links": [
-    "JurisLean.FullMath.Numeric.parts_nonneg"
+    "JurisLean.FullMath.Numeric.parts_nonneg",
+    "JurisLean.Seams.UnifiedQuantLedger.self_quoted_not_supported",
+    "JurisLean.Seams.UnifiedQuantLedger.sum_filter_partition"
    ]
   },
   {

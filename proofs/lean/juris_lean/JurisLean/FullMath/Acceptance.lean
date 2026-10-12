@@ -915,25 +915,158 @@ theorem demand_D046 : Contracts.demand_D046 := And.intro JurisLean.FullMath.Burd
     · intro hv
       simp [Contracts.hearsayResolve, hv])
 
-theorem demand_D047 : Contracts.demand_D047 := JurisLean.FullMath.Numeric.parts_nonneg
+/-! D047-D056 (group 06 借贷、担保与共同债务, W2-A batch B06): each
+theorem discharges the demand's own contract; the first conjunct is
+the group-registered quantity component inlined as `parts_nonneg`.
+The ledger/charge/security constructions are consumed from the shared
+carrier `Seams/UnifiedQuantLedger.lean` (B06 prerequisite); the
+group-06 qualitative helpers live in `Contracts`. -/
 
-theorem demand_D048 : Contracts.demand_D048 := JurisLean.FullMath.Numeric.parts_nonneg
+open JurisLean.FullMath.Contracts (loanRow SigningCapacity respOf SpousalDebt
+  jointDebt CorpEdge personalityMix corpJointDue)
 
-theorem demand_D049 : Contracts.demand_D049 := JurisLean.FullMath.Numeric.parts_nonneg
+open JurisLean.Seams.UnifiedQuantLedger (LedgerItem DebtKind FeeBasis
+  ClaimStatus feeSupported loanLedger outstanding
+  afterStream afterPay allocsOf demoLedger StreamLegal InterestSeg LoanCharges
+  termInterest segInterest ChargesWithin totalCharges sampleAll sampleNoPenalty
+  SecKind SecEvent requiredEvent secEstablished corpSuretyEstablished
+  distributeProceeds FactCand admittedFact CashRule CashFact statusConsistent
+  outstanding_loanLedger outstanding_afterStream discharged_iff_paid_covered
+  delivery_repayment_separate_readout allocsOf_mem_nonneg allocsOf_sum_le
+  afterPay_idents duplicate_payment_rejected demoLedger_readout
+  termInterest_indep seg_split stacking_not_default
+  signing_not_mortgage_established signing_not_pledge_established
+  distribute_conserve distribute_priority no_blanket_invalidation
+  unsourced_not_admitted income_not_impossible self_quoted_not_supported
+  sum_filter_partition)
 
-theorem demand_D050 : Contracts.demand_D050 := JurisLean.FullMath.Numeric.parts_nonneg
+open JurisLean.Seams.UnifiedQuantities (remainingAfter)
 
-theorem demand_D051 : Contracts.demand_D051 := JurisLean.FullMath.Numeric.parts_nonneg
+theorem demand_D047 : Contracts.demand_D047 := And.intro JurisLean.FullMath.Numeric.parts_nonneg
+  (by
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · intro id p
+      exact (outstanding_loanLedger id p).2
+    · intro items hnn ps hps
+      exact discharged_iff_paid_covered items hnn ps hps
+    · exact delivery_repayment_separate_readout
+    · have hnn : ∀ it ∈ loanLedger true 1 200, 0 ≤ it.amount := by
+        intro it hit
+        simp only [loanLedger] at hit
+        split at hit
+        · rcases List.mem_cons.1 hit with rfl | hit
+          · norm_num
+          · cases hit
+        · cases hit
+      rw [outstanding_afterStream [200] _ hnn (by norm_num),
+        (outstanding_loanLedger 1 200).1]
+      norm_num)
 
-theorem demand_D052 : Contracts.demand_D052 := JurisLean.FullMath.Numeric.parts_nonneg
+theorem demand_D048 : Contracts.demand_D048 := And.intro JurisLean.FullMath.Numeric.parts_nonneg
+  (by
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · intro items p hnn hp
+      exact ⟨allocsOf_mem_nonneg items p hnn hp, allocsOf_sum_le items p hp,
+        afterPay_idents p items⟩
+    · exact duplicate_payment_rejected
+    · exact demoLedger_readout.1
+    · have h : allocsOf 150
+          [loanRow 2 DebtKind.interest 100, loanRow 3 DebtKind.principal 200]
+          = [100, 50] := by
+        norm_num [allocsOf, loanRow, min_def]
+      refine ⟨h, ?_⟩
+      intro heq
+      rw [h] at heq
+      have hsum := congrArg List.sum heq
+      simp only [List.sum_cons, List.sum_nil] at hsum
+      norm_num at hsum)
 
-theorem demand_D053 : Contracts.demand_D053 := JurisLean.FullMath.Numeric.parts_nonneg
+theorem demand_D049 : Contracts.demand_D049 := And.intro JurisLean.FullMath.Numeric.parts_nonneg
+  (by
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · exact termInterest_indep
+    · exact seg_split
+    · intro cap c h
+      exact h
+    · exact stacking_not_default)
 
-theorem demand_D054 : Contracts.demand_D054 := JurisLean.FullMath.Numeric.parts_nonneg
+theorem demand_D050 : Contracts.demand_D050 := And.intro JurisLean.FullMath.Numeric.parts_nonneg
+  (by
+    refine ⟨⟨?_, ?_, ?_, ?_⟩, ⟨?_, ?_, ?_, ?_⟩, ⟨?_, ?_⟩⟩
+    · rfl
+    · rfl
+    · rfl
+    · simp [requiredEvent]
+    · exact signing_not_mortgage_established
+    · exact signing_not_pledge_established
+    · simp [secEstablished, requiredEvent]
+    · simp [secEstablished, requiredEvent]
+    · exact distribute_conserve
+    · exact distribute_priority)
 
-theorem demand_D055 : Contracts.demand_D055 := JurisLean.FullMath.Numeric.parts_nonneg
+theorem demand_D051 : Contracts.demand_D051 := And.intro JurisLean.FullMath.Numeric.parts_nonneg
+  (by
+    refine ⟨?_, ?_, ?_⟩
+    · intro evs
+      exact Iff.rfl
+    · exact no_blanket_invalidation
+    · simp [corpSuretyEstablished])
 
-theorem demand_D056 : Contracts.demand_D056 := JurisLean.FullMath.Numeric.parts_nonneg
+theorem demand_D052 : Contracts.demand_D052 := And.intro JurisLean.FullMath.Numeric.parts_nonneg
+  (by
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · intro signer p
+      rfl
+    · intro signer
+      rfl
+    · intro h
+      simp [respOf] at h
+    · intro p items
+      induction items generalizing p with
+      | nil => rfl
+      | cons it rest ih =>
+          show LedgerItem.beneficiary { it with amount := it.amount - min p it.amount } ::
+              (afterPay (p - min p it.amount) rest).map LedgerItem.beneficiary
+              = it.beneficiary :: rest.map LedgerItem.beneficiary
+          exact congrArg (fun l => it.beneficiary :: l) (ih (p - min p it.amount)))
+
+theorem demand_D053 : Contracts.demand_D053 := And.intro JurisLean.FullMath.Numeric.parts_nonneg
+  (by
+    refine ⟨?_, ?_, ?_⟩
+    · intro d
+      simp [jointDebt]
+    · rfl
+    · exact ⟨rfl, rfl⟩)
+
+theorem demand_D054 : Contracts.demand_D054 := And.intro JurisLean.FullMath.Numeric.parts_nonneg
+  (by
+    refine ⟨?_, ⟨?_, ?_⟩, ⟨?_, ?_⟩⟩
+    · intro edges
+      exact Iff.rfl
+    · simp [personalityMix]
+    · simp [corpJointDue, personalityMix]
+    · simp [personalityMix]
+    · simp [corpJointDue, personalityMix])
+
+theorem demand_D055 : Contracts.demand_D055 := And.intro JurisLean.FullMath.Numeric.parts_nonneg
+  (by
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · exact unsourced_not_admitted
+    · intro id
+      simp [admittedFact]
+    · exact income_not_impossible
+    · simp [admittedFact])
+
+theorem demand_D056 : Contracts.demand_D056 := And.intro JurisLean.FullMath.Numeric.parts_nonneg
+  (by
+    refine ⟨⟨?_, ?_, ?_, ?_⟩, ⟨?_, ?_⟩, ?_⟩
+    · decide
+    · decide
+    · decide
+    · decide
+    · exact self_quoted_not_supported
+    · simp [statusConsistent, feeSupported]
+    · exact sum_filter_partition)
 
 theorem demand_D057 : Contracts.demand_D057 := JurisLean.FullMath.Numeric.Iv.fixed_y_bounds
 

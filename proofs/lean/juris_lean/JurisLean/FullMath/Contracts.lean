@@ -6,6 +6,7 @@ import JurisLean.FullMath.Tranche5
 import JurisLean.FullMath.Tranche6
 import JurisLean.FullMath.Tranche7
 import JurisLean.Seams.UnifiedCalendar
+import JurisLean.Seams.UnifiedQuantLedger
 
 /-! Generated from the module signatures: each contract is the real
 statement of its mapped theorem. This file contains no proofs. -/
@@ -26,6 +27,13 @@ open JurisLean.FullMath.Gaps
 open JurisLean.FullMath.Numeric.Iv
 open JurisLean.Seams.UnifiedCalendar (CalDate daysDiff toEpochDay PeriodSpec
   nextBiz backSchedule addCalDays addCalMonths syntheticWeekend)
+open JurisLean.Seams.UnifiedQuantLedger (LedgerItem DebtKind FeeBasis
+  ClaimStatus outstanding loanLedger afterStream afterPay allocsOf demoLedger
+  StreamLegal InterestSeg LoanCharges termInterest segInterest ChargesWithin
+  totalCharges sampleAll sampleNoPenalty SecKind SecEvent requiredEvent
+  secEstablished corpSuretyEstablished distributeProceeds FactCand admittedFact
+  CashRule CashFact statusConsistent)
+open JurisLean.Seams.UnifiedQuantities (remainingAfter)
 
 namespace JurisLean.FullMath.Contracts
 
@@ -1089,25 +1097,229 @@ def demand_D046 : Prop :=
         hearsayResolve v e x u = some true) ∧
      (v ≠ 1975 → hearsayResolve v e x u = none))
 
-def demand_D047 : Prop := ∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r
+/-! D047-D056 (group 06 借贷、担保与共同债务, W2-A batch B06): each def is
+that demand's own contract, translated from ALL_134_MATH_CONTRACTS.md.
+The first conjunct is the group-registered quantity component (both parts
+of the covered/uncovered split stay nonnegative — amounts never go below
+zero through any decomposition); the remaining conjuncts are the demand's
+own operational semantics with its adverse case, consumed from the shared
+quantity-ledger carrier `Seams/UnifiedQuantLedger.lean` (B06 prerequisite,
+module round green) plus the group-local qualitative encodings below. -/
 
-def demand_D048 : Prop := ∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r
+/-- D048/D056 helper: a supported contract-stipulated ledger row owed to
+beneficiary 0 — the seven-field debt identity (ident/kind/basis/
+beneficiary/status/amount) of the shared carrier, spelled short for the
+witness ledgers. -/
+def loanRow (id : ℕ) (k : DebtKind) (amt : ℚ) : LedgerItem :=
+  { ident := id, kind := k, basis := FeeBasis.contractStip, beneficiary := 0,
+    status := ClaimStatus.supported, amount := amt }
 
-def demand_D049 : Prop := ∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r
+/-- D047 交付事实与清偿事实分别进入责任链（反例：出借记录不能自动证明
+后来未清偿）：借款已实际交付才入账——未交付的借条余额恒为零；清偿判定
+与付足等价（余额为零 ⇔ 总支付覆盖全部到期额）；交付 200、还款流 150 ⇒
+余额 50，仅有交付记录（无还款）余额 200——两事实分别读出；而仅有出借
+记录不蕴含未清偿：同一账本补一条 200 的还款流后余额恰为零。 -/
+def demand_D047 : Prop :=
+  (∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r) ∧
+  ((∀ (id : ℕ) (p : ℚ), outstanding (loanLedger false id p) = 0) ∧
+   (∀ (items : List LedgerItem), (∀ it ∈ items, 0 ≤ it.amount) →
+      ∀ (ps : List ℚ), (∀ p ∈ ps, 0 ≤ p) →
+        (outstanding (afterStream ps items) = 0 ↔ outstanding items ≤ ps.sum)) ∧
+   (outstanding (afterStream [150] (loanLedger true 1 200)) = 50 ∧
+    outstanding (loanLedger true 1 200) = 200) ∧
+   outstanding (afterStream [200] (loanLedger true 1 200)) = 0)
 
-def demand_D050 : Prop := ∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r
+/-- D048 抵充账本按准入顺序更新（反例：同一还款同时全额扣本金、又全额扣
+利息应拒绝）：每笔分配逐项非负、分配总额不超过该笔付款，支付后债项身份
+逐笔保持（余额可追踪）；同一支付 ID 出现两次的支付流非法；准入顺序见证
+——费用 10→利息 100→本金 200 的账本支付 150 逐项抵充恰为 (10, 100, 40)；
+对利息 100＋本金 200 的账本，真实抵充是 [100, 50]——"同时全额扣本金又全
+额扣利息"的 [100, 200] 永不成立。 -/
+def demand_D048 : Prop :=
+  (∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r) ∧
+  ((∀ (items : List LedgerItem) (p : ℚ), (∀ it ∈ items, 0 ≤ it.amount) →
+      0 ≤ p → (∀ a ∈ allocsOf p items, 0 ≤ a) ∧ (allocsOf p items).sum ≤ p ∧
+        (afterPay p items).map LedgerItem.ident = items.map LedgerItem.ident) ∧
+   ¬ StreamLegal [(7, 100), (7, 50)] ∧
+   allocsOf 150 demoLedger = [10, 100, 40] ∧
+   (allocsOf 150 [loanRow 2 DebtKind.interest 100, loanRow 3 DebtKind.principal 200]
+        = [100, 50] ∧
+    ¬ allocsOf 150 [loanRow 2 DebtKind.interest 100,
+        loanRow 3 DebtKind.principal 200] = [100, 200]))
 
-def demand_D051 : Prop := ∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r
+/-- D049 借期利息、逾期利息、违约金分别形成计算组件，组合受适用政策限制
+（反例：相似百分比不能默认三项全叠加）：组件独立——借期利息不随逾期参数
+（利率/天数）变化；分段可加——任意天数处切两段之和等于整段（整数天，不换
+月）；政策上限谓词之上组合总额受上限约束——本金 100、三组件各 10 的全叠加
+30 超上限 24 被拒，去掉违约金组件后 20 在限内。 -/
+def demand_D049 : Prop :=
+  (∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r) ∧
+  ((∀ (c : LoanCharges) (r : ℚ) (d : ℕ),
+      termInterest { c with overdueRate := r, overdueDays := d } = termInterest c) ∧
+   (∀ (s : InterestSeg) (d1 d2 : ℕ), s.denom ≠ 0 → s.days = d1 + d2 →
+      segInterest { s with days := d1 } + segInterest { s with days := d2 }
+        = segInterest s) ∧
+   (∀ (cap : ℚ) (c : LoanCharges), ChargesWithin cap c → totalCharges c ≤ cap) ∧
+   (¬ ChargesWithin 24 sampleAll ∧ ChargesWithin 24 sampleNoPenalty))
 
-def demand_D052 : Prop := ∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r
+/-- D050 保证/抵押/质押以不同法律关系、设立事件、效力与救济表示（反例：
+签担保文件不自动证明登记完成或财产已交付）：三类型的设立要件事件互不相
+同——保证以签署、抵押以登记、质押以交付设立，抵押要件与质押要件是两个
+不同事件；要件事件不在事实集中即不设立——仅有签署的记录既不设立抵押也
+不设立质押，而同一签署即设立保证，登记齐备的抵押设立；担保物价款按顺位
+优先分配：各顺位受偿和＋剩余＝价款，后顺位得正 ⇒ 前顺位债权全清。 -/
+def demand_D050 : Prop :=
+  (∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r) ∧
+  ((requiredEvent SecKind.suretyship = SecEvent.signed ∧
+    requiredEvent SecKind.mortgage = SecEvent.registered ∧
+    requiredEvent SecKind.pledge = SecEvent.delivered ∧
+    requiredEvent SecKind.mortgage ≠ requiredEvent SecKind.pledge) ∧
+   (¬ secEstablished SecKind.mortgage [SecEvent.signed] ∧
+    ¬ secEstablished SecKind.pledge [SecEvent.signed] ∧
+    secEstablished SecKind.suretyship [SecEvent.signed] ∧
+    secEstablished SecKind.mortgage [SecEvent.signed, SecEvent.registered]) ∧
+   ((∀ (claims : List ℚ) (proceeds : ℚ),
+       (distributeProceeds claims proceeds).sum + remainingAfter claims proceeds
+         = proceeds) ∧
+    (∀ (claims : List ℚ), (∀ c ∈ claims, 0 ≤ c) → ∀ (proceeds : ℚ) (k : ℕ),
+       0 < (List.drop k (distributeProceeds claims proceeds)).sum →
+         List.take k (distributeProceeds claims proceeds) = List.take k claims)))
 
-def demand_D053 : Prop := ∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r
+/-- D051 决议存在、程序、代表权限及担保效力分别建谓词并按规则连接（反
+例：仅无决议字段不得由一条统一规则宣布所有担保无效）：公司保证的设立是
+决议存在＋签署两要件的合取——要件谓词分别可判、按规则连接（缺一即不设
+立）；同一"仅有签署"事件集下公司保证未设立而自然人保证设立——无效力判
+定走类型化要件，不是一条统一无效规则；决议与签署齐备的公司保证设立。 -/
+def demand_D051 : Prop :=
+  (∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r) ∧
+  ((∀ (evs : List SecEvent),
+      corpSuretyEstablished evs ↔
+        (SecEvent.boardResolution ∈ evs ∧ SecEvent.signed ∈ evs)) ∧
+   (¬ corpSuretyEstablished [SecEvent.signed] ∧
+    secEstablished SecKind.suretyship [SecEvent.signed]) ∧
+   corpSuretyEstablished [SecEvent.boardResolution, SecEvent.signed])
 
-def demand_D054 : Prop := ∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r
+/-- D052 helper: signing capacity — own name, or on behalf of a principal
+(the representation relation). -/
+inductive SigningCapacity : Type
+  | ownName | onBehalfOf (principal : ℕ)
+  deriving DecidableEq
 
-def demand_D055 : Prop := ∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r
+/-- D052 helper: the responsible subject of a signature — the represented
+principal when the representation relation points at one, otherwise the
+signer; signer, nominal capacity, contract party and responsible person
+are separately encoded fields. -/
+def respOf (signer : ℕ) (cap : SigningCapacity) : ℕ :=
+  match cap with
+  | .ownName => signer
+  | .onBehalfOf p => p
 
-def demand_D056 : Prop := ∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r
+/-- D052 签字人、名义、代表关系、合同当事人和责任人分别编码（反例：签名
+文本为自然人名不自动由其个人承担全部合同义务）：责任人按代表关系连接——
+代表关系指向公司时责任人是被代表主体而非签字自然人（签名文本为自然人名
+不改变责任人），以自己名义签署时责任人即签字人；账本侧受益人字段独立于
+金额字段，支付抵充逐笔保持受益人（当事人身份不随抵充漂移）。 -/
+def demand_D052 : Prop :=
+  (∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r) ∧
+  ((∀ (signer p : ℕ), respOf signer (.onBehalfOf p) = p) ∧
+   (∀ signer : ℕ, respOf signer .ownName = signer) ∧
+   respOf 3 (.onBehalfOf 7) ≠ 3 ∧
+   (∀ (p : ℚ) (items : List LedgerItem),
+      (afterPay p items).map LedgerItem.beneficiary
+        = items.map LedgerItem.beneficiary))
+
+/-- D053 helper: the spousal-debt issues as independent fields — marriage
+period, spouse signature, common intent, household/business use. -/
+structure SpousalDebt where
+  inMarriage : Bool
+  spouseSigned : Bool
+  commonIntent : Bool
+  householdUse : Bool
+
+/-- D053 helper: joint attribution requires the spouse signature or the
+common-intent + household-use pair — never the marriage period alone. -/
+def jointDebt (d : SpousalDebt) : Bool :=
+  d.spouseSigned || (d.commonIntent && d.householdUse)
+
+/-- D053 婚姻期间、签字、共同意思、用途和债务归属为独立争点（反例：婚内
+借款不自动推出夫妻共同债务）：共同债务归属由"配偶签字"或"共同意思＋共同
+生活/经营用途"判定，与婚姻期间字段无关（翻转婚姻期间不改变归属判定——
+期间是独立争点，不是归属规则）；婚内（期间真）而无签字、无共同意思、无
+共同用途的借款不是共同债务；配偶签字成立归属，共同意思＋共同用途同样成
+立。 -/
+def demand_D053 : Prop :=
+  (∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r) ∧
+  ((∀ d : SpousalDebt,
+      jointDebt { d with inMarriage := true }
+        = jointDebt { d with inMarriage := false }) ∧
+   jointDebt ⟨true, false, false, false⟩ = false ∧
+   (jointDebt ⟨true, true, false, false⟩ = true ∧
+    jointDebt ⟨true, false, true, true⟩ = true))
+
+/-- D054 helper: company-relation evidence edges — shared resources (a
+phone number, an address) are light edges; commingled funds and one-way
+control are heavy edges. -/
+inductive CorpEdge : Type
+  | sharedPhone | sharedAddress | commingledFunds | underControl
+  deriving DecidableEq
+
+/-- D054 helper: the separate evaluation rule — personality mixing is
+reached only through the heavy edges (commingled funds or one-way
+control); light edges never reach it by themselves. -/
+def personalityMix (edges : List CorpEdge) : Prop :=
+  CorpEdge.commingledFunds ∈ edges ∨ CorpEdge.underControl ∈ edges
+
+/-- D054 helper: the joint-liability consequence attaches only through
+the evaluation rule — never directly from an evidence edge. -/
+def corpJointDue (edges : List CorpEdge) : Prop := personalityMix edges
+
+/-- D054 公司关系证据形成支持图；人格混同等评价与连带后果单独规则连接
+（反例：共用电话不直接生成无限连带责任边）：连带后果恰好由人格混同评价
+规则给出（评价与后果是单独一层，不与证据边混写）；仅有共用电话/地址的
+证据图既不达人格混同评价、也不生成连带后果；出现资金混同或单向控制的
+证据图两项皆达。 -/
+def demand_D054 : Prop :=
+  (∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r) ∧
+  ((∀ edges : List CorpEdge, corpJointDue edges ↔ personalityMix edges) ∧
+   (¬ personalityMix [CorpEdge.sharedPhone] ∧
+    ¬ corpJointDue [CorpEdge.sharedPhone, CorpEdge.sharedAddress]) ∧
+   (personalityMix [CorpEdge.commingledFunds] ∧
+    corpJointDue [CorpEdge.underControl]))
+
+/-- D055 资金来源和现金能力是有来源的事实候选；不足即未证而非虚构负事
+实（反例：收入低不自动证明不可能现金出借）：无来源候选不进事实（未证），
+有来源候选照常准入；从"收入低"到"不可能现金出借"没有任何获准规则（空
+规则基——收入再低也不生成负事实）；同一标识的有源/无源两候选准入判定不
+同（来源字段真实参与判定）。 -/
+def demand_D055 : Prop :=
+  (∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r) ∧
+  ((∀ id : ℕ, ¬ (admittedFact (FactCand.unsourced id) = true)) ∧
+   (∀ id : ℕ, admittedFact (FactCand.sourced id) = true) ∧
+   ¬ CashRule CashFact.incomeLow CashFact.cashImpossible ∧
+   admittedFact (FactCand.sourced 3) ≠ admittedFact (FactCand.unsourced 3))
+
+/-- D056 律师费、诉讼费、保全费等使用独立债项/基础/受益人/请求状态（反
+例：自身工时报价不能自动作为对方应赔律师费）：三费用分型互异且与本金分
+型不同（各自是独立的债项种类）；请求状态与基础的一致性要求 supported
+状态须有可支撑基础——自身工时报价的律师费行不自动 supported，合同约定
+基础的行可 supported；按 Bool 谓词分组的分组和相加＝总额（分组聚合不丢
+不重）。 -/
+def demand_D056 : Prop :=
+  (∀ (r : ℚ), 0 ≤ covered r ∧ 0 ≤ uncovered r) ∧
+  ((DebtKind.attorneyFee ≠ DebtKind.courtFee ∧
+    DebtKind.attorneyFee ≠ DebtKind.preservationFee ∧
+    DebtKind.courtFee ≠ DebtKind.preservationFee ∧
+    DebtKind.attorneyFee ≠ DebtKind.principal) ∧
+   (¬ statusConsistent
+      { ident := 5, kind := DebtKind.attorneyFee, basis := FeeBasis.selfQuoted,
+        beneficiary := 2, status := ClaimStatus.supported, amount := 3000 } ∧
+    statusConsistent
+      { ident := 6, kind := DebtKind.attorneyFee, basis := FeeBasis.contractStip,
+        beneficiary := 2, status := ClaimStatus.supported, amount := 3000 }) ∧
+   (∀ (f : LedgerItem → Bool) (items : List LedgerItem),
+      ((items.filter f).map LedgerItem.amount).sum
+        + ((items.filter (fun it => !f it)).map LedgerItem.amount).sum
+        = (items.map LedgerItem.amount).sum))
 
 def demand_D057 : Prop := ∀ (i : Iv) (x y : ℚ) (hx : mem x i), min (i.lo * y) (i.hi * y) ≤ x * y ∧ x * y ≤ max (i.lo * y) (i.hi * y)
 

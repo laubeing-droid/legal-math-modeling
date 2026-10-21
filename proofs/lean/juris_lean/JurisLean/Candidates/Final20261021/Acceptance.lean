@@ -27,8 +27,9 @@ def request (id : Nat) (amount : ℚ := 7) : PaymentRequest :=
   ⟨⟨id⟩, ⟨id⟩, payload id amount, .yes, some ⟨id⟩⟩
 def grant (p : PaymentPayload) : Authorization.Grant :=
   { evidence := ⟨90⟩, subject := debt.obligor, caseId := gamma.caseId,
+    context := gamma,
     object := .relation debt.relation, action := 0, contentVersion := 0,
-    payload := some p, authorityRuleVersion := 0, fromDate := ⟨0⟩, untilDate := ⟨100⟩ }
+    payload := some p, nextContext := none, authorityRuleVersion := 0, fromDate := ⟨0⟩, untilDate := ⟨100⟩ }
 def grants : List Authorization.Grant := [grant (payload 1), grant (payload 2)]
 def post1 : Ledger.Handle := (Ledger.commitPayment opening (request 1)).2
 def post2 : Ledger.Handle := (Ledger.commitPayment post1 (request 2)).2

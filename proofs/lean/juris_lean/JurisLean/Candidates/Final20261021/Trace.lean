@@ -45,7 +45,8 @@ inductive Step : Ledger.Handle → Ledger.Handle → Prop where
       Step h { h with revision := h.revision + 1, state := Ledger.writeOff h.state w }
   | refresh (h : Ledger.Handle) (g : Gamma) (e : Temporal.VersionRecord)
       (grants : List Authorization.Grant) (actor : PartyId)
-      (authorized : Authorization.authorized grants h.gamma actor 1 e.version (.document e.version) = true)
+      (authorized : Authorization.authorized grants h.gamma actor 1 e.version
+        (.document e.version) none (some g) = true)
       (sameCase : g.caseId = h.gamma.caseId) :
       Step h ⟨g, h.revision + 1, { h.state with normHistory := h.state.normHistory ++ [e],
         env := Temporal.proposed_applicability g (h.state.normHistory ++ [e]) }⟩

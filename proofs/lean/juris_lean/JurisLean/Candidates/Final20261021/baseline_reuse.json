@@ -1,0 +1,23 @@
+{
+  "baseline": "825792b83476a767152396d7f5e2ba3017048841",
+  "rows": [
+    {
+      "baseline": "825792b83476a767152396d7f5e2ba3017048841",
+      "status": "REUSE_EXACT_TYPE_REQUIRES_CURRENT_CI",
+      "file": "proofs/lean/juris_lean/JurisLean/HornFixedPoint.lean",
+      "declaration": "horn_finite_termination",
+      "line": 31,
+      "source_sha256": "402a3cc4f4fc894fe65ee6103810eab8656877c5542924486da6c7a3d7f8966b",
+      "statement_and_proof_excerpt": "theorem horn_finite_termination : ∃ k, k ≤ Finset.card sys.univ ∧\n    FiniteMonotoneSystem.iter (toFiniteMonotoneSystem sys) k =\n    FiniteMonotoneSystem.iter (toFiniteMonotoneSystem sys) (k + 1) :=\n  FiniteMonotoneSystem.exists_fixpoint_le_card (toFiniteMonotoneSystem sys)\n\n/-- 5: horn_iteration_bound — at most |univ| iterations needed. -/"
+    },
+    {
+      "baseline": "825792b83476a767152396d7f5e2ba3017048841",
+      "status": "REUSE_EXACT_TYPE_REQUIRES_CURRENT_CI",
+      "file": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantLedger.lean",
+      "declaration": "outstanding_afterStream",
+      "line": 267,
+      "source_sha256": "138d149be182b5c3ad50b362013527a1266d4442f7f36a0633aec73facf4eb8a",
+      "statement_and_proof_excerpt": "theorem outstanding_afterStream (ps : List ℚ) (items : List LedgerItem)\n    (hnn : ∀ it ∈ items, 0 ≤ it.amount) (hps : ∀ p ∈ ps, 0 ≤ p) :\n    outstanding (afterStream ps items) = max (outstanding items - ps.sum) 0 := by\n  induction ps generalizing items with\n  | nil =>\n      have hO := outstanding_nonneg items hnn\n      simp only [afterStream, List.sum_nil, sub_zero]\n      exact (max_eq_left hO).symm\n  | cons p ps ih =>\n      have hp : 0 ≤ p := hps p (by simp)\n      have hps' : ∀ q ∈ ps, 0 ≤ q := fun q hq => hps q (List.mem_cons_of_mem _ hq)\n      have h1 := outstanding_afterPay_clamp items p hnn hp\n      have h2 := ih (afterPay p items) (afterPay_amounts_nonneg items p) hps'\n      show outstanding (afterStream ps (afterPay p items))\n          = max (outstanding items - (p :: ps).sum) 0\n      rw [h2, h1, List.sum_cons]\n      exact clamp_clamp (outstanding items) p ps.sum (List.sum_nonneg hps')\n\n/-- D047：清偿判定——余额为零 ⇔ 总支付已覆盖全部到期额。 -/"
+    }
+  ]
+}

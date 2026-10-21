@@ -22,6 +22,9 @@ def finishPayment (before : Ledger.Handle) (out : Ledger.Outcome) : PaymentRun :
   | .unknownCommit _ _ => ⟨.undecided, none, [out], [.missingEvidence]⟩
   | .pending e => ⟨.undecided, some before, [out], [e]⟩
 
+theorem finishPayment_outcomes (before : Ledger.Handle) (out : Ledger.Outcome) :
+    (finishPayment before out).outcomes = [out] := by cases out <;> rfl
+
 structure RefreshInput where
   gamma : Gamma
   event : Temporal.VersionRecord
@@ -32,7 +35,7 @@ def refresh (grants : List Authorization.Grant) (h : Ledger.Handle)
     (change : RefreshInput) : Result Ledger.Handle :=
   if change.gamma.caseId ≠ h.gamma.caseId then .rejected .scopeMismatch
   else if Authorization.authorized grants h.gamma change.actor 1 change.event.version
-      (.document change.event.version) = false then
+      (.document change.event.version) none (some change.gamma) = false then
     .unknown .authorityUnresolved
   else .known ⟨change.gamma, h.revision + 1,
     { h.state with normHistory := h.state.normHistory ++ [change.event],
@@ -72,7 +75,7 @@ theorem u00_pipeline_wires_handles (initial : Ledger.Handle)
         (Authorization.authorized grants actualPost1.gamma second.payload.payer 0 second.payload.normVersion
           (.relation second.payload.relation) (some second.payload)) mode2
       { finishPayment actualPost1 out2 with outcomes := .committed r1 actualPost1 :: [out2] } := by
-  simp [executePayments, firstCommitted, finishPayment]
+  simp [executePayments, firstCommitted, finishPayment_outcomes]
 
 def interpretPayment (view : Representation.SourceView) (p : PaymentPayload) : Option PaymentId :=
   match view.objectMap.filter (fun pair => pair.1 == p.source) with

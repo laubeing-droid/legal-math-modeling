@@ -26,15 +26,15 @@
         },
         {
           "file": "Authorization.lean",
-          "line": 37
+          "line": 40
         },
         {
           "file": "Authorization.lean",
-          "line": 44
+          "line": 47
         },
         {
           "file": "Authorization.lean",
-          "line": 52
+          "line": 55
         },
         {
           "file": "Trace.lean",
@@ -46,19 +46,15 @@
         },
         {
           "file": "Trace.lean",
-          "line": 51
+          "line": 52
         },
         {
           "file": "Pipeline.lean",
-          "line": 39
+          "line": 42
         },
         {
           "file": "Pipeline.lean",
-          "line": 173
-        },
-        {
-          "file": "Acceptance.lean",
-          "line": 153
+          "line": 176
         },
         {
           "file": "Acceptance.lean",
@@ -66,15 +62,19 @@
         },
         {
           "file": "Acceptance.lean",
-          "line": 157
+          "line": 155
         },
         {
           "file": "Acceptance.lean",
           "line": 158
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 159
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -131,7 +131,7 @@
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -142,14 +142,22 @@
           "line": 185
         }
       ],
-      "baseline_825792b": "UNLOCATED",
+      "baseline_825792b": "NEW",
       "baseline_hits": [],
       "basis": "Exact name searched across all tracked baseline Lean sources. NEW labels a new candidate symbol, not absence of a semantically related baseline lemma.",
-      "lean_target": null,
-      "consumer": null,
+      "lean_target": [
+        "JurisLean.Candidates.Final20261021.Calibration.proposed_calibration_support_gate"
+      ],
+      "consumer": [
+        {
+          "file": "Pipeline.lean",
+          "line": 162
+        }
+      ],
       "accept": [],
-      "status": "UNLOCATED_IMPLEMENTATION",
-      "formal_ci": "CI_NOT_RUN"
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
+      "formal_ci": "CI_NOT_RUN",
+      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted."
     },
     {
       "symbol": "proposed_calibration_support_gate",
@@ -168,11 +176,11 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 159
+          "line": 162
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -217,7 +225,7 @@
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -241,15 +249,15 @@
         },
         {
           "file": "Pipeline.lean",
-          "line": 155
+          "line": 158
         },
         {
           "file": "Acceptance.lean",
-          "line": 273
+          "line": 274
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -269,15 +277,15 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 206
+          "line": 209
         },
         {
           "file": "Pipeline.lean",
-          "line": 207
+          "line": 210
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -301,15 +309,15 @@
         },
         {
           "file": "Pipeline.lean",
-          "line": 165
+          "line": 168
         },
         {
           "file": "Acceptance.lean",
-          "line": 252
+          "line": 253
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -345,7 +353,7 @@
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -382,11 +390,11 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 85
+          "line": 88
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -410,7 +418,7 @@
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -430,11 +438,11 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 151
+          "line": 154
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -479,15 +487,15 @@
         },
         {
           "file": "Pipeline.lean",
-          "line": 147
+          "line": 150
         },
         {
           "file": "Acceptance.lean",
-          "line": 230
+          "line": 231
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -507,19 +515,19 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 139
+          "line": 142
         },
         {
           "file": "Pipeline.lean",
-          "line": 198
+          "line": 201
         },
         {
           "file": "Acceptance.lean",
-          "line": 145
+          "line": 146
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -530,14 +538,90 @@
           "line": 341
         }
       ],
-      "baseline_825792b": "UNLOCATED",
+      "baseline_825792b": "NEW",
       "baseline_hits": [],
       "basis": "Exact name searched across all tracked baseline Lean sources. NEW labels a new candidate symbol, not absence of a semantically related baseline lemma.",
-      "lean_target": null,
-      "consumer": null,
+      "lean_target": [
+        "JurisLean.Candidates.Final20261021.Ledger.performance"
+      ],
+      "consumer": [
+        {
+          "file": "Ledger.lean",
+          "line": 79
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 82
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 83
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 84
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 85
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 86
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 87
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 88
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 89
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 92
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 93
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 97
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 102
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 107
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 115
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 218
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 281
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 296
+        }
+      ],
       "accept": [],
-      "status": "UNLOCATED_IMPLEMENTATION",
-      "formal_ci": "CI_NOT_RUN"
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
+      "formal_ci": "CI_NOT_RUN",
+      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted."
     },
     {
       "symbol": "proposed_measurement",
@@ -556,15 +640,15 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 186
+          "line": 189
         },
         {
           "file": "Acceptance.lean",
-          "line": 265
+          "line": 266
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -584,15 +668,15 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 188
+          "line": 191
         },
         {
           "file": "Acceptance.lean",
-          "line": 269
+          "line": 270
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -603,14 +687,59 @@
           "line": 341
         }
       ],
-      "baseline_825792b": "UNLOCATED",
+      "baseline_825792b": "NEW",
       "baseline_hits": [],
       "basis": "Exact name searched across all tracked baseline Lean sources. NEW labels a new candidate symbol, not absence of a semantically related baseline lemma.",
-      "lean_target": null,
-      "consumer": null,
+      "lean_target": [
+        "JurisLean.Candidates.Final20261021.Ledger.validationError",
+        "JurisLean.Candidates.Final20261021.Pipeline.interpretPayment"
+      ],
+      "consumer": [
+        {
+          "file": "Ledger.lean",
+          "line": 270
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 285
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 317
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 321
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 325
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 327
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 345
+        },
+        {
+          "file": "Trace.lean",
+          "line": 38
+        },
+        {
+          "file": "Pipeline.lean",
+          "line": 181
+        },
+        {
+          "file": "Pipeline.lean",
+          "line": 182
+        }
+      ],
       "accept": [],
-      "status": "UNLOCATED_IMPLEMENTATION",
-      "formal_ci": "CI_NOT_RUN"
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
+      "formal_ci": "CI_NOT_RUN",
+      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted."
     },
     {
       "symbol": "proposed_policy",
@@ -654,14 +783,22 @@
           "line": 30
         }
       ],
-      "baseline_825792b": "UNLOCATED",
+      "baseline_825792b": "NEW",
       "baseline_hits": [],
       "basis": "Exact name searched across all tracked baseline Lean sources. NEW labels a new candidate symbol, not absence of a semantically related baseline lemma.",
-      "lean_target": null,
-      "consumer": null,
+      "lean_target": [
+        "JurisLean.Candidates.Final20261021.Pipeline.runBound"
+      ],
+      "consumer": [
+        {
+          "file": "Pipeline.lean",
+          "line": 211
+        }
+      ],
       "accept": [],
-      "status": "UNLOCATED_IMPLEMENTATION",
-      "formal_ci": "CI_NOT_RUN"
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
+      "formal_ci": "CI_NOT_RUN",
+      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted."
     },
     {
       "symbol": "proposed_probability_and_amount",
@@ -671,14 +808,34 @@
           "line": 224
         }
       ],
-      "baseline_825792b": "UNLOCATED",
+      "baseline_825792b": "NEW",
       "baseline_hits": [],
       "basis": "Exact name searched across all tracked baseline Lean sources. NEW labels a new candidate symbol, not absence of a semantically related baseline lemma.",
-      "lean_target": null,
-      "consumer": null,
+      "lean_target": [
+        "JurisLean.Candidates.Final20261021.Decision.evaluate"
+      ],
+      "consumer": [
+        {
+          "file": "Pipeline.lean",
+          "line": 165
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 251
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 256
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 261
+        }
+      ],
       "accept": [],
-      "status": "UNLOCATED_IMPLEMENTATION",
-      "formal_ci": "CI_NOT_RUN"
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
+      "formal_ci": "CI_NOT_RUN",
+      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted."
     },
     {
       "symbol": "proposed_probability_model",
@@ -705,7 +862,7 @@
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -716,14 +873,94 @@
           "line": 341
         }
       ],
-      "baseline_825792b": "UNLOCATED",
+      "baseline_825792b": "NEW",
       "baseline_hits": [],
       "basis": "Exact name searched across all tracked baseline Lean sources. NEW labels a new candidate symbol, not absence of a semantically related baseline lemma.",
-      "lean_target": null,
-      "consumer": null,
+      "lean_target": [
+        "JurisLean.Candidates.Final20261021.Ledger.commitPayment"
+      ],
+      "consumer": [
+        {
+          "file": "Ledger.lean",
+          "line": 275
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 279
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 280
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 281
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 287
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 292
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 293
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 296
+        },
+        {
+          "file": "Trace.lean",
+          "line": 39
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 34
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 35
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 51
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 52
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 60
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 61
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 62
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 63
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 88
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 95
+        }
+      ],
       "accept": [],
-      "status": "UNLOCATED_IMPLEMENTATION",
-      "formal_ci": "CI_NOT_RUN"
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
+      "formal_ci": "CI_NOT_RUN",
+      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted."
     },
     {
       "symbol": "proposed_rule_input",
@@ -754,15 +991,11 @@
         },
         {
           "file": "Authorization.lean",
-          "line": 58
+          "line": 61
         },
         {
           "file": "Pipeline.lean",
-          "line": 145
-        },
-        {
-          "file": "Acceptance.lean",
-          "line": 221
+          "line": 148
         },
         {
           "file": "Acceptance.lean",
@@ -774,15 +1007,19 @@
         },
         {
           "file": "Acceptance.lean",
-          "line": 226
+          "line": 224
         },
         {
           "file": "Acceptance.lean",
           "line": 227
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 228
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -806,7 +1043,7 @@
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {
@@ -864,11 +1101,11 @@
         },
         {
           "file": "Acceptance.lean",
-          "line": 216
+          "line": 217
         }
       ],
       "accept": [],
-      "status": "SOURCE_PRESENT_AWAITING_CI",
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN"
     },
     {

@@ -267,6 +267,8 @@ import JurisLean.Candidates.Final20261021.Acceptance
 #print axioms JurisLean.Candidates.Final20261021.Iteration.two_round_exact_risks
 #check JurisLean.Candidates.Final20261021.Iteration.u15_3_two_round_actual_state
 #print axioms JurisLean.Candidates.Final20261021.Iteration.u15_3_two_round_actual_state
+#check JurisLean.Candidates.Final20261021.Pipeline.finishPayment_outcomes
+#print axioms JurisLean.Candidates.Final20261021.Pipeline.finishPayment_outcomes
 #check JurisLean.Candidates.Final20261021.Pipeline.u00_pipeline_wires_handles
 #print axioms JurisLean.Candidates.Final20261021.Pipeline.u00_pipeline_wires_handles
 #check JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7

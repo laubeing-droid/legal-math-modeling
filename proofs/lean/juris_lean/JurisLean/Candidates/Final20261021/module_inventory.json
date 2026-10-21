@@ -123,7 +123,7 @@
     },
     {
       "file": "Authorization.lean",
-      "sha256": "cfdee9c90dcfbe83c3119ae300a01df7d44aee8160b08449f405de06938ae1ba",
+      "sha256": "fdaf4b67de0cae35cd4c9c6b6a3ae016cc5f5b7f14daf3b1cad91923e126c5db",
       "theory": [
         "U10.1"
       ],
@@ -189,7 +189,7 @@
     },
     {
       "file": "Trace.lean",
-      "sha256": "79b04f913eccafa813ce2f669db885338395b62337174aa0aae548d0e1b670a7",
+      "sha256": "5ed7f58c2dbeaf879237b49ec218d4a44354c2b5584e79903fbd4e6a4de4c4cf",
       "theory": [
         "U10.2"
       ],
@@ -383,11 +383,12 @@
     },
     {
       "file": "Pipeline.lean",
-      "sha256": "23ddd064e68c4f45a83d98b6252aa25c4791f461a0dbcd247d70c430235f6dde",
+      "sha256": "97a26091ba043dc8e7426dc0a3ad98ccea730245cef2dd3ed735653bacef607c",
       "theory": [
         "U00"
       ],
       "theorems": [
+        "JurisLean.Candidates.Final20261021.Pipeline.finishPayment_outcomes",
         "JurisLean.Candidates.Final20261021.Pipeline.u00_pipeline_wires_handles"
       ],
       "consumer_evidence": "declarations.json (actual lexical references, not a refinement proof)",
@@ -395,7 +396,7 @@
     },
     {
       "file": "Acceptance.lean",
-      "sha256": "1268d6ca7741df2f7dbe28de5f731fc89ea9739e1b41526604963c799eb96ead",
+      "sha256": "197d0adbe7aea93e9e686f95f01a39fb10839759f5f72f788b5f0d8c3cb6ced9",
       "theory": [],
       "theorems": [
         "JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7",

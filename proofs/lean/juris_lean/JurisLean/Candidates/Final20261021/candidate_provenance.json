@@ -1,18 +1,60 @@
 {
-  "status": "CANDIDATES_REQUIRING_FRESH_CI",
-  "not_baseline_proofs": true,
-  "sources": [
-    {
-      "source": "D:\\20261021\u633a\u8fdb\u7edf\u4e00\u6cd5\u5f8b\u6570\u5b66\u6a21\u578b\\isolated_math_implementation_20261021T004011Z_de6c53dd\\src\\UnifiedCandidate\\Transaction.lean",
+  "status": "UNCOMPILED_CANDIDATE_PROOF_BODIES",
+  "sources": {
+    "Transaction": {
+      "source": "D:\\20261021挺进统一法律数学模型\\isolated_math_implementation_20261021T004011Z_de6c53dd\\src\\UnifiedCandidate\\Transaction.lean",
       "sha256": "c27af7af5c23705c7fbec81ab1fb270854a285799fabda7ea8403742fcf814ea",
-      "target": "Transactions.lean",
-      "treatment": "Proof bodies re-elaborated in the new namespace; atomic abstract protocol only, not storage refinement."
+      "treatment": "CANDIDATE_REFERENCE_ONLY: reviewed/adapted proof bodies require fresh elaboration in the candidate namespace; historical exits and axioms are not evidence for this tree."
     },
-    {
-      "source": "D:\\20261021\u633a\u8fdb\u7edf\u4e00\u6cd5\u5f8b\u6570\u5b66\u6a21\u578b\\isolated_math_implementation_20261021T004011Z_de6c53dd\\src\\UnifiedCandidate\\TransactionSafety.lean",
+    "TransactionSafety": {
+      "source": "D:\\20261021挺进统一法律数学模型\\isolated_math_implementation_20261021T004011Z_de6c53dd\\src\\UnifiedCandidate\\TransactionSafety.lean",
       "sha256": "90af0b2be5f9109e73f8cde8e6611f66501c6927d7beed76a06c0adc54cf2d27",
-      "target": "Transactions.lean",
-      "treatment": "Proof bodies re-elaborated in the new namespace; atomic abstract protocol only, not storage refinement."
+      "treatment": "CANDIDATE_REFERENCE_ONLY: reviewed/adapted proof bodies require fresh elaboration in the candidate namespace; historical exits and axioms are not evidence for this tree."
+    },
+    "Logic": {
+      "source": "D:\\20261021挺进统一法律数学模型\\isolated_math_implementation_20261021T004011Z_de6c53dd\\src\\UnifiedCandidate\\Logic.lean",
+      "sha256": "99cfbb34fbb93cc59ece52fd4e70d528213ee55571f9c44553a79085d253ed56",
+      "treatment": "CANDIDATE_REFERENCE_ONLY: reviewed/adapted proof bodies require fresh elaboration in the candidate namespace; historical exits and axioms are not evidence for this tree."
+    },
+    "Quantitative": {
+      "source": "D:\\20261021挺进统一法律数学模型\\isolated_math_implementation_20261021T004011Z_de6c53dd\\src\\UnifiedCandidate\\Quantitative.lean",
+      "sha256": "f7e918dcf818661a09d76e480a5bbb6b8ded40b985edcfc8370dd479e1e4a138",
+      "treatment": "CANDIDATE_REFERENCE_ONLY: reviewed/adapted proof bodies require fresh elaboration in the candidate namespace; historical exits and axioms are not evidence for this tree."
+    },
+    "Guards": {
+      "source": "D:\\20261021挺进统一法律数学模型\\isolated_math_implementation_20261021T004011Z_de6c53dd\\src\\UnifiedCandidate\\Guards.lean",
+      "sha256": "ff11cde96cfe7d42c5763f25491d4438dff431ed7ab5f1387a31bbb7682f2611",
+      "treatment": "CANDIDATE_REFERENCE_ONLY: reviewed/adapted proof bodies require fresh elaboration in the candidate namespace; historical exits and axioms are not evidence for this tree."
+    },
+    "Concentration": {
+      "source": "D:\\20261021挺进统一法律数学模型\\isolated_math_implementation_20261021T004011Z_de6c53dd\\src\\UnifiedCandidate\\Concentration.lean",
+      "sha256": "d7ec68c27c20db9f0965e127babd926708031106e0ee443eaa17cd6bb9ba191f",
+      "treatment": "CANDIDATE_REFERENCE_ONLY: reviewed/adapted proof bodies require fresh elaboration in the candidate namespace; historical exits and axioms are not evidence for this tree."
+    },
+    "FiniteStatistics": {
+      "source": "D:\\20261021挺进统一法律数学模型\\isolated_math_implementation_20261021T004011Z_de6c53dd\\src\\UnifiedCandidate\\FiniteStatistics.lean",
+      "sha256": "905daee7dc967ecacb0411cad7726144c3ae01d1c6671af934a4a7cbebb5a992",
+      "treatment": "CANDIDATE_REFERENCE_ONLY: reviewed/adapted proof bodies require fresh elaboration in the candidate namespace; historical exits and axioms are not evidence for this tree."
+    },
+    "Contraction": {
+      "source": "D:\\20261021挺进统一法律数学模型\\isolated_math_implementation_20261021T004011Z_de6c53dd\\src\\UnifiedCandidate\\Contraction.lean",
+      "sha256": "ca1af9f162d917c0095fd82b00340549655f8de5735f43723f77a922d89e36a4",
+      "treatment": "CANDIDATE_REFERENCE_ONLY: reviewed/adapted proof bodies require fresh elaboration in the candidate namespace; historical exits and axioms are not evidence for this tree."
+    },
+    "Decision": {
+      "source": "D:\\20261021挺进统一法律数学模型\\isolated_math_implementation_20261021T004011Z_de6c53dd\\src\\UnifiedCandidate\\Decision.lean",
+      "sha256": "8e3e43032d4cde1b4eb43760f05340660dc8ac8d9b46f3e981f2eea827444948",
+      "treatment": "CANDIDATE_REFERENCE_ONLY: reviewed/adapted proof bodies require fresh elaboration in the candidate namespace; historical exits and axioms are not evidence for this tree."
+    },
+    "Information": {
+      "source": "D:\\20261021挺进统一法律数学模型\\isolated_math_implementation_20261021T004011Z_de6c53dd\\src\\UnifiedCandidate\\Information.lean",
+      "sha256": "82b1d78a4d58b21481a65f7e2e74f1bf07982cca701fb8661731f574f29e03ca",
+      "treatment": "CANDIDATE_REFERENCE_ONLY: reviewed/adapted proof bodies require fresh elaboration in the candidate namespace; historical exits and axioms are not evidence for this tree."
+    },
+    "Feedback": {
+      "source": "D:\\20261021挺进统一法律数学模型\\isolated_math_implementation_20261021T004011Z_de6c53dd\\src\\UnifiedCandidate\\Feedback.lean",
+      "sha256": "a0015ba53ce1e0d6366a3bb8aaef89a8a3d89f7486a019fc322c175f33d57fcf",
+      "treatment": "CANDIDATE_REFERENCE_ONLY: reviewed/adapted proof bodies require fresh elaboration in the candidate namespace; historical exits and axioms are not evidence for this tree."
     }
-  ]
+  }
 }

@@ -13,6 +13,16 @@ from scripts.ci.changed_lean_modules import strip_comments_strings
 PREFIX = "JurisLean.Candidates.Final20261021"
 ORDER = "Interfaces Representation Compiler Harness Transactions Temporal EvidenceProcedure Authorization Progress Ledger Trace Learning Probability Calibration Decision Behavior Policy RSI Feedback Iteration Pipeline Acceptance".split()
 
+# Reviewed boundary mappings, not a claim that the proposed spelling existed.
+BOUNDARIES = {
+    "proposed_payment_binding": ["Pipeline.interpretPayment", "Ledger.validationError"],
+    "proposed_legal_allocation": ["Ledger.performance"],
+    "proposed_quantity_cash_receipt": ["Ledger.commitPayment"],
+    "proposed_probability_and_amount": ["Decision.evaluate"],
+    "proposed_bounded_prediction": ["Calibration.proposed_calibration_support_gate"],
+    "proposed_prediction_or_harness": ["Pipeline.runBound"],
+}
+
 # A source body can implement a proper subset of a frozen clause. Preserve the
 # missing subclaims explicitly; a successful build cannot close these rows.
 GAPS = {
@@ -118,9 +128,12 @@ def main():
     proposed = json.loads((HERE/"proposed_825792b.json").read_text(encoding="utf-8"))
     for r in proposed["rows"]:
         found = [d for d in declarations if d["short"] == r["symbol"]]
+        if not found and r["symbol"] in BOUNDARIES:
+            found = [d for d in declarations if d["module"]+"."+d["short"] in BOUNDARIES[r["symbol"]]]
+            r["mapping_scope"] = "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted."
         r["lean_target"] = [d["name"] for d in found] or None
         r["consumer"] = [x for d in found for x in d["consumers"]] or None
-        r["status"] = "SOURCE_PRESENT_AWAITING_CI" if found else "UNLOCATED_IMPLEMENTATION"
+        r["status"] = "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT" if found else "UNLOCATED_IMPLEMENTATION"
         r["baseline_825792b"] = "NEW" if found else "UNLOCATED"
         r["formal_ci"] = "CI_NOT_RUN"
     write("proposed_825792b.json", proposed)

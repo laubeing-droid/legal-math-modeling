@@ -170,6 +170,50 @@ theorem noncommit_business_unchanged (req : Nat → Nat × P)
   | conflict a e hd hp => exact ⟨rfl, rfl, rfl⟩
   | idle => exact ⟨rfl, rfl, rfl⟩
 
+theorem step_version_monotone (req : Nat → Nat × P) (f : B → P → Option (B × R))
+    {s t : Store B P R} {label : Label} (h : Step req f s label t) :
+    s.version ≤ t.version := by
+  cases h <;> simp [commitStore, abortStore]
+
+theorem trace_version_monotone (req : Nat → Nat × P) (f : B → P → Option (B × R))
+    {s t : Store B P R} {labels : List Label} (h : Trace req f s labels t) :
+    s.version ≤ t.version := by
+  induction h with
+  | nil s => exact le_rfl
+  | cons step rest ih => exact le_trans (step_version_monotone req f step) ih
+
+theorem step_same_version_business (req : Nat → Nat × P) (f : B → P → Option (B × R))
+    {s t : Store B P R} {label : Label} (h : Step req f s label t)
+    (sameVersion : t.version = s.version) : t.business = s.business := by
+  cases h with
+  | commit a expected b r ho hn hv hf => simp [commitStore] at sameVersion
+  | abort a h => rfl
+  | replay a e hd hp => rfl
+  | conflict a e hd hp => rfl
+  | idle => rfl
+
+theorem trace_same_version_business (req : Nat → Nat × P) (f : B → P → Option (B × R))
+    {s t : Store B P R} {labels : List Label} (h : Trace req f s labels t)
+    (sameVersion : t.version = s.version) : t.business = s.business := by
+  induction h with
+  | nil s => rfl
+  | @cons s middle final label labels step rest ih =>
+      have first := step_version_monotone req f step
+      have last := trace_version_monotone req f rest
+      have middleVersion : middle.version = s.version := by omega
+      have finalVersion : final.version = middle.version := by omega
+      exact (ih finalVersion).trans (step_same_version_business req f step middleVersion)
+
+-- B is the entire read domain of f, including every relevant environment and
+-- authority input. A protocol that versions only a projection does not meet
+-- this contract; there is no assertion about untracked product writes.
+theorem u02_2_complete_readset_CAS (req : Nat → Nat × P) (f : B → P → Option (B × R))
+    {snapshot current : Store B P R} {labels : List Label}
+    (intervening : Trace req f snapshot labels current)
+    (versionMatches : current.version = snapshot.version) (payload : P) :
+    f current.business payload = f snapshot.business payload := by
+  rw [trace_same_version_business req f intervening versionMatches]
+
 
 
 end JurisLean.Candidates.Final20261021.Transactions

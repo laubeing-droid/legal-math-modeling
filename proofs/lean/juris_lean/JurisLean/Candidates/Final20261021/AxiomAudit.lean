@@ -27,6 +27,14 @@ import JurisLean.Candidates.Final20261021.Acceptance
 #print axioms JurisLean.Candidates.Final20261021.Compiler.advance_sound
 #check JurisLean.Candidates.Final20261021.Compiler.u03_1_computed_sound
 #print axioms JurisLean.Candidates.Final20261021.Compiler.u03_1_computed_sound
+#check JurisLean.Candidates.Final20261021.Compiler.advance_contains
+#print axioms JurisLean.Candidates.Final20261021.Compiler.advance_contains
+#check JurisLean.Candidates.Final20261021.Compiler.computed_contains_facts
+#print axioms JurisLean.Candidates.Final20261021.Compiler.computed_contains_facts
+#check JurisLean.Candidates.Final20261021.Compiler.closed_reflects
+#print axioms JurisLean.Candidates.Final20261021.Compiler.closed_reflects
+#check JurisLean.Candidates.Final20261021.Compiler.u03_2_checked_closure_complete
+#print axioms JurisLean.Candidates.Final20261021.Compiler.u03_2_checked_closure_complete
 #check JurisLean.Candidates.Final20261021.Compiler.u03_finite_kernel_termination
 #print axioms JurisLean.Candidates.Final20261021.Compiler.u03_finite_kernel_termination
 #check JurisLean.Candidates.Final20261021.Harness.u02_1_gate_sound_under_Ke
@@ -59,6 +67,16 @@ import JurisLean.Candidates.Final20261021.Acceptance
 #print axioms JurisLean.Candidates.Final20261021.Transactions.cancelled_cannot_commit
 #check JurisLean.Candidates.Final20261021.Transactions.noncommit_business_unchanged
 #print axioms JurisLean.Candidates.Final20261021.Transactions.noncommit_business_unchanged
+#check JurisLean.Candidates.Final20261021.Transactions.step_version_monotone
+#print axioms JurisLean.Candidates.Final20261021.Transactions.step_version_monotone
+#check JurisLean.Candidates.Final20261021.Transactions.trace_version_monotone
+#print axioms JurisLean.Candidates.Final20261021.Transactions.trace_version_monotone
+#check JurisLean.Candidates.Final20261021.Transactions.step_same_version_business
+#print axioms JurisLean.Candidates.Final20261021.Transactions.step_same_version_business
+#check JurisLean.Candidates.Final20261021.Transactions.trace_same_version_business
+#print axioms JurisLean.Candidates.Final20261021.Transactions.trace_same_version_business
+#check JurisLean.Candidates.Final20261021.Transactions.u02_2_complete_readset_CAS
+#print axioms JurisLean.Candidates.Final20261021.Transactions.u02_2_complete_readset_CAS
 #check JurisLean.Candidates.Final20261021.Transactions.commit_receipt_at_end
 #print axioms JurisLean.Candidates.Final20261021.Transactions.commit_receipt_at_end
 #check JurisLean.Candidates.Final20261021.Transactions.abort_excludes_prior_commit
@@ -117,6 +135,10 @@ import JurisLean.Candidates.Final20261021.Acceptance
 #print axioms JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_conservation
 #check JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_by_account
 #print axioms JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_by_account
+#check JurisLean.Candidates.Final20261021.Ledger.committed_receipt_arithmetic
+#print axioms JurisLean.Candidates.Final20261021.Ledger.committed_receipt_arithmetic
+#check JurisLean.Candidates.Final20261021.Ledger.commit_receipt_coherent
+#print axioms JurisLean.Candidates.Final20261021.Ledger.commit_receipt_coherent
 #check JurisLean.Candidates.Final20261021.Ledger.noncommit_does_not_write_U
 #print axioms JurisLean.Candidates.Final20261021.Ledger.noncommit_does_not_write_U
 #check JurisLean.Candidates.Final20261021.Ledger.u09_writeU_on_committed_applicable
@@ -135,6 +157,12 @@ import JurisLean.Candidates.Final20261021.Acceptance
 #print axioms JurisLean.Candidates.Final20261021.Ledger.ready_requires_identity_and_applicability
 #check JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused
 #print axioms JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused
+#check JurisLean.Candidates.Final20261021.Ledger.ready_requires_actual_output
+#print axioms JurisLean.Candidates.Final20261021.Ledger.ready_requires_actual_output
+#check JurisLean.Candidates.Final20261021.Ledger.consume_committed_origin
+#print axioms JurisLean.Candidates.Final20261021.Ledger.consume_committed_origin
+#check JurisLean.Candidates.Final20261021.Ledger.consume_committed_receipts
+#print axioms JurisLean.Candidates.Final20261021.Ledger.consume_committed_receipts
 #check JurisLean.Candidates.Final20261021.Ledger.consume_success_is_gated
 #print axioms JurisLean.Candidates.Final20261021.Ledger.consume_success_is_gated
 #check JurisLean.Candidates.Final20261021.Ledger.rest_claim_no_cash
@@ -143,10 +171,26 @@ import JurisLean.Candidates.Final20261021.Acceptance
 #print axioms JurisLean.Candidates.Final20261021.Ledger.rest_eligibility_no_cash
 #check JurisLean.Candidates.Final20261021.Ledger.baseline_afterStream
 #print axioms JurisLean.Candidates.Final20261021.Ledger.baseline_afterStream
+#check JurisLean.Candidates.Final20261021.Ledger.balance_performance_clamp
+#print axioms JurisLean.Candidates.Final20261021.Ledger.balance_performance_clamp
+#check JurisLean.Candidates.Final20261021.Ledger.u09_1_afterPayments_clamp
+#print axioms JurisLean.Candidates.Final20261021.Ledger.u09_1_afterPayments_clamp
+#check JurisLean.Candidates.Final20261021.Ledger.u09_1_scalar_vector_stream_refinement
+#print axioms JurisLean.Candidates.Final20261021.Ledger.u09_1_scalar_vector_stream_refinement
 #check JurisLean.Candidates.Final20261021.Trace.initial_invariant
 #print axioms JurisLean.Candidates.Final20261021.Trace.initial_invariant
 #check JurisLean.Candidates.Final20261021.Trace.step_preserves
 #print axioms JurisLean.Candidates.Final20261021.Trace.step_preserves
+#check JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step
+#print axioms JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step
+#check JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves
+#print axioms JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves
+#check JurisLean.Candidates.Final20261021.Trace.used_monotone_step
+#print axioms JurisLean.Candidates.Final20261021.Trace.used_monotone_step
+#check JurisLean.Candidates.Final20261021.Trace.used_monotone_path
+#print axioms JurisLean.Candidates.Final20261021.Trace.used_monotone_path
+#check JurisLean.Candidates.Final20261021.Trace.u09_1_actual_trace_at_most_once
+#print axioms JurisLean.Candidates.Final20261021.Trace.u09_1_actual_trace_at_most_once
 #check JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition
 #print axioms JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition
 #check JurisLean.Candidates.Final20261021.Trace.from_concrete_initial
@@ -157,6 +201,14 @@ import JurisLean.Candidates.Final20261021.Acceptance
 #print axioms JurisLean.Candidates.Final20261021.Learning.u01_0_independent_bounded_upper_tail
 #check JurisLean.Candidates.Final20261021.Learning.subgaussian_two_tail
 #print axioms JurisLean.Candidates.Final20261021.Learning.subgaussian_two_tail
+#check JurisLean.Candidates.Final20261021.Learning.independent_bounded_sum_mgf
+#print axioms JurisLean.Candidates.Final20261021.Learning.independent_bounded_sum_mgf
+#check JurisLean.Candidates.Final20261021.Learning.bounded_proxy_exact
+#print axioms JurisLean.Candidates.Final20261021.Learning.bounded_proxy_exact
+#check JurisLean.Candidates.Final20261021.Learning.u01_0_independent_bounded_two_tail
+#print axioms JurisLean.Candidates.Final20261021.Learning.u01_0_independent_bounded_two_tail
+#check JurisLean.Candidates.Final20261021.Learning.u01_0_zero_width_tail
+#print axioms JurisLean.Candidates.Final20261021.Learning.u01_0_zero_width_tail
 #check JurisLean.Candidates.Final20261021.Learning.u01_1_fixed_class_tail
 #print axioms JurisLean.Candidates.Final20261021.Learning.u01_1_fixed_class_tail
 #check JurisLean.Candidates.Final20261021.Learning.u01_1_approximate_erm
@@ -259,6 +311,10 @@ import JurisLean.Candidates.Final20261021.Acceptance
 #print axioms JurisLean.Candidates.Final20261021.Feedback.u14_1_conservative_accept
 #check JurisLean.Candidates.Final20261021.Feedback.u14_2_independent_cluster_upper_tail
 #print axioms JurisLean.Candidates.Final20261021.Feedback.u14_2_independent_cluster_upper_tail
+#check JurisLean.Candidates.Final20261021.Feedback.u14_2_independent_cluster_two_tail
+#print axioms JurisLean.Candidates.Final20261021.Feedback.u14_2_independent_cluster_two_tail
+#check JurisLean.Candidates.Final20261021.Feedback.u14_2_unequal_cluster_effective_size
+#print axioms JurisLean.Candidates.Final20261021.Feedback.u14_2_unequal_cluster_effective_size
 #check JurisLean.Candidates.Final20261021.Iteration.u15_1_finite_cumulative_improvement
 #print axioms JurisLean.Candidates.Final20261021.Iteration.u15_1_finite_cumulative_improvement
 #check JurisLean.Candidates.Final20261021.Iteration.u15_2_preserved_predictions_equal_risk
@@ -269,8 +325,30 @@ import JurisLean.Candidates.Final20261021.Acceptance
 #print axioms JurisLean.Candidates.Final20261021.Iteration.u15_3_two_round_actual_state
 #check JurisLean.Candidates.Final20261021.Pipeline.finishPayment_outcomes
 #print axioms JurisLean.Candidates.Final20261021.Pipeline.finishPayment_outcomes
+#check JurisLean.Candidates.Final20261021.Pipeline.finishPayment_current
+#print axioms JurisLean.Candidates.Final20261021.Pipeline.finishPayment_current
+#check JurisLean.Candidates.Final20261021.Pipeline.u10_1_authorized_refresh_is_step
+#print axioms JurisLean.Candidates.Final20261021.Pipeline.u10_1_authorized_refresh_is_step
 #check JurisLean.Candidates.Final20261021.Pipeline.u00_pipeline_wires_handles
 #print axioms JurisLean.Candidates.Final20261021.Pipeline.u00_pipeline_wires_handles
+#check JurisLean.Candidates.Final20261021.Pipeline.u10_2_pipeline_second_post_invariant
+#print axioms JurisLean.Candidates.Final20261021.Pipeline.u10_2_pipeline_second_post_invariant
+#check JurisLean.Candidates.Final20261021.Acceptance.a02_transaction_actual_commit
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.a02_transaction_actual_commit
+#check JurisLean.Candidates.Final20261021.Acceptance.a02_transaction_actual_replay
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.a02_transaction_actual_replay
+#check JurisLean.Candidates.Final20261021.Acceptance.n02_cancelled_attempt_no_commit
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n02_cancelled_attempt_no_commit
+#check JurisLean.Candidates.Final20261021.Acceptance.n07_1_constant_family_not_separating
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n07_1_constant_family_not_separating
+#check JurisLean.Candidates.Final20261021.Acceptance.a07_1_identity_observation_separates
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.a07_1_identity_observation_separates
+#check JurisLean.Candidates.Final20261021.Acceptance.n07_1_retraction_need_not_encode_surjectively
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n07_1_retraction_need_not_encode_surjectively
+#check JurisLean.Candidates.Final20261021.Acceptance.a_opening_invariant
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.a_opening_invariant
+#check JurisLean.Candidates.Final20261021.Acceptance.a_two_actual_commits_preserve_receipts
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.a_two_actual_commits_preserve_receipts
 #check JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7
 #print axioms JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7
 #check JurisLean.Candidates.Final20261021.Acceptance.a_u09_three_observations
@@ -341,6 +419,10 @@ import JurisLean.Candidates.Final20261021.Acceptance
 #print axioms JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_target_mismatch
 #check JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_decision_payload_mismatch
 #print axioms JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_decision_payload_mismatch
+#check JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_zero_balance_no_external_label
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_zero_balance_no_external_label
+#check JurisLean.Candidates.Final20261021.Acceptance.n03_incomplete_fuel_is_not_closure
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n03_incomplete_fuel_is_not_closure
 #check JurisLean.Candidates.Final20261021.Acceptance.n07_observation_wrong_relation
 #print axioms JurisLean.Candidates.Final20261021.Acceptance.n07_observation_wrong_relation
 #check JurisLean.Candidates.Final20261021.Acceptance.n03_must_facts_closure_is_not_robust_closure

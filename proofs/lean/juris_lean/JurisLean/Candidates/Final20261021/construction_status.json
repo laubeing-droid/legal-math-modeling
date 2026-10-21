@@ -3,6 +3,11 @@
   "branch": "candidates/final20261021-825792b",
   "sources": [
     {
+      "path": "D:\\20261021挺进统一法律数学模型\\Grok独立审查_20261021T190700\\06_施工卡_按数学对照修订.md",
+      "sha256": "c4f7e424765f83f354ddc7e974fc1ef78e79f5b615a9b2f722d7c4b1b94d57a6",
+      "priority": 1
+    },
+    {
       "path": "D:\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\01_统一法律数学模型总稿.md",
       "sha256": "eee9afb07d164c2b26bf9270a34c5866b14de4533d9e7f80c5b1a05e148935b5"
     },
@@ -48,13 +53,14 @@
     "mode": "changed-module",
     "module": "JurisLean.Candidates.Final20261021.CIAll",
     "status": "CI_NOT_RUN",
-    "authorization": "PENDING"
+    "authorization": "PENDING_EXPLICIT_PER_ROUND_AUTHORIZATION",
+    "purpose": "Compile and audit the partial candidate, not certify complete mathematical coverage"
   },
   "stage2": {
     "mode": "full-release",
     "status": "CI_NOT_RUN",
-    "prerequisite": "stage1 PASS then root integration on a new head",
-    "authorization": "PENDING"
+    "prerequisite": "stage1 PASS; root integration on a new head; scope conflict for required generated report resolved",
+    "authorization": "PENDING_SEPARATE_ROUND"
   },
   "open_excluded": [
     "T113 exact original statement",
@@ -62,5 +68,107 @@
     "Dirty refinement",
     "all Chinese statutes closed mapping"
   ],
-  "local_lean_executed": false
+  "local_lean_executed": false,
+  "acceptance_annexes": [
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\Grok独立审查_20261021_1900_Researchy\\05_施工附录_底稿可补补丁.md",
+      "sha256": "848dbb25d3bb03b394a9709baedd4ab6394894e83c4151445d1cff61e982cf41",
+      "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\Grok独立审查_20261021_1900_Researchy\\08_施工包完善补丁_理论对应.md",
+      "sha256": "9a1186af948d44e9d32fc7baaaa9bb6fd9e0f23240c7885e2a45c64f6374c059",
+      "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\Grok独立审查_法律数学评审员_理论施工对应_20261021T2100\\理论施工对应_20261021T2100\\00_说明.md",
+      "sha256": "f8fdd95afb7d8a99081b3d802927ab7b1aaaaa39002c31c2984a5020c0ffc304",
+      "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\Grok独立审查_法律数学评审员_理论施工对应_20261021T2100\\理论施工对应_20261021T2100\\01_理论与Lean落笔对照表.md",
+      "sha256": "b3f6ab56790b057158368e8bc37fed62662ae374936555e933dad33c8b3c60b8",
+      "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\Grok独立审查_法律数学评审员_理论施工对应_20261021T2100\\理论施工对应_20261021T2100\\02_理论与软件接口对照表.md",
+      "sha256": "7fbd9bdccbde44c31a3526bde686df60d5de9ddbd11b964454e16fbe0d3831d4",
+      "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\Grok独立审查_法律数学评审员_理论施工对应_20261021T2100\\理论施工对应_20261021T2100\\03_缺口与完善清单.md",
+      "sha256": "29742d9a8b92b6c0a6c8bded511053977c9eaab43228e897ce6f253026e7fc81",
+      "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\Grok独立审查_法律数学评审员_理论施工对应_20261021T2100\\理论施工对应_20261021T2100\\04_总表.md",
+      "sha256": "2513f2bed2ed65e131768c82cafe110878a4bd849bd1427f009c8cfc17fd65d1",
+      "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\Grok独立审查_20261021T190700\\施工包理论对应完善_20261021T204600\\00_结论.md",
+      "sha256": "fd5fb0ccaaf7489f8afe3e5752ac66b3691d01d9a5e48a25e1ecb6830e6df87e",
+      "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\Grok独立审查_20261021T190700\\施工包理论对应完善_20261021T204600\\01_专题对照表.md",
+      "sha256": "f80df5b84cf819a2455ab0369a4d68e6f9919c25778c0640dcf5e6349a9a2ff6",
+      "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\Grok独立审查_20261021T190700\\施工包理论对应完善_20261021T204600\\02_Lean落位完善.md",
+      "sha256": "543d161e59f8698dfba2ba042e7d324b379bf0db06f6c2cfdc532525b86be436",
+      "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\Grok独立审查_20261021T190700\\施工包理论对应完善_20261021T204600\\03_软件合同完善.md",
+      "sha256": "4b86f0c45723f1b957b80187c1abaa1c8d38d2d736177c0fba16cffb8e68b0c7",
+      "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\Grok独立审查_20261021T190700\\施工包理论对应完善_20261021T204600\\04_完善补丁正文.md",
+      "sha256": "7d3689bbb4c96803349f7dc96642c5e1eba5fe3238209ea1b9417b336da85de3",
+      "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\Grok独立审查_20261021T190700\\施工包理论对应完善_20261021T204600\\05_与数学8钉对齐自检.md",
+      "sha256": "23eb49fc09f7ba000fb0d3105ec2ee90697d23fc59a70596ebd6f4591859a43c",
+      "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
+    }
+  ],
+  "overall_status": "PARTIAL_SOURCE_CANDIDATE_CI_NOT_RUN",
+  "completion_claim": false,
+  "source_batches_written": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "stage10": "NOT_STARTED",
+  "ci_artifacts": [],
+  "blockers": [
+    {
+      "kind": "MATHEMATICAL_IMPLEMENTATION",
+      "detail": "Complete frozen scopes are not closed. See every row remaining_obligations in 50_clause_status.json; Beta conjugacy/predictive, ridge-logistic minimizer, conformal rank, general measurable TV, conditional sequential policy and full protocol/composition refinements remain missing."
+    },
+    {
+      "kind": "LEAN_AUTHORITY",
+      "detail": "No Lean execution locally. Both CI stages and same-head raw CI artifacts are absent until explicitly authorized rounds run."
+    },
+    {
+      "kind": "STAGE2_SCOPE",
+      "detail": "Read-only full-release probe reports stale docs/formal-release/kernel_reuse_report.json. Regenerating it would write outside the candidate-only path. No configuration or generated report outside the allowed path was changed."
+    },
+    {
+      "kind": "PYTHON_CI_DISCOVERY",
+      "detail": "The required synthetic test is stored under the candidate-only path. The existing workflow tests/ discovery does not collect it. No root tests/ or workflow change was made; formal Python CI coverage of this file is NOT_RUN."
+    }
+  ],
+  "evidence_boundary": "All local logs are provisional static/Python evidence. None is a Lean proof, formal-CI PASS, or legal/real-occurrence proof."
 }

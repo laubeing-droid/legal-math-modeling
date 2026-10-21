@@ -25,6 +25,9 @@ def finishPayment (before : Ledger.Handle) (out : Ledger.Outcome) : PaymentRun :
 theorem finishPayment_outcomes (before : Ledger.Handle) (out : Ledger.Outcome) :
     (finishPayment before out).outcomes = [out] := by cases out <;> rfl
 
+theorem finishPayment_current (before : Ledger.Handle) (out : Ledger.Outcome) :
+    (finishPayment before out).current = out.post before := by cases out <;> rfl
+
 structure RefreshInput where
   gamma : Gamma
   event : Temporal.VersionRecord
@@ -40,6 +43,19 @@ def refresh (grants : List Authorization.Grant) (h : Ledger.Handle)
   else .known ⟨change.gamma, h.revision + 1,
     { h.state with normHistory := h.state.normHistory ++ [change.event],
       env := Temporal.proposed_applicability change.gamma (h.state.normHistory ++ [change.event]) }⟩
+
+theorem u10_1_authorized_refresh_is_step (grants : List Authorization.Grant)
+    (before after : Ledger.Handle) (change : RefreshInput)
+    (published : refresh grants before change = .known after) : Trace.Step before after := by
+  by_cases same : change.gamma.caseId = before.gamma.caseId
+  · cases authority : Authorization.authorized grants before.gamma change.actor 1
+      change.event.version (.document change.event.version) none (some change.gamma) with
+    | false => simp [refresh, same, authority] at published
+    | true =>
+        simp [refresh, same, authority] at published
+        cases published
+        exact .refresh before change.gamma change.event grants change.actor authority same
+  · simp [refresh, same] at published
 
 def executePayments (initial : Ledger.Handle) (first second : PaymentRequest)
     (grants : List Authorization.Grant) (mode2 : Ledger.Submission)
@@ -76,6 +92,28 @@ theorem u00_pipeline_wires_handles (initial : Ledger.Handle)
           (.relation second.payload.relation) (some second.payload)) mode2
       { finishPayment actualPost1 out2 with outcomes := .committed r1 actualPost1 :: [out2] } := by
   simp [executePayments, firstCommitted, finishPayment_outcomes]
+
+-- Conditional on the real first committed result, every acknowledged second
+-- outcome preserves the full invariant. UnknownCommit has no such poststate.
+theorem u10_2_pipeline_second_post_invariant (initial : Ledger.Handle)
+    (first second : PaymentRequest) (grants : List Authorization.Grant)
+    (mode2 : Ledger.Submission) (r1 : Ledger.Receipt) (actualPost1 final : Ledger.Handle)
+    (initialInvariant : Trace.Invariant initial)
+    (firstCommitted : Ledger.consume_ext initial initial first
+      (Authorization.authorized grants initial.gamma first.payload.payer 0 first.payload.normVersion
+        (.relation first.payload.relation) (some first.payload)) .submit = .committed r1 actualPost1)
+    (acknowledged : (executePayments initial first second grants mode2 none).current = some final) :
+    Trace.Invariant final := by
+  have invariant1 := Trace.step_preserves
+    (Trace.u10_2_committed_executor_is_step initial initial first _ .submit r1 actualPost1 firstCommitted)
+    initialInvariant
+  rw [u00_pipeline_wires_handles initial first second grants mode2 r1 actualPost1 firstCommitted] at acknowledged
+  change (finishPayment actualPost1 (Ledger.consume_ext actualPost1 actualPost1 second
+    (Authorization.authorized grants actualPost1.gamma second.payload.payer 0 second.payload.normVersion
+      (.relation second.payload.relation) (some second.payload)) mode2)).current = some final at acknowledged
+  rw [finishPayment_current] at acknowledged
+  exact Trace.u10_2_known_executor_post_preserves actualPost1 actualPost1 second _ mode2
+    final invariant1 acknowledged
 
 def interpretPayment (view : Representation.SourceView) (p : PaymentPayload) : Option PaymentId :=
   match view.objectMap.filter (fun pair => pair.1 == p.source) with
@@ -143,9 +181,8 @@ def stop (i : Input) (exit : Exit) (reason : Error) : Output :=
     prediction := .unknown reason, decision := none, observation := .unknown reason,
     policyValue := .unknown reason, feedback := .unknown reason, modelAfterRounds := i.oldModel }
 
-def runBound (i : Input) (p1 p2 : PaymentPayload) (facts : List Nat) : Output :=
+def runClosed (i : Input) (p1 p2 : PaymentPayload) (derived : List Nat) : Output :=
   let g := i.view.gamma
-  let derived := Compiler.proposed_rule_input i.rules i.closureFuel facts
   let candidates := if i.permissionAtom ∈ derived then i.world0Actions else []
   let allowed := Harness.proposed_harness_gate (W := Bool) (S := Bool)
     (fun _ => true)
@@ -184,9 +221,9 @@ def runBound (i : Input) (p1 p2 : PaymentPayload) (facts : List Nat) : Output :=
         let observation := match payments.current with
           | none => .unknown .missingEvidence
           | some current =>
-              let log := { i.observation with outcome :=
-                if Ledger.balance current.state = 0 then some true else i.observation.outcome }
-              Behavior.proposed_measurement i.fitExpected.target log
+              if i.observation.mechanismVersion ≠ current.gamma.mechanismVersion then
+                .unknown .scopeMismatch
+              else Behavior.proposed_measurement i.fitExpected.target i.observation
         let policyValue := match observation with
           | .known y => Policy.proposed_off_policy_value { i.policy with outcome := Behavior.indicator y }
           | _ => .unknown .notIdentified
@@ -204,6 +241,13 @@ def runBound (i : Input) (p1 p2 : PaymentPayload) (facts : List Nat) : Output :=
     | .unknown e => stop i .undecided e
     | .rejected e => stop i .rejected e
     | .conflict _ _ => stop i .undecided .versionConflict
+
+def runBound (i : Input) (p1 p2 : PaymentPayload) (facts : List Nat) : Output :=
+  match Compiler.proposed_checked_rule_input i.rules i.closureFuel facts with
+  | .known derived => runClosed i p1 p2 derived
+  | .unknown e => stop i .undecided e
+  | .rejected e => stop i .rejected e
+  | .conflict _ _ => stop i .undecided .versionConflict
 
 def run (i : Input) : Output :=
   match Representation.proposed_common_model i.view i.firstIndex,

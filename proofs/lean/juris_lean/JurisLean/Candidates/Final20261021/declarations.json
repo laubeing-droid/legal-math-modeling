@@ -69,7 +69,7 @@
         },
         {
           "file": "Acceptance.lean",
-          "line": 217
+          "line": 284
         }
       ]
     },
@@ -122,11 +122,11 @@
       "consumers": [
         {
           "file": "Pipeline.lean",
-          "line": 209
+          "line": 253
         },
         {
           "file": "Pipeline.lean",
-          "line": 210
+          "line": 254
         }
       ]
     },
@@ -150,6 +150,10 @@
         {
           "file": "Compiler.lean",
           "line": 38
+        },
+        {
+          "file": "Compiler.lean",
+          "line": 131
         }
       ]
     },
@@ -197,32 +201,40 @@
           "line": 71
         },
         {
+          "file": "Compiler.lean",
+          "line": 84
+        },
+        {
+          "file": "Compiler.lean",
+          "line": 117
+        },
+        {
+          "file": "Compiler.lean",
+          "line": 131
+        },
+        {
           "file": "Authorization.lean",
           "line": 61
         },
         {
-          "file": "Pipeline.lean",
-          "line": 148
+          "file": "Acceptance.lean",
+          "line": 289
         },
         {
           "file": "Acceptance.lean",
-          "line": 222
+          "line": 290
         },
         {
           "file": "Acceptance.lean",
-          "line": 223
+          "line": 291
         },
         {
           "file": "Acceptance.lean",
-          "line": 224
+          "line": 294
         },
         {
           "file": "Acceptance.lean",
-          "line": 227
-        },
-        {
-          "file": "Acceptance.lean",
-          "line": 228
+          "line": 295
         }
       ]
     },
@@ -247,6 +259,92 @@
       "module": "Compiler",
       "file": "Compiler.lean",
       "line": 68,
+      "consumers": [
+        {
+          "file": "Compiler.lean",
+          "line": 129
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Compiler.advance_contains",
+      "short": "advance_contains",
+      "kind": "theorem",
+      "module": "Compiler",
+      "file": "Compiler.lean",
+      "line": 78,
+      "consumers": [
+        {
+          "file": "Compiler.lean",
+          "line": 89
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Compiler.computed_contains_facts",
+      "short": "computed_contains_facts",
+      "kind": "theorem",
+      "module": "Compiler",
+      "file": "Compiler.lean",
+      "line": 83,
+      "consumers": [
+        {
+          "file": "Compiler.lean",
+          "line": 132
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Compiler.closed_reflects",
+      "short": "closed_reflects",
+      "kind": "theorem",
+      "module": "Compiler",
+      "file": "Compiler.lean",
+      "line": 98,
+      "consumers": [
+        {
+          "file": "Compiler.lean",
+          "line": 133
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Compiler.proposed_checked_rule_input",
+      "short": "proposed_checked_rule_input",
+      "kind": "def",
+      "module": "Compiler",
+      "file": "Compiler.lean",
+      "line": 115,
+      "consumers": [
+        {
+          "file": "Compiler.lean",
+          "line": 122
+        },
+        {
+          "file": "Compiler.lean",
+          "line": 124
+        },
+        {
+          "file": "Pipeline.lean",
+          "line": 246
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 278
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 280
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Compiler.u03_2_checked_closure_complete",
+      "short": "u03_2_checked_closure_complete",
+      "kind": "theorem",
+      "module": "Compiler",
+      "file": "Compiler.lean",
+      "line": 120,
       "consumers": []
     },
     {
@@ -255,7 +353,7 @@
       "kind": "theorem",
       "module": "Compiler",
       "file": "Compiler.lean",
-      "line": 80,
+      "line": 138,
       "consumers": []
     },
     {
@@ -264,11 +362,11 @@
       "kind": "def",
       "module": "Compiler",
       "file": "Compiler.lean",
-      "line": 93,
+      "line": 151,
       "consumers": [
         {
           "file": "Pipeline.lean",
-          "line": 88
+          "line": 126
         }
       ]
     },
@@ -299,11 +397,11 @@
         },
         {
           "file": "Pipeline.lean",
-          "line": 150
+          "line": 187
         },
         {
           "file": "Acceptance.lean",
-          "line": 231
+          "line": 298
         }
       ]
     },
@@ -418,7 +516,7 @@
       "consumers": [
         {
           "file": "Transactions.lean",
-          "line": 196
+          "line": 240
         }
       ]
     },
@@ -436,7 +534,7 @@
         },
         {
           "file": "Transactions.lean",
-          "line": 219
+          "line": 263
         }
       ]
     },
@@ -459,7 +557,11 @@
       "consumers": [
         {
           "file": "Transactions.lean",
-          "line": 218
+          "line": 262
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 31
         }
       ]
     },
@@ -473,16 +575,85 @@
       "consumers": []
     },
     {
+      "name": "JurisLean.Candidates.Final20261021.Transactions.step_version_monotone",
+      "short": "step_version_monotone",
+      "kind": "theorem",
+      "module": "Transactions",
+      "file": "Transactions.lean",
+      "line": 173,
+      "consumers": [
+        {
+          "file": "Transactions.lean",
+          "line": 183
+        },
+        {
+          "file": "Transactions.lean",
+          "line": 201
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Transactions.trace_version_monotone",
+      "short": "trace_version_monotone",
+      "kind": "theorem",
+      "module": "Transactions",
+      "file": "Transactions.lean",
+      "line": 178,
+      "consumers": [
+        {
+          "file": "Transactions.lean",
+          "line": 202
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Transactions.step_same_version_business",
+      "short": "step_same_version_business",
+      "kind": "theorem",
+      "module": "Transactions",
+      "file": "Transactions.lean",
+      "line": 185,
+      "consumers": [
+        {
+          "file": "Transactions.lean",
+          "line": 205
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Transactions.trace_same_version_business",
+      "short": "trace_same_version_business",
+      "kind": "theorem",
+      "module": "Transactions",
+      "file": "Transactions.lean",
+      "line": 195,
+      "consumers": [
+        {
+          "file": "Transactions.lean",
+          "line": 215
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Transactions.u02_2_complete_readset_CAS",
+      "short": "u02_2_complete_readset_CAS",
+      "kind": "theorem",
+      "module": "Transactions",
+      "file": "Transactions.lean",
+      "line": 210,
+      "consumers": []
+    },
+    {
       "name": "JurisLean.Candidates.Final20261021.Transactions.commit_receipt_at_end",
       "short": "commit_receipt_at_end",
       "kind": "theorem",
       "module": "Transactions",
       "file": "Transactions.lean",
-      "line": 180,
+      "line": 224,
       "consumers": [
         {
           "file": "Transactions.lean",
-          "line": 204
+          "line": 248
         }
       ]
     },
@@ -492,7 +663,7 @@
       "kind": "theorem",
       "module": "Transactions",
       "file": "Transactions.lean",
-      "line": 199,
+      "line": 243,
       "consumers": []
     },
     {
@@ -501,11 +672,11 @@
       "kind": "theorem",
       "module": "Transactions",
       "file": "Transactions.lean",
-      "line": 208,
+      "line": 252,
       "consumers": [
         {
           "file": "Transactions.lean",
-          "line": 228
+          "line": 272
         }
       ]
     },
@@ -515,7 +686,7 @@
       "kind": "theorem",
       "module": "Transactions",
       "file": "Transactions.lean",
-      "line": 221,
+      "line": 265,
       "consumers": []
     },
     {
@@ -578,35 +749,35 @@
         },
         {
           "file": "Trace.lean",
-          "line": 17
+          "line": 18
         },
         {
           "file": "Trace.lean",
-          "line": 52
+          "line": 54
         },
         {
           "file": "Pipeline.lean",
-          "line": 42
+          "line": 45
         },
         {
           "file": "Pipeline.lean",
-          "line": 176
+          "line": 213
         },
         {
           "file": "Acceptance.lean",
-          "line": 154
+          "line": 209
         },
         {
           "file": "Acceptance.lean",
-          "line": 155
+          "line": 210
         },
         {
           "file": "Acceptance.lean",
-          "line": 158
+          "line": 213
         },
         {
           "file": "Acceptance.lean",
-          "line": 159
+          "line": 214
         }
       ]
     },
@@ -670,15 +841,15 @@
       "consumers": [
         {
           "file": "Pipeline.lean",
-          "line": 142
+          "line": 180
         },
         {
           "file": "Pipeline.lean",
-          "line": 201
+          "line": 238
         },
         {
           "file": "Acceptance.lean",
-          "line": 146
+          "line": 201
         }
       ]
     },
@@ -773,7 +944,7 @@
       "consumers": [
         {
           "file": "Trace.lean",
-          "line": 61
+          "line": 63
         }
       ]
     },
@@ -791,7 +962,7 @@
         },
         {
           "file": "Trace.lean",
-          "line": 60
+          "line": 62
         }
       ]
     },
@@ -814,7 +985,7 @@
       "consumers": [
         {
           "file": "Trace.lean",
-          "line": 62
+          "line": 65
         }
       ]
     },
@@ -828,7 +999,7 @@
       "consumers": [
         {
           "file": "Trace.lean",
-          "line": 63
+          "line": 66
         }
       ]
     },
@@ -842,7 +1013,7 @@
       "consumers": [
         {
           "file": "Trace.lean",
-          "line": 64
+          "line": 67
         }
       ]
     },
@@ -892,12 +1063,48 @@
       "consumers": []
     },
     {
+      "name": "JurisLean.Candidates.Final20261021.Ledger.committed_receipt_arithmetic",
+      "short": "committed_receipt_arithmetic",
+      "kind": "theorem",
+      "module": "Ledger",
+      "file": "Ledger.lean",
+      "line": 239,
+      "consumers": [
+        {
+          "file": "Ledger.lean",
+          "line": 274
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 444
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Ledger.commit_receipt_coherent",
+      "short": "commit_receipt_coherent",
+      "kind": "theorem",
+      "module": "Ledger",
+      "file": "Ledger.lean",
+      "line": 243,
+      "consumers": [
+        {
+          "file": "Ledger.lean",
+          "line": 442
+        },
+        {
+          "file": "Trace.lean",
+          "line": 64
+        }
+      ]
+    },
+    {
       "name": "JurisLean.Candidates.Final20261021.Ledger.noncommit_does_not_write_U",
       "short": "noncommit_does_not_write_U",
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 246,
+      "line": 320,
       "consumers": []
     },
     {
@@ -906,15 +1113,15 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 278,
+      "line": 352,
       "consumers": [
         {
           "file": "Ledger.lean",
-          "line": 295
+          "line": 369
         },
         {
           "file": "Ledger.lean",
-          "line": 353
+          "line": 469
         }
       ]
     },
@@ -924,7 +1131,7 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 283,
+      "line": 357,
       "consumers": []
     },
     {
@@ -933,7 +1140,7 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 290,
+      "line": 364,
       "consumers": []
     },
     {
@@ -942,7 +1149,7 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 298,
+      "line": 372,
       "consumers": []
     },
     {
@@ -951,7 +1158,7 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 304,
+      "line": 378,
       "consumers": []
     },
     {
@@ -960,7 +1167,7 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 309,
+      "line": 383,
       "consumers": []
     },
     {
@@ -969,11 +1176,15 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 315,
+      "line": 389,
       "consumers": [
         {
           "file": "Ledger.lean",
-          "line": 352
+          "line": 468
+        },
+        {
+          "file": "Trace.lean",
+          "line": 84
         }
       ]
     },
@@ -983,7 +1194,65 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 323,
+      "line": 397,
+      "consumers": [
+        {
+          "file": "Ledger.lean",
+          "line": 443
+        },
+        {
+          "file": "Trace.lean",
+          "line": 64
+        },
+        {
+          "file": "Trace.lean",
+          "line": 141
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Ledger.ready_requires_actual_output",
+      "short": "ready_requires_actual_output",
+      "kind": "theorem",
+      "module": "Ledger",
+      "file": "Ledger.lean",
+      "line": 404,
+      "consumers": [
+        {
+          "file": "Trace.lean",
+          "line": 80
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Ledger.consume_committed_origin",
+      "short": "consume_committed_origin",
+      "kind": "theorem",
+      "module": "Ledger",
+      "file": "Ledger.lean",
+      "line": 411,
+      "consumers": [
+        {
+          "file": "Ledger.lean",
+          "line": 440
+        },
+        {
+          "file": "Trace.lean",
+          "line": 79
+        },
+        {
+          "file": "Trace.lean",
+          "line": 140
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Ledger.consume_committed_receipts",
+      "short": "consume_committed_receipts",
+      "kind": "theorem",
+      "module": "Ledger",
+      "file": "Ledger.lean",
+      "line": 434,
       "consumers": []
     },
     {
@@ -992,8 +1261,13 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 330,
-      "consumers": []
+      "line": 446,
+      "consumers": [
+        {
+          "file": "Trace.lean",
+          "line": 137
+        }
+      ]
     },
     {
       "name": "JurisLean.Candidates.Final20261021.Ledger.rest_claim_no_cash",
@@ -1001,7 +1275,7 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 390,
+      "line": 506,
       "consumers": []
     },
     {
@@ -1010,7 +1284,7 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 398,
+      "line": 514,
       "consumers": []
     },
     {
@@ -1019,7 +1293,53 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 434,
+      "line": 550,
+      "consumers": [
+        {
+          "file": "Ledger.lean",
+          "line": 606
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Ledger.balance_performance_clamp",
+      "short": "balance_performance_clamp",
+      "kind": "theorem",
+      "module": "Ledger",
+      "file": "Ledger.lean",
+      "line": 558,
+      "consumers": [
+        {
+          "file": "Ledger.lean",
+          "line": 579
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 582
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Ledger.u09_1_afterPayments_clamp",
+      "short": "u09_1_afterPayments_clamp",
+      "kind": "theorem",
+      "module": "Ledger",
+      "file": "Ledger.lean",
+      "line": 565,
+      "consumers": [
+        {
+          "file": "Ledger.lean",
+          "line": 605
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Ledger.u09_1_scalar_vector_stream_refinement",
+      "short": "u09_1_scalar_vector_stream_refinement",
+      "kind": "theorem",
+      "module": "Ledger",
+      "file": "Ledger.lean",
+      "line": 590,
       "consumers": []
     },
     {
@@ -1028,10 +1348,14 @@
       "kind": "theorem",
       "module": "Trace",
       "file": "Trace.lean",
-      "line": 19,
+      "line": 20,
       "consumers": [
         {
           "file": "Trace.lean",
+          "line": 154
+        },
+        {
+          "file": "Acceptance.lean",
           "line": 81
         }
       ]
@@ -1042,13 +1366,106 @@
       "kind": "theorem",
       "module": "Trace",
       "file": "Trace.lean",
-      "line": 55,
+      "line": 57,
       "consumers": [
         {
           "file": "Trace.lean",
-          "line": 76
+          "line": 98
+        },
+        {
+          "file": "Trace.lean",
+          "line": 149
+        },
+        {
+          "file": "Pipeline.lean",
+          "line": 107
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 85
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 88
         }
       ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step",
+      "short": "u10_2_committed_executor_is_step",
+      "kind": "theorem",
+      "module": "Trace",
+      "file": "Trace.lean",
+      "line": 73,
+      "consumers": [
+        {
+          "file": "Trace.lean",
+          "line": 99
+        },
+        {
+          "file": "Pipeline.lean",
+          "line": 108
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 86
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 89
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves",
+      "short": "u10_2_known_executor_post_preserves",
+      "kind": "theorem",
+      "module": "Trace",
+      "file": "Trace.lean",
+      "line": 86,
+      "consumers": [
+        {
+          "file": "Pipeline.lean",
+          "line": 115
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Trace.used_monotone_step",
+      "short": "used_monotone_step",
+      "kind": "theorem",
+      "module": "Trace",
+      "file": "Trace.lean",
+      "line": 111,
+      "consumers": [
+        {
+          "file": "Trace.lean",
+          "line": 128
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Trace.used_monotone_path",
+      "short": "used_monotone_path",
+      "kind": "theorem",
+      "module": "Trace",
+      "file": "Trace.lean",
+      "line": 124,
+      "consumers": [
+        {
+          "file": "Trace.lean",
+          "line": 138
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Trace.u09_1_actual_trace_at_most_once",
+      "short": "u09_1_actual_trace_at_most_once",
+      "kind": "theorem",
+      "module": "Trace",
+      "file": "Trace.lean",
+      "line": 130,
+      "consumers": []
     },
     {
       "name": "JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition",
@@ -1056,11 +1473,11 @@
       "kind": "theorem",
       "module": "Trace",
       "file": "Trace.lean",
-      "line": 72,
+      "line": 145,
       "consumers": [
         {
           "file": "Trace.lean",
-          "line": 81
+          "line": 154
         }
       ]
     },
@@ -1070,7 +1487,7 @@
       "kind": "theorem",
       "module": "Trace",
       "file": "Trace.lean",
-      "line": 78,
+      "line": 151,
       "consumers": []
     },
     {
@@ -1084,6 +1501,10 @@
         {
           "file": "Learning.lean",
           "line": 28
+        },
+        {
+          "file": "Learning.lean",
+          "line": 59
         }
       ]
     },
@@ -1111,9 +1532,72 @@
       "consumers": [
         {
           "file": "Learning.lean",
-          "line": 56
+          "line": 80
+        },
+        {
+          "file": "Learning.lean",
+          "line": 115
         }
       ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Learning.independent_bounded_sum_mgf",
+      "short": "independent_bounded_sum_mgf",
+      "kind": "theorem",
+      "module": "Learning",
+      "file": "Learning.lean",
+      "line": 48,
+      "consumers": [
+        {
+          "file": "Learning.lean",
+          "line": 81
+        },
+        {
+          "file": "Learning.lean",
+          "line": 95
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Learning.bounded_proxy_exact",
+      "short": "bounded_proxy_exact",
+      "kind": "theorem",
+      "module": "Learning",
+      "file": "Learning.lean",
+      "line": 61,
+      "consumers": [
+        {
+          "file": "Learning.lean",
+          "line": 82
+        },
+        {
+          "file": "Learning.lean",
+          "line": 98
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Learning.u01_0_independent_bounded_two_tail",
+      "short": "u01_0_independent_bounded_two_tail",
+      "kind": "theorem",
+      "module": "Learning",
+      "file": "Learning.lean",
+      "line": 72,
+      "consumers": [
+        {
+          "file": "Feedback.lean",
+          "line": 141
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Learning.u01_0_zero_width_tail",
+      "short": "u01_0_zero_width_tail",
+      "kind": "theorem",
+      "module": "Learning",
+      "file": "Learning.lean",
+      "line": 88,
+      "consumers": []
     },
     {
       "name": "JurisLean.Candidates.Final20261021.Learning.u01_1_fixed_class_tail",
@@ -1121,7 +1605,7 @@
       "kind": "theorem",
       "module": "Learning",
       "file": "Learning.lean",
-      "line": 48,
+      "line": 107,
       "consumers": []
     },
     {
@@ -1130,7 +1614,7 @@
       "kind": "theorem",
       "module": "Learning",
       "file": "Learning.lean",
-      "line": 58,
+      "line": 117,
       "consumers": []
     },
     {
@@ -1139,7 +1623,7 @@
       "kind": "theorem",
       "module": "Learning",
       "file": "Learning.lean",
-      "line": 66,
+      "line": 125,
       "consumers": [
         {
           "file": "Probability.lean",
@@ -1153,11 +1637,11 @@
       "kind": "def",
       "module": "Learning",
       "file": "Learning.lean",
-      "line": 81,
+      "line": 140,
       "consumers": [
         {
           "file": "Pipeline.lean",
-          "line": 154
+          "line": 191
         }
       ]
     },
@@ -1167,7 +1651,7 @@
       "kind": "theorem",
       "module": "Learning",
       "file": "Learning.lean",
-      "line": 85,
+      "line": 144,
       "consumers": []
     },
     {
@@ -1343,7 +1827,7 @@
       "consumers": [
         {
           "file": "Pipeline.lean",
-          "line": 162
+          "line": 199
         }
       ]
     },
@@ -1505,11 +1989,11 @@
         },
         {
           "file": "Pipeline.lean",
-          "line": 168
+          "line": 205
         },
         {
           "file": "Acceptance.lean",
-          "line": 253
+          "line": 320
         }
       ]
     },
@@ -1586,11 +2070,11 @@
       "consumers": [
         {
           "file": "Pipeline.lean",
-          "line": 189
+          "line": 226
         },
         {
           "file": "Acceptance.lean",
-          "line": 266
+          "line": 333
         }
       ]
     },
@@ -1685,11 +2169,11 @@
       "consumers": [
         {
           "file": "Pipeline.lean",
-          "line": 191
+          "line": 228
         },
         {
           "file": "Acceptance.lean",
-          "line": 270
+          "line": 337
         }
       ]
     },
@@ -1766,11 +2250,11 @@
         },
         {
           "file": "Pipeline.lean",
-          "line": 158
+          "line": 195
         },
         {
           "file": "Acceptance.lean",
-          "line": 274
+          "line": 341
         }
       ]
     },
@@ -1825,6 +2309,24 @@
       "consumers": []
     },
     {
+      "name": "JurisLean.Candidates.Final20261021.Feedback.u14_2_independent_cluster_two_tail",
+      "short": "u14_2_independent_cluster_two_tail",
+      "kind": "theorem",
+      "module": "Feedback",
+      "file": "Feedback.lean",
+      "line": 118,
+      "consumers": []
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Feedback.u14_2_unequal_cluster_effective_size",
+      "short": "u14_2_unequal_cluster_effective_size",
+      "kind": "theorem",
+      "module": "Feedback",
+      "file": "Feedback.lean",
+      "line": 153,
+      "consumers": []
+    },
+    {
       "name": "JurisLean.Candidates.Final20261021.Iteration.u15_1_finite_cumulative_improvement",
       "short": "u15_1_finite_cumulative_improvement",
       "kind": "theorem",
@@ -1870,9 +2372,32 @@
       "consumers": [
         {
           "file": "Pipeline.lean",
-          "line": 78
+          "line": 94
         }
       ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Pipeline.finishPayment_current",
+      "short": "finishPayment_current",
+      "kind": "theorem",
+      "module": "Pipeline",
+      "file": "Pipeline.lean",
+      "line": 28,
+      "consumers": [
+        {
+          "file": "Pipeline.lean",
+          "line": 114
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Pipeline.u10_1_authorized_refresh_is_step",
+      "short": "u10_1_authorized_refresh_is_step",
+      "kind": "theorem",
+      "module": "Pipeline",
+      "file": "Pipeline.lean",
+      "line": 47,
+      "consumers": []
     },
     {
       "name": "JurisLean.Candidates.Final20261021.Pipeline.u00_pipeline_wires_handles",
@@ -1880,7 +2405,98 @@
       "kind": "theorem",
       "module": "Pipeline",
       "file": "Pipeline.lean",
-      "line": 65,
+      "line": 81,
+      "consumers": [
+        {
+          "file": "Pipeline.lean",
+          "line": 110
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Pipeline.u10_2_pipeline_second_post_invariant",
+      "short": "u10_2_pipeline_second_post_invariant",
+      "kind": "theorem",
+      "module": "Pipeline",
+      "file": "Pipeline.lean",
+      "line": 98,
+      "consumers": []
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Acceptance.a02_transaction_actual_commit",
+      "short": "a02_transaction_actual_commit",
+      "kind": "theorem",
+      "module": "Acceptance",
+      "file": "Acceptance.lean",
+      "line": 18,
+      "consumers": []
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Acceptance.a02_transaction_actual_replay",
+      "short": "a02_transaction_actual_replay",
+      "kind": "theorem",
+      "module": "Acceptance",
+      "file": "Acceptance.lean",
+      "line": 23,
+      "consumers": []
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Acceptance.n02_cancelled_attempt_no_commit",
+      "short": "n02_cancelled_attempt_no_commit",
+      "kind": "theorem",
+      "module": "Acceptance",
+      "file": "Acceptance.lean",
+      "line": 29,
+      "consumers": []
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_constant_family_not_separating",
+      "short": "n07_1_constant_family_not_separating",
+      "kind": "theorem",
+      "module": "Acceptance",
+      "file": "Acceptance.lean",
+      "line": 33,
+      "consumers": []
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Acceptance.a07_1_identity_observation_separates",
+      "short": "a07_1_identity_observation_separates",
+      "kind": "theorem",
+      "module": "Acceptance",
+      "file": "Acceptance.lean",
+      "line": 39,
+      "consumers": []
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_retraction_need_not_encode_surjectively",
+      "short": "n07_1_retraction_need_not_encode_surjectively",
+      "kind": "theorem",
+      "module": "Acceptance",
+      "file": "Acceptance.lean",
+      "line": 45,
+      "consumers": []
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Acceptance.a_opening_invariant",
+      "short": "a_opening_invariant",
+      "kind": "theorem",
+      "module": "Acceptance",
+      "file": "Acceptance.lean",
+      "line": 80,
+      "consumers": [
+        {
+          "file": "Acceptance.lean",
+          "line": 87
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Acceptance.a_two_actual_commits_preserve_receipts",
+      "short": "a_two_actual_commits_preserve_receipts",
+      "kind": "theorem",
+      "module": "Acceptance",
+      "file": "Acceptance.lean",
+      "line": 84,
       "consumers": []
     },
     {
@@ -1889,7 +2505,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 37,
+      "line": 92,
       "consumers": []
     },
     {
@@ -1898,7 +2514,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 41,
+      "line": 96,
       "consumers": []
     },
     {
@@ -1907,7 +2523,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 45,
+      "line": 100,
       "consumers": []
     },
     {
@@ -1916,7 +2532,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 50,
+      "line": 105,
       "consumers": []
     },
     {
@@ -1925,7 +2541,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 54,
+      "line": 109,
       "consumers": []
     },
     {
@@ -1934,7 +2550,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 58,
+      "line": 113,
       "consumers": []
     },
     {
@@ -1943,7 +2559,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 65,
+      "line": 120,
       "consumers": []
     },
     {
@@ -1952,7 +2568,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 70,
+      "line": 125,
       "consumers": []
     },
     {
@@ -1961,7 +2577,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 74,
+      "line": 129,
       "consumers": []
     },
     {
@@ -1970,7 +2586,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 78,
+      "line": 133,
       "consumers": []
     },
     {
@@ -1979,7 +2595,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 82,
+      "line": 137,
       "consumers": []
     },
     {
@@ -1988,7 +2604,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 86,
+      "line": 141,
       "consumers": []
     },
     {
@@ -1997,7 +2613,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 90,
+      "line": 145,
       "consumers": []
     },
     {
@@ -2006,7 +2622,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 94,
+      "line": 149,
       "consumers": []
     },
     {
@@ -2015,7 +2631,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 98,
+      "line": 153,
       "consumers": []
     },
     {
@@ -2024,7 +2640,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 101,
+      "line": 156,
       "consumers": []
     },
     {
@@ -2033,7 +2649,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 106,
+      "line": 161,
       "consumers": []
     },
     {
@@ -2042,7 +2658,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 119,
+      "line": 174,
       "consumers": []
     },
     {
@@ -2051,7 +2667,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 124,
+      "line": 179,
       "consumers": []
     },
     {
@@ -2060,7 +2676,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 125,
+      "line": 180,
       "consumers": []
     },
     {
@@ -2069,7 +2685,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 127,
+      "line": 182,
       "consumers": []
     },
     {
@@ -2078,7 +2694,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 130,
+      "line": 185,
       "consumers": []
     },
     {
@@ -2087,7 +2703,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 135,
+      "line": 190,
       "consumers": []
     },
     {
@@ -2096,7 +2712,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 141,
+      "line": 196,
       "consumers": []
     },
     {
@@ -2105,7 +2721,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 142,
+      "line": 197,
       "consumers": []
     },
     {
@@ -2114,7 +2730,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 145,
+      "line": 200,
       "consumers": []
     },
     {
@@ -2123,7 +2739,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 153,
+      "line": 208,
       "consumers": []
     },
     {
@@ -2132,7 +2748,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 157,
+      "line": 212,
       "consumers": []
     },
     {
@@ -2141,7 +2757,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 188,
+      "line": 243,
       "consumers": []
     },
     {
@@ -2150,7 +2766,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 193,
+      "line": 248,
       "consumers": []
     },
     {
@@ -2159,7 +2775,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 198,
+      "line": 253,
       "consumers": []
     },
     {
@@ -2168,7 +2784,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 202,
+      "line": 257,
       "consumers": []
     },
     {
@@ -2177,7 +2793,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 205,
+      "line": 260,
       "consumers": []
     },
     {
@@ -2186,7 +2802,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 209,
+      "line": 264,
       "consumers": []
     },
     {
@@ -2195,7 +2811,25 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 212,
+      "line": 267,
+      "consumers": []
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_zero_balance_no_external_label",
+      "short": "n_pipeline_zero_balance_no_external_label",
+      "kind": "theorem",
+      "module": "Acceptance",
+      "file": "Acceptance.lean",
+      "line": 271,
+      "consumers": []
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_incomplete_fuel_is_not_closure",
+      "short": "n03_incomplete_fuel_is_not_closure",
+      "kind": "theorem",
+      "module": "Acceptance",
+      "file": "Acceptance.lean",
+      "line": 277,
       "consumers": []
     },
     {
@@ -2204,7 +2838,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 216,
+      "line": 283,
       "consumers": []
     },
     {
@@ -2213,7 +2847,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 221,
+      "line": 288,
       "consumers": []
     },
     {
@@ -2222,7 +2856,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 226,
+      "line": 293,
       "consumers": []
     },
     {
@@ -2231,7 +2865,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 230,
+      "line": 297,
       "consumers": []
     },
     {
@@ -2240,7 +2874,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 235,
+      "line": 302,
       "consumers": []
     },
     {
@@ -2249,7 +2883,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 239,
+      "line": 306,
       "consumers": []
     },
     {
@@ -2258,7 +2892,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 242,
+      "line": 309,
       "consumers": []
     },
     {
@@ -2267,7 +2901,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 252,
+      "line": 319,
       "consumers": []
     },
     {
@@ -2276,7 +2910,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 255,
+      "line": 322,
       "consumers": []
     },
     {
@@ -2285,7 +2919,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 260,
+      "line": 327,
       "consumers": []
     },
     {
@@ -2294,7 +2928,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 265,
+      "line": 332,
       "consumers": []
     },
     {
@@ -2303,7 +2937,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 269,
+      "line": 336,
       "consumers": []
     },
     {
@@ -2312,7 +2946,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 273,
+      "line": 340,
       "consumers": []
     },
     {
@@ -2321,7 +2955,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 277,
+      "line": 344,
       "consumers": []
     },
     {
@@ -2330,7 +2964,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 281,
+      "line": 348,
       "consumers": []
     },
     {
@@ -2339,7 +2973,7 @@
       "kind": "theorem",
       "module": "Acceptance",
       "file": "Acceptance.lean",
-      "line": 285,
+      "line": 352,
       "consumers": []
     }
   ]

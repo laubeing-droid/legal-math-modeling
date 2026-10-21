@@ -1,6 +1,6 @@
 {
   "baseline": "825792b83476a767152396d7f5e2ba3017048841",
-  "scope": "DOCUMENTS_ONLY",
+  "scope": "CANDIDATE_SOURCE_WITH_FROZEN_FULL_SCOPES_NOT_CLOSURE",
   "rows": [
     {
       "clause": "U07.1",
@@ -50,7 +50,7 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U07.1",
-      "remaining_obligations": "Reverse separation and non-surjective-encode examples and full observation decoding still need acceptance."
+      "remaining_obligations": "Retraction, observation monotonicity, reverse-separation and non-surjective-encode witnesses have candidate bodies. Full observation/history decoding acceptance and fresh CI remain."
     },
     {
       "clause": "U07.2",
@@ -145,6 +145,10 @@
             {
               "file": "Compiler.lean",
               "line": 38
+            },
+            {
+              "file": "Compiler.lean",
+              "line": 131
             }
           ]
         },
@@ -152,10 +156,28 @@
           "name": "JurisLean.Candidates.Final20261021.Compiler.u03_1_computed_sound",
           "file": "Compiler.lean",
           "line": 68,
-          "consumers": []
+          "consumers": [
+            {
+              "file": "Compiler.lean",
+              "line": 129
+            }
+          ]
         }
       ],
-      "consumers": [],
+      "consumers": [
+        {
+          "file": "Compiler.lean",
+          "line": 38
+        },
+        {
+          "file": "Compiler.lean",
+          "line": 131
+        },
+        {
+          "file": "Compiler.lean",
+          "line": 129
+        }
+      ],
       "original_mapping": "50条施工映射.json::U03.1",
       "remaining_obligations": "Provenance DAG validation and robust-intersection countermodel not yet connected to the executable finite closure."
     },
@@ -185,11 +207,17 @@
           "file": "Compiler.lean",
           "line": 33,
           "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Compiler.u03_2_checked_closure_complete",
+          "file": "Compiler.lean",
+          "line": 120,
+          "consumers": []
         }
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U03.2",
-      "remaining_obligations": "Connect executable stable finite closure to semantic derivability; incomplete fuel is not completeness."
+      "remaining_obligations": "Accepted checked closures are connected to semantic derivability; insufficient fuel returns checkIncomplete. A verified finite carrier/fuel bound for this list implementation is still missing."
     },
     {
       "clause": "U02.1",
@@ -301,7 +329,7 @@
           "consumers": [
             {
               "file": "Transactions.lean",
-              "line": 196
+              "line": 240
             }
           ]
         },
@@ -316,7 +344,7 @@
             },
             {
               "file": "Transactions.lean",
-              "line": 219
+              "line": 263
             }
           ]
         },
@@ -333,7 +361,11 @@
           "consumers": [
             {
               "file": "Transactions.lean",
-              "line": 218
+              "line": 262
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 31
             }
           ]
         },
@@ -344,43 +376,162 @@
           "consumers": []
         },
         {
-          "name": "JurisLean.Candidates.Final20261021.Transactions.commit_receipt_at_end",
+          "name": "JurisLean.Candidates.Final20261021.Transactions.step_version_monotone",
           "file": "Transactions.lean",
-          "line": 180,
+          "line": 173,
           "consumers": [
             {
               "file": "Transactions.lean",
-              "line": 204
+              "line": 183
+            },
+            {
+              "file": "Transactions.lean",
+              "line": 201
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.trace_version_monotone",
+          "file": "Transactions.lean",
+          "line": 178,
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 202
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.step_same_version_business",
+          "file": "Transactions.lean",
+          "line": 185,
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 205
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.trace_same_version_business",
+          "file": "Transactions.lean",
+          "line": 195,
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 215
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.u02_2_complete_readset_CAS",
+          "file": "Transactions.lean",
+          "line": 210,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.commit_receipt_at_end",
+          "file": "Transactions.lean",
+          "line": 224,
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 248
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Transactions.abort_excludes_prior_commit",
           "file": "Transactions.lean",
-          "line": 199,
+          "line": 243,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Transactions.cancelled_excludes_trace_commit",
           "file": "Transactions.lean",
-          "line": 208,
+          "line": 252,
           "consumers": [
             {
               "file": "Transactions.lean",
-              "line": 228
+              "line": 272
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Transactions.abort_excludes_future_commit",
           "file": "Transactions.lean",
-          "line": 221,
+          "line": 265,
           "consumers": []
         }
       ],
-      "consumers": [],
+      "consumers": [
+        {
+          "file": "Transactions.lean",
+          "line": 98
+        },
+        {
+          "file": "Transactions.lean",
+          "line": 107
+        },
+        {
+          "file": "Transactions.lean",
+          "line": 108
+        },
+        {
+          "file": "Transactions.lean",
+          "line": 133
+        },
+        {
+          "file": "Transactions.lean",
+          "line": 240
+        },
+        {
+          "file": "Transactions.lean",
+          "line": 153
+        },
+        {
+          "file": "Transactions.lean",
+          "line": 263
+        },
+        {
+          "file": "Transactions.lean",
+          "line": 262
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 31
+        },
+        {
+          "file": "Transactions.lean",
+          "line": 183
+        },
+        {
+          "file": "Transactions.lean",
+          "line": 201
+        },
+        {
+          "file": "Transactions.lean",
+          "line": 202
+        },
+        {
+          "file": "Transactions.lean",
+          "line": 205
+        },
+        {
+          "file": "Transactions.lean",
+          "line": 215
+        },
+        {
+          "file": "Transactions.lean",
+          "line": 248
+        },
+        {
+          "file": "Transactions.lean",
+          "line": 272
+        }
+      ],
       "original_mapping": "50条施工映射.json::U02.2",
-      "remaining_obligations": "Abstract transaction safety bodies are present; refine Ledger receipts/U and actual pipeline steps to that protocol, and close the complete-read CAS snapshot lemma."
+      "remaining_obligations": "Abstract transaction safety, actual commit/replay/cancel examples and complete-read CAS snapshot lemma have candidate bodies. Full refinement of concrete Ledger/Pipeline into Store/Trace, including cancellation and external occurrences, remains open."
     },
     {
       "clause": "U02.3",
@@ -478,7 +629,12 @@
           "consumers": []
         }
       ],
-      "consumers": [],
+      "consumers": [
+        {
+          "file": "Temporal.lean",
+          "line": 54
+        }
+      ],
       "original_mapping": "50条施工映射.json::U08.1",
       "remaining_obligations": "Late retroactive-transition and mutable-current-status countermodels still require complete Lean acceptance."
     },
@@ -508,11 +664,17 @@
           "file": "Authorization.lean",
           "line": 51,
           "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Pipeline.u10_1_authorized_refresh_is_step",
+          "file": "Pipeline.lean",
+          "line": 47,
+          "consumers": []
         }
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U10.1",
-      "remaining_obligations": "Tie named authorization and append/refresh to the same actual protected transaction; content alone is not external authority."
+      "remaining_obligations": "The actual full-context authorized Pipeline refresh is linked to Trace.Step. Complete protocol refinement and external legal authority evidence remain open; a reference alone does not prove authority."
     },
     {
       "clause": "U10.2",
@@ -536,20 +698,85 @@
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
       "declarations": [
         {
-          "name": "JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition",
+          "name": "JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step",
           "file": "Trace.lean",
-          "line": 72,
+          "line": 73,
           "consumers": [
             {
               "file": "Trace.lean",
-              "line": 81
+              "line": 99
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 108
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 86
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 89
             }
           ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves",
+          "file": "Trace.lean",
+          "line": 86,
+          "consumers": [
+            {
+              "file": "Pipeline.lean",
+              "line": 115
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition",
+          "file": "Trace.lean",
+          "line": 145,
+          "consumers": [
+            {
+              "file": "Trace.lean",
+              "line": 154
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Pipeline.u10_2_pipeline_second_post_invariant",
+          "file": "Pipeline.lean",
+          "line": 98,
+          "consumers": []
         }
       ],
-      "consumers": [],
+      "consumers": [
+        {
+          "file": "Trace.lean",
+          "line": 99
+        },
+        {
+          "file": "Pipeline.lean",
+          "line": 108
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 86
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 89
+        },
+        {
+          "file": "Pipeline.lean",
+          "line": 115
+        },
+        {
+          "file": "Trace.lean",
+          "line": 154
+        }
+      ],
       "original_mapping": "50条施工映射.json::U10.2",
-      "remaining_obligations": "Numeric/cash/freshness invariant is implemented; full identity/receipt correspondence, authorized Gamma field frame, and concrete pipeline-to-Step refinement remain open."
+      "remaining_obligations": "Numeric/cash/freshness plus key/receipt/cash-backing invariant, actual consume-to-Step, and two-payment known-post refinement have candidate bodies. Full mixed-operation coverage, Gamma frame/read-domain correspondence and service refinement remain open."
     },
     {
       "clause": "U08.2",
@@ -697,7 +924,7 @@
             },
             {
               "file": "Trace.lean",
-              "line": 60
+              "line": 62
             }
           ]
         },
@@ -706,11 +933,47 @@
           "file": "Ledger.lean",
           "line": 109,
           "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Ledger.u09_1_afterPayments_clamp",
+          "file": "Ledger.lean",
+          "line": 565,
+          "consumers": [
+            {
+              "file": "Ledger.lean",
+              "line": 605
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Ledger.u09_1_scalar_vector_stream_refinement",
+          "file": "Ledger.lean",
+          "line": 590,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Trace.u09_1_actual_trace_at_most_once",
+          "file": "Trace.lean",
+          "line": 130,
+          "consumers": []
         }
       ],
-      "consumers": [],
+      "consumers": [
+        {
+          "file": "Ledger.lean",
+          "line": 115
+        },
+        {
+          "file": "Trace.lean",
+          "line": 62
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 605
+        }
+      ],
       "original_mapping": "50条施工映射.json::U09.1",
-      "remaining_obligations": "General scalar/list conservation and actual same-case calls are present; full receipt/U invariant and quantitative projection to the reused vector afterStream remain to prove."
+      "remaining_obligations": "General list conservation, receipt/U/cash-backing coherence, actual mixed-trace at-most-once safety, and scalar/vector stream balance refinement have candidate bodies. Full legal allocation effects, receipt revision ordering/cash uniqueness and product-protocol refinement remain open."
     },
     {
       "clause": "U09.2",
@@ -817,6 +1080,10 @@
             {
               "file": "Learning.lean",
               "line": 28
+            },
+            {
+              "file": "Learning.lean",
+              "line": 59
             }
           ]
         },
@@ -830,11 +1097,45 @@
               "line": 115
             }
           ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_0_independent_bounded_two_tail",
+          "file": "Learning.lean",
+          "line": 72,
+          "consumers": [
+            {
+              "file": "Feedback.lean",
+              "line": 141
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_0_zero_width_tail",
+          "file": "Learning.lean",
+          "line": 88,
+          "consumers": []
         }
       ],
-      "consumers": [],
+      "consumers": [
+        {
+          "file": "Learning.lean",
+          "line": 28
+        },
+        {
+          "file": "Learning.lean",
+          "line": 59
+        },
+        {
+          "file": "Feedback.lean",
+          "line": 115
+        },
+        {
+          "file": "Feedback.lean",
+          "line": 141
+        }
+      ],
       "original_mapping": "50条施工映射.json::U01.0",
-      "remaining_obligations": "MGF/upper/two-tail ingredients present; assemble exact bounded-sum two-tail statement and D=0 branch without losing the strict-positive threshold."
+      "remaining_obligations": "Exact independent bounded-sum two-tail statement and D=0 null-tail branch, both at strictly positive thresholds, have candidate proof bodies. Fresh Lean CI, axiom audit and assumption/scope review remain required."
     },
     {
       "clause": "U01.1",
@@ -860,13 +1161,13 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Learning.u01_1_fixed_class_tail",
           "file": "Learning.lean",
-          "line": 48,
+          "line": 107,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Learning.u01_1_approximate_erm",
           "file": "Learning.lean",
-          "line": 58,
+          "line": 117,
           "consumers": []
         }
       ],
@@ -898,7 +1199,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Learning.u01_2_label_bridge_pointwise",
           "file": "Learning.lean",
-          "line": 66,
+          "line": 125,
           "consumers": [
             {
               "file": "Probability.lean",
@@ -913,7 +1214,12 @@
           "consumers": []
         }
       ],
-      "consumers": [],
+      "consumers": [
+        {
+          "file": "Probability.lean",
+          "line": 31
+        }
+      ],
       "original_mapping": "50条施工映射.json::U01.2",
       "remaining_obligations": "Finite rational 0-1 bridge present; general measurable bounded-loss integration and jointly estimated bridge budget remain."
     },
@@ -1187,7 +1493,16 @@
           "consumers": []
         }
       ],
-      "consumers": [],
+      "consumers": [
+        {
+          "file": "Calibration.lean",
+          "line": 13
+        },
+        {
+          "file": "Calibration.lean",
+          "line": 14
+        }
+      ],
       "original_mapping": "50条施工映射.json::U05.2",
       "remaining_obligations": "Bernoulli algebra and ratio gate present; conditional-expectation Brier decomposition, simultaneous threshold coverage and rare-group examples remain."
     },
@@ -1758,11 +2073,23 @@
           "file": "Feedback.lean",
           "line": 107,
           "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Feedback.u14_2_independent_cluster_two_tail",
+          "file": "Feedback.lean",
+          "line": 118,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Feedback.u14_2_unequal_cluster_effective_size",
+          "file": "Feedback.lean",
+          "line": 153,
+          "consumers": []
         }
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U14.2",
-      "remaining_obligations": "Independent cluster upper tail present; full two-tail normalized N^2/sum(nj^2) specialization, degenerate sizes, and n_eff witness remain."
+      "remaining_obligations": "Normalized independent-cluster two-tail bound with N=sum sizes>0, derived positive sum of squares, and 99/1 effective-size witness have candidate bodies. Zero-N rejection, endogenous-size/common-cause counterexamples and fresh CI remain."
     },
     {
       "clause": "U15.2",
@@ -1852,29 +2179,39 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Pipeline.u00_pipeline_wires_handles",
           "file": "Pipeline.lean",
-          "line": 65,
-          "consumers": []
+          "line": 81,
+          "consumers": [
+            {
+              "file": "Pipeline.lean",
+              "line": 110
+            }
+          ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
           "file": "Acceptance.lean",
-          "line": 188,
+          "line": 243,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_reject",
           "file": "Acceptance.lean",
-          "line": 193,
+          "line": 248,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_unknown",
           "file": "Acceptance.lean",
-          "line": 198,
+          "line": 253,
           "consumers": []
         }
       ],
-      "consumers": [],
+      "consumers": [
+        {
+          "file": "Pipeline.lean",
+          "line": 110
+        }
+      ],
       "original_mapping": "50条施工映射.json::U00",
       "remaining_obligations": "Actual finite source-to-decision-to-two-payment-to-feedback paths present. All 50 subclaims, common statistical law, full operation refinement and authorized Loaded consumption are NOT closed."
     }

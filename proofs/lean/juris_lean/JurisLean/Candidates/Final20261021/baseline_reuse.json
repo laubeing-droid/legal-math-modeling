@@ -18,6 +18,26 @@
       "line": 267,
       "source_sha256": "138d149be182b5c3ad50b362013527a1266d4442f7f36a0633aec73facf4eb8a",
       "statement_and_proof_excerpt": "theorem outstanding_afterStream (ps : List ℚ) (items : List LedgerItem)\n    (hnn : ∀ it ∈ items, 0 ≤ it.amount) (hps : ∀ p ∈ ps, 0 ≤ p) :\n    outstanding (afterStream ps items) = max (outstanding items - ps.sum) 0 := by\n  induction ps generalizing items with\n  | nil =>\n      have hO := outstanding_nonneg items hnn\n      simp only [afterStream, List.sum_nil, sub_zero]\n      exact (max_eq_left hO).symm\n  | cons p ps ih =>\n      have hp : 0 ≤ p := hps p (by simp)\n      have hps' : ∀ q ∈ ps, 0 ≤ q := fun q hq => hps q (List.mem_cons_of_mem _ hq)\n      have h1 := outstanding_afterPay_clamp items p hnn hp\n      have h2 := ih (afterPay p items) (afterPay_amounts_nonneg items p) hps'\n      show outstanding (afterStream ps (afterPay p items))\n          = max (outstanding items - (p :: ps).sum) 0\n      rw [h2, h1, List.sum_cons]\n      exact clamp_clamp (outstanding items) p ps.sum (List.sum_nonneg hps')\n\n/-- D047：清偿判定——余额为零 ⇔ 总支付已覆盖全部到期额。 -/"
+    },
+    {
+      "baseline": "825792b83476a767152396d7f5e2ba3017048841",
+      "status": "REUSE_EXACT_TYPE_REQUIRES_CURRENT_CI",
+      "file": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantLedger.lean",
+      "declaration": "clamp_clamp",
+      "line": 240,
+      "source_sha256": "138d149be182b5c3ad50b362013527a1266d4442f7f36a0633aec73facf4eb8a",
+      "statement_and_proof_excerpt": "theorem clamp_clamp (x p q : ℚ) (hq : 0 ≤ q) :\n    max (max (x - p) 0 - q) 0 = max (x - (p + q)) 0 := by\n  rcases le_total (p + q) x with h | h\n  · have h1 : max (x - p) 0 = x - p := max_eq_left (by linarith)\n    have h2 : max (x - p - q) 0 = x - p - q := max_eq_left (by linarith)\n    have h3 : max (x - (p + q)) 0 = x - (p + q) := max_eq_left (by linarith)\n    rw [h1, h2, h3]\n    linarith\n  · rcases le_total p x with hp | hp\n    · have h1 : max (x - p) 0 = x - p := max_eq_left (by linarith)\n      have h2 : max (x - p - q) 0 = 0 := max_eq_right (by linarith)\n      have h3 : max (x - (p + q)) 0 = 0 := max_eq_right (by linarith)\n      rw [h1, h2, h3]\n    · have h1 : max (x - p) 0 = 0 := max_eq_right (by linarith)\n      have h2 : max (0 - q) 0 = 0 := max_eq_right (by linarith)\n      have h3 : max (x - (p + q)) 0 = 0 := max_eq_right (by linarith)\n      rw [h1, h2, h3]\n\n/-- 非负账项表的总额非负（余额非负引理）。 -/",
+      "consumer": "Ledger.u09_1_afterPayments_clamp / Ledger.u09_1_scalar_vector_stream_refinement"
+    },
+    {
+      "baseline": "825792b83476a767152396d7f5e2ba3017048841",
+      "status": "REUSE_EXACT_TYPE_REQUIRES_CURRENT_CI",
+      "file": "proofs/lean/juris_lean/JurisLean/Seams/UnifiedQuantLedger.lean",
+      "declaration": "outstanding_nonneg",
+      "line": 259,
+      "source_sha256": "138d149be182b5c3ad50b362013527a1266d4442f7f36a0633aec73facf4eb8a",
+      "statement_and_proof_excerpt": "theorem outstanding_nonneg (items : List LedgerItem)\n    (hnn : ∀ it ∈ items, 0 ≤ it.amount) : 0 ≤ outstanding items := by\n  rw [outstanding, liAmounts]\n  exact List.sum_nonneg (fun d hd => by\n    obtain ⟨it, hit, rfl⟩ := List.mem_map.mp hd\n    exact hnn it hit)\n\n/-- 支付流端到端：余额＝max(初始余额−总支付, 0)。 -/",
+      "consumer": "Ledger.u09_1_afterPayments_clamp / Ledger.u09_1_scalar_vector_stream_refinement"
     }
   ]
 }

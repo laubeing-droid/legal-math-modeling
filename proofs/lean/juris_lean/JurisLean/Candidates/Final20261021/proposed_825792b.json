@@ -42,40 +42,74 @@
         },
         {
           "file": "Trace.lean",
-          "line": 17
+          "line": 18
         },
         {
           "file": "Trace.lean",
-          "line": 52
+          "line": 54
         },
         {
           "file": "Pipeline.lean",
-          "line": 42
+          "line": 45
         },
         {
           "file": "Pipeline.lean",
-          "line": 176
+          "line": 213
         },
         {
           "file": "Acceptance.lean",
-          "line": 154
+          "line": 209
         },
         {
           "file": "Acceptance.lean",
-          "line": 155
+          "line": 210
         },
         {
           "file": "Acceptance.lean",
-          "line": 158
+          "line": 213
         },
         {
           "file": "Acceptance.lean",
-          "line": 159
+          "line": 214
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Temporal",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a08_event_specific_versions",
+                "file": "Acceptance.lean",
+                "line": 208
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n08_latest_case_time_wrong_for_first_event",
+                "file": "Acceptance.lean",
+                "line": 212
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Temporal.lean",
+          "line": 30,
+          "worktree_sha256": "e35a1c8c4b8f66754c3e6ccc3c16c0b6161b5b321f20ac38b0f320f3c05af7a7",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Harness"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_behavior_log",
@@ -92,7 +126,8 @@
       "consumer": null,
       "accept": [],
       "status": "UNLOCATED_IMPLEMENTATION",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": []
     },
     {
       "symbol": "proposed_binding",
@@ -130,9 +165,53 @@
           "line": 94
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Representation",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a07_1_identity_observation_separates",
+                "file": "Acceptance.lean",
+                "line": 39
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_constant_family_not_separating",
+                "file": "Acceptance.lean",
+                "line": 33
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_retraction_need_not_encode_surjectively",
+                "file": "Acceptance.lean",
+                "line": 45
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_observation_wrong_relation",
+                "file": "Acceptance.lean",
+                "line": 283
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Representation.lean",
+          "line": 76,
+          "worktree_sha256": "7efed1d990620b372012b1fec4f26b797d448fb26fe69351200c2e3bb33029aa",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Interfaces"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_bounded_prediction",
@@ -151,13 +230,47 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 162
+          "line": 199
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Calibration",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
+                "file": "Acceptance.lean",
+                "line": 243
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_target_mismatch",
+                "file": "Acceptance.lean",
+                "line": 264
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN",
-      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted."
+      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted.",
+      "candidate_source_evidence": [
+        {
+          "file": "Calibration.lean",
+          "line": 31,
+          "worktree_sha256": "644d1f58ad26b23ced3aa83f9d9bcddef33b5e757256b83b8766506ecf22037f",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Probability"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_calibration_support_gate",
@@ -176,12 +289,46 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 162
+          "line": 199
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Calibration",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
+                "file": "Acceptance.lean",
+                "line": 243
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_target_mismatch",
+                "file": "Acceptance.lean",
+                "line": 264
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Calibration.lean",
+          "line": 31,
+          "worktree_sha256": "644d1f58ad26b23ced3aa83f9d9bcddef33b5e757256b83b8766506ecf22037f",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Probability"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_candidate",
@@ -198,7 +345,8 @@
       "consumer": null,
       "accept": [],
       "status": "UNLOCATED_IMPLEMENTATION",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": []
     },
     {
       "symbol": "proposed_causal_evidence",
@@ -224,9 +372,48 @@
           "line": 54
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Behavior",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
+                "file": "Acceptance.lean",
+                "line": 243
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n11_window_not_mature_negative_unknown",
+                "file": "Acceptance.lean",
+                "line": 332
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_zero_balance_no_external_label",
+                "file": "Acceptance.lean",
+                "line": 271
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Behavior.lean",
+          "line": 46,
+          "worktree_sha256": "b5f5dd67f5c8bb086511a090cf36595c156b61911a71239649a8c7bd1011ce61",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Decision"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_checkpoint_service",
@@ -249,16 +436,50 @@
         },
         {
           "file": "Pipeline.lean",
-          "line": 158
+          "line": 195
         },
         {
           "file": "Acceptance.lean",
-          "line": 274
+          "line": 341
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "RSI",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
+                "file": "Acceptance.lean",
+                "line": 243
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n13_absent_is_not_half_probability",
+                "file": "Acceptance.lean",
+                "line": 340
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "RSI.lean",
+          "line": 96,
+          "worktree_sha256": "812e0d408424d4b7a532984f3f9412ab1e2dc63349d4c4f59976928292176d7e",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Policy"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_common_model",
@@ -277,16 +498,60 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 209
+          "line": 253
         },
         {
           "file": "Pipeline.lean",
-          "line": 210
+          "line": 254
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Representation",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a07_1_identity_observation_separates",
+                "file": "Acceptance.lean",
+                "line": 39
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_constant_family_not_separating",
+                "file": "Acceptance.lean",
+                "line": 33
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_retraction_need_not_encode_surjectively",
+                "file": "Acceptance.lean",
+                "line": 45
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_observation_wrong_relation",
+                "file": "Acceptance.lean",
+                "line": 283
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Representation.lean",
+          "line": 91,
+          "worktree_sha256": "7efed1d990620b372012b1fec4f26b797d448fb26fe69351200c2e3bb33029aa",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Interfaces"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_decision",
@@ -309,16 +574,60 @@
         },
         {
           "file": "Pipeline.lean",
-          "line": 168
+          "line": 205
         },
         {
           "file": "Acceptance.lean",
-          "line": 253
+          "line": 320
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Decision",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a06_risk_gate_precedes_expected_value",
+                "file": "Acceptance.lean",
+                "line": 319
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_exact_half_and_currency",
+                "file": "Acceptance.lean",
+                "line": 190
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n06_probability_has_no_money_dimension",
+                "file": "Acceptance.lean",
+                "line": 322
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n06_duplicate_cash_identity",
+                "file": "Acceptance.lean",
+                "line": 327
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Decision.lean",
+          "line": 177,
+          "worktree_sha256": "9dba77be032751efb1fd09642ea34bbc3e0c4fd779e63fb5d2db33df7cee49ca",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Calibration"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_event_evidence_versions",
@@ -352,9 +661,43 @@
           "line": 48
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Temporal",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a08_event_specific_versions",
+                "file": "Acceptance.lean",
+                "line": 208
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n08_latest_case_time_wrong_for_first_event",
+                "file": "Acceptance.lean",
+                "line": 212
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Temporal.lean",
+          "line": 20,
+          "worktree_sha256": "e35a1c8c4b8f66754c3e6ccc3c16c0b6161b5b321f20ac38b0f320f3c05af7a7",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Harness"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_extractor",
@@ -371,7 +714,8 @@
       "consumer": null,
       "accept": [],
       "status": "UNLOCATED_IMPLEMENTATION",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": []
     },
     {
       "symbol": "proposed_fact_checker",
@@ -390,12 +734,57 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 88
+          "line": 126
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Compiler",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
+                "file": "Acceptance.lean",
+                "line": 243
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_incomplete_fuel_is_not_closure",
+                "file": "Acceptance.lean",
+                "line": 277
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_must_facts_closure_is_not_robust_closure",
+                "file": "Acceptance.lean",
+                "line": 288
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_missing_exception_is_not_positive_witness",
+                "file": "Acceptance.lean",
+                "line": 293
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Compiler.lean",
+          "line": 151,
+          "worktree_sha256": "ac71e467d016376f17a09bf274e0aeee82ba0ab12dae4654809d96bffe2fd823",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Representation",
+            "JurisLean.HornFixedPoint"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_feasible_policy",
@@ -417,9 +806,53 @@
           "line": 178
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Decision",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a06_risk_gate_precedes_expected_value",
+                "file": "Acceptance.lean",
+                "line": 319
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_exact_half_and_currency",
+                "file": "Acceptance.lean",
+                "line": 190
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n06_probability_has_no_money_dimension",
+                "file": "Acceptance.lean",
+                "line": 322
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n06_duplicate_cash_identity",
+                "file": "Acceptance.lean",
+                "line": 327
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Decision.lean",
+          "line": 174,
+          "worktree_sha256": "9dba77be032751efb1fd09642ea34bbc3e0c4fd779e63fb5d2db33df7cee49ca",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Calibration"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_fit_contract",
@@ -438,12 +871,35 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 154
+          "line": 191
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Learning",
+          "examples": {
+            "positive": [],
+            "negative": [],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": true,
+            "missing_selected_negative": true
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Learning.lean",
+          "line": 140,
+          "worktree_sha256": "47b8ec5cb3a49669ac27ec0e125a010e351e383038261c612647f967bf12ef84",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Trace",
+            "Mathlib.Probability.Moments.SubGaussian"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_fit_gate",
@@ -460,7 +916,8 @@
       "consumer": null,
       "accept": [],
       "status": "UNLOCATED_IMPLEMENTATION",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": []
     },
     {
       "symbol": "proposed_harness_gate",
@@ -487,16 +944,50 @@
         },
         {
           "file": "Pipeline.lean",
-          "line": 150
+          "line": 187
         },
         {
           "file": "Acceptance.lean",
-          "line": 231
+          "line": 298
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Harness",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a02_common_idle_remains_allowed",
+                "file": "Acceptance.lean",
+                "line": 297
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n05_raising_score_threshold_increases_risk",
+                "file": "Acceptance.lean",
+                "line": 309
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Harness.lean",
+          "line": 24,
+          "worktree_sha256": "f8d5c96815a832ddec62a7199826f4abc812050fc5cad53f5ed71b4cdc68600d",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Compiler"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_judgment_and_process",
@@ -515,20 +1006,59 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 142
+          "line": 180
         },
         {
           "file": "Pipeline.lean",
-          "line": 201
+          "line": 238
         },
         {
           "file": "Acceptance.lean",
-          "line": 146
+          "line": 201
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "EvidenceProcedure",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a08_insufficient_but_lawfully_closed",
+                "file": "Acceptance.lean",
+                "line": 200
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n08_2_missing_opportunity",
+                "file": "Acceptance.lean",
+                "line": 196
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n08_4_timeout_not_lawful_closure",
+                "file": "Acceptance.lean",
+                "line": 197
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "EvidenceProcedure.lean",
+          "line": 82,
+          "worktree_sha256": "4647b5dbeaf362c6e99eebade44f482e733da055d72b3745c3c12d83f51464ae",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Temporal"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_legal_allocation",
@@ -611,17 +1141,118 @@
         },
         {
           "file": "Ledger.lean",
-          "line": 281
+          "line": 241
         },
         {
           "file": "Ledger.lean",
-          "line": 296
+          "line": 355
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 370
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 559
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 578
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 581
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 582
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Ledger",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7",
+                "file": "Acceptance.lean",
+                "line": 92
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a_zero_yes_writes_U",
+                "file": "Acceptance.lean",
+                "line": 113
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a_rest_claim_then_eligibility",
+                "file": "Acceptance.lean",
+                "line": 174
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a_restpay_only_n3",
+                "file": "Acceptance.lean",
+                "line": 185
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_a1_layer_collapse",
+                "file": "Acceptance.lean",
+                "line": 100
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_non_continuous_consume",
+                "file": "Acceptance.lean",
+                "line": 105
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_unknown_does_not_burn_U",
+                "file": "Acceptance.lean",
+                "line": 120
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_burned_by_unknown",
+                "file": "Acceptance.lean",
+                "line": 125
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n1_premature_cash",
+                "file": "Acceptance.lean",
+                "line": 179
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n2_auto_full_refund",
+                "file": "Acceptance.lean",
+                "line": 180
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n3_accrual_cash_collapse",
+                "file": "Acceptance.lean",
+                "line": 182
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN",
-      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted."
+      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted.",
+      "candidate_source_evidence": [
+        {
+          "file": "Ledger.lean",
+          "line": 69,
+          "worktree_sha256": "e00b9dc0876359fb9c89a7a012d6ee5b6558ddd731000815d91d99f5b23b08e4",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Progress",
+            "JurisLean.Candidates.Final20261021.Transactions",
+            "JurisLean.Seams.UnifiedQuantLedger"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_measurement",
@@ -640,16 +1271,55 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 189
+          "line": 226
         },
         {
           "file": "Acceptance.lean",
-          "line": 266
+          "line": 333
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Behavior",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
+                "file": "Acceptance.lean",
+                "line": 243
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n11_window_not_mature_negative_unknown",
+                "file": "Acceptance.lean",
+                "line": 332
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_zero_balance_no_external_label",
+                "file": "Acceptance.lean",
+                "line": 271
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Behavior.lean",
+          "line": 36,
+          "worktree_sha256": "b5f5dd67f5c8bb086511a090cf36595c156b61911a71239649a8c7bd1011ce61",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Decision"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_off_policy_value",
@@ -668,16 +1338,51 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 191
+          "line": 228
         },
         {
           "file": "Acceptance.lean",
-          "line": 270
+          "line": 337
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Policy",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
+                "file": "Acceptance.lean",
+                "line": 243
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n12_support_gap_not_smoothed",
+                "file": "Acceptance.lean",
+                "line": 336
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Policy.lean",
+          "line": 67,
+          "worktree_sha256": "cb7998f08e62742bb68ff27db15ec7807530a5bb55cbfa7c1cb0554e563e86b9",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Behavior",
+            "Mathlib.Topology.MetricSpace.Contracting"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_payment_binding",
@@ -697,49 +1402,202 @@
       "consumer": [
         {
           "file": "Ledger.lean",
-          "line": 270
+          "line": 344
         },
         {
           "file": "Ledger.lean",
-          "line": 285
+          "line": 359
         },
         {
           "file": "Ledger.lean",
-          "line": 317
+          "line": 391
         },
         {
           "file": "Ledger.lean",
-          "line": 321
+          "line": 395
         },
         {
           "file": "Ledger.lean",
-          "line": 325
+          "line": 399
         },
         {
           "file": "Ledger.lean",
-          "line": 327
+          "line": 401
         },
         {
           "file": "Ledger.lean",
-          "line": 345
+          "line": 406
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 408
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 416
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 427
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 461
         },
         {
           "file": "Trace.lean",
-          "line": 38
+          "line": 40
         },
         {
           "file": "Pipeline.lean",
-          "line": 181
+          "line": 218
         },
         {
           "file": "Pipeline.lean",
-          "line": 182
+          "line": 219
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Ledger",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7",
+                "file": "Acceptance.lean",
+                "line": 92
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a_zero_yes_writes_U",
+                "file": "Acceptance.lean",
+                "line": 113
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a_rest_claim_then_eligibility",
+                "file": "Acceptance.lean",
+                "line": 174
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a_restpay_only_n3",
+                "file": "Acceptance.lean",
+                "line": 185
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_a1_layer_collapse",
+                "file": "Acceptance.lean",
+                "line": 100
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_non_continuous_consume",
+                "file": "Acceptance.lean",
+                "line": 105
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_unknown_does_not_burn_U",
+                "file": "Acceptance.lean",
+                "line": 120
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_burned_by_unknown",
+                "file": "Acceptance.lean",
+                "line": 125
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n1_premature_cash",
+                "file": "Acceptance.lean",
+                "line": 179
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n2_auto_full_refund",
+                "file": "Acceptance.lean",
+                "line": 180
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n3_accrual_cash_collapse",
+                "file": "Acceptance.lean",
+                "line": 182
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        },
+        {
+          "module": "Pipeline",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
+                "file": "Acceptance.lean",
+                "line": 243
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_reject",
+                "file": "Acceptance.lean",
+                "line": 248
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_unknown",
+                "file": "Acceptance.lean",
+                "line": 253
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_unresolved_identity",
+                "file": "Acceptance.lean",
+                "line": 260
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_target_mismatch",
+                "file": "Acceptance.lean",
+                "line": 264
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_decision_payload_mismatch",
+                "file": "Acceptance.lean",
+                "line": 267
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_zero_balance_no_external_label",
+                "file": "Acceptance.lean",
+                "line": 271
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN",
-      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted."
+      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted.",
+      "candidate_source_evidence": [
+        {
+          "file": "Ledger.lean",
+          "line": 194,
+          "worktree_sha256": "e00b9dc0876359fb9c89a7a012d6ee5b6558ddd731000815d91d99f5b23b08e4",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Progress",
+            "JurisLean.Candidates.Final20261021.Transactions",
+            "JurisLean.Seams.UnifiedQuantLedger"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        },
+        {
+          "file": "Pipeline.lean",
+          "line": 118,
+          "worktree_sha256": "70ee4b7e1559d460f6c9e7173e083738b82a7550fdc69ae6039ce1e79d36a09d",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Iteration"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_policy",
@@ -756,7 +1614,8 @@
       "consumer": null,
       "accept": [],
       "status": "UNLOCATED_IMPLEMENTATION",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": []
     },
     {
       "symbol": "proposed_population_query",
@@ -773,7 +1632,8 @@
       "consumer": null,
       "accept": [],
       "status": "UNLOCATED_IMPLEMENTATION",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": []
     },
     {
       "symbol": "proposed_prediction_or_harness",
@@ -792,13 +1652,72 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 211
+          "line": 255
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Pipeline",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
+                "file": "Acceptance.lean",
+                "line": 243
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_reject",
+                "file": "Acceptance.lean",
+                "line": 248
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_unknown",
+                "file": "Acceptance.lean",
+                "line": 253
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_unresolved_identity",
+                "file": "Acceptance.lean",
+                "line": 260
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_target_mismatch",
+                "file": "Acceptance.lean",
+                "line": 264
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_decision_payload_mismatch",
+                "file": "Acceptance.lean",
+                "line": 267
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_zero_balance_no_external_label",
+                "file": "Acceptance.lean",
+                "line": 271
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN",
-      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted."
+      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted.",
+      "candidate_source_evidence": [
+        {
+          "file": "Pipeline.lean",
+          "line": 245,
+          "worktree_sha256": "70ee4b7e1559d460f6c9e7173e083738b82a7550fdc69ae6039ce1e79d36a09d",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Iteration"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_probability_and_amount",
@@ -817,25 +1736,69 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 165
+          "line": 202
         },
         {
           "file": "Acceptance.lean",
-          "line": 251
+          "line": 318
         },
         {
           "file": "Acceptance.lean",
-          "line": 256
+          "line": 323
         },
         {
           "file": "Acceptance.lean",
-          "line": 261
+          "line": 328
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Decision",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a06_risk_gate_precedes_expected_value",
+                "file": "Acceptance.lean",
+                "line": 319
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_exact_half_and_currency",
+                "file": "Acceptance.lean",
+                "line": 190
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n06_probability_has_no_money_dimension",
+                "file": "Acceptance.lean",
+                "line": 322
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n06_duplicate_cash_identity",
+                "file": "Acceptance.lean",
+                "line": 327
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN",
-      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted."
+      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted.",
+      "candidate_source_evidence": [
+        {
+          "file": "Decision.lean",
+          "line": 156,
+          "worktree_sha256": "9dba77be032751efb1fd09642ea34bbc3e0c4fd779e63fb5d2db33df7cee49ca",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Calibration"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_probability_model",
@@ -861,9 +1824,37 @@
           "line": 50
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Probability",
+          "examples": {
+            "positive": [],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n04_zero_variance_not_finite_count",
+                "file": "Acceptance.lean",
+                "line": 306
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": true,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Probability.lean",
+          "line": 42,
+          "worktree_sha256": "54d58a9ede78e994a00362ec64045899d6de05f8aedc94af46de8a050d2f519c",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Learning"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_quantity_cash_receipt",
@@ -882,85 +1873,198 @@
       "consumer": [
         {
           "file": "Ledger.lean",
-          "line": 275
+          "line": 240
         },
         {
           "file": "Ledger.lean",
-          "line": 279
+          "line": 241
         },
         {
           "file": "Ledger.lean",
-          "line": 280
+          "line": 245
         },
         {
           "file": "Ledger.lean",
-          "line": 281
-        },
-        {
-          "file": "Ledger.lean",
-          "line": 287
-        },
-        {
-          "file": "Ledger.lean",
-          "line": 292
-        },
-        {
-          "file": "Ledger.lean",
-          "line": 293
+          "line": 247
         },
         {
           "file": "Ledger.lean",
           "line": 296
         },
         {
+          "file": "Ledger.lean",
+          "line": 349
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 353
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 354
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 355
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 361
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 366
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 367
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 370
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 417
+        },
+        {
           "file": "Trace.lean",
-          "line": 39
+          "line": 41
         },
         {
           "file": "Acceptance.lean",
-          "line": 34
+          "line": 77
         },
         {
           "file": "Acceptance.lean",
-          "line": 35
+          "line": 78
         },
         {
           "file": "Acceptance.lean",
-          "line": 51
+          "line": 87
         },
         {
           "file": "Acceptance.lean",
-          "line": 52
+          "line": 90
         },
         {
           "file": "Acceptance.lean",
-          "line": 60
+          "line": 106
         },
         {
           "file": "Acceptance.lean",
-          "line": 61
+          "line": 107
         },
         {
           "file": "Acceptance.lean",
-          "line": 62
+          "line": 115
         },
         {
           "file": "Acceptance.lean",
-          "line": 63
+          "line": 116
         },
         {
           "file": "Acceptance.lean",
-          "line": 88
+          "line": 117
         },
         {
           "file": "Acceptance.lean",
-          "line": 95
+          "line": 118
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 143
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 150
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Ledger",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7",
+                "file": "Acceptance.lean",
+                "line": 92
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a_zero_yes_writes_U",
+                "file": "Acceptance.lean",
+                "line": 113
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a_rest_claim_then_eligibility",
+                "file": "Acceptance.lean",
+                "line": 174
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a_restpay_only_n3",
+                "file": "Acceptance.lean",
+                "line": 185
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_a1_layer_collapse",
+                "file": "Acceptance.lean",
+                "line": 100
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_non_continuous_consume",
+                "file": "Acceptance.lean",
+                "line": 105
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_unknown_does_not_burn_U",
+                "file": "Acceptance.lean",
+                "line": 120
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n_burned_by_unknown",
+                "file": "Acceptance.lean",
+                "line": 125
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n1_premature_cash",
+                "file": "Acceptance.lean",
+                "line": 179
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n2_auto_full_refund",
+                "file": "Acceptance.lean",
+                "line": 180
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n3_accrual_cash_collapse",
+                "file": "Acceptance.lean",
+                "line": 182
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
       "formal_ci": "CI_NOT_RUN",
-      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted."
+      "mapping_scope": "Reviewed new mathematical candidate boundary; no baseline symbol or product integration is asserted.",
+      "candidate_source_evidence": [
+        {
+          "file": "Ledger.lean",
+          "line": 216,
+          "worktree_sha256": "e00b9dc0876359fb9c89a7a012d6ee5b6558ddd731000815d91d99f5b23b08e4",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Progress",
+            "JurisLean.Candidates.Final20261021.Transactions",
+            "JurisLean.Seams.UnifiedQuantLedger"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_rule_input",
@@ -990,37 +2094,90 @@
           "line": 71
         },
         {
+          "file": "Compiler.lean",
+          "line": 84
+        },
+        {
+          "file": "Compiler.lean",
+          "line": 117
+        },
+        {
+          "file": "Compiler.lean",
+          "line": 131
+        },
+        {
           "file": "Authorization.lean",
           "line": 61
         },
         {
-          "file": "Pipeline.lean",
-          "line": 148
+          "file": "Acceptance.lean",
+          "line": 289
         },
         {
           "file": "Acceptance.lean",
-          "line": 222
+          "line": 290
         },
         {
           "file": "Acceptance.lean",
-          "line": 223
+          "line": 291
         },
         {
           "file": "Acceptance.lean",
-          "line": 224
+          "line": 294
         },
         {
           "file": "Acceptance.lean",
-          "line": 227
-        },
-        {
-          "file": "Acceptance.lean",
-          "line": 228
+          "line": 295
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Compiler",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
+                "file": "Acceptance.lean",
+                "line": 243
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_incomplete_fuel_is_not_closure",
+                "file": "Acceptance.lean",
+                "line": 277
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_must_facts_closure_is_not_robust_closure",
+                "file": "Acceptance.lean",
+                "line": 288
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_missing_exception_is_not_positive_witness",
+                "file": "Acceptance.lean",
+                "line": 293
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Compiler.lean",
+          "line": 46,
+          "worktree_sha256": "ac71e467d016376f17a09bf274e0aeee82ba0ab12dae4654809d96bffe2fd823",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Representation",
+            "JurisLean.HornFixedPoint"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_rule_service",
@@ -1042,9 +2199,43 @@
           "line": 44
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "RSI",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
+                "file": "Acceptance.lean",
+                "line": 243
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n13_absent_is_not_half_probability",
+                "file": "Acceptance.lean",
+                "line": 340
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "RSI.lean",
+          "line": 39,
+          "worktree_sha256": "812e0d408424d4b7a532984f3f9412ab1e2dc63349d4c4f59976928292176d7e",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Policy"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_score",
@@ -1061,7 +2252,8 @@
       "consumer": null,
       "accept": [],
       "status": "UNLOCATED_IMPLEMENTATION",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": []
     },
     {
       "symbol": "proposed_source_reader",
@@ -1078,7 +2270,8 @@
       "consumer": null,
       "accept": [],
       "status": "UNLOCATED_IMPLEMENTATION",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": []
     },
     {
       "symbol": "proposed_source_view",
@@ -1101,12 +2294,56 @@
         },
         {
           "file": "Acceptance.lean",
-          "line": 217
+          "line": 284
         }
       ],
-      "accept": [],
+      "accept": [
+        {
+          "module": "Representation",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.a07_1_identity_observation_separates",
+                "file": "Acceptance.lean",
+                "line": 39
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_constant_family_not_separating",
+                "file": "Acceptance.lean",
+                "line": 33
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_retraction_need_not_encode_surjectively",
+                "file": "Acceptance.lean",
+                "line": 45
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_observation_wrong_relation",
+                "file": "Acceptance.lean",
+                "line": 283
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Representation.lean",
+          "line": 59,
+          "worktree_sha256": "7efed1d990620b372012b1fec4f26b797d448fb26fe69351200c2e3bb33029aa",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Interfaces"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     },
     {
       "symbol": "proposed_unit_counter",
@@ -1123,7 +2360,8 @@
       "consumer": null,
       "accept": [],
       "status": "UNLOCATED_IMPLEMENTATION",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": []
     },
     {
       "symbol": "proposed_win_model",
@@ -1144,7 +2382,91 @@
       "consumer": null,
       "accept": [],
       "status": "UNLOCATED_IMPLEMENTATION",
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": []
+    },
+    {
+      "symbol": "proposed_checked_rule_input",
+      "theory": [
+        "U03.1",
+        "U03.2"
+      ],
+      "baseline_825792b": "NEW",
+      "baseline_hits": [],
+      "basis": "Exact declaration name searched at the fixed baseline; semantic reuse is reported separately in baseline_reuse.json.",
+      "accept": [
+        {
+          "module": "Compiler",
+          "examples": {
+            "positive": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
+                "file": "Acceptance.lean",
+                "line": 243
+              }
+            ],
+            "negative": [
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_incomplete_fuel_is_not_closure",
+                "file": "Acceptance.lean",
+                "line": 277
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_must_facts_closure_is_not_robust_closure",
+                "file": "Acceptance.lean",
+                "line": 288
+              },
+              {
+                "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_missing_exception_is_not_positive_witness",
+                "file": "Acceptance.lean",
+                "line": 293
+              }
+            ],
+            "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+            "missing_selected_positive": false,
+            "missing_selected_negative": false
+          }
+        }
+      ],
+      "lean_target": [
+        "JurisLean.Candidates.Final20261021.Compiler.proposed_checked_rule_input"
+      ],
+      "consumer": [
+        {
+          "file": "Compiler.lean",
+          "line": 122
+        },
+        {
+          "file": "Compiler.lean",
+          "line": 124
+        },
+        {
+          "file": "Pipeline.lean",
+          "line": 246
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 278
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 280
+        }
+      ],
+      "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
+      "formal_ci": "CI_NOT_RUN",
+      "candidate_source_evidence": [
+        {
+          "file": "Compiler.lean",
+          "line": 115,
+          "worktree_sha256": "ac71e467d016376f17a09bf274e0aeee82ba0ab12dae4654809d96bffe2fd823",
+          "imports": [
+            "JurisLean.Candidates.Final20261021.Representation",
+            "JurisLean.HornFixedPoint"
+          ],
+          "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
+        }
+      ]
     }
   ]
 }

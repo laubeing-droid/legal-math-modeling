@@ -115,4 +115,42 @@ theorem u14_2_independent_cluster_upper_tail {Ω I : Type*} [MeasurableSpace Ω]
   Learning.u01_0_independent_bounded_upper_tail μ clusterSum (fun _ => 0)
     (fun i => (sizes i : ℝ)) clusters independent measurable bounded deviation positive
 
+theorem u14_2_independent_cluster_two_tail {Ω I : Type*} [MeasurableSpace Ω]
+    (μ : Measure Ω) [IsProbabilityMeasure μ] (clusterSum : I → Ω → ℝ)
+    (sizes : I → Nat) (clusters : Finset I) (independent : iIndepFun clusterSum μ)
+    (measurable : ∀ i ∈ clusters, AEMeasurable (clusterSum i) μ)
+    (bounded : ∀ i ∈ clusters, ∀ᵐ w ∂μ, clusterSum i w ∈ Set.Icc 0 (sizes i : ℝ))
+    (N : ℝ) (total : N = ∑ i ∈ clusters, (sizes i : ℝ)) (positiveN : 0 < N)
+    (ε : ℝ) (positive : 0 < ε) :
+    μ.real {w | ε ≤ |(∑ i ∈ clusters, (clusterSum i w - ∫ z, clusterSum i z ∂μ))/N|} ≤
+      2 * exp (-2*N^2*ε^2 / (∑ i ∈ clusters, (sizes i : ℝ)^2)) := by
+  have positiveSquares : 0 < ∑ i ∈ clusters, (sizes i : ℝ)^2 := by
+    have nonneg : 0 ≤ ∑ i ∈ clusters, (sizes i : ℝ)^2 :=
+      Finset.sum_nonneg (fun i _ => sq_nonneg (sizes i : ℝ))
+    by_contra notPositive
+    have zero : (∑ i ∈ clusters, (sizes i : ℝ)^2) = 0 := by linarith
+    have every := (Finset.sum_eq_zero_iff_of_nonneg
+      (fun i (_ : i ∈ clusters) => sq_nonneg (sizes i : ℝ))).mp zero
+    have totalZero : N = 0 := by
+      rw [total]
+      apply Finset.sum_eq_zero
+      intro i hi
+      have squareZero := every i hi
+      nlinarith
+    linarith
+  have bound := Learning.u01_0_independent_bounded_two_tail μ clusterSum (fun _ => 0)
+    (fun i => (sizes i : ℝ)) clusters independent measurable bounded
+    (by simpa using positiveSquares) (N*ε) (mul_pos positiveN positive)
+  have events : {w | ε ≤ |(∑ i ∈ clusters,
+        (clusterSum i w - ∫ z, clusterSum i z ∂μ))/N|} =
+      {w | N*ε ≤ |∑ i ∈ clusters, (clusterSum i w - ∫ z, clusterSum i z ∂μ)|} := by
+    ext w
+    simp only [Set.mem_setOf_eq, abs_div, abs_of_pos positiveN]
+    rw [le_div_iff₀ positiveN, mul_comm ε N]
+  rw [events]
+  simpa only [sub_zero, mul_pow, mul_assoc] using bound
+
+theorem u14_2_unequal_cluster_effective_size :
+    ((99+1 : ℚ)^2 / (99^2+1^2)) = 5000/4901 ∧ (5000/4901 : ℚ) ≠ 2 := by norm_num
+
 end JurisLean.Candidates.Final20261021.Feedback

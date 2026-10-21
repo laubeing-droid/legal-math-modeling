@@ -221,6 +221,80 @@ def commitPayment (prev : Handle) (req : PaymentRequest) : Receipt × Handle :=
   (receipt, ⟨prev.gamma, prev.revision + 1,
     { s with used := insert req.key s.used, receipts := s.receipts ++ [receipt] }⟩)
 
+def ReceiptArithmetic (r : Receipt) : Prop :=
+  r.afterRevision = r.beforeRevision + 1 ∧
+  r.beforeDebt = r.afterDebt + r.allocated ∧
+  r.payload.amount.value = r.allocated + r.remainder
+
+-- This is an independently checkable state invariant. Historical receipts are
+-- checked against their own transitions, not the current aggregate balance.
+def ReceiptCoherent (s : State) : Prop :=
+  (∀ key, key ∈ s.used ↔ ∃ r ∈ s.receipts, r.key = key) ∧
+  (∀ r ∈ s.receipts, ReceiptArithmetic r) ∧
+  (∀ r ∈ s.receipts, ∀ t ∈ s.receipts, r.key = t.key → r = t) ∧
+  (∀ r ∈ s.receipts,
+    (⟨r.payload.cashId, r.payload.source, r.payload.payer,
+      r.payload.payee, r.payload.amount⟩ : CashEvent) ∈ s.cash)
+
+theorem committed_receipt_arithmetic (prev : Handle) (req : PaymentRequest) :
+    ReceiptArithmetic (commitPayment prev req).1 := by
+  refine ⟨rfl, ?_, ?_⟩ <;> dsimp [commitPayment, performance, balance] <;> ring
+
+theorem commit_receipt_coherent (prev : Handle) (req : PaymentRequest)
+    (coherent : ReceiptCoherent prev.state) (unused : req.key ∉ prev.state.used) :
+    ReceiptCoherent (commitPayment prev req).2.state := by
+  rcases coherent with ⟨keys, arithmetic, unique, backed⟩
+  let receipt := (commitPayment prev req).1
+  have receiptKey : receipt.key = req.key := rfl
+  have fresh : ∀ r ∈ prev.state.receipts, r.key ≠ req.key := by
+    intro r hr same
+    exact unused ((keys req.key).mpr ⟨r, hr, same⟩)
+  refine ⟨?_, ?_, ?_, ?_⟩
+  · intro key
+    change key ∈ insert req.key prev.state.used ↔
+      ∃ r ∈ prev.state.receipts ++ [receipt], r.key = key
+    constructor
+    · intro used
+      rcases Finset.mem_insert.mp used with same | old
+      · exact ⟨receipt, List.mem_append.mpr (Or.inr (by simp)), receiptKey.trans same.symm⟩
+      · obtain ⟨r, hr, hk⟩ := (keys key).mp old
+        exact ⟨r, List.mem_append.mpr (Or.inl hr), hk⟩
+    · rintro ⟨r, hr, hk⟩
+      rcases List.mem_append.mp hr with old | new
+      · exact Finset.mem_insert.mpr (Or.inr ((keys key).mpr ⟨r, old, hk⟩))
+      · have same : r = receipt := List.mem_singleton.mp new
+        subst r
+        exact Finset.mem_insert.mpr (Or.inl (hk.symm.trans receiptKey))
+  · intro r hr
+    change r ∈ prev.state.receipts ++ [receipt] at hr
+    rcases List.mem_append.mp hr with old | new
+    · exact arithmetic r old
+    · have same : r = receipt := List.mem_singleton.mp new
+      subst r
+      exact committed_receipt_arithmetic prev req
+  · intro r hr t ht sameKey
+    change r ∈ prev.state.receipts ++ [receipt] at hr
+    change t ∈ prev.state.receipts ++ [receipt] at ht
+    rcases List.mem_append.mp hr with oldR | newR <;>
+      rcases List.mem_append.mp ht with oldT | newT
+    · exact unique r oldR t oldT sameKey
+    · have ht' : t = receipt := List.mem_singleton.mp newT
+      exact False.elim (fresh r oldR (sameKey.trans ((congrArg Receipt.key ht').trans receiptKey)))
+    · have hr' : r = receipt := List.mem_singleton.mp newR
+      exact False.elim (fresh t oldT (sameKey.symm.trans ((congrArg Receipt.key hr').trans receiptKey)))
+    · exact (List.mem_singleton.mp newR).trans (List.mem_singleton.mp newT).symm
+  · intro r hr
+    change r ∈ prev.state.receipts ++ [receipt] at hr
+    change (⟨r.payload.cashId, r.payload.source, r.payload.payer,
+      r.payload.payee, r.payload.amount⟩ : CashEvent) ∈ prev.state.cash ++
+      [⟨req.payload.cashId, req.payload.source, req.payload.payer,
+        req.payload.payee, req.payload.amount⟩]
+    rcases List.mem_append.mp hr with old | new
+    · exact List.mem_append.mpr (Or.inl (backed r old))
+    · have same : r = receipt := List.mem_singleton.mp new
+      subst r
+      exact List.mem_append.mpr (Or.inr (by simp [receipt, commitPayment]))
+
 inductive Submission where
   | submit | rejectedBeforeSubmit | unknownCommit
   deriving DecidableEq, Repr
@@ -326,6 +400,48 @@ theorem ready_requires_unused (prev previous_output_ref : Handle)
     req.key ∉ prev.state.used := by
   unfold validationError at ready
   split_ifs at ready <;> simp_all
+
+theorem ready_requires_actual_output (prev previous_output_ref : Handle)
+    (req : PaymentRequest) (permission : Bool)
+    (ready : validationError prev previous_output_ref req permission = none) :
+    previous_output_ref = prev := by
+  unfold validationError at ready
+  split_ifs at ready <;> simp_all
+
+theorem consume_committed_origin (prev previous_output_ref : Handle)
+    (req : PaymentRequest) (permission : Bool) (submission : Submission)
+    (r : Receipt) (post : Handle)
+    (success : consume_ext prev previous_output_ref req permission submission = .committed r post) :
+    submission = .submit ∧ lookupReceipt prev.state req.key = none ∧
+      validationError prev previous_output_ref req permission = none ∧
+      r = (commitPayment prev req).1 ∧ post = (commitPayment prev req).2 := by
+  cases hs : lookupReceipt prev.state req.key with
+  | some old =>
+      by_cases same : old.payload = req.payload <;>
+        simp [consume_ext, hs, same] at success
+  | none =>
+      cases submission with
+      | unknownCommit => simp [consume_ext, hs] at success
+      | rejectedBeforeSubmit => simp [consume_ext, hs] at success
+      | submit =>
+          cases he : validationError prev previous_output_ref req permission with
+          | some e => cases e <;> simp [consume_ext, hs, he] at success
+          | none =>
+              simp only [consume_ext, hs, he] at success
+              cases success
+              exact ⟨rfl, hs, he, rfl, rfl⟩
+
+theorem consume_committed_receipts (prev previous_output_ref : Handle)
+    (req : PaymentRequest) (permission : Bool) (submission : Submission)
+    (r : Receipt) (post : Handle) (coherent : ReceiptCoherent prev.state)
+    (success : consume_ext prev previous_output_ref req permission submission = .committed r post) :
+    ReceiptCoherent post.state ∧ ReceiptArithmetic r := by
+  obtain ⟨_, _, ready, hr, hp⟩ :=
+    consume_committed_origin prev previous_output_ref req permission submission r post success
+  rw [hp, hr]
+  exact ⟨commit_receipt_coherent prev req coherent
+    (ready_requires_unused prev previous_output_ref req permission ready),
+    committed_receipt_arithmetic prev req⟩
 
 theorem consume_success_is_gated (prev previous_output_ref : Handle)
     (req : PaymentRequest) (permission : Bool) (submission : Submission)
@@ -438,5 +554,55 @@ theorem baseline_afterStream (ps : List ℚ)
       (JurisLean.Seams.UnifiedQuantLedger.afterStream ps items) =
       max (JurisLean.Seams.UnifiedQuantLedger.outstanding items - ps.sum) 0 :=
   JurisLean.Seams.UnifiedQuantLedger.outstanding_afterStream ps items nonneg payments
+
+theorem balance_performance_clamp (s : State) (p : PaymentPayload) :
+    balance (performance s p) = max (balance s - p.amount.value) 0 := by
+  change balance s - min p.amount.value (balance s) = max (balance s - p.amount.value) 0
+  rcases le_total p.amount.value (balance s) with hp | hd
+  · rw [min_eq_left hp, max_eq_left (sub_nonneg.mpr hp)]
+  · rw [min_eq_right hd, sub_self, max_eq_right (sub_nonpos.mpr hd)]
+
+theorem u09_1_afterPayments_clamp (s : State) (ps : List PaymentPayload)
+    (nonneg : 0 ≤ balance s) (payments : ∀ p ∈ ps, 0 ≤ p.amount.value) :
+    balance (afterPayments s ps) = max (balance s - (ps.map fun p => p.amount.value).sum) 0 := by
+  induction ps generalizing s with
+  | nil => simp [afterPayments, max_eq_left nonneg]
+  | cons p ps ih =>
+      have tailNonneg : ∀ q ∈ ps, 0 ≤ q.amount.value :=
+        fun q hq => payments q (List.mem_cons_of_mem _ hq)
+      have mappedNonneg : ∀ q ∈ ps.map (fun p => p.amount.value), 0 ≤ q := by
+        intro q hq
+        obtain ⟨payload, hp, same⟩ := List.mem_map.mp hq
+        rw [← same]
+        exact tailNonneg payload hp
+      have nextNonneg : 0 ≤ balance (performance s p) := by
+        rw [balance_performance_clamp]
+        exact le_max_right _ _
+      change balance (afterPayments (performance s p) ps) = _
+      rw [ih (performance s p) nextNonneg tailNonneg, balance_performance_clamp]
+      simpa only [List.map_cons, List.sum_cons] using
+        JurisLean.Seams.UnifiedQuantLedger.clamp_clamp (balance s) p.amount.value
+          (ps.map fun p => p.amount.value).sum (List.sum_nonneg mappedNonneg)
+
+-- The only bridge premise is the initial quantitative projection. The final
+-- equality follows from two independent general list recursions; it is not
+-- assumed for each transition, and it supplies no legal-interpretation claim.
+theorem u09_1_scalar_vector_stream_refinement (s : State) (ps : List PaymentPayload)
+    (items : List JurisLean.Seams.UnifiedQuantLedger.LedgerItem)
+    (itemsNonneg : ∀ it ∈ items, 0 ≤ it.amount)
+    (paymentsNonneg : ∀ p ∈ ps, 0 ≤ p.amount.value)
+    (initialProjection : balance s = JurisLean.Seams.UnifiedQuantLedger.outstanding items) :
+    balance (afterPayments s ps) = JurisLean.Seams.UnifiedQuantLedger.outstanding
+      (JurisLean.Seams.UnifiedQuantLedger.afterStream (ps.map fun p => p.amount.value) items) := by
+  have mappedNonneg : ∀ q ∈ ps.map (fun p => p.amount.value), 0 ≤ q := by
+    intro q hq
+    obtain ⟨p, hp, same⟩ := List.mem_map.mp hq
+    rw [← same]
+    exact paymentsNonneg p hp
+  have nonneg : 0 ≤ balance s := by
+    rw [initialProjection]
+    exact JurisLean.Seams.UnifiedQuantLedger.outstanding_nonneg items itemsNonneg
+  rw [u09_1_afterPayments_clamp s ps nonneg paymentsNonneg,
+    baseline_afterStream _ items itemsNonneg mappedNonneg, initialProjection]
 
 end JurisLean.Candidates.Final20261021.Ledger

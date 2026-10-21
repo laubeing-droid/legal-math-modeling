@@ -8,6 +8,49 @@ namespace JurisLean.Candidates.Final20261021.Acceptance
 set_option maxRecDepth 4096
 set_option maxHeartbeats 800000
 
+def txRequest (_ : Nat) : Nat × ℚ := (1, 7)
+def txEval (before payment : ℚ) : Option (ℚ × ℚ) :=
+  some (max (before-payment) 0, min payment before)
+def txOpening : Transactions.Store ℚ ℚ ℚ := ⟨10, 0, fun _ => none, fun _ => false⟩
+def txCommitted : Transactions.Store ℚ ℚ ℚ :=
+  Transactions.commitStore txRequest txOpening 1 3 7
+
+theorem a02_transaction_actual_commit :
+    Transactions.Step txRequest txEval txOpening (.commit 1 1) txCommitted := by
+  apply Transactions.Step.commit txOpening 1 0 3 7 <;>
+    norm_num [txOpening, txRequest, txEval]
+
+theorem a02_transaction_actual_replay :
+    Transactions.Step txRequest txEval txCommitted (.replay 2 1) txCommitted := by
+  apply Transactions.Step.replay txCommitted 2 ⟨7, 1, 10, 3, 0, 1, 7⟩
+  · simp [txCommitted, Transactions.commitStore, txRequest, txOpening]
+  · rfl
+
+theorem n02_cancelled_attempt_no_commit (after : Transactions.Store ℚ ℚ ℚ) :
+    ¬ Transactions.Step txRequest txEval (Transactions.abortStore txOpening 2) (.commit 2 1) after := by
+  exact Transactions.cancelled_cannot_commit txRequest txEval 2 1 (by rfl)
+
+theorem n07_1_constant_family_not_separating :
+    ¬ Representation.Separates (fun _ : Unit => True) (fun _ (_ : Bool) => false) := by
+  intro separates
+  have impossible := separates false true (fun _ _ => rfl)
+  cases impossible
+
+theorem a07_1_identity_observation_separates :
+    Representation.Separates (fun _ : Bool => True) (fun observation (a : Bool) =>
+      if observation then a else false) := by
+  intro a b same
+  simpa using same true (by trivial)
+
+theorem n07_1_retraction_need_not_encode_surjectively :
+    (∀ x : Unit, (fun _ : Bool => ()) ((fun _ : Unit => false) x) = x) ∧
+      ¬ Function.Surjective (fun _ : Unit => false) := by
+  constructor
+  · intro x; cases x; rfl
+  · intro onto
+    obtain ⟨x, impossible⟩ := onto true
+    cases impossible
+
 def tag : AmountTag := ⟨"SYN", "unit", 0⟩
 def gamma : Gamma :=
   { caseId := ⟨1⟩, caseRevision := 0, evidenceVersion := 0, jurisdiction := "SYNTH",
@@ -33,6 +76,18 @@ def grant (p : PaymentPayload) : Authorization.Grant :=
 def grants : List Authorization.Grant := [grant (payload 1), grant (payload 2)]
 def post1 : Ledger.Handle := (Ledger.commitPayment opening (request 1)).2
 def post2 : Ledger.Handle := (Ledger.commitPayment post1 (request 2)).2
+
+theorem a_opening_invariant : Trace.Invariant opening := by
+  obtain ⟨numeric, cash, _, receipts⟩ := Trace.initial_invariant gamma debt (by decide)
+  exact ⟨numeric, cash, by decide, receipts⟩
+
+theorem a_two_actual_commits_preserve_receipts : Trace.Invariant post2 := by
+  have first : Trace.Invariant post1 := Trace.step_preserves
+    (Trace.u10_2_committed_executor_is_step opening opening (request 1) true .submit
+      (Ledger.commitPayment opening (request 1)).1 post1 (by decide)) a_opening_invariant
+  exact Trace.step_preserves
+    (Trace.u10_2_committed_executor_is_step post1 post1 (request 2) true .submit
+      (Ledger.commitPayment post1 (request 2)).1 post2 (by decide)) first
 
 theorem a_u09_continuous_10_7_7 :
     Ledger.balance post1.state = 3 ∧ Ledger.balance post2.state = 0 ∧
@@ -179,7 +234,7 @@ def input : Pipeline.Input :=
     fitExpected := fit, fitSupplied := fit,
     calibration := ⟨fit, 1, 0, 0, 0, [0]⟩, supported := true,
     alternatives := [alternative], utility := id, utilityVersion := 0, riskLimit := 1/10,
-    observation := ⟨⟨1⟩, ⟨2⟩, ⟨1⟩, 0, 0, ⟨30⟩, ⟨7⟩, none, some ⟨202⟩, ⟨203⟩⟩,
+    observation := ⟨⟨1⟩, ⟨2⟩, ⟨1⟩, 0, 0, ⟨30⟩, ⟨7⟩, some true, some ⟨202⟩, ⟨203⟩⟩,
     policy := ⟨gamma.caseId, 0, 0, 1/2, 1/2, 0, some ⟨204⟩⟩,
     oldModel := assessed 0 (1/2), candidate := assessed 1 0,
     secondCandidate := { assessed 2 0 with scope := { scope with target := 1 } },
@@ -212,6 +267,18 @@ theorem n_pipeline_target_mismatch :
 theorem n_pipeline_decision_payload_mismatch :
     (Pipeline.run { input with alternatives := [{ alternative with execution := [payload 1 9, payload 2] }] }).payment.exit
       = .rejected := by decide
+
+theorem n_pipeline_zero_balance_no_external_label :
+    let output := Pipeline.run { input with observation := { input.observation with outcome := none } }
+    output.payment.current.map (fun h => Ledger.balance h.state) = some 0 ∧
+      output.observation = .unknown .missingEvidence ∧
+      output.feedback = .unknown .missingEvidence ∧ output.modelAfterRounds = input.oldModel := by decide
+
+theorem n03_incomplete_fuel_is_not_closure :
+    Compiler.proposed_checked_rule_input [⟨[0], 1⟩, ⟨[1], 2⟩] 1 [0] =
+      .unknown .checkIncomplete ∧
+    Compiler.proposed_checked_rule_input [⟨[0], 1⟩, ⟨[1], 2⟩] 2 [0] =
+      .known [0, 1, 1, 2] := by decide
 
 theorem n07_observation_wrong_relation :
     Representation.proposed_source_view { view with observedRelation := ⟨2⟩ } =

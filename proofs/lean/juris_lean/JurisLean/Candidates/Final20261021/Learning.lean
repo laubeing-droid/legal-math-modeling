@@ -45,6 +45,65 @@ theorem subgaussian_two_tail {Ω : Type*} [MeasurableSpace Ω]
     _ ≤ μ.real {w | ε ≤ X w} + μ.real {w | ε ≤ -X w} := measureReal_union_le _ _
     _ ≤ 2 * exp (-ε^2 / (2 * (c : ℝ))) := by linarith
 
+theorem independent_bounded_sum_mgf {Ω I : Type*} [MeasurableSpace Ω]
+    (μ : Measure Ω) [IsProbabilityMeasure μ] (X : I → Ω → ℝ)
+    (a b : I → ℝ) (s : Finset I) (independent : iIndepFun X μ)
+    (measurable : ∀ i ∈ s, AEMeasurable (X i) μ)
+    (bounded : ∀ i ∈ s, ∀ᵐ w ∂μ, X i w ∈ Set.Icc (a i) (b i)) :
+    HasSubgaussianMGF (fun w => ∑ i ∈ s, (X i w - ∫ z, X i z ∂μ))
+      (∑ i ∈ s, (‖b i-a i‖₊/2)^2) μ := by
+  have hi : iIndepFun (fun i w => X i w - ∫ z, X i z ∂μ) μ :=
+    independent.comp (fun i x => x - ∫ z, X i z ∂μ)
+      (fun _ => measurable_id.sub measurable_const)
+  exact HasSubgaussianMGF.sum_of_iIndepFun hi
+    (fun i hi => u01_0_bounded_mgf μ (X i) (a i) (b i) (measurable i hi) (bounded i hi))
+
+theorem bounded_proxy_exact {I : Type*} (a b : I → ℝ) (s : Finset I) :
+    ((∑ i ∈ s, (‖b i-a i‖₊/2)^2 : ℝ≥0) : ℝ) =
+      (∑ i ∈ s, (b i-a i)^2) / 4 := by
+  have point (x : ℝ) : (((‖x‖₊/2)^2 : ℝ≥0) : ℝ) = x^2/4 := by
+    simp [div_pow, Real.norm_eq_abs, sq_abs]
+  simp only [NNReal.coe_sum]
+  simp_rw [point]
+  rw [Finset.sum_div]
+
+-- Both branches use the manuscript's strictly positive deviation threshold.
+-- In the zero-width branch, division by zero is not interpreted as a tail bound.
+theorem u01_0_independent_bounded_two_tail {Ω I : Type*} [MeasurableSpace Ω]
+    (μ : Measure Ω) [IsProbabilityMeasure μ] (X : I → Ω → ℝ)
+    (a b : I → ℝ) (s : Finset I) (independent : iIndepFun X μ)
+    (measurable : ∀ i ∈ s, AEMeasurable (X i) μ)
+    (bounded : ∀ i ∈ s, ∀ᵐ w ∂μ, X i w ∈ Set.Icc (a i) (b i))
+    (positiveWidth : 0 < ∑ i ∈ s, (b i-a i)^2) (t : ℝ) (ht : 0 < t) :
+    μ.real {w | t ≤ |∑ i ∈ s, (X i w - ∫ z, X i z ∂μ)|} ≤
+      2 * exp (-2*t^2 / (∑ i ∈ s, (b i-a i)^2)) := by
+  have bound := subgaussian_two_tail μ _ _
+    (independent_bounded_sum_mgf μ X a b s independent measurable bounded) t (le_of_lt ht)
+  rw [bounded_proxy_exact] at bound
+  have exponent : -t^2 / (2*((∑ i ∈ s, (b i-a i)^2)/4)) =
+      -2*t^2 / (∑ i ∈ s, (b i-a i)^2) := by
+    field_simp [ne_of_gt positiveWidth] <;> ring
+  rwa [exponent] at bound
+
+theorem u01_0_zero_width_tail {Ω I : Type*} [MeasurableSpace Ω]
+    (μ : Measure Ω) [IsProbabilityMeasure μ] (X : I → Ω → ℝ)
+    (a b : I → ℝ) (s : Finset I) (independent : iIndepFun X μ)
+    (measurable : ∀ i ∈ s, AEMeasurable (X i) μ)
+    (bounded : ∀ i ∈ s, ∀ᵐ w ∂μ, X i w ∈ Set.Icc (a i) (b i))
+    (zeroWidth : (∑ i ∈ s, (b i-a i)^2) = 0) (t : ℝ) (ht : 0 < t) :
+    μ.real {w | t ≤ |∑ i ∈ s, (X i w - ∫ z, X i z ∂μ)|} = 0 := by
+  have subG := independent_bounded_sum_mgf μ X a b s independent measurable bounded
+  have proxyZero : (∑ i ∈ s, (‖b i-a i‖₊/2)^2 : ℝ≥0) = 0 := by
+    exact_mod_cast (show ((∑ i ∈ s, (‖b i-a i‖₊/2)^2 : ℝ≥0) : ℝ) = 0 by
+      rw [bounded_proxy_exact, zeroWidth, zero_div])
+  rw [proxyZero] at subG
+  have zero := subG.ae_eq_zero_of_hasSubgaussianMGF_zero
+  have same : {w | t ≤ |∑ i ∈ s, (X i w - ∫ z, X i z ∂μ)|} =ᵐ[μ] (∅ : Set Ω) := by
+    filter_upwards [zero] with w hw
+    simp only [Pi.zero_apply] at hw
+    simp [hw, not_le_of_lt ht]
+  simpa using measureReal_congr same
+
 theorem u01_1_fixed_class_tail {Ω H : Type*} [MeasurableSpace Ω]
     (μ : Measure Ω) [IsProbabilityMeasure μ] (models : Finset H)
     (centered : H → Ω → ℝ) (c : H → ℝ≥0)

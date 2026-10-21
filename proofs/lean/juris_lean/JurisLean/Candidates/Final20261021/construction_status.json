@@ -1,0 +1,66 @@
+{
+  "baseline": "825792b83476a767152396d7f5e2ba3017048841",
+  "branch": "candidates/final20261021-825792b",
+  "sources": [
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\01_统一法律数学模型总稿.md",
+      "sha256": "eee9afb07d164c2b26bf9270a34c5866b14de4533d9e7f80c5b1a05e148935b5"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\02_50条覆盖与施工映射.md",
+      "sha256": "11152b3880532951ac20539f2d9473e5fe97b52e78e7078a4ae6531d4d0a4feb"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\03_ZCode全量施工包.md",
+      "sha256": "fded27b2eb941baff2a99edca81340c6e81a2d7ec8630cfdad1f69f1e44fe425"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\04_全阶段接口与连续消费.md",
+      "sha256": "51781802ac35ddeae493781a6d9dd9e4e76d9807a52c23a6e72312c61911d7ef"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\09_CI验收与授权边界.md",
+      "sha256": "20ef58cdbad14e53737b6edfc3a04616a7e76713fad91c53d3d5f5ac267adb99"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\13_原题逐问补正正文.md",
+      "sha256": "a6d03840173f58f4ad1822e100267472d1e78c7514b6c7d845da8a9e6a2cde71"
+    },
+    {
+      "path": "D:\\20261021挺进统一法律数学模型\\理论统稿与ZCode施工包_v003补齐来源版_20261021T091138Z_fd4965\\14_十五专题工程接线与验收规格.md",
+      "sha256": "2da0ff5446f5e2cff287237b394fbbee98b119edfceed747fa1039261d12d1f6"
+    }
+  ],
+  "required_order": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10
+  ],
+  "stage1": {
+    "mode": "changed-module",
+    "module": "JurisLean.Candidates.Final20261021.CIAll",
+    "status": "CI_NOT_RUN",
+    "authorization": "PENDING"
+  },
+  "stage2": {
+    "mode": "full-release",
+    "status": "CI_NOT_RUN",
+    "prerequisite": "stage1 PASS then root integration on a new head",
+    "authorization": "PENDING"
+  },
+  "open_excluded": [
+    "T113 exact original statement",
+    "exactly-once liveness and external effects",
+    "Dirty refinement",
+    "all Chinese statutes closed mapping"
+  ],
+  "local_lean_executed": false
+}

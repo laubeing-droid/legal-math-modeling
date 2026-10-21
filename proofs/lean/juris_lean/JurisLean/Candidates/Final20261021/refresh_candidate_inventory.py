@@ -153,7 +153,8 @@ def main():
                  remaining_obligations=GAPS[r["clause"]])
         rows.append(r)
     write("50_clause_status.json", {"baseline": old["baseline"],
-        "scope": "CANDIDATE_SOURCE_WITH_FROZEN_FULL_SCOPES_NOT_CLOSURE", "rows": rows})
+        "scope": "CANDIDATE_SOURCE_WITH_FROZEN_FULL_SCOPES_NOT_CLOSURE",
+        "ci_attempts": old.get("ci_attempts", []), "rows": rows})
 
     proposed = json.loads((HERE/"proposed_825792b.json").read_text(encoding="utf-8"))
     registered = {r["symbol"] for r in proposed["rows"]}

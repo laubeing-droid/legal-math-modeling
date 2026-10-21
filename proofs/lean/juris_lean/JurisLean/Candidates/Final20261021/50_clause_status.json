@@ -1,6 +1,28 @@
 {
   "baseline": "825792b83476a767152396d7f5e2ba3017048841",
   "scope": "CANDIDATE_SOURCE_WITH_FROZEN_FULL_SCOPES_NOT_CLOSURE",
+  "ci_attempts": [
+    {
+      "run_id": 39689061670,
+      "run_attempt": 1,
+      "subject": "ec24556d82e5c2a3a83b2eb4f5b356a168ad8790",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39689061670",
+      "mode": "changed-module",
+      "target": "JurisLean.Candidates.Final20261021.CIAll",
+      "status": "FAIL",
+      "failed_module": "JurisLean.Candidates.Final20261021.Compiler",
+      "checked_candidate_modules": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.Candidates.Final20261021.Transactions"
+      ],
+      "artifact": "evidence/ci-stage1-ec24556/changed-module-only-39689061670-1.zip",
+      "sha256": "2dfef73edd060ba0ee7b4f0cbdeab544edc296c1ade35eb6be8cdb96c67fe44b",
+      "axiom_audit": "NOT_REACHED",
+      "acceptance": "NOT_REACHED",
+      "does_not_close_full_scope": true
+    }
+  ],
   "rows": [
     {
       "clause": "U07.1",
@@ -148,7 +170,7 @@
             },
             {
               "file": "Compiler.lean",
-              "line": 131
+              "line": 132
             }
           ]
         },
@@ -159,7 +181,7 @@
           "consumers": [
             {
               "file": "Compiler.lean",
-              "line": 129
+              "line": 130
             }
           ]
         }
@@ -171,11 +193,11 @@
         },
         {
           "file": "Compiler.lean",
-          "line": 131
+          "line": 132
         },
         {
           "file": "Compiler.lean",
-          "line": 129
+          "line": 130
         }
       ],
       "original_mapping": "50条施工映射.json::U03.1",

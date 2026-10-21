@@ -122,6 +122,7 @@ theorem u03_2_checked_closure_complete (rules : List (Rule Nat))
     (checked : proposed_checked_rule_input rules fuel facts = .known known) (a : Nat) :
     a ∈ known ↔ Derives (· ∈ facts) (· ∈ rules) a := by
   unfold proposed_checked_rule_input at checked
+  dsimp only at checked
   split at checked
   next stable =>
     cases checked

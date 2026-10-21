@@ -52,9 +52,13 @@
   "stage1": {
     "mode": "changed-module",
     "module": "JurisLean.Candidates.Final20261021.CIAll",
-    "status": "CI_NOT_RUN",
-    "authorization": "PENDING_EXPLICIT_PER_ROUND_AUTHORIZATION",
-    "purpose": "Compile and audit the partial candidate, not certify complete mathematical coverage"
+    "status": "FAILED_AT_TESTED_HEAD",
+    "authorization": "FIRST_ROUND_USED; NEXT_HEAD_PENDING",
+    "purpose": "Compile and audit the partial candidate, not certify complete mathematical coverage",
+    "tested_subject": "ec24556d82e5c2a3a83b2eb4f5b356a168ad8790",
+    "run_id": 39689061670,
+    "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39689061670",
+    "current_candidate_ci": "CI_NOT_RUN"
   },
   "stage2": {
     "mode": "full-release",
@@ -151,7 +155,28 @@
     9
   ],
   "stage10": "NOT_STARTED",
-  "ci_artifacts": [],
+  "ci_artifacts": [
+    {
+      "run_id": 39689061670,
+      "run_attempt": 1,
+      "subject": "ec24556d82e5c2a3a83b2eb4f5b356a168ad8790",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39689061670",
+      "mode": "changed-module",
+      "target": "JurisLean.Candidates.Final20261021.CIAll",
+      "status": "FAIL",
+      "failed_module": "JurisLean.Candidates.Final20261021.Compiler",
+      "checked_candidate_modules": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.Candidates.Final20261021.Transactions"
+      ],
+      "artifact": "evidence/ci-stage1-ec24556/changed-module-only-39689061670-1.zip",
+      "sha256": "2dfef73edd060ba0ee7b4f0cbdeab544edc296c1ade35eb6be8cdb96c67fe44b",
+      "axiom_audit": "NOT_REACHED",
+      "acceptance": "NOT_REACHED",
+      "does_not_close_full_scope": true
+    }
+  ],
   "blockers": [
     {
       "kind": "MATHEMATICAL_IMPLEMENTATION",
@@ -159,7 +184,7 @@
     },
     {
       "kind": "LEAN_AUTHORITY",
-      "detail": "No Lean execution locally. Both CI stages and same-head raw CI artifacts are absent until explicitly authorized rounds run."
+      "detail": "Run 39689061670 failed in Compiler on ec24556. The local proof fix and remaining candidate modules await a separately authorized changed-module round; full-release has not run."
     },
     {
       "kind": "STAGE2_SCOPE",
@@ -179,5 +204,27 @@
     "release_diagnostics": "BLOCKED: root promotion pending and kernel_reuse_report stale",
     "formal_ci": "CI_NOT_RUN",
     "ci_artifacts": []
-  }
+  },
+  "ci_attempts": [
+    {
+      "run_id": 39689061670,
+      "run_attempt": 1,
+      "subject": "ec24556d82e5c2a3a83b2eb4f5b356a168ad8790",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39689061670",
+      "mode": "changed-module",
+      "target": "JurisLean.Candidates.Final20261021.CIAll",
+      "status": "FAIL",
+      "failed_module": "JurisLean.Candidates.Final20261021.Compiler",
+      "checked_candidate_modules": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.Candidates.Final20261021.Transactions"
+      ],
+      "artifact": "evidence/ci-stage1-ec24556/changed-module-only-39689061670-1.zip",
+      "sha256": "2dfef73edd060ba0ee7b4f0cbdeab544edc296c1ade35eb6be8cdb96c67fe44b",
+      "axiom_audit": "NOT_REACHED",
+      "acceptance": "NOT_REACHED",
+      "does_not_close_full_scope": true
+    }
+  ]
 }

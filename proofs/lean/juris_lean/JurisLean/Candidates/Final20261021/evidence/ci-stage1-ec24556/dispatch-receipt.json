@@ -1,0 +1,40 @@
+{
+  "authorization": "User explicitly authorized push of this head and dispatch of this mode/target in the current turn.",
+  "subject": "ec24556d82e5c2a3a83b2eb4f5b356a168ad8790",
+  "branch": "candidates/final20261021-825792b",
+  "remote_head_after_push": "ec24556d82e5c2a3a83b2eb4f5b356a168ad8790\trefs/heads/candidates/final20261021-825792b",
+  "command": [
+    "gh",
+    "workflow",
+    "run",
+    "lean-build.yml",
+    "--repo",
+    "laubeing-droid/legal-math-modeling",
+    "--ref",
+    "candidates/final20261021-825792b",
+    "-f",
+    "mode=changed-module",
+    "-f",
+    "module=JurisLean.Candidates.Final20261021.CIAll"
+  ],
+  "started_utc": "2026-10-21T22:47:48.430765+00:00",
+  "ended_utc": "2026-10-21T22:47:51.546223+00:00",
+  "exit_code": 0,
+  "status": "COMPLETED_FAILURE",
+  "stage2": "CI_NOT_RUN",
+  "run_id": 39689061670,
+  "run_attempt": 1,
+  "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39689061670",
+  "head_sha_verified": true,
+  "conclusion": "failure",
+  "artifact_id": 12387428237,
+  "artifact_name": "changed-module-only-39689061670-1",
+  "artifact_sha256": "2dfef73edd060ba0ee7b4f0cbdeab544edc296c1ade35eb6be8cdb96c67fe44b",
+  "artifact_digest_verified": true,
+  "failed_module": "JurisLean.Candidates.Final20261021.Compiler",
+  "checked_candidate_modules": [
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "JurisLean.Candidates.Final20261021.Representation",
+    "JurisLean.Candidates.Final20261021.Transactions"
+  ]
+}

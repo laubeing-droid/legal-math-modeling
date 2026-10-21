@@ -46,7 +46,7 @@ structure State where
   refundCash : List CashEvent
   normHistory : List Temporal.VersionRecord
   env : Result Nat
-  deriving DecidableEq, Repr
+  deriving DecidableEq
 
 abbrev Handle := PostStateHandle State
 
@@ -306,7 +306,7 @@ inductive Outcome where
   | conflict (registered requested : PaymentPayload)
   | unknownCommit (key : PaymentId) (attempt : AttemptId)
   | pending (reason : Error)
-  deriving DecidableEq, Repr
+  deriving DecidableEq
 
 def Outcome.post (before : Handle) : Outcome → Option Handle
   | .committed _ h => some h
@@ -367,7 +367,8 @@ theorem u09_zero_pay_yes_in_U (prev : Handle) (req : PaymentRequest)
     balance (commitPayment prev req).2.state = balance prev.state := by
   constructor
   · exact (u09_writeU_on_committed_applicable prev req).1
-  · simp [commitPayment, performance, balance, zero, min_eq_left hd]
+  · change balance prev.state - min req.payload.amount.value (balance prev.state) = balance prev.state
+    rw [zero, min_eq_left hd, sub_zero]
 
 theorem u09_unknown_has_no_certain_poststate (prev previous_output_ref : Handle)
     (req : PaymentRequest) (permission : Bool)
@@ -391,22 +392,27 @@ theorem ready_requires_identity_and_applicability (prev previous_output_ref : Ha
     (ready : validationError prev previous_output_ref req permission = none) :
     req.applicable = .yes ∧ req.interpretedPayment = some req.key ∧
     0 ≤ req.payload.amount.value := by
-  cases hA : req.applicable <;>
-    unfold validationError at ready <;> split_ifs at ready <;> simp_all
+  unfold validationError at ready
+  split_ifs at ready <;> simp only [reduceCtorEq] at ready
+  refine ⟨?_, not_ne_iff.mp ‹¬ req.interpretedPayment ≠ some req.key›,
+    le_of_not_gt ‹¬ req.payload.amount.value < 0›⟩
+  cases hA : req.applicable <;> simp_all only [reduceCtorEq]
 
 theorem ready_requires_unused (prev previous_output_ref : Handle)
     (req : PaymentRequest) (permission : Bool)
     (ready : validationError prev previous_output_ref req permission = none) :
     req.key ∉ prev.state.used := by
   unfold validationError at ready
-  split_ifs at ready <;> simp_all
+  split_ifs at ready <;> simp only [reduceCtorEq] at ready
+  exact ‹req.key ∉ prev.state.used›
 
 theorem ready_requires_actual_output (prev previous_output_ref : Handle)
     (req : PaymentRequest) (permission : Bool)
     (ready : validationError prev previous_output_ref req permission = none) :
     previous_output_ref = prev := by
   unfold validationError at ready
-  split_ifs at ready <;> simp_all
+  split_ifs at ready <;> simp only [reduceCtorEq] at ready
+  exact not_ne_iff.mp ‹¬ previous_output_ref ≠ prev›
 
 theorem consume_committed_origin (prev previous_output_ref : Handle)
     (req : PaymentRequest) (permission : Bool) (submission : Submission)
@@ -429,7 +435,7 @@ theorem consume_committed_origin (prev previous_output_ref : Handle)
           | none =>
               simp only [consume_ext, hs, he] at success
               cases success
-              exact ⟨rfl, hs, he, rfl, rfl⟩
+              exact ⟨rfl, rfl, rfl, rfl, rfl⟩
 
 theorem consume_committed_receipts (prev previous_output_ref : Handle)
     (req : PaymentRequest) (permission : Bool) (submission : Submission)
@@ -499,8 +505,8 @@ def RestPay (s : State) (event : CashEvent) : Result State :=
         event.payee ≠ r.creditor ∨ event.amount.value < 0 then .rejected .unitBindingMissing
       else if (s.cash ++ s.refundCash).any (fun e => e.id == event.id) then .rejected .duplicateCash
       else .known { s with
-        rest := some { r with amount := { r.amount with value :=
-          r.amount.value - min event.amount.value r.amount.value } }
+        rest := some { r with
+          amount := { r.amount with value := r.amount.value - min event.amount.value r.amount.value } },
         refundCash := s.refundCash ++ [event] }
 
 theorem rest_claim_no_cash (s : State) (w : RestClaimWitness) (after : State)

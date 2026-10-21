@@ -1,8 +1,8 @@
 # Final20261021 候选施工检查点
 
-状态：**PARTIAL_SOURCE_CANDIDATE / CI_NOT_RUN**。本目录已有批次 0–9 的候选源码；尚未完成冻结理论的全部证明和接线，也未开始批次 10。当前不能宣称本任务完成。
+状态：**PARTIAL_SOURCE_CANDIDATE / CHANGED_MODULE_CI_RUNNING**。本目录已有批次 0–9 的候选源码；尚未完成冻结理论的全部证明和接线，也未开始批次 10。当前不能宣称本任务完成。
 
-基线固定为 `825792b83476a767152396d7f5e2ba3017048841`，候选分支为 `candidates/final20261021-825792b`。第一轮已获授权并实际执行，run `39689061670` 在 `ec24556d82e5c2a3a83b2eb4f5b356a168ad8790` 上失败；原始日志、原始 ZIP、GitHub 元数据和散列核验见 `evidence/ci-stage1-ec24556/`。修复候选尚未经过第二轮 CI。各份本地检查均有独立源提交绑定，不互相冒充。
+基线固定为 `825792b83476a767152396d7f5e2ba3017048841`，候选分支为 `candidates/final20261021-825792b`。第一轮已获授权并实际执行，run `39689061670` 在 `ec24556d82e5c2a3a83b2eb4f5b356a168ad8790` 上失败；原始日志、原始 ZIP、GitHub 元数据和散列核验见 `evidence/ci-stage1-ec24556/`。第二轮 run `39693498976` 在 `8156cdaf4cf166940da1688e220828334f8477b5` 上通过 Compiler、Harness 后，于 Temporal 的 Decidable 合成处失败，原始工件见 `evidence/ci-stage1-8156cda/`。第三轮 run `39694003524` 正在测试等价显式区间实现，subject 为 `019544b0f20f9cf0a86ed1604e35420738de834b`。用户于 2026-10-22 授予连续 CI 修复、推送与派发授权。各份本地检查均有独立源提交绑定，不互相冒充。
 
 ## 逐模块与逐条复核入口
 
@@ -48,15 +48,15 @@ GitHub 验证的实际 head 与授权 head 一致。目标计划确认为 `Juris
 
 唯一报告的候选编译错误为 `Compiler.lean:125:2`：`unfold proposed_checked_rule_input` 留下局部 `let known`，随后的 `split at checked` 无法直接拆解。修复只增加 `dsimp only at checked`，先展开局部绑定，再沿原条件和原语义完备性命题证明；未改定理签名、前提、结论或运行函数。
 
-原始工件 `changed-module-only-39689061670-1.zip` 的 SHA256 为 `2dfef73edd060ba0ee7b4f0cbdeab544edc296c1ade35eb6be8cdb96c67fe44b`，已与 GitHub 元数据核对。修复本身未获 Lean 验证，须新一轮授权 push/dispatch；未重复派发旧 head。
+原始工件 `changed-module-only-39689061670-1.zip` 的 SHA256 为 `2dfef73edd060ba0ee7b4f0cbdeab544edc296c1ade35eb6be8cdb96c67fe44b`，已与 GitHub 元数据核对。这一 Compiler 修复已由第二轮正式 CI 构建通过；CIAll 整体尚未通过。后续按连续 CI 授权推进，不重复派发旧 head。
 
 ## 必需工作与阻塞
 
 完整 Beta 共轭与预测、全坐标 ridge logistic 极小值存在唯一、交换秩保形覆盖、一般可测分布 TV、条件测度/自适应预算、完整序贯政策、博弈背景与全路线精化等仍未闭合。**这些仍是任务义务，未移出验收。** 逐条缺口以 50 条表为准。
 
-第一阶段首轮已执行并失败。修复候选需获下一轮明确授权后 push/dispatch，目标仍为 `JurisLean.Candidates.Final20261021.CIAll`；即使后续绿，也不代表上述数学义务完成。
+第一阶段正在连续修复并派发，目标为 `JurisLean.Candidates.Final20261021.CIAll`；即使该目标绿，也不代表上述数学义务完成。失败轮次、源 head 与原始工件逐轮保存。
 
-第二阶段必须等第一阶段绿，接根后形成新 head，再另获该轮授权并跑 full-release。只读预检发现 `docs/formal-release/kernel_reuse_report.json` 将需要重生成；它位于当前仅允许候选目录落笔的范围外，未擅自修改。这个范围冲突尚待解决，当前未尝试接根。
+第二阶段必须等第一阶段绿，接根后形成新 head，再按连续授权跑 full-release。现有 release 门禁的派生账本需要同步。具体接根与账本差异已准备在 `evidence/release-scope-proposal/outside-candidate-proposal.diff`，只在候选目录保存预案；目录外的账本范围尚待授权。未改任何 Lake、workflow、门禁配置或新建 lean_lib。
 
 合成 Python 合同测试保存在本候选目录。现有 workflow 的 `tests/` 收集范围不会包含它，故其正式 Python CI 覆盖仍为 `NOT_RUN`。没有借修改 workflow、Lake 或根目录测试入口绕过此限制。
 

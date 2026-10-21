@@ -55,9 +55,9 @@
     "status": "FAILED_AT_TESTED_HEAD",
     "authorization": "CONTINUOUS_CI_AUTHORIZED_2026-10-22",
     "purpose": "Compile and audit the partial candidate, not certify complete mathematical coverage",
-    "tested_subject": "8156cdaf4cf166940da1688e220828334f8477b5",
-    "run_id": 39693498976,
-    "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39693498976",
+    "tested_subject": "019544b0f20f9cf0a86ed1604e35420738de834b",
+    "run_id": 39694003524,
+    "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39694003524",
     "current_candidate_ci": "CI_NOT_RUN"
   },
   "stage2": {
@@ -184,7 +184,7 @@
     },
     {
       "kind": "LEAN_AUTHORITY",
-      "detail": "Run 39693498976 passed Compiler and Harness, then failed Decidable synthesis in Temporal. The equivalent explicit interval Bool implementation awaits the next continuously authorized CI round."
+      "detail": "Run 39694003524 reached Ledger after passing Temporal, EvidenceProcedure, Authorization, Progress. Ledger proof elaboration, unsafe diagnostic Repr derivation and one record update syntax are repaired for the next continuously authorized CI round; mathematical statements are unchanged."
     },
     {
       "kind": "STAGE2_SCOPE",
@@ -244,6 +244,32 @@
       ],
       "artifact": "evidence/ci-stage1-8156cda/changed-module-only-39693498976-1.zip",
       "sha256": "eeca2015530ffdc07c521d690a7914f391fd7fe1ff949ebb96165d2764e7e4cb",
+      "axiom_audit": "NOT_REACHED",
+      "acceptance": "NOT_REACHED",
+      "does_not_close_full_scope": true
+    },
+    {
+      "run_id": 39694003524,
+      "run_attempt": 1,
+      "subject": "019544b0f20f9cf0a86ed1604e35420738de834b",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39694003524",
+      "mode": "changed-module",
+      "target": "JurisLean.Candidates.Final20261021.CIAll",
+      "status": "FAIL",
+      "failed_module": "JurisLean.Candidates.Final20261021.Ledger",
+      "checked_candidate_modules": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Transactions",
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.Candidates.Final20261021.Compiler",
+        "JurisLean.Candidates.Final20261021.Harness",
+        "JurisLean.Candidates.Final20261021.Temporal",
+        "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+        "JurisLean.Candidates.Final20261021.Authorization",
+        "JurisLean.Candidates.Final20261021.Progress"
+      ],
+      "artifact": "evidence/ci-stage1-019544b/changed-module-only-39694003524-1.zip",
+      "sha256": "8c0a484535a6e218b5c7cb8fc859b17de1a4391a5636440389992cffcecb235f",
       "axiom_audit": "NOT_REACHED",
       "acceptance": "NOT_REACHED",
       "does_not_close_full_scope": true

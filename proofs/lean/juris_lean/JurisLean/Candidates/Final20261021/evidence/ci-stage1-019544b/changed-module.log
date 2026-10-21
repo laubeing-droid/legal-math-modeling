@@ -1,0 +1,427 @@
+✔ [8475/8506] Built JurisLean.FiniteMonotoneIteration (2.9s)
+✔ [8476/8506] Built JurisLean.HornDefinitions (2.3s)
+✔ [8477/8506] Built JurisLean.FullMath.Core.Foundations (5.1s)
+✔ [8478/8506] Built JurisLean.Candidates.Final20261021.Interfaces (7.1s)
+✔ [8479/8506] Built JurisLean.HornFixedPoint (2.9s)
+⚠ [8480/8506] Built JurisLean.FullMath.Numeric.Quantities (5.6s)
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8481/8506] Built JurisLean.FullMath.Numeric.Intervals (5.7s)
+✔ [8482/8506] Built JurisLean.Candidates.Final20261021.Transactions (5.5s)
+✔ [8483/8506] Built JurisLean.Candidates.Final20261021.Representation (5.3s)
+✔ [8484/8506] Built JurisLean.Seams.UnifiedQuantities (4.3s)
+✔ [8485/8506] Built JurisLean.Candidates.Final20261021.Compiler (3.8s)
+✔ [8486/8506] Built JurisLean.Candidates.Final20261021.Harness (4.3s)
+✔ [8487/8506] Built JurisLean.Seams.UnifiedQuantLedger (6.4s)
+✔ [8488/8506] Built JurisLean.Candidates.Final20261021.Temporal (3.7s)
+✔ [8489/8506] Built JurisLean.Candidates.Final20261021.EvidenceProcedure (3.7s)
+✔ [8490/8506] Built JurisLean.Candidates.Final20261021.Authorization (3.6s)
+✔ [8491/8506] Built JurisLean.Candidates.Final20261021.Progress (3.5s)
+✖ [8492/8506] Building JurisLean.Candidates.Final20261021.Ledger (18s)
+trace: .> LEAN_PATH=/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/lean /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean -o /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Ledger.olean -i /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Ledger.ilean -c /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Ledger.c --setup /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Ledger.setup.json --json
+error: JurisLean/Candidates/Final20261021/Ledger.lean:49:24: (kernel) invalid declaration, it uses unsafe declaration 'Finset.instRepr'
+error: JurisLean/Candidates/Final20261021/Ledger.lean:49:24: failed to compile definition, compiler IR check failed at `JurisLean.Candidates.Final20261021.Ledger.instReprState._closed_0`. Error: unknown join point 'block_0'
+info: JurisLean/Candidates/Final20261021/Ledger.lean:49:24: PANIC at _private.Lean.Compiler.LCNF.ExplicitBoxing.0.Lean.Compiler.LCNF.Code.explicitBoxing.tryCorrectLetDeclType Lean.Compiler.LCNF.ExplicitBoxing:301:45: unreachable code has been reached
+backtrace:
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85c6785) [0x742aa67c6785]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85bdb27) [0x742aa67bdb27]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(lean_panic_fn_borrowed+0x2b) [0x742aa67bdc0b]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(panic spec at Lean.Compiler.LCNF.Code.explicitBoxing.tryCorrectLetDeclType+0x6d2) [0x742aa62a56f2]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Code.explicitBoxing.tryCorrectLetDeclType [private]+0x521) [0x742aa62a6001]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Code.explicitBoxing.visitLet [private]+0x78) [0x742aa62a88c8]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Code.explicitBoxing [private]+0x9c) [0x742aa62ab7cc]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.foldlMUnsafe.fold [private] spec at Lean.Compiler.LCNF.run+0x33a) [0x742aa62af4ba]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.run [private]+0x45) [0x742aa62afbd5]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.run [boxed, private]+0x1d) [0x742aa62afc7d]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/6>+0x1a6) [0x742aa67d15b6]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.forIn'Unsafe.loop [λ, private] spec at Lean.Compiler.LCNF.PassManager.run.runPassManagerPart+0x88) [0x742aa5f7c1a8]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.forIn'Unsafe.loop [private] spec at Lean.Compiler.LCNF.PassManager.run.runPassManagerPart+0x2e8) [0x742aa5f7e648]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run.runPassManagerPart [λ, private]+0x2e) [0x742aa5f7fdfe]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run.runPassManagerPart [boxed, λ, private]+0x77) [0x742aa5f801e7]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0xf02) [0x742aa67ca372]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.profileitIOUnsafe [λ, arity↓]+0xb) [0x742aa6415adb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0xb53) [0x742aa67c9fc3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0xb53) [0x742aa67c9fc3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(lean_profileit+0x83) [0x742aa679b1f3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.profileitIOUnsafe [arity↓]+0x82) [0x742aa6415c92]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.forIn'Unsafe.loop [private] spec at Lean.Compiler.LCNF.PassManager.run+0x18b) [0x742aa5f838bb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run+0x16a3) [0x742aa5f87eb3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run [boxed]+0x1d) [0x742aa5f885bd]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/5>+0xa0c) [0x742aa67d076c]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.CompilerM.run [arity↓]+0xb5) [0x742aa4649415]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.main [boxed]+0xf) [0x742aa5f8b3af]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/4>+0x160) [0x742aa67ce6a0]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls.doCompile [λ, private]+0xfd) [0x742aa43cf4dd]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls.doCompile [boxed, λ, private]+0x15) [0x742aa43cf815]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x8ff) [0x742aa67cd4af]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.withExporting [arity↓] spec at Lean.withoutExporting spec at Lean.compileDecls.doCompile+0x2d8) [0x742aa43cfe78]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls [λ]+0x41) [0x742aa43d21d1]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls [boxed, λ]+0x24) [0x742aa43d24a4]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/4>+0x114e) [0x742aa67cf68e]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [λ, arity↓]+0x44e) [0x742aa43c81ae]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStderr [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x52) [0x742aa43c8fb2]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStderr [boxed] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x1b) [0x742aa43c930b]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStdout [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x52) [0x742aa43c98e2]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStdout [boxed] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x1b) [0x742aa43c9c3b]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStdin [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x52) [0x742aa43c9492]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.FS.withIsolatedStreams [arity↓] spec at Lean.Core.wrapAsyncAsSnapshot+0x106) [0x742aa43c9da6]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [boxed, λ, arity↓]+0x7d) [0x742aa43ca24d]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/4>+0x1184) [0x742aa67cf6c4]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsync [boxed, λ, arity↓]+0x34) [0x742aa43bd6f4]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.withCurrHeartbeats [arity↓] spec at Lean.Core.wrapAsync+0x6) [0x742aa43bd496]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsync [λ, arity↓]+0x462) [0x742aa43bdb92]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsync [boxed, λ, arity↓]+0x6a) [0x742aa43bde5a]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/2>+0x2e5) [0x742aa67cb165]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [λ, arity↓]+0x1b) [0x742aa43ca2cb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [boxed, λ, arity↓]+0x9) [0x742aa43ca539]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/2>+0x1273) [0x742aa67cc0f3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85e33bb) [0x742aa67e33bb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0x1204) [0x742aa67ca674]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0x119f) [0x742aa67ca60f]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85c7cf8) [0x742aa67c7cf8]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85c8fe1) [0x742aa67c8fe1]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85bbb05) [0x742aa67bbb05]
+/usr/lib/x86_64-linux-gnu/libc.so.6(+0xabe6b) [0x742a9deabe6b]
+/usr/lib/x86_64-linux-gnu/libc.so.6(+0x13f55c) [0x742a9df3f55c]
+PANIC at _private.Lean.Compiler.LCNF.ExplicitBoxing.0.Lean.Compiler.LCNF.Code.explicitBoxing.visitLet Lean.Compiler.LCNF.ExplicitBoxing:336:45: unreachable code has been reached
+backtrace:
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85c6785) [0x742aa67c6785]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85bdb27) [0x742aa67bdb27]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(lean_panic_fn_borrowed+0x2b) [0x742aa67bdc0b]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(panic spec at Lean.Compiler.LCNF.Code.explicitBoxing.visitLet+0x6de) [0x742aa62a6f1e]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Code.explicitBoxing.visitLet [private]+0x4b2) [0x742aa62a8d02]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Code.explicitBoxing [private]+0x9c) [0x742aa62ab7cc]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.foldlMUnsafe.fold [private] spec at Lean.Compiler.LCNF.run+0x33a) [0x742aa62af4ba]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.run [private]+0x45) [0x742aa62afbd5]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.run [boxed, private]+0x1d) [0x742aa62afc7d]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/6>+0x1a6) [0x742aa67d15b6]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.forIn'Unsafe.loop [λ, private] spec at Lean.Compiler.LCNF.PassManager.run.runPassManagerPart+0x88) [0x742aa5f7c1a8]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.forIn'Unsafe.loop [private] spec at Lean.Compiler.LCNF.PassManager.run.runPassManagerPart+0x2e8) [0x742aa5f7e648]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run.runPassManagerPart [λ, private]+0x2e) [0x742aa5f7fdfe]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run.runPassManagerPart [boxed, λ, private]+0x77) [0x742aa5f801e7]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0xf02) [0x742aa67ca372]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.profileitIOUnsafe [λ, arity↓]+0xb) [0x742aa6415adb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0xb53) [0x742aa67c9fc3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0xb53) [0x742aa67c9fc3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(lean_profileit+0x83) [0x742aa679b1f3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.profileitIOUnsafe [arity↓]+0x82) [0x742aa6415c92]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.forIn'Unsafe.loop [private] spec at Lean.Compiler.LCNF.PassManager.run+0x18b) [0x742aa5f838bb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run+0x16a3) [0x742aa5f87eb3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run [boxed]+0x1d) [0x742aa5f885bd]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/5>+0xa0c) [0x742aa67d076c]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.CompilerM.run [arity↓]+0xb5) [0x742aa4649415]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.main [boxed]+0xf) [0x742aa5f8b3af]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/4>+0x160) [0x742aa67ce6a0]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls.doCompile [λ, private]+0xfd) [0x742aa43cf4dd]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls.doCompile [boxed, λ, private]+0x15) [0x742aa43cf815]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x8ff) [0x742aa67cd4af]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.withExporting [arity↓] spec at Lean.withoutExporting spec at Lean.compileDecls.doCompile+0x2d8) [0x742aa43cfe78]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls [λ]+0x41) [0x742aa43d21d1]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls [boxed, λ]+0x24) [0x742aa43d24a4]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/4>+0x114e) [0x742aa67cf68e]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [λ, arity↓]+0x44e) [0x742aa43c81ae]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStderr [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x52) [0x742aa43c8fb2]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStderr [boxed] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x1b) [0x742aa43c930b]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStdout [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x52) [0x742aa43c98e2]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStdout [boxed] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x1b) [0x742aa43c9c3b]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStdin [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x52) [0x742aa43c9492]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.FS.withIsolatedStreams [arity↓] spec at Lean.Core.wrapAsyncAsSnapshot+0x106) [0x742aa43c9da6]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [boxed, λ, arity↓]+0x7d) [0x742aa43ca24d]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/4>+0x1184) [0x742aa67cf6c4]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsync [boxed, λ, arity↓]+0x34) [0x742aa43bd6f4]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.withCurrHeartbeats [arity↓] spec at Lean.Core.wrapAsync+0x6) [0x742aa43bd496]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsync [λ, arity↓]+0x462) [0x742aa43bdb92]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsync [boxed, λ, arity↓]+0x6a) [0x742aa43bde5a]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/2>+0x2e5) [0x742aa67cb165]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [λ, arity↓]+0x1b) [0x742aa43ca2cb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [boxed, λ, arity↓]+0x9) [0x742aa43ca539]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/2>+0x1273) [0x742aa67cc0f3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85e33bb) [0x742aa67e33bb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0x1204) [0x742aa67ca674]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0x119f) [0x742aa67ca60f]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85c7cf8) [0x742aa67c7cf8]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85c8fe1) [0x742aa67c8fe1]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85bbb05) [0x742aa67bbb05]
+/usr/lib/x86_64-linux-gnu/libc.so.6(+0xabe6b) [0x742a9deabe6b]
+/usr/lib/x86_64-linux-gnu/libc.so.6(+0x13f55c) [0x742a9df3f55c]
+PANIC at Std.DTreeMap.Internal.Impl.Const.get! Std.Data.DTreeMap.Internal.Queries:227:13: Key is not present in map
+backtrace:
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85c6785) [0x742aa67c6785]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85bdb27) [0x742aa67bdb27]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(lean_panic_fn_borrowed+0x2b) [0x742aa67bdc0b]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Code.explicitRc [private]+0x617) [0x742aa62cfd47]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Decl.explicitRc.go [private]+0xc9) [0x742aa62d2e19]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Decl.explicitRc [λ, private]+0x1da) [0x742aa62d380a]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Decl.explicitRc [boxed, λ, private]+0x28) [0x742aa62d3a98]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/6>+0x66a) [0x742aa67d1a7a]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.DeclValue.mapCodeM [arity↓] spec at Lean.Compiler.LCNF.Decl.explicitRc+0x110) [0x742aa62d3270]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Decl.explicitRc [private]+0xb8) [0x742aa62d3c58]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Decl.explicitRc [boxed, private]+0x19) [0x742aa62d3e99]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/6>+0x1a6) [0x742aa67d15b6]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.mapMUnsafe.map [private] spec at Lean.Compiler.LCNF.Pass.mkPerDeclaration+0xef) [0x742aa466780f]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Pass.mkPerDeclaration [boxed, λ]+0x2c) [0x742aa4667c6c]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/6>+0x8e3) [0x742aa67d1cf3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.forIn'Unsafe.loop [λ, private] spec at Lean.Compiler.LCNF.PassManager.run.runPassManagerPart+0x88) [0x742aa5f7c1a8]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.forIn'Unsafe.loop [private] spec at Lean.Compiler.LCNF.PassManager.run.runPassManagerPart+0x2e8) [0x742aa5f7e648]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run.runPassManagerPart [λ, private]+0x2e) [0x742aa5f7fdfe]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run.runPassManagerPart [boxed, λ, private]+0x77) [0x742aa5f801e7]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0xf02) [0x742aa67ca372]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.profileitIOUnsafe [λ, arity↓]+0xb) [0x742aa6415adb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0xb53) [0x742aa67c9fc3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0xb53) [0x742aa67c9fc3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(lean_profileit+0x83) [0x742aa679b1f3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.profileitIOUnsafe [arity↓]+0x82) [0x742aa6415c92]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.forIn'Unsafe.loop [private] spec at Lean.Compiler.LCNF.PassManager.run+0x18b) [0x742aa5f838bb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run+0x16a3) [0x742aa5f87eb3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run [boxed]+0x1d) [0x742aa5f885bd]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/5>+0xa0c) [0x742aa67d076c]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.CompilerM.run [arity↓]+0xb5) [0x742aa4649415]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.main [boxed]+0xf) [0x742aa5f8b3af]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/4>+0x160) [0x742aa67ce6a0]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls.doCompile [λ, private]+0xfd) [0x742aa43cf4dd]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls.doCompile [boxed, λ, private]+0x15) [0x742aa43cf815]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x8ff) [0x742aa67cd4af]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.withExporting [arity↓] spec at Lean.withoutExporting spec at Lean.compileDecls.doCompile+0x2d8) [0x742aa43cfe78]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls [λ]+0x41) [0x742aa43d21d1]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls [boxed, λ]+0x24) [0x742aa43d24a4]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/4>+0x114e) [0x742aa67cf68e]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [λ, arity↓]+0x44e) [0x742aa43c81ae]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStderr [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x52) [0x742aa43c8fb2]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStderr [boxed] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x1b) [0x742aa43c930b]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStdout [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x52) [0x742aa43c98e2]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStdout [boxed] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x1b) [0x742aa43c9c3b]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStdin [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x52) [0x742aa43c9492]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.FS.withIsolatedStreams [arity↓] spec at Lean.Core.wrapAsyncAsSnapshot+0x106) [0x742aa43c9da6]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [boxed, λ, arity↓]+0x7d) [0x742aa43ca24d]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/4>+0x1184) [0x742aa67cf6c4]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsync [boxed, λ, arity↓]+0x34) [0x742aa43bd6f4]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.withCurrHeartbeats [arity↓] spec at Lean.Core.wrapAsync+0x6) [0x742aa43bd496]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsync [λ, arity↓]+0x462) [0x742aa43bdb92]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsync [boxed, λ, arity↓]+0x6a) [0x742aa43bde5a]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/2>+0x2e5) [0x742aa67cb165]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [λ, arity↓]+0x1b) [0x742aa43ca2cb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [boxed, λ, arity↓]+0x9) [0x742aa43ca539]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/2>+0x1273) [0x742aa67cc0f3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85e33bb) [0x742aa67e33bb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0x1204) [0x742aa67ca674]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0x119f) [0x742aa67ca60f]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85c7cf8) [0x742aa67c7cf8]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85c8fe1) [0x742aa67c8fe1]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85bbb05) [0x742aa67bbb05]
+/usr/lib/x86_64-linux-gnu/libc.so.6(+0xabe6b) [0x742a9deabe6b]
+/usr/lib/x86_64-linux-gnu/libc.so.6(+0x13f55c) [0x742a9df3f55c]
+PANIC at Option.get! Init.Data.Option.BasicAux:22:14: value is none
+backtrace:
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85c6785) [0x742aa67c6785]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85bdb27) [0x742aa67bdb27]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(lean_panic_fn_borrowed+0x2b) [0x742aa67bdc0b]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Code.explicitRc [private]+0xf17) [0x742aa62d0647]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Decl.explicitRc.go [private]+0xc9) [0x742aa62d2e19]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Decl.explicitRc [λ, private]+0x1da) [0x742aa62d380a]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Decl.explicitRc [boxed, λ, private]+0x28) [0x742aa62d3a98]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/6>+0x66a) [0x742aa67d1a7a]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.DeclValue.mapCodeM [arity↓] spec at Lean.Compiler.LCNF.Decl.explicitRc+0x110) [0x742aa62d3270]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Decl.explicitRc [private]+0xb8) [0x742aa62d3c58]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Decl.explicitRc [boxed, private]+0x19) [0x742aa62d3e99]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/6>+0x1a6) [0x742aa67d15b6]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.mapMUnsafe.map [private] spec at Lean.Compiler.LCNF.Pass.mkPerDeclaration+0xef) [0x742aa466780f]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.Pass.mkPerDeclaration [boxed, λ]+0x2c) [0x742aa4667c6c]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/6>+0x8e3) [0x742aa67d1cf3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.forIn'Unsafe.loop [λ, private] spec at Lean.Compiler.LCNF.PassManager.run.runPassManagerPart+0x88) [0x742aa5f7c1a8]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.forIn'Unsafe.loop [private] spec at Lean.Compiler.LCNF.PassManager.run.runPassManagerPart+0x2e8) [0x742aa5f7e648]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run.runPassManagerPart [λ, private]+0x2e) [0x742aa5f7fdfe]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run.runPassManagerPart [boxed, λ, private]+0x77) [0x742aa5f801e7]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0xf02) [0x742aa67ca372]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.profileitIOUnsafe [λ, arity↓]+0xb) [0x742aa6415adb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0xb53) [0x742aa67c9fc3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0xb53) [0x742aa67c9fc3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(lean_profileit+0x83) [0x742aa679b1f3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.profileitIOUnsafe [arity↓]+0x82) [0x742aa6415c92]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.forIn'Unsafe.loop [private] spec at Lean.Compiler.LCNF.PassManager.run+0x18b) [0x742aa5f838bb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run+0x16a3) [0x742aa5f87eb3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run [boxed]+0x1d) [0x742aa5f885bd]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/5>+0xa0c) [0x742aa67d076c]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.CompilerM.run [arity↓]+0xb5) [0x742aa4649415]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.main [boxed]+0xf) [0x742aa5f8b3af]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/4>+0x160) [0x742aa67ce6a0]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls.doCompile [λ, private]+0xfd) [0x742aa43cf4dd]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls.doCompile [boxed, λ, private]+0x15) [0x742aa43cf815]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x8ff) [0x742aa67cd4af]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.withExporting [arity↓] spec at Lean.withoutExporting spec at Lean.compileDecls.doCompile+0x2d8) [0x742aa43cfe78]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls [λ]+0x41) [0x742aa43d21d1]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls [boxed, λ]+0x24) [0x742aa43d24a4]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/4>+0x114e) [0x742aa67cf68e]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [λ, arity↓]+0x44e) [0x742aa43c81ae]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStderr [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x52) [0x742aa43c8fb2]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStderr [boxed] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x1b) [0x742aa43c930b]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStdout [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x52) [0x742aa43c98e2]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStdout [boxed] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x1b) [0x742aa43c9c3b]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStdin [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x52) [0x742aa43c9492]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.FS.withIsolatedStreams [arity↓] spec at Lean.Core.wrapAsyncAsSnapshot+0x106) [0x742aa43c9da6]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [boxed, λ, arity↓]+0x7d) [0x742aa43ca24d]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/4>+0x1184) [0x742aa67cf6c4]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsync [boxed, λ, arity↓]+0x34) [0x742aa43bd6f4]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.withCurrHeartbeats [arity↓] spec at Lean.Core.wrapAsync+0x6) [0x742aa43bd496]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsync [λ, arity↓]+0x462) [0x742aa43bdb92]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsync [boxed, λ, arity↓]+0x6a) [0x742aa43bde5a]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/2>+0x2e5) [0x742aa67cb165]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [λ, arity↓]+0x1b) [0x742aa43ca2cb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [boxed, λ, arity↓]+0x9) [0x742aa43ca539]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/2>+0x1273) [0x742aa67cc0f3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85e33bb) [0x742aa67e33bb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0x1204) [0x742aa67ca674]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0x119f) [0x742aa67ca60f]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85c7cf8) [0x742aa67c7cf8]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85c8fe1) [0x742aa67c8fe1]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85bbb05) [0x742aa67bbb05]
+/usr/lib/x86_64-linux-gnu/libc.so.6(+0xabe6b) [0x742a9deabe6b]
+/usr/lib/x86_64-linux-gnu/libc.so.6(+0x13f55c) [0x742a9df3f55c]
+PANIC at Std.DHashMap.Internal.AssocList.get! Std.Data.DHashMap.Internal.AssocList.Basic:163:11: key is not present in hash table
+backtrace:
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85c6785) [0x742aa67c6785]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85bdb27) [0x742aa67bdb27]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(lean_panic_fn_borrowed+0x2b) [0x742aa67bdc0b]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.IR.ToIR.getJoinPointValue [arity↓]+0x37) [0x742aa5ee0e17]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.IR.ToIR.lowerCode+0xab2) [0x742aa5ee5c62]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.IR.ToIR.lowerDecl+0x43c) [0x742aa5eec17c]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.IR.ToIR.lowerDecl [boxed]+0x13) [0x742aa5eec5c3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/4>+0xbb7) [0x742aa67cf0f7]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.IR.ToIR.M.run [arity↓]+0x7f) [0x742aa5ee018f]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.forIn'Unsafe.loop [private] spec at Lean.IR.toIR+0xb2) [0x742aa5eec6f2]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.forIn'Unsafe.loop [λ, private] spec at Lean.Compiler.LCNF.PassManager.run+0x1c) [0x742aa5f8320c]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.forIn'Unsafe.loop [boxed, λ, private] spec at Lean.Compiler.LCNF.PassManager.run+0x1d) [0x742aa5f8344d]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0xe27) [0x742aa67ca297]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.profileitIOUnsafe [λ, arity↓]+0xb) [0x742aa6415adb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0xb53) [0x742aa67c9fc3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0xb53) [0x742aa67c9fc3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(lean_profileit+0x83) [0x742aa679b1f3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.profileitIOUnsafe [arity↓]+0x82) [0x742aa6415c92]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Array.forIn'Unsafe.loop [private] spec at Lean.Compiler.LCNF.PassManager.run+0x3a5) [0x742aa5f83ad5]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run+0x16a3) [0x742aa5f87eb3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.PassManager.run [boxed]+0x1d) [0x742aa5f885bd]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/5>+0xa0c) [0x742aa67d076c]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.CompilerM.run [arity↓]+0xb5) [0x742aa4649415]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Compiler.LCNF.main [boxed]+0xf) [0x742aa5f8b3af]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/4>+0x160) [0x742aa67ce6a0]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls.doCompile [λ, private]+0xfd) [0x742aa43cf4dd]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls.doCompile [boxed, λ, private]+0x15) [0x742aa43cf815]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x8ff) [0x742aa67cd4af]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.withExporting [arity↓] spec at Lean.withoutExporting spec at Lean.compileDecls.doCompile+0x2d8) [0x742aa43cfe78]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls [λ]+0x41) [0x742aa43d21d1]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.compileDecls [boxed, λ]+0x24) [0x742aa43d24a4]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/4>+0x114e) [0x742aa67cf68e]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [λ, arity↓]+0x44e) [0x742aa43c81ae]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStderr [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x52) [0x742aa43c8fb2]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStderr [boxed] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x1b) [0x742aa43c930b]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStdout [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x52) [0x742aa43c98e2]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStdout [boxed] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x1b) [0x742aa43c9c3b]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.withStdin [arity↓] spec at IO.FS.withIsolatedStreams spec at Lean.Core.wrapAsyncAsSnapshot+0x52) [0x742aa43c9492]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(IO.FS.withIsolatedStreams [arity↓] spec at Lean.Core.wrapAsyncAsSnapshot+0x106) [0x742aa43c9da6]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [boxed, λ, arity↓]+0x7d) [0x742aa43ca24d]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/4>+0x1184) [0x742aa67cf6c4]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsync [boxed, λ, arity↓]+0x34) [0x742aa43bd6f4]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/3>+0x970) [0x742aa67cd520]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.withCurrHeartbeats [arity↓] spec at Lean.Core.wrapAsync+0x6) [0x742aa43bd496]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsync [λ, arity↓]+0x462) [0x742aa43bdb92]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsync [boxed, λ, arity↓]+0x6a) [0x742aa43bde5a]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/2>+0x2e5) [0x742aa67cb165]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [λ, arity↓]+0x1b) [0x742aa43ca2cb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(Lean.Core.wrapAsyncAsSnapshot [boxed, λ, arity↓]+0x9) [0x742aa43ca539]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/2>+0x1273) [0x742aa67cc0f3]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85e33bb) [0x742aa67e33bb]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0x1204) [0x742aa67ca674]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(<apply/1>+0x119f) [0x742aa67ca60f]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85c7cf8) [0x742aa67c7cf8]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85c8fe1) [0x742aa67c8fe1]
+/home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/../lib/lean/libleanshared.so(+0x85bbb05) [0x742aa67bbb05]
+/usr/lib/x86_64-linux-gnu/libc.so.6(+0xabe6b) [0x742a9deabe6b]
+/usr/lib/x86_64-linux-gnu/libc.so.6(+0x13f55c) [0x742a9df3f55c]
+error: JurisLean/Candidates/Final20261021/Ledger.lean:309:24: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'instReprState', which is 'noncomputable'
+error: JurisLean/Candidates/Final20261021/Ledger.lean:309:24: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'instReprOutcome.repr', which is 'noncomputable'
+error: JurisLean/Candidates/Final20261021/Ledger.lean:370:2: unsolved goals
+case right
+prev : Handle
+req : PaymentRequest
+zero : req.payload.amount.value = 0
+hd : 0 ≤ balance prev.state
+⊢ 0 ≤ prev.state.debt.amount.value
+warning: JurisLean/Candidates/Final20261021/Ledger.lean:370:53: This simp argument is unused:
+  min_eq_left hd
+
+Hint: Omit it from the simp argument list.
+  simp [commitPayment, performance, balance, zero,̵ ̵m̵i̵n̵_̵e̵q̵_̵l̵e̵f̵t̵ ̵h̵d̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: JurisLean/Candidates/Final20261021/Ledger.lean:395:40: `simp` failed: maximum number of steps exceeded
+error: JurisLean/Candidates/Final20261021/Ledger.lean:389:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: JurisLean/Candidates/Final20261021/Ledger.lean:402:2: `simp` failed: maximum number of steps exceeded
+error: JurisLean/Candidates/Final20261021/Ledger.lean:397:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: JurisLean/Candidates/Final20261021/Ledger.lean:409:2: `simp` failed: maximum number of steps exceeded
+error: JurisLean/Candidates/Final20261021/Ledger.lean:404:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: JurisLean/Candidates/Final20261021/Ledger.lean:432:26: Application type mismatch: The argument
+  hs
+has type
+  lookupReceipt prev.state req.key = none
+but is expected to have type
+  none = none
+in the application
+  And.intro hs
+error: JurisLean/Candidates/Final20261021/Ledger.lean:432:30: Application type mismatch: The argument
+  he
+has type
+  validationError prev previous_output_ref req permission = none
+but is expected to have type
+  none = none
+in the application
+  And.intro he
+error: JurisLean/Candidates/Final20261021/Ledger.lean:434:8: (kernel) unknown constant 'JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused'
+error: JurisLean/Candidates/Final20261021/Ledger.lean:446:8: (kernel) unknown constant 'JurisLean.Candidates.Final20261021.Ledger.ready_requires_identity_and_applicability'
+error: JurisLean/Candidates/Final20261021/Ledger.lean:503:30: unexpected identifier; expected '}'
+error: Lean exited with code 1
+Some required targets logged failures:
+- JurisLean.Candidates.Final20261021.Ledger
+error: build failed
+Traceback (most recent call last):
+  File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 59, in <module>
+    if __name__=='__main__':raise SystemExit(main())
+                                             ^^^^^^
+  File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 57, in main
+    subprocess.run(['lake','build',*targets],cwd=R/'proofs/lean/juris_lean',check=True)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['lake', 'build', 'JurisLean.Candidates.Final20261021.CIAll']' returned non-zero exit status 1.

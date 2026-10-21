@@ -11,7 +11,7 @@ structure PaymentRun where
   current : Option Ledger.Handle
   outcomes : List Ledger.Outcome
   obligations : List Error
-  deriving DecidableEq, Repr
+  deriving DecidableEq
 
 def finishPayment (before : Ledger.Handle) (out : Ledger.Outcome) : PaymentRun :=
   match out with

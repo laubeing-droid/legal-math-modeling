@@ -1,0 +1,31 @@
+{
+  "subject_commit": "019544b0f20f9cf0a86ed1604e35420738de834b",
+  "run_id": 39694003524,
+  "conclusion": "failure",
+  "failures": [
+    "2026-10-21T23:35:32.9871312Z error: JurisLean/Candidates/Final20261021/Ledger.lean:49:24: (kernel) invalid declaration, it uses unsafe declaration 'Finset.instRepr'",
+    "2026-10-21T23:35:32.9872233Z error: JurisLean/Candidates/Final20261021/Ledger.lean:49:24: failed to compile definition, compiler IR check failed at `JurisLean.Candidates.Final20261021.Ledger.instReprState._closed_0`. Error: unknown join point 'block_0'",
+    "2026-10-21T23:35:33.0130176Z error: JurisLean/Candidates/Final20261021/Ledger.lean:309:24: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'instReprState', which is 'noncomputable'",
+    "2026-10-21T23:35:33.0131133Z error: JurisLean/Candidates/Final20261021/Ledger.lean:309:24: failed to compile definition, consider marking it as 'noncomputable' because it depends on 'instReprOutcome.repr', which is 'noncomputable'",
+    "2026-10-21T23:35:33.0131811Z error: JurisLean/Candidates/Final20261021/Ledger.lean:370:2: unsolved goals",
+    "2026-10-21T23:35:33.0135448Z error: JurisLean/Candidates/Final20261021/Ledger.lean:395:40: `simp` failed: maximum number of steps exceeded",
+    "2026-10-21T23:35:33.0136087Z error: JurisLean/Candidates/Final20261021/Ledger.lean:389:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached",
+    "2026-10-21T23:35:33.0137785Z error: JurisLean/Candidates/Final20261021/Ledger.lean:402:2: `simp` failed: maximum number of steps exceeded",
+    "2026-10-21T23:35:33.0138610Z error: JurisLean/Candidates/Final20261021/Ledger.lean:397:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached",
+    "2026-10-21T23:35:33.0140425Z error: JurisLean/Candidates/Final20261021/Ledger.lean:409:2: `simp` failed: maximum number of steps exceeded",
+    "2026-10-21T23:35:33.0141206Z error: JurisLean/Candidates/Final20261021/Ledger.lean:404:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached",
+    "2026-10-21T23:35:33.0143122Z error: JurisLean/Candidates/Final20261021/Ledger.lean:432:26: Application type mismatch: The argument",
+    "2026-10-21T23:35:33.0155122Z error: JurisLean/Candidates/Final20261021/Ledger.lean:432:30: Application type mismatch: The argument",
+    "2026-10-21T23:35:33.0157178Z error: JurisLean/Candidates/Final20261021/Ledger.lean:434:8: (kernel) unknown constant 'JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused'",
+    "2026-10-21T23:35:33.0157996Z error: JurisLean/Candidates/Final20261021/Ledger.lean:446:8: (kernel) unknown constant 'JurisLean.Candidates.Final20261021.Ledger.ready_requires_identity_and_applicability'",
+    "2026-10-21T23:35:33.0158930Z error: JurisLean/Candidates/Final20261021/Ledger.lean:503:30: unexpected identifier; expected '}'"
+  ],
+  "repairs": [
+    "Remove optional Repr deriving from State, Outcome and PaymentRun to avoid the unsafe Finset Repr; preserve executable DecidableEq and all state fields",
+    "Keep the zero-pay statement and prove the unchanged min equality directly",
+    "Bound branch simplification to constructor equality, extracting each successful validation condition without global structure equality simplification",
+    "Use reflexivity for case-rewritten result equalities",
+    "Make the unchanged nested RestPay amount update syntactically explicit"
+  ],
+  "new_status": "CI_NOT_RUN"
+}

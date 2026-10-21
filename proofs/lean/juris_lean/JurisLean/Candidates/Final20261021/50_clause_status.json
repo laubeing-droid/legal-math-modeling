@@ -69,6 +69,32 @@
       "axiom_audit": "NOT_REACHED",
       "acceptance": "NOT_REACHED",
       "does_not_close_full_scope": true
+    },
+    {
+      "run_id": 39694692478,
+      "run_attempt": 1,
+      "subject": "256595c9f8fc09367f4078a34108cb6891303fb9",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39694692478",
+      "mode": "changed-module",
+      "target": "JurisLean.Candidates.Final20261021.CIAll",
+      "status": "FAIL",
+      "failed_module": "JurisLean.Candidates.Final20261021.Ledger",
+      "checked_candidate_modules": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Transactions",
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.Candidates.Final20261021.Compiler",
+        "JurisLean.Candidates.Final20261021.Harness",
+        "JurisLean.Candidates.Final20261021.Temporal",
+        "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+        "JurisLean.Candidates.Final20261021.Authorization",
+        "JurisLean.Candidates.Final20261021.Progress"
+      ],
+      "artifact": "evidence/ci-stage1-256595c/changed-module-only-39694692478-1.zip",
+      "sha256": "7e23a06e14ea6a4043e6d76157bf21be489b13f271ca5371b382808e03150737",
+      "axiom_audit": "NOT_REACHED",
+      "acceptance": "NOT_REACHED",
+      "does_not_close_full_scope": true
     }
   ],
   "rows": [

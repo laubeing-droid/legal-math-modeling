@@ -1,0 +1,58 @@
+✔ [8475/8506] Built JurisLean.FiniteMonotoneIteration (2.6s)
+✔ [8476/8506] Built JurisLean.FullMath.Core.Foundations (4.6s)
+✔ [8477/8506] Built JurisLean.HornDefinitions (2.7s)
+✔ [8478/8506] Built JurisLean.Candidates.Final20261021.Interfaces (5.4s)
+✔ [8479/8506] Built JurisLean.HornFixedPoint (2.6s)
+⚠ [8480/8506] Built JurisLean.FullMath.Numeric.Quantities (5.1s)
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8481/8506] Built JurisLean.FullMath.Numeric.Intervals (5.2s)
+✔ [8482/8506] Built JurisLean.Candidates.Final20261021.Transactions (5.4s)
+✔ [8483/8506] Built JurisLean.Candidates.Final20261021.Representation (4.6s)
+✔ [8484/8506] Built JurisLean.Seams.UnifiedQuantities (3.0s)
+✔ [8485/8506] Built JurisLean.Candidates.Final20261021.Compiler (3.7s)
+✔ [8486/8506] Built JurisLean.Seams.UnifiedQuantLedger (5.7s)
+✔ [8487/8506] Built JurisLean.Candidates.Final20261021.Harness (3.9s)
+✔ [8488/8506] Built JurisLean.Candidates.Final20261021.Temporal (3.4s)
+✔ [8489/8506] Built JurisLean.Candidates.Final20261021.EvidenceProcedure (3.5s)
+✔ [8490/8506] Built JurisLean.Candidates.Final20261021.Authorization (3.2s)
+✔ [8491/8506] Built JurisLean.Candidates.Final20261021.Progress (3.2s)
+✖ [8492/8506] Building JurisLean.Candidates.Final20261021.Ledger (12s)
+trace: .> LEAN_PATH=/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/lean /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean -o /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Ledger.olean -i /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Ledger.ilean -c /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Ledger.c --setup /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Ledger.setup.json --json
+error: JurisLean/Candidates/Final20261021/Ledger.lean:396:2: `simp` failed: maximum number of steps exceeded
+error: JurisLean/Candidates/Final20261021/Ledger.lean:390:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: JurisLean/Candidates/Final20261021/Ledger.lean:406:2: `simp` failed: maximum number of steps exceeded
+error: JurisLean/Candidates/Final20261021/Ledger.lean:401:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: JurisLean/Candidates/Final20261021/Ledger.lean:414:2: `simp` failed: maximum number of steps exceeded
+error: JurisLean/Candidates/Final20261021/Ledger.lean:409:0: (deterministic) timeout at `whnf`, maximum number of heartbeats (200000) has been reached
+
+Note: Use `set_option maxHeartbeats <num>` to set the limit.
+
+Hint: Additional diagnostic information may be available using the `set_option diagnostics true` command.
+error: JurisLean/Candidates/Final20261021/Ledger.lean:440:8: (kernel) unknown constant 'JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused'
+error: JurisLean/Candidates/Final20261021/Ledger.lean:452:8: (kernel) unknown constant 'JurisLean.Candidates.Final20261021.Ledger.ready_requires_identity_and_applicability'
+error: Lean exited with code 1
+Some required targets logged failures:
+- JurisLean.Candidates.Final20261021.Ledger
+error: build failed
+Traceback (most recent call last):
+  File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 59, in <module>
+    if __name__=='__main__':raise SystemExit(main())
+                                             ^^^^^^
+  File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 57, in main
+    subprocess.run(['lake','build',*targets],cwd=R/'proofs/lean/juris_lean',check=True)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['lake', 'build', 'JurisLean.Candidates.Final20261021.CIAll']' returned non-zero exit status 1.

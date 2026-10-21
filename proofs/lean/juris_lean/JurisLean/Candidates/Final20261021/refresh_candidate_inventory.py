@@ -132,8 +132,8 @@ def main():
                     continue
                 if (mod == d["module"] or d["module"]+"."+d["short"] in line) and pattern.search(line):
                     d["consumers"].append({"file": mod+".lean", "line": i})
-    (HERE/"AxiomAudit.lean").write_text("\n".join(audit)+"\n", encoding="utf-8")
-    (HERE/"CIAll.lean").write_text("\n".join(f"import {PREFIX}.{m}" for m in ORDER+["AxiomAudit"])+"\n", encoding="utf-8")
+    (HERE/"AxiomAudit.lean").write_text("\n".join(audit)+"\n", encoding="utf-8", newline="\n")
+    (HERE/"CIAll.lean").write_text("\n".join(f"import {PREFIX}.{m}" for m in ORDER+["AxiomAudit"])+"\n", encoding="utf-8", newline="\n")
     write("declarations.json", {"status": "STATIC_SOURCE_INVENTORY_NOT_LEAN_EVIDENCE", "declarations": [
         d for d in declarations if d["kind"] == "theorem" or d["short"].startswith("proposed_")]})
 

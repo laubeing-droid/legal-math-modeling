@@ -393,7 +393,7 @@ theorem ready_requires_identity_and_applicability (prev previous_output_ref : Ha
     req.applicable = .yes ∧ req.interpretedPayment = some req.key ∧
     0 ≤ req.payload.amount.value := by
   unfold validationError at ready
-  split_ifs at ready <;> simp only [reduceCtorEq] at ready
+  repeat' first | split at ready | contradiction
   refine ⟨?_, not_ne_iff.mp ‹¬ req.interpretedPayment ≠ some req.key›,
     le_of_not_gt ‹¬ req.payload.amount.value < 0›⟩
   cases hA : req.applicable <;> simp_all only [reduceCtorEq]
@@ -403,7 +403,7 @@ theorem ready_requires_unused (prev previous_output_ref : Handle)
     (ready : validationError prev previous_output_ref req permission = none) :
     req.key ∉ prev.state.used := by
   unfold validationError at ready
-  split_ifs at ready <;> simp only [reduceCtorEq] at ready
+  repeat' first | split at ready | contradiction
   exact ‹req.key ∉ prev.state.used›
 
 theorem ready_requires_actual_output (prev previous_output_ref : Handle)
@@ -411,7 +411,7 @@ theorem ready_requires_actual_output (prev previous_output_ref : Handle)
     (ready : validationError prev previous_output_ref req permission = none) :
     previous_output_ref = prev := by
   unfold validationError at ready
-  split_ifs at ready <;> simp only [reduceCtorEq] at ready
+  repeat' first | split at ready | contradiction
   exact not_ne_iff.mp ‹¬ previous_output_ref ≠ prev›
 
 theorem consume_committed_origin (prev previous_output_ref : Handle)

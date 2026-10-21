@@ -21,6 +21,28 @@
       "axiom_audit": "NOT_REACHED",
       "acceptance": "NOT_REACHED",
       "does_not_close_full_scope": true
+    },
+    {
+      "run_id": 39693498976,
+      "run_attempt": 1,
+      "subject": "8156cdaf4cf166940da1688e220828334f8477b5",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39693498976",
+      "mode": "changed-module",
+      "target": "JurisLean.Candidates.Final20261021.CIAll",
+      "status": "FAIL",
+      "failed_module": "JurisLean.Candidates.Final20261021.Temporal",
+      "checked_candidate_modules": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Transactions",
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.Candidates.Final20261021.Compiler",
+        "JurisLean.Candidates.Final20261021.Harness"
+      ],
+      "artifact": "evidence/ci-stage1-8156cda/changed-module-only-39693498976-1.zip",
+      "sha256": "eeca2015530ffdc07c521d690a7914f391fd7fe1ff949ebb96165d2764e7e4cb",
+      "axiom_audit": "NOT_REACHED",
+      "acceptance": "NOT_REACHED",
+      "does_not_close_full_scope": true
     }
   ],
   "rows": [
@@ -636,25 +658,25 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Temporal.u08_1_history_stable_under_append_after_cut",
           "file": "Temporal.lean",
-          "line": 36,
+          "line": 38,
           "consumers": [
             {
               "file": "Temporal.lean",
-              "line": 54
+              "line": 56
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable",
           "file": "Temporal.lean",
-          "line": 50,
+          "line": 52,
           "consumers": []
         }
       ],
       "consumers": [
         {
           "file": "Temporal.lean",
-          "line": 54
+          "line": 56
         }
       ],
       "original_mapping": "50条施工映射.json::U08.1",
@@ -824,7 +846,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Temporal.u08_2_finite_compression_reflection",
           "file": "Temporal.lean",
-          "line": 66,
+          "line": 68,
           "consumers": []
         }
       ],

@@ -1,0 +1,112 @@
+{
+  "subject_commit": "8156cdaf4cf166940da1688e220828334f8477b5",
+  "authority": "LOCAL_STATIC_ONLY_NOT_LEAN_CI",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "scripts/ci/generate_t_coverage_ledger.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "generate_t_coverage_ledger.log"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/ci/generate_structure_and_volume_reports.py",
+        "--check"
+      ],
+      "exit_code": 1,
+      "log": "generate_structure_and_volume_reports.log"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/ci/generate_probability_audit_surface.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "generate_probability_audit_surface.log"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/ci/build_ci_run_index.py",
+        "--check"
+      ],
+      "exit_code": 1,
+      "log": "build_ci_run_index.log"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/ci/generate_trivial_proof_census.py",
+        "--check"
+      ],
+      "exit_code": 1,
+      "log": "generate_trivial_proof_census.log"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/ci/generate_declaration_shape_report.py",
+        "--check"
+      ],
+      "exit_code": 1,
+      "log": "generate_declaration_shape_report.log"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/ci/check_doc_anchors.py"
+      ],
+      "exit_code": 0,
+      "log": "check_doc_anchors.log"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/ci/check_concept_ledger.py"
+      ],
+      "exit_code": 1,
+      "log": "check_concept_ledger.log"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/ci/check_statute_chain_caseinput_claim.py"
+      ],
+      "exit_code": 0,
+      "log": "check_statute_chain_caseinput_claim.log"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/ci/check_paper_single_count.py"
+      ],
+      "exit_code": 0,
+      "log": "check_paper_single_count.log"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/ci/generate_gap_status.py",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "generate_gap_status.log"
+    },
+    {
+      "command": [
+        "python",
+        "scripts/ci/check_declaration_collisions.py",
+        "--root",
+        "proofs/lean/juris_lean/JurisLean",
+        "--check"
+      ],
+      "exit_code": 0,
+      "log": "check_declaration_collisions.log"
+    }
+  ]
+}

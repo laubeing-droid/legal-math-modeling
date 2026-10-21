@@ -1,0 +1,22 @@
+{
+  "subject": "8156cdaf4cf166940da1688e220828334f8477b5",
+  "branch": "candidates/final20261021-825792b",
+  "authorization": "User authorized continuous push/dispatch/fix cycles in goal mode until both CI stages pass.",
+  "started_utc": "2026-10-21T23:27:04.951032+00:00",
+  "command": [
+    "gh",
+    "workflow",
+    "run",
+    "lean-build.yml",
+    "--repo",
+    "laubeing-droid/legal-math-modeling",
+    "--ref",
+    "candidates/final20261021-825792b",
+    "-f",
+    "mode=changed-module",
+    "-f",
+    "module=JurisLean.Candidates.Final20261021.CIAll"
+  ],
+  "status": "DISPATCH_ACKNOWLEDGED",
+  "stage2": "CI_NOT_RUN"
+}

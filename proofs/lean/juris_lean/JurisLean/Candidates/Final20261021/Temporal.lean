@@ -22,8 +22,10 @@ def proposed_event_evidence_versions (g : Gamma) (history : List VersionRecord) 
 
 def applies (g : Gamma) (e : VersionRecord) : Bool :=
   decide (e.jurisdiction = g.jurisdiction ∧ e.question = g.question ∧
-    e.factFrom.ordinal ≤ g.lawDate.ordinal ∧
-    match e.factUntil with | none => True | some d => g.lawDate.ordinal < d.ordinal)
+    e.factFrom.ordinal ≤ g.lawDate.ordinal) &&
+    match e.factUntil with
+    | none => true
+    | some d => decide (g.lawDate.ordinal < d.ordinal)
 
 -- This is the declared half-open, non-retroactive finite interval model.
 -- General transitions/exceptions remain explicit alternative branch inputs.

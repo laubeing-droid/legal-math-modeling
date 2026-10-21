@@ -226,5 +226,11 @@
       "acceptance": "NOT_REACHED",
       "does_not_close_full_scope": true
     }
-  ]
+  ],
+  "local_repair_prechecks": {
+    "source_commit": "96362af4faaa4a889f7135cf0d999c3e2ea73f3f",
+    "receipt": "evidence/repair-prechecks/receipt.json",
+    "status": "PASS",
+    "formal_ci": "CI_NOT_RUN_FOR_REPAIR"
+  }
 }

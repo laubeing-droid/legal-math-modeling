@@ -1,46 +1,154 @@
 {
-  "subject_source_commit": "beb03b1b86a697b7bf9e6572b9ed3803e6193c51",
+  "subject_source_commit": "3ff0992ea4becc60856e83c2efc0952ec10e78ff",
   "formal_ci": "CI_NOT_RUN",
   "ci_artifacts": [],
-  "source_sha256": {
-    "Acceptance.lean": "1268d6ca7741df2f7dbe28de5f731fc89ea9739e1b41526604963c799eb96ead",
-    "Authorization.lean": "cfdee9c90dcfbe83c3119ae300a01df7d44aee8160b08449f405de06938ae1ba",
-    "AxiomAudit.lean": "30f13704b405bd5d449ffa1acf2f6e241250941ccce2651864e2c06e4dc55966",
-    "Behavior.lean": "b5f5dd67f5c8bb086511a090cf36595c156b61911a71239649a8c7bd1011ce61",
-    "Calibration.lean": "644d1f58ad26b23ced3aa83f9d9bcddef33b5e757256b83b8766506ecf22037f",
-    "CIAll.lean": "8eedd96bf86f6d72becabb94a55336949d15a995b080c48adac16e9b7a3a5d7c",
-    "Compiler.lean": "d2c6c6bdc78563d6949de120172e8123f2c192576013b5253ec0fb0b650dcc9f",
-    "Decision.lean": "9dba77be032751efb1fd09642ea34bbc3e0c4fd779e63fb5d2db33df7cee49ca",
-    "EvidenceProcedure.lean": "4647b5dbeaf362c6e99eebade44f482e733da055d72b3745c3c12d83f51464ae",
-    "Feedback.lean": "a4e9be2493bd51a234dec0ac93a9e0cad56a023f9a097071e978127c9ad85109",
-    "Harness.lean": "f8d5c96815a832ddec62a7199826f4abc812050fc5cad53f5ed71b4cdc68600d",
-    "Interfaces.lean": "d2f75ae7bbbcf409811598fa7f65626880388fb98ff464418cda1263ceec9b3b",
-    "Iteration.lean": "691a09f80a791ad4ff74993fef949bcc40d12b8db0cacc523b22ac3cca255191",
-    "Learning.lean": "a415cc8a7cccd71a4ccb8c7a7156f044ada78aac0e24e3fc4bd2b61800dc3189",
-    "Ledger.lean": "62737922857948333c8e741728408c94976cf464b0ba5ee131f4a058cb857678",
-    "Pipeline.lean": "23ddd064e68c4f45a83d98b6252aa25c4791f461a0dbcd247d70c430235f6dde",
-    "Policy.lean": "cb7998f08e62742bb68ff27db15ec7807530a5bb55cbfa7c1cb0554e563e86b9",
-    "Probability.lean": "54d58a9ede78e994a00362ec64045899d6de05f8aedc94af46de8a050d2f519c",
-    "Progress.lean": "d96498cca4eadc258f9075f06e5f2def129ab5c81b505b3b13fed45baa4ad209",
-    "Representation.lean": "7efed1d990620b372012b1fec4f26b797d448fb26fe69351200c2e3bb33029aa",
-    "RSI.lean": "812e0d408424d4b7a532984f3f9412ab1e2dc63349d4c4f59976928292176d7e",
-    "Temporal.lean": "e35a1c8c4b8f66754c3e6ccc3c16c0b6161b5b321f20ac38b0f320f3c05af7a7",
-    "Trace.lean": "79b04f913eccafa813ce2f669db885338395b62337174aa0aae548d0e1b670a7",
-    "Transactions.lean": "88c317656a9cf7b155b0a700c06e5931457565327087c7aab145f2289270ffc7"
+  "local_lean_executed": false,
+  "source_hashes": {
+    "Acceptance.lean": {
+      "git_blob_sha256": "c5eefb203b27276e8b18756ad391239528b0115a654ac9c154d832345200a1a1",
+      "worktree_sha256": "c5eefb203b27276e8b18756ad391239528b0115a654ac9c154d832345200a1a1"
+    },
+    "Authorization.lean": {
+      "git_blob_sha256": "fdaf4b67de0cae35cd4c9c6b6a3ae016cc5f5b7f14daf3b1cad91923e126c5db",
+      "worktree_sha256": "fdaf4b67de0cae35cd4c9c6b6a3ae016cc5f5b7f14daf3b1cad91923e126c5db"
+    },
+    "AxiomAudit.lean": {
+      "git_blob_sha256": "44ce5435420e6ba0995c369f651ffaaa6a0697da677708975f2f0db87e008203",
+      "worktree_sha256": "74c3af8cbbb6b6e44d314df8de868badc45fcc3bfef19548e911381b6f818fd9"
+    },
+    "Behavior.lean": {
+      "git_blob_sha256": "b5f5dd67f5c8bb086511a090cf36595c156b61911a71239649a8c7bd1011ce61",
+      "worktree_sha256": "b5f5dd67f5c8bb086511a090cf36595c156b61911a71239649a8c7bd1011ce61"
+    },
+    "Calibration.lean": {
+      "git_blob_sha256": "644d1f58ad26b23ced3aa83f9d9bcddef33b5e757256b83b8766506ecf22037f",
+      "worktree_sha256": "644d1f58ad26b23ced3aa83f9d9bcddef33b5e757256b83b8766506ecf22037f"
+    },
+    "CIAll.lean": {
+      "git_blob_sha256": "2e201c30fd90fc11cddb7c6b1d018611c5831021216222e4b43a3a0b6231309f",
+      "worktree_sha256": "8eedd96bf86f6d72becabb94a55336949d15a995b080c48adac16e9b7a3a5d7c"
+    },
+    "Compiler.lean": {
+      "git_blob_sha256": "ac71e467d016376f17a09bf274e0aeee82ba0ab12dae4654809d96bffe2fd823",
+      "worktree_sha256": "ac71e467d016376f17a09bf274e0aeee82ba0ab12dae4654809d96bffe2fd823"
+    },
+    "Decision.lean": {
+      "git_blob_sha256": "d9fe03c6d9e840a3a4ed47b4c02a1cbc1dd99723413b92c6f0b3afdbd1aaba11",
+      "worktree_sha256": "9dba77be032751efb1fd09642ea34bbc3e0c4fd779e63fb5d2db33df7cee49ca"
+    },
+    "EvidenceProcedure.lean": {
+      "git_blob_sha256": "4647b5dbeaf362c6e99eebade44f482e733da055d72b3745c3c12d83f51464ae",
+      "worktree_sha256": "4647b5dbeaf362c6e99eebade44f482e733da055d72b3745c3c12d83f51464ae"
+    },
+    "Feedback.lean": {
+      "git_blob_sha256": "0daaa80bc05acb203417289b5aaae34b8a67de3676e6762c844ebc6c3b6006b2",
+      "worktree_sha256": "0daaa80bc05acb203417289b5aaae34b8a67de3676e6762c844ebc6c3b6006b2"
+    },
+    "Harness.lean": {
+      "git_blob_sha256": "f8d5c96815a832ddec62a7199826f4abc812050fc5cad53f5ed71b4cdc68600d",
+      "worktree_sha256": "f8d5c96815a832ddec62a7199826f4abc812050fc5cad53f5ed71b4cdc68600d"
+    },
+    "Interfaces.lean": {
+      "git_blob_sha256": "d2f75ae7bbbcf409811598fa7f65626880388fb98ff464418cda1263ceec9b3b",
+      "worktree_sha256": "d2f75ae7bbbcf409811598fa7f65626880388fb98ff464418cda1263ceec9b3b"
+    },
+    "Iteration.lean": {
+      "git_blob_sha256": "691a09f80a791ad4ff74993fef949bcc40d12b8db0cacc523b22ac3cca255191",
+      "worktree_sha256": "691a09f80a791ad4ff74993fef949bcc40d12b8db0cacc523b22ac3cca255191"
+    },
+    "Learning.lean": {
+      "git_blob_sha256": "47b8ec5cb3a49669ac27ec0e125a010e351e383038261c612647f967bf12ef84",
+      "worktree_sha256": "47b8ec5cb3a49669ac27ec0e125a010e351e383038261c612647f967bf12ef84"
+    },
+    "Ledger.lean": {
+      "git_blob_sha256": "e00b9dc0876359fb9c89a7a012d6ee5b6558ddd731000815d91d99f5b23b08e4",
+      "worktree_sha256": "e00b9dc0876359fb9c89a7a012d6ee5b6558ddd731000815d91d99f5b23b08e4"
+    },
+    "Pipeline.lean": {
+      "git_blob_sha256": "70ee4b7e1559d460f6c9e7173e083738b82a7550fdc69ae6039ce1e79d36a09d",
+      "worktree_sha256": "70ee4b7e1559d460f6c9e7173e083738b82a7550fdc69ae6039ce1e79d36a09d"
+    },
+    "Policy.lean": {
+      "git_blob_sha256": "cb7998f08e62742bb68ff27db15ec7807530a5bb55cbfa7c1cb0554e563e86b9",
+      "worktree_sha256": "cb7998f08e62742bb68ff27db15ec7807530a5bb55cbfa7c1cb0554e563e86b9"
+    },
+    "Probability.lean": {
+      "git_blob_sha256": "54d58a9ede78e994a00362ec64045899d6de05f8aedc94af46de8a050d2f519c",
+      "worktree_sha256": "54d58a9ede78e994a00362ec64045899d6de05f8aedc94af46de8a050d2f519c"
+    },
+    "Progress.lean": {
+      "git_blob_sha256": "d96498cca4eadc258f9075f06e5f2def129ab5c81b505b3b13fed45baa4ad209",
+      "worktree_sha256": "d96498cca4eadc258f9075f06e5f2def129ab5c81b505b3b13fed45baa4ad209"
+    },
+    "Representation.lean": {
+      "git_blob_sha256": "7efed1d990620b372012b1fec4f26b797d448fb26fe69351200c2e3bb33029aa",
+      "worktree_sha256": "7efed1d990620b372012b1fec4f26b797d448fb26fe69351200c2e3bb33029aa"
+    },
+    "RSI.lean": {
+      "git_blob_sha256": "812e0d408424d4b7a532984f3f9412ab1e2dc63349d4c4f59976928292176d7e",
+      "worktree_sha256": "812e0d408424d4b7a532984f3f9412ab1e2dc63349d4c4f59976928292176d7e"
+    },
+    "Temporal.lean": {
+      "git_blob_sha256": "e35a1c8c4b8f66754c3e6ccc3c16c0b6161b5b321f20ac38b0f320f3c05af7a7",
+      "worktree_sha256": "e35a1c8c4b8f66754c3e6ccc3c16c0b6161b5b321f20ac38b0f320f3c05af7a7"
+    },
+    "Trace.lean": {
+      "git_blob_sha256": "f3114b7514fba1915e93920f0ecf5c736d22e3e5087a4443a256cd1123ca17e6",
+      "worktree_sha256": "f3114b7514fba1915e93920f0ecf5c736d22e3e5087a4443a256cd1123ca17e6"
+    },
+    "Transactions.lean": {
+      "git_blob_sha256": "19b943ebf2cdde7c7bcda87381e08141f0e200ee662f9e191ef4581f62a4cd09",
+      "worktree_sha256": "40d1915b148ab86fc3bd9f2d43c7bc7c01191a2cae59f55c2fa5dcfd62420314"
+    },
+    "test_unified_final20261021_contracts.py": {
+      "git_blob_sha256": "c017b3eca58349c13ebfab730f15fd09e62c210681fc3fb54169aa4dae922e01",
+      "worktree_sha256": "c017b3eca58349c13ebfab730f15fd09e62c210681fc3fb54169aa4dae922e01"
+    },
+    "refresh_candidate_inventory.py": {
+      "git_blob_sha256": "78ec4e5e2e21df01527f8c1f3232b4a51483b1d0dc30929cf0bb8eb8c2759c6c",
+      "worktree_sha256": "78ec4e5e2e21df01527f8c1f3232b4a51483b1d0dc30929cf0bb8eb8c2759c6c"
+    }
   },
   "checks": [
+    {
+      "name": "contracts-collection",
+      "command": [
+        "C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
+        "-m",
+        "pytest",
+        "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\legal-math-modeling-final20261021\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\Final20261021\\test_unified_final20261021_contracts.py",
+        "--collect-only",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "subject_source_commit": "3ff0992ea4becc60856e83c2efc0952ec10e78ff",
+      "start_utc": "2026-10-21T22:42:50.159587+00:00",
+      "end_utc": "2026-10-21T22:42:51.371075+00:00",
+      "exit": 0,
+      "log": "contracts-collection.raw.txt",
+      "authority": "LOCAL_PROVISIONAL_NOT_LEAN",
+      "diagnostic_release_probe": false
+    },
     {
       "name": "contracts",
       "command": [
         "C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
-        "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\legal-math-modeling-final20261021\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\Final20261021\\test_unified_final20261021_contracts.py"
+        "-m",
+        "pytest",
+        "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\legal-math-modeling-final20261021\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\Final20261021\\test_unified_final20261021_contracts.py",
+        "-q",
+        "-ra",
+        "-p",
+        "no:cacheprovider"
       ],
-      "subject_source_commit": "beb03b1b86a697b7bf9e6572b9ed3803e6193c51",
-      "start_utc": "2026-10-21T22:19:46.769738+00:00",
-      "end_utc": "2026-10-21T22:19:46.976891+00:00",
+      "subject_source_commit": "3ff0992ea4becc60856e83c2efc0952ec10e78ff",
+      "start_utc": "2026-10-21T22:42:50.159587+00:00",
+      "end_utc": "2026-10-21T22:42:51.396359+00:00",
       "exit": 0,
       "log": "contracts.raw.txt",
-      "authority": "LOCAL_PROVISIONAL_NOT_LEAN"
+      "authority": "LOCAL_PROVISIONAL_NOT_LEAN",
+      "diagnostic_release_probe": false
     },
     {
       "name": "guards",
@@ -51,12 +159,13 @@
         "--report",
         "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\legal-math-modeling-final20261021\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\Final20261021\\evidence\\lean-guard.json"
       ],
-      "subject_source_commit": "beb03b1b86a697b7bf9e6572b9ed3803e6193c51",
-      "start_utc": "2026-10-21T22:19:46.976891+00:00",
-      "end_utc": "2026-10-21T22:19:47.431146+00:00",
+      "subject_source_commit": "3ff0992ea4becc60856e83c2efc0952ec10e78ff",
+      "start_utc": "2026-10-21T22:42:50.159587+00:00",
+      "end_utc": "2026-10-21T22:42:50.786135+00:00",
       "exit": 0,
       "log": "guards.raw.txt",
-      "authority": "LOCAL_PROVISIONAL_NOT_LEAN"
+      "authority": "LOCAL_PROVISIONAL_NOT_LEAN",
+      "diagnostic_release_probe": false
     },
     {
       "name": "declaration-bans",
@@ -64,14 +173,15 @@
         "C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
         "scripts/ci/check_banned_in_decls.py",
         "--root",
-        "proofs\\lean\\juris_lean\\JurisLean\\Candidates\\Final20261021"
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021"
       ],
-      "subject_source_commit": "beb03b1b86a697b7bf9e6572b9ed3803e6193c51",
-      "start_utc": "2026-10-21T22:19:47.431146+00:00",
-      "end_utc": "2026-10-21T22:19:47.666053+00:00",
+      "subject_source_commit": "3ff0992ea4becc60856e83c2efc0952ec10e78ff",
+      "start_utc": "2026-10-21T22:42:50.160590+00:00",
+      "end_utc": "2026-10-21T22:42:50.500491+00:00",
       "exit": 0,
       "log": "declaration-bans.raw.txt",
-      "authority": "LOCAL_PROVISIONAL_NOT_LEAN"
+      "authority": "LOCAL_PROVISIONAL_NOT_LEAN",
+      "diagnostic_release_probe": false
     },
     {
       "name": "module-plan",
@@ -83,12 +193,13 @@
         "--output",
         "D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\legal-math-modeling-final20261021\\proofs\\lean\\juris_lean\\JurisLean\\Candidates\\Final20261021\\evidence\\module-plan.json"
       ],
-      "subject_source_commit": "beb03b1b86a697b7bf9e6572b9ed3803e6193c51",
-      "start_utc": "2026-10-21T22:19:47.666053+00:00",
-      "end_utc": "2026-10-21T22:19:47.958708+00:00",
+      "subject_source_commit": "3ff0992ea4becc60856e83c2efc0952ec10e78ff",
+      "start_utc": "2026-10-21T22:42:50.501490+00:00",
+      "end_utc": "2026-10-21T22:42:51.000942+00:00",
       "exit": 0,
       "log": "module-plan.raw.txt",
-      "authority": "LOCAL_PROVISIONAL_NOT_LEAN"
+      "authority": "LOCAL_PROVISIONAL_NOT_LEAN",
+      "diagnostic_release_probe": false
     },
     {
       "name": "diff-check",
@@ -97,12 +208,13 @@
         "diff",
         "--check"
       ],
-      "subject_source_commit": "beb03b1b86a697b7bf9e6572b9ed3803e6193c51",
-      "start_utc": "2026-10-21T22:19:47.958708+00:00",
-      "end_utc": "2026-10-21T22:19:48.148193+00:00",
+      "subject_source_commit": "3ff0992ea4becc60856e83c2efc0952ec10e78ff",
+      "start_utc": "2026-10-21T22:42:50.786135+00:00",
+      "end_utc": "2026-10-21T22:42:50.904222+00:00",
       "exit": 0,
       "log": "diff-check.raw.txt",
-      "authority": "LOCAL_PROVISIONAL_NOT_LEAN"
+      "authority": "LOCAL_PROVISIONAL_NOT_LEAN",
+      "diagnostic_release_probe": false
     },
     {
       "name": "release-root-before-promotion",
@@ -110,12 +222,13 @@
         "C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe",
         "scripts/ci/check_import_reachability.py"
       ],
-      "subject_source_commit": "beb03b1b86a697b7bf9e6572b9ed3803e6193c51",
-      "start_utc": "2026-10-21T22:19:48.148193+00:00",
-      "end_utc": "2026-10-21T22:19:48.409989+00:00",
+      "subject_source_commit": "3ff0992ea4becc60856e83c2efc0952ec10e78ff",
+      "start_utc": "2026-10-21T22:42:50.905220+00:00",
+      "end_utc": "2026-10-21T22:42:51.196393+00:00",
       "exit": 1,
       "log": "release-root-before-promotion.raw.txt",
-      "authority": "LOCAL_PROVISIONAL_NOT_LEAN"
+      "authority": "LOCAL_PROVISIONAL_NOT_LEAN",
+      "diagnostic_release_probe": true
     },
     {
       "name": "generated-structure-before-release",
@@ -124,12 +237,14 @@
         "scripts/ci/generate_structure_and_volume_reports.py",
         "--check"
       ],
-      "subject_source_commit": "beb03b1b86a697b7bf9e6572b9ed3803e6193c51",
-      "start_utc": "2026-10-21T22:19:48.409989+00:00",
-      "end_utc": "2026-10-21T22:19:48.763979+00:00",
+      "subject_source_commit": "3ff0992ea4becc60856e83c2efc0952ec10e78ff",
+      "start_utc": "2026-10-21T22:42:51.001939+00:00",
+      "end_utc": "2026-10-21T22:42:51.371075+00:00",
       "exit": 1,
       "log": "generated-structure-before-release.raw.txt",
-      "authority": "LOCAL_PROVISIONAL_NOT_LEAN"
+      "authority": "LOCAL_PROVISIONAL_NOT_LEAN",
+      "diagnostic_release_probe": true
     }
-  ]
+  ],
+  "evidence_boundary": "Local text/Python checks only. Required full mathematical scope remains open. Release diagnostic failures are recorded, not waived."
 }

@@ -13,6 +13,8 @@
 - `baseline_reuse.json`：真正调用的基线数量账和 Horn 声明、源散列、原文及消费者；`candidate_provenance.json`：历史候选参考来源。历史候选的成功状态不转移到当前源码。
 - `construction_status.json`：施工卡及三家验收附录来源、两阶段 CI 状态、限制与阻塞。
 
+另有两个入口模块：`CIAll.lean` 显式导入全部实现模块与候选审计；`AxiomAudit.lean` 导入 Acceptance 并逐声明执行 `#check` / `#print axioms`。二者没有新增定理声明；消费者分别是指定 CI 目标及 `CIAll`，其检查尚未运行。全部 Lean 文件的 Git blob 散列均列在本地回执中。
+
 ## 本检查点补强的内容
 
 `Compiler.proposed_checked_rule_input` 只有在逐规则检查闭包稳定后才返回 Known。`u03_2_checked_closure_complete` 把实际检查结果接到相对语义完备性；不足燃料返回 `checkIncomplete`。尚未证明该列表实现的完整有限载体/燃料上界。

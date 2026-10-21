@@ -170,5 +170,14 @@
       "detail": "The required synthetic test is stored under the candidate-only path. The existing workflow tests/ discovery does not collect it. No root tests/ or workflow change was made; formal Python CI coverage of this file is NOT_RUN."
     }
   ],
-  "evidence_boundary": "All local logs are provisional static/Python evidence. None is a Lean proof, formal-CI PASS, or legal/real-occurrence proof."
+  "evidence_boundary": "All local logs are provisional static/Python evidence. None is a Lean proof, formal-CI PASS, or legal/real-occurrence proof.",
+  "local_prechecks": {
+    "source_commit": "3ff0992ea4becc60856e83c2efc0952ec10e78ff",
+    "receipt": "evidence/local-checks.json",
+    "authority": "LOCAL_PROVISIONAL_NOT_LEAN",
+    "required_scoped_checks": "PASS",
+    "release_diagnostics": "BLOCKED: root promotion pending and kernel_reuse_report stale",
+    "formal_ci": "CI_NOT_RUN",
+    "ci_artifacts": []
+  }
 }

@@ -1,4 +1,4 @@
-import JurisLean.Candidates.Final20261021.Behavior
+import JurisLean.Candidates.Final20261021.Interfaces
 import Mathlib.Topology.MetricSpace.Contracting
 
 namespace JurisLean.Candidates.Final20261021.Policy

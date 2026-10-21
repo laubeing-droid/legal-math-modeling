@@ -1,4 +1,5 @@
-import JurisLean.Candidates.Final20261021.Policy
+import JurisLean.Candidates.Final20261021.Interfaces
+import JurisLean.Candidates.Final20261021.Behavior
 
 namespace JurisLean.Candidates.Final20261021.RSI
 

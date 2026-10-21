@@ -26,51 +26,51 @@
         },
         {
           "file": "Authorization.lean",
-          "line": 40
+          "line": 42
         },
         {
           "file": "Authorization.lean",
-          "line": 47
+          "line": 49
         },
         {
           "file": "Authorization.lean",
-          "line": 55
+          "line": 57
         },
         {
           "file": "Trace.lean",
-          "line": 8
+          "line": 11
         },
         {
           "file": "Trace.lean",
-          "line": 18
+          "line": 21
         },
         {
           "file": "Trace.lean",
-          "line": 54
+          "line": 57
         },
         {
           "file": "Pipeline.lean",
-          "line": 45
+          "line": 61
         },
         {
           "file": "Pipeline.lean",
-          "line": 213
+          "line": 229
         },
         {
           "file": "Acceptance.lean",
-          "line": 209
+          "line": 226
         },
         {
           "file": "Acceptance.lean",
-          "line": 210
+          "line": 227
         },
         {
           "file": "Acceptance.lean",
-          "line": 213
+          "line": 230
         },
         {
           "file": "Acceptance.lean",
-          "line": 214
+          "line": 231
         }
       ],
       "accept": [
@@ -81,14 +81,14 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a08_event_specific_versions",
                 "file": "Acceptance.lean",
-                "line": 208
+                "line": 225
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n08_latest_case_time_wrong_for_first_event",
                 "file": "Acceptance.lean",
-                "line": 212
+                "line": 229
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -103,9 +103,9 @@
         {
           "file": "Temporal.lean",
           "line": 32,
-          "worktree_sha256": "9c036a181aa8fbdaae40f3cb4a685a75f4cc983331b1bd4b46561a4b1628e137",
+          "worktree_sha256": "8444780a8a334eacabcf7c65af2be21b54a36344176287f7381b5682a7ee7d68",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Harness"
+            "JurisLean.Candidates.Final20261021.Interfaces"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
         }
@@ -173,24 +173,24 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a07_1_identity_observation_separates",
                 "file": "Acceptance.lean",
-                "line": 39
+                "line": 56
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_constant_family_not_separating",
                 "file": "Acceptance.lean",
-                "line": 33
+                "line": 50
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_retraction_need_not_encode_surjectively",
                 "file": "Acceptance.lean",
-                "line": 45
+                "line": 62
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_observation_wrong_relation",
                 "file": "Acceptance.lean",
-                "line": 283
+                "line": 300
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -230,7 +230,7 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 199
+          "line": 215
         }
       ],
       "accept": [
@@ -241,14 +241,14 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
                 "file": "Acceptance.lean",
-                "line": 243
+                "line": 260
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_target_mismatch",
                 "file": "Acceptance.lean",
-                "line": 264
+                "line": 281
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -263,10 +263,12 @@
       "candidate_source_evidence": [
         {
           "file": "Calibration.lean",
-          "line": 31,
-          "worktree_sha256": "644d1f58ad26b23ced3aa83f9d9bcddef33b5e757256b83b8766506ecf22037f",
+          "line": 33,
+          "worktree_sha256": "6354a26e6e9ffc6714e0c1680aa316283f72c6b66af96da7c42e4eafe4ca2bc0",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Probability"
+            "JurisLean.Candidates.Final20261021.Interfaces",
+            "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+            "JurisLean.Candidates.Final20261021.Learning"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
         }
@@ -289,7 +291,7 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 199
+          "line": 215
         }
       ],
       "accept": [
@@ -300,14 +302,14 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
                 "file": "Acceptance.lean",
-                "line": 243
+                "line": 260
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_target_mismatch",
                 "file": "Acceptance.lean",
-                "line": 264
+                "line": 281
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -321,10 +323,12 @@
       "candidate_source_evidence": [
         {
           "file": "Calibration.lean",
-          "line": 31,
-          "worktree_sha256": "644d1f58ad26b23ced3aa83f9d9bcddef33b5e757256b83b8766506ecf22037f",
+          "line": 33,
+          "worktree_sha256": "6354a26e6e9ffc6714e0c1680aa316283f72c6b66af96da7c42e4eafe4ca2bc0",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Probability"
+            "JurisLean.Candidates.Final20261021.Interfaces",
+            "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+            "JurisLean.Candidates.Final20261021.Learning"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
         }
@@ -380,19 +384,19 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
                 "file": "Acceptance.lean",
-                "line": 243
+                "line": 260
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n11_window_not_mature_negative_unknown",
                 "file": "Acceptance.lean",
-                "line": 332
+                "line": 349
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_zero_balance_no_external_label",
                 "file": "Acceptance.lean",
-                "line": 271
+                "line": 288
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -407,9 +411,9 @@
         {
           "file": "Behavior.lean",
           "line": 46,
-          "worktree_sha256": "b5f5dd67f5c8bb086511a090cf36595c156b61911a71239649a8c7bd1011ce61",
+          "worktree_sha256": "d9361c34086a3af857ff05c3362856e226bd38e1c8869b732e14e5cef3821619",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Decision"
+            "JurisLean.Candidates.Final20261021.Interfaces"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
         }
@@ -432,15 +436,15 @@
       "consumer": [
         {
           "file": "RSI.lean",
-          "line": 103
+          "line": 104
         },
         {
           "file": "Pipeline.lean",
-          "line": 195
+          "line": 211
         },
         {
           "file": "Acceptance.lean",
-          "line": 341
+          "line": 358
         }
       ],
       "accept": [
@@ -451,14 +455,14 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
                 "file": "Acceptance.lean",
-                "line": 243
+                "line": 260
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n13_absent_is_not_half_probability",
                 "file": "Acceptance.lean",
-                "line": 340
+                "line": 357
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -472,10 +476,11 @@
       "candidate_source_evidence": [
         {
           "file": "RSI.lean",
-          "line": 96,
-          "worktree_sha256": "812e0d408424d4b7a532984f3f9412ab1e2dc63349d4c4f59976928292176d7e",
+          "line": 97,
+          "worktree_sha256": "2023b54b5d873108704e324cd23dfed3d6c2ec3337bd608ab6e501d72859621a",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Policy"
+            "JurisLean.Candidates.Final20261021.Interfaces",
+            "JurisLean.Candidates.Final20261021.Behavior"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
         }
@@ -498,11 +503,11 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 253
+          "line": 269
         },
         {
           "file": "Pipeline.lean",
-          "line": 254
+          "line": 270
         }
       ],
       "accept": [
@@ -513,24 +518,24 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a07_1_identity_observation_separates",
                 "file": "Acceptance.lean",
-                "line": 39
+                "line": 56
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_constant_family_not_separating",
                 "file": "Acceptance.lean",
-                "line": 33
+                "line": 50
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_retraction_need_not_encode_surjectively",
                 "file": "Acceptance.lean",
-                "line": 45
+                "line": 62
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_observation_wrong_relation",
                 "file": "Acceptance.lean",
-                "line": 283
+                "line": 300
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -570,15 +575,15 @@
       "consumer": [
         {
           "file": "Decision.lean",
-          "line": 181
+          "line": 182
         },
         {
           "file": "Pipeline.lean",
-          "line": 205
+          "line": 221
         },
         {
           "file": "Acceptance.lean",
-          "line": 320
+          "line": 337
         }
       ],
       "accept": [
@@ -589,24 +594,24 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a06_risk_gate_precedes_expected_value",
                 "file": "Acceptance.lean",
-                "line": 319
+                "line": 336
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_exact_half_and_currency",
                 "file": "Acceptance.lean",
-                "line": 190
+                "line": 207
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n06_probability_has_no_money_dimension",
                 "file": "Acceptance.lean",
-                "line": 322
+                "line": 339
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n06_duplicate_cash_identity",
                 "file": "Acceptance.lean",
-                "line": 327
+                "line": 344
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -620,10 +625,11 @@
       "candidate_source_evidence": [
         {
           "file": "Decision.lean",
-          "line": 177,
-          "worktree_sha256": "d9fe03c6d9e840a3a4ed47b4c02a1cbc1dd99723413b92c6f0b3afdbd1aaba11",
+          "line": 178,
+          "worktree_sha256": "7766ed88dfd798a0e1527122cc558870f0b3c395d72e086d7acbef163f8eee3b",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Calibration"
+            "JurisLean.Candidates.Final20261021.Interfaces",
+            "JurisLean.Candidates.Final20261021.Probability"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
         }
@@ -669,14 +675,14 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a08_event_specific_versions",
                 "file": "Acceptance.lean",
-                "line": 208
+                "line": 225
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n08_latest_case_time_wrong_for_first_event",
                 "file": "Acceptance.lean",
-                "line": 212
+                "line": 229
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -691,9 +697,9 @@
         {
           "file": "Temporal.lean",
           "line": 20,
-          "worktree_sha256": "9c036a181aa8fbdaae40f3cb4a685a75f4cc983331b1bd4b46561a4b1628e137",
+          "worktree_sha256": "8444780a8a334eacabcf7c65af2be21b54a36344176287f7381b5682a7ee7d68",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Harness"
+            "JurisLean.Candidates.Final20261021.Interfaces"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
         }
@@ -734,7 +740,7 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 126
+          "line": 142
         }
       ],
       "accept": [
@@ -745,24 +751,24 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
                 "file": "Acceptance.lean",
-                "line": 243
+                "line": 260
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_incomplete_fuel_is_not_closure",
                 "file": "Acceptance.lean",
-                "line": 277
+                "line": 294
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_must_facts_closure_is_not_robust_closure",
                 "file": "Acceptance.lean",
-                "line": 288
+                "line": 305
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_missing_exception_is_not_positive_witness",
                 "file": "Acceptance.lean",
-                "line": 293
+                "line": 310
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -777,9 +783,9 @@
         {
           "file": "Compiler.lean",
           "line": 152,
-          "worktree_sha256": "c44aaa877fb3059321c8fd736b4bfc600c7e30e2f04b975129716ee6ad3bac49",
+          "worktree_sha256": "97fe95e5c6ac94fefb8ca7f1066a84c7f8370cbe261909c3a06ab16256e32559",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Representation",
+            "JurisLean.Candidates.Final20261021.Interfaces",
             "JurisLean.HornFixedPoint"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
@@ -803,7 +809,7 @@
       "consumer": [
         {
           "file": "Decision.lean",
-          "line": 178
+          "line": 179
         }
       ],
       "accept": [
@@ -814,24 +820,24 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a06_risk_gate_precedes_expected_value",
                 "file": "Acceptance.lean",
-                "line": 319
+                "line": 336
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_exact_half_and_currency",
                 "file": "Acceptance.lean",
-                "line": 190
+                "line": 207
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n06_probability_has_no_money_dimension",
                 "file": "Acceptance.lean",
-                "line": 322
+                "line": 339
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n06_duplicate_cash_identity",
                 "file": "Acceptance.lean",
-                "line": 327
+                "line": 344
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -845,10 +851,11 @@
       "candidate_source_evidence": [
         {
           "file": "Decision.lean",
-          "line": 174,
-          "worktree_sha256": "d9fe03c6d9e840a3a4ed47b4c02a1cbc1dd99723413b92c6f0b3afdbd1aaba11",
+          "line": 175,
+          "worktree_sha256": "7766ed88dfd798a0e1527122cc558870f0b3c395d72e086d7acbef163f8eee3b",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Calibration"
+            "JurisLean.Candidates.Final20261021.Interfaces",
+            "JurisLean.Candidates.Final20261021.Probability"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
         }
@@ -871,7 +878,7 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 191
+          "line": 207
         }
       ],
       "accept": [
@@ -892,9 +899,9 @@
         {
           "file": "Learning.lean",
           "line": 140,
-          "worktree_sha256": "47b8ec5cb3a49669ac27ec0e125a010e351e383038261c612647f967bf12ef84",
+          "worktree_sha256": "d55cd1af4603791a068a69230adfe663ee51a06fa7fa891671a7c43847a2dc8d",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Trace",
+            "JurisLean.Candidates.Final20261021.Interfaces",
             "Mathlib.Probability.Moments.SubGaussian"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
@@ -944,11 +951,11 @@
         },
         {
           "file": "Pipeline.lean",
-          "line": 187
+          "line": 203
         },
         {
           "file": "Acceptance.lean",
-          "line": 298
+          "line": 315
         }
       ],
       "accept": [
@@ -959,14 +966,14 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a02_common_idle_remains_allowed",
                 "file": "Acceptance.lean",
-                "line": 297
+                "line": 314
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n05_raising_score_threshold_increases_risk",
                 "file": "Acceptance.lean",
-                "line": 309
+                "line": 326
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -981,9 +988,9 @@
         {
           "file": "Harness.lean",
           "line": 24,
-          "worktree_sha256": "f8d5c96815a832ddec62a7199826f4abc812050fc5cad53f5ed71b4cdc68600d",
+          "worktree_sha256": "5a767df0a9bf8632feb63366cc32c27b1242c32edd21b789b159a40df4f045c0",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Compiler"
+            "JurisLean.Candidates.Final20261021.Interfaces"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
         }
@@ -1006,15 +1013,15 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 180
+          "line": 196
         },
         {
           "file": "Pipeline.lean",
-          "line": 238
+          "line": 254
         },
         {
           "file": "Acceptance.lean",
-          "line": 201
+          "line": 218
         }
       ],
       "accept": [
@@ -1025,19 +1032,19 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a08_insufficient_but_lawfully_closed",
                 "file": "Acceptance.lean",
-                "line": 200
+                "line": 217
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n08_2_missing_opportunity",
                 "file": "Acceptance.lean",
-                "line": 196
+                "line": 213
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n08_4_timeout_not_lawful_closure",
                 "file": "Acceptance.lean",
-                "line": 197
+                "line": 214
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -1052,9 +1059,9 @@
         {
           "file": "EvidenceProcedure.lean",
           "line": 82,
-          "worktree_sha256": "4647b5dbeaf362c6e99eebade44f482e733da055d72b3745c3c12d83f51464ae",
+          "worktree_sha256": "976323d18a0655ea70f4c1a30f36bc41a0d38b598de5dd7468825fff3fcddc2a",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Temporal"
+            "JurisLean.Candidates.Final20261021.Interfaces"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
         }
@@ -1172,59 +1179,59 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7",
                 "file": "Acceptance.lean",
-                "line": 92
+                "line": 109
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a_zero_yes_writes_U",
                 "file": "Acceptance.lean",
-                "line": 113
+                "line": 130
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a_rest_claim_then_eligibility",
                 "file": "Acceptance.lean",
-                "line": 174
+                "line": 191
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a_restpay_only_n3",
                 "file": "Acceptance.lean",
-                "line": 185
+                "line": 202
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_a1_layer_collapse",
                 "file": "Acceptance.lean",
-                "line": 100
+                "line": 117
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_non_continuous_consume",
                 "file": "Acceptance.lean",
-                "line": 105
+                "line": 122
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_unknown_does_not_burn_U",
                 "file": "Acceptance.lean",
-                "line": 120
+                "line": 137
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_burned_by_unknown",
                 "file": "Acceptance.lean",
-                "line": 125
+                "line": 142
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n1_premature_cash",
                 "file": "Acceptance.lean",
-                "line": 179
+                "line": 196
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n2_auto_full_refund",
                 "file": "Acceptance.lean",
-                "line": 180
+                "line": 197
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n3_accrual_cash_collapse",
                 "file": "Acceptance.lean",
-                "line": 182
+                "line": 199
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -1240,10 +1247,10 @@
         {
           "file": "Ledger.lean",
           "line": 69,
-          "worktree_sha256": "b77a5be1fa8800dd3cf80324e3cadfadb014add2f09f35f733386c80d5a7f37d",
+          "worktree_sha256": "dc0af65c029f52e56c80459413d778231524183cbc830ab9e151f79e9a6e1997",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Progress",
-            "JurisLean.Candidates.Final20261021.Transactions",
+            "JurisLean.Candidates.Final20261021.Interfaces",
+            "JurisLean.Candidates.Final20261021.Temporal",
             "JurisLean.Seams.UnifiedQuantLedger"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
@@ -1267,11 +1274,11 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 226
+          "line": 242
         },
         {
           "file": "Acceptance.lean",
-          "line": 333
+          "line": 350
         }
       ],
       "accept": [
@@ -1282,19 +1289,19 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
                 "file": "Acceptance.lean",
-                "line": 243
+                "line": 260
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n11_window_not_mature_negative_unknown",
                 "file": "Acceptance.lean",
-                "line": 332
+                "line": 349
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_zero_balance_no_external_label",
                 "file": "Acceptance.lean",
-                "line": 271
+                "line": 288
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -1309,9 +1316,9 @@
         {
           "file": "Behavior.lean",
           "line": 36,
-          "worktree_sha256": "b5f5dd67f5c8bb086511a090cf36595c156b61911a71239649a8c7bd1011ce61",
+          "worktree_sha256": "d9361c34086a3af857ff05c3362856e226bd38e1c8869b732e14e5cef3821619",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Decision"
+            "JurisLean.Candidates.Final20261021.Interfaces"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
         }
@@ -1334,11 +1341,11 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 228
+          "line": 244
         },
         {
           "file": "Acceptance.lean",
-          "line": 337
+          "line": 354
         }
       ],
       "accept": [
@@ -1349,14 +1356,14 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
                 "file": "Acceptance.lean",
-                "line": 243
+                "line": 260
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n12_support_gap_not_smoothed",
                 "file": "Acceptance.lean",
-                "line": 336
+                "line": 353
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -1371,9 +1378,9 @@
         {
           "file": "Policy.lean",
           "line": 67,
-          "worktree_sha256": "cb7998f08e62742bb68ff27db15ec7807530a5bb55cbfa7c1cb0554e563e86b9",
+          "worktree_sha256": "b76cd45a1b3acbc928227f86a01832ecc78717d1e53a657df18a183260e56eb4",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Behavior",
+            "JurisLean.Candidates.Final20261021.Interfaces",
             "Mathlib.Topology.MetricSpace.Contracting"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
@@ -1438,15 +1445,15 @@
         },
         {
           "file": "Trace.lean",
-          "line": 40
+          "line": 43
         },
         {
           "file": "Pipeline.lean",
-          "line": 218
+          "line": 234
         },
         {
           "file": "Pipeline.lean",
-          "line": 219
+          "line": 235
         }
       ],
       "accept": [
@@ -1457,59 +1464,59 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7",
                 "file": "Acceptance.lean",
-                "line": 92
+                "line": 109
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a_zero_yes_writes_U",
                 "file": "Acceptance.lean",
-                "line": 113
+                "line": 130
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a_rest_claim_then_eligibility",
                 "file": "Acceptance.lean",
-                "line": 174
+                "line": 191
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a_restpay_only_n3",
                 "file": "Acceptance.lean",
-                "line": 185
+                "line": 202
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_a1_layer_collapse",
                 "file": "Acceptance.lean",
-                "line": 100
+                "line": 117
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_non_continuous_consume",
                 "file": "Acceptance.lean",
-                "line": 105
+                "line": 122
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_unknown_does_not_burn_U",
                 "file": "Acceptance.lean",
-                "line": 120
+                "line": 137
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_burned_by_unknown",
                 "file": "Acceptance.lean",
-                "line": 125
+                "line": 142
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n1_premature_cash",
                 "file": "Acceptance.lean",
-                "line": 179
+                "line": 196
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n2_auto_full_refund",
                 "file": "Acceptance.lean",
-                "line": 180
+                "line": 197
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n3_accrual_cash_collapse",
                 "file": "Acceptance.lean",
-                "line": 182
+                "line": 199
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -1524,39 +1531,39 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
                 "file": "Acceptance.lean",
-                "line": 243
+                "line": 260
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_reject",
                 "file": "Acceptance.lean",
-                "line": 248
+                "line": 265
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_unknown",
                 "file": "Acceptance.lean",
-                "line": 253
+                "line": 270
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_unresolved_identity",
                 "file": "Acceptance.lean",
-                "line": 260
+                "line": 277
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_target_mismatch",
                 "file": "Acceptance.lean",
-                "line": 264
+                "line": 281
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_decision_payload_mismatch",
                 "file": "Acceptance.lean",
-                "line": 267
+                "line": 284
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_zero_balance_no_external_label",
                 "file": "Acceptance.lean",
-                "line": 271
+                "line": 288
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -1572,20 +1579,36 @@
         {
           "file": "Ledger.lean",
           "line": 194,
-          "worktree_sha256": "b77a5be1fa8800dd3cf80324e3cadfadb014add2f09f35f733386c80d5a7f37d",
+          "worktree_sha256": "dc0af65c029f52e56c80459413d778231524183cbc830ab9e151f79e9a6e1997",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Progress",
-            "JurisLean.Candidates.Final20261021.Transactions",
+            "JurisLean.Candidates.Final20261021.Interfaces",
+            "JurisLean.Candidates.Final20261021.Temporal",
             "JurisLean.Seams.UnifiedQuantLedger"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
         },
         {
           "file": "Pipeline.lean",
-          "line": 118,
-          "worktree_sha256": "fcfdef1d84e49e14e819d72fc5b03b9d30e800b0dbb5014f642b7135c695a7b2",
+          "line": 134,
+          "worktree_sha256": "cb16477509e69a1d6e200e06bf9f0d06a7a67dfdb8d63a27892d6ae5e16ba31f",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Iteration"
+            "JurisLean.Candidates.Final20261021.Interfaces",
+            "JurisLean.Candidates.Final20261021.Authorization",
+            "JurisLean.Candidates.Final20261021.Behavior",
+            "JurisLean.Candidates.Final20261021.Calibration",
+            "JurisLean.Candidates.Final20261021.Compiler",
+            "JurisLean.Candidates.Final20261021.Decision",
+            "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+            "JurisLean.Candidates.Final20261021.Feedback",
+            "JurisLean.Candidates.Final20261021.Harness",
+            "JurisLean.Candidates.Final20261021.Iteration",
+            "JurisLean.Candidates.Final20261021.Learning",
+            "JurisLean.Candidates.Final20261021.Ledger",
+            "JurisLean.Candidates.Final20261021.Policy",
+            "JurisLean.Candidates.Final20261021.RSI",
+            "JurisLean.Candidates.Final20261021.Representation",
+            "JurisLean.Candidates.Final20261021.Temporal",
+            "JurisLean.Candidates.Final20261021.Trace"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
         }
@@ -1644,7 +1667,7 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 255
+          "line": 271
         }
       ],
       "accept": [
@@ -1655,39 +1678,39 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
                 "file": "Acceptance.lean",
-                "line": 243
+                "line": 260
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_reject",
                 "file": "Acceptance.lean",
-                "line": 248
+                "line": 265
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_unknown",
                 "file": "Acceptance.lean",
-                "line": 253
+                "line": 270
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_unresolved_identity",
                 "file": "Acceptance.lean",
-                "line": 260
+                "line": 277
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_target_mismatch",
                 "file": "Acceptance.lean",
-                "line": 264
+                "line": 281
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_decision_payload_mismatch",
                 "file": "Acceptance.lean",
-                "line": 267
+                "line": 284
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_zero_balance_no_external_label",
                 "file": "Acceptance.lean",
-                "line": 271
+                "line": 288
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -1702,10 +1725,26 @@
       "candidate_source_evidence": [
         {
           "file": "Pipeline.lean",
-          "line": 245,
-          "worktree_sha256": "fcfdef1d84e49e14e819d72fc5b03b9d30e800b0dbb5014f642b7135c695a7b2",
+          "line": 261,
+          "worktree_sha256": "cb16477509e69a1d6e200e06bf9f0d06a7a67dfdb8d63a27892d6ae5e16ba31f",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Iteration"
+            "JurisLean.Candidates.Final20261021.Interfaces",
+            "JurisLean.Candidates.Final20261021.Authorization",
+            "JurisLean.Candidates.Final20261021.Behavior",
+            "JurisLean.Candidates.Final20261021.Calibration",
+            "JurisLean.Candidates.Final20261021.Compiler",
+            "JurisLean.Candidates.Final20261021.Decision",
+            "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+            "JurisLean.Candidates.Final20261021.Feedback",
+            "JurisLean.Candidates.Final20261021.Harness",
+            "JurisLean.Candidates.Final20261021.Iteration",
+            "JurisLean.Candidates.Final20261021.Learning",
+            "JurisLean.Candidates.Final20261021.Ledger",
+            "JurisLean.Candidates.Final20261021.Policy",
+            "JurisLean.Candidates.Final20261021.RSI",
+            "JurisLean.Candidates.Final20261021.Representation",
+            "JurisLean.Candidates.Final20261021.Temporal",
+            "JurisLean.Candidates.Final20261021.Trace"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
         }
@@ -1728,19 +1767,19 @@
       "consumer": [
         {
           "file": "Pipeline.lean",
-          "line": 202
+          "line": 218
         },
         {
           "file": "Acceptance.lean",
-          "line": 318
+          "line": 335
         },
         {
           "file": "Acceptance.lean",
-          "line": 323
+          "line": 340
         },
         {
           "file": "Acceptance.lean",
-          "line": 328
+          "line": 345
         }
       ],
       "accept": [
@@ -1751,24 +1790,24 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a06_risk_gate_precedes_expected_value",
                 "file": "Acceptance.lean",
-                "line": 319
+                "line": 336
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_exact_half_and_currency",
                 "file": "Acceptance.lean",
-                "line": 190
+                "line": 207
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n06_probability_has_no_money_dimension",
                 "file": "Acceptance.lean",
-                "line": 322
+                "line": 339
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n06_duplicate_cash_identity",
                 "file": "Acceptance.lean",
-                "line": 327
+                "line": 344
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -1783,10 +1822,11 @@
       "candidate_source_evidence": [
         {
           "file": "Decision.lean",
-          "line": 156,
-          "worktree_sha256": "d9fe03c6d9e840a3a4ed47b4c02a1cbc1dd99723413b92c6f0b3afdbd1aaba11",
+          "line": 157,
+          "worktree_sha256": "7766ed88dfd798a0e1527122cc558870f0b3c395d72e086d7acbef163f8eee3b",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Calibration"
+            "JurisLean.Candidates.Final20261021.Interfaces",
+            "JurisLean.Candidates.Final20261021.Probability"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
         }
@@ -1809,11 +1849,11 @@
       "consumer": [
         {
           "file": "Probability.lean",
-          "line": 48
+          "line": 49
         },
         {
           "file": "Probability.lean",
-          "line": 50
+          "line": 51
         }
       ],
       "accept": [
@@ -1825,7 +1865,7 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n04_zero_variance_not_finite_count",
                 "file": "Acceptance.lean",
-                "line": 306
+                "line": 323
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -1839,9 +1879,10 @@
       "candidate_source_evidence": [
         {
           "file": "Probability.lean",
-          "line": 42,
-          "worktree_sha256": "54d58a9ede78e994a00362ec64045899d6de05f8aedc94af46de8a050d2f519c",
+          "line": 43,
+          "worktree_sha256": "e033e94d174098ab41bf2287f5bcc5f9b46502d8f98e3366b78410f4e19c3e77",
           "imports": [
+            "JurisLean.Candidates.Final20261021.Interfaces",
             "JurisLean.Candidates.Final20261021.Learning"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
@@ -1917,27 +1958,19 @@
         },
         {
           "file": "Trace.lean",
-          "line": 41
+          "line": 44
         },
         {
           "file": "Acceptance.lean",
-          "line": 77
+          "line": 94
         },
         {
           "file": "Acceptance.lean",
-          "line": 78
+          "line": 95
         },
         {
           "file": "Acceptance.lean",
-          "line": 87
-        },
-        {
-          "file": "Acceptance.lean",
-          "line": 90
-        },
-        {
-          "file": "Acceptance.lean",
-          "line": 106
+          "line": 104
         },
         {
           "file": "Acceptance.lean",
@@ -1945,27 +1978,35 @@
         },
         {
           "file": "Acceptance.lean",
-          "line": 115
+          "line": 123
         },
         {
           "file": "Acceptance.lean",
-          "line": 116
+          "line": 124
         },
         {
           "file": "Acceptance.lean",
-          "line": 117
+          "line": 132
         },
         {
           "file": "Acceptance.lean",
-          "line": 118
+          "line": 133
         },
         {
           "file": "Acceptance.lean",
-          "line": 143
+          "line": 134
         },
         {
           "file": "Acceptance.lean",
-          "line": 150
+          "line": 135
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 160
+        },
+        {
+          "file": "Acceptance.lean",
+          "line": 167
         }
       ],
       "accept": [
@@ -1976,59 +2017,59 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7",
                 "file": "Acceptance.lean",
-                "line": 92
+                "line": 109
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a_zero_yes_writes_U",
                 "file": "Acceptance.lean",
-                "line": 113
+                "line": 130
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a_rest_claim_then_eligibility",
                 "file": "Acceptance.lean",
-                "line": 174
+                "line": 191
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a_restpay_only_n3",
                 "file": "Acceptance.lean",
-                "line": 185
+                "line": 202
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_a1_layer_collapse",
                 "file": "Acceptance.lean",
-                "line": 100
+                "line": 117
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_non_continuous_consume",
                 "file": "Acceptance.lean",
-                "line": 105
+                "line": 122
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_unknown_does_not_burn_U",
                 "file": "Acceptance.lean",
-                "line": 120
+                "line": 137
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n_burned_by_unknown",
                 "file": "Acceptance.lean",
-                "line": 125
+                "line": 142
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n1_premature_cash",
                 "file": "Acceptance.lean",
-                "line": 179
+                "line": 196
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n2_auto_full_refund",
                 "file": "Acceptance.lean",
-                "line": 180
+                "line": 197
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n3_accrual_cash_collapse",
                 "file": "Acceptance.lean",
-                "line": 182
+                "line": 199
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -2044,10 +2085,10 @@
         {
           "file": "Ledger.lean",
           "line": 216,
-          "worktree_sha256": "b77a5be1fa8800dd3cf80324e3cadfadb014add2f09f35f733386c80d5a7f37d",
+          "worktree_sha256": "dc0af65c029f52e56c80459413d778231524183cbc830ab9e151f79e9a6e1997",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Progress",
-            "JurisLean.Candidates.Final20261021.Transactions",
+            "JurisLean.Candidates.Final20261021.Interfaces",
+            "JurisLean.Candidates.Final20261021.Temporal",
             "JurisLean.Seams.UnifiedQuantLedger"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
@@ -2095,27 +2136,27 @@
         },
         {
           "file": "Authorization.lean",
-          "line": 61
+          "line": 63
         },
         {
           "file": "Acceptance.lean",
-          "line": 289
+          "line": 306
         },
         {
           "file": "Acceptance.lean",
-          "line": 290
+          "line": 307
         },
         {
           "file": "Acceptance.lean",
-          "line": 291
+          "line": 308
         },
         {
           "file": "Acceptance.lean",
-          "line": 294
+          "line": 311
         },
         {
           "file": "Acceptance.lean",
-          "line": 295
+          "line": 312
         }
       ],
       "accept": [
@@ -2126,24 +2167,24 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
                 "file": "Acceptance.lean",
-                "line": 243
+                "line": 260
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_incomplete_fuel_is_not_closure",
                 "file": "Acceptance.lean",
-                "line": 277
+                "line": 294
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_must_facts_closure_is_not_robust_closure",
                 "file": "Acceptance.lean",
-                "line": 288
+                "line": 305
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_missing_exception_is_not_positive_witness",
                 "file": "Acceptance.lean",
-                "line": 293
+                "line": 310
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -2158,9 +2199,9 @@
         {
           "file": "Compiler.lean",
           "line": 46,
-          "worktree_sha256": "c44aaa877fb3059321c8fd736b4bfc600c7e30e2f04b975129716ee6ad3bac49",
+          "worktree_sha256": "97fe95e5c6ac94fefb8ca7f1066a84c7f8370cbe261909c3a06ab16256e32559",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Representation",
+            "JurisLean.Candidates.Final20261021.Interfaces",
             "JurisLean.HornFixedPoint"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
@@ -2184,7 +2225,7 @@
       "consumer": [
         {
           "file": "RSI.lean",
-          "line": 44
+          "line": 45
         }
       ],
       "accept": [
@@ -2195,14 +2236,14 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
                 "file": "Acceptance.lean",
-                "line": 243
+                "line": 260
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n13_absent_is_not_half_probability",
                 "file": "Acceptance.lean",
-                "line": 340
+                "line": 357
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -2216,10 +2257,11 @@
       "candidate_source_evidence": [
         {
           "file": "RSI.lean",
-          "line": 39,
-          "worktree_sha256": "812e0d408424d4b7a532984f3f9412ab1e2dc63349d4c4f59976928292176d7e",
+          "line": 40,
+          "worktree_sha256": "2023b54b5d873108704e324cd23dfed3d6c2ec3337bd608ab6e501d72859621a",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Policy"
+            "JurisLean.Candidates.Final20261021.Interfaces",
+            "JurisLean.Candidates.Final20261021.Behavior"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"
         }
@@ -2282,7 +2324,7 @@
         },
         {
           "file": "Acceptance.lean",
-          "line": 284
+          "line": 301
         }
       ],
       "accept": [
@@ -2293,24 +2335,24 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.a07_1_identity_observation_separates",
                 "file": "Acceptance.lean",
-                "line": 39
+                "line": 56
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_constant_family_not_separating",
                 "file": "Acceptance.lean",
-                "line": 33
+                "line": 50
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_retraction_need_not_encode_surjectively",
                 "file": "Acceptance.lean",
-                "line": 45
+                "line": 62
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_observation_wrong_relation",
                 "file": "Acceptance.lean",
-                "line": 283
+                "line": 300
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -2390,24 +2432,24 @@
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
                 "file": "Acceptance.lean",
-                "line": 243
+                "line": 260
               }
             ],
             "negative": [
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_incomplete_fuel_is_not_closure",
                 "file": "Acceptance.lean",
-                "line": 277
+                "line": 294
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_must_facts_closure_is_not_robust_closure",
                 "file": "Acceptance.lean",
-                "line": 288
+                "line": 305
               },
               {
                 "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_missing_exception_is_not_positive_witness",
                 "file": "Acceptance.lean",
-                "line": 293
+                "line": 310
               }
             ],
             "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -2430,15 +2472,15 @@
         },
         {
           "file": "Pipeline.lean",
-          "line": 246
+          "line": 262
         },
         {
           "file": "Acceptance.lean",
-          "line": 278
+          "line": 295
         },
         {
           "file": "Acceptance.lean",
-          "line": 280
+          "line": 297
         }
       ],
       "status": "SOURCE_PRESENT_AWAITING_CI_AND_SCOPE_AUDIT",
@@ -2447,9 +2489,9 @@
         {
           "file": "Compiler.lean",
           "line": 115,
-          "worktree_sha256": "c44aaa877fb3059321c8fd736b4bfc600c7e30e2f04b975129716ee6ad3bac49",
+          "worktree_sha256": "97fe95e5c6ac94fefb8ca7f1066a84c7f8370cbe261909c3a06ab16256e32559",
           "imports": [
-            "JurisLean.Candidates.Final20261021.Representation",
+            "JurisLean.Candidates.Final20261021.Interfaces",
             "JurisLean.HornFixedPoint"
           ],
           "hash_scope": "WORKTREE_BYTES; canonical source/dependency blobs in evidence/local-checks.json"

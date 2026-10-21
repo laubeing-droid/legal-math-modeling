@@ -1,4 +1,7 @@
+import JurisLean.Candidates.Final20261021.Interfaces
 import JurisLean.Candidates.Final20261021.Feedback
+import JurisLean.Candidates.Final20261021.Learning
+import JurisLean.Candidates.Final20261021.Probability
 
 namespace JurisLean.Candidates.Final20261021.Iteration
 

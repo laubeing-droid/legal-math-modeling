@@ -1,4 +1,5 @@
-import JurisLean.Candidates.Final20261021.Calibration
+import JurisLean.Candidates.Final20261021.Interfaces
+import JurisLean.Candidates.Final20261021.Probability
 
 namespace JurisLean.Candidates.Final20261021.Decision
 open Probability

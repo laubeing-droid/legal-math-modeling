@@ -1,4 +1,6 @@
-import JurisLean.Candidates.Final20261021.EvidenceProcedure
+import JurisLean.Candidates.Final20261021.Interfaces
+import JurisLean.Candidates.Final20261021.Compiler
+import JurisLean.Candidates.Final20261021.Temporal
 
 namespace JurisLean.Candidates.Final20261021.Authorization
 

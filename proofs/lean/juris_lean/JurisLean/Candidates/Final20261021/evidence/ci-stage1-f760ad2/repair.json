@@ -1,0 +1,7 @@
+{
+  "run_id": 39695803352,
+  "subject_commit": "f760ad2a9a90d8d906bf89eb507d7454e6489867",
+  "failure": "Applicable enum branches require the actual discriminant equality; rfl does not prove a field equals that case",
+  "repair": "Name the case equation ha and pass it to notNo/notUnknown. Keep all public statements. Separate imports by actual references to expose independent CI errors.",
+  "new_status": "CI_NOT_RUN"
+}

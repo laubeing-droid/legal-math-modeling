@@ -121,6 +121,32 @@
       "axiom_audit": "NOT_REACHED",
       "acceptance": "NOT_REACHED",
       "does_not_close_full_scope": true
+    },
+    {
+      "run_id": 39695803352,
+      "run_attempt": 1,
+      "subject": "f760ad2a9a90d8d906bf89eb507d7454e6489867",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39695803352",
+      "mode": "changed-module",
+      "target": "JurisLean.Candidates.Final20261021.CIAll",
+      "status": "FAIL",
+      "failed_module": "JurisLean.Candidates.Final20261021.Ledger",
+      "checked_candidate_modules": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.Candidates.Final20261021.Transactions",
+        "JurisLean.Candidates.Final20261021.Compiler",
+        "JurisLean.Candidates.Final20261021.Harness",
+        "JurisLean.Candidates.Final20261021.Temporal",
+        "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+        "JurisLean.Candidates.Final20261021.Authorization",
+        "JurisLean.Candidates.Final20261021.Progress"
+      ],
+      "artifact": "evidence/ci-stage1-f760ad2/changed-module-only-39695803352-1.zip",
+      "sha256": "7d689a587f9579d333b918d41996a79d3ea338a1c35dd26e23e8e5db3f75ce56",
+      "axiom_audit": "NOT_REACHED",
+      "acceptance": "NOT_REACHED",
+      "does_not_close_full_scope": true
     }
   ],
   "rows": [
@@ -487,7 +513,7 @@
             },
             {
               "file": "Acceptance.lean",
-              "line": 31
+              "line": 48
             }
           ]
         },
@@ -621,7 +647,7 @@
         },
         {
           "file": "Acceptance.lean",
-          "line": 31
+          "line": 48
         },
         {
           "file": "Transactions.lean",
@@ -784,13 +810,13 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Authorization.u10_1_enable_append_select_refresh_consume",
           "file": "Authorization.lean",
-          "line": 51,
+          "line": 53,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Pipeline.u10_1_authorized_refresh_is_step",
           "file": "Pipeline.lean",
-          "line": 47,
+          "line": 63,
           "consumers": []
         }
       ],
@@ -822,79 +848,79 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step",
           "file": "Trace.lean",
-          "line": 73,
+          "line": 76,
           "consumers": [
             {
               "file": "Trace.lean",
-              "line": 99
+              "line": 102
             },
             {
               "file": "Pipeline.lean",
-              "line": 108
+              "line": 124
             },
             {
               "file": "Acceptance.lean",
-              "line": 86
+              "line": 103
             },
             {
               "file": "Acceptance.lean",
-              "line": 89
+              "line": 106
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves",
           "file": "Trace.lean",
-          "line": 86,
+          "line": 89,
           "consumers": [
             {
               "file": "Pipeline.lean",
-              "line": 115
+              "line": 131
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition",
           "file": "Trace.lean",
-          "line": 145,
+          "line": 148,
           "consumers": [
             {
               "file": "Trace.lean",
-              "line": 154
+              "line": 157
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Pipeline.u10_2_pipeline_second_post_invariant",
           "file": "Pipeline.lean",
-          "line": 98,
+          "line": 114,
           "consumers": []
         }
       ],
       "consumers": [
         {
           "file": "Trace.lean",
-          "line": 99
+          "line": 102
         },
         {
           "file": "Pipeline.lean",
-          "line": 108
+          "line": 124
         },
         {
           "file": "Acceptance.lean",
-          "line": 86
+          "line": 103
         },
         {
           "file": "Acceptance.lean",
-          "line": 89
+          "line": 106
         },
         {
           "file": "Pipeline.lean",
-          "line": 115
+          "line": 131
         },
         {
           "file": "Trace.lean",
-          "line": 154
+          "line": 157
         }
       ],
       "original_mapping": "50条施工映射.json::U10.2",
@@ -1046,7 +1072,7 @@
             },
             {
               "file": "Trace.lean",
-              "line": 62
+              "line": 65
             }
           ]
         },
@@ -1076,7 +1102,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Trace.u09_1_actual_trace_at_most_once",
           "file": "Trace.lean",
-          "line": 130,
+          "line": 133,
           "consumers": []
         }
       ],
@@ -1087,7 +1113,7 @@
         },
         {
           "file": "Trace.lean",
-          "line": 62
+          "line": 65
         },
         {
           "file": "Ledger.lean",
@@ -1216,7 +1242,7 @@
           "consumers": [
             {
               "file": "Feedback.lean",
-              "line": 115
+              "line": 118
             }
           ]
         },
@@ -1227,7 +1253,7 @@
           "consumers": [
             {
               "file": "Feedback.lean",
-              "line": 141
+              "line": 144
             }
           ]
         },
@@ -1249,11 +1275,11 @@
         },
         {
           "file": "Feedback.lean",
-          "line": 115
+          "line": 118
         },
         {
           "file": "Feedback.lean",
-          "line": 141
+          "line": 144
         }
       ],
       "original_mapping": "50条施工映射.json::U01.0",
@@ -1325,21 +1351,21 @@
           "consumers": [
             {
               "file": "Probability.lean",
-              "line": 31
+              "line": 32
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Probability.u01_2_finite_label_bridge",
           "file": "Probability.lean",
-          "line": 25,
+          "line": 26,
           "consumers": []
         }
       ],
       "consumers": [
         {
           "file": "Probability.lean",
-          "line": 31
+          "line": 32
         }
       ],
       "original_mapping": "50条施工映射.json::U01.2",
@@ -1369,7 +1395,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Probability.u01_3_finite_deployment_distance",
           "file": "Probability.lean",
-          "line": 86,
+          "line": 87,
           "consumers": []
         }
       ],
@@ -1451,7 +1477,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Probability.u04_2_enclosed_propagation",
           "file": "Probability.lean",
-          "line": 94,
+          "line": 95,
           "consumers": []
         }
       ],
@@ -1533,7 +1559,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Probability.u04_5_new_measurement_not_copy",
           "file": "Probability.lean",
-          "line": 130,
+          "line": 131,
           "consumers": []
         }
       ],
@@ -1590,39 +1616,39 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Calibration.u05_2_brier_decomposition",
           "file": "Calibration.lean",
-          "line": 7,
+          "line": 9,
           "consumers": [
             {
               "file": "Calibration.lean",
-              "line": 13
+              "line": 15
             },
             {
               "file": "Calibration.lean",
-              "line": 14
+              "line": 16
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Calibration.u05_2_brier_unique_optimum",
           "file": "Calibration.lean",
-          "line": 10,
+          "line": 12,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Calibration.u05_2_selected_risk",
           "file": "Calibration.lean",
-          "line": 40,
+          "line": 42,
           "consumers": []
         }
       ],
       "consumers": [
         {
           "file": "Calibration.lean",
-          "line": 13
+          "line": 15
         },
         {
           "file": "Calibration.lean",
-          "line": 14
+          "line": 16
         }
       ],
       "original_mapping": "50条施工映射.json::U05.2",
@@ -1652,7 +1678,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information",
           "file": "Decision.lean",
-          "line": 220,
+          "line": 221,
           "consumers": []
         }
       ],
@@ -1684,7 +1710,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer",
           "file": "Decision.lean",
-          "line": 204,
+          "line": 205,
           "consumers": []
         }
       ],
@@ -1716,19 +1742,19 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Decision.u06_3_eval_exists",
           "file": "Decision.lean",
-          "line": 95,
+          "line": 96,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Decision.u06_3_eval_unique",
           "file": "Decision.lean",
-          "line": 101,
+          "line": 102,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed",
           "file": "Decision.lean",
-          "line": 180,
+          "line": 181,
           "consumers": []
         }
       ],
@@ -1760,19 +1786,19 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_increasing",
           "file": "Decision.lean",
-          "line": 189,
+          "line": 190,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_decreasing",
           "file": "Decision.lean",
-          "line": 195,
+          "line": 196,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_equal",
           "file": "Decision.lean",
-          "line": 201,
+          "line": 202,
           "consumers": []
         }
       ],
@@ -1989,7 +2015,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
           "file": "RSI.lean",
-          "line": 42,
+          "line": 43,
           "consumers": []
         }
       ],
@@ -2021,19 +2047,19 @@
         {
           "name": "JurisLean.Candidates.Final20261021.RSI.u13_2_personal_frame",
           "file": "RSI.lean",
-          "line": 46,
+          "line": 47,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.RSI.u13_2_condition_does_not_train",
           "file": "RSI.lean",
-          "line": 71,
+          "line": 72,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.RSI.u13_2_data_frame",
           "file": "RSI.lean",
-          "line": 72,
+          "line": 73,
           "consumers": []
         }
       ],
@@ -2065,7 +2091,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.RSI.u13_3_representation_transfer",
           "file": "RSI.lean",
-          "line": 77,
+          "line": 78,
           "consumers": []
         }
       ],
@@ -2097,7 +2123,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default",
           "file": "RSI.lean",
-          "line": 102,
+          "line": 103,
           "consumers": []
         }
       ],
@@ -2129,7 +2155,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Feedback.u14_1_conservative_accept",
           "file": "Feedback.lean",
-          "line": 49,
+          "line": 52,
           "consumers": []
         }
       ],
@@ -2161,7 +2187,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Iteration.u15_1_finite_cumulative_improvement",
           "file": "Iteration.lean",
-          "line": 10,
+          "line": 13,
           "consumers": []
         }
       ],
@@ -2193,19 +2219,19 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Feedback.u14_2_independent_cluster_upper_tail",
           "file": "Feedback.lean",
-          "line": 107,
+          "line": 110,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Feedback.u14_2_independent_cluster_two_tail",
           "file": "Feedback.lean",
-          "line": 118,
+          "line": 121,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Feedback.u14_2_unequal_cluster_effective_size",
           "file": "Feedback.lean",
-          "line": 153,
+          "line": 156,
           "consumers": []
         }
       ],
@@ -2237,7 +2263,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Iteration.u15_2_preserved_predictions_equal_risk",
           "file": "Iteration.lean",
-          "line": 16,
+          "line": 19,
           "consumers": []
         }
       ],
@@ -2269,7 +2295,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Iteration.u15_3_two_round_actual_state",
           "file": "Iteration.lean",
-          "line": 34,
+          "line": 37,
           "consumers": []
         }
       ],
@@ -2301,37 +2327,37 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Pipeline.u00_pipeline_wires_handles",
           "file": "Pipeline.lean",
-          "line": 81,
+          "line": 97,
           "consumers": [
             {
               "file": "Pipeline.lean",
-              "line": 110
+              "line": 126
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
           "file": "Acceptance.lean",
-          "line": 243,
+          "line": 260,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_reject",
           "file": "Acceptance.lean",
-          "line": 248,
+          "line": 265,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_unknown",
           "file": "Acceptance.lean",
-          "line": 253,
+          "line": 270,
           "consumers": []
         }
       ],
       "consumers": [
         {
           "file": "Pipeline.lean",
-          "line": 110
+          "line": 126
         }
       ],
       "original_mapping": "50条施工映射.json::U00",

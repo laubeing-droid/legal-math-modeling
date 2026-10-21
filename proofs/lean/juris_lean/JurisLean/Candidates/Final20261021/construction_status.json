@@ -55,9 +55,9 @@
     "status": "FAILED_AT_TESTED_HEAD",
     "authorization": "CONTINUOUS_CI_AUTHORIZED_2026-10-22",
     "purpose": "Compile and audit the partial candidate, not certify complete mathematical coverage",
-    "tested_subject": "98b2a528cbe9fb105583bfcad3a1f4dcb9c715a7",
-    "run_id": 39695229599,
-    "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39695229599",
+    "tested_subject": "f760ad2a9a90d8d906bf89eb507d7454e6489867",
+    "run_id": 39695803352,
+    "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39695803352",
     "current_candidate_ci": "CI_NOT_RUN"
   },
   "stage2": {
@@ -184,7 +184,7 @@
     },
     {
       "kind": "LEAN_AUTHORITY",
-      "detail": "Run 39695229599 showed direct split attempts left the rich conditional unchanged. A generic if-error/none equivalence now extracts the same successful validation conditions once; the three public contracts are unchanged."
+      "detail": "Run 39695803352 accepted generic guard extraction; two enum branches need their named case equality. Candidate imports now name actual dependencies without changing any module body, target, or audit coverage."
     },
     {
       "kind": "STAGE2_SCOPE",
@@ -322,6 +322,32 @@
       ],
       "artifact": "evidence/ci-stage1-98b2a52/changed-module-only-39695229599-1.zip",
       "sha256": "052a85ad75fcdb935d0511223193c1f9094a474eb0e3d0a88f98e3702eaa3a33",
+      "axiom_audit": "NOT_REACHED",
+      "acceptance": "NOT_REACHED",
+      "does_not_close_full_scope": true
+    },
+    {
+      "run_id": 39695803352,
+      "run_attempt": 1,
+      "subject": "f760ad2a9a90d8d906bf89eb507d7454e6489867",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39695803352",
+      "mode": "changed-module",
+      "target": "JurisLean.Candidates.Final20261021.CIAll",
+      "status": "FAIL",
+      "failed_module": "JurisLean.Candidates.Final20261021.Ledger",
+      "checked_candidate_modules": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.Candidates.Final20261021.Transactions",
+        "JurisLean.Candidates.Final20261021.Compiler",
+        "JurisLean.Candidates.Final20261021.Harness",
+        "JurisLean.Candidates.Final20261021.Temporal",
+        "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+        "JurisLean.Candidates.Final20261021.Authorization",
+        "JurisLean.Candidates.Final20261021.Progress"
+      ],
+      "artifact": "evidence/ci-stage1-f760ad2/changed-module-only-39695803352-1.zip",
+      "sha256": "7d689a587f9579d333b918d41996a79d3ea338a1c35dd26e23e8e5db3f75ce56",
       "axiom_audit": "NOT_REACHED",
       "acceptance": "NOT_REACHED",
       "does_not_close_full_scope": true

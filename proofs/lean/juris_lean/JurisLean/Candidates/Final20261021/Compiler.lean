@@ -1,4 +1,4 @@
-import JurisLean.Candidates.Final20261021.Representation
+import JurisLean.Candidates.Final20261021.Interfaces
 import JurisLean.HornFixedPoint
 
 namespace JurisLean.Candidates.Final20261021.Compiler

@@ -14,19 +14,19 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.a_u09_three_observations",
             "file": "Acceptance.lean",
-            "line": 96
+            "line": 113
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n_exact_half_and_currency",
             "file": "Acceptance.lean",
-            "line": 190
+            "line": 207
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n_poststate_name_not_binding",
             "file": "Acceptance.lean",
-            "line": 109
+            "line": 126
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -68,11 +68,11 @@
             },
             {
               "file": "Acceptance.lean",
-              "line": 34
+              "line": 51
             },
             {
               "file": "Acceptance.lean",
-              "line": 40
+              "line": 57
             }
           ]
         },
@@ -87,7 +87,7 @@
             },
             {
               "file": "Acceptance.lean",
-              "line": 284
+              "line": 301
             }
           ]
         },
@@ -140,11 +140,11 @@
           "consumers": [
             {
               "file": "Pipeline.lean",
-              "line": 253
+              "line": 269
             },
             {
               "file": "Pipeline.lean",
-              "line": 254
+              "line": 270
             }
           ]
         },
@@ -165,24 +165,24 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.a07_1_identity_observation_separates",
             "file": "Acceptance.lean",
-            "line": 39
+            "line": 56
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_constant_family_not_separating",
             "file": "Acceptance.lean",
-            "line": 33
+            "line": 50
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_retraction_need_not_encode_surjectively",
             "file": "Acceptance.lean",
-            "line": 45
+            "line": 62
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_observation_wrong_relation",
             "file": "Acceptance.lean",
-            "line": 283
+            "line": 300
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -207,7 +207,7 @@
     },
     {
       "file": "Compiler.lean",
-      "sha256": "c44aaa877fb3059321c8fd736b4bfc600c7e30e2f04b975129716ee6ad3bac49",
+      "sha256": "97fe95e5c6ac94fefb8ca7f1066a84c7f8370cbe261909c3a06ab16256e32559",
       "theory": [
         "U03.1",
         "U03.2"
@@ -300,27 +300,27 @@
             },
             {
               "file": "Authorization.lean",
-              "line": 61
+              "line": 63
             },
             {
               "file": "Acceptance.lean",
-              "line": 289
+              "line": 306
             },
             {
               "file": "Acceptance.lean",
-              "line": 290
+              "line": 307
             },
             {
               "file": "Acceptance.lean",
-              "line": 291
+              "line": 308
             },
             {
               "file": "Acceptance.lean",
-              "line": 294
+              "line": 311
             },
             {
               "file": "Acceptance.lean",
-              "line": 295
+              "line": 312
             }
           ]
         },
@@ -358,15 +358,15 @@
             },
             {
               "file": "Pipeline.lean",
-              "line": 246
+              "line": 262
             },
             {
               "file": "Acceptance.lean",
-              "line": 278
+              "line": 295
             },
             {
               "file": "Acceptance.lean",
-              "line": 280
+              "line": 297
             }
           ]
         },
@@ -377,7 +377,7 @@
           "consumers": [
             {
               "file": "Pipeline.lean",
-              "line": 126
+              "line": 142
             }
           ]
         }
@@ -387,24 +387,24 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
             "file": "Acceptance.lean",
-            "line": 243
+            "line": 260
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_incomplete_fuel_is_not_closure",
             "file": "Acceptance.lean",
-            "line": 277
+            "line": 294
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_must_facts_closure_is_not_robust_closure",
             "file": "Acceptance.lean",
-            "line": 288
+            "line": 305
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_missing_exception_is_not_positive_witness",
             "file": "Acceptance.lean",
-            "line": 293
+            "line": 310
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -425,7 +425,7 @@
     },
     {
       "file": "Harness.lean",
-      "sha256": "f8d5c96815a832ddec62a7199826f4abc812050fc5cad53f5ed71b4cdc68600d",
+      "sha256": "5a767df0a9bf8632feb63366cc32c27b1242c32edd21b789b159a40df4f045c0",
       "theory": [
         "U02.1",
         "U02.3",
@@ -490,11 +490,11 @@
             },
             {
               "file": "Pipeline.lean",
-              "line": 187
+              "line": 203
             },
             {
               "file": "Acceptance.lean",
-              "line": 298
+              "line": 315
             }
           ]
         },
@@ -509,11 +509,11 @@
             },
             {
               "file": "Acceptance.lean",
-              "line": 310
+              "line": 327
             },
             {
               "file": "Acceptance.lean",
-              "line": 311
+              "line": 328
             }
           ]
         }
@@ -523,14 +523,14 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.a02_common_idle_remains_allowed",
             "file": "Acceptance.lean",
-            "line": 297
+            "line": 314
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n05_raising_score_threshold_increases_risk",
             "file": "Acceptance.lean",
-            "line": 309
+            "line": 326
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -622,11 +622,11 @@
             },
             {
               "file": "Acceptance.lean",
-              "line": 16
+              "line": 33
             },
             {
               "file": "Acceptance.lean",
-              "line": 26
+              "line": 43
             }
           ]
         },
@@ -657,7 +657,7 @@
             },
             {
               "file": "Acceptance.lean",
-              "line": 30
+              "line": 47
             }
           ]
         },
@@ -740,19 +740,19 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.a02_transaction_actual_commit",
             "file": "Acceptance.lean",
-            "line": 18
+            "line": 35
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.a02_transaction_actual_replay",
             "file": "Acceptance.lean",
-            "line": 23
+            "line": 40
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n02_cancelled_attempt_no_commit",
             "file": "Acceptance.lean",
-            "line": 29
+            "line": 46
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -769,7 +769,7 @@
     },
     {
       "file": "Temporal.lean",
-      "sha256": "9c036a181aa8fbdaae40f3cb4a685a75f4cc983331b1bd4b46561a4b1628e137",
+      "sha256": "8444780a8a334eacabcf7c65af2be21b54a36344176287f7381b5682a7ee7d68",
       "theory": [
         "U08.1",
         "U08.2"
@@ -854,51 +854,51 @@
             },
             {
               "file": "Authorization.lean",
-              "line": 40
+              "line": 42
             },
             {
               "file": "Authorization.lean",
-              "line": 47
+              "line": 49
             },
             {
               "file": "Authorization.lean",
-              "line": 55
+              "line": 57
             },
             {
               "file": "Trace.lean",
-              "line": 8
+              "line": 11
             },
             {
               "file": "Trace.lean",
-              "line": 18
+              "line": 21
             },
             {
               "file": "Trace.lean",
-              "line": 54
+              "line": 57
             },
             {
               "file": "Pipeline.lean",
-              "line": 45
+              "line": 61
             },
             {
               "file": "Pipeline.lean",
-              "line": 213
+              "line": 229
             },
             {
               "file": "Acceptance.lean",
-              "line": 209
+              "line": 226
             },
             {
               "file": "Acceptance.lean",
-              "line": 210
+              "line": 227
             },
             {
               "file": "Acceptance.lean",
-              "line": 213
+              "line": 230
             },
             {
               "file": "Acceptance.lean",
-              "line": 214
+              "line": 231
             }
           ]
         },
@@ -938,14 +938,14 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.a08_event_specific_versions",
             "file": "Acceptance.lean",
-            "line": 208
+            "line": 225
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n08_latest_case_time_wrong_for_first_event",
             "file": "Acceptance.lean",
-            "line": 212
+            "line": 229
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -966,7 +966,7 @@
     },
     {
       "file": "EvidenceProcedure.lean",
-      "sha256": "4647b5dbeaf362c6e99eebade44f482e733da055d72b3745c3c12d83f51464ae",
+      "sha256": "976323d18a0655ea70f4c1a30f36bc41a0d38b598de5dd7468825fff3fcddc2a",
       "theory": [
         "U08.3"
       ],
@@ -1021,7 +1021,7 @@
             },
             {
               "file": "Calibration.lean",
-              "line": 57
+              "line": 59
             }
           ]
         },
@@ -1044,11 +1044,11 @@
             },
             {
               "file": "Calibration.lean",
-              "line": 56
+              "line": 58
             },
             {
               "file": "Calibration.lean",
-              "line": 57
+              "line": 59
             }
           ]
         },
@@ -1131,11 +1131,11 @@
             },
             {
               "file": "Acceptance.lean",
-              "line": 196
+              "line": 213
             },
             {
               "file": "Acceptance.lean",
-              "line": 197
+              "line": 214
             }
           ]
         },
@@ -1146,15 +1146,15 @@
           "consumers": [
             {
               "file": "Pipeline.lean",
-              "line": 180
+              "line": 196
             },
             {
               "file": "Pipeline.lean",
-              "line": 238
+              "line": 254
             },
             {
               "file": "Acceptance.lean",
-              "line": 201
+              "line": 218
             }
           ]
         },
@@ -1179,19 +1179,19 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.a08_insufficient_but_lawfully_closed",
             "file": "Acceptance.lean",
-            "line": 200
+            "line": 217
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n08_2_missing_opportunity",
             "file": "Acceptance.lean",
-            "line": 196
+            "line": 213
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n08_4_timeout_not_lawful_closure",
             "file": "Acceptance.lean",
-            "line": 197
+            "line": 214
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -1208,7 +1208,7 @@
     },
     {
       "file": "Authorization.lean",
-      "sha256": "fdaf4b67de0cae35cd4c9c6b6a3ae016cc5f5b7f14daf3b1cad91923e126c5db",
+      "sha256": "26bb803bf54f49f6b59edbf33732d115e8b33028509adf248feaf5f021febfc7",
       "theory": [
         "U10.1"
       ],
@@ -1221,103 +1221,103 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Authorization.checkGrant",
           "kind": "def",
-          "line": 20,
+          "line": 22,
           "consumers": [
             {
               "file": "Authorization.lean",
-              "line": 30
+              "line": 32
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Authorization.authorized",
           "kind": "def",
-          "line": 27,
+          "line": 29,
           "consumers": [
             {
               "file": "Trace.lean",
-              "line": 50
+              "line": 53
             },
             {
               "file": "Feedback.lean",
-              "line": 70
+              "line": 73
             },
             {
               "file": "Pipeline.lean",
-              "line": 40
+              "line": 56
             },
             {
               "file": "Pipeline.lean",
-              "line": 51
+              "line": 67
             },
             {
               "file": "Pipeline.lean",
-              "line": 63
+              "line": 79
             },
             {
               "file": "Pipeline.lean",
-              "line": 71
+              "line": 87
             },
             {
               "file": "Pipeline.lean",
-              "line": 85
+              "line": 101
             },
             {
               "file": "Pipeline.lean",
-              "line": 91
+              "line": 107
             },
             {
               "file": "Pipeline.lean",
-              "line": 103
+              "line": 119
             },
             {
               "file": "Pipeline.lean",
-              "line": 112
+              "line": 128
             },
             {
               "file": "Acceptance.lean",
-              "line": 303
+              "line": 320
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Authorization.fresh",
           "kind": "def",
-          "line": 39,
+          "line": 41,
           "consumers": [
             {
               "file": "Authorization.lean",
-              "line": 53
+              "line": 55
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Authorization.append_and_refresh",
           "kind": "def",
-          "line": 44,
+          "line": 46,
           "consumers": [
             {
               "file": "Authorization.lean",
-              "line": 53
-            },
-            {
-              "file": "Authorization.lean",
-              "line": 54
+              "line": 55
             },
             {
               "file": "Authorization.lean",
               "line": 56
+            },
+            {
+              "file": "Authorization.lean",
+              "line": 58
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Authorization.next_eval",
           "kind": "def",
-          "line": 49,
+          "line": 51,
           "consumers": [
             {
               "file": "Authorization.lean",
-              "line": 54
+              "line": 56
             }
           ]
         }
@@ -1327,19 +1327,19 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
             "file": "Acceptance.lean",
-            "line": 243
+            "line": 260
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n10_authorization_binds_full_payload",
             "file": "Acceptance.lean",
-            "line": 302
+            "line": 319
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_score_does_not_authorize",
             "file": "Acceptance.lean",
-            "line": 257
+            "line": 274
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -1356,7 +1356,7 @@
     },
     {
       "file": "Progress.lean",
-      "sha256": "d96498cca4eadc258f9075f06e5f2def129ab5c81b505b3b13fed45baa4ad209",
+      "sha256": "49bd5a846721d99f4c70c363475f522ea0f71618fa661ea024e519ce93fba442",
       "theory": [
         "U10.3"
       ],
@@ -1386,7 +1386,7 @@
     },
     {
       "file": "Ledger.lean",
-      "sha256": "b77a5be1fa8800dd3cf80324e3cadfadb014add2f09f35f733386c80d5a7f37d",
+      "sha256": "dc0af65c029f52e56c80459413d778231524183cbc830ab9e151f79e9a6e1997",
       "theory": [
         "U09.1",
         "U09.2",
@@ -1576,43 +1576,43 @@
             },
             {
               "file": "Trace.lean",
-              "line": 23
+              "line": 26
             },
             {
               "file": "Trace.lean",
-              "line": 46
+              "line": 49
             },
             {
               "file": "Acceptance.lean",
-              "line": 93
+              "line": 110
             },
             {
               "file": "Acceptance.lean",
-              "line": 97
+              "line": 114
             },
             {
               "file": "Acceptance.lean",
-              "line": 106
+              "line": 123
             },
             {
               "file": "Acceptance.lean",
-              "line": 107
+              "line": 124
             },
             {
               "file": "Acceptance.lean",
-              "line": 118
+              "line": 135
             },
             {
               "file": "Acceptance.lean",
-              "line": 245
+              "line": 262
             },
             {
               "file": "Acceptance.lean",
-              "line": 251
+              "line": 268
             },
             {
               "file": "Acceptance.lean",
-              "line": 273
+              "line": 290
             }
           ]
         },
@@ -1627,7 +1627,7 @@
             },
             {
               "file": "Acceptance.lean",
-              "line": 97
+              "line": 114
             }
           ]
         },
@@ -1690,11 +1690,11 @@
             },
             {
               "file": "Trace.lean",
-              "line": 6
+              "line": 9
             },
             {
               "file": "Trace.lean",
-              "line": 23
+              "line": 26
             }
           ]
         },
@@ -1728,7 +1728,7 @@
             },
             {
               "file": "Trace.lean",
-              "line": 7
+              "line": 10
             }
           ]
         },
@@ -1881,19 +1881,19 @@
             },
             {
               "file": "Trace.lean",
-              "line": 43
+              "line": 46
             },
             {
               "file": "Trace.lean",
-              "line": 65
+              "line": 68
             },
             {
               "file": "Acceptance.lean",
-              "line": 157
+              "line": 174
             },
             {
               "file": "Acceptance.lean",
-              "line": 183
+              "line": 200
             }
           ]
         },
@@ -1912,7 +1912,7 @@
             },
             {
               "file": "Trace.lean",
-              "line": 45
+              "line": 48
             }
           ]
         },
@@ -1931,7 +1931,7 @@
             },
             {
               "file": "Trace.lean",
-              "line": 47
+              "line": 50
             }
           ]
         },
@@ -1993,7 +1993,7 @@
             },
             {
               "file": "Trace.lean",
-              "line": 39
+              "line": 42
             }
           ]
         },
@@ -2044,7 +2044,7 @@
             },
             {
               "file": "Trace.lean",
-              "line": 40
+              "line": 43
             }
           ]
         },
@@ -2107,27 +2107,19 @@
             },
             {
               "file": "Trace.lean",
-              "line": 41
+              "line": 44
             },
             {
               "file": "Acceptance.lean",
-              "line": 77
+              "line": 94
             },
             {
               "file": "Acceptance.lean",
-              "line": 78
+              "line": 95
             },
             {
               "file": "Acceptance.lean",
-              "line": 87
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 90
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 106
+              "line": 104
             },
             {
               "file": "Acceptance.lean",
@@ -2135,27 +2127,35 @@
             },
             {
               "file": "Acceptance.lean",
-              "line": 115
+              "line": 123
             },
             {
               "file": "Acceptance.lean",
-              "line": 116
+              "line": 124
             },
             {
               "file": "Acceptance.lean",
-              "line": 117
+              "line": 132
             },
             {
               "file": "Acceptance.lean",
-              "line": 118
+              "line": 133
             },
             {
               "file": "Acceptance.lean",
-              "line": 143
+              "line": 134
             },
             {
               "file": "Acceptance.lean",
-              "line": 150
+              "line": 135
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 160
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 167
             }
           ]
         },
@@ -2201,11 +2201,11 @@
             },
             {
               "file": "Trace.lean",
-              "line": 9
+              "line": 12
             },
             {
               "file": "Trace.lean",
-              "line": 25
+              "line": 28
             }
           ]
         },
@@ -2220,19 +2220,7 @@
             },
             {
               "file": "Trace.lean",
-              "line": 96
-            },
-            {
-              "file": "Trace.lean",
-              "line": 101
-            },
-            {
-              "file": "Trace.lean",
-              "line": 102
-            },
-            {
-              "file": "Trace.lean",
-              "line": 103
+              "line": 99
             },
             {
               "file": "Trace.lean",
@@ -2241,6 +2229,18 @@
             {
               "file": "Trace.lean",
               "line": 105
+            },
+            {
+              "file": "Trace.lean",
+              "line": 106
+            },
+            {
+              "file": "Trace.lean",
+              "line": 107
+            },
+            {
+              "file": "Trace.lean",
+              "line": 108
             }
           ]
         },
@@ -2335,79 +2335,63 @@
             },
             {
               "file": "Trace.lean",
-              "line": 29
-            },
-            {
-              "file": "Trace.lean",
               "line": 32
             },
             {
               "file": "Trace.lean",
-              "line": 76
+              "line": 35
             },
             {
               "file": "Trace.lean",
+              "line": 79
+            },
+            {
+              "file": "Trace.lean",
+              "line": 92
+            },
+            {
+              "file": "Trace.lean",
+              "line": 97
+            },
+            {
+              "file": "Trace.lean",
+              "line": 136
+            },
+            {
+              "file": "Trace.lean",
+              "line": 138
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 81
+            },
+            {
+              "file": "Pipeline.lean",
               "line": 89
             },
             {
-              "file": "Trace.lean",
-              "line": 94
-            },
-            {
-              "file": "Trace.lean",
-              "line": 133
-            },
-            {
-              "file": "Trace.lean",
-              "line": 135
+              "file": "Pipeline.lean",
+              "line": 100
             },
             {
               "file": "Pipeline.lean",
-              "line": 65
+              "line": 106
             },
             {
               "file": "Pipeline.lean",
-              "line": 73
+              "line": 118
             },
             {
               "file": "Pipeline.lean",
-              "line": 84
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 90
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 102
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 111
+              "line": 127
             },
             {
               "file": "Acceptance.lean",
-              "line": 110
+              "line": 127
             },
             {
               "file": "Acceptance.lean",
-              "line": 114
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 121
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 123
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 130
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 134
+              "line": 131
             },
             {
               "file": "Acceptance.lean",
@@ -2415,15 +2399,31 @@
             },
             {
               "file": "Acceptance.lean",
-              "line": 142
+              "line": 140
             },
             {
               "file": "Acceptance.lean",
-              "line": 146
+              "line": 147
             },
             {
               "file": "Acceptance.lean",
-              "line": 162
+              "line": 151
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 155
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 159
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 163
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 179
             }
           ]
         },
@@ -2442,7 +2442,7 @@
             },
             {
               "file": "Acceptance.lean",
-              "line": 175
+              "line": 192
             }
           ]
         },
@@ -2461,7 +2461,7 @@
             },
             {
               "file": "Acceptance.lean",
-              "line": 176
+              "line": 193
             }
           ]
         },
@@ -2472,15 +2472,15 @@
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 179
+              "line": 196
             },
             {
               "file": "Acceptance.lean",
-              "line": 180
+              "line": 197
             },
             {
               "file": "Acceptance.lean",
-              "line": 186
+              "line": 203
             }
           ]
         },
@@ -2491,7 +2491,7 @@
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 101
+              "line": 118
             }
           ]
         },
@@ -2502,7 +2502,7 @@
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 126
+              "line": 143
             }
           ]
         },
@@ -2513,11 +2513,11 @@
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 158
+              "line": 175
             },
             {
               "file": "Acceptance.lean",
-              "line": 182
+              "line": 199
             }
           ]
         },
@@ -2528,7 +2528,7 @@
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 150
+              "line": 167
             }
           ]
         },
@@ -2539,7 +2539,7 @@
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 154
+              "line": 171
             }
           ]
         }
@@ -2549,59 +2549,59 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7",
             "file": "Acceptance.lean",
-            "line": 92
+            "line": 109
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.a_zero_yes_writes_U",
             "file": "Acceptance.lean",
-            "line": 113
+            "line": 130
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.a_rest_claim_then_eligibility",
             "file": "Acceptance.lean",
-            "line": 174
+            "line": 191
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.a_restpay_only_n3",
             "file": "Acceptance.lean",
-            "line": 185
+            "line": 202
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n_a1_layer_collapse",
             "file": "Acceptance.lean",
-            "line": 100
+            "line": 117
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n_non_continuous_consume",
             "file": "Acceptance.lean",
-            "line": 105
+            "line": 122
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n_unknown_does_not_burn_U",
             "file": "Acceptance.lean",
-            "line": 120
+            "line": 137
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n_burned_by_unknown",
             "file": "Acceptance.lean",
-            "line": 125
+            "line": 142
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n1_premature_cash",
             "file": "Acceptance.lean",
-            "line": 179
+            "line": 196
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n2_auto_full_refund",
             "file": "Acceptance.lean",
-            "line": 180
+            "line": 197
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n3_accrual_cash_collapse",
             "file": "Acceptance.lean",
-            "line": 182
+            "line": 199
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -2626,7 +2626,7 @@
     },
     {
       "file": "Trace.lean",
-      "sha256": "f3114b7514fba1915e93920f0ecf5c736d22e3e5087a4443a256cd1123ca17e6",
+      "sha256": "2aee1df98ce39a67ff3483c0286f868620482954902eef40ebb834152224a0a6",
       "theory": [
         "U10.2"
       ],
@@ -2647,27 +2647,19 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Trace.Invariant",
           "kind": "def",
-          "line": 5,
+          "line": 8,
           "consumers": [
             {
               "file": "Trace.lean",
-              "line": 21
+              "line": 24
             },
             {
               "file": "Trace.lean",
-              "line": 57
+              "line": 60
             },
             {
               "file": "Trace.lean",
-              "line": 58
-            },
-            {
-              "file": "Trace.lean",
-              "line": 88
-            },
-            {
-              "file": "Trace.lean",
-              "line": 90
+              "line": 61
             },
             {
               "file": "Trace.lean",
@@ -2675,70 +2667,11 @@
             },
             {
               "file": "Trace.lean",
-              "line": 146
-            },
-            {
-              "file": "Trace.lean",
-              "line": 153
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 101
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 106
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 80
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 84
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 85
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Trace.initial",
-          "kind": "def",
-          "line": 12,
-          "consumers": [
-            {
-              "file": "Trace.lean",
-              "line": 21
-            },
-            {
-              "file": "Trace.lean",
-              "line": 23
-            },
-            {
-              "file": "Trace.lean",
-              "line": 25
-            },
-            {
-              "file": "Trace.lean",
-              "line": 88
-            },
-            {
-              "file": "Trace.lean",
               "line": 93
             },
             {
               "file": "Trace.lean",
-              "line": 100
-            },
-            {
-              "file": "Trace.lean",
-              "line": 146
-            },
-            {
-              "file": "Trace.lean",
-              "line": 148
+              "line": 94
             },
             {
               "file": "Trace.lean",
@@ -2746,15 +2679,82 @@
             },
             {
               "file": "Trace.lean",
-              "line": 153
+              "line": 156
             },
             {
               "file": "Pipeline.lean",
-              "line": 211
+              "line": 117
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 122
             },
             {
               "file": "Acceptance.lean",
-              "line": 67
+              "line": 97
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 101
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 102
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Trace.initial",
+          "kind": "def",
+          "line": 15,
+          "consumers": [
+            {
+              "file": "Trace.lean",
+              "line": 24
+            },
+            {
+              "file": "Trace.lean",
+              "line": 26
+            },
+            {
+              "file": "Trace.lean",
+              "line": 28
+            },
+            {
+              "file": "Trace.lean",
+              "line": 91
+            },
+            {
+              "file": "Trace.lean",
+              "line": 96
+            },
+            {
+              "file": "Trace.lean",
+              "line": 103
+            },
+            {
+              "file": "Trace.lean",
+              "line": 149
+            },
+            {
+              "file": "Trace.lean",
+              "line": 151
+            },
+            {
+              "file": "Trace.lean",
+              "line": 152
+            },
+            {
+              "file": "Trace.lean",
+              "line": 156
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 227
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 84
             }
           ]
         }
@@ -2764,24 +2764,24 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.a_opening_invariant",
             "file": "Acceptance.lean",
-            "line": 80
+            "line": 97
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.a_two_actual_commits_preserve_receipts",
             "file": "Acceptance.lean",
-            "line": 84
+            "line": 101
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n_non_continuous_consume",
             "file": "Acceptance.lean",
-            "line": 105
+            "line": 122
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n_poststate_name_not_binding",
             "file": "Acceptance.lean",
-            "line": 109
+            "line": 126
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -2798,7 +2798,7 @@
     },
     {
       "file": "Learning.lean",
-      "sha256": "47b8ec5cb3a49669ac27ec0e125a010e351e383038261c612647f967bf12ef84",
+      "sha256": "d55cd1af4603791a068a69230adfe663ee51a06fa7fa891671a7c43847a2dc8d",
       "theory": [
         "U01.0",
         "U01.1",
@@ -2837,10 +2837,6 @@
             },
             {
               "file": "Probability.lean",
-              "line": 27
-            },
-            {
-              "file": "Probability.lean",
               "line": 28
             },
             {
@@ -2848,12 +2844,16 @@
               "line": 29
             },
             {
-              "file": "Iteration.lean",
-              "line": 24
+              "file": "Probability.lean",
+              "line": 30
             },
             {
               "file": "Iteration.lean",
-              "line": 28
+              "line": 27
+            },
+            {
+              "file": "Iteration.lean",
+              "line": 31
             }
           ]
         },
@@ -2864,7 +2864,7 @@
           "consumers": [
             {
               "file": "Pipeline.lean",
-              "line": 191
+              "line": 207
             }
           ]
         }
@@ -2902,7 +2902,7 @@
     },
     {
       "file": "Probability.lean",
-      "sha256": "54d58a9ede78e994a00362ec64045899d6de05f8aedc94af46de8a050d2f519c",
+      "sha256": "e033e94d174098ab41bf2287f5bcc5f9b46502d8f98e3366b78410f4e19c3e77",
       "theory": [
         "U04.1",
         "U04.2",
@@ -2928,15 +2928,11 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Probability.expectation",
           "kind": "def",
-          "line": 10,
+          "line": 11,
           "consumers": [
             {
               "file": "Probability.lean",
-              "line": 14
-            },
-            {
-              "file": "Probability.lean",
-              "line": 18
+              "line": 15
             },
             {
               "file": "Probability.lean",
@@ -2944,7 +2940,7 @@
             },
             {
               "file": "Probability.lean",
-              "line": 22
+              "line": 20
             },
             {
               "file": "Probability.lean",
@@ -2952,7 +2948,7 @@
             },
             {
               "file": "Probability.lean",
-              "line": 27
+              "line": 24
             },
             {
               "file": "Probability.lean",
@@ -2964,107 +2960,111 @@
             },
             {
               "file": "Probability.lean",
-              "line": 49
+              "line": 30
             },
             {
               "file": "Probability.lean",
-              "line": 74
+              "line": 50
             },
             {
               "file": "Probability.lean",
-              "line": 81
+              "line": 75
             },
             {
               "file": "Probability.lean",
-              "line": 88
+              "line": 82
+            },
+            {
+              "file": "Probability.lean",
+              "line": 89
             },
             {
               "file": "Decision.lean",
-              "line": 218
-            },
-            {
-              "file": "Decision.lean",
-              "line": 228
+              "line": 219
             },
             {
               "file": "Decision.lean",
               "line": 229
             },
             {
-              "file": "Iteration.lean",
-              "line": 19
+              "file": "Decision.lean",
+              "line": 230
             },
             {
               "file": "Iteration.lean",
-              "line": 20
+              "line": 22
+            },
+            {
+              "file": "Iteration.lean",
+              "line": 23
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Probability.normalize",
           "kind": "def",
-          "line": 33,
+          "line": 34,
           "consumers": [
             {
               "file": "Probability.lean",
-              "line": 44
+              "line": 45
             },
             {
               "file": "Probability.lean",
-              "line": 50
+              "line": 51
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Probability.proposed_probability_model",
           "kind": "def",
-          "line": 42,
+          "line": 43,
           "consumers": [
             {
               "file": "Probability.lean",
-              "line": 48
+              "line": 49
             },
             {
               "file": "Probability.lean",
-              "line": 50
+              "line": 51
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Probability.totalVariation",
           "kind": "def",
-          "line": 55,
+          "line": 56,
           "consumers": [
             {
               "file": "Probability.lean",
-              "line": 59
+              "line": 60
             },
             {
               "file": "Probability.lean",
-              "line": 67
+              "line": 68
             },
             {
               "file": "Probability.lean",
-              "line": 74
+              "line": 75
             },
             {
               "file": "Probability.lean",
-              "line": 81
+              "line": 82
             },
             {
               "file": "Probability.lean",
-              "line": 88
+              "line": 89
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Probability.u04_4_variance_equivalent",
           "kind": "def",
-          "line": 116,
+          "line": 117,
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 307
+              "line": 324
             }
           ]
         }
@@ -3075,7 +3075,7 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n04_zero_variance_not_finite_count",
             "file": "Acceptance.lean",
-            "line": 306
+            "line": 323
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -3108,7 +3108,7 @@
     },
     {
       "file": "Calibration.lean",
-      "sha256": "644d1f58ad26b23ced3aa83f9d9bcddef33b5e757256b83b8766506ecf22037f",
+      "sha256": "6354a26e6e9ffc6714e0c1680aa316283f72c6b66af96da7c42e4eafe4ca2bc0",
       "theory": [
         "U05.1",
         "U05.2"
@@ -3126,30 +3126,30 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Calibration.bernoulliBrier",
           "kind": "def",
-          "line": 5,
+          "line": 7,
           "consumers": [
             {
               "file": "Calibration.lean",
-              "line": 8
+              "line": 10
             },
             {
               "file": "Calibration.lean",
-              "line": 11
+              "line": 13
             },
             {
               "file": "Calibration.lean",
-              "line": 12
+              "line": 14
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Calibration.proposed_calibration_support_gate",
           "kind": "def",
-          "line": 31,
+          "line": 33,
           "consumers": [
             {
               "file": "Pipeline.lean",
-              "line": 199
+              "line": 215
             }
           ]
         }
@@ -3159,14 +3159,14 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
             "file": "Acceptance.lean",
-            "line": 243
+            "line": 260
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_target_mismatch",
             "file": "Acceptance.lean",
-            "line": 264
+            "line": 281
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -3187,7 +3187,7 @@
     },
     {
       "file": "Decision.lean",
-      "sha256": "d9fe03c6d9e840a3a4ed47b4c02a1cbc1dd99723413b92c6f0b3afdbd1aaba11",
+      "sha256": "7766ed88dfd798a0e1527122cc558870f0b3c395d72e086d7acbef163f8eee3b",
       "theory": [
         "U06.1",
         "U06.2",
@@ -3217,23 +3217,19 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Decision.best",
           "kind": "def",
-          "line": 8,
+          "line": 9,
           "consumers": [
             {
               "file": "Decision.lean",
-              "line": 10
+              "line": 11
             },
             {
               "file": "Decision.lean",
-              "line": 15
+              "line": 16
             },
             {
               "file": "Decision.lean",
-              "line": 17
-            },
-            {
-              "file": "Decision.lean",
-              "line": 19
+              "line": 18
             },
             {
               "file": "Decision.lean",
@@ -3241,15 +3237,15 @@
             },
             {
               "file": "Decision.lean",
-              "line": 24
+              "line": 21
             },
             {
               "file": "Decision.lean",
-              "line": 26
+              "line": 25
             },
             {
               "file": "Decision.lean",
-              "line": 28
+              "line": 27
             },
             {
               "file": "Decision.lean",
@@ -3257,15 +3253,15 @@
             },
             {
               "file": "Decision.lean",
-              "line": 38
+              "line": 30
             },
             {
               "file": "Decision.lean",
-              "line": 40
+              "line": 39
             },
             {
               "file": "Decision.lean",
-              "line": 42
+              "line": 41
             },
             {
               "file": "Decision.lean",
@@ -3273,61 +3269,61 @@
             },
             {
               "file": "Decision.lean",
-              "line": 47
+              "line": 44
             },
             {
               "file": "Decision.lean",
-              "line": 66
+              "line": 48
             },
             {
               "file": "Decision.lean",
-              "line": 178
+              "line": 67
             },
             {
               "file": "Decision.lean",
-              "line": 226
+              "line": 179
             },
             {
               "file": "Decision.lean",
               "line": 227
+            },
+            {
+              "file": "Decision.lean",
+              "line": 228
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Decision.legalBest",
           "kind": "def",
-          "line": 65,
+          "line": 66,
           "consumers": [
             {
               "file": "Decision.lean",
-              "line": 69
+              "line": 70
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Decision.evalExact",
           "kind": "def",
-          "line": 83,
+          "line": 84,
           "consumers": [
-            {
-              "file": "Decision.lean",
-              "line": 85
-            },
             {
               "file": "Decision.lean",
               "line": 86
             },
             {
               "file": "Decision.lean",
-              "line": 95
+              "line": 87
             },
             {
               "file": "Decision.lean",
-              "line": 101
+              "line": 96
             },
             {
               "file": "Decision.lean",
-              "line": 104
+              "line": 102
             },
             {
               "file": "Decision.lean",
@@ -3335,11 +3331,11 @@
             },
             {
               "file": "Decision.lean",
-              "line": 125
+              "line": 106
             },
             {
               "file": "Decision.lean",
-              "line": 127
+              "line": 126
             },
             {
               "file": "Decision.lean",
@@ -3347,152 +3343,152 @@
             },
             {
               "file": "Decision.lean",
-              "line": 167
+              "line": 129
             },
             {
               "file": "Decision.lean",
-              "line": 169
+              "line": 168
             },
             {
               "file": "Decision.lean",
-              "line": 171
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 191
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Decision.addValues",
-          "kind": "def",
-          "line": 113,
-          "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 192
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Decision.ledgerAmount",
-          "kind": "def",
-          "line": 123,
-          "consumers": [
-            {
-              "file": "Decision.lean",
-              "line": 125
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 192
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 193
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Decision.evaluate",
-          "kind": "def",
-          "line": 156,
-          "consumers": [
-            {
-              "file": "Pipeline.lean",
-              "line": 202
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 318
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 323
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 328
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Decision.proposed_feasible_policy",
-          "kind": "def",
-          "line": 174,
-          "consumers": [
-            {
-              "file": "Decision.lean",
-              "line": 178
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Decision.proposed_decision",
-          "kind": "def",
-          "line": 177,
-          "consumers": [
-            {
-              "file": "Decision.lean",
-              "line": 181
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 205
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 320
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Decision.net",
-          "kind": "def",
-          "line": 187,
-          "consumers": [
-            {
-              "file": "Decision.lean",
-              "line": 167
+              "line": 170
             },
             {
               "file": "Decision.lean",
               "line": 172
             },
             {
+              "file": "Acceptance.lean",
+              "line": 208
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.addValues",
+          "kind": "def",
+          "line": 114,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 209
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.ledgerAmount",
+          "kind": "def",
+          "line": 124,
+          "consumers": [
+            {
               "file": "Decision.lean",
-              "line": 190
+              "line": 126
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 209
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 210
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.evaluate",
+          "kind": "def",
+          "line": 157,
+          "consumers": [
+            {
+              "file": "Pipeline.lean",
+              "line": 218
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 335
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 340
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 345
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.proposed_feasible_policy",
+          "kind": "def",
+          "line": 175,
+          "consumers": [
+            {
+              "file": "Decision.lean",
+              "line": 179
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.proposed_decision",
+          "kind": "def",
+          "line": 178,
+          "consumers": [
+            {
+              "file": "Decision.lean",
+              "line": 182
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 221
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 337
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.net",
+          "kind": "def",
+          "line": 188,
+          "consumers": [
+            {
+              "file": "Decision.lean",
+              "line": 168
             },
             {
               "file": "Decision.lean",
-              "line": 192
+              "line": 173
             },
             {
               "file": "Decision.lean",
-              "line": 196
+              "line": 191
             },
             {
               "file": "Decision.lean",
-              "line": 198
+              "line": 193
             },
             {
               "file": "Decision.lean",
-              "line": 202
+              "line": 197
+            },
+            {
+              "file": "Decision.lean",
+              "line": 199
+            },
+            {
+              "file": "Decision.lean",
+              "line": 203
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Decision.policyScore",
           "kind": "def",
-          "line": 216,
+          "line": 217,
           "consumers": [
             {
               "file": "Decision.lean",
-              "line": 226
-            },
-            {
-              "file": "Decision.lean",
-              "line": 228
+              "line": 227
             },
             {
               "file": "Decision.lean",
@@ -3500,11 +3496,15 @@
             },
             {
               "file": "Decision.lean",
-              "line": 231
+              "line": 230
             },
             {
               "file": "Decision.lean",
               "line": 232
+            },
+            {
+              "file": "Decision.lean",
+              "line": 233
             }
           ]
         }
@@ -3514,24 +3514,24 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.a06_risk_gate_precedes_expected_value",
             "file": "Acceptance.lean",
-            "line": 319
+            "line": 336
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n_exact_half_and_currency",
             "file": "Acceptance.lean",
-            "line": 190
+            "line": 207
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n06_probability_has_no_money_dimension",
             "file": "Acceptance.lean",
-            "line": 322
+            "line": 339
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n06_duplicate_cash_identity",
             "file": "Acceptance.lean",
-            "line": 327
+            "line": 344
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -3564,7 +3564,7 @@
     },
     {
       "file": "Behavior.lean",
-      "sha256": "b5f5dd67f5c8bb086511a090cf36595c156b61911a71239649a8c7bd1011ce61",
+      "sha256": "d9361c34086a3af857ff05c3362856e226bd38e1c8869b732e14e5cef3821619",
       "theory": [
         "U11.1"
       ],
@@ -3645,7 +3645,7 @@
             },
             {
               "file": "Pipeline.lean",
-              "line": 228
+              "line": 244
             }
           ]
         },
@@ -3698,11 +3698,11 @@
           "consumers": [
             {
               "file": "Pipeline.lean",
-              "line": 226
+              "line": 242
             },
             {
               "file": "Acceptance.lean",
-              "line": 333
+              "line": 350
             }
           ]
         },
@@ -3727,19 +3727,19 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
             "file": "Acceptance.lean",
-            "line": 243
+            "line": 260
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n11_window_not_mature_negative_unknown",
             "file": "Acceptance.lean",
-            "line": 332
+            "line": 349
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_zero_balance_no_external_label",
             "file": "Acceptance.lean",
-            "line": 271
+            "line": 288
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -3756,7 +3756,7 @@
     },
     {
       "file": "Policy.lean",
-      "sha256": "cb7998f08e62742bb68ff27db15ec7807530a5bb55cbfa7c1cb0554e563e86b9",
+      "sha256": "b76cd45a1b3acbc928227f86a01832ecc78717d1e53a657df18a183260e56eb4",
       "theory": [
         "U12.1",
         "U12.2",
@@ -3780,11 +3780,11 @@
           "consumers": [
             {
               "file": "Pipeline.lean",
-              "line": 228
+              "line": 244
             },
             {
               "file": "Acceptance.lean",
-              "line": 337
+              "line": 354
             }
           ]
         }
@@ -3794,14 +3794,14 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
             "file": "Acceptance.lean",
-            "line": 243
+            "line": 260
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n12_support_gap_not_smoothed",
             "file": "Acceptance.lean",
-            "line": 336
+            "line": 353
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -3830,7 +3830,7 @@
     },
     {
       "file": "RSI.lean",
-      "sha256": "812e0d408424d4b7a532984f3f9412ab1e2dc63349d4c4f59976928292176d7e",
+      "sha256": "2023b54b5d873108704e324cd23dfed3d6c2ec3337bd608ab6e501d72859621a",
       "theory": [
         "U13.1",
         "U13.2",
@@ -3851,15 +3851,11 @@
         {
           "name": "JurisLean.Candidates.Final20261021.RSI.updatePersonal",
           "kind": "def",
-          "line": 26,
+          "line": 27,
           "consumers": [
             {
               "file": "RSI.lean",
-              "line": 44
-            },
-            {
-              "file": "RSI.lean",
-              "line": 47
+              "line": 45
             },
             {
               "file": "RSI.lean",
@@ -3875,48 +3871,48 @@
             },
             {
               "file": "RSI.lean",
-              "line": 53
+              "line": 51
             },
             {
               "file": "RSI.lean",
-              "line": 67
+              "line": 54
+            },
+            {
+              "file": "RSI.lean",
+              "line": 68
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.RSI.appendData",
           "kind": "def",
-          "line": 29,
+          "line": 30,
           "consumers": [
             {
               "file": "RSI.lean",
-              "line": 65
+              "line": 66
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.RSI.proposed_rule_service",
           "kind": "def",
-          "line": 39,
+          "line": 40,
           "consumers": [
             {
               "file": "RSI.lean",
-              "line": 44
+              "line": 45
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.RSI.prepareUpdate",
           "kind": "def",
-          "line": 64,
+          "line": 65,
           "consumers": [
             {
               "file": "RSI.lean",
-              "line": 71
-            },
-            {
-              "file": "RSI.lean",
-              "line": 73
+              "line": 72
             },
             {
               "file": "RSI.lean",
@@ -3925,36 +3921,40 @@
             {
               "file": "RSI.lean",
               "line": 75
+            },
+            {
+              "file": "RSI.lean",
+              "line": 76
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.RSI.matches",
           "kind": "def",
-          "line": 91,
+          "line": 92,
           "consumers": [
             {
               "file": "RSI.lean",
-              "line": 98
+              "line": 99
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.RSI.proposed_checkpoint_service",
           "kind": "def",
-          "line": 96,
+          "line": 97,
           "consumers": [
             {
               "file": "RSI.lean",
-              "line": 103
+              "line": 104
             },
             {
               "file": "Pipeline.lean",
-              "line": 195
+              "line": 211
             },
             {
               "file": "Acceptance.lean",
-              "line": 341
+              "line": 358
             }
           ]
         }
@@ -3964,14 +3964,14 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
             "file": "Acceptance.lean",
-            "line": 243
+            "line": 260
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n13_absent_is_not_half_probability",
             "file": "Acceptance.lean",
-            "line": 340
+            "line": 357
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -4000,7 +4000,7 @@
     },
     {
       "file": "Feedback.lean",
-      "sha256": "0daaa80bc05acb203417289b5aaae34b8a67de3676e6762c844ebc6c3b6006b2",
+      "sha256": "772a8b1c29bb29469843ef113997760326d41ef049a81de33db6f877e7bb93c1",
       "theory": [
         "U14.1",
         "U14.2"
@@ -4019,19 +4019,15 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Feedback.consider",
           "kind": "def",
-          "line": 29,
+          "line": 32,
           "consumers": [
-            {
-              "file": "Feedback.lean",
-              "line": 37
-            },
             {
               "file": "Feedback.lean",
               "line": 40
             },
             {
               "file": "Feedback.lean",
-              "line": 42
+              "line": 43
             },
             {
               "file": "Feedback.lean",
@@ -4039,61 +4035,65 @@
             },
             {
               "file": "Feedback.lean",
-              "line": 46
+              "line": 48
             },
             {
               "file": "Feedback.lean",
-              "line": 47
+              "line": 49
             },
             {
               "file": "Feedback.lean",
-              "line": 51
+              "line": 50
             },
             {
               "file": "Feedback.lean",
-              "line": 68
+              "line": 54
+            },
+            {
+              "file": "Feedback.lean",
+              "line": 71
             },
             {
               "file": "Iteration.lean",
-              "line": 31
+              "line": 34
             },
             {
               "file": "Iteration.lean",
-              "line": 32
+              "line": 35
             },
             {
               "file": "Iteration.lean",
-              "line": 37
+              "line": 40
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Feedback.loadAccepted",
           "kind": "def",
-          "line": 65,
+          "line": 68,
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 345
+              "line": 362
             },
             {
               "file": "Acceptance.lean",
-              "line": 349
+              "line": 366
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Feedback.addLabel",
           "kind": "def",
-          "line": 92,
+          "line": 95,
           "consumers": [
             {
               "file": "Pipeline.lean",
-              "line": 231
+              "line": 247
             },
             {
               "file": "Acceptance.lean",
-              "line": 353
+              "line": 370
             }
           ]
         }
@@ -4103,24 +4103,24 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
             "file": "Acceptance.lean",
-            "line": 243
+            "line": 260
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n14_evaluated_is_not_loaded",
             "file": "Acceptance.lean",
-            "line": 344
+            "line": 361
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n14_wrong_bytes_do_not_load",
             "file": "Acceptance.lean",
-            "line": 348
+            "line": 365
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n14_self_suggestion_is_not_external_label",
             "file": "Acceptance.lean",
-            "line": 352
+            "line": 369
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -4141,7 +4141,7 @@
     },
     {
       "file": "Iteration.lean",
-      "sha256": "691a09f80a791ad4ff74993fef949bcc40d12b8db0cacc523b22ac3cca255191",
+      "sha256": "40790a5e52960b707dbdccce02a1247d1328a29d2b5040de4b51454a4249237a",
       "theory": [
         "U15.1",
         "U15.2",
@@ -4159,34 +4159,34 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Iteration.exactRisk",
           "kind": "def",
-          "line": 23,
+          "line": 26,
           "consumers": [
             {
               "file": "Iteration.lean",
-              "line": 27
+              "line": 30
             },
             {
               "file": "Iteration.lean",
-              "line": 28
+              "line": 31
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Iteration.twoRounds",
           "kind": "def",
-          "line": 30,
+          "line": 33,
           "consumers": [
             {
               "file": "Iteration.lean",
-              "line": 36
+              "line": 39
             },
             {
               "file": "Iteration.lean",
-              "line": 37
+              "line": 40
             },
             {
               "file": "Pipeline.lean",
-              "line": 235
+              "line": 251
             }
           ]
         }
@@ -4196,7 +4196,7 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
             "file": "Acceptance.lean",
-            "line": 243
+            "line": 260
           }
         ],
         "negative": [],
@@ -4222,7 +4222,7 @@
     },
     {
       "file": "Pipeline.lean",
-      "sha256": "fcfdef1d84e49e14e819d72fc5b03b9d30e800b0dbb5014f642b7135c695a7b2",
+      "sha256": "cb16477509e69a1d6e200e06bf9f0d06a7a67dfdb8d63a27892d6ae5e16ba31f",
       "theory": [
         "U00"
       ],
@@ -4239,15 +4239,50 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Pipeline.finishPayment",
           "kind": "def",
-          "line": 16,
+          "line": 32,
           "consumers": [
             {
               "file": "Pipeline.lean",
-              "line": 26
+              "line": 42
             },
             {
               "file": "Pipeline.lean",
-              "line": 29
+              "line": 45
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 90
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 95
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 109
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 127
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Pipeline.refresh",
+          "kind": "def",
+          "line": 53,
+          "consumers": [
+            {
+              "file": "Pipeline.lean",
+              "line": 65
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 69
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 71
             },
             {
               "file": "Pipeline.lean",
@@ -4255,142 +4290,79 @@
             },
             {
               "file": "Pipeline.lean",
-              "line": 79
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 93
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 111
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Pipeline.refresh",
-          "kind": "def",
-          "line": 37,
-          "consumers": [
-            {
-              "file": "Pipeline.lean",
-              "line": 49
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 53
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 55
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 58
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 68
+              "line": 84
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Pipeline.executePayments",
           "kind": "def",
-          "line": 60,
+          "line": 76,
           "consumers": [
-            {
-              "file": "Pipeline.lean",
-              "line": 89
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 94
-            },
             {
               "file": "Pipeline.lean",
               "line": 105
             },
             {
               "file": "Pipeline.lean",
-              "line": 220
+              "line": 110
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 121
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 236
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Pipeline.interpretPayment",
           "kind": "def",
-          "line": 118,
+          "line": 134,
           "consumers": [
             {
               "file": "Pipeline.lean",
-              "line": 218
+              "line": 234
             },
             {
               "file": "Pipeline.lean",
-              "line": 219
+              "line": 235
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Pipeline.checkFacts",
           "kind": "def",
-          "line": 123,
+          "line": 139,
           "consumers": [
             {
               "file": "Pipeline.lean",
-              "line": 127
+              "line": 143
             },
             {
               "file": "Pipeline.lean",
-              "line": 254
+              "line": 270
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Pipeline.stop",
           "kind": "def",
-          "line": 178,
+          "line": 194,
           "consumers": [
             {
               "file": "Pipeline.lean",
-              "line": 207
+              "line": 223
             },
             {
               "file": "Pipeline.lean",
-              "line": 209
+              "line": 225
             },
             {
               "file": "Pipeline.lean",
-              "line": 216
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 241
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 242
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 243
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 248
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 249
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 250
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 256
+              "line": 232
             },
             {
               "file": "Pipeline.lean",
@@ -4406,100 +4378,128 @@
             },
             {
               "file": "Pipeline.lean",
-              "line": 260
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 261
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 262
-            },
-            {
-              "file": "Pipeline.lean",
-              "line": 263
-            },
-            {
-              "file": "Pipeline.lean",
               "line": 264
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 265
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 266
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 272
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 273
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 274
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 275
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 276
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 277
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 278
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 279
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 280
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Pipeline.runClosed",
           "kind": "def",
-          "line": 184,
+          "line": 200,
           "consumers": [
             {
               "file": "Pipeline.lean",
-              "line": 247
+              "line": 263
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Pipeline.runBound",
           "kind": "def",
-          "line": 245,
+          "line": 261,
           "consumers": [
             {
               "file": "Pipeline.lean",
-              "line": 255
+              "line": 271
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Pipeline.run",
           "kind": "def",
-          "line": 252,
+          "line": 268,
           "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 244
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 245
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 246
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 249
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 250
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 254
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 255
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 258
-            },
             {
               "file": "Acceptance.lean",
               "line": 261
             },
             {
               "file": "Acceptance.lean",
-              "line": 265
+              "line": 262
             },
             {
               "file": "Acceptance.lean",
-              "line": 268
+              "line": 263
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 266
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 267
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 271
             },
             {
               "file": "Acceptance.lean",
               "line": 272
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 275
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 278
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 282
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 285
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 289
             }
           ]
         }
@@ -4509,39 +4509,39 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
             "file": "Acceptance.lean",
-            "line": 243
+            "line": 260
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_reject",
             "file": "Acceptance.lean",
-            "line": 248
+            "line": 265
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_unknown",
             "file": "Acceptance.lean",
-            "line": 253
+            "line": 270
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_unresolved_identity",
             "file": "Acceptance.lean",
-            "line": 260
+            "line": 277
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_target_mismatch",
             "file": "Acceptance.lean",
-            "line": 264
+            "line": 281
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_decision_payload_mismatch",
             "file": "Acceptance.lean",
-            "line": 267
+            "line": 284
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_zero_balance_no_external_label",
             "file": "Acceptance.lean",
-            "line": 271
+            "line": 288
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
@@ -4558,7 +4558,7 @@
     },
     {
       "file": "Acceptance.lean",
-      "sha256": "c5eefb203b27276e8b18756ad391239528b0115a654ac9c154d832345200a1a1",
+      "sha256": "af72a5819a9bb77931fa778576de6b5ac69788eff2320f8526b526488a27e1d4",
       "theory": [],
       "hash_scope": "WORKTREE_BYTES; canonical Git blob hashes are recorded in evidence/local-checks.json",
       "theorems": [
@@ -4629,410 +4629,123 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.txRequest",
           "kind": "def",
-          "line": 11,
+          "line": 28,
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 16
+              "line": 33
             },
             {
               "file": "Acceptance.lean",
-              "line": 19
+              "line": 36
             },
             {
               "file": "Acceptance.lean",
-              "line": 21
+              "line": 38
             },
             {
               "file": "Acceptance.lean",
-              "line": 24
+              "line": 41
             },
             {
               "file": "Acceptance.lean",
-              "line": 26
+              "line": 43
             },
             {
               "file": "Acceptance.lean",
-              "line": 30
+              "line": 47
             },
             {
               "file": "Acceptance.lean",
-              "line": 31
+              "line": 48
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.txEval",
           "kind": "def",
-          "line": 12,
+          "line": 29,
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 19
+              "line": 36
             },
             {
               "file": "Acceptance.lean",
-              "line": 21
+              "line": 38
             },
             {
               "file": "Acceptance.lean",
-              "line": 24
+              "line": 41
             },
             {
               "file": "Acceptance.lean",
-              "line": 30
+              "line": 47
             },
             {
               "file": "Acceptance.lean",
-              "line": 31
+              "line": 48
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.txOpening",
           "kind": "def",
-          "line": 14,
+          "line": 31,
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 16
+              "line": 33
             },
             {
               "file": "Acceptance.lean",
-              "line": 19
+              "line": 36
             },
             {
               "file": "Acceptance.lean",
-              "line": 20
+              "line": 37
             },
             {
               "file": "Acceptance.lean",
-              "line": 21
+              "line": 38
             },
             {
               "file": "Acceptance.lean",
-              "line": 26
+              "line": 43
             },
             {
               "file": "Acceptance.lean",
-              "line": 30
+              "line": 47
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.txCommitted",
           "kind": "def",
-          "line": 15,
+          "line": 32,
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 19
+              "line": 36
             },
             {
               "file": "Acceptance.lean",
-              "line": 24
+              "line": 41
             },
             {
               "file": "Acceptance.lean",
-              "line": 25
+              "line": 42
             },
             {
               "file": "Acceptance.lean",
-              "line": 26
+              "line": 43
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.tag",
           "kind": "def",
-          "line": 54,
-          "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 60
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 63
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 154
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 163
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 166
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 169
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 171
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 172
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 181
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 187
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 192
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 193
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 227
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 314
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 315
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 329
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.gamma",
-          "kind": "def",
-          "line": 55,
-          "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 62
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 63
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 67
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 72
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 73
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 81
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 209
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 210
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 213
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 214
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 217
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 238
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 303
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 318
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 323
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 328
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 345
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 349
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.debt",
-          "kind": "def",
-          "line": 60,
-          "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 62
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 67
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 72
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 74
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 81
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 97
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 217
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 218
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 219
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 229
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 261
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 303
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 304
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.payload",
-          "kind": "def",
-          "line": 61,
-          "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 70
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 75
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 76
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 147
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 163
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 217
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 227
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 249
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 250
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 268
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 303
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 304
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.version",
-          "kind": "def",
-          "line": 64,
-          "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 68
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 206
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 207
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 229
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.opening",
-          "kind": "def",
-          "line": 66,
+          "line": 71,
           "consumers": [
             {
               "file": "Acceptance.lean",
@@ -5044,414 +4757,11 @@
             },
             {
               "file": "Acceptance.lean",
-              "line": 86
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 87
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 106
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 110
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 114
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 115
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 116
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 117
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 118
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 121
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 123
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 126
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 130
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 134
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 138
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 143
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 150
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 162
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.request",
-          "kind": "def",
-          "line": 69,
-          "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 77
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 78
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 86
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 87
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 89
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 90
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 106
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 107
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 110
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 114
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 115
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 116
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 117
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 118
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 121
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 123
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 130
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 134
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 138
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 142
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 143
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 146
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 150
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 163
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.grant",
-          "kind": "def",
-          "line": 71,
-          "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 76
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 249
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 250
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 303
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.grants",
-          "kind": "def",
-          "line": 76,
-          "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 232
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 249
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 250
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 258
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.post1",
-          "kind": "def",
-          "line": 77,
-          "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 78
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 85
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 87
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 89
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 90
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 93
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 107
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 110
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 157
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 158
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 168
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 175
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 177
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 179
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.post2",
-          "kind": "def",
-          "line": 78,
-          "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 84
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 90
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 93
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 94
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 97
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 98
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 101
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 102
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 142
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 146
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.restWitness",
-          "kind": "def",
-          "line": 166,
-          "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 175
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.claimed",
-          "kind": "def",
-          "line": 167,
-          "consumers": [
-            {
-              "file": "Acceptance.lean",
               "line": 171
             },
             {
               "file": "Acceptance.lean",
-              "line": 175
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 176
-            },
-            {
-              "file": "Acceptance.lean",
               "line": 180
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.eligible",
-          "kind": "def",
-          "line": 170,
-          "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 176
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 177
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 182
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 183
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 186
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 187
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.refund",
-          "kind": "def",
-          "line": 172,
-          "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 179
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 181
             },
             {
               "file": "Acceptance.lean",
@@ -5464,13 +4774,676 @@
             {
               "file": "Acceptance.lean",
               "line": 188
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 189
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 198
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 204
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 209
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 210
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 244
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 331
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 332
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 346
             }
           ]
         },
         {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.process",
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.gamma",
           "kind": "def",
-          "line": 195,
+          "line": 72,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 79
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 80
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 84
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 89
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 90
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 98
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 226
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 227
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 230
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 231
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 234
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 255
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 320
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 335
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 340
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 345
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 362
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 366
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.debt",
+          "kind": "def",
+          "line": 77,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 79
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 84
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 89
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 91
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 98
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 114
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 234
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 235
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 236
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 246
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 278
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 320
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 321
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.payload",
+          "kind": "def",
+          "line": 78,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 87
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 92
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 93
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 164
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 180
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 234
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 244
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 266
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 267
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 285
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 320
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 321
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.version",
+          "kind": "def",
+          "line": 81,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 85
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 223
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 224
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 246
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.opening",
+          "kind": "def",
+          "line": 83,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 94
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 97
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 103
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 104
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 123
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 127
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 131
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 132
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 133
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 134
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 135
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 138
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 140
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 143
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 147
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 151
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 155
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 160
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 167
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 179
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.request",
+          "kind": "def",
+          "line": 86,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 94
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 95
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 103
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 104
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 106
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 107
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 123
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 124
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 127
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 131
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 132
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 133
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 134
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 135
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 138
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 140
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 147
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 151
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 155
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 159
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 160
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 163
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 167
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 180
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.grant",
+          "kind": "def",
+          "line": 88,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 93
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 266
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 267
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 320
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.grants",
+          "kind": "def",
+          "line": 93,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 249
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 266
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 267
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 275
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.post1",
+          "kind": "def",
+          "line": 94,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 95
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 102
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 104
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 106
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 107
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 110
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 124
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 127
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 174
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 175
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 185
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 192
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 194
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 196
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.post2",
+          "kind": "def",
+          "line": 95,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 101
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 107
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 110
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 111
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 114
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 115
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 118
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 119
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 159
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 163
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.restWitness",
+          "kind": "def",
+          "line": 183,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 192
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.claimed",
+          "kind": "def",
+          "line": 184,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 188
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 192
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 193
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 197
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.eligible",
+          "kind": "def",
+          "line": 187,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 193
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 194
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 199
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 200
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 203
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 204
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.refund",
+          "kind": "def",
+          "line": 189,
           "consumers": [
             {
               "file": "Acceptance.lean",
@@ -5482,7 +5455,57 @@
             },
             {
               "file": "Acceptance.lean",
-              "line": 202
+              "line": 200
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 203
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 205
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.process",
+          "kind": "def",
+          "line": 212,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 213
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 215
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 219
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 248
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.ruleA",
+          "kind": "def",
+          "line": 223,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 226
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 227
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 230
             },
             {
               "file": "Acceptance.lean",
@@ -5491,229 +5514,186 @@
           ]
         },
         {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.ruleA",
-          "kind": "def",
-          "line": 206,
-          "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 209
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 210
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 213
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 214
-            }
-          ]
-        },
-        {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.ruleB",
           "kind": "def",
-          "line": 207,
+          "line": 224,
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 209
+              "line": 226
             },
             {
               "file": "Acceptance.lean",
-              "line": 210
+              "line": 227
             },
             {
               "file": "Acceptance.lean",
-              "line": 213
+              "line": 230
             },
             {
               "file": "Acceptance.lean",
-              "line": 214
+              "line": 231
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.view",
           "kind": "def",
-          "line": 216,
+          "line": 233,
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 229
+              "line": 246
             },
             {
               "file": "Acceptance.lean",
-              "line": 261
+              "line": 278
             },
             {
               "file": "Acceptance.lean",
-              "line": 284
+              "line": 301
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.fit",
           "kind": "def",
-          "line": 220,
+          "line": 237,
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 234
+              "line": 251
             },
             {
               "file": "Acceptance.lean",
-              "line": 235
+              "line": 252
             },
             {
               "file": "Acceptance.lean",
-              "line": 265
+              "line": 282
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.checkpoint",
           "kind": "def",
-          "line": 221,
+          "line": 238,
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 225
+              "line": 242
             },
             {
               "file": "Acceptance.lean",
-              "line": 346
+              "line": 363
             },
             {
               "file": "Acceptance.lean",
-              "line": 350
+              "line": 367
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.scope",
           "kind": "def",
-          "line": 223,
+          "line": 240,
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 225
+              "line": 242
             },
             {
               "file": "Acceptance.lean",
-              "line": 240
+              "line": 257
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.assessed",
           "kind": "def",
-          "line": 224,
+          "line": 241,
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 239
+              "line": 256
             },
             {
               "file": "Acceptance.lean",
-              "line": 240
+              "line": 257
             },
             {
               "file": "Acceptance.lean",
-              "line": 246
+              "line": 263
             },
             {
               "file": "Acceptance.lean",
-              "line": 345
+              "line": 362
             },
             {
               "file": "Acceptance.lean",
-              "line": 349
+              "line": 366
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.alternative",
           "kind": "def",
-          "line": 226,
+          "line": 243,
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 236
+              "line": 253
             },
             {
               "file": "Acceptance.lean",
-              "line": 268
+              "line": 285
             },
             {
               "file": "Acceptance.lean",
-              "line": 314
+              "line": 331
             },
             {
               "file": "Acceptance.lean",
-              "line": 317
+              "line": 334
             },
             {
               "file": "Acceptance.lean",
-              "line": 324
+              "line": 341
             },
             {
               "file": "Acceptance.lean",
-              "line": 329
+              "line": 346
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.input",
           "kind": "def",
-          "line": 228,
+          "line": 245,
           "consumers": [
-            {
-              "file": "Acceptance.lean",
-              "line": 244
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 245
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 246
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 249
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 250
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 254
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 255
-            },
-            {
-              "file": "Acceptance.lean",
-              "line": 258
-            },
             {
               "file": "Acceptance.lean",
               "line": 261
             },
             {
               "file": "Acceptance.lean",
-              "line": 265
+              "line": 262
             },
             {
               "file": "Acceptance.lean",
-              "line": 268
+              "line": 263
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 266
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 267
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 271
             },
             {
               "file": "Acceptance.lean",
@@ -5725,52 +5705,72 @@
             },
             {
               "file": "Acceptance.lean",
-              "line": 333
+              "line": 278
             },
             {
               "file": "Acceptance.lean",
-              "line": 337
-            }
-          ]
-        },
-        {
-          "name": "JurisLean.Candidates.Final20261021.Acceptance.disjunctiveRules",
-          "kind": "def",
-          "line": 287,
-          "consumers": [
+              "line": 282
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 285
+            },
             {
               "file": "Acceptance.lean",
               "line": 289
             },
             {
               "file": "Acceptance.lean",
-              "line": 290
+              "line": 292
             },
             {
               "file": "Acceptance.lean",
-              "line": 291
+              "line": 350
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 354
+            }
+          ]
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.disjunctiveRules",
+          "kind": "def",
+          "line": 304,
+          "consumers": [
+            {
+              "file": "Acceptance.lean",
+              "line": 306
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 307
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 308
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.riskyAlternative",
           "kind": "def",
-          "line": 313,
+          "line": 330,
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 317
+              "line": 334
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.decisionValues",
           "kind": "def",
-          "line": 316,
+          "line": 333,
           "consumers": [
             {
               "file": "Acceptance.lean",
-              "line": 320
+              "line": 337
             }
           ]
         }
@@ -5780,19 +5780,19 @@
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
             "file": "Acceptance.lean",
-            "line": 243
+            "line": 260
           }
         ],
         "negative": [
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_reject",
             "file": "Acceptance.lean",
-            "line": 248
+            "line": 265
           },
           {
             "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_unknown",
             "file": "Acceptance.lean",
-            "line": 253
+            "line": 270
           }
         ],
         "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",

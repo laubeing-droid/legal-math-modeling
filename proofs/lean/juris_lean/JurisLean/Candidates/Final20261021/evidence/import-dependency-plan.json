@@ -1,0 +1,359 @@
+{
+  "subject_commit": "f760ad2a9a90d8d906bf89eb507d7454e6489867",
+  "status": "APPLIED_SAME_DEFINITIONS_AND_THEOREMS",
+  "purpose": "Remove artificial serial imports while retaining actual references, all external imports and the complete CIAll target. No definition or theorem body changes.",
+  "modules": {
+    "Acceptance": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Pipeline"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Authorization",
+        "JurisLean.Candidates.Final20261021.Behavior",
+        "JurisLean.Candidates.Final20261021.Compiler",
+        "JurisLean.Candidates.Final20261021.Decision",
+        "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+        "JurisLean.Candidates.Final20261021.Feedback",
+        "JurisLean.Candidates.Final20261021.Harness",
+        "JurisLean.Candidates.Final20261021.Learning",
+        "JurisLean.Candidates.Final20261021.Ledger",
+        "JurisLean.Candidates.Final20261021.Pipeline",
+        "JurisLean.Candidates.Final20261021.Policy",
+        "JurisLean.Candidates.Final20261021.Probability",
+        "JurisLean.Candidates.Final20261021.RSI",
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.Candidates.Final20261021.Temporal",
+        "JurisLean.Candidates.Final20261021.Trace",
+        "JurisLean.Candidates.Final20261021.Transactions"
+      ],
+      "dependencies": [
+        "Authorization",
+        "Behavior",
+        "Compiler",
+        "Decision",
+        "EvidenceProcedure",
+        "Feedback",
+        "Harness",
+        "Learning",
+        "Ledger",
+        "Pipeline",
+        "Policy",
+        "Probability",
+        "RSI",
+        "Representation",
+        "Temporal",
+        "Trace",
+        "Transactions"
+      ],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "fe5e0f8ae6f83a2e40279041756d281707f244d420c6f14fe2be7043d3d58e59"
+    },
+    "Authorization": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.EvidenceProcedure"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Compiler",
+        "JurisLean.Candidates.Final20261021.Temporal"
+      ],
+      "dependencies": [
+        "Compiler",
+        "Temporal"
+      ],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "516947457a8f7bf3d857e6ada38cc3ff6fdc93e18934bef414999ec52fa8635e"
+    },
+    "Behavior": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Decision"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces"
+      ],
+      "dependencies": [],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "4c825b7f1568559250af0f4c617e7106597edf4b1ea4f27d74c439d7b797fb1d"
+    },
+    "Calibration": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Probability"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+        "JurisLean.Candidates.Final20261021.Learning"
+      ],
+      "dependencies": [
+        "EvidenceProcedure",
+        "Learning"
+      ],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "4e2f0eb8657a8865e9de40130c46e2649e8d776b321bd1d514aa63fa837afaa1"
+    },
+    "Compiler": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.HornFixedPoint"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.HornFixedPoint"
+      ],
+      "dependencies": [],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "32bafc7d65567182a94bd4d896cce67e4fa0e632fa9d4e7ca93e62326fa7ccf8"
+    },
+    "Decision": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Calibration"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Probability"
+      ],
+      "dependencies": [
+        "Probability"
+      ],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "7d5cdd8c50c5fbbcc20dea1818c982c141fac31506b7060195ef231d60a90573"
+    },
+    "EvidenceProcedure": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Temporal"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces"
+      ],
+      "dependencies": [],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "cf2f24a8ea2f8556a5929af7ab6d8914d36a131ac4e8930109d9ced84c09f085"
+    },
+    "Feedback": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.RSI"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Authorization",
+        "JurisLean.Candidates.Final20261021.Learning",
+        "JurisLean.Candidates.Final20261021.RSI"
+      ],
+      "dependencies": [
+        "Authorization",
+        "Learning",
+        "RSI"
+      ],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "25e112752e3d9512444ae2f4f5f5f9e64faeddd3d5eb78897b4fb0195a6225b7"
+    },
+    "Harness": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Compiler"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces"
+      ],
+      "dependencies": [],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "45d934850af82882772094a64f3f987fec7d789eed8d29cc65a1c711734bd6c5"
+    },
+    "Iteration": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Feedback"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Feedback",
+        "JurisLean.Candidates.Final20261021.Learning",
+        "JurisLean.Candidates.Final20261021.Probability"
+      ],
+      "dependencies": [
+        "Feedback",
+        "Learning",
+        "Probability"
+      ],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "f3a04c297b5a0bb994c6acffa49e3de3641c436949ff3cbe2f76c3707dfd4198"
+    },
+    "Learning": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Trace",
+        "Mathlib.Probability.Moments.SubGaussian"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "Mathlib.Probability.Moments.SubGaussian"
+      ],
+      "dependencies": [],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "2b0a670f46e9de38911ffdb9ddd56a112dbbdb6bd77fe87aa9594b52f55e56f5"
+    },
+    "Ledger": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Progress",
+        "JurisLean.Candidates.Final20261021.Transactions",
+        "JurisLean.Seams.UnifiedQuantLedger"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Temporal",
+        "JurisLean.Seams.UnifiedQuantLedger"
+      ],
+      "dependencies": [
+        "Temporal"
+      ],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "9574f3818a5c26b45c202414f14560f9ccb9103c3a27cb095233f4e071f66a7f"
+    },
+    "Pipeline": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Iteration"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Authorization",
+        "JurisLean.Candidates.Final20261021.Behavior",
+        "JurisLean.Candidates.Final20261021.Calibration",
+        "JurisLean.Candidates.Final20261021.Compiler",
+        "JurisLean.Candidates.Final20261021.Decision",
+        "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+        "JurisLean.Candidates.Final20261021.Feedback",
+        "JurisLean.Candidates.Final20261021.Harness",
+        "JurisLean.Candidates.Final20261021.Iteration",
+        "JurisLean.Candidates.Final20261021.Learning",
+        "JurisLean.Candidates.Final20261021.Ledger",
+        "JurisLean.Candidates.Final20261021.Policy",
+        "JurisLean.Candidates.Final20261021.RSI",
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.Candidates.Final20261021.Temporal",
+        "JurisLean.Candidates.Final20261021.Trace"
+      ],
+      "dependencies": [
+        "Authorization",
+        "Behavior",
+        "Calibration",
+        "Compiler",
+        "Decision",
+        "EvidenceProcedure",
+        "Feedback",
+        "Harness",
+        "Iteration",
+        "Learning",
+        "Ledger",
+        "Policy",
+        "RSI",
+        "Representation",
+        "Temporal",
+        "Trace"
+      ],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "3cb5ad2c2d7b9a38a364ce5e5394d3062778d8addcfd07dbf1260f7308551a14"
+    },
+    "Policy": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Behavior",
+        "Mathlib.Topology.MetricSpace.Contracting"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "Mathlib.Topology.MetricSpace.Contracting"
+      ],
+      "dependencies": [],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "f83f045af8c201e942ab8854999e7dd33459a64b5f7efc224d75945fd8f3f739"
+    },
+    "Probability": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Learning"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Learning"
+      ],
+      "dependencies": [
+        "Learning"
+      ],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "60185877ada43440b1bfe6f18708f0b570b2495a62eb2738b8c813b81df85f5d"
+    },
+    "Progress": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Authorization"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces"
+      ],
+      "dependencies": [],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "4494832ccd88dad064bdf64812e4c4a3956fb2c747e6bec244602c9614a17031"
+    },
+    "RSI": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Policy"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Behavior"
+      ],
+      "dependencies": [
+        "Behavior"
+      ],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "ff6ee16cab839e35b6f1e9c6cabbb17237e240532ed689ecdcb380e49cc28a0f"
+    },
+    "Representation": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces"
+      ],
+      "dependencies": [],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "595e1cac9fd1d7210264d367b4ae0fac861cbb906fc0d7044dfd98bd3f635fd7"
+    },
+    "Temporal": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Harness"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces"
+      ],
+      "dependencies": [],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "91e5a99b13a24d802ad82196ccf4ffca1153d1a3b9990ec9db81d11540472998"
+    },
+    "Trace": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Ledger"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Authorization",
+        "JurisLean.Candidates.Final20261021.Ledger",
+        "JurisLean.Candidates.Final20261021.Temporal"
+      ],
+      "dependencies": [
+        "Authorization",
+        "Ledger",
+        "Temporal"
+      ],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "b54d86c868eca2af652092df7f5e927648d40f60e8ce05eb03d819f588c02b74"
+    },
+    "Transactions": {
+      "old_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces"
+      ],
+      "proposed_imports": [
+        "JurisLean.Candidates.Final20261021.Interfaces"
+      ],
+      "dependencies": [],
+      "non_import_body_unchanged": true,
+      "non_import_body_sha256": "961fcc28444c2fe3e27c214fca6acb5ef67760aca834ed1c18dc2f83834f1275"
+    }
+  },
+  "CIAll_scope": "ALL_24_MODULES_UNCHANGED"
+}

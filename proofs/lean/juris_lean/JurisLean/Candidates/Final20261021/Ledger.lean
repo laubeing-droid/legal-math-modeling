@@ -1,5 +1,5 @@
-import JurisLean.Candidates.Final20261021.Progress
-import JurisLean.Candidates.Final20261021.Transactions
+import JurisLean.Candidates.Final20261021.Interfaces
+import JurisLean.Candidates.Final20261021.Temporal
 import JurisLean.Seams.UnifiedQuantLedger
 
 namespace JurisLean.Candidates.Final20261021.Ledger
@@ -409,10 +409,10 @@ theorem validation_none_fields (prev previous_output_ref : Handle)
   rcases ready with ⟨reference, identity, notUnknown, notNo, scope, tag, norm,
     environment, formed, authorized, nonnegative, unused, cash, done⟩
   have yes : req.applicable = .yes := by
-    cases req.applicable with
+    cases ha : req.applicable with
     | yes => rfl
-    | no => exact False.elim (notNo rfl)
-    | unknown => exact False.elim (notUnknown rfl)
+    | no => exact False.elim (notNo ha)
+    | unknown => exact False.elim (notUnknown ha)
   exact ⟨not_ne_iff.mp reference, not_ne_iff.mp identity, yes,
     le_of_not_gt nonnegative, unused⟩
 

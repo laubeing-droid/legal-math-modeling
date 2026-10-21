@@ -1,4 +1,4 @@
-import JurisLean.Candidates.Final20261021.Trace
+import JurisLean.Candidates.Final20261021.Interfaces
 import Mathlib.Probability.Moments.SubGaussian
 
 namespace JurisLean.Candidates.Final20261021.Learning

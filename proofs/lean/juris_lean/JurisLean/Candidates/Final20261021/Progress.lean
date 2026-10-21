@@ -1,4 +1,4 @@
-import JurisLean.Candidates.Final20261021.Authorization
+import JurisLean.Candidates.Final20261021.Interfaces
 
 namespace JurisLean.Candidates.Final20261021.Progress
 

@@ -212,4 +212,77 @@ theorem n_pipeline_decision_payload_mismatch :
     (Pipeline.run { input with alternatives := [{ alternative with execution := [payload 1 9, payload 2] }] }).payment.exit
       = .rejected := by decide
 
+theorem n07_observation_wrong_relation :
+    Representation.proposed_source_view { view with observedRelation := ⟨2⟩ } =
+      .rejected .observationBindingMismatch := by decide
+
+def disjunctiveRules : List (Compiler.Rule Nat) := [⟨[1], 3⟩, ⟨[2], 3⟩]
+theorem n03_must_facts_closure_is_not_robust_closure :
+    3 ∈ Compiler.proposed_rule_input disjunctiveRules 2 [1] ∧
+    3 ∈ Compiler.proposed_rule_input disjunctiveRules 2 [2] ∧
+    3 ∉ Compiler.proposed_rule_input disjunctiveRules 2 [] := by decide
+
+theorem n03_missing_exception_is_not_positive_witness :
+    3 ∉ Compiler.proposed_rule_input [⟨[1, 4], 3⟩] 2 [1] ∧
+    3 ∈ Compiler.proposed_rule_input [⟨[1, 4], 3⟩] 2 [1, 4] := by decide
+
+theorem a02_common_idle_remains_allowed :
+    Harness.proposed_harness_gate (W := Bool) (S := Bool) (fun _ => true)
+      (fun w _ a => decide (a = 0 ∨ a = if w then 1 else 2))
+      (fun _ _ _ after => after) (fun _ after => after) true [0, 1, 2] = [0] := by decide
+
+theorem n10_authorization_binds_full_payload :
+    Authorization.authorized [grant (payload 1)] gamma debt.obligor 0 0
+      (.relation debt.relation) (some (payload 1 9)) = false := by decide
+
+theorem n04_zero_variance_not_finite_count :
+    Probability.u04_4_variance_equivalent 2 (-1) = .degenerateZeroVariance := by decide
+
+theorem n05_raising_score_threshold_increases_risk :
+    Harness.conditionalRisk (1/10) 1 = .known (1/10) ∧
+    Harness.conditionalRisk (1/10) (1/10) = .known 1 := by decide
+
+def riskyAlternative : Decision.Alternative :=
+  { alternative with id := 1, outcomes := [⟨1/2, ⟨.rational (-1), some tag⟩, []⟩,
+    ⟨1/2, ⟨.rational 11, some tag⟩, []⟩] }
+def decisionValues : List Decision.DecisionIR :=
+  [riskyAlternative, alternative].filterMap fun a =>
+    match Decision.evaluate gamma id 0 (1/10) a with | .known v => some v | _ => none
+theorem a06_risk_gate_precedes_expected_value :
+    (Decision.proposed_decision [0, 1] decisionValues).map (fun d => d.action.id) = some 0 := by decide
+
+theorem n06_probability_has_no_money_dimension :
+    Decision.evaluate gamma id 0 (1/10)
+      { alternative with outcomes := [⟨1, ⟨.rational (4/5), none⟩, []⟩] } =
+      .rejected .mixedCurrency := by decide
+
+theorem n06_duplicate_cash_identity :
+    Decision.evaluate gamma id 0 (1/10)
+      { alternative with outcomes := [⟨1, ⟨.rational 4, some tag⟩, [⟨1⟩, ⟨1⟩]⟩] } =
+      .rejected .duplicateCash := by decide
+
+theorem n11_window_not_mature_negative_unknown :
+    Behavior.proposed_measurement 0 { input.observation with outcome := some false } =
+      .unknown .missingEvidence := by decide
+
+theorem n12_support_gap_not_smoothed :
+    Policy.proposed_off_policy_value { input.policy with loggingProbability := 0 } =
+      .unknown .notIdentified := by decide
+
+theorem n13_absent_is_not_half_probability :
+    RSI.proposed_checkpoint_service ⟨⟨1⟩, 0, 0, 0, 0, 0, 0⟩ none none none none =
+      .unknown .missingEvidence := by decide
+
+theorem n14_evaluated_is_not_loaded :
+    Feedback.loadAccepted gamma [] (assessed 0 (1/2)) (assessed 1 0) 0
+      (checkpoint 1) ⟨205⟩ = .unknown .authorityUnresolved := by decide
+
+theorem n14_wrong_bytes_do_not_load :
+    Feedback.loadAccepted gamma [] (assessed 0 (1/2)) (assessed 1 0) 0
+      { checkpoint 1 with bytes := [1] } ⟨205⟩ = .rejected .scopeMismatch := by decide
+
+theorem n14_self_suggestion_is_not_external_label :
+    Feedback.addLabel ⟨[], [], []⟩ ⟨⟨1⟩, 0, true, ⟨206⟩, .suggestion⟩ =
+      .rejected .missingEvidence := by decide
+
 end JurisLean.Candidates.Final20261021.Acceptance

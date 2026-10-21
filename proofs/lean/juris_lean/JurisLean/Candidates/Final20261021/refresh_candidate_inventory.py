@@ -96,7 +96,8 @@ def main():
                     d["consumers"].append({"file": mod+".lean", "line": i})
     (HERE/"AxiomAudit.lean").write_text("\n".join(audit)+"\n", encoding="utf-8")
     (HERE/"CIAll.lean").write_text("\n".join(f"import {PREFIX}.{m}" for m in ORDER+["AxiomAudit"])+"\n", encoding="utf-8")
-    write("declarations.json", {"status": "STATIC_SOURCE_INVENTORY_NOT_LEAN_EVIDENCE", "declarations": declarations})
+    write("declarations.json", {"status": "STATIC_SOURCE_INVENTORY_NOT_LEAN_EVIDENCE", "declarations": [
+        d for d in declarations if d["kind"] == "theorem" or d["short"].startswith("proposed_")]})
 
     old = json.loads((HERE/"50_clause_status.json").read_text(encoding="utf-8"))
     rows = []
@@ -126,7 +127,8 @@ def main():
     write("module_inventory.json", {"status": "UNCOMPILED_CANDIDATES", "modules": [
         {"file": m+".lean", "sha256": hashlib.sha256((HERE/(m+".lean")).read_bytes()).hexdigest(),
          "theory": [r["clause"] for r in rows if Path(r["planned_file"]).stem == m],
-         "declarations": [d for d in declarations if d["module"] == m],
+         "theorems": [d["name"] for d in declarations if d["module"] == m and d["kind"] == "theorem"],
+         "consumer_evidence": "declarations.json (actual lexical references, not a refinement proof)",
          "formal_ci": "CI_NOT_RUN"} for m in ORDER]})
     print("Source inventories and CIAll refreshed; no formal CI status promoted.")
 

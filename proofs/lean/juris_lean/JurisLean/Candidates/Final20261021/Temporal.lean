@@ -57,10 +57,18 @@ def Compressible {H V Q A : Type} (app : H → V → Prop)
     (answer : V → H → Q → A) (observations : Q → Prop) (chosen : V) : Prop :=
   ∀ h v q, app h v → observations q → answer v h q = answer chosen h q
 
-theorem u08_2_compression_preserves_actual_observations {H V Q A : Type}
-    (app : H → V → Prop) (answer : V → H → Q → A) (observations : Q → Prop)
-    (chosen : V) (h : Compressible app answer observations chosen)
-    (event : H) (v : V) (q : Q) (hv : app event v) (hq : observations q) :
-    answer v event q = answer chosen event q := h event v q hv hq
+def checkCompression {H V Q A : Type} [Fintype H] [Fintype V] [Fintype Q]
+    [DecidableEq A] (app : H → V → Bool) (answer : V → H → Q → A)
+    (observations : Q → Bool) (chosen : V) : Bool :=
+  decide (∀ h v q, app h v = true → observations q = true →
+    answer v h q = answer chosen h q)
+
+theorem u08_2_finite_compression_reflection {H V Q A : Type}
+    [Fintype H] [Fintype V] [Fintype Q] [DecidableEq A]
+    (app : H → V → Bool) (answer : V → H → Q → A)
+    (observations : Q → Bool) (chosen : V) :
+    checkCompression app answer observations chosen = true ↔
+      Compressible (fun h v => app h v = true) answer (fun q => observations q = true) chosen := by
+  simp [checkCompression, Compressible]
 
 end JurisLean.Candidates.Final20261021.Temporal

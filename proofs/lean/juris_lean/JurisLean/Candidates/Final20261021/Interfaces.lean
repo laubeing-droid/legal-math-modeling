@@ -166,6 +166,7 @@ structure PaymentPayload where
   source : SourceRef
   cashId : EventId
   normVersion : Nat
+  factDate : LawDate
   deriving DecidableEq, Repr
 
 structure PaymentRequest where

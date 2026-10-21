@@ -35,6 +35,7 @@ def Truth (q : Nat) (world : Nat → Bool) : Bool := world q
 
 structure Opportunity where
   id : Nat
+  rank : Nat
   executedReceipt : Option SourceRef
   waivedBy : Option SourceRef
   dependencies : List Nat
@@ -57,13 +58,16 @@ def terminal (p : ProcessInput) (id : Nat) : Bool :=
     ((o.executedReceipt.any fun r => decide (r ∈ p.validExecutionReceipts)) ||
      (o.waivedBy.any fun r => decide (r ∈ p.validWaivers))) &&
     o.dependencies.all (fun d => p.records.any fun dep =>
-      decide (dep.id = d) && dep.executedReceipt.any (fun r => decide (r ∈ p.validExecutionReceipts)))
+      decide (dep.id = d ∧ d ∈ p.policyDomain ∧ dep.rank < o.rank) &&
+      ((dep.executedReceipt.any fun r => decide (r ∈ p.validExecutionReceipts)) ||
+       (dep.waivedBy.any fun r => decide (r ∈ p.validWaivers))))
 
 def covered (p : ProcessInput) : Bool := p.required.all (fun o => decide (o ∈ p.policyDomain))
 def exhausted (p : ProcessInput) : Bool := p.policyDomain.all (terminal p)
 
 def procedure (p : ProcessInput) : Procedure :=
   if covered p && exhausted p &&
+    decide ((p.records.map (·.id)).Nodup) &&
     p.closureAuthority.any (fun r => decide (r ∈ p.validClosureAuthorities)) then .closedLawfully
   else if p.blocked then .blocked else .open
 

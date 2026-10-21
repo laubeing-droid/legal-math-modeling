@@ -1,0 +1,240 @@
+{
+ "files_scanned": 24,
+ "forbidden_construct_count": 0,
+ "forbidden_patterns": [
+  "sorry tactic",
+  "admit tactic",
+  "axiom declaration",
+  "native_decide tactic",
+  "true theorem evasion"
+ ],
+ "note": "Static text measurement with comments stripped. This is not a tactic whitelist gate and is not Lean elaboration evidence.",
+ "schema_version": "lean-guard-v2",
+ "scope": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021",
+ "tactic_census": {
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean": {
+   "decide": 34,
+   "rfl": 1
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean": {
+   "decide": 1,
+   "rfl": 2
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean": {},
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Behavior.lean": {
+   "decide": 1,
+   "norm_num": 3,
+   "refine": 1,
+   "rfl": 1
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/CIAll.lean": {},
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Calibration.lean": {
+   "apply": 1,
+   "constructor": 2,
+   "exact": 2,
+   "have": 6,
+   "intro": 2,
+   "nlinarith": 3,
+   "norm_num": 2,
+   "ring": 1,
+   "rw": 1
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Compiler.lean": {
+   "apply": 1,
+   "constructor": 1,
+   "decide": 1,
+   "exact": 10,
+   "have": 2,
+   "induction": 2,
+   "intro": 7,
+   "next": 2,
+   "obtain": 1,
+   "rcases": 1,
+   "simp": 2,
+   "simp only": 1,
+   "simpa": 1
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean": {
+   "apply": 1,
+   "cases": 8,
+   "constructor": 3,
+   "decide": 5,
+   "exact": 10,
+   "have": 9,
+   "induction": 4,
+   "intro": 7,
+   "linarith": 1,
+   "nlinarith": 2,
+   "norm_num": 1,
+   "rcases": 2,
+   "refine": 1,
+   "rfl": 2,
+   "rw": 2,
+   "simp": 17,
+   "simp only": 5,
+   "simpa": 1
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/EvidenceProcedure.lean": {
+   "cases": 2,
+   "decide": 13,
+   "exact": 1,
+   "have": 2,
+   "simpa": 2
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Feedback.lean": {
+   "by_cases": 2,
+   "decide": 3,
+   "exact": 1,
+   "have": 1,
+   "linarith": 1,
+   "simp": 4
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Harness.lean": {
+   "decide": 1,
+   "exact": 1,
+   "have": 1,
+   "nlinarith": 1,
+   "simp": 2
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Interfaces.lean": {},
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Iteration.lean": {
+   "induction": 1,
+   "linarith": 1,
+   "next": 3,
+   "norm_num": 1,
+   "simp": 3,
+   "simp only": 1
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Learning.lean": {
+   "by_cases": 3,
+   "calc": 1,
+   "exact": 2,
+   "have": 4,
+   "intro": 2,
+   "linarith": 2,
+   "rcases": 1,
+   "simp": 1,
+   "simp only": 1,
+   "simpa": 3
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean": {
+   "by_cases": 1,
+   "cases": 12,
+   "constructor": 2,
+   "decide": 1,
+   "exact": 7,
+   "have": 7,
+   "induction": 3,
+   "intro": 1,
+   "linarith": 5,
+   "norm_num": 1,
+   "obtain": 2,
+   "rcases": 4,
+   "refine": 5,
+   "rfl": 19,
+   "ring": 1,
+   "rw": 2,
+   "simp": 20,
+   "simp only": 1,
+   "simpa": 1
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Pipeline.lean": {
+   "decide": 2,
+   "simp": 1
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Policy.lean": {
+   "apply": 2,
+   "by_cases": 1,
+   "constructor": 5,
+   "exact": 3,
+   "have": 1,
+   "intro": 3,
+   "linarith": 1,
+   "nlinarith": 1,
+   "norm_num": 1,
+   "rcases": 1,
+   "refine": 1,
+   "rfl": 2,
+   "ring": 2,
+   "rw": 2,
+   "simp": 2
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean": {
+   "apply": 4,
+   "by_cases": 3,
+   "cases": 2,
+   "constructor": 1,
+   "exact": 6,
+   "have": 8,
+   "intro": 3,
+   "linarith": 1,
+   "nlinarith": 4,
+   "norm_num": 1,
+   "rcases": 1,
+   "rfl": 1,
+   "ring": 3,
+   "rw": 10,
+   "simp": 2,
+   "simp only": 1,
+   "simpa": 1
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Progress.lean": {
+   "decide": 1,
+   "have": 2,
+   "induction": 2,
+   "nlinarith": 1,
+   "omega": 3,
+   "simp": 4,
+   "simp only": 1
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean": {
+   "decide": 2,
+   "intro": 1,
+   "refine": 1,
+   "rfl": 7,
+   "simp": 2
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Representation.lean": {
+   "calc": 1,
+   "cases": 4,
+   "decide": 1,
+   "exact": 3,
+   "intro": 3,
+   "rfl": 1,
+   "rw": 1,
+   "simp": 2,
+   "simp only": 1
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Temporal.lean": {
+   "decide": 3,
+   "have": 3,
+   "induction": 1,
+   "rfl": 1,
+   "rw": 1,
+   "simp": 5
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean": {
+   "cases": 1,
+   "constructor": 1,
+   "exact": 9,
+   "induction": 1,
+   "rcases": 1,
+   "rfl": 2,
+   "simpa": 1
+  },
+  "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Transactions.lean": {
+   "by_cases": 3,
+   "cases": 10,
+   "exact": 24,
+   "have": 4,
+   "induction": 5,
+   "intro": 3,
+   "obtain": 1,
+   "omega": 1,
+   "rcases": 2,
+   "rfl": 17,
+   "rw": 2,
+   "simp": 10
+  }
+ }
+}

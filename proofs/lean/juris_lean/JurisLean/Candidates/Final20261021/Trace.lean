@@ -4,6 +4,7 @@ namespace JurisLean.Candidates.Final20261021.Trace
 
 def Invariant (h : Ledger.Handle) : Prop :=
   Ledger.Conserves h.state ∧
+  Ledger.CashConsistent h.state ∧
   h.state.env = Temporal.proposed_applicability h.gamma h.state.normHistory
 
 -- Complete concrete opening state of section 14, not an assumed I(S0).
@@ -19,7 +20,7 @@ theorem initial_invariant (g : Gamma) (debt : DebtRecord) (nonneg : 0 ≤ debt.a
     Invariant (initial g debt) := by
   constructor
   · simpa [initial, Ledger.Conserves, Ledger.balance] using nonneg
-  · rfl
+  · exact ⟨rfl, rfl⟩
 
 def correctStep (s0 : Ledger.Handle) (p1 p2 : PaymentRequest)
     (permit1 permit2 : Bool) (mode2 : Ledger.Submission) : Ledger.Outcome × Option Ledger.Outcome :=
@@ -44,7 +45,7 @@ inductive Step : Ledger.Handle → Ledger.Handle → Prop where
       Step h { h with revision := h.revision + 1, state := Ledger.writeOff h.state w }
   | refresh (h : Ledger.Handle) (g : Gamma) (e : Temporal.VersionRecord)
       (grants : List Authorization.Grant) (actor : PartyId)
-      (authorized : Authorization.authorized grants h.gamma actor 1 e.version = true)
+      (authorized : Authorization.authorized grants h.gamma actor 1 e.version (.document e.version) = true)
       (sameCase : g.caseId = h.gamma.caseId) :
       Step h ⟨g, h.revision + 1, { h.state with normHistory := h.state.normHistory ++ [e],
         env := Temporal.proposed_applicability g (h.state.normHistory ++ [e]) }⟩
@@ -52,15 +53,16 @@ inductive Step : Ledger.Handle → Ledger.Handle → Prop where
 
 theorem step_preserves {s t : Ledger.Handle} (step : Step s t) (hs : Invariant s) :
     Invariant t := by
-  rcases hs with ⟨numeric, fresh⟩
+  rcases hs with ⟨numeric, cash, fresh⟩
   cases step with
   | pay h req p hk ready amount =>
-      exact ⟨Ledger.u09_1_quantity_conservation h.state req.payload numeric amount, fresh⟩
-  | accrue h a ha => exact ⟨Ledger.accrue_conserves h.state a numeric ha, fresh⟩
-  | principal h n hn => exact ⟨Ledger.principal_conserves h.state n numeric hn, fresh⟩
-  | writeoff h w hw bound => exact ⟨Ledger.writeoff_conserves h.state w numeric hw bound, fresh⟩
-  | refresh h g e grants actor auth same => exact ⟨numeric, rfl⟩
-  | reject h => exact ⟨numeric, fresh⟩
+      exact ⟨Ledger.u09_1_quantity_conservation h.state req.payload numeric amount,
+        Ledger.performance_cash_consistent h.state req.payload cash, fresh⟩
+  | accrue h a ha => exact ⟨Ledger.accrue_conserves h.state a numeric ha, cash, fresh⟩
+  | principal h n hn => exact ⟨Ledger.principal_conserves h.state n numeric hn, cash, fresh⟩
+  | writeoff h w hw bound => exact ⟨Ledger.writeoff_conserves h.state w numeric hw bound, cash, fresh⟩
+  | refresh h g e grants actor auth same => exact ⟨numeric, cash, rfl⟩
+  | reject h => exact ⟨numeric, cash, fresh⟩
 
 inductive Path : Ledger.Handle → Ledger.Handle → Prop where
   | nil (h : Ledger.Handle) : Path h h

@@ -63,10 +63,12 @@ inductive Lifecycle where
 -- Exact checkpoint bytes and all semantic metadata must match the readback.
 -- The registry is external; the pure candidate cannot grant itself access.
 def loadAccepted (g : Gamma) (grants : List Authorization.Grant)
-    (certificate : Assessed) (readback : RSI.Checkpoint) (receipt : SourceRef) : Result Lifecycle :=
-  if readback ≠ certificate.model then .rejected .scopeMismatch
-  else if Authorization.authorized grants g certificate.scope.principal 2
-      certificate.model.version = false then .unknown .authorityUnresolved
+    (old candidate : Assessed) (tolerance : ℚ)
+    (readback : RSI.Checkpoint) (receipt : SourceRef) : Result Lifecycle :=
+  if (consider old candidate tolerance).1 ≠ .accepted then .rejected .missingEvidence
+  else if readback ≠ candidate.model then .rejected .scopeMismatch
+  else if Authorization.authorized grants g candidate.scope.principal 2
+      candidate.model.version (.party candidate.scope.principal) = false then .unknown .authorityUnresolved
   else .known (.loaded readback receipt)
 
 inductive LabelOrigin where

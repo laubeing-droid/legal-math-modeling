@@ -30,7 +30,9 @@ def appendData (s : State) (row : Behavior.MeasurementLog) : State :=
   { s with data := s.data ++ [row] }
 
 def conditionalEstimate (weights outcomes : List ℚ) : Result ℚ :=
-  if 0 < weights.sum then
+  if weights.length ≠ outcomes.length ∨ weights.any (fun w => decide (w < 0)) then
+    .rejected .unsupported
+  else if 0 < weights.sum then
     .known ((List.zipWith (· * ·) weights outcomes).sum / weights.sum)
   else .unknown .missingEvidence
 

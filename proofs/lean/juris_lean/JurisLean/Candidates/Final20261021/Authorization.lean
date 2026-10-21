@@ -6,20 +6,25 @@ structure Grant where
   evidence : SourceRef
   subject : PartyId
   caseId : CaseId
+  object : ObjectId
   action : Nat
   contentVersion : Nat
+  payload : Option PaymentPayload
   authorityRuleVersion : Nat
   fromDate : LawDate
   untilDate : LawDate
   deriving DecidableEq, Repr
 
-def checkGrant (g : Gamma) (subject : PartyId) (action version : Nat) (a : Grant) : Bool :=
+def checkGrant (g : Gamma) (subject : PartyId) (action version : Nat)
+    (object : ObjectId) (payload : Option PaymentPayload) (a : Grant) : Bool :=
   decide (a.subject = subject ∧ a.caseId = g.caseId ∧ a.action = action ∧
+    a.object = object ∧ a.payload = payload ∧
     a.contentVersion = version ∧ a.authorityRuleVersion = g.normVersion ∧
     a.fromDate.ordinal ≤ g.lawDate.ordinal ∧ g.lawDate.ordinal < a.untilDate.ordinal)
 
-def authorized (catalog : List Grant) (g : Gamma) (subject : PartyId) (action version : Nat) : Bool :=
-  catalog.any (checkGrant g subject action version)
+def authorized (catalog : List Grant) (g : Gamma) (subject : PartyId) (action version : Nat)
+    (object : ObjectId) (payload : Option PaymentPayload := none) : Bool :=
+  catalog.any (checkGrant g subject action version object payload)
 
 structure Configured (B : Type) where
   gamma : Gamma

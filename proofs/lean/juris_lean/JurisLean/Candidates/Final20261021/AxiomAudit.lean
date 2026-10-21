@@ -1,0 +1,341 @@
+import JurisLean.Candidates.Final20261021.Acceptance
+
+-- Fresh CI types/axioms, not baseline evidence.
+#check JurisLean.Candidates.Final20261021.Representation.u07_1_retraction_injective
+#print axioms JurisLean.Candidates.Final20261021.Representation.u07_1_retraction_injective
+#check JurisLean.Candidates.Final20261021.Representation.u07_1_section_surjective
+#print axioms JurisLean.Candidates.Final20261021.Representation.u07_1_section_surjective
+#check JurisLean.Candidates.Final20261021.Representation.u07_1_rho_idempotent
+#print axioms JurisLean.Candidates.Final20261021.Representation.u07_1_rho_idempotent
+#check JurisLean.Candidates.Final20261021.Representation.u07_1_separation_monotone
+#print axioms JurisLean.Candidates.Final20261021.Representation.u07_1_separation_monotone
+#check JurisLean.Candidates.Final20261021.Representation.u07_2_common_fiber_nonempty
+#print axioms JurisLean.Candidates.Final20261021.Representation.u07_2_common_fiber_nonempty
+#check JurisLean.Candidates.Final20261021.Representation.n07_2_incompatible_fiber
+#print axioms JurisLean.Candidates.Final20261021.Representation.n07_2_incompatible_fiber
+#check JurisLean.Candidates.Final20261021.Representation.u07_3_projection_unique_under_fixed_binding
+#print axioms JurisLean.Candidates.Final20261021.Representation.u07_3_projection_unique_under_fixed_binding
+#check JurisLean.Candidates.Final20261021.Representation.unknown_not_an_identity
+#print axioms JurisLean.Candidates.Final20261021.Representation.unknown_not_an_identity
+#check JurisLean.Candidates.Final20261021.Compiler.u03_1_relative_soundness
+#print axioms JurisLean.Candidates.Final20261021.Compiler.u03_1_relative_soundness
+#check JurisLean.Candidates.Final20261021.Compiler.derivable_model
+#print axioms JurisLean.Candidates.Final20261021.Compiler.derivable_model
+#check JurisLean.Candidates.Final20261021.Compiler.u03_2_relative_completeness
+#print axioms JurisLean.Candidates.Final20261021.Compiler.u03_2_relative_completeness
+#check JurisLean.Candidates.Final20261021.Compiler.advance_sound
+#print axioms JurisLean.Candidates.Final20261021.Compiler.advance_sound
+#check JurisLean.Candidates.Final20261021.Compiler.u03_1_computed_sound
+#print axioms JurisLean.Candidates.Final20261021.Compiler.u03_1_computed_sound
+#check JurisLean.Candidates.Final20261021.Compiler.u03_finite_kernel_termination
+#print axioms JurisLean.Candidates.Final20261021.Compiler.u03_finite_kernel_termination
+#check JurisLean.Candidates.Final20261021.Harness.u02_1_gate_sound_under_Ke
+#print axioms JurisLean.Candidates.Final20261021.Harness.u02_1_gate_sound_under_Ke
+#check JurisLean.Candidates.Final20261021.Harness.u02_3_finite_gate_enumeration
+#print axioms JurisLean.Candidates.Final20261021.Harness.u02_3_finite_gate_enumeration
+#check JurisLean.Candidates.Final20261021.Harness.zero_coverage_not_zero_risk
+#print axioms JurisLean.Candidates.Final20261021.Harness.zero_coverage_not_zero_risk
+#check JurisLean.Candidates.Final20261021.Harness.risk_union_in_declared_measure
+#print axioms JurisLean.Candidates.Final20261021.Harness.risk_union_in_declared_measure
+#check JurisLean.Candidates.Final20261021.Harness.condition_to_global
+#print axioms JurisLean.Candidates.Final20261021.Harness.condition_to_global
+#check JurisLean.Candidates.Final20261021.Transactions.step_count
+#print axioms JurisLean.Candidates.Final20261021.Transactions.step_count
+#check JurisLean.Candidates.Final20261021.Transactions.trace_count
+#print axioms JurisLean.Candidates.Final20261021.Transactions.trace_count
+#check JurisLean.Candidates.Final20261021.Transactions.registered_le_one
+#print axioms JurisLean.Candidates.Final20261021.Transactions.registered_le_one
+#check JurisLean.Candidates.Final20261021.Transactions.at_most_once
+#print axioms JurisLean.Candidates.Final20261021.Transactions.at_most_once
+#check JurisLean.Candidates.Final20261021.Transactions.entry_preserved_step
+#print axioms JurisLean.Candidates.Final20261021.Transactions.entry_preserved_step
+#check JurisLean.Candidates.Final20261021.Transactions.entry_preserved_trace
+#print axioms JurisLean.Candidates.Final20261021.Transactions.entry_preserved_trace
+#check JurisLean.Candidates.Final20261021.Transactions.cancelled_preserved_step
+#print axioms JurisLean.Candidates.Final20261021.Transactions.cancelled_preserved_step
+#check JurisLean.Candidates.Final20261021.Transactions.cancelled_preserved_trace
+#print axioms JurisLean.Candidates.Final20261021.Transactions.cancelled_preserved_trace
+#check JurisLean.Candidates.Final20261021.Transactions.cancelled_cannot_commit
+#print axioms JurisLean.Candidates.Final20261021.Transactions.cancelled_cannot_commit
+#check JurisLean.Candidates.Final20261021.Transactions.noncommit_business_unchanged
+#print axioms JurisLean.Candidates.Final20261021.Transactions.noncommit_business_unchanged
+#check JurisLean.Candidates.Final20261021.Transactions.commit_receipt_at_end
+#print axioms JurisLean.Candidates.Final20261021.Transactions.commit_receipt_at_end
+#check JurisLean.Candidates.Final20261021.Transactions.abort_excludes_prior_commit
+#print axioms JurisLean.Candidates.Final20261021.Transactions.abort_excludes_prior_commit
+#check JurisLean.Candidates.Final20261021.Transactions.cancelled_excludes_trace_commit
+#print axioms JurisLean.Candidates.Final20261021.Transactions.cancelled_excludes_trace_commit
+#check JurisLean.Candidates.Final20261021.Transactions.abort_excludes_future_commit
+#print axioms JurisLean.Candidates.Final20261021.Transactions.abort_excludes_future_commit
+#check JurisLean.Candidates.Final20261021.Temporal.u08_1_history_stable_under_append_after_cut
+#print axioms JurisLean.Candidates.Final20261021.Temporal.u08_1_history_stable_under_append_after_cut
+#check JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable
+#print axioms JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable
+#check JurisLean.Candidates.Final20261021.Temporal.u08_2_finite_compression_reflection
+#print axioms JurisLean.Candidates.Final20261021.Temporal.u08_2_finite_compression_reflection
+#check JurisLean.Candidates.Final20261021.EvidenceProcedure.u08_3_evidence_four_states
+#print axioms JurisLean.Candidates.Final20261021.EvidenceProcedure.u08_3_evidence_four_states
+#check JurisLean.Candidates.Final20261021.EvidenceProcedure.necessary_exhausted
+#print axioms JurisLean.Candidates.Final20261021.EvidenceProcedure.necessary_exhausted
+#check JurisLean.Candidates.Final20261021.EvidenceProcedure.u08_3_judgment_not_truth
+#print axioms JurisLean.Candidates.Final20261021.EvidenceProcedure.u08_3_judgment_not_truth
+#check JurisLean.Candidates.Final20261021.EvidenceProcedure.u08_3_opposition_does_not_erase_support
+#print axioms JurisLean.Candidates.Final20261021.EvidenceProcedure.u08_3_opposition_does_not_erase_support
+#check JurisLean.Candidates.Final20261021.Authorization.u10_1_enable_append_select_refresh_consume
+#print axioms JurisLean.Candidates.Final20261021.Authorization.u10_1_enable_append_select_refresh_consume
+#check JurisLean.Candidates.Final20261021.Progress.u10_3_rank_bounds_steps
+#print axioms JurisLean.Candidates.Final20261021.Progress.u10_3_rank_bounds_steps
+#check JurisLean.Candidates.Final20261021.Progress.u10_3_simulation_length
+#print axioms JurisLean.Candidates.Final20261021.Progress.u10_3_simulation_length
+#check JurisLean.Candidates.Final20261021.Progress.multistep_simulation_not_one_step
+#print axioms JurisLean.Candidates.Final20261021.Progress.multistep_simulation_not_one_step
+#check JurisLean.Candidates.Final20261021.Progress.two_cycle_has_no_strict_rank
+#print axioms JurisLean.Candidates.Final20261021.Progress.two_cycle_has_no_strict_rank
+#check JurisLean.Candidates.Final20261021.Ledger.forms_preserved_by_performance
+#print axioms JurisLean.Candidates.Final20261021.Ledger.forms_preserved_by_performance
+#check JurisLean.Candidates.Final20261021.Ledger.performance_metadata
+#print axioms JurisLean.Candidates.Final20261021.Ledger.performance_metadata
+#check JurisLean.Candidates.Final20261021.Ledger.performance_cash_consistent
+#print axioms JurisLean.Candidates.Final20261021.Ledger.performance_cash_consistent
+#check JurisLean.Candidates.Final20261021.Ledger.u09_1_quantity_conservation
+#print axioms JurisLean.Candidates.Final20261021.Ledger.u09_1_quantity_conservation
+#check JurisLean.Candidates.Final20261021.Ledger.u09_1_continuous_consume
+#print axioms JurisLean.Candidates.Final20261021.Ledger.u09_1_continuous_consume
+#check JurisLean.Candidates.Final20261021.Ledger.accrue_conserves
+#print axioms JurisLean.Candidates.Final20261021.Ledger.accrue_conserves
+#check JurisLean.Candidates.Final20261021.Ledger.principal_conserves
+#print axioms JurisLean.Candidates.Final20261021.Ledger.principal_conserves
+#check JurisLean.Candidates.Final20261021.Ledger.writeoff_conserves
+#print axioms JurisLean.Candidates.Final20261021.Ledger.writeoff_conserves
+#check JurisLean.Candidates.Final20261021.Ledger.u09_3_accrual_not_cash
+#print axioms JurisLean.Candidates.Final20261021.Ledger.u09_3_accrual_not_cash
+#check JurisLean.Candidates.Final20261021.Ledger.u09_3_general_allocation
+#print axioms JurisLean.Candidates.Final20261021.Ledger.u09_3_general_allocation
+#check JurisLean.Candidates.Final20261021.Ledger.weak_allocation_not_maximal
+#print axioms JurisLean.Candidates.Final20261021.Ledger.weak_allocation_not_maximal
+#check JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_conservation
+#print axioms JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_conservation
+#check JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_by_account
+#print axioms JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_by_account
+#check JurisLean.Candidates.Final20261021.Ledger.noncommit_does_not_write_U
+#print axioms JurisLean.Candidates.Final20261021.Ledger.noncommit_does_not_write_U
+#check JurisLean.Candidates.Final20261021.Ledger.u09_writeU_on_committed_applicable
+#print axioms JurisLean.Candidates.Final20261021.Ledger.u09_writeU_on_committed_applicable
+#check JurisLean.Candidates.Final20261021.Ledger.u09_committed_path
+#print axioms JurisLean.Candidates.Final20261021.Ledger.u09_committed_path
+#check JurisLean.Candidates.Final20261021.Ledger.u09_zero_pay_yes_in_U
+#print axioms JurisLean.Candidates.Final20261021.Ledger.u09_zero_pay_yes_in_U
+#check JurisLean.Candidates.Final20261021.Ledger.u09_unknown_has_no_certain_poststate
+#print axioms JurisLean.Candidates.Final20261021.Ledger.u09_unknown_has_no_certain_poststate
+#check JurisLean.Candidates.Final20261021.Ledger.u09_unknown_keeps_key
+#print axioms JurisLean.Candidates.Final20261021.Ledger.u09_unknown_keeps_key
+#check JurisLean.Candidates.Final20261021.Ledger.u09_replay_stable
+#print axioms JurisLean.Candidates.Final20261021.Ledger.u09_replay_stable
+#check JurisLean.Candidates.Final20261021.Ledger.ready_requires_identity_and_applicability
+#print axioms JurisLean.Candidates.Final20261021.Ledger.ready_requires_identity_and_applicability
+#check JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused
+#print axioms JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused
+#check JurisLean.Candidates.Final20261021.Ledger.consume_success_is_gated
+#print axioms JurisLean.Candidates.Final20261021.Ledger.consume_success_is_gated
+#check JurisLean.Candidates.Final20261021.Ledger.rest_claim_no_cash
+#print axioms JurisLean.Candidates.Final20261021.Ledger.rest_claim_no_cash
+#check JurisLean.Candidates.Final20261021.Ledger.rest_eligibility_no_cash
+#print axioms JurisLean.Candidates.Final20261021.Ledger.rest_eligibility_no_cash
+#check JurisLean.Candidates.Final20261021.Ledger.baseline_afterStream
+#print axioms JurisLean.Candidates.Final20261021.Ledger.baseline_afterStream
+#check JurisLean.Candidates.Final20261021.Trace.initial_invariant
+#print axioms JurisLean.Candidates.Final20261021.Trace.initial_invariant
+#check JurisLean.Candidates.Final20261021.Trace.step_preserves
+#print axioms JurisLean.Candidates.Final20261021.Trace.step_preserves
+#check JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition
+#print axioms JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition
+#check JurisLean.Candidates.Final20261021.Trace.from_concrete_initial
+#print axioms JurisLean.Candidates.Final20261021.Trace.from_concrete_initial
+#check JurisLean.Candidates.Final20261021.Learning.u01_0_bounded_mgf
+#print axioms JurisLean.Candidates.Final20261021.Learning.u01_0_bounded_mgf
+#check JurisLean.Candidates.Final20261021.Learning.u01_0_independent_bounded_upper_tail
+#print axioms JurisLean.Candidates.Final20261021.Learning.u01_0_independent_bounded_upper_tail
+#check JurisLean.Candidates.Final20261021.Learning.subgaussian_two_tail
+#print axioms JurisLean.Candidates.Final20261021.Learning.subgaussian_two_tail
+#check JurisLean.Candidates.Final20261021.Learning.u01_1_fixed_class_tail
+#print axioms JurisLean.Candidates.Final20261021.Learning.u01_1_fixed_class_tail
+#check JurisLean.Candidates.Final20261021.Learning.u01_1_approximate_erm
+#print axioms JurisLean.Candidates.Final20261021.Learning.u01_1_approximate_erm
+#check JurisLean.Candidates.Final20261021.Learning.u01_2_label_bridge_pointwise
+#print axioms JurisLean.Candidates.Final20261021.Learning.u01_2_label_bridge_pointwise
+#check JurisLean.Candidates.Final20261021.Learning.grouped_unit_not_split
+#print axioms JurisLean.Candidates.Final20261021.Learning.grouped_unit_not_split
+#check JurisLean.Candidates.Final20261021.Probability.expectation_mono
+#print axioms JurisLean.Candidates.Final20261021.Probability.expectation_mono
+#check JurisLean.Candidates.Final20261021.Probability.expectation_add
+#print axioms JurisLean.Candidates.Final20261021.Probability.expectation_add
+#check JurisLean.Candidates.Final20261021.Probability.expectation_const
+#print axioms JurisLean.Candidates.Final20261021.Probability.expectation_const
+#check JurisLean.Candidates.Final20261021.Probability.u01_2_finite_label_bridge
+#print axioms JurisLean.Candidates.Final20261021.Probability.u01_2_finite_label_bridge
+#check JurisLean.Candidates.Final20261021.Probability.posterior_mass
+#print axioms JurisLean.Candidates.Final20261021.Probability.posterior_mass
+#check JurisLean.Candidates.Final20261021.Probability.tv_symmetric
+#print axioms JurisLean.Candidates.Final20261021.Probability.tv_symmetric
+#check JurisLean.Candidates.Final20261021.Probability.expectation_sub_bound
+#print axioms JurisLean.Candidates.Final20261021.Probability.expectation_sub_bound
+#check JurisLean.Candidates.Final20261021.Probability.u01_3_finite_deployment_distance
+#print axioms JurisLean.Candidates.Final20261021.Probability.u01_3_finite_deployment_distance
+#check JurisLean.Candidates.Final20261021.Probability.u04_2_enclosed_propagation
+#print axioms JurisLean.Candidates.Final20261021.Probability.u04_2_enclosed_propagation
+#check JurisLean.Candidates.Final20261021.Probability.u04_5_new_measurement_not_copy
+#print axioms JurisLean.Candidates.Final20261021.Probability.u04_5_new_measurement_not_copy
+#check JurisLean.Candidates.Final20261021.Calibration.u05_2_brier_decomposition
+#print axioms JurisLean.Candidates.Final20261021.Calibration.u05_2_brier_decomposition
+#check JurisLean.Candidates.Final20261021.Calibration.u05_2_brier_unique_optimum
+#print axioms JurisLean.Candidates.Final20261021.Calibration.u05_2_brier_unique_optimum
+#check JurisLean.Candidates.Final20261021.Calibration.u05_2_selected_risk
+#print axioms JurisLean.Candidates.Final20261021.Calibration.u05_2_selected_risk
+#check JurisLean.Candidates.Final20261021.Calibration.u05_fail_certificate_not_violation
+#print axioms JurisLean.Candidates.Final20261021.Calibration.u05_fail_certificate_not_violation
+#check JurisLean.Candidates.Final20261021.Calibration.score_does_not_establish_judgment
+#print axioms JurisLean.Candidates.Final20261021.Calibration.score_does_not_establish_judgment
+#check JurisLean.Candidates.Final20261021.Decision.best_none
+#print axioms JurisLean.Candidates.Final20261021.Decision.best_none
+#check JurisLean.Candidates.Final20261021.Decision.best_mem
+#print axioms JurisLean.Candidates.Final20261021.Decision.best_mem
+#check JurisLean.Candidates.Final20261021.Decision.best_dominates
+#print axioms JurisLean.Candidates.Final20261021.Decision.best_dominates
+#check JurisLean.Candidates.Final20261021.Decision.legal_best_sound
+#print axioms JurisLean.Candidates.Final20261021.Decision.legal_best_sound
+#check JurisLean.Candidates.Final20261021.Decision.u06_3_eval_exists
+#print axioms JurisLean.Candidates.Final20261021.Decision.u06_3_eval_exists
+#check JurisLean.Candidates.Final20261021.Decision.u06_3_eval_unique
+#print axioms JurisLean.Candidates.Final20261021.Decision.u06_3_eval_unique
+#check JurisLean.Candidates.Final20261021.Decision.exact_ledger_bridge
+#print axioms JurisLean.Candidates.Final20261021.Decision.exact_ledger_bridge
+#check JurisLean.Candidates.Final20261021.Decision.half_not_truncated
+#print axioms JurisLean.Candidates.Final20261021.Decision.half_not_truncated
+#check JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed
+#print axioms JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed
+#check JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_increasing
+#print axioms JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_increasing
+#check JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_decreasing
+#print axioms JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_decreasing
+#check JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_equal
+#print axioms JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_equal
+#check JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer
+#print axioms JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer
+#check JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information
+#print axioms JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information
+#check JurisLean.Candidates.Final20261021.Behavior.u11_1_obs_equiv_models_distinct_ATE
+#print axioms JurisLean.Candidates.Final20261021.Behavior.u11_1_obs_equiv_models_distinct_ATE
+#check JurisLean.Candidates.Final20261021.Behavior.prediction_not_causal_identification
+#print axioms JurisLean.Candidates.Final20261021.Behavior.prediction_not_causal_identification
+#check JurisLean.Candidates.Final20261021.Behavior.transport_composition_changes_effect
+#print axioms JurisLean.Candidates.Final20261021.Behavior.transport_composition_changes_effect
+#check JurisLean.Candidates.Final20261021.Policy.u12_1_finite_ipw
+#print axioms JurisLean.Candidates.Final20261021.Policy.u12_1_finite_ipw
+#check JurisLean.Candidates.Final20261021.Policy.u12_3_clipped_bias
+#print axioms JurisLean.Candidates.Final20261021.Policy.u12_3_clipped_bias
+#check JurisLean.Candidates.Final20261021.Policy.u12_2_contraction_sufficient
+#print axioms JurisLean.Candidates.Final20261021.Policy.u12_2_contraction_sufficient
+#check JurisLean.Candidates.Final20261021.Policy.u12_4_signal_vs_incentive
+#print axioms JurisLean.Candidates.Final20261021.Policy.u12_4_signal_vs_incentive
+#check JurisLean.Candidates.Final20261021.Policy.distinguishable_signal_insufficient
+#print axioms JurisLean.Candidates.Final20261021.Policy.distinguishable_signal_insufficient
+#check JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference
+#print axioms JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference
+#check JurisLean.Candidates.Final20261021.RSI.u13_2_personal_frame
+#print axioms JurisLean.Candidates.Final20261021.RSI.u13_2_personal_frame
+#check JurisLean.Candidates.Final20261021.RSI.u13_2_condition_does_not_train
+#print axioms JurisLean.Candidates.Final20261021.RSI.u13_2_condition_does_not_train
+#check JurisLean.Candidates.Final20261021.RSI.u13_2_data_frame
+#print axioms JurisLean.Candidates.Final20261021.RSI.u13_2_data_frame
+#check JurisLean.Candidates.Final20261021.RSI.u13_3_representation_transfer
+#print axioms JurisLean.Candidates.Final20261021.RSI.u13_3_representation_transfer
+#check JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default
+#print axioms JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default
+#check JurisLean.Candidates.Final20261021.Feedback.mismatched_scope_keeps
+#print axioms JurisLean.Candidates.Final20261021.Feedback.mismatched_scope_keeps
+#check JurisLean.Candidates.Final20261021.Feedback.accepted_evidence
+#print axioms JurisLean.Candidates.Final20261021.Feedback.accepted_evidence
+#check JurisLean.Candidates.Final20261021.Feedback.u14_1_conservative_accept
+#print axioms JurisLean.Candidates.Final20261021.Feedback.u14_1_conservative_accept
+#check JurisLean.Candidates.Final20261021.Feedback.u14_2_independent_cluster_upper_tail
+#print axioms JurisLean.Candidates.Final20261021.Feedback.u14_2_independent_cluster_upper_tail
+#check JurisLean.Candidates.Final20261021.Iteration.u15_1_finite_cumulative_improvement
+#print axioms JurisLean.Candidates.Final20261021.Iteration.u15_1_finite_cumulative_improvement
+#check JurisLean.Candidates.Final20261021.Iteration.u15_2_preserved_predictions_equal_risk
+#print axioms JurisLean.Candidates.Final20261021.Iteration.u15_2_preserved_predictions_equal_risk
+#check JurisLean.Candidates.Final20261021.Iteration.two_round_exact_risks
+#print axioms JurisLean.Candidates.Final20261021.Iteration.two_round_exact_risks
+#check JurisLean.Candidates.Final20261021.Iteration.u15_3_two_round_actual_state
+#print axioms JurisLean.Candidates.Final20261021.Iteration.u15_3_two_round_actual_state
+#check JurisLean.Candidates.Final20261021.Pipeline.u00_pipeline_wires_handles
+#print axioms JurisLean.Candidates.Final20261021.Pipeline.u00_pipeline_wires_handles
+#check JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7
+#check JurisLean.Candidates.Final20261021.Acceptance.a_u09_three_observations
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.a_u09_three_observations
+#check JurisLean.Candidates.Final20261021.Acceptance.n_a1_layer_collapse
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n_a1_layer_collapse
+#check JurisLean.Candidates.Final20261021.Acceptance.n_non_continuous_consume
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n_non_continuous_consume
+#check JurisLean.Candidates.Final20261021.Acceptance.n_poststate_name_not_binding
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n_poststate_name_not_binding
+#check JurisLean.Candidates.Final20261021.Acceptance.a_zero_yes_writes_U
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.a_zero_yes_writes_U
+#check JurisLean.Candidates.Final20261021.Acceptance.n_unknown_does_not_burn_U
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n_unknown_does_not_burn_U
+#check JurisLean.Candidates.Final20261021.Acceptance.n_burned_by_unknown
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n_burned_by_unknown
+#check JurisLean.Candidates.Final20261021.Acceptance.n_identity_unknown_no_U
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n_identity_unknown_no_U
+#check JurisLean.Candidates.Final20261021.Acceptance.n_applicability_unknown_no_U
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n_applicability_unknown_no_U
+#check JurisLean.Candidates.Final20261021.Acceptance.n_not_applicable_zero_no_U
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n_not_applicable_zero_no_U
+#check JurisLean.Candidates.Final20261021.Acceptance.n09_1_replay_original_receipt
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n09_1_replay_original_receipt
+#check JurisLean.Candidates.Final20261021.Acceptance.n09_1_payload_conflict
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n09_1_payload_conflict
+#check JurisLean.Candidates.Final20261021.Acceptance.n09_2_state_conservation_mismatch
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n09_2_state_conservation_mismatch
+#check JurisLean.Candidates.Final20261021.Acceptance.n09_3_rounding_basis_missing
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n09_3_rounding_basis_missing
+#check JurisLean.Candidates.Final20261021.Acceptance.n09_4_accrual_not_cash
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n09_4_accrual_not_cash
+#check JurisLean.Candidates.Final20261021.Acceptance.n09_5_unit_binding_missing
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n09_5_unit_binding_missing
+#check JurisLean.Candidates.Final20261021.Acceptance.a_rest_claim_then_eligibility
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.a_rest_claim_then_eligibility
+#check JurisLean.Candidates.Final20261021.Acceptance.n1_premature_cash
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n1_premature_cash
+#check JurisLean.Candidates.Final20261021.Acceptance.n2_auto_full_refund
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n2_auto_full_refund
+#check JurisLean.Candidates.Final20261021.Acceptance.n3_accrual_cash_collapse
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n3_accrual_cash_collapse
+#check JurisLean.Candidates.Final20261021.Acceptance.a_restpay_only_n3
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.a_restpay_only_n3
+#check JurisLean.Candidates.Final20261021.Acceptance.n_exact_half_and_currency
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n_exact_half_and_currency
+#check JurisLean.Candidates.Final20261021.Acceptance.n08_2_missing_opportunity
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n08_2_missing_opportunity
+#check JurisLean.Candidates.Final20261021.Acceptance.n08_4_timeout_not_lawful_closure
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n08_4_timeout_not_lawful_closure
+#check JurisLean.Candidates.Final20261021.Acceptance.a08_insufficient_but_lawfully_closed
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.a08_insufficient_but_lawfully_closed
+#check JurisLean.Candidates.Final20261021.Acceptance.a08_event_specific_versions
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.a08_event_specific_versions
+#check JurisLean.Candidates.Final20261021.Acceptance.n08_latest_case_time_wrong_for_first_event
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n08_latest_case_time_wrong_for_first_event
+#check JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success
+#check JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_reject
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_reject
+#check JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_unknown
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_unknown
+#check JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_score_does_not_authorize
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_score_does_not_authorize
+#check JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_unresolved_identity
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_unresolved_identity
+#check JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_target_mismatch
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_target_mismatch
+#check JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_decision_payload_mismatch
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_decision_payload_mismatch

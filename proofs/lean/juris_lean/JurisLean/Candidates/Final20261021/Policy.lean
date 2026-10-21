@@ -10,8 +10,8 @@ open scoped Topology NNReal
 theorem u12_1_finite_ipw {X A : Type} [Fintype X] [Fintype A]
     (mass : X → ℚ) (logging target outcome : X → A → ℚ)
     (support : ∀ x a, target x a ≠ 0 → logging x a ≠ 0) :
-    (∑ x, mass x * ∑ a, logging x a * (target x a / logging x a) * outcome x a) =
-      ∑ x, mass x * ∑ a, target x a * outcome x a := by
+    (∑ x, (mass x * ∑ a, (logging x a * (target x a / logging x a) * outcome x a))) =
+      ∑ x, (mass x * ∑ a, (target x a * outcome x a)) := by
   apply Finset.sum_congr rfl
   intro x hx
   congr 1
@@ -20,7 +20,7 @@ theorem u12_1_finite_ipw {X A : Type} [Fintype X] [Fintype A]
   by_cases hz : target x a = 0
   · simp [hz]
   · have hlog := support x a hz
-    field_simp [hlog]
+    field_simp [hlog] <;> ring
 
 theorem u12_3_clipped_bias (w c y : ℝ) (hw : 0 ≤ w) (hc : 0 ≤ c)
     (hy : 0 ≤ y) (hy1 : y ≤ 1) :

@@ -8,7 +8,7 @@ structure FiniteLaw (Ω : Type) [Fintype Ω] where
   total : ∑ w, mass w = 1
 
 def expectation {Ω : Type} [Fintype Ω] (P : FiniteLaw Ω) (f : Ω → ℚ) : ℚ :=
-  ∑ w, P.mass w * f w
+  ∑ w, (P.mass w * f w)
 
 theorem expectation_mono {Ω : Type} [Fintype Ω] (P : FiniteLaw Ω)
     (f g : Ω → ℚ) (h : ∀ w, f w ≤ g w) : expectation P f ≤ expectation P g :=

@@ -63,6 +63,9 @@ def Conserves (s : State) : Prop :=
   balance s = s.initialDebt + s.newDebt + s.accrual - s.allocated - s.writtenOff ∧
   s.paid = s.allocated + s.surplus
 
+def cashTotal (s : State) : ℚ := (s.cash.map (fun e => e.amount.value)).sum
+def CashConsistent (s : State) : Prop := cashTotal s = s.paid
+
 def performance (s : State) (p : PaymentPayload) : State :=
   let k := min p.amount.value (balance s)
   { s with
@@ -84,6 +87,11 @@ theorem performance_metadata (s : State) (p : PaymentPayload) :
     (performance s p).judgment = s.judgment ∧
     (performance s p).procedure = s.procedure ∧
     (performance s p).claim = s.claim := ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+
+theorem performance_cash_consistent (s : State) (p : PaymentPayload)
+    (h : CashConsistent s) : CashConsistent (performance s p) := by
+  simpa [CashConsistent, cashTotal, performance, List.map_append, List.sum_append] using
+    congrArg (fun q : ℚ => q + p.amount.value) h
 
 theorem u09_1_quantity_conservation (s : State) (p : PaymentPayload)
     (hs : Conserves s) (hp : 0 ≤ p.amount.value) : Conserves (performance s p) := by
@@ -167,6 +175,19 @@ theorem u09_2_cash_conservation {A : Type} [Fintype A]
       have hs := ih (fun e h => balanced e (by simp [h]))
       simp [he, hs]
 
+def cashVector {A : Type} (events : List (A → ℚ)) (a : A) : ℚ :=
+  (events.map (fun e => e a)).sum
+
+theorem u09_2_cash_by_account {A : Type} [Fintype A] (events : List (A → ℚ))
+    (balanced : ∀ e ∈ events, ∑ a, e a = 0) : ∑ a, cashVector events a = 0 := by
+  induction events with
+  | nil => simp [cashVector]
+  | cons e es ih =>
+      have he := balanced e (by simp)
+      have hs := ih (fun e h => balanced e (by simp [h]))
+      change (∑ a, (e a + cashVector es a)) = 0
+      rw [Finset.sum_add_distrib, he, hs, add_zero]
+
 def lookupReceipt (s : State) (key : PaymentId) : Option Receipt :=
   s.receipts.find? (fun r => r.key == key)
 
@@ -180,9 +201,12 @@ def validationError (prev previous_output_ref : Handle) (req : PaymentRequest)
       req.payload.caseRevision ≠ prev.gamma.caseRevision ∨
       req.payload.relation ≠ prev.state.debt.relation ∨
       req.payload.payer ≠ prev.state.debt.obligor ∨
-      req.payload.payee ≠ prev.state.debt.creditor then some .scopeMismatch
+      req.payload.payee ≠ prev.state.debt.creditor ∨
+      req.payload.factDate ≠ prev.gamma.lawDate then some .scopeMismatch
   else if req.payload.amount.tag ≠ prev.state.debt.amount.tag then some .unitBindingMissing
   else if req.payload.normVersion ≠ prev.gamma.normVersion then some .scopeMismatch
+  else if prev.state.env ≠ .known prev.gamma.normVersion then some .scopeMismatch
+  else if prev.state.debt.relation ∉ prev.state.formations then some .notApplicable
   else if permission = false then some .authorityUnresolved
   else if req.payload.amount.value < 0 then some .unsupported
   else if req.key ∈ prev.state.used then some .duplicateCash
@@ -207,12 +231,28 @@ inductive Outcome where
   | rejectedNoCommit (attempt : AttemptId) (reason : Error)
   | conflict (registered requested : PaymentPayload)
   | unknownCommit (key : PaymentId) (attempt : AttemptId)
+  | pending (reason : Error)
   deriving DecidableEq, Repr
 
 def Outcome.post (before : Handle) : Outcome → Option Handle
   | .committed _ h => some h
   | .unknownCommit _ _ => none
   | _ => some before
+
+-- Acknowledged U is not a claim about the unobserved server state.
+def Outcome.acknowledgedUsed (before : Handle) (outcome : Outcome) : Finset PaymentId :=
+  match outcome.post before with | some h => h.state.used | none => before.state.used
+
+theorem noncommit_does_not_write_U (before : Handle) (outcome : Outcome)
+    (noncommit : ∀ receipt post, outcome ≠ .committed receipt post) :
+    outcome.acknowledgedUsed before = before.state.used := by
+  cases outcome with
+  | committed receipt post => exact False.elim (noncommit receipt post rfl)
+  | replay receipt => rfl
+  | rejectedNoCommit attempt reason => rfl
+  | conflict registered requested => rfl
+  | unknownCommit key attempt => rfl
+  | pending reason => rfl
 
 -- Resolve stable business identity before admitting a genuinely new effect.
 -- UnknownCommit is client knowledge; it carries no definite server poststate.
@@ -228,6 +268,8 @@ def consume_ext (prev previous_output_ref : Handle) (req : PaymentRequest)
       | .rejectedBeforeSubmit => .rejectedNoCommit req.attempt .unsupported
       | .submit =>
           match validationError prev previous_output_ref req permission with
+          | some .identityUnknown => .pending .identityUnknown
+          | some .applicabilityUnknown => .pending .applicabilityUnknown
           | some reason => .rejectedNoCommit req.attempt reason
           | none =>
               let committed := commitPayment prev req
@@ -269,6 +311,46 @@ theorem u09_replay_stable (prev previous_output_ref : Handle) (req : PaymentRequ
     (registered : lookupReceipt prev.state req.key = some r) (same : r.payload = req.payload) :
     consume_ext prev previous_output_ref req permission submission = .replay r := by
   simp [consume_ext, registered, same]
+
+theorem ready_requires_identity_and_applicability (prev previous_output_ref : Handle)
+    (req : PaymentRequest) (permission : Bool)
+    (ready : validationError prev previous_output_ref req permission = none) :
+    req.applicable = .yes ∧ req.interpretedPayment = some req.key ∧
+    0 ≤ req.payload.amount.value := by
+  cases hA : req.applicable <;>
+    unfold validationError at ready <;> split_ifs at ready <;> simp_all
+
+theorem ready_requires_unused (prev previous_output_ref : Handle)
+    (req : PaymentRequest) (permission : Bool)
+    (ready : validationError prev previous_output_ref req permission = none) :
+    req.key ∉ prev.state.used := by
+  unfold validationError at ready
+  split_ifs at ready <;> simp_all
+
+theorem consume_success_is_gated (prev previous_output_ref : Handle)
+    (req : PaymentRequest) (permission : Bool) (submission : Submission)
+    (r : Receipt) (post : Handle)
+    (success : consume_ext prev previous_output_ref req permission submission = .committed r post) :
+    req.applicable = .yes ∧ req.interpretedPayment = some req.key ∧
+      req.key ∈ post.state.used := by
+  cases hs : lookupReceipt prev.state req.key with
+  | some old =>
+      by_cases same : old.payload = req.payload <;>
+        simp [consume_ext, hs, same] at success
+  | none =>
+      cases submission with
+      | unknownCommit => simp [consume_ext, hs] at success
+      | rejectedBeforeSubmit => simp [consume_ext, hs] at success
+      | submit =>
+          cases he : validationError prev previous_output_ref req permission with
+          | some e =>
+              cases e <;> simp [consume_ext, hs, he] at success
+          | none =>
+              simp only [consume_ext, hs, he] at success
+              cases success
+              obtain ⟨app, identity, amount⟩ :=
+                ready_requires_identity_and_applicability prev previous_output_ref req permission he
+              exact ⟨app, identity, (u09_writeU_on_committed_applicable prev req).1⟩
 
 structure RestClaimWitness where
   relation : RelationId
@@ -328,6 +410,25 @@ def auditPerformanceLayers (before after : State) : Result Unit :=
   if after.formations = before.formations ∧ after.claim = before.claim ∧
     after.executionEligible = before.executionEligible ∧ after.procedure = before.procedure then
     .known () else .rejected .layerCollapse
+
+-- Acceptance-side audits for proposed reports; these are not middleware.
+def auditUnknownReport (before reported : State) : Result Unit :=
+  if reported.used = before.used then .known () else .rejected .burnedByUnknown
+
+def auditAccrualReport (before reported : State) : Result Unit :=
+  if reported.cash = before.cash ∧ reported.refundCash = before.refundCash ∧
+      reported.paid = before.paid then .known () else .rejected .accrualCashCollapse
+
+def auditReceipt (receipt : Receipt) (reported : State) : Result Unit :=
+  if balance reported = receipt.afterDebt ∧
+      receipt.beforeDebt = receipt.afterDebt + receipt.allocated ∧
+      receipt.payload.amount.value = receipt.allocated + receipt.remainder then .known ()
+  else .rejected .stateConservationMismatch
+
+def displayMinor (amount : Amount) (exponent : Nat) (rounding : Option (ℚ → Int)) : Result Int :=
+  match rounding with
+  | none => .unknown .roundingBasisMissing
+  | some policy => .known (policy (amount.value * (10 : ℚ)^exponent))
 
 -- Reuse the old general list theorem, not its fixed Master example.
 theorem baseline_afterStream (ps : List ℚ)

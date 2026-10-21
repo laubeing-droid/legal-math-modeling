@@ -139,6 +139,7 @@ structure Alternative where
   causalBridge : Option SourceRef
   outcomes : List OutcomeValue
   cost : Amount
+  execution : List PaymentPayload
   deriving DecidableEq, Repr
 
 structure DecisionIR where
@@ -160,6 +161,8 @@ def evaluate (g : Gamma) (utility : ℚ → ℚ) (utilityVersion : Nat)
   else if a.outcomes.any (fun o => decide (o.payoff.dimension ≠ some a.cost.tag)) then
     .rejected .mixedCurrency
   else if a.outcomes.any (fun o => decide (¬ o.cashIds.Nodup)) then .rejected .duplicateCash
+  else if a.execution.any (fun p => decide (p.caseId ≠ g.caseId ∨
+    p.caseRevision ≠ g.caseRevision ∨ p.amount.tag ≠ a.cost.tag)) then .rejected .scopeMismatch
   else
     let net := (a.outcomes.map fun o => o.probability * evalExact o.payoff.expr).sum - a.cost.value
     let eu := (a.outcomes.map fun o =>

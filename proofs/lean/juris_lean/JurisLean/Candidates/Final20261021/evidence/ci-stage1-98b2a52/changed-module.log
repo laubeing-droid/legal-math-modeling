@@ -1,0 +1,205 @@
+✔ [8475/8506] Built JurisLean.FiniteMonotoneIteration (3.1s)
+✔ [8476/8506] Built JurisLean.FullMath.Core.Foundations (5.7s)
+✔ [8477/8506] Built JurisLean.HornDefinitions (3.5s)
+✔ [8478/8506] Built JurisLean.Candidates.Final20261021.Interfaces (9.3s)
+✔ [8479/8506] Built JurisLean.HornFixedPoint (3.7s)
+⚠ [8480/8506] Built JurisLean.FullMath.Numeric.Quantities (7.2s)
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8481/8506] Built JurisLean.FullMath.Numeric.Intervals (7.5s)
+✔ [8482/8506] Built JurisLean.Candidates.Final20261021.Transactions (6.8s)
+✔ [8483/8506] Built JurisLean.Candidates.Final20261021.Representation (6.5s)
+✔ [8484/8506] Built JurisLean.Seams.UnifiedQuantities (5.5s)
+✔ [8485/8506] Built JurisLean.Candidates.Final20261021.Compiler (4.7s)
+✔ [8486/8506] Built JurisLean.Candidates.Final20261021.Harness (5.5s)
+✔ [8487/8506] Built JurisLean.Seams.UnifiedQuantLedger (8.5s)
+✔ [8488/8506] Built JurisLean.Candidates.Final20261021.Temporal (4.5s)
+✔ [8489/8506] Built JurisLean.Candidates.Final20261021.EvidenceProcedure (4.5s)
+✔ [8490/8506] Built JurisLean.Candidates.Final20261021.Authorization (4.4s)
+✔ [8491/8506] Built JurisLean.Candidates.Final20261021.Progress (4.2s)
+✖ [8492/8506] Building JurisLean.Candidates.Final20261021.Ledger (22s)
+trace: .> LEAN_PATH=/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/lean /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean -o /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Ledger.olean -i /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Ledger.ilean -c /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Ledger.c --setup /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Ledger.setup.json --json
+error: JurisLean/Candidates/Final20261021/Ledger.lean:397:28: Tactic `assumption` failed
+
+prev previous_output_ref : Handle
+req : PaymentRequest
+permission : Bool
+ready :
+  (if previous_output_ref ≠ prev then some Error.prestateRequired
+    else
+      if req.interpretedPayment ≠ some req.key then some Error.identityUnknown
+      else
+        if req.applicable = Applicable.unknown then some Error.applicabilityUnknown
+        else
+          if req.applicable = Applicable.no then some Error.notApplicable
+          else
+            if
+                req.payload.caseId ≠ prev.gamma.caseId ∨
+                  req.payload.caseRevision ≠ prev.gamma.caseRevision ∨
+                    req.payload.relation ≠ prev.state.debt.relation ∨
+                      req.payload.payer ≠ prev.state.debt.obligor ∨
+                        req.payload.payee ≠ prev.state.debt.creditor ∨ req.payload.factDate ≠ prev.gamma.lawDate then
+              some Error.scopeMismatch
+            else
+              if req.payload.amount.tag ≠ prev.state.debt.amount.tag then some Error.unitBindingMissing
+              else
+                if req.payload.normVersion ≠ prev.gamma.normVersion then some Error.scopeMismatch
+                else
+                  if prev.state.env ≠ Result.known prev.gamma.normVersion then some Error.scopeMismatch
+                  else
+                    if prev.state.debt.relation ∉ prev.state.formations then some Error.notApplicable
+                    else
+                      if permission = false then some Error.authorityUnresolved
+                      else
+                        if req.payload.amount.value < 0 then some Error.unsupported
+                        else
+                          if req.key ∈ prev.state.used then some Error.duplicateCash
+                          else
+                            if (prev.state.cash.any fun e => e.id == req.payload.cashId) = true then
+                              some Error.duplicateCash
+                            else none) =
+    none
+⊢ ¬req.interpretedPayment ≠ some req.key
+error: JurisLean/Candidates/Final20261021/Ledger.lean:398:17: Tactic `assumption` failed
+
+prev previous_output_ref : Handle
+req : PaymentRequest
+permission : Bool
+ready :
+  (if previous_output_ref ≠ prev then some Error.prestateRequired
+    else
+      if req.interpretedPayment ≠ some req.key then some Error.identityUnknown
+      else
+        if req.applicable = Applicable.unknown then some Error.applicabilityUnknown
+        else
+          if req.applicable = Applicable.no then some Error.notApplicable
+          else
+            if
+                req.payload.caseId ≠ prev.gamma.caseId ∨
+                  req.payload.caseRevision ≠ prev.gamma.caseRevision ∨
+                    req.payload.relation ≠ prev.state.debt.relation ∨
+                      req.payload.payer ≠ prev.state.debt.obligor ∨
+                        req.payload.payee ≠ prev.state.debt.creditor ∨ req.payload.factDate ≠ prev.gamma.lawDate then
+              some Error.scopeMismatch
+            else
+              if req.payload.amount.tag ≠ prev.state.debt.amount.tag then some Error.unitBindingMissing
+              else
+                if req.payload.normVersion ≠ prev.gamma.normVersion then some Error.scopeMismatch
+                else
+                  if prev.state.env ≠ Result.known prev.gamma.normVersion then some Error.scopeMismatch
+                  else
+                    if prev.state.debt.relation ∉ prev.state.formations then some Error.notApplicable
+                    else
+                      if permission = false then some Error.authorityUnresolved
+                      else
+                        if req.payload.amount.value < 0 then some Error.unsupported
+                        else
+                          if req.key ∈ prev.state.used then some Error.duplicateCash
+                          else
+                            if (prev.state.cash.any fun e => e.id == req.payload.cashId) = true then
+                              some Error.duplicateCash
+                            else none) =
+    none
+⊢ ¬req.payload.amount.value < 0
+error: JurisLean/Candidates/Final20261021/Ledger.lean:399:32: `simp` failed: maximum number of steps exceeded
+error: JurisLean/Candidates/Final20261021/Ledger.lean:399:32: `simp` failed: maximum number of steps exceeded
+error: JurisLean/Candidates/Final20261021/Ledger.lean:399:32: `simp` failed: maximum number of steps exceeded
+error: JurisLean/Candidates/Final20261021/Ledger.lean:407:8: Tactic `assumption` failed
+
+prev previous_output_ref : Handle
+req : PaymentRequest
+permission : Bool
+ready :
+  (if previous_output_ref ≠ prev then some Error.prestateRequired
+    else
+      if req.interpretedPayment ≠ some req.key then some Error.identityUnknown
+      else
+        if req.applicable = Applicable.unknown then some Error.applicabilityUnknown
+        else
+          if req.applicable = Applicable.no then some Error.notApplicable
+          else
+            if
+                req.payload.caseId ≠ prev.gamma.caseId ∨
+                  req.payload.caseRevision ≠ prev.gamma.caseRevision ∨
+                    req.payload.relation ≠ prev.state.debt.relation ∨
+                      req.payload.payer ≠ prev.state.debt.obligor ∨
+                        req.payload.payee ≠ prev.state.debt.creditor ∨ req.payload.factDate ≠ prev.gamma.lawDate then
+              some Error.scopeMismatch
+            else
+              if req.payload.amount.tag ≠ prev.state.debt.amount.tag then some Error.unitBindingMissing
+              else
+                if req.payload.normVersion ≠ prev.gamma.normVersion then some Error.scopeMismatch
+                else
+                  if prev.state.env ≠ Result.known prev.gamma.normVersion then some Error.scopeMismatch
+                  else
+                    if prev.state.debt.relation ∉ prev.state.formations then some Error.notApplicable
+                    else
+                      if permission = false then some Error.authorityUnresolved
+                      else
+                        if req.payload.amount.value < 0 then some Error.unsupported
+                        else
+                          if req.key ∈ prev.state.used then some Error.duplicateCash
+                          else
+                            if (prev.state.cash.any fun e => e.id == req.payload.cashId) = true then
+                              some Error.duplicateCash
+                            else none) =
+    none
+⊢ req.key ∉ prev.state.used
+error: JurisLean/Candidates/Final20261021/Ledger.lean:415:22: Tactic `assumption` failed
+
+prev previous_output_ref : Handle
+req : PaymentRequest
+permission : Bool
+ready :
+  (if previous_output_ref ≠ prev then some Error.prestateRequired
+    else
+      if req.interpretedPayment ≠ some req.key then some Error.identityUnknown
+      else
+        if req.applicable = Applicable.unknown then some Error.applicabilityUnknown
+        else
+          if req.applicable = Applicable.no then some Error.notApplicable
+          else
+            if
+                req.payload.caseId ≠ prev.gamma.caseId ∨
+                  req.payload.caseRevision ≠ prev.gamma.caseRevision ∨
+                    req.payload.relation ≠ prev.state.debt.relation ∨
+                      req.payload.payer ≠ prev.state.debt.obligor ∨
+                        req.payload.payee ≠ prev.state.debt.creditor ∨ req.payload.factDate ≠ prev.gamma.lawDate then
+              some Error.scopeMismatch
+            else
+              if req.payload.amount.tag ≠ prev.state.debt.amount.tag then some Error.unitBindingMissing
+              else
+                if req.payload.normVersion ≠ prev.gamma.normVersion then some Error.scopeMismatch
+                else
+                  if prev.state.env ≠ Result.known prev.gamma.normVersion then some Error.scopeMismatch
+                  else
+                    if prev.state.debt.relation ∉ prev.state.formations then some Error.notApplicable
+                    else
+                      if permission = false then some Error.authorityUnresolved
+                      else
+                        if req.payload.amount.value < 0 then some Error.unsupported
+                        else
+                          if req.key ∈ prev.state.used then some Error.duplicateCash
+                          else
+                            if (prev.state.cash.any fun e => e.id == req.payload.cashId) = true then
+                              some Error.duplicateCash
+                            else none) =
+    none
+⊢ ¬previous_output_ref ≠ prev
+error: Lean exited with code 1
+Some required targets logged failures:
+- JurisLean.Candidates.Final20261021.Ledger
+error: build failed
+Traceback (most recent call last):
+  File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 59, in <module>
+    if __name__=='__main__':raise SystemExit(main())
+                                             ^^^^^^
+  File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 57, in main
+    subprocess.run(['lake','build',*targets],cwd=R/'proofs/lean/juris_lean',check=True)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['lake', 'build', 'JurisLean.Candidates.Final20261021.CIAll']' returned non-zero exit status 1.

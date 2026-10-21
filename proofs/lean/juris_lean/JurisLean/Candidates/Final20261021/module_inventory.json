@@ -1386,7 +1386,7 @@
     },
     {
       "file": "Ledger.lean",
-      "sha256": "534eb6852874616e08e4d84ebfb94e28a00658eebf6d97ba80b599b1ba03d2b0",
+      "sha256": "b77a5be1fa8800dd3cf80324e3cadfadb014add2f09f35f733386c80d5a7f37d",
       "theory": [
         "U09.1",
         "U09.2",
@@ -1416,6 +1416,8 @@
         "JurisLean.Candidates.Final20261021.Ledger.u09_unknown_has_no_certain_poststate",
         "JurisLean.Candidates.Final20261021.Ledger.u09_unknown_keeps_key",
         "JurisLean.Candidates.Final20261021.Ledger.u09_replay_stable",
+        "JurisLean.Candidates.Final20261021.Ledger.guard_none_iff",
+        "JurisLean.Candidates.Final20261021.Ledger.validation_none_fields",
         "JurisLean.Candidates.Final20261021.Ledger.ready_requires_identity_and_applicability",
         "JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused",
         "JurisLean.Candidates.Final20261021.Ledger.ready_requires_actual_output",
@@ -1526,31 +1528,7 @@
             },
             {
               "file": "Ledger.lean",
-              "line": 545
-            },
-            {
-              "file": "Ledger.lean",
-              "line": 565
-            },
-            {
-              "file": "Ledger.lean",
-              "line": 566
-            },
-            {
-              "file": "Ledger.lean",
               "line": 567
-            },
-            {
-              "file": "Ledger.lean",
-              "line": 572
-            },
-            {
-              "file": "Ledger.lean",
-              "line": 573
-            },
-            {
-              "file": "Ledger.lean",
-              "line": 584
             },
             {
               "file": "Ledger.lean",
@@ -1558,19 +1536,43 @@
             },
             {
               "file": "Ledger.lean",
-              "line": 590
+              "line": 588
             },
             {
               "file": "Ledger.lean",
-              "line": 600
+              "line": 589
             },
             {
               "file": "Ledger.lean",
-              "line": 601
+              "line": 594
             },
             {
               "file": "Ledger.lean",
-              "line": 608
+              "line": 595
+            },
+            {
+              "file": "Ledger.lean",
+              "line": 606
+            },
+            {
+              "file": "Ledger.lean",
+              "line": 609
+            },
+            {
+              "file": "Ledger.lean",
+              "line": 612
+            },
+            {
+              "file": "Ledger.lean",
+              "line": 622
+            },
+            {
+              "file": "Ledger.lean",
+              "line": 623
+            },
+            {
+              "file": "Ledger.lean",
+              "line": 630
             },
             {
               "file": "Trace.lean",
@@ -1809,19 +1811,19 @@
             },
             {
               "file": "Ledger.lean",
-              "line": 565
-            },
-            {
-              "file": "Ledger.lean",
-              "line": 584
-            },
-            {
-              "file": "Ledger.lean",
               "line": 587
             },
             {
               "file": "Ledger.lean",
-              "line": 588
+              "line": 606
+            },
+            {
+              "file": "Ledger.lean",
+              "line": 609
+            },
+            {
+              "file": "Ledger.lean",
+              "line": 610
             }
           ]
         },
@@ -1840,19 +1842,19 @@
             },
             {
               "file": "Ledger.lean",
-              "line": 573
+              "line": 595
             },
             {
               "file": "Ledger.lean",
-              "line": 575
+              "line": 597
             },
             {
               "file": "Ledger.lean",
-              "line": 587
+              "line": 609
             },
             {
               "file": "Ledger.lean",
-              "line": 601
+              "line": 623
             }
           ]
         },
@@ -1979,15 +1981,15 @@
             },
             {
               "file": "Ledger.lean",
-              "line": 421
+              "line": 443
             },
             {
               "file": "Ledger.lean",
-              "line": 424
+              "line": 446
             },
             {
               "file": "Ledger.lean",
-              "line": 458
+              "line": 480
             },
             {
               "file": "Trace.lean",
@@ -2010,39 +2012,35 @@
             },
             {
               "file": "Ledger.lean",
-              "line": 392
+              "line": 404
             },
             {
               "file": "Ledger.lean",
-              "line": 395
+              "line": 407
             },
             {
               "file": "Ledger.lean",
-              "line": 403
+              "line": 421
             },
             {
               "file": "Ledger.lean",
-              "line": 405
+              "line": 429
             },
             {
               "file": "Ledger.lean",
-              "line": 411
+              "line": 435
             },
             {
               "file": "Ledger.lean",
-              "line": 413
+              "line": 444
             },
             {
               "file": "Ledger.lean",
-              "line": 422
+              "line": 455
             },
             {
               "file": "Ledger.lean",
-              "line": 433
-            },
-            {
-              "file": "Ledger.lean",
-              "line": 467
+              "line": 489
             },
             {
               "file": "Trace.lean",
@@ -2105,7 +2103,7 @@
             },
             {
               "file": "Ledger.lean",
-              "line": 423
+              "line": 445
             },
             {
               "file": "Trace.lean",
@@ -2176,7 +2174,7 @@
             },
             {
               "file": "Ledger.lean",
-              "line": 444
+              "line": 466
             }
           ]
         },
@@ -2195,11 +2193,11 @@
             },
             {
               "file": "Ledger.lean",
-              "line": 442
+              "line": 464
             },
             {
               "file": "Ledger.lean",
-              "line": 444
+              "line": 466
             },
             {
               "file": "Trace.lean",
@@ -2285,43 +2283,27 @@
             },
             {
               "file": "Ledger.lean",
-              "line": 420
+              "line": 442
             },
             {
               "file": "Ledger.lean",
-              "line": 427
+              "line": 449
             },
             {
               "file": "Ledger.lean",
-              "line": 430
+              "line": 452
             },
             {
               "file": "Ledger.lean",
-              "line": 431
+              "line": 453
             },
             {
               "file": "Ledger.lean",
-              "line": 434
+              "line": 456
             },
             {
               "file": "Ledger.lean",
-              "line": 436
-            },
-            {
-              "file": "Ledger.lean",
-              "line": 443
-            },
-            {
-              "file": "Ledger.lean",
-              "line": 455
-            },
-            {
-              "file": "Ledger.lean",
-              "line": 461
-            },
-            {
-              "file": "Ledger.lean",
-              "line": 464
+              "line": 458
             },
             {
               "file": "Ledger.lean",
@@ -2329,11 +2311,27 @@
             },
             {
               "file": "Ledger.lean",
-              "line": 469
+              "line": 477
             },
             {
               "file": "Ledger.lean",
-              "line": 471
+              "line": 483
+            },
+            {
+              "file": "Ledger.lean",
+              "line": 486
+            },
+            {
+              "file": "Ledger.lean",
+              "line": 487
+            },
+            {
+              "file": "Ledger.lean",
+              "line": 491
+            },
+            {
+              "file": "Ledger.lean",
+              "line": 493
             },
             {
               "file": "Trace.lean",
@@ -2432,15 +2430,15 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Ledger.RestClaim",
           "kind": "def",
-          "line": 485,
+          "line": 507,
           "consumers": [
             {
               "file": "Ledger.lean",
-              "line": 513
+              "line": 535
             },
             {
               "file": "Ledger.lean",
-              "line": 514
+              "line": 536
             },
             {
               "file": "Acceptance.lean",
@@ -2451,15 +2449,15 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Ledger.ExecEligible",
           "kind": "def",
-          "line": 491,
+          "line": 513,
           "consumers": [
             {
               "file": "Ledger.lean",
-              "line": 521
+              "line": 543
             },
             {
               "file": "Ledger.lean",
-              "line": 523
+              "line": 545
             },
             {
               "file": "Acceptance.lean",
@@ -2470,7 +2468,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Ledger.RestPay",
           "kind": "def",
-          "line": 499,
+          "line": 521,
           "consumers": [
             {
               "file": "Acceptance.lean",
@@ -2489,7 +2487,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Ledger.auditPerformanceLayers",
           "kind": "def",
-          "line": 531,
+          "line": 553,
           "consumers": [
             {
               "file": "Acceptance.lean",
@@ -2500,7 +2498,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Ledger.auditUnknownReport",
           "kind": "def",
-          "line": 537,
+          "line": 559,
           "consumers": [
             {
               "file": "Acceptance.lean",
@@ -2511,7 +2509,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Ledger.auditAccrualReport",
           "kind": "def",
-          "line": 540,
+          "line": 562,
           "consumers": [
             {
               "file": "Acceptance.lean",
@@ -2526,7 +2524,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Ledger.auditReceipt",
           "kind": "def",
-          "line": 544,
+          "line": 566,
           "consumers": [
             {
               "file": "Acceptance.lean",
@@ -2537,7 +2535,7 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Ledger.displayMinor",
           "kind": "def",
-          "line": 550,
+          "line": 572,
           "consumers": [
             {
               "file": "Acceptance.lean",

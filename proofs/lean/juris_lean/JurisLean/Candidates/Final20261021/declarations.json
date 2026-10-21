@@ -1076,7 +1076,7 @@
         },
         {
           "file": "Ledger.lean",
-          "line": 450
+          "line": 472
         }
       ]
     },
@@ -1090,7 +1090,7 @@
       "consumers": [
         {
           "file": "Ledger.lean",
-          "line": 448
+          "line": 470
         },
         {
           "file": "Trace.lean",
@@ -1121,7 +1121,7 @@
         },
         {
           "file": "Ledger.lean",
-          "line": 475
+          "line": 497
         }
       ]
     },
@@ -1171,8 +1171,8 @@
       "consumers": []
     },
     {
-      "name": "JurisLean.Candidates.Final20261021.Ledger.ready_requires_identity_and_applicability",
-      "short": "ready_requires_identity_and_applicability",
+      "name": "JurisLean.Candidates.Final20261021.Ledger.guard_none_iff",
+      "short": "guard_none_iff",
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
@@ -1180,7 +1180,43 @@
       "consumers": [
         {
           "file": "Ledger.lean",
-          "line": 474
+          "line": 408
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Ledger.validation_none_fields",
+      "short": "validation_none_fields",
+      "kind": "theorem",
+      "module": "Ledger",
+      "file": "Ledger.lean",
+      "line": 402,
+      "consumers": [
+        {
+          "file": "Ledger.lean",
+          "line": 424
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 431
+        },
+        {
+          "file": "Ledger.lean",
+          "line": 437
+        }
+      ]
+    },
+    {
+      "name": "JurisLean.Candidates.Final20261021.Ledger.ready_requires_identity_and_applicability",
+      "short": "ready_requires_identity_and_applicability",
+      "kind": "theorem",
+      "module": "Ledger",
+      "file": "Ledger.lean",
+      "line": 419,
+      "consumers": [
+        {
+          "file": "Ledger.lean",
+          "line": 496
         },
         {
           "file": "Trace.lean",
@@ -1194,11 +1230,11 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 401,
+      "line": 427,
       "consumers": [
         {
           "file": "Ledger.lean",
-          "line": 449
+          "line": 471
         },
         {
           "file": "Trace.lean",
@@ -1216,7 +1252,7 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 409,
+      "line": 433,
       "consumers": [
         {
           "file": "Trace.lean",
@@ -1230,11 +1266,11 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 417,
+      "line": 439,
       "consumers": [
         {
           "file": "Ledger.lean",
-          "line": 446
+          "line": 468
         },
         {
           "file": "Trace.lean",
@@ -1252,7 +1288,7 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 440,
+      "line": 462,
       "consumers": []
     },
     {
@@ -1261,7 +1297,7 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 452,
+      "line": 474,
       "consumers": [
         {
           "file": "Trace.lean",
@@ -1275,7 +1311,7 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 512,
+      "line": 534,
       "consumers": []
     },
     {
@@ -1284,7 +1320,7 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 520,
+      "line": 542,
       "consumers": []
     },
     {
@@ -1293,11 +1329,11 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 556,
+      "line": 578,
       "consumers": [
         {
           "file": "Ledger.lean",
-          "line": 612
+          "line": 634
         }
       ]
     },
@@ -1307,15 +1343,15 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 564,
+      "line": 586,
       "consumers": [
         {
           "file": "Ledger.lean",
-          "line": 585
+          "line": 607
         },
         {
           "file": "Ledger.lean",
-          "line": 588
+          "line": 610
         }
       ]
     },
@@ -1325,11 +1361,11 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 571,
+      "line": 593,
       "consumers": [
         {
           "file": "Ledger.lean",
-          "line": 611
+          "line": 633
         }
       ]
     },
@@ -1339,7 +1375,7 @@
       "kind": "theorem",
       "module": "Ledger",
       "file": "Ledger.lean",
-      "line": 596,
+      "line": 618,
       "consumers": []
     },
     {

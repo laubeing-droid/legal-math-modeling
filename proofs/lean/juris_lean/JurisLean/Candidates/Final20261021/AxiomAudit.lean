@@ -153,6 +153,10 @@ import JurisLean.Candidates.Final20261021.Acceptance
 #print axioms JurisLean.Candidates.Final20261021.Ledger.u09_unknown_keeps_key
 #check JurisLean.Candidates.Final20261021.Ledger.u09_replay_stable
 #print axioms JurisLean.Candidates.Final20261021.Ledger.u09_replay_stable
+#check JurisLean.Candidates.Final20261021.Ledger.guard_none_iff
+#print axioms JurisLean.Candidates.Final20261021.Ledger.guard_none_iff
+#check JurisLean.Candidates.Final20261021.Ledger.validation_none_fields
+#print axioms JurisLean.Candidates.Final20261021.Ledger.validation_none_fields
 #check JurisLean.Candidates.Final20261021.Ledger.ready_requires_identity_and_applicability
 #print axioms JurisLean.Candidates.Final20261021.Ledger.ready_requires_identity_and_applicability
 #check JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused

@@ -95,6 +95,32 @@
       "axiom_audit": "NOT_REACHED",
       "acceptance": "NOT_REACHED",
       "does_not_close_full_scope": true
+    },
+    {
+      "run_id": 39695229599,
+      "run_attempt": 1,
+      "subject": "98b2a528cbe9fb105583bfcad3a1f4dcb9c715a7",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39695229599",
+      "mode": "changed-module",
+      "target": "JurisLean.Candidates.Final20261021.CIAll",
+      "status": "FAIL",
+      "failed_module": "JurisLean.Candidates.Final20261021.Ledger",
+      "checked_candidate_modules": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Transactions",
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.Candidates.Final20261021.Compiler",
+        "JurisLean.Candidates.Final20261021.Harness",
+        "JurisLean.Candidates.Final20261021.Temporal",
+        "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+        "JurisLean.Candidates.Final20261021.Authorization",
+        "JurisLean.Candidates.Final20261021.Progress"
+      ],
+      "artifact": "evidence/ci-stage1-98b2a52/changed-module-only-39695229599-1.zip",
+      "sha256": "052a85ad75fcdb935d0511223193c1f9094a474eb0e3d0a88f98e3702eaa3a33",
+      "axiom_audit": "NOT_REACHED",
+      "acceptance": "NOT_REACHED",
+      "does_not_close_full_scope": true
     }
   ],
   "rows": [
@@ -1033,18 +1059,18 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Ledger.u09_1_afterPayments_clamp",
           "file": "Ledger.lean",
-          "line": 571,
+          "line": 593,
           "consumers": [
             {
               "file": "Ledger.lean",
-              "line": 611
+              "line": 633
             }
           ]
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Ledger.u09_1_scalar_vector_stream_refinement",
           "file": "Ledger.lean",
-          "line": 596,
+          "line": 618,
           "consumers": []
         },
         {
@@ -1065,7 +1091,7 @@
         },
         {
           "file": "Ledger.lean",
-          "line": 611
+          "line": 633
         }
       ],
       "original_mapping": "50条施工映射.json::U09.1",

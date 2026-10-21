@@ -387,32 +387,54 @@ theorem u09_replay_stable (prev previous_output_ref : Handle) (req : PaymentRequ
     consume_ext prev previous_output_ref req permission submission = .replay r := by
   simp [consume_ext, registered, same]
 
+theorem guard_none_iff (p : Prop) [Decidable p] (error : Error) (next : Option Error) :
+    (if p then some error else next) = none ↔ ¬p ∧ next = none := by
+  by_cases hp : p
+  · rw [if_pos hp]
+    constructor
+    · intro impossible
+      cases impossible
+    · rintro ⟨notp, _⟩
+      exact False.elim (notp hp)
+  · rw [if_neg hp]
+    exact ⟨fun h => ⟨hp, h⟩, fun h => h.2⟩
+
+theorem validation_none_fields (prev previous_output_ref : Handle)
+    (req : PaymentRequest) (permission : Bool)
+    (ready : validationError prev previous_output_ref req permission = none) :
+    previous_output_ref = prev ∧ req.interpretedPayment = some req.key ∧
+      req.applicable = .yes ∧ 0 ≤ req.payload.amount.value ∧ req.key ∉ prev.state.used := by
+  unfold validationError at ready
+  simp only [guard_none_iff] at ready
+  rcases ready with ⟨reference, identity, notUnknown, notNo, scope, tag, norm,
+    environment, formed, authorized, nonnegative, unused, cash, done⟩
+  have yes : req.applicable = .yes := by
+    cases req.applicable with
+    | yes => rfl
+    | no => exact False.elim (notNo rfl)
+    | unknown => exact False.elim (notUnknown rfl)
+  exact ⟨not_ne_iff.mp reference, not_ne_iff.mp identity, yes,
+    le_of_not_gt nonnegative, unused⟩
+
 theorem ready_requires_identity_and_applicability (prev previous_output_ref : Handle)
     (req : PaymentRequest) (permission : Bool)
     (ready : validationError prev previous_output_ref req permission = none) :
     req.applicable = .yes ∧ req.interpretedPayment = some req.key ∧
     0 ≤ req.payload.amount.value := by
-  unfold validationError at ready
-  repeat' first | split at ready | contradiction
-  refine ⟨?_, not_ne_iff.mp ‹¬ req.interpretedPayment ≠ some req.key›,
-    le_of_not_gt ‹¬ req.payload.amount.value < 0›⟩
-  cases hA : req.applicable <;> simp_all only [reduceCtorEq]
+  have fields := validation_none_fields prev previous_output_ref req permission ready
+  exact ⟨fields.2.2.1, fields.2.1, fields.2.2.2.1⟩
 
 theorem ready_requires_unused (prev previous_output_ref : Handle)
     (req : PaymentRequest) (permission : Bool)
     (ready : validationError prev previous_output_ref req permission = none) :
     req.key ∉ prev.state.used := by
-  unfold validationError at ready
-  repeat' first | split at ready | contradiction
-  exact ‹req.key ∉ prev.state.used›
+  exact (validation_none_fields prev previous_output_ref req permission ready).2.2.2.2
 
 theorem ready_requires_actual_output (prev previous_output_ref : Handle)
     (req : PaymentRequest) (permission : Bool)
     (ready : validationError prev previous_output_ref req permission = none) :
     previous_output_ref = prev := by
-  unfold validationError at ready
-  repeat' first | split at ready | contradiction
-  exact not_ne_iff.mp ‹¬ previous_output_ref ≠ prev›
+  exact (validation_none_fields prev previous_output_ref req permission ready).1
 
 theorem consume_committed_origin (prev previous_output_ref : Handle)
     (req : PaymentRequest) (permission : Bool) (submission : Submission)

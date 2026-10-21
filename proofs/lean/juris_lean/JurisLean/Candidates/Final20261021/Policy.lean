@@ -20,7 +20,7 @@ theorem u12_1_finite_ipw {X A : Type} [Fintype X] [Fintype A]
   by_cases hz : target x a = 0
   · simp [hz]
   · have hlog := support x a hz
-    field_simp
+    field_simp [hlog]
 
 theorem u12_3_clipped_bias (w c y : ℝ) (hw : 0 ≤ w) (hc : 0 ≤ c)
     (hy : 0 ≤ y) (hy1 : y ≤ 1) :

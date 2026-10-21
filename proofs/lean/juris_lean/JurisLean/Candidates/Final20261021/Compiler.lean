@@ -91,7 +91,7 @@ structure SupportedAtom where
 
 -- Input support is supplied by an independent interpretation relation.
 def proposed_fact_checker (support : SourceRef → Nat → Prop)
-    [DecidableRel support] (a : SupportedAtom) : Result Nat :=
+    [∀ source atom, Decidable (support source atom)] (a : SupportedAtom) : Result Nat :=
   if support a.source a.atom then .known a.atom else .unknown .missingEvidence
 
 end JurisLean.Candidates.Final20261021.Compiler

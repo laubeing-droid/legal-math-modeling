@@ -122,31 +122,87 @@ def iter_named(node: object, acc: list[tuple[str, str]]) -> None:
             iter_named(value, acc)
 
 
+COLUMN_COUNT = 8
+ARTICLE_CITE = re.compile(r"第[0-9一二三四五六七八九十百千]+条")
+LOCATION_PART = re.compile(r"^(.+):(\d+)$")
+
+
+def legal_cells(line: str) -> list[str]:
+    return [cell.strip() for cell in line.split("｜")]
+
+
 def legal_line_errors(line: str, expected_id: str | None = None) -> list[str]:
-    """One archivist row. A missing column forces the row to be marked 待核."""
+    """One archivist row.
+
+    Legal columns are either all ``待核`` (a legal duty whose official text is
+    still unrecovered), all ``无法源`` with a reason in the law-name column
+    (the clause is a mathematical statement), or a complete official citation.
+    The last two columns are the model sentence and ``path:line`` locations.
+    """
 
     errors: list[str] = []
-    cells = [cell.strip() for cell in line.split("｜")]
+    cells = legal_cells(line)
     if expected_id is not None and (not cells or cells[0] != expected_id):
         errors.append(f"legal row does not start with {expected_id}: {line}")
         return errors
     clause_id = cells[0] if cells else ""
-    rest = cells[1:]
-    marked = "待核" in line
-    complete = len(cells) == 6 and all(cells) and not marked
-    if not complete and not marked:
-        errors.append(f"{clause_id}: missing column without 待核")
+    if len(cells) != COLUMN_COUNT:
+        errors.append(f"{clause_id}: expected {COLUMN_COUNT} columns, got {len(cells)}")
         return errors
-    if marked:
-        if len(cells) != 6 or any(cell != "待核" for cell in rest):
-            errors.append(f"{clause_id}: 待核 row also fills another column")
+    legal = cells[1:6]
+    if not cells[6]:
+        errors.append(f"{clause_id}: missing model sentence")
+    if not cells[7]:
+        errors.append(f"{clause_id}: missing definition location")
+    pending = all(cell == "待核" for cell in legal)
+    no_source = legal[0].startswith("无法源") and all(cell == "无法源" for cell in legal[1:])
+    if pending or no_source:
         if "://" in line or "http" in line.lower():
-            errors.append(f"{clause_id}: 待核 row also contains a URL")
+            errors.append(f"{clause_id}: marked row also contains a URL")
+        if no_source:
+            reason = legal[0].removeprefix("无法源").lstrip("：:").strip()
+            if not reason:
+                errors.append(f"{clause_id}: 无法源 row has no reason")
+            if ARTICLE_CITE.search(legal[0]):
+                errors.append(f"{clause_id}: 无法源 row cites an article number")
         return errors
-    url = cells[4]
-    host = (urlparse(url).hostname or "").lower()
+    if any(cell == "待核" or cell == "无法源" or cell.startswith("无法源") for cell in legal):
+        errors.append(f"{clause_id}: legal columns mix a mark with other text")
+        return errors
+    if not all(legal):
+        errors.append(f"{clause_id}: missing legal column without 待核 or 无法源")
+        return errors
+    host = (urlparse(cells[4]).hostname or "").lower()
     if host not in OFFICIAL_HOSTS:
-        errors.append(f"{clause_id}: unofficial URL host {host or url}")
+        errors.append(f"{clause_id}: unofficial URL host {host or cells[4]}")
+    return errors
+
+
+def location_errors(clause_id: str, location: str) -> list[str]:
+    """Each cited line must be the theorem that defines this clause."""
+
+    stem = clause_id.lower().replace(".", "_")
+    errors: list[str] = []
+    parts = [part.strip() for part in location.split("；") if part.strip()]
+    if not parts:
+        return [f"{clause_id}: no definition location"]
+    for part in parts:
+        match = LOCATION_PART.match(part)
+        if match is None:
+            errors.append(f"{clause_id}: location {part!r} is not path:line")
+            continue
+        rel, lineno_text = match.group(1), match.group(2)
+        path = ROOT / rel
+        if not path.is_file():
+            errors.append(f"{clause_id}: missing {rel}")
+            continue
+        lines = path.read_text(encoding="utf-8").splitlines()
+        lineno = int(lineno_text)
+        if not 1 <= lineno <= len(lines):
+            errors.append(f"{clause_id}: {rel}:{lineno} out of range")
+            continue
+        if not lines[lineno - 1].strip().startswith(f"theorem {stem}"):
+            errors.append(f"{clause_id}: {rel}:{lineno} is not theorem {stem}")
     return errors
 
 
@@ -175,6 +231,7 @@ def check() -> tuple[list[str], dict[str, int]]:
         "declarations_located": 0,
         "remaining_obligations_nonempty": 0,
         "legal_rows_daihe": 0,
+        "legal_rows_wufayuan": 0,
     }
     status_path = ROOT / STATUS_REL
     receipt_path = ROOT / RECEIPT_REL
@@ -309,10 +366,21 @@ def check() -> tuple[list[str], dict[str, int]]:
     if not legal_path.is_file():
         errors.append(f"missing {LEGAL_REL.as_posix()}")
     else:
-        legal_errors = check_legal_text(legal_path.read_text(encoding="utf-8"))
+        legal_text = legal_path.read_text(encoding="utf-8")
+        legal_errors = check_legal_text(legal_text)
         errors.extend(legal_errors)
-        if not legal_errors:
-            counts["legal_rows_daihe"] = len(SEVEN)
+        for raw in legal_text.splitlines():
+            line = raw.strip()
+            if not line or line.startswith("#"):
+                continue
+            cells = legal_cells(line)
+            if len(cells) != COLUMN_COUNT:
+                continue
+            if all(cell == "待核" for cell in cells[1:6]):
+                counts["legal_rows_daihe"] += 1
+            elif cells[1].startswith("无法源"):
+                counts["legal_rows_wufayuan"] += 1
+            errors.extend(location_errors(cells[0], cells[7]))
     return errors, counts
 
 
@@ -323,7 +391,8 @@ def main() -> int:
         "formal_ci_CI_NOT_RUN {formal_ci_CI_NOT_RUN}; "
         "declarations_located {declarations_located}; "
         "remaining_obligations_nonempty {remaining_obligations_nonempty}; "
-        "legal_rows_daihe {legal_rows_daihe}".format(**counts)
+        "legal_rows_daihe {legal_rows_daihe}; "
+        "legal_rows_wufayuan {legal_rows_wufayuan}".format(**counts)
     )
     if errors:
         print(f"FAIL {len(errors)}", file=sys.stderr)

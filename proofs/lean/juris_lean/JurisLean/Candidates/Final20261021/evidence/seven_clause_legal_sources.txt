@@ -1,11 +1,11 @@
 # 七条款法源清单
-# 栏：条款 id｜法律全称｜条、款、项号｜所依版本（公布日期、施行日期；修正过的写修正年份）｜官方原文链接（首选 flk.npc.gov.cn）｜原文摘录
-# 缺任一栏则该行标「待核」。未检索到的栏不填写，不推测法律名称、条号、版本、链接或摘录。
-# 下列条款 id 是底稿验收编号。本清单没有取得可引用的法律全称、条/款/项号、公布日期、施行日期、修正年份、flk.npc.gov.cn 或 npc.gov.cn 原文链接、原文摘录。
-U01.4｜待核｜待核｜待核｜待核｜待核
-U02.4｜待核｜待核｜待核｜待核｜待核
-U04.1｜待核｜待核｜待核｜待核｜待核
-U04.3｜待核｜待核｜待核｜待核｜待核
-U04.4｜待核｜待核｜待核｜待核｜待核
-U05.1｜待核｜待核｜待核｜待核｜待核
-U06.5｜待核｜待核｜待核｜待核｜待核
+# 栏：条款 id｜法律全称｜条、款、项号｜所依版本（公布日期、施行日期；修正过的写修正年份）｜官方原文链接（首选 flk.npc.gov.cn）｜原文摘录｜模型所管（一句，以底稿 exact_scope 与 Lean 声明为准）｜定义位置（仓库路径:行号，多处用；）
+# 法律栏只有两种诚实标记：对应法律义务而官方原文未检索到的，五栏都写「待核」；底稿本身是数学命题、不规定义务、期限、金额或程序的，五栏写「无法源」，并在法律全称栏用一句话写理由。不填写推测的法律名称或条号。
+# 下列七条的仓内底稿都是数学命题，故标「无法源」。
+U01.4｜无法源：底稿 v001 L258–272 是训练误差与均值方差的有限反例，Lean 声明没有引用法条。｜无法源｜无法源｜无法源｜无法源｜这条只给出常值规则的训练误差 0、目标误差 1、部署误差 1，以及独立均值方差 1/(4n) 对复制均值方差 1/4，不规定法律义务、期限、金额或程序。｜proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Learning.lean:161；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Learning.lean:167；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Learning.lean:173；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Learning.lean:179
+U02.4｜无法源：底稿 v001 L126–133 是条件概率分区预算 α+ε 与 H=B 反例，不是法定风险义务。｜无法源｜无法源｜无法源｜无法源｜这条只要求条件测度内的失败界 ε 加上补集质量上界 α 得到 α+ε，并记录边际 1/10 在 H=B 时条件概率变成 1，不规定法律义务或期限。｜proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Harness.lean:70；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Harness.lean:80；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Harness.lean:94
+U04.1｜无法源：底稿 v001 L273–278 是 Beta 后验、预测均值和 Gamma 权重比，不对应具体法条。｜无法源｜无法源｜无法源｜无法源｜这条只复用整型形状共轭、更新后 Beta 的预测均值和实数 Gamma 权重比，并用有限交换律 5/6 对照 Beta(1,1) 桥 2/3。｜proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean:146；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean:155；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean:160；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean:169
+U04.3｜无法源：底稿 v001 L302–310 是正则逻辑回归的损失与极小点，没有规定赔偿金额或程序。｜无法源｜无法源｜无法源｜无法源｜这条只证明未罚截距在标签全为正时逻辑损失恒正、随截距增大而严格下降、并可小于任意正数；全坐标受罚极小点的存在与唯一仍未证明。｜proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean:182；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean:188；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean:197；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean:201
+U04.4｜无法源：底稿 v001 L311–314 是等相关样本的协方差展开和等效样本量，不对应具体法条。｜无法源｜无法源｜无法源｜无法源｜这条只把 n 个等方差样本的均值方差写成 σ²[1+(n−1)r]/n，分母为正时给出有限等效数量，并见证 B 与 1−B 在 r=−1 时平均退化为常数。｜proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean:217；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean:223；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean:232；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean:235
+U05.1｜无法源：底稿 v001 L333–336 是保形秩的边际覆盖不等式，不是法定期间或义务。｜无法源｜无法源｜无法源｜无法源｜这条只给出无同分秩前缀质量、门槛 k/(n+1) 不低于 1−α、无穷分支必覆盖，以及边际覆盖可以同时留下群体未覆盖。｜proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Calibration.lean:68；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Calibration.lean:73；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Calibration.lean:87；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Calibration.lean:90
+U06.5｜无法源：底稿 v001 L389–404 把 (4,6) 当作给定博弈树的收益数字，不是法定金额或程序。｜无法源｜无法源｜无法源｜无法源｜这条只计算噪声信号价值等于 3/10 减成本、给定两轮树经一步逆向归纳得到 (4,6)，以及匹配硬币没有纯策略均衡。｜proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean:247；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean:255；proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean:265

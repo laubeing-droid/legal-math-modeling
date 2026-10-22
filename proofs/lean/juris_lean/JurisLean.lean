@@ -46,6 +46,9 @@ import JurisLean.Genealogy.TSpectrum.Batch2
 import JurisLean.Genealogy.TSpectrum.Batch3
 import JurisLean.Genealogy.TSpectrum.Batch4
 
+-- Candidate module CI 39699620705 at d59a487 passed; complete frozen scopes remain open.
+import JurisLean.Candidates.Final20261021.CIAll
+
 -- BEGIN GENERATED reachability block (check_import_reachability.py --write)
 -- Whatever is not an explicit standalone driver must be reachable from this file,
 -- otherwise `lake build` skips it while counts and papers still include it.

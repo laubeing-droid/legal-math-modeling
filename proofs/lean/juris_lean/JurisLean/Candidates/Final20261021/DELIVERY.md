@@ -1,19 +1,19 @@
 # Final20261021 候选施工检查点
 
-状态：**PARTIAL_SOURCE_CANDIDATE / CHANGED_MODULE_CI_RUNNING**。本目录已有批次 0–9 的候选源码；尚未完成冻结理论的全部证明和接线；批次 10 的正式 CI 正在进行。当前不能宣称本任务完成。
+状态：**PARTIAL_SOURCE_CANDIDATE / STAGE1_PASS / FULL_RELEASE_CI_NOT_RUN**。本目录已有批次 0–9 的候选源码；尚未完成冻结理论的全部证明和接线；批次 10 的正式 CI 正在进行。当前不能宣称本任务完成。
 
-基线固定为 `825792b83476a767152396d7f5e2ba3017048841`，候选分支为 `candidates/final20261021-825792b`。最新已完成 run `39698971458` 在 `019b5a3f44e006f3e1a3022012dbecd3b151216c` 上已编译通过全部实现模块及 Acceptance（含 N2 和 Pipeline 三路径），随后因候选审计缺少 Progress 导入而失败；这不是 CIAll PASS。审计生成器现显式导入全部待审模块，目标清单不减。逐轮原始日志、ZIP、散列、模块结果及修复范围以 `construction_status.json::ci_attempts` 和 `evidence/ci-stage1-*/` 为准。用户于 2026-10-22 授予连续 CI 修复、推送与派发授权。
+基线固定为 `825792b83476a767152396d7f5e2ba3017048841`，候选分支为 `candidates/final20261021-825792b`。run `39699620705` 已在 `d59a487b154818278ee4629234904bc8a3ac1ef3` 上通过完整目标 `JurisLean.Candidates.Final20261021.CIAll`；原始 ZIP、源 Git blob 对照、完整公理目标检查和回执见 `evidence/ci-stage1-d59a487/verification.json`。全部目标齐全，仅依赖标准公理。第一阶段通过只覆盖候选源码和所列 Lean 命题；完整冻结理论、产品精化与现实/法律前提未因此关闭。用户于 2026-10-22 授予连续 CI 修复、推送与派发授权。
 
 ## 逐模块与逐条复核入口
 
 - `module_inventory.json`：每个模块的文件、理论编号、定理全名、操作入口及消费者行号、选定正反例和剩余义务。空例证栏明确表示缺少该类例证。
 - `declarations.json`：声明与实际文本引用位置。文本引用不等于运行精化证明；空消费者不表示已被下游使用。
-- `50_clause_status.json`：保留 50 条原始完整目标和验收句，列出候选声明与未闭合子目标；全部 `formal_ci=CI_NOT_RUN`。存在源码、定理名或导入关系均不自动关闭条目。
+- `50_clause_status.json`：保留 50 条原始完整目标和验收句，列出候选声明与未闭合子目标；`formal_ci` 保留完整冻结条目的 `CI_NOT_RUN`；`candidate_formal_ci` 和具名回执另记已通过的候选声明，未把部分命题冒充整条关闭。存在源码、定理名或导入关系均不自动关闭条目。
 - `proposed_825792b.json`：全部包内拟议符号及新增 `proposed_*` 对固定基线的 `REUSE/NEW/UNLOCATED` 判定；没有定位的目标保留 `UNLOCATED`。`NEW` 表示新候选边界，未声称等价覆盖原包中的全部软件合同。
 - `baseline_reuse.json`：真正调用的基线数量账和 Horn 声明、源散列、原文及消费者；`candidate_provenance.json`：历史候选参考来源。历史候选的成功状态不转移到当前源码。
 - `construction_status.json`：施工卡及三家验收附录来源、两阶段 CI 状态、限制与阻塞。
 
-另有两个入口模块：`CIAll.lean` 显式导入全部实现模块与候选审计；`AxiomAudit.lean` 导入 Acceptance 并逐声明执行 `#check` / `#print axioms`。二者没有新增定理声明；消费者分别是指定 CI 目标及 `CIAll`。最近构建已通过 Acceptance，并实际执行到候选审计；审计因四个 Progress 名称未被导入而失败，不能转记为完整审计通过。全部 Lean 文件的 Git blob 散列均列在本地回执中。
+另有两个入口模块：`CIAll.lean` 显式导入全部实现模块与候选审计；`AxiomAudit.lean` 导入 Acceptance 并逐声明执行 `#check` / `#print axioms`。二者没有新增定理声明；消费者分别是指定 CI 目标及 `CIAll`。最新完整构建已通过 Acceptance、AxiomAudit 与 CIAll；逐目标输出已经与完整源码清单核对。全部 Lean 文件的 Git blob 散列均列在本地回执中。
 
 ## 本检查点补强的内容
 
@@ -23,7 +23,7 @@
 
 `u09_1_scalar_vector_stream_refinement` 从初始数量投影证明候选标量支付流与基线向量支付流的最终余额一致；没有将最终投影相等放在前提里。它不证明法义解释、实际现金发生或完整产品事务精化。
 
-`Learning.u01_0_independent_bounded_two_tail` 与 `u01_0_zero_width_tail` 覆盖一般独立有界和的正宽度/零宽度两支。`Feedback.u14_2_independent_cluster_two_tail` 规范化为簇大小公式，从 N>0 推出平方和正，而未增加这项独立前提。这些模块的对应源码已在正式模块构建中接受 Lean 检查；整体 CIAll 尚未通过。
+`Learning.u01_0_independent_bounded_two_tail` 与 `u01_0_zero_width_tail` 覆盖一般独立有界和的正宽度/零宽度两支。`Feedback.u14_2_independent_cluster_two_tail` 规范化为簇大小公式，从 N>0 推出平方和正，而未增加这项独立前提。这些模块的对应源码已在正式模块构建中接受 Lean 检查；整体 CIAll 已在上述精确源提交通过；完整理论范围仍按 50 条表保持开放。
 
 `Pipeline` 实际传递第一步输出和刷新后输出。余额归零现在不会自动伪造外部测量；`n_pipeline_zero_balance_no_external_label` 要求缺少测量结果时仍返回未决并保留旧模型。`u10_2_pipeline_second_post_invariant` 连接实际第一步提交与第二步可确认后态。
 

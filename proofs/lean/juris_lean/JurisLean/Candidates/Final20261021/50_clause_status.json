@@ -338,6 +338,47 @@
       "axiom_audit": "BUILD_FAIL",
       "acceptance": "BUILD_PASS",
       "does_not_close_full_scope": true
+    },
+    {
+      "run_id": 39699620705,
+      "run_attempt": 1,
+      "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39699620705",
+      "mode": "changed-module",
+      "target": "JurisLean.Candidates.Final20261021.CIAll",
+      "status": "PASS",
+      "checked_candidate_modules": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Behavior",
+        "JurisLean.Candidates.Final20261021.Policy",
+        "JurisLean.Candidates.Final20261021.Progress",
+        "JurisLean.Candidates.Final20261021.Learning",
+        "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+        "JurisLean.Candidates.Final20261021.Temporal",
+        "JurisLean.Candidates.Final20261021.Transactions",
+        "JurisLean.Candidates.Final20261021.Harness",
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.Candidates.Final20261021.Compiler",
+        "JurisLean.Candidates.Final20261021.RSI",
+        "JurisLean.Candidates.Final20261021.Calibration",
+        "JurisLean.Candidates.Final20261021.Probability",
+        "JurisLean.Candidates.Final20261021.Authorization",
+        "JurisLean.Candidates.Final20261021.Decision",
+        "JurisLean.Candidates.Final20261021.Feedback",
+        "JurisLean.Candidates.Final20261021.Ledger",
+        "JurisLean.Candidates.Final20261021.Iteration",
+        "JurisLean.Candidates.Final20261021.Trace",
+        "JurisLean.Candidates.Final20261021.Pipeline",
+        "JurisLean.Candidates.Final20261021.Acceptance",
+        "JurisLean.Candidates.Final20261021.AxiomAudit",
+        "JurisLean.Candidates.Final20261021.CIAll"
+      ],
+      "artifact": "evidence/ci-stage1-d59a487/changed-module-only-39699620705-1.zip",
+      "sha256": "04b3a3a89daf6c0c3e2a8ca7914eeecf1649519ea98cadf264e6126a23adc825",
+      "axiom_audit": "PASS_COMPLETE_TARGET_SET_STANDARD_AXIOMS_ONLY",
+      "acceptance": "BUILD_PASS",
+      "verification": "evidence/ci-stage1-d59a487/verification.json",
+      "does_not_close_full_scope": true
     }
   ],
   "rows": [
@@ -389,7 +430,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U07.1",
-      "remaining_obligations": "Retraction, observation monotonicity, reverse-separation and non-surjective-encode witnesses have candidate bodies. Full observation/history decoding acceptance and fresh CI remain."
+      "remaining_obligations": "Retraction, observation monotonicity, reverse-separation and non-surjective-encode witnesses have candidate bodies. Full observation/history decoding acceptance and fresh CI remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U07.2",
@@ -421,7 +468,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U07.2",
-      "remaining_obligations": "Fresh CI and actual semantic compatibility of supplied layers remain separate."
+      "remaining_obligations": "Fresh CI and actual semantic compatibility of supplied layers remain separate.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U07.3",
@@ -453,7 +506,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U07.3",
-      "remaining_obligations": "Fresh CI; source truth and arbitrary extractor fidelity are not proved by the fixed-history construction."
+      "remaining_obligations": "Fresh CI; source truth and arbitrary extractor fidelity are not proved by the fixed-history construction.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U03.1",
@@ -518,7 +577,13 @@
         }
       ],
       "original_mapping": "50条施工映射.json::U03.1",
-      "remaining_obligations": "Provenance DAG validation and robust-intersection countermodel not yet connected to the executable finite closure."
+      "remaining_obligations": "Provenance DAG validation and robust-intersection countermodel not yet connected to the executable finite closure.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U03.2",
@@ -556,7 +621,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U03.2",
-      "remaining_obligations": "Accepted checked closures are connected to semantic derivability; insufficient fuel returns checkIncomplete. A verified finite carrier/fuel bound for this list implementation is still missing."
+      "remaining_obligations": "Accepted checked closures are connected to semantic derivability; insufficient fuel returns checkIncomplete. A verified finite carrier/fuel bound for this list implementation is still missing.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U02.1",
@@ -588,7 +659,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U02.1",
-      "remaining_obligations": "Actual-world and actual-successor refinement of the concrete pipeline table remains unproved."
+      "remaining_obligations": "Actual-world and actual-successor refinement of the concrete pipeline table remains unproved.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U02.2",
@@ -870,7 +947,13 @@
         }
       ],
       "original_mapping": "50条施工映射.json::U02.2",
-      "remaining_obligations": "Abstract transaction safety, actual commit/replay/cancel examples and complete-read CAS snapshot lemma have candidate bodies. Full refinement of concrete Ledger/Pipeline into Store/Trace, including cancellation and external occurrences, remains open."
+      "remaining_obligations": "Abstract transaction safety, actual commit/replay/cancel examples and complete-read CAS snapshot lemma have candidate bodies. Full refinement of concrete Ledger/Pipeline into Store/Trace, including cancellation and external occurrences, remains open.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U02.3",
@@ -902,7 +985,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U02.3",
-      "remaining_obligations": "Generator support coverage and common-idle/empty-successor counterexamples not fully discharged."
+      "remaining_obligations": "Generator support coverage and common-idle/empty-successor counterexamples not fully discharged.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U02.4",
@@ -927,7 +1016,9 @@
       "declarations": [],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U02.4",
-      "remaining_obligations": "Conditional-law tower/filtration theorem, random budgets, and H=B countermodel remain unformalized; union and partition sublemmas do not close them."
+      "remaining_obligations": "Conditional-law tower/filtration theorem, random budgets, and H=B countermodel remain unformalized; union and partition sublemmas do not close them.",
+      "candidate_formal_ci": "NO_NAMED_DECLARATION_AUDITED",
+      "candidate_ci_evidence": null
     },
     {
       "clause": "U08.1",
@@ -975,7 +1066,13 @@
         }
       ],
       "original_mapping": "50条施工映射.json::U08.1",
-      "remaining_obligations": "Late retroactive-transition and mutable-current-status countermodels still require complete Lean acceptance."
+      "remaining_obligations": "Late retroactive-transition and mutable-current-status countermodels still require complete Lean acceptance.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U10.1",
@@ -1013,7 +1110,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U10.1",
-      "remaining_obligations": "The actual full-context authorized Pipeline refresh is linked to Trace.Step. Complete protocol refinement and external legal authority evidence remain open; a reference alone does not prove authority."
+      "remaining_obligations": "The actual full-context authorized Pipeline refresh is linked to Trace.Step. Complete protocol refinement and external legal authority evidence remain open; a reference alone does not prove authority.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U10.2",
@@ -1115,7 +1218,13 @@
         }
       ],
       "original_mapping": "50条施工映射.json::U10.2",
-      "remaining_obligations": "Numeric/cash/freshness plus key/receipt/cash-backing invariant, actual consume-to-Step, and two-payment known-post refinement have candidate bodies. Full mixed-operation coverage, Gamma frame/read-domain correspondence and service refinement remain open."
+      "remaining_obligations": "Numeric/cash/freshness plus key/receipt/cash-backing invariant, actual consume-to-Step, and two-payment known-post refinement have candidate bodies. Full mixed-operation coverage, Gamma frame/read-domain correspondence and service refinement remain open.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U08.2",
@@ -1147,7 +1256,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U08.2",
-      "remaining_obligations": "Current versus reachable exhaustion and nonempty-state preservation of every observation remain partially formalized."
+      "remaining_obligations": "Current versus reachable exhaustion and nonempty-state preservation of every observation remain partially formalized.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U08.3",
@@ -1191,7 +1306,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U08.3",
-      "remaining_obligations": "Four-state/product and countermodels are present; full finite dependency-policy reflection and compatibility-world classification still need audit."
+      "remaining_obligations": "Four-state/product and countermodels are present; full finite dependency-policy reflection and compatibility-world classification still need audit.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U10.3",
@@ -1229,7 +1350,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U10.3",
-      "remaining_obligations": "Connect per-operation abstract simulation length and business-observation faithfulness, including zero-step prohibitions."
+      "remaining_obligations": "Connect per-operation abstract simulation length and business-observation faithfulness, including zero-step prohibitions.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U09.1",
@@ -1312,7 +1439,13 @@
         }
       ],
       "original_mapping": "50条施工映射.json::U09.1",
-      "remaining_obligations": "General list conservation, receipt/U/cash-backing coherence, actual mixed-trace at-most-once safety, and scalar/vector stream balance refinement have candidate bodies. Full legal allocation effects, receipt revision ordering/cash uniqueness and product-protocol refinement remain open."
+      "remaining_obligations": "General list conservation, receipt/U/cash-backing coherence, actual mixed-trace at-most-once safety, and scalar/vector stream balance refinement have candidate bodies. Full legal allocation effects, receipt revision ordering/cash uniqueness and product-protocol refinement remain open.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U09.2",
@@ -1350,7 +1483,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U09.2",
-      "remaining_obligations": "Finite closed-account and per-account sums present. Actual occurrence and completeness of boundary accounts remain external premises."
+      "remaining_obligations": "Finite closed-account and per-account sums present. Actual occurrence and completeness of boundary accounts remain external premises.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U09.3",
@@ -1388,7 +1527,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U09.3",
-      "remaining_obligations": "Weak allocation, metadata, accrual, None, restitution interfaces are present; full greedy prefix/ordering and same-institution legal-effect countermodels remain."
+      "remaining_obligations": "Weak allocation, metadata, accrual, None, restitution interfaces are present; full greedy prefix/ordering and same-institution legal-effect countermodels remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U01.0",
@@ -1474,7 +1619,13 @@
         }
       ],
       "original_mapping": "50条施工映射.json::U01.0",
-      "remaining_obligations": "Exact independent bounded-sum two-tail statement and D=0 null-tail branch, both at strictly positive thresholds, have candidate proof bodies. Fresh Lean CI, axiom audit and assumption/scope review remain required."
+      "remaining_obligations": "Exact independent bounded-sum two-tail statement and D=0 null-tail branch, both at strictly positive thresholds, have candidate proof bodies. Fresh Lean CI, axiom audit and assumption/scope review remain required.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U01.1",
@@ -1512,7 +1663,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U01.1",
-      "remaining_obligations": "Sub-Gaussian fixed-class union and ERM algebra present; finish iid sample-mean/sqrt radius specialization and representation-risk decomposition."
+      "remaining_obligations": "Sub-Gaussian fixed-class union and ERM algebra present; finish iid sample-mean/sqrt radius specialization and representation-risk decomposition.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U01.2",
@@ -1560,7 +1717,13 @@
         }
       ],
       "original_mapping": "50条施工映射.json::U01.2",
-      "remaining_obligations": "Finite rational 0-1 bridge present; general measurable bounded-loss integration and jointly estimated bridge budget remain."
+      "remaining_obligations": "Finite rational 0-1 bridge present; general measurable bounded-loss integration and jointly estimated bridge budget remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U01.3",
@@ -1592,7 +1755,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U01.3",
-      "remaining_obligations": "Finite rational TV bound only; the manuscript general measurable-distribution TV theorem is UNPROVED, not reduced to this finite support."
+      "remaining_obligations": "Finite rational TV bound only; the manuscript general measurable-distribution TV theorem is UNPROVED, not reduced to this finite support.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U01.4",
@@ -1617,7 +1786,9 @@
       "declarations": [],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U01.4",
-      "remaining_obligations": "Full training/target/deployment and independent-versus-copied variance witness family still unformalized."
+      "remaining_obligations": "Full training/target/deployment and independent-versus-copied variance witness family still unformalized.",
+      "candidate_formal_ci": "NO_NAMED_DECLARATION_AUDITED",
+      "candidate_ci_evidence": null
     },
     {
       "clause": "U04.1",
@@ -1642,7 +1813,9 @@
       "declarations": [],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U04.1",
-      "remaining_obligations": "Finite posterior normalization is not Beta conjugacy or its predictive bridge; both and 5/6 countermodel remain UNPROVED."
+      "remaining_obligations": "Finite posterior normalization is not Beta conjugacy or its predictive bridge; both and 5/6 countermodel remain UNPROVED.",
+      "candidate_formal_ci": "NO_NAMED_DECLARATION_AUDITED",
+      "candidate_ci_evidence": null
     },
     {
       "clause": "U04.2",
@@ -1674,7 +1847,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U04.2",
-      "remaining_obligations": "Real ratio enclosure present; width, beta integrals, three-event sharp identified set and contamination subclaims remain."
+      "remaining_obligations": "Real ratio enclosure present; width, beta integrals, three-event sharp identified set and contamination subclaims remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U04.3",
@@ -1699,7 +1878,9 @@
       "declarations": [],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U04.3",
-      "remaining_obligations": "UNFORMALIZED: full-coordinate ridge logistic minimizer existence/uniqueness and unpenalized-intercept counterexample."
+      "remaining_obligations": "UNFORMALIZED: full-coordinate ridge logistic minimizer existence/uniqueness and unpenalized-intercept counterexample.",
+      "candidate_formal_ci": "NO_NAMED_DECLARATION_AUDITED",
+      "candidate_ci_evidence": null
     },
     {
       "clause": "U04.4",
@@ -1724,7 +1905,9 @@
       "declarations": [],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U04.4",
-      "remaining_obligations": "Effective-count result type and zero denominator branch present; full covariance expansion and PSD/degenerate witness remain."
+      "remaining_obligations": "Effective-count result type and zero denominator branch present; full covariance expansion and PSD/degenerate witness remain.",
+      "candidate_formal_ci": "NO_NAMED_DECLARATION_AUDITED",
+      "candidate_ci_evidence": null
     },
     {
       "clause": "U04.5",
@@ -1756,7 +1939,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U04.5",
-      "remaining_obligations": "Identity types and LR16/LR4 arithmetic present; general joint likelihood/copy and sigma-field information argument remain."
+      "remaining_obligations": "Identity types and LR16/LR4 arithmetic present; general joint likelihood/copy and sigma-field information argument remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U05.1",
@@ -1781,7 +1970,9 @@
       "declarations": [],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U05.1",
-      "remaining_obligations": "UNFORMALIZED: exchangeable-rank split conformal theorem, ties, infinite threshold and conditional group scope."
+      "remaining_obligations": "UNFORMALIZED: exchangeable-rank split conformal theorem, ties, infinite threshold and conditional group scope.",
+      "candidate_formal_ci": "NO_NAMED_DECLARATION_AUDITED",
+      "candidate_ci_evidence": null
     },
     {
       "clause": "U05.2",
@@ -1843,7 +2034,13 @@
         }
       ],
       "original_mapping": "50条施工映射.json::U05.2",
-      "remaining_obligations": "Bernoulli algebra and ratio gate present; conditional-expectation Brier decomposition, simultaneous threshold coverage and rare-group examples remain."
+      "remaining_obligations": "Bernoulli algebra and ratio gate present; conditional-expectation Brier decomposition, simultaneous threshold coverage and rare-group examples remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U06.1",
@@ -1875,7 +2072,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U06.1",
-      "remaining_obligations": "Finite free-information comparison present; full Bellman optimum, blocked terminal convention and nonrectangular counterexample remain."
+      "remaining_obligations": "Finite free-information comparison present; full Bellman optimum, blocked terminal convention and nonrectangular counterexample remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U06.2",
@@ -1907,7 +2110,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U06.2",
-      "remaining_obligations": "Universal allowed-deviation real payoff transfer present; mixed expectations and explicit strategy/tree bridge remain."
+      "remaining_obligations": "Universal allowed-deviation real payoff transfer present; mixed expectations and explicit strategy/tree bridge remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U06.3",
@@ -1951,7 +2160,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U06.3",
-      "remaining_obligations": "Rational AST, typed gate and executable IR present; arbitrary interval multiplication enclosure and general uncertainty comparison remain."
+      "remaining_obligations": "Rational AST, typed gate and executable IR present; arbitrary interval multiplication enclosure and general uncertainty comparison remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U06.4",
@@ -1995,7 +2210,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U06.4",
-      "remaining_obligations": "Three real slope-direction theorems present; q-in-[0,1] out-of-range corollaries still need acceptance."
+      "remaining_obligations": "Three real slope-direction theorems present; q-in-[0,1] out-of-range corollaries still need acceptance.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U06.5",
@@ -2020,7 +2241,9 @@
       "declarations": [],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U06.5",
-      "remaining_obligations": "UNFORMALIZED: noisy-information/bargaining tree and finite mixed-equilibrium existence with verified background. T113 stays excluded OPEN."
+      "remaining_obligations": "UNFORMALIZED: noisy-information/bargaining tree and finite mixed-equilibrium existence with verified background. T113 stays excluded OPEN.",
+      "candidate_formal_ci": "NO_NAMED_DECLARATION_AUDITED",
+      "candidate_ci_evidence": null
     },
     {
       "clause": "U11.1",
@@ -2052,7 +2275,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U11.1",
-      "remaining_obligations": "Observational-equivalence/ATE countermodel and transport arithmetic present; g formula, K1/K2 selection, sharp support gaps and measurement bridges remain."
+      "remaining_obligations": "Observational-equivalence/ATE countermodel and transport arithmetic present; g formula, K1/K2 selection, sharp support gaps and measurement bridges remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U12.1",
@@ -2084,7 +2313,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U12.1",
-      "remaining_obligations": "Finite IPW cancellation only; complete causal/measurement interpretation and support-gap identified range remain."
+      "remaining_obligations": "Finite IPW cancellation only; complete causal/measurement interpretation and support-gap identified range remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U12.2",
@@ -2116,7 +2351,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U12.2",
-      "remaining_obligations": "Complete metric contraction theorem present; damping, oscillation and noncontraction sufficiency counterexamples remain."
+      "remaining_obligations": "Complete metric contraction theorem present; damping, oscillation and noncontraction sufficiency counterexamples remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U12.3",
@@ -2148,7 +2389,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U12.3",
-      "remaining_obligations": "Clipping identity only; weighted uniform selection, MAR and full sequential-kernel likelihood-ratio theorem remain UNPROVED."
+      "remaining_obligations": "Clipping identity only; weighted uniform selection, MAR and full sequential-kernel likelihood-ratio theorem remain UNPROVED.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U12.4",
@@ -2180,7 +2427,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U12.4",
-      "remaining_obligations": "Two incentive inequalities and distinguishability counterexample present; verify full frozen model acceptance in CI."
+      "remaining_obligations": "Two incentive inequalities and distinguishability counterexample present; verify full frozen model acceptance in CI.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U13.1",
@@ -2212,7 +2465,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U13.1",
-      "remaining_obligations": "Read-set noninterference present; lawful statistical-evidence input-change counterexample and authority integration remain."
+      "remaining_obligations": "Read-set noninterference present; lawful statistical-evidence input-change counterexample and authority integration remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U13.2",
@@ -2256,7 +2515,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U13.2",
-      "remaining_obligations": "Five preparations and personal/data/condition frames present; complete authorized rule/mechanism load and persistent storage refinement remain."
+      "remaining_obligations": "Five preparations and personal/data/condition frames present; complete authorized rule/mechanism load and persistent storage refinement remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U13.3",
@@ -2288,7 +2553,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U13.3",
-      "remaining_obligations": "Bijective prediction transfer present; same-loss risk transfer and unsupported-domain witnesses remain."
+      "remaining_obligations": "Bijective prediction transfer present; same-loss risk transfer and unsupported-domain witnesses remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U13.4",
@@ -2320,7 +2591,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U13.4",
-      "remaining_obligations": "Absent personal/population/prior/retrieval branching present; validate distinct provenance/scope policies for the fallback sources and nonidentification witnesses."
+      "remaining_obligations": "Absent personal/population/prior/retrieval branching present; validate distinct provenance/scope policies for the fallback sources and nonidentification witnesses.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U14.1",
@@ -2352,7 +2629,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U14.1",
-      "remaining_obligations": "Acceptance algebra, identity/readback gate and label conflicts present; independent statistical validation, adaptive conditional budgets and service-load integration remain."
+      "remaining_obligations": "Acceptance algebra, identity/readback gate and label conflicts present; independent statistical validation, adaptive conditional budgets and service-load integration remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U15.1",
@@ -2384,7 +2667,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U15.1",
-      "remaining_obligations": "Finite real telescoping bound present; finite-state strict-improvement length and no-parameter-convergence counterexample remain."
+      "remaining_obligations": "Finite real telescoping bound present; finite-state strict-improvement length and no-parameter-convergence counterexample remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U14.2",
@@ -2428,7 +2717,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U14.2",
-      "remaining_obligations": "Normalized independent-cluster two-tail bound with N=sum sizes>0, derived positive sum of squares, and 99/1 effective-size witness have candidate bodies. Zero-N rejection, endogenous-size/common-cause counterexamples and fresh CI remain."
+      "remaining_obligations": "Normalized independent-cluster two-tail bound with N=sum sizes>0, derived positive sum of squares, and 99/1 effective-size witness have candidate bodies. Zero-N rejection, endogenous-size/common-cause counterexamples and fresh CI remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U15.2",
@@ -2460,7 +2755,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U15.2",
-      "remaining_obligations": "Preserved-prediction finite risk identity present; key-point regression and finite-observation indistinguishability examples remain."
+      "remaining_obligations": "Preserved-prediction finite risk identity present; key-point regression and finite-observation indistinguishability examples remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U15.3",
@@ -2492,7 +2793,13 @@
       ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U15.3",
-      "remaining_obligations": "Exact two-point risks and actual second-round-state consumer present; complete five evidence levels and external load readback path remain."
+      "remaining_obligations": "Exact two-point risks and actual second-round-state consumer present; complete five evidence levels and external load readback path remain.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "clause": "U00",
@@ -2552,7 +2859,14 @@
         }
       ],
       "original_mapping": "50条施工映射.json::U00",
-      "remaining_obligations": "Actual finite source-to-decision-to-two-payment-to-feedback paths present. All 50 subclaims, common statistical law, full operation refinement and authorized Loaded consumption are NOT closed."
+      "remaining_obligations": "Actual finite source-to-decision-to-two-payment-to-feedback paths present. All 50 subclaims, common statistical law, full operation refinement and authorized Loaded consumption are NOT closed.",
+      "candidate_formal_ci": "PASS_LISTED_DECLARATIONS_ONLY",
+      "candidate_ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     }
-  ]
+  ],
+  "formal_ci_field_scope": "Full frozen clause statement. CI_NOT_RUN remains for unimplemented complete scopes; listed candidate declarations have separate verified CI receipts."
 }

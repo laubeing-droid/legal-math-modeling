@@ -52,13 +52,14 @@
   "stage1": {
     "mode": "changed-module",
     "module": "JurisLean.Candidates.Final20261021.CIAll",
-    "status": "FAILED_AT_TESTED_HEAD",
+    "status": "PASS",
     "authorization": "CONTINUOUS_CI_AUTHORIZED_2026-10-22",
     "purpose": "Compile and audit the partial candidate, not certify complete mathematical coverage",
-    "tested_subject": "019b5a3f44e006f3e1a3022012dbecd3b151216c",
-    "run_id": 39698971458,
-    "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39698971458",
-    "current_candidate_ci": "CI_NOT_RUN"
+    "tested_subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+    "run_id": 39699620705,
+    "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39699620705",
+    "current_candidate_ci": "PASS_FOR_VERIFIED_LEAN_SOURCE_HASHES",
+    "verification": "evidence/ci-stage1-d59a487/verification.json"
   },
   "stage2": {
     "mode": "full-release",
@@ -140,7 +141,7 @@
       "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
     }
   ],
-  "overall_status": "PARTIAL_SOURCE_CANDIDATE_CI_IN_PROGRESS",
+  "overall_status": "PARTIAL_SOURCE_CANDIDATE_STAGE1_PASS_STAGE2_PENDING",
   "completion_claim": false,
   "source_batches_written": [
     0,
@@ -184,7 +185,7 @@
     },
     {
       "kind": "LEAN_AUTHORITY",
-      "detail": "Latest official module run failed in AxiomAudit. The source repair remains CI_NOT_RUN until its own subsequent authorized head completes."
+      "detail": "Stage1 passed on d59a487 at run 39699620705 with the exact complete candidate axiom target set and only standard axioms. Full-release on a new root-integrated head remains CI_NOT_RUN."
     },
     {
       "kind": "STAGE2_SCOPE",
@@ -541,6 +542,47 @@
       "sha256": "182eb39d29941743ce64dcf092b3e88711f49a1d74fc668136ee31200136dc51",
       "axiom_audit": "BUILD_FAIL",
       "acceptance": "BUILD_PASS",
+      "does_not_close_full_scope": true
+    },
+    {
+      "run_id": 39699620705,
+      "run_attempt": 1,
+      "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39699620705",
+      "mode": "changed-module",
+      "target": "JurisLean.Candidates.Final20261021.CIAll",
+      "status": "PASS",
+      "checked_candidate_modules": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Behavior",
+        "JurisLean.Candidates.Final20261021.Policy",
+        "JurisLean.Candidates.Final20261021.Progress",
+        "JurisLean.Candidates.Final20261021.Learning",
+        "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+        "JurisLean.Candidates.Final20261021.Temporal",
+        "JurisLean.Candidates.Final20261021.Transactions",
+        "JurisLean.Candidates.Final20261021.Harness",
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.Candidates.Final20261021.Compiler",
+        "JurisLean.Candidates.Final20261021.RSI",
+        "JurisLean.Candidates.Final20261021.Calibration",
+        "JurisLean.Candidates.Final20261021.Probability",
+        "JurisLean.Candidates.Final20261021.Authorization",
+        "JurisLean.Candidates.Final20261021.Decision",
+        "JurisLean.Candidates.Final20261021.Feedback",
+        "JurisLean.Candidates.Final20261021.Ledger",
+        "JurisLean.Candidates.Final20261021.Iteration",
+        "JurisLean.Candidates.Final20261021.Trace",
+        "JurisLean.Candidates.Final20261021.Pipeline",
+        "JurisLean.Candidates.Final20261021.Acceptance",
+        "JurisLean.Candidates.Final20261021.AxiomAudit",
+        "JurisLean.Candidates.Final20261021.CIAll"
+      ],
+      "artifact": "evidence/ci-stage1-d59a487/changed-module-only-39699620705-1.zip",
+      "sha256": "04b3a3a89daf6c0c3e2a8ca7914eeecf1649519ea98cadf264e6126a23adc825",
+      "axiom_audit": "PASS_COMPLETE_TARGET_SET_STANDARD_AXIOMS_ONLY",
+      "acceptance": "BUILD_PASS",
+      "verification": "evidence/ci-stage1-d59a487/verification.json",
       "does_not_close_full_scope": true
     }
   ],

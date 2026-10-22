@@ -1,5 +1,5 @@
 {
-  "status": "UNCOMPILED_CANDIDATES",
+  "status": "CANDIDATE_BUILD_AND_AXIOM_AUDIT_PASS_FULL_THEORY_OPEN",
   "modules": [
     {
       "file": "Interfaces.lean",
@@ -29,12 +29,17 @@
             "line": 126
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
       "remaining_obligations": [],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Representation.lean",
@@ -185,7 +190,7 @@
             "line": 303
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
@@ -203,7 +208,12 @@
           "remaining": "Fresh CI; source truth and arbitrary extractor fidelity are not proved by the fixed-history construction."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Compiler.lean",
@@ -407,7 +417,7 @@
             "line": 313
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
@@ -421,7 +431,12 @@
           "remaining": "Accepted checked closures are connected to semantic derivability; insufficient fuel returns checkIncomplete. A verified finite carrier/fuel bound for this list implementation is still missing."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Harness.lean",
@@ -533,7 +548,7 @@
             "line": 329
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
@@ -551,7 +566,12 @@
           "remaining": "Conditional-law tower/filtration theorem, random budgets, and H=B countermodel remain unformalized; union and partition sublemmas do not close them."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Transactions.lean",
@@ -755,7 +775,7 @@
             "line": 46
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
@@ -765,7 +785,12 @@
           "remaining": "Abstract transaction safety, actual commit/replay/cancel examples and complete-read CAS snapshot lemma have candidate bodies. Full refinement of concrete Ledger/Pipeline into Store/Trace, including cancellation and external occurrences, remains open."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Temporal.lean",
@@ -948,7 +973,7 @@
             "line": 232
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
@@ -962,7 +987,12 @@
           "remaining": "Current versus reachable exhaustion and nonempty-state preservation of every observation remain partially formalized."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "EvidenceProcedure.lean",
@@ -1194,7 +1224,7 @@
             "line": 216
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
@@ -1204,7 +1234,12 @@
           "remaining": "Four-state/product and countermodels are present; full finite dependency-policy reflection and compatibility-world classification still need audit."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Authorization.lean",
@@ -1342,7 +1377,7 @@
             "line": 277
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
@@ -1352,7 +1387,12 @@
           "remaining": "The actual full-context authorized Pipeline refresh is linked to Trace.Step. Complete protocol refinement and external legal authority evidence remain open; a reference alone does not prove authority."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Progress.lean",
@@ -1372,7 +1412,7 @@
       "examples": {
         "positive": [],
         "negative": [],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": true,
         "missing_selected_negative": true
       },
@@ -1382,7 +1422,12 @@
           "remaining": "Connect per-operation abstract simulation length and business-observation faithfulness, including zero-step prohibitions."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Ledger.lean",
@@ -2604,7 +2649,7 @@
             "line": 200
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
@@ -2622,7 +2667,12 @@
           "remaining": "Weak allocation, metadata, accrual, None, restitution interfaces are present; full greedy prefix/ordering and same-institution legal-effect countermodels remain."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Trace.lean",
@@ -2784,7 +2834,7 @@
             "line": 126
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
@@ -2794,7 +2844,12 @@
           "remaining": "Numeric/cash/freshness plus key/receipt/cash-backing invariant, actual consume-to-Step, and two-payment known-post refinement have candidate bodies. Full mixed-operation coverage, Gamma frame/read-domain correspondence and service refinement remain open."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Learning.lean",
@@ -2872,7 +2927,7 @@
       "examples": {
         "positive": [],
         "negative": [],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": true,
         "missing_selected_negative": true
       },
@@ -2898,7 +2953,12 @@
           "remaining": "Full training/target/deployment and independent-versus-copied variance witness family still unformalized."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Probability.lean",
@@ -3078,7 +3138,7 @@
             "line": 326
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": true,
         "missing_selected_negative": false
       },
@@ -3104,7 +3164,12 @@
           "remaining": "Identity types and LR16/LR4 arithmetic present; general joint likelihood/copy and sigma-field information argument remain."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Calibration.lean",
@@ -3169,7 +3234,7 @@
             "line": 284
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
@@ -3183,7 +3248,12 @@
           "remaining": "Bernoulli algebra and ratio gate present; conditional-expectation Brier decomposition, simultaneous threshold coverage and rare-group examples remain."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Decision.lean",
@@ -3534,7 +3604,7 @@
             "line": 347
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
@@ -3560,7 +3630,12 @@
           "remaining": "UNFORMALIZED: noisy-information/bargaining tree and finite mixed-equilibrium existence with verified background. T113 stays excluded OPEN."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Behavior.lean",
@@ -3742,7 +3817,7 @@
             "line": 291
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
@@ -3752,7 +3827,12 @@
           "remaining": "Observational-equivalence/ATE countermodel and transport arithmetic present; g formula, K1/K2 selection, sharp support gaps and measurement bridges remain."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Policy.lean",
@@ -3804,7 +3884,7 @@
             "line": 356
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
@@ -3826,7 +3906,12 @@
           "remaining": "Two incentive inequalities and distinguishability counterexample present; verify full frozen model acceptance in CI."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "RSI.lean",
@@ -3974,7 +4059,7 @@
             "line": 360
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
@@ -3996,7 +4081,12 @@
           "remaining": "Absent personal/population/prior/retrieval branching present; validate distinct provenance/scope policies for the fallback sources and nonidentification witnesses."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Feedback.lean",
@@ -4123,7 +4213,7 @@
             "line": 372
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
@@ -4137,7 +4227,12 @@
           "remaining": "Normalized independent-cluster two-tail bound with N=sum sizes>0, derived positive sum of squares, and 99/1 effective-size witness have candidate bodies. Zero-N rejection, endogenous-size/common-cause counterexamples and fresh CI remain."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Iteration.lean",
@@ -4200,7 +4295,7 @@
           }
         ],
         "negative": [],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": true
       },
@@ -4218,7 +4313,12 @@
           "remaining": "Exact two-point risks and actual second-round-state consumer present; complete five evidence levels and external load readback path remain."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Pipeline.lean",
@@ -4544,7 +4644,7 @@
             "line": 291
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
@@ -4554,7 +4654,12 @@
           "remaining": "Actual finite source-to-decision-to-two-payment-to-feedback paths present. All 50 subclaims, common statistical law, full operation refinement and authorized Loaded consumption are NOT closed."
         }
       ],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     },
     {
       "file": "Acceptance.lean",
@@ -5799,12 +5904,17 @@
             "line": 273
           }
         ],
-        "scope": "Selected synthetic source witnesses, some via Pipeline.run; NOT complete frozen-scope coverage and NOT executed before Lean CI.",
+        "scope": "Selected synthetic Lean witnesses compiled in the verified candidate CI; not complete frozen-scope coverage or external runtime traces.",
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
       "remaining_obligations": [],
-      "formal_ci": "CI_NOT_RUN"
+      "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
+      "ci_evidence": {
+        "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+        "run_id": 39699620705,
+        "verification": "evidence/ci-stage1-d59a487/verification.json"
+      }
     }
   ]
 }

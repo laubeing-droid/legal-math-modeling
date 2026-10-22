@@ -1,0 +1,123 @@
+{
+  "status": "PASS_EXACT_CANDIDATE_SOURCE",
+  "subject_commit": "d59a487b154818278ee4629234904bc8a3ac1ef3",
+  "run_id": 39699620705,
+  "run_attempt": 1,
+  "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39699620705",
+  "mode": "changed-module",
+  "target": "JurisLean.Candidates.Final20261021.CIAll",
+  "artifact": "changed-module-only-39699620705-1.zip",
+  "artifact_sha256": "04b3a3a89daf6c0c3e2a8ca7914eeecf1649519ea98cadf264e6126a23adc825",
+  "all_candidate_audit_targets_present": true,
+  "candidate_audit_target_count": 229,
+  "audit": {
+    "audited_targets": 229,
+    "axiom_vocabulary": {
+      "Classical.choice": 154,
+      "Quot.sound": 188,
+      "propext": 204
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "source_hashes": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
+      "sha256": "9dc7404c5461a24237bcb4e3db5f08234edafc7c728fe98a14871b8d6c0fdd96"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean",
+      "sha256": "26bb803bf54f49f6b59edbf33732d115e8b33028509adf248feaf5f021febfc7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
+      "sha256": "5455171f9a50c7e1fd5bd7259f2561d72890f13415b0bab1949dcd520ab65193"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Behavior.lean",
+      "sha256": "d9361c34086a3af857ff05c3362856e226bd38e1c8869b732e14e5cef3821619"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Calibration.lean",
+      "sha256": "6354a26e6e9ffc6714e0c1680aa316283f72c6b66af96da7c42e4eafe4ca2bc0"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/CIAll.lean",
+      "sha256": "2e201c30fd90fc11cddb7c6b1d018611c5831021216222e4b43a3a0b6231309f"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Compiler.lean",
+      "sha256": "97fe95e5c6ac94fefb8ca7f1066a84c7f8370cbe261909c3a06ab16256e32559"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+      "sha256": "7766ed88dfd798a0e1527122cc558870f0b3c395d72e086d7acbef163f8eee3b"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/EvidenceProcedure.lean",
+      "sha256": "976323d18a0655ea70f4c1a30f36bc41a0d38b598de5dd7468825fff3fcddc2a"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Feedback.lean",
+      "sha256": "4d46e0db7b22731d5308270c6802adb05856b53e162c7e507dfb93ad561a2cd6"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Harness.lean",
+      "sha256": "5a767df0a9bf8632feb63366cc32c27b1242c32edd21b789b159a40df4f045c0"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Interfaces.lean",
+      "sha256": "d2f75ae7bbbcf409811598fa7f65626880388fb98ff464418cda1263ceec9b3b"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Iteration.lean",
+      "sha256": "48e5d7ecc1ef78752a67dff73e307f3ded58c1d8cab742e9ffbf7ddf2bfb11ea"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Learning.lean",
+      "sha256": "010b06c0b9f875badc6ee7b31356346a6943b9a013f36896e281e4070c191fad"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean",
+      "sha256": "dc0af65c029f52e56c80459413d778231524183cbc830ab9e151f79e9a6e1997"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Pipeline.lean",
+      "sha256": "885c69582ea1dedbc98be512744ba98f3f84360a8372dd983c0192c287484972"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Policy.lean",
+      "sha256": "b76cd45a1b3acbc928227f86a01832ecc78717d1e53a657df18a183260e56eb4"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean",
+      "sha256": "e033e94d174098ab41bf2287f5bcc5f9b46502d8f98e3366b78410f4e19c3e77"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Progress.lean",
+      "sha256": "49bd5a846721d99f4c70c363475f522ea0f71618fa661ea024e519ce93fba442"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Representation.lean",
+      "sha256": "7efed1d990620b372012b1fec4f26b797d448fb26fe69351200c2e3bb33029aa"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+      "sha256": "9a5bc5e53c8e4d12a4bc4006d637f063ccf835165f3c3b8f3b5fa11d4fa7ac8e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Temporal.lean",
+      "sha256": "8444780a8a334eacabcf7c65af2be21b54a36344176287f7381b5682a7ee7d68"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean",
+      "sha256": "01afb1e078b11dd612c41051cce4a883fda827c411e54723b0ab27de0e8b296f"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Transactions.lean",
+      "sha256": "19b943ebf2cdde7c7bcda87381e08141f0e200ee662f9e191ef4581f62a4cd09"
+    }
+  ],
+  "scope": "Candidate module compilation, declared Lean propositions and standard-axiom audit only. No complete frozen-theory, product-refinement, legal-authority or real-world claim."
+}

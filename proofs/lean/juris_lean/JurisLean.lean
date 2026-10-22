@@ -68,7 +68,6 @@ import JurisLean.CertificateV2
 import JurisLean.Consolidated.Audit
 import JurisLean.ContractionCondition
 import JurisLean.DefeasiblePriority
-import JurisLean.ExactNumericContract
 import JurisLean.External.FixedPointTheorems
 import JurisLean.External.FixedPointTheorems.apply_cubical_sperner
 import JurisLean.External.FixedPointTheorems.brouwer
@@ -179,7 +178,6 @@ import JurisLean.Seams.LegacyConeBridge
 import JurisLean.Seams.Limitation
 import JurisLean.Seams.PayoffEquilibrium
 import JurisLean.Seams.PrecedentFlow
-import JurisLean.Seams.Probability
 import JurisLean.Seams.ReductionConditions2
 import JurisLean.Seams.Representation
 import JurisLean.Seams.SanctionInterest
@@ -213,7 +211,6 @@ import JurisLean.Seams.UnifiedNeedlesGapLate
 import JurisLean.Seams.UnifiedNeedlesGapMid
 import JurisLean.Seams.UnifiedNeedlesS0S1
 import JurisLean.Seams.UnifiedNeedlesS2
-import JurisLean.Seams.UnifiedNeedlesS3a
 import JurisLean.Seams.UnifiedNeedlesS3b
 import JurisLean.Seams.UnifiedNeedlesS4
 import JurisLean.Seams.UnifiedNeedlesS5

@@ -5,9 +5,9 @@
 Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.
 
 - files scanned: 378
-- theorem/lemma headers read: 5416
-- distinct statement types: 5362
-- statement types declared more than once: 54
+- theorem/lemma headers read: 5443
+- distinct statement types: 5387
+- statement types declared more than once: 56
 - of those spanning module families: 2
 
 ## Across module families (2)
@@ -15,7 +15,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(r : Rul A) (ps : List (Arg A)) (p : Arg A) (hp : p ∈ ps) (k : ℕ) (hk : Arg.height (.node r ps) ≤ k + 1) : Arg.height p ≤ k` — `FullMath/Logic/AttackCompilation.lean:57` (FullMath/child_height_le), `Seams/UnifiedArgumentation.lean:104` (root/other/child_height_lt)
 - `(r : ℚ) : max r 0 - max (-r) 0 = r` — `FullMath/GenericKernels.lean:94` (FullMath/clipped_conservation), `BusinessRelationsDelta.lean:21` (root/other/split_residual_identity)
 
-## Within the package (54)
+## Within the package (56)
 
 - `(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S` — `DungFixedPoint.lean:96` (root/other/grounded_is_least_complete), `DungFixedPoint.lean:92` (root/other/grounded_is_least_fixed_point)
 - `(S : Finset α) : TH sys S ⊆ sys.univ` — `HornDefinitions.lean:55` (root/other/TH_subset_univ), `HornFixedPoint.lean:17` (root/other/horn_operator_subset_univ)
@@ -26,6 +26,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(d : CaseDocket) (r : LawRule) (hr : r ∈ familyRuleList) : r.horn ∈ (hornOf d).rules` — `Seams/UnifiedNetTrajectory.lean:180` (root/other/rule_horn_mem_any), `Seams/UnifiedNeedlesGap05.lean:655` (root/other/rule_horn_mem_general)
 - `(e : NFEdge) : (requiredObligations e).Nonempty` — `ULM16TheoryComposition.lean:246` (root/other/CORE_23_required_nonempty), `ULM04Obligations.lean:64` (root/other/requiredObligations_nonempty)
 - `(f : Bool → ℚ) : (∑ b : Bool, f b) = f true + f false` — `Seams/Uncertainty.lean:124` (root/other/sum_bool_eq), `Seams/UnifiedNeedlesS3b.lean:375` (root/other/sum_bool_split)
+- `(globalBad insideBad outsideBad conditionMass α ε : ℝ) (positive : 0 < conditionMass) (massLeOne : conditionMass ≤ 1) (epsNonneg : 0 ≤ ε) (partition : globalBad` — `Candidates/Final20261021/Harness.lean:60` (root/other/condition_to_global), `Candidates/Final20261021/Harness.lean:70` (root/other/u02_4_unconditional_budget)
 - `(input : StructuredArgumentation) (policy : DefeatPolicy) : (resolveToDefeatAF input policy).WellFormed` — `ULM16TheoryComposition.lean:156` (root/other/CORE_07_resolved_bridge_wellFormed), `ULM10DungProfiles.lean:44` (root/other/resolveToDefeatAF_wellFormed)
 - `(obs : List Bool) : successes obs ≤ obs.length` — `Mandate/Kernel.lean:59` (Mandate/rate_num_le_den), `Mandate/Kernel.lean:50` (Mandate/successes_le_length)
 - `(pat src : List Nat) (h : isPrefix pat src = true) : isSubstr pat src = true` — `Mandate/SubstrAdmission.lean:64` (Mandate/isSubstr_of_isPrefix), `Mandate/SubstrAdmission.lean:90` (Mandate/prefix_adequate_for_admission)
@@ -56,5 +57,4 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `{af : DefeatAF} {s : Finset ArgId} (h : Preferred af s) : s ∈ preferredExtensions af` — `ULM16TheoryComposition.lean:234` (root/other/CORE_20_preferred_complete), `ULM10DungProfiles.lean:250` (root/other/preferredExtensions_complete)
 - `{bundle : DomainBundle} {policy : CompositionPolicy} {choice : CompositionChoice} (h : ChoiceWF bundle policy choice) : choice.selected ⊆ bundle.candidates` — `ULM16TheoryComposition.lean:191` (root/other/CORE_13_choice_membership), `ULM13DomainCompositionExact.lean:74` (root/other/choice_wf_selected_subset)
 - `{env : QueryEnvironment} {f : ExtensionFamily} {q : JurisLean.LegalId .claim} (h : UndecidedSome env f q) : ∃ e ∈ f.carrier, GateEnterable env e q` — `ULM16TheoryComposition.lean:168` (root/other/CORE_09_undecided_requires_enterable), `ULM11BranchQuery.lean:204` (root/other/undecided_requires_enterable)
-- `{expected actual : Finset CanonicalArgument} (hCoverage : ArgumentCoverage expected actual) (hExpectedWF : ∀ a ∈ expected, ArgumentWF a) {a : CanonicalArgument}` — `ULM16TheoryComposition.lean:225` (root/other/CORE_19_argument_coverage_sound), `ULM08ArgumentConstruction.lean:107` (root/other/covered_argument_is_well_formed)
-- …14 more in the JSON
+- …16 more in the JSON

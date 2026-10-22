@@ -139,13 +139,13 @@ theorem u04_5_new_measurement_not_copy :
     that was not built from that bridge: the finite law below has conditional
     probability 5/6 where the Beta(1,1) one-success bridge says 2/3. -/
 
-theorem u04_1_integer_shape_conjugacy (a b k l : ℕ) :=
+theorem u04_1_integer_shape_conjugacy (a b k l : ℕ) : _ :=
   JurisLean.Seams.UnifiedNeedlesS3a.beta_posterior_from_likelihood a b k l
 
-theorem u04_1_predictive_mean_is_updated_beta (a b s f : ℕ) :=
+theorem u04_1_predictive_mean_is_updated_beta (a b s f : ℕ) : _ :=
   (JurisLean.Seams.UnifiedNeedlesS3a.polyBeta_moments (a + s) (b + f)).1
 
-theorem u04_1_real_gamma_weight_ratio (α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) :=
+theorem u04_1_real_gamma_weight_ratio (α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) : _ :=
   JurisLean.FullMath.Probability.beta_ratio α β hα hβ w l
 
 theorem u04_1_exchangeable_not_beta_bridge :
@@ -169,10 +169,10 @@ theorem u04_3_unpenalized_intercept_positive (t : ℝ) :
 
 theorem u04_3_unpenalized_intercept_improves (s t : ℝ) (hst : s < t) :
     Real.log (1 + Real.exp (-t)) < Real.log (1 + Real.exp (-s)) := by
-  have hs : 0 < 1 + Real.exp (-s) := by
-    have := Real.exp_pos (-s)
+  have ht : 0 < 1 + Real.exp (-t) := by
+    have := Real.exp_pos (-t)
     linarith
-  apply Real.log_lt_log hs
+  apply Real.log_lt_log ht
   have hexp : Real.exp (-t) < Real.exp (-s) := (Real.exp_lt_exp).mpr (by linarith)
   linarith
 
@@ -185,22 +185,13 @@ theorem u04_3_unpenalized_arbitrarily_small (ε : ℝ) (hε : 0 < ε) :
   have hexp : (1 : ℝ) < Real.exp ε := by
     rw [← Real.exp_zero]
     exact (Real.exp_lt_exp).mpr hε
-  let δ : ℝ := Real.exp ε - 1
-  have hδ : 0 < δ := by linarith
-  have hδ2 : 0 < δ / 2 := by linarith
-  refine ⟨-Real.log (δ / 2), ?_⟩
-  have hpos : 0 < 1 + Real.exp (-(-Real.log (δ / 2))) := by
-    have := Real.exp_pos (-(-Real.log (δ / 2)))
-    linarith
-  rw [Real.log_lt_iff hpos]
-  have hexpLog : Real.exp (Real.log (δ / 2)) = δ / 2 := Real.exp_log hδ2
-  have : Real.exp (-(-Real.log (δ / 2))) = δ / 2 := by simpa using hexpLog
-  rw [this]
-  have hsum : 1 + δ = Real.exp ε := by
-    unfold δ
-    ring
-  have hδlt : δ / 2 < δ := by linarith
-  linarith [hsum, hδlt]
+  have hδ : 0 < Real.exp ε - 1 := by linarith
+  have hδ2 : 0 < (Real.exp ε - 1) / 2 := by linarith
+  refine ⟨-Real.log ((Real.exp ε - 1) / 2), ?_⟩
+  have hpos : 0 < 1 + Real.exp (-(-Real.log ((Real.exp ε - 1) / 2))) := by
+    linarith [Real.exp_pos (-(-Real.log ((Real.exp ε - 1) / 2)))]
+  rw [Real.log_lt_iff_lt_exp hpos, neg_neg, Real.exp_log hδ2]
+  linarith [hδ2]
 
 /-! U04.4. Equicorrelated finite-sum expansion, the positive-denominator
     effective count, and the `B, 1-B` degenerate witness. -/

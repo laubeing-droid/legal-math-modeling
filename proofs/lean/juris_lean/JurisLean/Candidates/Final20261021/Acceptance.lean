@@ -195,8 +195,16 @@ theorem a_rest_claim_then_eligibility :
     eligible.cash = post1.state.cash ∧ eligible.refundCash = [] := by decide +kernel
 
 theorem n1_premature_cash : Ledger.RestPay post1.state refund = .rejected .prematureCash := by decide +kernel
-theorem n2_auto_full_refund : Ledger.RestPay claimed
-    { refund with amount := ⟨7, tag⟩ } = .rejected .autoFullRefund := by decide +kernel
+-- Same cash amount as the auto-full-refund witness. Eligibility fails first,
+-- so this is not AUTO_FULL_REFUND.
+theorem n_rest_not_eligible : Ledger.RestPay claimed
+    { refund with amount := ⟨7, tag⟩ } = .rejected .restNotEligible := by decide +kernel
+-- `eligible.paid = 7` and the restitution claim is 3, so `a = payable` is
+-- distinct from paying the claim off.
+theorem n2_auto_full_refund :
+    eligible.paid = 7 ∧
+    Ledger.RestPay eligible { refund with amount := ⟨7, tag⟩ } =
+      .rejected .autoFullRefund := by decide +kernel
 theorem n3_accrual_cash_collapse : Ledger.auditAccrualReport eligible
     { Ledger.accrue eligible 1 with refundCash := [refund] } = .rejected .accrualCashCollapse := by decide +kernel
 

@@ -412,6 +412,8 @@ import JurisLean.Candidates.Final20261021.Acceptance
 #print axioms JurisLean.Candidates.Final20261021.Acceptance.a_rest_claim_then_eligibility
 #check JurisLean.Candidates.Final20261021.Acceptance.n1_premature_cash
 #print axioms JurisLean.Candidates.Final20261021.Acceptance.n1_premature_cash
+#check JurisLean.Candidates.Final20261021.Acceptance.n_rest_not_eligible
+#print axioms JurisLean.Candidates.Final20261021.Acceptance.n_rest_not_eligible
 #check JurisLean.Candidates.Final20261021.Acceptance.n2_auto_full_refund
 #print axioms JurisLean.Candidates.Final20261021.Acceptance.n2_auto_full_refund
 #check JurisLean.Candidates.Final20261021.Acceptance.n3_accrual_cash_collapse

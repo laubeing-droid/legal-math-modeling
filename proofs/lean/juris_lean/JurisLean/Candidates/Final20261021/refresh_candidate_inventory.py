@@ -120,7 +120,8 @@ def main():
             declarations.append({"name": namespace+"."+m[2], "short": m[2], "kind": m[1],
                                  "module": module, "file": module+".lean",
                                  "line": code[:m.start()].count("\n")+1})
-    audit = [f"import {PREFIX}.Acceptance", "", "-- Fresh CI types/axioms, not baseline evidence."]
+    audit = [f"import {PREFIX}.{module}" for module in ORDER]
+    audit += ["", "-- Fresh CI types/axioms, not baseline evidence."]
     for d in declarations:
         if d["kind"] == "theorem":
             audit += ["#check "+d["name"], "#print axioms "+d["name"]]

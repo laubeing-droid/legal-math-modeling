@@ -1,8 +1,8 @@
 # Final20261021 候选施工检查点
 
-状态：**PARTIAL_SOURCE_CANDIDATE / CHANGED_MODULE_CI_RUNNING**。本目录已有批次 0–9 的候选源码；尚未完成冻结理论的全部证明和接线，也未开始批次 10。当前不能宣称本任务完成。
+状态：**PARTIAL_SOURCE_CANDIDATE / CHANGED_MODULE_CI_RUNNING**。本目录已有批次 0–9 的候选源码；尚未完成冻结理论的全部证明和接线；批次 10 的正式 CI 正在进行。当前不能宣称本任务完成。
 
-基线固定为 `825792b83476a767152396d7f5e2ba3017048841`，候选分支为 `candidates/final20261021-825792b`。最新已完成的 run `39697636112` 在 `e26f0bac1ca3db5f9b6a67bdf0a87baf2e4fd785` 上通过 Iteration 后，于 Pipeline 的局部结果类型推断处失败。run `39698213475` 正在测试显式类型修复，subject 为 `76b24bb4e04a83a2a2aca7d535596761788ace8f`。逐轮原始日志、ZIP、散列、实际模块结果及修复范围以 `construction_status.json::ci_attempts` 和 `evidence/ci-stage1-*/` 为准。用户于 2026-10-22 授予连续 CI 修复、推送与派发授权。
+基线固定为 `825792b83476a767152396d7f5e2ba3017048841`，候选分支为 `candidates/final20261021-825792b`。最新已完成 run `39698971458` 在 `019b5a3f44e006f3e1a3022012dbecd3b151216c` 上已编译通过全部实现模块及 Acceptance（含 N2 和 Pipeline 三路径），随后因候选审计缺少 Progress 导入而失败；这不是 CIAll PASS。审计生成器现显式导入全部待审模块，目标清单不减。逐轮原始日志、ZIP、散列、模块结果及修复范围以 `construction_status.json::ci_attempts` 和 `evidence/ci-stage1-*/` 为准。用户于 2026-10-22 授予连续 CI 修复、推送与派发授权。
 
 ## 逐模块与逐条复核入口
 
@@ -13,7 +13,7 @@
 - `baseline_reuse.json`：真正调用的基线数量账和 Horn 声明、源散列、原文及消费者；`candidate_provenance.json`：历史候选参考来源。历史候选的成功状态不转移到当前源码。
 - `construction_status.json`：施工卡及三家验收附录来源、两阶段 CI 状态、限制与阻塞。
 
-另有两个入口模块：`CIAll.lean` 显式导入全部实现模块与候选审计；`AxiomAudit.lean` 导入 Acceptance 并逐声明执行 `#check` / `#print axioms`。二者没有新增定理声明；消费者分别是指定 CI 目标及 `CIAll`。最近已完成的整体构建仍在 Pipeline 停止，未执行到 Acceptance 和候选审计。全部 Lean 文件的 Git blob 散列均列在本地回执中。
+另有两个入口模块：`CIAll.lean` 显式导入全部实现模块与候选审计；`AxiomAudit.lean` 导入 Acceptance 并逐声明执行 `#check` / `#print axioms`。二者没有新增定理声明；消费者分别是指定 CI 目标及 `CIAll`。最近构建已通过 Acceptance，并实际执行到候选审计；审计因四个 Progress 名称未被导入而失败，不能转记为完整审计通过。全部 Lean 文件的 Git blob 散列均列在本地回执中。
 
 ## 本检查点补强的内容
 
@@ -40,7 +40,7 @@
 | DS 六层 | `Interfaces` 模块注释和 `LogicalLayer` 枚举 |
 | E09 负向和 BURNED_BY_UNKNOWN | Acceptance 的 `n09_*`、`n_burned_by_unknown`、`n_unknown_does_not_burn_U` |
 
-Pipeline 成功、拒绝和未决均调用 `Pipeline.run`，对应 `u00_pipeline_success`、`u00_pipeline_reject`、`u00_pipeline_unknown`。最近的构建尚未通过 Acceptance，三者均未获 CI 证明，且固定合成例不能替代一般合成定理。UnknownCommit 没有可确认后态；本地 acknowledged U 不冒充未知服务器的 U。
+Pipeline 成功、拒绝和未决均调用 `Pipeline.run`，对应 `u00_pipeline_success`、`u00_pipeline_reject`、`u00_pipeline_unknown`。最近构建已经通过这三条具体调用断言；它们仍不是一般全路线合成定理，且固定合成例不能替代一般合成定理。UnknownCommit 没有可确认后态；本地 acknowledged U 不冒充未知服务器的 U。
 
 ## 第一轮 CI 失败与本地修复
 

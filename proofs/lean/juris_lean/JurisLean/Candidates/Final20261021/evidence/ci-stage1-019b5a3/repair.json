@@ -1,0 +1,16 @@
+{
+  "run_id": 39698971458,
+  "subject_commit": "019b5a3f44e006f3e1a3022012dbecd3b151216c",
+  "failures": [
+    "2026-10-22T00:22:53.3493619Z error: JurisLean/Candidates/Final20261021/AxiomAudit.lean:104:7: Unknown identifier `JurisLean.Candidates.Final20261021.Progress.u10_3_rank_bounds_steps`",
+    "2026-10-22T00:22:53.3494695Z error: JurisLean/Candidates/Final20261021/AxiomAudit.lean:105:14: Unknown constant `JurisLean.Candidates.Final20261021.Progress.u10_3_rank_bounds_steps`",
+    "2026-10-22T00:22:53.3495742Z error: JurisLean/Candidates/Final20261021/AxiomAudit.lean:106:7: Unknown identifier `JurisLean.Candidates.Final20261021.Progress.u10_3_simulation_length`",
+    "2026-10-22T00:22:53.3497000Z error: JurisLean/Candidates/Final20261021/AxiomAudit.lean:107:14: Unknown constant `JurisLean.Candidates.Final20261021.Progress.u10_3_simulation_length`",
+    "2026-10-22T00:22:53.3498095Z error: JurisLean/Candidates/Final20261021/AxiomAudit.lean:108:7: Unknown identifier `JurisLean.Candidates.Final20261021.Progress.multistep_simulation_not_one_step`",
+    "2026-10-22T00:22:53.3499239Z error: JurisLean/Candidates/Final20261021/AxiomAudit.lean:109:14: Unknown constant `JurisLean.Candidates.Final20261021.Progress.multistep_simulation_not_one_step`",
+    "2026-10-22T00:22:53.3500356Z error: JurisLean/Candidates/Final20261021/AxiomAudit.lean:110:7: Unknown identifier `JurisLean.Candidates.Final20261021.Progress.two_cycle_has_no_strict_rank`",
+    "2026-10-22T00:22:53.3501437Z error: JurisLean/Candidates/Final20261021/AxiomAudit.lean:111:14: Unknown constant `JurisLean.Candidates.Final20261021.Progress.two_cycle_has_no_strict_rank`"
+  ],
+  "repair_summary": "All implementation and Acceptance modules passed, including unchanged N2 and actual Pipeline branches. AxiomAudit must explicitly import every implementation module it names, including the now-independent Progress module; keep all audit targets and mathematical statements.",
+  "new_status": "CI_NOT_RUN"
+}

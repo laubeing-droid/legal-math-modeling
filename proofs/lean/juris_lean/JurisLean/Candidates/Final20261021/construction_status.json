@@ -63,9 +63,33 @@
   },
   "stage2": {
     "mode": "full-release",
-    "status": "RETRY_PENDING",
-    "prerequisite": "Stage1 passed; root integrated; user-authorized derived accounting refresh applied. Full-release on the next head remains to be run.",
+    "status": "PASS_RECORDED_FOR_MAIN_TIP_5db4e04",
+    "prerequisite": "Stage1 passed on d59a487. Root-integrated full-release then failed on 799b42c. After the derived-ledger sync, push of main tip 5db4e0453d77493e2699af7b32bcb1ea8c7668a5 succeeded as run 39714740194.",
     "authorization": "USER_ALL_PROJECT_AUTHORIZATION_2026-10-22",
+    "formal_ci_50_clauses": "CI_NOT_RUN",
+    "does_not_close_frozen_50": true,
+    "recorded_success": {
+      "run_id": 39714740194,
+      "run_attempt": 1,
+      "subject": "5db4e0453d77493e2699af7b32bcb1ea8c7668a5",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39714740194",
+      "event": "push",
+      "workflow": "Lean Authority + Formal Release Pipeline",
+      "mode": "full-release",
+      "status": "PASS",
+      "changed_modules_job": "skipped",
+      "lean_full_clean_build": "PASS",
+      "python_gates": "PASS",
+      "runtime_refinement": "PASS",
+      "seven_axis_acceptance": "PASS",
+      "mathematics_completion": "PASS",
+      "release_certificate": "PASS",
+      "final_gate": "PASS",
+      "verification": "evidence/ci-stage2-5db4e04/verification.json",
+      "artifact_zip_sha256": "NOT_RECOMPUTED_ARTIFACT_NOT_DOWNLOADED",
+      "covers_later_source_edits": false,
+      "does_not_close_frozen_50_formal_ci": true
+    },
     "last_completed_attempt": {
       "run_id": 39700447562,
       "run_attempt": 1,
@@ -157,7 +181,7 @@
       "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
     }
   ],
-  "overall_status": "PARTIAL_SOURCE_CANDIDATE_STAGE1_PASS_FULL_RELEASE_RETRY_PENDING",
+  "overall_status": "PARTIAL_SOURCE_CANDIDATE_STAGE1_PASS_FULL_RELEASE_PASS_ON_5db4e04_FROZEN_50_CI_NOT_RUN",
   "completion_claim": false,
   "source_batches_written": [
     0,
@@ -171,7 +195,7 @@
     8,
     9
   ],
-  "stage10": "STAGE1_PASS_FULL_RELEASE_RETRY_PENDING",
+  "stage10": "STAGE1_PASS_FULL_RELEASE_PASS_ON_5db4e04_FROZEN_50_CI_NOT_RUN",
   "ci_artifacts": [
     {
       "run_id": 39689061670,
@@ -208,6 +232,27 @@
       "release_certificate": "NOT_RUN",
       "verification": "evidence/ci-stage2-799b42c/verification.json",
       "does_not_close_full_scope": true
+    },
+    {
+      "run_id": 39714740194,
+      "run_attempt": 1,
+      "subject": "5db4e0453d77493e2699af7b32bcb1ea8c7668a5",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39714740194",
+      "mode": "full-release",
+      "event": "push",
+      "status": "PASS",
+      "lean_full_clean_build": "PASS",
+      "python_gates": "PASS",
+      "runtime_refinement": "PASS",
+      "seven_axis_acceptance": "PASS",
+      "mathematics_completion": "PASS",
+      "release_certificate": "PASS",
+      "final_gate": "PASS",
+      "changed_modules_job": "skipped",
+      "verification": "evidence/ci-stage2-5db4e04/verification.json",
+      "artifact_zip_sha256": "NOT_RECOMPUTED_ARTIFACT_NOT_DOWNLOADED",
+      "formal_ci_50_clauses": "CI_NOT_RUN",
+      "does_not_close_full_scope": true
     }
   ],
   "blockers": [
@@ -221,7 +266,7 @@
     },
     {
       "kind": "FULL_RELEASE_RETRY",
-      "detail": "First root-integrated full-release failed existing Python derived-accounting freshness checks. The required eleven updates are now authorized and applied; official full-release rerun pending. Lean clean build and existing audit jobs already passed at that failed run subject."
+      "detail": "The 799b42c full-release failed derived-accounting freshness. Run 39714740194 on main tip 5db4e0453d77493e2699af7b32bcb1ea8c7668a5 then passed the repository full-release path. That pass does not set formal_ci of the 50 frozen clauses; those rows stay CI_NOT_RUN. Source edits after 5db4e04, including the RestPay N2 split, are outside that run."
     }
   ],
   "evidence_boundary": "Local static and Python checks are not formal Lean CI. Original GitHub Actions logs and ZIP artifacts bind only their recorded subject and declared scope. Paper proof availability, current Lean implementation, runtime refinement, and legal or real-occurrence evidence are distinct.",
@@ -627,6 +672,27 @@
       },
       "release_certificate": "NOT_RUN",
       "verification": "evidence/ci-stage2-799b42c/verification.json",
+      "does_not_close_full_scope": true
+    },
+    {
+      "run_id": 39714740194,
+      "run_attempt": 1,
+      "subject": "5db4e0453d77493e2699af7b32bcb1ea8c7668a5",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39714740194",
+      "mode": "full-release",
+      "event": "push",
+      "status": "PASS",
+      "lean_full_clean_build": "PASS",
+      "python_gates": "PASS",
+      "runtime_refinement": "PASS",
+      "seven_axis_acceptance": "PASS",
+      "mathematics_completion": "PASS",
+      "release_certificate": "PASS",
+      "final_gate": "PASS",
+      "changed_modules_job": "skipped",
+      "verification": "evidence/ci-stage2-5db4e04/verification.json",
+      "artifact_zip_sha256": "NOT_RECOMPUTED_ARTIFACT_NOT_DOWNLOADED",
+      "formal_ci_50_clauses": "CI_NOT_RUN",
       "does_not_close_full_scope": true
     }
   ],

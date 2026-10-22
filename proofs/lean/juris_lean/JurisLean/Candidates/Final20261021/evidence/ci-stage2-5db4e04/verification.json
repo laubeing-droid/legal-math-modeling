@@ -1,0 +1,97 @@
+{
+  "captured_from": "GitHub Actions API on 2026-10-22",
+  "api": [
+    "repos/laubeing-droid/legal-math-modeling/actions/runs/39714740194",
+    "repos/laubeing-droid/legal-math-modeling/actions/runs/39714740194/jobs",
+    "repos/laubeing-droid/legal-math-modeling/actions/runs/39714740194/artifacts"
+  ],
+  "run_id": 39714740194,
+  "run_attempt": 1,
+  "subject_commit": "5db4e0453d77493e2699af7b32bcb1ea8c7668a5",
+  "event": "push",
+  "display_title": "fix(ci): sync derived ledgers after stage2 pytest fail on 799b42c",
+  "workflow": "Lean Authority + Formal Release Pipeline",
+  "workflow_path": ".github/workflows/lean-build.yml",
+  "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39714740194",
+  "created_at": "2026-10-22T03:03:23Z",
+  "updated_at": "2026-10-22T03:15:06Z",
+  "workflow_conclusion": "success",
+  "mode": "full-release",
+  "mode_basis": "Push to main runs the full-release job set. The changed-modules job is skipped unless workflow_dispatch mode=changed-module.",
+  "formal_ci_50_clauses": "CI_NOT_RUN",
+  "does_not_close_frozen_50": true,
+  "covers_later_source_edits": false,
+  "candidate_contract_tests": "NOT_RUN",
+  "candidate_contract_tests_basis": "tests/ discovery does not collect Candidates/Final20261021/test_unified_final20261021_contracts.py. This run's Python success is the existing tests/ suite, not that file.",
+  "theory_completeness_claim": false,
+  "zip_bytes": "NOT_DOWNLOADED",
+  "artifact_sha256": "NOT_RECOMPUTED_ARTIFACT_NOT_DOWNLOADED",
+  "jobs": [
+    {
+      "id": 119614050132,
+      "name": "python-gates",
+      "conclusion": "success",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39714740194/job/119614050132"
+    },
+    {
+      "id": 119614050205,
+      "name": "runtime-refinement / produce",
+      "conclusion": "success",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39714740194/job/119614050205"
+    },
+    {
+      "id": 119614050352,
+      "name": "lean-full-clean-build",
+      "conclusion": "success",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39714740194/job/119614050352"
+    },
+    {
+      "id": 119614051367,
+      "name": "changed-modules",
+      "conclusion": "skipped",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39714740194/job/119614051367"
+    },
+    {
+      "id": 119617335737,
+      "name": "seven-axis-acceptance",
+      "conclusion": "success",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39714740194/job/119617335737"
+    },
+    {
+      "id": 119617335807,
+      "name": "mathematics-completion",
+      "conclusion": "success",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39714740194/job/119617335807"
+    },
+    {
+      "id": 119617394364,
+      "name": "release-certificate",
+      "conclusion": "success",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39714740194/job/119617394364"
+    },
+    {
+      "id": 119617454624,
+      "name": "final-gate",
+      "conclusion": "success",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39714740194/job/119617454624"
+    }
+  ],
+  "artifacts": [
+    {"id": 12399290036, "name": "release-certificate-run39714740194-attempt1", "size_in_bytes": 91985, "sha256": "NOT_RECOMPUTED_ARTIFACT_NOT_DOWNLOADED"},
+    {"id": 12399116335, "name": "full-math-lean-39714740194-1", "size_in_bytes": 566435, "sha256": "NOT_RECOMPUTED_ARTIFACT_NOT_DOWNLOADED"},
+    {"id": 12399111503, "name": "full-math-completion-39714740194-1", "size_in_bytes": 2564, "sha256": "NOT_RECOMPUTED_ARTIFACT_NOT_DOWNLOADED"},
+    {"id": 12398961405, "name": "seven-axis-lean-39714740194-1", "size_in_bytes": 454946, "sha256": "NOT_RECOMPUTED_ARTIFACT_NOT_DOWNLOADED"},
+    {"id": 12398906509, "name": "lean-full-build-run39714740194-attempt1", "size_in_bytes": 464611, "sha256": "NOT_RECOMPUTED_ARTIFACT_NOT_DOWNLOADED"},
+    {"id": 12398782271, "name": "seven-axis-gate-39714740194-1", "size_in_bytes": 624, "sha256": "NOT_RECOMPUTED_ARTIFACT_NOT_DOWNLOADED"},
+    {"id": 12398713516, "name": "full-math-python-39714740194-1", "size_in_bytes": 91361, "sha256": "NOT_RECOMPUTED_ARTIFACT_NOT_DOWNLOADED"},
+    {"id": 12398622453, "name": "runtime-refinement-run39714740194-attempt1", "size_in_bytes": 6808, "sha256": "NOT_RECOMPUTED_ARTIFACT_NOT_DOWNLOADED"},
+    {"id": 12398297379, "name": "python-gates-run39714740194-attempt1", "size_in_bytes": 25678, "sha256": "NOT_RECOMPUTED_ARTIFACT_NOT_DOWNLOADED"},
+    {"id": 12398162741, "name": "seven-axis-python-39714740194-1", "size_in_bytes": 50247, "sha256": "NOT_RECOMPUTED_ARTIFACT_NOT_DOWNLOADED"}
+  ],
+  "skipped_work_is_not_pass": true,
+  "prior_failed_full_release": {
+    "run_id": 39700447562,
+    "subject_commit": "799b42c43d16e839ec3305577867120cb0deb917",
+    "verification": "../ci-stage2-799b42c/verification.json"
+  }
+}

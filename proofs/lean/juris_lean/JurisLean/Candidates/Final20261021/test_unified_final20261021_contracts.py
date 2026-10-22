@@ -84,6 +84,11 @@ def check_restitution(before, after, node, *, claim_amount=None, paid=Q(0)):
         if before.rest_claim is None:
             raise ValueError("PREMATURE_CASH")
         if not before.eligible:
+            raise ValueError("REST_NOT_ELIGIBLE")
+        # Payable is the performance cash already booked (`cash`), the same
+        # quantity as Ledger.State.paid under cash consistency. It is not the
+        # restitution claim. a == payable is auto full refund.
+        if paid == before.cash:
             raise ValueError("AUTO_FULL_REFUND")
         expected = replace(before, rest_claim=max(Q(0), before.rest_claim-paid),
                            refund_cash=before.refund_cash+paid)
@@ -194,8 +199,14 @@ class TestUnifiedContracts(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "PREMATURE_CASH"):
             check_restitution(State(), replace(State(), refund_cash=Q(7)), "N3", paid=Q(7))
 
+    def test_n_rest_not_eligible(self):
+        before = replace(State(), rest_claim=Q(3), cash=Q(7))
+        with self.assertRaisesRegex(ValueError, "REST_NOT_ELIGIBLE"):
+            check_restitution(before, replace(before, refund_cash=Q(7)), "N3", paid=Q(7))
+
     def test_n2_auto_full_refund(self):
-        before = replace(State(), rest_claim=Q(3))
+        before = replace(payment_vector(State(), Q(7), 1), rest_claim=Q(3), eligible=True)
+        self.assertEqual((before.cash, before.rest_claim), (Q(7), Q(3)))
         with self.assertRaisesRegex(ValueError, "AUTO_FULL_REFUND"):
             check_restitution(before, replace(before, refund_cash=Q(7)), "N3", paid=Q(7))
 

@@ -518,14 +518,21 @@ def ExecEligible (s : State) (relation : RelationId) (evidence : SourceRef) : Re
         .known { s with rest := some { r with eligible := true, eligibilityEvidence := some evidence } }
       else .rejected .scopeMismatch
 
+-- Payable for AUTO_FULL_REFUND is the performance amount already booked
+-- (`paid`). CashConsistent identifies that amount with the performance cash
+-- total. It is not `rest.amount`, and it is not the ExecEligible bit.
+-- Refunding exactly that booked amount is the auto-full-refund rejection.
+-- A restitution payment of the claim, including a full payoff of the claim
+-- when that claim differs from `paid`, stays an ordinary N3 write.
 def RestPay (s : State) (event : CashEvent) : Result State :=
   match s.rest with
   | none => .rejected .prematureCash
   | some r =>
-      if r.eligible = false then .rejected .autoFullRefund
+      if r.eligible = false then .rejected .restNotEligible
       else if event.amount.tag ≠ r.amount.tag ∨ event.payer ≠ r.obligor ∨
         event.payee ≠ r.creditor ∨ event.amount.value < 0 then .rejected .unitBindingMissing
       else if (s.cash ++ s.refundCash).any (fun e => e.id == event.id) then .rejected .duplicateCash
+      else if event.amount.value = s.paid then .rejected .autoFullRefund
       else .known { s with
         rest := some { r with
           amount := { r.amount with value := r.amount.value - min event.amount.value r.amount.value } },

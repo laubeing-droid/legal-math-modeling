@@ -112,7 +112,7 @@ inductive Error where
   | openMissingOpportunity | checkIncomplete | incompatibleFiber
   | observationBindingMismatch | stageFrameMismatch
   | roundingBasisMissing | cashEventMissing | duplicateCash
-  | layerCollapse | prematureCash | autoFullRefund | accrualCashCollapse
+  | layerCollapse | prematureCash | restNotEligible | autoFullRefund | accrualCashCollapse
   | burnedByUnknown | nonContinuousConsume | stateConservationMismatch
   | unsupported | notIdentified | targetMismatch
   deriving DecidableEq, Repr

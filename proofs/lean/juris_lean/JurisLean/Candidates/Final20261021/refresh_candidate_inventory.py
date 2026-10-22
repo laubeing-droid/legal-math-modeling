@@ -36,7 +36,7 @@ EXAMPLES = {
     "EvidenceProcedure": (["a08_insufficient_but_lawfully_closed"], ["n08_2_missing_opportunity", "n08_4_timeout_not_lawful_closure"]),
     "Authorization": (["u00_pipeline_success"], ["n10_authorization_binds_full_payload", "n_pipeline_score_does_not_authorize"]),
     "Progress": ([], []),
-    "Ledger": (["a_u09_continuous_10_7_7", "a_zero_yes_writes_U", "a_rest_claim_then_eligibility", "a_restpay_only_n3"], ["n_a1_layer_collapse", "n_non_continuous_consume", "n_unknown_does_not_burn_U", "n_burned_by_unknown", "n1_premature_cash", "n2_auto_full_refund", "n3_accrual_cash_collapse"]),
+    "Ledger": (["a_u09_continuous_10_7_7", "a_zero_yes_writes_U", "a_rest_claim_then_eligibility", "a_restpay_only_n3"], ["n_a1_layer_collapse", "n_non_continuous_consume", "n_unknown_does_not_burn_U", "n_burned_by_unknown", "n1_premature_cash", "n_rest_not_eligible", "n2_auto_full_refund", "n3_accrual_cash_collapse"]),
     "Trace": (["a_opening_invariant", "a_two_actual_commits_preserve_receipts"], ["n_non_continuous_consume", "n_poststate_name_not_binding"]),
     "Learning": ([], []),
     "Probability": ([], ["n04_zero_variance_not_finite_count"]),

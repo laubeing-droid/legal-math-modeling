@@ -147,6 +147,77 @@
       "axiom_audit": "NOT_REACHED",
       "acceptance": "NOT_REACHED",
       "does_not_close_full_scope": true
+    },
+    {
+      "run_id": 39696325206,
+      "run_attempt": 1,
+      "subject": "eb98cb0256c21117f22cdc7449665839947f0b0e",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39696325206",
+      "mode": "changed-module",
+      "target": "JurisLean.Candidates.Final20261021.CIAll",
+      "status": "FAIL",
+      "failed_modules": [
+        "JurisLean.Candidates.Final20261021.Learning",
+        "JurisLean.Candidates.Final20261021.RSI",
+        "JurisLean.Candidates.Final20261021.Trace"
+      ],
+      "checked_candidate_modules": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Behavior",
+        "JurisLean.Candidates.Final20261021.Policy",
+        "JurisLean.Candidates.Final20261021.Progress",
+        "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+        "JurisLean.Candidates.Final20261021.Temporal",
+        "JurisLean.Candidates.Final20261021.Harness",
+        "JurisLean.Candidates.Final20261021.Transactions",
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.Candidates.Final20261021.Compiler",
+        "JurisLean.Candidates.Final20261021.Authorization",
+        "JurisLean.Candidates.Final20261021.Ledger"
+      ],
+      "artifact": "evidence/ci-stage1-eb98cb0/changed-module-only-39696325206-1.zip",
+      "sha256": "c092bb070ed62511a1259c8449eed99e7b8b69fd8a1d7c9e6b237e3561ad2232",
+      "axiom_audit": "NOT_REACHED",
+      "acceptance": "NOT_REACHED",
+      "does_not_close_full_scope": true
+    },
+    {
+      "run_id": 39697150002,
+      "run_attempt": 1,
+      "subject": "2033a664cbefc682f6922cf2ed42170c901bcb08",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39697150002",
+      "mode": "changed-module",
+      "target": "JurisLean.Candidates.Final20261021.CIAll",
+      "status": "FAIL",
+      "failed_modules": [
+        "JurisLean.Candidates.Final20261021.Iteration"
+      ],
+      "checked_candidate_modules": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Behavior",
+        "JurisLean.Candidates.Final20261021.Policy",
+        "JurisLean.Candidates.Final20261021.Progress",
+        "JurisLean.Candidates.Final20261021.Learning",
+        "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+        "JurisLean.Candidates.Final20261021.Temporal",
+        "JurisLean.Candidates.Final20261021.Harness",
+        "JurisLean.Candidates.Final20261021.Transactions",
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.Candidates.Final20261021.Compiler",
+        "JurisLean.Candidates.Final20261021.RSI",
+        "JurisLean.Candidates.Final20261021.Calibration",
+        "JurisLean.Candidates.Final20261021.Probability",
+        "JurisLean.Candidates.Final20261021.Authorization",
+        "JurisLean.Candidates.Final20261021.Decision",
+        "JurisLean.Candidates.Final20261021.Feedback",
+        "JurisLean.Candidates.Final20261021.Ledger",
+        "JurisLean.Candidates.Final20261021.Trace"
+      ],
+      "artifact": "evidence/ci-stage1-2033a66/changed-module-only-39697150002-1.zip",
+      "sha256": "d8f1c039561a17ad6f80a8e8116e1950ea71b396f6a59b0fe34e7e0a88ddd595",
+      "axiom_audit": "NOT_REACHED",
+      "acceptance": "NOT_REACHED",
+      "does_not_close_full_scope": true
     }
   ],
   "rows": [

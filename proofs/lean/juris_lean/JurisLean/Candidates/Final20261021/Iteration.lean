@@ -37,6 +37,7 @@ def twoRounds (old better wrongTarget : Feedback.Assessed) : Feedback.Assessed :
 theorem u15_3_two_round_actual_state (old better wrongTarget : Feedback.Assessed)
     (same : better.scope = old.scope) (improves : better.upper ≤ old.lower)
     (wrong : wrongTarget.scope ≠ better.scope) : twoRounds old better wrongTarget = better := by
-  simp [twoRounds, Feedback.consider, same, improves, wrong]
+  have wrongOld : wrongTarget.scope ≠ old.scope := fun h => wrong (h.trans same.symm)
+  simp [twoRounds, Feedback.consider, same, improves, wrongOld]
 
 end JurisLean.Candidates.Final20261021.Iteration

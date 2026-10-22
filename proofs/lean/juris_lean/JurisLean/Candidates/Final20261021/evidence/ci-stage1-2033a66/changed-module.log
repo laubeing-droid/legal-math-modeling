@@ -1,0 +1,80 @@
+✔ [8475/8506] Built JurisLean.FiniteMonotoneIteration (2.4s)
+✔ [8476/8506] Built JurisLean.HornDefinitions (2.1s)
+✔ [8477/8506] Built JurisLean.FullMath.Core.Foundations (4.5s)
+✔ [8478/8506] Built JurisLean.Candidates.Final20261021.Interfaces (6.3s)
+✔ [8479/8506] Built JurisLean.HornFixedPoint (2.7s)
+⚠ [8480/8506] Built JurisLean.FullMath.Numeric.Quantities (4.0s)
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8481/8506] Built JurisLean.FullMath.Numeric.Intervals (5.2s)
+✔ [8482/8506] Built JurisLean.Candidates.Final20261021.Behavior (5.1s)
+⚠ [8483/8506] Built JurisLean.Candidates.Final20261021.Policy (5.5s)
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:40: unused variable `hw`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:53: unused variable `hc`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8484/8506] Built JurisLean.Candidates.Final20261021.Progress (4.0s)
+⚠ [8485/8506] Built JurisLean.Candidates.Final20261021.Learning (5.5s)
+warning: JurisLean/Candidates/Final20261021/Learning.lean:86:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [8486/8506] Built JurisLean.Candidates.Final20261021.EvidenceProcedure (5.1s)
+✔ [8487/8506] Built JurisLean.Candidates.Final20261021.Temporal (5.2s)
+✔ [8488/8506] Built JurisLean.Candidates.Final20261021.Harness (4.8s)
+✔ [8489/8506] Built JurisLean.Candidates.Final20261021.Transactions (5.3s)
+✔ [8490/8506] Built JurisLean.Candidates.Final20261021.Representation (5.2s)
+✔ [8491/8506] Built JurisLean.Candidates.Final20261021.Compiler (5.0s)
+✔ [8492/8506] Built JurisLean.Candidates.Final20261021.RSI (5.3s)
+✔ [8493/8506] Built JurisLean.Seams.UnifiedQuantities (5.5s)
+✔ [8494/8506] Built JurisLean.Candidates.Final20261021.Calibration (5.4s)
+✔ [8495/8506] Built JurisLean.Candidates.Final20261021.Probability (5.6s)
+✔ [8496/8506] Built JurisLean.Candidates.Final20261021.Authorization (4.2s)
+✔ [8497/8506] Built JurisLean.Seams.UnifiedQuantLedger (7.6s)
+✔ [8498/8506] Built JurisLean.Candidates.Final20261021.Decision (6.5s)
+✔ [8499/8506] Built JurisLean.Candidates.Final20261021.Feedback (5.3s)
+✔ [8500/8506] Built JurisLean.Candidates.Final20261021.Ledger (5.3s)
+✖ [8501/8506] Building JurisLean.Candidates.Final20261021.Iteration (3.6s)
+trace: .> LEAN_PATH=/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/lean /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Iteration.lean -o /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Iteration.olean -i /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Iteration.ilean -c /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Iteration.c --setup /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Iteration.setup.json --json
+error: JurisLean/Candidates/Final20261021/Iteration.lean:39:94: unsolved goals
+old better wrongTarget : Feedback.Assessed
+same : better.scope = old.scope
+improves : better.upper ≤ old.lower
+wrong : wrongTarget.scope ≠ better.scope
+⊢ (if wrongTarget.scope = old.scope then
+        if wrongTarget.upper ≤ better.lower then (Feedback.Verdict.accepted, wrongTarget)
+        else (Feedback.Verdict.insufficientBound, better)
+      else (Feedback.Verdict.scopeMismatch, better)).2 =
+    better
+warning: JurisLean/Candidates/Final20261021/Iteration.lean:40:54: This simp argument is unused:
+  wrong
+
+Hint: Omit it from the simp argument list.
+  simp [twoRounds, Feedback.consider, same, improves,̵ ̵w̵r̵o̵n̵g̵]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: Lean exited with code 1
+✔ [8502/8506] Built JurisLean.Candidates.Final20261021.Trace (3.5s)
+Some required targets logged failures:
+- JurisLean.Candidates.Final20261021.Iteration
+error: build failed
+Traceback (most recent call last):
+  File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 59, in <module>
+    if __name__=='__main__':raise SystemExit(main())
+                                             ^^^^^^
+  File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 57, in main
+    subprocess.run(['lake','build',*targets],cwd=R/'proofs/lean/juris_lean',check=True)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['lake', 'build', 'JurisLean.Candidates.Final20261021.CIAll']' returned non-zero exit status 1.

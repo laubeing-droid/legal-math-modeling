@@ -1,0 +1,36 @@
+{
+  "subject_commit": "eb98cb0256c21117f22cdc7449665839947f0b0e",
+  "authority": "LOCAL_DIAGNOSTIC_ONLY_NOT_FORMAL_CI",
+  "checks": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "tests/",
+        "--collect-only",
+        "-q",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 0,
+      "log": "pytest-collection.txt"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "pytest",
+        "tests/",
+        "-q",
+        "-ra",
+        "-p",
+        "no:cacheprovider"
+      ],
+      "exit_code": 1,
+      "log": "pytest-full.log"
+    }
+  ],
+  "diagnostic_started_at_subject": "019544b0f20f9cf0a86ed1604e35420738de834b",
+  "binding": "UNSTABLE_SOURCE_DURING_READ_ONLY_PREFLIGHT; NOT_A_HEAD_BOUND_PASS"
+}

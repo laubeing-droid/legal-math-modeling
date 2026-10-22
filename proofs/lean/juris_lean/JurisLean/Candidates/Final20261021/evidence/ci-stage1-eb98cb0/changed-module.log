@@ -1,0 +1,246 @@
+✔ [8475/8506] Built JurisLean.FiniteMonotoneIteration (2.4s)
+✔ [8476/8506] Built JurisLean.FullMath.Core.Foundations (4.1s)
+✔ [8477/8506] Built JurisLean.HornDefinitions (2.6s)
+✔ [8478/8506] Built JurisLean.HornFixedPoint (2.8s)
+✔ [8479/8506] Built JurisLean.Candidates.Final20261021.Interfaces (7.0s)
+✔ [8480/8506] Built JurisLean.FullMath.Numeric.Intervals (5.5s)
+⚠ [8481/8506] Built JurisLean.FullMath.Numeric.Quantities (5.7s)
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8482/8506] Built JurisLean.Candidates.Final20261021.Behavior (5.3s)
+⚠ [8483/8506] Built JurisLean.Candidates.Final20261021.Policy (5.8s)
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:40: unused variable `hw`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:53: unused variable `hc`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8484/8506] Built JurisLean.Candidates.Final20261021.Progress (5.1s)
+✖ [8485/8506] Building JurisLean.Candidates.Final20261021.Learning (5.4s)
+trace: .> LEAN_PATH=/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/lean /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Learning.lean -o /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Learning.olean -i /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Learning.ilean -c /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Learning.c --setup /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Learning.setup.json --json
+error: JurisLean/Candidates/Final20261021/Learning.lean:46:45: linarith failed to find a contradiction
+case h
+Ω : Type u_1
+inst✝¹ : MeasurableSpace Ω
+μ : Measure Ω
+inst✝ : IsProbabilityMeasure μ
+X : Ω → ℝ
+c : ℝ≥0
+h : HasSubgaussianMGF X c μ
+ε : ℝ
+hε : 0 ≤ ε
+inclusion : {w | ε ≤ |X w|} ⊆ {w | ε ≤ X w} ∪ {w | ε ≤ -X w}
+upper : μ.real {ω | ε ≤ X ω} ≤ rexp (-ε ^ 2 / (2 * ↑c))
+lower : μ.real {ω | ε ≤ (-X) ω} ≤ rexp (-ε ^ 2 / (2 * ↑c))
+a✝ : 2 * rexp (-ε ^ 2 / (2 * ↑c)) < μ.real {w | ε ≤ X w} + μ.real {w | ε ≤ -X w}
+⊢ False
+failed
+error: JurisLean/Candidates/Final20261021/Learning.lean:64:59: unsolved goals
+I : Type u_1
+a b : I → ℝ
+s : Finset I
+x : ℝ
+⊢ x ^ 2 / 2 ^ 2 = x ^ 2 / 4
+warning: JurisLean/Candidates/Final20261021/Learning.lean:85:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+error: JurisLean/Candidates/Final20261021/Learning.lean:104:14: Unknown identifier `not_le_of_lt`
+error: JurisLean/Candidates/Final20261021/Learning.lean:101:80: unsolved goals
+case h
+Ω : Type u_1
+I : Type u_2
+inst✝¹ : MeasurableSpace Ω
+μ : Measure Ω
+inst✝ : IsProbabilityMeasure μ
+X : I → Ω → ℝ
+a b : I → ℝ
+s : Finset I
+independent : iIndepFun X μ
+measurable : ∀ i ∈ s, AEMeasurable (X i) μ
+bounded : ∀ i ∈ s, ∀ᵐ (w : Ω) ∂μ, X i w ∈ Set.Icc (a i) (b i)
+zeroWidth : ∑ i ∈ s, (b i - a i) ^ 2 = 0
+t : ℝ
+ht : 0 < t
+subG : HasSubgaussianMGF (fun w => ∑ i ∈ s, (X i w - ∫ (z : Ω), X i z ∂μ)) 0 μ
+proxyZero : ∑ i ∈ s, (‖b i - a i‖₊ / 2) ^ 2 = 0
+zero : (fun w => ∑ i ∈ s, (X i w - ∫ (z : Ω), X i z ∂μ)) =ᶠ[ae μ] 0
+w : Ω
+hw : ∑ i ∈ s, (X i w - ∫ (z : Ω), X i z ∂μ) = 0
+⊢ {w | t ≤ |∑ x ∈ s, X x w - ∑ x ∈ s, ∫ (z : Ω), X x z ∂μ|} w ↔ ∅ w
+warning: JurisLean/Candidates/Final20261021/Learning.lean:104:10: This simp argument is unused:
+  hw
+
+Hint: Omit it from the simp argument list.
+  simp [h̵w̵,̵ ̵not_le_of_lt ht]
+
+Note: This linter can be disabled with `set_option linter.unusedSimpArgs false`
+error: Lean exited with code 1
+✔ [8486/8506] Built JurisLean.Candidates.Final20261021.EvidenceProcedure (5.5s)
+✔ [8487/8506] Built JurisLean.Candidates.Final20261021.Temporal (5.2s)
+✔ [8488/8506] Built JurisLean.Candidates.Final20261021.Harness (5.1s)
+✔ [8491/8506] Built JurisLean.Candidates.Final20261021.Transactions (5.6s)
+✔ [8492/8506] Built JurisLean.Candidates.Final20261021.Representation (5.1s)
+✔ [8494/8506] Built JurisLean.Candidates.Final20261021.Compiler (5.3s)
+✔ [8495/8506] Built JurisLean.Seams.UnifiedQuantities (4.8s)
+✖ [8496/8506] Building JurisLean.Candidates.Final20261021.RSI (4.4s)
+trace: .> LEAN_PATH=/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/lean /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean -o /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/RSI.olean -i /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/RSI.ilean -c /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/RSI.c --setup /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/RSI.setup.json --json
+error: JurisLean/Candidates/Final20261021/RSI.lean:92:3: unexpected token 'matches'; expected identifier
+error: JurisLean/Candidates/Final20261021/RSI.lean:99:72: unexpected token 'matches'; expected ')', '↑', '↥', '⇑' or term
+error: JurisLean/Candidates/Final20261021/RSI.lean:103:0: Not a definitional equality: the left-hand side
+  proposed_checkpoint_service r none none none none
+is not definitionally equal to the right-hand side
+  Result.unknown Error.missingEvidence
+error: JurisLean/Candidates/Final20261021/RSI.lean:104:85: Type mismatch
+  rfl
+has type
+  ?m.10 = ?m.10
+but is expected to have type
+  proposed_checkpoint_service r none none none none = Result.unknown Error.missingEvidence
+error: Lean exited with code 1
+✔ [8497/8506] Built JurisLean.Candidates.Final20261021.Authorization (3.9s)
+✔ [8500/8506] Built JurisLean.Seams.UnifiedQuantLedger (5.9s)
+✔ [8501/8506] Built JurisLean.Candidates.Final20261021.Ledger (4.8s)
+✖ [8502/8506] Building JurisLean.Candidates.Final20261021.Trace (3.3s)
+trace: .> LEAN_PATH=/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/lean /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean -o /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Trace.olean -i /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Trace.ilean -c /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Trace.c --setup /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Trace.setup.json --json
+error: JurisLean/Candidates/Final20261021/Trace.lean:16:82: unexpected identifier; expected '}'
+error: JurisLean/Candidates/Final20261021/Trace.lean:17:22: unexpected token ','; expected 'private', 'scoped' or identifier
+error: JurisLean/Candidates/Final20261021/Trace.lean:27:12: Application type mismatch: The argument
+  rfl
+has type
+  ?m.19 = ?m.19
+but is expected to have type
+  Ledger.CashConsistent (initial g debt).state
+in the application
+  And.intro rfl
+error: JurisLean/Candidates/Final20261021/Trace.lean:27:17: Application type mismatch: The argument
+  rfl
+has type
+  ?m.23 = ?m.23
+but is expected to have type
+  (initial g debt).state.env = Temporal.proposed_applicability (initial g debt).gamma (initial g debt).state.normHistory
+in the application
+  And.intro rfl
+warning: JurisLean/Candidates/Final20261021/Trace.lean:26:11: declaration uses `sorry`
+error: JurisLean/Candidates/Final20261021/Trace.lean:56:90: unexpected identifier; expected '}'
+error: JurisLean/Candidates/Final20261021/Trace.lean:72:2: Invalid alternative name `reject`: There are no unhandled alternatives
+error: JurisLean/Candidates/Final20261021/Trace.lean:64:2: Too many variable names provided at alternative `pay`: 6 provided, but 5 expected
+error: JurisLean/Candidates/Final20261021/Trace.lean:65:50: Invalid field `state`: The environment does not contain `JurisLean.Candidates.Final20261021.PaymentRequest.state`, so it is not possible to project the field `state` from an expression
+  h
+of type `PaymentRequest`
+error: JurisLean/Candidates/Final20261021/Trace.lean:65:60: Invalid field `payload`: The environment does not contain `Bool.payload`, so it is not possible to project the field `payload` from an expression
+  req
+of type `Bool`
+error: JurisLean/Candidates/Final20261021/Trace.lean:65:76: Unknown identifier `amount`
+error: JurisLean/Candidates/Final20261021/Trace.lean:66:45: Invalid field `state`: The environment does not contain `JurisLean.Candidates.Final20261021.PaymentRequest.state`, so it is not possible to project the field `state` from an expression
+  h
+of type `PaymentRequest`
+error: JurisLean/Candidates/Final20261021/Trace.lean:66:55: Invalid field `payload`: The environment does not contain `Bool.payload`, so it is not possible to project the field `payload` from an expression
+  req
+of type `Bool`
+error: JurisLean/Candidates/Final20261021/Trace.lean:67:39: Application type mismatch: The argument
+  h
+has type
+  PaymentRequest
+but is expected to have type
+  Ledger.Handle
+in the application
+  Ledger.commit_receipt_coherent h
+error: JurisLean/Candidates/Final20261021/Trace.lean:67:84: Application type mismatch: The argument
+  h
+has type
+  PaymentRequest
+but is expected to have type
+  Ledger.Handle
+in the application
+  Ledger.ready_requires_unused h
+error: JurisLean/Candidates/Final20261021/Trace.lean:68:2: Too many variable names provided at alternative `accrue`: 3 provided, but 2 expected
+error: JurisLean/Candidates/Final20261021/Trace.lean:68:54: Invalid field `state`: The environment does not contain `Rat.state`, so it is not possible to project the field `state` from an expression
+  h
+of type `ℚ`
+error: JurisLean/Candidates/Final20261021/Trace.lean:68:70: Unknown identifier `ha`
+error: JurisLean/Candidates/Final20261021/Trace.lean:69:2: Too many variable names provided at alternative `principal`: 3 provided, but 2 expected
+error: JurisLean/Candidates/Final20261021/Trace.lean:69:60: Invalid field `state`: The environment does not contain `Rat.state`, so it is not possible to project the field `state` from an expression
+  h
+of type `ℚ`
+error: JurisLean/Candidates/Final20261021/Trace.lean:69:76: Unknown identifier `hn`
+error: JurisLean/Candidates/Final20261021/Trace.lean:70:2: Too many variable names provided at alternative `writeoff`: 4 provided, but 3 expected
+error: JurisLean/Candidates/Final20261021/Trace.lean:70:64: Invalid field `state`: The environment does not contain `Rat.state`, so it is not possible to project the field `state` from an expression
+  h
+of type `ℚ`
+error: JurisLean/Candidates/Final20261021/Trace.lean:70:83: Unknown identifier `bound`
+error: JurisLean/Candidates/Final20261021/Trace.lean:71:2: Too many variable names provided at alternative `refresh`: 7 provided, but 6 expected
+error: JurisLean/Candidates/Final20261021/Trace.lean:71:66: Application type mismatch: The argument
+  rfl
+has type
+  ?m.188 = ?m.188
+but is expected to have type
+  { gamma := h, revision := s.revision + 1,
+          state :=
+            let __src := s.state;
+            { debt := __src.debt, formations := __src.formations, judgment := __src.judgment,
+              procedure := __src.procedure, claim := __src.claim, executionEligible := __src.executionEligible,
+              initialDebt := __src.initialDebt, newDebt := __src.newDebt, accrual := __src.accrual,
+              allocated := __src.allocated, writtenOff := __src.writtenOff, paid := __src.paid,
+              surplus := __src.surplus, cash := __src.cash, used := __src.used, receipts := __src.receipts,
+              rest := __src.rest, refundCash := __src.refundCash, normHistory := s.state.normHistory ++ [g],
+              env := __src.env } }.state.env =
+    Temporal.proposed_applicability
+      { gamma := h, revision := s.revision + 1,
+          state :=
+            let __src := s.state;
+            { debt := __src.debt, formations := __src.formations, judgment := __src.judgment,
+              procedure := __src.procedure, claim := __src.claim, executionEligible := __src.executionEligible,
+              initialDebt := __src.initialDebt, newDebt := __src.newDebt, accrual := __src.accrual,
+              allocated := __src.allocated, writtenOff := __src.writtenOff, paid := __src.paid,
+              surplus := __src.surplus, cash := __src.cash, used := __src.used, receipts := __src.receipts,
+              rest := __src.rest, refundCash := __src.refundCash, normHistory := s.state.normHistory ++ [g],
+              env := __src.env } }.gamma
+      { gamma := h, revision := s.revision + 1,
+            state :=
+              let __src := s.state;
+              { debt := __src.debt, formations := __src.formations, judgment := __src.judgment,
+                procedure := __src.procedure, claim := __src.claim, executionEligible := __src.executionEligible,
+                initialDebt := __src.initialDebt, newDebt := __src.newDebt, accrual := __src.accrual,
+                allocated := __src.allocated, writtenOff := __src.writtenOff, paid := __src.paid,
+                surplus := __src.surplus, cash := __src.cash, used := __src.used, receipts := __src.receipts,
+                rest := __src.rest, refundCash := __src.refundCash, normHistory := s.state.normHistory ++ [g],
+                env := __src.env } }.state.normHistory
+in the application
+  And.intro rfl
+error: JurisLean/Candidates/Final20261021/Trace.lean:125:2: Invalid alternative name `reject`: There are no unhandled alternatives
+error: JurisLean/Candidates/Final20261021/Trace.lean:117:2: Too many variable names provided at alternative `pay`: 6 provided, but 5 expected
+error: JurisLean/Candidates/Final20261021/Trace.lean:119:30: Invalid field `key`: The environment does not contain `Bool.key`, so it is not possible to project the field `key` from an expression
+  req
+of type `Bool`
+error: JurisLean/Candidates/Final20261021/Trace.lean:119:36: Invalid field `state`: The environment does not contain `JurisLean.Candidates.Final20261021.PaymentRequest.state`, so it is not possible to project the field `state` from an expression
+  h
+of type `PaymentRequest`
+error: JurisLean/Candidates/Final20261021/Trace.lean:121:2: Too many variable names provided at alternative `accrue`: 3 provided, but 2 expected
+error: JurisLean/Candidates/Final20261021/Trace.lean:122:2: Too many variable names provided at alternative `principal`: 3 provided, but 2 expected
+error: JurisLean/Candidates/Final20261021/Trace.lean:123:2: Too many variable names provided at alternative `writeoff`: 4 provided, but 3 expected
+error: JurisLean/Candidates/Final20261021/Trace.lean:124:2: Too many variable names provided at alternative `refresh`: 7 provided, but 6 expected
+error: Lean exited with code 1
+Some required targets logged failures:
+- JurisLean.Candidates.Final20261021.Learning
+- JurisLean.Candidates.Final20261021.RSI
+- JurisLean.Candidates.Final20261021.Trace
+error: build failed
+Traceback (most recent call last):
+  File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 59, in <module>
+    if __name__=='__main__':raise SystemExit(main())
+                                             ^^^^^^
+  File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 57, in main
+    subprocess.run(['lake','build',*targets],cwd=R/'proofs/lean/juris_lean',check=True)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['lake', 'build', 'JurisLean.Candidates.Final20261021.CIAll']' returned non-zero exit status 1.

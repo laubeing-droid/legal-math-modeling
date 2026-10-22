@@ -1,0 +1,641 @@
+........................................................................ [ 10%]
+........................................................................ [ 21%]
+...........................................F...F........................ [ 32%]
+...................................F.F.................................. [ 43%]
+........................................FFF............................. [ 54%]
+........................................................................ [ 65%]
+..............................F......................................... [ 75%]
+...........F.....................................F.......F.............. [ 86%]
+.................F...........................F.F........................ [ 97%]
+F......F........                                                         [100%]
+================================== FAILURES ===================================
+______________________ test_the_shape_report_is_current _______________________
+
+    def test_the_shape_report_is_current() -> None:
+        from generate_declaration_shape_report import build, render
+    
+        assert REPORT.exists(), "the declaration shape artifact is missing"
+>       assert REPORT.read_text(encoding="utf-8") == render(build()), (
+                                                            ^^^^^^^
+            "the artifact no longer describes the tracked source; regenerate it"
+        )
+
+tests\spec\test_declaration_shape_report.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def build() -> dict:
+        pkg: dict[str, int] = {"ALIAS_ONE_LINER": 0, "CLOSED_NO_BINDERS": 0, "theorems": 0}
+        per_file: dict[str, dict[str, int]] = {}
+        for path in tracked_lean():
+            abs_path = Path(path) if Path(path).is_absolute() else ROOT / path
+            rel = abs_path.relative_to(ROOT).as_posix()
+            code = strip_comments(abs_path.read_text(encoding="utf-8"))
+            file_counts = {"ALIAS_ONE_LINER": 0, "CLOSED_NO_BINDERS": 0, "theorems": 0}
+            for _name, block in blocks(code):
+                tags = shape_of(block)
+                pkg["theorems"] += 1
+                file_counts["theorems"] += 1
+                for tag in tags:
+                    pkg[tag] += 1
+                    file_counts[tag] += 1
+            if file_counts["theorems"]:
+                per_file[rel] = file_counts
+        census = json.loads(CENSUS.read_text(encoding="utf-8"))
+        census_total = census["theorem_declarations"]
+        agree = census_total == pkg["theorems"]
+        if not agree:
+>           raise SystemExit(
+                f"scope disagreement: census sees {census_total} theorems, "
+                f"this report sees {pkg['theorems']} -- the two parsers no longer agree"
+            )
+E           SystemExit: scope disagreement: census sees 5043 theorems, this report sees 5270 -- the two parsers no longer agree
+
+scripts\ci\generate_declaration_shape_report.py:156: SystemExit
+_____________ test_the_shape_check_mode_fails_on_a_stale_artifact _____________
+
+tmp_path = WindowsPath('C:/Users/being/AppData/Local/Temp/pytest-of-being/pytest-3291/test_the_shape_check_mode_fail0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000016CA6F97C50>
+
+    def test_the_shape_check_mode_fails_on_a_stale_artifact(tmp_path, monkeypatch) -> None:
+        """Drive the real `--check` entry point over a copy, never the tracked artifact.
+    
+        An earlier version wrote a mutated copy over docs/formal-release/... and restored it in
+        a `finally`, so an interrupted run could leave the repository holding a falsified account.
+        The version after that only compared two strings in memory and was named as if it ran the
+        mode -- a green test that never called `--check`. This redirects the module's output path
+        into a tmp file and asks `main(["--check"])` itself for a verdict, both ways.
+        """
+        import generate_declaration_shape_report as gen
+    
+>       fresh = gen.render(gen.build())
+                           ^^^^^^^^^^^
+
+tests\spec\test_declaration_shape_report.py:119: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+    def build() -> dict:
+        pkg: dict[str, int] = {"ALIAS_ONE_LINER": 0, "CLOSED_NO_BINDERS": 0, "theorems": 0}
+        per_file: dict[str, dict[str, int]] = {}
+        for path in tracked_lean():
+            abs_path = Path(path) if Path(path).is_absolute() else ROOT / path
+            rel = abs_path.relative_to(ROOT).as_posix()
+            code = strip_comments(abs_path.read_text(encoding="utf-8"))
+            file_counts = {"ALIAS_ONE_LINER": 0, "CLOSED_NO_BINDERS": 0, "theorems": 0}
+            for _name, block in blocks(code):
+                tags = shape_of(block)
+                pkg["theorems"] += 1
+                file_counts["theorems"] += 1
+                for tag in tags:
+                    pkg[tag] += 1
+                    file_counts[tag] += 1
+            if file_counts["theorems"]:
+                per_file[rel] = file_counts
+        census = json.loads(CENSUS.read_text(encoding="utf-8"))
+        census_total = census["theorem_declarations"]
+        agree = census_total == pkg["theorems"]
+        if not agree:
+>           raise SystemExit(
+                f"scope disagreement: census sees {census_total} theorems, "
+                f"this report sees {pkg['theorems']} -- the two parsers no longer agree"
+            )
+E           SystemExit: scope disagreement: census sees 5043 theorems, this report sees 5270 -- the two parsers no longer agree
+
+scripts\ci\generate_declaration_shape_report.py:156: SystemExit
+__________________________ test_default_mode_passes ___________________________
+
+    def test_default_mode_passes() -> None:
+        proc = subprocess.run([sys.executable, str(TOOL)], cwd=ROOT,
+                              capture_output=True, text=True)
+>       assert proc.returncode == 0, proc.stdout + proc.stderr
+E       AssertionError: 24 Lean module(s) unreachable from the release root:
+E           JurisLean.Candidates.Final20261021.Acceptance
+E           JurisLean.Candidates.Final20261021.Authorization
+E           JurisLean.Candidates.Final20261021.AxiomAudit
+E           JurisLean.Candidates.Final20261021.Behavior
+E           JurisLean.Candidates.Final20261021.CIAll
+E           JurisLean.Candidates.Final20261021.Calibration
+E           JurisLean.Candidates.Final20261021.Compiler
+E           JurisLean.Candidates.Final20261021.Decision
+E           JurisLean.Candidates.Final20261021.EvidenceProcedure
+E           JurisLean.Candidates.Final20261021.Feedback
+E           JurisLean.Candidates.Final20261021.Harness
+E           JurisLean.Candidates.Final20261021.Interfaces
+E           JurisLean.Candidates.Final20261021.Iteration
+E           JurisLean.Candidates.Final20261021.Learning
+E           JurisLean.Candidates.Final20261021.Ledger
+E           JurisLean.Candidates.Final20261021.Pipeline
+E           JurisLean.Candidates.Final20261021.Policy
+E           JurisLean.Candidates.Final20261021.Probability
+E           JurisLean.Candidates.Final20261021.Progress
+E           JurisLean.Candidates.Final20261021.RSI
+E           JurisLean.Candidates.Final20261021.Representation
+E           JurisLean.Candidates.Final20261021.Temporal
+E           JurisLean.Candidates.Final20261021.Trace
+E           JurisLean.Candidates.Final20261021.Transactions
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', 'D:\\Codex\\1.法律工作...nal20261021.Temporal\n  JurisLean.Candidates.Final20261021.Trace\n  JurisLean.Candidates.Final20261021.Transactions\n').returncode
+
+tests\spec\test_import_reachability.py:33: AssertionError
+___________________ test_block_is_what_the_base_root_needs ____________________
+
+    def test_block_is_what_the_base_root_needs() -> None:
+        """The committed block must equal the computed closure gap, no more, no less."""
+        root_text = ROOT_MODULE.read_text(encoding="utf-8")
+        before, _after = reach.split_root_block(root_text)
+        inner = root_text.split(reach.ROOT_BLOCK_BEGIN, 1)[1].split(reach.ROOT_BLOCK_END, 1)[0]
+        listed = sorted(
+            line[len("import "):].strip() for line in inner.splitlines()
+            if line.startswith("import JurisLean.")
+        )
+    
+        with tempfile.TemporaryDirectory() as td:
+            base = Path(td) / "JurisLean.lean"
+            base.write_text(before, encoding="utf-8")
+            mods = reach.modules()
+            mods["JurisLean"] = base
+            gap = reach.unreachable_from(mods)
+    
+>       assert listed == sorted(gap), (
+            f"block lists {len(listed)} modules, the base root needs {len(gap)}; "
+            "run scripts/ci/check_import_reachability.py --write"
+        )
+E       AssertionError: block lists 193 modules, the base root needs 217; run scripts/ci/check_import_reachability.py --write
+E       assert ['JurisLean.A...omplete', ...] == ['JurisLean.A...omplete', ...]
+E         
+E         At index 10 diff: 'JurisLean.CanonicalSerialization' != 'JurisLean.Candidates.Final20261021.Acceptance'
+E         Right contains 24 more items, first extra item: 'JurisLean.Seams.UnifiedNetTrajectory'
+E         Use -v to get more diff
+
+tests\spec\test_import_reachability.py:59: AssertionError
+_____________ test_every_phrase_template_still_matches_its_draft ______________
+
+    def test_every_phrase_template_still_matches_its_draft() -> None:
+        mod = _load()
+>       figures = mod.figures()
+                  ^^^^^^^^^^^^^
+
+tests\spec\test_paper_accounting_is_generated.py:31: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\rebind_paper_derived_accounting.py:52: in figures
+    reach = subprocess.run(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = True, timeout = None, check = True
+popenargs = (['C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', 'D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\legal-math-modeling-final20261021\\scripts\\ci\\check_import_reachability.py'],)
+kwargs = {'cwd': WindowsPath('D:/Codex/1.法律工作区/legal-math-modeling工作区/legal-math-modeling-final20261021'), 'text': True, 'encoding': 'utf-8', 'stdout': -1, ...}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout (seconds) is given and the process takes too long,
+         a TimeoutExpired exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', 'D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\legal-math-modeling-final20261021\\scripts\\ci\\check_import_reachability.py']' returned non-zero exit status 1.
+
+C:\Users\being\AppData\Local\Programs\Python\Python312\Lib\subprocess.py:571: CalledProcessError
+__________ test_the_committed_drafts_are_what_the_generator_produces __________
+
+    def test_the_committed_drafts_are_what_the_generator_produces() -> None:
+        mod = _load()
+>       figures = mod.figures()
+                  ^^^^^^^^^^^^^
+
+tests\spec\test_paper_accounting_is_generated.py:47: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\rebind_paper_derived_accounting.py:52: in figures
+    reach = subprocess.run(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = True, timeout = None, check = True
+popenargs = (['C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', 'D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\legal-math-modeling-final20261021\\scripts\\ci\\check_import_reachability.py'],)
+kwargs = {'cwd': WindowsPath('D:/Codex/1.法律工作区/legal-math-modeling工作区/legal-math-modeling-final20261021'), 'text': True, 'encoding': 'utf-8', 'stdout': -1, ...}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout (seconds) is given and the process takes too long,
+         a TimeoutExpired exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', 'D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\legal-math-modeling-final20261021\\scripts\\ci\\check_import_reachability.py']' returned non-zero exit status 1.
+
+C:\Users\being\AppData\Local\Programs\Python\Python312\Lib\subprocess.py:571: CalledProcessError
+______________ test_the_generator_reads_the_artifacts_it_claims _______________
+
+    def test_the_generator_reads_the_artifacts_it_claims() -> None:
+        """A figures() that silently fell back to constants would green-light any prose."""
+>       figures = _load().figures()
+                  ^^^^^^^^^^^^^^^^^
+
+tests\spec\test_paper_accounting_is_generated.py:61: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+scripts\rebind_paper_derived_accounting.py:52: in figures
+    reach = subprocess.run(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+input = None, capture_output = True, timeout = None, check = True
+popenargs = (['C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', 'D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\legal-math-modeling-final20261021\\scripts\\ci\\check_import_reachability.py'],)
+kwargs = {'cwd': WindowsPath('D:/Codex/1.法律工作区/legal-math-modeling工作区/legal-math-modeling-final20261021'), 'text': True, 'encoding': 'utf-8', 'stdout': -1, ...}
+
+    def run(*popenargs,
+            input=None, capture_output=False, timeout=None, check=False, **kwargs):
+        """Run command with arguments and return a CompletedProcess instance.
+    
+        The returned instance will have attributes args, returncode, stdout and
+        stderr. By default, stdout and stderr are not captured, and those attributes
+        will be None. Pass stdout=PIPE and/or stderr=PIPE in order to capture them,
+        or pass capture_output=True to capture both.
+    
+        If check is True and the exit code was non-zero, it raises a
+        CalledProcessError. The CalledProcessError object will have the return code
+        in the returncode attribute, and output & stderr attributes if those streams
+        were captured.
+    
+        If timeout (seconds) is given and the process takes too long,
+         a TimeoutExpired exception will be raised.
+    
+        There is an optional argument "input", allowing you to
+        pass bytes or a string to the subprocess's stdin.  If you use this argument
+        you may not also use the Popen constructor's "stdin" argument, as
+        it will be used internally.
+    
+        By default, all communication is in bytes, and therefore any "input" should
+        be bytes, and the stdout and stderr will be bytes. If in text mode, any
+        "input" should be a string, and stdout and stderr will be strings decoded
+        according to locale encoding, or by "encoding" if set. Text mode is
+        triggered by setting any of text, encoding, errors or universal_newlines.
+    
+        The other arguments are the same as for the Popen constructor.
+        """
+        if input is not None:
+            if kwargs.get('stdin') is not None:
+                raise ValueError('stdin and input arguments may not both be used.')
+            kwargs['stdin'] = PIPE
+    
+        if capture_output:
+            if kwargs.get('stdout') is not None or kwargs.get('stderr') is not None:
+                raise ValueError('stdout and stderr arguments may not be used '
+                                 'with capture_output.')
+            kwargs['stdout'] = PIPE
+            kwargs['stderr'] = PIPE
+    
+        with Popen(*popenargs, **kwargs) as process:
+            try:
+                stdout, stderr = process.communicate(input, timeout=timeout)
+            except TimeoutExpired as exc:
+                process.kill()
+                if _mswindows:
+                    # Windows accumulates the output in a single blocking
+                    # read() call run on child threads, with the timeout
+                    # being done in a join() on those threads.  communicate()
+                    # _after_ kill() is required to collect that and add it
+                    # to the exception.
+                    exc.stdout, exc.stderr = process.communicate()
+                else:
+                    # POSIX _communicate already populated the output so
+                    # far into the TimeoutExpired exception.
+                    process.wait()
+                raise
+            except:  # Including KeyboardInterrupt, communicate handled that.
+                process.kill()
+                # We don't call process.wait() as .__exit__ does that for us.
+                raise
+            retcode = process.poll()
+            if check and retcode:
+>               raise CalledProcessError(retcode, process.args,
+                                         output=stdout, stderr=stderr)
+E               subprocess.CalledProcessError: Command '['C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', 'D:\\Codex\\1.法律工作区\\legal-math-modeling工作区\\legal-math-modeling-final20261021\\scripts\\ci\\check_import_reachability.py']' returned non-zero exit status 1.
+
+C:\Users\being\AppData\Local\Programs\Python\Python312\Lib\subprocess.py:571: CalledProcessError
+__________________ test_reports_are_reproducible_from_source __________________
+
+    def test_reports_are_reproducible_from_source() -> None:
+        proc = subprocess.run([sys.executable, str(TOOL), "--check"], cwd=ROOT,
+                              capture_output=True, text=True)
+>       assert proc.returncode == 0, proc.stdout + proc.stderr
+E       AssertionError: kernel_reuse_report.json is stale
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', 'D:\\Codex\\1.法律工作...te_structure_and_volume_reports.py', '--check'], returncode=1, stdout='', stderr='kernel_reuse_report.json is stale\n').returncode
+
+tests\spec\test_structure_reports.py:55: AssertionError
+_ test_unbooked_external_arrival_is_quarantined_and_cannot_sneak_into_the_root _
+
+tmp_path = WindowsPath('C:/Users/being/AppData/Local/Temp/pytest-of-being/pytest-3291/test_unbooked_external_arrival0')
+
+    def test_unbooked_external_arrival_is_quarantined_and_cannot_sneak_into_the_root(tmp_path) -> None:
+        tree = make_tree(tmp_path)
+        rogue = tree / "proofs/lean/juris_lean/JurisLean/External/GameTheory/Math/Rogue.lean"
+        rogue.write_text("-- rogue arrival, no bookkeeping\n"
+                         "import JurisLean.External.GameTheory.Math.Probability\n",
+                         encoding="utf-8")
+    
+        proc = run_reach(tree)
+>       assert proc.returncode == 0, proc.stdout + proc.stderr  # auto-quarantine is the design
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       AssertionError: 24 Lean module(s) unreachable from the release root:
+E           JurisLean.Candidates.Final20261021.Acceptance
+E           JurisLean.Candidates.Final20261021.Authorization
+E           JurisLean.Candidates.Final20261021.AxiomAudit
+E           JurisLean.Candidates.Final20261021.Behavior
+E           JurisLean.Candidates.Final20261021.CIAll
+E           JurisLean.Candidates.Final20261021.Calibration
+E           JurisLean.Candidates.Final20261021.Compiler
+E           JurisLean.Candidates.Final20261021.Decision
+E           JurisLean.Candidates.Final20261021.EvidenceProcedure
+E           JurisLean.Candidates.Final20261021.Feedback
+E           JurisLean.Candidates.Final20261021.Harness
+E           JurisLean.Candidates.Final20261021.Interfaces
+E           JurisLean.Candidates.Final20261021.Iteration
+E           JurisLean.Candidates.Final20261021.Learning
+E           JurisLean.Candidates.Final20261021.Ledger
+E           JurisLean.Candidates.Final20261021.Pipeline
+E           JurisLean.Candidates.Final20261021.Policy
+E           JurisLean.Candidates.Final20261021.Probability
+E           JurisLean.Candidates.Final20261021.Progress
+E           JurisLean.Candidates.Final20261021.RSI
+E           JurisLean.Candidates.Final20261021.Representation
+E           JurisLean.Candidates.Final20261021.Temporal
+E           JurisLean.Candidates.Final20261021.Trace
+E           JurisLean.Candidates.Final20261021.Transactions
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', 'scripts/ci/check_...nal20261021.Temporal\n  JurisLean.Candidates.Final20261021.Trace\n  JurisLean.Candidates.Final20261021.Transactions\n').returncode
+
+tests\test_adversarial_gates.py:106: AssertionError
+__________________ test_every_quoted_run_id_is_in_the_index ___________________
+
+    def test_every_quoted_run_id_is_in_the_index() -> None:
+        quoted = build_ci_run_index.run_ids_in_markdown()
+        recorded = {str(r["run_id"]) for r in _doc()["runs"]}
+>       assert set(quoted) <= recorded, f"runs quoted without evidence: {sorted(set(quoted) - recorded)}"
+E       AssertionError: runs quoted without evidence: ['38315566085', '38319507523', '39689061670', '39693498976', '39694003524']
+E       assert {'33946211096...9378180', ...} <= {'33946211096...9378180', ...}
+E         
+E         Extra items in the left set:
+E         '39689061670'
+E         '39693498976'
+E         '39694003524'
+E         '38315566085'
+E         '38319507523'
+
+tests\test_ci_run_index.py:64: AssertionError
+____________________ test_check_mode_is_offline_and_passes ____________________
+
+    def test_check_mode_is_offline_and_passes() -> None:
+        proc = subprocess.run(
+            [sys.executable, str(TOOL), "--check"], cwd=ROOT,
+            capture_output=True, text=True, encoding="utf-8",
+        )
+>       assert proc.returncode == 0, proc.stdout + proc.stderr
+E       AssertionError: stale index: quoted run ids not in the index: ['38315566085', '38319507523', '39689061670', '39693498976', '39694003524']
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', 'D:\\Codex\\1.法律工作...index: quoted run ids not in the index: ['38315566085', '38319507523', '39689061670', '39693498976', '39694003524']\n").returncode
+
+tests\test_ci_run_index.py:164: AssertionError
+_______ test_certificate_and_inventory_agree_declaration_by_declaration _______
+
+    def test_certificate_and_inventory_agree_declaration_by_declaration() -> None:
+        """Two release artifacts, one counting rule.
+    
+        The certificate used to report 1847 declarations where the inventory reported
+        1882 for the identical file set: it ignored `@[...]`-prefixed theorems, counted
+        keywords inside comments, and truncated dotted names at the dot. Aggregating the
+        same way is not enough, so this compares the per-file name sets.
+        """
+    
+        manifest = json.loads(
+            (REPO_ROOT / "docs/formal-release/theorem_inventory_v3.json").read_text(encoding="utf-8")
+        )
+        by_path = {f["path"]: f for f in manifest["files"]}
+        inventory = collect_source_inventory(REPO_ROOT)
+    
+>       assert inventory["theorem_declaration_count"] == sum(
+            by_path[s["path"]]["theorem_count"] for s in inventory["sources"]
+        )
+
+tests\test_formal_release_inventory.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+.0 = <list_iterator object at 0x0000016CA6EC28C0>
+
+    assert inventory["theorem_declaration_count"] == sum(
+>       by_path[s["path"]]["theorem_count"] for s in inventory["sources"]
+        ^^^^^^^^^^^^^^^^^^
+    )
+E   KeyError: 'proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean'
+
+tests\test_formal_release_inventory.py:58: KeyError
+_______________________ test_check_mode_passes_offline ________________________
+
+    def test_check_mode_passes_offline() -> None:
+        proc = subprocess.run([sys.executable, str(TOOL), "--check"], cwd=ROOT,
+                              capture_output=True, text=True, encoding="utf-8",
+                              errors="replace")
+>       assert proc.returncode == 0, proc.stdout + proc.stderr
+E       AssertionError: files_scanned drift: committed 354, source says 378; regenerate
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', 'D:\\Codex\\1.法律工作...s.py', '--check'], returncode=1, stdout='', stderr='files_scanned drift: committed 354, source says 378; regenerate\n').returncode
+
+tests\test_statement_duplication_census.py:56: AssertionError
+__________ test_census_counts_and_key_sets_are_recomputed_not_copied __________
+
+    def test_census_counts_and_key_sets_are_recomputed_not_copied() -> None:
+        """Every published figure and every published key must equal an on-the-spot recount.
+    
+        This replaces `duplicated_statement_types == 8` and `cross_family_statement_types
+        == 0`, which pinned a number rather than the property: the number was right about a
+        wrong measurement.
+        """
+        from build_statement_duplication_census import scan
+    
+        doc = _census()
+        live = scan()
+        for field in ("files_scanned", "statements_read", "distinct_statement_types",
+                      "duplicated_statement_types", "cross_family_statement_types",
+                      "inventory_package_theorems", "headers_missed_by_scanner",
+                      "private_protected_headers_read"):
+>           assert doc[field] == live[field], (
+                f"{field}: the account says {doc[field]}, the source says {live[field]}; "
+                "regenerate rather than editing the account"
+            )
+E           AssertionError: files_scanned: the account says 354, the source says 378; regenerate rather than editing the account
+E           assert 354 == 378
+
+tests\test_statement_duplication_census.py:88: AssertionError
+__________________ test_guard_scan_covers_every_counted_file __________________
+
+    def test_guard_scan_covers_every_counted_file():
+        """The scan root must reach everything the count covers (audit P1-8)."""
+        import subprocess
+        import sys
+    
+        proc = subprocess.run(
+            [sys.executable, str(ROOT / "scripts" / "scan_lean_guards.py"), "--all-tracked"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        assert proc.returncode == 0, proc.stdout + proc.stderr
+        doc = load(INVENTORY)
+>       assert f"{doc['scope_summary']['all_tracked_lean']['file_count']} files" in proc.stdout
+E       AssertionError: assert '369 files' in 'Lean guard scan passed (393 files, scope=all-tracked).\n'
+E        +  where 'Lean guard scan passed (393 files, scope=all-tracked).\n' = CompletedProcess(args=['C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', 'D:\\Codex\\1.法律工作...ards.py', '--all-tracked'], returncode=0, stdout='Lean guard scan passed (393 files, scope=all-tracked).\n', stderr='').stdout
+
+tests\test_theorem_inventory.py:191: AssertionError
+_______________________ test_check_mode_passes_offline ________________________
+
+    def test_check_mode_passes_offline() -> None:
+        proc = subprocess.run(
+            [sys.executable, str(TOOL), "--check"], cwd=ROOT,
+            capture_output=True, text=True, encoding="utf-8", errors="replace",
+        )
+>       assert proc.returncode == 0, proc.stdout + proc.stderr
+E       AssertionError: trivial_proof_census.json is stale
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\being\\AppData\\Local\\Programs\\Python\\Python312\\python.exe', 'D:\\Codex\\1.法律工作...\generate_trivial_proof_census.py', '--check'], returncode=1, stdout='', stderr='trivial_proof_census.json is stale\n').returncode
+
+tests\test_trivial_proof_census.py:82: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/spec/test_declaration_shape_report.py::test_the_shape_report_is_current
+FAILED tests/spec/test_declaration_shape_report.py::test_the_shape_check_mode_fails_on_a_stale_artifact
+FAILED tests/spec/test_import_reachability.py::test_default_mode_passes - Ass...
+FAILED tests/spec/test_import_reachability.py::test_block_is_what_the_base_root_needs
+FAILED tests/spec/test_paper_accounting_is_generated.py::test_every_phrase_template_still_matches_its_draft
+FAILED tests/spec/test_paper_accounting_is_generated.py::test_the_committed_drafts_are_what_the_generator_produces
+FAILED tests/spec/test_paper_accounting_is_generated.py::test_the_generator_reads_the_artifacts_it_claims
+FAILED tests/spec/test_structure_reports.py::test_reports_are_reproducible_from_source
+FAILED tests/test_adversarial_gates.py::test_unbooked_external_arrival_is_quarantined_and_cannot_sneak_into_the_root
+FAILED tests/test_ci_run_index.py::test_every_quoted_run_id_is_in_the_index
+FAILED tests/test_ci_run_index.py::test_check_mode_is_offline_and_passes - As...
+FAILED tests/test_formal_release_inventory.py::test_certificate_and_inventory_agree_declaration_by_declaration
+FAILED tests/test_statement_duplication_census.py::test_check_mode_passes_offline
+FAILED tests/test_statement_duplication_census.py::test_census_counts_and_key_sets_are_recomputed_not_copied
+FAILED tests/test_theorem_inventory.py::test_guard_scan_covers_every_counted_file
+FAILED tests/test_trivial_proof_census.py::test_check_mode_passes_offline - A...
+16 failed, 648 passed in 1564.39s (0:26:04)

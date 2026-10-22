@@ -1,0 +1,1434 @@
+﻿2026-10-22T00:11:53.8827836Z Current runner version: '2.338.0'
+2026-10-22T00:11:53.8855750Z ##[group]Runner Image Provisioner
+2026-10-22T00:11:53.8856726Z Hosted Compute Agent
+2026-10-22T00:11:53.8857467Z Version: 20261012.601
+2026-10-22T00:11:53.8858246Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+2026-10-22T00:11:53.8859299Z Build Date: 2026-10-12T17:48:21Z
+2026-10-22T00:11:53.8860244Z Worker ID: {2b847c44-3440-429e-9623-6444edbdcca5}
+2026-10-22T00:11:53.8861081Z Region: eastus
+2026-10-22T00:11:53.8861825Z Cloud: Azure
+2026-10-22T00:11:53.8862460Z ##[endgroup]
+2026-10-22T00:11:53.8864275Z ##[group]Operating System
+2026-10-22T00:11:53.8865020Z Ubuntu
+2026-10-22T00:11:53.8865688Z 26.04.1
+2026-10-22T00:11:53.8866304Z LTS
+2026-10-22T00:11:53.8866912Z ##[endgroup]
+2026-10-22T00:11:53.8867662Z ##[group]Runner Image
+2026-10-22T00:11:53.8868375Z Image: ubuntu-26.04
+2026-10-22T00:11:53.8869663Z Version: 20261012.163.1
+2026-10-22T00:11:53.8871245Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261012.163/images/ubuntu/Ubuntu2604-Readme.md
+2026-10-22T00:11:53.8873384Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261012.163
+2026-10-22T00:11:53.8874663Z ##[endgroup]
+2026-10-22T00:11:53.8876015Z ##[group]GITHUB_TOKEN Permissions
+2026-10-22T00:11:53.8878139Z Contents: read
+2026-10-22T00:11:53.8878938Z Metadata: read
+2026-10-22T00:11:53.8879764Z ##[endgroup]
+2026-10-22T00:11:53.8882414Z Secret source: Actions
+2026-10-22T00:11:53.8883555Z Cache mode: write
+2026-10-22T00:11:53.8884636Z Prepare workflow directory
+2026-10-22T00:11:53.9353595Z Prepare all required actions
+2026-10-22T00:11:53.9409915Z Getting action download info
+2026-10-22T00:11:54.1106068Z Download action repository 'actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-10-22T00:11:54.4085441Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-22T00:11:54.7703116Z Download action repository 'actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2026-10-22T00:11:54.9370692Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-22T00:11:55.2537192Z Complete job name: changed-modules
+2026-10-22T00:11:55.3278497Z ##[group]Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+2026-10-22T00:11:55.3280052Z with:
+2026-10-22T00:11:55.3280719Z   fetch-depth: 0
+2026-10-22T00:11:55.3281520Z   repository: laubeing-droid/legal-math-modeling
+2026-10-22T00:11:55.3287946Z   token: ***
+2026-10-22T00:11:55.3288629Z   ssh-strict: true
+2026-10-22T00:11:55.3289431Z   ssh-user: git
+2026-10-22T00:11:55.3290155Z   persist-credentials: true
+2026-10-22T00:11:55.3290937Z   clean: true
+2026-10-22T00:11:55.3291650Z   sparse-checkout-cone-mode: true
+2026-10-22T00:11:55.3292676Z   fetch-tags: false
+2026-10-22T00:11:55.3293411Z   show-progress: true
+2026-10-22T00:11:55.3294156Z   lfs: false
+2026-10-22T00:11:55.3294848Z   submodules: false
+2026-10-22T00:11:55.3295573Z   set-safe-directory: true
+2026-10-22T00:11:55.3296605Z env:
+2026-10-22T00:11:55.3297281Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:11:55.3298142Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:11:55.3298926Z   PYTHONUTF8: 1
+2026-10-22T00:11:55.3300174Z ##[endgroup]
+2026-10-22T00:11:55.4137727Z Syncing repository: laubeing-droid/legal-math-modeling
+2026-10-22T00:11:55.4141126Z ##[group]Getting Git version info
+2026-10-22T00:11:55.4142911Z Working directory is '/home/runner/work/legal-math-modeling/legal-math-modeling'
+2026-10-22T00:11:55.4144678Z [command]/usr/bin/git version
+2026-10-22T00:11:55.4166105Z git version 2.55.0
+2026-10-22T00:11:55.4183912Z ##[endgroup]
+2026-10-22T00:11:55.4198357Z Temporarily overriding HOME='/home/runner/work/_temp/4ea048f4-e3f3-4787-8499-98104e2b5ca2' before making global git config changes
+2026-10-22T00:11:55.4202064Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T00:11:55.4205665Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/legal-math-modeling/legal-math-modeling
+2026-10-22T00:11:55.4274348Z Deleting the contents of '/home/runner/work/legal-math-modeling/legal-math-modeling'
+2026-10-22T00:11:55.4279662Z ##[group]Initializing the repository
+2026-10-22T00:11:55.4284670Z [command]/usr/bin/git init /home/runner/work/legal-math-modeling/legal-math-modeling
+2026-10-22T00:11:55.5190239Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-22T00:11:55.5192975Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-22T00:11:55.5195447Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-22T00:11:55.5197009Z hint: call:
+2026-10-22T00:11:55.5198057Z hint:
+2026-10-22T00:11:55.5199446Z hint: 	git config --global init.defaultBranch <name>
+2026-10-22T00:11:55.5201031Z hint:
+2026-10-22T00:11:55.5202666Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-22T00:11:55.5204795Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-22T00:11:55.5206423Z hint:
+2026-10-22T00:11:55.5207871Z hint: 	git branch -m <name>
+2026-10-22T00:11:55.5209372Z hint:
+2026-10-22T00:11:55.5210977Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-22T00:11:55.5213060Z Initialized empty Git repository in /home/runner/work/legal-math-modeling/legal-math-modeling/.git/
+2026-10-22T00:11:55.5216321Z [command]/usr/bin/git remote add origin https://github.com/laubeing-droid/legal-math-modeling
+2026-10-22T00:11:55.5356251Z ##[endgroup]
+2026-10-22T00:11:55.5357474Z ##[group]Disabling automatic garbage collection
+2026-10-22T00:11:55.5359869Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-22T00:11:55.5387644Z ##[endgroup]
+2026-10-22T00:11:55.5388787Z ##[group]Setting up auth
+2026-10-22T00:11:55.5393029Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T00:11:55.5420622Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T00:11:55.7696357Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T00:11:55.7742615Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T00:11:55.7980264Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T00:11:55.8015434Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T00:11:55.8264013Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-22T00:11:55.8299907Z ##[endgroup]
+2026-10-22T00:11:55.8301731Z ##[group]Fetching the repository
+2026-10-22T00:11:55.8309777Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-10-22T00:11:57.2129816Z From https://github.com/laubeing-droid/legal-math-modeling
+2026-10-22T00:11:57.2131463Z  * [new branch]        candidates/final20261021-825792b -> origin/candidates/final20261021-825792b
+2026-10-22T00:11:57.2132182Z  * [new branch]        ci/mandate-wave1            -> origin/ci/mandate-wave1
+2026-10-22T00:11:57.2132887Z  * [new branch]        ci/seam-AdjudicationBridge  -> origin/ci/seam-AdjudicationBridge
+2026-10-22T00:11:57.2133558Z  * [new branch]        ci/seam-BoundaryClosure     -> origin/ci/seam-BoundaryClosure
+2026-10-22T00:11:57.2134248Z  * [new branch]        ci/seam-PayoffEquilibrium   -> origin/ci/seam-PayoffEquilibrium
+2026-10-22T00:11:57.2135004Z  * [new branch]        ci/seam-PrecedentFlow       -> origin/ci/seam-PrecedentFlow
+2026-10-22T00:11:57.2135797Z  * [new branch]        ci/seam-Probability         -> origin/ci/seam-Probability
+2026-10-22T00:11:57.2136248Z  * [new branch]        ci/seam-SourceNorms         -> origin/ci/seam-SourceNorms
+2026-10-22T00:11:57.2136709Z  * [new branch]        ci/seam-Temporal            -> origin/ci/seam-Temporal
+2026-10-22T00:11:57.2137136Z  * [new branch]        ci/seam-Uncertainty         -> origin/ci/seam-Uncertainty
+2026-10-22T00:11:57.2137688Z  * [new branch]        ci/unified-construction-20261008 -> origin/ci/unified-construction-20261008
+2026-10-22T00:11:57.2138170Z  * [new branch]        main                        -> origin/main
+2026-10-22T00:11:57.2138591Z  * [new tag]           archive/banach-track-b-d23e8f2 -> archive/banach-track-b-d23e8f2
+2026-10-22T00:11:57.2139570Z  * [new tag]           archive/track-c-prod-f43e273 -> archive/track-c-prod-f43e273
+2026-10-22T00:11:57.2140430Z  * [new tag]           archive/ulm01-16-preclean-20260903 -> archive/ulm01-16-preclean-20260903
+2026-10-22T00:11:57.2141075Z  * [new tag]           formal-core-v1              -> formal-core-v1
+2026-10-22T00:11:57.2141559Z  * [new tag]           formal-core-v1-candidate    -> formal-core-v1-candidate
+2026-10-22T00:11:57.2142005Z  * [new tag]           math-complete-20260914      -> math-complete-20260914
+2026-10-22T00:11:57.2142477Z  * [new tag]           spec-first-transition-ready -> spec-first-transition-ready
+2026-10-22T00:11:57.2142880Z  * [new tag]           spec-v1-candidate           -> spec-v1-candidate
+2026-10-22T00:11:57.2143225Z  * [new tag]           v1.0.0                      -> v1.0.0
+2026-10-22T00:11:57.2143534Z  * [new tag]           v2.0.0                      -> v2.0.0
+2026-10-22T00:11:57.2143852Z  * [new tag]           v5.0                        -> v5.0
+2026-10-22T00:11:57.2144189Z  * [new tag]           v5.1                        -> v5.1
+2026-10-22T00:11:57.2145392Z [command]/usr/bin/git branch --list --remote origin/candidates/final20261021-825792b
+2026-10-22T00:11:57.2168053Z   origin/candidates/final20261021-825792b
+2026-10-22T00:11:57.2176292Z [command]/usr/bin/git rev-parse refs/remotes/origin/candidates/final20261021-825792b
+2026-10-22T00:11:57.2197168Z 76b24bb4e04a83a2a2aca7d535596761788ace8f
+2026-10-22T00:11:57.2200778Z ##[endgroup]
+2026-10-22T00:11:57.2201585Z ##[group]Determining the checkout info
+2026-10-22T00:11:57.2202200Z ##[endgroup]
+2026-10-22T00:11:57.2207082Z [command]/usr/bin/git sparse-checkout disable
+2026-10-22T00:11:57.2803110Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-22T00:11:57.2834446Z ##[group]Checking out the ref
+2026-10-22T00:11:57.2838386Z [command]/usr/bin/git checkout --progress --force -B candidates/final20261021-825792b refs/remotes/origin/candidates/final20261021-825792b
+2026-10-22T00:11:57.5630135Z Switched to a new branch 'candidates/final20261021-825792b'
+2026-10-22T00:11:57.5631332Z branch 'candidates/final20261021-825792b' set up to track 'origin/candidates/final20261021-825792b'.
+2026-10-22T00:11:57.5661950Z ##[endgroup]
+2026-10-22T00:11:57.5707174Z [command]/usr/bin/git log -1 --format=%H
+2026-10-22T00:11:57.5731132Z 76b24bb4e04a83a2a2aca7d535596761788ace8f
+2026-10-22T00:11:57.5960119Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-10-22T00:11:57.5960458Z with:
+2026-10-22T00:11:57.5960636Z   python-version: 3.12
+2026-10-22T00:11:57.5960829Z   check-latest: false
+2026-10-22T00:11:57.5962652Z   token: ***
+2026-10-22T00:11:57.5962835Z   update-environment: true
+2026-10-22T00:11:57.5963035Z   allow-prereleases: false
+2026-10-22T00:11:57.5963220Z   freethreaded: false
+2026-10-22T00:11:57.5963405Z env:
+2026-10-22T00:11:57.5963569Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:11:57.5963795Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:11:57.5963994Z   PYTHONUTF8: 1
+2026-10-22T00:11:57.5964160Z ##[endgroup]
+2026-10-22T00:11:57.7032855Z ##[group]Installed versions
+2026-10-22T00:11:57.8705639Z (node:2180) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T00:11:57.8706579Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T00:11:57.8707105Z Successfully set up CPython (3.12.15)
+2026-10-22T00:11:57.8707565Z ##[endgroup]
+2026-10-22T00:11:57.8857559Z ##[group]Run python tools/ulm_repair/scripts/ci_driver.py pins
+2026-10-22T00:11:57.8857981Z [36;1mpython tools/ulm_repair/scripts/ci_driver.py pins[0m
+2026-10-22T00:11:58.0134574Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-22T00:11:58.0134878Z env:
+2026-10-22T00:11:58.0135069Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:11:58.0135296Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:11:58.0135490Z   PYTHONUTF8: 1
+2026-10-22T00:11:58.0135717Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:58.0136104Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:11:58.0136438Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:58.0136758Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:58.0137051Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:58.0137344Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:11:58.0137668Z ##[endgroup]
+2026-10-22T00:11:58.1146735Z ##[group]Run set -euo pipefail
+2026-10-22T00:11:58.1146997Z [36;1mset -euo pipefail[0m
+2026-10-22T00:11:58.1147532Z [36;1mcurl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain leanprover/lean4:v4.30.0[0m
+2026-10-22T00:11:58.1148062Z [36;1mecho "$HOME/.elan/bin" >> "$GITHUB_PATH"[0m
+2026-10-22T00:11:58.1205110Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-22T00:11:58.1205393Z env:
+2026-10-22T00:11:58.1205571Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:11:58.1205789Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:11:58.1205991Z   PYTHONUTF8: 1
+2026-10-22T00:11:58.1206219Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:58.1206588Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:11:58.1206926Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:58.1207275Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:58.1207573Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:58.1207875Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:11:58.1208138Z ##[endgroup]
+2026-10-22T00:11:58.3472730Z info: downloading installer
+2026-10-22T00:11:58.7753910Z info: default toolchain set to 'leanprover/lean4:v4.30.0'
+2026-10-22T00:11:58.8358388Z ##[group]Run actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+2026-10-22T00:11:58.8358679Z with:
+2026-10-22T00:11:58.8358856Z   path: proofs/lean/juris_lean/.lake
+2026-10-22T00:11:58.8359465Z   key: Linux-lake-full-v4.30.0-aa7b09b2c8327ddcc6b77ca7cdfcfeb192d157b89c3ca9cf9322fa022286ea0c
+2026-10-22T00:11:58.8359941Z   restore-keys: Linux-lake-full-v4.30.0-
+lean-seeds-Linux-v4.30.0-
+
+2026-10-22T00:11:58.8360236Z   enableCrossOsArchive: false
+2026-10-22T00:11:58.8360442Z   fail-on-cache-miss: false
+2026-10-22T00:11:58.8360634Z   lookup-only: false
+2026-10-22T00:11:58.8360817Z   save-always: false
+2026-10-22T00:11:58.8360987Z env:
+2026-10-22T00:11:58.8361157Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:11:58.8361376Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:11:58.8361573Z   PYTHONUTF8: 1
+2026-10-22T00:11:58.8361795Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:58.8362186Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:11:58.8362520Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:58.8362813Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:58.8363107Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:58.8363397Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:11:58.8363813Z ##[endgroup]
+2026-10-22T00:11:58.9202522Z (node:2231) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T00:11:58.9203107Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T00:11:58.9714180Z Cache not found for input keys: Linux-lake-full-v4.30.0-aa7b09b2c8327ddcc6b77ca7cdfcfeb192d157b89c3ca9cf9322fa022286ea0c, Linux-lake-full-v4.30.0-, lean-seeds-Linux-v4.30.0-
+2026-10-22T00:11:58.9794716Z ##[group]Run set -euo pipefail
+2026-10-22T00:11:58.9794970Z [36;1mset -euo pipefail[0m
+2026-10-22T00:11:58.9795185Z [36;1mif [ -n "$REQUESTED_MODULE" ]; then[0m
+2026-10-22T00:11:58.9795584Z [36;1m  python scripts/ci/changed_lean_modules.py --module "$REQUESTED_MODULE" --output module-plan.json[0m
+2026-10-22T00:11:58.9795956Z [36;1melse[0m
+2026-10-22T00:11:58.9796272Z [36;1m  python scripts/ci/changed_lean_modules.py --base HEAD~1 --head HEAD --output module-plan.json[0m
+2026-10-22T00:11:58.9796646Z [36;1mfi[0m
+2026-10-22T00:11:58.9852629Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-22T00:11:58.9852910Z env:
+2026-10-22T00:11:58.9853084Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:11:58.9853311Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:11:58.9853522Z   PYTHONUTF8: 1
+2026-10-22T00:11:58.9853749Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:58.9854170Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:11:58.9854506Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:58.9854810Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:58.9855105Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:58.9855402Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:11:58.9855717Z   REQUESTED_MODULE: JurisLean.Candidates.Final20261021.CIAll
+2026-10-22T00:11:58.9856000Z ##[endgroup]
+2026-10-22T00:11:59.0784723Z {
+2026-10-22T00:11:59.0785016Z   "include": [
+2026-10-22T00:11:59.0785316Z     {
+2026-10-22T00:11:59.0785659Z       "module": "JurisLean.Candidates.Final20261021.CIAll",
+2026-10-22T00:11:59.0785994Z       "target": "JurisLean.Candidates.Final20261021.CIAll"
+2026-10-22T00:11:59.0786240Z     }
+2026-10-22T00:11:59.0786394Z   ],
+2026-10-22T00:11:59.0786551Z   "removed_modules": [],
+2026-10-22T00:11:59.0786800Z   "scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE"
+2026-10-22T00:11:59.0787077Z }
+2026-10-22T00:11:59.0867918Z ##[group]Run set -euo pipefail
+2026-10-22T00:11:59.0868186Z [36;1mset -euo pipefail[0m
+2026-10-22T00:11:59.0868478Z [36;1m(cd "$LEAN_DIR" && lake exe cache get!) 2>&1 | tee mathlib-cloud-cache.log[0m
+2026-10-22T00:11:59.0868975Z [36;1mpython tools/ulm_repair/scripts/ci_driver.py build --plan module-plan.json 2>&1 | tee changed-module.log[0m
+2026-10-22T00:11:59.0924614Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-22T00:11:59.0924895Z env:
+2026-10-22T00:11:59.0925071Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:11:59.0925291Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:11:59.0925500Z   PYTHONUTF8: 1
+2026-10-22T00:11:59.0925731Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:59.0926078Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:11:59.0926414Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:59.0926767Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:59.0927070Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:11:59.0927374Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:11:59.0927632Z ##[endgroup]
+2026-10-22T00:11:59.5179693Z info: downloading https://releases.lean-lang.org/lean4/v4.30.0/lean-4.30.0-linux.tar.zst
+2026-10-22T00:12:05.5417319Z info: installing /home/runner/.elan/toolchains/leanprover--lean4---v4.30.0
+2026-10-22T00:12:14.1614899Z info: mathlib: cloning https://github.com/leanprover-community/mathlib4
+2026-10-22T00:12:41.8378023Z info: mathlib: checking out revision 'c5ea00351c28e24afc9f0f84379aa41082b1188f'
+2026-10-22T00:12:43.4869741Z info: plausible: cloning https://github.com/leanprover-community/plausible
+2026-10-22T00:12:43.6921841Z info: plausible: checking out revision 'a456461b368b71d2accd95234832cd9c174b5437'
+2026-10-22T00:12:43.7032089Z info: LeanSearchClient: cloning https://github.com/leanprover-community/LeanSearchClient
+2026-10-22T00:12:43.8662999Z info: LeanSearchClient: checking out revision 'c5d5b8fe6e5158def25cd28eb94e4141ad97c843'
+2026-10-22T00:12:43.8758960Z info: importGraph: cloning https://github.com/leanprover-community/import-graph
+2026-10-22T00:12:44.0946314Z info: importGraph: checking out revision '515cf9d0c00ece5e661f6de4326a53dedc1e8ea1'
+2026-10-22T00:12:44.1087721Z info: proofwidgets: cloning https://github.com/leanprover-community/ProofWidgets4
+2026-10-22T00:12:44.4255350Z info: proofwidgets: checking out revision 'a84b3e2475d5c5ab979567b1ad8aea21b764bcf8'
+2026-10-22T00:12:44.9437723Z info: aesop: cloning https://github.com/leanprover-community/aesop
+2026-10-22T00:12:45.4028857Z info: aesop: checking out revision '558915ae105bfd8074e22d597613d1961822adc2'
+2026-10-22T00:12:45.4237772Z info: Qq: cloning https://github.com/leanprover-community/quote4
+2026-10-22T00:12:45.6932837Z info: Qq: checking out revision 'a6e6c34c4ef182f83b219a3a5a385f51f44bdc4c'
+2026-10-22T00:12:45.7036803Z info: batteries: cloning https://github.com/leanprover-community/batteries
+2026-10-22T00:12:50.3961636Z info: batteries: checking out revision '32dc18cde3684679f3c003de608743b57498c56f'
+2026-10-22T00:12:50.4262809Z info: Cli: cloning https://github.com/leanprover/lean4-cli
+2026-10-22T00:12:50.6492025Z info: Cli: checking out revision '6b907cf12b2e445ccb7c24bc208ef04a1f39e84c'
+2026-10-22T00:12:50.9617355Z ✔ [2/24] Built Cache.Init (257ms)
+2026-10-22T00:12:51.0618824Z ✔ [3/24] Built Cache.Lean (305ms)
+2026-10-22T00:12:51.0619828Z ✔ [4/24] Built Cache.Init:c.o (115ms)
+2026-10-22T00:12:51.1620493Z ✔ [5/24] Built Cache.Lean:c.o (113ms)
+2026-10-22T00:12:54.0661307Z ✔ [13/24] Built Batteries.Data.String.Basic:c.o (125ms)
+2026-10-22T00:12:54.1655815Z ✔ [14/24] Built Batteries.Data.Array.Match:c.o (259ms)
+2026-10-22T00:12:54.1656270Z ✔ [15/24] Built Batteries.Data.String.Matcher:c.o (222ms)
+2026-10-22T00:12:55.3668052Z ✔ [16/24] Built Cache.IO (1.4s)
+2026-10-22T00:12:55.9690512Z ✔ [17/24] Built Cache.Hashing (682ms)
+2026-10-22T00:12:56.4685526Z ✔ [18/24] Built Cache.IO:c.o (1.1s)
+2026-10-22T00:12:56.4686345Z ✔ [19/24] Built Cache.Hashing:c.o (414ms)
+2026-10-22T00:12:57.6715099Z ✔ [20/24] Built Cache.Requests (1.7s)
+2026-10-22T00:12:58.4723949Z ✔ [21/24] Built Cache.Main (771ms)
+2026-10-22T00:12:58.9730178Z ✔ [22/24] Built Cache.Main:c.o (469ms)
+2026-10-22T00:12:59.3734130Z ✔ [23/24] Built Cache.Requests:c.o (1.7s)
+2026-10-22T00:12:59.9764075Z ✔ [24/24] Built cache:exe (608ms)
+2026-10-22T00:13:02.3014086Z Current branch: HEAD
+2026-10-22T00:13:02.3014610Z Using cache (Azure) from origin: (some leanprover-community/mathlib4)
+2026-10-22T00:13:02.3015224Z Attempting to download 8459 file(s) from leanprover-community/mathlib4 cache
+2026-10-22T00:13:02.7166041Z 
+2026-10-22T00:13:02.8182617Z Downloaded: 1 file(s) [attempted 1/8459 = 0%, 114 KB/s], Decompressed: 0
+2026-10-22T00:13:02.9170116Z Downloaded: 69 file(s) [attempted 69/8459 = 0%, 754 KB/s], Decompressed: 15
+2026-10-22T00:13:03.0191498Z Downloaded: 196 file(s) [attempted 196/8459 = 2%, 638 KB/s], Decompressed: 45
+2026-10-22T00:13:03.1184267Z Downloaded: 342 file(s) [attempted 342/8459 = 4%, 342 KB/s], Decompressed: 45
+2026-10-22T00:13:03.2195671Z Downloaded: 494 file(s) [attempted 494/8459 = 5%, 374 KB/s], Decompressed: 121
+2026-10-22T00:13:03.3263598Z Downloaded: 654 file(s) [attempted 654/8459 = 7%, 753 KB/s], Decompressed: 121
+2026-10-22T00:13:03.4302328Z Downloaded: 798 file(s) [attempted 798/8459 = 9%, 226 KB/s], Decompressed: 121
+2026-10-22T00:13:03.5310060Z Downloaded: 958 file(s) [attempted 958/8459 = 11%, 570 KB/s], Decompressed: 121
+2026-10-22T00:13:03.6306363Z Downloaded: 1111 file(s) [attempted 1111/8459 = 13%, 930 KB/s], Decompressed: 121
+2026-10-22T00:13:03.7307445Z Downloaded: 1269 file(s) [attempted 1269/8459 = 15%, 410 KB/s], Decompressed: 121
+2026-10-22T00:13:03.8439286Z Downloaded: 1413 file(s) [attempted 1413/8459 = 16%, 1431 KB/s], Decompressed: 121
+2026-10-22T00:13:03.9431785Z Downloaded: 1481 file(s) [attempted 1481/8459 = 17%, 585 KB/s], Decompressed: 121
+2026-10-22T00:13:04.0443951Z Downloaded: 1615 file(s) [attempted 1615/8459 = 19%, 703 KB/s], Decompressed: 426
+2026-10-22T00:13:04.1473128Z Downloaded: 1751 file(s) [attempted 1751/8459 = 20%, 2574 KB/s], Decompressed: 426
+2026-10-22T00:13:04.2482755Z Downloaded: 1891 file(s) [attempted 1891/8459 = 22%, 2647 KB/s], Decompressed: 426
+2026-10-22T00:13:04.3490785Z Downloaded: 2038 file(s) [attempted 2038/8459 = 24%, 1416 KB/s], Decompressed: 426
+2026-10-22T00:13:04.4486054Z Downloaded: 2184 file(s) [attempted 2184/8459 = 25%, 4366 KB/s], Decompressed: 426
+2026-10-22T00:13:04.5491098Z Downloaded: 2333 file(s) [attempted 2333/8459 = 27%, 603 KB/s], Decompressed: 426
+2026-10-22T00:13:04.6505813Z Downloaded: 2477 file(s) [attempted 2477/8459 = 29%, 1073 KB/s], Decompressed: 426
+2026-10-22T00:13:04.7489835Z Downloaded: 2627 file(s) [attempted 2627/8459 = 31%, 1645 KB/s], Decompressed: 426
+2026-10-22T00:13:04.8500968Z Downloaded: 2783 file(s) [attempted 2783/8459 = 32%, 1826 KB/s], Decompressed: 426
+2026-10-22T00:13:04.9508333Z Downloaded: 2943 file(s) [attempted 2943/8459 = 34%, 678 KB/s], Decompressed: 426
+2026-10-22T00:13:05.0519927Z Downloaded: 3096 file(s) [attempted 3096/8459 = 36%, 551 KB/s], Decompressed: 426
+2026-10-22T00:13:05.1529951Z Downloaded: 3247 file(s) [attempted 3247/8459 = 38%, 5127 KB/s], Decompressed: 426
+2026-10-22T00:13:05.2981401Z Downloaded: 3403 file(s) [attempted 3403/8459 = 40%, 853 KB/s], Decompressed: 426
+2026-10-22T00:13:05.4010489Z Downloaded: 3484 file(s) [attempted 3484/8459 = 41%, 1314 KB/s], Decompressed: 426
+2026-10-22T00:13:05.5010608Z Downloaded: 3618 file(s) [attempted 3618/8459 = 42%, 4090 KB/s], Decompressed: 426
+2026-10-22T00:13:05.6064455Z Downloaded: 3777 file(s) [attempted 3777/8459 = 44%, 1125 KB/s], Decompressed: 426
+2026-10-22T00:13:05.7066475Z Downloaded: 3930 file(s) [attempted 3930/8459 = 46%, 1177 KB/s], Decompressed: 426
+2026-10-22T00:13:05.8086349Z Downloaded: 4086 file(s) [attempted 4086/8459 = 48%, 5513 KB/s], Decompressed: 426
+2026-10-22T00:13:05.9139815Z Downloaded: 4243 file(s) [attempted 4243/8459 = 50%, 1570 KB/s], Decompressed: 426
+2026-10-22T00:13:06.0135894Z Downloaded: 4381 file(s) [attempted 4381/8459 = 51%, 917 KB/s], Decompressed: 426
+2026-10-22T00:13:06.1137151Z Downloaded: 4550 file(s) [attempted 4550/8459 = 53%, 4863 KB/s], Decompressed: 426
+2026-10-22T00:13:06.2137049Z Downloaded: 4703 file(s) [attempted 4703/8459 = 55%, 105 KB/s], Decompressed: 426
+2026-10-22T00:13:06.3154493Z Downloaded: 4856 file(s) [attempted 4856/8459 = 57%, 255 KB/s], Decompressed: 426
+2026-10-22T00:13:06.4400762Z Downloaded: 5000 file(s) [attempted 5000/8459 = 59%, 292 KB/s], Decompressed: 426
+2026-10-22T00:13:06.5400633Z Downloaded: 5106 file(s) [attempted 5106/8459 = 60%, 4736 KB/s], Decompressed: 426
+2026-10-22T00:13:06.6420543Z Downloaded: 5246 file(s) [attempted 5246/8459 = 62%, 671 KB/s], Decompressed: 426
+2026-10-22T00:13:06.9168971Z Downloaded: 5389 file(s) [attempted 5389/8459 = 63%, 267 KB/s], Decompressed: 426
+2026-10-22T00:13:07.0171606Z Downloaded: 5468 file(s) [attempted 5468/8459 = 64%, 195 KB/s], Decompressed: 426
+2026-10-22T00:13:07.1185938Z Downloaded: 5632 file(s) [attempted 5632/8459 = 66%, 1132 KB/s], Decompressed: 426
+2026-10-22T00:13:07.2188435Z Downloaded: 5783 file(s) [attempted 5783/8459 = 68%, 372 KB/s], Decompressed: 426
+2026-10-22T00:13:07.3206839Z Downloaded: 5936 file(s) [attempted 5936/8459 = 70%, 342 KB/s], Decompressed: 426
+2026-10-22T00:13:07.4221267Z Downloaded: 6094 file(s) [attempted 6094/8459 = 72%, 165 KB/s], Decompressed: 426
+2026-10-22T00:13:07.5250514Z Downloaded: 6247 file(s) [attempted 6247/8459 = 73%, 184 KB/s], Decompressed: 426
+2026-10-22T00:13:07.6254122Z Downloaded: 6407 file(s) [attempted 6407/8459 = 75%, 135 KB/s], Decompressed: 1582
+2026-10-22T00:13:07.7291357Z Downloaded: 6565 file(s) [attempted 6565/8459 = 77%, 5681 KB/s], Decompressed: 1582
+2026-10-22T00:13:07.8277335Z Downloaded: 6713 file(s) [attempted 6713/8459 = 79%, 104 KB/s], Decompressed: 1582
+2026-10-22T00:13:07.9276290Z Downloaded: 6871 file(s) [attempted 6871/8459 = 81%, 401 KB/s], Decompressed: 1582
+2026-10-22T00:13:08.0289383Z Downloaded: 7023 file(s) [attempted 7023/8459 = 83%, 1859 KB/s], Decompressed: 1582
+2026-10-22T00:13:08.1282064Z Downloaded: 7180 file(s) [attempted 7180/8459 = 84%, 1140 KB/s], Decompressed: 1582
+2026-10-22T00:13:08.2285519Z Downloaded: 7339 file(s) [attempted 7339/8459 = 86%, 254 KB/s], Decompressed: 1582
+2026-10-22T00:13:08.3291378Z Downloaded: 7482 file(s) [attempted 7482/8459 = 88%, 2002 KB/s], Decompressed: 1582
+2026-10-22T00:13:08.4290158Z Downloaded: 7623 file(s) [attempted 7623/8459 = 90%, 786 KB/s], Decompressed: 1582
+2026-10-22T00:13:08.5300412Z Downloaded: 7783 file(s) [attempted 7783/8459 = 92%, 550 KB/s], Decompressed: 1582
+2026-10-22T00:13:08.6286458Z Downloaded: 7894 file(s) [attempted 7894/8459 = 93%, 952 KB/s], Decompressed: 1582
+2026-10-22T00:13:08.7300597Z Downloaded: 8027 file(s) [attempted 8027/8459 = 94%, 2296 KB/s], Decompressed: 1582
+2026-10-22T00:13:08.8330704Z Downloaded: 8160 file(s) [attempted 8160/8459 = 96%, 783 KB/s], Decompressed: 1582
+2026-10-22T00:13:08.9820091Z Downloaded: 8311 file(s) [attempted 8311/8459 = 98%, 2488 KB/s], Decompressed: 1582
+2026-10-22T00:13:08.9844484Z Downloaded: 8457 file(s) [attempted 8457/8459 = 99%, 289 KB/s], Decompressed: 1582
+2026-10-22T00:13:08.9847803Z Downloaded: 8459 file(s) [attempted 8459/8459 = 100%, 289 KB/s], Decompressed: 1582
+2026-10-22T00:14:39.0653595Z Decompressed 8459 file(s)
+2026-10-22T00:14:39.0654178Z Decompressing 8459 file(s)
+2026-10-22T00:14:39.0654758Z Decompressed in 58716 ms
+2026-10-22T00:14:39.0655031Z Completed successfully!
+2026-10-22T00:14:46.1230391Z ✔ [8475/8506] Built JurisLean.FiniteMonotoneIteration (3.1s)
+2026-10-22T00:14:48.0228515Z ✔ [8476/8506] Built JurisLean.FullMath.Core.Foundations (4.7s)
+2026-10-22T00:14:49.1300404Z ✔ [8477/8506] Built JurisLean.HornDefinitions (3.0s)
+2026-10-22T00:14:49.8250214Z ✔ [8478/8506] Built JurisLean.Candidates.Final20261021.Interfaces (6.5s)
+2026-10-22T00:14:52.0268911Z ✔ [8479/8506] Built JurisLean.HornFixedPoint (2.0s)
+2026-10-22T00:14:53.8341767Z ⚠ [8480/8506] Built JurisLean.FullMath.Numeric.Quantities (5.8s)
+2026-10-22T00:14:53.8360613Z warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+2026-10-22T00:14:53.8397163Z 
+2026-10-22T00:14:53.8419891Z Note: This linter can be disabled with `set_option linter.unusedVariables false`
+2026-10-22T00:14:53.8439993Z warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+2026-10-22T00:14:53.8449368Z 
+2026-10-22T00:14:53.8479890Z Note: This linter can be disabled with `set_option linter.unusedVariables false`
+2026-10-22T00:14:53.9340499Z ✔ [8481/8506] Built JurisLean.FullMath.Numeric.Intervals (5.9s)
+2026-10-22T00:14:56.0355300Z ⚠ [8482/8506] Built JurisLean.Candidates.Final20261021.Policy (6.2s)
+2026-10-22T00:14:56.0379811Z warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: this tactic is never executed
+2026-10-22T00:14:56.0409364Z 
+2026-10-22T00:14:56.0439761Z Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+2026-10-22T00:14:56.0500117Z warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: 'ring' tactic does nothing
+2026-10-22T00:14:56.0529415Z 
+2026-10-22T00:14:56.0540142Z Note: This linter can be disabled with `set_option linter.unusedTactic false`
+2026-10-22T00:14:56.0559696Z warning: JurisLean/Candidates/Final20261021/Policy.lean:25:40: unused variable `hw`
+2026-10-22T00:14:56.0569555Z 
+2026-10-22T00:14:56.0599640Z Note: This linter can be disabled with `set_option linter.unusedVariables false`
+2026-10-22T00:14:56.0619625Z warning: JurisLean/Candidates/Final20261021/Policy.lean:25:53: unused variable `hc`
+2026-10-22T00:14:56.0629378Z 
+2026-10-22T00:14:56.0659677Z Note: This linter can be disabled with `set_option linter.unusedVariables false`
+2026-10-22T00:14:58.0400751Z ✔ [8483/8506] Built JurisLean.Candidates.Final20261021.Behavior (5.9s)
+2026-10-22T00:14:59.3420604Z ✔ [8484/8506] Built JurisLean.Candidates.Final20261021.Progress (5.5s)
+2026-10-22T00:15:00.2418665Z ⚠ [8485/8506] Built JurisLean.Candidates.Final20261021.Learning (6.4s)
+2026-10-22T00:15:00.2450214Z warning: JurisLean/Candidates/Final20261021/Learning.lean:86:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+2026-10-22T00:15:00.2469526Z 
+2026-10-22T00:15:00.2499883Z Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+2026-10-22T00:15:01.7450633Z ✔ [8486/8506] Built JurisLean.Candidates.Final20261021.EvidenceProcedure (5.7s)
+2026-10-22T00:15:03.7480554Z ✔ [8487/8506] Built JurisLean.Candidates.Final20261021.Temporal (5.7s)
+2026-10-22T00:15:05.1560550Z ✔ [8488/8506] Built JurisLean.Candidates.Final20261021.Transactions (5.8s)
+2026-10-22T00:15:05.8597134Z ✔ [8489/8506] Built JurisLean.Candidates.Final20261021.Harness (5.6s)
+2026-10-22T00:15:07.3630556Z ✔ [8490/8506] Built JurisLean.Candidates.Final20261021.Representation (5.6s)
+2026-10-22T00:15:09.2680671Z ✔ [8491/8506] Built JurisLean.Candidates.Final20261021.Compiler (5.5s)
+2026-10-22T00:15:10.7710762Z ✔ [8492/8506] Built JurisLean.Seams.UnifiedQuantities (5.6s)
+2026-10-22T00:15:11.4732805Z ✔ [8493/8506] Built JurisLean.Candidates.Final20261021.RSI (5.6s)
+2026-10-22T00:15:13.6776484Z ✔ [8494/8506] Built JurisLean.Candidates.Final20261021.Probability (6.3s)
+2026-10-22T00:15:15.4816458Z ✔ [8495/8506] Built JurisLean.Candidates.Final20261021.Calibration (6.2s)
+2026-10-22T00:15:16.1900706Z ✔ [8496/8506] Built JurisLean.Candidates.Final20261021.Authorization (5.4s)
+2026-10-22T00:15:20.1944698Z ✔ [8497/8506] Built JurisLean.Seams.UnifiedQuantLedger (8.8s)
+2026-10-22T00:15:21.4984330Z ✔ [8498/8506] Built JurisLean.Candidates.Final20261021.Decision (7.9s)
+2026-10-22T00:15:22.2982539Z ✔ [8499/8506] Built JurisLean.Candidates.Final20261021.Feedback (6.2s)
+2026-10-22T00:15:25.8063998Z ✔ [8500/8506] Built JurisLean.Candidates.Final20261021.Ledger (5.6s)
+2026-10-22T00:15:26.3068934Z ✔ [8501/8506] Built JurisLean.Candidates.Final20261021.Iteration (3.0s)
+2026-10-22T00:15:29.5106570Z ✔ [8502/8506] Built JurisLean.Candidates.Final20261021.Trace (3.7s)
+2026-10-22T00:15:33.8152171Z ✔ [8503/8506] Built JurisLean.Candidates.Final20261021.Pipeline (4.3s)
+2026-10-22T00:15:37.8207801Z ✖ [8504/8506] Building JurisLean.Candidates.Final20261021.Acceptance (4.0s)
+2026-10-22T00:15:37.8223061Z trace: .> LEAN_PATH=/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/lean /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean -o /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Acceptance.olean -i /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Acceptance.ilean -c /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Acceptance.c --setup /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Acceptance.setup.json --json
+2026-10-22T00:15:37.8232395Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:104:61: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8233099Z   Ledger.consume_ext opening opening (request 1) true Ledger.Submission.submit =
+2026-10-22T00:15:37.8233711Z     Ledger.Outcome.committed (Ledger.commitPayment opening (request 1)).1 post1
+2026-10-22T00:15:37.8234174Z because its `Decidable` instance
+2026-10-22T00:15:37.8234724Z   Ledger.instDecidableEqOutcome (Ledger.consume_ext opening opening (request 1) true Ledger.Submission.submit)
+2026-10-22T00:15:37.8235433Z     (Ledger.Outcome.committed (Ledger.commitPayment opening (request 1)).1 post1)
+2026-10-22T00:15:37.8235885Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8236104Z 
+2026-10-22T00:15:37.8245089Z After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `decidable_of_iff`, `decidable_of_iff'`, `instDecidableEqBitVec`, `instDecidableEqBool`, `instDecidableEqFin`, `instDecidableEqList`, `instDecidableEqNat`, `instDecidableEqRat`, `instDecidableEqString`, `instDecidableEqUInt8`, `instDecidableNot`, `instDecidableOr`, `BitVec.decEq`, `Bool.decEq`, `Finset.decidableEq`, `Finset.decidableMem`, `Int.decEq`, `Int.decLe`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.decidablePerm`, `List.hasDecEq`, `List.instDecidableMemOfLawfulBEq`, `Multiset.decidableEq`, `Multiset.decidableMem`, `Multiset.instDecidableRListOfDecidableEq`, `Nat.decEq`, `Nat.decLe`, `Nat.decLt`, `Option.instDecidableEq`, `Rat.instDecidableLt`, `String.decEq`, `UInt8.decEq`, `instDecidableEqRat.decEq`, `Multiset.decidableMem._aux_1`, `instDecidableEqAmount`, `instDecidableEqAmountTag`, `instDecidableEqApplicable`, `instDecidableEqCaseId`, `instDecidableEqDebtRecord`, `instDecidableEqEventId`, `instDecidableEqGamma`, `instDecidableEqInstant`, `instDecidableEqJudgment`, `instDecidableEqLawDate`, `instDecidableEqPartyId`, `instDecidableEqPaymentId`, `instDecidableEqPaymentPayload`, `instDecidableEqPostStateHandle`, `instDecidableEqProcedure`, `instDecidableEqRelationId`, `instDecidableEqResult`, `instDecidableEqSourceRef`, `Ledger.instDecidableEqOutcome`, `Ledger.instDecidableEqReceipt`, `Ledger.instDecidableEqState`, `Temporal.instDecidableEqVersionRecord`, `instDecidableEqAmount.decEq`, `instDecidableEqAmountTag.decEq`, `instDecidableEqCaseId.decEq`, `instDecidableEqDebtRecord.decEq`, `instDecidableEqEventId.decEq`, `instDecidableEqGamma.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqLawDate.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqPaymentId.decEq`, `instDecidableEqPaymentPayload.decEq`, `instDecidableEqPostStateHandle.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqResult.decEq`, `instDecidableEqSourceRef.decEq`, `Ledger.instDecidableEqOutcome.decEq`, `Ledger.instDecidableEqReceipt.decEq`, `Ledger.instDecidableEqState.decEq`, and `Temporal.instDecidableEqVersionRecord.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8254534Z   match ((Ledger.balance opening.state).sub (min (request 1).payload.amount.value (Ledger.balance opening.state))).num,
+2026-10-22T00:15:37.8255369Z     ((Ledger.balance opening.state).sub (min (request 1).payload.amount.value (Ledger.balance opening.state))).num with
+2026-10-22T00:15:37.8255938Z   | Int.ofNat a, Int.ofNat b =>
+2026-10-22T00:15:37.8256424Z     match decEq a b with
+2026-10-22T00:15:37.8256774Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8257049Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8257370Z   | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+2026-10-22T00:15:37.8257738Z   | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+2026-10-22T00:15:37.8258050Z   | Int.negSucc a, Int.negSucc b =>
+2026-10-22T00:15:37.8258356Z     match decEq a b with
+2026-10-22T00:15:37.8258619Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8258903Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8259559Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:107:59: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8260235Z   Ledger.consume_ext post1 post1 (request 2) true Ledger.Submission.submit =
+2026-10-22T00:15:37.8260800Z     Ledger.Outcome.committed (Ledger.commitPayment post1 (request 2)).1 post2
+2026-10-22T00:15:37.8261242Z because its `Decidable` instance
+2026-10-22T00:15:37.8261773Z   Ledger.instDecidableEqOutcome (Ledger.consume_ext post1 post1 (request 2) true Ledger.Submission.submit)
+2026-10-22T00:15:37.8262472Z     (Ledger.Outcome.committed (Ledger.commitPayment post1 (request 2)).1 post2)
+2026-10-22T00:15:37.8262931Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8263147Z 
+2026-10-22T00:15:37.8268143Z After unfolding the instances `decEq`, `instDecidableEqBitVec`, `instDecidableEqBool`, `instDecidableEqFin`, `instDecidableEqList`, `instDecidableEqNat`, `instDecidableEqRat`, `instDecidableEqString`, `instDecidableEqUInt8`, `instDecidableNot`, `instDecidableOr`, `BitVec.decEq`, `Bool.decEq`, `Int.decEq`, `Int.instDecidableEq`, `List.hasDecEq`, `Nat.decEq`, `Nat.decLe`, `Nat.decLt`, `String.decEq`, `UInt8.decEq`, `instDecidableEqRat.decEq`, `instDecidableEqAmount`, `instDecidableEqCaseId`, `instDecidableEqDebtRecord`, `instDecidableEqGamma`, `instDecidableEqInstant`, `instDecidableEqLawDate`, `instDecidableEqPartyId`, `instDecidableEqPaymentId`, `instDecidableEqPostStateHandle`, `instDecidableEqRelationId`, `Ledger.instDecidableEqOutcome`, `Ledger.instDecidableEqState`, `instDecidableEqAmount.decEq`, `instDecidableEqCaseId.decEq`, `instDecidableEqDebtRecord.decEq`, `instDecidableEqGamma.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqLawDate.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqPaymentId.decEq`, `instDecidableEqPostStateHandle.decEq`, `instDecidableEqRelationId.decEq`, `Ledger.instDecidableEqOutcome.decEq`, and `Ledger.instDecidableEqState.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8273674Z   match Ledger.consume_ext post1 post1 (request 2) true Ledger.Submission.submit,
+2026-10-22T00:15:37.8274279Z     Ledger.Outcome.committed (Ledger.commitPayment post1 (request 2)).1 post2 with
+2026-10-22T00:15:37.8274827Z   | Ledger.Outcome.committed a a_1, Ledger.Outcome.committed b b_1 =>
+2026-10-22T00:15:37.8275486Z     if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8276123Z   | Ledger.Outcome.committed receipt post, Ledger.Outcome.replay receipt_1 => isFalse ⋯
+2026-10-22T00:15:37.8276897Z   | Ledger.Outcome.committed receipt post, Ledger.Outcome.rejectedNoCommit attempt reason => isFalse ⋯
+2026-10-22T00:15:37.8277694Z   | Ledger.Outcome.committed receipt post, Ledger.Outcome.conflict registered requested => isFalse ⋯
+2026-10-22T00:15:37.8278450Z   | Ledger.Outcome.committed receipt post, Ledger.Outcome.unknownCommit key attempt => isFalse ⋯
+2026-10-22T00:15:37.8279296Z   | Ledger.Outcome.committed receipt post, Ledger.Outcome.pending reason => isFalse ⋯
+2026-10-22T00:15:37.8279976Z   | Ledger.Outcome.replay receipt, Ledger.Outcome.committed receipt_1 post => isFalse ⋯
+2026-10-22T00:15:37.8280729Z   | Ledger.Outcome.replay a, Ledger.Outcome.replay b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8281463Z   | Ledger.Outcome.replay receipt, Ledger.Outcome.rejectedNoCommit attempt reason => isFalse ⋯
+2026-10-22T00:15:37.8282187Z   | Ledger.Outcome.replay receipt, Ledger.Outcome.conflict registered requested => isFalse ⋯
+2026-10-22T00:15:37.8283123Z   | Ledger.Outcome.replay receipt, Ledger.Outcome.unknownCommit key attempt => isFalse ⋯
+2026-10-22T00:15:37.8283753Z   | Ledger.Outcome.replay receipt, Ledger.Outcome.pending reason => isFalse ⋯
+2026-10-22T00:15:37.8284456Z   | Ledger.Outcome.rejectedNoCommit attempt reason, Ledger.Outcome.committed receipt post => isFalse ⋯
+2026-10-22T00:15:37.8285214Z   | Ledger.Outcome.rejectedNoCommit attempt reason, Ledger.Outcome.replay receipt => isFalse ⋯
+2026-10-22T00:15:37.8285881Z   | Ledger.Outcome.rejectedNoCommit a a_1, Ledger.Outcome.rejectedNoCommit b b_1 =>
+2026-10-22T00:15:37.8286526Z     if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8287242Z   | Ledger.Outcome.rejectedNoCommit attempt reason, Ledger.Outcome.conflict registered requested => isFalse ⋯
+2026-10-22T00:15:37.8288089Z   | Ledger.Outcome.rejectedNoCommit attempt reason, Ledger.Outcome.unknownCommit key attempt_1 => isFalse ⋯
+2026-10-22T00:15:37.8288900Z   | Ledger.Outcome.rejectedNoCommit attempt reason, Ledger.Outcome.pending reason_1 => isFalse ⋯
+2026-10-22T00:15:37.8289831Z   | Ledger.Outcome.conflict registered requested, Ledger.Outcome.committed receipt post => isFalse ⋯
+2026-10-22T00:15:37.8290566Z   | Ledger.Outcome.conflict registered requested, Ledger.Outcome.replay receipt => isFalse ⋯
+2026-10-22T00:15:37.8291354Z   | Ledger.Outcome.conflict registered requested, Ledger.Outcome.rejectedNoCommit attempt reason => isFalse ⋯
+2026-10-22T00:15:37.8292015Z   | Ledger.Outcome.conflict a a_1, Ledger.Outcome.conflict b b_1 =>
+2026-10-22T00:15:37.8292600Z     if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8293283Z   | Ledger.Outcome.conflict registered requested, Ledger.Outcome.unknownCommit key attempt => isFalse ⋯
+2026-10-22T00:15:37.8294030Z   | Ledger.Outcome.conflict registered requested, Ledger.Outcome.pending reason => isFalse ⋯
+2026-10-22T00:15:37.8294764Z   | Ledger.Outcome.unknownCommit key attempt, Ledger.Outcome.committed receipt post => isFalse ⋯
+2026-10-22T00:15:37.8295476Z   | Ledger.Outcome.unknownCommit key attempt, Ledger.Outcome.replay receipt => isFalse ⋯
+2026-10-22T00:15:37.8296230Z   | Ledger.Outcome.unknownCommit key attempt, Ledger.Outcome.rejectedNoCommit attempt_1 reason => isFalse ⋯
+2026-10-22T00:15:37.8297045Z   | Ledger.Outcome.unknownCommit key attempt, Ledger.Outcome.conflict registered requested => isFalse ⋯
+2026-10-22T00:15:37.8297866Z   | Ledger.Outcome.unknownCommit a a_1, Ledger.Outcome.unknownCommit b b_1 =>
+2026-10-22T00:15:37.8298471Z     if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8299314Z   | Ledger.Outcome.unknownCommit key attempt, Ledger.Outcome.pending reason => isFalse ⋯
+2026-10-22T00:15:37.8300026Z   | Ledger.Outcome.pending reason, Ledger.Outcome.committed receipt post => isFalse ⋯
+2026-10-22T00:15:37.8300651Z   | Ledger.Outcome.pending reason, Ledger.Outcome.replay receipt => isFalse ⋯
+2026-10-22T00:15:37.8301328Z   | Ledger.Outcome.pending reason, Ledger.Outcome.rejectedNoCommit attempt reason_1 => isFalse ⋯
+2026-10-22T00:15:37.8302063Z   | Ledger.Outcome.pending reason, Ledger.Outcome.conflict registered requested => isFalse ⋯
+2026-10-22T00:15:37.8302744Z   | Ledger.Outcome.pending reason, Ledger.Outcome.unknownCommit key attempt => isFalse ⋯
+2026-10-22T00:15:37.8303509Z   | Ledger.Outcome.pending a, Ledger.Outcome.pending b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8304271Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:111:87: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8304851Z   Ledger.balance post1.state = 3 ∧
+2026-10-22T00:15:37.8305468Z     Ledger.balance post2.state = 0 ∧ post2.state.allocated = 10 ∧ post2.state.paid = 14 ∧ post2.state.surplus = 4
+2026-10-22T00:15:37.8306019Z because its `Decidable` instance
+2026-10-22T00:15:37.8306299Z   instDecidableAnd
+2026-10-22T00:15:37.8306902Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8307109Z 
+2026-10-22T00:15:37.8307760Z After unfolding the instances `instDecidableAnd`, `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8308879Z   match ((Ledger.balance opening.state).sub (min (request 1).payload.amount.value (Ledger.balance opening.state))).num,
+2026-10-22T00:15:37.8309709Z     ↑3 with
+2026-10-22T00:15:37.8309919Z   | Int.ofNat a, Int.ofNat b =>
+2026-10-22T00:15:37.8310191Z     match decEq a b with
+2026-10-22T00:15:37.8310464Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8310736Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8311058Z   | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+2026-10-22T00:15:37.8311417Z   | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+2026-10-22T00:15:37.8311733Z   | Int.negSucc a, Int.negSucc b =>
+2026-10-22T00:15:37.8312021Z     match decEq a b with
+2026-10-22T00:15:37.8312283Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8312565Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8313077Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:115:71: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8313696Z   Ledger.forms post2.state debt.relation = true ∧
+2026-10-22T00:15:37.8314386Z     Ledger.balance post2.state = 0 ∧ post2.state.claim = Applicable.unknown ∧ post2.state.procedure = Procedure.open
+2026-10-22T00:15:37.8314962Z because its `Decidable` instance
+2026-10-22T00:15:37.8315229Z   instDecidableAnd
+2026-10-22T00:15:37.8315497Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8315698Z 
+2026-10-22T00:15:37.8317152Z After unfolding the instances `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `instDecidableEqRat`, `Bool.decEq`, `Int.decEq`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `instDecidableEqRat.decEq`, `instDecidableEqRelationId`, and `instDecidableEqRelationId.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8319046Z   match ((Ledger.balance post1.state).sub (min (request 2).payload.amount.value (Ledger.balance post1.state))).num,
+2026-10-22T00:15:37.8319742Z     ↑0 with
+2026-10-22T00:15:37.8319963Z   | Int.ofNat a, Int.ofNat b =>
+2026-10-22T00:15:37.8320230Z     match decEq a b with
+2026-10-22T00:15:37.8320491Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8320756Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8321064Z   | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+2026-10-22T00:15:37.8321551Z   | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+2026-10-22T00:15:37.8321855Z   | Int.negSucc a, Int.negSucc b =>
+2026-10-22T00:15:37.8322128Z     match decEq a b with
+2026-10-22T00:15:37.8322390Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8322654Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8323162Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:124:78: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8323868Z   Ledger.balance (Ledger.commitPayment opening (request 2)).2.state = 3 ∧
+2026-10-22T00:15:37.8324404Z     Ledger.balance (Ledger.commitPayment post1 (request 2)).2.state = 0
+2026-10-22T00:15:37.8324812Z because its `Decidable` instance
+2026-10-22T00:15:37.8325082Z   instDecidableAnd
+2026-10-22T00:15:37.8325325Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8325531Z 
+2026-10-22T00:15:37.8326179Z After unfolding the instances `instDecidableAnd`, `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8327294Z   match ((Ledger.balance opening.state).sub (min (request 2).payload.amount.value (Ledger.balance opening.state))).num,
+2026-10-22T00:15:37.8327888Z     ↑3 with
+2026-10-22T00:15:37.8328099Z   | Int.ofNat a, Int.ofNat b =>
+2026-10-22T00:15:37.8328361Z     match decEq a b with
+2026-10-22T00:15:37.8328616Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8328881Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8329457Z   | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+2026-10-22T00:15:37.8329803Z   | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+2026-10-22T00:15:37.8330103Z   | Int.negSucc a, Int.negSucc b =>
+2026-10-22T00:15:37.8330373Z     match decEq a b with
+2026-10-22T00:15:37.8330634Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8330909Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8331407Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:135:83: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8332106Z   Ledger.consume_ext opening opening (request 3 0) true Ledger.Submission.submit =
+2026-10-22T00:15:37.8332684Z       Ledger.Outcome.committed (Ledger.commitPayment opening (request 3 0)).1
+2026-10-22T00:15:37.8333203Z         (Ledger.commitPayment opening (request 3 0)).2 ∧
+2026-10-22T00:15:37.8333732Z     { value := 3 } ∈ (Ledger.commitPayment opening (request 3 0)).2.state.used ∧
+2026-10-22T00:15:37.8334258Z       Ledger.balance (Ledger.commitPayment opening (request 3 0)).2.state = 10
+2026-10-22T00:15:37.8334688Z because its `Decidable` instance
+2026-10-22T00:15:37.8334947Z   instDecidableAnd
+2026-10-22T00:15:37.8335203Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8335408Z 
+2026-10-22T00:15:37.8344396Z After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `decidable_of_iff`, `decidable_of_iff'`, `instDecidableAnd`, `instDecidableEqBitVec`, `instDecidableEqBool`, `instDecidableEqFin`, `instDecidableEqList`, `instDecidableEqNat`, `instDecidableEqRat`, `instDecidableEqString`, `instDecidableEqUInt8`, `instDecidableNot`, `instDecidableOr`, `BitVec.decEq`, `Bool.decEq`, `Finset.decidableEq`, `Finset.decidableMem`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.decidablePerm`, `List.hasDecEq`, `List.instDecidableMemOfLawfulBEq`, `Multiset.decidableEq`, `Multiset.decidableMem`, `Multiset.instDecidableRListOfDecidableEq`, `Nat.decEq`, `Nat.decLe`, `Nat.decLt`, `Option.instDecidableEq`, `Rat.instDecidableLt`, `String.decEq`, `UInt8.decEq`, `instDecidableEqRat.decEq`, `Multiset.decidableMem._aux_1`, `instDecidableEqAmount`, `instDecidableEqAmountTag`, `instDecidableEqApplicable`, `instDecidableEqCaseId`, `instDecidableEqDebtRecord`, `instDecidableEqEventId`, `instDecidableEqGamma`, `instDecidableEqInstant`, `instDecidableEqJudgment`, `instDecidableEqLawDate`, `instDecidableEqPartyId`, `instDecidableEqPaymentId`, `instDecidableEqPaymentPayload`, `instDecidableEqPostStateHandle`, `instDecidableEqProcedure`, `instDecidableEqRelationId`, `instDecidableEqResult`, `instDecidableEqSourceRef`, `Ledger.instDecidableEqOutcome`, `Ledger.instDecidableEqReceipt`, `Ledger.instDecidableEqState`, `Temporal.instDecidableEqVersionRecord`, `instDecidableEqAmount.decEq`, `instDecidableEqAmountTag.decEq`, `instDecidableEqCaseId.decEq`, `instDecidableEqDebtRecord.decEq`, `instDecidableEqEventId.decEq`, `instDecidableEqGamma.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqLawDate.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqPaymentId.decEq`, `instDecidableEqPaymentPayload.decEq`, `instDecidableEqPostStateHandle.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqResult.decEq`, `instDecidableEqSourceRef.decEq`, `Ledger.instDecidableEqOutcome.decEq`, `Ledger.instDecidableEqReceipt.decEq`, `Ledger.instDecidableEqState.decEq`, and `Temporal.instDecidableEqVersionRecord.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8353543Z   match
+2026-10-22T00:15:37.8354044Z     ((Ledger.balance opening.state).sub (min (request 3 0).payload.amount.value (Ledger.balance opening.state))).num,
+2026-10-22T00:15:37.8354613Z     ((Ledger.balance opening.state).sub
+2026-10-22T00:15:37.8355059Z         (min (request 3 0).payload.amount.value (Ledger.balance opening.state))).num with
+2026-10-22T00:15:37.8355508Z   | Int.ofNat a, Int.ofNat b =>
+2026-10-22T00:15:37.8355774Z     match decEq a b with
+2026-10-22T00:15:37.8356065Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8356334Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8356642Z   | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+2026-10-22T00:15:37.8357138Z   | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+2026-10-22T00:15:37.8357452Z   | Int.negSucc a, Int.negSucc b =>
+2026-10-22T00:15:37.8357729Z     match decEq a b with
+2026-10-22T00:15:37.8357988Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8358247Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8358753Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:160:65: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8359558Z   Ledger.consume_ext post2 post2 (request 1) false Ledger.Submission.submit =
+2026-10-22T00:15:37.8360104Z     Ledger.Outcome.replay (Ledger.commitPayment opening (request 1)).1
+2026-10-22T00:15:37.8360517Z because its `Decidable` instance
+2026-10-22T00:15:37.8361047Z   Ledger.instDecidableEqOutcome (Ledger.consume_ext post2 post2 (request 1) false Ledger.Submission.submit)
+2026-10-22T00:15:37.8361728Z     (Ledger.Outcome.replay (Ledger.commitPayment opening (request 1)).1)
+2026-10-22T00:15:37.8362148Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8362351Z 
+2026-10-22T00:15:37.8367172Z After unfolding the instances `decEq`, `instDecidableEqBitVec`, `instDecidableEqBool`, `instDecidableEqFin`, `instDecidableEqList`, `instDecidableEqNat`, `instDecidableEqRat`, `instDecidableEqString`, `instDecidableEqUInt8`, `instDecidableOr`, `BitVec.decEq`, `Bool.decEq`, `Int.decEq`, `Int.instDecidableEq`, `List.hasDecEq`, `Nat.decEq`, `Nat.decLe`, `Nat.decLt`, `String.decEq`, `UInt8.decEq`, `instDecidableEqRat.decEq`, `instDecidableEqAmount`, `instDecidableEqAmountTag`, `instDecidableEqCaseId`, `instDecidableEqEventId`, `instDecidableEqLawDate`, `instDecidableEqPartyId`, `instDecidableEqPaymentId`, `instDecidableEqPaymentPayload`, `instDecidableEqRelationId`, `instDecidableEqSourceRef`, `Ledger.instDecidableEqOutcome`, `Ledger.instDecidableEqReceipt`, `instDecidableEqAmount.decEq`, `instDecidableEqAmountTag.decEq`, `instDecidableEqCaseId.decEq`, `instDecidableEqEventId.decEq`, `instDecidableEqLawDate.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqPaymentId.decEq`, `instDecidableEqPaymentPayload.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqSourceRef.decEq`, `Ledger.instDecidableEqOutcome.decEq`, and `Ledger.instDecidableEqReceipt.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8372791Z   match ((Ledger.balance opening.state).sub (min (request 1).payload.amount.value (Ledger.balance opening.state))).num,
+2026-10-22T00:15:37.8373765Z     ((Ledger.balance opening.state).sub (min (request 1).payload.amount.value (Ledger.balance opening.state))).num with
+2026-10-22T00:15:37.8374329Z   | Int.ofNat a, Int.ofNat b =>
+2026-10-22T00:15:37.8374586Z     match decEq a b with
+2026-10-22T00:15:37.8374860Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8375130Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8375431Z   | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+2026-10-22T00:15:37.8375794Z   | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+2026-10-22T00:15:37.8376108Z   | Int.negSucc a, Int.negSucc b =>
+2026-10-22T00:15:37.8376396Z     match decEq a b with
+2026-10-22T00:15:37.8376650Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8376916Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8377427Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:168:49: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8378124Z   Ledger.auditReceipt (Ledger.commitPayment opening (request 1)).1 opening.state =
+2026-10-22T00:15:37.8378631Z     Result.rejected Error.stateConservationMismatch
+2026-10-22T00:15:37.8378988Z because its `Decidable` instance
+2026-10-22T00:15:37.8379911Z   instDecidableEqResult (Ledger.auditReceipt (Ledger.commitPayment opening (request 1)).1 opening.state)
+2026-10-22T00:15:37.8380385Z     (Result.rejected Error.stateConservationMismatch)
+2026-10-22T00:15:37.8380685Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8380842Z 
+2026-10-22T00:15:37.8381446Z After unfolding the instances `instDecidableAnd`, `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, `instDecidableEqRat.decEq`, `instDecidableEqResult`, and `instDecidableEqResult.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8383083Z   match Ledger.auditReceipt (Ledger.commitPayment opening (request 1)).1 opening.state,
+2026-10-22T00:15:37.8383652Z     Result.rejected Error.stateConservationMismatch with
+2026-10-22T00:15:37.8384341Z   | Result.known a, Result.known b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8384913Z   | Result.known value, Result.unknown reason => isFalse ⋯
+2026-10-22T00:15:37.8385450Z   | Result.known value, Result.rejected reason => isFalse ⋯
+2026-10-22T00:15:37.8385967Z   | Result.known value, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8386484Z   | Result.unknown reason, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8387129Z   | Result.unknown a, Result.unknown b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8387764Z   | Result.unknown reason, Result.rejected reason_1 => isFalse ⋯
+2026-10-22T00:15:37.8388333Z   | Result.unknown reason, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8388781Z   | Result.rejected reason, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8389296Z   | Result.rejected reason, Result.unknown reason_1 => isFalse ⋯
+2026-10-22T00:15:37.8389769Z   | Result.rejected a, Result.rejected b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8390179Z   | Result.rejected reason, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8390544Z   | Result.conflict left right, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8390890Z   | Result.conflict left right, Result.unknown reason => isFalse ⋯
+2026-10-22T00:15:37.8391245Z   | Result.conflict left right, Result.rejected reason => isFalse ⋯
+2026-10-22T00:15:37.8391549Z   | Result.conflict a a_1, Result.conflict b b_1 =>
+2026-10-22T00:15:37.8391931Z     if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8392420Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:176:43: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8392887Z   (Ledger.accrue post1.state 1).cash = post1.state.cash ∧
+2026-10-22T00:15:37.8393169Z     Ledger.auditAccrualReport post1.state
+2026-10-22T00:15:37.8393428Z         (let __src := post1.state;
+2026-10-22T00:15:37.8393811Z         { debt := __src.debt, formations := __src.formations, judgment := __src.judgment, procedure := __src.procedure,
+2026-10-22T00:15:37.8394550Z           claim := __src.claim, executionEligible := __src.executionEligible, initialDebt := __src.initialDebt,
+2026-10-22T00:15:37.8395036Z           newDebt := __src.newDebt, accrual := __src.accrual, allocated := __src.allocated,
+2026-10-22T00:15:37.8395512Z           writtenOff := __src.writtenOff, paid := 8, surplus := __src.surplus, cash := __src.cash, used := __src.used,
+2026-10-22T00:15:37.8395974Z           receipts := __src.receipts, rest := __src.rest, refundCash := __src.refundCash,
+2026-10-22T00:15:37.8396326Z           normHistory := __src.normHistory, env := __src.env }) =
+2026-10-22T00:15:37.8396627Z       Result.rejected Error.accrualCashCollapse
+2026-10-22T00:15:37.8396869Z because its `Decidable` instance
+2026-10-22T00:15:37.8397070Z   instDecidableAnd
+2026-10-22T00:15:37.8397263Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8397411Z 
+2026-10-22T00:15:37.8399851Z After unfolding the instances `decEq`, `instDecidableAnd`, `instDecidableEqBitVec`, `instDecidableEqBool`, `instDecidableEqFin`, `instDecidableEqList`, `instDecidableEqNat`, `instDecidableEqRat`, `instDecidableEqString`, `instDecidableEqUInt8`, `instDecidableOr`, `BitVec.decEq`, `Bool.decEq`, `Int.decEq`, `Int.instDecidableEq`, `List.hasDecEq`, `Nat.decEq`, `Nat.decLe`, `Nat.decLt`, `String.decEq`, `UInt8.decEq`, `instDecidableEqRat.decEq`, `instDecidableEqAmount`, `instDecidableEqAmountTag`, `instDecidableEqCashEvent`, `instDecidableEqEventId`, `instDecidableEqPartyId`, `instDecidableEqResult`, `instDecidableEqSourceRef`, `instDecidableEqAmount.decEq`, `instDecidableEqAmountTag.decEq`, `instDecidableEqCashEvent.decEq`, `instDecidableEqEventId.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqResult.decEq`, and `instDecidableEqSourceRef.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8402407Z   match
+2026-10-22T00:15:37.8402588Z     Ledger.auditAccrualReport post1.state
+2026-10-22T00:15:37.8402818Z       (let __src := post1.state;
+2026-10-22T00:15:37.8403190Z       { debt := __src.debt, formations := __src.formations, judgment := __src.judgment, procedure := __src.procedure,
+2026-10-22T00:15:37.8403713Z         claim := __src.claim, executionEligible := __src.executionEligible, initialDebt := __src.initialDebt,
+2026-10-22T00:15:37.8404167Z         newDebt := __src.newDebt, accrual := __src.accrual, allocated := __src.allocated,
+2026-10-22T00:15:37.8404626Z         writtenOff := __src.writtenOff, paid := 8, surplus := __src.surplus, cash := __src.cash, used := __src.used,
+2026-10-22T00:15:37.8405069Z         receipts := __src.receipts, rest := __src.rest, refundCash := __src.refundCash,
+2026-10-22T00:15:37.8405430Z         normHistory := __src.normHistory, env := __src.env }),
+2026-10-22T00:15:37.8405725Z     Result.rejected Error.accrualCashCollapse with
+2026-10-22T00:15:37.8406130Z   | Result.known a, Result.known b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8406497Z   | Result.known value, Result.unknown reason => isFalse ⋯
+2026-10-22T00:15:37.8406811Z   | Result.known value, Result.rejected reason => isFalse ⋯
+2026-10-22T00:15:37.8407145Z   | Result.known value, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8407480Z   | Result.unknown reason, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8407882Z   | Result.unknown a, Result.unknown b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8408278Z   | Result.unknown reason, Result.rejected reason_1 => isFalse ⋯
+2026-10-22T00:15:37.8408626Z   | Result.unknown reason, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8408968Z   | Result.rejected reason, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8409392Z   | Result.rejected reason, Result.unknown reason_1 => isFalse ⋯
+2026-10-22T00:15:37.8409805Z   | Result.rejected a, Result.rejected b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8410211Z   | Result.rejected reason, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8410565Z   | Result.conflict left right, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8411043Z   | Result.conflict left right, Result.unknown reason => isFalse ⋯
+2026-10-22T00:15:37.8411401Z   | Result.conflict left right, Result.rejected reason => isFalse ⋯
+2026-10-22T00:15:37.8411711Z   | Result.conflict a a_1, Result.conflict b b_1 =>
+2026-10-22T00:15:37.8412092Z     if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8412549Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:185:67: unexpected identifier; expected '}'
+2026-10-22T00:15:37.8413094Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:194:70: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8413575Z   Ledger.RestClaim post1.state restWitness = Result.known claimed ∧
+2026-10-22T00:15:37.8413997Z     Ledger.ExecEligible claimed { value := 2 } { value := 101 } = Result.known eligible ∧
+2026-10-22T00:15:37.8414416Z       eligible.cash = post1.state.cash ∧ eligible.refundCash = []
+2026-10-22T00:15:37.8414697Z because its `Decidable` instance
+2026-10-22T00:15:37.8414901Z   instDecidableAnd
+2026-10-22T00:15:37.8415107Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8415262Z 
+2026-10-22T00:15:37.8417245Z After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `instDecidableEqRat`, `instDecidableOr`, `Bool.decEq`, `Int.decEq`, `Int.decLe`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `Rat.instDecidableLt`, `instDecidableEqRat.decEq`, `instDecidableEqAmount`, `instDecidableEqDebtRecord`, `instDecidableEqPartyId`, `instDecidableEqRelationId`, `instDecidableEqResult`, `Ledger.instDecidableEqState`, `instDecidableEqAmount.decEq`, `instDecidableEqDebtRecord.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqResult.decEq`, and `Ledger.instDecidableEqState.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8419806Z   match ((Ledger.balance opening.state).sub (min (request 1).payload.amount.value (Ledger.balance opening.state))).num,
+2026-10-22T00:15:37.8420384Z     ((Ledger.balance opening.state).sub (min (request 1).payload.amount.value (Ledger.balance opening.state))).num with
+2026-10-22T00:15:37.8420770Z   | Int.ofNat a, Int.ofNat b =>
+2026-10-22T00:15:37.8420975Z     match decEq a b with
+2026-10-22T00:15:37.8421186Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8421395Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8421627Z   | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+2026-10-22T00:15:37.8421898Z   | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+2026-10-22T00:15:37.8422128Z   | Int.negSucc a, Int.negSucc b =>
+2026-10-22T00:15:37.8422338Z     match decEq a b with
+2026-10-22T00:15:37.8422540Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8422744Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8423125Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:198:73: Tactic `decide` proved that the proposition
+2026-10-22T00:15:37.8423517Z   Ledger.RestPay claimed
+2026-10-22T00:15:37.8423710Z       (let __src := refund;
+2026-10-22T00:15:37.8423997Z       { id := __src.id, source := __src.source, payer := __src.payer, payee := __src.payee,
+2026-10-22T00:15:37.8424335Z         amount := { value := 7, tag := tag } }) =
+2026-10-22T00:15:37.8424583Z     Result.rejected Error.autoFullRefund
+2026-10-22T00:15:37.8424799Z is false
+2026-10-22T00:15:37.8425115Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:204:86: unexpected identifier; expected '}'
+2026-10-22T00:15:37.8425655Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:210:101: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8426133Z   Decision.evalExact (Decision.ExactExpr.rational (1 / 2)) = 1 / 2 ∧
+2026-10-22T00:15:37.8426504Z     Decision.addValues (Decision.ledgerAmount { value := 1, tag := tag })
+2026-10-22T00:15:37.8426809Z         (Decision.ledgerAmount
+2026-10-22T00:15:37.8427009Z           { value := 1,
+2026-10-22T00:15:37.8427192Z             tag :=
+2026-10-22T00:15:37.8427368Z               let __src := tag;
+2026-10-22T00:15:37.8427837Z               { currency := "OTHER", unit := __src.unit, ruleVersion := __src.ruleVersion } }) =
+2026-10-22T00:15:37.8428174Z       Result.rejected Error.mixedCurrency
+2026-10-22T00:15:37.8428399Z because its `Decidable` instance
+2026-10-22T00:15:37.8428600Z   instDecidableAnd
+2026-10-22T00:15:37.8428787Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8428937Z 
+2026-10-22T00:15:37.8429496Z After unfolding the instances `instDecidableAnd`, `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8430146Z   match (Rat.mul 1 (Rat.inv 2)).num, (Rat.mul 1 (Rat.inv 2)).num with
+2026-10-22T00:15:37.8430416Z   | Int.ofNat a, Int.ofNat b =>
+2026-10-22T00:15:37.8430614Z     match decEq a b with
+2026-10-22T00:15:37.8430822Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8431031Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8431267Z   | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+2026-10-22T00:15:37.8431537Z   | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+2026-10-22T00:15:37.8431766Z   | Int.negSucc a, Int.negSucc b =>
+2026-10-22T00:15:37.8431975Z     match decEq a b with
+2026-10-22T00:15:37.8432173Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8432374Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8432726Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:219:86: unexpected identifier; expected '}'
+2026-10-22T00:15:37.8433256Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:263:63: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8433825Z   (Pipeline.run input).payment.exit = Pipeline.Exit.success ∧
+2026-10-22T00:15:37.8434252Z     Option.map (fun h => Ledger.balance h.state) (Pipeline.run input).payment.current = some 0 ∧
+2026-10-22T00:15:37.8434630Z       (Pipeline.run input).modelAfterRounds = assessed 1 0
+2026-10-22T00:15:37.8434885Z because its `Decidable` instance
+2026-10-22T00:15:37.8435087Z   instDecidableAnd
+2026-10-22T00:15:37.8435285Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8435436Z 
+2026-10-22T00:15:37.8437563Z After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `Rat.instDecidableLe`, `instDecidableEqCaseId`, `instDecidableEqInstant`, `instDecidableEqMeasurementId`, `instDecidableEqPartyId`, `instDecidableEqRelationId`, `instDecidableEqSourceRef`, `Learning.instDecidableEqFitContract`, `Pipeline.instDecidableEqExit`, `instDecidableEqCaseId.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqMeasurementId.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqSourceRef.decEq`, and `Learning.instDecidableEqFitContract.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8440053Z   match h : (Pipeline.run input).payment.exit.ctorIdx.beq Pipeline.Exit.success.ctorIdx with
+2026-10-22T00:15:37.8440419Z   | true => isTrue ⋯
+2026-10-22T00:15:37.8440611Z   | false => isFalse ⋯
+2026-10-22T00:15:37.8440971Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:268:56: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8441338Z   (Pipeline.run
+2026-10-22T00:15:37.8441511Z             (let __src := input;
+2026-10-22T00:15:37.8441848Z             { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8442330Z               supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8442778Z               permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8443224Z               world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+2026-10-22T00:15:37.8443819Z               grants := [grant (payload 1)], firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+2026-10-22T00:15:37.8444323Z               firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+2026-10-22T00:15:37.8444857Z               secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+2026-10-22T00:15:37.8445385Z               calibration := __src.calibration, supported := __src.supported, alternatives := __src.alternatives,
+2026-10-22T00:15:37.8445883Z               utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+2026-10-22T00:15:37.8446355Z               observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+2026-10-22T00:15:37.8446766Z               candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+2026-10-22T00:15:37.8447108Z               labelStore := __src.labelStore })).payment.exit =
+2026-10-22T00:15:37.8447393Z       Pipeline.Exit.rejected ∧
+2026-10-22T00:15:37.8447628Z     Option.map (fun h => Ledger.balance h.state)
+2026-10-22T00:15:37.8447858Z         (Pipeline.run
+2026-10-22T00:15:37.8448047Z               (let __src := input;
+2026-10-22T00:15:37.8448373Z               { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8448840Z                 supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8449375Z                 permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8449940Z                 world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+2026-10-22T00:15:37.8450412Z                 grants := [grant (payload 1)], firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+2026-10-22T00:15:37.8450908Z                 firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+2026-10-22T00:15:37.8451364Z                 secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected,
+2026-10-22T00:15:37.8451812Z                 fitSupplied := __src.fitSupplied, calibration := __src.calibration, supported := __src.supported,
+2026-10-22T00:15:37.8452322Z                 alternatives := __src.alternatives, utility := __src.utility, utilityVersion := __src.utilityVersion,
+2026-10-22T00:15:37.8452803Z                 riskLimit := __src.riskLimit, observation := __src.observation, policy := __src.policy,
+2026-10-22T00:15:37.8453288Z                 oldModel := __src.oldModel, candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+2026-10-22T00:15:37.8453691Z                 labelStore := __src.labelStore })).payment.current =
+2026-10-22T00:15:37.8453938Z       some 3
+2026-10-22T00:15:37.8454110Z because its `Decidable` instance
+2026-10-22T00:15:37.8454311Z   instDecidableAnd
+2026-10-22T00:15:37.8454512Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8454785Z 
+2026-10-22T00:15:37.8457038Z After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `Rat.instDecidableLe`, `instDecidableEqCaseId`, `instDecidableEqInstant`, `instDecidableEqMeasurementId`, `instDecidableEqPartyId`, `instDecidableEqRelationId`, `instDecidableEqSourceRef`, `Learning.instDecidableEqFitContract`, `Pipeline.instDecidableEqExit`, `instDecidableEqCaseId.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqMeasurementId.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqSourceRef.decEq`, and `Learning.instDecidableEqFitContract.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8459476Z   match h :
+2026-10-22T00:15:37.8459921Z     (Pipeline.run
+2026-10-22T00:15:37.8460200Z                 (let __src := input;
+2026-10-22T00:15:37.8460764Z                 { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8461392Z                   supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8461955Z                   permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8462591Z                   world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+2026-10-22T00:15:37.8463180Z                   grants := [grant (payload 1)], firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+2026-10-22T00:15:37.8463800Z                   firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+2026-10-22T00:15:37.8464408Z                   secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected,
+2026-10-22T00:15:37.8475219Z                   fitSupplied := __src.fitSupplied, calibration := __src.calibration, supported := __src.supported,
+2026-10-22T00:15:37.8475960Z                   alternatives := __src.alternatives, utility := __src.utility, utilityVersion := __src.utilityVersion,
+2026-10-22T00:15:37.8476490Z                   riskLimit := __src.riskLimit, observation := __src.observation, policy := __src.policy,
+2026-10-22T00:15:37.8476988Z                   oldModel := __src.oldModel, candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+2026-10-22T00:15:37.8477600Z                   labelStore := __src.labelStore })).payment.exit.ctorIdx.beq
+2026-10-22T00:15:37.8477914Z       Pipeline.Exit.rejected.ctorIdx with
+2026-10-22T00:15:37.8478224Z   | true => isTrue ⋯
+2026-10-22T00:15:37.8478431Z   | false => isFalse ⋯
+2026-10-22T00:15:37.8478806Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:272:98: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8479354Z   (Pipeline.run
+2026-10-22T00:15:37.8479539Z             (let __src := input;
+2026-10-22T00:15:37.8479874Z             { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8480352Z               supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8480812Z               permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8481262Z               world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+2026-10-22T00:15:37.8481746Z               grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+2026-10-22T00:15:37.8482136Z               firstKey := __src.firstKey, secondKey := __src.secondKey,
+2026-10-22T00:15:37.8482551Z               secondSubmission := Ledger.Submission.unknownCommit, secondRefresh := __src.secondRefresh,
+2026-10-22T00:15:37.8483067Z               fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied, calibration := __src.calibration,
+2026-10-22T00:15:37.8483586Z               supported := __src.supported, alternatives := __src.alternatives, utility := __src.utility,
+2026-10-22T00:15:37.8484108Z               utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit, observation := __src.observation,
+2026-10-22T00:15:37.8484593Z               policy := __src.policy, oldModel := __src.oldModel, candidate := __src.candidate,
+2026-10-22T00:15:37.8485039Z               secondCandidate := __src.secondCandidate, labelStore := __src.labelStore })).payment.exit =
+2026-10-22T00:15:37.8485437Z       Pipeline.Exit.undecided ∧
+2026-10-22T00:15:37.8485649Z     (Pipeline.run
+2026-10-22T00:15:37.8485833Z             (let __src := input;
+2026-10-22T00:15:37.8486167Z             { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8486653Z               supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8487222Z               permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8487681Z               world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+2026-10-22T00:15:37.8488156Z               grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+2026-10-22T00:15:37.8488546Z               firstKey := __src.firstKey, secondKey := __src.secondKey,
+2026-10-22T00:15:37.8488958Z               secondSubmission := Ledger.Submission.unknownCommit, secondRefresh := __src.secondRefresh,
+2026-10-22T00:15:37.8489571Z               fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied, calibration := __src.calibration,
+2026-10-22T00:15:37.8490078Z               supported := __src.supported, alternatives := __src.alternatives, utility := __src.utility,
+2026-10-22T00:15:37.8490585Z               utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit, observation := __src.observation,
+2026-10-22T00:15:37.8491069Z               policy := __src.policy, oldModel := __src.oldModel, candidate := __src.candidate,
+2026-10-22T00:15:37.8491533Z               secondCandidate := __src.secondCandidate, labelStore := __src.labelStore })).payment.current =
+2026-10-22T00:15:37.8491888Z       none
+2026-10-22T00:15:37.8492063Z because its `Decidable` instance
+2026-10-22T00:15:37.8492268Z   instDecidableAnd
+2026-10-22T00:15:37.8492460Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8492618Z 
+2026-10-22T00:15:37.8494888Z After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `Rat.instDecidableLe`, `instDecidableEqCaseId`, `instDecidableEqInstant`, `instDecidableEqMeasurementId`, `instDecidableEqPartyId`, `instDecidableEqRelationId`, `instDecidableEqSourceRef`, `Learning.instDecidableEqFitContract`, `Pipeline.instDecidableEqExit`, `instDecidableEqCaseId.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqMeasurementId.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqSourceRef.decEq`, and `Learning.instDecidableEqFitContract.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8497154Z   match h :
+2026-10-22T00:15:37.8497312Z     (Pipeline.run
+2026-10-22T00:15:37.8497495Z                 (let __src := input;
+2026-10-22T00:15:37.8497843Z                 { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8498330Z                   supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8498878Z                   permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8499419Z                   world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+2026-10-22T00:15:37.8499898Z                   grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+2026-10-22T00:15:37.8500294Z                   firstKey := __src.firstKey, secondKey := __src.secondKey,
+2026-10-22T00:15:37.8500711Z                   secondSubmission := Ledger.Submission.unknownCommit, secondRefresh := __src.secondRefresh,
+2026-10-22T00:15:37.8501242Z                   fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied, calibration := __src.calibration,
+2026-10-22T00:15:37.8501756Z                   supported := __src.supported, alternatives := __src.alternatives, utility := __src.utility,
+2026-10-22T00:15:37.8502189Z                   utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+2026-10-22T00:15:37.8502606Z                   observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+2026-10-22T00:15:37.8503027Z                   candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+2026-10-22T00:15:37.8503501Z                   labelStore := __src.labelStore })).payment.exit.ctorIdx.beq
+2026-10-22T00:15:37.8503806Z       Pipeline.Exit.undecided.ctorIdx with
+2026-10-22T00:15:37.8504067Z   | true => isTrue ⋯
+2026-10-22T00:15:37.8504266Z   | false => isFalse ⋯
+2026-10-22T00:15:37.8504632Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:275:78: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8505016Z   (Pipeline.run
+2026-10-22T00:15:37.8505202Z           (let __src := input;
+2026-10-22T00:15:37.8505525Z           { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8505991Z             supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8506436Z             permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8506933Z             world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process, grants := [],
+2026-10-22T00:15:37.8507455Z             firstIndex := __src.firstIndex, secondIndex := __src.secondIndex, firstKey := __src.firstKey,
+2026-10-22T00:15:37.8507893Z             secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+2026-10-22T00:15:37.8508367Z             secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+2026-10-22T00:15:37.8508899Z             calibration := __src.calibration, supported := __src.supported, alternatives := __src.alternatives,
+2026-10-22T00:15:37.8509688Z             utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+2026-10-22T00:15:37.8510149Z             observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+2026-10-22T00:15:37.8510559Z             candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+2026-10-22T00:15:37.8510917Z             labelStore := __src.labelStore })).payment.exit =
+2026-10-22T00:15:37.8511171Z     Pipeline.Exit.rejected
+2026-10-22T00:15:37.8511376Z because its `Decidable` instance
+2026-10-22T00:15:37.8511589Z   Pipeline.instDecidableEqExit
+2026-10-22T00:15:37.8511789Z     (Pipeline.run
+2026-10-22T00:15:37.8511965Z           (let __src := input;
+2026-10-22T00:15:37.8512270Z           { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8512732Z             supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8513191Z             permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8513674Z             world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process, grants := [],
+2026-10-22T00:15:37.8514184Z             firstIndex := __src.firstIndex, secondIndex := __src.secondIndex, firstKey := __src.firstKey,
+2026-10-22T00:15:37.8514625Z             secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+2026-10-22T00:15:37.8515084Z             secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+2026-10-22T00:15:37.8515608Z             calibration := __src.calibration, supported := __src.supported, alternatives := __src.alternatives,
+2026-10-22T00:15:37.8516101Z             utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+2026-10-22T00:15:37.8516576Z             observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+2026-10-22T00:15:37.8516988Z             candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+2026-10-22T00:15:37.8517324Z             labelStore := __src.labelStore })).payment.exit
+2026-10-22T00:15:37.8517577Z     Pipeline.Exit.rejected
+2026-10-22T00:15:37.8517790Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8517989Z 
+2026-10-22T00:15:37.8520482Z After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `Rat.instDecidableLe`, `instDecidableEqCaseId`, `instDecidableEqInstant`, `instDecidableEqMeasurementId`, `instDecidableEqPartyId`, `instDecidableEqRelationId`, `instDecidableEqSourceRef`, `Learning.instDecidableEqFitContract`, `Pipeline.instDecidableEqExit`, `instDecidableEqCaseId.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqMeasurementId.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqSourceRef.decEq`, and `Learning.instDecidableEqFitContract.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8522755Z   match h :
+2026-10-22T00:15:37.8522920Z     (Pipeline.run
+2026-10-22T00:15:37.8523101Z                 (let __src := input;
+2026-10-22T00:15:37.8523443Z                 { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8523928Z                   supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8524384Z                   permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8524849Z                   world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+2026-10-22T00:15:37.8525404Z                   grants := [], firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+2026-10-22T00:15:37.8525873Z                   firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+2026-10-22T00:15:37.8526329Z                   secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected,
+2026-10-22T00:15:37.8526787Z                   fitSupplied := __src.fitSupplied, calibration := __src.calibration, supported := __src.supported,
+2026-10-22T00:15:37.8527313Z                   alternatives := __src.alternatives, utility := __src.utility, utilityVersion := __src.utilityVersion,
+2026-10-22T00:15:37.8527810Z                   riskLimit := __src.riskLimit, observation := __src.observation, policy := __src.policy,
+2026-10-22T00:15:37.8528292Z                   oldModel := __src.oldModel, candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+2026-10-22T00:15:37.8528715Z                   labelStore := __src.labelStore })).payment.exit.ctorIdx.beq
+2026-10-22T00:15:37.8529018Z       Pipeline.Exit.rejected.ctorIdx with
+2026-10-22T00:15:37.8529344Z   | true => isTrue ⋯
+2026-10-22T00:15:37.8529538Z   | false => isFalse ⋯
+2026-10-22T00:15:37.8529899Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:279:25: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8530273Z   (Pipeline.run
+2026-10-22T00:15:37.8530448Z           (let __src := input;
+2026-10-22T00:15:37.8530646Z           {
+2026-10-22T00:15:37.8530801Z             view :=
+2026-10-22T00:15:37.8530980Z               let __src := view;
+2026-10-22T00:15:37.8531219Z               { gamma := __src.gamma, history := __src.history,
+2026-10-22T00:15:37.8531622Z                 objectMap := [({ value := 50 }, ObjectId.relation debt.relation)], observedRef := __src.observedRef,
+2026-10-22T00:15:37.8532026Z                 observedRelation := __src.observedRelation },
+2026-10-22T00:15:37.8532360Z             debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8532815Z             supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8533267Z             permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8533712Z             world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+2026-10-22T00:15:37.8534170Z             grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+2026-10-22T00:15:37.8534763Z             firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+2026-10-22T00:15:37.8535303Z             secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+2026-10-22T00:15:37.8535829Z             calibration := __src.calibration, supported := __src.supported, alternatives := __src.alternatives,
+2026-10-22T00:15:37.8536330Z             utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+2026-10-22T00:15:37.8536808Z             observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+2026-10-22T00:15:37.8537225Z             candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+2026-10-22T00:15:37.8537558Z             labelStore := __src.labelStore })).payment.exit =
+2026-10-22T00:15:37.8537819Z     Pipeline.Exit.undecided
+2026-10-22T00:15:37.8538029Z because its `Decidable` instance
+2026-10-22T00:15:37.8538251Z   Pipeline.instDecidableEqExit
+2026-10-22T00:15:37.8538456Z     (Pipeline.run
+2026-10-22T00:15:37.8538628Z           (let __src := input;
+2026-10-22T00:15:37.8538811Z           {
+2026-10-22T00:15:37.8538966Z             view :=
+2026-10-22T00:15:37.8539238Z               let __src := view;
+2026-10-22T00:15:37.8539465Z               { gamma := __src.gamma, history := __src.history,
+2026-10-22T00:15:37.8539865Z                 objectMap := [({ value := 50 }, ObjectId.relation debt.relation)], observedRef := __src.observedRef,
+2026-10-22T00:15:37.8540377Z                 observedRelation := __src.observedRelation },
+2026-10-22T00:15:37.8540707Z             debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8541131Z             supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8541569Z             permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8542015Z             world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+2026-10-22T00:15:37.8542470Z             grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+2026-10-22T00:15:37.8542957Z             firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+2026-10-22T00:15:37.8543483Z             secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+2026-10-22T00:15:37.8544008Z             calibration := __src.calibration, supported := __src.supported, alternatives := __src.alternatives,
+2026-10-22T00:15:37.8544495Z             utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+2026-10-22T00:15:37.8544947Z             observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+2026-10-22T00:15:37.8545358Z             candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+2026-10-22T00:15:37.8545686Z             labelStore := __src.labelStore })).payment.exit
+2026-10-22T00:15:37.8545946Z     Pipeline.Exit.undecided
+2026-10-22T00:15:37.8546155Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8546300Z 
+2026-10-22T00:15:37.8548551Z After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `Rat.instDecidableLe`, `instDecidableEqCaseId`, `instDecidableEqInstant`, `instDecidableEqMeasurementId`, `instDecidableEqPartyId`, `instDecidableEqRelationId`, `instDecidableEqSourceRef`, `Learning.instDecidableEqFitContract`, `Pipeline.instDecidableEqExit`, `instDecidableEqCaseId.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqMeasurementId.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqSourceRef.decEq`, and `Learning.instDecidableEqFitContract.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8550915Z   match h :
+2026-10-22T00:15:37.8551087Z     (Pipeline.run
+2026-10-22T00:15:37.8551265Z                 (let __src := input;
+2026-10-22T00:15:37.8551462Z                 {
+2026-10-22T00:15:37.8551631Z                   view :=
+2026-10-22T00:15:37.8551828Z                     let __src := view;
+2026-10-22T00:15:37.8552070Z                     { gamma := __src.gamma, history := __src.history,
+2026-10-22T00:15:37.8552405Z                       objectMap := [({ value := 50 }, ObjectId.relation debt.relation)],
+2026-10-22T00:15:37.8552807Z                       observedRef := __src.observedRef, observedRelation := __src.observedRelation },
+2026-10-22T00:15:37.8553226Z                   debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8553679Z                   supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8554135Z                   permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8554592Z                   world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+2026-10-22T00:15:37.8555063Z                   grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+2026-10-22T00:15:37.8555550Z                   firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+2026-10-22T00:15:37.8556172Z                   secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected,
+2026-10-22T00:15:37.8556651Z                   fitSupplied := __src.fitSupplied, calibration := __src.calibration, supported := __src.supported,
+2026-10-22T00:15:37.8557195Z                   alternatives := __src.alternatives, utility := __src.utility, utilityVersion := __src.utilityVersion,
+2026-10-22T00:15:37.8557689Z                   riskLimit := __src.riskLimit, observation := __src.observation, policy := __src.policy,
+2026-10-22T00:15:37.8558182Z                   oldModel := __src.oldModel, candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+2026-10-22T00:15:37.8558608Z                   labelStore := __src.labelStore })).payment.exit.ctorIdx.beq
+2026-10-22T00:15:37.8558913Z       Pipeline.Exit.undecided.ctorIdx with
+2026-10-22T00:15:37.8559234Z   | true => isTrue ⋯
+2026-10-22T00:15:37.8559428Z   | false => isFalse ⋯
+2026-10-22T00:15:37.8559788Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:286:24: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8560173Z   (Pipeline.run
+2026-10-22T00:15:37.8560349Z           (let __src := input;
+2026-10-22T00:15:37.8560668Z           { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8561139Z             supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8561579Z             permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8562022Z             world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+2026-10-22T00:15:37.8562479Z             grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+2026-10-22T00:15:37.8562959Z             firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+2026-10-22T00:15:37.8563494Z             secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+2026-10-22T00:15:37.8563938Z             calibration := __src.calibration, supported := __src.supported,
+2026-10-22T00:15:37.8564223Z             alternatives :=
+2026-10-22T00:15:37.8564431Z               [let __src := alternative;
+2026-10-22T00:15:37.8564853Z                 { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+2026-10-22T00:15:37.8565302Z                   outcomes := __src.outcomes, cost := __src.cost, execution := [payload 1 9, payload 2] }],
+2026-10-22T00:15:37.8565764Z             utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+2026-10-22T00:15:37.8566229Z             observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+2026-10-22T00:15:37.8566643Z             candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+2026-10-22T00:15:37.8566991Z             labelStore := __src.labelStore })).payment.exit =
+2026-10-22T00:15:37.8567248Z     Pipeline.Exit.rejected
+2026-10-22T00:15:37.8567457Z because its `Decidable` instance
+2026-10-22T00:15:37.8567671Z   Pipeline.instDecidableEqExit
+2026-10-22T00:15:37.8567870Z     (Pipeline.run
+2026-10-22T00:15:37.8568051Z           (let __src := input;
+2026-10-22T00:15:37.8568378Z           { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8568851Z             supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8569380Z             permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8569825Z             world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+2026-10-22T00:15:37.8570281Z             grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+2026-10-22T00:15:37.8570864Z             firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+2026-10-22T00:15:37.8571393Z             secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+2026-10-22T00:15:37.8571845Z             calibration := __src.calibration, supported := __src.supported,
+2026-10-22T00:15:37.8572125Z             alternatives :=
+2026-10-22T00:15:37.8572332Z               [let __src := alternative;
+2026-10-22T00:15:37.8572648Z                 { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+2026-10-22T00:15:37.8573077Z                   outcomes := __src.outcomes, cost := __src.cost, execution := [payload 1 9, payload 2] }],
+2026-10-22T00:15:37.8573535Z             utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+2026-10-22T00:15:37.8573991Z             observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+2026-10-22T00:15:37.8574404Z             candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+2026-10-22T00:15:37.8574740Z             labelStore := __src.labelStore })).payment.exit
+2026-10-22T00:15:37.8574991Z     Pipeline.Exit.rejected
+2026-10-22T00:15:37.8575197Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8575341Z 
+2026-10-22T00:15:37.8577491Z After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `Rat.instDecidableLe`, `instDecidableEqCaseId`, `instDecidableEqInstant`, `instDecidableEqMeasurementId`, `instDecidableEqPartyId`, `instDecidableEqRelationId`, `instDecidableEqSourceRef`, `Learning.instDecidableEqFitContract`, `Pipeline.instDecidableEqExit`, `instDecidableEqCaseId.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqMeasurementId.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqSourceRef.decEq`, and `Learning.instDecidableEqFitContract.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8579864Z   match h :
+2026-10-22T00:15:37.8580026Z     (Pipeline.run
+2026-10-22T00:15:37.8580211Z                 (let __src := input;
+2026-10-22T00:15:37.8580662Z                 { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8581149Z                   supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8581602Z                   permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8582060Z                   world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+2026-10-22T00:15:37.8582528Z                   grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+2026-10-22T00:15:37.8583042Z                   firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+2026-10-22T00:15:37.8583496Z                   secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected,
+2026-10-22T00:15:37.8583949Z                   fitSupplied := __src.fitSupplied, calibration := __src.calibration, supported := __src.supported,
+2026-10-22T00:15:37.8584323Z                   alternatives :=
+2026-10-22T00:15:37.8584539Z                     [let __src := alternative;
+2026-10-22T00:15:37.8584867Z                       { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+2026-10-22T00:15:37.8585306Z                         outcomes := __src.outcomes, cost := __src.cost, execution := [payload 1 9, payload 2] }],
+2026-10-22T00:15:37.8585788Z                   utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+2026-10-22T00:15:37.8586368Z                   observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+2026-10-22T00:15:37.8586786Z                   candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+2026-10-22T00:15:37.8587150Z                   labelStore := __src.labelStore })).payment.exit.ctorIdx.beq
+2026-10-22T00:15:37.8587444Z       Pipeline.Exit.rejected.ctorIdx with
+2026-10-22T00:15:37.8587703Z   | true => isTrue ⋯
+2026-10-22T00:15:37.8587904Z   | false => isFalse ⋯
+2026-10-22T00:15:37.8588273Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:292:99: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8588661Z   let output :=
+2026-10-22T00:15:37.8588834Z     Pipeline.run
+2026-10-22T00:15:37.8589013Z       (let __src := input;
+2026-10-22T00:15:37.8589438Z       { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8589901Z         supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8590348Z         permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8590788Z         world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+2026-10-22T00:15:37.8591236Z         grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+2026-10-22T00:15:37.8591731Z         firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+2026-10-22T00:15:37.8592252Z         secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+2026-10-22T00:15:37.8592780Z         calibration := __src.calibration, supported := __src.supported, alternatives := __src.alternatives,
+2026-10-22T00:15:37.8593275Z         utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+2026-10-22T00:15:37.8593626Z         observation :=
+2026-10-22T00:15:37.8593824Z           let __src := input.observation;
+2026-10-22T00:15:37.8594183Z           { unit := __src.unit, event := __src.event, record := __src.record, targetVersion := __src.targetVersion,
+2026-10-22T00:15:37.8594714Z             mechanismVersion := __src.mechanismVersion, windowEnd := __src.windowEnd, observedAt := __src.observedAt,
+2026-10-22T00:15:37.8595363Z             outcome := none, positiveWitness := __src.positiveWitness, externalSource := __src.externalSource },
+2026-10-22T00:15:37.8595836Z         policy := __src.policy, oldModel := __src.oldModel, candidate := __src.candidate,
+2026-10-22T00:15:37.8596236Z         secondCandidate := __src.secondCandidate, labelStore := __src.labelStore });
+2026-10-22T00:15:37.8596672Z   Option.map (fun h => Ledger.balance h.state) output.payment.current = some 0 ∧
+2026-10-22T00:15:37.8597058Z     output.observation = Result.unknown Error.missingEvidence ∧
+2026-10-22T00:15:37.8597539Z       output.feedback = Result.unknown Error.missingEvidence ∧ output.modelAfterRounds = input.oldModel
+2026-10-22T00:15:37.8597928Z because its `Decidable` instance
+2026-10-22T00:15:37.8598127Z   instDecidableAnd
+2026-10-22T00:15:37.8598317Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8598465Z 
+2026-10-22T00:15:37.8600689Z After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `Option.instDecidableEq`, `Rat.instDecidableLe`, `instDecidableEqCaseId`, `instDecidableEqInstant`, `instDecidableEqMeasurementId`, `instDecidableEqPartyId`, `instDecidableEqRelationId`, `instDecidableEqSourceRef`, `Learning.instDecidableEqFitContract`, `instDecidableEqCaseId.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqMeasurementId.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqSourceRef.decEq`, and `Learning.instDecidableEqFitContract.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8603047Z   match
+2026-10-22T00:15:37.8603235Z     Option.map (fun h => Ledger.balance h.state)
+2026-10-22T00:15:37.8603478Z       (Pipeline.run
+2026-10-22T00:15:37.8603661Z             (let __src := input;
+2026-10-22T00:15:37.8603989Z             { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+2026-10-22T00:15:37.8604465Z               supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+2026-10-22T00:15:37.8604914Z               permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+2026-10-22T00:15:37.8605372Z               world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+2026-10-22T00:15:37.8605835Z               grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+2026-10-22T00:15:37.8606330Z               firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+2026-10-22T00:15:37.8606864Z               secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+2026-10-22T00:15:37.8607395Z               calibration := __src.calibration, supported := __src.supported, alternatives := __src.alternatives,
+2026-10-22T00:15:37.8607901Z               utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+2026-10-22T00:15:37.8608259Z               observation :=
+2026-10-22T00:15:37.8608479Z                 let __src := input.observation;
+2026-10-22T00:15:37.8608771Z                 { unit := __src.unit, event := __src.event, record := __src.record,
+2026-10-22T00:15:37.8609233Z                   targetVersion := __src.targetVersion, mechanismVersion := __src.mechanismVersion,
+2026-10-22T00:15:37.8609687Z                   windowEnd := __src.windowEnd, observedAt := __src.observedAt, outcome := none,
+2026-10-22T00:15:37.8610135Z                   positiveWitness := __src.positiveWitness, externalSource := __src.externalSource },
+2026-10-22T00:15:37.8610581Z               policy := __src.policy, oldModel := __src.oldModel, candidate := __src.candidate,
+2026-10-22T00:15:37.8611063Z               secondCandidate := __src.secondCandidate, labelStore := __src.labelStore })).payment.current with
+2026-10-22T00:15:37.8611431Z   | none =>
+2026-10-22T00:15:37.8611602Z     match some 0 with
+2026-10-22T00:15:37.8611922Z     | none => isTrue ⋯
+2026-10-22T00:15:37.8612118Z     | some val => isFalse ⋯
+2026-10-22T00:15:37.8612308Z   | some a =>
+2026-10-22T00:15:37.8612475Z     match some 0 with
+2026-10-22T00:15:37.8612672Z     | none => isFalse ⋯
+2026-10-22T00:15:37.8612853Z     | some b =>
+2026-10-22T00:15:37.8613044Z       match instDecidableEqRat a b with
+2026-10-22T00:15:37.8613283Z       | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8613495Z       | isFalse n => isFalse ⋯
+2026-10-22T00:15:37.8613875Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:324:81: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8614441Z   Probability.u04_4_variance_equivalent 2 (-1) = Probability.EffectiveCount.degenerateZeroVariance
+2026-10-22T00:15:37.8614816Z because its `Decidable` instance
+2026-10-22T00:15:37.8615172Z   Probability.instDecidableEqEffectiveCount (Probability.u04_4_variance_equivalent 2 (-1))
+2026-10-22T00:15:37.8615588Z     Probability.EffectiveCount.degenerateZeroVariance
+2026-10-22T00:15:37.8615875Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8616028Z 
+2026-10-22T00:15:37.8616873Z After unfolding the instances `instDecidableEqBool`, `instDecidableEqRat`, `Bool.decEq`, `Int.decEq`, `Int.instDecidableEq`, `Nat.decLe`, `Nat.decLt`, `instDecidableEqRat.decEq`, `Probability.instDecidableEqEffectiveCount`, and `Probability.instDecidableEqEffectiveCount.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8618002Z   match Probability.u04_4_variance_equivalent 2 (-1), Probability.EffectiveCount.degenerateZeroVariance with
+2026-10-22T00:15:37.8618610Z   | Probability.EffectiveCount.finite a, Probability.EffectiveCount.finite b =>
+2026-10-22T00:15:37.8619021Z     if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8619578Z   | Probability.EffectiveCount.finite n, Probability.EffectiveCount.degenerateZeroVariance => isFalse ⋯
+2026-10-22T00:15:37.8620124Z   | Probability.EffectiveCount.finite n, Probability.EffectiveCount.invalid => isFalse ⋯
+2026-10-22T00:15:37.8620700Z   | Probability.EffectiveCount.degenerateZeroVariance, Probability.EffectiveCount.finite n => isFalse ⋯
+2026-10-22T00:15:37.8621356Z   | Probability.EffectiveCount.degenerateZeroVariance, Probability.EffectiveCount.degenerateZeroVariance => isTrue ⋯
+2026-10-22T00:15:37.8621951Z   | Probability.EffectiveCount.degenerateZeroVariance, Probability.EffectiveCount.invalid =>
+2026-10-22T00:15:37.8622411Z     isFalse Probability.instDecidableEqEffectiveCount.decEq._proof_6
+2026-10-22T00:15:37.8622874Z   | Probability.EffectiveCount.invalid, Probability.EffectiveCount.finite n => isFalse ⋯
+2026-10-22T00:15:37.8623364Z   | Probability.EffectiveCount.invalid, Probability.EffectiveCount.degenerateZeroVariance =>
+2026-10-22T00:15:37.8623811Z     isFalse Probability.instDecidableEqEffectiveCount.decEq._proof_8
+2026-10-22T00:15:37.8624266Z   | Probability.EffectiveCount.invalid, Probability.EffectiveCount.invalid => isTrue ⋯
+2026-10-22T00:15:37.8624787Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:328:59: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8625251Z   Harness.conditionalRisk (1 / 10) 1 = Result.known (1 / 10) ∧
+2026-10-22T00:15:37.8625569Z     Harness.conditionalRisk (1 / 10) (1 / 10) = Result.known 1
+2026-10-22T00:15:37.8625835Z because its `Decidable` instance
+2026-10-22T00:15:37.8626042Z   instDecidableAnd
+2026-10-22T00:15:37.8626238Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8626394Z 
+2026-10-22T00:15:37.8627315Z After unfolding the instances `decEq`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `instDecidableEqRat`, `Bool.decEq`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `Nat.decEq`, `Rat.instDecidableLt`, `instDecidableEqRat.decEq`, `instDecidableEqResult`, and `instDecidableEqResult.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8628406Z   match ((1 / 10).mul (Rat.inv 1)).num, (Rat.mul 1 (Rat.inv 10)).num with
+2026-10-22T00:15:37.8628688Z   | Int.ofNat a, Int.ofNat b =>
+2026-10-22T00:15:37.8629006Z     match decEq a b with
+2026-10-22T00:15:37.8629311Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8629519Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8629751Z   | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+2026-10-22T00:15:37.8630013Z   | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+2026-10-22T00:15:37.8630243Z   | Int.negSucc a, Int.negSucc b =>
+2026-10-22T00:15:37.8630460Z     match decEq a b with
+2026-10-22T00:15:37.8630657Z     | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8630865Z     | isFalse h => isFalse ⋯
+2026-10-22T00:15:37.8631230Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:337:97: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8631745Z   Option.map (fun d => d.action.id) (Decision.proposed_decision [0, 1] decisionValues) = some 0
+2026-10-22T00:15:37.8632095Z because its `Decidable` instance
+2026-10-22T00:15:37.8632460Z   (Option.map (fun d => d.action.id) (Decision.proposed_decision [0, 1] decisionValues)).instDecidableEq (some 0)
+2026-10-22T00:15:37.8632857Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8633011Z 
+2026-10-22T00:15:37.8633520Z After unfolding the instances `instDecidableEqBool`, `instDecidableOr`, `Bool.decEq`, `Int.decLt`, `Int.decNonneg`, `Option.instDecidableEq`, and `Rat.instDecidableLt`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8634274Z   match Option.map (fun d => d.action.id) (Decision.proposed_decision [0, 1] decisionValues) with
+2026-10-22T00:15:37.8634717Z   | none =>
+2026-10-22T00:15:37.8634881Z     match some 0 with
+2026-10-22T00:15:37.8635080Z     | none => isTrue ⋯
+2026-10-22T00:15:37.8635276Z     | some val => isFalse ⋯
+2026-10-22T00:15:37.8635462Z   | some a =>
+2026-10-22T00:15:37.8635626Z     match some 0 with
+2026-10-22T00:15:37.8635814Z     | none => isFalse ⋯
+2026-10-22T00:15:37.8636009Z     | some b =>
+2026-10-22T00:15:37.8636195Z       match instDecidableEqNat a b with
+2026-10-22T00:15:37.8636432Z       | isTrue h => isTrue ⋯
+2026-10-22T00:15:37.8636651Z       | isFalse n => isFalse ⋯
+2026-10-22T00:15:37.8637019Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:342:37: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8637401Z   Decision.evaluate gamma id 0 (1 / 10)
+2026-10-22T00:15:37.8637620Z       (let __src := alternative;
+2026-10-22T00:15:37.8637924Z       { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+2026-10-22T00:15:37.8638235Z         outcomes :=
+2026-10-22T00:15:37.8638566Z           [{ probability := 1, payoff := { expr := Decision.ExactExpr.rational (4 / 5), dimension := none },
+2026-10-22T00:15:37.8638917Z               cashIds := [] }],
+2026-10-22T00:15:37.8639254Z         cost := __src.cost, execution := __src.execution }) =
+2026-10-22T00:15:37.8639523Z     Result.rejected Error.mixedCurrency
+2026-10-22T00:15:37.8639755Z because its `Decidable` instance
+2026-10-22T00:15:37.8639962Z   instDecidableEqResult
+2026-10-22T00:15:37.8640169Z     (Decision.evaluate gamma id 0 (1 / 10)
+2026-10-22T00:15:37.8640396Z       (let __src := alternative;
+2026-10-22T00:15:37.8640688Z       { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+2026-10-22T00:15:37.8640990Z         outcomes :=
+2026-10-22T00:15:37.8641302Z           [{ probability := 1, payoff := { expr := Decision.ExactExpr.rational (4 / 5), dimension := none },
+2026-10-22T00:15:37.8641643Z               cashIds := [] }],
+2026-10-22T00:15:37.8641876Z         cost := __src.cost, execution := __src.execution }))
+2026-10-22T00:15:37.8642150Z     (Result.rejected Error.mixedCurrency)
+2026-10-22T00:15:37.8642391Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8642544Z 
+2026-10-22T00:15:37.8643649Z After unfolding the instances `decEq`, `instDecidableEqBool`, `instDecidableEqNat`, `instDecidableEqRat`, `instDecidableNot`, `instDecidableOr`, `Bool.decEq`, `Int.decEq`, `Int.decLe`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `Nat.decEq`, `Rat.instDecidableLt`, `instDecidableEqRat.decEq`, `instDecidableEqResult`, and `instDecidableEqResult.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8644787Z   match
+2026-10-22T00:15:37.8644957Z     Decision.evaluate gamma id 0 (1 / 10)
+2026-10-22T00:15:37.8645180Z       (let __src := alternative;
+2026-10-22T00:15:37.8645472Z       { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+2026-10-22T00:15:37.8645777Z         outcomes :=
+2026-10-22T00:15:37.8646083Z           [{ probability := 1, payoff := { expr := Decision.ExactExpr.rational (4 / 5), dimension := none },
+2026-10-22T00:15:37.8646429Z               cashIds := [] }],
+2026-10-22T00:15:37.8646659Z         cost := __src.cost, execution := __src.execution }),
+2026-10-22T00:15:37.8646931Z     Result.rejected Error.mixedCurrency with
+2026-10-22T00:15:37.8647329Z   | Result.known a, Result.known b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8647707Z   | Result.known value, Result.unknown reason => isFalse ⋯
+2026-10-22T00:15:37.8648036Z   | Result.known value, Result.rejected reason => isFalse ⋯
+2026-10-22T00:15:37.8648365Z   | Result.known value, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8648697Z   | Result.unknown reason, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8649187Z   | Result.unknown a, Result.unknown b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8649586Z   | Result.unknown reason, Result.rejected reason_1 => isFalse ⋯
+2026-10-22T00:15:37.8649940Z   | Result.unknown reason, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8650417Z   | Result.rejected reason, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8650743Z   | Result.rejected reason, Result.unknown reason_1 => isFalse ⋯
+2026-10-22T00:15:37.8651172Z   | Result.rejected a, Result.rejected b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8651585Z   | Result.rejected reason, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8651941Z   | Result.conflict left right, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8652289Z   | Result.conflict left right, Result.unknown reason => isFalse ⋯
+2026-10-22T00:15:37.8652640Z   | Result.conflict left right, Result.rejected reason => isFalse ⋯
+2026-10-22T00:15:37.8652941Z   | Result.conflict a a_1, Result.conflict b b_1 =>
+2026-10-22T00:15:37.8653318Z     if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8653815Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:347:37: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8654221Z   Decision.evaluate gamma id 0 (1 / 10)
+2026-10-22T00:15:37.8654450Z       (let __src := alternative;
+2026-10-22T00:15:37.8654752Z       { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+2026-10-22T00:15:37.8655066Z         outcomes :=
+2026-10-22T00:15:37.8655385Z           [{ probability := 1, payoff := { expr := Decision.ExactExpr.rational 4, dimension := some tag },
+2026-10-22T00:15:37.8655771Z               cashIds := [{ value := 1 }, { value := 1 }] }],
+2026-10-22T00:15:37.8656051Z         cost := __src.cost, execution := __src.execution }) =
+2026-10-22T00:15:37.8656321Z     Result.rejected Error.duplicateCash
+2026-10-22T00:15:37.8656550Z because its `Decidable` instance
+2026-10-22T00:15:37.8656758Z   instDecidableEqResult
+2026-10-22T00:15:37.8656961Z     (Decision.evaluate gamma id 0 (1 / 10)
+2026-10-22T00:15:37.8657188Z       (let __src := alternative;
+2026-10-22T00:15:37.8657485Z       { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+2026-10-22T00:15:37.8657791Z         outcomes :=
+2026-10-22T00:15:37.8658094Z           [{ probability := 1, payoff := { expr := Decision.ExactExpr.rational 4, dimension := some tag },
+2026-10-22T00:15:37.8658463Z               cashIds := [{ value := 1 }, { value := 1 }] }],
+2026-10-22T00:15:37.8658740Z         cost := __src.cost, execution := __src.execution }))
+2026-10-22T00:15:37.8659003Z     (Result.rejected Error.duplicateCash)
+2026-10-22T00:15:37.8659430Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8659577Z 
+2026-10-22T00:15:37.8660566Z After unfolding the instances `decEq`, `instDecidableEqBool`, `instDecidableEqNat`, `instDecidableEqRat`, `instDecidableNot`, `instDecidableOr`, `Bool.decEq`, `Int.decEq`, `Int.decLe`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `Nat.decEq`, `Rat.instDecidableLt`, `instDecidableEqRat.decEq`, `instDecidableEqResult`, and `instDecidableEqResult.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8661667Z   match
+2026-10-22T00:15:37.8661838Z     Decision.evaluate gamma id 0 (1 / 10)
+2026-10-22T00:15:37.8662063Z       (let __src := alternative;
+2026-10-22T00:15:37.8662360Z       { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+2026-10-22T00:15:37.8662662Z         outcomes :=
+2026-10-22T00:15:37.8662964Z           [{ probability := 1, payoff := { expr := Decision.ExactExpr.rational 4, dimension := some tag },
+2026-10-22T00:15:37.8663336Z               cashIds := [{ value := 1 }, { value := 1 }] }],
+2026-10-22T00:15:37.8663604Z         cost := __src.cost, execution := __src.execution }),
+2026-10-22T00:15:37.8663869Z     Result.rejected Error.duplicateCash with
+2026-10-22T00:15:37.8664254Z   | Result.known a, Result.known b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8664628Z   | Result.known value, Result.unknown reason => isFalse ⋯
+2026-10-22T00:15:37.8664961Z   | Result.known value, Result.rejected reason => isFalse ⋯
+2026-10-22T00:15:37.8665495Z   | Result.known value, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8665831Z   | Result.unknown reason, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8666231Z   | Result.unknown a, Result.unknown b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8666625Z   | Result.unknown reason, Result.rejected reason_1 => isFalse ⋯
+2026-10-22T00:15:37.8666972Z   | Result.unknown reason, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8667316Z   | Result.rejected reason, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8667647Z   | Result.rejected reason, Result.unknown reason_1 => isFalse ⋯
+2026-10-22T00:15:37.8668069Z   | Result.rejected a, Result.rejected b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8668476Z   | Result.rejected reason, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8668824Z   | Result.conflict left right, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8669270Z   | Result.conflict left right, Result.unknown reason => isFalse ⋯
+2026-10-22T00:15:37.8669627Z   | Result.conflict left right, Result.rejected reason => isFalse ⋯
+2026-10-22T00:15:37.8669935Z   | Result.conflict a a_1, Result.conflict b b_1 =>
+2026-10-22T00:15:37.8670303Z     if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8670767Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:355:36: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8671181Z   Policy.proposed_off_policy_value
+2026-10-22T00:15:37.8671401Z       (let __src := input.policy;
+2026-10-22T00:15:37.8671766Z       { caseId := __src.caseId, targetVersion := __src.targetVersion, responseVersion := __src.responseVersion,
+2026-10-22T00:15:37.8672285Z         loggingProbability := 0, targetProbability := __src.targetProbability, outcome := __src.outcome,
+2026-10-22T00:15:37.8672704Z         identifyingEvidence := __src.identifyingEvidence }) =
+2026-10-22T00:15:37.8673002Z     Result.unknown Error.notIdentified
+2026-10-22T00:15:37.8673230Z because its `Decidable` instance
+2026-10-22T00:15:37.8673439Z   instDecidableEqResult
+2026-10-22T00:15:37.8673645Z     (Policy.proposed_off_policy_value
+2026-10-22T00:15:37.8673871Z       (let __src := input.policy;
+2026-10-22T00:15:37.8674218Z       { caseId := __src.caseId, targetVersion := __src.targetVersion, responseVersion := __src.responseVersion,
+2026-10-22T00:15:37.8674958Z         loggingProbability := 0, targetProbability := __src.targetProbability, outcome := __src.outcome,
+2026-10-22T00:15:37.8675380Z         identifyingEvidence := __src.identifyingEvidence }))
+2026-10-22T00:15:37.8675656Z     (Result.unknown Error.notIdentified)
+2026-10-22T00:15:37.8675887Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8676037Z 
+2026-10-22T00:15:37.8676626Z After unfolding the instances `instDecidableEqBool`, `instDecidableOr`, `Bool.decEq`, `Int.decLt`, `Int.decNonneg`, `Rat.instDecidableLt`, `instDecidableEqResult`, and `instDecidableEqResult.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8677349Z   match
+2026-10-22T00:15:37.8677517Z     Policy.proposed_off_policy_value
+2026-10-22T00:15:37.8677739Z       (let __src := input.policy;
+2026-10-22T00:15:37.8678092Z       { caseId := __src.caseId, targetVersion := __src.targetVersion, responseVersion := __src.responseVersion,
+2026-10-22T00:15:37.8678645Z         loggingProbability := 0, targetProbability := __src.targetProbability, outcome := __src.outcome,
+2026-10-22T00:15:37.8679056Z         identifyingEvidence := __src.identifyingEvidence }),
+2026-10-22T00:15:37.8679429Z     Result.unknown Error.notIdentified with
+2026-10-22T00:15:37.8679824Z   | Result.known a, Result.known b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8680196Z   | Result.known value, Result.unknown reason => isFalse ⋯
+2026-10-22T00:15:37.8680520Z   | Result.known value, Result.rejected reason => isFalse ⋯
+2026-10-22T00:15:37.8680847Z   | Result.known value, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8681288Z   | Result.unknown reason, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8681683Z   | Result.unknown a, Result.unknown b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8682074Z   | Result.unknown reason, Result.rejected reason_1 => isFalse ⋯
+2026-10-22T00:15:37.8682425Z   | Result.unknown reason, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8682759Z   | Result.rejected reason, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8683095Z   | Result.rejected reason, Result.unknown reason_1 => isFalse ⋯
+2026-10-22T00:15:37.8683526Z   | Result.rejected a, Result.rejected b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8683933Z   | Result.rejected reason, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8684281Z   | Result.conflict left right, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8684631Z   | Result.conflict left right, Result.unknown reason => isFalse ⋯
+2026-10-22T00:15:37.8685000Z   | Result.conflict left right, Result.rejected reason => isFalse ⋯
+2026-10-22T00:15:37.8685309Z   | Result.conflict a a_1, Result.conflict b b_1 =>
+2026-10-22T00:15:37.8685684Z     if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8686147Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:363:65: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8686673Z   Feedback.loadAccepted gamma [] (assessed 0 (1 / 2)) (assessed 1 0) 0 (checkpoint 1) { value := 205 } =
+2026-10-22T00:15:37.8687047Z     Result.unknown Error.authorityUnresolved
+2026-10-22T00:15:37.8687289Z because its `Decidable` instance
+2026-10-22T00:15:37.8687501Z   instDecidableEqResult
+2026-10-22T00:15:37.8687830Z     (Feedback.loadAccepted gamma [] (assessed 0 (1 / 2)) (assessed 1 0) 0 (checkpoint 1) { value := 205 })
+2026-10-22T00:15:37.8688207Z     (Result.unknown Error.authorityUnresolved)
+2026-10-22T00:15:37.8688460Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8688620Z 
+2026-10-22T00:15:37.8690091Z After unfolding the instances `decEq`, `instDecidableEqBool`, `instDecidableEqList`, `instDecidableEqNat`, `instDecidableNot`, `Bool.decEq`, `Int.decLt`, `Int.decNonneg`, `List.hasDecEq`, `Nat.decEq`, `Rat.instDecidableLe`, `instDecidableEqPartyId`, `instDecidableEqResult`, `Feedback.instDecidableEqScope`, `Feedback.instDecidableEqVerdict`, `instDecidableEqPartyId.decEq`, `instDecidableEqResult.decEq`, and `Feedback.instDecidableEqScope.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8691649Z   match Feedback.loadAccepted gamma [] (assessed 0 (1 / 2)) (assessed 1 0) 0 (checkpoint 1) { value := 205 },
+2026-10-22T00:15:37.8692048Z     Result.unknown Error.authorityUnresolved with
+2026-10-22T00:15:37.8692438Z   | Result.known a, Result.known b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8692806Z   | Result.known value, Result.unknown reason => isFalse ⋯
+2026-10-22T00:15:37.8693136Z   | Result.known value, Result.rejected reason => isFalse ⋯
+2026-10-22T00:15:37.8693468Z   | Result.known value, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8693803Z   | Result.unknown reason, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8694199Z   | Result.unknown a, Result.unknown b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8694593Z   | Result.unknown reason, Result.rejected reason_1 => isFalse ⋯
+2026-10-22T00:15:37.8694949Z   | Result.unknown reason, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8695282Z   | Result.rejected reason, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8695607Z   | Result.rejected reason, Result.unknown reason_1 => isFalse ⋯
+2026-10-22T00:15:37.8696025Z   | Result.rejected a, Result.rejected b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8696426Z   | Result.rejected reason, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8696777Z   | Result.conflict left right, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8697222Z   | Result.conflict left right, Result.unknown reason => isFalse ⋯
+2026-10-22T00:15:37.8697584Z   | Result.conflict left right, Result.rejected reason => isFalse ⋯
+2026-10-22T00:15:37.8697893Z   | Result.conflict a a_1, Result.conflict b b_1 =>
+2026-10-22T00:15:37.8698266Z     if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8698745Z error: JurisLean/Candidates/Final20261021/Acceptance.lean:367:80: Tactic `decide` failed for proposition
+2026-10-22T00:15:37.8699309Z   Feedback.loadAccepted gamma [] (assessed 0 (1 / 2)) (assessed 1 0) 0
+2026-10-22T00:15:37.8699613Z       (let __src := checkpoint 1;
+2026-10-22T00:15:37.8699967Z       { principal := __src.principal, task := __src.task, target := __src.target, feature := __src.feature,
+2026-10-22T00:15:37.8700493Z         ruleVersion := __src.ruleVersion, mechanism := __src.mechanism, scope := __src.scope, version := __src.version,
+2026-10-22T00:15:37.8700966Z         bytes := [1], prediction := __src.prediction, evidence := __src.evidence })
+2026-10-22T00:15:37.8701262Z       { value := 205 } =
+2026-10-22T00:15:37.8701466Z     Result.rejected Error.scopeMismatch
+2026-10-22T00:15:37.8701700Z because its `Decidable` instance
+2026-10-22T00:15:37.8701906Z   instDecidableEqResult
+2026-10-22T00:15:37.8702173Z     (Feedback.loadAccepted gamma [] (assessed 0 (1 / 2)) (assessed 1 0) 0
+2026-10-22T00:15:37.8702478Z       (let __src := checkpoint 1;
+2026-10-22T00:15:37.8702810Z       { principal := __src.principal, task := __src.task, target := __src.target, feature := __src.feature,
+2026-10-22T00:15:37.8703323Z         ruleVersion := __src.ruleVersion, mechanism := __src.mechanism, scope := __src.scope, version := __src.version,
+2026-10-22T00:15:37.8703776Z         bytes := [1], prediction := __src.prediction, evidence := __src.evidence })
+2026-10-22T00:15:37.8704058Z       { value := 205 })
+2026-10-22T00:15:37.8704260Z     (Result.rejected Error.scopeMismatch)
+2026-10-22T00:15:37.8704508Z did not reduce to `isTrue` or `isFalse`.
+2026-10-22T00:15:37.8704663Z 
+2026-10-22T00:15:37.8706029Z After unfolding the instances `decEq`, `instDecidableEqBool`, `instDecidableEqList`, `instDecidableEqNat`, `instDecidableNot`, `Bool.decEq`, `Int.decLt`, `Int.decNonneg`, `List.hasDecEq`, `Nat.decEq`, `Rat.instDecidableLe`, `instDecidableEqPartyId`, `instDecidableEqResult`, `Feedback.instDecidableEqScope`, `Feedback.instDecidableEqVerdict`, `instDecidableEqPartyId.decEq`, `instDecidableEqResult.decEq`, and `Feedback.instDecidableEqScope.decEq`, reduction got stuck at the `Decidable` instance
+2026-10-22T00:15:37.8707415Z   match
+2026-10-22T00:15:37.8707651Z     Feedback.loadAccepted gamma [] (assessed 0 (1 / 2)) (assessed 1 0) 0
+2026-10-22T00:15:37.8707947Z       (let __src := checkpoint 1;
+2026-10-22T00:15:37.8708280Z       { principal := __src.principal, task := __src.task, target := __src.target, feature := __src.feature,
+2026-10-22T00:15:37.8708791Z         ruleVersion := __src.ruleVersion, mechanism := __src.mechanism, scope := __src.scope, version := __src.version,
+2026-10-22T00:15:37.8709357Z         bytes := [1], prediction := __src.prediction, evidence := __src.evidence })
+2026-10-22T00:15:37.8709659Z       { value := 205 },
+2026-10-22T00:15:37.8709872Z     Result.rejected Error.scopeMismatch with
+2026-10-22T00:15:37.8710257Z   | Result.known a, Result.known b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8710622Z   | Result.known value, Result.unknown reason => isFalse ⋯
+2026-10-22T00:15:37.8710949Z   | Result.known value, Result.rejected reason => isFalse ⋯
+2026-10-22T00:15:37.8711280Z   | Result.known value, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8711605Z   | Result.unknown reason, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8712002Z   | Result.unknown a, Result.unknown b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8712392Z   | Result.unknown reason, Result.rejected reason_1 => isFalse ⋯
+2026-10-22T00:15:37.8712854Z   | Result.unknown reason, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8713193Z   | Result.rejected reason, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8713531Z   | Result.rejected reason, Result.unknown reason_1 => isFalse ⋯
+2026-10-22T00:15:37.8713946Z   | Result.rejected a, Result.rejected b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8714353Z   | Result.rejected reason, Result.conflict left right => isFalse ⋯
+2026-10-22T00:15:37.8714705Z   | Result.conflict left right, Result.known value => isFalse ⋯
+2026-10-22T00:15:37.8715048Z   | Result.conflict left right, Result.unknown reason => isFalse ⋯
+2026-10-22T00:15:37.8715415Z   | Result.conflict left right, Result.rejected reason => isFalse ⋯
+2026-10-22T00:15:37.8715722Z   | Result.conflict a a_1, Result.conflict b b_1 =>
+2026-10-22T00:15:37.8716091Z     if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+2026-10-22T00:15:37.8716396Z error: Lean exited with code 1
+2026-10-22T00:15:37.9209262Z Some required targets logged failures:
+2026-10-22T00:15:37.9209686Z - JurisLean.Candidates.Final20261021.Acceptance
+2026-10-22T00:15:37.9216154Z error: build failed
+2026-10-22T00:15:38.0058171Z Traceback (most recent call last):
+2026-10-22T00:15:38.0064969Z   File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 59, in <module>
+2026-10-22T00:15:38.0065692Z     if __name__=='__main__':raise SystemExit(main())
+2026-10-22T00:15:38.0065996Z                                              ^^^^^^
+2026-10-22T00:15:38.0066508Z   File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 57, in main
+2026-10-22T00:15:38.0067069Z     subprocess.run(['lake','build',*targets],cwd=R/'proofs/lean/juris_lean',check=True)
+2026-10-22T00:15:38.0067558Z   File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/subprocess.py", line 571, in run
+2026-10-22T00:15:38.0264829Z     raise CalledProcessError(retcode, process.args,
+2026-10-22T00:15:38.0265380Z subprocess.CalledProcessError: Command '['lake', 'build', 'JurisLean.Candidates.Final20261021.CIAll']' returned non-zero exit status 1.
+2026-10-22T00:15:38.0364061Z ##[error]Process completed with exit code 1.
+2026-10-22T00:15:38.0441710Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-22T00:15:38.0442036Z with:
+2026-10-22T00:15:38.0442224Z   name: changed-module-only-39698213475-1
+2026-10-22T00:15:38.0442480Z   path: module-plan.json
+changed-module.log
+
+2026-10-22T00:15:38.0442721Z   if-no-files-found: warn
+2026-10-22T00:15:38.0442928Z   compression-level: 6
+2026-10-22T00:15:38.0443105Z   overwrite: false
+2026-10-22T00:15:38.0443283Z   include-hidden-files: false
+2026-10-22T00:15:38.0443495Z env:
+2026-10-22T00:15:38.0443663Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:15:38.0443880Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:15:38.0444075Z   PYTHONUTF8: 1
+2026-10-22T00:15:38.0444293Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:15:38.0444645Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:15:38.0444972Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:15:38.0445314Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:15:38.0445614Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:15:38.0445906Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:15:38.0446159Z ##[endgroup]
+2026-10-22T00:15:38.1816239Z (node:2956) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T00:15:38.1817122Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T00:15:38.1866960Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-22T00:15:38.1879270Z The least common ancestor is /home/runner/work/legal-math-modeling/legal-math-modeling. This will be the root directory of the artifact
+2026-10-22T00:15:38.1880907Z With the provided path, there will be 2 files uploaded
+2026-10-22T00:15:38.1881708Z Artifact name is valid!
+2026-10-22T00:15:38.1882404Z Root directory input is valid!
+2026-10-22T00:15:38.3898185Z Beginning upload of artifact content to blob storage
+2026-10-22T00:15:38.4101705Z (node:2956) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-22T00:15:38.4382531Z Uploaded bytes 7759
+2026-10-22T00:15:38.4521530Z Finished uploading artifact content to blob storage!
+2026-10-22T00:15:38.4522283Z SHA256 digest of uploaded artifact zip is e9af735a857461fad0610ec9fa764384aebbb96683f3d5e0fe61019c04fa6744
+2026-10-22T00:15:38.4523810Z Finalizing artifact upload
+2026-10-22T00:15:38.8537076Z Artifact changed-module-only-39698213475-1.zip successfully finalized. Artifact ID 12392070408
+2026-10-22T00:15:38.8538024Z Artifact changed-module-only-39698213475-1 has been successfully uploaded! Final size is 7759 bytes. Artifact ID is 12392070408
+2026-10-22T00:15:38.8543365Z Artifact download URL: https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39698213475/artifacts/12392070408
+2026-10-22T00:15:38.8728495Z Post job cleanup.
+2026-10-22T00:15:38.9501275Z [command]/usr/bin/git version
+2026-10-22T00:15:38.9548520Z git version 2.55.0
+2026-10-22T00:15:38.9578155Z Temporarily overriding HOME='/home/runner/work/_temp/dcc13ae2-7096-4edd-8942-2bec0b5c29bf' before making global git config changes
+2026-10-22T00:15:38.9579446Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T00:15:38.9583090Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/legal-math-modeling/legal-math-modeling
+2026-10-22T00:15:38.9624828Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T00:15:38.9659789Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T00:15:38.9979833Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T00:15:39.0004256Z http.https://github.com/.extraheader
+2026-10-22T00:15:39.0013545Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-22T00:15:39.0052317Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T00:15:39.0322319Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T00:15:39.0360407Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T00:15:39.0743674Z Cleaning up orphan processes
+2026-10-22T00:15:39.0987287Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830, actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

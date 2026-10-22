@@ -257,6 +257,46 @@
       "axiom_audit": "NOT_REACHED",
       "acceptance": "NOT_REACHED",
       "does_not_close_full_scope": true
+    },
+    {
+      "run_id": 39698213475,
+      "run_attempt": 1,
+      "subject": "76b24bb4e04a83a2a2aca7d535596761788ace8f",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39698213475",
+      "mode": "changed-module",
+      "target": "JurisLean.Candidates.Final20261021.CIAll",
+      "status": "FAIL",
+      "failed_modules": [
+        "JurisLean.Candidates.Final20261021.Acceptance"
+      ],
+      "checked_candidate_modules": [
+        "JurisLean.Candidates.Final20261021.Interfaces",
+        "JurisLean.Candidates.Final20261021.Policy",
+        "JurisLean.Candidates.Final20261021.Behavior",
+        "JurisLean.Candidates.Final20261021.Progress",
+        "JurisLean.Candidates.Final20261021.Learning",
+        "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+        "JurisLean.Candidates.Final20261021.Temporal",
+        "JurisLean.Candidates.Final20261021.Transactions",
+        "JurisLean.Candidates.Final20261021.Harness",
+        "JurisLean.Candidates.Final20261021.Representation",
+        "JurisLean.Candidates.Final20261021.Compiler",
+        "JurisLean.Candidates.Final20261021.RSI",
+        "JurisLean.Candidates.Final20261021.Probability",
+        "JurisLean.Candidates.Final20261021.Calibration",
+        "JurisLean.Candidates.Final20261021.Authorization",
+        "JurisLean.Candidates.Final20261021.Decision",
+        "JurisLean.Candidates.Final20261021.Feedback",
+        "JurisLean.Candidates.Final20261021.Ledger",
+        "JurisLean.Candidates.Final20261021.Iteration",
+        "JurisLean.Candidates.Final20261021.Trace",
+        "JurisLean.Candidates.Final20261021.Pipeline"
+      ],
+      "artifact": "evidence/ci-stage1-76b24bb/changed-module-only-39698213475-1.zip",
+      "sha256": "e9af735a857461fad0610ec9fa764384aebbb96683f3d5e0fe61019c04fa6744",
+      "axiom_audit": "NOT_REACHED",
+      "acceptance": "NOT_REACHED",
+      "does_not_close_full_scope": true
     }
   ],
   "rows": [
@@ -2448,19 +2488,19 @@
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
           "file": "Acceptance.lean",
-          "line": 260,
+          "line": 263,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_reject",
           "file": "Acceptance.lean",
-          "line": 265,
+          "line": 268,
           "consumers": []
         },
         {
           "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_unknown",
           "file": "Acceptance.lean",
-          "line": 270,
+          "line": 273,
           "consumers": []
         }
       ],

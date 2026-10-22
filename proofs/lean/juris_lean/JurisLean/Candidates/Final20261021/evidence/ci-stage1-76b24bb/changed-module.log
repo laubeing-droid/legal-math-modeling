@@ -1,0 +1,1015 @@
+✔ [8475/8506] Built JurisLean.FiniteMonotoneIteration (3.1s)
+✔ [8476/8506] Built JurisLean.FullMath.Core.Foundations (4.7s)
+✔ [8477/8506] Built JurisLean.HornDefinitions (3.0s)
+✔ [8478/8506] Built JurisLean.Candidates.Final20261021.Interfaces (6.5s)
+✔ [8479/8506] Built JurisLean.HornFixedPoint (2.0s)
+⚠ [8480/8506] Built JurisLean.FullMath.Numeric.Quantities (5.8s)
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8481/8506] Built JurisLean.FullMath.Numeric.Intervals (5.9s)
+⚠ [8482/8506] Built JurisLean.Candidates.Final20261021.Policy (6.2s)
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:40: unused variable `hw`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:53: unused variable `hc`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8483/8506] Built JurisLean.Candidates.Final20261021.Behavior (5.9s)
+✔ [8484/8506] Built JurisLean.Candidates.Final20261021.Progress (5.5s)
+⚠ [8485/8506] Built JurisLean.Candidates.Final20261021.Learning (6.4s)
+warning: JurisLean/Candidates/Final20261021/Learning.lean:86:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [8486/8506] Built JurisLean.Candidates.Final20261021.EvidenceProcedure (5.7s)
+✔ [8487/8506] Built JurisLean.Candidates.Final20261021.Temporal (5.7s)
+✔ [8488/8506] Built JurisLean.Candidates.Final20261021.Transactions (5.8s)
+✔ [8489/8506] Built JurisLean.Candidates.Final20261021.Harness (5.6s)
+✔ [8490/8506] Built JurisLean.Candidates.Final20261021.Representation (5.6s)
+✔ [8491/8506] Built JurisLean.Candidates.Final20261021.Compiler (5.5s)
+✔ [8492/8506] Built JurisLean.Seams.UnifiedQuantities (5.6s)
+✔ [8493/8506] Built JurisLean.Candidates.Final20261021.RSI (5.6s)
+✔ [8494/8506] Built JurisLean.Candidates.Final20261021.Probability (6.3s)
+✔ [8495/8506] Built JurisLean.Candidates.Final20261021.Calibration (6.2s)
+✔ [8496/8506] Built JurisLean.Candidates.Final20261021.Authorization (5.4s)
+✔ [8497/8506] Built JurisLean.Seams.UnifiedQuantLedger (8.8s)
+✔ [8498/8506] Built JurisLean.Candidates.Final20261021.Decision (7.9s)
+✔ [8499/8506] Built JurisLean.Candidates.Final20261021.Feedback (6.2s)
+✔ [8500/8506] Built JurisLean.Candidates.Final20261021.Ledger (5.6s)
+✔ [8501/8506] Built JurisLean.Candidates.Final20261021.Iteration (3.0s)
+✔ [8502/8506] Built JurisLean.Candidates.Final20261021.Trace (3.7s)
+✔ [8503/8506] Built JurisLean.Candidates.Final20261021.Pipeline (4.3s)
+✖ [8504/8506] Building JurisLean.Candidates.Final20261021.Acceptance (4.0s)
+trace: .> LEAN_PATH=/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/lean /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean -o /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Acceptance.olean -i /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Acceptance.ilean -c /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Acceptance.c --setup /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Acceptance.setup.json --json
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:104:61: Tactic `decide` failed for proposition
+  Ledger.consume_ext opening opening (request 1) true Ledger.Submission.submit =
+    Ledger.Outcome.committed (Ledger.commitPayment opening (request 1)).1 post1
+because its `Decidable` instance
+  Ledger.instDecidableEqOutcome (Ledger.consume_ext opening opening (request 1) true Ledger.Submission.submit)
+    (Ledger.Outcome.committed (Ledger.commitPayment opening (request 1)).1 post1)
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `decidable_of_iff`, `decidable_of_iff'`, `instDecidableEqBitVec`, `instDecidableEqBool`, `instDecidableEqFin`, `instDecidableEqList`, `instDecidableEqNat`, `instDecidableEqRat`, `instDecidableEqString`, `instDecidableEqUInt8`, `instDecidableNot`, `instDecidableOr`, `BitVec.decEq`, `Bool.decEq`, `Finset.decidableEq`, `Finset.decidableMem`, `Int.decEq`, `Int.decLe`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.decidablePerm`, `List.hasDecEq`, `List.instDecidableMemOfLawfulBEq`, `Multiset.decidableEq`, `Multiset.decidableMem`, `Multiset.instDecidableRListOfDecidableEq`, `Nat.decEq`, `Nat.decLe`, `Nat.decLt`, `Option.instDecidableEq`, `Rat.instDecidableLt`, `String.decEq`, `UInt8.decEq`, `instDecidableEqRat.decEq`, `Multiset.decidableMem._aux_1`, `instDecidableEqAmount`, `instDecidableEqAmountTag`, `instDecidableEqApplicable`, `instDecidableEqCaseId`, `instDecidableEqDebtRecord`, `instDecidableEqEventId`, `instDecidableEqGamma`, `instDecidableEqInstant`, `instDecidableEqJudgment`, `instDecidableEqLawDate`, `instDecidableEqPartyId`, `instDecidableEqPaymentId`, `instDecidableEqPaymentPayload`, `instDecidableEqPostStateHandle`, `instDecidableEqProcedure`, `instDecidableEqRelationId`, `instDecidableEqResult`, `instDecidableEqSourceRef`, `Ledger.instDecidableEqOutcome`, `Ledger.instDecidableEqReceipt`, `Ledger.instDecidableEqState`, `Temporal.instDecidableEqVersionRecord`, `instDecidableEqAmount.decEq`, `instDecidableEqAmountTag.decEq`, `instDecidableEqCaseId.decEq`, `instDecidableEqDebtRecord.decEq`, `instDecidableEqEventId.decEq`, `instDecidableEqGamma.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqLawDate.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqPaymentId.decEq`, `instDecidableEqPaymentPayload.decEq`, `instDecidableEqPostStateHandle.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqResult.decEq`, `instDecidableEqSourceRef.decEq`, `Ledger.instDecidableEqOutcome.decEq`, `Ledger.instDecidableEqReceipt.decEq`, `Ledger.instDecidableEqState.decEq`, and `Temporal.instDecidableEqVersionRecord.decEq`, reduction got stuck at the `Decidable` instance
+  match ((Ledger.balance opening.state).sub (min (request 1).payload.amount.value (Ledger.balance opening.state))).num,
+    ((Ledger.balance opening.state).sub (min (request 1).payload.amount.value (Ledger.balance opening.state))).num with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:107:59: Tactic `decide` failed for proposition
+  Ledger.consume_ext post1 post1 (request 2) true Ledger.Submission.submit =
+    Ledger.Outcome.committed (Ledger.commitPayment post1 (request 2)).1 post2
+because its `Decidable` instance
+  Ledger.instDecidableEqOutcome (Ledger.consume_ext post1 post1 (request 2) true Ledger.Submission.submit)
+    (Ledger.Outcome.committed (Ledger.commitPayment post1 (request 2)).1 post2)
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `instDecidableEqBitVec`, `instDecidableEqBool`, `instDecidableEqFin`, `instDecidableEqList`, `instDecidableEqNat`, `instDecidableEqRat`, `instDecidableEqString`, `instDecidableEqUInt8`, `instDecidableNot`, `instDecidableOr`, `BitVec.decEq`, `Bool.decEq`, `Int.decEq`, `Int.instDecidableEq`, `List.hasDecEq`, `Nat.decEq`, `Nat.decLe`, `Nat.decLt`, `String.decEq`, `UInt8.decEq`, `instDecidableEqRat.decEq`, `instDecidableEqAmount`, `instDecidableEqCaseId`, `instDecidableEqDebtRecord`, `instDecidableEqGamma`, `instDecidableEqInstant`, `instDecidableEqLawDate`, `instDecidableEqPartyId`, `instDecidableEqPaymentId`, `instDecidableEqPostStateHandle`, `instDecidableEqRelationId`, `Ledger.instDecidableEqOutcome`, `Ledger.instDecidableEqState`, `instDecidableEqAmount.decEq`, `instDecidableEqCaseId.decEq`, `instDecidableEqDebtRecord.decEq`, `instDecidableEqGamma.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqLawDate.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqPaymentId.decEq`, `instDecidableEqPostStateHandle.decEq`, `instDecidableEqRelationId.decEq`, `Ledger.instDecidableEqOutcome.decEq`, and `Ledger.instDecidableEqState.decEq`, reduction got stuck at the `Decidable` instance
+  match Ledger.consume_ext post1 post1 (request 2) true Ledger.Submission.submit,
+    Ledger.Outcome.committed (Ledger.commitPayment post1 (request 2)).1 post2 with
+  | Ledger.Outcome.committed a a_1, Ledger.Outcome.committed b b_1 =>
+    if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+  | Ledger.Outcome.committed receipt post, Ledger.Outcome.replay receipt_1 => isFalse ⋯
+  | Ledger.Outcome.committed receipt post, Ledger.Outcome.rejectedNoCommit attempt reason => isFalse ⋯
+  | Ledger.Outcome.committed receipt post, Ledger.Outcome.conflict registered requested => isFalse ⋯
+  | Ledger.Outcome.committed receipt post, Ledger.Outcome.unknownCommit key attempt => isFalse ⋯
+  | Ledger.Outcome.committed receipt post, Ledger.Outcome.pending reason => isFalse ⋯
+  | Ledger.Outcome.replay receipt, Ledger.Outcome.committed receipt_1 post => isFalse ⋯
+  | Ledger.Outcome.replay a, Ledger.Outcome.replay b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Ledger.Outcome.replay receipt, Ledger.Outcome.rejectedNoCommit attempt reason => isFalse ⋯
+  | Ledger.Outcome.replay receipt, Ledger.Outcome.conflict registered requested => isFalse ⋯
+  | Ledger.Outcome.replay receipt, Ledger.Outcome.unknownCommit key attempt => isFalse ⋯
+  | Ledger.Outcome.replay receipt, Ledger.Outcome.pending reason => isFalse ⋯
+  | Ledger.Outcome.rejectedNoCommit attempt reason, Ledger.Outcome.committed receipt post => isFalse ⋯
+  | Ledger.Outcome.rejectedNoCommit attempt reason, Ledger.Outcome.replay receipt => isFalse ⋯
+  | Ledger.Outcome.rejectedNoCommit a a_1, Ledger.Outcome.rejectedNoCommit b b_1 =>
+    if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+  | Ledger.Outcome.rejectedNoCommit attempt reason, Ledger.Outcome.conflict registered requested => isFalse ⋯
+  | Ledger.Outcome.rejectedNoCommit attempt reason, Ledger.Outcome.unknownCommit key attempt_1 => isFalse ⋯
+  | Ledger.Outcome.rejectedNoCommit attempt reason, Ledger.Outcome.pending reason_1 => isFalse ⋯
+  | Ledger.Outcome.conflict registered requested, Ledger.Outcome.committed receipt post => isFalse ⋯
+  | Ledger.Outcome.conflict registered requested, Ledger.Outcome.replay receipt => isFalse ⋯
+  | Ledger.Outcome.conflict registered requested, Ledger.Outcome.rejectedNoCommit attempt reason => isFalse ⋯
+  | Ledger.Outcome.conflict a a_1, Ledger.Outcome.conflict b b_1 =>
+    if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+  | Ledger.Outcome.conflict registered requested, Ledger.Outcome.unknownCommit key attempt => isFalse ⋯
+  | Ledger.Outcome.conflict registered requested, Ledger.Outcome.pending reason => isFalse ⋯
+  | Ledger.Outcome.unknownCommit key attempt, Ledger.Outcome.committed receipt post => isFalse ⋯
+  | Ledger.Outcome.unknownCommit key attempt, Ledger.Outcome.replay receipt => isFalse ⋯
+  | Ledger.Outcome.unknownCommit key attempt, Ledger.Outcome.rejectedNoCommit attempt_1 reason => isFalse ⋯
+  | Ledger.Outcome.unknownCommit key attempt, Ledger.Outcome.conflict registered requested => isFalse ⋯
+  | Ledger.Outcome.unknownCommit a a_1, Ledger.Outcome.unknownCommit b b_1 =>
+    if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+  | Ledger.Outcome.unknownCommit key attempt, Ledger.Outcome.pending reason => isFalse ⋯
+  | Ledger.Outcome.pending reason, Ledger.Outcome.committed receipt post => isFalse ⋯
+  | Ledger.Outcome.pending reason, Ledger.Outcome.replay receipt => isFalse ⋯
+  | Ledger.Outcome.pending reason, Ledger.Outcome.rejectedNoCommit attempt reason_1 => isFalse ⋯
+  | Ledger.Outcome.pending reason, Ledger.Outcome.conflict registered requested => isFalse ⋯
+  | Ledger.Outcome.pending reason, Ledger.Outcome.unknownCommit key attempt => isFalse ⋯
+  | Ledger.Outcome.pending a, Ledger.Outcome.pending b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:111:87: Tactic `decide` failed for proposition
+  Ledger.balance post1.state = 3 ∧
+    Ledger.balance post2.state = 0 ∧ post2.state.allocated = 10 ∧ post2.state.paid = 14 ∧ post2.state.surplus = 4
+because its `Decidable` instance
+  instDecidableAnd
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableAnd`, `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at the `Decidable` instance
+  match ((Ledger.balance opening.state).sub (min (request 1).payload.amount.value (Ledger.balance opening.state))).num,
+    ↑3 with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:115:71: Tactic `decide` failed for proposition
+  Ledger.forms post2.state debt.relation = true ∧
+    Ledger.balance post2.state = 0 ∧ post2.state.claim = Applicable.unknown ∧ post2.state.procedure = Procedure.open
+because its `Decidable` instance
+  instDecidableAnd
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `instDecidableEqRat`, `Bool.decEq`, `Int.decEq`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `instDecidableEqRat.decEq`, `instDecidableEqRelationId`, and `instDecidableEqRelationId.decEq`, reduction got stuck at the `Decidable` instance
+  match ((Ledger.balance post1.state).sub (min (request 2).payload.amount.value (Ledger.balance post1.state))).num,
+    ↑0 with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:124:78: Tactic `decide` failed for proposition
+  Ledger.balance (Ledger.commitPayment opening (request 2)).2.state = 3 ∧
+    Ledger.balance (Ledger.commitPayment post1 (request 2)).2.state = 0
+because its `Decidable` instance
+  instDecidableAnd
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableAnd`, `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at the `Decidable` instance
+  match ((Ledger.balance opening.state).sub (min (request 2).payload.amount.value (Ledger.balance opening.state))).num,
+    ↑3 with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:135:83: Tactic `decide` failed for proposition
+  Ledger.consume_ext opening opening (request 3 0) true Ledger.Submission.submit =
+      Ledger.Outcome.committed (Ledger.commitPayment opening (request 3 0)).1
+        (Ledger.commitPayment opening (request 3 0)).2 ∧
+    { value := 3 } ∈ (Ledger.commitPayment opening (request 3 0)).2.state.used ∧
+      Ledger.balance (Ledger.commitPayment opening (request 3 0)).2.state = 10
+because its `Decidable` instance
+  instDecidableAnd
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `decidable_of_iff`, `decidable_of_iff'`, `instDecidableAnd`, `instDecidableEqBitVec`, `instDecidableEqBool`, `instDecidableEqFin`, `instDecidableEqList`, `instDecidableEqNat`, `instDecidableEqRat`, `instDecidableEqString`, `instDecidableEqUInt8`, `instDecidableNot`, `instDecidableOr`, `BitVec.decEq`, `Bool.decEq`, `Finset.decidableEq`, `Finset.decidableMem`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.decidablePerm`, `List.hasDecEq`, `List.instDecidableMemOfLawfulBEq`, `Multiset.decidableEq`, `Multiset.decidableMem`, `Multiset.instDecidableRListOfDecidableEq`, `Nat.decEq`, `Nat.decLe`, `Nat.decLt`, `Option.instDecidableEq`, `Rat.instDecidableLt`, `String.decEq`, `UInt8.decEq`, `instDecidableEqRat.decEq`, `Multiset.decidableMem._aux_1`, `instDecidableEqAmount`, `instDecidableEqAmountTag`, `instDecidableEqApplicable`, `instDecidableEqCaseId`, `instDecidableEqDebtRecord`, `instDecidableEqEventId`, `instDecidableEqGamma`, `instDecidableEqInstant`, `instDecidableEqJudgment`, `instDecidableEqLawDate`, `instDecidableEqPartyId`, `instDecidableEqPaymentId`, `instDecidableEqPaymentPayload`, `instDecidableEqPostStateHandle`, `instDecidableEqProcedure`, `instDecidableEqRelationId`, `instDecidableEqResult`, `instDecidableEqSourceRef`, `Ledger.instDecidableEqOutcome`, `Ledger.instDecidableEqReceipt`, `Ledger.instDecidableEqState`, `Temporal.instDecidableEqVersionRecord`, `instDecidableEqAmount.decEq`, `instDecidableEqAmountTag.decEq`, `instDecidableEqCaseId.decEq`, `instDecidableEqDebtRecord.decEq`, `instDecidableEqEventId.decEq`, `instDecidableEqGamma.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqLawDate.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqPaymentId.decEq`, `instDecidableEqPaymentPayload.decEq`, `instDecidableEqPostStateHandle.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqResult.decEq`, `instDecidableEqSourceRef.decEq`, `Ledger.instDecidableEqOutcome.decEq`, `Ledger.instDecidableEqReceipt.decEq`, `Ledger.instDecidableEqState.decEq`, and `Temporal.instDecidableEqVersionRecord.decEq`, reduction got stuck at the `Decidable` instance
+  match
+    ((Ledger.balance opening.state).sub (min (request 3 0).payload.amount.value (Ledger.balance opening.state))).num,
+    ((Ledger.balance opening.state).sub
+        (min (request 3 0).payload.amount.value (Ledger.balance opening.state))).num with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:160:65: Tactic `decide` failed for proposition
+  Ledger.consume_ext post2 post2 (request 1) false Ledger.Submission.submit =
+    Ledger.Outcome.replay (Ledger.commitPayment opening (request 1)).1
+because its `Decidable` instance
+  Ledger.instDecidableEqOutcome (Ledger.consume_ext post2 post2 (request 1) false Ledger.Submission.submit)
+    (Ledger.Outcome.replay (Ledger.commitPayment opening (request 1)).1)
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `instDecidableEqBitVec`, `instDecidableEqBool`, `instDecidableEqFin`, `instDecidableEqList`, `instDecidableEqNat`, `instDecidableEqRat`, `instDecidableEqString`, `instDecidableEqUInt8`, `instDecidableOr`, `BitVec.decEq`, `Bool.decEq`, `Int.decEq`, `Int.instDecidableEq`, `List.hasDecEq`, `Nat.decEq`, `Nat.decLe`, `Nat.decLt`, `String.decEq`, `UInt8.decEq`, `instDecidableEqRat.decEq`, `instDecidableEqAmount`, `instDecidableEqAmountTag`, `instDecidableEqCaseId`, `instDecidableEqEventId`, `instDecidableEqLawDate`, `instDecidableEqPartyId`, `instDecidableEqPaymentId`, `instDecidableEqPaymentPayload`, `instDecidableEqRelationId`, `instDecidableEqSourceRef`, `Ledger.instDecidableEqOutcome`, `Ledger.instDecidableEqReceipt`, `instDecidableEqAmount.decEq`, `instDecidableEqAmountTag.decEq`, `instDecidableEqCaseId.decEq`, `instDecidableEqEventId.decEq`, `instDecidableEqLawDate.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqPaymentId.decEq`, `instDecidableEqPaymentPayload.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqSourceRef.decEq`, `Ledger.instDecidableEqOutcome.decEq`, and `Ledger.instDecidableEqReceipt.decEq`, reduction got stuck at the `Decidable` instance
+  match ((Ledger.balance opening.state).sub (min (request 1).payload.amount.value (Ledger.balance opening.state))).num,
+    ((Ledger.balance opening.state).sub (min (request 1).payload.amount.value (Ledger.balance opening.state))).num with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:168:49: Tactic `decide` failed for proposition
+  Ledger.auditReceipt (Ledger.commitPayment opening (request 1)).1 opening.state =
+    Result.rejected Error.stateConservationMismatch
+because its `Decidable` instance
+  instDecidableEqResult (Ledger.auditReceipt (Ledger.commitPayment opening (request 1)).1 opening.state)
+    (Result.rejected Error.stateConservationMismatch)
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableAnd`, `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, `instDecidableEqRat.decEq`, `instDecidableEqResult`, and `instDecidableEqResult.decEq`, reduction got stuck at the `Decidable` instance
+  match Ledger.auditReceipt (Ledger.commitPayment opening (request 1)).1 opening.state,
+    Result.rejected Error.stateConservationMismatch with
+  | Result.known a, Result.known b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.known value, Result.unknown reason => isFalse ⋯
+  | Result.known value, Result.rejected reason => isFalse ⋯
+  | Result.known value, Result.conflict left right => isFalse ⋯
+  | Result.unknown reason, Result.known value => isFalse ⋯
+  | Result.unknown a, Result.unknown b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.unknown reason, Result.rejected reason_1 => isFalse ⋯
+  | Result.unknown reason, Result.conflict left right => isFalse ⋯
+  | Result.rejected reason, Result.known value => isFalse ⋯
+  | Result.rejected reason, Result.unknown reason_1 => isFalse ⋯
+  | Result.rejected a, Result.rejected b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.rejected reason, Result.conflict left right => isFalse ⋯
+  | Result.conflict left right, Result.known value => isFalse ⋯
+  | Result.conflict left right, Result.unknown reason => isFalse ⋯
+  | Result.conflict left right, Result.rejected reason => isFalse ⋯
+  | Result.conflict a a_1, Result.conflict b b_1 =>
+    if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:176:43: Tactic `decide` failed for proposition
+  (Ledger.accrue post1.state 1).cash = post1.state.cash ∧
+    Ledger.auditAccrualReport post1.state
+        (let __src := post1.state;
+        { debt := __src.debt, formations := __src.formations, judgment := __src.judgment, procedure := __src.procedure,
+          claim := __src.claim, executionEligible := __src.executionEligible, initialDebt := __src.initialDebt,
+          newDebt := __src.newDebt, accrual := __src.accrual, allocated := __src.allocated,
+          writtenOff := __src.writtenOff, paid := 8, surplus := __src.surplus, cash := __src.cash, used := __src.used,
+          receipts := __src.receipts, rest := __src.rest, refundCash := __src.refundCash,
+          normHistory := __src.normHistory, env := __src.env }) =
+      Result.rejected Error.accrualCashCollapse
+because its `Decidable` instance
+  instDecidableAnd
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `instDecidableAnd`, `instDecidableEqBitVec`, `instDecidableEqBool`, `instDecidableEqFin`, `instDecidableEqList`, `instDecidableEqNat`, `instDecidableEqRat`, `instDecidableEqString`, `instDecidableEqUInt8`, `instDecidableOr`, `BitVec.decEq`, `Bool.decEq`, `Int.decEq`, `Int.instDecidableEq`, `List.hasDecEq`, `Nat.decEq`, `Nat.decLe`, `Nat.decLt`, `String.decEq`, `UInt8.decEq`, `instDecidableEqRat.decEq`, `instDecidableEqAmount`, `instDecidableEqAmountTag`, `instDecidableEqCashEvent`, `instDecidableEqEventId`, `instDecidableEqPartyId`, `instDecidableEqResult`, `instDecidableEqSourceRef`, `instDecidableEqAmount.decEq`, `instDecidableEqAmountTag.decEq`, `instDecidableEqCashEvent.decEq`, `instDecidableEqEventId.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqResult.decEq`, and `instDecidableEqSourceRef.decEq`, reduction got stuck at the `Decidable` instance
+  match
+    Ledger.auditAccrualReport post1.state
+      (let __src := post1.state;
+      { debt := __src.debt, formations := __src.formations, judgment := __src.judgment, procedure := __src.procedure,
+        claim := __src.claim, executionEligible := __src.executionEligible, initialDebt := __src.initialDebt,
+        newDebt := __src.newDebt, accrual := __src.accrual, allocated := __src.allocated,
+        writtenOff := __src.writtenOff, paid := 8, surplus := __src.surplus, cash := __src.cash, used := __src.used,
+        receipts := __src.receipts, rest := __src.rest, refundCash := __src.refundCash,
+        normHistory := __src.normHistory, env := __src.env }),
+    Result.rejected Error.accrualCashCollapse with
+  | Result.known a, Result.known b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.known value, Result.unknown reason => isFalse ⋯
+  | Result.known value, Result.rejected reason => isFalse ⋯
+  | Result.known value, Result.conflict left right => isFalse ⋯
+  | Result.unknown reason, Result.known value => isFalse ⋯
+  | Result.unknown a, Result.unknown b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.unknown reason, Result.rejected reason_1 => isFalse ⋯
+  | Result.unknown reason, Result.conflict left right => isFalse ⋯
+  | Result.rejected reason, Result.known value => isFalse ⋯
+  | Result.rejected reason, Result.unknown reason_1 => isFalse ⋯
+  | Result.rejected a, Result.rejected b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.rejected reason, Result.conflict left right => isFalse ⋯
+  | Result.conflict left right, Result.known value => isFalse ⋯
+  | Result.conflict left right, Result.unknown reason => isFalse ⋯
+  | Result.conflict left right, Result.rejected reason => isFalse ⋯
+  | Result.conflict a a_1, Result.conflict b b_1 =>
+    if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:185:67: unexpected identifier; expected '}'
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:194:70: Tactic `decide` failed for proposition
+  Ledger.RestClaim post1.state restWitness = Result.known claimed ∧
+    Ledger.ExecEligible claimed { value := 2 } { value := 101 } = Result.known eligible ∧
+      eligible.cash = post1.state.cash ∧ eligible.refundCash = []
+because its `Decidable` instance
+  instDecidableAnd
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `instDecidableEqRat`, `instDecidableOr`, `Bool.decEq`, `Int.decEq`, `Int.decLe`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `Rat.instDecidableLt`, `instDecidableEqRat.decEq`, `instDecidableEqAmount`, `instDecidableEqDebtRecord`, `instDecidableEqPartyId`, `instDecidableEqRelationId`, `instDecidableEqResult`, `Ledger.instDecidableEqState`, `instDecidableEqAmount.decEq`, `instDecidableEqDebtRecord.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqResult.decEq`, and `Ledger.instDecidableEqState.decEq`, reduction got stuck at the `Decidable` instance
+  match ((Ledger.balance opening.state).sub (min (request 1).payload.amount.value (Ledger.balance opening.state))).num,
+    ((Ledger.balance opening.state).sub (min (request 1).payload.amount.value (Ledger.balance opening.state))).num with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:198:73: Tactic `decide` proved that the proposition
+  Ledger.RestPay claimed
+      (let __src := refund;
+      { id := __src.id, source := __src.source, payer := __src.payer, payee := __src.payee,
+        amount := { value := 7, tag := tag } }) =
+    Result.rejected Error.autoFullRefund
+is false
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:204:86: unexpected identifier; expected '}'
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:210:101: Tactic `decide` failed for proposition
+  Decision.evalExact (Decision.ExactExpr.rational (1 / 2)) = 1 / 2 ∧
+    Decision.addValues (Decision.ledgerAmount { value := 1, tag := tag })
+        (Decision.ledgerAmount
+          { value := 1,
+            tag :=
+              let __src := tag;
+              { currency := "OTHER", unit := __src.unit, ruleVersion := __src.ruleVersion } }) =
+      Result.rejected Error.mixedCurrency
+because its `Decidable` instance
+  instDecidableAnd
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableAnd`, `instDecidableEqRat`, `Int.decEq`, `Int.instDecidableEq`, and `instDecidableEqRat.decEq`, reduction got stuck at the `Decidable` instance
+  match (Rat.mul 1 (Rat.inv 2)).num, (Rat.mul 1 (Rat.inv 2)).num with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:219:86: unexpected identifier; expected '}'
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:263:63: Tactic `decide` failed for proposition
+  (Pipeline.run input).payment.exit = Pipeline.Exit.success ∧
+    Option.map (fun h => Ledger.balance h.state) (Pipeline.run input).payment.current = some 0 ∧
+      (Pipeline.run input).modelAfterRounds = assessed 1 0
+because its `Decidable` instance
+  instDecidableAnd
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `Rat.instDecidableLe`, `instDecidableEqCaseId`, `instDecidableEqInstant`, `instDecidableEqMeasurementId`, `instDecidableEqPartyId`, `instDecidableEqRelationId`, `instDecidableEqSourceRef`, `Learning.instDecidableEqFitContract`, `Pipeline.instDecidableEqExit`, `instDecidableEqCaseId.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqMeasurementId.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqSourceRef.decEq`, and `Learning.instDecidableEqFitContract.decEq`, reduction got stuck at the `Decidable` instance
+  match h : (Pipeline.run input).payment.exit.ctorIdx.beq Pipeline.Exit.success.ctorIdx with
+  | true => isTrue ⋯
+  | false => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:268:56: Tactic `decide` failed for proposition
+  (Pipeline.run
+            (let __src := input;
+            { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+              supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+              permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+              world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+              grants := [grant (payload 1)], firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+              firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+              secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+              calibration := __src.calibration, supported := __src.supported, alternatives := __src.alternatives,
+              utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+              observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+              candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+              labelStore := __src.labelStore })).payment.exit =
+      Pipeline.Exit.rejected ∧
+    Option.map (fun h => Ledger.balance h.state)
+        (Pipeline.run
+              (let __src := input;
+              { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+                supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+                permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+                world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+                grants := [grant (payload 1)], firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+                firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+                secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected,
+                fitSupplied := __src.fitSupplied, calibration := __src.calibration, supported := __src.supported,
+                alternatives := __src.alternatives, utility := __src.utility, utilityVersion := __src.utilityVersion,
+                riskLimit := __src.riskLimit, observation := __src.observation, policy := __src.policy,
+                oldModel := __src.oldModel, candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+                labelStore := __src.labelStore })).payment.current =
+      some 3
+because its `Decidable` instance
+  instDecidableAnd
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `Rat.instDecidableLe`, `instDecidableEqCaseId`, `instDecidableEqInstant`, `instDecidableEqMeasurementId`, `instDecidableEqPartyId`, `instDecidableEqRelationId`, `instDecidableEqSourceRef`, `Learning.instDecidableEqFitContract`, `Pipeline.instDecidableEqExit`, `instDecidableEqCaseId.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqMeasurementId.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqSourceRef.decEq`, and `Learning.instDecidableEqFitContract.decEq`, reduction got stuck at the `Decidable` instance
+  match h :
+    (Pipeline.run
+                (let __src := input;
+                { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+                  supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+                  permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+                  world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+                  grants := [grant (payload 1)], firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+                  firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+                  secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected,
+                  fitSupplied := __src.fitSupplied, calibration := __src.calibration, supported := __src.supported,
+                  alternatives := __src.alternatives, utility := __src.utility, utilityVersion := __src.utilityVersion,
+                  riskLimit := __src.riskLimit, observation := __src.observation, policy := __src.policy,
+                  oldModel := __src.oldModel, candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+                  labelStore := __src.labelStore })).payment.exit.ctorIdx.beq
+      Pipeline.Exit.rejected.ctorIdx with
+  | true => isTrue ⋯
+  | false => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:272:98: Tactic `decide` failed for proposition
+  (Pipeline.run
+            (let __src := input;
+            { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+              supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+              permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+              world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+              grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+              firstKey := __src.firstKey, secondKey := __src.secondKey,
+              secondSubmission := Ledger.Submission.unknownCommit, secondRefresh := __src.secondRefresh,
+              fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied, calibration := __src.calibration,
+              supported := __src.supported, alternatives := __src.alternatives, utility := __src.utility,
+              utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit, observation := __src.observation,
+              policy := __src.policy, oldModel := __src.oldModel, candidate := __src.candidate,
+              secondCandidate := __src.secondCandidate, labelStore := __src.labelStore })).payment.exit =
+      Pipeline.Exit.undecided ∧
+    (Pipeline.run
+            (let __src := input;
+            { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+              supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+              permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+              world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+              grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+              firstKey := __src.firstKey, secondKey := __src.secondKey,
+              secondSubmission := Ledger.Submission.unknownCommit, secondRefresh := __src.secondRefresh,
+              fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied, calibration := __src.calibration,
+              supported := __src.supported, alternatives := __src.alternatives, utility := __src.utility,
+              utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit, observation := __src.observation,
+              policy := __src.policy, oldModel := __src.oldModel, candidate := __src.candidate,
+              secondCandidate := __src.secondCandidate, labelStore := __src.labelStore })).payment.current =
+      none
+because its `Decidable` instance
+  instDecidableAnd
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `Rat.instDecidableLe`, `instDecidableEqCaseId`, `instDecidableEqInstant`, `instDecidableEqMeasurementId`, `instDecidableEqPartyId`, `instDecidableEqRelationId`, `instDecidableEqSourceRef`, `Learning.instDecidableEqFitContract`, `Pipeline.instDecidableEqExit`, `instDecidableEqCaseId.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqMeasurementId.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqSourceRef.decEq`, and `Learning.instDecidableEqFitContract.decEq`, reduction got stuck at the `Decidable` instance
+  match h :
+    (Pipeline.run
+                (let __src := input;
+                { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+                  supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+                  permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+                  world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+                  grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+                  firstKey := __src.firstKey, secondKey := __src.secondKey,
+                  secondSubmission := Ledger.Submission.unknownCommit, secondRefresh := __src.secondRefresh,
+                  fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied, calibration := __src.calibration,
+                  supported := __src.supported, alternatives := __src.alternatives, utility := __src.utility,
+                  utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+                  observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+                  candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+                  labelStore := __src.labelStore })).payment.exit.ctorIdx.beq
+      Pipeline.Exit.undecided.ctorIdx with
+  | true => isTrue ⋯
+  | false => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:275:78: Tactic `decide` failed for proposition
+  (Pipeline.run
+          (let __src := input;
+          { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+            supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+            permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+            world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process, grants := [],
+            firstIndex := __src.firstIndex, secondIndex := __src.secondIndex, firstKey := __src.firstKey,
+            secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+            secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+            calibration := __src.calibration, supported := __src.supported, alternatives := __src.alternatives,
+            utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+            observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+            candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+            labelStore := __src.labelStore })).payment.exit =
+    Pipeline.Exit.rejected
+because its `Decidable` instance
+  Pipeline.instDecidableEqExit
+    (Pipeline.run
+          (let __src := input;
+          { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+            supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+            permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+            world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process, grants := [],
+            firstIndex := __src.firstIndex, secondIndex := __src.secondIndex, firstKey := __src.firstKey,
+            secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+            secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+            calibration := __src.calibration, supported := __src.supported, alternatives := __src.alternatives,
+            utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+            observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+            candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+            labelStore := __src.labelStore })).payment.exit
+    Pipeline.Exit.rejected
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `Rat.instDecidableLe`, `instDecidableEqCaseId`, `instDecidableEqInstant`, `instDecidableEqMeasurementId`, `instDecidableEqPartyId`, `instDecidableEqRelationId`, `instDecidableEqSourceRef`, `Learning.instDecidableEqFitContract`, `Pipeline.instDecidableEqExit`, `instDecidableEqCaseId.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqMeasurementId.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqSourceRef.decEq`, and `Learning.instDecidableEqFitContract.decEq`, reduction got stuck at the `Decidable` instance
+  match h :
+    (Pipeline.run
+                (let __src := input;
+                { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+                  supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+                  permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+                  world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+                  grants := [], firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+                  firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+                  secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected,
+                  fitSupplied := __src.fitSupplied, calibration := __src.calibration, supported := __src.supported,
+                  alternatives := __src.alternatives, utility := __src.utility, utilityVersion := __src.utilityVersion,
+                  riskLimit := __src.riskLimit, observation := __src.observation, policy := __src.policy,
+                  oldModel := __src.oldModel, candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+                  labelStore := __src.labelStore })).payment.exit.ctorIdx.beq
+      Pipeline.Exit.rejected.ctorIdx with
+  | true => isTrue ⋯
+  | false => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:279:25: Tactic `decide` failed for proposition
+  (Pipeline.run
+          (let __src := input;
+          {
+            view :=
+              let __src := view;
+              { gamma := __src.gamma, history := __src.history,
+                objectMap := [({ value := 50 }, ObjectId.relation debt.relation)], observedRef := __src.observedRef,
+                observedRelation := __src.observedRelation },
+            debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+            supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+            permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+            world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+            grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+            firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+            secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+            calibration := __src.calibration, supported := __src.supported, alternatives := __src.alternatives,
+            utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+            observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+            candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+            labelStore := __src.labelStore })).payment.exit =
+    Pipeline.Exit.undecided
+because its `Decidable` instance
+  Pipeline.instDecidableEqExit
+    (Pipeline.run
+          (let __src := input;
+          {
+            view :=
+              let __src := view;
+              { gamma := __src.gamma, history := __src.history,
+                objectMap := [({ value := 50 }, ObjectId.relation debt.relation)], observedRef := __src.observedRef,
+                observedRelation := __src.observedRelation },
+            debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+            supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+            permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+            world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+            grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+            firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+            secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+            calibration := __src.calibration, supported := __src.supported, alternatives := __src.alternatives,
+            utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+            observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+            candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+            labelStore := __src.labelStore })).payment.exit
+    Pipeline.Exit.undecided
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `Rat.instDecidableLe`, `instDecidableEqCaseId`, `instDecidableEqInstant`, `instDecidableEqMeasurementId`, `instDecidableEqPartyId`, `instDecidableEqRelationId`, `instDecidableEqSourceRef`, `Learning.instDecidableEqFitContract`, `Pipeline.instDecidableEqExit`, `instDecidableEqCaseId.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqMeasurementId.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqSourceRef.decEq`, and `Learning.instDecidableEqFitContract.decEq`, reduction got stuck at the `Decidable` instance
+  match h :
+    (Pipeline.run
+                (let __src := input;
+                {
+                  view :=
+                    let __src := view;
+                    { gamma := __src.gamma, history := __src.history,
+                      objectMap := [({ value := 50 }, ObjectId.relation debt.relation)],
+                      observedRef := __src.observedRef, observedRelation := __src.observedRelation },
+                  debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+                  supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+                  permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+                  world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+                  grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+                  firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+                  secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected,
+                  fitSupplied := __src.fitSupplied, calibration := __src.calibration, supported := __src.supported,
+                  alternatives := __src.alternatives, utility := __src.utility, utilityVersion := __src.utilityVersion,
+                  riskLimit := __src.riskLimit, observation := __src.observation, policy := __src.policy,
+                  oldModel := __src.oldModel, candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+                  labelStore := __src.labelStore })).payment.exit.ctorIdx.beq
+      Pipeline.Exit.undecided.ctorIdx with
+  | true => isTrue ⋯
+  | false => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:286:24: Tactic `decide` failed for proposition
+  (Pipeline.run
+          (let __src := input;
+          { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+            supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+            permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+            world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+            grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+            firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+            secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+            calibration := __src.calibration, supported := __src.supported,
+            alternatives :=
+              [let __src := alternative;
+                { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+                  outcomes := __src.outcomes, cost := __src.cost, execution := [payload 1 9, payload 2] }],
+            utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+            observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+            candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+            labelStore := __src.labelStore })).payment.exit =
+    Pipeline.Exit.rejected
+because its `Decidable` instance
+  Pipeline.instDecidableEqExit
+    (Pipeline.run
+          (let __src := input;
+          { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+            supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+            permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+            world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+            grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+            firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+            secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+            calibration := __src.calibration, supported := __src.supported,
+            alternatives :=
+              [let __src := alternative;
+                { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+                  outcomes := __src.outcomes, cost := __src.cost, execution := [payload 1 9, payload 2] }],
+            utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+            observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+            candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+            labelStore := __src.labelStore })).payment.exit
+    Pipeline.Exit.rejected
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `Rat.instDecidableLe`, `instDecidableEqCaseId`, `instDecidableEqInstant`, `instDecidableEqMeasurementId`, `instDecidableEqPartyId`, `instDecidableEqRelationId`, `instDecidableEqSourceRef`, `Learning.instDecidableEqFitContract`, `Pipeline.instDecidableEqExit`, `instDecidableEqCaseId.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqMeasurementId.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqSourceRef.decEq`, and `Learning.instDecidableEqFitContract.decEq`, reduction got stuck at the `Decidable` instance
+  match h :
+    (Pipeline.run
+                (let __src := input;
+                { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+                  supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+                  permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+                  world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+                  grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+                  firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+                  secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected,
+                  fitSupplied := __src.fitSupplied, calibration := __src.calibration, supported := __src.supported,
+                  alternatives :=
+                    [let __src := alternative;
+                      { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+                        outcomes := __src.outcomes, cost := __src.cost, execution := [payload 1 9, payload 2] }],
+                  utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+                  observation := __src.observation, policy := __src.policy, oldModel := __src.oldModel,
+                  candidate := __src.candidate, secondCandidate := __src.secondCandidate,
+                  labelStore := __src.labelStore })).payment.exit.ctorIdx.beq
+      Pipeline.Exit.rejected.ctorIdx with
+  | true => isTrue ⋯
+  | false => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:292:99: Tactic `decide` failed for proposition
+  let output :=
+    Pipeline.run
+      (let __src := input;
+      { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+        supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+        permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+        world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+        grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+        firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+        secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+        calibration := __src.calibration, supported := __src.supported, alternatives := __src.alternatives,
+        utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+        observation :=
+          let __src := input.observation;
+          { unit := __src.unit, event := __src.event, record := __src.record, targetVersion := __src.targetVersion,
+            mechanismVersion := __src.mechanismVersion, windowEnd := __src.windowEnd, observedAt := __src.observedAt,
+            outcome := none, positiveWitness := __src.positiveWitness, externalSource := __src.externalSource },
+        policy := __src.policy, oldModel := __src.oldModel, candidate := __src.candidate,
+        secondCandidate := __src.secondCandidate, labelStore := __src.labelStore });
+  Option.map (fun h => Ledger.balance h.state) output.payment.current = some 0 ∧
+    output.observation = Result.unknown Error.missingEvidence ∧
+      output.feedback = Result.unknown Error.missingEvidence ∧ output.modelAfterRounds = input.oldModel
+because its `Decidable` instance
+  instDecidableAnd
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `decidable_of_decidable_of_iff`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `Bool.decEq`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `List.instDecidableMemOfLawfulBEq`, `Nat.decEq`, `Option.instDecidableEq`, `Rat.instDecidableLe`, `instDecidableEqCaseId`, `instDecidableEqInstant`, `instDecidableEqMeasurementId`, `instDecidableEqPartyId`, `instDecidableEqRelationId`, `instDecidableEqSourceRef`, `Learning.instDecidableEqFitContract`, `instDecidableEqCaseId.decEq`, `instDecidableEqInstant.decEq`, `instDecidableEqMeasurementId.decEq`, `instDecidableEqPartyId.decEq`, `instDecidableEqRelationId.decEq`, `instDecidableEqSourceRef.decEq`, and `Learning.instDecidableEqFitContract.decEq`, reduction got stuck at the `Decidable` instance
+  match
+    Option.map (fun h => Ledger.balance h.state)
+      (Pipeline.run
+            (let __src := input;
+            { view := __src.view, debt := __src.debt, normHistory := __src.normHistory, facts := __src.facts,
+              supportTable := __src.supportTable, rules := __src.rules, closureFuel := __src.closureFuel,
+              permissionAtom := __src.permissionAtom, world0Actions := __src.world0Actions,
+              world1Actions := __src.world1Actions, evidence := __src.evidence, process := __src.process,
+              grants := __src.grants, firstIndex := __src.firstIndex, secondIndex := __src.secondIndex,
+              firstKey := __src.firstKey, secondKey := __src.secondKey, secondSubmission := __src.secondSubmission,
+              secondRefresh := __src.secondRefresh, fitExpected := __src.fitExpected, fitSupplied := __src.fitSupplied,
+              calibration := __src.calibration, supported := __src.supported, alternatives := __src.alternatives,
+              utility := __src.utility, utilityVersion := __src.utilityVersion, riskLimit := __src.riskLimit,
+              observation :=
+                let __src := input.observation;
+                { unit := __src.unit, event := __src.event, record := __src.record,
+                  targetVersion := __src.targetVersion, mechanismVersion := __src.mechanismVersion,
+                  windowEnd := __src.windowEnd, observedAt := __src.observedAt, outcome := none,
+                  positiveWitness := __src.positiveWitness, externalSource := __src.externalSource },
+              policy := __src.policy, oldModel := __src.oldModel, candidate := __src.candidate,
+              secondCandidate := __src.secondCandidate, labelStore := __src.labelStore })).payment.current with
+  | none =>
+    match some 0 with
+    | none => isTrue ⋯
+    | some val => isFalse ⋯
+  | some a =>
+    match some 0 with
+    | none => isFalse ⋯
+    | some b =>
+      match instDecidableEqRat a b with
+      | isTrue h => isTrue ⋯
+      | isFalse n => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:324:81: Tactic `decide` failed for proposition
+  Probability.u04_4_variance_equivalent 2 (-1) = Probability.EffectiveCount.degenerateZeroVariance
+because its `Decidable` instance
+  Probability.instDecidableEqEffectiveCount (Probability.u04_4_variance_equivalent 2 (-1))
+    Probability.EffectiveCount.degenerateZeroVariance
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableEqBool`, `instDecidableEqRat`, `Bool.decEq`, `Int.decEq`, `Int.instDecidableEq`, `Nat.decLe`, `Nat.decLt`, `instDecidableEqRat.decEq`, `Probability.instDecidableEqEffectiveCount`, and `Probability.instDecidableEqEffectiveCount.decEq`, reduction got stuck at the `Decidable` instance
+  match Probability.u04_4_variance_equivalent 2 (-1), Probability.EffectiveCount.degenerateZeroVariance with
+  | Probability.EffectiveCount.finite a, Probability.EffectiveCount.finite b =>
+    if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Probability.EffectiveCount.finite n, Probability.EffectiveCount.degenerateZeroVariance => isFalse ⋯
+  | Probability.EffectiveCount.finite n, Probability.EffectiveCount.invalid => isFalse ⋯
+  | Probability.EffectiveCount.degenerateZeroVariance, Probability.EffectiveCount.finite n => isFalse ⋯
+  | Probability.EffectiveCount.degenerateZeroVariance, Probability.EffectiveCount.degenerateZeroVariance => isTrue ⋯
+  | Probability.EffectiveCount.degenerateZeroVariance, Probability.EffectiveCount.invalid =>
+    isFalse Probability.instDecidableEqEffectiveCount.decEq._proof_6
+  | Probability.EffectiveCount.invalid, Probability.EffectiveCount.finite n => isFalse ⋯
+  | Probability.EffectiveCount.invalid, Probability.EffectiveCount.degenerateZeroVariance =>
+    isFalse Probability.instDecidableEqEffectiveCount.decEq._proof_8
+  | Probability.EffectiveCount.invalid, Probability.EffectiveCount.invalid => isTrue ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:328:59: Tactic `decide` failed for proposition
+  Harness.conditionalRisk (1 / 10) 1 = Result.known (1 / 10) ∧
+    Harness.conditionalRisk (1 / 10) (1 / 10) = Result.known 1
+because its `Decidable` instance
+  instDecidableAnd
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `instDecidableAnd`, `instDecidableEqBool`, `instDecidableEqNat`, `instDecidableEqRat`, `Bool.decEq`, `Int.decEq`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `Nat.decEq`, `Rat.instDecidableLt`, `instDecidableEqRat.decEq`, `instDecidableEqResult`, and `instDecidableEqResult.decEq`, reduction got stuck at the `Decidable` instance
+  match ((1 / 10).mul (Rat.inv 1)).num, (Rat.mul 1 (Rat.inv 10)).num with
+  | Int.ofNat a, Int.ofNat b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+  | Int.ofNat a, Int.negSucc a_1 => isFalse ⋯
+  | Int.negSucc a, Int.ofNat a_1 => isFalse ⋯
+  | Int.negSucc a, Int.negSucc b =>
+    match decEq a b with
+    | isTrue h => isTrue ⋯
+    | isFalse h => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:337:97: Tactic `decide` failed for proposition
+  Option.map (fun d => d.action.id) (Decision.proposed_decision [0, 1] decisionValues) = some 0
+because its `Decidable` instance
+  (Option.map (fun d => d.action.id) (Decision.proposed_decision [0, 1] decisionValues)).instDecidableEq (some 0)
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableEqBool`, `instDecidableOr`, `Bool.decEq`, `Int.decLt`, `Int.decNonneg`, `Option.instDecidableEq`, and `Rat.instDecidableLt`, reduction got stuck at the `Decidable` instance
+  match Option.map (fun d => d.action.id) (Decision.proposed_decision [0, 1] decisionValues) with
+  | none =>
+    match some 0 with
+    | none => isTrue ⋯
+    | some val => isFalse ⋯
+  | some a =>
+    match some 0 with
+    | none => isFalse ⋯
+    | some b =>
+      match instDecidableEqNat a b with
+      | isTrue h => isTrue ⋯
+      | isFalse n => isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:342:37: Tactic `decide` failed for proposition
+  Decision.evaluate gamma id 0 (1 / 10)
+      (let __src := alternative;
+      { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+        outcomes :=
+          [{ probability := 1, payoff := { expr := Decision.ExactExpr.rational (4 / 5), dimension := none },
+              cashIds := [] }],
+        cost := __src.cost, execution := __src.execution }) =
+    Result.rejected Error.mixedCurrency
+because its `Decidable` instance
+  instDecidableEqResult
+    (Decision.evaluate gamma id 0 (1 / 10)
+      (let __src := alternative;
+      { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+        outcomes :=
+          [{ probability := 1, payoff := { expr := Decision.ExactExpr.rational (4 / 5), dimension := none },
+              cashIds := [] }],
+        cost := __src.cost, execution := __src.execution }))
+    (Result.rejected Error.mixedCurrency)
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `instDecidableEqBool`, `instDecidableEqNat`, `instDecidableEqRat`, `instDecidableNot`, `instDecidableOr`, `Bool.decEq`, `Int.decEq`, `Int.decLe`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `Nat.decEq`, `Rat.instDecidableLt`, `instDecidableEqRat.decEq`, `instDecidableEqResult`, and `instDecidableEqResult.decEq`, reduction got stuck at the `Decidable` instance
+  match
+    Decision.evaluate gamma id 0 (1 / 10)
+      (let __src := alternative;
+      { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+        outcomes :=
+          [{ probability := 1, payoff := { expr := Decision.ExactExpr.rational (4 / 5), dimension := none },
+              cashIds := [] }],
+        cost := __src.cost, execution := __src.execution }),
+    Result.rejected Error.mixedCurrency with
+  | Result.known a, Result.known b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.known value, Result.unknown reason => isFalse ⋯
+  | Result.known value, Result.rejected reason => isFalse ⋯
+  | Result.known value, Result.conflict left right => isFalse ⋯
+  | Result.unknown reason, Result.known value => isFalse ⋯
+  | Result.unknown a, Result.unknown b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.unknown reason, Result.rejected reason_1 => isFalse ⋯
+  | Result.unknown reason, Result.conflict left right => isFalse ⋯
+  | Result.rejected reason, Result.known value => isFalse ⋯
+  | Result.rejected reason, Result.unknown reason_1 => isFalse ⋯
+  | Result.rejected a, Result.rejected b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.rejected reason, Result.conflict left right => isFalse ⋯
+  | Result.conflict left right, Result.known value => isFalse ⋯
+  | Result.conflict left right, Result.unknown reason => isFalse ⋯
+  | Result.conflict left right, Result.rejected reason => isFalse ⋯
+  | Result.conflict a a_1, Result.conflict b b_1 =>
+    if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:347:37: Tactic `decide` failed for proposition
+  Decision.evaluate gamma id 0 (1 / 10)
+      (let __src := alternative;
+      { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+        outcomes :=
+          [{ probability := 1, payoff := { expr := Decision.ExactExpr.rational 4, dimension := some tag },
+              cashIds := [{ value := 1 }, { value := 1 }] }],
+        cost := __src.cost, execution := __src.execution }) =
+    Result.rejected Error.duplicateCash
+because its `Decidable` instance
+  instDecidableEqResult
+    (Decision.evaluate gamma id 0 (1 / 10)
+      (let __src := alternative;
+      { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+        outcomes :=
+          [{ probability := 1, payoff := { expr := Decision.ExactExpr.rational 4, dimension := some tag },
+              cashIds := [{ value := 1 }, { value := 1 }] }],
+        cost := __src.cost, execution := __src.execution }))
+    (Result.rejected Error.duplicateCash)
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `instDecidableEqBool`, `instDecidableEqNat`, `instDecidableEqRat`, `instDecidableNot`, `instDecidableOr`, `Bool.decEq`, `Int.decEq`, `Int.decLe`, `Int.decLt`, `Int.decNonneg`, `Int.instDecidableEq`, `Nat.decEq`, `Rat.instDecidableLt`, `instDecidableEqRat.decEq`, `instDecidableEqResult`, and `instDecidableEqResult.decEq`, reduction got stuck at the `Decidable` instance
+  match
+    Decision.evaluate gamma id 0 (1 / 10)
+      (let __src := alternative;
+      { id := __src.id, conditions := __src.conditions, causalBridge := __src.causalBridge,
+        outcomes :=
+          [{ probability := 1, payoff := { expr := Decision.ExactExpr.rational 4, dimension := some tag },
+              cashIds := [{ value := 1 }, { value := 1 }] }],
+        cost := __src.cost, execution := __src.execution }),
+    Result.rejected Error.duplicateCash with
+  | Result.known a, Result.known b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.known value, Result.unknown reason => isFalse ⋯
+  | Result.known value, Result.rejected reason => isFalse ⋯
+  | Result.known value, Result.conflict left right => isFalse ⋯
+  | Result.unknown reason, Result.known value => isFalse ⋯
+  | Result.unknown a, Result.unknown b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.unknown reason, Result.rejected reason_1 => isFalse ⋯
+  | Result.unknown reason, Result.conflict left right => isFalse ⋯
+  | Result.rejected reason, Result.known value => isFalse ⋯
+  | Result.rejected reason, Result.unknown reason_1 => isFalse ⋯
+  | Result.rejected a, Result.rejected b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.rejected reason, Result.conflict left right => isFalse ⋯
+  | Result.conflict left right, Result.known value => isFalse ⋯
+  | Result.conflict left right, Result.unknown reason => isFalse ⋯
+  | Result.conflict left right, Result.rejected reason => isFalse ⋯
+  | Result.conflict a a_1, Result.conflict b b_1 =>
+    if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:355:36: Tactic `decide` failed for proposition
+  Policy.proposed_off_policy_value
+      (let __src := input.policy;
+      { caseId := __src.caseId, targetVersion := __src.targetVersion, responseVersion := __src.responseVersion,
+        loggingProbability := 0, targetProbability := __src.targetProbability, outcome := __src.outcome,
+        identifyingEvidence := __src.identifyingEvidence }) =
+    Result.unknown Error.notIdentified
+because its `Decidable` instance
+  instDecidableEqResult
+    (Policy.proposed_off_policy_value
+      (let __src := input.policy;
+      { caseId := __src.caseId, targetVersion := __src.targetVersion, responseVersion := __src.responseVersion,
+        loggingProbability := 0, targetProbability := __src.targetProbability, outcome := __src.outcome,
+        identifyingEvidence := __src.identifyingEvidence }))
+    (Result.unknown Error.notIdentified)
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `instDecidableEqBool`, `instDecidableOr`, `Bool.decEq`, `Int.decLt`, `Int.decNonneg`, `Rat.instDecidableLt`, `instDecidableEqResult`, and `instDecidableEqResult.decEq`, reduction got stuck at the `Decidable` instance
+  match
+    Policy.proposed_off_policy_value
+      (let __src := input.policy;
+      { caseId := __src.caseId, targetVersion := __src.targetVersion, responseVersion := __src.responseVersion,
+        loggingProbability := 0, targetProbability := __src.targetProbability, outcome := __src.outcome,
+        identifyingEvidence := __src.identifyingEvidence }),
+    Result.unknown Error.notIdentified with
+  | Result.known a, Result.known b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.known value, Result.unknown reason => isFalse ⋯
+  | Result.known value, Result.rejected reason => isFalse ⋯
+  | Result.known value, Result.conflict left right => isFalse ⋯
+  | Result.unknown reason, Result.known value => isFalse ⋯
+  | Result.unknown a, Result.unknown b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.unknown reason, Result.rejected reason_1 => isFalse ⋯
+  | Result.unknown reason, Result.conflict left right => isFalse ⋯
+  | Result.rejected reason, Result.known value => isFalse ⋯
+  | Result.rejected reason, Result.unknown reason_1 => isFalse ⋯
+  | Result.rejected a, Result.rejected b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.rejected reason, Result.conflict left right => isFalse ⋯
+  | Result.conflict left right, Result.known value => isFalse ⋯
+  | Result.conflict left right, Result.unknown reason => isFalse ⋯
+  | Result.conflict left right, Result.rejected reason => isFalse ⋯
+  | Result.conflict a a_1, Result.conflict b b_1 =>
+    if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:363:65: Tactic `decide` failed for proposition
+  Feedback.loadAccepted gamma [] (assessed 0 (1 / 2)) (assessed 1 0) 0 (checkpoint 1) { value := 205 } =
+    Result.unknown Error.authorityUnresolved
+because its `Decidable` instance
+  instDecidableEqResult
+    (Feedback.loadAccepted gamma [] (assessed 0 (1 / 2)) (assessed 1 0) 0 (checkpoint 1) { value := 205 })
+    (Result.unknown Error.authorityUnresolved)
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `instDecidableEqBool`, `instDecidableEqList`, `instDecidableEqNat`, `instDecidableNot`, `Bool.decEq`, `Int.decLt`, `Int.decNonneg`, `List.hasDecEq`, `Nat.decEq`, `Rat.instDecidableLe`, `instDecidableEqPartyId`, `instDecidableEqResult`, `Feedback.instDecidableEqScope`, `Feedback.instDecidableEqVerdict`, `instDecidableEqPartyId.decEq`, `instDecidableEqResult.decEq`, and `Feedback.instDecidableEqScope.decEq`, reduction got stuck at the `Decidable` instance
+  match Feedback.loadAccepted gamma [] (assessed 0 (1 / 2)) (assessed 1 0) 0 (checkpoint 1) { value := 205 },
+    Result.unknown Error.authorityUnresolved with
+  | Result.known a, Result.known b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.known value, Result.unknown reason => isFalse ⋯
+  | Result.known value, Result.rejected reason => isFalse ⋯
+  | Result.known value, Result.conflict left right => isFalse ⋯
+  | Result.unknown reason, Result.known value => isFalse ⋯
+  | Result.unknown a, Result.unknown b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.unknown reason, Result.rejected reason_1 => isFalse ⋯
+  | Result.unknown reason, Result.conflict left right => isFalse ⋯
+  | Result.rejected reason, Result.known value => isFalse ⋯
+  | Result.rejected reason, Result.unknown reason_1 => isFalse ⋯
+  | Result.rejected a, Result.rejected b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.rejected reason, Result.conflict left right => isFalse ⋯
+  | Result.conflict left right, Result.known value => isFalse ⋯
+  | Result.conflict left right, Result.unknown reason => isFalse ⋯
+  | Result.conflict left right, Result.rejected reason => isFalse ⋯
+  | Result.conflict a a_1, Result.conflict b b_1 =>
+    if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+error: JurisLean/Candidates/Final20261021/Acceptance.lean:367:80: Tactic `decide` failed for proposition
+  Feedback.loadAccepted gamma [] (assessed 0 (1 / 2)) (assessed 1 0) 0
+      (let __src := checkpoint 1;
+      { principal := __src.principal, task := __src.task, target := __src.target, feature := __src.feature,
+        ruleVersion := __src.ruleVersion, mechanism := __src.mechanism, scope := __src.scope, version := __src.version,
+        bytes := [1], prediction := __src.prediction, evidence := __src.evidence })
+      { value := 205 } =
+    Result.rejected Error.scopeMismatch
+because its `Decidable` instance
+  instDecidableEqResult
+    (Feedback.loadAccepted gamma [] (assessed 0 (1 / 2)) (assessed 1 0) 0
+      (let __src := checkpoint 1;
+      { principal := __src.principal, task := __src.task, target := __src.target, feature := __src.feature,
+        ruleVersion := __src.ruleVersion, mechanism := __src.mechanism, scope := __src.scope, version := __src.version,
+        bytes := [1], prediction := __src.prediction, evidence := __src.evidence })
+      { value := 205 })
+    (Result.rejected Error.scopeMismatch)
+did not reduce to `isTrue` or `isFalse`.
+
+After unfolding the instances `decEq`, `instDecidableEqBool`, `instDecidableEqList`, `instDecidableEqNat`, `instDecidableNot`, `Bool.decEq`, `Int.decLt`, `Int.decNonneg`, `List.hasDecEq`, `Nat.decEq`, `Rat.instDecidableLe`, `instDecidableEqPartyId`, `instDecidableEqResult`, `Feedback.instDecidableEqScope`, `Feedback.instDecidableEqVerdict`, `instDecidableEqPartyId.decEq`, `instDecidableEqResult.decEq`, and `Feedback.instDecidableEqScope.decEq`, reduction got stuck at the `Decidable` instance
+  match
+    Feedback.loadAccepted gamma [] (assessed 0 (1 / 2)) (assessed 1 0) 0
+      (let __src := checkpoint 1;
+      { principal := __src.principal, task := __src.task, target := __src.target, feature := __src.feature,
+        ruleVersion := __src.ruleVersion, mechanism := __src.mechanism, scope := __src.scope, version := __src.version,
+        bytes := [1], prediction := __src.prediction, evidence := __src.evidence })
+      { value := 205 },
+    Result.rejected Error.scopeMismatch with
+  | Result.known a, Result.known b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.known value, Result.unknown reason => isFalse ⋯
+  | Result.known value, Result.rejected reason => isFalse ⋯
+  | Result.known value, Result.conflict left right => isFalse ⋯
+  | Result.unknown reason, Result.known value => isFalse ⋯
+  | Result.unknown a, Result.unknown b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.unknown reason, Result.rejected reason_1 => isFalse ⋯
+  | Result.unknown reason, Result.conflict left right => isFalse ⋯
+  | Result.rejected reason, Result.known value => isFalse ⋯
+  | Result.rejected reason, Result.unknown reason_1 => isFalse ⋯
+  | Result.rejected a, Result.rejected b => if h : a = b then h ▸ isTrue ⋯ else isFalse ⋯
+  | Result.rejected reason, Result.conflict left right => isFalse ⋯
+  | Result.conflict left right, Result.known value => isFalse ⋯
+  | Result.conflict left right, Result.unknown reason => isFalse ⋯
+  | Result.conflict left right, Result.rejected reason => isFalse ⋯
+  | Result.conflict a a_1, Result.conflict b b_1 =>
+    if h : a = b then h ▸ if h : a_1 = b_1 then h ▸ isTrue ⋯ else isFalse ⋯ else isFalse ⋯
+error: Lean exited with code 1
+Some required targets logged failures:
+- JurisLean.Candidates.Final20261021.Acceptance
+error: build failed
+Traceback (most recent call last):
+  File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 59, in <module>
+    if __name__=='__main__':raise SystemExit(main())
+                                             ^^^^^^
+  File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 57, in main
+    subprocess.run(['lake','build',*targets],cwd=R/'proofs/lean/juris_lean',check=True)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['lake', 'build', 'JurisLean.Candidates.Final20261021.CIAll']' returned non-zero exit status 1.

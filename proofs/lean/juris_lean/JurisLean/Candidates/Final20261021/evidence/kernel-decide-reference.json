@@ -1,0 +1,8 @@
+{
+  "upstream": "https://github.com/leanprover/lean4/blob/v4.30.0/src/Lean/Elab/Tactic/Decide.lean",
+  "ref": "v4.30.0",
+  "blob_sha": "602f1409c2d5eb87d4ff57d55239af77dda70535",
+  "mechanism": "evalDecideCore selects doKernel when cfg.kernel is true. doKernel passes mkDecideProof to mkAuxLemma with async disabled, so the kernel checks the result. Native evaluation is a distinct cfg.native branch.",
+  "scope": "Closed synthetic acceptance propositions only; universally quantified mathematical statements unchanged.",
+  "updated_tactic_occurrences": 56
+}

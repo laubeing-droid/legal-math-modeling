@@ -139,14 +139,32 @@ theorem u04_5_new_measurement_not_copy :
     that was not built from that bridge: the finite law below has conditional
     probability 5/6 where the Beta(1,1) one-success bridge says 2/3. -/
 
-theorem u04_1_integer_shape_conjugacy (a b k l : ℕ) : _ :=
-  JurisLean.Seams.UnifiedNeedlesS3a.beta_posterior_from_likelihood a b k l
+section U04OneReuse
+open JurisLean.Seams.UnifiedNeedlesS3a
+open JurisLean.FullMath.Probability
 
-theorem u04_1_predictive_mean_is_updated_beta (a b s f : ℕ) : _ :=
-  (JurisLean.Seams.UnifiedNeedlesS3a.polyBeta_moments (a + s) (b + f)).1
+theorem u04_1_integer_shape_conjugacy (a b k l : ℕ) :
+    ((∫ x in 0..1, polyBeta (a + 1) (b + 1) x * (x ^ k * (1 - x) ^ l))
+      = ((betaTwoConst ((a : ℕ) + k) ((b : ℕ) + l) : ℚ) / (betaTwoConst a b : ℚ) : ℚ)) ∧
+    (∀ x : ℝ, polyBeta (a + 1) (b + 1) x * (x ^ k * (1 - x) ^ l)
+        * ((betaTwoConst a b : ℚ) / (betaTwoConst ((a : ℕ) + k) ((b : ℕ) + l) : ℚ) : ℚ)
+      = polyBeta (((a : ℕ) + k) + 1) (((b : ℕ) + l) + 1) x) ∧
+    ((∫ x in 0..1, polyBeta (((a : ℕ) + k) + 1) (((b : ℕ) + l) + 1) x) = 1) :=
+  beta_posterior_from_likelihood a b k l
 
-theorem u04_1_real_gamma_weight_ratio (α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) : _ :=
-  JurisLean.FullMath.Probability.beta_ratio α β hα hβ w l
+theorem u04_1_predictive_mean_is_updated_beta (a b s f : ℕ) :
+    ((∫ x in 0..1, x * polyBeta ((a + s) + 1) ((b + f) + 1) x)
+       = (((a + s) : ℕ) + 1 : ℚ) / (((a + s) : ℕ) + (b + f) + 2)) :=
+  (polyBeta_moments (a + s) (b + f)).1
+
+theorem u04_1_real_gamma_weight_ratio (α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) :
+    (Real.Gamma (α + (w : ℝ)) * Real.Gamma (β + (l : ℝ))) /
+      Real.Gamma (α + β + ((w + l : ℕ) : ℝ)) /
+      ((Real.Gamma α * Real.Gamma β) / Real.Gamma (α + β)) =
+      (rising α w * rising β l) / rising (α + β) (w + l) :=
+  beta_ratio α β hα hβ w l
+
+end U04OneReuse
 
 theorem u04_1_exchangeable_not_beta_bridge :
     ((5 / 12 : ℚ) / (5 / 12 + 1 / 12) = 5 / 6) ∧

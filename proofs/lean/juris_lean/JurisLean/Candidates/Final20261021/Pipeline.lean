@@ -82,7 +82,8 @@ def executePayments (initial : Ledger.Handle) (first second : PaymentRequest)
   let out1 := Ledger.consume_ext initial initial first permission1 .submit
   match out1 with
   | .committed _ actualPost1 =>
-      let prepared := match change with | none => .known actualPost1 | some c => refresh grants actualPost1 c
+      let prepared : Result Ledger.Handle :=
+        match change with | none => .known actualPost1 | some c => refresh grants actualPost1 c
       match prepared with
       | .known previous_output_ref =>
           let permission2 := Authorization.authorized grants previous_output_ref.gamma second.payload.payer

@@ -1,0 +1,10 @@
+{
+  "run_id": 39697636112,
+  "subject_commit": "e26f0bac1ca3db5f9b6a67bdf0a87baf2e4fd785",
+  "failures": [
+    "2026-10-22T00:10:08.7823970Z error: JurisLean/Candidates/Final20261021/Pipeline.lean:85:50: Invalid dotted identifier notation: The expected type of `.known` could not be determined",
+    "2026-10-22T00:10:08.7826109Z error: JurisLean/Candidates/Final20261021/Pipeline.lean:110:97: unsolved goals"
+  ],
+  "repair_summary": "Annotate the unchanged prepared match as Result Ledger.Handle, resolving constructor elaboration. The dependent wiring theorem and every executor value remain unchanged. Compiler error-recovery placeholders in this failed log are not accepted proof evidence.",
+  "new_status": "CI_NOT_RUN"
+}

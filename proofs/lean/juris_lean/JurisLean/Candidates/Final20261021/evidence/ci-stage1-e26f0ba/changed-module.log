@@ -1,0 +1,143 @@
+✔ [8475/8506] Built JurisLean.FiniteMonotoneIteration (3.7s)
+✔ [8476/8506] Built JurisLean.FullMath.Core.Foundations (5.7s)
+✔ [8477/8506] Built JurisLean.HornDefinitions (3.5s)
+✔ [8478/8506] Built JurisLean.Candidates.Final20261021.Interfaces (8.9s)
+✔ [8479/8506] Built JurisLean.HornFixedPoint (3.9s)
+⚠ [8480/8506] Built JurisLean.FullMath.Numeric.Quantities (7.3s)
+warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8481/8506] Built JurisLean.FullMath.Numeric.Intervals (7.7s)
+⚠ [8482/8506] Built JurisLean.Candidates.Final20261021.Policy (7.9s)
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: this tactic is never executed
+
+Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: 'ring' tactic does nothing
+
+Note: This linter can be disabled with `set_option linter.unusedTactic false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:40: unused variable `hw`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+warning: JurisLean/Candidates/Final20261021/Policy.lean:25:53: unused variable `hc`
+
+Note: This linter can be disabled with `set_option linter.unusedVariables false`
+✔ [8483/8506] Built JurisLean.Candidates.Final20261021.Behavior (7.3s)
+✔ [8484/8506] Built JurisLean.Candidates.Final20261021.Progress (7.1s)
+⚠ [8485/8506] Built JurisLean.Candidates.Final20261021.Learning (8.3s)
+warning: JurisLean/Candidates/Final20261021/Learning.lean:86:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+
+Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+✔ [8486/8506] Built JurisLean.Candidates.Final20261021.EvidenceProcedure (7.7s)
+✔ [8487/8506] Built JurisLean.Candidates.Final20261021.Temporal (7.6s)
+✔ [8488/8506] Built JurisLean.Candidates.Final20261021.Harness (6.0s)
+✔ [8489/8506] Built JurisLean.Candidates.Final20261021.Transactions (7.8s)
+✔ [8490/8506] Built JurisLean.Candidates.Final20261021.Representation (7.1s)
+✔ [8491/8506] Built JurisLean.Candidates.Final20261021.Compiler (7.7s)
+✔ [8492/8506] Built JurisLean.Candidates.Final20261021.RSI (7.4s)
+✔ [8493/8506] Built JurisLean.Seams.UnifiedQuantities (7.6s)
+✔ [8494/8506] Built JurisLean.Candidates.Final20261021.Probability (8.2s)
+✔ [8495/8506] Built JurisLean.Candidates.Final20261021.Calibration (7.8s)
+✔ [8496/8506] Built JurisLean.Candidates.Final20261021.Authorization (7.2s)
+✔ [8497/8506] Built JurisLean.Seams.UnifiedQuantLedger (11s)
+✔ [8498/8506] Built JurisLean.Candidates.Final20261021.Decision (10s)
+✔ [8499/8506] Built JurisLean.Candidates.Final20261021.Feedback (7.6s)
+✔ [8500/8506] Built JurisLean.Candidates.Final20261021.Ledger (7.7s)
+✔ [8501/8506] Built JurisLean.Candidates.Final20261021.Iteration (4.0s)
+✔ [8502/8506] Built JurisLean.Candidates.Final20261021.Trace (4.8s)
+✖ [8503/8506] Building JurisLean.Candidates.Final20261021.Pipeline (5.7s)
+trace: .> LEAN_PATH=/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/lean /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Pipeline.lean -o /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Pipeline.olean -i /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Pipeline.ilean -c /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Pipeline.c --setup /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Pipeline.setup.json --json
+error: JurisLean/Candidates/Final20261021/Pipeline.lean:85:50: Invalid dotted identifier notation: The expected type of `.known` could not be determined
+
+Hint: Using `Result.known would be unambiguous:
+  [apply] `Result.known`
+error: JurisLean/Candidates/Final20261021/Pipeline.lean:110:97: unsolved goals
+initial : Ledger.Handle
+first second : PaymentRequest
+grants : List Authorization.Grant
+mode2 : Ledger.Submission
+r1 : Ledger.Receipt
+actualPost1 : Ledger.Handle
+firstCommitted :
+  Ledger.consume_ext initial initial first
+      (Authorization.authorized grants initial.gamma first.payload.payer 0 first.payload.normVersion
+        (ObjectId.relation first.payload.relation) (some first.payload))
+      Ledger.Submission.submit =
+    Ledger.Outcome.committed r1 actualPost1
+⊢ (match sorry () with
+    | Result.known previous_output_ref =>
+      {
+        exit :=
+          (finishPayment previous_output_ref
+              (Ledger.consume_ext previous_output_ref previous_output_ref second
+                (Authorization.authorized grants previous_output_ref.gamma second.payload.payer 0
+                  second.payload.normVersion (ObjectId.relation second.payload.relation) (some second.payload))
+                mode2)).exit,
+        current :=
+          (finishPayment previous_output_ref
+              (Ledger.consume_ext previous_output_ref previous_output_ref second
+                (Authorization.authorized grants previous_output_ref.gamma second.payload.payer 0
+                  second.payload.normVersion (ObjectId.relation second.payload.relation) (some second.payload))
+                mode2)).current,
+        outcomes :=
+          [Ledger.Outcome.committed r1 actualPost1,
+            Ledger.consume_ext previous_output_ref previous_output_ref second
+              (Authorization.authorized grants previous_output_ref.gamma second.payload.payer 0
+                second.payload.normVersion (ObjectId.relation second.payload.relation) (some second.payload))
+              mode2],
+        obligations :=
+          (finishPayment previous_output_ref
+              (Ledger.consume_ext previous_output_ref previous_output_ref second
+                (Authorization.authorized grants previous_output_ref.gamma second.payload.payer 0
+                  second.payload.normVersion (ObjectId.relation second.payload.relation) (some second.payload))
+                mode2)).obligations }
+    | Result.unknown e =>
+      { exit := Exit.undecided, current := some actualPost1, outcomes := [Ledger.Outcome.committed r1 actualPost1],
+        obligations := [e] }
+    | Result.rejected e =>
+      { exit := Exit.rejected, current := some actualPost1, outcomes := [Ledger.Outcome.committed r1 actualPost1],
+        obligations := [e] }
+    | Result.conflict left right =>
+      { exit := Exit.undecided, current := some actualPost1, outcomes := [Ledger.Outcome.committed r1 actualPost1],
+        obligations := [Error.versionConflict] }) =
+    {
+      exit :=
+        (finishPayment actualPost1
+            (Ledger.consume_ext actualPost1 actualPost1 second
+              (Authorization.authorized grants actualPost1.gamma second.payload.payer 0 second.payload.normVersion
+                (ObjectId.relation second.payload.relation) (some second.payload))
+              mode2)).exit,
+      current :=
+        (finishPayment actualPost1
+            (Ledger.consume_ext actualPost1 actualPost1 second
+              (Authorization.authorized grants actualPost1.gamma second.payload.payer 0 second.payload.normVersion
+                (ObjectId.relation second.payload.relation) (some second.payload))
+              mode2)).current,
+      outcomes :=
+        [Ledger.Outcome.committed r1 actualPost1,
+          Ledger.consume_ext actualPost1 actualPost1 second
+            (Authorization.authorized grants actualPost1.gamma second.payload.payer 0 second.payload.normVersion
+              (ObjectId.relation second.payload.relation) (some second.payload))
+            mode2],
+      obligations :=
+        (finishPayment actualPost1
+            (Ledger.consume_ext actualPost1 actualPost1 second
+              (Authorization.authorized grants actualPost1.gamma second.payload.payer 0 second.payload.normVersion
+                (ObjectId.relation second.payload.relation) (some second.payload))
+              mode2)).obligations }
+warning: JurisLean/Candidates/Final20261021/Pipeline.lean:111:8: declaration uses `sorry`
+error: Lean exited with code 1
+Some required targets logged failures:
+- JurisLean.Candidates.Final20261021.Pipeline
+error: build failed
+Traceback (most recent call last):
+  File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 59, in <module>
+    if __name__=='__main__':raise SystemExit(main())
+                                             ^^^^^^
+  File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 57, in main
+    subprocess.run(['lake','build',*targets],cwd=R/'proofs/lean/juris_lean',check=True)
+  File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['lake', 'build', 'JurisLean.Candidates.Final20261021.CIAll']' returned non-zero exit status 1.

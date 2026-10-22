@@ -1,0 +1,600 @@
+﻿2026-10-22T00:06:26.7063697Z Current runner version: '2.338.0'
+2026-10-22T00:06:26.7090081Z ##[group]Runner Image Provisioner
+2026-10-22T00:06:26.7090967Z Hosted Compute Agent
+2026-10-22T00:06:26.7091583Z Version: 20261015.610
+2026-10-22T00:06:26.7092324Z Commit: 267fdb4e8bbec4ab5ea31367f3a00d5c480c7656
+2026-10-22T00:06:26.7093085Z Build Date: 2026-10-14T17:06:54Z
+2026-10-22T00:06:26.7093805Z Worker ID: {3ef813c9-e8e6-47db-8ebf-32234a1ac3c4}
+2026-10-22T00:06:26.7094539Z Region: westus
+2026-10-22T00:06:26.7095062Z Cloud: Azure
+2026-10-22T00:06:26.7095649Z ##[endgroup]
+2026-10-22T00:06:26.7097215Z ##[group]Operating System
+2026-10-22T00:06:26.7097930Z Ubuntu
+2026-10-22T00:06:26.7098477Z 26.04.1
+2026-10-22T00:06:26.7099274Z LTS
+2026-10-22T00:06:26.7099854Z ##[endgroup]
+2026-10-22T00:06:26.7100437Z ##[group]Runner Image
+2026-10-22T00:06:26.7101060Z Image: ubuntu-26.04
+2026-10-22T00:06:26.7101661Z Version: 20261018.168.1
+2026-10-22T00:06:26.7102939Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261018.168/images/ubuntu/Ubuntu2604-Readme.md
+2026-10-22T00:06:26.7104530Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261018.168
+2026-10-22T00:06:26.7105525Z ##[endgroup]
+2026-10-22T00:06:26.7106815Z ##[group]GITHUB_TOKEN Permissions
+2026-10-22T00:06:26.7109638Z Contents: read
+2026-10-22T00:06:26.7110316Z Metadata: read
+2026-10-22T00:06:26.7110874Z ##[endgroup]
+2026-10-22T00:06:26.7113148Z Secret source: Actions
+2026-10-22T00:06:26.7114156Z Cache mode: write
+2026-10-22T00:06:26.7114942Z Prepare workflow directory
+2026-10-22T00:06:26.7553034Z Prepare all required actions
+2026-10-22T00:06:26.7604492Z Getting action download info
+2026-10-22T00:06:27.1012466Z Download action repository 'actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-10-22T00:06:27.2230339Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-22T00:06:27.2832064Z Download action repository 'actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2026-10-22T00:06:27.3583548Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-22T00:06:27.5540452Z Complete job name: changed-modules
+2026-10-22T00:06:27.6346800Z ##[group]Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+2026-10-22T00:06:27.6347913Z with:
+2026-10-22T00:06:27.6348341Z   fetch-depth: 0
+2026-10-22T00:06:27.6349100Z   repository: laubeing-droid/legal-math-modeling
+2026-10-22T00:06:27.6353143Z   token: ***
+2026-10-22T00:06:27.6353576Z   ssh-strict: true
+2026-10-22T00:06:27.6354010Z   ssh-user: git
+2026-10-22T00:06:27.6354452Z   persist-credentials: true
+2026-10-22T00:06:27.6354930Z   clean: true
+2026-10-22T00:06:27.6355367Z   sparse-checkout-cone-mode: true
+2026-10-22T00:06:27.6355890Z   fetch-tags: false
+2026-10-22T00:06:27.6356327Z   show-progress: true
+2026-10-22T00:06:27.6356790Z   lfs: false
+2026-10-22T00:06:27.6357192Z   submodules: false
+2026-10-22T00:06:27.6357628Z   set-safe-directory: true
+2026-10-22T00:06:27.6358387Z env:
+2026-10-22T00:06:27.6359004Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:06:27.6359552Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:06:27.6360046Z   PYTHONUTF8: 1
+2026-10-22T00:06:27.6360499Z ##[endgroup]
+2026-10-22T00:06:27.7407999Z Syncing repository: laubeing-droid/legal-math-modeling
+2026-10-22T00:06:27.7411429Z ##[group]Getting Git version info
+2026-10-22T00:06:27.7412939Z Working directory is '/home/runner/work/legal-math-modeling/legal-math-modeling'
+2026-10-22T00:06:27.7415160Z [command]/usr/bin/git version
+2026-10-22T00:06:27.7416153Z git version 2.55.0
+2026-10-22T00:06:27.7437904Z ##[endgroup]
+2026-10-22T00:06:27.7455714Z Temporarily overriding HOME='/home/runner/work/_temp/aaa65532-3594-40e0-aa62-0b74fc798014' before making global git config changes
+2026-10-22T00:06:27.7458379Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T00:06:27.7464211Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/legal-math-modeling/legal-math-modeling
+2026-10-22T00:06:27.7549300Z Deleting the contents of '/home/runner/work/legal-math-modeling/legal-math-modeling'
+2026-10-22T00:06:27.7554453Z ##[group]Initializing the repository
+2026-10-22T00:06:27.7560030Z [command]/usr/bin/git init /home/runner/work/legal-math-modeling/legal-math-modeling
+2026-10-22T00:06:27.7692498Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-22T00:06:27.7695238Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-22T00:06:27.7697285Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-22T00:06:27.7699325Z hint: call:
+2026-10-22T00:06:27.7700486Z hint:
+2026-10-22T00:06:27.7701695Z hint: 	git config --global init.defaultBranch <name>
+2026-10-22T00:06:27.7703083Z hint:
+2026-10-22T00:06:27.7704466Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-22T00:06:27.7706474Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-22T00:06:27.7707674Z hint:
+2026-10-22T00:06:27.7708176Z hint: 	git branch -m <name>
+2026-10-22T00:06:27.7708924Z hint:
+2026-10-22T00:06:27.7710083Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-22T00:06:27.7712270Z Initialized empty Git repository in /home/runner/work/legal-math-modeling/legal-math-modeling/.git/
+2026-10-22T00:06:27.7715650Z [command]/usr/bin/git remote add origin https://github.com/laubeing-droid/legal-math-modeling
+2026-10-22T00:06:27.7772142Z ##[endgroup]
+2026-10-22T00:06:27.7774754Z ##[group]Disabling automatic garbage collection
+2026-10-22T00:06:27.7776597Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-22T00:06:27.7820758Z ##[endgroup]
+2026-10-22T00:06:27.7822507Z ##[group]Setting up auth
+2026-10-22T00:06:27.7830745Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T00:06:27.7872286Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T00:06:27.8400685Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T00:06:27.8442826Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T00:06:27.8756549Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T00:06:27.8793985Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T00:06:27.9075803Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-22T00:06:27.9120571Z ##[endgroup]
+2026-10-22T00:06:27.9121516Z ##[group]Fetching the repository
+2026-10-22T00:06:27.9130057Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-10-22T00:06:29.5475775Z From https://github.com/laubeing-droid/legal-math-modeling
+2026-10-22T00:06:29.5478285Z  * [new branch]        candidates/final20261021-825792b -> origin/candidates/final20261021-825792b
+2026-10-22T00:06:29.5480876Z  * [new branch]        ci/mandate-wave1            -> origin/ci/mandate-wave1
+2026-10-22T00:06:29.5483230Z  * [new branch]        ci/seam-AdjudicationBridge  -> origin/ci/seam-AdjudicationBridge
+2026-10-22T00:06:29.5485820Z  * [new branch]        ci/seam-BoundaryClosure     -> origin/ci/seam-BoundaryClosure
+2026-10-22T00:06:29.5488282Z  * [new branch]        ci/seam-PayoffEquilibrium   -> origin/ci/seam-PayoffEquilibrium
+2026-10-22T00:06:29.5491142Z  * [new branch]        ci/seam-PrecedentFlow       -> origin/ci/seam-PrecedentFlow
+2026-10-22T00:06:29.5493938Z  * [new branch]        ci/seam-Probability         -> origin/ci/seam-Probability
+2026-10-22T00:06:29.5496068Z  * [new branch]        ci/seam-SourceNorms         -> origin/ci/seam-SourceNorms
+2026-10-22T00:06:29.5499904Z  * [new branch]        ci/seam-Temporal            -> origin/ci/seam-Temporal
+2026-10-22T00:06:29.5501744Z  * [new branch]        ci/seam-Uncertainty         -> origin/ci/seam-Uncertainty
+2026-10-22T00:06:29.5503704Z  * [new branch]        ci/unified-construction-20261008 -> origin/ci/unified-construction-20261008
+2026-10-22T00:06:29.5505513Z  * [new branch]        main                        -> origin/main
+2026-10-22T00:06:29.5506996Z  * [new tag]           archive/banach-track-b-d23e8f2 -> archive/banach-track-b-d23e8f2
+2026-10-22T00:06:29.5508130Z  * [new tag]           archive/track-c-prod-f43e273 -> archive/track-c-prod-f43e273
+2026-10-22T00:06:29.5509816Z  * [new tag]           archive/ulm01-16-preclean-20260903 -> archive/ulm01-16-preclean-20260903
+2026-10-22T00:06:29.5510974Z  * [new tag]           formal-core-v1              -> formal-core-v1
+2026-10-22T00:06:29.5511871Z  * [new tag]           formal-core-v1-candidate    -> formal-core-v1-candidate
+2026-10-22T00:06:29.5512781Z  * [new tag]           math-complete-20260914      -> math-complete-20260914
+2026-10-22T00:06:29.5513737Z  * [new tag]           spec-first-transition-ready -> spec-first-transition-ready
+2026-10-22T00:06:29.5514636Z  * [new tag]           spec-v1-candidate           -> spec-v1-candidate
+2026-10-22T00:06:29.5515422Z  * [new tag]           v1.0.0                      -> v1.0.0
+2026-10-22T00:06:29.5516171Z  * [new tag]           v2.0.0                      -> v2.0.0
+2026-10-22T00:06:29.5516907Z  * [new tag]           v5.0                        -> v5.0
+2026-10-22T00:06:29.5517635Z  * [new tag]           v5.1                        -> v5.1
+2026-10-22T00:06:29.5519781Z [command]/usr/bin/git branch --list --remote origin/candidates/final20261021-825792b
+2026-10-22T00:06:29.5524556Z   origin/candidates/final20261021-825792b
+2026-10-22T00:06:29.5537454Z [command]/usr/bin/git rev-parse refs/remotes/origin/candidates/final20261021-825792b
+2026-10-22T00:06:29.5563967Z e26f0bac1ca3db5f9b6a67bdf0a87baf2e4fd785
+2026-10-22T00:06:29.5569324Z ##[endgroup]
+2026-10-22T00:06:29.5570945Z ##[group]Determining the checkout info
+2026-10-22T00:06:29.5572491Z ##[endgroup]
+2026-10-22T00:06:29.5575948Z [command]/usr/bin/git sparse-checkout disable
+2026-10-22T00:06:29.5634756Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-22T00:06:29.5670331Z ##[group]Checking out the ref
+2026-10-22T00:06:29.5675205Z [command]/usr/bin/git checkout --progress --force -B candidates/final20261021-825792b refs/remotes/origin/candidates/final20261021-825792b
+2026-10-22T00:06:29.8583512Z Switched to a new branch 'candidates/final20261021-825792b'
+2026-10-22T00:06:29.8611854Z branch 'candidates/final20261021-825792b' set up to track 'origin/candidates/final20261021-825792b'.
+2026-10-22T00:06:29.8620011Z ##[endgroup]
+2026-10-22T00:06:29.8672274Z [command]/usr/bin/git log -1 --format=%H
+2026-10-22T00:06:29.8803674Z e26f0bac1ca3db5f9b6a67bdf0a87baf2e4fd785
+2026-10-22T00:06:29.9106321Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-10-22T00:06:29.9108067Z with:
+2026-10-22T00:06:29.9109286Z   python-version: 3.12
+2026-10-22T00:06:29.9110401Z   check-latest: false
+2026-10-22T00:06:29.9119944Z   token: ***
+2026-10-22T00:06:29.9121001Z   update-environment: true
+2026-10-22T00:06:29.9122180Z   allow-prereleases: false
+2026-10-22T00:06:29.9123347Z   freethreaded: false
+2026-10-22T00:06:29.9124414Z env:
+2026-10-22T00:06:29.9125408Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:06:29.9126701Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:06:29.9127834Z   PYTHONUTF8: 1
+2026-10-22T00:06:29.9128913Z ##[endgroup]
+2026-10-22T00:06:30.0509779Z ##[group]Installed versions
+2026-10-22T00:06:30.0615045Z (node:2401) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T00:06:30.0620834Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T00:06:30.0624147Z Successfully set up CPython (3.12.15)
+2026-10-22T00:06:30.0627974Z ##[endgroup]
+2026-10-22T00:06:30.0832565Z ##[group]Run python tools/ulm_repair/scripts/ci_driver.py pins
+2026-10-22T00:06:30.0834408Z [36;1mpython tools/ulm_repair/scripts/ci_driver.py pins[0m
+2026-10-22T00:06:30.1053170Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-22T00:06:30.1054803Z env:
+2026-10-22T00:06:30.1055723Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:06:30.1056910Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:06:30.1058002Z   PYTHONUTF8: 1
+2026-10-22T00:06:30.1059553Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:30.1061328Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:06:30.1063044Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:30.1064677Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:30.1066293Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:30.1067906Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:06:30.1069641Z ##[endgroup]
+2026-10-22T00:06:30.2659961Z ##[group]Run set -euo pipefail
+2026-10-22T00:06:30.2661149Z [36;1mset -euo pipefail[0m
+2026-10-22T00:06:30.2663507Z [36;1mcurl -sSf https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y --default-toolchain leanprover/lean4:v4.30.0[0m
+2026-10-22T00:06:30.2666008Z [36;1mecho "$HOME/.elan/bin" >> "$GITHUB_PATH"[0m
+2026-10-22T00:06:30.2733029Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-22T00:06:30.2734399Z env:
+2026-10-22T00:06:30.2735317Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:06:30.2736462Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:06:30.2737522Z   PYTHONUTF8: 1
+2026-10-22T00:06:30.2739155Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:30.2741260Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:06:30.2742968Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:30.2744925Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:30.2746506Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:30.2748119Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:06:30.2749864Z ##[endgroup]
+2026-10-22T00:06:30.3655260Z info: downloading installer
+2026-10-22T00:06:30.8126309Z info: default toolchain set to 'leanprover/lean4:v4.30.0'
+2026-10-22T00:06:30.8962197Z ##[group]Run actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830
+2026-10-22T00:06:30.8962713Z with:
+2026-10-22T00:06:30.8962990Z   path: proofs/lean/juris_lean/.lake
+2026-10-22T00:06:30.8963654Z   key: Linux-lake-full-v4.30.0-aa7b09b2c8327ddcc6b77ca7cdfcfeb192d157b89c3ca9cf9322fa022286ea0c
+2026-10-22T00:06:30.8964517Z   restore-keys: Linux-lake-full-v4.30.0-
+lean-seeds-Linux-v4.30.0-
+
+2026-10-22T00:06:30.8965033Z   enableCrossOsArchive: false
+2026-10-22T00:06:30.8965373Z   fail-on-cache-miss: false
+2026-10-22T00:06:30.8965695Z   lookup-only: false
+2026-10-22T00:06:30.8965979Z   save-always: false
+2026-10-22T00:06:30.8966252Z env:
+2026-10-22T00:06:30.8966513Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:06:30.8966856Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:06:30.8967153Z   PYTHONUTF8: 1
+2026-10-22T00:06:30.8967488Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:30.8968073Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:06:30.8968606Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:30.8969341Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:30.8969823Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:30.8970313Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:06:30.8971013Z ##[endgroup]
+2026-10-22T00:06:31.0076926Z (node:2450) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T00:06:31.0078411Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T00:06:31.2564094Z Cache not found for input keys: Linux-lake-full-v4.30.0-aa7b09b2c8327ddcc6b77ca7cdfcfeb192d157b89c3ca9cf9322fa022286ea0c, Linux-lake-full-v4.30.0-, lean-seeds-Linux-v4.30.0-
+2026-10-22T00:06:31.2664402Z ##[group]Run set -euo pipefail
+2026-10-22T00:06:31.2664796Z [36;1mset -euo pipefail[0m
+2026-10-22T00:06:31.2665128Z [36;1mif [ -n "$REQUESTED_MODULE" ]; then[0m
+2026-10-22T00:06:31.2665780Z [36;1m  python scripts/ci/changed_lean_modules.py --module "$REQUESTED_MODULE" --output module-plan.json[0m
+2026-10-22T00:06:31.2666391Z [36;1melse[0m
+2026-10-22T00:06:31.2666898Z [36;1m  python scripts/ci/changed_lean_modules.py --base HEAD~1 --head HEAD --output module-plan.json[0m
+2026-10-22T00:06:31.2667495Z [36;1mfi[0m
+2026-10-22T00:06:31.2736965Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-22T00:06:31.2737389Z env:
+2026-10-22T00:06:31.2737635Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:06:31.2737963Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:06:31.2738259Z   PYTHONUTF8: 1
+2026-10-22T00:06:31.2738607Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:31.2739366Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:06:31.2739910Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:31.2740390Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:31.2740869Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:31.2741352Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:06:31.2741853Z   REQUESTED_MODULE: JurisLean.Candidates.Final20261021.CIAll
+2026-10-22T00:06:31.2742289Z ##[endgroup]
+2026-10-22T00:06:31.4002437Z {
+2026-10-22T00:06:31.4002919Z   "include": [
+2026-10-22T00:06:31.4003319Z     {
+2026-10-22T00:06:31.4003844Z       "module": "JurisLean.Candidates.Final20261021.CIAll",
+2026-10-22T00:06:31.4004646Z       "target": "JurisLean.Candidates.Final20261021.CIAll"
+2026-10-22T00:06:31.4005275Z     }
+2026-10-22T00:06:31.4005610Z   ],
+2026-10-22T00:06:31.4005984Z   "removed_modules": [],
+2026-10-22T00:06:31.4006635Z   "scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE"
+2026-10-22T00:06:31.4007378Z }
+2026-10-22T00:06:31.4115655Z ##[group]Run set -euo pipefail
+2026-10-22T00:06:31.4116065Z [36;1mset -euo pipefail[0m
+2026-10-22T00:06:31.4116554Z [36;1m(cd "$LEAN_DIR" && lake exe cache get!) 2>&1 | tee mathlib-cloud-cache.log[0m
+2026-10-22T00:06:31.4117365Z [36;1mpython tools/ulm_repair/scripts/ci_driver.py build --plan module-plan.json 2>&1 | tee changed-module.log[0m
+2026-10-22T00:06:31.4184960Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-22T00:06:31.4185469Z env:
+2026-10-22T00:06:31.4185758Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:06:31.4186155Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:06:31.4186512Z   PYTHONUTF8: 1
+2026-10-22T00:06:31.4186907Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:31.4187541Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:06:31.4188170Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:31.4188920Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:31.4189606Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:06:31.4190182Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:06:31.4190660Z ##[endgroup]
+2026-10-22T00:06:32.2090020Z info: downloading https://releases.lean-lang.org/lean4/v4.30.0/lean-4.30.0-linux.tar.zst
+2026-10-22T00:06:36.9969068Z info: installing /home/runner/.elan/toolchains/leanprover--lean4---v4.30.0
+2026-10-22T00:06:43.6030096Z info: mathlib: cloning https://github.com/leanprover-community/mathlib4
+2026-10-22T00:07:40.1084922Z info: mathlib: checking out revision 'c5ea00351c28e24afc9f0f84379aa41082b1188f'
+2026-10-22T00:07:41.9234403Z info: plausible: cloning https://github.com/leanprover-community/plausible
+2026-10-22T00:07:42.3581416Z info: plausible: checking out revision 'a456461b368b71d2accd95234832cd9c174b5437'
+2026-10-22T00:07:42.3720248Z info: LeanSearchClient: cloning https://github.com/leanprover-community/LeanSearchClient
+2026-10-22T00:07:42.7241616Z info: LeanSearchClient: checking out revision 'c5d5b8fe6e5158def25cd28eb94e4141ad97c843'
+2026-10-22T00:07:42.7355662Z info: importGraph: cloning https://github.com/leanprover-community/import-graph
+2026-10-22T00:07:43.1761431Z info: importGraph: checking out revision '515cf9d0c00ece5e661f6de4326a53dedc1e8ea1'
+2026-10-22T00:07:43.1933226Z info: proofwidgets: cloning https://github.com/leanprover-community/ProofWidgets4
+2026-10-22T00:07:43.8430299Z info: proofwidgets: checking out revision 'a84b3e2475d5c5ab979567b1ad8aea21b764bcf8'
+2026-10-22T00:07:44.6035579Z info: aesop: cloning https://github.com/leanprover-community/aesop
+2026-10-22T00:07:45.4582445Z info: aesop: checking out revision '558915ae105bfd8074e22d597613d1961822adc2'
+2026-10-22T00:07:45.4853781Z info: Qq: cloning https://github.com/leanprover-community/quote4
+2026-10-22T00:07:45.9136478Z info: Qq: checking out revision 'a6e6c34c4ef182f83b219a3a5a385f51f44bdc4c'
+2026-10-22T00:07:45.9257365Z info: batteries: cloning https://github.com/leanprover-community/batteries
+2026-10-22T00:07:50.0564653Z info: batteries: checking out revision '32dc18cde3684679f3c003de608743b57498c56f'
+2026-10-22T00:07:50.0935535Z info: Cli: cloning https://github.com/leanprover/lean4-cli
+2026-10-22T00:07:50.5059790Z info: Cli: checking out revision '6b907cf12b2e445ccb7c24bc208ef04a1f39e84c'
+2026-10-22T00:07:50.9185594Z ✔ [2/24] Built Cache.Init (310ms)
+2026-10-22T00:07:51.0187494Z ✔ [3/24] Built Cache.Lean (419ms)
+2026-10-22T00:07:51.0188227Z ✔ [4/24] Built Cache.Init:c.o (119ms)
+2026-10-22T00:07:51.1189509Z ✔ [5/24] Built Cache.Lean:c.o (158ms)
+2026-10-22T00:07:53.5233360Z ✔ [13/24] Built Batteries.Data.String.Basic:c.o (220ms)
+2026-10-22T00:07:53.6234915Z ✔ [14/24] Built Batteries.Data.String.Matcher:c.o (329ms)
+2026-10-22T00:07:53.7235972Z ✔ [15/24] Built Batteries.Data.Array.Match:c.o (387ms)
+2026-10-22T00:07:55.2241216Z ✔ [16/24] Built Cache.IO (1.9s)
+2026-10-22T00:07:56.0260713Z ✔ [17/24] Built Cache.Hashing (889ms)
+2026-10-22T00:07:56.7259817Z ✔ [18/24] Built Cache.Hashing:c.o (625ms)
+2026-10-22T00:07:56.8260677Z ✔ [19/24] Built Cache.IO:c.o (1.7s)
+2026-10-22T00:07:58.4280604Z ✔ [20/24] Built Cache.Requests (2.4s)
+2026-10-22T00:07:59.4290702Z ✔ [21/24] Built Cache.Main (1.0s)
+2026-10-22T00:08:00.1289916Z ✔ [22/24] Built Cache.Main:c.o (670ms)
+2026-10-22T00:08:00.8298208Z ✔ [23/24] Built Cache.Requests:c.o (2.4s)
+2026-10-22T00:08:01.5306071Z ✔ [24/24] Built cache:exe (701ms)
+2026-10-22T00:08:04.2227593Z Current branch: HEAD
+2026-10-22T00:08:04.2228309Z Using cache (Azure) from origin: (some leanprover-community/mathlib4)
+2026-10-22T00:08:04.2229337Z Attempting to download 8459 file(s) from leanprover-community/mathlib4 cache
+2026-10-22T00:08:04.8418158Z 
+2026-10-22T00:08:04.9446185Z Downloaded: 1 file(s) [attempted 1/8459 = 0%, 73 KB/s], Decompressed: 0
+2026-10-22T00:08:05.0479122Z Downloaded: 60 file(s) [attempted 60/8459 = 0%, 90 KB/s], Decompressed: 19
+2026-10-22T00:08:05.1478341Z Downloaded: 148 file(s) [attempted 148/8459 = 1%, 835 KB/s], Decompressed: 36
+2026-10-22T00:08:05.2479398Z Downloaded: 252 file(s) [attempted 252/8459 = 2%, 733 KB/s], Decompressed: 84
+2026-10-22T00:08:05.3496241Z Downloaded: 356 file(s) [attempted 356/8459 = 4%, 1767 KB/s], Decompressed: 84
+2026-10-22T00:08:05.4530183Z Downloaded: 455 file(s) [attempted 455/8459 = 5%, 249 KB/s], Decompressed: 84
+2026-10-22T00:08:05.5508155Z Downloaded: 550 file(s) [attempted 550/8459 = 6%, 522 KB/s], Decompressed: 84
+2026-10-22T00:08:05.6849630Z Downloaded: 645 file(s) [attempted 645/8459 = 7%, 900 KB/s], Decompressed: 84
+2026-10-22T00:08:05.8217748Z Downloaded: 721 file(s) [attempted 721/8459 = 8%, 289 KB/s], Decompressed: 214
+2026-10-22T00:08:05.9520031Z Downloaded: 766 file(s) [attempted 766/8459 = 9%, 331 KB/s], Decompressed: 214
+2026-10-22T00:08:06.0577712Z Downloaded: 857 file(s) [attempted 857/8459 = 10%, 56 KB/s], Decompressed: 214
+2026-10-22T00:08:06.1786356Z Downloaded: 903 file(s) [attempted 903/8459 = 10%, 987 KB/s], Decompressed: 214
+2026-10-22T00:08:06.2783880Z Downloaded: 1008 file(s) [attempted 1008/8459 = 11%, 421 KB/s], Decompressed: 214
+2026-10-22T00:08:06.3821753Z Downloaded: 1113 file(s) [attempted 1113/8459 = 13%, 540 KB/s], Decompressed: 214
+2026-10-22T00:08:06.4822140Z Downloaded: 1215 file(s) [attempted 1215/8459 = 14%, 1130 KB/s], Decompressed: 214
+2026-10-22T00:08:06.5830495Z Downloaded: 1324 file(s) [attempted 1324/8459 = 15%, 2174 KB/s], Decompressed: 214
+2026-10-22T00:08:06.6824103Z Downloaded: 1427 file(s) [attempted 1427/8459 = 16%, 2018 KB/s], Decompressed: 214
+2026-10-22T00:08:06.7884973Z Downloaded: 1539 file(s) [attempted 1539/8459 = 18%, 289 KB/s], Decompressed: 214
+2026-10-22T00:08:06.8930999Z Downloaded: 1650 file(s) [attempted 1650/8459 = 19%, 398 KB/s], Decompressed: 214
+2026-10-22T00:08:06.9950863Z Downloaded: 1760 file(s) [attempted 1760/8459 = 20%, 1667 KB/s], Decompressed: 214
+2026-10-22T00:08:07.1022300Z Downloaded: 1861 file(s) [attempted 1861/8459 = 22%, 937 KB/s], Decompressed: 214
+2026-10-22T00:08:07.2087764Z Downloaded: 1960 file(s) [attempted 1960/8459 = 23%, 10548 KB/s], Decompressed: 665
+2026-10-22T00:08:07.3780250Z Downloaded: 2060 file(s) [attempted 2060/8459 = 24%, 269 KB/s], Decompressed: 665
+2026-10-22T00:08:07.4790129Z Downloaded: 2161 file(s) [attempted 2161/8459 = 25%, 2136 KB/s], Decompressed: 665
+2026-10-22T00:08:07.5829411Z Downloaded: 2244 file(s) [attempted 2244/8459 = 26%, 75 KB/s], Decompressed: 665
+2026-10-22T00:08:07.7000550Z Downloaded: 2316 file(s) [attempted 2316/8459 = 27%, 918 KB/s], Decompressed: 665
+2026-10-22T00:08:07.8086539Z Downloaded: 2413 file(s) [attempted 2413/8459 = 28%, 220 KB/s], Decompressed: 665
+2026-10-22T00:08:07.9128131Z Downloaded: 2512 file(s) [attempted 2512/8459 = 29%, 3597 KB/s], Decompressed: 665
+2026-10-22T00:08:08.0267914Z Downloaded: 2609 file(s) [attempted 2609/8459 = 30%, 192 KB/s], Decompressed: 665
+2026-10-22T00:08:08.1274908Z Downloaded: 2724 file(s) [attempted 2724/8459 = 32%, 546 KB/s], Decompressed: 665
+2026-10-22T00:08:08.2295555Z Downloaded: 2825 file(s) [attempted 2825/8459 = 33%, 575 KB/s], Decompressed: 665
+2026-10-22T00:08:08.3306427Z Downloaded: 2929 file(s) [attempted 2929/8459 = 34%, 251 KB/s], Decompressed: 665
+2026-10-22T00:08:08.4324050Z Downloaded: 3010 file(s) [attempted 3010/8459 = 35%, 521 KB/s], Decompressed: 665
+2026-10-22T00:08:08.5628097Z Downloaded: 3073 file(s) [attempted 3073/8459 = 36%, 461 KB/s], Decompressed: 665
+2026-10-22T00:08:08.6750135Z Downloaded: 3136 file(s) [attempted 3136/8459 = 37%, 131 KB/s], Decompressed: 665
+2026-10-22T00:08:08.7870165Z Downloaded: 3234 file(s) [attempted 3234/8459 = 38%, 615 KB/s], Decompressed: 665
+2026-10-22T00:08:08.8880303Z Downloaded: 3288 file(s) [attempted 3288/8459 = 38%, 550 KB/s], Decompressed: 665
+2026-10-22T00:08:08.9890093Z Downloaded: 3383 file(s) [attempted 3383/8459 = 39%, 464 KB/s], Decompressed: 665
+2026-10-22T00:08:09.0875661Z Downloaded: 3479 file(s) [attempted 3479/8459 = 41%, 1163 KB/s], Decompressed: 665
+2026-10-22T00:08:09.1930165Z Downloaded: 3555 file(s) [attempted 3555/8459 = 42%, 2051 KB/s], Decompressed: 665
+2026-10-22T00:08:09.2903586Z Downloaded: 3647 file(s) [attempted 3647/8459 = 43%, 1171 KB/s], Decompressed: 665
+2026-10-22T00:08:09.3930280Z Downloaded: 3755 file(s) [attempted 3755/8459 = 44%, 1791 KB/s], Decompressed: 665
+2026-10-22T00:08:09.4922825Z Downloaded: 3836 file(s) [attempted 3836/8459 = 45%, 738 KB/s], Decompressed: 665
+2026-10-22T00:08:09.5935982Z Downloaded: 3937 file(s) [attempted 3937/8459 = 46%, 212 KB/s], Decompressed: 665
+2026-10-22T00:08:09.6950132Z Downloaded: 4045 file(s) [attempted 4045/8459 = 47%, 233 KB/s], Decompressed: 665
+2026-10-22T00:08:09.8030849Z Downloaded: 4133 file(s) [attempted 4133/8459 = 48%, 577 KB/s], Decompressed: 665
+2026-10-22T00:08:09.9001787Z Downloaded: 4230 file(s) [attempted 4230/8459 = 50%, 1069 KB/s], Decompressed: 665
+2026-10-22T00:08:10.0014780Z Downloaded: 4334 file(s) [attempted 4334/8459 = 51%, 975 KB/s], Decompressed: 665
+2026-10-22T00:08:10.1034906Z Downloaded: 4442 file(s) [attempted 4442/8459 = 52%, 1705 KB/s], Decompressed: 665
+2026-10-22T00:08:10.2013585Z Downloaded: 4559 file(s) [attempted 4559/8459 = 53%, 525 KB/s], Decompressed: 665
+2026-10-22T00:08:10.3015076Z Downloaded: 4663 file(s) [attempted 4663/8459 = 55%, 3707 KB/s], Decompressed: 665
+2026-10-22T00:08:10.4041370Z Downloaded: 4782 file(s) [attempted 4782/8459 = 56%, 407 KB/s], Decompressed: 665
+2026-10-22T00:08:10.5100348Z Downloaded: 4870 file(s) [attempted 4870/8459 = 57%, 3448 KB/s], Decompressed: 665
+2026-10-22T00:08:10.6173618Z Downloaded: 4965 file(s) [attempted 4965/8459 = 58%, 337 KB/s], Decompressed: 665
+2026-10-22T00:08:10.7290201Z Downloaded: 5066 file(s) [attempted 5066/8459 = 59%, 1034 KB/s], Decompressed: 665
+2026-10-22T00:08:10.8339402Z Downloaded: 5167 file(s) [attempted 5167/8459 = 61%, 4252 KB/s], Decompressed: 665
+2026-10-22T00:08:10.9370233Z Downloaded: 5267 file(s) [attempted 5267/8459 = 62%, 4251 KB/s], Decompressed: 665
+2026-10-22T00:08:11.0367868Z Downloaded: 5368 file(s) [attempted 5368/8459 = 63%, 5781 KB/s], Decompressed: 665
+2026-10-22T00:08:11.1372997Z Downloaded: 5485 file(s) [attempted 5485/8459 = 64%, 391 KB/s], Decompressed: 665
+2026-10-22T00:08:11.2382079Z Downloaded: 5596 file(s) [attempted 5596/8459 = 66%, 2031 KB/s], Decompressed: 665
+2026-10-22T00:08:11.3391631Z Downloaded: 5699 file(s) [attempted 5699/8459 = 67%, 7808 KB/s], Decompressed: 665
+2026-10-22T00:08:11.4396661Z Downloaded: 5797 file(s) [attempted 5797/8459 = 68%, 523 KB/s], Decompressed: 665
+2026-10-22T00:08:11.5480328Z Downloaded: 5866 file(s) [attempted 5866/8459 = 69%, 525 KB/s], Decompressed: 1954
+2026-10-22T00:08:11.6515734Z Downloaded: 5965 file(s) [attempted 5965/8459 = 70%, 4056 KB/s], Decompressed: 1954
+2026-10-22T00:08:11.7532230Z Downloaded: 6066 file(s) [attempted 6066/8459 = 71%, 1516 KB/s], Decompressed: 1954
+2026-10-22T00:08:11.9008273Z Downloaded: 6177 file(s) [attempted 6177/8459 = 73%, 320 KB/s], Decompressed: 1954
+2026-10-22T00:08:11.9998368Z Downloaded: 6233 file(s) [attempted 6233/8459 = 73%, 471 KB/s], Decompressed: 1954
+2026-10-22T00:08:12.1106933Z Downloaded: 6319 file(s) [attempted 6319/8459 = 74%, 3319 KB/s], Decompressed: 1954
+2026-10-22T00:08:12.2110193Z Downloaded: 6375 file(s) [attempted 6375/8459 = 75%, 199 KB/s], Decompressed: 1954
+2026-10-22T00:08:12.3780164Z Downloaded: 6436 file(s) [attempted 6436/8459 = 76%, 2245 KB/s], Decompressed: 1954
+2026-10-22T00:08:12.4806179Z Downloaded: 6513 file(s) [attempted 6513/8459 = 76%, 1677 KB/s], Decompressed: 1954
+2026-10-22T00:08:12.5850330Z Downloaded: 6599 file(s) [attempted 6599/8459 = 78%, 236 KB/s], Decompressed: 1954
+2026-10-22T00:08:12.6854302Z Downloaded: 6683 file(s) [attempted 6683/8459 = 79%, 295 KB/s], Decompressed: 1954
+2026-10-22T00:08:12.7970657Z Downloaded: 6759 file(s) [attempted 6759/8459 = 79%, 3396 KB/s], Decompressed: 1954
+2026-10-22T00:08:12.9011247Z Downloaded: 6858 file(s) [attempted 6858/8459 = 81%, 242 KB/s], Decompressed: 1954
+2026-10-22T00:08:13.0230427Z Downloaded: 6957 file(s) [attempted 6957/8459 = 82%, 407 KB/s], Decompressed: 1954
+2026-10-22T00:08:13.1449237Z Downloaded: 7065 file(s) [attempted 7065/8459 = 83%, 3571 KB/s], Decompressed: 1954
+2026-10-22T00:08:13.3509401Z Downloaded: 7164 file(s) [attempted 7164/8459 = 84%, 3920 KB/s], Decompressed: 1954
+2026-10-22T00:08:13.4512424Z Downloaded: 7216 file(s) [attempted 7216/8459 = 85%, 2715 KB/s], Decompressed: 1954
+2026-10-22T00:08:13.5566856Z Downloaded: 7288 file(s) [attempted 7288/8459 = 86%, 377 KB/s], Decompressed: 1954
+2026-10-22T00:08:13.6600336Z Downloaded: 7346 file(s) [attempted 7346/8459 = 86%, 273 KB/s], Decompressed: 1954
+2026-10-22T00:08:13.7878356Z Downloaded: 7432 file(s) [attempted 7432/8459 = 87%, 358 KB/s], Decompressed: 1954
+2026-10-22T00:08:13.8923703Z Downloaded: 7443 file(s) [attempted 7443/8459 = 87%, 968 KB/s], Decompressed: 1954
+2026-10-22T00:08:14.0007546Z Downloaded: 7488 file(s) [attempted 7488/8459 = 88%, 1350 KB/s], Decompressed: 1954
+2026-10-22T00:08:14.1005302Z Downloaded: 7571 file(s) [attempted 7571/8459 = 89%, 114 KB/s], Decompressed: 1954
+2026-10-22T00:08:14.2645094Z Downloaded: 7619 file(s) [attempted 7619/8459 = 90%, 758 KB/s], Decompressed: 1954
+2026-10-22T00:08:14.3699662Z Downloaded: 7667 file(s) [attempted 7667/8459 = 90%, 1852 KB/s], Decompressed: 1954
+2026-10-22T00:08:14.4910627Z Downloaded: 7751 file(s) [attempted 7751/8459 = 91%, 3342 KB/s], Decompressed: 1954
+2026-10-22T00:08:14.5902997Z Downloaded: 7805 file(s) [attempted 7805/8459 = 92%, 743 KB/s], Decompressed: 1954
+2026-10-22T00:08:14.6923263Z Downloaded: 7898 file(s) [attempted 7898/8459 = 93%, 1148 KB/s], Decompressed: 1954
+2026-10-22T00:08:14.8024532Z Downloaded: 7995 file(s) [attempted 7995/8459 = 94%, 305 KB/s], Decompressed: 1954
+2026-10-22T00:08:14.9474387Z Downloaded: 8073 file(s) [attempted 8073/8459 = 95%, 115 KB/s], Decompressed: 1954
+2026-10-22T00:08:15.0555045Z Downloaded: 8175 file(s) [attempted 8175/8459 = 96%, 4667 KB/s], Decompressed: 1954
+2026-10-22T00:08:15.1909940Z Downloaded: 8232 file(s) [attempted 8232/8459 = 97%, 762 KB/s], Decompressed: 1954
+2026-10-22T00:08:15.3166474Z Downloaded: 8324 file(s) [attempted 8324/8459 = 98%, 676 KB/s], Decompressed: 1954
+2026-10-22T00:08:15.4178622Z Downloaded: 8377 file(s) [attempted 8377/8459 = 99%, 392 KB/s], Decompressed: 1954
+2026-10-22T00:08:15.5555212Z Downloaded: 8453 file(s) [attempted 8453/8459 = 99%, 46 KB/s], Decompressed: 1954
+2026-10-22T00:08:15.5616619Z Downloaded: 8459 file(s) [attempted 8459/8459 = 100%, 305 KB/s], Decompressed: 1954
+2026-10-22T00:08:15.5617829Z Downloaded: 8459 file(s) [attempted 8459/8459 = 100%, 305 KB/s], Decompressed: 1954
+2026-10-22T00:08:58.3209962Z Decompressed 8459 file(s)
+2026-10-22T00:08:58.3210603Z Decompressing 8459 file(s)
+2026-10-22T00:08:58.3211100Z Decompressed in 27326 ms
+2026-10-22T00:08:58.3211552Z Completed successfully!
+2026-10-22T00:09:06.3369576Z ✔ [8475/8506] Built JurisLean.FiniteMonotoneIteration (3.7s)
+2026-10-22T00:09:08.7490303Z ✔ [8476/8506] Built JurisLean.FullMath.Core.Foundations (5.7s)
+2026-10-22T00:09:09.8510159Z ✔ [8477/8506] Built JurisLean.HornDefinitions (3.5s)
+2026-10-22T00:09:11.8570797Z ✔ [8478/8506] Built JurisLean.Candidates.Final20261021.Interfaces (8.9s)
+2026-10-22T00:09:13.7600339Z ✔ [8479/8506] Built JurisLean.HornFixedPoint (3.9s)
+2026-10-22T00:09:16.0640226Z ⚠ [8480/8506] Built JurisLean.FullMath.Numeric.Quantities (7.3s)
+2026-10-22T00:09:16.0659647Z warning: JurisLean/FullMath/Numeric/Quantities.lean:96:32: unused variable `hnn`
+2026-10-22T00:09:16.0689209Z 
+2026-10-22T00:09:16.0690122Z Note: This linter can be disabled with `set_option linter.unusedVariables false`
+2026-10-22T00:09:16.0719487Z warning: JurisLean/FullMath/Numeric/Quantities.lean:126:42: unused variable `h`
+2026-10-22T00:09:16.0749013Z 
+2026-10-22T00:09:16.0759652Z Note: This linter can be disabled with `set_option linter.unusedVariables false`
+2026-10-22T00:09:16.3715788Z ✔ [8481/8506] Built JurisLean.FullMath.Numeric.Intervals (7.7s)
+2026-10-22T00:09:19.7790358Z ⚠ [8482/8506] Built JurisLean.Candidates.Final20261021.Policy (7.9s)
+2026-10-22T00:09:19.7820374Z warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: this tactic is never executed
+2026-10-22T00:09:19.7839529Z 
+2026-10-22T00:09:19.7879660Z Note: This linter can be disabled with `set_option linter.unreachableTactic false`
+2026-10-22T00:09:19.7909590Z warning: JurisLean/Candidates/Final20261021/Policy.lean:23:26: 'ring' tactic does nothing
+2026-10-22T00:09:19.7938966Z 
+2026-10-22T00:09:19.7969409Z Note: This linter can be disabled with `set_option linter.unusedTactic false`
+2026-10-22T00:09:19.7999753Z warning: JurisLean/Candidates/Final20261021/Policy.lean:25:40: unused variable `hw`
+2026-10-22T00:09:19.8028933Z 
+2026-10-22T00:09:19.8059432Z Note: This linter can be disabled with `set_option linter.unusedVariables false`
+2026-10-22T00:09:19.8089495Z warning: JurisLean/Candidates/Final20261021/Policy.lean:25:53: unused variable `hc`
+2026-10-22T00:09:19.8090494Z 
+2026-10-22T00:09:19.8091146Z Note: This linter can be disabled with `set_option linter.unusedVariables false`
+2026-10-22T00:09:21.0850209Z ✔ [8483/8506] Built JurisLean.Candidates.Final20261021.Behavior (7.3s)
+2026-10-22T00:09:23.4919602Z ✔ [8484/8506] Built JurisLean.Candidates.Final20261021.Progress (7.1s)
+2026-10-22T00:09:24.3930223Z ⚠ [8485/8506] Built JurisLean.Candidates.Final20261021.Learning (8.3s)
+2026-10-22T00:09:24.3990163Z warning: JurisLean/Candidates/Final20261021/Learning.lean:86:40: Used `tac1 <;> tac2` where `(tac1; tac2)` would suffice
+2026-10-22T00:09:24.3991189Z 
+2026-10-22T00:09:24.3991676Z Note: This linter can be disabled with `set_option linter.unnecessarySeqFocus false`
+2026-10-22T00:09:27.4992878Z ✔ [8486/8506] Built JurisLean.Candidates.Final20261021.EvidenceProcedure (7.7s)
+2026-10-22T00:09:28.7030475Z ✔ [8487/8506] Built JurisLean.Candidates.Final20261021.Temporal (7.6s)
+2026-10-22T00:09:31.3076079Z ✔ [8488/8506] Built JurisLean.Candidates.Final20261021.Harness (6.0s)
+2026-10-22T00:09:31.3099553Z ✔ [8489/8506] Built JurisLean.Candidates.Final20261021.Transactions (7.8s)
+2026-10-22T00:09:34.6150370Z ✔ [8490/8506] Built JurisLean.Candidates.Final20261021.Representation (7.1s)
+2026-10-22T00:09:36.4240390Z ✔ [8491/8506] Built JurisLean.Candidates.Final20261021.Compiler (7.7s)
+2026-10-22T00:09:38.7250242Z ✔ [8492/8506] Built JurisLean.Candidates.Final20261021.RSI (7.4s)
+2026-10-22T00:09:38.9251393Z ✔ [8493/8506] Built JurisLean.Seams.UnifiedQuantities (7.6s)
+2026-10-22T00:09:42.7289936Z ✔ [8494/8506] Built JurisLean.Candidates.Final20261021.Probability (8.2s)
+2026-10-22T00:09:44.2306006Z ✔ [8495/8506] Built JurisLean.Candidates.Final20261021.Calibration (7.8s)
+2026-10-22T00:09:45.9355487Z ✔ [8496/8506] Built JurisLean.Candidates.Final20261021.Authorization (7.2s)
+2026-10-22T00:09:50.5467716Z ✔ [8497/8506] Built JurisLean.Seams.UnifiedQuantLedger (11s)
+2026-10-22T00:09:52.8493184Z ✔ [8498/8506] Built JurisLean.Candidates.Final20261021.Decision (10s)
+2026-10-22T00:09:53.5501456Z ✔ [8499/8506] Built JurisLean.Candidates.Final20261021.Feedback (7.6s)
+2026-10-22T00:09:58.2631863Z ✔ [8500/8506] Built JurisLean.Candidates.Final20261021.Ledger (7.7s)
+2026-10-22T00:09:58.4674851Z ✔ [8501/8506] Built JurisLean.Candidates.Final20261021.Iteration (4.0s)
+2026-10-22T00:10:03.0728428Z ✔ [8502/8506] Built JurisLean.Candidates.Final20261021.Trace (4.8s)
+2026-10-22T00:10:08.7796266Z ✖ [8503/8506] Building JurisLean.Candidates.Final20261021.Pipeline (5.7s)
+2026-10-22T00:10:08.7810722Z trace: .> LEAN_PATH=/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Cli/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/batteries/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/Qq/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/aesop/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/proofwidgets/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/importGraph/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/LeanSearchClient/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/plausible/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/packages/mathlib/.lake/build/lib/lean:/home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean /home/runner/.elan/toolchains/leanprover--lean4---v4.30.0/bin/lean /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Pipeline.lean -o /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Pipeline.olean -i /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/lib/lean/JurisLean/Candidates/Final20261021/Pipeline.ilean -c /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Pipeline.c --setup /home/runner/work/legal-math-modeling/legal-math-modeling/proofs/lean/juris_lean/.lake/build/ir/JurisLean/Candidates/Final20261021/Pipeline.setup.json --json
+2026-10-22T00:10:08.7823970Z error: JurisLean/Candidates/Final20261021/Pipeline.lean:85:50: Invalid dotted identifier notation: The expected type of `.known` could not be determined
+2026-10-22T00:10:08.7824863Z 
+2026-10-22T00:10:08.7825066Z Hint: Using `Result.known would be unambiguous:
+2026-10-22T00:10:08.7825563Z   [apply] `Result.known`
+2026-10-22T00:10:08.7826109Z error: JurisLean/Candidates/Final20261021/Pipeline.lean:110:97: unsolved goals
+2026-10-22T00:10:08.7826720Z initial : Ledger.Handle
+2026-10-22T00:10:08.7827077Z first second : PaymentRequest
+2026-10-22T00:10:08.7827460Z grants : List Authorization.Grant
+2026-10-22T00:10:08.7827862Z mode2 : Ledger.Submission
+2026-10-22T00:10:08.7828200Z r1 : Ledger.Receipt
+2026-10-22T00:10:08.7828529Z actualPost1 : Ledger.Handle
+2026-10-22T00:10:08.7829090Z firstCommitted :
+2026-10-22T00:10:08.7829435Z   Ledger.consume_ext initial initial first
+2026-10-22T00:10:08.7830189Z       (Authorization.authorized grants initial.gamma first.payload.payer 0 first.payload.normVersion
+2026-10-22T00:10:08.7831086Z         (ObjectId.relation first.payload.relation) (some first.payload))
+2026-10-22T00:10:08.7831658Z       Ledger.Submission.submit =
+2026-10-22T00:10:08.7832075Z     Ledger.Outcome.committed r1 actualPost1
+2026-10-22T00:10:08.7832644Z ⊢ (match sorry () with
+2026-10-22T00:10:08.7833003Z     | Result.known previous_output_ref =>
+2026-10-22T00:10:08.7833402Z       {
+2026-10-22T00:10:08.7833662Z         exit :=
+2026-10-22T00:10:08.7833997Z           (finishPayment previous_output_ref
+2026-10-22T00:10:08.7834583Z               (Ledger.consume_ext previous_output_ref previous_output_ref second
+2026-10-22T00:10:08.7835417Z                 (Authorization.authorized grants previous_output_ref.gamma second.payload.payer 0
+2026-10-22T00:10:08.7836960Z                   second.payload.normVersion (ObjectId.relation second.payload.relation) (some second.payload))
+2026-10-22T00:10:08.7837755Z                 mode2)).exit,
+2026-10-22T00:10:08.7838099Z         current :=
+2026-10-22T00:10:08.7838434Z           (finishPayment previous_output_ref
+2026-10-22T00:10:08.7839270Z               (Ledger.consume_ext previous_output_ref previous_output_ref second
+2026-10-22T00:10:08.7840118Z                 (Authorization.authorized grants previous_output_ref.gamma second.payload.payer 0
+2026-10-22T00:10:08.7841161Z                   second.payload.normVersion (ObjectId.relation second.payload.relation) (some second.payload))
+2026-10-22T00:10:08.7841909Z                 mode2)).current,
+2026-10-22T00:10:08.7842259Z         outcomes :=
+2026-10-22T00:10:08.7842608Z           [Ledger.Outcome.committed r1 actualPost1,
+2026-10-22T00:10:08.7843212Z             Ledger.consume_ext previous_output_ref previous_output_ref second
+2026-10-22T00:10:08.7844051Z               (Authorization.authorized grants previous_output_ref.gamma second.payload.payer 0
+2026-10-22T00:10:08.7845054Z                 second.payload.normVersion (ObjectId.relation second.payload.relation) (some second.payload))
+2026-10-22T00:10:08.7845796Z               mode2],
+2026-10-22T00:10:08.7846104Z         obligations :=
+2026-10-22T00:10:08.7846454Z           (finishPayment previous_output_ref
+2026-10-22T00:10:08.7847024Z               (Ledger.consume_ext previous_output_ref previous_output_ref second
+2026-10-22T00:10:08.7848091Z                 (Authorization.authorized grants previous_output_ref.gamma second.payload.payer 0
+2026-10-22T00:10:08.7849333Z                   second.payload.normVersion (ObjectId.relation second.payload.relation) (some second.payload))
+2026-10-22T00:10:08.7850103Z                 mode2)).obligations }
+2026-10-22T00:10:08.7850490Z     | Result.unknown e =>
+2026-10-22T00:10:08.7851202Z       { exit := Exit.undecided, current := some actualPost1, outcomes := [Ledger.Outcome.committed r1 actualPost1],
+2026-10-22T00:10:08.7851962Z         obligations := [e] }
+2026-10-22T00:10:08.7852321Z     | Result.rejected e =>
+2026-10-22T00:10:08.7853011Z       { exit := Exit.rejected, current := some actualPost1, outcomes := [Ledger.Outcome.committed r1 actualPost1],
+2026-10-22T00:10:08.7853764Z         obligations := [e] }
+2026-10-22T00:10:08.7854136Z     | Result.conflict left right =>
+2026-10-22T00:10:08.7854872Z       { exit := Exit.undecided, current := some actualPost1, outcomes := [Ledger.Outcome.committed r1 actualPost1],
+2026-10-22T00:10:08.7855695Z         obligations := [Error.versionConflict] }) =
+2026-10-22T00:10:08.7856125Z     {
+2026-10-22T00:10:08.7856376Z       exit :=
+2026-10-22T00:10:08.7856687Z         (finishPayment actualPost1
+2026-10-22T00:10:08.7857152Z             (Ledger.consume_ext actualPost1 actualPost1 second
+2026-10-22T00:10:08.7858012Z               (Authorization.authorized grants actualPost1.gamma second.payload.payer 0 second.payload.normVersion
+2026-10-22T00:10:08.7859165Z                 (ObjectId.relation second.payload.relation) (some second.payload))
+2026-10-22T00:10:08.7859756Z               mode2)).exit,
+2026-10-22T00:10:08.7860083Z       current :=
+2026-10-22T00:10:08.7860395Z         (finishPayment actualPost1
+2026-10-22T00:10:08.7860854Z             (Ledger.consume_ext actualPost1 actualPost1 second
+2026-10-22T00:10:08.7861702Z               (Authorization.authorized grants actualPost1.gamma second.payload.payer 0 second.payload.normVersion
+2026-10-22T00:10:08.7862791Z                 (ObjectId.relation second.payload.relation) (some second.payload))
+2026-10-22T00:10:08.7863410Z               mode2)).current,
+2026-10-22T00:10:08.7863745Z       outcomes :=
+2026-10-22T00:10:08.7864091Z         [Ledger.Outcome.committed r1 actualPost1,
+2026-10-22T00:10:08.7864612Z           Ledger.consume_ext actualPost1 actualPost1 second
+2026-10-22T00:10:08.7865698Z             (Authorization.authorized grants actualPost1.gamma second.payload.payer 0 second.payload.normVersion
+2026-10-22T00:10:08.7866683Z               (ObjectId.relation second.payload.relation) (some second.payload))
+2026-10-22T00:10:08.7867245Z             mode2],
+2026-10-22T00:10:08.7867537Z       obligations :=
+2026-10-22T00:10:08.7867866Z         (finishPayment actualPost1
+2026-10-22T00:10:08.7868327Z             (Ledger.consume_ext actualPost1 actualPost1 second
+2026-10-22T00:10:08.7869419Z               (Authorization.authorized grants actualPost1.gamma second.payload.payer 0 second.payload.normVersion
+2026-10-22T00:10:08.7870384Z                 (ObjectId.relation second.payload.relation) (some second.payload))
+2026-10-22T00:10:08.7870973Z               mode2)).obligations }
+2026-10-22T00:10:08.7871629Z warning: JurisLean/Candidates/Final20261021/Pipeline.lean:111:8: declaration uses `sorry`
+2026-10-22T00:10:08.7872446Z error: Lean exited with code 1
+2026-10-22T00:10:08.8798168Z Some required targets logged failures:
+2026-10-22T00:10:08.8799507Z - JurisLean.Candidates.Final20261021.Pipeline
+2026-10-22T00:10:08.8806451Z error: build failed
+2026-10-22T00:10:08.9433341Z Traceback (most recent call last):
+2026-10-22T00:10:08.9442682Z   File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 59, in <module>
+2026-10-22T00:10:08.9443841Z     if __name__=='__main__':raise SystemExit(main())
+2026-10-22T00:10:08.9525569Z                                              ^^^^^^
+2026-10-22T00:10:08.9527479Z   File "/home/runner/work/legal-math-modeling/legal-math-modeling/tools/ulm_repair/scripts/ci_driver.py", line 57, in main
+2026-10-22T00:10:08.9530061Z     subprocess.run(['lake','build',*targets],cwd=R/'proofs/lean/juris_lean',check=True)
+2026-10-22T00:10:08.9532201Z   File "/opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/subprocess.py", line 571, in run
+2026-10-22T00:10:08.9540389Z     raise CalledProcessError(retcode, process.args,
+2026-10-22T00:10:08.9542006Z subprocess.CalledProcessError: Command '['lake', 'build', 'JurisLean.Candidates.Final20261021.CIAll']' returned non-zero exit status 1.
+2026-10-22T00:10:08.9658235Z ##[error]Process completed with exit code 1.
+2026-10-22T00:10:08.9740254Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-22T00:10:08.9740701Z with:
+2026-10-22T00:10:08.9740946Z   name: changed-module-only-39697636112-1
+2026-10-22T00:10:08.9741272Z   path: module-plan.json
+changed-module.log
+
+2026-10-22T00:10:08.9741575Z   if-no-files-found: warn
+2026-10-22T00:10:08.9741853Z   compression-level: 6
+2026-10-22T00:10:08.9742073Z   overwrite: false
+2026-10-22T00:10:08.9742292Z   include-hidden-files: false
+2026-10-22T00:10:08.9742529Z env:
+2026-10-22T00:10:08.9742728Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:10:08.9743002Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:10:08.9743245Z   PYTHONUTF8: 1
+2026-10-22T00:10:08.9743520Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:10:08.9744011Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:10:08.9744442Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:10:08.9744863Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:10:08.9745252Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:10:08.9745645Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:10:08.9745972Z ##[endgroup]
+2026-10-22T00:10:09.2749637Z (node:3252) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T00:10:09.2751022Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T00:10:09.2825305Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-22T00:10:09.2828201Z The least common ancestor is /home/runner/work/legal-math-modeling/legal-math-modeling. This will be the root directory of the artifact
+2026-10-22T00:10:09.2829607Z With the provided path, there will be 2 files uploaded
+2026-10-22T00:10:09.2835858Z Artifact name is valid!
+2026-10-22T00:10:09.2836884Z Root directory input is valid!
+2026-10-22T00:10:09.6596978Z Beginning upload of artifact content to blob storage
+2026-10-22T00:10:09.6843125Z (node:3252) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-22T00:10:09.9428419Z Uploaded bytes 2521
+2026-10-22T00:10:10.0215585Z Finished uploading artifact content to blob storage!
+2026-10-22T00:10:10.0216895Z SHA256 digest of uploaded artifact zip is c1b0032e6c22080e143fe2e79a31febf553618f8bcd94a60e972202a3a954ad8
+2026-10-22T00:10:10.0218069Z Finalizing artifact upload
+2026-10-22T00:10:10.4795754Z Artifact changed-module-only-39697636112-1.zip successfully finalized. Artifact ID 12391019760
+2026-10-22T00:10:10.4797948Z Artifact changed-module-only-39697636112-1 has been successfully uploaded! Final size is 2521 bytes. Artifact ID is 12391019760
+2026-10-22T00:10:10.4805024Z Artifact download URL: https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39697636112/artifacts/12391019760
+2026-10-22T00:10:10.5052177Z Post job cleanup.
+2026-10-22T00:10:10.5995929Z [command]/usr/bin/git version
+2026-10-22T00:10:10.6058654Z git version 2.55.0
+2026-10-22T00:10:10.6106595Z Temporarily overriding HOME='/home/runner/work/_temp/4cd616d5-ca6b-4f29-b9d8-732ba9a61bed' before making global git config changes
+2026-10-22T00:10:10.6108099Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T00:10:10.6114459Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/legal-math-modeling/legal-math-modeling
+2026-10-22T00:10:10.6167105Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T00:10:10.6211256Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T00:10:10.6581921Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T00:10:10.6617938Z http.https://github.com/.extraheader
+2026-10-22T00:10:10.6633656Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-22T00:10:10.6678877Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T00:10:10.7058346Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T00:10:10.7102144Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T00:10:10.7597212Z Cleaning up orphan processes
+2026-10-22T00:10:10.7933525Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830, actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

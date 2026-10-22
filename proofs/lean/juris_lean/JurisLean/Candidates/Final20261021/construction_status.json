@@ -202,7 +202,7 @@
       "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
     }
   ],
-  "overall_status": "PARTIAL_SOURCE_CANDIDATE_STAGE1_PASS_FULL_RELEASE_PASS_ON_5db4e04_FROZEN_50_CI_NOT_RUN",
+  "overall_status": "PARTIAL_SOURCE_CANDIDATE_TIP_DECLARATIONS_LOCATED_EXACT_SCOPE_OPEN",
   "completion_claim": false,
   "source_batches_written": [
     0,
@@ -216,7 +216,7 @@
     8,
     9
   ],
-  "stage10": "STAGE1_PASS_FULL_RELEASE_PASS_ON_5db4e04_FROZEN_50_CI_NOT_RUN",
+  "stage10": "TIP_DECLARATIONS_LOCATED_EXACT_SCOPE_OPEN",
   "ci_artifacts": [
     {
       "run_id": 39689061670,
@@ -287,7 +287,7 @@
     },
     {
       "kind": "FULL_RELEASE_RETRY",
-      "detail": "The 799b42c full-release failed derived-accounting freshness. Run 39714740194 on main tip 5db4e0453d77493e2699af7b32bcb1ea8c7668a5 then passed the repository full-release path. That pass does not set formal_ci of the 50 frozen clauses; those rows stay CI_NOT_RUN. Source edits after 5db4e04, including the RestPay N2 split, are outside that run."
+      "detail": "The 799b42c full-release failed derived-accounting freshness. Run 39714740194 on main tip 5db4e0453d77493e2699af7b32bcb1ea8c7668a5 then passed the repository full-release path. That pass does not set formal_ci of the 50 frozen clauses. Source edits after 5db4e04, including the RestPay N2 split, are outside that run. A later tip receipt records declaration location for the tree that contains those edits; see tip_declaration_location. That location does not close exact_scope."
     }
   ],
   "evidence_boundary": "Local static and Python checks are not formal Lean CI. Original GitHub Actions logs and ZIP artifacts bind only their recorded subject and declared scope. Paper proof availability, current Lean implementation, runtime refinement, and legal or real-occurrence evidence are distinct.",
@@ -722,5 +722,16 @@
     "receipt": "evidence/repair-prechecks/receipt.json",
     "status": "PASS",
     "formal_ci": "CI_NOT_RUN_FOR_REPAIR"
+  },
+  "tip_declaration_location": {
+    "subject": "304d428c7b97f42273b824d5358a1a8016e29adf",
+    "run_id": 39783481932,
+    "job": "lean-full-clean-build",
+    "job_id": 119840437553,
+    "verification": "evidence/ci-tip-304d428c/verification.json",
+    "meaning": "LISTED_DECLARATIONS_LOCATED_IN_LEAN_BUILD_NOT_ACCEPTANCE",
+    "acceptance_discharged": false,
+    "artifact_zip_sha256": "NOT_RECOMPUTED_ARTIFACT_NOT_DOWNLOADED",
+    "axiom_audit": "NOT_REEXTRACTED_FROM_ARTIFACT"
   }
 }

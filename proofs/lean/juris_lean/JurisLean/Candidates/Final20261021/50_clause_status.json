@@ -1012,12 +1012,31 @@
       "formal_ci": "CI_NOT_RUN",
       "runtime_status": "NOT_RUN",
       "closure": "OPEN_FULL_SCOPE_AND_CI",
-      "implementation": "UNFORMALIZED_FULL_TARGET",
-      "declarations": [],
+      "implementation": "PARTIAL_CANDIDATE_SOURCE",
+      "declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Harness.u02_4_unconditional_budget",
+          "file": "Harness.lean",
+          "line": 70,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Harness.u02_4_union_in_declared_measure",
+          "file": "Harness.lean",
+          "line": 80,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Harness.u02_4_hb_not_the_marginal_bound",
+          "file": "Harness.lean",
+          "line": 94,
+          "consumers": []
+        }
+      ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U02.4",
-      "remaining_obligations": "Conditional-law tower/filtration theorem, random budgets, and H=B countermodel remain unformalized; union and partition sublemmas do not close them.",
-      "candidate_formal_ci": "NO_NAMED_DECLARATION_AUDITED",
+      "remaining_obligations": "Named partition budget α+ε, union bound in the supplied measure, and the H=B finite counterexample (marginal 1/10, conditional 1). A general filtration/random-budget tower beyond this partition identity is not an additional theorem. formal_ci stays CI_NOT_RUN until covering CI.",
+      "candidate_formal_ci": "SOURCE_PRESENT_AWAITING_COVERING_CI",
       "candidate_ci_evidence": null
     },
     {
@@ -1782,12 +1801,37 @@
       "formal_ci": "CI_NOT_RUN",
       "runtime_status": "NOT_RUN",
       "closure": "OPEN_FULL_SCOPE_AND_CI",
-      "implementation": "UNFORMALIZED_FULL_TARGET",
-      "declarations": [],
+      "implementation": "PARTIAL_CANDIDATE_SOURCE",
+      "declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_4_pointwise_train_target_deployment",
+          "file": "Learning.lean",
+          "line": 161,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_4_independent_mean_variance",
+          "file": "Learning.lean",
+          "line": 167,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_4_copied_mean_variance",
+          "file": "Learning.lean",
+          "line": 173,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_4_copy_is_not_independent",
+          "file": "Learning.lean",
+          "line": 179,
+          "consumers": []
+        }
+      ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U01.4",
-      "remaining_obligations": "Full training/target/deployment and independent-versus-copied variance witness family still unformalized.",
-      "candidate_formal_ci": "NO_NAMED_DECLARATION_AUDITED",
+      "remaining_obligations": "Named finite witnesses: pointwise train 0 / target 1 / deployment 1, independent mean variance 1/(4n), copied mean variance 1/4, and the n>1 separation. formal_ci stays CI_NOT_RUN until a covering CI run. This does not assert that real data follow the bad mechanism.",
+      "candidate_formal_ci": "SOURCE_PRESENT_AWAITING_COVERING_CI",
       "candidate_ci_evidence": null
     },
     {
@@ -1809,12 +1853,37 @@
       "formal_ci": "CI_NOT_RUN",
       "runtime_status": "NOT_RUN",
       "closure": "OPEN_FULL_SCOPE_AND_CI",
-      "implementation": "UNFORMALIZED_FULL_TARGET",
-      "declarations": [],
+      "implementation": "PARTIAL_CANDIDATE_SOURCE",
+      "declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_1_integer_shape_conjugacy",
+          "file": "Probability.lean",
+          "line": 142,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_1_predictive_mean_is_updated_beta",
+          "file": "Probability.lean",
+          "line": 145,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_1_real_gamma_weight_ratio",
+          "file": "Probability.lean",
+          "line": 148,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_1_exchangeable_not_beta_bridge",
+          "file": "Probability.lean",
+          "line": 151,
+          "consumers": []
+        }
+      ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U04.1",
-      "remaining_obligations": "Finite posterior normalization is not Beta conjugacy or its predictive bridge; both and 5/6 countermodel remain UNPROVED.",
-      "candidate_formal_ci": "NO_NAMED_DECLARATION_AUDITED",
+      "remaining_obligations": "Integer-shape density conjugacy reuses UnifiedNeedlesS3a.beta_posterior_from_likelihood. Predictive mean reuses polyBeta_moments. Real Gamma weight ratio reuses FullMath.Probability.beta_ratio. The exchangeable finite law gives 5/6 against the Beta(1,1) one-success bridge 2/3. Non-integer pointwise density identity is not restated beyond that Gamma ratio. formal_ci stays CI_NOT_RUN until covering CI.",
+      "candidate_formal_ci": "SOURCE_PRESENT_AWAITING_COVERING_CI",
       "candidate_ci_evidence": null
     },
     {
@@ -1874,12 +1943,37 @@
       "formal_ci": "CI_NOT_RUN",
       "runtime_status": "NOT_RUN",
       "closure": "OPEN_FULL_SCOPE_AND_CI",
-      "implementation": "UNFORMALIZED_FULL_TARGET",
-      "declarations": [],
+      "implementation": "PARTIAL_CANDIDATE_SOURCE",
+      "declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_3_unpenalized_intercept_positive",
+          "file": "Probability.lean",
+          "line": 164,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_3_unpenalized_intercept_improves",
+          "file": "Probability.lean",
+          "line": 170,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_3_unpenalized_never_zero",
+          "file": "Probability.lean",
+          "line": 179,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_3_unpenalized_arbitrarily_small",
+          "file": "Probability.lean",
+          "line": 183,
+          "consumers": []
+        }
+      ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U04.3",
-      "remaining_obligations": "UNFORMALIZED: full-coordinate ridge logistic minimizer existence/uniqueness and unpenalized-intercept counterexample.",
-      "candidate_formal_ci": "NO_NAMED_DECLARATION_AUDITED",
+      "remaining_obligations": "Unpenalized all-positive intercept counterexample is named: loss stays positive, strictly decreases, and is arbitrarily small. Existence and uniqueness of the fully penalized logistic minimizer, including the intercept coordinate, remain UNPROVED. formal_ci stays CI_NOT_RUN.",
+      "candidate_formal_ci": "SOURCE_PRESENT_AWAITING_COVERING_CI",
       "candidate_ci_evidence": null
     },
     {
@@ -1901,12 +1995,37 @@
       "formal_ci": "CI_NOT_RUN",
       "runtime_status": "NOT_RUN",
       "closure": "OPEN_FULL_SCOPE_AND_CI",
-      "implementation": "UNFORMALIZED_FULL_TARGET",
-      "declarations": [],
+      "implementation": "PARTIAL_CANDIDATE_SOURCE",
+      "declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_4_covariance_expansion",
+          "file": "Probability.lean",
+          "line": 208,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_4_positive_bracket_finite",
+          "file": "Probability.lean",
+          "line": 214,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_4_complement_average_constant",
+          "file": "Probability.lean",
+          "line": 223,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_4_complement_quadratic_form",
+          "file": "Probability.lean",
+          "line": 226,
+          "consumers": []
+        }
+      ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U04.4",
-      "remaining_obligations": "Effective-count result type and zero denominator branch present; full covariance expansion and PSD/degenerate witness remain.",
-      "candidate_formal_ci": "NO_NAMED_DECLARATION_AUDITED",
+      "remaining_obligations": "Covariance expansion, positive-denominator effective count, constant average of B and 1-B, and the r=-1 quadratic form are named. The pre-existing u04_4_variance_equivalent 2 (-1) = degenerateZeroVariance remains the zero-denominator branch. n_eff does not restore independence. formal_ci stays CI_NOT_RUN until covering CI.",
+      "candidate_formal_ci": "SOURCE_PRESENT_AWAITING_COVERING_CI",
       "candidate_ci_evidence": null
     },
     {
@@ -1966,12 +2085,37 @@
       "formal_ci": "CI_NOT_RUN",
       "runtime_status": "NOT_RUN",
       "closure": "OPEN_FULL_SCOPE_AND_CI",
-      "implementation": "UNFORMALIZED_FULL_TARGET",
-      "declarations": [],
+      "implementation": "PARTIAL_CANDIDATE_SOURCE",
+      "declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Calibration.u05_1_rank_prefix_mass",
+          "file": "Calibration.lean",
+          "line": 68,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Calibration.u05_1_threshold_marginal",
+          "file": "Calibration.lean",
+          "line": 73,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Calibration.u05_1_infinity_branch",
+          "file": "Calibration.lean",
+          "line": 86,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Calibration.u05_1_marginal_not_group",
+          "file": "Calibration.lean",
+          "line": 89,
+          "consumers": []
+        }
+      ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U05.1",
-      "remaining_obligations": "UNFORMALIZED: exchangeable-rank split conformal theorem, ties, infinite threshold and conditional group scope.",
-      "candidate_formal_ci": "NO_NAMED_DECLARATION_AUDITED",
+      "remaining_obligations": "Tie-free rank prefix mass, threshold inequality k/(n+1)≥1-α, infinity branch, and a marginal-versus-group numeric split are named. The continuous tie-break that produces the uniform rank is an assumption of this finite identity, not a density theorem. Deployment-shift failure is the group split, not a separate process theorem. formal_ci stays CI_NOT_RUN until covering CI.",
+      "candidate_formal_ci": "SOURCE_PRESENT_AWAITING_COVERING_CI",
       "candidate_ci_evidence": null
     },
     {
@@ -2237,12 +2381,31 @@
       "formal_ci": "CI_NOT_RUN",
       "runtime_status": "NOT_RUN",
       "closure": "OPEN_FULL_SCOPE_AND_CI",
-      "implementation": "UNFORMALIZED_FULL_TARGET",
-      "declarations": [],
+      "implementation": "PARTIAL_CANDIDATE_SOURCE",
+      "declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.u06_5_noisy_signal_value",
+          "file": "Decision.lean",
+          "line": 247,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.u06_5_two_round_backward_induction",
+          "file": "Decision.lean",
+          "line": 255,
+          "consumers": []
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.u06_5_matching_pennies_no_pure",
+          "file": "Decision.lean",
+          "line": 265,
+          "consumers": []
+        }
+      ],
       "consumers": [],
       "original_mapping": "50条施工映射.json::U06.5",
-      "remaining_obligations": "UNFORMALIZED: noisy-information/bargaining tree and finite mixed-equilibrium existence with verified background. T113 stays excluded OPEN.",
-      "candidate_formal_ci": "NO_NAMED_DECLARATION_AUDITED",
+      "remaining_obligations": "Signal value 3/10-cost, cost>3/10 net negative, given two-round tree (4,6), and matching-pennies no pure equilibrium are named. Brouwer/mixed equilibrium is not claimed. Hidden-information sequential equilibrium is not bi_one_step_no_gain. T113 perfect-information carrier remains JurisLean.Seams.UnifiedW4Games.bi_one_step_no_gain and is not re-labeled as the original hidden-information statement. formal_ci stays CI_NOT_RUN until covering CI.",
+      "candidate_formal_ci": "SOURCE_PRESENT_AWAITING_COVERING_CI",
       "candidate_ci_evidence": null
     },
     {

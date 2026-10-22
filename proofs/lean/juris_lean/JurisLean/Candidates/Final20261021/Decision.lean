@@ -236,4 +236,36 @@ theorem u06_1_value_of_free_information {Ω A Y : Type} [Fintype Ω]
     exact best_dominates (fun a => utility a w) (perfectChoice w) _
       (feasible chosen hm (observation w))
 
+/-! U06.5 finite claims. Signal value is `.8 - .5 - cost`. The given two-round
+    tree returns `(4, 6)` by one backward step at each node. Matching pennies
+    has no pure equilibrium. Mixed existence stays the manuscript's Brouwer
+    background and is not claimed as a theorem of this clause. The general
+    perfect-information carrier already in the repository is
+    `JurisLean.Seams.UnifiedW4Games.bi_one_step_no_gain`; hidden-information
+    sequential equilibrium is not that theorem. -/
+
+theorem u06_5_noisy_signal_value (cost : ℚ) :
+    ((8 / 10 : ℚ) - 5 / 10 - cost = 3 / 10 - cost) ∧
+    (3 / 10 < cost → (8 / 10 : ℚ) - 5 / 10 - cost < 0) := by
+  constructor
+  · ring
+  · intro h
+    linarith
+
+theorem u06_5_two_round_backward_induction :
+    ((6 : ℚ) ≥ 1 ∧
+      (if (6 : ℚ) ≥ 1 then ((4 : ℚ), (6 : ℚ)) else ((5 : ℚ), (1 : ℚ))) = (4, 6)) ∧
+    ((4 : ℚ) ≥ 3 ∧
+      (if (4 : ℚ) ≥ 3 then ((4 : ℚ), (6 : ℚ)) else ((3 : ℚ), (7 : ℚ))) = (4, 6)) := by
+  norm_num
+
+def u06_5_penny (row col : Bool) : Int × Int :=
+  if row == col then (1, -1) else (-1, 1)
+
+theorem u06_5_matching_pennies_no_pure :
+    ∀ row col : Bool,
+      (u06_5_penny row col).1 < (u06_5_penny (!row) col).1 ∨
+      (u06_5_penny row col).2 < (u06_5_penny row (!col)).2 := by
+  decide
+
 end JurisLean.Candidates.Final20261021.Decision

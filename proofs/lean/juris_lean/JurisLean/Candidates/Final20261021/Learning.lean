@@ -150,4 +150,37 @@ theorem grouped_unit_not_split {Unit Split : Type} (split : Unit → Split) (u :
   intro a b ha hb
   exact ha.symm.trans hb
 
+/-! U01.4 finite counterexamples.
+The constant rule fits the training label and misses both the target label and
+the deployment label. Independent Bernoulli(1/2) means have variance `1/(4n)`.
+Copied coordinates keep variance `1/4`. Copying is not repaired by dropping the
+duplicate name: the second moment stays the common-cause moment. -/
+
+def u01_4_rule (_ : Fin 3) : Fin 2 := 0
+
+theorem u01_4_pointwise_train_target_deployment :
+    zeroOne (u01_4_rule 0) (0 : Fin 2) = 0 ∧
+    zeroOne (u01_4_rule 1) (1 : Fin 2) = 1 ∧
+    zeroOne (u01_4_rule 2) (1 : Fin 2) = 1 := by
+  decide
+
+theorem u01_4_independent_mean_variance (n : ℕ) (hn : 0 < n) :
+    (((n : ℚ) * (1 / 2) + (n : ℚ) * ((n : ℚ) - 1) * (1 / 4) -
+        ((n : ℚ) * (1 / 2)) ^ 2) / ((n : ℚ) ^ 2)) = 1 / (4 * (n : ℚ)) := by
+  have hn0 : (n : ℚ) ≠ 0 := by exact_mod_cast hn.ne'
+  field_simp [hn0] <;> ring
+
+theorem u01_4_copied_mean_variance (n : ℕ) (hn : 0 < n) :
+    ((((n : ℚ) ^ 2) * (1 / 2) - ((n : ℚ) * (1 / 2)) ^ 2) / ((n : ℚ) ^ 2)) =
+      (1 / 4 : ℚ) := by
+  have hn0 : (n : ℚ) ≠ 0 := by exact_mod_cast hn.ne'
+  field_simp [hn0] <;> ring
+
+theorem u01_4_copy_is_not_independent (n : ℕ) (hn : 1 < n) :
+    1 / (4 * (n : ℚ)) < (1 / 4 : ℚ) := by
+  have hn1 : (1 : ℚ) < n := by exact_mod_cast hn
+  have hden : (0 : ℚ) < 4 * n := by nlinarith
+  rw [div_lt_div_iff₀ hden (by norm_num : (0 : ℚ) < 4)]
+  nlinarith
+
 end JurisLean.Candidates.Final20261021.Learning

@@ -49572,36 +49572,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "ecdb05254ce965237bd9ab68fbdb09571798dade2e4b99d6c105e4210b009c89",
+ "source_inventory_digest": "46793103c1bfce80bb12a441eb3f6461e12a71bdff100ea3201e0a0c4e043cba",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "cursor/n2-restpay-cert-sync-caff",
-  "commit": "5db4e0453d77493e2699af7b32bcb1ea8c7668a5",
-  "tree": "be28353680793e99629c32bcf64ad2c13dcc8c3d"
+  "commit": "c356eb6e4ed4df16797b86a443ce8636e97dd9c4",
+  "tree": "50600477de45079bd1122d1523a70b0bc16dd61f"
  },
  "subject_binding": {
-  "binding": "STALE_SUBJECT",
-  "files_diverging_from_subject": [
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Interfaces.lean",
-    "reason": "bytes differ from subject"
-   },
-   {
-    "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean",
-    "reason": "bytes differ from subject"
-   }
-  ],
+  "binding": "BOUND_TO_SUBJECT",
+  "files_diverging_from_subject": [],
   "files_total": 393,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": true
+  "worktree_dirty_under_proofs": false
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

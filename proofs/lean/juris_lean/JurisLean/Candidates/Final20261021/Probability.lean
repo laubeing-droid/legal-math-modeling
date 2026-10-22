@@ -154,7 +154,7 @@ theorem u04_1_integer_shape_conjugacy (a b k l : ℕ) :
 
 theorem u04_1_predictive_mean_is_updated_beta (a b s f : ℕ) :
     ((∫ x in 0..1, x * polyBeta ((a + s) + 1) ((b + f) + 1) x)
-       = (((a + s) : ℕ) + 1 : ℚ) / (((a + s) : ℕ) + (b + f) + 2)) :=
+       = (((a + s) : ℕ) + 1 : ℚ) / (((a + s) : ℕ) + ((b + f) : ℕ) + 2)) :=
   (polyBeta_moments (a + s) (b + f)).1
 
 theorem u04_1_real_gamma_weight_ratio (α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) :
@@ -218,7 +218,7 @@ theorem u04_4_covariance_expansion (n : ℕ) (σ2 r : ℚ) (hn : 0 < n) :
     ((n : ℚ) * σ2 + (n : ℚ) * ((n : ℚ) - 1) * (σ2 * r)) / ((n : ℚ) ^ 2)
       = σ2 * (1 + ((n : ℚ) - 1) * r) / (n : ℚ) := by
   have hn0 : (n : ℚ) ≠ 0 := by exact_mod_cast hn.ne'
-  field_simp [hn0] <;> ring
+  field_simp [hn0]
 
 theorem u04_4_positive_bracket_finite (n : ℕ) (r : ℚ) (hn : 2 ≤ n)
     (hpos : 0 < 1 + ((n : ℚ) - 1) * r) :

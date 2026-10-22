@@ -107,11 +107,32 @@
       "does_not_close_full_scope": true
     }
   },
-  "open_excluded": [
-    "T113 exact original statement",
-    "exactly-once liveness and external effects",
-    "Dirty refinement",
-    "all Chinese statutes closed mapping"
+  "open_excluded": [],
+  "former_exclusions_now_in_scope_unclosed": [
+    {
+      "item": "T113 exact original statement",
+      "status": "UNCLOSED",
+      "reuse": "JurisLean.Seams.UnifiedW4Games.bi_one_step_no_gain",
+      "blocker": "That theorem is two-round perfect-information backward induction. The original T113 row also names hidden-information sequential equilibrium, which is not that theorem."
+    },
+    {
+      "item": "exactly-once liveness and external effects",
+      "status": "UNCLOSED",
+      "reuse": "JurisLean.Candidates.Final20261021.Transactions.at_most_once",
+      "blocker": "at_most_once is an upper bound on commit counts inside the candidate store. It does not prove liveness or exactly-once external effects."
+    },
+    {
+      "item": "Dirty refinement",
+      "status": "UNCLOSED",
+      "reuse": null,
+      "blocker": "No Dirty refinement statement or proof is present in this tree. It is in scope and unproved."
+    },
+    {
+      "item": "all Chinese statutes closed mapping",
+      "status": "UNCLOSED",
+      "reuse": null,
+      "blocker": "Statute ranges listed in the master document are not per-article formal mappings. No closed mapping is claimed."
+    }
   ],
   "local_lean_executed": false,
   "acceptance_annexes": [

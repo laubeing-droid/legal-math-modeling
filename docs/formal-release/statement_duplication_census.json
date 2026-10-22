@@ -24,11 +24,23 @@
         "line": 21,
         "path": "BusinessRelationsDelta.lean"
       }
+    ],
+    "(α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) : (Real.Gamma (α + (w : ℝ)) * Real.Gamma (β + (l : ℝ))) / Real.Gamma (α + β + ((w + l : ℕ) : ℝ)) / ((Real.Gamma α * Real.Gamma β) / Real.Gamma (α + β)) = (rising α w * rising β l) / rising (α + β) (w + l)": [
+      {
+        "carrier": "FullMath/beta_ratio",
+        "line": 82,
+        "path": "FullMath/Probability/DirichletPosterior.lean"
+      },
+      {
+        "carrier": "root/other/u04_1_real_gamma_weight_ratio",
+        "line": 160,
+        "path": "Candidates/Final20261021/Probability.lean"
+      }
     ]
   },
-  "cross_family_statement_types": 2,
-  "distinct_statement_types": 5362,
-  "duplicated_statement_types": 54,
+  "cross_family_statement_types": 3,
+  "distinct_statement_types": 5385,
+  "duplicated_statement_types": 58,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
@@ -90,6 +102,18 @@
         "path": "ULM14CoverageTrust.lean"
       }
     ],
+    "(a b k l : ℕ) : ((∫ x in 0..1, polyBeta (a + 1) (b + 1) x * (x ^ k * (1 - x) ^ l)) = ((betaTwoConst ((a : ℕ) + k) ((b : ℕ) + l) : ℚ) / (betaTwoConst a b : ℚ) : ℚ)) ∧ (∀ x : ℝ, polyBeta (a + 1) (b + 1) x * (x ^ k * (1 - x) ^ l) * ((betaTwoConst a b : ℚ) / (betaTwoConst ((a : ℕ) + k) ((b : ℕ) + l) : ℚ) : ℚ) = polyBeta (((a : ℕ) + k) + 1) (((b : ℕ) + l) + 1) x) ∧ ((∫ x in 0..1, polyBeta (((a : ℕ) + k) + 1) (((b : ℕ) + l) + 1) x) = 1)": [
+      {
+        "carrier": "root/other/beta_posterior_from_likelihood",
+        "line": 445,
+        "path": "Seams/UnifiedNeedlesS3a.lean"
+      },
+      {
+        "carrier": "root/other/u04_1_integer_shape_conjugacy",
+        "line": 146,
+        "path": "Candidates/Final20261021/Probability.lean"
+      }
+    ],
     "(c : Certificate) (hstatus : c.status = DecisionStatus.proved) (hkind : c.evidence.kind = EvidenceKind.candidate) : checkCertificate c ≠ CheckVerdict.accept": [
       {
         "carrier": "root/other/candidate_cannot_enter_verified_fact_gate",
@@ -136,6 +160,18 @@
         "carrier": "root/other/sum_bool_split",
         "line": 375,
         "path": "Seams/UnifiedNeedlesS3b.lean"
+      }
+    ],
+    "(globalBad insideBad outsideBad conditionMass α ε : ℝ) (positive : 0 < conditionMass) (massLeOne : conditionMass ≤ 1) (epsNonneg : 0 ≤ ε) (partition : globalBad = insideBad + outsideBad) (conditional : insideBad / conditionMass ≤ ε) (outside : outsideBad ≤ α) : globalBad ≤ α + ε": [
+      {
+        "carrier": "root/other/condition_to_global",
+        "line": 60,
+        "path": "Candidates/Final20261021/Harness.lean"
+      },
+      {
+        "carrier": "root/other/u02_4_unconditional_budget",
+        "line": 70,
+        "path": "Candidates/Final20261021/Harness.lean"
       }
     ],
     "(input : StructuredArgumentation) (policy : DefeatPolicy) : (resolveToDefeatAF input policy).WellFormed": [
@@ -292,6 +328,18 @@
         "carrier": "root/other/finite_legal_mixed_equilibrium_exists_upstream",
         "line": 613,
         "path": "Seams/UnifiedEquilExist.lean"
+      }
+    ],
+    "(α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) : (Real.Gamma (α + (w : ℝ)) * Real.Gamma (β + (l : ℝ))) / Real.Gamma (α + β + ((w + l : ℕ) : ℝ)) / ((Real.Gamma α * Real.Gamma β) / Real.Gamma (α + β)) = (rising α w * rising β l) / rising (α + β) (w + l)": [
+      {
+        "carrier": "FullMath/beta_ratio",
+        "line": 82,
+        "path": "FullMath/Probability/DirichletPosterior.lean"
+      },
+      {
+        "carrier": "root/other/u04_1_real_gamma_weight_ratio",
+        "line": 160,
+        "path": "Candidates/Final20261021/Probability.lean"
       }
     ],
     "(μ : PMF α) (f : α → β) (g : β → γ) : pushforward (pushforward μ f) g = pushforward μ (g ∘ f)": [
@@ -594,6 +642,18 @@
         "path": "ULM11BranchQuery.lean"
       }
     ],
+    "{Ω I : Type} [MeasurableSpace Ω] (μ : Measure Ω) [IsProbabilityMeasure μ] (s : Finset I) (bad : I → Set Ω) (δ : I → ℝ) (bound : ∀ i ∈ s, μ.real (bad i) ≤ δ i) : μ.real (⋃ i ∈ s, bad i) ≤ ∑ i ∈ s, δ i": [
+      {
+        "carrier": "root/other/risk_union_in_declared_measure",
+        "line": 51,
+        "path": "Candidates/Final20261021/Harness.lean"
+      },
+      {
+        "carrier": "root/other/u02_4_union_in_declared_measure",
+        "line": 80,
+        "path": "Candidates/Final20261021/Harness.lean"
+      }
+    ],
     "{α : Type*} [Fintype α] (d : PMF α) (w : α → ENNReal) (hw : ∀ a, w a ≤ 1) : ∑ a, d a * w a ≠ ⊤": [
       {
         "carrier": "External/sum_mul_pmf_ne_top",
@@ -682,9 +742,9 @@
   "files_scanned": 378,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
   "headers_missed_by_scanner": 109,
-  "inventory_package_theorems": 5407,
+  "inventory_package_theorems": 5434,
   "private_protected_headers_read": 118,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 5416
+  "statements_read": 5443
 }

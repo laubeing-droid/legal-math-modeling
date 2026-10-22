@@ -65,4 +65,36 @@ theorem condition_to_global (globalBad insideBad outsideBad conditionMass α ε 
   have h := (div_le_iff₀ positive).mp conditional
   nlinarith
 
+/-- U02.4 unconditional budget: a `P_H` bound `ε` plus an `Hᶜ` mass bound `α`
+    yields `α+ε`. This is the declared partition step, not a filtration tower. -/
+theorem u02_4_unconditional_budget
+    (globalBad insideBad outsideBad conditionMass α ε : ℝ)
+    (positive : 0 < conditionMass) (massLeOne : conditionMass ≤ 1)
+    (epsNonneg : 0 ≤ ε) (partition : globalBad = insideBad + outsideBad)
+    (conditional : insideBad / conditionMass ≤ ε) (outside : outsideBad ≤ α) :
+    globalBad ≤ α + ε :=
+  condition_to_global globalBad insideBad outsideBad conditionMass α ε
+    positive massLeOne epsNonneg partition conditional outside
+
+/-- U02.4 union bound inside whichever measure was supplied, including `P_H`. -/
+theorem u02_4_union_in_declared_measure {Ω I : Type} [MeasurableSpace Ω]
+    (μ : Measure Ω) [IsProbabilityMeasure μ] (s : Finset I)
+    (bad : I → Set Ω) (δ : I → ℝ)
+    (bound : ∀ i ∈ s, μ.real (bad i) ≤ δ i) :
+    μ.real (⋃ i ∈ s, bad i) ≤ ∑ i ∈ s, δ i :=
+  risk_union_in_declared_measure μ s bad δ bound
+
+/-- Two-point law with `P(B)=1/10`. Conditioning on `H=B` returns 1, so the
+    marginal bound does not survive as a conditional bound. -/
+def u02_4_mass (b : Bool) : ℚ := if b then 1 / 10 else 9 / 10
+
+theorem u02_4_mass_total : u02_4_mass true + u02_4_mass false = 1 := by
+  simp [u02_4_mass]; norm_num
+
+theorem u02_4_hb_not_the_marginal_bound :
+    u02_4_mass true = 1 / 10 ∧
+    u02_4_mass true / u02_4_mass true = 1 ∧
+    ¬ (u02_4_mass true / u02_4_mass true ≤ u02_4_mass true) := by
+  simp [u02_4_mass]; norm_num
+
 end JurisLean.Candidates.Final20261021.Harness

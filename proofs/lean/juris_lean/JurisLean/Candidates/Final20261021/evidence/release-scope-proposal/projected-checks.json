@@ -1,0 +1,44 @@
+{
+  "subject_commit": "799b42c43d16e839ec3305577867120cb0deb917",
+  "status": "PREVIEW_OUTPUT_VALIDATION_ONLY_NOT_APPLIED_NOT_OFFICIAL_CI",
+  "actual_repository_outside_candidate_unchanged": true,
+  "method": "Existing read-only check algorithms read actual source and the candidate-folder preview outputs; no generator or gate file was modified.",
+  "checks": [
+    {
+      "check": "closure census against actual current source",
+      "result": "PASS_PROJECTED_OUTPUT_ONLY"
+    },
+    {
+      "check": "declaration shape against preview census and actual source",
+      "result": "PASS_PROJECTED_OUTPUT_ONLY"
+    },
+    {
+      "check": "kernel report and unchanged volume ledger",
+      "result": "PASS_PROJECTED_OUTPUT_ONLY"
+    },
+    {
+      "check": "duplication census against current source",
+      "result": "PASS_PROJECTED_OUTPUT_ONLY"
+    },
+    {
+      "check": "CI index exact current quoted-id set and complete metadata",
+      "result": "PASS_PROJECTED_OUTPUT_ONLY"
+    },
+    {
+      "check": "concept registry covers new ExactExpr carrier pair",
+      "result": "PASS_PROJECTED_OUTPUT_ONLY"
+    },
+    {
+      "check": "source inventory raw hashes and digest",
+      "result": "PASS_PROJECTED_OUTPUT_ONLY"
+    },
+    {
+      "check": "cn paper numeric template regeneration is idempotent",
+      "result": "PASS_PROJECTED_OUTPUT_ONLY"
+    },
+    {
+      "check": "en paper numeric template regeneration is idempotent",
+      "result": "PASS_PROJECTED_OUTPUT_ONLY"
+    }
+  ]
+}

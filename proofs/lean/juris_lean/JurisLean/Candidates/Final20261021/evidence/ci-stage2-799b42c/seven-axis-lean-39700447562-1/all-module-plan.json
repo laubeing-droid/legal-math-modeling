@@ -1,0 +1,1522 @@
+{
+  "include": [
+    {
+      "module": "JurisLean",
+      "target": "JurisLean"
+    },
+    {
+      "module": "JurisLean.ASPWitness",
+      "target": "JurisLean.ASPWitness"
+    },
+    {
+      "module": "JurisLean.ArgumentCompilerSpec",
+      "target": "JurisLean.ArgumentCompilerSpec"
+    },
+    {
+      "module": "JurisLean.ArgumentSemanticsRegistry",
+      "target": "JurisLean.ArgumentSemanticsRegistry"
+    },
+    {
+      "module": "JurisLean.AttackDecision",
+      "target": "JurisLean.AttackDecision"
+    },
+    {
+      "module": "JurisLean.AuthorityLattice",
+      "target": "JurisLean.AuthorityLattice"
+    },
+    {
+      "module": "JurisLean.AxiomAudit",
+      "target": "JurisLean.AxiomAudit"
+    },
+    {
+      "module": "JurisLean.BackendContract",
+      "target": "JurisLean.BackendContract"
+    },
+    {
+      "module": "JurisLean.BanachCertificate",
+      "target": "JurisLean.BanachCertificate"
+    },
+    {
+      "module": "JurisLean.BanachComplete",
+      "target": "JurisLean.BanachComplete"
+    },
+    {
+      "module": "JurisLean.BanachContraction",
+      "target": "JurisLean.BanachContraction"
+    },
+    {
+      "module": "JurisLean.BanachEffectiveNodes",
+      "target": "JurisLean.BanachEffectiveNodes"
+    },
+    {
+      "module": "JurisLean.BanachFixedPoint",
+      "target": "JurisLean.BanachFixedPoint"
+    },
+    {
+      "module": "JurisLean.BanachScratch",
+      "target": "JurisLean.BanachScratch"
+    },
+    {
+      "module": "JurisLean.BanachWeightedNorm",
+      "target": "JurisLean.BanachWeightedNorm"
+    },
+    {
+      "module": "JurisLean.Basic",
+      "target": "JurisLean.Basic"
+    },
+    {
+      "module": "JurisLean.BusinessRelations",
+      "target": "JurisLean.BusinessRelations"
+    },
+    {
+      "module": "JurisLean.BusinessRelationsAudit",
+      "target": "JurisLean.BusinessRelationsAudit"
+    },
+    {
+      "module": "JurisLean.BusinessRelationsDelta",
+      "target": "JurisLean.BusinessRelationsDelta"
+    },
+    {
+      "module": "JurisLean.BusinessRoot.All",
+      "target": "JurisLean.BusinessRoot.All"
+    },
+    {
+      "module": "JurisLean.BusinessRoot.Analytics",
+      "target": "JurisLean.BusinessRoot.Analytics"
+    },
+    {
+      "module": "JurisLean.BusinessRoot.ArtifactParser",
+      "target": "JurisLean.BusinessRoot.ArtifactParser"
+    },
+    {
+      "module": "JurisLean.BusinessRoot.GuardMachine",
+      "target": "JurisLean.BusinessRoot.GuardMachine"
+    },
+    {
+      "module": "JurisLean.BusinessRoot.InputCodec",
+      "target": "JurisLean.BusinessRoot.InputCodec"
+    },
+    {
+      "module": "JurisLean.BusinessRoot.PrincipalChecker",
+      "target": "JurisLean.BusinessRoot.PrincipalChecker"
+    },
+    {
+      "module": "JurisLean.BusinessRoot.Root",
+      "target": "JurisLean.BusinessRoot.Root"
+    },
+    {
+      "module": "JurisLean.BusinessRoot.RootAudit",
+      "target": "JurisLean.BusinessRoot.RootAudit"
+    },
+    {
+      "module": "JurisLean.BusinessRoot.Semantics",
+      "target": "JurisLean.BusinessRoot.Semantics"
+    },
+    {
+      "module": "JurisLean.BusinessRoot.SevenAxis",
+      "target": "JurisLean.BusinessRoot.SevenAxis"
+    },
+    {
+      "module": "JurisLean.BusinessRoot.SevenAxisAudit",
+      "target": "JurisLean.BusinessRoot.SevenAxisAudit"
+    },
+    {
+      "module": "JurisLean.BusinessRoot.SevenAxisCases",
+      "target": "JurisLean.BusinessRoot.SevenAxisCases"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Acceptance",
+      "target": "JurisLean.Candidates.Final20261021.Acceptance"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Authorization",
+      "target": "JurisLean.Candidates.Final20261021.Authorization"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.AxiomAudit",
+      "target": "JurisLean.Candidates.Final20261021.AxiomAudit"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Behavior",
+      "target": "JurisLean.Candidates.Final20261021.Behavior"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.CIAll",
+      "target": "JurisLean.Candidates.Final20261021.CIAll"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Calibration",
+      "target": "JurisLean.Candidates.Final20261021.Calibration"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Compiler",
+      "target": "JurisLean.Candidates.Final20261021.Compiler"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Decision",
+      "target": "JurisLean.Candidates.Final20261021.Decision"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+      "target": "JurisLean.Candidates.Final20261021.EvidenceProcedure"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Feedback",
+      "target": "JurisLean.Candidates.Final20261021.Feedback"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Harness",
+      "target": "JurisLean.Candidates.Final20261021.Harness"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Interfaces",
+      "target": "JurisLean.Candidates.Final20261021.Interfaces"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Iteration",
+      "target": "JurisLean.Candidates.Final20261021.Iteration"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Learning",
+      "target": "JurisLean.Candidates.Final20261021.Learning"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Ledger",
+      "target": "JurisLean.Candidates.Final20261021.Ledger"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Pipeline",
+      "target": "JurisLean.Candidates.Final20261021.Pipeline"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Policy",
+      "target": "JurisLean.Candidates.Final20261021.Policy"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Probability",
+      "target": "JurisLean.Candidates.Final20261021.Probability"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Progress",
+      "target": "JurisLean.Candidates.Final20261021.Progress"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.RSI",
+      "target": "JurisLean.Candidates.Final20261021.RSI"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Representation",
+      "target": "JurisLean.Candidates.Final20261021.Representation"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Temporal",
+      "target": "JurisLean.Candidates.Final20261021.Temporal"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Trace",
+      "target": "JurisLean.Candidates.Final20261021.Trace"
+    },
+    {
+      "module": "JurisLean.Candidates.Final20261021.Transactions",
+      "target": "JurisLean.Candidates.Final20261021.Transactions"
+    },
+    {
+      "module": "JurisLean.CanonicalSerialization",
+      "target": "JurisLean.CanonicalSerialization"
+    },
+    {
+      "module": "JurisLean.CertificateChecker",
+      "target": "JurisLean.CertificateChecker"
+    },
+    {
+      "module": "JurisLean.CertificateCheckerV2",
+      "target": "JurisLean.CertificateCheckerV2"
+    },
+    {
+      "module": "JurisLean.CertificateV2",
+      "target": "JurisLean.CertificateV2"
+    },
+    {
+      "module": "JurisLean.Consolidated.All",
+      "target": "JurisLean.Consolidated.All"
+    },
+    {
+      "module": "JurisLean.Consolidated.Audit",
+      "target": "JurisLean.Consolidated.Audit"
+    },
+    {
+      "module": "JurisLean.ContractionCondition",
+      "target": "JurisLean.ContractionCondition"
+    },
+    {
+      "module": "JurisLean.DDLDefinitions",
+      "target": "JurisLean.DDLDefinitions"
+    },
+    {
+      "module": "JurisLean.DefeasiblePriority",
+      "target": "JurisLean.DefeasiblePriority"
+    },
+    {
+      "module": "JurisLean.DungAAF",
+      "target": "JurisLean.DungAAF"
+    },
+    {
+      "module": "JurisLean.DungDefinitions",
+      "target": "JurisLean.DungDefinitions"
+    },
+    {
+      "module": "JurisLean.DungFixedPoint",
+      "target": "JurisLean.DungFixedPoint"
+    },
+    {
+      "module": "JurisLean.EndToEnd",
+      "target": "JurisLean.EndToEnd"
+    },
+    {
+      "module": "JurisLean.ExactNumericContract",
+      "target": "JurisLean.ExactNumericContract"
+    },
+    {
+      "module": "JurisLean.External.FixedPointTheorems",
+      "target": "JurisLean.External.FixedPointTheorems"
+    },
+    {
+      "module": "JurisLean.External.FixedPointTheorems.apply_cubical_sperner",
+      "target": "JurisLean.External.FixedPointTheorems.apply_cubical_sperner"
+    },
+    {
+      "module": "JurisLean.External.FixedPointTheorems.brouwer",
+      "target": "JurisLean.External.FixedPointTheorems.brouwer"
+    },
+    {
+      "module": "JurisLean.External.FixedPointTheorems.convex_homeos",
+      "target": "JurisLean.External.FixedPointTheorems.convex_homeos"
+    },
+    {
+      "module": "JurisLean.External.FixedPointTheorems.cubical_sperner",
+      "target": "JurisLean.External.FixedPointTheorems.cubical_sperner"
+    },
+    {
+      "module": "JurisLean.External.FixedPointTheorems.cubical_sperner_prep",
+      "target": "JurisLean.External.FixedPointTheorems.cubical_sperner_prep"
+    },
+    {
+      "module": "JurisLean.External.FixedPointTheorems.kakutani",
+      "target": "JurisLean.External.FixedPointTheorems.kakutani"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Concepts.ConstantSum",
+      "target": "JurisLean.External.GameTheory.Concepts.ConstantSum"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Concepts.Deviation",
+      "target": "JurisLean.External.GameTheory.Concepts.Deviation"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Concepts.Minimax",
+      "target": "JurisLean.External.GameTheory.Concepts.Minimax"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Concepts.MixedExtension",
+      "target": "JurisLean.External.GameTheory.Concepts.MixedExtension"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Concepts.ProductSimplexBrouwer",
+      "target": "JurisLean.External.GameTheory.Concepts.ProductSimplexBrouwer"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Concepts.SecurityStrategy",
+      "target": "JurisLean.External.GameTheory.Concepts.SecurityStrategy"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Concepts.SolutionConcepts",
+      "target": "JurisLean.External.GameTheory.Concepts.SolutionConcepts"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Concepts.ZeroSum",
+      "target": "JurisLean.External.GameTheory.Concepts.ZeroSum"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Concepts.ZeroSumNash",
+      "target": "JurisLean.External.GameTheory.Concepts.ZeroSumNash"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Core.GameForm",
+      "target": "JurisLean.External.GameTheory.Core.GameForm"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Core.GameProperties",
+      "target": "JurisLean.External.GameTheory.Core.GameProperties"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Core.KernelGame",
+      "target": "JurisLean.External.GameTheory.Core.KernelGame"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Languages.EFG.Refinements",
+      "target": "JurisLean.External.GameTheory.Languages.EFG.Refinements"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Languages.EFG.Syntax",
+      "target": "JurisLean.External.GameTheory.Languages.EFG.Syntax"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Math.Coupling",
+      "target": "JurisLean.External.GameTheory.Math.Coupling"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Math.OptimizationLocalGlobal",
+      "target": "JurisLean.External.GameTheory.Math.OptimizationLocalGlobal"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Math.PMFProduct",
+      "target": "JurisLean.External.GameTheory.Math.PMFProduct"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Math.ParameterizedChain",
+      "target": "JurisLean.External.GameTheory.Math.ParameterizedChain"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Math.Probability",
+      "target": "JurisLean.External.GameTheory.Math.Probability"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Math.ProbabilityMassFunction",
+      "target": "JurisLean.External.GameTheory.Math.ProbabilityMassFunction"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Math.TraceRun",
+      "target": "JurisLean.External.GameTheory.Math.TraceRun"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Semantics.DSMachine",
+      "target": "JurisLean.External.GameTheory.Semantics.DSMachine"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Semantics.TransitionTrace",
+      "target": "JurisLean.External.GameTheory.Semantics.TransitionTrace"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Theorems.Kuhn",
+      "target": "JurisLean.External.GameTheory.Theorems.Kuhn"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Theorems.Kuhn.BehavioralToMixed",
+      "target": "JurisLean.External.GameTheory.Theorems.Kuhn.BehavioralToMixed"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Theorems.Kuhn.BehavioralToMixedCore",
+      "target": "JurisLean.External.GameTheory.Theorems.Kuhn.BehavioralToMixedCore"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Theorems.Kuhn.CorrelatedRealization",
+      "target": "JurisLean.External.GameTheory.Theorems.Kuhn.CorrelatedRealization"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Theorems.Kuhn.KuhnModel",
+      "target": "JurisLean.External.GameTheory.Theorems.Kuhn.KuhnModel"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Theorems.Kuhn.MixedToBehavioralCore",
+      "target": "JurisLean.External.GameTheory.Theorems.Kuhn.MixedToBehavioralCore"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Theorems.Kuhn.ObsModel",
+      "target": "JurisLean.External.GameTheory.Theorems.Kuhn.ObsModel"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Theorems.Minimax",
+      "target": "JurisLean.External.GameTheory.Theorems.Minimax"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Theorems.NashExistenceMixed",
+      "target": "JurisLean.External.GameTheory.Theorems.NashExistenceMixed"
+    },
+    {
+      "module": "JurisLean.External.GameTheory.Theorems.OneShotDeviation",
+      "target": "JurisLean.External.GameTheory.Theorems.OneShotDeviation"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionDegreeBound",
+      "target": "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionDegreeBound"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionIteratedDeriv",
+      "target": "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionIteratedDeriv"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionPolynomial",
+      "target": "JurisLean.External.NeuralNetworkProofs.ForMathlib.ConvolutionPolynomial"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.ForMathlib.IteratedDerivPolynomial",
+      "target": "JurisLean.External.NeuralNetworkProofs.ForMathlib.IteratedDerivPolynomial"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.ForMathlib.PolynomialDistribution",
+      "target": "JurisLean.External.NeuralNetworkProofs.ForMathlib.PolynomialDistribution"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.ForMathlib.RidgePowersSpan",
+      "target": "JurisLean.External.NeuralNetworkProofs.ForMathlib.RidgePowersSpan"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.ForMathlib.SmoothCompactAntideriv",
+      "target": "JurisLean.External.NeuralNetworkProofs.ForMathlib.SmoothCompactAntideriv"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.ForMathlib.UniformRiemannConvolution",
+      "target": "JurisLean.External.NeuralNetworkProofs.ForMathlib.UniformRiemannConvolution"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno",
+      "target": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.ClassM",
+      "target": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.ClassM"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Converse",
+      "target": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Converse"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Family",
+      "target": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Family"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Mollify",
+      "target": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Mollify"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.MollifyDef",
+      "target": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.MollifyDef"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Ridge",
+      "target": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Ridge"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.SmoothEngine",
+      "target": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.SmoothEngine"
+    },
+    {
+      "module": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Theorem",
+      "target": "JurisLean.External.NeuralNetworkProofs.UniversalApproximation.Leshno.Theorem"
+    },
+    {
+      "module": "JurisLean.FactAdmissionSpec",
+      "target": "JurisLean.FactAdmissionSpec"
+    },
+    {
+      "module": "JurisLean.FailureStatus",
+      "target": "JurisLean.FailureStatus"
+    },
+    {
+      "module": "JurisLean.FiniteGaloisAdjunction",
+      "target": "JurisLean.FiniteGaloisAdjunction"
+    },
+    {
+      "module": "JurisLean.FiniteMonotoneIteration",
+      "target": "JurisLean.FiniteMonotoneIteration"
+    },
+    {
+      "module": "JurisLean.FiniteRosetta",
+      "target": "JurisLean.FiniteRosetta"
+    },
+    {
+      "module": "JurisLean.FullMath.Acceptance",
+      "target": "JurisLean.FullMath.Acceptance"
+    },
+    {
+      "module": "JurisLean.FullMath.Action.IncentiveEnumeration",
+      "target": "JurisLean.FullMath.Action.IncentiveEnumeration"
+    },
+    {
+      "module": "JurisLean.FullMath.Action.Mechanisms",
+      "target": "JurisLean.FullMath.Action.Mechanisms"
+    },
+    {
+      "module": "JurisLean.FullMath.Action.RobustDecisions",
+      "target": "JurisLean.FullMath.Action.RobustDecisions"
+    },
+    {
+      "module": "JurisLean.FullMath.Action.Settlement",
+      "target": "JurisLean.FullMath.Action.Settlement"
+    },
+    {
+      "module": "JurisLean.FullMath.All",
+      "target": "JurisLean.FullMath.All"
+    },
+    {
+      "module": "JurisLean.FullMath.Burden.DomainAgnostic",
+      "target": "JurisLean.FullMath.Burden.DomainAgnostic"
+    },
+    {
+      "module": "JurisLean.FullMath.Burden.Families",
+      "target": "JurisLean.FullMath.Burden.Families"
+    },
+    {
+      "module": "JurisLean.FullMath.Burden.Readiness",
+      "target": "JurisLean.FullMath.Burden.Readiness"
+    },
+    {
+      "module": "JurisLean.FullMath.Burden.SourceTime",
+      "target": "JurisLean.FullMath.Burden.SourceTime"
+    },
+    {
+      "module": "JurisLean.FullMath.Burden.Standards",
+      "target": "JurisLean.FullMath.Burden.Standards"
+    },
+    {
+      "module": "JurisLean.FullMath.Causal.PartialIdentification",
+      "target": "JurisLean.FullMath.Causal.PartialIdentification"
+    },
+    {
+      "module": "JurisLean.FullMath.CompletionAudit",
+      "target": "JurisLean.FullMath.CompletionAudit"
+    },
+    {
+      "module": "JurisLean.FullMath.Composition.CheckerCorrespondence",
+      "target": "JurisLean.FullMath.Composition.CheckerCorrespondence"
+    },
+    {
+      "module": "JurisLean.FullMath.Composition.DomainChains",
+      "target": "JurisLean.FullMath.Composition.DomainChains"
+    },
+    {
+      "module": "JurisLean.FullMath.Composition.EnvelopePipeline",
+      "target": "JurisLean.FullMath.Composition.EnvelopePipeline"
+    },
+    {
+      "module": "JurisLean.FullMath.Composition.RelationalComposition",
+      "target": "JurisLean.FullMath.Composition.RelationalComposition"
+    },
+    {
+      "module": "JurisLean.FullMath.Composition.ScenarioBridge",
+      "target": "JurisLean.FullMath.Composition.ScenarioBridge"
+    },
+    {
+      "module": "JurisLean.FullMath.Composition.UnifiedCorrectness",
+      "target": "JurisLean.FullMath.Composition.UnifiedCorrectness"
+    },
+    {
+      "module": "JurisLean.FullMath.Contracts",
+      "target": "JurisLean.FullMath.Contracts"
+    },
+    {
+      "module": "JurisLean.FullMath.Core.BusinessSemantics",
+      "target": "JurisLean.FullMath.Core.BusinessSemantics"
+    },
+    {
+      "module": "JurisLean.FullMath.Core.Foundations",
+      "target": "JurisLean.FullMath.Core.Foundations"
+    },
+    {
+      "module": "JurisLean.FullMath.Core.IdentityCodec",
+      "target": "JurisLean.FullMath.Core.IdentityCodec"
+    },
+    {
+      "module": "JurisLean.FullMath.Document.ByteSyntax",
+      "target": "JurisLean.FullMath.Document.ByteSyntax"
+    },
+    {
+      "module": "JurisLean.FullMath.Evidence.Admission",
+      "target": "JurisLean.FullMath.Evidence.Admission"
+    },
+    {
+      "module": "JurisLean.FullMath.Evidence.Provenance",
+      "target": "JurisLean.FullMath.Evidence.Provenance"
+    },
+    {
+      "module": "JurisLean.FullMath.Evidence.Withdrawal",
+      "target": "JurisLean.FullMath.Evidence.Withdrawal"
+    },
+    {
+      "module": "JurisLean.FullMath.Gaps.Gaps",
+      "target": "JurisLean.FullMath.Gaps.Gaps"
+    },
+    {
+      "module": "JurisLean.FullMath.GenericKernels",
+      "target": "JurisLean.FullMath.GenericKernels"
+    },
+    {
+      "module": "JurisLean.FullMath.Logic.ArgumentConstruction",
+      "target": "JurisLean.FullMath.Logic.ArgumentConstruction"
+    },
+    {
+      "module": "JurisLean.FullMath.Logic.ArgumentIdentity",
+      "target": "JurisLean.FullMath.Logic.ArgumentIdentity"
+    },
+    {
+      "module": "JurisLean.FullMath.Logic.AttackCompilation",
+      "target": "JurisLean.FullMath.Logic.AttackCompilation"
+    },
+    {
+      "module": "JurisLean.FullMath.Logic.ExtensionProfiles",
+      "target": "JurisLean.FullMath.Logic.ExtensionProfiles"
+    },
+    {
+      "module": "JurisLean.FullMath.Logic.HornFixpoint",
+      "target": "JurisLean.FullMath.Logic.HornFixpoint"
+    },
+    {
+      "module": "JurisLean.FullMath.Logic.QueryAggregation",
+      "target": "JurisLean.FullMath.Logic.QueryAggregation"
+    },
+    {
+      "module": "JurisLean.FullMath.Numeric.Banach",
+      "target": "JurisLean.FullMath.Numeric.Banach"
+    },
+    {
+      "module": "JurisLean.FullMath.Numeric.Bellman",
+      "target": "JurisLean.FullMath.Numeric.Bellman"
+    },
+    {
+      "module": "JurisLean.FullMath.Numeric.Convexity",
+      "target": "JurisLean.FullMath.Numeric.Convexity"
+    },
+    {
+      "module": "JurisLean.FullMath.Numeric.IntegerBranch",
+      "target": "JurisLean.FullMath.Numeric.IntegerBranch"
+    },
+    {
+      "module": "JurisLean.FullMath.Numeric.Intervals",
+      "target": "JurisLean.FullMath.Numeric.Intervals"
+    },
+    {
+      "module": "JurisLean.FullMath.Numeric.LinearPrograms",
+      "target": "JurisLean.FullMath.Numeric.LinearPrograms"
+    },
+    {
+      "module": "JurisLean.FullMath.Numeric.Quantities",
+      "target": "JurisLean.FullMath.Numeric.Quantities"
+    },
+    {
+      "module": "JurisLean.FullMath.Probability.BetaInterval",
+      "target": "JurisLean.FullMath.Probability.BetaInterval"
+    },
+    {
+      "module": "JurisLean.FullMath.Probability.Brier",
+      "target": "JurisLean.FullMath.Probability.Brier"
+    },
+    {
+      "module": "JurisLean.FullMath.Probability.Conditioning",
+      "target": "JurisLean.FullMath.Probability.Conditioning"
+    },
+    {
+      "module": "JurisLean.FullMath.Probability.DirichletPosterior",
+      "target": "JurisLean.FullMath.Probability.DirichletPosterior"
+    },
+    {
+      "module": "JurisLean.FullMath.Probability.E01Contract",
+      "target": "JurisLean.FullMath.Probability.E01Contract"
+    },
+    {
+      "module": "JurisLean.FullMath.Probability.EvidenceIdentity",
+      "target": "JurisLean.FullMath.Probability.EvidenceIdentity"
+    },
+    {
+      "module": "JurisLean.FullMath.Probability.FiniteBN",
+      "target": "JurisLean.FullMath.Probability.FiniteBN"
+    },
+    {
+      "module": "JurisLean.FullMath.Probability.Misspecification",
+      "target": "JurisLean.FullMath.Probability.Misspecification"
+    },
+    {
+      "module": "JurisLean.FullMath.Probability.ModelAveraging",
+      "target": "JurisLean.FullMath.Probability.ModelAveraging"
+    },
+    {
+      "module": "JurisLean.FullMath.Probability.PAV",
+      "target": "JurisLean.FullMath.Probability.PAV"
+    },
+    {
+      "module": "JurisLean.FullMath.Probability.SplitNoLeak",
+      "target": "JurisLean.FullMath.Probability.SplitNoLeak"
+    },
+    {
+      "module": "JurisLean.FullMath.Probability.UnprocessedMass",
+      "target": "JurisLean.FullMath.Probability.UnprocessedMass"
+    },
+    {
+      "module": "JurisLean.FullMath.Probability.VariableElimination",
+      "target": "JurisLean.FullMath.Probability.VariableElimination"
+    },
+    {
+      "module": "JurisLean.FullMath.Representation.FiniteCertificates",
+      "target": "JurisLean.FullMath.Representation.FiniteCertificates"
+    },
+    {
+      "module": "JurisLean.FullMath.Representation.SymbolicRepresentation",
+      "target": "JurisLean.FullMath.Representation.SymbolicRepresentation"
+    },
+    {
+      "module": "JurisLean.FullMath.Roots.SevenRoots",
+      "target": "JurisLean.FullMath.Roots.SevenRoots"
+    },
+    {
+      "module": "JurisLean.FullMath.Tranche1",
+      "target": "JurisLean.FullMath.Tranche1"
+    },
+    {
+      "module": "JurisLean.FullMath.Tranche2",
+      "target": "JurisLean.FullMath.Tranche2"
+    },
+    {
+      "module": "JurisLean.FullMath.Tranche3",
+      "target": "JurisLean.FullMath.Tranche3"
+    },
+    {
+      "module": "JurisLean.FullMath.Tranche4",
+      "target": "JurisLean.FullMath.Tranche4"
+    },
+    {
+      "module": "JurisLean.FullMath.Tranche5",
+      "target": "JurisLean.FullMath.Tranche5"
+    },
+    {
+      "module": "JurisLean.FullMath.Tranche6",
+      "target": "JurisLean.FullMath.Tranche6"
+    },
+    {
+      "module": "JurisLean.FullMath.Tranche7",
+      "target": "JurisLean.FullMath.Tranche7"
+    },
+    {
+      "module": "JurisLean.Genealogy.All",
+      "target": "JurisLean.Genealogy.All"
+    },
+    {
+      "module": "JurisLean.Genealogy.Boundary",
+      "target": "JurisLean.Genealogy.Boundary"
+    },
+    {
+      "module": "JurisLean.Genealogy.General",
+      "target": "JurisLean.Genealogy.General"
+    },
+    {
+      "module": "JurisLean.Genealogy.Part0",
+      "target": "JurisLean.Genealogy.Part0"
+    },
+    {
+      "module": "JurisLean.Genealogy.Part1",
+      "target": "JurisLean.Genealogy.Part1"
+    },
+    {
+      "module": "JurisLean.Genealogy.Part2",
+      "target": "JurisLean.Genealogy.Part2"
+    },
+    {
+      "module": "JurisLean.Genealogy.Part3",
+      "target": "JurisLean.Genealogy.Part3"
+    },
+    {
+      "module": "JurisLean.Genealogy.Part4",
+      "target": "JurisLean.Genealogy.Part4"
+    },
+    {
+      "module": "JurisLean.Genealogy.Part5",
+      "target": "JurisLean.Genealogy.Part5"
+    },
+    {
+      "module": "JurisLean.Genealogy.Part6",
+      "target": "JurisLean.Genealogy.Part6"
+    },
+    {
+      "module": "JurisLean.Genealogy.TSpectrum.Batch1",
+      "target": "JurisLean.Genealogy.TSpectrum.Batch1"
+    },
+    {
+      "module": "JurisLean.Genealogy.TSpectrum.Batch2",
+      "target": "JurisLean.Genealogy.TSpectrum.Batch2"
+    },
+    {
+      "module": "JurisLean.Genealogy.TSpectrum.Batch3",
+      "target": "JurisLean.Genealogy.TSpectrum.Batch3"
+    },
+    {
+      "module": "JurisLean.Genealogy.TSpectrum.Batch4",
+      "target": "JurisLean.Genealogy.TSpectrum.Batch4"
+    },
+    {
+      "module": "JurisLean.Hohfeld",
+      "target": "JurisLean.Hohfeld"
+    },
+    {
+      "module": "JurisLean.HornAAFContract",
+      "target": "JurisLean.HornAAFContract"
+    },
+    {
+      "module": "JurisLean.HornDefinitions",
+      "target": "JurisLean.HornDefinitions"
+    },
+    {
+      "module": "JurisLean.HornFixedPoint",
+      "target": "JurisLean.HornFixedPoint"
+    },
+    {
+      "module": "JurisLean.HornOperationalRefinement",
+      "target": "JurisLean.HornOperationalRefinement"
+    },
+    {
+      "module": "JurisLean.HumanResearchReceiptSpec",
+      "target": "JurisLean.HumanResearchReceiptSpec"
+    },
+    {
+      "module": "JurisLean.IVLToAAF",
+      "target": "JurisLean.IVLToAAF"
+    },
+    {
+      "module": "JurisLean.IVLToASP",
+      "target": "JurisLean.IVLToASP"
+    },
+    {
+      "module": "JurisLean.IVLToHorn",
+      "target": "JurisLean.IVLToHorn"
+    },
+    {
+      "module": "JurisLean.IVLToSMT",
+      "target": "JurisLean.IVLToSMT"
+    },
+    {
+      "module": "JurisLean.JC_Formalization",
+      "target": "JurisLean.JC_Formalization"
+    },
+    {
+      "module": "JurisLean.KernelV3",
+      "target": "JurisLean.KernelV3"
+    },
+    {
+      "module": "JurisLean.LegalIVL",
+      "target": "JurisLean.LegalIVL"
+    },
+    {
+      "module": "JurisLean.LegalIVLWellFormed",
+      "target": "JurisLean.LegalIVLWellFormed"
+    },
+    {
+      "module": "JurisLean.LegalIds",
+      "target": "JurisLean.LegalIds"
+    },
+    {
+      "module": "JurisLean.LegalModelV2",
+      "target": "JurisLean.LegalModelV2"
+    },
+    {
+      "module": "JurisLean.LegalSpec",
+      "target": "JurisLean.LegalSpec"
+    },
+    {
+      "module": "JurisLean.LegalSpecNormalize",
+      "target": "JurisLean.LegalSpecNormalize"
+    },
+    {
+      "module": "JurisLean.LegalSpecToIVL",
+      "target": "JurisLean.LegalSpecToIVL"
+    },
+    {
+      "module": "JurisLean.LegalSpecWellFormed",
+      "target": "JurisLean.LegalSpecWellFormed"
+    },
+    {
+      "module": "JurisLean.LegalSyntax",
+      "target": "JurisLean.LegalSyntax"
+    },
+    {
+      "module": "JurisLean.LegalWellFormed",
+      "target": "JurisLean.LegalWellFormed"
+    },
+    {
+      "module": "JurisLean.Mandate.CaseIsomorphism",
+      "target": "JurisLean.Mandate.CaseIsomorphism"
+    },
+    {
+      "module": "JurisLean.Mandate.CohortInterval",
+      "target": "JurisLean.Mandate.CohortInterval"
+    },
+    {
+      "module": "JurisLean.Mandate.CohortRate",
+      "target": "JurisLean.Mandate.CohortRate"
+    },
+    {
+      "module": "JurisLean.Mandate.DerivedCertificate",
+      "target": "JurisLean.Mandate.DerivedCertificate"
+    },
+    {
+      "module": "JurisLean.Mandate.Disclosure",
+      "target": "JurisLean.Mandate.Disclosure"
+    },
+    {
+      "module": "JurisLean.Mandate.GameTree",
+      "target": "JurisLean.Mandate.GameTree"
+    },
+    {
+      "module": "JurisLean.Mandate.GateTable",
+      "target": "JurisLean.Mandate.GateTable"
+    },
+    {
+      "module": "JurisLean.Mandate.Kernel",
+      "target": "JurisLean.Mandate.Kernel"
+    },
+    {
+      "module": "JurisLean.Mandate.LinearScorer",
+      "target": "JurisLean.Mandate.LinearScorer"
+    },
+    {
+      "module": "JurisLean.Mandate.MatrixGame",
+      "target": "JurisLean.Mandate.MatrixGame"
+    },
+    {
+      "module": "JurisLean.Mandate.MixedPennies",
+      "target": "JurisLean.Mandate.MixedPennies"
+    },
+    {
+      "module": "JurisLean.Mandate.OneShotDeviation",
+      "target": "JurisLean.Mandate.OneShotDeviation"
+    },
+    {
+      "module": "JurisLean.Mandate.PureNash",
+      "target": "JurisLean.Mandate.PureNash"
+    },
+    {
+      "module": "JurisLean.Mandate.ReLUApprox",
+      "target": "JurisLean.Mandate.ReLUApprox"
+    },
+    {
+      "module": "JurisLean.Mandate.ReLUFamily",
+      "target": "JurisLean.Mandate.ReLUFamily"
+    },
+    {
+      "module": "JurisLean.Mandate.RouteDecision",
+      "target": "JurisLean.Mandate.RouteDecision"
+    },
+    {
+      "module": "JurisLean.Mandate.SequentialGames",
+      "target": "JurisLean.Mandate.SequentialGames"
+    },
+    {
+      "module": "JurisLean.Mandate.SourceRank",
+      "target": "JurisLean.Mandate.SourceRank"
+    },
+    {
+      "module": "JurisLean.Mandate.StructureInvariants",
+      "target": "JurisLean.Mandate.StructureInvariants"
+    },
+    {
+      "module": "JurisLean.Mandate.SubstrAdmission",
+      "target": "JurisLean.Mandate.SubstrAdmission"
+    },
+    {
+      "module": "JurisLean.Mandate.TaxSlices",
+      "target": "JurisLean.Mandate.TaxSlices"
+    },
+    {
+      "module": "JurisLean.Mandate.Waterfall",
+      "target": "JurisLean.Mandate.Waterfall"
+    },
+    {
+      "module": "JurisLean.Mandate.ZeroSumSion",
+      "target": "JurisLean.Mandate.ZeroSumSion"
+    },
+    {
+      "module": "JurisLean.Mandate.ZeroSumValue",
+      "target": "JurisLean.Mandate.ZeroSumValue"
+    },
+    {
+      "module": "JurisLean.PermissionConflict",
+      "target": "JurisLean.PermissionConflict"
+    },
+    {
+      "module": "JurisLean.ProposalEnvelopeSpec",
+      "target": "JurisLean.ProposalEnvelopeSpec"
+    },
+    {
+      "module": "JurisLean.ProposalNoninterference",
+      "target": "JurisLean.ProposalNoninterference"
+    },
+    {
+      "module": "JurisLean.ReceiptAuthority",
+      "target": "JurisLean.ReceiptAuthority"
+    },
+    {
+      "module": "JurisLean.SMTWitness",
+      "target": "JurisLean.SMTWitness"
+    },
+    {
+      "module": "JurisLean.SafetyTheorems",
+      "target": "JurisLean.SafetyTheorems"
+    },
+    {
+      "module": "JurisLean.ScratchApi",
+      "target": "JurisLean.ScratchApi"
+    },
+    {
+      "module": "JurisLean.Seams.AdjudicationBridge",
+      "target": "JurisLean.Seams.AdjudicationBridge"
+    },
+    {
+      "module": "JurisLean.Seams.BoundaryBridge5",
+      "target": "JurisLean.Seams.BoundaryBridge5"
+    },
+    {
+      "module": "JurisLean.Seams.BoundaryClosure",
+      "target": "JurisLean.Seams.BoundaryClosure"
+    },
+    {
+      "module": "JurisLean.Seams.BurdenStatutes",
+      "target": "JurisLean.Seams.BurdenStatutes"
+    },
+    {
+      "module": "JurisLean.Seams.CaseInput",
+      "target": "JurisLean.Seams.CaseInput"
+    },
+    {
+      "module": "JurisLean.Seams.ClaimBasis",
+      "target": "JurisLean.Seams.ClaimBasis"
+    },
+    {
+      "module": "JurisLean.Seams.FullProcess",
+      "target": "JurisLean.Seams.FullProcess"
+    },
+    {
+      "module": "JurisLean.Seams.InstitutionalEffects",
+      "target": "JurisLean.Seams.InstitutionalEffects"
+    },
+    {
+      "module": "JurisLean.Seams.LegacyConeBridge",
+      "target": "JurisLean.Seams.LegacyConeBridge"
+    },
+    {
+      "module": "JurisLean.Seams.Limitation",
+      "target": "JurisLean.Seams.Limitation"
+    },
+    {
+      "module": "JurisLean.Seams.PayoffEquilibrium",
+      "target": "JurisLean.Seams.PayoffEquilibrium"
+    },
+    {
+      "module": "JurisLean.Seams.PrecedentFlow",
+      "target": "JurisLean.Seams.PrecedentFlow"
+    },
+    {
+      "module": "JurisLean.Seams.Probability",
+      "target": "JurisLean.Seams.Probability"
+    },
+    {
+      "module": "JurisLean.Seams.ReductionConditions2",
+      "target": "JurisLean.Seams.ReductionConditions2"
+    },
+    {
+      "module": "JurisLean.Seams.Representation",
+      "target": "JurisLean.Seams.Representation"
+    },
+    {
+      "module": "JurisLean.Seams.SanctionInterest",
+      "target": "JurisLean.Seams.SanctionInterest"
+    },
+    {
+      "module": "JurisLean.Seams.SourceNorms",
+      "target": "JurisLean.Seams.SourceNorms"
+    },
+    {
+      "module": "JurisLean.Seams.StatuteChain",
+      "target": "JurisLean.Seams.StatuteChain"
+    },
+    {
+      "module": "JurisLean.Seams.Temporal",
+      "target": "JurisLean.Seams.Temporal"
+    },
+    {
+      "module": "JurisLean.Seams.Transitions",
+      "target": "JurisLean.Seams.Transitions"
+    },
+    {
+      "module": "JurisLean.Seams.Uncertainty",
+      "target": "JurisLean.Seams.Uncertainty"
+    },
+    {
+      "module": "JurisLean.Seams.Unified",
+      "target": "JurisLean.Seams.Unified"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedAdmission",
+      "target": "JurisLean.Seams.UnifiedAdmission"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedAnalysis",
+      "target": "JurisLean.Seams.UnifiedAnalysis"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedArgumentation",
+      "target": "JurisLean.Seams.UnifiedArgumentation"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedBeta",
+      "target": "JurisLean.Seams.UnifiedBeta"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedBetaDomain",
+      "target": "JurisLean.Seams.UnifiedBetaDomain"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedCAD",
+      "target": "JurisLean.Seams.UnifiedCAD"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedCAD2",
+      "target": "JurisLean.Seams.UnifiedCAD2"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedCADCore",
+      "target": "JurisLean.Seams.UnifiedCADCore"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedCalendar",
+      "target": "JurisLean.Seams.UnifiedCalendar"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedComposition",
+      "target": "JurisLean.Seams.UnifiedComposition"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedEquilExist",
+      "target": "JurisLean.Seams.UnifiedEquilExist"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedEvalLayer",
+      "target": "JurisLean.Seams.UnifiedEvalLayer"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedEvents",
+      "target": "JurisLean.Seams.UnifiedEvents"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedFinalization",
+      "target": "JurisLean.Seams.UnifiedFinalization"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedFourteenFamilies",
+      "target": "JurisLean.Seams.UnifiedFourteenFamilies"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedGuards",
+      "target": "JurisLean.Seams.UnifiedGuards"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedHornIT",
+      "target": "JurisLean.Seams.UnifiedHornIT"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedInstance",
+      "target": "JurisLean.Seams.UnifiedInstance"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedLegacy",
+      "target": "JurisLean.Seams.UnifiedLegacy"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedMasterNeedle",
+      "target": "JurisLean.Seams.UnifiedMasterNeedle"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedNeedlesGap05",
+      "target": "JurisLean.Seams.UnifiedNeedlesGap05"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedNeedlesGapLate",
+      "target": "JurisLean.Seams.UnifiedNeedlesGapLate"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedNeedlesGapMid",
+      "target": "JurisLean.Seams.UnifiedNeedlesGapMid"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedNeedlesS0S1",
+      "target": "JurisLean.Seams.UnifiedNeedlesS0S1"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedNeedlesS2",
+      "target": "JurisLean.Seams.UnifiedNeedlesS2"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedNeedlesS3a",
+      "target": "JurisLean.Seams.UnifiedNeedlesS3a"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedNeedlesS3b",
+      "target": "JurisLean.Seams.UnifiedNeedlesS3b"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedNeedlesS4",
+      "target": "JurisLean.Seams.UnifiedNeedlesS4"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedNeedlesS5",
+      "target": "JurisLean.Seams.UnifiedNeedlesS5"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedNeedlesS6S7",
+      "target": "JurisLean.Seams.UnifiedNeedlesS6S7"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedNeedlesTotal",
+      "target": "JurisLean.Seams.UnifiedNeedlesTotal"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedNeedlesXT",
+      "target": "JurisLean.Seams.UnifiedNeedlesXT"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedNeedlesXU",
+      "target": "JurisLean.Seams.UnifiedNeedlesXU"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedNetTrajectory",
+      "target": "JurisLean.Seams.UnifiedNetTrajectory"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedNormFlow",
+      "target": "JurisLean.Seams.UnifiedNormFlow"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedPayoffChain",
+      "target": "JurisLean.Seams.UnifiedPayoffChain"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedPerformance",
+      "target": "JurisLean.Seams.UnifiedPerformance"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedQuantLedger",
+      "target": "JurisLean.Seams.UnifiedQuantLedger"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedQuantileNarrow",
+      "target": "JurisLean.Seams.UnifiedQuantileNarrow"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedQuantities",
+      "target": "JurisLean.Seams.UnifiedQuantities"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedSemantics",
+      "target": "JurisLean.Seams.UnifiedSemantics"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedSummary",
+      "target": "JurisLean.Seams.UnifiedSummary"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedTrajectory",
+      "target": "JurisLean.Seams.UnifiedTrajectory"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedUtility",
+      "target": "JurisLean.Seams.UnifiedUtility"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedW4Behavior",
+      "target": "JurisLean.Seams.UnifiedW4Behavior"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedW4Deviation",
+      "target": "JurisLean.Seams.UnifiedW4Deviation"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedW4Games",
+      "target": "JurisLean.Seams.UnifiedW4Games"
+    },
+    {
+      "module": "JurisLean.Seams.UnifiedW4Interp",
+      "target": "JurisLean.Seams.UnifiedW4Interp"
+    },
+    {
+      "module": "JurisLean.Seams.UniformContinuous",
+      "target": "JurisLean.Seams.UniformContinuous"
+    },
+    {
+      "module": "JurisLean.SolverRouting",
+      "target": "JurisLean.SolverRouting"
+    },
+    {
+      "module": "JurisLean.SourceBundleSpec",
+      "target": "JurisLean.SourceBundleSpec"
+    },
+    {
+      "module": "JurisLean.SourcePathSpec",
+      "target": "JurisLean.SourcePathSpec"
+    },
+    {
+      "module": "JurisLean.SupZeroLemma",
+      "target": "JurisLean.SupZeroLemma"
+    },
+    {
+      "module": "JurisLean.TaintNoninterference",
+      "target": "JurisLean.TaintNoninterference"
+    },
+    {
+      "module": "JurisLean.TemporalApplicability",
+      "target": "JurisLean.TemporalApplicability"
+    },
+    {
+      "module": "JurisLean.TemporalArithmetic",
+      "target": "JurisLean.TemporalArithmetic"
+    },
+    {
+      "module": "JurisLean.TemporalKripke",
+      "target": "JurisLean.TemporalKripke"
+    },
+    {
+      "module": "JurisLean.TranslationRefinement",
+      "target": "JurisLean.TranslationRefinement"
+    },
+    {
+      "module": "JurisLean.TranslationWitness",
+      "target": "JurisLean.TranslationWitness"
+    },
+    {
+      "module": "JurisLean.TypedAttack",
+      "target": "JurisLean.TypedAttack"
+    },
+    {
+      "module": "JurisLean.ULM01NormalForm",
+      "target": "JurisLean.ULM01NormalForm"
+    },
+    {
+      "module": "JurisLean.ULM02Outcome",
+      "target": "JurisLean.ULM02Outcome"
+    },
+    {
+      "module": "JurisLean.ULM03TypedGraph",
+      "target": "JurisLean.ULM03TypedGraph"
+    },
+    {
+      "module": "JurisLean.ULM04Obligations",
+      "target": "JurisLean.ULM04Obligations"
+    },
+    {
+      "module": "JurisLean.ULM05Machine",
+      "target": "JurisLean.ULM05Machine"
+    },
+    {
+      "module": "JurisLean.ULM06FactEvidence",
+      "target": "JurisLean.ULM06FactEvidence"
+    },
+    {
+      "module": "JurisLean.ULM07HornSupport",
+      "target": "JurisLean.ULM07HornSupport"
+    },
+    {
+      "module": "JurisLean.ULM08ArgumentConstruction",
+      "target": "JurisLean.ULM08ArgumentConstruction"
+    },
+    {
+      "module": "JurisLean.ULM09AttackDefeat",
+      "target": "JurisLean.ULM09AttackDefeat"
+    },
+    {
+      "module": "JurisLean.ULM10DungProfiles",
+      "target": "JurisLean.ULM10DungProfiles"
+    },
+    {
+      "module": "JurisLean.ULM11BranchQuery",
+      "target": "JurisLean.ULM11BranchQuery"
+    },
+    {
+      "module": "JurisLean.ULM12Procedure",
+      "target": "JurisLean.ULM12Procedure"
+    },
+    {
+      "module": "JurisLean.ULM13DomainCompositionExact",
+      "target": "JurisLean.ULM13DomainCompositionExact"
+    },
+    {
+      "module": "JurisLean.ULM14CoverageTrust",
+      "target": "JurisLean.ULM14CoverageTrust"
+    },
+    {
+      "module": "JurisLean.ULM15IncrementalEmpiricalBanach",
+      "target": "JurisLean.ULM15IncrementalEmpiricalBanach"
+    },
+    {
+      "module": "JurisLean.ULM16TheoryComposition",
+      "target": "JurisLean.ULM16TheoryComposition"
+    },
+    {
+      "module": "JurisLean.ULMAllTheoremsAxiomAudit",
+      "target": "JurisLean.ULMAllTheoremsAxiomAudit"
+    },
+    {
+      "module": "JurisLean.ULMAxiomAudit",
+      "target": "JurisLean.ULMAxiomAudit"
+    },
+    {
+      "module": "JurisLean.ULMCoreCompAxiomAudit",
+      "target": "JurisLean.ULMCoreCompAxiomAudit"
+    },
+    {
+      "module": "JurisLean.UnifiedModel",
+      "target": "JurisLean.UnifiedModel"
+    },
+    {
+      "module": "JurisLean.UnifiedV2.All",
+      "target": "JurisLean.UnifiedV2.All"
+    },
+    {
+      "module": "JurisLean.UnifiedV2.Audit",
+      "target": "JurisLean.UnifiedV2.Audit"
+    },
+    {
+      "module": "JurisLean.UnifiedV2.Composition",
+      "target": "JurisLean.UnifiedV2.Composition"
+    },
+    {
+      "module": "JurisLean.UnifiedV2.ConcreteBridge",
+      "target": "JurisLean.UnifiedV2.ConcreteBridge"
+    },
+    {
+      "module": "JurisLean.UnifiedV2.FiniteContract",
+      "target": "JurisLean.UnifiedV2.FiniteContract"
+    },
+    {
+      "module": "JurisLean.UnifiedV2.LegalInterfaces",
+      "target": "JurisLean.UnifiedV2.LegalInterfaces"
+    },
+    {
+      "module": "JurisLean.UnifiedV2.Quantified",
+      "target": "JurisLean.UnifiedV2.Quantified"
+    },
+    {
+      "module": "JurisLean.UnifiedV21.All",
+      "target": "JurisLean.UnifiedV21.All"
+    },
+    {
+      "module": "JurisLean.UnifiedV21.Audit",
+      "target": "JurisLean.UnifiedV21.Audit"
+    },
+    {
+      "module": "JurisLean.UnifiedV21.Authority",
+      "target": "JurisLean.UnifiedV21.Authority"
+    },
+    {
+      "module": "JurisLean.UnifiedV21.ConcreteRoot",
+      "target": "JurisLean.UnifiedV21.ConcreteRoot"
+    },
+    {
+      "module": "JurisLean.UnifiedV21.Context",
+      "target": "JurisLean.UnifiedV21.Context"
+    },
+    {
+      "module": "JurisLean.UnifiedV21.Representation",
+      "target": "JurisLean.UnifiedV21.Representation"
+    },
+    {
+      "module": "JurisLean.WeightedSupNorm",
+      "target": "JurisLean.WeightedSupNorm"
+    }
+  ],
+  "removed_modules": [],
+  "scope": "CURRENT_AND_REVERSE_DEPENDENTS_NOT_PROOF_ACCEPTANCE"
+}

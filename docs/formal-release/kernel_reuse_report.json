@@ -1,8 +1,8 @@
 {
  "authority_note": "Static import-graph measurement over the JurisLean package. It says nothing about correctness; it says how much mathematics is shared.",
  "counts": {
-  "carriers_in_package": 3774,
-  "theorem_declarations_in_package": 5192
+  "carriers_in_package": 4014,
+  "theorem_declarations_in_package": 5421
  },
  "genealogy": {
   "carriers_per_theorem": 1.59,
@@ -119,6 +119,17 @@
  },
  "modules_imported_by_5_or_more": {
   "JurisLean.BusinessRoot.Semantics": 6,
+  "JurisLean.Candidates.Final20261021.Authorization": 6,
+  "JurisLean.Candidates.Final20261021.Behavior": 5,
+  "JurisLean.Candidates.Final20261021.Compiler": 5,
+  "JurisLean.Candidates.Final20261021.EvidenceProcedure": 5,
+  "JurisLean.Candidates.Final20261021.Feedback": 5,
+  "JurisLean.Candidates.Final20261021.Interfaces": 23,
+  "JurisLean.Candidates.Final20261021.Learning": 8,
+  "JurisLean.Candidates.Final20261021.Ledger": 5,
+  "JurisLean.Candidates.Final20261021.Probability": 5,
+  "JurisLean.Candidates.Final20261021.RSI": 5,
+  "JurisLean.Candidates.Final20261021.Temporal": 7,
   "JurisLean.External.GameTheory.Concepts.SolutionConcepts": 7,
   "JurisLean.External.GameTheory.Math.PMFProduct": 7,
   "JurisLean.External.GameTheory.Math.Probability": 14,
@@ -137,7 +148,7 @@
   "JurisLean.FullMath.Probability.Conditioning": 6,
   "JurisLean.Genealogy.Part1": 5,
   "JurisLean.HornDefinitions": 6,
-  "JurisLean.HornFixedPoint": 6,
+  "JurisLean.HornFixedPoint": 7,
   "JurisLean.KernelV3": 6,
   "JurisLean.LegalIVL": 8,
   "JurisLean.LegalIds": 25,
@@ -155,7 +166,7 @@
   "JurisLean.WeightedSupNorm": 6,
   "Lean.Elab.Command": 5,
   "Lean.Util.CollectAxioms": 5,
-  "Mathlib": 41,
+  "Mathlib": 42,
   "Mathlib.Data.Fin.Basic": 5,
   "Mathlib.Data.Finset.Basic": 23,
   "Mathlib.Data.Fintype.Basic": 7,
@@ -163,6 +174,6 @@
   "Mathlib.Probability.ProbabilityMassFunction.Constructions": 7,
   "Mathlib.Tactic": 73
  },
- "package_files": 354,
+ "package_files": 378,
  "schema_version": "kernel-reuse-v1"
 }

@@ -1,0 +1,52 @@
+﻿2026-10-22T00:46:56.1478448Z Current runner version: '2.338.0'
+2026-10-22T00:46:56.1513666Z ##[group]Runner Image Provisioner
+2026-10-22T00:46:56.1514939Z Hosted Compute Agent
+2026-10-22T00:46:56.1515961Z Version: 20261015.610
+2026-10-22T00:46:56.1516994Z Commit: 267fdb4e8bbec4ab5ea31367f3a00d5c480c7656
+2026-10-22T00:46:56.1518512Z Build Date: 2026-10-14T17:06:54Z
+2026-10-22T00:46:56.1519664Z Worker ID: {215db59c-ef97-4942-9523-bca4f8ce996e}
+2026-10-22T00:46:56.1520993Z Region: eastus
+2026-10-22T00:46:56.1521972Z Cloud: Azure
+2026-10-22T00:46:56.1522916Z ##[endgroup]
+2026-10-22T00:46:56.1525403Z ##[group]Operating System
+2026-10-22T00:46:56.1526526Z Ubuntu
+2026-10-22T00:46:56.1527874Z 26.04.1
+2026-10-22T00:46:56.1528783Z LTS
+2026-10-22T00:46:56.1530185Z ##[endgroup]
+2026-10-22T00:46:56.1531226Z ##[group]Runner Image
+2026-10-22T00:46:56.1532313Z Image: ubuntu-26.04
+2026-10-22T00:46:56.1533436Z Version: 20261018.168.1
+2026-10-22T00:46:56.1535685Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261018.168/images/ubuntu/Ubuntu2604-Readme.md
+2026-10-22T00:46:56.1538757Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261018.168
+2026-10-22T00:46:56.1540643Z ##[endgroup]
+2026-10-22T00:46:56.1542465Z ##[group]GITHUB_TOKEN Permissions
+2026-10-22T00:46:56.1545363Z Contents: read
+2026-10-22T00:46:56.1546263Z Metadata: read
+2026-10-22T00:46:56.1547546Z ##[endgroup]
+2026-10-22T00:46:56.1550346Z Secret source: Actions
+2026-10-22T00:46:56.1551964Z Cache mode: write
+2026-10-22T00:46:56.1553335Z Prepare workflow directory
+2026-10-22T00:46:56.2125308Z Prepare all required actions
+2026-10-22T00:46:56.2196886Z Getting action download info
+2026-10-22T00:46:56.3624976Z Download action repository 'actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093' (SHA:d3f86a106a0bac45b974a628896c90dbdf5c8093)
+2026-10-22T00:46:56.6530364Z Complete job name: final-gate
+2026-10-22T00:46:56.7212364Z ##[group]Run actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+2026-10-22T00:46:56.7213535Z with:
+2026-10-22T00:46:56.7214050Z   name: release-certificate-run39700447562-attempt1
+2026-10-22T00:46:56.7214686Z   path: certificate
+2026-10-22T00:46:56.7215156Z   merge-multiple: false
+2026-10-22T00:46:56.7215712Z   repository: laubeing-droid/legal-math-modeling
+2026-10-22T00:46:56.7216318Z   run-id: 39700447562
+2026-10-22T00:46:56.7216952Z env:
+2026-10-22T00:46:56.7217629Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:46:56.7218205Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:46:56.7218719Z   PYTHONUTF8: 1
+2026-10-22T00:46:56.7219159Z ##[endgroup]
+2026-10-22T00:46:56.8690680Z Downloading single artifact
+2026-10-22T00:46:56.8805201Z (node:2279) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T00:46:56.8806486Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T00:46:56.9708663Z ##[error]Unable to download artifact(s): Artifact not found for name: release-certificate-run39700447562-attempt1
+        Please ensure that your artifact is not expired and the artifact was uploaded using a compatible version of toolkit/upload-artifact.
+        For more information, visit the GitHub Artifacts FAQ: https://github.com/actions/toolkit/blob/main/packages/artifact/docs/faq.md
+2026-10-22T00:46:56.9965753Z Cleaning up orphan processes
+2026-10-22T00:46:57.0282923Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

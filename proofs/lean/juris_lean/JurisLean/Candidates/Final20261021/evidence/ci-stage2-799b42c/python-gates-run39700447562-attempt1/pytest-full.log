@@ -1,0 +1,364 @@
+........................................................................ [ 10%]
+........................................................................ [ 21%]
+...........................................F...F........................ [ 32%]
+........................................................................ [ 43%]
+.........................................F.............................. [ 54%]
+........................................................................ [ 65%]
+..............................F......................................... [ 75%]
+.................................................F.......F.............. [ 86%]
+.................F...........................F.F................F......F [ 97%]
+F......F........                                                         [100%]
+=================================== FAILURES ===================================
+_______________________ test_the_shape_report_is_current _______________________
+
+    def test_the_shape_report_is_current() -> None:
+        from generate_declaration_shape_report import build, render
+    
+        assert REPORT.exists(), "the declaration shape artifact is missing"
+>       assert REPORT.read_text(encoding="utf-8") == render(build()), (
+                                                            ^^^^^^^
+            "the artifact no longer describes the tracked source; regenerate it"
+        )
+
+tests/spec/test_declaration_shape_report.py:36: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def build() -> dict:
+        pkg: dict[str, int] = {"ALIAS_ONE_LINER": 0, "CLOSED_NO_BINDERS": 0, "theorems": 0}
+        per_file: dict[str, dict[str, int]] = {}
+        for path in tracked_lean():
+            abs_path = Path(path) if Path(path).is_absolute() else ROOT / path
+            rel = abs_path.relative_to(ROOT).as_posix()
+            code = strip_comments(abs_path.read_text(encoding="utf-8"))
+            file_counts = {"ALIAS_ONE_LINER": 0, "CLOSED_NO_BINDERS": 0, "theorems": 0}
+            for _name, block in blocks(code):
+                tags = shape_of(block)
+                pkg["theorems"] += 1
+                file_counts["theorems"] += 1
+                for tag in tags:
+                    pkg[tag] += 1
+                    file_counts[tag] += 1
+            if file_counts["theorems"]:
+                per_file[rel] = file_counts
+        census = json.loads(CENSUS.read_text(encoding="utf-8"))
+        census_total = census["theorem_declarations"]
+        agree = census_total == pkg["theorems"]
+        if not agree:
+>           raise SystemExit(
+                f"scope disagreement: census sees {census_total} theorems, "
+                f"this report sees {pkg['theorems']} -- the two parsers no longer agree"
+            )
+E           SystemExit: scope disagreement: census sees 5043 theorems, this report sees 5272 -- the two parsers no longer agree
+
+scripts/ci/generate_declaration_shape_report.py:156: SystemExit
+_____________ test_the_shape_check_mode_fails_on_a_stale_artifact ______________
+
+tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_the_shape_check_mode_fail0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x78fdb78f3d70>
+
+    def test_the_shape_check_mode_fails_on_a_stale_artifact(tmp_path, monkeypatch) -> None:
+        """Drive the real `--check` entry point over a copy, never the tracked artifact.
+    
+        An earlier version wrote a mutated copy over docs/formal-release/... and restored it in
+        a `finally`, so an interrupted run could leave the repository holding a falsified account.
+        The version after that only compared two strings in memory and was named as if it ran the
+        mode -- a green test that never called `--check`. This redirects the module's output path
+        into a tmp file and asks `main(["--check"])` itself for a verdict, both ways.
+        """
+        import generate_declaration_shape_report as gen
+    
+>       fresh = gen.render(gen.build())
+                           ^^^^^^^^^^^
+
+tests/spec/test_declaration_shape_report.py:119: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+    def build() -> dict:
+        pkg: dict[str, int] = {"ALIAS_ONE_LINER": 0, "CLOSED_NO_BINDERS": 0, "theorems": 0}
+        per_file: dict[str, dict[str, int]] = {}
+        for path in tracked_lean():
+            abs_path = Path(path) if Path(path).is_absolute() else ROOT / path
+            rel = abs_path.relative_to(ROOT).as_posix()
+            code = strip_comments(abs_path.read_text(encoding="utf-8"))
+            file_counts = {"ALIAS_ONE_LINER": 0, "CLOSED_NO_BINDERS": 0, "theorems": 0}
+            for _name, block in blocks(code):
+                tags = shape_of(block)
+                pkg["theorems"] += 1
+                file_counts["theorems"] += 1
+                for tag in tags:
+                    pkg[tag] += 1
+                    file_counts[tag] += 1
+            if file_counts["theorems"]:
+                per_file[rel] = file_counts
+        census = json.loads(CENSUS.read_text(encoding="utf-8"))
+        census_total = census["theorem_declarations"]
+        agree = census_total == pkg["theorems"]
+        if not agree:
+>           raise SystemExit(
+                f"scope disagreement: census sees {census_total} theorems, "
+                f"this report sees {pkg['theorems']} -- the two parsers no longer agree"
+            )
+E           SystemExit: scope disagreement: census sees 5043 theorems, this report sees 5272 -- the two parsers no longer agree
+
+scripts/ci/generate_declaration_shape_report.py:156: SystemExit
+__________ test_the_committed_drafts_are_what_the_generator_produces ___________
+
+    def test_the_committed_drafts_are_what_the_generator_produces() -> None:
+        mod = _load()
+        figures = mod.figures()
+        for path, specs in ((mod.DRAFTS["cn"], mod.cn_specs(figures)),
+                            (mod.DRAFTS["en"], mod.en_specs(figures))):
+            text = path.read_text(encoding="utf-8")
+            for pattern, replacement in specs:
+                text = re.sub(pattern, replacement, text)
+>           assert text == path.read_text(encoding="utf-8"), (
+                f"{path.name} carries an accounting figure that is not the artifact's; run "
+                "`python scripts/rebind_paper_derived_accounting.py --write`"
+            )
+E           AssertionError: paper_cn.md carries an accounting figure that is not the artifact's; run `python scripts/rebind_paper_derived_accounting.py --write`
+E           assert '# 法律形式化的七层责任...I_NOT_RUN`。\n' == '# 法律形式化的七层责任...I_NOT_RUN`。\n'
+E             
+E             Skipping 2564 identical leading characters in diff, use -v to show
+E             Skipping 18361 identical trailing characters in diff, use -v to show
+E             - py`：该账现报 346 / 354 模块在根闭包内、
+E             ?           ^^    ^^
+E             + py`：该账现报 370 / 378 模块在根闭包内、
+E             ?           ^^    ^^
+
+tests/spec/test_paper_accounting_is_generated.py:53: AssertionError
+__________________ test_reports_are_reproducible_from_source ___________________
+
+    def test_reports_are_reproducible_from_source() -> None:
+        proc = subprocess.run([sys.executable, str(TOOL), "--check"], cwd=ROOT,
+                              capture_output=True, text=True)
+>       assert proc.returncode == 0, proc.stdout + proc.stderr
+E       AssertionError: kernel_reuse_report.json is stale
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le...te_structure_and_volume_reports.py', '--check'], returncode=1, stdout='', stderr='kernel_reuse_report.json is stale\n').returncode
+
+tests/spec/test_structure_reports.py:55: AssertionError
+___________________ test_every_quoted_run_id_is_in_the_index ___________________
+
+    def test_every_quoted_run_id_is_in_the_index() -> None:
+        quoted = build_ci_run_index.run_ids_in_markdown()
+        recorded = {str(r["run_id"]) for r in _doc()["runs"]}
+>       assert set(quoted) <= recorded, f"runs quoted without evidence: {sorted(set(quoted) - recorded)}"
+E       AssertionError: runs quoted without evidence: ['38315566085', '38319507523', '39689061670', '39699620705']
+E       assert {'33946211096...9378180', ...} <= {'33946211096...9378180', ...}
+E         
+E         Extra items in the left set:
+E         '38315566085'
+E         '39689061670'
+E         '38319507523'
+E         '39699620705'
+
+tests/test_ci_run_index.py:64: AssertionError
+____________________ test_check_mode_is_offline_and_passes _____________________
+
+    def test_check_mode_is_offline_and_passes() -> None:
+        proc = subprocess.run(
+            [sys.executable, str(TOOL), "--check"], cwd=ROOT,
+            capture_output=True, text=True, encoding="utf-8",
+        )
+>       assert proc.returncode == 0, proc.stdout + proc.stderr
+E       AssertionError: stale index: quoted run ids not in the index: ['38315566085', '38319507523', '39689061670', '39699620705']
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le... stderr="stale index: quoted run ids not in the index: ['38315566085', '38319507523', '39689061670', '39699620705']\n").returncode
+
+tests/test_ci_run_index.py:164: AssertionError
+_______ test_certificate_and_inventory_agree_declaration_by_declaration ________
+
+    def test_certificate_and_inventory_agree_declaration_by_declaration() -> None:
+        """Two release artifacts, one counting rule.
+    
+        The certificate used to report 1847 declarations where the inventory reported
+        1882 for the identical file set: it ignored `@[...]`-prefixed theorems, counted
+        keywords inside comments, and truncated dotted names at the dot. Aggregating the
+        same way is not enough, so this compares the per-file name sets.
+        """
+    
+        manifest = json.loads(
+            (REPO_ROOT / "docs/formal-release/theorem_inventory_v3.json").read_text(encoding="utf-8")
+        )
+        by_path = {f["path"]: f for f in manifest["files"]}
+        inventory = collect_source_inventory(REPO_ROOT)
+    
+>       assert inventory["theorem_declaration_count"] == sum(
+            by_path[s["path"]]["theorem_count"] for s in inventory["sources"]
+        )
+
+tests/test_formal_release_inventory.py:57: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+.0 = <list_iterator object at 0x78fdb761f280>
+
+    assert inventory["theorem_declaration_count"] == sum(
+>       by_path[s["path"]]["theorem_count"] for s in inventory["sources"]
+        ^^^^^^^^^^^^^^^^^^
+    )
+E   KeyError: 'proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean'
+
+tests/test_formal_release_inventory.py:58: KeyError
+________________________ test_check_mode_passes_offline ________________________
+
+    def test_check_mode_passes_offline() -> None:
+        proc = subprocess.run([sys.executable, str(TOOL), "--check"], cwd=ROOT,
+                              capture_output=True, text=True, encoding="utf-8",
+                              errors="replace")
+>       assert proc.returncode == 0, proc.stdout + proc.stderr
+E       AssertionError: files_scanned drift: committed 354, source says 378; regenerate
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le...s.py', '--check'], returncode=1, stdout='', stderr='files_scanned drift: committed 354, source says 378; regenerate\n').returncode
+
+tests/test_statement_duplication_census.py:56: AssertionError
+__________ test_census_counts_and_key_sets_are_recomputed_not_copied ___________
+
+    def test_census_counts_and_key_sets_are_recomputed_not_copied() -> None:
+        """Every published figure and every published key must equal an on-the-spot recount.
+    
+        This replaces `duplicated_statement_types == 8` and `cross_family_statement_types
+        == 0`, which pinned a number rather than the property: the number was right about a
+        wrong measurement.
+        """
+        from build_statement_duplication_census import scan
+    
+        doc = _census()
+        live = scan()
+        for field in ("files_scanned", "statements_read", "distinct_statement_types",
+                      "duplicated_statement_types", "cross_family_statement_types",
+                      "inventory_package_theorems", "headers_missed_by_scanner",
+                      "private_protected_headers_read"):
+>           assert doc[field] == live[field], (
+                f"{field}: the account says {doc[field]}, the source says {live[field]}; "
+                "regenerate rather than editing the account"
+            )
+E           AssertionError: files_scanned: the account says 354, the source says 378; regenerate rather than editing the account
+E           assert 354 == 378
+
+tests/test_statement_duplication_census.py:88: AssertionError
+____________ test_committed_inventory_verifies_against_working_tree ____________
+
+    def test_committed_inventory_verifies_against_working_tree():
+        proc = subprocess.run(
+            [sys.executable, str(GEN), "--verify", str(INVENTORY)],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+>       assert proc.returncode == 0, proc.stdout
+E       AssertionError:   FAIL hash mismatch: proofs/lean/juris_lean/JurisLean.lean
+E         verified files=369 problems=1
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le...de=1, stdout='  FAIL hash mismatch: proofs/lean/juris_lean/JurisLean.lean\nverified files=369 problems=1\n', stderr='').returncode
+
+tests/test_theorem_inventory.py:43: AssertionError
+______________ test_no_counted_declaration_lives_in_a_sorry_body _______________
+
+    def test_no_counted_declaration_lives_in_a_sorry_body():
+        """Qoder audit P0-3: the inventory counted theorems whose bodies said sorry."""
+        import hashlib
+        import re
+        import subprocess
+    
+        doc = load(INVENTORY)
+        offenders = []
+        for entry in doc["files"]:
+            raw = (ROOT / entry["path"]).read_bytes()
+>           assert hashlib.sha256(raw).hexdigest() == entry["sha256"], entry["path"]
+E           AssertionError: proofs/lean/juris_lean/JurisLean.lean
+E           assert '8598ad5ad091...3777d34147399' == 'f3f74a16dac5...34ef48c937f56'
+E             
+E             - f3f74a16dac543c3fcddb52def23a2aefa7a2950fd9d2ea784e34ef48c937f56
+E             + 8598ad5ad09145874a1c3241f031a0f468e1cec5c38eec63c163777d34147399
+
+tests/test_theorem_inventory.py:133: AssertionError
+__________________ test_guard_scan_covers_every_counted_file ___________________
+
+    def test_guard_scan_covers_every_counted_file():
+        """The scan root must reach everything the count covers (audit P1-8)."""
+        import subprocess
+        import sys
+    
+        proc = subprocess.run(
+            [sys.executable, str(ROOT / "scripts" / "scan_lean_guards.py"), "--all-tracked"],
+            cwd=ROOT,
+            capture_output=True,
+            text=True,
+        )
+        assert proc.returncode == 0, proc.stdout + proc.stderr
+        doc = load(INVENTORY)
+>       assert f"{doc['scope_summary']['all_tracked_lean']['file_count']} files" in proc.stdout
+E       AssertionError: assert '369 files' in 'Lean guard scan passed (393 files, scope=all-tracked).\n'
+E        +  where 'Lean guard scan passed (393 files, scope=all-tracked).\n' = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le...ards.py', '--all-tracked'], returncode=0, stdout='Lean guard scan passed (393 files, scope=all-tracked).\n', stderr='').stdout
+
+tests/test_theorem_inventory.py:191: AssertionError
+________________________ test_check_mode_passes_offline ________________________
+
+    def test_check_mode_passes_offline() -> None:
+        proc = subprocess.run(
+            [sys.executable, str(TOOL), "--check"], cwd=ROOT,
+            capture_output=True, text=True, encoding="utf-8", errors="replace",
+        )
+>       assert proc.returncode == 0, proc.stdout + proc.stderr
+E       AssertionError: trivial_proof_census.json is stale
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le.../generate_trivial_proof_census.py', '--check'], returncode=1, stdout='', stderr='trivial_proof_census.json is stale\n').returncode
+
+tests/test_trivial_proof_census.py:82: AssertionError
+=========================== short test summary info ============================
+FAILED tests/spec/test_declaration_shape_report.py::test_the_shape_report_is_current - SystemExit: scope disagreement: census sees 5043 theorems, this report sees 5272 -- the two parsers no longer agree
+FAILED tests/spec/test_declaration_shape_report.py::test_the_shape_check_mode_fails_on_a_stale_artifact - SystemExit: scope disagreement: census sees 5043 theorems, this report sees 5272 -- the two parsers no longer agree
+FAILED tests/spec/test_paper_accounting_is_generated.py::test_the_committed_drafts_are_what_the_generator_produces - AssertionError: paper_cn.md carries an accounting figure that is not the artifact's; run `python scripts/rebind_paper_derived_accounting.py --write`
+assert '# 法律形式化的七层责任...I_NOT_RUN`。\n' == '# 法律形式化的七层责任...I_NOT_RUN`。\n'
+  
+  Skipping 2564 identical leading characters in diff, use -v to show
+  Skipping 18361 identical trailing characters in diff, use -v to show
+  - py`：该账现报 346 / 354 模块在根闭包内、
+  ?           ^^    ^^
+  + py`：该账现报 370 / 378 模块在根闭包内、
+  ?           ^^    ^^
+FAILED tests/spec/test_structure_reports.py::test_reports_are_reproducible_from_source - AssertionError: kernel_reuse_report.json is stale
+  
+assert 1 == 0
+ +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le...te_structure_and_volume_reports.py', '--check'], returncode=1, stdout='', stderr='kernel_reuse_report.json is stale\n').returncode
+FAILED tests/test_ci_run_index.py::test_every_quoted_run_id_is_in_the_index - AssertionError: runs quoted without evidence: ['38315566085', '38319507523', '39689061670', '39699620705']
+assert {'33946211096...9378180', ...} <= {'33946211096...9378180', ...}
+  
+  Extra items in the left set:
+  '38315566085'
+  '39689061670'
+  '38319507523'
+  '39699620705'
+FAILED tests/test_ci_run_index.py::test_check_mode_is_offline_and_passes - AssertionError: stale index: quoted run ids not in the index: ['38315566085', '38319507523', '39689061670', '39699620705']
+  
+assert 1 == 0
+ +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le... stderr="stale index: quoted run ids not in the index: ['38315566085', '38319507523', '39689061670', '39699620705']\n").returncode
+FAILED tests/test_formal_release_inventory.py::test_certificate_and_inventory_agree_declaration_by_declaration - KeyError: 'proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean'
+FAILED tests/test_statement_duplication_census.py::test_check_mode_passes_offline - AssertionError: files_scanned drift: committed 354, source says 378; regenerate
+  
+assert 1 == 0
+ +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le...s.py', '--check'], returncode=1, stdout='', stderr='files_scanned drift: committed 354, source says 378; regenerate\n').returncode
+FAILED tests/test_statement_duplication_census.py::test_census_counts_and_key_sets_are_recomputed_not_copied - AssertionError: files_scanned: the account says 354, the source says 378; regenerate rather than editing the account
+assert 354 == 378
+FAILED tests/test_theorem_inventory.py::test_committed_inventory_verifies_against_working_tree - AssertionError:   FAIL hash mismatch: proofs/lean/juris_lean/JurisLean.lean
+  verified files=369 problems=1
+  
+assert 1 == 0
+ +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le...de=1, stdout='  FAIL hash mismatch: proofs/lean/juris_lean/JurisLean.lean\nverified files=369 problems=1\n', stderr='').returncode
+FAILED tests/test_theorem_inventory.py::test_no_counted_declaration_lives_in_a_sorry_body - AssertionError: proofs/lean/juris_lean/JurisLean.lean
+assert '8598ad5ad091...3777d34147399' == 'f3f74a16dac5...34ef48c937f56'
+  
+  - f3f74a16dac543c3fcddb52def23a2aefa7a2950fd9d2ea784e34ef48c937f56
+  + 8598ad5ad09145874a1c3241f031a0f468e1cec5c38eec63c163777d34147399
+FAILED tests/test_theorem_inventory.py::test_guard_scan_covers_every_counted_file - AssertionError: assert '369 files' in 'Lean guard scan passed (393 files, scope=all-tracked).\n'
+ +  where 'Lean guard scan passed (393 files, scope=all-tracked).\n' = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le...ards.py', '--all-tracked'], returncode=0, stdout='Lean guard scan passed (393 files, scope=all-tracked).\n', stderr='').stdout
+FAILED tests/test_trivial_proof_census.py::test_check_mode_passes_offline - AssertionError: trivial_proof_census.json is stale
+  
+assert 1 == 0
+ +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le.../generate_trivial_proof_census.py', '--check'], returncode=1, stdout='', stderr='trivial_proof_census.json is stale\n').returncode
+13 failed, 651 passed in 105.92s (0:01:45)

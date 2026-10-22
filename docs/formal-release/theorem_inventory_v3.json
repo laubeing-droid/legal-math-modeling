@@ -6049,6 +6049,2543 @@
   {
    "declarations": [
     {
+     "kind": "def",
+     "name": "txRequest"
+    },
+    {
+     "kind": "def",
+     "name": "txEval"
+    },
+    {
+     "kind": "def",
+     "name": "txOpening"
+    },
+    {
+     "kind": "def",
+     "name": "txCommitted"
+    },
+    {
+     "kind": "theorem",
+     "name": "a02_transaction_actual_commit"
+    },
+    {
+     "kind": "theorem",
+     "name": "a02_transaction_actual_replay"
+    },
+    {
+     "kind": "theorem",
+     "name": "n02_cancelled_attempt_no_commit"
+    },
+    {
+     "kind": "theorem",
+     "name": "n07_1_constant_family_not_separating"
+    },
+    {
+     "kind": "theorem",
+     "name": "a07_1_identity_observation_separates"
+    },
+    {
+     "kind": "theorem",
+     "name": "n07_1_retraction_need_not_encode_surjectively"
+    },
+    {
+     "kind": "def",
+     "name": "tag"
+    },
+    {
+     "kind": "def",
+     "name": "gamma"
+    },
+    {
+     "kind": "def",
+     "name": "debt"
+    },
+    {
+     "kind": "def",
+     "name": "payload"
+    },
+    {
+     "kind": "def",
+     "name": "version"
+    },
+    {
+     "kind": "def",
+     "name": "opening"
+    },
+    {
+     "kind": "def",
+     "name": "request"
+    },
+    {
+     "kind": "def",
+     "name": "grant"
+    },
+    {
+     "kind": "def",
+     "name": "grants"
+    },
+    {
+     "kind": "def",
+     "name": "post1"
+    },
+    {
+     "kind": "def",
+     "name": "post2"
+    },
+    {
+     "kind": "theorem",
+     "name": "a_opening_invariant"
+    },
+    {
+     "kind": "theorem",
+     "name": "a_two_actual_commits_preserve_receipts"
+    },
+    {
+     "kind": "theorem",
+     "name": "a_u09_continuous_10_7_7"
+    },
+    {
+     "kind": "theorem",
+     "name": "a_u09_three_observations"
+    },
+    {
+     "kind": "theorem",
+     "name": "n_a1_layer_collapse"
+    },
+    {
+     "kind": "theorem",
+     "name": "n_non_continuous_consume"
+    },
+    {
+     "kind": "theorem",
+     "name": "n_poststate_name_not_binding"
+    },
+    {
+     "kind": "theorem",
+     "name": "a_zero_yes_writes_U"
+    },
+    {
+     "kind": "theorem",
+     "name": "n_unknown_does_not_burn_U"
+    },
+    {
+     "kind": "theorem",
+     "name": "n_burned_by_unknown"
+    },
+    {
+     "kind": "theorem",
+     "name": "n_identity_unknown_no_U"
+    },
+    {
+     "kind": "theorem",
+     "name": "n_applicability_unknown_no_U"
+    },
+    {
+     "kind": "theorem",
+     "name": "n_not_applicable_zero_no_U"
+    },
+    {
+     "kind": "theorem",
+     "name": "n09_1_replay_original_receipt"
+    },
+    {
+     "kind": "theorem",
+     "name": "n09_1_payload_conflict"
+    },
+    {
+     "kind": "theorem",
+     "name": "n09_2_state_conservation_mismatch"
+    },
+    {
+     "kind": "theorem",
+     "name": "n09_3_rounding_basis_missing"
+    },
+    {
+     "kind": "theorem",
+     "name": "n09_4_accrual_not_cash"
+    },
+    {
+     "kind": "theorem",
+     "name": "n09_5_unit_binding_missing"
+    },
+    {
+     "kind": "def",
+     "name": "restWitness"
+    },
+    {
+     "kind": "def",
+     "name": "claimed"
+    },
+    {
+     "kind": "def",
+     "name": "eligible"
+    },
+    {
+     "kind": "def",
+     "name": "refund"
+    },
+    {
+     "kind": "theorem",
+     "name": "a_rest_claim_then_eligibility"
+    },
+    {
+     "kind": "theorem",
+     "name": "n1_premature_cash"
+    },
+    {
+     "kind": "theorem",
+     "name": "n2_auto_full_refund"
+    },
+    {
+     "kind": "theorem",
+     "name": "n3_accrual_cash_collapse"
+    },
+    {
+     "kind": "theorem",
+     "name": "a_restpay_only_n3"
+    },
+    {
+     "kind": "theorem",
+     "name": "n_exact_half_and_currency"
+    },
+    {
+     "kind": "def",
+     "name": "process"
+    },
+    {
+     "kind": "theorem",
+     "name": "n08_2_missing_opportunity"
+    },
+    {
+     "kind": "theorem",
+     "name": "n08_4_timeout_not_lawful_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "a08_insufficient_but_lawfully_closed"
+    },
+    {
+     "kind": "def",
+     "name": "ruleA"
+    },
+    {
+     "kind": "def",
+     "name": "ruleB"
+    },
+    {
+     "kind": "theorem",
+     "name": "a08_event_specific_versions"
+    },
+    {
+     "kind": "theorem",
+     "name": "n08_latest_case_time_wrong_for_first_event"
+    },
+    {
+     "kind": "def",
+     "name": "view"
+    },
+    {
+     "kind": "def",
+     "name": "fit"
+    },
+    {
+     "kind": "def",
+     "name": "checkpoint"
+    },
+    {
+     "kind": "def",
+     "name": "scope"
+    },
+    {
+     "kind": "def",
+     "name": "assessed"
+    },
+    {
+     "kind": "def",
+     "name": "alternative"
+    },
+    {
+     "kind": "def",
+     "name": "input"
+    },
+    {
+     "kind": "theorem",
+     "name": "u00_pipeline_success"
+    },
+    {
+     "kind": "theorem",
+     "name": "u00_pipeline_reject"
+    },
+    {
+     "kind": "theorem",
+     "name": "u00_pipeline_unknown"
+    },
+    {
+     "kind": "theorem",
+     "name": "n_pipeline_score_does_not_authorize"
+    },
+    {
+     "kind": "theorem",
+     "name": "n_pipeline_unresolved_identity"
+    },
+    {
+     "kind": "theorem",
+     "name": "n_pipeline_target_mismatch"
+    },
+    {
+     "kind": "theorem",
+     "name": "n_pipeline_decision_payload_mismatch"
+    },
+    {
+     "kind": "theorem",
+     "name": "n_pipeline_zero_balance_no_external_label"
+    },
+    {
+     "kind": "theorem",
+     "name": "n03_incomplete_fuel_is_not_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "n07_observation_wrong_relation"
+    },
+    {
+     "kind": "def",
+     "name": "disjunctiveRules"
+    },
+    {
+     "kind": "theorem",
+     "name": "n03_must_facts_closure_is_not_robust_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "n03_missing_exception_is_not_positive_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "a02_common_idle_remains_allowed"
+    },
+    {
+     "kind": "theorem",
+     "name": "n10_authorization_binds_full_payload"
+    },
+    {
+     "kind": "theorem",
+     "name": "n04_zero_variance_not_finite_count"
+    },
+    {
+     "kind": "theorem",
+     "name": "n05_raising_score_threshold_increases_risk"
+    },
+    {
+     "kind": "def",
+     "name": "riskyAlternative"
+    },
+    {
+     "kind": "def",
+     "name": "decisionValues"
+    },
+    {
+     "kind": "theorem",
+     "name": "a06_risk_gate_precedes_expected_value"
+    },
+    {
+     "kind": "theorem",
+     "name": "n06_probability_has_no_money_dimension"
+    },
+    {
+     "kind": "theorem",
+     "name": "n06_duplicate_cash_identity"
+    },
+    {
+     "kind": "theorem",
+     "name": "n11_window_not_mature_negative_unknown"
+    },
+    {
+     "kind": "theorem",
+     "name": "n12_support_gap_not_smoothed"
+    },
+    {
+     "kind": "theorem",
+     "name": "n13_absent_is_not_half_probability"
+    },
+    {
+     "kind": "theorem",
+     "name": "n14_evaluated_is_not_loaded"
+    },
+    {
+     "kind": "theorem",
+     "name": "n14_wrong_bytes_do_not_load"
+    },
+    {
+     "kind": "theorem",
+     "name": "n14_self_suggestion_is_not_external_label"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Authorization",
+    "JurisLean.Candidates.Final20261021.Behavior",
+    "JurisLean.Candidates.Final20261021.Compiler",
+    "JurisLean.Candidates.Final20261021.Decision",
+    "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+    "JurisLean.Candidates.Final20261021.Feedback",
+    "JurisLean.Candidates.Final20261021.Harness",
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "JurisLean.Candidates.Final20261021.Learning",
+    "JurisLean.Candidates.Final20261021.Ledger",
+    "JurisLean.Candidates.Final20261021.Pipeline",
+    "JurisLean.Candidates.Final20261021.Policy",
+    "JurisLean.Candidates.Final20261021.Probability",
+    "JurisLean.Candidates.Final20261021.RSI",
+    "JurisLean.Candidates.Final20261021.Representation",
+    "JurisLean.Candidates.Final20261021.Temporal",
+    "JurisLean.Candidates.Final20261021.Trace",
+    "JurisLean.Candidates.Final20261021.Transactions"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
+   "print_axioms_targets": [],
+   "sha256": "9dc7404c5461a24237bcb4e3db5f08234edafc7c728fe98a14871b8d6c0fdd96",
+   "size_bytes": 19920,
+   "theorem_count": 61,
+   "theorem_count_bol_convention": 61
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "Grant"
+    },
+    {
+     "kind": "def",
+     "name": "checkGrant"
+    },
+    {
+     "kind": "def",
+     "name": "authorized"
+    },
+    {
+     "kind": "structure",
+     "name": "Configured"
+    },
+    {
+     "kind": "def",
+     "name": "fresh"
+    },
+    {
+     "kind": "def",
+     "name": "append_and_refresh"
+    },
+    {
+     "kind": "def",
+     "name": "next_eval"
+    },
+    {
+     "kind": "theorem",
+     "name": "u10_1_enable_append_select_refresh_consume"
+    },
+    {
+     "kind": "def",
+     "name": "rootedPermissions"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Compiler",
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "JurisLean.Candidates.Final20261021.Temporal"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean",
+   "print_axioms_targets": [],
+   "sha256": "26bb803bf54f49f6b59edbf33732d115e8b33028509adf248feaf5f021febfc7",
+   "size_bytes": 2774,
+   "theorem_count": 1,
+   "theorem_count_bol_convention": 1
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Acceptance",
+    "JurisLean.Candidates.Final20261021.Authorization",
+    "JurisLean.Candidates.Final20261021.Behavior",
+    "JurisLean.Candidates.Final20261021.Calibration",
+    "JurisLean.Candidates.Final20261021.Compiler",
+    "JurisLean.Candidates.Final20261021.Decision",
+    "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+    "JurisLean.Candidates.Final20261021.Feedback",
+    "JurisLean.Candidates.Final20261021.Harness",
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "JurisLean.Candidates.Final20261021.Iteration",
+    "JurisLean.Candidates.Final20261021.Learning",
+    "JurisLean.Candidates.Final20261021.Ledger",
+    "JurisLean.Candidates.Final20261021.Pipeline",
+    "JurisLean.Candidates.Final20261021.Policy",
+    "JurisLean.Candidates.Final20261021.Probability",
+    "JurisLean.Candidates.Final20261021.Progress",
+    "JurisLean.Candidates.Final20261021.RSI",
+    "JurisLean.Candidates.Final20261021.Representation",
+    "JurisLean.Candidates.Final20261021.Temporal",
+    "JurisLean.Candidates.Final20261021.Trace",
+    "JurisLean.Candidates.Final20261021.Transactions"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.Final20261021.Acceptance.a02_common_idle_remains_allowed",
+    "JurisLean.Candidates.Final20261021.Acceptance.a02_transaction_actual_commit",
+    "JurisLean.Candidates.Final20261021.Acceptance.a02_transaction_actual_replay",
+    "JurisLean.Candidates.Final20261021.Acceptance.a06_risk_gate_precedes_expected_value",
+    "JurisLean.Candidates.Final20261021.Acceptance.a07_1_identity_observation_separates",
+    "JurisLean.Candidates.Final20261021.Acceptance.a08_event_specific_versions",
+    "JurisLean.Candidates.Final20261021.Acceptance.a08_insufficient_but_lawfully_closed",
+    "JurisLean.Candidates.Final20261021.Acceptance.a_opening_invariant",
+    "JurisLean.Candidates.Final20261021.Acceptance.a_rest_claim_then_eligibility",
+    "JurisLean.Candidates.Final20261021.Acceptance.a_restpay_only_n3",
+    "JurisLean.Candidates.Final20261021.Acceptance.a_two_actual_commits_preserve_receipts",
+    "JurisLean.Candidates.Final20261021.Acceptance.a_u09_continuous_10_7_7",
+    "JurisLean.Candidates.Final20261021.Acceptance.a_u09_three_observations",
+    "JurisLean.Candidates.Final20261021.Acceptance.a_zero_yes_writes_U",
+    "JurisLean.Candidates.Final20261021.Acceptance.n02_cancelled_attempt_no_commit",
+    "JurisLean.Candidates.Final20261021.Acceptance.n03_incomplete_fuel_is_not_closure",
+    "JurisLean.Candidates.Final20261021.Acceptance.n03_missing_exception_is_not_positive_witness",
+    "JurisLean.Candidates.Final20261021.Acceptance.n03_must_facts_closure_is_not_robust_closure",
+    "JurisLean.Candidates.Final20261021.Acceptance.n04_zero_variance_not_finite_count",
+    "JurisLean.Candidates.Final20261021.Acceptance.n05_raising_score_threshold_increases_risk",
+    "JurisLean.Candidates.Final20261021.Acceptance.n06_duplicate_cash_identity",
+    "JurisLean.Candidates.Final20261021.Acceptance.n06_probability_has_no_money_dimension",
+    "JurisLean.Candidates.Final20261021.Acceptance.n07_1_constant_family_not_separating",
+    "JurisLean.Candidates.Final20261021.Acceptance.n07_1_retraction_need_not_encode_surjectively",
+    "JurisLean.Candidates.Final20261021.Acceptance.n07_observation_wrong_relation",
+    "JurisLean.Candidates.Final20261021.Acceptance.n08_2_missing_opportunity",
+    "JurisLean.Candidates.Final20261021.Acceptance.n08_4_timeout_not_lawful_closure",
+    "JurisLean.Candidates.Final20261021.Acceptance.n08_latest_case_time_wrong_for_first_event",
+    "JurisLean.Candidates.Final20261021.Acceptance.n09_1_payload_conflict",
+    "JurisLean.Candidates.Final20261021.Acceptance.n09_1_replay_original_receipt",
+    "JurisLean.Candidates.Final20261021.Acceptance.n09_2_state_conservation_mismatch",
+    "JurisLean.Candidates.Final20261021.Acceptance.n09_3_rounding_basis_missing",
+    "JurisLean.Candidates.Final20261021.Acceptance.n09_4_accrual_not_cash",
+    "JurisLean.Candidates.Final20261021.Acceptance.n09_5_unit_binding_missing",
+    "JurisLean.Candidates.Final20261021.Acceptance.n10_authorization_binds_full_payload",
+    "JurisLean.Candidates.Final20261021.Acceptance.n11_window_not_mature_negative_unknown",
+    "JurisLean.Candidates.Final20261021.Acceptance.n12_support_gap_not_smoothed",
+    "JurisLean.Candidates.Final20261021.Acceptance.n13_absent_is_not_half_probability",
+    "JurisLean.Candidates.Final20261021.Acceptance.n14_evaluated_is_not_loaded",
+    "JurisLean.Candidates.Final20261021.Acceptance.n14_self_suggestion_is_not_external_label",
+    "JurisLean.Candidates.Final20261021.Acceptance.n14_wrong_bytes_do_not_load",
+    "JurisLean.Candidates.Final20261021.Acceptance.n1_premature_cash",
+    "JurisLean.Candidates.Final20261021.Acceptance.n2_auto_full_refund",
+    "JurisLean.Candidates.Final20261021.Acceptance.n3_accrual_cash_collapse",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_a1_layer_collapse",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_applicability_unknown_no_U",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_burned_by_unknown",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_exact_half_and_currency",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_identity_unknown_no_U",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_non_continuous_consume",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_not_applicable_zero_no_U",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_decision_payload_mismatch",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_score_does_not_authorize",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_target_mismatch",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_unresolved_identity",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_pipeline_zero_balance_no_external_label",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_poststate_name_not_binding",
+    "JurisLean.Candidates.Final20261021.Acceptance.n_unknown_does_not_burn_U",
+    "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_reject",
+    "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
+    "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_unknown",
+    "JurisLean.Candidates.Final20261021.Authorization.u10_1_enable_append_select_refresh_consume",
+    "JurisLean.Candidates.Final20261021.Behavior.prediction_not_causal_identification",
+    "JurisLean.Candidates.Final20261021.Behavior.transport_composition_changes_effect",
+    "JurisLean.Candidates.Final20261021.Behavior.u11_1_obs_equiv_models_distinct_ATE",
+    "JurisLean.Candidates.Final20261021.Calibration.score_does_not_establish_judgment",
+    "JurisLean.Candidates.Final20261021.Calibration.u05_2_brier_decomposition",
+    "JurisLean.Candidates.Final20261021.Calibration.u05_2_brier_unique_optimum",
+    "JurisLean.Candidates.Final20261021.Calibration.u05_2_selected_risk",
+    "JurisLean.Candidates.Final20261021.Calibration.u05_fail_certificate_not_violation",
+    "JurisLean.Candidates.Final20261021.Compiler.advance_contains",
+    "JurisLean.Candidates.Final20261021.Compiler.advance_sound",
+    "JurisLean.Candidates.Final20261021.Compiler.closed_reflects",
+    "JurisLean.Candidates.Final20261021.Compiler.computed_contains_facts",
+    "JurisLean.Candidates.Final20261021.Compiler.derivable_model",
+    "JurisLean.Candidates.Final20261021.Compiler.u03_1_computed_sound",
+    "JurisLean.Candidates.Final20261021.Compiler.u03_1_relative_soundness",
+    "JurisLean.Candidates.Final20261021.Compiler.u03_2_checked_closure_complete",
+    "JurisLean.Candidates.Final20261021.Compiler.u03_2_relative_completeness",
+    "JurisLean.Candidates.Final20261021.Compiler.u03_finite_kernel_termination",
+    "JurisLean.Candidates.Final20261021.Decision.best_dominates",
+    "JurisLean.Candidates.Final20261021.Decision.best_mem",
+    "JurisLean.Candidates.Final20261021.Decision.best_none",
+    "JurisLean.Candidates.Final20261021.Decision.exact_ledger_bridge",
+    "JurisLean.Candidates.Final20261021.Decision.half_not_truncated",
+    "JurisLean.Candidates.Final20261021.Decision.legal_best_sound",
+    "JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information",
+    "JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer",
+    "JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed",
+    "JurisLean.Candidates.Final20261021.Decision.u06_3_eval_exists",
+    "JurisLean.Candidates.Final20261021.Decision.u06_3_eval_unique",
+    "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_decreasing",
+    "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_equal",
+    "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_increasing",
+    "JurisLean.Candidates.Final20261021.EvidenceProcedure.necessary_exhausted",
+    "JurisLean.Candidates.Final20261021.EvidenceProcedure.u08_3_evidence_four_states",
+    "JurisLean.Candidates.Final20261021.EvidenceProcedure.u08_3_judgment_not_truth",
+    "JurisLean.Candidates.Final20261021.EvidenceProcedure.u08_3_opposition_does_not_erase_support",
+    "JurisLean.Candidates.Final20261021.Feedback.accepted_evidence",
+    "JurisLean.Candidates.Final20261021.Feedback.mismatched_scope_keeps",
+    "JurisLean.Candidates.Final20261021.Feedback.u14_1_conservative_accept",
+    "JurisLean.Candidates.Final20261021.Feedback.u14_2_independent_cluster_two_tail",
+    "JurisLean.Candidates.Final20261021.Feedback.u14_2_independent_cluster_upper_tail",
+    "JurisLean.Candidates.Final20261021.Feedback.u14_2_unequal_cluster_effective_size",
+    "JurisLean.Candidates.Final20261021.Harness.condition_to_global",
+    "JurisLean.Candidates.Final20261021.Harness.risk_union_in_declared_measure",
+    "JurisLean.Candidates.Final20261021.Harness.u02_1_gate_sound_under_Ke",
+    "JurisLean.Candidates.Final20261021.Harness.u02_3_finite_gate_enumeration",
+    "JurisLean.Candidates.Final20261021.Harness.zero_coverage_not_zero_risk",
+    "JurisLean.Candidates.Final20261021.Iteration.two_round_exact_risks",
+    "JurisLean.Candidates.Final20261021.Iteration.u15_1_finite_cumulative_improvement",
+    "JurisLean.Candidates.Final20261021.Iteration.u15_2_preserved_predictions_equal_risk",
+    "JurisLean.Candidates.Final20261021.Iteration.u15_3_two_round_actual_state",
+    "JurisLean.Candidates.Final20261021.Learning.bounded_proxy_exact",
+    "JurisLean.Candidates.Final20261021.Learning.grouped_unit_not_split",
+    "JurisLean.Candidates.Final20261021.Learning.independent_bounded_sum_mgf",
+    "JurisLean.Candidates.Final20261021.Learning.subgaussian_two_tail",
+    "JurisLean.Candidates.Final20261021.Learning.u01_0_bounded_mgf",
+    "JurisLean.Candidates.Final20261021.Learning.u01_0_independent_bounded_two_tail",
+    "JurisLean.Candidates.Final20261021.Learning.u01_0_independent_bounded_upper_tail",
+    "JurisLean.Candidates.Final20261021.Learning.u01_0_zero_width_tail",
+    "JurisLean.Candidates.Final20261021.Learning.u01_1_approximate_erm",
+    "JurisLean.Candidates.Final20261021.Learning.u01_1_fixed_class_tail",
+    "JurisLean.Candidates.Final20261021.Learning.u01_2_label_bridge_pointwise",
+    "JurisLean.Candidates.Final20261021.Ledger.accrue_conserves",
+    "JurisLean.Candidates.Final20261021.Ledger.balance_performance_clamp",
+    "JurisLean.Candidates.Final20261021.Ledger.baseline_afterStream",
+    "JurisLean.Candidates.Final20261021.Ledger.commit_receipt_coherent",
+    "JurisLean.Candidates.Final20261021.Ledger.committed_receipt_arithmetic",
+    "JurisLean.Candidates.Final20261021.Ledger.consume_committed_origin",
+    "JurisLean.Candidates.Final20261021.Ledger.consume_committed_receipts",
+    "JurisLean.Candidates.Final20261021.Ledger.consume_success_is_gated",
+    "JurisLean.Candidates.Final20261021.Ledger.forms_preserved_by_performance",
+    "JurisLean.Candidates.Final20261021.Ledger.guard_none_iff",
+    "JurisLean.Candidates.Final20261021.Ledger.noncommit_does_not_write_U",
+    "JurisLean.Candidates.Final20261021.Ledger.performance_cash_consistent",
+    "JurisLean.Candidates.Final20261021.Ledger.performance_metadata",
+    "JurisLean.Candidates.Final20261021.Ledger.principal_conserves",
+    "JurisLean.Candidates.Final20261021.Ledger.ready_requires_actual_output",
+    "JurisLean.Candidates.Final20261021.Ledger.ready_requires_identity_and_applicability",
+    "JurisLean.Candidates.Final20261021.Ledger.ready_requires_unused",
+    "JurisLean.Candidates.Final20261021.Ledger.rest_claim_no_cash",
+    "JurisLean.Candidates.Final20261021.Ledger.rest_eligibility_no_cash",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_1_afterPayments_clamp",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_1_continuous_consume",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_1_quantity_conservation",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_1_scalar_vector_stream_refinement",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_by_account",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_conservation",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_3_accrual_not_cash",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_3_general_allocation",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_committed_path",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_replay_stable",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_unknown_has_no_certain_poststate",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_unknown_keeps_key",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_writeU_on_committed_applicable",
+    "JurisLean.Candidates.Final20261021.Ledger.u09_zero_pay_yes_in_U",
+    "JurisLean.Candidates.Final20261021.Ledger.validation_none_fields",
+    "JurisLean.Candidates.Final20261021.Ledger.weak_allocation_not_maximal",
+    "JurisLean.Candidates.Final20261021.Ledger.writeoff_conserves",
+    "JurisLean.Candidates.Final20261021.Pipeline.finishPayment_current",
+    "JurisLean.Candidates.Final20261021.Pipeline.finishPayment_outcomes",
+    "JurisLean.Candidates.Final20261021.Pipeline.u00_pipeline_wires_handles",
+    "JurisLean.Candidates.Final20261021.Pipeline.u10_1_authorized_refresh_is_step",
+    "JurisLean.Candidates.Final20261021.Pipeline.u10_2_pipeline_second_post_invariant",
+    "JurisLean.Candidates.Final20261021.Policy.distinguishable_signal_insufficient",
+    "JurisLean.Candidates.Final20261021.Policy.u12_1_finite_ipw",
+    "JurisLean.Candidates.Final20261021.Policy.u12_2_contraction_sufficient",
+    "JurisLean.Candidates.Final20261021.Policy.u12_3_clipped_bias",
+    "JurisLean.Candidates.Final20261021.Policy.u12_4_signal_vs_incentive",
+    "JurisLean.Candidates.Final20261021.Probability.expectation_add",
+    "JurisLean.Candidates.Final20261021.Probability.expectation_const",
+    "JurisLean.Candidates.Final20261021.Probability.expectation_mono",
+    "JurisLean.Candidates.Final20261021.Probability.expectation_sub_bound",
+    "JurisLean.Candidates.Final20261021.Probability.posterior_mass",
+    "JurisLean.Candidates.Final20261021.Probability.tv_symmetric",
+    "JurisLean.Candidates.Final20261021.Probability.u01_2_finite_label_bridge",
+    "JurisLean.Candidates.Final20261021.Probability.u01_3_finite_deployment_distance",
+    "JurisLean.Candidates.Final20261021.Probability.u04_2_enclosed_propagation",
+    "JurisLean.Candidates.Final20261021.Probability.u04_5_new_measurement_not_copy",
+    "JurisLean.Candidates.Final20261021.Progress.multistep_simulation_not_one_step",
+    "JurisLean.Candidates.Final20261021.Progress.two_cycle_has_no_strict_rank",
+    "JurisLean.Candidates.Final20261021.Progress.u10_3_rank_bounds_steps",
+    "JurisLean.Candidates.Final20261021.Progress.u10_3_simulation_length",
+    "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
+    "JurisLean.Candidates.Final20261021.RSI.u13_2_condition_does_not_train",
+    "JurisLean.Candidates.Final20261021.RSI.u13_2_data_frame",
+    "JurisLean.Candidates.Final20261021.RSI.u13_2_personal_frame",
+    "JurisLean.Candidates.Final20261021.RSI.u13_3_representation_transfer",
+    "JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default",
+    "JurisLean.Candidates.Final20261021.Representation.n07_2_incompatible_fiber",
+    "JurisLean.Candidates.Final20261021.Representation.u07_1_retraction_injective",
+    "JurisLean.Candidates.Final20261021.Representation.u07_1_rho_idempotent",
+    "JurisLean.Candidates.Final20261021.Representation.u07_1_section_surjective",
+    "JurisLean.Candidates.Final20261021.Representation.u07_1_separation_monotone",
+    "JurisLean.Candidates.Final20261021.Representation.u07_2_common_fiber_nonempty",
+    "JurisLean.Candidates.Final20261021.Representation.u07_3_projection_unique_under_fixed_binding",
+    "JurisLean.Candidates.Final20261021.Representation.unknown_not_an_identity",
+    "JurisLean.Candidates.Final20261021.Temporal.u08_1_history_stable_under_append_after_cut",
+    "JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable",
+    "JurisLean.Candidates.Final20261021.Temporal.u08_2_finite_compression_reflection",
+    "JurisLean.Candidates.Final20261021.Trace.from_concrete_initial",
+    "JurisLean.Candidates.Final20261021.Trace.initial_invariant",
+    "JurisLean.Candidates.Final20261021.Trace.step_preserves",
+    "JurisLean.Candidates.Final20261021.Trace.u09_1_actual_trace_at_most_once",
+    "JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step",
+    "JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition",
+    "JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves",
+    "JurisLean.Candidates.Final20261021.Trace.used_monotone_path",
+    "JurisLean.Candidates.Final20261021.Trace.used_monotone_step",
+    "JurisLean.Candidates.Final20261021.Transactions.abort_excludes_future_commit",
+    "JurisLean.Candidates.Final20261021.Transactions.abort_excludes_prior_commit",
+    "JurisLean.Candidates.Final20261021.Transactions.at_most_once",
+    "JurisLean.Candidates.Final20261021.Transactions.cancelled_cannot_commit",
+    "JurisLean.Candidates.Final20261021.Transactions.cancelled_excludes_trace_commit",
+    "JurisLean.Candidates.Final20261021.Transactions.cancelled_preserved_step",
+    "JurisLean.Candidates.Final20261021.Transactions.cancelled_preserved_trace",
+    "JurisLean.Candidates.Final20261021.Transactions.commit_receipt_at_end",
+    "JurisLean.Candidates.Final20261021.Transactions.entry_preserved_step",
+    "JurisLean.Candidates.Final20261021.Transactions.entry_preserved_trace",
+    "JurisLean.Candidates.Final20261021.Transactions.noncommit_business_unchanged",
+    "JurisLean.Candidates.Final20261021.Transactions.registered_le_one",
+    "JurisLean.Candidates.Final20261021.Transactions.step_count",
+    "JurisLean.Candidates.Final20261021.Transactions.step_same_version_business",
+    "JurisLean.Candidates.Final20261021.Transactions.step_version_monotone",
+    "JurisLean.Candidates.Final20261021.Transactions.trace_count",
+    "JurisLean.Candidates.Final20261021.Transactions.trace_same_version_business",
+    "JurisLean.Candidates.Final20261021.Transactions.trace_version_monotone",
+    "JurisLean.Candidates.Final20261021.Transactions.u02_2_complete_readset_CAS"
+   ],
+   "sha256": "5455171f9a50c7e1fd5bd7259f2561d72890f13415b0bab1949dcd520ab65193",
+   "size_bytes": 38835,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "CausalModel"
+    },
+    {
+     "kind": "def",
+     "name": "m1"
+    },
+    {
+     "kind": "def",
+     "name": "m2"
+    },
+    {
+     "kind": "def",
+     "name": "indicator"
+    },
+    {
+     "kind": "def",
+     "name": "interventionMean"
+    },
+    {
+     "kind": "def",
+     "name": "ate"
+    },
+    {
+     "kind": "theorem",
+     "name": "u11_1_obs_equiv_models_distinct_ATE"
+    },
+    {
+     "kind": "structure",
+     "name": "MeasurementLog"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_measurement"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_causal_evidence"
+    },
+    {
+     "kind": "theorem",
+     "name": "prediction_not_causal_identification"
+    },
+    {
+     "kind": "theorem",
+     "name": "transport_composition_changes_effect"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Interfaces"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Behavior.lean",
+   "print_axioms_targets": [],
+   "sha256": "d9361c34086a3af857ff05c3362856e226bd38e1c8869b732e14e5cef3821619",
+   "size_bytes": 2469,
+   "theorem_count": 3,
+   "theorem_count_bol_convention": 3
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "bernoulliBrier"
+    },
+    {
+     "kind": "theorem",
+     "name": "u05_2_brier_decomposition"
+    },
+    {
+     "kind": "theorem",
+     "name": "u05_2_brier_unique_optimum"
+    },
+    {
+     "kind": "structure",
+     "name": "BoundPrediction"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_calibration_support_gate"
+    },
+    {
+     "kind": "theorem",
+     "name": "u05_2_selected_risk"
+    },
+    {
+     "kind": "theorem",
+     "name": "u05_fail_certificate_not_violation"
+    },
+    {
+     "kind": "theorem",
+     "name": "score_does_not_establish_judgment"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "JurisLean.Candidates.Final20261021.Learning"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Calibration.lean",
+   "print_axioms_targets": [],
+   "sha256": "6354a26e6e9ffc6714e0c1680aa316283f72c6b66af96da7c42e4eafe4ca2bc0",
+   "size_bytes": 2597,
+   "theorem_count": 5,
+   "theorem_count_bol_convention": 5
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Acceptance",
+    "JurisLean.Candidates.Final20261021.Authorization",
+    "JurisLean.Candidates.Final20261021.AxiomAudit",
+    "JurisLean.Candidates.Final20261021.Behavior",
+    "JurisLean.Candidates.Final20261021.Calibration",
+    "JurisLean.Candidates.Final20261021.Compiler",
+    "JurisLean.Candidates.Final20261021.Decision",
+    "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+    "JurisLean.Candidates.Final20261021.Feedback",
+    "JurisLean.Candidates.Final20261021.Harness",
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "JurisLean.Candidates.Final20261021.Iteration",
+    "JurisLean.Candidates.Final20261021.Learning",
+    "JurisLean.Candidates.Final20261021.Ledger",
+    "JurisLean.Candidates.Final20261021.Pipeline",
+    "JurisLean.Candidates.Final20261021.Policy",
+    "JurisLean.Candidates.Final20261021.Probability",
+    "JurisLean.Candidates.Final20261021.Progress",
+    "JurisLean.Candidates.Final20261021.RSI",
+    "JurisLean.Candidates.Final20261021.Representation",
+    "JurisLean.Candidates.Final20261021.Temporal",
+    "JurisLean.Candidates.Final20261021.Trace",
+    "JurisLean.Candidates.Final20261021.Transactions"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/CIAll.lean",
+   "print_axioms_targets": [],
+   "sha256": "2e201c30fd90fc11cddb7c6b1d018611c5831021216222e4b43a3a0b6231309f",
+   "size_bytes": 1197,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "Rule"
+    },
+    {
+     "kind": "inductive",
+     "name": "Derives"
+    },
+    {
+     "kind": "def",
+     "name": "Models"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_1_relative_soundness"
+    },
+    {
+     "kind": "theorem",
+     "name": "derivable_model"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_2_relative_completeness"
+    },
+    {
+     "kind": "def",
+     "name": "advance"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_rule_input"
+    },
+    {
+     "kind": "theorem",
+     "name": "advance_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_1_computed_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "advance_contains"
+    },
+    {
+     "kind": "theorem",
+     "name": "computed_contains_facts"
+    },
+    {
+     "kind": "def",
+     "name": "closed"
+    },
+    {
+     "kind": "theorem",
+     "name": "closed_reflects"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_checked_rule_input"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_2_checked_closure_complete"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_finite_kernel_termination"
+    },
+    {
+     "kind": "structure",
+     "name": "SupportedAtom"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_fact_checker"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "JurisLean.HornFixedPoint"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Compiler.lean",
+   "print_axioms_targets": [],
+   "sha256": "97fe95e5c6ac94fefb8ca7f1066a84c7f8370cbe261909c3a06ab16256e32559",
+   "size_bytes": 6847,
+   "theorem_count": 10,
+   "theorem_count_bol_convention": 10
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "best"
+    },
+    {
+     "kind": "theorem",
+     "name": "best_none"
+    },
+    {
+     "kind": "theorem",
+     "name": "best_mem"
+    },
+    {
+     "kind": "theorem",
+     "name": "best_dominates"
+    },
+    {
+     "kind": "def",
+     "name": "legalBest"
+    },
+    {
+     "kind": "theorem",
+     "name": "legal_best_sound"
+    },
+    {
+     "kind": "inductive",
+     "name": "ExactExpr"
+    },
+    {
+     "kind": "def",
+     "name": "evalExact"
+    },
+    {
+     "kind": "inductive",
+     "name": "Evaluates"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_3_eval_exists"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_3_eval_unique"
+    },
+    {
+     "kind": "structure",
+     "name": "TypedValue"
+    },
+    {
+     "kind": "def",
+     "name": "addValues"
+    },
+    {
+     "kind": "def",
+     "name": "mulValues"
+    },
+    {
+     "kind": "def",
+     "name": "ledgerAmount"
+    },
+    {
+     "kind": "theorem",
+     "name": "exact_ledger_bridge"
+    },
+    {
+     "kind": "theorem",
+     "name": "half_not_truncated"
+    },
+    {
+     "kind": "structure",
+     "name": "OutcomeValue"
+    },
+    {
+     "kind": "structure",
+     "name": "Alternative"
+    },
+    {
+     "kind": "structure",
+     "name": "DecisionIR"
+    },
+    {
+     "kind": "def",
+     "name": "evaluate"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_feasible_policy"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_decision"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_3_decision_respects_allowed"
+    },
+    {
+     "kind": "def",
+     "name": "net"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_4_threshold_increasing"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_4_threshold_decreasing"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_4_threshold_equal"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_2_approx_equilibrium_transfer"
+    },
+    {
+     "kind": "def",
+     "name": "policyScore"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_1_value_of_free_information"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "JurisLean.Candidates.Final20261021.Probability"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+   "print_axioms_targets": [],
+   "sha256": "7766ed88dfd798a0e1527122cc558870f0b3c395d72e086d7acbef163f8eee3b",
+   "size_bytes": 9745,
+   "theorem_count": 14,
+   "theorem_count_bol_convention": 14
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "EvidenceItem"
+    },
+    {
+     "kind": "def",
+     "name": "usable"
+    },
+    {
+     "kind": "def",
+     "name": "classify"
+    },
+    {
+     "kind": "theorem",
+     "name": "u08_3_evidence_four_states"
+    },
+    {
+     "kind": "def",
+     "name": "judgment"
+    },
+    {
+     "kind": "def",
+     "name": "Truth"
+    },
+    {
+     "kind": "structure",
+     "name": "Opportunity"
+    },
+    {
+     "kind": "structure",
+     "name": "ProcessInput"
+    },
+    {
+     "kind": "def",
+     "name": "terminal"
+    },
+    {
+     "kind": "def",
+     "name": "covered"
+    },
+    {
+     "kind": "def",
+     "name": "exhausted"
+    },
+    {
+     "kind": "def",
+     "name": "procedure"
+    },
+    {
+     "kind": "theorem",
+     "name": "necessary_exhausted"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_judgment_and_process"
+    },
+    {
+     "kind": "def",
+     "name": "forgedEvidence"
+    },
+    {
+     "kind": "theorem",
+     "name": "u08_3_judgment_not_truth"
+    },
+    {
+     "kind": "theorem",
+     "name": "u08_3_opposition_does_not_erase_support"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Interfaces"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/EvidenceProcedure.lean",
+   "print_axioms_targets": [],
+   "sha256": "976323d18a0655ea70f4c1a30f36bc41a0d38b598de5dd7468825fff3fcddc2a",
+   "size_bytes": 3719,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "Scope"
+    },
+    {
+     "kind": "structure",
+     "name": "Assessed"
+    },
+    {
+     "kind": "inductive",
+     "name": "Verdict"
+    },
+    {
+     "kind": "def",
+     "name": "consider"
+    },
+    {
+     "kind": "theorem",
+     "name": "mismatched_scope_keeps"
+    },
+    {
+     "kind": "theorem",
+     "name": "accepted_evidence"
+    },
+    {
+     "kind": "theorem",
+     "name": "u14_1_conservative_accept"
+    },
+    {
+     "kind": "inductive",
+     "name": "Lifecycle"
+    },
+    {
+     "kind": "def",
+     "name": "loadAccepted"
+    },
+    {
+     "kind": "inductive",
+     "name": "LabelOrigin"
+    },
+    {
+     "kind": "structure",
+     "name": "Label"
+    },
+    {
+     "kind": "structure",
+     "name": "LabelStore"
+    },
+    {
+     "kind": "def",
+     "name": "addLabel"
+    },
+    {
+     "kind": "theorem",
+     "name": "u14_2_independent_cluster_upper_tail"
+    },
+    {
+     "kind": "theorem",
+     "name": "u14_2_independent_cluster_two_tail"
+    },
+    {
+     "kind": "theorem",
+     "name": "u14_2_unequal_cluster_effective_size"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Authorization",
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "JurisLean.Candidates.Final20261021.Learning",
+    "JurisLean.Candidates.Final20261021.RSI"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Feedback.lean",
+   "print_axioms_targets": [],
+   "sha256": "4d46e0db7b22731d5308270c6802adb05856b53e162c7e507dfb93ad561a2cd6",
+   "size_bytes": 7276,
+   "theorem_count": 6,
+   "theorem_count_bol_convention": 6
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "Safe"
+    },
+    {
+     "kind": "theorem",
+     "name": "u02_1_gate_sound_under_Ke"
+    },
+    {
+     "kind": "def",
+     "name": "tableSafe"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_harness_gate"
+    },
+    {
+     "kind": "theorem",
+     "name": "u02_3_finite_gate_enumeration"
+    },
+    {
+     "kind": "def",
+     "name": "conditionalRisk"
+    },
+    {
+     "kind": "theorem",
+     "name": "zero_coverage_not_zero_risk"
+    },
+    {
+     "kind": "theorem",
+     "name": "risk_union_in_declared_measure"
+    },
+    {
+     "kind": "theorem",
+     "name": "condition_to_global"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Interfaces"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Harness.lean",
+   "print_axioms_targets": [],
+   "sha256": "5a767df0a9bf8632feb63366cc32c27b1242c32edd21b789b159a40df4f045c0",
+   "size_bytes": 3555,
+   "theorem_count": 5,
+   "theorem_count_bol_convention": 5
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "CaseId"
+    },
+    {
+     "kind": "structure",
+     "name": "SourceRef"
+    },
+    {
+     "kind": "structure",
+     "name": "EventId"
+    },
+    {
+     "kind": "structure",
+     "name": "PaymentId"
+    },
+    {
+     "kind": "structure",
+     "name": "RelationId"
+    },
+    {
+     "kind": "structure",
+     "name": "AttemptId"
+    },
+    {
+     "kind": "structure",
+     "name": "MeasurementId"
+    },
+    {
+     "kind": "structure",
+     "name": "RecordId"
+    },
+    {
+     "kind": "structure",
+     "name": "PartyId"
+    },
+    {
+     "kind": "inductive",
+     "name": "ObjectId"
+    },
+    {
+     "kind": "structure",
+     "name": "LawDate"
+    },
+    {
+     "kind": "structure",
+     "name": "Instant"
+    },
+    {
+     "kind": "structure",
+     "name": "DateInterpretation"
+    },
+    {
+     "kind": "structure",
+     "name": "AmountTag"
+    },
+    {
+     "kind": "structure",
+     "name": "Amount"
+    },
+    {
+     "kind": "structure",
+     "name": "Gamma"
+    },
+    {
+     "kind": "inductive",
+     "name": "Applicable"
+    },
+    {
+     "kind": "inductive",
+     "name": "Judgment"
+    },
+    {
+     "kind": "inductive",
+     "name": "Procedure"
+    },
+    {
+     "kind": "inductive",
+     "name": "Error"
+    },
+    {
+     "kind": "inductive",
+     "name": "Result"
+    },
+    {
+     "kind": "inductive",
+     "name": "TxResult"
+    },
+    {
+     "kind": "structure",
+     "name": "PostStateHandle"
+    },
+    {
+     "kind": "structure",
+     "name": "DebtRecord"
+    },
+    {
+     "kind": "structure",
+     "name": "CashEvent"
+    },
+    {
+     "kind": "structure",
+     "name": "PaymentPayload"
+    },
+    {
+     "kind": "structure",
+     "name": "PaymentRequest"
+    },
+    {
+     "kind": "inductive",
+     "name": "LogicalLayer"
+    }
+   ],
+   "imports": [
+    "Mathlib"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Interfaces.lean",
+   "print_axioms_targets": [],
+   "sha256": "d2f75ae7bbbcf409811598fa7f65626880388fb98ff464418cda1263ceec9b3b",
+   "size_bytes": 5140,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
+     "name": "RiskTrace"
+    },
+    {
+     "kind": "theorem",
+     "name": "u15_1_finite_cumulative_improvement"
+    },
+    {
+     "kind": "theorem",
+     "name": "u15_2_preserved_predictions_equal_risk"
+    },
+    {
+     "kind": "def",
+     "name": "exactRisk"
+    },
+    {
+     "kind": "theorem",
+     "name": "two_round_exact_risks"
+    },
+    {
+     "kind": "def",
+     "name": "twoRounds"
+    },
+    {
+     "kind": "theorem",
+     "name": "u15_3_two_round_actual_state"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Feedback",
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "JurisLean.Candidates.Final20261021.Learning",
+    "JurisLean.Candidates.Final20261021.Probability"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Iteration.lean",
+   "print_axioms_targets": [],
+   "sha256": "48e5d7ecc1ef78752a67dff73e307f3ded58c1d8cab742e9ffbf7ddf2bfb11ea",
+   "size_bytes": 2066,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "u01_0_bounded_mgf"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_0_independent_bounded_upper_tail"
+    },
+    {
+     "kind": "theorem",
+     "name": "subgaussian_two_tail"
+    },
+    {
+     "kind": "theorem",
+     "name": "independent_bounded_sum_mgf"
+    },
+    {
+     "kind": "theorem",
+     "name": "bounded_proxy_exact"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_0_independent_bounded_two_tail"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_0_zero_width_tail"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_1_fixed_class_tail"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_1_approximate_erm"
+    },
+    {
+     "kind": "def",
+     "name": "zeroOne"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_2_label_bridge_pointwise"
+    },
+    {
+     "kind": "structure",
+     "name": "FitContract"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_fit_contract"
+    },
+    {
+     "kind": "theorem",
+     "name": "grouped_unit_not_split"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "Mathlib.Probability.Moments.SubGaussian"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Learning.lean",
+   "print_axioms_targets": [],
+   "sha256": "010b06c0b9f875badc6ee7b31356346a6943b9a013f36896e281e4070c191fad",
+   "size_bytes": 7893,
+   "theorem_count": 11,
+   "theorem_count_bol_convention": 11
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "Receipt"
+    },
+    {
+     "kind": "structure",
+     "name": "RestDebt"
+    },
+    {
+     "kind": "structure",
+     "name": "State"
+    },
+    {
+     "kind": "def",
+     "name": "balance"
+    },
+    {
+     "kind": "def",
+     "name": "forms"
+    },
+    {
+     "kind": "def",
+     "name": "quantity"
+    },
+    {
+     "kind": "def",
+     "name": "Conserves"
+    },
+    {
+     "kind": "def",
+     "name": "cashTotal"
+    },
+    {
+     "kind": "def",
+     "name": "CashConsistent"
+    },
+    {
+     "kind": "def",
+     "name": "performance"
+    },
+    {
+     "kind": "theorem",
+     "name": "forms_preserved_by_performance"
+    },
+    {
+     "kind": "theorem",
+     "name": "performance_metadata"
+    },
+    {
+     "kind": "theorem",
+     "name": "performance_cash_consistent"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_1_quantity_conservation"
+    },
+    {
+     "kind": "def",
+     "name": "afterPayments"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_1_continuous_consume"
+    },
+    {
+     "kind": "def",
+     "name": "accrue"
+    },
+    {
+     "kind": "def",
+     "name": "addPrincipal"
+    },
+    {
+     "kind": "def",
+     "name": "writeOff"
+    },
+    {
+     "kind": "theorem",
+     "name": "accrue_conserves"
+    },
+    {
+     "kind": "theorem",
+     "name": "principal_conserves"
+    },
+    {
+     "kind": "theorem",
+     "name": "writeoff_conserves"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_3_accrual_not_cash"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_3_general_allocation"
+    },
+    {
+     "kind": "theorem",
+     "name": "weak_allocation_not_maximal"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_2_cash_conservation"
+    },
+    {
+     "kind": "def",
+     "name": "cashVector"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_2_cash_by_account"
+    },
+    {
+     "kind": "def",
+     "name": "lookupReceipt"
+    },
+    {
+     "kind": "def",
+     "name": "validationError"
+    },
+    {
+     "kind": "def",
+     "name": "commitPayment"
+    },
+    {
+     "kind": "def",
+     "name": "ReceiptArithmetic"
+    },
+    {
+     "kind": "def",
+     "name": "ReceiptCoherent"
+    },
+    {
+     "kind": "theorem",
+     "name": "committed_receipt_arithmetic"
+    },
+    {
+     "kind": "theorem",
+     "name": "commit_receipt_coherent"
+    },
+    {
+     "kind": "inductive",
+     "name": "Submission"
+    },
+    {
+     "kind": "inductive",
+     "name": "Outcome"
+    },
+    {
+     "kind": "def",
+     "name": "Outcome.post"
+    },
+    {
+     "kind": "def",
+     "name": "Outcome.acknowledgedUsed"
+    },
+    {
+     "kind": "theorem",
+     "name": "noncommit_does_not_write_U"
+    },
+    {
+     "kind": "def",
+     "name": "consume_ext"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_writeU_on_committed_applicable"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_committed_path"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_zero_pay_yes_in_U"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_unknown_has_no_certain_poststate"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_unknown_keeps_key"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_replay_stable"
+    },
+    {
+     "kind": "theorem",
+     "name": "guard_none_iff"
+    },
+    {
+     "kind": "theorem",
+     "name": "validation_none_fields"
+    },
+    {
+     "kind": "theorem",
+     "name": "ready_requires_identity_and_applicability"
+    },
+    {
+     "kind": "theorem",
+     "name": "ready_requires_unused"
+    },
+    {
+     "kind": "theorem",
+     "name": "ready_requires_actual_output"
+    },
+    {
+     "kind": "theorem",
+     "name": "consume_committed_origin"
+    },
+    {
+     "kind": "theorem",
+     "name": "consume_committed_receipts"
+    },
+    {
+     "kind": "theorem",
+     "name": "consume_success_is_gated"
+    },
+    {
+     "kind": "structure",
+     "name": "RestClaimWitness"
+    },
+    {
+     "kind": "def",
+     "name": "RestClaim"
+    },
+    {
+     "kind": "def",
+     "name": "ExecEligible"
+    },
+    {
+     "kind": "def",
+     "name": "RestPay"
+    },
+    {
+     "kind": "theorem",
+     "name": "rest_claim_no_cash"
+    },
+    {
+     "kind": "theorem",
+     "name": "rest_eligibility_no_cash"
+    },
+    {
+     "kind": "def",
+     "name": "auditPerformanceLayers"
+    },
+    {
+     "kind": "def",
+     "name": "auditUnknownReport"
+    },
+    {
+     "kind": "def",
+     "name": "auditAccrualReport"
+    },
+    {
+     "kind": "def",
+     "name": "auditReceipt"
+    },
+    {
+     "kind": "def",
+     "name": "displayMinor"
+    },
+    {
+     "kind": "theorem",
+     "name": "baseline_afterStream"
+    },
+    {
+     "kind": "theorem",
+     "name": "balance_performance_clamp"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_1_afterPayments_clamp"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_1_scalar_vector_stream_refinement"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "JurisLean.Candidates.Final20261021.Temporal",
+    "JurisLean.Seams.UnifiedQuantLedger"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean",
+   "print_axioms_targets": [],
+   "sha256": "dc0af65c029f52e56c80459413d778231524183cbc830ab9e151f79e9a6e1997",
+   "size_bytes": 30336,
+   "theorem_count": 36,
+   "theorem_count_bol_convention": 36
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
+     "name": "Exit"
+    },
+    {
+     "kind": "structure",
+     "name": "PaymentRun"
+    },
+    {
+     "kind": "def",
+     "name": "finishPayment"
+    },
+    {
+     "kind": "theorem",
+     "name": "finishPayment_outcomes"
+    },
+    {
+     "kind": "theorem",
+     "name": "finishPayment_current"
+    },
+    {
+     "kind": "structure",
+     "name": "RefreshInput"
+    },
+    {
+     "kind": "def",
+     "name": "refresh"
+    },
+    {
+     "kind": "theorem",
+     "name": "u10_1_authorized_refresh_is_step"
+    },
+    {
+     "kind": "def",
+     "name": "executePayments"
+    },
+    {
+     "kind": "theorem",
+     "name": "u00_pipeline_wires_handles"
+    },
+    {
+     "kind": "theorem",
+     "name": "u10_2_pipeline_second_post_invariant"
+    },
+    {
+     "kind": "def",
+     "name": "interpretPayment"
+    },
+    {
+     "kind": "def",
+     "name": "checkFacts"
+    },
+    {
+     "kind": "structure",
+     "name": "Input"
+    },
+    {
+     "kind": "structure",
+     "name": "Output"
+    },
+    {
+     "kind": "def",
+     "name": "stop"
+    },
+    {
+     "kind": "def",
+     "name": "runClosed"
+    },
+    {
+     "kind": "def",
+     "name": "runBound"
+    },
+    {
+     "kind": "def",
+     "name": "run"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Authorization",
+    "JurisLean.Candidates.Final20261021.Behavior",
+    "JurisLean.Candidates.Final20261021.Calibration",
+    "JurisLean.Candidates.Final20261021.Compiler",
+    "JurisLean.Candidates.Final20261021.Decision",
+    "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+    "JurisLean.Candidates.Final20261021.Feedback",
+    "JurisLean.Candidates.Final20261021.Harness",
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "JurisLean.Candidates.Final20261021.Iteration",
+    "JurisLean.Candidates.Final20261021.Learning",
+    "JurisLean.Candidates.Final20261021.Ledger",
+    "JurisLean.Candidates.Final20261021.Policy",
+    "JurisLean.Candidates.Final20261021.RSI",
+    "JurisLean.Candidates.Final20261021.Representation",
+    "JurisLean.Candidates.Final20261021.Temporal",
+    "JurisLean.Candidates.Final20261021.Trace"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Pipeline.lean",
+   "print_axioms_targets": [],
+   "sha256": "885c69582ea1dedbc98be512744ba98f3f84360a8372dd983c0192c287484972",
+   "size_bytes": 14906,
+   "theorem_count": 5,
+   "theorem_count_bol_convention": 5
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "u12_1_finite_ipw"
+    },
+    {
+     "kind": "theorem",
+     "name": "u12_3_clipped_bias"
+    },
+    {
+     "kind": "theorem",
+     "name": "u12_2_contraction_sufficient"
+    },
+    {
+     "kind": "theorem",
+     "name": "u12_4_signal_vs_incentive"
+    },
+    {
+     "kind": "theorem",
+     "name": "distinguishable_signal_insufficient"
+    },
+    {
+     "kind": "structure",
+     "name": "PolicyRequest"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_off_policy_value"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "Mathlib.Topology.MetricSpace.Contracting"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Policy.lean",
+   "print_axioms_targets": [],
+   "sha256": "b76cd45a1b3acbc928227f86a01832ecc78717d1e53a657df18a183260e56eb4",
+   "size_bytes": 3091,
+   "theorem_count": 5,
+   "theorem_count_bol_convention": 5
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "FiniteLaw"
+    },
+    {
+     "kind": "def",
+     "name": "expectation"
+    },
+    {
+     "kind": "theorem",
+     "name": "expectation_mono"
+    },
+    {
+     "kind": "theorem",
+     "name": "expectation_add"
+    },
+    {
+     "kind": "theorem",
+     "name": "expectation_const"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_2_finite_label_bridge"
+    },
+    {
+     "kind": "def",
+     "name": "normalize"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_probability_model"
+    },
+    {
+     "kind": "theorem",
+     "name": "posterior_mass"
+    },
+    {
+     "kind": "def",
+     "name": "totalVariation"
+    },
+    {
+     "kind": "theorem",
+     "name": "tv_symmetric"
+    },
+    {
+     "kind": "theorem",
+     "name": "expectation_sub_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_3_finite_deployment_distance"
+    },
+    {
+     "kind": "theorem",
+     "name": "u04_2_enclosed_propagation"
+    },
+    {
+     "kind": "inductive",
+     "name": "EffectiveCount"
+    },
+    {
+     "kind": "def",
+     "name": "u04_4_variance_equivalent"
+    },
+    {
+     "kind": "structure",
+     "name": "Measurement"
+    },
+    {
+     "kind": "theorem",
+     "name": "u04_5_new_measurement_not_copy"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "JurisLean.Candidates.Final20261021.Learning"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean",
+   "print_axioms_targets": [],
+   "sha256": "e033e94d174098ab41bf2287f5bcc5f9b46502d8f98e3366b78410f4e19c3e77",
+   "size_bytes": 5759,
+   "theorem_count": 10,
+   "theorem_count_bol_convention": 10
+  },
+  {
+   "declarations": [
+    {
+     "kind": "inductive",
+     "name": "RankedPath"
+    },
+    {
+     "kind": "theorem",
+     "name": "u10_3_rank_bounds_steps"
+    },
+    {
+     "kind": "theorem",
+     "name": "u10_3_simulation_length"
+    },
+    {
+     "kind": "theorem",
+     "name": "multistep_simulation_not_one_step"
+    },
+    {
+     "kind": "theorem",
+     "name": "two_cycle_has_no_strict_rank"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Interfaces"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Progress.lean",
+   "print_axioms_targets": [],
+   "sha256": "49bd5a846721d99f4c70c363475f522ea0f71618fa661ea024e519ce93fba442",
+   "size_bytes": 1214,
+   "theorem_count": 4,
+   "theorem_count_bol_convention": 4
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
+     "name": "u07_1_retraction_injective"
+    },
+    {
+     "kind": "theorem",
+     "name": "u07_1_section_surjective"
+    },
+    {
+     "kind": "theorem",
+     "name": "u07_1_rho_idempotent"
+    },
+    {
+     "kind": "def",
+     "name": "Separates"
+    },
+    {
+     "kind": "theorem",
+     "name": "u07_1_separation_monotone"
+    },
+    {
+     "kind": "theorem",
+     "name": "u07_2_common_fiber_nonempty"
+    },
+    {
+     "kind": "theorem",
+     "name": "n07_2_incompatible_fiber"
+    },
+    {
+     "kind": "inductive",
+     "name": "HistoryEvent"
+    },
+    {
+     "kind": "structure",
+     "name": "SourceView"
+    },
+    {
+     "kind": "structure",
+     "name": "PaymentRow"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_source_view"
+    },
+    {
+     "kind": "def",
+     "name": "selectedPayload"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_binding"
+    },
+    {
+     "kind": "theorem",
+     "name": "u07_3_projection_unique_under_fixed_binding"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_common_model"
+    },
+    {
+     "kind": "def",
+     "name": "InterpretedSame"
+    },
+    {
+     "kind": "theorem",
+     "name": "unknown_not_an_identity"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Interfaces"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Representation.lean",
+   "print_axioms_targets": [],
+   "sha256": "7efed1d990620b372012b1fec4f26b797d448fb26fe69351200c2e3bb33029aa",
+   "size_bytes": 4327,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "Checkpoint"
+    },
+    {
+     "kind": "structure",
+     "name": "State"
+    },
+    {
+     "kind": "def",
+     "name": "updatePersonal"
+    },
+    {
+     "kind": "def",
+     "name": "appendData"
+    },
+    {
+     "kind": "def",
+     "name": "conditionalEstimate"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_rule_service"
+    },
+    {
+     "kind": "theorem",
+     "name": "u13_1_noninterference"
+    },
+    {
+     "kind": "theorem",
+     "name": "u13_2_personal_frame"
+    },
+    {
+     "kind": "inductive",
+     "name": "Update"
+    },
+    {
+     "kind": "def",
+     "name": "prepareUpdate"
+    },
+    {
+     "kind": "theorem",
+     "name": "u13_2_condition_does_not_train"
+    },
+    {
+     "kind": "theorem",
+     "name": "u13_2_data_frame"
+    },
+    {
+     "kind": "theorem",
+     "name": "u13_3_representation_transfer"
+    },
+    {
+     "kind": "structure",
+     "name": "PredictionRequest"
+    },
+    {
+     "kind": "def",
+     "name": "checkpointMatches"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_checkpoint_service"
+    },
+    {
+     "kind": "theorem",
+     "name": "u13_4_missing_checkpoint_no_default"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Behavior",
+    "JurisLean.Candidates.Final20261021.Interfaces"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+   "print_axioms_targets": [],
+   "sha256": "9a5bc5e53c8e4d12a4bc4006d637f063ccf835165f3c3b8f3b5fa11d4fa7ac8e",
+   "size_bytes": 4175,
+   "theorem_count": 6,
+   "theorem_count_bol_convention": 6
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "VersionRecord"
+    },
+    {
+     "kind": "def",
+     "name": "visible"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_event_evidence_versions"
+    },
+    {
+     "kind": "def",
+     "name": "applies"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_applicability"
+    },
+    {
+     "kind": "theorem",
+     "name": "u08_1_history_stable_under_append_after_cut"
+    },
+    {
+     "kind": "theorem",
+     "name": "u08_1_selection_stable"
+    },
+    {
+     "kind": "def",
+     "name": "Compressible"
+    },
+    {
+     "kind": "def",
+     "name": "checkCompression"
+    },
+    {
+     "kind": "theorem",
+     "name": "u08_2_finite_compression_reflection"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Interfaces"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Temporal.lean",
+   "print_axioms_targets": [],
+   "sha256": "8444780a8a334eacabcf7c65af2be21b54a36344176287f7381b5682a7ee7d68",
+   "size_bytes": 3205,
+   "theorem_count": 3,
+   "theorem_count_bol_convention": 3
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "Invariant"
+    },
+    {
+     "kind": "def",
+     "name": "initial"
+    },
+    {
+     "kind": "theorem",
+     "name": "initial_invariant"
+    },
+    {
+     "kind": "def",
+     "name": "correctStep"
+    },
+    {
+     "kind": "inductive",
+     "name": "Step"
+    },
+    {
+     "kind": "theorem",
+     "name": "step_preserves"
+    },
+    {
+     "kind": "theorem",
+     "name": "u10_2_committed_executor_is_step"
+    },
+    {
+     "kind": "theorem",
+     "name": "u10_2_known_executor_post_preserves"
+    },
+    {
+     "kind": "inductive",
+     "name": "Path"
+    },
+    {
+     "kind": "theorem",
+     "name": "used_monotone_step"
+    },
+    {
+     "kind": "theorem",
+     "name": "used_monotone_path"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_1_actual_trace_at_most_once"
+    },
+    {
+     "kind": "theorem",
+     "name": "u10_2_finite_trace_composition"
+    },
+    {
+     "kind": "theorem",
+     "name": "from_concrete_initial"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Authorization",
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "JurisLean.Candidates.Final20261021.Ledger",
+    "JurisLean.Candidates.Final20261021.Temporal"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean",
+   "print_axioms_targets": [],
+   "sha256": "01afb1e078b11dd612c41051cce4a883fda827c411e54723b0ab27de0e8b296f",
+   "size_bytes": 8889,
+   "theorem_count": 9,
+   "theorem_count_bol_convention": 9
+  },
+  {
+   "declarations": [
+    {
+     "kind": "structure",
+     "name": "Receipt"
+    },
+    {
+     "kind": "structure",
+     "name": "Store"
+    },
+    {
+     "kind": "inductive",
+     "name": "Label"
+    },
+    {
+     "kind": "def",
+     "name": "commitStore"
+    },
+    {
+     "kind": "def",
+     "name": "abortStore"
+    },
+    {
+     "kind": "inductive",
+     "name": "Step"
+    },
+    {
+     "kind": "inductive",
+     "name": "Trace"
+    },
+    {
+     "kind": "def",
+     "name": "registered"
+    },
+    {
+     "kind": "def",
+     "name": "increment"
+    },
+    {
+     "kind": "def",
+     "name": "commitCount"
+    },
+    {
+     "kind": "theorem",
+     "name": "step_count"
+    },
+    {
+     "kind": "theorem",
+     "name": "trace_count"
+    },
+    {
+     "kind": "theorem",
+     "name": "registered_le_one"
+    },
+    {
+     "kind": "theorem",
+     "name": "at_most_once"
+    },
+    {
+     "kind": "theorem",
+     "name": "entry_preserved_step"
+    },
+    {
+     "kind": "theorem",
+     "name": "entry_preserved_trace"
+    },
+    {
+     "kind": "theorem",
+     "name": "cancelled_preserved_step"
+    },
+    {
+     "kind": "theorem",
+     "name": "cancelled_preserved_trace"
+    },
+    {
+     "kind": "theorem",
+     "name": "cancelled_cannot_commit"
+    },
+    {
+     "kind": "theorem",
+     "name": "noncommit_business_unchanged"
+    },
+    {
+     "kind": "theorem",
+     "name": "step_version_monotone"
+    },
+    {
+     "kind": "theorem",
+     "name": "trace_version_monotone"
+    },
+    {
+     "kind": "theorem",
+     "name": "step_same_version_business"
+    },
+    {
+     "kind": "theorem",
+     "name": "trace_same_version_business"
+    },
+    {
+     "kind": "theorem",
+     "name": "u02_2_complete_readset_CAS"
+    },
+    {
+     "kind": "theorem",
+     "name": "commit_receipt_at_end"
+    },
+    {
+     "kind": "theorem",
+     "name": "abort_excludes_prior_commit"
+    },
+    {
+     "kind": "theorem",
+     "name": "cancelled_excludes_trace_commit"
+    },
+    {
+     "kind": "theorem",
+     "name": "abort_excludes_future_commit"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Interfaces"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Transactions.lean",
+   "print_axioms_targets": [],
+   "sha256": "19b943ebf2cdde7c7bcda87381e08141f0e200ee662f9e191ef4581f62a4cd09",
+   "size_bytes": 11334,
+   "theorem_count": 19,
+   "theorem_count_bol_convention": 19
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "CanonicalCollection"
     },
@@ -45796,6 +48333,7 @@
     "JurisLean.BusinessRoot.All",
     "JurisLean.BusinessRoot.SevenAxis",
     "JurisLean.BusinessRoot.SevenAxisCases",
+    "JurisLean.Candidates.Final20261021.CIAll",
     "JurisLean.CanonicalSerialization",
     "JurisLean.CertificateChecker",
     "JurisLean.CertificateCheckerV2",
@@ -46021,8 +48559,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "f3f74a16dac543c3fcddb52def23a2aefa7a2950fd9d2ea784e34ef48c937f56",
-   "size_bytes": 10780,
+   "sha256": "8598ad5ad09145874a1c3241f031a0f468e1cec5c38eec63c163777d34147399",
+   "size_bytes": 10919,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -46186,22 +48724,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5196,
-   "file_count": 369,
+   "counted_declaration_count": 5425,
+   "file_count": 393,
    "lemma_count": 141,
-   "print_axioms_command_count": 4078,
-   "print_axioms_distinct_targets": 4024,
-   "theorem_count": 5055,
-   "theorem_count_bol_convention": 4955
+   "print_axioms_command_count": 4307,
+   "print_axioms_distinct_targets": 4253,
+   "theorem_count": 5284,
+   "theorem_count_bol_convention": 5184
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5177,
-   "file_count": 354,
+   "counted_declaration_count": 5406,
+   "file_count": 378,
    "lemma_count": 134,
-   "print_axioms_command_count": 4078,
-   "print_axioms_distinct_targets": 4024,
-   "theorem_count": 5043,
-   "theorem_count_bol_convention": 4943
+   "print_axioms_command_count": 4307,
+   "print_axioms_distinct_targets": 4253,
+   "theorem_count": 5272,
+   "theorem_count_bol_convention": 5172
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -46258,6 +48796,30 @@
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxis.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisAudit.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Behavior.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/CIAll.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Calibration.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Compiler.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/EvidenceProcedure.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Feedback.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Harness.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Interfaces.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Iteration.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Learning.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Pipeline.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Policy.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Progress.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Representation.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Temporal.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Transactions.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
    "proofs/lean/juris_lean/JurisLean/CertificateChecker.lean",
    "proofs/lean/juris_lean/JurisLean/CertificateCheckerV2.lean",
@@ -46625,6 +49187,30 @@
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxis.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisAudit.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Behavior.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/CIAll.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Calibration.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Compiler.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/EvidenceProcedure.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Feedback.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Harness.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Interfaces.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Iteration.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Learning.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Pipeline.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Policy.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Progress.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Representation.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Temporal.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Transactions.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
    "proofs/lean/juris_lean/JurisLean/CertificateChecker.lean",
    "proofs/lean/juris_lean/JurisLean/CertificateCheckerV2.lean",
@@ -46981,19 +49567,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "10a9237a2ba452e83cae149aa307cce7eeb29160e8203eb07f7c9e8d63e42915",
+ "source_inventory_digest": "8a7624846191355b9f90f397d476e6ee819d347d86072cac2aa436c763d76f5a",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "ci/unified-construction-20261008",
-  "commit": "d647b70a00a4e98503de316f4a26933c95c3fdb6",
-  "tree": "7026e4a1a627964826f73d3de65492aff9e69c8c"
+  "branch": "candidates/final20261021-825792b",
+  "commit": "799b42c43d16e839ec3305577867120cb0deb917",
+  "tree": "6664bdba305c337f402043b0040a77938803eec6"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 369,
+  "files_total": 393,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

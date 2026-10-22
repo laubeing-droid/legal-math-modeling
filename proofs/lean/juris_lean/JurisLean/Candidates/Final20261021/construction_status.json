@@ -63,9 +63,25 @@
   },
   "stage2": {
     "mode": "full-release",
-    "status": "CI_NOT_RUN",
-    "prerequisite": "stage1 PASS; root integration on a new head; scope conflict for required generated report resolved",
-    "authorization": "CONTINUOUS_CI_AUTHORIZED_2026-10-22"
+    "status": "RETRY_PENDING",
+    "prerequisite": "Stage1 passed; root integrated; user-authorized derived accounting refresh applied. Full-release on the next head remains to be run.",
+    "authorization": "USER_ALL_PROJECT_AUTHORIZATION_2026-10-22",
+    "last_completed_attempt": {
+      "run_id": 39700447562,
+      "run_attempt": 1,
+      "subject": "799b42c43d16e839ec3305577867120cb0deb917",
+      "mode": "full-release",
+      "status": "FAIL",
+      "lean_full_clean_build": "PASS",
+      "python_gates": {
+        "status": "FAIL",
+        "passed": 651,
+        "failed": 13
+      },
+      "release_certificate": "NOT_RUN",
+      "verification": "evidence/ci-stage2-799b42c/verification.json",
+      "does_not_close_full_scope": true
+    }
   },
   "open_excluded": [
     "T113 exact original statement",
@@ -141,7 +157,7 @@
       "treatment": "ACCEPTANCE_REFERENCE_ONLY_THEORY_FROZEN"
     }
   ],
-  "overall_status": "PARTIAL_SOURCE_CANDIDATE_STAGE1_PASS_STAGE2_PENDING",
+  "overall_status": "PARTIAL_SOURCE_CANDIDATE_STAGE1_PASS_FULL_RELEASE_RETRY_PENDING",
   "completion_claim": false,
   "source_batches_written": [
     0,
@@ -155,7 +171,7 @@
     8,
     9
   ],
-  "stage10": "NOT_STARTED",
+  "stage10": "STAGE1_PASS_FULL_RELEASE_RETRY_PENDING",
   "ci_artifacts": [
     {
       "run_id": 39689061670,
@@ -176,6 +192,22 @@
       "axiom_audit": "NOT_REACHED",
       "acceptance": "NOT_REACHED",
       "does_not_close_full_scope": true
+    },
+    {
+      "run_id": 39700447562,
+      "run_attempt": 1,
+      "subject": "799b42c43d16e839ec3305577867120cb0deb917",
+      "mode": "full-release",
+      "status": "FAIL",
+      "lean_full_clean_build": "PASS",
+      "python_gates": {
+        "status": "FAIL",
+        "passed": 651,
+        "failed": 13
+      },
+      "release_certificate": "NOT_RUN",
+      "verification": "evidence/ci-stage2-799b42c/verification.json",
+      "does_not_close_full_scope": true
     }
   ],
   "blockers": [
@@ -184,25 +216,21 @@
       "detail": "Complete frozen scopes are not closed. See every row remaining_obligations in 50_clause_status.json; Beta conjugacy/predictive, ridge-logistic minimizer, conformal rank, general measurable TV, conditional sequential policy and full protocol/composition refinements remain missing."
     },
     {
-      "kind": "LEAN_AUTHORITY",
-      "detail": "Stage1 passed on d59a487 at run 39699620705 with the exact complete candidate axiom target set and only standard axioms. Full-release on a new root-integrated head remains CI_NOT_RUN."
-    },
-    {
-      "kind": "STAGE2_SCOPE",
-      "detail": "The complete existing Python diagnostic locates root integration and 11 outside-candidate derived-account paths requiring refresh. Concrete previews/diffs are in evidence/release-scope-proposal; scope confirmation is pending. No outside-candidate file or configuration has been edited."
-    },
-    {
       "kind": "PYTHON_CI_DISCOVERY",
       "detail": "The required synthetic test is stored under the candidate-only path. The existing workflow tests/ discovery does not collect it. No root tests/ or workflow change was made; formal Python CI coverage of this file is NOT_RUN."
+    },
+    {
+      "kind": "FULL_RELEASE_RETRY",
+      "detail": "First root-integrated full-release failed existing Python derived-accounting freshness checks. The required eleven updates are now authorized and applied; official full-release rerun pending. Lean clean build and existing audit jobs already passed at that failed run subject."
     }
   ],
-  "evidence_boundary": "All local logs are provisional static/Python evidence. None is a Lean proof, formal-CI PASS, or legal/real-occurrence proof.",
+  "evidence_boundary": "Local static and Python checks are not formal Lean CI. Original GitHub Actions logs and ZIP artifacts bind only their recorded subject and declared scope. Paper proof availability, current Lean implementation, runtime refinement, and legal or real-occurrence evidence are distinct.",
   "local_prechecks": {
     "source_commit": "3ff0992ea4becc60856e83c2efc0952ec10e78ff",
     "receipt": "evidence/local-checks.json",
     "authority": "LOCAL_PROVISIONAL_NOT_LEAN",
     "required_scoped_checks": "PASS",
-    "release_diagnostics": "BLOCKED: root promotion pending and kernel_reuse_report stale",
+    "release_diagnostics": "HISTORICAL_PREFLIGHT; root integration and derived-output refresh now applied, formal full-release retry pending",
     "formal_ci": "CI_NOT_RUN",
     "ci_artifacts": []
   },
@@ -583,6 +611,22 @@
       "axiom_audit": "PASS_COMPLETE_TARGET_SET_STANDARD_AXIOMS_ONLY",
       "acceptance": "BUILD_PASS",
       "verification": "evidence/ci-stage1-d59a487/verification.json",
+      "does_not_close_full_scope": true
+    },
+    {
+      "run_id": 39700447562,
+      "run_attempt": 1,
+      "subject": "799b42c43d16e839ec3305577867120cb0deb917",
+      "mode": "full-release",
+      "status": "FAIL",
+      "lean_full_clean_build": "PASS",
+      "python_gates": {
+        "status": "FAIL",
+        "passed": 651,
+        "failed": 13
+      },
+      "release_certificate": "NOT_RUN",
+      "verification": "evidence/ci-stage2-799b42c/verification.json",
       "does_not_close_full_scope": true
     }
   ],

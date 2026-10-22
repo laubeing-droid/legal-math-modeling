@@ -1,0 +1,75 @@
+{
+  "subject_source_commit": "799b42c43d16e839ec3305577867120cb0deb917",
+  "status": "LOCAL_APPLIED_OUTPUT_VALIDATION_NOT_FORMAL_CI",
+  "previous_invocation_errors": "Three script paths in the first local check invocation were wrong; repository script paths are used here. No gate or source was changed by the failed invocations.",
+  "checks": [
+    {
+      "command": [
+        "scripts/ci/generate_structure_and_volume_reports.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "log": "applied-corrected-0.log"
+    },
+    {
+      "command": [
+        "scripts/ci/generate_trivial_proof_census.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "log": "applied-corrected-1.log"
+    },
+    {
+      "command": [
+        "scripts/ci/generate_declaration_shape_report.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "log": "applied-corrected-2.log"
+    },
+    {
+      "command": [
+        "scripts/ci/build_statement_duplication_census.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "log": "applied-corrected-3.log"
+    },
+    {
+      "command": [
+        "scripts/ci/build_ci_run_index.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "log": "applied-corrected-4.log"
+    },
+    {
+      "command": [
+        "scripts/ci/check_concept_ledger.py"
+      ],
+      "returncode": 0,
+      "log": "applied-corrected-5.log"
+    },
+    {
+      "command": [
+        "scripts/ci/generate_theorem_manifest.py",
+        "--verify",
+        "docs/formal-release/theorem_inventory_v3.json"
+      ],
+      "returncode": 0,
+      "log": "applied-corrected-6.log"
+    },
+    {
+      "command": [
+        "scripts/rebind_paper_derived_accounting.py"
+      ],
+      "returncode": 0,
+      "log": "applied-corrected-7.log"
+    }
+  ],
+  "pytest_targeted": {
+    "result": "PASS",
+    "passed": 42,
+    "scope": "Six existing test files for declaration shape, paper generated accounting, structure, CI index, statement duplication, trivial census; local only"
+  }
+}

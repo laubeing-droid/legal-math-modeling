@@ -1,0 +1,70 @@
+{
+  "subject_source_commit": "799b42c43d16e839ec3305577867120cb0deb917",
+  "status": "LOCAL_APPLIED_OUTPUT_VALIDATION_NOT_FORMAL_CI",
+  "checks": [
+    {
+      "command": [
+        "scripts/ci/generate_structure_and_volume_reports.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "log": "applied-check-0.log"
+    },
+    {
+      "command": [
+        "scripts/ci/generate_trivial_proof_census.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "log": "applied-check-1.log"
+    },
+    {
+      "command": [
+        "scripts/ci/generate_declaration_shape_report.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "log": "applied-check-2.log"
+    },
+    {
+      "command": [
+        "scripts/ci/generate_statement_duplication_census.py",
+        "--check"
+      ],
+      "returncode": 2,
+      "log": "applied-check-3.log"
+    },
+    {
+      "command": [
+        "scripts/ci/build_ci_run_index.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "log": "applied-check-4.log"
+    },
+    {
+      "command": [
+        "scripts/ci/check_concept_ledger.py"
+      ],
+      "returncode": 0,
+      "log": "applied-check-5.log"
+    },
+    {
+      "command": [
+        "scripts/generate_theorem_manifest.py",
+        "--verify",
+        "docs/formal-release/theorem_inventory_v3.json"
+      ],
+      "returncode": 2,
+      "log": "applied-check-6.log"
+    },
+    {
+      "command": [
+        "scripts/ci/rebind_paper_accounting.py",
+        "--check"
+      ],
+      "returncode": 2,
+      "log": "applied-check-7.log"
+    }
+  ]
+}

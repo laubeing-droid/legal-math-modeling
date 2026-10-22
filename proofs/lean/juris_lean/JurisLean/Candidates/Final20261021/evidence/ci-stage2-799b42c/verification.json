@@ -1,0 +1,128 @@
+{
+  "run_id": 39700447562,
+  "run_attempt": 1,
+  "subject_commit": "799b42c43d16e839ec3305577867120cb0deb917",
+  "workflow_conclusion": "failure",
+  "mode": "full-release",
+  "formal_ci": "FAIL_PYTHON_DERIVED_OUTPUTS_STALE",
+  "jobs": [
+    {
+      "id": 119568113103,
+      "name": "lean-full-clean-build",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 119568113280,
+      "name": "python-gates",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 119568113396,
+      "name": "runtime-refinement / produce",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 119568114414,
+      "name": "changed-modules",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 119572296506,
+      "name": "seven-axis-acceptance",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 119572298524,
+      "name": "mathematics-completion",
+      "status": "completed",
+      "conclusion": "skipped"
+    },
+    {
+      "id": 119572344898,
+      "name": "final-gate",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "id": 119572346195,
+      "name": "release-certificate",
+      "status": "completed",
+      "conclusion": "skipped"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 12393680074,
+      "name": "lean-full-build-run39700447562-attempt1",
+      "sha256": "0f36f0a6034f5ccc8e2ccf9209ee1cdf7aa6d6b622842561efb8909453efc279",
+      "original_zip": "lean-full-build-run39700447562-attempt1.zip",
+      "entries": [
+        "lake-clean-build.log",
+        "axiom-audit.raw.txt"
+      ]
+    },
+    {
+      "id": 12393515520,
+      "name": "full-math-lean-39700447562-1",
+      "sha256": "0766a1c938f9ccb4e27359d0c0fb1a0ac8a7d4342102bbe584949db5a66382bf",
+      "original_zip": "full-math-lean-39700447562-1.zip",
+      "entries": [
+        "compiled.json",
+        "environment.log"
+      ]
+    },
+    {
+      "id": 12392714277,
+      "name": "seven-axis-lean-39700447562-1",
+      "sha256": "188aa5e04333215bed0178986f60bb4a3963556ac62dd85657c4cb7702505d6f",
+      "original_zip": "seven-axis-lean-39700447562-1.zip",
+      "entries": [
+        "all-module-plan.json",
+        "build.log",
+        "axiom-audit.json",
+        "legacy-root-environment.log",
+        "mathlib-cloud-cache.log",
+        "receipt.json",
+        "seven-axis-audit.json",
+        "seven-axis-environment.log"
+      ]
+    },
+    {
+      "id": 12392502566,
+      "name": "runtime-refinement-run39700447562-attempt1",
+      "sha256": "2f9faaf7a7f138b39c5e5d895155874d1efabe789fa4354e9518d46187dba5a6",
+      "original_zip": "runtime-refinement-run39700447562-attempt1.zip",
+      "entries": [
+        "runtime-expected/contract_breach.expected.json",
+        "runtime-expected/fact_admission.expected.json",
+        "runtime-expected/unknown_timeout.expected.json",
+        "runtime-actual/contract_breach.actual.json",
+        "runtime-actual/fact_admission.actual.json",
+        "runtime-actual/unknown_timeout.actual.json",
+        "runtime-reports/contract_breach.report.json",
+        "runtime-reports/fact_admission.report.json",
+        "runtime-reports/unknown_timeout.report.json",
+        "runtime-evidence/runtime-refinement-report.json"
+      ]
+    },
+    {
+      "id": 12392254174,
+      "name": "python-gates-run39700447562-attempt1",
+      "sha256": "68b0886e65461dd9e3470000f3c7168ca6ff1184ddfa2bddda064035d7d54dc2",
+      "original_zip": "python-gates-run39700447562-attempt1.zip",
+      "entries": [
+        "pytest-collection.txt",
+        "pytest-full.log"
+      ]
+    }
+  ],
+  "skipped_work_is_not_pass": true,
+  "theory_completeness_claim": false,
+  "scope_authorization_pending_at_capture": "Eleven derived accounting or naming documents outside Candidates/Final20261021; exact preview diff in ../release-scope-proposal/all-11-files-at-799b42c.diff",
+  "scope_authorization_now": "User granted all project completion authorization; eleven derived files applied after this recorded run."
+}

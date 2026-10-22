@@ -1,6 +1,6 @@
 # Final20261021 候选施工检查点
 
-状态：**PARTIAL_SOURCE_CANDIDATE / STAGE1_PASS / FULL_RELEASE_CI_NOT_RUN**。本目录已有批次 0–9 的候选源码；尚未完成冻结理论的全部证明和接线；批次 10 的正式 CI 正在进行。当前不能宣称本任务完成。
+状态：**PARTIAL_SOURCE_CANDIDATE / STAGE1_PASS / FULL_RELEASE_RETRY_PENDING**。批次 0–9 的候选源码及第一阶段正式 CI 已通过；接根后的首轮 full-release 中，干净 Lean 构建与现有数学审计通过，Python 派生账本检查失败，尚未获得全流程通过。冻结条目对应的 Lean 实现与接线义务仍按逐条表验收；这不表示底稿的数学证明缺失。
 
 基线固定为 `825792b83476a767152396d7f5e2ba3017048841`，候选分支为 `candidates/final20261021-825792b`。run `39699620705` 已在 `d59a487b154818278ee4629234904bc8a3ac1ef3` 上通过完整目标 `JurisLean.Candidates.Final20261021.CIAll`；原始 ZIP、源 Git blob 对照、完整公理目标检查和回执见 `evidence/ci-stage1-d59a487/verification.json`。全部目标齐全，仅依赖标准公理。第一阶段通过只覆盖候选源码和所列 Lean 命题；完整冻结理论、产品精化与现实/法律前提未因此关闭。用户于 2026-10-22 授予连续 CI 修复、推送与派发授权。
 
@@ -13,7 +13,7 @@
 - `baseline_reuse.json`：真正调用的基线数量账和 Horn 声明、源散列、原文及消费者；`candidate_provenance.json`：历史候选参考来源。历史候选的成功状态不转移到当前源码。
 - `construction_status.json`：施工卡及三家验收附录来源、两阶段 CI 状态、限制与阻塞。
 
-另有两个入口模块：`CIAll.lean` 显式导入全部实现模块与候选审计；`AxiomAudit.lean` 导入 Acceptance 并逐声明执行 `#check` / `#print axioms`。二者没有新增定理声明；消费者分别是指定 CI 目标及 `CIAll`。最新完整构建已通过 Acceptance、AxiomAudit 与 CIAll；逐目标输出已经与完整源码清单核对。全部 Lean 文件的 Git blob 散列均列在本地回执中。
+另有两个入口模块：`CIAll.lean` 显式导入全部实现模块与候选审计；`AxiomAudit.lean` 导入全部实现模块并逐声明执行 `#check` / `#print axioms`。二者没有新增定理声明；消费者分别是指定 CI 目标及 `CIAll`。最新完整构建已通过 Acceptance、AxiomAudit 与 CIAll；逐目标输出已经与完整源码清单核对。全部 Lean 文件的 Git blob 散列均列在本地回执中。
 
 ## 本检查点补强的内容
 
@@ -48,15 +48,15 @@ GitHub 验证的实际 head 与授权 head 一致。目标计划确认为 `Juris
 
 唯一报告的候选编译错误为 `Compiler.lean:125:2`：`unfold proposed_checked_rule_input` 留下局部 `let known`，随后的 `split at checked` 无法直接拆解。修复只增加 `dsimp only at checked`，先展开局部绑定，再沿原条件和原语义完备性命题证明；未改定理签名、前提、结论或运行函数。
 
-原始工件 `changed-module-only-39689061670-1.zip` 的 SHA256 为 `2dfef73edd060ba0ee7b4f0cbdeab544edc296c1ade35eb6be8cdb96c67fe44b`，已与 GitHub 元数据核对。这一 Compiler 修复已由第二轮正式 CI 构建通过；CIAll 整体尚未通过。后续按连续 CI 授权推进，不重复派发旧 head。
+原始工件 `changed-module-only-39689061670-1.zip` 的 SHA256 为 `2dfef73edd060ba0ee7b4f0cbdeab544edc296c1ade35eb6be8cdb96c67fe44b`，已与 GitHub 元数据核对。这一段保留首轮失败及修复的历史事实；后续完整 CIAll 已在前述 d59a487/run 39699620705 通过。
 
 ## 必需工作与阻塞
 
-完整 Beta 共轭与预测、全坐标 ridge logistic 极小值存在唯一、交换秩保形覆盖、一般可测分布 TV、条件测度/自适应预算、完整序贯政策、博弈背景与全路线精化等仍未闭合。**这些仍是任务义务，未移出验收。** 逐条缺口以 50 条表为准。
+当前候选尚未完成 Lean 落地与复证的范围包括：完整 Beta 共轭与预测、全坐标 ridge logistic 极小值存在唯一、交换秩保形覆盖、一般可测分布 TV、条件测度/自适应预算、完整序贯政策、博弈背景与全路线精化等。底稿中的纸面证明与当前分支的形式化完成状态分别记录。**这些仍是任务义务，未移出验收。** 逐条缺口以 50 条表为准。
 
-第一阶段正在连续修复并派发，目标为 `JurisLean.Candidates.Final20261021.CIAll`；即使该目标绿，也不代表上述数学义务完成。失败轮次、源 head 与原始工件逐轮保存。
+第一阶段已经在前述精确 head 通过完整 CIAll 目标。接根后的 run `39700447562` 对应 `799b42c43d16e839ec3305577867120cb0deb917`；干净 Lean 构建、现有数学审计和既有 runtime-refinement 作业通过，Python 为 651 通过、13 失败。下游证书没有生成，整体 full-release 为 FAIL。原始工件及 head/digest 核验见 `evidence/ci-stage2-799b42c/verification.json`。
 
-第二阶段必须等第一阶段绿，接根后形成新 head，再按连续授权跑 full-release。现有 release 门禁的派生账本需要同步。具体接根与账本差异已准备在 `evidence/release-scope-proposal/outside-candidate-proposal.diff`，只在候选目录保存预案；目录外的账本范围尚待授权。未改任何 Lake、workflow、门禁配置或新建 lean_lib。
+用户已明确授予完成本项目所需的全部授权。首轮 full-release 定位的 11 个派生账本、命名消歧及论文数字模板已按既有生成规则同步，现有相关测试 42 项通过；完整原有门禁将在新 head 的 full-release 中复跑。没有修改冻结理论、Lake、workflow 或门禁规则，也没有新增 lean_lib。
 
 合成 Python 合同测试保存在本候选目录。现有 workflow 的 `tests/` 收集范围不会包含它，故其正式 Python CI 覆盖仍为 `NOT_RUN`。没有借修改 workflow、Lake 或根目录测试入口绕过此限制。
 

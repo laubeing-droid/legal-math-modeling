@@ -1,0 +1,697 @@
+﻿2026-10-22T00:34:00.1560578Z Current runner version: '2.338.0'
+2026-10-22T00:34:00.1580675Z ##[group]Runner Image Provisioner
+2026-10-22T00:34:00.1581498Z Hosted Compute Agent
+2026-10-22T00:34:00.1581978Z Version: 20261012.601
+2026-10-22T00:34:00.1582473Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+2026-10-22T00:34:00.1583102Z Build Date: 2026-10-12T17:48:21Z
+2026-10-22T00:34:00.1583649Z Worker ID: {13cd8e8a-7a27-42a7-81f8-1ee0bc314da9}
+2026-10-22T00:34:00.1584284Z Region: centralus
+2026-10-22T00:34:00.1584725Z Cloud: Azure
+2026-10-22T00:34:00.1585157Z ##[endgroup]
+2026-10-22T00:34:00.1586532Z ##[group]Operating System
+2026-10-22T00:34:00.1587046Z Ubuntu
+2026-10-22T00:34:00.1587500Z 26.04.1
+2026-10-22T00:34:00.1587935Z LTS
+2026-10-22T00:34:00.1588360Z ##[endgroup]
+2026-10-22T00:34:00.1588825Z ##[group]Runner Image
+2026-10-22T00:34:00.1589319Z Image: ubuntu-26.04
+2026-10-22T00:34:00.1589828Z Version: 20261012.163.1
+2026-10-22T00:34:00.1590835Z Included Software: https://github.com/actions/runner-images/blob/ubuntu26/20261012.163/images/ubuntu/Ubuntu2604-Readme.md
+2026-10-22T00:34:00.1592165Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu26%2F20261012.163
+2026-10-22T00:34:00.1592936Z ##[endgroup]
+2026-10-22T00:34:00.1594272Z ##[group]GITHUB_TOKEN Permissions
+2026-10-22T00:34:00.1596368Z Contents: read
+2026-10-22T00:34:00.1596862Z Metadata: read
+2026-10-22T00:34:00.1597329Z ##[endgroup]
+2026-10-22T00:34:00.1599068Z Secret source: Actions
+2026-10-22T00:34:00.1599860Z Cache mode: write
+2026-10-22T00:34:00.1600429Z Prepare workflow directory
+2026-10-22T00:34:00.2038572Z Prepare all required actions
+2026-10-22T00:34:00.2084589Z Getting action download info
+2026-10-22T00:34:00.4261870Z Download action repository 'actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5' (SHA:34e114876b0b11c390a56381ad16ebd13914f8d5)
+2026-10-22T00:34:00.9053943Z Download action repository 'actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065' (SHA:a26af69be951a213d495a4c3e4e4022e16d87065)
+2026-10-22T00:34:01.1078575Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-10-22T00:34:01.3201994Z Complete job name: python-gates
+2026-10-22T00:34:01.3789507Z ##[group]Run actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+2026-10-22T00:34:01.3790385Z with:
+2026-10-22T00:34:01.3790781Z   fetch-depth: 0
+2026-10-22T00:34:01.3791261Z   repository: laubeing-droid/legal-math-modeling
+2026-10-22T00:34:01.3794540Z   token: ***
+2026-10-22T00:34:01.3794966Z   ssh-strict: true
+2026-10-22T00:34:01.3795627Z   ssh-user: git
+2026-10-22T00:34:01.3796065Z   persist-credentials: true
+2026-10-22T00:34:01.3796527Z   clean: true
+2026-10-22T00:34:01.3796961Z   sparse-checkout-cone-mode: true
+2026-10-22T00:34:01.3797464Z   fetch-tags: false
+2026-10-22T00:34:01.3797902Z   show-progress: true
+2026-10-22T00:34:01.3798316Z   lfs: false
+2026-10-22T00:34:01.3798699Z   submodules: false
+2026-10-22T00:34:01.3799154Z   set-safe-directory: true
+2026-10-22T00:34:01.3799790Z env:
+2026-10-22T00:34:01.3800238Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:34:01.3800737Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:34:01.3801181Z   PYTHONUTF8: 1
+2026-10-22T00:34:01.3801699Z ##[endgroup]
+2026-10-22T00:34:01.4657726Z Syncing repository: laubeing-droid/legal-math-modeling
+2026-10-22T00:34:01.4660357Z ##[group]Getting Git version info
+2026-10-22T00:34:01.4661609Z Working directory is '/home/runner/work/legal-math-modeling/legal-math-modeling'
+2026-10-22T00:34:01.4663165Z [command]/usr/bin/git version
+2026-10-22T00:34:01.4663900Z git version 2.55.0
+2026-10-22T00:34:01.4666280Z ##[endgroup]
+2026-10-22T00:34:01.4675084Z Temporarily overriding HOME='/home/runner/work/_temp/95340d05-b1d5-4ca1-9ba2-2888777528c7' before making global git config changes
+2026-10-22T00:34:01.4677031Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T00:34:01.4680917Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/legal-math-modeling/legal-math-modeling
+2026-10-22T00:34:01.4737771Z Deleting the contents of '/home/runner/work/legal-math-modeling/legal-math-modeling'
+2026-10-22T00:34:01.4742222Z ##[group]Initializing the repository
+2026-10-22T00:34:01.4746566Z [command]/usr/bin/git init /home/runner/work/legal-math-modeling/legal-math-modeling
+2026-10-22T00:34:01.4842467Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-22T00:34:01.4843818Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-22T00:34:01.4847109Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-22T00:34:01.4848105Z hint: call:
+2026-10-22T00:34:01.4848671Z hint:
+2026-10-22T00:34:01.4849485Z hint: 	git config --global init.defaultBranch <name>
+2026-10-22T00:34:01.4850302Z hint:
+2026-10-22T00:34:01.4851107Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-22T00:34:01.4852297Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-22T00:34:01.4853347Z hint:
+2026-10-22T00:34:01.4853990Z hint: 	git branch -m <name>
+2026-10-22T00:34:01.4854667Z hint:
+2026-10-22T00:34:01.4855679Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-22T00:34:01.4857141Z Initialized empty Git repository in /home/runner/work/legal-math-modeling/legal-math-modeling/.git/
+2026-10-22T00:34:01.4859933Z [command]/usr/bin/git remote add origin https://github.com/laubeing-droid/legal-math-modeling
+2026-10-22T00:34:01.4892976Z ##[endgroup]
+2026-10-22T00:34:01.4893722Z ##[group]Disabling automatic garbage collection
+2026-10-22T00:34:01.4897666Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-22T00:34:01.4923732Z ##[endgroup]
+2026-10-22T00:34:01.4930987Z ##[group]Setting up auth
+2026-10-22T00:34:01.4931805Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T00:34:01.4956343Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T00:34:01.5320714Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T00:34:01.5345786Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T00:34:01.5546862Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T00:34:01.5571716Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T00:34:01.5759140Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-22T00:34:01.5790397Z ##[endgroup]
+2026-10-22T00:34:01.5792213Z ##[group]Fetching the repository
+2026-10-22T00:34:01.5799454Z [command]/usr/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+2026-10-22T00:34:03.2093056Z From https://github.com/laubeing-droid/legal-math-modeling
+2026-10-22T00:34:03.2094114Z  * [new branch]        candidates/final20261021-825792b -> origin/candidates/final20261021-825792b
+2026-10-22T00:34:03.2095154Z  * [new branch]        ci/mandate-wave1            -> origin/ci/mandate-wave1
+2026-10-22T00:34:03.2096251Z  * [new branch]        ci/seam-AdjudicationBridge  -> origin/ci/seam-AdjudicationBridge
+2026-10-22T00:34:03.2097236Z  * [new branch]        ci/seam-BoundaryClosure     -> origin/ci/seam-BoundaryClosure
+2026-10-22T00:34:03.2098092Z  * [new branch]        ci/seam-PayoffEquilibrium   -> origin/ci/seam-PayoffEquilibrium
+2026-10-22T00:34:03.2099429Z  * [new branch]        ci/seam-PrecedentFlow       -> origin/ci/seam-PrecedentFlow
+2026-10-22T00:34:03.2100291Z  * [new branch]        ci/seam-Probability         -> origin/ci/seam-Probability
+2026-10-22T00:34:03.2101498Z  * [new branch]        ci/seam-SourceNorms         -> origin/ci/seam-SourceNorms
+2026-10-22T00:34:03.2102282Z  * [new branch]        ci/seam-Temporal            -> origin/ci/seam-Temporal
+2026-10-22T00:34:03.2103263Z  * [new branch]        ci/seam-Uncertainty         -> origin/ci/seam-Uncertainty
+2026-10-22T00:34:03.2104131Z  * [new branch]        ci/unified-construction-20261008 -> origin/ci/unified-construction-20261008
+2026-10-22T00:34:03.2104977Z  * [new branch]        main                        -> origin/main
+2026-10-22T00:34:03.2106276Z  * [new tag]           archive/banach-track-b-d23e8f2 -> archive/banach-track-b-d23e8f2
+2026-10-22T00:34:03.2107472Z  * [new tag]           archive/track-c-prod-f43e273 -> archive/track-c-prod-f43e273
+2026-10-22T00:34:03.2108138Z  * [new tag]           archive/ulm01-16-preclean-20260903 -> archive/ulm01-16-preclean-20260903
+2026-10-22T00:34:03.2108641Z  * [new tag]           formal-core-v1              -> formal-core-v1
+2026-10-22T00:34:03.2109167Z  * [new tag]           formal-core-v1-candidate    -> formal-core-v1-candidate
+2026-10-22T00:34:03.2109650Z  * [new tag]           math-complete-20260914      -> math-complete-20260914
+2026-10-22T00:34:03.2110164Z  * [new tag]           spec-first-transition-ready -> spec-first-transition-ready
+2026-10-22T00:34:03.2110875Z  * [new tag]           spec-v1-candidate           -> spec-v1-candidate
+2026-10-22T00:34:03.2111477Z  * [new tag]           v1.0.0                      -> v1.0.0
+2026-10-22T00:34:03.2111931Z  * [new tag]           v2.0.0                      -> v2.0.0
+2026-10-22T00:34:03.2112325Z  * [new tag]           v5.0                        -> v5.0
+2026-10-22T00:34:03.2112718Z  * [new tag]           v5.1                        -> v5.1
+2026-10-22T00:34:03.2114187Z [command]/usr/bin/git branch --list --remote origin/candidates/final20261021-825792b
+2026-10-22T00:34:03.2128771Z   origin/candidates/final20261021-825792b
+2026-10-22T00:34:03.2138316Z [command]/usr/bin/git rev-parse refs/remotes/origin/candidates/final20261021-825792b
+2026-10-22T00:34:03.2158433Z 799b42c43d16e839ec3305577867120cb0deb917
+2026-10-22T00:34:03.2161206Z ##[endgroup]
+2026-10-22T00:34:03.2162316Z ##[group]Determining the checkout info
+2026-10-22T00:34:03.2163044Z ##[endgroup]
+2026-10-22T00:34:03.2166882Z [command]/usr/bin/git sparse-checkout disable
+2026-10-22T00:34:03.2221548Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-22T00:34:03.2244308Z ##[group]Checking out the ref
+2026-10-22T00:34:03.2246766Z [command]/usr/bin/git checkout --progress --force -B candidates/final20261021-825792b refs/remotes/origin/candidates/final20261021-825792b
+2026-10-22T00:34:03.4329525Z Switched to a new branch 'candidates/final20261021-825792b'
+2026-10-22T00:34:03.4330921Z branch 'candidates/final20261021-825792b' set up to track 'origin/candidates/final20261021-825792b'.
+2026-10-22T00:34:03.4345792Z ##[endgroup]
+2026-10-22T00:34:03.4388366Z [command]/usr/bin/git log -1 --format=%H
+2026-10-22T00:34:03.4408412Z 799b42c43d16e839ec3305577867120cb0deb917
+2026-10-22T00:34:03.4621805Z ##[group]Run actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065
+2026-10-22T00:34:03.4622271Z with:
+2026-10-22T00:34:03.4622607Z   python-version: 3.12
+2026-10-22T00:34:03.4622918Z   check-latest: false
+2026-10-22T00:34:03.4625161Z   token: ***
+2026-10-22T00:34:03.4625607Z   update-environment: true
+2026-10-22T00:34:03.4625950Z   allow-prereleases: false
+2026-10-22T00:34:03.4626309Z   freethreaded: false
+2026-10-22T00:34:03.4626609Z env:
+2026-10-22T00:34:03.4626916Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:34:03.4627289Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:34:03.4627630Z   PYTHONUTF8: 1
+2026-10-22T00:34:03.4627930Z ##[endgroup]
+2026-10-22T00:34:03.5755946Z ##[group]Installed versions
+2026-10-22T00:34:03.5839402Z (node:2178) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T00:34:03.5840369Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T00:34:03.5841448Z Successfully set up CPython (3.12.15)
+2026-10-22T00:34:03.5842254Z ##[endgroup]
+2026-10-22T00:34:03.6018216Z ##[group]Run python -m pip install pytest pyyaml
+2026-10-22T00:34:03.6019007Z [36;1mpython -m pip install pytest pyyaml[0m
+2026-10-22T00:34:03.6261912Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-22T00:34:03.6262347Z env:
+2026-10-22T00:34:03.6262823Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:34:03.6263186Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:34:03.6263574Z   PYTHONUTF8: 1
+2026-10-22T00:34:03.6263987Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:34:03.6264471Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:34:03.6264978Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:34:03.6265754Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:34:03.6266202Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:34:03.6266691Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:34:03.6267219Z ##[endgroup]
+2026-10-22T00:34:05.8263541Z Collecting pytest
+2026-10-22T00:34:05.8939953Z   Downloading pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)
+2026-10-22T00:34:05.9339093Z Collecting pyyaml
+2026-10-22T00:34:05.9492851Z   Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+2026-10-22T00:34:05.9685716Z Collecting iniconfig>=1.0.1 (from pytest)
+2026-10-22T00:34:05.9835204Z   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+2026-10-22T00:34:06.0048497Z Collecting packaging>=22 (from pytest)
+2026-10-22T00:34:06.0197788Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+2026-10-22T00:34:06.0393529Z Collecting pluggy<2,>=1.5 (from pytest)
+2026-10-22T00:34:06.0542748Z   Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+2026-10-22T00:34:06.0780803Z Collecting pygments>=2.7.2 (from pytest)
+2026-10-22T00:34:06.0930399Z   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+2026-10-22T00:34:06.1117661Z Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+2026-10-22T00:34:06.1721277Z Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+2026-10-22T00:34:06.1894042Z Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (807 kB)
+2026-10-22T00:34:06.2104193Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 807.9/807.9 kB 33.3 MB/s  0:00:00
+2026-10-22T00:34:06.2257433Z Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+2026-10-22T00:34:06.2429202Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+2026-10-22T00:34:06.2602994Z Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+2026-10-22T00:34:06.2766018Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 68.7 MB/s  0:00:00
+2026-10-22T00:34:06.4116675Z Installing collected packages: pyyaml, pygments, pluggy, packaging, iniconfig, pytest
+2026-10-22T00:34:07.2660908Z 
+2026-10-22T00:34:07.2672799Z Successfully installed iniconfig-2.3.1 packaging-26.3 pluggy-1.7.0 pygments-2.21.0 pytest-9.1.1 pyyaml-6.0.3
+2026-10-22T00:34:07.2679729Z 
+2026-10-22T00:34:07.2680470Z [notice] A new release of pip is available: 26.2.1 -> 26.2.2
+2026-10-22T00:34:07.2681150Z [notice] To update, run: pip install --upgrade pip
+2026-10-22T00:34:07.3214947Z ##[group]Run set -euo pipefail
+2026-10-22T00:34:07.3215676Z [36;1mset -euo pipefail[0m
+2026-10-22T00:34:07.3216114Z [36;1mpython -m pytest tests/ --collect-only -q > pytest-collection.txt[0m
+2026-10-22T00:34:07.3216588Z [36;1mpython -m pytest tests/ -q -ra 2>&1 | tee pytest-full.log[0m
+2026-10-22T00:34:07.3217095Z [36;1mpython scripts/scan_lean_guards.py --all-tracked --report lean-guard-report.json[0m
+2026-10-22T00:34:07.3217633Z [36;1mpython scripts/ci/check_banned_in_decls.py --all-tracked[0m
+2026-10-22T00:34:07.3218005Z [36;1mpython scripts/ci/check_doc_anchors.py[0m
+2026-10-22T00:34:07.3218429Z [36;1mpython scripts/ci/generate_t_coverage_ledger.py --check[0m
+2026-10-22T00:34:07.3219053Z [36;1mpython scripts/ci/generate_structure_and_volume_reports.py --check[0m
+2026-10-22T00:34:07.3219514Z [36;1mpython scripts/ci/generate_probability_audit_surface.py --check[0m
+2026-10-22T00:34:07.3219944Z [36;1mpython scripts/ci/build_ci_run_index.py --check[0m
+2026-10-22T00:34:07.3220458Z [36;1mpython scripts/ci/generate_trivial_proof_census.py --check[0m
+2026-10-22T00:34:07.3220915Z [36;1mpython scripts/ci/generate_declaration_shape_report.py --check[0m
+2026-10-22T00:34:07.3221326Z [36;1mpython scripts/ci/check_import_reachability.py[0m
+2026-10-22T00:34:07.3221727Z [36;1mpython scripts/ci/check_concept_ledger.py[0m
+2026-10-22T00:34:07.3222106Z [36;1mpython scripts/ci/check_statute_chain_caseinput_claim.py[0m
+2026-10-22T00:34:07.3222494Z [36;1mpython scripts/ci/check_paper_single_count.py[0m
+2026-10-22T00:34:07.3222899Z [36;1mpython scripts/ci/generate_gap_status.py --check[0m
+2026-10-22T00:34:07.3223328Z [36;1mpython scripts/ci/check_declaration_collisions.py --root JurisLean --check[0m
+2026-10-22T00:34:07.3223911Z [36;1mpython scripts/run_mutation_property_gate.py --repo-root . --output mutation-property-report.json[0m
+2026-10-22T00:34:07.3224534Z [36;1mpython tools/ulm_consolidation/scripts/run_all.py --output work/seven-python/retained[0m
+2026-10-22T00:34:07.3225112Z [36;1mpython tools/ulm_consolidation/scripts/run_root.py --output work/seven-python/root[0m
+2026-10-22T00:34:07.3226400Z [36;1mpython tools/ulm_repair/scripts/run_checks.py --output work/seven-python/repair[0m
+2026-10-22T00:34:07.3227084Z [36;1mpython tools/ulm_repair/scripts/generate_lean_cases.py --output proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean[0m
+2026-10-22T00:34:07.3228273Z [36;1mpython tools/ulm_repair/scripts/ci_driver.py receipt --directory work/seven-python --kind seven-axis-python[0m
+2026-10-22T00:34:07.3268188Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-10-22T00:34:07.3268567Z env:
+2026-10-22T00:34:07.3268847Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:34:07.3269196Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:34:07.3269499Z   PYTHONUTF8: 1
+2026-10-22T00:34:07.3269848Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:34:07.3270295Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:34:07.3270723Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:34:07.3271163Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:34:07.3271547Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:34:07.3271956Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:34:07.3272309Z ##[endgroup]
+2026-10-22T00:34:09.9611635Z ........................................................................ [ 10%]
+2026-10-22T00:34:09.9874567Z ........................................................................ [ 21%]
+2026-10-22T00:34:11.5975920Z ...........................................F...F........................ [ 32%]
+2026-10-22T00:34:12.2316073Z ........................................................................ [ 43%]
+2026-10-22T00:34:13.1039011Z .........................................F.............................. [ 54%]
+2026-10-22T00:34:13.4489219Z ........................................................................ [ 65%]
+2026-10-22T00:34:13.7040575Z ..............................F......................................... [ 75%]
+2026-10-22T00:35:08.5634562Z .................................................F.......F.............. [ 86%]
+2026-10-22T00:35:47.1384383Z .................F...........................F.F................F......F [ 97%]
+2026-10-22T00:35:54.7933142Z F......F........                                                         [100%]
+2026-10-22T00:35:54.7934072Z =================================== FAILURES ===================================
+2026-10-22T00:35:54.7934804Z _______________________ test_the_shape_report_is_current _______________________
+2026-10-22T00:35:54.7935620Z 
+2026-10-22T00:35:54.7935889Z     def test_the_shape_report_is_current() -> None:
+2026-10-22T00:35:54.7936470Z         from generate_declaration_shape_report import build, render
+2026-10-22T00:35:54.7936923Z     
+2026-10-22T00:35:54.7937393Z         assert REPORT.exists(), "the declaration shape artifact is missing"
+2026-10-22T00:35:54.7938017Z >       assert REPORT.read_text(encoding="utf-8") == render(build()), (
+2026-10-22T00:35:54.7938577Z                                                             ^^^^^^^
+2026-10-22T00:35:54.7939165Z             "the artifact no longer describes the tracked source; regenerate it"
+2026-10-22T00:35:54.7939706Z         )
+2026-10-22T00:35:54.7939928Z 
+2026-10-22T00:35:54.7940113Z tests/spec/test_declaration_shape_report.py:36: 
+2026-10-22T00:35:54.7940498Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-10-22T00:35:54.7940718Z 
+2026-10-22T00:35:54.7940861Z     def build() -> dict:
+2026-10-22T00:35:54.7941478Z         pkg: dict[str, int] = {"ALIAS_ONE_LINER": 0, "CLOSED_NO_BINDERS": 0, "theorems": 0}
+2026-10-22T00:35:54.7941879Z         per_file: dict[str, dict[str, int]] = {}
+2026-10-22T00:35:54.7942229Z         for path in tracked_lean():
+2026-10-22T00:35:54.7942631Z             abs_path = Path(path) if Path(path).is_absolute() else ROOT / path
+2026-10-22T00:35:54.7943040Z             rel = abs_path.relative_to(ROOT).as_posix()
+2026-10-22T00:35:54.7943432Z             code = strip_comments(abs_path.read_text(encoding="utf-8"))
+2026-10-22T00:35:54.7943868Z             file_counts = {"ALIAS_ONE_LINER": 0, "CLOSED_NO_BINDERS": 0, "theorems": 0}
+2026-10-22T00:35:54.7944326Z             for _name, block in blocks(code):
+2026-10-22T00:35:54.7944641Z                 tags = shape_of(block)
+2026-10-22T00:35:54.7945036Z                 pkg["theorems"] += 1
+2026-10-22T00:35:54.7945581Z                 file_counts["theorems"] += 1
+2026-10-22T00:35:54.7946018Z                 for tag in tags:
+2026-10-22T00:35:54.7946320Z                     pkg[tag] += 1
+2026-10-22T00:35:54.7946639Z                     file_counts[tag] += 1
+2026-10-22T00:35:54.7946933Z             if file_counts["theorems"]:
+2026-10-22T00:35:54.7947266Z                 per_file[rel] = file_counts
+2026-10-22T00:35:54.7947662Z         census = json.loads(CENSUS.read_text(encoding="utf-8"))
+2026-10-22T00:35:54.7948070Z         census_total = census["theorem_declarations"]
+2026-10-22T00:35:54.7948415Z         agree = census_total == pkg["theorems"]
+2026-10-22T00:35:54.7948710Z         if not agree:
+2026-10-22T00:35:54.7949006Z >           raise SystemExit(
+2026-10-22T00:35:54.7949356Z                 f"scope disagreement: census sees {census_total} theorems, "
+2026-10-22T00:35:54.7949812Z                 f"this report sees {pkg['theorems']} -- the two parsers no longer agree"
+2026-10-22T00:35:54.7950222Z             )
+2026-10-22T00:35:54.7950697Z E           SystemExit: scope disagreement: census sees 5043 theorems, this report sees 5272 -- the two parsers no longer agree
+2026-10-22T00:35:54.7951087Z 
+2026-10-22T00:35:54.7951298Z scripts/ci/generate_declaration_shape_report.py:156: SystemExit
+2026-10-22T00:35:54.7951744Z _____________ test_the_shape_check_mode_fails_on_a_stale_artifact ______________
+2026-10-22T00:35:54.7952099Z 
+2026-10-22T00:35:54.7952779Z tmp_path = PosixPath('/tmp/pytest-of-runner/pytest-0/test_the_shape_check_mode_fail0')
+2026-10-22T00:35:54.7953586Z monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x78fdb78f3d70>
+2026-10-22T00:35:54.7953918Z 
+2026-10-22T00:35:54.7954137Z     def test_the_shape_check_mode_fails_on_a_stale_artifact(tmp_path, monkeypatch) -> None:
+2026-10-22T00:35:54.7954731Z         """Drive the real `--check` entry point over a copy, never the tracked artifact.
+2026-10-22T00:35:54.7955124Z     
+2026-10-22T00:35:54.7955841Z         An earlier version wrote a mutated copy over docs/formal-release/... and restored it in
+2026-10-22T00:35:54.7956381Z         a `finally`, so an interrupted run could leave the repository holding a falsified account.
+2026-10-22T00:35:54.7957035Z         The version after that only compared two strings in memory and was named as if it ran the
+2026-10-22T00:35:54.7957572Z         mode -- a green test that never called `--check`. This redirects the module's output path
+2026-10-22T00:35:54.7958085Z         into a tmp file and asks `main(["--check"])` itself for a verdict, both ways.
+2026-10-22T00:35:54.7958528Z         """
+2026-10-22T00:35:54.7958796Z         import generate_declaration_shape_report as gen
+2026-10-22T00:35:54.7959132Z     
+2026-10-22T00:35:54.7959381Z >       fresh = gen.render(gen.build())
+2026-10-22T00:35:54.7959678Z                            ^^^^^^^^^^^
+2026-10-22T00:35:54.7959899Z 
+2026-10-22T00:35:54.7960031Z tests/spec/test_declaration_shape_report.py:119: 
+2026-10-22T00:35:54.7960388Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-10-22T00:35:54.7960635Z 
+2026-10-22T00:35:54.7960754Z     def build() -> dict:
+2026-10-22T00:35:54.7961152Z         pkg: dict[str, int] = {"ALIAS_ONE_LINER": 0, "CLOSED_NO_BINDERS": 0, "theorems": 0}
+2026-10-22T00:35:54.7961571Z         per_file: dict[str, dict[str, int]] = {}
+2026-10-22T00:35:54.7961926Z         for path in tracked_lean():
+2026-10-22T00:35:54.7962292Z             abs_path = Path(path) if Path(path).is_absolute() else ROOT / path
+2026-10-22T00:35:54.7962702Z             rel = abs_path.relative_to(ROOT).as_posix()
+2026-10-22T00:35:54.7963077Z             code = strip_comments(abs_path.read_text(encoding="utf-8"))
+2026-10-22T00:35:54.7963978Z             file_counts = {"ALIAS_ONE_LINER": 0, "CLOSED_NO_BINDERS": 0, "theorems": 0}
+2026-10-22T00:35:54.7964503Z             for _name, block in blocks(code):
+2026-10-22T00:35:54.7964823Z                 tags = shape_of(block)
+2026-10-22T00:35:54.7965137Z                 pkg["theorems"] += 1
+2026-10-22T00:35:54.7965744Z                 file_counts["theorems"] += 1
+2026-10-22T00:35:54.7966039Z                 for tag in tags:
+2026-10-22T00:35:54.7966375Z                     pkg[tag] += 1
+2026-10-22T00:35:54.7966672Z                     file_counts[tag] += 1
+2026-10-22T00:35:54.7967018Z             if file_counts["theorems"]:
+2026-10-22T00:35:54.7967319Z                 per_file[rel] = file_counts
+2026-10-22T00:35:54.7967656Z         census = json.loads(CENSUS.read_text(encoding="utf-8"))
+2026-10-22T00:35:54.7968086Z         census_total = census["theorem_declarations"]
+2026-10-22T00:35:54.7968422Z         agree = census_total == pkg["theorems"]
+2026-10-22T00:35:54.7968725Z         if not agree:
+2026-10-22T00:35:54.7969001Z >           raise SystemExit(
+2026-10-22T00:35:54.7969361Z                 f"scope disagreement: census sees {census_total} theorems, "
+2026-10-22T00:35:54.7969872Z                 f"this report sees {pkg['theorems']} -- the two parsers no longer agree"
+2026-10-22T00:35:54.7970247Z             )
+2026-10-22T00:35:54.7970690Z E           SystemExit: scope disagreement: census sees 5043 theorems, this report sees 5272 -- the two parsers no longer agree
+2026-10-22T00:35:54.7971069Z 
+2026-10-22T00:35:54.7971267Z scripts/ci/generate_declaration_shape_report.py:156: SystemExit
+2026-10-22T00:35:54.7971739Z __________ test_the_committed_drafts_are_what_the_generator_produces ___________
+2026-10-22T00:35:54.7972021Z 
+2026-10-22T00:35:54.7972311Z     def test_the_committed_drafts_are_what_the_generator_produces() -> None:
+2026-10-22T00:35:54.7972687Z         mod = _load()
+2026-10-22T00:35:54.7972987Z         figures = mod.figures()
+2026-10-22T00:35:54.7973344Z         for path, specs in ((mod.DRAFTS["cn"], mod.cn_specs(figures)),
+2026-10-22T00:35:54.7973751Z                             (mod.DRAFTS["en"], mod.en_specs(figures))):
+2026-10-22T00:35:54.7974123Z             text = path.read_text(encoding="utf-8")
+2026-10-22T00:35:54.7974462Z             for pattern, replacement in specs:
+2026-10-22T00:35:54.7974789Z                 text = re.sub(pattern, replacement, text)
+2026-10-22T00:35:54.7975180Z >           assert text == path.read_text(encoding="utf-8"), (
+2026-10-22T00:35:54.7975959Z                 f"{path.name} carries an accounting figure that is not the artifact's; run "
+2026-10-22T00:35:54.7976470Z                 "`python scripts/rebind_paper_derived_accounting.py --write`"
+2026-10-22T00:35:54.7976826Z             )
+2026-10-22T00:35:54.7977341Z E           AssertionError: paper_cn.md carries an accounting figure that is not the artifact's; run `python scripts/rebind_paper_derived_accounting.py --write`
+2026-10-22T00:35:54.7978432Z E           assert '# 法律形式化的七层责任...I_NOT_RUN`。\n' == '# 法律形式化的七层责任...I_NOT_RUN`。\n'
+2026-10-22T00:35:54.7978813Z E             
+2026-10-22T00:35:54.7979150Z E             Skipping 2564 identical leading characters in diff, use -v to show
+2026-10-22T00:35:54.7979616Z E             Skipping 18361 identical trailing characters in diff, use -v to show
+2026-10-22T00:35:54.7980093Z E             - py`：该账现报 346 / 354 模块在根闭包内、
+2026-10-22T00:35:54.7980435Z E             ?           ^^    ^^
+2026-10-22T00:35:54.7980763Z E             + py`：该账现报 370 / 378 模块在根闭包内、
+2026-10-22T00:35:54.7981071Z E             ?           ^^    ^^
+2026-10-22T00:35:54.7981262Z 
+2026-10-22T00:35:54.7981443Z tests/spec/test_paper_accounting_is_generated.py:53: AssertionError
+2026-10-22T00:35:54.7981891Z __________________ test_reports_are_reproducible_from_source ___________________
+2026-10-22T00:35:54.7982182Z 
+2026-10-22T00:35:54.7982346Z     def test_reports_are_reproducible_from_source() -> None:
+2026-10-22T00:35:54.7982827Z         proc = subprocess.run([sys.executable, str(TOOL), "--check"], cwd=ROOT,
+2026-10-22T00:35:54.7983240Z                               capture_output=True, text=True)
+2026-10-22T00:35:54.7983622Z >       assert proc.returncode == 0, proc.stdout + proc.stderr
+2026-10-22T00:35:54.7984012Z E       AssertionError: kernel_reuse_report.json is stale
+2026-10-22T00:35:54.7984367Z E         
+2026-10-22T00:35:54.7984603Z E       assert 1 == 0
+2026-10-22T00:35:54.7985636Z E        +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le...te_structure_and_volume_reports.py', '--check'], returncode=1, stdout='', stderr='kernel_reuse_report.json is stale\n').returncode
+2026-10-22T00:35:54.7986470Z 
+2026-10-22T00:35:54.7986651Z tests/spec/test_structure_reports.py:55: AssertionError
+2026-10-22T00:35:54.7987091Z ___________________ test_every_quoted_run_id_is_in_the_index ___________________
+2026-10-22T00:35:54.7987326Z 
+2026-10-22T00:35:54.7987555Z     def test_every_quoted_run_id_is_in_the_index() -> None:
+2026-10-22T00:35:54.7987935Z         quoted = build_ci_run_index.run_ids_in_markdown()
+2026-10-22T00:35:54.7988298Z         recorded = {str(r["run_id"]) for r in _doc()["runs"]}
+2026-10-22T00:35:54.7988841Z >       assert set(quoted) <= recorded, f"runs quoted without evidence: {sorted(set(quoted) - recorded)}"
+2026-10-22T00:35:54.7989483Z E       AssertionError: runs quoted without evidence: ['38315566085', '38319507523', '39689061670', '39699620705']
+2026-10-22T00:35:54.7990099Z E       assert {'33946211096...9378180', ...} <= {'33946211096...9378180', ...}
+2026-10-22T00:35:54.7990446Z E         
+2026-10-22T00:35:54.7990682Z E         Extra items in the left set:
+2026-10-22T00:35:54.7991002Z E         '38315566085'
+2026-10-22T00:35:54.7991252Z E         '39689061670'
+2026-10-22T00:35:54.7991602Z E         '38319507523'
+2026-10-22T00:35:54.7991868Z E         '39699620705'
+2026-10-22T00:35:54.7992028Z 
+2026-10-22T00:35:54.7992150Z tests/test_ci_run_index.py:64: AssertionError
+2026-10-22T00:35:54.7992589Z ____________________ test_check_mode_is_offline_and_passes _____________________
+2026-10-22T00:35:54.7992832Z 
+2026-10-22T00:35:54.7993006Z     def test_check_mode_is_offline_and_passes() -> None:
+2026-10-22T00:35:54.7993367Z         proc = subprocess.run(
+2026-10-22T00:35:54.7993701Z             [sys.executable, str(TOOL), "--check"], cwd=ROOT,
+2026-10-22T00:35:54.7994066Z             capture_output=True, text=True, encoding="utf-8",
+2026-10-22T00:35:54.7994395Z         )
+2026-10-22T00:35:54.7994853Z >       assert proc.returncode == 0, proc.stdout + proc.stderr
+2026-10-22T00:35:54.7995721Z E       AssertionError: stale index: quoted run ids not in the index: ['38315566085', '38319507523', '39689061670', '39699620705']
+2026-10-22T00:35:54.7996202Z E         
+2026-10-22T00:35:54.7996447Z E       assert 1 == 0
+2026-10-22T00:35:54.7997257Z E        +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le... stderr="stale index: quoted run ids not in the index: ['38315566085', '38319507523', '39689061670', '39699620705']\n").returncode
+2026-10-22T00:35:54.7997975Z 
+2026-10-22T00:35:54.7998155Z tests/test_ci_run_index.py:164: AssertionError
+2026-10-22T00:35:54.7998568Z _______ test_certificate_and_inventory_agree_declaration_by_declaration ________
+2026-10-22T00:35:54.7998848Z 
+2026-10-22T00:35:54.7999073Z     def test_certificate_and_inventory_agree_declaration_by_declaration() -> None:
+2026-10-22T00:35:54.7999494Z         """Two release artifacts, one counting rule.
+2026-10-22T00:35:54.7999844Z     
+2026-10-22T00:35:54.8000202Z         The certificate used to report 1847 declarations where the inventory reported
+2026-10-22T00:35:54.8000724Z         1882 for the identical file set: it ignored `@[...]`-prefixed theorems, counted
+2026-10-22T00:35:54.8001234Z         keywords inside comments, and truncated dotted names at the dot. Aggregating the
+2026-10-22T00:35:54.8001701Z         same way is not enough, so this compares the per-file name sets.
+2026-10-22T00:35:54.8002066Z         """
+2026-10-22T00:35:54.8002319Z     
+2026-10-22T00:35:54.8002549Z         manifest = json.loads(
+2026-10-22T00:35:54.8002995Z             (REPO_ROOT / "docs/formal-release/theorem_inventory_v3.json").read_text(encoding="utf-8")
+2026-10-22T00:35:54.8003420Z         )
+2026-10-22T00:35:54.8003749Z         by_path = {f["path"]: f for f in manifest["files"]}
+2026-10-22T00:35:54.8004132Z         inventory = collect_source_inventory(REPO_ROOT)
+2026-10-22T00:35:54.8004430Z     
+2026-10-22T00:35:54.8004738Z >       assert inventory["theorem_declaration_count"] == sum(
+2026-10-22T00:35:54.8005141Z             by_path[s["path"]]["theorem_count"] for s in inventory["sources"]
+2026-10-22T00:35:54.8005732Z         )
+2026-10-22T00:35:54.8005915Z 
+2026-10-22T00:35:54.8006046Z tests/test_formal_release_inventory.py:57: 
+2026-10-22T00:35:54.8006400Z _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+2026-10-22T00:35:54.8006647Z 
+2026-10-22T00:35:54.8006814Z .0 = <list_iterator object at 0x78fdb761f280>
+2026-10-22T00:35:54.8006995Z 
+2026-10-22T00:35:54.8007203Z     assert inventory["theorem_declaration_count"] == sum(
+2026-10-22T00:35:54.8007605Z >       by_path[s["path"]]["theorem_count"] for s in inventory["sources"]
+2026-10-22T00:35:54.8007995Z         ^^^^^^^^^^^^^^^^^^
+2026-10-22T00:35:54.8008256Z     )
+2026-10-22T00:35:54.8008637Z E   KeyError: 'proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean'
+2026-10-22T00:35:54.8008964Z 
+2026-10-22T00:35:54.8009099Z tests/test_formal_release_inventory.py:58: KeyError
+2026-10-22T00:35:54.8009531Z ________________________ test_check_mode_passes_offline ________________________
+2026-10-22T00:35:54.8009797Z 
+2026-10-22T00:35:54.8009953Z     def test_check_mode_passes_offline() -> None:
+2026-10-22T00:35:54.8010489Z         proc = subprocess.run([sys.executable, str(TOOL), "--check"], cwd=ROOT,
+2026-10-22T00:35:54.8010922Z                               capture_output=True, text=True, encoding="utf-8",
+2026-10-22T00:35:54.8011275Z                               errors="replace")
+2026-10-22T00:35:54.8011612Z >       assert proc.returncode == 0, proc.stdout + proc.stderr
+2026-10-22T00:35:54.8012103Z E       AssertionError: files_scanned drift: committed 354, source says 378; regenerate
+2026-10-22T00:35:54.8012498Z E         
+2026-10-22T00:35:54.8012777Z E       assert 1 == 0
+2026-10-22T00:35:54.8013579Z E        +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le...s.py', '--check'], returncode=1, stdout='', stderr='files_scanned drift: committed 354, source says 378; regenerate\n').returncode
+2026-10-22T00:35:54.8014340Z 
+2026-10-22T00:35:54.8014538Z tests/test_statement_duplication_census.py:56: AssertionError
+2026-10-22T00:35:54.8015011Z __________ test_census_counts_and_key_sets_are_recomputed_not_copied ___________
+2026-10-22T00:35:54.8015521Z 
+2026-10-22T00:35:54.8015827Z     def test_census_counts_and_key_sets_are_recomputed_not_copied() -> None:
+2026-10-22T00:35:54.8016370Z         """Every published figure and every published key must equal an on-the-spot recount.
+2026-10-22T00:35:54.8016764Z     
+2026-10-22T00:35:54.8017122Z         This replaces `duplicated_statement_types == 8` and `cross_family_statement_types
+2026-10-22T00:35:54.8017701Z         == 0`, which pinned a number rather than the property: the number was right about a
+2026-10-22T00:35:54.8018249Z         wrong measurement.
+2026-10-22T00:35:54.8018520Z         """
+2026-10-22T00:35:54.8018814Z         from build_statement_duplication_census import scan
+2026-10-22T00:35:54.8019155Z     
+2026-10-22T00:35:54.8019454Z         doc = _census()
+2026-10-22T00:35:54.8019711Z         live = scan()
+2026-10-22T00:35:54.8020076Z         for field in ("files_scanned", "statements_read", "distinct_statement_types",
+2026-10-22T00:35:54.8020542Z                       "duplicated_statement_types", "cross_family_statement_types",
+2026-10-22T00:35:54.8020998Z                       "inventory_package_theorems", "headers_missed_by_scanner",
+2026-10-22T00:35:54.8021432Z                       "private_protected_headers_read"):
+2026-10-22T00:35:54.8021760Z >           assert doc[field] == live[field], (
+2026-10-22T00:35:54.8022155Z                 f"{field}: the account says {doc[field]}, the source says {live[field]}; "
+2026-10-22T00:35:54.8022584Z                 "regenerate rather than editing the account"
+2026-10-22T00:35:54.8022918Z             )
+2026-10-22T00:35:54.8023377Z E           AssertionError: files_scanned: the account says 354, the source says 378; regenerate rather than editing the account
+2026-10-22T00:35:54.8024086Z E           assert 354 == 378
+2026-10-22T00:35:54.8024267Z 
+2026-10-22T00:35:54.8024453Z tests/test_statement_duplication_census.py:88: AssertionError
+2026-10-22T00:35:54.8024900Z ____________ test_committed_inventory_verifies_against_working_tree ____________
+2026-10-22T00:35:54.8025171Z 
+2026-10-22T00:35:54.8025497Z     def test_committed_inventory_verifies_against_working_tree():
+2026-10-22T00:35:54.8025887Z         proc = subprocess.run(
+2026-10-22T00:35:54.8026219Z             [sys.executable, str(GEN), "--verify", str(INVENTORY)],
+2026-10-22T00:35:54.8026541Z             cwd=ROOT,
+2026-10-22T00:35:54.8026839Z             capture_output=True,
+2026-10-22T00:35:54.8027142Z             text=True,
+2026-10-22T00:35:54.8027436Z         )
+2026-10-22T00:35:54.8027699Z >       assert proc.returncode == 0, proc.stdout
+2026-10-22T00:35:54.8028092Z E       AssertionError:   FAIL hash mismatch: proofs/lean/juris_lean/JurisLean.lean
+2026-10-22T00:35:54.8028524Z E         verified files=369 problems=1
+2026-10-22T00:35:54.8028835Z E         
+2026-10-22T00:35:54.8029074Z E       assert 1 == 0
+2026-10-22T00:35:54.8029976Z E        +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le...de=1, stdout='  FAIL hash mismatch: proofs/lean/juris_lean/JurisLean.lean\nverified files=369 problems=1\n', stderr='').returncode
+2026-10-22T00:35:54.8030722Z 
+2026-10-22T00:35:54.8030872Z tests/test_theorem_inventory.py:43: AssertionError
+2026-10-22T00:35:54.8031320Z ______________ test_no_counted_declaration_lives_in_a_sorry_body _______________
+2026-10-22T00:35:54.8031569Z 
+2026-10-22T00:35:54.8031753Z     def test_no_counted_declaration_lives_in_a_sorry_body():
+2026-10-22T00:35:54.8032198Z         """Qoder audit P0-3: the inventory counted theorems whose bodies said sorry."""
+2026-10-22T00:35:54.8032598Z         import hashlib
+2026-10-22T00:35:54.8032908Z         import re
+2026-10-22T00:35:54.8033194Z         import subprocess
+2026-10-22T00:35:54.8033449Z     
+2026-10-22T00:35:54.8033809Z         doc = load(INVENTORY)
+2026-10-22T00:35:54.8034093Z         offenders = []
+2026-10-22T00:35:54.8034367Z         for entry in doc["files"]:
+2026-10-22T00:35:54.8034712Z             raw = (ROOT / entry["path"]).read_bytes()
+2026-10-22T00:35:54.8035110Z >           assert hashlib.sha256(raw).hexdigest() == entry["sha256"], entry["path"]
+2026-10-22T00:35:54.8035792Z E           AssertionError: proofs/lean/juris_lean/JurisLean.lean
+2026-10-22T00:35:54.8036256Z E           assert '8598ad5ad091...3777d34147399' == 'f3f74a16dac5...34ef48c937f56'
+2026-10-22T00:35:54.8036629Z E             
+2026-10-22T00:35:54.8037048Z E             - f3f74a16dac543c3fcddb52def23a2aefa7a2950fd9d2ea784e34ef48c937f56
+2026-10-22T00:35:54.8037521Z E             + 8598ad5ad09145874a1c3241f031a0f468e1cec5c38eec63c163777d34147399
+2026-10-22T00:35:54.8037773Z 
+2026-10-22T00:35:54.8037931Z tests/test_theorem_inventory.py:133: AssertionError
+2026-10-22T00:35:54.8038357Z __________________ test_guard_scan_covers_every_counted_file ___________________
+2026-10-22T00:35:54.8038627Z 
+2026-10-22T00:35:54.8038759Z     def test_guard_scan_covers_every_counted_file():
+2026-10-22T00:35:54.8039179Z         """The scan root must reach everything the count covers (audit P1-8)."""
+2026-10-22T00:35:54.8039564Z         import subprocess
+2026-10-22T00:35:54.8039844Z         import sys
+2026-10-22T00:35:54.8040622Z     
+2026-10-22T00:35:54.8040880Z         proc = subprocess.run(
+2026-10-22T00:35:54.8041275Z             [sys.executable, str(ROOT / "scripts" / "scan_lean_guards.py"), "--all-tracked"],
+2026-10-22T00:35:54.8041699Z             cwd=ROOT,
+2026-10-22T00:35:54.8041962Z             capture_output=True,
+2026-10-22T00:35:54.8042256Z             text=True,
+2026-10-22T00:35:54.8042502Z         )
+2026-10-22T00:35:54.8042800Z         assert proc.returncode == 0, proc.stdout + proc.stderr
+2026-10-22T00:35:54.8043203Z         doc = load(INVENTORY)
+2026-10-22T00:35:54.8043591Z >       assert f"{doc['scope_summary']['all_tracked_lean']['file_count']} files" in proc.stdout
+2026-10-22T00:35:54.8044166Z E       AssertionError: assert '369 files' in 'Lean guard scan passed (393 files, scope=all-tracked).\n'
+2026-10-22T00:35:54.8045389Z E        +  where 'Lean guard scan passed (393 files, scope=all-tracked).\n' = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le...ards.py', '--all-tracked'], returncode=0, stdout='Lean guard scan passed (393 files, scope=all-tracked).\n', stderr='').stdout
+2026-10-22T00:35:54.8046263Z 
+2026-10-22T00:35:54.8046385Z tests/test_theorem_inventory.py:191: AssertionError
+2026-10-22T00:35:54.8046803Z ________________________ test_check_mode_passes_offline ________________________
+2026-10-22T00:35:54.8047066Z 
+2026-10-22T00:35:54.8047230Z     def test_check_mode_passes_offline() -> None:
+2026-10-22T00:35:54.8047569Z         proc = subprocess.run(
+2026-10-22T00:35:54.8047907Z             [sys.executable, str(TOOL), "--check"], cwd=ROOT,
+2026-10-22T00:35:54.8048303Z             capture_output=True, text=True, encoding="utf-8", errors="replace",
+2026-10-22T00:35:54.8048693Z         )
+2026-10-22T00:35:54.8049046Z >       assert proc.returncode == 0, proc.stdout + proc.stderr
+2026-10-22T00:35:54.8049437Z E       AssertionError: trivial_proof_census.json is stale
+2026-10-22T00:35:54.8049792Z E         
+2026-10-22T00:35:54.8050043Z E       assert 1 == 0
+2026-10-22T00:35:54.8050886Z E        +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le.../generate_trivial_proof_census.py', '--check'], returncode=1, stdout='', stderr='trivial_proof_census.json is stale\n').returncode
+2026-10-22T00:35:54.8051572Z 
+2026-10-22T00:35:54.8051747Z tests/test_trivial_proof_census.py:82: AssertionError
+2026-10-22T00:35:54.8052124Z =========================== short test summary info ============================
+2026-10-22T00:35:54.8053086Z FAILED tests/spec/test_declaration_shape_report.py::test_the_shape_report_is_current - SystemExit: scope disagreement: census sees 5043 theorems, this report sees 5272 -- the two parsers no longer agree
+2026-10-22T00:35:54.8212582Z FAILED tests/spec/test_declaration_shape_report.py::test_the_shape_check_mode_fails_on_a_stale_artifact - SystemExit: scope disagreement: census sees 5043 theorems, this report sees 5272 -- the two parsers no longer agree
+2026-10-22T00:35:54.8214030Z FAILED tests/spec/test_paper_accounting_is_generated.py::test_the_committed_drafts_are_what_the_generator_produces - AssertionError: paper_cn.md carries an accounting figure that is not the artifact's; run `python scripts/rebind_paper_derived_accounting.py --write`
+2026-10-22T00:35:54.8215474Z assert '# 法律形式化的七层责任...I_NOT_RUN`。\n' == '# 法律形式化的七层责任...I_NOT_RUN`。\n'
+2026-10-22T00:35:54.8215987Z   
+2026-10-22T00:35:54.8216317Z   Skipping 2564 identical leading characters in diff, use -v to show
+2026-10-22T00:35:54.8216808Z   Skipping 18361 identical trailing characters in diff, use -v to show
+2026-10-22T00:35:54.8217336Z   - py`：该账现报 346 / 354 模块在根闭包内、
+2026-10-22T00:35:54.8217645Z   ?           ^^    ^^
+2026-10-22T00:35:54.8217999Z   + py`：该账现报 370 / 378 模块在根闭包内、
+2026-10-22T00:35:54.8218284Z   ?           ^^    ^^
+2026-10-22T00:35:54.8218811Z FAILED tests/spec/test_structure_reports.py::test_reports_are_reproducible_from_source - AssertionError: kernel_reuse_report.json is stale
+2026-10-22T00:35:54.8219359Z   
+2026-10-22T00:35:54.8219586Z assert 1 == 0
+2026-10-22T00:35:54.8220456Z  +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le...te_structure_and_volume_reports.py', '--check'], returncode=1, stdout='', stderr='kernel_reuse_report.json is stale\n').returncode
+2026-10-22T00:35:54.8221604Z FAILED tests/test_ci_run_index.py::test_every_quoted_run_id_is_in_the_index - AssertionError: runs quoted without evidence: ['38315566085', '38319507523', '39689061670', '39699620705']
+2026-10-22T00:35:54.8222296Z assert {'33946211096...9378180', ...} <= {'33946211096...9378180', ...}
+2026-10-22T00:35:54.8222652Z   
+2026-10-22T00:35:54.8222894Z   Extra items in the left set:
+2026-10-22T00:35:54.8223209Z   '38315566085'
+2026-10-22T00:35:54.8223448Z   '39689061670'
+2026-10-22T00:35:54.8223712Z   '38319507523'
+2026-10-22T00:35:54.8223953Z   '39699620705'
+2026-10-22T00:35:54.8224545Z FAILED tests/test_ci_run_index.py::test_check_mode_is_offline_and_passes - AssertionError: stale index: quoted run ids not in the index: ['38315566085', '38319507523', '39689061670', '39699620705']
+2026-10-22T00:35:54.8225194Z   
+2026-10-22T00:35:54.8225702Z assert 1 == 0
+2026-10-22T00:35:54.8226444Z  +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le... stderr="stale index: quoted run ids not in the index: ['38315566085', '38319507523', '39689061670', '39699620705']\n").returncode
+2026-10-22T00:35:54.8227666Z FAILED tests/test_formal_release_inventory.py::test_certificate_and_inventory_agree_declaration_by_declaration - KeyError: 'proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean'
+2026-10-22T00:35:54.8228935Z FAILED tests/test_statement_duplication_census.py::test_check_mode_passes_offline - AssertionError: files_scanned drift: committed 354, source says 378; regenerate
+2026-10-22T00:35:54.8229546Z   
+2026-10-22T00:35:54.8229777Z assert 1 == 0
+2026-10-22T00:35:54.8230530Z  +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le...s.py', '--check'], returncode=1, stdout='', stderr='files_scanned drift: committed 354, source says 378; regenerate\n').returncode
+2026-10-22T00:35:54.8231817Z FAILED tests/test_statement_duplication_census.py::test_census_counts_and_key_sets_are_recomputed_not_copied - AssertionError: files_scanned: the account says 354, the source says 378; regenerate rather than editing the account
+2026-10-22T00:35:54.8232691Z assert 354 == 378
+2026-10-22T00:35:54.8233286Z FAILED tests/test_theorem_inventory.py::test_committed_inventory_verifies_against_working_tree - AssertionError:   FAIL hash mismatch: proofs/lean/juris_lean/JurisLean.lean
+2026-10-22T00:35:54.8233924Z   verified files=369 problems=1
+2026-10-22T00:35:54.8234186Z   
+2026-10-22T00:35:54.8234448Z assert 1 == 0
+2026-10-22T00:35:54.8235332Z  +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le...de=1, stdout='  FAIL hash mismatch: proofs/lean/juris_lean/JurisLean.lean\nverified files=369 problems=1\n', stderr='').returncode
+2026-10-22T00:35:54.8236556Z FAILED tests/test_theorem_inventory.py::test_no_counted_declaration_lives_in_a_sorry_body - AssertionError: proofs/lean/juris_lean/JurisLean.lean
+2026-10-22T00:35:54.8237188Z assert '8598ad5ad091...3777d34147399' == 'f3f74a16dac5...34ef48c937f56'
+2026-10-22T00:35:54.8237537Z   
+2026-10-22T00:35:54.8237901Z   - f3f74a16dac543c3fcddb52def23a2aefa7a2950fd9d2ea784e34ef48c937f56
+2026-10-22T00:35:54.8238380Z   + 8598ad5ad09145874a1c3241f031a0f468e1cec5c38eec63c163777d34147399
+2026-10-22T00:35:54.8239091Z FAILED tests/test_theorem_inventory.py::test_guard_scan_covers_every_counted_file - AssertionError: assert '369 files' in 'Lean guard scan passed (393 files, scope=all-tracked).\n'
+2026-10-22T00:35:54.8240372Z  +  where 'Lean guard scan passed (393 files, scope=all-tracked).\n' = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le...ards.py', '--all-tracked'], returncode=0, stdout='Lean guard scan passed (393 files, scope=all-tracked).\n', stderr='').stdout
+2026-10-22T00:35:54.8241527Z FAILED tests/test_trivial_proof_census.py::test_check_mode_passes_offline - AssertionError: trivial_proof_census.json is stale
+2026-10-22T00:35:54.8242036Z   
+2026-10-22T00:35:54.8242278Z assert 1 == 0
+2026-10-22T00:35:54.8243046Z  +  where 1 = CompletedProcess(args=['/opt/hostedtoolcache/Python/3.12.15/x64/bin/python', '/home/runner/work/legal-math-modeling/le.../generate_trivial_proof_census.py', '--check'], returncode=1, stdout='', stderr='trivial_proof_census.json is stale\n').returncode
+2026-10-22T00:35:54.8243889Z 13 failed, 651 passed in 105.92s (0:01:45)
+2026-10-22T00:35:54.8731269Z ##[error]Process completed with exit code 1.
+2026-10-22T00:35:54.8828349Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-22T00:35:54.8829114Z with:
+2026-10-22T00:35:54.8829416Z   name: python-gates-run39700447562-attempt1
+2026-10-22T00:35:54.8829902Z   path: pytest-collection.txt
+pytest-full.log
+lean-guard-report.json
+mutation-property-report.json
+
+2026-10-22T00:35:54.8830393Z   if-no-files-found: warn
+2026-10-22T00:35:54.8830666Z   compression-level: 6
+2026-10-22T00:35:54.8830938Z   overwrite: false
+2026-10-22T00:35:54.8831213Z   include-hidden-files: false
+2026-10-22T00:35:54.8831480Z env:
+2026-10-22T00:35:54.8831748Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:35:54.8832069Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:35:54.8832354Z   PYTHONUTF8: 1
+2026-10-22T00:35:54.8832868Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:35:54.8833289Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:35:54.8833828Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:35:54.8834202Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:35:54.8834616Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:35:54.8835019Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:35:54.8835607Z ##[endgroup]
+2026-10-22T00:35:55.0289267Z (node:34135) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T00:35:55.0290874Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T00:35:55.0346535Z Multiple search paths detected. Calculating the least common ancestor of all paths
+2026-10-22T00:35:55.0349342Z The least common ancestor is /home/runner/work/legal-math-modeling/legal-math-modeling. This will be the root directory of the artifact
+2026-10-22T00:35:55.0350379Z With the provided path, there will be 2 files uploaded
+2026-10-22T00:35:55.0363259Z Artifact name is valid!
+2026-10-22T00:35:55.0364364Z Root directory input is valid!
+2026-10-22T00:35:55.3262207Z Beginning upload of artifact content to blob storage
+2026-10-22T00:35:55.3438237Z (node:34135) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-10-22T00:35:55.5282359Z Uploaded bytes 17090
+2026-10-22T00:35:55.5713829Z Finished uploading artifact content to blob storage!
+2026-10-22T00:35:55.5714741Z SHA256 digest of uploaded artifact zip is 68b0886e65461dd9e3470000f3c7168ca6ff1184ddfa2bddda064035d7d54dc2
+2026-10-22T00:35:55.5715963Z Finalizing artifact upload
+2026-10-22T00:35:56.0159851Z Artifact python-gates-run39700447562-attempt1.zip successfully finalized. Artifact ID 12392254174
+2026-10-22T00:35:56.0161083Z Artifact python-gates-run39700447562-attempt1 has been successfully uploaded! Final size is 17090 bytes. Artifact ID is 12392254174
+2026-10-22T00:35:56.0167482Z Artifact download URL: https://github.com/laubeing-droid/legal-math-modeling/actions/runs/39700447562/artifacts/12392254174
+2026-10-22T00:35:56.0291713Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-22T00:35:56.0292157Z with:
+2026-10-22T00:35:56.0292466Z   name: seven-axis-python-39700447562-1
+2026-10-22T00:35:56.0292788Z   path: work/seven-python
+2026-10-22T00:35:56.0293088Z   if-no-files-found: warn
+2026-10-22T00:35:56.0293399Z   compression-level: 6
+2026-10-22T00:35:56.0293686Z   overwrite: false
+2026-10-22T00:35:56.0293957Z   include-hidden-files: false
+2026-10-22T00:35:56.0294244Z env:
+2026-10-22T00:35:56.0294544Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:35:56.0294848Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:35:56.0295158Z   PYTHONUTF8: 1
+2026-10-22T00:35:56.0295937Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:35:56.0296380Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:35:56.0296831Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:35:56.0297315Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:35:56.0297732Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:35:56.0298151Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:35:56.0298512Z ##[endgroup]
+2026-10-22T00:35:56.1702253Z (node:34147) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T00:35:56.1703073Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T00:35:56.1732369Z ##[warning]No files were found with the provided path: work/seven-python. No artifacts will be uploaded.
+2026-10-22T00:35:56.1841738Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-10-22T00:35:56.1842165Z with:
+2026-10-22T00:35:56.1842457Z   name: full-math-python-39700447562-1
+2026-10-22T00:35:56.1842818Z   path: work/full-math-python
+2026-10-22T00:35:56.1843110Z   if-no-files-found: warn
+2026-10-22T00:35:56.1843388Z   compression-level: 6
+2026-10-22T00:35:56.1843671Z   overwrite: false
+2026-10-22T00:35:56.1843947Z   include-hidden-files: false
+2026-10-22T00:35:56.1844250Z env:
+2026-10-22T00:35:56.1844501Z   LEAN_DIR: proofs/lean/juris_lean
+2026-10-22T00:35:56.1845164Z   PYTHONDONTWRITEBYTECODE: 1
+2026-10-22T00:35:56.1845867Z   PYTHONUTF8: 1
+2026-10-22T00:35:56.1846259Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:35:56.1846703Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+2026-10-22T00:35:56.1847346Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:35:56.1847898Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:35:56.1848286Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+2026-10-22T00:35:56.1848696Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+2026-10-22T00:35:56.1849033Z ##[endgroup]
+2026-10-22T00:35:56.3248643Z (node:34159) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-10-22T00:35:56.3249887Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-10-22T00:35:56.3280290Z ##[warning]No files were found with the provided path: work/full-math-python. No artifacts will be uploaded.
+2026-10-22T00:35:56.3515853Z Post job cleanup.
+2026-10-22T00:35:56.4241159Z [command]/usr/bin/git version
+2026-10-22T00:35:56.4274437Z git version 2.55.0
+2026-10-22T00:35:56.4304307Z Temporarily overriding HOME='/home/runner/work/_temp/9c43c57a-3927-48cf-9742-dc1ead061f55' before making global git config changes
+2026-10-22T00:35:56.4305725Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-22T00:35:56.4309776Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/legal-math-modeling/legal-math-modeling
+2026-10-22T00:35:56.4341566Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-22T00:35:56.4370614Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-22T00:35:56.4587702Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-22T00:35:56.4615467Z http.https://github.com/.extraheader
+2026-10-22T00:35:56.4617593Z [command]/usr/bin/git config --local --unset-all http.https://github.com/.extraheader
+2026-10-22T00:35:56.4643821Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-22T00:35:56.4869861Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-22T00:35:56.4899684Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-22T00:35:56.5220768Z Cleaning up orphan processes
+2026-10-22T00:35:56.5430080Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5, actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065, actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+

@@ -24,11 +24,23 @@
         "line": 21,
         "path": "BusinessRelationsDelta.lean"
       }
+    ],
+    "(α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) : (Real.Gamma (α + (w : ℝ)) * Real.Gamma (β + (l : ℝ))) / Real.Gamma (α + β + ((w + l : ℕ) : ℝ)) / ((Real.Gamma α * Real.Gamma β) / Real.Gamma (α + β)) = (rising α w * rising β l) / rising (α + β) (w + l)": [
+      {
+        "carrier": "FullMath/beta_ratio",
+        "line": 82,
+        "path": "FullMath/Probability/DirichletPosterior.lean"
+      },
+      {
+        "carrier": "root/other/u04_1_real_gamma_weight_ratio",
+        "line": 160,
+        "path": "Candidates/Final20261021/Probability.lean"
+      }
     ]
   },
-  "cross_family_statement_types": 2,
-  "distinct_statement_types": 5387,
-  "duplicated_statement_types": 56,
+  "cross_family_statement_types": 3,
+  "distinct_statement_types": 5385,
+  "duplicated_statement_types": 58,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
@@ -88,6 +100,18 @@
         "carrier": "root/other/trust_meet_le_right",
         "line": 97,
         "path": "ULM14CoverageTrust.lean"
+      }
+    ],
+    "(a b k l : ℕ) : ((∫ x in 0..1, polyBeta (a + 1) (b + 1) x * (x ^ k * (1 - x) ^ l)) = ((betaTwoConst ((a : ℕ) + k) ((b : ℕ) + l) : ℚ) / (betaTwoConst a b : ℚ) : ℚ)) ∧ (∀ x : ℝ, polyBeta (a + 1) (b + 1) x * (x ^ k * (1 - x) ^ l) * ((betaTwoConst a b : ℚ) / (betaTwoConst ((a : ℕ) + k) ((b : ℕ) + l) : ℚ) : ℚ) = polyBeta (((a : ℕ) + k) + 1) (((b : ℕ) + l) + 1) x) ∧ ((∫ x in 0..1, polyBeta (((a : ℕ) + k) + 1) (((b : ℕ) + l) + 1) x) = 1)": [
+      {
+        "carrier": "root/other/beta_posterior_from_likelihood",
+        "line": 445,
+        "path": "Seams/UnifiedNeedlesS3a.lean"
+      },
+      {
+        "carrier": "root/other/u04_1_integer_shape_conjugacy",
+        "line": 146,
+        "path": "Candidates/Final20261021/Probability.lean"
       }
     ],
     "(c : Certificate) (hstatus : c.status = DecisionStatus.proved) (hkind : c.evidence.kind = EvidenceKind.candidate) : checkCertificate c ≠ CheckVerdict.accept": [
@@ -304,6 +328,18 @@
         "carrier": "root/other/finite_legal_mixed_equilibrium_exists_upstream",
         "line": 613,
         "path": "Seams/UnifiedEquilExist.lean"
+      }
+    ],
+    "(α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) : (Real.Gamma (α + (w : ℝ)) * Real.Gamma (β + (l : ℝ))) / Real.Gamma (α + β + ((w + l : ℕ) : ℝ)) / ((Real.Gamma α * Real.Gamma β) / Real.Gamma (α + β)) = (rising α w * rising β l) / rising (α + β) (w + l)": [
+      {
+        "carrier": "FullMath/beta_ratio",
+        "line": 82,
+        "path": "FullMath/Probability/DirichletPosterior.lean"
+      },
+      {
+        "carrier": "root/other/u04_1_real_gamma_weight_ratio",
+        "line": 160,
+        "path": "Candidates/Final20261021/Probability.lean"
       }
     ],
     "(μ : PMF α) (f : α → β) (g : β → γ) : pushforward (pushforward μ f) g = pushforward μ (g ∘ f)": [

@@ -6,22 +6,24 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 
 - files scanned: 378
 - theorem/lemma headers read: 5443
-- distinct statement types: 5387
-- statement types declared more than once: 56
-- of those spanning module families: 2
+- distinct statement types: 5385
+- statement types declared more than once: 58
+- of those spanning module families: 3
 
-## Across module families (2)
+## Across module families (3)
 
 - `(r : Rul A) (ps : List (Arg A)) (p : Arg A) (hp : p ∈ ps) (k : ℕ) (hk : Arg.height (.node r ps) ≤ k + 1) : Arg.height p ≤ k` — `FullMath/Logic/AttackCompilation.lean:57` (FullMath/child_height_le), `Seams/UnifiedArgumentation.lean:104` (root/other/child_height_lt)
 - `(r : ℚ) : max r 0 - max (-r) 0 = r` — `FullMath/GenericKernels.lean:94` (FullMath/clipped_conservation), `BusinessRelationsDelta.lean:21` (root/other/split_residual_identity)
+- `(α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) : (Real.Gamma (α + (w : ℝ)) * Real.Gamma (β + (l : ℝ))) / Real.Gamma (α + β + ((w + l : ℕ) : ℝ)) / ((Real.Gamma α ` — `FullMath/Probability/DirichletPosterior.lean:82` (FullMath/beta_ratio), `Candidates/Final20261021/Probability.lean:160` (root/other/u04_1_real_gamma_weight_ratio)
 
-## Within the package (56)
+## Within the package (58)
 
 - `(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S` — `DungFixedPoint.lean:96` (root/other/grounded_is_least_complete), `DungFixedPoint.lean:92` (root/other/grounded_is_least_fixed_point)
 - `(S : Finset α) : TH sys S ⊆ sys.univ` — `HornDefinitions.lean:55` (root/other/TH_subset_univ), `HornFixedPoint.lean:17` (root/other/horn_operator_subset_univ)
 - `(a : JurisLean.FactAdmissionAttestation) (f : JurisLean.LegalId .fact) (r : RequestKey) (h : PremiseToken.WF { fact := f, request := r, origin := .admitted a })` — `ULM16TheoryComposition.lean:124` (root/other/CORE_02_admitted_premise_status), `ULM06FactEvidence.lean:108` (root/other/admitted_wf_has_admitted_status)
 - `(a b : TrustVector) : TrustLE (a.meet b) a` — `ULM16TheoryComposition.lean:75` (root/other/COMP_C01_trust_nonupgrade_left), `ULM14CoverageTrust.lean:92` (root/other/trust_meet_le_left)
 - `(a b : TrustVector) : TrustLE (a.meet b) b` — `ULM16TheoryComposition.lean:78` (root/other/COMP_C01_trust_nonupgrade_right), `ULM14CoverageTrust.lean:97` (root/other/trust_meet_le_right)
+- `(a b k l : ℕ) : ((∫ x in 0..1, polyBeta (a + 1) (b + 1) x * (x ^ k * (1 - x) ^ l)) = ((betaTwoConst ((a : ℕ) + k) ((b : ℕ) + l) : ℚ) / (betaTwoConst a b : ℚ) : ` — `Seams/UnifiedNeedlesS3a.lean:445` (root/other/beta_posterior_from_likelihood), `Candidates/Final20261021/Probability.lean:146` (root/other/u04_1_integer_shape_conjugacy)
 - `(c : Certificate) (hstatus : c.status = DecisionStatus.proved) (hkind : c.evidence.kind = EvidenceKind.candidate) : checkCertificate c ≠ CheckVerdict.accept` — `SafetyTheorems.lean:12` (root/other/candidate_cannot_enter_verified_fact_gate), `CertificateChecker.lean:56` (root/other/candidate_evidence_not_accepted)
 - `(d : CaseDocket) (r : LawRule) (hr : r ∈ familyRuleList) : r.horn ∈ (hornOf d).rules` — `Seams/UnifiedNetTrajectory.lean:180` (root/other/rule_horn_mem_any), `Seams/UnifiedNeedlesGap05.lean:655` (root/other/rule_horn_mem_general)
 - `(e : NFEdge) : (requiredObligations e).Nonempty` — `ULM16TheoryComposition.lean:246` (root/other/CORE_23_required_nonempty), `ULM04Obligations.lean:64` (root/other/requiredObligations_nonempty)
@@ -40,6 +42,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(r : ℚ) : max r 0 - max (-r) 0 = r` — `FullMath/GenericKernels.lean:94` (FullMath/clipped_conservation), `BusinessRelationsDelta.lean:21` (root/other/split_residual_identity)
 - `(r r' : X → Y → Prop) (s s' : Y → Z → Prop) (hr : ∀ x y, r x y → r' x y) (hs : ∀ y z, s y z → s' y z) : ∀ x z, relComp r s x z → relComp r' s' x z` — `FullMath/Composition/RelationalComposition.lean:18` (FullMath/comp_preserves_inclusion), `FullMath/GenericKernels.lean:60` (FullMath/composition_preserves_inclusion)
 - `(u : (I → Act) → I → ℝ) : ∃ σ : I → Act → ℝ, InSimplexR σ ∧ IsNashR u σ` — `Seams/UnifiedEquilExist.lean:459` (root/other/finite_legal_mixed_equilibrium_exists), `Seams/UnifiedEquilExist.lean:613` (root/other/finite_legal_mixed_equilibrium_exists_upstream)
+- `(α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) : (Real.Gamma (α + (w : ℝ)) * Real.Gamma (β + (l : ℝ))) / Real.Gamma (α + β + ((w + l : ℕ) : ℝ)) / ((Real.Gamma α ` — `FullMath/Probability/DirichletPosterior.lean:82` (FullMath/beta_ratio), `Candidates/Final20261021/Probability.lean:160` (root/other/u04_1_real_gamma_weight_ratio)
 - `(μ : PMF α) (f : α → β) (g : β → γ) : pushforward (pushforward μ f) g = pushforward μ (g ∘ f)` — `External/GameTheory/Math/ProbabilityMassFunction.lean:44` (External/pushforward_comp), `External/GameTheory/Math/ProbabilityMassFunction.lean:49` (External/pushforward_pushforward)
 - `(ν : PMF (PureProfile O)) (b : BehavioralProfile O) (hStep : ∀ n, ν.bind (fun π => (O.runDistPure n π).bind (fun ss => pushforward (O.stepDist b ss) (fun t => s` — `External/GameTheory/Theorems/Kuhn/BehavioralToMixedCore.lean:599` (External/runDist_eq_of_stepIndependence), `External/GameTheory/Theorems/Kuhn/CorrelatedRealization.lean:746` (External/runDist_eq_of_stepIndependence)
 - `: adminFinalDisposition ∉ closureAt familyHorn` — `Seams/UnifiedFourteenFamilies.lean:1378` (root/other/adminFinalDisposition_not_closure), `Seams/UnifiedFourteenFamilies.lean:1706` (root/other/witness_admin_branch_open)
@@ -55,6 +58,4 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `{V Rel : Type} [DecidableEq Rel] (M : UnifiedModel V Rel) : UnifiedNonDegenerate ∧ UnifiedInterpretationPreserved V Rel M ∧ UnifiedChainCorrespondence V Rel M ∧` — `Seams/UnifiedNeedlesTotal.lean:49` (root/other/total_legacy_five_contracts), `Seams/Unified.lean:259` (root/other/unified_legal_derivation_on_declared_fragment)
 - `{a b c : TrustVector} (hab : TrustLE a b) (hbc : TrustLE b c) : TrustLE a c` — `Seams/BoundaryBridge5.lean:154` (root/other/bb5_trustLE_trans), `Seams/BoundaryClosure.lean:611` (root/other/trustLE_trans)
 - `{af : DefeatAF} {s : Finset ArgId} (h : Preferred af s) : s ∈ preferredExtensions af` — `ULM16TheoryComposition.lean:234` (root/other/CORE_20_preferred_complete), `ULM10DungProfiles.lean:250` (root/other/preferredExtensions_complete)
-- `{bundle : DomainBundle} {policy : CompositionPolicy} {choice : CompositionChoice} (h : ChoiceWF bundle policy choice) : choice.selected ⊆ bundle.candidates` — `ULM16TheoryComposition.lean:191` (root/other/CORE_13_choice_membership), `ULM13DomainCompositionExact.lean:74` (root/other/choice_wf_selected_subset)
-- `{env : QueryEnvironment} {f : ExtensionFamily} {q : JurisLean.LegalId .claim} (h : UndecidedSome env f q) : ∃ e ∈ f.carrier, GateEnterable env e q` — `ULM16TheoryComposition.lean:168` (root/other/CORE_09_undecided_requires_enterable), `ULM11BranchQuery.lean:204` (root/other/undecided_requires_enterable)
-- …16 more in the JSON
+- …18 more in the JSON

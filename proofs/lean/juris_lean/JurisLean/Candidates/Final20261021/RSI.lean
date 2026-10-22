@@ -89,14 +89,14 @@ structure PredictionRequest where
   scope : Nat
   deriving DecidableEq, Repr
 
-def matches (r : PredictionRequest) (c : Checkpoint) : Bool :=
+def checkpointMatches (r : PredictionRequest) (c : Checkpoint) : Bool :=
   decide (c.principal = r.principal ∧ c.task = r.task ∧ c.target = r.target ∧
     c.feature = r.feature ∧ c.ruleVersion = r.ruleVersion ∧ c.mechanism = r.mechanism ∧
     c.scope = r.scope ∧ 0 ≤ c.prediction ∧ c.prediction ≤ 1)
 
 def proposed_checkpoint_service (request : PredictionRequest)
     (personal population prior retrieved : Option Checkpoint) : Result Checkpoint :=
-  match [personal, population, prior, retrieved].filterMap id |>.find? (matches request) with
+  match [personal, population, prior, retrieved].filterMap id |>.find? (checkpointMatches request) with
   | some checkpoint => .known checkpoint
   | none => .unknown .missingEvidence
 

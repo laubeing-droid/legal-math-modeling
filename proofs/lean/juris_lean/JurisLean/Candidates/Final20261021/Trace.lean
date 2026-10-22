@@ -13,7 +13,8 @@ def Invariant (h : Ledger.Handle) : Prop :=
 
 -- Complete concrete opening state of section 14, not an assumed I(S0).
 def initial (g : Gamma) (debt : DebtRecord) : Ledger.Handle :=
-  ⟨g, 0, { debt := debt, formations := [debt.relation], judgment := .insufficient,
+  ⟨g, 0, {
+    debt := debt, formations := [debt.relation], judgment := .insufficient,
     procedure := .open, claim := .unknown, executionEligible := false,
     initialDebt := debt.amount.value, newDebt := 0, accrual := 0, allocated := 0,
     writtenOff := 0, paid := 0, surplus := 0, cash := [], used := ∅,
@@ -53,7 +54,8 @@ inductive Step : Ledger.Handle → Ledger.Handle → Prop where
       (authorized : Authorization.authorized grants h.gamma actor 1 e.version
         (.document e.version) none (some g) = true)
       (sameCase : g.caseId = h.gamma.caseId) :
-      Step h ⟨g, h.revision + 1, { h.state with normHistory := h.state.normHistory ++ [e],
+      Step h ⟨g, h.revision + 1, { h.state with
+        normHistory := h.state.normHistory ++ [e],
         env := Temporal.proposed_applicability g (h.state.normHistory ++ [e]) }⟩
   | reject (h : Ledger.Handle) : Step h h
 
@@ -61,15 +63,15 @@ theorem step_preserves {s t : Ledger.Handle} (step : Step s t) (hs : Invariant s
     Invariant t := by
   rcases hs with ⟨numeric, cash, fresh, coherent⟩
   cases step with
-  | pay h req p hk ready amount =>
-      exact ⟨Ledger.u09_1_quantity_conservation h.state req.payload numeric amount,
-        Ledger.performance_cash_consistent h.state req.payload cash, fresh,
-        Ledger.commit_receipt_coherent h req coherent (Ledger.ready_requires_unused h h req p ready)⟩
-  | accrue h a ha => exact ⟨Ledger.accrue_conserves h.state a numeric ha, cash, fresh, coherent⟩
-  | principal h n hn => exact ⟨Ledger.principal_conserves h.state n numeric hn, cash, fresh, coherent⟩
-  | writeoff h w hw bound => exact ⟨Ledger.writeoff_conserves h.state w numeric hw bound, cash, fresh, coherent⟩
-  | refresh h g e grants actor auth same => exact ⟨numeric, cash, rfl, coherent⟩
-  | reject h => exact ⟨numeric, cash, fresh, coherent⟩
+  | pay req p hk ready amount =>
+      exact ⟨Ledger.u09_1_quantity_conservation s.state req.payload numeric amount,
+        Ledger.performance_cash_consistent s.state req.payload cash, fresh,
+        Ledger.commit_receipt_coherent s req coherent (Ledger.ready_requires_unused s s req p ready)⟩
+  | accrue a ha => exact ⟨Ledger.accrue_conserves s.state a numeric ha, cash, fresh, coherent⟩
+  | principal n hn => exact ⟨Ledger.principal_conserves s.state n numeric hn, cash, fresh, coherent⟩
+  | writeoff w hw bound => exact ⟨Ledger.writeoff_conserves s.state w numeric hw bound, cash, fresh, coherent⟩
+  | refresh g e grants actor auth same => exact ⟨numeric, cash, rfl, coherent⟩
+  | reject => exact ⟨numeric, cash, fresh, coherent⟩
 
 -- The actual executor, rather than an independently asserted pay transition,
 -- supplies every premise of the abstract step constructor.
@@ -114,15 +116,15 @@ inductive Path : Ledger.Handle → Ledger.Handle → Prop where
 theorem used_monotone_step {s t : Ledger.Handle} (step : Step s t) :
     s.state.used ⊆ t.state.used := by
   cases step with
-  | pay h req p hk ready amount =>
+  | pay req p hk ready amount =>
       intro key used
-      change key ∈ insert req.key h.state.used
+      change key ∈ insert req.key s.state.used
       exact Finset.mem_insert.mpr (Or.inr used)
-  | accrue h a ha => exact fun _ used => used
-  | principal h n hn => exact fun _ used => used
-  | writeoff h w hw bound => exact fun _ used => used
-  | refresh h g e grants actor auth same => exact fun _ used => used
-  | reject h => exact fun _ used => used
+  | accrue a ha => exact fun _ used => used
+  | principal n hn => exact fun _ used => used
+  | writeoff w hw bound => exact fun _ used => used
+  | refresh g e grants actor auth same => exact fun _ used => used
+  | reject => exact fun _ used => used
 
 theorem used_monotone_path {s t : Ledger.Handle} (path : Path s t) :
     s.state.used ⊆ t.state.used := by

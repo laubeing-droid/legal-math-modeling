@@ -38,7 +38,8 @@ theorem subgaussian_two_tail {Ω : Type*} [MeasurableSpace Ω]
     · left; simpa [abs_of_nonneg hp] using hw
     · right; simpa [abs_of_nonpos hn] using hw
   have upper := h.measure_ge_le hε
-  have lower := h.neg.measure_ge_le hε
+  have lower : μ.real {w | ε ≤ -X w} ≤ exp (-ε^2 / (2 * (c : ℝ))) :=
+    h.neg.measure_ge_le hε
   calc
     μ.real {w | ε ≤ |X w|} ≤ μ.real ({w | ε ≤ X w} ∪ {w | ε ≤ -X w}) :=
       measureReal_mono inclusion
@@ -62,7 +63,7 @@ theorem bounded_proxy_exact {I : Type*} (a b : I → ℝ) (s : Finset I) :
     ((∑ i ∈ s, (‖b i-a i‖₊/2)^2 : ℝ≥0) : ℝ) =
       (∑ i ∈ s, (b i-a i)^2) / 4 := by
   have point (x : ℝ) : (((‖x‖₊/2)^2 : ℝ≥0) : ℝ) = x^2/4 := by
-    simp [div_pow, Real.norm_eq_abs, sq_abs]
+    norm_num [div_pow, Real.norm_eq_abs, sq_abs]
   simp only [NNReal.coe_sum]
   simp_rw [point]
   rw [Finset.sum_div]
@@ -101,7 +102,10 @@ theorem u01_0_zero_width_tail {Ω I : Type*} [MeasurableSpace Ω]
   have same : {w | t ≤ |∑ i ∈ s, (X i w - ∫ z, X i z ∂μ)|} =ᵐ[μ] (∅ : Set Ω) := by
     filter_upwards [zero] with w hw
     simp only [Pi.zero_apply] at hw
-    simp [hw, not_le_of_lt ht]
+    apply propext
+    change (t ≤ |∑ i ∈ s, (X i w - ∫ z, X i z ∂μ)|) ↔ False
+    rw [hw, abs_zero]
+    exact iff_false_intro (not_le.mpr ht)
   simpa using measureReal_congr same
 
 theorem u01_1_fixed_class_tail {Ω H : Type*} [MeasurableSpace Ω]

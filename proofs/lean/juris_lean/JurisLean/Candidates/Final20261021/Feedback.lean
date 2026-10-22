@@ -100,7 +100,8 @@ def addLabel (s : LabelStore) (row : Label) : Result LabelStore :=
   | none => .known { s with history := s.history ++ [row], training := s.training ++ [row] }
   | some old =>
       if old.outcome = row.outcome then .known { s with history := s.history ++ [row] }
-      else .known { s with history := s.history ++ [row],
+      else .known { s with
+        history := s.history ++ [row],
         training := s.training.filter (fun x => decide (x.unit ≠ row.unit ∨ x.target ≠ row.target)),
         conflicts := s.conflicts ++ [(old, row)] }
 

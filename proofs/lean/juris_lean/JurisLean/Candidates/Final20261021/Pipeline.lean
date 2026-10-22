@@ -57,7 +57,8 @@ def refresh (grants : List Authorization.Grant) (h : Ledger.Handle)
       (.document change.event.version) none (some change.gamma) = false then
     .unknown .authorityUnresolved
   else .known ⟨change.gamma, h.revision + 1,
-    { h.state with normHistory := h.state.normHistory ++ [change.event],
+    { h.state with
+      normHistory := h.state.normHistory ++ [change.event],
       env := Temporal.proposed_applicability change.gamma (h.state.normHistory ++ [change.event]) }⟩
 
 theorem u10_1_authorized_refresh_is_step (grants : List Authorization.Grant)
@@ -225,7 +226,8 @@ def runClosed (i : Input) (p1 p2 : PaymentPayload) (derived : List Nat) : Output
     { stop i .rejected .scopeMismatch with prediction := prediction, decision := chosen }
   else
     let base := Trace.initial g i.debt
-    let initial := { base with state := { base.state with normHistory := i.normHistory,
+    let initial := { base with state := { base.state with
+      normHistory := i.normHistory,
       env := Temporal.proposed_applicability g i.normHistory } }
     match initial.state.env with
     | .known version =>

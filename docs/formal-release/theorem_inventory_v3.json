@@ -49717,24 +49717,19 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "ccd17ce2e46bd5ffc2540c4b3e7aa854e24f2d10b4182598e4319bb82c9b23f4",
+ "source_inventory_digest": "8299059f2e26cfe0d88f8910604844238a240d6216f9190e40fc9688631b0e6d",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "cursor/clause-closure-seven-caff",
-  "commit": "1faba46115b1997ad2dfd0b63f4d088a6e3ad0c9",
-  "tree": "e257636d9fbc45daee8d7fcfd48087aa7ce57a14"
+  "commit": "49e1b982d2ef1938249f82e956ce421abf54f983",
+  "tree": "4cea0930beea4fb4485023890a67038b4f6620c4"
  },
  "subject_binding": {
-  "binding": "STALE_SUBJECT",
-  "files_diverging_from_subject": [
-   {
-    "path": "proofs/lean/juris_lean/JurisLean.lean",
-    "reason": "bytes differ from subject"
-   }
-  ],
+  "binding": "BOUND_TO_SUBJECT",
+  "files_diverging_from_subject": [],
   "files_total": 393,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": true
+  "worktree_dirty_under_proofs": false
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

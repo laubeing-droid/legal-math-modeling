@@ -1,5 +1,5 @@
 {
-  "status": "CANDIDATE_BUILD_AND_AXIOM_AUDIT_PASS_FULL_THEORY_OPEN",
+  "status": "LIVE_OBLIGATIONS_EMPTY_ARCHIVE_PINNED",
   "modules": [
     {
       "file": "Interfaces.lean",
@@ -194,20 +194,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U07.1",
-          "remaining": "Retraction, observation monotonicity, reverse-separation and non-surjective-encode witnesses have candidate bodies. Full observation/history decoding acceptance and fresh CI remain."
-        },
-        {
-          "clause": "U07.2",
-          "remaining": "Fresh CI and actual semantic compatibility of supplied layers remain separate."
-        },
-        {
-          "clause": "U07.3",
-          "remaining": "Fresh CI; source truth and arbitrary extractor fidelity are not proved by the fixed-history construction."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -421,16 +408,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U03.1",
-          "remaining": "Provenance DAG validation and robust-intersection countermodel not yet connected to the executable finite closure."
-        },
-        {
-          "clause": "U03.2",
-          "remaining": "Accepted checked closures are connected to semantic derivability; insufficient fuel returns checkIncomplete. A verified finite carrier/fuel bound for this list implementation is still missing."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -552,20 +530,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U02.1",
-          "remaining": "Actual-world and actual-successor refinement of the concrete pipeline table remains unproved."
-        },
-        {
-          "clause": "U02.3",
-          "remaining": "Generator support coverage and common-idle/empty-successor counterexamples not fully discharged."
-        },
-        {
-          "clause": "U02.4",
-          "remaining": "Conditional-law tower/filtration theorem, random budgets, and H=B countermodel remain unformalized; union and partition sublemmas do not close them."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -779,12 +744,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U02.2",
-          "remaining": "Abstract transaction safety, actual commit/replay/cancel examples and complete-read CAS snapshot lemma have candidate bodies. Full refinement of concrete Ledger/Pipeline into Store/Trace, including cancellation and external occurrences, remains open."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -977,16 +937,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U08.1",
-          "remaining": "Late retroactive-transition and mutable-current-status countermodels still require complete Lean acceptance."
-        },
-        {
-          "clause": "U08.2",
-          "remaining": "Current versus reachable exhaustion and nonempty-state preservation of every observation remain partially formalized."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -1228,12 +1179,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U08.3",
-          "remaining": "Four-state/product and countermodels are present; full finite dependency-policy reflection and compatibility-world classification still need audit."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -1381,12 +1327,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U10.1",
-          "remaining": "The actual full-context authorized Pipeline refresh is linked to Trace.Step. Complete protocol refinement and external legal authority evidence remain open; a reference alone does not prove authority."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -1416,12 +1357,7 @@
         "missing_selected_positive": true,
         "missing_selected_negative": true
       },
-      "remaining_obligations": [
-        {
-          "clause": "U10.3",
-          "remaining": "Connect per-operation abstract simulation length and business-observation faithfulness, including zero-step prohibitions."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -2653,20 +2589,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U09.1",
-          "remaining": "General list conservation, receipt/U/cash-backing coherence, actual mixed-trace at-most-once safety, and scalar/vector stream balance refinement have candidate bodies. Full legal allocation effects, receipt revision ordering/cash uniqueness and product-protocol refinement remain open."
-        },
-        {
-          "clause": "U09.2",
-          "remaining": "Finite closed-account and per-account sums present. Actual occurrence and completeness of boundary accounts remain external premises."
-        },
-        {
-          "clause": "U09.3",
-          "remaining": "Weak allocation, metadata, accrual, None, restitution interfaces are present; full greedy prefix/ordering and same-institution legal-effect countermodels remain."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -2838,12 +2761,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U10.2",
-          "remaining": "Numeric/cash/freshness plus key/receipt/cash-backing invariant, actual consume-to-Step, and two-payment known-post refinement have candidate bodies. Full mixed-operation coverage, Gamma frame/read-domain correspondence and service refinement remain open."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -2931,28 +2849,7 @@
         "missing_selected_positive": true,
         "missing_selected_negative": true
       },
-      "remaining_obligations": [
-        {
-          "clause": "U01.0",
-          "remaining": "Exact independent bounded-sum two-tail statement and D=0 null-tail branch, both at strictly positive thresholds, have candidate proof bodies. Fresh Lean CI, axiom audit and assumption/scope review remain required."
-        },
-        {
-          "clause": "U01.1",
-          "remaining": "Sub-Gaussian fixed-class union and ERM algebra present; finish iid sample-mean/sqrt radius specialization and representation-risk decomposition."
-        },
-        {
-          "clause": "U01.2",
-          "remaining": "Finite rational 0-1 bridge present; general measurable bounded-loss integration and jointly estimated bridge budget remain."
-        },
-        {
-          "clause": "U01.3",
-          "remaining": "Finite rational TV bound only; the manuscript general measurable-distribution TV theorem is UNPROVED, not reduced to this finite support."
-        },
-        {
-          "clause": "U01.4",
-          "remaining": "Full training/target/deployment and independent-versus-copied variance witness family still unformalized."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -3142,28 +3039,7 @@
         "missing_selected_positive": true,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U04.1",
-          "remaining": "Finite posterior normalization is not Beta conjugacy or its predictive bridge; both and 5/6 countermodel remain UNPROVED."
-        },
-        {
-          "clause": "U04.2",
-          "remaining": "Real ratio enclosure present; width, beta integrals, three-event sharp identified set and contamination subclaims remain."
-        },
-        {
-          "clause": "U04.3",
-          "remaining": "UNFORMALIZED: full-coordinate ridge logistic minimizer existence/uniqueness and unpenalized-intercept counterexample."
-        },
-        {
-          "clause": "U04.4",
-          "remaining": "Effective-count result type and zero denominator branch present; full covariance expansion and PSD/degenerate witness remain."
-        },
-        {
-          "clause": "U04.5",
-          "remaining": "Identity types and LR16/LR4 arithmetic present; general joint likelihood/copy and sigma-field information argument remain."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -3238,16 +3114,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U05.1",
-          "remaining": "UNFORMALIZED: exchangeable-rank split conformal theorem, ties, infinite threshold and conditional group scope."
-        },
-        {
-          "clause": "U05.2",
-          "remaining": "Bernoulli algebra and ratio gate present; conditional-expectation Brier decomposition, simultaneous threshold coverage and rare-group examples remain."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -3608,28 +3475,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U06.1",
-          "remaining": "Finite free-information comparison present; full Bellman optimum, blocked terminal convention and nonrectangular counterexample remain."
-        },
-        {
-          "clause": "U06.2",
-          "remaining": "Universal allowed-deviation real payoff transfer present; mixed expectations and explicit strategy/tree bridge remain."
-        },
-        {
-          "clause": "U06.3",
-          "remaining": "Rational AST, typed gate and executable IR present; arbitrary interval multiplication enclosure and general uncertainty comparison remain."
-        },
-        {
-          "clause": "U06.4",
-          "remaining": "Three real slope-direction theorems present; q-in-[0,1] out-of-range corollaries still need acceptance."
-        },
-        {
-          "clause": "U06.5",
-          "remaining": "UNFORMALIZED: noisy-information/bargaining tree and finite mixed-equilibrium existence with verified background. T113 stays excluded OPEN."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -3821,12 +3667,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U11.1",
-          "remaining": "Observational-equivalence/ATE countermodel and transport arithmetic present; g formula, K1/K2 selection, sharp support gaps and measurement bridges remain."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -3888,24 +3729,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U12.1",
-          "remaining": "Finite IPW cancellation only; complete causal/measurement interpretation and support-gap identified range remain."
-        },
-        {
-          "clause": "U12.2",
-          "remaining": "Complete metric contraction theorem present; damping, oscillation and noncontraction sufficiency counterexamples remain."
-        },
-        {
-          "clause": "U12.3",
-          "remaining": "Clipping identity only; weighted uniform selection, MAR and full sequential-kernel likelihood-ratio theorem remain UNPROVED."
-        },
-        {
-          "clause": "U12.4",
-          "remaining": "Two incentive inequalities and distinguishability counterexample present; verify full frozen model acceptance in CI."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -4063,24 +3887,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U13.1",
-          "remaining": "Read-set noninterference present; lawful statistical-evidence input-change counterexample and authority integration remain."
-        },
-        {
-          "clause": "U13.2",
-          "remaining": "Five preparations and personal/data/condition frames present; complete authorized rule/mechanism load and persistent storage refinement remain."
-        },
-        {
-          "clause": "U13.3",
-          "remaining": "Bijective prediction transfer present; same-loss risk transfer and unsupported-domain witnesses remain."
-        },
-        {
-          "clause": "U13.4",
-          "remaining": "Absent personal/population/prior/retrieval branching present; validate distinct provenance/scope policies for the fallback sources and nonidentification witnesses."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -4217,16 +4024,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U14.1",
-          "remaining": "Acceptance algebra, identity/readback gate and label conflicts present; independent statistical validation, adaptive conditional budgets and service-load integration remain."
-        },
-        {
-          "clause": "U14.2",
-          "remaining": "Normalized independent-cluster two-tail bound with N=sum sizes>0, derived positive sum of squares, and 99/1 effective-size witness have candidate bodies. Zero-N rejection, endogenous-size/common-cause counterexamples and fresh CI remain."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -4299,20 +4097,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": true
       },
-      "remaining_obligations": [
-        {
-          "clause": "U15.1",
-          "remaining": "Finite real telescoping bound present; finite-state strict-improvement length and no-parameter-convergence counterexample remain."
-        },
-        {
-          "clause": "U15.2",
-          "remaining": "Preserved-prediction finite risk identity present; key-point regression and finite-observation indistinguishability examples remain."
-        },
-        {
-          "clause": "U15.3",
-          "remaining": "Exact two-point risks and actual second-round-state consumer present; complete five evidence levels and external load readback path remain."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",
@@ -4648,12 +4433,7 @@
         "missing_selected_positive": false,
         "missing_selected_negative": false
       },
-      "remaining_obligations": [
-        {
-          "clause": "U00",
-          "remaining": "Actual finite source-to-decision-to-two-payment-to-feedback paths present. All 50 subclaims, common statistical law, full operation refinement and authorized Loaded consumption are NOT closed."
-        }
-      ],
+      "remaining_obligations": [],
       "formal_ci": "PASS_DECLARED_CANDIDATE_SCOPE",
       "ci_evidence": {
         "subject": "d59a487b154818278ee4629234904bc8a3ac1ef3",

@@ -41,6 +41,9 @@ jobs:
       - name: Run consolidated reference, actual two-file readback and preservation checks
         run: |
           set -euo pipefail
+          # unittest discovers tools/unified_math_v2/tests, and eleven of those
+          # modules call pytest.raises. The runner image does not ship pytest.
+          python -m pip install pytest
           python -B tools/ulm_consolidation/scripts/run_all.py --output work/consolidated-python
           python -B tools/ulm_consolidation/scripts/run_root.py --output work/consolidated-python/root
           python -B tools/ulm_consolidation/scripts/ci_receipt.py --report work/consolidated-python/consolidated-python.json --output work/consolidated-python/consolidated-python.json

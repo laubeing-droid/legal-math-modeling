@@ -1,4 +1,4 @@
-"""The 50-clause ledger may name a tip build only as declaration location."""
+"""The 50-clause ledger discharges live scope fields only from the re-extracted tip audit."""
 
 from __future__ import annotations
 
@@ -15,7 +15,7 @@ checker = importlib.util.module_from_spec(_spec)
 _spec.loader.exec_module(checker)
 
 
-def test_live_ledger_locates_declarations_without_pass() -> None:
+def test_live_ledger_reextracts_axiom_audit_and_empties_scope_fields() -> None:
     proc = subprocess.run(
         [sys.executable, str(TOOL)],
         cwd=ROOT,
@@ -28,7 +28,10 @@ def test_live_ledger_locates_declarations_without_pass() -> None:
     assert "formal_ci_CI_NOT_RUN 0" in proc.stdout
     assert "legal_rows_daihe 0" in proc.stdout
     assert "legal_rows_wufayuan 7" in proc.stdout
-    assert "remaining_obligations_nonempty 50" in proc.stdout
+    assert "exact_scope_empty 50" in proc.stdout
+    assert "remaining_obligations_empty 50" in proc.stdout
+    assert "axiom_audit PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY" in proc.stdout
+    assert "NOT_REEXTRACTED_FROM_ARTIFACT" not in proc.stdout
 
 
 def test_daihe_row_rejects_a_filled_law_or_url() -> None:

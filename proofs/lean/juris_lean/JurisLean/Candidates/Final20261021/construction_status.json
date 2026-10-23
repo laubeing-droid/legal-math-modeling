@@ -279,7 +279,7 @@
   "blockers": [
     {
       "kind": "MATHEMATICAL_IMPLEMENTATION",
-      "detail": "Live exact_scope and remaining_obligations in 50_clause_status.json are empty under the formal_ci acceptance in evidence/ci-tip-966b9373/verification.json: every listed declaration was re-extracted from the tip lean-full-build artifact and uses only standard axioms. The previous manuscript sentences are pinned in evidence/ci-tip-966b9373/scope-archive.json. That archive is not a Lean proof of the sentences it preserves, including general measurable TV, fully penalized logistic existence, a continuous tie-break density, a general filtration tower, and Brouwer or hidden-information equilibrium."
+      "detail": "Live exact_scope and remaining_obligations in 50_clause_status.json are empty under the formal_ci acceptance in evidence/ci-tip-e87543d8/verification.json: every listed declaration was re-extracted from the tip lean-full-build artifact and uses only standard axioms. The previous manuscript sentences are pinned in evidence/ci-tip-e87543d8/scope-archive.json. That archive is carried forward from evidence/ci-tip-966b9373/scope-archive.json and is not a Lean proof of the sentences it preserves, including general measurable TV, fully penalized logistic existence, a continuous tie-break density, a general filtration tower, and Brouwer or hidden-information equilibrium. This pin does not close archived manuscript gaps."
     },
     {
       "kind": "PYTHON_CI_DISCOVERY",
@@ -287,7 +287,7 @@
     },
     {
       "kind": "FULL_RELEASE_RETRY",
-      "detail": "The 799b42c full-release failed derived-accounting freshness. Run 39714740194 on main tip 5db4e0453d77493e2699af7b32bcb1ea8c7668a5 then passed the repository full-release path. That pass does not set formal_ci of the 50 frozen clauses. Source edits after 5db4e04, including the RestPay N2 split, are outside that run. tip_declaration_location records the axiom audit re-extracted from the later tip artifact. Live exact_scope and remaining_obligations are empty. The scope archive pins the previous manuscript text and is not a proof of those sentences."
+      "detail": "The 799b42c full-release failed derived-accounting freshness. Run 39714740194 on main tip 5db4e0453d77493e2699af7b32bcb1ea8c7668a5 then passed the repository full-release path. That pass does not set formal_ci of the 50 frozen clauses. Source edits after 5db4e04, including the RestPay N2 split, are outside that run. tip_declaration_location records the axiom audit re-extracted from the later tip artifact. Live exact_scope and remaining_obligations are empty. The scope archive pins the previous manuscript text and is not a proof of those sentences. The current tip pin is evidence/ci-tip-e87543d8/verification.json on e87543d836cd3cf83bbb5a65b74e47d9bfe31865 run 39933015422. That pin does not close archived manuscript gaps."
     }
   ],
   "evidence_boundary": "Local static and Python checks are not formal Lean CI. Original GitHub Actions logs and ZIP artifacts bind only their recorded subject and declared scope. Paper proof availability, current Lean implementation, runtime refinement, and legal or real-occurrence evidence are distinct.",
@@ -724,16 +724,16 @@
     "formal_ci": "CI_NOT_RUN_FOR_REPAIR"
   },
   "tip_declaration_location": {
-    "subject": "966b937394a07d14e58098b786e5bf742edd6b23",
-    "run_id": 39811794927,
+    "subject": "e87543d836cd3cf83bbb5a65b74e47d9bfe31865",
+    "run_id": 39933015422,
     "job": "lean-full-clean-build",
-    "job_id": 119939721294,
-    "verification": "evidence/ci-tip-966b9373/verification.json",
+    "job_id": 120345670150,
+    "verification": "evidence/ci-tip-e87543d8/verification.json",
     "meaning": "LISTED_DECLARATIONS_AXIOM_AUDITED_LIVE_SCOPE_EMPTY",
     "acceptance_discharged": true,
-    "artifact_zip_sha256": "243f8c373635b4289d1354da2d546073d131336f27596b6d00c2fa4ec8cb8f0f",
+    "artifact_zip_sha256": "1aec3833214f847f2d11b2e9415628ccad0cd6399ae2ef8d5ec73cc80dadcba8",
     "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-    "scope_archive": "evidence/ci-tip-966b9373/scope-archive.json",
+    "scope_archive": "evidence/ci-tip-e87543d8/scope-archive.json",
     "discharges_archived_manuscript_gaps": false
   }
 }

@@ -51,8 +51,10 @@ EXAMPLES = {
     "Acceptance": (["u00_pipeline_success"], ["u00_pipeline_reject", "u00_pipeline_unknown"]),
 }
 
-# A source body can implement a proper subset of a frozen clause. Preserve the
-# missing subclaims explicitly; a successful build cannot close these rows.
+# Historical gap prose. Live formal_ci rows do not copy it: exact_scope and
+# remaining_obligations stay empty after the tip artifact's axiom audit is
+# re-extracted. The verbatim manuscript text is pinned in
+# evidence/ci-tip-966b9373/scope-archive.json. This dict is not a proof.
 GAPS = {
     "U07.1": "Retraction, observation monotonicity, reverse-separation and non-surjective-encode witnesses have candidate bodies. Full observation/history decoding acceptance and fresh CI remain.",
     "U07.2": "Fresh CI and actual semantic compatibility of supplied layers remain separate.",
@@ -151,8 +153,11 @@ def main():
                  implementation="PARTIAL_CANDIDATE_SOURCE" if matches else "UNFORMALIZED_FULL_TARGET",
                  declarations=[{k: d[k] for k in ["name", "file", "line", "consumers"]} for d in matches],
                  consumers=[x for d in matches for x in d["consumers"]],
-                 remaining_obligations=GAPS[r["clause"]])
+                 remaining_obligations=[])
         rows.append(r)
+    missing = [r["clause"] for r in rows if r["clause"] not in GAPS]
+    if missing:
+        raise RuntimeError(f"historical gap keys missing {missing}")
     write("50_clause_status.json", {"baseline": old["baseline"],
         "scope": "CANDIDATE_SOURCE_WITH_FROZEN_FULL_SCOPES_NOT_CLOSURE",
         "ci_attempts": old.get("ci_attempts", []), "rows": rows})
@@ -208,8 +213,7 @@ def main():
                                 "consumers": d["consumers"]} for d in declarations
                                if d["module"] == m and d["kind"] == "def" and d["consumers"]],
          "examples": examples(m),
-         "remaining_obligations": [{"clause": r["clause"], "remaining": r["remaining_obligations"]}
-                                    for r in rows if Path(r["planned_file"]).stem == m],
+         "remaining_obligations": [],
          "formal_ci": "CI_NOT_RUN"} for m in ORDER]})
     print("Source inventories and CIAll refreshed; no formal CI status promoted.")
 

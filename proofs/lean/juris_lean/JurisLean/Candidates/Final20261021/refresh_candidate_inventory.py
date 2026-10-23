@@ -54,6 +54,7 @@ EXAMPLES = {
 # Historical gap prose. Live formal_ci rows do not copy it: exact_scope and
 # remaining_obligations stay empty after the tip artifact's axiom audit is
 # re-extracted. The verbatim manuscript text is pinned in
+# evidence/ci-tip-e87543d8/scope-archive.json, carried forward from
 # evidence/ci-tip-966b9373/scope-archive.json. This dict is not a proof.
 GAPS = {
     "U07.1": "Retraction, observation monotonicity, reverse-separation and non-surjective-encode witnesses have candidate bodies. Full observation/history decoding acceptance and fresh CI remain.",

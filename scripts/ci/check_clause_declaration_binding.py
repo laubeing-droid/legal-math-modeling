@@ -4,8 +4,10 @@ A numeric ``formal_ci`` is the run id stored in the tip receipt. Live
 ``exact_scope`` and ``remaining_obligations`` are empty when every listed
 declaration is in that run's ``lean-full-build`` artifact and the kernel's
 axiom print uses only ``propext``, ``Quot.sound``, and ``Classical.choice``.
-The manuscript text those fields held at the receipt subject is pinned in the
-scope archive. This acceptance does not prove archived manuscript gaps.
+The manuscript text is pinned in the scope archive. When the tip commit
+already stores empty live fields, that archive is a verbatim carry-forward of
+the earlier pin and is checked against the commit that still holds the text.
+This acceptance does not prove archived manuscript gaps.
 
 The checker does not re-download the job and does not re-run Lean. It
 re-reads the committed artifact zip, re-parses both logs, and checks the
@@ -37,14 +39,14 @@ CANDIDATE = Path(
 )
 STATUS_REL = CANDIDATE / "50_clause_status.json"
 CONSTRUCTION_REL = CANDIDATE / "construction_status.json"
-RECEIPT_REL = CANDIDATE / "evidence" / "ci-tip-966b9373" / "verification.json"
+RECEIPT_REL = CANDIDATE / "evidence" / "ci-tip-e87543d8" / "verification.json"
 ZIP_REL = (
     CANDIDATE
     / "evidence"
-    / "ci-tip-966b9373"
-    / "lean-full-build-run39811794927-attempt1.zip"
+    / "ci-tip-e87543d8"
+    / "lean-full-build-run39933015422-attempt1.zip"
 )
-ARCHIVE_REL = CANDIDATE / "evidence" / "ci-tip-966b9373" / "scope-archive.json"
+ARCHIVE_REL = CANDIDATE / "evidence" / "ci-tip-e87543d8" / "scope-archive.json"
 PRIOR_REL = CANDIDATE / "evidence" / "ci-stage1-d59a487" / "verification.json"
 LEGAL_REL = CANDIDATE / "evidence" / "seven_clause_legal_sources.txt"
 
@@ -435,11 +437,55 @@ def check() -> tuple[list[str], dict[str, int]]:
         archive = json.loads(archive_path.read_text(encoding="utf-8"))
         if sha256_bytes(archive_path.read_bytes()) != receipt.get("scope_archive_sha256"):
             errors.append("scope archive sha256 != receipt")
-    if archive.get("pinned_subject") != subject:
-        errors.append("scope archive is not pinned to the receipt subject")
+    manuscript_subject = str(archive.get("pinned_subject") or "")
+    if not re.fullmatch(r"[0-9a-f]{40}", manuscript_subject):
+        errors.append(f"scope archive pinned_subject is not a commit: {manuscript_subject}")
+    if manuscript_subject != subject:
+        # The tip commit already emptied the live fields. The archive must
+        # name that tip, carry the earlier manuscript rows verbatim, and stay
+        # pinned to the commit that still holds the text.
+        if archive.get("tip_subject") != subject:
+            errors.append("scope archive tip_subject is not the receipt subject")
+        carried_rel = archive.get("carried_from")
+        carried_path = (ROOT / CANDIDATE / str(carried_rel or "")).resolve()
+        evidence_root = (ROOT / CANDIDATE / "evidence").resolve()
+        if (
+            not isinstance(carried_rel, str)
+            or carried_path == archive_path.resolve()
+            or evidence_root not in carried_path.parents
+            or not carried_path.is_file()
+        ):
+            errors.append("scope archive carried_from is not an earlier evidence file")
+        else:
+            carried = json.loads(carried_path.read_text(encoding="utf-8"))
+            if carried.get("rows") != archive.get("rows"):
+                errors.append("carried scope archive rows differ from the earlier pin")
+            if carried.get("pinned_subject") != manuscript_subject:
+                errors.append("carried scope archive pinned_subject differs")
+        try:
+            tip_committed = json.loads(
+                git_show_bytes(subject, STATUS_REL.as_posix()).decode("utf-8")
+            )
+        except (RuntimeError, UnicodeDecodeError, json.JSONDecodeError) as exc:
+            errors.append(str(exc))
+            tip_committed = {}
+        tip_rows = tip_committed.get("rows") if isinstance(tip_committed, dict) else None
+        if not isinstance(tip_rows, list):
+            errors.append("tip subject status has no rows")
+        else:
+            for row in tip_rows:
+                clause = str(row.get("clause"))
+                if row.get("exact_scope") != "":
+                    errors.append(f"{clause}: tip subject exact_scope is not empty")
+                if row.get("remaining_obligations") != []:
+                    errors.append(
+                        f"{clause}: tip subject remaining_obligations is not empty"
+                    )
     try:
-        pinned_status = json.loads(git_show_bytes(subject, STATUS_REL.as_posix()).decode("utf-8"))
-    except (RuntimeError, UnicodeDecodeError) as exc:
+        pinned_status = json.loads(
+            git_show_bytes(manuscript_subject, STATUS_REL.as_posix()).decode("utf-8")
+        )
+    except (RuntimeError, UnicodeDecodeError, json.JSONDecodeError) as exc:
         errors.append(str(exc))
         pinned_status = {}
     pinned_rows = pinned_status.get("rows") if isinstance(pinned_status, dict) else None

@@ -1,6 +1,6 @@
 # Final20261021 候选施工检查点
 
-状态：**PARTIAL_SOURCE_CANDIDATE / STAGE1_PASS / FULL_RELEASE_PASS_ON_5db4e04**。批次 0–9 的候选源码及第一阶段正式 CI 已通过。接根后的 full-release 已在 main 尖端 `5db4e0453d77493e2699af7b32bcb1ea8c7668a5` 的 run `39714740194` 通过：该次是 push 触发的完整发布路径，干净 Lean 构建、Python 门禁、七轴、数学完成、发布证书与 final-gate 均为 success，`changed-modules` 作业按该路径跳过。那次 run `39714740194` 是该树的仓库流水线通过，当时还不是 50 条冻结条款的 `formal_ci` 关闭。`50_clause_status.json` 的 `formal_ci` 在声明能对上尖端回执时写入该回执里的 run id，回执文件是 `evidence/ci-tip-966b9373/verification.json`。该回执从尖端 `lean-full-clean-build` 工件重新抽出公理审计。活的 `exact_scope` 与 `remaining_obligations` 为空。`evidence/ci-tip-966b9373/scope-archive.json` 按被测提交钉住这两栏原先的原稿，这份归档不是 Lean 证明。
+状态：**PARTIAL_SOURCE_CANDIDATE / STAGE1_PASS / FULL_RELEASE_PASS_ON_5db4e04**。批次 0–9 的候选源码及第一阶段正式 CI 已通过。接根后的 full-release 已在 main 尖端 `5db4e0453d77493e2699af7b32bcb1ea8c7668a5` 的 run `39714740194` 通过：该次是 push 触发的完整发布路径，干净 Lean 构建、Python 门禁、七轴、数学完成、发布证书与 final-gate 均为 success，`changed-modules` 作业按该路径跳过。那次 run `39714740194` 是该树的仓库流水线通过，当时还不是 50 条冻结条款的 `formal_ci` 关闭。`50_clause_status.json` 的 `formal_ci` 在声明能对上尖端回执时写入该回执里的 run id，回执文件是 `evidence/ci-tip-e87543d8/verification.json`（尖端 `e87543d836cd3cf83bbb5a65b74e47d9bfe31865`，run `39933015422`）。该回执从该尖端 `lean-full-clean-build` 工件重新抽出公理审计。活的 `exact_scope` 与 `remaining_obligations` 为空。`evidence/ci-tip-e87543d8/scope-archive.json` 原样沿用 `966b937394a07d14e58098b786e5bf742edd6b23` 上的原稿，不是从已清空的尖端重抽，也不是 Lean 证明。这次只重钉尖端，不关闭归档债务。
 
 基线固定为 `825792b83476a767152396d7f5e2ba3017048841`，候选分支为 `candidates/final20261021-825792b`。run `39699620705` 已在 `d59a487b154818278ee4629234904bc8a3ac1ef3` 上通过完整目标 `JurisLean.Candidates.Final20261021.CIAll`；原始 ZIP、源 Git blob 对照、完整公理目标检查和回执见 `evidence/ci-stage1-d59a487/verification.json`。全部目标齐全，仅依赖标准公理。第一阶段通过只覆盖候选源码和所列 Lean 命题；完整冻结理论、产品精化与现实/法律前提未因此关闭。用户于 2026-10-22 授予连续 CI 修复、推送与派发授权。
 
@@ -8,7 +8,7 @@
 
 - `module_inventory.json`：每个模块的文件、理论编号、定理全名、操作入口及消费者行号、选定正反例和剩余义务。空例证栏明确表示缺少该类例证。
 - `declarations.json`：声明与实际文本引用位置。文本引用不等于运行精化证明；空消费者不表示已被下游使用。
-- `50_clause_status.json`：列出候选声明。`formal_ci` 在声明能对上尖端回执时写入该回执的 run id；对不上的仍为 `CI_NOT_RUN`。活的 `exact_scope` 与 `remaining_obligations` 为空，表示所列声明已出现在重新抽出的公理审计里且只依赖标准公理。原稿句子在 `evidence/ci-tip-966b9373/scope-archive.json`，不把归档句子当成已证。`candidate_formal_ci` 不使用通过字样。
+- `50_clause_status.json`：列出候选声明。`formal_ci` 在声明能对上尖端回执时写入该回执的 run id；对不上的仍为 `CI_NOT_RUN`。活的 `exact_scope` 与 `remaining_obligations` 为空，表示所列声明已出现在重新抽出的公理审计里且只依赖标准公理。原稿句子在 `evidence/ci-tip-e87543d8/scope-archive.json`（沿用 `evidence/ci-tip-966b9373/scope-archive.json` 的原文），不把归档句子当成已证。`candidate_formal_ci` 不使用通过字样。
 - `proposed_825792b.json`：全部包内拟议符号及新增 `proposed_*` 对固定基线的 `REUSE/NEW/UNLOCATED` 判定；没有定位的目标保留 `UNLOCATED`。`NEW` 表示新候选边界，未声称等价覆盖原包中的全部软件合同。
 - `baseline_reuse.json`：真正调用的基线数量账和 Horn 声明、源散列、原文及消费者；`candidate_provenance.json`：历史候选参考来源。历史候选的成功状态不转移到当前源码。
 - `construction_status.json`：施工卡及三家验收附录来源、两阶段 CI 状态、限制与阻塞。
@@ -56,7 +56,7 @@ GitHub 验证的实际 head 与授权 head 一致。目标计划确认为 `Juris
 
 第一阶段已经在前述精确 head 通过完整 CIAll 目标。接根后的 run `39700447562` 对应 `799b42c43d16e839ec3305577867120cb0deb917`；干净 Lean 构建、现有数学审计和既有 runtime-refinement 作业通过，Python 为 651 通过、13 失败。下游证书没有生成，该次 full-release 为 FAIL。原始工件及 head/digest 核验见 `evidence/ci-stage2-799b42c/verification.json`。
 
-同一流水线在派生账本同步之后的 main 尖端 `5db4e0453d77493e2699af7b32bcb1ea8c7668a5` 上由 push 触发，run `39714740194` 结论为 success。作业结论来自 Actions API：`lean-full-clean-build`、`python-gates`、`runtime-refinement / produce`、`seven-axis-acceptance`、`mathematics-completion`、`release-certificate`、`final-gate` 为 success，`changed-modules` 为 skipped。API 列出的工件名称与编号见 `evidence/ci-stage2-5db4e04/verification.json`。该回执没有重新下载 ZIP，因此不记录工件字节散列。这次通过不把 50 条冻结条款的 `formal_ci` 改成验收通过，也不覆盖此后的源码修正。此后尖端的公理审计见 `evidence/ci-tip-966b9373/verification.json`，由该次 `lean-full-clean-build` 工件重新抽出。活的 `exact_scope` 与 `remaining_obligations` 为空；scope archive 里的原稿句子没有因此变成证明。
+同一流水线在派生账本同步之后的 main 尖端 `5db4e0453d77493e2699af7b32bcb1ea8c7668a5` 上由 push 触发，run `39714740194` 结论为 success。作业结论来自 Actions API：`lean-full-clean-build`、`python-gates`、`runtime-refinement / produce`、`seven-axis-acceptance`、`mathematics-completion`、`release-certificate`、`final-gate` 为 success，`changed-modules` 为 skipped。API 列出的工件名称与编号见 `evidence/ci-stage2-5db4e04/verification.json`。该回执没有重新下载 ZIP，因此不记录工件字节散列。这次通过不把 50 条冻结条款的 `formal_ci` 改成验收通过，也不覆盖此后的源码修正。此后尖端的公理审计见 `evidence/ci-tip-e87543d8/verification.json`，由尖端 `e87543d836cd3cf83bbb5a65b74e47d9bfe31865` 的 run `39933015422` `lean-full-clean-build` 工件重新抽出。活的 `exact_scope` 与 `remaining_obligations` 为空；scope archive 沿用上一尖端原稿，没有因此变成证明，也不关闭归档债务。
 
 用户已明确授予完成本项目所需的全部授权。首轮 full-release 定位的 11 个派生账本、命名消歧及论文数字模板已按既有生成规则同步。没有修改冻结理论、Lake、workflow 或门禁规则，也没有新增 lean_lib。
 

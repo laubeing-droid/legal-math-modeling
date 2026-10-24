@@ -735,5 +735,34 @@
     "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
     "scope_archive": "evidence/ci-tip-e87543d8/scope-archive.json",
     "discharges_archived_manuscript_gaps": false
+  },
+  "archive_gap_close": {
+    "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+    "criteria_pack": "/home/box/shared/legal-math-reviewer/archive_gap_判据包_20261024/",
+    "rejudge_doc": "未决改判_20261024.md",
+    "construction_gate_doc": "施工放行条件.md",
+    "tip_sha_gate_only": "f080eee0ffeadb09d8fe404adb3dcddf326b4a11",
+    "tip_authority_run_gate_only": 39960871624,
+    "gate_green_does_not_close_archive_debt": true,
+    "prior_tip_pin_did_not_close_archive_debt": true,
+    "tip_pin_not_retargeted": true,
+    "tip_pin": {
+      "subject": "e87543d836cd3cf83bbb5a65b74e47d9bfe31865",
+      "run_id": 39933015422,
+      "job_id": 120345670150,
+      "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+      "verification": "evidence/ci-tip-e87543d8/verification.json"
+    },
+    "discharges_archived_manuscript_gaps": false,
+    "math_flip_authorized": false,
+    "counts": {
+      "证": 42,
+      "缩": 8,
+      "放弃": 0,
+      "未决": 0,
+      "CLOSED_BY_NARROW": 8,
+      "CLOSED_BY_WIRING": 2,
+      "OPEN_FORMAL_TAIL": 40
+    }
   }
 }

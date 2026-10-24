@@ -496,6 +496,22 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Representation.lean:5",
+          "Representation.lean:12",
+          "Representation.lean:17",
+          "Representation.lean:24",
+          "Acceptance.lean:50",
+          "Acceptance.lean:56",
+          "Acceptance.lean:62"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -541,6 +557,17 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Representation.lean:30",
+          "Representation.lean:38"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -585,6 +612,16 @@
           "JurisLean.Candidates.Final20261021.Representation"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Representation.lean:79"
+        ],
+        "non_goals": [],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -664,6 +701,18 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Compiler.lean:22",
+          "Compiler.lean:68",
+          "Acceptance.lean:316"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -715,6 +764,18 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Compiler.lean:33",
+          "Compiler.lean:120",
+          "Acceptance.lean:305"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -759,6 +820,16 @@
           "JurisLean.Candidates.Final20261021.Harness"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Harness.lean:10"
+        ],
+        "non_goals": [],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -1055,6 +1126,40 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "evidence_pointers": [
+          "Transactions.lean:78",
+          "Transactions.lean:92",
+          "Transactions.lean:101",
+          "Transactions.lean:104",
+          "Transactions.lean:111",
+          "Transactions.lean:127",
+          "Transactions.lean:135",
+          "Transactions.lean:148",
+          "Transactions.lean:155",
+          "Transactions.lean:162",
+          "Transactions.lean:173",
+          "Transactions.lean:178",
+          "Transactions.lean:185",
+          "Transactions.lean:195",
+          "Transactions.lean:210",
+          "Transactions.lean:224",
+          "Transactions.lean:243",
+          "Transactions.lean:252",
+          "Transactions.lean:265",
+          "Acceptance.lean:35",
+          "Acceptance.lean:40",
+          "Acceptance.lean:46"
+        ],
+        "non_goals": [
+          "Full refinement of concrete Ledger/Pipeline into Store/Trace, including external occurrences, is an explicit non-goal.",
+          "真实DB精化、外部副作用、最终完成 are explicit non-goals. China-law discharge is not decided here."
+        ],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -1099,6 +1204,18 @@
           "JurisLean.Candidates.Final20261021.Harness"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Harness.lean:30",
+          "Harness.lean:44",
+          "Acceptance.lean:325"
+        ],
+        "non_goals": [],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -1156,6 +1273,21 @@
           "JurisLean.Candidates.Final20261021.Harness"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "缩",
+        "archive_gap_status": "CLOSED_BY_NARROW",
+        "evidence_pointers": [
+          "Harness.lean:70",
+          "Harness.lean:80",
+          "Harness.lean:94"
+        ],
+        "non_goals": [
+          "A general filtration/random-budget tower beyond the named partition identity is an explicit non-goal, not an additional theorem of this clause.",
+          "Run 39783481932 compiling the partition declarations does not discharge that tower. Tip-pin axiom-audit PASS does not discharge it either."
+        ],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -1218,6 +1350,17 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Temporal.lean:38",
+          "Temporal.lean:52"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -1269,6 +1412,19 @@
           "JurisLean.Candidates.Final20261021.Pipeline"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Authorization.lean:53",
+          "Pipeline.lean:64"
+        ],
+        "non_goals": [
+          "External legal authority and 真实授权合法性 are explicit non-goals. A reference or a Lean check does not prove legal authority. The China-law column stays separate."
+        ],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -1386,6 +1542,19 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Trace.lean:78",
+          "Trace.lean:91",
+          "Trace.lean:150",
+          "Pipeline.lean:116"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -1430,6 +1599,16 @@
           "JurisLean.Candidates.Final20261021.Temporal"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Temporal.lean:68"
+        ],
+        "non_goals": [],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -1488,6 +1667,20 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "EvidenceProcedure.lean:23",
+          "EvidenceProcedure.lean:87",
+          "EvidenceProcedure.lean:91"
+        ],
+        "non_goals": [
+          "现实真值定理 is an explicit non-goal. The four-state product is a classification contract, not a theorem about real-world truth."
+        ],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -1538,6 +1731,21 @@
           "JurisLean.Candidates.Final20261021.Progress"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Progress.lean:10",
+          "Progress.lean:16",
+          "Progress.lean:26",
+          "Progress.lean:28"
+        ],
+        "non_goals": [
+          "公平 and 外部响应 are explicit non-goals of this clause (exact_scope: 另证)."
+        ],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -1636,6 +1844,22 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Ledger.lean:96",
+          "Ledger.lean:109",
+          "Ledger.lean:600",
+          "Ledger.lean:625",
+          "Trace.lean:135"
+        ],
+        "non_goals": [
+          "Full legal allocation effects are an explicit non-goal. 金额清零不等法律关系消灭; this wiring does not close a China-law extinction claim."
+        ],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -1687,6 +1911,21 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "缩",
+        "archive_gap_status": "CLOSED_BY_NARROW",
+        "evidence_pointers": [
+          "Ledger.lean:168",
+          "Ledger.lean:181"
+        ],
+        "non_goals": [
+          "Actual occurrence of the cash events is an external premise, not a theorem of the finite closed-account sum.",
+          "Completeness of boundary accounts is an external premise and an explicit non-goal.",
+          "A real transfer does not by itself establish lawful discharge. The China-law column stays separate."
+        ],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -1737,6 +1976,17 @@
           "JurisLean.Candidates.Final20261021.Ledger"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Ledger.lean:148",
+          "Ledger.lean:152"
+        ],
+        "non_goals": [],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -1837,6 +2087,19 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "evidence_pointers": [
+          "Learning.lean:9",
+          "Learning.lean:15",
+          "Learning.lean:73",
+          "Learning.lean:89"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -1887,6 +2150,17 @@
           "JurisLean.Candidates.Final20261021.Learning"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Learning.lean:111",
+          "Learning.lean:121"
+        ],
+        "non_goals": [],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -1950,6 +2224,17 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Learning.lean:129",
+          "Probability.lean:28"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -1994,6 +2279,16 @@
           "JurisLean.Candidates.Final20261021.Probability"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Probability.lean:89"
+        ],
+        "non_goals": [],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -2058,6 +2353,22 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "缩",
+        "archive_gap_status": "CLOSED_BY_NARROW",
+        "evidence_pointers": [
+          "Learning.lean:161",
+          "Learning.lean:167",
+          "Learning.lean:173",
+          "Learning.lean:179"
+        ],
+        "non_goals": [
+          "The named finite witnesses are not a claim that real data follow the bad mechanism.",
+          "Run 39783481932 compiling these declarations does not discharge a real-data claim."
+        ],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -2121,6 +2432,22 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "缩",
+        "archive_gap_status": "CLOSED_BY_NARROW",
+        "evidence_pointers": [
+          "Probability.lean:146",
+          "Probability.lean:155",
+          "Probability.lean:160",
+          "Probability.lean:169"
+        ],
+        "non_goals": [
+          "A non-integer pointwise density identity beyond the real Gamma weight ratio is an explicit non-goal.",
+          "Run 39783481932 compiling the integer-shape reuse and the 5/6-versus-2/3 witness does not discharge that identity."
+        ],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -2165,6 +2492,16 @@
           "JurisLean.Candidates.Final20261021.Probability"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Probability.lean:97"
+        ],
+        "non_goals": [],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -2229,6 +2566,21 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Probability.lean:182",
+          "Probability.lean:188",
+          "Probability.lean:197",
+          "Probability.lean:201"
+        ],
+        "non_goals": [
+          "Calibration, causal identification, and numerical attainment (校准/因果/数值求准) are explicit non-goals and are not this clause's claim."
+        ],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -2292,6 +2644,23 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "缩",
+        "archive_gap_status": "CLOSED_BY_NARROW",
+        "evidence_pointers": [
+          "Probability.lean:217",
+          "Probability.lean:223",
+          "Probability.lean:232",
+          "Probability.lean:235",
+          "Acceptance.lean:334"
+        ],
+        "non_goals": [
+          "n_eff does not restore independence. Restoration of independence is an explicit non-goal.",
+          "Run 39783481932 compiling the covariance expansion does not discharge a restoration of independence."
+        ],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -2336,6 +2705,16 @@
           "JurisLean.Candidates.Final20261021.Probability"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Probability.lean:133"
+        ],
+        "non_goals": [],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -2399,6 +2778,23 @@
           "JurisLean.Candidates.Final20261021.Calibration"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "缩",
+        "archive_gap_status": "CLOSED_BY_NARROW",
+        "evidence_pointers": [
+          "Calibration.lean:68",
+          "Calibration.lean:73",
+          "Calibration.lean:87",
+          "Calibration.lean:90"
+        ],
+        "non_goals": [
+          "The continuous tie-break that produces a uniform rank is an assumption of this finite identity, not a density theorem. That density theorem is an explicit non-goal.",
+          "Deployment-shift failure is the marginal-versus-group split, not a separate process theorem.",
+          "Run 39783481932 compiling the finite rank identities does not discharge a continuous tie-break density theorem."
+        ],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -2475,6 +2871,19 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Calibration.lean:9",
+          "Calibration.lean:12",
+          "Calibration.lean:42",
+          "Acceptance.lean:337"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -2520,6 +2929,16 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Decision.lean:221"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -2564,6 +2983,16 @@
           "JurisLean.Candidates.Final20261021.Decision"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Decision.lean:205"
+        ],
+        "non_goals": [],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -2622,6 +3051,18 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Decision.lean:96",
+          "Decision.lean:102",
+          "Decision.lean:181"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -2678,6 +3119,18 @@
           "JurisLean.Candidates.Final20261021.Decision"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Decision.lean:190",
+          "Decision.lean:196",
+          "Decision.lean:202"
+        ],
+        "non_goals": [],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -2736,6 +3189,23 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "缩",
+        "archive_gap_status": "CLOSED_BY_NARROW",
+        "evidence_pointers": [
+          "Decision.lean:247",
+          "Decision.lean:255",
+          "Decision.lean:265"
+        ],
+        "non_goals": [
+          "Brouwer/mixed equilibrium is not claimed and is an explicit non-goal.",
+          "Hidden-information sequential equilibrium is not bi_one_step_no_gain and is an explicit non-goal.",
+          "The T113 perfect-information carrier remains JurisLean.Seams.UnifiedW4Games.bi_one_step_no_gain and is not re-labeled as the hidden-information statement.",
+          "Run 39783481932 compiling the signal-value, (4,6) tree, and matching-pennies declarations does not discharge Brouwer/mixed equilibrium or hidden-information sequential equilibrium."
+        ],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -2780,6 +3250,16 @@
           "JurisLean.Candidates.Final20261021.Behavior"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Behavior.lean:17"
+        ],
+        "non_goals": [],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -2826,6 +3306,16 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Policy.lean:10"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -2870,6 +3360,16 @@
           "JurisLean.Candidates.Final20261021.Policy"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Policy.lean:37"
+        ],
+        "non_goals": [],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -2916,6 +3416,16 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Policy.lean:25"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -2961,6 +3471,19 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Policy.lean:49",
+          "Policy.lean:54"
+        ],
+        "non_goals": [
+          "真实成本, 偏好, and 审计合法性 are explicit non-goals. China-law audit legitimacy is not decided by the frozen inequalities."
+        ],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -3005,6 +3528,16 @@
           "JurisLean.Candidates.Final20261021.RSI"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "RSI.lean:43"
+        ],
+        "non_goals": [],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -3063,6 +3596,18 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "RSI.lean:47",
+          "RSI.lean:72",
+          "RSI.lean:73"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -3107,6 +3652,16 @@
           "JurisLean.Candidates.Final20261021.RSI"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "RSI.lean:78"
+        ],
+        "non_goals": [],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -3153,6 +3708,18 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "RSI.lean:103"
+        ],
+        "non_goals": [
+          "An RSI全称改进定理 is an explicit non-goal. This clause is a type/selection contract, not an improvement theorem."
+        ],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -3198,6 +3765,16 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Feedback.lean:52"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -3242,6 +3819,16 @@
           "JurisLean.Candidates.Final20261021.Iteration"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Iteration.lean:13"
+        ],
+        "non_goals": [],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -3300,6 +3887,18 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Feedback.lean:111",
+          "Feedback.lean:122",
+          "Feedback.lean:157"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -3345,6 +3944,16 @@
         ],
         "acceptance_discharged": true,
         "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Iteration.lean:19"
+        ],
+        "non_goals": [],
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -3389,6 +3998,19 @@
           "JurisLean.Candidates.Final20261021.Iteration"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "证",
+        "archive_gap_status": "OPEN_FORMAL_TAIL",
+        "evidence_pointers": [
+          "Iteration.lean:37",
+          "Iteration.lean:29"
+        ],
+        "non_goals": [
+          "The external load readback path is an explicit non-goal. An external link does not prove the two-round construction."
+        ],
         "discharges_archived_manuscript_gaps": false
       }
     },
@@ -3463,6 +4085,23 @@
           "JurisLean.Candidates.Final20261021.Pipeline"
         ],
         "acceptance_discharged": true,
+        "discharges_archived_manuscript_gaps": false
+      },
+      "archive_gap_close": {
+        "ledger": "evidence/archive-gap-close-20261024/close-ledger.json",
+        "suggested_close_path": "缩",
+        "archive_gap_status": "CLOSED_BY_NARROW",
+        "evidence_pointers": [
+          "Pipeline.lean:99",
+          "Acceptance.lean:271",
+          "Acceptance.lean:276",
+          "Acceptance.lean:281"
+        ],
+        "non_goals": [
+          "All 50 subclaims are NOT closed by the finite source-to-decision-to-two-payment-to-feedback paths.",
+          "A common statistical law, full operation refinement, and authorized Loaded consumption are NOT closed.",
+          "This narrow is not an abandonment of the other forty-nine clauses."
+        ],
         "discharges_archived_manuscript_gaps": false
       }
     }

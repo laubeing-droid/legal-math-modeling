@@ -102,6 +102,7 @@ jobs:
         python scripts/ci/check_import_reachability.py
         python scripts/ci/check_concept_ledger.py
         python scripts/ci/check_clause_declaration_binding.py
+        python scripts/ci/check_archive_gap_close.py
         python scripts/ci/check_statute_chain_caseinput_claim.py
         python scripts/ci/check_paper_single_count.py
         python scripts/ci/generate_gap_status.py --check

@@ -2,8 +2,11 @@
 """Check the archive-gap close layer against the verbatim manuscript pin.
 
 The manuscript pin is not rewritten and is not emptied. ``discharges`` stays
-false. The live tip-pin is not moved onto gate run 39960871624. Declarations
-cited as wiring must be in the re-extracted tip-pin axiom audit.
+false. The live tip-pin is the authorized retarget
+subject 27849d3f228ec3665da16a6aa0b801672421dca2 / run 40079130550 / job
+120828801547. That retarget is not a close. The live tip-pin is not moved
+onto gate run 39960871624. Declarations cited as wiring must be in the
+re-extracted tip-pin axiom audit.
 
     python scripts/ci/check_archive_gap_close.py
     python scripts/ci/check_archive_gap_close.py --write
@@ -27,7 +30,9 @@ STATUS_PATH = CANDIDATE / "50_clause_status.json"
 CONSTRUCTION_PATH = CANDIDATE / "construction_status.json"
 ARCHIVE_PATH = CANDIDATE / "evidence/ci-tip-e87543d8/scope-archive.json"
 CARRIED_PATH = CANDIDATE / "evidence/ci-tip-966b9373/scope-archive.json"
-RECEIPT_PATH = CANDIDATE / "evidence/ci-tip-e87543d8/verification.json"
+LIVE_ARCHIVE_REL = "evidence/ci-tip-27849d3f/scope-archive.json"
+LIVE_ARCHIVE_PATH = CANDIDATE / LIVE_ARCHIVE_REL
+RECEIPT_PATH = CANDIDATE / "evidence/ci-tip-27849d3f/verification.json"
 LEDGER_PATH = CANDIDATE / "evidence/archive-gap-close-20261024/close-ledger.json"
 LEDGER_REL = "evidence/archive-gap-close-20261024/close-ledger.json"
 BINDING = ROOT / "scripts/ci/check_clause_declaration_binding.py"
@@ -150,20 +155,26 @@ def build_ledger(status: dict, archive: dict, lines: dict[tuple[str, str], int])
         "tip_authority_run_gate_only": disp.GATE_ONLY_RUN,
         "gate_green_does_not_close_archive_debt": True,
         "prior_tip_pin_did_not_close_archive_debt": True,
-        "tip_pin_not_retargeted": True,
+        "tip_pin_not_retargeted": False,
         "tip_pin": dict(disp.TIP_PIN),
         "archive_carrier": {
             "manuscript_pin": "evidence/ci-tip-e87543d8/scope-archive.json",
             "manuscript_pin_sha256": ARCHIVE_SHA,
             "manuscript_pin_mutated": False,
             "manuscript_pin_not_emptied": True,
+            "live_scope_archive": LIVE_ARCHIVE_REL,
+            "live_scope_archive_carried_from": "evidence/ci-tip-e87543d8/scope-archive.json",
+            "carrying_is_not_a_proof": True,
             "close_layer": LEDGER_REL,
             "note": (
-                "The manuscript pin stays verbatim, so this PR does not empty the "
-                "archive. This close layer processes each pinned remaining string. "
+                "The manuscript pin stays verbatim, so this retarget does not empty "
+                "the archive. The live tip-pin retarget carries the same rows in "
+                "evidence/ci-tip-27849d3f/scope-archive.json. Carrying is not a proof "
+                "and does not close archived gaps. "
                 "discharges_archived_manuscript_gaps stays false until math "
                 "authorizes the flip after a tip Authority recheck of the commit "
-                "that carries this layer. Gate SUCCESS is not that authorization."
+                "that carries this layer. Gate SUCCESS is not that authorization. "
+                "Step 2 stays open. Retargeting the tip-pin does not close the debt."
             ),
         },
         "discharges_archived_manuscript_gaps": False,
@@ -232,7 +243,7 @@ def summary_view(ledger: dict) -> dict:
         "tip_authority_run_gate_only": disp.GATE_ONLY_RUN,
         "gate_green_does_not_close_archive_debt": True,
         "prior_tip_pin_did_not_close_archive_debt": True,
-        "tip_pin_not_retargeted": True,
+        "tip_pin_not_retargeted": False,
         "tip_pin": dict(disp.TIP_PIN),
         "discharges_archived_manuscript_gaps": False,
         "math_flip_authorized": False,
@@ -257,7 +268,9 @@ def check_ledger(ledger: dict, status: dict, archive: dict, extracted: dict, lin
     if ledger.get("math_flip_authorized") is not False:
         errors.append("ledger math_flip_authorized is not false")
     if ledger.get("tip_pin") != disp.TIP_PIN:
-        errors.append("ledger tip_pin was retargeted")
+        errors.append("ledger tip_pin is not the live retarget")
+    if ledger.get("tip_pin_not_retargeted") is not False:
+        errors.append("ledger tip_pin_not_retargeted does not record the retarget")
     if ledger.get("tip_authority_run_gate_only") != disp.GATE_ONLY_RUN:
         errors.append("ledger gate run is not 39960871624")
     if ledger.get("tip_sha_gate_only") != disp.GATE_ONLY_SHA:
@@ -317,8 +330,8 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         errors.append("formal-tail round claims step 2 or a close")
     if summary.get("discharges_archived_manuscript_gaps") is not False or summary.get("math_flip_authorized") is not False:
         errors.append("formal-tail round flips discharges or math authorization")
-    if summary.get("tip_pin") != disp.TIP_PIN or summary.get("tip_pin_not_retargeted") is not True:
-        errors.append("formal-tail round retargets the tip-pin")
+    if summary.get("tip_pin") != disp.TIP_PIN or summary.get("tip_pin_not_retargeted") is not False:
+        errors.append("formal-tail round tip_pin is not the live retarget")
     later = summary.get("later_tip_gate_not_a_close") or {}
     if later != disp.LATER_TIP_GATE:
         errors.append("later tip gate record drifted")
@@ -426,7 +439,7 @@ def row_errors(row: dict, archived: dict, status_row: dict | None, names: dict, 
     if row.get("not_gate_run") != disp.GATE_ONLY_RUN or row.get("tip_pin_run_id") != disp.TIP_PIN["run_id"]:
         errors.append(f"{clause}: wiring run is not the live tip-pin")
     if row.get("tip_pin_job_id") != disp.TIP_PIN["job_id"]:
-        errors.append(f"{clause}: wiring job is not 120345670150")
+        errors.append(f"{clause}: wiring job is not {disp.TIP_PIN['job_id']}")
     goals = row.get("non_goals") or []
     unwired = row.get("unwired_formal_obligations") or []
     status_name = row.get("archive_gap_status")
@@ -508,8 +521,23 @@ def check_pins(status: dict, construction: dict, receipt: dict, archive: dict, c
     errors: list[str] = []
     if sha256_bytes(ARCHIVE_PATH.read_bytes()) != ARCHIVE_SHA:
         errors.append("manuscript archive bytes changed")
-    if receipt.get("scope_archive_sha256") != ARCHIVE_SHA:
-        errors.append("receipt scope_archive_sha256 changed")
+    if not LIVE_ARCHIVE_PATH.is_file():
+        errors.append("missing live scope archive")
+        live_archive: dict = {}
+        live_sha = ""
+    else:
+        live_archive = load_json(LIVE_ARCHIVE_PATH)
+        live_sha = sha256_bytes(LIVE_ARCHIVE_PATH.read_bytes())
+    if receipt.get("scope_archive_sha256") != live_sha:
+        errors.append("receipt scope_archive_sha256 != live carried archive")
+    if receipt.get("scope_archive") != LIVE_ARCHIVE_REL:
+        errors.append("receipt scope_archive is not the live carry")
+    if live_archive.get("rows") != archive.get("rows"):
+        errors.append("live scope archive rows differ from the unmutated manuscript pin")
+    if live_archive.get("pinned_subject") != archive.get("pinned_subject"):
+        errors.append("live scope archive pinned_subject drifted")
+    if not live_archive.get("rows"):
+        errors.append("live scope archive rows emptied")
     if receipt.get("subject_commit") != disp.TIP_PIN["subject"] or receipt.get("run_id") != disp.TIP_PIN["run_id"]:
         errors.append("receipt tip-pin subject/run changed")
     if receipt.get("job_id") != disp.TIP_PIN["job_id"]:
@@ -531,7 +559,14 @@ def check_pins(status: dict, construction: dict, receipt: dict, archive: dict, c
     if close.get("discharges_archived_manuscript_gaps") is not False or close.get("math_flip_authorized") is not False:
         errors.append("construction archive_gap_close flipped discharges or math authorization")
     if close.get("tip_pin") != disp.TIP_PIN:
-        errors.append("construction archive_gap_close retargeted the tip-pin")
+        errors.append("construction archive_gap_close tip_pin is not the live retarget")
+    if close.get("tip_pin_not_retargeted") is not False:
+        errors.append("construction archive_gap_close does not record the tip-pin retarget")
+    formal_tail = close.get("formal_tail_round") or {}
+    if formal_tail.get("tip_pin") != disp.TIP_PIN or formal_tail.get("tip_pin_not_retargeted") is not False:
+        errors.append("construction formal_tail_round tip_pin is not the live retarget")
+    if formal_tail.get("step_2_closed") is not False or formal_tail.get("closed_this_round") != 0:
+        errors.append("construction formal_tail_round claims step 2 or a close")
     if carried.get("rows") != archive.get("rows"):
         errors.append("carried manuscript rows differ from the tip archive")
     return errors

@@ -1,4 +1,9 @@
-"""The archive-gap close layer stays fail-closed and does not retarget the tip-pin."""
+"""The archive-gap close layer stays fail-closed after the authorized tip-pin retarget.
+
+The live pin is subject 27849d3f / run 40079130550 / job 120828801547.
+Retargeting that pin does not close debt: discharges stays false,
+OPEN_FORMAL_TAIL stays 40, and step 2 stays open.
+"""
 
 from __future__ import annotations
 
@@ -30,7 +35,7 @@ def test_close_layer_matches_the_pack_and_keeps_discharges_false() -> None:
     assert "wiring 2" in proc.stdout
     assert "open_formal_tail 40" in proc.stdout
     assert "discharges false" in proc.stdout
-    assert "39933015422" in proc.stdout
+    assert "40079130550" in proc.stdout
     assert "formal_tail_closed_this_round 0" in proc.stdout
     assert "step_2_closed false" in proc.stdout
 
@@ -61,9 +66,13 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert summary["step_2_closed"] is False
     assert summary["closed_this_round"] == 0
     assert summary["open_formal_tail_remaining"] == 40
-    assert summary["tip_pin"]["subject"] == "e87543d836cd3cf83bbb5a65b74e47d9bfe31865"
-    assert summary["tip_pin"]["run_id"] == 39933015422
-    assert summary["tip_pin"]["job_id"] == 120345670150
+    assert summary["tip_pin_not_retargeted"] is False
+    assert summary["tip_pin"]["subject"] == "27849d3f228ec3665da16a6aa0b801672421dca2"
+    assert summary["tip_pin"]["run_id"] == 40079130550
+    assert summary["tip_pin"]["job_id"] == 120828801547
+    assert summary["tip_pin"]["verification"] == "evidence/ci-tip-27849d3f/verification.json"
+    assert ledger["tip_pin_not_retargeted"] is False
+    assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 40
     assert summary["later_tip_gate_not_a_close"]["run_id"] == 40063377178
     assert summary["later_tip_gate_not_a_close"]["closes_debt"] is False
     assert summary["later_tip_gate_not_a_close"]["retargets_tip_pin"] is False

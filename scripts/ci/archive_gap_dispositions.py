@@ -1,19 +1,22 @@
 """Dispositions for the 50 archived manuscript gaps.
 
 The manuscript pin ``evidence/ci-tip-e87543d8/scope-archive.json`` stays
-verbatim. This module is the construction record that processes each pinned
-``remaining_obligations`` string on the math pack's suggested path:
+verbatim. The live carry is ``evidence/ci-tip-27849d3f/scope-archive.json``.
+Carrying those rows is not a proof and does not close a gap. This module is
+the construction record that processes each pinned ``remaining_obligations``
+string on the math pack's suggested path:
 
 * ``缩`` rewrites the residual as an explicit non-goal in the same row as the
   claimed-scope declarations.
 * ``证`` wires the formal candidate bodies to declarations accepted by the
-  live tip-pin axiom audit (subject e87543d, run 39933015422, job
-  120345670150). A sentence those declarations do not state stays
-  ``OPEN_FORMAL_TAIL``. Companion non-goals from the 2026-10-24 rejudge are
-  written on that same row.
+  live tip-pin axiom audit (subject 27849d3f228ec3665da16a6aa0b801672421dca2,
+  run 40079130550, job 120828801547). A sentence those declarations do not
+  state stays ``OPEN_FORMAL_TAIL``. Companion non-goals from the 2026-10-24
+  rejudge are written on that same row.
 
-Nothing here sets ``discharges_archived_manuscript_gaps``. Gate run
-39960871624 is not a close. Local Lean is not invoked.
+Nothing here sets ``discharges_archived_manuscript_gaps``. The live tip-pin
+retarget does not close an ``OPEN_FORMAL_TAIL`` row and does not authorize
+``math_flip``. Gate run 39960871624 is not a close. Local Lean is not invoked.
 """
 
 from __future__ import annotations
@@ -416,7 +419,7 @@ SCOPE_REVIEW: dict[str, str] = {
     "U02.2": (
         "Wired statements are the abstract transaction-safety lemmas, the "
         "commit/replay/cancel examples, and the complete-read CAS snapshot lemma "
-        "accepted on tip-pin job 120345670150. Concrete store refinement and "
+        "accepted on tip-pin job 120828801547. Concrete store refinement and "
         "external effects are non-goals in this same row, not proved omissions."
     ),
 }
@@ -430,11 +433,11 @@ DOES_NOT_CLAIM = [
 ]
 
 TIP_PIN = {
-    "subject": "e87543d836cd3cf83bbb5a65b74e47d9bfe31865",
-    "run_id": 39933015422,
-    "job_id": 120345670150,
+    "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
+    "run_id": 40079130550,
+    "job_id": 120828801547,
     "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-    "verification": "evidence/ci-tip-e87543d8/verification.json",
+    "verification": "evidence/ci-tip-27849d3f/verification.json",
 }
 
 GATE_ONLY_RUN = 39960871624
@@ -442,8 +445,9 @@ GATE_ONLY_SHA = "f080eee0ffeadb09d8fe404adb3dcddf326b4a11"
 CRITERIA_PACK = "/home/box/shared/legal-math-reviewer/archive_gap_判据包_20261024/"
 PREFIX = "JurisLean.Candidates.Final20261021."
 
-# Formal-tail round on the same pipeline. This does not replace the archive-gap
-# pack path, does not retarget the tip-pin, and does not authorize discharges.
+# Formal-tail round on the same pipeline. The live tip-pin may move when an
+# authorized retarget says so. That move does not close a tail, does not
+# authorize discharges, and does not open a second track.
 FORMAL_TAIL_PACK = "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/"
 FORMAL_TAIL_PACK_FILES = (
     "判据包.md",
@@ -511,7 +515,7 @@ CANDIDATE_COVERS_ONLY: dict[str, str] = {
     "U06.4": (
         "Four corollaries of the audited threshold identities when the implied "
         "threshold lies outside [0,1]. They are source text only. They are not "
-        "in tip-pin audit 39933015422 / job 120345670150, so 'no audited "
+        "in tip-pin audit 40079130550 / job 120828801547, so 'no audited "
         "declaration' stays true and the row stays OPEN_FORMAL_TAIL."
     ),
     "U08.1": (
@@ -537,12 +541,13 @@ CANDIDATE_COVERS_ONLY: dict[str, str] = {
 }
 TAIL_BLOCKER = (
     "The unwired formal obligation is not a declaration accepted by tip-pin "
-    "axiom audit subject e87543d836cd3cf83bbb5a65b74e47d9bfe31865, run "
-    "39933015422, job 120345670150. Candidates/Final20261021/*.lean stays "
+    "axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run "
+    "40079130550, job 120828801547. Candidates/Final20261021/*.lean stays "
     "byte-locked to that receipt, so this round cannot edit those files or "
     "cite a new name as audited. A candidate module outside that directory "
     "is not closure. Gate SUCCESS, including run 40063377178, does not close "
-    "the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+    "the row. Retargeting the tip-pin does not close the row. "
+    "discharges_archived_manuscript_gaps stays false. Step 2 stays open."
 )
 
 
@@ -627,7 +632,7 @@ def formal_tail_summary(rows: list[dict]) -> dict:
         "discharges_archived_manuscript_gaps": False,
         "math_flip_authorized": False,
         "step_2_closed": False,
-        "tip_pin_not_retargeted": True,
+        "tip_pin_not_retargeted": False,
         "tip_pin": dict(TIP_PIN),
         "later_tip_gate_not_a_close": dict(LATER_TIP_GATE),
         "gate_green_does_not_close_debt": True,

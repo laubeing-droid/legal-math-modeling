@@ -1,0 +1,3345 @@
+{
+  "schema": "archive_gap_close_ledger_v1",
+  "criteria_pack": "/home/box/shared/legal-math-reviewer/archive_gap_判据包_20261024/",
+  "rejudge_doc": "未决改判_20261024.md",
+  "construction_gate_doc": "施工放行条件.md",
+  "tip_sha_gate_only": "f080eee0ffeadb09d8fe404adb3dcddf326b4a11",
+  "tip_authority_run_gate_only": 39960871624,
+  "gate_green_does_not_close_archive_debt": true,
+  "prior_tip_pin_did_not_close_archive_debt": true,
+  "tip_pin_not_retargeted": true,
+  "tip_pin": {
+    "subject": "e87543d836cd3cf83bbb5a65b74e47d9bfe31865",
+    "run_id": 39933015422,
+    "job_id": 120345670150,
+    "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+    "verification": "evidence/ci-tip-e87543d8/verification.json"
+  },
+  "archive_carrier": {
+    "manuscript_pin": "evidence/ci-tip-e87543d8/scope-archive.json",
+    "manuscript_pin_sha256": "09e99e98711cc47395b6570e1a458a9aa8730aec5b3afab693a05e58592cea46",
+    "manuscript_pin_mutated": false,
+    "manuscript_pin_not_emptied": true,
+    "close_layer": "evidence/archive-gap-close-20261024/close-ledger.json",
+    "note": "The manuscript pin stays verbatim, so this PR does not empty the archive. This close layer processes each pinned remaining string. discharges_archived_manuscript_gaps stays false until math authorizes the flip after a tip Authority recheck of the commit that carries this layer. Gate SUCCESS is not that authorization."
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "math_flip_authorized": false,
+  "math_flip_blocked_reason": "Math must spot-check this layer after tip Authority recheck before anyone writes discharges_archived_manuscript_gaps=true. Open formal tails also keep the flag false.",
+  "counts": {
+    "证": 42,
+    "缩": 8,
+    "放弃": 0,
+    "未决": 0,
+    "CLOSED_BY_NARROW": 8,
+    "CLOSED_BY_WIRING": 2,
+    "OPEN_FORMAL_TAIL": 40
+  },
+  "prc_china_law_column": "separate; foreign law and arXiv do not close China-law items; seven_clause_legal_sources.txt is not retargeted",
+  "rows": [
+    {
+      "clause": "U07.1",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Retraction, observation monotonicity, reverse-separation and non-surjective-encode witnesses have candidate bodies. Full observation/history decoding acceptance and fresh CI remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Representation.u07_1_retraction_injective",
+          "file": "Representation.lean",
+          "line": 5,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Representation.u07_1_section_surjective",
+          "file": "Representation.lean",
+          "line": 12,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Representation.u07_1_rho_idempotent",
+          "file": "Representation.lean",
+          "line": 17,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Representation.u07_1_separation_monotone",
+          "file": "Representation.lean",
+          "line": 24,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_constant_family_not_separating",
+          "file": "Acceptance.lean",
+          "line": 50,
+          "role": "constant two-point observation does not separate",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.a07_1_identity_observation_separates",
+          "file": "Acceptance.lean",
+          "line": 56,
+          "role": "adding the identity observation separates the two points",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.n07_1_retraction_need_not_encode_surjectively",
+          "file": "Acceptance.lean",
+          "line": 62,
+          "role": "a retraction need not make the encode map surjective",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Representation.lean:5",
+        "Representation.lean:12",
+        "Representation.lean:17",
+        "Representation.lean:24",
+        "Acceptance.lean:50",
+        "Acceptance.lean:56",
+        "Acceptance.lean:62"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Full observation/history decoding acceptance is not stated by the retraction, separation, or encode witnesses."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Full observation/history decoding acceptance is not stated by the retraction, separation, or encode witnesses.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U07.2",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Fresh CI and actual semantic compatibility of supplied layers remain separate.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Representation.u07_2_common_fiber_nonempty",
+          "file": "Representation.lean",
+          "line": 30,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Representation.n07_2_incompatible_fiber",
+          "file": "Representation.lean",
+          "line": 38,
+          "role": "two singleton fibers over distinct points have no common value",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Representation.lean:30",
+        "Representation.lean:38"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Actual semantic compatibility of supplied layers remains a separate unproved obligation."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Actual semantic compatibility of supplied layers remains a separate unproved obligation.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U07.3",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Fresh CI; source truth and arbitrary extractor fidelity are not proved by the fixed-history construction.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Representation.u07_3_projection_unique_under_fixed_binding",
+          "file": "Representation.lean",
+          "line": 79,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Representation.lean:79"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Source truth and arbitrary extractor fidelity are not proved by the fixed-history projection theorem."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Source truth and arbitrary extractor fidelity are not proved by the fixed-history projection theorem.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U03.1",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Provenance DAG validation and robust-intersection countermodel not yet connected to the executable finite closure.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Compiler.u03_1_relative_soundness",
+          "file": "Compiler.lean",
+          "line": 22,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Compiler.lean",
+              "line": 38
+            },
+            {
+              "file": "Compiler.lean",
+              "line": 132
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Compiler.u03_1_computed_sound",
+          "file": "Compiler.lean",
+          "line": 68,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Compiler.lean",
+              "line": 130
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_must_facts_closure_is_not_robust_closure",
+          "file": "Acceptance.lean",
+          "line": 316,
+          "role": "robust-intersection countermodel body; not a connection proof",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Compiler.lean:22",
+        "Compiler.lean:68",
+        "Acceptance.lean:316"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Provenance DAG validation is not connected to the executable finite closure, and the robust-intersection countermodel is not connected to that closure."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Provenance DAG validation is not connected to the executable finite closure, and the robust-intersection countermodel is not connected to that closure.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U03.2",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Accepted checked closures are connected to semantic derivability; insufficient fuel returns checkIncomplete. A verified finite carrier/fuel bound for this list implementation is still missing.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Compiler.u03_2_relative_completeness",
+          "file": "Compiler.lean",
+          "line": 33,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Compiler.u03_2_checked_closure_complete",
+          "file": "Compiler.lean",
+          "line": 120,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.n03_incomplete_fuel_is_not_closure",
+          "file": "Acceptance.lean",
+          "line": 305,
+          "role": "insufficient fuel is not a checked closure",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Compiler.lean:33",
+        "Compiler.lean:120",
+        "Acceptance.lean:305"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "A verified finite carrier/fuel bound for this list implementation is still missing."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: A verified finite carrier/fuel bound for this list implementation is still missing.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U02.1",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Actual-world and actual-successor refinement of the concrete pipeline table remains unproved.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Harness.u02_1_gate_sound_under_Ke",
+          "file": "Harness.lean",
+          "line": 10,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Harness.lean:10"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Actual-world and actual-successor refinement of the concrete pipeline table remains unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Actual-world and actual-successor refinement of the concrete pipeline table remains unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U02.2",
+      "suggested_close_path": "证",
+      "archive_gap_status": "CLOSED_BY_WIRING",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Abstract transaction safety, actual commit/replay/cancel examples and complete-read CAS snapshot lemma have candidate bodies. Full refinement of concrete Ledger/Pipeline into Store/Trace, including cancellation and external occurrences, remains open.",
+      "claimed_scope": "",
+      "companion_scope_notes": "companion_缩: 真实DB精化/外部副作用/最终完成",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.step_count",
+          "file": "Transactions.lean",
+          "line": 78,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 98
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.trace_count",
+          "file": "Transactions.lean",
+          "line": 92,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 107
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.registered_le_one",
+          "file": "Transactions.lean",
+          "line": 101,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 108
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.at_most_once",
+          "file": "Transactions.lean",
+          "line": 104,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.entry_preserved_step",
+          "file": "Transactions.lean",
+          "line": 111,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 133
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.entry_preserved_trace",
+          "file": "Transactions.lean",
+          "line": 127,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 240
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.cancelled_preserved_step",
+          "file": "Transactions.lean",
+          "line": 135,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 153
+            },
+            {
+              "file": "Transactions.lean",
+              "line": 263
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.cancelled_preserved_trace",
+          "file": "Transactions.lean",
+          "line": 148,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.cancelled_cannot_commit",
+          "file": "Transactions.lean",
+          "line": 155,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 262
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 48
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.noncommit_business_unchanged",
+          "file": "Transactions.lean",
+          "line": 162,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.step_version_monotone",
+          "file": "Transactions.lean",
+          "line": 173,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 183
+            },
+            {
+              "file": "Transactions.lean",
+              "line": 201
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.trace_version_monotone",
+          "file": "Transactions.lean",
+          "line": 178,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 202
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.step_same_version_business",
+          "file": "Transactions.lean",
+          "line": 185,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 205
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.trace_same_version_business",
+          "file": "Transactions.lean",
+          "line": 195,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 215
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.u02_2_complete_readset_CAS",
+          "file": "Transactions.lean",
+          "line": 210,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.commit_receipt_at_end",
+          "file": "Transactions.lean",
+          "line": 224,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 248
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.abort_excludes_prior_commit",
+          "file": "Transactions.lean",
+          "line": 243,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.cancelled_excludes_trace_commit",
+          "file": "Transactions.lean",
+          "line": 252,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Transactions.lean",
+              "line": 272
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Transactions.abort_excludes_future_commit",
+          "file": "Transactions.lean",
+          "line": 265,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.a02_transaction_actual_commit",
+          "file": "Acceptance.lean",
+          "line": 35,
+          "role": "synthetic commit example",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.a02_transaction_actual_replay",
+          "file": "Acceptance.lean",
+          "line": 40,
+          "role": "synthetic replay example",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.n02_cancelled_attempt_no_commit",
+          "file": "Acceptance.lean",
+          "line": 46,
+          "role": "cancelled attempt does not commit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Transactions.lean:78",
+        "Transactions.lean:92",
+        "Transactions.lean:101",
+        "Transactions.lean:104",
+        "Transactions.lean:111",
+        "Transactions.lean:127",
+        "Transactions.lean:135",
+        "Transactions.lean:148",
+        "Transactions.lean:155",
+        "Transactions.lean:162",
+        "Transactions.lean:173",
+        "Transactions.lean:178",
+        "Transactions.lean:185",
+        "Transactions.lean:195",
+        "Transactions.lean:210",
+        "Transactions.lean:224",
+        "Transactions.lean:243",
+        "Transactions.lean:252",
+        "Transactions.lean:265",
+        "Acceptance.lean:35",
+        "Acceptance.lean:40",
+        "Acceptance.lean:46"
+      ],
+      "non_goals": [
+        "Full refinement of concrete Ledger/Pipeline into Store/Trace, including external occurrences, is an explicit non-goal.",
+        "真实DB精化、外部副作用、最终完成 are explicit non-goals. China-law discharge is not decided here."
+      ],
+      "unwired_formal_obligations": [],
+      "scope_review": "Wired statements are the abstract transaction-safety lemmas, the commit/replay/cancel examples, and the complete-read CAS snapshot lemma accepted on tip-pin job 120345670150. Concrete store refinement and external effects are non-goals in this same row, not proved omissions.",
+      "remaining_after_close": "WIRED_TO_TIP_PIN_DECLARATIONS || NON_GOAL_POINTER: Full refinement of concrete Ledger/Pipeline into Store/Trace, including external occurrences, is an explicit non-goal. | 真实DB精化、外部副作用、最终完成 are explicit non-goals. China-law discharge is not decided here.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U02.3",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Generator support coverage and common-idle/empty-successor counterexamples not fully discharged.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Harness.u02_3_finite_gate_enumeration",
+          "file": "Harness.lean",
+          "line": 30,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Harness.zero_coverage_not_zero_risk",
+          "file": "Harness.lean",
+          "line": 44,
+          "role": "empty-successor / zero-coverage ratio is not a zero risk",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.a02_common_idle_remains_allowed",
+          "file": "Acceptance.lean",
+          "line": 325,
+          "role": "common idle stays in the finite safe intersection",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Harness.lean:30",
+        "Harness.lean:44",
+        "Acceptance.lean:325"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Generator support coverage is not stated by the finite enumeration, the common-idle witness, or the zero-coverage witness."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Generator support coverage is not stated by the finite enumeration, the common-idle witness, or the zero-coverage witness.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U02.4",
+      "suggested_close_path": "缩",
+      "archive_gap_status": "CLOSED_BY_NARROW",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Named partition budget α+ε, union bound in the supplied measure, and the H=B finite counterexample (marginal 1/10, conditional 1). A general filtration/random-budget tower beyond this partition identity is not an additional theorem. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge the unproved general filtration/random-budget tower.",
+      "claimed_scope": "Named partition budget α+ε, union bound in the supplied measure, and the H=B finite counterexample (marginal 1/10, conditional 1).",
+      "companion_scope_notes": "claimed_scope: 分区预算α+ε与H=B反例；non_goal: general filtration/random-budget tower",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Harness.u02_4_unconditional_budget",
+          "file": "Harness.lean",
+          "line": 70,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Harness.u02_4_union_in_declared_measure",
+          "file": "Harness.lean",
+          "line": 80,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Harness.u02_4_hb_not_the_marginal_bound",
+          "file": "Harness.lean",
+          "line": 94,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Harness.lean:70",
+        "Harness.lean:80",
+        "Harness.lean:94"
+      ],
+      "non_goals": [
+        "A general filtration/random-budget tower beyond the named partition identity is an explicit non-goal, not an additional theorem of this clause.",
+        "Run 39783481932 compiling the partition declarations does not discharge that tower. Tip-pin axiom-audit PASS does not discharge it either."
+      ],
+      "unwired_formal_obligations": [],
+      "scope_review": "",
+      "remaining_after_close": "NON_GOAL_POINTER: A general filtration/random-budget tower beyond the named partition identity is an explicit non-goal, not an additional theorem of this clause. | Run 39783481932 compiling the partition declarations does not discharge that tower. Tip-pin axiom-audit PASS does not discharge it either.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U08.1",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Late retroactive-transition and mutable-current-status countermodels still require complete Lean acceptance.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Temporal.u08_1_history_stable_under_append_after_cut",
+          "file": "Temporal.lean",
+          "line": 38,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Temporal.lean",
+              "line": 56
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable",
+          "file": "Temporal.lean",
+          "line": 52,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Temporal.lean:38",
+        "Temporal.lean:52"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Late retroactive-transition and mutable-current-status countermodels are not audited declarations of this clause."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Late retroactive-transition and mutable-current-status countermodels are not audited declarations of this clause.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U10.1",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "The actual full-context authorized Pipeline refresh is linked to Trace.Step. Complete protocol refinement and external legal authority evidence remain open; a reference alone does not prove authority.",
+      "claimed_scope": "",
+      "companion_scope_notes": "companion_缩: external legal authority / 真实授权合法性",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Authorization.u10_1_enable_append_select_refresh_consume",
+          "file": "Authorization.lean",
+          "line": 53,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Pipeline.u10_1_authorized_refresh_is_step",
+          "file": "Pipeline.lean",
+          "line": 64,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Authorization.lean:53",
+        "Pipeline.lean:64"
+      ],
+      "non_goals": [
+        "External legal authority and 真实授权合法性 are explicit non-goals. A reference or a Lean check does not prove legal authority. The China-law column stays separate."
+      ],
+      "unwired_formal_obligations": [
+        "Complete protocol refinement remains unproved. The Pipeline refresh-to-Step link does not state it."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Complete protocol refinement remains unproved. The Pipeline refresh-to-Step link does not state it. || NON_GOAL_POINTER: External legal authority and 真实授权合法性 are explicit non-goals. A reference or a Lean check does not prove legal authority. The China-law column stays separate.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U10.2",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Numeric/cash/freshness plus key/receipt/cash-backing invariant, actual consume-to-Step, and two-payment known-post refinement have candidate bodies. Full mixed-operation coverage, Gamma frame/read-domain correspondence and service refinement remain open.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Trace.u10_2_committed_executor_is_step",
+          "file": "Trace.lean",
+          "line": 78,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Trace.lean",
+              "line": 104
+            },
+            {
+              "file": "Pipeline.lean",
+              "line": 126
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 103
+            },
+            {
+              "file": "Acceptance.lean",
+              "line": 106
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Trace.u10_2_known_executor_post_preserves",
+          "file": "Trace.lean",
+          "line": 91,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Pipeline.lean",
+              "line": 133
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Trace.u10_2_finite_trace_composition",
+          "file": "Trace.lean",
+          "line": 150,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Trace.lean",
+              "line": 159
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Pipeline.u10_2_pipeline_second_post_invariant",
+          "file": "Pipeline.lean",
+          "line": 116,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Trace.lean:78",
+        "Trace.lean:91",
+        "Trace.lean:150",
+        "Pipeline.lean:116"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Full mixed-operation coverage, Gamma frame/read-domain correspondence, and service refinement remain open."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Full mixed-operation coverage, Gamma frame/read-domain correspondence, and service refinement remain open.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U08.2",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Current versus reachable exhaustion and nonempty-state preservation of every observation remain partially formalized.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Temporal.u08_2_finite_compression_reflection",
+          "file": "Temporal.lean",
+          "line": 68,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Temporal.lean:68"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Current versus reachable exhaustion and nonempty-state preservation of every observation remain only partially formalized."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Current versus reachable exhaustion and nonempty-state preservation of every observation remain only partially formalized.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U08.3",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Four-state/product and countermodels are present; full finite dependency-policy reflection and compatibility-world classification still need audit.",
+      "claimed_scope": "",
+      "companion_scope_notes": "non_goal: 现实真值定理",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.EvidenceProcedure.u08_3_evidence_four_states",
+          "file": "EvidenceProcedure.lean",
+          "line": 23,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.EvidenceProcedure.u08_3_judgment_not_truth",
+          "file": "EvidenceProcedure.lean",
+          "line": 87,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.EvidenceProcedure.u08_3_opposition_does_not_erase_support",
+          "file": "EvidenceProcedure.lean",
+          "line": 91,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "EvidenceProcedure.lean:23",
+        "EvidenceProcedure.lean:87",
+        "EvidenceProcedure.lean:91"
+      ],
+      "non_goals": [
+        "现实真值定理 is an explicit non-goal. The four-state product is a classification contract, not a theorem about real-world truth."
+      ],
+      "unwired_formal_obligations": [
+        "Full finite dependency-policy reflection and compatibility-world classification still need an audit that these four-state declarations do not provide."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Full finite dependency-policy reflection and compatibility-world classification still need an audit that these four-state declarations do not provide. || NON_GOAL_POINTER: 现实真值定理 is an explicit non-goal. The four-state product is a classification contract, not a theorem about real-world truth.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U10.3",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Connect per-operation abstract simulation length and business-observation faithfulness, including zero-step prohibitions.",
+      "claimed_scope": "",
+      "companion_scope_notes": "companion_缩: 公平/外部响应",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Progress.u10_3_rank_bounds_steps",
+          "file": "Progress.lean",
+          "line": 10,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Progress.u10_3_simulation_length",
+          "file": "Progress.lean",
+          "line": 16,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Progress.multistep_simulation_not_one_step",
+          "file": "Progress.lean",
+          "line": 26,
+          "role": "a length-sum can exceed the step count; not a zero-step prohibition",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Progress.two_cycle_has_no_strict_rank",
+          "file": "Progress.lean",
+          "line": 28,
+          "role": "two-cycle has no strict rank; not business-observation faithfulness",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Progress.lean:10",
+        "Progress.lean:16",
+        "Progress.lean:26",
+        "Progress.lean:28"
+      ],
+      "non_goals": [
+        "公平 and 外部响应 are explicit non-goals of this clause (exact_scope: 另证)."
+      ],
+      "unwired_formal_obligations": [
+        "Business-observation faithfulness and an explicit zero-step prohibition are not stated by the length bound, the rank bound, or the two-cycle witness."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Business-observation faithfulness and an explicit zero-step prohibition are not stated by the length bound, the rank bound, or the two-cycle witness. || NON_GOAL_POINTER: 公平 and 外部响应 are explicit non-goals of this clause (exact_scope: 另证).",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U09.1",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "General list conservation, receipt/U/cash-backing coherence, actual mixed-trace at-most-once safety, and scalar/vector stream balance refinement have candidate bodies. Full legal allocation effects, receipt revision ordering/cash uniqueness and product-protocol refinement remain open.",
+      "claimed_scope": "",
+      "companion_scope_notes": "companion_缩: legal allocation effects / 法律关系消灭",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Ledger.u09_1_quantity_conservation",
+          "file": "Ledger.lean",
+          "line": 96,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Ledger.lean",
+              "line": 115
+            },
+            {
+              "file": "Trace.lean",
+              "line": 67
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Ledger.u09_1_continuous_consume",
+          "file": "Ledger.lean",
+          "line": 109,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Ledger.u09_1_afterPayments_clamp",
+          "file": "Ledger.lean",
+          "line": 600,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Ledger.lean",
+              "line": 633
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Ledger.u09_1_scalar_vector_stream_refinement",
+          "file": "Ledger.lean",
+          "line": 625,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Trace.u09_1_actual_trace_at_most_once",
+          "file": "Trace.lean",
+          "line": 135,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Ledger.lean:96",
+        "Ledger.lean:109",
+        "Ledger.lean:600",
+        "Ledger.lean:625",
+        "Trace.lean:135"
+      ],
+      "non_goals": [
+        "Full legal allocation effects are an explicit non-goal. 金额清零不等法律关系消灭; this wiring does not close a China-law extinction claim."
+      ],
+      "unwired_formal_obligations": [
+        "Receipt revision ordering, cash uniqueness beyond ReceiptCoherent, and product-protocol refinement remain open. They are not the legal-allocation non-goal."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Receipt revision ordering, cash uniqueness beyond ReceiptCoherent, and product-protocol refinement remain open. They are not the legal-allocation non-goal. || NON_GOAL_POINTER: Full legal allocation effects are an explicit non-goal. 金额清零不等法律关系消灭; this wiring does not close a China-law extinction claim.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U09.2",
+      "suggested_close_path": "缩",
+      "archive_gap_status": "CLOSED_BY_NARROW",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Finite closed-account and per-account sums present. Actual occurrence and completeness of boundary accounts remain external premises.",
+      "claimed_scope": "Finite closed-account sum and per-account sums.",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_conservation",
+          "file": "Ledger.lean",
+          "line": 168,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Ledger.u09_2_cash_by_account",
+          "file": "Ledger.lean",
+          "line": 181,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Ledger.lean:168",
+        "Ledger.lean:181"
+      ],
+      "non_goals": [
+        "Actual occurrence of the cash events is an external premise, not a theorem of the finite closed-account sum.",
+        "Completeness of boundary accounts is an external premise and an explicit non-goal.",
+        "A real transfer does not by itself establish lawful discharge. The China-law column stays separate."
+      ],
+      "unwired_formal_obligations": [],
+      "scope_review": "",
+      "remaining_after_close": "NON_GOAL_POINTER: Actual occurrence of the cash events is an external premise, not a theorem of the finite closed-account sum. | Completeness of boundary accounts is an external premise and an explicit non-goal. | A real transfer does not by itself establish lawful discharge. The China-law column stays separate.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U09.3",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Weak allocation, metadata, accrual, None, restitution interfaces are present; full greedy prefix/ordering and same-institution legal-effect countermodels remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Ledger.u09_3_accrual_not_cash",
+          "file": "Ledger.lean",
+          "line": 148,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Ledger.u09_3_general_allocation",
+          "file": "Ledger.lean",
+          "line": 152,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Ledger.lean:148",
+        "Ledger.lean:152"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Full greedy prefix/ordering and same-institution legal-effect countermodels remain unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Full greedy prefix/ordering and same-institution legal-effect countermodels remain unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U01.0",
+      "suggested_close_path": "证",
+      "archive_gap_status": "CLOSED_BY_WIRING",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Exact independent bounded-sum two-tail statement and D=0 null-tail branch, both at strictly positive thresholds, have candidate proof bodies. Fresh Lean CI, axiom audit and assumption/scope review remain required.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_0_bounded_mgf",
+          "file": "Learning.lean",
+          "line": 9,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Learning.lean",
+              "line": 28
+            },
+            {
+              "file": "Learning.lean",
+              "line": 60
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_0_independent_bounded_upper_tail",
+          "file": "Learning.lean",
+          "line": 15,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Feedback.lean",
+              "line": 119
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_0_independent_bounded_two_tail",
+          "file": "Learning.lean",
+          "line": 73,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Feedback.lean",
+              "line": 145
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_0_zero_width_tail",
+          "file": "Learning.lean",
+          "line": 89,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Learning.lean:9",
+        "Learning.lean:15",
+        "Learning.lean:73",
+        "Learning.lean:89"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [],
+      "scope_review": "Wired statements are the independent bounded-sum two-tail at a strictly positive threshold and the D=0 null tail, together with the clause-listed mgf bounds those statements use. Assumptions are the theorem binders (independence, bounds, positive threshold). This review does not extend them and does not treat gate run 39960871624 as acceptance.",
+      "remaining_after_close": "WIRED_TO_TIP_PIN_DECLARATIONS",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U01.1",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Sub-Gaussian fixed-class union and ERM algebra present; finish iid sample-mean/sqrt radius specialization and representation-risk decomposition.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_1_fixed_class_tail",
+          "file": "Learning.lean",
+          "line": 111,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_1_approximate_erm",
+          "file": "Learning.lean",
+          "line": 121,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Learning.lean:111",
+        "Learning.lean:121"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "The iid sample-mean/sqrt-radius specialization and the representation-risk decomposition are not finished by fixed_class_tail or approximate_erm."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: The iid sample-mean/sqrt-radius specialization and the representation-risk decomposition are not finished by fixed_class_tail or approximate_erm.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U01.2",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Finite rational 0-1 bridge present; general measurable bounded-loss integration and jointly estimated bridge budget remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_2_label_bridge_pointwise",
+          "file": "Learning.lean",
+          "line": 129,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Probability.lean",
+              "line": 32
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u01_2_finite_label_bridge",
+          "file": "Probability.lean",
+          "line": 28,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Learning.lean:129",
+        "Probability.lean:28"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "General measurable bounded-loss integration and a jointly estimated bridge budget remain unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: General measurable bounded-loss integration and a jointly estimated bridge budget remain unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U01.3",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Finite rational TV bound only; the manuscript general measurable-distribution TV theorem is UNPROVED, not reduced to this finite support.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u01_3_finite_deployment_distance",
+          "file": "Probability.lean",
+          "line": 89,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Probability.lean:89"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "The manuscript general measurable-distribution TV theorem is UNPROVED and is not reduced to the finite-support bound."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: The manuscript general measurable-distribution TV theorem is UNPROVED and is not reduced to the finite-support bound.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U01.4",
+      "suggested_close_path": "缩",
+      "archive_gap_status": "CLOSED_BY_NARROW",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Named finite witnesses: pointwise train 0 / target 1 / deployment 1, independent mean variance 1/(4n), copied mean variance 1/4, and the n>1 separation. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge the named finite witnesses into a claim about real data. This does not assert that real data follow the bad mechanism.",
+      "claimed_scope": "Named finite witnesses: pointwise train 0 / target 1 / deployment 1, independent mean variance 1/(4n), copied mean variance 1/4, and the n>1 separation.",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_4_pointwise_train_target_deployment",
+          "file": "Learning.lean",
+          "line": 161,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_4_independent_mean_variance",
+          "file": "Learning.lean",
+          "line": 167,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_4_copied_mean_variance",
+          "file": "Learning.lean",
+          "line": 173,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Learning.u01_4_copy_is_not_independent",
+          "file": "Learning.lean",
+          "line": 179,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Learning.lean:161",
+        "Learning.lean:167",
+        "Learning.lean:173",
+        "Learning.lean:179"
+      ],
+      "non_goals": [
+        "The named finite witnesses are not a claim that real data follow the bad mechanism.",
+        "Run 39783481932 compiling these declarations does not discharge a real-data claim."
+      ],
+      "unwired_formal_obligations": [],
+      "scope_review": "",
+      "remaining_after_close": "NON_GOAL_POINTER: The named finite witnesses are not a claim that real data follow the bad mechanism. | Run 39783481932 compiling these declarations does not discharge a real-data claim.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U04.1",
+      "suggested_close_path": "缩",
+      "archive_gap_status": "CLOSED_BY_NARROW",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Integer-shape density conjugacy reuses UnifiedNeedlesS3a.beta_posterior_from_likelihood. Predictive mean reuses polyBeta_moments. Real Gamma weight ratio reuses FullMath.Probability.beta_ratio. The exchangeable finite law gives 5/6 against the Beta(1,1) one-success bridge 2/3. Non-integer pointwise density identity is not restated beyond that Gamma ratio. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge a non-integer pointwise density identity.",
+      "claimed_scope": "Integer-shape density conjugacy, predictive mean, real Gamma weight ratio, and the exchangeable 5/6 versus Beta(1,1) 2/3 witness.",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_1_integer_shape_conjugacy",
+          "file": "Probability.lean",
+          "line": 146,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_1_predictive_mean_is_updated_beta",
+          "file": "Probability.lean",
+          "line": 155,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_1_real_gamma_weight_ratio",
+          "file": "Probability.lean",
+          "line": 160,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_1_exchangeable_not_beta_bridge",
+          "file": "Probability.lean",
+          "line": 169,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Probability.lean:146",
+        "Probability.lean:155",
+        "Probability.lean:160",
+        "Probability.lean:169"
+      ],
+      "non_goals": [
+        "A non-integer pointwise density identity beyond the real Gamma weight ratio is an explicit non-goal.",
+        "Run 39783481932 compiling the integer-shape reuse and the 5/6-versus-2/3 witness does not discharge that identity."
+      ],
+      "unwired_formal_obligations": [],
+      "scope_review": "",
+      "remaining_after_close": "NON_GOAL_POINTER: A non-integer pointwise density identity beyond the real Gamma weight ratio is an explicit non-goal. | Run 39783481932 compiling the integer-shape reuse and the 5/6-versus-2/3 witness does not discharge that identity.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U04.2",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Real ratio enclosure present; width, beta integrals, three-event sharp identified set and contamination subclaims remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_2_enclosed_propagation",
+          "file": "Probability.lean",
+          "line": 97,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Probability.lean:97"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Width, beta integrals, the three-event sharp identified set, and contamination subclaims remain unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Width, beta integrals, the three-event sharp identified set, and contamination subclaims remain unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U04.3",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Unpenalized all-positive intercept counterexample is named: loss stays positive, strictly decreases, and is arbitrarily small. Existence and uniqueness of the fully penalized logistic minimizer, including the intercept coordinate, remain UNPROVED. formal_ci records run 39783481932, whose lean-full-clean-build compiled the named counterexample. That run does not discharge existence or uniqueness of the fully penalized logistic minimizer.",
+      "claimed_scope": "",
+      "companion_scope_notes": "companion_缩: 校准/因果/数值求准（非本条声称）",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_3_unpenalized_intercept_positive",
+          "file": "Probability.lean",
+          "line": 182,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_3_unpenalized_intercept_improves",
+          "file": "Probability.lean",
+          "line": 188,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_3_unpenalized_never_zero",
+          "file": "Probability.lean",
+          "line": 197,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_3_unpenalized_arbitrarily_small",
+          "file": "Probability.lean",
+          "line": 201,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Probability.lean:182",
+        "Probability.lean:188",
+        "Probability.lean:197",
+        "Probability.lean:201"
+      ],
+      "non_goals": [
+        "Calibration, causal identification, and numerical attainment (校准/因果/数值求准) are explicit non-goals and are not this clause's claim."
+      ],
+      "unwired_formal_obligations": [
+        "Existence and uniqueness of the fully penalized logistic minimizer, including the intercept coordinate, remain UNPROVED. The unpenalized-intercept counterexamples do not state them. Run 39783481932 does not discharge them."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Existence and uniqueness of the fully penalized logistic minimizer, including the intercept coordinate, remain UNPROVED. The unpenalized-intercept counterexamples do not state them. Run 39783481932 does not discharge them. || NON_GOAL_POINTER: Calibration, causal identification, and numerical attainment (校准/因果/数值求准) are explicit non-goals and are not this clause's claim.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U04.4",
+      "suggested_close_path": "缩",
+      "archive_gap_status": "CLOSED_BY_NARROW",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Covariance expansion, positive-denominator effective count, constant average of B and 1-B, and the r=-1 quadratic form are named. The pre-existing u04_4_variance_equivalent 2 (-1) = degenerateZeroVariance remains the zero-denominator branch. n_eff does not restore independence. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge a restoration of independence.",
+      "claimed_scope": "Covariance expansion, positive-denominator effective count, constant average of B and 1-B, the r=-1 quadratic form, and the zero-denominator branch.",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_4_covariance_expansion",
+          "file": "Probability.lean",
+          "line": 217,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_4_positive_bracket_finite",
+          "file": "Probability.lean",
+          "line": 223,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_4_complement_average_constant",
+          "file": "Probability.lean",
+          "line": 232,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_4_complement_quadratic_form",
+          "file": "Probability.lean",
+          "line": 235,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.n04_zero_variance_not_finite_count",
+          "file": "Acceptance.lean",
+          "line": 334,
+          "role": "zero-denominator branch u04_4_variance_equivalent 2 (-1) = degenerateZeroVariance",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Probability.lean:217",
+        "Probability.lean:223",
+        "Probability.lean:232",
+        "Probability.lean:235",
+        "Acceptance.lean:334"
+      ],
+      "non_goals": [
+        "n_eff does not restore independence. Restoration of independence is an explicit non-goal.",
+        "Run 39783481932 compiling the covariance expansion does not discharge a restoration of independence."
+      ],
+      "unwired_formal_obligations": [],
+      "scope_review": "",
+      "remaining_after_close": "NON_GOAL_POINTER: n_eff does not restore independence. Restoration of independence is an explicit non-goal. | Run 39783481932 compiling the covariance expansion does not discharge a restoration of independence.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U04.5",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Identity types and LR16/LR4 arithmetic present; general joint likelihood/copy and sigma-field information argument remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Probability.u04_5_new_measurement_not_copy",
+          "file": "Probability.lean",
+          "line": 133,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Probability.lean:133"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "A general joint likelihood/copy theorem and the sigma-field information argument remain unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: A general joint likelihood/copy theorem and the sigma-field information argument remain unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U05.1",
+      "suggested_close_path": "缩",
+      "archive_gap_status": "CLOSED_BY_NARROW",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Tie-free rank prefix mass, threshold inequality k/(n+1)≥1-α, infinity branch, and a marginal-versus-group numeric split are named. The continuous tie-break that produces the uniform rank is an assumption of this finite identity, not a density theorem. Deployment-shift failure is the group split, not a separate process theorem. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge a continuous tie-break density theorem.",
+      "claimed_scope": "Tie-free rank prefix mass, threshold inequality k/(n+1)≥1-α, infinity branch, and the marginal-versus-group numeric split.",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Calibration.u05_1_rank_prefix_mass",
+          "file": "Calibration.lean",
+          "line": 68,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Calibration.u05_1_threshold_marginal",
+          "file": "Calibration.lean",
+          "line": 73,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Calibration.u05_1_infinity_branch",
+          "file": "Calibration.lean",
+          "line": 87,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Calibration.u05_1_marginal_not_group",
+          "file": "Calibration.lean",
+          "line": 90,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Calibration.lean:68",
+        "Calibration.lean:73",
+        "Calibration.lean:87",
+        "Calibration.lean:90"
+      ],
+      "non_goals": [
+        "The continuous tie-break that produces a uniform rank is an assumption of this finite identity, not a density theorem. That density theorem is an explicit non-goal.",
+        "Deployment-shift failure is the marginal-versus-group split, not a separate process theorem.",
+        "Run 39783481932 compiling the finite rank identities does not discharge a continuous tie-break density theorem."
+      ],
+      "unwired_formal_obligations": [],
+      "scope_review": "",
+      "remaining_after_close": "NON_GOAL_POINTER: The continuous tie-break that produces a uniform rank is an assumption of this finite identity, not a density theorem. That density theorem is an explicit non-goal. | Deployment-shift failure is the marginal-versus-group split, not a separate process theorem. | Run 39783481932 compiling the finite rank identities does not discharge a continuous tie-break density theorem.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U05.2",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Bernoulli algebra and ratio gate present; conditional-expectation Brier decomposition, simultaneous threshold coverage and rare-group examples remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Calibration.u05_2_brier_decomposition",
+          "file": "Calibration.lean",
+          "line": 9,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Calibration.lean",
+              "line": 15
+            },
+            {
+              "file": "Calibration.lean",
+              "line": 16
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Calibration.u05_2_brier_unique_optimum",
+          "file": "Calibration.lean",
+          "line": 12,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Calibration.u05_2_selected_risk",
+          "file": "Calibration.lean",
+          "line": 42,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.n05_raising_score_threshold_increases_risk",
+          "file": "Acceptance.lean",
+          "line": 337,
+          "role": "raising a score threshold can increase risk; not the rare-group example",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Calibration.lean:9",
+        "Calibration.lean:12",
+        "Calibration.lean:42",
+        "Acceptance.lean:337"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "A conditional-expectation Brier decomposition, simultaneous threshold coverage, and rare-group examples remain unproved. The algebraic Bernoulli identity is not that decomposition."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: A conditional-expectation Brier decomposition, simultaneous threshold coverage, and rare-group examples remain unproved. The algebraic Bernoulli identity is not that decomposition.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U06.1",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Finite free-information comparison present; full Bellman optimum, blocked terminal convention and nonrectangular counterexample remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.u06_1_value_of_free_information",
+          "file": "Decision.lean",
+          "line": 221,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Decision.lean:221"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "The full Bellman optimum, the blocked terminal convention, and the nonrectangular counterexample remain unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: The full Bellman optimum, the blocked terminal convention, and the nonrectangular counterexample remain unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U06.2",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Universal allowed-deviation real payoff transfer present; mixed expectations and explicit strategy/tree bridge remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.u06_2_approx_equilibrium_transfer",
+          "file": "Decision.lean",
+          "line": 205,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Decision.lean:205"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Mixed expectations and an explicit strategy/tree bridge remain unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Mixed expectations and an explicit strategy/tree bridge remain unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U06.3",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Rational AST, typed gate and executable IR present; arbitrary interval multiplication enclosure and general uncertainty comparison remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.u06_3_eval_exists",
+          "file": "Decision.lean",
+          "line": 96,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.u06_3_eval_unique",
+          "file": "Decision.lean",
+          "line": 102,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.u06_3_decision_respects_allowed",
+          "file": "Decision.lean",
+          "line": 181,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Decision.lean:96",
+        "Decision.lean:102",
+        "Decision.lean:181"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Arbitrary interval multiplication enclosure and general uncertainty comparison remain unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Arbitrary interval multiplication enclosure and general uncertainty comparison remain unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U06.4",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Three real slope-direction theorems present; q-in-[0,1] out-of-range corollaries still need acceptance.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_increasing",
+          "file": "Decision.lean",
+          "line": 190,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_decreasing",
+          "file": "Decision.lean",
+          "line": 196,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_equal",
+          "file": "Decision.lean",
+          "line": 202,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Decision.lean:190",
+        "Decision.lean:196",
+        "Decision.lean:202"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "The q-in-[0,1] out-of-range corollaries still have no audited declaration."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: The q-in-[0,1] out-of-range corollaries still have no audited declaration.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U06.5",
+      "suggested_close_path": "缩",
+      "archive_gap_status": "CLOSED_BY_NARROW",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Signal value 3/10-cost, cost>3/10 net negative, given two-round tree (4,6), and matching-pennies no pure equilibrium are named. Brouwer/mixed equilibrium is not claimed. Hidden-information sequential equilibrium is not bi_one_step_no_gain. T113 perfect-information carrier remains JurisLean.Seams.UnifiedW4Games.bi_one_step_no_gain and is not re-labeled as the original hidden-information statement. formal_ci records run 39783481932, whose lean-full-clean-build compiled these declarations. That run does not discharge Brouwer/mixed equilibrium or hidden-information sequential equilibrium.",
+      "claimed_scope": "Signal value 3/10-cost, cost>3/10 net negative, the given two-round tree (4,6), and matching-pennies with no pure equilibrium.",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.u06_5_noisy_signal_value",
+          "file": "Decision.lean",
+          "line": 247,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.u06_5_two_round_backward_induction",
+          "file": "Decision.lean",
+          "line": 255,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Decision.u06_5_matching_pennies_no_pure",
+          "file": "Decision.lean",
+          "line": 265,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Decision.lean:247",
+        "Decision.lean:255",
+        "Decision.lean:265"
+      ],
+      "non_goals": [
+        "Brouwer/mixed equilibrium is not claimed and is an explicit non-goal.",
+        "Hidden-information sequential equilibrium is not bi_one_step_no_gain and is an explicit non-goal.",
+        "The T113 perfect-information carrier remains JurisLean.Seams.UnifiedW4Games.bi_one_step_no_gain and is not re-labeled as the hidden-information statement.",
+        "Run 39783481932 compiling the signal-value, (4,6) tree, and matching-pennies declarations does not discharge Brouwer/mixed equilibrium or hidden-information sequential equilibrium."
+      ],
+      "unwired_formal_obligations": [],
+      "scope_review": "",
+      "remaining_after_close": "NON_GOAL_POINTER: Brouwer/mixed equilibrium is not claimed and is an explicit non-goal. | Hidden-information sequential equilibrium is not bi_one_step_no_gain and is an explicit non-goal. | The T113 perfect-information carrier remains JurisLean.Seams.UnifiedW4Games.bi_one_step_no_gain and is not re-labeled as the hidden-information statement. | Run 39783481932 compiling the signal-value, (4,6) tree, and matching-pennies declarations does not discharge Brouwer/mixed equilibrium or hidden-information sequential equilibrium.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U11.1",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Observational-equivalence/ATE countermodel and transport arithmetic present; g formula, K1/K2 selection, sharp support gaps and measurement bridges remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Behavior.u11_1_obs_equiv_models_distinct_ATE",
+          "file": "Behavior.lean",
+          "line": 17,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Behavior.lean:17"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "The g formula, K1/K2 selection, sharp support gaps, and measurement bridges remain unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: The g formula, K1/K2 selection, sharp support gaps, and measurement bridges remain unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U12.1",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Finite IPW cancellation only; complete causal/measurement interpretation and support-gap identified range remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Policy.u12_1_finite_ipw",
+          "file": "Policy.lean",
+          "line": 10,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Policy.lean:10"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Complete causal/measurement interpretation and the support-gap identified range remain unproved. Finite IPW cancellation does not state them."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Complete causal/measurement interpretation and the support-gap identified range remain unproved. Finite IPW cancellation does not state them.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U12.2",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Complete metric contraction theorem present; damping, oscillation and noncontraction sufficiency counterexamples remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Policy.u12_2_contraction_sufficient",
+          "file": "Policy.lean",
+          "line": 37,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Policy.lean:37"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Damping, oscillation, and noncontraction-sufficiency counterexamples remain unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Damping, oscillation, and noncontraction-sufficiency counterexamples remain unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U12.3",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Clipping identity only; weighted uniform selection, MAR and full sequential-kernel likelihood-ratio theorem remain UNPROVED.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Policy.u12_3_clipped_bias",
+          "file": "Policy.lean",
+          "line": 25,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Policy.lean:25"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Weighted uniform selection, MAR, and the full sequential-kernel likelihood-ratio theorem remain UNPROVED. The clipping identity does not state them."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Weighted uniform selection, MAR, and the full sequential-kernel likelihood-ratio theorem remain UNPROVED. The clipping identity does not state them.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U12.4",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Two incentive inequalities and distinguishability counterexample present; verify full frozen model acceptance in CI.",
+      "claimed_scope": "",
+      "companion_scope_notes": "companion_缩: 真实成本/偏好/审计合法性",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Policy.u12_4_signal_vs_incentive",
+          "file": "Policy.lean",
+          "line": 49,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Policy.distinguishable_signal_insufficient",
+          "file": "Policy.lean",
+          "line": 54,
+          "role": "distinguishability counterexample for the frozen inequalities",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Policy.lean:49",
+        "Policy.lean:54"
+      ],
+      "non_goals": [
+        "真实成本, 偏好, and 审计合法性 are explicit non-goals. China-law audit legitimacy is not decided by the frozen inequalities."
+      ],
+      "unwired_formal_obligations": [
+        "Full frozen-model acceptance beyond the two incentive inequalities and the distinguishability counterexample is not established by citing the tip-pin audit of those two declarations."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Full frozen-model acceptance beyond the two incentive inequalities and the distinguishability counterexample is not established by citing the tip-pin audit of those two declarations. || NON_GOAL_POINTER: 真实成本, 偏好, and 审计合法性 are explicit non-goals. China-law audit legitimacy is not decided by the frozen inequalities.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U13.1",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Read-set noninterference present; lawful statistical-evidence input-change counterexample and authority integration remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
+          "file": "RSI.lean",
+          "line": 43,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "RSI.lean:43"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "The lawful statistical-evidence input-change counterexample and authority integration remain unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: The lawful statistical-evidence input-change counterexample and authority integration remain unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U13.2",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Five preparations and personal/data/condition frames present; complete authorized rule/mechanism load and persistent storage refinement remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.RSI.u13_2_personal_frame",
+          "file": "RSI.lean",
+          "line": 47,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.RSI.u13_2_condition_does_not_train",
+          "file": "RSI.lean",
+          "line": 72,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.RSI.u13_2_data_frame",
+          "file": "RSI.lean",
+          "line": 73,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "RSI.lean:47",
+        "RSI.lean:72",
+        "RSI.lean:73"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Complete authorized rule/mechanism load and persistent storage refinement remain unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Complete authorized rule/mechanism load and persistent storage refinement remain unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U13.3",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Bijective prediction transfer present; same-loss risk transfer and unsupported-domain witnesses remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.RSI.u13_3_representation_transfer",
+          "file": "RSI.lean",
+          "line": 78,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "RSI.lean:78"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Same-loss risk transfer and unsupported-domain witnesses remain unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Same-loss risk transfer and unsupported-domain witnesses remain unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U13.4",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Absent personal/population/prior/retrieval branching present; validate distinct provenance/scope policies for the fallback sources and nonidentification witnesses.",
+      "claimed_scope": "",
+      "companion_scope_notes": "companion_缩: RSI全称改进定理",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.RSI.u13_4_missing_checkpoint_no_default",
+          "file": "RSI.lean",
+          "line": 103,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "RSI.lean:103"
+      ],
+      "non_goals": [
+        "An RSI全称改进定理 is an explicit non-goal. This clause is a type/selection contract, not an improvement theorem."
+      ],
+      "unwired_formal_obligations": [
+        "Distinct provenance/scope policies for the fallback sources and nonidentification witnesses are not validated by the missing-checkpoint branch alone."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Distinct provenance/scope policies for the fallback sources and nonidentification witnesses are not validated by the missing-checkpoint branch alone. || NON_GOAL_POINTER: An RSI全称改进定理 is an explicit non-goal. This clause is a type/selection contract, not an improvement theorem.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U14.1",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Acceptance algebra, identity/readback gate and label conflicts present; independent statistical validation, adaptive conditional budgets and service-load integration remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Feedback.u14_1_conservative_accept",
+          "file": "Feedback.lean",
+          "line": 52,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Feedback.lean:52"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Independent statistical validation, adaptive conditional budgets, and service-load integration remain unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Independent statistical validation, adaptive conditional budgets, and service-load integration remain unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U15.1",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Finite real telescoping bound present; finite-state strict-improvement length and no-parameter-convergence counterexample remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Iteration.u15_1_finite_cumulative_improvement",
+          "file": "Iteration.lean",
+          "line": 13,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Iteration.lean:13"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Finite-state strict-improvement length and a no-parameter-convergence counterexample remain unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Finite-state strict-improvement length and a no-parameter-convergence counterexample remain unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U14.2",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Normalized independent-cluster two-tail bound with N=sum sizes>0, derived positive sum of squares, and 99/1 effective-size witness have candidate bodies. Zero-N rejection, endogenous-size/common-cause counterexamples and fresh CI remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Feedback.u14_2_independent_cluster_upper_tail",
+          "file": "Feedback.lean",
+          "line": 111,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Feedback.u14_2_independent_cluster_two_tail",
+          "file": "Feedback.lean",
+          "line": 122,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Feedback.u14_2_unequal_cluster_effective_size",
+          "file": "Feedback.lean",
+          "line": 157,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Feedback.lean:111",
+        "Feedback.lean:122",
+        "Feedback.lean:157"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Zero-N rejection and endogenous-size/common-cause counterexamples remain unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Zero-N rejection and endogenous-size/common-cause counterexamples remain unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U15.2",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Preserved-prediction finite risk identity present; key-point regression and finite-observation indistinguishability examples remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Iteration.u15_2_preserved_predictions_equal_risk",
+          "file": "Iteration.lean",
+          "line": 19,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Iteration.lean:19"
+      ],
+      "non_goals": [],
+      "unwired_formal_obligations": [
+        "Key-point regression and finite-observation indistinguishability examples remain unproved."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: Key-point regression and finite-observation indistinguishability examples remain unproved.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U15.3",
+      "suggested_close_path": "证",
+      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Exact two-point risks and actual second-round-state consumer present; complete five evidence levels and external load readback path remain.",
+      "claimed_scope": "",
+      "companion_scope_notes": "companion_缩: external load readback path",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Iteration.u15_3_two_round_actual_state",
+          "file": "Iteration.lean",
+          "line": 37,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Iteration.two_round_exact_risks",
+          "file": "Iteration.lean",
+          "line": 29,
+          "role": "exact two-point risks used by the second-round consumer",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Iteration.lean:37",
+        "Iteration.lean:29"
+      ],
+      "non_goals": [
+        "The external load readback path is an explicit non-goal. An external link does not prove the two-round construction."
+      ],
+      "unwired_formal_obligations": [
+        "The five evidence levels are not completed by the two-point risks and the second-round consumer."
+      ],
+      "scope_review": "",
+      "remaining_after_close": "OPEN_FORMAL: The five evidence levels are not completed by the two-point risks and the second-round consumer. || NON_GOAL_POINTER: The external load readback path is an explicit non-goal. An external link does not prove the two-round construction.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    },
+    {
+      "clause": "U00",
+      "suggested_close_path": "缩",
+      "archive_gap_status": "CLOSED_BY_NARROW",
+      "manuscript_sentence_not_proved": true,
+      "manuscript_remaining": "Actual finite source-to-decision-to-two-payment-to-feedback paths present. All 50 subclaims, common statistical law, full operation refinement and authorized Loaded consumption are NOT closed.",
+      "claimed_scope": "Actual finite source-to-decision-to-two-payment-to-feedback paths named by the clause declarations.",
+      "companion_scope_notes": "",
+      "wired_declarations": [
+        {
+          "name": "JurisLean.Candidates.Final20261021.Pipeline.u00_pipeline_wires_handles",
+          "file": "Pipeline.lean",
+          "line": 99,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [
+            {
+              "file": "Pipeline.lean",
+              "line": 128
+            }
+          ],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_success",
+          "file": "Acceptance.lean",
+          "line": 271,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_reject",
+          "file": "Acceptance.lean",
+          "line": 276,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        },
+        {
+          "name": "JurisLean.Candidates.Final20261021.Acceptance.u00_pipeline_unknown",
+          "file": "Acceptance.lean",
+          "line": 281,
+          "role": "clause-listed declaration accepted on the tip-pin audit",
+          "consumers": [],
+          "tip_pin_run_id": 39933015422,
+          "tip_pin_job_id": 120345670150,
+          "not_gate_run": 39960871624
+        }
+      ],
+      "evidence_pointers": [
+        "Pipeline.lean:99",
+        "Acceptance.lean:271",
+        "Acceptance.lean:276",
+        "Acceptance.lean:281"
+      ],
+      "non_goals": [
+        "All 50 subclaims are NOT closed by the finite source-to-decision-to-two-payment-to-feedback paths.",
+        "A common statistical law, full operation refinement, and authorized Loaded consumption are NOT closed.",
+        "This narrow is not an abandonment of the other forty-nine clauses."
+      ],
+      "unwired_formal_obligations": [],
+      "scope_review": "",
+      "remaining_after_close": "NON_GOAL_POINTER: All 50 subclaims are NOT closed by the finite source-to-decision-to-two-payment-to-feedback paths. | A common statistical law, full operation refinement, and authorized Loaded consumption are NOT closed. | This narrow is not an abandonment of the other forty-nine clauses.",
+      "does_not_claim": [
+        "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
+        "empty live exact_scope and remaining_obligations do not close this archive row",
+        "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY does not by itself prove the manuscript sentence",
+        "prior tip-pin work on e87543d did not close this archive obligation",
+        "this row does not set discharges_archived_manuscript_gaps"
+      ],
+      "china_law_separated": true,
+      "tip_pin_job_id": 120345670150,
+      "tip_pin_run_id": 39933015422,
+      "not_gate_run": 39960871624,
+      "discharges_archived_manuscript_gaps": false
+    }
+  ]
+}

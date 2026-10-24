@@ -78,6 +78,9 @@ NOT_A_GATE = {
 WIRED_VIA_TESTS = {
     "build_statement_duplication_census.py": "tests/test_statement_duplication_census.py",
     "generate_theorem_manifest.py": "tests/test_theorem_inventory.py",
+    # Disposition table imported by check_archive_gap_close.py. The workflow runs
+    # that checker; this test names the table so the import is not an unread script.
+    "archive_gap_dispositions.py": "tests/test_archive_gap_close.py",
 }
 
 

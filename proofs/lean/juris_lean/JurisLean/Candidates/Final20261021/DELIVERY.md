@@ -63,3 +63,7 @@ GitHub 验证的实际 head 与授权 head 一致。目标计划确认为 `Juris
 合成 Python 合同测试保存在本候选目录。现有 workflow 的 `tests/` 收集范围不会包含它，故其正式 Python CI 覆盖仍为 `NOT_RUN`。没有借修改 workflow、Lake 或根目录测试入口绕过此限制。
 
 T113 原文、恰一次活性/外部效果、Dirty、全量中国法条映射不再作为排除项，改为范围内未关闭债务。完全信息两轮后向归纳的既有载体是 `JurisLean.Seams.UnifiedW4Games.bi_one_step_no_gain`，隐藏信息序贯均衡不在该定理内。`Transactions.at_most_once` 只是至多一次，不是外部效果下的恰好一次活性。Dirty 精化与全量中国法条逐条映射在本树中没有可引用的关闭声明。四项都未关闭。JC/Harness 产品接线仍暂停。
+
+## 归档 50 条关项层（2026-10-24）
+
+`evidence/archive-gap-close-20261024/close-ledger.json` 按判据包 `/home/box/shared/legal-math-reviewer/archive_gap_判据包_20261024/`（`未决改判_20261024.md`、`施工放行条件.md`）处理 50 条原稿：证 42、缩 8、放弃 0。缩域 8 条把残留写成同条显式非目标；证只把候选体接到活钉 `e87543d836cd3cf83bbb5a65b74e47d9bfe31865` 上、回执 `evidence/ci-tip-e87543d8/verification.json` 已经重新抽出的声明。没有对应声明的形式尾巴保持 `OPEN_FORMAL_TAIL`（40 条），其中 U04.3 的全坐标受罚存在唯一仍是 UNPROVED。`scope-archive.json` 原稿未改、未清空。`discharges_archived_manuscript_gaps` 仍为 false：数学须在承载本层的提交经过 tip Authority 复核后再决定能否改 true。账本里的 `tip_authority_run_gate_only` 只是门禁，不关这笔债，也不重钉 `tip_declaration_location`。先前只重钉尖端的工作没有关闭归档债。中国法栏未改。

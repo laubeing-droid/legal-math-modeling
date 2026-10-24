@@ -8681,6 +8681,62 @@
   {
    "declarations": [
     {
+     "kind": "theorem",
+     "name": "u08_1_recorded_after_cutoff_not_visible"
+    },
+    {
+     "kind": "theorem",
+     "name": "u10_3_zero_step_ranked_path_is_identity"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_4_increasing_threshold_above_one_excludes"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_4_increasing_threshold_at_most_zero_includes"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_4_decreasing_threshold_below_zero_excludes"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_4_decreasing_threshold_at_least_one_includes"
+    },
+    {
+     "kind": "theorem",
+     "name": "u12_2_halving_damps_toward_zero"
+    },
+    {
+     "kind": "theorem",
+     "name": "u12_2_negation_orbit_oscillates"
+    },
+    {
+     "kind": "theorem",
+     "name": "u12_2_shift_has_no_fixed_point"
+    },
+    {
+     "kind": "theorem",
+     "name": "u14_2_zero_N_rejects_positive_hypothesis"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Decision",
+    "JurisLean.Candidates.Final20261021.Progress",
+    "JurisLean.Candidates.Final20261021.Temporal"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
+   "print_axioms_targets": [],
+   "sha256": "a7ef0f67071502dc23c6bdf44c4c8a3a295916f1a3517065d12a65d76bd3492e",
+   "size_bytes": 4546,
+   "theorem_count": 10,
+   "theorem_count_bol_convention": 10
+  },
+  {
+   "declarations": [
+    {
      "kind": "structure",
      "name": "CanonicalCollection"
     },
@@ -48874,22 +48930,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5453,
-   "file_count": 393,
+   "counted_declaration_count": 5463,
+   "file_count": 394,
    "lemma_count": 141,
    "print_axioms_command_count": 4334,
    "print_axioms_distinct_targets": 4280,
-   "theorem_count": 5312,
-   "theorem_count_bol_convention": 5212
+   "theorem_count": 5322,
+   "theorem_count_bol_convention": 5222
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5434,
-   "file_count": 378,
+   "counted_declaration_count": 5444,
+   "file_count": 379,
    "lemma_count": 134,
    "print_axioms_command_count": 4334,
    "print_axioms_distinct_targets": 4280,
-   "theorem_count": 5300,
-   "theorem_count_bol_convention": 5200
+   "theorem_count": 5310,
+   "theorem_count_bol_convention": 5210
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -48970,6 +49026,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Temporal.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Transactions.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
    "proofs/lean/juris_lean/JurisLean/CertificateChecker.lean",
    "proofs/lean/juris_lean/JurisLean/CertificateCheckerV2.lean",
@@ -49361,6 +49418,7 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Temporal.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Transactions.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
    "proofs/lean/juris_lean/JurisLean/CertificateChecker.lean",
    "proofs/lean/juris_lean/JurisLean/CertificateCheckerV2.lean",
@@ -49717,17 +49775,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "edeec4e724b1306eacf029b1544c811b9691fd9f36eeed7d7420448af1e0895c",
+ "source_inventory_digest": "0b4f325da6045ab124b7aaba9438f6e83c35655385e5575a62eb13d4ec82e81e",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "cursor/clause-closure-seven-caff",
-  "commit": "734d816c9376121dcb9ee55414a8b22d13cd92c9",
-  "tree": "6711c92df60cb87e4ba9dd8c87576d396ce5d767"
+  "branch": "cursor/formal-tail-prove-27d8",
+  "commit": "543e0db25a701bc68128442138d1f9ec7e4c7ce2",
+  "tree": "7874516e9236832209bf8d1592e224e82a2dce1c"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 393,
+  "files_total": 394,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

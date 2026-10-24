@@ -124,8 +124,9 @@ theorem u10_3_zero_step_prohibits_strict_progress {S : Type} (rank : S → Nat) 
     ¬ ∃ t, RankedPath rank s 0 t ∧ rank t < rank s := by
   intro ⟨t, hpath, hlt⟩
   have hs : s = t := u10_3_zero_step_ranked_path_is_identity rank hpath
-  subst hs
-  exact lt_irrefl (rank t) hlt
+  -- `subst` would clear the later variable `t`. Rewrite the inequality instead.
+  rw [hs] at hlt
+  exact lt_irrefl _ hlt
 
 /-- Reported abstract length of a business trace: the sum of the per-operation
 observations, not the count of real operations. -/

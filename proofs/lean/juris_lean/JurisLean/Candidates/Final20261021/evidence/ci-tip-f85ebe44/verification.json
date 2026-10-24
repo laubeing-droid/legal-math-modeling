@@ -1,0 +1,284 @@
+{
+  "status": "TIP_AXIOM_AUDIT_REEXTRACTED_LIVE_SCOPE_EMPTY",
+  "subject_commit": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+  "run_id": 40115638107,
+  "run_attempt": 1,
+  "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40115638107",
+  "event": "push",
+  "mode": "push-full-release",
+  "workflow": "Lean Authority + Formal Release Pipeline",
+  "job": "lean-full-clean-build",
+  "job_id": 120936221970,
+  "job_conclusion": "success",
+  "supersedes": "evidence/ci-tip-27849d3f/verification.json",
+  "artifact": "lean-full-build-run40115638107-attempt1.zip",
+  "artifact_id": 12569280181,
+  "artifact_size_in_bytes": 471564,
+  "artifact_zip_sha256": "96f8c38334b4c706fd53316a74e0ee3175c215b7e1c2f871ca6e8cdc6171bb73",
+  "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+  "axiom_audit_root": {
+    "log": "axiom-audit.raw.txt",
+    "sha256": "d5e7f54041aead62b3f3d85f7ca6ea3daf52b124a73ca74803cfdf47ca011d73",
+    "status": "PASS",
+    "audited_targets": 3815,
+    "axiom_vocabulary": {
+      "Classical.choice": 2226,
+      "Quot.sound": 2552,
+      "propext": 3040
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {},
+    "standard_axioms_allowed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "build_log_axiom_audit": {
+    "log": "lake-clean-build.log",
+    "sha256": "e5363e6e3df35c82cda4a4f5c370f3f705f5d106d2c2fd9eab8464f84f20ce83",
+    "status": "PASS",
+    "audited_targets": 4280,
+    "axiom_vocabulary": {
+      "Classical.choice": 2525,
+      "Quot.sound": 2933,
+      "propext": 3460
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {},
+    "standard_axioms_allowed": [
+      "Classical.choice",
+      "Quot.sound",
+      "propext"
+    ]
+  },
+  "candidate_axiom_audit": {
+    "audited_targets": 256,
+    "axiom_vocabulary": {
+      "Classical.choice": 179,
+      "Quot.sound": 214,
+      "propext": 230
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "status": "PASS"
+  },
+  "discharges_archived_manuscript_gaps": false,
+  "scope_archive": "evidence/ci-tip-f85ebe44/scope-archive.json",
+  "scope_archive_sha256": "a62806e9c236ceac9a79536f4a3677ba175c90344a283fb55ef0c757849ab420",
+  "files_changed_since_d59a487": [
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Calibration.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Harness.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Interfaces.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Learning.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean",
+    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean"
+  ],
+  "modules_built": [
+    "JurisLean.Candidates.Final20261021.Acceptance",
+    "JurisLean.Candidates.Final20261021.Authorization",
+    "JurisLean.Candidates.Final20261021.AxiomAudit",
+    "JurisLean.Candidates.Final20261021.Behavior",
+    "JurisLean.Candidates.Final20261021.CIAll",
+    "JurisLean.Candidates.Final20261021.Calibration",
+    "JurisLean.Candidates.Final20261021.Compiler",
+    "JurisLean.Candidates.Final20261021.Decision",
+    "JurisLean.Candidates.Final20261021.EvidenceProcedure",
+    "JurisLean.Candidates.Final20261021.Feedback",
+    "JurisLean.Candidates.Final20261021.Harness",
+    "JurisLean.Candidates.Final20261021.Interfaces",
+    "JurisLean.Candidates.Final20261021.Iteration",
+    "JurisLean.Candidates.Final20261021.Learning",
+    "JurisLean.Candidates.Final20261021.Ledger",
+    "JurisLean.Candidates.Final20261021.Pipeline",
+    "JurisLean.Candidates.Final20261021.Policy",
+    "JurisLean.Candidates.Final20261021.Probability",
+    "JurisLean.Candidates.Final20261021.Progress",
+    "JurisLean.Candidates.Final20261021.RSI",
+    "JurisLean.Candidates.Final20261021.Representation",
+    "JurisLean.Candidates.Final20261021.Temporal",
+    "JurisLean.Candidates.Final20261021.Trace",
+    "JurisLean.Candidates.Final20261021.Transactions"
+  ],
+  "source_hashes": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
+      "sha256": "e4491de128e24ad35e434e0f56f417c7dd2dfae4b4ba782dc9f0ba9112090784"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean",
+      "sha256": "26bb803bf54f49f6b59edbf33732d115e8b33028509adf248feaf5f021febfc7"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
+      "sha256": "41346ee4a3a0729e4e31852a94fdf0a315eb18812acdbbe481a47a46f70a7099"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Behavior.lean",
+      "sha256": "d9361c34086a3af857ff05c3362856e226bd38e1c8869b732e14e5cef3821619"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/CIAll.lean",
+      "sha256": "2e201c30fd90fc11cddb7c6b1d018611c5831021216222e4b43a3a0b6231309f"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Calibration.lean",
+      "sha256": "4f4232a9b848333285967682c0b015af98d484718bf49b6cfabaf07be0daf81d"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Compiler.lean",
+      "sha256": "97fe95e5c6ac94fefb8ca7f1066a84c7f8370cbe261909c3a06ab16256e32559"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Decision.lean",
+      "sha256": "182d52ed2b0e21524d90c311b92a50f8136869be43a7654cae927b2c56d67b88"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/EvidenceProcedure.lean",
+      "sha256": "976323d18a0655ea70f4c1a30f36bc41a0d38b598de5dd7468825fff3fcddc2a"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Feedback.lean",
+      "sha256": "4d46e0db7b22731d5308270c6802adb05856b53e162c7e507dfb93ad561a2cd6"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Harness.lean",
+      "sha256": "c8168df7159fa9a8989cd287bfa6327da8016ddbf17e00705328c68be5b9bd17"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Interfaces.lean",
+      "sha256": "ab0de80d34430223d16e8cf31735d54f6421afe4fad6167b5fc97bab12687e7e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Iteration.lean",
+      "sha256": "48e5d7ecc1ef78752a67dff73e307f3ded58c1d8cab742e9ffbf7ddf2bfb11ea"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Learning.lean",
+      "sha256": "01021bb7a6a20ce6cd6338e07b287085a6f5ee6663edfb66214904d721596674"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Ledger.lean",
+      "sha256": "623a968045acd296ffadd5800b169a8f05596f2a496033470dc3f2fe0fd4de4d"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Pipeline.lean",
+      "sha256": "885c69582ea1dedbc98be512744ba98f3f84360a8372dd983c0192c287484972"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Policy.lean",
+      "sha256": "b76cd45a1b3acbc928227f86a01832ecc78717d1e53a657df18a183260e56eb4"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Probability.lean",
+      "sha256": "7ad8f61204e15027797124014eadc9159a43767ed7afc54858b495be777fab8c"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Progress.lean",
+      "sha256": "49bd5a846721d99f4c70c363475f522ea0f71618fa661ea024e519ce93fba442"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/RSI.lean",
+      "sha256": "9a5bc5e53c8e4d12a4bc4006d637f063ccf835165f3c3b8f3b5fa11d4fa7ac8e"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Representation.lean",
+      "sha256": "7efed1d990620b372012b1fec4f26b797d448fb26fe69351200c2e3bb33029aa"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Temporal.lean",
+      "sha256": "8444780a8a334eacabcf7c65af2be21b54a36344176287f7381b5682a7ee7d68"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Trace.lean",
+      "sha256": "01afb1e078b11dd612c41051cce4a883fda827c411e54723b0ab27de0e8b296f"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Transactions.lean",
+      "sha256": "19b943ebf2cdde7c7bcda87381e08141f0e200ee662f9e191ef4581f62a4cd09"
+    }
+  ],
+  "named_theorems_full": [
+    "JurisLean.Candidates.FormalTail20261024.u08_1_recorded_after_cutoff_not_visible",
+    "JurisLean.Candidates.FormalTail20261024.u08_1_late_append_uses_selection_stable",
+    "JurisLean.Candidates.FormalTail20261024.u08_1_late_record_disguised_as_then_known_changes_applicability",
+    "JurisLean.Candidates.FormalTail20261024.u08_1_mutable_current_status_disagrees_with_cutoff",
+    "JurisLean.Candidates.FormalTail20261024.u10_3_zero_step_ranked_path_is_identity",
+    "JurisLean.Candidates.FormalTail20261024.u10_3_zero_step_prohibits_strict_progress",
+    "JurisLean.Candidates.FormalTail20261024.u10_3_business_observation_faithful",
+    "JurisLean.Candidates.FormalTail20261024.u10_3_zero_observation_is_not_progress",
+    "JurisLean.Candidates.FormalTail20261024.u10_3_one_real_step_zero_abstract_is_not_progress",
+    "JurisLean.Candidates.FormalTail20261024.u06_4_increasing_threshold_above_one_excludes",
+    "JurisLean.Candidates.FormalTail20261024.u06_4_increasing_threshold_at_most_zero_includes",
+    "JurisLean.Candidates.FormalTail20261024.u06_4_decreasing_threshold_below_zero_excludes",
+    "JurisLean.Candidates.FormalTail20261024.u06_4_decreasing_threshold_at_least_one_includes",
+    "JurisLean.Candidates.FormalTail20261024.u06_4_increasing_unit_interval_above_one_is_empty",
+    "JurisLean.Candidates.FormalTail20261024.u06_4_increasing_unit_interval_at_most_zero_is_full",
+    "JurisLean.Candidates.FormalTail20261024.u06_4_decreasing_unit_interval_below_zero_is_empty",
+    "JurisLean.Candidates.FormalTail20261024.u06_4_decreasing_unit_interval_at_least_one_is_full",
+    "JurisLean.Candidates.FormalTail20261024.u12_2_halving_damps_toward_zero",
+    "JurisLean.Candidates.FormalTail20261024.u12_2_negation_orbit_oscillates",
+    "JurisLean.Candidates.FormalTail20261024.u12_2_one_minus_theta_oscillates",
+    "JurisLean.Candidates.FormalTail20261024.u12_2_shift_has_no_fixed_point",
+    "JurisLean.Candidates.FormalTail20261024.u12_2_cubic_reaches_zero_but_expands",
+    "JurisLean.Candidates.FormalTail20261024.u14_2_zero_N_rejects_positive_hypothesis",
+    "JurisLean.Candidates.FormalTail20261024.u14_2_endogenous_equal_sizes_are_not_the_fixed_witness",
+    "JurisLean.Candidates.FormalTail20261024.u14_2_common_cause_copy_exceeds_independent_variance"
+  ],
+  "named_theorems_short": [
+    "u08_1_recorded_after_cutoff_not_visible",
+    "u08_1_late_append_uses_selection_stable",
+    "u08_1_late_record_disguised_as_then_known_changes_applicability",
+    "u08_1_mutable_current_status_disagrees_with_cutoff",
+    "u10_3_zero_step_ranked_path_is_identity",
+    "u10_3_zero_step_prohibits_strict_progress",
+    "u10_3_business_observation_faithful",
+    "u10_3_zero_observation_is_not_progress",
+    "u10_3_one_real_step_zero_abstract_is_not_progress",
+    "u06_4_increasing_threshold_above_one_excludes",
+    "u06_4_increasing_threshold_at_most_zero_includes",
+    "u06_4_decreasing_threshold_below_zero_excludes",
+    "u06_4_decreasing_threshold_at_least_one_includes",
+    "u06_4_increasing_unit_interval_above_one_is_empty",
+    "u06_4_increasing_unit_interval_at_most_zero_is_full",
+    "u06_4_decreasing_unit_interval_below_zero_is_empty",
+    "u06_4_decreasing_unit_interval_at_least_one_is_full",
+    "u12_2_halving_damps_toward_zero",
+    "u12_2_negation_orbit_oscillates",
+    "u12_2_one_minus_theta_oscillates",
+    "u12_2_shift_has_no_fixed_point",
+    "u12_2_cubic_reaches_zero_but_expands",
+    "u14_2_zero_N_rejects_positive_hypothesis",
+    "u14_2_endogenous_equal_sizes_are_not_the_fixed_witness",
+    "u14_2_common_cause_copy_exceeds_independent_variance"
+  ],
+  "named_count": 25,
+  "u10_3_companion_note": "公平／外部响应＝另证（NON_GOAL）",
+  "tip_authority_run_status": "SUCCESS",
+  "live_tip_pin_retarget": "BOUND",
+  "closes_debt": false,
+  "math_flip_authorized": false,
+  "open_formal_tail_remaining": 40,
+  "closed_this_round": 0,
+  "prior_tip_pin_not_formal_tail_coverage": {
+    "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
+    "run_id": 40079130550,
+    "job_id": 120828801547,
+    "verification": "evidence/ci-tip-27849d3f/verification.json",
+    "note": "NOT FormalTail20261024 coverage."
+  },
+  "formal_tail_expand_audit": {
+    "criteria_pack": "tip_pin_扩审计_CAND5_20261025",
+    "tip_authority_run_status": "SUCCESS",
+    "live_tip_pin_retarget": "BOUND",
+    "job_id": 120936221970,
+    "named_count": 25,
+    "closes_debt": false
+  },
+  "scope": "Re-extraction from tip Authority 40115638107 job 120936221970. FormalTail 25 names are expand-audit naming only; closes_debt=false. Retarget ? close debt."
+}

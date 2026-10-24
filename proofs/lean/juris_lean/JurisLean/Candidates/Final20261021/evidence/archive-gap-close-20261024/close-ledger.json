@@ -9,22 +9,22 @@
   "prior_tip_pin_did_not_close_archive_debt": true,
   "tip_pin_not_retargeted": false,
   "tip_pin": {
-    "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-    "run_id": 40079130550,
-    "job_id": 120828801547,
+    "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+    "run_id": 40115638107,
+    "job_id": 120936221970,
     "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-    "verification": "evidence/ci-tip-27849d3f/verification.json"
+    "verification": "evidence/ci-tip-f85ebe44/verification.json"
   },
   "archive_carrier": {
     "manuscript_pin": "evidence/ci-tip-e87543d8/scope-archive.json",
     "manuscript_pin_sha256": "09e99e98711cc47395b6570e1a458a9aa8730aec5b3afab693a05e58592cea46",
     "manuscript_pin_mutated": false,
     "manuscript_pin_not_emptied": true,
-    "live_scope_archive": "evidence/ci-tip-27849d3f/scope-archive.json",
+    "live_scope_archive": "evidence/ci-tip-f85ebe44/scope-archive.json",
     "live_scope_archive_carried_from": "evidence/ci-tip-e87543d8/scope-archive.json",
     "carrying_is_not_a_proof": true,
     "close_layer": "evidence/archive-gap-close-20261024/close-ledger.json",
-    "note": "The manuscript pin stays verbatim, so this retarget does not empty the archive. The live tip-pin retarget carries the same rows in evidence/ci-tip-27849d3f/scope-archive.json. Carrying is not a proof and does not close archived gaps. discharges_archived_manuscript_gaps stays false until math authorizes the flip after a tip Authority recheck of the commit that carries this layer. Gate SUCCESS is not that authorization. Step 2 stays open. Retargeting the tip-pin does not close the debt."
+    "note": "The manuscript pin stays verbatim, so this retarget does not empty the archive. The live tip-pin retarget carries the same rows in evidence/ci-tip-f85ebe44/scope-archive.json. Carrying is not a proof and does not close archived gaps. discharges_archived_manuscript_gaps stays false until math authorizes the flip after a tip Authority recheck of the commit that carries this layer. Gate SUCCESS is not that authorization. Step 2 stays open. Retargeting the tip-pin does not close the debt."
   },
   "discharges_archived_manuscript_gaps": false,
   "math_flip_authorized": false,
@@ -69,17 +69,26 @@
       "U15.3"
     ],
     "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-    "candidate_module_quarantine": "PENDING_CI until its own changed-module run; not joined to the release root; not a tip-pin audit entry; not a clause close",
+    "candidate_module_quarantine": "Named in expand-audit evidence/ci-tip-f85ebe44; candidate_in_tip_pin_audit evidence wired; not a clause close; discharges stay false; live tip_pin live tip_pin BOUND to tip Authority 40115638107 / job 120936221970",
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
     "step_2_closed": false,
     "tip_pin_not_retargeted": false,
     "tip_pin": {
-      "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-      "run_id": 40079130550,
-      "job_id": 120828801547,
+      "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+      "run_id": 40115638107,
+      "job_id": 120936221970,
       "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-      "verification": "evidence/ci-tip-27849d3f/verification.json"
+      "verification": "evidence/ci-tip-f85ebe44/verification.json"
+    },
+    "formal_tail_expand_audit": {
+      "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+      "tip_authority_run_id": 40115638107,
+      "job_id": 120936221970,
+      "verification": "evidence/ci-tip-f85ebe44/verification.json",
+      "live_tip_pin_retarget": "BOUND",
+      "tip_authority_run_status": "SUCCESS",
+      "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
     },
     "later_tip_gate_not_a_close": {
       "subject": "c0b90b6998dfd6bf3a23792bed83af118726d6da",
@@ -118,8 +127,8 @@
           "line": 5,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -128,8 +137,8 @@
           "line": 12,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -138,8 +147,8 @@
           "line": 17,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -148,8 +157,8 @@
           "line": 24,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -158,8 +167,8 @@
           "line": 50,
           "role": "constant two-point observation does not separate",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -168,8 +177,8 @@
           "line": 56,
           "role": "adding the identity observation separates the two points",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -178,8 +187,8 @@
           "line": 62,
           "role": "a retraction need not make the encode map surjective",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -206,8 +215,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -237,7 +246,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -255,8 +264,8 @@
           "line": 30,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -265,8 +274,8 @@
           "line": 38,
           "role": "two singleton fibers over distinct points have no common value",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -288,8 +297,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -319,7 +328,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -337,8 +346,8 @@
           "line": 79,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -359,8 +368,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -390,7 +399,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -417,8 +426,8 @@
               "line": 132
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -432,8 +441,8 @@
               "line": 130
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -442,8 +451,8 @@
           "line": 316,
           "role": "robust-intersection countermodel body; not a connection proof",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -466,8 +475,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -497,7 +506,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -515,8 +524,8 @@
           "line": 33,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -525,8 +534,8 @@
           "line": 120,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -535,8 +544,8 @@
           "line": 305,
           "role": "insufficient fuel is not a checked closure",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -559,8 +568,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -590,7 +599,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -608,8 +617,8 @@
           "line": 10,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -630,8 +639,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -661,7 +670,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -684,8 +693,8 @@
               "line": 98
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -699,8 +708,8 @@
               "line": 107
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -714,8 +723,8 @@
               "line": 108
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -724,8 +733,8 @@
           "line": 104,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -739,8 +748,8 @@
               "line": 133
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -754,8 +763,8 @@
               "line": 240
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -773,8 +782,8 @@
               "line": 263
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -783,8 +792,8 @@
           "line": 148,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -802,8 +811,8 @@
               "line": 48
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -812,8 +821,8 @@
           "line": 162,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -831,8 +840,8 @@
               "line": 201
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -846,8 +855,8 @@
               "line": 202
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -861,8 +870,8 @@
               "line": 205
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -876,8 +885,8 @@
               "line": 215
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -886,8 +895,8 @@
           "line": 210,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -901,8 +910,8 @@
               "line": 248
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -911,8 +920,8 @@
           "line": 243,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -926,8 +935,8 @@
               "line": 272
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -936,8 +945,8 @@
           "line": 265,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -946,8 +955,8 @@
           "line": 35,
           "role": "synthetic commit example",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -956,8 +965,8 @@
           "line": 40,
           "role": "synthetic replay example",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -966,8 +975,8 @@
           "line": 46,
           "role": "cancelled attempt does not commit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -1000,7 +1009,7 @@
         "真实DB精化、外部副作用、最终完成 are explicit non-goals. China-law discharge is not decided here."
       ],
       "unwired_formal_obligations": [],
-      "scope_review": "Wired statements are the abstract transaction-safety lemmas, the commit/replay/cancel examples, and the complete-read CAS snapshot lemma accepted on tip-pin job 120828801547. Concrete store refinement and external effects are non-goals in this same row, not proved omissions.",
+      "scope_review": "Wired statements are the abstract transaction-safety lemmas, the commit/replay/cancel examples, and the complete-read CAS snapshot lemma accepted on tip-pin job 120936221970. Concrete store refinement and external effects are non-goals in this same row, not proved omissions.",
       "remaining_after_close": "WIRED_TO_TIP_PIN_DECLARATIONS || NON_GOAL_POINTER: Full refinement of concrete Ledger/Pipeline into Store/Trace, including external occurrences, is an explicit non-goal. | 真实DB精化、外部副作用、最终完成 are explicit non-goals. China-law discharge is not decided here.",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
@@ -1010,8 +1019,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -1038,8 +1047,8 @@
           "line": 30,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1048,8 +1057,8 @@
           "line": 44,
           "role": "empty-successor / zero-coverage ratio is not a zero risk",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1058,8 +1067,8 @@
           "line": 325,
           "role": "common idle stays in the finite safe intersection",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -1082,8 +1091,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -1113,7 +1122,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -1131,8 +1140,8 @@
           "line": 70,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1141,8 +1150,8 @@
           "line": 80,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1151,8 +1160,8 @@
           "line": 94,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -1176,8 +1185,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -1209,8 +1218,8 @@
               "line": 56
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1219,8 +1228,8 @@
           "line": 52,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -1242,8 +1251,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -1267,8 +1276,8 @@
           "u08_1_late_record_disguised_as_then_known_changes_applicability",
           "u08_1_mutable_current_status_disagrees_with_cutoff"
         ],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "A record stamped after the cutoff is not visible. Appending it does not change applicability, by the audited selection-stable theorem. Disguising that record as then-known changes applicability. Reading the latest version as current status disagrees with the cutoff query. These countermodels are not in tip-pin audit 40079130550 / job 120828801547, so the row stays OPEN_FORMAL_TAIL.",
+        "candidate_in_tip_pin_audit": true,
+        "candidate_covers_only": "Late-record invisibility, selection-stable append, disguise, and mutable-current-status disagreement. Named in expand-audit evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit evidence). Prior 40079130550 / job 120936221970 is not FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL.",
         "unwired_formal_obligations": [
           "Late retroactive-transition and mutable-current-status countermodels are not audited declarations of this clause."
         ],
@@ -1278,11 +1287,20 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open.",
+        "blocker": "FormalTail theorems are named in expand-audit evidence/ci-tip-f85ebe44/verification.json (pack tip_pin_扩审计_CAND5_20261025). Prior tip-pin 40079130550 / job 120936221970 must not be cited as FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer. Live tip_pin retarget binds to tip Authority 40115638107 once SUCCESS. discharges_archived_manuscript_gaps stays false. Step 2 stays open. OPEN_FORMAL_TAIL stays 40.",
         "uses_audited_declarations": [
           "JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable"
         ],
-        "close_blocked_reason": "Source text in FormalTail20261024 is not a declaration in tip-pin axiom audit 40079130550 / job 120828801547. Gate green does not close this row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "tip_pin_expand_audit": {
+          "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+          "tip_authority_run_id": 40115638107,
+          "job_id": 120936221970,
+          "verification": "evidence/ci-tip-f85ebe44/verification.json",
+          "live_tip_pin_retarget": "BOUND",
+          "tip_authority_run_status": "SUCCESS",
+          "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
+        },
+        "close_blocked_reason": "Expand-audit naming wires candidate_in_tip_pin_audit evidence only. Math has not authorized disposition change, discharges, or a close. Gate green and tip Authority pending SUCCESS do not close this row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -1300,8 +1318,8 @@
           "line": 53,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1310,8 +1328,8 @@
           "line": 64,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -1335,8 +1353,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -1368,7 +1386,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -1403,8 +1421,8 @@
               "line": 106
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1418,8 +1436,8 @@
               "line": 133
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1433,8 +1451,8 @@
               "line": 159
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1443,8 +1461,8 @@
           "line": 116,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -1468,8 +1486,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -1499,7 +1517,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -1517,8 +1535,8 @@
           "line": 68,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -1539,8 +1557,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -1570,7 +1588,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -1588,8 +1606,8 @@
           "line": 23,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1598,8 +1616,8 @@
           "line": 87,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1608,8 +1626,8 @@
           "line": 91,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -1634,8 +1652,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -1667,7 +1685,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -1685,8 +1703,8 @@
           "line": 10,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1695,8 +1713,8 @@
           "line": 16,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1705,8 +1723,8 @@
           "line": 26,
           "role": "a length-sum can exceed the step count; not a zero-step prohibition",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1715,8 +1733,8 @@
           "line": 28,
           "role": "two-cycle has no strict rank; not business-observation faithfulness",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -1742,8 +1760,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -1768,8 +1786,8 @@
           "u10_3_zero_observation_is_not_progress",
           "u10_3_one_real_step_zero_abstract_is_not_progress"
         ],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "A zero-step ranked path is the identity and does not strictly decrease rank. Business-observed length is the sum of per-operation abstract steps and obeys the audited simulation-length bound; a zero observation is not positive progress. 公平 and 外部响应 are explicit non-goals of this clause (exact_scope: 另证). None of these declarations is in tip-pin audit 40079130550 / job 120828801547, so the row stays OPEN_FORMAL_TAIL.",
+        "candidate_in_tip_pin_audit": true,
+        "candidate_covers_only": "A zero-step ranked path is the identity and does not strictly decrease rank. Business-observed length is the sum of per-operation abstract steps and obeys the audited simulation-length bound; a zero observation is not positive progress. 公平 and 外部响应 are explicit non-goals of this clause (exact_scope: 另证). Named in expand-audit evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit evidence). Prior 40079130550 / job 120828801547 is not FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL.",
         "unwired_formal_obligations": [
           "Business-observation faithfulness and an explicit zero-step prohibition are not stated by the length bound, the rank bound, or the two-cycle witness."
         ],
@@ -1781,11 +1799,20 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open.",
+        "blocker": "FormalTail theorems are named in expand-audit evidence/ci-tip-f85ebe44/verification.json (pack tip_pin_扩审计_CAND5_20261025). Prior tip-pin 40079130550 / job 120936221970 must not be cited as FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer. Live tip_pin retarget binds to tip Authority 40115638107 once SUCCESS. discharges_archived_manuscript_gaps stays false. Step 2 stays open. OPEN_FORMAL_TAIL stays 40.",
         "uses_audited_declarations": [
           "JurisLean.Candidates.Final20261021.Progress.u10_3_simulation_length"
         ],
-        "close_blocked_reason": "Source text in FormalTail20261024 is not a declaration in tip-pin axiom audit 40079130550 / job 120828801547. Gate green does not close this row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "tip_pin_expand_audit": {
+          "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+          "tip_authority_run_id": 40115638107,
+          "job_id": 120936221970,
+          "verification": "evidence/ci-tip-f85ebe44/verification.json",
+          "live_tip_pin_retarget": "BOUND",
+          "tip_authority_run_status": "SUCCESS",
+          "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
+        },
+        "close_blocked_reason": "Expand-audit naming wires candidate_in_tip_pin_audit evidence only. Math has not authorized disposition change, discharges, or a close. Gate green and tip Authority pending SUCCESS do not close this row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -1812,8 +1839,8 @@
               "line": 67
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1822,8 +1849,8 @@
           "line": 109,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1837,8 +1864,8 @@
               "line": 633
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1847,8 +1874,8 @@
           "line": 625,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1857,8 +1884,8 @@
           "line": 135,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -1885,8 +1912,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -1918,7 +1945,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -1936,8 +1963,8 @@
           "line": 168,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -1946,8 +1973,8 @@
           "line": 181,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -1971,8 +1998,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -1999,8 +2026,8 @@
           "line": 148,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2009,8 +2036,8 @@
           "line": 152,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -2032,8 +2059,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -2063,7 +2090,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -2090,8 +2117,8 @@
               "line": 60
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2105,8 +2132,8 @@
               "line": 119
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2120,8 +2147,8 @@
               "line": 145
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2130,8 +2157,8 @@
           "line": 89,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -2153,8 +2180,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -2181,8 +2208,8 @@
           "line": 111,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2191,8 +2218,8 @@
           "line": 121,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -2214,8 +2241,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -2245,7 +2272,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -2268,8 +2295,8 @@
               "line": 32
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2278,8 +2305,8 @@
           "line": 28,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -2301,8 +2328,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -2332,7 +2359,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -2350,8 +2377,8 @@
           "line": 89,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -2372,8 +2399,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -2403,7 +2430,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -2421,8 +2448,8 @@
           "line": 161,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2431,8 +2458,8 @@
           "line": 167,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2441,8 +2468,8 @@
           "line": 173,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2451,8 +2478,8 @@
           "line": 179,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -2477,8 +2504,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -2505,8 +2532,8 @@
           "line": 146,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2515,8 +2542,8 @@
           "line": 155,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2525,8 +2552,8 @@
           "line": 160,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2535,8 +2562,8 @@
           "line": 169,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -2561,8 +2588,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -2589,8 +2616,8 @@
           "line": 97,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -2611,8 +2638,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -2642,7 +2669,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -2660,8 +2687,8 @@
           "line": 182,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2670,8 +2697,8 @@
           "line": 188,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2680,8 +2707,8 @@
           "line": 197,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2690,8 +2717,8 @@
           "line": 201,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -2717,8 +2744,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -2750,7 +2777,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -2768,8 +2795,8 @@
           "line": 217,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2778,8 +2805,8 @@
           "line": 223,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2788,8 +2815,8 @@
           "line": 232,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2798,8 +2825,8 @@
           "line": 235,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2808,8 +2835,8 @@
           "line": 334,
           "role": "zero-denominator branch u04_4_variance_equivalent 2 (-1) = degenerateZeroVariance",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -2835,8 +2862,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -2863,8 +2890,8 @@
           "line": 133,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -2885,8 +2912,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -2916,7 +2943,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -2934,8 +2961,8 @@
           "line": 68,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2944,8 +2971,8 @@
           "line": 73,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2954,8 +2981,8 @@
           "line": 87,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -2964,8 +2991,8 @@
           "line": 90,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -2991,8 +3018,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -3028,8 +3055,8 @@
               "line": 16
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -3038,8 +3065,8 @@
           "line": 12,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -3048,8 +3075,8 @@
           "line": 42,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -3058,8 +3085,8 @@
           "line": 337,
           "role": "raising a score threshold can increase risk; not the rare-group example",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -3083,8 +3110,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -3114,7 +3141,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -3132,8 +3159,8 @@
           "line": 221,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -3154,8 +3181,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -3185,7 +3212,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -3203,8 +3230,8 @@
           "line": 205,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -3225,8 +3252,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -3256,7 +3283,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -3274,8 +3301,8 @@
           "line": 96,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -3284,8 +3311,8 @@
           "line": 102,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -3294,8 +3321,8 @@
           "line": 181,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -3318,8 +3345,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -3349,7 +3376,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -3367,8 +3394,8 @@
           "line": 190,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -3377,8 +3404,8 @@
           "line": 196,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -3387,8 +3414,8 @@
           "line": 202,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -3411,8 +3438,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -3440,8 +3467,8 @@
           "u06_4_decreasing_unit_interval_below_zero_is_empty",
           "u06_4_decreasing_unit_interval_at_least_one_is_full"
         ],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "Four corollaries of the audited threshold identities when the implied threshold lies outside [0,1], plus the same facts for every q in the unit interval (empty or full intersection). They call the audited slope theorems. They are not in tip-pin audit 40079130550 / job 120828801547, so 'no audited declaration' stays true and the row stays OPEN_FORMAL_TAIL.",
+        "candidate_in_tip_pin_audit": true,
+        "candidate_covers_only": "Four corollaries of the audited threshold identities when the implied threshold lies outside [0,1], plus unit-interval empty/full forms. Named in expand-audit evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit evidence). Prior 40079130550 / job 120828801547 is not FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL.",
         "unwired_formal_obligations": [
           "The q-in-[0,1] out-of-range corollaries still have no audited declaration."
         ],
@@ -3451,12 +3478,21 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open.",
+        "blocker": "FormalTail theorems are named in expand-audit evidence/ci-tip-f85ebe44/verification.json (pack tip_pin_扩审计_CAND5_20261025). Prior tip-pin 40079130550 / job 120936221970 must not be cited as FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer. Live tip_pin retarget binds to tip Authority 40115638107 once SUCCESS. discharges_archived_manuscript_gaps stays false. Step 2 stays open. OPEN_FORMAL_TAIL stays 40.",
         "uses_audited_declarations": [
           "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_increasing",
           "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_decreasing"
         ],
-        "close_blocked_reason": "Source text in FormalTail20261024 is not a declaration in tip-pin axiom audit 40079130550 / job 120828801547. Gate green does not close this row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "tip_pin_expand_audit": {
+          "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+          "tip_authority_run_id": 40115638107,
+          "job_id": 120936221970,
+          "verification": "evidence/ci-tip-f85ebe44/verification.json",
+          "live_tip_pin_retarget": "BOUND",
+          "tip_authority_run_status": "SUCCESS",
+          "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
+        },
+        "close_blocked_reason": "Expand-audit naming wires candidate_in_tip_pin_audit evidence only. Math has not authorized disposition change, discharges, or a close. Gate green and tip Authority pending SUCCESS do not close this row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -3474,8 +3510,8 @@
           "line": 247,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -3484,8 +3520,8 @@
           "line": 255,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -3494,8 +3530,8 @@
           "line": 265,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -3521,8 +3557,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -3549,8 +3585,8 @@
           "line": 17,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -3571,8 +3607,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -3602,7 +3638,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -3620,8 +3656,8 @@
           "line": 10,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -3642,8 +3678,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -3673,7 +3709,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -3691,8 +3727,8 @@
           "line": 37,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -3713,8 +3749,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -3739,8 +3775,8 @@
           "u12_2_shift_has_no_fixed_point",
           "u12_2_cubic_reaches_zero_but_expands"
         ],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "Halving damps distance to 0 in the real metric. Negation oscillates between 1 and -1. The map 1-θ swaps 0 and 1. Translation by 1 has no fixed point. On [-1,1], x-x^3 sends 1 to the fixed point 0 and expands the pair 1 and 4/5, so contraction is sufficient and not necessary. They are not in tip-pin audit 40079130550 / job 120828801547, so the row stays OPEN_FORMAL_TAIL.",
+        "candidate_in_tip_pin_audit": true,
+        "candidate_covers_only": "Halving damping, negation/one-minus-theta oscillation, shift without fixed point, and cubic reaching zero while expanding. Named in expand-audit evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit evidence). Prior 40079130550 / job 120936221970 is not FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL.",
         "unwired_formal_obligations": [
           "Damping, oscillation, and noncontraction-sufficiency counterexamples remain unproved."
         ],
@@ -3750,8 +3786,17 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open.",
-        "close_blocked_reason": "Source text in FormalTail20261024 is not a declaration in tip-pin axiom audit 40079130550 / job 120828801547. Gate green does not close this row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "FormalTail theorems are named in expand-audit evidence/ci-tip-f85ebe44/verification.json (pack tip_pin_扩审计_CAND5_20261025). Prior tip-pin 40079130550 / job 120936221970 must not be cited as FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer. Live tip_pin retarget binds to tip Authority 40115638107 once SUCCESS. discharges_archived_manuscript_gaps stays false. Step 2 stays open. OPEN_FORMAL_TAIL stays 40.",
+        "tip_pin_expand_audit": {
+          "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+          "tip_authority_run_id": 40115638107,
+          "job_id": 120936221970,
+          "verification": "evidence/ci-tip-f85ebe44/verification.json",
+          "live_tip_pin_retarget": "BOUND",
+          "tip_authority_run_status": "SUCCESS",
+          "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
+        },
+        "close_blocked_reason": "Expand-audit naming wires candidate_in_tip_pin_audit evidence only. Math has not authorized disposition change, discharges, or a close. Gate green and tip Authority pending SUCCESS do not close this row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -3769,8 +3814,8 @@
           "line": 25,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -3791,8 +3836,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -3822,7 +3867,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -3840,8 +3885,8 @@
           "line": 49,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -3850,8 +3895,8 @@
           "line": 54,
           "role": "distinguishability counterexample for the frozen inequalities",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -3875,8 +3920,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -3908,7 +3953,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -3926,8 +3971,8 @@
           "line": 43,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -3948,8 +3993,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -3979,7 +4024,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -3997,8 +4042,8 @@
           "line": 47,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -4007,8 +4052,8 @@
           "line": 72,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -4017,8 +4062,8 @@
           "line": 73,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -4041,8 +4086,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -4072,7 +4117,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -4090,8 +4135,8 @@
           "line": 78,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -4112,8 +4157,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -4143,7 +4188,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -4161,8 +4206,8 @@
           "line": 103,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -4185,8 +4230,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -4218,7 +4263,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -4236,8 +4281,8 @@
           "line": 52,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -4258,8 +4303,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -4289,7 +4334,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -4307,8 +4352,8 @@
           "line": 13,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -4329,8 +4374,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -4360,7 +4405,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -4378,8 +4423,8 @@
           "line": 111,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -4388,8 +4433,8 @@
           "line": 122,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -4398,8 +4443,8 @@
           "line": 157,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -4422,8 +4467,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -4446,8 +4491,8 @@
           "u14_2_endogenous_equal_sizes_are_not_the_fixed_witness",
           "u14_2_common_cause_copy_exceeds_independent_variance"
         ],
-        "candidate_in_tip_pin_audit": false,
-        "candidate_covers_only": "The positive-total hypothesis of the cluster tail fails at N = 0. Equal sizes (1,1) report effective size 2, which is not the audited fixed 99/1 witness 5000/4901. A shared copy keeps variance 1/4, strictly above the independent 1/(4n). These are not in tip-pin audit 40079130550 / job 120828801547, so the row stays OPEN_FORMAL_TAIL.",
+        "candidate_in_tip_pin_audit": true,
+        "candidate_covers_only": "Zero-N rejects a positive hypothesis; endogenous equal sizes are not the fixed witness; common-cause copy exceeds independent variance. Named in expand-audit evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit evidence). Prior 40079130550 / job 120828801547 is not FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL.",
         "unwired_formal_obligations": [
           "Zero-N rejection and endogenous-size/common-cause counterexamples remain unproved."
         ],
@@ -4457,14 +4502,23 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open.",
+        "blocker": "FormalTail theorems are named in expand-audit evidence/ci-tip-f85ebe44/verification.json (pack tip_pin_扩审计_CAND5_20261025). Prior tip-pin 40079130550 / job 120936221970 must not be cited as FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer. Live tip_pin retarget binds to tip Authority 40115638107 once SUCCESS. discharges_archived_manuscript_gaps stays false. Step 2 stays open. OPEN_FORMAL_TAIL stays 40.",
         "uses_audited_declarations": [
           "JurisLean.Candidates.Final20261021.Feedback.u14_2_unequal_cluster_effective_size",
           "JurisLean.Candidates.Final20261021.Learning.u01_4_copied_mean_variance",
           "JurisLean.Candidates.Final20261021.Learning.u01_4_independent_mean_variance",
           "JurisLean.Candidates.Final20261021.Learning.u01_4_copy_is_not_independent"
         ],
-        "close_blocked_reason": "Source text in FormalTail20261024 is not a declaration in tip-pin axiom audit 40079130550 / job 120828801547. Gate green does not close this row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "tip_pin_expand_audit": {
+          "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+          "tip_authority_run_id": 40115638107,
+          "job_id": 120936221970,
+          "verification": "evidence/ci-tip-f85ebe44/verification.json",
+          "live_tip_pin_retarget": "BOUND",
+          "tip_authority_run_status": "SUCCESS",
+          "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
+        },
+        "close_blocked_reason": "Expand-audit naming wires candidate_in_tip_pin_audit evidence only. Math has not authorized disposition change, discharges, or a close. Gate green and tip Authority pending SUCCESS do not close this row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -4482,8 +4536,8 @@
           "line": 19,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -4504,8 +4558,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -4535,7 +4589,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -4553,8 +4607,8 @@
           "line": 37,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -4563,8 +4617,8 @@
           "line": 29,
           "role": "exact two-point risks used by the second-round consumer",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -4588,8 +4642,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
@@ -4621,7 +4675,7 @@
         "local_lean_is_not_closure": true,
         "step_2_closed": false,
         "discharges_archived_manuscript_gaps": false,
-        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550, job 120828801547. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS, including run 40063377178, does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "blocker": "The unwired formal obligation is not a declaration accepted by tip-pin axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run 40115638107, job 120936221970. Candidates/Final20261021/*.lean stays byte-locked to that receipt, so this round cannot edit those files or cite a new name as audited. A candidate module outside that directory is not closure. Gate SUCCESS does not close the row. Retargeting the tip-pin does not close the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
       }
     },
     {
@@ -4644,8 +4698,8 @@
               "line": 128
             }
           ],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -4654,8 +4708,8 @@
           "line": 271,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -4664,8 +4718,8 @@
           "line": 276,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         },
         {
@@ -4674,8 +4728,8 @@
           "line": 281,
           "role": "clause-listed declaration accepted on the tip-pin audit",
           "consumers": [],
-          "tip_pin_run_id": 40079130550,
-          "tip_pin_job_id": 120828801547,
+          "tip_pin_run_id": 40115638107,
+          "tip_pin_job_id": 120936221970,
           "not_gate_run": 39960871624
         }
       ],
@@ -4701,8 +4755,8 @@
         "this row does not set discharges_archived_manuscript_gaps"
       ],
       "china_law_separated": true,
-      "tip_pin_job_id": 120828801547,
-      "tip_pin_run_id": 40079130550,
+      "tip_pin_job_id": 120936221970,
+      "tip_pin_run_id": 40115638107,
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {

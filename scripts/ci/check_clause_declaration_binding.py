@@ -39,14 +39,14 @@ CANDIDATE = Path(
 )
 STATUS_REL = CANDIDATE / "50_clause_status.json"
 CONSTRUCTION_REL = CANDIDATE / "construction_status.json"
-RECEIPT_REL = CANDIDATE / "evidence" / "ci-tip-27849d3f" / "verification.json"
+RECEIPT_REL = CANDIDATE / "evidence" / "ci-tip-f85ebe44" / "verification.json"
 ZIP_REL = (
     CANDIDATE
     / "evidence"
-    / "ci-tip-27849d3f"
-    / "lean-full-build-run40079130550-attempt1.zip"
+    / "ci-tip-f85ebe44"
+    / "lean-full-build-run40115638107-attempt1.zip"
 )
-ARCHIVE_REL = CANDIDATE / "evidence" / "ci-tip-27849d3f" / "scope-archive.json"
+ARCHIVE_REL = CANDIDATE / "evidence" / "ci-tip-f85ebe44" / "scope-archive.json"
 PRIOR_REL = CANDIDATE / "evidence" / "ci-stage1-d59a487" / "verification.json"
 LEGAL_REL = CANDIDATE / "evidence" / "seven_clause_legal_sources.txt"
 

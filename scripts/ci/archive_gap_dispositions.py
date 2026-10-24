@@ -1,7 +1,7 @@
 """Dispositions for the 50 archived manuscript gaps.
 
 The manuscript pin ``evidence/ci-tip-e87543d8/scope-archive.json`` stays
-verbatim. The live carry is ``evidence/ci-tip-27849d3f/scope-archive.json``.
+verbatim. The live carry is ``evidence/ci-tip-f85ebe44/scope-archive.json``.
 Carrying those rows is not a proof and does not close a gap. This module is
 the construction record that processes each pinned ``remaining_obligations``
 string on the math pack's suggested path:
@@ -9,8 +9,8 @@ string on the math pack's suggested path:
 * ``缩`` rewrites the residual as an explicit non-goal in the same row as the
   claimed-scope declarations.
 * ``证`` wires the formal candidate bodies to declarations accepted by the
-  live tip-pin axiom audit (subject 27849d3f228ec3665da16a6aa0b801672421dca2,
-  run 40079130550, job 120828801547). A sentence those declarations do not
+  live tip-pin axiom audit (subject f85ebe44644f32820e9d0fad1325428fb8f171d9,
+  run 40115638107, job 120936221970). A sentence those declarations do not
   state stays ``OPEN_FORMAL_TAIL``. Companion non-goals from the 2026-10-24
   rejudge are written on that same row.
 
@@ -419,7 +419,7 @@ SCOPE_REVIEW: dict[str, str] = {
     "U02.2": (
         "Wired statements are the abstract transaction-safety lemmas, the "
         "commit/replay/cancel examples, and the complete-read CAS snapshot lemma "
-        "accepted on tip-pin job 120828801547. Concrete store refinement and "
+        "accepted on tip-pin job 120936221970. Concrete store refinement and "
         "external effects are non-goals in this same row, not proved omissions."
     ),
 }
@@ -433,21 +433,23 @@ DOES_NOT_CLAIM = [
 ]
 
 TIP_PIN = {
-    "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-    "run_id": 40079130550,
-    "job_id": 120828801547,
+    "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+    "run_id": 40115638107,
+    "job_id": 120936221970,
     "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-    "verification": "evidence/ci-tip-27849d3f/verification.json",
+    "verification": "evidence/ci-tip-f85ebe44/verification.json",
 }
 
-# Expand-audit naming for CAND5 FormalTail theorems. Does NOT retarget the live
-# tip_pin triple yet (tip Authority 40115638107 still pending SUCCESS). Prior
-# tip-pin 40079130550 must never be cited as FormalTail coverage.
+# Expand-audit naming for CAND5 FormalTail theorems. Live tip_pin is now bound to
+# tip Authority 40115638107 / job 120936221970 (SUCCESS). Prior tip-pin
+# 40079130550 must never be cited as FormalTail coverage.
 FORMAL_TAIL_EXPAND = {
     "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
     "tip_authority_run_id": 40115638107,
+    "job_id": 120936221970,
     "verification": "evidence/ci-tip-f85ebe44/verification.json",
-    "live_tip_pin_retarget": "TODO_BIND_WHEN_40115638107_SUCCESS",
+    "live_tip_pin_retarget": "BOUND",
+    "tip_authority_run_status": "SUCCESS",
     "criteria_pack": "tip_pin_扩审计_CAND5_20261025",
 }
 
@@ -570,7 +572,7 @@ CANDIDATE_COVERS_ONLY: dict[str, str] = {
         "Late-record invisibility, selection-stable append, disguise, and "
         "mutable-current-status disagreement. Named in expand-audit "
         "evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit evidence). Prior "
-        "40079130550 / job 120828801547 is not FormalTail coverage. Disposition "
+        "40079130550 / job 120936221970 is not FormalTail coverage. Disposition "
         "stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL."
     ),
     "U10.3": (
@@ -586,7 +588,7 @@ CANDIDATE_COVERS_ONLY: dict[str, str] = {
         "Halving damping, negation/one-minus-theta oscillation, shift without fixed "
         "point, and cubic reaching zero while expanding. Named in expand-audit "
         "evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit evidence). Prior "
-        "40079130550 / job 120828801547 is not FormalTail coverage. Disposition "
+        "40079130550 / job 120936221970 is not FormalTail coverage. Disposition "
         "stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL."
     ),
     "U14.2": (
@@ -599,12 +601,12 @@ CANDIDATE_COVERS_ONLY: dict[str, str] = {
 }
 TAIL_BLOCKER = (
     "The unwired formal obligation is not a declaration accepted by tip-pin "
-    "axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run "
-    "40079130550, job 120828801547. Candidates/Final20261021/*.lean stays "
+    "axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run "
+    "40115638107, job 120936221970. Candidates/Final20261021/*.lean stays "
     "byte-locked to that receipt, so this round cannot edit those files or "
     "cite a new name as audited. A candidate module outside that directory "
-    "is not closure. Gate SUCCESS, including run 40063377178, does not close "
-    "the row. Retargeting the tip-pin does not close the row. "
+    "is not closure. Gate SUCCESS does not close the row. Retargeting the "
+    "tip-pin does not close the row. "
     "discharges_archived_manuscript_gaps stays false. Step 2 stays open."
 )
 
@@ -669,7 +671,7 @@ def formal_tail_record(clause: str) -> dict:
             "FormalTail theorems are named in expand-audit "
             "evidence/ci-tip-f85ebe44/verification.json (pack "
             "tip_pin_扩审计_CAND5_20261025). Prior tip-pin 40079130550 / "
-            "job 120828801547 must not be cited as FormalTail coverage. "
+            "job 120936221970 must not be cited as FormalTail coverage. "
             "Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer. "
             "Live tip_pin retarget binds to tip Authority 40115638107 once "
             "SUCCESS. discharges_archived_manuscript_gaps stays false. "
@@ -708,7 +710,7 @@ def formal_tail_summary(rows: list[dict]) -> dict:
         "candidate_module_quarantine": (
             "Named in expand-audit evidence/ci-tip-f85ebe44; candidate_in_tip_pin_audit "
             "evidence wired; not a clause close; discharges stay false; live tip_pin "
-            "retarget pending tip Authority 40115638107 SUCCESS"
+            "live tip_pin BOUND to tip Authority 40115638107 / job 120936221970"
         ),
         "discharges_archived_manuscript_gaps": False,
         "math_flip_authorized": False,

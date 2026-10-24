@@ -434,21 +434,21 @@
       "discharges_archived_manuscript_gaps": false
     },
     {
-      "run_id": 40079130550,
+      "run_id": 40115638107,
       "run_attempt": 1,
-      "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40079130550",
+      "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+      "url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40115638107",
       "mode": "push-full-release",
       "target": "lean-full-clean-build",
       "job": "lean-full-clean-build",
-      "job_id": 120828801547,
+      "job_id": 120936221970,
       "job_conclusion": "success",
       "status": "AXIOM_AUDIT_REEXTRACTED_LIVE_SCOPE_EMPTY",
-      "artifact": "evidence/ci-tip-27849d3f/lean-full-build-run40079130550-attempt1.zip",
+      "artifact": "evidence/ci-tip-f85ebe44/lean-full-build-run40115638107-attempt1.zip",
       "artifact_zip_sha256": "d7c958af639880f28f238e61ede956ccf6bd9a1357e8163a638a6645177b2ab4",
       "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
       "acceptance": "DISCHARGED_LISTED_DECLARATIONS_STANDARD_AXIOMS_ONLY",
-      "verification": "evidence/ci-tip-27849d3f/verification.json",
+      "verification": "evidence/ci-tip-f85ebe44/verification.json",
       "discharges_archived_manuscript_gaps": false
     }
   ],
@@ -469,7 +469,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "docs/candidates/Representation_DependentFragment_20261015.lean L159–234: seven-field source candidate, not compiled this turn and no scoped main consumer found",
       "acceptance_assertions": "往返⇒单射/满射/幂等；小观察族到大族；逆向及e必满射反例。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -504,11 +504,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Representation"
         ],
@@ -560,7 +560,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "有限共同纤维构造；两个单点分别投影0/1拒绝相容。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -577,11 +577,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Representation"
         ],
@@ -628,7 +628,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "同案历史构造推出义务人等投影；禁止投影等式作前提；错案/错历史反例。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -645,11 +645,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Representation"
         ],
@@ -695,7 +695,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "UnifiedNetTrajectory.traceOk_init_closure; exact type and premises in lean_source_checks_v001.json",
       "acceptance_assertions": "对任意闭包轮次保真；来源保留；交集闭包仅包含，a/b反例。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -745,11 +745,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Compiler"
         ],
@@ -797,7 +797,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "闭包反模型证明相对完备；未导出不等否定；有限头终止边界。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -820,11 +820,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Compiler"
         ],
@@ -872,7 +872,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "真实世界及真实后继实例化；空Succ不当可完成；共同idle反例。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -889,11 +889,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Harness"
         ],
@@ -939,7 +939,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "任意有限轨迹每键Commit≤1；同载荷重放/异载荷冲突/取消竞态；UNKNOWN原键控制。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -1206,11 +1206,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Transactions"
         ],
@@ -1280,7 +1280,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "有限枚举双向反映；缺候选不生造；覆盖0条件风险无定义。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -1297,11 +1297,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Harness"
         ],
@@ -1349,7 +1349,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "P_H内预算证明及α+ε；H=B反例不得获得错误条件界。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -1378,11 +1378,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Harness"
         ],
@@ -1433,7 +1433,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "固定截面追加不可见事件保持查询；迟到与当前status反例。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -1466,11 +1466,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Temporal"
         ],
@@ -1496,8 +1496,10 @@
           "tip_pin_expand_audit": {
             "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
             "tip_authority_run_id": 40115638107,
+            "job_id": 120936221970,
             "verification": "evidence/ci-tip-f85ebe44/verification.json",
-            "live_tip_pin_retarget": "TODO_BIND_WHEN_40115638107_SUCCESS",
+            "live_tip_pin_retarget": "BOUND",
+            "tip_authority_run_status": "SUCCESS",
             "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
           },
           "close_admitted": false,
@@ -1523,7 +1525,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "授权追加→同快照Refresh→实际规则调用；错版本/错案/失败保持。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -1546,11 +1548,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Authorization",
           "JurisLean.Candidates.Final20261021.Pipeline"
@@ -1602,7 +1604,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "UnifiedNetTrajectory trace closure/fixed fullDocket witness; not general changing-context new contract",
       "acceptance_assertions": "从实际初态推出具体I，混合任意有限串逐步保持；第二步读真实前态，失败不回滚全史。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -1689,11 +1691,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Pipeline",
           "JurisLean.Candidates.Final20261021.Trace"
@@ -1743,7 +1745,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "当前/可达耗尽不混；只对真实适用组合的全部声明观察压缩；标签同金额异反例。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -1760,11 +1762,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Temporal"
         ],
@@ -1810,7 +1812,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "证据四态×程序类型及消费者保持；依法关闭必须有具名依据；UNKNOWN≠否定/EMPTY。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -1839,11 +1841,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.EvidenceProcedure"
         ],
@@ -1895,7 +1897,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "Σk_i长度和自然rank终止分开；多步、零步和x↔y反例。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -1918,11 +1920,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Progress"
         ],
@@ -1952,8 +1954,10 @@
           "tip_pin_expand_audit": {
             "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
             "tip_authority_run_id": 40115638107,
+            "job_id": 120936221970,
             "verification": "evidence/ci-tip-f85ebe44/verification.json",
-            "live_tip_pin_retarget": "TODO_BIND_WHEN_40115638107_SUCCESS",
+            "live_tip_pin_retarget": "BOUND",
+            "tip_authority_run_status": "SUCCESS",
             "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
           },
           "close_admitted": false,
@@ -1981,7 +1985,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "UnifiedQuantLedger.outstanding_afterStream L267–283; actual Master consumer L1118→L400→L445; fixed Master ledger scope",
       "acceptance_assertions": "任意付款列表守恒；同案10→3→0、分配7/3、余款0/4，重放不再扣。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -2049,11 +2053,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Ledger",
           "JurisLean.Candidates.Final20261021.Trace"
@@ -2108,7 +2112,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "封闭账户事件/轨迹现金和0；费用与边界账户不遗漏；不代替债变化。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -2131,11 +2135,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Ledger"
         ],
@@ -2186,7 +2190,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "Same quantitative source proves its specific allocation algorithm; not arbitrary weak Alloc or real legal priority",
       "acceptance_assertions": "弱分配非负/偏序/守恒；d=p=1,k=0非最大；同一原债同步减、应计≠现金、None债。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -2209,11 +2213,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Ledger"
         ],
@@ -2260,7 +2264,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "一般独立有界和mgf到双尾证明及D=0；复制样本不获iid证书。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -2331,11 +2335,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Learning"
         ],
@@ -2384,7 +2388,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "固定有限H一致ε和近似ERM的2ε+η；候选自适应/表示碰撞边界。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -2407,11 +2411,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Learning"
         ],
@@ -2458,7 +2462,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "0—1事件桥及同一有界损失桥；上下界/估计与联合δ分开；换损失反例。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -2491,11 +2495,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Learning",
           "JurisLean.Candidates.Final20261021.Probability"
@@ -2543,7 +2547,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "联合分布TV风险界；同X异Y反例不能用特征边际TV。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -2560,11 +2564,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Probability"
         ],
@@ -2610,7 +2614,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "训练0目标1、部署1、独立1/(4n)与复制1/4三个反例保持原断言。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -2645,11 +2649,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Learning"
         ],
@@ -2701,7 +2705,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "Beta后验与预测桥分别证明；缺桥交换例5/6对2/3。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -2736,11 +2740,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Probability"
         ],
@@ -2792,7 +2796,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "正分母区间包围/宽度；Beta积分1/12、11/192与11/16；拒绝错误包围。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -2809,11 +2813,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Probability"
         ],
@@ -2859,7 +2863,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "全坐标含截距惩罚的存在唯一；未罚截距反例；不以数值输出替一般证明。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -2894,11 +2898,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Probability"
         ],
@@ -2951,7 +2955,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "协方差展开；正分母有限等效量、零分母退化；B与1−B。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -2986,11 +2990,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Probability"
         ],
@@ -3043,7 +3047,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "对象/测量/记录分型；独立测量LR16、复制LR4；机制绑定。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -3060,11 +3064,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Probability"
         ],
@@ -3110,7 +3114,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "条件交换性、均匀秩/同分及∞分支；非严格边际覆盖。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -3145,11 +3149,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Calibration"
         ],
@@ -3202,7 +3206,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "Brier分解、分子/正分母联合界、稀有群体反例；升阈值风险.1→1。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -3249,11 +3253,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Calibration"
         ],
@@ -3302,7 +3306,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "旧策略包含和信息价值；有限Bellman与终端/空集；非矩形反例。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -3319,11 +3323,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Decision"
         ],
@@ -3369,7 +3373,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "全部允许偏离的ε+2η；新增偏离及非线性效用反例。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -3386,11 +3390,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Decision"
         ],
@@ -3436,7 +3440,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "AST任意结构求值/包围；成本一次与现金身份、单位、概率/效用/风险共同输入实际消费。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -3465,11 +3469,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Decision"
         ],
@@ -3517,7 +3521,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "斜率正负零，区间外及等号边界；不除以0。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -3546,11 +3550,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Decision"
         ],
@@ -3577,8 +3581,10 @@
           "tip_pin_expand_audit": {
             "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
             "tip_authority_run_id": 40115638107,
+            "job_id": 120936221970,
             "verification": "evidence/ci-tip-f85ebe44/verification.json",
-            "live_tip_pin_retarget": "TODO_BIND_WHEN_40115638107_SUCCESS",
+            "live_tip_pin_retarget": "BOUND",
+            "tip_authority_run_status": "SUCCESS",
             "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
           },
           "close_admitted": false,
@@ -3604,7 +3610,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "噪声价值.3−成本、两轮树逐节点；混合存在背景依赖及无纯均衡反例。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -3633,11 +3639,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Decision"
         ],
@@ -3690,7 +3696,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "同观测异因果模型ATE1/0；g公式有具名因果桥；支持缺口与上诉选择界。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -3707,11 +3713,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Behavior"
         ],
@@ -3757,7 +3763,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "有限政策重要性恒等式；目标正日志零不识别；截断偏差。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -3774,11 +3780,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Policy"
         ],
@@ -3824,7 +3830,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "非空完备自映射全域收缩⇒唯一不动点；振荡及充分非必要反例。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -3841,11 +3847,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Policy"
         ],
@@ -3870,8 +3876,10 @@
           "tip_pin_expand_audit": {
             "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
             "tip_authority_run_id": 40115638107,
+            "job_id": 120936221970,
             "verification": "evidence/ci-tip-f85ebe44/verification.json",
-            "live_tip_pin_retarget": "TODO_BIND_WHEN_40115638107_SUCCESS",
+            "live_tip_pin_retarget": "BOUND",
+            "tip_authority_run_status": "SUCCESS",
             "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
           },
           "close_admitted": false,
@@ -3897,7 +3905,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "有界加权统一界/截断偏差/MAR和轨迹支持；单步日志异终端反例。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -3914,11 +3922,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Policy"
         ],
@@ -3964,7 +3972,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "努力最优两条件必要充分；可区分但激励无效反例。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -3981,11 +3989,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Policy"
         ],
@@ -4036,7 +4044,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "同实参不读取θ⇒规范结果不变；e变化和共享写域不能偷换前提。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -4053,11 +4061,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.RSI"
         ],
@@ -4103,7 +4111,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "五类frame、其他个人保持、零权重UNKNOWN、候选/验证/加载不同状态。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -4132,11 +4140,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.RSI"
         ],
@@ -4184,7 +4192,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "双射改名逐点/风险保持；语义迁移不冒充改名；冷启动不识别。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -4201,11 +4209,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.RSI"
         ],
@@ -4251,7 +4259,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "缺checkpoint四分支的证据标签；不默认校准.5，不停无关规范计算。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -4268,11 +4276,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.RSI"
         ],
@@ -4322,7 +4330,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "同域联合区间接纳、逐轮条件δ及停时；验证字节与加载字节一致。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -4339,11 +4347,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Feedback"
         ],
@@ -4389,7 +4397,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "任意有限轨迹Σε、有限M严格改进≤M−1；模型参数/风险收敛区别。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -4406,11 +4414,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Iteration"
         ],
@@ -4456,7 +4464,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "独立簇一般界、99/1有效量5000/4901；零N与相关簇边界。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -4485,11 +4493,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Feedback"
         ],
@@ -4516,8 +4524,10 @@
           "tip_pin_expand_audit": {
             "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
             "tip_authority_run_id": 40115638107,
+            "job_id": 120936221970,
             "verification": "evidence/ci-tip-f85ebe44/verification.json",
-            "live_tip_pin_retarget": "TODO_BIND_WHEN_40115638107_SUCCESS",
+            "live_tip_pin_retarget": "BOUND",
+            "tip_authority_run_status": "SUCCESS",
             "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
           },
           "close_admitted": false,
@@ -4543,7 +4553,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "旧域逐点保持⇒风险相同；稀有关键点受损反例。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -4560,11 +4570,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Iteration"
         ],
@@ -4610,7 +4620,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "No exact matching checked declaration established in this scoped audit; new formalization remains open",
       "acceptance_assertions": "实际两轮θ00→θ01→θ01；任务错配拒绝；合成人群不标真实运行。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -4627,11 +4637,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Iteration"
         ],
@@ -4682,7 +4692,7 @@
       "planned_consumer": "JurisLean.Candidates.Final20261021.Pipeline",
       "baseline_reference": "UnifiedNeedlesTotal L75–84 and UnifiedMasterNeedle L1091–1125: historical declared/fixed witnesses; not this new total contract",
       "acceptance_assertions": "15阶段成功/拒绝/未决全链；同案版本/后态实参；联合抽样预算；不相容共同纤维反例。",
-      "formal_ci": "40079130550",
+      "formal_ci": "40115638107",
       "runtime_status": "NOT_RUN",
       "closure": "FORMAL_CI_LIVE_FIELDS_EMPTY",
       "implementation": "PARTIAL_CANDIDATE_SOURCE",
@@ -4727,11 +4737,11 @@
       "remaining_obligations": [],
       "candidate_formal_ci": "LISTED_DECLARATIONS_AXIOM_AUDITED",
       "candidate_ci_evidence": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
         "job": "lean-full-clean-build",
-        "job_id": 120828801547,
-        "verification": "evidence/ci-tip-27849d3f/verification.json",
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
         "module_built": [
           "JurisLean.Candidates.Final20261021.Acceptance",
           "JurisLean.Candidates.Final20261021.Pipeline"
@@ -4770,18 +4780,18 @@
       }
     }
   ],
-  "formal_ci_field_scope": "A numeric formal_ci is the lean-full-clean-build run id in evidence/ci-tip-27849d3f/verification.json. Live exact_scope is empty and live remaining_obligations is empty because each listed declaration was re-extracted from that run's lean-full-build artifact and depends only on standard axioms. CI_NOT_RUN remains when a listed declaration is absent from that build. The scope archive pins the previous manuscript text and this acceptance does not prove archived manuscript gaps.",
+  "formal_ci_field_scope": "A numeric formal_ci is the lean-full-clean-build run id in evidence/ci-tip-f85ebe44/verification.json. Live exact_scope is empty and live remaining_obligations is empty because each listed declaration was re-extracted from that run's lean-full-build artifact and depends only on standard axioms. CI_NOT_RUN remains when a listed declaration is absent from that build. The scope archive pins the previous manuscript text and this acceptance does not prove archived manuscript gaps.",
   "tip_declaration_location": {
-    "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-    "run_id": 40079130550,
+    "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+    "run_id": 40115638107,
     "job": "lean-full-clean-build",
-    "job_id": 120828801547,
-    "verification": "evidence/ci-tip-27849d3f/verification.json",
+    "job_id": 120936221970,
+    "verification": "evidence/ci-tip-f85ebe44/verification.json",
     "meaning": "LISTED_DECLARATIONS_AXIOM_AUDITED_LIVE_SCOPE_EMPTY",
     "acceptance_discharged": true,
-    "artifact_zip_sha256": "d7c958af639880f28f238e61ede956ccf6bd9a1357e8163a638a6645177b2ab4",
+    "artifact_zip_sha256": "96f8c38334b4c706fd53316a74e0ee3175c215b7e1c2f871ca6e8cdc6171bb73",
     "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-    "scope_archive": "evidence/ci-tip-27849d3f/scope-archive.json",
+    "scope_archive": "evidence/ci-tip-f85ebe44/scope-archive.json",
     "discharges_archived_manuscript_gaps": false
   }
 }

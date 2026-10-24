@@ -3,8 +3,8 @@
 
 The manuscript pin is not rewritten and is not emptied. ``discharges`` stays
 false. The live tip-pin is the authorized retarget
-subject 27849d3f228ec3665da16a6aa0b801672421dca2 / run 40079130550 / job
-120828801547. That retarget is not a close. The live tip-pin is not moved
+subject f85ebe44644f32820e9d0fad1325428fb8f171d9 / run 40115638107 / job
+120936221970. That retarget is not a close. The live tip-pin is not moved
 onto gate run 39960871624. Declarations cited as wiring must be in the
 re-extracted tip-pin axiom audit.
 
@@ -30,9 +30,9 @@ STATUS_PATH = CANDIDATE / "50_clause_status.json"
 CONSTRUCTION_PATH = CANDIDATE / "construction_status.json"
 ARCHIVE_PATH = CANDIDATE / "evidence/ci-tip-e87543d8/scope-archive.json"
 CARRIED_PATH = CANDIDATE / "evidence/ci-tip-966b9373/scope-archive.json"
-LIVE_ARCHIVE_REL = "evidence/ci-tip-27849d3f/scope-archive.json"
+LIVE_ARCHIVE_REL = "evidence/ci-tip-f85ebe44/scope-archive.json"
 LIVE_ARCHIVE_PATH = CANDIDATE / LIVE_ARCHIVE_REL
-RECEIPT_PATH = CANDIDATE / "evidence/ci-tip-27849d3f/verification.json"
+RECEIPT_PATH = CANDIDATE / "evidence/ci-tip-f85ebe44/verification.json"
 EXPAND_RECEIPT_REL = "evidence/ci-tip-f85ebe44/verification.json"
 EXPAND_RECEIPT_PATH = CANDIDATE / EXPAND_RECEIPT_REL
 LEDGER_PATH = CANDIDATE / "evidence/archive-gap-close-20261024/close-ledger.json"
@@ -171,7 +171,7 @@ def build_ledger(status: dict, archive: dict, lines: dict[tuple[str, str], int])
             "note": (
                 "The manuscript pin stays verbatim, so this retarget does not empty "
                 "the archive. The live tip-pin retarget carries the same rows in "
-                "evidence/ci-tip-27849d3f/scope-archive.json. Carrying is not a proof "
+                "evidence/ci-tip-f85ebe44/scope-archive.json. Carrying is not a proof "
                 "and does not close archived gaps. "
                 "discharges_archived_manuscript_gaps stays false until math "
                 "authorizes the flip after a tip Authority recheck of the commit "

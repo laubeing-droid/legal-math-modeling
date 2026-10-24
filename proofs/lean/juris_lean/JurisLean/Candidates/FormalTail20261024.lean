@@ -11,13 +11,12 @@ U08.1, U10.3, U06.4, U12.2, U14.2 (archive order).
 
 These 25 theorem FULL names are named in the tip-pin expand-audit
 evidence at evidence/ci-tip-f85ebe44/verification.json (pack
-tip_pin_扩审计_CAND5_20261025). That naming wires
+tip_pin_???_CAND5_20261025). That naming wires
 candidate_in_tip_pin_audit evidence only. It does not close debt.
 
-Prior tip-pin 27849d3f / run 40079130550 / job 120828801547 must NOT
-be cited as FormalTail coverage. Live tip_pin subject/run/job retarget
-binds to tip Authority 40115638107 (subject f85ebe44…) once that run
-is SUCCESS; do not invent green.
+Prior tip-pin 27849d3f / id 40079130550 / job-id 120828801547 must NOT
+be cited as FormalTail coverage. Live tip_pin subject/job is BOUND to
+Authority 40115638107 / job-id 120936221970 (subject f85ebe44?, SUCCESS).
 
 Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer rejudge.
 OPEN_FORMAL_TAIL stays 40. closed_this_round stays 0.

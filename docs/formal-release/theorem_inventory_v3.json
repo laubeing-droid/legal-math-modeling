@@ -8686,7 +8686,55 @@
     },
     {
      "kind": "theorem",
+     "name": "u08_1_late_append_uses_selection_stable"
+    },
+    {
+     "kind": "def",
+     "name": "u08Cutoff"
+    },
+    {
+     "kind": "def",
+     "name": "u08Late"
+    },
+    {
+     "kind": "def",
+     "name": "u08Disguised"
+    },
+    {
+     "kind": "def",
+     "name": "currentStatus"
+    },
+    {
+     "kind": "theorem",
+     "name": "u08_1_late_record_disguised_as_then_known_changes_applicability"
+    },
+    {
+     "kind": "theorem",
+     "name": "u08_1_mutable_current_status_disagrees_with_cutoff"
+    },
+    {
+     "kind": "theorem",
      "name": "u10_3_zero_step_ranked_path_is_identity"
+    },
+    {
+     "kind": "theorem",
+     "name": "u10_3_zero_step_prohibits_strict_progress"
+    },
+    {
+     "kind": "def",
+     "name": "businessObservedLength"
+    },
+    {
+     "kind": "theorem",
+     "name": "u10_3_business_observation_faithful"
+    },
+    {
+     "kind": "theorem",
+     "name": "u10_3_zero_observation_is_not_progress"
+    },
+    {
+     "kind": "theorem",
+     "name": "u10_3_one_real_step_zero_abstract_is_not_progress"
     },
     {
      "kind": "theorem",
@@ -8706,33 +8754,104 @@
     },
     {
      "kind": "theorem",
+     "name": "u06_4_increasing_unit_interval_above_one_is_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_4_increasing_unit_interval_at_most_zero_is_full"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_4_decreasing_unit_interval_below_zero_is_empty"
+    },
+    {
+     "kind": "theorem",
+     "name": "u06_4_decreasing_unit_interval_at_least_one_is_full"
+    },
+    {
+     "kind": "def",
+     "name": "halve"
+    },
+    {
+     "kind": "lemma",
+     "name": "halve_iterate_one"
+    },
+    {
+     "kind": "lemma",
+     "name": "half_pow_pos"
+    },
+    {
+     "kind": "lemma",
+     "name": "half_pow_shrinks"
+    },
+    {
+     "kind": "theorem",
      "name": "u12_2_halving_damps_toward_zero"
+    },
+    {
+     "kind": "def",
+     "name": "negate"
+    },
+    {
+     "kind": "lemma",
+     "name": "negate_iterate_even"
+    },
+    {
+     "kind": "lemma",
+     "name": "negate_iterate_odd"
     },
     {
      "kind": "theorem",
      "name": "u12_2_negation_orbit_oscillates"
     },
     {
+     "kind": "def",
+     "name": "oneMinus"
+    },
+    {
+     "kind": "theorem",
+     "name": "u12_2_one_minus_theta_oscillates"
+    },
+    {
      "kind": "theorem",
      "name": "u12_2_shift_has_no_fixed_point"
     },
     {
+     "kind": "def",
+     "name": "cubicStep"
+    },
+    {
+     "kind": "theorem",
+     "name": "u12_2_cubic_reaches_zero_but_expands"
+    },
+    {
      "kind": "theorem",
      "name": "u14_2_zero_N_rejects_positive_hypothesis"
+    },
+    {
+     "kind": "theorem",
+     "name": "u14_2_endogenous_equal_sizes_are_not_the_fixed_witness"
+    },
+    {
+     "kind": "theorem",
+     "name": "u14_2_common_cause_copy_exceeds_independent_variance"
     }
    ],
    "imports": [
     "JurisLean.Candidates.Final20261021.Decision",
+    "JurisLean.Candidates.Final20261021.Feedback",
+    "JurisLean.Candidates.Final20261021.Learning",
+    "JurisLean.Candidates.Final20261021.Policy",
     "JurisLean.Candidates.Final20261021.Progress",
     "JurisLean.Candidates.Final20261021.Temporal"
    ],
-   "lemma_count": 0,
+   "lemma_count": 5,
    "path": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "print_axioms_targets": [],
-   "sha256": "a7ef0f67071502dc23c6bdf44c4c8a3a295916f1a3517065d12a65d76bd3492e",
-   "size_bytes": 4546,
-   "theorem_count": 10,
-   "theorem_count_bol_convention": 10
+   "sha256": "8ff2a6b700b981fa0ee752a29666ee2ab394ad3a39680e55b4d0d6092b22ac13",
+   "size_bytes": 14336,
+   "theorem_count": 25,
+   "theorem_count_bol_convention": 25
   },
   {
    "declarations": [
@@ -48930,22 +49049,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5463,
+   "counted_declaration_count": 5483,
    "file_count": 394,
-   "lemma_count": 141,
+   "lemma_count": 146,
    "print_axioms_command_count": 4334,
    "print_axioms_distinct_targets": 4280,
-   "theorem_count": 5322,
-   "theorem_count_bol_convention": 5222
+   "theorem_count": 5337,
+   "theorem_count_bol_convention": 5237
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5444,
+   "counted_declaration_count": 5464,
    "file_count": 379,
-   "lemma_count": 134,
+   "lemma_count": 139,
    "print_axioms_command_count": 4334,
    "print_axioms_distinct_targets": 4280,
-   "theorem_count": 5310,
-   "theorem_count_bol_convention": 5210
+   "theorem_count": 5325,
+   "theorem_count_bol_convention": 5225
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -49775,12 +49894,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "0b4f325da6045ab124b7aaba9438f6e83c35655385e5575a62eb13d4ec82e81e",
+ "source_inventory_digest": "7b0d5d6afe6c53485d78be0015f102a2a855eb8980ee23447a9254689b947618",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "cursor/formal-tail-prove-27d8",
-  "commit": "543e0db25a701bc68128442138d1f9ec7e4c7ce2",
-  "tree": "7874516e9236832209bf8d1592e224e82a2dce1c"
+  "branch": "cursor/formal-tail-cand5-true-proof-3e50",
+  "commit": "ec4c3e94ea4c0bdbc44d6021e9e8ebffa1ae5d72",
+  "tree": "887844afb9394f4a9ff1ec49f18a9589bdb30953"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

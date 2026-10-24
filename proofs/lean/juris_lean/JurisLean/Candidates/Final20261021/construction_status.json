@@ -279,7 +279,7 @@
   "blockers": [
     {
       "kind": "MATHEMATICAL_IMPLEMENTATION",
-      "detail": "Live exact_scope and remaining_obligations in 50_clause_status.json are empty under the formal_ci acceptance in evidence/ci-tip-27849d3f/verification.json: every listed declaration was re-extracted from the tip lean-full-build artifact and uses only standard axioms. The previous manuscript sentences are pinned in evidence/ci-tip-27849d3f/scope-archive.json. That archive is carried forward from evidence/ci-tip-e87543d8/scope-archive.json and is not a Lean proof of the sentences it preserves, including general measurable TV, fully penalized logistic existence, a continuous tie-break density, a general filtration tower, and Brouwer or hidden-information equilibrium. This pin does not close archived manuscript gaps."
+      "detail": "Live exact_scope and remaining_obligations in 50_clause_status.json are empty under the formal_ci acceptance in evidence/ci-tip-f85ebe44/verification.json: every listed declaration was re-extracted from the tip lean-full-build artifact and uses only standard axioms. The previous manuscript sentences are pinned in evidence/ci-tip-f85ebe44/scope-archive.json. That archive is carried forward from evidence/ci-tip-e87543d8/scope-archive.json and is not a Lean proof of the sentences it preserves, including general measurable TV, fully penalized logistic existence, a continuous tie-break density, a general filtration tower, and Brouwer or hidden-information equilibrium. This pin does not close archived manuscript gaps."
     },
     {
       "kind": "PYTHON_CI_DISCOVERY",
@@ -287,7 +287,7 @@
     },
     {
       "kind": "FULL_RELEASE_RETRY",
-      "detail": "The 799b42c full-release failed derived-accounting freshness. Run 39714740194 on main tip 5db4e0453d77493e2699af7b32bcb1ea8c7668a5 then passed the repository full-release path. That pass does not set formal_ci of the 50 frozen clauses. Source edits after 5db4e04, including the RestPay N2 split, are outside that run. tip_declaration_location records the axiom audit re-extracted from the later tip artifact. Live exact_scope and remaining_obligations are empty. The scope archive pins the previous manuscript text and is not a proof of those sentences. The current tip pin is evidence/ci-tip-27849d3f/verification.json on 27849d3f228ec3665da16a6aa0b801672421dca2 run 40079130550 job 120828801547. That pin does not close archived manuscript gaps. Retargeting the tip pin does not close step 2."
+      "detail": "The 799b42c full-release failed derived-accounting freshness. Run 39714740194 on main tip 5db4e0453d77493e2699af7b32bcb1ea8c7668a5 then passed the repository full-release path. That pass does not set formal_ci of the 50 frozen clauses. Source edits after 5db4e04, including the RestPay N2 split, are outside that run. tip_declaration_location records the axiom audit re-extracted from the later tip artifact. Live exact_scope and remaining_obligations are empty. The scope archive pins the previous manuscript text and is not a proof of those sentences. The current tip pin is evidence/ci-tip-f85ebe44/verification.json on f85ebe44644f32820e9d0fad1325428fb8f171d9 run 40115638107 job 120936221970. That pin does not close archived manuscript gaps. Retargeting the tip pin does not close step 2."
     }
   ],
   "evidence_boundary": "Local static and Python checks are not formal Lean CI. Original GitHub Actions logs and ZIP artifacts bind only their recorded subject and declared scope. Paper proof availability, current Lean implementation, runtime refinement, and legal or real-occurrence evidence are distinct.",
@@ -724,16 +724,16 @@
     "formal_ci": "CI_NOT_RUN_FOR_REPAIR"
   },
   "tip_declaration_location": {
-    "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-    "run_id": 40079130550,
+    "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+    "run_id": 40115638107,
     "job": "lean-full-clean-build",
-    "job_id": 120828801547,
-    "verification": "evidence/ci-tip-27849d3f/verification.json",
+    "job_id": 120936221970,
+    "verification": "evidence/ci-tip-f85ebe44/verification.json",
     "meaning": "LISTED_DECLARATIONS_AXIOM_AUDITED_LIVE_SCOPE_EMPTY",
     "acceptance_discharged": true,
-    "artifact_zip_sha256": "d7c958af639880f28f238e61ede956ccf6bd9a1357e8163a638a6645177b2ab4",
+    "artifact_zip_sha256": "96f8c38334b4c706fd53316a74e0ee3175c215b7e1c2f871ca6e8cdc6171bb73",
     "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-    "scope_archive": "evidence/ci-tip-27849d3f/scope-archive.json",
+    "scope_archive": "evidence/ci-tip-f85ebe44/scope-archive.json",
     "discharges_archived_manuscript_gaps": false
   },
   "archive_gap_close": {
@@ -747,11 +747,11 @@
     "prior_tip_pin_did_not_close_archive_debt": true,
     "tip_pin_not_retargeted": false,
     "tip_pin": {
-      "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-      "run_id": 40079130550,
-      "job_id": 120828801547,
+      "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+      "run_id": 40115638107,
+      "job_id": 120936221970,
       "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-      "verification": "evidence/ci-tip-27849d3f/verification.json"
+      "verification": "evidence/ci-tip-f85ebe44/verification.json"
     },
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
@@ -795,17 +795,26 @@
         "U15.3"
       ],
       "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-      "candidate_module_quarantine": "PENDING_CI until its own changed-module run; not joined to the release root; not a tip-pin audit entry; not a clause close",
+      "candidate_module_quarantine": "Named in expand-audit evidence/ci-tip-f85ebe44; candidate_in_tip_pin_audit evidence wired; not a clause close; discharges stay false; live tip_pin live tip_pin BOUND to tip Authority 40115638107 / job 120936221970",
       "discharges_archived_manuscript_gaps": false,
       "math_flip_authorized": false,
       "step_2_closed": false,
       "tip_pin_not_retargeted": false,
       "tip_pin": {
-        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-        "run_id": 40079130550,
-        "job_id": 120828801547,
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "run_id": 40115638107,
+        "job_id": 120936221970,
         "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-        "verification": "evidence/ci-tip-27849d3f/verification.json"
+        "verification": "evidence/ci-tip-f85ebe44/verification.json"
+      },
+      "formal_tail_expand_audit": {
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "tip_authority_run_id": 40115638107,
+        "job_id": 120936221970,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
+        "live_tip_pin_retarget": "BOUND",
+        "tip_authority_run_status": "SUCCESS",
+        "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
       },
       "later_tip_gate_not_a_close": {
         "subject": "c0b90b6998dfd6bf3a23792bed83af118726d6da",

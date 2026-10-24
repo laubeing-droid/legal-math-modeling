@@ -1,7 +1,7 @@
 """Dispositions for the 50 archived manuscript gaps.
 
 The manuscript pin ``evidence/ci-tip-e87543d8/scope-archive.json`` stays
-verbatim. The live carry is ``evidence/ci-tip-27849d3f/scope-archive.json``.
+verbatim. The live carry is ``evidence/ci-tip-f85ebe44/scope-archive.json``.
 Carrying those rows is not a proof and does not close a gap. This module is
 the construction record that processes each pinned ``remaining_obligations``
 string on the math pack's suggested path:
@@ -9,8 +9,8 @@ string on the math pack's suggested path:
 * ``缩`` rewrites the residual as an explicit non-goal in the same row as the
   claimed-scope declarations.
 * ``证`` wires the formal candidate bodies to declarations accepted by the
-  live tip-pin axiom audit (subject 27849d3f228ec3665da16a6aa0b801672421dca2,
-  run 40079130550, job 120828801547). A sentence those declarations do not
+  live tip-pin axiom audit (subject f85ebe44644f32820e9d0fad1325428fb8f171d9,
+  run 40115638107, job 120936221970). A sentence those declarations do not
   state stays ``OPEN_FORMAL_TAIL``. Companion non-goals from the 2026-10-24
   rejudge are written on that same row.
 
@@ -419,7 +419,7 @@ SCOPE_REVIEW: dict[str, str] = {
     "U02.2": (
         "Wired statements are the abstract transaction-safety lemmas, the "
         "commit/replay/cancel examples, and the complete-read CAS snapshot lemma "
-        "accepted on tip-pin job 120828801547. Concrete store refinement and "
+        "accepted on tip-pin job 120936221970. Concrete store refinement and "
         "external effects are non-goals in this same row, not proved omissions."
     ),
 }
@@ -433,11 +433,24 @@ DOES_NOT_CLAIM = [
 ]
 
 TIP_PIN = {
-    "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
-    "run_id": 40079130550,
-    "job_id": 120828801547,
+    "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+    "run_id": 40115638107,
+    "job_id": 120936221970,
     "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-    "verification": "evidence/ci-tip-27849d3f/verification.json",
+    "verification": "evidence/ci-tip-f85ebe44/verification.json",
+}
+
+# Expand-audit naming for CAND5 FormalTail theorems. Live tip_pin is now bound to
+# tip Authority 40115638107 / job 120936221970 (SUCCESS). Prior tip-pin
+# 40079130550 must never be cited as FormalTail coverage.
+FORMAL_TAIL_EXPAND = {
+    "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+    "tip_authority_run_id": 40115638107,
+    "job_id": 120936221970,
+    "verification": "evidence/ci-tip-f85ebe44/verification.json",
+    "live_tip_pin_retarget": "BOUND",
+    "tip_authority_run_status": "SUCCESS",
+    "criteria_pack": "tip_pin_扩审计_CAND5_20261025",
 }
 
 GATE_ONLY_RUN = 39960871624
@@ -550,53 +563,50 @@ CANDIDATE_USES_AUDITED: dict[str, list[str]] = {
 CANDIDATE_COVERS_ONLY: dict[str, str] = {
     "U06.4": (
         "Four corollaries of the audited threshold identities when the implied "
-        "threshold lies outside [0,1], plus the same facts for every q in the "
-        "unit interval (empty or full intersection). They call the audited "
-        "slope theorems. They are not in tip-pin audit 40079130550 / job "
-        "120828801547, so 'no audited declaration' stays true and the row "
-        "stays OPEN_FORMAL_TAIL."
+        "threshold lies outside [0,1], plus unit-interval empty/full forms. "
+        "Named in expand-audit evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit "
+        "evidence). Prior 40079130550 / job 120828801547 is not FormalTail coverage. "
+        "Disposition stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL."
     ),
     "U08.1": (
-        "A record stamped after the cutoff is not visible. Appending it does "
-        "not change applicability, by the audited selection-stable theorem. "
-        "Disguising that record as then-known changes applicability. Reading "
-        "the latest version as current status disagrees with the cutoff query. "
-        "These countermodels are not in tip-pin audit 40079130550 / job "
-        "120828801547, so the row stays OPEN_FORMAL_TAIL."
+        "Late-record invisibility, selection-stable append, disguise, and "
+        "mutable-current-status disagreement. Named in expand-audit "
+        "evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit evidence). Prior "
+        "40079130550 / job 120936221970 is not FormalTail coverage. Disposition "
+        "stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL."
     ),
     "U10.3": (
-        "A zero-step ranked path is the identity and does not strictly "
-        "decrease rank. Business-observed length is the sum of per-operation "
-        "abstract steps and obeys the audited simulation-length bound; a zero "
-        "observation is not positive progress. 公平 and 外部响应 are explicit "
-        "non-goals of this clause (exact_scope: 另证). None of these "
-        "declarations is in tip-pin audit 40079130550 / job 120828801547, so "
-        "the row stays OPEN_FORMAL_TAIL."
+        "A zero-step ranked path is the identity and does not strictly decrease rank. "
+        "Business-observed length is the sum of per-operation abstract steps and obeys the "
+        "audited simulation-length bound; a zero observation is not positive progress. "
+        "公平 and 外部响应 are explicit non-goals of this clause (exact_scope: 另证). "
+        "Named in expand-audit evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit "
+        "evidence). Prior 40079130550 / job 120828801547 is not FormalTail coverage. "
+        "Disposition stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL."
     ),
     "U12.2": (
-        "Halving damps distance to 0 in the real metric. Negation oscillates "
-        "between 1 and -1. The map 1-θ swaps 0 and 1. Translation by 1 has no "
-        "fixed point. On [-1,1], x-x^3 sends 1 to the fixed point 0 and "
-        "expands the pair 1 and 4/5, so contraction is sufficient and not "
-        "necessary. They are not in tip-pin audit 40079130550 / job "
-        "120828801547, so the row stays OPEN_FORMAL_TAIL."
+        "Halving damping, negation/one-minus-theta oscillation, shift without fixed "
+        "point, and cubic reaching zero while expanding. Named in expand-audit "
+        "evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit evidence). Prior "
+        "40079130550 / job 120936221970 is not FormalTail coverage. Disposition "
+        "stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL."
     ),
     "U14.2": (
-        "The positive-total hypothesis of the cluster tail fails at N = 0. "
-        "Equal sizes (1,1) report effective size 2, which is not the audited "
-        "fixed 99/1 witness 5000/4901. A shared copy keeps variance 1/4, "
-        "strictly above the independent 1/(4n). These are not in tip-pin "
-        "audit 40079130550 / job 120828801547, so the row stays OPEN_FORMAL_TAIL."
+        "Zero-N rejects a positive hypothesis; endogenous equal sizes are not the "
+        "fixed witness; common-cause copy exceeds independent variance. Named in "
+        "expand-audit evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit evidence). "
+        "Prior 40079130550 / job 120828801547 is not FormalTail coverage. Disposition "
+        "stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL."
     ),
 }
 TAIL_BLOCKER = (
     "The unwired formal obligation is not a declaration accepted by tip-pin "
-    "axiom audit subject 27849d3f228ec3665da16a6aa0b801672421dca2, run "
-    "40079130550, job 120828801547. Candidates/Final20261021/*.lean stays "
+    "axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run "
+    "40115638107, job 120936221970. Candidates/Final20261021/*.lean stays "
     "byte-locked to that receipt, so this round cannot edit those files or "
     "cite a new name as audited. A candidate module outside that directory "
-    "is not closure. Gate SUCCESS, including run 40063377178, does not close "
-    "the row. Retargeting the tip-pin does not close the row. "
+    "is not closure. Gate SUCCESS does not close the row. Retargeting the "
+    "tip-pin does not close the row. "
     "discharges_archived_manuscript_gaps stays false. Step 2 stays open."
 )
 
@@ -641,7 +651,7 @@ def formal_tail_record(clause: str) -> dict:
         "candidate_module": CANDIDATE_MODULE if candidates else "",
         "candidate_module_name": CANDIDATE_MODULE_NAME if candidates else "",
         "candidate_theorems": candidates,
-        "candidate_in_tip_pin_audit": False,
+        "candidate_in_tip_pin_audit": bool(candidates),
         "candidate_covers_only": CANDIDATE_COVERS_ONLY.get(clause, ""),
         "unwired_formal_obligations": list(UNWIRED[clause]),
         "non_goals_same_row": list(NON_GOALS.get(clause, [])),
@@ -656,11 +666,22 @@ def formal_tail_record(clause: str) -> dict:
     if uses:
         record["uses_audited_declarations"] = list(uses)
     if candidates:
+        record["tip_pin_expand_audit"] = dict(FORMAL_TAIL_EXPAND)
+        record["blocker"] = (
+            "FormalTail theorems are named in expand-audit "
+            "evidence/ci-tip-f85ebe44/verification.json (pack "
+            "tip_pin_扩审计_CAND5_20261025). Prior tip-pin 40079130550 / "
+            "job 120936221970 must not be cited as FormalTail coverage. "
+            "Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer. "
+            "Live tip_pin retarget binds to tip Authority 40115638107 once "
+            "SUCCESS. discharges_archived_manuscript_gaps stays false. "
+            "Step 2 stays open. OPEN_FORMAL_TAIL stays 40."
+        )
         record["close_blocked_reason"] = (
-            "Source text in FormalTail20261024 is not a declaration in "
-            "tip-pin axiom audit 40079130550 / job 120828801547. Gate green "
-            "does not close this row. discharges_archived_manuscript_gaps "
-            "stays false. Step 2 stays open."
+            "Expand-audit naming wires candidate_in_tip_pin_audit evidence only. "
+            "Math has not authorized disposition change, discharges, or a close. "
+            "Gate green and tip Authority pending SUCCESS do not close this row. "
+            "discharges_archived_manuscript_gaps stays false. Step 2 stays open."
         )
     return record
 
@@ -687,14 +708,16 @@ def formal_tail_summary(rows: list[dict]) -> dict:
         "companion_tail_ids": list(COMPANION_TAIL_IDS),
         "candidate_module": CANDIDATE_MODULE,
         "candidate_module_quarantine": (
-            "PENDING_CI until its own changed-module run; not joined to the "
-            "release root; not a tip-pin audit entry; not a clause close"
+            "Named in expand-audit evidence/ci-tip-f85ebe44; candidate_in_tip_pin_audit "
+            "evidence wired; not a clause close; discharges stay false; live tip_pin "
+            "live tip_pin BOUND to tip Authority 40115638107 / job 120936221970"
         ),
         "discharges_archived_manuscript_gaps": False,
         "math_flip_authorized": False,
         "step_2_closed": False,
         "tip_pin_not_retargeted": False,
         "tip_pin": dict(TIP_PIN),
+        "formal_tail_expand_audit": dict(FORMAL_TAIL_EXPAND),
         "later_tip_gate_not_a_close": dict(LATER_TIP_GATE),
         "gate_green_does_not_close_debt": True,
         "china_law_column": "separate; foreign law and arXiv do not close China-law items",

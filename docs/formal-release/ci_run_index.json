@@ -1,7 +1,8 @@
 {
-  "authority_note": "Read from the GitHub Actions API by scripts/ci/build_ci_run_index.py. Records what Actions reported for each run the repository quotes; it does not re-run Lean, does not certify any theorem, and does not survive a force-push or a deleted run -- re-derive it rather than trusting a stale copy.",
-  "quote_scan": "git ls-files -z '*.md' | xargs -0 grep -ohE '\\b[0-9]{11}\\b' | sort -u",
-  "repository": "laubeing-droid/legal-math-modeling",
+  "schema_version": "ci-run-index-v1",
+  "status": "external_actions_metadata_snapshot_not_release_certificate",
+  "authority": "Read from the GitHub Actions API by scripts/ci/build_ci_run_index.py. Records what Actions reported for each run the repository quotes; it does not re-run Lean, does not certify any theorem, and does not survive a force-push or a deleted run -- re-derive it rather than trusting a stale copy.",
+  "verify_command": "python scripts/ci/build_ci_run_index.py --check",
   "runs": [
     {
       "artifacts_total": 95,
@@ -26158,18 +26159,81 @@
       "jobs_total": 8,
       "name": "Record OPEN_FORMAL_TAIL×40 prove progress without closing the debt (#10)",
       "quoted_by": [
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:3",
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:59",
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:69"
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:73"
       ],
       "run_id": 40079130550,
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-24T08:55:47Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "run_id": 40115638107,
+      "quoted_by": [
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:3",
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:59",
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:69",
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:73"
+      ],
+      "workflow": "Lean Authority + Formal Release Pipeline",
+      "name": "真证首批 CAND5 ≠ 翻 discharges ≠ 关第2步 (#12)",
+      "head_sha": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+      "head_branch": "main",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-24T17:20:02Z",
+      "updated_at": "2026-10-24T17:32:45Z",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40115638107",
+      "jobs_total": 8,
+      "started": true,
+      "jobs": [
+        {
+          "name": "python-gates",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "lean-full-clean-build",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "runtime-refinement / produce",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "changed-modules",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "mathematics-completion",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "seven-axis-acceptance",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "release-certificate",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "final-gate",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "artifacts_total": 10,
+      "evidence": null
     }
   ],
-  "schema_version": "ci-run-index-v1",
-  "status": "external_actions_metadata_snapshot_not_release_certificate",
-  "verify_command": "python scripts/ci/build_ci_run_index.py --check"
+  "authority_note": "Read from the GitHub Actions API by scripts/ci/build_ci_run_index.py. Records what Actions reported for each run the repository quotes; it does not re-run Lean, does not certify any theorem, and does not survive a force-push or a deleted run -- re-derive it rather than trusting a stale copy.",
+  "quote_scan": "git ls-files -z '*.md' | xargs -0 grep -ohE '\\b[0-9]{11}\\b' | sort -u",
+  "repository": "laubeing-droid/legal-math-modeling"
 }

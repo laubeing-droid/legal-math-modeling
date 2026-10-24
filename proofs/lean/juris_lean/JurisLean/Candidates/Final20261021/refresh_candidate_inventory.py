@@ -54,7 +54,7 @@ EXAMPLES = {
 # Historical gap prose. Live formal_ci rows do not copy it: exact_scope and
 # remaining_obligations stay empty after the tip artifact's axiom audit is
 # re-extracted. The verbatim manuscript text is pinned in
-# evidence/ci-tip-27849d3f/scope-archive.json, carried forward from
+# evidence/ci-tip-f85ebe44/scope-archive.json, carried forward from
 # evidence/ci-tip-e87543d8/scope-archive.json, carried forward from
 # evidence/ci-tip-966b9373/scope-archive.json. This dict is not a proof.
 # Carrying the manuscript is not a proof and does not close archived gaps.

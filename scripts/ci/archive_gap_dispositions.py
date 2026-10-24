@@ -489,54 +489,104 @@ CLOSED_NARROW_IDS = (
 )
 CLOSED_WIRING_IDS = ("U02.2", "U01.0")
 # Theorems in CANDIDATE_MODULE. None is in the tip-pin audit. None closes a row.
+# Order inside each clause is source order. Archive order concatenates them.
 PROVE_CANDIDATES: dict[str, list[str]] = {
     "U06.4": [
         "u06_4_increasing_threshold_above_one_excludes",
         "u06_4_increasing_threshold_at_most_zero_includes",
         "u06_4_decreasing_threshold_below_zero_excludes",
         "u06_4_decreasing_threshold_at_least_one_includes",
+        "u06_4_increasing_unit_interval_above_one_is_empty",
+        "u06_4_increasing_unit_interval_at_most_zero_is_full",
+        "u06_4_decreasing_unit_interval_below_zero_is_empty",
+        "u06_4_decreasing_unit_interval_at_least_one_is_full",
     ],
     "U08.1": [
         "u08_1_recorded_after_cutoff_not_visible",
+        "u08_1_late_append_uses_selection_stable",
+        "u08_1_late_record_disguised_as_then_known_changes_applicability",
+        "u08_1_mutable_current_status_disagrees_with_cutoff",
     ],
     "U10.3": [
         "u10_3_zero_step_ranked_path_is_identity",
+        "u10_3_zero_step_prohibits_strict_progress",
+        "u10_3_business_observation_faithful",
+        "u10_3_zero_observation_is_not_progress",
+        "u10_3_one_real_step_zero_abstract_is_not_progress",
     ],
     "U12.2": [
         "u12_2_halving_damps_toward_zero",
         "u12_2_negation_orbit_oscillates",
+        "u12_2_one_minus_theta_oscillates",
         "u12_2_shift_has_no_fixed_point",
+        "u12_2_cubic_reaches_zero_but_expands",
     ],
     "U14.2": [
         "u14_2_zero_N_rejects_positive_hypothesis",
+        "u14_2_endogenous_equal_sizes_are_not_the_fixed_witness",
+        "u14_2_common_cause_copy_exceeds_independent_variance",
+    ],
+}
+# Audited declaration names the candidate proofs actually call. Listing them
+# is not a tip-pin citation of the candidate, and it does not close the row.
+CANDIDATE_USES_AUDITED: dict[str, list[str]] = {
+    "U06.4": [
+        "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_increasing",
+        "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_decreasing",
+    ],
+    "U08.1": [
+        "JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable",
+    ],
+    "U10.3": [
+        "JurisLean.Candidates.Final20261021.Progress.u10_3_simulation_length",
+    ],
+    "U14.2": [
+        "JurisLean.Candidates.Final20261021.Feedback.u14_2_unequal_cluster_effective_size",
+        "JurisLean.Candidates.Final20261021.Learning.u01_4_copied_mean_variance",
+        "JurisLean.Candidates.Final20261021.Learning.u01_4_independent_mean_variance",
+        "JurisLean.Candidates.Final20261021.Learning.u01_4_copy_is_not_independent",
     ],
 }
 CANDIDATE_COVERS_ONLY: dict[str, str] = {
     "U06.4": (
         "Four corollaries of the audited threshold identities when the implied "
-        "threshold lies outside [0,1]. They are source text only. They are not "
-        "in tip-pin audit 40079130550 / job 120828801547, so 'no audited "
-        "declaration' stays true and the row stays OPEN_FORMAL_TAIL."
+        "threshold lies outside [0,1], plus the same facts for every q in the "
+        "unit interval (empty or full intersection). They call the audited "
+        "slope theorems. They are not in tip-pin audit 40079130550 / job "
+        "120828801547, so 'no audited declaration' stays true and the row "
+        "stays OPEN_FORMAL_TAIL."
     ),
     "U08.1": (
-        "A record whose recordedAt is strictly after the record cutoff is not "
-        "visible. That is not a mutable-current-status countermodel, and it is "
-        "not tip-pin audited."
+        "A record stamped after the cutoff is not visible. Appending it does "
+        "not change applicability, by the audited selection-stable theorem. "
+        "Disguising that record as then-known changes applicability. Reading "
+        "the latest version as current status disagrees with the cutoff query. "
+        "These countermodels are not in tip-pin audit 40079130550 / job "
+        "120828801547, so the row stays OPEN_FORMAL_TAIL."
     ),
     "U10.3": (
-        "A zero-step ranked path is the identity. Business-observation "
-        "faithfulness is not stated. Fairness and external response stay "
-        "non-goals on this same row. The identity is not tip-pin audited."
+        "A zero-step ranked path is the identity and does not strictly "
+        "decrease rank. Business-observed length is the sum of per-operation "
+        "abstract steps and obeys the audited simulation-length bound; a zero "
+        "observation is not positive progress. 公平 and 外部响应 are explicit "
+        "non-goals of this clause (exact_scope: 另证). None of these "
+        "declarations is in tip-pin audit 40079130550 / job 120828801547, so "
+        "the row stays OPEN_FORMAL_TAIL."
     ),
     "U12.2": (
-        "Numeric damping, a two-point negation orbit, and a translation with "
-        "no fixed point. They are not a metric noncontraction theorem and "
-        "they are not tip-pin audited."
+        "Halving damps distance to 0 in the real metric. Negation oscillates "
+        "between 1 and -1. The map 1-θ swaps 0 and 1. Translation by 1 has no "
+        "fixed point. On [-1,1], x-x^3 sends 1 to the fixed point 0 and "
+        "expands the pair 1 and 4/5, so contraction is sufficient and not "
+        "necessary. They are not in tip-pin audit 40079130550 / job "
+        "120828801547, so the row stays OPEN_FORMAL_TAIL."
     ),
     "U14.2": (
         "The positive-total hypothesis of the cluster tail fails at N = 0. "
-        "Endogenous-size and common-cause counterexamples are not stated, "
-        "and this rejection is not tip-pin audited."
+        "Equal sizes (1,1) report effective size 2, which is not the audited "
+        "fixed 99/1 witness 5000/4901. A shared copy keeps variance 1/4, "
+        "strictly above the independent 1/(4n). These are not in tip-pin "
+        "audit 40079130550 / job 120828801547, so the row stays OPEN_FORMAL_TAIL."
     ),
 }
 TAIL_BLOCKER = (
@@ -580,7 +630,7 @@ def formal_tail_record(clause: str) -> dict:
             "discharges_archived_manuscript_gaps": False,
         }
     candidates = list(PROVE_CANDIDATES.get(clause, []))
-    return {
+    record = {
         "in_this_round": True,
         "round": FORMAL_TAIL_ROUND,
         "criteria_pack": FORMAL_TAIL_PACK,
@@ -602,6 +652,17 @@ def formal_tail_record(clause: str) -> dict:
         "discharges_archived_manuscript_gaps": False,
         "blocker": TAIL_BLOCKER,
     }
+    uses = CANDIDATE_USES_AUDITED.get(clause, [])
+    if uses:
+        record["uses_audited_declarations"] = list(uses)
+    if candidates:
+        record["close_blocked_reason"] = (
+            "Source text in FormalTail20261024 is not a declaration in "
+            "tip-pin axiom audit 40079130550 / job 120828801547. Gate green "
+            "does not close this row. discharges_archived_manuscript_gaps "
+            "stays false. Step 2 stays open."
+        )
+    return record
 
 
 def formal_tail_summary(rows: list[dict]) -> dict:

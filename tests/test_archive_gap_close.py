@@ -91,12 +91,67 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert "u06_4_increasing_threshold_above_one_excludes" in (
         audited_but_open["formal_tail_prove"]["candidate_theorems"]
     )
+    assert "u06_4_increasing_unit_interval_above_one_is_empty" in (
+        audited_but_open["formal_tail_prove"]["candidate_theorems"]
+    )
     assert audited_but_open["formal_tail_prove"]["candidate_in_tip_pin_audit"] is False
+    assert audited_but_open["formal_tail_prove"]["close_admitted"] is False
     assert any("audited declaration" in item for item in audited_but_open["unwired_formal_obligations"])
+    assert "u06_4_threshold_increasing" in "".join(
+        audited_but_open["formal_tail_prove"]["uses_audited_declarations"]
+    )
+    late = by_clause["U08.1"]
+    assert late["archive_gap_status"] == "OPEN_FORMAL_TAIL"
+    assert "u08_1_mutable_current_status_disagrees_with_cutoff" in (
+        late["formal_tail_prove"]["candidate_theorems"]
+    )
+    assert "u08_1_late_record_disguised_as_then_known_changes_applicability" in (
+        late["formal_tail_prove"]["candidate_theorems"]
+    )
+    assert late["formal_tail_prove"]["close_admitted"] is False
     same_row = by_clause["U10.3"]
+    assert same_row["archive_gap_status"] == "OPEN_FORMAL_TAIL"
     assert same_row["formal_tail_prove"]["companion_required"] is True
     assert any("公平" in item for item in same_row["formal_tail_prove"]["non_goals_same_row"])
+    assert "另证" in same_row["formal_tail_prove"]["candidate_covers_only"]
+    assert "公平" in same_row["formal_tail_prove"]["candidate_covers_only"]
     assert any("zero-step" in item for item in same_row["unwired_formal_obligations"])
+    assert "u10_3_business_observation_faithful" in same_row["formal_tail_prove"]["candidate_theorems"]
+    assert "u10_3_zero_step_prohibits_strict_progress" in (
+        same_row["formal_tail_prove"]["candidate_theorems"]
+    )
+    assert same_row["formal_tail_prove"]["close_admitted"] is False
+    damping = by_clause["U12.2"]
+    assert damping["archive_gap_status"] == "OPEN_FORMAL_TAIL"
+    assert "u12_2_cubic_reaches_zero_but_expands" in damping["formal_tail_prove"]["candidate_theorems"]
+    assert "u12_2_one_minus_theta_oscillates" in damping["formal_tail_prove"]["candidate_theorems"]
+    assert "unproved" in damping["unwired_formal_obligations"][0]
+    assert damping["formal_tail_prove"]["close_admitted"] is False
+    clusters = by_clause["U14.2"]
+    assert clusters["archive_gap_status"] == "OPEN_FORMAL_TAIL"
+    assert "u14_2_endogenous_equal_sizes_are_not_the_fixed_witness" in (
+        clusters["formal_tail_prove"]["candidate_theorems"]
+    )
+    assert "u14_2_common_cause_copy_exceeds_independent_variance" in (
+        clusters["formal_tail_prove"]["candidate_theorems"]
+    )
+    assert "unproved" in clusters["unwired_formal_obligations"][0]
+    assert clusters["formal_tail_prove"]["close_admitted"] is False
+    blocked = [
+        "U01.1", "U01.2", "U01.3", "U02.1", "U02.3", "U03.1", "U03.2",
+        "U04.2", "U04.3", "U04.5", "U05.2", "U06.1", "U06.2", "U06.3",
+        "U07.1", "U07.2", "U07.3", "U08.2", "U08.3", "U09.1", "U09.3",
+        "U10.1", "U10.2", "U11.1", "U12.1", "U12.3", "U12.4", "U13.1",
+        "U13.2", "U13.3", "U13.4", "U14.1", "U15.1", "U15.2", "U15.3",
+    ]
+    assert len(blocked) == 35
+    for clause in blocked:
+        row = by_clause[clause]
+        assert row["archive_gap_status"] == "OPEN_FORMAL_TAIL"
+        assert row["formal_tail_prove"]["disposition"] == "BLOCKED_NOT_IN_TIP_PIN_AUDIT"
+        assert row["formal_tail_prove"]["candidate_theorems"] == []
+        assert row["formal_tail_prove"]["close_admitted"] is False
+        assert "close_blocked_reason" not in row["formal_tail_prove"]
     assert all(row["discharges_archived_manuscript_gaps"] is False for row in ledger["rows"])
     assert all(row["formal_tail_prove"]["step_2_closed"] is False for row in ledger["rows"])
     assert all(row["formal_tail_prove"]["close_admitted"] is False for row in ledger["rows"])

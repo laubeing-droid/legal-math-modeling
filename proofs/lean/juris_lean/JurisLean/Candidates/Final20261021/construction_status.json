@@ -279,7 +279,7 @@
   "blockers": [
     {
       "kind": "MATHEMATICAL_IMPLEMENTATION",
-      "detail": "Live exact_scope and remaining_obligations in 50_clause_status.json are empty under the formal_ci acceptance in evidence/ci-tip-e87543d8/verification.json: every listed declaration was re-extracted from the tip lean-full-build artifact and uses only standard axioms. The previous manuscript sentences are pinned in evidence/ci-tip-e87543d8/scope-archive.json. That archive is carried forward from evidence/ci-tip-966b9373/scope-archive.json and is not a Lean proof of the sentences it preserves, including general measurable TV, fully penalized logistic existence, a continuous tie-break density, a general filtration tower, and Brouwer or hidden-information equilibrium. This pin does not close archived manuscript gaps."
+      "detail": "Live exact_scope and remaining_obligations in 50_clause_status.json are empty under the formal_ci acceptance in evidence/ci-tip-27849d3f/verification.json: every listed declaration was re-extracted from the tip lean-full-build artifact and uses only standard axioms. The previous manuscript sentences are pinned in evidence/ci-tip-27849d3f/scope-archive.json. That archive is carried forward from evidence/ci-tip-e87543d8/scope-archive.json and is not a Lean proof of the sentences it preserves, including general measurable TV, fully penalized logistic existence, a continuous tie-break density, a general filtration tower, and Brouwer or hidden-information equilibrium. This pin does not close archived manuscript gaps."
     },
     {
       "kind": "PYTHON_CI_DISCOVERY",
@@ -287,7 +287,7 @@
     },
     {
       "kind": "FULL_RELEASE_RETRY",
-      "detail": "The 799b42c full-release failed derived-accounting freshness. Run 39714740194 on main tip 5db4e0453d77493e2699af7b32bcb1ea8c7668a5 then passed the repository full-release path. That pass does not set formal_ci of the 50 frozen clauses. Source edits after 5db4e04, including the RestPay N2 split, are outside that run. tip_declaration_location records the axiom audit re-extracted from the later tip artifact. Live exact_scope and remaining_obligations are empty. The scope archive pins the previous manuscript text and is not a proof of those sentences. The current tip pin is evidence/ci-tip-e87543d8/verification.json on e87543d836cd3cf83bbb5a65b74e47d9bfe31865 run 39933015422. That pin does not close archived manuscript gaps."
+      "detail": "The 799b42c full-release failed derived-accounting freshness. Run 39714740194 on main tip 5db4e0453d77493e2699af7b32bcb1ea8c7668a5 then passed the repository full-release path. That pass does not set formal_ci of the 50 frozen clauses. Source edits after 5db4e04, including the RestPay N2 split, are outside that run. tip_declaration_location records the axiom audit re-extracted from the later tip artifact. Live exact_scope and remaining_obligations are empty. The scope archive pins the previous manuscript text and is not a proof of those sentences. The current tip pin is evidence/ci-tip-27849d3f/verification.json on 27849d3f228ec3665da16a6aa0b801672421dca2 run 40079130550 job 120828801547. That pin does not close archived manuscript gaps. Retargeting the tip pin does not close step 2."
     }
   ],
   "evidence_boundary": "Local static and Python checks are not formal Lean CI. Original GitHub Actions logs and ZIP artifacts bind only their recorded subject and declared scope. Paper proof availability, current Lean implementation, runtime refinement, and legal or real-occurrence evidence are distinct.",
@@ -724,16 +724,16 @@
     "formal_ci": "CI_NOT_RUN_FOR_REPAIR"
   },
   "tip_declaration_location": {
-    "subject": "e87543d836cd3cf83bbb5a65b74e47d9bfe31865",
-    "run_id": 39933015422,
+    "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
+    "run_id": 40079130550,
     "job": "lean-full-clean-build",
-    "job_id": 120345670150,
-    "verification": "evidence/ci-tip-e87543d8/verification.json",
+    "job_id": 120828801547,
+    "verification": "evidence/ci-tip-27849d3f/verification.json",
     "meaning": "LISTED_DECLARATIONS_AXIOM_AUDITED_LIVE_SCOPE_EMPTY",
     "acceptance_discharged": true,
-    "artifact_zip_sha256": "1aec3833214f847f2d11b2e9415628ccad0cd6399ae2ef8d5ec73cc80dadcba8",
+    "artifact_zip_sha256": "d7c958af639880f28f238e61ede956ccf6bd9a1357e8163a638a6645177b2ab4",
     "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-    "scope_archive": "evidence/ci-tip-e87543d8/scope-archive.json",
+    "scope_archive": "evidence/ci-tip-27849d3f/scope-archive.json",
     "discharges_archived_manuscript_gaps": false
   },
   "archive_gap_close": {
@@ -745,13 +745,13 @@
     "tip_authority_run_gate_only": 39960871624,
     "gate_green_does_not_close_archive_debt": true,
     "prior_tip_pin_did_not_close_archive_debt": true,
-    "tip_pin_not_retargeted": true,
+    "tip_pin_not_retargeted": false,
     "tip_pin": {
-      "subject": "e87543d836cd3cf83bbb5a65b74e47d9bfe31865",
-      "run_id": 39933015422,
-      "job_id": 120345670150,
+      "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
+      "run_id": 40079130550,
+      "job_id": 120828801547,
       "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-      "verification": "evidence/ci-tip-e87543d8/verification.json"
+      "verification": "evidence/ci-tip-27849d3f/verification.json"
     },
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
@@ -799,13 +799,13 @@
       "discharges_archived_manuscript_gaps": false,
       "math_flip_authorized": false,
       "step_2_closed": false,
-      "tip_pin_not_retargeted": true,
+      "tip_pin_not_retargeted": false,
       "tip_pin": {
-        "subject": "e87543d836cd3cf83bbb5a65b74e47d9bfe31865",
-        "run_id": 39933015422,
-        "job_id": 120345670150,
+        "subject": "27849d3f228ec3665da16a6aa0b801672421dca2",
+        "run_id": 40079130550,
+        "job_id": 120828801547,
         "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-        "verification": "evidence/ci-tip-e87543d8/verification.json"
+        "verification": "evidence/ci-tip-27849d3f/verification.json"
       },
       "later_tip_gate_not_a_close": {
         "subject": "c0b90b6998dfd6bf3a23792bed83af118726d6da",

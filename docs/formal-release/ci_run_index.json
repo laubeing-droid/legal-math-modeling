@@ -26096,13 +26096,76 @@
       "jobs_total": 8,
       "name": "Merge pull request #7 from laubeing-droid/cursor/tip-axiom-scope-clos…",
       "quoted_by": [
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:3",
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:59"
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:69"
       ],
       "run_id": 39933015422,
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-23T09:49:00Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-24T08:43:06Z",
+      "event": "push",
+      "evidence": null,
+      "head_branch": "main",
+      "head_sha": "27849d3f228ec3665da16a6aa0b801672421dca2",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40079130550",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Record OPEN_FORMAL_TAIL×40 prove progress without closing the debt (#10)",
+      "quoted_by": [
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:3",
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:59",
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:69"
+      ],
+      "run_id": 40079130550,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-24T08:55:47Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

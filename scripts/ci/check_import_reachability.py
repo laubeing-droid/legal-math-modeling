@@ -184,6 +184,16 @@ PENDING_CI_MODULES: dict[str, str] = {
     # exist": the reachability walk reads the working tree while CI reads the checkout, so a
     # booking can only ever follow the commit. SanctionInterest and StatuteChain get their lines
     # in the same commit that puts their files in the tree, not before.
+    #
+    # Formal-tail candidates (2026-10-24). The module is booked in the same commit
+    # as its file. It is not a release-root import: AGENTS forbids root entry
+    # before the module's own changed-module CI run, and the declarations are
+    # not on the tip-pin axiom audit. They do not close OPEN_FORMAL_TAIL rows.
+    "JurisLean.Candidates.FormalTail20261024": (
+        "formal-tail candidate declarations; not tip-pin audited; "
+        "not a clause close; waiting for its own changed-module CI run "
+        "before any release-root import"
+    ),
 }
 
 # Same-pin external ports (elazarg/GameTheory @ 107085bc4 and

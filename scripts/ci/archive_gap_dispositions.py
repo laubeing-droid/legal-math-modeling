@@ -442,6 +442,109 @@ GATE_ONLY_SHA = "f080eee0ffeadb09d8fe404adb3dcddf326b4a11"
 CRITERIA_PACK = "/home/box/shared/legal-math-reviewer/archive_gap_判据包_20261024/"
 PREFIX = "JurisLean.Candidates.Final20261021."
 
+# Formal-tail round on the same pipeline. This does not replace the archive-gap
+# pack path, does not retarget the tip-pin, and does not authorize discharges.
+FORMAL_TAIL_PACK = "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/"
+FORMAL_TAIL_PACK_FILES = (
+    "判据包.md",
+    "施工放行条件.md",
+    "TAIL40清单.md",
+    "TAIL40清单.json",
+)
+FORMAL_TAIL_ROUND = "formal_tail_20261024"
+# Tip Authority after archive-gap PR #9. Recorded as gate-only. Not the pin.
+LATER_TIP_GATE = {
+    "subject": "c0b90b6998dfd6bf3a23792bed83af118726d6da",
+    "run_id": 40063377178,
+    "closes_debt": False,
+    "retargets_tip_pin": False,
+    "step_2_closed": False,
+}
+CANDIDATE_MODULE = "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean"
+CANDIDATE_MODULE_NAME = "JurisLean.Candidates.FormalTail20261024"
+# These eight stay on the prove path and must carry non-goals in the same row.
+COMPANION_TAIL_IDS = (
+    "U10.1",
+    "U08.3",
+    "U10.3",
+    "U09.1",
+    "U04.3",
+    "U12.4",
+    "U13.4",
+    "U15.3",
+)
+CLOSED_NARROW_IDS = (
+    "U02.4",
+    "U09.2",
+    "U01.4",
+    "U04.1",
+    "U04.4",
+    "U05.1",
+    "U06.5",
+    "U00",
+)
+CLOSED_WIRING_IDS = ("U02.2", "U01.0")
+# Theorems in CANDIDATE_MODULE. None is in the tip-pin audit. None closes a row.
+PROVE_CANDIDATES: dict[str, list[str]] = {
+    "U06.4": [
+        "u06_4_increasing_threshold_above_one_excludes",
+        "u06_4_increasing_threshold_at_most_zero_includes",
+        "u06_4_decreasing_threshold_below_zero_excludes",
+        "u06_4_decreasing_threshold_at_least_one_includes",
+    ],
+    "U08.1": [
+        "u08_1_recorded_after_cutoff_not_visible",
+    ],
+    "U10.3": [
+        "u10_3_zero_step_ranked_path_is_identity",
+    ],
+    "U12.2": [
+        "u12_2_halving_damps_toward_zero",
+        "u12_2_negation_orbit_oscillates",
+        "u12_2_shift_has_no_fixed_point",
+    ],
+    "U14.2": [
+        "u14_2_zero_N_rejects_positive_hypothesis",
+    ],
+}
+CANDIDATE_COVERS_ONLY: dict[str, str] = {
+    "U06.4": (
+        "Four corollaries of the audited threshold identities when the implied "
+        "threshold lies outside [0,1]. They are source text only. They are not "
+        "in tip-pin audit 39933015422 / job 120345670150, so 'no audited "
+        "declaration' stays true and the row stays OPEN_FORMAL_TAIL."
+    ),
+    "U08.1": (
+        "A record whose recordedAt is strictly after the record cutoff is not "
+        "visible. That is not a mutable-current-status countermodel, and it is "
+        "not tip-pin audited."
+    ),
+    "U10.3": (
+        "A zero-step ranked path is the identity. Business-observation "
+        "faithfulness is not stated. Fairness and external response stay "
+        "non-goals on this same row. The identity is not tip-pin audited."
+    ),
+    "U12.2": (
+        "Numeric damping, a two-point negation orbit, and a translation with "
+        "no fixed point. They are not a metric noncontraction theorem and "
+        "they are not tip-pin audited."
+    ),
+    "U14.2": (
+        "The positive-total hypothesis of the cluster tail fails at N = 0. "
+        "Endogenous-size and common-cause counterexamples are not stated, "
+        "and this rejection is not tip-pin audited."
+    ),
+}
+TAIL_BLOCKER = (
+    "The unwired formal obligation is not a declaration accepted by tip-pin "
+    "axiom audit subject e87543d836cd3cf83bbb5a65b74e47d9bfe31865, run "
+    "39933015422, job 120345670150. Candidates/Final20261021/*.lean stays "
+    "byte-locked to that receipt, so this round cannot edit those files or "
+    "cite a new name as audited. A candidate module outside that directory "
+    "is not closure. Gate SUCCESS, including run 40063377178, does not close "
+    "the row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+)
+
 
 def status_for(clause: str) -> str:
     path = PATHS[clause]
@@ -456,6 +559,81 @@ def status_for(clause: str) -> str:
     if not SCOPE_REVIEW.get(clause):
         raise RuntimeError(f"{clause}: wiring close has no scope review")
     return "CLOSED_BY_WIRING"
+
+
+def formal_tail_record(clause: str) -> dict:
+    """Prove-round record. Closed narrow/wiring rows are not reopened."""
+
+    status = status_for(clause)
+    if status != "OPEN_FORMAL_TAIL":
+        return {
+            "in_this_round": False,
+            "not_reopened": True,
+            "archive_gap_status": status,
+            "close_admitted": False,
+            "step_2_closed": False,
+            "discharges_archived_manuscript_gaps": False,
+        }
+    candidates = list(PROVE_CANDIDATES.get(clause, []))
+    return {
+        "in_this_round": True,
+        "round": FORMAL_TAIL_ROUND,
+        "criteria_pack": FORMAL_TAIL_PACK,
+        "pack_files": list(FORMAL_TAIL_PACK_FILES),
+        "suggested_close_path": "证",
+        "close_admitted": False,
+        "disposition": "CANDIDATE_NOT_AUDITED" if candidates else "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
+        "candidate_module": CANDIDATE_MODULE if candidates else "",
+        "candidate_module_name": CANDIDATE_MODULE_NAME if candidates else "",
+        "candidate_theorems": candidates,
+        "candidate_in_tip_pin_audit": False,
+        "candidate_covers_only": CANDIDATE_COVERS_ONLY.get(clause, ""),
+        "unwired_formal_obligations": list(UNWIRED[clause]),
+        "non_goals_same_row": list(NON_GOALS.get(clause, [])),
+        "companion_scope_notes": COMPANION_NOTES.get(clause, ""),
+        "companion_required": clause in COMPANION_TAIL_IDS,
+        "local_lean_is_not_closure": True,
+        "step_2_closed": False,
+        "discharges_archived_manuscript_gaps": False,
+        "blocker": TAIL_BLOCKER,
+    }
+
+
+def formal_tail_summary(rows: list[dict]) -> dict:
+    open_rows = [row for row in rows if row.get("archive_gap_status") == "OPEN_FORMAL_TAIL"]
+    return {
+        "round": FORMAL_TAIL_ROUND,
+        "criteria_pack": FORMAL_TAIL_PACK,
+        "pack_files": list(FORMAL_TAIL_PACK_FILES),
+        "one_pipeline": "archive-gap close ledger; no second track",
+        "open_formal_tail_remaining": len(open_rows),
+        "closed_this_round": 0,
+        "candidate_rows": sum(
+            1 for row in open_rows if (row.get("formal_tail_prove") or {}).get("disposition") == "CANDIDATE_NOT_AUDITED"
+        ),
+        "blocked_rows": sum(
+            1
+            for row in open_rows
+            if (row.get("formal_tail_prove") or {}).get("disposition") == "BLOCKED_NOT_IN_TIP_PIN_AUDIT"
+        ),
+        "narrow_not_reopened": list(CLOSED_NARROW_IDS),
+        "wiring_not_reopened": list(CLOSED_WIRING_IDS),
+        "companion_tail_ids": list(COMPANION_TAIL_IDS),
+        "candidate_module": CANDIDATE_MODULE,
+        "candidate_module_quarantine": (
+            "PENDING_CI until its own changed-module run; not joined to the "
+            "release root; not a tip-pin audit entry; not a clause close"
+        ),
+        "discharges_archived_manuscript_gaps": False,
+        "math_flip_authorized": False,
+        "step_2_closed": False,
+        "tip_pin_not_retargeted": True,
+        "tip_pin": dict(TIP_PIN),
+        "later_tip_gate_not_a_close": dict(LATER_TIP_GATE),
+        "gate_green_does_not_close_debt": True,
+        "china_law_column": "separate; foreign law and arXiv do not close China-law items",
+        "local_lean_is_not_closure": True,
+    }
 
 
 def remaining_after(clause: str) -> str:

@@ -31,6 +31,8 @@ def test_close_layer_matches_the_pack_and_keeps_discharges_false() -> None:
     assert "open_formal_tail 40" in proc.stdout
     assert "discharges false" in proc.stdout
     assert "39933015422" in proc.stdout
+    assert "formal_tail_closed_this_round 0" in proc.stdout
+    assert "step_2_closed false" in proc.stdout
 
 
 def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> None:
@@ -50,5 +52,42 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert any("真实授权合法性" in item for item in authority["non_goals"])
     assert any("protocol refinement" in item for item in authority["unwired_formal_obligations"])
     assert ledger["discharges_archived_manuscript_gaps"] is False
+    assert ledger["math_flip_authorized"] is False
     assert ledger["counts"]["放弃"] == 0
+    assert ledger["formal_tail_criteria_pack"] == (
+        "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/"
+    )
+    summary = ledger["formal_tail_round"]
+    assert summary["step_2_closed"] is False
+    assert summary["closed_this_round"] == 0
+    assert summary["open_formal_tail_remaining"] == 40
+    assert summary["tip_pin"]["subject"] == "e87543d836cd3cf83bbb5a65b74e47d9bfe31865"
+    assert summary["tip_pin"]["run_id"] == 39933015422
+    assert summary["tip_pin"]["job_id"] == 120345670150
+    assert summary["later_tip_gate_not_a_close"]["run_id"] == 40063377178
+    assert summary["later_tip_gate_not_a_close"]["closes_debt"] is False
+    assert summary["later_tip_gate_not_a_close"]["retargets_tip_pin"] is False
+    assert summary["narrow_not_reopened"] == [
+        "U02.4", "U09.2", "U01.4", "U04.1", "U04.4", "U05.1", "U06.5", "U00",
+    ]
+    assert summary["wiring_not_reopened"] == ["U02.2", "U01.0"]
+    pure = by_clause["U07.1"]
+    assert pure["formal_tail_prove"]["disposition"] == "BLOCKED_NOT_IN_TIP_PIN_AUDIT"
+    assert pure["formal_tail_prove"]["candidate_theorems"] == []
+    assert pure["formal_tail_prove"]["non_goals_same_row"] == []
+    assert pure["formal_tail_prove"]["close_admitted"] is False
+    audited_but_open = by_clause["U06.4"]
+    assert audited_but_open["archive_gap_status"] == "OPEN_FORMAL_TAIL"
+    assert audited_but_open["formal_tail_prove"]["disposition"] == "CANDIDATE_NOT_AUDITED"
+    assert "u06_4_increasing_threshold_above_one_excludes" in (
+        audited_but_open["formal_tail_prove"]["candidate_theorems"]
+    )
+    assert audited_but_open["formal_tail_prove"]["candidate_in_tip_pin_audit"] is False
+    assert any("audited declaration" in item for item in audited_but_open["unwired_formal_obligations"])
+    same_row = by_clause["U10.3"]
+    assert same_row["formal_tail_prove"]["companion_required"] is True
+    assert any("公平" in item for item in same_row["formal_tail_prove"]["non_goals_same_row"])
+    assert any("zero-step" in item for item in same_row["unwired_formal_obligations"])
     assert all(row["discharges_archived_manuscript_gaps"] is False for row in ledger["rows"])
+    assert all(row["formal_tail_prove"]["step_2_closed"] is False for row in ledger["rows"])
+    assert all(row["formal_tail_prove"]["close_admitted"] is False for row in ledger["rows"])

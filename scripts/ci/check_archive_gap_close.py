@@ -129,6 +129,7 @@ def build_ledger(status: dict, archive: dict, lines: dict[tuple[str, str], int])
                 "tip_pin_run_id": disp.TIP_PIN["run_id"],
                 "not_gate_run": disp.GATE_ONLY_RUN,
                 "discharges_archived_manuscript_gaps": False,
+                "formal_tail_prove": disp.formal_tail_record(clause),
             }
         )
     counts = {
@@ -170,8 +171,11 @@ def build_ledger(status: dict, archive: dict, lines: dict[tuple[str, str], int])
         "math_flip_blocked_reason": (
             "Math must spot-check this layer after tip Authority recheck before "
             "anyone writes discharges_archived_manuscript_gaps=true. Open formal "
-            "tails also keep the flag false."
+            "tails also keep the flag false. The formal-tail round does not "
+            "close step 2 and does not authorize the flip."
         ),
+        "formal_tail_criteria_pack": disp.FORMAL_TAIL_PACK,
+        "formal_tail_round": disp.formal_tail_summary(built_rows),
         "counts": counts,
         "prc_china_law_column": (
             "separate; foreign law and arXiv do not close China-law items; "
@@ -205,6 +209,16 @@ def pointer_view(row: dict) -> dict:
         "evidence_pointers": row["evidence_pointers"],
         "non_goals": row["non_goals"],
         "discharges_archived_manuscript_gaps": False,
+        "formal_tail_prove": {
+            "round": (row.get("formal_tail_prove") or {}).get("round", ""),
+            "in_this_round": (row.get("formal_tail_prove") or {}).get("in_this_round"),
+            "not_reopened": (row.get("formal_tail_prove") or {}).get("not_reopened", False),
+            "disposition": (row.get("formal_tail_prove") or {}).get("disposition", ""),
+            "close_admitted": False,
+            "step_2_closed": False,
+            "criteria_pack": (row.get("formal_tail_prove") or {}).get("criteria_pack", ""),
+            "non_goals_same_row": (row.get("formal_tail_prove") or {}).get("non_goals_same_row", []),
+        },
     }
 
 
@@ -222,6 +236,8 @@ def summary_view(ledger: dict) -> dict:
         "tip_pin": dict(disp.TIP_PIN),
         "discharges_archived_manuscript_gaps": False,
         "math_flip_authorized": False,
+        "formal_tail_criteria_pack": disp.FORMAL_TAIL_PACK,
+        "formal_tail_round": ledger.get("formal_tail_round"),
         "counts": ledger["counts"],
     }
 
@@ -283,7 +299,110 @@ def check_ledger(ledger: dict, status: dict, archive: dict, extracted: dict, lin
         errors.append("open-tail count does not match rows")
     if open_count and ledger.get("discharges_archived_manuscript_gaps") is not False:
         errors.append("open formal tails with discharges true")
+    errors.extend(formal_tail_errors(ledger, names))
     return errors
+
+
+def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
+    errors: list[str] = []
+    summary = ledger.get("formal_tail_round") or {}
+    if ledger.get("formal_tail_criteria_pack") != disp.FORMAL_TAIL_PACK:
+        errors.append("formal_tail_criteria_pack drifted")
+    if summary.get("criteria_pack") != disp.FORMAL_TAIL_PACK:
+        errors.append("formal-tail summary pack path drifted")
+    for name in disp.FORMAL_TAIL_PACK_FILES:
+        if name not in (summary.get("pack_files") or []):
+            errors.append(f"formal-tail summary omits pack file {name}")
+    if summary.get("step_2_closed") is not False or summary.get("closed_this_round") != 0:
+        errors.append("formal-tail round claims step 2 or a close")
+    if summary.get("discharges_archived_manuscript_gaps") is not False or summary.get("math_flip_authorized") is not False:
+        errors.append("formal-tail round flips discharges or math authorization")
+    if summary.get("tip_pin") != disp.TIP_PIN or summary.get("tip_pin_not_retargeted") is not True:
+        errors.append("formal-tail round retargets the tip-pin")
+    later = summary.get("later_tip_gate_not_a_close") or {}
+    if later != disp.LATER_TIP_GATE:
+        errors.append("later tip gate record drifted")
+    if later.get("closes_debt") is not False or later.get("retargets_tip_pin") is not False:
+        errors.append("later tip gate is treated as a close or a retarget")
+    if summary.get("narrow_not_reopened") != list(disp.CLOSED_NARROW_IDS):
+        errors.append("narrow set was reopened or reordered")
+    if summary.get("wiring_not_reopened") != list(disp.CLOSED_WIRING_IDS):
+        errors.append("wiring set was reopened or reordered")
+    if summary.get("one_pipeline") != "archive-gap close ledger; no second track":
+        errors.append("formal-tail round is not on the archive-gap pipeline")
+    candidate_text = ""
+    candidate_path = ROOT / disp.CANDIDATE_MODULE
+    if not candidate_path.is_file():
+        errors.append(f"missing candidate module {disp.CANDIDATE_MODULE}")
+    else:
+        candidate_text = candidate_path.read_text(encoding="utf-8")
+        for token in ("sorry", "admit"):
+            if re_token(candidate_text, token):
+                errors.append(f"candidate module contains {token}")
+        for line in candidate_text.splitlines():
+            if line.startswith("axiom ") or line.startswith("axiom\t"):
+                errors.append("candidate module declares an axiom")
+    seen_candidates: list[str] = []
+    open_rows = 0
+    for row in ledger.get("rows") or []:
+        clause = row.get("clause")
+        record = row.get("formal_tail_prove") or {}
+        expected = disp.formal_tail_record(clause)
+        if record != expected:
+            errors.append(f"{clause}: formal_tail_prove != disposition record")
+            continue
+        if record.get("close_admitted") is not False or record.get("step_2_closed") is not False:
+            errors.append(f"{clause}: formal tail admits a close")
+        if record.get("discharges_archived_manuscript_gaps") is not False:
+            errors.append(f"{clause}: formal tail discharges the archive")
+        status_name = row.get("archive_gap_status")
+        if status_name == "OPEN_FORMAL_TAIL":
+            open_rows += 1
+            if record.get("in_this_round") is not True:
+                errors.append(f"{clause}: open tail missing from the formal-tail round")
+            if clause in disp.COMPANION_TAIL_IDS:
+                if record.get("companion_scope_notes") != disp.COMPANION_NOTES[clause]:
+                    errors.append(f"{clause}: companion note missing from the prove record")
+                if record.get("non_goals_same_row") != disp.NON_GOALS[clause] or not record.get("non_goals_same_row"):
+                    errors.append(f"{clause}: companion non-goals are not in the same prove record")
+            for short in record.get("candidate_theorems") or []:
+                seen_candidates.append(short)
+                if f"theorem {short}" not in candidate_text:
+                    errors.append(f"{clause}: candidate theorem {short} is not in the module")
+                full = f"{disp.CANDIDATE_MODULE_NAME}.{short}"
+                if full in names or short in {item.get("name", "").split(".")[-1] for item in row.get("wired_declarations") or []}:
+                    errors.append(f"{clause}: {short} is cited as a tip-pin wired declaration")
+                if record.get("candidate_in_tip_pin_audit") is not False:
+                    errors.append(f"{clause}: candidate marked audited")
+                if record.get("disposition") != "CANDIDATE_NOT_AUDITED":
+                    errors.append(f"{clause}: candidate row has the wrong disposition")
+            if not record.get("candidate_theorems") and record.get("disposition") != "BLOCKED_NOT_IN_TIP_PIN_AUDIT":
+                errors.append(f"{clause}: blocked row has the wrong disposition")
+        else:
+            if record.get("not_reopened") is not True or record.get("in_this_round") is not False:
+                errors.append(f"{clause}: closed row was reopened by the formal-tail round")
+    if summary.get("open_formal_tail_remaining") != open_rows:
+        errors.append("formal-tail summary open count drifted")
+    expected_order = []
+    for row in ledger.get("rows") or []:
+        expected_order.extend((row.get("formal_tail_prove") or {}).get("candidate_theorems") or [])
+    if seen_candidates != expected_order:
+        errors.append("candidate theorem order drifted")
+    declared = []
+    if candidate_text:
+        for line in candidate_text.splitlines():
+            stripped = line.strip()
+            if stripped.startswith("theorem "):
+                declared.append(stripped.split()[1])
+    if declared != expected_order:
+        errors.append(f"candidate module theorems {declared} != ledger {expected_order}")
+    return errors
+
+
+def re_token(text: str, token: str) -> bool:
+    import re
+
+    return re.search(rf"\b{token}\b", text) is not None
 
 
 def row_errors(row: dict, archived: dict, status_row: dict | None, names: dict, lines: dict) -> list[str]:
@@ -453,7 +572,8 @@ def main() -> int:
     counts = ledger.get("counts") or {}
     print(
         "archive-gap rows {rows}; narrow {narrow}; wiring {wiring}; "
-        "open_formal_tail {open}; discharges false; tip-pin {run}".format(
+        "open_formal_tail {open}; discharges false; tip-pin {run}; "
+        "formal_tail_closed_this_round 0; step_2_closed false".format(
             rows=len(ledger.get("rows") or []),
             narrow=counts.get("CLOSED_BY_NARROW"),
             wiring=counts.get("CLOSED_BY_WIRING"),

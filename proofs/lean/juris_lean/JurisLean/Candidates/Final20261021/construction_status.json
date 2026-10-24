@@ -755,6 +755,69 @@
     },
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
+    "formal_tail_criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
+    "formal_tail_round": {
+      "round": "formal_tail_20261024",
+      "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
+      "pack_files": [
+        "判据包.md",
+        "施工放行条件.md",
+        "TAIL40清单.md",
+        "TAIL40清单.json"
+      ],
+      "one_pipeline": "archive-gap close ledger; no second track",
+      "open_formal_tail_remaining": 40,
+      "closed_this_round": 0,
+      "candidate_rows": 5,
+      "blocked_rows": 35,
+      "narrow_not_reopened": [
+        "U02.4",
+        "U09.2",
+        "U01.4",
+        "U04.1",
+        "U04.4",
+        "U05.1",
+        "U06.5",
+        "U00"
+      ],
+      "wiring_not_reopened": [
+        "U02.2",
+        "U01.0"
+      ],
+      "companion_tail_ids": [
+        "U10.1",
+        "U08.3",
+        "U10.3",
+        "U09.1",
+        "U04.3",
+        "U12.4",
+        "U13.4",
+        "U15.3"
+      ],
+      "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
+      "candidate_module_quarantine": "PENDING_CI until its own changed-module run; not joined to the release root; not a tip-pin audit entry; not a clause close",
+      "discharges_archived_manuscript_gaps": false,
+      "math_flip_authorized": false,
+      "step_2_closed": false,
+      "tip_pin_not_retargeted": true,
+      "tip_pin": {
+        "subject": "e87543d836cd3cf83bbb5a65b74e47d9bfe31865",
+        "run_id": 39933015422,
+        "job_id": 120345670150,
+        "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
+        "verification": "evidence/ci-tip-e87543d8/verification.json"
+      },
+      "later_tip_gate_not_a_close": {
+        "subject": "c0b90b6998dfd6bf3a23792bed83af118726d6da",
+        "run_id": 40063377178,
+        "closes_debt": false,
+        "retargets_tip_pin": false,
+        "step_2_closed": false
+      },
+      "gate_green_does_not_close_debt": true,
+      "china_law_column": "separate; foreign law and arXiv do not close China-law items",
+      "local_lean_is_not_closure": true
+    },
     "counts": {
       "证": 42,
       "缩": 8,

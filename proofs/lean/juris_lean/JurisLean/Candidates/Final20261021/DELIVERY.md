@@ -67,3 +67,7 @@ T113 原文、恰一次活性/外部效果、Dirty、全量中国法条映射不
 ## 归档 50 条关项层（2026-10-24）
 
 `evidence/archive-gap-close-20261024/close-ledger.json` 按判据包 `/home/box/shared/legal-math-reviewer/archive_gap_判据包_20261024/`（`未决改判_20261024.md`、`施工放行条件.md`）处理 50 条原稿：证 42、缩 8、放弃 0。缩域 8 条把残留写成同条显式非目标；证只把候选体接到活钉重新抽出的声明上。活钉已从 `e87543d836cd3cf83bbb5a65b74e47d9bfe31865` / run `39933015422` / `evidence/ci-tip-e87543d8/` 重钉到 `27849d3f228ec3665da16a6aa0b801672421dca2` / run `40079130550` / `evidence/ci-tip-27849d3f/verification.json`。两份回执的作业名都是 `lean-full-clean-build`，job id 写在回执里。没有对应声明的形式尾巴保持 `OPEN_FORMAL_TAIL`（40 条），其中 U04.3 的全坐标受罚存在唯一仍是 UNPROVED。本 PR 不关任何 `OPEN_FORMAL_TAIL`，不把 candidate 升为关项。`scope-archive.json` 原稿未改、未清空；新目录只携带旧原稿。`discharges_archived_manuscript_gaps` 仍为 false，`math_flip_authorized` 仍为 false。第2步不关。账本里的 `tip_authority_run_gate_only` 只是门禁，不关这笔债。重钉≠关债 / retarget ≠ close debt。中国法栏未改。
+
+## tip-pin ??? CAND5?2026-10-25?
+
+`evidence/ci-tip-f85ebe44/verification.json` ?? FormalTail20261024 ? 25 ??????U06.4?U08.1?U10.3?U12.2?U14.2???? `candidate_in_tip_pin_audit=true`?????????????????? tip-pin `27849d3f`?`40079130550`?`120828801547`???? FormalTail ???? tip_pin ??????????Final20261021 ??????? tip Authority `40115638107` SUCCESS ???? `f85ebe44?`?`40115638107`?`lean-full-clean-build` job_id?TODO???????`discharges_archived_manuscript_gaps` ? false?`math_flip_authorized` ? false?`OPEN_FORMAL_TAIL` ? 40?`closed_this_round` ? 0?disposition ? `CANDIDATE_NOT_AUDITED`?????????????U10.3 companion ??????????????2????

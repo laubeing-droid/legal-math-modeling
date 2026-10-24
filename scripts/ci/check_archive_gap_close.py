@@ -33,6 +33,8 @@ CARRIED_PATH = CANDIDATE / "evidence/ci-tip-966b9373/scope-archive.json"
 LIVE_ARCHIVE_REL = "evidence/ci-tip-27849d3f/scope-archive.json"
 LIVE_ARCHIVE_PATH = CANDIDATE / LIVE_ARCHIVE_REL
 RECEIPT_PATH = CANDIDATE / "evidence/ci-tip-27849d3f/verification.json"
+EXPAND_RECEIPT_REL = "evidence/ci-tip-f85ebe44/verification.json"
+EXPAND_RECEIPT_PATH = CANDIDATE / EXPAND_RECEIPT_REL
 LEDGER_PATH = CANDIDATE / "evidence/archive-gap-close-20261024/close-ledger.json"
 LEDGER_REL = "evidence/archive-gap-close-20261024/close-ledger.json"
 BINDING = ROOT / "scripts/ci/check_clause_declaration_binding.py"
@@ -225,6 +227,12 @@ def pointer_view(row: dict) -> dict:
             "in_this_round": (row.get("formal_tail_prove") or {}).get("in_this_round"),
             "not_reopened": (row.get("formal_tail_prove") or {}).get("not_reopened", False),
             "disposition": (row.get("formal_tail_prove") or {}).get("disposition", ""),
+            "candidate_in_tip_pin_audit": (row.get("formal_tail_prove") or {}).get(
+                "candidate_in_tip_pin_audit", False
+            ),
+            "tip_pin_expand_audit": (row.get("formal_tail_prove") or {}).get(
+                "tip_pin_expand_audit"
+            ),
             "close_admitted": False,
             "step_2_closed": False,
             "criteria_pack": (row.get("formal_tail_prove") or {}).get("criteria_pack", ""),
@@ -332,6 +340,8 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         errors.append("formal-tail round flips discharges or math authorization")
     if summary.get("tip_pin") != disp.TIP_PIN or summary.get("tip_pin_not_retargeted") is not False:
         errors.append("formal-tail round tip_pin is not the live retarget")
+    if summary.get("formal_tail_expand_audit") != disp.FORMAL_TAIL_EXPAND:
+        errors.append("formal-tail round missing formal_tail_expand_audit")
     later = summary.get("later_tip_gate_not_a_close") or {}
     if later != disp.LATER_TIP_GATE:
         errors.append("later tip gate record drifted")
@@ -385,10 +395,34 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
                 full = f"{disp.CANDIDATE_MODULE_NAME}.{short}"
                 if full in names or short in {item.get("name", "").split(".")[-1] for item in row.get("wired_declarations") or []}:
                     errors.append(f"{clause}: {short} is cited as a tip-pin wired declaration")
-                if record.get("candidate_in_tip_pin_audit") is not False:
-                    errors.append(f"{clause}: candidate marked audited")
                 if record.get("disposition") != "CANDIDATE_NOT_AUDITED":
                     errors.append(f"{clause}: candidate row has the wrong disposition")
+            if record.get("candidate_theorems"):
+                if record.get("candidate_in_tip_pin_audit") is not True:
+                    errors.append(f"{clause}: candidate_in_tip_pin_audit evidence not wired")
+                expand_meta = record.get("tip_pin_expand_audit") or {}
+                if expand_meta != disp.FORMAL_TAIL_EXPAND:
+                    errors.append(f"{clause}: tip_pin_expand_audit != FORMAL_TAIL_EXPAND")
+                if not EXPAND_RECEIPT_PATH.is_file():
+                    errors.append(f"{clause}: missing expand-audit receipt")
+                else:
+                    expand = load_json(EXPAND_RECEIPT_PATH)
+                    named = set(expand.get("named_theorems_full") or [])
+                    for short in record.get("candidate_theorems") or []:
+                        full = f"{disp.CANDIDATE_MODULE_NAME}.{short}"
+                        if full not in named:
+                            errors.append(f"{clause}: {full} missing from expand-audit evidence")
+                    if expand.get("discharges_archived_manuscript_gaps") is not False:
+                        errors.append("expand-audit receipt flipped discharges")
+                    if expand.get("closes_debt") is not False:
+                        errors.append("expand-audit receipt claims debt close")
+                    if expand.get("named_count") != 25:
+                        errors.append("expand-audit named_count != 25")
+                    companion = expand.get("u10_3_companion_note") or ""
+                    if "公平" not in companion or "另证" not in companion:
+                        errors.append("expand-audit missing U10.3 companion ????? note")
+                    if "40079130550" in str(expand.get("named_theorems_full")):
+                        errors.append("expand-audit improperly cites old tip-pin as FormalTail coverage")
             if not record.get("candidate_theorems") and record.get("disposition") != "BLOCKED_NOT_IN_TIP_PIN_AUDIT":
                 errors.append(f"{clause}: blocked row has the wrong disposition")
         else:

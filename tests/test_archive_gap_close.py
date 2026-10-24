@@ -71,6 +71,13 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert summary["tip_pin"]["run_id"] == 40079130550
     assert summary["tip_pin"]["job_id"] == 120828801547
     assert summary["tip_pin"]["verification"] == "evidence/ci-tip-27849d3f/verification.json"
+    assert summary["formal_tail_expand_audit"]["verification"] == (
+        "evidence/ci-tip-f85ebe44/verification.json"
+    )
+    assert summary["formal_tail_expand_audit"]["tip_authority_run_id"] == 40115638107
+    assert summary["formal_tail_expand_audit"]["live_tip_pin_retarget"] == (
+        "TODO_BIND_WHEN_40115638107_SUCCESS"
+    )
     assert ledger["tip_pin_not_retargeted"] is False
     assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 40
     assert summary["later_tip_gate_not_a_close"]["run_id"] == 40063377178
@@ -94,7 +101,10 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert "u06_4_increasing_unit_interval_above_one_is_empty" in (
         audited_but_open["formal_tail_prove"]["candidate_theorems"]
     )
-    assert audited_but_open["formal_tail_prove"]["candidate_in_tip_pin_audit"] is False
+    assert audited_but_open["formal_tail_prove"]["candidate_in_tip_pin_audit"] is True
+    assert audited_but_open["formal_tail_prove"]["tip_pin_expand_audit"]["verification"] == (
+        "evidence/ci-tip-f85ebe44/verification.json"
+    )
     assert audited_but_open["formal_tail_prove"]["close_admitted"] is False
     assert any("audited declaration" in item for item in audited_but_open["unwired_formal_obligations"])
     assert "u06_4_threshold_increasing" in "".join(

@@ -9,13 +9,18 @@ import JurisLean.Candidates.Final20261021.Temporal
 Formal-tail source for formal_tail_20261024, candidate ids
 U08.1, U10.3, U06.4, U12.2, U14.2 (archive order).
 
-These declarations are not in the live tip-pin axiom audit.
-That audit's recorded commit is 27849d3f228ec3665da16a6aa0b801672421dca2,
-its id is 40079130550, and its job id is 120828801547.
-This header does not attest that audit. No landed axiom-audit text
-names JurisLean.Candidates.FormalTail20261024.
-They are not wired as tip-pin clause declarations.
-A later gate SUCCESS on this file does not close an OPEN_FORMAL_TAIL row.
+These 25 theorem FULL names are named in the tip-pin expand-audit
+evidence at evidence/ci-tip-f85ebe44/verification.json (pack
+tip_pin_扩审计_CAND5_20261025). That naming wires
+candidate_in_tip_pin_audit evidence only. It does not close debt.
+
+Prior tip-pin 27849d3f / run 40079130550 / job 120828801547 must NOT
+be cited as FormalTail coverage. Live tip_pin subject/run/job retarget
+binds to tip Authority 40115638107 (subject f85ebe44…) once that run
+is SUCCESS; do not invent green.
+
+Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer rejudge.
+OPEN_FORMAL_TAIL stays 40. closed_this_round stays 0.
 They do not set discharges_archived_manuscript_gaps.
 They do not close step 2.
 Local text is not a Lean PASS. CI is the authority.
@@ -35,8 +40,8 @@ open JurisLean.Candidates.Final20261021.Temporal
 Late records stay invisible at the cutoff. Disguising one as then-known
 changes applicability. Reading the latest version as current status
 disagrees with the cutoff query. The append lemma is a consumer of the
-audited `u08_1_selection_stable`. None of this is in the tip-pin audit,
-so U08.1 stays OPEN_FORMAL_TAIL. -/
+audited `u08_1_selection_stable`. Named in expand-audit evidence
+ci-tip-f85ebe44; still OPEN_FORMAL_TAIL (no debt close). -/
 
 theorem u08_1_recorded_after_cutoff_not_visible (g : Gamma) (e : VersionRecord)
     (h : g.recordCutoff.ticks < e.recordedAt.ticks) :
@@ -112,8 +117,9 @@ Business-observed length is the sum of per-operation abstract steps and is a
 consumer of the audited simulation-length bound. A zero observation is not
 positive progress.
 公平 and 外部响应 are explicit non-goals of this clause (exact_scope: 另证).
-These declarations are not in tip-pin audit 40079130550 / job 120828801547.
-They do not close U10.3. -/
+These declarations are named in expand-audit evidence ci-tip-f85ebe44;
+prior 40079130550 / job 120828801547 is not FormalTail coverage.
+They do not close U10.3. Companion 公平／外部响应＝另证 stays. -/
 
 theorem u10_3_zero_step_ranked_path_is_identity {S : Type} (rank : S → Nat) {s t : S}
     (h : RankedPath rank s 0 t) : s = t := by
@@ -161,8 +167,8 @@ theorem u10_3_one_real_step_zero_abstract_is_not_progress :
 
 /-! ### U06.4
 Out-of-range corollaries of the audited slope identities, then the same facts
-for every q in the unit interval (empty or full intersection). Still not in
-the tip-pin audit, so U06.4 stays OPEN_FORMAL_TAIL. -/
+for every q in the unit interval (empty or full intersection). Named in
+expand-audit evidence ci-tip-f85ebe44; U06.4 stays OPEN_FORMAL_TAIL. -/
 
 theorem u06_4_increasing_threshold_above_one_excludes (q b l k target : ℝ)
     (hlb : l < b) (hq : q ≤ 1)
@@ -222,7 +228,8 @@ theorem u06_4_decreasing_unit_interval_at_least_one_is_full (b l k target : ℝ)
 Damping, oscillation, and the two boundaries of the audited contraction
 theorem: a translation has no fixed point, and `x - x^3` on `[-1,1]` reaches
 the fixed point `0` from `1` while expanding a pair, so sufficiency is not
-necessity. Not in the tip-pin audit, so U12.2 stays OPEN_FORMAL_TAIL. -/
+necessity. Named in expand-audit evidence ci-tip-f85ebe44; U12.2 stays
+OPEN_FORMAL_TAIL. -/
 
 -- Real field operations depend on a noncomputable instance.
 noncomputable section
@@ -338,8 +345,8 @@ end
 `N = 0` rejects the strict positive total. Equal sizes chosen after the fact
 are not the fixed `99/1` effective-size witness. A shared copy keeps variance
 `1/4`, above the independent `1/(4n)`. Consumers of the audited cluster
-witness and the audited copy-variance lemmas. Not in the tip-pin audit, so
-U14.2 stays OPEN_FORMAL_TAIL. -/
+witness and the audited copy-variance lemmas. Named in expand-audit
+evidence ci-tip-f85ebe44; U14.2 stays OPEN_FORMAL_TAIL. -/
 
 theorem u14_2_zero_N_rejects_positive_hypothesis (N : ℝ) (h : N = 0) : ¬ 0 < N := by
   rw [h]

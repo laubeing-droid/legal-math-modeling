@@ -795,7 +795,7 @@
         "U15.3"
       ],
       "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-      "candidate_module_quarantine": "PENDING_CI until its own changed-module run; not joined to the release root; not a tip-pin audit entry; not a clause close",
+      "candidate_module_quarantine": "Named in expand-audit evidence/ci-tip-f85ebe44; candidate_in_tip_pin_audit evidence wired; not a clause close; discharges stay false; live tip_pin retarget pending tip Authority 40115638107 SUCCESS",
       "discharges_archived_manuscript_gaps": false,
       "math_flip_authorized": false,
       "step_2_closed": false,
@@ -806,6 +806,13 @@
         "job_id": 120828801547,
         "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
         "verification": "evidence/ci-tip-27849d3f/verification.json"
+      },
+      "formal_tail_expand_audit": {
+        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+        "tip_authority_run_id": 40115638107,
+        "verification": "evidence/ci-tip-f85ebe44/verification.json",
+        "live_tip_pin_retarget": "TODO_BIND_WHEN_40115638107_SUCCESS",
+        "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
       },
       "later_tip_gate_not_a_close": {
         "subject": "c0b90b6998dfd6bf3a23792bed83af118726d6da",

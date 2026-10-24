@@ -36,9 +36,10 @@ Business-observation faithfulness is not stated. Fairness and external
 response remain non-goals of the clause. This does not close U10.3. -/
 theorem u10_3_zero_step_ranked_path_is_identity {S : Type} (rank : S → Nat) {s t : S}
     (h : RankedPath rank s 0 t) : s = t := by
-  induction h with
-  | nil s => rfl
-  | cons decrease rest ih => omega
+  -- The step index is the literal 0, so `induction` rejects the target.
+  -- `cases` generalizes that index; `cons` needs `n + 1 = 0` and is unreachable.
+  cases h with
+  | nil _ => rfl
 
 /-- U06.4 candidate. Increasing net, threshold strictly above 1, q at most 1:
 the target is not met. Not an audited declaration, so U06.4 stays open. -/

@@ -6,12 +6,15 @@ import JurisLean.Candidates.Final20261021.Progress
 import JurisLean.Candidates.Final20261021.Temporal
 
 /-!
-Formal-tail source for round formal_tail_20261024, candidate ids
+Formal-tail source for formal_tail_20261024, candidate ids
 U08.1, U10.3, U06.4, U12.2, U14.2 (archive order).
 
-These declarations are not in the live tip-pin axiom audit
-(subject 27849d3f228ec3665da16a6aa0b801672421dca2, run 40079130550,
-job 120828801547). They are not wired as tip-pin clause declarations.
+These declarations are not in the live tip-pin axiom audit.
+That audit's recorded commit is 27849d3f228ec3665da16a6aa0b801672421dca2,
+its id is 40079130550, and its job id is 120828801547.
+This header does not attest that audit. No landed axiom-audit text
+names JurisLean.Candidates.FormalTail20261024.
+They are not wired as tip-pin clause declarations.
 A later gate SUCCESS on this file does not close an OPEN_FORMAL_TAIL row.
 They do not set discharges_archived_manuscript_gaps.
 They do not close step 2.
@@ -120,7 +123,7 @@ theorem u10_3_zero_step_ranked_path_is_identity {S : Type} (rank : S → Nat) {s
 theorem u10_3_zero_step_prohibits_strict_progress {S : Type} (rank : S → Nat) (s : S) :
     ¬ ∃ t, RankedPath rank s 0 t ∧ rank t < rank s := by
   intro ⟨t, hpath, hlt⟩
-  have hs : s = t := u10_3_zero_step_ranked_path_is_identity hpath
+  have hs : s = t := u10_3_zero_step_ranked_path_is_identity rank hpath
   subst hs
   exact lt_irrefl (rank t) hlt
 
@@ -219,6 +222,9 @@ Damping, oscillation, and the two boundaries of the audited contraction
 theorem: a translation has no fixed point, and `x - x^3` on `[-1,1]` reaches
 the fixed point `0` from `1` while expanding a pair, so sufficiency is not
 necessity. Not in the tip-pin audit, so U12.2 stays OPEN_FORMAL_TAIL. -/
+
+-- Real field operations depend on a noncomputable instance.
+noncomputable section
 
 def halve (x : ℝ) : ℝ := x / 2
 
@@ -324,6 +330,8 @@ theorem u12_2_cubic_reaches_zero_but_expands :
   refine ⟨h0, h1, ?_⟩
   rw [h1, h45, hspan]
   norm_num
+
+end
 
 /-! ### U14.2
 `N = 0` rejects the strict positive total. Equal sizes chosen after the fact

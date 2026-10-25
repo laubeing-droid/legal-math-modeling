@@ -766,10 +766,10 @@
         "TAIL40清单.json"
       ],
       "one_pipeline": "archive-gap close ledger; no second track",
-      "open_formal_tail_remaining": 35,
-      "closed_this_round": 0,
-      "close_pack": "/home/box/shared/legal-math-reviewer/formal_tail_关≥1_CAND5_20261025/",
-      "candidate_rows": 5,
+      "open_formal_tail_remaining": 30,
+      "closed_this_round": 5,
+      "close_pack": "/home/box/shared/legal-math-reviewer/formal_tail_关≥1_CAND5bis_20261025/",
+      "candidate_rows": 0,
       "blocked_rows": 30,
       "narrow_not_reopened": [
         "U02.4",
@@ -788,7 +788,12 @@
         "U08.1",
         "U10.3",
         "U12.2",
-        "U14.2"
+        "U14.2",
+        "U08.2",
+        "U09.3",
+        "U13.1",
+        "U15.1",
+        "U15.2"
       ],
       "companion_tail_ids": [
         "U10.1",
@@ -801,7 +806,7 @@
         "U15.3"
       ],
       "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-      "candidate_module_quarantine": "CAND5+CAND5bis named in expand-audit evidence/ci-tip-dc7b7430 (named_count=37). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025; CAND5bis stay CANDIDATE_NOT_AUDITED with candidate_in_tip_pin_audit=true (expand≠close); FormalTail short names stay out of wired_declarations; discharges stay false; tip_pin dc7b7430 / 40190504653 / 121160299567; remaining OPEN include BLOCKED + CAND5bis",
+      "candidate_module_quarantine": "CAND5+CAND5bis named in expand-audit evidence/ci-tip-dc7b7430 (named_count=37). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025. CAND5bis U08.2/U09.3/U13.1/U15.1/U15.2 closed by wiring under pack formal_tail_关≥1_CAND5bis_20261025 (closed_this_round=5; OPEN_FORMAL_TAIL=30). FormalTail short names stay out of wired_declarations; discharges stay false; step_2_closed stays false; tip_pin dc7b7430 / 40190504653 / 121160299567 is not re-pinned; remaining OPEN are 30 BLOCKED.",
       "discharges_archived_manuscript_gaps": false,
       "math_flip_authorized": false,
       "step_2_closed": false,
@@ -839,8 +844,8 @@
       "放弃": 0,
       "未决": 0,
       "CLOSED_BY_NARROW": 8,
-      "CLOSED_BY_WIRING": 7,
-      "OPEN_FORMAL_TAIL": 35
+      "CLOSED_BY_WIRING": 12,
+      "OPEN_FORMAL_TAIL": 30
     }
   }
 }

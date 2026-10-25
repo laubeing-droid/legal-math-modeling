@@ -345,10 +345,10 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
             errors.append(f"formal-tail summary omits pack file {name}")
     if summary.get("step_2_closed") is not False:
         errors.append("formal-tail round claims step 2 closed")
-    if summary.get("closed_this_round") != disp.CAND5_CLOSED_THIS_ROUND:
+    if summary.get("closed_this_round") != disp.CAND5BIS_CLOSED_THIS_ROUND:
         errors.append(
             f"formal-tail closed_this_round {summary.get('closed_this_round')!r} "
-            f"!= authorized {disp.CAND5_CLOSED_THIS_ROUND}"
+            f"!= authorized {disp.CAND5BIS_CLOSED_THIS_ROUND}"
         )
     if summary.get("close_pack") != disp.FORMAL_TAIL_CLOSE_PACK:
         errors.append("formal-tail summary close_pack drifted")
@@ -383,6 +383,8 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
                 errors.append("candidate module declares an axiom")
     open_rows = 0
     cand5_seen = set()
+    cand5bis_seen = set()
+    authorized_closed = set(disp.CAND5_CLOSED_IDS) | set(disp.CAND5BIS_CLOSED_IDS)
     for row in ledger.get("rows") or []:
         clause = row.get("clause")
         record = row.get("formal_tail_prove") or {}
@@ -392,16 +394,26 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
             continue
         if record.get("step_2_closed") is not False:
             errors.append(f"{clause}: formal tail claims step_2_closed")
-        if clause in disp.CAND5_CLOSED_IDS:
+        if clause in authorized_closed:
             if record.get("close_admitted") is not True:
-                errors.append(f"{clause}: CAND5 close missing close_admitted")
-            cand5_seen.add(clause)
+                errors.append(f"{clause}: close missing close_admitted")
+            if clause in disp.CAND5_CLOSED_IDS:
+                cand5_seen.add(clause)
+            if clause in disp.CAND5BIS_CLOSED_IDS:
+                cand5bis_seen.add(clause)
             if row.get("archive_gap_status") != "CLOSED_BY_WIRING":
-                errors.append(f"{clause}: CAND5 row is not CLOSED_BY_WIRING")
+                errors.append(f"{clause}: authorized close is not CLOSED_BY_WIRING")
             if row.get("unwired_formal_obligations"):
-                errors.append(f"{clause}: CAND5 UNWIRED not cleared")
+                errors.append(f"{clause}: authorized close UNWIRED not cleared")
             if not str(row.get("scope_review") or "").strip():
-                errors.append(f"{clause}: CAND5 missing SCOPE_REVIEW")
+                errors.append(f"{clause}: authorized close missing SCOPE_REVIEW")
+            if clause == "U13.1":
+                goals = row.get("non_goals") or []
+                companion = str(row.get("companion_scope_notes") or "")
+                if not any("Authority integration" in item and "另证" in item for item in goals):
+                    errors.append("U13.1: authority integration NON_GOAL missing from the same row")
+                if "集成" not in companion or "另证" not in companion:
+                    errors.append("U13.1: COMPANION_NOTES missing authority 集成＝另证")
         elif record.get("close_admitted") is not False:
             errors.append(f"{clause}: formal tail admits a close")
         if record.get("discharges_archived_manuscript_gaps") is not False:
@@ -416,7 +428,8 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
                     errors.append(f"{clause}: companion note missing from the prove record")
                 if record.get("non_goals_same_row") != disp.NON_GOALS[clause] or not record.get("non_goals_same_row"):
                     errors.append(f"{clause}: companion non-goals are not in the same prove record")
-            # Remaining OPEN candidate rows (none after CAND5) still need NOT_AUDITED.
+            # OPEN rows that still carry candidate theorems must stay NOT_AUDITED.
+            # The five CAND5bis closes are not in this branch.
             for short in record.get("candidate_theorems") or []:
                 if f"theorem {short}" not in candidate_text:
                     errors.append(f"{clause}: candidate theorem {short} is not in the module")
@@ -428,8 +441,6 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
                 expand_meta = record.get("tip_pin_expand_audit") or {}
                 if expand_meta != disp.FORMAL_TAIL_EXPAND:
                     errors.append(f"{clause}: tip_pin_expand_audit != FORMAL_TAIL_EXPAND")
-                if clause in disp.CAND5BIS_IDS and record.get("close_admitted") is not False:
-                    errors.append(f"{clause}: CAND5bis expand must keep close_admitted=false")
             if not record.get("candidate_theorems") and record.get("disposition") != "BLOCKED_NOT_IN_TIP_PIN_AUDIT":
                 errors.append(f"{clause}: blocked row has the wrong disposition")
         else:
@@ -437,10 +448,16 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
                 errors.append(f"{clause}: closed row was reopened by the formal-tail round")
     if cand5_seen != set(disp.CAND5_CLOSED_IDS):
         errors.append(f"CAND5 closed set {sorted(cand5_seen)} != {list(disp.CAND5_CLOSED_IDS)}")
+    if cand5bis_seen != set(disp.CAND5BIS_CLOSED_IDS):
+        errors.append(f"CAND5bis closed set {sorted(cand5bis_seen)} != {list(disp.CAND5BIS_CLOSED_IDS)}")
     if summary.get("open_formal_tail_remaining") != open_rows:
         errors.append("formal-tail summary open count drifted")
-    if open_rows != 35:
-        errors.append(f"OPEN_FORMAL_TAIL remaining {open_rows} != 35")
+    if open_rows != 30:
+        errors.append(f"OPEN_FORMAL_TAIL remaining {open_rows} != 30")
+    if summary.get("blocked_rows") != 30:
+        errors.append(f"blocked_rows {summary.get('blocked_rows')!r} != 30")
+    if summary.get("candidate_rows") != 0:
+        errors.append(f"candidate_rows {summary.get('candidate_rows')!r} != 0 after CAND5bis close")
     # FormalTail module order stays PROVE_CANDIDATES in archive order (closed rows
     # no longer carry candidate_theorems on the prove record).
     expected_order = []
@@ -676,10 +693,10 @@ def check_pins(status: dict, construction: dict, receipt: dict, archive: dict, c
         errors.append("construction formal_tail_round tip_pin is not the live retarget")
     if formal_tail.get("step_2_closed") is not False:
         errors.append("construction formal_tail_round claims step 2 closed")
-    if formal_tail.get("closed_this_round") != disp.CAND5_CLOSED_THIS_ROUND:
+    if formal_tail.get("closed_this_round") != disp.CAND5BIS_CLOSED_THIS_ROUND:
         errors.append(
             f"construction formal_tail_round closed_this_round "
-            f"{formal_tail.get('closed_this_round')!r} != {disp.CAND5_CLOSED_THIS_ROUND}"
+            f"{formal_tail.get('closed_this_round')!r} != {disp.CAND5BIS_CLOSED_THIS_ROUND}"
         )
     if carried.get("rows") != archive.get("rows"):
         errors.append("carried manuscript rows differ from the tip archive")

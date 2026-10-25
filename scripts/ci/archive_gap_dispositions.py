@@ -222,6 +222,9 @@ NON_GOALS: dict[str, list[str]] = {
     "U10.3": [
         "公平 and 外部响应 are explicit non-goals of this clause (exact_scope: 另证).",
     ],
+    "U13.1": [
+        "Authority integration is an explicit non-goal of this candidate row (exact_scope: 另证).",
+    ],
     "U09.1": [
         "Full legal allocation effects are an explicit non-goal. 金额清零不等法律关系消灭; this wiring does not close a China-law extinction claim.",
     ],
@@ -524,10 +527,14 @@ CLOSED_NARROW_IDS = (
 CLOSED_WIRING_IDS = ("U02.2", "U01.0", "U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
 # Formal-tail CAND5 closed this round (pack formal_tail_关≥1_CAND5_20261025).
 CAND5_CLOSED_IDS = ("U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
-CAND5_CLOSED_THIS_ROUND = 5
+CAND5_CLOSED_THIS_ROUND = 0  # CAND5bis knife: candidate+expand only; no closes
 FORMAL_TAIL_CLOSE_PACK = (
     "/home/box/shared/legal-math-reviewer/formal_tail_关≥1_CAND5_20261025/"
 )
+FORMAL_TAIL_CAND5BIS_PACK = (
+    "/home/box/shared/legal-math-reviewer/formal_tail_真证CAND5bis_20261025/"
+)
+CAND5BIS_IDS = ("U08.2", "U09.3", "U13.1", "U15.1", "U15.2")
 # Theorems in CANDIDATE_MODULE. None is in the tip-pin audit. None closes a row.
 # Order inside each clause is source order. Archive order concatenates them.
 PROVE_CANDIDATES: dict[str, list[str]] = {
@@ -566,6 +573,29 @@ PROVE_CANDIDATES: dict[str, list[str]] = {
         "u14_2_endogenous_equal_sizes_are_not_the_fixed_witness",
         "u14_2_common_cause_copy_exceeds_independent_variance",
     ],
+    # CAND5bis (pack formal_tail_真证CAND5bis_20261025): candidate+expand only.
+    "U08.2": [
+        "u08_2_current_singleton_does_not_exhaust_reachable",
+        "u08_2_nonempty_observation_preserves_chosen_answer",
+    ],
+    "U09.3": [
+        "u09_3_greedy_prefix_misses_second_claim",
+        "u09_3_same_institution_accrual_is_not_cash_effect",
+    ],
+    "U13.1": [
+        "u13_1_lawful_stat_input_change_changes_estimate",
+        "u13_1_personal_update_preserves_rule_service",
+    ],
+    "U15.1": [
+        "u15_1_finite_state_strict_improve_length_bound",
+        "u15_1_no_parameter_successor_has_no_fixed_point",
+        "u15_1_telescoping_consumes_cumulative_improvement",
+    ],
+    "U15.2": [
+        "u15_2_key_point_regression_changes_exact_risk",
+        "u15_2_finite_obs_agree_not_global",
+        "u15_2_full_agreement_preserves_risk",
+    ],
 }
 # Audited declaration names the candidate proofs actually call. Listing them
 # is not a tip-pin citation of the candidate, and it does not close the row.
@@ -585,6 +615,21 @@ CANDIDATE_USES_AUDITED: dict[str, list[str]] = {
         "JurisLean.Candidates.Final20261021.Learning.u01_4_copied_mean_variance",
         "JurisLean.Candidates.Final20261021.Learning.u01_4_independent_mean_variance",
         "JurisLean.Candidates.Final20261021.Learning.u01_4_copy_is_not_independent",
+    ],
+    "U08.2": [
+        "JurisLean.Candidates.Final20261021.Temporal.u08_2_finite_compression_reflection",
+    ],
+    "U09.3": [
+        "JurisLean.Candidates.Final20261021.Ledger.u09_3_accrual_not_cash",
+    ],
+    "U13.1": [
+        "JurisLean.Candidates.Final20261021.RSI.u13_1_noninterference",
+    ],
+    "U15.1": [
+        "JurisLean.Candidates.Final20261021.Iteration.u15_1_finite_cumulative_improvement",
+    ],
+    "U15.2": [
+        "JurisLean.Candidates.Final20261021.Iteration.u15_2_preserved_predictions_equal_risk",
     ],
 }
 CANDIDATE_COVERS_ONLY: dict[str, str] = {
@@ -630,6 +675,35 @@ CANDIDATE_COVERS_ONLY: dict[str, str] = {
         "Pack formal_tail_关≥1_CAND5_20261025 authorized CLOSED_BY_WIRING for this "
         "row; FormalTail short names stay out of wired_declarations."
     ),
+    "U08.2": (
+        "Current-singleton does not exhaust a two-point reachable set; nonempty "
+        "observation preserves the chosen answer via audited finite-compression "
+        "reflection. Named for CAND5bis expand-audit only under pack "
+        "formal_tail_真证CAND5bis_20261025. Not CLOSED; OPEN_FORMAL_TAIL stays 35."
+    ),
+    "U09.3": (
+        "Greedy prefix on a two-claim budget misses a full optimum; same-institution "
+        "accrual does not move cash (audited accrual_not_cash). Named for CAND5bis "
+        "expand-audit only. Not CLOSED; OPEN_FORMAL_TAIL stays 35."
+    ),
+    "U13.1": (
+        "Lawful statistical-evidence input change moves the conditional estimate; "
+        "personal update preserves rule service (audited noninterference). Authority "
+        "integration is an explicit NON_GOAL. Named for CAND5bis expand-audit only. "
+        "Not CLOSED; OPEN_FORMAL_TAIL stays 35."
+    ),
+    "U15.1": (
+        "Finite-state strict-improvement length is bounded by starting rank; "
+        "parameter-free successor has no fixed point; telescoping consumes audited "
+        "finite_cumulative_improvement. Named for CAND5bis expand-audit only. "
+        "Not CLOSED; OPEN_FORMAL_TAIL stays 35."
+    ),
+    "U15.2": (
+        "Key-point regression changes exact risk; finite-observation agreement is "
+        "not global agreement; full agreement preserves risk via audited "
+        "preserved_predictions_equal_risk. Named for CAND5bis expand-audit only. "
+        "Not CLOSED; OPEN_FORMAL_TAIL stays 35."
+    ),
 }
 TAIL_BLOCKER = (
     "The unwired formal obligation is not a declaration accepted by tip-pin "
@@ -673,6 +747,11 @@ def formal_tail_record(clause: str) -> dict:
             "discharges_archived_manuscript_gaps": False,
         }
     candidates = list(PROVE_CANDIDATES.get(clause, []))
+    # CAND5bis theorems exist in FormalTail but are NOT yet named by a tip-pin
+    # expand receipt on a head Authority that built them. Do not point at the
+    # historical f85ebe44 receipt (named_count=25; CAND5 only) as CAND5bis coverage.
+    cand5bis = clause in CAND5BIS_IDS
+    in_tip_pin_audit = bool(candidates) and not cand5bis
     record = {
         "in_this_round": True,
         "round": FORMAL_TAIL_ROUND,
@@ -684,7 +763,7 @@ def formal_tail_record(clause: str) -> dict:
         "candidate_module": CANDIDATE_MODULE if candidates else "",
         "candidate_module_name": CANDIDATE_MODULE_NAME if candidates else "",
         "candidate_theorems": candidates,
-        "candidate_in_tip_pin_audit": bool(candidates),
+        "candidate_in_tip_pin_audit": in_tip_pin_audit,
         "candidate_covers_only": CANDIDATE_COVERS_ONLY.get(clause, ""),
         "unwired_formal_obligations": list(UNWIRED[clause]),
         "non_goals_same_row": list(NON_GOALS.get(clause, [])),
@@ -698,7 +777,25 @@ def formal_tail_record(clause: str) -> dict:
     uses = CANDIDATE_USES_AUDITED.get(clause, [])
     if uses:
         record["uses_audited_declarations"] = list(uses)
-    if candidates:
+    if candidates and cand5bis:
+        record["criteria_pack_cand5bis"] = FORMAL_TAIL_CAND5BIS_PACK
+        record["blocker"] = (
+            "FormalTail CAND5bis theorems exist in FormalTail20261024.lean under pack "
+            "formal_tail_真证CAND5bis_20261025 but are NOT named in any tip-pin expand "
+            "receipt yet. evidence/ci-tip-f85ebe44/verification.json (named_count=25) "
+            "covers historical CAND5 only and must not be cited as CAND5bis audit. "
+            "candidate_in_tip_pin_audit stays false until a new tip Authority SUCCESS "
+            "on a head that includes these theorems, then a separate expand commit. "
+            "Disposition stays CANDIDATE_NOT_AUDITED. discharges stays false. "
+            "Step 2 stays open. OPEN_FORMAL_TAIL stays 35; closed_this_round=0."
+        )
+        record["close_blocked_reason"] = (
+            "CAND5bis FormalTail theorems are not in tip-pin audit yet. "
+            "No expand receipt may cite f85ebe44 for these five ids. "
+            "Math has not authorized a close. discharges stays false. Step 2 stays open."
+        )
+    elif candidates:
+        # Historical path: only if an open row still claims expand naming.
         record["tip_pin_expand_audit"] = dict(FORMAL_TAIL_EXPAND)
         record["blocker"] = (
             "FormalTail theorems are named in expand-audit "
@@ -706,14 +803,11 @@ def formal_tail_record(clause: str) -> dict:
             "tip_pin_扩审计_CAND5_20261025). Prior tip-pin 40079130550 / "
             "job 120936221970 must not be cited as FormalTail coverage. "
             "Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer. "
-            "Live tip_pin retarget binds to tip Authority 40115638107 once "
-            "SUCCESS. discharges_archived_manuscript_gaps stays false. "
-            "Step 2 stays open. OPEN_FORMAL_TAIL stays 40."
+            "discharges_archived_manuscript_gaps stays false. Step 2 stays open."
         )
         record["close_blocked_reason"] = (
             "Expand-audit naming wires candidate_in_tip_pin_audit evidence only. "
             "Math has not authorized disposition change, discharges, or a close. "
-            "Gate green and tip Authority pending SUCCESS do not close this row. "
             "discharges_archived_manuscript_gaps stays false. Step 2 stays open."
         )
     return record
@@ -742,7 +836,7 @@ def formal_tail_summary(rows: list[dict]) -> dict:
         "companion_tail_ids": list(COMPANION_TAIL_IDS),
         "candidate_module": CANDIDATE_MODULE,
         "candidate_module_quarantine": (
-            "Named in expand-audit evidence/ci-tip-f85ebe44 (named_count=25). CAND5 "
+            "CAND5 named in expand-audit evidence/ci-tip-f85ebe44 (named_count=25). CAND5bis theorems exist but NOT tip-pin audited yet. CAND5 "
             "U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack "
             "formal_tail_关≥1_CAND5_20261025; FormalTail short names stay out of "
             "wired_declarations; discharges stay false; tip_pin unchanged "

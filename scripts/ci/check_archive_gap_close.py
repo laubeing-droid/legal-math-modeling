@@ -3,7 +3,7 @@
 
 The manuscript pin is not rewritten and is not emptied. ``discharges`` stays
 false. The live tip-pin is the authorized retarget
-subject f85ebe44644f32820e9d0fad1325428fb8f171d9 / run 40115638107 / job
+subject dc7b7430198fa221b5d72d55fc6065a928209dc4 / run 40190504653 / job
 120936221970. That retarget is not a close. The live tip-pin is not moved
 onto gate run 39960871624. Declarations cited as wiring must be in the
 re-extracted tip-pin axiom audit.
@@ -30,10 +30,10 @@ STATUS_PATH = CANDIDATE / "50_clause_status.json"
 CONSTRUCTION_PATH = CANDIDATE / "construction_status.json"
 ARCHIVE_PATH = CANDIDATE / "evidence/ci-tip-e87543d8/scope-archive.json"
 CARRIED_PATH = CANDIDATE / "evidence/ci-tip-966b9373/scope-archive.json"
-LIVE_ARCHIVE_REL = "evidence/ci-tip-f85ebe44/scope-archive.json"
+LIVE_ARCHIVE_REL = "evidence/ci-tip-dc7b7430/scope-archive.json"
 LIVE_ARCHIVE_PATH = CANDIDATE / LIVE_ARCHIVE_REL
-RECEIPT_PATH = CANDIDATE / "evidence/ci-tip-f85ebe44/verification.json"
-EXPAND_RECEIPT_REL = "evidence/ci-tip-f85ebe44/verification.json"
+RECEIPT_PATH = CANDIDATE / "evidence/ci-tip-dc7b7430/verification.json"
+EXPAND_RECEIPT_REL = "evidence/ci-tip-dc7b7430/verification.json"
 EXPAND_RECEIPT_PATH = CANDIDATE / EXPAND_RECEIPT_REL
 LEDGER_PATH = CANDIDATE / "evidence/archive-gap-close-20261024/close-ledger.json"
 LEDGER_REL = "evidence/archive-gap-close-20261024/close-ledger.json"
@@ -170,7 +170,7 @@ def build_ledger(status: dict, archive: dict, lines: dict[tuple[str, str], int])
             "note": (
                 "The manuscript pin stays verbatim, so this retarget does not empty "
                 "the archive. The live tip-pin retarget carries the same rows in "
-                "evidence/ci-tip-f85ebe44/scope-archive.json. Carrying is not a proof "
+                "evidence/ci-tip-dc7b7430/scope-archive.json. Carrying is not a proof "
                 "and does not close archived gaps. "
                 "discharges_archived_manuscript_gaps stays false until math "
                 "authorizes the flip after a tip Authority recheck of the commit "
@@ -264,7 +264,17 @@ def sync_pointers(status: dict, construction: dict, ledger: dict) -> None:
     by_clause = {row["clause"]: row for row in ledger["rows"]}
     for row in status["rows"]:
         row["archive_gap_close"] = pointer_view(by_clause[row["clause"]])
+        evidence = dict(row.get("candidate_ci_evidence") or {})
+        evidence["subject"] = disp.TIP_PIN["subject"]
+        evidence["run_id"] = disp.TIP_PIN["run_id"]
+        evidence["job"] = "lean-full-clean-build"
+        evidence["job_id"] = disp.TIP_PIN["job_id"]
+        evidence["verification"] = disp.TIP_PIN["verification"]
+        evidence["acceptance_discharged"] = True
+        evidence["discharges_archived_manuscript_gaps"] = False
+        row["candidate_ci_evidence"] = evidence
     construction["archive_gap_close"] = summary_view(ledger)
+    construction["tip_declaration_location"] = status.get("tip_declaration_location")
 
 
 def check_ledger(ledger: dict, status: dict, archive: dict, extracted: dict, lines: dict) -> list[str]:
@@ -413,18 +423,13 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
                 if record.get("disposition") != "CANDIDATE_NOT_AUDITED":
                     errors.append(f"{clause}: candidate row has the wrong disposition")
             if record.get("candidate_theorems"):
-                if clause in disp.CAND5BIS_IDS:
-                    # Theorems exist; expand receipt not yet authorized for these five.
-                    if record.get("candidate_in_tip_pin_audit") is not False:
-                        errors.append(f"{clause}: CAND5bis must keep candidate_in_tip_pin_audit=false until new expand")
-                    if record.get("tip_pin_expand_audit"):
-                        errors.append(f"{clause}: CAND5bis must not cite tip_pin_expand_audit yet")
-                else:
-                    if record.get("candidate_in_tip_pin_audit") is not True:
-                        errors.append(f"{clause}: candidate_in_tip_pin_audit evidence not wired")
-                    expand_meta = record.get("tip_pin_expand_audit") or {}
-                    if expand_meta != disp.FORMAL_TAIL_EXPAND:
-                        errors.append(f"{clause}: tip_pin_expand_audit != FORMAL_TAIL_EXPAND")
+                if record.get("candidate_in_tip_pin_audit") is not True:
+                    errors.append(f"{clause}: candidate_in_tip_pin_audit evidence not wired")
+                expand_meta = record.get("tip_pin_expand_audit") or {}
+                if expand_meta != disp.FORMAL_TAIL_EXPAND:
+                    errors.append(f"{clause}: tip_pin_expand_audit != FORMAL_TAIL_EXPAND")
+                if clause in disp.CAND5BIS_IDS and record.get("close_admitted") is not False:
+                    errors.append(f"{clause}: CAND5bis expand must keep close_admitted=false")
             if not record.get("candidate_theorems") and record.get("disposition") != "BLOCKED_NOT_IN_TIP_PIN_AUDIT":
                 errors.append(f"{clause}: blocked row has the wrong disposition")
         else:
@@ -460,37 +465,59 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
             full = str(item.get("name") or "")
             if full.startswith(disp.CANDIDATE_MODULE_NAME + "."):
                 errors.append(f"{clause}: FormalTail full name in wired_declarations")
-    # Historical CAND5 expand receipt (named_count=25). CAND5bis theorems are in
-    # FormalTail but must NOT appear here until a new tip Authority expand commit.
+    # Live expand receipt names CAND5 (25) + CAND5bis (12) = 37 on tip dc7b7430.
+    # Historical f85ebe44 (named_count=25) stays on disk untouched.
     if not EXPAND_RECEIPT_PATH.is_file():
         errors.append("missing expand-audit receipt")
     else:
         expand = load_json(EXPAND_RECEIPT_PATH)
         named = set(expand.get("named_theorems_full") or [])
-        historical = []
+        expected = []
         for row in ledger.get("rows") or []:
-            clause = row.get("clause")
-            if clause in disp.CAND5BIS_IDS:
-                continue
-            historical.extend(disp.PROVE_CANDIDATES.get(clause, []))
-        for short in historical:
+            expected.extend(disp.PROVE_CANDIDATES.get(row.get("clause"), []))
+        for short in expected:
             full = f"{disp.CANDIDATE_MODULE_NAME}.{short}"
             if full not in named:
-                errors.append(f"expand-audit missing historical {full}")
+                errors.append(f"expand-audit missing {full}")
         for clause in disp.CAND5BIS_IDS:
             for short in disp.PROVE_CANDIDATES.get(clause, []):
                 full = f"{disp.CANDIDATE_MODULE_NAME}.{short}"
-                if full in named:
-                    errors.append(f"expand-audit must not yet name CAND5bis {full}")
+                if full not in named:
+                    errors.append(f"expand-audit missing CAND5bis {full}")
         if expand.get("discharges_archived_manuscript_gaps") is not False:
             errors.append("expand-audit receipt flipped discharges")
         if expand.get("closes_debt") is not False:
             errors.append("expand-audit receipt claims debt close")
-        if expand.get("named_count") != 25:
-            errors.append(f"expand-audit named_count {expand.get('named_count')} != 25 (CAND5 historical)")
+        if expand.get("named_count") != 37:
+            errors.append(f"expand-audit named_count {expand.get('named_count')} != 37 (CAND5+CAND5bis)")
+        if expand.get("subject_commit") != disp.TIP_PIN["subject"]:
+            errors.append("expand-audit subject_commit != live tip_pin subject")
+        if expand.get("run_id") != disp.TIP_PIN["run_id"]:
+            errors.append("expand-audit run_id != live tip_pin run_id")
+        if expand.get("job_id") != disp.TIP_PIN["job_id"]:
+            errors.append("expand-audit job_id != live tip_pin job_id")
+        if expand.get("open_formal_tail_remaining") != 35:
+            errors.append("expand-audit open_formal_tail_remaining != 35")
+        if expand.get("closed_this_round") != 0:
+            errors.append("expand-audit closed_this_round != 0")
         companion = expand.get("u10_3_companion_note") or ""
         if "公平" not in companion or "另证" not in companion:
             errors.append("expand-audit missing U10.3 companion 公平/另证 note")
+        u13 = expand.get("u13_1_companion_note") or ""
+        if "另证" not in u13 and "NON_GOAL" not in u13:
+            errors.append("expand-audit missing U13.1 companion 另证/NON_GOAL note")
+        # Historical receipt must remain CAND5-only (named_count=25).
+        hist_path = CANDIDATE / "evidence/ci-tip-f85ebe44/verification.json"
+        if hist_path.is_file():
+            hist = load_json(hist_path)
+            if hist.get("named_count") != 25:
+                errors.append("historical f85ebe44 named_count drifted from 25")
+            hist_named = set(hist.get("named_theorems_full") or [])
+            for clause in disp.CAND5BIS_IDS:
+                for short in disp.PROVE_CANDIDATES.get(clause, []):
+                    full = f"{disp.CANDIDATE_MODULE_NAME}.{short}"
+                    if full in hist_named:
+                        errors.append(f"historical f85ebe44 must not name CAND5bis {full}")
     return errors
 
 

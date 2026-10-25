@@ -724,16 +724,16 @@
     "formal_ci": "CI_NOT_RUN_FOR_REPAIR"
   },
   "tip_declaration_location": {
-    "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
-    "run_id": 40115638107,
+    "subject": "dc7b7430198fa221b5d72d55fc6065a928209dc4",
+    "run_id": 40190504653,
     "job": "lean-full-clean-build",
-    "job_id": 120936221970,
-    "verification": "evidence/ci-tip-f85ebe44/verification.json",
+    "job_id": 121160299567,
+    "verification": "evidence/ci-tip-dc7b7430/verification.json",
     "meaning": "LISTED_DECLARATIONS_AXIOM_AUDITED_LIVE_SCOPE_EMPTY",
     "acceptance_discharged": true,
-    "artifact_zip_sha256": "96f8c38334b4c706fd53316a74e0ee3175c215b7e1c2f871ca6e8cdc6171bb73",
+    "artifact_zip_sha256": "afe2df720a87be0e0572d0584e5698d790fbc43081ef3cb1cee2763dfbeb47c2",
     "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-    "scope_archive": "evidence/ci-tip-f85ebe44/scope-archive.json",
+    "scope_archive": "evidence/ci-tip-dc7b7430/scope-archive.json",
     "discharges_archived_manuscript_gaps": false
   },
   "archive_gap_close": {
@@ -747,11 +747,11 @@
     "prior_tip_pin_did_not_close_archive_debt": true,
     "tip_pin_not_retargeted": false,
     "tip_pin": {
-      "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
-      "run_id": 40115638107,
-      "job_id": 120936221970,
+      "subject": "dc7b7430198fa221b5d72d55fc6065a928209dc4",
+      "run_id": 40190504653,
+      "job_id": 121160299567,
       "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-      "verification": "evidence/ci-tip-f85ebe44/verification.json"
+      "verification": "evidence/ci-tip-dc7b7430/verification.json"
     },
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
@@ -801,26 +801,26 @@
         "U15.3"
       ],
       "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-      "candidate_module_quarantine": "CAND5 named in expand-audit evidence/ci-tip-f85ebe44 (named_count=25). CAND5bis theorems exist but NOT tip-pin audited yet. CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025; FormalTail short names stay out of wired_declarations; discharges stay false; tip_pin unchanged f85ebe44 / 40115638107 / 120936221970; remaining OPEN are BLOCKED",
+      "candidate_module_quarantine": "CAND5+CAND5bis named in expand-audit evidence/ci-tip-dc7b7430 (named_count=37). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025; CAND5bis stay CANDIDATE_NOT_AUDITED with candidate_in_tip_pin_audit=true (expand≠close); FormalTail short names stay out of wired_declarations; discharges stay false; tip_pin dc7b7430 / 40190504653 / 121160299567; remaining OPEN include BLOCKED + CAND5bis",
       "discharges_archived_manuscript_gaps": false,
       "math_flip_authorized": false,
       "step_2_closed": false,
       "tip_pin_not_retargeted": false,
       "tip_pin": {
-        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
-        "run_id": 40115638107,
-        "job_id": 120936221970,
+        "subject": "dc7b7430198fa221b5d72d55fc6065a928209dc4",
+        "run_id": 40190504653,
+        "job_id": 121160299567,
         "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-        "verification": "evidence/ci-tip-f85ebe44/verification.json"
+        "verification": "evidence/ci-tip-dc7b7430/verification.json"
       },
       "formal_tail_expand_audit": {
-        "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
-        "tip_authority_run_id": 40115638107,
-        "job_id": 120936221970,
-        "verification": "evidence/ci-tip-f85ebe44/verification.json",
+        "subject": "dc7b7430198fa221b5d72d55fc6065a928209dc4",
+        "tip_authority_run_id": 40190504653,
+        "job_id": 121160299567,
+        "verification": "evidence/ci-tip-dc7b7430/verification.json",
         "live_tip_pin_retarget": "BOUND",
         "tip_authority_run_status": "SUCCESS",
-        "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
+        "criteria_pack": "tip_pin_扩审计_CAND5bis_20261025"
       },
       "later_tip_gate_not_a_close": {
         "subject": "c0b90b6998dfd6bf3a23792bed83af118726d6da",

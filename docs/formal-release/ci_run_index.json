@@ -26231,6 +26231,68 @@
       ],
       "artifacts_total": 10,
       "evidence": null
+    },
+    {
+      "run_id": 40190504653,
+      "quoted_by": [
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:6"
+      ],
+      "workflow": "Lean Authority + Formal Release Pipeline",
+      "name": "formal-tail CAND5bis: U08.2/U09.3/U13.1/U15.1/U15.2 FormalTail 候选（clo…",
+      "head_sha": "dc7b7430198fa221b5d72d55fc6065a928209dc4",
+      "head_branch": "main",
+      "event": "push",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-10-25T11:49:54Z",
+      "updated_at": "2026-10-25T12:01:48Z",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40190504653",
+      "jobs_total": 8,
+      "started": true,
+      "jobs": [
+        {
+          "name": "python-gates",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "runtime-refinement / produce",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "lean-full-clean-build",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "changed-modules",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "seven-axis-acceptance",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "mathematics-completion",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "release-certificate",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "final-gate",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "artifacts_total": 10,
+      "evidence": null
     }
   ],
   "authority_note": "Read from the GitHub Actions API by scripts/ci/build_ci_run_index.py. Records what Actions reported for each run the repository quotes; it does not re-run Lean, does not certify any theorem, and does not survive a force-push or a deleted run -- re-derive it rather than trusting a stale copy.",

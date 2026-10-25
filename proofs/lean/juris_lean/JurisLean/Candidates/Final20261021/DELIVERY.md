@@ -2,6 +2,9 @@
 
 状态：**PARTIAL_SOURCE_CANDIDATE / STAGE1_PASS / FULL_RELEASE_PASS_ON_5db4e04**。批次 0–9 的候选源码及第一阶段正式 CI 已通过。接根后的 full-release 已在 main 尖端 `5db4e0453d77493e2699af7b32bcb1ea8c7668a5` 的 run `39714740194` 通过：该次是 push 触发的完整发布路径，干净 Lean 构建、Python 门禁、七轴、数学完成、发布证书与 final-gate 均为 success，`changed-modules` 作业按该路径跳过。那次 run `39714740194` 是该树的仓库流水线通过，当时还不是 50 条冻结条款的 `formal_ci` 关闭。`50_clause_status.json` 的 `formal_ci` 在声明能对上尖端回执时写入该回执里的 run id，回执文件是 `evidence/ci-tip-f85ebe44/verification.json`（尖端 `f85ebe44644f32820e9d0fad1325428fb8f171d9`，Authority run `40115638107`，作业名 `lean-full-clean-build`，job id 写在该回执里）。该回执从该尖端 `lean-full-clean-build` 工件重新抽出公理审计，并 `supersedes` `evidence/ci-tip-e87543d8/verification.json`。活的 `exact_scope` 与 `remaining_obligations` 为空。`evidence/ci-tip-f85ebe44/scope-archive.json` 原样沿用 `evidence/ci-tip-e87543d8/scope-archive.json` 上的原稿（原稿仍钉在 `966b937394a07d14e58098b786e5bf742edd6b23`），不是从已清空的尖端重抽，也不是 Lean 证明。旧目录 `evidence/ci-tip-e87543d8/` 保留为史档。这次只重钉尖端：重钉≠关债 / retarget ≠ close debt。第2步不关。
 
+
+Live tip-pin expand-audit (CAND5+CAND5bis named_count=37; closes_debt=false; OPEN=35): evidence/ci-tip-dc7b7430/verification.json on subject dc7b7430198fa221b5d72d55fc6065a928209dc4 / Authority run 40190504653 (lean-full-clean-build). Historical evidence/ci-tip-f85ebe44/verification.json stays named_count=25.
+
 基线固定为 `825792b83476a767152396d7f5e2ba3017048841`，候选分支为 `candidates/final20261021-825792b`。run `39699620705` 已在 `d59a487b154818278ee4629234904bc8a3ac1ef3` 上通过完整目标 `JurisLean.Candidates.Final20261021.CIAll`；原始 ZIP、源 Git blob 对照、完整公理目标检查和回执见 `evidence/ci-stage1-d59a487/verification.json`。全部目标齐全，仅依赖标准公理。第一阶段通过只覆盖候选源码和所列 Lean 命题；完整冻结理论、产品精化与现实/法律前提未因此关闭。用户于 2026-10-22 授予连续 CI 修复、推送与派发授权。
 
 ## 逐模块与逐条复核入口

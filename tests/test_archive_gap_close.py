@@ -1,10 +1,10 @@
 """The archive-gap close layer stays fail-closed after the authorized tip-pin retarget.
 
-The live pin is subject f85ebe44 / run 40115638107 / job 120936221970.
+The live pin is subject dc7b7430 / run 40190504653 / job 121160299567.
 CAND5 (U06.4/U08.1/U10.3/U12.2/U14.2) remain CLOSED_BY_WIRING historically.
-CAND5bis knife (U08.2/U09.3/U13.1/U15.1/U15.2) under pack
-formal_tail_真证CAND5bis_20261025: closed_this_round=0, OPEN_FORMAL_TAIL=35,
-candidate_rows=5, blocked_rows=30. discharges stays false; step 2 stays open.
+CAND5bis tip-pin expand (U08.2/U09.3/U13.1/U15.1/U15.2) under pack
+tip_pin_扩审计_CAND5bis_20261025: closed_this_round=0, OPEN_FORMAL_TAIL=35,
+candidate_rows=5 (audit=true, NOT CLOSED), blocked_rows=30. discharges stays false; step 2 stays open.
 """
 
 from __future__ import annotations
@@ -37,7 +37,7 @@ def test_close_layer_matches_the_pack_and_keeps_discharges_false() -> None:
     assert "wiring 7" in proc.stdout
     assert "open_formal_tail 35" in proc.stdout
     assert "discharges false" in proc.stdout
-    assert "40115638107" in proc.stdout
+    assert "40190504653" in proc.stdout
     assert "formal_tail_closed_this_round 0" in proc.stdout
     assert "step_2_closed false" in proc.stdout
 
@@ -71,17 +71,17 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert summary["candidate_rows"] == 5
     assert summary["blocked_rows"] == 30
     assert summary["tip_pin_not_retargeted"] is False
-    assert summary["tip_pin"]["subject"] == "f85ebe44644f32820e9d0fad1325428fb8f171d9"
-    assert summary["tip_pin"]["run_id"] == 40115638107
-    assert summary["tip_pin"]["job_id"] == 120936221970
-    assert summary["tip_pin"]["verification"] == "evidence/ci-tip-f85ebe44/verification.json"
+    assert summary["tip_pin"]["subject"] == "dc7b7430198fa221b5d72d55fc6065a928209dc4"
+    assert summary["tip_pin"]["run_id"] == 40190504653
+    assert summary["tip_pin"]["job_id"] == 121160299567
+    assert summary["tip_pin"]["verification"] == "evidence/ci-tip-dc7b7430/verification.json"
     assert summary["formal_tail_expand_audit"]["verification"] == (
-        "evidence/ci-tip-f85ebe44/verification.json"
+        "evidence/ci-tip-dc7b7430/verification.json"
     )
-    assert summary["formal_tail_expand_audit"]["tip_authority_run_id"] == 40115638107
+    assert summary["formal_tail_expand_audit"]["tip_authority_run_id"] == 40190504653
     assert summary["formal_tail_expand_audit"]["live_tip_pin_retarget"] == "BOUND"
     assert summary["formal_tail_expand_audit"]["tip_authority_run_status"] == "SUCCESS"
-    assert summary["formal_tail_expand_audit"]["job_id"] == 120936221970
+    assert summary["formal_tail_expand_audit"]["job_id"] == 121160299567
     assert ledger["tip_pin_not_retargeted"] is False
     assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 35
     assert ledger["counts"]["CLOSED_BY_WIRING"] == 7
@@ -170,16 +170,17 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
         row = by_clause[clause]
         assert row["archive_gap_status"] == "OPEN_FORMAL_TAIL"
         assert row["formal_tail_prove"]["disposition"] == "CANDIDATE_NOT_AUDITED"
-        assert row["formal_tail_prove"]["candidate_in_tip_pin_audit"] is False
+        assert row["formal_tail_prove"]["candidate_in_tip_pin_audit"] is True
         assert row["formal_tail_prove"]["candidate_theorems"]
         assert row["formal_tail_prove"]["close_admitted"] is False
-        assert "tip_pin_expand_audit" not in row["formal_tail_prove"]
+        assert row["formal_tail_prove"]["tip_pin_expand_audit"]["verification"] == "evidence/ci-tip-dc7b7430/verification.json"
+        assert row["formal_tail_prove"]["tip_pin_expand_audit"]["tip_authority_run_id"] == 40190504653
         assert "close_blocked_reason" in row["formal_tail_prove"]
-        assert "f85ebe44" in row["formal_tail_prove"]["blocker"]
-        assert "NOT" in row["formal_tail_prove"]["blocker"] or "not" in row["formal_tail_prove"]["blocker"]
-    # Historical expand receipt stays CAND5-only
+        assert "dc7b7430" in row["formal_tail_prove"]["blocker"]
+        assert "named_count=37" in row["formal_tail_prove"]["blocker"]
+    # Live expand receipt is CAND5+CAND5bis; historical f85ebe44 stays CAND5-only on disk
     assert summary["formal_tail_expand_audit"]["verification"] == (
-        "evidence/ci-tip-f85ebe44/verification.json"
+        "evidence/ci-tip-dc7b7430/verification.json"
     )
     # U13.1 authority integration NON_GOAL on the same row
     assert any("Authority integration" in item for item in by_clause["U13.1"]["formal_tail_prove"]["non_goals_same_row"])

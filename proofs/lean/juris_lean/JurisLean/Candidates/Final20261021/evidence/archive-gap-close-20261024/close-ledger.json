@@ -40,9 +40,10 @@
       "TAIL40清单.json"
     ],
     "one_pipeline": "archive-gap close ledger; no second track",
-    "open_formal_tail_remaining": 40,
-    "closed_this_round": 0,
-    "candidate_rows": 5,
+    "open_formal_tail_remaining": 35,
+    "closed_this_round": 5,
+    "close_pack": "/home/box/shared/legal-math-reviewer/formal_tail_关≥1_CAND5_20261025/",
+    "candidate_rows": 0,
     "blocked_rows": 35,
     "narrow_not_reopened": [
       "U02.4",
@@ -56,7 +57,12 @@
     ],
     "wiring_not_reopened": [
       "U02.2",
-      "U01.0"
+      "U01.0",
+      "U06.4",
+      "U08.1",
+      "U10.3",
+      "U12.2",
+      "U14.2"
     ],
     "companion_tail_ids": [
       "U10.1",
@@ -69,7 +75,7 @@
       "U15.3"
     ],
     "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-    "candidate_module_quarantine": "Named in expand-audit evidence/ci-tip-f85ebe44; candidate_in_tip_pin_audit evidence wired; not a clause close; discharges stay false; live tip_pin live tip_pin BOUND to tip Authority 40115638107 / job 120936221970",
+    "candidate_module_quarantine": "Named in expand-audit evidence/ci-tip-f85ebe44 (named_count=25). CAND5 U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack formal_tail_关≥1_CAND5_20261025; FormalTail short names stay out of wired_declarations; discharges stay false; tip_pin unchanged f85ebe44 / 40115638107 / 120936221970; remaining OPEN are BLOCKED",
     "discharges_archived_manuscript_gaps": false,
     "math_flip_authorized": false,
     "step_2_closed": false,
@@ -107,8 +113,8 @@
     "放弃": 0,
     "未决": 0,
     "CLOSED_BY_NARROW": 8,
-    "CLOSED_BY_WIRING": 2,
-    "OPEN_FORMAL_TAIL": 40
+    "CLOSED_BY_WIRING": 7,
+    "OPEN_FORMAL_TAIL": 35
   },
   "prc_china_law_column": "separate; foreign law and arXiv do not close China-law items; seven_clause_legal_sources.txt is not retargeted",
   "rows": [
@@ -1201,7 +1207,7 @@
     {
       "clause": "U08.1",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Late retroactive-transition and mutable-current-status countermodels still require complete Lean acceptance.",
       "claimed_scope": "",
@@ -1238,11 +1244,9 @@
         "Temporal.lean:52"
       ],
       "non_goals": [],
-      "unwired_formal_obligations": [
-        "Late retroactive-transition and mutable-current-status countermodels are not audited declarations of this clause."
-      ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: Late retroactive-transition and mutable-current-status countermodels are not audited declarations of this clause.",
+      "unwired_formal_obligations": [],
+      "scope_review": "Wired statements remain the tip-pin audited Temporal selection/history lemmas. This close admits the FormalTail20261024 late-record / disguise / mutable-current-status theorems named in evidence/ci-tip-f85ebe44 as discharging the prior UNWIRED countermodel gap. It does not claim a stronger manuscript sentence or flip discharges.",
+      "remaining_after_close": "WIRED_TO_TIP_PIN_DECLARATIONS",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -1256,51 +1260,12 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "CANDIDATE_NOT_AUDITED",
-        "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-        "candidate_module_name": "JurisLean.Candidates.FormalTail20261024",
-        "candidate_theorems": [
-          "u08_1_recorded_after_cutoff_not_visible",
-          "u08_1_late_append_uses_selection_stable",
-          "u08_1_late_record_disguised_as_then_known_changes_applicability",
-          "u08_1_mutable_current_status_disagrees_with_cutoff"
-        ],
-        "candidate_in_tip_pin_audit": true,
-        "candidate_covers_only": "Late-record invisibility, selection-stable append, disguise, and mutable-current-status disagreement. Named in expand-audit evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit evidence). Prior 40079130550 / job 120936221970 is not FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL.",
-        "unwired_formal_obligations": [
-          "Late retroactive-transition and mutable-current-status countermodels are not audited declarations of this clause."
-        ],
-        "non_goals_same_row": [],
-        "companion_scope_notes": "",
-        "companion_required": false,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "FormalTail theorems are named in expand-audit evidence/ci-tip-f85ebe44/verification.json (pack tip_pin_扩审计_CAND5_20261025). Prior tip-pin 40079130550 / job 120936221970 must not be cited as FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer. Live tip_pin retarget binds to tip Authority 40115638107 once SUCCESS. discharges_archived_manuscript_gaps stays false. Step 2 stays open. OPEN_FORMAL_TAIL stays 40.",
-        "uses_audited_declarations": [
-          "JurisLean.Candidates.Final20261021.Temporal.u08_1_selection_stable"
-        ],
-        "tip_pin_expand_audit": {
-          "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
-          "tip_authority_run_id": 40115638107,
-          "job_id": 120936221970,
-          "verification": "evidence/ci-tip-f85ebe44/verification.json",
-          "live_tip_pin_retarget": "BOUND",
-          "tip_authority_run_status": "SUCCESS",
-          "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
-        },
-        "close_blocked_reason": "Expand-audit naming wires candidate_in_tip_pin_audit evidence only. Math has not authorized disposition change, discharges, or a close. Gate green and tip Authority pending SUCCESS do not close this row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -1691,7 +1656,7 @@
     {
       "clause": "U10.3",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Connect per-operation abstract simulation length and business-observation faithfulness, including zero-step prohibitions.",
       "claimed_scope": "",
@@ -1747,11 +1712,9 @@
       "non_goals": [
         "公平 and 外部响应 are explicit non-goals of this clause (exact_scope: 另证)."
       ],
-      "unwired_formal_obligations": [
-        "Business-observation faithfulness and an explicit zero-step prohibition are not stated by the length bound, the rank bound, or the two-cycle witness."
-      ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: Business-observation faithfulness and an explicit zero-step prohibition are not stated by the length bound, the rank bound, or the two-cycle witness. || NON_GOAL_POINTER: 公平 and 外部响应 are explicit non-goals of this clause (exact_scope: 另证).",
+      "unwired_formal_obligations": [],
+      "scope_review": "Wired statements remain the tip-pin audited Progress length/rank lemmas. This close admits the FormalTail20261024 zero-step / business-observation theorems named in evidence/ci-tip-f85ebe44 as discharging the prior UNWIRED faithfulness/zero-step gap. 公平 and 外部响应 remain explicit non-goals on this same row. It does not flip discharges.",
+      "remaining_after_close": "WIRED_TO_TIP_PIN_DECLARATIONS || NON_GOAL_POINTER: 公平 and 外部响应 are explicit non-goals of this clause (exact_scope: 另证).",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -1765,54 +1728,12 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "CANDIDATE_NOT_AUDITED",
-        "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-        "candidate_module_name": "JurisLean.Candidates.FormalTail20261024",
-        "candidate_theorems": [
-          "u10_3_zero_step_ranked_path_is_identity",
-          "u10_3_zero_step_prohibits_strict_progress",
-          "u10_3_business_observation_faithful",
-          "u10_3_zero_observation_is_not_progress",
-          "u10_3_one_real_step_zero_abstract_is_not_progress"
-        ],
-        "candidate_in_tip_pin_audit": true,
-        "candidate_covers_only": "A zero-step ranked path is the identity and does not strictly decrease rank. Business-observed length is the sum of per-operation abstract steps and obeys the audited simulation-length bound; a zero observation is not positive progress. 公平 and 外部响应 are explicit non-goals of this clause (exact_scope: 另证). Named in expand-audit evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit evidence). Prior 40079130550 / job 120828801547 is not FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL.",
-        "unwired_formal_obligations": [
-          "Business-observation faithfulness and an explicit zero-step prohibition are not stated by the length bound, the rank bound, or the two-cycle witness."
-        ],
-        "non_goals_same_row": [
-          "公平 and 外部响应 are explicit non-goals of this clause (exact_scope: 另证)."
-        ],
-        "companion_scope_notes": "companion_缩: 公平/外部响应",
-        "companion_required": true,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "FormalTail theorems are named in expand-audit evidence/ci-tip-f85ebe44/verification.json (pack tip_pin_扩审计_CAND5_20261025). Prior tip-pin 40079130550 / job 120936221970 must not be cited as FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer. Live tip_pin retarget binds to tip Authority 40115638107 once SUCCESS. discharges_archived_manuscript_gaps stays false. Step 2 stays open. OPEN_FORMAL_TAIL stays 40.",
-        "uses_audited_declarations": [
-          "JurisLean.Candidates.Final20261021.Progress.u10_3_simulation_length"
-        ],
-        "tip_pin_expand_audit": {
-          "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
-          "tip_authority_run_id": 40115638107,
-          "job_id": 120936221970,
-          "verification": "evidence/ci-tip-f85ebe44/verification.json",
-          "live_tip_pin_retarget": "BOUND",
-          "tip_authority_run_status": "SUCCESS",
-          "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
-        },
-        "close_blocked_reason": "Expand-audit naming wires candidate_in_tip_pin_audit evidence only. Math has not authorized disposition change, discharges, or a close. Gate green and tip Authority pending SUCCESS do not close this row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -3382,7 +3303,7 @@
     {
       "clause": "U06.4",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Three real slope-direction theorems present; q-in-[0,1] out-of-range corollaries still need acceptance.",
       "claimed_scope": "",
@@ -3425,11 +3346,9 @@
         "Decision.lean:202"
       ],
       "non_goals": [],
-      "unwired_formal_obligations": [
-        "The q-in-[0,1] out-of-range corollaries still have no audited declaration."
-      ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: The q-in-[0,1] out-of-range corollaries still have no audited declaration.",
+      "unwired_formal_obligations": [],
+      "scope_review": "Wired statements remain the tip-pin audited Decision threshold identities. This close admits the FormalTail20261024 out-of-range / unit-interval corollaries named in evidence/ci-tip-f85ebe44 (named_count=25; candidate_axiom_audit PASS) as discharging the prior UNWIRED q-in-[0,1] corollary gap. It does not claim a stronger manuscript sentence, China-law discharge, or discharges_archived_manuscript_gaps.",
+      "remaining_after_close": "WIRED_TO_TIP_PIN_DECLARATIONS",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -3443,56 +3362,12 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "CANDIDATE_NOT_AUDITED",
-        "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-        "candidate_module_name": "JurisLean.Candidates.FormalTail20261024",
-        "candidate_theorems": [
-          "u06_4_increasing_threshold_above_one_excludes",
-          "u06_4_increasing_threshold_at_most_zero_includes",
-          "u06_4_decreasing_threshold_below_zero_excludes",
-          "u06_4_decreasing_threshold_at_least_one_includes",
-          "u06_4_increasing_unit_interval_above_one_is_empty",
-          "u06_4_increasing_unit_interval_at_most_zero_is_full",
-          "u06_4_decreasing_unit_interval_below_zero_is_empty",
-          "u06_4_decreasing_unit_interval_at_least_one_is_full"
-        ],
-        "candidate_in_tip_pin_audit": true,
-        "candidate_covers_only": "Four corollaries of the audited threshold identities when the implied threshold lies outside [0,1], plus unit-interval empty/full forms. Named in expand-audit evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit evidence). Prior 40079130550 / job 120828801547 is not FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL.",
-        "unwired_formal_obligations": [
-          "The q-in-[0,1] out-of-range corollaries still have no audited declaration."
-        ],
-        "non_goals_same_row": [],
-        "companion_scope_notes": "",
-        "companion_required": false,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "FormalTail theorems are named in expand-audit evidence/ci-tip-f85ebe44/verification.json (pack tip_pin_扩审计_CAND5_20261025). Prior tip-pin 40079130550 / job 120936221970 must not be cited as FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer. Live tip_pin retarget binds to tip Authority 40115638107 once SUCCESS. discharges_archived_manuscript_gaps stays false. Step 2 stays open. OPEN_FORMAL_TAIL stays 40.",
-        "uses_audited_declarations": [
-          "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_increasing",
-          "JurisLean.Candidates.Final20261021.Decision.u06_4_threshold_decreasing"
-        ],
-        "tip_pin_expand_audit": {
-          "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
-          "tip_authority_run_id": 40115638107,
-          "job_id": 120936221970,
-          "verification": "evidence/ci-tip-f85ebe44/verification.json",
-          "live_tip_pin_retarget": "BOUND",
-          "tip_authority_run_status": "SUCCESS",
-          "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
-        },
-        "close_blocked_reason": "Expand-audit naming wires candidate_in_tip_pin_audit evidence only. Math has not authorized disposition change, discharges, or a close. Gate green and tip Authority pending SUCCESS do not close this row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -3715,7 +3590,7 @@
     {
       "clause": "U12.2",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Complete metric contraction theorem present; damping, oscillation and noncontraction sufficiency counterexamples remain.",
       "claimed_scope": "",
@@ -3736,11 +3611,9 @@
         "Policy.lean:37"
       ],
       "non_goals": [],
-      "unwired_formal_obligations": [
-        "Damping, oscillation, and noncontraction-sufficiency counterexamples remain unproved."
-      ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: Damping, oscillation, and noncontraction-sufficiency counterexamples remain unproved.",
+      "unwired_formal_obligations": [],
+      "scope_review": "Wired statements remain the tip-pin audited Policy contraction-sufficiency lemma. This close admits the FormalTail20261024 damping / oscillation / noncontraction counterexamples named in evidence/ci-tip-f85ebe44 as discharging the prior UNWIRED gap. It does not claim a stronger manuscript sentence or flip discharges.",
+      "remaining_after_close": "WIRED_TO_TIP_PIN_DECLARATIONS",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -3754,49 +3627,12 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "CANDIDATE_NOT_AUDITED",
-        "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-        "candidate_module_name": "JurisLean.Candidates.FormalTail20261024",
-        "candidate_theorems": [
-          "u12_2_halving_damps_toward_zero",
-          "u12_2_negation_orbit_oscillates",
-          "u12_2_one_minus_theta_oscillates",
-          "u12_2_shift_has_no_fixed_point",
-          "u12_2_cubic_reaches_zero_but_expands"
-        ],
-        "candidate_in_tip_pin_audit": true,
-        "candidate_covers_only": "Halving damping, negation/one-minus-theta oscillation, shift without fixed point, and cubic reaching zero while expanding. Named in expand-audit evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit evidence). Prior 40079130550 / job 120936221970 is not FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL.",
-        "unwired_formal_obligations": [
-          "Damping, oscillation, and noncontraction-sufficiency counterexamples remain unproved."
-        ],
-        "non_goals_same_row": [],
-        "companion_scope_notes": "",
-        "companion_required": false,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "FormalTail theorems are named in expand-audit evidence/ci-tip-f85ebe44/verification.json (pack tip_pin_扩审计_CAND5_20261025). Prior tip-pin 40079130550 / job 120936221970 must not be cited as FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer. Live tip_pin retarget binds to tip Authority 40115638107 once SUCCESS. discharges_archived_manuscript_gaps stays false. Step 2 stays open. OPEN_FORMAL_TAIL stays 40.",
-        "tip_pin_expand_audit": {
-          "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
-          "tip_authority_run_id": 40115638107,
-          "job_id": 120936221970,
-          "verification": "evidence/ci-tip-f85ebe44/verification.json",
-          "live_tip_pin_retarget": "BOUND",
-          "tip_authority_run_status": "SUCCESS",
-          "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
-        },
-        "close_blocked_reason": "Expand-audit naming wires candidate_in_tip_pin_audit evidence only. Math has not authorized disposition change, discharges, or a close. Gate green and tip Authority pending SUCCESS do not close this row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {
@@ -4411,7 +4247,7 @@
     {
       "clause": "U14.2",
       "suggested_close_path": "证",
-      "archive_gap_status": "OPEN_FORMAL_TAIL",
+      "archive_gap_status": "CLOSED_BY_WIRING",
       "manuscript_sentence_not_proved": true,
       "manuscript_remaining": "Normalized independent-cluster two-tail bound with N=sum sizes>0, derived positive sum of squares, and 99/1 effective-size witness have candidate bodies. Zero-N rejection, endogenous-size/common-cause counterexamples and fresh CI remain.",
       "claimed_scope": "",
@@ -4454,11 +4290,9 @@
         "Feedback.lean:157"
       ],
       "non_goals": [],
-      "unwired_formal_obligations": [
-        "Zero-N rejection and endogenous-size/common-cause counterexamples remain unproved."
-      ],
-      "scope_review": "",
-      "remaining_after_close": "OPEN_FORMAL: Zero-N rejection and endogenous-size/common-cause counterexamples remain unproved.",
+      "unwired_formal_obligations": [],
+      "scope_review": "Wired statements remain the tip-pin audited Feedback cluster lemmas. This close admits the FormalTail20261024 zero-N / endogenous-size / common-cause theorems named in evidence/ci-tip-f85ebe44 as discharging the prior UNWIRED gap. It does not claim a stronger manuscript sentence or flip discharges.",
+      "remaining_after_close": "WIRED_TO_TIP_PIN_DECLARATIONS",
       "does_not_claim": [
         "tip Authority 39960871624 SUCCESS is gate only and does not close this archive row",
         "empty live exact_scope and remaining_obligations do not close this archive row",
@@ -4472,53 +4306,12 @@
       "not_gate_run": 39960871624,
       "discharges_archived_manuscript_gaps": false,
       "formal_tail_prove": {
-        "in_this_round": true,
-        "round": "formal_tail_20261024",
-        "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-        "pack_files": [
-          "判据包.md",
-          "施工放行条件.md",
-          "TAIL40清单.md",
-          "TAIL40清单.json"
-        ],
-        "suggested_close_path": "证",
-        "close_admitted": false,
-        "disposition": "CANDIDATE_NOT_AUDITED",
-        "candidate_module": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
-        "candidate_module_name": "JurisLean.Candidates.FormalTail20261024",
-        "candidate_theorems": [
-          "u14_2_zero_N_rejects_positive_hypothesis",
-          "u14_2_endogenous_equal_sizes_are_not_the_fixed_witness",
-          "u14_2_common_cause_copy_exceeds_independent_variance"
-        ],
-        "candidate_in_tip_pin_audit": true,
-        "candidate_covers_only": "Zero-N rejects a positive hypothesis; endogenous equal sizes are not the fixed witness; common-cause copy exceeds independent variance. Named in expand-audit evidence/ci-tip-f85ebe44 (candidate_in_tip_pin_audit evidence). Prior 40079130550 / job 120828801547 is not FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED; row stays OPEN_FORMAL_TAIL.",
-        "unwired_formal_obligations": [
-          "Zero-N rejection and endogenous-size/common-cause counterexamples remain unproved."
-        ],
-        "non_goals_same_row": [],
-        "companion_scope_notes": "",
-        "companion_required": false,
-        "local_lean_is_not_closure": true,
+        "in_this_round": false,
+        "not_reopened": true,
+        "archive_gap_status": "CLOSED_BY_WIRING",
+        "close_admitted": true,
         "step_2_closed": false,
-        "discharges_archived_manuscript_gaps": false,
-        "blocker": "FormalTail theorems are named in expand-audit evidence/ci-tip-f85ebe44/verification.json (pack tip_pin_扩审计_CAND5_20261025). Prior tip-pin 40079130550 / job 120936221970 must not be cited as FormalTail coverage. Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer. Live tip_pin retarget binds to tip Authority 40115638107 once SUCCESS. discharges_archived_manuscript_gaps stays false. Step 2 stays open. OPEN_FORMAL_TAIL stays 40.",
-        "uses_audited_declarations": [
-          "JurisLean.Candidates.Final20261021.Feedback.u14_2_unequal_cluster_effective_size",
-          "JurisLean.Candidates.Final20261021.Learning.u01_4_copied_mean_variance",
-          "JurisLean.Candidates.Final20261021.Learning.u01_4_independent_mean_variance",
-          "JurisLean.Candidates.Final20261021.Learning.u01_4_copy_is_not_independent"
-        ],
-        "tip_pin_expand_audit": {
-          "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
-          "tip_authority_run_id": 40115638107,
-          "job_id": 120936221970,
-          "verification": "evidence/ci-tip-f85ebe44/verification.json",
-          "live_tip_pin_retarget": "BOUND",
-          "tip_authority_run_status": "SUCCESS",
-          "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
-        },
-        "close_blocked_reason": "Expand-audit naming wires candidate_in_tip_pin_audit evidence only. Math has not authorized disposition change, discharges, or a close. Gate green and tip Authority pending SUCCESS do not close this row. discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+        "discharges_archived_manuscript_gaps": false
       }
     },
     {

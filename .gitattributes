@@ -18,3 +18,6 @@ theory/spec/**/*.jsonl -text
 docs/master-plan/**/*.json -text
 docs/master-plan/**/*.jsonl -text
 docs/paper-rewrite/*.md -text
+
+# Archive-gap / tip-pin evidence: checker SHA pins require byte-exact LF.
+proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/evidence/** -text

@@ -457,24 +457,24 @@ DOES_NOT_CLAIM = [
 ]
 
 TIP_PIN = {
-    "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
-    "run_id": 40115638107,
-    "job_id": 120936221970,
+    "subject": "dc7b7430198fa221b5d72d55fc6065a928209dc4",
+    "run_id": 40190504653,
+    "job_id": 121160299567,
     "axiom_audit": "PASS_REEXTRACTED_STANDARD_AXIOMS_ONLY",
-    "verification": "evidence/ci-tip-f85ebe44/verification.json",
+    "verification": "evidence/ci-tip-dc7b7430/verification.json",
 }
 
 # Expand-audit naming for CAND5 FormalTail theorems. Live tip_pin is now bound to
-# tip Authority 40115638107 / job 120936221970 (SUCCESS). Prior tip-pin
-# 40079130550 must never be cited as FormalTail coverage.
+# tip Authority 40190504653 / job 121160299567 (SUCCESS). Prior tip-pin
+# f85ebe44 / 40115638107 remains historical CAND5-only (named_count=25).
 FORMAL_TAIL_EXPAND = {
-    "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
-    "tip_authority_run_id": 40115638107,
-    "job_id": 120936221970,
-    "verification": "evidence/ci-tip-f85ebe44/verification.json",
+    "subject": "dc7b7430198fa221b5d72d55fc6065a928209dc4",
+    "tip_authority_run_id": 40190504653,
+    "job_id": 121160299567,
+    "verification": "evidence/ci-tip-dc7b7430/verification.json",
     "live_tip_pin_retarget": "BOUND",
     "tip_authority_run_status": "SUCCESS",
-    "criteria_pack": "tip_pin_扩审计_CAND5_20261025",
+    "criteria_pack": "tip_pin_扩审计_CAND5bis_20261025",
 }
 
 GATE_ONLY_RUN = 39960871624
@@ -678,37 +678,32 @@ CANDIDATE_COVERS_ONLY: dict[str, str] = {
     "U08.2": (
         "Current-singleton does not exhaust a two-point reachable set; nonempty "
         "observation preserves the chosen answer via audited finite-compression "
-        "reflection. Named for CAND5bis expand-audit only under pack "
-        "formal_tail_真证CAND5bis_20261025. Not CLOSED; OPEN_FORMAL_TAIL stays 35."
+        "reflection. Named in expand-audit evidence/ci-tip-dc7b7430 (named_count=37; pack tip_pin_扩审计_CAND5bis_20261025). Not CLOSED; OPEN_FORMAL_TAIL stays 35."
     ),
     "U09.3": (
         "Greedy prefix on a two-claim budget misses a full optimum; same-institution "
-        "accrual does not move cash (audited accrual_not_cash). Named for CAND5bis "
-        "expand-audit only. Not CLOSED; OPEN_FORMAL_TAIL stays 35."
+        "accrual does not move cash (audited accrual_not_cash). Named in expand-audit evidence/ci-tip-dc7b7430 (named_count=37; pack tip_pin_扩审计_CAND5bis_20261025). Not CLOSED; OPEN_FORMAL_TAIL stays 35."
     ),
     "U13.1": (
         "Lawful statistical-evidence input change moves the conditional estimate; "
         "personal update preserves rule service (audited noninterference). Authority "
-        "integration is an explicit NON_GOAL. Named for CAND5bis expand-audit only. "
-        "Not CLOSED; OPEN_FORMAL_TAIL stays 35."
+        "integration is an explicit NON_GOAL. Named in expand-audit evidence/ci-tip-dc7b7430 (named_count=37; pack tip_pin_扩审计_CAND5bis_20261025). Not CLOSED; OPEN_FORMAL_TAIL stays 35."
     ),
     "U15.1": (
         "Finite-state strict-improvement length is bounded by starting rank; "
         "parameter-free successor has no fixed point; telescoping consumes audited "
-        "finite_cumulative_improvement. Named for CAND5bis expand-audit only. "
-        "Not CLOSED; OPEN_FORMAL_TAIL stays 35."
+        "finite_cumulative_improvement. Named in expand-audit evidence/ci-tip-dc7b7430 (named_count=37; pack tip_pin_扩审计_CAND5bis_20261025). Not CLOSED; OPEN_FORMAL_TAIL stays 35."
     ),
     "U15.2": (
         "Key-point regression changes exact risk; finite-observation agreement is "
         "not global agreement; full agreement preserves risk via audited "
-        "preserved_predictions_equal_risk. Named for CAND5bis expand-audit only. "
-        "Not CLOSED; OPEN_FORMAL_TAIL stays 35."
+        "preserved_predictions_equal_risk. Named in expand-audit evidence/ci-tip-dc7b7430 (named_count=37; pack tip_pin_扩审计_CAND5bis_20261025). Not CLOSED; OPEN_FORMAL_TAIL stays 35."
     ),
 }
 TAIL_BLOCKER = (
     "The unwired formal obligation is not a declaration accepted by tip-pin "
-    "axiom audit subject f85ebe44644f32820e9d0fad1325428fb8f171d9, run "
-    "40115638107, job 120936221970. Candidates/Final20261021/*.lean stays "
+    "axiom audit subject dc7b7430198fa221b5d72d55fc6065a928209dc4, run "
+    "40190504653, job 121160299567. Candidates/Final20261021/*.lean stays "
     "byte-locked to that receipt, so this round cannot edit those files or "
     "cite a new name as audited. A candidate module outside that directory "
     "is not closure. Gate SUCCESS does not close the row. Retargeting the "
@@ -747,11 +742,10 @@ def formal_tail_record(clause: str) -> dict:
             "discharges_archived_manuscript_gaps": False,
         }
     candidates = list(PROVE_CANDIDATES.get(clause, []))
-    # CAND5bis theorems exist in FormalTail but are NOT yet named by a tip-pin
-    # expand receipt on a head Authority that built them. Do not point at the
-    # historical f85ebe44 receipt (named_count=25; CAND5 only) as CAND5bis coverage.
+    # Live tip-pin ci-tip-dc7b7430 names CAND5 (25) + CAND5bis (12) = 37.
+    # Historical f85ebe44 (named_count=25) remains on disk but is not live coverage.
     cand5bis = clause in CAND5BIS_IDS
-    in_tip_pin_audit = bool(candidates) and not cand5bis
+    in_tip_pin_audit = bool(candidates)
     record = {
         "in_this_round": True,
         "round": FORMAL_TAIL_ROUND,
@@ -777,39 +771,38 @@ def formal_tail_record(clause: str) -> dict:
     uses = CANDIDATE_USES_AUDITED.get(clause, [])
     if uses:
         record["uses_audited_declarations"] = list(uses)
-    if candidates and cand5bis:
-        record["criteria_pack_cand5bis"] = FORMAL_TAIL_CAND5BIS_PACK
-        record["blocker"] = (
-            "FormalTail CAND5bis theorems exist in FormalTail20261024.lean under pack "
-            "formal_tail_真证CAND5bis_20261025 but are NOT named in any tip-pin expand "
-            "receipt yet. evidence/ci-tip-f85ebe44/verification.json (named_count=25) "
-            "covers historical CAND5 only and must not be cited as CAND5bis audit. "
-            "candidate_in_tip_pin_audit stays false until a new tip Authority SUCCESS "
-            "on a head that includes these theorems, then a separate expand commit. "
-            "Disposition stays CANDIDATE_NOT_AUDITED. discharges stays false. "
-            "Step 2 stays open. OPEN_FORMAL_TAIL stays 35; closed_this_round=0."
-        )
-        record["close_blocked_reason"] = (
-            "CAND5bis FormalTail theorems are not in tip-pin audit yet. "
-            "No expand receipt may cite f85ebe44 for these five ids. "
-            "Math has not authorized a close. discharges stays false. Step 2 stays open."
-        )
-    elif candidates:
-        # Historical path: only if an open row still claims expand naming.
+    if candidates:
         record["tip_pin_expand_audit"] = dict(FORMAL_TAIL_EXPAND)
-        record["blocker"] = (
-            "FormalTail theorems are named in expand-audit "
-            "evidence/ci-tip-f85ebe44/verification.json (pack "
-            "tip_pin_扩审计_CAND5_20261025). Prior tip-pin 40079130550 / "
-            "job 120936221970 must not be cited as FormalTail coverage. "
-            "Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer. "
-            "discharges_archived_manuscript_gaps stays false. Step 2 stays open."
-        )
-        record["close_blocked_reason"] = (
-            "Expand-audit naming wires candidate_in_tip_pin_audit evidence only. "
-            "Math has not authorized disposition change, discharges, or a close. "
-            "discharges_archived_manuscript_gaps stays false. Step 2 stays open."
-        )
+        if cand5bis:
+            record["criteria_pack_cand5bis"] = FORMAL_TAIL_CAND5BIS_PACK
+            record["blocker"] = (
+                "FormalTail CAND5bis theorems are named in expand-audit "
+                "evidence/ci-tip-dc7b7430/verification.json (named_count=37; pack "
+                "tip_pin_扩审计_CAND5bis_20261025). Historical f85ebe44 "
+                "(named_count=25) is not live CAND5bis coverage. "
+                "Disposition stays CANDIDATE_NOT_AUDITED until math 关≥1 pack. "
+                "discharges stays false. Step 2 stays open. "
+                "OPEN_FORMAL_TAIL stays 35; closed_this_round=0."
+            )
+            record["close_blocked_reason"] = (
+                "Expand-audit naming wires candidate_in_tip_pin_audit=true only. "
+                "Math has not authorized CLOSED / discharges / 关≥1. "
+                "discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+            )
+        else:
+            record["blocker"] = (
+                "FormalTail theorems are named in expand-audit "
+                "evidence/ci-tip-dc7b7430/verification.json (pack "
+                "tip_pin_扩审计_CAND5bis_20261025; named_count=37). Prior tip-pin "
+                "f85ebe44 / 40115638107 must not be cited as the live FormalTail "
+                "coverage. Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer. "
+                "discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+            )
+            record["close_blocked_reason"] = (
+                "Expand-audit naming wires candidate_in_tip_pin_audit evidence only. "
+                "Math has not authorized disposition change, discharges, or a close. "
+                "discharges_archived_manuscript_gaps stays false. Step 2 stays open."
+            )
     return record
 
 
@@ -836,11 +829,12 @@ def formal_tail_summary(rows: list[dict]) -> dict:
         "companion_tail_ids": list(COMPANION_TAIL_IDS),
         "candidate_module": CANDIDATE_MODULE,
         "candidate_module_quarantine": (
-            "CAND5 named in expand-audit evidence/ci-tip-f85ebe44 (named_count=25). CAND5bis theorems exist but NOT tip-pin audited yet. CAND5 "
+            "CAND5+CAND5bis named in expand-audit evidence/ci-tip-dc7b7430 (named_count=37). CAND5 "
             "U06.4/U08.1/U10.3/U12.2/U14.2 closed by wiring under pack "
-            "formal_tail_关≥1_CAND5_20261025; FormalTail short names stay out of "
-            "wired_declarations; discharges stay false; tip_pin unchanged "
-            "f85ebe44 / 40115638107 / 120936221970; remaining OPEN are BLOCKED"
+            "formal_tail_关≥1_CAND5_20261025; CAND5bis stay CANDIDATE_NOT_AUDITED with "
+            "candidate_in_tip_pin_audit=true (expand≠close); FormalTail short names stay out of "
+            "wired_declarations; discharges stay false; tip_pin "
+            "dc7b7430 / 40190504653 / 121160299567; remaining OPEN include BLOCKED + CAND5bis"
         ),
         "discharges_archived_manuscript_gaps": False,
         "math_flip_authorized": False,

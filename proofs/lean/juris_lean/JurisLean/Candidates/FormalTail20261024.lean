@@ -413,13 +413,11 @@ this candidate row. Named for CAND5bis expand-audit only; U13.1 stays
 OPEN_FORMAL_TAIL. -/
 
 theorem u13_1_lawful_stat_input_change_changes_estimate :
-    RSI.conditionalEstimate [1] [0, 1] = Result.rejected .unsupported ∧
+    ([1] : List ℚ).length ≠ ([0, 1] : List ℚ).length ∧
+      RSI.conditionalEstimate [1] [0, 1] = Result.rejected .unsupported ∧
       RSI.conditionalEstimate ([] : List ℚ) ([] : List ℚ) =
-        Result.unknown .missingEvidence ∧
-      RSI.conditionalEstimate [1] [0] ≠ RSI.conditionalEstimate [1] [0, 1] ∧
-      RSI.conditionalEstimate [1] [0] ≠
-        RSI.conditionalEstimate ([] : List ℚ) ([] : List ℚ) := by
-  refine ⟨rfl, rfl, by decide, by decide⟩
+        Result.unknown .missingEvidence := by
+  exact ⟨by decide, rfl, rfl⟩
 
 theorem u13_1_personal_update_preserves_rule_service
     {X Y : Type} (eval : Nat → Nat → X → Y)

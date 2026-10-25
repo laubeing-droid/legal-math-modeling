@@ -8772,6 +8772,26 @@
     },
     {
      "kind": "theorem",
+     "name": "u08_2_current_singleton_does_not_exhaust_reachable"
+    },
+    {
+     "kind": "def",
+     "name": "u08_2_app"
+    },
+    {
+     "kind": "def",
+     "name": "u08_2_answer"
+    },
+    {
+     "kind": "def",
+     "name": "u08_2_obs"
+    },
+    {
+     "kind": "theorem",
+     "name": "u08_2_nonempty_observation_preserves_chosen_answer"
+    },
+    {
+     "kind": "theorem",
      "name": "u10_3_zero_step_ranked_path_is_identity"
     },
     {
@@ -8793,6 +8813,14 @@
     {
      "kind": "theorem",
      "name": "u10_3_one_real_step_zero_abstract_is_not_progress"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_3_greedy_prefix_misses_second_claim"
+    },
+    {
+     "kind": "theorem",
+     "name": "u09_3_same_institution_accrual_is_not_cash_effect"
     },
     {
      "kind": "theorem",
@@ -8884,6 +8912,30 @@
     },
     {
      "kind": "theorem",
+     "name": "u13_1_lawful_stat_input_change_changes_estimate"
+    },
+    {
+     "kind": "theorem",
+     "name": "u13_1_personal_update_preserves_rule_service"
+    },
+    {
+     "kind": "inductive",
+     "name": "FinStrictImprove"
+    },
+    {
+     "kind": "theorem",
+     "name": "u15_1_finite_state_strict_improve_length_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "u15_1_no_parameter_successor_has_no_fixed_point"
+    },
+    {
+     "kind": "theorem",
+     "name": "u15_1_telescoping_consumes_cumulative_improvement"
+    },
+    {
+     "kind": "theorem",
      "name": "u14_2_zero_N_rejects_positive_hypothesis"
     },
     {
@@ -8893,23 +8945,47 @@
     {
      "kind": "theorem",
      "name": "u14_2_common_cause_copy_exceeds_independent_variance"
+    },
+    {
+     "kind": "theorem",
+     "name": "u15_2_key_point_regression_changes_exact_risk"
+    },
+    {
+     "kind": "def",
+     "name": "u15_2_old"
+    },
+    {
+     "kind": "def",
+     "name": "u15_2_new"
+    },
+    {
+     "kind": "theorem",
+     "name": "u15_2_finite_obs_agree_not_global"
+    },
+    {
+     "kind": "theorem",
+     "name": "u15_2_full_agreement_preserves_risk"
     }
    ],
    "imports": [
     "JurisLean.Candidates.Final20261021.Decision",
     "JurisLean.Candidates.Final20261021.Feedback",
+    "JurisLean.Candidates.Final20261021.Iteration",
     "JurisLean.Candidates.Final20261021.Learning",
+    "JurisLean.Candidates.Final20261021.Ledger",
     "JurisLean.Candidates.Final20261021.Policy",
+    "JurisLean.Candidates.Final20261021.Probability",
     "JurisLean.Candidates.Final20261021.Progress",
+    "JurisLean.Candidates.Final20261021.RSI",
     "JurisLean.Candidates.Final20261021.Temporal"
    ],
    "lemma_count": 5,
    "path": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "print_axioms_targets": [],
-   "sha256": "2af1a8e2bce6edb7fe801dc026bf2b050d8ca88615bd03ea3e642789ac6c984f",
-   "size_bytes": 14666,
-   "theorem_count": 25,
-   "theorem_count_bol_convention": 25
+   "sha256": "d7744ec4f1fecc06d36c7752a70c5aace17510c037ffba763f7b7d06e60c21d9",
+   "size_bytes": 21216,
+   "theorem_count": 37,
+   "theorem_count_bol_convention": 37
   },
   {
    "declarations": [
@@ -49049,22 +49125,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5483,
+   "counted_declaration_count": 5495,
    "file_count": 394,
    "lemma_count": 146,
    "print_axioms_command_count": 4334,
    "print_axioms_distinct_targets": 4280,
-   "theorem_count": 5337,
-   "theorem_count_bol_convention": 5237
+   "theorem_count": 5349,
+   "theorem_count_bol_convention": 5249
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5464,
+   "counted_declaration_count": 5476,
    "file_count": 379,
    "lemma_count": 139,
    "print_axioms_command_count": 4334,
    "print_axioms_distinct_targets": 4280,
-   "theorem_count": 5325,
-   "theorem_count_bol_convention": 5225
+   "theorem_count": 5337,
+   "theorem_count_bol_convention": 5237
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -49894,19 +49970,24 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "6360a633931ed3afb74c4fd8ad0fd0fa920d1fbb4c090d347ca27880060ee207",
+ "source_inventory_digest": "9dd338c1adb3b392f05aec48a6b5aab6db082d4083a5382af8d3b1a2557c8513",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "tip-pin-expand-cand5-f85ebe44",
-  "commit": "7d2b5a0810102d9bbecc5eaf5b3438afe454f48e",
-  "tree": "5299255cb1d0ba30e17a58d45457f2138825df1c"
+  "branch": "formal-tail-cand5bis-20261025",
+  "commit": "3f1b4d1637e0f2fcfa1405cafa9e782040d091aa",
+  "tree": "8a5e1433622cc0b932ddc523ad72a1d65ce2093f"
  },
  "subject_binding": {
-  "binding": "BOUND_TO_SUBJECT",
-  "files_diverging_from_subject": [],
+  "binding": "STALE_SUBJECT",
+  "files_diverging_from_subject": [
+   {
+    "path": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
+    "reason": "bytes differ from subject"
+   }
+  ],
   "files_total": 394,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
-  "worktree_dirty_under_proofs": false
+  "worktree_dirty_under_proofs": true
  },
  "subject_binding_usage": "binding == BOUND_TO_SUBJECT is required before any count here is quoted as a bound claim; STALE_SUBJECT means the label points at a commit whose bytes are not the bytes that were counted."
 }

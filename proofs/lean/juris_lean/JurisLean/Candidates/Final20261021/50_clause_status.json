@@ -1778,9 +1778,17 @@
           "round": "formal_tail_20261024",
           "in_this_round": true,
           "not_reopened": false,
-          "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-          "candidate_in_tip_pin_audit": false,
-          "tip_pin_expand_audit": null,
+          "disposition": "CANDIDATE_NOT_AUDITED",
+          "candidate_in_tip_pin_audit": true,
+          "tip_pin_expand_audit": {
+            "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+            "tip_authority_run_id": 40115638107,
+            "job_id": 120936221970,
+            "verification": "evidence/ci-tip-f85ebe44/verification.json",
+            "live_tip_pin_retarget": "BOUND",
+            "tip_authority_run_status": "SUCCESS",
+            "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
+          },
           "close_admitted": false,
           "step_2_closed": false,
           "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
@@ -2220,9 +2228,17 @@
           "round": "formal_tail_20261024",
           "in_this_round": true,
           "not_reopened": false,
-          "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-          "candidate_in_tip_pin_audit": false,
-          "tip_pin_expand_audit": null,
+          "disposition": "CANDIDATE_NOT_AUDITED",
+          "candidate_in_tip_pin_audit": true,
+          "tip_pin_expand_audit": {
+            "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+            "tip_authority_run_id": 40115638107,
+            "job_id": 120936221970,
+            "verification": "evidence/ci-tip-f85ebe44/verification.json",
+            "live_tip_pin_retarget": "BOUND",
+            "tip_authority_run_status": "SUCCESS",
+            "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
+          },
           "close_admitted": false,
           "step_2_closed": false,
           "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
@@ -4045,19 +4061,31 @@
         "evidence_pointers": [
           "RSI.lean:43"
         ],
-        "non_goals": [],
+        "non_goals": [
+          "Authority integration is an explicit non-goal of this candidate row (exact_scope: 另证)."
+        ],
         "discharges_archived_manuscript_gaps": false,
         "formal_tail_prove": {
           "round": "formal_tail_20261024",
           "in_this_round": true,
           "not_reopened": false,
-          "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-          "candidate_in_tip_pin_audit": false,
-          "tip_pin_expand_audit": null,
+          "disposition": "CANDIDATE_NOT_AUDITED",
+          "candidate_in_tip_pin_audit": true,
+          "tip_pin_expand_audit": {
+            "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+            "tip_authority_run_id": 40115638107,
+            "job_id": 120936221970,
+            "verification": "evidence/ci-tip-f85ebe44/verification.json",
+            "live_tip_pin_retarget": "BOUND",
+            "tip_authority_run_status": "SUCCESS",
+            "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
+          },
           "close_admitted": false,
           "step_2_closed": false,
           "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
-          "non_goals_same_row": []
+          "non_goals_same_row": [
+            "Authority integration is an explicit non-goal of this candidate row (exact_scope: 另证)."
+          ]
         }
       }
     },
@@ -4404,9 +4432,17 @@
           "round": "formal_tail_20261024",
           "in_this_round": true,
           "not_reopened": false,
-          "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-          "candidate_in_tip_pin_audit": false,
-          "tip_pin_expand_audit": null,
+          "disposition": "CANDIDATE_NOT_AUDITED",
+          "candidate_in_tip_pin_audit": true,
+          "tip_pin_expand_audit": {
+            "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+            "tip_authority_run_id": 40115638107,
+            "job_id": 120936221970,
+            "verification": "evidence/ci-tip-f85ebe44/verification.json",
+            "live_tip_pin_retarget": "BOUND",
+            "tip_authority_run_status": "SUCCESS",
+            "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
+          },
           "close_admitted": false,
           "step_2_closed": false,
           "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",
@@ -4552,9 +4588,17 @@
           "round": "formal_tail_20261024",
           "in_this_round": true,
           "not_reopened": false,
-          "disposition": "BLOCKED_NOT_IN_TIP_PIN_AUDIT",
-          "candidate_in_tip_pin_audit": false,
-          "tip_pin_expand_audit": null,
+          "disposition": "CANDIDATE_NOT_AUDITED",
+          "candidate_in_tip_pin_audit": true,
+          "tip_pin_expand_audit": {
+            "subject": "f85ebe44644f32820e9d0fad1325428fb8f171d9",
+            "tip_authority_run_id": 40115638107,
+            "job_id": 120936221970,
+            "verification": "evidence/ci-tip-f85ebe44/verification.json",
+            "live_tip_pin_retarget": "BOUND",
+            "tip_authority_run_status": "SUCCESS",
+            "criteria_pack": "tip_pin_扩审计_CAND5_20261025"
+          },
           "close_admitted": false,
           "step_2_closed": false,
           "criteria_pack": "/home/box/shared/legal-math-reviewer/formal_tail_判据包_20261024/",

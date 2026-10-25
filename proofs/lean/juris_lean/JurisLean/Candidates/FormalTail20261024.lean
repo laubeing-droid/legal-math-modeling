@@ -1,28 +1,34 @@
 import JurisLean.Candidates.Final20261021.Decision
 import JurisLean.Candidates.Final20261021.Feedback
+import JurisLean.Candidates.Final20261021.Iteration
 import JurisLean.Candidates.Final20261021.Learning
+import JurisLean.Candidates.Final20261021.Ledger
 import JurisLean.Candidates.Final20261021.Policy
+import JurisLean.Candidates.Final20261021.Probability
 import JurisLean.Candidates.Final20261021.Progress
+import JurisLean.Candidates.Final20261021.RSI
 import JurisLean.Candidates.Final20261021.Temporal
 
 /-!
-Formal-tail source for formal_tail_20261024, candidate ids
-U08.1, U10.3, U06.4, U12.2, U14.2 (archive order).
+Formal-tail source for formal_tail_20261024 + CAND5bis, candidate ids in
+archive order: U08.1, U08.2, U10.3, U09.3, U06.4, U12.2, U13.1, U15.1,
+U14.2, U15.2.
 
-These 25 theorem FULL names are named in the tip-pin expand-audit
-evidence at evidence/ci-tip-f85ebe44/verification.json (pack
-tip_pin_???_CAND5_20261025). That naming wires
-candidate_in_tip_pin_audit evidence only. It does not close debt.
+CAND5 (U08.1/U10.3/U06.4/U12.2/U14.2) were previously expand-audited and
+later CLOSED_BY_WIRING under formal_tail_关≥1_CAND5_20261025.
+CAND5bis (U08.2/U09.3/U13.1/U15.1/U15.2) are candidate theorems only
+under pack formal_tail_真证CAND5bis_20261025: expand-audit naming may
+wire candidate_in_tip_pin_audit; this knife does NOT write CLOSED;
+OPEN_FORMAL_TAIL stays 35; closed_this_round stays 0.
 
-Prior tip-pin 27849d3f / id 40079130550 / job-id 120828801547 must NOT
-be cited as FormalTail coverage. Live tip_pin subject/job is BOUND to
-Authority 40115638107 / job-id 120936221970 (subject f85ebe44?, SUCCESS).
+Prior tip-pin 27849d3f / 40079130550 must NOT be cited as FormalTail
+coverage. Old f85ebe44 / 40115638107 / 120936221970 receipt is history;
+live tip_pin may retarget after a new tip Authority SUCCESS that names
+the CAND5bis full theorem names.
 
-Disposition stays CANDIDATE_NOT_AUDITED until math debt-layer rejudge.
-OPEN_FORMAL_TAIL stays 40. closed_this_round stays 0.
-They do not set discharges_archived_manuscript_gaps.
-They do not close step 2.
-Local text is not a Lean PASS. CI is the authority.
+Disposition for CAND5bis stays CANDIDATE_NOT_AUDITED until math
+debt-layer. discharges_archived_manuscript_gaps stays false.
+Step 2 stays open. Local text is not a Lean PASS. CI is the authority.
 -/
 
 namespace JurisLean.Candidates.FormalTail20261024
@@ -30,6 +36,7 @@ namespace JurisLean.Candidates.FormalTail20261024
 open JurisLean.Candidates.Final20261021
 open JurisLean.Candidates.Final20261021.Decision
 open JurisLean.Candidates.Final20261021.Feedback
+open JurisLean.Candidates.Final20261021.Iteration
 open JurisLean.Candidates.Final20261021.Learning
 open JurisLean.Candidates.Final20261021.Policy
 open JurisLean.Candidates.Final20261021.Progress
@@ -110,6 +117,35 @@ theorem u08_1_mutable_current_status_disagrees_with_cutoff :
   refine ⟨rfl, rfl, ?_, by decide⟩
   exact u08_1_late_append_uses_selection_stable u08Cutoff [] u08Late (by decide)
 
+
+/-! ### U08.2
+Current versus reachable exhaustion: a singleton current set does not cover
+a two-point reachable set. Nonempty-state preservation: on a nonempty
+observation the compressible answer equals the chosen world's answer
+(consumer of the audited finite-compression reflection). Named for
+CAND5bis expand-audit only; U08.2 stays OPEN_FORMAL_TAIL. -/
+
+theorem u08_2_current_singleton_does_not_exhaust_reachable :
+    ¬ ∀ v : Fin 2, v ∈ ({0} : Finset (Fin 2)) := by
+  intro h
+  have : (1 : Fin 2) ∈ ({0} : Finset (Fin 2)) := h 1
+  exact absurd this (by decide)
+
+/-- One history, two worlds; observation `{()}` is nonempty. -/
+def u08_2_app (_h : Unit) (_v : Bool) : Bool := true
+def u08_2_answer (v : Bool) (_h : Unit) (_q : Unit) : Nat := if v then 1 else 0
+def u08_2_obs (_q : Unit) : Bool := true
+
+theorem u08_2_nonempty_observation_preserves_chosen_answer :
+    checkCompression (H := Unit) (V := Bool) (Q := Unit) (A := Nat)
+        u08_2_app u08_2_answer u08_2_obs true = true ∧
+      Compressible (fun h v => u08_2_app h v = true) u08_2_answer
+        (fun q => u08_2_obs q = true) true := by
+  refine ⟨by decide, ?_⟩
+  exact (u08_2_finite_compression_reflection
+    (H := Unit) (V := Bool) (Q := Unit) (A := Nat)
+    u08_2_app u08_2_answer u08_2_obs true).mp (by decide)
+
 /-! ### U10.3
 A zero-step ranked path is the identity and does not strictly decrease rank.
 Business-observed length is the sum of per-operation abstract steps and is a
@@ -163,6 +199,34 @@ theorem u10_3_one_real_step_zero_abstract_is_not_progress :
   refine ⟨h0, ?_⟩
   rw [h0]
   decide
+
+
+/-! ### U09.3
+Greedy prefix on a two-claim budget is not the full optimum ordering.
+Same-institution accrual does not move cash (consumer of audited
+`u09_3_accrual_not_cash`). Named for CAND5bis expand-audit only;
+U09.3 stays OPEN_FORMAL_TAIL. -/
+
+/-- Greedy takes the first claim of size 2 from budget 3; the leftover 1
+cannot fund the second claim of size 2. Reordering would fund either claim
+fully, so the greedy prefix is not a full optimum. -/
+theorem u09_3_greedy_prefix_misses_second_claim :
+    let budget : ℚ := 3
+    let d1 : ℚ := 2
+    let d2 : ℚ := 2
+    let greedy1 := min d1 budget
+    let leftover := budget - greedy1
+    let greedy2 := min d2 leftover
+    greedy1 = 2 ∧ leftover = 1 ∧ greedy2 = 1 ∧
+      greedy1 + greedy2 = 3 ∧ greedy2 < d2 ∧
+      min d2 budget = 2 := by
+  norm_num
+
+theorem u09_3_same_institution_accrual_is_not_cash_effect (s : Ledger.State) (a : ℚ) :
+    (Ledger.accrue s a).cash = s.cash ∧
+      (Ledger.accrue s a).paid = s.paid ∧
+      (Ledger.accrue s a).refundCash = s.refundCash :=
+  Ledger.u09_3_accrual_not_cash s a
 
 /-! ### U06.4
 Out-of-range corollaries of the audited slope identities, then the same facts
@@ -340,6 +404,60 @@ theorem u12_2_cubic_reaches_zero_but_expands :
 
 end
 
+
+/-! ### U13.1
+Lawful statistical-evidence input change moves the conditional estimate.
+Personal-checkpoint update preserves the rule service (consumer of audited
+`u13_1_noninterference`). Authority integration is an explicit NON_GOAL of
+this candidate row. Named for CAND5bis expand-audit only; U13.1 stays
+OPEN_FORMAL_TAIL. -/
+
+theorem u13_1_lawful_stat_input_change_changes_estimate :
+    RSI.conditionalEstimate [1, 1] [0, 1] = Result.known (1 / 2 : ℚ) ∧
+      RSI.conditionalEstimate [1, 1] [0, 0] = Result.known (0 : ℚ) ∧
+      RSI.conditionalEstimate [1, 1] [0, 1] ≠ RSI.conditionalEstimate [1, 1] [0, 0] := by
+  refine ⟨rfl, rfl, ?_⟩
+  decide
+
+theorem u13_1_personal_update_preserves_rule_service
+    {X Y : Type} (eval : Nat → Nat → X → Y)
+    (s : RSI.State) (x : X) (who : PartyId) (value : RSI.Checkpoint) :
+    RSI.proposed_rule_service eval (RSI.updatePersonal s who value) x =
+      RSI.proposed_rule_service eval s x :=
+  RSI.u13_1_noninterference eval s x who value
+
+
+/-! ### U15.1
+Finite-state strict-improvement paths cannot exceed the starting rank.
+A parameter-free successor `n ↦ n+1` has no fixed point (no-parameter
+convergence counterexample). The telescoping witness is a consumer of the
+audited `u15_1_finite_cumulative_improvement`. Named for CAND5bis
+expand-audit only; U15.1 stays OPEN_FORMAL_TAIL. -/
+
+/-- Strict improvement on a finite rank: each step drops rank by at least one. -/
+inductive FinStrictImprove {S : Type} (rank : S → Nat) : S → Nat → S → Prop where
+  | nil (s : S) : FinStrictImprove rank s 0 s
+  | cons {s t u : S} {n : Nat} :
+      rank t < rank s →
+        FinStrictImprove rank t n u → FinStrictImprove rank s (n + 1) u
+
+theorem u15_1_finite_state_strict_improve_length_bound {S : Type}
+    (rank : S → Nat) {s t : S} {n : Nat}
+    (h : FinStrictImprove rank s n t) : n ≤ rank s := by
+  induction h with
+  | nil s => omega
+  | cons hlt _rest ih => omega
+
+theorem u15_1_no_parameter_successor_has_no_fixed_point (n : Nat) :
+    n + 1 ≠ n := by
+  omega
+
+theorem u15_1_telescoping_consumes_cumulative_improvement
+    {first last : ℝ} {budgets : List ℝ}
+    (h : RiskTrace first budgets last) :
+    last ≤ first + budgets.sum :=
+  u15_1_finite_cumulative_improvement h
+
 /-! ### U14.2
 `N = 0` rejects the strict positive total. Equal sizes chosen after the fact
 are not the fixed `99/1` effective-size witness. A shared copy keeps variance
@@ -367,5 +485,41 @@ theorem u14_2_common_cause_copy_exceeds_independent_variance (n : ℕ) (hn : 1 <
   exact ⟨u01_4_copied_mean_variance n hn0,
     u01_4_independent_mean_variance n hn0,
     u01_4_copy_is_not_independent n hn⟩
+
+
+/-! ### U15.2
+Key-point regression: flipping the prediction at one point changes exact
+risk. Finite-observation indistinguishability: two predictors that agree on
+a singleton observation need not agree globally; the audited
+preserved-prediction risk identity requires agreement on all of Ω.
+Named for CAND5bis expand-audit only; U15.2 stays OPEN_FORMAL_TAIL. -/
+
+theorem u15_2_key_point_regression_changes_exact_risk :
+    exactRisk (false, false) = (1 / 2 : ℚ) ∧
+      exactRisk (false, true) = (0 : ℚ) ∧
+      exactRisk (false, false) ≠ exactRisk (false, true) := by
+  have h := two_round_exact_risks
+  refine ⟨h.1, h.2.1, ?_⟩
+  decide
+
+/-- Two Bool-predictors that agree at `false` but disagree at `true`. -/
+def u15_2_old : Bool → Bool := fun x => x
+def u15_2_new : Bool → Bool := fun _ => false
+
+theorem u15_2_finite_obs_agree_not_global :
+    u15_2_old false = u15_2_new false ∧
+      u15_2_old true ≠ u15_2_new true ∧
+      ¬ (∀ x : Bool, u15_2_old x = u15_2_new x) := by
+  refine ⟨rfl, by decide, ?_⟩
+  intro h
+  exact absurd (h true) (by decide)
+
+theorem u15_2_full_agreement_preserves_risk
+    {Ω Y : Type} [Fintype Ω]
+    (law : Probability.FiniteLaw Ω) (old new : Ω → Y) (loss : Y → Ω → ℝ)
+    (same : ∀ x, old x = new x) :
+    Probability.expectation law (fun x => loss (old x) x) =
+      Probability.expectation law (fun x => loss (new x) x) :=
+  u15_2_preserved_predictions_equal_risk law old new loss same
 
 end JurisLean.Candidates.FormalTail20261024

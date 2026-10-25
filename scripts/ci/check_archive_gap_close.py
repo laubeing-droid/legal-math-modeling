@@ -453,7 +453,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
             full = str(item.get("name") or "")
             if full.startswith(disp.CANDIDATE_MODULE_NAME + "."):
                 errors.append(f"{clause}: FormalTail full name in wired_declarations")
-    # Expand-audit receipt still required (named_count=25; U10.3 companion; no discharges).
+    # Expand-audit receipt still required (named_count matches PROVE_CANDIDATES; U10.3 companion; no discharges).
     if not EXPAND_RECEIPT_PATH.is_file():
         errors.append("missing expand-audit receipt")
     else:
@@ -467,8 +467,8 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
             errors.append("expand-audit receipt flipped discharges")
         if expand.get("closes_debt") is not False:
             errors.append("expand-audit receipt claims debt close")
-        if expand.get("named_count") != 25:
-            errors.append("expand-audit named_count != 25")
+        if expand.get("named_count") != len(expected_order):
+            errors.append(f"expand-audit named_count {expand.get("named_count")} != {len(expected_order)}")
         companion = expand.get("u10_3_companion_note") or ""
         if "公平" not in companion or "另证" not in companion:
             errors.append("expand-audit missing U10.3 companion 公平/另证 note")

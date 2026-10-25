@@ -1,9 +1,10 @@
 """The archive-gap close layer stays fail-closed after the authorized tip-pin retarget.
 
 The live pin is subject f85ebe44 / run 40115638107 / job 120936221970.
-CAND5 (U06.4/U08.1/U10.3/U12.2/U14.2) closed by wiring under pack
-formal_tail_关≥1_CAND5_20261025: closed_this_round=5, OPEN_FORMAL_TAIL=35,
-CLOSED_BY_WIRING=7. discharges stays false; tip_pin unchanged; step 2 stays open.
+CAND5 (U06.4/U08.1/U10.3/U12.2/U14.2) remain CLOSED_BY_WIRING historically.
+CAND5bis knife (U08.2/U09.3/U13.1/U15.1/U15.2) under pack
+formal_tail_真证CAND5bis_20261025: closed_this_round=0, OPEN_FORMAL_TAIL=35,
+candidate_rows=5, blocked_rows=30. discharges stays false; step 2 stays open.
 """
 
 from __future__ import annotations
@@ -37,7 +38,7 @@ def test_close_layer_matches_the_pack_and_keeps_discharges_false() -> None:
     assert "open_formal_tail 35" in proc.stdout
     assert "discharges false" in proc.stdout
     assert "40115638107" in proc.stdout
-    assert "formal_tail_closed_this_round 5" in proc.stdout
+    assert "formal_tail_closed_this_round 0" in proc.stdout
     assert "step_2_closed false" in proc.stdout
 
 
@@ -65,10 +66,10 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     )
     summary = ledger["formal_tail_round"]
     assert summary["step_2_closed"] is False
-    assert summary["closed_this_round"] == 5
+    assert summary["closed_this_round"] == 0
     assert summary["open_formal_tail_remaining"] == 35
-    assert summary["candidate_rows"] == 0
-    assert summary["blocked_rows"] == 35
+    assert summary["candidate_rows"] == 5
+    assert summary["blocked_rows"] == 30
     assert summary["tip_pin_not_retargeted"] is False
     assert summary["tip_pin"]["subject"] == "f85ebe44644f32820e9d0fad1325428fb8f171d9"
     assert summary["tip_pin"]["run_id"] == 40115638107
@@ -98,7 +99,7 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert pure["formal_tail_prove"]["candidate_theorems"] == []
     assert pure["formal_tail_prove"]["non_goals_same_row"] == []
     assert pure["formal_tail_prove"]["close_admitted"] is False
-    # CAND5 closed by wiring this round (pack formal_tail_关≥1_CAND5_20261025).
+    # CAND5 remain CLOSED_BY_WIRING (historical); this knife closed_this_round=0.
     cand5 = ("U06.4", "U08.1", "U10.3", "U12.2", "U14.2")
     for clause in cand5:
         row = by_clause[clause]
@@ -152,11 +153,11 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     blocked = [
         "U01.1", "U01.2", "U01.3", "U02.1", "U02.3", "U03.1", "U03.2",
         "U04.2", "U04.3", "U04.5", "U05.2", "U06.1", "U06.2", "U06.3",
-        "U07.1", "U07.2", "U07.3", "U08.2", "U08.3", "U09.1", "U09.3",
-        "U10.1", "U10.2", "U11.1", "U12.1", "U12.3", "U12.4", "U13.1",
-        "U13.2", "U13.3", "U13.4", "U14.1", "U15.1", "U15.2", "U15.3",
+        "U07.1", "U07.2", "U07.3", "U08.3", "U09.1",
+        "U10.1", "U10.2", "U11.1", "U12.1", "U12.3", "U12.4",
+        "U13.2", "U13.3", "U13.4", "U14.1", "U15.3",
     ]
-    assert len(blocked) == 35
+    assert len(blocked) == 30
     for clause in blocked:
         row = by_clause[clause]
         assert row["archive_gap_status"] == "OPEN_FORMAL_TAIL"
@@ -164,6 +165,17 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
         assert row["formal_tail_prove"]["candidate_theorems"] == []
         assert row["formal_tail_prove"]["close_admitted"] is False
         assert "close_blocked_reason" not in row["formal_tail_prove"]
+    cand5bis = ("U08.2", "U09.3", "U13.1", "U15.1", "U15.2")
+    for clause in cand5bis:
+        row = by_clause[clause]
+        assert row["archive_gap_status"] == "OPEN_FORMAL_TAIL"
+        assert row["formal_tail_prove"]["disposition"] == "CANDIDATE_NOT_AUDITED"
+        assert row["formal_tail_prove"]["candidate_in_tip_pin_audit"] is True
+        assert row["formal_tail_prove"]["candidate_theorems"]
+        assert row["formal_tail_prove"]["close_admitted"] is False
+        assert "close_blocked_reason" in row["formal_tail_prove"]
+    # U13.1 authority integration NON_GOAL on the same row
+    assert any("Authority integration" in item for item in by_clause["U13.1"]["formal_tail_prove"]["non_goals_same_row"])
     assert all(row["discharges_archived_manuscript_gaps"] is False for row in ledger["rows"])
     assert all(row["formal_tail_prove"]["step_2_closed"] is False for row in ledger["rows"])
     cand5_set = {"U06.4", "U08.1", "U10.3", "U12.2", "U14.2"}

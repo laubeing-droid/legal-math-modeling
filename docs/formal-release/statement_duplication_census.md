@@ -5,9 +5,9 @@
 Counts theorem/lemma headers whose normalised statement types are byte-identical across two declarations in the JurisLean package. A match is literal duplication only; the tool cannot see a restatement that unfolds a definition, so a zero is evidence about verbatim overlap, not about substantive overlap.
 
 - files scanned: 379
-- theorem/lemma headers read: 5473
-- distinct statement types: 5415
-- statement types declared more than once: 58
+- theorem/lemma headers read: 5485
+- distinct statement types: 5425
+- statement types declared more than once: 60
 - of those spanning module families: 3
 
 ## Across module families (3)
@@ -16,7 +16,7 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `(r : ℚ) : max r 0 - max (-r) 0 = r` — `FullMath/GenericKernels.lean:94` (FullMath/clipped_conservation), `BusinessRelationsDelta.lean:21` (root/other/split_residual_identity)
 - `(α β : ℝ) (hα : 0 < α) (hβ : 0 < β) (w l : ℕ) : (Real.Gamma (α + (w : ℝ)) * Real.Gamma (β + (l : ℝ))) / Real.Gamma (α + β + ((w + l : ℕ) : ℝ)) / ((Real.Gamma α ` — `FullMath/Probability/DirichletPosterior.lean:82` (FullMath/beta_ratio), `Candidates/Final20261021/Probability.lean:160` (root/other/u04_1_real_gamma_weight_ratio)
 
-## Within the package (58)
+## Within the package (60)
 
 - `(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S` — `DungFixedPoint.lean:96` (root/other/grounded_is_least_complete), `DungFixedPoint.lean:92` (root/other/grounded_is_least_fixed_point)
 - `(S : Finset α) : TH sys S ⊆ sys.univ` — `HornDefinitions.lean:55` (root/other/TH_subset_univ), `HornFixedPoint.lean:17` (root/other/horn_operator_subset_univ)
@@ -58,4 +58,4 @@ Counts theorem/lemma headers whose normalised statement types are byte-identical
 - `{V Rel : Type} [DecidableEq Rel] (M : UnifiedModel V Rel) : UnifiedNonDegenerate ∧ UnifiedInterpretationPreserved V Rel M ∧ UnifiedChainCorrespondence V Rel M ∧` — `Seams/UnifiedNeedlesTotal.lean:49` (root/other/total_legacy_five_contracts), `Seams/Unified.lean:259` (root/other/unified_legal_derivation_on_declared_fragment)
 - `{a b c : TrustVector} (hab : TrustLE a b) (hbc : TrustLE b c) : TrustLE a c` — `Seams/BoundaryBridge5.lean:154` (root/other/bb5_trustLE_trans), `Seams/BoundaryClosure.lean:611` (root/other/trustLE_trans)
 - `{af : DefeatAF} {s : Finset ArgId} (h : Preferred af s) : s ∈ preferredExtensions af` — `ULM16TheoryComposition.lean:234` (root/other/CORE_20_preferred_complete), `ULM10DungProfiles.lean:250` (root/other/preferredExtensions_complete)
-- …18 more in the JSON
+- …20 more in the JSON

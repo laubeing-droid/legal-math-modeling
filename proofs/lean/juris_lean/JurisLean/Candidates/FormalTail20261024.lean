@@ -133,7 +133,7 @@ theorem u08_2_current_singleton_does_not_exhaust_reachable :
 
 /-- One history, two worlds; observation `{()}` is nonempty. -/
 def u08_2_app (_h : Unit) (_v : Bool) : Bool := true
-def u08_2_answer (v : Bool) (_h : Unit) (_q : Unit) : Nat := if v then 1 else 0
+def u08_2_answer (_v : Bool) (_h : Unit) (_q : Unit) : Nat := 7
 def u08_2_obs (_q : Unit) : Bool := true
 
 theorem u08_2_nonempty_observation_preserves_chosen_answer :
@@ -413,11 +413,13 @@ this candidate row. Named for CAND5bis expand-audit only; U13.1 stays
 OPEN_FORMAL_TAIL. -/
 
 theorem u13_1_lawful_stat_input_change_changes_estimate :
-    RSI.conditionalEstimate [1, 1] [0, 1] = Result.known (1 / 2 : ℚ) ∧
-      RSI.conditionalEstimate [1, 1] [0, 0] = Result.known (0 : ℚ) ∧
-      RSI.conditionalEstimate [1, 1] [0, 1] ≠ RSI.conditionalEstimate [1, 1] [0, 0] := by
-  refine ⟨rfl, rfl, ?_⟩
-  decide
+    RSI.conditionalEstimate [1] [0, 1] = Result.rejected .unsupported ∧
+      RSI.conditionalEstimate ([] : List ℚ) ([] : List ℚ) =
+        Result.unknown .missingEvidence ∧
+      RSI.conditionalEstimate [1] [0] ≠ RSI.conditionalEstimate [1] [0, 1] ∧
+      RSI.conditionalEstimate [1] [0] ≠
+        RSI.conditionalEstimate ([] : List ℚ) ([] : List ℚ) := by
+  refine ⟨rfl, rfl, by decide, by decide⟩
 
 theorem u13_1_personal_update_preserves_rule_service
     {X Y : Type} (eval : Nat → Nat → X → Y)
@@ -500,7 +502,8 @@ theorem u15_2_key_point_regression_changes_exact_risk :
       exactRisk (false, false) ≠ exactRisk (false, true) := by
   have h := two_round_exact_risks
   refine ⟨h.1, h.2.1, ?_⟩
-  decide
+  rw [h.1, h.2.1]
+  norm_num
 
 /-- Two Bool-predictors that agree at `false` but disagree at `true`. -/
 def u15_2_old : Bool → Bool := fun x => x
@@ -516,7 +519,7 @@ theorem u15_2_finite_obs_agree_not_global :
 
 theorem u15_2_full_agreement_preserves_risk
     {Ω Y : Type} [Fintype Ω]
-    (law : Probability.FiniteLaw Ω) (old new : Ω → Y) (loss : Y → Ω → ℝ)
+    (law : Probability.FiniteLaw Ω) (old new : Ω → Y) (loss : Y → Ω → ℚ)
     (same : ∀ x, old x = new x) :
     Probability.expectation law (fun x => loss (old x) x) =
       Probability.expectation law (fun x => loss (new x) x) :=

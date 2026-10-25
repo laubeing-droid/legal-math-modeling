@@ -39,8 +39,8 @@
     ]
   },
   "cross_family_statement_types": 3,
-  "distinct_statement_types": 5415,
-  "duplicated_statement_types": 58,
+  "distinct_statement_types": 5425,
+  "duplicated_statement_types": 60,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
       {
@@ -558,6 +558,18 @@
         "path": "ULM08ArgumentConstruction.lean"
       }
     ],
+    "{first last : ℝ} {budgets : List ℝ} (h : RiskTrace first budgets last) : last ≤ first + budgets.sum": [
+      {
+        "carrier": "root/other/u15_1_finite_cumulative_improvement",
+        "line": 13,
+        "path": "Candidates/Final20261021/Iteration.lean"
+      },
+      {
+        "carrier": "root/other/u15_1_telescoping_consumes_cumulative_improvement",
+        "line": 456,
+        "path": "Candidates/FormalTail20261024.lean"
+      }
+    ],
     "{g : TypedGraph} {s t : LocalState} (h : LocalTransition g s t) : t.request = s.request": [
       {
         "carrier": "root/other/CORE_01_typed_transition_request",
@@ -654,6 +666,18 @@
         "path": "Candidates/Final20261021/Harness.lean"
       }
     ],
+    "{Ω Y : Type} [Fintype Ω] (law : Probability.FiniteLaw Ω) (old new : Ω → Y) (loss : Y → Ω → ℚ) (same : ∀ x, old x = new x) : Probability.expectation law (fun x => loss (old x) x) = Probability.expectation law (fun x => loss (new x) x)": [
+      {
+        "carrier": "root/other/u15_2_full_agreement_preserves_risk",
+        "line": 519,
+        "path": "Candidates/FormalTail20261024.lean"
+      },
+      {
+        "carrier": "root/other/u15_2_preserved_predictions_equal_risk",
+        "line": 19,
+        "path": "Candidates/Final20261021/Iteration.lean"
+      }
+    ],
     "{α : Type*} [Fintype α] (d : PMF α) (w : α → ENNReal) (hw : ∀ a, w a ≤ 1) : ∑ a, d a * w a ≠ ⊤": [
       {
         "carrier": "External/sum_mul_pmf_ne_top",
@@ -742,9 +766,9 @@
   "files_scanned": 379,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
   "headers_missed_by_scanner": 109,
-  "inventory_package_theorems": 5464,
+  "inventory_package_theorems": 5476,
   "private_protected_headers_read": 118,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 5473
+  "statements_read": 5485
 }

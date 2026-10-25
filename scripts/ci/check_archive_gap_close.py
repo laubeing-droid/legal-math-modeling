@@ -413,11 +413,18 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
                 if record.get("disposition") != "CANDIDATE_NOT_AUDITED":
                     errors.append(f"{clause}: candidate row has the wrong disposition")
             if record.get("candidate_theorems"):
-                if record.get("candidate_in_tip_pin_audit") is not True:
-                    errors.append(f"{clause}: candidate_in_tip_pin_audit evidence not wired")
-                expand_meta = record.get("tip_pin_expand_audit") or {}
-                if expand_meta != disp.FORMAL_TAIL_EXPAND:
-                    errors.append(f"{clause}: tip_pin_expand_audit != FORMAL_TAIL_EXPAND")
+                if clause in disp.CAND5BIS_IDS:
+                    # Theorems exist; expand receipt not yet authorized for these five.
+                    if record.get("candidate_in_tip_pin_audit") is not False:
+                        errors.append(f"{clause}: CAND5bis must keep candidate_in_tip_pin_audit=false until new expand")
+                    if record.get("tip_pin_expand_audit"):
+                        errors.append(f"{clause}: CAND5bis must not cite tip_pin_expand_audit yet")
+                else:
+                    if record.get("candidate_in_tip_pin_audit") is not True:
+                        errors.append(f"{clause}: candidate_in_tip_pin_audit evidence not wired")
+                    expand_meta = record.get("tip_pin_expand_audit") or {}
+                    if expand_meta != disp.FORMAL_TAIL_EXPAND:
+                        errors.append(f"{clause}: tip_pin_expand_audit != FORMAL_TAIL_EXPAND")
             if not record.get("candidate_theorems") and record.get("disposition") != "BLOCKED_NOT_IN_TIP_PIN_AUDIT":
                 errors.append(f"{clause}: blocked row has the wrong disposition")
         else:
@@ -453,22 +460,34 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
             full = str(item.get("name") or "")
             if full.startswith(disp.CANDIDATE_MODULE_NAME + "."):
                 errors.append(f"{clause}: FormalTail full name in wired_declarations")
-    # Expand-audit receipt still required (named_count matches PROVE_CANDIDATES; U10.3 companion; no discharges).
+    # Historical CAND5 expand receipt (named_count=25). CAND5bis theorems are in
+    # FormalTail but must NOT appear here until a new tip Authority expand commit.
     if not EXPAND_RECEIPT_PATH.is_file():
         errors.append("missing expand-audit receipt")
     else:
         expand = load_json(EXPAND_RECEIPT_PATH)
         named = set(expand.get("named_theorems_full") or [])
-        for short in expected_order:
+        historical = []
+        for row in ledger.get("rows") or []:
+            clause = row.get("clause")
+            if clause in disp.CAND5BIS_IDS:
+                continue
+            historical.extend(disp.PROVE_CANDIDATES.get(clause, []))
+        for short in historical:
             full = f"{disp.CANDIDATE_MODULE_NAME}.{short}"
             if full not in named:
-                errors.append(f"expand-audit missing {full}")
+                errors.append(f"expand-audit missing historical {full}")
+        for clause in disp.CAND5BIS_IDS:
+            for short in disp.PROVE_CANDIDATES.get(clause, []):
+                full = f"{disp.CANDIDATE_MODULE_NAME}.{short}"
+                if full in named:
+                    errors.append(f"expand-audit must not yet name CAND5bis {full}")
         if expand.get("discharges_archived_manuscript_gaps") is not False:
             errors.append("expand-audit receipt flipped discharges")
         if expand.get("closes_debt") is not False:
             errors.append("expand-audit receipt claims debt close")
-        if expand.get("named_count") != len(expected_order):
-            errors.append(f"expand-audit named_count {expand.get("named_count")} != {len(expected_order)}")
+        if expand.get("named_count") != 25:
+            errors.append(f"expand-audit named_count {expand.get('named_count')} != 25 (CAND5 historical)")
         companion = expand.get("u10_3_companion_note") or ""
         if "公平" not in companion or "另证" not in companion:
             errors.append("expand-audit missing U10.3 companion 公平/另证 note")

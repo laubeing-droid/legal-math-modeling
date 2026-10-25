@@ -170,10 +170,17 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
         row = by_clause[clause]
         assert row["archive_gap_status"] == "OPEN_FORMAL_TAIL"
         assert row["formal_tail_prove"]["disposition"] == "CANDIDATE_NOT_AUDITED"
-        assert row["formal_tail_prove"]["candidate_in_tip_pin_audit"] is True
+        assert row["formal_tail_prove"]["candidate_in_tip_pin_audit"] is False
         assert row["formal_tail_prove"]["candidate_theorems"]
         assert row["formal_tail_prove"]["close_admitted"] is False
+        assert "tip_pin_expand_audit" not in row["formal_tail_prove"]
         assert "close_blocked_reason" in row["formal_tail_prove"]
+        assert "f85ebe44" in row["formal_tail_prove"]["blocker"]
+        assert "NOT" in row["formal_tail_prove"]["blocker"] or "not" in row["formal_tail_prove"]["blocker"]
+    # Historical expand receipt stays CAND5-only
+    assert summary["formal_tail_expand_audit"]["verification"] == (
+        "evidence/ci-tip-f85ebe44/verification.json"
+    )
     # U13.1 authority integration NON_GOAL on the same row
     assert any("Authority integration" in item for item in by_clause["U13.1"]["formal_tail_prove"]["non_goals_same_row"])
     assert all(row["discharges_archived_manuscript_gaps"] is False for row in ledger["rows"])

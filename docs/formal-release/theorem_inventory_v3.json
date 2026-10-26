@@ -6144,6 +6144,147 @@
   {
    "declarations": [
     {
+     "kind": "structure",
+     "name": "Leaf"
+    },
+    {
+     "kind": "structure",
+     "name": "RuleUse"
+    },
+    {
+     "kind": "inductive",
+     "name": "Node"
+    },
+    {
+     "kind": "structure",
+     "name": "Evidence"
+    },
+    {
+     "kind": "def",
+     "name": "activeRules"
+    },
+    {
+     "kind": "def",
+     "name": "evalNode"
+    },
+    {
+     "kind": "def",
+     "name": "scan"
+    },
+    {
+     "kind": "def",
+     "name": "proposed_provenance_input"
+    },
+    {
+     "kind": "def",
+     "name": "Certified"
+    },
+    {
+     "kind": "theorem",
+     "name": "evalNode_certified"
+    },
+    {
+     "kind": "theorem",
+     "name": "scan_certified"
+    },
+    {
+     "kind": "def",
+     "name": "parentIndices"
+    },
+    {
+     "kind": "def",
+     "name": "BackwardFrom"
+    },
+    {
+     "kind": "theorem",
+     "name": "evalNode_backward"
+    },
+    {
+     "kind": "theorem",
+     "name": "scan_backward"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_1_checked_provenance_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "backward_lookup"
+    },
+    {
+     "kind": "def",
+     "name": "Edge"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_1_checked_provenance_acyclic"
+    },
+    {
+     "kind": "def",
+     "name": "closureFromEvidence"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_1_provenance_consumed_by_finite_closure"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_1_provenance_semantic_composition"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_1_reject_forward_reference"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_1_reject_wrong_premises"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_1_reject_unsupported_leaf"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_1_reject_wrong_rule_version"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_3_conservative_abstraction_sound"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_3_conservative_abstraction_exact"
+    },
+    {
+     "kind": "theorem",
+     "name": "u03_3_interpretation_bijection_preserves_robust_queries"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.CompilerClosure20261026"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_forward_reference",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_unsupported_leaf",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_premises",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_rule_version",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_3_conservative_abstraction_exact",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_3_interpretation_bijection_preserves_robust_queries"
+   ],
+   "sha256": "209eacb642f24c4c1f252d37b742e19dfedec20c549e15411215a435e06711e2",
+   "size_bytes": 19515,
+   "theorem_count": 16,
+   "theorem_count_bol_convention": 16
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "txRequest"
     },
@@ -9548,6 +9689,63 @@
    "declarations": [
     {
      "kind": "def",
+     "name": "FairBinary"
+    },
+    {
+     "kind": "def",
+     "name": "fairCoinMeasure"
+    },
+    {
+     "kind": "theorem",
+     "name": "fair_coin_law"
+    },
+    {
+     "kind": "theorem",
+     "name": "fair_binary_variance"
+    },
+    {
+     "kind": "theorem",
+     "name": "fair_binary_memLp"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_4_independent_empirical_mean_variance"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_4_copied_empirical_mean_variance"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_4_distinct_ids_common_cause_not_independent"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_4_concrete_common_cause_counterexample"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.LearningFiniteClass20261027",
+    "Mathlib.Probability.Distributions.TwoValued",
+    "Mathlib.Probability.Moments.Variance"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningDependence20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample",
+    "JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance",
+    "JurisLean.Candidates.LearningDependence20261027.u01_4_distinct_ids_common_cause_not_independent",
+    "JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance"
+   ],
+   "sha256": "d7826bb633877896d5e66bce574fa7b4585092b06b196b1795d05d1843c523c7",
+   "size_bytes": 6325,
+   "theorem_count": 7,
+   "theorem_count_bol_convention": 7
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
      "name": "empiricalMean"
     },
     {
@@ -9593,6 +9791,35 @@
    "size_bytes": 11418,
    "theorem_count": 5,
    "theorem_count_bol_convention": 5
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.CompilerProvenance20261027",
+    "JurisLean.Candidates.LearningDependence20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningProvenanceAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_acyclic",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_checked_provenance_sound",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_consumed_by_finite_closure",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_provenance_semantic_composition",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_forward_reference",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_unsupported_leaf",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_premises",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_1_reject_wrong_rule_version",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_3_conservative_abstraction_exact",
+    "JurisLean.Candidates.CompilerProvenance20261027.u03_3_interpretation_bijection_preserves_robust_queries",
+    "JurisLean.Candidates.LearningDependence20261027.u01_4_concrete_common_cause_counterexample",
+    "JurisLean.Candidates.LearningDependence20261027.u01_4_copied_empirical_mean_variance",
+    "JurisLean.Candidates.LearningDependence20261027.u01_4_distinct_ids_common_cause_not_independent",
+    "JurisLean.Candidates.LearningDependence20261027.u01_4_independent_empirical_mean_variance"
+   ],
+   "sha256": "d0f0c69fb60aeba465a21aeaef556d38bd4382010a4b25e221353b04003c239b",
+   "size_bytes": 2969,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
   },
   {
    "declarations": [
@@ -49456,8 +49683,10 @@
     "JurisLean.BusinessRoot.SevenAxis",
     "JurisLean.BusinessRoot.SevenAxisCases",
     "JurisLean.Candidates.CompilerClosure20261026",
+    "JurisLean.Candidates.CompilerProvenance20261027",
     "JurisLean.Candidates.Final20261021.CIAll",
     "JurisLean.Candidates.LearningBridge20261027",
+    "JurisLean.Candidates.LearningDependence20261027",
     "JurisLean.Candidates.LearningFiniteClass20261027",
     "JurisLean.Candidates.LearningRisk20261027",
     "JurisLean.CanonicalSerialization",
@@ -49682,8 +49911,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "4e47e37fe956afb8f5865bf9d244f9b8efaa3c85daecf16ccffbaf3d379f8b3f",
-   "size_bytes": 11013,
+   "sha256": "ee51268ae15f693630b89ed9c744d0b641816c4d5a4674e2698c3aafb53c7a0d",
+   "size_bytes": 11123,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -49847,22 +50076,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5567,
-   "file_count": 400,
+   "counted_declaration_count": 5590,
+   "file_count": 403,
    "lemma_count": 146,
-   "print_axioms_command_count": 4435,
-   "print_axioms_distinct_targets": 4367,
-   "theorem_count": 5421,
-   "theorem_count_bol_convention": 5321
+   "print_axioms_command_count": 4463,
+   "print_axioms_distinct_targets": 4381,
+   "theorem_count": 5444,
+   "theorem_count_bol_convention": 5344
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5548,
-   "file_count": 385,
+   "counted_declaration_count": 5571,
+   "file_count": 388,
    "lemma_count": 139,
-   "print_axioms_command_count": 4435,
-   "print_axioms_distinct_targets": 4367,
-   "theorem_count": 5409,
-   "theorem_count_bol_convention": 5309
+   "print_axioms_command_count": 4463,
+   "print_axioms_distinct_targets": 4381,
+   "theorem_count": 5432,
+   "theorem_count_bol_convention": 5332
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -49920,6 +50149,7 @@
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisAudit.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
@@ -49947,7 +50177,9 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBridge20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LearningDependence20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningFiniteClass20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LearningProvenanceAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
@@ -50318,6 +50550,7 @@
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisAudit.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Authorization.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/AxiomAudit.lean",
@@ -50345,7 +50578,9 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBridge20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LearningDependence20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningFiniteClass20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LearningProvenanceAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
@@ -50704,17 +50939,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "743771932302ae6c7fc0a2ccf2396396b3b1d7172540777f6c2954306d3d7eee",
+ "source_inventory_digest": "835a6b656453d64ae519c0a2b3b1787eadfa9a29e1477ee6c29695611dcda7e2",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/theory-completion-20261027",
-  "commit": "a678c735f22c2299ee742bdae7033770b1d08e07",
-  "tree": "e989743912e4385cfe335477bdd9065b3065ae0f"
+  "branch": "formal/learning-dependence-20261027",
+  "commit": "98f0896f9e8053232f32a3f258e1b95344dce00a",
+  "tree": "ef6ecfb9b5d97a93035f0ceaf187911664374b14"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 400,
+  "files_total": 403,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

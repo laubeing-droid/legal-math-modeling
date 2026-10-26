@@ -1393,7 +1393,7 @@ theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
 
 theorem u01_1_approximate_erm_not_representation_risk_decomposition :
     (u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
-      (le_refl _) (le_refl _) (le_refl _)) ∧
+      (le_refl _) (le_refl _) (show (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ) by norm_num)) ∧
       ¬ cand8RepresentationRiskDecomposition := by
   refine ⟨u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
     (le_refl _) (le_refl _) (show (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ) by norm_num), ?_⟩

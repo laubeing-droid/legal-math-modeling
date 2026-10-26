@@ -80,8 +80,17 @@ theorem selectMinimum_measurable {Ω H : Type*} [MeasurableSpace Ω]
           score first w ≤ score (selectMinimum (fun h => score h w) next rest) w} := by
         simpa only [Rat.cast_le] using measurableSet_le firstMeasurable tail.1
       constructor
-      · simpa only [selectMinimum, apply_ite, ite_apply] using
-          Measurable.ite comparison firstMeasurable tail.1
+      · have selectedScore :
+            (fun w => (score (selectMinimum (fun h => score h w) first (next :: rest)) w : ℝ)) =
+            (fun w => if score first w ≤ score (selectMinimum (fun h => score h w) next rest) w
+              then (score first w : ℝ)
+              else (score (selectMinimum (fun h => score h w) next rest) w : ℝ)) := by
+          funext w
+          by_cases prefer : score first w ≤ score (selectMinimum (fun h => score h w) next rest) w
+          · simp [selectMinimum, prefer]
+          · simp [selectMinimum, prefer]
+        rw [selectedScore]
+        exact Measurable.ite comparison firstMeasurable tail.1
       · simpa only [selectMinimum, apply_ite] using
           Measurable.ite comparison (measurable_const (a := value first)) tail.2
 

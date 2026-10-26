@@ -39,7 +39,7 @@
     ]
   },
   "cross_family_statement_types": 3,
-  "distinct_statement_types": 5425,
+  "distinct_statement_types": 5437,
   "duplicated_statement_types": 60,
   "duplicates": {
     "(S : Finset Arg) (hS : F aaf S = S) : grounded aaf ⊆ S": [
@@ -566,7 +566,7 @@
       },
       {
         "carrier": "root/other/u15_1_telescoping_consumes_cumulative_improvement",
-        "line": 456,
+        "line": 467,
         "path": "Candidates/FormalTail20261024.lean"
       }
     ],
@@ -669,7 +669,7 @@
     "{Ω Y : Type} [Fintype Ω] (law : Probability.FiniteLaw Ω) (old new : Ω → Y) (loss : Y → Ω → ℚ) (same : ∀ x, old x = new x) : Probability.expectation law (fun x => loss (old x) x) = Probability.expectation law (fun x => loss (new x) x)": [
       {
         "carrier": "root/other/u15_2_full_agreement_preserves_risk",
-        "line": 519,
+        "line": 530,
         "path": "Candidates/FormalTail20261024.lean"
       },
       {
@@ -766,9 +766,9 @@
   "files_scanned": 379,
   "generated_by": "python scripts/ci/build_statement_duplication_census.py",
   "headers_missed_by_scanner": 109,
-  "inventory_package_theorems": 5476,
+  "inventory_package_theorems": 5488,
   "private_protected_headers_read": 118,
   "scan_scope": "proofs/lean/juris_lean/JurisLean/**/*.lean (tracked tree), comments stripped",
   "schema_version": "statement-duplication-census-v1",
-  "statements_read": 5485
+  "statements_read": 5497
 }

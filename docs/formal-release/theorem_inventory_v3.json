@@ -9215,16 +9215,16 @@
      "name": "cand8FiniteClosureFromEmpty"
     },
     {
+     "kind": "structure",
+     "name": "Cand8GraphFragment"
+    },
+    {
      "kind": "def",
-     "name": "cand8ProvenanceDagToFiniteClosure"
+     "name": "cand8GraphConnectionChecks"
     },
     {
      "kind": "theorem",
      "name": "u03_1_relative_soundness_not_provenance_dag_to_finite_closure"
-    },
-    {
-     "kind": "def",
-     "name": "cand8DagConnectedToExecutableClosure"
     },
     {
      "kind": "theorem",
@@ -9232,7 +9232,7 @@
     },
     {
      "kind": "def",
-     "name": "cand8CountermodelConnectedToFiniteClosure"
+     "name": "cand8CommonFactsPreserveRobustQuery"
     },
     {
      "kind": "theorem",
@@ -9240,15 +9240,15 @@
     },
     {
      "kind": "def",
-     "name": "cand8VerifiedFuelBound"
+     "name": "cand8EveryBudgetUpToOneSuffices"
     },
     {
      "kind": "def",
-     "name": "cand8ListCarrierFuelBound"
+     "name": "cand8OneEntryPerRoundBound"
     },
     {
      "kind": "def",
-     "name": "cand8CarrierFuelBoundProved"
+     "name": "cand8FuelOneHasKnownResult"
     },
     {
      "kind": "theorem",
@@ -9264,11 +9264,11 @@
     },
     {
      "kind": "def",
-     "name": "cand8ActualSemanticCompatibility"
+     "name": "cand8IncompatibleBoolLayersHaveCommonValue"
     },
     {
      "kind": "def",
-     "name": "cand8LayerCompatibility"
+     "name": "cand8BoolObservationFibersAgree"
     },
     {
      "kind": "theorem",
@@ -9303,8 +9303,8 @@
    "lemma_count": 5,
    "path": "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "print_axioms_targets": [],
-   "sha256": "25344c4b6770404b607380d625b24e5dbc7d17bd65fd7e9d78e40192280c5742",
-   "size_bytes": 60191,
+   "sha256": "ff86664fb5ccbef8087427ec586ae5b73489d9b2aaba8cb4dd32cfc69802de36",
+   "size_bytes": 61155,
    "theorem_count": 69,
    "theorem_count_bol_convention": 69
   },
@@ -50291,12 +50291,12 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "cc83e2878503d62d6232e56c74688ff7fd46c9c7372292b7678f740df21167e0",
+ "source_inventory_digest": "0496d69176a9810ff8314b7baa26d122db54769f30d8d62665103ac35f92b534",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
   "branch": "cursor/formal-tail-cand8-1dc1",
-  "commit": "9dd2cffda5e69e611d597925ad63ce66612959eb",
-  "tree": "61494bce8e10797c6c61fdb588052036ed4e13dc"
+  "commit": "989e97f78f32894b4c0c0f95aa0fda4f6c35175a",
+  "tree": "64c7e8f857491b7c26c87eeb571933d100158228"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",

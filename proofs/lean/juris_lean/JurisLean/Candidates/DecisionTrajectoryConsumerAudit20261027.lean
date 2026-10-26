@@ -90,7 +90,7 @@ def trajectoryFixture (steps : List Instruction := trajectorySteps)
   | .known selected, some post =>
       decide (selected.probability.fitted.table = [0, 0] ∧ selected.probability.estimate = 1/2 ∧
         selected.nominal.action.id = 2 ∧ selected.nominal.expectedNet.value = 4 ∧
-        (trajectoryFixture trajectorySteps [1, 2] true).payment.exit = .success ∧ Ledger.balance post.state = 0 ∧
+        (trajectoryFixture trajectorySteps [1, 2] true).payment.exit = Pipeline.Exit.success ∧ Ledger.balance post.state = 0 ∧
         post.state.allocated = 10 ∧ post.state.paid = 14 ∧ post.state.surplus = 4 ∧
         post.state.receipts.length = 2)
   | _, _ => false)
@@ -98,10 +98,10 @@ def trajectoryFixture (steps : List Instruction := trajectorySteps)
 /-- info: true -/
 #guard_msgs in
 #eval
-  let result := runTrajectory trajectoryGrants trajectoryOpening
+  let result : Pipeline.PaymentRun := runTrajectory trajectoryGrants trajectoryOpening
     (trajectorySteps ++ [.pay (trajectoryRequest 1) .submit])
   match result.current with
-  | some post => decide (result.exit = .success ∧ result.outcomes.length = 3 ∧
+  | some post => decide (result.exit = Pipeline.Exit.success ∧ result.outcomes.length = 3 ∧
       Ledger.balance post.state = 0 ∧ post.state.paid = 14 ∧ post.state.receipts.length = 2 ∧
       post.revision = 2)
   | none => false
@@ -109,30 +109,30 @@ def trajectoryFixture (steps : List Instruction := trajectorySteps)
 /-- info: true -/
 #guard_msgs in
 #eval
-  let result := runTrajectory trajectoryGrants trajectoryOpening
+  let result : Pipeline.PaymentRun := runTrajectory trajectoryGrants trajectoryOpening
     [.pay (trajectoryRequest 1) .submit, .pay (trajectoryRequest 1 8) .submit]
   match result.current with
-  | some post => decide (result.exit = .undecided ∧ result.outcomes.length = 2 ∧
+  | some post => decide (result.exit = Pipeline.Exit.undecided ∧ result.outcomes.length = 2 ∧
       Ledger.balance post.state = 3 ∧ post.state.paid = 7 ∧ post.state.receipts.length = 1)
   | none => false
 
 /-- info: true -/
 #guard_msgs in
 #eval
-  let result := runTrajectory trajectoryGrants trajectoryOpening
+  let result : Pipeline.PaymentRun := runTrajectory trajectoryGrants trajectoryOpening
     [.pay (trajectoryRequest 1) .submit, .pay (trajectoryRequest 2) .unknownCommit,
       .pay (trajectoryRequest 3 0) .submit]
-  decide (result.exit = .undecided ∧ result.current = none ∧ result.outcomes.length = 2 ∧
+  decide (result.exit = Pipeline.Exit.undecided ∧ result.current = none ∧ result.outcomes.length = 2 ∧
     result.outcomes[1]? = some (.unknownCommit ⟨2⟩ ⟨2⟩))
 
 /-- info: true -/
 #guard_msgs in
 #eval
-  let result := runTrajectory [trajectoryGrant intervalDecisionGamma (trajectoryPayload 1)]
+  let result : Pipeline.PaymentRun := runTrajectory [trajectoryGrant intervalDecisionGamma (trajectoryPayload 1)]
     trajectoryOpening trajectorySteps
   match result.current with
-  | some post => decide (result.exit = .rejected ∧ Ledger.balance post.state = 3 ∧
-      post.state.paid = 7 ∧ result.obligations = [.authorityUnresolved])
+  | some post => decide (result.exit = Pipeline.Exit.rejected ∧ Ledger.balance post.state = 3 ∧
+      post.state.paid = 7 ∧ result.obligations = [Error.authorityUnresolved])
   | none => false
 
 /-- info: true -/
@@ -140,8 +140,8 @@ def trajectoryFixture (steps : List Instruction := trajectorySteps)
 #eval
   let changed := trajectoryFixture [.pay (trajectoryRequest 1 8) .submit,
     .pay (trajectoryRequest 2) .submit] [1, 2] true
-  decide (changed.payment.exit = .rejected ∧ changed.payment.current = some trajectoryOpening ∧
-    changed.payment.outcomes = [] ∧ changed.payment.obligations = [.scopeMismatch])
+  decide (changed.payment.exit = Pipeline.Exit.rejected ∧ changed.payment.current = some trajectoryOpening ∧
+    changed.payment.outcomes = [] ∧ changed.payment.obligations = [Error.scopeMismatch])
 
 /-- info: true -/
 #guard_msgs in
@@ -149,16 +149,16 @@ def trajectoryFixture (steps : List Instruction := trajectorySteps)
   | .known selected =>
       let other := {trajectoryOpening with gamma := {intervalDecisionGamma with caseId := ⟨2⟩}}
       decide (executeSelected selected trajectoryGrants other trajectorySteps =
-        ⟨.rejected, some other, [], [.scopeMismatch]⟩)
+        (⟨.rejected, some other, [], [.scopeMismatch]⟩ : Pipeline.PaymentRun))
   | _ => false)
 
 /-- info: true -/
 #guard_msgs in
 #eval
-  let result := runTrajectory trajectoryGrants trajectoryOpening
+  let result : Pipeline.PaymentRun := runTrajectory trajectoryGrants trajectoryOpening
     (trajectorySteps ++ [.pay (trajectoryRequest 3 0) .submit])
   match result.current with
-  | some post => decide (result.exit = .success ∧ post.state.receipts.length = 3 ∧
+  | some post => decide (result.exit = Pipeline.Exit.success ∧ post.state.receipts.length = 3 ∧
       (⟨3⟩ : PaymentId) ∈ post.state.used ∧ Ledger.balance post.state = 0 ∧
       post.state.allocated = 10 ∧ post.state.paid = 14 ∧ post.state.surplus = 4)
   | none => false
@@ -187,46 +187,46 @@ def trajectoryRefreshedSteps : List Instruction :=
 /-- info: true -/
 #guard_msgs in
 #eval
-  let result := runTrajectory
+  let result : Pipeline.PaymentRun := runTrajectory
     (trajectoryRefreshGrant :: trajectoryGrant trajectoryNextGamma trajectoryNextRequest.payload ::
       trajectoryGrants) trajectoryOpening trajectoryRefreshedSteps
   match result.current with
-  | some post => decide (result.exit = .success ∧ post.gamma = trajectoryNextGamma ∧
-      post.state.env = .known 2 ∧ post.revision = 3 ∧ Ledger.balance post.state = 0 ∧
+  | some post => decide (result.exit = Pipeline.Exit.success ∧ post.gamma = trajectoryNextGamma ∧
+      post.state.env = Result.known 2 ∧ post.revision = 3 ∧ Ledger.balance post.state = 0 ∧
       post.state.allocated = 10 ∧ post.state.paid = 14 ∧ post.state.surplus = 4)
   | none => false
 
 /-- info: true -/
 #guard_msgs in
 #eval
-  let result := runTrajectory (trajectoryRefreshGrant :: trajectoryGrants)
+  let result : Pipeline.PaymentRun := runTrajectory (trajectoryRefreshGrant :: trajectoryGrants)
     trajectoryOpening trajectoryRefreshedSteps
   match result.current with
-  | some post => decide (result.exit = .rejected ∧ post.gamma = trajectoryNextGamma ∧
-      post.state.env = .known 2 ∧ Ledger.balance post.state = 3 ∧ post.state.paid = 7 ∧
-      result.obligations = [.authorityUnresolved])
+  | some post => decide (result.exit = Pipeline.Exit.rejected ∧ post.gamma = trajectoryNextGamma ∧
+      post.state.env = Result.known 2 ∧ Ledger.balance post.state = 3 ∧ post.state.paid = 7 ∧
+      result.obligations = [Error.authorityUnresolved])
   | none => false
 
 /-- info: true -/
 #guard_msgs in
 #eval
-  let result := runTrajectory trajectoryGrants trajectoryOpening trajectoryRefreshedSteps
+  let result : Pipeline.PaymentRun := runTrajectory trajectoryGrants trajectoryOpening trajectoryRefreshedSteps
   match result.current with
-  | some post => decide (result.exit = .undecided ∧ post.gamma = intervalDecisionGamma ∧
+  | some post => decide (result.exit = Pipeline.Exit.undecided ∧ post.gamma = intervalDecisionGamma ∧
       Ledger.balance post.state = 3 ∧ result.outcomes.length = 1 ∧
-      result.obligations = [.authorityUnresolved])
+      result.obligations = [Error.authorityUnresolved])
   | none => false
 
 /-- info: true -/
 #guard_msgs in
 #eval
   let result := trajectoryFixture trajectorySteps [] true
-  decide (result.decision = .unknown .notIdentified ∧ result.payment.exit = .undecided ∧
+  decide (result.decision = .unknown .notIdentified ∧ result.payment.exit = Pipeline.Exit.undecided ∧
     result.payment.current = some trajectoryOpening ∧ result.payment.outcomes = [])
 
 /-- info: true -/
 #guard_msgs in
 #eval
   let result := trajectoryFixture trajectorySteps [1, 2] false
-  decide (result.payment.exit = .undecided ∧ result.payment.current = some trajectoryOpening ∧
+  decide (result.payment.exit = Pipeline.Exit.undecided ∧ result.payment.current = some trajectoryOpening ∧
     result.payment.outcomes = [])

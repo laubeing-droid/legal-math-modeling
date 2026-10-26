@@ -1,10 +1,12 @@
-"""The archive-gap close layer stays fail-closed after the CAND5bis wiring close.
+"""The archive-gap close layer stays fail-closed after the CAND6 tip-pin expand.
 
-The live pin is subject dc7b7430 / run 40190504653 / job 121160299567.
-CAND5 (U06.4/U08.1/U10.3/U12.2/U14.2) remain CLOSED_BY_WIRING historically.
-CAND5bis (U08.2/U09.3/U13.1/U15.1/U15.2) are CLOSED_BY_WIRING this round:
-closed_this_round=5, OPEN_FORMAL_TAIL=30, CLOSED_BY_WIRING=12, blocked_rows=30.
-discharges stays false; step 2 stays open. The tip-pin is not re-pinned.
+The live pin is subject 1c72e444 / run 40257646857 / job 121362851074.
+CAND5 and CAND5bis remain CLOSED_BY_WIRING historically (closed_this_round=5).
+CAND6 (U08.3/U15.3/U13.2/U09.1/U10.2) is expand-audit only:
+candidate_in_tip_pin_audit=true, disposition=CANDIDATE_NOT_AUDITED,
+close_admitted=false, this expand's closed increment=0.
+OPEN_FORMAL_TAIL=30, CLOSED_BY_WIRING=12, blocked_rows=25, candidate_rows=5.
+discharges stays false; step 2 stays open. Historical dc7b7430 stays named_count=37.
 """
 
 from __future__ import annotations
@@ -37,7 +39,7 @@ def test_close_layer_matches_the_pack_and_keeps_discharges_false() -> None:
     assert "wiring 12" in proc.stdout
     assert "open_formal_tail 30" in proc.stdout
     assert "discharges false" in proc.stdout
-    assert "40190504653" in proc.stdout
+    assert "40257646857" in proc.stdout
     assert "formal_tail_closed_this_round 5" in proc.stdout
     assert "step_2_closed false" in proc.stdout
 
@@ -68,25 +70,26 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     assert summary["step_2_closed"] is False
     assert summary["closed_this_round"] == 5
     assert summary["open_formal_tail_remaining"] == 30
-    assert summary["candidate_rows"] == 0
-    assert summary["blocked_rows"] == 30
+    assert summary["candidate_rows"] == 5
+    assert summary["blocked_rows"] == 25
     assert summary["discharges_archived_manuscript_gaps"] is False
     assert summary["math_flip_authorized"] is False
     assert summary["close_pack"] == (
         "/home/box/shared/legal-math-reviewer/formal_tail_关≥1_CAND5bis_20261025/"
     )
     assert summary["tip_pin_not_retargeted"] is False
-    assert summary["tip_pin"]["subject"] == "dc7b7430198fa221b5d72d55fc6065a928209dc4"
-    assert summary["tip_pin"]["run_id"] == 40190504653
-    assert summary["tip_pin"]["job_id"] == 121160299567
-    assert summary["tip_pin"]["verification"] == "evidence/ci-tip-dc7b7430/verification.json"
+    assert summary["tip_pin"]["subject"] == "1c72e444ab79ff255af201f100aa6a93bdc0e5c7"
+    assert summary["tip_pin"]["run_id"] == 40257646857
+    assert summary["tip_pin"]["job_id"] == 121362851074
+    assert summary["tip_pin"]["verification"] == "evidence/ci-tip-1c72e444/verification.json"
     assert summary["formal_tail_expand_audit"]["verification"] == (
-        "evidence/ci-tip-dc7b7430/verification.json"
+        "evidence/ci-tip-1c72e444/verification.json"
     )
-    assert summary["formal_tail_expand_audit"]["tip_authority_run_id"] == 40190504653
+    assert summary["formal_tail_expand_audit"]["tip_authority_run_id"] == 40257646857
     assert summary["formal_tail_expand_audit"]["live_tip_pin_retarget"] == "BOUND"
     assert summary["formal_tail_expand_audit"]["tip_authority_run_status"] == "SUCCESS"
-    assert summary["formal_tail_expand_audit"]["job_id"] == 121160299567
+    assert summary["formal_tail_expand_audit"]["job_id"] == 121362851074
+    assert summary["formal_tail_expand_audit"]["criteria_pack"] == "tip_pin_扩审计_CAND6_20261026"
     assert ledger["tip_pin_not_retargeted"] is False
     assert ledger["counts"]["OPEN_FORMAL_TAIL"] == 30
     assert ledger["counts"]["CLOSED_BY_WIRING"] == 12
@@ -159,11 +162,11 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
     blocked = [
         "U01.1", "U01.2", "U01.3", "U02.1", "U02.3", "U03.1", "U03.2",
         "U04.2", "U04.3", "U04.5", "U05.2", "U06.1", "U06.2", "U06.3",
-        "U07.1", "U07.2", "U07.3", "U08.3", "U09.1",
-        "U10.1", "U10.2", "U11.1", "U12.1", "U12.3", "U12.4",
-        "U13.2", "U13.3", "U13.4", "U14.1", "U15.3",
+        "U07.1", "U07.2", "U07.3",
+        "U10.1", "U11.1", "U12.1", "U12.3", "U12.4",
+        "U13.3", "U13.4", "U14.1",
     ]
-    assert len(blocked) == 30
+    assert len(blocked) == 25
     cand6_shorts = [
         "u08_3_four_states_do_not_exhaust_dependency_policies",
         "u08_3_judgment_not_compatibility_world_classification",
@@ -222,9 +225,49 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
             assert "FormalTail20261024" not in item["name"]
             assert item["name"].startswith("JurisLean.Candidates.Final20261021.")
             assert item["name"].split(".")[-1] not in cand5bis_shorts
-    # Live expand receipt stays the dc7b7430 pin (named_count=37). Not re-pinned.
+    cand6 = ("U08.3", "U15.3", "U13.2", "U09.1", "U10.2")
+    cand6_by_clause = {
+        "U08.3": [
+            "u08_3_four_states_do_not_exhaust_dependency_policies",
+            "u08_3_judgment_not_compatibility_world_classification",
+            "u08_3_opposition_preserves_support_not_full_reflection",
+        ],
+        "U15.3": [
+            "u15_3_two_point_risks_do_not_complete_five_evidence_levels",
+            "u15_3_second_round_consumer_is_not_evidence_ladder",
+        ],
+        "U13.2": [
+            "u13_2_frames_do_not_imply_authorized_rule_load",
+            "u13_2_condition_does_not_train_not_persistent_storage_refinement",
+        ],
+        "U09.1": [
+            "u09_1_conservation_not_receipt_revision_order",
+            "u09_1_receipt_coherent_not_cash_uniqueness",
+            "u09_1_at_most_once_not_product_protocol_refinement",
+        ],
+        "U10.2": [
+            "u10_2_executor_and_trace_not_full_mixed_operation_coverage",
+            "u10_2_post_invariant_not_gamma_frame_or_service_refinement",
+        ],
+    }
+    for clause in cand6:
+        row = by_clause[clause]
+        prove = row["formal_tail_prove"]
+        assert row["archive_gap_status"] == "OPEN_FORMAL_TAIL"
+        assert prove["disposition"] == "CANDIDATE_NOT_AUDITED"
+        assert prove["candidate_in_tip_pin_audit"] is True
+        assert prove["candidate_theorems"] == cand6_by_clause[clause]
+        assert prove["close_admitted"] is False
+        assert prove["step_2_closed"] is False
+        assert prove["discharges_archived_manuscript_gaps"] is False
+        assert prove["tip_pin_expand_audit"]["criteria_pack"] == "tip_pin_扩审计_CAND6_20261026"
+        assert "CLOSED" not in prove["disposition"]
+        for item in row["wired_declarations"]:
+            assert "FormalTail20261024" not in item["name"]
+            assert item["name"].split(".")[-1] not in cand6_shorts
+    # Live expand receipt is ci-tip-1c72e444 (named_count=49). dc7b7430 stays 37.
     assert summary["formal_tail_expand_audit"]["verification"] == (
-        "evidence/ci-tip-dc7b7430/verification.json"
+        "evidence/ci-tip-1c72e444/verification.json"
     )
     # U13.1 authority integration stays a non-goal / companion on the same row.
     u13 = by_clause["U13.1"]

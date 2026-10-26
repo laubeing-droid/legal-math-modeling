@@ -1156,9 +1156,9 @@ theorem u05_2_selected_risk_not_simultaneous_threshold_or_rare_group :
   refine ⟨hsel, hrise.1, hrise.2, ?_, by norm_num⟩
   intro hsim
   have hlow := hsim hrise.1
-  exact absurd (hrise.2.symm.trans hlow) fun h => by
-    cases h
-    norm_num
+  have heq := hrise.2.symm.trans hlow
+  injection heq with hnum
+  exact absurd hnum (by norm_num)
 
 /-! ### U06.3
 Existence and uniqueness of exact rational evaluation name one product.

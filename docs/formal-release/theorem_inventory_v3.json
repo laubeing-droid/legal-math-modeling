@@ -6050,6 +6050,99 @@
    "declarations": [
     {
      "kind": "theorem",
+     "name": "q05_1_conditional_correct_implies_calibration"
+    },
+    {
+     "kind": "theorem",
+     "name": "q05_1_conditional_brier_decomposition"
+    },
+    {
+     "kind": "theorem",
+     "name": "q05_1_conditional_brier_unique_optimum"
+    },
+    {
+     "kind": "theorem",
+     "name": "q05_1_binary_conditional_variance"
+    },
+    {
+     "kind": "theorem",
+     "name": "q05_1_binary_conditional_brier"
+    },
+    {
+     "kind": "def",
+     "name": "bucketMass"
+    },
+    {
+     "kind": "def",
+     "name": "bucketSuccess"
+    },
+    {
+     "kind": "def",
+     "name": "calibrated"
+    },
+    {
+     "kind": "def",
+     "name": "groupRate"
+    },
+    {
+     "kind": "def",
+     "name": "balancedAtoms"
+    },
+    {
+     "kind": "theorem",
+     "name": "q05_2_population_calibration_not_group_calibration"
+    },
+    {
+     "kind": "theorem",
+     "name": "q05_1_normalized_score_not_calibrated"
+    },
+    {
+     "kind": "def",
+     "name": "confidenceScore"
+    },
+    {
+     "kind": "theorem",
+     "name": "q05_3_higher_cutoff_can_raise_risk"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Probability",
+    "Mathlib.Probability.CondVar"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemantics20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "e577b732003f5cb6555b37bed8c18031bd7ade7ddac911d87fbc6e8f869fe0d3",
+   "size_bytes": 7669,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
+  },
+  {
+   "declarations": [],
+   "imports": [
+    "JurisLean.Candidates.CalibrationSemantics20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_1_binary_conditional_brier",
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_1_binary_conditional_variance",
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_1_conditional_brier_decomposition",
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_1_conditional_brier_unique_optimum",
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_1_conditional_correct_implies_calibration",
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_1_normalized_score_not_calibrated",
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_2_population_calibration_not_group_calibration",
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_3_higher_cutoff_can_raise_risk"
+   ],
+   "sha256": "528aedcfa5fd4bb5bf6a602bc85fb3c95d9366bcbc69b64dde480a912606cfd8",
+   "size_bytes": 2290,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "theorem",
      "name": "mem_advance_iff"
     },
     {
@@ -50287,6 +50380,7 @@
     "JurisLean.BusinessRoot.All",
     "JurisLean.BusinessRoot.SevenAxis",
     "JurisLean.BusinessRoot.SevenAxisCases",
+    "JurisLean.Candidates.CalibrationSemantics20261027",
     "JurisLean.Candidates.CompilerClosure20261026",
     "JurisLean.Candidates.CompilerProvenance20261027",
     "JurisLean.Candidates.Final20261021.CIAll",
@@ -50522,8 +50616,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "70799b52a4bdf23a7932d3bbda7fc05e55c2aabd03b1e77c2664bdfe8b4cd592",
-   "size_bytes": 11451,
+   "sha256": "b15184f28dfbc55561064f39957bea7d3a44242ffd160855b8b5be12c5bc3f50",
+   "size_bytes": 11508,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -50687,22 +50781,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5637,
-   "file_count": 415,
+   "counted_declaration_count": 5645,
+   "file_count": 417,
    "lemma_count": 146,
-   "print_axioms_command_count": 4510,
-   "print_axioms_distinct_targets": 4423,
-   "theorem_count": 5491,
-   "theorem_count_bol_convention": 5391
+   "print_axioms_command_count": 4518,
+   "print_axioms_distinct_targets": 4431,
+   "theorem_count": 5499,
+   "theorem_count_bol_convention": 5399
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5618,
-   "file_count": 400,
+   "counted_declaration_count": 5626,
+   "file_count": 402,
    "lemma_count": 139,
-   "print_axioms_command_count": 4510,
-   "print_axioms_distinct_targets": 4423,
-   "theorem_count": 5479,
-   "theorem_count_bol_convention": 5379
+   "print_axioms_command_count": 4518,
+   "print_axioms_distinct_targets": 4431,
+   "theorem_count": 5487,
+   "theorem_count_bol_convention": 5387
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -50759,6 +50853,8 @@
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxis.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisAudit.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemantics20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
@@ -51172,6 +51268,8 @@
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxis.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisAudit.lean",
    "proofs/lean/juris_lean/JurisLean/BusinessRoot/SevenAxisCases.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemantics20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerClosure20261026.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/CompilerProvenance20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Acceptance.lean",
@@ -51574,17 +51672,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "bc596366a793602a372efa1faa1ea133e6d2300fc98346eda610d549c84ff4f6",
+ "source_inventory_digest": "37b5919f53e026df07d6019036cddd35147458ccf73b15439b4de2d32079b53a",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/sample-calibration-consumer-20261027",
-  "commit": "cb5c0680adff0b88e73c058c4d671932a679a3a9",
-  "tree": "edc2ae778f5c4aeaea350aeb810d17f5f0f70ba9"
+  "branch": "formal/calibration-semantics-20261027",
+  "commit": "7e58994de4abf785b848e1b325d3709db1c0efcb",
+  "tree": "94e35bbe27b0c852a3775b98c6509aae65c621c7"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 415,
+  "files_total": 417,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

@@ -1,0 +1,178 @@
+JurisLean.Candidates.LearningRisk20261027.u01_1_three_part_risk_decomposition.{u_1} {H : Type u_1} (risk : H → ℝ)
+  (visible represented heads : Set H) (chosen : H) (member : chosen ∈ heads) (headIncluded : heads ⊆ represented)
+  (representationIncluded : represented ⊆ visible) (nonnegative : ∀ h ∈ visible, 0 ≤ risk h) :
+  risk chosen - JurisLean.Candidates.LearningRisk20261027.riskInf risk visible =
+      JurisLean.Candidates.LearningRisk20261027.riskInf risk represented -
+            JurisLean.Candidates.LearningRisk20261027.riskInf risk visible +
+          (JurisLean.Candidates.LearningRisk20261027.riskInf risk heads -
+            JurisLean.Candidates.LearningRisk20261027.riskInf risk represented) +
+        (risk chosen - JurisLean.Candidates.LearningRisk20261027.riskInf risk heads) ∧
+    0 ≤
+        JurisLean.Candidates.LearningRisk20261027.riskInf risk represented -
+          JurisLean.Candidates.LearningRisk20261027.riskInf risk visible ∧
+      0 ≤
+        JurisLean.Candidates.LearningRisk20261027.riskInf risk heads -
+          JurisLean.Candidates.LearningRisk20261027.riskInf risk represented
+'JurisLean.Candidates.LearningRisk20261027.u01_1_three_part_risk_decomposition' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle.{u_1} {H : Type u_1} (risk empirical : H → ℝ)
+  (models : Set H) (chosen : H) (member : chosen ∈ models) (ε opt : ℝ)
+  (uniform : ∀ h ∈ models, |risk h - empirical h| ≤ ε)
+  (optimization : ∀ h ∈ models, empirical chosen ≤ empirical h + opt) :
+  risk chosen ≤ JurisLean.Candidates.LearningRisk20261027.riskInf risk models + 2 * ε + opt
+'JurisLean.Candidates.LearningRisk20261027.u01_1_uniform_event_erm_oracle' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningRisk20261027.u01_1_total_excess_bound.{u_1} {H : Type u_1} (risk empirical : H → ℝ)
+  (visible represented heads : Set H) (chosen : H) (member : chosen ∈ heads) (ε opt : ℝ)
+  (uniform : ∀ h ∈ heads, |risk h - empirical h| ≤ ε)
+  (optimization : ∀ h ∈ heads, empirical chosen ≤ empirical h + opt) :
+  risk chosen - JurisLean.Candidates.LearningRisk20261027.riskInf risk visible ≤
+    JurisLean.Candidates.LearningRisk20261027.riskInf risk represented -
+            JurisLean.Candidates.LearningRisk20261027.riskInf risk visible +
+          (JurisLean.Candidates.LearningRisk20261027.riskInf risk heads -
+            JurisLean.Candidates.LearningRisk20261027.riskInf risk represented) +
+        2 * ε +
+      opt
+'JurisLean.Candidates.LearningRisk20261027.u01_1_total_excess_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningRisk20261027.u01_1_sufficient_representation_zero_gap.{u_1, u_2} {X : Type u_1}
+  {Z : Type u_2} [Fintype X] (weight : X → ℝ) (nonnegative : ∀ (x : X), 0 ≤ weight x) (φ : X → Z) (q : Z → ℝ) :
+  JurisLean.Candidates.LearningRisk20261027.riskInf
+      (JurisLean.Candidates.LearningRisk20261027.finiteBinaryRisk weight (q ∘ φ))
+      (JurisLean.Candidates.LearningRisk20261027.representedClass φ) =
+    JurisLean.Candidates.LearningRisk20261027.riskInf
+      (JurisLean.Candidates.LearningRisk20261027.finiteBinaryRisk weight (q ∘ φ)) Set.univ
+'JurisLean.Candidates.LearningRisk20261027.u01_1_sufficient_representation_zero_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningRisk20261027.u01_1_collapsed_representation_half_gap :
+  JurisLean.Candidates.LearningRisk20261027.riskInf JurisLean.Candidates.LearningRisk20261027.twoPointRisk Set.univ =
+      0 ∧
+    JurisLean.Candidates.LearningRisk20261027.riskInf JurisLean.Candidates.LearningRisk20261027.twoPointRisk
+        (JurisLean.Candidates.LearningRisk20261027.representedClass fun x => ()) =
+      1 / 2
+'JurisLean.Candidates.LearningRisk20261027.u01_1_collapsed_representation_half_gap' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail.{u_1} {Ω : Type u_1} [MeasurableSpace Ω] {n : ℕ}
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (hn : 0 < n) (X : Fin n → Ω → ℝ)
+  (independent : ProbabilityTheory.iIndepFun X μ) (measurable : ∀ (i : Fin n), AEMeasurable (X i) μ)
+  (bounded : ∀ (i : Fin n), ∀ᵐ (w : Ω) ∂μ, X i w ∈ Set.Icc 0 1) (mean : ℝ)
+  (means : ∀ (i : Fin n), ∫ (w : Ω), X i w ∂μ = mean) (ε : ℝ) (hε : 0 < ε) :
+  μ.real {w | ε ≤ |JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean X w - mean|} ≤
+    2 * Real.exp (-2 * ↑n * ε ^ 2)
+'JurisLean.Candidates.LearningFiniteClass20261027.row_mean_two_tail' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningFiniteClass20261027.finite_class_mean_uniform.{u_1, u_2} {Ω : Type u_1} {H : Type u_2}
+  [MeasurableSpace Ω] {n : ℕ} (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ] (hn : 0 < n)
+  (models : Finset H) (nonempty : models.Nonempty) (X : H → Fin n → Ω → ℝ) (mean : H → ℝ)
+  (independent : ∀ h ∈ models, ProbabilityTheory.iIndepFun (X h) μ)
+  (measurable : ∀ h ∈ models, ∀ (i : Fin n), Measurable (X h i))
+  (bounded : ∀ h ∈ models, ∀ (i : Fin n), ∀ᵐ (w : Ω) ∂μ, X h i w ∈ Set.Icc 0 1)
+  (means : ∀ h ∈ models, ∀ (i : Fin n), ∫ (w : Ω), X h i w ∂μ = mean h) (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+  1 - δ ≤
+    μ.real
+      {w |
+        ∀ h ∈ models,
+          |JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean (X h) w - mean h| ≤
+            JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n models.card δ}
+'JurisLean.Candidates.LearningFiniteClass20261027.finite_class_mean_uniform' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_empirical_risk_uniform.{u_1, u_2, u_3} {Ω : Type u_1}
+  {Z : Type u_2} {H : Type u_3} [MeasurableSpace Ω] [MeasurableSpace Z] {n : ℕ} (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Z) [MeasureTheory.IsProbabilityMeasure P]
+  (hn : 0 < n) (models : Finset H) (nonempty : models.Nonempty) (sample : Fin n → Ω → Z)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (loss : H → Z → ℝ)
+  (lossMeasurable : ∀ h ∈ models, Measurable (loss h)) (lossRange : ∀ h ∈ models, ∀ (z : Z), loss h z ∈ Set.Icc 0 1)
+  (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+  1 - δ ≤
+    μ.real
+      {w |
+        ∀ h ∈ models,
+          |JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean (fun i w => loss h (sample i w)) w -
+                ∫ (z : Z), loss h z ∂P| ≤
+            JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n models.card δ}
+'JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_empirical_risk_uniform' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm.{u_1, u_2, u_3} {Ω : Type u_1} {Z : Type u_2}
+  {H : Type u_3} [MeasurableSpace Ω] [MeasurableSpace Z] {n : ℕ} (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure Z) [MeasureTheory.IsProbabilityMeasure P]
+  (hn : 0 < n) (models : Finset H) (nonempty : models.Nonempty) (sample : Fin n → Ω → Z)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (loss : H → Z → ℝ)
+  (lossMeasurable : ∀ h ∈ models, Measurable (loss h)) (lossRange : ∀ h ∈ models, ∀ (z : Z), loss h z ∈ Set.Icc 0 1)
+  (chosen : Ω → H) (member : ∀ (w : Ω), chosen w ∈ models)
+  (chosenRiskMeasurable : Measurable fun w => ∫ (z : Z), loss (chosen w) z ∂P) (opt : ℝ)
+  (optimization :
+    ∀ (w : Ω),
+      ∀ h ∈ models,
+        JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean (fun i w' => loss (chosen w) (sample i w')) w ≤
+          JurisLean.Candidates.LearningFiniteClass20261027.empiricalMean (fun i w' => loss h (sample i w')) w + opt)
+  (δ : ℝ) (hδ : 0 < δ) (hδ1 : δ < 1) :
+  MeasurableSet
+      {w |
+        ∫ (z : Z), loss (chosen w) z ∂P ≤
+          JurisLean.Candidates.LearningRisk20261027.riskInf (fun h => ∫ (z : Z), loss h z ∂P) ↑models +
+              2 * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n models.card δ +
+            opt} ∧
+    1 - δ ≤
+      μ.real
+        {w |
+          ∫ (z : Z), loss (chosen w) z ∂P ≤
+            JurisLean.Candidates.LearningRisk20261027.riskInf (fun h => ∫ (z : Z), loss h z ∂P) ↑models +
+                2 * JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n models.card δ +
+              opt}
+'JurisLean.Candidates.LearningFiniteClass20261027.u01_1_iid_approximate_erm' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningBridge20261027.u01_2_classification_label_bridge.{u_1, u_2} {Ω : Type u_1} {A : Type u_2}
+  [MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ]
+  (prediction label target : Ω → A) :
+  μ.real {w | prediction w ≠ target w} ≤ μ.real {w | prediction w ≠ label w} + μ.real {w | label w ≠ target w}
+'JurisLean.Candidates.LearningBridge20261027.u01_2_classification_label_bridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningBridge20261027.u01_2_same_bounded_loss_label_bridge.{u_1, u_2, u_3} {Ω : Type u_1}
+  {A : Type u_2} {B : Type u_3} [MeasurableSpace Ω] (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ]
+  (prediction : Ω → A) (label target : Ω → B) (loss : A → B → ℝ) (range : ∀ (a : A) (b : B), loss a b ∈ Set.Icc 0 1)
+  (labelMeasurable : Measurable fun w => loss (prediction w) (label w))
+  (targetMeasurable : Measurable fun w => loss (prediction w) (target w))
+  (disagreementMeasurable : MeasurableSet {w | label w ≠ target w}) :
+  ∫ (w : Ω), loss (prediction w) (target w) ∂μ ≤
+    ∫ (w : Ω), loss (prediction w) (label w) ∂μ + μ.real {w | label w ≠ target w}
+'JurisLean.Candidates.LearningBridge20261027.u01_2_same_bounded_loss_label_bridge' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningBridge20261027.u01_2_joint_failure_budget.{u_1} {Ω : Type u_1} [MeasurableSpace Ω]
+  (μ : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure μ]
+  (targetRisk labelRisk bridge labelUpper bridgeUpper : Ω → ℝ)
+  (bridgeValid : ∀ (w : Ω), targetRisk w ≤ labelRisk w + bridge w) (δlabel δbridge : ℝ)
+  (labelFailure : μ.real {w | labelUpper w < labelRisk w} ≤ δlabel)
+  (bridgeFailure : μ.real {w | bridgeUpper w < bridge w} ≤ δbridge) :
+  μ.real {w | labelUpper w + bridgeUpper w < targetRisk w} ≤ δlabel + δbridge
+'JurisLean.Candidates.LearningBridge20261027.u01_2_joint_failure_budget' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningBridge20261027.u01_3_same_bounded_loss_tv.{u_1} {Ω : Type u_1} [MeasurableSpace Ω]
+  (P Q : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure P] [MeasureTheory.IsProbabilityMeasure Q]
+  (f : Ω → ℝ) (measurable : Measurable f) (range : ∀ (w : Ω), f w ∈ Set.Icc 0 1) :
+  |∫ (w : Ω), f w ∂P - ∫ (w : Ω), f w ∂Q| ≤ JurisLean.Candidates.LearningBridge20261027.jointTotalVariation P Q
+'JurisLean.Candidates.LearningBridge20261027.u01_3_same_bounded_loss_tv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+JurisLean.Candidates.LearningBridge20261027.u01_3_all_models_tv.{u_1, u_2} {Ω : Type u_1} {H : Type u_2}
+  [MeasurableSpace Ω] (P Q : MeasureTheory.Measure Ω) [MeasureTheory.IsProbabilityMeasure P]
+  [MeasureTheory.IsProbabilityMeasure Q] (loss : H → Ω → ℝ) (measurable : ∀ (h : H), Measurable (loss h))
+  (range : ∀ (h : H) (w : Ω), loss h w ∈ Set.Icc 0 1) (h : H) :
+  |∫ (w : Ω), loss h w ∂P - ∫ (w : Ω), loss h w ∂Q| ≤
+    JurisLean.Candidates.LearningBridge20261027.jointTotalVariation P Q
+'JurisLean.Candidates.LearningBridge20261027.u01_3_all_models_tv' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

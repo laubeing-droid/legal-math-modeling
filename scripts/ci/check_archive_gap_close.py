@@ -345,11 +345,13 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
             errors.append(f"formal-tail summary omits pack file {name}")
     if summary.get("step_2_closed") is not False:
         errors.append("formal-tail round claims step 2 closed")
-    if summary.get("closed_this_round") != disp.CAND5BIS_CLOSED_THIS_ROUND:
+    if summary.get("closed_this_round") != disp.CAND6_CLOSED_THIS_ROUND:
         errors.append(
             f"formal-tail closed_this_round {summary.get('closed_this_round')!r} "
-            f"!= authorized {disp.CAND5BIS_CLOSED_THIS_ROUND}"
+            f"!= authorized {disp.CAND6_CLOSED_THIS_ROUND}"
         )
+    if disp.CAND6_CLOSED_THIS_ROUND != 5 or len(disp.CAND6_CLOSED_IDS) != 5:
+        errors.append("CAND6 close authorization is not the five releasable ids")
     if summary.get("close_pack") != disp.FORMAL_TAIL_CLOSE_PACK:
         errors.append("formal-tail summary close_pack drifted")
     if summary.get("discharges_archived_manuscript_gaps") is not False or summary.get("math_flip_authorized") is not False:
@@ -384,7 +386,10 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
     open_rows = 0
     cand5_seen = set()
     cand5bis_seen = set()
-    authorized_closed = set(disp.CAND5_CLOSED_IDS) | set(disp.CAND5BIS_CLOSED_IDS)
+    cand6_seen = set()
+    authorized_closed = (
+        set(disp.CAND5_CLOSED_IDS) | set(disp.CAND5BIS_CLOSED_IDS) | set(disp.CAND6_CLOSED_IDS)
+    )
     for row in ledger.get("rows") or []:
         clause = row.get("clause")
         record = row.get("formal_tail_prove") or {}
@@ -401,12 +406,51 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
                 cand5_seen.add(clause)
             if clause in disp.CAND5BIS_CLOSED_IDS:
                 cand5bis_seen.add(clause)
+            if clause in disp.CAND6_CLOSED_IDS:
+                cand6_seen.add(clause)
             if row.get("archive_gap_status") != "CLOSED_BY_WIRING":
                 errors.append(f"{clause}: authorized close is not CLOSED_BY_WIRING")
             if row.get("unwired_formal_obligations"):
                 errors.append(f"{clause}: authorized close UNWIRED not cleared")
             if not str(row.get("scope_review") or "").strip():
                 errors.append(f"{clause}: authorized close missing SCOPE_REVIEW")
+            if clause in disp.CAND6_CLOSED_IDS:
+                review = str(row.get("scope_review") or "")
+                if "本条关项范围＝FormalTail 覆盖的形式义务" not in review:
+                    errors.append(f"{clause}: SCOPE_REVIEW missing the authorized close sentence")
+                if "FormalTail20261024" not in review:
+                    errors.append(f"{clause}: SCOPE_REVIEW does not name FormalTail20261024")
+            if clause == "U08.3":
+                goals = row.get("non_goals") or []
+                companion = str(row.get("companion_scope_notes") or "")
+                if not any("现实真值" in item for item in goals):
+                    errors.append("U08.3: 现实真值定理 NON_GOAL missing from the same row")
+                if "现实真值" not in companion:
+                    errors.append("U08.3: COMPANION_NOTES missing 现实真值定理")
+                if "现实真值" not in str(row.get("scope_review") or ""):
+                    errors.append("U08.3: SCOPE_REVIEW missing 现实真值 NON_GOAL")
+            if clause == "U15.3":
+                goals = row.get("non_goals") or []
+                companion = str(row.get("companion_scope_notes") or "")
+                if not any("readback" in item for item in goals):
+                    errors.append("U15.3: external load readback NON_GOAL missing from the same row")
+                if "readback" not in companion:
+                    errors.append("U15.3: COMPANION_NOTES missing external load readback")
+                if "readback" not in str(row.get("scope_review") or ""):
+                    errors.append("U15.3: SCOPE_REVIEW missing external load readback NON_GOAL")
+            if clause == "U09.1":
+                goals = row.get("non_goals") or []
+                companion = str(row.get("companion_scope_notes") or "")
+                goal_text = " ".join(goals)
+                if "legal allocation" not in goal_text and "法律分配" not in goal_text:
+                    errors.append("U09.1: 法律分配效果 NON_GOAL missing from the same row")
+                if "法律关系" not in goal_text and "法律关系" not in companion:
+                    errors.append("U09.1: 法律关系消灭 NON_GOAL missing from the same row")
+                if "法律关系" not in companion:
+                    errors.append("U09.1: COMPANION_NOTES missing 法律关系消灭")
+                review = str(row.get("scope_review") or "")
+                if "法律分配" not in review or "法律关系" not in review:
+                    errors.append("U09.1: SCOPE_REVIEW missing 法律分配效果／法律关系消灭 NON_GOAL")
             if clause == "U13.1":
                 goals = row.get("non_goals") or []
                 companion = str(row.get("companion_scope_notes") or "")
@@ -429,7 +473,7 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
                 if record.get("non_goals_same_row") != disp.NON_GOALS[clause] or not record.get("non_goals_same_row"):
                     errors.append(f"{clause}: companion non-goals are not in the same prove record")
             # OPEN rows that still carry candidate theorems must stay NOT_AUDITED.
-            # The five CAND5bis closes are not in this branch.
+            # The CAND5 / CAND5bis / CAND6 closes are not in this branch.
             for short in record.get("candidate_theorems") or []:
                 if f"theorem {short}" not in candidate_text:
                     errors.append(f"{clause}: candidate theorem {short} is not in the module")
@@ -450,17 +494,31 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         errors.append(f"CAND5 closed set {sorted(cand5_seen)} != {list(disp.CAND5_CLOSED_IDS)}")
     if cand5bis_seen != set(disp.CAND5BIS_CLOSED_IDS):
         errors.append(f"CAND5bis closed set {sorted(cand5bis_seen)} != {list(disp.CAND5BIS_CLOSED_IDS)}")
+    if cand6_seen != set(disp.CAND6_CLOSED_IDS):
+        errors.append(f"CAND6 closed set {sorted(cand6_seen)} != {list(disp.CAND6_CLOSED_IDS)}")
     if summary.get("open_formal_tail_remaining") != open_rows:
         errors.append("formal-tail summary open count drifted")
-    if open_rows != 30:
-        errors.append(f"OPEN_FORMAL_TAIL remaining {open_rows} != 30")
+    if open_rows != 25:
+        errors.append(f"OPEN_FORMAL_TAIL remaining {open_rows} != 25")
     if summary.get("blocked_rows") != 25:
         errors.append(f"blocked_rows {summary.get('blocked_rows')!r} != 25")
-    if summary.get("candidate_rows") != len(disp.CAND6_IDS):
+    if summary.get("candidate_rows") != 0:
         errors.append(
-            f"candidate_rows {summary.get('candidate_rows')!r} != {len(disp.CAND6_IDS)} "
-            "(CAND6 expand-audit only; not a close)"
+            f"candidate_rows {summary.get('candidate_rows')!r} != 0 after CAND6 close"
         )
+    wiring_ids = [
+        row.get("clause")
+        for row in ledger.get("rows") or []
+        if row.get("archive_gap_status") == "CLOSED_BY_WIRING"
+    ]
+    if len(disp.CLOSED_WIRING_IDS) != 17 or set(wiring_ids) != set(disp.CLOSED_WIRING_IDS):
+        errors.append(
+            f"CLOSED_BY_WIRING {sorted(wiring_ids)} != authorized {list(disp.CLOSED_WIRING_IDS)}"
+        )
+    if summary.get("discharges_archived_manuscript_gaps") is not False:
+        errors.append("formal-tail round discharges flipped")
+    if summary.get("math_flip_authorized") is not False or summary.get("step_2_closed") is not False:
+        errors.append("formal-tail round flipped math_flip or step_2_closed")
     # FormalTail module order stays PROVE_CANDIDATES in archive order (closed rows
     # no longer carry candidate_theorems on the prove record).
     expected_order = []
@@ -469,11 +527,12 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         if row.get("clause") in cand6_ids:
             continue
         expected_order.extend(disp.PROVE_CANDIDATES.get(row.get("clause"), []))
-    # CAND6 (pack tip_pin_扩审计_CAND6_20261026) is in PROVE_CANDIDATES so the
-    # five rows are CANDIDATE_NOT_AUDITED with candidate_in_tip_pin_audit=true.
-    # Source order appends the twelve names after the earlier 37. That is not
-    # archive order, so the module-order check keeps them as a suffix.
-    # Closed increment of this expand stays 0. OPEN stays 30. Not CLOSED.
+    # CAND6 short names stay in PROVE_CANDIDATES and in FormalTail20261024.lean.
+    # The five rows are CLOSED_BY_WIRING and no longer carry candidate_theorems
+    # on the prove record. Source order appends the twelve names after the
+    # earlier 37. That is not archive order, so the module-order check keeps
+    # them as a suffix. The expand receipt stays closes_debt=false /
+    # closed_this_round=0 / named_count=49. That receipt is not this close.
     cand6_suffix: list[str] = []
     for clause in disp.CAND6_IDS:
         cand6_suffix.extend(disp.PROVE_CANDIDATES.get(clause, []))
@@ -748,10 +807,10 @@ def check_pins(status: dict, construction: dict, receipt: dict, archive: dict, c
         errors.append("construction formal_tail_round tip_pin is not the live retarget")
     if formal_tail.get("step_2_closed") is not False:
         errors.append("construction formal_tail_round claims step 2 closed")
-    if formal_tail.get("closed_this_round") != disp.CAND5BIS_CLOSED_THIS_ROUND:
+    if formal_tail.get("closed_this_round") != disp.CAND6_CLOSED_THIS_ROUND:
         errors.append(
             f"construction formal_tail_round closed_this_round "
-            f"{formal_tail.get('closed_this_round')!r} != {disp.CAND5BIS_CLOSED_THIS_ROUND}"
+            f"{formal_tail.get('closed_this_round')!r} != {disp.CAND6_CLOSED_THIS_ROUND}"
         )
     if carried.get("rows") != archive.get("rows"):
         errors.append("carried manuscript rows differ from the tip archive")

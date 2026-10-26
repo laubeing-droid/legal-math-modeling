@@ -62,6 +62,7 @@ theorem u01_1_uniform_event_erm_oracle {H : Type*} (risk empirical : H → ℝ)
     (optimization : ∀ h ∈ models, empirical chosen ≤ empirical h + opt) :
     risk chosen ≤ riskInf risk models + 2 * ε + opt := by
   have lower : risk chosen - 2 * ε - opt ≤ riskInf risk models := by
+    change risk chosen - 2 * ε - opt ≤ sInf (risk '' models)
     apply le_csInf ⟨risk chosen, ⟨chosen, member, rfl⟩⟩
     rintro _ ⟨h, hh, rfl⟩
     have hc := (abs_le.mp (uniform chosen member)).2
@@ -102,8 +103,10 @@ theorem fiberBayes_minimizes {X Z : Type*} [Fintype X]
   intro x _
   apply mul_le_mul_of_nonneg_left _ (nonnegative x)
   by_cases hq : (1 / 2 : ℝ) ≤ q (φ x)
-  · cases hx : h x <;> simp [fiberBayes, Function.comp_def, hq, hx] <;> linarith
-  · cases hx : h x <;> simp [fiberBayes, Function.comp_def, hq, hx] <;> linarith
+  · have hq' : (2 : ℝ)⁻¹ ≤ q (φ x) := by simpa only [one_div] using hq
+    cases hx : h x <;> simp [fiberBayes, Function.comp_def, hq', hx] <;> linarith
+  · have hq' : ¬(2 : ℝ)⁻¹ ≤ q (φ x) := by simpa only [one_div] using hq
+    cases hx : h x <;> simp [fiberBayes, Function.comp_def, hq', hx] <;> linarith
 
 theorem u01_1_sufficient_representation_zero_gap {X Z : Type*} [Fintype X]
     (weight : X → ℝ) (nonnegative : ∀ x, 0 ≤ weight x) (φ : X → Z)

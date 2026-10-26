@@ -10296,6 +10296,154 @@
    "declarations": [
     {
      "kind": "def",
+     "name": "radiusVerified"
+    },
+    {
+     "kind": "theorem",
+     "name": "radius_verification_sound"
+    },
+    {
+     "kind": "structure",
+     "name": "SampleObservation"
+    },
+    {
+     "kind": "def",
+     "name": "candidateLoss"
+    },
+    {
+     "kind": "def",
+     "name": "candidateAcceptance"
+    },
+    {
+     "kind": "def",
+     "name": "sampleLoss"
+    },
+    {
+     "kind": "def",
+     "name": "tableAcceptance"
+    },
+    {
+     "kind": "def",
+     "name": "sampleAcceptance"
+    },
+    {
+     "kind": "def",
+     "name": "eventPartitionsValid"
+    },
+    {
+     "kind": "structure",
+     "name": "SampleCalibration"
+    },
+    {
+     "kind": "def",
+     "name": "produceCalibration"
+    },
+    {
+     "kind": "def",
+     "name": "predictCalibrated"
+    },
+    {
+     "kind": "def",
+     "name": "runSamples"
+    },
+    {
+     "kind": "theorem",
+     "name": "event_guard_uses_real_identity"
+    },
+    {
+     "kind": "theorem",
+     "name": "changed_sample_scope_refused"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_sample_produces_the_certificate"
+    },
+    {
+     "kind": "theorem",
+     "name": "query_outside_selected_rule_refused"
+    },
+    {
+     "kind": "theorem",
+     "name": "prediction_reads_actual_fitted_table"
+    },
+    {
+     "kind": "theorem",
+     "name": "pipeline_consumes_the_actual_empirical_minimizer"
+    },
+    {
+     "kind": "theorem",
+     "name": "pipeline_checks_joint_radius"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_certificate_consumes_population_risk_bound"
+    },
+    {
+     "kind": "theorem",
+     "name": "whole_pipeline_joint_family_risk_bound"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.LearningConsumer20261027",
+    "JurisLean.Candidates.SelectiveCalibration20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "62907d2b98bcee2f4297e0009321530821ab38eb61f67863a1924e8d8c5642c5",
+   "size_bytes": 29915,
+   "theorem_count": 10,
+   "theorem_count_bol_convention": 10
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "sampleFixtureProtocol"
+    },
+    {
+     "kind": "def",
+     "name": "sampleFixtureLoss"
+    },
+    {
+     "kind": "def",
+     "name": "trainingFixture"
+    },
+    {
+     "kind": "def",
+     "name": "calibrationFixture"
+    },
+    {
+     "kind": "def",
+     "name": "sampleFixtureRun"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_certificate_consumes_population_risk_bound",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_sample_produces_the_certificate",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.changed_sample_scope_refused",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.event_guard_uses_real_identity",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.pipeline_checks_joint_radius",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.pipeline_consumes_the_actual_empirical_minimizer",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.prediction_reads_actual_fitted_table",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.query_outside_selected_rule_refused",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.radius_verification_sound",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.whole_pipeline_joint_family_risk_bound"
+   ],
+   "sha256": "c6fa4aebc560eb1e4e3b5a063e07ebc4062cf9e877ff6630a274369514b5fb9e",
+   "size_bytes": 5340,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
      "name": "coverageLoss"
     },
     {
@@ -50150,6 +50298,7 @@
     "JurisLean.Candidates.LearningEventSplit20261027",
     "JurisLean.Candidates.LearningFiniteClass20261027",
     "JurisLean.Candidates.LearningRisk20261027",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027",
     "JurisLean.Candidates.SelectiveCalibration20261027",
     "JurisLean.CanonicalSerialization",
     "JurisLean.CertificateChecker",
@@ -50373,8 +50522,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "9f230905d49cf86c228b74086e218e74be5ccd8c735b0ddd0ba459f5ec945334",
-   "size_bytes": 11389,
+   "sha256": "70799b52a4bdf23a7932d3bbda7fc05e55c2aabd03b1e77c2664bdfe8b4cd592",
+   "size_bytes": 11451,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -50538,22 +50687,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5627,
-   "file_count": 413,
+   "counted_declaration_count": 5637,
+   "file_count": 415,
    "lemma_count": 146,
-   "print_axioms_command_count": 4500,
-   "print_axioms_distinct_targets": 4413,
-   "theorem_count": 5481,
-   "theorem_count_bol_convention": 5381
+   "print_axioms_command_count": 4510,
+   "print_axioms_distinct_targets": 4423,
+   "theorem_count": 5491,
+   "theorem_count_bol_convention": 5391
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5608,
-   "file_count": 398,
+   "counted_declaration_count": 5618,
+   "file_count": 400,
    "lemma_count": 139,
-   "print_axioms_command_count": 4500,
-   "print_axioms_distinct_targets": 4413,
-   "theorem_count": 5469,
-   "theorem_count_bol_convention": 5369
+   "print_axioms_command_count": 4510,
+   "print_axioms_distinct_targets": 4423,
+   "theorem_count": 5479,
+   "theorem_count_bol_convention": 5379
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -50652,6 +50801,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningProvenanceAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibration20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
@@ -51063,6 +51214,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningProvenanceAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibration20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibrationAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/CanonicalSerialization.lean",
@@ -51421,17 +51574,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "c1207c34cead1ff1be348de3d9b3d55711c0d8d4bb90389750ce92dd1659480c",
+ "source_inventory_digest": "bc596366a793602a372efa1faa1ea133e6d2300fc98346eda610d549c84ff4f6",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/selective-calibration-20261027",
-  "commit": "e805ab13bd6c587117db51dd8cf4f2e16332d9b2",
-  "tree": "b3a67ba427c1cdb746ba3ce64b6243f98f04e17a"
+  "branch": "formal/sample-calibration-consumer-20261027",
+  "commit": "cb5c0680adff0b88e73c058c4d671932a679a3a9",
+  "tree": "edc2ae778f5c4aeaea350aeb810d17f5f0f70ba9"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 413,
+  "files_total": 415,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

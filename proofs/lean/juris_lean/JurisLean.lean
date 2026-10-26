@@ -72,6 +72,7 @@ import JurisLean.Candidates.LearningERM20261027
 import JurisLean.Candidates.LearningEventSplit20261027
 import JurisLean.Candidates.LearningFiniteClass20261027
 import JurisLean.Candidates.LearningRisk20261027
+import JurisLean.Candidates.SampleCalibrationConsumer20261027
 import JurisLean.Candidates.SelectiveCalibration20261027
 import JurisLean.CanonicalSerialization
 import JurisLean.CertificateCheckerV2

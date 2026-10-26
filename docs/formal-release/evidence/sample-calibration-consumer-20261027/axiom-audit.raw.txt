@@ -1,0 +1,246 @@
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:3:0: JurisLean.Candidates.SampleCalibrationConsumer20261027.event_guard_uses_real_identity {m n k : ℕ} {Y : Type}
+  (training : Fin n → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Y)
+  (calibration : Fin k → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Y) :
+  JurisLean.Candidates.SampleCalibrationConsumer20261027.eventPartitionsValid training calibration = true ↔
+    (Function.Injective fun i => (calibration i).event) ∧
+      ∀ (i : Fin n) (j : Fin k), (training i).event ≠ (calibration j).event
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:4:0: 'JurisLean.Candidates.SampleCalibrationConsumer20261027.event_guard_uses_real_identity' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:5:0: JurisLean.Candidates.SampleCalibrationConsumer20261027.changed_sample_scope_refused {m n : ℕ} {Y : Type}
+  (sampleProtocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (fitted : JurisLean.Candidates.LearningConsumer20261027.FittedTable) (loss : ℚ → Y → ℚ) (cutoffs : List ℚ)
+  (rows : Fin n → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Y) (radius target : ℚ)
+  (snapshot calibrationProtocol radiusExponent : ℕ) (changed : sampleProtocol ≠ fitted.protocol) :
+  JurisLean.Candidates.SampleCalibrationConsumer20261027.produceCalibration sampleProtocol fitted loss cutoffs rows
+      radius target snapshot calibrationProtocol radiusExponent =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.targetMismatch
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:6:0: 'JurisLean.Candidates.SampleCalibrationConsumer20261027.changed_sample_scope_refused' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:7:0: JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_sample_produces_the_certificate {m n : ℕ} {Y : Type}
+  (sampleProtocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (fitted : JurisLean.Candidates.LearningConsumer20261027.FittedTable) (loss : ℚ → Y → ℚ) (cutoffs : List ℚ)
+  (rows : Fin n → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Y) (radius target : ℚ)
+  (snapshot calibrationProtocol radiusExponent : ℕ)
+  (out : JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleCalibration)
+  (accepted :
+    JurisLean.Candidates.SampleCalibrationConsumer20261027.produceCalibration sampleProtocol fitted loss cutoffs rows
+        radius target snapshot calibrationProtocol radiusExponent =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.fitted = fitted ∧
+    out.radius = radius ∧
+      out.calibrationRows = n ∧
+        out.candidateCutoffs = cutoffs ∧
+          out.certificate.protocol = fitted.protocol ∧
+            out.certificate.table = fitted.table ∧
+              out.certificate.bounds.lowerCoverage =
+                  JurisLean.Candidates.SelectiveCalibration20261027.lowerCoverage
+                    (JurisLean.Candidates.SampleCalibrationConsumer20261027.sampleAcceptance fitted) rows radius
+                    out.cutoff ∧
+                out.certificate.bounds.upperRisk =
+                    JurisLean.Candidates.SelectiveCalibration20261027.upperNumerator
+                        (JurisLean.Candidates.SampleCalibrationConsumer20261027.sampleLoss fitted loss)
+                        (JurisLean.Candidates.SampleCalibrationConsumer20261027.sampleAcceptance fitted) rows radius
+                        out.cutoff /
+                      JurisLean.Candidates.SelectiveCalibration20261027.lowerCoverage
+                        (JurisLean.Candidates.SampleCalibrationConsumer20261027.sampleAcceptance fitted) rows radius
+                        out.cutoff ∧
+                  JurisLean.Candidates.SelectiveCalibration20261027.calibrate
+                        (JurisLean.Candidates.SampleCalibrationConsumer20261027.sampleLoss fitted loss)
+                        (JurisLean.Candidates.SampleCalibrationConsumer20261027.sampleAcceptance fitted) cutoffs rows
+                        radius target =
+                      some out.cutoff ∧
+                    out.radiusExponent = radiusExponent
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:8:0: 'JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_sample_produces_the_certificate' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:9:0: JurisLean.Candidates.SampleCalibrationConsumer20261027.query_outside_selected_rule_refused {m : ℕ}
+  (expected : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (calibrated : JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleCalibration) (query : Fin m) (target : ℚ)
+  (supported : Bool) (outside : ¬calibrated.cutoff ≤ calibrated.fitted.table.getD (↑query) 0) :
+  JurisLean.Candidates.SampleCalibrationConsumer20261027.predictCalibrated expected calibrated query target supported =
+    JurisLean.Candidates.Final20261021.Result.unknown JurisLean.Candidates.Final20261021.Error.unsupported
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:10:0: 'JurisLean.Candidates.SampleCalibrationConsumer20261027.query_outside_selected_rule_refused' depends on axioms: [propext,
+ Quot.sound]
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:11:0: JurisLean.Candidates.SampleCalibrationConsumer20261027.prediction_reads_actual_fitted_table {m : ℕ}
+  (expected : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (calibrated : JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleCalibration) (query : Fin m) (target : ℚ)
+  (supported : Bool) (out : JurisLean.Candidates.LearningConsumer20261027.TaskScore)
+  (accepted :
+    JurisLean.Candidates.SampleCalibrationConsumer20261027.predictCalibrated expected calibrated query target
+        supported =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  out.protocol = calibrated.fitted.protocol ∧
+    out.value = calibrated.fitted.table.getD (↑query) 0 ∧
+      out.bounds = calibrated.certificate.bounds ∧ calibrated.cutoff ≤ out.value
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:12:0: 'JurisLean.Candidates.SampleCalibrationConsumer20261027.prediction_reads_actual_fitted_table' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:13:0: JurisLean.Candidates.SampleCalibrationConsumer20261027.pipeline_consumes_the_actual_empirical_minimizer {m n k : ℕ}
+  {Y : Type} (protocol sampleProtocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (loss : ℚ → Y → ℚ) (models : List (List ℚ)) (cutoffs : List ℚ)
+  (training : Fin n → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Y)
+  (calibration : Fin k → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Y) (query : Fin m)
+  (radius target : ℚ) (snapshot calibrationProtocol radiusExponent : ℕ) (supported : Bool)
+  (out :
+    JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleCalibration ×
+      JurisLean.Candidates.LearningConsumer20261027.TaskScore)
+  (accepted :
+    JurisLean.Candidates.SampleCalibrationConsumer20261027.runSamples protocol sampleProtocol loss models cutoffs
+        training calibration query radius target snapshot calibrationProtocol radiusExponent supported =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  (Function.Injective fun i => (calibration i).event) ∧
+    (∀ (i : Fin n) (j : Fin k), (training i).event ≠ (calibration j).event) ∧
+      out.1.fitted.protocol = protocol ∧
+        out.1.fitted.table ∈ models ∧
+          out.2.value = out.1.fitted.table.getD (↑query) 0 ∧
+            (∀ table ∈ models,
+                JurisLean.Candidates.LearningERM20261027.empiricalScore
+                    (JurisLean.Candidates.LearningConsumer20261027.tableLoss loss)
+                    (fun i => ((training i).feature, (training i).label)) out.1.fitted.table ≤
+                  JurisLean.Candidates.LearningERM20261027.empiricalScore
+                    (JurisLean.Candidates.LearningConsumer20261027.tableLoss loss)
+                    (fun i => ((training i).feature, (training i).label)) table) ∧
+              JurisLean.Candidates.SampleCalibrationConsumer20261027.produceCalibration sampleProtocol out.1.fitted loss
+                  cutoffs calibration radius target snapshot calibrationProtocol radiusExponent =
+                JurisLean.Candidates.Final20261021.Result.known out.1
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:14:0: 'JurisLean.Candidates.SampleCalibrationConsumer20261027.pipeline_consumes_the_actual_empirical_minimizer' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:15:0: JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_certificate_consumes_population_risk_bound.{u_1}
+  {Ω : Type u_1} [MeasurableSpace Ω] {m n : ℕ} {Y : Type} [MeasurableSpace (Fin m × Y)] (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure (Fin m × Y)) [MeasureTheory.IsProbabilityMeasure P]
+  (hn : 0 < n) (sampleProtocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (fitted : JurisLean.Candidates.LearningConsumer20261027.FittedTable) (first : ℚ) (rest : List ℚ)
+  (sample : Fin n → Ω → Fin m × Y) (events : Fin n → Ω → JurisLean.Candidates.Final20261021.EventId)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (loss : ℚ → Y → ℚ)
+  (numeratorMeasurable :
+    ∀ h ∈ first :: rest,
+      Measurable fun z =>
+        ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss
+            (fun x z => JurisLean.Candidates.LearningConsumer20261027.tableLoss loss fitted.table z)
+            (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance fitted) h z))
+  (coverageMeasurable :
+    ∀ h ∈ first :: rest,
+      Measurable fun z =>
+        ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss
+            (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance fitted) h z))
+  (lossRange :
+    ∀ (z : Fin m × Y), ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss loss fitted.table z) ∈ Set.Icc 0 1)
+  (hδ : 0 < ↑fitted.protocol.failureBudget) (hδ1 : ↑fitted.protocol.failureBudget < 1) (radius target : ℚ)
+  (conservative :
+    JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n (2 * (first :: rest).toFinset.card)
+        ↑fitted.protocol.failureBudget ≤
+      ↑radius)
+  (snapshot calibrationProtocol radiusExponent : ℕ) :
+  ∃ confidence,
+    MeasurableSet confidence ∧
+      1 - ↑fitted.protocol.failureBudget ≤ μ.real confidence ∧
+        ∀ w ∈ confidence,
+          ∀ (out : JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleCalibration),
+            JurisLean.Candidates.SampleCalibrationConsumer20261027.produceCalibration sampleProtocol fitted loss
+                  (first :: rest) (fun i => { event := events i w, feature := (sample i w).1, label := (sample i w).2 })
+                  radius target snapshot calibrationProtocol radiusExponent =
+                JurisLean.Candidates.Final20261021.Result.known out →
+              0 <
+                  ∫ (z : Fin m × Y),
+                    ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss
+                        (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance out.fitted) out.cutoff
+                        z) ∂P ∧
+                (∫ (z : Fin m × Y),
+                      ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss
+                          (fun x z => JurisLean.Candidates.LearningConsumer20261027.tableLoss loss out.fitted.table z)
+                          (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance out.fitted) out.cutoff
+                          z) ∂P) /
+                    ∫ (z : Fin m × Y),
+                      ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss
+                          (JurisLean.Candidates.SampleCalibrationConsumer20261027.tableAcceptance out.fitted) out.cutoff
+                          z) ∂P ≤
+                  ↑target
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:16:0: 'JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_certificate_consumes_population_risk_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:17:0: JurisLean.Candidates.SampleCalibrationConsumer20261027.whole_pipeline_joint_family_risk_bound.{u_1} {Ω : Type u_1}
+  [MeasurableSpace Ω] {m n trainN : ℕ} {Y : Type} [MeasurableSpace (Fin m × Y)] (μ : MeasureTheory.Measure Ω)
+  [MeasureTheory.IsProbabilityMeasure μ] (P : MeasureTheory.Measure (Fin m × Y)) [MeasureTheory.IsProbabilityMeasure P]
+  (hn : 0 < n) (protocol sampleProtocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol)
+  (firstModel : List ℚ) (restModels : List (List ℚ)) (firstCutoff : ℚ) (restCutoffs : List ℚ)
+  (training : Fin trainN → Ω → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Y)
+  (sample : Fin n → Ω → Fin m × Y) (events : Fin n → Ω → JurisLean.Candidates.Final20261021.EventId)
+  (sampleMeasurable : ∀ (i : Fin n), Measurable (sample i)) (independent : ProbabilityTheory.iIndepFun sample μ)
+  (law : ∀ (i : Fin n), ProbabilityTheory.IdentDistrib (sample i) id μ P) (loss : ℚ → Y → ℚ)
+  (numeratorMeasurable :
+    ∀ h ∈ (firstModel :: restModels).toFinset.product (firstCutoff :: restCutoffs).toFinset,
+      Measurable fun z =>
+        ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss
+            (JurisLean.Candidates.SampleCalibrationConsumer20261027.candidateLoss loss)
+            JurisLean.Candidates.SampleCalibrationConsumer20261027.candidateAcceptance h z))
+  (coverageMeasurable :
+    ∀ h ∈ (firstModel :: restModels).toFinset.product (firstCutoff :: restCutoffs).toFinset,
+      Measurable fun z =>
+        ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss
+            JurisLean.Candidates.SampleCalibrationConsumer20261027.candidateAcceptance h z))
+  (lossRange :
+    ∀ table ∈ firstModel :: restModels,
+      ∀ (z : Fin m × Y), ↑(JurisLean.Candidates.LearningConsumer20261027.tableLoss loss table z) ∈ Set.Icc 0 1)
+  (hδ : 0 < ↑protocol.failureBudget) (hδ1 : ↑protocol.failureBudget < 1) (query : Fin m) (radius target : ℚ)
+  (snapshot calibrationProtocol radiusExponent : ℕ) (supported : Bool) :
+  ∃ confidence,
+    MeasurableSet confidence ∧
+      1 - ↑protocol.failureBudget ≤ μ.real confidence ∧
+        ∀ w ∈ confidence,
+          ∀
+            (out :
+              JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleCalibration ×
+                JurisLean.Candidates.LearningConsumer20261027.TaskScore),
+            JurisLean.Candidates.SampleCalibrationConsumer20261027.runSamples protocol sampleProtocol loss
+                  (firstModel :: restModels) (firstCutoff :: restCutoffs) (fun i => training i w)
+                  (fun i => { event := events i w, feature := (sample i w).1, label := (sample i w).2 }) query radius
+                  target snapshot calibrationProtocol radiusExponent supported =
+                JurisLean.Candidates.Final20261021.Result.known out →
+              0 <
+                  ∫ (z : Fin m × Y),
+                    ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss
+                        JurisLean.Candidates.SampleCalibrationConsumer20261027.candidateAcceptance
+                        (out.1.fitted.table, out.1.cutoff) z) ∂P ∧
+                (∫ (z : Fin m × Y),
+                      ↑(JurisLean.Candidates.SelectiveCalibration20261027.numeratorLoss
+                          (JurisLean.Candidates.SampleCalibrationConsumer20261027.candidateLoss loss)
+                          JurisLean.Candidates.SampleCalibrationConsumer20261027.candidateAcceptance
+                          (out.1.fitted.table, out.1.cutoff) z) ∂P) /
+                    ∫ (z : Fin m × Y),
+                      ↑(JurisLean.Candidates.SelectiveCalibration20261027.coverageLoss
+                          JurisLean.Candidates.SampleCalibrationConsumer20261027.candidateAcceptance
+                          (out.1.fitted.table, out.1.cutoff) z) ∂P ≤
+                  ↑target
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:18:0: 'JurisLean.Candidates.SampleCalibrationConsumer20261027.whole_pipeline_joint_family_risk_bound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:20:0: JurisLean.Candidates.SampleCalibrationConsumer20261027.radius_verification_sound (n M : ℕ) (delta radius : ℚ)
+  (exponent : ℕ)
+  (verified : JurisLean.Candidates.SampleCalibrationConsumer20261027.radiusVerified n M delta radius exponent = true) :
+  JurisLean.Candidates.LearningFiniteClass20261027.finiteRadius n (2 * M) ↑delta ≤ ↑radius
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:21:0: 'JurisLean.Candidates.SampleCalibrationConsumer20261027.radius_verification_sound' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:22:0: JurisLean.Candidates.SampleCalibrationConsumer20261027.pipeline_checks_joint_radius {m n k : ℕ} {Y : Type}
+  (protocol sampleProtocol : JurisLean.Candidates.LearningConsumer20261027.LearningProtocol) (loss : ℚ → Y → ℚ)
+  (models : List (List ℚ)) (cutoffs : List ℚ)
+  (training : Fin n → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Y)
+  (calibration : Fin k → JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleObservation m Y) (query : Fin m)
+  (radius target : ℚ) (snapshot calibrationProtocol radiusExponent : ℕ) (supported : Bool)
+  (out :
+    JurisLean.Candidates.SampleCalibrationConsumer20261027.SampleCalibration ×
+      JurisLean.Candidates.LearningConsumer20261027.TaskScore)
+  (accepted :
+    JurisLean.Candidates.SampleCalibrationConsumer20261027.runSamples protocol sampleProtocol loss models cutoffs
+        training calibration query radius target snapshot calibrationProtocol radiusExponent supported =
+      JurisLean.Candidates.Final20261021.Result.known out) :
+  JurisLean.Candidates.SampleCalibrationConsumer20261027.radiusVerified k
+      (models.toFinset.product cutoffs.toFinset).card protocol.failureBudget radius radiusExponent =
+    true
+info: JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean:23:0: 'JurisLean.Candidates.SampleCalibrationConsumer20261027.pipeline_checks_joint_radius' depends on axioms: [propext,
+ Classical.choice,
+ Quot.sound]

@@ -1,0 +1,60 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "3ec7fe89cbafd09410f68400e923db3bc0dd208c",
+  "run_id": 40407520488,
+  "job_id": 121869022779,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
+  "named_count": 10,
+  "named_theorems_full": [
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.event_guard_uses_real_identity",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.changed_sample_scope_refused",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_sample_produces_the_certificate",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.query_outside_selected_rule_refused",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.prediction_reads_actual_fitted_table",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.pipeline_consumes_the_actual_empirical_minimizer",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.actual_certificate_consumes_population_risk_bound",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.whole_pipeline_joint_family_risk_bound",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.radius_verification_sound",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027.pipeline_checks_joint_radius"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
+      "sha256": "62907d2b98bcee2f4297e0009321530821ab38eb61f67863a1924e8d8c5642c5"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
+      "sha256": "c6fa4aebc560eb1e4e3b5a063e07ebc4062cf9e877ff6630a274369514b5fb9e"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 10,
+    "axiom_vocabulary": {
+      "Classical.choice": 9,
+      "Quot.sound": 10,
+      "propext": 10
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "Eight #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}

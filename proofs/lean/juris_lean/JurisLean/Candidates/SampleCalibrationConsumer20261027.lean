@@ -26,11 +26,15 @@ structure SampleObservation (m : ℕ) (Y : Type) where
 
 def sampleLoss {m : ℕ} {Y : Type} (fitted : FittedTable) (loss : ℚ → Y → ℚ)
     (_cutoff : ℚ) (row : SampleObservation m Y) : ℚ :=
-  loss (fitted.table.getD row.feature.val 0) row.label
+  tableLoss loss fitted.table (row.feature, row.label)
+
+def tableAcceptance {m : ℕ} {Y : Type} (fitted : FittedTable)
+    (cutoff : ℚ) (row : Fin m × Y) : Bool :=
+  decide (cutoff ≤ fitted.table.getD row.1.val 0)
 
 def sampleAcceptance {m : ℕ} {Y : Type} (fitted : FittedTable)
     (cutoff : ℚ) (row : SampleObservation m Y) : Bool :=
-  decide (cutoff ≤ fitted.table.getD row.feature.val 0)
+  tableAcceptance fitted cutoff (row.feature, row.label)
 
 def eventPartitionsValid {m n k : ℕ} {Y : Type}
     (training : Fin n → SampleObservation m Y)
@@ -236,20 +240,24 @@ open JurisLean.Candidates.LearningFiniteClass20261027
 
 -- Fixed fitted contents and family: when fitted is random, the iid law here
 -- must hold conditionally on its training history or for a jointly fixed family.
+-- This law concerns visible feature/label pairs. Event IDs are separate metadata
+-- and may be assigned deterministically; they are not required to be iid.
 theorem actual_certificate_consumes_population_risk_bound {Ω : Type*} [MeasurableSpace Ω]
-    {m n : ℕ} {Y : Type} [MeasurableSpace (SampleObservation m Y)]
+    {m n : ℕ} {Y : Type} [MeasurableSpace (Fin m × Y)]
     (μ : Measure Ω) [IsProbabilityMeasure μ]
-    (P : Measure (SampleObservation m Y)) [IsProbabilityMeasure P]
+    (P : Measure (Fin m × Y)) [IsProbabilityMeasure P]
     (hn : 0 < n) (sampleProtocol : LearningProtocol) (fitted : FittedTable)
-    (first : ℚ) (rest : List ℚ) (sample : Fin n → Ω → SampleObservation m Y)
+    (first : ℚ) (rest : List ℚ) (sample : Fin n → Ω → Fin m × Y)
+    (events : Fin n → Ω → EventId)
     (sampleMeasurable : ∀ i, Measurable (sample i))
     (independent : iIndepFun sample μ) (law : ∀ i, IdentDistrib (sample i) id μ P)
     (loss : ℚ → Y → ℚ)
     (numeratorMeasurable : ∀ h ∈ first :: rest,
-      Measurable (fun z => (numeratorLoss (sampleLoss fitted loss) (sampleAcceptance fitted) h z : ℝ)))
+      Measurable (fun z : Fin m × Y =>
+        (numeratorLoss (fun _ z => tableLoss loss fitted.table z) (tableAcceptance fitted) h z : ℝ)))
     (coverageMeasurable : ∀ h ∈ first :: rest,
-      Measurable (fun z => (coverageLoss (sampleAcceptance fitted) h z : ℝ)))
-    (lossRange : ∀ z, (sampleLoss fitted loss 0 z : ℝ) ∈ Set.Icc (0 : ℝ) 1)
+      Measurable (fun z : Fin m × Y => (coverageLoss (tableAcceptance fitted) h z : ℝ)))
+    (lossRange : ∀ z : Fin m × Y, (tableLoss loss fitted.table z : ℝ) ∈ Set.Icc (0 : ℝ) 1)
     (hδ : 0 < (fitted.protocol.failureBudget : ℝ))
     (hδ1 : (fitted.protocol.failureBudget : ℝ) < 1) (radius target : ℚ)
     (conservative : finiteRadius n (2 * (first :: rest).toFinset.card)
@@ -257,21 +265,26 @@ theorem actual_certificate_consumes_population_risk_bound {Ω : Type*} [Measurab
     ∃ confidence : Set Ω, MeasurableSet confidence ∧
       1 - (fitted.protocol.failureBudget : ℝ) ≤ μ.real confidence ∧
       ∀ w ∈ confidence, ∀ out,
-        produceCalibration sampleProtocol fitted loss (first :: rest) (fun i => sample i w)
+        produceCalibration sampleProtocol fitted loss (first :: rest)
+          (fun i => ⟨events i w, (sample i w).1, (sample i w).2⟩)
           radius target snapshot calibrationProtocol = .known out →
-        0 < ∫ z, (coverageLoss (sampleAcceptance out.fitted) out.cutoff z : ℝ) ∂P ∧
-        (∫ z, (numeratorLoss (sampleLoss out.fitted loss) (sampleAcceptance out.fitted) out.cutoff z : ℝ) ∂P) /
-          (∫ z, (coverageLoss (sampleAcceptance out.fitted) out.cutoff z : ℝ) ∂P) ≤ (target : ℝ) := by
+        0 < ∫ z, (coverageLoss (tableAcceptance out.fitted) out.cutoff z : ℝ) ∂P ∧
+        (∫ z, (numeratorLoss (fun _ z => tableLoss loss out.fitted.table z)
+          (tableAcceptance out.fitted) out.cutoff z : ℝ) ∂P) /
+          (∫ z, (coverageLoss (tableAcceptance out.fitted) out.cutoff z : ℝ) ∂P) ≤ (target : ℝ) := by
   obtain ⟨confidence, measurable, probability, safe⟩ :=
     q05_3_selected_threshold_has_population_risk_bound μ P hn first rest sample sampleMeasurable
-      independent law (sampleLoss fitted loss) (sampleAcceptance fitted) numeratorMeasurable
+      independent law (fun _ z => tableLoss loss fitted.table z) (tableAcceptance fitted) numeratorMeasurable
       coverageMeasurable (fun _ _ z => lossRange z) (fitted.protocol.failureBudget : ℝ)
       hδ hδ1 radius target conservative
   refine ⟨confidence, measurable, probability, ?_⟩
   intro w hw out accepted
   have source := actual_sample_produces_the_certificate sampleProtocol fitted loss (first :: rest)
-    (fun i => sample i w) radius target snapshot calibrationProtocol out accepted
-  have selected := source.2.2.2.2.2.2.2.2
+    (fun i => ⟨events i w, (sample i w).1, (sample i w).2⟩)
+    radius target snapshot calibrationProtocol out accepted
+  have selected : calibrate (fun _ z => tableLoss loss fitted.table z) (tableAcceptance fitted)
+      (first :: rest) (fun i => sample i w) radius target = some out.cutoff :=
+    source.2.2.2.2.2.2.2.2
   simpa only [source.1] using safe w hw out.cutoff selected
 
 end JurisLean.Candidates.SampleCalibrationConsumer20261027

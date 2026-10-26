@@ -135,6 +135,7 @@ theorem actual_samples_determine_probability {m n : ℕ} (sampleProtocol : Learn
       · split at accepted
         · cases accepted
         · rename_i verified
+          dsimp only at accepted
           split at accepted
           · cases accepted
           · rename_i positive
@@ -281,7 +282,8 @@ theorem whole_pipeline_bin_probability_confidence {Ω : Type*} {m n k : ℕ}
     protocol protocol loss (first :: rest) training _ query radius exponent snapshot supported out accepted
   obtain ⟨rfl, scope, member, verified, positive⟩ := actual_samples_determine_probability
     protocol fitted (first :: rest) (fun i => sample i w) query radius exponent snapshot supported out produced
-  have candidateMember : (fitted.table, query) ∈ bins := by simp [bins, modelBins, member]
+  have candidateMember : (fitted.table, query) ∈ bins :=
+    Finset.mem_product.mpr ⟨List.mem_toFinset.mpr member, Finset.mem_univ query⟩
   have deviation := hw (fitted.table, query) candidateMember
   have conservative := radius_verification_sound n bins.card
     fitted.protocol.failureBudget radius exponent verified

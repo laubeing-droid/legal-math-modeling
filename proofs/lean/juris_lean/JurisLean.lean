@@ -66,6 +66,7 @@ import JurisLean.Candidates.CompilerClosure20261026
 import JurisLean.Candidates.CompilerProvenance20261027
 import JurisLean.Candidates.LearningBoundary20261027
 import JurisLean.Candidates.LearningBridge20261027
+import JurisLean.Candidates.LearningConsumer20261027
 import JurisLean.Candidates.LearningDependence20261027
 import JurisLean.Candidates.LearningERM20261027
 import JurisLean.Candidates.LearningFiniteClass20261027

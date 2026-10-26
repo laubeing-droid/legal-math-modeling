@@ -9769,6 +9769,120 @@
   {
    "declarations": [
     {
+     "kind": "structure",
+     "name": "LearningProtocol"
+    },
+    {
+     "kind": "structure",
+     "name": "FittedTable"
+    },
+    {
+     "kind": "structure",
+     "name": "TableCalibration"
+    },
+    {
+     "kind": "structure",
+     "name": "TaskScore"
+    },
+    {
+     "kind": "def",
+     "name": "tableLoss"
+    },
+    {
+     "kind": "def",
+     "name": "fitTable"
+    },
+    {
+     "kind": "def",
+     "name": "consumeCalibration"
+    },
+    {
+     "kind": "def",
+     "name": "fitThenCalibrationGate"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_6_fit_card_minimizes_actual_sample"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_6_reject_changed_model_contents"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_6_reject_changed_fit_scope"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_6_reject_wrong_feature_width"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_6_reject_invalid_failure_budget"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_6_actual_fit_output_is_consumed"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_6_matching_calibration_reads_selected_table"
+    },
+    {
+     "kind": "theorem",
+     "name": "u01_6_successful_pipeline_uses_actual_empirical_minimizer"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Calibration",
+    "JurisLean.Candidates.LearningERM20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningConsumer20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "665fc8b3063fde35817e0b6d2d83cb125960b8251ffceb3ed1744a5d4a414753",
+   "size_bytes": 10049,
+   "theorem_count": 8,
+   "theorem_count_bol_convention": 8
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "fixtureProtocol"
+    },
+    {
+     "kind": "def",
+     "name": "fixtureCertificate"
+    },
+    {
+     "kind": "def",
+     "name": "fixtureRun"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.LearningConsumer20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/LearningConsumerAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.LearningConsumer20261027.u01_6_actual_fit_output_is_consumed",
+    "JurisLean.Candidates.LearningConsumer20261027.u01_6_fit_card_minimizes_actual_sample",
+    "JurisLean.Candidates.LearningConsumer20261027.u01_6_matching_calibration_reads_selected_table",
+    "JurisLean.Candidates.LearningConsumer20261027.u01_6_reject_changed_fit_scope",
+    "JurisLean.Candidates.LearningConsumer20261027.u01_6_reject_changed_model_contents",
+    "JurisLean.Candidates.LearningConsumer20261027.u01_6_reject_invalid_failure_budget",
+    "JurisLean.Candidates.LearningConsumer20261027.u01_6_reject_wrong_feature_width",
+    "JurisLean.Candidates.LearningConsumer20261027.u01_6_successful_pipeline_uses_actual_empirical_minimizer"
+   ],
+   "sha256": "8a1fd2b0e92511cdbf4b120359d0df5328e3b427ced4ceb32ca5a8c4fe8d39c3",
+   "size_bytes": 2679,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "FairBinary"
     },
@@ -49855,6 +49969,7 @@
     "JurisLean.Candidates.Final20261021.CIAll",
     "JurisLean.Candidates.LearningBoundary20261027",
     "JurisLean.Candidates.LearningBridge20261027",
+    "JurisLean.Candidates.LearningConsumer20261027",
     "JurisLean.Candidates.LearningDependence20261027",
     "JurisLean.Candidates.LearningERM20261027",
     "JurisLean.Candidates.LearningFiniteClass20261027",
@@ -50081,8 +50196,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "1616ddeea6eeae98a780cf881c6a27fa8c702fc4400591aff079c1db51fddd00",
-   "size_bytes": 11224,
+   "sha256": "37eca20cf06abedd165d602afc93aa47e97820b706027fb2ed47711904acaeff",
+   "size_bytes": 11277,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -50246,22 +50361,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5605,
-   "file_count": 407,
+   "counted_declaration_count": 5613,
+   "file_count": 409,
    "lemma_count": 146,
-   "print_axioms_command_count": 4478,
-   "print_axioms_distinct_targets": 4391,
-   "theorem_count": 5459,
-   "theorem_count_bol_convention": 5359
+   "print_axioms_command_count": 4486,
+   "print_axioms_distinct_targets": 4399,
+   "theorem_count": 5467,
+   "theorem_count_bol_convention": 5367
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5586,
-   "file_count": 392,
+   "counted_declaration_count": 5594,
+   "file_count": 394,
    "lemma_count": 139,
-   "print_axioms_command_count": 4478,
-   "print_axioms_distinct_targets": 4391,
-   "theorem_count": 5447,
-   "theorem_count_bol_convention": 5347
+   "print_axioms_command_count": 4486,
+   "print_axioms_distinct_targets": 4399,
+   "theorem_count": 5455,
+   "theorem_count_bol_convention": 5355
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -50349,6 +50464,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundaryAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBridge20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LearningConsumer20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LearningConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningDependence20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningERM20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningERMAudit20261027.lean",
@@ -50754,6 +50871,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundaryAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBridge20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LearningConsumer20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/LearningConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningDependence20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningERM20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningERMAudit20261027.lean",
@@ -51117,17 +51236,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "5aa6682fd76c94c5d3876c2577ccf583e093f7bf3388974a26528b1e284ca16b",
+ "source_inventory_digest": "3e3099ecdedbf2bd938318f386fbf28f8ff494ba441d83c2a8032962418200f1",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/finite-erm-consumer-20261027",
-  "commit": "45ad09badda65432ba152a942d02f383605bf996",
-  "tree": "7f42f077e1e813181805194d7daeab330b2461b1"
+  "branch": "formal/fit-consumption-20261027",
+  "commit": "7fdcabd281b30e264da9434d1ed1fa3f1a9b1a0c",
+  "tree": "98ead3b5e7ae72e817af50c1a4e93bb3258219b8"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 407,
+  "files_total": 409,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

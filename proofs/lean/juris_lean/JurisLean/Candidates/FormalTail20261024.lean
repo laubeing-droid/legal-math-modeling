@@ -1383,10 +1383,11 @@ instance : MeasureTheory.IsProbabilityMeasure cand8UnitMeasure :=
 end cand8U01
 
 theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
-    (Learning.u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
-      (fun _ _ => (0 : ℝ)) (fun _ => (0 : NNReal))
-      (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one) ∧
-    (¬ cand8IidSampleMeanSqrtRadiusSpecialization) := by
+    _root_.And
+      (Learning.u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
+        (fun _ _ => (0 : ℝ)) (fun _ => (0 : NNReal))
+        (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one)
+      (¬ cand8IidSampleMeanSqrtRadiusSpecialization) := by
   refine ⟨Learning.u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
     (fun _ _ => (0 : ℝ)) (fun _ => (0 : NNReal))
     (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one, ?_⟩
@@ -1394,9 +1395,10 @@ theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
   exact absurd hspec (by norm_num : (2 : ℝ) ≠ 3)
 
 theorem u01_1_approximate_erm_not_representation_risk_decomposition :
-    (Learning.u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
-      (by norm_num) (by norm_num) (by norm_num)) ∧
-    (¬ cand8RepresentationRiskDecomposition) := by
+    _root_.And
+      (Learning.u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
+        (by norm_num) (by norm_num) (by norm_num))
+      (¬ cand8RepresentationRiskDecomposition) := by
   refine ⟨Learning.u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
     (by norm_num) (by norm_num) (by norm_num), ?_⟩
   intro hdecomp
@@ -1432,9 +1434,10 @@ theorem u01_2_label_bridge_pointwise_not_general_measurable_integration :
   simp [Learning.zeroOne] at hfalse
 
 theorem u01_2_finite_label_bridge_not_joint_bridge_budget :
-    (Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
-      (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2))) ∧
-    (¬ cand8JointlyEstimatedBridgeBudget) := by
+    _root_.And
+      (Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
+        (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2)))
+      (¬ cand8JointlyEstimatedBridgeBudget) := by
   refine ⟨Probability.u01_2_finite_label_bridge cand8UniformFin2 (fun _ => (0 : Fin 2))
     (fun _ => (0 : Fin 2)) (fun _ => (1 : Fin 2)), ?_⟩
   intro hbudget

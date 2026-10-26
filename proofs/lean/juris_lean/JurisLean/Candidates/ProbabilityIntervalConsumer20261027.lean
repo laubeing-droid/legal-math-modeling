@@ -110,9 +110,9 @@ theorem actual_samples_determine_probability {m n : ℕ} (sampleProtocol : Learn
     (out : SampleProbability m)
     (accepted : produceInterval sampleProtocol fitted models data query radius exponent snapshot supported =
       .known out) :
-    out = { fitted := fitted, query := query, models := models, sampleSize := n
-      snapshot := snapshot, radius := radius, radiusExponent := exponent
-      successMass := empiricalScore (numeratorLoss successLabel scoreBin) data (fitted.table, query)
+    out = { fitted := fitted, query := query, models := models, sampleSize := n,
+      snapshot := snapshot, radius := radius, radiusExponent := exponent,
+      successMass := empiricalScore (numeratorLoss successLabel scoreBin) data (fitted.table, query),
       coverage := empiricalScore (coverageLoss scoreBin) data (fitted.table, query) } ∧
     sampleProtocol = fitted.protocol ∧ fitted.table ∈ models ∧
     radiusVerified n (modelBins (m := m) models).card fitted.protocol.failureBudget radius exponent = true ∧
@@ -201,7 +201,7 @@ theorem pipeline_consumes_actual_fit_and_sample {m n k : ℕ}
   · rename_i events
     cases fitted : fitTable protocol loss models
       (fun i => ((training i).feature, (training i).label)) with
-    | known value => exact ⟨by simpa using events, value, fitted, by simpa [fitted] using accepted⟩
+    | known value => exact ⟨by simpa using events, value, rfl, by simpa [fitted] using accepted⟩
     | unknown e => simp [fitted] at accepted
     | rejected e => simp [fitted] at accepted
     | conflict a b => simp [fitted] at accepted

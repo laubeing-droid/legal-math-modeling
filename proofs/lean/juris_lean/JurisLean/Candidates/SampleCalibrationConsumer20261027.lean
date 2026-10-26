@@ -17,6 +17,60 @@ open JurisLean.Candidates.Final20261021
 open JurisLean.Candidates.LearningConsumer20261027
 open JurisLean.Candidates.LearningERM20261027
 open JurisLean.Candidates.SelectiveCalibration20261027
+open JurisLean.Candidates.LearningFiniteClass20261027
+
+-- An exact rational certificate for the logarithmic radius. The natural witness
+-- is checked, not trusted; log (4M / delta) <= log (2^exponent) <= exponent.
+def radiusVerified (n M : ℕ) (delta radius : ℚ) (exponent : ℕ) : Bool :=
+  decide (0 < n ∧ 0 < M ∧ 0 < delta ∧ delta < 1 ∧ 0 ≤ radius ∧
+    4 * (M : ℚ) ≤ delta * (2 : ℚ) ^ exponent ∧
+    (exponent : ℚ) ≤ 2 * (n : ℚ) * radius ^ 2)
+
+theorem radius_verification_sound (n M : ℕ) (delta radius : ℚ) (exponent : ℕ)
+    (verified : radiusVerified n M delta radius exponent = true) :
+    finiteRadius n (2 * M) (delta : ℝ) ≤ (radius : ℝ) := by
+  have checks : 0 < n ∧ 0 < M ∧ 0 < delta ∧ delta < 1 ∧ 0 ≤ radius ∧
+      4 * (M : ℚ) ≤ delta * (2 : ℚ) ^ exponent ∧
+      (exponent : ℚ) ≤ 2 * (n : ℚ) * radius ^ 2 := by
+    simpa only [radiusVerified, decide_eq_true_eq] using verified
+  obtain ⟨hn, hM, hd, hd1, hr, hsize, hwidth⟩ := checks
+  have hnR : (0 : ℝ) < n := by exact_mod_cast hn
+  have hM1 : 1 ≤ M := by omega
+  have hM1R : (1 : ℝ) ≤ M := by exact_mod_cast hM1
+  have hdR : (0 : ℝ) < (delta : ℝ) := by exact_mod_cast hd
+  have hd1R : (delta : ℝ) < 1 := by exact_mod_cast hd1
+  have hrR : (0 : ℝ) ≤ (radius : ℝ) := by exact_mod_cast hr
+  have hsizeR : 4 * (M : ℝ) ≤ (delta : ℝ) * (2 : ℝ) ^ exponent := by
+    exact_mod_cast hsize
+  have hwidthR : (exponent : ℝ) ≤ 2 * (n : ℝ) * (radius : ℝ) ^ 2 := by
+    exact_mod_cast hwidth
+  have argumentPositive : 0 < 4 * (M : ℝ) / (delta : ℝ) :=
+    div_pos (by linarith) hdR
+  have argumentOne : 1 ≤ 4 * (M : ℝ) / (delta : ℝ) :=
+    (le_div_iff₀ hdR).mpr (by nlinarith)
+  have argumentBound : 4 * (M : ℝ) / (delta : ℝ) ≤ (2 : ℝ) ^ exponent :=
+    (div_le_iff₀ hdR).mpr (by simpa only [mul_comm] using hsizeR)
+  have logTwo : Real.log 2 ≤ 1 := by
+    simpa using Real.log_le_sub_one_of_pos (show (0 : ℝ) < 2 by norm_num)
+  have logarithmBound : Real.log (4 * (M : ℝ) / (delta : ℝ)) ≤ (exponent : ℝ) := by
+    calc
+      _ ≤ Real.log ((2 : ℝ) ^ exponent) := Real.log_le_log argumentPositive argumentBound
+      _ = (exponent : ℝ) * Real.log 2 := Real.log_pow _ _
+      _ ≤ (exponent : ℝ) * 1 := mul_le_mul_of_nonneg_left logTwo (by positivity)
+      _ = _ := mul_one _
+  have quotientNonnegative : 0 ≤ Real.log (4 * (M : ℝ) / (delta : ℝ)) / (2 * (n : ℝ)) :=
+    div_nonneg (Real.log_nonneg argumentOne) (by positivity)
+  have quotientBound : Real.log (4 * (M : ℝ) / (delta : ℝ)) / (2 * (n : ℝ)) ≤
+      (radius : ℝ) ^ 2 :=
+    (div_le_iff₀ (by positivity : (0 : ℝ) < 2 * (n : ℝ))).mpr (by nlinarith)
+  have squared := Real.sq_sqrt quotientNonnegative
+  have rootBound : Real.sqrt (Real.log (4 * (M : ℝ) / (delta : ℝ)) / (2 * (n : ℝ))) ≤
+      (radius : ℝ) := by
+    nlinarith [Real.sqrt_nonneg (Real.log (4 * (M : ℝ) / (delta : ℝ)) / (2 * (n : ℝ)))]
+  have normalize : 2 * ((2 * M : ℕ) : ℝ) = 4 * (M : ℝ) := by
+    push_cast
+    ring
+  simpa only [finiteRadius, normalize] using rootBound
 
 structure SampleObservation (m : ℕ) (Y : Type) where
   event : EventId
@@ -54,6 +108,7 @@ structure SampleCalibration where
   fitted : FittedTable
   cutoff : ℚ
   radius : ℚ
+  radiusExponent : Nat
   calibrationRows : Nat
   candidateCutoffs : List ℚ
   certificate : TableCalibration
@@ -62,13 +117,15 @@ structure SampleCalibration where
 def produceCalibration {m n : ℕ} {Y : Type} (sampleProtocol : LearningProtocol)
     (fitted : FittedTable) (loss : ℚ → Y → ℚ) (cutoffs : List ℚ)
     (rows : Fin n → SampleObservation m Y) (radius target : ℚ)
-    (snapshot calibrationProtocol : Nat) : Result SampleCalibration :=
+    (snapshot calibrationProtocol radiusExponent : Nat) : Result SampleCalibration :=
   if sampleProtocol ≠ fitted.protocol then .unknown .targetMismatch
   else if fitted.table.length ≠ m then .unknown .scopeMismatch
   else if ¬ (0 < fitted.protocol.failureBudget ∧ fitted.protocol.failureBudget < 1) then
     .unknown .unsupported
   else if ¬ (∀ i, 0 ≤ sampleLoss fitted loss 0 (rows i) ∧
       sampleLoss fitted loss 0 (rows i) ≤ 1) then .unknown .unsupported
+  else if radiusVerified n cutoffs.toFinset.card fitted.protocol.failureBudget radius radiusExponent = false then
+    .unknown .missingEvidence
   else
     match calibrate (sampleLoss fitted loss) (sampleAcceptance fitted) cutoffs rows radius target with
     | none => .unknown .missingEvidence
@@ -79,6 +136,7 @@ def produceCalibration {m n : ℕ} {Y : Type} (sampleProtocol : LearningProtocol
           { fitted := fitted
             cutoff := cutoff
             radius := radius
+            radiusExponent := radiusExponent
             calibrationRows := n
             candidateCutoffs := cutoffs
             certificate :=
@@ -101,14 +159,16 @@ def runSamples {m n k : ℕ} {Y : Type} (protocol sampleProtocol : LearningProto
     (loss : ℚ → Y → ℚ) (models : List (List ℚ)) (cutoffs : List ℚ)
     (training : Fin n → SampleObservation m Y)
     (calibration : Fin k → SampleObservation m Y) (query : Fin m)
-    (radius target : ℚ) (snapshot calibrationProtocol : Nat) (supported : Bool) :
+    (radius target : ℚ) (snapshot calibrationProtocol radiusExponent : Nat) (supported : Bool) :
     Result (SampleCalibration × TaskScore) :=
   if eventPartitionsValid training calibration = false then .unknown .scopeMismatch
+  else if radiusVerified k (models.toFinset.product cutoffs.toFinset).card
+      protocol.failureBudget radius radiusExponent = false then .unknown .missingEvidence
   else
     match fitTable protocol loss models (fun i => ((training i).feature, (training i).label)) with
     | .known fitted =>
         match produceCalibration sampleProtocol fitted loss cutoffs calibration radius target
-          snapshot calibrationProtocol with
+          snapshot calibrationProtocol radiusExponent with
         | .known calibrated =>
             match predictCalibrated protocol calibrated query target supported with
             | .known score => .known (calibrated, score)
@@ -131,18 +191,18 @@ theorem event_guard_uses_real_identity {m n k : ℕ} {Y : Type}
 
 theorem changed_sample_scope_refused {m n : ℕ} {Y : Type} (sampleProtocol : LearningProtocol)
     (fitted : FittedTable) (loss : ℚ → Y → ℚ) (cutoffs : List ℚ)
-    (rows : Fin n → SampleObservation m Y) (radius target : ℚ) (snapshot calibrationProtocol : Nat)
+    (rows : Fin n → SampleObservation m Y) (radius target : ℚ) (snapshot calibrationProtocol radiusExponent : Nat)
     (changed : sampleProtocol ≠ fitted.protocol) :
-    produceCalibration sampleProtocol fitted loss cutoffs rows radius target snapshot calibrationProtocol =
+    produceCalibration sampleProtocol fitted loss cutoffs rows radius target snapshot calibrationProtocol radiusExponent =
       .unknown .targetMismatch := by
   simp [produceCalibration, changed]
 
 theorem actual_sample_produces_the_certificate {m n : ℕ} {Y : Type}
     (sampleProtocol : LearningProtocol) (fitted : FittedTable) (loss : ℚ → Y → ℚ)
     (cutoffs : List ℚ) (rows : Fin n → SampleObservation m Y) (radius target : ℚ)
-    (snapshot calibrationProtocol : Nat) (out : SampleCalibration)
+    (snapshot calibrationProtocol radiusExponent : Nat) (out : SampleCalibration)
     (accepted : produceCalibration sampleProtocol fitted loss cutoffs rows radius target
-      snapshot calibrationProtocol = .known out) :
+      snapshot calibrationProtocol radiusExponent = .known out) :
     out.fitted = fitted ∧ out.radius = radius ∧ out.calibrationRows = n ∧
     out.candidateCutoffs = cutoffs ∧ out.certificate.protocol = fitted.protocol ∧
     out.certificate.table = fitted.table ∧
@@ -150,7 +210,8 @@ theorem actual_sample_produces_the_certificate {m n : ℕ} {Y : Type}
     out.certificate.bounds.upperRisk =
       upperNumerator (sampleLoss fitted loss) (sampleAcceptance fitted) rows radius out.cutoff /
         lowerCoverage (sampleAcceptance fitted) rows radius out.cutoff ∧
-    calibrate (sampleLoss fitted loss) (sampleAcceptance fitted) cutoffs rows radius target = some out.cutoff := by
+    calibrate (sampleLoss fitted loss) (sampleAcceptance fitted) cutoffs rows radius target = some out.cutoff ∧
+    out.radiusExponent = radiusExponent := by
   unfold produceCalibration at accepted
   split at accepted
   · cases accepted
@@ -160,13 +221,15 @@ theorem actual_sample_produces_the_certificate {m n : ℕ} {Y : Type}
       · cases accepted
       · split at accepted
         · cases accepted
-        · cases selected : calibrate (sampleLoss fitted loss) (sampleAcceptance fitted)
-            cutoffs rows radius target with
-          | none => simp [selected] at accepted
-          | some cutoff =>
-              simp only [selected] at accepted
-              cases accepted
-              exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
+        · split at accepted
+          · cases accepted
+          · cases selected : calibrate (sampleLoss fitted loss) (sampleAcceptance fitted)
+              cutoffs rows radius target with
+            | none => simp [selected] at accepted
+            | some cutoff =>
+                simp only [selected] at accepted
+                cases accepted
+                exact ⟨rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl, rfl⟩
 
 theorem query_outside_selected_rule_refused {m : ℕ} (expected : LearningProtocol)
     (calibrated : SampleCalibration) (query : Fin m) (target : ℚ) (supported : Bool)
@@ -215,10 +278,10 @@ theorem pipeline_consumes_the_actual_empirical_minimizer {m n k : ℕ} {Y : Type
     (protocol sampleProtocol : LearningProtocol) (loss : ℚ → Y → ℚ)
     (models : List (List ℚ)) (cutoffs : List ℚ)
     (training : Fin n → SampleObservation m Y) (calibration : Fin k → SampleObservation m Y)
-    (query : Fin m) (radius target : ℚ) (snapshot calibrationProtocol : Nat) (supported : Bool)
+    (query : Fin m) (radius target : ℚ) (snapshot calibrationProtocol radiusExponent : Nat) (supported : Bool)
     (out : SampleCalibration × TaskScore)
     (accepted : runSamples protocol sampleProtocol loss models cutoffs training calibration query
-      radius target snapshot calibrationProtocol supported = .known out) :
+      radius target snapshot calibrationProtocol radiusExponent supported = .known out) :
     Function.Injective (fun i => (calibration i).event) ∧
     (∀ i j, (training i).event ≠ (calibration j).event) ∧
     out.1.fitted.protocol = protocol ∧
@@ -228,7 +291,7 @@ theorem pipeline_consumes_the_actual_empirical_minimizer {m n k : ℕ} {Y : Type
       empiricalScore (tableLoss loss) (fun i => ((training i).feature, (training i).label)) out.1.fitted.table ≤
         empiricalScore (tableLoss loss) (fun i => ((training i).feature, (training i).label)) table) ∧
     produceCalibration sampleProtocol out.1.fitted loss cutoffs calibration radius target
-      snapshot calibrationProtocol = .known out.1 := by
+      snapshot calibrationProtocol radiusExponent = .known out.1 := by
   unfold runSamples at accepted
   split at accepted
   · cases accepted
@@ -236,38 +299,59 @@ theorem pipeline_consumes_the_actual_empirical_minimizer {m n k : ℕ} {Y : Type
     have checked : eventPartitionsValid training calibration = true := by
       cases h : eventPartitionsValid training calibration <;> simp_all
     have identities := (event_guard_uses_real_identity training calibration).mp checked
-    cases fittedResult : fitTable protocol loss models
-        (fun i => ((training i).feature, (training i).label)) with
-    | unknown e => simp [fittedResult] at accepted
-    | rejected e => simp [fittedResult] at accepted
-    | conflict a b => simp [fittedResult] at accepted
-    | known fitted =>
-        simp only [fittedResult] at accepted
-        cases calibratedResult : produceCalibration sampleProtocol fitted loss cutoffs calibration
-            radius target snapshot calibrationProtocol with
-        | unknown e => simp [calibratedResult] at accepted
-        | rejected e => simp [calibratedResult] at accepted
-        | conflict a b => simp [calibratedResult] at accepted
-        | known calibrated =>
-            simp only [calibratedResult] at accepted
-            cases prediction : predictCalibrated protocol calibrated query target supported with
-            | unknown e => simp [prediction] at accepted
-            | rejected e => simp [prediction] at accepted
-            | conflict a b => simp [prediction] at accepted
-            | known score =>
-                simp only [prediction] at accepted
-                cases accepted
-                have best := u01_6_fit_card_minimizes_actual_sample protocol loss models
-                  (fun i => ((training i).feature, (training i).label)) fitted fittedResult
-                have bound := actual_sample_produces_the_certificate sampleProtocol fitted loss cutoffs
-                  calibration radius target snapshot calibrationProtocol calibrated calibratedResult
-                have consumed := prediction_reads_actual_fitted_table protocol calibrated query target
-                  supported score prediction
-                refine ⟨identities.1, identities.2, ?_, ?_, consumed.2.1, ?_, ?_⟩
-                · simpa only [bound.1] using best.1
-                · simpa only [bound.1] using best.2.2.2.1
-                · simpa only [bound.1] using best.2.2.2.2.2
-                · simpa only [bound.1] using calibratedResult
+    split at accepted
+    · cases accepted
+    · cases fittedResult : fitTable protocol loss models
+          (fun i => ((training i).feature, (training i).label)) with
+      | unknown e => simp [fittedResult] at accepted
+      | rejected e => simp [fittedResult] at accepted
+      | conflict a b => simp [fittedResult] at accepted
+      | known fitted =>
+          simp only [fittedResult] at accepted
+          cases calibratedResult : produceCalibration sampleProtocol fitted loss cutoffs calibration
+              radius target snapshot calibrationProtocol radiusExponent with
+          | unknown e => simp [calibratedResult] at accepted
+          | rejected e => simp [calibratedResult] at accepted
+          | conflict a b => simp [calibratedResult] at accepted
+          | known calibrated =>
+              simp only [calibratedResult] at accepted
+              cases prediction : predictCalibrated protocol calibrated query target supported with
+              | unknown e => simp [prediction] at accepted
+              | rejected e => simp [prediction] at accepted
+              | conflict a b => simp [prediction] at accepted
+              | known score =>
+                  simp only [prediction] at accepted
+                  cases accepted
+                  have best := u01_6_fit_card_minimizes_actual_sample protocol loss models
+                    (fun i => ((training i).feature, (training i).label)) fitted fittedResult
+                  have bound := actual_sample_produces_the_certificate sampleProtocol fitted loss cutoffs
+                    calibration radius target snapshot calibrationProtocol radiusExponent calibrated calibratedResult
+                  have consumed := prediction_reads_actual_fitted_table protocol calibrated query target
+                    supported score prediction
+                  refine ⟨identities.1, identities.2, ?_, ?_, consumed.2.1, ?_, ?_⟩
+                  · simpa only [bound.1] using best.1
+                  · simpa only [bound.1] using best.2.2.2.1
+                  · simpa only [bound.1] using best.2.2.2.2.2
+                  · simpa only [bound.1] using calibratedResult
+
+theorem pipeline_checks_joint_radius {m n k : ℕ} {Y : Type}
+    (protocol sampleProtocol : LearningProtocol) (loss : ℚ → Y → ℚ)
+    (models : List (List ℚ)) (cutoffs : List ℚ)
+    (training : Fin n → SampleObservation m Y) (calibration : Fin k → SampleObservation m Y)
+    (query : Fin m) (radius target : ℚ) (snapshot calibrationProtocol radiusExponent : Nat)
+    (supported : Bool) (out : SampleCalibration × TaskScore)
+    (accepted : runSamples protocol sampleProtocol loss models cutoffs training calibration query
+      radius target snapshot calibrationProtocol radiusExponent supported = .known out) :
+    radiusVerified k (models.toFinset.product cutoffs.toFinset).card
+      protocol.failureBudget radius radiusExponent = true := by
+  unfold runSamples at accepted
+  split at accepted
+  · cases accepted
+  · split at accepted
+    · cases accepted
+    · rename_i valid
+      cases checked : radiusVerified k (models.toFinset.product cutoffs.toFinset).card
+          protocol.failureBudget radius radiusExponent <;> simp_all
 
 open MeasureTheory ProbabilityTheory
 open JurisLean.Candidates.LearningFiniteClass20261027
@@ -295,13 +379,13 @@ theorem actual_certificate_consumes_population_risk_bound {Ω : Type*} [Measurab
     (hδ : 0 < (fitted.protocol.failureBudget : ℝ))
     (hδ1 : (fitted.protocol.failureBudget : ℝ) < 1) (radius target : ℚ)
     (conservative : finiteRadius n (2 * (first :: rest).toFinset.card)
-      (fitted.protocol.failureBudget : ℝ) ≤ (radius : ℝ)) (snapshot calibrationProtocol : Nat) :
+      (fitted.protocol.failureBudget : ℝ) ≤ (radius : ℝ)) (snapshot calibrationProtocol radiusExponent : Nat) :
     ∃ confidence : Set Ω, MeasurableSet confidence ∧
       1 - (fitted.protocol.failureBudget : ℝ) ≤ μ.real confidence ∧
       ∀ w ∈ confidence, ∀ out,
         produceCalibration sampleProtocol fitted loss (first :: rest)
           (fun i => ⟨events i w, (sample i w).1, (sample i w).2⟩)
-          radius target snapshot calibrationProtocol = .known out →
+          radius target snapshot calibrationProtocol radiusExponent = .known out →
         0 < ∫ z, (coverageLoss (tableAcceptance out.fitted) out.cutoff z : ℝ) ∂P ∧
         (∫ z, (numeratorLoss (fun _ z => tableLoss loss out.fitted.table z)
           (tableAcceptance out.fitted) out.cutoff z : ℝ) ∂P) /
@@ -315,10 +399,10 @@ theorem actual_certificate_consumes_population_risk_bound {Ω : Type*} [Measurab
   intro w hw out accepted
   have source := actual_sample_produces_the_certificate sampleProtocol fitted loss (first :: rest)
     (fun i => ⟨events i w, (sample i w).1, (sample i w).2⟩)
-    radius target snapshot calibrationProtocol out accepted
+    radius target snapshot calibrationProtocol radiusExponent out accepted
   have selected : calibrate (fun _ z => tableLoss loss fitted.table z) (tableAcceptance fitted)
       (first :: rest) (fun i => sample i w) radius target = some out.cutoff :=
-    source.2.2.2.2.2.2.2.2
+    source.2.2.2.2.2.2.2.2.1
   simpa only [source.1] using safe w hw out.cutoff selected
 
 -- The entire fixed model/rule family is controlled before either is selected.
@@ -347,16 +431,13 @@ theorem whole_pipeline_joint_family_risk_bound {Ω : Type*} [MeasurableSpace Ω]
       (tableLoss loss table z : ℝ) ∈ Set.Icc (0 : ℝ) 1)
     (hδ : 0 < (protocol.failureBudget : ℝ)) (hδ1 : (protocol.failureBudget : ℝ) < 1)
     (query : Fin m) (radius target : ℚ)
-    (conservative : finiteRadius n (2 *
-      ((firstModel :: restModels).toFinset.product (firstCutoff :: restCutoffs).toFinset).card)
-        (protocol.failureBudget : ℝ) ≤ (radius : ℝ))
-    (snapshot calibrationProtocol : Nat) (supported : Bool) :
+    (snapshot calibrationProtocol radiusExponent : Nat) (supported : Bool) :
     ∃ confidence : Set Ω, MeasurableSet confidence ∧
       1 - (protocol.failureBudget : ℝ) ≤ μ.real confidence ∧
       ∀ w ∈ confidence, ∀ out,
         runSamples protocol sampleProtocol loss (firstModel :: restModels) (firstCutoff :: restCutoffs)
           (fun i => training i w) (fun i => ⟨events i w, (sample i w).1, (sample i w).2⟩)
-          query radius target snapshot calibrationProtocol supported = .known out →
+          query radius target snapshot calibrationProtocol radiusExponent supported = .known out →
         0 < ∫ z, (coverageLoss candidateAcceptance (out.1.fitted.table, out.1.cutoff) z : ℝ) ∂P ∧
         (∫ z, (numeratorLoss (candidateLoss loss) candidateAcceptance
           (out.1.fitted.table, out.1.cutoff) z : ℝ) ∂P) /
@@ -374,14 +455,20 @@ theorem whole_pipeline_joint_family_risk_bound {Ω : Type*} [MeasurableSpace Ω]
   refine ⟨_, q05_3_joint_confidence_event_measurable P family sample sampleMeasurable
     (candidateLoss loss) candidateAcceptance numeratorMeasurable coverageMeasurable _, uniform, ?_⟩
   intro w hw out accepted
+  have radiusChecked := pipeline_checks_joint_radius protocol sampleProtocol loss
+    (firstModel :: restModels) (firstCutoff :: restCutoffs) (fun i => training i w)
+    (fun i => ⟨events i w, (sample i w).1, (sample i w).2⟩)
+    query radius target snapshot calibrationProtocol radiusExponent supported out accepted
+  have conservative := radius_verification_sound n family.card protocol.failureBudget radius
+    radiusExponent radiusChecked
   obtain ⟨_, _, _, modelMember, _, _, produced⟩ := pipeline_consumes_the_actual_empirical_minimizer
     protocol sampleProtocol loss (firstModel :: restModels) (firstCutoff :: restCutoffs)
     (fun i => training i w) (fun i => ⟨events i w, (sample i w).1, (sample i w).2⟩)
-    query radius target snapshot calibrationProtocol supported out accepted
+    query radius target snapshot calibrationProtocol radiusExponent supported out accepted
   have receipt := actual_sample_produces_the_certificate sampleProtocol out.1.fitted loss
     (firstCutoff :: restCutoffs) (fun i => ⟨events i w, (sample i w).1, (sample i w).2⟩)
-    radius target snapshot calibrationProtocol out.1 produced
-  have selected := receipt.2.2.2.2.2.2.2.2
+    radius target snapshot calibrationProtocol radiusExponent out.1 produced
+  have selected := receipt.2.2.2.2.2.2.2.2.1
   unfold calibrate at selected
   split at selected
   · cases selected

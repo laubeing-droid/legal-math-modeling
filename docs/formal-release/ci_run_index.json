@@ -1,7 +1,7 @@
 {
   "authority": "Read from the GitHub Actions API by scripts/ci/build_ci_run_index.py. Records what Actions reported for each run the repository quotes; it does not re-run Lean, does not certify any theorem, and does not survive a force-push or a deleted run -- re-derive it rather than trusting a stale copy.",
   "authority_note": "Read from the GitHub Actions API by scripts/ci/build_ci_run_index.py. Records what Actions reported for each run the repository quotes; it does not re-run Lean, does not certify any theorem, and does not survive a force-push or a deleted run -- re-derive it rather than trusting a stale copy.",
-  "quote_scan": "git ls-files -z '*.md' | xargs -0 grep -ohE '\\b[0-9]{11}\\b' | sort -u",
+  "quote_scan": "scripts/ci/build_ci_run_index.py:run_ids_in_markdown (11-12 digit quotes excluding explicitly labelled job ids)",
   "repository": "laubeing-droid/legal-math-modeling",
   "runs": [
     {
@@ -26410,12 +26410,75 @@
       "jobs_total": 8,
       "name": "FormalTail CAND7：12 条非充分性候选定理（非关债；非扩审计） (#22)",
       "quoted_by": [
+        "docs/formal-release/evidence/cand8-independent-20261027/README.md:23",
         "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:10"
       ],
       "run_id": 40274167574,
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-26T05:38:56Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 1,
+      "conclusion": "success",
+      "created_at": "2026-10-26T16:10:39Z",
+      "event": "workflow_dispatch",
+      "evidence": null,
+      "head_branch": "formal/cand8-expanded-audit-20261027",
+      "head_sha": "d26bf26022c94abbb61f45be437af514ba73dedd",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40356561660",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "final-gate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "runtime-refinement",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "Lean Authority + Formal Release Pipeline",
+      "quoted_by": [
+        "docs/formal-release/evidence/cand8-independent-20261027/README.md:10"
+      ],
+      "run_id": 40356561660,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-26T16:14:31Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

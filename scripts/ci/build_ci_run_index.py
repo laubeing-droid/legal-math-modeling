@@ -39,6 +39,9 @@ REPO = "laubeing-droid/legal-math-modeling"
 # long numbers live just outside it (case numbers and codes at 10 digits,
 # ISBNs and timestamps at 13+), verified by scan.
 RUN_ID_RE = re.compile(r"\b\d{11,12}\b")
+# Job ids occupy the same numeric range. Their explicit labels and URL paths
+# identify them as jobs, while an unlabelled 11-12 digit quote remains a run.
+JOB_ID_RE = re.compile(r"\bjobs?(?:\s+|/)\d{11,12}\b", re.IGNORECASE)
 SCHEMA = "ci-run-index-v1"
 STATUS = "external_actions_metadata_snapshot_not_release_certificate"
 AUTHORITY = (
@@ -50,7 +53,7 @@ AUTHORITY = (
 
 
 def run_ids_in_markdown() -> dict[str, list[str]]:
-    """Every 11-digit run id quoted in tracked markdown, with its locations.
+    """Every 11-12 digit run id quoted in tracked markdown, with its locations.
 
     The generated index and evidence accounts are excluded: they name the ids they
     are cataloguing, so scanning them would let the index vouch for itself and every
@@ -74,7 +77,7 @@ def run_ids_in_markdown() -> dict[str, list[str]]:
         except UnicodeDecodeError:
             continue
         for n, line in enumerate(text.splitlines(), 1):
-            for rid in set(RUN_ID_RE.findall(line)):
+            for rid in set(RUN_ID_RE.findall(JOB_ID_RE.sub("", line))):
                 found.setdefault(rid, []).append(f"{rel}:{n}")
     return found
 
@@ -278,7 +281,8 @@ def build(ids: dict[str, list[str]]) -> dict:
         "authority_note": AUTHORITY,
         "repository": REPO,
         "verify_command": "python scripts/ci/build_ci_run_index.py --check",
-        "quote_scan": "git ls-files -z '*.md' | xargs -0 grep -ohE '\\b[0-9]{11}\\b' | sort -u",
+        "quote_scan": "scripts/ci/build_ci_run_index.py:run_ids_in_markdown "
+                      "(11-12 digit quotes excluding explicitly labelled job ids)",
         "runs": [describe(rid, quoted) for rid, quoted in sorted(ids.items())],
     }
 

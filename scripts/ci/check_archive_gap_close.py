@@ -566,12 +566,11 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
     missing_from_prove = [name for name in cand6_suffix + cand7_suffix if name not in prove_names]
     if missing_from_prove:
         errors.append(f"CAND6/CAND7 suffix missing from PROVE_CANDIDATES: {missing_from_prove}")
-    # CAND8 (pack formal_tail_真证CAND8_20261026) appends twelve theorems to the
-    # same module. They are intentionally absent from PROVE_CANDIDATES: putting
-    # them there would flip U03.1/U03.2/U07.2/U01.1/U01.2 out of
-    # BLOCKED_NOT_IN_TIP_PIN_AUDIT and would claim a tip-pin expand audit.
-    # Closed increment stays 0. OPEN stays 20. tip_pin is not retargeted.
-    # named_count stays 61. This suffix is not an expand-audit receipt.
+    # CAND8 v1.1 (pack formal_tail_真证CAND8_20261026): eight theorems only.
+    # U01.1/U01.2 deferred out of this knife (owner+math). Intentionally absent
+    # from PROVE_CANDIDATES so U03.1/U03.2/U07.2 (and deferred U01) stay
+    # BLOCKED_NOT_IN_TIP_PIN_AUDIT. Closed increment stays 0. OPEN stays 20.
+    # tip_pin is not retargeted. named_count stays 61.
     cand8_suffix = [
         "u03_1_relative_soundness_not_provenance_dag_to_finite_closure",
         "u03_1_computed_sound_not_dag_connected_to_executable_closure",
@@ -581,13 +580,9 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
         "u03_2_incomplete_fuel_not_carrier_fuel_bound",
         "u07_2_common_fiber_not_semantic_compatibility",
         "u07_2_incompatible_fiber_not_layer_compatibility",
-        "u01_1_fixed_class_tail_not_iid_sample_mean_specialization",
-        "u01_1_approximate_erm_not_representation_risk_decomposition",
-        "u01_2_label_bridge_pointwise_not_general_measurable_integration",
-        "u01_2_finite_label_bridge_not_joint_bridge_budget",
     ]
-    if len(cand8_suffix) != 12:
-        errors.append(f"CAND8 theorem count {len(cand8_suffix)} != 12")
+    if len(cand8_suffix) != 8:
+        errors.append(f"CAND8 theorem count {len(cand8_suffix)} != 8")
     overlap8 = [name for name in cand8_suffix if name in prove_names]
     if overlap8:
         errors.append(f"CAND8 suffix overlaps PROVE_CANDIDATES: {overlap8}")

@@ -209,10 +209,6 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
         "u03_2_incomplete_fuel_not_carrier_fuel_bound",
         "u07_2_common_fiber_not_semantic_compatibility",
         "u07_2_incompatible_fiber_not_layer_compatibility",
-        "u01_1_fixed_class_tail_not_iid_sample_mean_specialization",
-        "u01_1_approximate_erm_not_representation_risk_decomposition",
-        "u01_2_label_bridge_pointwise_not_general_measurable_integration",
-        "u01_2_finite_label_bridge_not_joint_bridge_budget",
     ]
     assert (
         formal_tail_text.count("theorem ")

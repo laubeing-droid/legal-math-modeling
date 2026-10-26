@@ -695,7 +695,8 @@ CAND7_CLOSED_THIS_ROUND = 5
 FORMAL_TAIL_CLOSE_PACK = (
     "/home/box/shared/legal-math-reviewer/formal_tail_关≥1_CAND7_20261026/"
 )
-# CAND8 true-proof (pack formal_tail_真证CAND8_20261026). Naming is not a close.
+# CAND8 true-proof v1.1 (pack formal_tail_真证CAND8_20261026). Naming is not a close.
+# U01.1/U01.2 stay in the pack id set as deferred OPEN rows; theorems for them are out.
 CAND8_IDS = ("U03.1", "U03.2", "U07.2", "U01.1", "U01.2")
 FORMAL_TAIL_CAND8_PACK = (
     "/home/box/shared/legal-math-reviewer/formal_tail_真证CAND8_20261026/"

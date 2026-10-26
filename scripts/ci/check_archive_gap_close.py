@@ -463,16 +463,42 @@ def formal_tail_errors(ledger: dict, names: dict) -> list[str]:
     expected_order = []
     for row in ledger.get("rows") or []:
         expected_order.extend(disp.PROVE_CANDIDATES.get(row.get("clause"), []))
+    # CAND6 (pack formal_tail_真证CAND6_20261026) appends twelve theorems to the
+    # same module. They are intentionally absent from PROVE_CANDIDATES: putting
+    # them there would flip U08.3/U15.3/U13.2/U09.1/U10.2 out of
+    # BLOCKED_NOT_IN_TIP_PIN_AUDIT and would claim a tip-pin expand audit.
+    # Closed increment stays 0. OPEN stays 30. tip_pin is not retargeted.
+    cand6_suffix = [
+        "u08_3_four_states_do_not_exhaust_dependency_policies",
+        "u08_3_judgment_not_compatibility_world_classification",
+        "u08_3_opposition_preserves_support_not_full_reflection",
+        "u15_3_two_point_risks_do_not_complete_five_evidence_levels",
+        "u15_3_second_round_consumer_is_not_evidence_ladder",
+        "u13_2_frames_do_not_imply_authorized_rule_load",
+        "u13_2_condition_does_not_train_not_persistent_storage_refinement",
+        "u09_1_conservation_not_receipt_revision_order",
+        "u09_1_receipt_coherent_not_cash_uniqueness",
+        "u09_1_at_most_once_not_product_protocol_refinement",
+        "u10_2_executor_and_trace_not_full_mixed_operation_coverage",
+        "u10_2_post_invariant_not_gamma_frame_or_service_refinement",
+    ]
+    prove_names = {name for names in disp.PROVE_CANDIDATES.values() for name in names}
+    overlap = [name for name in cand6_suffix if name in prove_names]
+    if overlap:
+        errors.append(f"CAND6 suffix overlaps PROVE_CANDIDATES: {overlap}")
     declared = []
     if candidate_text:
         for line in candidate_text.splitlines():
             stripped = line.strip()
             if stripped.startswith("theorem "):
                 declared.append(stripped.split()[1])
-    if declared != expected_order:
-        errors.append(f"candidate module theorems {declared} != PROVE_CANDIDATES {expected_order}")
+    if declared != expected_order + cand6_suffix:
+        errors.append(
+            f"candidate module theorems {declared} != "
+            f"PROVE_CANDIDATES+CAND6 {expected_order + cand6_suffix}"
+        )
     # Ban FormalTail short names from every row's wired_declarations.
-    formal_shorts = set(expected_order)
+    formal_shorts = set(expected_order) | set(cand6_suffix)
     for row in ledger.get("rows") or []:
         clause = row.get("clause")
         for item in row.get("wired_declarations") or []:

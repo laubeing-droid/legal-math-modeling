@@ -164,6 +164,26 @@ def test_u04_3_existence_stays_unproved_and_u02_4_u10_1_carry_non_goals() -> Non
         "U13.2", "U13.3", "U13.4", "U14.1", "U15.3",
     ]
     assert len(blocked) == 30
+    cand6_shorts = [
+        "u08_3_four_states_do_not_exhaust_dependency_policies",
+        "u08_3_judgment_not_compatibility_world_classification",
+        "u08_3_opposition_preserves_support_not_full_reflection",
+        "u15_3_two_point_risks_do_not_complete_five_evidence_levels",
+        "u15_3_second_round_consumer_is_not_evidence_ladder",
+        "u13_2_frames_do_not_imply_authorized_rule_load",
+        "u13_2_condition_does_not_train_not_persistent_storage_refinement",
+        "u09_1_conservation_not_receipt_revision_order",
+        "u09_1_receipt_coherent_not_cash_uniqueness",
+        "u09_1_at_most_once_not_product_protocol_refinement",
+        "u10_2_executor_and_trace_not_full_mixed_operation_coverage",
+        "u10_2_post_invariant_not_gamma_frame_or_service_refinement",
+    ]
+    formal_tail_text = (
+        ROOT / "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean"
+    ).read_text(encoding="utf-8")
+    assert formal_tail_text.count("theorem ") >= 37 + len(cand6_shorts)
+    for short in cand6_shorts:
+        assert f"theorem {short}" in formal_tail_text
     for clause in blocked:
         row = by_clause[clause]
         assert row["archive_gap_status"] == "OPEN_FORMAL_TAIL"

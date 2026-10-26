@@ -52,10 +52,10 @@ theorem u01_3_every_row_has_a_partition (trainingUnit : Nat → Bool)
     row ∈ (groupedSplit trainingUnit rows).1 ∨
       row ∈ (groupedSplit trainingUnit rows).2 := by
   cases assigned : trainingUnit row.measurement with
-  | false => exact Or.inr
-      ((u01_3_partition_membership trainingUnit rows row).2.mpr ⟨member, assigned⟩)
-  | true => exact Or.inl
-      ((u01_3_partition_membership trainingUnit rows row).1.mpr ⟨member, assigned⟩)
+  | false =>
+      exact Or.inr ((u01_3_partition_membership trainingUnit rows row).2.mpr ⟨member, assigned⟩)
+  | true =>
+      exact Or.inl ((u01_3_partition_membership trainingUnit rows row).1.mpr ⟨member, assigned⟩)
 
 -- Counting distinct measurement identities is invariant to copying all rows.
 -- This count is not asserted to be an iid or effective sample size.

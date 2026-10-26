@@ -18,6 +18,7 @@ EVIDENCE_CASES = [
         ("learning-consumer-20261027", 8),
         ("learning-event-split-20261027", 6),
         ("selective-calibration-20261027", 8),
+        ("sample-calibration-consumer-20261027", 10),
     )
 ]
 

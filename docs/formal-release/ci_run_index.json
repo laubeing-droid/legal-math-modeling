@@ -25847,7 +25847,7 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:56"
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:58"
       ],
       "run_id": 39689061670,
       "started": true,
@@ -25909,8 +25909,8 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:10",
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:56"
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:12",
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:58"
       ],
       "run_id": 39699620705,
       "started": true,
@@ -25972,7 +25972,7 @@
       "jobs_total": 8,
       "name": "Lean Authority + Formal Release Pipeline",
       "quoted_by": [
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:62"
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:64"
       ],
       "run_id": 39700447562,
       "started": true,
@@ -26035,7 +26035,7 @@
       "name": "fix(ci): sync derived ledgers after stage2 pytest fail on 799b42c",
       "quoted_by": [
         "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:3",
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:64"
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:66"
       ],
       "run_id": 39714740194,
       "started": true,
@@ -26097,7 +26097,7 @@
       "jobs_total": 8,
       "name": "Merge pull request #7 from laubeing-droid/cursor/tip-axiom-scope-clos…",
       "quoted_by": [
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:74"
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:76"
       ],
       "run_id": 39933015422,
       "started": true,
@@ -26159,7 +26159,7 @@
       "jobs_total": 8,
       "name": "Record OPEN_FORMAL_TAIL×40 prove progress without closing the debt (#10)",
       "quoted_by": [
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:78"
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:80"
       ],
       "run_id": 40079130550,
       "started": true,
@@ -26222,9 +26222,9 @@
       "name": "真证首批 CAND5 ≠ 翻 discharges ≠ 关第2步 (#12)",
       "quoted_by": [
         "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:3",
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:64",
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:74",
-        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:78"
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:66",
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:76",
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:80"
       ],
       "run_id": 40115638107,
       "started": true,
@@ -26354,6 +26354,68 @@
       "started": true,
       "status": "completed",
       "updated_at": "2026-10-26T02:20:52Z",
+      "workflow": "Lean Authority + Formal Release Pipeline"
+    },
+    {
+      "artifacts_total": 10,
+      "conclusion": "success",
+      "created_at": "2026-10-26T05:25:51Z",
+      "event": "push",
+      "evidence": "docs/formal-release/ci-evidence/40274167574/digests.json",
+      "head_branch": "main",
+      "head_sha": "21862d9bdd94bfa15e5da39079538b5eb30ff235",
+      "html_url": "https://github.com/laubeing-droid/legal-math-modeling/actions/runs/40274167574",
+      "jobs": [
+        {
+          "conclusion": "success",
+          "name": "lean-full-clean-build",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "python-gates",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "runtime-refinement / produce",
+          "status": "completed"
+        },
+        {
+          "conclusion": "skipped",
+          "name": "changed-modules",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "seven-axis-acceptance",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "mathematics-completion",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "release-certificate",
+          "status": "completed"
+        },
+        {
+          "conclusion": "success",
+          "name": "final-gate",
+          "status": "completed"
+        }
+      ],
+      "jobs_total": 8,
+      "name": "FormalTail CAND7：12 条非充分性候选定理（非关债；非扩审计） (#22)",
+      "quoted_by": [
+        "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/DELIVERY.md:10"
+      ],
+      "run_id": 40274167574,
+      "started": true,
+      "status": "completed",
+      "updated_at": "2026-10-26T05:38:56Z",
       "workflow": "Lean Authority + Formal Release Pipeline"
     }
   ],

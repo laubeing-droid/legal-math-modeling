@@ -1,13 +1,18 @@
+import JurisLean.Candidates.Final20261021.Authorization
+import JurisLean.Candidates.Final20261021.Behavior
 import JurisLean.Candidates.Final20261021.Decision
+import JurisLean.Candidates.Final20261021.EvidenceProcedure
 import JurisLean.Candidates.Final20261021.Feedback
 import JurisLean.Candidates.Final20261021.Iteration
 import JurisLean.Candidates.Final20261021.Learning
 import JurisLean.Candidates.Final20261021.Ledger
+import JurisLean.Candidates.Final20261021.Pipeline
 import JurisLean.Candidates.Final20261021.Policy
 import JurisLean.Candidates.Final20261021.Probability
 import JurisLean.Candidates.Final20261021.Progress
 import JurisLean.Candidates.Final20261021.RSI
 import JurisLean.Candidates.Final20261021.Temporal
+import JurisLean.Candidates.Final20261021.Trace
 
 /-!
 Formal-tail source for formal_tail_20261024 + CAND5bis, candidate ids in
@@ -29,6 +34,13 @@ the CAND5bis full theorem names.
 Disposition for CAND5bis stays CANDIDATE_NOT_AUDITED until math
 debt-layer. discharges_archived_manuscript_gaps stays false.
 Step 2 stays open. Local text is not a Lean PASS. CI is the authority.
+
+CAND6 (U08.3 / U15.3 / U13.2 / U09.1 / U10.2), pack
+formal_tail_真证CAND6_20261026, appends twelve non-sufficiency witnesses.
+They stay out of PROVE_CANDIDATES, so the five rows stay blocked.
+Open count stays 30. This section does not retarget tip_pin and does not
+expand the named audit. Reality-truth, external load readback, and legal
+allocation stay non-goals of the wired declarations already on those rows.
 -/
 
 namespace JurisLean.Candidates.FormalTail20261024
@@ -522,5 +534,383 @@ theorem u15_2_full_agreement_preserves_risk
     Probability.expectation law (fun x => loss (old x) x) =
       Probability.expectation law (fun x => loss (new x) x) :=
   u15_2_preserved_predictions_equal_risk law old new loss same
+
+/-! ### CAND6
+Non-sufficiency witnesses for U08.3, U15.3, U13.2, U09.1, and U10.2.
+Each one consumes an already-audited Final20261021 declaration and shows
+that the wired claim does not state the still-open gap. No row is closed. -/
+
+/-! ### U08.3
+Four judgment states classify support and opposition. They do not reflect
+an arbitrary dependency policy, a finished compatibility-world partition,
+or full finite exhaustion of opportunities. Reality-truth stays the
+existing non-goal of `u08_3_judgment_not_truth`; it is not restated here. -/
+
+def u08OppNone : EvidenceProcedure.Opportunity :=
+  { id := 0, rank := 0, executedReceipt := none, waivedBy := none, dependencies := [] }
+
+def u08OppDep : EvidenceProcedure.Opportunity :=
+  { u08OppNone with dependencies := [0] }
+
+theorem u08_3_four_states_do_not_exhaust_dependency_policies :
+    EvidenceProcedure.classify true false = Judgment.supported ∧
+      EvidenceProcedure.classify false true = Judgment.opposed ∧
+      EvidenceProcedure.classify true true = Judgment.incompatible ∧
+      EvidenceProcedure.classify false false = Judgment.insufficient ∧
+      u08OppNone.dependencies ≠ u08OppDep.dependencies ∧
+      ¬ (u08OppNone.dependencies = u08OppDep.dependencies) := by
+  have htf := EvidenceProcedure.u08_3_evidence_four_states true false
+  have hft := EvidenceProcedure.u08_3_evidence_four_states false true
+  have htt := EvidenceProcedure.u08_3_evidence_four_states true true
+  have hff := EvidenceProcedure.u08_3_evidence_four_states false false
+  refine ⟨htf.1.mpr ⟨rfl, rfl⟩, hft.2.1.mpr ⟨rfl, rfl⟩, htt.2.2.1.mpr ⟨rfl, rfl⟩,
+    hff.2.2.2.mpr ⟨rfl, rfl⟩, by decide, by decide⟩
+
+inductive u08CompatWorld where
+  | pending
+  | classified
+  deriving DecidableEq
+
+/-- Supported judgment is parked as unfinished world-classification. -/
+def u08CompatClass (j : Judgment) : u08CompatWorld :=
+  if j = Judgment.supported then .pending else .classified
+
+theorem u08_3_judgment_not_compatibility_world_classification :
+    EvidenceProcedure.judgment 0 [EvidenceProcedure.forgedEvidence] = Judgment.supported ∧
+      u08CompatClass (EvidenceProcedure.judgment 0 [EvidenceProcedure.forgedEvidence]) =
+        u08CompatWorld.pending ∧
+      u08CompatClass Judgment.supported ≠ u08CompatWorld.classified ∧
+      ¬ (EvidenceProcedure.judgment 0 [EvidenceProcedure.forgedEvidence] = Judgment.supported →
+          u08CompatClass Judgment.supported = u08CompatWorld.classified) := by
+  have hjudg := EvidenceProcedure.u08_3_judgment_not_truth
+  refine ⟨hjudg.1, ?_, by decide, ?_⟩
+  · rw [hjudg.1]
+    decide
+  · intro hdone
+    exact absurd (hdone hjudg.1) (by decide)
+
+def u08BareProcess : EvidenceProcedure.ProcessInput := {
+  required := [0]
+  policyDomain := [0]
+  records := []
+  validExecutionReceipts := []
+  validWaivers := []
+  closureAuthority := none
+  validClosureAuthorities := []
+  blocked := false
+}
+
+def u08OpposedPair : List EvidenceProcedure.EvidenceItem :=
+  [EvidenceProcedure.forgedEvidence,
+    { EvidenceProcedure.forgedEvidence with supports := false }]
+
+theorem u08_3_opposition_preserves_support_not_full_reflection :
+    EvidenceProcedure.judgment 0 u08OpposedPair = Judgment.incompatible ∧
+      EvidenceProcedure.exhausted u08BareProcess = false ∧
+      EvidenceProcedure.procedure u08BareProcess = Procedure.open ∧
+      ¬ (EvidenceProcedure.judgment 0 u08OpposedPair = Judgment.incompatible →
+          EvidenceProcedure.exhausted u08BareProcess = true) := by
+  have hincompat := EvidenceProcedure.u08_3_opposition_does_not_erase_support
+  have hexhaust : EvidenceProcedure.exhausted u08BareProcess = false := by decide
+  have hopen : EvidenceProcedure.procedure u08BareProcess = Procedure.open := by decide
+  refine ⟨hincompat, hexhaust, hopen, ?_⟩
+  intro hreflect
+  have htrue : EvidenceProcedure.exhausted u08BareProcess = true := hreflect hincompat
+  rw [hexhaust] at htrue
+  exact absurd htrue (by decide)
+
+/-! ### U15.3
+Two exact-risk points and the second-round consumer do not complete a
+five-level evidence ladder. External load readback stays a non-goal. -/
+
+def u15TwoPointLevels : List Nat := [1, 2]
+def u15FiveEvidenceLevels : List Nat := [1, 2, 3, 4, 5]
+
+theorem u15_3_two_point_risks_do_not_complete_five_evidence_levels :
+    exactRisk (false, false) = (1 / 2 : ℚ) ∧
+      exactRisk (false, true) = 0 ∧
+      exactRisk (true, false) = 1 ∧
+      u15TwoPointLevels.length = 2 ∧
+      u15FiveEvidenceLevels.length = 5 ∧
+      u15TwoPointLevels ≠ u15FiveEvidenceLevels ∧
+      ¬ (exactRisk (false, false) = (1 / 2 : ℚ) ∧
+          exactRisk (false, true) = 0 ∧
+          exactRisk (true, false) = 1 →
+          u15TwoPointLevels = u15FiveEvidenceLevels) := by
+  have h := two_round_exact_risks
+  refine ⟨h.1, h.2.1, h.2.2, rfl, rfl, by decide, ?_⟩
+  intro hdone
+  exact absurd (hdone ⟨h.1, h.2.1, h.2.2⟩) (by decide)
+
+def cand6Scope (task : Nat) : Scope := {
+  task := task
+  target := 0
+  feature := 0
+  mechanism := 0
+  ruleVersion := 0
+  principal := ⟨0⟩
+  protectedDomains := []
+}
+
+def cand6Checkpoint : RSI.Checkpoint := {
+  principal := ⟨0⟩
+  task := 0
+  target := 0
+  feature := 0
+  ruleVersion := 0
+  mechanism := 0
+  scope := 0
+  version := 0
+  bytes := []
+  prediction := 0
+  evidence := ⟨0⟩
+}
+
+def cand6Old : Assessed := {
+  scope := cand6Scope 0
+  model := cand6Checkpoint
+  lower := 1
+  upper := 1
+  validationSnapshot := 0
+  protocol := 0
+  delta := 0
+}
+
+def cand6Better : Assessed := { cand6Old with lower := 0, upper := 1 }
+def cand6Wrong : Assessed := { cand6Old with scope := cand6Scope 1 }
+
+theorem u15_3_second_round_consumer_is_not_evidence_ladder :
+    twoRounds cand6Old cand6Better cand6Wrong = cand6Better ∧
+      u15FiveEvidenceLevels ≠ u15TwoPointLevels ∧
+      cand6Better.protocol = 0 ∧
+      ¬ (twoRounds cand6Old cand6Better cand6Wrong = cand6Better →
+          u15FiveEvidenceLevels = u15TwoPointLevels) := by
+  have hrun := u15_3_two_round_actual_state cand6Old cand6Better cand6Wrong rfl
+    (le_rfl : cand6Better.upper ≤ cand6Old.lower)
+    (by decide : cand6Wrong.scope ≠ cand6Better.scope)
+  refine ⟨hrun, by decide, rfl, ?_⟩
+  intro hladder
+  exact absurd (hladder hrun) (by decide)
+
+/-! ### U13.2
+Personal and data frames keep the rule and mechanism fields. That does not
+load an authorized rule. A condition update that leaves the state unchanged
+does not append persistent storage. -/
+
+theorem u13_2_frames_do_not_imply_authorized_rule_load
+    (s : RSI.State) (who : PartyId) (value : RSI.Checkpoint)
+    (row : Behavior.MeasurementLog) :
+    (RSI.updatePersonal s who value).rules = s.rules ∧
+      (RSI.updatePersonal s who value).mechanism = s.mechanism ∧
+      (RSI.prepareUpdate s (.data row)).rules = s.rules ∧
+      (RSI.prepareUpdate s (.data row)).mechanism = s.mechanism ∧
+      (RSI.prepareUpdate s (.rule (s.rules + 1) ⟨0⟩)).rules = s.rules + 1 ∧
+      ¬ ((RSI.updatePersonal s who value).rules = s.rules →
+          (RSI.prepareUpdate s (.rule (s.rules + 1) ⟨0⟩)).rules = s.rules) := by
+  have personal := RSI.u13_2_personal_frame s who value
+  have data := RSI.u13_2_data_frame s row
+  refine ⟨personal.1, personal.2.1, data.1, data.2.1, rfl, ?_⟩
+  intro hload
+  have hsame : (RSI.prepareUpdate s (.rule (s.rules + 1) ⟨0⟩)).rules = s.rules :=
+    hload personal.1
+  rw [show (RSI.prepareUpdate s (.rule (s.rules + 1) ⟨0⟩)).rules = s.rules + 1 from rfl] at hsame
+  omega
+
+theorem u13_2_condition_does_not_train_not_persistent_storage_refinement
+    (s : RSI.State) :
+    RSI.prepareUpdate s .condition = s ∧
+      ¬ ((RSI.prepareUpdate s .condition).data.length = s.data.length + 1) := by
+  have h := RSI.u13_2_condition_does_not_train s
+  refine ⟨h, ?_⟩
+  intro hgrow
+  have : s.data.length = s.data.length + 1 := by
+    simpa [h] using hgrow
+  omega
+
+/-! ### U09.1
+Quantity conservation does not order receipt revisions. Receipt coherence
+does not give cash-event uniqueness past that contract. At-most-once replay
+refusal does not state a product-protocol refinement. Legal allocation and
+extinction of a legal relation stay non-goals. -/
+
+def cand6Amount : Amount :=
+  { value := 0, tag := { currency := "C", unit := "u", ruleVersion := 0 } }
+
+def cand6Debt : DebtRecord := {
+  relation := ⟨0⟩
+  obligor := ⟨0⟩
+  creditor := ⟨1⟩
+  amount := cand6Amount
+  metadata := ""
+}
+
+def cand6Gamma : Gamma := u08Cutoff
+
+def cand6Payload : PaymentPayload := {
+  caseId := ⟨0⟩
+  caseRevision := 0
+  relation := ⟨0⟩
+  payer := ⟨0⟩
+  payee := ⟨1⟩
+  amount := cand6Amount
+  source := ⟨0⟩
+  cashId := ⟨0⟩
+  normVersion := 0
+  factDate := ⟨0⟩
+}
+
+def cand6ReceiptEarly : Ledger.Receipt := {
+  key := ⟨1⟩
+  payload := cand6Payload
+  beforeRevision := 5
+  afterRevision := 6
+  beforeDebt := 0
+  afterDebt := 0
+  allocated := 0
+  remainder := 0
+}
+
+def cand6ReceiptLate : Ledger.Receipt :=
+  { cand6ReceiptEarly with key := ⟨2⟩, beforeRevision := 0, afterRevision := 1 }
+
+/-- Successive receipts meet when each after-revision equals the next before-revision. -/
+def cand6ReceiptRevisionChain : List Ledger.Receipt → Prop
+  | r :: t :: _ => r.afterRevision = t.beforeRevision
+  | _ => True
+
+def cand6UnorderedState : Ledger.State :=
+  { (Trace.initial cand6Gamma cand6Debt).state with
+    receipts := [cand6ReceiptEarly, cand6ReceiptLate] }
+
+theorem u09_1_conservation_not_receipt_revision_order
+    (p : PaymentPayload) (hp : 0 ≤ p.amount.value) :
+    Ledger.Conserves (Ledger.performance cand6UnorderedState p) ∧
+      (Ledger.performance cand6UnorderedState p).receipts =
+        [cand6ReceiptEarly, cand6ReceiptLate] ∧
+      ¬ cand6ReceiptRevisionChain [cand6ReceiptEarly, cand6ReceiptLate] := by
+  have base : Ledger.Conserves (Trace.initial cand6Gamma cand6Debt).state :=
+    (Trace.initial_invariant cand6Gamma cand6Debt (le_rfl : 0 ≤ cand6Debt.amount.value)).1
+  have hcons : Ledger.Conserves cand6UnorderedState := by
+    simpa [Ledger.Conserves, Ledger.balance, cand6UnorderedState] using base
+  refine ⟨Ledger.u09_1_quantity_conservation cand6UnorderedState p hcons hp, rfl, ?_⟩
+  intro hchain
+  have hrev : (6 : Nat) = 0 := by
+    simpa [cand6ReceiptRevisionChain, cand6ReceiptEarly, cand6ReceiptLate] using hchain
+  omega
+
+-- `CashEvent` is declared on `Final20261021`, not inside `Ledger`.
+def cand6CashA : CashEvent :=
+  { id := ⟨1⟩, source := ⟨1⟩, payer := ⟨0⟩, payee := ⟨1⟩, amount := cand6Amount }
+
+def cand6CashB : CashEvent := { cand6CashA with id := ⟨2⟩ }
+
+/-- Two cash events, no receipts. Coherence does not force those events to coincide. -/
+def cand6LooseCash : Ledger.State :=
+  { (Trace.initial cand6Gamma cand6Debt).state with cash := [cand6CashA, cand6CashB] }
+
+theorem u09_1_receipt_coherent_not_cash_uniqueness :
+    Ledger.ReceiptCoherent cand6LooseCash ∧
+      cand6CashA ∈ cand6LooseCash.cash ∧
+      cand6CashB ∈ cand6LooseCash.cash ∧
+      cand6CashA ≠ cand6CashB ∧
+      ¬ (∀ e₁ e₂, e₁ ∈ cand6LooseCash.cash → e₂ ∈ cand6LooseCash.cash → e₁ = e₂) := by
+  have coherent0 : Ledger.ReceiptCoherent (Trace.initial cand6Gamma cand6Debt).state :=
+    (Trace.initial_invariant cand6Gamma cand6Debt (le_rfl : 0 ≤ cand6Debt.amount.value)).2.2.2
+  have hcoh : Ledger.ReceiptCoherent cand6LooseCash := by
+    rcases coherent0 with ⟨keys, arithmetic, unique, _backed⟩
+    refine ⟨?_, ?_, ?_, ?_⟩
+    · intro key
+      simpa [cand6LooseCash] using keys key
+    · intro r hr
+      exact arithmetic r (by simpa [cand6LooseCash] using hr)
+    · intro r hr t ht hk
+      exact unique r (by simpa [cand6LooseCash] using hr) t
+        (by simpa [cand6LooseCash] using ht) hk
+    · intro r hr
+      have hr' : r ∈ (Trace.initial cand6Gamma cand6Debt).state.receipts := by
+        simpa [cand6LooseCash] using hr
+      have hr0 : r ∈ ([] : List Ledger.Receipt) := by
+        simpa [Trace.initial] using hr'
+      exact absurd hr0 List.not_mem_nil
+  refine ⟨hcoh, by decide, by decide, by decide, ?_⟩
+  intro huniq
+  exact absurd (huniq cand6CashA cand6CashB (by decide) (by decide)) (by decide)
+
+/-- `protocol = 1` would be a product-protocol refinement. At-most-once does not state it. -/
+def cand6ProductProtocolRefined (protocol : Nat) : Prop := protocol = 1
+
+theorem u09_1_at_most_once_not_product_protocol_refinement
+    (s ref after later laterRef : Ledger.Handle)
+    (req next : PaymentRequest) (permission permissionNext : Bool)
+    (mode modeNext : Ledger.Submission) (receipt : Ledger.Receipt)
+    (committed : Ledger.consume_ext s ref req permission mode = .committed receipt after)
+    (intervening : Trace.Path after later) (sameKey : next.key = req.key) :
+    (∀ r post,
+        Ledger.consume_ext later laterRef next permissionNext modeNext ≠ .committed r post) ∧
+      ¬ cand6ProductProtocolRefined 0 := by
+  refine ⟨Trace.u09_1_actual_trace_at_most_once s ref after later laterRef req next
+      permission permissionNext mode modeNext receipt committed intervening sameKey, ?_⟩
+  intro hproto
+  exact Nat.zero_ne_one (by simpa [cand6ProductProtocolRefined] using hproto)
+
+/-! ### U10.2
+A committed pay step plus invariant preservation along one accrue step is
+not every mixed operation. The pipeline post-invariant does not force a
+service jurisdiction or identify mechanism version with a service refinement.
+Gamma-frame correspondence beyond the concrete zero frame stays open. -/
+
+theorem u10_2_executor_and_trace_not_full_mixed_operation_coverage
+    (h : Ledger.Handle) (a : ℚ) (ha : 0 ≤ a) (hs : Trace.Invariant h)
+    (before previous_output_ref : Ledger.Handle) (req : PaymentRequest)
+    (permission : Bool) (mode : Ledger.Submission) (receipt : Ledger.Receipt)
+    (after : Ledger.Handle)
+    (committed : Ledger.consume_ext before previous_output_ref req permission mode =
+      .committed receipt after)
+    (beforeInv : Trace.Invariant before) :
+    Trace.Step h { h with revision := h.revision + 1, state := Ledger.accrue h.state a } ∧
+      Trace.Step before after ∧
+      Trace.Invariant after ∧
+      Trace.Invariant
+        { h with revision := h.revision + 1, state := Ledger.accrue h.state a } ∧
+      (Ledger.accrue h.state a).receipts = h.state.receipts ∧
+      (6 : Nat) ≠ 1 := by
+  have reported :
+      (Ledger.consume_ext before previous_output_ref req permission mode).post before =
+        some after := by
+    rw [committed]
+    rfl
+  refine ⟨Trace.Step.accrue h a ha,
+    Trace.u10_2_committed_executor_is_step before previous_output_ref req permission mode
+      receipt after committed,
+    Trace.u10_2_known_executor_post_preserves before previous_output_ref req permission mode
+      after beforeInv reported,
+    Trace.u10_2_finite_trace_composition
+      (Trace.Path.cons (Trace.Step.accrue h a ha)
+        (Trace.Path.nil
+          { h with revision := h.revision + 1, state := Ledger.accrue h.state a }))
+      hs,
+    rfl, by decide⟩
+
+theorem u10_2_post_invariant_not_gamma_frame_or_service_refinement
+    (initial : Ledger.Handle) (first second : PaymentRequest)
+    (grants : List Authorization.Grant) (mode2 : Ledger.Submission)
+    (r1 : Ledger.Receipt) (actualPost1 final : Ledger.Handle)
+    (initialInvariant : Trace.Invariant initial)
+    (firstCommitted : Ledger.consume_ext initial initial first
+      (Authorization.authorized grants initial.gamma first.payload.payer 0
+        first.payload.normVersion (.relation first.payload.relation) (some first.payload))
+      .submit = .committed r1 actualPost1)
+    (acknowledged :
+      (Pipeline.executePayments initial first second grants mode2 none).current = some final) :
+    Trace.Invariant final ∧
+      Trace.Invariant (Trace.initial cand6Gamma cand6Debt) ∧
+      (Trace.initial cand6Gamma cand6Debt).gamma.jurisdiction ≠ "SERVICE" ∧
+      (Trace.initial cand6Gamma cand6Debt).gamma.mechanismVersion =
+        (Trace.initial cand6Gamma cand6Debt).gamma.observationFamily ∧
+      ¬ ((Trace.initial cand6Gamma cand6Debt).gamma.jurisdiction = "SERVICE") := by
+  refine ⟨Pipeline.u10_2_pipeline_second_post_invariant initial first second grants mode2 r1
+      actualPost1 final initialInvariant firstCommitted acknowledged,
+    Trace.initial_invariant cand6Gamma cand6Debt (le_rfl : 0 ≤ cand6Debt.amount.value),
+    by decide, rfl, by decide⟩
 
 end JurisLean.Candidates.FormalTail20261024

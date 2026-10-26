@@ -112,7 +112,7 @@ def chooseMaximin {m : ℕ} (g : Gamma) (utilityVersion : ℕ) (riskLimit : ℚ)
     (allowed : List ℕ) (values : List (IntervalDecision m)) : Option (IntervalDecision m) :=
   legalBest (·.utilityLower)
     (fun v => decide (v.nominal.gamma = g ∧ v.nominal.utilityVersion = utilityVersion ∧
-      v.nominal.action.id ∈ allowed ∧ v.riskUpper ≤ riskLimit)) values
+      v.nominal.riskLimit = riskLimit ∧ v.nominal.action.id ∈ allowed ∧ v.riskUpper ≤ riskLimit)) values
 
 theorem actual_probability_fills_both_outcomes (a : BinaryQuote) (p : ℚ) :
     (a.atProbability p).outcomes.map (·.probability) = [p, 1 - p] := rfl
@@ -259,24 +259,26 @@ theorem explicit_maximin_preserves_permission_and_risk {m : ℕ} (g : Gamma)
     (values : List (IntervalDecision m)) (selected : IntervalDecision m)
     (chosen : chooseMaximin g utilityVersion riskLimit allowed values = some selected) :
     selected ∈ values ∧ selected.nominal.gamma = g ∧
-    selected.nominal.utilityVersion = utilityVersion ∧ selected.nominal.action.id ∈ allowed ∧
+    selected.nominal.utilityVersion = utilityVersion ∧ selected.nominal.riskLimit = riskLimit ∧
+    selected.nominal.action.id ∈ allowed ∧
     selected.riskUpper ≤ riskLimit ∧
     ∀ other ∈ values, other.nominal.gamma = g → other.nominal.utilityVersion = utilityVersion →
-      other.nominal.action.id ∈ allowed → other.riskUpper ≤ riskLimit →
+      other.nominal.riskLimit = riskLimit → other.nominal.action.id ∈ allowed → other.riskUpper ≤ riskLimit →
       other.utilityLower ≤ selected.utilityLower := by
   obtain ⟨member, feasible, optimal⟩ := legal_best_sound _ _ values selected chosen
   have checks : selected.nominal.gamma = g ∧ selected.nominal.utilityVersion = utilityVersion ∧
-      selected.nominal.action.id ∈ allowed ∧ selected.riskUpper ≤ riskLimit := by simpa using feasible
-  refine ⟨member, checks.1, checks.2.1, checks.2.2.1, checks.2.2.2, ?_⟩
-  intro other hm hg hu ha hr
-  exact optimal other hm (by simp [hg, hu, ha, hr])
+      selected.nominal.riskLimit = riskLimit ∧ selected.nominal.action.id ∈ allowed ∧
+      selected.riskUpper ≤ riskLimit := by simpa using feasible
+  refine ⟨member, checks.1, checks.2.1, checks.2.2.1, checks.2.2.2.1, checks.2.2.2.2, ?_⟩
+  intro other hm hg hu hl ha hr
+  exact optimal other hm (by simp [hg, hu, hl, ha, hr])
 
 theorem maximin_none_exactly_when_infeasible {m : ℕ} (g : Gamma)
     (utilityVersion : ℕ) (riskLimit : ℚ) (allowed : List ℕ)
     (values : List (IntervalDecision m)) :
     chooseMaximin g utilityVersion riskLimit allowed values = none ↔
       ∀ v ∈ values, ¬ (v.nominal.gamma = g ∧ v.nominal.utilityVersion = utilityVersion ∧
-        v.nominal.action.id ∈ allowed ∧ v.riskUpper ≤ riskLimit) := by
+        v.nominal.riskLimit = riskLimit ∧ v.nominal.action.id ∈ allowed ∧ v.riskUpper ≤ riskLimit) := by
   unfold chooseMaximin legalBest
   rw [best_none]
   simp

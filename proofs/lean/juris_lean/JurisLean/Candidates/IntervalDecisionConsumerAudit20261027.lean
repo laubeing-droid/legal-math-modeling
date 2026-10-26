@@ -45,7 +45,9 @@ def riskyQuote : BinaryQuote :=
     cost := ⟨0, intervalDecisionTag⟩, execution := [] }
 
 def settlementQuote : BinaryQuote :=
-  { riskyQuote with id := 2, success := ledgerAmount ⟨4, intervalDecisionTag⟩
+  { riskyQuote with
+    id := 2
+    success := ledgerAmount ⟨4, intervalDecisionTag⟩
     failure := ledgerAmount ⟨4, intervalDecisionTag⟩ }
 
 def actualDecisionFixture (a : BinaryQuote) : Result (IntervalDecision 2) :=
@@ -66,7 +68,8 @@ def actualDecisionFixture (a : BinaryQuote) : Result (IntervalDecision 2) :=
 #eval (match actualDecisionFixture riskyQuote, actualDecisionFixture settlementQuote with
   | .known risky, .known settlement =>
       decide (chooseMaximin intervalDecisionGamma 1 (1/10) [1, 2] [risky, settlement] = some settlement ∧
-        chooseMaximin intervalDecisionGamma 1 (1/10) [1] [risky, settlement] = none)
+        chooseMaximin intervalDecisionGamma 1 (1/10) [1] [risky, settlement] = none ∧
+        chooseMaximin intervalDecisionGamma 1 (1/5) [1, 2] [risky, settlement] = none)
   | _, _ => false)
 
 -- Costs are deducted once; they do not change the probability receipt.
@@ -99,7 +102,7 @@ def actualDecisionFixture (a : BinaryQuote) : Result (IntervalDecision 2) :=
 #guard_msgs in
 #eval (match probabilityFixture 1 with
   | .known p => decide (evaluateInterval {intervalDecisionRequest with query := 0} id p riskyQuote =
-      .unknown .targetMismatch)
+      (Result.unknown Error.targetMismatch : Result (IntervalDecision 2)))
   | _ => false)
 
 /-- info: true -/
@@ -108,12 +111,13 @@ def actualDecisionFixture (a : BinaryQuote) : Result (IntervalDecision 2) :=
   | .known p =>
       let earlier := {intervalDecisionGamma with knowledgeCutoff := ⟨9⟩}
       decide (evaluateInterval {intervalDecisionRequest with gamma := earlier} id p
-        {riskyQuote with gamma := earlier} = .unknown .scopeMismatch)
+        {riskyQuote with gamma := earlier} =
+          (Result.unknown Error.scopeMismatch : Result (IntervalDecision 2)))
   | _ => false)
 
 /-- info: true -/
 #guard_msgs in
 #eval (match probabilityFixture 1 with
   | .known p => decide (evaluateInterval {intervalDecisionRequest with calibrationSnapshot := 101}
-      id p riskyQuote = .unknown .targetMismatch)
+      id p riskyQuote = (Result.unknown Error.targetMismatch : Result (IntervalDecision 2)))
   | _ => false)

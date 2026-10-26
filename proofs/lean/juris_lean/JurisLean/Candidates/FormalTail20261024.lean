@@ -1382,22 +1382,24 @@ instance : MeasureTheory.IsProbabilityMeasure cand8UnitMeasure :=
   ⟨by simp [cand8UnitMeasure]⟩
 
 theorem u01_1_fixed_class_tail_not_iid_sample_mean_specialization :
-    (u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
+    (Learning.u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
       (fun _ _ => (0 : ℝ)) (fun _ => (0 : ℝ≥0))
       (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one) ∧
       ¬ cand8IidSampleMeanSqrtRadiusSpecialization := by
-  refine ⟨u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
+  refine ⟨Learning.u01_1_fixed_class_tail cand8UnitMeasure (∅ : Finset (Fin 1))
     (fun _ _ => (0 : ℝ)) (fun _ => (0 : ℝ≥0))
     (fun h hh => absurd hh (Finset.notMem_empty h)) (1 : ℝ) zero_le_one, ?_⟩
   intro hspec
   exact absurd hspec (by norm_num : (2 : ℝ) ≠ 3)
 
 theorem u01_1_approximate_erm_not_representation_risk_decomposition :
-    (u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
-      (le_refl _) (le_refl _) (show (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ) by norm_num)) ∧
+    (Learning.u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
+      (by norm_num : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))
+      (by norm_num : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))
+      (by norm_num : (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ))) ∧
       ¬ cand8RepresentationRiskDecomposition := by
-  refine ⟨u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
-    (le_refl _) (le_refl _) (show (0 : ℝ) ≤ (0 : ℝ) + (0 : ℝ) by norm_num), ?_⟩
+  refine ⟨Learning.u01_1_approximate_erm (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ) (0 : ℝ)
+    (by norm_num) (by norm_num) (by norm_num), ?_⟩
   intro hdecomp
   exact absurd hdecomp (by norm_num : (1 : ℝ) ≠ 0)
 
@@ -1426,7 +1428,7 @@ theorem u01_2_label_bridge_pointwise_not_general_measurable_integration :
     (Learning.zeroOne (0 : Fin 2) (1 : Fin 2) ≤
         Learning.zeroOne (0 : Fin 2) (0 : Fin 2) + Learning.zeroOne (0 : Fin 2) (1 : Fin 2)) ∧
       ¬ cand8GeneralMeasurableBoundedLossIntegration := by
-  have hpoint := u01_2_label_bridge_pointwise (0 : Fin 2) (0 : Fin 2) (1 : Fin 2)
+  have hpoint := Learning.u01_2_label_bridge_pointwise (0 : Fin 2) (0 : Fin 2) (1 : Fin 2)
   refine ⟨hpoint, ?_⟩
   intro hall
   have hfalse := hall 0 1 1

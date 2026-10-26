@@ -9723,6 +9723,151 @@
   {
    "declarations": [
     {
+     "kind": "structure",
+     "name": "DecisionRequest"
+    },
+    {
+     "kind": "structure",
+     "name": "BinaryQuote"
+    },
+    {
+     "kind": "def",
+     "name": "BinaryQuote.atProbability"
+    },
+    {
+     "kind": "def",
+     "name": "cashAt"
+    },
+    {
+     "kind": "def",
+     "name": "utilityAt"
+    },
+    {
+     "kind": "def",
+     "name": "lossAt"
+    },
+    {
+     "kind": "structure",
+     "name": "IntervalDecision"
+    },
+    {
+     "kind": "def",
+     "name": "evaluateInterval"
+    },
+    {
+     "kind": "def",
+     "name": "fitToDecision"
+    },
+    {
+     "kind": "def",
+     "name": "chooseMaximin"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_probability_fills_both_outcomes"
+    },
+    {
+     "kind": "theorem",
+     "name": "binary_evaluation_uses_exact_amount_and_one_cost"
+    },
+    {
+     "kind": "theorem",
+     "name": "affine_interval_bounds"
+    },
+    {
+     "kind": "theorem",
+     "name": "interval_evaluation_reads_the_receipt"
+    },
+    {
+     "kind": "theorem",
+     "name": "computed_decision_encloses_cash_utility_and_risk"
+    },
+    {
+     "kind": "theorem",
+     "name": "missing_identification_cannot_succeed"
+    },
+    {
+     "kind": "theorem",
+     "name": "fit_to_decision_passes_the_actual_probability"
+    },
+    {
+     "kind": "theorem",
+     "name": "explicit_maximin_preserves_permission_and_risk"
+    },
+    {
+     "kind": "theorem",
+     "name": "maximin_none_exactly_when_infeasible"
+    },
+    {
+     "kind": "theorem",
+     "name": "whole_computed_decision_bin_law_confidence"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Decision",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/IntervalDecisionConsumer20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "e4d9472653683b069c5986ae7fd37c21725e7347e172075bb8005c5f3dd2fb6b",
+   "size_bytes": 18872,
+   "theorem_count": 10,
+   "theorem_count_bol_convention": 10
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "intervalDecisionGamma"
+    },
+    {
+     "kind": "def",
+     "name": "intervalDecisionRequest"
+    },
+    {
+     "kind": "def",
+     "name": "intervalDecisionTag"
+    },
+    {
+     "kind": "def",
+     "name": "riskyQuote"
+    },
+    {
+     "kind": "def",
+     "name": "settlementQuote"
+    },
+    {
+     "kind": "def",
+     "name": "actualDecisionFixture"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027",
+    "JurisLean.Candidates.ProbabilityIntervalConsumerAudit20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.actual_probability_fills_both_outcomes",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.affine_interval_bounds",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.binary_evaluation_uses_exact_amount_and_one_cost",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.computed_decision_encloses_cash_utility_and_risk",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.explicit_maximin_preserves_permission_and_risk",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.fit_to_decision_passes_the_actual_probability",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.interval_evaluation_reads_the_receipt",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.maximin_none_exactly_when_infeasible",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.missing_identification_cannot_succeed",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027.whole_computed_decision_bin_law_confidence"
+   ],
+   "sha256": "f94a52fc3f5a3c89684a76aea03046a5b84f68c75026c8ce393d87cb64889007",
+   "size_bytes": 6519,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
      "kind": "def",
      "name": "pointWeight"
     },
@@ -10382,6 +10527,137 @@
    ],
    "sha256": "cc076526085ea84e448edbc90bb2cf37b4f2e675341ec70498832054316ecdaf",
    "size_bytes": 2707,
+   "theorem_count": 0,
+   "theorem_count_bol_convention": 0
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "scoreBin"
+    },
+    {
+     "kind": "def",
+     "name": "successLabel"
+    },
+    {
+     "kind": "def",
+     "name": "modelBins"
+    },
+    {
+     "kind": "structure",
+     "name": "SampleProbability"
+    },
+    {
+     "kind": "def",
+     "name": "SampleProbability.lower"
+    },
+    {
+     "kind": "def",
+     "name": "SampleProbability.upper"
+    },
+    {
+     "kind": "def",
+     "name": "SampleProbability.estimate"
+    },
+    {
+     "kind": "def",
+     "name": "produceInterval"
+    },
+    {
+     "kind": "def",
+     "name": "runProbability"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_fitted_score_selects_the_bin"
+    },
+    {
+     "kind": "theorem",
+     "name": "full_model_bin_family_is_counted"
+    },
+    {
+     "kind": "theorem",
+     "name": "changed_probability_scope_refused"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_samples_determine_probability"
+    },
+    {
+     "kind": "theorem",
+     "name": "empirical_success_bounded_by_coverage"
+    },
+    {
+     "kind": "theorem",
+     "name": "actual_interval_contains_empirical_probability"
+    },
+    {
+     "kind": "theorem",
+     "name": "pipeline_consumes_actual_fit_and_sample"
+    },
+    {
+     "kind": "theorem",
+     "name": "population_bin_integrals"
+    },
+    {
+     "kind": "theorem",
+     "name": "whole_pipeline_bin_probability_confidence"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.Final20261021.Probability",
+    "JurisLean.Candidates.SampleCalibrationConsumer20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumer20261027.lean",
+   "print_axioms_targets": [],
+   "sha256": "2c30753d03f34b90a3af5274731df4392faa1589c07cb56b6ff4383dc8ae90fc",
+   "size_bytes": 17981,
+   "theorem_count": 9,
+   "theorem_count_bol_convention": 9
+  },
+  {
+   "declarations": [
+    {
+     "kind": "def",
+     "name": "probabilityFixtureProtocol"
+    },
+    {
+     "kind": "def",
+     "name": "probabilityFixtureLoss"
+    },
+    {
+     "kind": "def",
+     "name": "probabilityTraining"
+    },
+    {
+     "kind": "def",
+     "name": "probabilityCalibration"
+    },
+    {
+     "kind": "def",
+     "name": "probabilityFixture"
+    }
+   ],
+   "imports": [
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027"
+   ],
+   "lemma_count": 0,
+   "path": "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean",
+   "print_axioms_targets": [
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.actual_fitted_score_selects_the_bin",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.actual_interval_contains_empirical_probability",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.actual_samples_determine_probability",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.changed_probability_scope_refused",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.empirical_success_bounded_by_coverage",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.full_model_bin_family_is_counted",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.pipeline_consumes_actual_fit_and_sample",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.population_bin_integrals",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027.whole_pipeline_bin_probability_confidence"
+   ],
+   "sha256": "1b4b4e7067dde4b237e3b1ea17bd46ad533e676fd9052bd8f5b2eebcc7507b32",
+   "size_bytes": 5370,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -50384,6 +50660,7 @@
     "JurisLean.Candidates.CompilerClosure20261026",
     "JurisLean.Candidates.CompilerProvenance20261027",
     "JurisLean.Candidates.Final20261021.CIAll",
+    "JurisLean.Candidates.IntervalDecisionConsumer20261027",
     "JurisLean.Candidates.LearningBoundary20261027",
     "JurisLean.Candidates.LearningBridge20261027",
     "JurisLean.Candidates.LearningConsumer20261027",
@@ -50392,6 +50669,7 @@
     "JurisLean.Candidates.LearningEventSplit20261027",
     "JurisLean.Candidates.LearningFiniteClass20261027",
     "JurisLean.Candidates.LearningRisk20261027",
+    "JurisLean.Candidates.ProbabilityIntervalConsumer20261027",
     "JurisLean.Candidates.SampleCalibrationConsumer20261027",
     "JurisLean.Candidates.SelectiveCalibration20261027",
     "JurisLean.CanonicalSerialization",
@@ -50616,8 +50894,8 @@
    "lemma_count": 0,
    "path": "proofs/lean/juris_lean/JurisLean.lean",
    "print_axioms_targets": [],
-   "sha256": "b15184f28dfbc55561064f39957bea7d3a44242ffd160855b8b5be12c5bc3f50",
-   "size_bytes": 11508,
+   "sha256": "41fdfda41fce94c49e5470136bf37075e8ac21a3e8f81f4ef1a892eb57b8834e",
+   "size_bytes": 11633,
    "theorem_count": 0,
    "theorem_count_bol_convention": 0
   },
@@ -50781,22 +51059,22 @@
  },
  "scope_summary": {
   "all_tracked_lean": {
-   "counted_declaration_count": 5645,
-   "file_count": 417,
+   "counted_declaration_count": 5664,
+   "file_count": 421,
    "lemma_count": 146,
-   "print_axioms_command_count": 4518,
-   "print_axioms_distinct_targets": 4431,
-   "theorem_count": 5499,
-   "theorem_count_bol_convention": 5399
+   "print_axioms_command_count": 4537,
+   "print_axioms_distinct_targets": 4450,
+   "theorem_count": 5518,
+   "theorem_count_bol_convention": 5418
   },
   "juris_lean_package": {
-   "counted_declaration_count": 5626,
-   "file_count": 402,
+   "counted_declaration_count": 5645,
+   "file_count": 406,
    "lemma_count": 139,
-   "print_axioms_command_count": 4518,
-   "print_axioms_distinct_targets": 4431,
-   "theorem_count": 5487,
-   "theorem_count_bol_convention": 5387
+   "print_axioms_command_count": 4537,
+   "print_axioms_distinct_targets": 4450,
+   "theorem_count": 5506,
+   "theorem_count_bol_convention": 5406
   },
   "ulm_import_closure": {
    "counted_declaration_count": 52,
@@ -50883,6 +51161,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Transactions.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/IntervalDecisionConsumer20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundaryAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBridge20261027.lean",
@@ -50897,6 +51177,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningProvenanceAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumer20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibration20261027.lean",
@@ -51298,6 +51580,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/Final20261021/Transactions.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FormalTail20261024.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/FormalTailCAND8AxiomAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/IntervalDecisionConsumer20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/IntervalDecisionConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundary20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBoundaryAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningBridge20261027.lean",
@@ -51312,6 +51596,8 @@
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningProvenanceAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningRisk20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/LearningTheoryAudit20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumer20261027.lean",
+   "proofs/lean/juris_lean/JurisLean/Candidates/ProbabilityIntervalConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumer20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SampleCalibrationConsumerAudit20261027.lean",
    "proofs/lean/juris_lean/JurisLean/Candidates/SelectiveCalibration20261027.lean",
@@ -51672,17 +51958,17 @@
    "proofs/lean/juris_lean/JurisLean/ULMCoreCompAxiomAudit.lean"
   ]
  },
- "source_inventory_digest": "37b5919f53e026df07d6019036cddd35147458ccf73b15439b4de2d32079b53a",
+ "source_inventory_digest": "636ae421c1e2551f20e615d1a104572f11398dd2b89b5ebcd962dad0e1dd0432",
  "status": "static_source_inventory_not_release_certificate",
  "subject": {
-  "branch": "formal/calibration-semantics-20261027",
-  "commit": "7e58994de4abf785b848e1b325d3709db1c0efcb",
-  "tree": "94e35bbe27b0c852a3775b98c6509aae65c621c7"
+  "branch": "formal/probability-interval-consumer-20261027",
+  "commit": "fac9735dc9a97c3040b92924ee439a9aa02987b0",
+  "tree": "3a5384084a6e35326d79b4e46f2ce18d76e2a861"
  },
  "subject_binding": {
   "binding": "BOUND_TO_SUBJECT",
   "files_diverging_from_subject": [],
-  "files_total": 417,
+  "files_total": 421,
   "rule": "every recorded sha256 must equal git show <subject>:<path>",
   "worktree_dirty_under_proofs": false
  },

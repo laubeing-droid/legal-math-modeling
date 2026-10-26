@@ -120,10 +120,11 @@ theorem exists_closed_fuel_le_carrier (rules : List (Rule Nat)) (facts : List Na
       exact List.mem_toFinset.mpr ha
   have lower : ∀ k, k ≤ bound + 1 →
       k ≤ (proposed_rule_input rules k facts).toFinset.card := by
-    intro k hk
+    intro k
     induction k with
-    | zero => exact Nat.zero_le _
+    | zero => intro _; exact Nat.zero_le _
     | succ k ih =>
+        intro hk
         have hk' : k ≤ bound := by omega
         have prev := ih (by omega)
         have strict := growth k hk'

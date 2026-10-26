@@ -1,0 +1,54 @@
+{
+  "schema": "original-learning-theory-module-evidence-v1",
+  "status": "PASS_NAMED_TYPES_AND_AXIOMS_MODULE_ONLY",
+  "subject": "395a111d82f00baefc9ebd00352ce971d4dc192d",
+  "run_id": 40410293248,
+  "job_id": 121879006809,
+  "job_conclusion": "success",
+  "driver_path": "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
+  "named_count": 8,
+  "named_theorems_full": [
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_1_conditional_correct_implies_calibration",
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_1_conditional_brier_decomposition",
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_1_conditional_brier_unique_optimum",
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_1_binary_conditional_variance",
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_1_binary_conditional_brier",
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_2_population_calibration_not_group_calibration",
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_1_normalized_score_not_calibrated",
+    "JurisLean.Candidates.CalibrationSemantics20261027.q05_3_higher_cutoff_can_raise_risk"
+  ],
+  "sources": [
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemantics20261027.lean",
+      "sha256": "e577b732003f5cb6555b37bed8c18031bd7ade7ddac911d87fbc6e8f869fe0d3"
+    },
+    {
+      "path": "proofs/lean/juris_lean/JurisLean/Candidates/CalibrationSemanticsAudit20261027.lean",
+      "sha256": "528aedcfa5fd4bb5bf6a602bc85fb3c95d9366bcbc69b64dde480a912606cfd8"
+    }
+  ],
+  "axiom_audit": {
+    "audited_targets": 8,
+    "axiom_vocabulary": {
+      "Classical.choice": 8,
+      "Quot.sound": 8,
+      "propext": 8
+    },
+    "targets_with_sorryAx": {},
+    "targets_outside_standard_axioms": {},
+    "conflicting_target_lines": {}
+  },
+  "compiled_evaluations": {
+    "mechanism": "Four #eval exact-result equality checks under #guard_msgs",
+    "expected_messages": [
+      "true",
+      "true",
+      "true",
+      "true"
+    ],
+    "raw_log_contains_messages": false
+  },
+  "closes_debt": false,
+  "discharges_archived_manuscript_gaps": false,
+  "open_formal_tail_remaining": 20
+}
